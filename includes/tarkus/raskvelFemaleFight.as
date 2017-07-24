@@ -44,7 +44,7 @@ public function encounterHostileRaskvelFemale():void
 	else
 	{
 		IncrementFlag("MET_FEMALE_RASKVEL");
-		output("\n\nAnother raskvel emerges from behind a piece of forgotten wreckage. This one seems as determined as the first one you met, proudly declaring, <i>“Fork over your credits, off-worlder. I need ‘em!”</i> She hefts her wrench threateningly. It doesn’t look like negotiation is an option.");	
+		output("\n\nAnother raskvel emerges from behind a piece of forgotten wreckage. This one seems as determined as the first one you met, proudly declaring, <i>“Fork over your credits, off-worlder. I need ‘em!”</i> She hefts her wrench threateningly. It doesn’t look like negotiation is an option.");
 	}
 	//[FIght] [Pay] ["Pay"]
 	clearMenu();
@@ -146,7 +146,7 @@ public function victoryVsRaskvel():void
 		addDisabledButton(3,"AnalPunish");
 	}
 	output("\n\n");
-	addButton(14,"Leave",CombatManager.genericVictory);	
+	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 //Doggie Style

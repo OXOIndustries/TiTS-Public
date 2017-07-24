@@ -407,7 +407,7 @@ public function stocksOralIntros(args:Array):void
 	pc.lust(100);
 	processTime(10);
 	var args:Array = [inCunt,inMouth,x];
-	clearMenu();	
+	clearMenu();
 	addButton(0,"Next",stocksMiddleUsageAndCumStart,args);
 }
 	
@@ -532,7 +532,7 @@ public function stocksMiddleUsageAndCumStart(args:Array):void
 	processTime(10);
 	pc.orgasm();
 	var args:Array = [inCunt,inMouth,x];
-	clearMenu();	
+	clearMenu();
 	addButton(0,"Next",stocksMouthgasms,args);
 }
 	
@@ -643,7 +643,7 @@ public function stocksMouthgasms(args:Array):void
 	pc.orgasm();
 	pc.lust(50);
 	var args:Array = [inCunt,inMouth,x];
-	clearMenu();	
+	clearMenu();
 	addButton(0,"Next",stocksEpilogue,args);
 }
 	

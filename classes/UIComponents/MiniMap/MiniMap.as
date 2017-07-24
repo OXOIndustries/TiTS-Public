@@ -422,7 +422,7 @@
 			{
 				for (yPos = 0; yPos < 7; yPos++)
 				{
-					roomFlags = map[xPos][yPos][zPos];					
+					roomFlags = map[xPos][yPos][zPos];
 					var tarSprite:MinimapRoom = _childElements[xPos][6 - yPos];
 					
 					// Room visibility

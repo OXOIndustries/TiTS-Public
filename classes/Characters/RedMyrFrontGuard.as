@@ -65,7 +65,7 @@
 			this.libidoRaw = 20;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
-			this.lustRaw = 25;		
+			this.lustRaw = 25;
 			
 			this.level = 5;
 			this.XPRaw = normalXP();

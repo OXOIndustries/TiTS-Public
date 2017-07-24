@@ -261,7 +261,7 @@
 			if(target.hasStatusEffect("Grappled"))
 			{
 				grappleWithASexbot(target);
-				return;	
+				return;
 			}
 			var choices:Array = new Array();
 			//Electropulse
@@ -412,7 +412,7 @@
 				else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
 			}
 			
-			outputDamage(damageResult);	
+			outputDamage(damageResult);
 		}
 	}
 }

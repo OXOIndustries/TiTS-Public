@@ -568,7 +568,7 @@ public function elderVenusPitcherEncounter():void {
 	}
 	//*Repeat
 	else {
-		flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"]++;		
+		flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"]++;
 		if(rand(3) == 0) output("\n\nA lilting voice rises up to call, <i>“Hail, traveler! Tell me, could you spare a drink for a thirsty matron? I appear to have misplaced mine.”</i>");
 		//(2)
 		else if(rand(2) == 0) output("\n\nA gentle drawl hooks your [pc.ears]. <i>“Well hello there, cutey. Wanna come over here and sit for a spell? I’m plum tuckered out!”</i>");

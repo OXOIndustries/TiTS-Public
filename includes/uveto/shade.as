@@ -597,7 +597,7 @@ public function shadeUvetoBarMenu():void
 		else addDisabledButton(1, "Sex", "Sex", "You aren’t aroused enough for that.");
 	}
 	addButton(2, "Appearance", shadeAppearance,undefined, "Appearance", "Take a good look at the cat-girl bounty hunter.");
-	addButton(14, "Leave", mainGameMenu);	
+	addButton(14, "Leave", mainGameMenu);
 }
 
 public function askShade4SexOnUveto():void

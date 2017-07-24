@@ -268,7 +268,7 @@ package classes.UIComponents
 				
 				if (this._bodySplitter.parent == null)
 				{
-					this.addChild(_bodySplitter);	
+					this.addChild(_bodySplitter);
 				}
 				
 				_bodySplitter.y = _bodyText.y + _bodyText.height + 2;

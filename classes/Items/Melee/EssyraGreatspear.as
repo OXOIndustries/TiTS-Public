@@ -40,7 +40,7 @@ package classes.Items.Melee
 			evasion = 5;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			
-			this.version = _latestVersion;	
+			this.version = _latestVersion;
 		}	
 	}
 }

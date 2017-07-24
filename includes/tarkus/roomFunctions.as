@@ -135,7 +135,7 @@ public function bonusTubeSteak():Boolean
 		addButton(0,"Rubber Tube",grabARubbahTube);
 		
 	}
-	return rustPlainsEncounters();	
+	return rustPlainsEncounters();
 }
 
 public function tryEncounterBess():Boolean

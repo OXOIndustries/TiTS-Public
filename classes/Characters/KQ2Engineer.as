@@ -216,7 +216,7 @@ package classes.Characters
 				}
 				
 				var worstPerc:Number = 1.0;
-				var shieldTarget:Creature = null;				
+				var shieldTarget:Creature = null;
 				
 				for (var i:int = 0; i < alliedCreatures.length; i++)
 				{

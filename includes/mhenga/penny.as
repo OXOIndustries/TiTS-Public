@@ -1674,7 +1674,7 @@ public function pennyFutanariTalk():void {
 				output("<i>“Mmmoooore?”</i> Penny moans as she starts to masturbate in front of you. Her hand can’t even close around her girth at this point, and the tip is so tall that it smacks her in the chin whenever she gets careless. She grabs hold of it with both hands, one sliding over the half facing you while the other ");
 				if(penny.balls > 0) output("cradles her balls");
 				else output("dips into her sheath to play with it");
-				output(". Her womanly folds are almost entirely forgotten as she babbles, <i>“I think I want more, [pc.name].... I mean, I remember not wanting to turn myself into a hyper-dicked freak, but now... I kind of want to see how big it can get. Each time it feels better!”</i> She slurps at her tip as you consider the situation. <i>“Umph! So good! Come on, give me a monster cock! I promise I won’t split you in half with it!”</i>");	
+				output(". Her womanly folds are almost entirely forgotten as she babbles, <i>“I think I want more, [pc.name].... I mean, I remember not wanting to turn myself into a hyper-dicked freak, but now... I kind of want to see how big it can get. Each time it feels better!”</i> She slurps at her tip as you consider the situation. <i>“Umph! So good! Come on, give me a monster cock! I promise I won’t split you in half with it!”</i>");
 				output("\n\nPenny will surely lose it if you give her the go ahead to take any more. Her already lustful nature seems to be stoked to a high degree already, and giving her more Throbb would certainly lead to her losing her post. No, she can’t have any more now, and you tell her as much.");
 				output("\n\nAmazingly, she actually wilts a little at that. Her masturbation stops as the fennec dreamily says, <i>“Okay, okay, I guess. I’m getting a little out of hand, aren’t I?”</i> You nod. <i>“Good, cause it seems to be keeping you around. I’m going to fuck you so hard as soon as I get caught up on work!”</i> She turns back towards what she was doing while trying to pack her monster dick into her pants. It doesn’t work all that well.");
 				this.clearMenu();
@@ -1950,7 +1950,7 @@ public function pennySexMenu(outputT:Boolean = true):void {
 		this.addDisabledButton(1,"OverDeskFuck","OverDeskFuck","This scene requires you to have a penis.");
 		this.addDisabledButton(2,"Frottage","Frottage","This scene requires you to have a penis.");
 		this.addDisabledButton(3,"Pawjob","Pawjob","This scene requires you to have a penis.");
-		this.addDisabledButton(4,"FaceFuckHer","FackFuckHer","This scene requires you to have a penis.");	
+		this.addDisabledButton(4,"FaceFuckHer","FackFuckHer","This scene requires you to have a penis.");
 	}
 	this.addButton(5,"EatHerOut",gardeFordWritesPennySmex,undefined,"EatHerOut","Eat out Penny.");
 	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) this.addButton(6,"Selfsuck",pennySelfSuckCumsluttery,undefined,"Selfsuck","Watch Penny suck herself off.");
@@ -2277,7 +2277,7 @@ public function suckOffPennyDawgYoMahDiggity():void {
 	if(pc.biggestTitSize() >= 1) output("you teasingly squeeze them down around her in a breasty hug");
 	else output("you teasingly press it against your flat body to give her a little more sensation");
 	output(". Penny groans, but she keeps moving higher, dragging her twitching, erect boner up your body to your face. A single dollop of pre beads on the tip, hanging lower and lower. Penny aims it down and slides it straight through your open lips. Gurgling, you accept her [penny.cock] as well as you can, taking it deep inside you, suppressing your gag reflex as well as you’re able. A single, muffled moan vibrates through her boner as you lick at the shaft, aching for her to touch you down below.");
-	suckAndLickAtPennyYouDildo(true);	
+	suckAndLickAtPennyYouDildo(true);
 }
 
 //Merge suck off and lick out

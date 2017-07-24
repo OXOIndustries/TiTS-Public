@@ -261,7 +261,7 @@ public function buttSlutBadEnd3():void
 	clearOutput();
 	showName("BAD\nEND");
 	output("By the time the machine lets you go, you’re well and truly fucked, mentally and physically. You know that if you kneel down put your ass in the air, someone will come by to fuck it - someone who will claim you and ensure that you’ve always something inside it. You can think of nothing better. Sure, you’ll never get your inheritance, but your cousin can have it. " + rival.mf("He","She") + "’ll never know the happiness you’ve found at the end of a leash.");
-	badEnd();	
+	badEnd();
 }
 
 //[Next]

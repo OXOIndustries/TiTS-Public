@@ -54,7 +54,7 @@ public function genericRareDrops(loot:Array):Array
 
 	//Add one item from tempLoot to loot.
 	if(tempLoot.length > 0) loot.push(tempLoot[rand(tempLoot.length)]);
-	return loot;	
+	return loot;
 }
 
 public function isEaster():Boolean

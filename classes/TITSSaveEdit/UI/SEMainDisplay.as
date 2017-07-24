@@ -188,7 +188,7 @@ package classes.TITSSaveEdit.UI
 			
 			_bodyAppearance = new BodyAppearance();
 			AddControl(_bodyAppearance, LEFT_COL);
-			_bodyAppearance.name = "bodyappearance";			
+			_bodyAppearance.name = "bodyappearance";
 			
 			_hpresistances = new Resistances();
 			_hpresistances.headerText = "HP Resistances";

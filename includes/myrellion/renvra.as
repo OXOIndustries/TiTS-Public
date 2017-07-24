@@ -831,7 +831,7 @@ public function renvraPregnancyMessage2():void
 
 public function renvraPregnancyMessage3():void
 {
-	AddLogEvent("Your belly is bulging slightly, the first visible signs of pregnancy. Your halfbreed spawn seem to be behaving... not that differently from human offspring so far. At least you’re not getting horribly sick in the mornings anymore!");	
+	AddLogEvent("Your belly is bulging slightly, the first visible signs of pregnancy. Your halfbreed spawn seem to be behaving... not that differently from human offspring so far. At least you’re not getting horribly sick in the mornings anymore!");
 }
 
 public function renvraPregnancyMessage4():void

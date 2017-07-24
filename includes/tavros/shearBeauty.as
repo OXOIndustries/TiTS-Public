@@ -1049,7 +1049,7 @@ public function touchPointyEars():void
 	if(flags["HEARD_OF_NAHRI"] != undefined) 
 	{
 		output("\n\n<i>“Oh? Nahri’s that way too?”</i>");
-		output("\n\n<i>“Yeah, but don’t tell her I told you. Now - ah!”</i>");		
+		output("\n\n<i>“Yeah, but don’t tell her I told you. Now - ah!”</i>");
 	}
 	else
 	{

@@ -28,7 +28,7 @@ public function showYarastaThreesome(nude:Boolean = false):void
 {
 	if(!nude) showBust("GIALA","YARASTA");
 	else showBust("GIALA_NUDE","YARASTA_NUDE");
-	showName("GIALA\n& YARASTA");	
+	showName("GIALA\n& YARASTA");
 	author("Zeikfried");
 }
 

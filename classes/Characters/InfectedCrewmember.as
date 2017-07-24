@@ -202,7 +202,7 @@
 			this.vaginas[0].wetnessRaw = 2;
 			this.vaginas[0].loosenessRaw = 3;
 			
-			credits = rand(200);	
+			credits = rand(200);
 			sexualPreferences.setRandomPrefs(4 + rand(3),1);
 			
 			createStatusEffect("Force It Gender");

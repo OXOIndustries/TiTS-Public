@@ -3,7 +3,7 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.GameData.CodexManager;
@@ -88,7 +88,7 @@
 			else {
 				kGAMECLASS.output(target.capitalA + target.short + " injects the Throbb to no effect.");
 			}
-			return false;			
+			return false;
 		}
 		public function throbbPCEffects(arg:int = 0):Boolean {
 			var pc:Creature = kGAMECLASS.chars["PC"];

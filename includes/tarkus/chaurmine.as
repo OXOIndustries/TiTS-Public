@@ -465,7 +465,7 @@ public function approachTarkusCivilizedChaurmine():void
 		clearMenu();
 		//[Talk]
 		//[Leave]
-		chaurmineMenu(2);	
+		chaurmineMenu(2);
 	}
 	//Repeating:
 	else

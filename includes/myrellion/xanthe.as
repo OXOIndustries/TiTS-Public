@@ -226,7 +226,7 @@ public function xantheIsDommingPC():Boolean {
 public function buySomethingFromXanthe():void
 {
 	xantheShopInitialization();
-	buyItem();	
+	buyItem();
 }
 //[Armor] [Clothes] [Uwear, Upper] [Uwear, Lower]
 

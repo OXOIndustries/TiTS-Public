@@ -839,7 +839,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			if(pc.femininity < 70) pc.femininity = 70;
 			pc.breastRows[0].breastRatingRaw = 1;
 			pc.tallness = 48;
-			pc.intelligence(5);	
+			pc.intelligence(5);
 			pc.reflexes(5);
 			pc.aim(5);
 			pc.earType = GLOBAL.TYPE_SYLVAN;
@@ -914,7 +914,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.breastRows[0].breastRatingRaw = 1;
 			pc.milkFullness = 100;
 			pc.milkStorageMultiplier = 2;
-			pc.milkMultiplier = 100;			
+			pc.milkMultiplier = 100;
 			pc.scaleColor = "blue";
 			pc.faceType = GLOBAL.TYPE_SHARK;
 			pc.tailCount = 1;
@@ -1041,7 +1041,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_FUCKABLE;
 			pc.clitLength = 2;
 			if(!pc.hasVagina()) pc.createVagina();
-			pc.vaginas[0].wetnessRaw = 3;			
+			pc.vaginas[0].wetnessRaw = 3;
 			break;
 		/*Decievedtadpole I suppose I'll go with my preferred character from CoC. Full human around 6ft 5, full masculinity, flat chest, 16 inch package with quad testes. Definitely more smart than strong, so a high intelligence. This is more just for convenience and not wasting my time having to get my character the way I like him.*/
 		case "decievedtadpole":
@@ -1072,7 +1072,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.cocks[0].cLengthRaw = 12;
 			pc.cocks[1].cLengthRaw = 12;
 			pc.balls = 4;
-			pc.ballSizeRaw = 7;			
+			pc.ballSizeRaw = 7;
 			pc.armType = GLOBAL.TYPE_CANINE;
 			pc.clearArmFlags();
 			pc.addArmFlag(GLOBAL.FLAG_FURRED);
@@ -1136,7 +1136,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			if(!pc.hasCock()) pc.createCock();
 			pc.shiftCock(0, GLOBAL.TYPE_DEMONIC);
 			pc.cocks[0].cLengthRaw = 9;
-			pc.ballSizeRaw = 6;			
+			pc.ballSizeRaw = 6;
 			break;
 		case "":
 			if(!TF) break;

@@ -24,7 +24,7 @@ package classes.UIComponents.ContentModuleComponents
 		{
 			if (_game == null)
 			{
-				_game = this.parent as RotateMinigameModule;	
+				_game = this.parent as RotateMinigameModule;
 			}
 			return _game;
 		}

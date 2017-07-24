@@ -73,7 +73,7 @@
 			this.lustRaw = 25;
 			
 			baseHPResistances = new TypeCollection();
-			baseHPResistances.kinetic.damageValue = 10.0;			
+			baseHPResistances.kinetic.damageValue = 10.0;
 			
 			this.level = 5;
 			this.XPRaw = normalXP();

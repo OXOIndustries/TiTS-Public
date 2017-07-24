@@ -456,7 +456,7 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1, force:Boolea
 	//Update 
 	if (tPC.hasStatusEffect(effectName) && (force || tPC.statusEffectv2(effectName) > 0))
 	{
-		if (!force) tPC.setStatusValue(effectName, 2, 0);		
+		if (!force) tPC.setStatusValue(effectName, 2, 0);
 		var oldFeedValue:int = tPC.statusEffectv3(effectName);
 		
 		if (oldFeedValue == 15) return;
@@ -532,7 +532,7 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1, force:Boolea
 			if (oldFeedValue < 6 && newFeedValue >= 6)
 			{
 				(tPC.ass as VaginaClass).wetnessMod++;
-				(tPC.ass as VaginaClass).loosenessMod++;			
+				(tPC.ass as VaginaClass).loosenessMod++;
 			}
 			if (oldFeedValue < 9 && newFeedValue >= 9)
 			{

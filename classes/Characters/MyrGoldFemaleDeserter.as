@@ -75,7 +75,7 @@
 			this.lustRaw = 25;
 			
 			baseHPResistances = new TypeCollection();
-			baseHPResistances.kinetic.damageValue = 10.0;			
+			baseHPResistances.kinetic.damageValue = 10.0;
 			
 			this.level = 5;
 			this.XPRaw = normalXP();
@@ -196,12 +196,12 @@
 			this.vaginas[0].loosenessRaw = 3;
 			
 			isUniqueInFight = true;
-			btnTargetText = "Gold Myr";			
+			btnTargetText = "Gold Myr";
 			
 			credits = rand(200);
 			if(rand(20) == 0) inventory.push(new Kirkite());
 			else if(rand(20) == 0) inventory.push(new Satyrite());
-			else if(rand(5) == 0) inventory.push(new RedMyrVenom());		
+			else if(rand(5) == 0) inventory.push(new RedMyrVenom());
 			sexualPreferences.setRandomPrefs(2 + rand(3), 1);
 			
 			if (flags["KNOW_GOLD_MYR_NAME"] != undefined)

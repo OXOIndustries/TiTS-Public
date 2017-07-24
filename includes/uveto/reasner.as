@@ -973,7 +973,7 @@ public function suckleBeatriceTitttttaaaaaays():void
 	output("\n\nAfterward, with a belly full of breastmilk, you give each thick, inch-long brown nipple a parting kiss. " + flags["BEA_TITLE"] + " whispers softly, <i>“Did you drink your fill?”</i>");
 	output("\n\nYou nod, but even though you’ve finished, you ask if you could just stay like this for a while longer. Her smile is the only answer you need.");
 	processTime(30);
-	pc.milkInMouth(bea);	
+	pc.milkInMouth(bea);
 	pc.lust(4);
 	IncrementFlag("BEA_SEXED");
 	clearMenu();

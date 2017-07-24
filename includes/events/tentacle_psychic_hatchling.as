@@ -231,7 +231,7 @@ public function PsychicTentacleBirthing(pregSlot:int):void
 	else output(" [pc.vaginaNoun " + x + "]");
 	output(".");
 	if(x == -1) pc.buttChange(2000);
-	else pc.cuntChange(x,2000);	
+	else pc.cuntChange(x,2000);
 	output("\n\nNo matter how disquieting the sloppy sounds of your birthing may be, <i>they’re music to your ears.</i> You wouldn’t mind having a recording to listen to later. Maybe you could listen when you next masturbate... and pull yourself wide open once more. Or you could keep lying here, semi-conscious and exhausted, releasing your <i>beautiful master</i> on the universe.");
 	if(x == -1) pc.buttChange(2000);
 	else pc.cuntChange(x,2000);

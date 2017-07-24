@@ -210,7 +210,7 @@ package classes.Characters
 			else
 			{
 				if (!hasStatusEffect("Force It Gender")) createStatusEffect("Force It Gender");
-				if (hasStatusEffect("Force Fem Gender")) removeStatusEffect("Force Fem Gender");	
+				if (hasStatusEffect("Force Fem Gender")) removeStatusEffect("Force Fem Gender");
 			}
 			
 			// Interpolate the armor value as a percent between a multiplier between 1 and 0.33. Use this multiplier to modify the base reflex value of the enemy.

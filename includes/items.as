@@ -2112,7 +2112,7 @@ public function storeItem(args:Array):void
 				{
 					var diff:int = sItem.stackSize - sItem.quantity;
 					sItem.quantity = sItem.stackSize;
-					item.quantity -= diff;					
+					item.quantity -= diff;
 				}
 			}
 		}
@@ -2224,7 +2224,7 @@ public function takeItem(args:Array):void
 				{
 					var diff:int = sItem.stackSize - sItem.quantity;
 					sItem.quantity = sItem.stackSize;
-					item.quantity -= diff;					
+					item.quantity -= diff;
 				}
 			}
 		}

@@ -583,7 +583,7 @@ public function gottaGoFastWaitTime(duration:int = 0):void
 	
 	var timeList:Array = minutesToDurationList(duration);
 	
-	output("You wait for" + (timeList.length > 0 ? (CompressToList(timeList)) : " some time") + "....");
+	output("You wait for " + (timeList.length > 0 ? (CompressToList(timeList)) : "some time") + "....");
 	
 	processTime(duration);
 	

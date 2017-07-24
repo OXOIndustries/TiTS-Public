@@ -90,7 +90,7 @@ public function approachYancyYouFaggot():void
 		if(flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] == "milked & fucked") output("<i>“Welcome back, [pc.name],”</i> Yancy says while wrapping a tight, muscled arm around your waist. <i>“Why don’t we get you hooked back up to the milker?”</i>");
 		//Last Milked & Suck
 		//Last Milked & Titfucked
-		else if(flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] == "milked & sucked" || flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] == "milked & titfucked") output("<i>“Welcome back, [pc.name].”</i> Yancy adjusts the waistband of his shorts, already dangerously tenting them at the memory of your previous encounter. <i>“Up for a little... reciprocal milking?”</i>");	
+		else if(flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] == "milked & sucked" || flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] == "milked & titfucked") output("<i>“Welcome back, [pc.name].”</i> Yancy adjusts the waistband of his shorts, already dangerously tenting them at the memory of your previous encounter. <i>“Up for a little... reciprocal milking?”</i>");
 		//Last Milked & Pitched
 		else if(flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] == "milked & pitched") output("<i>“So, how about a uh... more normal milking this time, [pc.name]?”</i>");
 		//Not yet milked

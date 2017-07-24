@@ -559,7 +559,7 @@ public function getBlownByDudeleen():void {
 			addButton(3,"Cunt Tail",cuntailOnDudeleen);
 			addDisabledButton(0,"Ignore");
 			addDisabledButton(1,"Handjob");
-			addDisabledButton(2,"Take Anal");		
+			addDisabledButton(2,"Take Anal");
 		}
 		else
 		{

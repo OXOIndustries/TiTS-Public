@@ -26,22 +26,22 @@ Zil base is high up cliff above waterfall. It’s difficult to reach on foot. (T
 ===================
 \\ FLAGS: 		 \\
 ===================
-flags["PLANTATION_QUEST"] = 0; 			- QUEST STARTED
+flags["PLANTATION_QUEST"]	 			- QUEST STARTED
 
-flags["PQUEST_WHERE_CHAT"] = 1; 		- TALKED WITH DARNOCK ABOUT WHERE LAH IS.
-flags["PQUEST_LAH_CHAT"] = 1;			- TALKED WITH DARNOCK ABOUT WHO LAH IS.
-flags["PQUEST_ABLE_TALK_DISABLE"] = 1;	- ABLES EARLY PQUEST TALK IS DISABLED BECAUSE WALKED AWAY.
-flags["PQUEST_ABLE_TALK_DISABLE"] = 2;	- ABLE EARLY PQUEST DISCUSSIONS LOCKED BECAUSE PC TALKED 2HIM.
-flags["PQUEST_ABLE_CUSTOMS_TALK"] = 1;	- ABLE TOLD YOU ABOUT CUSTOMS
-flags["PQUEST_ABLE_VALUE_TALK"] = 1; 	- ABLE TOLD YOU ABOUT WHAT THEY VALUE
+flags["PQUEST_WHERE_CHAT"]		 		- TALKED WITH DARNOCK ABOUT WHERE LAH IS.
+flags["PQUEST_LAH_CHAT"]				- TALKED WITH DARNOCK ABOUT WHO LAH IS.
+flags["PQUEST_ABLE_TALK_DISABLE"]		- 1: ABLES EARLY PQUEST TALK IS DISABLED BECAUSE WALKED AWAY.
+flags["PQUEST_ABLE_TALK_DISABLE"]		- 2: ABLE EARLY PQUEST DISCUSSIONS LOCKED BECAUSE PC TALKED 2HIM.
+flags["PQUEST_ABLE_CUSTOMS_TALK"]		- ABLE TOLD YOU ABOUT CUSTOMS
+flags["PQUEST_ABLE_VALUE_TALK"]		 	- ABLE TOLD YOU ABOUT WHAT THEY VALUE
 
 flags["PQ_RESOLUTION"]					- 1: GOOD END, 2: PEACEFUL WITH PC BUT SHIT BURNIN, -1: PC WREKT TRIBE
 flags["PQ_NALEENED"]					- TIMES FALLEN INTO NALEEN PIT
-flags["PQ_TOOK_AMBER"] = 1;				- PC TOOK AMBER IDOL!
-flags["PQ_SECURED_LAH"] = 1;			- 1 HAS TAKEN LAH, 2 TURNED IN, -1 LET GO, -2 LET GO AND TOLD DARNOCK
-flags["PQ_FOUGHT_TRIBE"]= 1;			- FOUGHT THE TRIBE AND WON (LOSS IS BAD END)
-flags["PQ_BEAT_LAH"] = 1 				- 1: DEFEATED LAH, -1: DEFEATED BY LAH
-flags["PQ_LET_QUINN_GO"] = 1;			- 1: LET QUINN GO
+flags["PQ_TOOK_AMBER"]					- PC TOOK AMBER IDOL!
+flags["PQ_SECURED_LAH"]					- 1 HAS TAKEN LAH, 2 TURNED IN, -1 LET GO, -2 LET GO AND TOLD DARNOCK
+flags["PQ_FOUGHT_TRIBE"]				- FOUGHT THE TRIBE AND WON (LOSS IS BAD END)
+flags["PQ_BEAT_LAH"]	 				- 1: DEFEATED LAH, -1: DEFEATED BY LAH
+flags["PQ_LET_QUINN_GO"]				- 1: LET QUINN GO
 flags["PQ_P_BURNED"]					- TIMESTAMP FOR WHEN SEEN BURNING MANOR. UNDEFINED IF NOT SET.
 flags["PQ_PEACE_TIMESTAMP"]				- TIMESTAMP WHEN PEACE WERE DECLARED. UNDEFINED IF NOT SET.
 flags["PQ_TRIBE_WREKT_TIMER"] 			- TIMESTAMP OF WHEN THE ZIL TRIBE GOT WRECKED. UNDEFINED IF NOT SET.
@@ -190,7 +190,7 @@ public function plantationApproachBonusRedux():Boolean
 	//Normal desc.
 	else
 	{
-		var msg:String = "";	
+		var msg:String = "";
 		if(hours >= 6 && hours < 19) msg += "The bright sun of Ara Ara";
 		else msg += "The ghostly light of Mhen’ga’s moons";
 		msg += " becomes less and less filtered as you follow the sawdust trail eastwards, the jungle thinning out until it stops, suddenly, at the edge of a huge field. Row upon row of carefully tended and manicured plants of many different type and size meet your eye, each of them cordoned off from one another by white fencing and wire. Close to the edge of the acres of cleared forest there are defense turrets, similar to the ones guarding Esbeth. The ones nearest haven’t attempted to warn or fire at you.";
@@ -1520,7 +1520,7 @@ public function naleenBallLossFinisher():void
 	//+2:30 Hours, Lust reset, pussy soaked, load in everywhere
 	output("Eventually the naleen have mercy on you. Or maybe they get bored of you, or the orgy finishes of its own accord. Whatever the case, you slowly come to your aching senses lying naked and alone, in some black cavern below the distant roar of the waterfall. The same one, or did they chuck you out of their “nest”? Concepts of time and place have deserted you - you just know how much your crotch and [pc.ass] ache, and how much warm naga cum is currently leaking out of you. Your fingers finding the smooth, comforting edges of your codex on the ground centers you a little.");
 	output("\n\nOver the course of the next half hour, you find your [pc.gear] scattered around you and put it all back on. You then crawl slowly in the direction you think you detect a slight breeze coming from. As you progress the light starts to become a bit grayer, the sound of the waterfall a bit clearer, and you have enough about you to get up and start gingerly waddling instead. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
-	output("\n\nYou will have to start the climb again - but at least you’re still alive. And you do now know where the most rapacious pitfall on this planet lies.\n\n");	
+	output("\n\nYou will have to start the climb again - but at least you’re still alive. And you do now know where the most rapacious pitfall on this planet lies.\n\n");
 	processTime(120);
 	currentLocation = "2. WATERFALL POOL";
 	generateMap();
@@ -3002,7 +3002,7 @@ public function sexWithQuinnOmnigenderWHYYYY():void
 		output("You follow her bobbing abdomen and the glossy slink of her legs back behind her throne, to the largest wax yurt-house in the settlement. Behind the hanging colored fabric that acts as its door there is a single room, lit with candles and dominated by a round, wicker bed, heaped with furs.");
 		output("\n\nPrimitive it may be to your eyes, but you very much doubt there is a more richly decorated dwelling in the village. The roof is hung with carvings, gemstones and feather ornaments; on one wall there is a pale, rubbery pelt with a multitude of dangling tentacles that probably doesn’t bear looking at too closely; and crowning the bed’s head-board, a fearsome, many-toothed skull the size of an exercise ball.");
 		output("\n\n<i>“My tribe have many trophies,”</i> murmurs Quinn, sliding backwards onto the bed. Her crotch and chest armor is a hushed whisper as it slides back, and the intense, irresistible smell of fem-zil honey fills the close space; between her bare yellow legs is as neat and puffy a vajazzle as you’re ever likely to see. She touches a small, erect black nipple, her eyes pots of liquid gold in the flickering light. <i>“Only the most honored get to see some, though.”</i>");
-		processTime(4);		
+		processTime(4);
 	}
 	//Repeat
 	else
@@ -3435,7 +3435,7 @@ public function talkToQuinnStuffGogogogogogogogogogo():void
 	}
 	else if(flags["PQ_RESOLUTION"] == 2)
 	{
-		addButton(0,"Esbeth",quinnsEsbethTalk,undefined,"Esbeth","Ask what, if anything, they intend to do about the star people settlement.");	
+		addButton(0,"Esbeth",quinnsEsbethTalk,undefined,"Esbeth","Ask what, if anything, they intend to do about the star people settlement.");
 	}
 	addButton(1,"Herself",talkToQuinnAboutHerself,undefined,"Herself","Ask how she became “Quinn”.");
 

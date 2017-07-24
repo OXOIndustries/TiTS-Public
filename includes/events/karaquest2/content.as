@@ -205,7 +205,7 @@ public function kq2TravelToKara(shortTravel:Boolean):void
 	{
 		if (!annoIsCrew()) output("\n\nYou hear footsteps coming your way. Both you and Kara turn to see Reaha");
 		else output("\n\nThe moment Anno leaves, Reaha comes out of her quarters,");
-		output(" padding down the corridor, moaning slightly as an auto-milker attached to her breasts buzzes happily. She stops and blinks at Kara, her own bare breasts jiggling as the milk is sucked out of them.");	
+		output(" padding down the corridor, moaning slightly as an auto-milker attached to her breasts buzzes happily. She stops and blinks at Kara, her own bare breasts jiggling as the milk is sucked out of them.");
 
 		output("\n\nKara returns the stare, her feline tails moving more quickly behind her. <i>“That looks... really good,”</i> she purrs, eyes affixed to the cow-girl’s bosom.");
 

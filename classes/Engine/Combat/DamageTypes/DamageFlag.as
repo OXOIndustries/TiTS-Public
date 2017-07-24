@@ -142,7 +142,7 @@ package classes.Engine.Combat.DamageTypes
 					var aTrigger:Array = dTriggers[i];
 					
 					if (aTrigger.length == 2) createTrigger(aTrigger[0], aTrigger[1]);
-					else if (aTrigger.length == 3) createTrigger(aTrigger[0], aTrigger[1], aTrigger[2]);	
+					else if (aTrigger.length == 3) createTrigger(aTrigger[0], aTrigger[1], aTrigger[2]);
 				}
 			}
 		}

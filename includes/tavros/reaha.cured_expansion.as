@@ -698,7 +698,7 @@ public function reahaTalkMenu(arg:Function):void
 	//[Prostitution]
 	if(flags["REAHA_WHORING_UNLOCKED"] == 2) addDisabledButton(4,"Whoring","Whoring","She’s a little too busy being a whore to get all cerebral about her time as one.");
 	else if(arg != curedReahaProstitution) addButton(4,"Whoring",curedReahaProstitution,undefined,"Whoring","Talk to Reaha about her views on whoring.");
-	else addDisabledButton(4,"Whoring","Whoring","You just did that!");	//[Her Job]
+	else addDisabledButton(4,"Whoring","Whoring","You just did that!"); //[Her Job]
 	if(arg != talkToReahaAboutHerJob) addButton(5,"Her Job",talkToReahaAboutHerJob,undefined,"Her Job","Job selection go here. Defaults to selling milk; unlock other jobs through talking.");
 	else addDisabledButton(5,"Her Job","Her Job","You just did that!");
 	addButton(14,"Back",curedReahaApproach);

@@ -434,7 +434,7 @@ package classes.UIComponents.SideBarComponents
 			if (initBars)
 			{
 				setBar(newValue, max);
-				return;	
+				return;
 			}
 			
 			setMax(max);

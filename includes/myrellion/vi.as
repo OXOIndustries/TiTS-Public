@@ -13,7 +13,7 @@ public function viBonus():Boolean
 			output(" She looks like a V-Ko android. But why is she on Myrellion?");
 			output(" Your codex chimes, <i>“V-Ko model nursedroid detected. Manufactured by JoyCo. Provides basic medical services. More data available upon request.”</i>");
 			// Unlock 'V-Ko IV' Codex Entry
-			CodexManager.unlockEntry("V-Ko");			
+			CodexManager.unlockEntry("V-Ko");
 		}
 		addButton(0,"V-Ko",approachVi);
 	}

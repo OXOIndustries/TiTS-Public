@@ -88,7 +88,7 @@ package classes.Characters
 			tone = 60;
 			thickness = 30;
 
-			this.femininity = 10;			
+			this.femininity = 10;
 		}
 		
 		public function configFemale():void

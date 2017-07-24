@@ -451,7 +451,7 @@ public function approachDatCowGalRepeat():void
 	addButton(0,"Talk",talkToAmma,true,"Talk","See if the cow-girl wants to talk about anything.");
 	if(pc.lust() >= 33) addButton(1,"Sex",sexChatWithAmma,undefined,"Sex","See if the lusty cow-girl is up for a quickie.");
 	else addDisabledButton(1,"Sex","Sex","You aren’t aroused enough for sex.");
-	addButton(14,"Leave",mainGameMenu);	
+	addButton(14,"Leave",mainGameMenu);
 }
 
 

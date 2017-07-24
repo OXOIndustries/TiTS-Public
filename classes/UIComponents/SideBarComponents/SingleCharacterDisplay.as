@@ -244,7 +244,7 @@ package classes.UIComponents.SideBarComponents
 			_nameUnderline.y = 17;
 			_nameUnderline.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
 			_nameUnderline.graphics.drawRect(0, 0, 187, 1);
-			_nameUnderline.graphics.endFill();			
+			_nameUnderline.graphics.endFill();
 			addChild(_nameUnderline);
 			
 			_nameHeader = new TextField();
@@ -314,7 +314,7 @@ package classes.UIComponents.SideBarComponents
 			_statusEffects.childSizeY = 25;
 			_statusEffects.childSpacing = 5;
 			_statusEffects.targetWidth = 180;
-			addChild(_statusEffects);			
+			addChild(_statusEffects);
 			
 			_elementBkg.graphics.beginFill(UIStyleSettings.gBackgroundColour);
 			_elementBkg.graphics.drawRoundRect((_leftAlign ? -3 : 11), 0, this.width + (_leftAlign ? -6 : 2), this.height + 2, 3, 3);

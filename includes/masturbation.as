@@ -180,7 +180,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 			fap.func = autofellatioForNormies;
 			fap.ttHeader = "Autofellatio";
 			fap.ttBody = "Suck your own dick.";
-			faps.push(fap);	
+			faps.push(fap);
 		}
 	}
 	if (pc.cockTotal() >= 2)
@@ -1672,7 +1672,7 @@ public function milkturbation():void
 				else 
 				{
 					if(pc.lowerUndergarment.shortName != "") output("soaks your " + pc.lowerUndergarment.longName + " with fragrant feminine love");
-					else output("soaks your [pc.thighs] with your fragrant feminine love");	
+					else output("soaks your [pc.thighs] with your fragrant feminine love");
 				}
 				output(". Your lower lips and [pc.clits] feel positively swollen as ");
 				if(pc.totalVaginas() > 1) output("each of ");

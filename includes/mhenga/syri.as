@@ -930,12 +930,12 @@ public function syriSexMenu(outputs:Boolean = true):void {
 		else {
 			if(outputs) output("\n\nYou’re too big to fuck her with it.");
 			addDisabledButton(0,"Cowgirl");
-			addDisabledButton(1,"Missionary");	
+			addDisabledButton(1,"Missionary");
 		}
 	}
 	else {
 		addDisabledButton(0,"Cowgirl");
-		addDisabledButton(1,"Missionary");	
+		addDisabledButton(1,"Missionary");
 	}
 	//For Cuntlets:
 	if(pc.hasVagina()) {

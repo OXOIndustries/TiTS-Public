@@ -6,7 +6,7 @@
 	import classes.GLOBAL;
 	import classes.Creature;
 	import classes.StorageClass;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;

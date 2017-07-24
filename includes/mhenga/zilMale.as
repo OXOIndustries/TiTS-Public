@@ -413,7 +413,7 @@ public function giveTheZilAFootjob():void {
 //Requires a decent amount of zil sex, a dick, a pussy, or nippledicks!
 //Reqs loss suck some.
 public function alkahestsForeskinOralPlay():void {
-	clearOutput();	
+	clearOutput();
 	author("Alkahest");
 	showBust("ZIL");
 	showName("MALE\nZIL");
@@ -1017,7 +1017,7 @@ public function getTailPussyFuckedByZil():void {
 			else output("jerk them off");
 			output(".");
 		}
-		if(pc.hasVagina()) output(" [pc.EachVagina] is fluttering in neglected sympathy.");		
+		if(pc.hasVagina()) output(" [pc.EachVagina] is fluttering in neglected sympathy.");
 	}
 	// else cunts
 	else if(pc.hasVagina()) {

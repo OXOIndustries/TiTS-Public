@@ -1391,7 +1391,7 @@ public function sylvieSexyTimeIntro():void
 	generateMap();
 	processTime(1);
 	clearMenu();
-	sylvieSexMenu();	
+	sylvieSexMenu();
 }
 
 public function sylvieSexMenu():void
@@ -1427,7 +1427,7 @@ public function sylvieSexMenu():void
 	}
 	//[COMPLETE] [VenomKiss] Red Myr PCs only, kiss and lick her for an hour or two, making her cum like crazy.
 	if(pc.hasPerk("Myr Venom")) addButton(4,"Venom Kiss",redMyrSylvieFunz,undefined,"Venom Kiss","Teach Sylvie just how fun red Myr venom can be!");
-	else addDisabledButton(4,"Venom Kiss","Venom Kiss","You need to secrete red Myr venom in order to do this.");	
+	else addDisabledButton(4,"Venom Kiss","Venom Kiss","You need to secrete red Myr venom in order to do this.");
 	addButton(14,"Leave",leaveSylvieHighAndLessThanDryYaCunt);
 }
 public function sylvieForcyRouter():void
@@ -2561,7 +2561,7 @@ public function cleanUpPostRutSylvie():void
 {
 	clearOutput();
 	showName("SCRUBBA\nDUB DUB");
-	output("It only takes you a few minutes to satisfy your desire for cleanliness as thoroughly as your desire for an orgasm. <b>You’re no longer covered in Sylvie’s pheromonal juices!</b>");	
+	output("It only takes you a few minutes to satisfy your desire for cleanliness as thoroughly as your desire for an orgasm. <b>You’re no longer covered in Sylvie’s pheromonal juices!</b>");
 	pc.shower();
 	processTime(4);
 	clearMenu();

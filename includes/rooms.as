@@ -78,7 +78,7 @@ public function initializeRooms():void
 	rooms["GAME OVER"].system = "";
 	rooms["GAME OVER"].moveMinutes = 1;
 	rooms["GAME OVER"].runOnEnter = undefined;
-	rooms["GAME OVER"].addFlag(GLOBAL.INDOOR);	
+	rooms["GAME OVER"].addFlag(GLOBAL.INDOOR);
 
 	// SAENDRA QUEST! -----------------------------------------------
 

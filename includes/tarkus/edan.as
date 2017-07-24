@@ -20,7 +20,7 @@ public function edanRoomDesc():void
 	{
 		
 		output("You see a massive leithan sitting next to some animated raskvel, their eager chittering a juxtaposition to his calm silence as he eats. His eyes flicker to you for a moment before he returns to his meal.");
-		addButton(0, "Leithan", talkToEdan, undefined, "Leithan", "Say hello to the Leithan.");	
+		addButton(0, "Leithan", talkToEdan, undefined, "Leithan", "Say hello to the Leithan.");
 	}
 	else if (flags["EDAN_FUCKED"] == undefined)
 	{

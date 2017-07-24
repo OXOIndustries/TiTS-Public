@@ -218,7 +218,7 @@
 				{ v: "dark green", w: 1 },
 				{ v: "brick red", w: 1 },
 				{ v: "brown", w: 5 }
-			];	
+			];
 			
 			hairColor = weightedRand(hcolour);
 			

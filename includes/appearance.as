@@ -1148,13 +1148,16 @@ public function appearance(forTarget:Creature):void
 	//Body Markings
 	if(target.hasStatusEffect("Shark Markings"))
 	{
-		var bodyPts:Array = [" back", " arms", (" " + (target.legCount == 1 ? target.legNoun() : target.legsNoun()))];
-		if(target.hasTail()) bodyPts.push((" " + target.tailDescript(true)));
+		var bodyPts:Array = ["back", "arms", (target.legCount == 1 ? target.legNoun() : target.legsNoun())];
+		if(target.hasTail()) bodyPts.push(target.tailsDescript(true));
 		
-		output2(" You have")
-		if(target.statusEffectv1("Shark Markings") == 1) output2(" " + target.skinAccent + " stripes running all across your body; your" + CompressToList(bodyPts) + ".");
-		else if(target.statusEffectv1("Shark Markings") == 2) output2(" " + target.skinAccent + " spots dotting every part of your body; your" + CompressToList(bodyPts) + ".");
-		else output2(" an off-color blotch on the frontal part of your body, covering your chin, " + target.chestDesc() + ", belly and inner thighs in " + target.skinAccent + ".");
+		output2(" You have");
+		switch(target.statusEffectv1("Shark Markings"))
+		{
+			case 1: output2(" " + target.skinAccent + " stripes running all across your body; your " + CompressToList(bodyPts) + "."); break;
+			case 2: output2(" " + target.skinAccent + " spots dotting every part of your body; your " + CompressToList(bodyPts) + "."); break;
+			default: output2(" an off-color blotch on the frontal part of your body, covering your chin, " + target.chestDesc() + ", belly and inner thighs in " + target.skinAccent + "."); break;
+		}
 	}
 	
 	// Cum Splattered!
@@ -1789,7 +1792,7 @@ public function appearance(forTarget:Creature):void
 			output2(" A thin,");
 			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
 			else output2(" scaly");
-			output2(", prehensile reptilian tail, almost as long as you are tall, swings behind you like a living bullwhip. Its tip menaces with spikes of bone, meant to deliver painful blows.");	
+			output2(", prehensile reptilian tail, almost as long as you are tall, swings behind you like a living bullwhip. Its tip menaces with spikes of bone, meant to deliver painful blows.");
 			break;
 		case GLOBAL.TYPE_GRYVAIN:
 			output2(" A tapered, prehensile tail, almost as long as you are tall, swings behind you like a living bullwhip. Softly rounded at its tip, it quickly increases in girth closer to your body - almost as thick as your waist at its widest. The " + target.scaleColor + " scales sheathing your hefty tail’s length merge seamlessly with those of your lower back.");
@@ -3017,7 +3020,7 @@ public function crotchStuff(forTarget:Creature = null):void
 				if(Math.floor(10*target.cocks[0].thickness())/10 == 1) output2(int(10*target.cocks[0].thickness())/10 + " inch thick.");
 				else output2(Math.round(10*target.cocks[0].thickness())/10 + " inches across.");
 			}
-			else output2(num2Text(Math.round(10*target.cocks[0].thickness())/10) + " inches across.");				
+			else output2(num2Text(Math.round(10*target.cocks[0].thickness())/10) + " inches across.");
 			dickBonusForAppearance(null, 0);
 			//Worm flavor
 			if(target.hasStatusEffect("Infested")) output2(" Every now and again a slimy worm coated in spunk slips partway out of your " + target.cockDescript(0) + ", tasting the air like a snake’s tongue.");

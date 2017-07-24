@@ -129,7 +129,7 @@
 			tarVag.loosenessRaw = 5;
 			tarVag.bonusCapacity = 500;
 			tarVag.addFlag(GLOBAL.FLAG_LUBRICATED);
-			vaginas.push(tarVag);			
+			vaginas.push(tarVag);
 			
 			balls = 2;
 			cumMultiplierRaw = 10;

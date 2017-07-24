@@ -42,7 +42,7 @@ package classes.Items.Apparel
 			
 			//Information
 			this.basePrice = 150;
-			this.attack = 0;			
+			this.attack = 0;
 			this.defense = 50;
 			this.shieldDefense = 0;
 			this.shields = 0;

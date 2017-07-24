@@ -186,7 +186,7 @@ package classes.UIComponents.StatusEffectComponents
 			_bodyText.styleSheet = styleSheet;
 			_bodyText.mouseEnabled = false;
 			_bodyText.mouseWheelEnabled = false;
-			this.addChild(_bodyText);			
+			this.addChild(_bodyText);
 		}
 		
 		/**

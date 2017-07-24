@@ -155,7 +155,7 @@ package classes.Characters
 			
 			var pTits:BreastRowClass = new BreastRowClass();
 			pTits.breastRatingRaw = 14;
-			pTits.breasts = 2;			
+			pTits.breasts = 2;
 			this.breastRows = [pTits];
 			
 			//No dicks here!

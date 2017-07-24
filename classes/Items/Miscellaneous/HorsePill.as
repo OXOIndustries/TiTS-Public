@@ -5,7 +5,7 @@
 	import classes.GLOBAL;
 	import classes.Creature;
 	import classes.StorageClass;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
@@ -188,7 +188,7 @@
 			{	
 				msg += "\n\n";
 				//Pick a TF	
-				x = rand(TFList.length);	
+				x = rand(TFList.length);
 				select = TFList[x];
 				//Cull 'dat TF from the list.
 				TFList.splice(x,1);
@@ -434,7 +434,7 @@
 					else if(target.physique()/target.physiqueMax() <= 66)
 					{
 						msg += "A wonderful, accomplished soreness makes itself known to you. It’s the kind of feeling you get after a solid work out, the kind that lets you know you’re getting fitter and stronger.";
-						target.slowStatGain("physique",1.5);	
+						target.slowStatGain("physique",1.5);
 					}
 					//High physique! - tiny gain
 					else
@@ -614,7 +614,7 @@
 				TFList[TFList.length] = 1;
 			//#2 Combine more than two balls into regular balls
 			if(target.balls > 2)
-				TFList[TFList.length] = 2;	
+				TFList[TFList.length] = 2;
 			//#3 Grow a sheath if none.
 			if(!target.hasFullSheaths())
 				TFList[TFList.length] = 3;

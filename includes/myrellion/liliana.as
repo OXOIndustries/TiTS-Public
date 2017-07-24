@@ -101,7 +101,7 @@ public function lilianaMenu():void
 	{
 		if(pc.hasVagina()) addButton(0,"Sex",sexUpDatAntBitch);
 		else if(pc.hasCock() && pc.cockThatFits(300) >= 0) addButton(0,"Sex",sexUpDatAntBitch);
-		else addDisabledButton(0,"Sex","Sex","You need a dick that will fit in her vagina or a vagina of your own to engage in intercourse with Liliana");		
+		else addDisabledButton(0,"Sex","Sex","You need a dick that will fit in her vagina or a vagina of your own to engage in intercourse with Liliana");
 	}
 	else addDisabledButton(0,"Sex","Sex","You aren’t presently aroused enough for sex.");
 	//[TALK]

@@ -4,7 +4,7 @@ public function myrellionManorEntrance():Boolean
 	
 	var pRace:String = pc.race();
 	
-	if (pRace == "gold myr") output(" They’re both tensed and on-edge as they approach you, and one casts a glance back toward the gate’s security posts, where you assume they have reinforcements. You suppose you’re getting used to this treatment, considering you look like a two-armed gold myr.");	
+	if (pRace == "gold myr") output(" They’re both tensed and on-edge as they approach you, and one casts a glance back toward the gate’s security posts, where you assume they have reinforcements. You suppose you’re getting used to this treatment, considering you look like a two-armed gold myr.");
 	else if (pRace == "red myr") output(" The two of them look confused and apprehensive as they approach you, and you realize they’re probably wondering why a red myr like themselves is visiting the manor without a uniform and bearing strange gear.");
 	else output(" They both look at you with cautious interest as they approach you, and you guess you might be the first alien either of these women has encountered.");
 	

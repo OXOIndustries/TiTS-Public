@@ -261,7 +261,7 @@ public function vanaeTFScene():void
 			{
 				pc.ballSizeRaw += 1.5;
 				if (pc.ballDiameter() < 10) pc.ballSizeRaw += 1;
-				if (pc.ballDiameter() < 6) pc.ballSizeRaw += 1;	
+				if (pc.ballDiameter() < 6) pc.ballSizeRaw += 1;
 			}
 
 			output(" The new weight catches you by surprise as");

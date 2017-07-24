@@ -48,7 +48,7 @@ public function azraExpeditionStartup():void
 	//If not on Mhen'ga, go straight to the hot shit.
 	else if(planet != "mhen'ga") 
 	{
-		adventureStartRouter();	
+		adventureStartRouter();
 	}
 	else
 	{

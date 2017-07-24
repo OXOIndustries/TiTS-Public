@@ -2225,7 +2225,7 @@ public function vaginalFisi():void
 			if (!fisianna.vaginalVirgin) output("near ");
 			output("virgin pussy, making a small mess of her bedding and both of your legs. ");
 		}
-		output("One quick glance at your lover’s face and you can tell she is totally gone. Her tongue is lazily lolling out of her mouth and she has the biggest grin on her face. You chuckle and nuzzle into her neck as you both ride out the rest of your climax.");	
+		output("One quick glance at your lover’s face and you can tell she is totally gone. Her tongue is lazily lolling out of her mouth and she has the biggest grin on her face. You chuckle and nuzzle into her neck as you both ride out the rest of your climax.");
 	}
 	else
 	{
@@ -2318,7 +2318,7 @@ public function iLoveYouFisi():void
 	output("\n\n<i>“T-this is possibly the happiest I’ve ever been in my life... I-I don’t think I’m dreaming, am I? Even if I am... I-I don’t want this moment to end...”</i> Fisianna hugs you close to her again, still purring.");
 	output("\n\nYou pet Fisianna between her ears while she embraces you. Eventually she lets you go and you continue your walk around the plaza, holding hands the entire way. She is all smiles the whole way around the plaza as you both enjoy your new coupling together. When you reach the northeastern part of the plaza again, Fisianna reaches toward you and gives you a quick peck on your cheek this time.");
 	output("\n\n<i>“I-I’m really glad that you feel the same way about me, and again, I’m really grateful to have met you, [pc.name]. I’m looking forward to the next chance I can see you again. I should go home now and get some rest... Let’s do something together again another time, just the two of us.”</i> Fisianna warmly smiles at you.");
-	output("\n\n<i>“As I said at the bar before, it’s a date!”</i> You quip. Fisianna smiles wider as she hugs you a final time before turning to walk home. ");	
+	output("\n\n<i>“As I said at the bar before, it’s a date!”</i> You quip. Fisianna smiles wider as she hugs you a final time before turning to walk home.");
 	
 	flags["FISI_LOVER"] = 1;
 	setFisiAway();

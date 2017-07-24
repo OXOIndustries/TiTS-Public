@@ -105,7 +105,7 @@
 		//Temporary CoC-style piercings which will likely be discarded into the void of space.
 		public var labiaPierced:Number = 0;
 		public var labiaPShort:String = "";
-		public var labiaPLong:String = "";		
+		public var labiaPLong:String = "";
 		public var clitPierced:Number = 0;
 		public var clitPShort:String = "";
 		public var clitPLong:String = "";

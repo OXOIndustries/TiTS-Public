@@ -4,7 +4,7 @@ package classes.Engine.Utility
 	 * ...
 	 * @author Gedan
 	 */
-	public function CompressToList(entries:Array):String
+	public function CompressToList(entries:Array, and:Boolean = true):String
 	{
 		if (entries.length == 1) return entries[0];
 		
@@ -23,7 +23,9 @@ package classes.Engine.Utility
 			}
 			else
 			{
-				ret += ", and " + entries[i];
+				if (!and || entries[i].indexOf(" ") != -1) ret += ",";
+				if (and) ret += " and";
+				ret += " " + entries[i];
 			}
 			i++;
 		}

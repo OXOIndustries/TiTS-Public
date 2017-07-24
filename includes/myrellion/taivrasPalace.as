@@ -2901,7 +2901,7 @@ public function cowgirlWivTaivra():void
 	var x:int;
 	var isFull:Boolean = true;
 	if (taivraHasFertileEggs()) {		
-		x = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);		
+		x = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
 		if (x >= 0) isFull = false;
 		else if (!pc.isPregnant(3)) {
 			isFull = false;

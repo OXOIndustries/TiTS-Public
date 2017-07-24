@@ -247,9 +247,9 @@ package classes.UIComponents.ContentModules
 			
 			for (var i:int = 0; i < _pieces.length; i++)
 			{
-				var tElem:RotateGameElement = _pieces[i] as RotateGameElement;			
+				var tElem:RotateGameElement = _pieces[i] as RotateGameElement;
 				clrConnections(tElem);
-				if (tElem == _basePower) tElem.isPowered = true;	
+				if (tElem == _basePower) tElem.isPowered = true;
 			}
 			
 			tryConnect(_basePower);

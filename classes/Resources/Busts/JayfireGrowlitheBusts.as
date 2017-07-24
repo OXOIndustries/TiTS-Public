@@ -12,7 +12,7 @@
 		[Embed(source = "../../../assets/images/npcs/jayfireGrowlithe/raskvel.png", mimeType = "image/png")]
 		public var Bust_RASKVEL_FEMALE:Class;
 		[Embed(source = "../../../assets/images/npcs/jayfireGrowlithe/raskvel_nude.png", mimeType = "image/png")]
-		public var Bust_RASKVEL_FEMALE_NUDE:Class;		
+		public var Bust_RASKVEL_FEMALE_NUDE:Class;
 		
 		CONFIG::IMAGEPACK
 		{

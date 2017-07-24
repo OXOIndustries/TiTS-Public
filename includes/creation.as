@@ -760,7 +760,7 @@ public function applySkinTone(skinTone:String = "pale"):void {
 			else pc.cocks[0].cockColor = "pink";
 		}
 	}
-	chooseBreastSize();	
+	chooseBreastSize();
 }
 
 //Boob Size:
@@ -1833,7 +1833,7 @@ public function getFoodAndDrink():void {
 	//[Male] [Female]
 	clearMenu();
 	addButton(0, "Male", function():void { setRivalGender(1); rivalSpillsTheBeans(); } );
-	addButton(1, "Female", function():void { setRivalGender(3); rivalSpillsTheBeans(); } );	
+	addButton(1, "Female", function():void { setRivalGender(3); rivalSpillsTheBeans(); } );
 }
 
 public function jackJillSkip():void

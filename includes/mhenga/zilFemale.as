@@ -38,7 +38,7 @@ public function femzilEncounter(forceFriendly:Boolean = false):void {
 		//[Leave]
 		addButton(14,"Leave",tryToLeaveFemzil);
 		// Sex Options Here
-		if((pc.hasCock() || pc.hasVagina()) && pc.lust() >= 33) addButton(1,"Sex",submitToFriendlyZil);	
+		if((pc.hasCock() || pc.hasVagina()) && pc.lust() >= 33) addButton(1,"Sex",submitToFriendlyZil);
 		else addDisabledButton(1,"Sex","Sex","You need to be in the mood for sex and have genitals to submit to her sexually.");
 	}
 	//[Repeat] (If PC didn’t fight her last time)
@@ -53,7 +53,7 @@ public function femzilEncounter(forceFriendly:Boolean = false):void {
 		//[Fight her]
 		addButton(0,"Fight Her",fightDatFriendlyFemzil);
 		// Sex Options Here
-		if((pc.hasCock() || pc.hasVagina()) && pc.lust() >= 33) addButton(1,"Sex",submitToFriendlyZil);	
+		if((pc.hasCock() || pc.hasVagina()) && pc.lust() >= 33) addButton(1,"Sex",submitToFriendlyZil);
 		else addDisabledButton(1,"Sex","Sex","You need to be in the mood for sex and have genitals to submit to her sexually.");
 		addButton(2,"Get Honey",getHoney);
 		//[Leave]
@@ -467,7 +467,7 @@ public function footjobFromFemzil():void {
 	//CHOICES!
 	clearMenu();
 	addButton(0,"Lick Her",lickABitchCleanYouBitch);
-	addButton(1,"Don’t",dontLickABitchClean);	
+	addButton(1,"Don’t",dontLickABitchClean);
 }
 
 //Not Likely
@@ -577,7 +577,7 @@ public function sixtyNineZil():void {
 	output(". <i>“Oh, wow. Explosive, stranger!”</i> The zil laughs, rolling off you and wiping the [pc.girlCum] from her face - before lapping it up with her long tongue, still slick with your womanly lube. <i>“But you’ve got a talented tongue, you know that... real talented,”</i> she sighs, flopping onto her back and idly fingering her dark slit with latex-black fingers.");
 	
 	output("\n\nWith your chest still heaving, you can only try to stagger to your feet and brush the wetness from your thighs and cheeks. As you grab your [pc.gear], the zil girl slips up behind you, wrapping her dark arms around your [pc.hips], chin nestling in your neck. <i>“Come back real soon, stranger. It’s awful hard to find a girl like you around here,”</i> she whispers, kissing along your neck. You breathe deep, skin trembling as the cum-soaked beauty caresses you; soon, she helps you get dressed and sends you on your way with a friendly wave and a kiss goodbye.");
-	processTime(25+rand(15));	
+	processTime(25+rand(15));
 	pc.orgasm();
 	pc.girlCumInMouth(chars["ZILFEMALE"]);
 	clearMenu();
@@ -1400,7 +1400,7 @@ public function smotherDatBeeSlutInDickYo():void {
 	clearOutput();
 	showBust("ZILFEMALE");
 	showName("FEMALE\nZIL");
-	if(!pc.isCrotchExposed() && pc.armor.shortName != "" && pc.lowerUndergarment.shortName != "") output("You slip out of your [pc.armor] just in time to see your [pc.lowerUndergarment] tenting dangerously around your [pc.cockBiggest]. It takes a few moments of struggling to get the rest of your clothing off, but when you feel yourself flop free, a shudder of relief travels up your spine.");	
+	if(!pc.isCrotchExposed() && pc.armor.shortName != "" && pc.lowerUndergarment.shortName != "") output("You slip out of your [pc.armor] just in time to see your [pc.lowerUndergarment] tenting dangerously around your [pc.cockBiggest]. It takes a few moments of struggling to get the rest of your clothing off, but when you feel yourself flop free, a shudder of relief travels up your spine.");
 	else if(pc.armor.shortName != "" && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) output("You slip out of your [pc.armor] as quickly as possible, lest your [pc.cockBiggest] tear it off for you, or worse, get stuck inside.");
 	else {
 		output("You wriggle to drop the pieces of gear you carry on your ");

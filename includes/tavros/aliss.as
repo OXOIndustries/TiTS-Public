@@ -1573,7 +1573,7 @@ public function talkToAlissAboutOvier():void
 	output("\n\nAliss stretches and asks, <i>“Anything else you want to ask?”</i>");
 	processTime(3);
 	clearMenu();
-	addButton(14,"Back",talkToAliss);	
+	addButton(14,"Back",talkToAliss);
 }
 
 //Mi Amour

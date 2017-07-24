@@ -225,7 +225,7 @@
 			}
 			else if(rand(2) == 0)
 			{
-				changeWeapon("axe");	
+				changeWeapon("axe");
 			}
 			else
 			{
@@ -252,7 +252,7 @@
 					this.meleeWeapon.longName = "axe";
 					this.meleeWeapon.description = "an axe";
 					this.meleeWeapon.attackVerb = "slash";
-					this.meleeWeapon.attackNoun = "cleave";	
+					this.meleeWeapon.attackNoun = "cleave";
 					break;
 				case "claw":
 					this.meleeWeapon.attack = 3;

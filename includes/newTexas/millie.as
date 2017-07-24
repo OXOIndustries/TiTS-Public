@@ -1030,7 +1030,7 @@ public function millieSucksTitsVol2():void
 				pc.breastRows[0].breastRatingRaw = 3;
 				output(" You guess that part wasn’t as temporary as advertised.");
 			}
-			if(!pc.isLactating()) pc.boostLactation(4);	
+			if(!pc.isLactating()) pc.boostLactation(4);
 		}
 	}
 	//Merge -> Next

@@ -4092,7 +4092,7 @@ public function bessBuyShitPanties():void
 	bessBuyCIW(6, "Thong", Thong, "Thong", "Thong");
 	bessBuyCIW(7, "C-String", CString, "C-String", "C-String");
 	
-	addButton(14, "Back", talkToBessAboutAccessories);	
+	addButton(14, "Back", talkToBessAboutAccessories);
 }
 
 public function bessBuyShitAccessories():void

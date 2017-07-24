@@ -152,7 +152,7 @@ public function treatmentHourProcs(totalHours:int):void
 			{
 				ExtendLogEvent(ParseText("\n\nFor instance, you can smell your [pc.vaginas]. You can tell just how aroused you are, whether you’re wet with need or oozing a mate’s genetic material. You could probably pick out the friendliest, sluttiest girl in the room, just by walking past her."));
 			}
-			pc.lust(5);	
+			pc.lust(5);
 		}
 		
 		//9
@@ -3747,7 +3747,7 @@ public function treatmentHourProcs(totalHours:int):void
 					{
 						AddLogEvent("For the past few minutes, a nasty little headache has been brewing. You squeeze your eyes closed, flexing your jaw in an effort to deal with it, when it abruptly fades, vanishing in the span of a second.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
 						ExtendLogEvent(ParseText("\n\nYou aggressively prod yourself, trying to find the source of the fleeting pain; just what kind of headache was that? You get your answer when your fingers find what your nubs have become: full blown horns. They stick at least a full inch out from your [pc.skinFurScales], coming to two proud points, though their tips are rounded enough that you doubt you could do any real injury with them just yet. You’ll have to sharpen them up a little once they finish coming in, maybe even get them capped with ornamental steel."));
-						pc.hornLength = 1;	
+						pc.hornLength = 1;
 					}
 					//1" horns to 2" horns
 					else if(pc.hornLength < 2)
@@ -4286,7 +4286,7 @@ public function standardTreatmentDickStuff(treatedHours:Number, startHours:Numbe
 					if(pc.cockTotal() > 1) ExtendLogEvent("s");
 					ExtendLogEvent(" of meat sway");
 					if(pc.cockTotal() == 1) ExtendLogEvent("s");
-					ExtendLogEvent(" heavily with every step. You wonder if you’ll catch anyone checking you out during your travels. The thought of a few giggling cow-girls sneaking glances at your crotch as you walk has you doing a lot less dangling and a lot more jutting straight forward. You’ll have to be careful turning corners.");	
+					ExtendLogEvent(" heavily with every step. You wonder if you’ll catch anyone checking you out during your travels. The thought of a few giggling cow-girls sneaking glances at your crotch as you walk has you doing a lot less dangling and a lot more jutting straight forward. You’ll have to be careful turning corners.");
 				}
 				//+20 lust
 				pc.lust(20);

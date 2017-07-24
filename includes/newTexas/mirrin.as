@@ -1058,7 +1058,7 @@ public function talkToMirrin():void
 		output(" She places the barbell on the floor with a dull <i>vumff</i> then takes a big glug of water.");
 
 		output("\n\n<i>“Chat for a bit?”</i> she shrugs, taking a seat on a bench press nearby, said bench press creaking a little underneath her.");
-		processTime(2);	
+		processTime(2);
 	}
 	//[Her] [You]* [Race] [Mods] [New Texas] [Treatment]** [Confidence]***
 	//*Only available after PC has asked [Her].

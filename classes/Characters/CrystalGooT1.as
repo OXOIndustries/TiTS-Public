@@ -179,7 +179,7 @@ package classes.Characters
 		{
 			if (hasStatusEffect("GooCamo"))
 			{
-				long = "The ganrael is hidden among the stones and fungi at the moment, prowling for the best direction to strike from. Disturbing scuttling sounds echo in the chamber, and you’ve no doubt that you’ll get another look all too soon.";		
+				long = "The ganrael is hidden among the stones and fungi at the moment, prowling for the best direction to strike from. Disturbing scuttling sounds echo in the chamber, and you’ve no doubt that you’ll get another look all too soon.";
 			}
 			else if (!hasStatusEffect("Unarmored"))
 			{

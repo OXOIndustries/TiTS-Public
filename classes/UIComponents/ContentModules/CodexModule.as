@@ -83,7 +83,7 @@ package classes.UIComponents.ContentModules
 		{
 			_codexTree = new CodexTree();
 			_codexTree.x = _codexText.x + _codexText.width + 21;
-			this.addChild(_codexTree);			
+			this.addChild(_codexTree);
 		}
 		
 		public override function hiddenFromStage():void

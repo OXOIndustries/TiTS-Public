@@ -149,7 +149,7 @@ package classes.Items.Transformatives
 			output("After waiting for the results for several minutes, your [pc.chest] remains the same. Either this product you bought was a dud or you were a very unlucky customer.");
 			
 			kGAMECLASS.clearMenu();
-			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);	
+			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
 		}
 	}
 }

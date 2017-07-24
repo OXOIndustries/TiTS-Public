@@ -41,7 +41,7 @@ public function alexBustDisplay(nude:Boolean = false):String
 public function getAlexPregContainer():PregnancyPlaceholder
 {
 	var pregContainer:PregnancyPlaceholder = new PregnancyPlaceholder();
-	pregContainer.createStatusEffect("Infertile");	
+	pregContainer.createStatusEffect("Infertile");
 	return pregContainer;
 }
 

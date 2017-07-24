@@ -157,7 +157,7 @@ public function playWithMilodan(choice:Number = -1):void
 	{
 		boy = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_MILODAN, ChildManager.GENDER_MALE, 0, 2);
 		girl = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_MILODAN, ChildManager.GENDER_FEMALE, 0, 2);
-		if(boy && girl) boy = (rand(2) == 0);		
+		if(boy && girl) boy = (rand(2) == 0);
 
 		if(boy) output("He’s");
 		else output("She’s");
@@ -1148,14 +1148,14 @@ public function nurseryDisplayGenericChildren(sortedTypedBuckets:Object):void
 			{
 				var b:Genders = thisBucket[i];
 				var entries:Array = [];
-				if (b.Male > 0) entries.push(" " + b.Male + " son" + (b.Male == 1 ? "" : "s"));
-				if (b.Female > 0) entries.push(" " + b.Female + " daughter" + (b.Female == 1 ? "" : "s"));
-				if (b.Intersex > 0) entries.push(" " + b.Intersex + " mixed-gender");
-				if (b.Neuter > 0) entries.push(" " + b.Neuter + " ungendered");
+				if (b.Male > 0) entries.push(b.Male + " son" + (b.Male == 1 ? "" : "s"));
+				if (b.Female > 0) entries.push(b.Female + " daughter" + (b.Female == 1 ? "" : "s"));
+				if (b.Intersex > 0) entries.push(b.Intersex + " mixed-gender");
+				if (b.Neuter > 0) entries.push(b.Neuter + " ungendered");
 
 				if(entries.length > 0)
 				{
-					output("\n<b>* " + StringUtil.toDisplayCase(displayAges[i]) + ":</b>" + CompressToList(entries));
+					output("\n<b>* " + StringUtil.toDisplayCase(displayAges[i]) + ":</b> " + CompressToList(entries));
 					displayCnt++;
 				}
 			}
@@ -1255,27 +1255,27 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 				else if(baby.Quantity > 1)
 				{
 					var sexes:Array = [];
-					if(baby.NumMale > 0) sexes.push(" " + baby.NumMale + " son" + (baby.NumMale == 1 ? "" : "s"));
-					if(baby.NumFemale > 0) sexes.push(" " + baby.NumFemale + " daughter" + (baby.NumFemale == 1 ? "" : "s"));
-					if(baby.NumIntersex > 0) sexes.push(" " + baby.NumIntersex + " mixed-gender");
-					if(baby.NumNeuter > 0) sexes.push(" " + baby.NumNeuter + " ungendered");
+					if(baby.NumMale > 0) sexes.push(baby.NumMale + " son" + (baby.NumMale == 1 ? "" : "s"));
+					if(baby.NumFemale > 0) sexes.push(baby.NumFemale + " daughter" + (baby.NumFemale == 1 ? "" : "s"));
+					if(baby.NumIntersex > 0) sexes.push(baby.NumIntersex + " mixed-gender");
+					if(baby.NumNeuter > 0) sexes.push(baby.NumNeuter + " ungendered");
 					if(sexes.length > 0) output(" " + CompressToList(sexes));
 				}
 				else output("<i>Unknown Sex</i>");
 				
 				var desc:Array = [];
 				if(baby.skinTone != "NOT SET") desc.push(" " + baby.skinTone + " skin");
-				//if(baby.lipColor != "NOT SET") desc.push(" " + baby.lipColor + " lips");
-				//if(baby.nippleColor != "NOT SET") desc.push(" " + baby.nippleColor + " nipples");
-				if(baby.eyeColor != "NOT SET") desc.push(" " + baby.eyeColor + " eyes");
-				if(baby.hairColor != "NOT SET") desc.push(" " + baby.hairColor + " hair");
-				if(baby.furColor != "NOT SET") desc.push(" " + baby.furColor + " fur");
-				if(baby.scaleColor != "NOT SET") desc.push(" " + baby.scaleColor + " scales");
-				if(baby.chitinColor != "NOT SET") desc.push(" " + baby.chitinColor + " chitin");
-				if(baby.featherColor != "NOT SET") desc.push(" " + baby.featherColor + " feathers");
+				//if(baby.lipColor != "NOT SET") desc.push(baby.lipColor + " lips");
+				//if(baby.nippleColor != "NOT SET") desc.push(baby.nippleColor + " nipples");
+				if(baby.eyeColor != "NOT SET") desc.push(baby.eyeColor + " eyes");
+				if(baby.hairColor != "NOT SET") desc.push(baby.hairColor + " hair");
+				if(baby.furColor != "NOT SET") desc.push(baby.furColor + " fur");
+				if(baby.scaleColor != "NOT SET") desc.push(baby.scaleColor + " scales");
+				if(baby.chitinColor != "NOT SET") desc.push(baby.chitinColor + " chitin");
+				if(baby.featherColor != "NOT SET") desc.push(baby.featherColor + " feathers");
 				if(desc.length > 0)
 				{
-					output("\n\t- Having" + CompressToList(desc) + ".");
+					output("\n\t- Having " + CompressToList(desc) + ".");
 				}
 			}
 		}
@@ -1615,7 +1615,7 @@ public function nurseryMaternityWaitTime(duration:int = 0):void
 	var timeList:Array = minutesToDurationList(duration, true);
 	
 	// 9999 - Maybe needs better text...
-	output("You wait for" + (timeList.length > 0 ? (" approximately" + CompressToList(timeList)) : " some time") + " as Briget tends to you for the desired amount of time....");
+	output("You wait for" + (timeList.length > 0 ? (" approximately " + CompressToList(timeList)) : "some time") + " as Briget tends to you for the desired amount of time....");
 	
 	flags["NURSERY_MATERNITY_WAIT_ACTIVE"] = 1;
 	processTime(duration);

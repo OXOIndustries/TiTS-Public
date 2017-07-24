@@ -67,7 +67,7 @@ public function dontDoAnythingFromHardenAttack():void
 	}
 	
 	pc.lust(10);
-	CombatManager.continueCombat();	
+	CombatManager.continueCombat();
 }
 
 //[Quickie] (Masculine) {PC -Lust, Goo -Lust, Goo +HP}
@@ -100,7 +100,7 @@ public function quickieAfterGooHarden():void
 		}
 	}
 	
-	CombatManager.continueCombat();	
+	CombatManager.continueCombat();
 }
 
 public function loseToGrayGooRouter():void

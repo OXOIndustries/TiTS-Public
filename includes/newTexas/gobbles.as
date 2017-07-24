@@ -80,7 +80,7 @@ public function supGobbles2014CanadaEdition():void
 
 	clearMenu();
 	addButton(0, "Yes", orderUpOneTurkeySlut);
-	addButton(1, "No", noThanksGobbles);	
+	addButton(1, "No", noThanksGobbles);
 }
 
 public function noThanksGobbles():void

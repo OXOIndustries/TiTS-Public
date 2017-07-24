@@ -54,7 +54,7 @@ public function kiroTrust(arg:Number = 0):Number
 	if(flags["KIRO_TRUST"] == undefined)
 	{
 		if (flags["RESCUE KIRO TOOK PISTOL"] == 1 || flags["RESCUE KIRO TOOK CUTLASS"] == 1) flags["KIRO_TRUST"] = 30;
-		else flags["KIRO_TRUST"] = 40;		
+		else flags["KIRO_TRUST"] = 40;
 	}
 	//Modifying trust.
 	if(arg != 0)
@@ -262,7 +262,7 @@ public function kiroTalkMenuInCanadia(arg:Function):void
 	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == 1 || flags["KIRO_KALLY_PICARDINE_QUEST"] == 2) addDisabledButton(4,"Picardine","Picardine","Kiro has already made up her mind about this.");
 	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == -1) addDisabledButton(4,"Picardine","Picardine","Kiro has already made up her mind about this and you agree with her on the matter.");
 	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == -2) addDisabledButton(4,"Picardine","Picardine","Kiro has already told you and you’ve secretly told Kally. Kally intends to keep it a secret.");
-	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == 3) addDisabledButton(4,"Picardine","Picardine","Kiro has already come clean about the Picardine to her sister. There is nothing more to talk about.");	
+	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == 3) addDisabledButton(4,"Picardine","Picardine","Kiro has already come clean about the Picardine to her sister. There is nothing more to talk about.");
 	else addButton(4,"Picardine",kiroPicardineTalk,undefined,"Picardine","Find out if Kiro is behind her sister’s mysterious gift.");
 	
 	addButton(14,"Back",approachKiroAtTheBar,true);

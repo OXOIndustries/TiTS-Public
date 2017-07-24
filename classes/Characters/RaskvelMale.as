@@ -197,7 +197,7 @@
 			long += " Their dicks are hidden away in their genital slits, although their snug, pouch-like balls are clear to see.";
 			long += " They have jolly, lively faces, and they laugh and call to each other as they fight you, as if they’re not taking this particularly seriously. Their attacks, though, are very definitely serious.";
 
-			credits = 100+rand(200);	
+			credits = 100+rand(200);
 			if(rand(8) <= 6) inventory.push(new Ruskvel());
 		}
 		
@@ -256,7 +256,7 @@
 				target.energy(-5);
 				//Lust 0-80:
 				if(target.lust() < 80) output(" You feel drained and hot underneath the unwelcome attention.");
-				else output(" It’s impossible not to feel warm and aroused underneath this exhausting, persistent attention. You find yourself wondering if you are thrusting yourself into the raskvels’ tight flesh and grasping hands because you want them off you or simply because of how nice it feels.");	
+				else output(" It’s impossible not to feel warm and aroused underneath this exhausting, persistent attention. You find yourself wondering if you are thrusting yourself into the raskvels’ tight flesh and grasping hands because you want them off you or simply because of how nice it feels.");
 			}
 		}
 		

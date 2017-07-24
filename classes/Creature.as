@@ -294,7 +294,7 @@
 		
 		public function getShieldResistances():TypeCollection
 		{
-			var r:TypeCollection = baseShieldResistances.makeCopy();			
+			var r:TypeCollection = baseShieldResistances.makeCopy();
 			if (!(shield is EmptySlot)) r.combineResistances(shield.resistances);
 			if (hasPerk("Enhanced Dampeners"))
 			{
@@ -3401,7 +3401,7 @@
 		//Used to see if wing-wang-doodles and hatchet-wounds are accessible. Should probably replace most isCrotchGarbed() calls.
 		public function isCrotchExposed(): Boolean
 		{
-			return (isCrotchExposedByArmor() && isCrotchExposedByLowerUndergarment());	
+			return (isCrotchExposedByArmor() && isCrotchExposedByLowerUndergarment());
 		}
 		//Badonkadonk check
 		public function isAssExposed():Boolean
@@ -3415,23 +3415,23 @@
 		}
 		public function isCrotchExposedByArmor():Boolean
 		{
-			return (armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN));	
+			return (armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN));
 		}
 		public function isChestExposedByArmor():Boolean
 		{
-			return (armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST));		
+			return (armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST));
 		}
 		public function isAssExposedByLowerUndergarment():Boolean
 		{
-			return (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS));		
+			return (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS));
 		}
 		public function isCrotchExposedByLowerUndergarment():Boolean
 		{
-			return (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN));		
+			return (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN));
 		}
 		public function isChestExposedByUpperUndergarment():Boolean
 		{
-			return (upperUndergarment is EmptySlot || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST));		
+			return (upperUndergarment is EmptySlot || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST));
 		}
 		
 		public function isChestVisible(): Boolean
@@ -3448,7 +3448,7 @@
 			{
 				return (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN));
 			}
-			return isCrotchExposed();	
+			return isCrotchExposed();
 		}
 		public function isAssVisible():Boolean
 		{
@@ -3756,7 +3756,7 @@
 		}
 		public function isCumCow():Boolean
 		{
-			return (isTreated() && hasStatusEffect("Cum-Cow"));	
+			return (isTreated() && hasStatusEffect("Cum-Cow"));
 		}
 		public function isCumSlut():Boolean
 		{
@@ -3768,7 +3768,7 @@
 		}
 		public function hasPheromones():Boolean
 		{
-			return (pheromoneLevel() > 0);	
+			return (pheromoneLevel() > 0);
 		}
 		public function pheromoneLevel():Number
 		{
@@ -3796,7 +3796,7 @@
 			if(this is PlayerCharacter && flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] != undefined) return true;
 			if(hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) return true;
 			if(statusEffectv1("Sweaty") > 2) return true;
-			return false;	
+			return false;
 		}
 		//Mild exhib scene: arg = +1;
 		//Full exhib scene: arg = +2
@@ -4551,7 +4551,7 @@
 					else if (statPercent >= 50) change += .25;
 					else if (statPercent >= 40) change += .2;
 					else if (statPercent >= 30) change += .15;
-					else change += .1;					
+					else change += .1;
 				}
 				change = 0 - change;
 			}
@@ -6500,9 +6500,9 @@
 			else if (tailCount == 1) return "your " + tailDescript();
 			return "each of your " + plural(tailDescript());
 		}
-		public function tailsDescript():String {
-			if(tailCount == 1) return tailDescript();
-			else if(tailCount > 1) return plural(tailDescript());
+		public function tailsDescript(nounOnly:Boolean = false):String {
+			if(tailCount == 1) return tailDescript(nounOnly);
+			else if(tailCount > 1) return plural(tailDescript(nounOnly));
 			return "<b>ERROR: Taildescript called with no tails present</b>";
 		}
 		public function wingDescript(nounOnly:Boolean = false):String
@@ -8008,7 +8008,7 @@
 			for (var x: int = 0; x < cocks.length; x++) {
 				if (!cocks[x].hasFlag(GLOBAL.FLAG_SHEATHED)) return false;
 			}
-			return true;	
+			return true;
 		}
 		public function totalSheaths():Number
 		{
@@ -10496,7 +10496,7 @@
 			cocks[target].cockColor = cocks[donor].cockColor;
 			cocks[target].knotMultiplier = cocks[donor].knotMultiplier;
 			cocks[target].flaccidMultiplier = cocks[donor].flaccidMultiplier;
-			cocks[target].virgin = cocks[donor].virgin;	//to make it work in a similar fashion as copyVagina
+			cocks[target].virgin = cocks[donor].virgin; // to make it work in a similar fashion as copyVagina
 			for(var y:int = 0; y < cocks[donor].cockFlags.length; y++)
 			{
 				cocks[target].cockFlags[y] = cocks[donor].cockFlags[y];
@@ -11083,14 +11083,12 @@
 		}
 		public function sharkRace():String
 		{
-			//If has perk (Stripes) 
 			if(statusEffectv1("Shark Markings") == 1) return "tiger shark-morph";
 			if(statusEffectv1("Shark Markings") == 2) return "leopard shark-morph";
-			//If galbilaniScore () = 2
 			if(gabilaniScore() >= 2) return "goblin shark-morph";
 			if(bovineScore () >= 2) return "bull shark-morph"
 			if(wingCount > 1 && (wingType == GLOBAL.TYPE_AVIAN || wingType == GLOBAL.TYPE_DOVE)) return "angel-shark";
-			if(tallness >= 9) return "megalodon-morph";
+			if(tallness >= 108) return "megalodon-morph";
 			if(tallness < 60) return "pygmy shark-morph";
 			return "shark-morph";
 		}
@@ -11718,18 +11716,20 @@
 		public function sharkScore(): int
 		{
 			var counter:int = 0;
-			//Shark Face +1
-			if(faceType == GLOBAL.TYPE_SHARK) counter++;
-			if(eyeType == GLOBAL.TYPE_SHARK) counter++;
-			if(earType == GLOBAL.TYPE_SHARK) counter++;
-			if(armType == GLOBAL.TYPE_SHARK) counter++;
-			if(legType == GLOBAL.TYPE_SHARK) counter++;
-			if(wingType == GLOBAL.TYPE_SHARK) counter++;
-			if(hasScales() && hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) counter++;
-			if(totalCocks(GLOBAL.TYPE_SHARK) > 0) counter++;
-			if(totalVaginas(GLOBAL.TYPE_SHARK) > 0) counter++;
-			if(balls > 0 && counter > 0) counter--;
-			if(biggestTitSize() > 2 && counter > 0) counter--;
+			if (faceType == GLOBAL.TYPE_SHARK) counter++;
+			if (eyeType == GLOBAL.TYPE_SHARK) counter++;
+			if (earType == GLOBAL.TYPE_SHARK) counter++;
+			if (armType == GLOBAL.TYPE_SHARK) counter++;
+			if (legType == GLOBAL.TYPE_SHARK) counter++;
+			if (hasTail(GLOBAL.TYPE_SHARK)) counter++;
+			if (wingType == GLOBAL.TYPE_SHARK) counter++;
+			if (hasStatusEffect("Shark Markings")) counter++;
+			if (counter > 0 && hasScales() && hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) counter++;
+			if (counter > 1 && gills) counter++;
+			if (counter > 2 && totalCocks(GLOBAL.TYPE_SHARK) > 0) counter++;
+			if (counter > 2 && totalVaginas(GLOBAL.TYPE_SHARK) > 0) counter++;
+			if (balls > 0 && counter > 0) counter--;
+			if (biggestTitSize() > 2 && counter > 0) counter--;
 			return counter;
 		}
 		public function sheepScore():int
@@ -13743,7 +13743,7 @@
 				else if (currWetness <= 2) desc += RandomInCollection(["wet","sweltering","slippery","juicy","slick","slippery"]);
 				else if (currWetness <= 3) desc += RandomInCollection(["sopping","soaked","drippy","dripping","succulent","oozy","soggy","drenched"]);
 				else if (currWetness <= 4) desc += RandomInCollection(["drooling","lube-leaking","crotch-soaking","leaky","panty-drenchingly wet","obscenely moist","fluid-oozing","slickness-leaking"]);
-				else desc += RandomInCollection(["slavering","slobbering","puddling","juice-drooling","thigh-soaking","panty-flooding","leg-soaking","slobbering","fluid-drooling"]);				
+				else desc += RandomInCollection(["slavering","slobbering","puddling","juice-drooling","thigh-soaking","panty-flooding","leg-soaking","slobbering","fluid-drooling"]);
 				adjectiveCount++;
 				wetnessDisplayed = true;
 			}
@@ -14487,7 +14487,7 @@
 					break;
 				case GLOBAL.TYPE_SHARK:
 					collection = ["tubular", "shark-like", "finned"];
-					break;			
+					break;
 				default:
 					trace("Fallback cock shape used in cockShape() for type: " + GLOBAL.TYPE_NAMES[cock.cType]);
 					collection = ["bestial"];
@@ -15756,7 +15756,7 @@
 				case "transparent":
 					return RandomInCollection("crystal", "diamond");
 				default:
-					return RandomInCollection("pearl", "pearl");		
+					return RandomInCollection("pearl", "pearl");
 			}
 		}
 		public function fluidColorSimple(arg: int):String
@@ -15964,7 +15964,7 @@
 		public function vaginaColor(arg2:int = 0):String
 		{
 			if(!hasVagina() || arg2 < 0 || arg2 >= vaginaTotal()) return "ERROR";
-			return vaginas[arg2].vaginaColor;	
+			return vaginas[arg2].vaginaColor;
 		}
 		public function tailGenitalColorDesc(arg:int = 0):String
 		{

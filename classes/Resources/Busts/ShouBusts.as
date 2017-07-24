@@ -631,7 +631,7 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/anarrie.png", mimeType = "image/png")]
 			public var Full_ANARRIE:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/anarrie_nude.png", mimeType = "image/png")]
-			public var Full_ANARRIE_NUDE:Class;		
+			public var Full_ANARRIE_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/antrias.png", mimeType = "image/png")]
 			public var Full_ANTRIAS:Class;
@@ -1033,7 +1033,7 @@
 			public var Full_MYR_INFECTED_FEMALE:Class;*/
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/myr_gold_bathers.png", mimeType = "image/png")]
-			public var Full_MYR_GOLD_BATHERS:Class;			
+			public var Full_MYR_GOLD_BATHERS:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fungal_myr_queen_spores.png", mimeType = "image/png")]
 			public var Full_MYR_INFECTED_QUEEN:Class;

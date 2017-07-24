@@ -267,7 +267,7 @@ public function initMhengaRooms():void
 	rooms["EAST ESBETH EXIT"].planet = "PLANET: MHEN'GA";
 	rooms["EAST ESBETH EXIT"].system = "SYSTEM: ARA ARA";
 	rooms["EAST ESBETH EXIT"].westExit = "EAST ESBETH ENTRANCE";
-	rooms["EAST ESBETH EXIT"].eastExit = "JUNGLE EDGE";	
+	rooms["EAST ESBETH EXIT"].eastExit = "JUNGLE EDGE";
 	rooms["EAST ESBETH EXIT"].moveMinutes = 2;
 	rooms["EAST ESBETH EXIT"].addFlag(GLOBAL.OUTDOOR);
 	rooms["EAST ESBETH EXIT"].addFlag(GLOBAL.PUBLIC);

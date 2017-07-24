@@ -80,7 +80,7 @@ public function joyCoMagicMilker7Sucks():void
 			//Reset lust
 			pc.orgasm();
 			//BoostLactation by a tiny amount.
-			pc.boostLactation(1);			
+			pc.boostLactation(1);
 		}
 		else
 		{

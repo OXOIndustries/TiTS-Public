@@ -134,7 +134,7 @@ public function delCanadiaMeeting():void
 	}
 	//[Drink] [Talk] [Sex]
 	//if has SynthSheath: [Give Item]
-	delVesperiaMenu();	
+	delVesperiaMenu();
 }
 
 public function delBacksies():void

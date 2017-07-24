@@ -258,7 +258,7 @@ package classes.UIComponents
 			this.buttonName = cap;
 			this.tooltipHeader = ttHeader;
 			this.tooltipBody = ttBody;
-			this.mouseEnabled = true;	
+			this.mouseEnabled = true;
 		}
 		
 		public function clearData():void

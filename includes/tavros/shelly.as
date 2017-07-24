@@ -392,7 +392,7 @@ public function shellyIntenseEggLaying(pageNum:int = 1):void
 		restHeal();
 	}
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);	
+	addButton(0, "Next", mainGameMenu);
 }
 
 //dildo lay assist w/ Shelly (reviewedready for review)

@@ -38,7 +38,7 @@ package classes.Items.Melee
 			baseDamage.kinetic.damageValue = 8;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			
-			this.version = _latestVersion;	
+			this.version = _latestVersion;
 		}	
 	}
 }

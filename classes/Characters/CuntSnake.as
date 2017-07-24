@@ -246,7 +246,7 @@
 			if (target.hasCock() && rand(3) == 0) 
 			{
 				if(rand(4) == 0) paralyzingVenom(target);
-				else aphrodisiacBite(target);	
+				else aphrodisiacBite(target);
 			}
 			else if (CombatManager.getRoundCount() % 5 == 0) 
 			{

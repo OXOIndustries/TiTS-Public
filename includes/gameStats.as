@@ -3735,15 +3735,15 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b><u>Iced Teats</u></b>");
 				// Yum, icecream!
 				var icedTeatsFlavors:Array = [];
-				if(flags["HAD_GEWINFRUIT"] != undefined) icedTeatsFlavors.push(" Gewinfruit");
-				if(flags["HAD_YOKTO"] != undefined) icedTeatsFlavors.push(" Yokto");
-				if(flags["HAD_BLITZABERRY"] != undefined) icedTeatsFlavors.push(" Blitzaberry");
-				if(flags["HAD_STRAWBERRY"] != undefined) icedTeatsFlavors.push(" Strawberry");
-				if(flags["HAD_JUMBIJUMBI"] != undefined) icedTeatsFlavors.push(" Jumbijumbi");
-				if(flags["HAD_DARGINUT"] != undefined) icedTeatsFlavors.push(" Darginut");
-				if(flags["HAD_CHOCOLATE"] != undefined) icedTeatsFlavors.push(" Chocolate");
-				if(flags["HAD_FLAMEBERKS"] != undefined) icedTeatsFlavors.push(" Flameberks");
-				if(icedTeatsFlavors.length > 0) output2("\n<b>* Flavors Tasted:</b>" + CompressToList(icedTeatsFlavors));
+				if(flags["HAD_GEWINFRUIT"] != undefined) icedTeatsFlavors.push("Gewinfruit");
+				if(flags["HAD_YOKTO"] != undefined) icedTeatsFlavors.push("Yokto");
+				if(flags["HAD_BLITZABERRY"] != undefined) icedTeatsFlavors.push("Blitzaberry");
+				if(flags["HAD_STRAWBERRY"] != undefined) icedTeatsFlavors.push("Strawberry");
+				if(flags["HAD_JUMBIJUMBI"] != undefined) icedTeatsFlavors.push("Jumbijumbi");
+				if(flags["HAD_DARGINUT"] != undefined) icedTeatsFlavors.push("Darginut");
+				if(flags["HAD_CHOCOLATE"] != undefined) icedTeatsFlavors.push("Chocolate");
+				if(flags["HAD_FLAMEBERKS"] != undefined) icedTeatsFlavors.push("Flameberks");
+				if(icedTeatsFlavors.length > 0) output2("\n<b>* Flavors Tasted:</b> " + CompressToList(icedTeatsFlavors, false));
 				if(silly && icedTeatsFlavors.length >= 8) output2(", <i>Yum!</i>");
 				// Yammi
 				output2("\n<b>* Yammi:</b> Met her");
@@ -5987,11 +5987,11 @@ public function displayEncounterLog(showID:String = "All"):void
 			output2("\n<b>* Kaede:</b> Met her");
 			if(flags["ANNOxKAEDE_INTRODUCED"] != undefined) output2(", Seen with Anno");
 			var kaedePlanets:Array = [];
-			if(flags["PUPPYSLUTMAS_2014"] != undefined) kaedePlanets.push(" Ausaril");
-			if(flags["KAEDE_MYRELLION_ENCOUNTER"] != undefined) kaedePlanets.push(" Myrellion");
-			if(flags["KAEDE_MET_ON_UVETO"] != undefined) kaedePlanets.push(" Uveto");
-			if(flags["KAEDE_CANADA_MET"] != undefined) kaedePlanets.push(" Canadia");
-			if(kaedePlanets.length > 0) output2(", Seen on" + CompressToList(kaedePlanets));
+			if(flags["PUPPYSLUTMAS_2014"] != undefined) kaedePlanets.push("Ausaril");
+			if(flags["KAEDE_MYRELLION_ENCOUNTER"] != undefined) kaedePlanets.push("Myrellion");
+			if(flags["KAEDE_MET_ON_UVETO"] != undefined) kaedePlanets.push("Uveto");
+			if(flags["KAEDE_CANADA_MET"] != undefined) kaedePlanets.push("Canadia");
+			if(kaedePlanets.length > 0) output2("\n<b>* Kaede, Locations Encountered:</b> " + CompressToList(kaedePlanets, false));
 			if(flags["KAEDE_EXHIBITIONISM"] != undefined) output2("\n<b>* Kaede, Exhibitionism:</b> " + flags["KAEDE_EXHIBITIONISM"] + "/100");
 			if(flags["KAEDE_NT_ENCOUNTER"] != undefined)
 			{
@@ -6227,11 +6227,11 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["AMAZONA_DRINKS"][0] == 1) output2(", Used once");
 					else output2(", Used " + flags["AMAZONA_DRINKS"][0]+ " times");
 					var amazonaFlavors:Array = [];
-					if(flags["AMAZONA_DRINKS"][1] > 0) amazonaFlavors.push(" Classic");
-					if(flags["AMAZONA_DRINKS"][2] > 0) amazonaFlavors.push(" Lite");
-					if(flags["AMAZONA_DRINKS"][3] > 0) amazonaFlavors.push(" Plus");
-					if(flags["AMAZONA_DRINKS"][4] > 0) amazonaFlavors.push(" Futazona");
-					if(amazonaFlavors.length > 0) output2(", Tasted" + CompressToList(amazonaFlavors));
+					if(flags["AMAZONA_DRINKS"][1] > 0) amazonaFlavors.push("Classic");
+					if(flags["AMAZONA_DRINKS"][2] > 0) amazonaFlavors.push("Lite");
+					if(flags["AMAZONA_DRINKS"][3] > 0) amazonaFlavors.push("Plus");
+					if(flags["AMAZONA_DRINKS"][4] > 0) amazonaFlavors.push("Futazona");
+					if(amazonaFlavors.length > 0) output2(", Tasted " + CompressToList(amazonaFlavors));
 				}
 				if(pc.hasStatusEffect("Amazona Uses")) output2("\n<b>* JoyCo, Amazona Iced Tea, Last Drink:</b> " + prettifyMinutes(1440 - pc.getStatusMinutes("Amazona Uses")) + " ago");
 			}
@@ -6350,12 +6350,12 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b>* Steph Irson, Galactic Huntress:</b> Watched");
 				var stephEps:Array = [];
-				if(flags["STEPH_NYAN"] != undefined) stephEps.push(" Naleen");
-				if(flags["STEPH_GOOED"] != undefined) stephEps.push(" Gray Goo");
-				if(flags["STEPH_COWGIRL"] != undefined) stephEps.push(" New Texas");
-				if(flags["STEPH_COCKED"] != undefined) stephEps.push(" Nyrea");
-				if(flags["STEPH_DARGONED"] != undefined) stephEps.push(" Korgonne");
-				if(stephEps.length > 0) output2("\n<b>* Steph Irson, Episodes:</b>" + CompressToList(stephEps));
+				if(flags["STEPH_NYAN"] != undefined) stephEps.push("Naleen");
+				if(flags["STEPH_GOOED"] != undefined) stephEps.push("Gray Goo");
+				if(flags["STEPH_COWGIRL"] != undefined) stephEps.push("New Texas");
+				if(flags["STEPH_COCKED"] != undefined) stephEps.push("Nyrea");
+				if(flags["STEPH_DARGONED"] != undefined) stephEps.push("Korgonne");
+				if(stephEps.length > 0) output2("\n<b>* Steph Irson, Episodes:</b> " + CompressToList(stephEps, false));
 			}
 			miscCount++;
 		}

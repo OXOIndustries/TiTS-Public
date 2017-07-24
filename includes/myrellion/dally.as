@@ -171,7 +171,7 @@ public function dallyApproach():void
 		output(". The dancer spins around a pole, leaning back to smile at you.");
 		output("\n\n<i>“Ahh, the mysterious star-walker returns to my humble stage once more.”</i> Dally’s abdomen passes in front of you. It bobs heavily under its own weight. It almost looks out of place on his lean physique, all bulbous and frankly bloated. His muscles in his legs and back must be corded like iron to support it, a biological mesh designed to help him carry burden of being so prized by his own countrymen - and women.");
 		output("\n\nThe male myr’s motions cause his loincloth to reveal a strapping, eight-inch cock that’s lengthening by the second. Someone’s happy to see you. <i>“Dance, a drink, or ...”</i> He shimmies closer, firmly holding your gaze in sable orbs. <i>“...something else?”</i>");
-		dallyMenu();		
+		dallyMenu();
 	}
 }
 

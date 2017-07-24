@@ -199,7 +199,7 @@ package classes.Characters
 			for (var i:int = 0; i < 2; i++)
 			{
 				output("\n");
-				CombatAttacks.SingleRangedAttackImpl(this, target, true);		
+				CombatAttacks.SingleRangedAttackImpl(this, target, true);
 			}
 
 			// Heavy attack

@@ -26,7 +26,7 @@ package classes.Engine.Interfaces
 		{
 			if (btnI > 0 && btnI % 14 == 0)
 			{
-				i--;				
+				i--;
 				backCC.AddAsButton(btnI++);
 				continue;
 			}

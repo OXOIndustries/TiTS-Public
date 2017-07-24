@@ -202,7 +202,7 @@ public function approachKally():void
 		output("\n\nThere’s enough people here that any kind of fight would be unwise. You step away from the bar before things get rough, satisfying the locals for now. At least they didn’t shove you out the door.");
 		processTime(1);
 		clearMenu();
-		addButton(0,"Next",mainGameMenu);	
+		addButton(0,"Next",mainGameMenu);
 	}
 	//Met, Not Kiro Introduced
 	else if(flags["KIRO_MET_KALLY"] == undefined)

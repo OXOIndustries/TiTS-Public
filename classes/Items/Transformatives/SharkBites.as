@@ -5,7 +5,7 @@
 	import classes.GLOBAL;
 	import classes.Creature;
 	import classes.Items.Miscellaneous.EmptySlot;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;

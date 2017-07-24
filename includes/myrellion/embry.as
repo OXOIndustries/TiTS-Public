@@ -348,7 +348,7 @@ public function callWaitress():void
 	{
 		if(flags["EMBRY_TREATMENTS"] == 0)
 		{
-			embry.credits -= 5000;	
+			embry.credits -= 5000;
 			flags["EMBRY_TREATMENTS"]++;
 			if(flags["EMBRY_RELATIONSHIP"] == 3) firstTransitionForEmbry();
 			else notALoverOrTurnedDownSeeingTFsEmbryRunsUpToYouAgain();
@@ -2730,7 +2730,7 @@ public function embryAnalSex():void
 		if(embry.analVirgin)
 		{
 			output("totally deflowered");
-			embry.analVirgin = false;	
+			embry.analVirgin = false;
 		}
 		else output("utterly used");
 		output(". A sense of delicious conquest swells within you.");

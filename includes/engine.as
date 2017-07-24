@@ -178,5 +178,5 @@ public function formatList():String {
 		}
 	}
 	list = new Array();
-	return stuff;	
+	return stuff;
 }

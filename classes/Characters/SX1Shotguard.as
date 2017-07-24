@@ -270,7 +270,7 @@ package classes.Characters
 			}
 
 			createStatusEffect("Stun Net Cooldown", 5);
-			energy(-10);	
+			energy(-10);
 		}
 		
 		private function shotBlast(target:Creature):void

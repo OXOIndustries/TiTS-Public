@@ -3,7 +3,7 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
@@ -53,7 +53,7 @@
 			{
 				kGAMECLASS.output(target.capitalA + target.short + " gobs the pill to no effect.");
 			}
-			return false;			
+			return false;
 		}
 		
 		public static function effectProc(target:Creature, initDuration:uint, targetDelta:uint):void

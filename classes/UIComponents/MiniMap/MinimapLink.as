@@ -48,7 +48,7 @@
 				if (_rotated == true && MiniMap.LINK_ROTATE[i] == true)
 				{
 					_linkIcons[i].x -= _linkIcons[i].width / 2;
-					_linkIcons[i].y += _linkIcons[i].height / 2;	
+					_linkIcons[i].y += _linkIcons[i].height / 2;
 				}
 				else
 				{

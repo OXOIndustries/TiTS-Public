@@ -134,7 +134,7 @@ package classes.GameData.Pregnancy.Handlers
 					pData.pregnancyQuantity,
 					childGenderWeights
 				);
-			c.BornTimestamp = useBirthTimestamp;			
+			c.BornTimestamp = useBirthTimestamp;
 			ChildManager.addChild(c);
 			
 			kGAMECLASS.flags["COCKVINE_SEEDLING_CAPTURED"] = 1;

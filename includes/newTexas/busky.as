@@ -1198,7 +1198,7 @@ public function buskyModelsClothingItem(item:*):void {
 		else output(" Oh, and the ultra-elastic is extremely durable.");
 		output("”</i>");
 		
-		output("\n\nYou look the boxers over and consider your options. The holographic price tag says " + getBuskyPrice(item) + " credits.");	
+		output("\n\nYou look the boxers over and consider your options. The holographic price tag says " + getBuskyPrice(item) + " credits.");
 		
 		if (flags["BUSKY_MODELLED_HORSESHOEBOXERS"] == undefined) buskyAdjustAffection(0.5);
 		flags["BUSKY_MODELLED_HORSESHOEBOXERS"] = true;

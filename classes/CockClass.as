@@ -84,7 +84,7 @@
 		//Old CoC Piercing Info that I will fire into a star, most likely.
 		public var pierced:Number = 0;
 		public var pShort:String = "";
-		public var pLong:String = "";		
+		public var pLong:String = "";
 		public var sock:String = "";
 		
 		//MEMBER FUNCTIONS

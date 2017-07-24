@@ -34,7 +34,7 @@ public function statOutOmniCollar():void
 		else
 		{
 			pc.armor.defense = 1;
-			pc.armor.sexiness = 15;	
+			pc.armor.sexiness = 15;
 		}
 	}
 }

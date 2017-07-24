@@ -3,7 +3,7 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
@@ -165,7 +165,7 @@
 			else {
 				kGAMECLASS.output(target.capitalA + target.short + " injects the Rainbotox to no effect.");
 			}
-			return false;			
+			return false;
 		}
 		protected function rand(max:Number):Number
 		{

@@ -50,7 +50,7 @@ package classes.Ships.Actions
 			{
 				var weapon:WeaponModule = weapons[i] as WeaponModule;
 				
-				if (weapon.Disabled == true || weapon.CanFire == false) continue;				
+				if (weapon.Disabled == true || weapon.CanFire == false) continue;
 				
 				var sdr:ShipDamageResult;
 				if (weapon.TargetOverride == null) sdr = weapon.Attack(target, playerGroup, hostileGroup, true);

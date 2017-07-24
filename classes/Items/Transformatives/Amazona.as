@@ -4,7 +4,7 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
@@ -779,7 +779,7 @@
 							output("\n\nYou get up with a groan, taking stock of what just happened. Your [pc.cocks] " + (totalCocks == 1 ? "is" : "are") + " still iron hard, and seem");
 							if(totalCocks == 1) output("s");
 							output(" to have grown another two inches.");
-							if(!target.isCrotchExposed()) output(" You shove them back into your [pc.underGarments], having more important things to do than jerk off all day, as nice as that would be.");
+							if(!target.isCrotchExposed()) output(" You shove them back into your [pc.lowerGarment], having more important things to do than jerk off all day, as nice as that would be.");
 							else output(" You sigh at your erect state; a lack of pants is going to make getting around a bit awkward for the next few minutes.");
 							
 							for(i = 0; i < target.cocks.length; i++)
@@ -941,10 +941,10 @@
 					output("\n\nYour [pc.cocks] shoot");
 					if(totalCocks == 1) output("s");
 					output(" to full hardness,");
-					if(!target.isCrotchExposed()) output(" nearly tearing your [pc.underGarments] off of you.");
+					if(!target.isCrotchExposed()) output(" nearly tearing your [pc.lowerGarments] off of you.");
 					else output(" flying upward with enough force to give anyone unlucky enough to be in front of you a good smack.");
 					output(" You reel back, lightheaded at your sudden tumescence.");
-					if(!target.isCrotchExposed()) output(" Your [pc.underGarment] feeling almost painfully tight.");
+					if(!target.isCrotchExposed()) output(" Your [pc.lowerGarment] feeling almost painfully tight.");
 					if(target.exhibitionism() < 33) output(" You find a nice, private place to strip them off.");
 					else output(" You tear them off, not caring who sees.");
 					output(" You grasp your " + (totalCocks == 1 ? "meat" : "shafts") + ", feeling " + (totalCocks == 1 ? "it" : "them") + " jump in your hand");
@@ -985,7 +985,7 @@
 					output("\n\nYour [pc.balls] feel really sore all of a sudden, like you haven’t cum in months.");
 					if(target.exhibitionism() < 33) output(" You find a secluded corner to deal with your dilemma.");
 					else output(" You make sure at least one person is looking before tending to it.");
-					if(!target.isCrotchExposed()) output(" You strip off your [pc.underGarments] to get at them.");
+					if(!target.isCrotchExposed()) output(" You strip off your [pc.lowerGarments] to get at them.");
 					output(" You start to massage your sack, trying to relieve the soreness. Void, they feel so dense! Has it really been that long since you came?");
 					output("\n\nYou manage to massage out the soreness, but the dense feeling remains, in fact it seems to be getting worse. Unthinkingly, you give your balls a mild squeeze, which seems to set off something. The denseness turns to extreme heaviness, like your [pc.balls] are suddenly made of lead! You panic, thinking something must have gone horribly wrong, when suddenly a wave of pleasure knocks you off your feet.");
 					output("\n\nYou land [pc.ass] first, the pressure in your crotch too much for you to get up. Your [pc.cockBiggest] points at you accusingly. it’s rock hard, and leaking a thick drop of pre. You grab and start stroking for dear life, desperate to relieve to pounding fullness in your sack. You go off very quickly, hosing yourself [pc.cumColor]. But neither the heaviness or your orgasm fade. Your dick is a firehose, spraying you down with the endless liquid from your hydrant-like balls. You manage to fumble your tool to aim away from you. You wipe the [pc.cum] from your face, finally able to see what’s happening, only to jump in shock as you see your [pc.balls] swelling.");

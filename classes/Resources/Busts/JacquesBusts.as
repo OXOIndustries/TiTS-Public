@@ -378,12 +378,12 @@ package classes.Resources.Busts
 			public var Full_MYR_RED_GUARD_MASK:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/natalie.png", mimeType = "image/png")]
-			public var Full_NATALIE:Class;		
+			public var Full_NATALIE:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/natalie_nude.png", mimeType = "image/png")]
 			public var Full_NATALIE_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nehzara.png", mimeType = "image/png")]
-			public var Full_NEHZARA:Class;		
+			public var Full_NEHZARA:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nehzara_nude.png", mimeType = "image/png")]
 			public var Full_NEHZARA_NUDE:Class;
 			

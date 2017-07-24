@@ -32,7 +32,7 @@ public function xenogenOutsideBlurb():Boolean
 	if(zilXenogenProtestBonus()) return true;
 	if(hours < 6 || hours >= 17)
 	{
-		output("\n\n<b>The doorway to the north is currently marked “Closed.”</b> A notice declares that it will be open again at 6:00 standard terran time.");		
+		output("\n\n<b>The doorway to the north is currently marked “Closed.”</b> A notice declares that it will be open again at 6:00 standard terran time.");
 	}
 	else
 	{

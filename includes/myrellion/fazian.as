@@ -1570,7 +1570,7 @@ public function fazianQuestApproachBackMenu():void
 
 	addButton(3, "Wait", fazianQuestApproachBackWait);
 
-	addButton(14, "Back", fazianQuestApproachLeave);	
+	addButton(14, "Back", fazianQuestApproachLeave);
 }
 
 public function fazianQuestApproachBackWait():void

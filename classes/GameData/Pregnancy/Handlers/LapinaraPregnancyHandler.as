@@ -208,7 +208,7 @@ package classes.GameData.Pregnancy.Handlers
 				buffer += "\n\nThat happy feeling the babies have been pumping into your bloodstream hasn’t diminished at all.";
 				if(kGAMECLASS.lapiTrain() > 2) buffer += " Frankly, you love it. Everything is so much better, even the scary or unpleasant things are easier for you to handle now. Life seems so much better, you can’t help but love the baby bunnies inside you. It’s enough to make you seriously wonder what the point of galavanting around the galaxy is, when you know how good your life could be staying put on Tarkus.";
 				else if(kGAMECLASS.lapiTrain() > 0) buffer += " You’re truly glad that they haven’t, you really like the way it makes you feel. Everything is so much better, even the scary or unpleasant things are easier for you to handle now. Life seems so much better, you can’t help but start loving the baby bunnies inside you.";
-				else buffer += " As easy as it is to object to something playing with your brain this way, on an emotional level you can’t help but feel good about it. It might be caused by hormones or whatever else, but the fact is that it has made life so much more enjoyable than it used to be.";				
+				else buffer += " As easy as it is to object to something playing with your brain this way, on an emotional level you can’t help but feel good about it. It might be caused by hormones or whatever else, but the fact is that it has made life so much more enjoyable than it used to be.";
 				AddLogEvent(buffer);
 			}, true);
 			this.addStageProgression(20160,function(pregSlot:int):void
@@ -412,7 +412,7 @@ package classes.GameData.Pregnancy.Handlers
 				buffer += ParseText("Your [pc.belly] has been feeling strange; you’ve been getting some cramps, and things seem to be shifting around inside you.");
 				if(kGAMECLASS.lapiTrain() > 0) buffer += " You know this means that you’ll be giving birth soon, and that you should probably make sure everything is ready before the big event.";
 				else buffer += " You aren’t certain, but you think this means you’ll be giving birth soon. It’s probably a good idea to make sure everything is ready....";
-				kGAMECLASS.pc.libido(2+rand(2));				
+				kGAMECLASS.pc.libido(2+rand(2));
 				kGAMECLASS.pc.lust(3);
 				AddLogEvent(buffer);
 			}, true);
@@ -536,7 +536,7 @@ package classes.GameData.Pregnancy.Handlers
 			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
 			
-			pData.reset();			
+			pData.reset();
 			return c;
 		}
 	}

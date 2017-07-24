@@ -525,7 +525,7 @@ public function karaAndShadeUnfinished():Boolean
 {
 	if(flags["SHADE_DEFEATED_WITH_KARA"] != undefined || flags["KARA_DEFEATED_WITH_SHADE"] != undefined || flags["LOST_TO_SHADE_WITH_KARA"] != undefined) return false;
 	if(flags["DISTRACTED_SHADE"] != undefined) return false;
-	if(flags["SHADE_AND_KARA_RESOLVED_THINGS_THEMSELVES"] != undefined) return false;	
+	if(flags["SHADE_AND_KARA_RESOLVED_THINGS_THEMSELVES"] != undefined) return false;
 	if(flags["MET_KARA"] == undefined) return false;
 	return true;
 
@@ -1315,7 +1315,7 @@ public function shadeMenu():void
 	if(pc.lust() >= 33) addButton(1,"Sex",askShade4Sex,undefined,"Sex","Get into some mischief under the covers.");
 	else addDisabledButton(1,"Sex","Sex","You aren’t aroused enough for that.");
 	addButton(2,"Appearance",shadeAppearance,undefined,"Appearance","Take a good look at the cat-girl bounty hunter.");
-	addButton(14,"Leave",mainGameMenu);	
+	addButton(14,"Leave",mainGameMenu);
 }
 
 //Appearance

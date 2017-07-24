@@ -103,7 +103,7 @@ public function talkToGeoff():void {
 		//Talk:
 		output("You say you’d just like to shoot the breeze with him. Shrugging amiably, the young mechanic points you to a shipping crate similar to the one his uncle is currently perched upon.");
 		output("\n\nYou spend a pleasant half an hour sat in the back of the scrap hut chatting with Geoff as he continues dismantling pieces of machinery. He’s heard of your father, and is eager to hear any story you can possibly tell him about Steele, hero of the frontier. In return he tells you his own experiences in Esbeth. He says both the proprietor of the Mead Hall and Officer Penny are quite nice once you get to know them, although you get the distinct impression he’s rather intimidated by them both. After you’re done kicking your heels back you let him get back to it and head out of the scrapyard’s clutter.");
-		processTime(30+rand(4));		
+		processTime(30+rand(4));
 		this.clearMenu();
 		this.addButton(0,"Next",mainGameMenu);
 	}

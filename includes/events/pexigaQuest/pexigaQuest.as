@@ -1148,12 +1148,12 @@ public function drLashPeacekeeprTalk():void
 	if(!pc.isBimbo()) output("\n\nYou’re not sure if you should thank him or draw your weapon. The man’s barking mad, that much is obvious. You’re tempted to tip off the Peacekeepers, but you suspect that’d only be signing their death warrants. If somebody steps up to Lash, they’re going to need to be prepared for the devil himself.");
 	else output("\n\nWhew, what a relief. All this thinking and talking was starting to make you feel dizzy. Lashy just is not as much fun as Doc Badger. Not by a long shot!");
 
-	//Remove <i>“Peacekeepers”</i> option from other quest links, add <i>“Explore”</i> option to East Novahome.
+	//Remove “Peacekeepers” option from other quest links, add “Explore” option to East Novahome.
 	//[End]
 	flags["LASH_BOMB"] = 1;
 	processTime(20);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);	
+	addButton(0,"Next",mainGameMenu);
 }
 
 public function peacekeeperTalkAvailable():Boolean
@@ -1183,7 +1183,7 @@ public function dclPeacekeeperTalk():void
 	output("\n\nThe peacekeepers arrive so quickly, you’d swear they were practically running. Seems they haven’t had much of a break since being assigned to Tarkus and are looking to slake their thirsts in more ways than one. You leave the barmaid to be groped by the horny policemen and make sure your pexiga is close at hand. Time to see what Doctor Badger left behind in her ");
 	if(!pc.isBimbo()) output("little shop of whores.");
 	else output("super fun boobie shop!");
-	//Remove <i>“Peacekeepers”</i> option from other quest links, add <i>“Explore”</i> option to East Novahome
+	//Remove “Peacekeepers” option from other quest links, add “Explore” option to East Novahome
 	//[End]
 	processTime(4);
 	flags["DEL_DISTRACT"] = 1;

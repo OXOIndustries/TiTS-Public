@@ -277,7 +277,7 @@
 				else 
 				{
 					output("\nThe alien attention leaves your cheeks burning, and your whole body flushing with arousal. The things you could do to a gooey beauty like this...");
-					applyDamage(new TypeCollection( { tease: 4 } ), this, target, "minimal");	
+					applyDamage(new TypeCollection( { tease: 4 } ), this, target, "minimal");
 				}
 			}
 		}

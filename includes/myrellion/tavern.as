@@ -54,7 +54,7 @@ public function showCandice():void
 	author("Savin");
 	if(flags["MET_CANDICE"] == undefined) showName("\nBARTENDER");
 	else showName("\nCANDICE");
-	showBust("CANDICE");		
+	showBust("CANDICE");
 }
 
 // Actually Buying a Drink

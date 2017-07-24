@@ -21,7 +21,7 @@ public function spinarranSilkAndSteelBonusFunc():Boolean
 	
 	removeUvetoCold(true);
 	
-	addButton(0,"Kirila",approachKirila);	
+	addButton(0,"Kirila",approachKirila);
 	return false;
 }
 

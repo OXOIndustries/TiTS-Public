@@ -206,7 +206,7 @@ public function shotgunWeddingDream2():void
 		cockHolding.cocks[x].cockColor = pc.cocks[x].cockColor;
 		cockHolding.cocks[x].knotMultiplier = pc.cocks[x].knotMultiplier;
 		cockHolding.cocks[x].flaccidMultiplier = pc.cocks[x].flaccidMultiplier;
-		cockHolding.cocks[x].virgin = pc.cocks[x].virgin;	//to make it work in a similar fashion as copyVagina
+		cockHolding.cocks[x].virgin = pc.cocks[x].virgin; //to make it work in a similar fashion as copyVagina
 		for(var y:int = 0; y < pc.cocks[x].cockFlags.length; y++)
 		{
 			cockHolding.cocks[x].cockFlags.push(pc.cocks[x].cockFlags[y]);
@@ -297,7 +297,7 @@ public function shotgunWeddingDream3(cockHolding:Creature):void
 		pc.cocks[x].cockColor = cockHolding.cocks[x].cockColor;
 		pc.cocks[x].knotMultiplier = cockHolding.cocks[x].knotMultiplier;
 		pc.cocks[x].flaccidMultiplier = cockHolding.cocks[x].flaccidMultiplier;
-		pc.cocks[x].virgin = cockHolding.cocks[x].virgin;	//to make it work in a similar fashion as copyVagina
+		pc.cocks[x].virgin = cockHolding.cocks[x].virgin; //to make it work in a similar fashion as copyVagina
 		// Clear previous flags
 		pc.cocks[x].cockFlags = [];
 		// Renew to original flags

@@ -245,7 +245,7 @@ package classes.UIComponents.ContentModules
 			var gavePoints:Boolean = false;
 			
 			// Remove the spent points from the creature object
-			_targetCreature.unspentStatPoints = _availablePoints;			
+			_targetCreature.unspentStatPoints = _availablePoints;
 			
 			for (var i:int = 0; i < _barLabels.length; i++)
 			{

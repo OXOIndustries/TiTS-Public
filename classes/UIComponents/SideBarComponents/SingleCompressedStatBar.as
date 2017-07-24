@@ -120,7 +120,7 @@ package classes.UIComponents.SideBarComponents
 				}
 				
 				var currentValue:Number = currentSize / _currentMaxWidth;
-				currentValue *= _maxValue;				
+				currentValue *= _maxValue;
 				
 				_valueDisplay.text = String(Math.round(currentValue));
 				_bar.width = _mask.width = currentSize;

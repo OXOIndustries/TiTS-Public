@@ -85,7 +85,7 @@ public function gigaCeliseFeedRouter():void
 	else addDisabledButton(0,"Cock Feed","Cock Feed","You need a penis for this scene.");
 	//female parts tentacle fun
 	if(pc.hasVagina()) addButton(1,"Cunt Feed",celiseFemalePartsTentacleFun,undefined,"Cunt Feed","Feed your tentacle-heavy Celise with a tentacle’s best friend - [pc.oneVagina].");
-	else addDisabledButton(1,"Cunt Feed","Cunt Feed","You need a vagina for this scene.");	
+	else addDisabledButton(1,"Cunt Feed","Cunt Feed","You need a vagina for this scene.");
 	//Goo pc’s fun
 	//(requires pc to have goo body) && genitals
 	if(pc.isGoo() && pc.hasGenitals()) addButton(2,"Goo Fun",gooPCsAreFun,undefined,"Goo Fun","Have some gooey fun with Celise. Since you’re both goo-creatures, it should be a slippery-wet mess!");

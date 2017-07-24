@@ -788,7 +788,7 @@
 					{
 						airSaveDir.createDirectory();
 						stream.open(airFile, FileMode.WRITE);
-						stream.writeBytes(baDataBlob);	
+						stream.writeBytes(baDataBlob);
 						stream.close();
 						saveToFileWriteHandler();
 					}
@@ -883,7 +883,7 @@
 					kGAMECLASS.output2("\n#" + i + " - " + files[i].name);
 					kGAMECLASS.addGhostButton(i + offset, "#" + i, loadFileSelected, files[i]);
 				}
-				kGAMECLASS.userInterface.mainButtonsOnly();	
+				kGAMECLASS.userInterface.mainButtonsOnly();
 			}
 		}
 		
@@ -922,7 +922,7 @@
 				var bytes:ByteArray = new ByteArray();
 				stickyFileStreamRef.readBytes(bytes);
 				
-				bytes.position = 0;	
+				bytes.position = 0;
 				var dataBlob:Object = bytes.readObject();
 				
 				stickyFileStreamRef.close();
@@ -1207,7 +1207,7 @@
 				}
 			}
 			
-			var gamePtr:* = kGAMECLASS;		
+			var gamePtr:* = kGAMECLASS;
 			dataErrors = false;
 			
 			// Now we can shuffle data into disparate game systems 
@@ -1432,7 +1432,7 @@
 			// We COULD pass the blob back and run another verify, but this is a quick, cheap-ish way 
 			if (data.version == undefined)
 			{
-				throw new Error("Version failed");	
+				throw new Error("Version failed");
 				return false;
 			}
 			if (data.minVersion == undefined)

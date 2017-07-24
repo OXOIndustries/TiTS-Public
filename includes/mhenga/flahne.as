@@ -185,7 +185,7 @@ public function talkToFlahne():void {
 	else if(flags["PQ_RESOLUTION"] != undefined) addDisabledButton(4,"There is no peace with the Zil, and nothing to talk about.");
 	else if(pc.level < 6) addDisabledButton(4,"Zil","Zil","Something else has to happen for this... something that you probably ought to be level six for.");
 	else addDisabledButton(4,"Zil","Zil","Relations will the zil would need to be more peaceful for this. Perhaps something involving Thare Plantation...");
-	addButton(14,"Back",mainGameMenu);	
+	addButton(14,"Back",mainGameMenu);
 }
 
 //[Zil?]

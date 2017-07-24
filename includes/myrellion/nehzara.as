@@ -648,7 +648,7 @@ public function refuseToLickAntPussayOrClosetFuxx():void
 	//(+Lust, PC can now take the shuttle to Kressia)
 	if(!pc.hasKeyItem("Kressia Pass")) pc.createKeyItem("Kressia Pass", 0, 0, 0, 0, "");
 	processTime(2);
-	nehzeraMenu(refuseToLickAntPussayOrClosetFuxx);	
+	nehzeraMenu(refuseToLickAntPussayOrClosetFuxx);
 }
 
 public function nehzeraMenu(arg:Function = null):void

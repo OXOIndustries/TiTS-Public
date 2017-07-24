@@ -1399,7 +1399,7 @@ public function flyMenu():void
 		if (shipLocation != "CANADA1") addButton(8, "Canadia", flyTo, "Canadia");
 		else addDisabledButton(8, "Canadia", "Canadia Station", "You’re already here.");
 	}
-	else addDisabledButton(8, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");	
+	else addDisabledButton(8, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
 	//KQ2
 	if (flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_DETAILED"] == undefined)
 	{

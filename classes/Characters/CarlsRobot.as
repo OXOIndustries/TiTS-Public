@@ -201,11 +201,11 @@
 			if (HP() <= HPMax() * .1) suicideBullshit(target);
 			else if(hasStatusEffect("Repair Queued") || (HP() < HPMax()/2 && rand(10) <= 2))
 			{
-				botRepairGo();	
+				botRepairGo();
 			}
 			else if(HP() < HPMax()/2 && rand(10) <= 2) weldGunAttack(target);
 			else if(rand(3) == 0) theSpinner(target);
-			else machinaAttackNormal(target);	
+			else machinaAttackNormal(target);
 		}
 		
 		private function suicideBullshit(target:Creature):void

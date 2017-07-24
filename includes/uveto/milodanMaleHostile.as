@@ -1119,7 +1119,7 @@ public function milodanBadEndHandler():Boolean
 			output("\n\nIt’s not an easy life, of course. Your alpha demands that you learn to cook the food he brings home, clean and dress wounds and a myriad of other chores that always need doing around the village, even while you’re waddling about heavy with his spawn. You’re constantly sore for the first month or so of your new life, a result of your alpha’s insane libido and the work you’re always doing. It’s where you belong though, you know that now. Why else would you have kept coming back to be bred in the snow, if you didn’t want to become his forever?");
 			output("\n\nYou’ve forgotten all about your ‘quest’ by the time the milodan who took you for his own is putting his third litter of kits in your tummy. All you can think about is how <i>happy</i> and <i>proud</i> you are to bear another litter for your mate, how good and <i>right</i> it feels to be under him, hundreds of pounds of pure muscle pounding you senseless before his familiar knot begins to do its work, opening your [pc.cunt] up and planting more gorgeous, strong kits in your womb, his musky scent permeating your nostrils. When the first jet of seed sprays your cervix you squeal happily and wrap your arms and legs around your mate, fingers clutching up handfuls of warm fur as your body seizes up, knowing you’re going to be a mother to his kits again, the way you were always meant to be.");
 			output("\n\nYou’re home, where you belong, birthing and raising the next generation of milodan.");
-			output("\n\nThe only home you’ll ever need.");	
+			output("\n\nThe only home you’ll ever need.");
 		}
 		else
 		{

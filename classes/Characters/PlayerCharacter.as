@@ -390,7 +390,7 @@ package classes.Characters
 			nBaseShield.kinetic.resistanceValue = toughVal;
 			
 			d.baseHPResistances = nBaseHP.getSaveObject();
-			d.baseShieldResistances = nBaseShield.getSaveObject();			
+			d.baseShieldResistances = nBaseShield.getSaveObject();
 			
 			delete d.lustVuln;
 			delete d.resistances;
@@ -686,7 +686,7 @@ package classes.Characters
 				addPerkValue("Fecund Figure", 4, -(totalDays)); // Gains
 			}
 			
-			if(perkv4("Fecund Figure") < 0) setPerkValue("Fecund Figure", 4, 0);			
+			if(perkv4("Fecund Figure") < 0) setPerkValue("Fecund Figure", 4, 0);
 		}
 		
 		private function buttslutBootyGrowth(totalDays:int):void

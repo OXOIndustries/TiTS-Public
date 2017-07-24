@@ -183,7 +183,7 @@ public function helpAina():void
 	else 
 	{
 		output("\n\nSince the task is incredibly easy for you, you bend down and fish around for whatever this object is. You feel your fingers make contact. Pulling it out, you blink at the large mechanical object in your hands. From its dome-like head and the words ‘Levi-wand’ on the side, it’s safe to assume it’s a sex toy.");
-		output("\n\nYou offer it up, and the blonde-haired centauress takes it off your hands. Her face is several shades redder than it was before.");	
+		output("\n\nYou offer it up, and the blonde-haired centauress takes it off your hands. Her face is several shades redder than it was before.");
 	}
 	
 	output(" <i>“S-sorry, it’s that time of the month; I’m in estrus, so I REALLY need this. That’s why I wanted to ask a stranger, not someone I knew...”</i> She flicks the ‘On’ switch a few times, but nothing happens. <i>“Oooohh no... don’t tell me this is happening. Come ooonnn!”</i>");
