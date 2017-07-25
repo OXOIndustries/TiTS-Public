@@ -4,14 +4,14 @@ package classes.Characters
 	import classes.Creature;
 	import classes.GameData.SingleCombatAttack;
 	import classes.GLOBAL;
-	import classes.Items.Guns.LaserPistol;
+	import classes.Items.Guns.SecureMP;
 	import classes.Items.Guns.MagnumPistol;
 	import classes.Items.Melee.LightningRod;
 	import classes.Items.Protection.ArcticWarfareBelt;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.VaginaClass;
-	import classes.characters.GunTurret;
+	import classes.Characters.GunTurret;
 	
 	import classes.Engine.Combat.*;
 	import classes.Engine.Combat.DamageTypes.*;
@@ -21,6 +21,7 @@ package classes.Characters
 	
 	import classes.Engine.Utility.weightedRand;
 	import classes.Engine.Utility.num2Text;
+	import classes.StringUtil;
 	import classes.Items.Miscellaneous.EmptySlot;
 	
 	//Low health, mid armor, heavy shields. Carries a rapid-fire, low-damage gun. Level 5.
@@ -48,18 +49,20 @@ package classes.Characters
 			//She’s a Level 9 enemy, with all the class perks of a Tech Specialist, including the flurry Second Shot attack. Wears heavy armor, an Arctic Warfare belt, and a lightning-charged lance and laser machine pistol.
 			this.meleeWeapon = new LightningRod();
 			this.rangedWeapon = new SecureMP();
+			this.rangedWeapon.longName = "laser machine pistol";
+			this.rangedWeapon.description = "a laser machine pistol";
 			rangedWeapon.hasRandomProperties = true;
 			rangedWeapon.baseDamage.burning.damageValue = 4;
 			rangedWeapon.baseDamage.electric.damageValue = 1;
 			rangedWeapon.baseDamage.kinetic.damageValue = 0;
-			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
-			baseDamage.removeFlag(DamageFlag.BULLET);
+			rangedWeapon.baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
+			rangedWeapon.baseDamage.removeFlag(DamageFlag.BULLET);
 
 			this.shield = new ArcticWarfareBelt();
 			
 			this.armor.longName = "heavy armor";
 			this.armor.defense = 10;
-			this.armor.evasion = 33;
+			this.armor.evasion = 20;
 			this.armor.hasRandomProperties = true;
 			
 			//baseHPResistances.tease.resistanceValue = 0.0;
@@ -82,7 +85,7 @@ package classes.Characters
 			this.femininity = 90;
 			this.eyeType = GLOBAL.TYPE_HUMAN;
 			this.eyeColor = "blue";
-			this.tallness = (5*12)+10;
+			this.tallness = 70;
 			this.thickness = 60;
 			this.tone = 70;
 			this.hairColor = "blonde";
@@ -189,9 +192,17 @@ package classes.Characters
 			//createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			createPerk("Overcharge", 0, 0, 0, 0, "Overcharged Shot");
 			createPerk("Weapon Hack", 0, 0, 0, 0, "Weapon Hack");
-			
+			createPerk("Shield Tweaks",0,0,0,0,"Shield Tweaks");
+			createPerk("Shield Booster",0,0,0,0,"Shield Booster");
+			createPerk("Enhanced Dampeners",0,0,0,0,"Enhanced Dampeners");
+			createPerk("Armor Tweaks",0,0,0,0,"Armor Tweaks");
+			createPerk("Fight Smarter",0,0,0,0,"Fight Smarter");
+			createPerk("Heroic Reserves",0,0,0,0,"Heroic Reserves");
+			createPerk("Second Shot",0,0,0,0,"Second Shot");
+			this.shieldsRaw = shieldsMax();
+
 			isUniqueInFight = true;
-			btnTargetText = "Engineer";
+			btnTargetText = "Krym";
 			sexualPreferences.setRandomPrefs(4, 2);
 			
 			_isLoading = false;
@@ -199,65 +210,42 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			return "KQ2ENGINEER";
+			return "KRYM";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
-			
-			if (!hasStatusEffect("Shield Regen Cooldown"))
+			//Bonus free shield recovery:
+			if(this.shields() <= 0 && !this.hasStatusEffect("Shield Regened")) shieldRegen(target);
+			//1x: shield recovery:
+			if(this.shields()/this.shieldsMax() <= 0.5 && !this.hasStatusEffect("Deflect Regened")) 
 			{
-				// Short-circuit- if the engineer is below 50%, she'll use it on herself
-				if ((shields() / shieldsMax()) < 0.5)
-				{
-					shieldBoost(this);
-					return;
-				}
-				
-				var worstPerc:Number = 1.0;
-				var shieldTarget:Creature = null;
-				
-				for (var i:int = 0; i < alliedCreatures.length; i++)
-				{
-					if (alliedCreatures[i].isDefeated()) continue;
-					
-					var thisPerc:Number = (alliedCreatures[i].shields() <= 0 ? 0 : alliedCreatures[i].shields() / alliedCreatures[i].shieldsMax());
-					
-					if (thisPerc < worstPerc)
-					{
-						shieldTarget = alliedCreatures[i];
-						worstPerc = thisPerc;
-					}
-				}
-				
-				if (shieldTarget != null && worstPerc < 0.5)
-				{
-					shieldBoost(shieldTarget);
-					return;
-				}
-			}
-			
-			var attacks:Array = [];
-			
-			if (!target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Disarmed")) attacks.push( { v: pistolShot, w: 50 } );
-			if (CombatAttacks.Overcharge.IsAvailable(this) && !target.hasStatusEffect("Stunned")) attacks.push( { v: CombatAttacks.Overcharge, w: 20 } );
-			if (CombatAttacks.WeaponHack.IsAvailable(this) && !target.hasStatusEffect("Disarmed")) attacks.push( { v: CombatAttacks.WeaponHack, w: 10 } );
-			if (attacks.length <= 0)
-			{
-				attackPass();
+				deflectorRegen(target);
 				return;
 			}
-			
-			var selection:* = weightedRand(attacks);
-			
-			if (selection is Function) selection(target);
-			else
+			//Special flying overrides
+			if(this.hasStatusEffect("Flying"))
 			{
-				var s:SingleCombatAttack = selection as SingleCombatAttack;
-				s.execute(alliedCreatures, hostileCreatures, this, target);
+				if(this.isImmobilized()) 
+				{
+					stunDatJetpackBiyatch(target);
+					return;
+				}
 			}
+			var attackChoices:Array = [];
+			if(!hasStatusEffect("Flying") && this.energy() >= 25) attackChoices.push(jetPack);
+			attackChoices.push(machinePistolBarrage);
+			attackChoices.push(lanceCharge);
+			if(this.energy() >= 50) 
+			{
+				attackChoices.push(turretTrap);
+			}
+			if(this.energy() >= 25) attackChoices.push(chargedStrike);
+			if(this.energy() >= 20 && target.defense() > 2) attackChoices.push(sunderingSlice);
+			attackChoices.push(cuncussionGrenade);
+			attackChoices[rand(attackChoices.length)](target);
 		}
 		
 		//Combat Design/Notes:
@@ -278,26 +266,26 @@ package classes.Characters
 		public function deflectorRegen(target:Creature):void
 		{
 			output("With a grunt of annoyance, Krym hits a button on her shield belt. It sparks and flickers with light just over her crotch, making her shout something that’s lost in the howl of the wind. She slaps the controls again, and suddenly her shields thrum to life with growing power. They’re charging back up!");
-			pc.createStatusEffect("Deflect Regened");
+			createStatusEffect("Deflect Regened");
 			var amount:Number = Math.ceil((bimboIntelligence() * 1.5 + rand(level) + shieldsMax() * 0.25));
 			if (amount + this.shields() > this.shieldsMax()) amount = this.shieldsMax() - this.shields();
-			attacker.shields(amount);
+			shields(amount);
 			output(" (" + amount + ")");
 		}
 		//Shield Regen (Passive, 1/encounter)
 		public function shieldRegen(target:Creature):void
 		{
-			pc.createStatusEffect("ShieldRegen");
 			output("The moment Krym’s shields buckle, sending out a concussive boom across the plateau, a backup battery kicks in. She grins down at you as the glowing barrier resumes around her, surrounding the valkyrie in glistening light.");
 			var amount:Number = Math.ceil((bimboIntelligence() * 1.5 + rand(level) + shieldsMax() * 0.25));
 			if (amount + this.shields() > this.shieldsMax()) amount = this.shieldsMax() - this.shields();
-			pc.createStatusEffect("Shield Regened");
-			attacker.shields(amount);
-			output(" (" + amount + ")");
+			createStatusEffect("Shield Regened");
+			shields(amount);
+			output(" (" + amount + ")\n\n");
 		}
 		//Jetpack Takeoff
 		public function jetPack(target:Creature):void
 		{
+			this.energy(-25);
 			output("Krym kicks off from the ground into a high jump, and the jetpack strapped to her back roars to life, hurtling her up into the air. She hoots and hollers excitedly, swinging her weapon around to steady herself until she stabilizes. Once she does, she grins down at you and couches her lightning lance under her arm. <i>“Come and get some, Steele!”</i> she shouts down, dancing through the air.");
 			createStatusEffect("Flying", 0, 0, 0, 0, false, "Icon_Wings", "Flying, cannot be struck by normal melee attacks!", true, 0);
 		}
@@ -352,14 +340,13 @@ package classes.Characters
 			output("Krym couches her lance under her arm and ");
 			if(this.hasStatusEffect("Flying")) output("fires up her jetpack, using it to boost her towards you like a knight on horseback");
 			else output("lunges through the snow at you");
-			output(". She lets out a fearsome warcry, echoing across the windy plateau. She leaps the last distance, thrusting the shock-charged tip of the weapon right at your [pc.chest]!");
+			output(". She lets out a fearsome warcry, echoing across the windy plateau. She leaps the last distance, thrusting the shock-charged tip of the weapon right at your chest!");
 			//Miss:
 			if(combatMiss(this, target)) output(" You leap to the side, tumbling through the snow and letting Krym’s momentum carry her right past you. She kicks off an obsidian pillar, spinning back your way with a wicked glare.");
 			else
 			{
 				output(" You can’t get out of the way in time, and take a massive blow from the lance. She twists it at the last moment, only using the blunted sides to strike you, but the electric charge on the spearhead still zaps you good!");
 				var damage:TypeCollection = meleeDamage();
-				damage.add({ kinetic: 2 });
 				applyDamage(damageRand(damage, 15), this, target, "minimal");
 			}
 		}
@@ -367,6 +354,7 @@ package classes.Characters
 		//Add a Turret to the battlefield. Has no shields, but decent armor and Health. Shoots an Electric gun at the PC each turn. Activating costs 30 ENG.
 		public function turretTrap(target:Creature):void
 		{
+			this.energy(-50);
 			if(!hasStatusEffect("Flying")) output("Running");
 			else output("Flying");
 			output(" back to put some distance between you, Krym taps a few buttons on her wrist computer. A moment later, you hear a mechanical buzzing from somewhere nearby; you have just enough time to duck behind a pillar of obsidian stone before a bolt of lightning shoots over your head, leaving an acid scent in the air. Glancing over, you can see a small black turret has popped up from where it was hidden under the snow. An electro-gun tracks your movements, discharging stun bolts at you whenever you peek your head out of cover.");
@@ -400,18 +388,19 @@ package classes.Characters
 				applyDamage(damageRand(damage, 15), this, target, "minimal");
 				//output("\n\nWhen the dust clears, Krym’s left panting, grasping her spear in both hands and surrounded by smoke and mist from melted snow. The vibrant glow on her gear has faded, leaving her looking much less radiant - and dangerous - for the moment.");
 			}
+			this.energy(-25);
 		}
 		//Concussion Grenade
 		//Deals Sonic damage, with a chance to Stagger if the PC fails a Physique Save.
 		public function cuncussionGrenade(target:Creature):void
 		{
 			output("Krym pulls a small black disc off her belt and hurls it at you - or rather, the ground at your [pc.feet]. The object hits the snow and goes <b>BANG</b>, sending snow exploding into the air and hitting you with a shockwave that feels like getting flattened by a kassyran freighter.");
+			var damage:TypeCollection = new TypeCollection({kinetic: 12});
+			applyDamage(damage, target, this, "minimal");
 			if(this.aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Staggered"))
 			{
 				output(" To deafening blast leaves you reeling, trying to catch your balance and failing miserably. You manage to avoid falling over yourself, but the whole world’s still spinning. <b>You’re staggered!</b>");
 				target.createStatusEffect("Staggered", 0, 0, 0, 0, false, "Icon_OffDown", (target is PlayerCharacter ? "You are" : (StringUtil.capitalize(target.getCombatName()) + " is")) + " staggered, and " + target.getCombatPronoun("hisher") + " aim and reflexes have been reduced!", true, 0, 0xFF0000);
-				var damage:TypeCollection = new TypeCollection({kinetic: 12});
-				applyDamage(damage, target, this, "minimal");
 			}
 		}
 		//Sundering Slice
@@ -419,6 +408,7 @@ package classes.Characters
 		//Costs 2 Charges.
 		public function sunderingSlice(target:Creature):void
 		{
+			this.energy(-20);
 			output("Kryn lunges with her spear, but as you twist aside, you realize it was only a feint! ");
 			//Miss: 
 			if(combatMiss(this, target)) output("You jump back just as the two-pronged head of the bident grabs at your [pc.armor]. It hooks in for a moment, but you’re able to pull yourself free!");

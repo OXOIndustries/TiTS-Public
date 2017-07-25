@@ -1862,8 +1862,11 @@ package classes.GameData
 				damHolder = Math.ceil(damHolder);
 
 				applyDamage(damageRand(new TypeCollection( { kinetic: damHolder } ), 15), attacker, target, "minimal");
-				
-				if ((attacker.physique() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) || target is Kaska)
+				if((target.originalRace == "automaton" || target.originalRace == "machine" || target.originalRace == "robot") && !target.hasGenitals())
+				{
+					output("\nIt had little effect on your automated foe!");
+				}
+				else if ((attacker.physique() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) || target is Kaska)
 				{
 					if (target is Kaska)
 					{
@@ -1960,7 +1963,12 @@ package classes.GameData
 				return;
 			}
 			
-			if (attacker is PlayerCharacter) output("Tossing an explosive in the general direction of your target, you unleash an explosive blast of heat on " + aTarget.getCombatName() + "!");
+			if (attacker is PlayerCharacter) 
+			{
+				output("Tossing an explosive in the general direction of your target, you unleash an explosive blast of force and heat on ");
+				if(hGroup.length > 1) output("your enemies!");
+				else output(aTarget.getCombatName() + "!");
+			}
 			else if (target is PlayerCharacter) output("[attacker.CombatName] hucks a small device in your direction, unleashing an explosive blast scant inches from your body!");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " hucks a small device in " + possessive(aTarget.getCombatName()) + " direction, unleashing an explosive blast scant inches from " + aTarget.getCombatPronoun("hisher") + " form!");
 				
@@ -2037,7 +2045,7 @@ package classes.GameData
 			attacker.energy(60);
 			attacker.createStatusEffect("Used Burst of Energy", 0, 0, 0, 0, true, "", "", true, 0);
 			
-			if (attacker is PlayerCharacter) output("You dig deep and find a reserve of energy from deep within yourself!\n");
+			if (attacker is PlayerCharacter) output("You dig deep and find a reserve of energy from deep within yourself!");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " visibly steels " + attacker.mfn("himself", "herself", "itself") + ", reaching deep and finding a reserve of energy!");
 		}
 		

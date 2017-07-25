@@ -371,6 +371,7 @@
 		include "../includes/uveto/kaede.as";
 		include "../includes/uveto/kirila.as";
 		include "../includes/uveto/korgonneFemaleHostile.as";
+		include "../includes/uveto/krym.as";
 		include "../includes/uveto/milodanMaleHostile.as";
 		include "../includes/uveto/natalie.as";
 		include "../includes/uveto/nayna.as";
@@ -493,7 +494,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.73";
+			version = "0.7.74";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1402,6 +1403,10 @@
 		public function get zil9tails():Zil9Tail
 		{
 			return chars["ZIL9TAILS"];
+		}
+		public function get krymhilde():Krym
+		{
+			return chars["KRYM"];
 		}
 
 		public function testShipCombat():void

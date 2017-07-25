@@ -1035,27 +1035,8 @@ public function uvetoMaglevStation():Boolean
 	
 	if (flags["UVIP_R10_PROBE_ACTIVE"] == undefined) addDisabledButton(0, "Probe");
 	else addButton(0, "Probe", move, "UVIP R10");
+	if(krymRespectsYou()) addButton(1,"Krym's Camp",move,"UVGR M4");
 
-	return false;
-}
-
-public function GlacialRiftPlateauCamp():Boolean
-{
-	output("\n\nThe eastern half of the area is dominated by what looks to be a pre-fab metal bunker, covered in tarps and reinforced with sandbags pressed against the walls. Radio antennae peek out from the roof around a solid, smoking chimney. There are no windows you can see, and the door is solid metal covered by a thick curtain of tanned hides. Unsurprisingly,");
-	if (flags["MET_KRYM"] != undefined) output(" Krym");
-	else output(" whoever lives here");
-	output(" is desperate to keep as warm as possible.");
-
-	output("\n\nSeveral colonial turrets have been set up around the perimeter, watching over the plains of ice stretching out in every direction.");
-	if (flags["MET_KRYM"] != undefined && hours >= 6 && hours <= 20)
-	{
-		output(" Krymhilde is patrolling the turret gun-line, making sure each one is functional despite the cold and wear from the constant storms. She");
-		//if {Respect have: 
-		//gives you a flirty grin over her shoulder as she works, and you see a little more spring make its way into her step as she works
-		output(" gives you a slight nod of acknowledgement as you wander.");
-	}
-	else if (hours <= 6 && hours <= 20) output(" A woman in white ceramic armor is patrolling the gun line, carrying a spear almost as tall as she is over one shoulder. She’s clearly human, if the head of blonde hair and cream-pale skin are anything to go by. The lightningbolt patterns on her armor tell you she’s probably a member of the local Stormguard.");
-	
 	return false;
 }
 

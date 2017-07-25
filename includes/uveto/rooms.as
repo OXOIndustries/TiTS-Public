@@ -2281,7 +2281,8 @@ public function initUvetoRooms():void
 	rooms["UVGR M4"].southExit = "UVGR M6";
 	rooms["UVGR M4"].moveMinutes = 1;
 	rooms["UVGR M4"].addFlag(GLOBAL.INDOOR);
-	rooms["UVGR M4"].runOnEnter = GlacialRiftPlateauCamp; // 9999 Female Stormguard
+	rooms["UVGR M4"].addFlag(GLOBAL.TAXI);
+	rooms["UVGR M4"].runOnEnter = krymCampBonus;
 
 	rooms["UVGR G6"] = new RoomClass(this);
 	rooms["UVGR G6"].roomName = "\nCLIFFSIDE";

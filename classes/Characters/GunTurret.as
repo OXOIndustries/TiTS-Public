@@ -29,7 +29,7 @@
 			
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
-			this.short = "auto-turrets";
+			this.short = "auto-turret";
 			this.originalRace = "automaton";
 			this.a = "the ";
 			this.capitalA = "The ";
@@ -41,7 +41,7 @@
 			this.meleeWeapon = new Fists();
 			this.rangedWeapon.longName = "gun";
 			this.rangedWeapon.attack = -2;
-			rangedWeapon.baseDamage.kinetic.damageValue = 2;
+			rangedWeapon.baseDamage.electric.damageValue = 2;
 			rangedWeapon.baseDamage.addFlag(DamageFlag.BULLET);
 			this.rangedWeapon.attackVerb = "shoot";
 			this.rangedWeapon.attackNoun = "shot";
@@ -149,7 +149,7 @@
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			
 			isUniqueInFight = true;
-			btnTargetText = "Turrets";
+			btnTargetText = "Turret";
 			
 			this._isLoading = false;
 
@@ -169,7 +169,7 @@
 		}
 		private function turretVolleyAttackMotherFucker(target:Creature):void
 		{
-			output("You find yourself under a hail of gunfire, the turret bearing down on you and firing full-auto, sacrificing accuracy for sheer volume of firepower. And it’s working: duck and weave as you might, there’s a stream of bullets crashing behind you, tearing into the walls with deafening force.\n");
+			output("You find yourself under a hail of gunfire, the turret bearing down on you and firing full-auto, sacrificing accuracy for sheer volume of firepower. And it’s working: duck and weave as you might, there’s a stream of stun bolts crashing behind you, tearing into the walls with deafening force.\n");
 			
 			var asFlurry:Boolean = !hasStatusEffect("Turret Aimhacks");
 			
