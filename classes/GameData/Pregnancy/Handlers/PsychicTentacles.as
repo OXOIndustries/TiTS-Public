@@ -56,7 +56,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += 10;
 				pData.pregnancyBellyRatingContribution += 10;
 				
-				AddLogEvent("The exotic alien in your belly is definitely getting bigger, growing day by day. When a tentacle pushes, you can clear see its size, visible in your distended flesh.<i> You are such a good mommy.</i>", "passive");
+				AddLogEvent("The exotic alien in your belly is definitely getting bigger, growing day by day. When a tentacle pushes, you can clearly see its size, visible in your distended flesh.<i> You are such a good mommy.</i>", "passive");
 			}, true);
 
 			this.addStageProgression(16000, function(pregSlot:int):void {

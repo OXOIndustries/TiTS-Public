@@ -81,7 +81,7 @@ Exotic body shapes: Kinda likes!
 //Egg Implantation (lapinara wins):
 public function loseToFemaleLapinara():void
 {
-	if(!pc.hasVagina() || (pc.hasCock() && rand(2) == 0)) loseToLapinaraAndGetEggplantedDudesAndNeuters();
+	if(!pc.hasVagina() || (pc.isFullyWombPregnant() && !pc.hasAnalPregnancy()) || (pc.hasCock() && rand(2) == 0)) loseToLapinaraAndGetEggplantedDudesAndNeuters();
 	else loseToLapinaraAndGetEggplantedChicks();
 }
 
@@ -125,10 +125,12 @@ public function loseToLapinaraAndGetEggplantedDudesAndNeuters():void
 
 	output("\n\n<i>“Eggs... Eggs, eggs, EGG eg-EGG!”</i>");
 
-	output("\n\nNo way. This bitch! She’s implanting her eggs in you! Soon enough, you feel a new sensation, a new object in your ass, likely one of her damn eggs. You see the bunny-girl thrashing about madly in a fit of pleasure, and it isn’t long before another one comes in behind its brother. You’re sure that it has to be the last of the eggs, as she’s collapsed over you, panting. Eventually, she pulls out, playfully rustling your hair.");
+	output("\n\nNo way. This bitch! She’s implanting her eggs in you! Soon enough, you feel a new sensation, a new object in your ass, likely one of her damn eggs. You see the bunny-girl thrashing about madly in a fit of pleasure, and it isn’t long before another one comes in behind its brother. You’re sure that it has to be the last of the eggs, as she’s collapsed over you, panting. Eventually, she pulls out, playfully " + (pc.hasHair() ? "rustling your hair" : "patting your head") + ".");
 
 	output("\n\n<i>“You felt amazing, tiger,”</i> she comments. <i>“We should do that again sometime.”</i>");
-	output("\n\nIt’s then that she leaves without another word, rapidly disappearing into the landscape.\n\n");
+	output("\n\nIt’s then that she leaves without another word, rapidly disappearing into the landscape.");
+	if(pc.hasAnalPregnancy() && pc.pregnancyData[3].pregnancyType != "LapinaraPregnancy") output("\n\nNot too soon after, you feel the eggs quickly dissolve away... perhaps due to your ass already being occupied?");
+	output("\n\n");
 	//No orgasm? +10 lust!
 	pc.lust(10+rand(3));
 	pc.loadInAss(enemy);
@@ -180,11 +182,13 @@ public function loseToLapinaraAndGetEggplantedChicks():void
 	pc.cuntChange(x,60,true,true,false);
 
 	output("\n\n<i>“Eggs... Eggs, eggs, EGG eg-EGG!”</i>");
-	output("\n\nNo way. This bitch! She’s implanting her eggs in you! Soon enough, you feel a new sensation, a new object in your vag, likely one of her damn eggs. You see the bunny-girl thrashing about madly in a fit of pleasure, and it isn’t long before another one comes in behind its brother. You’re sure that it has to be the last of the eggs, as she’s collapsed over you, panting. Eventually, she pulls out, playfully rustling your hair.");
+	output("\n\nNo way. This bitch! She’s implanting her eggs in you! Soon enough, you feel a new sensation, a new object in your vag, likely one of her damn eggs. You see the bunny-girl thrashing about madly in a fit of pleasure, and it isn’t long before another one comes in behind its brother. You’re sure that it has to be the last of the eggs, as she’s collapsed over you, panting. Eventually, she pulls out, playfully " + (pc.hasHair() ? "rustling your hair" : "patting your head") + ".");
 
 	output("\n\n<i>“You felt amazing, Babe. We should do that again sometime.”</i>");
 
-	output("\n\nShe leaves without another word, rapidly disappearing into the landscape.\n\n");
+	output("\n\nShe leaves without another word, rapidly disappearing into the landscape.");
+	if(pc.isPregnant(x) && pc.pregnancyData[x].pregnancyType != "LapinaraPregnancy") output("\n\nNot too soon after, you feel the eggs quickly dissolve away... perhaps due to your womb already being occupied?");
+	output("\n\n");
 
 	//No cums for pc. +10 lust. Poor PC.
 	pc.lust(10);
@@ -762,7 +766,7 @@ public function finalLapinaraEggStuffScene(x:int):void
 	var randEggs:Number = rand(2) + 1;
 	//IF LapiTrain == 4 THEN
 	if(lapiTrain() == 4) output("This isn’t your first time squeezing the most out of a defeated futa bunny, so you know exactly what to do. You lick your [pc.lips] as you prepare to get started, wondering if this time you’ll be able to completely empty the bunny’s pseudo-sack inside you.");
-	else output("Sitting on what is rapidly becoming your favorite spot, you run your hand through your [pc.hair] and ponder the problem of making your bunny cum. She may technically be female, but you figure that it’d probably work if you treated her like a normal male you wanted to milk.");
+	else output("Sitting on what is rapidly becoming your favorite spot, you run your hand " + (pc.hasHair() ? "through your [pc.hair]" : "across your head") + " and ponder the problem of making your bunny cum. She may technically be female, but you figure that it’d probably work if you treated her like a normal male you wanted to milk.");
 	output(" When you prepare to reposition yourself, you find that your anticipation has restored some measure of strength to your [pc.legOrLegs]. You lift yourself halfway off the rod embedded in you and start to turn your body. It’s a bit awkward, but before long you’re able to plop back down in a reverse cowgirl position. You sigh contentedly as your [pc.vagOrAss " + x + "] is once again full, momentarily distracted by a brief intensification of your fading orgasm. You won’t be sidetracked, however, and immediately continue your preparations. You take all the weight off your [pc.legOrLegs]");
 	if(pc.legCount > 1 && pc.hasKnees()) output(", and leverage your [pc.hips] to splay your [pc.legsNoun] open wide and rest the heels of your [pc.feet] on the sand");
 	output(".");

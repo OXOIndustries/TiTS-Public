@@ -1827,6 +1827,7 @@ public function lustOvahTimeEvent():void
 				pc.orgasm();
 			}
 			//boy
+			else
 			{
 				output("\n\nPanning the crowd of observers, immobilized by your lust, your eye lights on a young man and woman standing together. The girl, a frilly-skirted, flat-chested little slip, looks away bashfully, but the young man returns your gaze with prurient, almost knowing, interest. He cracks a smile as he takes in your condition - ");
 				if(pc.hasCock()) output("your bulging [pc.cocksLight]");
