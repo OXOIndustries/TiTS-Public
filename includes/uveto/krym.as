@@ -230,127 +230,199 @@ public function fuckKrym():void
 	//9999
 }
 
+//Combat Loss
+public function loseToThatIcyBimbo():void
+{
+	clearOutput();
+	showKrym();
+	author("Savin");
+	if(pc.isBimbo()) output("<i>“I, like, give up already!");
+	else output("<i>“I yield, I yield!");
+	output("”</i> you shout, throwing your hands in the air, staggering back from the ferocious Storm Lancer. Krym ");
+	if(enemy.hasStatusEffect("Flying")) output("lands gracefully on the ice a few feet in front of you");
+	else output("couches her spear under her arm");
+	output(" and strides forward with a confident swagger of her hips, a smirk on her rosy lips. She grabs you by the neck and pushes you back, shoving you up against the metal wall of her home and leering at you.");
 
+	output("\n\n<i>“Not bad, ");
+	//respect:
+	if(9999) output("[pc.name]. You’re always a good fight, you know.");
+	else output("friend. You put up a better fight than most of the furry barbarians around here, at least.");
+	output(" And if there’s one thing that gets me going, it’s a strong " + pc.mf("","wo") + "man... just shy of strong enough to beat me!”</i>");
+	output("\n\nThe victorious valkyrie plants her spear in the ground and closes on you, pressing herself up against you. She her perky breasts press against your [pc.chest], and a leg hooks around your [pc.hips], holding you in place for her; without another word, she thrusts her lips against yours, driving her tongue into your mouth and searching out your own.");
+	output("\n\nYou knew what you were getting into, but the brazenness of her sexual assault takes you off-guard. You gasp, then moan for her, feeling her hands working around your [pc.butt], grabbing rough handfuls of ass-flesh as she tongue-fucks your mouth. The valkyrie keeps you there for a long moment, savoring your mouth until a chill wind blasting across the reminds you both that you’re still outdoors, the heat of your rising lusts dampened by the pervasive cold.");
+	output("\n\nKrym breaks the kiss and shoves the door open behind you, forcing you backwards with a mix of gropes and playful shoves that guide you to the largest of the rooms inside: a spartan chamber dominated by a flickering holocomputer against a wall and a messily-made bed. She unceremoniously rips off your [pc.crotchGarment], bearing your body for her inspection - and opening you up to a whole new barrage of sensual touches, vigorous gropes, and finally, a grab of your crotch that knocks you off balance, making you teeter back and finally, sprawl back over her bed.");
 
+	output("\n\n<i>“Now that’s what I like to see,”</i> the stormguard purrs, unhooking her gunbelt and letting it clatter to the floor with a metallic <i>thunk</i>. More slowly, her hands start working their way up her body, caressing the palmable mounds of her breasts before finding their way to her armored pauldrons.");
+	if(pc.hasCock()) output(" <i>“Try not a bust a nut before I’m done, kay?");
+	else output(" No touching yourself, now.");
+	output("”</i>");
 
-output("\n\nCombat Loss");
-output("\n\n{Bimbo: <i>“I, like, give up already! //else: <i>“I yield, I yield!”</i>} you shout, throwing your hands in the air, staggering back from the ferocious Storm Lancer. Krym {jetpack on: lands gracefully on the ice a few feet in front of you //else: couches her spear under her arm} and strides forward with a confident swagger of her hips, a smirk on her rosy lips. She grabs you by the neck and pushes you back, shoving you up against the metal wall of her home and leering at you.");
+	output("\n\nKrym gives you a little wink and starts to undo her armor, disconnecting the plates locked onto the skin-tight bodysuit underneath. They drop aside one after another, revealing the soft curves and firm muscles of the Stormguard’s body, hugged tightly by her snow-white suit - tight enough that nothing is left to the imagination, from the damp spot forming between her legs to the turgid tips of her nipples jutting through the material.");
 
-output("\n\n<i>“Not bad, {respect: [pc.name]. You’re always a good fight, you know. //else: friend. You put up a better fight than most of the furry barbarians around here, at least.} And if there’s one thing that gets me going, it’s a strong {wo}man... just shy of strong enough to beat me!”</i>");
+	output("\n\nShe puts on a show of things, slowly pulling down the suit’s zipper, cupping her tits and pinching her nipples as they slip out of the tight confines. When she gets it down to the end, just below her firm, flat belly, Krym turns around and thrusts her ass out at you, letting you dig your hands in the taut curves before doing the honors of baring her naked little slit, pink as a rose and beading with her mounting excitement. She leaves her rump planted squarely in your face, refusing to move until you get the idea and plant your hands on either cheek and spread them apart before leaning in and running your [pc.tongue] through the cleft between her pussylips.");
 
-output("\n\nThe victorious valkyrie plants her spear in the ground and closes on you, pressing herself up against you. She her perky breasts press against your [pc.chest], and a leg hooks around your [pc.hips], holding you in place for her; without another word, she thrusts her lips against yours, driving her tongue into your mouth and searching out your own.");
+	output("\n\nYou lick up her ambrosial dew, flicking your tongue from taint to clit, swirling around her stiff little pearl and urging it out from its hood. The stoic valkyrie breaks down into a low, husky moan when you start working her button, pushing back against your face until you’re lying back on the bed and she’s crawled atop you, straddling your shoulders and sitting on your face.");
 
-output("\n\nYou knew what you were getting into, but the brazenness of her sexual assault takes you off-guard. You gasp, then moan for her, feeling her hands working around your [pc.butt], grabbing rough handfuls of ass-flesh as she tongue-fucks your mouth. The valkyrie keeps you there for a long moment, savoring your mouth until a chill wind blasting across the reminds you both that you’re still outdoors, the heat of your rising lusts dampened by the pervasive cold.");
+	output("\n\nOne of Krym’s hands play across your [pc.crotch], teasing the tender flesh on offer in return for your continued worship of her pussy. Her hips rock up and down, riding the [pc.tongue] thrust into her slit and moaning openly.");
 
-output("\n\nKrym breaks the kiss and shoves the door open behind you, forcing you backwards with a mix of gropes and playful shoves that guide you to the largest of the rooms inside: a spartan chamber dominated by a flickering holocomputer against a wall and a messily-made bed. She unceremoniously rips off your [pc.gear], bearing your body for her inspection - and opening you up to a whole new barrage of sensual touches, vigorous gropes, and finally, a grab of your crotch that knocks you off balance, making you teeter back and finally, sprawl back over her bed.");
+	output("\n\nBut a stormy amazon like her can’t be satisfied just by owning you face...");
+	processTime(30);
+	pc.lust(100);
+	//[Next]//to relevant version. If the PC is a herm or a shemale, 50/50 odds between which scene they get.
+	clearMenu();
+	if(pc.hasCock() && (!pc.hasVagina() || rand(2) == 0)) addButton(0,"Next",hasACockLoseToKrym);
+	else addButton(0,"Next",pcGonnaGetFucked);
+}
 
-output("\n\n<i>“Now that’s what I like to see,”</i> the stormguard purrs, unhooking her gunbelt and letting it clatter to the floor with a metallic <i>thunk</i>. More slowly, her hands start working their way up her body, caressing the palmable mounds of her breasts before finding their way to her armored pauldrons. {pc has a dick: <i>“Try not a bust a nut before I’m done, kay? //else: No touching yourself, now.}”</i>");
+//PC has a Cock Vers.
+public function hasACockLoseToKrym():void
+{
+	clearOutput();
+	showKrym();
+	author("Savin");
+	output("Not with [pc.oneCock] throbbing in her hands, so close to Krym’s lips that even in victory, she’s more than happy to lean down and give the [pc.cockHead] a lick, wrapping her lips around your cockhead and taking it down to the base. You gasp at the sudden surge of sensation, returning the favor by driving your [pc.tongue] as deep into Krym’s cunt as you can.");
+	output("\n\n<i>“O-okay, [pc.name],”</i> she laughs. <i>“Don’t enjoy yourself too much. This is <b>my</b> turn.”</i>");
+	output("\n\nShe gives you a wink over her shoulder, then swings a leg around and shifts down, moving to face you while straddling your [pc.hips] and stroking your [pc.cock]. She easily man-handles your manhood into the cleavage between her meaty pussy-lips. Once you’re in place, she rocks her hips for a moment, grinding your shaft against her clit and letting her juices rub off on you, getting you nice and lubed before she rises up on her knees and plants your crown against her slit.");
+	output("\n\n<i>“Now the fun starts!”</i> she grins, spreading herself open with two fingers. <i>“Just lay back and try not to cum too quickly.”</i>");
+	if(pc.isAss() || pc.isBro()) output("\n\nYou just growl at her. Like hell you would!");
+	else output("\n\nYou clench your jaw, helpless but to try for the stormy amazon.");
 
-output("\n\nKrym gives you a little wink and starts to undo her armor, disconnecting the plates locked onto the skin-tight bodysuit underneath. They drop aside one after another, revealing the soft curves and firm muscles of the Stormguard’s body, hugged tightly by her snow-white suit - tight enough that nothing is left to the imagination, from the damp spot forming between her legs to the turgid tips of her nipples jutting through the material.");
+	output("\n\nKrym plants her hands on your [pc.chest] and, still grinning, spears herself on your shaft. Without ever breaking eye contact with you, the sultry warrioress plants herself in your lap, taking every inch of throbbing cockflesh with nothing more than a quiet moan. Once she’s settled");
+	if(pc.cocks[0].cLength() >= 16) output(", stomach bulging with the sheer mass of dickmeat she’s sitting on");
+	output(", Krym bites her lip, holding back another moan with a smile, clearly just enjoying the feeling of being filled. It doesn’t take her long to get over it, and when she does, the valkyrie locks eyes with you; her gaze is filled with nothing but unbridled, hungry lust.");
+	pc.cockChange();
 
-output("\n\nShe puts on a show of things, slowly pulling down the suit’s zipper, cupping her tits and pinching her nipples as they slip out of the tight confines. When she gets it down to the end, just below her firm, flat belly, Krym turns around and thrusts her ass out at you, letting you dig your hands in the taut curves before doing the honors of baring her naked little slit, pink as a rose and beading with her mounting excitement. She leaves her rump planted squarely in your face, refusing to move until you get the idea and plant your hands on either cheek and spread them apart before leaning in and running your [pc.tongue] through the cleft between her pussylips.");
+	output("\n\n<i>“Sorry about your pelvis,”</i> she grins.");
+	output("\n\nYou give her a confused look, only to find out <i>exactly</i> what she means a moment later. Krym rises on her knees and comes slamming down with crushing force, knocking the wind out of you with the sheer thunderbolt of pleasure lancing up from your [pc.cock]. You barely notice how hard she came down around how fucking <i>good</i> it felt to sheath all that cock in her slavering slit all at once. The bed creaks and squeals underneath you, sounding like a second lover taking a pounding from you... or maybe that’s your voice you’re hearing, going wild as the amazonian woman pile drives you into the bed again, and again, and again...");
+	output("\n\nHowling with pleasure, Krym grabs your hands and guides them to her breasts, filling your grasp with soft, bouncing titflesh, ripe for you to play with. You tweak and tug on her teats, cupping the perky mounds while their owner rides your turgid dick. The sounds of your rutting echo thunderously through the barren shack, creating a cacophonous chorus of wet, fleshy sounds of penetration mixed with Krym’s moans and yours.");
+	output("\n\n<i>“Fuck yeah!”</i> the valkyrie shouts, squeezing your hands around her tits, her smile so wide that her tongue threatens to list out at the apex of each bounce. <i>“Give it to me! Give me that fuckin’ dick!”</i>");
+	if(silly) output("\n\nYou’re givin’ her all she’s got, cap’n!");
+	else output("\n\nShe’s taking all you have and more already!");
+	output(" For what it’s worth, you buck your [pc.hips] up to meet her falling twat, thrusting deep enough to make her shriek with pleasure, drenching your thighs and throwing her hair in wild thrashes - she’s cumming! You’re in a position to hold her steady, propping the orgasming warrior-woman up as she rides through her climax. All the extra lube from the sudden deluge just lets her go faster, gliding up and down your throbbing pole with frenzied desire.");
+	output("\n\nShe’s nowhere near done by the time her frantic movements have milked out your own orgasm. You can’t do much, trapped under her driving hips, but squeeze her tits as hard as you dare and drive your dick as deep into that sweltering snatch as you can before your [pc.balls] discharge");
+	if(pc.balls <= 1) output("s");
+	output(" a steaming load of [pc.cum] into the sodden passage squeezing so wonderfully around your shaft.");
+	output("\n\n<i>“Oh! That’s the stuff,”</i> Krym laughs, reaching down and ");
+	if(pc.biggestTitSize() >= 1) output("grabbing a boob");
+	else output("running her hands across your chest");
+	output(". <i>“Just let it all out for me... that cum’s just more lube, [pc.name]. Haha!”</i>");
 
-output("\n\nYou lick up her ambrosial dew, flicking your tongue from taint to clit, swirling around her stiff little pearl and urging it out from its hood. The stoic valkyrie breaks down into a low, husky moan when you start working her button, pushing back against your face until you’re lying back on the bed and she’s crawled atop you, straddling your shoulders and sitting on your face.");
+	output("\n\nShe grins down at you, and even though the wild contracts around your meat have slowed, the amazon doesn’t stop riding you. Oh, boy...");
 
-output("\n\nOne of Krym’s hands play across your [pc.crotch], teasing the tender flesh on offer in return for your continued worship of her pussy. Her hips rock up and down, riding the [pc.tongue] thrust into her slit and moaning openly.");
+	processTime(50);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",cumBucketsForKrym);
+}
 
-output("\n\nBut a stormy amazon like her can’t be satisfied just by owning you face...");
+//[Cum Buckets]
+//Pass 1 hour
+public function cumBucketsForKrym():void
+{
+	clearOutput();
+	showKrym();
+	author("Savin");
+	output("You’ve lost count of how many times Krym’s milked your [pc.balls], draining you dry one cumshot at a time. her thighs and slit are a sticky, cum-slathered mess, and the bed is soaked with juices and sweat. Throughout the whole affair, Krym’s refused to let your [pc.cock] go, holding you inside her with those iron pussy-muscles of hers.");
+	output("\n\nBetween crushing bounces, you feel your amazonian partner cum again, squeezing your drained prick and roaring with her climax, soaking your crotch once again. This time, though, her orgasm rocks her body, making her breath come in ragged gasps. Her breasts bounce, quaking with her chest’s uneven movements, before the strength left in her mighty thighs gives out. Krym collapses ontop of you, face pressing into your [pc.chest], breathing hard. Her grip on your dick finally releases, and you shudder as your abused member slides from her cunt in a deluge of musky juices that leak down her thighs and onto your [pc.leg].");
+	output("\n\n<i>“Fuck! That was good,”</i> Krym manages to moan after a few seconds, catching her breath in your chest. Despite the crushing ride she just took you on, you find your arms wrapping around the naked amazon’s waist, clinging to her as you too recover from the assault. After a while, though, Krym props herself up on her elbows and grins down at you.");
+	//NoRespect:
+	if(9999) output("\n\n<i>“Well, that was worth my while alright. Camp’s yours: rest up, and use the beacon if you need to. Feel free to use my tits as a pillow, cuz I’m going to sleep that off.”</i>");
+	else output("\n\n<i>“A pleasure as always,”</i> Krym chuckles, tracing a few kisses up your chest. <i>“Wanna stick around for a little bit? Sleeping off a fight and a fuck’s always better with someone to curl up on me.”</i>");
+	output("\n\nThe valkyrie rolls off you onto her back, and you quickly take her up on her offer, resting your cheek on one of her silky-soft breasts. This time it’s her arms slipping around you; glancing up, you see Krym smiling, eyes closed. It isn’t long before you drift off, too...");
+	//Pass 8 hours, give Sleep benefits. PC can use the transmitter outside for an hour afterwards if they don’t already have Respect.
+	processTime(60);
+	output("\n\n");
+	for(var x:int = 0; x < 10; x++)
+	{
+		pc.orgasm();
+	}
+	processTime(7*60);
+	sleepHeal();
+	clearMenu();
+	CombatManager.genericLoss();
+}
 
-output("\n\n[Next]//to relevant version. If the PC is a herm or a shemale, 50/50 odds between which scene they get.");
+//PC Goan Get Fuq’d Vers.
+public function pcGonnaGetFucked():void
+{
+	clearOutput();
+	showKrym();
+	author("Savin");
+	output("<i>“Fuck, that’s the stuff,”</i> Krym growls, grinding her hips into your face, taking your tongue as deep as it’ll go into her pussy. <i>“Keep going, and I’ll get you nice and ready.”</i>");
+	output("\n\nWhat, you’re not already doing the deed? You can’t exactly see anything, with your face full of lush, pale ass, but you can feel Krym reach off the bed and start rustling around, grabbing something off her nightstand.");
+	if(!pc.hasVagina()) 
+	{
+		output("\n\nSomething drops onto the bed, and then you hear a bottle being popped open. A second later and something thick and cool rubs against your [pc.asshole], smeared around by a pair of Krym’s fingers. You gasp into her twat, feeling her digits playing around your tailhole, lubing up the rim before they push into you.");
+		if(pc.ass.looseness() < 3) output("\n\n<i>“Nice and tight back here!”</i> Krym chuckles slowly but surely spreading you out. <i>“I almost feel guilty for breaking this in...”</i>");
+		else if(pc.ass.looseness() < 5) output("\n\nYou force yourself to relax, breathing slowly and letting Krym’s fingers move around inside you, smearing lube across your anal walls. <i>“There we go... I guess if you fight like that here on Uveto, I shouldn’t be surprised your ass knows how to take a dicking!”</i>");
+		else output("\n\nKrym’s fingers all but sink into your [pc.asshole], eliciting a long, lurid moan of pleasure from you. <i>“Damn, [pc.name],”</i> Krym laughs, adding the rest of her fingers to the mix inside your lubed-up ass. <i>“Why do I feel like a frostwyrm’s been breeding this hole, huh?”</i>");
 
-output("\n\nPC has a Cock Vers.");
-output("\n\nNot with your [pc.cock] throbbing in her hands, so close to Krym’s lips that even in victory, she’s more than happy to lean down and give the [pc.cockHead] a lick, wrapping her lips around your cockhead and taking it down to the base. You gasp at the sudden surge of sensation, returning the favor by driving your [pc.tongue] as deep into Krym’s cunt as you can.");
+		output("\n\nAll you can do is squirm and moan, arching your back as Krym molests your asshole, filling you with lube until you feel like you’re leaking it with every shuddering breath. Only then does she pull back, seemingly satisfied. With a grin,");
+	}
+	output(" Krym lifts off your face and spins the {other} object on a finger, letting you take it in for a moment.");
 
-output("\n\n<i>“O-okay, [pc.name],”</i> she laughs. <i>“Don’t enjoy yourself too much. This is <b>my</b> turn.”</i>");
+	output("\n\nIt’s a pair of panties. Black cloth, no obvious thrill or frills, except for a tiny, almost imperceptible ring of metal objects around the waistband. She grins down at you like a hungry wolf and slips the panties on, hitching them high up her hips. Krym runs her fingers up between the lips of her pussy through the panties, moaning softly. You watch as her fingers slip around to one of the metal nodes, pressing it in. With an electric <i>whoosh</i>, a glowing orange shaft erupts from her crotch, coalescing into the shape of a canine cock, about ten inches long from knotty base to tapered tip.");
+	output("\n\n<i>“Ooooh yeah,”</i> the valkyrie croons, rubbing her holographic hardon. <i>“I don’t know how women survived without these way back when...”</i>");
+	output("\n\nKrym laughs and swings her legs around, turning to face you full-on, straddling your shoulders. <i>“What do you think? Ausar dick fit me?”</i>");
+	output("\n\nOf course, the question was a trap. The moment you open your mouth, you get a face-full of glowing dick-light, thrusting right to the back of your throat. Krym howls a wordless thrill of pleasure, running a hand through her wild hair and using the other to hold you down while she rapes your face. You’re just a passenger on this ride now, forced to lay back and slather up her artificial tool with your [pc.tongue].");
+	output("\n\nYou barely have time to get comfortable in your cock-sucking duties before Krym rears her hips back, popping her knotty hardlight cock out from your [pc.lips]. The brawny woman unceremoniously grabs your shoulders and flips you over, planting your face in her pillow and hiking your ass in the air.");
+	if(!pc.hasVagina()) output("\n\n<i>“This is where I say ‘bite the pillow,’ right?”</i> she laughs, slapping your [pc.butt].");
+	else output("\n\n<i>“Spread ‘em wide for me, Steele!”</i> she orders, digging her fingers into your [pc.butt].");
+	output(" You reach back spread your cheeks, showing off your [pc.vagOrAss] to the horny stormguard. You pretty much immediately feel the slender crown of her strapon pressing against your entrance, teasing the ");
+	if(!pc.hasVagina()) output("rim");
+	else output("lips");
+	output(" with a vaguely electric sensation before Krym just plunges in.");
 
-output("\n\nShe gives you a wink over her shoulder, then swings a leg around and shifts down, moving to face you while straddling your [pc.hips] and stroking your [pc.cock]. She easily man-handles your manhood into the cleavage between her meaty pussy-lips. Once you’re in place, she rocks her hips for a moment, grinding your shaft against her clit and letting her juices rub off on you, getting you nice and lubed before she rises up on her knees and plants your crown against her slit.");
+	output("\n\nShe’s not gentle, and she doesn’t go easy on you. The first thrust takes her hardlight rod knot-deep in your [pc.vagOrAss]; the second has you moaning, gasping into the pillow as the valkyrie mercilessly hammers you. Every time you almost get used to her, she changes up the pace, delivers a harsh spank to your [pc.butt], or reaches forward to grab and grope your [pc.nipples].");
+	if(pc.hasTailCock()) 
+	{
+		output(" Even ");
+		if(pc.tailCount > 1) output("one of your tailcocks");
+		else output("your tailcock");
+		output(" gets some attention. Krym grabs it while it sways behind you, guiding the shaft into her mouth. A shock of pleasure worms its way through your wriggling [pc.tail] as you feel her tongue wrap around your shaft, suckling on its cumslit.");
+	}
+	else if(pc.hasTailCunt()) output(" You feel a shuddering pleasure in your tail-cunt, prompting you to glance over your shoulder. Krym’s wrapped her fingers around your tail, holding in steady while she digs into your drooling pussy.");
 
-output("\n\n<i>“Now the fun starts!”</i> she grins, spreading herself open with two fingers. <i>“Just lay back and try not to cum too quickly.”</i>");
+	output("\n\nKrym has you moaning like a whore before you know it. Your body bucks forward with every hammer-blow of her broad hips, sending your ass-flesh aquiver. The hardlight shaft spearing your [pc.vagOrAss] open seems to throb, pulsing with energy that feels like electric currents running through your ");
+	if(pc.hasVagina()) output("vaginal");
+	else output("anal");
+	output(" muscles, making every hair stand on end - and overwhelming you with shocks of pleasure.");
 
-output("\n\n{Hard/Brute: You just growl at her. Like hell you would! //else: You clench your jaw, helpless but to try for the stormy amazon.}");
+	if(pc.hasCock()) output("\n\nOne of those shocks finds your anal pleasure-buzzer, and your [pc.cock] stiffens painfully, swelling with an urgent need. You barely realize when that sesation bubbles over, and [pc.cum] squirts from your [pc.cockHead] and onto Krym’s bed, soaking her sheets. Krym roars with laughter and slaps your ass, continuing to piston her hips; she doesn’t relent even after your load has leaked out in its entirety, and your cock is going limp.");
+	else output("\n\nBy the way she’s howling back there, Krym’s having an even better time than you are. Her hands slap and grope your [pc.butt], making your [pc.vagOrAss] squirm around the quickly-thrusting length of her hardlight strapon. The impacts of her hips on your jiggling rear push you down, crushing you against the bed; her tits press into your back, and her mouth is brought close enough to nibble on your [pc.ear]. Her breath comes hot and husky, moaning into your ear that’s she’s cumming; that you’re a good cocksleeve, and to hold on tight.");
 
-output("\n\nKrym plants her hands on your [pc.chest] and, still grinning, spears herself on your shaft. Without ever breaking eye contact with you, the sultry warrioress plants herself in your lap, taking every inch of throbbing cockflesh with nothing more than a quiet moan. Once she’s settled{bigdick: , stomach bulging with the sheer mass of dickmeat she’s sitting on}, Krym bites her lip, holding back another moan with a smile, clearly just enjoying the feeling of being filled. It doesn’t take her long to get over it, and when she does, the valkyrie locks eyes with you; her gaze is filled with nothing but unbridled, hungry lust.");
+	output("\n\nKrym’s orgasm comes down like a hammer, making her growl like a bear and clutch at your [pc.chest], pulling you tight against her. The turgid knot at the base of her hardlight rod presses urgently against your [pc.vagOrAss], stretching you wide and lodging itself in your ");
+	if(!pc.hasVagina()) output("spasming rim");
+	else  output("drooling lips");
+	output(". Her fingers rake your [pc.skinFurScales], refusing to let you go until she’s ridden out her climax, and thoroughly tied you like her own personal bitch.");
 
-output("\n\n<i>“Sorry about your pelvis,”</i> she grins.");
+	output("\n\n<i>“You’d better get comfortable,”</i> she murmurs, running a hand ");
+	if(pc.hasHair()) output("through your hair");
+	else output("along your cheek");
+	output(". <i>“I’ve got this thing on a release timer...”</i>");
 
-output("\n\nYou give her a confused look, only to find out <i>exactly</i> what she means a moment later. Krym rises on her knees and comes slamming down with crushing force, knocking the wind out of you with the sheer thunderbolt of pleasure lancing up from your [pc.cock]. You barely notice how hard she came down around how fucking <i>good</i> it felt to sheath all that cock in her slavering slit all at once. The bed creaks and squeals underneath you, sounding like a second lover taking a pounding from you... or maybe that’s your voice you’re hearing, going wild as the amazonian woman pile drives you into the bed again, and again, and again...");
+	output("\n\nThere’s not much you can do other than pull her pillow under your head and settle in, letting the horny viking-babe drift off to sleep still mounting you...");
+	//Pass 8 hours, give Sleep benefits. PC can use the transmitter outside for an hour afterwards if they don’t already have Respect.
+	processTime(60);
+	pc.orgasm();
+	sleepHeal();
+	processTime(7*60);
+	clearMenu();
+	output("\n\n");
+	CombatManager.genericLoss();
+}
 
-output("\n\nHowling with pleasure, Krym grabs your hands and guides them to her breasts, filling your grasp with soft, bouncing titflesh, ripe for you to play with. You tweak and tug on her teats, cupping the perky mounds while their owner rides your turgid dick. The sounds of your rutting echo thunderously through the barren shack, creating a cacophonous chorus of wet, fleshy sounds of penetration mixed with Krym’s moans and yours.");
-
-output("\n\n<i>“Fuck yeah!”</i> the valkyrie shouts, squeezing your hands around her tits, her smile so wide that her tongue threatens to list out at the apex of each bounce. <i>“Give it to me! Give me that fuckin’ dick!”</i>");
-
-output("\n\n{Silly: You’re givin’ her all she’s got, cap’n! //else: She’s taking all you have and more already!} For what it’s worth, you buck your [pc.hips] up to meet her falling twat, thrusting deep enough to make her shriek with pleasure, drenching your thighs and throwing her hair in wild thrashes - she’s cumming! You’re in a position to hold her steady, propping the orgasming warrior-woman up as she rides through her climax. All the extra lube from the sudden deluge just lets her go faster, gliding up and down your throbbing pole with frenzied desire.");
-
-output("\n\nShe’s nowhere near done by the time her frantic movements have milked out your own orgasm. You can’t do much, trapped under her driving hips, but squeeze her tits as hard as you dare and drive your dick as deep into that sweltering snatch as you can before your [pc.balls] discharge{s} a steaming load of [pc.cum] into the sodden passage squeezing so wonderfully around your shaft.");
-
-output("\n\n<i>“Oh! That’s the stuff,”</i> Krym laughs, reaching down and {grabbing a boob // running her hands across your chest}. <i>“Just let it all out for me... that cum’s just more lube, [pc.name]. Haha!”</i>");
-
-output("\n\nShe grins down at you, and even though the wild contracts around your meat have slowed, the amazon doesn’t stop riding you. Oh, boy...");
-
-output("\n\n[Cum Buckets]");
-output("\n\n//Pass 1 hour");
-
-output("\n\nYou’ve lost count of how many times Krym’s milked your [pc.balls], draining you dry one cumshot at a time. her thighs and slit are a sticky, cum-slathered mess, and the bed is soaked with juices and sweat. Throughout the whole affair, Krym’s refused to let your [pc.cock] go, holding you inside her with those iron pussy-muscles of hers.");
-
-output("\n\nBetween crushing bounces, you feel your amazonian partner cum again, squeezing your drained prick and roaring with her climax, soaking your crotch once again. This time, though, her orgasm rocks her body, making her breath come in ragged gasps. Her breasts bounce, quaking with her chest’s uneven movements, before the strength left in her mighty thighs gives out. Krym collapses ontop of you, face pressing into your [pc.chest], breathing hard. Her grip on your dick finally releases, and you shudder as your abused member slides from her cunt in a deluge of musky juices that leak down her thighs and onto your [pc.leg].");
-
-output("\n\n<i>“Fuck! That was good,”</i> Krym manages to moan after a few seconds, catching her breath in your chest. Despite the crushing ride she just took you on, you find your arms wrapping around the naked amazon’s waist, clinging to her as you too recover from the assault. After a while, though, Krym props herself up on her elbows and grins down at you.");
-
-output("\n\n{NoRespect: <i>“Well, that was worth my while alright. Camp’s yours: rest up, and use the beacon if you need to. Feel free to use my tits as a pillow, cuz I’m going to sleep that off.”</i>}");
-output("\n\n{Respect: <i>“A pleasure as always,”</i> Krym chuckles, tracing a few kisses up your chest. <i>“Wanna stick around for a little bit? Sleeping off a fight and a fuck’s always better with someone to curl up on me.”</i>}");
-
-output("\n\nThe valkyrie rolls off you onto her back, and you quickly take her up on her offer, resting your cheek on one of her silky-soft breasts. This time it’s her arms slipping around you; glancing up, you see Krym smiling, eyes closed. It isn’t long before you drift off, too...");
-
-output("\n\n//Pass 8 hours, give Sleep benefits. PC can use the transmitter outside for an hour afterwards if they don’t already have Respect.");
-
-output("\n\nPC Goan Get Fuq’d Vers.");
-output("\n\n<i>“Fuck, that’s the stuff,”</i> Krym growls, grinding her hips into your face, taking your tongue as deep as it’ll go into her pussy. <i>“Keep going, and I’ll get you nice and ready.”</i>");
-
-output("\n\nWhat, you’re not already doing the deed? You can’t exactly see anything, with your face full of lush, pale ass, but you can feel Krym reach off the bed and start rustling around, grabbing something off her nightstand.");
-
-output("\n\n{PC doesn’t have a pussy: Something drops onto the bed, and then you hear a bottle being popped open. A second later and something thick and cool rubs against your [pc.asshole], smeared around by a pair of Krym’s fingers. You gasp into her twat, feeling her digits playing around your tailhole, lubing up the rim before they push into you.");
-
-output("\n\n{PC has a tight butt: <i>“Nice and tight back here!”</i> Krym chuckles slowly but surely spreading you out. <i>“I almost feel guilty for breaking this in... <i>“");
-output("\n\n{PC has a normal butt: You force yourself to relax, breathing slowly and letting Krym’s fingers move around inside you, smearing lube across your anal walls. <i>“There we go... I guess if you fight like that here on Uveto, I shouldn’t be surprised your ass knows how to take a dicking!”</i>");
-output("\n\n{PC has a loose butt/took anusoft: Krym’s fingers all but sink into your [pc.asshole], eliciting a long, lurid moan of pleasure from you. <i>“Damn, [pc.name],”</i> Krym laughs, adding the rest of her fingers to the mix inside your lubed-up ass. <i>“Why do I feel like a frostwyrm’s been breeding this hole, huh?”</i>}");
-
-output("\n\nAll you can do is squirm and moan, arching your back as Krym molests your asshole, filling you with lube until you feel like you’re leaking it with every shuddering breath. Only then does she pull back, seemingly satisfied. With a grin,} Krym lifts off your face and spins the {other} object on a finger, letting you take it in for a moment.");
-
-output("\n\nIt’s a pair of panties. Black cloth, no obvious thrill or frills, except for a tiny, almost imperceptible ring of metal objects around the waistband. She grins down at you like a hungry wolf and slips the panties on, hitching them high up her hips. Krym runs her fingers up between the lips of her pussy through the panties, moaning softly. You watch as her fingers slip around to one of the metal nodes, pressing it in. With an electric <i>whoosh</i>, a glowing orange shaft erupts from her crotch, coalescing into the shape of a canine cock, about ten inches long from knotty base to tapered tip.");
-
-output("\n\n<i>“Ooooh yeah,”</i> the valkyrie croons, rubbing her holographic hardon. <i>“I don’t know how women survived without these way back when...”</i>");
-
-output("\n\nKrym laughs and swings her legs around, turning to face you full-on, straddling your shoulders. <i>“What do you think? Ausar dick fit me?”</i>");
-
-output("\n\nOf course, the question was a trap. The moment you open your mouth, you get a face-full of glowing dick-light, thrusting right to the back of your throat. Krym howls a wordless thrill of pleasure, running a hand through her wild hair and using the other to hold you down while she rapes your face. You’re just a passenger on this ride now, forced to lay back and slather up her artificial tool with your [pc.tongue].");
-
-output("\n\nYou barely have time to get comfortable in your cock-sucking duties before Krym rears her hips back, popping her knotty hardlight cock out from your [pc.lips]. The brawny woman unceremoniously grabs your shoulders and flips you over, planting your face in her pillow and hiking your ass in the air.");
-
-output("\n\n{if no vag: <i>“This is where I say ‘bite the pillow,’ right?”</i> she laughs, slapping your [pc.butt]. //else: Spread ‘em wide for me, Steele!”</i> she orders, digging her fingers into your [pc.butt].} You reach back spread your cheeks, showing off your [pc.vagOrAss] to the horny stormguard. You pretty much immediately feel the slender crown of her strapon pressing against your entrance, teasing the {rim/lips} with a vaguely electric sensation before Krym just plunges in.");
-
-output("\n\nShe’s not gentle, and she doesn’t go easy on you. The first thrust takes her hardlight rod knot-deep in your [pc.vagOrAss]; the second has you moaning, gasping into the pillow as the valkyrie mercilessly hammers you. Every time you almost get used to her, she changes up the pace, delivers a harsh spank to your [pc.butt], or reaches forward to grab and grope your [pc.nipples]. {has tailcock: Even {one of your tailcocks // your tailcock} gets some attention. Krym grabs it while it sways behind you, guiding the shaft into her mouth. A shock of pleasure worms its way through your wriggling [pc.tail] as you feel her tongue wrap around your shaft, suckling on its cumslit. //else has tailcunt: You feel a shuddering pleasure in your tail-cunt, prompting you to glance over your shoulder. Krym’s wrapped her fingers around your tail, holding in steady while she digs into your drooling pussy.}");
-
-output("\n\nKrym has you moaning like a whore before you know it. Your body bucks forward with every hammer-blow of her broad hips, sending your ass-flesh aquiver. The hardlight shaft spearing your [pc.vagOrAss] open seems to throb, pulsing with energy that feels like electric currents running through your {vaginal / anal} muscles, making every hair stand on end - and overwhelming you with shocks of pleasure.");
-
-output("\n\n{PC has a cock: One of those shocks finds your anal pleasure-buzzer, and your [pc.cock] stiffens painfully, swelling with an urgent need. You barely realize when that sesation bubbles over, and [pc.cum] squirts from your [pc.cockHead] and onto Krym’s bed, soaking her sheets. Krym roars with laughter and slaps your ass, continuing to piston her hips; she doesn’t relent even after your load has leaked out in its entirety, and your cock is going limp.");
-output("\n\n{Else: By the way she’s howling back there, Krym’s having an even better time than you are. Her hands slap and grope your [pc.butt], making your [pc.vagOrAss] squirm around the quickly-thrusting length of her hardlight strapon. The impacts of her hips on your jiggling rear push you down, crushing you against the bed; her tits press into your back, and her mouth is brought close enough to nibble on your [pc.ear]. Her breath comes hot and husky, moaning into your ear that’s she’s cumming; that you’re a good cocksleeve, and to hold on tight.}");
-
-output("\n\nKrym’s orgasm comes down like a hammer, making her growl like a bear and clutch at your [pc.chest], pulling you tight against her. The turgid knot at the base of her hardlight rod presses urgently against your [pc.vagOrAss], stretching you wide and lodging itself in your {spasming rim // drooling lips}. Her fingers rake your [pc.skinFurScales], refusing to let you go until she’s ridden out her climax, and thoroughly tied you like her own personal bitch.");
-
-output("\n\n<i>“You’d better get comfortable,”</i> she murmurs, running a hand {through your hair // along your cheek}. <i>“I’ve got this thing on a release timer...”</i>");
-
-output("\n\nThere’s not much you can do other than pull her pillow under your head and settle in, letting the horny viking-babe drift off to sleep still mounting you...");
-
-output("\n\n//Pass 8 hours, give Sleep benefits. PC can use the transmitter outside for an hour afterwards if they don’t already have Respect.");
-
-
-output("\n\n");
-output("\n\n                   Krym Sex");
-output("\n\nConsensual: Buttfuck Krym");
-output("\n\n//Stick your dick in the haughty valkyrie’s butt.");
-output("\n\n//Written by SomeKindofWizard");
-
-output("\n\n	<i>“Mnf- going exploring back there are you?”</i> Your hands slide down from her delightful hips, to the voluptuous curves of her callipygean bootie. It doesn’t seem so much exploring as a full adventure, you can barely wrap your [pc.arms] around her at the waist. She smirks and bounces atop you, and soon the heat of her sultry snatch is pressing down hard against your ([pc.cocks]/[pc.abdomen]).");
+//Consensual: Buttfuck Krym
+//Stick your dick in the haughty valkyrie’s butt.
+//Written by SomeKindofWizard
+public function consensualKrymButtfuck():void
+{
+	clearOutput();
+	showKrym();
+	author("SomeKindofWizard");
+	output("<i>“Mnf-going exploring back there are you?”</i> Your hands slide down from her delightful hips, to the voluptuous curves of her callipygean bootie. It doesn’t seem so much exploring as a full adventure, you can barely wrap your [pc.arms] around her at the waist. She smirks and bounces atop you, and soon the heat of her sultry snatch is pressing down hard against your ");
+	if(pc.hasCock()) output("[pc.cocks].");
+	else output("[pc.abdomen].");
 
 output("\n\nShe lowers herself down, all but mashing her perky tits into your face while you grasp and knead at seemingly-endless assflesh.");
 
