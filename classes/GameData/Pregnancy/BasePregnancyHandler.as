@@ -119,23 +119,21 @@ package classes.GameData.Pregnancy
 			if (pregSlot == 3 && !this.canImpregnateButt) return false;
 			
 			// This may need to be reworked depending on a discussion about the actual handling of cunttail preggers
-			if (pregSlot == 4 && !this.canFertilizeEggs)
+			if (pregSlot == 4)
 			{
-				return false;
-			}
-			else
-			{			
-				// Egg fertilization
-				if (this.canFertilizeEggs)
+				if(this.canFertilizeEggs)
 				{
-					if (mother.hasTailFlag(GLOBAL.FLAG_OVIPOSITOR) && (mother.tailType == GLOBAL.TYPE_ARACHNID || mother.tailType == GLOBAL.TYPE_DRIDER || mother.tailType == GLOBAL.TYPE_BEE))
+					// Egg fertilization
+					if (mother.hasTailOvipositor())
 					{
 						if (this.alwaysImpregnate || mother.fertility() > Math.floor(Math.random() * this.basePregnancyChance))
 						{
-							mother.fertilizeEggs();
+							mother.fertilizeEggs("tail");
+							return true;
 						}
 					}
 				}
+				return false;
 			}
 			
 			var wasSuccessful:Boolean = false;

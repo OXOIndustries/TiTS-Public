@@ -1084,7 +1084,7 @@ public function seraInchStealingAintEasy(intro:Boolean = false):void
 		}
 		if(pc.canOviposit())
 		{
-			output(" Your ovipositor even seems to come alive with the electric sensation of your orally-motivated orgasm. Eggs and fluids churn with pregnant poise, bringing with it that breed-hungry sensation they always provoke before calming back into the afterglow of your orgasm.");
+			output(" Your ovipositor" + (pc.totalTailOvipositors() == 1 ? " even seems" : "s even seem") + " to come alive with the electric sensation of your orally-motivated orgasm. Eggs and fluids churn with pregnant poise, bringing with it that breed-hungry sensation they always provoke before calming back into the afterglow of your orgasm.");
 		}
 		output("\n\nYour mistress catches sight of your orgasm as you swallow down every drop like a proper cumslut, and seems positively giddy at the sight. <i>“Oh. My. God. You actually,”</i> and here she stops and trips over her thoughts. <i>“You actually came from that.");
 		if(flags["SERA_INCH_STEALING_HELP"] == undefined) output(" I was just going to fucking leave you to stew on it, ‘cause it’s your fucking fault this happened. Fuck that though, this is amazing, the best damn thing I’ve seen all day.");

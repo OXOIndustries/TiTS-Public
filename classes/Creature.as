@@ -16899,7 +16899,8 @@
 		//Used for ovipositors
 		public var eggs: int = 0;
 		public var fertilizedEggs: int = 0;
-
+		
+		/*
 		public function canOvipositSpider(): Boolean 
 		{
 			if (eggs >= 10 && hasTailFlag(GLOBAL.FLAG_OVIPOSITOR) && isDrider()) return true;
@@ -16911,16 +16912,40 @@
 			if (eggs >= 10 && hasTailFlag(GLOBAL.FLAG_OVIPOSITOR) && tailType == GLOBAL.TYPE_BEE) return true;
 			return false;
 		}
+		*/
 		
-		public function canOviposit(): Boolean 
+		public function canOviposit(slot:String = "any"): Boolean 
 		{
-			if (canOvipositSpider() || canOvipositBee()) return true;
-			return false;
+			//if (canOvipositSpider() || canOvipositBee()) return true;
+			if (eggs < 10) return false;
+			
+			var ovipossible:Boolean = false;
+			switch(slot)
+			{
+				case "tail":
+					if(totalTailOvipositors() > 0) ovipossible = true;
+					break;
+				case "penis":
+				case "dick":
+				case "cock":
+					if(totalCockOvipositors() > 0) ovipossible = true;
+					break;
+				case "vagina":
+				case "pussy":
+				case "cunt":
+					if(totalVagOvipositors() > 0) ovipossible = true;
+					break;
+				case "any":
+					if(hasOvipositor()) ovipossible = true;
+					break;
+			}
+			
+			return ovipossible;
 		}
 		
 		public function hasTailOvipositor(): Boolean 
 		{
-			return (hasTailFlag(GLOBAL.FLAG_OVIPOSITOR));
+			return (hasTailFlag(GLOBAL.FLAG_OVIPOSITOR) && tailCount > 0);
 		}
 		public function isCockOvipositor(slot:int = -1): Boolean 
 		{
@@ -16932,11 +16957,16 @@
 			if (slot >= 0 && vaginas.length > 0 && vaginas[slot].hasFlag(GLOBAL.FLAG_OVIPOSITOR)) return true;
 			return false;
 		}
-		public function totalOvipositors(): int 
+		public function totalTailOvipositors(): int 
+		{
+			var count:int = 0;
+			if (hasTailOvipositor()) count = tailCount;
+			return count;
+		}
+		public function totalCockOvipositors(): int 
 		{
 			var x:int = 0;
 			var count:int = 0;
-			
 			if (cocks.length > 0)
 			{
 				for(x = 0; x < cocks.length; x++)
@@ -16944,6 +16974,12 @@
 					if(isCockOvipositor(x)) count++;
 				}
 			}
+			return count;
+		}
+		public function totalVagOvipositors(): int 
+		{
+			var x:int = 0;
+			var count:int = 0;
 			if (vaginas.length > 0)
 			{
 				for(x = 0; x < vaginas.length; x++)
@@ -16951,8 +16987,11 @@
 					if(isVaginaOvipositor(x)) count++;
 				}
 			}
-			
 			return count;
+		}
+		public function totalOvipositors(): int 
+		{
+			return (totalTailOvipositors() + totalCockOvipositors() + totalVagOvipositors());
 		}
 		public function hasOvipositor(): Boolean 
 		{
@@ -16987,9 +17026,13 @@
 			}
 		}
 		
-		public function fertilizeEggs(percent: Number = 50): int 
+		public function fertilizeEggs(slot:String = "any", percent:Number = 50): int 
 		{
-			if (!canOviposit()) return -1;
+			if(this is PlayerCharacter)
+			{
+				if(slot == "tail" && hasCuntSnake()) return kGAMECLASS.fertilizeCuntSnake();
+			}
+			if (!canOviposit(slot)) return -1;
 			fertilizedEggs += eggs * percent / 100;
 			if (fertilizedEggs > eggs) fertilizedEggs = eggs;
 			return fertilizedEggs;
