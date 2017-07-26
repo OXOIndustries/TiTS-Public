@@ -19,7 +19,7 @@ public function initGastigothRooms():void
 	/* Ship Docking */
 	rooms["GASTIGOTH_SPACE"] = new RoomClass(this);
 	rooms["GASTIGOTH_SPACE"].roomName = "GASTIGOTH\nSPACE";
-	rooms["GASTIGOTH_SPACE"].description = "You're floating in the space just outside of Gastigoth. Good thing you grabbed a space suit before you stepped out. Better get back in your ship!";
+	rooms["GASTIGOTH_SPACE"].description = "You’re floating in the space just outside of Gastigoth. Good thing you grabbed a space suit before you stepped out. Better get back in your ship!";
 	rooms["GASTIGOTH_SPACE"].planet = "GASTIGOTH STATION";
 	rooms["GASTIGOTH_SPACE"].system = "SYSTEM: SIRACCA";
 	rooms["GASTIGOTH_SPACE"].westExit = "";

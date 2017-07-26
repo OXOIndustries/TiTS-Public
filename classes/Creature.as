@@ -19164,7 +19164,7 @@
 						}
 						break;
 					case "GastiUnlockTimer":
-						if (requiresRemoval)
+						if (this is PlayerCharacter && requiresRemoval)
 						{
 							//email unlock
 							kGAMECLASS.goMailGet("gastigoth_unlock");

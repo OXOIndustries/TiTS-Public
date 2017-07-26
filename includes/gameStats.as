@@ -1595,6 +1595,12 @@ public function questLogMenu(currentFunc:Function):Boolean
 		if(showID == "Canadia") { output2(header("<u>Canadia Station</u>", false)); addDisabledGhostButton(8, "Canadia"); }
 		else addGhostButton(8, "Canadia", currentFunc, "Canadia");
 	}
+	//Gastigoth
+	if(MailManager.isEntryViewed("gastigoth_unlock"))
+	{
+		if(showID == "Gastigoth") { output2(header("<u>Gastigoth Station</u>", false)); addDisabledGhostButton(9, "Gastigoth"); }
+		else addGhostButton(9, "Gastigoth", currentFunc, "Gastigoth");
+	}
 	// Other Info
 	if(showID == "Other") addDisabledGhostButton(12, "Other");
 	else addGhostButton(12, "Other", currentFunc, "Other", "Other Data", "Show the information not restricted to a location.");
@@ -5865,6 +5871,25 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["KIRO_KALLY_TEAM_MILKED"] != undefined) output2("\n<b>* Services, Times Cock-Milked with Kiro and Kally:</b> " + flags["KIRO_KALLY_TEAM_MILKED"]);
 				if(flags["VIXETTE_MOUTHGASMED"] != undefined) output2("\n<b>* Vixette, Times She Sucked Your Dick:</b> " + flags["VIXETTE_MOUTHGASMED"]);
 				variousCount++;
+			}
+		}
+		
+		if(showID == "Gastigoth" || showID == "All")
+		{
+			// Gastigoth Station
+			if(9999 != 9999)
+			{
+				output2("\n<b><u>Gastigoth Station</u></b>");
+				
+				/* Nothing yet! */
+				
+				variousCount++;
+			}
+			// Brandt
+			if(flags["MET_BRANDT"] != undefined)
+			{
+				output2("\n<b><u>Security Checkpoint</u></b>");
+				output2("\n<b>* Commander Brandt:</b> Met her");
 			}
 		}
 		
