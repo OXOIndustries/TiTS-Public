@@ -60,7 +60,6 @@ public function flyToMyrellion():void
 	//This check ensures older save files will re-unlock the relevant entries.
 	CodexManager.unlockEntry("Red Myr");
 	CodexManager.unlockEntry("Gold Myr");
-	CodexManager.unlockEntry("Scarlet Federation");
 }
 
 public function myrellionLeaveShip():Boolean

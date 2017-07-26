@@ -63,6 +63,9 @@ public function krymCampBonus():void
 		else output("gives you a slight nod of acknowledgement as you wander.");
 	}
 	else if(hours >= 5 && hours < 19) output(" A woman in white ceramic armor is patrolling the gun line, carrying a spear almost as tall as she is over one shoulder. She’s clearly human, if the head of blond hair and cream-pale skin are anything to go by. The lightningbolt patterns on her armor tell you she’s probably a member of the local Stormguard.");
+	
+	CodexManager.unlockEntry("Stormguard");
+	
 	if(hours >= 5 && hours < 19)
 	{
 		if(flags["MET_KRYM"] == undefined) addButton(0,"Stormguard",approachKrym,undefined,"Stormguard","Try and talk to the armed and armored woman. If she hasn’t attacked you yet, she probably won’t start now... right?");
