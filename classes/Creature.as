@@ -19120,6 +19120,12 @@
 							Priapin.effectEnds(maxEffectLength, doOut, this, thisStatus);
 						}
 						break;
+					case "GastiUnlockTimer":
+						if (requiresRemoval)
+						{
+							//email unlock
+							kGAMECLASS.goMailGet("gastigoth_unlock");
+						}
 					case "Hair Regoo":
 						if (requiresRemoval)
 						{

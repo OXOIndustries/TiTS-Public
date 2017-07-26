@@ -347,6 +347,10 @@
 		include "../includes/myrellion/xanthe.as";
 		include "../includes/myrellion/xenogenbiotech.as";
 		
+		// GASTIGOTH!
+		include "../includes/gastigoth/gastigoth.as";
+		include "../includes/gastigoth/rooms.as";
+		
 		// Karaquest 2- Karaharder.
 		include "../includes/events/karaquest2/content.as";
 		include "../includes/events/karaquest2/rooms.as";
@@ -543,6 +547,7 @@
 			kquest2InitRooms();
 			initUvetoRooms();
 			initUvetoRoomsII();
+			initGastigothRooms();
 			kiInitRooms();
 			initVesperiaRoom();
 			
