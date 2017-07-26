@@ -2712,7 +2712,6 @@
 								inventory[i].quantity = 0;
 								inventory.splice(i, 1);
 							}
-							else i++;
 						}
 					}
 					else i++;
@@ -2770,7 +2769,6 @@
 								inventory[i].quantity = 0;
 								inventory.splice(i, 1);
 							}
-							else i++;
 						}
 					}
 					else i++;
@@ -2815,7 +2813,6 @@
 								inventory[i].quantity = 0;
 								inventory.splice(i, 1);
 							}
-							else i++;
 						}
 					}
 					else i++;
