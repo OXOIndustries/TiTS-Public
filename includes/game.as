@@ -1307,7 +1307,8 @@ public function shipMenu():Boolean
 		if (hasShipStorage()) addButton(3, "Storage", shipStorageMenuRoot);
 		else addDisabledButton(3, "Storage");
 		addButton(4, "Shower", showerMenu);
-		addButton(5, "Fly", flyMenu);
+		if(shipLocation == "K16_DOCK") addButton(5,"Take Off",leaveZePrison);
+		else addButton(5, "Fly", flyMenu);
 	}
 	
 	return false;
@@ -1316,6 +1317,14 @@ public function shipMenu():Boolean
 public function flyMenu():void
 {
 	clearOutput();
+
+	//Start the stuff to unlock flying to space jail...
+	if(flags["TARKUS_BOMB_TIMER"] == 0 && !pc.hasStatusEffect("GastiUnlockTimer"))
+	{
+		prisonerSent(3);
+	}
+
+	//Make sure you can leave the planet!
 	if(!leavePlanetOK())
 	{
 		if(flags["CHECKED_GEAR_AT_OGGY"] == 1)
@@ -1400,6 +1409,13 @@ public function flyMenu():void
 		else addDisabledButton(8, "Canadia", "Canadia Station", "You’re already here.");
 	}
 	else addDisabledButton(8, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
+	//Gastigoth
+	if(MailManager.isEntryViewed("gastigoth_unlock"))
+	{
+		if(shipLocation == "K16_DOCK") addDisabledButton(9,"Gastigoth","Gastigoth","You're already there!");
+		else addButton(9,"Gastigoth",flyTo,"Gastigoth");
+	}
+	else addDisabledButton(9,"Locked","Locked","You have not learned of this location's coordinates yet.");
 	//KQ2
 	if (flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_DETAILED"] == undefined)
 	{
@@ -1496,6 +1512,12 @@ public function flyTo(arg:String):void
 			shipLocation = "CANADA1";
 			currentLocation = "CANADA1";
 			flyToCanadia();
+			break;
+		case "Gastigoth":
+			if(shipLocation == "GASTIGOTH_SPACE") shortTravel = true;
+			shipLocation = "K16_DOCK";
+			currentLocation = "K16_DOCK";
+			arrivalAtGastibooty();
 			break;
 	}
 	
