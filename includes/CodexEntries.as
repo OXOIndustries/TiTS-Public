@@ -105,6 +105,7 @@ public function configureCodex():void
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Factions", "Black Void", blackVoidCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Factions", "J.A.F.", jointAusarFederationCodex, true);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Factions", "Gilden Republic", gildenRepublicCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Factions", "Scarlet Federation", scarletFederationCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Factions", "T.S.C.", terranSpaceCoalitionCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Factions", "U.G.C.", unitedGalacticConfederacyCodex, true);
@@ -2118,6 +2119,7 @@ public function goldMyrmedionCodexEntry():void
 	outputCodex("\n\nJust before First Contact, the war between red and gold myr took an unexpectedly lethal turn due to the gold myr introducing poison gasses into the conflict, an incredibly effective deterrent against the unchecked red myr advance into their territory, followed by the red myr threatening to unleash a primitive atomic weapon the day before First Contact. Due to the appearance of the ausar expedition to Myrellion, thermonuclear war has been temporarily averted, which has since given the gold myr the opportunity to fashion their own WMDs in response.");
 	outputCodex("\n\nThe presence of the alien expedition is assumed to be the only preventative factor keeping the world war from escalating to a nuclear inferno. Due to the surprisingly advanced nature of the race, and their “honeypot” biology (which is seen as highly promising by Xenogen), U.G.C. diplomats have arrived on the planet and are working with both hierarchies to achieve a cease fire in the seven years’ war.");
 	outputCodex("\n\n");
+	//CodexManager.unlockEntry("Gilden Republic");
 	CodexManager.viewedEntry("Gold Myr");
 }
 public function redMyrmedionCodexEntry():void
@@ -2190,6 +2192,7 @@ public function redMyrmedionCodexEntry():void
 	outputCodex("\n\nJust before First Contact, the war between red and gold myr took an unexpectedly lethal turn due to the gold myr introducing poison gases into the conflict, an incredibly effective deterrent against the unchecked red myr advance into their territory, followed by the red myr threatening to unleash a primitive atomic weapon the day before First Contact. Due to the appearance of the ausar expedition to Myrellion, thermonuclear war has been temporarily averted, which has since given the gold myr the opportunity to fashion their own WMDs in response.");
 	outputCodex("\n\nThe presence of the alien expedition is assumed to be the only preventative factor keeping the world war from escalating to a nuclear inferno. This has caused some consternation on the part of the Federation, who saw themselves as on the brink of a final victory, and now are being largely ignored by the off-worlders in favor of the more alluring gold myr. Xenogen Biotech has, however, made preliminary inquiries into the reds’ lust venom while other parties have expressed interest in exporting red myr labor (either reds themselves or selections of their many, many gold myr prisoners of war).");
 	outputCodex("\n\n");
+	CodexManager.unlockEntry("Scarlet Federation");
 	CodexManager.viewedEntry("Red Myr");
 }
 public function cockvinesCodexEntry():void
@@ -3475,16 +3478,30 @@ public function jointAusarFederationCodex():void
 public function scarletFederationCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_SCARLET_FED");
 	outputCodex(header("The Scarlet Federation"));
 	outputCodex("The Scarlet Federation is the governing body of the Red Myr on Myrellion. The Federation is ruled by a junta of generals, collectively known as the High Command, and is heavily militarized compared to their Gold Myr neighbors. Full citizenship -- and the right to vote -- are gated behind Federal service (usually, but not always, military), and many large industries are government-backed private ventures run by citizens.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("History:"));
 	outputCodex("The Scarlet Federation was formed from several disparate city-states of red myr who lived far to the north-east of the gold myr heartlands, and on another continent. Near their territory were several of the largest cities of nyrea, as well as over “monsters” from the barren wastelands of the far north. The Federation was formed during a series of unification wars, which eventually saw most of the red myr cities (and a handful of nyrean ones) collected under one banner. The Federation was formed in the same generation as the Red-Gold war, and several veterans from the unification conflicts fought in the world war that followed.");
 	outputCodex("\n\nEven before the Federation’s formation, however, tensions were high between the red myr cities and the larger Gilden Republic to the west. Several border skirmishes were fought between the two races, and hostility was steadily on the rise until the start of the Red-Gold conflict. The war began with a dogfight between red and gold air forces, and has since escalated to total world war, with the Scarlet Federation having pushed deep into Gilden Republic territory. The conflict was escalating towards the use of weapons of mass destruction before an ausar expedition arrived in Myrellion’s airspace.");
-	outputCodex("\n\nOf the two races, the Federation was the second to employ chemical weapons, but the first to develop nuclear ones. ");
+	outputCodex("\n\nOf the two races, the Federation was the second to employ chemical weapons, but the first to develop nuclear ones.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Scarlet Federation");
+}
+public function gildenRepublicCodex():void
+{
+	clearOutputCodex();
+	showBust("LOGO_GILDEN_REP");
+	outputCodex(header("The Gilden Republic"));
+	outputCodex("Main governing body of the Gold Myr on Myrellion.");
+	outputCodex("\n\n9999 - Please help fill me in. D:");
+	outputCodex(blockHeader("History:"));
+	outputCodex("");
+	outputCodex("\n\n");
+	outputCodex("\n\n");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Gilden Republic");
 }
 public function terranSpaceCoalitionCodex():void
 {

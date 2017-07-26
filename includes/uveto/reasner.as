@@ -446,7 +446,7 @@ public function sellSaviciteToBeatrice():void
 }
 
 //Any Amount
-public function actuallySellSaviciteToBeatrice(quantity:Number):void
+public function actuallySellSaviciteToBeatrice(quantity:int):void
 {
 	clearOutput();
 	showBeatrice();

@@ -1066,9 +1066,11 @@ public function intimateCatchChaurmine():void
 		output(".");
 	}
 	output("\n\nYou feel him tense up, using his grip to pull you tighter against his blunt head as he grinds against you. <i>“Relax, [pc.name], and I guarantee you you’ll enjoy this,”</i> he sultrily breathes, his words almost hot enough to feel like flames licking at your neck. His hot breath, steamy atmosphere, warm embrace; all these have made you pretty relaxed already, but you let out a sigh and give him a wiggle of your rear anyways. This seems to satisfy the metal lizard, and he abruptly thrusts, your breath catching as he enters with a wet <i>pop</i>.");
-	if(x >= 0) pc.cuntChange(x,chars["CHAURMINE"].cockVolume(0));
-	else pc.buttChange(chars["CHAURMINE"].cockVolume(0));
 
+	var capacity:Number = 0;
+	if(x >= 0) capacity = pc.vaginalCapacity(x);
+	else capacity = pc.analCapacity();
+	
 	//pcIsAnalOrVagVirgin:
 	if((x < 0 && pc.analVirgin) || (x >= 0 && pc.vaginalVirgin))
 	{
@@ -1085,11 +1087,11 @@ public function intimateCatchChaurmine():void
 
 		output("\n\nHe extracts his blunt tip from your [pc.vagOrAss " + x + "] with a grunt and a pop, and waits for your word. Though you take a few moments to collect yourself, you quickly signal your readiness with a wiggle of your [pc.hips], which Chaurmine clutches tight with an amused snort, before thrusting in once again.");
 	}
+	
+	if(x >= 0) pc.cuntChange(x,chars["CHAURMINE"].cockVolume(0));
+	else pc.buttChange(chars["CHAURMINE"].cockVolume(0));
+	
 	output("\n\nYou cry out in shameless ecstasy,");
-
-	var capacity:Number = 0;
-	if(x >= 0) capacity = pc.vaginalCapacity(0);
-	else capacity = pc.analCapacity();
 	//pcOrificeCapacity<135cubedinches:
 	if(capacity < 135)
 	{

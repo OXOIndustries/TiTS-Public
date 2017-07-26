@@ -703,7 +703,16 @@ public function approachCuntSnake(response:String = "intro"):void
 public function giveBirthThroughCuntTail():void {
 	clearOutput();
 	showCuntSnake();
-	output("There is a shifting within you that startles you to awareness, centered just above your [pc.butt]. You wince when a spherical bulge lurches perhaps an inch down your [pc.tail]. It’s trapped inside but slowly moving downwards in fits and starts. The everpresent wetness of your [pc.tailCunt] increases, leaking out in a tide that would shame you even if you were locked in the throes of masturbation. Unwanted pleasure rears up in the back of your mind as the exotic sensation of pushing something out through your dripping pussy asserts itself.");
+	
+	if(!pc.hasCuntSnake())
+	{
+		output("There is a phantom tingling feeling centered just above your [pc.butt]... but it then subsides. You check your codex for anything off and nothing out of the ordinary returns. Hmm, odd.");
+		processTime(2);
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
+	
+	output("There is a shifting within you that startles you to awareness, centered just above your [pc.butt]. You wince when a spherical bulge lurches perhaps an inch down [pc.oneTail]. It’s trapped inside but slowly moving downwards in fits and starts. The everpresent wetness of your [pc.tailCunt] increases, leaking out in a tide that would shame you even if you were locked in the throes of masturbation. Unwanted pleasure rears up in the back of your mind as the exotic sensation of pushing something out through your dripping pussy asserts itself.");
 	output("\n\nYou flop down onto your side and curl your spasming tail around, watching the distention make progress along its length. Looking at the shape of the spheroid, you surmise that your tailcunt has created an egg and is giving birth to it now. Pulsing, muscular contractions work to push your ovum closer to the exit, eliciting a moan of pleasure from you in spite of your mild distress at the situation.");
 	output("\n\nThe egg begins to move faster, squishing and sliding through as it reaches the well-lubed part of your sloppy channel, and the ensuing feeling causes your back to arch and your tongue to loll from your mouth. Gurgled vocalizations of pleasure escape your mouth. Your hands, desperate to help somehow, grab hold of your [pc.chest] and grope at your [pc.nipples]");
 	if(pc.hasNippleCocks()) output(", lewdly pulling on your suddenly-exposed nippledicks");
@@ -843,11 +852,20 @@ public function addChildCuntsnake(numChild:int = 1):void
 }
 
 // Feeding
-public function feedCuntSnake(preg:Boolean = true):void
+public function feedCuntSnake(cumFrom:Creature = null):void
 {
 	IncrementFlag("TIMES_FED_CUNT_SNAKE");
-	
 	flags["DAYS_SINCE_FED_CUNT_TAIL"] = 0;
 	
-	if(preg && flags["CUNT_TAIL_PREGNANT_TIMER"] == undefined && rand(5) == 0) flags["CUNT_TAIL_PREGNANT_TIMER"] = ((20 + rand(9)) * 60);
+	var preg:Boolean = true;
+	if(cumFrom is Flahne) preg = false;
+	
+	if(preg && rand(5) == 0) fertilizeCuntSnake();
 }
+public function fertilizeCuntSnake():int
+{
+	if(flags["CUNT_TAIL_PREGNANT_TIMER"] == undefined) flags["CUNT_TAIL_PREGNANT_TIMER"] = ((20 + rand(9)) * 60);
+	
+	return 1;
+}
+
