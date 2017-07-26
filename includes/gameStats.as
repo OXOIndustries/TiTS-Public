@@ -5722,6 +5722,15 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
+			// Krym
+			if(flags["MET_KRYM"] != undefined)
+			{
+				output2("\n<b><u>Stormguard Campsite</u></b>");
+				output2("\n<b>* Krymhilde:</b> Met her");
+				if(flags["KRYM_KOMBAT_RESULT"] != undefined) output2(", Challenged her in a duel");
+				if(flags["KRYM_RESPECT"] != undefined) output2("\n<b>* Krymhilde, Respect Level:</b> " + flags["KRYM_RESPECT"]);
+				variousCount++;
+			}
 			
 			// Resources
 			if(flags["9999"] != undefined)

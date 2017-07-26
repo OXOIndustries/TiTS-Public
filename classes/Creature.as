@@ -2697,7 +2697,7 @@
 			// Normal
 			else
 			{
-				while (i < inventory.length)
+				while (amount > 0 && i < inventory.length)
 				{
 					//Item in the slot?
 					if (inventory[i].shortName == arg) 
@@ -2755,7 +2755,7 @@
 			// Normal
 			else
 			{
-				while (i < inventory.length)
+				while (amount > 0 && i < inventory.length)
 				{
 					//Item in the slot?
 					if (inventory[i].shortName == arg.shortName) 
@@ -2800,7 +2800,7 @@
 			// Normal
 			else
 			{
-				while (i < inventory.length)
+				while (amount > 0 && i < inventory.length)
 				{
 					//Item in the slot?
 					if (inventory[i] is arg) 

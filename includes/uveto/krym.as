@@ -66,11 +66,11 @@ public function krymCampBonus():void
 	if(hours >= 5 && hours < 19)
 	{
 		if(flags["MET_KRYM"] == undefined) addButton(0,"Stormguard",approachKrym,undefined,"Stormguard","Try and talk to the armed and armored woman. If she hasn’t attacked you yet, she probably won’t start now... right?");
-		else addButton(0,"Krym",approachKrym,undefined,"Krym","Check on Krym. Maybe she'll be up for something besides fighting... or not.");
+		else addButton(0,"Krym",approachKrym,undefined,"Krym","Check on Krym. Maybe she’ll be up for something besides fighting... or not.");
 	}
 	else if(krymRespectsYou())
 	{
-		addButton(1,"Use Beacon",useBeacon,undefined,"Use Beacon","Krym won't mind if you use the beacon while she sleeps.");
+		addButton(1,"Use Beacon",useBeacon,undefined,"Use Beacon","Krym won’t mind if you use the beacon while she sleeps.");
 	}
 }
 
@@ -141,8 +141,8 @@ public function krymMenu():void
 	}
 	else
 	{
-		addDisabledButton(1,"Use Beacon","Use Beacon","You'll need to win her approval (or pity) to use this.");
-		addDisabledButton(2,"Rest","Rest","If you want to rest in her camp, you'll need to earn her respect.");
+		addDisabledButton(1,"Use Beacon","Use Beacon","You’ll need to win her approval (or pity) to use this.");
+		addDisabledButton(2,"Rest","Rest","If you want to rest in her camp, you’ll need to earn her respect.");
 	}
 	if(pc.hasStatusEffect("Transmitter-APPROVED")) addButton(1,"Use Beacon",useBeacon,undefined,"Use Beacon","Ask Krym if you can use the Taxi beacon.");
 }
@@ -315,7 +315,7 @@ public function restOfKrym():void
 		clearMenu();
 		addButton(1,"Not Now",noSexForKrym,undefined,"Not Now","Maybe next time, Krym...");
 		if(pc.lust() >= 33) addButton(0,"Fuck Krym",fuckKrym,undefined,"Fuck Krym","Take Krym up on her offer and bed the stormy valkyrie.");
-		else addDisabledButton(0,"Fuck Krym","Fuck Krym","You aren't aroused enough for this.");
+		else addDisabledButton(0,"Fuck Krym","Fuck Krym","You aren’t aroused enough for this.");
 	}
 }
 
@@ -348,8 +348,9 @@ public function loseToThatIcyBimbo():void
 	clearOutput();
 	showKrym(true);
 	author("Savin");
-	if(pc.isBimbo()) output("<i>“I, like, give up already!");
-	else output("<i>“I yield, I yield!");
+	output("<i>“");
+	if(pc.isBimbo()) output("I, like, give up already!");
+	else output("I yield, I yield!");
 	output("”</i> you shout, throwing your hands in the air, staggering back from the ferocious Storm Lancer. Krym ");
 	if(enemy.hasStatusEffect("Flying")) output("lands gracefully on the ice a few feet in front of you");
 	else output("couches her spear under her arm");
@@ -364,9 +365,9 @@ public function loseToThatIcyBimbo():void
 	output("\n\nYou knew what you were getting into, but the brazenness of her sexual assault takes you off-guard. You gasp, then moan for her, feeling her hands working around your [pc.butt], grabbing rough handfuls of ass-flesh as she tongue-fucks your mouth. The valkyrie keeps you there for a long moment, savoring your mouth until a chill wind blasting across the reminds you both that you’re still outdoors, the heat of your rising lusts dampened by the pervasive cold.");
 	output("\n\nKrym breaks the kiss and shoves the door open behind you, forcing you backwards with a mix of gropes and playful shoves that guide you to the largest of the rooms inside: a spartan chamber dominated by a flickering holocomputer against a wall and a messily-made bed. She unceremoniously rips off your [pc.crotchGarment], bearing your body for her inspection - and opening you up to a whole new barrage of sensual touches, vigorous gropes, and finally, a grab of your crotch that knocks you off balance, making you teeter back and finally, sprawl back over her bed.");
 
-	output("\n\n<i>“Now that’s what I like to see,”</i> the stormguard purrs, unhooking her gunbelt and letting it clatter to the floor with a metallic <i>thunk</i>. More slowly, her hands start working their way up her body, caressing the palmable mounds of her breasts before finding their way to her armored pauldrons.");
-	if(pc.hasCock()) output(" <i>“Try not a bust a nut before I’m done, kay?");
-	else output(" No touching yourself, now.");
+	output("\n\n<i>“Now that’s what I like to see,”</i> the stormguard purrs, unhooking her gunbelt and letting it clatter to the floor with a metallic <i>thunk</i>. More slowly, her hands start working their way up her body, caressing the palmable mounds of her breasts before finding their way to her armored pauldrons. <i>“");
+	if(pc.hasCock()) output("Try not a bust a nut before I’m done, kay?");
+	else output("No touching yourself, now.");
 	output("”</i>");
 
 	output("\n\nKrym gives you a little wink and starts to undo her armor, disconnecting the plates locked onto the skin-tight bodysuit underneath. They drop aside one after another, revealing the soft curves and firm muscles of the Stormguard’s body, hugged tightly by her snow-white suit - tight enough that nothing is left to the imagination, from the damp spot forming between her legs to the turgid tips of her nipples jutting through the material.");
@@ -477,7 +478,9 @@ public function pcGonnaGetFucked():void
 
 		output("\n\nAll you can do is squirm and moan, arching your back as Krym molests your asshole, filling you with lube until you feel like you’re leaking it with every shuddering breath. Only then does she pull back, seemingly satisfied. With a grin,");
 	}
-	output(" Krym lifts off your face and spins the {other} object on a finger, letting you take it in for a moment.");
+	output(" Krym lifts off your face and spins the");
+	if(!pc.hasVagina()) output(" other");
+	output(" object on a finger, letting you take it in for a moment.");
 
 	output("\n\nIt’s a pair of panties. Black cloth, no obvious thrill or frills, except for a tiny, almost imperceptible ring of metal objects around the waistband. She grins down at you like a hungry wolf and slips the panties on, hitching them high up her hips. Krym runs her fingers up between the lips of her pussy through the panties, moaning softly. You watch as her fingers slip around to one of the metal nodes, pressing it in. With an electric <i>whoosh</i>, a glowing orange shaft erupts from her crotch, coalescing into the shape of a canine cock, about ten inches long from knotty base to tapered tip.");
 	output("\n\n<i>“Ooooh yeah,”</i> the valkyrie croons, rubbing her holographic hardon. <i>“I don’t know how women survived without these way back when...”</i>");
@@ -511,7 +514,7 @@ public function pcGonnaGetFucked():void
 
 	output("\n\nKrym’s orgasm comes down like a hammer, making her growl like a bear and clutch at your [pc.chest], pulling you tight against her. The turgid knot at the base of her hardlight rod presses urgently against your [pc.vagOrAss], stretching you wide and lodging itself in your ");
 	if(!pc.hasVagina()) output("spasming rim");
-	else  output("drooling lips");
+	else output("drooling lips");
 	output(". Her fingers rake your [pc.skinFurScales], refusing to let you go until she’s ridden out her climax, and thoroughly tied you like her own personal bitch.");
 
 	output("\n\n<i>“You’d better get comfortable,”</i> she murmurs, running a hand ");
@@ -551,7 +554,7 @@ public function combatVictoryWithKrymm():void
 	krymCombatTrack(true);
 	clearMenu();
 	if(pc.lust() >= 33) addButton(0,"Fuck Her",fuckKrym,undefined,"Fuck Her","Take Krym up on her offer and bed the stormy valkyrie.");
-	else addDisabledButton(0,"Fuck Her","Fuck Her","You aren't aroused enough for this.");
+	else addDisabledButton(0,"Fuck Her","Fuck Her","You aren’t aroused enough for this.");
 
 	addButton(1,"Rest",restOfKrym,undefined,"Rest","Take a rest in the safety of Krym’s camp.");
 	addButton(2,"Use Beacon",useBeacon,undefined,"Use Beacon","Ask Krym if you can use the Taxi beacon.");
@@ -577,7 +580,7 @@ public function fuckKrym():void
 	//Scene options.
 	clearMenu();
 	if(pc.hasCock() && pc.cockThatFits(krymhilde.analCapacity()) >= 0) addButton(0,"Buttfuck",consensualKrymButtfuck,undefined,"Buttfuck","Stick your dick in the haughty valkyrie’s butt.");
-	else if(pc.hasCock()) addDisabledButton(0,"Buttfuck","Buttfuck","You're too big to fit in her heiny.");
+	else if(pc.hasCock()) addDisabledButton(0,"Buttfuck","Buttfuck","You’re too big to fit in her heiny.");
 	else addDisabledButton(0,"Buttfuck","Buttfuck","You need a penis to fuck her heiny with.");
 
 	if(pc.hasHardLightEquipped() || pc.hasCock()) addButton(1,"Pitch Vaginal",pitchVagimalKrym,undefined,"Pitch Vaginal","Take Krym to pound town.");
@@ -763,6 +766,7 @@ public function pitchVagimalKrym():void
 	output("\n\nIs that the only reason, you wonder.");
 
 	if(x >= 0) krymhilde.loadInMouth(pc);
+	pc.orgasm();
 
 	if(inCombat())
 	{
@@ -792,7 +796,7 @@ public function consensualTribbingWithKrym():void
 	output("\n\n<i>“That works,”</i> Krym grins, leaning down to kiss you. Her hips move while she makes out with you, grinding up and down the dildo - and making it shift between your labia with every motion. Oh, that feels nice! You join her in the act, bucking your hips against her while the valkyrie’s lips find your [pc.nipples] and neck; your arms wrap around her back, holding her close enough that her swaying breasts press against your [pc.chest]. The feeling of her tense, sweat-slicked muscles against your [pc.skinFurScales] only adds to the effect of being ridden by the sultry stormguard.");
 	output("\n\nThe dildo ends up smushed between your lips and Krym’s, rubbing its nubs against your inner folds and the underside of your clit, grinding back and forth with the valkyrie’s hips. Wet excitement trickles down around its girth, mixing with your own juices into a musky lake of lubrication. Between the two of your sodden quims, it isn’t long before your flesh glides slickly against each other.");
 	if(pc.wetness(x) >= 4) output("\n\n<i>“Damn, you’re drenching my bed!”</i> Krym laughs. <i>“You’re worse than the huskar science-sluts that come ‘round from Irestead. Starting to feel a little jealous, really...”</i>");
-	else if(pc.wetness(x) >= 2) output("\n\n<i>“We’re making such a mess!”</i> Krym laughs, running her hand across the sheets under your [pc.butt]. <i>“But <b>fuck</b> it feels good!");
+	else if(pc.wetness(x) >= 2) output("\n\n<i>“We’re making such a mess!”</i> Krym laughs, running her hand across the sheets under your [pc.butt]. <i>“But <b>fuck</b> it feels good!”</i>");
 	else output("\n\n<i>“You not getting off to this?”</i> Krym teases, tweaking the crown of the dildo, pushing it down against your [pc.clit]. <i>“Your half’s dry as a bone... at least compared to mine. Or maybe I’m just spoiled by all the ausar bitches from Irestead. Maybe I just need to come down there and loosen things up,”</i> she adds, spreading two fingers around her lips and sticking her tongue out at you. Now that’s a tempting offer...");
 	output("\n\nRather than answer her teases, you wrap your arms around Krym’s shoulders and bring her in close, locking lips with her for a good long while. She thrusts against you, keeping up the steady grind of pleasure while you make out, sparring with your tongues now rather than blades and guns. At some point during the tangle, Krym’s hands find their way to your [pc.butt], and you’re rolled on top, staring down at your lover. She twists around so that, rather than riding one another, you’re spread out on the bed, connected at the crotches by the dildo pinned between you. Krym’s legs maneuver the dildo side to side, rubbing it against your [pc.clit] until you’re moaning, breath catching in your chest with every jagged motion of the shaft. From her new angle, the valkyrie’s able to move faster than before, putting more pressure on your [pc.cunt].");
 	output("\n\nNow you’re starting to feel that sweet, sweet rise of orgasm building up, ready to overflow across your entire body.");
