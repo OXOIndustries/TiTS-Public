@@ -1324,17 +1324,17 @@ public function buskyWorkoutMenu():void {
 		
 		clearMenu();
 		if(pc.isTaur()) addDisabledButton(0, "S.Motivate", "Sexually Motivate", "You can’t be a Taur when you want to do this.");
-		else addButton(0, "S.Motivate", buskySexMotivation, null, "Sexually Motivate", "Give Busky the motivation to push his limits. You will be on the receiving end of all action.");
+		else addButton(0, "S.Motivate", buskySexMotivation, undefined, "Sexually Motivate", "Give Busky the motivation to push his limits. You will be on the receiving end of all action.");
 		
 		if(pc.isTaur()) addDisabledButton(1, "BenchAnal", "Bench Anal", "As a taur it’d be out of the question to do this.");
 		else if(!pc.hasCock()) addDisabledButton(1, "BenchAnal", "Bench Anal", "You’ll need a cock.");
 		if(pc.analCapacity() < chars["BUSKY"].cockVolume(0)) addDisabledButton(1, "BenchAnal", "Bench Anal", "You can’t take a bull as well endowed as Busky.");
-		else addButton(1, "BenchAnal", buskySexBenchAnal, null, "Bench Anal", "Use the bench for some anal fun, pitching and catching.");
+		else addButton(1, "BenchAnal", buskySexBenchAnal, undefined, "Bench Anal", "Use the bench for some anal fun, pitching and catching.");
 		
 		if (!pc.hasVagina() && pc.analCapacity() < chars["BUSKY"].cockVolume(0)) addDisabledButton(2, "HotTubFuck", "Hot-Tub Fuck", "You can’t take a bull as well endowed as Busky.");
 		else if(pc.hasVagina() && pc.vaginalCapacity(0) < chars["BUSKY"].cockVolume(0)) addDisabledButton(2, "HotTubFuck", "Hot-Tub Fuck", "You can’t take a bull as well endowed as Busky.");
 		else if (pc.isTaur()) addDisabledButton(2, "HotTubFuck", "Hot-Tub Fuck", "As a taur it’d be out of the question to do this.");
-		else addButton(2, "HotTubFuck", buskySexHotTubFuck, null, "Hot-Tub Fuck", "Head to the hot tubs, relax, and ride Busky’s cock.");
+		else addButton(2, "HotTubFuck", buskySexHotTubFuck, undefined, "Hot-Tub Fuck", "Head to the hot tubs, relax, and ride Busky’s cock.");
 	} else {
 		clearMenu();
 	}
@@ -1373,7 +1373,7 @@ public function buskySexMotivation():void {
 	output("\n\nBusky dropped the dumbbell and is now sitting up, trying to force words through pants. <i>“20 sets ...of 10, 400 ... pounds, done. Now... showers... my prize.”</i> You get up off the floor and notice some of the other gym patrons giving you passing glances. Clearly this was not an uncommon occurrence.");
 	
 	clearMenu();
-	addButton(0, "Next", buskySexMotivationFollowUp, null);
+	addButton(0, "Next", buskySexMotivationFollowUp);
 }
 
 //second screen of sexMotivation
@@ -1453,7 +1453,7 @@ public function buskySexMotivationFollowUp():void {
 	output(" filled to the brim with his thick seed, you start to lose consciousness. Busky catches you as he sits down on the shower floor, your collective fluids being washed away. Now in his lap, resting your head on his shoulder, you lie there for a moment, recovering from the romp within the comforting grip of the lovable bull.");
 	
 	clearMenu()
-	addButton(0, "Next", buskySexMotivationFollowUpFollowUp, null);
+	addButton(0, "Next", buskySexMotivationFollowUpFollowUp);
 }
 
 //and the third screen of sexMotivation
@@ -1614,7 +1614,7 @@ public function buskySexHotTubFuck():void {
 	processTime(20 + rand(10));
 	
 	clearMenu()
-	addButton(0, "Next", buskySexHotTubFuckFollowUp, null);
+	addButton(0, "Next", buskySexHotTubFuckFollowUp);
 }
 
 //Hot tub second screen
@@ -1685,7 +1685,7 @@ public function buskySexHotTubFuckFollowUp():void {
 	processTime(40 + rand(10));
 	
 	clearMenu()
-	addButton(0, "Next", buskySexHotTubFuckEnd, null);
+	addButton(0, "Next", buskySexHotTubFuckEnd);
 }
 
 //Hot tub final screen
