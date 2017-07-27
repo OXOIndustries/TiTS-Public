@@ -2007,8 +2007,13 @@ public function victoryKaskaDicksex(jail:Boolean = false):void
 {
 	clearOutput();
 	author("Fenoxo");
-	showBust(kaskaBustDisplay(true));
-	showName("\nKASKA");
+	if(!jail)
+	{
+		showBust(kaskaBustDisplay(true));
+		showName("\nKASKA");
+	}
+	else showKaska(true);
+
 	var x:int = pc.cockThatFits(chars["KASKA"].vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
 	if(!pc.isCrotchExposed())
@@ -2113,6 +2118,7 @@ public function victoryKaskaDicksex(jail:Boolean = false):void
 	}
 	else
 	{
+		IncrementFlag("KASKA_PRISONED");
 		output("\n\nAs you gather your stuff and prepare to leave, Kaska dazedly stuffs her still-leaking crown in her mouth and starts jacking herself toward a second orgasm. That answers where she got so good at cock-sucking.");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -2125,8 +2131,13 @@ public function makeKaskaSuchYerCoochLikeABaws(jail:Boolean = false):void
 {
 	clearOutput();
 	author("Fenoxo");
-	showBust(kaskaBustDisplay(true));
-	showName("\nKASKA");
+	if(!jail)
+	{
+		showBust(kaskaBustDisplay(true));
+		showName("\nKASKA");
+	}
+	else showKaska(true);
+
 	if(!pc.isCrotchExposed()) output("You lazily open your [pc.lowerGarments],");
 	else output("You lazily step forward,");
 	output(" intending to get some quick, oral relief from this pirate ");
@@ -2244,6 +2255,7 @@ public function makeKaskaSuchYerCoochLikeABaws(jail:Boolean = false):void
 	}
 	else 
 	{
+		IncrementFlag("KASKA_PRISONED");
 		output("\n\nGravity suddenly seems to double, but you hold onto Kaska’s head for support, smashing your climax-sensitized lips into her face for as long as you can. She ragdolls before you can derive much more pleasure, however, leaving you standing on wobbling [pc.legs] and wondering how to spend the rest of your day.");
 		processTime(20);
 		pc.orgasm();

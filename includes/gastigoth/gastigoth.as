@@ -62,12 +62,25 @@ public function showKasmiran(nude:Boolean = false):void
 	showBust("KASMIRAN" + nudeS);
 }
 
-public function showTamtam(nude:Boolean = true):void
+public function showTamtamPrison(preg:Boolean = false):void
 {
 	showName("\nTAMTAM");
-	var nudeS:String = "";
-	if(nude) nudeS = "_NUDE";
-	showBust("TAMTAM" + nudeS);
+	var pregS:String = "";
+	if(preg) pregS = "_PREG";
+	showBust("TAMTAM_JAIL" + pregS);
+}
+public function showKhorganPrison(preg:Boolean = false):void
+{
+	showName("\nKHORGAN");
+	var pregS:String = "";
+	if(preg) pregS = "_PREG";
+	showBust("CAPTAIN_KHORGAN_JAIL" + pregS);
+}
+public function showKaska(cum:Boolean = false):void
+{
+	showName("\nKASKA");
+	if(cum) showBust("KASKA_CUM");
+	else showBust("KASKA_NUDE");
 }
 
 public function gastigothEmailText():String 
@@ -87,6 +100,7 @@ public function arrivalAtGastibooty():void
 	clearOutput();
 	showName("LANDING AT\nGASTIGOTH");
 	showBust("BRANDT");
+	author("Savin");
 	if(flags["LANDED_AT_GASTIGOTH"] == undefined)
 	{
 		flags["LANDED_AT_GASTIGOTH"] = 1;
@@ -127,6 +141,7 @@ public function leaveZePrison():void
 {
 	clearOutput();
 	showName("LEAVING\nGASTIGOTH");
+	author("Savin");
 	output("You plop into your captain’s chair and buzz the station’s comm channel, saying that you’re ready to depart.");
 	if(flags["MET_BRANDT"] == undefined) output(" The same half-reptilian woman that guided you in the first time");
 	else output(" Commander Brandt");
@@ -163,6 +178,7 @@ public function intoStationDisarmCheck():Boolean
 	if(!pc.hasStatusEffect("Disarmed"))
 	{
 		clearOutput();
+		author("Savin");
 		showName("HALT\nARMED SCUM!");
 		output("The moment you try to go anywhere, the two goons in orange armor stomp up and lock shields, all but jamming the shimmering projections in your face.");
 		output("\n\n<i>“I’m afraid we’ll be relieving you of your weapons, Captain,”</i> the woman behind the station says, giving you a flat look. <i>“No arms, shields, explosives, or any other means of combat are permitted beyond this point. No matter how small, secure, or primitive. This is for your safety and ours; I take no particular pleasure is disarming you.”</i>");
@@ -201,6 +217,7 @@ public function leaveStationDisarmCheck():Boolean
 //I12 Command & Control
 public function commandAndControlBonusiiii():Boolean
 {
+	author("Savin");
 	//PC tries to enter without talking to Brandt about it:
 	if(flags["BRANDT_FLIRTED"] == undefined)
 	{
@@ -248,6 +265,7 @@ public function commandAndControlBonusiiii():Boolean
 //PC can’t normally get into the elevators. Only in scenes. So no room descs.
 public function lobbyBonusShit():Boolean
 {
+	author("Savin");
 	//Has [Terminal] button enabled once you speak to the Warden for the first time. Has its own special scene.
 	//First Time Meeting
 	//Play the first time the PC enters the Lobby square.
@@ -286,6 +304,7 @@ public function talkToCommandyBrandy():void
 {
 	clearOutput();
 	showBrandt();
+	author("Savin");
 	if(flags["MET_BRANDT"] == undefined)
 	{
 		output("The message is clear enough: you step up to the small, gunmetal desk between you and the woman you’d spoken to over comms. Now that you’re in the same room, you can really get the size of her: she’s handsome, in a serious and grim-faced way, overly tall for a human and athletically built. She’s six-five, you’d guess, though that might be helped by the over-sized combat boots she’s wearing, complete with magnetized armor and jump jets, and she’s sleekly muscular beneath the dark orange dress uniform she’s got on. A boxer’s build, you think to yourself, though of course you’d need to see under that uniform to really gauge her physique.");
@@ -804,6 +823,7 @@ public function heliaButtjob(x:int):void
 {
 	clearOutput();
 	showBrandt(true);
+	author("Savin");
 	output("You step forward, planting your hands on Hélla’s hips and aligning your [pc.cockOrStrapon " + x + "] with the gash of her sex. She gasps with pleasure when your crown brushes against her clit, but you go no further, instead drawing yourself up between her lips and letting your prick drop heavily into the cleft of her ass.");
 	output("\n\nHélla doesn’t have a whole lotta junk in her trunk, but what’s there is firm and tight, flexing as you grope it in both hands. You press both cheeks down around your [pc.cockOrStrapon " + x + "] wrapping yourself in muscular flesh. Hélla squeezes down for you, helping you keep her svelte rump clenched around your dick, and you start to thrust. Her tail curls around your [pc.hips], pulling you in until you hilt against her butt, your ");
 	if(pc.balls > 0) output("[pc.balls]");
@@ -915,6 +935,7 @@ public function heliaAnal(x:int):void
 {
 	clearOutput();
 	showBrandt(true);
+	author("Savin");
 	output("With Hélla lounging on her hands and knees, slowly swaying her broad hips at you, your eyes are inevitably drawn to the supple swells of her firm cheeks. Hidden between them, you can just see the silken mound of her asshole’s plump ring, so lush and tempting that you can’t keep yourself from leaning in, hands on her flanks, and running your [pc.tongue] around her rim.");
 	output("\n\n<i>“Ahaaa!”</i> Hélla gasps, thrashing her tail against your hips. <i>“That’s-ah! ");
 	if(flags["BRANDT_ANAL"] == undefined) output("That’s my ass, [pc.name]! What are you doing?");
@@ -1118,6 +1139,7 @@ public function leaveDatWardenBooty():void
 {
 	clearOutput();
 	showKasmiran();
+	author("Savin");
 	output("<i>“I think I know all I need to,”</i> you say, standing.");
 	output("\n\nThe warden nods, doing the same. She adjusts her cap and clasps her hands behind her back, a gesture that causes her chest to thrust out, straining her uniform... or whatever synthetic element wraps her body. It’s hard to tell where costume ends and synth-flesh begins.");
 	output("\n\n<i>“Very well, Steele,”</i> she says, voice little more than a throaty purr. <i>“The terminal on the wall there has all the relevant information on our inmates. If any of them catch your eye, the station’s V.I. will walk you through setting up visitation and any other programs you’re interested in. If there’s nothing else, I’ll leave you to peruse our stock.”</i>");
@@ -1132,6 +1154,7 @@ public function wardensAppearance():void
 {
 	clearOutput();
 	showKasmiran();
+	author("Savin");
 	output("Warden Regina Kasmiran is an imposing woman, and not just because of her tall, amazonian physique. She exudes a cool, confident surety with her every action: even the slightest motion seems deeply calculated, deliberate, and without the slightest waste. Your stare is met openly by the warden, regarding you with steely red-gold eyes that are obviously cybernetic. Data flashes across them, inside and out, projected from internal holos and a pair of small bands bolted into her brows.");
 	output("\n\nAround them fall locks of long pink hair, a dark shade that seems as natural to the warden as anything left of her physical body. Which, you imagine, isn’t much. You believe she was once a cylirian - a member of race that appear like a hellish amalgam of moths and ogres - but she shed that mortal flesh long ago. Her face is all that you think is mostly flesh and blood, with reddish-brown skin and full, black-painted lips. Her ears are long and elfin, used to hold back her long mane of shaggy hair where it would otherwise spill down to her waist all around her. A pair of curling bone horns sweep back from her brow, just above her holo-lenses, combining with the four-spaded tail swishing behind her to give the warden a decidedly demonic appearance. One you’re sure she’s quite happy to cultivate, if her flame-red energy whip and claw-like nails and fangs are any indication.");
 	output("\n\nIndeed, she seems the sensually feminine version of a certain old-earth devil.");
@@ -1148,6 +1171,7 @@ public function sexHaverTerminalTime():void
 {
 	clearOutput();
 	showName("BEEP\nBOOP");
+	author("Savin");
 	output("You step up to the lobby’s terminal and tap the haptic interface, causing the pulsating advertisement to flicker away, replaced by a simple user interface that shows a list of what you can only assume to be current inmates, all tagged under a big heading of <i>“[pc.name] Steele.”</i>\n");
 	//List all current inmates on the buttons.
 	//When you select an inmate, show their bust and display a readout of:
@@ -1156,7 +1180,11 @@ public function sexHaverTerminalTime():void
 	if(flags["TARKUS_BOMB_TIMER"] == 0) 
 	{
 		output("\n\\\[Pirate\\\] Tam Tam");
-		addButton(button,"Tamtam",prisonerStatline,"Tamtam","Tamtam","Pay a visit to the spunky cat-girl mechanic you met on Tarkus.");
+		addButton(0,"Tamtam",prisonerStatline,"Tamtam","Tamtam","Pay a visit to the spunky cat-girl mechanic you met on Tarkus.");
+		output("\n\\\[Pirate\\\] Kaska");
+		addButton(1,"Kaska",prisonerStatline,"Kaska","Kaska","Pay a visit to the dick-toting pirate you defeated on Tarkus.");
+		output("\n\\\[Pirate\\\] Khorgan");
+		addButton(2,"Khorgan",prisonerStatline,"Khorgan","Khorgan","Pay a visit to the bad-ass space-pirate you defeated on Tarkus.");
 		button++;
 	}
 	addButton(14,"Nevermind",mainGameMenu);
@@ -1166,6 +1194,7 @@ public function prisonerStatline(prisonerName:String):void
 {
 	clearOutput();
 	showName("CLICK\nCLACK");
+	author("Savin");
 	clearMenu();
 	addButton(14,"Back",mainGameMenu);
 
@@ -1178,14 +1207,36 @@ public function prisonerStatline(prisonerName:String):void
 	output("\n\nConvicted of: ");*/
 	if(prisonerName == "Tamtam")
 	{
-		showTamtam();
+		showTamtamPrison();
 		output("<b>Name:</b> Tam Tam");
 		output("\n<b>Age:</b> 22");
 		output("\n<b>Sex:</b> Female");
 		output("\n<b>Race:</b> Kaithrit");
 
 		output("\n\nConvicted of: Attempted Destruction of a Planet, Unlicensed Software Editing, 12 Counts of Piracy, 3 Counts of Grand Piracy, Piracy in the Third Degree, Attempted Rape, Rape, and Jaywalking.");
-		addButton(0,"Visit",visitAPrisoner,"Tamtam","Tamtam","Visit the spunky cat-girl mechanic you helped bust on Tarkus.")
+		addButton(0,"Visit",visitAPrisoner,"Tamtam","Tamtam","Visit the spunky cat-girl mechanic you helped bust on Tarkus.\n\n<b>Cost:</b> 1,000 credits");
+	}
+	else if(prisonerName == "Kaska")
+	{
+		showKaska();
+		output("<b>Name:</b> Kaska");
+		output("\n<b>Age:</b> 24");
+		output("\n<b>Sex:</b> Hermaphrodite");
+		output("\n<b>Race:</b> Dzaan");
+
+		output("\n\nConvicted of: Attempted Destruction of a Planet, Slavery, Rape, 8 Counts of Piracy, Assault, Possession of Unlicensed Military-Grade Weaponry, and Polygamy");
+		addButton(0,"Visit",visitAPrisoner,"Kaska","Kaska","Visit the dick-girl pirate you defeated on Tarkus.\n\n<b>Cost:</b> 1,000 credits");		
+	}
+	else if(prisonerName == "Khorgan")
+	{
+		showKhorganPrison();
+		output("<b>Name:</b> Khorgan");
+		output("\n<b>Age:</b> 30");
+		output("\n<b>Sex:</b> Female");
+		output("\n<b>Race:</b> Thraggen");
+
+		output("\n\nConvicted of: Attempted Destruction of a Planet, Murder, 8 Counts of Grand Piracy, Piracy in the First Degree, Rape, Unlicensed Use of Power Armor, and Grand Theft Spacecraft.");
+		addButton(0,"Visit",visitAPrisoner,"Khorgan","Khorgan","Visit the bad-ass space-pirate you defeated on Tarkus.\n\n<b>Cost:</b> 1,000 credits");	
 	}
 	//{Stat Line: Physique, Reflex, Aim, Intelligence, Willpower, Libido}
 	if(pc.credits <= 1000) addDisabledButton(0,"Visit","Visit","You do not have the necessary credits.\n\n<b>Cost:</b> 1,000 credits");
@@ -1197,6 +1248,7 @@ public function prisonerStatline(prisonerName:String):void
 public function visitAPrisoner(prisonerName:String):void
 {
 	clearOutput();
+	author("Savin");
 	pc.credits -= 1000;
 	output("You slide your Codex’s payscreen and tap confirm. A gruff male voice answers back, <i>“Affirmative. Inmate " + prisonerName + " will be processed shortly. Please follow the running lights to the holding area. Please ensure that you have no sharp or heavy objects on your person when entering the holding area.”</i>");
 	output("\n\nAn array of tiny red lights flicker on under your [pc.feet], guiding you back down the hallway you came in the first time. As directed, you following the floor lights to an airlock that opens automatically as you approach, pass through it, and down another set of corridors. Armed guards and automated turrets seem to greet you at every turn, watching you as warily as they might any inmate. You doubt you’re ever more than twenty feet from a loaded gun... and you’re starting to feel awful naked without your kit.");
@@ -1210,14 +1262,17 @@ public function visitAPrisoner(prisonerName:String):void
 
 public function prisonerTimes(prisonerName:String):void
 {
-	tamtamStuffGo();
+	if(prisonerName == "Khorgan") capnKhorganPrisonVisit();
+	else if(prisonerName == "Kaska") kaskaSlammer();
+	else tamtamStuffGo();
 }
 
 //Tam Tam
 public function tamtamStuffGo():void
 {
 	clearOutput();
-	showTamtam();
+	showTamtamPrison();
+	author("Savin");
 	output("Strapped face-down and ass-up to the examination table is the familiar feline form of Tam-Tam. Her two pink tails are curled defensively around her legs, but she’s breathing huskily, and you can see that the crotch of her prison jumpsuit is practically soaked-through with arousal. Those huge, plump tits of hers are spread out on the cold metal of the table, practically spilling out of her zipped-down suit.");
 	//Lightly Pregnant: 
 	if(9999 == 0) output(" You can see the slightest bit of weight hanging down from her belly, stretching her jumpsuit taut. Either they’re feeding her real well here, or...");
@@ -1301,7 +1356,8 @@ public function tamtamStuffGo():void
 public function tamtamPrisonFinisher(x:int):void
 {
 	clearOutput();
-	showTamtam(true);
+	showTamtamPrison();
+	author("Savin");
 	output("You start to thrust, pumping your hips into Tam’s backside until her assflesh is quaking with the force of impacts, her lusty moans filling your ears with every movement as you spread her pussy wide on your [pc.cockOrStrapon " + x + "]. She’s leaking like a faucet around you, cunny-juices running faster every time your [pc.hips] slam into hers, spattering the both of you with her excitement. Tam’s twin pink tails slip around your waist, trying to pull you in every time you pull out, coaxing you back with purrs and moans and the jiggle of her luscious ass and bouncing tits. Oh, those look tempting.... Between thrusts, you shift your grip on your feline lover, reaching up and squeezing her sinfully soft tits; they’re like water in your hands, flowing right around your fingers as her body is pushed up with the force of another pumping of your crotch.");
 	output("\n\n<i>“Oh, yes!”</i> she yelps as your [pc.hips] slap into her ass again, <i>“Harder! Harder! Fuck me harder!”</i>");
 	output("\n\nWell, she did say she liked it rough!");
@@ -1324,71 +1380,195 @@ public function tamtamPrisonFinisher(x:int):void
 	addButton(0,"Next",mainGameMenu);
 }
 
+//Captain Khorgan
+public function capnKhorganPrisonVisit():void
+{
+	clearOutput();
+	showKhorganPrison();
+	author("Savin");
+	output("Inside the holding cell sits a tall, dark-green amazon of a woman: her body is chiseled muscles and jagged scars, giving way to large, firm breasts that heave with heavy breaths underneath the too-tight prison jumpsuit she’s wearing, zipped down to the navel to show off all that sculpted green muscle. ");
+	//lightly pregnant:
+	if(9999 == 0) output("And, you notice, a very slight belly the captain’s started to sport. She’s resting a hand on it, running a thumb up and down the taut emerald skin of her stomach.");
+	else if(9999 == 0) output("There’s no mistaking the swell of her stomach, poking through the mammoth cleavage of her jumpsuit. She’s pregnant: no doubt about it, and looking radiant in her matronhood. The thraggen rests a hand proudly on her belly, grinning at you beneath her bestial tusks.");
+	//else gravid: 
+	else if(9999 == 0) output("Khorgan’s gravidly pregnant; there’s no other way to describe it. Her belly bump is a massive ball of life protruding from her once-flat stomach, taut emerald skin stretched around your bastard offspring. The thraggen pirate smiles radiantly around her bestial tusks, proudly running her hand along the swell of her belly.");
+	output(" Sometime between you selecting her and her arrival in the holding cell, Khorgan’s broken free of the grav-chains that are supposed to be holding her; she’s sitting on the edge of the table, one leg crossed over the other, her red hair spilling down around her shoulders like a lion’s mane.");
+
+	output("\n\n<i>“Captain Steele,”</i> Khorgan says, somewhere between a sultry purr and the growl of a barbaric rival. ");
+	//not pregnant OR first time:
+	if(9999 == 9999 || flags["KHORGAN_PRISONED"] == undefined) output("<i>“Finally ready to claim your prize, are you? We should be tearing this galaxy a new one, side by side, showing everyone our combined strength! You’ve won my loyalty in battle, so why keep me here, huh?”</i>");
+	//else is pregnant:
+	else if(9999 == 0) output("<i>“Come to check in on the mother of your child? As if anything could happen to me in here! There’re so many doctors and science-mongers scrutinizing my belly that I can’t get morning sick without setting off an alarm. Your child will be healthy and strong, Steele. No doubt about it.”</i>");
+	//repeat not preggo:
+	else output("<i>“Back again? Good. I’m tired of beating on these pathetic guards - at least you’re worth my attention!”</i>");
+
+	output("\n\nShe chuckles and leans back on the table, a gesture that both thrusts her chest out at you and invites you closer, to close the distance and grab the once-mighty thraggen, pulling her into a fierce kiss. Her breath catches in her throat, but she moans into your [pc.lipsChaste], her powerful hands quickly searching down your own body, grabbing your [pc.butt] and squeezing hard.");
+
+	output("\n\n<i>“We thraggen have a saying,”</i> she whispers as you release her. <i>“To the victor go the spoils. You defeated me in my prime, so take me. Any way you want, Steele.”</i>");
+
+	output("\n\nWith a few slight movements of her hands, she starts to pull the equipment from your body, baring the [pc.skinFurScales] beneath. You return the favor, tearing her jumpsuit off so that her breasts fall fully free, pressed against your own [pc.chest] as your hands run all over each others, tearing at clothes and groping at bare stretches of flesh, slowly working towards each others’ most sensitive parts. Eventually, you hook your fingers through her pants and give them a downward tug. She gives a little moan as you wiggle her breeches off, leaving the damp garments for her to kick off. True to form, that captain’s gone without panties, leaving the dark gash of her sex on blatant display, already glistening with slick excitement.");
+
+	output("\n\n<i>“Oh yeah,”</i> she groans as your wandering hand caresses her mons, a pair of fingers easily probing their way into her. <i>“Right there, Steele. Just like that.”</i>");
+	output("\n\nYou thrust your hand deeper, burying your digits to the knuckles, and are rewarded with a gasp of pleasure and a feral growl as Khorgan wraps her powerful arms around you, squeezing you almost painfully tight. You’re about to complain when one of her legs hooks around your [pc.leg]; you give a little yelp as the two of you tumble to the ground, slamming into the steel deck with head-rattling force. When your vision clears, though, you see that all’s well with the world: the captain’s straddling you, thighs clamped around your [pc.hips] with her own slick sex poised overtop your ");
+	if(!pc.hasCock()) output("[pc.face]");
+	else output("[pc.cock], almost on the brink of penetration");
+	output(".");
+
+	processTime(20);
+	pc.lust(100);
+
+	clearMenu();
+	addButton(1,"Girly Fun",khorganLesboPrisonSex,undefined,"Girly Fun","Make sure every pussy on the deck gets licked, regardless of owner.");
+	if(pc.hasCock()) 
+	{
+		if(pc.cockThatFits(chars["CAPTAINKHORGAN"].vaginalCapacity(0)) >= 0) addButton(0,"Dick Fuck",khorganDickyWickyTrickyDo,undefined,"Dick Fuck","Give her what she’s asking for.");
+		else addDisabledButton(0,"Dick Fuck","Dick Fuck","Her body couldn’t handle what you’re packing.");
+	}
+	else addDisabledButton(0,"Dick Fuck","Dick Fuck","Unsurprisingly, this scene requires a phallus.");	
+}
+
+//Dick Fuck
+public function khorganDickyWickyTrickyDo():void
+{
+	clearOutput();
+	showKhorganPrison();
+	author("Savin");
+	var x:int = pc.cockThatFits(chars["CAPTAINKHORGAN"].vaginalCapacity(0));
+	if(x < 0) x = pc.smallestCockIndex();
+	output("<i>“I want you,”</i> she breathes huskily, leaning down just enough to press her face to yours, her tongue tracing along the line of your jaw, licking along your sweat-slick [pc.skin] as she starts to grind against you, her pussy reaching down to kiss the length of your stiffening shaft, rubbing along it. You gasp, reeling from the electric shock of pleasure spreading from your loins as your [pc.cock " + x + "] reacts to her wet, hot touch, jumping to attention by the time she’s finished one full bounce along its now-turgid length. She doesn’t stop, her hips continuing to pump up along your cockflesh, rubbing it down through the slit of her sex until your [pc.cock " + x + "] is well and truly drenched, smeared with feminine slime so that it glistens in the dim light of the cell.");
+	output("\n\nGrinning, Khorgan rises on her knees, one hand firmly planted on your [pc.chest] to support herself, the other reaching up to grope one of her massive green melons. She gives you a look as if to say, ‘<i>are you ready?</i>’ as her hips shift, finally aligning the channel of her sex with the [pc.cockHead " + x + "] of your [pc.cock " + x + "]. You give her a slight nod, and quickly find your head rolling back, a primal roar of sexual satisfaction rolling off your lips as Khorgan slides onto you, submerging your [pc.cock " + x + "] into the tight, sweltering, sodden slit between her legs.");
+	output("\n\n<i>“YES!”</i> Khorgan roars, back arched and tits bouncing as she slams herself down on your rod. The breath explodes from your chest as the captain’s hips ram into yours and the amazonian woman starts to ride you, bucking and bouncing overtop you. Her movements are forceful and violent, every buck of her hips an attack against you with almost bone-shattering force. You groan and struggle under her, but the captain’s sexual assault is overwhelming, threatening to batter the cum right out of you - and probably put you in the hospital, if the greenskin slut’s got anything to say about it.");
+	pc.cockChange();
+	output("\n\n<i>“Do you like it, Steele?”</i> the captain teases at the apex of another pelvis-crushing bounce, <i>“Cum for me. ");
+	//not preggers: 
+	if(9999 == 9999) output("Breed me.... Give me one of your powerful offspring.... Imagine what we could do together....”</i>");
+	else output("Give me more of that virile seed. Let our child grow stronger in my belly!”</i>");
+
+	output("\n\nOh no she doesn’t! Marshalling what’s left of your strength, you issue a primal roar of outrage as you flip the both of you over, slamming the captain’s back into the deck and leaving you on your knees between her splayed legs. Khorgan looks up at you in shock, just as you hike her legs up over your shoulders and slam your [pc.hips] in, hilting your [pc.cock " + x + "] in her. Rather than resisting as you might have expected, the captain gives you an approving nod and hooks her hands under her powerful legs, holding them nice and wide, giving you unobstructed access to her cunt.");
+	output("\n\nNow it’s your turn. You lean in through the splayed gulf of her groin, deep enough to grab one of the dark teats atop Khorgan’s breasts between your teeth, rolling the pert bud between your incisors until the captain groans with pleasure, vaginal muscles tensing around your thrusting prick. At this angle, though, no matter how tight she clenches, you’ve got the perfect vantage to pound her pussy. Your hips piston forward, slamming home against her up-raised cheeks with enough force to make her whole body tremble, her hefty tits bouncing hypnotically with every thrust.");
+	output("\n\nYou grab those heavy, perfect orbs, sinking your fingers into the pliant flesh until Khorgan’s howling with pleasure, all but begging for release. You refuse to let up on your furious sexual assault, putting the amazonian in her place with your hammering [pc.hips] and thrusting cock filling her cunny. Finally, the former captain throws her head back and gives a feral, lusty roar - a sound that echoes through the prison as she cums. Her muscular legs wrap around your neck, pulling you tight into the heaving mounds of her tits as she climaxes, letting you feel the heat radiating off her lust-addled body, the beat of her heart through the tensed muscles of her sex as she slathers you in fem-spunk, drenching your groin even as her pussy milks you, muscles instinctively trying to drain every drop of seed.");
+	output("\n\nThat, at least, you’ll happily give her. You move faster, your [pc.hips] slamming into her with greater and greater force as your speed reaches dizzying heights. The captain’s orgasm drags out as you hammer her, pulling you closer and closer to your own with her low, guttural cries and wild-wringing muscles. Between your frantic thrusts, you feel your orgasm coming, a thick rope of [pc.cum] surging through your [pc.cock] and into the slick, squirming tunnel of the captain’s sex.");
+	output("\n\n<i>“Fuck yes!”</i> Khorgan screams, feeling your seed ");
+	if(silly) output("sploosh");
+	else output("rush");
+	output(" into her. Before she can continue, you silence her with a rough kiss, forcing your tongue through her lips and across the pointed tips of her fang-like teeth. The thraggen captain grunts her approval, hands grabbing your [pc.butt] and forcing you deeper inside as you blow your load into her cumming cunny. With her pulling you in, you finally hilt yourself inside her");
+	if(pc.hasKnot(x)) output(", your [pc.knot " + x + "] forcing the lips of her pussy wide open, lodging itself in the mouth of her cunt");
+	output(". Panting, you finally disentangle yourself from the cum-filled thraggen, leaning back on your [pc.knees] and heaving a sigh of exhaustion. The captain grins up at you, fingers rubbing gingerly at the rim of her sex, making no move to resist you lean in for a parting kiss... and clip her restraints back into place. You gather your gear and get ready to leave.");
+	IncrementFlag("KHORGAN_PRISONED");
+	processTime(20+rand(10));
+	chars["CAPTAINKHORGAN"].loadInCunt(pc,0);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//LesboSex
+public function khorganLesboPrisonSex():void
+{
+	clearOutput();
+	showKhorganPrison();
+	author("Gardeford & Savin");
+	output("Khorgan grins down at you from her suddenly-dominant position");
+	//if preggers:
+	if(9999 == 0) output(", having to lean well over her hefty baby-bump");
+	output(". <i>“Nice view,”</i> she sneers, reaching down to spread the dusky lips of her twat, showing you the hungry hole in all its sodden glory. She’s so wet from just the foreplay that droplets of her excitement pitter-patter onto your cheeks, slathering you in her scent. It’s almost instinct to lean your head up, running your [pc.tongue] through the cleft of her sex. Khorgan growls softly, groping her breasts and rocking her hips, urging your tongue deeper and deeper.");
+	output("\n\nEating pussy’s nice and all, but you’re the one who’s supposed to be on top. Taking advantage of Khorgan’s lust-drunk state, you drive your tongue as far into her twat as you can, stunning the thraggen amazon with pleasure. She throws her head back with a roar, grinding her hips into your [pc.face]. The distraction is more than enough: you grab Khorgan by the hips and flip her, putting the big green beauty on her back with her legs splayed around your [pc.hips] and her arms pinned at her side.");
+	output("\n\n<i>“About time!”</i> your thraggen lover growls happily.");
+	output("\n\nYou grasp one of her tits in your palm, giving it a squeeze before narrowing your hold to pinch her darker viridian nipple. Her arm twitches, instinctively wanting to join your hand in playing with her breasts. Luckily for her, you have no intention of leaving your current plaything’s twin unattended. You lean in close, starting at the base of her arm and kissing along the side of her sizeable melon. Your kisses culminate as you reach her rock hard nipple, softly biting it as you gaze lustily into the thraggen pirate’s eyes.");
+	output("\n\nAs your mouth works its magic on her breast, you let your hand trail down her stomach, brushing the cleanly defined muscle of her abs. You dip your fingers into the folds of her vagina, circling her hole once before plunging two fingers into its depths.");
+	output("\n\n<i>“Yes, Steele! More!”</i> she moans, her hand replacing the missing one in fondling her abandoned tit. The heat of her cunt is immense inside the hotbox of her pants, and you feel the warmth of it spreading up your arm as you dig your fingers deeper inside at her insistence. The nipple in your mouth has become nearly as hard as the platinum the captain was so invested in mining once upon a time, and you bite a little harder with each pass until you have Khorgan roaring with pleasure at each touch of your teeth.");
+	output("\n\nThe lust-drunk pirate bucks her hips against your hand, her legs rapidly alternating between being locked together and splaying out in rapture. The inner walls of her sex clamp around your hand like a cinch, but you pull in and out just as rapidly, adding a third finger to your spelunking escapade. In the excitement, you fail to notice that her other arm has edged its way out of the body trap you’d placed it under.");
+	output("\n\nYou tense in astonishment as a feral growl escapes the captain’s throat, and she grasps both of your shoulders, rolling the both of you over till she lies on top of you. <i>“I can’t just lie there and not give anything back, can I Steele?”</i>");
+	//if pc shortstack:
+	if(pc.tallness <= 59) 
+	{
+		output("\n\nShe sits atop your fingers, hands gripping at your [pc.chest]. You gasp with pleasure as she squeezes your [pc.breasts] and tweaks your [pc.nipples]. Her hips gyrate on your fingers, still buried in her loins.");
+		if(pc.hasVagina()) output(" You shiver as her fluids start to leak down, mixing with the ones already trickling down your [pc.legs] from [pc.eachVagina].");
+	}
+	else output("\n\nThe thraggen captain straddles your hand, which still lies buried in her pants. She grins at you, baring her fang-like teeth before gently biting one of your [pc.breasts]. Her soft gnawing grows in intensity until you flinch with discomfort, at which point she lets down, sucking on your [pc.nipple] to soothe your hurt. Her tongue is just as developed as the rest of her muscles, and plays across your flesh like an exotic dancer. You shiver as the euphoric mixture of pleasure and pain sets rivulets of your sexual fluids dripping down [pc.legs].");
+
+	output("\n\nDespite how good she’s making you feel, you aren’t about to give up control of the situation. While the captain is busy playing with your [pc.chest], you pull your fingers out of her burning cunt and move it around to her chiseled ass. You slip your second hand in as well, caressing her cheeks to further lull her into a false sense of security. The next time she clenches her legs together to keep herself up, you swiftly withdraw your hands grab her ass, flipping her back onto the with the momentum.");
+	output("\n\nAt this point, you’re all but wrestling for dominance - an act that only arouses the amazonian pirate further. She growls and howls, powerful muscles struggling against your own. Now this must be how thraggen fuck! You grin down at her, pinning the captain to the deck and molesting her exposed breasts with your teeth.");
+	output("\n\nThe jade-skinned pirate’s face is a mask of battle-lust, and seeing it brings a renewed feeling of triumph and vigor to your body. You grip Khorgan’s prone form around the waist, pulling her wonderfully tight butt and cunt up to your face, and hugging her back to your [pc.chest]. Despite the fact that it has been freed from enclosure, her cunt is still thoroughly soaked with sweltering hot juices. The sight and smell of it causes [pc.eachVagina] to become noticeably wetter.");
+	output("\n\nUnable to deny your lusts any longer, you bury your face in her waiting folds. Your [pc.tongue] dives into her hole, licking around her insides as your nose rubs fervently against her budding clit. The thraggen captain grunts and moans at the sudden penetration, momentarily unsure of what to do with herself. Eventually her hands find their way to her breasts, playing and tugging at them with a mindless resolve. Holding her in place with one arm, you join one of her hands in massaging them, intertwining your fingers with hers and coaxing her to squeeze her helpless tit with a little extra force.");
+	output("\n\nKhorgan’s well muscled legs shudder and tense in the air above the two of you, but her eyes have lost none of their fiery intensity; she’s entirely focused on you as she resists your assault to the best of her ability. Her jaw is clenched with teeth bared, ");
+	if(silly) output("considerably white for a pirate. You guess no one has an excuse to not keep up with dental hygiene considering new advances in the technology.");
+	else output("but you imagine you’ll have her howling again in short notice.");
+	output("\n\nA final twitch of her clit is the only warning you get before the pirate captains body fulminates in a planet-cracking orgasm. You hear a wet rip as her pants tear into two halves, freeing her legs to splay out in the air, letting your face nuzzle even deeper into her now fully exposed spasming cunt. A burst of femcum splatters over your face, dribbling down her stomach and back as you pull away. Her body leaves her no energy for shouting, so all the noise she can make is a soft moan as she rides out the euphoria. You gulp in a couple breaths of fresh air before returning your attentions to Khorgan.");
+	output("\n\nYour victory prize remains where you left her, still trying to recover as aftershocks of the orgasm you put her through occasionally send shudders through her body. There’s still something missing from this equation though: you haven’t actually gotten off yet.");
+	output("\n\nYou’ve got the answer to that problem, though. You straddle the insensate amazons face, planting [pc.oneVagina] directly over her mouth.");
+	if(pc.isNice()) output("\n\n<i>“Come on, you gotta help me after that,”</i> you say with a smile, running your hand through her sweat slicked hair.");
+	else if(pc.isMischievous()) output("\n\n<i>“You can’t be done so soon,”</i> you chide teasingly.");
+	else output("<i>“Lick,”</i> you command with a grin.");
+	output(" Some primal part of the captain must hear you, as she weakly grasps your hips and pulls you down onto her mouth. Her tongue laps and licks at your [pc.vagOrAss], sending small shockwaves of bliss through your body when she teases ");
+	if(pc.hasVagina())
+	{
+		if(pc.totalClits() > 1) output("a");
+		else output("your");
+		output(" [pc.clit]");
+	}
+	else output("your tender ring");
+	output(". You massage her tensed body while she tends to your [pc.vagOrAss], rubbing the stress out of her athletic abs and sturdy hips. While the idea of fingering her again is tempting, you decide to let her off the hook, especially since she’s doing such a good job.");
+	output("\n\nHer powerful tongue has since slipped deep inside you, pressing all the right places with all the right pressure. In a matter of seconds, one of her tongue’s strokes passes a spot that fills your head with rhapsodic bliss. Your body follows closely behind, tensing and ");
+	if(pc.hasVagina()) output("showering Khorgan’s face with your [pc.girlCum]. You remain seated for a few more seconds to catch your breath, giggling as the pirate captain continues to weakly lick your mons periodically");
+	else output("gasping as your asshole rockets to orgasm, sending shockwaves of pleasure all through you");
+	output(". Eventually, you raise yourself from her, gathering your gear before turning back to her.");
+	output("\n\n<i>“Until next time, then,”</i> Khorgan grins, licking her lips clean of you... right up until you grab her restraints and lock them down again, earning an indignant grunt as you walk out.");
+	processTime(20+rand(10));
+	pc.orgasm();
+	pc.girlCumInMouth(chars["CAPTAINKHORGAN"]);
+	IncrementFlag("KHORGAN_PRISONED");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 /*
-output("\n\n");
-output("\n\nCaptain Khorgan");
-
-output("\n\nInside the holding cell sits a tall, dark-green amazon of a woman: her body is chiseled muscles and jagged scars, giving way to large, firm breasts that heave with heavy breaths underneath the too-tight prison jumpsuit she’s wearing, zipped down to the navel to show off all that sculpted green muscle. {lightly pregnant: And, you notice, a very slight belly the captain’s started to sport. She’s resting a hand on it, running a thumb up and down the taut emerald skin of her stomach. //moderate pregnant: There’s no mistaking the swell of her stomach, poking through the mammoth cleavage of her jumpsuit. She’s pregnant: no doubt about it, and looking radiant in her matronhood. The thraggen rests a hand proudly on her belly, grinning at you beneath her bestial tusks. //else gravid: Khorgan’s gravidly pregnant; there’s no other way to describe it. Her belly bump is a massive ball of life protruding from her once-flat stomach, taut emerald skin stretched around your bastard offspring. The thraggen pirate smiles radiantly around her bestial tusks, proudly running her hand along the swell of her belly.} Sometime between you selecting her and her arrival in the holding cell, Khorgan’s broken free of the grav-chains that are supposed to be holding her; she’s sitting on the edge of the table, one leg crossed over the other, her red hair spilling down around her shoulders like a lion’s mane.");
-
-output("\n\n<i>“Captain Steele,”</i> Khorgan says, somewhere between a sultry purr and the growl of a barbaric rival. {not pregnant OR first time: <i>“Finally ready to claim your prize, are you? We should be tearing this galaxy a new one, side by side, showing everyone our combined strength! You’ve won my loyalty in battle, so why keep me here, huh?”</i> //else is pregnant: <i>“Come to check in on the mother of your child? As if anything could happen to me in here! There’re so many doctors and science-mongers scrutinizing my belly that I can’t get morning sick without setting off an alarm. Your child will be healthy and strong, Steele. No doubt about it.”</i> //else: repeat not preggo: <i>“Back again? Good. I’m tired of beating on these pathetic guards - at least you’re worth my attention!”</i>}");
-
-output("\n\nShe chuckles and leans back on the table, a gesture that both thrusts her chest out at you and invites you closer, to close the distance and grab the once-mighty thraggen, pulling her into a fierce kiss. Her breath catches in her throat, but she moans into your [pc.lipsChaste], her powerful hands quickly searching down your own body, grabbing your [pc.butt] and squeezing hard.");
-
-output("\n\n<i>“We thraggen have a saying,”</i> she whispers as you release her. <i>“To the victor go the spoils. You defeated me in my prime, so take me. Any way you want, Steele.”</i>");
-
-output("\n\nWith a few slight movements of her hands, she starts to pull the [pc.gear] from your body, baring the [pc.skinFurScales] beneath. You return the favor, tearing her jumpsuit off so that her breasts fall fully free, pressed against your own [pc.chest] as your hands run all over each others, tearing at clothes and groping at bare stretches of flesh, slowly working towards each others’ most sensitive parts. Eventually, you hook your fingers through her pants and give them a downward tug. She gives a little moan as you wiggle her breeches off, leaving the damp garments for her to kick off. True to form, that captain’s gone without panties, leaving the dark gash of her sex on blatant display, already glistening with slick excitement.");
-
-output("\n\n<i>“Oh yeah,”</i> she groans as your wandering hand caresses her mons, a pair of fingers easily probing their way into her. <i>“Right there, Steele. Just like that.”</i>");
-
-output("\n\nYou thrust your hand deeper, burying your digits to the knuckles, and are rewarded with a gasp of pleasure and a feral growl as Khorgan wraps her powerful arms around you, squeezing you almost painfully tight. You’re about to complain when one of her legs hooks around your [pc.leg]; you give a little yelp as the two of you tumble to the ground, slamming into the steel deck with head-rattling force. When your vision clears, though, you see that all’s well with the world: the captain’s straddling you, thighs clamped around your [pc.hips] with her own slick sex poised overtop your {PC lacks a dick: [pc.face] //else: [pc.cock], almost on the brink of penetration}.");
-
-output("\n\n[Next]");
-output("\n\n//To Dick Fuck or LesboSex");
-
-output("\n\nDick Fuck");
-output("\n\n<i>“I want you,”</i> she breathes huskily, leaning down just enough to press her face to yours, her tongue tracing along the line of your jaw, licking along your sweat-slick [pc.skin] as she starts to grind against you, her pussy reaching down to kiss the length of your stiffening shaft, rubbing along it. You gasp, reeling from the electric shock of pleasure spreading from your loins as your [pc.cock <i>“ + x + <i>“] reacts to her wet, hot touch, jumping to attention by the time she’s finished one full bounce along its now-turgid length. She doesn’t stop, her hips continuing to pump up along your cockflesh, rubbing it down through the slit of her sex until your [pc.cock <i>“ + x + <i>“] is well and truly drenched, smeared with feminine slime so that it glistens in the dim light of the cell.");
-
-output("\n\nGrinning, Khorgan rises on her knees, one hand firmly planted on your [pc.chest] to support herself, the other reaching up to grope one of her massive green melons. She gives you a look as if to say, ‘<i>are you ready?</i>’ as her hips shift, finally aligning the channel of her sex with the [pc.cockHead <i>“ + x + <i>“] of your [pc.cock <i>“ + x + <i>“]. You give her a slight nod, and quickly find your head rolling back, a primal roar of sexual satisfaction rolling off your lips as Khorgan slides onto you, submerging your [pc.cock <i>“ + x + <i>“] into the tight, sweltering, sodden slit between her legs.");
-
-output("\n\n<i>“YES!”</i> Khorgan roars, back arched and tits bouncing as she slams herself down on your rod. The breath explodes from your chest as the captain’s hips ram into yours and the amazonian woman starts to ride you, bucking and bouncing overtop you. Her movements are forceful and violent, every buck of her hips an attack against you with almost bone-shattering force. You groan and struggle under her, but the captain’s sexual assault is overwhelming, threatening to batter the cum right out of you - and probably put you in the hospital, if the greenskin slut’s got anything to say about it.");
-
-output("\n\n<i>“Do you like it, Steele?”</i> the captain teases at the apex of another pelvis-crushing bounce, <i>“Cum for me. {not preggers: Breed me.... Give me one of your powerful offspring.... Imagine what we could do together....”</i> //preggers: Give me more of that virile seed. Let our child grow stronger in my belly!”</i>}");
-
-output("\n\nOh no she doesn’t! Marshalling what’s left of your strength, you issue a primal roar of outrage as you flip the both of you over, slamming the captain’s back into the deck and leaving you on your knees between her splayed legs. Khorgan looks up at you in shock, just as you hike her legs up over your shoulders and slam your [pc.hips] in, hilting your [pc.cock] in her. Rather than resisting as you might have expected, the captain gives you an approving nod and hooks her hands under her powerful legs, holding them nice and wide, giving you unobstructed access to her cunt.");
-
-output("\n\nNow it’s your turn. You lean in through the splayed gulf of her groin, deep enough to grab one of the dark teats atop Khorgan’s breasts between your teeth, rolling the pert bud between your incisors until the captain groans with pleasure, vaginal muscles tensing around your thrusting prick. At this angle, though, no matter how tight she clenches, you’ve got the perfect vantage to pound her pussy. Your hips piston forward, slamming home against her up-raised cheeks with enough force to make her whole body tremble, her hefty tits bouncing hypnotically with every thrust.");
-
-output("\n\nYou grab those heavy, perfect orbs, sinking your fingers into the pliant flesh until Khorgan’s howling with pleasure, all but begging for release. You refuse to let up on your furious sexual assault, putting the amazonian in her place with your hammering [pc.hips] and thrusting cock filling her cunny. Finally, the former captain throws her head back and gives a feral, lusty roar - a sound that echoes through the prison as she cums. Her muscular legs wrap around your neck, pulling you tight into the heaving mounds of her tits as she climaxes, letting you feel the heat radiating off her lust-addled body, the beat of her heart through the tensed muscles of her sex as she slathers you in fem-spunk, drenching your groin even as her pussy milks you, muscles instinctively trying to drain every drop of seed.");
-
-output("\n\nThat, at least, you’ll happily give her. You move faster, your [pc.hips] slamming into her with greater and greater force as your speed reaches dizzying heights. The captain’s orgasm drags out as you hammer her, pulling you closer and closer to your own with her low, guttural cries and wild-wringing muscles. Between your frantic thrusts, you feel your orgasm coming, a thick rope of [pc.cum] surging through your [pc.cock] and into the slick, squirming tunnel of the captain’s sex.");
-
-output("\n\n<i>“Fuck yes!”</i> Khorgan screams, feeling your seed {sploosh / rush} into her. Before she can continue, you silence her with a rough kiss, forcing your tongue through her lips and across the pointed tips of her fang-like teeth. The thraggen captain grunts her approval, hands grabbing your [pc.butt] and forcing you deeper inside as you blow your load into her cumming cunny. With her pulling you in, you finally hilt yourself inside her{, your [pc.knot <i>“ + x + <i>“] forcing the lips of her pussy wide open, lodging itself in the mouth of her cunt}. Panting, you finally disentangle yourself from the cum-filled thraggen, leaning back on your [pc.knees] and heaving a sigh of exhaustion. The captain grins up at you, fingers rubbing gingerly at the rim of her sex, making no move to resist you lean in for a parting kiss... and clip her restraints back into place. You gather your gear and get ready to leave.");
-
-output("\n\nLesboSex");
-output("\n\n//Author: Gardeford & Savin");
-
-output("\n\nKhorgan grins down at you from her suddenly-dominant position{//if preggers:, having to lean well over her hefty baby-bump}. <i>“Nice view,”</i> she sneers, reaching down to spread the dusky lips of her twat, showing you the hungry hole in all its sodden glory. She’s so wet from just the foreplay that droplets of her excitement pitter-patter onto your cheeks, slathering you in her scent. It’s almost instinct to lean your head up, running your [pc.tongue] through the cleft of her sex. Khorgan growls softly, groping her breasts and rocking her hips, urging your tongue deeper and deeper.");
-output("\n\nEating pussy’s nice and all, but you’re the one who’s supposed to be on top. Taking advantage of Khorgan’s lust-drunk state, you drive your tongue as far into her twat as you can, stunning the thraggen amazon with pleasure. She throws her head back with a roar, grinding her hips into your [pc.face]. The distraction is more than enough: you grab Khorgan by the hips and flip her, putting the big green beauty on her back with her legs splayed around your [pc.hips] and her arms pinned at her side.");
-output("\n\n<i>“About time!”</i> your thraggen lover growls happily.");
-output("\n\nYou grasp one of her tits in your palm, giving it a squeeze before narrowing your hold to pinch her darker viridian nipple. Her arm twitches, instinctively wanting to join your hand in playing with her breasts. Luckily for her, you have no intention of leaving your current plaything’s twin unattended. You lean in close, starting at the base of her arm and kissing along the side of her sizeable melon. Your kisses culminate as you reach her rock hard nipple, softly biting it as you gaze lustily into the thraggen pirate’s eyes.");
-output("\n\nAs your mouth works its magic on her breast, you let your hand trail down her stomach, brushing the cleanly defined muscle of her abs. You dip your fingers into the folds of her vagina, circling her hole once before plunging two fingers into its depths.");
-output("\n\n<i>“Yes, Steele! More!”</i> she moans, her hand replacing the missing one in fondling her abandoned tit. The heat of her cunt is immense inside the hotbox of her pants, and you feel the warmth of it spreading up your arm as you dig your fingers deeper inside at her insistence. The nipple in your mouth has become nearly as hard as the platinum the captain was so invested in mining once upon a time, and you bite a little harder with each pass until you have Khorgan roaring with pleasure at each touch of your teeth.");
-output("\n\nThe lust-drunk pirate bucks her hips against your hand, her legs rapidly alternating between being locked together and splaying out in rapture. The inner walls of her sex clamp around your hand like a cinch, but you pull in and out just as rapidly, adding a third finger to your spelunking escapade. In the excitement, you fail to notice that her other arm has edged its way out of the body trap you’d placed it under.");
-output("\n\nYou tense in astonishment as a feral growl escapes the captain’s throat, and she grasps both of your shoulders, rolling the both of you over till she lies on top of you. <i>“I can’t just lie there and not give anything back, can I Steele?”</i>");
-output("\n\n(if pc shortstack: She sits atop your fingers, hands gripping at your [pc.chest]. You gasp with pleasure as she squeezes your [pc.breasts] and tweaks your [pc.nipples]. Her hips gyrate on your fingers, still buried in her loins. {PC has a cunt: You shiver as her fluids start to leak down, mixing with the ones already trickling down your [pc.legs] from [pc.eachVagina].)");
-output("\n\n(if pc notsoshort: The thraggen captain straddles your hand, which still lies buried in her pants. She grins at you, baring her fang-like teeth before gently biting one of your [pc.breasts]. Her soft gnawing grows in intensity until you flinch with discomfort, at which point she lets down, sucking on your [pc.nipple] to soothe your hurt. Her tongue is just as developed as the rest of her muscles, and plays across your flesh like an exotic dancer. You shiver as the euphoric mixture of pleasure and pain sets rivulets of your sexual fluids dripping down [pc.legs])");
-output("\n\nDespite how good she’s making you feel, you aren’t about to give up control of the situation. While the captain is busy playing with your [pc.chest], you pull your fingers out of her burning cunt and move it around to her chiseled ass. You slip your second hand in as well, caressing her cheeks to further lull her into a false sense of security. The next time she clenches her legs together to keep herself up, you swiftly withdraw your hands grab her ass, flipping her back onto the with the momentum.");
-output("\n\nAt this point, you’re all but wrestling for dominance - an act that only arouses the amazonian pirate further. She growls and howls, powerful muscles struggling against your own. Now this must be how thraggen fuck! You grin down at her, pinning the captain to the deck and molesting her exposed breasts with your teeth.");
-output("\n\nThe jade-skinned pirate’s face is a mask of battle-lust, and seeing it brings a renewed feeling of triumph and vigor to your body. You grip Khorgan’s prone form around the waist, pulling her wonderfully tight butt and cunt up to your face, and hugging her back to your [pc.chest]. Despite the fact that it has been freed from enclosure, her cunt is still thoroughly soaked with sweltering hot juices. The sight and smell of it causes [pc.eachVagina] to become noticeably wetter.");
-output("\n\nUnable to deny your lusts any longer, you bury your face in her waiting folds. Your [pc.tongue] dives into her hole, licking around her insides as your nose rubs fervently against her budding clit. The thraggen captain grunts and moans at the sudden penetration, momentarily unsure of what to do with herself. Eventually her hands find their way to her breasts, playing and tugging at them with a mindless resolve. Holding her in place with one arm, you join one of her hands in massaging them, intertwining your fingers with hers and coaxing her to squeeze her helpless tit with a little extra force.");
-output("\n\nKhorgan’s well muscled legs shudder and tense in the air above the two of you, but her eyes have lost none of their fiery intensity; she’s entirely focused on you as she resists your assault to the best of her ability. Her jaw is clenched with teeth bared, (if silly:considerably white for a pirate. You guess no one has an excuse to not keep up with dental hygiene considering new advances in the technology.//but you imagine you’ll have her howling again in short notice.)");
-output("\n\nA final twitch of her clit is the only warning you get before the pirate captains body fulminates in a planet-cracking orgasm. You hear a wet rip as her pants tear into two halves, freeing her legs to splay out in the air, letting your face nuzzle even deeper into her now fully exposed spasming cunt. A burst of femcum splatters over your face, dribbling down her stomach and back as you pull away. Her body leaves her no energy for shouting, so all the noise she can make is a soft moan as she rides out the euphoria. You gulp in a couple breaths of fresh air before returning your attentions to Khorgan.");
-output("\n\nYour victory prize remains where you left her, still trying to recover as aftershocks of the orgasm you put her through occasionally send shudders through her body. There’s still something missing from this equation though: you haven’t actually gotten off yet.");
-output("\n\nYou’ve got the answer to that problem, though. You straddle the insensate amazons face, planting [pc.oneVagina] directly over her mouth.");
-output("\n\n(Kind/Misch/Hard: <i>“Come on, you gotta help me after that,”</i> you say with a smile, running your hand through her sweat slicked hair.//<i>“You can’t be done so soon,”</i> you chide teasingly.//<i>”</i>Lick,”</i> you command with a grin.) Some primal part of the captain must hear you, as she weakly grasps your hips and pulls you down onto her mouth. Her tongue laps and licks at your [pc.vagOrAss], sending small shockwaves of bliss through your body when she teases {a/your} [pc.clit] // your tender ring. You massage her tensed body while she tends to your [pc.vagOrAss], rubbing the stress out of her athletic abs and sturdy hips. While the idea of fingering her again is tempting, you decide to let her off the hook, especially since she’s doing such a good job.");
-output("\n\nHer powerful tongue has since slipped deep inside you, pressing all the right places with all the right pressure. In a matter of seconds, one of her tongue’s strokes passes a spot that fills your head with rhapsodic bliss. Your body follows closely behind, tensing and {pussy: showering Khorgan’s face with your [pc.girlCum]. You remain seated for a few more seconds to catch your breath, giggling as the pirate captain continues to weakly lick your mons periodically //else: gasping as your asshole rockets to orgasm, sending shockwaves of pleasure all through you}. Eventually, you raise yourself from her, gathering your gear before turning back to her.");
-output("\n\n<i>“Until next time, then,”</i> Khorgan grins, licking her lips clean of you... right up until you grab her restraints and lock them down again, earning an indignant grunt as you walk out.");
-
 output("\n\nKaska");
 output("\n\nhttps://docs.google.com/document/d/19GGjJ4Xa1Xe4ROMt9mNLxMrdLNz58R4FSudvA86zwnA/edit#");
 */
+
+public function kaskaSlammer():void
+{
+	clearOutput();
+	showKaska();
+	output("Inside the cell is the restrained form of Kaska Beamfury, the dick-girl pirate you defeated back on Tarkus. She looks much the same as you remember her: over seven feet tall with large, shapely breasts that heave with every breath and a punkish haircut you could pick out across a crowded room. The most telling difference is her expression. Gone is the fierce glare that seems like it could bore the hull of a battlecruiser. In its place is the lazy-eyed look of a woman who has lost all control of her life.");
+	output("\n\nTime in the slammer has not been kind to Kaska.");
+	output("\n\nOne other change presents itself at the sight of you: her dick. It’s at least three times as big as it ever was before, and swelling larger with every passing second, tumescent futa flesh slowly climbing up her middle to slap it into place between her tits, nestling into a menagerie of half-dried spunk-stains. Kaska’s eyes brighten with recognition or arousal, you aren’t sure which. Dark blushes form on her cheeks, and her rampantly erect monster-cock bobs and leaks, slapping wetly against her cleavage again and again, nearly grazing her chin each time.");
+	output("\n\n<i>“Uh, hey there Steele.");
+	//No new PG. First time:
+	if(flags["KASKA_PRISONED"] == undefined) 
+	{
+		output(" I didn’t think I’d ever see you again. Can’t blame you though. If our positions were reversed, I’d already be shoving my cock down your throat... not that I can do that now.”</i> Kaska idly strokes her tremendously erect shaft as she explains, smearing the slobbering dick-juice over every aphrodisiac-fortified inch. <i>“The asshole guards jacked up my cock like this before I could get anyone hooked on my cum. Pricks.”</i> She shudders and sighs, still stroking, panting a little now. <i>“How am I supposed to build an army of loyal prison grunts if I can’t stick this beast inside them?”</i>");
+		output("\n\nYou shrug, watching the proud pirate gradually giving herself over to the influence of her lust-drug-augmented boner.");
+		output("\n\n<i>“Exactly.”</i> Kaska falls to her knees, openly fucking herself by this point. She saws her hips back and forth, creaming from cock and cunt alike. Musky pussy-juice splatters below her as she watches you hungrily. <i>“So are you going to fuck me or what? Better you than the useless trash I’m locked up with.”</i> She bites her lip and bats her eyelashes. <i>“Uh... please or whatever?”</i>");
+	}
+	//Repeat. No new PG
+	else
+	{
+		output(" You came back.”</i> Kaska idly strokes her tremendously erect shaft, hand speeding in excitement. <i>“Even without a load of my cum, you’re hooked, huh?”</i> She gathers up a palmful of her own pre-spooge and sensuously licks it from her hand, watching you the whole time. <i>“Or are you just into girls with big, useless slabs of meat? It doesn’t matter, does it?”</i> She shudders and pants.");
+		output("\n\nYou shrug. It really doesn’t matter, and she clearly doesn’t expect a reply.");
+		output("\n\n<i>“F-fuck, what are you waiting for?”</i> Kaska drops to her knees, openly fucking herself. Her powerful hips pump her slobbering log of a cock through her tightly-squeezing fingers. Pussy-juice dribbles eagerly across the floor. She licks her lips and bats her eyelashes surprisingly submissively. <i>“Let’s fuck already. You’re fucking hot, and these drugs have me so hard I could cum from a good snuggle.”</i> She cups her tits, pressing them tight around her leaky cock-head. <i>“P-please?”</i>");
+	}
+	//[Dick Fuck] [Cunnilingus] - menu copy/pasted below. New content is directly edited into old scenes.
+	if(pc.lust() >= 33)
+	{
+		if(pc.hasCock() && pc.cockThatFits(chars["KASKA"].vaginalCapacity(0)) >= 0) addButton(0,"Dick Fuck",victoryKaskaDicksex,true,"Dick Fuck","She seems awful proud of her male endowment. Maybe she could stand to learn a little about taking one from someone else.");
+		else addDisabledButton(0,"Dick Fuck","Dick Fuck","You need to have a penis that would fit in Kaska’s vagina for this.");
+		if(pc.hasVagina()) addButton(1,"Cunnilingus",makeKaskaSuchYerCoochLikeABaws,true,"Cunnilingus","She’d be a pretty great pussy licker while she takes care of herself....");
+		else addDisabledButton(1,"Cunnilingus","Cunnilingus","This scene requires you to have a vagina.");
+	}
+	else
+	{
+		addDisabledButton(0,"Dick Fuck","Dick Fuck","You are not aroused enough for this act.");
+		addDisabledButton(1,"Cunnilingus","Cunnilingus","You are not aroused enough for this act.");
+	}
+	addButton(14,"Nevermind",backOuttaKaska);
+}
+public function backOuttaKaska():void
+{
+	clearOutput();
+	showName("\nNEVERMIND");
+	output("You wave her away and leave. This just isn't going to work out. The prison is quick to refund your money. Maybe a different prisoner will be more to your tastes?");
+	pc.credits += 1000;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
