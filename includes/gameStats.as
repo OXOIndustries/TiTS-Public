@@ -5889,7 +5889,23 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["MET_BRANDT"] != undefined)
 			{
 				output2("\n<b><u>Security Checkpoint</u></b>");
-				output2("\n<b>* Commander Brandt:</b> Met her");
+				output2("\n<b>* Brandt:</b> Met her");
+				if(flags["BRANDT_FLIRTED"] != undefined) output2(", Flirted with");
+				if(flags["BRANDT_HATES_YOU"] != undefined) output2(", She despises you");
+				if(flags["SEXED_BRANDT"] != undefined)  output2("\n<b>* Brandt, Times Sexed:</b> " + flags["SEXED_BRANDT"]);
+				if(flags["BRANDT_ANAL"] != undefined)  output2("\n<b>* Brandt, Times Fucked Her Ass:</b> " + flags["BRANDT_ANAL"]);
+			}
+			// Warden
+			if(flags["MET_KASMIRAN"] != undefined)
+			{
+				output2("\n<b><u>Visitors Lobby</u></b>");
+				output2("\n<b>* Kasmiran:</b> Met her");
+			}
+			// Inmates
+			if(flags["TAMTAM_PRISONED"] != undefined)
+			{
+				output2("\n<b><u>Inmate Visitations</u></b>");
+				if(flags["TAMTAM_PRISONED"] != undefined)  output2("\n<b>* Tam, Times Sexed:</b> " + flags["TAMTAM_PRISONED"]);
 			}
 		}
 		
