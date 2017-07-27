@@ -17,3 +17,18 @@ public function syriAtTheFreezer():Boolean
 {
 	return false;
 }
+public function PCShipName(customName:Boolean = true):String
+{
+	// 9999 if(customName) return ActivePlayerShip.Name;
+	return (PCShipManufacturer() + " " + PCShipModel());
+}
+public function PCShipManufacturer():String
+{
+	// 9999 return ActivePlayerShip.Manufacturer;
+	return "Casstech";
+}
+public function PCShipModel():String
+{
+	// 9999 return ActivePlayerShip.Model;
+	return "Z14";
+}

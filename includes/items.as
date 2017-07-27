@@ -1993,7 +1993,7 @@ public function populateTakeMenu(items:Array, type:String, func:Function = null)
 		{
 			addDisabledButton((menuInserts * 15) + 10, "Take");
 		}
-		if (_shipStorageMode != STORAGE_MODE_STORE) addButton((menuInserts * 15) + 11, "Store", shipStorageMode, [STORAGE_MODE_STORE, type], "Take from Inventory", "Take items from your inventory and place them in your ships storage.");
+		if (_shipStorageMode != STORAGE_MODE_STORE) addButton((menuInserts * 15) + 11, "Store", shipStorageMode, [STORAGE_MODE_STORE, type], "Take from Inventory", "Take items from your inventory and place them in your ship’s storage.");
 		else
 		{
 			addDisabledButton((menuInserts * 15) + 11, "Store");
@@ -2131,7 +2131,7 @@ public function storeItem(args:Array):void
 		output("There isn’t enough room to store your item.");
 		
 		clearMenu();
-		addButton(0, "Switch", replaceInStorage, [item, type], "Switch Items", "Switch an item in your ships storage with one in your inventory.");
+		addButton(0, "Switch", replaceInStorage, [item, type], "Switch Items", "Switch an item in your ship’s storage with one in your inventory.");
 		addButton(14, "Back", shipStorageMenuType, type);
 		return;
 	}
@@ -2243,7 +2243,7 @@ public function takeItem(args:Array):void
 		output("There isn’t enough room to take your item.");
 		
 		clearMenu();
-		addButton(0, "Switch", replaceInInventory, [item, type], "Switch Items", "Switch an item in your inventory with one in your ships storage.");
+		addButton(0, "Switch", replaceInInventory, [item, type], "Switch Items", "Switch an item in your inventory with one in your ship’s storage.");
 		addButton(14, "Back", shipStorageMenuType, type);
 		return;
 	}

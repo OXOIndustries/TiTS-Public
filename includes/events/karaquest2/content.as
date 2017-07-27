@@ -129,7 +129,7 @@ public function kq2TravelToKara(shortTravel:Boolean):void
 	output("\n\nYou take a steadying breath and ease your ship into the crack in the rock. You’re quickly bathed in darkness, no light from the sun or moon to guide you past the craggy cave mouth. A moment of doubt passes, before being blasted away by blinding light shining from inside the cavern. Your ship’s shielding keeps the worst of it at bay, just making you squint as the view outside consolidates into several large floodlights mounted on the walls, hanging over some kind of catwalk.");
 
 	output("\n\nAnother ship is parked ahead, a sleek, blue-and-white freighter");
-	if (9999 == 0) output(" not much bigger than your old Z14");
+	if (PCShipModel() != "Z14") output(" not much bigger than your old Z14");
 	else output(" not much bigger than your own ship");
 	output(". Your comms bleep with an incoming message.");
 
@@ -188,10 +188,7 @@ public function kq2TravelToKara(shortTravel:Boolean):void
 	else output("<i>“Sure, come on in,”</i> you say, waving her aboard.");
 	output(" You turn and lead her out of the airlock and into the ship’s common area.");
 
-	output("\n\n<i>“Nice ship,”</i> she murmurs, a gloved hand running along the bulkhead as she enters, looking cautiously around. <i>“Haven’t been aboard a");
-	// {ship model}
-	if(9999 == 9999) output(" Z14")
-	output(" in a while.”</i>");
+	output("\n\n<i>“Nice ship,”</i> she murmurs, a gloved hand running along the bulkhead as she enters, looking cautiously around. <i>“Haven’t been aboard " + indefiniteArticle(PCShipModel()) + " in a while.”</i>");
 
 	//if PC has Anno aboard:
 	if (annoIsCrew())
