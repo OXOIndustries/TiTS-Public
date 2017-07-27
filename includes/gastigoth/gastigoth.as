@@ -1204,14 +1204,14 @@ public function prisonerStatline(prisonerName:String):void
 	output("\n<b>Race:</b> ");
 
 	output("\n\nConvicted of: ");*/
-	switch(prisonerName)
+	if(prisonerName == "Tamtam")
 	{
 		showTamtamPrison();
-			output("<b>Name:</b> Tam Tam");
-			output("\n<b>Age:</b> 22");
-			output("\n<b>Sex:</b> Female");
-			output("\n<b>Race:</b> Kaithrit");
-			output("\n\nConvicted of: Attempted Destruction of a Planet, Unlicensed Software Editing, 12 Counts of Piracy, 3 Counts of Grand Piracy, Piracy in the Third Degree, Attempted Rape, Rape, and Jaywalking.");
+		output("<b>Name:</b> Tam Tam");
+		output("\n<b>Age:</b> 22");
+		output("\n<b>Sex:</b> Female");
+		output("\n<b>Race:</b> Kaithrit");
+		output("\n\nConvicted of: Attempted Destruction of a Planet, Unlicensed Software Editing, 12 Counts of Piracy, 3 Counts of Grand Piracy, Piracy in the Third Degree, Attempted Rape, Rape, and Jaywalking.");
 		addButton(0,"Visit",visitAPrisoner,"Tamtam","Tamtam","Visit the spunky cat-girl mechanic you helped bust on Tarkus.\n\n<b>Cost:</b> 1,000 credits");
 	}
 	else if(prisonerName == "Kaska")
@@ -1264,7 +1264,6 @@ public function prisonerTimes(prisonerName:String):void
 	if(prisonerName == "Khorgan") capnKhorganPrisonVisit();
 	else if(prisonerName == "Kaska") kaskaSlammer();
 	else tamtamStuffGo();
-	}
 }
 
 //Tam Tam
