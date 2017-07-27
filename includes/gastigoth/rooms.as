@@ -92,7 +92,7 @@ public function initGastigothRooms():void
 	rooms["G14_LOBBY"].addFlag(GLOBAL.COMMERCE);
 
 	rooms["E20_WARDENS_OFFICE"] = new RoomClass(this);
-	rooms["E20_WARDENS_OFFICE"].roomName = "E20 WARDEN'S\nOFFICE";
+	rooms["E20_WARDENS_OFFICE"].roomName = "E20 WARDEN’S\nOFFICE";
 	rooms["E20_WARDENS_OFFICE"].description = "The elevator opens directly into Warden Kasmiran’s office: a huge, cavernous audience chamber as much reminiscent of a medieval throne room as a modern executive’s suit. The walls are dominated by holographic security displays intermixed with handsome art-nouveau styled paintings of her fellow cylirians and their ashen homeworld. The Warden’s desk sits on a raised dias, a semi-circle of pure marble that clashes horribly with the gunmetal grey of the bulkheads and deck.\n\nSeveral bonzai trees surround the edges, separating you and her seat of power with a wall of green and browns. The rest of the desk is dominated by dozens of small holoscreens, all facing inwards to the Warden’s seat, and behind her is a huge projector screen with cylirian symbols scrawling across it too fast to translate.\n\nUnlike everywhere else in the station, you don’t have guns constantly aimed at you in here. In fact, there’s no security measure to be seen - beyond the Warden herself, an imposing figure leaning back in her chair, one leg crossed over the other. A thin cigar is clutched in her latex fingertips, wisping into the air vent directly over her head, and you cannot avoid the feeling of her golden-red cyber eyes drilling into you, unblinking and unreadable.";
 	rooms["E20_WARDENS_OFFICE"].planet = "GASTIGOTH STATION";
 	rooms["E20_WARDENS_OFFICE"].system = "SYSTEM: SKALANI";

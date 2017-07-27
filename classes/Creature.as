@@ -19166,6 +19166,7 @@
 							//email unlock
 							kGAMECLASS.goMailGet("gastigoth_unlock");
 						}
+						break;
 					case "Hair Regoo":
 						if (requiresRemoval)
 						{

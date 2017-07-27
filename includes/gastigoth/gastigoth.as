@@ -85,10 +85,10 @@ public function showKaska(cum:Boolean = false):void
 
 public function gastigothEmailText():String 
 {
-	var blep:String = "Greetings, " + pc.mf("mister","miss") + " Steele,\n\nI am Warden Regina Kasmiran, controlling officer of the private correctional station <i>Gastigoth</i>. It is unlikely you have heard of us, but we have heard of you: and we have a proposition. You are responsible for the recent capture of ";
+	var blep:String = "Greetings, " + pc.mf("Mister","Miss") + " Steele,\n\nI am Warden Regina Kasmiran, controlling officer of the private correctional station <i>Gastigoth</i>. It is unlikely you have heard of us, but we have heard of you: and we have a proposition. You are responsible for the recent capture of ";
 	if(flags["GASTIGOTH_UNLOCKNUM"] == 1) blep += "one";
 	else blep += "several";
-	blep += " of this station’s new inmates which, given the nature of the convicts we supervise here, means you are an individual of exceptional talent. And of exceptional means, if I am not mistaken. The unique realities of privatized correction allow me to make this offer, and do so with what I hope is blunt clarity:\n\n<i>Gastigoth</i> allows private citizen such as yourself to participate in the corrective process of our inmates, for a small fee. We offer several services on the backs of our inmates, as part of their long journey to clear their debt to galactic society. Or more accurately, most services conclude with the inmates <i>on</i> their backs, though we also support a highly successful breeding program and collared labor, among other more esoteric punishments. Should the fate of your prisoner, and the corrective measure to be applied to them, interest you, I encourage you to visit our establishment. Should you continue on your current course, I have little doubt we will be housing several more individuals you come into contact with throughout the course of the Rush.\n\nThe station coordinates are attached. I look forward to meeting you in person, Captain.\n\n\tRegina Kasmiran\n\tWarden-Commander,\n\tPenal Station <i>Gastigoth</i>";
+	blep += " of this station’s new inmates which, given the nature of the convicts we supervise here, means you are an individual of exceptional talent. And of exceptional means, if I am not mistaken. The unique realities of privatized correction allow me to make this offer, and do so with what I hope is blunt clarity:\n\n<i>Gastigoth</i> allows private citizens such as yourself to participate in the corrective process of our inmates, for a small fee. We offer several services on the backs of our inmates, as part of their long journey to clear their debt to galactic society. Or more accurately, most services conclude with the inmates <i>on</i> their backs, though we also support a highly successful breeding program and collared labor, among other more esoteric punishments. Should the fate of your prisoner, and the corrective measure to be applied to them, interest you, I encourage you to visit our establishment. Should you continue on your current course, I have little doubt we will be housing several more individuals you come into contact with throughout the course of the Rush.\n\nThe station coordinates are attached. I look forward to meeting you in person, Captain.\n\n\tRegina Kasmiran\n\tWarden-Commander,\n\tPenal Station <i>Gastigoth</i>";
 	blep += "\n\n<i>You note that, indeed, a set of stellar coordinates are included. The penal station is located on the fringe of Rush Space 13, not that far from Tavros in fact.</i>";
 	return blep;
 }
@@ -110,7 +110,7 @@ public function arrivalAtGastibooty():void
 		output("\n\nYou answer quickly, not eager to to make whoever’s got that much firepower antsy.");
 		output("\n\nThe forward viewscreen blinks out and resolves into an interior camera view. Aboard the armored dock’s bridge, you imagine, if the dozens of holoscreens and fire solution displays flickering in the background are any indication. Unsubtly, several of them show your ship in the crossed sights of heavy cannons and missile racks.");
 		output("\n\nThe only actual person visible on screen is a young woman, pretty as far as primly-cut military types go, though she’s got an unpleasant, emotionless expression on her face. Her hands are clasped in front of her, folded in a way that shows small patches of colorful scales underneath her white-trimmed, dark orange uniform’s sleeves - coloration mirrored on her cheeks and neck, though her face is fleshy and human. Human-reptile crossbreed of some sort?");
-		output("\n\nShe fixes you with a pair of solid, bright blue eyes slitted like a cat’s. <i>“Attention [pc.ship], you have entered a Confederate-licensed security zone. You will power down all shields and weapons, and follow automatic docking trajectories into hanger...”</i> she glances aside. <i>“Hanger twenty-two alpha. Hmm, reserved for special guests. Regardless, any change in your weapons systems once you are within the point perimeter will be construed as an active threat and result in atomization. Understood?”</i>");
+		output("\n\nShe fixes you with a pair of solid, bright blue eyes slitted like a cat’s. <i>“Attention [PCShipName], you have entered a Confederate-licensed security zone. You will power down all shields and weapons, and follow automatic docking trajectories into hanger...”</i> she glances aside. <i>“Hanger twenty-two alpha. Hmm, reserved for special guests. Regardless, any change in your weapons systems once you are within the point perimeter will be construed as an active threat and result in atomization. Understood?”</i>");
 		output("\n\nWow, they really go all out here. Feels like you’re flying into a military base as much as you are into a maximum-security prison.");
 		output("\n\nConsidering the Nova Securities uniform the woman on-screen is wearing, you’re not sure there’s much of a difference here. Private military, private prison... You shrug off the thought and power down your ship’s combat defenses. Not that they’d do you much good if the owner of this place decided to get nasty, but losing your shields makes you feel awfully vulnerable nonetheless.");
 		output("\n\n<i>“Thank you, Captain,”</i> the security officer says, giving you the faintest hint of a nod. <i>“Docking tethers are interfacing with your systems... now.”</i>");
@@ -147,7 +147,7 @@ public function leaveZePrison():void
 	else output(" Commander Brandt");
 	output(" appears on your forward screen, cool and crisp in her dark uniform.");
 
-	output("\n\n<i>“Understood, [pc.ship],”</i> she answers evenly, depressing a holographic panel in front of her. You feel the deck underneath you shudder, then your ship start to move. <i>“The magnetic catapult will launch your vessel beyond our security perimeter. Per regulation, do not attempt manual engine control or activate any weapons systems until you are beyond our security zone.”</i>");
+	output("\n\n<i>“Understood, [PCShipName],”</i> she answers evenly, depressing a holographic panel in front of her. You feel the deck underneath you shudder, then your ship start to move. <i>“The magnetic catapult will launch your vessel beyond our security perimeter. Per regulation, do not attempt manual engine control or activate any weapons systems until you are beyond our security zone.”</i>");
 	output("\n\nYou’re reminded of the hundred or so railguns outside, and decide that’s mighty fine advice.");
 	output("\n\nA few moments later and the catapult chain under your landing gear hurls you like a big, fat brick off into space. The ship shudders around you, balking at the sudden acceleration, but the trip out of the prison’s defensive zone is relatively quick. Once you’re safe, ");
 	if(flags["MET_BRANDT"] == undefined) output("the officer");
@@ -238,7 +238,7 @@ public function commandAndControlBonusiiii():Boolean
 	{
 		clearOutput();
 		showName("NOT\nYET...");
-		output("You aren't really in the mood for a tryst with Brandt. Maybe once your libido has you feeling a little more frisky.");
+		output("You aren’t really in the mood for a tryst with Brandt. Maybe once your libido has you feeling a little more frisky.");
 		currentLocation = "I14_CORRIDOR";
 		generateMap();
 		clearMenu();
@@ -332,7 +332,7 @@ public function talkToCommandyBrandy():void
 	{
 		output("<i>“Brandt,”</i> you say, stepping up to the security station.");
 		output("\n\n<i>“Steele,”</i> she echoes, inclining her bronze brow ever so slightly.");
-		if(flags["SEXED_BRANDT"] != undefined && pc.hasStatusEffect("Disarmed"))  output(" <i>“Leaving so soon?”</i>");
+		if(flags["SEXED_BRANDT"] != undefined && pc.hasStatusEffect("Disarmed")) output(" <i>“Leaving so soon?”</i>");
 		else if(flags["SEXED_BRANDT"] != undefined) output(" <i>“Welcome back, Captain. A pleasure to see you again.”</i>");
 		else output(" <i>“Ready to leave, Captain?”</i>");
 		processTime(3);
@@ -364,7 +364,7 @@ public function brandtMenu(disable:String = ""):void
 	if(disable == "Herself") addDisabledButton(2,"Herself","Herself","You just talked about that.");
 	else if(disable == "Gastigoth") addDisabledButton(3,"Gastigoth","Gastigoth","You just spoke about that.");
 	else if(disable == "Warden") addDisabledButton(4,"Warden","Warden","You just spoke about that.");
-	else if(disable == "Appearance") addDisabledButton(1,"Appearance","Appearance","You're looking at her right now.");
+	else if(disable == "Appearance") addDisabledButton(1,"Appearance","Appearance","You’re looking at her right now.");
 
 	if(flags["BRANDT_HATES_YOU"] != undefined)
 	{
@@ -508,10 +508,10 @@ public function flirtWivBrandt():void
 	if(!pc.hasStatusEffect("Disarmed"))
 	{
 		output(", and quickly disarm yourself before one of the surprisingly-supportive faceless minions in the background shield-bashes you over it");
-		pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You’ve checked all forms of weaponry at Gastigoth's security checkpoint.",false,0,0xFF0000);
+		pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You’ve checked all forms of weaponry at Gastigoth’s security checkpoint.",false,0,0xFF0000);
 	}
 	output(".");
-	output("\n\n<i>“It's just to the north...”</i>");
+	output("\n\n<i>“It’s just to the north...”</i>");
 	//Unlock Sex. Let PC into the C&C room.
 	if(flags["BRANDT_FLIRTED"] == undefined) flags["BRANDT_FLIRTED"] = 1;
 	processTime(5);
@@ -525,7 +525,7 @@ public function gastibuttsTalkBrandt():void
 	clearOutput();
 	showBrandt();
 	author("Savin");
-	output("<i>“Penal station </i>Gastigoth<i> is fairly typical for its purpose,”</i> she answers, so quickly you almost think it’s a V.I.’s programmed response. <i>“The superstructure is owned by Nova daughter company Faangnis Corrections, with personnel drawn from both corporations. While dedicated corrections departments may be common in the galactic core, few such private companies operate facilities as large or intensive as  </i>Gastigoth<i>. For that reason, as well as the added risk of piracy, armed escape attempts, and other direct hazards, it is hardly surprising that a maximum security suite would be operated by a private military contractor, no?”</i>");
+	output("<i>“Penal station </i>Gastigoth<i> is fairly typical for its purpose,”</i> she answers, so quickly you almost think it’s a V.I.’s programmed response. <i>“The superstructure is owned by Nova daughter company Faangnis Corrections, with personnel drawn from both corporations. While dedicated corrections departments may be common in the galactic core, few such private companies operate facilities as large or intensive as </i>Gastigoth<i>. For that reason, as well as the added risk of piracy, armed escape attempts, and other direct hazards, it is hardly surprising that a maximum security suite would be operated by a private military contractor, no?”</i>");
 	output("\n\nIn other words, Nova Securities is here to keep a prison break from happening?");
 	output("\n\nBrandt nods sharply. <i>“The greatest threat to a station such as </i>Gastigoth<i> is not internal strife, but an external attack. When private correction stations were first put into practice along the galactic frontier, they were frequently the target of criminal raids - either to free their compatriots, reinforce their crews, or to take slaves. In response, companies like Faangnis allowed themselves to be purchased and retooled by professional security contractors.”</i>");
 	output("\n\n<i>“So why no risk from inside?”</i> you ask.");
@@ -600,7 +600,7 @@ public function disarmOrRearmLikeABoss():void
 		output("\n\nIn you go, then.");
 		//[Next]
 		//Apply Disarmed Condition, same as New Texas.
-		pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You’ve checked all forms of weaponry at Gastigoth's security checkpoint.",false,0,0xFF0000);
+		pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You’ve checked all forms of weaponry at Gastigoth’s security checkpoint.",false,0,0xFF0000);
 	}
 	//Rearm:
 	else
@@ -680,7 +680,7 @@ public function brandtSexMenu():void
 	addButton(1,"Sixty-Nine",brandtSixtyNine,undefined,"Sixty-Nine","That lizard-pussy is practically right in your face, begging for attention...");	
 
 	if(flags["SEXED_BRANDT"] != undefined && (pc.hasHardLightEquipped() || (pc.hasCock() && pc.cockThatFits(brandtCapacity()) >= 0))) addButton(2,"Cowgirl Anal",penisRouter,[heliaAnal,brandtCapacity()],"Cowgirl Anal","Urge Brandt to climb on your cock and put that plump asshole to good use.");
-	else if(flags["SEXED_BRANDT"] == undefined) addDisabledButton(2,"Cowgirl Anal","Cowgirl Anal","You'll need to have some traditional sexual experiences with her first.");
+	else if(flags["SEXED_BRANDT"] == undefined) addDisabledButton(2,"Cowgirl Anal","Cowgirl Anal","You’ll need to have some traditional sexual experiences with her first.");
 	else addDisabledButton(2,"Cowgirl Anal","Cowgirl Anal","You need a penis or a strap-on that will fit inside her for this.");
 }
 
@@ -1163,7 +1163,7 @@ public function wardensAppearance():void
 	output("\n\nThat’s not the only thing she could work down there, you’re sure. The warden’s only piece of clothing above her bodysuit is a simple sash of fabric clinging to her matronly hips, so short that it hardly serves modesty as much as it does drive your curiosity. You suspect that the scant glances of shining latex you catch between the skirt’s motions hint at a deep synthetic cunt between the warden’s legs, but there’s just no way of knowing...");
 	output("\n\nWhat you do know is that the several small black studs pierced into the warden’s hips are quite capable of projecting a mammoth hardlight erection from her groin, a two-foot pillar of pure energy and bestial, equine dominance. Seeing where you’re shamelessly looking, Regina leans a little bit deeper into her chair and runs a silver-wrapped finger up one of her long legs. It almost brushes aside the hem of her skirt, but leaves a tantalizing moment too soon... though the motion of her arm languidly pushes her hefty breasts together, forming the cleavage of a goddess.");
 	output("\n\nSo deliciously close, and yet so far...");
-	addDisabledButton(5,"Appearance","Appearance","It's impolite to stare that long.");
+	addDisabledButton(5,"Appearance","Appearance","It’s impolite to stare that long.");
 }
 
 //[Terminal]
@@ -1185,7 +1185,6 @@ public function sexHaverTerminalTime():void
 		addButton(1,"Kaska",prisonerStatline,"Kaska","Kaska","Pay a visit to the dick-toting pirate you defeated on Tarkus.");
 		output("\n\\\[Pirate\\\] Khorgan");
 		addButton(2,"Khorgan",prisonerStatline,"Khorgan","Khorgan","Pay a visit to the bad-ass space-pirate you defeated on Tarkus.");
-		button++;
 	}
 	addButton(14,"Nevermind",mainGameMenu);
 }
@@ -1205,15 +1204,14 @@ public function prisonerStatline(prisonerName:String):void
 	output("\n<b>Race:</b> ");
 
 	output("\n\nConvicted of: ");*/
-	if(prisonerName == "Tamtam")
+	switch(prisonerName)
 	{
 		showTamtamPrison();
-		output("<b>Name:</b> Tam Tam");
-		output("\n<b>Age:</b> 22");
-		output("\n<b>Sex:</b> Female");
-		output("\n<b>Race:</b> Kaithrit");
-
-		output("\n\nConvicted of: Attempted Destruction of a Planet, Unlicensed Software Editing, 12 Counts of Piracy, 3 Counts of Grand Piracy, Piracy in the Third Degree, Attempted Rape, Rape, and Jaywalking.");
+			output("<b>Name:</b> Tam Tam");
+			output("\n<b>Age:</b> 22");
+			output("\n<b>Sex:</b> Female");
+			output("\n<b>Race:</b> Kaithrit");
+			output("\n\nConvicted of: Attempted Destruction of a Planet, Unlicensed Software Editing, 12 Counts of Piracy, 3 Counts of Grand Piracy, Piracy in the Third Degree, Attempted Rape, Rape, and Jaywalking.");
 		addButton(0,"Visit",visitAPrisoner,"Tamtam","Tamtam","Visit the spunky cat-girl mechanic you helped bust on Tarkus.\n\n<b>Cost:</b> 1,000 credits");
 	}
 	else if(prisonerName == "Kaska")
@@ -1238,6 +1236,7 @@ public function prisonerStatline(prisonerName:String):void
 		output("\n\nConvicted of: Attempted Destruction of a Planet, Murder, 8 Counts of Grand Piracy, Piracy in the First Degree, Rape, Unlicensed Use of Power Armor, and Grand Theft Spacecraft.");
 		addButton(0,"Visit",visitAPrisoner,"Khorgan","Khorgan","Visit the bad-ass space-pirate you defeated on Tarkus.\n\n<b>Cost:</b> 1,000 credits");	
 	}
+	
 	//{Stat Line: Physique, Reflex, Aim, Intelligence, Willpower, Libido}
 	if(pc.credits <= 1000) addDisabledButton(0,"Visit","Visit","You do not have the necessary credits.\n\n<b>Cost:</b> 1,000 credits");
 }
@@ -1265,6 +1264,7 @@ public function prisonerTimes(prisonerName:String):void
 	if(prisonerName == "Khorgan") capnKhorganPrisonVisit();
 	else if(prisonerName == "Kaska") kaskaSlammer();
 	else tamtamStuffGo();
+	}
 }
 
 //Tam Tam
