@@ -64,7 +64,7 @@ public function showKasmiran(nude:Boolean = false):void
 
 public function showTamtamPrison(preg:Boolean = false):void
 {
-	showName("\nTAMTAM");
+	showName("\nTAM-TAM");
 	var pregS:String = "";
 	if(preg) pregS = "_PREG";
 	showBust("TAMTAM_JAIL" + pregS);
@@ -297,7 +297,7 @@ public function lobbyBonusShit():Boolean
 
 
 //Gastigoth Station: Commander Brandt
-//{Officer}
+// {Officer}
 //First time talking to Commander Brandt at the security station.
 //Go over to the Nova Securities officer and see what she wants.
 public function talkToCommandyBrandy():void
@@ -1167,24 +1167,25 @@ public function wardensAppearance():void
 }
 
 //[Terminal]
-public function sexHaverTerminalTime():void
+public function sexHaverTerminalTime(fromBack:Boolean = false):void
 {
 	clearOutput();
 	showName("BEEP\nBOOP");
 	author("Savin");
-	output("You step up to the lobby’s terminal and tap the haptic interface, causing the pulsating advertisement to flicker away, replaced by a simple user interface that shows a list of what you can only assume to be current inmates, all tagged under a big heading of <i>“[pc.name] Steele.”</i>\n");
+	if(!fromBack) output("You step up to the lobby’s terminal and tap the haptic interface, causing the pulsating advertisement to flicker away, replaced by a simple user interface that shows a list of what you can only assume to be current inmates, all tagged under a big heading of <i>“[pc.name] Steele.”</i>\n");
+	else output("The user interface displays a list of current inmates, all tagged under the heading: <i>“[pc.name] Steele.”</i>\n");
 	//List all current inmates on the buttons.
 	//When you select an inmate, show their bust and display a readout of:
 	clearMenu();
 	var button:Number = 0;
 	if(flags["TARKUS_BOMB_TIMER"] == 0) 
 	{
-		output("\n\\\[Pirate\\\] Tam Tam");
-		addButton(0,"Tamtam",prisonerStatline,"Tamtam","Tamtam","Pay a visit to the spunky cat-girl mechanic you met on Tarkus.");
+		output("\n\\\[Pirate\\\] Tam-Tam");
+		addButton(button++,"Tam-Tam",prisonerStatline,"Tamtam","Tam-Tam","Pay a visit to the spunky cat-girl mechanic you met on Tarkus.");
 		output("\n\\\[Pirate\\\] Kaska");
-		addButton(1,"Kaska",prisonerStatline,"Kaska","Kaska","Pay a visit to the dick-toting pirate you defeated on Tarkus.");
+		addButton(button++,"Kaska",prisonerStatline,"Kaska","Kaska","Pay a visit to the dick-toting pirate you defeated on Tarkus.");
 		output("\n\\\[Pirate\\\] Khorgan");
-		addButton(2,"Khorgan",prisonerStatline,"Khorgan","Khorgan","Pay a visit to the bad-ass space-pirate you defeated on Tarkus.");
+		addButton(button++,"Khorgan",prisonerStatline,"Khorgan","Khorgan","Pay a visit to the bad-ass space-pirate you defeated on Tarkus.");
 	}
 	addButton(14,"Nevermind",mainGameMenu);
 }
@@ -1192,18 +1193,17 @@ public function sexHaverTerminalTime():void
 public function prisonerStatline(prisonerName:String):void
 {
 	clearOutput();
-	showName("CLICK\nCLACK");
 	author("Savin");
 	clearMenu();
-	addButton(14,"Back",mainGameMenu);
+	addButton(14,"Back",sexHaverTerminalTime, true);
 
 	/*
 	output("<b>Name:</b> ");
 	output("\n<b>Age:</b> ");
 	output("\n<b>Sex:</b> ");
 	output("\n<b>Race:</b> ");
-
-	output("\n\nConvicted of: ");*/
+	output("\n\nConvicted of: ");
+	*/
 	if(prisonerName == "Tamtam")
 	{
 		showTamtamPrison();
@@ -1221,7 +1221,6 @@ public function prisonerStatline(prisonerName:String):void
 		output("\n<b>Age:</b> 24");
 		output("\n<b>Sex:</b> Hermaphrodite");
 		output("\n<b>Race:</b> Dzaan");
-
 		output("\n\nConvicted of: Attempted Destruction of a Planet, Slavery, Rape, 8 Counts of Piracy, Assault, Possession of Unlicensed Military-Grade Weaponry, and Polygamy");
 		addButton(0,"Visit",visitAPrisoner,"Kaska","Kaska","Visit the dick-girl pirate you defeated on Tarkus.\n\n<b>Cost:</b> 1,000 credits");		
 	}
@@ -1232,12 +1231,12 @@ public function prisonerStatline(prisonerName:String):void
 		output("\n<b>Age:</b> 30");
 		output("\n<b>Sex:</b> Female");
 		output("\n<b>Race:</b> Thraggen");
-
 		output("\n\nConvicted of: Attempted Destruction of a Planet, Murder, 8 Counts of Grand Piracy, Piracy in the First Degree, Rape, Unlicensed Use of Power Armor, and Grand Theft Spacecraft.");
 		addButton(0,"Visit",visitAPrisoner,"Khorgan","Khorgan","Visit the bad-ass space-pirate you defeated on Tarkus.\n\n<b>Cost:</b> 1,000 credits");	
 	}
+	showName("CLICK\nCLACK");
 	
-	//{Stat Line: Physique, Reflex, Aim, Intelligence, Willpower, Libido}
+	// {Stat Line: Physique, Reflex, Aim, Intelligence, Willpower, Libido}
 	if(pc.credits <= 1000) addDisabledButton(0,"Visit","Visit","You do not have the necessary credits.\n\n<b>Cost:</b> 1,000 credits");
 }
 
@@ -1566,7 +1565,7 @@ public function backOuttaKaska():void
 {
 	clearOutput();
 	showName("\nNEVERMIND");
-	output("You wave her away and leave. This just isn't going to work out. The prison is quick to refund your money. Maybe a different prisoner will be more to your tastes?");
+	output("You wave her away and leave. This just isn’t going to work out. The prison is quick to refund your money. Maybe a different prisoner will be more to your tastes?");
 	pc.credits += 1000;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

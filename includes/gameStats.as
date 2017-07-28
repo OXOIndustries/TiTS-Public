@@ -5894,18 +5894,23 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["BRANDT_HATES_YOU"] != undefined) output2(", She despises you");
 				if(flags["SEXED_BRANDT"] != undefined)  output2("\n<b>* Brandt, Times Sexed:</b> " + flags["SEXED_BRANDT"]);
 				if(flags["BRANDT_ANAL"] != undefined)  output2("\n<b>* Brandt, Times Fucked Her Ass:</b> " + flags["BRANDT_ANAL"]);
+				variousCount++;
 			}
 			// Warden
 			if(flags["MET_KASMIRAN"] != undefined)
 			{
 				output2("\n<b><u>Visitors Lobby</u></b>");
 				output2("\n<b>* Kasmiran:</b> Met her");
+				variousCount++;
 			}
 			// Inmates
-			if(flags["TAMTAM_PRISONED"] != undefined)
+			if(flags["TAMTAM_PRISONED"] != undefined || flags["KASKA_PRISONED"] != undefined || flags["KHORGAN_PRISONED"] != undefined)
 			{
 				output2("\n<b><u>Inmate Visitations</u></b>");
 				if(flags["TAMTAM_PRISONED"] != undefined)  output2("\n<b>* Tam, Times Sexed:</b> " + flags["TAMTAM_PRISONED"]);
+				if(flags["KASKA_PRISONED"] != undefined)  output2("\n<b>* Kaska, Times Sexed:</b> " + flags["KASKA_PRISONED"]);
+				if(flags["KHORGAN_PRISONED"] != undefined)  output2("\n<b>* Khorgan, Times Sexed:</b> " + flags["KHORGAN_PRISONED"]);
+				variousCount++;
 			}
 		}
 		
