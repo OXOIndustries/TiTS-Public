@@ -4208,44 +4208,23 @@ public function seraBitcheningPunishCumRation():void
 // Walkies
 // Requires Leash in inventory, doesn’t need to be equipped since that’s a faff.
 // If PC has other usable accessories in inventory (possibly link to ship storage also?)
-private var seraWalkItems:Array = new Array;
-private function seraHasItem(setItem:ItemSlotClass):Boolean
-{
-	if(seraWalkItems.length == 0) return false;
+private var seraWalkItemsSel:Object = {
+	SchoolgirlOutfit:		0x1,
+	SchoolgirlCostume:		0x2,
+	anySchoolgirl:			0xf,
+
+	GravCuffs:				0x10,
+	anyCuffs:				0xf0,
 	
-	for(var i:int = 0; i < seraWalkItems.length; i++)
-	{
-		if(seraWalkItems[i].shortName == setItem.shortName) return true;
-	}
-	
-	return false;
-}
-private function seraHasItemByClass(setItem:Class):Boolean
-{
-	if(seraWalkItems.length == 0) return false;
-	
-	for(var i:int = 0; i < seraWalkItems.length; i++)
-	{
-		if(seraWalkItems[i] is setItem) return true;
-	}
-	
-	return false;
-}
-private function seraWalkSchoolgirl():Boolean
-{
-	return (seraHasItemByClass(SchoolgirlOutfit) || seraHasItemByClass(SchoolgirlCostume));
-}
-private function seraWalkCuffs():Boolean
-{
-	return (seraHasItemByClass(GravCuffs));
-}
-private function seraWalkWhip():Boolean
-{
-	return (seraHasItemByClass(Whip) || seraHasItemByClass(BioWhip));
-}
+	Whip:					0x100,
+	BioWhip:				0x200,
+	anyWhip:				0xf00,
+
+	select:0
+};
 public function seraBitcheningPunishWalkies(initialize:Boolean = false):void
 {
-	if(initialize) seraWalkItems.length = 0;
+	if(initialize) seraWalkItemsSel.select = 0;
 	
 	clearOutput();
 	showSera();
@@ -4262,67 +4241,63 @@ public function seraBitcheningPunishWalkAcc():void
 	output("\n\n<u><b>Accessories</b></u>");
 	output("\n* Leather Leash");
 	
-	if(seraWalkItems.length > 0)
-	{
-		for(var i:int = 0; i < seraWalkItems.length; i++)
-		{
-			output("\n* " + (StringUtil.toDisplayCase(seraWalkItems[i].longName)));
-		}
-	}
+	if (seraWalkItemsSel.select & seraWalkItemsSel.SchoolgirlOutfit) output("\n* " + (StringUtil.toDisplayCase(seraWalkItemsSel.itemSchoolgirlOutfit.longName)));
+	if (seraWalkItemsSel.select & seraWalkItemsSel.SchoolgirlCostume) output("\n* " + (StringUtil.toDisplayCase(seraWalkItemsSel.itemSchoolgirlCostume.longName)));
+	if (seraWalkItemsSel.select & seraWalkItemsSel.GravCuffs) output("\n* " + (StringUtil.toDisplayCase(seraWalkItemsSel.itemGravCuffs.longName)));
+	if (seraWalkItemsSel.select & seraWalkItemsSel.Whip) output("\n* " + (StringUtil.toDisplayCase(seraWalkItemsSel.itemWhip.longName)));
+	if (seraWalkItemsSel.select & seraWalkItemsSel.BioWhip) output("\n* " + (StringUtil.toDisplayCase(seraWalkItemsSel.itemBioWhip.longName)));
 	
 	output("\n\n");
 	
 	// Multiple options can be chosen. Either whip, and either s.girl outfit can be used
 	// [S.Girl O.] [Cuffs] [Whip] [Lets Go]
 	clearMenu();
-	var setItem:ItemSlotClass = null;
-	
-	setItem = (new SchoolgirlOutfit());
-	if(pc.hasItem(setItem) || pc.hasItemInStorage(setItem))
+	if(pc.hasItemByClass(SchoolgirlOutfit) || pc.hasItemInStorageByClass(SchoolgirlOutfit))
+ 	{
+		if(!seraWalkItemsSel.itemSchoolgirlOutfit) seraWalkItemsSel.itemSchoolgirlOutfit = new SchoolgirlOutfit();
+		if(seraWalkItemsSel.select & seraWalkItemsSel.SchoolgirlOutfit) addDisabledButton(0, seraWalkItemsSel.itemSchoolgirlOutfit.shortName, StringUtil.toDisplayCase(seraWalkItemsSel.itemSchoolgirlOutfit.longName), "This item is already being used.");
+		else if(seraWalkItemsSel.select & seraWalkItemsSel.anySchoolgirl) addDisabledButton(0, seraWalkItemsSel.itemSchoolgirlOutfit.shortName, StringUtil.toDisplayCase(seraWalkItemsSel.itemSchoolgirlOutfit.longName), "There is already a similar item being used.");
+		else addButton(0, seraWalkItemsSel.itemSchoolgirlOutfit.shortName, seraBitcheningPunishWalkAccSelect, seraWalkItemsSel.SchoolgirlOutfit, StringUtil.toDisplayCase(seraWalkItemsSel.itemSchoolgirlOutfit.longName), "Use this item.");
+ 	}
+	if(pc.hasItemByClass(SchoolgirlCostume) || pc.hasItemInStorageByClass(SchoolgirlCostume))
 	{
-		if(seraHasItemByClass(SchoolgirlCostume)) addDisabledButton(0, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "There is already a similar item being used.");
-		else if(!seraHasItem(setItem)) addButton(0, setItem.shortName, seraBitcheningPunishWalkAccSelect, setItem, StringUtil.toDisplayCase(setItem.longName), "Use this item.");
-		else addDisabledButton(0, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "This item is already being used.");
-	}
-	setItem = (new SchoolgirlCostume());
-	if(pc.hasItem(setItem) || pc.hasItemInStorage(setItem))
-	{
-		if(seraHasItemByClass(SchoolgirlOutfit)) addDisabledButton(5, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "There is already a similar item being used.");
-		else if(!seraHasItem(setItem)) addButton(5, setItem.shortName, seraBitcheningPunishWalkAccSelect, setItem, StringUtil.toDisplayCase(setItem.longName), "Use this item.");
-		else addDisabledButton(5, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "This item is already being used.");
+		if(!seraWalkItemsSel.itemSchoolgirlCostume) seraWalkItemsSel.itemSchoolgirlCostume = new SchoolgirlCostume();
+		if(seraWalkItemsSel.select & seraWalkItemsSel.SchoolgirlCostume) addDisabledButton(5, seraWalkItemsSel.itemSchoolgirlCostume.shortName, StringUtil.toDisplayCase(seraWalkItemsSel.itemSchoolgirlCostume.longName), "This item is already being used.");
+		else if(seraWalkItemsSel.select & seraWalkItemsSel.anySchoolgirl) addDisabledButton(5, seraWalkItemsSel.itemSchoolgirlCostume.shortName, StringUtil.toDisplayCase(seraWalkItemsSel.itemSchoolgirlCostume.longName), "There is already a similar item being used.");
+		else addButton(5, seraWalkItemsSel.itemSchoolgirlCostume.shortName, seraBitcheningPunishWalkAccSelect, seraWalkItemsSel.SchoolgirlCostume, StringUtil.toDisplayCase(seraWalkItemsSel.itemSchoolgirlCostume.longName), "Use this item.");
 	}
 	
-	setItem = (new GravCuffs());
-	if(pc.hasItem(setItem) || pc.hasItemInStorage(setItem))
+	if(pc.hasItemByClass(GravCuffs) || pc.hasItemInStorageByClass(GravCuffs))
 	{
-		if(!seraHasItem(setItem)) addButton(1, setItem.shortName, seraBitcheningPunishWalkAccSelect, setItem, StringUtil.toDisplayCase(setItem.longName), "Use this item.");
-		else addDisabledButton(1, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "This item is already being used.");
+		if(!seraWalkItemsSel.itemGravCuffs) seraWalkItemsSel.itemGravCuffs = new GravCuffs();
+		if(seraWalkItemsSel.select & seraWalkItemsSel.GravCuffs) addDisabledButton(1, seraWalkItemsSel.itemGravCuffs.shortName, StringUtil.toDisplayCase(seraWalkItemsSel.itemGravCuffs.longName), "This item is already being used.");
+		else addButton(1, seraWalkItemsSel.itemGravCuffs.shortName, seraBitcheningPunishWalkAccSelect, seraWalkItemsSel.GravCuffs, StringUtil.toDisplayCase(seraWalkItemsSel.itemGravCuffs.longName), "Use this item.");
 	}
 	
-	setItem = (new Whip());
-	if(pc.hasItem(setItem) || pc.hasItemInStorage(setItem))
+	if(pc.hasItemByClass(Whip) || pc.hasItemInStorageByClass(Whip))
 	{
-		if(seraHasItemByClass(BioWhip)) addDisabledButton(2, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "There is already a similar item being used.");
-		else if(!seraHasItem(setItem)) addButton(2, setItem.shortName, seraBitcheningPunishWalkAccSelect, setItem, StringUtil.toDisplayCase(setItem.longName), "Use this item.");
-		else addDisabledButton(2, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "This item is already being used.");
+		if(!seraWalkItemsSel.itemWhip) seraWalkItemsSel.itemWhip = new Whip();
+		if(seraWalkItemsSel.select & seraWalkItemsSel.Whip) addDisabledButton(2, seraWalkItemsSel.itemWhip.shortName, StringUtil.toDisplayCase(seraWalkItemsSel.itemWhip.longName), "This item is already being used.");
+		else if(seraWalkItemsSel.select & seraWalkItemsSel.anyWhip) addDisabledButton(2, seraWalkItemsSel.itemWhip.shortName, StringUtil.toDisplayCase(seraWalkItemsSel.itemWhip.longName), "There is already a similar item being used.");
+		else addButton(2, seraWalkItemsSel.itemWhip.shortName, seraBitcheningPunishWalkAccSelect, seraWalkItemsSel.Whip, StringUtil.toDisplayCase(seraWalkItemsSel.itemWhip.longName), "Use this item.");
 	}
-	setItem = (new BioWhip());
-	if(pc.hasItem(setItem) || pc.hasItemInStorage(setItem))
+	if(pc.hasItemByClass(BioWhip) || pc.hasItemInStorageByClass(BioWhip))
 	{
-		if(seraHasItemByClass(Whip)) addDisabledButton(7, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "There is already a similar item being used.");
-		else if(!seraHasItem(setItem)) addButton(7, setItem.shortName, seraBitcheningPunishWalkAccSelect, setItem, StringUtil.toDisplayCase(setItem.longName), "Use this item.");
-		else addDisabledButton(7, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "This item is already being used.");
+		if(!seraWalkItemsSel.itemBioWhip) seraWalkItemsSel.itemBioWhip = new BioWhip();
+		if(seraWalkItemsSel.select & seraWalkItemsSel.BioWhip) addDisabledButton(7, seraWalkItemsSel.itemBioWhip.shortName, StringUtil.toDisplayCase(seraWalkItemsSel.itemBioWhip.longName), "This item is already being used.");
+		else if(seraWalkItemsSel.select & seraWalkItemsSel.anyWhip) addDisabledButton(7, seraWalkItemsSel.itemBioWhip.shortName, StringUtil.toDisplayCase(seraWalkItemsSel.itemBioWhip.longName), "There is already a similar item being used.");
+		else addButton(7, seraWalkItemsSel.itemBioWhip.shortName, seraBitcheningPunishWalkAccSelect, seraWalkItemsSel.BioWhip, StringUtil.toDisplayCase(seraWalkItemsSel.itemBioWhip.longName), "Use this item.");
 	}
 	
-	if(seraWalkItems.length > 0) addButton(13, "Reset", seraBitcheningPunishWalkies, true, "Reset Accessories", "Try taking different items.");
+	if(seraWalkItemsSel.select) addButton(13, "Reset", seraBitcheningPunishWalkies, true, "Reset Accessories", "Try taking different items.");
 	else addDisabledButton(13, "Reset");
 	addButton(14, "Let’s Go", seraBitcheningPunishWalkiesGo, undefined, "Let’s Go", "Ready to go!");
 	
 	return;
 }
-public function seraBitcheningPunishWalkAccSelect(setItem:ItemSlotClass):void
+public function seraBitcheningPunishWalkAccSelect(itemFlag:int):void
 {
-	if(setItem != null && !seraHasItem(setItem)) seraWalkItems.push(setItem);
+	seraWalkItemsSel.select |= itemFlag;
 	
 	seraBitcheningPunishWalkies();
 	
@@ -4335,9 +4310,9 @@ public function seraBitcheningPunishWalkiesGo():void
 	showSera();
 	author("Nonesuch");
 	
-	var hasSchoolgirl:Boolean = seraWalkSchoolgirl();
-	var hasCuffs:Boolean = seraWalkCuffs();
-	var hasWhip:Boolean = seraWalkWhip();
+	var hasSchoolgirl:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anySchoolgirl) != 0;
+	var hasCuffs:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anyCuffs) != 0;
+	var hasWhip:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anyWhip) != 0;
 	
 	// S.Girl O.
 	if(hasSchoolgirl)
@@ -4399,9 +4374,8 @@ public function seraBitcheningPunishWalkiesGoPtII():void
 	generateMap();
 	showLocationName();
 	
-	var hasSchoolgirl:Boolean = seraWalkSchoolgirl();
-	var hasCuffs:Boolean = seraWalkCuffs();
-	var hasWhip:Boolean = seraWalkWhip();
+	var hasSchoolgirl:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anySchoolgirl) != 0;
+	var hasCuffs:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anyCuffs) != 0;
 	
 	output("You maintain a brisk but casual pace as you exit your ship into the empty hangar and head towards the elevator, lead trailing behind you, giving her plenty of time to get used to how fast she has to click-clack on her high heels behind you to stop her collar tightening. For your part, you keep a soft grip on the lock - it wouldn’t do at all to be dragging her around like a trawler net of fish - but whenever you feel the tether is playing out a bit too long, you give it a little squeeze. Having a feel of that delicious weight at the other end, at the same time as chivvying her along.");
 	output("\n\nYou don’t take her to the Merchant Deck, where she can see what’s happened to the Dark Chrysalis. You aren’t <i>that</i> cruel. The two of you are hardly going to stand out much near the red light district anyway. Instead, you get the lift to take you to the floor above. Sera’s expression is blank, her slit eyes turned to the ceiling, but in the cramped space of the lift you can hear her breath come thick and fast; you don’t think she realizes how hard she’s biting her own lip. You give her a comforting squeeze on the boob as the door slides open, and you step confidently out into the well-lit hubbub of the Res Deck.");
@@ -4457,7 +4431,7 @@ public function seraBitcheningPunishWalkiesWitnessAina():void
 	showSera();
 	author("Nonesuch");
 	
-	var hasWhip:Boolean = seraWalkWhip();
+	var hasWhip:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anyWhip) != 0;
 	
 	output("<i>“[pc.name]! Hi!”</i> You hear Aina long before you see her; the steady clop-clop-clop falters and then speeds up when she sees you coming the other way. The centauress’s initial friendly grin turns into a puzzled frown, further embellished by a blush, when she fully takes the two of you in. <i>“What are you - ? Who is - ?”</i>");
 	output("\n\n<i>“Hey Aina,”</i> you say brightly. <i>“Lovely today, isn’t it? I’m just taking my bitch out for a stroll. Say hello, Sera.”</i>");
@@ -4486,7 +4460,7 @@ public function seraBitcheningPunishWalkiesWitnessFyn():void
 	generateMap();
 	showLocationName();
 	
-	var hasSchoolgirl:Boolean = seraWalkSchoolgirl();
+	var hasSchoolgirl:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anySchoolgirl) != 0;
 	
 	output("<i>“What’s all this then?”</i>");
 	output("\n\nOne moment you’re on your own in a quiet spot of the Northern Plaza; the next Fyn the vildarii is standing by your side, taking in the two of you with interest.");
@@ -4545,7 +4519,7 @@ public function seraBitcheningPunishWalkiesWitnessJardi():void
 	generateMap();
 	showLocationName();
 	
-	var hasWhip:Boolean = seraWalkWhip();
+	var hasWhip:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anyWhip) != 0;
 	
 	output("<i>“M-mistress?!”</i> A pale, petite rahn is staring at you from across the concourse, goggle-eyed.");
 	output("\n\n<i>“Oh One...”</i> moans Sera. <i>“Anything but this. PLEASE.”</i> The leash tugs backwards in your hand. You firmly lock it.");
@@ -4578,9 +4552,7 @@ public function seraBitcheningPunishWalkiesNext():void
 	generateMap();
 	showLocationName();
 	
-	var hasSchoolgirl:Boolean = seraWalkSchoolgirl();
-	var hasCuffs:Boolean = seraWalkCuffs();
-	var hasWhip:Boolean = seraWalkWhip();
+	var hasSchoolgirl:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anySchoolgirl) != 0;
 	
 	output("Casually presenting your well-trained pet to the public like this has only made the domineering arousal saturating your [pc.groin] all the more brazen and fiery, and along the quieter southern balustrade you decide to do something about it. What use is an obedient fuck-pet if you can’t have them satiate you as and when you demand it, after all? You lead her behind a holo-board advertising new apartments. Her breath, hot and heavy, is in your ears as you turn and calmly consider the succulent succubus");
 	if(hasSchoolgirl) output(" school girl");
@@ -4619,9 +4591,8 @@ public function seraBitcheningPunishWalkiesOral(response:String = "none"):void
 	showSera();
 	author("Nonesuch");
 	
-	var hasSchoolgirl:Boolean = seraWalkSchoolgirl();
-	var hasCuffs:Boolean = seraWalkCuffs();
-	var hasWhip:Boolean = seraWalkWhip();
+	var hasCuffs:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anyCuffs) != 0;
+	var hasWhip:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anyWhip) != 0;
 	
 	switch(response)
 	{
@@ -4717,7 +4688,7 @@ public function seraBitcheningPunishWalkiesOral(response:String = "none"):void
 public function seraBitcheningPunishWalkiesEnd():void
 {
 	IncrementFlag("SERA_BITCHENING_PUNISH_WALKIES");
-	seraWalkItems.length = 0;
+	seraWalkItemsSel.select = 0;
 	
 	chars["SERA"].removeStatusEffect("Sera Masturbated");
 	pc.removeStatusEffect("Seranigans Punishment");

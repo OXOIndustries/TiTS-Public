@@ -310,7 +310,7 @@ public function pippaEatFood(food:String, item:ItemSlotClass):String
 			response = "With a blink of an eye, Pippa eats the food you gave her. She looks very satisfied.";
 			break;
 	}
-	pc.destroyItem(item, 1);
+	pc.destroyItemByReference(item);
 	
 	pippaAffection(4);
 	pippaFed();
@@ -2575,11 +2575,21 @@ public function pippaGiveHardlight():void
 	
 	for (var i:int = 0; i < pc.inventory.length; i++)
 	{
+		if (buttonCount >= 14 && (buttonCount + 1) % 15 == 0)
+		{
+			addButton(buttonCount++, "Back", pippaTalkMenu);
+		}
+		
 		if (pc.inventory[i].hardLightEquipped)
 		{
-			addButton(buttonCount, pc.inventory[i].shortName, pippaGiveHardlightII, pc.inventory[i], pc.inventory[i].shortName, pc.inventory[i].tooltip);
-			buttonCount++;
+			addButton(buttonCount++, pc.inventory[i].shortName, pippaGiveHardlightII, i, pc.inventory[i].shortName, pc.inventory[i].tooltip);
 			inventoryHardlights.push(pc.inventory[i]);
+		}
+		
+		if(pc.inventory.length > 14 && (i + 1) == pc.inventory.length)
+		{
+			while((buttonCount + 1) % 15 != 0) { buttonCount++; }
+			addButton(buttonCount++, "Back", pippaTalkMenu);
 		}
 	}
 	
@@ -2591,14 +2601,18 @@ public function pippaGiveHardlight():void
 }
 
 // Give Pippa selected HL underwear
-public function pippaGiveHardlightII(undies:ItemSlotClass):void
+public function pippaGiveHardlightII(i:int):void
 {
 	clearOutput();
 	clearMenu();
 	showPippa();
 	
-	pc.destroyItem(undies, 1);
+	var undies:ItemSlotClass = pc.inventory[i];
+	// Give Pippa undies
 	pippa.lowerUndergarment = undies;
+	// Remove undies from PC inventory
+	pc.inventory[i].quantity--;
+	if(pc.inventory[i].quantity <= 0) pc.inventory.splice(i, 1);
 	
 	output("You give Pippa the " + undies.longName + ". She holds them up and examines them. <i>“");
 	

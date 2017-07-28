@@ -2732,6 +2732,7 @@
 				inventory.splice(i, 1);
 			}
 		}
+		/*
 		public function destroyItem(arg:ItemSlotClass, amount:int = 1):void
 		{
 			if (arg == null || inventory.length == 0 || amount == 0) return;
@@ -2776,6 +2777,7 @@
 			}
 			return;
 		}
+		*/
 		public function destroyItemByClass(arg:Class, amount:int = 1):void
 		{
 			if (arg == null || inventory.length == 0 || amount == 0) return;
