@@ -304,7 +304,29 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.balls = 2;
 			if(pc.ballSizeRaw < 8) pc.ballSizeRaw = 8;
 			if(pc.breastRows[0].breastRatingRaw > 0) pc.breastRows[0].breastRatingRaw = 0;
-			bonusTexts += "You’ve always been a bit of a monkey. Nothing wrong with that. (Note: Monkey parts aren’t properly supported at the time of coding this character. If this changes down the road, please feel free to log a bug report, and we’ll get this PC updated.)";
+			/*
+			pc.faceType = GLOBAL.TYPE_SIMII;
+			pc.clearFaceFlags();
+			pc.earType = GLOBAL.TYPE_SIMII;
+			pc.armType = GLOBAL.TYPE_SIMII;
+			pc.clearArmFlags();
+			pc.addArmFlag(GLOBAL.FLAG_FURRED);
+			pc.legType = GLOBAL.TYPE_SIMII;
+			pc.legCount = 2;
+			pc.clearLegFlags();
+			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			pc.addLegFlag(GLOBAL.FLAG_FLUFFY);
+			pc.addLegFlag(GLOBAL.FLAG_FURRED);
+			pc.tailCount = 1;
+			pc.tailType = GLOBAL.TYPE_SIMII;
+			pc.clearTailFlags();
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
+			pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.shiftCock(0,GLOBAL.TYPE_SIMII);
+			*/
+			bonusTexts += "You’ve always been a bit of a monkey. Nothing wrong with that.";
+			bonusTexts += " (Note: Monkey parts aren’t properly supported at the time of coding this character. If this changes down the road, please feel free to log a bug report, and we’ll get this PC updated.)";
 			break;
 		/*Anon All available shark transformations.
 		Hermaphrodite with normal vagina, normal 8" penis, 2 E cup breasts.

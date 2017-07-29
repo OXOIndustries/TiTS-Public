@@ -2352,7 +2352,7 @@ public function probeReclamationShit():void
 	
 	clearMenu();
 	// if Shade is still on-planet and not pissed/your enemy, continue. Else, [Next] to map
-	if(shadeAtTheBar()) addButton(0,"Next",shadeHalfSisterShit);
+	if(shadeAtTheBar() && !(flags["KQ2_SHADE_ENCOUNTERED"] == 1 && shadeIsLover())) addButton(0,"Next",shadeHalfSisterShit);
 	else addButton(0,"Next",myrellionProbeEnd);
 }
 public function myrellionProbeEnd():void
