@@ -2,6 +2,8 @@
 
 public function flyToTavros():void
 {
+	if (annoIsCrew() && flags["ANNO_MAID_OUTFIT"] == undefined) flags["ANNO_MAID_OUTFIT"] = 1;
+	
 	output("You fly to Tavros");
 	if(leaveShipOK()) output(" and step out of your ship.");
 }
