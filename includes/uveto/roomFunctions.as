@@ -300,6 +300,8 @@ public function uvetoUnlocked():Boolean
 
 public function flyToUveto():void
 {
+	if (annoIsCrew() && flags["ANNO_MAID_OUTFIT"] == undefined) flags["ANNO_MAID_OUTFIT"] = 2;
+	
 	if (flags["DO UVETO ICEQUEEN ENTRY"] != undefined) clearOutput();
 	author("Savin");
 

@@ -24,6 +24,10 @@ ANNO_MISSION_OFFER : State of Annoquest. 3 == Completed. If not 3, Anno must hav
 ANNOxSYRI_WINCEST : For when Syri (eventually) gets written and added.
 
 ANNOxKAEDE_INTRODUCED : PC has been introduced by Anno to Kaede
+
+ANNO_MAID_OUTFIT : Anno bought a maid outfit so her special maid scene can proc. 1 if she got it in Tavros (go to Tavros first with Anno as crew), 2 if she got it in Uveto (go to Uveto first with Anno as crew).
+
+ANNO_MAID_SEX : How many times you fucked her with her feather duster.
  */
 
 // Anno has been recruited and is currently on the players ship.
@@ -4011,4 +4015,166 @@ public function annoWalkiesPartDuesEx():void
 	clearMenu();
 	//Returns the player to their ship, docked in Tavros.
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function annoFrenchMaid():void
+{
+	pc.createStatusEffect("The Lusty Ausar Maid",0,0,0,0,true,"","",false,60*24);
+	
+	clearOutput();
+	showAnno();
+	author("HugsAlright");
+	clearMenu();
+	
+	output("You draw in a little closer to the ausar, her velvety white tail and barely covered behind swinging almost in sync as she works an old-fashioned feather duster on the nooks and crannies of your ship. The frilly black-and-white outfit looks good on her; more than good, you reconsider. The pure-white thighhighs around her shapely legs quickly draw attention to her nearly see-through-panty clad booty, which happily wiggles back and forth as she works. The frill-lined skirt of the outfit seems purposely short, barely doing anything to cover her. Upon closer inspection it seems that Anno isn't wearing anything under the getup, making it hug her curves just right, and accentuating the swell of her big, soft breasts. An oversized white ribbon rests on the back of the outfit. It seems completely decorative, much like the headpiece sitting between her two perky wolf ears.");
+	output("\n\nWhile managing to keep yourself from drooling at the sight of the skimpy Ausar you let your eyes take in their fill of the scene before a familiar voice breaks your focus.");
+	output("\n\n<i>“Oh, hey boss,”</i> Anno says, looking over her shoulder at you, flashing you those baby blues of hers.");
+	output("\n\nTurning back around she bends over to reach behind some furniture, giving you a perfect view of her gropable, spankable butt.");
+	output("\n\nThat little tease.");
+	output("\n\n<i>“I found this little number while we were docked at " + (flags["ANNO_MAID_OUTFIT"] == 1 ? "Tavros" : "Uveto") + ", thought you might like it,”</i> she says, looking over her shoulder at you again, giving you a wink and a lusty smile. <i>“How's it look?”</i> ");
+	output("\n\nYou try to say something but nothing comes out. You're at a loss for words.");
+	if (pc.isNice()) output("\n\nPulling yourself together you manage to blurt out: <i>“G-good!”</i> ");
+	else if (pc.isMischievous()) {
+		output("\n\nLeaning back slightly you pull yourself together, and with a smirk on your face you bring a finger and thumb up to stroke your chin.");
+		output("\n\nWith a shrug you say, “It’s alright,” the sarcasm in your voice almost palpable.");
+	}
+	else {
+		output("\n\nManaging to compose yourself you cross your arms and lean back slightly.");
+		output("\n\nYou smile at her, “Pretty good from where I’m standing.”");
+	}
+	output("\n\n<i>“Aww, thanks boss!”</i> the lusty ausar responds. She turns around once more, bending over a little bit further, her squishy, tempting butt straining against her panties. She spreads her legs just a bit before giving her behind a wiggle, tail waving back and forth.");
+	output("\n\nOh, she is asking for it.");
+	
+	addButton(0, "FuckHerGood", annoFrenchMaidGimme, undefined, "Fuck Her Good", "Give Anno what she’s looking for.");
+	addButton(1, "Resist", annoFrenchMaidIDontWantCuteMaidButt, undefined, "Resist", "Resist the seductions of the maid-clad temptress.");
+}
+
+public function annoFrenchMaidIDontWantCuteMaidButt():void
+{
+	clearOutput();
+	showAnno();
+	author("HugsAlright");
+	clearMenu();
+	
+	output("Wait a second, you know exactly what's going on here, and you're not about to fall for Anno's little games. You've got a fortune to chase! You take a deep breath, puff out your chest, and begin to walk towards the door. Anno looks over her shoulder at you, <i>“Leaving so soon, babe?”</i> ");
+	output("\n\nYou grab the doorframe to stop yourself and look back at her. Giving her a half-hearted shrug you tell her: “Sorry, business before pleasure.” She sticks her tongue out at you as you leave.");
+	
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function annoFrenchMaidGimme():void
+{
+	var x:int = pc.cockThatFits(anno.vaginalCapacity(0));
+	if(x < 0) x = pc.smallestCockIndex();
+	
+	clearOutput();
+	showAnno(true);
+	author("HugsAlright");
+	clearMenu();
+	
+	pc.lust(pc.lustMax() - pc.lust());
+	
+	output("You’re not one to sit by while a sexy, sexy maid teases you mercilessly. " + (!pc.isNude() ? "You start to remove your [pc.gear], and although the little tease isn't looking at you, Anno’s ears perk up at the sound of clothing falling to the ground, a grin forming on her face. " : "") + "You saunter your way up to the girl, still hard at work with her feather duster. You give your [pc.cock " + x + "] a few strokes, already half-hard from her little show, a predatory grin growing on your face, eyes fixed on your goal. You stop and watch your new maid’s tail wag back and forth for a moment before you lunge forward, bending yourself over Anno to bring your face close beside hers and bring one hand to rest on a flared hip, the other between her big white wolf-ears. She doesn't seem surprised by your pounce but instead settles into your grasp, nuzzling against the hand perched between her ears, her tail batting against your midsection.");
+	output("\n\n<i>“Mmmmmm,”</i> the perky puppy coos, <i>“Knew you wouldn't let a girl work without some company.”</i> ");
+	output("\n\nGrinning, you put your highest hand to work scritching the maid's ears, running your digits through her snow-white mane. She shudders as your hand works itself all over her sensitive spots. Your fingers trace along the bottom of her fluffy, fluffy ears, drawing forth a little whimper from your lover. She manages to compose herself and continues dusting and cleaning the ship. You crack a smile at her determination. Your other hand doesn’t stay idle for long, as soon you're sliding your hand off Anno’s hip before giving one of the ausar beauty’s lower cheeks a nice firm squeeze, setting her snowy, downy tail into overdrive. She releases little whimpers of pleasure as you knead her ass in one hand and continue to scritch at those perky wolf ears of hers with the other. Still, the maid tries to continue her work, faltering slightly with each squeeze of her ass.");
+	output("\n\nWith a lusty smile you slyly glide your hand along the smooth skin of Anno's ass towards her juicy, lube-leaking slit. She shudders as your fingers brush up against the silky folds of her sex; her panties are soaked. You pull yourself upright and take a step back, a bit surprised she’s already this wet. Anno looks over her shoulder at you, <i>“Leaving so soon, babe?”</i> You smile down at her and hike up her frilly skirt.");
+	output("\n\n<i>“I wouldn't even think of it.”</i> ");
+	output("\n\nWith that said you grab her panties and pull them down, baring her pretty pink ausar pussy to you as she steps out of the lube-soaked undergarments. You're quick to bend yourself over her again, your bare [pc.chest] pressing into Anno's back as you settle in and your hand returning to its work between her ears. Meanwhile one of your more devious fingers starts to trace the ausar's lube-leaking slit up and down, making her moan oh-so softly, fuzzy white tail tickling you slightly as it wags as fast as it can between your bodies. It isn't long before your digit delves into Anno's sodden box, followed by another finger, and another. She moans loudly and arches her back as she's penetrated by your probing digits, causing her to almost drop her duster.");
+	output("\n\nSurprisingly, Anno continues to work as your fingers slide in and out of her sodden cunt, moaning as she does so. Eventually you feel her moving on her own, slowly grinding her hips against your hand so your probing digits hit all the right places. You’re hardly focused on anything but Anno’s ceaseless moaning when you feel your stiffening shaft brush up against her pale thigh; she takes notices aswell, her ears quickly perking up.");
+	output("\n\nShe turns her head towards you, <i>“Think I'm doing a good job with this whole maid thing, captain?”</i> she says, smile on her face.");
+	output("\n\n<i>“You're doing perfect.”</i> You lean in closer to one of her huge white wolf ears, <i>“Think you can keep going with a [pc.cock " + x + "] inside you?”</i> ");
+	output("\n\nShe shudders at your words, her whole body quivering for a moment. The ausar smirks, <i>“Why don't we find out?”</i> ");
+	output("\n\nThat's all the invitation your horny ass needs. Bringing yourself upright you withdraw your fingers from your lovers' lube-leaking cunt, leaving her sex slightly agape. You grip your cock with femcum-covered fingers and quickly coat your tool in liquid arousal; with a grab of Anno's flared hips you line your [pc.cock " + x + "] up with with her drooling slit. The canid-maid bites her lip and looks back at you, anticipation in her gaze. Deciding to take it slow, you gently push your [pc.cockHead " + x + "] into her velvety folds. She whimpers as your glans press into her, your tool easily entering Anno's lubed-up pussy. Her inner walls hug at your cockflesh, making you groan in bliss with each inch you work into her until you bury your dick to the hilt " + (pc.hasKnot(x) ? "with your knot teasing her leaky, stretchy cunt" : "") + ", leaving the bent-over ausar panting, and you with a smile on your face. You give Anno a quick swat on the butt, making her ausar pussy clench down around your [pc.cock " + x + "] and drawing a rather lewd moan from her.");
+	output("\n\nYou don't stay still for long though and begin to pull back from your pleasingly slow penetration. Anno groans as your [pc.cock " + x + "] makes its exodus from her sodden box, only stopping your retreat as your glans meet the silky folds of her sex, making her whimper needily as you stay in that position for a moment, leaving her wet, gaping hole agonizingly empty. You're quick to give the cock-craving ausar what she wants and ram your [pc.hips] into hers, setting her gropeable booty jiggling. Her moans fill the common area as your [pc.cock " + x + "] fills her nether lips once more. You begin to move your hips at a steady pace, trying to let Anno continue her work, but it seems she might be close to caving in, her motions becoming shaking, almost collapsing with pleasure each time your hips connect.");
+	output("\n\nThe lusty ausar can't seem to control herself anymore; she drops her duster and clutches at the piece of furniture she's bent over, moaning away, tail wagging faster and faster, its fluffy tip brushing across your chin with each wave. She puts a furry foot up on your [pc.thigh] to brace herself, helping each exit your [pc.cock " + x + "] makes by pushing back. You decide now's as good a time as any to pick up the pace. Your grip on Anno's wide hips tightens, forcefully pushing and pulling her back onto your turgid shaft with each thrust. She doesn't last much longer under the weight of your vigorous pussy-pounding before she releases an ear-pleasing cry of pleasure. Her arms and legs lock as her back arches steadily. Ausar snatch clenches down around your cock as Anno’s climax ensues, girlcum spilling out around your turgid cock, your lover awash with orgasmic delight. The sensation of spasming pussy around your [pc.cock " + x + "] makes it feel like you’re being milked for all the cum you’re worth. In time her clenching canal becomes all too much for you, and with one last hearty thrust you bury your member inside your canid-lover. Grunting, you grab her sides and hold her down on your spasming [pc.cockNoun " + x + "] as it empties its load, setting Anno moaning while your warm seed fills her, an excess of [pc.cumNoun] spilling out of her cunt. She keeps her place happily speared on your cum-leaking cock as you finish into her. ");
+	output("\n\nBoth of your climaxes begin to ebb, leaving the two of you panting happily in post-coital bliss, letting the warmth of your orgasms fade. You reluctantly pull your [pc.cock " + x + "] from your lover’s gaping pussy with a sigh, drawing a quivering moan from her as your seed spills onto the floor.");
+	if (pc.hasKnot(x)) output("\n\nUnfortunately it doesn't seem you were quick enough to make use of your [pc.knot " + x + "].");
+	output("\n\nAnno picks herself up and spins around to look at you, <i>“Thanks boss,”</i> the ausar breathes, <i>“You sure know how to make a girl work for her keep.”</i> Her ears perk up as she lets out an overly girly giggle.");
+	
+	processTime(15 + rand(10));
+	
+	addButton(0, "Next", annoFrenchMaidGimmeMore, x);
+}
+
+public function annoFrenchMaidGimmeMore(x:int):void
+{
+	clearOutput();
+	showAnno(true);
+	author("HugsAlright");
+	clearMenu();
+	
+	output("Your lover looks down at you cum-soaked cock. She grins, her snow-hued tail beginning to wag to and fro again, <i>“Aww, but now this is all dirty.”</i> One of Anno's velveteen hands reaches down and grabs your tender [pc.cockNoun " + x + "], making you wince as her other hand reaches around to grope your [pc.butt]. The eager ausar buries her head in the nape of your neck.");
+	output("\n\n<i>“Guess my job's not done yet,”</i> she whispers, sending a shiver down your spine.");
+	output("\n\nYou find yourself falling into a freshly-dusted chair, Anno on top of you, lovingly stroking your soft cock until it starts to stiffen in her velveteen grasp, making you groan into a perky white wolf ear. She pulls herself back to look at you, still recovering from your last orgasm. She smiles and brings herself to kneel on the ground, and grabbing your knees, Anno spreads your legs wide enough so she can shimmy in between them. ");
+	output("\n\nYour half-hard cock falls onto the bridge of Anno’s nose as she leans forwards. She lets her flat ausar tongue loll out of her mouth to lap up the [pc.cum] at the base of your [pc.cock " + x + "].");
+	if (pc.hasKnot(x)) output("\n\nYou throw your head back and groan as Anno begins to tease at the sensitive flesh of your [pc.knot " + x + "], her agile tongue bathing your knot in warm saliva. You whimper, Anno smiling up at you as you squirm under the weight of her oral affections.");
+	output("\n\nThe lusty ausar begins to drag her tongue up your cock, soaking up all the [pc.cum] and fem-lube coating your tool along the way, stopping as her tongue flicks across your [pc.cockHead " + x + "]. Anno straightens herself, brushing back locks of snowy hair before bringing her lips down to the head of your [pc.cock " + x + "] and wrapping a furry finger and thumb around its base, leaving you in agonizing anticipation for a moment. Your lover begins to work her hand to jerk you off as her mouth descends onto your waiting member. You groan as her lips wrap around your glans, her tongue playing across your cockhead. Reaching down you rest your hands between a pair of fluffy ears, gently guiding your ausar maid down your length. In turn she reaches up, her white-furred hands playing along your [pc.thighs]. She stops her descent onto your [pc.cock " + x + "] as your [pc.cockHead " + x + "] brushes the back of her throat. The canid-girl gives one of your thighs a slap, causing you to yelp and your cock to jump, depositing a thick wad of pre into her mouth followed by a muffled chuckle from the cock-hungry canine.");
+	output("\n\nYou roll your eyes at the maid and let your head fall back, content to allow her warm mouth to work its magic on your [pc.cockNoun " + x + "]. With her head bobbing up and down on your tool, and a furry hand still stroking your lower shaft, Anno makes sure not an inch of your cock is uncovered.");
+	if (pc.hasKnot(x)) output("\n\nYour lover's lips kiss at the top of your [pc.knot " + x + "], her tongue occasionally falling out of her mouth to play along the bulb of sensitive cockflesh.");
+	output("\n\nDrops of pre leak out of your [pc.cock " + x + "], eliciting tender, pleased moans from Anno as your [pc.cum] makes its way down her throat. You groan as her flat ausar-tongue plays across your shaft, continuously coating your dick in slick spit. You push down harder on the ausar girl's head, forcing your dong further down her throat. She whines a bit but takes your cock willingly. As you feel pressure building in [pc.cockNoun " + x + "], " + (silly ? "y-your hips are moving on their own " : "your hips begin to move of their own volition") + ", bucking into Anno's mouth, your pre-leaking shaft twitching on the verge of orgasm.");
+	output("\n\nThen Anno pulls off your turgid tool just as you're ready to blow. You whimper as the maid leaves your wet cock in the cold without the warm hold of her mouth. You're painfully hard, cock still twitching as you come down from your near-climax.");
+	output("\n\n<i>“All clean,”</i> she says, trying to catch her breath after the throat-fucking you just gave her.");
+	output("\n\nYou ask Anno if she plans to do anything about your throbbing erection.");
+	output("\n\nThe ausar smiles, <i>“Now what kind of employee would I be if I left a job unfinished?”</i>");
+	output("\n\nAnno climbs on top of you once more, straddling your [pc.hips] with her lube-leaking snatch hovering just above your stiff member. She smiles down at you briefly before she spears herself on your cock without warning, burying your length inside her. You moan as loud as Anno does when you find your [pc.cock " + x + "] sheathed inside her, the warm walls of her canal hugging your tool. Anno pants, her hot breath hitting your face, tail wagging at the speed of sound behind her as she catches her breath from her rapid descent. It isn't long before the maid starts moving again, her hips grinding against yours, tight, juicy cunt caressing your warm cockflesh as she moves. Anno cries out, grabbing at your shoulders to steady herself. You're quick to grab the girl's hips to help guide her up and down your shaft. The ausar atop you gradually starts to pick up the pace, sliding up and down your [pc.cock " + x + "] eagerly, the happy pup panting as she hammers her flared hips into yours with each downstroke.");
+	output("\n\nAnno is practically bouncing in your lap at this point, her tail becoming an intangible white blur. Her furry hands drift off your shoulders to cup her own breasts, squeezing and kneading them through her maid outfit, making her moan into your [pc.ear]. You feel your [pc.cock " + x + "] begin to swell with cum and let out a groan as it start to spasm. You tighten your grip on Anno's hips and hold her down as pleasure radiates through your body, pumping the slutty maid full of [pc.cumNoun], painting her love tunnel [pc.cumColor]. Your cum filling her is enough to make your lover join you in orgasm as she throws her head back, crying out in pleasure, her lower lips tightening around your [pc.cock " + x + "] as you fill her with your seed. Anno moans as girlcum sprays out onto your [pc.thighs] and all over the once-clean chair. You give a few final jerky thrusts into your slut-puppy before your orgasm finally comes to an end, [pc.cum] steadily leaking out of Anno's cunt, its owner whimpering as she feels your heat inside her.");
+	output("\n\nYou're left with your [pc.chest] heaving, and a happy puppy still on top of you. You lean back and sink into the chair, letting yourself go limp as Anno pulls herself off of you, still-warm [pc.cumNoun] spilling out onto the chair now soaked in your combined fluids. It seems Anno isn't done yet, though; she kneels down between your legs again, looking up at you with a devious grin before she gives your soft, cum-covered cock a long lick up its side.");
+	output("\n\n<i>“Quite the vicious cycle, huh boss?”</i>");
+	output("\n\nLooking down at the ausar, you give her a tired and slightly worried smile. You rest a hand between her fluffy, twitching pupper ears, scritching and scratching until her tail starts wagging again. Anno brings her lips to kiss your tender [pc.cockHead " + x + "] while you lean your head back and let the maid continue with her <i>“duties”</i> a pleasurable calm overtaking your body.");
+	
+	processTime(15 + rand(10));
+	
+	addButton(0, "Next", annoFrenchMaidGimmeMoreMore, x);
+}
+
+public function annoFrenchMaidGimmeMoreMore(x:int):void
+{
+	clearOutput();
+	showAnno(true);
+	author("HugsAlright");
+	clearMenu();
+	
+	output("<b>An untold amount of vicious cycles later...</b>");
+	if (!pc.hasKnot(x))
+	{
+		output("\n\nAnno pushes herself down on your [pc.cock " + x + "] for the who-knows-how-manyeth time. She lets out a muffled cry of pleasure as her snatch spasms around your tired manhood, pussy-juice spraying onto the now cum-soaked chair. She stays on your turgid length for a moment as she comes down from her orgasm, panting, tail still waving to and fro. Anno pulls herself off your softening [pc.cockNoun " + x + "], an abundance of [pc.cum] leaking from her now-gaping cunt. The canid-girl can barely hold herself upright, her arms and legs quivering until she falls forward onto you, her chin resting on your shoulder. Anno throws her arms around your neck to secure herself, panting happily into your ear.");
+		output("\n\nBetween pants the tired puppy manages to string some words together. <i>“Sorry... boss... ”</i> she takes in a deep breath, <i>“I don't think I have another round in me.”</i> ");
+		output("\n\nYou pat the ausar maid on the the ass and tell her that's just fine, though you think the ship might need some more work. Anno manages to chuckle.");
+		output("\n\n<i>“Think it'd be okay if we stay like this for a while?”</i> your spent lover whispers into your ear, <i>“I don't think I could move right now.”</i>");
+		output("\n\nYou breathe deep and give the girl another pat on the ass.");
+		output("\n\n<i>“" + (pc.isNice() ? "Sounds good to me" : " I guess I can give you a little break") + ",”</i> you say, not feeling like you could move yourself.");
+		output("\n\nThere you sit, sleepy maid-clad ausar atop your heaving chest, your legs and crotch aching pleasantly while [pc.cum] and slick ausar girlcum spills out onto the chair and floor. You throw your arms around Anno's back and let yourself drift off to sleep until your puppyslut is ready to move again.");
+	}
+	else
+	{
+		output("\n\nAnno pushes down on your [pc.cock " + x + "], forcing herself down harder than the past who-knows-how-many times, allowing your turgid [pc.knotNoun " + x + "] to slip into her. She lets out a muffled cry of pleasure as her snatch spasms around your tired cock, pussy-juice spraying onto the now cum-soaked chair. You're not too far behind the ausar and join her in orgasm, knot expanding as your breeding-rod sprays what little [pc.cum] it has left into Anno's waiting cunt. She stays in her spot for a moment as she comes down from her orgasm, panting, tail still waving to and fro. She pulls herself back to look at you, but the canid-girl can barely hold herself upright, her arms and legs quivering until she falls forward onto you, with her chin resting on your shoulder. Anno throws her arms around your neck to secure herself, panting happily into your ear.");
+		output("\n\nBetween pants the tired puppy manages to string some words together. <i>“Sorry... boss... ”</i> she takes in a deep breath, <i>“I think... we might be stuck here for... a while.”</i> ");
+		output("\n\nYou pat the ausar maid on the ass and tell her that you're fine with that. ");
+		output("\n\nShe coos happily and nuzzles her head into the nape of your neck, <i>“That's good. I don't think I could move right now anyway.”</i>");
+		output("\n\nHonestly, you don't feel like you could move yourself. You wrap your arms around Anno's back and pull your knotted maid close, her double-D's pressing into your [pc.chest], radiating heat through the soft, thin fabrics of her now cum-soaked maid outfit.");
+		output("\n\nThe ausar babe settles in atop you, knot held securely inside her. She manages to wrap her shapely, furred legs around your back to make herself more comfortable, and pulls you a little closer to herself in the process. You find yourself bathed in warmth and bliss, the gentle breathing of your spent lover in your ear drawing attention away from the pleasant ache of your legs, no doubt caused by the eager-to-please puppy-slut.");
+		output("\n\nYou feel your eyelids grow heavy, the warmth of Anno's embrace and her breath on your cheek slowly carrying you away to sleep. You let your eyes close as you and your well-knotted lover drift into unconsciousness to wait it out.");
+	}
+	output("\n\n<b>Sometime later...</b>");
+	if (!pc.hasKnot(x))
+	{
+		output("\n\nYou awaken only to find Anno still on top of you. You squirm a bit under her, and that seems enough to rouse the ausar. The spunk-covered maid stretches and yawns softly before she tries to nuzzle her head back into your shoulder. <i>“Morning boss...”</i> is all you get out of her.");
+		output("\n\nOpening your mouth, you're only able to release a halfhearted sigh. " + (pc.isAss() ? "You know you need to get moving, but can't with your maid-puppy in the way" : "As much as you want to let your maid-puppy rest, you need to get moving") + ", and you " + (!pc.isAss() ? "reluctantly" : "") + " tell her so. Anno groans and picks herself up off of you, displeasure clear in her tired noises.");
+		output("\n\nYou wiggle yourself out from under her and stand up, your legs still a bit sore. Turning around you see Anno curling up on the chair, ready to go back to her nap. You crack a smile and reach a hand down to give her a quick appreciative scratch between her ears. She smiles, her tail batting against the chair. You gather your gear from the floor. Luckily it seems like it's avoided most of yours and Anno's cum. You give yourself a great big stretch " + (!pc.isNude() ? "as you put on the last of your [pc.armor] " : "") + "and take a quick look back at your maid, still asleep.");
+	}
+	else
+	{
+		output("\n\nYou awaken only to find Anno still on top of you. You squirm a bit under her, and that seems enough to rouse the ausar. The spunk-covered maid stretches and yawns softly before she tries to nuzzle her head back into your shoulder. <i>“Morning boss...”</i> is all you get out of her.");
+		output("\n\nOpening your mouth, you're only able to release a halfhearted sigh. " + (pc.isAss() ? "You know you need to get moving, but can't with your maid-puppy in the way" : "As much as you want to let your maid-puppy rest, you need to get moving") + ", and you " + (!pc.isAss() ? "reluctantly " : "") + "tell her so. Anno groans and picks herself up off you, displeasure clear in her tired noises. She lifts herself off of your soft [pc.cockNoun " + x + "], multiple orgasms worth of [pc.cum] leaking out from her slightly-agape sex as your [pc.knot " + x + "] is freed.");
+		output("\n\nYou wiggle yourself out from under her and stand up, your legs still a bit sore. Turning around you see Anno curling up on the chair, ready to go back to her nap. You crack a smile and reach a hand down to give her a quick appreciative scratch between her ears. She smiles, her tail batting against the chair. You gather your gear from the floor. Luckily it seems like it's avoided most of yours and Anno's cum. You give yourself a great big stretch " + (!pc.isNude() ? "as you put on the last of your [pc.armor] " : "") + "and take a quick look back at your maid, still asleep. ");
+	}
+	
+	annoSexed(1);
+	IncrementFlag("ANNO_MAID_SEX");
+	
+	processTime(75 + rand(30));
+	
+	pc.orgasm();
+	
+	addButton(0, "Next", mainGameMenu);
 }
