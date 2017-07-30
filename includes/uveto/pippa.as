@@ -535,7 +535,7 @@ public function pippaSexMenu(func:Function):void
 	}
 	else
 	{
-		addButton(2, "Pussy Fuck", pippaFuckPussy, undefined, "Pussy Fuck", "Fuck Pippa’s pig pussy. (Requires a cock or hardlight-equipped underwear.)");
+		addDisabledButton(2, "Pussy Fuck", "Pussy Fuck", "Fuck Pippa’s pig pussy. (Requires a cock or hardlight-equipped underwear.)");
 	}
 	
 	// Pippa will sit on the PC’s face
