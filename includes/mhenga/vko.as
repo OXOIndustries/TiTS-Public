@@ -85,6 +85,11 @@ public function approachVKo(showShit:Boolean = true):void {
 		}
 	}
 	//menu heaaar
+	vKoMenu();
+}
+
+public function vKoMenu():void
+{
 	clearMenu();
 	addButton(0,"Supplies",vkoSupplies);
 	addButton(1,"Sell",vKoSellShit);
@@ -94,6 +99,8 @@ public function approachVKo(showShit:Boolean = true):void {
 	addButton(4,"CustomInput",customVKoInputCauseCoolKidsTypeOutTheirSexScenesLikeABoss);
 
 	if(pc.hasItemByClass(DamagedVIChip)) addButton(5,"Give VI Chip",nurseDroidChipTurnIn,"VKO","Give VI Chip","Give the V-Ko droid the damaged chip you looted off the Nym-Foe. Maybe she can do something with it, or give you a few space-bucks for the trouble.");
+	
+	joyCoDonationButton(9, "vko");
 
 	addButton(14,"Back",mainGameMenu);
 }
@@ -438,6 +445,12 @@ public function parseVKoCustomInputs():void
 		if(stage.contains(this.userInterface.textInput)) 
 			this.removeInput();
 		VKOBreastPumpFunction();
+	}
+	else if(toParse.indexOf("donate") >= 0 || toParse.indexOf("charity") >= 0)
+	{
+		if(stage.contains(this.userInterface.textInput)) 
+			this.removeInput();
+		joyCoDonationPrompt("vko");
 	}
 	else
 	{

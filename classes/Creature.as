@@ -16497,6 +16497,7 @@
 		
 		public function loadInCunt(cumFrom:Creature = null, vagIndex:int = -1):Boolean
 		{
+			if (cumFrom is PlayerCharacter) sstdChecks(cumFrom,"vagina");
 			// Only run the knockup shit if the creature actually gets saved
 			if (neverSerialize == false && cumFrom != null)
 			{
@@ -16519,6 +16520,7 @@
 		}
 		public function loadInAss(cumFrom:Creature = null):Boolean
 		{
+			if (cumFrom is PlayerCharacter) sstdChecks(cumFrom,"ass");
 			if (neverSerialize == false && cumFrom != null)
 			{
 				if(cumflationEnabled()) cumflationHappens(cumFrom,3);
@@ -16532,24 +16534,29 @@
 		}
 		public function milkInMouth(milkFrom:Creature = null):Boolean
 		{
+			if (milkFrom is PlayerCharacter) sstdChecks(milkFrom,"mouth");
 			return false;
 		}
 		public function girlCumInMouth(cumFrom:Creature = null):Boolean
 		{
+			if (cumFrom is PlayerCharacter) sstdChecks(cumFrom,"mouth");
 			return false;
 		}
 		public function loadInMouth(cumFrom:Creature = null):Boolean
 		{
-			if(cumFrom != null && cumflationEnabled()) cumflationHappens(cumFrom,4);
+			if (cumFrom is PlayerCharacter) sstdChecks(cumFrom,"mouth");
+			if (cumFrom != null && cumflationEnabled()) cumflationHappens(cumFrom,4);
 			return false;
 		}
 		public function loadInNipples(cumFrom:Creature = null):Boolean
 		{
+			if (cumFrom is PlayerCharacter) sstdChecks(cumFrom,"nipple");
 			return false;
 		}
 		
 		public function loadInCuntTail(cumFrom:Creature = null):Boolean
 		{
+			if (cumFrom is PlayerCharacter) sstdChecks(cumFrom,"tail cunt");
 			if (neverSerialize == false && cumFrom != null)
 			{
 				return tryKnockUp(cumFrom, 4);
@@ -19674,27 +19681,36 @@
 		}
 		public function sstdChecks(cumFrom:Creature = null, location:String = "ass"):void
 		{
-			if(cumFrom.hasSSTD() && !this.isSSTDImmune())
+			var catchSSTD:String = "";
+			if(!(cumFrom is PlayerCharacter) && cumFrom.hasSSTD() && !this.isSSTDImmune())
 			{
-				var catchSSTD:String = cumFrom.getRandomSSTD();
-				//kGAMECLASS.output(catchSSTD);
-				switch(catchSSTD)
-				{
-					case "Undetected Furpies":
-						//FURPIES!
-						if(hasSSTD("Furpies", true)) { /* Already have it! */ }
-						// Furries are immune to furpies.
-						else if(!this.hasFur()) createStatusEffect("Undetected Furpies",0,0,0,0,true,"","Hidden furpies infection! OH NOEZ",false,17280,0xFF69B4);
-						break;
-					case "Undetected Locofever":
-						if(hasSSTD("Locofever", true)) { /* Already have it! */ }
-						else createStatusEffect("Undetected Locofever", 0, 0, 0, 0, true, "LustUp", "Hidden Locofever infection!", false, 17280, 0xFF69B4);
-						break;
-					case "Undetected Sneezing Tits":
-						if(hasSSTD("Sneezing Tits", true)) { /* Already have it! */ }
-						else createStatusEffect("Undetected Sneezing Tits", 0, 0, 0, 0, true, "Icon_Boob_Torso", "Hidden Sneezing Tits infection!", false, 10080, 0xFF69B4);
-						break;
-				}
+				sstdCatch(cumFrom, this, location);
+			}
+			if((cumFrom is PlayerCharacter) && this.hasSSTD() && !cumFrom.isSSTDImmune())
+			{
+				sstdCatch(this, cumFrom, location);
+			}
+		}
+		public function sstdCatch(cumFrom:Creature = null, victim:Creature = null, location:String = "ass"):void
+		{
+			var catchSSTD:String = cumFrom.getRandomSSTD();
+			//kGAMECLASS.output(catchSSTD);
+			switch(catchSSTD)
+			{
+				case "Undetected Furpies":
+					//FURPIES!
+					if(victim.hasSSTD("Furpies", true)) { /* Already have it! */ }
+					else if(victim.hasFur()) { /* Furries are immune to furpies. */ }
+					else victim.createStatusEffect("Undetected Furpies",0,0,0,0,true,"","Hidden furpies infection! OH NOEZ",false,17280,0xFF69B4);
+					break;
+				case "Undetected Locofever":
+					if(victim.hasSSTD("Locofever", true)) { /* Already have it! */ }
+					else victim.createStatusEffect("Undetected Locofever", 0, 0, 0, 0, true, "LustUp", "Hidden Locofever infection!", false, 17280, 0xFF69B4);
+					break;
+				case "Undetected Sneezing Tits":
+					if(victim.hasSSTD("Sneezing Tits", true)) { /* Already have it! */ }
+					else victim.createStatusEffect("Undetected Sneezing Tits", 0, 0, 0, 0, true, "Icon_Boob_Torso", "Hidden Sneezing Tits infection!", false, 10080, 0xFF69B4);
+					break;
 			}
 		}
 	}

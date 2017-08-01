@@ -20,6 +20,12 @@ public function showRaskGang():void
 	}
 }
 
+public var raskLootItems:Array = [
+	"Locked Metal Chest",
+	"Some Sort of Shining Spaceship Part",
+	"Intact, Antique Android",
+	"Bulky Data-Core"
+];
 public function pcHasJunkPrize():Boolean
 {
 	if(pc.hasKeyItem("Locked Metal Chest")) return true;
@@ -29,14 +35,56 @@ public function pcHasJunkPrize():Boolean
 	return false;
 }
 
-public function getRaskLootType():int
+public function getRaskLootType(seller:String = "none"):int
 {
-
-	if(pc.hasKeyItem("Locked Metal Chest")) return 0;
-	if(pc.hasKeyItem("Some Sort of Shining Spaceship Part")) return 1;
-	if(pc.hasKeyItem("Intact, Antique Android")) return 2;
-	if(pc.hasKeyItem("Bulky Data-Core")) return 3;
+	// Select the best deals!
+	var stash:Array = [];
+	var hasMetalChest:Boolean = pc.hasKeyItem("Locked Metal Chest");
+	var hasShipPart:Boolean = pc.hasKeyItem("Some Sort of Shining Spaceship Part");
+	var hasAndroid:Boolean = pc.hasKeyItem("Intact, Antique Android");
+	var hasDataCore:Boolean = pc.hasKeyItem("Bulky Data-Core");
+	
+	switch(seller)
+	{
+		case "Anno":
+			if(hasDataCore) stash.push(3);
+			break;
+		case "Colenso":
+			if(hasMetalChest) stash.push(0);
+			else
+			{
+				if(hasShipPart) stash.push(1);
+				if(hasAndroid) stash.push(2);
+				if(hasDataCore) stash.push(3);
+			}
+			break;
+		case "Shekka":
+			if(hasAndroid) stash.push(2);
+			else if(hasShipPart) stash.push(1);
+			break;
+	}
+	// If not valid seller-item match, do a random item
+	if(stash.length <= 0) 
+	{
+		if(hasMetalChest) stash.push(0);
+		if(hasShipPart) stash.push(1);
+		if(hasAndroid) stash.push(2);
+		if(hasDataCore) stash.push(3);
+	}
+	if(stash.length > 0) return stash[rand(stash.length)];
+	// No valid items!
 	return -1;
+}
+public function getRaskLootString(raskLootType:int = -1):String
+{
+	switch(raskLootType)
+	{
+		case 0: return "locked metal chest"; break;
+		case 1: return "spaceship part"; break;
+		case 2: return "antique android"; break;
+		case 3: return "blocky data-core"; break;
+		default: return "<i>NOTHING!</i>"; break;
+	}
 }
 
 public function getRaskLootPrice():int
@@ -53,6 +101,25 @@ public function removeRaskLoot():void
 	flags["SHEKKA_SCRAP_DISABLED"] = undefined;
 	flags["COLENSO_SCRAP_DISABLED"] = undefined;
 	flags["ANNO_SCRAP_DISABLED"] = undefined;
+}
+
+public function removeRaskLootOption():void
+{
+	clearOutput();
+	output("You are going to drop all of your raskvel loot items, which is possibly worth around " + getRaskLootPrice() + " credits total. Are you sure you want to do that?");
+	output("\n\n<i>Note that dropping the loot will remove it from your inventory and cannot be reclaimed.</i>");
+	clearMenu();
+	addButton(0, "Yes", dumpRaskLoot);
+	addButton(1, "No", keyItemDisplay, "<RASKLOOT>");
+}
+
+public function dumpRaskLoot():void
+{
+	clearOutput();
+	output("You have dropped all of your raskvel loot items!");
+	removeRaskLoot();
+	clearMenu();
+	addButton(0, "Next", keyItemDisplay);
 }
 
 //Intro
@@ -76,10 +143,14 @@ public function raskvelGangEncounter():void
 		output("\n\n<i>“We are premier scavenge hunters – Tarkus’s finest,”</i> says the second, in close succession.");
 		output("\n\n<i>“And we have just uncovered – treasure!”</i> exclaims the third. He proudly hauls ");
 		var raskLootType:int = rand(4);
-		if(raskLootType == 0) output("a locked metal chest");
-		else if(raskLootType == 1) output("some sort of shining spaceship part");
-		else if(raskLootType == 2) output("an intact, antique android");
-		else output("a bulky data-core");
+		switch(raskLootType)
+		{
+			case 0: output("a locked metal chest"); break;
+			case 1: output("some sort of shining spaceship part"); break;
+			case 2: output("an intact, antique android"); break;
+			case 3: output("a bulky data-core"); break;
+			default: output("<i>NOTHING!</i>"); break;
+		}
 		output(" into the light.");
 
 		output("\n\n<i>“The kind of loot that would see us in Quivering Quasars and robot hookers for a lifetime,”</i> the first says dreamily.");
@@ -88,11 +159,7 @@ public function raskvelGangEncounter():void
 		output("\n\n<i>“Plus the bigger raskvel gangs will just pinch it off us,”</i> grumbles the smallest.");
 		output("\n\n<i>“So! We’re offering you a deal of a lifetime,”</i> leers the biggest. <i>“For you, our offworlder friend, we’re willing to let you have it for a mere " + gudDealPrice + " credits.”</i>");
 		output("\n\n<i>“A pittance, you lucky alien,”</i> groans the medium-sized one. <i>“Go on, snatch it out of our poor hands before we offer it to the next random soul that chances upon us.”</i>");
-		output("\n\nYou squint up at the ");
-		if(raskLootType == 0) output("locked metal chest");
-		else if(raskLootType == 1) output("spaceship part");
-		else if(raskLootType == 2) output("antique android");
-		else output("blocky data-core");
+		output("\n\nYou squint up at the " + getRaskLootString(raskLootType));
 		output(" the one furthest away is holding. It <i>could</i> be valuable, you suppose....");
 		processTime(4);
 		//[Buy It] [Don’t]
@@ -282,18 +349,24 @@ public function buySomeJankJunkJunk(lootType:Array):void
 	output("\n\n<i>“Take it back to Novahome,”</i> chuckles the first. <i>“Any junk dealer will buy it off you for twice, thrice the price.”</i>");
 	output("\n\nThat sense of heartiness that hovers somewhere between maliciousness and friendliness persists as you bid the raskvel goodbye. You just hope you’re the one laughing once you get your purchase back to Novahome.");
 	var actualPrice:int = 5 + rand(2001);
-	if(lootType[0] == 0) pc.createKeyItem("Locked Metal Chest",actualPrice,0,0,0);
-	if(lootType[0] == 1) pc.createKeyItem("Some Sort of Shining Spaceship Part",actualPrice,0,0,0);
-	if(lootType[0] == 2) pc.createKeyItem("Intact, Antique Android",actualPrice,0,0,0);
-	if(lootType[0] == 3) pc.createKeyItem("Bulky Data-Core",actualPrice,0,0,0);
+	var raskLootType:int = lootType[0];
+	switch(raskLootType)
+	{
+		case 0: pc.createKeyItem("Locked Metal Chest",actualPrice,0,0,0); break;
+		case 1: pc.createKeyItem("Some Sort of Shining Spaceship Part",actualPrice,0,0,0); break;
+		case 2: pc.createKeyItem("Intact, Antique Android",actualPrice,0,0,0); break;
+		case 3: pc.createKeyItem("Bulky Data-Core",actualPrice,0,0,0); break;
+	}
 	pc.credits -= lootType[1];
 	processTime(3);
 	output("\n\n(<b>Gained Key Item: ");
-	var raskLootType:int = getRaskLootType();
-	if(raskLootType == 0) output("Locked Metal Chest");
-	else if(raskLootType == 1) output("Spaceship Part");
-	else if(raskLootType == 2) output("Antique Android");
-	else output("Blocky Data-core");
+	switch(raskLootType)
+	{
+		case 0: output("Locked Metal Chest"); break;
+		case 1: output("Spaceship Part"); break;
+		case 2: output("Antique Android"); break;
+		case 3: output("Blocky Data-Core"); break;
+	}
 	output("</b> - You can try to sell this to one of the vendors back onboard Novahome.)");
 	
 	processTime(7);
@@ -318,14 +391,8 @@ public function shekkaGetsSoldRaskShitz():void
 {
 	clearOutput();
 	showShekka();
-	output("<i>“What would you give me for...”</i> you untie the ");
-	var raskLootType:int = getRaskLootType();
-	if(raskLootType == 0) output("locked metal chest");
-	else if(raskLootType == 1) output("spaceship part");
-	else if(raskLootType == 2) output("antique android");
-	else output("blocky data-core");
-	output(" from your back and plonk it down on the raskvel’s counter as grandly as you can, <i>“...this?”</i>");
-
+	var raskLootType:int = getRaskLootType("Shekka");
+	output("<i>“What would you give me for...”</i> you untie the " + getRaskLootString(raskLootType) + " from your back and plonk it down on the raskvel’s counter as grandly as you can, <i>“...this?”</i>");
 	
 	//Spaceship part
 	if(raskLootType == 1)
@@ -448,13 +515,8 @@ public function sellRaskShitToColenso():void
 {
 	clearOutput();
 	showColenso();
-	output("<i>“What would you give me for...”</i> you untie the ");
-	var raskLootType:int = getRaskLootType();
-	if(raskLootType == 0) output("locked metal chest");
-	else if(raskLootType == 1) output("spaceship part");
-	else if(raskLootType == 2) output("antique android");
-	else output("blocky data-core");
-	output(" from your back and plonk it down on the counter as grandly as you can, <i>“...this?”</i>");
+	var raskLootType:int = getRaskLootType("Colenso");
+	output("<i>“What would you give me for...”</i> you untie the " + getRaskLootString(raskLootType) + " from your back and plonk it down on the counter as grandly as you can, <i>“...this?”</i>");
 	//Chest:
 	if(raskLootType == 0) 
 	{
@@ -542,13 +604,8 @@ public function tryToSellAnnoSomeRaskScrapGuv():void
 {
 	clearOutput();
 	showAnno();
-	output("<i>“What would you give me for...”</i> you untie the ");
-	var raskLootType:int = getRaskLootType();
-	if(raskLootType == 0) output("locked metal chest");
-	else if(raskLootType == 1) output("spaceship part");
-	else if(raskLootType == 2) output("antique android");
-	else output("blocky data-core");
-	output(" from your back and plonk it down on the ausar’s floor as grandly as you can, <i>“...this?”</i>");
+	var raskLootType:int = getRaskLootType("Anno");
+	output("<i>“What would you give me for...”</i> you untie the " + getRaskLootString(raskLootType) + " from your back and plonk it down on the ausar’s floor as grandly as you can, <i>“...this?”</i>");
 	processTime(2);
 	//Anything but the core:
 	if(raskLootType != 3)
@@ -623,14 +680,8 @@ public function tryToHawkRaskShitToAurora():void
 {
 	clearOutput();
 	auroraBust();
-	output("<i>“What would you give me for...”</i> you untie the ");
-	var raskLootType:int = getRaskLootType();
-	if(raskLootType == 0) output("locked metal chest");
-	else if(raskLootType == 1) output("spaceship part");
-	else if(raskLootType == 2) output("antique android");
-	else output("blocky data-core");
-
-	output(" from your back and plonk it down on the bat kid’s floor as grandly as you can, <i>“...this?”</i>");
+	var raskLootType:int = getRaskLootType("Aurora");
+	output("<i>“What would you give me for...”</i> you untie the " + getRaskLootString(raskLootType) + " from your back and plonk it down on the bat kid’s floor as grandly as you can, <i>“...this?”</i>");
 
 	//(Anything at all) 
 	output("\n\n<i>“Huh? Hey! I’ve seen that before! It always looked like trash to me, up above... but I’m not allowed to buy anything, they don’t let me ‘hold the wallet’.”</i> In some show of childish indignation, the pint-sized girl puffs her cheeks out adorably. <i>“Shekka is, though! She’s... probably an adult! Go ask her! And hurry, too, I wanna look at it!”</i>");
@@ -846,6 +897,14 @@ public function consensualGangBang():void
 
 	output("\n\nAfter you’ve rested a while longer, they provide you with a towel to give yourself a quick clean-up before warmly waving you off. You watch them return with a certain roll in their step to their junk-pile before setting off in the opposite direction with your own, slightly tender movement.");
 	processTime(65);
+	for(var i:int = 0; i < 3; i++)
+	{
+		if(pc.hasVagina())
+		{
+			for(var v:int = 0; v < pc.vaginas.length; v++) { pc.loadInCunt(enemy, v); }
+		}
+		else enemy.loadInAss(pc);
+	}
 	pc.orgasm();
 	pc.orgasm();
 	if(pc.hasCuntTail()) feedCuntSnake();
@@ -951,7 +1010,7 @@ public function raskMaleButtfuckery():void
 		output("\n\nYou rest against the grounded reptilians for a while after you’re done, still wedged into them, enjoying the buzz and the sweat drying on your [pc.skinFurScales]. Your partners are in no shape to do anything but groan woozily even when you do finally withdraw, a satisfying ");
 		if(pc.cumQ() < 100) output("dribble");
 		else output("gush");
-		output(" of your cum following you out of their well-used boy-holes. Your tail swings happily back to its spot behind your [pc.legs], oozing plant-seed and for once not bothering you with its insistent itch to use it. You give the two raskvel a friendly swat on the ass-cheek each ");
+		output(" of your cum following you out of their well-used boy-holes. Your tail swings happily back to its spot behind your [pc.legOrLegs], oozing plant-seed and for once not bothering you with its insistent itch to use it. You give the two raskvel a friendly swat on the ass-cheek each ");
 		if(!pc.isNude()) output("as you climb back into your [pc.gear]");
 		else output("as you sit on a rock to collect yourself");
 		output("; by the time you turn back around they’ve vanished, joining their friend back in the junk, blunt tails undoubtedly between their legs. You smile at the thought as you carry on.");
@@ -1041,11 +1100,13 @@ public function raskMaleButtfuckery():void
 		output(". It is with a tender but definite swagger that you turn and leave him ");
 		if(pc.cumQ() >= 1500) output("to stroke his rounded belly ");
 		output("with his two insensate chums.");
-
+		enemy.loadInAss(pc);
+		enemy.loadInAss(pc);
 		pc.orgasm();
 		pc.orgasm();
 	}
 	processTime(45);
+	enemy.loadInAss(pc);
 	pc.orgasm();
 	output("\n\n");
 	CombatManager.genericVictory();
@@ -1112,7 +1173,7 @@ public function redRidingRaskvel():void
 	if(pc.totalVaginas() == 1) output("groin forwards");
 	else output("[pc.butt] downwards");
 	output(" into the other one’s face. Leisurely you open your eyes to see that the smallest one is still standing there, his mouth slightly ajar and his fat, four inch boy cock standing on end to your performance.");
-	if(9999) output(" You need to think of something to do with him before the heat you can feel building irresistibly in your nether regions gets too much to form cogent instructions.");
+	if(pc.lust() >= 66) output(" You need to think of something to do with him before the heat you can feel building irresistibly in your nether regions gets too much to form cogent instructions.");
 
 	pc.lust(50);
 	processTime(13);
@@ -1328,6 +1389,8 @@ public function vaginaRaskStuffEpilogus(args:Array):void
 	if(!pc.isNude()) output(" put your [pc.gear] back on and");
 	output(" sway off, leaving your boy toys behind you in a discarded heap.\n\n");
 	processTime(22);
+	pc.loadInCunt(enemy, x);
+	if(pc.totalVaginas() > 1) pc.loadInCunt(enemy, y);
 	pc.orgasm();
 	CombatManager.genericVictory();
 }
@@ -1517,6 +1580,14 @@ public function loseToRaskvelAndGetGangBangued():void
 	output("\n\n<i>“Just agree to have fun with us next time,”</i> suggests one of the others. <i>“Doesn’t have to be so rough.”</i>");
 	output("\n\nWith that they turn back to their junk pile, happily nattering to one other as they leave you in a quivering, leaking pile in the dust.\n\n");
 	processTime(55);
+	for(var i:int = 0; i < 3; i++)
+	{
+		if(pc.hasVagina())
+		{
+			for(var v:int = 0; v < pc.vaginas.length; v++) { pc.loadInCunt(enemy, v); }
+		}
+		else enemy.loadInAss(pc);
+	}
 	pc.orgasm();
 	CombatManager.genericLoss();
 }
@@ -1811,6 +1882,7 @@ public function seduceCuntTailMilk(raskWinner:String = "big"):void
 	if (pc.isAss()) output("You let out a sigh that draws the the raskvel away from his aching groin. <i>“You’re fine. Walk if off.”</i> He clears his throat and shakily stands up, managing a few steps and an embarrassed grimace. He does his best to come off as a victorious, dominating Alpha, but looks anything but. You shake your head and set off across Tarkus once more.");
 
 	processTime(17);
+	pc.loadInCuntTail(enemy);
 	pc.orgasm();
 	CombatManager.abortCombat();
 	processTime(2);

@@ -1622,6 +1622,10 @@ public function fertilityPriestessFuckHerGoHard():void
 
 		output("\n\n<i>“Oooh, that’s the stuff!”</i> the priestess purrs, wrapping her hands around her packed belly. <i>“I can feel your little swimmers working already. Ah, strong enough to defeat me... strong enough to give me a litter of mighty kits!”</i>");
 
+		var tEnemy:Creature = CombatManager.getEnemyOfClass(MilodanFertilityPriestess);
+		var priestess:MilodanFertilityPriestess = tEnemy is MilodanFertilityPriestess ? tEnemy as MilodanFertilityPriestess : null;
+		if (priestess != null) priestess.loadInCunt(pc, 0);
+		
 		if (pc.virility() <= 0) output("\n\nWell, maybe not. But no need to tell her that!");
 		else pc.clearRut();
 	}
@@ -1692,6 +1696,10 @@ public function fertilityPriestessFuckHerSwitch():void
 
 			output("\n\n<i>“Too bad. You feel more virile than any male I’ve met,”</i> the priestess sighs, tweaking one of her nipples and shivering as your [pc.cock] shifts inside her.");
 		}
+
+		var tEnemy:Creature = CombatManager.getEnemyOfClass(MilodanFertilityPriestess);
+		var priestess:MilodanFertilityPriestess = tEnemy is MilodanFertilityPriestess ? tEnemy as MilodanFertilityPriestess : null;
+		if (priestess != null) priestess.loadInAss(pc);
 	}
 	output(" The cat-woman goans underneath you, starting to lick her fingers clean of her pussy-juices.");
 	if (pc.hasCock() && pc.hasKnot())
@@ -1756,6 +1764,9 @@ public function pcDunkedByFertilityPriestess(isRepeat:Boolean = false):void
 	userInterface.leftBarDefaults();
 	generateMap();
 	
+	var tEnemy:Creature = CombatManager.getEnemyOfClass(MilodanFertilityPriestess);
+	var priestess:MilodanFertilityPriestess = tEnemy is MilodanFertilityPriestess ? tEnemy as MilodanFertilityPriestess : null;
+
 	if (!isRepeat)
 	{
 		clearOutput();
@@ -1775,9 +1786,6 @@ public function pcDunkedByFertilityPriestess(isRepeat:Boolean = false):void
 		}
 
 		output("\n\n<i>“So falls our interloper. How sad you aliens are, when your weapons and magics fail you!”</i> the cat-woman declares. She grabs your chin and forces your gaze up, making you look her in the eye. <i>“Now it’s time to fulfil this ritual... one way or another.”</i>");
-
-		var tEnemy:Creature = CombatManager.getEnemyOfClass(MilodanFertilityPriestess);
-		var priestess:MilodanFertilityPriestess = tEnemy is MilodanFertilityPriestess ? tEnemy as MilodanFertilityPriestess : null;
 		if (priestess != null && priestess.malesRan)
 		{
 			output("\n\nThe woman <i>tsk</i>s her tongue, glancing around the barren chamber. Her male companions are nowhere to be seen. At least you managed that small victory before succumbing to her. Growling, the milodan woman grabs and throws you onto the altar, face-up and [pc.legOrLegs] flailing over the edge.");
@@ -1838,6 +1846,7 @@ public function pcDunkedByFertilityPriestess(isRepeat:Boolean = false):void
 		processTime(30+rand(15));
 		IncrementFlag("FERTILITY_PRIESTESSES_FUCKED");
 
+		if (priestess != null) priestess.loadInCunt(pc, 0);
 		pc.orgasm();
 		pc.clearRut();
 		CombatManager.genericLoss();

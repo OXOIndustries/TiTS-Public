@@ -1047,7 +1047,7 @@ public function disarmDelsTrap():void
 	{
 		output(" the next time your parasitic tail is clamoring for a load of seed");
 	}
-	pc.loadInCuntTail();
+	pc.loadInCuntTail(chars["DELILAH"]);
 	output(".");
 	//end, pass time, return to wherever is appropriate (mess entrance probably)
 	processTime(35);

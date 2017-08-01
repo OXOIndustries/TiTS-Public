@@ -223,6 +223,7 @@ public function dudesButtFuckInATotallyNonGayWay():void
 	else output("giving you a weak thumbs up ");
 	output("before closing his eyes in slumber. You suppose they won’t do much about the stereotype of males sleeping after sex.\n\n");
 	processTime(20+rand(10));
+	enemy.loadInAss(pc);
 	pc.orgasm();
 	CombatManager.genericVictory();
 }

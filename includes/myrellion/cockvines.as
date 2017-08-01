@@ -374,15 +374,17 @@ public function adultCockvineConsentacles():void
 	output(", ready to carry on. The fun you’ve had here will stay with you, though; you smile dozily as the high taste, texture and smell of citrus sex inundates your senses as you go on your unsteady way.");
 
 	processTime(60);
-
+	
+	var ppCockvine:Cockvine = new Cockvine();
+	
 	for (var i:int = 0; i < pc.vaginas.length; i++)
 	{
-		pc.loadInCunt(chars["COCKVINE"], i);
-		pc.cuntChange(i, chars["COCKVINE"].cockVolume(0));
+		pc.loadInCunt(ppCockvine, i);
+		pc.cuntChange(i, ppCockvine.cockVolume(0));
 	}
-	pc.loadInAss(chars["COCKVINE"]);
-	pc.buttChange(chars["COCKVINE"].cockVolume(0));
-	pc.loadInMouth(chars["COCKVINE"]);
+	pc.loadInAss(ppCockvine);
+	pc.buttChange(ppCockvine.cockVolume(0));
+	pc.loadInMouth(ppCockvine);
 
 	pc.orgasm();
 	pc.orgasm();

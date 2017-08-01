@@ -272,6 +272,8 @@ public function multiCockMayhem():void
 	output("\n\nShe doesn’t let up until you do. Minutes pass as the goo-girl suckles from your exhausted body, head bobbing happily up and down your lengths, even getting her tits in on it, rubbing your rods between their soft, jiggling mounds until your back is arching with the overwhelming pleasure. Another orgasm rocks through your body, another rush of cum shooting from your lip-locked [pc.cocks] until the girl’s cheeks are bulging with a second wave of seed.");
 	output("\n\nSlurping it down with a happy hum, the gray goo finally releases your cocks, wiping a trickle of cum from her puffy lips and giving you a playful wink as she stands. <i>“Thanks for that!”</i> she beams, staggering to her feet. <i>“A little all-natural lubrication’s just what I needed! See ya around!”</i>");
 	output("\n\nYou start to speak, but the goo’s slipped off beyond the junk before you can say a word. With a fatigued sigh, you gather up your gear and stumble off.\n\n");
+	
+	for(var c:int = 0; c < pc.cockTotal(); c++) { enemy.loadInCunt(pc, 0); }
 	pc.energy(-5);
 	processTime(20+rand(5));
 	pc.orgasm();
@@ -391,15 +393,15 @@ public function divideAndConquerGinasWithGoos():void
 	output("\n\n<i>“Okay!”</i> the first sister beams, giggling as she starts to slither away in the direction her sister pointed. <i>“Bye, sis! See you later!”</i>");
 	output("\n\n<i>“Bye!”</i> the other goo says, waving as she, too, wanders away, leaving you soaked in a pool of your own cum and discarded goo-bots.");
 	output("\n\nYou’re gonna be sore after that.\n\n");
-	pc.loadInAss(chars["GRAYGOO"]);
-	pc.loadInAss(chars["GRAYGOO"]);
-	pc.loadInAss(chars["GRAYGOO"]);
-	pc.loadInCunt(chars["GRAYGOO"], 0);
-	pc.loadInCunt(chars["GRAYGOO"], 0);
-	pc.loadInCunt(chars["GRAYGOO"], rand(pc.vaginas.length));
-	pc.loadInCunt(chars["GRAYGOO"], rand(pc.vaginas.length));
-	pc.loadInCunt(chars["GRAYGOO"], rand(pc.vaginas.length));
-	pc.loadInCunt(chars["GRAYGOO"], rand(pc.vaginas.length));
+	pc.loadInAss(enemy);
+	pc.loadInAss(enemy);
+	pc.loadInAss(enemy);
+	pc.loadInCunt(enemy, 0);
+	pc.loadInCunt(enemy, 0);
+	pc.loadInCunt(enemy, rand(pc.vaginas.length));
+	pc.loadInCunt(enemy, rand(pc.vaginas.length));
+	pc.loadInCunt(enemy, rand(pc.vaginas.length));
+	pc.loadInCunt(enemy, rand(pc.vaginas.length));
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
@@ -485,7 +487,8 @@ public function pcDefeatByGooBitch():void
 
 	output("\n\nAnd grow the orgy does. Just as the male rask blows his load in your ass, filling you with his hot, creamy seed, another male seems to take his place, another cock slamming into the abused hole. You cry out, just in time for another cock to find your mouth an inviting target, plunging it.");
 	//This should be changed to a male raskvel once they're done.
-	pc.loadInAss(chars["RASKVEL_MALE"]);
+	var ppRaskvel:RaskvelMale = new RaskvelMale();
+	pc.loadInAss(ppRaskvel);
 
 	output("\n\n<i>“Oh, wow, there’s SO MANY!”</i> the googirl giggles into your ear, twisting your head just enough to let you see a growing crowd of rask boys clambering over the junk toward the sounds of rampant sex. <i>“Oooh, you’re gonna get me so much juice!”</i>");
 
@@ -498,20 +501,20 @@ public function pcDefeatByGooBitch():void
 	processTime(120+rand(10));
 	pc.exhibitionism(1);
 	//This should be changed to a male raskvel once they're done.
-	pc.loadInAss(chars["RASKVEL_MALE"]);
-	pc.loadInMouth(chars["RASKVEL_MALE"]);
-	pc.loadInAss(chars["RASKVEL_MALE"]);
-	pc.loadInMouth(chars["RASKVEL_MALE"]);
-	pc.loadInAss(chars["RASKVEL_MALE"]);
-	pc.loadInMouth(chars["RASKVEL_MALE"]);
-	pc.loadInAss(chars["RASKVEL_MALE"]);
-	pc.loadInMouth(chars["RASKVEL_MALE"]);
-	pc.loadInAss(chars["RASKVEL_MALE"]);
-	pc.loadInMouth(chars["RASKVEL_MALE"]);
-	pc.loadInAss(chars["RASKVEL_MALE"]);
-	pc.loadInMouth(chars["RASKVEL_MALE"]);
-	pc.loadInAss(chars["RASKVEL_MALE"]);
-	pc.loadInMouth(chars["RASKVEL_MALE"]);
+	pc.loadInAss(ppRaskvel);
+	pc.loadInMouth(ppRaskvel);
+	pc.loadInAss(ppRaskvel);
+	pc.loadInMouth(ppRaskvel);
+	pc.loadInAss(ppRaskvel);
+	pc.loadInMouth(ppRaskvel);
+	pc.loadInAss(ppRaskvel);
+	pc.loadInMouth(ppRaskvel);
+	pc.loadInAss(ppRaskvel);
+	pc.loadInMouth(ppRaskvel);
+	pc.loadInAss(ppRaskvel);
+	pc.loadInMouth(ppRaskvel);
+	pc.loadInAss(ppRaskvel);
+	pc.loadInMouth(ppRaskvel);
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
@@ -600,6 +603,8 @@ public function cockVariantForGrayGooKirbutashis():void
 	output("\n\n<i>“Okay! Okay! I’m not in the slave-taking business!”</i> the blob shouts. She meekly reforms beside you, barely even resembling her original appearance. It’s apparent just how much that little masturbatory session took out of her.");
 	output("\n\n<i>“But you gotta admit you enjoyed it as much as I did.”</i>");
 	output("\n\nA raising hand is the most you’ll give her, still a tad out of breath. You think she rolled her eyes in response, but there’s no telling. Despite her words to the contrary, you imagine your predicament would have been entirely different had she the strength to subdue you. With that chilling thought, you see yourself away and back to where you lost your gear.\n\n");
+	
+	enemy.loadInCunt(pc, 0);
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();

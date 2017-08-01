@@ -958,6 +958,7 @@ public function keyItemDisplay(filter:String = ""):void
 	var hasHolodisk:Boolean = false;
 	var hasPanty:Boolean = false;
 	var hasCollar:Boolean = false;
+	var hasRaskLoot:Boolean = false;
 	
 	output("<b><u>Key Items:</u></b>\n");
 	if(pc.keyItems.length > 0) 
@@ -969,21 +970,23 @@ public function keyItemDisplay(filter:String = ""):void
 			if
 			(	filter == ""
 			||	(filter == "<KEY>" && (pItem.storageName.indexOf(" Key") != -1 || pItem.storageName.indexOf(" Pass") != -1 || pItem.storageName.indexOf(" Membership") != -1))
+			||	(filter == "<RASKLOOT>" && InCollection(pItem.storageName, raskLootItems))
 			||	pItem.storageName.indexOf(filter) != -1
 			)
 			{
 				output(pItem.storageName + ((desc && pItem.tooltip.length > 0) ? (" - " + pItem.tooltip) : "") + "\n");
 				if(pItem.tooltip.length > 0) hasDesc = true;
 			}
-			if(pItem.storageName.indexOf(" Key") != -1 || pItem.storageName.indexOf(" Pass") != -1 || pItem.storageName.indexOf(" Membership") != -1) hasKey = true;
-			if(pItem.storageName.indexOf("Holodisk: ") != -1) hasHolodisk = true;
-			if(pItem.storageName.indexOf("Coupon - ") != -1) hasCoupon = true;
-			if(pItem.storageName.indexOf("Panties - ") != -1) hasPanty = true;
-			if(pItem.storageName.indexOf(" Collar") != -1) hasCollar = true;
+			if(!hasKey && (pItem.storageName.indexOf(" Key") != -1 || pItem.storageName.indexOf(" Pass") != -1 || pItem.storageName.indexOf(" Membership") != -1)) hasKey = true;
+			if(!hasHolodisk && pItem.storageName.indexOf("Holodisk: ") != -1) hasHolodisk = true;
+			if(!hasCoupon && pItem.storageName.indexOf("Coupon - ") != -1) hasCoupon = true;
+			if(!hasPanty && pItem.storageName.indexOf("Panties - ") != -1) hasPanty = true;
+			if(!hasCollar && pItem.storageName.indexOf(" Collar") != -1) hasCollar = true;
+			if(!hasRaskLoot && InCollection(pItem.storageName, raskLootItems)) hasRaskLoot = true;
 		}
 		output("\n");
 		
-		if(hasHolodisk || hasCoupon || hasPanty || hasCollar)
+		if(hasHolodisk || hasCoupon || hasPanty || hasCollar || hasRaskLoot)
 		{
 			if(filter == "") addDisabledButton(btn++, "All");
 			else addButton(btn++, "All", keyItemDisplay, "", "Filter: All", "View all Key Items.");
@@ -1007,6 +1010,15 @@ public function keyItemDisplay(filter:String = ""):void
 			if(hasCollar) {
 				if(filter == " Collar") addDisabledButton(btn++, "Collar");
 				else addButton(btn++, "Collar", keyItemDisplay, " Collar", "Filter: Collars", "View all collar items.");
+			}
+			if(hasRaskLoot) {
+				if(filter == "<RASKLOOT>")
+				{
+					addDisabledButton(btn++, "Rask Loot");
+					hasDesc = false;
+					addButton(13, "Dump Loot", removeRaskLootOption, undefined, "Dump Raskvel Loot", "Throw away your raskvel loot.");
+				}
+				else addButton(btn++, "Rask Loot", keyItemDisplay, "<RASKLOOT>", "Filter: Raskvel Loot", "View all raskvel loot items.");
 			}
 		}
 		if(hasDesc) addButton(13, ("Desc: " + (desc ? "On" : "Off")), keyItemDisplayToggleDesc, filter, "Descriptions", ("Toggle descriptions " + (desc ? "off" : "on") + "."));

@@ -139,6 +139,7 @@ package classes.Characters
 					if(milkFrom.lactationQ() >= 2000) kGAMECLASS.honeyPotBump(true);
 				}
 			}
+			if(milkFrom != null) sstdChecks(milkFrom,"mouth");
 			return false;
 		}
 		
@@ -205,6 +206,7 @@ package classes.Characters
 				else addBiomass(10);
 			}
 			kGAMECLASS.mimbraneFeed("boobs");
+			if(cumFrom != null) sstdChecks(cumFrom,"nipple");
 			return false;
 		}
 		
@@ -213,9 +215,9 @@ package classes.Characters
 			if (this.hasTailCunt()) kGAMECLASS.feedCuntSnake(cumFrom);
 			if (cumFrom != null)
 			{
+				sstdChecks(cumFrom,"tail cunt");
 				return this.tryKnockUp(cumFrom, 4);
 			}
-			
 			return false;
 		}
 		

@@ -1503,6 +1503,19 @@ public function loseToNaleenRapeyBall():void
 	if(lactate) output(" and your boobs");
 	output(" and your [pc.tongue] for the snake-tigers’ pleasure; there is no taste but their generous amounts of pussy juice and cum, and that is wonderful.");
 	processTime(30);
+	
+	pc.loadInAss(enemy);
+	if(pc.hasVagina())
+	{
+		for(var v:int = 0; v < pc.vaginas.length; v++) { pc.loadInCunt(enemy, v); }
+	}
+	if(pc.hasCock())
+	{
+		enemy.loadInCunt(pc, 0);
+		enemy.loadInAss(pc);
+	}
+	if(pc.hasCuntTail()) pc.loadInCuntTail(enemy);
+	
 	for(var i:int = 0; i < 20; i++)
 	{
 		pc.orgasm();

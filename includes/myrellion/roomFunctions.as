@@ -1191,9 +1191,11 @@ public function antOrgyPartDues(voluntary:Boolean):void
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	if (!pp.hasVagina()) pp.createVagina();
 	pp.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
+	myrellionSSTDChance(pp);
 	
 	processTime(13);
 	pc.lust(25);
+	pp.loadInCunt(pc, 0);
 	pc.girlCumInMouth(pp);
 	applyPussyDrenched(pc);
 	applyPussyDrenched(pc);

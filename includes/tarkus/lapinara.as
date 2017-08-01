@@ -319,6 +319,7 @@ public function buttFuckALapinara(cockNum:int = 0):void
 	output("\n\nA mere seconds later, you blow your load into her, and two soft-shelled eggs shoot from her cock in rapid succession with a loud pop, landing on your chest. She starts panting, exhausted and at a loss for breath. You lift her off of you easily, sitting her down at your side.");
 	output("\n\n<i>“You’re fucking amazing...”</i> she finally speaks up, a dazed look on her face. <i>“We really need to do that again sometime.”</i>\n\n");
 	processTime(20+rand(5));
+	enemy.loadInAss(pc);
 	pc.orgasm();
 	CombatManager.genericVictory();
 }

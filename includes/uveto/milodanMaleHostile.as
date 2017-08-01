@@ -279,6 +279,7 @@ public function dontLetTheMilodanGetOffHesADork(x:int):void
 		output("\n\n<i>“Nice work, </i>slut<i>,”</i> you call over your shoulder to the unconscious milodan. Not like he can hear you and even if he could he probably wouldn’t understand, but you figure it’s an important message to get across.\n\n");
 	}
 	processTime(20);
+	enemy.loadInAss(pc);
 	pc.orgasm();
 
 	CombatManager.genericVictory();
@@ -369,6 +370,7 @@ public function yesGetTheMilodanOff(x:int):void
 	}
 	output("\n\n");
 	processTime(30);
+	enemy.loadInAss(pc);
 	pc.orgasm();
 	CombatManager.genericVictory();
 }

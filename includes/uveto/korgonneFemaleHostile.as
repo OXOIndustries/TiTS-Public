@@ -228,6 +228,7 @@ public function korgiLadyDickLossPart4(x:int):void
 		output(" Joined at the root, you settle down to wait out the tender bloat of your [pc.knot " + x + "].");
 	}
 	processTime(25);
+	enemy.loadInCunt(pc, 0);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",dickwieldersLoseToKorgonneEpilogue);
@@ -493,6 +494,7 @@ public function letDatKorgiLeadWinsex():void
 	output(" She squeezes her husky frame back into her gear and sets off into the snow with a single glance back that is as much encouragement to return as any heartfelt plea you’ve heard.");
 	output("\n\n");
 	processTime(25);
+	enemy.loadInAss(pc);
 	pc.orgasm();
 	clearMenu();
 	CombatManager.genericVictory();
@@ -665,6 +667,7 @@ public function korgiPussPump2(x:int):void
 	if(!pc.isCrotchExposed()) output(" and wrap yourself in your [pc.gear] once more - a poor replacement for her sultry body");
 	output(".\n\n");
 	processTime(10);
+	enemy.loadInCunt(pc, 0);
 	pc.orgasm();
 	CombatManager.genericVictory();
 }
@@ -1065,6 +1068,7 @@ public function korgonneHardlightPussyStuffsStuffStuffings():void
 		output(" with pre. The woman’s plump ass taunts you, swaying from side to side and jiggling in your hands; a small, dark blue pucker peeks from between her cheeks every time you slam into her, just below her jaunty spitz tail. The longer you stare at it, the more your desire crystallizes... finally, unable to endure any more, you pull out of the korgonne and come to a rest.");
 		output("\n\n<i>“Why stop?”</i> grunts the savage, mazy with endorphins. <i>“Want finish...”</i>");
 		output("\n\nYou ignore her whining and reach into your [pc.lowerUndergarment], fishing for your maligned [pc.cockNounSimple " + pc.smallestCockIndex() + "]. When you feel the [pc.cockHead " + pc.smallestCockIndex() + "] in your hand, you pull it free and let it hang over the waistband of your underwear, bobbing merrily above the holographic hard-on. The korgonne shifts uneasily in your hands, and you squeeze harder to quiet her, which makes her purr unbecomingly once more. Lining up with her asshole, you draw back and thrust in again, spearing her gaping pussy on the strap-on and her asshole on your pre-drooling prick.");
+		pc.cockChange();
 		output("\n\nThe new pressure straightens the korgonne’s back immediately. ");
 		if(sThing == "Cat") output("<i>“Ooh... cat aim bad like usual... wrong hole,”</i>");
 		else output("<i>“Stranger fuck like cat... wrong hole,”</i>");
@@ -1097,7 +1101,11 @@ public function korgonneHardlightPussyStuffsStuffStuffings():void
 	output("falls flat on the ground.");
 
 	output("\n\n<i>“What... knot gone... seed leak...”</i> she mumbles, half-asleep from her mind-melting orgasm. You collect your things and leave her there");
-	if(buttfux) output(", drooling [pc.cumNoun] from her asshole all over her thighs");
+	if(buttfux)
+	{
+		output(", drooling [pc.cumNoun] from her asshole all over her thighs");
+		enemy.loadInAss(pc);
+	}
 	output(".");
 
 	//pass time, if has cock and is not taur then do pc orgasm, else raise lust

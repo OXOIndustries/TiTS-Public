@@ -270,6 +270,7 @@ public function raskVelBabeGetsDoggieStyled():void
 	//EPILOGUE FOR BOTH
 	output("\n\nShe slumps onto her side, still trembling, and smiles, rubbing her hands back and forth all over her belly while you ready yourself to resume your journeys.\n\n");
 	processTime(30+rand(5));
+	enemy.loadInCunt(pc, 0);
 	knockUpRaskChance();
 	pc.orgasm();
 	processTime(5);
@@ -545,9 +546,10 @@ public function raskvelGirlsSitsIfTheyFits(combat:Boolean = false):void
 	output("\n\nWith a contented sigh, you gather your gear and, rubbing your sore, utterly emptied [pc.cockBiggest], you get ready to resume your exploration, eager to meet another of these sultry sluts.");
 
 	processTime(20+rand(10));
+	enemy.loadInCunt(pc, 0);
 	knockUpRaskChance();
 	pc.orgasm();
-	pc.girlCumInMouth(chars["RASKVEL_FEMALE"]);
+	pc.girlCumInMouth(enemy);
 	if(combat)
 	{
 		//end combat
@@ -622,7 +624,7 @@ public function getRaskVelTailPegged(combat:Boolean = false):void
 	output(" as she starts to move her tail, letting it grind and slide and writhe inside you, and with that you cum, and cum hard. You scream, back arching as she slams her tail into you again and again, hammering a mind-shattering orgasm from you, your own cries masking hers as your tongue drives her over the edge with you, spattering your face with alien fem-cum.");
 	output("\n\nBy the time you come back to your senses, the raskvel slut’s rolled off of you, clutching her clothes to her cum-smeared body, chest heaving. <i>“You off-worlders... I gotta get my toll from you more often, " + pc.mf("handsome","beautiful") + ",”</i> she winks, staggering to her feet. You meekly nod, feeling horribly, wonderfully loose after the mammoth tail-pegging you just received. The raskvel saunters off with a wink and a blown kiss, leaving you to collect your kit and leave the scene, [pc.legOrLegs] wobbling as you waddle off.");
 	processTime(40+rand(20));
-	pc.girlCumInMouth(chars["RASKVEL_FEMALE"]);
+	pc.girlCumInMouth(enemy);
 	pc.orgasm();
 	//Incombat
 	if(combat)
@@ -758,6 +760,7 @@ public function hugeDicksGetForceWorshippedByFemRaskvel(fromCombat:Boolean = fal
 	if(pc.virility() <= 0) output(".. if you’re a virile one, that is.");
 	output("”</i>");
 	processTime(30+rand(10));
+	enemy.loadInCunt(pc, 0);
 	knockUpRaskChance();
 	pc.orgasm();
 	output("\n\n");
@@ -876,6 +879,7 @@ public function getPeggedWhileDoublePenetrate():void
 	if(pc.cumQ() >= 2000) output(" as best she can, given how thoroughly you filled her");
 	output(" and bends down for one last kiss. There’s a snap of pain on your neck, and then you’re unconscious.");
 	processTime(30+rand(10));
+	enemy.loadInCunt(pc, 0);
 	knockUpRaskChance();
 	pc.orgasm();
 	processTime(200+rand(50));
@@ -1158,7 +1162,7 @@ public function watchDatRaskvelEggLayyyy():void
  	output("place down your equipment and sit down next to her, letting your [pc.cocks] ");
  	if(pc.balls > 0) output("and [pc.balls] ");
  	output("dangle in front of the horny reptilian. It looks like curiosity and lust have taken the better of her as she locks eyes with your package, not even trying to run away at this point.");
- 	var x:int = pc.cockThatFits(chars["RASKVEL_FEMALE"].analCapacity());
+ 	var x:int = pc.cockThatFits(enemy.analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 
  	output("\n\n<i>“Are you just going to stare?”</i> You raise your voice. That’s all the encouragement she needs to jump at your [pc.cock " + x + "] and eagerly rub it with her tiny hands. Her strokes rapidly become longer along with your rising cock until you reach full hardness. <i>“Come on, prepare it.”</i>");

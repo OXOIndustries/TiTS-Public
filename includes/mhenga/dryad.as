@@ -295,6 +295,7 @@ public function dryadDick():void
 	}
 	IncrementFlag("DRYAD_FUCKED");
 	processTime(10);
+	pp.loadInCunt(pc, 0);
 	pc.orgasm();
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -690,6 +691,7 @@ public function dryadAnalFunsies():void
 	clearOutput();
 	dryadHeader();
 	author("Wsan");
+	var pp:PregnancyPlaceholder = getDryadPregContainer();
 	var x:int = pc.cockThatFits(1400);
 	if(x < 0) x = pc.smallestCockIndex();
 	if(pc.cocks[x].cLength() < 12) x = pc.biggestCockIndex();
@@ -772,6 +774,7 @@ public function dryadAnalFunsies():void
 	IncrementFlag("DRYAD_FUCKED");
 	IncrementFlag("DRYAD_ANALED");
 	processTime(16);
+	pp.loadInAss(pc);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

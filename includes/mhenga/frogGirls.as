@@ -264,7 +264,6 @@ public function hasCockLossForForgGirls():void
 			output(" as she thrusts");
 		}
 		output(". You feel your mind melt into the need to impregnate her with everything you have.");
-		// pc.cockChange();
 		pc.cockChange();
 		output("\n\nThe fuck hungry frog girl unwraps her tongue from around your cock");
 		if(pc.cockTotal() > 1) output("s");
@@ -273,6 +272,8 @@ public function hasCockLossForForgGirls():void
 		if(pc.cockTotal() > 1) output(", [pc.eachCock] not wrapped in the blissfully tight warmth of the frog girls pussy blowing their own loads all over her legs and the surrounding jungle in tandem");
 		output(". You moan with the satisfaction of long awaited release, and the frog girl reciprocates, shuddering with primordial bliss as she’s filled to the brim with your fluid. After the last of your juice has been expelled into her, she weakly pulls herself from your [pc.cock " + x + "]. She idly rubs her full belly and kisses your still half-erect dick.");
 		output("\n\n<i>“That’s... good babymaker. Enough for now, I’m sure there’s plenty of them in here now,”</i> she states, a pleased smile on her face. The " + enemy.skinTone + " girl scoots back to the water, kicking away on her back and leaving you to recover yourself.");
+		
+		enemy.loadInCunt(pc, 0);
 	}
 	else
 	{

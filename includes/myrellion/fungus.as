@@ -260,6 +260,8 @@ public function infestedVictoryOrLossMaleScene(loss:Boolean = true):void
 		output("\n\nThe chalky white mushroom quickly takes her rod into its mouth before a flood of pearly liquid jets out of its nozzle. Some of its meal escapes, running in rivulets over her still orgasming vagina. The running liquid sets off her spasms anew, and she manages an exaggerated ‘mmm’ to show her appreciation. The fungus suckles her sperm like a vacuum, sealing around her cock after the initial torrent and holding fast as you piston in and out.");
 		output("\n\nYou finally give in, unable to withstand the tension of her wet fuckhole, and fill her womb with rope after rope of [pc.cum], feeling completely satisfied as she shudders with each pulse. Your [pc.cum] mixes with her own cascading jizz and pools between her quivering cheeks. For a second you’re worried about her breathing, but she gasps in air at even intervals, and you pull yourself away from the tangle of flesh to sit for a moment and recover yourself.");
 		output("\n\nOnce her torrent stops, the fungal entity pulls itself off her cock and gives you a smile. A series of happy images flash through your mind, and you give it a hesitant grin in return. You gather your [pc.gear], leaving the two of them to recover while you return to your previous endeavors.");
+		
+		enemy.loadInCunt(pc, 0);
 	}
 	//dicktoobig
 	else
@@ -288,6 +290,7 @@ public function infestedVictoryOrLossMaleScene(loss:Boolean = true):void
 		output("\n\n<i>“S-sorry. I kinda blacked out there,”</i> she says with a nervous laugh. <i>“I think I’ll stay here and rest for a bit.”</i>");
 		output("\n\nYou nod and stretch yourself out, grabbing your [pc.gear] before heading back to exploring the caves.");
 		
+		enemy.loadInMouth(pc);
 		imbibeVenomEffects();
 	}
 	output("\n\n");
@@ -355,6 +358,7 @@ public function infectedMyrWinOrLossFuckForGirlTypes(loss:Boolean = true):void
 	output("\n\nYou grip her tightly as you deal with your own orgasm. Hot white lights flash in your head as you tense and moan in rapture, and when you finally come back to your senses the ant-girl is passed out atop you, with the fully solid mushroom creature in a similar state atop her. You gently slide the pair off of you and gather your [pc.gear], leaving them to sleep as you return to your previous endeavors.\n\n");
 	//(pass 1 hr)(pc gets nastygerms)
 	processTime(50+rand(20));
+	pc.loadInCunt(enemy, x);
 	pc.orgasm();
 	if(loss) CombatManager.genericLoss();
 	else CombatManager.genericVictory();

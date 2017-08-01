@@ -138,6 +138,15 @@ public function showDally(nude:Boolean = false):void
 	if(!nude) showBust("DALLY");
 	else showBust("DALLY_NUDE");
 }
+public function getDallyPregContainer():PregnancyPlaceholder
+{
+	var ppDally:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppDally.cumType = GLOBAL.FLUID_TYPE_HONEY;
+	ppDally.balls = 2;
+	ppDally.ballSizeRaw = 20;
+	ppDally.createPerk("Fixed CumQ", 9000, 0, 0, 0);
+	return ppDally;
+}
 
 //Approach
 public function dallyApproach():void
@@ -361,7 +370,8 @@ public function talkMilkAnAntGuy():void
 	flags["CUNTTAILED_DALLY"]++;
 	//[No Tip] [100 Creds] [250 Creds] [999 Creds]
 	//4-5 cums
-	pc.loadInCuntTail();
+	var ppDally:PregnancyPlaceholder = getDallyPregContainer();
+	pc.loadInCuntTail(ppDally);
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
@@ -530,13 +540,9 @@ public function takeSomeDallySploogeInYerMouthYaSloooooot():void
 	output("\n\nDally tastes a little salty but more sweet, and in the span of two seconds it becomes the only thing you can taste. He floods your mouth with it. Trickles of his whitish goo leak from the corners of your mouth. You swallow as best you can, but more escapes to drip from your chin, fed from a seemingly unending stream of virile jism. Dally bathes your mouth in his syrupy load, painting your lips with the excess, forcing you to gulp again and again.");
 	output("\n\nWhen you can handle no more, you pull back and gasp for breath, offering his still-spurting rod to an ant-girl who has appeared beside you, mouth open in anticipation. She feeds the spurting shaft into her gullet and sucks with the kind of earnest eagerness that speaks of a sort of wanton hunger for cock. You watch and dab the dripping spooge from your face, offering it to another myr. She sucks the proffered digits clean one after another, relishing it.");
 	output("\n\nDally finishes not long after - you clearly got the lion’s share of his load. Even now, you can feel it sloshing in your tummy. The dancer extricates himself from his fan’s sucking maw with a bit of difficulty and gives you a grateful nod. His balls actually look a little lighter thanks to your intervention. <i>“Thank you ladies, but I’ve got to walk the rest of stage before the boss gripes at me. I’ll try and return the favor if I ever get the chance.”</i> He winks at you and turns away, launching into a dance as well as his tired legs will allow.");
-	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
-	pp.cumType = GLOBAL.FLUID_TYPE_HONEY;
-	pp.balls = 2;
-	pp.ballSizeRaw = 20;
-	pp.createPerk("Fixed CumQ", 9000, 0, 0, 0);
+	var ppDally:PregnancyPlaceholder = getDallyPregContainer();
 	pc.exhibitionism(1);
-	pc.loadInMouth(pp);
+	pc.loadInMouth(ppDally);
 	//Doesnt get the unified epilogue
 	processTime(6);
 	pc.lust(20);

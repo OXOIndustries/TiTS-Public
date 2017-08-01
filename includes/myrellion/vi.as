@@ -97,7 +97,6 @@ public function approachViFirstTimePart2():void
 public function viMenu():void
 {
 	clearMenu();
-	showVi();
 	//[Appearance] [Talk] [Heal] [Examination] [S.Relief]
 	//[Buy] [Sell]
 	// tooltip.sRelief: Ask Vi if she can provide you with sexual relief services.
@@ -114,8 +113,10 @@ public function viMenu():void
 	if(flags["VI_PLEASURE_TALKED"] != undefined) addButton(7,"Modify",modifyViMenu,undefined,"Modify","Modify Vi’s specs to suit your tastes!");
 	else addDisabledButton(7,"Modify","Modify","She doesn’t look like the kind of ‘bot that would modify her chassis.");
 	if(pc.hasItemByClass(DamagedVIChip)) addButton(8,"Give VI Chip",nurseDroidChipTurnIn,"Vi","Give VI Chip","Give the V-Ko droid the damaged chip you looted off the Nym-Foe. Maybe she can do something with it, or give you a few space-bucks for the trouble.");
-	addButton(14,"Leave",mainGameMenu);
 	
+	joyCoDonationButton(9, "vi");
+	
+	addButton(14,"Leave",mainGameMenu);
 }
 
 //Appearance

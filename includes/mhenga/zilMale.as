@@ -225,6 +225,7 @@ public function buttfuckDefeatedZil():void {
 		output("\n\nYou smirk and pull out, pushing him down into the puddled cum as you do. Oddly, his pheromones don’t seem to be affecting you now that you’ve blown your load, so you’re able to focus with a clear head as you put your [pc.foot] on his back and push him down into it. You get tired of debasing him pretty quickly and get dressed. By the time you finish, the wasp-boy has started masturbating shamelessly, so you make sure to slap his balls before you go. Surprisingly, that sets him off, and you leave him squirting behind you.\n\n");
 	}
 	processTime(30+rand(10));
+	enemy.loadInAss(pc);
 	pc.orgasm();
 	CombatManager.genericVictory();
 }
@@ -373,7 +374,7 @@ public function rideDatZilCawk():void {
 	
 	processTime(21+rand(4));
 	pc.orgasm();
-	pc.loadInCunt(chars["ZIL"], x);
+	pc.loadInCunt(enemy, x);
 	CombatManager.genericVictory();
 }
 
@@ -809,7 +810,7 @@ public function swallowDatZilCockCauseJooLost():void {
 	output("<i>“</i>");
 	output("\n\nYour master has you lick him clean before he buzzes off into the trees, leaving his sensuous taste to remember him by. You sit there, staring at nothing for perhaps thirty minutes. Then, as the effect he had on you evaporates, you realize just how fucking horny you are! You vigorously masturbate for the next two hours before finally sating yourself and passing out.\n\n");
 	// Blah blah, combat texts.
-	pc.loadInMouth(chars["ZIL"]);
+	pc.loadInMouth(enemy);
 	processTime(40);
 	pc.orgasm();
 	CombatManager.genericLoss();
@@ -947,7 +948,7 @@ public function getBredByZil():void {
 	output("\n\nAbruptly, he pulls himself out, clean of everything but your spit. Just how long were you cleaning him? The zil gathers some soft ferns and makes you a soft bed from them. You’re all too happy to lie on it, even if it does lift your [pc.butt] up in the air and make sure that all his seed stays deep inside you...\n\n");
 	processTime(30+rand(15));
 	pc.orgasm();
-	pc.loadInCunt(chars["ZIL"], x);
+	pc.loadInCunt(enemy, x);
 	CombatManager.genericLoss();
 }
 //*Get tailpussy fucked.
@@ -1052,7 +1053,7 @@ public function getTailPussyFuckedByZil():void {
 	clearMenu();
 	processTime(40+rand(20));
 	pc.orgasm();
-	pc.loadInCuntTail(chars["ZIL"]);
+	pc.loadInCuntTail(enemy);
 	addButton(0,"Next",tailPussyFuckZilEpilogue);
 }
 public function tailPussyFuckZilEpilogue():void {
@@ -1160,7 +1161,7 @@ public function zilSticksItInYourBoot():void {
 	output("\n\nYou slip into an exhausted daze, losing consciousness as the insect-man takes off and floats away.\n\n");
 	processTime(25);
 	pc.orgasm();
-	pc.loadInAss(chars["ZIL"]);
+	pc.loadInAss(enemy);
 	processTime(30+rand(10));
 	CombatManager.genericLoss();
 }
@@ -1250,9 +1251,10 @@ public function theZilPretendToBeHelia():void {
 	output("\n\nAs their climaxes conclude, the spent pair pull away, dropping you into the puddled, mixed sex-juices before turning on each other, grinding their sloppy genitalia against each other as they prepare to fuck away the rest of their insatiable lust. Your eyes flutter closed as your body asserts its need for rest, lulling you into a dreamless, sticky slumber.\n\n");
 	processTime(20+rand(10));
 	pc.orgasm();
-	if (pc.hasVagina()) pc.loadInCunt(chars["ZIL"], x);
-	else pc.loadInAss(chars["ZIL"]);
-	pc.loadInMouth(chars["ZILFEMALE"]);
+	if (pc.hasVagina()) pc.loadInCunt(enemy, x);
+	else pc.loadInAss(enemy);
+	var ppZilFem:ZilFemale = new ZilFemale();
+	pc.loadInMouth(ppZilFem);
 	processTime(59);
 	CombatManager.genericLoss();
 }
@@ -1357,6 +1359,6 @@ public function useTailOnZilWhenUWin():void
 	pc.orgasm();
 	processTime(85);
 	pc.orgasm();
-	pc.loadInCuntTail(chars["ZIL"]);
+	pc.loadInCuntTail(enemy);
 	CombatManager.genericVictory();
 }

@@ -167,6 +167,7 @@ public function getSuckedOffByACuntSnakeAfterLosing():void {
 	
 	output("\n\nSpent, you relax back as a much thicker snake slides from your member, insolently slithering off of you while it struggles to handle the deposit. Sleep creeps in from the edges of your vision, and after what you’ve been through, you’re in no position to resist a little rest.");
 	processTime(10+rand(5));
+	enemy.loadInMouth(pc);
 	pc.orgasm();
 	processTime(45+rand(35));
 	cuntSnakeLossEpilogueTailChances();
@@ -477,6 +478,7 @@ public function fuckACuntSnake():void {
 	output("\n\n");
 	
 	processTime(15+rand(15));
+	enemy.loadInCuntTail(pc);
 	pc.orgasm();
 	CombatManager.genericVictory();
 }
