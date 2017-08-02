@@ -937,7 +937,13 @@ public function kirosShipPostFirstFuck():void
 
 	if (flags["RESCUE KIRO TOOK PISTOL"] == 1 || flags["RESCUE KIRO TOOK CUTLASS"] == 1)
 	{
-		output("\n\n<i>“You already took your reward from my cabin. If you hadn’t saved my ass, we’d be tangling over that sweet little gun right now,”</i> Kiro boldly answers.");
+		output("\n\n<i>“You already took your reward from my cabin");
+		if (flags["RESCUE KIRO TOOK PISTOL"] == 1 && flags["RESCUE KIRO TOOK CUTLASS"] == 1) output("--both of them even, you greedy klepto!");
+		else output(".");
+		output("  If you hadn’t saved my ass, we’d be tangling over that sweet");
+		if (flags["RESCUE KIRO TOOK PISTOL"] == 1) output(" little gun");
+		else output(" gear");
+		output(" right now,”</i> Kiro boldly answers.");
 	}
 	else
 	{
