@@ -1416,8 +1416,8 @@ public function flyMenu():void
 		else addButton(9,"Gastigoth",flyTo,"Gastigoth");
 	}
 	else addDisabledButton(9,"Locked","Locked","You have not learned of this location’s coordinates yet.");
-	//Breedwell
 	/*
+	//Breedwell
 	if(MailManager.isEntryViewed("breedwell_unlock"))
 	{
 		// PC must not be a taur, infertile or e.g. on Sterilex to choose this option before they’ve been there at all.
@@ -1427,8 +1427,8 @@ public function flyMenu():void
 		else if(pc.isTaur()) addDisabledButton(20, "Breedwell", "Breedwell Centre", "One of the disclaimers from the ad did stick with you: <i>“Tauric beings not supported”</i>. Gobsmacking discrimination, really.");
 		else addButton(20, "Breedwell", flyTo, "Breedwell");
 	}
-	*/
 	else addDisabledButton(24, "Locked", "Locked", "You have not learned of this location’s coordinates yet.");
+	*/
 	//KQ2
 	if (flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_DETAILED"] == undefined)
 	{
