@@ -40,6 +40,7 @@ package classes.Engine.Combat
 		if (attacker.hasPheromones()) bonus += 1;
 		if (teaseType == "SQUIRT") bonus += 2;
 		if (attacker.hasStatusEffect("Sweet Tooth")) bonus += 1;
+		if (attacker.hasStatusEffect("Roehm Slimed")) bonus += attacker.statusEffectv3("Roehm Slimed");
 		
 		var sweatyBonus:int = 0;
 		if(attacker.hasStatusEffect("Sweaty") && target.hasPerk("Likes_Sweaty")) 
