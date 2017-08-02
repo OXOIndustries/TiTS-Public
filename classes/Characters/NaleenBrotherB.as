@@ -245,11 +245,11 @@
 		//Rend
 		public function naleenRendoPotato(target:Creature):void
 		{
-			output("<i>“Bleed.”</i> The other naleen swipes at you with his claws!");
+			output("<i>“Bleed.”</i> The other naleen swipes at " + target.getCombatName() + " with his claws!");
 			if(combatMiss(this, target)) 
 			{
 				if(target is PlayerCharacter) output(" You duck out of the way!");
-				else output(target.short + " ducks out of the way.");
+				else output(target.getCombatName() + " ducks out of the way.");
 			}
 			//75% damage on hit, +rending status
 			else
@@ -266,7 +266,7 @@
 		private function naleenDoubleAttack(target:Creature):void
 		{
 			author("Savin");
-			output("The naleen surges forward, lunging at you and swinging his razor-sharp claws right at your throat!\n");
+			output("The naleen surges forward, lunging at " + (target is PlayerCharacter ? "you" : "Azra") + " and swinging his razor-sharp claws right at your throat!\n");
 			CombatAttacks.SingleMeleeAttackImpl(this, target, true);
 			output("\n");
 			CombatAttacks.SingleMeleeAttackImpl(this, target, true);
@@ -275,17 +275,23 @@
 		public function naleenTailTrip(target:Creature):void
 		{
 			var damage:TypeCollection = meleeDamage();
-			output("<i>“You should be on the ground. Let me help you.”</i> The second naleen pivots his tail to slap at your [pc.feet].");
-			if(this.physique()/2 + rand(20) + 5 < target.reflexes()/2 + 10) output(" You hop over it!");
+			output("<i>“You should be on the ground. Let me help you.”</i> The second naleen pivots his tail to slap at " + (target is PlayerCharacter ? "your [pc.feet]" : "Azra’s feet") + ".");
+			if(this.physique()/2 + rand(20) + 5 < target.reflexes()/2 + 10)
+			{
+				if(target is PlayerCharacter) output(" You hop over it!");
+				else output(" Azra dodges the attack!");
+			}
 			else if(this.physique()/2 + rand(20) + 5 < target.physique()/2 + 10)
 			{
-				output(" It smacks off your [pc.leg]. It hurts, but you’re not going down that easy.");
+				if(target is PlayerCharacter) output(" It smacks off your [pc.leg]. It hurts, but you’re not going down that easy.");
+				else output(" It strikes Azra’s leg, but to little effect.");
 				damage.multiply(0.40);
 				applyDamage(damageRand(damage, 15), this, target);
 			}
 			else
 			{
-				output(" The world spins 90 degrees as <b>you’re tripped</b>! Ouch!");
+				if(target is PlayerCharacter) output(" The world spins 90 degrees as <b>you’re tripped</b>! Ouch!");
+				else output(" Losing her footing, she falls to the floor--<b>Azra is tripped</b>!");
 				//40% melee damage.
 				damage.multiply(0.40);
 				applyDamage(damageRand(damage, 15), this, target);

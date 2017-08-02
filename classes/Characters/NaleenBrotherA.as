@@ -313,9 +313,10 @@
 		{
 			if(!target.hasStatusEffect("Naleen Coiled"))
 			{
-				output("The grinning naleen lunges at you, but you nimbly dodge the attack. However, before you can blink, you feel his leathery scales coursing across your body as he circles around you, squeezing tight! Your breath is knocked away, and in a moment you’re seeing stars!");
+				if(target is PlayerCharacter) output("The grinning naleen lunges at you, but you nimbly dodge the attack. However, before you can blink, you feel his leathery scales coursing across your body as he circles around you, squeezing tight! Your breath is knocked away, and in a moment you’re seeing stars!");
+				else 
 				
-				target.createStatusEffect("Naleen Coiled",0,0,0,0,false,"Constrict","You’re trapped in the naleen’s coils!",true,0);
+				target.createStatusEffect("Naleen Coiled",0,0,0,0,false,"Constrict",(target is PlayerCharacter ? "You’re trapped in the naleen’s coils!" : "Trapped in the naleen’s coils!"),true,0);(target is PlayerCharacter ? "" : "")
 			}
 			
 			var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: 5 + rand(5) } ), 15);
@@ -323,13 +324,13 @@
 			
 			if (damageResult.shieldDamage > 0)
 			{
-				if (damageResult.hpDamage == 0) output(" Your shield crackles but holds. ");
-				else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. ");
+				if (damageResult.hpDamage == 0) output(" " + (target is PlayerCharacter ? "Your" : "Azra’s") + " shield crackles but holds. ");
+				else output(" There is a concussive boom and tingling aftershock of energy as " + (target is PlayerCharacter ? "your" : "Azra’s") + " shield is breached. ");
 			}
 			
 			if (damageResult.hpDamage > 0)
 			{
-				if (damageResult.shieldDamage == 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you’re seeing stars! ");
+				if (damageResult.shieldDamage == 0) output(" " + (target is PlayerCharacter ? "Your breath is taken away by a brutal squeezes, and in a moment you’re seeing stars!" : "Azra tries to catch her breath as the naleen brutally squeezes her!") + " ");
 			}
 			outputDamage(damageResult);
 		}
@@ -337,19 +338,30 @@
 		private function biteAttackDudeleen(target:Creature):void
 		{
 			author("Savin");
-			output("The coils tighten ever so slightly, further immobilising you. With a knowing grin, the naleen exposes his fangs and ");
-			if(!target.isChestGarbed()) output("bites the exposed skin near your shoulder");
-			else output("bites, punching through a thin spot in your [pc.upperGarment]");
-			output(". You yell as you feel his venom pumping into your bloodstream. Ceasing your struggle momentarily, your thoughts become hazy and your movements sluggish; suddenly the idea of surrendering to this powerful male’s coils doesn’t sound like such a bad idea....");
+			if(target is PlayerCharacter)
+			{
+				output("The coils tighten ever so slightly, further immobilizing you. With a knowing grin, the naleen exposes his fangs and ");
+				if(!target.isChestGarbed()) output("bites the exposed skin near your shoulder");
+				else output("bites, punching through a thin spot in your [pc.upperGarment]");
+				output(". You yell as you feel his venom pumping into your bloodstream. Ceasing your struggle momentarily, your thoughts become hazy and your movements sluggish; suddenly the idea of surrendering to this powerful male’s coils doesn’t sound like such a bad idea....");
+			}
+			else
+			{
+				output("The coils tighten ever so slightly, further immobilizing Azra. With a knowing grin, the naleen exposes his fangs and bites, punching through a thin spot in her armor. She yells as his venom pumps into her bloodstream. Her thoughts become hazy and movements sluggish - this is not good....");
+			}
 			//Effect: Moderate Speed/Dex/Whatever drain. If reduced to 0, auto lose (as if by lust).
-			if(!target.hasStatusEffect("Naleen Venom")) target.createStatusEffect("Naleen Venom",0,0,0,0,false,"Poison","This venom reduces strength, aim, reflexes, and willpower! If you take in too much of it while fighting a naleen, you’ll lose!",false,10,0xFF0000);
+			if(!target.hasStatusEffect("Naleen Venom")) target.createStatusEffect("Naleen Venom",0,0,0,0,false,"Poison","This venom reduces strength, aim, reflexes, and willpower! " + (target is PlayerCharacter ? "If you take in too much of it while fighting a naleen, you’ll lose" : "Taking too much of it while fighting may be crippling") + "!",false,10,0xFF0000);
 			target.physiqueMod -= .5;
 			target.aimMod -= .5;
 			target.willpowerMod -= .5;
 			target.reflexesMod -= .5;
 			target.addStatusValue("Naleen Venom",1,.5);
 			target.lust(10+rand(10));
-			if(target.lust() >= target.lustMax() || ((target.physique() == 0 || target.willpower() == 0) && target.hasStatusEffect("Naleen Venom"))) output("\n\n<b>You’re too doped up to care anymore. You give in.</b>");
+			if(target.lust() >= target.lustMax() || ((target.physique() == 0 || target.willpower() == 0) && target.hasStatusEffect("Naleen Venom")))
+			{
+				if(target is PlayerCharacter) output("\n\n<b>You’re too doped up to care anymore. You give in.</b>");
+				else output("\n\n<b>Azra is to intoxicated to fight back.</b>");
+			}
 		}
 		//Charge musk
 		public function chargeMuskAttack(target:Creature):void

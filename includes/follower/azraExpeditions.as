@@ -55,13 +55,13 @@ public function azraExpeditionStartup():void
 		output("<i>“Need help gathering samples?”</i> you say.");
 		output("\n\n<i>“Seriously?”</i> Azra places her palm on her armored hip. <i>“You’re not pulling my wings?”</i>");
 		//Misch
-		if(pc.isMischievous()) output("\n\nYou grab hold of one and give it a little tug. <i>“Well now I am now, but not about this.”</i>");
+		if(pc.isMischievous()) output("\n\nYou grab hold of one and give it a little tug. <i>“Well now I am, but not about this.”</i>");
 		//Bimbo
 		else if(pc.isBimbo()) output("\n\n<i>“Nopitty nope nope!”</i>");
 		//Else
 		else output("\n\n<i>“Of course not.”</i>");
 		//Merge
-		output("\n\nAzra’s ink-black lips curl in a slight smile. <i>“Then I should prepare a plan before begin. Allow me a few seconds to search my database. I’ve flagged thousands of potential reports of unique species on Rush worlds for further investigation.”</i> She picks up her codex and rapidly taps on the screen. <i>“");
+		output("\n\nAzra’s ink-black lips curl in a slight smile. <i>“Then I should prepare a plan before we begin. Allow me a few seconds to search my database. I’ve flagged thousands of potential reports of unique species on Rush worlds for further investigation.”</i> She picks up her codex and rapidly taps on the screen. <i>“");
 
 		output("Ah yes... this one could be fun for both of us. Ready to get the ball rolling?");
 		output("”</i>");
@@ -179,7 +179,11 @@ public function movingOnOutToMhengaExp():void
 	output("\n\n<i>“What an inhospitable planet. I can’t believe anyone actually lives here, interesting flora or not!”</i>");
 	output("\n\nYou shrug and do your best to keep your eyes open and alert. No journey through Mhen’ga is likely to end without at least one hostile encounter, and this one is no exception.");
 	output("\n\nTwo figures slither out of bioluminescent bushes with nary a sound, one to each side of your small party.");
-	if(CodexManager.hasUnlockedEntry("Naleen")) output("\n\nYour Codex pings, <i>“Warning, Naleen detected. These snake-like felines should be avoided if possible. Beware their venom.”</i>");
+	if(!CodexManager.hasUnlockedEntry("Naleen"))
+	{
+		output("\n\nYour Codex pings, <i>“Warning, Naleen detected. These snake-like felines should be avoided if possible. Beware their venom.”</i>");
+		CodexManager.unlockEntry("Naleen");
+	}
 	else output("\n\nThey’re naleen!");
 	output("\n\n<i>“Oh brother... look what we have here,”</i> the leftmost one says, cat-like ears flicking playfully.");
 	output("\n\nThe other’s ears go flat as he bares his fangs. <i>“A metal fish and foolish sky-creature, lost in the woods.”</i>");

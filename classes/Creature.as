@@ -4448,7 +4448,7 @@
 		}
 		public function willpowerMax(): Number {
 			var bonuses:int = 0;
-			if(hasPerk("Iron Will")) bonuses += Math.floor(physiqueMax()/5);
+			//if(hasPerk("Iron Will")) bonuses += Math.floor(physiqueMax()/5);
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
 			return ((level * 5) + bonuses);
 		}
@@ -4465,6 +4465,7 @@
 			if(perkv1("Flower Power") > 0) bonus += perkv3("Flower Power");
 			// Slave collar increases minimum by set level.
 			if(hasStatusEffect("Psi Slave Collar")) bonus += statusEffectv3("Psi Slave Collar");
+			if(hasStatusEffect("Roehm Slimed")) bonus += statusEffectv1("Roehm Slimed");
 			return (0 + bonus);
 		}
 		public function slowStatLoss(stat:String, arg:Number = 0):Number
@@ -4897,6 +4898,7 @@
 			if (hasStatusEffect("Resolve")) temp += 50;
 			if (hasStatusEffect("Spear Wall")) temp += 50;
 			if (hasStatusEffect("Leech Empowerment")) temp += 50;
+			if (hasStatusEffect("Roehm Slimed")) temp += statusEffectv2("Roehm Slimed");
 			temp += statusEffectv2("Water Veil");
 			temp += statusEffectv2("Deep Freeze");
 			temp += statusEffectv1("Evasion Boost");
@@ -16673,8 +16675,8 @@
 		public function virility(arg:Number = 0):Number
 		{
 			return cumQuality(arg);
-			}
-			
+		}
+		
 		public var pregnancyIncubationBonusFatherRaw:Number = 1;
 		public var pregnancyIncubationBonusFatherMod:Number = 0;
 		public function pregnancyIncubationBonusFather():Number
