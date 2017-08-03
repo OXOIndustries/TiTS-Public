@@ -27,7 +27,7 @@ public function breedwellTryUnlock():void
 {
 	if(MailManager.isEntryUnlocked("breedwell_unlock")) return;
 	
-	if(CodexManager.entryViewed("Rahn") && (ChildManager.numChildrenAtNursery() >= 2 || StatTracking.getStat("milkers/prostate milker uses") >= 500000 || StatTracking.getStat("milkers/cum jarred") >= 500000))
+	if(CodexManager.entryViewed("Rahn") && (ChildManager.numChildrenAtNursery() >= 2 || StatTracking.getStat("milkers/cum milked") >= 500000 || StatTracking.getStat("milkers/cum jarred") >= 500000))
 	{
 		goMailGet("breedwell_unlock");
 	}
@@ -65,11 +65,12 @@ public function flyToBreedwellIntro(page:int = 0):void
 	switch(page)
 	{
 		case 0:
-			showName("\nTRAVELING...");
 			shipLocation = "BREEDWELL_SPACE";
 			currentLocation = "BREEDWELL_SPACE";
 			generateMap();
+			showLocationName();
 			clearBust();
+			showName("\nTRAVELING...");
 			
 			output("A breeding center for rahn, that has reached out to you and your loins specifically? You’d suspect so honeyed a temptation to be a trap, but a quick internet search does confirm the existence of a private Tamani/U.G.C. co-owned installation in the system the coordinates in the ad pointed you towards. You tap them into your nav computer, and are soon on your way to the nearest warp gate.");
 			output("\n\nWistral is way out on the frontier, a red giant which glowers a vast, weary welcome to you as you emerge in its system. No living creature has ever looked up from its complement of planets and moons and called it home - but the small fleet of ships hanging over Planet No. 5 is looking to change that. You have to assume the conditions there must be <i>almost</i> right, or there is something very precious down on that brown, hazy surface, to make it worth those arrays of solar mirrors and cloud seeders that you can see on your monitors. Terraforming is not cheap.");
@@ -80,12 +81,13 @@ public function flyToBreedwellIntro(page:int = 0):void
 			addButton(0, "Next", flyToBreedwellIntro, 1);
 			break;
 		case 1:
-			showName("WELCOME TO\nBREEDWELL");
 			// Move PC to Breedwell Hangar
 			shipLocation = "BREEDWELL_HANGAR";
 			currentLocation = "BREEDWELL_HANGAR";
 			generateMap();
+			showLocationName();
 			showBust("FUURAHN_NURSE");
+			showName("WELCOME TO\nBREEDWELL");
 			
 			output("You land and alight in the airy hangar, and are immediately greeted by a bubbly fuu’rahn in a tight-fitting nurse outfit.");
 			output("\n\n<i>“Hello, and welcome to Breedwell!”</i> she trills. <i>“Thank you so much for traveling out here to lend yourself to the great effort! If you just head up to reception that way and say hi to Quaelle at the desk, she’ll sort you out with where you need to go, and any questions you might have. Um, word of warning though - I’d loosen your clothing a li’l bit before entering reception. Ok bye now!”</i> She hurries off to another passenger ship that’s just landed.");
@@ -197,13 +199,15 @@ public function breedwellLoungeBonus():Boolean
 	}
 	output("\n\nThrough a one-way window you can see the other half, the rahn patron area, a plush and well-furnished lounge. There are great gaggles of the colorful gel women in there, chatting amongst themselves, relaxing around tables and enjoying glasses of sparkling alcohol and goopy cum, brought to them by floating cater droids. Ubiquitous are the station’s tablet catalogues: the well-to-do rahn flick through them, giggling and leaning into each other, as they weigh up which of the currently available surrogates they want to have a session with.");
 	// PC is Premium standard:
-	if(flags["BREEDWELL_PREMIUM_BREEDER"] != undefined) output(" You can see your face and blurb prominent in the Premium section of the catalogues being bandied around closer to you, but your picture is currently darkened. There seems to be some disappointment about this.");
+	if(flags["BREEDWELL_STATUS_BREEDER"] >= 2) output(" You can see your face and blurb prominent in the Premium section of the catalogues being bandied around closer to you, but your picture is currently darkened. There seems to be some disappointment about this.");
 	output("\n\nAcross the room from them are the doors which lead to the mating pods. Even as you watch, a numbered light appears above one, a rahn quickly strides over to it, and disappears inside.");
 	
 	// [Pod]
 	if(flags["BREEDWELL_STATUS_BREEDER"] == undefined) addDisabledButton(0, "Pod", "Pod", "You are not familiar with this yet. You probably need to be properly introduced before using it.");
 	else if(!pc.hasVagina()) addDisabledButton(0, "Pod", "Pod", "You require a vagina to try this.");
-	else if(pc.isFullyWombPregnant()) addDisabledButton(0, "Pod", "Pod", "You’re already too stuffed to do this.");
+	else if(ChildManager.numChildrenAtNursery() < 2) addDisabledButton(0, "Pod", "Pod", "Making babies? You don’t think you’re not exprienced enough to try this...");
+	else if(pc.isFullyWombPregnant() && !pc.hasPregnancyOfType("RahnPregnancy") && !pc.hasPregnancyOfType("RahnPregnancyBreedwell")) addDisabledButton(0, "Pod", "Pod", "You’re already too stuffed to do this.");
+	else if(pc.fertility() <= 0) addDisabledButton(0, "Pod", "Pod", "You’re not fertile enough to do this.");
 	else addButton(0, "Pod", breedwellApproachPod, undefined, "Pod", "Harness yourself up and get ready for a breeding.");
 	
 	return false;
@@ -219,18 +223,81 @@ public function breedwellDonationBonus():Boolean
 	output("\n\nAt the far eastern end is a row of innocuous, identical doors, leading to the extractor cubicles. Looming over and tubed up to them are vast glass cylinders, containers for the produce that will be siphoned off for the rahn’s use.");
 	
 	// [Cubicle]
-	addButton(0, "Cubicle", mainGameMenu);
+	if(flags["BREEDWELL_STATUS_DONATOR"] == undefined) addDisabledButton(0, "Cubicle", "Cockmilker", "You are not familiar with this yet. You probably need to be properly introduced before using it.");
+	else if(!pc.hasCock()) addDisabledButton(0, "Cubicle", "Cockmilker", "You require a penis to try this.");
+	else if(StatTracking.getStat("milkers/cum milked") < 500000 && StatTracking.getStat("milkers/cum jarred") < 500000) addDisabledButton(0, "Cubicle", "Cockmilker", "Milking your semen? You don’t think you’re not exprienced enough to try this...");
+	else if(pc.virility() <= 0) addDisabledButton(0, "Cubicle", "Cockmilker", "You’re not virile enough to do this.");
+	else addButton(0, "Cubicle", breedwellApproachCockmilker, undefined, "Cockmilker", "Donate some sperm.");
 	
 	return false;
 }
 
-// [Quaelle]
+// Quaelle functions
 public function showQuaelle(nude:Boolean = false):void
 {
-	if(!nude) showBust("QUAELLE");
-	else showBust("QUAELLE_NUDE");
+	var sBust:String = "QUAELLE";
+	if(quelleBellyRatingFront() >= 30) sBust += "_F1";
+	else if(quelleBellyRatingFront() >= 50) sBust += "_F2";
+	if(quelleBellyRatingBack() >= 30) sBust += "_B1";
+	else if(quelleBellyRatingBack() >= 50) sBust += "_B2";
+	if(nude) sBust += "_NUDE";
 	showName("\nQUAELLE");
 }
+public function quelleIsLover():Boolean
+{
+	// 9999
+	return false;
+}
+public function quelleIsPregnant():Boolean
+{
+	return (flags["QUAELLE_INCUBATION_TIMER_F"] == undefined || flags["QUAELLE_INCUBATION_TIMER_B"] == undefined);
+}
+public function quelleIncubationDays():Number
+{
+	// Total days she is preggo for.
+	// She gives birth the day after.
+	return 90;
+}
+public function quelleBellyRatingFront():Number
+{
+	if(flags["QUAELLE_INCUBATION_TIMER_F"] == undefined || flags["QUAELLE_INCUBATION_TIMER_F"] > quelleIncubationDays()) return 0;
+	return (Math.round((flags["QUAELLE_INCUBATION_TIMER_F"] / quelleIncubationDays()) * 100));
+}
+public function quelleBellyRatingBack():Number
+{
+	if(flags["QUAELLE_INCUBATION_TIMER_B"] == undefined || flags["QUAELLE_INCUBATION_TIMER_B"] > quelleIncubationDays()) return 0;
+	return (Math.round((flags["QUAELLE_INCUBATION_TIMER_B"] / quelleIncubationDays()) * 100));
+}
+public function quelleIsImmobile():Boolean
+{
+	return (quelleBellyRatingFront() >= 50 && quelleBellyRatingBack() >= 50);
+}
+public function processQuaellePregEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
+{
+	if(flags["QUAELLE_INCUBATION_TIMER_F"] != undefined) flags["QUAELLE_INCUBATION_TIMER_F"] += totalDays;
+	if(flags["QUAELLE_INCUBATION_TIMER_B"] != undefined) flags["QUAELLE_INCUBATION_TIMER_B"] += totalDays;
+}
+public function knockUpQuaelleChance(vIdx:int = 0):void
+{
+	var bonusChance:int = pc.cumQ()/ 50 + 10;
+	if(bonusChance > 25) bonusChance = 25;
+	bonusChance *= pc.virility();
+	if(bonusChance > 75) bonusChance = 75;
+
+	if(rand(100) + 1 <= bonusChance)
+	{
+		if(vIdx == 0) flags["QUAELLE_INCUBATION_TIMER_F"] = 0;
+		if(vIdx == 1) flags["QUAELLE_INCUBATION_TIMER_B"] = 0;
+		pc.clearRut();
+	}
+}
+public function quaelleCleanupPregnancy(pregSlot:int = 0):void
+{
+	if(pregSlot == 0) flags["QUAELLE_INCUBATION_TIMER_F"] = undefined;
+	if(pregSlot == 1) flags["QUAELLE_INCUBATION_TIMER_B"] = undefined;
+}
+
+// [Quaelle]
 public function approachQuaelle():void
 {
 	clearOutput();
@@ -238,7 +305,7 @@ public function approachQuaelle():void
 	author("Nonesuch");
 	
 	// !Lover:
-	if(flags["QUAELLE_SEXED"] == undefined) output("<i>“Trembulent Steele!”</i> The roehm turning and smiling at you is like watching the sun come up, and takes roughly as long. <i>“How wonderful to see you back at Breedwell. Is there anything you need, or wanted to ask?”</i>");
+	if(quelleIsLover()) output("<i>“Trembulent Steele!”</i> The roehm turning and smiling at you is like watching the sun come up, and takes roughly as long. <i>“How wonderful to see you back at Breedwell. Is there anything you need, or wanted to ask?”</i>");
 	// Lover:
 	else output("<i>“Efficervescent Steele.”</i> The roehm had begun freezing programs and shooing her aides away the moment you stepped into reception, so by the time you approach her the two of you are relatively alone. She smiles at you without saying a word, hands clasped and cilia waving towards you, apparently happy to just sit and drink you in.");
 	
@@ -251,10 +318,7 @@ public function quaelleMainMenu(fromIntro:Boolean = false):void
 	if(!breedwellInductionCheck()) addButton(0, "Induction", ((flags["BREEDWELL_STATUS_BREEDER"] == undefined && flags["BREEDWELL_STATUS_DONATOR"] == undefined) ? breedwellInductionRouter : breedwellInductionUpdate), undefined, "Induction", "Get the low-down on what this job offer really is.");
 	addButton(1, "Talk", quaelleTalk);
 	if(flags["QUAELLE_HUGGED"] != undefined) addButton(2, "Hug", quaelleGetAHug);
-	if(flags["BREEDWELL_STATUS_BREEDER"] != undefined || flags["BREEDWELL_STATUS_DONATOR"] != undefined)
-	{
-		addButton(3, "Sex", mainGameMenu, undefined, "Sex", "");
-	}
+	if(9999 == 0) addButton(3, "Sex", mainGameMenu, undefined, "Sex", "");
 	addButton(5, "Appearance", quaelleAppearance);
 	
 	if(!fromIntro) addButton(14, "Leave", mainGameMenu);
@@ -269,35 +333,35 @@ public function quaelleAppearance():void
 	output("The roehm matron of Breedwell Incubation Centre is about 9\' 10\" from conch-hatted head to blunt-tipped tail, but half of that is horizontal. With its soft, moist epidermis and brilliant orange spots, her great, thick, yellow, lozenge of a lower body is reminiscent of nothing so much as the body of a giant sea slug. When she moves she does so with a kind of glacial grace, slowly undulating to where she needs to be, abetted by a thin trail of slime which quickly dries behind her, more like sweat than mucus. It’s rather relaxing to watch, but it must be agonizing to work with her. Still, surrounded by monitors and rahn aides, the roehm is in reach of pretty much everything she needs in order to be the nerve center of BIC.");
 	output("\n\nThe upper half of Quaelle rears up to about 6\' 6\", and is slightly less alien to your own sensibilities, as in general terms it’s that of a plump, pear-shaped human. If humans had wet, hairless yellow skin and no ears, anyway. The wide, FF breasts shaping and straining her waterproof brown dress and lab overcoat, though - those you understand. As you do the pleasant, flat-nosed face, with its full, glistening golden lips. The roehm’s eyes are arresting: double conjoined pupils, frog-like in iridescent blue irises, tar-black figures of eight floating in an alien swamp. Upon her brow and below her conch hat her cilia antennae climb, tipped blue like her eyes, constantly craning and waving this way and that. Her arms are ringed with charm bracelets, crude and colorful. The overall impression is that of a friendly, voluptuous infant school teacher who also happens to be a slug.");
 	// is Preggers
-	if(9999 == 9999)
+	if(quelleIsPregnant())
 	{
 		// Front only
-		if(9999 >= 10 && 9999 < 10)
+		if(quelleBellyRatingFront() >= 10 && quelleBellyRatingBack() < 10)
 		{
 			// Lightly pregnant, front only:
-			if(9999 < 30) output("\n\nShe looks a tad swollen around the front.");
+			if(quelleBellyRatingFront() < 30) output("\n\nShe looks a tad swollen around the front.");
 			// Moderately pregnant, front only:
-			else if(9999 < 50) output("\n\nShe’s got an undeniable baby belly now, stretching the front of her dress. It’s carried easily by a frame all but meant to bear kids.");
+			else if(quelleBellyRatingFront() < 50) output("\n\nShe’s got an undeniable baby belly now, stretching the front of her dress. It’s carried easily by a frame all but meant to bear kids.");
 			// Heavily pregnant, front only:
 			else output("\n\nShe is flush and ripe with her pregnancy now, belly massively protuberant, her swollen breasts resting on top of it. If you thought Quaelle was complacent and serene before, it’s nothing on the place she’s at now; she looks like she’s simmering in some unknowable peace, seemingly set to slow motion in comparison to everyone around her.");
 		}
 		// Back only
-		else if(9999 >= 10 && 9999 < 10)
+		else if(quelleBellyRatingBack() >= 10 && quelleBellyRatingFront() < 10)
 		{
 			// Lightly pregnant, back only:
-			if(9999 < 30) output("\n\nIs her uniped base slightly more rounded than it was before?");
+			if(quelleBellyRatingBack() < 30) output("\n\nIs her uniped base slightly more rounded than it was before?");
 			// Moderately pregnant, back only:
-			else if(9999 < 50) output("\n\nHer gastropod end is definitely swollen with pregnancy now, the flesh around her end tautening nicely. She moves around with more care, being careful not to bump it into furniture.");
+			else if(quelleBellyRatingBack() < 50) output("\n\nHer gastropod end is definitely swollen with pregnancy now, the flesh around her end tautening nicely. She moves around with more care, being careful not to bump it into furniture.");
 			// Heavily pregnant, back only:
 			else output("\n\nHer gastropod end is heavily pregnant now, orange spots taut with the bellyful of life she’s carrying. If you thought Quaelle was complacent and serene before, it’s nothing on where she is now; she looks like she’s simmering in some unknowable peace, seemingly set to slow motion in comparison to everyone around her.");
 		}
 		// Both
-		else if(9999 >= 10 && 9999 >= 10)
+		else if(quelleBellyRatingFront() >= 10 && quelleBellyRatingBack() >= 10)
 		{
 			// Front pregnant light, back pregnant light-moderate:
-			if(9999 < 30) output("\n\nShe looks a tad swollen, both around the front and around her tail.");
+			if(quelleBellyRatingFront() < 30 && quelleBellyRatingBack() < 30) output("\n\nShe looks a tad swollen, both around the front and around her tail.");
 			// Front pregnant moderate, back pregnant light-moderate:
-			else if(9999 < 50) output("\n\nShe’s got an undeniable baby belly now, stretching the front of her dress. Not only that, her thick back quarters also look swollen, taut and gravid.");
+			else output("\n\nShe’s got an undeniable baby belly now, stretching the front of her dress. Not only that, her thick back quarters also look swollen, taut and gravid.");
 		}
 	}
 	// PC has fugged her:
@@ -309,17 +373,24 @@ public function quaelleAppearance():void
 // [Induction]
 public function breedwellInductionCheck():Boolean
 {
-	if(pc.isFemale() && flags["BREEDWELL_STATUS_BREEDER"] != undefined) return true;
-	if(pc.isMale() && flags["BREEDWELL_STATUS_DONATOR"] != undefined) return true;
-	if(pc.isHerm() && flags["BREEDWELL_STATUS_DONATOR"] != undefined && flags["BREEDWELL_STATUS_BREEDER"] != undefined) return true;
+	if(pc.isFemale() && ChildManager.numChildrenAtNursery() >= 2 && flags["BREEDWELL_STATUS_BREEDER"] != undefined) return true;
+	if(pc.isMale() && (StatTracking.getStat("milkers/cum milked") >= 500000 || StatTracking.getStat("milkers/cum jarred") >= 500000) && flags["BREEDWELL_STATUS_DONATOR"] != undefined) return true;
+	if(pc.isHerm() && ChildManager.numChildrenAtNursery() >= 2 && (StatTracking.getStat("milkers/cum milked") >= 500000 || StatTracking.getStat("milkers/cum jarred") >= 500000) && flags["BREEDWELL_STATUS_BREEDER"] != undefined && flags["BREEDWELL_STATUS_DONATOR"] != undefined) return true;
 	
 	return false;
 }
 public function breedwellInductionRouter():void
 {
-	if(pc.isFemale()) breedwellInduction("female");
-	else if(pc.isMale()) breedwellInduction("male");
-	else breedwellInduction("herm");
+	if(pc.isHerm() && ChildManager.numChildrenAtNursery() >= 2 && (StatTracking.getStat("milkers/cum milked") >= 500000 || StatTracking.getStat("milkers/cum jarred") >= 500000)) breedwellInduction("herm");
+	else if((pc.isHerm() || pc.isFemale()) && ChildManager.numChildrenAtNursery() >= 2) breedwellInduction("female");
+	else if((pc.isHerm() || pc.isMale()) && (StatTracking.getStat("milkers/cum milked") >= 500000 || StatTracking.getStat("milkers/cum jarred") >= 500000)) breedwellInduction("male");
+	else
+	{
+		clearOutput();
+		output("Error: None of the conditions match!");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
 }
 public function breedwellInductionUpdate(update:Boolean = false):void
 {
@@ -332,7 +403,7 @@ public function breedwellInductionUpdate(update:Boolean = false):void
 	
 	// Carries on from whichever induction scene PC has not taken
 	clearMenu();
-	if(pc.isHerm())
+	if(pc.isHerm() && ChildManager.numChildrenAtNursery() >= 2 && (StatTracking.getStat("milkers/cum milked") >= 500000 || StatTracking.getStat("milkers/cum jarred") >= 500000))
 	{
 		if(flags["BREEDWELL_STATUS_BREEDER"] != undefined) addButton(0, "Next", breedwellInduction, "male");
 		else if(flags["BREEDWELL_STATUS_DONATOR"] != undefined) addButton(0, "Next", breedwellInduction, "female");
@@ -351,7 +422,7 @@ public function breedwellInduction(response:String = ""):void
 	{
 		case "female":
 			output("<i>“Let’s go to the pod chambers, shall we?");
-			if(9999 == 9999) output(" That’s where we’ll need a trembulent young " + pc.mf("boylady", "lady") + " such as yourself, after all!");
+			if(!pc.hasPheromones()) output(" That’s where we’ll need a trembulent young " + pc.mf("boylady", "lady") + " such as yourself, after all!");
 			else output(" Those hormones of yours are almost making me dizzy, hmm, goodness me. We could do with suiting you up there straight away!");
 			output("”</i>");
 			output("\n\nQuaelle nestles a touch tablet into her arm and undulates her way from around the counter. The way the roehm moves is slow but rather hypnotic, waves of motions following each other down her great, soft side. She draws you close to her with a friendly touch of the shoulder, and the buttery smell of caramel wafts over you, leaving you feeling... horny? Sweet heat sinks down to [pc.eachVagina] and your [pc.nipples] " + (pc.hasErectNipples() ? "engorge" : "moisten") + " readily.");
@@ -364,7 +435,7 @@ public function breedwellInduction(response:String = ""):void
 			break;
 		case "male":
 			output("<i>“Let’s go to the extraction chambers, shall we?");
-			if(9999 == 9999) output(" That’s where we’ll need a trembulent young " + pc.mf("man", "ladyboy") + " such as yourself, after all!");
+			if(!pc.hasPheromones()) output(" That’s where we’ll need a trembulent young " + pc.mf("man", "ladyboy") + " such as yourself, after all!");
 			else output(" Those hormones of yours are almost making me dizzy, ooh, goodness me. We could do with suiting you up there straight away!");
 			output("”</i>");
 			output("\n\nQuaelle nestles a touch tablet into her arm and undulates her way from around the counter. The way the roehm moves is slow but rather hypnotic, waves of motion following each other down her great, soft side, gradually sliding her slimy bulk forward. She draws you close to her with a friendly touch of the shoulder, and the buttery smell of caramel wafts over you, leaving you feeling... horny? Sweet heat sinks down to [pc.eachCock] and your [pc.nipples] " + (pc.hasErectNipples() ? "engorge" : "moisten") + " readily.");
@@ -515,7 +586,7 @@ public function breedwellInduction(response:String = ""):void
 			output("So basically this gig is a much-improved experience to the one you’ve been treating yourself to on New Texas? Gee, what a difficult decision this is. Quaelle’s peaceful expression broadens into a tropical summer of a smile as you scribble your signature below the stipulations.");
 			output("\n\n<i>“Excellent. Oh, I’m so pleased, vibrant, vacillicious Steele! That sets you up as a donor.");
 			if(!pc.hasVagina()) output(" And a beginner surrogate, should you grow the equipment needed for that!");
-			output(" You may come and use the extractors once per day, and will receive your payment then. That’s to stop the kui-tan going crazy with them. " + (9999 == 0 ? "We know what you’re like!" : "You know what they’re like!") + "”</i>");
+			output(" You may come and use the extractors once per day, and will receive your payment then. That’s to stop the kui-tan going crazy with them. " + (pc.raceShort() == "kui-tan" ? "We know what you’re like!" : "You know what they’re like!") + "”</i>");
 			output("\n\nThe roehm sighs happily, double pupils orbiting back to her monitors.");
 			output("\n\n<i>“Now then. Would you like to sit and chat some more? I imagine you’re dying to get into a cubicle, though. I hope you are, anyway!”</i>");
 			processTime(2);
@@ -681,6 +752,73 @@ public function quaelleGetAHug():void
 	addButton(0, "Next", quaelleMainMenu);
 }
 
+// Create Rahn
+public function getBreedwellRahnPregContainer(rahnType:int = 0):PregnancyPlaceholder
+{
+	var ppRahn:PregnancyPlaceholder = new PregnancyPlaceholder();
+	
+	ppRahn.removeCocks();
+	switch(rahnType)
+	{
+		case 1:
+			ppRahn.originalRace = "zel'rahn";
+			ppRahn.skinTone = "red";
+			ppRahn.createCock(6, 1);
+			ppRahn.shiftCock(0, GLOBAL.TYPE_INHUMAN);
+			ppRahn.cocks[0].addFlag(GLOBAL.FLAG_BLUNT);
+			ppRahn.cocks[0].addFlag(GLOBAL.FLAG_NUBBY);
+			break;
+		case 2:
+			ppRahn.originalRace = "loo'rahn";
+			ppRahn.skinTone = "amber";
+			ppRahn.createCock(5.5, 1.75);
+			ppRahn.shiftCock(0, GLOBAL.TYPE_INHUMAN);
+			break;
+		case 3:
+			ppRahn.originalRace = "go'rahn";
+			ppRahn.skinTone = "white";
+			ppRahn.createCock(8, 0.75);
+			ppRahn.shiftCock(0, GLOBAL.TYPE_INHUMAN);
+			break;
+		case 4:
+			ppRahn.originalRace = "doh'rahn";
+			ppRahn.skinTone = "purple";
+			ppRahn.createCock(7, 1.10);
+			ppRahn.shiftCock(0, GLOBAL.TYPE_INHUMAN);
+			break;
+		case 5:
+			ppRahn.originalRace = "fuu'rahn";
+			ppRahn.skinTone = "blue";
+			ppRahn.createCock(6, 1.5);
+			ppRahn.shiftCock(0, GLOBAL.TYPE_CANINE);
+			ppRahn.cocks[0].addFlag(GLOBAL.FLAG_NUBBY);
+			break;
+		case 6:
+			ppRahn.originalRace = "go'rahn";
+			ppRahn.skinTone = "white";
+			ppRahn.createCock(18, 0.5);
+			ppRahn.shiftCock(0, GLOBAL.TYPE_INHUMAN);
+			ppRahn.cocks[0].addFlag(GLOBAL.FLAG_PREHENSILE);
+			break;
+		case 7:
+			ppRahn.originalRace = "fuu'rahn";
+			ppRahn.skinTone = "turquoise";
+			ppRahn.createCock(8, 1.5);
+			ppRahn.shiftCock(0, GLOBAL.TYPE_INHUMAN);
+			ppRahn.cocks[0].addFlag(GLOBAL.FLAG_NUBBY);
+			break;
+	}
+	ppRahn.cocks[0].addFlag(GLOBAL.FLAG_GOOEY);
+	ppRahn.cocks[0].addFlag(GLOBAL.FLAG_LUBRICATED);
+	ppRahn.cocks[0].addFlag(GLOBAL.FLAG_OVIPOSITOR);
+	ppRahn.cocks[0].cockColor = ppRahn.skinTone;
+	ppRahn.cumType = GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO;
+	
+	ppRahn.impregnationType = "RahnPregnancyBreedwell";
+	
+	return ppRahn;
+}
+
 // [Pod]
 // Rahn Breeding Mechanics
 // PC receives 2 rahn eggs per breeding. PC receives 1-5 breedings per session. They obviously cannot use pods if all their wombs are occupado.
@@ -697,602 +835,1030 @@ public function breedwellApproachPod():void
 	clearBust();
 	author("Nonesuch");
 	
-	output("");
+	// Intros
+	// If Lust <31 set to 31, otherwise ++Lust
+	if(pc.lust() < 33) pc.lust(33, true);
+	else pc.lust(15);
 	
-	processTime(1);
+	// First
+	if(flags["BREEDWELL_TIMES_BRED"] == undefined)
+	{
+		output("Well... time to justify flying all the way out here, you guess. You approach one of the backward-facing chairs, one of the ones towards the end of the lounge, so no-one can see you fumbling around. You take off your [pc.gear] - there’s a handy clothing compartment situated next to every pod, that scans your thumbprint and locks away once you’re naked. You sit your bare [pc.butt] down on the padded seat and put your hands on the rests. A helmet-like scanner descends over your head and flickers a light across your eyes.");
+		output("\n\n<i>“Welcome, [pc.name] Steele,”</i> a soothing voice says in your ear. <i>“Please relax as the Tamani Conceptuzal Harness MkV orientates you.”</i> Classical music begins to play as steel bands snap shut around your wrists");
+		if(pc.hasLegs()) output(" and ankles,");
+		else if(pc.isNaga() || pc.isGoo()) output(" and around your " + (pc.isNaga() ? "tail" : "gooey mass") + ",");
+		else output(" and around your lower body,");
+		output(" and the chair moves you backward into the wall, shutting securely in front of you. In the darkness of the cavity the machine spends a moment playing its flickering blue light over you - considering your weight and body type, perhaps - and then it turns you around");
+		if(pc.hasLegs()) output(", pulling your [pc.legs] up and splaying them as it does so");
+		else if(pc.isNaga()) output(", drawing the lower half of your tail to one side as it does");
+		else if(pc.isGoo()) output(", drawing your goo away in clumps");
+		output(". Your hands are fixed out to the side at about head-height, comfortable but immovable.");
+		if(pc.isHerm()) output(" Your seat is craned ever so slightly so that [pc.eachCock] flop" + (pc.cocks.length == 1 ? "s" : "") + " onto your stomach and [pc.eachVagina] " + (pc.vaginas.length == 1 ? "is" : "are") + " made obvious and bare.");
+		output("\n\nThus, with your [pc.chest] and [pc.eachVagina] completely exposed, it opens the wall to your designated cubicle and slides your bound form into the light. It finishes by extending a pheromone pen and giving you a quick spray across the thighs and collarbone. The faintly peachy smell wafts up your nostrils, and heat rises to your [pc.skinFurScales], your " + (pc.vaginas.length == 1 ? "pussy" : "pussies") + " becoming flush and wet with chemical arousal.");
+		output("\n\n<i>“Thank you for choosing the Tamani Conceptuzal Harness, for all your sapient breeding needs,”</i> the voice says sweetly, as the classical music ends. <i>“You are now marked as available, [pc.name]. Remember: good breeders take it with a smile.”</i>");
+		output("\n\nThe helmet retracts, and you’re left on your own in the small, sparsely furnished cubicle, to gaze at the door opposite and wait.");
+		output("\n\nYou’re not made to wait particularly long, though.");
+		
+		processTime(14);
+	}
+	// Repeat non-premium
+	else if(flags["BREEDWELL_STATUS_BREEDER"] < 2)
+	{
+		output("The process is slightly unnerving, but you’re used to it now. And - quietly - you’re rather beginning to enjoy it. You pack your [pc.gear] away in the thumbprint locker and sit your bare [pc.butt] down on a chair. The helmet descends over your eyes.");
+		output("\n\n<i>“Welcome back, [pc.name] Steele,”</i> says the soothing voice. <i>“Please relax as the Tamani Conceptuzal Harness MkV orientates you.”</i> It starts to play a tune similar to the one you had on over the comms system as you made your way towards Wistral as it snaps its steel bands shut around your wrists");
+		if(pc.hasLegs()) output(" and ankles");
+		else if(pc.isNaga()) output(" and tail");
+		else if(pc.isGoo()) output(" and goo");
+		output(", and retracts you into darkness. It only takes a moment to scan you before it turns you around");
+		if(pc.hasLegs()) output(", pulling your [pc.legs] up and splaying them as it does so");
+		else if(pc.isNaga()) output(", drawing the lower half of your tail to one side as it does");
+		else if(pc.isGoo()) output(", drawing your goo away in clumps");
+		output(". Your hands are fixed out to the side at about head-height, comfortable but immovable.");
+		if(pc.isHerm()) output(" Your seat is craned ever so slightly so that [pc.eachCock] flop" + (pc.cocks.length == 1 ? "s" : "") + " onto your stomach and [pc.eachVagina] " + (pc.vaginas.length == 1 ? "is" : "are") + " made obvious and bare.");
+		output("\n\nAnd so, with your [pc.chest] and [pc.eachVagina] completely exposed, it opens the wall to your designated cubicle and slides your bound form into the light. It finishes by extending a pheromone pen and giving you a quick spray across the thighs and collarbone. The faintly peachy smell wafts up your nostrils, and you welcome the heat that rises to your [pc.skinFurScales], your " + (pc.vaginas.length == 1 ? "pussy" : "pussies") + " becoming flush and wet with chemical arousal.");
+		output("\n\n<i>“Thank you for choosing the Tamani Conceptuzal Harness, for all your sapient breeding needs,”</i> the voice says sweetly, as the music ends. <i>“You are now marked as available, [pc.name]. Remember: good breeders take it with a smile.”</i>");
+		output("\n\nThe helmet retracts, and you’re left on your own in the small, sparsely furnished cubicle, to gaze at the door opposite and wait.");
+		output("\n\nYou’re never made to wait particularly long.");
+		
+		processTime(12);
+	}
+	// Premium
+	else
+	{
+		output("9999");
+		output("\n\n");
+		output("\n\n");
+		output("\n\n");
+		output("\n\n");
+		
+		processTime(10);
+	}
 	
+	var sceneList:Array = [];
+	sceneList.push(1);
+	sceneList.push(2);
+	// Cock and/or lactating only 
+	if(pc.hasCock() || pc.isLactating()) sceneList.push(3);
+	sceneList.push(4);
+	sceneList.push(5);
+	sceneList.push(6);
+	sceneList.push(7);
+	
+	var sceneCount:int = 1;
+	// Womb Egg Trainer Level		+1 every second level. e.g. +1 at level 2, +2 at level 4
+	if(flags["EGG_TRAINING"] >= 2) sceneCount++;
+	if(flags["EGG_TRAINING"] >= 4) sceneCount++;
+	// 250%+ Fertility				+1
+	if(pc.fertility() >= 2.50) sceneCount++;
+	// Premium Breeder				+1
+	if(flags["BREEDWELL_STATUS_BREEDER"] >= 2) sceneCount++;
+	
+	clearMenu();
+	addButton(0, "Next", breedwellPodScenes, [sceneList, sceneCount, 0]);
+}
+// Scenes
+public function breedwellPodScenes(arg:Array):void
+{
+	clearOutput();
+	author("Nonesuch");
+	
+	var sceneList:Array = arg[0];
+	var sceneCount:int = arg[1];
+	var numEggs:int = arg[2];
+	var select:int = -1;
+	
+	// Selected at random
+	if(sceneList.length > 0) select = sceneList[rand(sceneList.length)];
+	else
+	{
+		output("ERROR: No scene exists!");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
+	var vIdx:int = -1;
+	var nonPregWombs:Array = [];
+	var i:int = 0; 
+	
+	// Look for empty wombs.
+	for(i = 0; i < pc.vaginas.length; i++)
+	{
+		if(!pc.isPregnant(i)) nonPregWombs.push(i);
+	}
+	if(nonPregWombs.length > 0) vIdx = nonPregWombs[rand(nonPregWombs.length)];
+	if(vIdx < 0)
+	{
+		var rahnWombs:Array = [];
+		// Then look for ongoing rahn pregnancies.
+		for(i = 0; i < pc.vaginas.length; i++)
+		{
+			if(InCollection(pc.pregnancyData[i].pregnancyType, ["RahnPregnancy", "RahnPregnancyBreedwell"])) rahnWombs.push(i);
+		}
+		if(rahnWombs.length > 0) vIdx = rahnWombs[rand(rahnWombs.length)];
+		// Otherwise, just choose a random vagina.
+		if(vIdx < 0) vIdx = rand(pc.vaginas.length);
+	}
+	
+	var ppRahn:PregnancyPlaceholder = getBreedwellRahnPregContainer(select);
+	
+	switch(select)
+	{
+		case 1:
+			showBust("BREEDWELL_ZELRAHN_SPORTY");
+			
+			output("The track-suited zel’rahn who strides in is slim and svelte by rahn standards, and has the confidence and ease about her of someone who’s done this any number of times before.");
+			output("\n\n<i>“Oh hey,”</i> she croons, big grin plastered on her strawberry face, gazing at your helplessly exposed " + (pc.vaginas.length == 1 ? "pussy" : "pussies") + " as she shrugs off her top. <i>“Look at you!”</i> Casually she leans over you and trails her fingers backwards and forwards over your labia, flicking teasingly at your [pc.clit " + vIdx + "] before plunging her digits in deep.");
+			switch(pc.vaginas[vIdx].type)
+			{
+				// Vanae/Gabilani:
+				case GLOBAL.TYPE_VANAE:
+				case GLOBAL.TYPE_GABILANI: output("\n\nThe rahn laughs with delight as you gasp and reactively tighten up, your pussy’s strong, " + (pc.vaginas[vIdx].type == GLOBAL.TYPE_VANAE ? "cilia-lined" : "muscular") + " walls kneading her fingers intently. <i>“What a cockmilker that is! On what world did you get that done, [pc.boy]? You know what, never mind.”</i> She places a warm, gooey hand over your mouth as she impatiently discards her bottoms, stroking her engorged, pointed barb-lined ovipositor with the other. <i>“I don’t wanna know. A bit of mystique makes the fucking better, you know?”</i>"); break;
+				// Mouth:
+				case GLOBAL.TYPE_MOUTHGINA: output("\n\n<i>“Wow,”</i> the rahn says wonderingly, tracing your lip-like labia and running her finger along the [pc.femcum]-sodden tongue. <i>“You know, I heard a couple of my more, um, semen-interested friends went in for this kind of thing. That how it is for you, [pc.boy]? D’you have someone who gives it to you in a doggie bowl every morning?”</i> The prospect seems to arouse her. Impatiently she discards her bottoms, stroking her extended, blunt barb-lined ovipositor. <i>“I’m afraid I don’t have that flavor of fun. But who knows. Maybe I can get you addicted to the taste of this, too...”</i>"); break;
+				// Nyrea:
+				case GLOBAL.TYPE_NYREA: output("\n\n<i>“The... thingy planet! Bugs!”</i> the rahn exclaims, as she traces the inside of your strange, inverted cum-canister, tips pushing against one of your sensitive, swollen pouches. <i>“I’ve read about these! You’ve got a pussy but you’re actually, like, a man-bug aren’t you?”</i> She looks up at you. <i>“" + (pc.isCuntboy() ? "Guess this kind of equipment suits a cuntboy down to the ground, huh?" : "Don’t look much like a man to me, though.") + "”</i> She discards her bottoms, stroking her extended, blunt barb-lined ovipositor as she continues to finger you. <i>“So: Guess I get to be the big, scary girl-bug who stuffs her sissy slave so full of eggs he can barely move, then. That’s cool.”</i>"); break;
+				// Flower:
+				case GLOBAL.TYPE_FLOWER: output("\n\n<i>“Pretty,”</i> she sighs wonderingly, sliding her fingers up your fronds, flicking at your petals and dot-clit, laughing when she makes you twitch and gasp. She extends her long tongue and dips it into your hole, savoring your [pc.girlcumFlavor] with a smack of the lips. <i>“Bet you attract all sorts of fly boys with a flash of that.”</i> She discards her bottoms, stroking her extended, blunt barb-lined ovipositor as she continues to finger you. <i>“This is my hothouse for the next little while though, poppy. You aren’t gonna need much watering once I’m done with you.”</i>"); break;
+				// Otherwise:
+				default: output("\n\n<i>“Aww, how sweet and vanilla!”</i> The rahn laughs as she curls her fingers along your tunnel and you squirm with pleasure " + (!pc.isSquirter() ? "dribbling" : "gushing") + " [pc.femcum]. She sucks her digits clean before going on. <i>“Lost count of how many of these I’ve stuffed full of eggs. And, I mean, I could keep on doing it forever...”</i> She impatiently discards her bottoms, stroking her extended, blunt barb-lined ovipositor as she firmly slots two of her fingers back into your [pc.vagina " + vIdx + "]. <i>“...but you should consider something, I dunno, a bit more unusual if you’re going to keep on displaying yourself, [pc.boy]. The broodmares with the neat downstairs, they’re the ones who really pull the rich rahn in.”</i>"); break;
+			}
+			output("\n\nThe red gel girl lines herself up with the hole she’s been teasing and then opens it with a firm shove of her hot ovi-cock. You didn’t know if a single cell organism could be described as athletic as such, but this one fucks you with seemingly relentless energy, one powerful thrust of her lean hips after another. The barbs of her cock rub up and down your sensitive, pheromone-enflamed tunnel and you cum explosively,");
+			if(pc.isSquirter()) output(" [pc.femcum] spurting plentifully around her girth");
+			output(" writhing helplessly in your bonds and squealing as she continues to pump you heedlessly.");
+			
+			pc.cuntChange(vIdx, ppRahn.cockVolume(0));
+			
+			output("\n\n<i>“‘S it [pc.boyGirl], sing for me,”</i> the rahn domme groans lustfully, " + (!pc.biggestTitSize() < 3 ? "grasping your [pc.chest]" : "sinking her fingers into your [pc.chest]") + ". <i>“I can keep this up all day. I ain’t gonna stop until you beg me for my eggs!”</i>");
+			output("\n\nShe clearly means it, lost in a sun-like blaze of energy. You are mercilessly rubbed to another coruscating, full body orgasm, and when you dimly realize she isn’t slowing down even slightly you find yourself crying out deliriously, begging her to breed you.");
+			output("\n\n<i>“Louder! That’s it. That’s it!”</i> She plants her mouth over yours and invades your mouth with her long, nimble tongue, twining it around your own as she plants herself into your [pc.vagina " + vIdx + "] as deep as she can and unloads, your pussy walls swelling with the smooth weight of eggs and the warm gush of lubricant. You groan woozily as she slowly withdraws, barbs grazing down your tenderized cunt, and then twitch as she stands over you and squirts the last of her sweet, musky lube across your face and [pc.chest].");
+			output("\n\n<i>“Nice,”</i> she grins, admiring her handiwork before gathering her clothes. <i>“Just imagine: in a decade’s time, there’ll be a lot of lil mes running around. Maybe we’ll catch up one day, and me and one of our daughters can double team you?”</i> She’s laughing at her own depravity as she saunters out.");
+			break;
+		case 2:
+			showBust("BREEDWELL_LOORAHN_JOLLY");
+			
+			output("The plump loo’rahn stumbles into your cubicle, almost as if she had to be shoved in. Her face is flushed and she’s giggling nervously; it doesn’t take the scent of wine that wafts over to you to know that it took more than the encouragement of her friends to find the courage to step in here.");
+			output("\n\n<i>“H-hi,”</i> she says, gazing at you shyly. <i>“I’m sorry - I don’t think I’ll be very good at this... ooh, you’re " + pc.mf("handsome", "pretty") + ", though.”</i> The big gel woman breathes in the heavy pheromones you’re emitting, and her expression becomes softer. She unbuttons her top, allowing her pendulous, honey-colored breasts to slowly flop out. <i>“I... um, I’m going to go pretty slow. Is, is that alright?”</i>");
+			output("\n\nYou do your best to be encouraging; you moan sweetly when, after several attempts, she manages to line the bulbous tip of her terran-like ovipositor with the entrance of your [pc.vagina " + vIdx + "], and then tell her to rest on top of you, take her time. Her big jelly-boobs pillow onto your " + (pc.tallness >= 48 ? "[pc.chest]" : "face") + " as she sinks deep into the folds of your pussy and then loses herself in the throes of it, packing you full of bulging hot ovipositor again and again with quivering movements.");
+			
+			pc.cuntChange(vIdx, ppRahn.cockVolume(0));
+			
+			output("\n\n<i>“You’re so lovely!”</i> she coos, ducking her head down to limpet her lips around yours, breathing wine and sugar into your mouth. Her lips and tongue move over yours as her soft, wide thighs rub against your [pc.thighs] with increasingly urgent pumps. <i>“Oh, oh... I’m so glad somebody as nice as you will be carrying my kids...”</i> She passionately twines her long, butterfly-like tongue around your [pc.tongue] as she cums, hot breath advancing down your throat as first one egg, then another spreads your [pc.vagina " + vIdx + "] wide, intense sensation sliding up your tunnel, easing open your cervix and depositing itself in your womb.");
+			output("\n\nThe chubby orange rahn rests on top of you for a while, glued to you with sweat and oozing juices, before retracting out of you and wobblingly collects her stuff. Her shy awkwardness returns as the afterglow ebbs - but she still manages to give you a sincere, happy smile before she leaves.");
+			output("\n\n<i>“Goodbye, sweetie,”</i> she sighs. <i>“Take good care of yourself. And my eggs.”</i>");
+			break;
+		case 3:
+			showBust("BREEDWELL_GORAHN_TALL");
+			
+			var highCumQ:Boolean = false;
+			
+			output("The tall, casually-dressed go’rahn who steps in now is thin by rahn standards, an off-white candle of a gel woman, and as she disrobes she’s happy to explain why she picked you: She hasn’t eaten all day.");
+			// If both randomly select one
+			if(pc.hasCock() && (!pc.isLactating() || rand(2) == 0))
+			{
+				highCumQ = (pc.cumQ() >= 2000);
+				output("\n\nYou tremble in your harness as she grips your [pc.hips] and applies powerful suction to your [pc.cock], willing the cum out of you with hard, hungry drags of her lips. It’s practically vampiric, and your cock can’t take much of that kind of attention before seizing up and launching [pc.cumColor] rockets of [pc.cum] into her waiting maw, your thighs thrusting reactively to the pleasure of it.");
+				if(highCumQ) output(" You’re a productive enough cum pump to noticeably swell out her hips and bosom with your geyser-like spurts.");
+				
+				ppRahn.loadInMouth(pc);
+			}
+			else
+			{
+				output("\n\nYou gasp helplessly in your harness as she drains your [pc.milk]-heavy [pc.boobs] one after the other with powerful drags of her lips, all the while fingering your [pc.vagina " + vIdx + "], playing with what she will plunder once her thirst is satiated. It doesn’t take many rolls and teases of her mouth over your [pc.nipples] for you to be " + (!pc.canMilkSquirt() ? "dribbling" : "gushing") + " [pc.milkColor] fluid into her waiting maw, your [pc.thighs] thrusting reactively to the sensation her fingers are pushing on you.");
+				output(" Your breasts are so full you noticeably swell out her hips, stomach and bosom with the [pc.milkFlavor] cascade you produce.");
+			}
+			output("\n\nShe rises, smacking her lips with deep enjoyment, and practically purring with absorbed energy, moves on to the main event, unbuttoning her jeans and extending her pseudo-sheathed, horse-like ovipositor. Moans and then wails are forced out of your mouth as she grips your bound [pc.legOrLegs] and fucks you energetically, her");
+			if(highCumQ) output(" newly thickened");
+			output(" thighs beating a steady rhythm against your exposed ass. Her egg-cock seems to be constantly drooling lube, and your [pc.vagina " + vIdx + "] is already a leaking, gaping mess by the time her hands tighten on your [pc.skinFurScales], she thrusts her blunt prick as deep as she can and with a husky groan of her own impregnates you, her eggs deposited into your womb in a great warm wash of musky white fluid.");
+			
+			pc.cuntChange(vIdx, ppRahn.cockVolume(0));
+			
+			output("\n\nHaving finished both her meal and fuck, she withdraws her ovipositor and leaves for the shower room without another words, leaving you a leaking, drooling mess, simultaneously drained and stuffed.");
+			break;
+		case 4:
+			showBust("BREEDWELL_DOHRAHN_BUSINESS");
+			
+			output("<i>“You know, I find the whole ‘strapped down and helpless’ element unsavory,”</i> opines the business-suited doh’rahn that strides in, considering you through her gleaming holo-glasses. <i>“Implies unwillingness. Makes explicit the unfair power structures underpinning this supposedly valiant enterprise. Undoubtedly a turn-on for some, but not really for me.”</i> She unbuttons her shirt a little bit, breasts shifting underneath the thin fabric, and a bloom of musky, spice washes over you. Your mouth waters reactively, and your already-aroused pussy goes into overdrive, drooling [pc.femcum] and flexing up needily. <i>“It’s like they’re saying I couldn’t get anything I wanted from you, whenever I wanted, wherever.”</i>");
+			output("\n\nEver so slowly she takes off her clothes, revealing more and more of her top-heavy, purple body and intensifying the heavy smell of her pheromones in the cramped cubicle, carefully folding each of her expensive garments on the table. It’s clearly done to render you a quivering mess long before she slithers off her prim white panties and extends her tentacle-feeler lined ovipositor, and it’s mercilessly effective. You’re wriggling around, flexing against your obdurate bonds, practically panting,");
+			if(pc.hasCock()) output(" [pc.eachCock] thickly erect");
+			output(", long before she gets to that stage.");
+			output("\n\nPlaying with one of her nipples, she strokes her pseudo-dick slowly over your [pc.vagina " + vIdx + "], letting her short, fat little tentacles to wriggle against your [pc.clit " + vIdx + "] and labia, all the while her hot smell inundates your nostrils and throat until finally the moaning pleas for her to fuck and impregnate you are torn from your mouth. Only then, with a thin smirk, does she line herself up with your hole and thrusts home, making you orgasm");
+			if(pc.isSquirter()) output(" in a small explosion of [pc.femcum]");
+			output(" on the spot, incredible pleasure making you writhe and spasm in your bonds wildly.");
+			
+			pc.cuntChange(vIdx, ppRahn.cockVolume(0));
+			
+			output("\n\nEvidently quite used to her partners being in this state, the doh’rahn fucks you almost phlegmatically, holo-glasses still in place, big boobs bapping a pleasant rhythm upon her chest as she slides her cock back down your passage and then firmly slots it back in, sensation knibbling through you as her tentacles waggle inside of you excitedly. You seem to get rocked by a fresh orgasm every ten seconds, such is the tactile overdose she’s subjecting you to, gleeful spasms rocking up your body from your [pc.vagina " + vIdx + "] again and again. You’re barely even sensate when she does finally bite her lip and speed up a bit, huffing and breasts bouncing as she swells your womb with her round, smooth bounty.");
+			output("\n\n<i>“Uff! Good,”</i> she sighs, as if she’s just seen some pleasing quarterly projections. She withdraws from your gaped twat, fastidiously cleaning it with a tissue before picking up her clothes. <i>“Hope to run into you elsewhere, [pc.name], so we can do this without all the forced, unpleasant nonsense. My company will always need more office relaxers about the place.”</i>");
+			break;
+		case 5:
+			showBust("BREEDWELL_FUURAHN_PUNK");
+			
+			output("The fuu’rahn with the nose-stud and asymmetrical haircut has been to see a gel sculptor recently, a part-masseur part-modder who specializes in reshaping the malleable flesh of rahn. You know this because it’s the first thing she tells you when she enters your cubicle, and displays her curly, pigtail nipples and three-toed, talon-like feet to you proudly. She winces slightly as she extends her studded, pointed ovipositor, blowing out her cheeks as she forces out the rounded bulb at the base out of her groin.");
+			output("\n\n<i>“What do you think?”</i> she asks almost timidly, touching the knot. <i>“I was kinda going for an ausar look with a couple of cool extras, and I’m told people really like this thing on them. Guess I’ll find out for myself, huh?”</i>");
+			output("\n\nShe grasps you by the [pc.hips] and enters your [pc.vagina " + vIdx + "] gently, careful eyes on your face as she dips her hardness in and finds your limit, but as her delightful studs rub up and down your tunnel and you make your enjoyment of it clear with arches of your back and clenches against your steel clasps, she grins and goes at you in a more carefree manner, her corkscrew nipples pressing into your [pc.chest] as she molds her green-and-blue flesh to yours.");
+			
+			pc.cuntChange(vIdx, ppRahn.cockVolume(0));
+			
+			output("\n\nShe loses herself to it so much, in fact, that she doesn’t even notice she’s shoved her knot beyond your parted lips as she tenses up and ejaculates her eggs into you. You certainly do, though; you squeal at the intense sensation, clamping down on her dick reactively.");
+			output("\n\n<i>“Oh!”</i> she says, blissful expression turning to one of startlement. <i>“Did I do something - ? Oh. I, uh.”</i> She awkwardly tries to withdraw. <i>“I’m, um... kind of stuck in you. Sorry about that.”</i>");
+			output("\n\nShe spends the time waiting for her knot to deflate by playing with your [pc.nipples],");
+			if(pc.hasCuntNipples(0)) output(" fingering them and cooing at the pleasure it causes you, wetting her digits in " + (pc.isLactating() ? "[pc.milk]" : "[pc.femcum]"));
+			else if(pc.isLactating()) output(" circling them teasingly and then suckling you hungrily when you bead [pc.milk] in response");
+			else output(" circling them over and over and licking them teasingly");
+			output(".");
+			// If cunt/mouth nips:
+			if(pc.hasCuntNipples(0) || pc.hasLipples(0)) output("\n\n<i>“Those nipples are really cool!”</i> she laughs when she’s finally able to unhouse her ovi-cock from the hot morass of eggs and blue lubricant she’s left inside you. <i>“I’m definitely going to get some done for myself next time I see my sculptor.”</i> She blows you a kiss as she gathers her clothes and bobs her pert, naked ass out into the shower receptacle.");
+			// If else:
+			else output("\n\n<i>“That was actually kinda fun!”</i> she laughs when she’s finally able to unhouse her ovi-cock from the hot morass of eggs and blue lubricant she’s left inside you. <i>“I can’t wait to knot with someone else and just kinda hang for a little while. Maybe you again, sometime?”</i> She blows you a kiss as she gathers her clothes and bobs her pert, naked ass out into the shower receptacle.");
+			break;
+		case 6:
+			showBust("BREEDWELL_GORAHN_SCARF");
+			
+			output("The tall, lithe go’rahn is dressed in an ornate, full-bodied robe and a long headscarf, as if she were a member of some sort of religious order. You doubt anybody religious would have the reason she does for wearing that headscarf, though. You watch as, eyes placidly fixed on you, she silently removes it and allows her mass of white, phallic head-tentacles to move freely, and unravels her robe to reveal a similar wriggling bush of flexible ovi-cocks eagerly thickening and writhing to the scent you’re giving off. You’ve never been more aware of the steel clasps holding you in place as, with a similarly calm and silent smile, this avatar of tentacular lust slowly paces towards you.");
+			output("\n\nWithin a minute you’ve got a girthy phallic feeler rammed into every hole you’ve got available, a head tentacle stretching open your [pc.lips] as another pumps its gooey, leaking tip past your [pc.anus].");
+			
+			pc.buttChange(ppRahn.cockVolume(0));
+			
+			if(pc.vaginalCapacity(vIdx) > (ppRahn.cockVolume(0) * 2)) output(" She easily gets two into your spacious and well-gaped twat, stretching the walls with shifting, restless, prehensile cock.");
+			else output(" With patient but indefatigable pushes she manages to get two into your tight cunt, stretching the walls with shifting, restless, prehensile cock.");
+			
+			pc.cuntChange(vIdx, (ppRahn.cockVolume(0) * 2));
+			
+			var fuckableNipples:int = pc.fuckableNippleCount();
+			if(fuckableNipples > 0) output(" " + StringUtil.capitalize(num2Text(fuckableNipples)) + " more thrust" + (fuckableNipples == 1 ? "s" : "") + " eagerly into the sensitive confines of your [pc.nipples].");
+			output(" The rest bat their leaking heads against your [pc.skinFurScales], as if admonishing you for not being able to accommodate them as well.");
+			output("\n\nYou thrash helplessly in your fixed position to it all, groaning and squealing in sudden, electric orgasm");
+			if(pc.isSquirter())
+			{
+				output(", spurting [pc.femcum]");
+				if(pc.canMilkSquirt()) output(" and [pc.milk] everywhere");
+			}
+			output(", nothing but a receptacle for horny, insatiable rahn tentacles. The bizarre alien groans in husky orgasm herself occasionally, one of her appendages tensing up and spurting warm, white goo into your mouth, your " + (pc.vaginas.length == 1 ? "pussy" : "pussies") + ", or your [pc.butt] - and each time she simply withdraws it and replaces it with another. It all becomes a blur of thick dick and rahn lube, inundating your brain with the smell and texture of it until you’re washed away on a sea of hard, writhing, white sex...");
+			output("\n\nYou regain your senses a little while later. There is no way to judge how long you’ve been out of it, except the go’rahn is gone and the cleaning cycle hasn’t started yet, so you’re still covered with rahn juices from head to gaping, leaking cunt" + (pc.vaginas.length == 1 ? "" : "s") + ". Did she even impregnate you, or was this simply an opportunity to inflict her wonderfully horrendous, horrendously wonderful body on someone who couldn’t run away? You guess you’ll find out in a couple weeks’ time.");
+			break;
+		case 7:
+			showBust("BREEDWELL_FUURAHN_PEAR");
+			
+			output("<i>“I had half of my body mass trimmed off,”</i> explains the perky, dumpy fuu’rahn who bounces into your cubicle, smiling at you brightly as she shrugs off her fashionable jacket. The pear-shaped gel girl is barely four foot tall.");
+			// Gabilani codex read:
+			if(CodexManager.entryViewed("Gabilani")) output(" That, her figure, and her mottled green-and-blue color immediately calls to mind the gabilani of Tarkus.");
+			output(" <i>“To pay for a trip out here, and all across the frontier. You wouldn’t believe how being this size cuts down on the bills.”</i>");
+			// PC height < 4'5":
+			if(pc.tallness < 53)
+			{
+				output(" Her eyes shine with naked delight as they trail across your own small-but-perfectly-formed body. <i>“Guess why I picked you?”</i>");
+				output("\n\nShe makes love to you with sweaty, delighted eagerness, her thick, soft hips slapping a steady rhythm against your own splayed thighs, her nubby ovipositor reaching deep inside you. It’s oversized for her, a girthy monster of a cock that rubs against your walls delightfully until you’re flexing back and moaning to her every jiggling thrust.");
+				
+				pc.cuntChange(vIdx, ppRahn.cockVolume(0));
+				
+				output("\n\n<i>“It’s so nice to be able to do this with somebody the same size for once,”</i> she groans lustily in your ear. She pauses to mash lips with you, tangling her tongue with your [pc.tongue]. <i>“So sick of the oral jokes...”</i>");
+				output("\n\nThe thick, wonderful weight of her eggs travels up her stalk and you orgasm hard to the sensation, your [pc.vagina " + vIdx + "] clenching up and almost willing the heavy, smooth fact of them into your womb. Blue-and-green arms hold you close until the implantation is certain, and a slurry of [pc.femcum] and blue lube is dribbling down your [pc.ass].");
+				output("\n\n<i>“That was great,”</i> sighs the fuu’rahn, slowly slithering out of your grip. Her happy, gratified gaze trail over your sweaty, swollen form as she picks up her clothes. <i>“Y’know, that size just looks <i>right</i> for pregnancy. I can see you being a hit even with peeps who aren’t freaks like me!”</i> She waggles her fingers at you cheekily as she leaves.");
+			}
+			else
+			{
+				output("\n\nShe sighs as she takes in your considerably larger body, splayed and readied for her delectation. <i>“Only problem is - it makes every lover look like an adventure course. But a little exercise never hurt anyone, right good-looking?”</i>");
+				output("\n\nOnce she’s peeled her clothes off, she hoists herself up using her thighs, and then uses your cuffed hands as leverage with which to make love to you with sweaty, delighted eagerness, her thick, soft hips slapping a steady rhythm against your own splayed thighs, her nubby ovipositor reaching deep inside you. It’s oversized for her, a girthy monster of a cock that rubs against your walls delightfully until you’re flexing back and moaning to her every jiggling thrust.");
+				
+				pc.cuntChange(vIdx, ppRahn.cockVolume(0));
+				
+				output("\n\n<i>“Can’t skimp on the size of your ‘possi, though,”</i> she groans lustily");
+				if(pc.hasBreasts()) output(", head wedged between your [pc.breasts]");
+				output(". <i>“If you can’t please the girls and boys there’s no point even...”</i> she loses her train of thought as she cums, the thick, wonderful weight of her eggs traveling up her stalk. You orgasm yourself to the sensation, your [pc.vagina " + vIdx + "] clenching up and almost willing the heavy, smooth fact of them into your womb. Blue-and-green arms hold you close until the implantation is certain, and a slurry of [pc.femcum] and blue lube is dribbling down your [pc.ass].");
+				output("\n\n<i>“Look after them, big [pc.boyGirl],”</i> sighs the fuu’rahn, slowly slithering out of your grip. Her happy, gratified gaze trail over your sweaty, swollen form as she picks up her clothes. <i>“You should think about shrinking yourself down too, y’know. Short and thick suits being a dedicated incubator, you know...”</i>");
+			}
+			break;
+	}
+	
+	processTime(30 + rand(9));
+	
+	addRahnEgg(vIdx, 2);
+	pc.loadInCunt(ppRahn, vIdx);
+	numEggs += 2;
+	pc.orgasm();
+	
+	sceneList.splice(sceneList.indexOf(select), 1);
+	sceneCount--;
+	
+	clearMenu();
+	if(sceneCount <= 0 || sceneList.length <= 0) addButton(0, "Next", breedwellPodEnd, numEggs);
+	else addButton(0, "Next", breedwellPodScenes, [sceneList, sceneCount, numEggs]);
+}
+public function addRahnEgg(vIdx:int, numEggs:Number = 2):void
+{
+	if(vIdx < 0 || vIdx > 2) return;
+	
+	if(InCollection(pc.pregnancyData[vIdx].pregnancyType, ["RahnPregnancy", "RahnPregnancyBreedwell"])) 
+	{
+		pc.pregnancyData[vIdx].pregnancyQuantity += numEggs;
+		pc.addPregnancyBellyMod(vIdx, numEggs * 5, false);
+	}
+}
+// Ending
+public function breedwellPodEnd(numEggs:int = 0):void
+{
+	clearOutput();
+	author("Nonesuch");
+	
+	output("After each session has come to its intense, womb-swelling conclusion, the harnesses’ robotic limbs telescope outwards and clean you thoroughly, jetting off the sweat and sugary rahn jizz and gently pinching the lips of [pc.eachVagina] together, to present a decorous picture to the next client. You always get a spray of the prototype pheromone mixture too, and you quickly become dizzy with it, your " + (pc.vaginas.length == 1 ? "pussy" : "pussies") + " flush with heat and desperate for a coupling long before the door opposite slides open to reveal your next impatient, lusty gel girl stud.");
+	output("\n\nAfter the last though, once you’ve received another brisk cleaning the harnesses’ helmet comes down over your head again.");
+	output("\n\n<i>“You have received as many fertilized ovum as our biometrics determine you can healthily carry, [pc.name] Steele,”</i> says the calm voice in your ear. <i>“Good [pc.boyGirl]! Entering cool down phase.”</i> Soothing electronica plays as you are withdrawn back into the wall and turned around. The steel binds cuffing your wrists and " + (pc.hasLegs() ? "your ankles" : "your lower body") + " snap open, and a warm, moistened cloth is gently rubbed over them and your swollen belly. At last, you are shifted back out into the sterile light of the incubator lobby.");
+	output("\n\n<i>“Thank you for using Tamani Conceptuzal Harness MkV,”</i> says the voice, as the muzak comes to an end. <i>“Your account has been accredited for your work, and you will be paid for each rahn we identify you successfully carrying to term. We, and Tamani Twenty Four’s 18 billion viewers, hope to see you again.”</i>");
+	output("\n\nYou are left rubbing your now heavily gravid belly, tired, dazed yet perversely gratified.");
+	
+	processTime(15);
+	
+	pc.credits += (300 * numEggs);
+	IncrementFlag("BREEDWELL_TIMES_BRED");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+// [Cockmilker]
+// Mechanically should work in the same way the NT one does, e.g. awards credits at an increasingly lesser rate the more the PC donates, only at steeper cut-off points. The overall effect should be that modest ejaculations reward less than they would with the NT milker, but larger loads reward more, with a higher overall ceiling.
+// Suggested Thresholds
+/*
+	Output Threshold			Credits per 1,000 ml
+	0ml							10
+	Less than 5,000 ml			8
+	Less than 20,000 ml			5
+	Less than 200,000 ml		3
+	Less than 500,000 ml		1
+	Less than 1,000,000 ml		0.5
+	Less than 10,000,000 ml		0.1
+	100,000,000 ml or more		0.05
+*/
+public function breedwellCumCreditValue(amount:Number = 0):Number
+{
+	var credits:Number = 10;
+	
+	if(amount <= 0) return 10;
+	
+	if(amount < 5000) credits = 8;
+	else if(amount < 20000) credits = 5;
+	else if(amount < 200000) credits = 3;
+	else if(amount < 500000) credits = 1;
+	else if(amount < 1000000) credits = 0.5;
+	else if(amount < 10000000) credits = 0.1;
+	else credits = 0.05;
+	
+	return Math.round(amount * credits);
+}
+// Idk what the maximum amount the PC can feasibly jizz is in this game, but the scene where you break this thing should be fairly close to it. Given NT cockmilker’s limit is 4,000,000, set limit to 20,000,000 for now.
+
+public function breedwellApproachCockmilker():void
+{
+	clearOutput();
+	clearBust();
+	author("Nonesuch");
+	
+	output("You step into a cubicle, the door hissing shut behind you. The milker is an oblong, arm-like machine offering its blunt end towards you, its clean, blue crinkle of shiny, latex-like material awaiting use. It’s obviously built to be adaptable, and that impression is confirmed when a flickering light plays over you from the cam-unit above and the thing whirrs, adjusting its receiver and handles to compensate for your height. Beyond it the fifteen foot glass cylinder looms; a daunting, gleaming challenge.");
+	output("\n\nYou");
+	if(pc.isCrotchGarbed()) output(" take your [pc.lowerGarments] off and");
+	output(" move across and take hold of the handles. The screen above the milker blinks on, silently displaying two touch buttons.");
+	
+	processTime(4);
+	
+	pc.createStatusEffect("Breedwell Cockmilker Porno");
+	pc.createStatusEffect("Breedwell Cockmilker Dildo");
+	
+	breedwellCockmilkerMenu();
+}
+public function breedwellCockmilkerMenu():void
+{
+	var porno:Boolean = (pc.hasStatusEffect("Breedwell Cockmilker Porno"));
+	var dildo:Boolean = (pc.hasStatusEffect("Breedwell Cockmilker Dildo"));
+	
+	clearMenu();
+	addButton(0, ("Porn: " + (!porno ? "OFF" : "ON")), breedwellCockmilkerTogglePorno, undefined, ("Turn Pornography " + (!porno ? "On" : "Off")), (!porno ? "Watch porn whilst you’re getting milked." : "Don’t watch porn whilst you’re getting milked."));
+	addButton(1, ("Dildo: " + (!dildo ? "OFF" : "ON")), breedwellCockmilkerToggleDildo, undefined, ("Turn Dildo " + (!dildo ? "On" : "Off")), (!dildo ? "Take it up the ass." : "Avoid getting prostate milked."));
+	addButton(4, "Begin", breedwellCockmilkerStart, (pc.cocks.length == 1 ? 0 : -1));
+}
+public function breedwellCockmilkerTogglePorno():void
+{
+	if(!pc.hasStatusEffect("Breedwell Cockmilker Porno")) pc.createStatusEffect("Breedwell Cockmilker Porno");
+	else pc.removeStatusEffect("Breedwell Cockmilker Porno");
+	breedwellCockmilkerMenu();
+}
+public function breedwellCockmilkerToggleDildo():void
+{
+	if(!pc.hasStatusEffect("Breedwell Cockmilker Dildo")) pc.createStatusEffect("Breedwell Cockmilker Dildo");
+	else pc.removeStatusEffect("Breedwell Cockmilker Dildo");
+	breedwellCockmilkerMenu();
+}
+public function breedwellCockmilkerEnd(cumTotal:Number = 0):void
+{
+	pc.removeStatusEffect("Breedwell Cockmilker Porno");
+	pc.removeStatusEffect("Breedwell Cockmilker Dildo");
+	StatTracking.track("breedwell/cum milked", cumTotal);
+	IncrementFlag("BREEDWELL_TIMES_DONATED");
+}
+// Intro
+public function breedwellCockmilkerCockSelect():void
+{
+	clearOutput();
+	author("Nonesuch");
+	
+	output("It seems you have more than one penis... Which one do you want to milk?");
+	output("\n");
+	
+	clearMenu();
+	for(var i:int = 0; i < pc.totalCocks(); i++)
+	{
+		output("\n<b>#" + (i + 1) + ":</b> " + formatFloat(pc.cLength(i) , 3) + " in long, " + pc.cocks[i].cockColor + " [pc.accurateCockName " + i + "]");
+		addButton(i,"#" + (i + 1), breedwellCockmilkerStart, i, num2Ordinal(i + 1) + " Cock","Get your [pc.cockNoun " + i + "] milked.");
+	}
+}
+public function breedwellCockmilkerStart(cIdx:int = -1):void
+{
+	if(cIdx < 0)
+	{
+		breedwellCockmilkerCockSelect();
+		return;
+	}
+	
+	clearOutput();
+	author("Nonesuch");
+	
+	var porno:Boolean = (pc.hasStatusEffect("Breedwell Cockmilker Porno"));
+	var dildo:Boolean = (pc.hasStatusEffect("Breedwell Cockmilker Dildo"));
+	var cLength:Number = pc.cLength(cIdx);
+	var cumQ:Number = 0;
+	
+	// Porn off AND Dildo off
+	if(!porno && !dildo)
+	{
+		output("Pfft. Artificial stimulation is for lightweights and the imagination-less. You click both options off and take hold of your [pc.cock " + cIdx + "], thinking as you do of the cute rahn babes who will soon be enjoying your [pc.cumVisc] [pc.cumColor] seed, one way or another. You’re already nicely erect when you take hold of the handles proper, and you line yourself up and slowly sink your [pc.cockHead " + cIdx + "] into the synthetic crease of the machine.");
+		output("\n\nThe machine hums as you dip further into it, pleasant vibrations running through your hardness.");
+		// Small cock:
+		if(cLength <= 4) output(" It’s rather baggy at first, but it tightens up precipitously, the material puckering up at the base, and your cute little twig is soon being provided with as gasp-inducingly tight a fuck as it’s ever likely to find.");
+		// Average cock:
+		else if(cLength <= 12) output(" It feels nice and tight around you, the machine barely having to adjust itself at all to glove your fine-sized cock.");
+		// Big cock:
+		else if(cLength <= 24) output(" It’s a frustrating experience to begin with, the hole too small for your monster dick, but the machine quickly adjusts, latex material fanning out from the hole and moving backwards, until you’re being provided with a wonderfully long, large ona-hole perfectly suited for a " + (!pc.isHerm() ? "man" : "herm") + " of your caliber.");
+		// Massive cock:
+		else output(" There’s a whine and a throb as you keep feeding your thickness in, and you " + pc.mf("chuckle", "giggle") + " as at last the machine beeps in protest, choked upon your massive, totemic dick with it barely halfway in. It’s not giving up, though. After a slight pause the material puffs out massively, swelling out of the metal seams of its housing with a sound like a balloon inflating. You push inwards, it keeps bulging outwards, and you groan with contentment as your " + (pc.balls >= 2 ? "[pc.balls]" : "[pc.thighs]") + " touch the crinkled opening. Finally, a hole that can take a " + (!pc.isHerm() ? "man" : "herm") + " of your caliber!");
+		output("\n\nYou draw yourself out and then saw your way in, and once satisfied quickly fall into a good rhythm, clutching the padded handles so you can go at the smooth, warm cock-holster with hard slaps of your groin. Heat builds in your [pc.cock " + cIdx + "] until it’s unbearable, and as much as you want to keep fucking the exquisitely tight and velvety milker forever, you find yourself tumbling over the edge.");
+		
+		processTime(15 + rand(9));
+		
+		// Run Output scene
+		cumQ = cumMilkerCumEstimate();
+		
+		clearMenu();
+		addButton(0, "Next", breedwellCockmilkerOutput, [cIdx, dildo, porno, cumQ]);
+	}
+	// Porn Off, Dildo On
+	if(!porno && dildo)
+	{
+		output("Rotting your brain with porn is a no, but a nice prostate milking... yeah. That gives you a few tingles. You select one option and not the other, and there’s a whirring sound as a mechanical arm descends behind you. You shiver slightly as a warm, blunt object nestles itself between your buttcheeks, pausing when it is pressed against the pad of your [pc.anus].");
+		output("\n\nYou take hold of your [pc.cock " + cIdx + "] and give it a few strokes, closing your eyes as you imagine all the gel cute rahn babes who will soon be enjoying your [pc.cumVisc] [pc.cumColor] seed, one way or another. Your prick rears up readily to those fruity thoughts, and you take hold of the handles proper, line yourself up and slowly sink your [pc.cockHead " + cIdx + "] into the synthetic crease of the machine.");
+		output("\n\nThe machine hums as you sink further into it, pleasant vibrations running through your hardness.");
+		// Small cock:
+		if(cLength <= 4) output(" It’s rather baggy at first, but it tightens up precipitously, the material puckering up at the base, and your cute little twig is soon being provided with as gasp-inducingly tight a fuck as it’s ever likely to find.");
+		// Average cock:
+		else if(cLength <= 12) output(" It feels nice and tight around you, the machine barely having to adjust itself at all to glove your fine-sized cock.");
+		// Big cock:
+		else if(cLength <= 24) output(" It’s an irritating experience to begin with, the hole too small for your monster dick, but the machine quickly adjusts, latex material fanning out from the hole and moving backwards, until you’re being provided with a wonderfully long, large ona-hole perfectly suited for a " + (!pc.isHerm() ? "man" : "herm") + " of your caliber.");
+		// Massive cock:
+		else output(" There’s a whine and a throb as you keep feeding your thickness in, and you  " + pc.mf("chuckle", "giggle") + " as at last the machine beeps in protest, choked upon your massive, totemic dick with it barely halfway in. It’s not giving up, though. After a slight pause the material puffs out massively, swelling out of the metal seams of its housing with a sound like a balloon inflating. You push inwards, it keeps bulging outwards, and you groan with contentment as your " + (pc.balls >= 2 ? "[pc.balls]" : "[pc.thighs]") + " touch the crinkled opening. Finally, a hole that can take a " + (!pc.isHerm() ? "man" : "herm") + " of your caliber!");
+		output("\n\nAs you cloak more and more of your dick in warm tightness, the prehensile dildo behind you follows you in, maintaining obdurate, patient pressure against your asshole. When you draw yourself outwards, however, it stays exactly where you found your limit, and you tense up slightly as you begin to penetrate yourself on it, the dildo’s blunt head opening your up and filling your rear entrance with hardness. You  " + pc.mf("grunt", "coo") + " as it suddenly squirts a warm, oily load of lube into you, easing its passage and allowing it to slip its way in wonderfully deep. It’s only then that it becomes to judder, sending delicious vibrations quaking through your groin. You  " + pc.mf("bark", "squeal") + " with pleasure as it hits the tender, buried button of your prostate, reactively making you tense up with joy and push your [pc.cock " + cIdx + "] back deep into the milker.");
+		output("\n\nYou draw yourself out and then saw your way in, fucking the silky glove of the synthetic sleeve at the same time as you are drilled from behind, the robot cock driving over your " + (!pc.isHerm() ? "boy" : "herm") + " button at the same time as filling your lower body with quaking pleasure. It makes you weak in the [pc.knees], and you have to hold onto the padded handles closely to keep your balance as you reactively slap your [pc.thighs] into the machine, each thrust driving the milking dildo deep into where you are most sensitive. This is what being milked really feels like, the heat and pressure building in your [pc.cock " + cIdx + "] beyond your control. You cry out as you tumble over the edge.");
+		
+		processTime(25 + rand(9));
+		
+		// Run Output scene
+		cumQ = cumMilkerCumEstimate();
+		
+		clearMenu();
+		addButton(0, "Next", breedwellCockmilkerOutput, [cIdx, dildo, porno, cumQ]);
+	}
+	// Porn on, Dildo off
+	else if(porno && !dildo)
+	{
+		output("You’re glad you’re given the option of one but not the other. Carefully, you press ‘yes’ to porno and ‘no’ to getting reamed. A cartoon Tamani appears on the screen, lying on her side and smirkingly considering a number of out-sized dildos. Each has an option written on it.");
+		output("\n");
+		
+		processTime(1);
+		
+		breedwellPornMenu([cIdx, dildo]);
+	}
+	// Porn On, Dildo On
+	else
+	{
+		output("You’re not letting either option escape your voracious appetites. You tap ‘Yes’ to both options. There’s a whirring sound as a mechanical arm descends behind you; you shiver slightly as a warm, blunt object nestles itself between your buttcheeks, and you push out your [pc.butt] to allow it better access.");
+		output("\n\nA cartoon Tamani has appeared on the screen, lying on her side and smirkingly considering a number of out-sized dildos. Each has an option written on it.");
+		output("\n");
+		
+		processTime(1);
+		
+		breedwellPornMenu([cIdx, dildo]);
+	}
+}
+public function breedwellPornMenu(arg:Array):void
+{
+	var cIdx:int = arg[0];
+	var dildo:Boolean = arg[1];
+	
+	clearMenu();
+	output("\n1.\tLive Streams from the Pods (f, h)");
+	addButton(0, "1", breedwellPornScenes, [cIdx, dildo, 1]);
+	output("\n2.\tLittle Red Riding Boi (fb, m, h)");
+	addButton(1, "2", breedwellPornScenes, [cIdx, dildo, 2]);
+	output("\n3.\tYorinn’s Hour of Yiff (m)");
+	addButton(2, "3", breedwellPornScenes, [cIdx, dildo, 3]);
+	output("\n4.\tSelect Recordings from the Gastigoth (f, h, m)");
+	addButton(3, "4", breedwellPornScenes, [cIdx, dildo, 4]);
+	if(dildo)
+	{
+		output("\n5.\tPeg me, Tamani! (f, you)");
+		addButton(4, "5", breedwellPornScenes, [cIdx, dildo, 5]);
+	}
+}
+public function breedwellPornScenes(arg:Array):void
+{
+	clearOutput();
+	author("Nonesuch");
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+	
+	var cIdx:int = arg[0];
+	var dildo:Boolean = arg[1];
+	var track:int = arg[2];
+	var cLength:Number = pc.cLength(cIdx);
+	var cumQ:Number = 0;
+	
+	// Intro
+	if(!dildo) output("You take hold of the handles proper, line yourself up and slowly sink your [pc.cockHead " + cIdx + "] into the synthetic crease of the machine, pressing your chosen dildo as you do. The cartoon Tamani grabs it, splays her legs and slides it into her pussy, eyes crossing and mouth ‘oh’ing as she does. The screen zooms between her open lips.");
+	// Intro for all except 5.
+	else if(track != 5) output("You take hold of the handles proper, line yourself up and slowly sink your [pc.cockHead " + cIdx + "] into the synthetic crease of the machine, pressing your chosen dildo as you do. The prosthetic behind you follows you in, and you gasp slightly as it penetrates you, slowly opening up your [pc.anus]. The cartoon Tamani grabs your chosen dildo, splays her legs and slides it into her pussy, eyes crossing and mouth ‘oh’ing as she does. The screen zooms between her open lips.");
+	
+	switch(track)
+	{
+		case 1:
+			output("\n\nThere are 9 minimized feeds in front of you, each displaying some lascivious action going on in the breeding pods elsewhere on the station. You focus upon one for a couple of seconds - a purple rahn in the throes of ecstasy, hammering her hips into a bound ausar herm whose engorged doggy cock is flopping this way and that - and the feed zooms out in response, taking over the screen, so you can drink in every detail. Oof! Who knew you could be a double squirter?");
+			output("\n\nAs soon as you get tired with one feed, or one breeding session comes to its natural, sticky conclusion, you can swap to another feed with a flick of the eyeballs, and then another, and then another. It’s heady, sleazy over-stimulation, and your blood pulses through your veins faster as you submerge yourself in a sea of curvy gel girls having their way with just about every shape and size of being imaginable. Your [pc.hips] are on auto-pilot, thrusting into the welcoming embrace of the cockmilker with harder and harder strokes.");
+			if(dildo) output(" The mechanical dildo bores deep into you, sending delightful shivers through your core, and making you arch your back as it drives into your prostate.");
+			// Small cock:
+			if(cLength <= 4) output(" It’s rather baggy at first, but it tightens up precipitously, the material puckering up at the base, and your cute little twig is soon being provided with as gasp-inducingly tight a fuck as it’s ever likely to get.");
+			// Average cock:
+			else if(cLength <= 12) output(" It feels nice and tight around you, the machine barely having to adjust itself at all to take your fine-sized cock.");
+			
+			// Big cock:
+			else if(cLength <= 24) output(" It’s a frustrating experience to begin with, the hole too small for your monster dick, but the machine quickly adjusts, the material fanning out from the hole and moving backwards, until you’re being provided with a wonderfully long, large ona-hole perfectly suited for a " + (!pc.isHerm() ? "man" : "herm") + " of your caliber.");
+			// Massive cock:
+			else output(" There’s a whine and a throb as you keep feeding your thickness in, and you " + pc.mf("chuckle", "giggle") + " as at last the machine beeps in protest, choked upon your massive, totemic dick with you barely halfway in. It’s not giving up, though. After a slight pause the material puffs out massively, swelling out of the metal seams of its housing with a sound like a balloon inflating. You push inwards, it keeps bulging outwards, and you groan with contentment as your " + (pc.balls >= 2 ? "[pc.balls]" : "[pc.thighs]") + " touch the crinkled opening. Finally, a hole that can take a " + (!pc.isHerm() ? "man" : "herm") + " of your caliber!");
+			if(!dildo)
+			{
+				output(" Pure pleasure courses up your [pc.cock " + cIdx + "]");
+				if(pc.balls >= 1) output(", filling your [pc.balls] with a wonderfully intense pressure");
+				output(".");
+			}
+			output("\n\nMost of the dalliances in Breedwell’s pods are short, rough and frenzied affairs - no doubt aided by the pheromone mixture Tamani Corp insists on spraying their surrogates with - but there’s some that are slower, sweeter, and ultimately sexier. You watch transfixed as the go’rahn spends a long while tonguing the human female’s exposed cunt, forcing the young lady to a couple of trembling, transfixed orgasms, before gently mounting her with her spiral-shaped ovipositor, making out with the surrogate, lovingly fondling her petite breasts with their small, pointy nipples until the two are completely lost in themselves.");
+			if(dildo) output(" Each thrust of the gleaming, alien cock seems to correspond to a pump of the mechanical cock against your prostate.");
+			output(" Oh Void...");
+			break;
+		case 2:
+			output("\n\n<i>“Hey everyone,”</i> smiles the breathy, red hot-panted human boi mincing through a forest clearing, flicking the blonde curls underneath his hood at the camera. <i>“I’m on my way to my Auntie Dzaan in the forest. She says she has something big and deep for me. I sure hope I don’t run into mean old wolves on the way. Oh no!”</i> Two big ausar step smirking into the clearing, both of them packing heavy bulges in their jeans.");
+			output("\n\nLust inflames you as you watch the ‘wolves’ pin the femboy down and take turns with his pert, peachy ass, and you spear yourself further into the machine. Pleasant vibrations run through");
+			if(!dildo) output(" your hardness.");
+			else output(" both your hardness and your back passage as the dildo you’re pierced on judders of its own volition, and you arch your back as it bumps over your tender prostate.");
+			// Small cock:
+			if(cLength <= 4) output(" It’s rather baggy at first, but it tightens up precipitously, the material puckering up at the base, and your cute little twig is soon being provided with as gasp-inducingly tight a fuck as it’s ever likely to get.");
+			// Average cock:
+			else if(cLength <= 12) output(" It feels nice and tight around you, the machine barely having to adjust itself at all to take your fine-sized cock.");
+			// Big cock:
+			else if(cLength <= 24) output(" It’s a frustrating experience to begin with, the hole too small for your monster dick, but the machine quickly adjusts, the material fanning out from the hole and moving backwards, until you’re being provided with a wonderfully long, large ona-hole perfectly suited for a " + (!pc.isHerm() ? "man" : "herm") + " of your caliber.");
+			// Massive cock:
+			else output(" There’s a whine and a throb as you keep feeding your thickness in, and you " + pc.mf("chuckle", "giggle") + " as at last the machine beeps in protest, choked upon your massive, totemic dick with you barely halfway in. It’s not giving up, though. After a slight pause the material puffs out massively, swelling out of the metal seams of its housing with a sound like a balloon inflating. You push inwards, it keeps bulging outwards, and you groan with contentment as your " + (pc.balls >= 2 ? "[pc.balls]" : "[pc.thighs]") + " touch the crinkled opening. Finally, a hole that can take a " + (!pc.isHerm() ? "man" : "herm") + " of your caliber!");
+			output(" You judder your [pc.hips] into the machine, pleasure coursing through your shaft, eyes fixed upon the screen.");
+			output("\n\nThe porno is appallingly xenophobic really, relying on eye-rolling stereotypes of human easiness and ausar bestiality. Sometimes though, cheap and nasty is exactly what you want.");
+			if(!dildo) output(" You hammer the milker");
+			else output(" You let the machine hammer your [pc.ass]");
+			output(" as you watch one of the wolves fuck Red from below, roughly jerking his dinky trap prick as he does, whilst another paints his upturned, gasping face in cum from his thick red cock. Heat builds in your [pc.cock " + cIdx + "] until it’s unbearable, and as much as you want to keep fucking the exquisitely tight and velvety milker for as long as possible, you find yourself tumbling over the edge.");
+			break;
+		case 3:
+			output("\n\n<i>“Hullo there!”</i> smiles the amiable-looking bear-morph at the camera. Burly isn’t the word for him; his checkered shirt and jeans could be used as tents by an ordinary-sized human, but they look like they’re painted onto his shaggy, musclebound body. He’s in some sort of faux-rustic stable setting. The partition wall groans uneasily as he leans on it. <i>“Yorinn here. I thought today I’d step on down to Vesperia and visit some of my friends in the country. Hey there, Iker!”</i>");
+			output("\n\n<i>“Hey,”</i> grins the vest-clad bipedal zebra who’s just sauntered into frame. He’s taller and leaner than Yorinn, although everything’s relative; he’s still built like a striped shithouse. Like the bear, he looks like he’s smuggling a raskvel around in his (very tight) undies. <i>“Listen, I could use some help cleaning out the grease pits. Think you could lend a hand? I warn you, though. It’s likely to get miiiiiighty greasy in there.”</i>");
+			output("\n\nThe whole thing’s knowingly absurd, but that lends it a gentle charm that might otherwise be lacking when these bestial men’s men start getting hot and heavy with each other. You pick up the pace, really beginning to pound the synthetic hole you’re mired in as you watch Iker work his pole-like equine cock deep into Yorinn’s wide, muscular backside from behind, rattling the giant, oily silo they’re in as he begins to clap his prime, thoroughbred thighs into the bear in a lusty fury.");
+			if(dildo) output(" It coincides with the mechanical dildo boring deep into you, sending delightful shivers through your core, and making you arch your back as it drives into your prostate.");
+			// Small cock:
+			if(cLength <= 4) output(" The cockmilker is rather baggy at first, but it tightens up precipitously, the material puckering up at the base, and your cute little twig is soon being provided with as gasp-inducingly tight a fuck as it’s ever likely to get.");
+			// Average cock:
+			else if(cLength <= 12) output(" The cockmilker feels nice and tight around you, the machine barely having to adjust itself at all to take your fine-sized cock.");
+			// Big cock:
+			else if(cLength <= 24) output(" The cockmilker is a frustrating experience to begin with, the hole too small for your monster dick, but the machine quickly adjusts, the material fanning out from the hole and moving backwards, until you’re being provided with a wonderfully long, large ona-hole perfectly suited for a " + (!pc.isHerm() ? "man" : "herm") + " of your caliber.");
+			// Massive cock:
+			else output(" The cockmilker gives a whine and a throb as you keep feeding your thickness in, and you " + pc.mf("chuckle", "giggle") + " as at last the machine beeps in protest, choked upon your massive, totemic dick with you barely halfway in. It’s not giving up, though. After a slight pause the material puffs out massively, swelling out of the metal seams of its housing with a sound like a balloon inflating. You push inwards, it keeps bulging outwards, and you groan with contentment as your " + (pc.balls >= 2 ? "[pc.balls]" : "[pc.thighs]") + " touch the crinkled opening. Finally, a hole that can take a " + (!pc.isHerm() ? "man" : "herm") + " of your caliber!");
+			output(" You judder your [pc.hips] into the machine, pleasure coursing through your shaft, eyes fixed upon the screen.");
+			output("\n\nYou hammer the machine");
+			if(dildo) output(", delighting in every pump of the dildo into your [pc.ass],");
+			output(" as a husky morph drops into the Vesperian ‘grease pit’, then an alligator, then a blue-skinned, tentacle-mouthed alien, until the camera is panning across a pool of oiled, mountainous muscle and thick dick pounding into every hole going... Heat builds in your [pc.cock " + cIdx + "] until it’s unbearable, and as much as you want to keep fucking the exquisitely tight and velvety milker for as long as possible, you find yourself tumbling over the edge.");
+			break;
+		case 4:
+			output("\n\nA muscular, strong-jawed woman in a military uniform is sat at a desk, working away at a holo-keyboard. It seems a fairly ordinary scene, until the micro camera drone slowly dips underneath the desk. There, arms sleeve-bound behind her and ring-gagged, a collared, naked kaithrit is licking the woman’s long, black thigh-high boots.");
+			output("\n\n<i>“I better be able to see my face in those by the time I’m finished, smuggler bitch,”</i> the officer growls, and the kaithrit whimpers. <i>“I can make your sentence longer as well as shorter, you know.”</i>");
+			output("\n\nIs this real? This or any of the other scenes you can switch to with a flick of the eyeballs, all of them purportedly from the prison station Gastigoth? You watch entranced, [pc.hips] shoving into the soft, crinkly fabric of the cockmilker, pleasure coursing up your shaft, at sordid recordings of interrogation sessions, the infamous breeding program, body reassignment chambers, and, of course, the steamy labyrinth of sexual score-settling that are prison showers the universe over. Guards on prisoners, prisoners on prisoners, wealthy visitors on whatever they want. It’s filthy, watching this stuff, terrible, and incredibly, undeniably horny.");
+			if(dildo) output(" It’s made all the more intense by the dildo buried deep in your ass beginning to vibrate and then finding your prostate with mechanical precision, ruthlessly milking you with stiff, juddering strokes.");
+			// Small cock:
+			if(cLength <= 4) output(" The cockmilker is rather baggy at first, but it tightens up precipitously, the material puckering up at the base, and your cute little twig is soon being provided with as gasp-inducingly tight a fuck as it’s ever likely to get.");
+			// Average cock:
+			else if(cLength <= 12) output(" The cockmilker feels nice and tight around you, the machine barely having to adjust itself at all to take your fine-sized cock.");
+			// Big cock:
+			else if(cLength <= 24) output(" The cockmilker is a frustrating experience to begin with, the hole too small for your monster dick, but the machine quickly adjusts, the material fanning out from the hole and moving backwards, until you’re being provided with a wonderfully long, large ona-hole perfectly suited for a " + (!pc.isHerm() ? "man" : "herm") + " of your caliber.");
+			// Massive cock:
+			else output(" The cockmilker gives a whine and a throb as you keep feeding your thickness in, and you " + pc.mf("chuckle", "giggle") + " as at last the machine beeps in protest, choked upon your massive, totemic dick with you barely halfway in. It’s not giving up, though. After a slight pause the material puffs out massively, swelling out of the metal seams of its housing with a sound like a balloon inflating. You push inwards, it keeps bulging outwards, and you groan with contentment as your " + (pc.balls >= 2 ? "[pc.balls]" : "[pc.thighs]") + " touch the crinkled opening. Finally, a hole that can take a " + (!pc.isHerm() ? "man" : "herm") + " of your caliber!");
+			output(" You judder your [pc.hips] into the machine, pleasure coursing through your shaft, eyes fixed upon the screen.");
+			output("\n\nThe human officer has the kaithrit prisoner’s head firmly pressed between her open thighs, dispassionately watching a live feed of a gryvain interrogating some sort of lithe insectile crossbreed attached to a steel rack.");
+			output("\n\n<i>“Ramp up the current. We know he knows where his friends hid the polonium,”</i> she directs into a mic. <i>“You aren’t getting up his ass until we get it out of him.”</i> The color in her cheeks rises, her mouth opening as she watches the willowy male judder and wail on the screen, and you find yourself humping the exquisitely tight and silky cockmilker with heedless abandon, the pressure in your " + (pc.balls >= 2 ? "gonads" : "prick") + " intensifying");
+			if(dildo) output(", the dildo pumping you all the while");
+			output("...");
+			break;
+		case 5:
+			output("<i>“Ooh,”</i> giggles the cartoon Tamani, fixing her eyes with yours. <i>“Well, it’s not quite my favorite way of collecting cum... but I’m not going to say no to a sweet donator like you. Ok!”</i>");
+			output("\n\nShe leaps up and grabs one of the dildos, which has straps attached to its base. She fastens it around her waist as a faceless figure appears on-screen, mired in a cockmilker. It’s evidently a simplified version of you," + (pc.hasBreasts() ? " going off the size of its boobies" : " going off its flat chest") + " and its [pc.skinColor] skin.");
+			output("\n\n<i>“Put that");
+			if(cLength > 4) output(" gorgeous piece of meat");
+			else output(" cute lil toy");
+			output(" into the slot,”</i> whispers Toon Tamani, blinking her big eyes at you. <i>“For Tamani.”</i> You do so, sighing as you slide your [pc.cock " + cIdx + "] into the silky, slinky embrace of the receiver. A pleasurable tremor runs through it as the machine vibrates, adjusting to your side and stimulating you until you are hard and ready. You gasp as the base suddenly tightens up, vice-like, around your base.");
+			output("\n\n<i>“Theeere we go,”</i> purrs Tamani, swaggering up behind the visualization of you, strap-on waggling. <i>“It’d be a dreadful shame for you to get away before I’ve milked every last drop out of you, wouldn’t it?”</i>");
+			output("\n\nShe grips the hips of the cartoon version of you, positions her comically oversized dildo between your butt cheeks, and then slowly works her way in. You gasp and tense up slightly as the mechanical prosthetic mirrors exactly what’s happening on screen, piercing your [pc.anus] and slowly working its way into your sensitive insides.");
+			output("\n\n<i>“Relax, sweet buttslut of mine,”</i> says Tamani soothingly. <i>“Wait just a sec...”</i> she reaches up and squeezes one of her plush tits, biting her lip with pleasure. As she does, your back passage is warmed by a sudden gush of lubricant squirted out of the dildo’s end. <i>“Theeere we go!”</i> the human cries winningly, thrusting her pink hips into cartoon you with enough force to make their flesh ripple. The actual prosthetic follows suit, of course, and you whine as it easily slides all the way in, opening your colon up and pressing into you deep.");
+			output("\n\nToon Tamani has a dorkily happy expression on her round face as she saws into you, each pump of her hips coinciding precisely with a heavy stroke of the thick, obdurate robo-cock into you. Cartoon you simply has a deep blush across their face.");
+			output("\n\n<i>“Is that good?”</i> she teases, holding your gaze, breasts jouncing up and down. <i>“Do you like bottoming for the biggest cumslut in the galaxy? It’s usually around now the milker detects your prostate...”</i> You whine as a sudden, brilliant surge of sensation lights up your nerve endings, making you spasm against the machine, [pc.cock " + cIdx + "] flexing. <i>“Hahaha, I felt that from here!”</i> Tamani casually slaps cartoon you’s ass, which is transferred as a slight electric shock down the dildo’s shaft, making you writhe in trapped, painful pleasure. <i>“Here, let me make it even better...”</i>");
+			output("\n\nShe reaches for her other tit, this time just gripping one of her erect nipples and carefully twisting, as if tuning a radio. A slight amount of steam blows out of her ears as the dildo starts juddering hard in response, all the while riding over your poor, tender prostate again and again. Cartoon you has grown a pair of [pc.eyeColor] eyes and a mouth - the former are crossed and the latter has its [pc.tongue] hanging out of it. It’s not far from the truth.");
+			output("\n\n<i>“How do you like it, [pc.name]?”</i> exclaims the pink, punky toon with a slightly manic edge, thrusting her wide hips into you all the while. <i>“Nice and slow? Tender and meaningful? Well, too bad - your Tamani’s piece of ass right now, and Tamani likes doing it hard!”</i>");
+			output("\n\nYou moan and wail as the dildo reams you, forcing your [pc.cock " + cIdx + "] into the silky, tight knead of the milker, pinioned between the two unrelenting mechanical forces. It’s agonizingly wonderful to just submit to it, see yourself simply as that cartoon you Tamani is ass-fucking with enough force to generate blur-lines, and copy their motion as they moan, arch their back, and cum...");
+			break;
+	}
+	
+	processTime(55 + rand (11));
+	cumQ = cumMilkerCumEstimate();
+	
+	clearMenu();
+	addButton(0, "Next", breedwellCockmilkerOutput, [cIdx, dildo, true, cumQ, track]);
+}
+
+// Output scenes
+public function breedwellCockmilkerOutput(arg:Array):void
+{
+	clearOutput();
+	author("Nonesuch");
+	
+	var cIdx:int = arg[0];
+	var dildo:Boolean = arg[1];
+	var porno:Boolean = arg[2];
+	var cumQ:Number = arg[3];
+	var track:int = (arg[4] != null ? arg[4] : -1);
+	
+	var cumPrice:Number = breedwellCumCreditValue(cumQ);
+	
+	// Low output
+	if(cumQ < 500)
+	{
+		output("You arch your back and nut, groaning hoarsely as [pc.cum] squirts into the clutching confines of the receiver. The base of the milker limpets you close, ruthlessly holding you to it so not a single drop can escape it. The tubes twitch in front of you, and your seed dribbles out onto the glass floor of the cylinder. Incapable of anything else, you hump the seal giddily until you’re flexing blanks, and finally the synthetic material relaxes enough for you to withdraw.");
+		output("\n\nYou’ve produced nothing at all really, a few drops that look foolish in the giant canister, chaff in a silo. Every little helps, you suppose. The screen blinks back on, informing you that you have been paid " + cumPrice + " credits for your " + Math.round(cumQ) + " mL donation.");
+	}
+	// Middling output 
+	else if(cumQ < 1000)
+	{
+		output("You arch your back and nut, groaning hoarsely as [pc.cum] spurts into the clutching confines of the receiver. The base of the milker limpets you close, ruthlessly holding you to it so not a single drop can escape it. The tubes twitch in front of you, and your seed splatters and then dribbles out onto the glass floor of the cylinder. Incapable of anything else, you hump the seal giddily until you’re flexing blanks, and finally the synthetic material relaxes enough for you to withdraw.");
+		output("\n\nBy most measures you’ve produced a lot, enough that a partner would protest if you started waving your stuff around in the bedroom, but the pool of [pc.cum] that doesn’t quite cover the whole of the glass floor of the giant canister seems slightly pitiful in this context. Never mind, you did your bit. The screen blinks back on, informing you that you have been paid " + cumPrice + " credits for your " + Math.round(cumQ) + " mL donation.");
+	}
+	// Large output
+	else if(cumQ < 5000)
+	{
+		output("You arch your back and unload gloriously, groaning hoarsely as you flume line after line of [pc.cum] into the clutching confines of the receiver. The base of the milker limpets you close, ruthlessly holding you to it so not a single drop will escape it. The tubes attaching it to the cylinder dance in front of you, hungrily siphoning away your huge output. You keep your eyes fixed upon the glass cylinder ahead of you and keep thrusting away at the seal, grunting with deep pleasure as you watch your seed first explode out into the container, then pour out steadily. You don’t stop until your " + (pc.balls >= 2 ? "[pc.balls] are" : "[pc.cock " + cIdx + "] is") + " achingly dry, and the synthetic material relaxes enough for you to withdraw.");
+		output("\n\nThe floor of the cylinder has completely disappeared; you’ve filled it at least five or six inches deep with [pc.cumVisc], [pc.cumColor] semen. Wonderful! You feel a glow of accomplishment (although the vast tract of glass you didn’t fill haunts you a little. What kind of bloated monsters are they expecting here, anyway?) The screen blinks back on, informing you that you have been paid " + cumPrice + " credits for your " + Math.round(cumQ) + " mL donation. There’s even a little cartoon Tamani there, giving you a thumbs up and a ‘Good job, stud!’");
+	}
+	// Massive output
+	else if(cumQ < 10000000)
+	{
+		output("You feel your vast reserves boiling up inside of you, and a howl of pure joy is ripped from your [pc.lips] as it finally finds release, coursing up your shaft and exploding out of your dilated slit into the receiver. The base of the milker attempts to limpet to you, and then gives up a second later when the sheer quantity of hot [pc.cum] overwhelms it, great gobbets of your seed oozing and spraying out from the seal.");
+		output("\n\nThe tubes in front of you groan as they draw it away the best they can, the clear synthetic material straining as your [pc.cock " + cIdx + "] flexes up gloriously again and again. You keep your eyes fixed upon the glass cylinder ahead of you, thrusting your [pc.hips] away at the seal, groaning with overwhelming pleasure as you watch your [pc.cum] geyser out into the container first like an opened fire hydrant, then in thick, controlled bursts, the [pc.cumVisc] liquid pooling thickly against the walls. You’re over the overwhelming urge now, but your loins have so much to give, and you’re determined to thrust every last milliliter of your delicious, fecund cum into that vast container.");
+		output("\n\nSweat soaks your [pc.skinFurScales] by the time you’re firing blanks, [pc.cumColor] fluid dripping down your [pc.thighs], but you are now looking up at a ten foot high glass cylinder that is almost full to the brim with your cum. The screen blinks on, informing you that you’ve donated " + Math.round(cumQ) + " mLs for " + cumPrice + " credits. A cartoon Tamani is gazing at the total, her pupils hearts, hands clutched together, drooling slightly. You sit back, [pc.cock " + cIdx + "] slowly slithering back outwards, with a wheezing, deeply satisfied sigh.");
+	}
+	// Too much
+	else
+	{
+		output("You’ve been waiting for this moment. You felt rather like you were carrying several kegs between your " + (pc.hasLegs() ? "legs" : "thighs") + " when you [pc.move] into this cubicle, and now you’re all ready to ride this [pc.cumVisc], [pc.cumColor] tornado. Your vast reserves of cum seethe and swell inside of you, rising to an ecstatic point, and a howl of pure joy is ripped from your [pc.lips] as it finally finds release, surging up your shaft and exploding out into the receiver.");
+		output("\n\nYou would have been hurled back by the force of it had the base of the milker not automatically tightened around you, but even that gives up a moment later when the next load of [pc.cum] rockets out of your [pc.cock " + cIdx + "], and you yourself have to take firm hold of the milker’s handles to remain in place. Your eyes cross and your [pc.tongue] lolls out as you ejaculate again, and again, and again, a gallon of seed thrown out with every ecstatic flex, and at no point does it feel like you’re even close to getting it all out there.");
+		output("\n\nThe tubes in front of you flail as they bulge up with [pc.cum], and it geysers into the glass container like a stream in spate. Your [pc.hips] are on auto-pilot, thrusting automatically into the strained machinery as you keep giving it more, and more and more, groaning with overwhelming pleasure as [pc.cumColor] fluid sloshes heavily against the walls of the container until it’s filled to a point high above you.");
+		
+		clearMenu();
+		// Willpower > 50%
+		if(pc.WQ() > 50)
+		{
+			output("\n\nYour seed churns higher and higher, up to the top... a dim voice is telling you maybe you should stop... but you’re lost in the throes of intense ecstasy, there’s so much more cum left to launch up your red-hot shaft, and a deeper, more savage voice is telling you to keep going...");
+			
+			// [Keep Going] [Stop]
+			addButton(0, "Keep Going", breedwellCockmilkerOverLimit, [cIdx, cumQ, true]);
+			addButton(1, "Stop", breedwellCockmilkerOverLimit, [cIdx, cumQ, false]);
+		}
+		// Otherwise: //go to Keep Going
+		else
+		{
+			addButton(0, "Next", breedwellCockmilkerOverLimit, [cIdx, cumQ, true]);
+		}
+		return;
+	}
+	
+	if(!porno && !dildo)
+	{
+		output("\n\nYou");
+		if(pc.isCrotchGarbed()) output(" put your [pc.lowerGarments] back on and");
+		output(" exit the cubicle, [pc.eachCock] throbbing pleasantly.");
+	}
+	else if(!porno && dildo)
+	{
+		output("\n\nThe dildo assiduously pumps into you all the way through your orgasm, ruthlessly kneading your prostate so that the machine may extract every last drop of [pc.cum] out of you. Only then does it slowly retract out of your puckered anus, dragging over your tenderized walls as it goes, leaving you wobbly and completely, achingly drained. It’s only after a couple minutes rest, and making use of the conveniently situated moistened towel dispenser, that you");
+		if(pc.isCrotchGarbed()) output(" put your [pc.lowerGarments] back on and");
+		output(" exit the cubicle, [pc.eachCock] throbbing mightily.");
+	}
+	else
+	{
+		switch(track)
+		{
+			case 1:
+				output("\n\nComing down in a lusty haze, you watch the go’rahn and the now-heavily-swollen human relaxing together on the harness, talking quietly. Eventually the white rahn fetches a pen from her bag and writes a number on the girl’s forearm, kissing her on the brow before leaving. Cute. You");
+				if(!dildo)
+				{
+					if(pc.isCrotchGarbed()) output(" put your [pc.lowerGarments] back on and");
+					output(" exit the cubicle, [pc.eachCock] throbbing pleasantly.");
+				}
+				else
+				{
+					output(" wait for the dildo to slowly retract out of your puckered anus before");
+					if(pc.isCrotchGarbed()) output(" putting your [pc.lowerGarments] back on and");
+					output(" exiting the cubicle, [pc.eachCock] throbbing pleasantly.");
+				}
+				break;
+			case 2:
+				output("\n\nThe porno resumes with Red naked and covered in ausar spunk, alone in the clearing.");
+				output("\n\n<i>“There you are!”</i> growls a husky female voice. A tall, bespectacled dzaan strides on screen. <i>“Playing with the doggies again? I bet you’ve lost the nice lunch your mother made you, too!”</i>");
+				output("\n\n<i>“I’m sorry, auntie,”</i> replies Red miserably. <i>“They took all of it. And I’m so hungry...”</i>");
+				output("\n\n<i>“Aww. Well, never fret, my dear.”</i> The dzaan unzips her pants and allows her fifteen inch cock and four fat balls to flop out. <i>“It just so happens that I haven’t been sucked off in weeks.”</i>");
+				output("\n\nHappy endings are nice. You");
+				if(!dildo)
+				{
+					if(pc.isCrotchGarbed()) output(" put your [pc.lowerGarments] back on and");
+					output(" exit the cubicle, [pc.eachCock] throbbing pleasantly.");
+				}
+				else
+				{
+					output(" wait for the dildo to slowly retract out of your puckered anus before");
+					if(pc.isCrotchGarbed()) output(" putting your [pc.lowerGarments] back on and");
+					output(" exiting the cubicle, [pc.eachCock] throbbing pleasantly.");
+				}
+				break;
+			case 3:
+				output("\n\nThe porn finishes with Yorinn and Iker frotting nice and slow, clutching each other’s shoulders as they bump their prestigious, greased-up beast cocks against each other until Yorinn paints the zebra morph’s front in a geyser of thick jizz with a huge, ragged howl.");
+				output("\n\n<i>“Sorry, man... I think we only managed to mess this ol’ place up even worse,”</i> says Yorinn, dolefully gazing around at the cum slathered equipment once he’s husked his last.");
+				output("\n\n<i>“Oh, that’s alright.”</i> Iker scrunches the bear-morph’s hair fondly. <i>“You can always come back tomorrow.”</i>");
+				output("\n\nSweet. You");
+				if(!dildo)
+				{
+					if(pc.isCrotchGarbed()) output(" put your [pc.lowerGarments] back on and");
+					output(" exit the cubicle, [pc.eachCock] throbbing pleasantly.");
+				}
+				else
+				{
+					output(" wait for the dildo to slowly retract out of your puckered anus before");
+					if(pc.isCrotchGarbed()) output(" putting your [pc.lowerGarments] back on and");
+					output(" exiting the cubicle, [pc.eachCock] throbbing pleasantly.");
+				}
+				break;
+			case 4:
+				output("\n\n<i>“Mmm. Worth a few days off your sentence, just about,”</i> smirks the Gastigoth officer on screen, considering her gleaming boots. The kneeling, naked kaithrit mumbles thanks. <i>“You’ll need to apply to get a better tongue attached if we’re going to subtract any serious amount of time, though. Same time tomorrow, C581.”</i>");
+				output("\n\nWas any of that real, or gruesome, eerily realistic fantasy? You");
+				if(!dildo)
+				{
+					if(pc.isCrotchGarbed()) output(" put your [pc.lowerGarments] back on and");
+					output(" leave the cubicle feeling slightly dazed and unreal yourself.");
+				}
+				else
+				{
+					output(" wait for the dildo to withdraw out of your puckered anus before");
+					if(pc.isCrotchGarbed()) output(" putting your [pc.lowerGarments] back on and");
+					output(" leaving the cubicle, feeling slightly dazed and unreal yourself.");
+				}
+				break;
+			case 5:
+				output("\n\n<i>“Every last drop! Every last drop! Theeeere we go,”</i> coos Tamani, her energetic pumping blessedly slowing, her eyes fixed upon a cartoon approximation of the glass cylinder. <i>“Good [pc.boy]!”</i> She wipes a bead of sweat from her brow, blows out her cheeks and withdraws her strap-on with a cork-like ‘pop’. You moan raggedly as the dildo drags backwards over your brutalized walls and out of your gaped asshole. <i>“I’m gonna need a drink after all that!”</i>");
+				// Small-medium output:
+				if(cumQ < 1000) output(" She harrumphs as she takes in the modest amount of [pc.cum] you’ve produced on-screen. <i>“Not that you’re much use there.”</i> She wags a stern finger at cartoon you, slumped exhausted and quivering over the machinery. <i>“Get some cum mods down you, or befriend a galotian, [pc.name]! That’s your homework from Mistress Tamani. Run along with you now!”</i> The screen winks off.");
+				// Otherwise:
+				else output(" She hurries over to a tap on the cylinder’s side and draws herself a large, [pc.cumColor] glass. <i>“Luckily I have gorgeous, juicy cumpumps like you about the place. Mmm...”</i> A lipsmack and a horny moan follows her polishing off the glass in a single gulp. <i>“Y’know how addicted to cum I am? I built a business empire just so I’d have a limitless supply of the stuff. Ta ta for now, [pc.name]! Me and my big mean strap-on will always be waiting for your slutty, juicy ass!”</i>");
+				output("\n\nIt’s only after a couple minutes rest, and making use of the conveniently situated moistened towel dispenser, that you");
+				if(pc.isCrotchGarbed()) output(" put your [pc.lowerGarments] back on and");
+				output(" exit the cubicle, [pc.eachCock] throbbing mightily.");
+				break;
+		}
+		pc.orgasm();
+	}
+	
+	pc.credits += cumPrice;
+	breedwellCockmilkerEnd(cumQ);
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+public function breedwellCockmilkerOverLimit(arg:Array):void
+{
+	clearOutput();
+	author("Nonesuch");
+	
+	var cIdx:int = arg[0];
+	var cumQ:Number = Math.min((arg[1] / 3), 20000000);
+	var ohnoes:Boolean = arg[2];
+	
+	var cumPrice:Number = breedwellCumCreditValue(cumQ);
+	
+	// Stop
+	if(!ohnoes)
+	{
+		
+		output("It takes pretty much every vestige of your self-control, but with a heaving grunt you pull your [pc.cock " + cIdx + "] out of the cock-socket. You continue to gobbet [pc.cum] with heavy throbs, splashing over the walls, but by closing your eyes and steadying your breath you’re able to calm your over-sexed body down, and slowly it recedes down to a slow drool out of your [pc.cockHead " + cIdx + "].");
+		output("\n\nIt’s just as well. More sober now, you gaze up at the entirely-full glass cylinder, creaking with the pressure of your ‘donation’. The cockmilker nozzle droops, oozing [pc.cum], looking every bit as spent as your cock does. Still, the machine is still functioning, and it’s able to present a read-out on its screen: " + Math.round(cumQ) + " mL for " + cumPrice + " credits. A cartoon Tamani is gazing at the total, her pupils hearts, hands clutched together, drooling slightly.");
+		output("\n\nIt’s incredibly satisfying to look up at the cylinder and see it completely filled with your seed - even more so, to have conquered your own base impulses and not broken the thing (that deep, inward voice remains though, murmuring NEXT time you should sail onwards heedlessly, flood the whole damn station in your cum, show everyone exactly what kind of stud they’re dealing with here...)");
+		output("\n\nAfter you gathered yourself a bit, you");
+		if(pc.isCrotchGarbed()) output(" pull your [pc.lowerGarments] back on and");
+		output(" limp out of the cubicle, [pc.eachCock] throbbing mightily, spattered pretty thoroughly in your produce. You could probably do with a shower.");
+		
+		processTime(15 + rand(4));
+	}
+	// Keep Going
+	else
+	{
+		cumPrice = breedwellCumCreditValue(cumQ);
+		
+		output("One of the tubes ruptures, spraying the fecund slime across your [pc.chest], face and the walls of the cubicle, an alarm begins to blare as the glass walls of the cylinder begin to creak, but you don’t care. There’s only the tight, silky embrace of the cockmilker and your desire to hump it until you’re completely dry.");
+		output("\n\n<i>“Stop! Stop!”</i> cries someone. There’s a commotion going on behind you, but you don’t care. You barely half done. There’s only the tight, silky embrace of the cockm-");
+		output("\n\nWarm, gooey hands grab you and roughly pull you backwards out of the wailing, smoking machine. You huff in surprise, shaken out of your sticky, orgasmic reverie, and your [pc.cock " + cIdx + "] flexes its next load straight up into the air, spattering both you and the three stern-looking rahn aides surrounding you.");
+		output("\n\n");
+		// PC is kui-tan OR has nuki nuts perk OR is male Treated:
+		if(pc.raceShort() == "kui-tan" || pc.hasPerk("'Nuki Nuts") || pc.isTreatedMale())
+		{
+			output("<i>“I warned them!”</i> snaps the most senior-looking one. <i>“You let fucking");
+			if(pc.raceShort() == "kui-tan") output(" kui-tan");
+			else if(pc.hasPerk("'Nuki Nuts")) output(" kui-tan modders");
+			else output(" cowdiddlers");
+			output(" in, I said, and they’ll completely take the piss!");
+		}
+		else output("<i>“This is what happens when you set no goddamn limits!”</i> snaps the most senior-looking one. <i>“Fucking space drifters will mod themselves up and completely take the piss!");
+		output(" We’ve got enough seed out of you,”</i> she goes on through pursed lips, gesturing at the creaking, groaning cylinder you’ve filled to bursting, a [pc.cumColor] obelisk that looks like it’s going to crack at any moment. <i>“Now and forever. Collect your payment, and <b>never</b> come back here.”</i>");
+		output("\n\nYour [pc.cock " + cIdx + "] has been oozing a gentle river of [pc.cum] the whole time this has been going on, washing over everyone’s footwear, and the rahn leave in a disgusted hurry, shaking it off their heels. When, at last, you’ve stopped drooling enough that you can [pc.move], you stagger over to the screen to see how much you’ve earned. The display is maxed out at " + Math.round(cumQ) + " mLs.");
+		output("\n\n<i>“Hey,”</i> says the cartoon Tamani, lounging by the figure and grinning at you. <i>“I don’t care what anyone says, super stud: You’re MY kind of " + pc.mf("guy", "girl") + ". Let’s meet up sometime, k?”</i> She produces a sack of cash with the number " + cumPrice + " written on it and deposits it in front of you, departing with a blown kiss.");
+		
+		processTime(35 + rand(9));
+		
+		// PC barred from reentering Donation Wing
+		flags["BREEDWELL_DONATION_LOCKED"] = 1;
+	}
+	
+	// Cum-covered status active
+	applyCumSoaked(pc);
+	
+	pc.credits += cumPrice;
+	breedwellCockmilkerEnd(cumQ);
+	
+	currentLocation = "BREEDWELL_RECEPTION";
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+// Rahn Birthing Scene (Breedwell)
+public function rahnBreedwellBirthing(pregSlot:int = 0, numEggs:int = 2):void
+{
+	clearOutput();
+	clearBust();
+	author("Nonesuch");
+	
+	output("Pressure at the base of your stomach, and a certain wriggling restlessness above, has been building for the last few hours. Weakness assails your [pc.legOrLegs], making you stagger, as liquid pain suddenly grasps at you deep, your cervix dilating. You’re giving birth!");
+	// If on ship:
+	if(InShipInterior()) output("\n\nAs quickly as you can, you waddle into your room, switch the auto-medkit on in the bathroom, carefully place yourself on the bed" + (!pc.isNude() ? ", rip off your [pc.gear]" : "") + " and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
+	// If in public:
+	else if(InPublicSpace()) output("\n\nAs quickly as you can, you waddle into the nearest rest room, grab the medkit drone off the wall (frontier bathrooms are thankfully readily equipped for this sort of thing), lock yourself in a cubicle and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
+	// If in wild:
+	else output("\n\nGroaning at the timing, you" + (!pc.isNude() ? " shed your [pc.gear] and" : "") + " position yourself the best you can in the inhospitable and non-hospital-able terrain. The wish that you’d stayed somewhere indoors and safe hums through your thoughts like a mosquito, but there’s no helping it now -- you’ll have to deliver on your own.");
+	output("\n\n");
+	if(9999 == 0) output("The medkit drone monitors your pulse and places a large sheet beneath your thighs, instructing you to bear down rhythmically with soft, wordless beeps. ");
+	output("You huff, sensation ripples and spasms in your stomach, you puff, your vaginal tunnel swells, you lose all of your breath, sense of time... and then in a rush a flood of gooey life pours easily out of your engorged pussy and onto the " + (InShipInterior() ? "sheets" : "floor") + ", a 6 pound single cell that huffs, takes a deep breath, and then begins to wail shrilly.");
+	output("\n\nWow, that was so easy! Only boneless lifeforms boning you from now on! Pleasurable even, the way that slick, thickness poured over your puffy lips and [pc.eachClit]. It’s just as well, because... oh Void... it’s");
+	if(numEggs > 2) output(" definitely");
+	output(" not the last rahn you’re going to be bringing into the world today. Your eyes roll to the heavens as another series of clenches rack your sex, the next gel girl of yours impatiently following the same molten journey as the first...");
+	if(numEggs > 10) output("\n\nThey come swiftly after the first couple, a great rush of brightly colored life issuing out of your gaped, flooded pussy. The last three struggle out together, forced out finally by something approaching an orgasm, your whole body tightening up and fluming [pc.girlCum] in order to get the triplets out of you.");
+	output("\n\nAt long last your belly is flat and hollow-feeling for the first time in what seems like a year, and you have");
+	if(numEggs == 2)
+	{
+		output(" two rahn babies, one in each arm. Void, they are the cutest things, tiny gel girls that wave their plump little limbs in bafflement at their surrogate mom and the airy wide space they’ve found themselves in.");
+		if(pc.isLactating()) output(" They’re wedged against parts of your body they clearly do understand, however, and in a few moments you’re sighing in peace as they suckle your [pc.breasts].");
+	}
+	else if(numEggs <= 8)
+	{
+		output(" your arms full of rahn babies. The wailing has mostly stopped, and they are snuffling, frowning and cooing at their surrogate mom and the big wide world in general. They are cutest goddamn things.");
+		if(pc.isLactating())
+		{
+			output(" They’re wedged against parts of your body they clearly understand, however, and in a few moments you’re sighing in peace as tiny mouths hungrily suckle your [pc.breasts].");
+			if(pc.totalNipples() >= numEggs) output(" Lucky you’ve got one for each.");
+			else output(" The ones waiting their turn boop their tiny fists into their happily drinking sisters with a mixture of curiosity and impatience.");
+		}
+	}
+	else
+	{
+		output(" armfuls, lapfuls and a " + (InShipInterior() ? "bed" : "floor") + " full of rahn babies. You hope Breedwell knew what they were doing when they hired you - there’s enough here to form a small colony on their own! The wailing has mostly stopped, and the tiny gel girls are waving their plump little limbs and cooing in bafflement at the big wide world they are now in, the ones you can’t fit onto your arms and lap pawing at you for attention. They are the cutest goddamn things.");
+		if(numEggs > 10) (" You are a broodmother par excellence, and you are soon fully and happily involved in what you should be doing. You suckle " + num2Text(numEggs) + " of them at a time, hungry mouths attached to your [pc.nipples] whilst you simultaneously clean and play with others, making them giggle by tickling their bare soles, skillfully switching between them so that each gets at least a little of mom’s time.");
+	}
+	
+	processTime(45 + rand(11));
+	
+	clearMenu();
+	addButton(0, "Next", rahnBreedwellBirthEnd, numEggs);
+}
+public function rahnBreedwellBirthEnd(numEggs:int = 2):void
+{
+	clearOutput();
+	author("Nonesuch");
+	
+	// First
+	if(flags["BREEDWELL_RAHN_BIRTHS"] == undefined)
+	{
+		output("A beep startles you out of your post-natal haze.");
+		output("\n\n<i>“Hello, Surrogate [pc.name],”</i> says the bulky incubator drone with the Tamani logo emblazoned upon it in a sweet voice. <i>“Thank you for helping Breedwell with the great effort! You shall be credited for each rahn child you have borne to term. Rest assured, they shall be quite safe w--”</i>");
+		output("\n\n<i>“Hello and congratulations, [pc.name] Steele,”</i> says the bulky incubator drone with the Steele logo emblazoned upon it in a matter-of-face voice, butting into the first drone from behind. <i>“Shall I take these children of <b>yours</b> to <b>your</b> nursery? I also have combat protocols installed to ward off cot-robbing interlopers. You merely need to say when.”</i>");
+		output("\n\n<i>“You shall not be paid if you choose to keep any of the rahn you agreed to hand over at this time, surrogate [pc.name],”</i> says the sweet-voiced Tamani drone, turning slowly and deliberately to face the Steele drone. <i>“It may also affect your standing with the Breedwell Centre, should you choose to work with us again. I would also surely hate to vaporize any robotic personnel of yours for failing to keep their distance.”</i>");
+		
+		processTime(2);
+	}
+	// Repeat
+	else
+	{
+		output("A beep, followed by a second beep in a slightly different tone, startles you out of your post-natal haze. Hovering nearby are both the Tamani drone and the Steele drone. They say nothing, simply waiting expectantly with their incubators, passive-aggressively occupying one another’s space. It’s remarkable how two silent, faceless entities can still manage to convey a simmering hatred for one another.");
+		
+		processTime(1);
+	}
+	IncrementFlag("BREEDWELL_RAHN_BIRTHS");
+	
+	// [Tamani] [Steele]
+	clearMenu();
+	addButton(0, "Tamani", rahnBreedwellBirthTamani, numEggs, "Tamani", "Hand the rahn over to the Tamani drone. You’ll get paid, and it’s what the whole enterprise was supposed to be about, after all.");
+	addButton(1, "Steele", rahnBreedwellBirthSteele, numEggs, "Steele", "You carried and bore them, dammit. Nobody’s taking them away from you now!");
+}
+// Tamani
+public function rahnBreedwellBirthTamani(numEggs:int = 2):void
+{
+	clearOutput();
+	author("Nonesuch");
+	
+	output("It’s a wrench, holding the rahn babies for the last time, letting them play with your [pc.hair] and then placing them one after the other into the incubator, but you knew there’d be a scene like this eventually, and it’s hardly fair to decide they’re yours now.");
+	output("\n\n<i>“Thank you so much, " + pc.mf("Mr.", "Ms.") + " Steele,”</i> trills the drone when the operation is done, rising into the air. A few of the rahn look down at you soulfully, placing their tiny hands on the glass. Oh c’mon, don’t do <i>that.</i> <i>“Your bank balance has been updated. We hope to see you at Breedwell Incubation Centre in the future!”</i>");
+	output("\n\nThe Steele drone has already departed, in some robotic approximation of a snit. You’re left with your own thoughts - and a healthier bank account.");
+	
+	pc.credits += (600 * numEggs);
+	
+	StatTracking.track("pregnancy/rahn eggs/birthed", numEggs);
+	StatTracking.track("pregnancy/rahn eggs/tamani", numEggs);
+	StatTracking.track("pregnancy/total births", numEggs);
+	
+	processTime(3);
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+// Steele
+public function rahnBreedwellBirthSteele(numEggs:int = 2):void
+{
+	clearOutput();
+	author("Nonesuch");
+	
+	output("You hold each of the rahn babies, giving them a little blow on the stomach to make them wiggle and squeal, and then place them one after the other into the incubator. It’s a bit tough to say goodbye to them, but it’s a huge appeasement to your instincts that you’ll get to see them again on Tavros.");
+	output("\n\n<i>“I shall deliver them to " + (flags["BRIGET_MET"] != undefined ? "Ms. Briget" : "the nursery") + " safe and sound,”</i> the drone assures you, rising up into the air with its jelly baby payload. <i>“It might not be my place to say, " + pc.mf("Mr.", "Ms.") + " Steele - but in my estimation you’ve done the right thing.”</i>");
+	output("\n\nThe Tamani drone has already departed, no doubt to inform its superiors of your transgression. Well, whatever. There’ll always be other opportunities to earn more money.");
+	
+	var r:BreedwellRahnPregnancyHandler = PregnancyManager.findHandler("RahnPregnancyBreedwell") as BreedwellRahnPregnancyHandler;
+	var c:Child = Child.NewChildWeights(
+		r.pregnancyChildRace,
+		r.childMaturationMultiplier,
+		numEggs,
+		r.childGenderWeights
+	);
+	c.BornTimestamp = GetGameTimestamp();
+	
+	ChildManager.addChild(c);
+	
+	StatTracking.track("pregnancy/rahn eggs/birthed", numEggs);
+	StatTracking.track("pregnancy/rahn eggs/day care", numEggs);
+	StatTracking.track("pregnancy/total births", numEggs);
+	StatTracking.track("pregnancy/total day care", numEggs);
+	
+	processTime(3);
+	
+	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
 
 
-/*
 
-[Pod] Intros
-Tooltip: Harness yourself up and get ready for a breeding.
-GO Tooltip: You’re already too stuffed to do this.
-
-//If Lust <31 set to 31, otherwise ++Lust
-First 
-
-Well... time to justify flying all the way out here, you guess. You approach one of the backward-facing chairs, one of the ones towards the end of the lounge, so no-one can see you fumbling around. You take off your [pc.gear] - there’s a handy clothing compartment situated next to every pod, that scans your thumbprint and locks away once you’re naked. You sit your bare [pc.butt] down on the padded seat and put your hands on the rests. A helmet-like scanner descends over your head and flickers a light across your eyes.
-<i>“Welcome, [pc.name] Steele,”</i> a soothing voice says in your ear. <i>“Please relax as the Tamani Conceptuzal Harness MkV orientates you.”</i> Classical music begins to play as steel bands snap shut around your wrists {and ankles / around your {tail / gooey mass}}, and the chair moves you backward into the wall, shutting securely in front of you. In the darkness of the cavity the machine spends a moment playing its flickering blue light over you - considering your weight and body type, perhaps - and then it turns you around, {pulling your [pc.legs] up and splaying them as it does so / drawing the lower half of your tail to one side as it does / drawing your goo away in clumps}. Your hands are fixed out to the side at about head-height, comfortable but immovable. {Your seat is craned ever so slightly so that [pc.eachCock] flop{s} onto your stomach and [pc.eachVagina] {are/ is} made obvious and bare.}
-Thus, with your [pc.chest] and [pc.eachVagina] completely exposed, it opens the wall to your designated cubicle and slides your bound form into the light. It finishes by extending a pheromone pen and giving you a quick spray across the thighs and collarbone. The faintly peachy smell wafts up your nostrils, and heat rises to your [pc.skinFurScales], your {pussy / pussies} becoming flush and wet with chemical arousal.
-<i>“Thank you for choosing the Tamani Conceptuzal Harness, for all your sapient breeding needs,”</i> the voice says sweetly, as the classical music ends. <i>“You are now marked as available, [pc.name]. Remember: good breeders take it with a smile.”</i>
-The helmet retracts, and you’re left on your own in the small, sparsely furnished cubicle, to gaze at the door opposite and wait.
-You’re not made to wait particularly long, though.
-
-
-Repeat non-premium
-
-The process is slightly unnerving, but you’re used to it now. And - quietly - you’re rather beginning to enjoy it. You pack your [pc.gear] away in the thumbprint locker and sit your bare [pc.butt] down on a chair. The helmet descends over your eyes.
-<i>“Welcome back, [pc.name] Steele,”</i> says the soothing voice. <i>“Please relax as the Tamani Conceptuzal Harness MkV orientates you.”</i> It starts to play a tune similar to the one you had on over the comms system as you made your way towards Wistral as it snaps its steel bands shut around your wrists and {ankles / tail / goo}, and retracts you into darkness. It only takes a moment to scan you before it turns you around, {pulling your [pc.legs] up and splaying them as it does so / drawing the lower half of your tail to one side as it does / drawing your goo away in clumps}. Your hands are fixed out to the side at about head-height, comfortable but immovable. {Your seat is craned ever so slightly so that [pc.eachCock] flop{s} onto your stomach and [pc.eachVagina] {are/ is} made obvious and bare.}
-And so, with your [pc.chest] and [pc.eachVagina] completely exposed, it opens the wall to your designated cubicle and slides your bound form into the light. It finishes by extending a pheromone pen and giving you a quick spray across the thighs and collarbone. The faintly peachy smell wafts up your nostrils, and you welcome the heat that rises to your [pc.skinFurScales], your {pussy / pussies} becoming flush and wet with chemical arousal.
-<i>“Thank you for choosing the Tamani Conceptuzal Harness, for all your sapient breeding needs,”</i> the voice says sweetly, as the music ends. <i>“You are now marked as available, [pc.name]. Remember: good breeders take it with a smile.”</i>
-The helmet retracts, and you’re left on your own in the small, sparsely furnished cubicle, to gaze at the door opposite and wait.
-You’re never made to wait particularly long.
-
-Premium
-
-Scenes
-
-//Selected at random
-
-1.
-
-The track-suited zel’rahn who strides in is slim and svelte by rahn standards, and has the confidence and ease about her of someone who’s done this any number of times before.
-<i>“Oh hey,”</i> she croons, big grin plastered on her strawberry face, gazing at your helplessly exposed {pussy / pussies} as she shrugs off her top. <i>“Look at you!”</i> Casually she leans over you and trails her fingers backwards and forwards over your labia, flicking teasingly at your [pc.clit] before plunging her digits in deep.
-{Vanae/Gabilani: The rahn laughs with delight as you gasp and reactively tighten up, your pussy’s strong, {cilia-lined / muscular} walls kneading her fingers intently. <i>“What a cockmilker that is! On what world did you get that done, [pc.boy]? You know what, never mind. <i>“ She places a warm, gooey hand over your mouth as she impatiently discards her bottoms, stroking her engorged, pointed barb-lined ovipositor with the other. <i>“I don’t wanna know. A bit of mystique makes the fucking better, you know?”</i>}
-{Mouth: <i>“Wow,”</i> the rahn says wonderingly, tracing your lip-like labia and running her finger along the [pc.femcum]-sodden tongue. <i>“You know, I heard a couple of my more, um, semen-interested friends went in for this kind of thing. That how it is for you, [pc.boy]? D’you have someone who gives it to you in a doggie bowl every morning?”</i> The prospect seems to arouse her. Impatiently she discards her bottoms, stroking her extended, blunt barb-lined ovipositor. <i>“I’m afraid I don’t have that flavor of fun. But who knows. Maybe I can get you addicted to the taste of this, too... <i>“
-{Nyrea: <i>“The... thingy planet! Bugs!”</i> the rahn exclaims, as she traces the inside of your strange, inverted cum-canister, tips pushing against one of your sensitive, swollen pouches. <i>“I’ve read about these! You’ve got a pussy but you’re actually, like, a man-bug aren’t you?”</i> She looks up at you. {”</i>Don’t look much like a man to me, though.”</i> / <i>“Guess this kind of equipment suits a cuntboy down to the ground, huh?”</i>} She discards her bottoms, stroking her extended, blunt barb-lined ovipositor as she continues to finger you. <i>“So: Guess I get to be the big, scary girl-bug who stuffs her sissy slave so full of eggs he can barely move, then. That’s cool.”</i>
-{Flower: <i>“Pretty,”</i> she sighs wonderingly, sliding her fingers up your fronds, flicking at your petals and dot-clit, laughing when she makes you twitch and gasp. She extends her long tongue and dips it into your hole, savoring your [pc.girlcumFlavor] with a smack of the lips. <i>“Bet you attract all sorts of fly boys with a flash of that.”</i> She discards her bottoms, stroking her extended, blunt barb-lined ovipositor as she continues to finger you. <i>“This is my hothouse for the next little while though, poppy. You aren’t gonna need much watering once I’m done with you.”</i>
-{Otherwise: <i>“Aww, how sweet and vanilla!”</i> The rahn laughs as she curls her fingers along your tunnel and you squirm with pleasure {dribbling / gushing} [pc.femcum]. She sucks her digits clean before going on. <i>“Lost count of how many of these I’ve stuffed full of eggs. And, I mean, I could keep on doing it forever... <i>“ She impatiently discards her bottoms, stroking her extended, blunt barb-lined ovipositor as she firmly slots two of her fingers back into your [pc.vagina]. <i>“ ...but you should consider something, I dunno, a bit more unusual if you’re going to keep on displaying yourself, [pc.boy]. The broodmares with the neat downstairs, they’re the ones who really pull the rich rahn in.”</i>}
-{merge}
-The red gel girl lines herself up with the hole she’s been teasing and then opens it with a firm shove of her hot ovi-cock. You didn’t know if a single cell organism could be described as athletic as such, but this one fucks you with seemingly relentless energy, one powerful thrust of her lean hips after another. The barbs of her cock rub up and down your sensitive, pheromone-enflamed tunnel and you cum explosively, {[pc.femcum] spurting plentifully around her girth} writhing helplessly in your bonds and squealing as she continues to pump you heedlessly.
-<i>“’S it [pc.boyGirl], sing for me,”</i> the rahn domme groans lustfully, {grasping your [pc.chest] / sinking her fingers into your [pc.chest]}. <i>“I can keep this up all day. I ain’t gonna stop until you beg me for my eggs!”</i>
-She clearly means it, lost in a sun-like blaze of energy. You are mercilessly rubbed to another coruscating, full body orgasm, and when you dimly realize she isn’t slowing down even slightly you find yourself crying out deliriously, begging her to breed you.
-<i>“Louder! That’s it. That’s it!”</i> She plants her mouth over yours and invades your mouth with her long, nimble tongue, twining it around your own as she plants herself into your [pc.vagina] as deep as she can and unloads, your pussy walls swelling with the smooth weight of eggs and the warm gush of lubricant. You groan woozily as she slowly withdraws, barbs grazing down your tenderized cunt, and then twitch as she stands over you and squirts the last of her sweet, musky lube across your face and [pc.chest].
-<i>“Nice,”</i> she grins, admiring her handiwork before gathering her clothes. <i>“Just imagine: in a decade’s time, there’ll be a lot of lil mes running around. Maybe we’ll catch up one day, and me and one of our daughters can double team you?”</i> She’s laughing at her own depravity as she saunters out.
-
-2.
-The plump loo’rahn stumbles into your cubicle, almost as if she had to be shoved in. Her face is flushed and she’s giggling nervously; it doesn’t take the scent of wine that wafts over to you to know that it took more than the encouragement of her friends to find the courage to step in here.
-<i>“H-hi,”</i> she says, gazing at you shyly. <i>“I’m sorry - I don’t think I’ll be very good at this... ooh, you’re {pretty / handsome}, though.”</i> The big gel woman breathes in the heavy pheromones you’re emitting, and her expression becomes softer. She unbuttons her top, allowing her pendulous, honey-colored breasts to slowly flop out. <i>“I... um, I’m going to go pretty slow. Is, is that alright?”</i>
-You do your best to be encouraging; you moan sweetly when, after several attempts, she manages to line the bulbous tip of her terran-like ovipositor with the entrance of your [pc.vagina], and then tell her to rest on top of you, take her time. Her big jelly-boobs pillow onto your {[pc.chest] / face} as she sinks deep into the folds of your pussy and then loses herself in the throes of it, packing you full of bulging hot ovipositor again and again with quivering movements.
-<i>“You’re so lovely!”</i> she coos, ducking her head down to limpet her lips around yours, breathing wine and sugar into your mouth. Her lips and tongue move over yours as her soft, wide thighs rub against your [pc.thighs] with increasingly urgent pumps. <i>“Oh, oh... I’m so glad somebody as nice as you will be carrying my kids...”</i> She passionately twines her long, butterfly-like tongue around your [pc.tongue] as she cums, hot breath advancing down your throat as first one egg, then another spreads your [pc.vagina] wide, intense sensation sliding up your tunnel, easing open your cervix and depositing itself in your womb.
-The chubby orange rahn rests on top of you for a while, glued to you with sweat and oozing juices, before retracting out of you and wobblingly collects her stuff. Her shy awkwardness returns as the afterglow ebbs - but she still manages to give you a sincere, happy smile before she leaves.
-<i>“Goodbye, sweetie,”</i> she sighs. <i>“Take good care of yourself. And my eggs.”</i>
-
-3.
-//Cock and/or lactating only 
-
-The tall, casually-dressed go’rahn who steps in now is thin by rahn standards, an off-white candle of a gel woman, and as she disrobes she’s happy to explain why she picked you: She hasn’t eaten all day.
-//If both randomly select one
-{If cock: You tremble in your harness as she grips your [pc.hips] and applies powerful suction to your [pc.cock], willing the cum out of you with hard, hungry drags of her lips. It’s practically vampiric, and your cock can’t take much of that kind of attention before seizing up and launching [pc.cumColor] rockets of [pc.cum] into her waiting maw, your thighs thrusting reactively to the pleasure of it. {You’re a productive enough cum pump to noticeably swell out her hips and bosom with your geyser-like spurts.}
-{If lactating: You gasp helplessly in your harness as she drains your [pc.milk]-heavy [pc.boobs] one after the other with powerful drags of her lips, all the while fingering your [pc.vagina], playing with what she will plunder once her thirst is satiated. It doesn’t take many rolls and teases of her mouth over your [pc.nipples] for you to be {dribbling / gushing} [pc.milkColor] fluid into her waiting maw, your [pc.thighs] thrusting reactively to the sensation her fingers are pushing on you. {Your breasts are so full you noticeably swell out her hips, stomach and bosom with the [pc.milkFlavor] cascade you produce.}
-
-//merge
-She rises, smacking her lips with deep enjoyment, and practically purring with absorbed energy, moves on to the main event, unbuttoning her jeans and extending her pseudo-sheathed, horse-like ovipositor. Moans and then wails are forced out of your mouth as she grips your bound [pc.legs] and fucks you energetically, her {newly thickened} thighs beating a steady rhythm against your exposed ass. Her egg-cock seems to be constantly drooling lube, and your [pc.vagina] is already a leaking, gaping mess by the time her hands tighten on your [pc.skinFurScales], she thrusts her blunt prick as deep as she can and with a husky groan of her own impregnates you, her eggs deposited into your womb in a great warm wash of musky white fluid.
-Having finished both her meal and fuck, she withdraws her ovipositor and leaves for the shower room without another words, leaving you a leaking, drooling mess, simultaneously drained and stuffed.
-
-4.
-
-<i>“You know, I find the whole ‘strapped down and helpless’ element unsavory,”</i> opines the business-suited doh’rahn that strides in, considering you through her gleaming holo-glasses. <i>“Implies unwillingness. Makes explicit the unfair power structures underpinning this supposedly valiant enterprise. Undoubtedly a turn-on for some, but not really for me.”</i> She unbuttons her shirt a little bit, breasts shifting underneath the thin fabric, and a bloom of musky, spice washes over you. Your mouth waters reactively, and your already-aroused pussy goes into overdrive, drooling [pc.femcum] and flexing up needily. <i>“It’s like they’re saying I couldn’t get anything I wanted from you, whenever I wanted, wherever.”</i>
-
-Ever so slowly she takes off her clothes, revealing more and more of her top-heavy, purple body and intensifying the heavy smell of her pheromones in the cramped cubicle, carefully folding each of her expensive garments on the table. It’s clearly done to render you a quivering mess long before she slithers off her prim white panties and extends her tentacle-feeler lined ovipositor, and it’s mercilessly effective. You’re wriggling around, flexing against your obdurate bonds, practically panting, {[pc.eachCock] thickly erect}, long before she gets to that stage.
-
-Playing with one of her nipples, she strokes her pseudo-dick slowly over your [pc.vagina], letting her short, fat little tentacles to wriggle against your [pc.clit] and labia, all the while her hot smell inundates your nostrils and throat until finally the moaning pleas for her to fuck and impregnate you are torn from your mouth. Only then, with a thin smirk, does she line herself up with your hole and thrusts home, making you orgasm {in a small explosion of [pc.femcum]} on the spot, incredible pleasure making you writhe and spasm in your bonds wildly.
-
-Evidently quite used to her partners being in this state, the doh’rahn fucks you almost phlegmatically, holo-glasses still in place, big boobs bapping a pleasant rhythm upon her chest as she slides her cock back down your passage and then firmly slots it back in, sensation knibbling through you as her tentacles waggle inside of you excitedly. You seem to get rocked by a fresh orgasm every ten seconds, such is the tactile overdose she’s subjecting you to, gleeful spasms rocking up your body from your [pc.vagina] again and again. You’re barely even sensate when she does finally bite her lip and speed up a bit, huffing and breasts bouncing as she swells your womb with her round, smooth bounty.
-
-<i>“Uff! Good,”</i> she sighs, as if she’s just seen some pleasing quarterly projections. She withdraws from your gaped twat, fastidiously cleaning it with a tissue before picking up her clothes. <i>“Hope to run into you elsewhere, [pc.name], so we can do this without all the forced, unpleasant nonsense. My company will always need more office relaxers about the place.”</i>
-
-5.
-
-The fuu’rahn with the nose-stud and asymmetrical haircut has been to see a gel sculptor recently, a part-masseur part-modder who specializes in reshaping the malleable flesh of rahn. You know this because it’s the first thing she tells you when she enters your cubicle, and displays her curly, pigtail nipples and three-toed, talon-like feet to you proudly. She winces slightly as she extends her studded, pointed ovipositor, blowing out her cheeks as she forces out the rounded bulb at the base out of her groin.
-
-<i>“What do you think?”</i> she asks almost timidly, touching the knot. <i>“I was kinda going for an ausar look with a couple of cool extras, and I’m told people really like this thing on them. Guess I’ll find out for myself, huh?”</i>
-
-She grasps you by the [pc.hips] and enters your [pc.vagina] gently, careful eyes on your face as she dips her hardness in and finds your limit, but as her delightful studs rub up and down your tunnel and you make your enjoyment of it clear with arches of your back and clenches against your steel clasps, she grins and goes at you in a more carefree manner, her corkscrew nipples pressing into your [pc.chest] as she molds her green-and-blue flesh to yours.
-
-She loses herself to it so much, in fact, that she doesn’t even notice she’s shoved her knot beyond your parted lips as she tenses up and ejaculates her eggs into you. You certainly do, though; you squeal at the intense sensation, clamping down on her dick reactively.
-
-<i>“Oh!”</i> she says, blissful expression turning to one of startlement. <i>“Did I do something - ? Oh. I, uh.”</i> She awkwardly tries to withdraw. <i>“I’m, um... kind of stuck in you. Sorry about that.”</i>
-
-She spends the time waiting for her knot to deflate by playing with your [pc.nipples], {circling them over and over and licking them teasingly / fingering them and cooing at the pleasure it causes you, wetting her digits in {[pc.femcum] / [pc.milk]} / circling them teasingly and then suckling you hungrily when you bead [pc.milk] in response}.
-
-If cunt/mouth nips: <i>“Those nipples are really cool!”</i> she laughs when she’s finally able to unhouse her ovi-cock from the hot morass of eggs and blue lubricant she’s left inside you. <i>“I’m definitely going to get some done for myself next time I see my sculptor.”</i> She blows you a kiss as she gathers her clothes and bobs her pert, naked ass out into the shower receptacle.
-
-If else: <i>“That was actually kinda fun!”</i> she laughs when she’s finally able to unhouse her ovi-cock from the hot morass of eggs and blue lubricant she’s left inside you. <i>“I can’t wait to knot with someone else and just kinda hang for a little while. Maybe you again, sometime?”</i> She blows you a kiss as she gathers her clothes and bobs her pert, naked ass out into the shower receptacle.
-
-6.
-
-The tall, lithe go’rahn is dressed in an ornate, full-bodied robe and a long headscarf, as if she were a member of some sort of religious order. You doubt anybody religious would have the reason she does for wearing that headscarf, though. You watch as, eyes placidly fixed on you, she silently removes it and allows her mass of white, phallic head-tentacles to move freely, and unravels her robe to reveal a similar wriggling bush of flexible ovi-cocks eagerly thickening and writhing to the scent you’re giving off. You’ve never been more aware of the steel clasps holding you in place as, with a similarly calm and silent smile, this avatar of tentacular lust slowly paces towards you.
-
-Within a minute you’ve got a girthy phallic feeler rammed into every hole you’ve got available, a head tentacle stretching open your [pc.lips] as another pumps its gooey, leaking tip past your [pc.anus]. {She easily gets two into your spacious and well-gaped twat, stretching the walls with shifting, restless, prehensile cock. / With patient but indefatigable pushes she manages to get two into your tight cunt, stretching the walls with shifting, restless, prehensile cock.} {Two more thrust eagerly into the sensitive confines of your [pc.nipples.} The rest bat their leaking heads against your [pc.skinFurScales], as if admonishing you for not being able to accommodate them as well. 
-
-You thrash helplessly in your fixed position to it all, groaning and squealing in sudden, electric orgasm, {spurting [pc.femcum] {and [pc.milk] everywhere}, nothing but a receptacle for horny, insatiable rahn tentacles. The bizarre alien groans in husky orgasm herself occasionally, one of her appendages tensing up and spurting warm, white goo into your mouth, your {pussy / pussies}, or your [pc.butt] - and each time she simply withdraws it and replaces it with another. It all becomes a blur of thick dick and rahn lube, inundating your brain with the smell and texture of it until you’re washed away on a sea of hard, writhing, white sex...
-
-You regain your senses a little while later. There is no way to judge how long you’ve been out of it, except the go’rahn is gone and the cleaning cycle hasn’t started yet, so you’re still covered with rahn juices from head to gaping, leaking cunt{s}. Did she even impregnate you, or was this simply an opportunity to inflict her wonderfully horrendous, horrendously wonderful body on someone who couldn’t run away? You guess you’ll find out in a couple weeks’ time.
-
-7.
-
-<i>“I had half of my body mass trimmed off,”</i> explains the perky, dumpy fuu’rahn who bounces into your cubicle, smiling at you brightly as she shrugs off her fashionable jacket. The pear-shaped gel girl is barely four foot tall. {Gabilani codex read: That, her figure, and her mottled green-and-blue color immediately calls to mind the gabilani of Tarkus.} <i>“To pay for a trip out here, and all across the frontier. You wouldn’t believe how being this size cuts down on the bills.”</i> {PC height < 4’5”</i>: Her eyes shine with naked delight as they trail across your own small-but-perfectly-formed body. <i>“Guess why I picked you?”</i>
-
-She makes love to you with sweaty, delighted eagerness, her thick, soft hips slapping a steady rhythm against your own splayed thighs, her nubby ovipositor reaching deep inside you. It’s oversized for her, a girthy monster of a cock that rubs against your walls delightfully until you’re flexing back and moaning to her every jiggling thrust.
-
-<i>“It’s so nice to be able to do this with somebody the same size for once,”</i> she groans lustily in your ear. She pauses to mash lips with you, tangling her tongue with your [pc.tongue]. <i>“So sick of the oral jokes...”</i>
-
-The thick, wonderful weight of her eggs travels up her stalk and you orgasm hard to the sensation, your [pc.vagina] clenching up and almost willing the heavy, smooth fact of them into your womb. Blue-and-green arms hold you close until the implantation is certain, and a slurry of [pc.femcum] and blue lube is dribbling down your [pc.ass].
-
-<i>“That was great,”</i> sighs the fuu’rahn, slowly slithering out of your grip. Her happy, gratified gaze trail over your sweaty, swollen form as she picks up her clothes. <i>“Y’know, that size just looks <i>right</i> for pregnancy. I can see you being a hit even with peeps who aren’t freaks like me!”</i> She waggles her fingers at you cheekily as she leaves.}
-
-{If else: She sighs as she takes in your considerably larger body, splayed and readied for her delectation. <i>“Only problem is - it makes every lover look like an adventure course. But a little exercise never hurt anyone, right good-looking?”</i>
-
-Once she’s peeled her clothes off, she hoists herself up using her thighs, and then uses your cuffed hands as leverage with which to make love to you with sweaty, delighted eagerness, her thick, soft hips slapping a steady rhythm against your own splayed thighs, her nubby ovipositor reaching deep inside you. It’s oversized for her, a girthy monster of a cock that rubs against your walls delightfully until you’re flexing back and moaning to her every jiggling thrust.
-
-<i>“Can’t skimp on the size of your ‘possi, though,”</i> she groans lustily{, head wedged between your [pc.breasts]}. <i>“If you can’t please the girls and boys there’s no point even...”</i> she loses her train of thought as she cums, the thick, wonderful weight of her eggs traveling up her stalk. You orgasm yourself to the sensation, your [pc.vagina] clenching up and almost willing the heavy, smooth fact of them into your womb. Blue-and-green arms hold you close until the implantation is certain, and a slurry of [pc.femcum] and blue lube is dribbling down your [pc.ass].
-
-<i>“Look after them, big [pc.boyGirl],”</i> sighs the fuu’rahn, slowly slithering out of your grip. Her happy, gratified gaze trail over your sweaty, swollen form as she picks up her clothes. <i>“You should think about shrinking yourself down too, y’know. Short and thick suits being a dedicated incubator, you know...”</i>
-
-Ending
-
-After each session has come to its intense, womb-swelling conclusion, the harnesses’ robotic limbs telescope outwards and clean you thoroughly, jetting off the sweat and sugary rahn jizz and gently pinching the lips of [pc.eachVagina] together, to present a decorous picture to the next client. You always get a spray of the prototype pheromone mixture too, and you quickly become dizzy with it, your {pussy / pussies} flush with heat and desperate for a coupling long before the door opposite slides open to reveal your next impatient, lusty gel girl stud. 
-
-After the last though, once you’ve received another brisk cleaning the harnesses’ helmet comes down over your head again.
-
-<i>“You have received as many fertilized ovum as our biometrics determine you can healthily carry, [pc.name] Steele,”</i> says the calm voice in your ear. <i>“Good [pc.boyGirl]! Entering cool down phase.”</i> Soothing electronica plays as you are withdrawn back into the wall and turned around. The steel binds cuffing your wrists and {your ankles / your lower body} snap open, and a warm, moistened cloth is gently rubbed over them and your swollen belly. At last, you are shifted back out into the sterile light of the incubator lobby.
-
-<i>“Thank you for using Tamani Conceptuzal Harness MkV,”</i> says the voice, as the muzak comes to an end. <i>“Your account has been accredited for your work, and you will be paid for each rahn we identify you successfully carrying to term. We, and Tamani Twenty Four’s 18 billion viewers, hope to see you again.”</i>
-
-You are left rubbing your now heavily gravid belly, tired, dazed yet perversely gratified.
-
-
-[Cockmilker]
-
-Notes
-
-Mechanically should work in the same way the NT one does, e.g. awards credits at an increasingly lesser rate the more the PC donates, only at steeper cut-off points. The overall effect should be that modest ejaculations reward less than they would with the NT milker, but larger loads reward more, with a higher overall ceiling.
-
-Suggested Thresholds
-
-Output Threshold 	Credits per 1,000 ml
-0ml	10
-Less than 5,000 ml	8
-Less than 20,000 ml	5
-Less than 200,000 ml	3
-Less than 500,000 ml	1
-Less than 1,000,000 ml	0.5
-Less than 10,000,000 ml	0.1
-100,000,000 ml or more	0.05
-
-Idk what the maximum amount the PC can feasibly jizz is in this game, but the scene where you break this thing should be fairly close to it. Given NT cockmilker’s limit is 4,000,000, set limit to 20,000,000 for now.
-
-Intro
-
-Tooltip: Donate some sperm.
-
-You step into a cubicle, the door hissing shut behind you. The milker is an oblong, arm-like machine offering its blunt end towards you, its clean, blue crinkle of shiny, latex-like material awaiting use. It’s obviously built to be adaptable, and that impression is confirmed when a flickering light plays over you from the cam-unit above and the thing whirrs, adjusting its receiver and handles to compensate for your height. Beyond it the fifteen foot glass cylinder looms; a daunting, gleaming challenge.
-
-You {take your [pc.lowerGarments] off and} move across and take hold of the handles. The screen above the milker blinks on, silently displaying two touch buttons.
-
-[Porn OFF] [Dildo OFF]
-
-Porn OFF Tooltip: Don’t watch porn whilst you’re getting milked.
-
-Porn ON Tooltip: Watch porn whilst you’re getting milked.
-
-Dildo OFF Tooltip: Avoid getting prostate milked.
-
-Dildo ON Tooltip: Take it up the ass.
-
-Porn off AND Dildo off
-
-Pfft. Artificial stimulation is for lightweights and the imagination-less. You click both options off and take hold of your [pc.cock], thinking as you do of the cute rahn babes who will soon be enjoying your [pc.cumVisc] [pc.cumColor] seed, one way or another. You’re already nicely erect when you take hold of the handles proper, and you line yourself up and slowly sink your [pc.cockHead] into the synthetic crease of the machine.
-
-The machine hums as you dip further into it, pleasant vibrations running through your hardness. {Small cock: It’s rather baggy at first, but it tightens up precipitously, the material puckering up at the base, and your cute little twig is soon being provided with as gasp-inducingly tight a fuck as it’s ever likely to find.} {Average cock: It feels nice and tight around you, the machine barely having to adjust itself at all to glove your fine-sized cock.} {Big cock: It’s a frustrating experience to begin with, the hole too small for your monster dick, but the machine quickly adjusts, latex material fanning out from the hole and moving backwards, until you’re being provided with a wonderfully long, large ona-hole perfectly suited for a {man / herm} of your calibre.} {Massive cock: There’s a whine and a throb as you keep feeding your thickness in, and you {chuckle / giggle} as at last the machine beeps in protest, choked upon your massive, totemic dick with it barely halfway in. It’s not giving up, though. After a slight pause the material puffs out massively, swelling out of the metal seams of its housing with a sound like a balloon inflating. You push inwards, it keeps bulging outwards, and you groan with contentment as your {[pc.balls] / [pc.thighs] touch the crinkled opening. Finally, a hole that can take a {man / herm} of your calibre!}
-
-You draw yourself out and then saw your way in, and once satisfied quickly fall into a good rhythm, clutching the padded handles so you can go at the smooth, warm cock-holster with hard slaps of your groin. Heat builds in your [pc.cock] until it’s unbearable, and as much as you want to keep fucking the exquisitely tight and velvety milker forever, you find yourself tumbling over the edge.
-
-//Run Output scene
-
-You {put your [pc.lowerGarments] back on and }exit the cubicle, [pc.eachCock] throbbing pleasantly.
-
-Porn on, Dildo off
-
-You’re glad you’re given the option of one but not the other. Carefully, you press ‘yes’ to porno and ‘no’ to getting reamed. A cartoon Tamani appears on the screen, lying on her side and smirkingly considering a number of out-sized dildos. Each has an option written on it.
-
-1.	Live Streams from the Pods (f, h)
-2.	Little Red Riding Boi (fb, m, h)
-3.	Yorinn’s Hour of Yiff (m)
-4.	Select Recordings from the Gastigoth (f, h, m)
-
-[1] [2] [3] [4]
-
-Intro
-
-You take hold of the handles proper, line yourself up and slowly sink your [pc.cockHead] into the synthetic crease of the machine, pressing your chosen dildo as you do. The cartoon Tamani grabs it, splays her legs and slides it into her pussy, eyes crossing and mouth ‘oh’ing as she does. The screen zooms between her open lips.
-
-1.
-
-There are 9 minimized feeds in front of you, each displaying some lascivious action going on in the breeding pods elsewhere on the station. You focus upon one for a couple of seconds - a purple rahn in the throes of ecstasy, hammering her hips into a bound ausar herm whose engorged doggy cock is flopping this way and that - and the feed zooms out in response, taking over the screen, so you can drink in every detail. Oof! Who knew you could be a double squirter?
-
-As soon as you get tired with one feed, or one breeding session comes to its natural, sticky conclusion, you can swap to another feed with a flick of the eyeballs, and then another, and then another. It’s heady, sleazy over-stimulation, and your blood pulses through your veins faster as you submerge yourself in a sea of curvy gel girls having their way with just about every shape and size of being imaginable. Your [pc.hips] are on auto-pilot, thrusting into the welcoming embrace of the cockmilker with harder and harder strokes. {Small cock: It’s rather baggy at first, but it tightens up precipitously, the material puckering up at the base, and your cute little twig is soon being provided with as gasp-inducingly tight a fuck as it’s ever likely to get.} {Average cock: It feels nice and tight around you, the machine barely having to adjust itself at all to take your fine-sized cock.} {Big cock: It’s a frustrating experience to begin with, the hole too small for your monster dick, but the machine quickly adjusts, the material fanning out from the hole and moving backwards, until you’re being provided with a wonderfully long, large ona-hole perfectly suited for a {man / herm} of your caliber.} {Massive cock: There’s a whine and a throb as you keep feeding your thickness in, and you {chuckle / giggle} as at last the machine beeps in protest, choked upon your massive, totemic dick with you barely halfway in. It’s not giving up, though. After a slight pause the material puffs out massively, swelling out of the metal seams of its housing with a sound like a balloon inflating. You push inwards, it keeps bulging outwards, and you groan with contentment as your {[pc.balls] / [pc.thighs] touch the crinkled opening. Finally, a hole that can take a {man / herm} of your caliber!} Pure pleasure courses up your [pc.cock]{, filling your [pc.balls] with a wonderfully intense pressure}.
-
-Most of the dalliances in Breedwell’s pods are short, rough and frenzied affairs - no doubt aided by the pheromone mixture Tamani Corp insists on spraying their surrogates with - but there’s some that are slower, sweeter, and ultimately sexier. You watch transfixed as the go’rahn spends a long while tonguing the human female’s exposed cunt, forcing the young lady to a couple of trembling, transfixed orgasms, before gently mounting her with her spiral-shaped ovipositor, making out with the surrogate, lovingly fondling her petite breasts with their small, pointy nipples until the two are completely lost in themselves. Oh Void... 
-
-{Run output scenes}
-
-Coming down in a lusty haze, you watch the go’rahn and the now-heavily-swollen human relaxing together on the harness, talking quietly. Eventually the white rahn fetches a pen from her bag and writes a number on the girl’s forearm, kissing her on the brow before leaving. Cute. You {put your [pc.lowerGarments] back on and }exit the cubicle, [pc.eachCock] throbbing pleasantly.
-
-2.
-
-<i>“Hey everyone,”</i> smiles the breathy, red hot-panted human boi mincing through a forest clearing, flicking the blonde curls underneath his hood at the camera. <i>“I’m on my way to my Auntie Dzaan in the forest. She says she has something big and deep for me. I sure hope I don’t run into mean old wolves on the way. Oh no!”</i> Two big ausar step smirking into the clearing, both of them packing heavy bulges in their jeans.
-
-Lust inflames you as you watch the ‘wolves’ pin the femboy down and take turns with his pert, peachy ass, and you spear yourself further into the machine. Pleasant vibrations run through your hardness. {Small cock: It’s rather baggy at first, but it tightens up precipitously, the material puckering up at the base, and your cute little twig is soon being provided with as gasp-inducingly tight a fuck as it’s ever likely to get.} {Average cock: It feels nice and tight around you, the machine barely having to adjust itself at all to take your fine-sized cock.} {Big cock: It’s a frustrating experience to begin with, the hole too small for your monster dick, but the machine quickly adjusts, the material fanning out from the hole and moving backwards, until you’re being provided with a wonderfully long, large ona-hole perfectly suited for a {man / herm} of your caliber.} {Massive cock: There’s a whine and a throb as you keep feeding your thickness in, and you {chuckle / giggle} as at last the machine beeps in protest, choked upon your massive, totemic dick with you barely halfway in. It’s not giving up, though. After a slight pause the material puffs out massively, swelling out of the metal seams of its housing with a sound like a balloon inflating. You push inwards, it keeps bulging outwards, and you groan with contentment as your {[pc.balls] / [pc.thighs] touch the crinkled opening. Finally, a hole that can take a {man / herm} of your caliber!} You judder your [pc.hips] into the machine, pleasure coursing through your shaft, eyes fixed upon the screen.
-
-The porno is appallingly xenophobic really, relying on eye-rolling stereotypes of human easiness and ausar bestiality. Sometimes though, cheap and nasty is exactly what you want. You hammer the milker as you watch one of the wolves fuck Red from below, roughly jerking his dinky trap prick as he does, whilst another paints his upturned, gasping face in cum from his thick red cock. Heat builds in your [pc.cock] until it’s unbearable, and as much as you want to keep fucking the exquisitely tight and velvety milker for as long as possible, you find yourself tumbling over the edge.
-
-{run output scene}
-
-The porno resumes with Red naked and covered in ausar spunk, alone in the clearing.
-
-<i>“There you are!”</i> growls a husky female voice. A tall, bespectacled dzaan strides on screen. <i>“Playing with the doggies again? I bet you’ve lost the nice lunch your mother made you, too!”</i>
-
-<i>“I’m sorry, auntie,”</i> replies Red miserably. <i>“They took all of it. And I’m so hungry...”</i>
-
-<i>“Aww. Well, never fret, my dear.”</i> The dzaan unzips her pants and allows her fifteen inch cock and four fat balls to flop out. <i>“It just so happens that I haven’t been sucked off in weeks.”</i>
-
-Happy endings are nice. You {put your [pc.lowerGarments] back on and }exit the cubicle, [pc.eachCock] throbbing pleasantly.
-
-3.
-
-<i>“Hullo there!”</i> smiles the amiable-looking bear-morph at the camera. Burly isn’t the word for him; his checkered shirt and jeans could be used as tents by an ordinary-sized human, but they look like they’re painted onto his shaggy, musclebound body. He’s in some sort of faux-rustic stable setting. The partition wall groans uneasily as he leans on it. <i>“Yorinn here. I thought today I’d step on down to Vesperia and visit some of my friends in the country. Hey there, Iker!”</i>
-
-<i>“Hey,”</i> grins the vest-clad bipedal zebra who’s just sauntered into frame. He’s taller and leaner than Yorinn, although everything’s relative; he’s still built like a striped shithouse. Like the bear, he looks like he’s smuggling a raskvel around in his (very tight) undies. <i>“Listen, I could use some help cleaning out the grease pits. Think you could lend a hand? I warn you, though. It’s likely to get miiiiiighty greasy in there.”</i>
-
-The whole thing’s knowingly absurd, but that lends it a gentle charm that might otherwise be lacking when these bestial men’s men start getting hot and heavy with each other. You pick up the pace, really beginning to pound the synthetic hole you’re mired in as you watch Iker work his pole-like equine cock deep into Yorinn’s wide, muscular backside from behind, rattling the giant, oily silo they’re in as he begins to clap his prime, thoroughbred thighs into the bear in a lusty fury. {Small cock: The cockmilker is rather baggy at first, but it tightens up precipitously, the material puckering up at the base, and your cute little twig is soon being provided with as gasp-inducingly tight a fuck as it’s ever likely to get.} {Average cock: The cockmilker feels nice and tight around you, the machine barely having to adjust itself at all to take your fine-sized cock.} {Big cock: The cockmilker is a frustrating experience to begin with, the hole too small for your monster dick, but the machine quickly adjusts, the material fanning out from the hole and moving backwards, until you’re being provided with a wonderfully long, large ona-hole perfectly suited for a {man / herm} of your caliber.} {Massive cock: The cockmilker gives a whine and a throb as you keep feeding your thickness in, and you {chuckle / giggle} as at last the machine beeps in protest, choked upon your massive, totemic dick with you barely halfway in. It’s not giving up, though. After a slight pause the material puffs out massively, swelling out of the metal seams of its housing with a sound like a balloon inflating. You push inwards, it keeps bulging outwards, and you groan with contentment as your {[pc.balls] / [pc.thighs] touch the crinkled opening. Finally, a hole that can take a {man / herm} of your caliber!} You judder your [pc.hips] into the machine, pleasure coursing through your shaft, eyes fixed upon the screen.
-
-You hammer the machine as a husky morph drops into the Vesperian ‘grease pit’, then an alligator, then a blue-skinned, tentacle-mouthed alien, until the camera is panning across a pool of oiled, mountainous muscle and thick dick pounding into every hole going... Heat builds in your [pc.cock] until it’s unbearable, and as much as you want to keep fucking the exquisitely tight and velvety milker for as long as possible, you find yourself tumbling over the edge.
-
-{Run output scene}
-
-The porn finishes with Yorinn and Iker frotting nice and slow, clutching each other’s shoulders as they bump their prestigious, greased-up beast cocks against each other until Yorinn paints the zebra morph’s front in a geyser of thick jizz with a huge, ragged howl.
-
-<i>“Sorry, man... I think we only managed to mess this ol’ place up even worse,”</i> says Yorinn, dolefully gazing around at the cum slathered equipment once he’s husked his last.
-
-<i>“Oh, that’s alright.”</i> Iker scrunches the bear-morph’s hair fondly. <i>“You can always come back tomorrow.”</i>
-
-Sweet. You {put your [pc.lowerGarments] back on and }exit the cubicle, [pc.eachCock] throbbing pleasantly.
-
-4.
-
-A muscular, strong-jawed woman in a military uniform is sat at a desk, working away at a holo-keyboard. It seems a fairly ordinary scene, until the micro camera drone slowly dips underneath the desk. There, arms sleeve-bound behind her and ring-gagged, a collared, naked kaithrit is licking the woman’s long, black thigh-high boots.
-<i>“I better be able to see my face in those by the time I’m finished, smuggler bitch,”</i> the officer growls, and the kaithrit whimpers. <i>“I can make your sentence longer as well as shorter, you know.”</i>
-
-Is this real? This or any of the other scenes you can switch to with a flick of the eyeballs, all of them purportedly from the prison station Gastigoth? You watch entranced, [pc.hips] shoving into the soft, crinkly fabric of the cockmilker, pleasure coursing up your shaft, at sordid recordings of interrogation sessions, the infamous breeding program, body reassignment chambers, and, of course, the steamy labyrinth of sexual score-settling that are prison showers the universe over. Guards on prisoners, prisoners on prisoners, wealthy visitors on whatever they want. It’s filthy, watching this stuff, terrible, and incredibly, undeniably horny. {Small cock: The cockmilker is rather baggy at first, but it tightens up precipitously, the material puckering up at the base, and your cute little twig is soon being provided with as gasp-inducingly tight a fuck as it’s ever likely to get.} {Average cock: The cockmilker feels nice and tight around you, the machine barely having to adjust itself at all to take your fine-sized cock.} {Big cock: The cockmilker is a frustrating experience to begin with, the hole too small for your monster dick, but the machine quickly adjusts, the material fanning out from the hole and moving backwards, until you’re being provided with a wonderfully long, large ona-hole perfectly suited for a {man / herm} of your caliber.} {Massive cock: The cockmilker gives a whine and a throb as you keep feeding your thickness in, and you {chuckle / giggle} as at last the machine beeps in protest, choked upon your massive, totemic dick with you barely halfway in. It’s not giving up, though. After a slight pause the material puffs out massively, swelling out of the metal seams of its housing with a sound like a balloon inflating. You push inwards, it keeps bulging outwards, and you groan with contentment as your {[pc.balls] / [pc.thighs] touch the crinkled opening. Finally, a hole that can take a {man / herm} of your caliber!} You judder your [pc.hips] into the machine, pleasure coursing through your shaft, eyes fixed upon the screen.
-
-The human officer has the kaithrit prisoner’s head firmly pressed between her open thighs, dispassionately watching a live feed of a gryvain interrogating some sort of lithe insectile crossbreed attached to a steel rack.
-
-<i>“Ramp up the current. We know he knows where his friends hid the polonium,”</i> she directs into a mic. <i>“You aren’t getting up his ass until we get it out of him.”</i> The color in her cheeks rises, her mouth opening as she watches the willowy male judder and wail on the screen, and you find yourself humping the exquisitely tight and silky cockmilker with heedless abandon, the pressure in your {gonads / prick} intensifying...
-
-{Run Output scenes}
-
-<i>“Mmm. Worth a few days off your sentence, just about,”</i> smirks the Gastigoth officer on screen, considering her gleaming boots. The kneeling, naked kaithrit mumbles thanks. <i>“You’ll need to apply to get a better tongue attached if we’re going to subtract any serious amount of time, though. Same time tomorrow, C581.”</i>
-
-Was any of that real, or gruesome, eerily realistic fantasy? You{ put your [pc.lowerGarments] back on and} leave the cubicle feeling slightly dazed and unreal yourself.
-
-Porn Off, Dildo On
-
-Rotting your brain with porn is a no, but a nice prostate milking... yeah. That gives you a few tingles. You select one option and not the other, and there’s a whirring sound as a mechanical arm descends behind you. You shiver slightly as a warm, blunt object nestles itself between your buttcheeks, pausing when it is pressed against the pad of your [pc.anus]. 
-
-You take hold of your [pc.cock] and give it a few strokes, closing your eyes as you imagine all the gel cute rahn babes who will soon be enjoying your [pc.cumVisc] [pc.cumColor] seed, one way or another. Your prick rears up readily to those fruity thoughts, and you take hold of the handles proper, line yourself up and slowly sink your [pc.cockHead] into the synthetic crease of the machine.
-
-The machine hums as you sink further into it, pleasant vibrations running through your hardness. {Small cock: It’s rather baggy at first, but it tightens up precipitously, the material puckering up at the base, and your cute little twig is soon being provided with as gasp-inducingly tight a fuck as it’s ever likely to find.} {Average cock: It feels nice and tight around you, the machine barely having to adjust itself at all to glove your fine-sized cock.} {Big cock: It’s an irritating experience to begin with, the hole too small for your monster dick, but the machine quickly adjusts, latex material fanning out from the hole and moving backwards, until you’re being provided with a wonderfully long, large ona-hole perfectly suited for a {man / herm} of your caliber.} {Massive cock: There’s a whine and a throb as you keep feeding your thickness in, and you {chuckle / giggle} as at last the machine beeps in protest, choked upon your massive, totemic dick with it barely halfway in. It’s not giving up, though. After a slight pause the material puffs out massively, swelling out of the metal seams of its housing with a sound like a balloon inflating. You push inwards, it keeps bulging outwards, and you groan with contentment as your {[pc.balls] / [pc.thighs] touch the crinkled opening. Finally, a hole that can take a {man / herm} of your caliber!}
-
-As you cloak more and more of your dick in warm tightness, the prehensile dildo behind you follows you in, maintaining obdurate, patient pressure against your asshole. When you draw yourself outwards, however, it stays exactly where you found your limit, and you tense up slightly as you begin to penetrate yourself on it, the dildo’s blunt head opening your up and filling your rear entrance with hardness. You {coo / grunt} as it suddenly squirts a warm, oily load of lube into you, easing its passage and allowing it to slip its way in wonderfully deep. It’s only then that it becomes to judder, sending delicious vibrations quaking through your groin. You {squeal / bark} with pleasure as it hits the tender, buried button of your prostate, reactively making you tense up with joy and push your [pc.cock] back deep into the milker.
-
-You draw yourself out and then saw your way in, fucking the silky glove of the synthetic sleeve at the same time as you are drilled from behind, the robot cock driving over your {boy / herm} button at the same time as filling your lower body with quaking pleasure. It makes you weak in the [pc.knees], and you have to hold onto the padded handles closely to keep your balance as you reactively slap your [pc.thighs] into the machine, each thrust driving the milking dildo deep into where you are most sensitive. This is what being milked really feels like, the heat and pressure building in your [pc.cock] beyond your control. You cry out as you tumble over the edge.
-
-//Run Output scene
-
-The dildo assiduously pumps into you all the way through your orgasm, ruthlessly kneading your prostate so that the machine may extract every last drop of [pc.cum] out of you. Only then does it slowly retract out of your puckered anus, dragging over your tenderized walls as it goes, leaving you wobbly and completely, achingly drained. It’s only after a couple minutes rest, and making use of the conveniently situated moistened towel dispenser, that you {put your [pc.lowerGarments] back on and }exit the cubicle, [pc.eachCock] throbbing mightily.
-
-
-Porn On, Dildo On
-
-You’re not letting either option escape your voracious appetites. You tap ‘Yes’ to both options. There’s a whirring sound as a mechanical arm descends behind you; you shiver slightly as a warm, blunt object nestles itself between your buttcheeks, and you push out your [pc.butt] to allow it better access. 
-
-A cartoon Tamani has appeared on the screen, lying on her side and smirkingly considering a number of out-sized dildos. Each has an option written on it.
-
-1.	Live Streams from the Pods (f, h)
-2.	Little Red Riding Boi (fb, m, h)
-3.	Yorinn’s Hour of Yiff (m)
-4.	Select Recordings from the Gastigoth (f, h, m)
-5.	Peg me, Tamani! (f, you)
-
-Intro for all except 5.
-
-You take hold of the handles proper, line yourself up and slowly sink your [pc.cockHead] into the synthetic crease of the machine, pressing your chosen dildo as you do. The prosthetic behind you follows you in, and you gasp slightly as it penetrates you, slowly opening up your [pc.anus]. The cartoon Tamani grabs your chosen dildo, splays her legs and slides it into her pussy, eyes crossing and mouth ‘oh’ing as she does. The screen zooms between her open lips.
-
-1. 
-
-There are 9 minimized feeds in front of you, each displaying some lascivious action going on in the breeding pods elsewhere on the station. You focus upon one for a couple of seconds - a purple rahn in the throes of ecstasy, hammering her hips into a bound ausar herm whose engorged doggy cock is flopping this way and that - and the feed zooms out in response, taking over the screen, so you can drink in every detail. Oof! Who knew you could be a double squirter?
-
-As soon as you get tired with one feed, or one breeding session comes to its natural, sticky conclusion, you can swap to another feed with a flick of the eyeballs, and then another, and then another. It’s heady, sleazy over-stimulation, and your blood pulses through your veins faster as you submerge yourself in a sea of curvy gel girls having their way with just about every shape and size of being imaginable. Your [pc.hips] are on auto-pilot, thrusting into the welcoming embrace of the cockmilker with harder and harder strokes. The mechanical dildo bores deep into you, sending delightful shivers through your core, and making you arch your back as it drives into your prostate. {Small cock: It’s rather baggy at first, but it tightens up precipitously, the material puckering up at the base, and your cute little twig is soon being provided with as gasp-inducingly tight a fuck as it’s ever likely to get.} {Average cock: It feels nice and tight around you, the machine barely having to adjust itself at all to take your fine-sized cock.} {Big cock: It’s a frustrating experience to begin with, the hole too small for your monster dick, but the machine quickly adjusts, the material fanning out from the hole and moving backwards, until you’re being provided with a wonderfully long, large ona-hole perfectly suited for a {man / herm} of your caliber.} {Massive cock: There’s a whine and a throb as you keep feeding your thickness in, and you {chuckle / giggle} as at last the machine beeps in protest, choked upon your massive, totemic dick with you barely halfway in. It’s not giving up, though. After a slight pause the material puffs out massively, swelling out of the metal seams of its housing with a sound like a balloon inflating. You push inwards, it keeps bulging outwards, and you groan with contentment as your {[pc.balls] / [pc.thighs] touch the crinkled opening. Finally, a hole that can take a {man / herm} of your caliber!} Pure pleasure courses up your [pc.cock]{, filling your [pc.balls] with a wonderfully intense pressure}.
-
-Most of the dalliances in Breedwell’s pods are short, rough and frenzied affairs - no doubt aided by the pheromone mixture Tamani Corp insists on spraying their surrogates with - but there’s some that are slower, sweeter, and ultimately sexier. You watch transfixed as the go’rahn spends a long while tonguing the human female’s exposed cunt, forcing the young lady to a couple of trembling, transfixed orgasms, before gently mounting her with her spiral-shaped ovipositor, making out with the surrogate, lovingly fondling her petite breasts with their small, pointy nipples until the two are completely lost in themselves. Each thrust of the gleaming, alien cock seems to correspond to a pump of the mechanical cock against your prostate. Oh Void... 
-
-{Run output scenes}
-
-Coming down in a lusty haze, you watch the go’rahn and the now-heavily-swollen human relaxing together on the harness, talking quietly. Eventually the white rahn fetches a pen from her bag and writes a number on the girl’s forearm, kissing her on the brow before leaving. Cute. You wait for the dildo to slowly retract out of your puckered anus before {putting your [pc.lowerGarments] back on and }exiting the cubicle, [pc.eachCock] throbbing pleasantly.
-
-2.
-
-<i>“Hey everyone,”</i> smiles the breathy, red hot-panted human boi mincing through a forest clearing, flicking the blonde curls underneath his hood at the camera. <i>“I’m on my way to my Auntie Dzaan in the forest. She says she has something big and deep for me. I sure hope I don’t run into mean old wolves on the way. Oh no!”</i> Two big ausar step smirking into the clearing, both of them packing heavy bulges in their jeans.
-
-Lust inflames you as you watch the ‘wolves’ pin the femboy down and take turns with his pert, peachy ass, and you spear yourself further into the machine. Pleasant vibrations run through both your hardness and your back passage as the dildo you’re pierced on judders of its own volition, and you arch your back as it bumps over your tender prostate. {Small cock: It’s rather baggy at first, but it tightens up precipitously, the material puckering up at the base, and your cute little twig is soon being provided with as gasp-inducingly tight a fuck as it’s ever likely to get.} {Average cock: It feels nice and tight around you, the machine barely having to adjust itself at all to take your fine-sized cock.} {Big cock: It’s a frustrating experience to begin with, the hole too small for your monster dick, but the machine quickly adjusts, the material fanning out from the hole and moving backwards, until you’re being provided with a wonderfully long, large ona-hole perfectly suited for a {man / herm} of your caliber.} {Massive cock: There’s a whine and a throb as you keep feeding your thickness in, and you {chuckle / giggle} as at last the machine beeps in protest, choked upon your massive, totemic dick with you barely halfway in. It’s not giving up, though. After a slight pause the material puffs out massively, swelling out of the metal seams of its housing with a sound like a balloon inflating. You push inwards, it keeps bulging outwards, and you groan with contentment as your {[pc.balls] / [pc.thighs] touch the crinkled opening. Finally, a hole that can take a {man / herm} of your caliber!} You judder your [pc.hips] into the machine, pleasure coursing through your shaft, eyes fixed upon the screen.
-
-The porno is appallingly xenophobic really, relying on eye-rolling stereotypes of human easiness and ausar bestiality. Sometimes though, cheap and nasty is exactly what you want. You let the machine hammer your [pc.ass] as you watch one of the wolves fuck Red from below, roughly jerking his dinky trap prick as he does, whilst another paints his upturned, gasping face in cum from his thick red cock. Heat builds in your [pc.cock] until it’s unbearable, and as much as you want to keep fucking the exquisitely tight and velvety milker for as long as possible, you find yourself tumbling over the edge.
-
-{run output scene}
-
-The porno resumes with Red naked and covered in ausar spunk, alone in the clearing.
-
-<i>“There you are!”</i> growls a husky female voice. A tall, bespectacled dzaan strides on screen. <i>“Playing with the doggies again? I bet you’ve lost the nice lunch your mother made you, too!”</i>
-
-<i>“I’m sorry, auntie,”</i> replies Red miserably. <i>“They took all of it. And I’m so hungry...”</i>
-
-<i>“Aww. Well, never fret, my dear.”</i> The dzaan unzips her pants and allows her fifteen inch cock and four fat balls to flop out. <i>“It just so happens that I haven’t been sucked off in weeks.”</i>
-
-Happy endings are nice. You wait for the dildo to slowly retract out of your puckered anus before {putting your [pc.lowerGarments] back on and }exiting the cubicle, [pc.eachCock] throbbing pleasantly.
-
-3.
-
-<i>“Hullo there!”</i> smiles the amiable-looking bear-morph at the camera. Burly isn’t the word for him; his checkered shirt and jeans could be used as tents by an ordinary-sized human, but they look like they’re painted onto his shaggy, muscle-bound body. He’s in some sort of faux-rustic stable setting. The partition wall groans uneasily as he leans on it. <i>“Yorinn here. I thought today I’d step on down to Vesperia and visit some of my friends in the country. Hey there, Iker!”</i>
-
-<i>“Hey,”</i> grins the vest-clad bipedal zebra who’s just sauntered into frame. He’s taller and leaner than Yorinn, although everything’s relative; he’s still built like a striped shithouse. Like the bear, he looks like he’s smuggling a raskvel around in his (very tight) undies. <i>“Listen, I could use some help cleaning out the grease pits. Think you could lend a hand? I warn you, though. It’s likely to get miiiiiighty greasy in there.”</i>
-
-The whole thing’s knowingly absurd, but that lends it a gentle charm that might otherwise be lacking when these bestial men’s men start getting hot and heavy with each other. You pick up the pace, really beginning to pound the synthetic hole you’re mired in as you watch Iker work his pole-like equine cock deep into Yorinn’s wide, muscular backside from behind, rattling the giant, oily silo they’re in as he begins to clap his prime, thoroughbred thighs into the bear in a lusty fury. It coincides with the mechanical dildo boring deep into you, sending delightful shivers through your core, and making you arch your back as it drives into your prostate. {Small cock: The cockmilker is rather baggy at first, but it tightens up precipitously, the material puckering up at the base, and your cute little twig is soon being provided with as gasp-inducingly tight a fuck as it’s ever likely to get.} {Average cock: The cockmilker feels nice and tight around you, the machine barely having to adjust itself at all to take your fine-sized cock.} {Big cock: The cockmilker is a frustrating experience to begin with, the hole too small for your monster dick, but the machine quickly adjusts, the material fanning out from the hole and moving backwards, until you’re being provided with a wonderfully long, large ona-hole perfectly suited for a {man / herm} of your caliber.} {Massive cock: The cockmilker gives a whine and a throb as you keep feeding your thickness in, and you {chuckle / giggle} as at last the machine beeps in protest, choked upon your massive, totemic dick with you barely halfway in. It’s not giving up, though. After a slight pause the material puffs out massively, swelling out of the metal seams of its housing with a sound like a balloon inflating. You push inwards, it keeps bulging outwards, and you groan with contentment as your {[pc.balls] / [pc.thighs] touch the crinkled opening. Finally, a hole that can take a {man / herm} of your caliber!} You judder your [pc.hips] into the machine, pleasure coursing through your shaft, eyes fixed upon the screen.
-
-You hammer the machine, delighting in every pump of the dildo into your [pc.ass], as a husky morph drops into the Vesperian ‘grease pit’, then an alligator, then a blue-skinned, tentacle-mouthed alien, until the camera is panning across a pool of oiled, mountainous muscle and thick dick pounding into every hole going... Heat builds in your [pc.cock] until it’s unbearable, and as much as you want to keep fucking the exquisitely tight and velvety milker for as long as possible, you find yourself tumbling over the edge.
-
-{Run output scene}
-
-The porn finishes with Yorinn and Iker frotting nice and slow, clutching each other’s shoulders as they bump their prestigious, greased-up beast cocks against each other until Yorinn paints the zebra morph’s front in a geyser of thick jizz with a huge, ragged howl.
-
-<i>“Sorry, man... I think we only managed to mess this ol’ place up even worse,”</i> says Yorinn, dolefully gazing around at the cum slathered equipment once he’s husked his last.
-
-<i>“Oh, that’s alright.”</i> Iker scrunches the bear-morph’s hair fondly. <i>“You can always come back tomorrow.”</i>
-
-Sweet. You wait for the dildo to slowly retract out of your puckered anus before {putting your [pc.lowerGarments] back on and }exiting the cubicle, [pc.eachCock] throbbing pleasantly.
-
-4.
-
-A muscular, strong-jawed woman in a military uniform is sat at a desk, working away at a holo-keyboard. It seems a fairly ordinary scene, until the micro camera drone slowly dips underneath the desk. There, arms sleeve-bound behind her and ring-gagged, a collared, naked kaithrit is licking the woman’s long, black thigh-high boots.
-<i>“I better be able to see my face in those by the time I’m finished, smuggler bitch,”</i> the officer growls, and the kaithrit whimpers. <i>“I can make your sentence longer as well as shorter, you know.”</i>
-
-Is this real? This or any of the other scenes you can switch to with a flick of the eyeballs, all of them purportedly from the prison station Gastigoth? You watch entranced, [pc.hips] shoving into the soft, crinkly fabric of the cockmilker, pleasure coursing up your shaft, at sordid recordings of interrogation sessions, the infamous breeding program, body reassignment chambers, and, of course, the steamy labyrinth of sexual score-settling that are prison showers the universe over. Guards on prisoners, prisoners on prisoners, wealthy visitors on whatever they want. It’s filthy, watching this stuff, terrible, and incredibly, undeniably horny. It’s made all the more intense by the dildo buried deep in your ass beginning to vibrate and then finding your prostate with mechanical precision, ruthlessly milking you with stiff, juddering strokes. {Small cock: The cockmilker is rather baggy at first, but it tightens up precipitously, the material puckering up at the base, and your cute little twig is soon being provided with as gasp-inducingly tight a fuck as it’s ever likely to get.} {Average cock: The cockmilker feels nice and tight around you, the machine barely having to adjust itself at all to take your fine-sized cock.} {Big cock: The cockmilker is a frustrating experience to begin with, the hole too small for your monster dick, but the machine quickly adjusts, the material fanning out from the hole and moving backwards, until you’re being provided with a wonderfully long, large ona-hole perfectly suited for a {man / herm} of your caliber.} {Massive cock: The cockmilker gives a whine and a throb as you keep feeding your thickness in, and you {chuckle / giggle} as at last the machine beeps in protest, choked upon your massive, totemic dick with you barely halfway in. It’s not giving up, though. After a slight pause the material puffs out massively, swelling out of the metal seams of its housing with a sound like a balloon inflating. You push inwards, it keeps bulging outwards, and you groan with contentment as your {[pc.balls] / [pc.thighs] touch the crinkled opening. Finally, a hole that can take a {man / herm} of your caliber!} You judder your [pc.hips] into the machine, pleasure coursing through your shaft, eyes fixed upon the screen.
-
-The human officer has the kaithrit prisoner’s head firmly pressed between her open thighs, dispassionately watching a live feed of a gryvain interrogating some sort of lithe insectile crossbreed attached to a steel rack.
-
-<i>“Ramp up the current. We know he knows where his friends hid the polonium,”</i> she directs into a mic. <i>“You aren’t getting up his ass until we get it out of him.”</i> The color in her cheeks rises, her mouth opening as she watches the willowy male judder and wail on the screen, and you find yourself humping the exquisitely tight and silky cockmilker with heedless abandon, the pressure in your {gonads / prick} intensifying, the dildo pumping you all the while...
-
-{Run Output scenes}
-
-<i>“Mmm. Worth a few days off your sentence, just about,”</i> smirks the Gastigoth officer on screen, considering her gleaming boots. The kneeling, naked kaithrit mumbles thanks. <i>“You’ll need to apply to get a better tongue attached if we’re going to subtract any serious amount of time, though. Same time tomorrow, C581.”</i>
-
-Was any of that real - or gruesome, eerily realistic fantasy? You wait for the dildo to withdraw out of your puckered anus before{ putting your [pc.lowerGarments] back on and} leaving the cubicle, feeling slightly dazed and unreal yourself.
-
-5.
-
-<i>“Ooh,”</i> giggles the cartoon Tamani, fixing her eyes with yours. <i>“Well, it’s not quite my favorite way of collecting cum... but I’m not going to say no to a sweet donator like you. Ok!”</i>
-
-She leaps up and grabs one of the dildos, which has straps attached to its base. She fastens it around her waist as a faceless figure appears on-screen, mired in a cockmilker. It’s evidently a simplified version of you, {going off the size of its boobies / going off its flat chest} and its [pc.skinColor] skin. 
-
-<i>“Put that {gorgeous piece of meat / cute lil toy} into the slot,”</i> whispers Toon Tamani, blinking her big eyes at you. <i>“For Tamani.”</i> You do so, sighing as you slide your [pc.cock] into the silky, slinky embrace of the receiver. A pleasurable tremor runs through it as the machine vibrates, adjusting to your side and stimulating you until you are hard and ready. You gasp as the base suddenly tightens up, vice-like, around your base.
-
-<i>“Theeere we go,”</i> purrs Tamani, swaggering up behind the visualization of you, strap-on waggling. <i>“It’d be a dreadful shame for you to get away before I’ve milked every last drop out of you, wouldn’t it?”</i>
-
-She grips the hips of the cartoon version of you, positions her comically oversized dildo between your butt cheeks, and then slowly works her way in. You gasp and tense up slightly as the mechanical prosthetic mirrors exactly what’s happening on screen, piercing your [pc.anus] and slowly working its way into your sensitive insides.
-
-<i>“Relax, sweet buttslut of mine,”</i> says Tamani soothingly. <i>“Wait just a sec...”</i> she reaches up and squeezes one of her plush tits, biting her lip with pleasure. As she does, your back passage is warmed by a sudden gush of lubricant squirted out of the dildo’s end. <i>“Theeere we go!”</i> the human cries winningly, thrusting her pink hips into cartoon you with enough force to make their flesh ripple. The actual prosthetic follows suit, of course, and you whine as it easily slides all the way in, opening your colon up and pressing into you deep.
-
-Toon Tamani has a dorkily happy expression on her round face as she saws into you, each pump of her hips coinciding precisely with a heavy stroke of the thick, obdurate robo-cock into you. Cartoon you simply has a deep blush across their face.
-
-<i>“Is that good?”</i> she teases, holding your gaze, breasts jouncing up and down. <i>“Do you like bottoming for the biggest cumslut in the galaxy? It’s usually around now the milker detects your prostate... <i>“ You whine as a sudden, brilliant surge of sensation lights up your nerve endings, making you spasm against the machine, [pc.cock] flexing. <i>“Hahaha, I felt that from here!”</i> Tamani casually slaps cartoon you’s ass, which is transferred as a slight electric shock down the dildo’s shaft, making you writhe in trapped, painful pleasure. <i>“Here, let me make it even better...”</i>
-
-She reaches for her other tit, this time just gripping one of her erect nipples and carefully twisting, as if tuning a radio. A slight amount of steam blows out of her ears as the dildo starts juddering hard in response, all the while riding over your poor, tender prostate again and again. Cartoon you has grown a pair of [pc.eyeColor] eyes and a mouth - the former are crossed and the latter has its [pc.tongue] hanging out of it. It’s not far from the truth.
-
-<i>“How do you like it, [pc.name]?”</i> exclaims the pink, punky toon with a slightly manic edge, thrusting her wide hips into you all the while. <i>“Nice and slow? Tender and meaningful? Well, too bad - your Tamani’s piece of ass right now, and Tamani likes doing it hard!”</i>
-
-You moan and wail as the dildo reams you, forcing your [pc.cock] into the silky, tight knead of the milker, pinioned between the two unrelenting mechanical forces. It’s agonizingly wonderful to just submit to it, see yourself simply as that cartoon you Tamani is ass-fucking with enough force to generate blur-lines, and copy their motion as they moan, arch their back, and cum...
-
-{run Output scenes}
-
-<i>“Every last drop! Every last drop! Theeeere we go,”</i> coos Tamani, her energetic pumping blessedly slowing, her eyes fixed upon a cartoon approximation of the glass cylinder. <i>“Good [pc.boy]!”</i> She wipes a bead of sweat from her brow, blows out her cheeks and withdraws her strap-on with a cork-like ‘pop’. You moan raggedly as the dildo drags backwards over your brutalized walls and out of your gaped asshole. <i>“I’m gonna need a drink after all that!”</i> {Small-medium output: She harrumphs as she takes in the modest amount of [pc.cum] you’ve produced on-screen. <i>“Not that you’re much use there.”</i> She wags a stern finger at cartoon you, slumped exhausted and quivering over the machinery. <i>“Get some cum mods down you, or befriend a galotian, [pc.name]! That’s your homework from Mistress Tamani. Run along with you now!”</i> The screen winks off.} {Otherwise: She hurries over to a tap on the cylinder’s side and draws herself a large, [pc.cumColor] glass. <i>“Luckily I have gorgeous, juicy cumpumps like you about the place. Mmm...”</i> A lipsmack and a horny moan follows her polishing off the glass in a single gulp. <i>“Y’know how addicted to cum I am? I built a business empire just so I’d have a limitless supply of the stuff. Ta ta for now, [pc.name]! Me and my big mean strap-on will always be waiting for your slutty, juicy ass!”</i>}
-
-It’s only after a couple minutes rest, and making use of the conveniently situated moistened towel dispenser, that you {put your [pc.lowerGarments] back on and }exit the cubicle, [pc.eachCock] throbbing mightily.
-
-Output scenes
-
-Low output 
-
-You arch your back and nut, groaning hoarsely as [pc.cum] squirts into the clutching confines of the receiver. The base of the milker limpets you close, ruthlessly holding you to it so not a single drop can escape it. The tubes twitch in front of you, and your seed dribbles out onto the glass floor of the cylinder. Incapable of anything else, you hump the seal giddily until you’re flexing blanks, and finally the synthetic material relaxes enough for you to withdraw.
-
-You’ve produced nothing at all really, a few drops that look foolish in the giant canister, chaff in a silo. Every little helps, you suppose. The screen blinks back on, informing you that you have been paid # credits for your #ml donation.
-
-Middling output 
-
-You arch your back and nut, groaning hoarsely as [pc.cum] spurts into the clutching confines of the receiver. The base of the milker limpets you close, ruthlessly holding you to it so not a single drop can escape it. The tubes twitch in front of you, and your seed splatters and then dribbles out onto the glass floor of the cylinder. Incapable of anything else, you hump the seal giddily until you’re flexing blanks, and finally the synthetic material relaxes enough for you to withdraw.
-
-By most measures you’ve produced a lot, enough that a partner would protest if you started waving your stuff around in the bedroom, but the pool of [pc.cum] that doesn’t quite cover the whole of the glass floor of the giant canister seems slightly pitiful in this context. Never mind, you did your bit. The screen blinks back on, informing you that you have been paid # credits for your #ml donation. 
-
-Large output 
-
-You arch your back and unload gloriously, groaning hoarsely as you flume line after line of [pc.cum] into the clutching confines of the receiver. The base of the milker limpets you close, ruthlessly holding you to it so not a single drop will escape it. The tubes attaching it to the cylinder dance in front of you, hungrily siphoning away your huge output. You keep your eyes fixed upon the glass cylinder ahead of you and keep thrusting away at the seal, grunting with deep pleasure as you watch your seed first explode out into the container, then pour out steadily. You don’t stop until your {[pc.balls] are / [pc.cock] is} achingly dry, and the synthetic material relaxes enough for you to withdraw.
-
-The floor of the cylinder has completely disappeared; you’ve filled it at least five or six inches deep with [pc.cumVisc], [pc.cumColor] semen. Wonderful! You feel a glow of accomplishment (although the vast tract of glass you didn’t fill haunts you a little. What kind of bloated monsters are they expecting here, anyway?) The screen blinks back on, informing you that you have been paid # credits for your #ml donation. There’s even a little cartoon Tamani there, giving you a thumbs up and a ‘Good job, stud!’ 
-
-Massive output
-
-You feel your vast reserves boiling up inside of you, and a howl of pure joy is ripped from your [pc.lips] as it finally finds release, coursing up your shaft and exploding out of your dilated slit into the receiver. The base of the milker attempts to limpet to you, and then gives up a second later when the sheer quantity of hot [pc.cum] overwhelms it, great gobbets of your seed oozing and spraying out from the seal. 
-
-The tubes in front of you groan as they draw it away the best they can, the clear synthetic material straining as your [pc.cock] flexes up gloriously again and again. You keep your eyes fixed upon the glass cylinder ahead of you, thrusting your [pc.hips] away at the seal, groaning with overwhelming pleasure as you watch your [pc.cum] geyser out into the container first like an opened fire hydrant, then in thick, controlled bursts, the [pc.cumVisc] liquid pooling thickly against the walls. You’re over the overwhelming urge now, but your loins have so much to give, and you’re determined to thrust every last millilitre of your delicious, fecund cum into that vast container.
-
-Sweat soaks your [pc.skinFurScales] by the time you’re firing blanks, [pc.cumColor] fluid dripping down your [pc.thighs], but you are now looking up at a ten foot high glass cylinder that is almost full to the brim with your cum. The screen blinks on, informing you that you’ve donated #ml for #credits. A cartoon Tamani is gazing at the total, her pupils hearts, hands clutched together, drooling slightly. You sit back, [pc.cock] slowly slithering back outwards, with a wheezing, deeply satisfied sigh.
-
-Too much
-
-You’ve been waiting for this moment. You felt rather like you were carrying several kegs between your {legs / thighs} when you [pc.move] into this cubicle, and now you’re all ready to ride this [pc.cumVisc], [pc.cumColor] tornado. Your vast reserves of cum seethe and swell inside of you, rising to an ecstatic point, and a howl of pure joy is ripped from your [pc.lips] as it finally finds release, surging up your shaft and exploding out into the receiver. 
-
-You would have been hurled back by the force of it had the base of the milker not automatically tightened around you, but even that gives up a moment later when the next load of [pc.cum] rockets out of your [pc.cock], and you yourself have to take firm hold of the milker’s handles to remain in place. Your eyes cross and your [pc.tongue] lolls out as you ejaculate again, and again, and again, a gallon of seed thrown out with every ecstatic flex, and at no point does it feel like you’re even close to getting it all out there.
-
-The tubes in front of you flail as they bulge up with [pc.cum], and it geysers into the glass container like a stream in spate. Your [pc.hips] are on auto-pilot, thrusting automatically into the strained machinery as you keep giving it more, and more and more, groaning with overwhelming pleasure as [pc.cumColor] fluid sloshes heavily against the walls of the container until it’s filled to a point high above you. 
-
-Willpower > 50%: Your seed churns higher and higher, up to the top... a dim voice is telling you maybe you should stop... but you’re lost in the throes of intense ecstasy, there’s so much more cum left to launch up your red-hot shaft, and a deeper, more savage voice is telling you to keep going...
-
-Otherwise: //go to Keep Going
-
-[Keep Going] [Stop]
-
-Stop
-
-It takes pretty much every vestige of your self-control, but with a heaving grunt you pull your [pc.cock] out of the cock-socket. You continue to gobbet [pc.cum] with heavy throbs, splashing over the walls, but by closing your eyes and steadying your breath you’re able to calm your over-sexed body down, and slowly it recedes down to a slow drool out of your [pc.cockHead].
-
-It’s just as well. More sober now, you gaze up at the entirely-full glass cylinder, creaking with the pressure of your ‘donation’. The cockmilker nozzle droops, oozing [pc.cum], looking every bit as spent as your cock does. Still, the machine is still functioning, and it’s able to present a read-out on its screen: #ml for #credits. A cartoon Tamani is gazing at the total, her pupils hearts, hands clutched together, drooling slightly.
-
-It’s incredibly satisfying to look up at the cylinder and see it completely filled with your seed - even more so, to have conquered your own base impulses and not broken the thing (that deep, inward voice remains though, murmuring NEXT time you should sail onwards heedlessly, flood the whole damn station in your cum, show everyone exactly what kind of stud they’re dealing with here...) 
-
-After you gathered yourself a bit, you{ pull your [pc.lowerGarments] back on and} limp out of the cubicle, [pc.eachCock] throbbing mightily, spattered pretty thoroughly in your produce. You could probably do with a shower.
-
-//Cum-covered status active
-
-Keep Going
-
-One of the tubes ruptures, spraying the fecund slime across your [pc.chest], face and the walls of the cubicle, an alarm begins to blare as the glass walls of the cylinder begin to creak, but you don’t care. There’s only the tight, silky embrace of the cockmilker and your desire to hump it until you’re completely dry.
-
-<i>“Stop! Stop!”</i> cries someone. There’s a commotion going on behind you, but you don’t care. You barely half done. There’s only the tight, silky embrace of the cockm-
-
-Warm, gooey hands grab you and roughly pull you backwards out of the wailing, smoking machine. You huff in surprise, shaken out of your sticky, orgasmic reverie, and your [pc.cock] flexes its next load straight up into the air, spattering both you and the three stern-looking rahn aides surrounding you.
-
-{PC is kui-tan OR has nuki nuts perk OR is male Treated: <i>“I warned them!”</i> snaps the most senior-looking one. <i>“You let fucking {kui-tan / kui-tan modders / cowdiddlers} in, I said, and they’ll completely take the piss!} {Elseif: <i>“This is what happens when you set no goddamn limits!”</i> snaps the most senior-looking one. <i>“Fucking space drifters will mod themselves up and completely take the piss!} We’ve got enough seed out of you,”</i> she goes on through pursed lips, gesturing at the creaking, groaning cylinder you’ve filled to bursting, a [pc.cumColor] obelisk that looks like it’s going to crack at any moment. <i>“Now and forever. Collect your payment, and <b>never</b> come back here.”</i>
-
-Your [pc.cock] has been oozing a gentle river of [pc.cum] the whole time this has been going on, washing over everyone’s footwear, and the rahn leave in a disgusted hurry, shaking it off their heels. When, at last, you’ve stopped drooling enough that you can [pc.move], you stagger over to the screen to see how much you’ve earned. The display is maxed out at # ml.
-
-<i>“Hey,”</i> says the cartoon Tamani, lounging by the figure and grinning at you. <i>“I don’t care what anyone says, super stud: You’re MY kind of {guy / girl}. Let’s meet up sometime, k?”</i> She produces a sack of cash with the number # written on it and deposits it in front of you, departing with a blown kiss.
-
-//PC barred from reentering Donation Wing
-
-
-Rahn Pregnancy Texts
-
-Notes
-
-•	Most of this stuff could be repurposed as a generic rahn pregnancy. Flahne XPac yes pls
-•	Two week incubation period
-•	PC birth 2 x no. of eggs. 600 credits for each birthed.
-
-20 hours
-
-2-10 eggs
-
-Being swollen with eggs has taken a little getting used to, but the novelty has worn off now and you’ve acclimatized to how it has changed your gait and center of gravity. It helps that rahn ova are soft-shelled; dense, squishy entities that don’t seem to mind sudden changes of movement or you squeezing past stuff. You rub your belly, feeling fuzzy and content.
-
-12-20 eggs
-
-The breeding session has left you utterly stuffed with rahn eggs, forcing you to adopt a waddling gait in order to compensate for the huge bulge you’re sporting. The fact that this is just the beginning of the gestation period sends a shiver through you, and the shiver worms its way right through the many, many rahn young packed densely in your womb, making you moan slightly. It’s like having a stomach full of jelly that refuses to digest. At least you’ve adapted to the weight and bulk you’ve taken on... for now.
-
-75 hours
-
-You’ve put on a little weight on your [pc.chest] and the areola of your nipples have spread slightly. Regardless of the alienness of the young in your womb, your body is busily gearing itself up to feed them as if they were your own. It makes your mind wander, pondering exactly what relation these rahn are to you. Technically you’re neither father nor mother, the eggs inseminated before they were implanted so zealously up you. The process certainly doesn’t leave you feeling like some anonymous third party, though.
-
-5 days
-
-The dense weight in your womb feels more settled now, less like you’re attached to a washing machine full of jelly and more... implanted. A peaceful warmth throbbing through you has replaced the panic that edged you earlier, and you go about your business with a complacent smile on your [pc.lips].
-
-7 days
-
-You gasp slightly as a small shiver trembles through your [pc.belly], a finger flick against the inside of your womb, followed by an odd melting, dragging feeling. It’s followed a few seconds later by another{, and another, and another{.}{, and another, and another... Void, it feels like somebody’s playing a xylophone in there!} 
-
-Are you giving birth...? No - there’s no pressure, no deep urge to bear down. Just a certain intimation that things have changed inside you. Very odd.
-
-7 days + 1-3 hours
-
-A multi-colored slop {is staining your [pc.lowerUndergarments] / is running down your [pc.thigh], issuing in a steady drool from [pc.vagina]. So you can make a decent guess what all the fuss was about a few hours earlier - the eggs inside of you have hatched, rahn ova now rahn young. And you’re oozing the rainbow remains of their shells and albumen. Great.
-
-//Soaked in female juices status
-
-7 days + 20-24 hours
-
-// >10 eggs only
-
-When is your [pc.vagina] going to stop making like a candy faucet?! The sweet-smelling goo that keeps trickling past your pussy lips slows every so often, and you think maybe that’s it - and then another brightly-colored gush warms your [pc.thighs]. It’s not as if it’s making your midriff feel any less stuffed, either. The jelly babies packed tightly in there seem perfectly content where they are right now. You’re just going to have to live with the feeling of being a soft, leaking blancmange generator.
-
-//Soaked in female juices status
-
-9 days
-
-Things seem to have settled down again inside your packed, rounded belly - you aren’t leaking multi-colored juices anymore, anyway. You simmer in soft, self-possessed relaxation, perfectly content with being a rahn breeder. It’s strange to think of the number of them that are tucked away within you - if they were human babies this would surely be {much more exhausting / intolerable.} Even in utero the rahn are an incredibly pliant and adaptable race{, able to make full use of your well-trained womb}. You rub your midriff with long, circular sweeps of your hands, sighing happily.
-
-12 days
-
-The [pc.skin] of your stomach is stretching, fast enough for you to notice the change with each passing hour. The eggs inside of you seem to be growing, bulging your body with increasing amounts of life. {>10 eggs: It’s just as well they are so soft and pliant. They’re squeezing against each other in your well-trained but increasingly cramped womb, taking up what seems like every square inch of room in your body. Although it’s slightly difficult to feel panic in the swamp of hormones you’re currently sweltering in, your throat tightens a bit when you swell outwards another inch. Presumably your rahn babies won’t just burst out of you... right?}
-
-14 days
-
-Pressure at the base of your stomach, and a certain wriggling restlessness above, has been building for the last few hours. Weakness assails your [pc.legs], making you stagger, as liquid pain suddenly grasps at you deep, your cervix dilating. You’re giving birth!
-
-If on ship: As quickly as you can, you waddle into your room, switch the auto-medkit on in the bathroom, carefully place yourself on the bed{, rip off your [pc.gear]} and spread your [pc.thighs], biological imperative virtually ordering you what to do.
-
-If in public: As quickly as you can, you waddle into the nearest rest room, grab the medkit drone off the wall (frontier bathrooms are thankfully readily equipped for this sort of thing), lock yourself in a cubicle and spread your [pc.thighs], biological imperative virtually ordering you what to do.
-
-If in wild: Groaning at the timing, you shed your [pc.gear] and position yourself the best you can in the inhospitable and non-hospital-able terrain. The wish that you’d stayed somewhere indoors and safe hums through your thoughts like a mosquito, but there’s no helping it now -- you’ll have to deliver on your own.
-
-{merge}
-
-{The medkit drone monitors your pulse and places a large sheet beneath your thighs, instructing you to bear down rhythmically with soft, wordless beeps.} You huff, sensation ripples and spasms in your stomach, you puff, your vaginal tunnel swells, you lose all of your breath, sense of time... and then in a rush a flood of gooey life pours easily out of your engorged pussy and onto the {sheets / floor}, a 6 pound single cell that huffs, takes a deep breath, and then begins to wail shrilly.
-
-Wow, that was so easy! Only boneless lifeforms boning you from now on! Pleasurable even, the way that slick, thickness poured over your puffy lips and [pc.eachClit]. It’s just as well, because... oh Void... it’s {definitely} not the last rahn you’re going to be bringing into the world today. Your eyes roll to the heavens as another series of clenches rack your sex, the next gel girl of yours impatiently following the same molten journey as the first...
-
-{>10 eggs: They come swiftly after the first couple, a great rush of brightly colored life issuing out of your gaped, flooded pussy. The last three struggle out together, forced out finally by something approaching an orgasm, your whole body tightening up and fluming [pc.girlCum] in order to get the triplets out of you.}
-
-At long last your belly is flat and hollow-feeling for the first time in what seems like a year, and you have {two rahn babies, one in each arm. Void, they are the cutest things, tiny gel girls that wave their plump little limbs in bafflement at their surrogate mom and the airy wide space they’ve found themselves in. {If lactating: They’re wedged against parts of your body they clearly do understand, however, and in a few moments you’re sighing in peace as they suckle your [pc.breasts].}} {3-8: your arms full of rahn babies. The wailing has mostly stopped, and they are snuffling, frowning and cooing at their surrogate mom and the big wide world in general. They are cutest goddamn things. {If lactating: They’re wedged against parts of your body they clearly understand, however, and in a few moments you’re sighing in peace as tiny mouths hungrily suckle your [pc.breasts]. {Lucky you’ve got one for each. / The ones waiting their turn boop their tiny fists into their happily drinking sisters with a mixture of curiosity and impatience.} { >9: Armfuls, lapfuls and a {floor / bed} full of rahn babies. You hope Breedwell knew what they were doing when they hired you - there’s enough here to form a small colony on their own! The wailing has mostly stopped, and the tiny gel girls are waving their plump little limbs and cooing in bafflement at the big wide world they are now in, the ones you can’t fit onto your arms and lap pawing at you for attention. They are the cutest goddamn things. {You are a broodmother par excellence, and you are soon fully and happily involved in what you should be doing. You suckle # of them at a time, hungry mouths attached to your [pc.nipples] whilst you simultaneously clean and play with others, making them giggle by tickling their bare soles, skillfully switching between them so that each gets at least a little of mom’s time.}
-
-First
-
-A beep startles you out of your post-natal haze.
-
-<i>“Hello, Surrogate [pc.name],”</i> says the bulky incubator drone with the Tamani logo emblazoned upon it in a sweet voice. <i>“Thank you for helping Breedwell with the great effort! You shall be credited for each rahn child you have borne to term. Rest assured, they shall be quite safe w--”</i>
-
-<i>“Hello and congratulations, [pc.name] Steele,”</i> says the bulky incubator drone with the Steele logo emblazoned upon it in a matter-of-face voice, butting into the first drone from behind. <i>“Shall I take these children of <b>yours</b> to <b>your</b> nursery? I also have combat protocols installed to ward off cot-robbing interlopers. You merely need to say when.”</i>
-
-<i>“You shall not be paid if you choose to keep any of the rahn you agreed to hand over at this time, surrogate [pc.name],”</i> says the sweet-voiced Tamani drone, turning slowly and deliberately to face the Steele drone. <i>“It may also affect your standing with the Breedwell Centre, should you choose to work with us again. I would also surely hate to vaporize any robotic personnel of yours for failing to keep their distance.”</i>
-
-[Tamani] [Steele]
-
-Repeat
-
-A beep, followed by a second beep in a slightly different tone, startles you out of your post-natal haze. Hovering nearby are both the Tamani drone and the Steele drone. They say nothing, simply waiting expectantly with their incubators, passive-aggressively occupying one another’s space. It’s remarkable how two silent, faceless entities can still manage to convey a simmering hatred for one another.
-
-Tamani
-
-Tooltip: Hand the rahn over to the Tamani drone. You’ll get paid, and it’s what the whole enterprise was supposed to be about, after all.
-
-It’s a wrench, holding the rahn babies for the last time, letting them play with your [pc.hair] and then placing them one after the other into the incubator, but you knew there’d be a scene like this eventually, and it’s hardly fair to decide they’re yours now. 
-
-<i>“Thank you so much, {Mr. /Ms. Steele},”</i> trills the drone when the operation is done, rising into the air. A few of the rahn look down at you soulfully, placing their tiny hands on the glass. Oh c’mon, don’t do <i>that.</i> <i>“Your bank balance has been updated. We hope to see you at Breedwell Incubation Centre in the future!”</i>
-
-The Steele drone has already departed, in some robotic approximation of a snit. You’re left with your own thoughts - and a healthier bank account.
-
-Steele
-
-Tooltip: You carried and bore them, dammit. Nobody’s taking them away from you now!
-
-You hold each of the rahn babies, giving them a little blow on the stomach to make them wiggle and squeal, and then place them one after the other into the incubator. It’s a bit tough to say goodbye to them, but it’s a huge appeasement to your instincts that you’ll get to see them again on Tavros.
-
-<i>“I shall deliver them to Ms. Briget safe and sound,”</i> the drone assures you, rising up into the air with its jelly baby payload. <i>“It might not be my place to say, {Mr. / Ms.} Steele - but in my estimation you’ve done the right thing.”</i>
-
-The Tamani drone has already departed, no doubt to inform its superiors of your transgression. Well, whatever. There’ll always be other opportunities to earn more money.
-
-
-
-*/

@@ -578,6 +578,8 @@ public function statisticsScreen(showID:String = "All"):void
 						case "BothriocPregnancy": output2(" Bothrioc, Eggs"); break;
 						case "OvalastingEggPregnancy": output2(" Ovalasting, Eggs"); break;
 						case "LapinaraPregnancy": output2(" Lapinara, Eggs"); break;
+						case "RahnPregnancy": output2(" Rahn, Eggs"); break;
+						case "RahnPregnancyBreedwell": output2(" Breedwell Rahn, Eggs"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -907,6 +909,12 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Psychic Tentacle Beasts, Total:</b> " + StatTracking.getStat("pregnancy/psychic tentacle beast birthed"));
 				if(StatTracking.getStat("pregnancy/psychic tentacle beast day care") > 0)
 					output2("\n<b>* Births, Psychic Tentacle Beasts @ Daycare:</b> " + StatTracking.getStat("pregnancy/psychic tentacle beast day care"));
+				if(StatTracking.getStat("pregnancy/rahn eggs/birthed") > 0)
+					output2("\n<b>* Births, Rahn Eggs, Total:</b> " + StatTracking.getStat("pregnancy/rahn eggs/birthed"));
+				if(StatTracking.getStat("pregnancy/rahn eggs/day care") > 0)
+					output2("\n<b>* Births, Rahn Eggs @ Daycare:</b> " + StatTracking.getStat("pregnancy/rahn eggs/day care"));
+				if(StatTracking.getStat("pregnancy/rahn eggs/tamani") > 0)
+					output2("\n<b>* Births, Rahn Eggs @ TamaniCorp:</b> " + StatTracking.getStat("pregnancy/rahn eggs/tamani"));
 				if(StatTracking.getStat("pregnancy/renvra kids") > 0)
 					output2("\n<b>* Births, Renvra’s Children:</b> " + StatTracking.getStat("pregnancy/renvra kids"));
 				if(StatTracking.getStat("pregnancy/sera kids") > 0)
@@ -1600,6 +1608,12 @@ public function questLogMenu(currentFunc:Function):Boolean
 	{
 		if(showID == "Gastigoth") { output2(header("<u>Gastigoth Station</u>", false)); addDisabledGhostButton(9, "Gastigoth"); }
 		else addGhostButton(9, "Gastigoth", currentFunc, "Gastigoth");
+	}
+	//Breedwell
+	if(MailManager.isEntryViewed("breedwell_unlock"))
+	{
+		if(showID == "Breedwell") { output2(header("<u>Breedwell Centre</u>", false)); addDisabledGhostButton(10, "Breedwell"); }
+		else addGhostButton(10, "Breedwell", currentFunc, "Breedwell");
 	}
 	// Other Info
 	if(showID == "Other") addDisabledGhostButton(12, "Other");
@@ -5910,6 +5924,32 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["TAMTAM_PRISONED"] != undefined)  output2("\n<b>* Tam, Times Sexed:</b> " + flags["TAMTAM_PRISONED"]);
 				if(flags["KASKA_PRISONED"] != undefined)  output2("\n<b>* Kaska, Times Sexed:</b> " + flags["KASKA_PRISONED"]);
 				if(flags["KHORGAN_PRISONED"] != undefined)  output2("\n<b>* Khorgan, Times Sexed:</b> " + flags["KHORGAN_PRISONED"]);
+				variousCount++;
+			}
+		}
+		
+		if(showID == "Breedwell" || showID == "All")
+		{
+			// Breedwell Incubation Centre
+			if(flags["QUAELLE_MET"] != undefined || flags["BREEDWELL_TIMES_DONATED"] != undefined)
+			{
+				output2("\n<b><u>Breedwell Incubation Centre</u></b>");
+				if(flags["BREEDWELL_TIMES_BRED"] != undefined) output2("\n<b>* Services, Pod Lounge, Times Bred:</b> " + flags["BREEDWELL_TIMES_BRED"]);
+				if(flags["BREEDWELL_TIMES_DONATED"] != undefined)
+				{
+					output2("\n<b>* Services, Sperm Donation Bay, Times Donated:</b> " + flags["BREEDWELL_TIMES_DONATED"]);
+					if(flags["BREEDWELL_DONATION_LOCKED"] != undefined) output2(", Locked");
+					output2("\n<b>* Services, Sperm Donation Bay, Cum Milked:</b> " + StatTracking.getStat("breedwell/cum milked") + " mLs");
+				}
+				variousCount++;
+			}
+			// Quaelle
+			if(flags["QUAELLE_MET"] != undefined)
+			{
+				output2("\n<b><u>Reception</u></b>");
+				output2("\n<b>* Quaelle:</b> Met her");
+				if(flags["QUAELLE_HUGGED"] != undefined) output2("\n<b>* Quaelle, Times Hugged Her:</b> " + flags["QUAELLE_HUGGED"]);
+				if(flags["QUAELLE_SEXED"] != undefined) output2("\n<b>* Quaelle, Times Sexed:</b> " + flags["QUAELLE_SEXED"]);
 				variousCount++;
 			}
 		}

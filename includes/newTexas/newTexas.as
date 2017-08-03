@@ -1048,9 +1048,8 @@ public function savinAbusesYerButtBecauseThatsHowHeLikesIt():void
 	var iPriceThreshold:int = 150;
 
 	// If threshold is surpassed before the cumming is done. 50% Chance:
-	var cumEstimate:Number = 0;
-	if(pc.cumQ() * 3 >= pc.currentCum()) cumEstimate = pc.cumQ() * 3;
-	else cumEstimate = pc.currentCum();
+	var cumEstimate:Number = cumMilkerCumEstimate();
+	
 	if (cumCreditValue(cumTotal + cumEstimate) > iPriceThreshold)
 	{
 		output("\n\nAll you can do is tightly grip the vaulting horse supporting you, groaning and crying in pleasure as the machine milks your prostate minute after minute.");
@@ -1514,9 +1513,8 @@ public function yesGoMilkarGo(amount:Number = 0):void
 	if(flags["MILK_BARN_COCKMILKER_SCANNED"] != undefined) flags["MILK_BARN_COCKMILKER_SCANNED"] = undefined;
 
 	clearMenu();
-	var cumEstimate:Number = 0;
-	if(pc.cumQ() * 3 >= pc.currentCum()) cumEstimate = pc.cumQ() * 3;
-	else cumEstimate = pc.currentCum();
+	var cumEstimate:Number = cumMilkerCumEstimate();
+	
 	// Uh-oh, silly mode
 	if(amount + cumEstimate > 4000000)
 	{
@@ -1531,6 +1529,11 @@ public function yesGoMilkarGo(amount:Number = 0):void
 		addButton(0,"Yes",yesFixDaMilkar);
 		addButton(1,"No",noFixDaMilkar);
 	}
+}
+public function cumMilkerCumEstimate():Number
+{
+	if(pc.cumQ() * 3 >= pc.currentCum()) return (pc.cumQ() * 3);
+	return pc.currentCum();
 }
 
 // Better safe than sorry--end it nao!
