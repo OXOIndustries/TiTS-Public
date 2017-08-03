@@ -71,7 +71,7 @@ package classes.GameData.Pregnancy.Handlers
 							msg += "The breeding session has left you utterly stuffed with rahn eggs, forcing you to adopt a waddling gait in order to compensate for the huge bulge you’re sporting. The fact that this is just the beginning of the gestation period sends a shiver through you, and the shiver worms its way right through the many, many rahn young packed densely in your womb, making you moan slightly. It’s like having a stomach full of jelly that refuses to digest. At least you’ve adapted to the weight and bulk you’ve taken on... for now.";
 						}
 						
-						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.5, true);
+						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.1, true);
 						
 						AddLogEvent(ParseText(msg));
 					}, true);
@@ -87,7 +87,7 @@ package classes.GameData.Pregnancy.Handlers
 						msg += "You’ve put on a little weight on your [pc.chest] and the areola of your nipples have spread slightly. Regardless of the alienness of the young in your womb, your body is busily gearing itself up to feed them as if they were your own. It makes your mind wander, pondering exactly what relation these rahn are to you. Technically you’re neither father nor mother, the eggs inseminated before they were implanted so zealously up you. The process certainly doesn’t leave you feeling like some anonymous third party, though.";
 						
 						kGAMECLASS.pc.milkFullness += 15;
-						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.5, true);
+						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.1, true);
 						
 						AddLogEvent(ParseText(msg));
 					}, true);
@@ -102,7 +102,7 @@ package classes.GameData.Pregnancy.Handlers
 						
 						msg += "The dense weight in your womb feels more settled now, less like you’re attached to a washing machine full of jelly and more... implanted. A peaceful warmth throbbing through you has replaced the panic that edged you earlier, and you go about your business with a complacent smile on your [pc.lips].";
 						
-						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.5, true);
+						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.1, true);
 						
 						AddLogEvent(ParseText(msg));
 					}, true);
@@ -121,7 +121,7 @@ package classes.GameData.Pregnancy.Handlers
 						else msg += ", and another, and another... Void, it feels like somebody’s playing a xylophone in there!";
 						msg += "\n\nAre you giving birth...? No - there’s no pressure, no deep urge to bear down. Just a certain intimation that things have changed inside you. Very odd.";
 						
-						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.5, true);
+						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.1, true);
 						
 						AddLogEvent(ParseText(msg));
 					}, true);
@@ -139,7 +139,7 @@ package classes.GameData.Pregnancy.Handlers
 						else msg += " running down your [pc.thigh]";
 						msg += ", issuing in a steady drool from your [pc.vagina " + pregSlot + "]. So you can make a decent guess what all the fuss was about a few hours earlier - the eggs inside of you have hatched, rahn ova now rahn young. And you’re oozing the rainbow remains of their shells and albumen. Great.";
 						
-						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.5, true);
+						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.1, true);
 						// Soaked in female juices status
 						kGAMECLASS.applyPussyDrenched(kGAMECLASS.pc);
 						
@@ -164,7 +164,7 @@ package classes.GameData.Pregnancy.Handlers
 							AddLogEvent(ParseText(msg));
 						}
 						
-						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.5, true);
+						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.1, true);
 					}, true);
 				}
 				// 9 days
@@ -179,7 +179,7 @@ package classes.GameData.Pregnancy.Handlers
 						if(pData.pregnancyQuantity > 10) msg += ", able to make full use of your well-trained womb";
 						msg += ". You rub your midriff with long, circular sweeps of your hands, sighing happily.";
 						
-						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.5, true);
+						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.1, true);
 						
 						AddLogEvent(ParseText(msg));
 					}, true);
@@ -195,7 +195,7 @@ package classes.GameData.Pregnancy.Handlers
 						msg += "The [pc.skin] of your stomach is stretching, fast enough for you to notice the change with each passing hour. The eggs inside of you seem to be growing, bulging your body with increasing amounts of life.";
 						if(pData.pregnancyQuantity > 10) msg += " It’s just as well they are so soft and pliant. They’re squeezing against each other in your well-trained but increasingly cramped womb, taking up what seems like every square inch of room in your body. Although it’s slightly difficult to feel panic in the swamp of hormones you’re currently sweltering in, your throat tightens a bit when you swell outwards another inch. Presumably your rahn babies won’t just burst out of you... right?";
 						
-						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.5, true);
+						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.1, true);
 						
 						AddLogEvent(ParseText(msg));
 					}, true);
@@ -208,14 +208,14 @@ package classes.GameData.Pregnancy.Handlers
 					addStageProgression(i, function(pregSlot:int):void
 					{
 						kGAMECLASS.pc.milkFullness += 5;
-						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.5, true);
+						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.1, true);
 					}, true);
 				}
 				else
 				{
 					addStageProgression(i, function(pregSlot:int):void
 					{
-						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.5, true);
+						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.1, true);
 					}, true);
 				}
 			}
