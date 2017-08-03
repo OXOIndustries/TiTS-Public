@@ -970,7 +970,7 @@ public function appearance(forTarget:Creature):void
 		else
 		{
 			if(rand(2) == 0) output2(" A huge " + target.getStatusTooltip("Hair Flower") + " orchid grows from the side of your head, its big long petals flopping gaily when you move.");
-			else output2(" Nestled above your ear, there is " + indefiniteArticle(target.getStatusTooltip("Hair Flower")) + " orchid. It looks like you stuck it there but it’s very much a part of you, flourishing from your scalp merrily.");
+			else output2(" Nestled in one side of your head, there is " + indefiniteArticle(target.getStatusTooltip("Hair Flower")) + " orchid. It looks like you stuck it there but it’s very much a part of you, flourishing from your scalp merrily.");
 		}
 	}
 	

@@ -4348,7 +4348,11 @@
 			if (hasStatusEffect("Myr Venom Withdrawal")) currLib /= 2;
 			if (hasStatusEffect("Mare Musk")) currLib += 10;
 			if (hasStatusEffect("Adorahol")) currLib += (5 * statusEffectv1("Adorahol"));
-			if (hasPerk("Slut Stamp") && hasGenitals() && isCrotchGarbed()) currLib += perkv1("Slut Stamp");
+			if (hasGenitals() && isCrotchGarbed())
+			{
+				if (hasPerk("Slut Stamp"))currLib += perkv1("Slut Stamp");
+				if (hasPerk("Barcoded")) currLib += 10;
+			}
 			if (perkv1("Dumb4Cum") > 24) currLib += perkv1("Dumb4Cum")-24;
 			currLib += statusEffectv3("Heat");
 			currLib += statusEffectv1("Rut");
@@ -4456,12 +4460,14 @@
 			var bonuses:int = 0;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 50;
 			if(hasPerk("Slut Stamp")) bonuses += perkv3("Slut Stamp");
+			if(hasPerk("Barcoded")) bonuses += 10;
 			return (100 + bonuses);
 		}
 		public function libidoMin(): Number {
 			var bonus:int = 0;
 			if(hasPerk("Drug Fucked")) bonus += 40;
 			if(hasPerk("Slut Stamp")) bonus += perkv2("Slut Stamp");
+			if(hasPerk("Barcoded")) bonus += 10;
 			if(perkv1("Flower Power") > 0) bonus += perkv3("Flower Power");
 			// Slave collar increases minimum by set level.
 			if(hasStatusEffect("Psi Slave Collar")) bonus += statusEffectv3("Psi Slave Collar");

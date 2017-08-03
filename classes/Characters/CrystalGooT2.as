@@ -79,7 +79,7 @@ package classes.Characters
 			armor.resistances.drug.resistanceValue = -30.0;
 			armor.resistances.poison.resistanceValue = -30.0;
 			armor.resistances.kinetic.resistanceValue = 15.0;
-			
+			armor.resistances.addFlag(DamageFlag.MIRRORED);
 			armor.hasRandomProperties = true;
 			
 			this.rangedWeapon = new EmptySlot();
