@@ -339,7 +339,7 @@ public function getOutOfHereSkank():void
 public function rideDatCockAndShit():void
 {
 	clearOutput();
-	showGryvainShit();
+	showGryvainShit(true);
 	author("Savin");
 	output("With the defenseless dragon-girl now at your mercy, you decide to have some fun with her. You take a step forward that closes the distance, pushing her onto her back and spreading her legs. Her four wings splay out on the ground behind her, little talons clawing into the dirt, but the moment you have her on her ass, you see the straining bulge in her pants throb greedily, begging for release. You lean down and hook your hands through her belt, yanking her pants down and off with one rough pull. The gryvain woman gasps, and sure enough you’re treated to the sight of a dark blue dick peeking out from a pair of black panties, surrounded by the scales of her lower body.");
 	output("\n\nThe half-turgid member bobs up, wiggling in the warm jungle air when you tear her panties away, exposing the thick base of her tapered shaft and the parted slit of a pussy below it. You lick your lips and twirl a finger, telling the would-be gunslinger to pull her armor off and show you those big ol’ tits of hers.");
@@ -405,7 +405,7 @@ public function rideDatCockAndShit():void
 public function fuckDatGryvainShit():void
 {
 	clearOutput();
-	showGryvainShit();
+	showGryvainShit(true);
 	author("Savin");
 	var x:int = pc.cockThatFits(enemy.analCapacity());
 	if((x < 0 || !pc.hasCock()) && pc.hasHardLightEquipped()) x = -1;
