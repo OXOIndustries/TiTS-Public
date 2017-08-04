@@ -213,7 +213,7 @@ public function breedwellLoungeBonus():Boolean
 	// [Pod]
 	if(flags["BREEDWELL_STATUS_BREEDER"] == undefined) addDisabledButton(0, "Pod", "Pod", "You are not familiar with this yet. You probably need to be properly introduced before using it.");
 	else if(!pc.hasVagina()) addDisabledButton(0, "Pod", "Pod", "You require a vagina to try this.");
-	else if(!breedwellCheckBirth()) addDisabledButton(0, "Pod", "Pod", "Making babies? You don’t think you’re not exprienced enough to try this...");
+	else if(!breedwellCheckBirth()) addDisabledButton(0, "Pod", "Pod", "Making babies? You don’t think you’re exprienced enough to try this yet...");
 	else if(pc.isFullyWombPregnant() && !pc.hasPregnancyOfType("RahnPregnancy") && !pc.hasPregnancyOfType("RahnPregnancyBreedwell")) addDisabledButton(0, "Pod", "Pod", "You’re already too stuffed to do this.");
 	else if(pc.fertility() <= 0) addDisabledButton(0, "Pod", "Pod", "You’re not fertile enough to do this.");
 	else addButton(0, "Pod", breedwellApproachPod, undefined, "Pod", "Harness yourself up and get ready for a breeding.");
@@ -232,14 +232,14 @@ public function breedwellDonationBonus():Boolean
 	
 	// [Cubicle]
 	if(flags["BREEDWELL_STATUS_DONATOR"] == undefined) addDisabledButton(0, "Cubicle", "Cockmilker", "You are not familiar with this yet. You probably need to be properly introduced before using it.");
+	else if(!pc.hasCock()) addDisabledButton(0, "Cubicle", "Cockmilker", "You require a penis to try this.");
+	else if(!breedwellCheckSperm()) addDisabledButton(0, "Cubicle", "Cockmilker", "Milking your semen? You don’t think you’re exprienced enough to try this yet...");
+	else if(pc.virility() <= 0) addDisabledButton(0, "Cubicle", "Cockmilker", "You’re not virile enough to do this.");
 	else if(pc.hasStatusEffect("Breedwell Cockmilker Cooldown"))
 	{
 		output("\n\nThe cubicles refuse to open when you approach them. They’re evidently programmed not to for those who have already given their donation for the day.");
 		addDisabledButton(0, "Cubicle", "Cockmilker", "You can't use this at the moment. Maybe later?");
 	}
-	else if(!pc.hasCock()) addDisabledButton(0, "Cubicle", "Cockmilker", "You require a penis to try this.");
-	else if(!breedwellCheckSperm()) addDisabledButton(0, "Cubicle", "Cockmilker", "Milking your semen? You don’t think you’re not exprienced enough to try this...");
-	else if(pc.virility() <= 0) addDisabledButton(0, "Cubicle", "Cockmilker", "You’re not virile enough to do this.");
 	else addButton(0, "Cubicle", breedwellApproachCockmilker, undefined, "Cockmilker", "Donate some sperm.");
 	
 	return false;
