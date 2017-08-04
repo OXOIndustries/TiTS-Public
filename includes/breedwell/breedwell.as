@@ -23,11 +23,19 @@ Plans/Ideas
 
 // Ad from Tamani Corp
 // Received if PC has the rahn codex + has 2 or more kids in the Nursery OR has donated 500,000+ ml to the NT Cockmilker
+public function breedwellCheckBirth():Boolean
+{
+	return (StatTracking.getStat("pregnancy/total births") >= 5);
+}
+public function breedwellCheckSperm():Boolean
+{
+	return (StatTracking.getStat("milkers/cum milked") >= 500000 || StatTracking.getStat("milkers/cum jarred") >= 500000);
+}
 public function breedwellTryUnlock():void
 {
 	if(MailManager.isEntryUnlocked("breedwell_unlock")) return;
 	
-	if(CodexManager.entryViewed("Rahn") && (ChildManager.numChildrenAtNursery() >= 2 || StatTracking.getStat("milkers/cum milked") >= 500000 || StatTracking.getStat("milkers/cum jarred") >= 500000))
+	if(CodexManager.entryViewed("Rahn") && (breedwellCheckBirth() || breedwellCheckSperm()))
 	{
 		goMailGet("breedwell_unlock");
 	}
@@ -37,7 +45,7 @@ public function breedwellEmailText():String
 	// From: TamaniCorp <Marketing@TamaniCorp.corp>
 	// To: PC Steele
 	// Subject: The Breedwell Incubation Centre Needs YOU.
-	var mom:Boolean = (ChildManager.numChildrenAtNursery() >= 2);
+	var mom:Boolean = breedwellCheckBirth();
 	var msg:String = "<i>As soon as you open this email, a video starts playing.</i>";
 	msg += "\n\n<i>“Hey there, eager breeder.”</i> The camera pans down a red velvet background to reveal the self-styled CEO of Tamani Corp, the booby, pink-skinned, punk-coiffed lady herself, smiling wickedly at the screen. <i>“We here at Tamani Corp don’t just sell orgasmically effective fertility treatments to those with a pressing need for them - we keep an eye on the future of our friends. And on those who might be able to help them.”</i>";
 	msg += "\n\nShe’s joined on stage by two rahn - a buxom white gel girl and a slightly more svelte red one - both of them dressed in tight, white nurse uniforms emblazoned with the corporation’s logo. They wrap their arms around Tamani, pressing their soft, gooey flesh into hers, beaming.";
@@ -152,7 +160,7 @@ public function breedwellReceptionBonus():Boolean
 		output("\n\nThe being behind the wide reception desk is the very embodiment of softness and wetness, writ on letters large, yellow and feminine. Her lower body is serpentine, but there’s nothing snake-like about that big, wide, blunt tail, patterned with brilliant orange spots, shining with moisture; it looks distinctly more like something that would spend three hours patiently climbing up a garden wall. Up from that edgeless wedge of a base a human-like body climbs, albeit a very thick, wet, hairless human, dressed in a waterproof chocolate-colored dress and lab-coat, against which mountainous, F-cup breasts are placing a mighty strain. At the top of this is a head and a flat-nosed, pleasantly-featured face, with full, golden lips and brilliant, frog-like, double-pupiled eyes. A number of cilia-like antennae slowly undulate from underneath a beige, conch-like hat. If the gastropodic being is irritated by you spending several moments properly taking her in, she doesn’t show it. She simply waves to direct your attention up to her face when you’re done.");
 		output("\n\n<i>“Welcome to the Breedwell Incubation Centre. I’m Quaelle, the matron here,”</i> she says, drawing out the ‘e’ in ‘Breedwell’ and ‘here’ into a kind of happy hush. She pauses to brush the crude, colorful bracelets hanging from her wide arms further up. She’s in no hurry, and in the hot, humid environment here it’s hard not to share her mood. <i>“If you’ll give me one moment...”</i>");
 		output("\n\nPeacefully she turns and taps a few times at a monitor. A tiny camera fixed to the roof eyeballs you. A glad smile slowly spreads over Quealle’s face.");
-		output("\n\n<i>“[pc.name] Steele!”</i> she says. <i>[pc.name] Steeeeeeeeele!</i> <i>“Going off our analytics, it’s wonderful that you’ve taken up the offer to help the rahn with your shiversome body. So fertile! Such genes! Would you like the induction now, or do you have other questions?”</i> She gazes at you beatifically with her striking, double-pupiled eyes, antennae gently waving. <i>“You do, of course. Why don’t we sit aside and chat for a while?”</i>");
+		output("\n\n<i>“[pc.name] Steele!”</i> she says. [pc.name] Steeeeeeeeele! <i>“Going off our analytics, it’s wonderful that you’ve taken up the offer to help the rahn with your shiversome body. So fertile! Such genes! Would you like the induction now, or do you have other questions?”</i> She gazes at you beatifically with her striking, double-pupiled eyes, antennae gently waving. <i>“You do, of course. Why don’t we sit aside and chat for a while?”</i>");
 		// Roehm not met:
 		if(!CodexManager.entryUnlocked("Roehm"))
 		{
@@ -205,7 +213,7 @@ public function breedwellLoungeBonus():Boolean
 	// [Pod]
 	if(flags["BREEDWELL_STATUS_BREEDER"] == undefined) addDisabledButton(0, "Pod", "Pod", "You are not familiar with this yet. You probably need to be properly introduced before using it.");
 	else if(!pc.hasVagina()) addDisabledButton(0, "Pod", "Pod", "You require a vagina to try this.");
-	else if(ChildManager.numChildrenAtNursery() < 2) addDisabledButton(0, "Pod", "Pod", "Making babies? You don’t think you’re not exprienced enough to try this...");
+	else if(!breedwellCheckBirth()) addDisabledButton(0, "Pod", "Pod", "Making babies? You don’t think you’re not exprienced enough to try this...");
 	else if(pc.isFullyWombPregnant() && !pc.hasPregnancyOfType("RahnPregnancy") && !pc.hasPregnancyOfType("RahnPregnancyBreedwell")) addDisabledButton(0, "Pod", "Pod", "You’re already too stuffed to do this.");
 	else if(pc.fertility() <= 0) addDisabledButton(0, "Pod", "Pod", "You’re not fertile enough to do this.");
 	else addButton(0, "Pod", breedwellApproachPod, undefined, "Pod", "Harness yourself up and get ready for a breeding.");
@@ -224,8 +232,13 @@ public function breedwellDonationBonus():Boolean
 	
 	// [Cubicle]
 	if(flags["BREEDWELL_STATUS_DONATOR"] == undefined) addDisabledButton(0, "Cubicle", "Cockmilker", "You are not familiar with this yet. You probably need to be properly introduced before using it.");
+	else if(pc.hasStatusEffect("Breedwell Cockmilker Cooldown"))
+	{
+		output("\n\nThe cubicles refuse to open when you approach them. They’re evidently programmed not to for those who have already given their donation for the day.");
+		addDisabledButton(0, "Cubicle", "Cockmilker", "You can't use this at the moment. Maybe later?");
+	}
 	else if(!pc.hasCock()) addDisabledButton(0, "Cubicle", "Cockmilker", "You require a penis to try this.");
-	else if(StatTracking.getStat("milkers/cum milked") < 500000 && StatTracking.getStat("milkers/cum jarred") < 500000) addDisabledButton(0, "Cubicle", "Cockmilker", "Milking your semen? You don’t think you’re not exprienced enough to try this...");
+	else if(!breedwellCheckSperm()) addDisabledButton(0, "Cubicle", "Cockmilker", "Milking your semen? You don’t think you’re not exprienced enough to try this...");
 	else if(pc.virility() <= 0) addDisabledButton(0, "Cubicle", "Cockmilker", "You’re not virile enough to do this.");
 	else addButton(0, "Cubicle", breedwellApproachCockmilker, undefined, "Cockmilker", "Donate some sperm.");
 	
@@ -305,7 +318,7 @@ public function approachQuaelle():void
 	author("Nonesuch");
 	
 	// !Lover:
-	if(quelleIsLover()) output("<i>“Trembulent Steele!”</i> The roehm turning and smiling at you is like watching the sun come up, and takes roughly as long. <i>“How wonderful to see you back at Breedwell. Is there anything you need, or wanted to ask?”</i>");
+	if(!quelleIsLover()) output("<i>“Trembulent Steele!”</i> The roehm turning and smiling at you is like watching the sun come up, and takes roughly as long. <i>“How wonderful to see you back at Breedwell. Is there anything you need, or wanted to ask?”</i>");
 	// Lover:
 	else output("<i>“Efficervescent Steele.”</i> The roehm had begun freezing programs and shooing her aides away the moment you stepped into reception, so by the time you approach her the two of you are relatively alone. She smiles at you without saying a word, hands clasped and cilia waving towards you, apparently happy to just sit and drink you in.");
 	
@@ -373,21 +386,24 @@ public function quaelleAppearance():void
 // [Induction]
 public function breedwellInductionCheck():Boolean
 {
-	if(pc.isFemale() && ChildManager.numChildrenAtNursery() >= 2 && flags["BREEDWELL_STATUS_BREEDER"] != undefined) return true;
-	if(pc.isMale() && (StatTracking.getStat("milkers/cum milked") >= 500000 || StatTracking.getStat("milkers/cum jarred") >= 500000) && flags["BREEDWELL_STATUS_DONATOR"] != undefined) return true;
-	if(pc.isHerm() && ChildManager.numChildrenAtNursery() >= 2 && (StatTracking.getStat("milkers/cum milked") >= 500000 || StatTracking.getStat("milkers/cum jarred") >= 500000) && flags["BREEDWELL_STATUS_BREEDER"] != undefined && flags["BREEDWELL_STATUS_DONATOR"] != undefined) return true;
+	if(pc.isFemale() && breedwellCheckBirth() && flags["BREEDWELL_STATUS_BREEDER"] != undefined) return true;
+	if(pc.isMale() && breedwellCheckSperm() && flags["BREEDWELL_STATUS_DONATOR"] != undefined) return true;
+	if(pc.isHerm() && breedwellCheckBirth() && breedwellCheckSperm() && flags["BREEDWELL_STATUS_BREEDER"] != undefined && flags["BREEDWELL_STATUS_DONATOR"] != undefined) return true;
 	
 	return false;
 }
 public function breedwellInductionRouter():void
 {
-	if(pc.isHerm() && ChildManager.numChildrenAtNursery() >= 2 && (StatTracking.getStat("milkers/cum milked") >= 500000 || StatTracking.getStat("milkers/cum jarred") >= 500000)) breedwellInduction("herm");
-	else if((pc.isHerm() || pc.isFemale()) && ChildManager.numChildrenAtNursery() >= 2) breedwellInduction("female");
-	else if((pc.isHerm() || pc.isMale()) && (StatTracking.getStat("milkers/cum milked") >= 500000 || StatTracking.getStat("milkers/cum jarred") >= 500000)) breedwellInduction("male");
+	if(pc.isHerm() && breedwellCheckBirth() && breedwellCheckSperm() && flags["BREEDWELL_STATUS_BREEDER"] == undefined && flags["BREEDWELL_STATUS_DONATOR"] == undefined) breedwellInduction("herm");
+	else if((pc.isHerm() || pc.isFemale()) && breedwellCheckBirth() && flags["BREEDWELL_STATUS_BREEDER"] == undefined) breedwellInduction("female");
+	else if((pc.isHerm() || pc.isMale()) && breedwellCheckSperm() && flags["BREEDWELL_STATUS_DONATOR"] == undefined) breedwellInduction("male");
 	else
 	{
 		clearOutput();
 		output("Error: None of the conditions match!");
+		output("\n");
+		output("\nBreeder, Status: " + (flags["BREEDWELL_STATUS_BREEDER"] == undefined ? "<i>Not yet inducted!</i>" : flags["BREEDWELL_STATUS_BREEDER"]));
+		output("\nDonator, Status: " + (flags["BREEDWELL_STATUS_DONATOR"] == undefined ? "<i>Not yet inducted!</i>" : flags["BREEDWELL_STATUS_DONATOR"]));
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 	}
@@ -403,7 +419,7 @@ public function breedwellInductionUpdate(update:Boolean = false):void
 	
 	// Carries on from whichever induction scene PC has not taken
 	clearMenu();
-	if(pc.isHerm() && ChildManager.numChildrenAtNursery() >= 2 && (StatTracking.getStat("milkers/cum milked") >= 500000 || StatTracking.getStat("milkers/cum jarred") >= 500000))
+	if(pc.isHerm() && breedwellCheckBirth() && breedwellCheckSperm())
 	{
 		if(flags["BREEDWELL_STATUS_BREEDER"] != undefined) addButton(0, "Next", breedwellInduction, "male");
 		else if(flags["BREEDWELL_STATUS_DONATOR"] != undefined) addButton(0, "Next", breedwellInduction, "female");
@@ -436,7 +452,7 @@ public function breedwellInduction(response:String = ""):void
 		case "male":
 			output("<i>“Let’s go to the extraction chambers, shall we?");
 			if(!pc.hasPheromones()) output(" That’s where we’ll need a trembulent young " + pc.mf("man", "ladyboy") + " such as yourself, after all!");
-			else output(" Those hormones of yours are almost making me dizzy, ooh, goodness me. We could do with suiting you up there straight away!");
+			else output(" Those hormones of yours are almost making me dizzy, ooh, goodness me. We could do with getting you into a donation cubicle straight away!");
 			output("”</i>");
 			output("\n\nQuaelle nestles a touch tablet into her arm and undulates her way from around the counter. The way the roehm moves is slow but rather hypnotic, waves of motion following each other down her great, soft side, gradually sliding her slimy bulk forward. She draws you close to her with a friendly touch of the shoulder, and the buttery smell of caramel wafts over you, leaving you feeling... horny? Sweet heat sinks down to [pc.eachCock] and your [pc.nipples] " + (pc.hasErectNipples() ? "engorge" : "moisten") + " readily.");
 			output("\n\nRelaxed and slightly light-headed now, you don’t mind that walking alongside Quaelle necessitates going at an arthritic pace.");
@@ -1104,7 +1120,7 @@ public function breedwellPodScenes(arg:Array):void
 			// Gabilani codex read:
 			if(CodexManager.entryViewed("Gabilani")) output(" That, her figure, and her mottled green-and-blue color immediately calls to mind the gabilani of Tarkus.");
 			output(" <i>“To pay for a trip out here, and all across the frontier. You wouldn’t believe how being this size cuts down on the bills.”</i>");
-			// PC height < 4'5":
+			// PC height < 4' 5":
 			if(pc.tallness < 53)
 			{
 				output(" Her eyes shine with naked delight as they trail across your own small-but-perfectly-formed body. <i>“Guess why I picked you?”</i>");
@@ -1192,19 +1208,21 @@ public function breedwellPodEnd(numEggs:int = 0):void
 */
 public function breedwellCumCreditValue(amount:Number = 0):Number
 {
-	var credits:Number = 10;
-	
 	if(amount <= 0) return 10;
 	
-	if(amount < 5000) credits = 8;
-	else if(amount < 20000) credits = 5;
-	else if(amount < 200000) credits = 3;
-	else if(amount < 500000) credits = 1;
-	else if(amount < 1000000) credits = 0.5;
-	else if(amount < 10000000) credits = 0.1;
-	else credits = 0.05;
+	// New calculations!
+	var maxCredVal:Number = 10; // Maximum credit value to start.
+	var normalAmount:Number = 500000; // Point where credit value is at 1 credit/mL before degrading.
+	// Build function curve with these values to get the multiplier!
+	var creditVal:Number = ( maxCredVal / Math.pow((((1 / normalAmount) * amount) + 1), 2) );
 	
-	return Math.round(amount * credits);
+	if(debug)
+	{
+		output("OUTPUT: " + amount + " mLs @ " + Math.round(amount * creditVal) + " Credits ( " + creditVal + " creds/mL )");
+		output("\n\n");
+	}
+	
+	return Math.round(amount * creditVal);
 }
 // Idk what the maximum amount the PC can feasibly jizz is in this game, but the scene where you break this thing should be fairly close to it. Given NT cockmilker’s limit is 4,000,000, set limit to 20,000,000 for now.
 
@@ -1254,6 +1272,8 @@ public function breedwellCockmilkerEnd(cumTotal:Number = 0):void
 	pc.removeStatusEffect("Breedwell Cockmilker Dildo");
 	StatTracking.track("breedwell/cum milked", cumTotal);
 	IncrementFlag("BREEDWELL_TIMES_DONATED");
+	// Disable cockmilker for a day.
+	pc.createStatusEffect("Breedwell Cockmilker Cooldown", 0, 0, 0, 0, true, "", "", false, 1440);
 }
 // Intro
 public function breedwellCockmilkerCockSelect():void
@@ -1311,7 +1331,7 @@ public function breedwellCockmilkerStart(cIdx:int = -1):void
 		addButton(0, "Next", breedwellCockmilkerOutput, [cIdx, dildo, porno, cumQ]);
 	}
 	// Porn Off, Dildo On
-	if(!porno && dildo)
+	else if(!porno && dildo)
 	{
 		output("Rotting your brain with porn is a no, but a nice prostate milking... yeah. That gives you a few tingles. You select one option and not the other, and there’s a whirring sound as a mechanical arm descends behind you. You shiver slightly as a warm, blunt object nestles itself between your buttcheeks, pausing when it is pressed against the pad of your [pc.anus].");
 		output("\n\nYou take hold of your [pc.cock " + cIdx + "] and give it a few strokes, closing your eyes as you imagine all the gel cute rahn babes who will soon be enjoying your [pc.cumVisc] [pc.cumColor] seed, one way or another. Your prick rears up readily to those fruity thoughts, and you take hold of the handles proper, line yourself up and slowly sink your [pc.cockHead " + cIdx + "] into the synthetic crease of the machine.");
@@ -1398,7 +1418,7 @@ public function breedwellPornScenes(arg:Array):void
 	switch(track)
 	{
 		case 1:
-			output("\n\nThere are 9 minimized feeds in front of you, each displaying some lascivious action going on in the breeding pods elsewhere on the station. You focus upon one for a couple of seconds - a purple rahn in the throes of ecstasy, hammering her hips into a bound ausar herm whose engorged doggy cock is flopping this way and that - and the feed zooms out in response, taking over the screen, so you can drink in every detail. Oof! Who knew you could be a double squirter?");
+			output("\n\nThere are nine minimized feeds in front of you, each displaying some lascivious action going on in the breeding pods elsewhere on the station. You focus upon one for a couple of seconds - a purple rahn in the throes of ecstasy, hammering her hips into a bound ausar herm whose engorged doggy cock is flopping this way and that - and the feed zooms out in response, taking over the screen, so you can drink in every detail. Oof! Who knew you could be a double squirter?");
 			output("\n\nAs soon as you get tired with one feed, or one breeding session comes to its natural, sticky conclusion, you can swap to another feed with a flick of the eyeballs, and then another, and then another. It’s heady, sleazy over-stimulation, and your blood pulses through your veins faster as you submerge yourself in a sea of curvy gel girls having their way with just about every shape and size of being imaginable. Your [pc.hips] are on auto-pilot, thrusting into the welcoming embrace of the cockmilker with harder and harder strokes.");
 			if(dildo) output(" The mechanical dildo bores deep into you, sending delightful shivers through your core, and making you arch your back as it drives into your prostate.");
 			// Small cock:
@@ -1519,26 +1539,26 @@ public function breedwellCockmilkerOutput(arg:Array):void
 	if(cumQ < 500)
 	{
 		output("You arch your back and nut, groaning hoarsely as [pc.cum] squirts into the clutching confines of the receiver. The base of the milker limpets you close, ruthlessly holding you to it so not a single drop can escape it. The tubes twitch in front of you, and your seed dribbles out onto the glass floor of the cylinder. Incapable of anything else, you hump the seal giddily until you’re flexing blanks, and finally the synthetic material relaxes enough for you to withdraw.");
-		output("\n\nYou’ve produced nothing at all really, a few drops that look foolish in the giant canister, chaff in a silo. Every little helps, you suppose. The screen blinks back on, informing you that you have been paid " + cumPrice + " credits for your " + Math.round(cumQ) + " mL donation.");
+		output("\n\nYou’ve produced nothing at all really, a few drops that look foolish in the giant canister, chaff in a silo. Every little helps, you suppose. The screen blinks back on, informing you that <b>you have been paid " + cumPrice + " credits for your " + Math.round(cumQ) + " mL donation</b>.");
 	}
 	// Middling output 
 	else if(cumQ < 1000)
 	{
 		output("You arch your back and nut, groaning hoarsely as [pc.cum] spurts into the clutching confines of the receiver. The base of the milker limpets you close, ruthlessly holding you to it so not a single drop can escape it. The tubes twitch in front of you, and your seed splatters and then dribbles out onto the glass floor of the cylinder. Incapable of anything else, you hump the seal giddily until you’re flexing blanks, and finally the synthetic material relaxes enough for you to withdraw.");
-		output("\n\nBy most measures you’ve produced a lot, enough that a partner would protest if you started waving your stuff around in the bedroom, but the pool of [pc.cum] that doesn’t quite cover the whole of the glass floor of the giant canister seems slightly pitiful in this context. Never mind, you did your bit. The screen blinks back on, informing you that you have been paid " + cumPrice + " credits for your " + Math.round(cumQ) + " mL donation.");
+		output("\n\nBy most measures you’ve produced a lot, enough that a partner would protest if you started waving your stuff around in the bedroom, but the pool of [pc.cum] that doesn’t quite cover the whole of the glass floor of the giant canister seems slightly pitiful in this context. Never mind, you did your bit. The screen blinks back on, informing you that <b>you have been paid " + cumPrice + " credits for your " + Math.round(cumQ) + " mL donation</b>.");
 	}
 	// Large output
 	else if(cumQ < 5000)
 	{
 		output("You arch your back and unload gloriously, groaning hoarsely as you flume line after line of [pc.cum] into the clutching confines of the receiver. The base of the milker limpets you close, ruthlessly holding you to it so not a single drop will escape it. The tubes attaching it to the cylinder dance in front of you, hungrily siphoning away your huge output. You keep your eyes fixed upon the glass cylinder ahead of you and keep thrusting away at the seal, grunting with deep pleasure as you watch your seed first explode out into the container, then pour out steadily. You don’t stop until your " + (pc.balls >= 2 ? "[pc.balls] are" : "[pc.cock " + cIdx + "] is") + " achingly dry, and the synthetic material relaxes enough for you to withdraw.");
-		output("\n\nThe floor of the cylinder has completely disappeared; you’ve filled it at least five or six inches deep with [pc.cumVisc], [pc.cumColor] semen. Wonderful! You feel a glow of accomplishment (although the vast tract of glass you didn’t fill haunts you a little. What kind of bloated monsters are they expecting here, anyway?) The screen blinks back on, informing you that you have been paid " + cumPrice + " credits for your " + Math.round(cumQ) + " mL donation. There’s even a little cartoon Tamani there, giving you a thumbs up and a ‘Good job, stud!’");
+		output("\n\nThe floor of the cylinder has completely disappeared; you’ve filled it at least five or six inches deep with [pc.cumVisc], [pc.cumColor] semen. Wonderful! You feel a glow of accomplishment (although the vast tract of glass you didn’t fill haunts you a little. What kind of bloated monsters are they expecting here, anyway?) The screen blinks back on, informing you that <b>you have been paid " + cumPrice + " credits for your " + Math.round(cumQ) + " mL donation</b>. There’s even a little cartoon Tamani there, giving you a thumbs up and a ‘Good job, stud!’");
 	}
 	// Massive output
 	else if(cumQ < 10000000)
 	{
 		output("You feel your vast reserves boiling up inside of you, and a howl of pure joy is ripped from your [pc.lips] as it finally finds release, coursing up your shaft and exploding out of your dilated slit into the receiver. The base of the milker attempts to limpet to you, and then gives up a second later when the sheer quantity of hot [pc.cum] overwhelms it, great gobbets of your seed oozing and spraying out from the seal.");
 		output("\n\nThe tubes in front of you groan as they draw it away the best they can, the clear synthetic material straining as your [pc.cock " + cIdx + "] flexes up gloriously again and again. You keep your eyes fixed upon the glass cylinder ahead of you, thrusting your [pc.hips] away at the seal, groaning with overwhelming pleasure as you watch your [pc.cum] geyser out into the container first like an opened fire hydrant, then in thick, controlled bursts, the [pc.cumVisc] liquid pooling thickly against the walls. You’re over the overwhelming urge now, but your loins have so much to give, and you’re determined to thrust every last milliliter of your delicious, fecund cum into that vast container.");
-		output("\n\nSweat soaks your [pc.skinFurScales] by the time you’re firing blanks, [pc.cumColor] fluid dripping down your [pc.thighs], but you are now looking up at a ten foot high glass cylinder that is almost full to the brim with your cum. The screen blinks on, informing you that you’ve donated " + Math.round(cumQ) + " mLs for " + cumPrice + " credits. A cartoon Tamani is gazing at the total, her pupils hearts, hands clutched together, drooling slightly. You sit back, [pc.cock " + cIdx + "] slowly slithering back outwards, with a wheezing, deeply satisfied sigh.");
+		output("\n\nSweat soaks your [pc.skinFurScales] by the time you’re firing blanks, [pc.cumColor] fluid dripping down your [pc.thighs], but you are now looking up at a ten foot high glass cylinder that is almost full to the brim with your cum. The screen blinks on, informing you that <b>you’ve donated " + Math.round(cumQ) + " mLs for " + cumPrice + " credits</b>. A cartoon Tamani is gazing at the total, her pupils hearts, hands clutched together, drooling slightly. You sit back, [pc.cock " + cIdx + "] slowly slithering back outwards, with a wheezing, deeply satisfied sigh.");
 	}
 	// Too much
 	else
@@ -1679,9 +1699,8 @@ public function breedwellCockmilkerOverLimit(arg:Array):void
 	// Stop
 	if(!ohnoes)
 	{
-		
 		output("It takes pretty much every vestige of your self-control, but with a heaving grunt you pull your [pc.cock " + cIdx + "] out of the cock-socket. You continue to gobbet [pc.cum] with heavy throbs, splashing over the walls, but by closing your eyes and steadying your breath you’re able to calm your over-sexed body down, and slowly it recedes down to a slow drool out of your [pc.cockHead " + cIdx + "].");
-		output("\n\nIt’s just as well. More sober now, you gaze up at the entirely-full glass cylinder, creaking with the pressure of your ‘donation’. The cockmilker nozzle droops, oozing [pc.cum], looking every bit as spent as your cock does. Still, the machine is still functioning, and it’s able to present a read-out on its screen: " + Math.round(cumQ) + " mL for " + cumPrice + " credits. A cartoon Tamani is gazing at the total, her pupils hearts, hands clutched together, drooling slightly.");
+		output("\n\nIt’s just as well. More sober now, you gaze up at the entirely-full glass cylinder, creaking with the pressure of your ‘donation’. The cockmilker nozzle droops, oozing [pc.cum], looking every bit as spent as your cock does. Still, the machine is still functioning, and it’s able to present a read-out on its screen: <b>" + Math.round(cumQ) + " mL for " + cumPrice + " credits</b>. A cartoon Tamani is gazing at the total, her pupils hearts, hands clutched together, drooling slightly.");
 		output("\n\nIt’s incredibly satisfying to look up at the cylinder and see it completely filled with your seed - even more so, to have conquered your own base impulses and not broken the thing (that deep, inward voice remains though, murmuring NEXT time you should sail onwards heedlessly, flood the whole damn station in your cum, show everyone exactly what kind of stud they’re dealing with here...)");
 		output("\n\nAfter you gathered yourself a bit, you");
 		if(pc.isCrotchGarbed()) output(" pull your [pc.lowerGarments] back on and");
@@ -1692,8 +1711,6 @@ public function breedwellCockmilkerOverLimit(arg:Array):void
 	// Keep Going
 	else
 	{
-		cumPrice = breedwellCumCreditValue(cumQ);
-		
 		output("One of the tubes ruptures, spraying the fecund slime across your [pc.chest], face and the walls of the cubicle, an alarm begins to blare as the glass walls of the cylinder begin to creak, but you don’t care. There’s only the tight, silky embrace of the cockmilker and your desire to hump it until you’re completely dry.");
 		output("\n\n<i>“Stop! Stop!”</i> cries someone. There’s a commotion going on behind you, but you don’t care. You barely half done. There’s only the tight, silky embrace of the cockm-");
 		output("\n\nWarm, gooey hands grab you and roughly pull you backwards out of the wailing, smoking machine. You huff in surprise, shaken out of your sticky, orgasmic reverie, and your [pc.cock " + cIdx + "] flexes its next load straight up into the air, spattering both you and the three stern-looking rahn aides surrounding you.");
@@ -1709,8 +1726,8 @@ public function breedwellCockmilkerOverLimit(arg:Array):void
 		}
 		else output("<i>“This is what happens when you set no goddamn limits!”</i> snaps the most senior-looking one. <i>“Fucking space drifters will mod themselves up and completely take the piss!");
 		output(" We’ve got enough seed out of you,”</i> she goes on through pursed lips, gesturing at the creaking, groaning cylinder you’ve filled to bursting, a [pc.cumColor] obelisk that looks like it’s going to crack at any moment. <i>“Now and forever. Collect your payment, and <b>never</b> come back here.”</i>");
-		output("\n\nYour [pc.cock " + cIdx + "] has been oozing a gentle river of [pc.cum] the whole time this has been going on, washing over everyone’s footwear, and the rahn leave in a disgusted hurry, shaking it off their heels. When, at last, you’ve stopped drooling enough that you can [pc.move], you stagger over to the screen to see how much you’ve earned. The display is maxed out at " + Math.round(cumQ) + " mLs.");
-		output("\n\n<i>“Hey,”</i> says the cartoon Tamani, lounging by the figure and grinning at you. <i>“I don’t care what anyone says, super stud: You’re MY kind of " + pc.mf("guy", "girl") + ". Let’s meet up sometime, k?”</i> She produces a sack of cash with the number " + cumPrice + " written on it and deposits it in front of you, departing with a blown kiss.");
+		output("\n\nYour [pc.cock " + cIdx + "] has been oozing a gentle river of [pc.cum] the whole time this has been going on, washing over everyone’s footwear, and the rahn leave in a disgusted hurry, shaking it off their heels. When, at last, you’ve stopped drooling enough that you can [pc.move], you stagger over to the screen to see how much you’ve earned. <b>The display is maxed out at " + Math.round(cumQ) + " mLs</b>.");
+		output("\n\n<i>“Hey,”</i> says the cartoon Tamani, lounging by the figure and grinning at you. <i>“I don’t care what anyone says, super stud: You’re MY kind of " + pc.mf("guy", "girl") + ". Let’s meet up sometime, k?”</i> She produces <b>a sack of cash with the number " + cumPrice + " written on it</b> and deposits it in front of you, departing with a blown kiss.");
 		
 		processTime(35 + rand(9));
 		
