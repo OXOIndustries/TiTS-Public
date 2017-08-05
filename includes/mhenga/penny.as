@@ -3512,7 +3512,7 @@ public function whineToPennyCauseYerABitch():void
 	else 
 	{
 		output("You ended up getting hit by some kind of ray that transformed you into a hermaphroditic badger");
-		if(pc.race() == "badger") output(", as Penny can see now");
+		if(pc.raceShort() == "badger") output(", as Penny can see now");
 	}
 	output(". The way the doctor talked, you doubt you were her first victim... and you won’t be her last. She’s a threat to everyone around her, especially hapless spacers like you.");
 

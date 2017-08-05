@@ -35,6 +35,12 @@ package classes.GameData.Pregnancy.Handlers
 			_pregnancyChildType = GLOBAL.CHILD_TYPE_EGGS;
 			_pregnancyChildRace = GLOBAL.TYPE_BOTHRIOC;
 			
+			_childMaturationMultiplier = 1.0;
+			_childGenderWeights.Male = 0;
+			_childGenderWeights.Female = 0;
+			_childGenderWeights.Intersex = 100;
+			_childGenderWeights.Neuter = 0;
+			
 			addStageProgression(5400, function(pregSlot:int):void {
 				kGAMECLASS.bothriocEggnancyEffects(pregSlot, 5400);
 			}, true);

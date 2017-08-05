@@ -112,6 +112,7 @@ public function leaveTheSubTuner():void
 public function meetingBelle():void
 {
 	clearOutput();
+	showBust("BELLE");
 	author("HugsAlright");
 	output("You wait there for a while, not feeling any need to move from where you are. <i>Resting here on your hands and knees feels perfect.</i> A few passersby give you strange looks, but you can’t really bring yourself to care; all you can really do is wait here on all fours, feeling happy more than anything else.");
 	output("\n\nOnly a little more time passes before you hear the same voice you heard from the collar, though this time it’s free of the static from earlier.");

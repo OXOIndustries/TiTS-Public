@@ -1150,7 +1150,16 @@ public function nurseryDisplayGenericChildren(sortedTypedBuckets:Object):void
 				var entries:Array = [];
 				if (b.Male > 0) entries.push(b.Male + " son" + (b.Male == 1 ? "" : "s"));
 				if (b.Female > 0) entries.push(b.Female + " daughter" + (b.Female == 1 ? "" : "s"));
-				if (b.Intersex > 0) entries.push(b.Intersex + " mixed-gender");
+				if (b.Intersex > 0)
+				{
+					switch(int(key))
+					{
+						case GLOBAL.TYPE_GOOEY:
+						case GLOBAL.TYPE_BOTHRIOC:
+						case GLOBAL.TYPE_RAHN: entries.push(b.Intersex + " monogender" + (b.Intersex == 1 ? "" : "s")); break;
+						default: entries.push(b.Intersex + " mixed-gender"); break;
+					}
+				}
 				if (b.Neuter > 0) entries.push(b.Neuter + " ungendered");
 
 				if(entries.length > 0)
@@ -1250,14 +1259,32 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 					if(baby.NumNeuter > 0) output(" Sexless");
 					if(baby.NumFemale > 0) output(" Female");
 					if(baby.NumMale > 0) output(" Male");
-					if(baby.NumIntersex > 0) output(" Hermaphrodite");
+					if(baby.NumIntersex > 0)
+					{
+						switch(baby.RaceType)
+						{
+							case GLOBAL.TYPE_GOOEY:
+							case GLOBAL.TYPE_BOTHRIOC:
+							case GLOBAL.TYPE_RAHN: output(" Monogender"); break;
+							default: output(" Hermaphrodite"); break;
+						}
+					}
 				}
 				else if(baby.Quantity > 1)
 				{
 					var sexes:Array = [];
 					if(baby.NumMale > 0) sexes.push(baby.NumMale + " son" + (baby.NumMale == 1 ? "" : "s"));
 					if(baby.NumFemale > 0) sexes.push(baby.NumFemale + " daughter" + (baby.NumFemale == 1 ? "" : "s"));
-					if(baby.NumIntersex > 0) sexes.push(baby.NumIntersex + " mixed-gender");
+					if(baby.NumIntersex > 0)
+					{
+						switch(baby.RaceType)
+						{
+							case GLOBAL.TYPE_GOOEY:
+							case GLOBAL.TYPE_BOTHRIOC:
+							case GLOBAL.TYPE_RAHN: sexes.push(baby.NumIntersex + " monogender" + (baby.NumIntersex == 1 ? "" : "s")); break;
+							default: sexes.push(baby.NumIntersex + " mixed-gender"); break;
+						}
+					}
 					if(baby.NumNeuter > 0) sexes.push(baby.NumNeuter + " ungendered");
 					if(sexes.length > 0) output(" " + CompressToList(sexes));
 				}

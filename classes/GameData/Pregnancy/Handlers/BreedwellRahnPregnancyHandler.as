@@ -135,7 +135,7 @@ package classes.GameData.Pregnancy.Handlers
 						var msg:String = "";
 						
 						msg += "A multi-colored slop is";
-						if(kGAMECLASS.pc.isCrotchGarbed()) msg += " staining your [pc.lowerUndergarments]";
+						if(kGAMECLASS.pc.isCrotchGarbed()) msg += " staining your [pc.lowerGarments]";
 						else msg += " running down your [pc.thigh]";
 						msg += ", issuing in a steady drool from your [pc.vagina " + pregSlot + "]. So you can make a decent guess what all the fuss was about a few hours earlier - the eggs inside of you have hatched, rahn ova now rahn young. And you’re oozing the rainbow remains of their shells and albumen. Great.";
 						

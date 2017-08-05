@@ -33,17 +33,23 @@ Guards are Nova Securities goons: dark orange and white full body armor, full fa
 //To: [pc.Email]@SteeleTech.corp
 //Subject: [pc.name]: Exclusive Offer
 
-public function prisonerSent(arg:Number):void
+//Start the stuff to unlock flying to space jail...
+public function processGastigothEvents():void
 {
 	//If already unlocked: nothing changes!
-	if(MailManager.isEntryUnlocked("gastigoth_unlock")) {}
+	if(MailManager.isEntryUnlocked("gastigoth_unlock")) return;
+	if(pc.hasStatusEffect("GastiUnlockTimer")) return;
+	
 	//Not unlocked yet!
-	else
-	{
-		pc.createStatusEffect("GastiUnlockTimer");
-		pc.setStatusMinutes("GastiUnlockTimer",5*24*60);
-		flags["GASTIGOTH_UNLOCKNUM"] = arg;
-	}
+	var prisonerSent:Number = 0;
+	if(flags["TARKUS_BOMB_TIMER"] == 0) prisonerSent += 3; // Pirates of Tarasque: Khorgan, Kaska and Tam
+	//if(flags["DR_BADGER_TURNED_IN"] == 0) prisonerSent += 1; // Dr. Badger
+	//if(flags["ICEQUEEN COMPLETE"] == 2) prisonerSent += 1; // Zaalt
+	//if(flags["PQ_SECURED_LAH"] == 2) prisonerSent += 1; // R.K.Lah
+	
+	pc.createStatusEffect("GastiUnlockTimer");
+	pc.setStatusMinutes("GastiUnlockTimer",5*24*60);
+	flags["GASTIGOTH_UNLOCKNUM"] = prisonerSent;
 }
 
 public function showBrandt(nude:Boolean = false):void
@@ -1126,7 +1132,7 @@ public function kasmiranServices():void
 	output("\n\n<i>“Of course, even if you aren’t interested in the breeding program, you yourself will doubtless have some personal connection to some of the inmates as your exploits continue. If you wish to revisit some encounter of yours, well, that’s always an option.”</i>");
 	output("\n\nYou’ll just assume she means intimate, rather than combative, encounters.");
 	processTime(5);
-	addDisabledButton(0,"Gastigoth","Gastigoth","You already discussed this.");
+	addDisabledButton(0,"Services","Services","You already discussed this.");
 }
 
 //[Leave]
@@ -1174,6 +1180,7 @@ public function sexHaverTerminalTime(fromBack:Boolean = false):void
 	//When you select an inmate, show their bust and display a readout of:
 	clearMenu();
 	var button:Number = 0;
+	
 	if(flags["TARKUS_BOMB_TIMER"] == 0) 
 	{
 		output("\n\\\[Pirate\\\] Tam-Tam");
@@ -1181,8 +1188,26 @@ public function sexHaverTerminalTime(fromBack:Boolean = false):void
 		output("\n\\\[Pirate\\\] Kaska");
 		addButton(button++,"Kaska",prisonerStatline,"Kaska","Kaska","Pay a visit to the dick-toting pirate you defeated on Tarkus.");
 		output("\n\\\[Pirate\\\] Khorgan");
-		addButton(button++,"Khorgan",prisonerStatline,"Khorgan","Khorgan","Pay a visit to the bad-ass space-pirate you defeated on Tarkus.");
+		addButton(button++,"Khorgan",prisonerStatline,"Khorgan","Captain Khorgan","Pay a visit to the bad-ass space-pirate you defeated on Tarkus.");
 	}
+	/*
+	if(flags["DR_BADGER_TURNED_IN"] == 0)
+	{
+		output("\n\\\[Doctor\\\] Dr. Badger");
+		addButton(button++,"Dr. Badger",prisonerStatline,"Badger","Dr. Badger","9999");
+	}
+	if(flags["ICEQUEEN COMPLETE"] == 2)
+	{
+		output("\n\\\[Smuggler\\\] Zaalt");
+		addButton(button++,"Zaalt",prisonerStatline,"Zaalt","Captain Zaalt","9999");
+	}
+	if(flags["PQ_SECURED_LAH"] == 2)
+	{
+		output("\n\\\[Convict\\\] R.K.Lah");
+		addButton(button++,"R.K.Lah",prisonerStatline,"Lah","R.K.Lah","9999");
+	}
+	*/
+	
 	addButton(14,"Nevermind",mainGameMenu);
 }
 
@@ -1192,7 +1217,9 @@ public function prisonerStatline(prisonerName:String):void
 	author("Savin");
 	clearMenu();
 	addButton(14,"Back",sexHaverTerminalTime, true);
-
+	
+	var payFee:Boolean = true;
+	
 	/*
 	output("<b>Name:</b> ");
 	output("\n<b>Age:</b> ");
@@ -1200,40 +1227,68 @@ public function prisonerStatline(prisonerName:String):void
 	output("\n<b>Race:</b> ");
 	output("\n\nConvicted of: ");
 	*/
-	if(prisonerName == "Tamtam")
+	switch(prisonerName)
 	{
-		showTamtamPrison();
-		output("<b>Name:</b> Tam Tam");
-		output("\n<b>Age:</b> 22");
-		output("\n<b>Sex:</b> Female");
-		output("\n<b>Race:</b> Kaithrit");
-		output("\n\nConvicted of: Attempted Destruction of a Planet, Unlicensed Software Editing, 12 Counts of Piracy, 3 Counts of Grand Piracy, Piracy in the Third Degree, Attempted Rape, Rape, and Jaywalking.");
-		addButton(0,"Visit",visitAPrisoner,"Tamtam","Tamtam","Visit the spunky cat-girl mechanic you helped bust on Tarkus.\n\n<b>Cost:</b> 1,000 credits");
-	}
-	else if(prisonerName == "Kaska")
-	{
-		showKaska();
-		output("<b>Name:</b> Kaska");
-		output("\n<b>Age:</b> 24");
-		output("\n<b>Sex:</b> Hermaphrodite");
-		output("\n<b>Race:</b> Dzaan");
-		output("\n\nConvicted of: Attempted Destruction of a Planet, Slavery, Rape, 8 Counts of Piracy, Assault, Possession of Unlicensed Military-Grade Weaponry, and Polygamy");
-		addButton(0,"Visit",visitAPrisoner,"Kaska","Kaska","Visit the dick-girl pirate you defeated on Tarkus.\n\n<b>Cost:</b> 1,000 credits");		
-	}
-	else if(prisonerName == "Khorgan")
-	{
-		showKhorganPrison();
-		output("<b>Name:</b> Khorgan");
-		output("\n<b>Age:</b> 30");
-		output("\n<b>Sex:</b> Female");
-		output("\n<b>Race:</b> Thraggen");
-		output("\n\nConvicted of: Attempted Destruction of a Planet, Murder, 8 Counts of Grand Piracy, Piracy in the First Degree, Rape, Unlicensed Use of Power Armor, and Grand Theft Spacecraft.");
-		addButton(0,"Visit",visitAPrisoner,"Khorgan","Khorgan","Visit the bad-ass space-pirate you defeated on Tarkus.\n\n<b>Cost:</b> 1,000 credits");	
+		case "Tamtam":
+			showTamtamPrison();
+			output("<b>Name:</b> Tam Tam");
+			output("\n<b>Age:</b> 22");
+			output("\n<b>Sex:</b> Female");
+			output("\n<b>Race:</b> Kaithrit");
+			output("\n\nConvicted of: Attempted Destruction of a Planet, Unlicensed Software Editing, 12 Counts of Piracy, 3 Counts of Grand Piracy, Piracy in the Third Degree, Attempted Rape, Rape, and Jaywalking.");
+			addButton(0,"Visit",visitAPrisoner,"Tamtam","Tam-Tam","Visit the spunky cat-girl mechanic you helped bust on Tarkus.\n\n<b>Cost:</b> 1,000 credits");
+			break;
+		case "Kaska":
+			showKaska();
+			output("<b>Name:</b> Kaska");
+			output("\n<b>Age:</b> 24");
+			output("\n<b>Sex:</b> Hermaphrodite");
+			output("\n<b>Race:</b> Dzaan");
+			output("\n\nConvicted of: Attempted Destruction of a Planet, Slavery, Rape, 8 Counts of Piracy, Assault, Possession of Unlicensed Military-Grade Weaponry, and Polygamy.");
+			addButton(0,"Visit",visitAPrisoner,"Kaska","Kaska","Visit the dick-girl pirate you defeated on Tarkus.\n\n<b>Cost:</b> 1,000 credits");
+			break;
+		case "Khorgan":
+			showKhorganPrison();
+			output("<b>Name:</b> Captain Khorgan");
+			output("\n<b>Age:</b> 30");
+			output("\n<b>Sex:</b> Female");
+			output("\n<b>Race:</b> Thraggen");
+			output("\n\nConvicted of: Attempted Destruction of a Planet, Murder, 8 Counts of Grand Piracy, Piracy in the First Degree, Rape, Unlicensed Use of Power Armor, and Grand Theft Spacecraft.");
+			addButton(0,"Visit",visitAPrisoner,"Khorgan","Captain Khorgan","Visit the bad-ass space-pirate you defeated on Tarkus.\n\n<b>Cost:</b> 1,000 credits");
+			break;
+		case "Badger":
+			showDrBadger();
+			output("<b>Name:</b> ‘Doctor’ Badger");
+			output("\n<b>Age:</b> ??");
+			output("\n<b>Sex:</b> Hermaphrodite");
+			output("\n<b>Race:</b> Unknown");
+			output("\n\nConvicted of: Assault, Drug Manufacturing, Drug Trafficking, Illegal Mind Control, Indecent Exposure, Kidnapping, Possession of Unlicensed Technology, Racketeering, and Unlicensed Medical Practices.");
+			addButton(0,"Visit",visitAPrisoner,"Badger","Dr. Badger","9999.\n\n<b>Cost:</b> 1,000 credits");
+			break;
+		case "Zaalt":
+			showZaalt();
+			output("<b>Name:</b> Captain Zaalt Kandar");
+			output("\n<b>Age:</b> ??");
+			output("\n<b>Sex:</b> Male");
+			output("\n<b>Race:</b> Milodan");
+			output("\n\nConvicted of: Possession of Unlicensed Technology.");
+			addButton(0,"Visit",prisonerTimes,"Zaalt","Captain Zaalt","Visit Zaalt and possibly pay his bail.");
+			payFee = false;
+			break;
+		case "Lah":
+			showLah();
+			output("<b>Name:</b> Remi-Kellen Lah");
+			output("\n<b>Age:</b> ??");
+			output("\n<b>Sex:</b> Male");
+			output("\n<b>Race:</b> Ausar");
+			output("\n\nConvicted of: Arson, Eco-Terrorism and Failure To Serve a 5-Year Sentence.");
+			addButton(0,"Visit",visitAPrisoner,"Lah","R.K.Lah","9999.\n\n<b>Cost:</b> 1,000 credits");
+			break;
 	}
 	showName("CLICK\nCLACK");
 	
 	// {Stat Line: Physique, Reflex, Aim, Intelligence, Willpower, Libido}
-	if(pc.credits <= 1000) addDisabledButton(0,"Visit","Visit","You do not have the necessary credits.\n\n<b>Cost:</b> 1,000 credits");
+	if(payFee && pc.credits <= 1000) addDisabledButton(0,"Visit","Visit","You do not have the necessary credits.\n\n<b>Cost:</b> 1,000 credits");
 }
 
 //<i>“Visit”</i>
@@ -1242,6 +1297,7 @@ public function prisonerStatline(prisonerName:String):void
 public function visitAPrisoner(prisonerName:String):void
 {
 	clearOutput();
+	clearBust();
 	author("Savin");
 	pc.credits -= 1000;
 	output("You slide your Codex’s payscreen and tap confirm. A gruff male voice answers back, <i>“Affirmative. Inmate " + prisonerName + " will be processed shortly. Please follow the running lights to the holding area. Please ensure that you have no sharp or heavy objects on your person when entering the holding area.”</i>");
@@ -1256,9 +1312,20 @@ public function visitAPrisoner(prisonerName:String):void
 
 public function prisonerTimes(prisonerName:String):void
 {
-	if(prisonerName == "Khorgan") capnKhorganPrisonVisit();
-	else if(prisonerName == "Kaska") kaskaSlammer();
-	else tamtamStuffGo();
+	switch(prisonerName)
+	{
+		case "Tamtam": tamtamStuffGo(); return; break;
+		case "Kaska": kaskaSlammer(); return; break;
+		case "Khorgan": capnKhorganPrisonVisit(); return; break;
+		case "Badger": /* 9999 return; */ break;
+		case "Zaalt": /* 9999 return; */ break;
+		case "Lah": /* 9999 return; */ break;
+	}
+	clearOutput();
+	clearBust();
+	output("<b>ERROR: Prisoner not found.</b> Please try again!");
+	clearMenu();
+	addButton(0, "Next", sexHaverTerminalTime, true);
 }
 
 //Tam Tam

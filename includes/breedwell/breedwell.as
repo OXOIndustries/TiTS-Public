@@ -214,7 +214,7 @@ public function breedwellLoungeBonus():Boolean
 	if(flags["BREEDWELL_STATUS_BREEDER"] == undefined) addDisabledButton(0, "Pod", "Pod", "You are not familiar with this yet. You probably need to be properly introduced before using it.");
 	else if(!pc.hasVagina()) addDisabledButton(0, "Pod", "Pod", "You require a vagina to try this.");
 	else if(!breedwellCheckBirth()) addDisabledButton(0, "Pod", "Pod", "Making babies? You don’t think you’re exprienced enough to try this yet...");
-	else if(pc.isFullyWombPregnant() && !pc.hasPregnancyOfType("RahnPregnancy") && !pc.hasPregnancyOfType("RahnPregnancyBreedwell")) addDisabledButton(0, "Pod", "Pod", "You’re already too stuffed to do this.");
+	else if(pc.isFullyWombPregnant()) addDisabledButton(0, "Pod", "Pod", "You’re already too stuffed to do this.");
 	else if(pc.fertility() <= 0) addDisabledButton(0, "Pod", "Pod", "You’re not fertile enough to do this.");
 	else addButton(0, "Pod", breedwellApproachPod, undefined, "Pod", "Harness yourself up and get ready for a breeding.");
 	
@@ -386,17 +386,21 @@ public function quaelleAppearance():void
 // [Induction]
 public function breedwellInductionCheck():Boolean
 {
-	if(pc.isFemale() && breedwellCheckBirth() && flags["BREEDWELL_STATUS_BREEDER"] != undefined) return true;
-	if(pc.isMale() && breedwellCheckSperm() && flags["BREEDWELL_STATUS_DONATOR"] != undefined) return true;
-	if(pc.isHerm() && breedwellCheckBirth() && breedwellCheckSperm() && flags["BREEDWELL_STATUS_BREEDER"] != undefined && flags["BREEDWELL_STATUS_DONATOR"] != undefined) return true;
-	
+	// Flag checks
+	if(pc.isHerm() && flags["BREEDWELL_STATUS_BREEDER"] != undefined && flags["BREEDWELL_STATUS_DONATOR"] != undefined) return true;
+	if(pc.isFemale() && flags["BREEDWELL_STATUS_BREEDER"] != undefined) return true;
+	if(pc.isMale() && flags["BREEDWELL_STATUS_DONATOR"] != undefined) return true;
+	// Viability checks - interrupts button generation if not eligible candidate.
+	if(pc.hasVagina() && !breedwellCheckBirth()) return true;
+	if(pc.hasCock() && !breedwellCheckSperm()) return true;
+	// Show button if haven't yet inducted!
 	return false;
 }
 public function breedwellInductionRouter():void
 {
 	if(pc.isHerm() && breedwellCheckBirth() && breedwellCheckSperm() && flags["BREEDWELL_STATUS_BREEDER"] == undefined && flags["BREEDWELL_STATUS_DONATOR"] == undefined) breedwellInduction("herm");
-	else if((pc.isHerm() || pc.isFemale()) && breedwellCheckBirth() && flags["BREEDWELL_STATUS_BREEDER"] == undefined) breedwellInduction("female");
-	else if((pc.isHerm() || pc.isMale()) && breedwellCheckSperm() && flags["BREEDWELL_STATUS_DONATOR"] == undefined) breedwellInduction("male");
+	else if(pc.hasVagina() && breedwellCheckBirth() && flags["BREEDWELL_STATUS_BREEDER"] == undefined) breedwellInduction("female");
+	else if(pc.hasCock() && breedwellCheckSperm() && flags["BREEDWELL_STATUS_DONATOR"] == undefined) breedwellInduction("male");
 	else
 	{
 		clearOutput();
@@ -721,7 +725,8 @@ public function quaelleTalk(response:String = "intro"):void
 			processTime(2);
 			// +Lust, Roehm Slimed status added, [Hug] option added in Quaelle main menu
 			quaelleHugged();
-			addButton(0, "Next", breedwellInduction, "pods intro");
+			clearMenu();
+			addButton(0, "Next", quaelleMainMenu);
 			break;
 		case "finish":
 			output("You thank her for her time as she’s polishing off her last load of leaves.");
@@ -741,6 +746,7 @@ public function quaelleHugged():void
 	// Lasts 12 hours or until PC has a shower
 	// Libido floor raised by +10%, Speed -5%, Tease effectiveness +15%
 	pc.createStatusEffect("Roehm Slimed", 10, -5, 15, 0, false, "Icon_Splatter", "Direct physical contact with a roehm in heat results in stickiness, and smelling rather like an orgy in a vat of molasses.", false, 0, 0xB793C4);
+	pc.addStatusValue("Roehm Slimed", 4, 1);
 	pc.setStatusMinutes("Roehm Slimed", 720);
 }
 // Hug
@@ -1045,7 +1051,7 @@ public function breedwellPodScenes(arg:Array):void
 			
 			pc.cuntChange(vIdx, ppRahn.cockVolume(0));
 			
-			output("\n\nHaving finished both her meal and fuck, she withdraws her ovipositor and leaves for the shower room without another words, leaving you a leaking, drooling mess, simultaneously drained and stuffed.");
+			output("\n\nHaving finished both her meal and fuck, she withdraws her ovipositor and leaves for the shower room without another word, leaving you a leaking, drooling mess, simultaneously drained and stuffed.");
 			break;
 		case 4:
 			showBust("BREEDWELL_DOHRAHN_BUSINESS");
@@ -1173,7 +1179,7 @@ public function breedwellPodEnd(numEggs:int = 0):void
 	clearOutput();
 	author("Nonesuch");
 	
-	output("After each session has come to its intense, womb-swelling conclusion, the harnesses’ robotic limbs telescope outwards and clean you thoroughly, jetting off the sweat and sugary rahn jizz and gently pinching the lips of [pc.eachVagina] together, to present a decorous picture to the next client. You always get a spray of the prototype pheromone mixture too, and you quickly become dizzy with it, your " + (pc.vaginas.length == 1 ? "pussy" : "pussies") + " flush with heat and desperate for a coupling long before the door opposite slides open to reveal your next impatient, lusty gel girl stud.");
+	output("After " + (numEggs == 2 ? "the" : "each") + " session has come to its intense, womb-swelling conclusion, the harnesses’ robotic limbs telescope outwards and clean you thoroughly, jetting off the sweat and sugary rahn jizz and gently pinching the lips of [pc.eachVagina] together, to present a decorous picture to the next client. You always get a spray of the prototype pheromone mixture too, and you quickly become dizzy with it, your " + (pc.vaginas.length == 1 ? "pussy" : "pussies") + " flush with heat and desperate for a coupling long before the door opposite slides open to reveal your next impatient, lusty gel girl stud.");
 	output("\n\nAfter the last though, once you’ve received another brisk cleaning the harnesses’ helmet comes down over your head again.");
 	output("\n\n<i>“You have received as many fertilized ovum as our biometrics determine you can healthily carry, [pc.name] Steele,”</i> says the calm voice in your ear. <i>“Good [pc.boyGirl]! Entering cool down phase.”</i> Soothing electronica plays as you are withdrawn back into the wall and turned around. The steel binds cuffing your wrists and " + (pc.hasLegs() ? "your ankles" : "your lower body") + " snap open, and a warm, moistened cloth is gently rubbed over them and your swollen belly. At last, you are shifted back out into the sterile light of the incubator lobby.");
 	output("\n\n<i>“Thank you for using Tamani Conceptuzal Harness MkV,”</i> says the voice, as the muzak comes to an end. <i>“Your account has been accredited for your work, and you will be paid for each rahn we identify you successfully carrying to term. We, and Tamani Twenty Four’s 18 billion viewers, hope to see you again.”</i>");
@@ -1211,6 +1217,9 @@ public function breedwellCumCreditValue(amount:Number = 0):Number
 	var normalAmount:Number = 500000; // Point where credit value is at 1 credit/mL before degrading.
 	// Build function curve with these values to get the multiplier!
 	var creditVal:Number = ( maxCredVal / Math.pow((((1 / normalAmount) * amount) + 1), 2) );
+	// Other adjustments...
+	if(creditVal > (normalAmount * (4/3))) creditVal *= 0.01;
+	else if(creditVal > normalAmount) creditVal *= 0.1;
 	
 	if(debug)
 	{
@@ -1339,8 +1348,8 @@ public function breedwellCockmilkerStart(cIdx:int = -1):void
 		// Big cock:
 		else if(cLength <= 24) output(" It’s an irritating experience to begin with, the hole too small for your monster dick, but the machine quickly adjusts, latex material fanning out from the hole and moving backwards, until you’re being provided with a wonderfully long, large ona-hole perfectly suited for a " + (!pc.isHerm() ? "man" : "herm") + " of your caliber.");
 		// Massive cock:
-		else output(" There’s a whine and a throb as you keep feeding your thickness in, and you  " + pc.mf("chuckle", "giggle") + " as at last the machine beeps in protest, choked upon your massive, totemic dick with it barely halfway in. It’s not giving up, though. After a slight pause the material puffs out massively, swelling out of the metal seams of its housing with a sound like a balloon inflating. You push inwards, it keeps bulging outwards, and you groan with contentment as your " + (pc.balls >= 2 ? "[pc.balls]" : "[pc.thighs]") + " touch the crinkled opening. Finally, a hole that can take a " + (!pc.isHerm() ? "man" : "herm") + " of your caliber!");
-		output("\n\nAs you cloak more and more of your dick in warm tightness, the prehensile dildo behind you follows you in, maintaining obdurate, patient pressure against your asshole. When you draw yourself outwards, however, it stays exactly where you found your limit, and you tense up slightly as you begin to penetrate yourself on it, the dildo’s blunt head opening your up and filling your rear entrance with hardness. You  " + pc.mf("grunt", "coo") + " as it suddenly squirts a warm, oily load of lube into you, easing its passage and allowing it to slip its way in wonderfully deep. It’s only then that it becomes to judder, sending delicious vibrations quaking through your groin. You  " + pc.mf("bark", "squeal") + " with pleasure as it hits the tender, buried button of your prostate, reactively making you tense up with joy and push your [pc.cock " + cIdx + "] back deep into the milker.");
+		else output(" There’s a whine and a throb as you keep feeding your thickness in, and you " + pc.mf("chuckle", "giggle") + " as at last the machine beeps in protest, choked upon your massive, totemic dick with it barely halfway in. It’s not giving up, though. After a slight pause the material puffs out massively, swelling out of the metal seams of its housing with a sound like a balloon inflating. You push inwards, it keeps bulging outwards, and you groan with contentment as your " + (pc.balls >= 2 ? "[pc.balls]" : "[pc.thighs]") + " touch the crinkled opening. Finally, a hole that can take a " + (!pc.isHerm() ? "man" : "herm") + " of your caliber!");
+		output("\n\nAs you cloak more and more of your dick in warm tightness, the prehensile dildo behind you follows you in, maintaining obdurate, patient pressure against your asshole. When you draw yourself outwards, however, it stays exactly where you found your limit, and you tense up slightly as you begin to penetrate yourself on it, the dildo’s blunt head opening your up and filling your rear entrance with hardness. You " + pc.mf("grunt", "coo") + " as it suddenly squirts a warm, oily load of lube into you, easing its passage and allowing it to slip its way in wonderfully deep. It’s only then that it becomes to judder, sending delicious vibrations quaking through your groin. You " + pc.mf("bark", "squeal") + " with pleasure as it hits the tender, buried button of your prostate, reactively making you tense up with joy and push your [pc.cock " + cIdx + "] back deep into the milker.");
 		output("\n\nYou draw yourself out and then saw your way in, fucking the silky glove of the synthetic sleeve at the same time as you are drilled from behind, the robot cock driving over your " + (!pc.isHerm() ? "boy" : "herm") + " button at the same time as filling your lower body with quaking pleasure. It makes you weak in the [pc.knees], and you have to hold onto the padded handles closely to keep your balance as you reactively slap your [pc.thighs] into the machine, each thrust driving the milking dildo deep into where you are most sensitive. This is what being milked really feels like, the heat and pressure building in your [pc.cock " + cIdx + "] beyond your control. You cry out as you tumble over the edge.");
 		
 		processTime(25 + rand(9));
@@ -1827,7 +1836,10 @@ public function rahnBreedwellBirthTamani(numEggs:int = 2):void
 	author("Nonesuch");
 	
 	output("It’s a wrench, holding the rahn babies for the last time, letting them play with your [pc.hair] and then placing them one after the other into the incubator, but you knew there’d be a scene like this eventually, and it’s hardly fair to decide they’re yours now.");
-	output("\n\n<i>“Thank you so much, " + pc.mf("Mr.", "Ms.") + " Steele,”</i> trills the drone when the operation is done, rising into the air. A few of the rahn look down at you soulfully, placing their tiny hands on the glass. Oh c’mon, don’t do <i>that.</i> <i>“Your bank balance has been updated. We hope to see you at Breedwell Incubation Centre in the future!”</i>");
+	output("\n\n<i>“Thank you so much, " + pc.mf("Mr.", "Ms.") + " Steele,”</i> trills the drone when the operation is done, rising into the air.");
+	if(numEggs <= 3) output(" One of the rahn looks down at you soulfully, placing her");
+	else output(" A few of the rahn look down at you soulfully, placing their");
+	output(" tiny hands on the glass. Oh c’mon, don’t do <i>that.</i> <i>“Your bank balance has been updated. We hope to see you at Breedwell Incubation Centre in the future!”</i>");
 	output("\n\nThe Steele drone has already departed, in some robotic approximation of a snit. You’re left with your own thoughts - and a healthier bank account.");
 	
 	pc.credits += (600 * numEggs);

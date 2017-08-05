@@ -1313,13 +1313,7 @@ public function shipMenu():Boolean
 public function flyMenu():void
 {
 	clearOutput();
-
-	//Start the stuff to unlock flying to space jail...
-	if(flags["TARKUS_BOMB_TIMER"] == 0 && !pc.hasStatusEffect("GastiUnlockTimer"))
-	{
-		prisonerSent(3);
-	}
-
+	
 	//Make sure you can leave the planet!
 	if(!leavePlanetOK())
 	{
@@ -2414,6 +2408,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		geneSubmissionLevelDecay(totalDays);
 		seraBitcheningStoreInventory(totalDays);
 		seraOnTavrosObedience(totalDays);
+		processGastigothEvents();
 		breedwellTryUnlock();
 	}
 	
