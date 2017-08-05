@@ -871,7 +871,7 @@ public function finishInsideHelia(x:int):void
 	showBrandt(true);
 	author("Savin");
 
-	output("You saunter forward, running your hands up along the full, firm cheeks of of her ass and pulling them apart. The pink slit between her legs peeks out, beckoning you with slimey winks and the alluring scent of feminine arousal. You plant your [pc.cockHead " + x + "] right in the cleft between her quim’s plush lips, rubbing it against her throbbing clit.");
+	output("You saunter forward, running your hands up along the full, firm cheeks of of her ass and pulling them apart. The pink slit between her legs peeks out, beckoning you with slimy winks and the alluring scent of feminine arousal. You plant your [pc.cockHead " + x + "] right in the cleft between her quim’s plush lips, rubbing it against her throbbing clit.");
 	output("\n\n<i>“Don’t tease,”</i> Hélla chides, pushing her hips back and taking your [pc.cock " + x + "] to the first inch. <i>“This is for you, after all...”</i>");
 	output("\n\nYou sigh, more from pleasure than consternation, as Hélla’s sex envelops your dick. You mirror her push after a moment, thrusting into the sultry slit until your lover’s moaning, arching her back and pulling you in again with her tail. With her tail curled around your waist, pinning you against her butt, there’s nothing you can do but use your hips to piston back and forth, letting your lover’s ever-fierce grip milk you. It only takes a few moments of this treatment to draw you back to the edge, and then over it with a sharp grunt of pleasure. [pc.Cum] shoots deep, thick rivulets filling Hélla’s twat ");
 	if(pc.cumQ() >= 1500) output("until her stomach puffs out and globs of it run down her thighs, splattering on the deck below you.");
