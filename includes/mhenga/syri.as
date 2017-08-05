@@ -2202,8 +2202,7 @@ public function syriButtreamHeatButtPCButtsInTheButtWithAButtDIDISAYBUTTYET2():v
 	clearOutput();
 	showSyri(true);
 	author("HugsAlright");
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	output("All the way back to your ship, the burning desire to have Syri spread your pucker wide open, to feel her throbbing knot take you, pushes you to move fast. ");
 	if(pc.hasCock() && !pc.isCrotchExposed()) output("You can already feel your [pc.cocks] straining against your [pc.underGarment]. ");
 	output("Holy shit, when did it get so hot in this jungle? Your goal is so close, the sanctity of your bed just a minute away. Lustful thoughts continue to batter your mind as you make your way through the airlock, letting go of Syri’s wrist as you hurry over towards your bed. Holy hell, it’s even hotter on your own ship.");
@@ -2296,8 +2295,7 @@ public function syriButtreamHeatButtPCButtsInTheButtWithAButtDIDISAYBUTTYET4():v
 	output("\n\nYou feel sated, at least for now.");
 	processTime(125);
 	//[Next] //Should return the PC to Mhen’ga docks.
-	currentLocation = shipLocation;
-	generateMap();
+	moveTo(shipLocation);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -2481,15 +2479,14 @@ public function syriPetPlayPCLostPart3():void
 	if(flags["SYRI_PETPLAY_LOST"] != undefined) output("\n\nThen again, do you really want to win if this is what you get for losing?");
 
 	//[Next] //Should return the PC to their ship.
-	currentLocation = "SHIP INTERIOR";
-	IncrementFlag("FUCKED_SYRI_COUNT");
-	generateMap();
 	processTime(22*60);
 	for(var x:int = 0; x < 5; x++)
 	{
 		pc.orgasm();
 	}
 	IncrementFlag("SYRI_PETPLAY_LOST");
+	IncrementFlag("FUCKED_SYRI_COUNT");
+	moveTo("SHIP INTERIOR");
 	restHeal();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -2625,8 +2622,7 @@ public function voluntaryPetPlayAfterSyriWin2():void
 {
 	clearOutput();
 	showSyri(true);
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	author("HugsAlright");
 	output("You’re finally back in the familiar corridors of your ship, away from prying eyes, but still under Syri’s command. She walks over to your sofa, and you trail behind her, keeping your eyes fixed on her swaying tail and behind. <i>“Stay,”</i> commands the ausar with a firm voice. You obey and sit on your knees while your master unceremoniously plops herself down on your couch and removes her pants, throbbing, red, knotty cock popping free as the lower garments come off. You can’t help but to open your mouth and let your tongue loll out at the sight of her cock, wanting to feel her flavor play across your mouth. Syri takes notice of you eager gaze and leans back against the couch, beckoning you over with a curling, furry finger. She gives your leash a commanding little tug, but you don’t need the encouragement, already making your way over to get yourself between the wolf girl’s spread legs.");
 	output("\n\nYou take in a deep breath, letting the musky scent of her manhood fill your nostrils before you bring your lips down onto her pointed tip and your hands up to her thighs, looking up at her with the best pair of puppy-dog eyes you can muster. Your [pc.lips] caress Syri’s doggie-dong as you make your way down her succulent shaft, the she-wolf whimpering all the way long until your mouth meets her knot. Well, now you’ve got what you want: a big, red puppy-prick down your throat, so you put your tongue to work, licking all along your master’s shaft as it fills your mouth. You receive a <i>“Good [pc.boyGirl],”</i> from Syri for your diligent oral-pleasures.");
@@ -2667,16 +2663,15 @@ public function voluntaryPetPlayAfterSyriWin3():void
 	output("\n\nYou tell her that you most certainly did enjoy it, finding yourself rubbing the back of your neck where your collar once was. Giving her a slap on the ass, you also tell her she should step up her game, or it’s going to be her ass in that collar next time. Syri chuckles in response.");
 
 	//[Next] //Should return the PC to their ship.
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
 	processTime(22*60);
 	for(var x:int = 0; x < 5; x++)
 	{
 		pc.orgasm();
 	}
-	restHeal();
-	IncrementFlag("FUCKED_SYRI_COUNT");
 	IncrementFlag("SYRI_PETPLAY_WINS");
+	IncrementFlag("FUCKED_SYRI_COUNT");
+	moveTo("SHIP INTERIOR");
+	restHeal();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -2690,8 +2685,7 @@ public function pitchSyriAnalPetPlayWinnar():void
 	author("HugsAlright");
 	var x:int = pc.cockThatFits(syri.analCapacity());
 	if(x < 0) x = pc.cockThatFits(syri.analCapacity());
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 
 	output("With a duplicitous grin you move yourself a bit closer to Syri, who’s patiently waiting for you to make your next move. Without warning you lunge forward, grabbing the subdued she-wolf’s shoulders and shoving her onto her back. She lets out a muted gasp from underneath her gag as she falls onto the mattress and you climb atop her, straddling her rather impressive chest. You reach down behind her neck and grab hold of the knot keeping her panties stuck in her mouth. <i>“Now if I take this out,”</i> you begin, <i>“are you going to be a good girl and stay quiet?”</i> Giving her eyes another good roll, Syri groans before letting out a muffled <i>“fine”</i> from behind her panties. You smile wide at her compliance, quickly reaching down to undo her gag. Syri stretches her jaw and moves her tongue around as you remove the undergarments from her mouth, probably trying to get the taste of her own cock off her lips, and you have just the remedy for her problem.");
 	output("\n\nYou grab hold of Syri’s leash and give it a yank, craning her neck forward as you reach down to stroke your rapidly stiffening member. <i>“Open wide,”</i> you demand, <i>“I’ve got a treat for you.”</i> Syri doesn’t look all that thrilled, but she heeds your words, opening her mouth and letting her tongue loll out, ready to accept your length. Happy that your puppy is obeying orders, you align your cock with her maw and push your [pc.hips] forward. You shudder with pleasure as you sheath your [pc.cock " + x + "] inside Syri’s warm, wet mouth, her tongue caressing the bottom of your shaft all the way in. The ausar puts her tongue to work, fondling your dick with quite some skill as you begin to roll your hips, sliding your [pc.cock " + x + "] in and out of her mouth. You moan and groan while Syri whimpers and whines with every tug of her leash, forcing her down onto your [pc.cock " + x + "], cheeks bulging in response.");
@@ -2741,8 +2735,7 @@ public function catchAnalFromPuppySyri():void
 {
 	clearOutput();
 	showSyri(true);
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	author("HugsAlright");
 
 	output("You deserve quite the prize for bringing this puppy to heel, and quite the prize you’ll get: a nice, knotty puppy-prick spreading your [pc.asshole] wide. Syri’s watching you, impatiently waiting for you to make your next move. You give the ausar a smug grin and lunge forward, grabbing her shoulders and pushing her onto her back. With a gasp of surprise she hits the mattress, and you climb atop her not long after, straddling her waist.");
@@ -2779,8 +2772,7 @@ public function cuddleWithSyri():void
 {
 	clearOutput();
 	showSyri(true);
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	author("HugsAlright");
 
 	output("Perhaps your puppy would be more compliant if she was shown a bit of compassion, and you plan to do just that. <i>“Here, girl,”</i> You command, resulting in a grumbling Syri crawling her way over to you on her hands and knees. With a smile you order her to sit up, and she does so, mumbling complaints into her gag as she sits herself up on her knees. <i>“Now,”</i> you begin, reaching for the knot holding Syri’s panties in place, <i>“I’m gonna take this out, and you’re going to be a good puppy, right?”</i> The puppy in question gives her eyes a good roll before uttering a muffled <i>“right”</i> in response. Overjoyed at her agreement, you start to remove the makeshift gag from the wolf girl’s mouth, who stretches her jaw a bit as the undergarments come free.");
@@ -2825,13 +2817,12 @@ public function syriPetPlayAftermath():void
 	}
 	output("\n\nIn the shower you tease Syri mercilessly, telling her what a good little puppy she makes, and that the two of you should do this more often. She chuckles in response, and starts to step towards you, telling you that the two of you should most certainly do this again. The now free ausar girl presses herself into you, trailing her furred hands up you body and telling you <i>“Next time it’ll be you on the leash, though.”</i> Grinning deviously, she pulls back and returns to washing a day’s worth of cum off herself.");
 	output("\n\nMaybe you should be a bit worried; she seemed serious.");
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
 
 	processTime(60*22);
 	pc.orgasm();
 	if(!pc.hasCock()) pc.loadInAss(syri);
 	IncrementFlag("SYRI_PETPLAY_WINS");
+	moveTo("SHIP INTERIOR");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

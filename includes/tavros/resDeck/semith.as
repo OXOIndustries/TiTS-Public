@@ -389,9 +389,8 @@ public function playSemithsApartmentScene():Boolean
 			lockSemithsDoor(false);
 		}
 		//in either case throw them out
-		currentLocation = "RESIDENTIAL DECK 10";
-		showName("EAST\nWALKWAY");
-		generateMapForLocation(currentLocation);
+		moveTo("RESIDENTIAL DECK 10");
+		showLocationName();
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 		return true;

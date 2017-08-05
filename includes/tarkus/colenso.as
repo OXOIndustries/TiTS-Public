@@ -451,8 +451,7 @@ public function noIWontBeYourBitchHandSo():void
 
 //Yes 
 public function yesIVolunteerForBadEndsBecauseImBadAtSexGames():void {
-	currentLocation = "GAME OVER";
-	generateMap();
+	moveTo("GAME OVER");
 	showLocationName();
 	
 	output("<b>Months pass</b>");
@@ -542,8 +541,7 @@ public function reasonWithHandSoJerkiness():void
 //PC loses
 public function pcLosesToHanSoSosBot():void
 {
-	currentLocation = "GAME OVER";
-	generateMap();
+	moveTo("GAME OVER");
 	showLocationName();
 	
 	author("Nonesuch");

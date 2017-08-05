@@ -3769,8 +3769,7 @@ public function playAlongWithAnnoThreesome():void
 public function dragonGurlAnnoThreesome():void
 {
 	//MOVE TO SHIP
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	clearOutput();
 	showBust(annoBustDisplay(true), "GRYVAIN_NUDE");
 	author("Savin");

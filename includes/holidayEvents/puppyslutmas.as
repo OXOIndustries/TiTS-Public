@@ -1431,8 +1431,7 @@ public function puppyslutmasMeetTheDornasHueSyri():void
 	
 	output("\n\nWhen you’re done, you send Syri off to her job, and roll out of bed. Time to decide what’s next on your adventure!");
 
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	showLocationName();
 
 	processTime(360);
@@ -1460,8 +1459,7 @@ public function puppyslutmasMeetTheDornasHueAnno():void
 	
 	output("\n\nYou give her a wink, and a spank on the behind to get her moving. The pair of you scramble out of bed and get your gear together. Time to decide what’s next on your adventure!");
 
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	showLocationName();
 	
 	processTime(360);

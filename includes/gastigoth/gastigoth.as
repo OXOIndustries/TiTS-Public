@@ -183,8 +183,7 @@ public function intoStationDisarmCheck():Boolean
 		output("The moment you try to go anywhere, the two goons in orange armor stomp up and lock shields, all but jamming the shimmering projections in your face.");
 		output("\n\n<i>“I’m afraid we’ll be relieving you of your weapons, Captain,”</i> the woman behind the station says, giving you a flat look. <i>“No arms, shields, explosives, or any other means of combat are permitted beyond this point. No matter how small, secure, or primitive. This is for your safety and ours; I take no particular pleasure is disarming you.”</i>");
 		output("\n\nDammit.");
-		currentLocation = "I16_SECURITY_CHECKPOINT";
-		generateMap();
+		moveTo("I16_SECURITY_CHECKPOINT");
 		processTime(1);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -204,8 +203,7 @@ public function leaveStationDisarmCheck():Boolean
 		showName("FORGET\nSOMETHING?");
 		output("<i>“Captain Steele!”</i> Brandt calls after you, causing you to turn. <i>“Unless you’re making an unexpected donation to the station’s arsenal, perhaps you would like to take back your possessions?”</i>");
 		output("\n\nWhoopsie.");
-		currentLocation = "I16_SECURITY_CHECKPOINT";
-		generateMap();
+		moveTo("I16_SECURITY_CHECKPOINT");
 		processTime(1);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -227,8 +225,7 @@ public function commandAndControlBonusiiii():Boolean
 		output("A pair of security drones step up from the shadows and stare you down impassively, their metal fingers seamlessly integrated into a pair of pulse carbines.");
 		output("\n\n<i>“I do not believe you have any business in our command room at present, Captain,”</i> Brandt says evenly from behind you. <i>“Neither do they, it seems.”</i>");
 		output("\n\nThe drones make no move or sound, but the threat hangs in the air until you take a step back. They give you a slight nod and retreat as well, bracing their backs against the bulkheads on either side of the door.");
-		currentLocation = "I14_CORRIDOR";
-		generateMap();
+		moveTo("I14_CORRIDOR");
 		processTime(2);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -239,8 +236,7 @@ public function commandAndControlBonusiiii():Boolean
 		clearOutput();
 		showName("NOT\nYET...");
 		output("You aren’t really in the mood for a tryst with Brandt. Maybe once your libido has you feeling a little more frisky.");
-		currentLocation = "I14_CORRIDOR";
-		generateMap();
+		moveTo("I14_CORRIDOR");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 		return true;

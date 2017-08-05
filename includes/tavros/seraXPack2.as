@@ -400,8 +400,7 @@ public function seraIsRepoed():void
 }
 public function seraIsRepoedPtII():void
 {
-	currentLocation = shipLocation;
-	generateMap();
+	moveTo(shipLocation);
 	showLocationName();
 	
 	clearOutput();
@@ -3001,7 +3000,8 @@ public function seranigansEvent(sEvent:String = "none"):void
 		// Tripped when PC returns to ship square on any planet
 		case "hijacked":
 			rooms[shipLocation].removeFlag(GLOBAL.SHIPHANGAR);
-			generateMap();
+			moveTo(shipLocation, true);
+			showLocationName();
 			
 			output("Mind on the alien sights and sounds you’ve recently experienced, you meander back to your... you stare. Where is your ship? You wave your hands in a juddering panic at the gaping hole where it once stood, as if that will magic it back into existence. You race around the docking area, futilely attempting to locate it, speaking to every official you can collar. Nobody noted anything unusual - it seems <b>someone</b> on your crew got departure clearance and then cleared off with it.");
 			output("\n\nThere’s nothing you can do but to wait and desperately hope they come back...");
@@ -4371,8 +4371,7 @@ public function seraBitcheningPunishWalkiesGoPtII():void
 	showSera();
 	author("Nonesuch");
 	
-	currentLocation = "LIFT: RESIDENTIAL DECK";
-	generateMap();
+	moveTo("LIFT: RESIDENTIAL DECK");
 	showLocationName();
 	
 	var hasSchoolgirl:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anySchoolgirl) != 0;
@@ -4424,8 +4423,7 @@ public function seraBitcheningPunishWalkiesGoPtII():void
 // Aina met
 public function seraBitcheningPunishWalkiesWitnessAina():void
 {
-	currentLocation = "RESIDENTIAL DECK 8";
-	generateMap();
+	moveTo("RESIDENTIAL DECK 8");
 	showLocationName();
 	
 	clearOutput();
@@ -4457,8 +4455,7 @@ public function seraBitcheningPunishWalkiesWitnessFyn():void
 	showSera();
 	author("Nonesuch");
 	
-	currentLocation = "RESIDENTIAL DECK 6";
-	generateMap();
+	moveTo("RESIDENTIAL DECK 6");
 	showLocationName();
 	
 	var hasSchoolgirl:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anySchoolgirl) != 0;
@@ -4492,8 +4489,7 @@ public function seraBitcheningPunishWalkiesWitnessSemith():void
 	showSera();
 	author("Nonesuch");
 	
-	currentLocation = "RESIDENTIAL DECK 4";
-	generateMap();
+	moveTo("RESIDENTIAL DECK 4");
 	showLocationName();
 	
 	output("You run into Semith the vulkrim along the Eastern Plaza, engrossed in his holo-pad. The besuited little devil gives you a distracted grin at first glance, a more interested gaze at the second.");
@@ -4516,8 +4512,7 @@ public function seraBitcheningPunishWalkiesWitnessJardi():void
 	showSera();
 	author("Nonesuch");
 	
-	currentLocation = "RESIDENTIAL DECK 2";
-	generateMap();
+	moveTo("RESIDENTIAL DECK 2");
 	showLocationName();
 	
 	var hasWhip:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anyWhip) != 0;
@@ -4549,8 +4544,7 @@ public function seraBitcheningPunishWalkiesNext():void
 	showSera();
 	author("Nonesuch");
 	
-	currentLocation = "RESIDENTIAL DECK 2";
-	generateMap();
+	moveTo("RESIDENTIAL DECK 2");
 	showLocationName();
 	
 	var hasSchoolgirl:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anySchoolgirl) != 0;

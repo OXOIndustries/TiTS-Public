@@ -1532,8 +1532,7 @@ public function fazianQuestApproachBack():void
 	clearBust();
 	author("Nonesuch");
 	
-	currentLocation = "FAZIAN_RESCUE_ROOM";
-	generateMap();
+	moveTo("FAZIAN_RESCUE_ROOM");
 	showName("WAREHOUSE:\nBACK");
 
 	output("You make a show of apologetically putting your hands in the air and stepping back to the main road, nothing more than a clueless tourist having a nosey around. You walk off and loop back around, carefully approaching the vast warehouse from the side jutting out of the cavern wall.");
@@ -1616,8 +1615,7 @@ public function fazianQuestApproachBackWaitLeave():void
 	clearOutput();
 	author("Nonesuch");
 	
-	currentLocation = "817";
-	generateMap();
+	moveTo("817");
 	showLocationName();
 
 	output("You unobtrusively head back to the street, the sound of enthusiastic macking following you all the way.");
@@ -1912,8 +1910,7 @@ public function fazianQuestOutdoorGuardVictory():void
 
 public function fazianQuestApproachLeave():void
 {
-	currentLocation = "817";
-	generateMap();
+	moveTo("817");
 	showLocationName();
 	
 	/*
@@ -1931,8 +1928,7 @@ public function fazianQuestWarehouseFront():void
 	clearBust();
 	author("Nonesuch");
 	
-	currentLocation = "FAZIAN_RESCUE_ROOM";
-	generateMap();
+	moveTo("FAZIAN_RESCUE_ROOM");
 	showName("WAREHOUSE:\nENTRANCE HALL");
 	
 	output("You are standing in a broad, well-lit entrance hall. There is a hubbub coming from the room opposite; the sound of many people moving around and... clapping? Peering carefully into the ajar door to your left you can see half a dozen red myr in military uniform sat around a table, playing some sort of game involving small crystals and counters. You are easily able to sneak past them, and open the door to the main chamber.");
@@ -1950,8 +1946,7 @@ public function fazianQuestWarehouseBack():void
 	clearBust();
 	author("Nonesuch");
 	
-	currentLocation = "FAZIAN_RESCUE_ROOM";
-	generateMap();
+	moveTo("FAZIAN_RESCUE_ROOM");
 	showName("WAREHOUSE:\nSTOREROOM");
 	
 	output("You are standing in a dim storeroom. Dusty industrial gear crowd the shelves. It’s obvious no-one’s used this room in a while.");
@@ -1970,8 +1965,7 @@ public function fazianQuestWarehouseMainChamber():void
 	clearBust();
 	author("Nonesuch");
 	
-	currentLocation = "FAZIAN_RESCUE_ROOM";
-	generateMap();
+	moveTo("FAZIAN_RESCUE_ROOM");
 	showLocationName();
 
 	output("You are standing in a massive, echoing, concrete-floored space. Most of it is taken up by a seven foot deep depression in the middle, around which maybe a dozen red myr are stationed. It is filled, almost shoulder-to-shoulder, with female gold myr. There must be hundreds, maybe thousands, in it. They all look drawn and rather dirty, dressed in thin prison smocks. Some lean on crutches; others are shaven bald. And yet, on virtually every face you can see down there, there is an expression of shared joy. They are all facing towards one end of the warehouse, where a small stage has been erected overlooking the pit. Before you can entirely discern what’s going on at that end, every single gold myr in the room raises her hands and claps in time, making the room shake and your ears ring.");
@@ -2178,8 +2172,7 @@ public function fazianQuestEhstraffeLoss():void
 			showName("CINDI\nLUVSCOCK");
 			author("Nonesuch");
 			
-			currentLocation = "GAME OVER";
-			generateMap();
+			moveTo("GAME OVER");
 			
 			output("Once they have smuggled you off Myrellion, under the effects of various cocktails of brainwashing drugs and electrotherapy, the skilful insectile slavers extract the details of your identity and bank account. They proceed to wipe both clean, liquidate your assets and provide you with a new identity: Cindi Luvscock. This obviously costs money, which Cindi begins the long, slow process of paying back by working a glory hole on one of the frontier’s sleazier space stations.");
 			
@@ -2258,8 +2251,7 @@ public function fazianQuestEhstraffeLoss():void
 			showBust("EHSTRAFFE","FAZIAN");
 			author("Nonesuch");
 			
-			currentLocation = "GAME OVER";
-			generateMap();
+			moveTo("GAME OVER");
 			
 			output("Days, weeks pass by in a venom-induced haze. You eventually come to welcome the burn of it entering your veins; the peace, tranquillity and all-conquering arousal it brings. It focuses you wonderfully for your sole occupation - being one of two primary sources of stress relief for a whole base of healthy, overworked, uptight red myr. Sure, Major Ehstraffe does make use of you a lot, bordering on the sadistic - keeping you locked for hours beneath her desk and between her thighs. But she quickly sees the benefits of sharing you around.");
 			
@@ -2323,8 +2315,7 @@ public function fazianQuestEhstraffeVictoryII():void
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
 	
-	currentLocation = "805";
-	generateMap();
+	moveTo("805");
 	processTime(120+rand(15));
 	pc.addNice(5);
 	flags["FAZIAN_QUEST_STATE"] = FAZIAN_QUEST_COMPLETE;

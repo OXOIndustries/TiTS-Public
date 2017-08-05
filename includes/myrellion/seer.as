@@ -362,8 +362,7 @@ public function loungeWakeAgainSeer():void
 	
 	if (flags["SEER_LOUNGE"] == undefined) flags["SEER_LOUNGE"] = 1;
 	
-	currentLocation = "720";
-	generateMap();
+	moveTo("720");
 	addButton(0, "Next", mainGameMenu);
 }
 
@@ -573,8 +572,7 @@ public function tentaSeer3():void
 	
 	processTime(3);
 	
-	currentLocation = "720";
-	generateMap();
+	moveTo("720");
 	addButton(0, "Next", mainGameMenu);
 }
 
@@ -671,8 +669,7 @@ public function lezSeer4():void
 	
 	processTime(3);
 	
-	currentLocation = "720";
-	generateMap();
+	moveTo("720");
 	addButton(0, "Next", mainGameMenu);
 }
 
@@ -844,8 +841,7 @@ public function wispedSeer4():void
 	
 	processTime(3);
 	
-	currentLocation = "720";
-	generateMap();
+	moveTo("720");
 	addButton(0, "Next", mainGameMenu);
 }
 

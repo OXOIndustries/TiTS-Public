@@ -489,8 +489,7 @@ public function breedwellInduction(response:String = ""):void
 			break;
 		case "pods intro":
 			// PC to Breedwell Pod Lounge
-			currentLocation = "BREEDWELL_LOUNGE";
-			generateMap();
+			moveTo("BREEDWELL_LOUNGE");
 			
 			output("She leads you through the south door, the dryer, sterile air in the corridor almost a relief from the muggy heat of reception.");
 			output("\n\n<i>“I’ve got the mods a roehm needs to go a long time outside of wet environments,”</i> Quaelle says, as if she’s read your mind. <i>“But the rahn overseers insisted on making my workplace, as well as my rooms, adapted to my tastes. So flickerful of them!”</i> You’ve reached another large set of double doors, but Quaelle leads you up a ramp set to one side to a smaller door, which she opens with a swipe of her lanyard pass. <i>“Secretly though, Steele... they love reception being like that. Their membranes become so shimmerlent when they visit me! Rahn are swamp creatures at heart too, you know.”</i>");
@@ -524,8 +523,7 @@ public function breedwellInduction(response:String = ""):void
 			break;
 		case "pods done":
 			// PC to Breedwell Reception square
-			currentLocation = "BREEDWELL_RECEPTION";
-			generateMap();
+			moveTo("BREEDWELL_RECEPTION");
 			
 			output("Quaelle oozes back towards reception, leaving a thin, quickly-drying slime trail behind her. She doesn’t turn off the monitor, nor ask you to come with her. Perhaps because they move so slow, roehm have different etiquette when it comes to leaving, well aware other races will finish whatever they’re doing and quickly catch them up. Certainly,");
 			// extremely low Reflexes:
@@ -555,8 +553,7 @@ public function breedwellInduction(response:String = ""):void
 			break;
 		case "semen intro":
 			// PC to Breedwell Sperm Donation Bay
-			currentLocation = "BREEDWELL_DONATION";
-			generateMap();
+			moveTo("BREEDWELL_DONATION");
 			
 			output("She leads you through the east door, the dryer, sterile air in the corridor almost a relief from the muggy heat of reception.");
 			output("\n\n<i>“I’ve got the mods a roehm needs to go a long time outside of wet environments,”</i> Quaelle says, as if she’s read your mind. <i>“But the rahn overseers insisted on making my workplace, as well as my rooms, adapted to my tastes. So flickerful of them!”</i> You’ve reached another large set of double doors, but Quaelle leads you up a ramp set to one side to a smaller door, which she opens with a swipe of her lanyard pass. <i>“Secretly though, Steele... they love reception being like that. Their membranes become so shimmerlent when they visit me! Rahn are swamp creatures at heart too, you know.”</i>");
@@ -583,8 +580,7 @@ public function breedwellInduction(response:String = ""):void
 			break;
 		case "semen done":
 			// PC to Breedwell Reception square
-			currentLocation = "BREEDWELL_RECEPTION";
-			generateMap();
+			moveTo("BREEDWELL_RECEPTION");
 			
 			output("Quaelle oozes back towards reception, leaving a thin, quickly-drying slime trail behind her. She doesn’t turn off the monitor, nor ask you to come with her. Perhaps because they move so slow, roehm have different etiquette when it comes to leaving, well aware other races will finish whatever they’re doing and quickly catch them up. Certainly,");
 			// extremely low Reflexes:

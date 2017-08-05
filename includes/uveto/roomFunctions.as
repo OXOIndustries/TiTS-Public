@@ -730,8 +730,7 @@ public function uvetoAwakenInMedCenter(rescuer:String):void
 	removeUvetoCold();
 	pc.HP(pc.HPMax());
 	pc.energy(pc.energyMax());
-	currentLocation = "UVI H32";
-	generateMap();
+	moveTo("UVI H32");
 
 	processTime(30);
 	addButton(0, "Next", mainGameMenu);

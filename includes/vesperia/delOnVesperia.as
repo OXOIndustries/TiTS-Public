@@ -468,8 +468,7 @@ public function fuckDelsAss():void
 {
 	clearOutput();
 	showDel(true);
-	currentLocation = "CANADA7";
-	generateMap();
+	moveTo("CANADA7");
 	var x:int = pc.cockThatFits(chars["DELILAH"].analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	output("<i>“How about you let me play with this new ass of yours?”</i> you say, grinning lustfully at the curvy bimbo-body pressed up against you. <i>“For old time’s sake.”</i>");
@@ -561,8 +560,7 @@ public function sitYoBootyOnDelsFacebooty():void
 	clearOutput();
 	showDel(true);
 	author("Savin");
-	currentLocation = "CANADA7";
-	generateMap();
+	moveTo("CANADA7");
 	output("You grin lustily at the feminized beauty pressed up against you, letting your hands wander down her back and over her jiggly behind. As nice as her ass is, your eyes fix on another prize: her full, pink-hued lips, glistening in the sultry light of the rustic lodge.");
 	output("\n\n<i>“Why don’t you get up on the bar for me, cutey?”</i>");
 	output("\n\nThe bartender babe blushes, practically melting into your arms, all but begging to be shown her proper place underneath you once again. <i>“Miss Kally said I had to stop doing that in the common area, but the baths are okay... This way.”</i>");
@@ -672,8 +670,7 @@ public function giddyupDel():void
 	output("\n\n<i>“I know the perfect place,”</i> she whispers, taking your hand and leading you into the Lodge’s restroom.");
 
 	//set location to be gloryhole room.
-	currentLocation = "CANADA6";
-	generateMap();
+	moveTo("CANADA6");
 
 	output(" It’s a unisex affair, with several stalls across from sanitation stations. She hurriedly leads you into a very deliberately chosen stall, and you soon see why: cushions are scattered all over the floor, drawing your attention to several industrial drains and a distinct lack of actual toilet. And, a moment later, to the holes drilled in the sides of the stall, just about cock-sized...");
 	output("\n\nDel flashes you a grin and flops down on the pile of cushions, sighing as she settles into her pillowy nest. <i>“I come here sometimes when I get a, um, a ‘craving’ for some nice cum and Kally’s too busy to have some fun,”</i> she admits. <i>“The regulars’ve gotten used to following me in here when I go on break, I think. Hope you don’t mind if I tend to any extra dicks that pop in?”</i>");
@@ -889,8 +886,7 @@ public function acceptHorseplowDelPlayButtStuffCunnyPlowWhatAmIEvenWritingAnymor
 	timesDelilahSexed(1);
 	pc.loadInMouth(del);
 	//move PC to Onsen.
-	currentLocation = "CANADA7";
-	generateMap();
+	moveTo("CANADA7");
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -925,8 +921,7 @@ public function delSlutTraining():void
 	output(" and stretch out over the bench, ass in the air and wiggling at her. <i>“C’mere and get me ready, sweetheart.”</i>");
 
 	//move to onsen.
-	currentLocation = "CANADA7";
-	generateMap();
+	moveTo("CANADA7");
 
 	processTime(14);
 	clearMenu();

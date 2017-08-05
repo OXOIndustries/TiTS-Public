@@ -512,8 +512,7 @@ public function tamtamBadEndPetPooch():void
 
 public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 {
-	currentLocation = "GAME OVER";
-	generateMap();
+	moveTo("GAME OVER");
 	showLocationName();
 	
 	days += 94;
@@ -685,8 +684,7 @@ public function bombAlertBonusFunction():Boolean
 		flags["TARKUS_BOMB_TIMER"] = 240;
 		clearMenu();
 		//Reset position as you haven't really moved.
-		currentLocation = "352";
-		generateMapForLocation(currentLocation);
+		moveTo("352");
 		addButton(0,"Next",mainGameMenu);
 		return true;
 	}
@@ -726,8 +724,7 @@ public function liftDownEvent():void
 	}
 	processTime(23);
 	//Move the PC
-	currentLocation = "354";
-	generateMapForLocation(currentLocation);
+	moveTo("354");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -794,8 +791,7 @@ public function goUpTarkusLift():void
 	output("Stepping into the lift, you press the activation key. The elevator hums softly and accelerates upward, replacing gravity with acceleration until you’re far enough from the core for the former to return. Stowing your equipment, you try to relax for the thirty minute ride.");
 	processTime(25);
 	//Move the PC
-	currentLocation = "353";
-	generateMapForLocation(currentLocation);
+	moveTo("353");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1886,8 +1882,7 @@ public function kaskaBadEndPartDues():void
 //Next page -> "Some time later..." Describe PC's living conditions and state, focusing on lusting after the next time Mistress will use him/her. End with Kaska coming home with a bimbo cow-girl and the two of you sucking her off together.
 public function kaskaBadEndPartIII():void
 {
-	currentLocation = "GAME OVER";
-	generateMap();
+	moveTo("GAME OVER");
 	showLocationName();
 	
 	clearOutput();
@@ -2433,15 +2428,13 @@ public function bombExplodes():void
 
 public function planetAsplodeWhileInGhostDeck():void
 {
-	currentLocation = "210";
-	generateMapForLocation(currentLocation);
+	moveTo("210");
 	bombExplodes();
 }
 
 public function planetAsplodeWhileInNova():void
 {
-	currentLocation = "201";
-	generateMapForLocation(currentLocation);
+	moveTo("201");
 	clearOutput();
 	author("Fenoxo");
 	output("The hangar’s blast doors are sealed. You didn’t even know the hangar HAD blast doors, but they’ve closed all the same. Your ship and a half dozen others are piled together on the far side of the chamber, damaged but unbroken. You’re lucky no one brought any larger ships here before the planets came apart. Your ride could’ve gotten smashed.");

@@ -2129,8 +2129,7 @@ public function giveInessaSilk():void
 //Fly to Myrellion
 public function inessaProvingScene():void
 {
-	currentLocation = "744"; // Silken Serenity
-	generateMap();
+	moveTo("744"); // Silken Serenity
 	showLocationName();
 	
 	clearOutput();
@@ -2194,8 +2193,7 @@ public function inessaProvingSceneii():void
 //Back To Tavros
 public function inessaBeltRemoval():void
 {
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	showLocationName();
 	
 	clearOutput();

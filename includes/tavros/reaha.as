@@ -745,8 +745,7 @@ public function reahaISFREEEEEEE():void
 	clearOutput();
 	reahaHeader();
 	clearMenu();
-	currentLocation = "SHIP INTERIOR";
-	generateMapForLocation(currentLocation);
+	moveTo("SHIP INTERIOR");
 	flags["REAHA_FREE"] = 1;
 	pc.personality = pc.personality - 5;
 	if (pc.personality <= 0) pc.personality = 0;
@@ -772,8 +771,7 @@ public function reahaISFREEEEEEE():void
 
 public function reahaWantsToKnowWhatsUp():void
 {
-	currentLocation = "SHIP INTERIOR";
-	generateMapForLocation(currentLocation);
+	moveTo("SHIP INTERIOR");
 	author("Savin");
 	clearOutput();
 	clearMenu();

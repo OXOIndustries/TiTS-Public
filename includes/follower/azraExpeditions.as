@@ -170,8 +170,7 @@ public function movingOnOutToMhengaExp():void
 	clearOutput();
 	showNaleenBros();
 	showName("FIGHT:\nNALEEN BROS");
-	currentLocation = "OVERGROWN ROCK 3";
-	generateMap();
+	moveTo("OVERGROWN ROCK 3");
 	
 	flags["AZRA_MHENGAED"] = 0;
 	
@@ -345,8 +344,7 @@ public function loseToNaleenBrosEpilogue():void
 
 	//bimbo
 	if(pc.isBimbo()) output("\n\nShe doesn’t stop you from licking the excess off her, though her blush is a sight to see.");
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	flags["AZRA_EXP_FAILED"] = getPlanetName().toLowerCase();
 	azra.azraCombatCleanup();
 	CombatManager.genericLoss();
@@ -790,8 +788,7 @@ public function azraMhengaMissionEpilgue():void
 	output("\n\n<i>“That... let’s not do... that again,”</i> Azra pants with exhaustion.");
 	output("\n\nYou nod. <i>“The expedition or fighting next to a whole city of potentially angry aliens?”</i>");
 	output("\n\nAzra straightens at your question. <i>“The hostile village thing. I’d never leave an entire species all alone, defenseless against extinction. Come on, let’s get back to the ship. I want to give these things a more thorough examination.”</i>");
-	currentLocation = "EAST ESBETH";
-	generateMap();
+	moveTo("EAST ESBETH");
 	clearMenu();
 	addButton(0,"Next",azraMhengaMissionEpilgue2);
 }
@@ -800,8 +797,7 @@ public function azraMhengaMissionEpilgue2():void
 {
 	clearOutput();
 	showAzra();
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	output("Azra unpacks efficiently. Her bag of supplies is dropped into an empty corner. The sample pouch is placed into a vacant spot on her desk perfectly shaped to accept it. You get the impression that she’s spent more than a little time organizing her room to make the most of every meter. She sighs contently once her things are stored and turns to face you, smiling beatifically. <i>“");
 	if(flags["FED_9TAIL"] == undefined) output("You were magnificent. I never could’ve done this without you.");
 	else output("It means a lot to me that you were willing to do... that for my research. I couldn’t have.”</i> Her eyes flit to your well-used crotch as her cheeks color. <i>“I’d be too embarrassed.");

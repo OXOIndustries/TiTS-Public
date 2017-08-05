@@ -598,8 +598,7 @@ public function cockTeaseMillie():void
 	//Pushed out to main room
 	processTime(1);
 
-	currentLocation = "511";
-	generateMapForLocation(currentLocation);
+	moveTo("511");
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

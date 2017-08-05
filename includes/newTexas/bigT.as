@@ -60,9 +60,7 @@ public function TsDoorIsLocked():void
 	showZephyrDeets();
 	output("You pull on the door, but all it does is rattle, locked.\n\nThe secretary just laughs to herself, making her implausibly large bust wobble. <i>“You’ll need to talk to me if you want to get in there, but why don’t you save us both the time and just leave?”</i>\n\nRude.");
 
-	currentLocation = "529";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	moveTo("529");
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

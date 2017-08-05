@@ -848,8 +848,7 @@ public function iceQueenBeatZaaltHelpHimII():void
 
 public function iceQueenNoKara():void
 {
-	currentLocation = "UVS B7"; // Uveto cafe
-	generateMap();
+	moveTo("UVS B7"); // Uveto cafe
 	showLocationName();
 	
 	clearOutput();
@@ -903,8 +902,7 @@ public function showKaraAndZaalt():void
 
 public function iceQueenKaraShowsUp():void
 {
-	currentLocation = "UVS B7"; // Uveto cafe
-	generateMap();
+	moveTo("UVS B7"); // Uveto cafe
 	showLocationName();
 	
 	clearOutput();
@@ -1147,8 +1145,7 @@ public function iceQueenKaraShowsUpInterruptSex():void
 
 public function iceQueenKaraSexytimes():void
 {
-	currentLocation = "UVS F15"; // Ship hangar
-	generateMap();
+	moveTo("UVS F15"); // Ship hangar
 	showLocationName();
 	
 	clearOutput();

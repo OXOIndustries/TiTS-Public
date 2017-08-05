@@ -407,8 +407,7 @@ public function sureIWantSomeShadePussayTailFuckYes():void
 	output("\n\n<i>“Now then... what to do with you...?”</i>");
 	pc.lust(30);
 	processTime(15);
-	currentLocation = "602";
-	generateMap();
+	moveTo("602");
 	//Shade’s Scenes go Here
 	shadeSexMenu(true);
 }
@@ -515,8 +514,7 @@ public function fuckThisShiiitImNotGettingInACatNDogFight():void
 
 	processTime(10);
 
-	currentLocation = "606";
-	generateMap();
+	moveTo("606");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -552,8 +550,7 @@ public function lastChanceForHelpingKara():void
 	output("\n\n<i>“Please,”</i> Kara shouts, taking a step back. <i>“I can match what she’s paying. Easy.”</i>");
 	output("\n\nShe scoffs. <i>“Take it or leave it, friend. You can just walk away.”</i>");
 	
-	currentLocation = "609";
-	generateMap();
+	moveTo("609");
 	clearMenu();
 	addButton(14,"Leave",fuckDisBarShit,undefined,"Leave","Fuck this. You hop into the crowd of people fleeing, ducking out of the bar to sounds of gunfire behind you.");
 	addButton(0,"Help Shade",helpShadeOutLastChance,undefined,"Help Shade","Help out Shade, the bounty hunter.");
@@ -672,8 +669,7 @@ public function pcAndKaraBeatShade():void
 	//relocate to alley
 	//Add Arc Caster to inventory
 	flags["SHADE_DEFEATED_WITH_KARA"] = 1;
-	currentLocation = "606";
-	generateMap();
+	moveTo("606");
 	CombatManager.genericVictory();
 }
 
@@ -689,8 +685,7 @@ public function pcAndShadeBeatKara():void
 	output("\n\nShe gives you a friendly clap on the shoulder and hauls Kara up over her shoulder, carrying the stunned kaithrit out of the bar. You make your way outside, too, before the myr soldiers can arrive and arrest you for shooting the place up.\n\n");
 	flags["KARA_DEFEATED_WITH_SHADE"] = 1;
 	processTime(2);
-	currentLocation = "606";
-	generateMap();
+	moveTo("606");
 	CombatManager.genericVictory();
 }
 
@@ -1107,8 +1102,7 @@ public function shadePostCoitusHangouts():void
 		{
 			output(" gear in order and let yourself out. Shade’s ships seals tight behind you.");
 			//PC is left in the far north of the airfield.
-			currentLocation = "602";
-			generateMap();
+			moveTo("602");
 		}
 		else
 		{
@@ -1146,8 +1140,7 @@ public function shouldIShadeOrShouldIGo():void
 	if(flags["SHADE_ON_UVETO"] == undefined)
 	{
 		output(" ship, and head out into the airfield.");
-		currentLocation = "602";
-		generateMap();
+		moveTo("602");
 	}
 	else
 	{
@@ -1196,8 +1189,7 @@ public function recoverWithShade():void
 	if(flags["SHADE_ON_UVETO"] == undefined)
 	{
 		output("\n\nYou chuckle and let yourself be led off the ship, following Shade back out to the airfield. Her ship seals tight behind you, and your lover gives you a final smack on your [pc.butt] before trotting off towards the tavern.");
-		currentLocation = "602";
-		generateMap();
+		moveTo("602");
 	}
 	else
 	{
@@ -1358,8 +1350,7 @@ public function askShade4Sex():void
 	output("\n\n<i>“Now then,”</i> Shade purrs, <i>“what to do with you...?”</i>");
 	
 	processTime(15);
-	currentLocation = "602";
-	generateMap();
+	moveTo("602");
 	
 	//Shade’s Scenes go Here
 	shadeSexMenu();

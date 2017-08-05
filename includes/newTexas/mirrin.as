@@ -782,8 +782,7 @@ public function foodWithMirrin():void
 	clearOutput();
 	showMirrin();
 	author("SoAndSo");
-	currentLocation = "528";
-	generateMap();
+	moveTo("528");
 	if(flags["MIRRIN_TRAINED"] == 1)
 	{
 		//1st Food! Scene
@@ -1366,10 +1365,9 @@ public function mirrinTreatmentTalk():void
 public function mirrinFirstTImeOneOffSex():void
 {
 	clearOutput();
-	currentLocation = "MIRRINS";
-	generateMap();
 	showMirrin();
 	author("SoAndSo");
+	moveTo("MIRRINS");
 	output("She gestures her hand towards the gyms exit, intending for you to go first. She follows behind you and you can hear her inhaling and exhaling rather deeply. You wave to the staff members on your way out, Quenton especially giving you a wink and a toothy smile. Mirrin doesn’t seem to react at all, merely keeping by your side as you both exit.");
 	output("\n\nAs you leave, she begins talking to you from behind.");
 	output("\n\n<i>“So... New Texas is all business for me. At least, I hoped it would be. Stay here a few years, expand the fanbase, try other things... that mostly turned out ok. But it’s so </i>lonely<i>. Almost everyone here is like uhhh, always horny or really close to it. They see me - this extranet famous model - and it’s like a competition. They all get in my face, can’t stand it. Doesn’t help that their Treatment or whatever just doesn’t react with me,”</i> she says, rather matter-of-factly.");
@@ -1732,10 +1730,9 @@ public function mirrinYerConfidenceBaaaaaeby():void
 public function visitMirrinsPlace():void
 {
 	clearOutput();
-	currentLocation = "MIRRINS";
-	author("SoAndSo");
-	generateMap();
 	showMirrin();
+	author("SoAndSo");
+	moveTo("MIRRINS");
 	//PC gains maximum lust/full bar.
 	//PC is kind:
 	if(pc.isNice())

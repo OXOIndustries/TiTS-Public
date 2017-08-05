@@ -1387,8 +1387,7 @@ public function sylvieSexyTimeIntro():void
 	if(pc.isTaur() || pc.isGoo() || pc.isNaga() || pc.isDrider()) output("drags you toward the baths");
 	else output("tosses you on her back, clopping over to the baths");
 	output(" without an ounce of subtlety, seemingly blind to the libidinous catcalls and crude cheers coming from the regulars. Her bra disappears the moment you’re through the door, and along with it, any sense of composure. She drunkenly leans back over her hindquarters, giving a sensuously inviting look. <i>“Since you’ve been so great, you can pick... this time. Just don’t leave me waiting.”</i> The nine-foot tall amazon tugs on her nipples and pivots, presenting you with a pussy so puffy and engorged that the purple-flushed skin shines on its own.");
-	currentLocation = "CANADA7";
-	generateMap();
+	moveTo("CANADA7");
 	processTime(1);
 	clearMenu();
 	sylvieSexMenu();
@@ -1999,8 +1998,7 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 	//FORCEFUL START
 	else
 	{
-		currentLocation = "CANADA7";
-		generateMap();
+		moveTo("CANADA7");
 		output("Before you can ");
 		if(!pc.isNaga()) output("break");
 		else output("wriggle out of");

@@ -190,8 +190,7 @@ public function visitorDeskApproach():void
 //output("\n\nTrying to Go Through Customs while Armed");
 public function customsFucksYourShitUp():void
 {
-	currentLocation = "TEXAS CUSTOMS";
-	generateMapForLocation(currentLocation);
+	moveTo("TEXAS CUSTOMS");
 	clearOutput();
 	author("Savin");
 	showName("\nOGRAM");
@@ -2233,8 +2232,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 		// First / Threesome
 		case "shower intro":
 			rooms["516"].removeFlag(GLOBAL.NPC);
-			currentLocation = "NT SHOWER HOUSE";
-			generateMap();
+			moveTo("NT SHOWER HOUSE");
 			
 			showLocationName();
 			showBust("CARRIE_NUDE", "CORA_NUDE");
@@ -2338,8 +2336,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			addButton(0, "Next", carrieSoothingShowerGo, "shower threesome end");
 			break;
 		case "shower threesome end":
-			currentLocation = "516";
-			generateMap();
+			moveTo("516");
 			
 			showLocationName();
 			showBust("CARRIE_NUDE", "CORA_NUDE");
@@ -2359,8 +2356,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 		// Repeat
 		case "shower repeat":
 			rooms["516"].removeFlag(GLOBAL.NPC);
-			currentLocation = "NT SHOWER HOUSE";
-			generateMap();
+			moveTo("NT SHOWER HOUSE");
 			
 			showLocationName();
 			showBust("HORISHA_AND_PECK");
@@ -2489,8 +2485,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			addButton(0, "Next", carrieSoothingShowerGo, "shower fivesome p4");
 			break;
 		case "shower fivesome p4":
-			currentLocation = "516";
-			generateMap();
+			moveTo("516");
 			
 			showLocationName();
 			showBust("CARRIE_NUDE", "CORA_NUDE");
@@ -2611,8 +2606,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			useDaMilkarMenu();
 			break;
 		case "sure":
-			currentLocation = "NT BOTTLE TRAIL";
-			generateMap();
+			moveTo("NT BOTTLE TRAIL");
 			
 			showLocationName();
 			showBust("CARRIE");
@@ -2632,8 +2626,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			addButton(1, "Shame", carrieMilkerBadEnd, "shame", "Shame", "Damn shame.");
 			break;
 		case "shame":
-			currentLocation = "516";
-			generateMap();
+			moveTo("516");
 			
 			showLocationName();
 			showBust("CARRIE", "CORA");
@@ -2666,8 +2659,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			addButton(0, "Next", mainGameMenu);
 			break;
 		case "build it":
-			currentLocation = "NT BOTTLE PLANT";
-			generateMap();
+			moveTo("NT BOTTLE PLANT");
 			
 			showLocationName();
 			showBust("CARRIE");
@@ -2730,8 +2722,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			addButton(0, "Next", carrieMilkerBadEnd, "build it p3");
 			break;
 		case "build it p3":
-			currentLocation = "NT SHOWER HOUSE";
-			generateMap();
+			moveTo("NT SHOWER HOUSE");
 			
 			showLocationName();
 			showBust("CARRIE");
@@ -2764,8 +2755,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			addButton(0, "Next", mainGameMenu);
 			break;
 		case "go back":
-			currentLocation = "NT BOTTLE PLANT";
-			generateMap();
+			moveTo("NT BOTTLE PLANT");
 			
 			showLocationName();
 			showBust("CORA");
@@ -2827,8 +2817,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			addButton(0, "Next", mainGameMenu);
 			break;
 		case "build it repeat":
-			currentLocation = "NT BOTTLE PLANT";
-			generateMap();
+			moveTo("NT BOTTLE PLANT");
 			
 			showLocationName();
 			clearBust();
@@ -2855,8 +2844,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			addButton(0, "Next", carrieMilkerBadEnd, "build it p2");
 			break;
 		case "bad end":
-			currentLocation = "NT BUNKHOUSE";
-			generateMap();
+			moveTo("NT BUNKHOUSE");
 			
 			showName("A NEW\nSTUD");
 			showBust("CORA");

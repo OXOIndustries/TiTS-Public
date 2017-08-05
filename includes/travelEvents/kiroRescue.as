@@ -905,8 +905,7 @@ public function kirosShipNopeFuckThisShit():void
 	output("\n\nYou throw your hands up and say, <i>“Nope, I’m out. Don’t get paid enough for this shit.”</i> You turn away and run back to your ship, not daring to look back at the monstrously perverted mess behind you. When the familiar flooring of your ship is underfoot once more, you sigh with relief and slam the hatch closed. You can’t fly away quick enough.");
 	
 	//Resume previous travels.
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	flags["RESCUE KIRO FROM BLUEBALLS"] = -1;
 
 	clearMenu();

@@ -548,8 +548,7 @@ public function pexigaNamingSetup():void
 	author("Adjatha");
 	output("As you approach your ship, it occurs to you that she doesn’t have a name yet. You ask if she’s got any preferences, but she smiles and shrugs. <i>“Iunno! Can you give one?”</i> she inquires, squeezing your arm. <i>“Something pretty!”</i>");
 	
-	currentLocation = shipLocation;
-	generateMap();
+	moveTo(shipLocation);
 	
 	//Player inputs a name for their bimbo pexiga. Alternately: her default name could be Beasti, Ditzi, or something along those lines
 	if(stage.contains(this.userInterface.textInput)) 
@@ -1067,8 +1066,7 @@ public function pexigaNamingSetup4BimboBadgerwerk():void
 	author("Adjatha");
 	output("You pat the affectionate girl on the long spines of her hair and ask what you should call her. <i>“A name? Ummm...”</i> She trails off, staring emptily into the air for a moment. Maybe you could help her out and suggest a name?");
 	
-	currentLocation = shipLocation;
-	generateMap();
+	moveTo(shipLocation);
 	
 	//Player inputs a name for their bimbo pexiga. Alternately: her default name could be Beasti, Ditzi, or something along those lines
 	if(stage.contains(this.userInterface.textInput)) 
@@ -2350,8 +2348,7 @@ public function gushBadEndWithNymFoe():void
 
 public function gushBadEndWithNymFoe2():void
 {
-	currentLocation = "301";
-	generateMap();
+	moveTo("301");
 	
 	pc.armor = new MaidOutfit();
 	pc.armor.addFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST);
@@ -2528,8 +2525,7 @@ public function dolledBadEnd2():void
 
 public function dolledBadEnd3():void
 {
-	currentLocation = "GAME OVER";
-	generateMap();
+	moveTo("GAME OVER");
 	
 	if(pc.intelligence() > 0) pc.intelligence(0, true);
 	

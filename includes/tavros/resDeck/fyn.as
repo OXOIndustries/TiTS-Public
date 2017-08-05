@@ -60,12 +60,11 @@ public function finsApartmentBonus():Boolean
 	}
 	else
 	{
+		moveTo("RESIDENTIAL DECK 11");
+		showLocationName();
 		output("The door is closed. You’ll need to knock.");
-		currentLocation = "RESIDENTIAL DECK 11";
 		clearMenu();
 		addButton(0,"Next", mainGameMenu);
-		showName("EAST\nWALKWAY");
-		generateMapForLocation(currentLocation);
 		return true;
 	}
 	return false;
@@ -153,8 +152,7 @@ public function goIntoFynsApartment():void {
 	clearOutput();
 	showFyn();
 	
-	currentLocation = "RESIDENTIAL DECK 19";
-	generateMapForLocation(currentLocation);
+	moveTo("RESIDENTIAL DECK 19");
 
 	output("You go with the flow, stepping through the threshold. The door closes soundly behind you. The tall, shirtless man strides past you and through the apartment. Does he expect you to follow?");
 	output("\n\nYou follow in his footsteps through the huge, luxurious apartment, reeling a little at the amount of credits it must have cost. From the polished synth-oak floors to the artwork pieces, there’s definitely a glamorous air to the place. Whoever he is, he’s definitely wealthy, there’s no doubt about that. Spotting an open doorway, you see the beginnings of a bedroom, replete with a silky, king sized bed. It’s not hard to see the silk ropes tied to the foot of the bed... it’s not hard to guess what <i>they</i> would be for.");
@@ -163,7 +161,7 @@ public function goIntoFynsApartment():void {
 	output("\n\nYou");
 	if(pc.isNice()) output(" politely");
 	else if(pc.isMischievous()) output(" jovially");
-	else output("brusquely");
+	else output(" brusquely");
 	
 	output(" accept, and he fetches you both a drink, sitting down on one of the comfy-looking curved sofas. You sit opposite from him");
 	

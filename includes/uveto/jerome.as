@@ -844,8 +844,7 @@ public function jeromeHipbusterIII(s:Object):void
 
 public function jeromeSceneIntro():void
 {
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 
 	output("You grab hold of his arm and pull him away from his seat.");
 	if (pc.tallness > 80 || pc.tone > 80) output(" As large as you are yourself, h");

@@ -135,8 +135,7 @@ public function buskyStrapsShopFunc():Boolean {
 		output("Straps is currently closed.\n\nA sign beside the door announces the opening hours: <b>06:00 to 17:00</b>.");
 		
 		//put player back on previous tile
-		currentLocation = "508";
-		generateMap();
+		moveTo("508");
 		showLocationName();
 		clearMenu();
 		addButton(0,"Next", mainGameMenu);
@@ -1558,8 +1557,7 @@ public function buskySexHotTubFuck():void {
 	clearOutput();
 	showBusky();
 	
-	currentLocation = "574";
-	generateMap();
+	moveTo("574");
 	showLocationName();
 	
 	output("Instead of working out with Busky, you ask him about doing something a tad more, relaxing.");
@@ -1693,8 +1691,7 @@ public function buskySexHotTubFuckEnd():void {
 	clearOutput();
 	showBusky(true);
 	
-	currentLocation = "571";
-	generateMap();
+	moveTo("571");
 	showLocationName();
 	
 	output("Busky lifts you off of his length, as your hole clenches down on reflex. You float in the tub, patting your belly in satisfaction of a good fuck. Time passes while your mind is fogged with pure bliss, that is until you notice a strong arm wrap around you. Opening your eyes you see Busky pulling you out of the hot tub, wearing a towel around his waist. He slings you over his shoulder before retrieving both of your items.");

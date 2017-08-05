@@ -1732,8 +1732,7 @@ public function sneakBackYouNudist():void
 	clearOutput();
 	output("You meticulously make your way back to the ship using every ounce of subtlety you possess. It takes way longer than you would have thought thanks to a couple of near-misses, but you make it safe and sound to the interior of your craft.");
 	processTime(180+rand(30));
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1806,15 +1805,21 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	if(moveMinutes < 0) moveMinutes = 0;
 	StatTracking.track("movement/time travelled", moveMinutes);
 	processTime(moveMinutes);
-	flags["PREV_LOCATION"] = currentLocation;
-	currentLocation = arg;
-	generateMap();
+	moveTo(arg, true);
 	if(pc.hasStatusEffect("Treatment Exhibitionism Gain 4 DickGirls") && pc.hasCock() && rooms[arg].hasFlag(GLOBAL.PUBLIC)) treatmentCumCowExhibitionism();
 	if(pc.hasPerk("Ultra-Exhibitionist")) exhibitionismLocationToggle();
 	trace("Printing map for " + currentLocation);
 	//mapper.printMap(map);
 	//process time here, then back to mainGameMenu!
 	if(goToMainMenu) mainGameMenu(moveMinutes);
+}
+// Place PC and update map!
+// No time or event triggers.
+public function moveTo(arg:String, logPrevious:Boolean = false):void
+{
+	if(logPrevious) flags["PREV_LOCATION"] = currentLocation;
+	currentLocation = arg;
+	generateMap();
 }
 
 public function variableRoomUpdateCheck():void

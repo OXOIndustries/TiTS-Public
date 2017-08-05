@@ -1533,8 +1533,7 @@ public function venusPitcherBadEnd2():void
 	author("Fenoxo");
 	
 	pc.removeAll();
-	currentLocation = "GAME OVER";
-	generateMap();
+	moveTo("GAME OVER");
 	
 	output("Merely being in contact with a venus pitcher is enough to make the world spin in the background. Wait... No, she’s flipping you upside down, carrying you down into her subterranean bulb. The sensation is familiar enough to you that you can recognize it even when your world is centered wholly on the perfect breasts upon which you now nurse. Even when her pollen comes thicker and muggier than a sauna’s steam, crowding aside more complex thoughts with bubbling passion and waves of flaxen acceptance.");
 	output("\n\n<i>“It’s so silly that you ever thought you were meant for something else.”</i> Her words are as sweet as the nectar leaking into your mouth. <i>“You were meant for me... and my sisters. We needed you, and you need us, don’t you.”</i>");

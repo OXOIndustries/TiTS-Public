@@ -358,8 +358,7 @@ public function meetPippa(arg:Array = null):void
 	if (itemGiven == "")
 	{
 		clearOutput();
-		currentLocation = "PIPPA HOUSE";
-		generateMap();
+		moveTo("PIPPA HOUSE");
 		removeUvetoCold();
 		pippaAffection(10);
 		processTime(3);
