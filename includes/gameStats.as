@@ -1027,8 +1027,8 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b><u>Cunt Snake</u></b>");
 			if(pc.tailType == GLOBAL.TYPE_CUNTSNAKE && pc.tailCount > 0) output2("\n<b>* Attached, Type:</b> " + GLOBAL.TYPE_NAMES[pc.tailGenitalArg]);
 			
-			if(pc.hasCuntSnake()) output2("\n<b>* Feeding, Current:</b> " + flags["DAYS_SINCE_FED_CUNT_TAIL"] + " days since last fed");
-			if(flags["TIMES_FED_CUNT_SNAKE"] != undefined) output2("\n<b>* Feeding, Total:</b> " + flags["TIMES_FED_CUNT_SNAKE"] + " times");
+			if(pc.hasCuntSnake()) output2("\n<b>* Feeding, Current:</b> " + flags["DAYS_SINCE_FED_CUNT_TAIL"] + " day" + (flags["DAYS_SINCE_FED_CUNT_TAIL"] == 1 ? "" : "s") + " since last fed");
+			if(flags["TIMES_FED_CUNT_SNAKE"] != undefined) output2("\n<b>* Feeding, Total:</b> " + flags["TIMES_FED_CUNT_SNAKE"] + " time" + (flags["TIMES_FED_CUNT_SNAKE"] == 1 ? "" : "s"));
 			
 			if(flags["CUNT_TAIL_PREGNANT_TIMER"] != undefined) output2("\n<b>* Pregnancy, Gestation Time:</b> " + prettifyMinutes(flags["CUNT_TAIL_PREGNANT_TIMER"]) + " until birth");
 			
@@ -1922,6 +1922,7 @@ public function displayQuestLog(showID:String = "All"):void
 					var treatedMinutes:Number = 10080 - pc.getStatusMinutes("The Treatment");
 					output2("\n<b>* Duration:</b> " + prettifyMinutes(treatedMinutes));
 				}
+				if(pc.hasPerk("Dumb4Cum")) output2("\n<b>* Dumb4Cum, Status:</b> " + pc.perkv1("Dumb4Cum") + " hour" + (pc.perkv1("Dumb4Cum") == 1 ? "" : "s") + " since last ingested cum" + (pc.perkv1("Dumb4Cum") <= 24 ? "" : ", Craving cum"));
 				sideCount++;
 			}
 			// Varmint Wranglin'

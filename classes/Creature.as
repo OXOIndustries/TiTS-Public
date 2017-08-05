@@ -4354,7 +4354,7 @@
 				if (hasPerk("Slut Stamp"))currLib += perkv1("Slut Stamp");
 				if (hasPerk("Barcoded")) currLib += 10;
 			}
-			if (perkv1("Dumb4Cum") > 24) currLib += perkv1("Dumb4Cum")-24;
+			if (perkv1("Dumb4Cum") > 24) currLib += (perkv1("Dumb4Cum") - 24);
 			currLib += statusEffectv3("Heat");
 			currLib += statusEffectv1("Rut");
 			currLib += statusEffectv1("Lagonic Rut");
@@ -4397,7 +4397,7 @@
 			//Temporary Stuff
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
 			if (hasStatusEffect("Aphrodisiac Milk")) bonus += 33;
-			if (perkv1("Dumb4Cum") > 24) bonus += perkv1("Dumb4Cum")-24;
+			if (perkv1("Dumb4Cum") > 24) bonus += (perkv1("Dumb4Cum") - 24);
 			if (hasStatusEffect("Adorahol")) bonus += (5 * statusEffectv1("Adorahol"));
 			bonus += statusEffectv1("Sexy Costume");
 			bonus += statusEffectv4("Priapin");
@@ -4441,12 +4441,8 @@
 			var bonuses:int = 0;
 			if(hasPerk("Cybernetic Synchronization")) bonuses += (perkv1("Cybernetic Synchronization") * cyborgScore());
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
-			if(hasPerk("Dumb4Cum"))
-			{
-				bonuses += level;
-				if(perkv1("Dumb4Cum") > 24) bonuses -= (perkv1("Dumb4Cum") - 24);
-			}
-
+			if(hasPerk("Dumb4Cum")) bonuses += level*2;
+			
 			var amount:Number = ((level * 5) + bonuses);
 			if(amount < Creature.STAT_CLAMP_VALUE) amount = Creature.STAT_CLAMP_VALUE;
 			return amount;
