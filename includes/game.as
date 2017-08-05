@@ -1764,7 +1764,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	//Procs on approaching ship dock:
 	if (arg == shipLocation)
 	{
-		if(disableExploreEvents() && seranigansTrigger("hijacked")) return;
+		if(disableExploreEvents() && currentLocation != "SHIP INTERIOR" && seranigansTrigger("hijacked")) return;
 	}
 	
 	//Procs on ship exit:
