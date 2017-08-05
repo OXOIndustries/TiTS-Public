@@ -22,8 +22,9 @@ package classes.Engine.Combat
 			CombatManager.processCombat();
 			return;
 		}
-		
+			
 		var factor:Number = 1;
+		var factorMax:Number = 2;
 		var bonus:int = 0;
 		var msg:String = "";
 		
@@ -33,14 +34,18 @@ package classes.Engine.Combat
 		}
 		
 		if (attacker.hasStatusEffect("Sex On a Meteor") || attacker.hasStatusEffect("Tallavarian Tingler")) factor *= 1.5;
-		if (target.originalRace == "nyrea" && attacker.hasPerk("Nyrean Royal")) factor *= 1.1;
+		if (attacker.hasStatusEffect("Well-Groomed")) factor *= attacker.statusEffectv2("Well-Groomed");
+		if ((target.originalRace == "nyrea" && attacker.hasPerk("Nyrean Royal")) || attacker.hasStatusEffect("Oil Aroused")) factor *= 1.1;
+		if (attacker.hasFur())
+		{
+			if (target.statusEffectv2("Furpies Simplex H") == 1 || target.statusEffectv2("Furpies Simplex C") == 1 || target.statusEffectv2("Furpies Simplex D") == 1) factor *= 1.25;
+		}
 		
-		if (factor > 2) factor = 2;
+		if (factor > factorMax) factor = factorMax;
 	
-		if (attacker.hasPheromones()) bonus += 1;
+		if (attacker.hasPheromones()) bonus += attacker.pheromoneLevel();
 		if (teaseType == "SQUIRT") bonus += 2;
 		if (attacker.hasStatusEffect("Sweet Tooth")) bonus += 1;
-		if (attacker.hasStatusEffect("Roehm Slimed")) bonus += attacker.statusEffectv3("Roehm Slimed");
 		
 		var sweatyBonus:int = 0;
 		if(attacker.hasStatusEffect("Sweaty") && target.hasPerk("Likes_Sweaty")) 

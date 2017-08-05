@@ -3287,7 +3287,7 @@ package classes.GameData
 			
 			if (factor > factorMax) factor = factorMax;
 		
-			if (attacker.hasPheromones()) bonus += 1;
+			if (attacker.hasPheromones()) bonus += attacker.pheromoneLevel();
 			if (teaseType == "SQUIRT") bonus += 2;
 			if (attacker.hasStatusEffect("Sweet Tooth")) bonus += 1;
 			

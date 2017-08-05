@@ -3783,7 +3783,7 @@
 				if(hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) muskLevel += 2;
 			}
 			if(accessory is Allure) muskLevel += 1;
-			if(hasStatusEffect("Roehm Slimed")) muskLevel += Math.min(statusEffectv1("Roehm Slimed"), 5);
+			if(hasStatusEffect("Roehm Slimed")) muskLevel += Math.min((statusEffectv4("Roehm Slimed") * 3), statusEffectv3("Roehm Slimed"));
 			
 			return muskLevel;
 		}
