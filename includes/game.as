@@ -203,10 +203,6 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	if (!disableExploreEvents())
 	{
 		if (tryEncounterFreedomBeef()) return;
-		if (currentLocation == shipLocation)
-		{
-			if(seraRecruited() && seranigansTrigger("hijacked")) return;
-		}
 	}
 	
 	if(inCombat())
@@ -1764,7 +1760,13 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	}
 	//Reset the thing that disabled encounters
 	flags["ENCOUNTERS_DISABLED"] = undefined;
-
+	
+	//Procs on approaching ship dock:
+	if (arg == shipLocation)
+	{
+		if(disableExploreEvents() && seranigansTrigger("hijacked")) return;
+	}
+	
 	//Procs on ship exit:
 	if(currentLocation == "SHIP INTERIOR")
 	{

@@ -2905,6 +2905,7 @@ public function seranigansRainbowtoxColors():Array
 }
 public function seranigansTrigger(sEvent:String = "none"):Boolean
 {
+	if(!seraRecruited()) return false;
 	if(!pc.hasStatusEffect("Seranigans Event") || pc.hasStatusEffect("Seranigans")) return false;
 	
 	var eventList:Array = [];
