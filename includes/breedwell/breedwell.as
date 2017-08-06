@@ -1216,18 +1216,18 @@ public function breedwellCumCreditValue(amount:Number = 0):Number
 	var maxCredVal:Number = 10; // Maximum credit value to start.
 	var normalAmount:Number = 500000; // Point where credit value is at 1 credit/mL before degrading.
 	// Build function curve with these values to get the multiplier!
-	var creditVal:Number = ( maxCredVal / Math.pow((((1 / normalAmount) * amount) + 1), 2) );
+	var creditVal:Number = ( maxCredVal / Math.pow((((2 * amount) / normalAmount) + 1), 2) );
 	// Other adjustments...
-	if(creditVal > (normalAmount * (4/3))) creditVal *= 0.01;
-	else if(creditVal > normalAmount) creditVal *= 0.1;
+	var cashOut:Number = (amount * creditVal);
+	if(cashOut > (normalAmount * 1.5)) cashOut = (normalAmount * 1.5);
 	
 	if(debug)
 	{
-		output("OUTPUT: " + amount + " mLs @ " + Math.round(amount * creditVal) + " Credits ( " + creditVal + " creds/mL )");
+		output("OUTPUT: " + amount + " mLs @ " + Math.round(cashOut) + " Credits ( " + creditVal + " creds/mL )");
 		output("\n\n");
 	}
 	
-	return Math.round(amount * creditVal);
+	return Math.round(cashOut);
 }
 // Idk what the maximum amount the PC can feasibly jizz is in this game, but the scene where you break this thing should be fairly close to it. Given NT cockmilker’s limit is 4,000,000, set limit to 20,000,000 for now.
 

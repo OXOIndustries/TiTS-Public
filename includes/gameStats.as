@@ -3067,7 +3067,7 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b>* Doctor Elenora Vanderbilt:</b> Met her");
 				if(flags["KI_VANDERBILTS_SECRET"] != undefined) output2(", Know of her secret");
 				if(flags["KI_VANDERBILTS_SECRET"] >= 2) output2(", Sexed her");
-				if(flags["KI_VANDERBILT_WORKING_START"] != undefined)
+				if(flags["KI_VANDERBILT_WORKING_START"] != undefined && (flags["KASHIMA_STATE"] > 0 && flags["KASHIMA_STATE"] < 4))
 				{
 					output2("\n<b>* Doctor Elenora Vanderbilt, Cure, Status:</b>");
 					if(flags["KI_VANDERBILT_WORKING_START"] + 240 > GetGameTimestamp()) output2(" <i>Working...</i> " + prettifyMinutes((flags["KI_VANDERBILT_WORKING_START"] + 240) - GetGameTimestamp()) + " until completion");
@@ -3688,7 +3688,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b><u>Bailey’s Bovine Brewery</u></b>");
 				output2("\n<b>* Brandy:</b> Met her");
 				if(flags["SUCKLED_BRANDY"] != undefined) output2("\n<b>* Brandy, Times Suckled:</b> " + flags["SUCKLED_BRANDY"]);
-				if(flags["BRANDY_MISSIONARY"] != undefined) output2("\n<b>* Brandy, Times Fucked Her Vagina:</b> " + flags["BRANDY_MISSIONARY"]);
+				if(flags["BRANDY_MISSIONARY"] != undefined) output2("\n<b>* Brandy, Times Missionary Fucked Her:</b> " + flags["BRANDY_MISSIONARY"]);
 				if(flags["BRANDY_MISCREANTED"] != undefined) output2("\n<b>* Brandy, Times Sexed at Miscreant Manor:</b> " + flags["BRANDY_MISCREANTED"]);
 				if(flags["BRANDY_STALLED"] != undefined) output2("\n<b>* Brandy, Times Sexed in Stall:</b> " + flags["BRANDY_STALLED"]);
 				variousCount++;
