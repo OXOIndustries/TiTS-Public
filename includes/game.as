@@ -2410,6 +2410,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		seraOnTavrosObedience(totalDays);
 		processGastigothEvents();
 		breedwellTryUnlock();
+		//9999 processQuaellePregEvents(deltaT, doOut, totalDays);
 	}
 	
 	var totalHours:uint = Math.floor((minutes + deltaT) / 60);

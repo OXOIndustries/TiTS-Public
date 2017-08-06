@@ -261,9 +261,11 @@ public function quelleIsLover():Boolean
 	// 9999
 	return false;
 }
-public function quelleIsPregnant():Boolean
+public function quelleIsPregnant(vIdx:int = -1):Boolean
 {
-	return (flags["QUAELLE_INCUBATION_TIMER_F"] == undefined || flags["QUAELLE_INCUBATION_TIMER_B"] == undefined);
+	if(vIdx == 0) return (quelleBellyRatingFront() > 0);
+	if(vIdx == 1) return (quelleBellyRatingBack() > 0);
+	return (quelleBellyRatingFront() + quelleBellyRatingBack() > 0);
 }
 public function quelleIncubationDays():Number
 {
@@ -283,25 +285,28 @@ public function quelleBellyRatingBack():Number
 }
 public function quelleIsImmobile():Boolean
 {
-	return (quelleBellyRatingFront() >= 50 && quelleBellyRatingBack() >= 50);
+	return (quelleIsPregnant() && quelleBellyRatingFront() >= 50 && quelleBellyRatingBack() >= 50);
 }
 public function processQuaellePregEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
 {
 	if(flags["QUAELLE_INCUBATION_TIMER_F"] != undefined) flags["QUAELLE_INCUBATION_TIMER_F"] += totalDays;
 	if(flags["QUAELLE_INCUBATION_TIMER_B"] != undefined) flags["QUAELLE_INCUBATION_TIMER_B"] += totalDays;
 }
-public function knockUpQuaelleChance(vIdx:int = 0):void
+public function knockUpQuaelleChance(vIdx:int = -1):void
 {
-	var bonusChance:int = pc.cumQ()/ 50 + 10;
-	if(bonusChance > 25) bonusChance = 25;
-	bonusChance *= pc.virility();
-	if(bonusChance > 75) bonusChance = 75;
-
-	if(rand(100) + 1 <= bonusChance)
+	if(!quelleIsPregnant(vIdx))
 	{
-		if(vIdx == 0) flags["QUAELLE_INCUBATION_TIMER_F"] = 0;
-		if(vIdx == 1) flags["QUAELLE_INCUBATION_TIMER_B"] = 0;
-		pc.clearRut();
+		var bonusChance:int = pc.cumQ()/ 50 + 10;
+		if(bonusChance > 25) bonusChance = 25;
+		bonusChance *= pc.virility();
+		if(bonusChance > 75) bonusChance = 75;
+
+		if(rand(100) + 1 <= bonusChance)
+		{
+			if(vIdx == -1 || vIdx == 0) flags["QUAELLE_INCUBATION_TIMER_F"] = 0;
+			if(vIdx == -1 || vIdx == 1) flags["QUAELLE_INCUBATION_TIMER_B"] = 0;
+			pc.clearRut();
+		}
 	}
 }
 public function quaelleCleanupPregnancy(pregSlot:int = 0):void
@@ -348,31 +353,34 @@ public function quaelleAppearance():void
 	// is Preggers
 	if(quelleIsPregnant())
 	{
+		var bellyF:Number = quelleBellyRatingFront();
+		var bellyB:Number =  quelleBellyRatingBack();
+		
 		// Front only
-		if(quelleBellyRatingFront() >= 10 && quelleBellyRatingBack() < 10)
+		if(bellyF >= 10 && bellyB < 10)
 		{
 			// Lightly pregnant, front only:
-			if(quelleBellyRatingFront() < 30) output("\n\nShe looks a tad swollen around the front.");
+			if(bellyF < 30) output("\n\nShe looks a tad swollen around the front.");
 			// Moderately pregnant, front only:
-			else if(quelleBellyRatingFront() < 50) output("\n\nShe’s got an undeniable baby belly now, stretching the front of her dress. It’s carried easily by a frame all but meant to bear kids.");
+			else if(bellyF < 50) output("\n\nShe’s got an undeniable baby belly now, stretching the front of her dress. It’s carried easily by a frame all but meant to bear kids.");
 			// Heavily pregnant, front only:
 			else output("\n\nShe is flush and ripe with her pregnancy now, belly massively protuberant, her swollen breasts resting on top of it. If you thought Quaelle was complacent and serene before, it’s nothing on the place she’s at now; she looks like she’s simmering in some unknowable peace, seemingly set to slow motion in comparison to everyone around her.");
 		}
 		// Back only
-		else if(quelleBellyRatingBack() >= 10 && quelleBellyRatingFront() < 10)
+		else if(bellyB >= 10 && bellyF < 10)
 		{
 			// Lightly pregnant, back only:
-			if(quelleBellyRatingBack() < 30) output("\n\nIs her uniped base slightly more rounded than it was before?");
+			if(bellyB < 30) output("\n\nIs her uniped base slightly more rounded than it was before?");
 			// Moderately pregnant, back only:
-			else if(quelleBellyRatingBack() < 50) output("\n\nHer gastropod end is definitely swollen with pregnancy now, the flesh around her end tautening nicely. She moves around with more care, being careful not to bump it into furniture.");
+			else if(bellyB < 50) output("\n\nHer gastropod end is definitely swollen with pregnancy now, the flesh around her end tautening nicely. She moves around with more care, being careful not to bump it into furniture.");
 			// Heavily pregnant, back only:
 			else output("\n\nHer gastropod end is heavily pregnant now, orange spots taut with the bellyful of life she’s carrying. If you thought Quaelle was complacent and serene before, it’s nothing on where she is now; she looks like she’s simmering in some unknowable peace, seemingly set to slow motion in comparison to everyone around her.");
 		}
 		// Both
-		else if(quelleBellyRatingFront() >= 10 && quelleBellyRatingBack() >= 10)
+		else if(bellyF >= 10 && bellyB >= 10)
 		{
 			// Front pregnant light, back pregnant light-moderate:
-			if(quelleBellyRatingFront() < 30 && quelleBellyRatingBack() < 30) output("\n\nShe looks a tad swollen, both around the front and around her tail.");
+			if(bellyF < 30 && bellyB < 30) output("\n\nShe looks a tad swollen, both around the front and around her tail.");
 			// Front pregnant moderate, back pregnant light-moderate:
 			else output("\n\nShe’s got an undeniable baby belly now, stretching the front of her dress. Not only that, her thick back quarters also look swollen, taut and gravid.");
 		}
