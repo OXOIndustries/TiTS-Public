@@ -640,6 +640,11 @@ public function paigesUnitDurhurrrrrrrrrrFenWroteUNIT():Boolean
 		addButton(0,"Next",firstPaigeHousemeet);
 		return true;
 	}
+	if(flags["PAIGE_TALK_SELF"] != undefined && flags["PAIGE_TALK_SELF"] >= 4 && flags["SEXED_PAIGE"] == undefined) 
+	{
+		paigeSexPrologue();
+		return true;
+	}
 	// PC enters Paige’s Unit any time between 17:00 and 00:00 after scene: Paige 1 (scene: Paige Select 1)
 	else if(flags["SEXED_PAIGE"] == undefined)
 	{
@@ -984,12 +989,6 @@ public function paigePirateTalk2():void
 
 // Play the following scene when the PC enters Paige’s Unit after they’ve seen scene: Paige 5 for the first time
 // (scene: Sex Prologue)
-/*9999 link up for sex intro! 
-if(flags["PAIGE_TALK_SELF"] != undefined && flags["PAIGE_TALK_SELF"] >= 4 && flags["SEXED_PAIGE"] == undefined) 
-{
-	paigeSexPrologue();
-	return true;
-}*/
 public function paigeSexPrologue():void
 {
 	clearOutput();
@@ -1074,7 +1073,8 @@ public function paigeSexPrologue2():void
 	pc.lust(50);
 	// end scene (scene: Sex Prologue 2)
 	// refer to Sex With Paige document (scene: First Time) to proceed
-	//9999
+	clearMenu();
+	addButton(0,"Next",paigeFirstTimeIntro);
 }
 
 //[=About Iddi=]
