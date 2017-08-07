@@ -309,10 +309,10 @@ public function knockUpQuaelleChance(vIdx:int = -1):void
 		}
 	}
 }
-public function quaelleCleanupPregnancy(pregSlot:int = 0):void
+public function quaelleCleanupPregnancy(pregSlot:int = -1):void
 {
-	if(pregSlot == 0) flags["QUAELLE_INCUBATION_TIMER_F"] = undefined;
-	if(pregSlot == 1) flags["QUAELLE_INCUBATION_TIMER_B"] = undefined;
+	if(pregSlot == -1 || pregSlot == 0) flags["QUAELLE_INCUBATION_TIMER_F"] = undefined;
+	if(pregSlot == -1 || pregSlot == 1) flags["QUAELLE_INCUBATION_TIMER_B"] = undefined;
 }
 
 // [Quaelle]
