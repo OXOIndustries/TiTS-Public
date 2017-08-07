@@ -1089,6 +1089,7 @@ public function getEggedByCrystalGoo():void
 	if(bEmptyVagina) output("womb");
 	else output("gut");
 	output(". Maybe you’ll have some royal daughters before long...");
+	output("\n\n");
 	//set up some pregger shit
 	
 	if (flags["CRYSTAL_GOO_GLORYHOLED"] == 1)

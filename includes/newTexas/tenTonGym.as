@@ -51,8 +51,7 @@ public function passDetector():Boolean
 		clearOutput();
 		showName("NONE\nSHALL PASS");
 		output("A strong arm bars your progress. <i>“Whoah! Sorry, but ya got ta have a pass to use the facilities.”</i>");
-		currentLocation = "569";
-		generateMap();
+		moveTo("569");
 		showName("TEN\nTON GYM");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -566,8 +565,7 @@ public function quentonPersonalTraining():void
 		
 		rooms["569"].removeFlag(GLOBAL.NPC);
 		rooms["TEN TON OFFICE"].addFlag(GLOBAL.NPC);
-		currentLocation = "TEN TON OFFICE";
-		generateMap();
+		moveTo("TEN TON OFFICE");
 		
 		output("\n\nDamn right you are. Quenton props a sign that says ‘Be Back Soon’ on the desk, then opens up the door to his office and invites you in, closing the door behind you both.");
 		output("\n\nQuenton’s office is small but simple, with a desk and cabinet taking up about half of it. Lights shine down from the ceiling, and two of the walls are nothing but enormous mirrors.");

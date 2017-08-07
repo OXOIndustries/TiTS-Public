@@ -62,8 +62,7 @@ public function uvetoKaedeRainCheck():void
 
 public function uvetoKaedeSure():void
 {
-	currentLocation = "UVS B7";
-	generateMap();
+	moveTo("UVS B7");
 	
 	clearOutput();
 	kaedeHeader();
@@ -443,8 +442,7 @@ public function uvetoKaedeNotToday():void
 
 public function uvetoKaedeSEXYTIMESENSUE():void
 {
-	currentLocation = "UVS F15";
-	generateMap();
+	moveTo("UVS F15");
 	
 	clearOutput();
 	kaedeHeader();

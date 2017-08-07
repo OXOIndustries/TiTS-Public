@@ -993,7 +993,7 @@ public function annoKaedeTiddyDrama():void
 	}
 	output("\n\nNo doubt you’ll need to stop and get moving again soon, but for now you can lie here and savor the moment with your cum-covered lover.");
 	clearMenu();
-	addButton(0,"Next",venusDreamEpilogue);
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Demon Dream

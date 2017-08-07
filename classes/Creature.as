@@ -3783,6 +3783,7 @@
 				if(hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) muskLevel += 2;
 			}
 			if(accessory is Allure) muskLevel += 1;
+			if(hasStatusEffect("Roehm Slimed")) muskLevel += Math.min((statusEffectv4("Roehm Slimed") * 3), statusEffectv3("Roehm Slimed"));
 			
 			return muskLevel;
 		}
@@ -4348,8 +4349,12 @@
 			if (hasStatusEffect("Myr Venom Withdrawal")) currLib /= 2;
 			if (hasStatusEffect("Mare Musk")) currLib += 10;
 			if (hasStatusEffect("Adorahol")) currLib += (5 * statusEffectv1("Adorahol"));
-			if (hasPerk("Slut Stamp") && hasGenitals() && isCrotchGarbed()) currLib += perkv1("Slut Stamp");
-			if (perkv1("Dumb4Cum") > 24) currLib += perkv1("Dumb4Cum")-24;
+			if (hasGenitals() && isCrotchGarbed())
+			{
+				if (hasPerk("Slut Stamp"))currLib += perkv1("Slut Stamp");
+				if (hasPerk("Barcoded")) currLib += 10;
+			}
+			if (perkv1("Dumb4Cum") > 24) currLib += (perkv1("Dumb4Cum") - 24);
 			currLib += statusEffectv3("Heat");
 			currLib += statusEffectv1("Rut");
 			currLib += statusEffectv1("Lagonic Rut");
@@ -4392,7 +4397,7 @@
 			//Temporary Stuff
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
 			if (hasStatusEffect("Aphrodisiac Milk")) bonus += 33;
-			if (perkv1("Dumb4Cum") > 24) bonus += perkv1("Dumb4Cum")-24;
+			if (perkv1("Dumb4Cum") > 24) bonus += (perkv1("Dumb4Cum") - 24);
 			if (hasStatusEffect("Adorahol")) bonus += (5 * statusEffectv1("Adorahol"));
 			bonus += statusEffectv1("Sexy Costume");
 			bonus += statusEffectv4("Priapin");
@@ -4436,19 +4441,15 @@
 			var bonuses:int = 0;
 			if(hasPerk("Cybernetic Synchronization")) bonuses += (perkv1("Cybernetic Synchronization") * cyborgScore());
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
-			if(hasPerk("Dumb4Cum"))
-			{
-				bonuses += level;
-				if(perkv1("Dumb4Cum") > 24) bonuses -= (perkv1("Dumb4Cum") - 24);
-			}
-
+			if(hasPerk("Dumb4Cum")) bonuses += level*2;
+			
 			var amount:Number = ((level * 5) + bonuses);
 			if(amount < Creature.STAT_CLAMP_VALUE) amount = Creature.STAT_CLAMP_VALUE;
 			return amount;
 		}
 		public function willpowerMax(): Number {
 			var bonuses:int = 0;
-			if(hasPerk("Iron Will")) bonuses += Math.floor(physiqueMax()/5);
+			//if(hasPerk("Iron Will")) bonuses += Math.floor(physiqueMax()/5);
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
 			return ((level * 5) + bonuses);
 		}
@@ -4456,15 +4457,18 @@
 			var bonuses:int = 0;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 50;
 			if(hasPerk("Slut Stamp")) bonuses += perkv3("Slut Stamp");
+			if(hasPerk("Barcoded")) bonuses += 10;
 			return (100 + bonuses);
 		}
 		public function libidoMin(): Number {
 			var bonus:int = 0;
 			if(hasPerk("Drug Fucked")) bonus += 40;
 			if(hasPerk("Slut Stamp")) bonus += perkv2("Slut Stamp");
+			if(hasPerk("Barcoded")) bonus += 10;
 			if(perkv1("Flower Power") > 0) bonus += perkv3("Flower Power");
 			// Slave collar increases minimum by set level.
 			if(hasStatusEffect("Psi Slave Collar")) bonus += statusEffectv3("Psi Slave Collar");
+			if(hasStatusEffect("Roehm Slimed")) bonus += statusEffectv1("Roehm Slimed");
 			return (0 + bonus);
 		}
 		public function slowStatLoss(stat:String, arg:Number = 0):Number
@@ -4897,6 +4901,7 @@
 			if (hasStatusEffect("Resolve")) temp += 50;
 			if (hasStatusEffect("Spear Wall")) temp += 50;
 			if (hasStatusEffect("Leech Empowerment")) temp += 50;
+			if (hasStatusEffect("Roehm Slimed")) temp += statusEffectv2("Roehm Slimed");
 			temp += statusEffectv2("Water Veil");
 			temp += statusEffectv2("Deep Freeze");
 			temp += statusEffectv1("Evasion Boost");
@@ -16673,8 +16678,8 @@
 		public function virility(arg:Number = 0):Number
 		{
 			return cumQuality(arg);
-			}
-			
+		}
+		
 		public var pregnancyIncubationBonusFatherRaw:Number = 1;
 		public var pregnancyIncubationBonusFatherMod:Number = 0;
 		public function pregnancyIncubationBonusFather():Number

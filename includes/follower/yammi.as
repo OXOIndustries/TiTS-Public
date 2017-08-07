@@ -133,8 +133,7 @@ public function acceptYammiBunsInShip():void
 	flags["YAMMI_RECRUITED"] = 1;
 	flags["YAMMI_IS_CREW"] = 1;
 	processTime(8);
-	currentLocation = "507";
-	generateMap();
+	moveTo("507");
 	pc.createStatusEffect("Iced Teats Closed", 0, 0, 0, 0, true, "", "", false, 1440);
 	clearMenu();
 	addButton(0,"Next",move,"SHIP INTERIOR");
@@ -151,8 +150,7 @@ public function declineYammiBunsInShip():void
 	output("\n\nYou wish her all the best and point her to the spaceport just down the way. She gives you a parting peck on the cheek before spinning on a heel and marching off, to new adventures.");
 	flags["YAMMI_RECRUITED"] = -1;
 	processTime(2);
-	currentLocation = "507";
-	generateMap();
+	moveTo("507");
 	pc.createStatusEffect("Iced Teats Closed", 0, 0, 0, 0, true, "", "", false, 1440);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

@@ -1627,8 +1627,7 @@ public function roughButtfuckFromKiroGo(threesomeTalkIntro:Boolean = false):void
 	//flags["BF_STORAGE"] = currentLocation;
 	if(threesomeTalkIntro)
 	{
-		currentLocation = "KIROS SHIP QUARTERS";
-		generateMap();
+		moveTo("KIROS SHIP QUARTERS");
 		if(flags["KIRO_MET_KALLY"] == 3) flags["KIRO_MET_KALLY"] = 4;
 		if(flags["MET_KALLY"] == undefined) flags["MET_KALLY"] = 1;
 	}
@@ -1981,8 +1980,7 @@ public function roughButtfuckFromKiroPart2():void
 //[Yes]
 public function yesKiroLetsShower():void
 {
-	currentLocation = shipLocation;
-	generateMap();
+	moveTo(shipLocation);
 	clearOutput();
 	showKiro(true);
 	output("You both do your best to clean up. Kiro seems particularly affectionate after all that, letting you know ");
@@ -2002,8 +2000,7 @@ public function yesKiroLetsShower():void
 //[No]
 public function noKiroLetsNotShower():void
 {
-	currentLocation = shipLocation;
-	generateMap();
+	moveTo(shipLocation);
 	clearOutput();
 	showKiro(true);
 	output("You slink out of the ship and back to your own, trailing Kiro’s cum behind you as you go. Everyone you pass can see and smell what she did to you. The ");
@@ -2294,8 +2291,7 @@ public function tapKallysKegAsBimboII():void
 
 public function kallyCumCascade4BimbosCompletion():void
 {
-	currentLocation = "CANADA9";
-	generateMap();
+	moveTo("CANADA9");
 	
 	clearOutput();
 	showKally();
@@ -2388,8 +2384,7 @@ public function kallyBroCunnilingus2():void
 {
 	clearOutput();
 	showKally();
-	currentLocation = "CANADA8";
-	generateMap();
+	moveTo("CANADA8");
 	output("The cock-thirsty kui-tan somehow manages to unlock her room for you. Then she realizes how rich her own hands have grown with dickmusk and sniffs them, lavishing them with licks when she needs to reluctantly exhale. She’s a ragdoll in your arms, which is all girls need to be, really. They can’t be expected to maintain things like muscle control when a big ol’ dick is splitting them out, driving every thought out of their silly little brains.");
 	output("\n\nYou flip her around so that her legs are up in the air, spread wide by gravity as much as their own libidinous desires. Her dick ");
 	if(pc.biggestTitSize() >= 2) output("threads its way through your cleavage");
@@ -3353,8 +3348,7 @@ public function kiroAndKallyGoToGetMilkedThreesome():void
 {
 	clearOutput();
 	showKallyAndKiro();
-	currentLocation = shipLocation;
-	generateMap();
+	moveTo(shipLocation);
 	author("Sir Fensalot");
 	//Milking Parlor Fun~
 	output("When you look between Kally and Kiro with a flirtatious look in your eyes, the curvy bartender smiles warmly. Her eyes dart between her sister and you, languidly following the exquisitely curved arc of your [pc.sack] before focusing in on Kiro’s well-emptied pouch. <i>“You really ought to take better care of your ");
@@ -3839,8 +3833,7 @@ public function rahnMilkerFunTimes(arg:String):void
 public function noVixetteCumSlurpies(arg:String):void
 {
 	clearOutput();
-	currentLocation = shipLocation;
-	generateMap();
+	moveTo(shipLocation);
 	showKallyAndKiroAndVixette();
 	author("Fenoxo");
 	output("You politely inform the sister’s that you should probably be on your way.");
@@ -4005,8 +3998,7 @@ public function vixetteCleaningEnd(arg:String):void
 	teamMilkingAfterEffects(arg);
 	processTime(5);
 	clearMenu();
-	currentLocation = shipLocation;
-	generateMap();
+	moveTo(shipLocation);
 	IncrementFlag("VIXETTE_MOUTHGASMED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

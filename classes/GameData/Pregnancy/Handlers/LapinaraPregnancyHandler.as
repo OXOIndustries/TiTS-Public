@@ -428,7 +428,7 @@ package classes.GameData.Pregnancy.Handlers
 				AddLogEvent(buffer);
 			}, true);
 			_onSuccessfulImpregnation = lapinaraOnSuccessfulImpregnation;
-			_onSuccessfulImpregnationOutput = BasePregnancyHandler.defaultOnSuccessfulImpregnationOutput;
+			_onSuccessfulImpregnationOutput = lapinaraOnSuccessfulImpregnationOutput;
 			_onDurationEnd = lapinaraOnDurationEnd;
 		}
 		public function lapiPregModMax(part:String = "hip"):Number 

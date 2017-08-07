@@ -1080,8 +1080,7 @@ public function seraNurseryActions(arg:Array):void
 			break;
 		case "visit next":
 			// Move to Dormitory square
-			currentLocation = "NURSERYI16";
-			generateMap();
+			moveTo("NURSERYI16");
 			showLocationName();
 			
 			// Randomly selected
@@ -1125,8 +1124,7 @@ public function seraNurseryActions(arg:Array):void
 			addButton(0, "Next", seraNurseryActions, ["visit done", babyIdx, babym, babyName]);
 			break;
 		case "visit done":
-			currentLocation = "NURSERYG12";
-			generateMap();
+			moveTo("NURSERYG12");
 			showLocationName();
 			
 			// If PC has seen all four:
@@ -1182,8 +1180,7 @@ public function seraNurseryActions(arg:Array):void
 			break;
 		case "play next":
 			// Move to common room square
-			currentLocation = "NURSERYE12";
-			generateMap();
+			moveTo("NURSERYE12");
 			showLocationName();
 			
 			// Randomly selected
@@ -1246,8 +1243,7 @@ public function seraNurseryActions(arg:Array):void
 			addButton(0, "Next", seraNurseryActions, ["play done", babyIdx, babym, babyName]);
 			break;
 		case "play done":
-			currentLocation = "NURSERYG12";
-			generateMap();
+			moveTo("NURSERYG12");
 			showLocationName();
 			
 			output("<i>“You know, I’m definitely warming to the whole parenting thing,”</i> says Sera a little while later, happily reseating herself at her cafeteria table. <i>“Dunno why I was so hostile to the idea to begin with.”</i>");

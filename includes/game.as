@@ -203,10 +203,6 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	if (!disableExploreEvents())
 	{
 		if (tryEncounterFreedomBeef()) return;
-		if (currentLocation == shipLocation)
-		{
-			if(seraRecruited() && seranigansTrigger("hijacked")) return;
-		}
 	}
 	
 	if(inCombat())
@@ -1317,13 +1313,7 @@ public function shipMenu():Boolean
 public function flyMenu():void
 {
 	clearOutput();
-
-	//Start the stuff to unlock flying to space jail...
-	if(flags["TARKUS_BOMB_TIMER"] == 0 && !pc.hasStatusEffect("GastiUnlockTimer"))
-	{
-		prisonerSent(3);
-	}
-
+	
 	//Make sure you can leave the planet!
 	if(!leavePlanetOK())
 	{
@@ -1412,14 +1402,25 @@ public function flyMenu():void
 	//Gastigoth
 	if(MailManager.isEntryViewed("gastigoth_unlock"))
 	{
-		if(shipLocation == "K16_DOCK") addDisabledButton(9,"Gastigoth","Gastigoth","You're already there!");
+		if(shipLocation == "K16_DOCK") addDisabledButton(9,"Gastigoth","Gastigoth","You’re already here!");
 		else addButton(9,"Gastigoth",flyTo,"Gastigoth");
 	}
-	else addDisabledButton(9,"Locked","Locked","You have not learned of this location's coordinates yet.");
+	else addDisabledButton(9,"Locked","Locked","You have not learned of this location’s coordinates yet.");
+	//Breedwell
+	if(MailManager.isEntryViewed("breedwell_unlock"))
+	{
+		// PC must not be a taur, infertile or e.g. on Sterilex to choose this option before they’ve been there at all.
+		if(shipLocation == "BREEDWELL_DOCK") addDisabledButton(10, "Breedwell", "Breedwell Centre", "You’re already here.");
+		else if(!pc.hasGenitals()) addDisabledButton(10, "Breedwell", "Breedwell Centre", "It might be a pointless journey if you have no genitals to make use of this location...");
+		else if((pc.hasVagina() && pc.fertility() <= 0) || (pc.hasCock() && pc.virility() <= 0)) addDisabledButton(10, "Breedwell", "Breedwell Centre", "Probably unwise to check this place out whilst you’re infertile. The ad gave you the distinct impression that the Breedwell Centre was counting on you being... fruitful.");
+		else if(pc.isTaur()) addDisabledButton(10, "Breedwell", "Breedwell Centre", "One of the disclaimers from the ad did stick with you: <i>“Tauric beings not supported”</i>. Gobsmacking discrimination, really.");
+		else addButton(10, "Breedwell", flyTo, "Breedwell");
+	}
+	else addDisabledButton(10, "Locked", "Locked", "You have not learned of this location’s coordinates yet.");
 	//KQ2
 	if (flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_DETAILED"] == undefined)
 	{
-		addButton(10, "Kara", flyTo, "karaQuest2", "Kara", "Go see what Kara has up her sleeve.");
+		addButton(11, "Kara", flyTo, "karaQuest2", "Kara", "Go see what Kara has up her sleeve.");
 	}
 	
 	addButton(14, "Back", mainGameMenu);
@@ -1518,6 +1519,11 @@ public function flyTo(arg:String):void
 			shipLocation = "K16_DOCK";
 			currentLocation = "K16_DOCK";
 			arrivalAtGastibooty();
+			break;
+		case "Breedwell":
+			shipLocation = "BREEDWELL_HANGAR";
+			currentLocation = "BREEDWELL_HANGAR";
+			interruptMenu = flyToBreedwell();
 			break;
 	}
 	
@@ -1720,8 +1726,7 @@ public function sneakBackYouNudist():void
 	clearOutput();
 	output("You meticulously make your way back to the ship using every ounce of subtlety you possess. It takes way longer than you would have thought thanks to a couple of near-misses, but you make it safe and sound to the interior of your craft.");
 	processTime(180+rand(30));
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1748,7 +1753,13 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	}
 	//Reset the thing that disabled encounters
 	flags["ENCOUNTERS_DISABLED"] = undefined;
-
+	
+	//Procs on approaching ship dock:
+	if (arg == shipLocation)
+	{
+		if(disableExploreEvents() && currentLocation != "SHIP INTERIOR" && seranigansTrigger("hijacked")) return;
+	}
+	
 	//Procs on ship exit:
 	if(currentLocation == "SHIP INTERIOR")
 	{
@@ -1788,15 +1799,21 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	if(moveMinutes < 0) moveMinutes = 0;
 	StatTracking.track("movement/time travelled", moveMinutes);
 	processTime(moveMinutes);
-	flags["PREV_LOCATION"] = currentLocation;
-	currentLocation = arg;
-	generateMap();
+	moveTo(arg, true);
 	if(pc.hasStatusEffect("Treatment Exhibitionism Gain 4 DickGirls") && pc.hasCock() && rooms[arg].hasFlag(GLOBAL.PUBLIC)) treatmentCumCowExhibitionism();
 	if(pc.hasPerk("Ultra-Exhibitionist")) exhibitionismLocationToggle();
 	trace("Printing map for " + currentLocation);
 	//mapper.printMap(map);
 	//process time here, then back to mainGameMenu!
 	if(goToMainMenu) mainGameMenu(moveMinutes);
+}
+// Place PC and update map!
+// No time or event triggers.
+public function moveTo(arg:String, logPrevious:Boolean = false):void
+{
+	if(logPrevious) flags["PREV_LOCATION"] = currentLocation;
+	currentLocation = arg;
+	generateMap();
 }
 
 public function variableRoomUpdateCheck():void
@@ -2393,6 +2410,9 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		geneSubmissionLevelDecay(totalDays);
 		seraBitcheningStoreInventory(totalDays);
 		seraOnTavrosObedience(totalDays);
+		processGastigothEvents();
+		breedwellTryUnlock();
+		//9999 processQuaellePregEvents(deltaT, doOut, totalDays);
 	}
 	
 	var totalHours:uint = Math.floor((minutes + deltaT) / 60);

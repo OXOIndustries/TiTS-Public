@@ -285,8 +285,7 @@ public function erraSexGOOO(shortIntro:Boolean = false):void
 		pc.lust(15);
 	}
 	
-	currentLocation = "ERRAS SHIP";
-	generateMap();
+	moveTo("ERRAS SHIP");
 	
 	clearMenu();
 	//[Good girl] Reward your puppy with some vaginal lovin’.

@@ -15,8 +15,7 @@ public function showHoliday(arg:String = "normal"):void
 
 public function halloweenShipMove():void
 {
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	showLocationName();
 	clearBust();
 }

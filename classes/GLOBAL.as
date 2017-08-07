@@ -223,6 +223,7 @@
 		public static const TYPE_LUPINE:int 								= 75;
 		public static const TYPE_SHEEP:int 									= 76;
 		public static const TYPE_REDPANDA:int 								= 77;
+		public static const TYPE_RAHN:int 									= 78;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -303,6 +304,7 @@
 			"Lupine",
 			"Sheep",
 			"Lesser Panda",
+			"Rahn",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [

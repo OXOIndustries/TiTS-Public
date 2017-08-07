@@ -914,8 +914,7 @@ public function goArcade():void
 	showFisi();
 	clearMenu();
 	
-	currentLocation = "MERCHANT'S THOROUGHFARE2";
-	generateMap();
+	moveTo("MERCHANT'S THOROUGHFARE2");
 	
 	flags["FISI_TRUST"] += 5;
 	if (flags["FISI_TRUST"] > 100) flags["FISI_TRUST"] = 100;
@@ -1035,8 +1034,7 @@ public function goShopping():void
 	showFisi();
 	clearMenu();
 	
-	currentLocation = "MERCHANT'S THOROUGHFARE2";
-	generateMap();
+	moveTo("MERCHANT'S THOROUGHFARE2");
 	
 	flags["FISI_TRUST"] += 5;
 	if (flags["FISI_TRUST"] > 100) flags["FISI_TRUST"] = 100;
@@ -1160,8 +1158,7 @@ public function goMovies():void
 	showFisi();
 	clearMenu();
 	
-	currentLocation = "MERCHANT'S THOROUGHFARE2";
-	generateMap();
+	moveTo("MERCHANT'S THOROUGHFARE2");
 	
 	flags["FISI_TRUST"] += 5;
 	if (flags["FISI_TRUST"] > 100) flags["FISI_TRUST"] = 100;
@@ -1312,8 +1309,7 @@ public function goSleepover2():void
 	showFisi();
 	clearMenu();
 	
-	currentLocation = "RESIDENTIAL DECK FISIS APARTMENT";
-	generateMap();
+	moveTo("RESIDENTIAL DECK FISIS APARTMENT");
 	
 	output("When the time arrives for Fisianna’s sleepover, you gather your belongings and make your way off of your ship wearing the best pair of pajamas you could find. You head up the elevator and out to the residential deck. Heading northwards you come across a lot of plain looking apartments while looking for Fisianna’s place. Eventually you find apartment number 124 and ring the buzzer to let Fisianna know you are outside.");
 	output("\n\nWhen the door opens, you are greeted by the smiling feline. <i>“[pc.name]! I’m glad you’re here! Please come in!”</i> Fisianna steps aside to let you into her apartment. When inside you notice that all of Fisianna’s friends are already here and setting up her home gaming rig. You notice that everyone are wearing different variations of tank tops with knee length pajama bottoms. It really shows off their figures quite well. They all give you a short hello and wave before concentrating their attention back on the gaming rig.");
@@ -1449,8 +1445,7 @@ public function dateFisi():void
 
 public function firstDateFisi():void
 {
-	currentLocation = "MERCHANT'S THOROUGHFARE2";
-	generateMap();
+	moveTo("MERCHANT'S THOROUGHFARE2");
 	
 	output("You ask Fisianna if she would like to go on a date with you, now that the two of you are a couple. Her ears perk up and her tails wiggle faster behind her when you raise the question of going out somewhere with her.");
 	output("\n\n<i>“S-sure! I’d love to go with you! Was there anywhere you had in mind?”</i> Fisianna asks sweetly.");
@@ -1530,8 +1525,7 @@ public function thirdDateFisi():void
 
 public function fourthDateFisi():void
 {
-	currentLocation = "RESIDENTIAL DECK FISIS APARTMENT";
-	generateMap();
+	moveTo("RESIDENTIAL DECK FISIS APARTMENT");
 	
 	output("You ask Fisianna if she would like to go on another date with you. Your feline lover shifts in her seat nervously, her ears lowering to their sides and she fiddles with one of her tails.");
 	output("\n\n<i>“U-um... actually, I-I was kinda thinking... d-did you wanna... come over to my apartment for today?”</i> Before you can answer back, Fisianna adds, <i>“O-oh, I wanted to show you the AI I’ve been working on for a while, the one I mentioned a while back?”</i>");
@@ -1578,8 +1572,7 @@ public function fourthDateFisi():void
 
 public function fifthDateFisi():void
 {
-	currentLocation = "ANON'S BAR AND BOARD";
-	generateMap();
+	moveTo("ANON'S BAR AND BOARD");
 	
 	output("<i>“A-actually, I’ve been wondering...”</i> Fisianna has a faraway look in her golden eyes as she stares thoughtfully ahead. <i>“This time, would you want to go to Anon’s with me for our next date?”</i> Fisianna looks at you with a sweet smile on her peachy lips. ");
 	output("\n\n<i>“Fisianna, I didn’t take you to be the type to want to hang out at seedy bars...”</i> The surprise on your face must be very apparent since Fisianna giggles at your expression.");
@@ -1644,8 +1637,7 @@ public function fifthDateFisi():void
 
 public function sixthDateFisi():void
 {
-	currentLocation = "RESIDENTIAL DECK FISIS APARTMENT";
-	generateMap();
+	moveTo("RESIDENTIAL DECK FISIS APARTMENT");
 	
 	output("You bring up the prospect of going out somewhere with Fisianna again. She looks down and away for a moment and looks back into your eyes with hesitation.");
 	output("\n\n<i>“Mmm... a-after last time, I-I don’t know if I want to go somewhere public for a little while.”</i> Fisianna looks downward at you with a sad expression on her face. You start to feel a little disappointed as well, cursing the zil that interrupted things the last time you and Fisianna went out. You unconsciously grab your feline lover’s paw and squeeze it gently. She looks up into your eyes again, her facial expression changing slightly after seeing the disappointment on your face.");
@@ -1750,8 +1742,7 @@ public function sexFisi():void
 	showFisi();
 	clearMenu();
 	
-	currentLocation = "RESIDENTIAL DECK FISIS APARTMENT";
-	generateMap();
+	moveTo("RESIDENTIAL DECK FISIS APARTMENT");
 	
 	IncrementFlag("FISI_TIMES_SEXED");
 	
@@ -1783,8 +1774,7 @@ public function tailjobFisi():void
 	showFisi();
 	clearMenu();
 	
-	currentLocation = "RESIDENTIAL DECK FISIS APARTMENT";
-	generateMap();
+	moveTo("RESIDENTIAL DECK FISIS APARTMENT");
 	
 	IncrementFlag("FISI_TIMES_TJ");
 	
@@ -1905,8 +1895,7 @@ public function eatOutFisi():void
 	showFisi(1);
 	clearMenu();
 	
-	currentLocation = "RESIDENTIAL DECK FISIS APARTMENT";
-	generateMap();
+	moveTo("RESIDENTIAL DECK FISIS APARTMENT");
 	
 	IncrementFlag("FISI_TIMES_EATEN");
 	
@@ -1968,8 +1957,7 @@ public function sixtyNineFisi():void
 	showFisi(1);
 	clearMenu();
 	
-	currentLocation = "RESIDENTIAL DECK FISIS APARTMENT";
-	generateMap();
+	moveTo("RESIDENTIAL DECK FISIS APARTMENT");
 	
 	IncrementFlag("FISI_TIMES_69");
 	
@@ -2069,8 +2057,7 @@ public function vaginalFisi():void
 	showFisi(2);
 	clearMenu();
 	
-	currentLocation = "RESIDENTIAL DECK FISIS APARTMENT";
-	generateMap();
+	moveTo("RESIDENTIAL DECK FISIS APARTMENT");
 	
 	IncrementFlag("FISI_TIMES_VAG");
 	

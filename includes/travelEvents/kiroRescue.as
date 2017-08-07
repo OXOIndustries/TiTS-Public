@@ -905,8 +905,7 @@ public function kirosShipNopeFuckThisShit():void
 	output("\n\nYou throw your hands up and say, <i>“Nope, I’m out. Don’t get paid enough for this shit.”</i> You turn away and run back to your ship, not daring to look back at the monstrously perverted mess behind you. When the familiar flooring of your ship is underfoot once more, you sigh with relief and slam the hatch closed. You can’t fly away quick enough.");
 	
 	//Resume previous travels.
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	flags["RESCUE KIRO FROM BLUEBALLS"] = -1;
 
 	clearMenu();
@@ -937,7 +936,13 @@ public function kirosShipPostFirstFuck():void
 
 	if (flags["RESCUE KIRO TOOK PISTOL"] == 1 || flags["RESCUE KIRO TOOK CUTLASS"] == 1)
 	{
-		output("\n\n<i>“You already took your reward from my cabin. If you hadn’t saved my ass, we’d be tangling over that sweet little gun right now,”</i> Kiro boldly answers.");
+		output("\n\n<i>“You already took your reward from my cabin");
+		if (flags["RESCUE KIRO TOOK PISTOL"] == 1 && flags["RESCUE KIRO TOOK CUTLASS"] == 1) output("--both of them even, you greedy klepto!");
+		else output(".");
+		output("  If you hadn’t saved my ass, we’d be tangling over that sweet");
+		if (flags["RESCUE KIRO TOOK PISTOL"] == 1) output(" little gun");
+		else output(" gear");
+		output(" right now,”</i> Kiro boldly answers.");
 	}
 	else
 	{

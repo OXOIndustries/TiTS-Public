@@ -62,6 +62,7 @@ package classes.Characters
 			
 			armor = new GooeyCoverings();
 			armor.defense = 10;
+			armor.resistances.addFlag(DamageFlag.MIRRORED);
 			armor.hasRandomProperties = true;
 			
 			this.rangedWeapon = new EmptySlot();

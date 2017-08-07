@@ -14,8 +14,7 @@ public function puntToShip():Boolean
 		return true;
 	}
 	output("You really don’t want to step out into the cold void of space. Maybe you should land somewhere?");
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	showLocationName();
 	processTime(1);
 	clearMenu();

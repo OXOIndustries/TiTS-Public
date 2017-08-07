@@ -718,8 +718,7 @@ public function fuckinLeaveTheBessBot():void
 //Take On Ship
 public function takeBessToZeShip():void
 {
-	currentLocation = "SHIP INTERIOR";
-	generateMapForLocation(currentLocation);
+	moveTo("SHIP INTERIOR");
 	flags["BESS_IN_RUBBLE"] = 1; // shit flag name sue me
 	
 	clearOutput();

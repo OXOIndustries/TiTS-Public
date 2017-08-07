@@ -215,6 +215,7 @@ public function configureMails():void
 	MailManager.addMailEntry("kally_kiro_milkvite",kallyKiroMilkvite,"Safety First!","Kally Tamahime","kally@kui_country.cas",quickPCTo,quickPCToAddress);
 	MailManager.addMailEntry("ushamee_meet", ushameeMeetInviteText, "Follow Up on Kashima Incident", "Chief Ushamee Neykkar", "U.Neykkar.7609@Nova.corp", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("gastigoth_unlock",gastigothEmailText, "Exclusive Offer","Regina Kasmiran","DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("breedwell_unlock", breedwellEmailText, "The Breedwell Incubation Centre Needs YOU.", "TamaniCorp", "Marketing@TamaniCorp.corp", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String

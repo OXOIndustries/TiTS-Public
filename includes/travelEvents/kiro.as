@@ -901,8 +901,7 @@ public function drinkingContestGo(cheated:Boolean = false):void{
 //Girls and Unsexed Turned Into a Drunken Cocksleeve
 public function lostTheDrinkingContestWithKiroAndTurnedIntoCocksleeve():void
 {
-	currentLocation = "KIROS SHIP QUARTERS";
-	generateMap();
+	moveTo("KIROS SHIP QUARTERS");
 	
 	clearOutput();
 	showKiro(true);
@@ -954,8 +953,7 @@ public function lostTheDrinkingContestWithKiroAndTurnedIntoCocksleeve():void
 //Unisex Loser Handjob
 public function unisexLostToKiroAndGaveHerAHandJobBecauseDrunkenSluttery():void
 {
-	currentLocation = "KIROS SHIP QUARTERS";
-	generateMap();
+	moveTo("KIROS SHIP QUARTERS");
 	
 	clearOutput();
 	showKiro(true);
@@ -1048,8 +1046,7 @@ public function lostDrankinContestToKiroz():void
 //Drunken Kiro Blowjobs - Slobbery Jaw-Filling Goodness
 public function wonKirosContestLikeAChampAndGotBlown():void
 {
-	currentLocation = "KIROS SHIP QUARTERS";
-	generateMap();
+	moveTo("KIROS SHIP QUARTERS");
 	
 	clearOutput();
 	showKiro(true);
@@ -1118,8 +1115,7 @@ public function wonKirosContestLikeAChampAndGotBlown():void
 //Drunken Kiro Twat Oral
 public function youWinAContestAndKiroSlobbersYerPussy():void
 {
-	currentLocation = "KIROS SHIP QUARTERS";
-	generateMap();
+	moveTo("KIROS SHIP QUARTERS");
 	
 	clearOutput();
 	showKiro(true);
@@ -1559,9 +1555,7 @@ public function letsFuckKiro():void
 	}
 	
 	if(kiroRoughButtfucks() > 0) flags["BF_STORAGE"] = currentLocation;
-	//generateMapForLocation("KIROS SHIP QUARTERS");
-	currentLocation = "KIROS SHIP QUARTERS";
-	generateMap();
+	moveTo("KIROS SHIP QUARTERS", true);
 }
 
 public function kiroBallsSexMenu():void
@@ -2253,9 +2247,7 @@ public function repeatFillingKirosCuntEpilogue():void
 //Milker Doubletime, By Savin
 public function kiroMilkerDoubleTimeBySavin():void
 {
-	//generateMapForLocation("KIROS SPUNK CHAMBER");
-	currentLocation = "KIROS SPUNK CHAMBER";
-	generateMap();
+	moveTo("KIROS SPUNK CHAMBER");
 	
 	clearOutput();
 	showKiro(true);
@@ -3633,8 +3625,7 @@ public function kiroIncestReactionGood():void
 
 public function kiroKallyThreesomesApproach():void
 {
-	currentLocation = "KIROS SHIP QUARTERS";
-	generateMap();
+	moveTo("KIROS SHIP QUARTERS");
 	
 	clearOutput();
 	showKallyAndKiro();
@@ -3688,8 +3679,7 @@ public function kiroKallyThreesomesApproach():void
 
 public function backFromSisterThreesomeMenu():void
 {
-	currentLocation = "CANADA5";
-	generateMap();
+	moveTo("CANADA5");
 	approachKiroAtTheBar(true);
 }
 
@@ -3729,8 +3719,7 @@ public function kiroKallyDoubleMilkingThreesome():void
 
 public function kiroKallyDoubleMilkingThreesome2():void
 {
-	currentLocation = "KIROS SPUNK CHAMBER";
-	generateMap();
+	moveTo("KIROS SPUNK CHAMBER");
 	
 	clearOutput();
 	showKallyAndKiro(true);

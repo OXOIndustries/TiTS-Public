@@ -348,6 +348,10 @@
 		include "../includes/myrellion/xanthe.as";
 		include "../includes/myrellion/xenogenbiotech.as";
 		
+		// Breedwell
+		include "../includes/breedwell/breedwell.as";
+		include "../includes/breedwell/rooms.as";
+		
 		// GASTIGOTH!
 		include "../includes/gastigoth/gastigoth.as";
 		include "../includes/gastigoth/rooms.as";
@@ -551,6 +555,7 @@
 			initGastigothRooms();
 			kiInitRooms();
 			initVesperiaRoom();
+			initBreedwellRooms();
 			
 			mapper = new Mapper(this.rooms)
 

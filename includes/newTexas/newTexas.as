@@ -190,8 +190,7 @@ public function visitorDeskApproach():void
 //output("\n\nTrying to Go Through Customs while Armed");
 public function customsFucksYourShitUp():void
 {
-	currentLocation = "TEXAS CUSTOMS";
-	generateMapForLocation(currentLocation);
+	moveTo("TEXAS CUSTOMS");
 	clearOutput();
 	author("Savin");
 	showName("\nOGRAM");
@@ -1048,9 +1047,8 @@ public function savinAbusesYerButtBecauseThatsHowHeLikesIt():void
 	var iPriceThreshold:int = 150;
 
 	// If threshold is surpassed before the cumming is done. 50% Chance:
-	var cumEstimate:Number = 0;
-	if(pc.cumQ() * 3 >= pc.currentCum()) cumEstimate = pc.cumQ() * 3;
-	else cumEstimate = pc.currentCum();
+	var cumEstimate:Number = cumMilkerCumEstimate();
+	
 	if (cumCreditValue(cumTotal + cumEstimate) > iPriceThreshold)
 	{
 		output("\n\nAll you can do is tightly grip the vaulting horse supporting you, groaning and crying in pleasure as the machine milks your prostate minute after minute.");
@@ -1514,9 +1512,8 @@ public function yesGoMilkarGo(amount:Number = 0):void
 	if(flags["MILK_BARN_COCKMILKER_SCANNED"] != undefined) flags["MILK_BARN_COCKMILKER_SCANNED"] = undefined;
 
 	clearMenu();
-	var cumEstimate:Number = 0;
-	if(pc.cumQ() * 3 >= pc.currentCum()) cumEstimate = pc.cumQ() * 3;
-	else cumEstimate = pc.currentCum();
+	var cumEstimate:Number = cumMilkerCumEstimate();
+	
 	// Uh-oh, silly mode
 	if(amount + cumEstimate > 4000000)
 	{
@@ -1531,6 +1528,11 @@ public function yesGoMilkarGo(amount:Number = 0):void
 		addButton(0,"Yes",yesFixDaMilkar);
 		addButton(1,"No",noFixDaMilkar);
 	}
+}
+public function cumMilkerCumEstimate():Number
+{
+	if(pc.cumQ() * 3 >= pc.currentCum()) return (pc.cumQ() * 3);
+	return pc.currentCum();
 }
 
 // Better safe than sorry--end it nao!
@@ -2230,8 +2232,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 		// First / Threesome
 		case "shower intro":
 			rooms["516"].removeFlag(GLOBAL.NPC);
-			currentLocation = "NT SHOWER HOUSE";
-			generateMap();
+			moveTo("NT SHOWER HOUSE");
 			
 			showLocationName();
 			showBust("CARRIE_NUDE", "CORA_NUDE");
@@ -2335,8 +2336,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			addButton(0, "Next", carrieSoothingShowerGo, "shower threesome end");
 			break;
 		case "shower threesome end":
-			currentLocation = "516";
-			generateMap();
+			moveTo("516");
 			
 			showLocationName();
 			showBust("CARRIE_NUDE", "CORA_NUDE");
@@ -2356,8 +2356,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 		// Repeat
 		case "shower repeat":
 			rooms["516"].removeFlag(GLOBAL.NPC);
-			currentLocation = "NT SHOWER HOUSE";
-			generateMap();
+			moveTo("NT SHOWER HOUSE");
 			
 			showLocationName();
 			showBust("HORISHA_AND_PECK");
@@ -2486,8 +2485,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			addButton(0, "Next", carrieSoothingShowerGo, "shower fivesome p4");
 			break;
 		case "shower fivesome p4":
-			currentLocation = "516";
-			generateMap();
+			moveTo("516");
 			
 			showLocationName();
 			showBust("CARRIE_NUDE", "CORA_NUDE");
@@ -2608,8 +2606,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			useDaMilkarMenu();
 			break;
 		case "sure":
-			currentLocation = "NT BOTTLE TRAIL";
-			generateMap();
+			moveTo("NT BOTTLE TRAIL");
 			
 			showLocationName();
 			showBust("CARRIE");
@@ -2629,8 +2626,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			addButton(1, "Shame", carrieMilkerBadEnd, "shame", "Shame", "Damn shame.");
 			break;
 		case "shame":
-			currentLocation = "516";
-			generateMap();
+			moveTo("516");
 			
 			showLocationName();
 			showBust("CARRIE", "CORA");
@@ -2663,8 +2659,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			addButton(0, "Next", mainGameMenu);
 			break;
 		case "build it":
-			currentLocation = "NT BOTTLE PLANT";
-			generateMap();
+			moveTo("NT BOTTLE PLANT");
 			
 			showLocationName();
 			showBust("CARRIE");
@@ -2727,8 +2722,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			addButton(0, "Next", carrieMilkerBadEnd, "build it p3");
 			break;
 		case "build it p3":
-			currentLocation = "NT SHOWER HOUSE";
-			generateMap();
+			moveTo("NT SHOWER HOUSE");
 			
 			showLocationName();
 			showBust("CARRIE");
@@ -2761,8 +2755,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			addButton(0, "Next", mainGameMenu);
 			break;
 		case "go back":
-			currentLocation = "NT BOTTLE PLANT";
-			generateMap();
+			moveTo("NT BOTTLE PLANT");
 			
 			showLocationName();
 			showBust("CORA");
@@ -2824,8 +2817,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			addButton(0, "Next", mainGameMenu);
 			break;
 		case "build it repeat":
-			currentLocation = "NT BOTTLE PLANT";
-			generateMap();
+			moveTo("NT BOTTLE PLANT");
 			
 			showLocationName();
 			clearBust();
@@ -2852,8 +2844,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			addButton(0, "Next", carrieMilkerBadEnd, "build it p2");
 			break;
 		case "bad end":
-			currentLocation = "NT BUNKHOUSE";
-			generateMap();
+			moveTo("NT BUNKHOUSE");
 			
 			showName("A NEW\nSTUD");
 			showBust("CORA");

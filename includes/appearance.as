@@ -970,7 +970,7 @@ public function appearance(forTarget:Creature):void
 		else
 		{
 			if(rand(2) == 0) output2(" A huge " + target.getStatusTooltip("Hair Flower") + " orchid grows from the side of your head, its big long petals flopping gaily when you move.");
-			else output2(" Nestled above your ear, there is " + indefiniteArticle(target.getStatusTooltip("Hair Flower")) + " orchid. It looks like you stuck it there but it’s very much a part of you, flourishing from your scalp merrily.");
+			else output2(" Nestled in one side of your head, there is " + indefiniteArticle(target.getStatusTooltip("Hair Flower")) + " orchid. It looks like you stuck it there but it’s very much a part of you, flourishing from your scalp merrily.");
 		}
 	}
 	
@@ -1224,6 +1224,17 @@ public function appearance(forTarget:Creature):void
 		else if(target.statusEffectv1("Sweaty") <= 4) output2(" is covered in multiple layers");
 		else output2(" looks soaked, completely drenched in thick layers");
 		output2(" of sweat, signaling the exertion of your previous physical activities.");
+	}
+	// Roehm Goo
+	if(target.hasStatusEffect("Roehm Slimed"))
+	{
+		output2(" Oozing off your body is a");
+		if(target.statusEffectv4("Roehm Slimed") <= 1) output2(" thin layer");
+		else if(target.statusEffectv4("Roehm Slimed") <= 2) output2(" slick layer");
+		else if(target.statusEffectv4("Roehm Slimed") <= 3) output2(" thick layer");
+		else if(target.statusEffectv4("Roehm Slimed") <= 4) output2(" steady stream");
+		else output2(" flowing blob");
+		output2(" of sexually charged, saccharine slug slime - an obvious signature of a Roehm encounter, no doubt.");
 	}
 	// Pheromones
 	if(target.hasPheromones()) output2(" " + ((target.hasPerk("Pheromone Sweat") && target.skinIsSoaked()) ? "Your entire body emits" : "Parts of your body emit") + " " + RandomInCollection(["aphrodisiac-laced", "lust-scented", "musky", "aromatic"]) + " pheromones, enticing potential mates.");

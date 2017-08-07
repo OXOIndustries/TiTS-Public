@@ -185,8 +185,7 @@ public function kiCargoLiftVictory():void
 	showBust("USHAMEE");
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
-	currentLocation = "KI-L22";
-	generateMap();
+	moveTo("KI-L22");
 	
 	output("You’ve dropped the closest of the creatures, buying yourself some time, but the elevator’s still clogged with bodies now. Most of the Nova troops have been dragged to the deck by writhing tentacles, their armor torn open and their bodies violated. More and more of your mutated employees are leaping down from the open doors, grabbing at whoever’s left standing.");
 	
@@ -236,8 +235,7 @@ public function kiCargoLiftVictoryII():void
 	processTime(5);
 	
 	flags["KI_ELEVATOR_DEFEATED"] = 1;
-	currentLocation = "KI-L20";
-	generateMap();
+	moveTo("KI-L20");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -955,8 +953,7 @@ public function kiEscapeShuttle():void
 	
 	output("\n\nBut there’s nothing more you can do for them now. Nothing but find a doctor and make sure you’re okay. First, though, a long rest...");
 
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	flags["KASHIMA_STATE"] = 4;
 	
 	processTime(25);
@@ -1083,8 +1080,7 @@ public function kiHendersonMedbay():void
 
 public function kiHendersonMedbayII():void
 {
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	
 	clearOutput();
 	author("Savin");
@@ -1195,8 +1191,7 @@ public function kiHendersonSteeleTech():void
 
 public function kiHendersonSteeleTechII():void
 {
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	
 	clearOutput();
 	author("Savin");

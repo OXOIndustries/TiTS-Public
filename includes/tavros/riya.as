@@ -1015,8 +1015,7 @@ public function followRihaOnRihaQuest():void
 	clearOutput();
 	showName("\nFOLLOWING...");
 	
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	
 	output("They don’t seem to be paying much mind to anything besides each other, so it’s a simple enough matter to follow them. It gets more complicated once they get in the elevator together, still huddled together and whispering, but some jogging has them back in your line of sight after you follow on the next elevator as they... walk into a hangar guarded by several uniformed U.G.C. Peacekeepers. Damn it. You walk to your own ship as quickly as possible without arousing suspicion, boarding and leaving the station. Where to go, though? You can see a U.G.C. ship that you presume is theirs entering a warp gate, but to where? You wrack your brains for a long few minutes, acutely aware that every second you spend thinking is more time for you to miss whatever’s going down... finally though, you recall the brief snatch of conversation you caught. Pirates, and... an asteroid field. For the Commander of Tavros’s Peacekeeper detachment to be going out herself, it must be nearby, and important.");
 	output("\n\nA quick extranet search later, you have a few likely candidates, all reasonably close to Tavros. Which one <i>is</i> it, though? You sigh in frustration, realizing you have no choice but to guess as your fingers type in the coordinates of the nearest asteroid field to Tavros. You arrive some time later, dropping out of warp and checking your scanners. Nothing. You curse in irritation, pulling up the results of your extranet search again, heading to the next location on the list.");
@@ -1045,8 +1044,7 @@ public function goHomeFromRiyaQuest():void
 //If PC selects ‘Stay’
 public function stayForQuest():void
 {
-	currentLocation = "GAME OVER";
-	generateMap();
+	moveTo("GAME OVER");
 	
 	clearOutput();
 	showName("PIRATE\nBASE");

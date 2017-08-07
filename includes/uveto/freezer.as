@@ -637,8 +637,7 @@ public function hanaFiresideRecovery():void
 	pc.energy(pc.energyMax());
 	processTime((4 * 60) + rand(30));
 
-	currentLocation = "UVI R32";
-	generateMap();
+	moveTo("UVI R32");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

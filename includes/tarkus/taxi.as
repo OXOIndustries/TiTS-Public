@@ -118,8 +118,7 @@ public function tarkusFlyTo(arg:String):void
 		output("\n\nNot long after, you arrive at your destination, and disembark into the wasteland. The hover-car zips away a minute later, leaving you behind.");
 	}
 	pc.credits -= 80;
-	currentLocation = arg;
-	generateMapForLocation(currentLocation);
+	moveTo(arg);
 	processTime(15);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

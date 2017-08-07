@@ -391,8 +391,7 @@ public function seraSexPartyStage1(response:String = "none"):void
 			break;
 		case "leave":
 			// Move to Elevator.
-			currentLocation = "LIFT: MERCHANT DECK";
-			generateMap();
+			moveTo("LIFT: MERCHANT DECK");
 			showLocationName();
 			
 			showBust("SERA");
@@ -433,9 +432,7 @@ public function seraSexPartyStage1(response:String = "none"):void
 			break;
 		case "arrive":
 			// Move to Res Deck.
-			//currentLocation = "RESIDENTIAL DECK 4";
-			currentLocation = "RESIDENTIAL DECK 10";
-			generateMap();
+			moveTo("RESIDENTIAL DECK 10");
 			showLocationName();
 			
 			showBust("SERA");
@@ -1534,8 +1531,7 @@ public function seraSexPartyStage4(response:String = "none"):void
 			rooms["RES DECK EAST ESTATE"].removeFlag(GLOBAL.NPC);
 			// Time +2 hours
 			processTime(120);
-			currentLocation = "9018";
-			generateMap();
+			moveTo("9018");
 			showLocationName();
 			
 			showBust("SERA");

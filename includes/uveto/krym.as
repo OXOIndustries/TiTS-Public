@@ -267,8 +267,7 @@ public function uvetoTaxiShitGooo(destination:String):void
 	output("\n\nYou nod over your shoulder and seal the door, telling the taxi drone to take you onwards.");
 
 	output("\n\nIt beeps and takes off, flying into the storm with robotic calm. Thanks to the powerful engines, anywhere in the region is just a hop and a skip away - you feel like you’ve barely taken off before the taxi beeps and shudders, setting down with a soft thud. The drone takes your credits with a synthetic smile and deposits you back on the planet’s surface before flying off again to its next appointment.");
-	currentLocation = destination;
-	generateMap();
+	moveTo(destination);
 	processTime(20);
 	clearMenu();
 	if(inCombat())

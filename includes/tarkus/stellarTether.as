@@ -512,8 +512,7 @@ public function tamtamBadEndPetPooch():void
 
 public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 {
-	currentLocation = "GAME OVER";
-	generateMap();
+	moveTo("GAME OVER");
 	showLocationName();
 	
 	days += 94;
@@ -685,8 +684,7 @@ public function bombAlertBonusFunction():Boolean
 		flags["TARKUS_BOMB_TIMER"] = 240;
 		clearMenu();
 		//Reset position as you haven't really moved.
-		currentLocation = "352";
-		generateMapForLocation(currentLocation);
+		moveTo("352");
 		addButton(0,"Next",mainGameMenu);
 		return true;
 	}
@@ -726,8 +724,7 @@ public function liftDownEvent():void
 	}
 	processTime(23);
 	//Move the PC
-	currentLocation = "354";
-	generateMapForLocation(currentLocation);
+	moveTo("354");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -794,8 +791,7 @@ public function goUpTarkusLift():void
 	output("Stepping into the lift, you press the activation key. The elevator hums softly and accelerates upward, replacing gravity with acceleration until you’re far enough from the core for the former to return. Stowing your equipment, you try to relax for the thirty minute ride.");
 	processTime(25);
 	//Move the PC
-	currentLocation = "353";
-	generateMapForLocation(currentLocation);
+	moveTo("353");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1886,8 +1882,7 @@ public function kaskaBadEndPartDues():void
 //Next page -> "Some time later..." Describe PC's living conditions and state, focusing on lusting after the next time Mistress will use him/her. End with Kaska coming home with a bimbo cow-girl and the two of you sucking her off together.
 public function kaskaBadEndPartIII():void
 {
-	currentLocation = "GAME OVER";
-	generateMap();
+	moveTo("GAME OVER");
 	showLocationName();
 	
 	clearOutput();
@@ -2048,14 +2043,14 @@ public function victoryKaskaDicksex(jail:Boolean = false):void
 	else if(pc.isMischievous()) output("Well, we are going to fuck. You got that part right.");
 	else output("Nope. I’m gonna fuck you, sugar tits.");
 	output("”</i>");
-	if(!jail) 	output("\n\n<i>“No... I’m... an alpha...”</i> Kaska weakly protests as you bend her over a crate. ");
-	else output("\n\n<i>“Oh... Okay... Just be... be gentle...”</i> Kaska weakly replies as you bend her over a the examination table. ");
+	if(!jail) output("\n\n<i>“No... I’m... an alpha...”</i> Kaska weakly protests as you bend her over a crate. ");
+	else output("\n\n<i>“Oh... Okay... Just be... be gentle...”</i> Kaska weakly replies as you bend her over the examination table. ");
 	output("Her dick, still leaking, is pointed straight down, pinned between her balls and the cool metal, and you get a good, long look at her pussy, for once not obscured by her troublesome maleness. It’s clear she’s a stranger to the feminine pleasures her body could enjoy, but that doesn’t stop her from being dripping wet, her lips slightly parted invitingly. The pirate’s pussy is just asking for a hard fucking.");
 	output("\n\nYou don’t keep it waiting. Pushing your [pc.cockHead " + x + "] against her sodden entrance, you marvel at the silky texture of her spreading labia, slowing your push to give you time to drag yourself all over the exterior of her sex. The alien hermaphrodite may have styled herself as something of a masculine breeder, but when it comes down to it, her cunt is desperate to be fucked and used.");
 	if(!jail) output("\n\nKaska gasps, <i>“W-why does it feel this good?”</i> Her legs wobble dangerously. <i>“No... I’m... I’m not supposed to like this...”</i> She whimpers and goes slack, legs spreading, finally giving in to the sensation of you plumbing the first few inches of her passage. <i>“Yesssss....”</i>");
 	else output("\n\nKaska gasps, <i>“W-why does it feel this good?”</i> Her legs wobble dangerously. <i>“These fucking drugs... Turning me into a fucking onahole!”</i> She whimpers and goes slack, legs spreading, finally giving in to the sensation of you plumbing the first few inches of her passage. <i>“Yesssss....”</i>");
 	if(!jail) output("\n\nYou almost don’t hear the quiet admission of pleasure, but it’s there all the same. You’d never guess her so vaginally inexperienced after slipping inside of her oozing slut-tunnel. ");
-	else output("\n\nYou can’t miss the hissed admission of pleasure, but even if you did, the following gasps of delight her opinion on a hard dicking quite well known to you. Her sodden slut-tunnel grips you like a pro. ");
+	else output("\n\nYou can’t miss the hissed admission of pleasure, but even if you did, the following gasps of delight make her opinion on a hard dicking quite well known to you. Her sodden slut-tunnel grips you like a pro. ");
 	output("The muscles inside squeeze and stroke at you with greater levels of excitement after each new inch you feed it. Your [pc.cock " + x + "] trembles under the caresses. They are at the same time both foreign and familiar; Kaska’s race’s anatomy is just different enough that the muscles squeezing at you from inside her pussy do so in unexpected ways, feeling distinctly alien yet all too pleasurable. When your ");
 	if(pc.balls > 0) output("[pc.balls] slap against her own");
 	else output("[pc.base " + x + "] presses against her");
@@ -2201,7 +2196,7 @@ public function makeKaskaSuchYerCoochLikeABaws(jail:Boolean = false):void
 		output(" Becoming aware of ");
 		if(pc.totalVaginas() == 2) output("another nearby pussy");
 		else output("other nearby pussies");
-		output(", she shifts over to take the next in her mouth. You’re stunned by the sensation of her tongue pressing on unprepared nerves and nearly cum on the spot, offering up even more of your [pc.girlCumFlavor] for the pirate to taste.");
+		output(", she shifts over to take the next in her mouth. You’re stunned by the sensation of her tongue pressing on unprepared nerves and nearly cum on the spot, offering up even more of your [pc.girlCumFlavor] [pc.girlCumNoun] for the pirate to taste.");
 		if(pc.totalVaginas() > 2) output(" She moves to your third twat after licking the second clean, then back to the first. You could get used to this kind of attention.");
 	}
 	output("\n\nFaint, wet sounds of flesh slapping flesh come from below you. Glancing around Kaska’s noisily slurping head, you spot the source of the sound. She’s got ");
@@ -2433,15 +2428,13 @@ public function bombExplodes():void
 
 public function planetAsplodeWhileInGhostDeck():void
 {
-	currentLocation = "210";
-	generateMapForLocation(currentLocation);
+	moveTo("210");
 	bombExplodes();
 }
 
 public function planetAsplodeWhileInNova():void
 {
-	currentLocation = "201";
-	generateMapForLocation(currentLocation);
+	moveTo("201");
 	clearOutput();
 	author("Fenoxo");
 	output("The hangar’s blast doors are sealed. You didn’t even know the hangar HAD blast doors, but they’ve closed all the same. Your ship and a half dozen others are piled together on the far side of the chamber, damaged but unbroken. You’re lucky no one brought any larger ships here before the planets came apart. Your ride could’ve gotten smashed.");

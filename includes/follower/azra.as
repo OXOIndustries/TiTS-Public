@@ -240,25 +240,27 @@ public function azraInShipGreeting():void
 public function azraCrewBlurbs(button:Number):String
 {
 	var buffer:String = "";
+	
 	if(pc.hasStatusEffect("Azra Plant CD")) 
 	{
 		buffer += "\n\nAzra is busy giving your latest samples a more permanent home on the ship, lest the rare flora die out.";
 		addDisabledButton(button,"Azra","Azra","She’s too busy with the latest sample to be bothered right now.");
 		return buffer;
 	}
-	else if(rand(10) == 0) buffer += "\n\nAzra is sitting in front a codex-projected hardlight terminal. She appears to be answering emails.";
-	else if(rand(9) == 0)
+	
+	switch(rand(10))
 	{
-		output("\n\nAzra the suula scientist is reclining on her bunk, reading something on her Codex.");
-		if(rand(2) == 0) buffer += " She looks very focused.";
-		else buffer += " Judging by her blush, she is quite intrigued.";
+		case 9: buffer += "\n\nAzra is sitting in front a codex-projected hardlight terminal. She appears to be answering emails."; break;
+		case 8: buffer += "\n\nAzra the suula scientist is reclining on her bunk, reading something on her Codex." + (rand(2) == 0 ? " She looks very focused." : " Judging by her blush, she is quite intrigued."); break;
+		case 7: buffer += "\n\nAzra is wrapping up a holocall with another suula, likely a family member, judging by the resemblance."; break;
+		case 6: buffer += "\n\nAzra is munching on a pink-colored fruit. You can’t quite place its species, but it vaguely resembles a terran peach."; break;
+		case 5: buffer += "\n\nAzra is blushing hotly and hastily donning her armor. You must have interrupted something private..."; break;
+		case 4: buffer += "\n\nAzra is grumbling and massaging one of her wings. Evidently she must have whacked it in the tight quarters of your spacecraft."; break;
+		case 3: buffer += "\n\nAzra is stretched out and preening her feathers."; break;
+		case 2:
+		case 1:
+		case 0: buffer += "\n\nAzra is packing away a tube filled with exotic plant samples. Her portable workstation still displays a visualization of its genetic structure."; break;
 	}
-	else if(rand(8) == 0) buffer += "\n\nAzra is wrapping up a holocall with another suula, likely a family member, judging by the resemblance.";
-	else if(rand(7) == 0) buffer += "\n\nAzra is munching on a pink-colored fruit. You can’t quite place its species, but it vaguely resembles a terran peach.";
-	else if(rand(6) == 0) buffer += "\n\nAzra is blushing hotly and hastily donning her armor. You must have interrupted something private...";
-	else if(rand(5) == 0) buffer += "\n\nAzra is grumbling and massaging one of her wings. Evidently she must have whacked it in the tight quarters of your spacecraft.";
-	else if(rand(4) == 0) buffer += "\n\nAzra is stretched out and preening her feathers.";
-	else buffer += "\n\nAzra is packing away a tube filled with exotic plant samples. Her portable workstation still displays a visualization of its genetic structure.";
 	addButton(button,"Azra",approachCrewAzra);
 	return buffer;
 }

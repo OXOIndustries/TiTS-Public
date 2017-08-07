@@ -176,8 +176,7 @@ public function cynthiaSex(response:String = "intro"):void
 			
 			processTime(43);
 			
-			currentLocation = "CYNTHIA APARTMENT";
-			generateMap();
+			moveTo("CYNTHIA APARTMENT");
 			showLocationName();
 			
 			eatHomeCooking(25);
@@ -392,8 +391,7 @@ public function cynthiaSex(response:String = "intro"):void
 public function cynthiaSexFinish():void
 {
 	IncrementFlag("CYNTHIA_SEXED");
-	currentLocation = "UVI N40";
-	generateMap();
+	moveTo("UVI N40");
 	addUvetoCold();
 	mainGameMenu();
 }

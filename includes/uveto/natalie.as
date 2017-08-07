@@ -336,8 +336,7 @@ public function talkNatalie(response:String = "none"):void
 			break;
 		case "varmint tame":
 			// Take PC to ship. Pass 30 minutes. Remove Silicone Bag.
-			currentLocation = "SHIP INTERIOR";
-			generateMap();
+			moveTo("SHIP INTERIOR");
 			processTime(25 + rand(10));
 			pc.destroyItemByClass(Silicone, 1);
 			flags["NATALIE_NEED_SILICONE"] = undefined;

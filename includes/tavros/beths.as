@@ -1840,8 +1840,7 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 	}
 	else if(response == "end")
 	{
-		currentLocation = "GAME OVER";
-		generateMap();
+		moveTo("GAME OVER");
 		showLocationName();
 		
 		showBust("");
@@ -2490,8 +2489,7 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			break;
 		// Game Over
 		case "bad end":
-			currentLocation = "GAME OVER";
-			generateMap();
+			moveTo("GAME OVER");
 			showLocationName();
 			
 			showBust("");

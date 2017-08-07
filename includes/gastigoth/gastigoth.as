@@ -14,7 +14,7 @@ Carries a stunning laser whip, flip-out riding crop/baton, several shock handcuf
 
 When things go to shit, she shuts off the station’s gravity. Only the security drones/officers and her have magboots and jump jets, so that alone puts them at a huge advantage.
 
-Formerly headed a T.S.C. counter-terrorist task force against the Mechanus League. Was forced to retire after being injured in a bombing of a gene-splice research lab her unit was assigned to protect. Heavily cyberized because of it, and the irony is by no means lost on her. Largely covered in reinforced synthskin (possibly just is her domina uniform? Seamless transition from flesh at the neck/cleavage line to latexy leather on every inch below!); both arms are superhuman-strong augments; eyes are cyberized and complete with cool holohuds; large breast implants that may or may not have ballistic augmentations in silly mode. Obv. has a gigantic horsey hardlight she can use to <i>“discipline”</i> prisoners.
+Formerly headed a T.S.C. counter-terrorist task force against the Mechanus League. Was forced to retire after being injured in a bombing of a gene-splice research lab her unit was assigned to protect. Heavily cyberized because of it, and the irony is by no means lost on her. Largely covered in reinforced synthskin (possibly just is her domina uniform? Seamless transition from flesh at the neck/cleavage line to latexy leather on every inch below!); both arms are superhuman-strong augments; eyes are cyberized and complete with cool holohuds; large breast implants that may or may not have ballistic augmentations in silly mode. Obv. has a gigantic horsey hardlight she can use to “discipline” prisoners.
 
 Hates terrorists, especially the League, with a deadly passion. Briefly came to work for O.H.G.R. after her discharge, made a small fortune through extortion and unreserved cruelty towards her subjects, and eventually left to open a private corrections facility under Confederate contract. She is merciless towards her prisoners, and takes no small amount of joy in pimping them out to the second-worst galactic scum, in her eye: rich playboys who like to play God.
 
@@ -33,17 +33,23 @@ Guards are Nova Securities goons: dark orange and white full body armor, full fa
 //To: [pc.Email]@SteeleTech.corp
 //Subject: [pc.name]: Exclusive Offer
 
-public function prisonerSent(arg:Number):void
+//Start the stuff to unlock flying to space jail...
+public function processGastigothEvents():void
 {
 	//If already unlocked: nothing changes!
-	if(MailManager.isEntryUnlocked("gastigoth_unlock")) {}
+	if(MailManager.isEntryUnlocked("gastigoth_unlock")) return;
+	if(pc.hasStatusEffect("GastiUnlockTimer")) return;
+	
 	//Not unlocked yet!
-	else
-	{
-		pc.createStatusEffect("GastiUnlockTimer");
-		pc.setStatusMinutes("GastiUnlockTimer",5*24*60);
-		flags["GASTIGOTH_UNLOCKNUM"] = arg;
-	}
+	var prisonerSent:Number = 0;
+	if(flags["TARKUS_BOMB_TIMER"] == 0) prisonerSent += 3; // Pirates of Tarasque: Khorgan, Kaska and Tam
+	//if(flags["DR_BADGER_TURNED_IN"] == 0) prisonerSent += 1; // Dr. Badger
+	//if(flags["ICEQUEEN COMPLETE"] == 2) prisonerSent += 1; // Zaalt
+	//if(flags["PQ_SECURED_LAH"] == 2) prisonerSent += 1; // R.K.Lah
+	
+	pc.createStatusEffect("GastiUnlockTimer");
+	pc.setStatusMinutes("GastiUnlockTimer",5*24*60);
+	flags["GASTIGOTH_UNLOCKNUM"] = prisonerSent;
 }
 
 public function showBrandt(nude:Boolean = false):void
@@ -183,8 +189,7 @@ public function intoStationDisarmCheck():Boolean
 		output("The moment you try to go anywhere, the two goons in orange armor stomp up and lock shields, all but jamming the shimmering projections in your face.");
 		output("\n\n<i>“I’m afraid we’ll be relieving you of your weapons, Captain,”</i> the woman behind the station says, giving you a flat look. <i>“No arms, shields, explosives, or any other means of combat are permitted beyond this point. No matter how small, secure, or primitive. This is for your safety and ours; I take no particular pleasure is disarming you.”</i>");
 		output("\n\nDammit.");
-		currentLocation = "I16_SECURITY_CHECKPOINT";
-		generateMap();
+		moveTo("I16_SECURITY_CHECKPOINT");
 		processTime(1);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -204,8 +209,7 @@ public function leaveStationDisarmCheck():Boolean
 		showName("FORGET\nSOMETHING?");
 		output("<i>“Captain Steele!”</i> Brandt calls after you, causing you to turn. <i>“Unless you’re making an unexpected donation to the station’s arsenal, perhaps you would like to take back your possessions?”</i>");
 		output("\n\nWhoopsie.");
-		currentLocation = "I16_SECURITY_CHECKPOINT";
-		generateMap();
+		moveTo("I16_SECURITY_CHECKPOINT");
 		processTime(1);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -227,8 +231,7 @@ public function commandAndControlBonusiiii():Boolean
 		output("A pair of security drones step up from the shadows and stare you down impassively, their metal fingers seamlessly integrated into a pair of pulse carbines.");
 		output("\n\n<i>“I do not believe you have any business in our command room at present, Captain,”</i> Brandt says evenly from behind you. <i>“Neither do they, it seems.”</i>");
 		output("\n\nThe drones make no move or sound, but the threat hangs in the air until you take a step back. They give you a slight nod and retreat as well, bracing their backs against the bulkheads on either side of the door.");
-		currentLocation = "I14_CORRIDOR";
-		generateMap();
+		moveTo("I14_CORRIDOR");
 		processTime(2);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -239,8 +242,7 @@ public function commandAndControlBonusiiii():Boolean
 		clearOutput();
 		showName("NOT\nYET...");
 		output("You aren’t really in the mood for a tryst with Brandt. Maybe once your libido has you feeling a little more frisky.");
-		currentLocation = "I14_CORRIDOR";
-		generateMap();
+		moveTo("I14_CORRIDOR");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 		return true;
@@ -790,7 +792,7 @@ public function brandMissionarySex(x:int):void
 	output("\n\n<i>“A-ah! I feel it!”</i> Hélla gasps, arching her back from the chair, thrashing her tail against your [pc.leg]. She moans, softly at first, then higher as you press forward.");
 	if (x >= 0)
 	{
-		if(pc.cocks[x].thickness() >= 3) output(" <i>“It’s so big. Like it’s tearing me apart!");
+		if(pc.cocks[x].thickness() >= 3) output(" <i>“It’s so big. Like it’s tearing me apart!”</i>");
 		else if(pc.cocks[x].cLength() >= 15) output(" <i>“So deep! Keep going... keep going until it’s pushing my belly out!”</i>");
 		else if (pc.cocks[x].cLength() < 6) output(" <i>“Like I’m swallowing you up,”</i> she giggles. <i>“Feels good...”</i>");
 	}
@@ -869,9 +871,9 @@ public function finishInsideHelia(x:int):void
 	showBrandt(true);
 	author("Savin");
 
-	output("You saunter forward, running your hands up along the full, firm cheeks of of her ass and pulling them apart. The pink slit between her legs peeks out, beckoning you with slimey winks and the alluring scent of feminine arousal. You plant your [pc.cockHead " + x + "] right in the cleft between her quim’s plush lips, rubbing it against her throbbing clit.");
+	output("You saunter forward, running your hands up along the full, firm cheeks of of her ass and pulling them apart. The pink slit between her legs peeks out, beckoning you with slimy winks and the alluring scent of feminine arousal. You plant your [pc.cockHead " + x + "] right in the cleft between her quim’s plush lips, rubbing it against her throbbing clit.");
 	output("\n\n<i>“Don’t tease,”</i> Hélla chides, pushing her hips back and taking your [pc.cock " + x + "] to the first inch. <i>“This is for you, after all...”</i>");
-	output("\n\nYou sigh, more from pleasure than consternation, as Hélla’s sex envelops your dick. You mirror her push after a moment, thrusting into the sultry slit until your lover’s moaning, arching her back and pulling you in again with her tail. With her tail curled around your waist, pinning you against her butt, there’s nothing you can do but use your hips to piston back and forth, letting your lover’s ever-fierce grip milk you. It only takes a few moments of this treatment to draw you back to the edge, and then over it with a sharp grunt of pleasure. [pc.Cum] shoots deep, thick rivulets filling Hélla’s twat");
+	output("\n\nYou sigh, more from pleasure than consternation, as Hélla’s sex envelops your dick. You mirror her push after a moment, thrusting into the sultry slit until your lover’s moaning, arching her back and pulling you in again with her tail. With her tail curled around your waist, pinning you against her butt, there’s nothing you can do but use your hips to piston back and forth, letting your lover’s ever-fierce grip milk you. It only takes a few moments of this treatment to draw you back to the edge, and then over it with a sharp grunt of pleasure. [pc.Cum] shoots deep, thick rivulets filling Hélla’s twat ");
 	if(pc.cumQ() >= 1500) output("until her stomach puffs out and globs of it run down her thighs, splattering on the deck below you.");
 	else output("until your dick is leaking aftershoots into a well-packed pussy, and Hélla herself is leaning against the chair, sighing contentedly.");
 	output("\n\n<i>“Well, that was full-filling,”</i> Hélla says snickering at her own joke a moment afterwards. <i>“I suppose I’m going to feel that sloshing around inside for the rest of my shift. I’ll think of you every time something threatens to leak out.”</i>");
@@ -890,7 +892,7 @@ public function brandtSixtyNine():void
 	clearOutput();
 	showBrandt(true);
 	author("Savin");
-	output("You run your hands over Hélla’s firm rear, kneading her cheeks and slowly spreading them apart. Between the lush, supple mounds you find a slender little slit that’s just begging for attention, spider-webbed with feminine slime that glistens in the light. Above it sits the plump ring of her exotic alien ass, puffed out like a silken donut. The dark folds of her quim wink at you, breaking you from your lustful reverie and prompting you to lean your face into the valley or butt-cleavage and sink your [pc.tongue] into Hélla’s sex.");
+	output("You run your hands over Hélla’s firm rear, kneading her cheeks and slowly spreading them apart. Between the lush, supple mounds you find a slender little slit that’s just begging for attention, spider-webbed with feminine slime that glistens in the light. Above it sits the plump ring of her exotic alien ass, puffed out like a silken donut. The dark folds of her quim wink at you, breaking you from your lustful reverie and prompting you to lean your face into the valley of butt-cleavage and sink your [pc.tongue] into Hélla’s sex.");
 	output("\n\nThe half-ovir vixen gasps, arching her meaty tail over her back and clenching down with her pussy-muscles. The slick walls of her sex slide around the sides of your [pc.tongue], trying at odds to push you back and draw you deeper with every uneven breath she takes. Exploring her depths is slow going, but oh-so rewarding: every new inch of pussyflesh induces a high chorus of moans and shuddered breaths from your halfbreed lover. You’re fully buried in her slit by the time she manages to regain control of her tail, just long enough to wrap around your shoulders and pull you flush into her ass, making you drive your tongue just as deep as it will go.");
 	output("\n\n<i>“That’s amazing,”</i> Hélla moans, fingers digging into the command chair. <i>“Your [pc.tongue] is... how does it make me feel this good?”</i>");
 	output("\n\nYou spell out your answer into her quim, tracing letters with your tongue until she’s crying out, and steamy wetness is flecking your cheeks amidst orgasmic contractions. You’re half-afraid she’s going to suffocate you with her tail before she’s finally done, slumping forward in her chair and relaxing all her muscles, like all the stress has just flown out of her through her pussy. A soft, satiated sigh escapes her lips... before she rears forward and plants a foot square on your [pc.chest].");
@@ -949,7 +951,7 @@ public function heliaAnal(x:int):void
 	output(". Only when her ass is a swamp of spit, luridly drenched and ready to accept something much thicker than your [pc.tongue], do you finally pry yourself free of the ovir’s asshole and stand back up. While you were working, you");
 	if(x >= 0) output("r [pc.cock " + x + "] has gotten painfully hard, throbbing between your [pc.legs] as your anal lusts boil over, threatening to burst.");
 	else output(" slipped a hand down to your panties and found the switch to activate the magic hidden inside. When you stand, now, you tap the button that causes the hardlight strapon to spring to life, erupting into existence in a rush of sensation that makes you shudder with delight.");
-	output("\n\nYou heft your [pc.cockorStrapon " + x + "] up and slap it into the crack of Hélla’s ass. She gasps, giving you a look over her shoulder before wrapping her thick, reptilian tail around your waist and pulling you in, slamming your thighs into the firm cheeks of her ass. <i>“It feels slimy and empty back there now,”</i> she huffs, curling the tip of her tail around to tease the base of your dick. <i>“Fix it.”</i>");
+	output("\n\nYou heft your [pc.cockOrStrapon " + x + "] up and slap it into the crack of Hélla’s ass. She gasps, giving you a look over her shoulder before wrapping her thick, reptilian tail around your waist and pulling you in, slamming your thighs into the firm cheeks of her ass. <i>“It feels slimy and empty back there now,”</i> she huffs, curling the tip of her tail around to tease the base of your dick. <i>“Fix it.”</i>");
 	output("\n\nRunning your hands over her butt, you slowly rock your hips to grind your [pc.cockOrStrapon " + x + "] against her pussy and ass. <i>“What do you want?”</i>");
 	output("\n\nHélla makes a confused sound, using her tail-tip to try and angle your cockhead into her ass. You resist, firmly staying right where you are. <i>“I asked what you wanted,”</i> you remind her, grinding a little more insistently; hard enough to make her moan.");
 	output("\n\n<i>“I want...”</i> Hélla starts, and then all of a sudden you feel a heavy blow against your stomach, not painful but <i>forceful</i>, enough to send you sprawling back across the deck. Something big and heavy is resting on your lap, and you feel an intense pressure on the tip of your [pc.cockOrStrapon " + x + "]. You glance down the length of your body, and find it largely obscured by the thick, meaty mass of Hélla’s ovir tail. What you can make out around it, though, looks like a whole lot of ass and supple back, half-obscured by a mess of hair that’s coming undone from its crisp ties.");
@@ -1108,7 +1110,7 @@ public function askWardenAboutGastigoth():void
 	showKasmiran();
 	author("Savin");
 	output("<i>“Tell me about this station of yours,”</i> you prompt, gesturing to the sterile white-and-grey walls all around you.");
-	output("\n\n<i>“That, I’m happy to do,”</i> the warden says, smiling cooly. <i>“I’ll spare you the exact specifications of the place, and the company stock lines about how secure it is. You can see that for yourself: we’re in deeps space, so there’s nowhere for inmates to break out into. We’re surrounded by capital-ship class armaments, so there’s no chance some two-bit pirate’s going to break </i>in</i>. </i>Gastigoth<i> is made up of several ex-military hulls, ausar and Terran, rebuilt into a single, continuous complex... but with all the security measures, air-tight bulkheads, and armament you’d expect from a supercarrier.”</i>");
+	output("\n\n<i>“That, I’m happy to do,”</i> the warden says, smiling cooly. <i>“I’ll spare you the exact specifications of the place, and the company stock lines about how secure it is. You can see that for yourself: we’re in deep space, so there’s nowhere for inmates to break out into. We’re surrounded by capital-ship class armaments, so there’s no chance some two-bit pirate’s going to break </i>in</i>. </i>Gastigoth<i> is made up of several ex-military hulls, ausar and Terran, rebuilt into a single, continuous complex... but with all the security measures, air-tight bulkheads, and armament you’d expect from a supercarrier.”</i>");
 	output("\n\n<i>“Our security primarily comes from space itself. We control the atmosphere. If the prisoners riot or attempt to seize control, the station can be flooded with knockout gasses, or in worst-case scenario, the air can be vented from any section of the ship with a push of a button. We restrict the number and size of vessels docked here at any given time, so the possibility of escape is severely restricted. Plus, the station is under constant surveillance from the Confederacy and several planetary governments, ensuring any attempted takeover -from inside or out - can be countered swiftly. In other words, </i>Gastigoth<i> is nigh unassailable: a perfect place for the scum we house.”</i>");
 	output("\n\nSo you’ve noticed. The place certainly is a fortress.");
 	output("\n\nThe warden nods. <i>“That it is. Of course, a fortress isn’t <b>all</b> that the station aspires to be. We have several programs running in the background, including the one that I invited you to participate in. Considering our position and clientele, </i>Gastigoth<i> is in a position to provide our unique... services... to the galaxy’s elite.”</i>");
@@ -1130,7 +1132,7 @@ public function kasmiranServices():void
 	output("\n\n<i>“Of course, even if you aren’t interested in the breeding program, you yourself will doubtless have some personal connection to some of the inmates as your exploits continue. If you wish to revisit some encounter of yours, well, that’s always an option.”</i>");
 	output("\n\nYou’ll just assume she means intimate, rather than combative, encounters.");
 	processTime(5);
-	addDisabledButton(0,"Gastigoth","Gastigoth","You already discussed this.");
+	addDisabledButton(0,"Services","Services","You already discussed this.");
 }
 
 //[Leave]
@@ -1178,6 +1180,7 @@ public function sexHaverTerminalTime(fromBack:Boolean = false):void
 	//When you select an inmate, show their bust and display a readout of:
 	clearMenu();
 	var button:Number = 0;
+	
 	if(flags["TARKUS_BOMB_TIMER"] == 0) 
 	{
 		output("\n\\\[Pirate\\\] Tam-Tam");
@@ -1185,8 +1188,26 @@ public function sexHaverTerminalTime(fromBack:Boolean = false):void
 		output("\n\\\[Pirate\\\] Kaska");
 		addButton(button++,"Kaska",prisonerStatline,"Kaska","Kaska","Pay a visit to the dick-toting pirate you defeated on Tarkus.");
 		output("\n\\\[Pirate\\\] Khorgan");
-		addButton(button++,"Khorgan",prisonerStatline,"Khorgan","Khorgan","Pay a visit to the bad-ass space-pirate you defeated on Tarkus.");
+		addButton(button++,"Khorgan",prisonerStatline,"Khorgan","Captain Khorgan","Pay a visit to the bad-ass space-pirate you defeated on Tarkus.");
 	}
+	/*
+	if(flags["DR_BADGER_TURNED_IN"] == 0)
+	{
+		output("\n\\\[Doctor\\\] Dr. Badger");
+		addButton(button++,"Dr. Badger",prisonerStatline,"Badger","Dr. Badger","9999");
+	}
+	if(flags["ICEQUEEN COMPLETE"] == 2)
+	{
+		output("\n\\\[Smuggler\\\] Zaalt");
+		addButton(button++,"Zaalt",prisonerStatline,"Zaalt","Captain Zaalt","9999");
+	}
+	if(flags["PQ_SECURED_LAH"] == 2)
+	{
+		output("\n\\\[Convict\\\] R.K.Lah");
+		addButton(button++,"R.K.Lah",prisonerStatline,"Lah","R.K.Lah","9999");
+	}
+	*/
+	
 	addButton(14,"Nevermind",mainGameMenu);
 }
 
@@ -1196,7 +1217,9 @@ public function prisonerStatline(prisonerName:String):void
 	author("Savin");
 	clearMenu();
 	addButton(14,"Back",sexHaverTerminalTime, true);
-
+	
+	var payFee:Boolean = true;
+	
 	/*
 	output("<b>Name:</b> ");
 	output("\n<b>Age:</b> ");
@@ -1204,40 +1227,68 @@ public function prisonerStatline(prisonerName:String):void
 	output("\n<b>Race:</b> ");
 	output("\n\nConvicted of: ");
 	*/
-	if(prisonerName == "Tamtam")
+	switch(prisonerName)
 	{
-		showTamtamPrison();
-		output("<b>Name:</b> Tam Tam");
-		output("\n<b>Age:</b> 22");
-		output("\n<b>Sex:</b> Female");
-		output("\n<b>Race:</b> Kaithrit");
-		output("\n\nConvicted of: Attempted Destruction of a Planet, Unlicensed Software Editing, 12 Counts of Piracy, 3 Counts of Grand Piracy, Piracy in the Third Degree, Attempted Rape, Rape, and Jaywalking.");
-		addButton(0,"Visit",visitAPrisoner,"Tamtam","Tamtam","Visit the spunky cat-girl mechanic you helped bust on Tarkus.\n\n<b>Cost:</b> 1,000 credits");
-	}
-	else if(prisonerName == "Kaska")
-	{
-		showKaska();
-		output("<b>Name:</b> Kaska");
-		output("\n<b>Age:</b> 24");
-		output("\n<b>Sex:</b> Hermaphrodite");
-		output("\n<b>Race:</b> Dzaan");
-		output("\n\nConvicted of: Attempted Destruction of a Planet, Slavery, Rape, 8 Counts of Piracy, Assault, Possession of Unlicensed Military-Grade Weaponry, and Polygamy");
-		addButton(0,"Visit",visitAPrisoner,"Kaska","Kaska","Visit the dick-girl pirate you defeated on Tarkus.\n\n<b>Cost:</b> 1,000 credits");		
-	}
-	else if(prisonerName == "Khorgan")
-	{
-		showKhorganPrison();
-		output("<b>Name:</b> Khorgan");
-		output("\n<b>Age:</b> 30");
-		output("\n<b>Sex:</b> Female");
-		output("\n<b>Race:</b> Thraggen");
-		output("\n\nConvicted of: Attempted Destruction of a Planet, Murder, 8 Counts of Grand Piracy, Piracy in the First Degree, Rape, Unlicensed Use of Power Armor, and Grand Theft Spacecraft.");
-		addButton(0,"Visit",visitAPrisoner,"Khorgan","Khorgan","Visit the bad-ass space-pirate you defeated on Tarkus.\n\n<b>Cost:</b> 1,000 credits");	
+		case "Tamtam":
+			showTamtamPrison();
+			output("<b>Name:</b> Tam Tam");
+			output("\n<b>Age:</b> 22");
+			output("\n<b>Sex:</b> Female");
+			output("\n<b>Race:</b> Kaithrit");
+			output("\n\nConvicted of: Attempted Destruction of a Planet, Unlicensed Software Editing, 12 Counts of Piracy, 3 Counts of Grand Piracy, Piracy in the Third Degree, Attempted Rape, Rape, and Jaywalking.");
+			addButton(0,"Visit",visitAPrisoner,"Tamtam","Tam-Tam","Visit the spunky cat-girl mechanic you helped bust on Tarkus.\n\n<b>Cost:</b> 1,000 credits");
+			break;
+		case "Kaska":
+			showKaska();
+			output("<b>Name:</b> Kaska");
+			output("\n<b>Age:</b> 24");
+			output("\n<b>Sex:</b> Hermaphrodite");
+			output("\n<b>Race:</b> Dzaan");
+			output("\n\nConvicted of: Attempted Destruction of a Planet, Slavery, Rape, 8 Counts of Piracy, Assault, Possession of Unlicensed Military-Grade Weaponry, and Polygamy.");
+			addButton(0,"Visit",visitAPrisoner,"Kaska","Kaska","Visit the dick-girl pirate you defeated on Tarkus.\n\n<b>Cost:</b> 1,000 credits");
+			break;
+		case "Khorgan":
+			showKhorganPrison();
+			output("<b>Name:</b> Captain Khorgan");
+			output("\n<b>Age:</b> 30");
+			output("\n<b>Sex:</b> Female");
+			output("\n<b>Race:</b> Thraggen");
+			output("\n\nConvicted of: Attempted Destruction of a Planet, Murder, 8 Counts of Grand Piracy, Piracy in the First Degree, Rape, Unlicensed Use of Power Armor, and Grand Theft Spacecraft.");
+			addButton(0,"Visit",visitAPrisoner,"Khorgan","Captain Khorgan","Visit the bad-ass space-pirate you defeated on Tarkus.\n\n<b>Cost:</b> 1,000 credits");
+			break;
+		case "Badger":
+			showDrBadger();
+			output("<b>Name:</b> ‘Doctor’ Badger");
+			output("\n<b>Age:</b> ??");
+			output("\n<b>Sex:</b> Hermaphrodite");
+			output("\n<b>Race:</b> Unknown");
+			output("\n\nConvicted of: Assault, Drug Manufacturing, Drug Trafficking, Illegal Mind Control, Indecent Exposure, Kidnapping, Possession of Unlicensed Technology, Racketeering, and Unlicensed Medical Practices.");
+			addButton(0,"Visit",visitAPrisoner,"Badger","Dr. Badger","9999.\n\n<b>Cost:</b> 1,000 credits");
+			break;
+		case "Zaalt":
+			showZaalt();
+			output("<b>Name:</b> Captain Zaalt Kandar");
+			output("\n<b>Age:</b> ??");
+			output("\n<b>Sex:</b> Male");
+			output("\n<b>Race:</b> Milodan");
+			output("\n\nConvicted of: Possession of Unlicensed Technology.");
+			addButton(0,"Visit",prisonerTimes,"Zaalt","Captain Zaalt","Visit Zaalt and possibly pay his bail.");
+			payFee = false;
+			break;
+		case "Lah":
+			showLah();
+			output("<b>Name:</b> Remi-Kellen Lah");
+			output("\n<b>Age:</b> ??");
+			output("\n<b>Sex:</b> Male");
+			output("\n<b>Race:</b> Ausar");
+			output("\n\nConvicted of: Arson, Eco-Terrorism and Failure To Serve a 5-Year Sentence.");
+			addButton(0,"Visit",visitAPrisoner,"Lah","R.K.Lah","9999.\n\n<b>Cost:</b> 1,000 credits");
+			break;
 	}
 	showName("CLICK\nCLACK");
 	
 	// {Stat Line: Physique, Reflex, Aim, Intelligence, Willpower, Libido}
-	if(pc.credits <= 1000) addDisabledButton(0,"Visit","Visit","You do not have the necessary credits.\n\n<b>Cost:</b> 1,000 credits");
+	if(payFee && pc.credits <= 1000) addDisabledButton(0,"Visit","Visit","You do not have the necessary credits.\n\n<b>Cost:</b> 1,000 credits");
 }
 
 //<i>“Visit”</i>
@@ -1246,6 +1297,7 @@ public function prisonerStatline(prisonerName:String):void
 public function visitAPrisoner(prisonerName:String):void
 {
 	clearOutput();
+	clearBust();
 	author("Savin");
 	pc.credits -= 1000;
 	output("You slide your Codex’s payscreen and tap confirm. A gruff male voice answers back, <i>“Affirmative. Inmate " + prisonerName + " will be processed shortly. Please follow the running lights to the holding area. Please ensure that you have no sharp or heavy objects on your person when entering the holding area.”</i>");
@@ -1260,9 +1312,20 @@ public function visitAPrisoner(prisonerName:String):void
 
 public function prisonerTimes(prisonerName:String):void
 {
-	if(prisonerName == "Khorgan") capnKhorganPrisonVisit();
-	else if(prisonerName == "Kaska") kaskaSlammer();
-	else tamtamStuffGo();
+	switch(prisonerName)
+	{
+		case "Tamtam": tamtamStuffGo(); return; break;
+		case "Kaska": kaskaSlammer(); return; break;
+		case "Khorgan": capnKhorganPrisonVisit(); return; break;
+		case "Badger": /* 9999 return; */ break;
+		case "Zaalt": /* 9999 return; */ break;
+		case "Lah": /* 9999 return; */ break;
+	}
+	clearOutput();
+	clearBust();
+	output("<b>ERROR: Prisoner not found.</b> Please try again!");
+	clearMenu();
+	addButton(0, "Next", sexHaverTerminalTime, true);
 }
 
 //Tam Tam
@@ -1301,7 +1364,7 @@ public function tamtamStuffGo():void
 	output("\n\nMoaning softly, the catgirl finally gives up any pretense of resisting you. She plants her hand over yours, humping back against your tongue and groping at her tits, squeezing and twisting her nipple until it’s a rigid point at the top of her teat, flushed with red.");
 	output("\n\nAfter a few more minutes of this, you can’t take it anymore: the lust building your loins is almost painful");
 	if(pc.hasCock() && !pc.isCrotchExposed()) output(", and your cock is threatening to burst from your [pc.crotchCover] if you don’t get some relief");
-	output(". Tam doesn’t seem much better off: she’s biting her lip, trying not to moan too loudly as you eat her out; her tails are twitching spasmically, brushing at your cheeks and trying desperately to pull you deeper into her sodden box. Finally, the catgirl shifts forward, hiking a leg up onto the workbench and bracing her hands against the wall, leaving her pussy wide open to you.");
+	output(". Tam doesn’t seem much better off: she’s biting her lip, trying not to moan too loudly as you eat her out; her tails are twitching spasmically, brushing at your cheeks and trying desperately to pull you deeper into her sodden box. Finally, the catgirl shifts forward, hiking a leg up onto the table and bracing her hands against the wall, leaving her pussy wide open to you.");
 	output("\n\n<i>“Stop teasing me already, [pc.name]... tell me you’re gonna fuck me... please....”</i> she whines, reaching back as if to finger herself (though the chains don’t quite reach far enough), squeezing her eyes shut in anticipation.");
 
 	var x:int = -1;
@@ -1328,7 +1391,7 @@ public function tamtamStuffGo():void
 	//If PC has a dick bigger than Kaska’s:
 	if(x >= 0 && pc.cockVolume(x) > chars["KASKA"].cockVolume(0)+50)
 	{
-		output("\n\n<i>“Oh, god... so big...”</i> she moans, bracing against the desk as you put more and more cock into her. <i>“Mmmm, how did you get so THICK? Nevermind, just keep doing it. Oh, that’s it... just like that...”</i>");
+		output("\n\n<i>“Oh, god... so big...”</i> she moans, bracing against the table as you put more and more cock into her. <i>“Mmmm, how did you get so THICK? Nevermind, just keep doing it. Oh, that’s it... just like that...”</i>");
 		output("\n\nShe purrs contentedly as you slowly fuck yourself into her, stretching her pussy out until she’s begging for respite. Tam’s belly is bulging with the sheer size of it, but that doesn’t deter her for a second. Man, kaithrit are built to take ‘em!");
 		output("\n\n<i>“Mmm, somebody’s been getting into the Throbb, huh? I looooove it,”</i> she moans, back arching as you start to slide the shaft out of her. <i>“You’re being so gentle though... oh, when’re you gonna get to the rough stuff, huh? I wanna see what you can do!”</i>");
 	}
@@ -1359,7 +1422,7 @@ public function tamtamPrisonFinisher(x:int):void
 	output("You start to thrust, pumping your hips into Tam’s backside until her assflesh is quaking with the force of impacts, her lusty moans filling your ears with every movement as you spread her pussy wide on your [pc.cockOrStrapon " + x + "]. She’s leaking like a faucet around you, cunny-juices running faster every time your [pc.hips] slam into hers, spattering the both of you with her excitement. Tam’s twin pink tails slip around your waist, trying to pull you in every time you pull out, coaxing you back with purrs and moans and the jiggle of her luscious ass and bouncing tits. Oh, those look tempting.... Between thrusts, you shift your grip on your feline lover, reaching up and squeezing her sinfully soft tits; they’re like water in your hands, flowing right around your fingers as her body is pushed up with the force of another pumping of your crotch.");
 	output("\n\n<i>“Oh, yes!”</i> she yelps as your [pc.hips] slap into her ass again, <i>“Harder! Harder! Fuck me harder!”</i>");
 	output("\n\nWell, she did say she liked it rough!");
-	output("\n\nAny hint of the resistant cat-girl from before shatters as Tam-Tam braces against the wall, legs spread wide and back arched sharply, inviting you to pound the hell out of her sodden box. You oblige, a hand grabbing her by the scruff of the neck and forcing her down, bending her over the wreckage of her wrecked attack drone as you start to hammer her cunt. Your [pc.cockOrStrapon " + x + "] is a blur as your hips move faster, fucking her into the bench until she’s screaming in pleasure, pulling her chains taut as you mercilessly fuck her into submission.");
+	output("\n\nAny hint of the resistant cat-girl from before shatters as Tam-Tam braces against the wall, legs spread wide and back arched sharply, inviting you to pound the hell out of her sodden box. You oblige, a hand grabbing her by the scruff of the neck and forcing her down, bending her over as you start to hammer her cunt. Your [pc.cockOrStrapon " + x + "] is a blur as your hips move faster, fucking her into the table until she’s screaming in pleasure, pulling her chains taut as you mercilessly fuck her into submission.");
 	output("\n\nYou barely notice Tam’s orgasm, marked only by a peak in her cries and a sudden gush of girl-cum that slithers down her thighs around the thrusting shaft of your [pc.cockOrStrapon " + x + "] as you continue to pound away at her, unrelenting as her warm, wet muscles squeeze around your rod, trying to milk the cum from you. You try and hold back, concentrating on the rippling display of ass-flesh in front of you, on squeezing Tam’s tits until she squeals, but eventually you too feel the apex of pleasure oncoming.");
 	output("\n\nThere’s no stopping it now. With a primal roar, you slam yourself deep into Tam’s sodden quim and ");
 	if(x >= 0) output("unleash your load, firing a thick rope of [pc.cumColor] spunk to paint her walls, mixing with her own flowing juices as she cums again, spurred on by your potent release.");
@@ -1485,16 +1548,16 @@ public function khorganLesboPrisonSex():void
 	}
 	else output("\n\nThe thraggen captain straddles your hand, which still lies buried in her pants. She grins at you, baring her fang-like teeth before gently biting one of your [pc.breasts]. Her soft gnawing grows in intensity until you flinch with discomfort, at which point she lets down, sucking on your [pc.nipple] to soothe your hurt. Her tongue is just as developed as the rest of her muscles, and plays across your flesh like an exotic dancer. You shiver as the euphoric mixture of pleasure and pain sets rivulets of your sexual fluids dripping down [pc.legs].");
 
-	output("\n\nDespite how good she’s making you feel, you aren’t about to give up control of the situation. While the captain is busy playing with your [pc.chest], you pull your fingers out of her burning cunt and move it around to her chiseled ass. You slip your second hand in as well, caressing her cheeks to further lull her into a false sense of security. The next time she clenches her legs together to keep herself up, you swiftly withdraw your hands grab her ass, flipping her back onto the with the momentum.");
+	output("\n\nDespite how good she’s making you feel, you aren’t about to give up control of the situation. While the captain is busy playing with your [pc.chest], you pull your fingers out of her burning cunt and move it around to her chiseled ass. You slip your second hand in as well, caressing her cheeks to further lull her into a false sense of security. The next time she clenches her legs together to keep herself up, you swiftly withdraw your hands and grab her ass, flipping her back onto the deck with the momentum.");
 	output("\n\nAt this point, you’re all but wrestling for dominance - an act that only arouses the amazonian pirate further. She growls and howls, powerful muscles struggling against your own. Now this must be how thraggen fuck! You grin down at her, pinning the captain to the deck and molesting her exposed breasts with your teeth.");
-	output("\n\nThe jade-skinned pirate’s face is a mask of battle-lust, and seeing it brings a renewed feeling of triumph and vigor to your body. You grip Khorgan’s prone form around the waist, pulling her wonderfully tight butt and cunt up to your face, and hugging her back to your [pc.chest]. Despite the fact that it has been freed from enclosure, her cunt is still thoroughly soaked with sweltering hot juices. The sight and smell of it causes [pc.eachVagina] to become noticeably wetter.");
+	output("\n\nThe jade-skinned pirate’s face is a mask of battle-lust, and seeing it brings a renewed feeling of triumph and vigor to your body. You grip Khorgan’s prone form around the waist, pulling her wonderfully tight butt and cunt up to your face, and hugging her back to your [pc.chest]. Despite the fact that it has been freed from enclosure, her cunt is still thoroughly soaked with sweltering hot juices. The sight and smell of it causes " + (pc.hasVagina() ? "[pc.eachVagina] to become noticeably wetter" : "your [pc.asshole] to pulse with arousal") + ".");
 	output("\n\nUnable to deny your lusts any longer, you bury your face in her waiting folds. Your [pc.tongue] dives into her hole, licking around her insides as your nose rubs fervently against her budding clit. The thraggen captain grunts and moans at the sudden penetration, momentarily unsure of what to do with herself. Eventually her hands find their way to her breasts, playing and tugging at them with a mindless resolve. Holding her in place with one arm, you join one of her hands in massaging them, intertwining your fingers with hers and coaxing her to squeeze her helpless tit with a little extra force.");
 	output("\n\nKhorgan’s well muscled legs shudder and tense in the air above the two of you, but her eyes have lost none of their fiery intensity; she’s entirely focused on you as she resists your assault to the best of her ability. Her jaw is clenched with teeth bared, ");
 	if(silly) output("considerably white for a pirate. You guess no one has an excuse to not keep up with dental hygiene considering new advances in the technology.");
 	else output("but you imagine you’ll have her howling again in short notice.");
 	output("\n\nA final twitch of her clit is the only warning you get before the pirate captains body fulminates in a planet-cracking orgasm. You hear a wet rip as her pants tear into two halves, freeing her legs to splay out in the air, letting your face nuzzle even deeper into her now fully exposed spasming cunt. A burst of femcum splatters over your face, dribbling down her stomach and back as you pull away. Her body leaves her no energy for shouting, so all the noise she can make is a soft moan as she rides out the euphoria. You gulp in a couple breaths of fresh air before returning your attentions to Khorgan.");
 	output("\n\nYour victory prize remains where you left her, still trying to recover as aftershocks of the orgasm you put her through occasionally send shudders through her body. There’s still something missing from this equation though: you haven’t actually gotten off yet.");
-	output("\n\nYou’ve got the answer to that problem, though. You straddle the insensate amazons face, planting [pc.oneVagina] directly over her mouth.");
+	output("\n\nYou’ve got the answer to that problem, though. You straddle the insensate amazons face, planting " + (pc.hasVagina() ? "[pc.oneVagina]" : "your [pc.asshole]") + " directly over her mouth.");
 	if(pc.isNice()) output("\n\n<i>“Come on, you gotta help me after that,”</i> you say with a smile, running your hand through her sweat slicked hair.");
 	else if(pc.isMischievous()) output("\n\n<i>“You can’t be done so soon,”</i> you chide teasingly.");
 	else output("<i>“Lick,”</i> you command with a grin.");

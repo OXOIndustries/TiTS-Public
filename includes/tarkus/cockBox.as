@@ -104,7 +104,7 @@ public function useInstalledDickBox():void
 	//Build dis menu
 	for(var y:int = 0; y < pc.totalCocks(); y++)
 	{
-		output("<b>#" + (y+1) + ":</b> " + formatFloat(pc.cLength(y),3) + " in long, " + pc.cocks[y].cockColor + " [pc.accurateCockName " + y + "]\n")
+		output("<b>#" + (y+1) + ":</b> " + formatFloat(pc.cLength(y),3) + " in long, " + pc.cocks[y].cockColor + " [pc.accurateCockName " + y + "]\n");
 		if(pc.cocks[y].thickness() <= 4 && pc.cocks[y].cLength() <= 20) addButton(y,"#" + (y+1),cockBoxUse,y,"#"+(y+1),"Stick your [pc.cockNoun " + y + "] in there.");
 		else addDisabledButton(y,"#" + (y+1),"#" + (y+1),"Your [pc.cockNoun " + y + "] is too big to fit in the hole.");
 	}

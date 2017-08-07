@@ -1730,28 +1730,32 @@ package classes.GameData
 				return;
 			}
 			// Naleen coil grapple text
-			else if (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(NaleenMatingBall))
+			else if (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(NaleenMatingBall) || hasEnemyOfClass(NaleenBrotherA) || hasEnemyOfClass(NaleenBrotherB))
 			{
 				if(target.hasPerk("Escape Artist"))
 				{
 					if(target.reflexes() + rand(20) + 6 + latexBonus + panicBonus + target.statusEffectv1("Naleen Coiled") * 5 + slipperyBonus > 24) {
-						output("You display a remarkable amount of flexibility as you twist and writhe through the coils to freedom.");
+						if(target is PlayerCharacter) output("You display a remarkable amount of flexibility as you twist and writhe through the coils to freedom.");
+						else output(target.getCombatName() + " display" + (!target.isPlural ? "s" : "") + " a remarkable amount of flexibility as " + target.getCombatPronoun("s") + " twist" + (!target.isPlural ? "s" : "") + " and writhe" + (!target.isPlural ? "s" : "") + " through the coils to freedom.");
 						if(panicJack)
 						{
-							output(" The [pc.cumNoun] you squirt helps a little too.");
-							pc.lust(-10);
+							if(target is PlayerCharacter) output(" The [pc.cumNoun] you squirt helps a little too.");
+							else output("... with some extra lewd lube, too.");
+							target.lust(-10);
 						}
 						target.removeStatusEffect("Naleen Coiled");
 					}
 				}
-				else 
+				else
 				{
 					if(target.physique() + rand(20) + 1 + latexBonus + panicBonus + target.statusEffectv1("Naleen Coiled") * 5 + slipperyBonus > 24) {
-						output("With a mighty heave, you tear your way out of the coils and onto your [pc.feet].");
+						if(target is PlayerCharacter) output("With a mighty heave, you tear your way out of the coils and onto your [pc.feet].");
+						else output("With a heave, " + target.getCombatName() + " tear" + (!target.isPlural ? "s" : "") + " " + target.getCombatPronoun("s") + " way out of the coils and adopt" + (!target.isPlural ? "s" : "") + " a fighting stance.");
 						if(panicJack)
 						{
-							output(" The [pc.cumNoun] you squirt helps a little too.");
-							pc.lust(-10);
+							if(target is PlayerCharacter) output(" The [pc.cumNoun] you squirt helps a little too.");
+							else output("... with some extra lewd lube, too.");
+							target.lust(-10);
 						}
 						target.removeStatusEffect("Naleen Coiled");
 					}
@@ -1759,14 +1763,19 @@ package classes.GameData
 				//Fail to escape: 
 				if(target.hasStatusEffect("Naleen Coiled"))
 				{
-					if(CombatManager.hasEnemyOfClass(Naleen)) output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. She grins down at you with a feral look in her eyes....");
-					else if(CombatManager.hasEnemyOfClass(NaleenMatingBall)) output("You struggle madly to escape from the coils but ultimately fail. The pin does feel a little looser as a result, however.");
-					else output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. He grins down at you with a predatory glint in his eye, baring his fangs....");
+					if(target is PlayerCharacter)
+					{
+						if(CombatManager.hasEnemyOfClass(Naleen)) output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. She grins down at you with a feral look in her eyes....");
+						else if(CombatManager.hasEnemyOfClass(NaleenMatingBall)) output("You struggle madly to escape from the coils but ultimately fail. The pin does feel a little looser as a result, however.");
+						else output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. He grins down at you with a predatory glint in his eye, baring his fangs....");
+					}
+					else output(target.getCombatName() + " groan" + (!target.isPlural ? "s" : "") + " in pain, struggling madly to escape the brutal confines of the naleen’s coils, but to no avail...");
 					target.addStatusValue("Naleen Coiled",1,1);
 					if(panicJack)
 					{
-						output(" Not even your miniature, [pc.cumNoun]-squirting orgasms can help.")
-						pc.lust(-10);
+						if(target is PlayerCharacter) output(" Not even your miniature, [pc.cumNoun]-squirting orgasms can help.")
+						else output(" Not even the extra lewd lube squirted can help the matter...");
+						target.lust(-10);
 					}
 				}
 			}
@@ -3278,7 +3287,7 @@ package classes.GameData
 			
 			if (factor > factorMax) factor = factorMax;
 		
-			if (attacker.hasPheromones()) bonus += 1;
+			if (attacker.hasPheromones()) bonus += attacker.pheromoneLevel();
 			if (teaseType == "SQUIRT") bonus += 2;
 			if (attacker.hasStatusEffect("Sweet Tooth")) bonus += 1;
 			
@@ -3644,7 +3653,7 @@ package classes.GameData
 			// Naleen special loss handling
 			if (!bLossCond)
 			{
-				bLossCond = (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale)) && (pc.hasStatusEffect("Naleen Venom") && (pc.physique() == 0 || pc.willpower() == 0));
+				bLossCond = (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(NaleenBrotherA)) && (pc.hasStatusEffect("Naleen Venom") && (pc.physique() == 0 || pc.willpower() == 0));
 			}
 			
 			if (bLossCond && lossCondition == CombatManager.ESCAPE && atEndOfRound)

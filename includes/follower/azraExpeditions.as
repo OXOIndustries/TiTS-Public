@@ -55,13 +55,13 @@ public function azraExpeditionStartup():void
 		output("<i>“Need help gathering samples?”</i> you say.");
 		output("\n\n<i>“Seriously?”</i> Azra places her palm on her armored hip. <i>“You’re not pulling my wings?”</i>");
 		//Misch
-		if(pc.isMischievous()) output("\n\nYou grab hold of one and give it a little tug. <i>“Well now I am now, but not about this.”</i>");
+		if(pc.isMischievous()) output("\n\nYou grab hold of one and give it a little tug. <i>“Well now I am, but not about this.”</i>");
 		//Bimbo
 		else if(pc.isBimbo()) output("\n\n<i>“Nopitty nope nope!”</i>");
 		//Else
 		else output("\n\n<i>“Of course not.”</i>");
 		//Merge
-		output("\n\nAzra’s ink-black lips curl in a slight smile. <i>“Then I should prepare a plan before begin. Allow me a few seconds to search my database. I’ve flagged thousands of potential reports of unique species on Rush worlds for further investigation.”</i> She picks up her codex and rapidly taps on the screen. <i>“");
+		output("\n\nAzra’s ink-black lips curl in a slight smile. <i>“Then I should prepare a plan before we begin. Allow me a few seconds to search my database. I’ve flagged thousands of potential reports of unique species on Rush worlds for further investigation.”</i> She picks up her codex and rapidly taps on the screen. <i>“");
 
 		output("Ah yes... this one could be fun for both of us. Ready to get the ball rolling?");
 		output("”</i>");
@@ -170,8 +170,7 @@ public function movingOnOutToMhengaExp():void
 	clearOutput();
 	showNaleenBros();
 	showName("FIGHT:\nNALEEN BROS");
-	currentLocation = "OVERGROWN ROCK 3";
-	generateMap();
+	moveTo("OVERGROWN ROCK 3");
 	
 	flags["AZRA_MHENGAED"] = 0;
 	
@@ -179,7 +178,11 @@ public function movingOnOutToMhengaExp():void
 	output("\n\n<i>“What an inhospitable planet. I can’t believe anyone actually lives here, interesting flora or not!”</i>");
 	output("\n\nYou shrug and do your best to keep your eyes open and alert. No journey through Mhen’ga is likely to end without at least one hostile encounter, and this one is no exception.");
 	output("\n\nTwo figures slither out of bioluminescent bushes with nary a sound, one to each side of your small party.");
-	if(CodexManager.hasUnlockedEntry("Naleen")) output("\n\nYour Codex pings, <i>“Warning, Naleen detected. These snake-like felines should be avoided if possible. Beware their venom.”</i>");
+	if(!CodexManager.hasUnlockedEntry("Naleen"))
+	{
+		output("\n\nYour Codex pings, <i>“Warning, Naleen detected. These snake-like felines should be avoided if possible. Beware their venom.”</i>");
+		CodexManager.unlockEntry("Naleen");
+	}
 	else output("\n\nThey’re naleen!");
 	output("\n\n<i>“Oh brother... look what we have here,”</i> the leftmost one says, cat-like ears flicking playfully.");
 	output("\n\nThe other’s ears go flat as he bares his fangs. <i>“A metal fish and foolish sky-creature, lost in the woods.”</i>");
@@ -341,8 +344,7 @@ public function loseToNaleenBrosEpilogue():void
 
 	//bimbo
 	if(pc.isBimbo()) output("\n\nShe doesn’t stop you from licking the excess off her, though her blush is a sight to see.");
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	flags["AZRA_EXP_FAILED"] = getPlanetName().toLowerCase();
 	azra.azraCombatCleanup();
 	CombatManager.genericLoss();
@@ -786,8 +788,7 @@ public function azraMhengaMissionEpilgue():void
 	output("\n\n<i>“That... let’s not do... that again,”</i> Azra pants with exhaustion.");
 	output("\n\nYou nod. <i>“The expedition or fighting next to a whole city of potentially angry aliens?”</i>");
 	output("\n\nAzra straightens at your question. <i>“The hostile village thing. I’d never leave an entire species all alone, defenseless against extinction. Come on, let’s get back to the ship. I want to give these things a more thorough examination.”</i>");
-	currentLocation = "EAST ESBETH";
-	generateMap();
+	moveTo("EAST ESBETH");
 	clearMenu();
 	addButton(0,"Next",azraMhengaMissionEpilgue2);
 }
@@ -796,8 +797,7 @@ public function azraMhengaMissionEpilgue2():void
 {
 	clearOutput();
 	showAzra();
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	output("Azra unpacks efficiently. Her bag of supplies is dropped into an empty corner. The sample pouch is placed into a vacant spot on her desk perfectly shaped to accept it. You get the impression that she’s spent more than a little time organizing her room to make the most of every meter. She sighs contently once her things are stored and turns to face you, smiling beatifically. <i>“");
 	if(flags["FED_9TAIL"] == undefined) output("You were magnificent. I never could’ve done this without you.");
 	else output("It means a lot to me that you were willing to do... that for my research. I couldn’t have.”</i> Her eyes flit to your well-used crotch as her cheeks color. <i>“I’d be too embarrassed.");
@@ -959,7 +959,7 @@ public function fuckTheFuckLily():void
 	if(pc.exhibitionism() < 33) output(" and you timidly look around, hoping the sounds don’t carry through the door.");
 	else if(pc.exhibitionism() < 66) output(" and you worriedly glance around, hoping yet terrified that Azra will walk in on you at your most depraved.");
 	else output(" and you glance around, hoping Azra will walk in on the sexy show you’re making.");
-	output("\n\nNow panting with unbearable lust and undeniable levels of pleasure, you give up all sense of propriety and resort to fucking wildly, [hips] jumping inches off into the air. The flower’s interior is a slick, silky heaven for your [pc.cock " + x + "], a sucking, squeezing hole of seemingly infinite pleasure. Inside its gluttonous gullet, the numerous tentacles twist around, the longest ones circling the base of your shaft");
+	output("\n\nNow panting with unbearable lust and undeniable levels of pleasure, you give up all sense of propriety and resort to fucking wildly, [pc.hips] jumping inches off into the air. The flower’s interior is a slick, silky heaven for your [pc.cock " + x + "], a sucking, squeezing hole of seemingly infinite pleasure. Inside its gluttonous gullet, the numerous tentacles twist around, the longest ones circling the base of your shaft");
 	if(pc.hasSheath(x)) output(" inside your violated sheath");
 	output(". With so much blood trapped in your [pc.cock " + x + "], it’s bigger and harder than ever, twitching valiantly against its restraints with every beat of your heart.");
 	output("\n\nOne of the tentacles circles your [pc.cockHead " + x + "] for a moment, and without much warning or pause, it lances forward to bury itself into your vulnerable cum-slit. Your preconceptions are turned on their head when there’s a complete lack of pain from the abrupt penetration. If anything, it actually feels kind of good... like there’s a warm, slippery finger caressing your penis from the inside out. It slithers in and out of you, pumping you inside, burrowing pleasure into your center even while stroking you from without. Your body, burning from the exertion of fucking the flower’s pod and the constantly-rising tidal wave of lust, begins to twitch spasmodically,");

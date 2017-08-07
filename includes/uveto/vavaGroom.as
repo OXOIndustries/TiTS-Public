@@ -60,7 +60,7 @@ public function vavaGroomBonus():Boolean
 	showBust("ESTIE", "CRUFF");
 	
 	// Visit repeat
-	output("The reception area of Vava Groom is one of the ship’s cargo bays, fitted with a teak synth floor, lit warmly and decorated with aquariums, diplomas and pictures of various happy customers. There are chairs for waiting customers and a counter. The actual work of the grooming parlor goes on behind closed doors, further within the craft. The aquariums have a remarkable range of creatures gliding and glinting their way around them: tiny iridescent squids, crabs shaped like horses, multi-headed eels...");
+	output("The reception area of Vava Groom is one of the ship’s cargo bays, fitted with a teak synth floor, lit warmly and decorated with aquariums, diplomas and pictures of various happy customers. There are chairs for waiting customers and a counter. The business end of the parlor resides behind closed doors, further within the craft. The aquariums have a remarkable range of creatures gliding and glinting their way around them: tiny iridescent squids, crabs shaped like horses, multi-headed eels...");
 	output("\n\n<i>“Hello, [pc.name] Steele!”</i> says Estie in her singsong voice when you step through the wide airlock. <i>“Here for a grooming?”</i> Cruff is also here, " + RandomInCollection([
 		"feeding the creatures in his aquariums",
 		"tapping away at a holo board",
@@ -592,12 +592,12 @@ public function vavaGroomServiceGrooming(page:int = 0):void
 	{
 		case 0:
 			output("Oh, why not. You tap your credit stick against the holo-pad Estie proffers you, and Cruff walks you into one of the rooms adjoining the cargo bay.");
-			output("\n\nA pleasant herbal smell engulfs you. Warm light suffuses here too, and the walls crawl with dark green vines. Are they real? The rustle of leaves and sounds of a deep, sultry jungle surely can’t be. About twenty plush pads of various sizes float in the middle of the room, hanging like a giant, untethered mobile.");
+			output("\n\nA pleasant herbal smell engulfs you as you enter. Warm light suffuses here too, and the walls crawl with dark green vines. Are they real? The rustle of leaves and sounds of a deep, sultry jungle surely can’t be. About twenty plush pads of various sizes float in the middle of the room, like a giant, untethered mobile.");
 			output("\n\n<i>“If you could");
 			if(!pc.isNude()) output(" take your outer garments off and");
 			output(" make yourself comfortable, Steele,”</i> says Cruff, examining a glittering array of clippers and combs on a table as Estie walks in with an armful of bottles.");
-			if(pc.isBiped()) output(" You gingerly sit yourself down on one of the larger floating pads, and instantly the rest form a chair for you, contouring perfectly to suit your frame and [pc.legs].");
-			else if(pc.isNaga()) output(" You gingerly sit yourself down on one of the larger floating pads, and instantly the rest form a chair for you, contouring perfectly to suit your frame. Smaller pads place themselves underneath your tail and lift it up, so eventually your whole serpentine frame is languorously stretched out.");
+			if(pc.isBiped()) output(" You gingerly sit down on one of the larger floating pads, and instantly the rest form a chair for you, contouring perfectly to suit your frame and [pc.legs].");
+			else if(pc.isNaga()) output(" You gingerly sit down on one of the larger floating pads, and instantly the rest form a chair for you, contouring perfectly to suit your frame. Smaller pads place themselves underneath your tail and lift it up, so eventually your whole serpentine frame is languorously stretched out.");
 			else if(pc.isGoo()) output(" As you ooze over to the pads, they disperse to form buffers around you. You’re soon in the middle of a wide armchair-like arrangement perfect for your slimy bulk. You sigh as you relax back into it. Why don’t you have anything like this on your ship?");
 			else if(pc.isTaur()) output(" As you trot over to the pads, they disperse, larger ones sliding themselves underneath your lower body, smaller ones swaddling themselves behind your joints. When you gingerly relax, you find the harness-like structure they’ve formed takes your weight easily. It probably looks very weird, but it’s relaxing to take the weight off your [pc.feet] for once.");
 			if(!pc.isTaur()) output("\n\n<i>“Stage one, then,”</i> says Cruff. You experience a slight lurch in your belly as the pads rearrange themselves, slipping and sliding you carefully around as if you were a piece of gourmet food being transferred from tray to plate. You wind up on your back, arms and [pc.legOrLegs] held level.");
@@ -605,7 +605,8 @@ public function vavaGroomServiceGrooming(page:int = 0):void
 			output("\n\n<i>“No silly faces, please,”</i> she warns, her jovial smile the last thing you see before the pads are pressed over your [pc.eyes] and the rest of your face is caked in the cool cream. The fhan’i’s slim digits spread across your face at the same time as the kalabast’s wide paws massage your back, and the effect is one of deep relaxation - of all the knots of tension in your muscles and mind slowly being unwound and smoothed over. With your eyes covered and the peaceful jungle sounds in your ears you find yourself entering a pliant, dozy state, happy for the four masterful hands to roam around and touch your body as they wish.");
 			output("\n\n");
 			if(flags["VAVA_GROOM_SERVICE_GROOMING"] == undefined) output("Cruff spends some time massaging your back with sweeps and cusps of his strong hands, seeming to explore the lay of your muscles, creating a braille map of them that he then uses to tighten his focus on particular areas. Damn does that feel <i>good</i>. When he touches you just <i>there</i> you are almost driven to arch your back and groan, and when he runs his finger right up your spine a tiny pleasurable explosion goes off in your head. In the soft state you’ve sunken into, you kind of just want to lie here and let him do that forever. Because you’ve been good, haven’t you? You’re a good [pc.boy].");
-			else output("Cruff only needs a few moments to re-familiarize himself with your body with those sweeps and cusps of his strong hands, and your building anticipation is met when he starts intently focusing on those zones of your back and sides that are almost like erogenous zones when he treats them this way. You are almost driven to arch your back and groan, and when he runs his finger right up your spine a little pleasurable explosion goes off in your head. In the soft state you’ve sunken into, you kind of just want to lie here and let him do that forever. Because you’ve been a <i>very</i> good [pc.boy].");
+			//else output("Cruff only needs a few moments to re-familiarize himself with your body with those sweeps and cusps of his strong hands, and your building anticipation is met when he starts intently focusing on those zones of your back and sides that are almost like erogenous zones when he treats them this way. You are almost driven to arch your back and groan, and when he runs his finger right up your spine a little pleasurable explosion goes off in your head. In the soft state you’ve sunken into, you kind of just want to lie here and let him do that forever. Because you’ve been a <i>very</i> good [pc.boy].");
+			else output("Cruff only needs a few moments to re-familiarize himself with your body, sweeping across your back with the cusps of his strong hands. Your building anticipation is met when he starts focusiing on the sensitive zones of your back and sides, and soon, under his skillful hands, your entire body becomes an erogenous zone. You are almost driven to arch your " + pc.mf("groan", "moan") + " when he runs his fingers along your spine, while pleasurable explosions are set off in your head as he works. In the soft state you’ve sunken into, you have few qualms with lying here and letting him work forever. After all, you’ve been a <i>very</i> good [pc.boy].");
 			if(pc.hasFur()) output(" It gets even better when both of them pick up combs and get to work on your moistened fur, working out all the little mats and entanglements in wonderfully long, sensual slides through every square inch of your thick coat. You can’t stop your limbs flexing occasionally in response to it.");
 			if(pc.isTaur()) output(" One picks up a curry comb, the other a dandy brush, and they get to work giving your tauric frame a thorough rub down. You can’t stop reflexively prancing a bit in response to it. Void, you really need to find some sort of way of getting this on your ship. Showers just don’t cut it for your frame.");
 			
@@ -630,14 +631,14 @@ public function vavaGroomServiceGrooming(page:int = 0):void
 			break;
 		case 1:
 			output("<i>“Stage 2,”</i> growls Cruff softly.");
-			if(!pc.isTaur()) output(" You are slightly shaken out of your happy reverie as the pads underneath you rearrange themselves so that you are slid back into the upright seated position.");
+			if(!pc.isTaur()) output(" You are slightly shaken out of your reverie as the pads underneath you rearrange themselves so that you are slid back into the upright seated position.");
 			output(" The pads serving as arm rest stretch out, allowing Estie to take hold of one of your hands and apply a file to the");
 			if(pc.hasArmFlag(GLOBAL.FLAG_HOOVES)) output(" hooves");
 			else if(pc.hasClawedHands()) output(" claws");
 			else output(" nails");
 			output(". The oil that was rubbed into your back and shoulders must be some sort of quick drying, dirt-absorbing agent; within moments of being flipped back up it feels like it’s faded away entirely from your [pc.skinFurScalesNoun], leaving behind it an aura of glossiness and health.");
 			output("\n\n");
-			if(!pc.hasHair()) output("You’ve barely had time to relish the feeling when the kalabast’s wide paws lay themselves over your scalp, covered in some other type of oil. By the time he’s finished polishing your bald pate with attentive pushes and drags of his pads, he’s actually generating wet-finger-on-a-windowpane noises with it.");
+			if(!pc.hasHair()) output("You’ve barely had time to relish the feeling when the kalabast places his wide paws over your scalp, covered in some other type of oil. By the time he’s finished polishing your bald pate with attentive pushes and drags of his pads, he’s actually generating wet-finger-on-a-windowpane noises with it.");
 			else
 			{
 				if(pc.hairType == GLOBAL.HAIR_TYPE_REGULAR) output("You’ve barely had time to relish the feeling when the kalabast’s wide paws lay themselves over your scalp, covered this time in shampoo. It’s lathered vigorously into your [pc.hair], every knot and tangle carefully pulled out with a slow curl of his claws.");
@@ -687,7 +688,7 @@ public function vavaGroomServiceGrooming(page:int = 0):void
 			if(pc.hasArmor()) output(" as you climb back into your [pc.armor]");
 			else if(pc.canCoverSelf(false, "wings") && pc.statusEffectv1("Wing Position") == 1) output(" as you sweep your [pc.wings] back around you");
 			output(". <i>“It’s good to work with such healthy material.”</i>");
-			output("\n\n<i>“See you soon [pc.name]!”</i> says Estie as she leads you back to the reception area. You are going to practically bounce out of here - your whole body feels rested and refreshed. You just want to strut around, on Tavros maybe, see how many people you can make stare. <i>“");
+			output("\n\n<i>“See you soon [pc.name]!”</i> says Estie after she leads you back to the reception area. You are going to practically bounce out of here - your whole body feels rested and refreshed. You just want to strut around, on Tavros maybe, see how many people you can make stare. <i>“");
 			
 			var estieFin:Array = [];
 			

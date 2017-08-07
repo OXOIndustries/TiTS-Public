@@ -112,6 +112,7 @@ public function leaveTheSubTuner():void
 public function meetingBelle():void
 {
 	clearOutput();
+	showBust("BELLE");
 	author("HugsAlright");
 	output("You wait there for a while, not feeling any need to move from where you are. <i>Resting here on your hands and knees feels perfect.</i> A few passersby give you strange looks, but you can’t really bring yourself to care; all you can really do is wait here on all fours, feeling happy more than anything else.");
 	output("\n\nOnly a little more time passes before you hear the same voice you heard from the collar, though this time it’s free of the static from earlier.");
@@ -143,8 +144,7 @@ public function getSubTunered():void
 	clearOutput();
 	showBelle();
 	rooms["SUBSHIT"].addFlag(GLOBAL.NPC);
-	currentLocation = "SUBSHIT";
-	generateMap();
+	moveTo("SUBSHIT");
 	author("HugsAlright");
 	output("You are led around by this wonderful woman around the wabeship that is Uveto station, crawling along the floor until you reach what must be the scientist’s lab.");
 	output("\n\nFinally walking inside behind the scientist, your eyes are greeted by a wealth of scientific equipment: blinking lights and computers, and bundles of wires lining the walls of the small lab. Though, beyond that most of the equipment seems to be related to audio: radios and speakers, various instruments lined up next to microphones, even a row of wine glasses and spoons placed carefully near a group of transceivers.");
@@ -176,8 +176,7 @@ public function accupitchLabBonus():Boolean
 	clearOutput();
 	showBelle();
 	rooms["SUBSHIT"].addFlag(GLOBAL.NPC);
-	currentLocation = "SUBSHIT";
-	generateMap();
+	moveTo("SUBSHIT");
 	author("HugsAlright");
 	//firstTime:
 	if(flags["ACCUPITCH_VISIT"] == undefined)
@@ -434,8 +433,7 @@ public function walkiesPart2():void
 	showBelle(true);
 	author("HugsAlright");
 	rooms["SUBSHIT"].removeFlag(GLOBAL.NPC);
-	currentLocation = "UVS B9";
-	generateMap();
+	moveTo("UVS B9");
 	output("Belle leads you around Uveto station for quite some time, testing the abilities of her collar in all different ways. Sometimes she encourages you to go receive all manners of pets and praise from passersby, only to later chide you for talking to strangers, though, you can’t find yourself upset about it. <i>Your master knows best, after all.</i> Other times she instructs you to provide passing huskar, toves, and other aliens with a show, making you wiggle your butt in the air for them. Some of them respond to your teasing movements with slaps and gropes, ");
 	//highExhib:
 	if(pc.exhibitionism() >= 66) output("but you don’t mind, this being something you’d do without the help of Belle’s collar.");
@@ -546,8 +544,7 @@ public function postWalkiesHeat(ppBelle:PregnancyPlaceholder):void
 	author("HugsAlright");
 	output("Belle walks you back to her lab, keeping a firm grip on your leash in an attempt to avoid any further distractions, although your naked form and cum-covered [pc.face] draw more than a few lustful looks on the way back. Your master keeps you in line though, all the way back to her scientific workspace.");
 	rooms["SUBSHIT"].addFlag(GLOBAL.NPC);
-	currentLocation = "SUBSHIT";
-	generateMap();
+	moveTo("SUBSHIT");
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",postWalkiesHeat2, ppBelle);
