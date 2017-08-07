@@ -714,6 +714,7 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 14"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 14"].westExit = "RESIDENTIAL DECK 15";
 	rooms["RESIDENTIAL DECK 14"].eastExit = "RESIDENTIAL DECK 8";
+	rooms["RESIDENTIAL DECK 14"].northExit = "PAIGE_HOUSE";
 	rooms["RESIDENTIAL DECK 14"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 14"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 14"].addFlag(GLOBAL.PUBLIC);
@@ -727,12 +728,41 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 15"].system = "SYSTEM: KALAS";
 	//rooms["RESIDENTIAL DECK 15"].southExit = "RESIDENTIAL DECK 18"; -> added to game.as
 	rooms["RESIDENTIAL DECK 15"].eastExit = "RESIDENTIAL DECK 14";
+	rooms["RESIDENTIAL DECK 15"].northExit = "YOGA_HOUSE";
 	rooms["RESIDENTIAL DECK 15"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 15"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 15"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 15"].addFlag(GLOBAL.NPC);
 	rooms["RESIDENTIAL DECK 15"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["RESIDENTIAL DECK 15"].runOnEnter = checkIfAinaIsAround;
+
+	//Yoga palace!
+	rooms["YOGA_HOUSE"] = new RoomClass(this);
+	rooms["YOGA_HOUSE"].roomName = "PAIGE'S\nYOGA";
+	rooms["YOGA_HOUSE"].description = "";
+	rooms["YOGA_HOUSE"].planet = "TAVROS STATION";
+	rooms["YOGA_HOUSE"].system = "SYSTEM: KALAS";
+	rooms["YOGA_HOUSE"].southExit = "RESIDENTIAL DECK 15";
+	rooms["YOGA_HOUSE"].moveMinutes = 1;
+	rooms["YOGA_HOUSE"].addFlag(GLOBAL.INDOOR);
+	rooms["YOGA_HOUSE"].addFlag(GLOBAL.PUBLIC);
+	rooms["YOGA_HOUSE"].addFlag(GLOBAL.COMMERCE);
+	rooms["YOGA_HOUSE"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["YOGA_HOUSE"].runOnEnter = yogaIntro;
+
+	//Paige's Place
+	rooms["PAIGE_HOUSE"] = new RoomClass(this);
+	rooms["PAIGE_HOUSE"].roomName = "PAIGE'S\nPLACE";
+	rooms["PAIGE_HOUSE"].description = "";
+	rooms["PAIGE_HOUSE"].planet = "TAVROS STATION";
+	rooms["PAIGE_HOUSE"].system = "SYSTEM: KALAS";
+	rooms["PAIGE_HOUSE"].southExit = "RESIDENTIAL DECK 14";
+	rooms["PAIGE_HOUSE"].moveMinutes = 1;
+	rooms["PAIGE_HOUSE"].addFlag(GLOBAL.INDOOR);
+	rooms["PAIGE_HOUSE"].addFlag(GLOBAL.PUBLIC);
+	rooms["PAIGE_HOUSE"].addFlag(GLOBAL.NPC);
+	rooms["PAIGE_HOUSE"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["PAIGE_HOUSE"].runOnEnter = paigesUnitDurhurrrrrrrrrrFenWroteUNIT;
 	
 	//1016 South Walkway 1
 	rooms["RESIDENTIAL DECK 16"] = new RoomClass(this);

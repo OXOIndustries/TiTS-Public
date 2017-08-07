@@ -1830,6 +1830,8 @@ public function variableRoomUpdateCheck():void
 		rooms["RESIDENTIAL DECK 15"].removeFlag(GLOBAL.NPC);
 		lockAinasRoom();
 	}
+	//Paige's place/yoga:
+	paigeRoomsUpdate();
 	//Place/remove Semith's NPC flag from chess area based on time and if pc played with him already
 	if (hours >= 12 && hours <= 17) rooms["RESIDENTIAL DECK 7"].addFlag(GLOBAL.NPC);
 	else rooms["RESIDENTIAL DECK 7"].removeFlag(GLOBAL.NPC);

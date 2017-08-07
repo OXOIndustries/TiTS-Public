@@ -132,6 +132,7 @@
 		include "../includes/follower/celise.as";
 		include "../includes/follower/celiseGiga.as";
 		include "../includes/follower/multi_interactions.as";
+		include "../includes/follower/paige.as";
 		include "../includes/follower/pippa.as";
 		include "../includes/follower/siegwulfe.as";
 		include "../includes/follower/yammi.as";
