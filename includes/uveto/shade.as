@@ -15,7 +15,8 @@ SHADE_IS_YER_SIS : Tracks non-incestuous sister relationship.
 	undefined - It is not mutually acknowleged that Shade is Steele's sister and incest is still possible
 	-1 - Shade's sister mode is negative.
 	0 - Shade's sister mode is ambiguous.
-	1 - Shade is defeinitely in sister mode.
+	1 - Shade is definitely in sister mode.
+	2 - Shade's sister mode had been acknowledged, but ignored anyway for mutual incest.
 */
 
 public function shadeBustDisplay(nude:Boolean = false):String
@@ -1039,6 +1040,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			pc.lust(15);
 			
 			flags["SHADE_ON_UVETO"] = 3;
+			flags["SHADE_IS_YER_SIS"] = 2; // 2 for incest sister
 			
 			// Insert Shade's sex menu.
 			shadeSexMenu();
