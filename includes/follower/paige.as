@@ -993,7 +993,7 @@ public function paigeSexPrologue():void
 {
 	clearOutput();
 	showPaige();
-	output("\n\nYou knock on the door to Paige’s unit. Iddi is normally there within moments to greet you – but today, he isn’t. There’s no response at all for some time. You knock again, in case they just didn’t hear you the first time. After a moment, Iddi finally arrive to answer the door.");
+	output("You knock on the door to Paige’s unit. Iddi is normally there within moments to greet you – but today, he isn’t. There’s no response at all for some time. You knock again, in case they just didn’t hear you the first time. After a moment, Iddi finally arrive to answer the door.");
 	output("\n\n<i>“" + pc.mf("Mister","Missus") + " [pc.name]!”</i> Iddi exclaims, allowing you in. <i>“I’m sorry for the wait. Momma is expecting you in the living room. She told me that once you got here, I should go to my dock and shut off for the day.”</i> Iddi is its usual, helpful self. You wonder what Paige has in mind for giving Iddi such specific instructions. <i>“Enjoy your stay!”</i> And then Iddi is off, going down a hallway towards its charging station.");
 	output("\n\nYou walk to the living room, and contrary to Iddi, Paige isn’t there. Her bedroom door is open just slightly, and you can hear her busying herself with her dresser. <i>“[pc.name]?”</i> she asks, and you confirm. You hear her take a deep breath, and she opens the door.");
 	output("\n\nShe’s wearing a black one-piece of sheer lingerie, with a loose camisole going from her neck to just below her stomach. It has a gridded pattern that dots across her body. The camisole sags enough to allow for a bra, but she’s not wearing one. The piece’s panties cover her whole waistline, but, with the rest of the fabric, do nothing to hide anything. She may as well be naked with how little the piece is concealing: you can see everything from her pink nipples to her privates. She isn’t wearing her projector, and her scar is in full view.");
@@ -1004,7 +1004,7 @@ public function paigeSexPrologue():void
 	output("\n\nYou stammer out how it couldn’t look better on anyone else");
 	if(pc.femininity >= 65) output(", which you say with some jealousy. You doubt you’d look cuter in it");
 	output(". Paige bites her lip nervously, enjoying your review. <i>“Look, um, [pc.name],”</i> she begins apprehensively. <i>“I, uh... where do I begin?”</i> She stutters a bit. Seeing her difficulty, you grab her by the hand and lead her to the nearby couch, where you two normally sit, and tell her to start from the beginning.");
-	output("\n\n<i>“The beginning?”</i> she asks. <i>“It wasn’t so long ago that you first walked into my yoga class. You were just another student back then.”</i> She rubs your hand in hers. <i>“You were a little critical of my methods, which, well, which lead us to here. I’ve never had a friend like you, [pc.name]. You’ve been very patient and you always seem so interested in me. Most people that want to get close to me just want me for my body. And don’t get me wrong,”</i> she laughs cockily, <i>“it’s a pretty wicked body. But you were the only person that’s been interested in</i> learning <i>about me.");
+	output("\n\n<i>“The beginning?”</i> she asks. <i>“It wasn’t so long ago that you first walked into my yoga class. You were just another student back then.”</i> She rubs your hand in hers. <i>“You were a little critical of my methods, which, well, which lead us to here. I’ve never had a friend like you, [pc.name]. You’ve been very patient and you always seem so interested in me. Most people that want to get close to me just want me for my body. And don’t get me wrong,”</i> she laughs cockily, <i>“it’s a pretty wicked body. But you were the only person that’s been interested in</i> learning <i>about me.”</i>");
 	output("\n\n<i>“At first, I didn’t know what to feel,”</i> she continued, frowning. <i>“At first I thought you were from the Black Void, and you were sent to get close to me to find Kiro and Mason before you hit me. Then I thought that maybe you were from the UGC, ready to do the same thing in the name of ‘justice’ or some shit. Hell, maybe you</i> are, <i>and I’m just letting my guard down.”</i> You remain silent, as you usually do.");
 	output("\n\n<i>“But I wouldn’t have told you anything if I didn’t trust you.”</i> She smiles warmly at you, and you squeeze her hand in reciprocation. <i>“You haven’t tried to slip me any truth-serum drugs or whatever, and I was talking with Mason an hour ago – things are going fine in Ausaril, no threats or anything. I think I’m making the right choice with you. At least, I like to think so.”</i>");
 	//[=Next=]
@@ -1045,7 +1045,7 @@ public function paigeSexPrologue2():void
 	{
 		output(".”</i> She fondles your [pc.cocks]");
 		if(!pc.isCrotchExposed()) output(" through your [pc.crotchCovers]");
-		output(" while she licks her lips. <i>“Sometimes, I kind of wish I had one of these. I wonder how it would feel? How would I taste?");
+		output(" while she licks her lips. <i>“Sometimes, I kind of wish I had one of these. I wonder how it would feel? How would I taste?”</i>");
 	}
 	output("\n\n<i>“You know what yoga and sex have in common?”</i> she asks rhetorically. <i>“They’re best done with a friend. Maybe two. ");
 	//if {the PC has given Paige zero Honey Wines}
@@ -1063,7 +1063,7 @@ public function paigeSexPrologue2():void
 	else output("Which you’d know if you hadn’t been skipping classes to buy me Honey Wine. But that’s okay. I’ll make sure we make up for lost time tonight.");
 	output("”</i>\n\n");
 
-	if(!pc.isChestExposed()) output("You finish removing your [pc.chestCovers], exposing your [pc.chest] and [pc.belly] to the warm air of her bedroom, just as ");
+	if(!pc.isChestExposed()) output("You finish removing your [pc.upperGarments], exposing your [pc.chest] and [pc.belly] to the warm air of her bedroom, just as ");
 	output("Paige is");
 	//if {the PC is wearing lower garments}
 	if(!pc.isCrotchExposed() || !pc.isAssExposed()) output("done removing your [pc.crotchCovers], revealing your naked [pc.crotch] to her. She’s ");
@@ -1423,35 +1423,7 @@ public function apartmentYogaEndings():void
 // Tooltip (enough Lust): You could really do with some release, and something tells you yoga’s not gonna cut it.
 // Tooltip (not enough Lust): You’re not aroused enough to have sex with Paige. There are several ways to fix that, of course.
 // (scene: Paige Foreplay)
-public function sexWithPaige():void
-{
-	clearOutput();
-	showPaige();
-	output("You answer Paige’s question by sliding closer to her. You snake your arm across the small of her back, rubbing at the base of her tail and itching up her spine just slightly. <i>“I have no plans,”</i> you say to her lowly. <i>“I have plenty of ideas, though.”</i>");
-	output("\n\n<i>“Oooh,”</i> Paige hums, flexing her back and cooing when your fingers tickle a particularly egregious zone. Her tail swishes behind her, flapping against your forearm and stroking it. <i>“I’m listening, sweet thing.”</i>");
-	output("\n\n<i>“I could tell you,”</i> you flirt, leaning in and kissing the back of her ear, <i>“but that would ruin the surprise, don’t you think? It’d be better to show you.”</i>");
-	output("\n\nPaige turns her head, her nose burying into your neck.  She takes a deep breath, immersing herself in your scent, readying herself for the immediate future, and then continues your game.  <i>“");
-	if(paigeBlind()) output("And just what do you think you can show a blind woman, [pc.name]?”</i>");
-	else output("And just what in the universe do you think will surprise me by now, [pc.name]?”</i>");
-	output("\n\nYour fingers dip into the hem of her pants, and you rake your fingers across the fine fur and tight muscles of her ass.  You feel her shudder in excitement as your fingers trace lower, towards the cleft.  <i>“You’ll be seeing stars by the time I’m done with you, Paige.”</i>");
-	output("\n\nApparently having enough, Paige pushes you down, and you flop onto her bed with no resistance.  ");
-
-	if(!pc.isNude()) output("In no time at all, you’re naked as could be, and w");
-	else output("W");
-	output("ith you prone, Paige takes her position over you, straddling your hips with hers.  You can feel the heat of her pussy");
-	if(pc.hasCock()) output(" bathe against the meat of your [pc.cocks].  She eagerly begins to grind herself on it, soaking it in her essence");
-	else if(pc.hasVagina()) output(" and directly onto your own [pc.pussy], her dripping essence mingling with yours");
-	else output(".  She pleasures herself on the featurelessness of your crotch");
-	output(", but she doesn’t take it any further – not until she’s decided what she wants to do to you.  <i>“We’ll see who will be seeing what, [pc.name],”</i> she challenges breathlessly, humping against you between words.");
-	output("\n\nYou know that Paige likes to be in control during your lovemaking, but it’s pretty easy to influence her actions on what she does to you. How do you want Paige to fuck you?");
-
-	// end scene (scene: Paige Foreplay)
-	// Refer to Sex With Paige document to proceed (scene: Sex Select)
-	//9999 sex scene select
-	output("\n\n<b>(Not coded yet! Hang in there, guys!)</b>");
-	clearMenu();
-	addButton(0,"Next",backToPaigeMenu);
-}
+//Coded in follower/paigeSex.as: sexWithPaige
 
 //[=Rest=]
 // Reveal this option after the PC has had sex with Paige once, and grey it out unless the time is between 00:01 and 08:59
@@ -1527,10 +1499,10 @@ public function paigeREstWakeupTwo():void
 	output("\n\nAs you dress, you pick up your codex, and you find that you’ve received mail from Paige, sent by Iddi. You open the letter immediately.");
 	output("\n\n<i>“Good morning, [pc.name]!”</i> it reads. You glance at the corner of your codex for the time");
 	if(hours >= 12) output(", and you wince in embarrassment");
-	output(". <i>“Sorry I couldn’t stick around, but I have a yoga class to teach all day, after all.");
+	output(". <i>“Sorry I couldn’t stick around, but I have a yoga class to teach all day, after all.”</i>");
 
-	output("\n\n<i>“It was a good idea for you to stay the night last night! I dunno about you and I can’t exactly ask, not right away, but I feel way more energized than I normally do. Who’d a thought that spooning with a sweet thing like you would be so rejuvenating? Let’s do it again sometime!");
-	output("\n\n<i>“Help yourself to anything in the fridge. I know you adventurer types can’t adventure on an empty stomach. Hope to see you again soon!");
+	output("\n\n<i>“It was a good idea for you to stay the night last night! I dunno about you and I can’t exactly ask, not right away, but I feel way more energized than I normally do. Who’d a thought that spooning with a sweet thing like you would be so rejuvenating? Let’s do it again sometime!”</i>");
+	output("\n\n<i>“Help yourself to anything in the fridge. I know you adventurer types can’t adventure on an empty stomach. Hope to see you again soon!”</i>");
 	output("\n\n<i>“Eckses and ohs,");
 	output("\n\nPaige.”</i>");
 	output("\n\nYou have to admit, you feel pretty relaxed after a sleep like that. You just might take up Paige on her offer to spend another night in her bed.");

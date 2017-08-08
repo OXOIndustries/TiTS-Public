@@ -98,7 +98,9 @@ public function FTGHA1():void
 	}
 	else if(pc.hasVagina()) output(" Your [pc.vagina] drinks in the tortuous pleasure and the extra fluids, begging to end the teasing and start the real deal.");
 	else output(" Her fluids stain the featurelessness of your crotch, and you feel her liquid heat against your skin; you may not have anything to fuck her with, but that’s not about to stop you.");
-	output("\n\n<i>“Normally I take a more aggressive approach in bed,”</i> she says huskily, her eyes burning into yours [if {Paige is blind}(generally)].  <i>“Feels like you’re more than ready to keep up with me.  How do you want me, babe?  Tell me how you want me.”</i>");
+	output("\n\n<i>“Normally I take a more aggressive approach in bed,”</i> she says huskily, her eyes burning into yours ");
+	if(paigeBlind()) output("(generally)");
+	output(".  <i>“Feels like you’re more than ready to keep up with me.  How do you want me, babe?  Tell me how you want me.”</i>");
 
 	processTime(5);
 	pc.lust(10);
@@ -480,7 +482,7 @@ public function FTFHB1():void
 	output("\n\nPaige’s back goes straight, her head points upward with her lips pursed tightly, and her body goes rigid in surprise.  But she doesn’t protest, and you continue, penetrating up to your second joint.  She hums in concentration and rocks her hips a bit – she isn’t sure if she enjoys it or not.  <i>“Can’t say I’ve ever had anything up</i> there<i>,”</i> she admits.  <i>“But... keep going.  We’ll see.”</i>");
 	output("\n\nYou go slowly, thrusting only up to your second knuckle.  <i>“Little deeper, sweet thing,”</i> she encourages, and you oblige.  You use your other hand to grope and squeeze at her butt cheek, keeping the taut globes apart to make room for your other, busier hand.  When you sink up to your first knuckle, unable to go any deeper, you use your other fingers to play with the vulva of her cunt.  It feels just a <i>little</i> bit hotter than it did before.");
 	output("\n\nHer back is still arched above you as she determines whether she enjoys having something up her ass.  You take advantage of her position and climb forward, latching your mouth onto her closest tit.  <i>“Getting a finger up my butt is hardly my idea of a romantic first time,”</i> she tells you.  Accustomed to the sensation, she draws one hand down your [pc.chest], heading south towards your own crotch.  <i>“But hey, I won’t say no to new experiences....”</i>");
-
+	flags["PAIGE_FTFHB1"] = 1;
 	//[=Next=]
 	// end scene (scene: FTFHB1); go to (scene: FTFHB2)
 	processTime(5);
@@ -1074,7 +1076,7 @@ public function FT69E():void
 	pc.orgasm();
 
 	clearMenu();
-	addButton(0,"Next",FTAG);
+	addButton(0,"Next",FTAG,"FT69E");
 }
 
 // (scene: FTPFE)
@@ -1113,7 +1115,7 @@ public function FTPFE():void
 	processTime(5);
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",FTAG);
+	addButton(0,"Next",FTAG,"FTPFE");
 }
 
 // (scene: FTCE)
@@ -1152,7 +1154,7 @@ public function FTCE():void
 	processTime(5);
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",FTAG);
+	addButton(0,"Next",FTAG,"FTCE");
 }
 
 // (scene: FTLE)
@@ -1195,7 +1197,7 @@ public function FTLE():void
 	//[=Afterglow=]
 	// end scene (scene: FTLE); go to (scene: FTAG)
 	clearMenu();
-	addButton(0,"Next",FTAG);
+	addButton(0,"Next",FTAG,"FTLE");
 }
 
 //[=Afterglow=]
@@ -1248,638 +1250,1330 @@ public function FTAG(arg:String):void
 	clearMenu();
 	addButton(0,"Next",moveSouth);
 }
+
+// (scene: Sex Select)
+// This is the group of scenes that the PC unlocks after having sex with Paige for the first time.  The following input is from the base document, copied for posterity.
+public function sexWithPaige():void
+{
+	clearOutput();
+	showPaige(true);
+	output("You answer Paige’s question by sliding closer to her.  You snake your arm across the small of her back, rubbing at the base of her tail and itching up her spine just slightly.  <i>“I have no plans,”</i> you say to her lowly.  <i>“I have plenty of ideas, though.”</i>");
+	output("\n\n<i>“Oooh,”</i> Paige hums, flexing her back and cooing when your fingers tickle a particularly erogenous zone.  Her tail swishes behind her, flapping against your forearm and stroking it.  <i>“I’m listening, sweet thing.”</i>");
+	output("\n\n<i>“I could tell you,”</i> you flirt, leaning in and kissing the back of her ear, <i>“but that would ruin the surprise, don’t you think?  It’d be better to show you.”</i>");
+	output("\n\nPaige turns her head, her nose burying into your neck.  She takes a deep breath, immersing herself in your scent, readying herself for the immediate future, and then continues your game.  <i>“");
+	if(paigeBlind()) output("And just what do you think you can show a blind woman, [pc.name]?”</i>");
+	else output("And just what in the universe do you think will surprise me by now, [pc.name]?”</i>");
+
+	output("\n\nYour fingers dip into the hem of her pants, and you rake your fingers across the fine fur and tight muscles of her ass.  You feel her shudder in excitement as your fingers trace lower, towards the cleft.  <i>“You’ll be seeing stars by the time I’m done with you, Paige.”</i>");
+
+	output("\n\nApparently having enough, Paige pushes you down, and you flop onto her bed with no resistance.  ");
+	if(!pc.isCrotchExposed() && !pc.isChestExposed() && !pc.isAssExposed()) output("In no time at all, you’re naked as could be, and w");
+	else output("W");
+	output("ith you prone, Paige takes her position over you, straddling your hips with hers.  You can feel the heat of her pussy");
+	if(pc.hasCock()) output(" bathe against the meat of your [pc.cock].  She eagerly begins to grind herself on it, soaking it in her essence");
+	else if(pc.hasVagina()) output(" and directly onto your own [pc.pussy], her dripping essence mingling with yours");
+	else output(".  She pleasures herself on the featurelessness of your crotch");
+	output(", but she doesn’t take it any further – not until she’s decided what she wants to do to you.  <i>“We’ll see who will be seeing what, [pc.name],”</i> she challenges breathlessly, humping against you between words.");
+
+	output("\n\nYou know that Paige likes to be in control during your lovemaking, but it’s pretty easy to influence her actions on what she does to you.  How do you want Paige to fuck you?");
+	clearMenu();
+	//[=Vanilla=][=Anal=][=Tribadism=][=Down On You=][=Down On Her=]
+	// end scene (scene: Sex Select)
+	if(!pc.hasCock()) addDisabledButton(0,"Vanilla","Vanilla","You need a penis to have sex with Paige this way!");
+	else if(pc.cLength(0) > paige.vaginalCapacity(0)) addDisabledButton(0,"Vanilla","Vanilla","You might literally split the poor girl in half with your monster!  Maybe you should look into some reduction to have sex with Paige this way.");
+	else addButton(0,"Vanilla",SSVI,undefined,"Vanilla","Just straight, no-nonsense ugly bumping.");
+	if(!pc.hasCock()) addDisabledButton(1,"Anal","Anal","You need a penis to have sex with Paige this way!");
+	else if(pc.cockVolume(0) > paige.analCapacity()) addDisabledButton(1,"Anal","Anal","You need a smaller penis to take the back door. You don't want to hurt her!");
+	else addButton(1,"Anal",SSAI,undefined,"Anal","Knowing Paige, she'll probably let you do this. Couldn't hurt to try!");
+
+	output("\n\n(More scenes are coming! Until then, the back button is there!)");
+	addButton(14,"Back",backToPaigeMenu);
+}
+
+//[=Vanilla=]
+// Requires a penis with an area of 65 or less
+// Tooltip (No penis): You need a penis to have sex with Paige this way!
+// Tooltip (Penis is too big): You might literally split the poor girl in half with your monster!  Maybe you should look into some reduction to have sex with Paige this way.
+// Tooltip (Yes penis): Just straight, no-nonsense ugly bumping.
+// Action tree: http://i.imgur.com/vW6QpSw.png
+// (scene: SSVI)
+
+public function SSVI():void
+{
+	clearOutput();
+	showPaige(true);
+	IncrementFlag("SEXED_PAIGE");
+	output("You’re horny, and Paige is horny.  You don’t need any more foreplay and you’re not interested (this time) in being a little more adventurous – you need a warm hole to bust a nut into, and she needs a hard dick inside her.  From the way she’s greedily jilling herself off on you, she agrees");
+	if(pc.hasVagina()) output(".  Your [pc.vagina] clenches in frustration at being ignored, but your [pc.cock] is the focus this time");
+	output(".");
+
+	output("\n\nYou say nothing as you clamp onto Paige’s arm with your left hand for stability, then reach down between you and stroke your [pc.cock] along her soaking wet slit with your right.  Paige humphs once in surprise, and you give her another shock by lifting your thumb and gracelessly scraping it across her clit as you position yourself.");
+	output("\n\n<i>“That’s it, don’t make me wait,”</i> she says through gritted teeth.  Her abdominals flex, her toned six-pack showing through her fur, as she prepares herself for the penetration.  Her focus is elsewhere – if you wanted to take this lovemaking in a different direction, now is your time to strike.");
+	var args:Array = [];
+	//[=Be Bottom=][=Be Top=]
+	// end scene (scene: SSVI)
+	processTime(5);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Be Bottom",SSVBB,args);
+	addButton(1,"Be Top",SSVBT,args);
+}
+
+//[=Be Bottom=]
+// (scene: SSVBB)
+public function SSVBB(args:Array):void
+{
+	clearOutput();
+	showPaige(true);
+	output("You’re quite alright where you are, you decide: Paige atop you, shivering in eagerness to get fucked, with all her finest assets on display for you.  Rather than waste the time and energy jockeying for positions with her, you cut to the chase and thrust up and into her.");
+	pc.cockChange();
+	output("\n\n<i>“Oh!”</i> she says in surprise; once you’re fully hilted in her, you grab onto her other wrist to keep her steady");
+	if(pc.isNaga()) output(" and you coil your [pc.legs] around hers gently, enough to keep her in place but not tight enough to restrict her");
+	output(".  You withdraw and thrust a few times, testing her wetness, her grip and her heat and adjusting her body to your sudden girth.  She hums in lazy delight and melts on her kneeled position above you as you do the work, slouching forward.");
+	output("\n\nHer face presses to yours and you can feel the heat of her breath gasp out with every inward thrust across your [pc.chest].  She leans on her elbows on either side of your shoulders, then works her own hips, pounding back onto you, reaching as deep into her as she can.  ");
+	if(pc.cLength(0) <= 11) output("<i>“That’s it, fuck me harder, [pc.name],”</i> she says huskily");
+	else output("<i>“Gods, I feel so tight on you.  You’re gonna ruin me for anyone else,”</i> she laughs");
+	output(".");
+	output("\n\nYou both enjoy a fairly casual pace, humping and bumping against each other.  Paige takes the time to play with your [pc.hair] and coo occasionally whenever your [pc.cock] hits a particularly vulnerable spot inside her, and you keep busy by running your hands all over her sexy body, from her shoulders to the meat of her ass.");
+	//[=Kiss Her=][=Spank Her=]
+	// end scene (scene: SSVBB)
+	processTime(5);
+	pc.lust(10);
+	args.push("SSVBB");
+	clearMenu();
+	addButton(0,"Kiss Her",SSVKH,args);
+	addButton(1,"Spank Her",SSVSH,args);
+}
+
+//[=Be Top=]
+// (scene: SSVBT)
+public function SSVBT(args:Array):void
+{
+	clearOutput();
+	showPaige(true);
+	output("Paige is naturally dominant in the sack, but that gets boring (and kind of emasculating) the more often you let her do it.  You decide that this time, you want to be the top, and you’re prepared to ‘convince’ Paige to let you.");
+	output("\n\nYou tease her, rubbing your [pc.cockHead] against her mons until she sighs in horny exasperation.  When she does, you lift up, grabbing her by just under her tit and lifting her off you and to your side.  <i>“Oh, big [pc.boyGirl] wants to top, does [pc.heShe]?”</i> Paige asks playfully, then resists, locking her legs on either side of your [pc.waist] and flexes her arms against yours, fighting to keep herself upright.");
+	output("\n\nIt’s an intense struggle between you two: not only do you have to push Paige down beneath you, but you have to keep her from impaling herself on your [pc.cock].  If she does, she wins.  And with the way her cunt keeps sliding over your tool, and how your head sometimes slips in, and how your best source of leverage is to grab her boobs (and of course you’re copping a good feel too, why not), you keep getting harder and the fight keeps slipping from your control.");
+	output("\n\nFinally, you manage to one-up her by bending at the hip, grabbing her by her ass, and turning as you toss her into the air.  She comes crashing down, giggling like a horny freshman with you on top of her");
+	if(pc.PQ() < 60) output(".  Although you take pride in the win, you can’t help but feel Paige might have given it to you.");
+	else if(pc.PQ() < 80) output(".  It was a hard fought win, and having overtaken Paige fair and square has made you even harder.");
+	else output(".  Truth be told, most of that fight was foreplay and you were just humoring her – and it looks like it worked.");
+
+	output("\n\n<i>“Okay, [pc.name], you win,”</i> she says, lowering her head into the pillow and lifting her hips for your perusal.  <i>“Claim your prize.  Don’t make me wait any more.”</i>");
+	output("\n\nShe never said <i>how</i> to claim your prize, though....");
+
+	//[=Doggy Style=][=Missionary=]
+	// end scene (scene: SSVBT)
+	processTime(5);
+	pc.lust(10);
+	args.push("SSVBT");
+	clearMenu();
+	addButton(0,"Doggy Style",SSVDS,args);
+	addButton(1,"Missionary",SSVM,args);
+}
+
+//[=Kiss Her=]
+// (scene: SSVKH)
+public function SSVKH(args:Array):void
+{
+	clearOutput();
+	showPaige(true);
+	output("You reach up and cup Paige’s cheek with your hand.  She leans into it affectionately, and you boldly lean forward, placing your lips on hers.  She doesn’t push you away or even hum in surprise like she usually does; instead, she melts some more and opens her mouth, letting her tongue out to play.");
+	output("\n\nThough the sex is fairly casual, you both make it intimate: your hands explore each other, pressing and tickling at the spots you both know you’re weakest at.  You both do half the hip movement so that one isn’t working too hard and you both massage each other’s tongues and count each other’s teeth in long, languid strokes.  It’s not strenuous; it’s not exhausting; but it’s passionate, and something about it being Paige makes the experience all the more special.");
+	output("\n\nShe pulls away and makes a show of licking her lips to enjoy your taste.  She sits up, squatting her hips down onto yours, all the way to your base.  <i>“You’re a good kisser,”</i> she congratulates breathlessly as she rotates her hips, nudging your [pc.cock] against every vein and bump inside her.  <i>“We’ll see about putting that tongue to other use later.”</i>");
+	output("\n\nPaiges begins to bounce, her breath shallow and getting shallower every time you bottom out.  She raises her arms above and behind her head, thrusting out her tits for you.  <i>“Touch me,”</i> she asks.  <i>“I like it when you do.  I cum harder when you appreciate me and my form.”</i>");
+	output("\n\nWell, it <i>is</i> a pretty sexy form.  You watch her as she flouts her body and her nipples as they draw oblong circles with her bouncing.  You wouldn’t leave her waiting, would you?");
+
+	//[=Caress=][=Manhandle=]
+	// end scene (scene: SSVKH)
+	processTime(5);
+	pc.lust(10);
+	args.push("SSVKH");
+	clearMenu();
+	addButton(0,"Caress",SSVCa,args);
+	addButton(1,"Manhandle",SSVMH,args);
+}
+
+//[=Spank Her=]
+// (scene: SSVSH)
+public function SSVSH(args:Array):void
+{
+	clearOutput();
+	showPaige(true);
+	output("Her leaning frame and proximity give you the perfect angle of attack for a hard, sexy slap on the ass.  You trail your hands across her back, making it like you tracing its defined muscles as you map out their contours, then, as you make it to her waist, you strike, whipping both hands back and lunging them, cracking them hard against the taut muscle of her derriere.");
+	output("\n\n<i>“Hah!”</i> she laughs, ");
+	if(pc.PQ() < 60) output("thrusting her hips back into your palm.  <i>“You call that a spank?  Come on, really put your arm into it!  Show me you mean it!”</i>");
+	else if(pc.PQ() < 80) output("keeping her body low and her face close to yours.  <i>“You like that?  You ever spank an ass that tight, [pc.name]?  Do it again!”</i>");
+	else output("biting into her lower lip to keep from shouting.  <i>“A bit lighter next time, okay?”</i> she whispers, then shouts, <i>“But don’t you dare stop!  Beat my tight ass like it owes you money!”</i>");
+	output("  You do as she commands and you wind back to slap both her cheeks once again, feeling the shock ripple through her cunt and all across your [pc.cock].  <i>“There you go!”</i>");
+
+	output("\n\nThe pace of your sex hasn’t changed, but your hands become much more active, groping and pulling at various parts of her body; you run them down her legs and feel the strength in her calves, then up her hips to her powerful stomach.  Paige is sitting up, squatting on your [pc.hips] and bottoming you out with every bounce.  <i>“I like this,”</i> she says nonchalantly.  <i>“I like it when my bottoms take some initiative.”</i>");
+	output("\n\nShe likes initiative?  Well, with her new position, her breasts are bouncing firmly in front of her, her nipples drawing lazy circles in the air.  If there’s any one part of her body that’s easy to appreciate, it’s right in front of you, and you doubt she’d stop you.");
+
+	//[=Chew=][=Lick n’ Suck=]
+	// end scene (scene: SSVSH)
+	processTime(5);
+	pc.lust(10);
+	args.push("SSVSH");
+	clearMenu();
+	addButton(0,"Chew",SSVCh,args);
+	addButton(1,"LickN’Suck",SSVLnS,args);
+}
+
+//[=Doggy Style=]
+// (scene: SSVDS)
+public function SSVDS(args:Array):void
+{
+	clearOutput();
+	showPaige(true);
+	output("<i>“On your stomach,”</i> you growl lustfully, settling into the dominant role.  <i>“Don’t make me make you.”</i>");
+	output("\n\nPaige does as commanded, swinging her left leg in front of you as she rolls over, presenting her raised tail to you.  <i>“You want me face down?”</i> she asks as she moves backward, trapping your [pc.cock] between your lower belly and her horny Ausar slit, frigging herself against it as she speaks.  <i>“Like a real bitch, [pc.name]?  Well, here I am: a real bitch.  A real</i> horny <i>bitch that wants an alpha to</i> fuck <i>her like one.”</i>");
+	output("\n\nYou read her loud and clear: you lean your [pc.hips] back just enough to line up your shot, and you drive into her, wrapping her around your dick in one thrust.  She groans out and muffles her face into her pillow, submissively raising her ass higher so you can get more thrusting power.  You don’t worry if she’s uncomfortable; her bent position is probably nothing compared to her years of yoga.");
+	pc.cockChange();
+	output("\n\nShe wants to be fucked like a dog, so you fuck her like one: you lean forward, lining your [pc.belly] against her back (letting her tail out to the side) and you wrap your arms around her, gripping onto her swinging tits.  <i>“Yesssss, fuck me,”</i> she demands, even as you squeeze her tits.  <i>“That’s right, [pc.name], you’re the real ");
+	if(!silly) output("alpha here, aren’t you?");
+	else output("man now, aren’t you, dawg?");
+	output("”</i>");
+
+	output("\n\nDespite the reversed positions, it feels like Paige is still the one calling the shots – and from the way her breathing has quickened and her pitch is rising, surefire signs of an impending orgasm, it sounds like she’s going to get there before you.  From your superior position, you could try to teach her not to be so insolent to her alphas – and even if it doesn’t take, you’ll both probably still enjoy it.");
+
+	//[=Rougher=][=Gentler=]
+	// end scene (scene: SSVDS)
+	processTime(5);
+	pc.lust(10);
+	args.push("SSVDS");
+	clearMenu();
+	addButton(0,"Rougher",SSVR,args);
+	addButton(1,"Gentler",SSVG,args);
+}
+
+//[=Missionary=]
+// (scene: SSVM)
+public function SSVM(args:Array):void
+{
+	clearOutput();
+	showPaige(true);
+	output("In all honesty, you didn’t really have any plans to exercise your superior position in any particular way.  You just wanted to be the top.");
+	output("\n\nYou reach between your bodies, aligning your [pc.cockHead] with her drooling Ausar cunt.  You feel its heat against your glans well before you feel anything else, and you fix that with one hearty thrust forward, sinking into her depth.  Paige closes her eyes and hums in delight as she feels your heavy [pc.cock] reach deeper and deeper into her.");
+	pc.cockChange();
+	output("\n\nOnce you’re bottomed out and nestled, you lean forward, draping your body over hers.  ");
+	if(pc.biggestTitSize() <= 2) 
+	{
+		output("Your [pc.chest] kisses against hers, nipple to [pc.nipple]; her tits may be bigger than yours");
+		if(pc.biggestTitSize() <= 1) output(" (not that you’ve been trying very hard or anything)");
+		output(", but that only gives you something bigger to lean against");
+	}
+	else if(pc.biggestTitSize() <= 7) output("Your [pc.chest] overwhelms hers, her nipples kissing against your [pc.nipples] in an attempt to push their weight off them, but your significant assets squash hers flat");
+	else output("Paige vanishes into the valley of your [pc.chest], swallowing her whole torso and pinning her arms by their shoulders.  She squirms in their warmth, but it’s pointless for her to try and escape");
+	output(".  In the more intimate proximity, you reach for her hand and lock your fingers with hers.");
+	output("\n\n<i>“It’s sexy being the top, isn’t it?”</i> she asks, a warm, wide smile on her face as she looks (approximately) into your eyes.  <i>“I don’t mind being the bottom for you, [pc.name].”</i>  For emphasis, she lifts her legs and wraps them both around your [pc.hips], keeping you from withdrawing too far.  You feel her tunnel clench against your [pc.cock] as she does.  <i>“Now, show me what else you can do.”</i>");
+
+	output("\n\nYou do as she asks, and you thrust into her again and again, fighting against her leg-lock as you do.  The rough foreplay had a stronger effect on her than you realized: her breathing quickens, her hot breath rinsing ");
+	if(pc.hasHair()) output("through your [pc.hair]");
+	else output("over your scalp");
+	output(" in just a few short minutes.  Her grip on your hand becomes tighter, and she begins mouthing and gently moaning your name.");
+
+	output("\n\nYou’re not as close as she is, but it’s not a race.  Still, you could expedite things a little for your benefit, if you wanted.");
+
+	//[=Anvil Position=][=Kiss Her Neck=]
+	// end scene (scene: SSVM)
+	processTime(5);
+	pc.lust(10);
+	args.push("SSVM");
+	clearMenu();
+	addButton(0,"Anvil Pos.",SSVAP,args);
+	addButton(1,"KissHerNeck",SSVKHN,args);
+}
+
+//[=Caress=]
+// (scene: SSVCa)
+public function SSVCa(args:Array):void
+{
+	clearOutput();
+	showPaige(true);
+	output("Who could turn down an invite like that?  Maintaining your composure and focusing to keep your pace, you reach up, palming Paige’s breasts, just as she asked you.  <i>“That’s it,”</i> she praises, thrusting out her chest as she bounces.  <i>“They’re just for you, [pc.name].  Show them you love them.”</i>");
+	output("\n\nYou feel her nipples, hard as stone, dig into your palms as you flex your fingers and clamp into the meat of her chest – but only hard enough to keep your grip.  When you lift and heft them, Paige sighs and lifts her nose towards the ceiling.  When you press them together, she coos and uses her forearms to squeeze them even closer.  <i>“You’re being very gentle this time,”</i> she notes.  <i>“That’s perfect.  Take your time.  Appreciate it all....”</i>");
+	output("\n\nPaige’s breath begins catching in her throat and her bouncing becomes elongated and sloppy.  Close and borderline desperate, she lifts her own hands, grabbing yours and keeping them on her chest.  She bites into her lower lip and she hisses, <i>“[pc.name]....”</i>  You feel the fur of her chest and her thighs begin to stand on end as her body prepares for the finale.");
+	output("\n\nSeeing strong, proud Paige reduced to a sexy Ausar puddle on top of you just from playing with her boobs gets you a lot closer too.  Your caressing stops in favor of simply hanging on as your hips pump and pound, feeding your length into her, and you feel the familiar release bubbling just beneath the surface.");
+	output("\n\n<i>“I’m almost...!”</i> Paige exclaims.  You thrust harder and faster, eager to take you both to the end at once.");
+
+	//[=Climax=]
+	// end scene (scene: SSVCa); go to (scene: SSVE1)
+	processTime(5);
+	pc.lust(10);
+	args.push("SSVCa");
+	clearMenu();
+	addButton(0,"Next",SSVE1,args);
+}
+
+//[=Manhandle=]
+// (scene: SSVMH)
+public function SSVMH(args:Array):void
+{
+	clearOutput();
+	showPaige(true);
+	output("Don’t mind if you do!  You cease Paige’s booby bouncing by bracing them in your grip, palming and groping the fat of her tits in your lunging, greedy hands.  They easily fill them both with just a little bit of overflow between your digits, and they’re firm as could be.  Her rock-hard nipples pierce into your palms as you rotate your wrists, flexing and hefting her chest.");
+	output("\n\n<i>“Oh my, greedy [pc.boyGirl]!”</i> Paige exclaims, but makes no effort to stop you.  <i>“That’s alright, [pc.name], get a good, thick handful.  They’re all for you, sweet thing.”</i>  You release one to tweak and pinch at her nipple, pulling and pressing at it, yanking on it as you thrust wantonly into Paige’s tight tunnel.  <i>“The girls haven’t had this kind of attention in years!”</i>");
+	output("\n\nPaige reaches up to grab you by the wrists, and pulls your already-busy hands harder against her chest.  She takes one, heavy draw of air through her nose as she directs your hands to fondle her the way she wants.  With every new rotation, her boobs flexing and taking all your aggressive love with ease, and she bounces on your [pc.cock] with just a little more fervor.");
+	output("\n\n<i>“Little more, sweet thing,”</i> she whispers huskily, her pitch high and her breath shallow.  Her bouncing becomes aimless and sloppy, but that just makes it hotter, knowing that she’s nearly ready to cum.  Your dick throbs in excitement, your own release broiling just beneath the surface.  <i>“A little more...!”</i>");
+
+	//[=Climax=]
+	// end scene (scene: SSVMH); go to (scene: SSVE2)
+	processTime(5);
+	pc.lust(10);
+	args.push("SSVMH");
+	clearMenu();
+	addButton(0,"Next",SSVE2,args);
+}
+
+//[=Chew=]
+// (scene: SSVCh)
+public function SSVCh(args:Array):void
+{
+	clearOutput();
+	showPaige(true);
+	output("You sit up with Paige, your face flush with her mounds.  You kind of like the new, active direction the sex has gone, and it emboldens you to try something a little riskier.  You wrap your arms around her body, keeping her close, then open wide and latch onto a tit – teeth included.");
+	output("\n\nYou don’t bite, of course; you’re careful to not be forceful enough to damage the goods, but you’re just intense enough.  The sharp electric sensation causes Paige to jolt upright, breathing sharply through her nose.  <i>“That’s a new one,”</i> she says.  You release your jaw, but not your [pc.lips], then clamp down again, your tongue slathering across her nipple each time.");
+	output("\n\n<i>“Little gentler,”</i> she instructs, and you comply.  <i>“Too gentle,”</i> she admonishes, and you comply.  It’s a difficult balance!  <i>“Now the other one.”</i>  You release her boob and move to the other, biting into it.  You catch a glimpse of the damage you’ve done to her first: enough to indent her fur and irritate the skin, but not enough to leave a mark.");
+	output("\n\n<i>“Little harder!”</i> she shouts – which you’d love to do, but her increased bouncing and excitement is making it difficult to strike that balance.  Paige’s breathing has increased and her pitch is rising, and, although you can hear her wince when you chew just a little too hard, she’s not telling you to stop.  <i>“Fuck, I’m nearly there!”</i> she shouts.");
+	output("\n\nThat’s sign enough to stop chewing on her and focus on your fucking.  You grip hard onto her glutes and start pounding harder into her, your own release surging beneath your [pc.cock].  With Paige’s taste still in your mouth, you only need a few more thrusts, and then....");
+
+	//[=Climax=]
+	// end scene (scene: SSVCh); go to (scene: SSVE2)
+	processTime(5);
+	pc.lust(10);
+	args.push("SSVCh");
+	clearMenu();
+	addButton(0,"Next",SSVE2,args);
+}
+
+//[=Lick n’ Suck=]
+// (scene: SSVLnS)
+public function SSVLnS(args:Array):void
+{
+	clearOutput();
+	showPaige(true);
+	output("You sit up with Paige, your face flush with her mounds.  If she likes initiative, you’ve got a few ideas for those sweet, grope-able, suck-able tits of hers.  You wrap your arms around her torso, locking them just above the small of her back to keep her in place, then open wide, latching your mouth onto her left nipple.");
+	output("\n\nYour ministrations are gentle, but fervent and frequent: you swipe the flat of your [pc.tongue] over her stubby nub in time with your every thrust and you move your lips, sucking on her spongy flesh, making a loud ‘pop’ every time you release.  <i>“Goodness,”</i> Paige says breathlessly, her hands on your skull to guide you.  <i>“Don’t leave her sister jealous now, [pc.name].”</i>");
+	output("\n\nAs you release her nipple and move to the other, you slide one hand down, gripping onto her ass while the other climbs up, across her strong back and onto her shoulder.  <i>“You’re a good lover,”</i> she says suddenly – making your pride (and your [pc.cock]) swell.  <i>“You use everything to pay attention to everything.  You know when to be gentle and when not to.”</i>  Her bouncing slowly becomes greedy and misaligned the more you do to earn her praise.  <i>“And you know how to make a girl cum.  A big plus in today’s universe.”</i>");
+	output("\n\nYou rotate your head, pursing your [pc.lips] on her swollen point, but your own thrusting is getting aimless as your climax is just around the corner.  You keep your head on her chest and your mouth on her tit, but you don’t do much else, focusing on breathing and keeping up the intense pounding into her tight Ausar cunt.  Paige moans your name a few more times, each time higher-pitched than the last, until you feel her squeeze and milk you, which is just enough for you to....");
+	//[=Climax=]
+	// end scene (scene: SSVLnS); go to (scene: SSVE3)
+	processTime(5);
+	pc.lust(10);
+	args.push("SSVLnS");
+	clearMenu();
+	addButton(0,"Next",SSVE3,args);
+}
+
+//[=Rougher=]
+// (scene: SSVR)
+public function SSVR(args:Array):void
+{
+	clearOutput();
+	showPaige(true);
+	output("It simply won’t do to have Paige still boss you around in the sack when she’s supposed to be the bottom this time.  You’ll just have to teach her that there are certain ways to act in certain positions.");
+	output("\n\nYou give her tits one last squeeze before you lean back, keeping your [pc.hips] to hers so that you don’t slip out.  Then, with one hand, you press down on her shoulders, keeping her face buried in the pillow, and with the other, you reach to her ass, then up to the base of her tail – and you grip it tightly, giving it a yank.");
+	output("\n\nWith every thrust in, you pull on her tail to force her back onto you.  Paige tries to say something, but the fabric of her pillow is completely obstructing her, and the most you understand is whenever she moans out in lust from your ‘assertiveness.’  You fuck her with all the strength your muscles have, sending ripples from the meat of her butt all the way to your grip on her shoulders.");
+	output("\n\nPaige lies mostly still, but uses whatever movement she can to meet your bucking with her own.  Your [pc.cock] hilts to the [pc.knot], pounding your full length into her");
+	if(pc.balls > 0) output(", your [pc.sack] slapping against her raised thighs");
+	output(" with every thrust – it’s having an effect on Paige as her Ausar twat grips you tighter, her own juices leaking down your [pc.legs] and her incoherent whining grows higher in pitch.");
+	output("\n\nIt’s hard to maintain control over everything – your weight on Paige without hurting her and your steady grip on her tail – while your orgasm is so close, so you don’t try.  You relax slightly and focus instead on just fucking your bitch until you seed her.  You give both you and Paige a workout yoga could never hope to match, and then, with one final push, you mark Paige for yourself.");
+
+	//[=Climax=]
+	// end scene (scene: SSVR); go to (scene: SSVE5)
+	processTime(5);
+	pc.lust(10);
+	args.push("SSVR");
+	clearMenu();
+	addButton(0,"Next",SSVE5,args);
+}
+
+//[=Gentler=]
+// (scene: SSVG)
+public function SSVG(args:Array):void
+{
+	clearOutput();
+	showPaige(true);
+	output("You shake your head; Paige trying to remain dominant beneath you is just you trying to justify more power plays.  You’re the top and you have her face down beneath you – how much more do you need to prove yourself this time?");
+	output("\n\nYou relax on top of her, nuzzling your nose into the crease of her neck as you fondle her boobs, maintaining your pace as you spear into her.  <i>“That’s right, alpha,”</i> she coos, raising her rump and lowering her chest, giving all of her to all of you.  <i>“Fuck your conquest the way you like.  She’s all yours.”</i>");
+	output("\n\nYour [pc.cock] pumps and inflates with her submissive words (even if the tone doesn’t quite match).  You feel her clench tighter with every pound, her tunnel refusing to let you go even as her liquid gushes around your prick");
+	if(pc.balls > 0) output(" and across your [pc.sack], wetting the slaps they make against her thighs");
+	output(".");
+	output("\n\nYou push your nose deeper against her neck and give the skin you find there a long, languid lick.  Paige shudders beneath you as your tongue traces up to just behind her pointed Ausar ear.  <i>“If you want a good taste,”</i> she says, her breath shallow, <i>“there’s plenty other things that taste better.  Next time.”</i>  The idea turns her on, and you feel her clench beneath you as she takes deep huffing breaths through her nose.");
+	output("\n\nIn response to her body’s incoming orgasm, you feel your own push and bubble just beneath your [pc.base], ready to give your horny Ausar lover what she needs and what she deserves.  You squeeze her boobs a bit harder than you mean to as you thrust one last time....");
+
+	//[=Climax=]
+	// end scene (scene: SSVG); go to (scene: SSVE4)
+	processTime(5);
+	pc.lust(10);
+	args.push("SSVG");
+	clearMenu();
+	addButton(0,"Next",SSVE4,args);
+}
+
+//[=Kiss Her Neck=]
+// (scene: SSVKHN)
+public function SSVKHN(args:Array):void
+{
+	clearOutput();
+	showPaige(true);
+	output("The destination is less important than the journey, and you’re the type to make the journey as important an experience as possible for your partner.  Paige is already very close, so you lean in to seal the deal: you bury your face into the cleft of her neck and inhale through your nose, imprinting her scent on you, as you gently kiss, lick, and nip at the skin you find there.");
+	output("\n\n<i>“Gods,”</i> Paige says, giggling in delirious lust, her legs tightening around you and her hips vaulting off the bed to match your pumps.  <i>“Give you a bit of power and you turn into the</i> perfect <i>gentle" + pc.mf("","wo") + "man, huh, [pc.name]?”</i>  Her hands explore your back, hugging to tightly to her as she moans your name through a bit lower lip.  <i>“Just a little more, baby, just a little more....”</i>");
+	output("\n\nHer tunnel clenches onto you; every pass, in or out, is practically an ordeal as you fight her grip to maintain your pace.  Her juices coat your [pc.cock]");
+	if(pc.balls > 0) output(" and splash out against your [pc.sack], as high as your [pc.base]");
+	output(", encouraging you to finish with her.  Your hips grow more frenzied as you feel the familiar tightening in your prostate and the chill up your dick.");
+	output("\n\nYou don’t stop your gentle kissing, not until the last moment.  Your left hand snakes down her quivering, pre-orgasmic body until it comes to her tight, squeezing rump, which you grip and lift for more thrusting power.  That’s enough for Paige: she grunts out once, long and high-pitched, and that’s enough for you, too.");
+
+	//[=Climax=]
+	// end scene (scene: SSVKHN); go to (scene: SSVE4)
+	processTime(5);
+	pc.lust(10);
+	args.push("SSVKHN");
+	clearMenu();
+	addButton(0,"Next",SSVE4,args);
+}
+
+//[=Anvil Position=]
+// (scene: SSVAP)
+public function SSVAP(args:Array):void
+{
+	clearOutput();
+	showPaige(true);
+	output("While you’re not exactly in a hurry to finish, you <i>do</i> have an idea to make things a little more... extreme.  A little more power behind your hips might make for a more intense climax for you both.");
+	output("\n\nYou withdraw, just enough to reach behind Paige’s legs and lift them both up and over your shoulders, and you lean forward.  Paige is surprisingly compliant and willing, waiting to see ‘what else you can do.’  With her body bent in half and her cunt basically out in the open, you have a much easier angle to really pound her into the mattress.");
+	output("\n\n<i>“That’s it, sweet thing,”</i> she encourages – she’s not out of breath or even strained.  This position must be peanuts to some of her yoga exercises.  <i>“Pound me raw!”</i>  You do as she demands, using your new leverage and gravity to drive your [pc.cock] deeper into her than you could before");
+	if(pc.balls > 0) output(".  Your [pc.sack] slaps wetly against her flank with every downward bounce, churning the cum in them and readying themselves for the final push");
+	output(".");
+
+	output("\n\nYour hands are still interlocked, and she reminds you by gripping tightly as her orgasm approaches.  <i>“Nearly there, [pc.name],”</i> she says huskily, her eyes (almost) on yours.  <i>“Cum in me, stud.  Plough me!”</i>  Her whole body shakes and rocks in pre-orgasmic bliss and you feel her tunnel try and suck you deeper into herself with every inward press.  Her pussy drools all over your shaft, thirsty for your load – and you’re not going to disappoint her.");
+
+	//[=Climax=]
+	// end scene (scene: SSVAP); go to (scene: SSVE3)
+	processTime(5);
+	pc.lust(10);
+	args.push("SSVAP");
+	clearMenu();
+	addButton(0,"Next",SSVE3,args);
+}
+
+// (scene: SSVE1)
+public function SSVE1(args:Array):void
+{
+	clearOutput();
+	showPaige(true);
+	output("Paige breathes deep and exhales through her nose, moaning through a closed mouth as her body shudders and ripples; her tunnel clamps on you and milks you wantonly, urging out your cum for her, to give her as much as you can.  Her grip on your wrists becomes almost painful, unable to control herself as she cums and cums.");
+	output("\n\nRight on time, you join her, ");
+	if(pc.cumQ() < 300) 
+	{
+		output("giving her exactly what she wants.  Your ");
+		if(pc.balls > 0) output("[pc.balls] tense and squeeze as your ");
+		output("[pc.cum] blasts from your throbbing dick, washing and mixing with her own feminine cum as you offload into her.  You hold still, then pump with each new shot, causing Paige to moan and chew into her bottom lip.  <i>“It’s warm,”</i> she says, clenching her abs as each new volley makes its way inside her.");
+	}
+	//if (pc.cumQuantity >= 300)
+	else
+	{
+		output("giving her a bit more than she bargained for.  Your ");
+		if(pc.balls > 0) output("[pc.balls] shuck into your body as they shoot their immense deposit, and your ");
+		output("[pc.cock] bloats with your [pc.cum], dousing Paige’s tunnel.  She hums appreciatively as she feels it all pool inside her; she relaxes her grip on one wrist so she can pat her tummy as it struggles to keep it all in her.  <i>“Feeling a bit pent up, sweet thing?”</i> she asks, your cock spurting all the while.  <i>“You should see me more often, then.  I’ll help you out...”</i>.");
+	}
+	output("\n\nIt all ends after another few moments of helpless squirming through your individual orgasms, and then the afterglow sets in.  Once Paige stops, she releases your cramped wrists and falls forward, her face to yours.  Panting and satisfied, she wraps both her arms around your shoulders and plants a lingering kiss on your lips – with a little bit (but not a lot) of tongue.");
+
+	processTime(10);
+	pc.orgasm();
+	clearMenu();
+	//[=Afterglow=]
+	// end scene (scene: SSVE1); go to (scene: SSVAG)
+	args.push("SSVE1");
+	clearMenu();
+	addButton(0,"Next",SSVAG,args);
+}
+
+// (scene: SSVE2)
+public function SSVE2(args:Array):void
+{
+	clearOutput();
+	showPaige(true);
+	output("<i>“Fuck!”</i> Paige yelps, and she cums, her body shaking with the intensity of her orgasm as you pound her, just moments away from your own.  She winces through clenched teeth, and you feel her juices douse your [pc.cock] and coat your pelvis with her incessant bouncing.  <i>“H-Hurry up!”</i> she demands, desperate to feel you cum inside her.");
+	output("\n\nWith just another thrust or two, your release comes bundling up your dick and into her waiting and thirsty tunnel.  ");
+	if(pc.cumQ() < 300)
+	{
+		output("Your [pc.cum] coats and lines the velvet walls of her cunt, shooting just a little deeper with every progressive wad.  <i>“That’s it, that’s it!”</i> she shouts, her legs tightening around you in pleasure every time she feels a new one.  Paige keeps bouncing on you, squeezing out every last drop she can");
+		if(pc.balls > 0) output(", even after you thought your [pc.balls] had been milked for their every drop");
+		output(".");
+	}
+	else 
+	{
+		output("Paige’s breath catches in her mouth as she feels you fill her with just a few pumps, and she grins, knowing that it’s only the beginning.  <i>“Give me all of it!”</i> she encourages, bouncing aimlessly on you as you blow load after load into her.  She puts one hand on her belly, massaging it, clenching her fingers with every new bunch inside her.  <i>“Give me every last drop");
+		if(pc.balls > 0) output(" those big-ass balls of");
+		output(" you");
+		if(pc.balls > 0) output("rs");
+		output(" have!”</i>");
+	}
+	output("\n\nNot wanting to disappoint her, you give her everything you’ve got, humping against her errantly as your orgasm peters off.  Once you’re bone dry and once Paige’s muscles can’t handle any more, she slumps forward, her chest to yours and yours faces against each other.  <i>“Damn, that’s good,”</i> Paige says, as much to you as to herself, and sighs dreamily as the afterglow sets into her.");
+	processTime(10);
+	pc.orgasm();
+	//[=Afterglow=]
+	// end scene (scene: SSVE2); go to (scene: SSVAG)
+	args.push("SSVE2");
+	clearMenu();
+	addButton(0,"Next",SSVAG,args);
+}
+
+// (scene: SSVE3)
+public function SSVE3(args:Array):void
+{
+	clearOutput();
+	showPaige(true);
+	output("Paige takes a deep, sharp breath through her open mouth, and you suddenly feel her Ausar pussy clench onto your shaft, rippling from your base to your tip.  <i>“I’m, uhh,”</i> she groans out senselessly, then gives up on forming a sentence.  She lets her body do the talking for her, and her body is begging you to give it your cum.  Who are you to turn her down?");
+	output("\n\nYour [pc.cock] bloats as your [pc.cum] launches into her, ");
+	if(pc.cumQ() < 300)
+	{
+		output("crawling deep into her body");
+		//if {SSVAP}
+		if(InCollection("SSVAP", args)) output(" and having an easy time of it with your higher position");
+		output(".  Paige licks her lips as her belly crunches, feeling every blast getting drank and absorbed by her thirsty body.  <i>“Keep it coming,”</i> she begs, her voice fluttering through her own orgasm");
+	}
+	else
+	{
+		output("taking Paige by surprise by your sheer quantity.  Your seed fills her to stuffing in just a few quick loads");
+		//if {SSVAP}
+		if(InCollection("SSVAP", args)) output(", and it has nowhere to go but down");
+		//if {SSVLnS}
+		else if(InCollection("SSVLnS", args)) output(", then it overfills her, splashing back out and onto your crotch");
+		output(".  <i>“I can take it,”</i> she says huskily");
+		//if {SSVLnS}
+		if(InCollection("SSVLnS", args)) output(", possibly oblivious to the mess you’re both making");
+		output(".  <i>“Give me all you got, [pc.name]!  Cum in your Ausar!”</i>");
+	}
+	output("\n\nYou both ride it out: you doing as she commands and giving her your every last drop, and her body coaxing them all out.  Your individual orgasms last moments longer; when you’re dry and she’s spent, you both collapse back onto her bed");
+	//if {SSVAP}
+	if(InCollection("SSVAP", args)) output(" – you gently push to one side, laying side-by-side next to Paige");
+	//if {SSVLnS}
+	if(InCollection("SSVLnS", args)) output(" – her on top of you, her heavy chest heaving against yours");
+	output(", face-to-face.");
+
+	output("\n\nPanting, Paige ends the journey with a kiss on your lips.  It’s more passionate than it is sexy, but there’s just a little bit of tongue.");
+
+	//[=Afterglow=]
+	// end scene (scene: SSVE3); go to (scene: SSVAG)
+	processTime(10);
+	pc.orgasm();
+	args.push("SSVE3");
+	clearMenu();
+	addButton(0,"Next",SSVAG,args);
+}
+
+// (scene: SSVE4)
+public function SSVE4(args:Array):void
+{
+	clearOutput();
+	showPaige(true);
+	output("Her breath comes out in shudders, and you feel her neck tighten as she tries to maintain her pace with you.  Her primeval need to cum overtakes any control she thought she had over herself, and she squeezes your dick greedily as you feel her juices splash and coat over it, soaking you back to your crotch");
+	if(pc.balls > 0) output(" and across the taut skin of your [pc.sack]");
+	output(".");
+	output("\n\nYou don’t need much more coaxing, and with another thrust, ");
+	if(pc.cumQ() < 300) 
+	{
+		output("you squirt your own [pc.cum] deep into Paige’s waiting womb, ready to douse the fiery need in there.  She ");
+		//if {SSVG}
+		if(InCollection("SSVG", args)) output("moans into her pillow");
+		//if {SSVKHN}
+		if(InCollection("SSVKHN", args)) output("coos out your name and strokes your upper back");
+		output(" as the warmth of your load blooms inside her, reaching up and deep into her belly.  ");
+		//if {SSVG}
+		if(InCollection("SSVG", args)) output("Paige’s hands grip onto the sheets of her bed helplessly and she humps her ass back into you with every spurt, eager for your every drop.");
+		//if {SSVKHN}
+		if(InCollection("SSVKHN", args)) output("<i>“Goodness,”</i> she sighs dreamily, lifting her hips with every spurt.  <i>“Gimme all you got, sweet thing.  Yessssss.”</i>");
+	}
+	//if (pc.cumQuantity >= 300)
+	else
+	{
+		output("your [pc.cum] comes gushing from your prick, cramming Paige full of your seed in just a few short bursts, and you’ve got a whole lot more where that came from.  Paige ");
+		//if {SSVG}
+		if(InCollection("SSVG", args)) output("gasps and chokes on her own breath slightly, unable to form a coherent thought or sound");
+		//if {SSVKHN}
+		if(InCollection("SSVKHN", args)) output("holds her breath and clenches her fingers on your back");
+		output(" as she feels her womb fill and her normally-tight belly bulge from your volume.  ");
+		//if {SSVG}
+		if(InCollection("SSVG", args)) output("Despite her surprise and her difficulty breathing through the fabric of her pillow, she raises her ass higher and presses against you more eagerly, to drink every drop, despite being so full already that it begins to spill from her and splash back onto you.");
+		//if {SSVKHN}
+		if(InCollection("SSVKHN", args)) 
+		{
+			output("Her legs clench and tighten against her hips, locking you in place as she instinctively yearns to keep every drop inside her.  <i>“I had no idea you were so pent up,”</i> she says through shuddering, lusty breaths.  <i>“You should come to me more often.  I’ll make sure");
+			if(pc.balls > 1) output(" those heavy nuts of");
+			output(" you");
+			if(pc.balls > 1) output("rs");
+			output(" never get this backed up again.”</i>");
+		}
+	}
+	output("\n\nYou thrust impiously with every pulse of your [pc.cock] as you unload into her, until your hips cramp and your dick grows oversensitive from the stimulation.  The last of your load dribbles from your [pc.cockHead] into her honeypot, and you both collapse, spent.  Before you have a chance to un-cross your eyes, Paige has her face, and her lips, against yours – the kiss is quick, but passionate, and with a little bit of tongue.");
+
+	//[=Afterglow=]
+	// end scene (scene: SSVE4); go to (scene: SSVAG)
+	processTime(10);
+	pc.orgasm();
+	args.push("SSVE4");
+	clearMenu();
+	addButton(0,"Next",SSVAG,args);
+}
+
+// (scene: SSVE5)
+public function SSVE5(args:Array):void
+{
+	clearOutput();
+	showPaige(true);
+	output("Paige struggles momentarily, her fingers clenching at the bed and her body quivering beneath you as she cums from a combination of your domination and the rough fucking you’re giving her.  With what little leverage her arms have, she uses the last of her strength to buck against you, begging with her pussy for you to join her in orgasm.  The only noise she makes is a long, weak squeal, muffled through her pillowcase.");
+	output("\n\nYou acquiesce; Paige has taken to the role of the bottom well, and it wouldn’t be right to not reward her.  You thrust twice more, burying yourself to your [pc.base]");
+	if(pc.cumQ() < 300) 
+	{
+		output(", and then the orgasm you’ve been vying for rocks up, through your cock and into your bitch.  Your hand tugs on her tail a little harder than you meant, and your grip tightens as you feel her ripple and squeeze, drinking your [pc.cum] eagerly and massaging you for more.  You thrust in time with your pulses, sowing her deeply; each push no less enthusiastic even as you");
+		if(pc.balls > 1) output("r [pc.balls] become less dense and your loads");
+		output(" get drier and drier.");
+	}
+	else
+	{
+		output(" so that your prodigious quantity has nowhere to go but deep inside your bitch, soaking her womb and rounding her tight tummy with your [pc.cum].  Paige is helpless to resist or even vocalize, but from the way her cunt grips you and the way her body shudders again and again beneath you, she’s loving every thick wad of cum she feels spread inside her.  You never stop your thrusting through the whole thing, even as your cum bursts from her tunnel and soaks back against you.  Your frenzied breeding of your Ausar underling slows only with your orgasm, until you");
+		if(pc.balls > 0) output(" and your once-dense [pc.balls]");
+		output(" are completely dried.");
+	}
+	output("\n\nWhen it ends and you have nothing more to give, you release your grip on her tail and your weight on her shoulders.  You fall to the side, out of breath but feeling nonetheless powerful and, for lack of a better word, masculine.  Paige, for a moment, is content to maintain her position, face in the pillow and ass in the air, until, groggily, she twists her body to face yours, eye-to-eye and lips-to-lips in a soft, slow, sensual kiss with her alpha.");
+
+	//[=Afterglow=]
+	// end scene (scene: SSVE5); go to (scene: SSVAG)
+	processTime(10);
+	pc.orgasm();
+	args.push("SSVE5");
+	clearMenu();
+	addButton(0,"Next",SSVAG,args);
+}
+
+// (scene: SSVAG)
+public function SSVAG(args:Array):void
+{
+	clearOutput();
+	showPaige(true);
+
+	//if {not SSVE5}
+	if(!InCollection("SSVE5", args)) output("<i>“You are just a treasure, aren’t you, [pc.name]?”</i> she asks.");
+	//if {SSVE5}
+	if(InCollection("SSVE5", args)) output("<i>“Stars, but being the bottom is fun sometimes,”</i> she pants exhaustively.");
+	output(" <i>“");
+	//if {SSVE1}
+	if(InCollection("SSVE1", args)) output("A perfect, attentive lover.  Gentle and pliant.  God, I could see myself fucking you for years.”</i>  You laugh: it’s hardly the most romantic way for Paige to admit her feelings, but you leave it to her not wanting to admit them yet.  She laughs too, knowing exactly what she said.");
+	//if {SSVE2, SSVE3 or SSVE4}
+	if(InCollection("SSVE2", args) || InCollection("SSVE3", args) || InCollection("SSVE4", args))
+	{
+		output("You know exactly when to take an opportunity when you see one.  ");
+		//if {SSVCh}
+		if(InCollection("SSVCh", args)) output("The girls are going to feel that in the morning – but they wouldn’t mind feeling it a whole lot more.”</i>  You grin exaggeratingly, showing off your teeth and give them a quick gloss with your tongue.  <i>“Not too rough, and just rough enough,”</i> she says, rubbing her tit with her free hand where you bit her.  <i>“You have some really impressive control.”</i>");
+		//if {SSVAP}
+		if(InCollection("SSVAP", args)) output("I liked what you did at the end, too.  Don’t be afraid to twist me around,”</i> she winks.  <i>“All those years doing yoga, a weird position like that isn’t going to hurt me at all.”</i>  Her hand reaches out to yours, interlocking your fingers again.  <i>“If you’re the top, you do</i> whatever <i>you want.  I’m all yours, sweet thing.”</i>");
+		//if {SSVG}
+		if(InCollection("SSVG", args)) output("And I love the way you know when not to press too hard.  Once you got me ass up, you turned into such a gentle" + pc.mf("","wo") + "man – I’d never been so dominated by someone so gentle.  It was the whole package.”</i>  She smiles lazily, her eyes drooping.  <i>“Fuck,”</i> she whispers, her hand caressing her belly, <i>“thinking about it is making me horny for it all over again.”</i>");
+		//if {SSVMH, SSVLnS, or SSVKHN}
+		if(InCollection("SSVMH", args) || InCollection("SSVLnS", args) || InCollection("SSVKHN", args)) output("Gentle and loving, but when there’s a chance to strike, you’re all over me like a rabid wolf.”</i>  She grins predatorily, and her hand reaches over to you, trailing down your side and resting on your [pc.hip].  <i>“I like a lover that knows when to take what [pc.heShe] wants.  And there’s gonna be more where that came from, sweet thing.”</i>");
+	}
+	//if {SSVE5}
+	if(InCollection("SSVE5", args)) output("You’re not often that rabid, or domineering, or...</i> forceful,”</i> she says huskily.  <i>“Once you got on top, there was no stopping you.  I think we’ll need to explore this side of you more often.”</i>  Her hand snakes out, raking the claws on her fingers across your [pc.skinFurScales] lustily.  <i>“After seven years of not getting laid, I completely forgot how good it is to get fucked raw.  I’d ask you to do it again if I didn’t know I’m already going to walk funny tomorrow.”</i>");
+	output("\n\n<i>“You got someplace you need to be?”</i> she asks suddenly, and you answer negatively.  <i>“Good.  Let’s just stay like this for a little while longer.”</i>  Sounds like a plan to you: you two stay together in that position, long after your [pc.cock] softens and slips out of her");
+	if(pc.cumQ() >= 300) output(", spilling yet more seed that Paige couldn’t contain onto yourself");
+	output("); you gently tease each other and whisper a bunch of nothings as the time passes.");
+
+	output("\n\nEventually, rested and satiated, you both grow restless, and Paige lets you get up and out of her bed.  <i>“I enjoyed that,”</i> she tells you.  <i>“All of it.  The sex and the cuddling.  Let’s do it again sometime, [pc.name].”</i>  You tell her that it’s a promise.");
+	output("\n\nA short while later, you’ve got your gear back on you, and, energized, you leave Paige’s unit and ready to tackle your next adventure.");
+
+	// end scene (scene: SSVAG); reduce Lust to 0; advance clock by two hours; place PC one square outside Paige’s Unit
+	processTime(120);
+	clearMenu();
+	addButton(0,"Next",moveSouth);
+}
+
+//[=Anal=]
+// Requires a penis that has an area of 50 or less.
+// Tooltip (No penis): You need a penis to have sex with Paige this way!
+// Tooltip (Penis is too large): You need a smaller penis to take the back door.  You don’t want to hurt her!
+// Tooltip (Yes penis): Knowing Paige, she’ll probably let you do this.  Couldn’t hurt to try!
+// Action tree: http://i.imgur.com/GqjxQnn.png
+// (scene: SSAI)
+
+public function SSAI():void
+{
+	clearOutput();
+	showPaige(true);
+	IncrementFlag("SEXED_PAIGE");
+	IncrementFlag("PAIGE_ANAL");
+	var args:Array = [];
+	output("You grind your [pc.cock] up between Paige’s cheeks as she humps and teases you.  You gently snake your hands up her thighs until they come to a rest on her pert, tight asscheeks, gripping them in your fingers and pulling them apart to make room for your dick");
+	if(pc.cockTotal() >= 2) output(".  [pc.EachCock] sit between your bodies, sandwiched between your lower belly and her sopping cunt, purple with blood and the heavy pressure above them");
+	output(".");
+
+	output("\n\nShe moans wordlessly as you tease each other.  You wait for just a moment, and then shift your [pc.hips], aligning your [pc.cockHead] with her asshole.  ");
+	//if {First time}
+	if(flags["PAIGE_ANAL"] == 1)
+	{
+		output("Paige tenses and gets goosebumps, taken by surprise by the sudden plying");
+	}
+	else output("Paige shudders, but doesn’t skip a beat and keeps teasing you");
+	output(".  ");
+	//if {First time, and PC has seen FTFHB1}
+	if(flags["PAIGE_ANAL"] == 1 && flags["PAIGE_FTFHB1"]!= undefined) output("You remind Paige that she was willing to try something a little more adventurous, and ask her if she’s okay with giving it a try");
+	//if {First time}
+	else if(flags["PAIGE_ANAL"] == 1) 
+	{
+		output("You ask Paige if she’s feeling a little adventurous today.  You’ll only go as far as she lets you");
+		
+	}
+	//if {Not first time}
+	else output("You ask Paige if she’s up for some more butt stuff.  She was pretty into it last time");
+	output(".");
+
+	output("\n\nPaige hums in thought as she bounces on you.  She leans forward and, with some exaggeration, draws your dick, from [pc.base] to tip, all through the cleft of her cheeks.  Her bottom lip is bit in concentration – you realize that she’s measuring you with her ass!  <i>“");
+	//if {First time, and PC has seen FTFHB1}
+	if(flags["PAIGE_ANAL"] == 1 && flags["PAIGE_FTFHB1"]!= undefined) output("I did say that, didn’t I?”</i> she reminisces.  <i>“This is a bit... more than a finger, though.  I trust you, [pc.name].  Let’s give it a shot");
+	//if {First time}
+	else if(flags["PAIGE_ANAL"] == 1) output("I’ve never done it up the ass,”</i> she admits.  <i>“But my life has been full of firsts since you came into it.  I’ll give it a try – with you");
+	//if {Not first time}
+	else output("I dunno if I’m just a slut for butt stuff or if I’m a slut for you,”</i> she says sultrily, licking her lips, <i>“but if you want another round, I’m all for it, sweet thing");
+	output(".”</i>");
+
+	output("\n\nThat’s all you need to hear.  You frig your prick between her globes another few times, your pre-cum beading down and slicking your shaft and her taint in preparation.  You’re so close, a quick thrust would be all you need – but are you in that sort of rush?  You could take things a little easier, if you’d rather.");
+
+	//[=Gently=][=Raw=][=Prep=]
+	// end scene (scene: SSAI)
+	processTime(5);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Gently",SSAG,args);
+	addButton(1,"Raw",SSAR,args);
+	addButton(2,"Rim",SSAP1,args);
+}
+
+//[=Prep=]
+// Tooltip: This scene involves rimming and will lead into the <i>“Gently”</i> path.
+// (scene: SSAP1)
+public function SSAP1(args:Array):void
+{
+	args.push("SSAP1");
+	clearOutput();
+	showPaige(true);
+	output("<i>“We’re in no rush,”</i> you tell Paige, your [pc.cockHead] straining against her, begging to differ.  <i>“Why don’t we get each other ready?”</i>");
+	if(flags["PAIGE_RIMMING"] == undefined) flags["PAIGE_RIMMING"] = 1;
+	//if {PC has only ever seen SSAP1}
+	if(flags["PAIGE_RIMMING"] == 1) 
+	{
+		output("\n\nPaige squints her eyes in your (general) direction, trying to get a read on your tone.  <i>“You’re suggesting you eat my ass, right?”</i> she asks incredulously.  You hum affirmatively.  Paige clicks her tongue as she thinks about it.  <i>“");
+		//if {First time anal}
+		if(flags["PAIGE_ANAL"] == 1) output("Hell, I already said I’d let you fuck it.  Let’s make tonight a night of firsts.  Just remember – you offered");
+		else output("Hell, why not?  I’m already a big fan of having my ass played with.  Let’s go for the whole package.  Just remember – you offered");
+		output(".”</i>");
+	}
+	//if {PC has only ever made it to SSAP2}
+	else if(flags["PAIGE_RIMMING"] == 2) output("\n\nPaige smirks a bit as she considers it.  <i>“Well, hell, any excuse to get your dick in my mouth, [pc.name],”</i> she says, <i>“But something about my ass must have been a good time if you’re willing to do</i> that <i>again.”</i>  You make no comment.  <i>“Alright then, perv, let’s get to it.”</i>");
+	//if {PC has seen SSAP3}
+	else output(" Paige smirks as she considers it.  <i>“I guess we’ve both got our vices,”</i> she sighs.  <i>“I’m a cum-thirsty whore and I like having things up my butt – and you like having your face in it.  Hell, I’m not going to complain.  You want another taste, sweet thing, you got it.”</i>");
+
+	output("\n\nPaige, with excited swiftness, lifts one leg over your head as she pivots around and leans forward, your cock in her face and your face under her tail.  Her soaking cunt and puffy vulva press into your collarbone, knowing that tonight isn’t about them – your eyes go north, to her dry, winking anus, the star of the show.");
+	output("\n\nPaige wastes no time in stuffing your [pc.cock] into her mouth, lathering it with her wet tongue.  You tense as you feel it wrap around your shaft, her thick Ausar tongue expertly covering everything in one pass, but she doesn’t stop, getting you nice and slick.  It takes you a moment to remember that you should be doing the same, and you crane your head forward, sticking out your [pc.tongue] and giving her ass a long, lascivious lick.");
+	output("\n\nYou feel her abdomen tense, then relax lazily as the sensations of having a tongue against her asshole cause her to melt in pleasure.  You draw your tongue back in, soaking it in spit, then back out, getting her nice and lubed for your cock.  Your nose brushes against the underside of her tail’s base with every upward swing, and, it being an erogenous zone, she moans in pleasure each time.");
+	output("\n\nAfter a few minutes, you’re nice, hard, and wet, and her hole is about as lubed as you’re going to get it.  You could stick around and make <i>absolutely</i> sure, though.");
+
+	//[=Gently=][=Keep Prepping=]
+	// end scene (scene: SSAP1)
+	processTime(5);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Gently",SSAG,args);
+	addButton(1,"Keep Going",SSAP2,args);
+}
+
+//[=Keep Prepping=]
+// Tooltip: Better safe than sorry!
+// (scene: SSAP2)
+public function SSAP2(args:Array):void
+{
+	args.push("SSAP2");
+	clearOutput();
+	showPaige();
+	if(flags["PAIGE_RIMMING"] == 1) flags["PAIGE_RIMMING"] = 2;
+	output("You’re rather content where you are, you decide.  Paige’s ass is one of her finer features, and she knows it, constantly showing it off and deliberately taking some lewder yoga poses that really highlights it.  The idea of motorboating those tight cheeks and getting a good taste has crossed your mind once or twice.");
+	output("\n\n<i>“Damn,”</i> Paige moans as she feels you press your face deeper into her cleft.  <i>“Eager [pc.boyGirl]!”</i>  She wiggles her butt, massaging your face with her tight ass as your tongue swipes across her hole and pierces into its clenching center now and again.  <i>“You getting comfortable back there, [pc.name]?  Don’t forget, that’s only the entrée before the main course.”</i>");
+	output("\n\nYour hands reach up to grip onto her ass, letting your fingers clench into the sort fur and taut flesh, pulling them apart and pressing them together, squishing your nose and tongue as you work her over.  Paige is back on your dick, making sure it’s as wet and ready as ever, although she’s trying to keep herself restrained: she’s committed to having you in her ass, and she doesn’t want you to cum beforehand.");
+	output("\n\nYou barely notice her slowing down on you, you’re so focused on her ass.  You hear her moan, and you just want to keep doing what you’re doing.  <i>“");
+	//if {PC has not seen SSAP3}
+	if(flags["PAIGE_RIMMING"] != 3) output("I’m all for showing my ass some attention, [pc.name], but it’s not going to get any more ready for you,”</i> she chides playfully.  <i>“Give your tongue a rest and let [pc.name] Junior take over");
+	else output("I know for a fact you’re ready to go, [pc.name],”</i> she chides playfully, <i>“but, knowing you, you’re probably going to want to just keep going, right?  I guess I can give you another minute");
+	output(".”</i>");
+
+	//[=Gently=][=Keep <i>“Prepping”</i>=]
+	// end scene (scene: SSAP2)
+	processTime(5);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Gently",SSAG,args);
+	addButton(1,"Keep Going",SSAP3,args);
+}
+
+//[=Keep <i>“Prepping”</i>=]
+// Tooltip: Maybe just a little longer.
+// Tooltip (Silly Mode, if possible): You just like eating ass, don’t you, [pc.name]?
+// (scene: SSAP3)
+public function SSAP3(args:Array):void
+{
+	args.push("SSAP3");
+	clearOutput();
+	showPaige(true);
+	if(flags["PAIGE_RIMMING"] == 2) flags["PAIGE_RIMMING"] = 3;
+	output("You unwaveringly proceed.  Paige laughs, then disengages from your [pc.cock] entirely, letting it stand, hard, wet, and cooling in the air, as she squats on your face.  <i>“Fine,”</i> she says, letting her full weight rest on your face.  <i>“Get in there deep, [pc.name].  Show me how much you love my ass.”</i>");
+	output("\n\nYou don’t register the words, but you obey them nonetheless: your dedication to lubing her progresses to you fucking her ass with your mouth.  Paige hums in enjoyment at the attention, but she refuses to touch herself and keeps her arms up and over her head while she rides your face.");
+	output("\n\nSomething about your position keeps you there: it might be how Paige’s body is the pinnacle of feminine fitness, and being where you are is like a reward of some kind; it might be the way you hear her moan as she sits on you making you feel powerful yourself, knowing that <i>you</i> are doing that to her and that <i>you</i> are giving her that pleasure; it might be that you just love the sheer subservience of having your tongue in someone else’s asshole, their cheeks framing your face so warmly and comfortably.  Whatever the case, you lose yourself in your ‘job,’ licking her and thrusting into her absently–");
+	output("\n\n<i>“Alright, that’s enough,”</i> Paige says, lifting her off your face and subjecting you to the sudden comparative chill of the room.  <i>“Having a tongue in my butt is great and all, but I want a dick in there, [pc.name], and it won’t do to have either of us cum before we get there.”</i>");
+	output("\n\nYou’re in something of a daze and you only catch half of what she says, but, when your eyes focus, you see her back in her position, her legs on either side of your [pc.hips] as she aligns your [pc.cockHead] with her thoroughly lubed anus.  Her pussy is red and puffy with sheer desire; Paige is already on the verge of cumming a geyser and it must have taken a bit of willpower on her part to force you to stop.");
+
+	//[=Gently=]
+	// end scene (scene: SSAP3)
+	processTime(5);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Gently",SSAG,args);
+}
+
+//[=Gently=]
+// (scene: SSAG)
+public function SSAG(args:Array):void
+{
+	args.push("SSAG");
+	clearOutput();
+	showPaige(true);
+	//if {Coming from SSAP1 or SSAP2}
+	if(InCollection("SSAP1", args) || InCollection("SSAP2", args)) output("That’s enough: you’re as hard as can be and slick with spit, and Paige’s tight asshole has been as moistened as you can make it.  You tell her that you’re ready, and, legs quaking with excitement, she lifts her body off you and pivots back around, her legs straddling your body and your [pc.cockHead] aligned with her exit once more.");
+	//if {Coming from SSAP3}
+	else if(InCollection("SSAP3", args)) output("The sensation of Paige’s body heat against the head of your dick snaps you out of the dizzy reverie you built up from being face-deep in her booty.  You’re reminded of exactly how hard and needy you are, and when your eyes uncross enough to make out the red gorging of her vulva, you learn exactly how needy she is too.");
+	else output("You rock your lower body against hers a few more times, readying your [pc.cock], not that it needed more readying.  The heat of her body excites you even further, and you finally your hips back, lining yourself up with her exit.  You give her a teasing moment, wordlessly offering her the chance to back out, but her bit bottom lip and anxious smile are all the answer you need.");
+	output("\n\nAlmost reflexively, you buck your [pc.hips] upward, spearing into her ass.  You don’t go far – just the [pc.cockHead] – but you want to take things slowly and gently for her, to adjust to your size.  Paige inhales sharply through her nose and exhales in a pleasant moan: all the sign you need to keep going.");
+	if(pc.cLength(0) <= 9) 
+	{
+		output("\n\nAfter a tantalizing journey, Paige’s pert, tight asscheeks rest against your pelvis, with every bit of you stuffed inside her butt.  Paige exhales in exhilaration, satisfied in a unique way, at the sensation of having every part of you");
+		if(pc.cockTotal() >= 2) output(" (or, every part of <i>one</i> of you)");
+		output(" inside her.");
+	}
+	//if (pc.cockLength >= 10)
+	else 
+	{
+		output("\n\nPaige grunts in a weird mix of pleasure and frustration as you feel her butt clench tightly around your shaft, and you watch her ripped abs flex in effort.  <i>“I think that’s about my limit,”</i> she says");
+		//if (pc.cockLength = 10)
+		if(pc.cLength(0) >= 10 && pc.cLength(0) < 11) output(", to your dismay – you’re so close!  But you don’t push her.  It’s her ass");
+		output(".  <i>“I’ll have to look into fixing that.  I... I kind of want more,”</i> she laughs sheepishly.");
+	}
+	pc.cockChange();
+	output("\n\nWith her boundaries defined, Paige leans backward, her hands on either side of your ankles, as she lifts up her butt until you’re barely still inside her, and then slams back down, as far as she can.  ");
+	//if {SSAP1 or SSAP2}
+	if(InCollection("SSAP1", args) || InCollection("SSAP2", args)) output("The time you spent lubing each other up really comes into play, removing much of the friction of the act");
+	//if {SSAP3}
+	else if(InCollection("SSAP3", args)) output("The combined spit on your dick and her ass makes the fucking a lubricated cinch, although somewhere in the back of your mind, you regret that it wasn’t easier");
+	output(".  Paige’s puffy, needy honeypot bounces with the rest of her, right in front of you, and Paige is too busy keeping herself steady to pay attention to it.  You could help her out, if you wanted....");
+
+	processTime(5);
+	pc.lust(10);
+	//[=Finger Her=][=Do Nothing=]
+	// end scene (scene: SSAG)
+	clearMenu();
+	addButton(0,"Finger Her",SSAFH1,args);
+	addButton(1,"Do Nothing",SSADN1,args);
+}
+
+//[=Raw=]
+// (scene: SSAR)
+public function SSAR(args:Array):void
+{
+	args.push("SSAR");
+	clearOutput();
+	showPaige(true);
+	if(flags["PAIGE_ANAL"] == 1) output("You’re a little overeager, you realize, but Paige is a tough girl, and, knowing her, she’d probably like i");
+	else output("Paige knows exactly what she’s getting into with you, and, to be frank, she’s a bit of a butt-slut.  Hell, she might even appreciate skipping the foreplay to get to the good stuff");
+	output(".  You thrust into her, burying more than a little bit of your [pc.cock] into her asshole");
+	if(flags["PAIGE_ANAL"] != 1) output(", but not more than you know she’s comfortable with");
+	output(".");
+
+	output("\n\nPaige nearly shouts in surprise at your intrusion, and she goes stiff all over as she adjusts with you inside her.  Before she gets too comfortable, you pull out slightly, only to thrust back in further than before.  The only lube between you is your pre-cum, which is enough for you.  ");
+	//if {First time}
+	if(flags["PAIGE_ANAL"] == 1) output("You keep your eyes on Paige’s expression, just in case you’re being too sudden, but she’s all mischievous-smiles.  <i>“Guess I should have seen this coming,”</i> she laughs, and then starts matching your pace.  <i>“Come on, then, [pc.name].  Let’s really break my ass in!”</i>");
+	//if {Not first time}
+	else output("You’re both grinning at the pleasure, and the unsaid contest between you and Paige to find her breaking point.  Of course, you’re not anywhere near it.  <i>“I love that you know when to take me hard, [pc.name],”</i> she says through gritted teeth.  <i>“Give your slutty puppy what she wants!”</i>");
+
+	output("\n\nYou do exactly what she asks, and lay into her, your [pc.hips] pumping up while hers hump down, squeezing your [pc.cock] into her bowels again and again.  Paige’s abs and strong calves ripple and flex around your body as she takes you into her butt again and again; her breathing quickens in excitement as she feels every throb of your dick inside her.  Her toes begin to splay and she even drools a little onto bouncing titties.");
+	pc.cockChange();
+	output("\n\n<i>“Hold on a second,”</i> Paige asks you, a flash on inspiration crossing her muzzle.  She stops her bouncing on your lap – which stops your pleasure.  You practically ache inside her, edging closer to your release, yet it’s still so far away.  You’re sure Paige would understand if you didn’t stop like she asked, or you could see what’s on her mind.");
+
+	//[=Wait=][=Pull Her Down=]
+	// end scene (scene: SSAR)
+	processTime(5);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Wait",SSAW,args);
+	addButton(1,"PullHerDown",SSAPHD,args);
+}
+
+//[=Finger Her=]
+// (scene: SSAFH1)
+public function SSAFH1(args:Array):void
+{
+	args.push("SSAFH1");
+	clearOutput();
+	showPaige(true);
+	output("Well, hell, it’s so inviting; it would be rude to turn it down when it asked so nicely.");
+	output("\n\nYou reach forward, one hand playing and lightly clawing down her chiseled abs, and the other tickling along her left calf, as both hands make their way to her dripping cunt.  Your left hand’s fingers find her vulva, pulling and squishing and playing with her lips between your fingers, while your right thumb finds her clit, pressing her button and flicking her switch.");
+	output("\n\n<i>“Ah, fuck, right there,”</i> she says, throwing her head back and gripping onto the sheets of her bed in pleasure.  <i>“Gods above but don’t you make the best of any situation, don’t you, [pc.name]?  What did I ever do to deserve you?”</i>  You respond to her compliments by playing with her bits some more, teasingly slipping a finger in and feeling how her body eagerly sucks you in, milking your digit.");
+	output("\n\nNeither of you stop the real entertainment, naturally, but your extra attention pays off: with every sensitive nub you happen to brush against, her ass clenches down on you, providing that little extra warmth and friction for you to fuck into.  You slip a second finger inside her, feeling her heartbeat all the way down to her pussy, and you time her beats with light brushes against her clit.");
+
+	//[=Next=]
+	// end scene (scene: SSAFH1); go to (scene: SSAFH2)
+	processTime(5);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",SSAFH2,args);
+}
+
+//[=Do Nothing=]
+// (scene: SSADN1)
+public function SSADN1(args:Array):void
+{
+	args.push("SSADN1");
+	clearOutput();
+	showPaige(true);
+	output("It’s a bit selfish of you, but in your defense, you’re a little preoccupied and splitting your focus would mean you wouldn’t do either as well as you could.  You focus on plowing Paige’s ass, knowing that she’s clearly into it, and hoping that it would be enough.");
+	output("\n\nShe bounces on your [pc.cock], breathing steadily and deeply through her nose.  You match her rhythm, pulling out when she rises and feeling her body contort around you as you penetrate her when she falls.  She controls the flow, and she’s taking it at a relaxed pace.  <i>“You’re being awfully passive, [pc.name], considering your dick is in my ass,”</i> Paige chides playfully.");
+	output("\n\nIn response, you double the pace for a few pumps, surprising her and lifting her with the force of your hips.  The breath leaves her in surprise, and then she laughs.  <i>“It wasn’t a challenge!”</i> she says, cooing at the friction.  <i>“But hey, now that you’ve started, you may as well keep going.”</i>");
+	output("\n\nThat’s an invitation if you’ve ever heard one.  You grip onto Paige’s ankles, steadying yourself.");
+
+	//[=Next=]
+	// end scene (scene: SSADN1); go to (scene: SSADN2)
+	processTime(5);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",SSADN2,args);
+}
+
+//[=Wait=]
+// (scene: SSAW)
+public function SSAW(args:Array):void
+{
+	args.push("SSAW");
+	clearOutput();
+	showPaige(true);
+	output("You do as Paige asks and stop your thrusting into her butt, difficult as it is – you’re anxious to keep going for your own pleasure, but if Paige has an idea, it’s probably a good one.");
+	output("\n\nWith some skill, Paige lifts one leg over your body, your dick still firmly lodged inside her as she twists herself around.  You bite your lower lip in concentration as the sensation of her whole body twisting and pulling at the skin of your shaft tickles nerves you didn’t know could be tickled that way.  She pulls the other over you, and she’s spun around entirely.");
+	output("\n\nSighing in delight, Paige leans into you");
+	if(pc.biggestTitSize() <= 2) output(", her back flat against your [pc.chest]");
+	//if (pc.biggestTitSize >= 3)if (pc.biggestTitSize <= 6)
+	else if(pc.biggestTitSize() <= 6) output(", your [pc.chest] giving her something soft to lay into");
+	else output(", squirming snuggly in the valley of your [pc.chest] until she’s good and nestled");
+	output(".  <i>“There we go,”</i> she says, reaching up and running her fingers through your [pc.hair] as she settles.  <i>“This ought to give you more to play with.”</i>");
+
+	output("\n\nBut, you complain, Paige doesn’t have any thrusting power – it means you also have to do all the work!  <i>“Oh, I’m sorry,”</i> she rebukes.  <i>“If fucking my ass is too much work for you, we can always stop.”</i>");
+	output("\n\nYou both laugh and you both definitely don’t stop.  But she <i>is</i> right: you have some more options for your roaming hands.  But where do you focus?  Decisions, decisions.");
+
+	//[=Up Top=][=Down Low=]
+	// end scene (scene: SSAW)
+	processTime(5);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Up Top",SSAUT,args);
+	addButton(1,"Down Low",SSADL,args);
+}
+
+//[=Pull Her Down=]
+// (scene: SSAPHD)
+public function SSAPHD(args:Array):void
+{
+	args.push("SSAPHD");
+	clearOutput();
+	showPaige(true);
+	output("Fuck that, things were just getting good.  You lean forward to grab her by the wrists, and you yank her forward, taking away her balance and toppling her onto you.");
+	output("\n\n<i>“Oh!”</i> she exclaims, her breasts squishing against your [pc.chest].  You don’t stop your thrusting: if anything, you take advantage of Paige’s disorientation to fuck her harder, your hips audibly clapping against hers");
+	if(pc.balls > 0) output(" and your [pc.balls] bouncing up to brush against the finer fur of her ass");
+	output(".  It takes a few more thrusts until Paige rights herself and catches her breath.  <i>“Message received,”</i> she laughs.  <i>“Let’s just fuck my ass, then, [pc.name]!”</i>");
+
+	output("\n\nYou continue gladly, letting Paige lean on her elbows for her own comfort as you thrust into her and she backs into you.  Paige’s breath comes out in billows between you, and her boobs press against you");
+	if(pc.biggestTitSize() <= 1) output("r [pc.chest] warmly, cushioning you both with their firmness");
+	else if(pc.biggestTitSize() <= 5) output("r [pc.chest], electrifying you both when your [pc.nipples] rub against each other in the heat");
+	else output(" ineffectually: her firm tits do little more than flatten against your [pc.chest], easily dwarfed by your own");
+	output(".  Her body goes limper with every other thrust into her as she loses cognizance to your brutalizing her asshole.");
+
+	output("\n\nShe’s fairly pliable in your hands as you ream her, and your hands are both free now that she’s fine with you doing what you’re doing to her.  There are a few things you could think to do to her while she’s unfocused.");
+
+	//[=Kiss Her=][=Finger Her=]
+	// end scene (scene: SSAPHD)
+	processTime(5);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Kiss Her",SSAKH,args);
+	addButton(1,"Finger Her",SSAFH3,args);
+}
+
+//// (scene: SSAFH2)
+public function SSAFH2(args:Array):void
+{
+	args.push("SSAFH2");
+	clearOutput();
+	showPaige(true);
+	output("Paige rocks awkwardly on top of you, attempting to alternate between stuffing your [pc.cock] into her and attempting to snatch more of your hand into her.  She accomplishes neither, but she clearly doesn’t care; her breathing gets shallow and her moans rise in pitch quickly.  <i>“I’m getting close,”</i> she warns you, her head still thrown back.  Her breasts heave with her shallow breath and her abs flex and then don’t un-flex.  <i>“Damn, really close!”</i>");
+	output("\n\nYour own focus is torn between fingering her so she gets there before you, and fucking her harder so that you reach your climax sooner.  Paige, noticing your flagging focus, reaches forward and grips your wrist tightly, shoving your hand deeper into her cooch.  <i>“Don’t you fucking slow down on me, [pc.name],”</i> she dares you.  <i>“I’m... nearly there!”</i>");
+	output("\n\nPaige fucks herself with your hand, taking the decision away from you and giving you a chance to focus on fucking her ass.  With renewed vigor, you plow into her all the harder – and in no time at all, your orgasm is hot on your heels.  The familiar bubbling in your ");
+	if(pc.balls > 0) output("[pc.balls]");
+	else output("loins");
+	output(" rushes higher and higher up your [pc.cock] until, just as Paige cums, clenching your fingers and hard onto your dick, you can hardly contain yourself as you explode inside her.");
+
+	//[=Climax=]
+	// end scene (scene: SSAFH2); go to (scene: SSAE1)
+	processTime(5);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",SSAE1,args);
+}
+
+// (scene: SSADN2)
+public function SSADN2(args:Array):void
+{
+	args.push("SSADN2");
+	clearOutput();
+	showPaige(true);
+	output("Anchoring yourself to Paige’s bed, you lay into her with all the force and energy still in your pelvis to fuck your Ausar’s ass until her puffy twat you’ve neglected explodes all over you.");
+	output("\n\nPaige loves it: her tight ring clenches around your impulsive shaft and doesn’t let up no matter how much you pound into it.  She crunches her abdomen reflexively as you go, forcing more resistance onto you, but that’s all for the better for you both: the unique contours of her butt massage you in a way her pussy couldn’t, and you love it.");
+	output("\n\nYou let Paige know you love it by fucking her harder.  The sound of your hips clapping into hers");
+	if(pc.balls > 0) output(", your [pc.sack] bouncing up with the rest of you");
+	output(" fills the room, fighting with Paige’s lustful gasps and rising yips as she gets closer.  <i>“Fuck me,”</i> she manages to stutter out between forceful pushes up.  <i>“I’m close, [pc.name], fuck my ass!  Fuck it like you own it!  You</i> own <i>it, [pc.name]!”</i>");
+	output("\n\nHer shouts and exaltations are what she needs to go the last little way, and with a few more pumps into her, she’s cumming on top of you.  Her body stiffens and spasms involuntarily, sending quakes down your shaft and into your loins; her orgasm is what you need, and soon, you’re cumming right after her.");
+	//[=Climax=]
+	// end scene (scene: SSADN2); go to (scene: SSAE2)
+	processTime(5);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",SSAE2,args);
+}
+
+//[=Up Top=]
+// (scene: SSAUT)
+public function SSAUT(args:Array):void
+{
+	args.push("SSAUT");
+	clearOutput();
+	showPaige(true);
+	output("The horny Ausar is practically <i>begging</i> you to fondle her boobs, and really, who are you to turn down an invitation like that?  Nobody in their right mind would pass up the chance to grab a handful of those tight yoga tits.");
+	output("\n\nThirsty, your hands strike at her chest, gripping at each boob suddenly and a little rougher than you meant.  Her pointed nipples, practically sharp, dig into your palms as you squish and knead her flesh, unsynchronized from your abject fucking into her butt.  <i>“Good [pc.boyGirl],”</i> Paige sighs, one hand firmly on your skull and the other on yours, guiding it along the erogenous spots of her titflesh.  <i>“The girls just</i> love <i>getting some attention.  Pinch my nipples a bit, sweet thing.”</i>");
+	output("\n\nYou do as she command, pinching both nipples and pulling on them just a little.  She winces through clenched teeth and you feel her sphincter tighten around your [pc.cock].  <i>“That’s good, just like that!”</i> she shouts, and you continue to handle her nipples the way she likes.  <i>“Gods, having my tits handled gets me close.  Cum with me, [pc.name]!  Cum in my ass!  Fill me up!”</i>");
+	output("\n\nPaige combats your every thrust by slamming her rump back down onto you as best she can, lodging you as deeply into her as she can take with every push");
+	if(pc.cLength(0)) output(", and ‘as deeply’ keeps getting redefined");
+	output(".  With one last bounce, she stops entirely, her body stiffens, her breath leaves her, and her ass grips you almost painfully tightly.");
+
+	output("\n\nWhich is good, because you’re on the verge of an orgasm yourself.");
+
+	processTime(5);
+	pc.lust(10);
+
+	//[=Climax=]
+	// end scene (scene: SSAUT); go to (scene: SSAE3)
+	clearMenu();
+	addButton(0,"Next",SSAE3,args);
+}
+
+//[=Down Low=]
+// (scene: SSADL)
+public function SSADL(args:Array):void
+{
+	args.push("SSADL");
+	clearOutput();
+	showPaige(true);
+	output("If there’s any part of Paige that desperately needs some attention right now, it’s her neglected cooch, even if it isn’t the focus of the show.");
+	output("\n\nYou keep one hand rested on her belly, admiring and playing with the ridges of her toned six-pack abs, while the other travels farther down, gliding seamlessly over her vagina, your middle finger easing itself between the lips of her vulva.  You palm gently yet insistently against her clit, swishing it up and down with every other pass.  Your hand is <i>soaked</i> the moment you complete one full pass.");
+	output("\n\n<i>“Shit!”</i> Paige whispers sharply, her grip on your skull tightening and her biceps bulging in barely-restrained pleasure.  Her belly, along with the rest of her, rocks in time to your palming her pussy, which is in time with your thrusting into her butt.  You change your attack by thrusting your middle finger up and in, crooking it against her tight vaginal walls, and using your thumb to continue passively assaulting her button.  <i>“Shit!”</i> she mouths again.");
+	output("\n\nKnowing that you’ve robbed Paige of the coherence to say much else draws your orgasm all the closer.  You latch your lips to her neck, sucking on the taut skin and fur there, and then draw your [pc.tongue] up along her neck and up to the back of her triangular ear.");
+	output("\n\nThat’s enough for her, and she squeals through pursed lips as her tunnel clamps on your finger and her sphincter seals itself damn-near airtight on your [pc.cock].  The paltry fluids on your palm before is nothing compared to the veritable waterfall gushing from her now.  With so many fluids of hers on you, it would be rude to not give some back.");
+	//[=Climax=]
+	// end scene (scene: SSADL); go to (scene: SSAE2)
+	processTime(5);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",SSAE2,args);
+}
+
+//[=Kiss Her=]
+// (scene: SSAKH)
+public function SSAKH(args:Array):void
+{
+	args.push("SSAKH");
+	clearOutput();
+	showPaige(true);
+	output("You keep one hand on the meat of her ass to keep her steady (and also to grab a handful.  Who wouldn’t?), and you use the other to gently cup the underside of Paige’s muzzle to direct her eyes to yours.  Once they ");
+	if(paigeBlind()) output("(generally)");
+	output(" meet and lock, you lean forward, aggressively putting your lips to hers and, forgoing the foreplay, stick your tongue out.");
+	output("\n\nShe has enough sense to reciprocate, opening her mouth and allowing you in, although she’s fairly lazy about it.  Your [pc.tongue] plays and dances with her long-and-flat Ausar tongue, tasting each other’s nuances and counting the teeth in each other’s jaws.  You slow your fucking her ass slightly, your attention divided, though you hardly stop.");
+	output("\n\nWhile your mouth is busy, the hand on her ass crawls its fingers into the cleft of her cheeks, tickling at the rim of her asshole as it gets reamed again and again.  Paige hardly notices; her eyes are closed deliriously and her tongue is moving in broad, sweeping strokes with your own.  Her mind’s taken a back-seat, overloaded with the sensations in both ends of her body.");
+	output("\n\nYou can’t tell how close she is, but you know you’re just a few pumps away.  You give Paige a shock to her system by releasing her asscheek and grabbing the base of her tail, your fingers scratching along its underside.  You know it’s a particularly vulnerable erogenous zone, and it does what you hoped: Paige’s body stiffens and she squeals into your mouth, while her ass grips you tighter and she soaks your crotch in her feminine cum.");
+	output("\n\nAnd not a moment too soon....");
+	//[=Climax=]
+	// end scene (scene: SSAKH); go to (scene: SSAE3)
+	processTime(5);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",SSAE3,args);
+}
+
+//[=Finger Her=]
+// (scene: SSAFH3)
+public function SSAFH3(args:Array):void
+{
+	args.push("SSAFH3");
+	clearOutput();
+	showPaige(true);
+	output("If there’s any one thing that will probably snap her back to reality, and it’s <i>not</i> a dick in the ass, it’s a finger up the cooch");
+	if(pc.hasVagina()) output(", speaking from experience");
+	output(".");
+
+	output("\n\nIt’s a bit tricky to worm your hand in between your rocking, humping bodies, but you get it in there with every outward thrust of your hips, getting it closer and closer until you find your hot and sopping wet prize.  You wait until your hips are apart, and then you strike, crooking a finger and letting Paige land right on it, spearing into her suddenly.");
+	output("\n\n<i>“Whoa!”</i> Paige says, eyes wide and unfocused.  Your palm does not stay with her on your ‘backswing,’ and instead acts as a peg to impale Paige with every other swing in.  She breaths in through her nose and it comes out as a stiff hiss; her clit bounces hard against your upturned palm with every thrust, sending shivers up her body");
+	if(pc.cockTotal() >= 2) 
+	{
+		output(".  You realize that using just your finger is a bit ineffectual when you <i>could</i> just use");
+		if(pc.cockTotal() == 2) output(" your [pc.cock 1]");
+		else output(" another one of [pc.eachCock]");
+		output(", but that would mean pulling out and shuffling your equipment around, and that’s a lot of hassle considering you’re about to burst right now");
+		output(".");
+	}
+	output("\n\n<i>“Fuck me,”</i> Paige whispers, more as a statement than a demand or request.  She humps against your hand whenever it and her pussy meet, sliding up and down on both your digit and your member, squeezing as much pleasure out of both as she can.  <i>“Nearly there,”</i> she warns you, and in response, you clamp your hand against her, thrusting your ring finger inside her cooch as well.  <i>“A whole lot closer now!”</i> she hollers, before stiffening.");
+	output("\n\nA gush of womanly cum drenches your hand as your fingers splay inside her.  You’re about to reciprocate with a gush of your own fluids....");
+	//[=Climax=]
+	// end scene (scene: SSAFH3); go to (scene: SSAE4)
+	processTime(5);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",SSAE4,args);
+}
+
+// (scene: SSAE1)
+public function SSAE1(args:Array):void
+{
+	args.push("SSAE1");
+	clearOutput();
+	showPaige(true);
+	output("Paige draws in one, long hiss of air, and then goes silent on top of you.  Her body is hardly still: her lower abdomen convulses in pleasure, the muscles of her abdominals crunching from her lower belly to her jiggling breasts.  Her pussy gushes flow after flow of her girl jizz all over your hand and across your own [pc.belly]; and her ass becomes almost painfully tight, clenching you involuntarily in its ring.");
+	output("\n\nKnowing that Paige is having an orgasm on top, and because, of you, triggers something primeval in your head, and you join her, ");
+	if(pc.cumQ() < 300)
+	{
+		output("painting her insides with your [pc.cum].  Y");
+		if(pc.balls > 0) output("our [pc.sack] tenses in time with your jets, coiling up against your taint with every shot of cum, and y");
+		output("our shaft flexes in time with your shots, blood coursing through its bloated veins, depositing every little bit you have into your Ausar lover.  <i>“Fuck,”</i> Paige manages to gasp out, composing herself just enough.  <i>“I can feel it, [pc.name],”</i> she whispers.  <i>“I can feel every drop in me.  I want it all, [pc.name].  Give me all you have.”</i>");
+	}
+	else 
+	{
+		output("blasting your [pc.cum] into her body.  Your impressive load pools within her, y");
+		if(pc.balls > 0) output("our [pc.balls] flexing like pumps to deposit every drop they have into your fleshy, furry comdom.  Y");
+		output("our ");
+		if(pc.balls > 0) output("struggling shaft fights to");
+		else output("shaft struggling to");
+		output(" get your jizz out and into your Ausar, but it can barely flex wide enough to accommodate your load while Paige’s sphincter strangles it.  <i>“Holy shit,”</i> Paige gasps out, cognizant enough to run her mouth.  <i>“It... I can feel it.  I can feel all of your cum, [pc.name].”</i>  She tries to remain still, yet the telltale convulsions around your fingers make it difficult for her.  <i>“I want it all... I want it all inside me.  Don’t stop.  Don’t stop!”</i>");
+	}
+	output("\n\nKnowing how thirsty Paige is spurs you on to give her all you can.  You shoot every drop into her ass, just like she asked you.  She occasionally rocks her hips and gyrates on top of you, coaxing out everything she can");
+	if(pc.cumQ() < 300) output(", even after your orgasm peters to nothing");
+	else output(", even after her belly begins to paunch from the load she’s already taken");
+	output(".  Your hand starts to turn purple from how hard she’s squeezing it against her cooch, but neither of you notice.");
+
+	processTime(5);
+	paige.loadInAss(pc);
+	pc.orgasm();
+	//[=Afterglow=]
+	// end scene (scene: SSAE1); go to (scene: SSAAG)
+	clearMenu();
+	addButton(0,"Next",SSAAG,args);
+}
+
+// (scene: SSAE2)
+public function SSAE2(args:Array):void
+{
+	args.push("SSAE2");
+	clearOutput();
+	showPaige(true);
+	output("You’re assaulted by a number of sensations, from Paige squirting all over the place to her toned ass clenching so tightly that you find it too difficult to thrust into her anymore.  She doesn’t have the cognizance (or the breath) to say anything: her explosive orgasm is her only means to communicate with you.");
+	output("\n\nYou reply to her message with an orgasm of your own: ");
+	if(pc.cumQ() < 300)
+	{
+		output("you press in as deeply as you can before shooting, your [pc.cock] bloating as much as it can and firing your [pc.cum] as deeply into her bowels as you can reach.  Paige’s body is rigid, but you can feel her flex and tense with your every load.  <i>“You,”</i> she finds the strength to gasp out, <i>“you’re cumming in my ass... I can feel it, [pc.name].  It feels so warm.”</i>  She whimpers and tries to writhe on you, to suck out more cum from y");
+		if(pc.balls > 0) output("our [pc.balls]");
+		else output("ou");
+		output(".  <i>“Give me more....”</i>");
+	}
+	else
+	{
+		output("with one final thrust, you lodge yourself as deeply into her body as you can, and you unleash the torrent that is your [pc.cum].  The breath leaves Paige’s lungs in coughs timed with your waves; her yoga-trained glutes become water-tight and don’t allow a single drop of you to escape her, and in no time at all, you watch as her belly begins to bloat and misshape from your quantity");
+		if(pc.balls > 0) output(", and yet, from the mildly-unsatisfied tingling in your [pc.balls], you know you have so much more to give her");
+		output(".  <i>“I love it,”</i> she says meekly, unable to control her still-spasming, still-squirting quim.");
+	}
+	output("\n\nYou");
+	//if {SSADL}
+	if(InCollection("SSADL", args)) output("r hand and most of the bed");
+	output(" are completely soaked and drenched in Paige’s cum – you’re going to smell like a bitch Ausar in heat for a while yet.  And yet Paige’s orgasm soldiers on: her honeypot’s run dry of fluids to squirt, but her convulsions continue, growing weaker as time goes on but lasting far longer than yours");
+	if(pc.cumQ() >= 300) output(", despite your immense load");
+	if(pc.hasVagina()) output(".  It honestly makes you a little jealous");
+	output(".");
+	processTime(5);
+	paige.loadInAss(pc);
+	pc.orgasm();
+
+	//[=Afterglow=]
+	// end scene (scene: SSAE2); go to (scene: SSAAG)
+	clearMenu();
+	addButton(0,"Next",SSAAG,args);
+}
+
+// (scene: SSAE3)
+public function SSAE3(args:Array):void
+{
+	args.push("SSAE3");
+	clearOutput();
+	showPaige(true);
+	//if {SSAUT}
+	if(InCollection("SSAUT", args)) output("Paige awkwardly shifts her body, thrusting her chest into your hands and pressing her butt onto your crotch");
+	//if {SSAKH}
+	else output("Paige’s tongue lies still in your mouth, yet her tail sways stiffly with your every scratch at her zone");
+	output(" while she shamelessly cums and cums again from having her ass fucked and owned.  She makes no attempt to move, lacking the strength as the convulsions from her pussy control her every other muscle, other than to shift her ass from side to side just enough to try and lodge you deeper into her.");
+
+	output("\n\nHer orgasm is, in a way, her congratulations to you for fucking her practically senseless, and with the burst of pride at a good job comes a burst of something else: ");
+	if (pc.cumQ() < 300) 
+	{
+		output("with one final pump to dig yourself as deeply inside her as you can, you shoot your [pc.cum] into her; you feel the individual bursts rise from your ");
+		if(pc.balls > 0) output("[pc.balls]");
+		else output("loins");
+		output(" and make their way up her bowels.  Paige takes your load like the champion she is, exhaling with every new wave of liquid heat she feels crawl up her abdomen.  ");
+		//if {SSAUT}
+		if(InCollection("SSAUT", args)) output("<i>“It’s so deep,”</i> she whispers, rocking her hips on yours to get it even deeper.  <i>“I can feel it go so deep inside me, [pc.name].”</i>  She laughs.  <i>“I feel it rising... I wonder how deep it’ll go?”</i>");
+		//if {SSAKH}
+		else output("Paige’s tongue flops around in your mouth in time with every new sensation in her ass, moaning in delirious pleasure as she feels your warm cum rise higher and higher into her abdomen.");
+	}
+	//if (pc.cumQuantity >= 300)
+	else
+	{
+		output("you cum just as you thrust one final time, getting a headstart for your massive load.  In one long, drawn-out burst, you’ve cum more than the average [pc.race], and there’s oh-so-much more to go: Paige’s body bloats around your payload and already you feel it start to backwash against your [pc.cock], but the almost superhuman tightness of her anus keeps it all watertight.  ");
+		//if {SSAUT}
+		if(InCollection("SSAUT", args)) 
+		{
+			output("<i>“Oh wow,”</i> Paige says, almost whimsically");
+			if(pc.balls > 0) output(", and she gasps out with every new pulse in your [pc.balls] and a new load in her bowels");
+			output(".  <i>“It’s so deep... It’s so warm....”</i>  Her hand gently grips at your head as she tries to control her body.  <i>“Keep filling me.  I want it deeper....”</i>");
+		}
+		//if {SSAKH}
+		else output("Paige goes completely slack on your body and in your mouth, humming insensately as she feels your cum pool deeper inside her body.  You keep kissing her, doing all the tongue-wrestling for the both of you, but she’s clearly just along for the ride as her ass absorbs the sensation of having so much cum inside it.");
+	}
+	//if {SSAUT}
+	if(InCollection("SSAUT", args)) output("You don’t ignore Paige’s breasts in your hand, working them expertly,");
+	//if {SSAKH}
+	else output("Your bodies are still and lame] as you both ride out your orgasms.  As Paige had asked of you, you fill her with as much as you can offer,");
+	if(pc.cumQ() < 300) output(" and yet the thirsty bitch keeps rubbing her rump on you to try and eke out just a little more]");
+	else output(" and you’re not even sure she regrets it even after her belly loses its definition and rounds out like a balloon");
+	output(".  ");
+	//if {SSAKH}
+	if(InCollection("SSAKH", args)) output("She finally disengages her mouth from yours, laying her head on your collarbone");
+	//if {SSAUT}
+	if(InCollection("SSAUT", args)) output("She finally relaxes her back, gently coming to rest on your [pc.chest]");
+	output(", and you both begin to wind down from your intense anal session.");
+
+	processTime(5);
+	paige.loadInAss(pc);
+	pc.orgasm();
+
+	//[=Afterglow=]
+	// end scene (scene: SSAE3); to go (scene: SSAAG)
+	clearMenu();
+	addButton(0,"Next",SSAAG,args);
+}
+
+// (scene: SSAE4)
+public function SSAE4(args:Array):void
+{
+	args.push("SSAE4");
+	clearOutput();
+	showPaige(true);
+	output("There are alternating waves of convulsions between Paige’s cooch and her asshole: the former wants to milk your intrusive fingers for whatever cum they can spare (which isn’t a lot, it turns out) while her ass doesn’t naturally ‘milk’ you for anything but nonetheless attempts to clench even tighter around you, strangling your [pc.cock] for its load.");
+
+	output("\n\nDespite your Ausar bitch’s tightness and adamant musculature, your load can’t be denied, ");
+	if(pc.cumQ() < 300) 
+	{
+		output("and your [pc.cum] rockets up and through your shaft, into the tight confines of her rectum.  You jill her further, clenching your own fingers involuntarily with every spurt of hot cum, rubbing the butt of her palm a little roughly against her clit, but all the sensations serve to heighten her orgasm.  <i>“I want every fucking drop,”</i> she tells you through clenched teeth.  Y");
+		if(pc.balls > 0) output("our [pc.balls] are more than happy to comply, and y");
+		output("our shaft bloats rhythmically with every gooey wad you loose into her.  <i>“It’s so warm, [pc.name].”</i>  The puddle of girlcum on your [pc.belly] grows with your every spurt.  <i>“I want it all.”</i>");
+	}
+	//if (pc.cumQuantity >= 300)
+	else
+	{
+		output("bloating your vas deferens as it erupts from you, fighting against the pinch of her anus to deposit your gargantuan load.  Your [pc.cock], and also her asshole, relax after the first wad, but then the second comes, shooting a heftier wad than most terrans could hope to match in a whole week.  You jill her off, thrusting into her in time with your own shots, but you needn’t waste the effort: orgasm after orgasm wracks Paige with every hot bubble she feels deposit in her innards.  <i>“Holy shit, [pc.name],”</i> she says breathlessly, unable to process the explosive squirting from herself and the pandemonium happing in her ass.  <i>“Give me every drop you have, you assfucker!”</i> she demands");
+		if(pc.balls > 0) output(", unaware just how much more your [pc.balls] have left to give");
+		output(".  <i>“Fuck my ass!”</i>");
+	}
+	output("\n\nBy the time you’re both done, Paige’s ass is stuffed with cream");
+	if(pc.cumQ() >= 300) output(" to spare");
+	output(", and your [pc.belly] is soaked up to the chest in horny Ausar girl-jizz.  Your hand begins to cramp from the awkward angle it’s been in, and you go through the effort of peeling your [pc.skinFurScales] from between you.  You’re both out of breath and exhausted, but settle into bed beyond satisfied with each other.");
+
+	//[=Afterglow=]
+	// end scene (scene: SSAE4); go to (scene: SSAAG)
+	processTime(5);
+	paige.loadInAss(pc);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",SSAAG,args);
+}
+
+// (scene: SSAAG)
+public function SSAAG(args:Array):void
+{
+	args.push("SSAAG");
+	clearOutput();
+	showPaige(true);
+	output("You lay together, out of breath and winding down, waiting for your [pc.cock] to deflate enough to slide out of Paige’s ass.  ");
+	//if {SSAE1 or SSAE4}
+	if(InCollection("SSAE1", args) || InCollection("SSAE4", args)) output("You’re soaked from your stomach to your lower chest in Paige’s cum");
+	//if {SSAUT}
+	else if(InCollection("SSAUT", args)) output("You can feel Paige’s heart beating through the flesh and fur of her breasts");
+	//if {SSAKH}
+	else if(InCollection("SSAKH", args)) output("She’s still on top of you, her breasts pressed to your [pc.chest] and her breath washing against your neck in stutters");
+	else output("You’re both well-worn and exhausted from one of your more exciting trysts");
+	output(", proof of your satisfaction with one-another.  You already know this probably won’t be a one-time thing, if you don’t want.");
+	output("\n\n<i>“Goddamn,”</i> Paige whispers finally, her strength returning to her.  <i>“");
+	//if {First time}
+	if(flags["PAIGE_ANAL"] == 1) output("I’ve never had anything up my ass before, [pc.name].”</i>  She giggles.  <i>“And I can already tell you, if every time is going to feel that... exotic, it won’t be the last either");
+	else output("It’s almost like every time I shove you up my ass is a brand new experience, [pc.name],”</i> she giggles.  <i>“I’m glad the one to bring out my inner butt-slut was you");
+	//if {SSAP1 or SSAP2}
+	if(InCollection("SSAP1", args) || InCollection("SSAP2", args)) output(".  You don’t have to eat my ass out every time, too,”</i> she says, giggling again, <i>“but, fair warning, I won’t say no if you offer again");
+	//if {SSAP3}
+	else if(InCollection("SSAP3", args)) output(".  And I doubt that’ll be the last time you’ll be shoving your face up there too,”</i> she mocks, giggling again.  <i>“I don’t blame you, though.  It’s a pretty perfect ass.");
+	output("”</i>");
+
+	output("\n\nPaige shifts herself on your lap, feeling your still-turgid-but-softening [pc.cock] shift inside her.  <i>“");
+	//if (pc.cumQuantity <= 299)
+	if(pc.cumQ() < 300) output("Mmm, Gods above, but that feels so</i> different<i>,”</i> she says, one hand trailing down to her tummy.  <i>“I could feel you cum inside me, but it felt different from in my cooch.  I liked it!  I dunno if I liked it</i> more <i>than in my cooch, but I liked it");
+	else 
+	{
+		output("Mmmmmm, you just cum like a firehose, don’t you, [pc.name]?”</i> she slurs, rubbing her mildly-bloated tummy.  <i>“It felt like you weren’t going to stop.  I could feel it all the way up my stomach.  I feel so warm... I hope this doesn’t hurt my figure too much");
+		//if {SSAP3}
+		if(InCollection("SSAP3", args)) output(".  Do you always cum that much?  Is eating asses your secret, [pc.name]?");
+	}
+	output("”</i>");
+	
+	output("\n\nEventually, she stops talking – or you pass out, you’re not certain which one happens first.  Either way, when you’re sensate again, you’re soft as could be and you’ve long-since fallen out of Paige’s ass");
+	if(pc.cumQ() >= 300) output(", along with the excess seed lodged in Paige’s belly");
+	output(".  You arduously pull each other apart, despite Paige’s half-hearted attempts to get you rowdy for a round two; ");
+	//if {SSAE1 or SSAE4}
+	if(InCollection("SSAE1", args) || InCollection("SSAE4", args)) output("you still stink of her girl-cum and bits of her fur stick to your [pc.skinFurScales], and ");
+	output("as much as you think you might");
+	//if {SSAP3}
+	if(InCollection("SSAP3", args)) output(" (like she said, it’s a pretty perfect ass)");
+	output(", you two have other things you need to do today.");
+	output("\n\n<i>“Hey,”</i> she says, <i>“all joking aside, I enjoyed that.  You probably don’t get told that often from all the people I’m sure you’ve drilled in the butt,”</i> she laughs.  <i>“It won’t take much to convince me to try it again, if it’s with you.”</i>  You tell her that, hell, if she’s down, you’re down.");
+	output("\n\nA short while later, you’ve got your gear back on you, and, energized, you leave Paige’s unit and ready to tackle your next adventure.");
+	// end scene (scene: SSAAG); reduce Lust to 0; advance clock by two hours; place PC one square outside Paige’s Unit
+	processTime(120);
+	clearMenu();
+	addButton(0,"Next",moveSouth);
+}
 /*
-output("\n\n// (scene: Sex Select)");
-output("\n\n// This is the group of scenes that the PC unlocks after having sex with Paige for the first time.  The following input is from the base document, copied for posterity.");
-
-output("\n\nYou answer Paige’s question by sliding closer to her.  You snake your arm across the small of her back, rubbing at the base of her tail and itching up her spine just slightly.  <i>“I have no plans,”</i> you say to her lowly.  <i>“I have plenty of ideas, though.”</i>");
-
-output("\n\n<i>“Oooh,”</i> Paige hums, flexing her back and cooing when your fingers tickle a particularly erogenous zone.  Her tail swishes behind her, flapping against your forearm and stroking it.  <i>“I’m listening, sweet thing.”</i>");
-
-output("\n\n<i>“I could tell you,”</i> you flirt, leaning in and kissing the back of her ear, <i>“but that would ruin the surprise, don’t you think?  It’d be better to show you.”</i>");
-
-output("\n\nPaige turns her head, her nose burying into your neck.  She takes a deep breath, immersing herself in your scent, readying herself for the immediate future, and then continues your game.  <i>“[if {Paige is blind}And just what do you think you can show a blind woman, [pc.name]?”</i>][if {Paige can see}And just what in the universe do you think will surprise me by now, [pc.name]?”</i>]</i>");
-
-output("\n\nYour fingers dip into the hem of her pants, and you rake your fingers across the fine fur and tight muscles of her ass.  You feel her shudder in excitement as your fingers trace lower, towards the cleft.  <i>“You’ll be seeing stars by the time I’m done with you, Paige.”</i>");
-
-output("\n\nApparently having enough, Paige pushes you down, and you flop onto her bed with no resistance.  [if {PC is wearing anything}In no time at all, you’re naked as could be, and w][if {Else}W]ith you prone, Paige takes her position over you, straddling your hips with hers.  You can feel the heat of her pussy[if (pc.hasCock = true) bathe against the meat of your [pc.cock].  She eagerly begins to grind herself on it, soaking it in her essence][if (pc.hasCock = false)[if (pc.hasVagina = true) and directly onto your own [pc.pussy], her dripping essence mingling with yours][if (pc.hasVagina = false).  She pleasures herself on the featurelessness of your crotch]], but she doesn’t take it any further – not until she’s decided what she wants to do to you.  <i>“We’ll see who will be seeing what, [pc.name],”</i> she challenges breathlessly, humping against you between words.");
-
-output("\n\nYou know that Paige likes to be in control during your lovemaking, but it’s pretty easy to influence her actions on what she does to you.  How do you want Paige to fuck you?");
-
-output("\n\n[=Vanilla=][=Anal=][=Tribadism=][=Down On You=][=Down On Her=]");
-output("\n\n// end scene (scene: Sex Select)");
-
-output("\n\n[=Vanilla=]");
-output("\n\n// Requires a penis with an area of 65 or less");
-output("\n\n// Tooltip (No penis): You need a penis to have sex with Paige this way!");
-output("\n\n// Tooltip (Penis is too big): You might literally split the poor girl in half with your monster!  Maybe you should look into some reduction to have sex with Paige this way.");
-output("\n\n// Tooltip (Yes penis): Just straight, no-nonsense ugly bumping.");
-output("\n\n// Action tree: http://i.imgur.com/vW6QpSw.png");
-output("\n\n// (scene: SSVI)");
-
-output("\n\nYou’re horny, and Paige is horny.  You don’t need any more foreplay and you’re not interested (this time) in being a little more adventurous – you need a warm hole to bust a nut into, and she needs a hard dick inside her.  From the way she’s greedily jilling herself off on you, she agrees[if (pc.hasVagina = true).  Your [pc.vagina] clenches in frustration at being ignored, but your [pc.cock] is the focus this time].");
-
-output("\n\nYou say nothing as you clamp onto Paige’s arm with your left hand for stability, then reach down between you and stroke your [pc.cock] along her soaking wet slit with your right.  Paige humphs once in surprise, and you give her another shock by lifting your thumb and gracelessly scraping it across her clit as you position yourself.");
-
-output("\n\n<i>“That’s it, don’t make me wait,”</i> she says through gritted teeth.  Her abdominals flex, her toned six-pack showing through her fur, as she prepares herself for the penetration.  Her focus is elsewhere – if you wanted to take this lovemaking in a different direction, now is your time to strike.");
-
-output("\n\n[=Be Bottom=][=Be Top=]");
-output("\n\n// end scene (scene: SSVI)");
-
-output("\n\n[=Be Bottom=]");
-output("\n\n// (scene: SSVBB)");
-
-output("\n\nYou’re quite alright where you are, you decide: Paige atop you, shivering in eagerness to get fucked, with all her finest assets on display for you.  Rather than waste the time and energy jockeying for positions with her, you cut to the chase and thrust up and into her.");
-
-output("\n\n<i>“Oh!”</i> she says in surprise; once you’re fully hilted in her, you grab onto her other wrist to keep her steady[if (pc.isNaga = true) and you coil your [pc.legs] around hers gently, enough to keep her in place but not tight enough to restrict her].  You withdraw and thrust a few times, testing her wetness, her grip and her heat and adjusting her body to your sudden girth.  She hums in lazy delight and melts on her kneeled position above you as you do the work, slouching forward.");
-
-output("\n\nHer face presses to yours and you can feel the heat of her breath gasp out with every inward thrust across your [pc.chest].  She leans on her elbows on either side of your shoulders, then works her own hips, pounding back onto you, reaching as deep into her as she can.  [if (pc.biggestCockLength <= 11)<i>“That’s it, fuck me harder, [pc.name],”</i> she says huskily][if (pc.biggestCockLength >= 12)<i>“Gods, I feel so tight on you.  You’re gonna ruin me for anyone else,”</i> she laughs].");
-
-output("\n\nYou both enjoy a fairly casual pace, humping and bumping against each other.  Paige takes the time to play with your [pc.hair] and coo occasionally whenever your [pc.cock] hits a particularly vulnerable spot inside her, and you keep busy by running your hands all over her sexy body, from her shoulders to the meat of her ass.");
-
-output("\n\n[=Kiss Her=][=Spank Her=]");
-output("\n\n// end scene (scene: SSVBB)");
-
-output("\n\n[=Be Top=]");
-output("\n\n// (scene: SSVBT)");
-
-output("\n\nPaige is naturally dominant in the sack, but that gets boring (and kind of emasculating) the more often you let her do it.  You decide that this time, you want to be the top, and you’re prepared to ‘convince’ Paige to let you.");
-
-output("\n\nYou tease her, rubbing your [pc.cockHead] against her mons until she sighs in horny exasperation.  When she does, you lift up, grabbing her by just under her tit and lifting her off you and to your side.  <i>“Oh, big [pc.boyGirl] wants to top, does [pc.heShe]?”</i> Paige asks playfully, then resists, locking her legs on either side of your [pc.waist] and flexes her arms against yours, fighting to keep herself upright.");
-
-output("\n\nIt’s an intense struggle between you two: not only do you have to push Paige down beneath you, but you have to keep her from impaling herself on your [pc.cock].  If she does, she wins.  And with the way her cunt keeps sliding over your tool, and how your head sometimes slips in, and how your best source of leverage is to grab her boobs (and of course you’re copping a good feel too, why not), you keep getting harder and the fight keeps slipping from your control.");
-
-output("\n\nFinally, you manage to one-up her by bending at the hip, grabbing her by her ass, and turning as you toss her into the air.  She comes crashing down, giggling like a horny freshman with you on top of her[if {PC’s Physique is <= 59% of cap}.  Although you take pride in the win, you can’t help but feel Paige might have given it to you][if {PC’s Physique is >=60%, <=79% of cap}.  It was a hard fought win, and having overtaken Paige fair and square has made you even harder][if {PC’s Physique is >=80% of cap}.  Truth be told, most of that fight was foreplay and you were just humoring her – and it looks like it worked].");
-
-output("\n\n<i>“Okay, [pc.name], you win,”</i> she says, lowering her head into the pillow and lifting her hips for your perusal.  <i>“Claim your prize.  Don’t make me wait any more.”</i>");
-
-output("\n\nShe never said <i>how</i> to claim your prize, though....");
-
-output("\n\n[=Doggy Style=][=Missionary=]");
-output("\n\n// end scene (scene: SSVBT)");
-
-output("\n\n[=Kiss Her=]");
-output("\n\n// (scene: SSVKH)");
-
-output("\n\nYou reach up and cup Paige’s cheek with your hand.  She leans into it affectionately, and you boldly lean forward, placing your lips on hers.  She doesn’t push you away or even hum in surprise like she usually does; instead, she melts some more and opens her mouth, letting her tongue out to play.");
-
-output("\n\nThough the sex is fairly casual, you both make it intimate: your hands explore each other, pressing and tickling at the spots you both know you’re weakest at.  You both do half the hip movement so that one isn’t working too hard and you both massage each other’s tongues and count each other’s teeth in long, languid strokes.  It’s not strenuous; it’s not exhausting; but it’s passionate, and something about it being Paige makes the experience all the more special.");
-
-output("\n\nShe pulls away and makes a show of licking her lips to enjoy your taste.  She sits up, squatting her hips down onto yours, all the way to your base.  <i>“You’re a good kisser,”</i> she congratulates breathlessly as she rotates her hips, nudging your [pc.cock] against every vein and bump inside her.  <i>“We’ll see about putting that tongue to other use later.”</i>");
-
-output("\n\nPaiges begins to bounce, her breath shallow and getting shallower every time you bottom out.  She raises her arms above and behind her head, thrusting out her tits for you.  <i>“Touch me,”</i> she asks.  <i>“I like it when you do.  I cum harder when you appreciate me and my form.”</i>");
-
-output("\n\nWell, it <i>is</i> a pretty sexy form.  You watch her as she flouts her body and her nipples as they draw oblong circles with her bouncing.  You wouldn’t leave her waiting, would you?");
-
-output("\n\n[=Caress=][=Manhandle=]");
-output("\n\n// end scene (scene: SSVKH)");
-
-output("\n\n[=Spank Her=]");
-output("\n\n// (scene: SSVSH)");
-
-output("\n\nHer leaning frame and proximity give you the perfect angle of attack for a hard, sexy slap on the ass.  You trail your hands across her back, making it like you tracing its defined muscles as you map out their contours, then, as you make it to her waist, you strike, whipping both hands back and lunging them, cracking them hard against the taut muscle of her derriere.");
-
-output("\n\n<i>“Hah!”</i> she laughs, [if {PC’s Physique is <= 59% of cap}thrusting her hips back into your palm.  <i>“You call that a spank?  Come on, really put your arm into it!  Show me you mean it!”</i>][if {PC’s Physique is >=60%, <=79% of cap}keeping her body low and her face close to yours.  <i>“You like that?  You ever spank an ass that tight, [pc.name]?  Do it again!”</i>][if {PC’s Physique is >=80% of cap}biting into her lower lip to keep from shouting.  <i>“A bit lighter next time, okay?”</i> she whispers, then shouts, <i>“But don’t you dare stop!  Beat my tight ass like it owes you money!”</i>]  You do as she commands and you wind back to slap both her cheeks once again, feeling the shock ripple through her cunt and all across your [pc.cock].  <i>“There you go!”</i>");
-
-output("\n\nThe pace of your sex hasn’t changed, but your hands become much more active, groping and pulling at various parts of her body; you run them down her legs and feel the strength in her calves, then up her hips to her powerful stomach.  Paige is sitting up, squatting on your [pc.hips] and bottoming you out with every bounce.  <i>“I like this,”</i> she says nonchalantly.  <i>“I like it when my bottoms take some initiative.”</i>");
-
-output("\n\nShe likes initiative?  Well, with her new position, her breasts are bouncing firmly in front of her, her nipples drawing lazy circles in the air.  If there’s any one part of her body that’s easy to appreciate, it’s right in front of you, and you doubt she’d stop you.");
-
-output("\n\n[=Chew=][=Lick n’ Suck=]");
-output("\n\n// end scene (scene: SSVSH)");
-
-output("\n\n[=Doggy Style=]");
-output("\n\n// (scene: SSVDS)");
-
-output("\n\n<i>“On your stomach,”</i> you growl lustfully, settling into the dominant role.  <i>“Don’t make me make you.”</i>");
-
-output("\n\nPaige does as commanded, swinging her left leg in front of you as she rolls over, presenting her raised tail to you.  <i>“You want me face down?”</i> she asks as she moves backward, trapping your [pc.cock] between your lower belly and her horny Ausar slit, frigging herself against it as she speaks.  <i>“Like a real bitch, [pc.name]?  Well, here I am: a real bitch.  A real</i> horny <i>bitch that wants an alpha to</i> fuck <i>her like one.”</i>");
-
-output("\n\nYou read her loud and clear: you lean your [pc.hips] back just enough to line up your shot, and you drive into her, wrapping her around your dick in one thrust.  She groans out and muffles her face into her pillow, submissively raising her ass higher so you can get more thrusting power.  You don’t worry if she’s uncomfortable; her bent position is probably nothing compared to her years of yoga.");
-
-output("\n\nShe wants to be fucked like a dog, so you fuck her like one: you lean forward, lining your [pc.belly] against her back (letting her tail out to the side) and you wrap your arms around her, gripping onto her swinging tits.  <i>“Yesssss, fuck me,”</i> she demands, even as you squeeze her tits.  <i>“That’s right, [pc.name], you’re the real [if {Not Silly Mode}alpha here, aren’t you?][if {Silly Mode}man now, aren’t you, dawg?]”</i>");
-
-output("\n\nDespite the reversed positions, it feels like Paige is still the one calling the shots – and from the way her breathing has quickened and her pitch is rising, surefire signs of an impending orgasm, it sounds like she’s going to get there before you.  From your superior position, you could try to teach her not to be so insolent to her alphas – and even if it doesn’t take, you’ll both probably still enjoy it.");
-
-output("\n\n[=Rougher=][=Gentler=]");
-output("\n\n// end scene (scene: SSVDS)");
-
-output("\n\n[=Missionary=]");
-output("\n\n// (scene: SSVM)");
-
-output("\n\nIn all honesty, you didn’t really have any plans to exercise your superior position in any particular way.  You just wanted to be the top.");
-
-output("\n\nYou reach between your bodies, aligning your [pc.cockHead] with her drooling Ausar cunt.  You feel its heat against your glans well before you feel anything else, and you fix that with one hearty thrust forward, sinking into her depth.  Paige closes her eyes and hums in delight as she feels your heavy [pc.cock] reach deeper and deeper into her.");
-
-output("\n\nOnce you’re bottomed out and nestled, you lean forward, draping your body over hers.  [if (pc.biggestTitSize <= 2)Your [pc.chest] kisses against hers, nipple to [pc.nipple]; her tits may be bigger than yours[if (pc.biggestTitSize <= 1)(not that you’ve been trying very hard or anything)], but that only gives you something bigger to lean against][if (pc.biggestTitSize >= 3)[if (pc.biggestTitSize <= 7)Your [pc.chest] overwhelms hers, her nipples kissing against your [pc.nipples] in an attempt to push their weight off them, but your significant assets squash hers flat]][if (pc.biggestTitSize >= 8)Paige vanishes into the valley of your [pc.chest], swallowing her whole torso and pinning her arms by their shoulders.  She squirms in their warmth, but it’s pointless for her to try and escape].  In the more intimate proximity, you reach for her hand and lock your fingers with hers.");
-
-output("\n\n<i>“It’s sexy being the top, isn’t it?”</i> she asks, a warm, wide smile on her face as she looks (approximately) into your eyes.  <i>“I don’t mind being the bottom for you, [pc.name].”</i>  For emphasis, she lifts her legs and wraps them both around your [pc.hips], keeping you from withdrawing too far.  You feel her tunnel clench against your [pc.cock] as she does.  <i>“Now, show me what else you can do.”</i>");
-
-output("\n\nYou do as she asks, and you thrust into her again and again, fighting against her leg-lock as you do.  The rough foreplay had a stronger effect on her than you realized: her breathing quickens, her hot breath rinsing [if {PC has hair}through your [pc.hair]][if {PC is bald}over your scalp] in just a few short minutes.  Her grip on your hand becomes tighter, and she begins mouthing and gently moaning your name.");
-
-output("\n\nYou’re not as close as she is, but it’s not a race.  Still, you could expedite things a little for your benefit, if you wanted.");
-
-output("\n\n[=Anvil Position=][=Kiss Her Neck=]");
-output("\n\n// end scene (scene: SSVM)");
-
-output("\n\n[=Caress=]");
-output("\n\n// (scene: SSVCa)");
-
-output("\n\nWho could turn down an invite like that?  Maintaining your composure and focusing to keep your pace, you reach up, palming Paige’s breasts, just as she asked you.  <i>“That’s it,”</i> she praises, thrusting out her chest as she bounces.  <i>“They’re just for you, [pc.name].  Show them you love them.”</i>");
-
-output("\n\nYou feel her nipples, hard as stone, dig into your palms as you flex your fingers and clamp into the meat of her chest – but only hard enough to keep your grip.  When you lift and heft them, Paige sighs and lifts her nose towards the ceiling.  When you press them together, she coos and uses her forearms to squeeze them even closer.  <i>“You’re being very gentle this time,”</i> she notes.  <i>“That’s perfect.  Take your time.  Appreciate it all....”</i>");
-
-output("\n\nPaige’s breath begins catching in her throat and her bouncing becomes elongated and sloppy.  Close and borderline desperate, she lifts her own hands, grabbing yours and keeping them on her chest.  She bites into her lower lip and she hisses, <i>“[pc.name]....”</i>  You feel the fur of her chest and her thighs begin to stand on end as her body prepares for the finale.");
-
-output("\n\nSeeing strong, proud Paige reduced to a sexy Ausar puddle on top of you just from playing with her boobs gets you a lot closer too.  Your caressing stops in favor of simply hanging on as your hips pump and pound, feeding your length into her, and you feel the familiar release bubbling just beneath the surface.");
-
-output("\n\n<i>“I’m almost...!”</i> Paige exclaims.  You thrust harder and faster, eager to take you both to the end at once.");
-
-output("\n\n[=Climax=]");
-output("\n\n// end scene (scene: SSVCa); go to (scene: SSVE1)");
-
-output("\n\n[=Manhandle=]");
-output("\n\n// (scene: SSVMH)");
-
-output("\n\nDon’t mind if you do!  You cease Paige’s booby bouncing by bracing them in your grip, palming and groping the fat of her tits in your lunging, greedy hands.  They easily fill them both with just a little bit of overflow between your digits, and they’re firm as could be.  Her rock-hard nipples pierce into your palms as you rotate your wrists, flexing and hefting her chest.");
-
-output("\n\n<i>“Oh my, greedy [pc.boyGirl]!”</i> Paige exclaims, but makes no effort to stop you.  <i>“That’s alright, [pc.name], get a good, thick handful.  They’re all for you, sweet thing.”</i>  You release one to tweak and pinch at her nipple, pulling and pressing at it, yanking on it as you thrust wantonly into Paige’s tight tunnel.  <i>“The girls haven’t had this kind of attention in years!”</i>");
-
-output("\n\nPaige reaches up to grab you by the wrists, and pulls your already-busy hands harder against her chest.  She takes one, heavy draw of air through her nose as she directs your hands to fondle her the way she wants.  With every new rotation, her boobs flexing and taking all your aggressive love with ease, and she bounces on your [pc.cock] with just a little more fervor.");
-
-output("\n\n<i>“Little more, sweet thing,”</i> she whispers huskily, her pitch high and her breath shallow.  Her bouncing becomes aimless and sloppy, but that just makes it hotter, knowing that she’s nearly ready to cum.  Your dick throbs in excitement, your own release broiling just beneath the surface.  <i>“A little more...!”</i>");
-
-output("\n\n[=Climax=]");
-output("\n\n// end scene (scene: SSVMH); go to (scene: SSVE2)");
-
-output("\n\n[=Chew=]");
-output("\n\n// (scene: SSVCh)");
-
-output("\n\nYou sit up with Paige, your face flush with her mounds.  You kind of like the new, active direction the sex has gone, and it emboldens you to try something a little riskier.  You wrap your arms around her body, keeping her close, then open wide and latch onto a tit – teeth included.");
-
-output("\n\nYou don’t bite, of course; you’re careful to not be forceful enough to damage the goods, but you’re just intense enough.  The sharp electric sensation causes Paige to jolt upright, breathing sharply through her nose.  <i>“That’s a new one,”</i> she says.  You release your jaw, but not your [pc.lips], then clamp down again, your tongue slathering across her nipple each time.");
-
-output("\n\n<i>“Little gentler,”</i> she instructs, and you comply.  <i>“Too gentle,”</i> she admonishes, and you comply.  It’s a difficult balance!  <i>“Now the other one.”</i>  You release her boob and move to the other, biting into it.  You catch a glimpse of the damage you’ve done to her first: enough to indent her fur and irritate the skin, but not enough to leave a mark.");
-
-output("\n\n<i>“Little harder!”</i> she shouts – which you’d love to do, but her increased bouncing and excitement is making it difficult to strike that balance.  Paige’s breathing has increased and her pitch is rising, and, although you can hear her wince when you chew just a little too hard, she’s not telling you to stop.  <i>“Fuck, I’m nearly there!”</i> she shouts.");
-
-output("\n\nThat’s sign enough to stop chewing on her and focus on your fucking.  You grip hard onto her glutes and start pounding harder into her, your own release surging beneath your [pc.cock].  With Paige’s taste still in your mouth, you only need a few more thrusts, and then....");
-
-output("\n\n[=Climax=]");
-output("\n\n// end scene (scene: SSVCh); go to (scene: SSVE2)");
-
-output("\n\n[=Lick n’ Suck=]");
-output("\n\n// (scene: SSVLnS)");
-
-output("\n\nYou sit up with Paige, your face flush with her mounds.  If she likes initiative, you’ve got a few ideas for those sweet, grope-able, suck-able tits of hers.  You wrap your arms around her torso, locking them just above the small of her back to keep her in place, then open wide, latching your mouth onto her left nipple.");
-
-output("\n\nYour ministrations are gentle, but fervent and frequent: you swipe the flat of your [pc.tongue] over her stubby nub in time with your every thrust and you move your lips, sucking on her spongy flesh, making a loud ‘pop’ every time you release.  <i>“Goodness,”</i> Paige says breathlessly, her hands on your skull to guide you.  <i>“Don’t leave her sister jealous now, [pc.name].”</i>");
-
-output("\n\nAs you release her nipple and move to the other, you slide one hand down, gripping onto her ass while the other climbs up, across her strong back and onto her shoulder.  <i>“You’re a good lover,”</i> she says suddenly – making your pride (and your [pc.cock]) swell.  <i>“You use everything to pay attention to everything.  You know when to be gentle and when not to.”</i>  Her bouncing slowly becomes greedy and misaligned the more you do to earn her praise.  <i>“And you know how to make a girl cum.  A big plus in today’s universe.”</i>");
-
-output("\n\nYou rotate your head, pursing your [pc.lips] on her swollen point, but your own thrusting is getting aimless as your climax is just around the corner.  You keep your head on her chest and your mouth on her tit, but you don’t do much else, focusing on breathing and keeping up the intense pounding into her tight Ausar cunt.  Paige moans your name a few more times, each time higher-pitched than the last, until you feel her squeeze and milk you, which is just enough for you to....");
-
-output("\n\n[=Climax=]");
-output("\n\n// end scene (scene: SSVLnS); go to (scene: SSVE3)");
-
-output("\n\n[=Rougher=]");
-output("\n\n// (scene: SSVR)");
-
-output("\n\nIt simply won’t do to have Paige still boss you around in the sack when she’s supposed to be the bottom this time.  You’ll just have to teach her that there are certain ways to act in certain positions.");
-
-output("\n\nYou give her tits one last squeeze before you lean back, keeping your [pc.hips] to hers so that you don’t slip out.  Then, with one hand, you press down on her shoulders, keeping her face buried in the pillow, and with the other, you reach to her ass, then up to the base of her tail – and you grip it tightly, giving it a yank.");
-
-output("\n\nWith every thrust in, you pull on her tail to force her back onto you.  Paige tries to say something, but the fabric of her pillow is completely obstructing her, and the most you understand is whenever she moans out in lust from your ‘assertiveness.’  You fuck her with all the strength your muscles have, sending ripples from the meat of her butt all the way to your grip on her shoulders.");
-
-output("\n\nPaige lies mostly still, but uses whatever movement she can to meet your bucking with her own.  Your [pc.cock] hilts to the [pc.knot], pounding your full length into her[if (pc.hasBalls = true), your [pc.sack] slapping against her raised thighs] with every thrust – it’s having an effect on Paige as her Ausar twat grips you tighter, her own juices leaking down your [pc.legs] and her incoherent whining grows higher in pitch.");
-
-output("\n\nIt’s hard to maintain control over everything – your weight on Paige without hurting her and your steady grip on her tail – while your orgasm is so close, so you don’t try.  You relax slightly and focus instead on just fucking your bitch until you seed her.  You give both you and Paige a workout yoga could never hope to match, and then, with one final push, you mark Paige for yourself.");
-
-output("\n\n[=Climax=]");
-output("\n\n// end scene (scene: SSVR); go to (scene: SSVE5)");
-
-output("\n\n[=Gentler=]");
-output("\n\n// (scene: SSVG)");
-
-output("\n\nYou shake your head; Paige trying to remain dominant beneath you is just you trying to justify more power plays.  You’re the top and you have her face down beneath you – how much more do you need to prove yourself this time?");
-
-output("\n\nYou relax on top of her, nuzzling your nose into the crease of her neck as you fondle her boobs, maintaining your pace as you spear into her.  <i>“That’s right, alpha,”</i> she coos, raising her rump and lowering her chest, giving all of her to all of you.  <i>“Fuck your conquest the way you like.  She’s all yours.”</i>");
-
-output("\n\nYour [pc.cock] pumps and inflates with her submissive words (even if the tone doesn’t quite match).  You feel her clench tighter with every pound, her tunnel refusing to let you go even as her liquid gushes around your prick[if (pc.hasBalls = true) and across your [pc.sack], wetting the slaps they make against her thighs].");
-
-output("\n\nYou push your nose deeper against her neck and give the skin you find there a long, languid lick.  Paige shudders beneath you as your tongue traces up to just behind her pointed Ausar ear.  <i>“If you want a good taste,”</i> she says, her breath shallow, <i>“there’s plenty other things that taste better.  Next time.”</i>  The idea turns her on, and you feel her clench beneath you as she takes deep huffing breaths through her nose.");
-
-output("\n\nIn response to her body’s incoming orgasm, you feel your own push and bubble just beneath your [pc.base], ready to give your horny Ausar lover what she needs and what she deserves.  You squeeze her boobs a bit harder than you mean to as you thrust one last time....");
-
-output("\n\n[=Climax=]");
-output("\n\n// end scene (scene: SSVG); go to (scene: SSVE4)");
-
-output("\n\n[=Kiss Her Neck=]");
-output("\n\n// (scene: SSVKHN)");
-
-output("\n\n The destination is less important than the journey, and you’re the type to make the journey as important an experience as possible for your partner.  Paige is already very close, so you lean in to seal the deal: you bury your face into the cleft of her neck and inhale through your nose, imprinting her scent on you, as you gently kiss, lick, and nip at the skin you find there.");
-
-output("\n\n<i>“Gods,”</i> Paige says, giggling in delirious lust, her legs tightening around you and her hips vaulting off the bed to match your pumps.  <i>“Give you a bit of power and you turn into the</i> perfect <i>gentle{wo}man, huh, [pc.name]?”</i>  Her hands explore your back, hugging to tightly to her as she moans your name through a bit lower lip.  <i>“Just a little more, baby, just a little more....”</i>");
-
-output("\n\nHer tunnel clenches onto you; every pass, in or out, is practically an ordeal as you fight her grip to maintain your pace.  Her juices coat your [pc.cock][if (pc.hasBalls = true) and splash out against your [pc.sack], as high as your [pc.base]], encouraging you to finish with her.  Your hips grow more frenzied as you feel the familiar tightening in your prostate and the chill up your dick.");
-
-output("\n\nYou don’t stop your gentle kissing, not until the last moment.  Your left hand snakes down her quivering, pre-orgasmic body until it comes to her tight, squeezing rump, which you grip and lift for more thrusting power.  That’s enough for Paige: she grunts out once, long and high-pitched, and that’s enough for you, too.");
-
-output("\n\n[=Climax=]");
-output("\n\n// end scene (scene: SSVKHN); go to (scene: SSVE4)");
-
-output("\n\n[=Anvil Position=]");
-output("\n\n// (scene: SSVAP)");
-
-output("\n\nWhile you’re not exactly in a hurry to finish, you <i>do</i> have an idea to make things a little more... extreme.  A little more power behind your hips might make for a more intense climax for you both.");
-
-output("\n\nYou withdraw, just enough to reach behind Paige’s legs and lift them both up and over your shoulders, and you lean forward.  Paige is surprisingly compliant and willing, waiting to see ‘what else you can do.’  With her body bent in half and her cunt basically out in the open, you have a much easier angle to really pound her into the mattress.");
-
-output("\n\n<i>“That’s it, sweet thing,”</i> she encourages – she’s not out of breath or even strained.  This position must be peanuts to some of her yoga exercises.  <i>“Pound me raw!”</i>  You do as she demands, using your new leverage and gravity to drive your [pc.cock] deeper into her than you could before[if (pc.hasBalls = true).  Your [pc.sack] slaps wetly against her flank with every downward bounce, churning the cum in them and readying themselves for the final push].");
-
-output("\n\nYour hands are still interlocked, and she reminds you by gripping tightly as her orgasm approaches.  <i>“Nearly there, [pc.name],”</i> she says huskily, her eyes (almost) on yours.  <i>“Cum in me, stud.  Plough me!”</i>  Her whole body shakes and rocks in pre-orgasmic bliss and you feel her tunnel try and suck you deeper into herself with every inward press.  Her pussy drools all over your shaft, thirsty for your load – and you’re not going to disappoint her.");
-
-output("\n\n[=Climax=]");
-output("\n\n// end scene (scene: SSVAP); go to (scene: SSVE3)");
-
-output("\n\n// (scene: SSVE1)");
-
-output("\n\nPaige breathes deep and exhales through her nose, moaning through a closed mouth as her body shudders and ripples; her tunnel clamps on you and milks you wantonly, urging out your cum for her, to give her as much as you can.  Her grip on your wrists becomes almost painful, unable to control herself as she cums and cums.");
-
-output("\n\nRight on time, you join her, [if (pc.cumQuantity <= 299)giving her exactly what she wants.  Your [if (pc.hasBalls = true)[pc.balls] tense and squeeze as your ][pc.cum] blasts from your throbbing dick, washing and mixing with her own feminine cum as you offload into her.  You hold still, then pump with each new shot, causing Paige to moan and chew into her bottom lip.  <i>“It’s warm,”</i> she says, clenching her abs as each new volley makes its way inside her][if (pc.cumQuantity >= 300)giving her a bit more than she bargained for.  Your [if (pc.hasBalls = true)[pc.balls] shuck into your body as they shoot their immense deposit, and your ][pc.cock] bloats with your [pc.cum], dousing Paige’s tunnel.  She hums appreciatively as she feels it all pool inside her; she relaxes her grip on one wrist so she can pat her tummy as it struggles to keep it all in her.  <i>“Feeling a bit pent up, sweet thing?”</i> she asks, your cock spurting all the while.  <i>“You should see me more often, then.  I’ll help you out...”</i>].");
-
-output("\n\nIt all ends after another few moments of helpless squirming through your individual orgasms, and then the afterglow sets in.  Once Paige stops, she releases your cramped wrists and falls forward, her face to yours.  Panting and satisfied, she wraps both her arms around your shoulders and plants a lingering kiss on your lips – with a little bit (but not a lot) of tongue.");
-
-output("\n\n[=Afterglow=]");
-output("\n\n// end scene (scene: SSVE1); go to (scene: SSVAG)");
-
-output("\n\n// (scene: SSVE2)");
-
-output("\n\n<i>“Fuck!”</i> Paige yelps, and she cums, her body shaking with the intensity of her orgasm as you pound her, just moments away from your own.  She winces through clenched teeth, and you feel her juices douse your [pc.cock] and coat your pelvis with her incessant bouncing.  <i>“H-Hurry up!”</i> she demands, desperate to feel you cum inside her.");
-
-output("\n\nWith just another thrust or two, your release comes bundling up your dick and into her waiting and thirsty tunnel.  [if (pc.cumQuantity <= 299)Your [pc.cum] coats and lines the velvet walls of her cunt, shooting just a little deeper with every progressive wad.  <i>“That’s it, that’s it!”</i> she shouts, her legs tightening around you in pleasure every time she feels a new one.  Paige keeps bouncing on you, squeezing out every last drop she can[if (pc.hasBalls = true), even after you thought your [pc.balls] had been milked for their every drop].][if (pc.cumQuantity >= 300)Paige’s breath catches in her mouth as she feels you fill her with just a few pumps, and she grins, knowing that it’s only the beginning.  <i>“Give me all of it!”</i> she encourages, bouncing aimlessly on you as you blow load after load into her.  She puts one hand on her belly, massaging it, clenching her fingers with every new bunch inside her.  <i>“Give me every last drop[if (pc.hasBalls = true) those big-ass balls of] you[if (pc.hasBalls = true)rs] have!”</i>]");
-
-output("\n\nNot wanting to disappoint her, you give her everything you’ve got, humping against her errantly as your orgasm peters off.  Once you’re bone dry and once Paige’s muscles can’t handle any more, she slumps forward, her chest to yours and yours faces against each other.  <i>“Damn, that’s good,”</i> Paige says, as much to you as to herself, and sighs dreamily as the afterglow sets into her.");
-
-output("\n\n[=Afterglow=]");
-output("\n\n// end scene (scene: SSVE2); go to (scene: SSVAG)");
-
-output("\n\n// (scene: SSVE3)");
-
-output("\n\nPaige takes a deep, sharp breath through her open mouth, and you suddenly feel her Ausar pussy clench onto your shaft, rippling from your base to your tip.  <i>“I’m, uhh,”</i><i> she groans out senselessly, then gives up on forming a sentence.  She lets her body do the talking for her, and her body is begging you to give it your cum.  Who are you to turn her down?");
-
-output("\n\nYour [pc.cock] bloats as your [pc.cum] launches into her, [if (pc.cumQuantity <= 299)crawling deep into her body[if {SSVAP} and having an easy time of it with your higher position].  Paige licks her lips as her belly crunches, feeling every blast getting drank and absorbed by her thirsty body.  <i>“Keep it coming,”</i> she begs, her voice fluttering through her own orgasm][if (pc.cumQuantity >= 300)taking Paige by surprise by your sheer quantity.  Your seed fills her to stuffing in just a few quick loads[if {SSVAP}, and it has nowhere to go but down][if {SSVLnS}, then it overfills her, splashing back out and onto your crotch].  <i>“I can take it,”</i> she says huskily[if {SSVLnS}, possibly oblivious to the mess you’re both making].  <i>“Give me all you got, [pc.name]!  Cum in your Ausar!”</i>]");
-
-output("\n\nYou both ride it out: you doing as she commands and giving her your every last drop, and her body coaxing them all out.  Your individual orgasms last moments longer; when you’re dry and she’s spent, you both collapse back onto her bed[if {SSVAP} – you gently push to one side, laying side-by-side next to Paige][if {SSVLnS} – her on top of you, her heavy chest heaving against yours], face-to-face.");
-
-output("\n\nPanting, Paige ends the journey with a kiss on your lips.  It’s more passionate than it is sexy, but there’s just a little bit of tongue.");
-
-output("\n\n[=Afterglow=]");
-output("\n\n// end scene (scene: SSVE3); go to (scene: SSVAG)");
-
-output("\n\n// (scene: SSVE4)");
-
-output("\n\nHer breath comes out in shudders, and you feel her neck tighten as she tries to maintain her pace with you.  Her primeval need to cum overtakes any control she thought she had over herself, and she squeezes your dick greedily as you feel her juices splash and coat over it, soaking you back to your crotch[if (pc.hasBalls = true) and across the taut skin of your [pc.sack]].");
-
-output("\n\nYou don’t need much more coaxing, and with another thrust, [if (pc.cumQuantity <= 299)you squirt your own [pc.cum] deep into Paige’s waiting womb, ready to douse the fiery need in there.  She [if {SSVG}moans into her pillow][if {SSVKHN}coos out your name and strokes your upper back] as the warmth of your load blooms inside her, reaching up and deep into her belly.  [if {SSVG}Paige’s hands grip onto the sheets of her bed helplessly and she humps her ass back into you with every spurt, eager for your every drop.][if {SSVKHN}<i>“Goodness,”</i> she sighs dreamily, lifting her hips with every spurt.  <i>“Gimme all you got, sweet thing.  Yessssss.”</i>]][if (pc.cumQuantity >= 300)your [pc.cum] comes gushing from your prick, cramming Paige full of your seed in just a few short bursts, and you’ve got a whole lot more where that came from.  Paige [if {SSVG}gasps and chokes on her own breath slightly, unable to form a coherent thought or sound][if {SSVKHN}holds her breath and clenches her fingers on your back] as she feels her womb fill and her normally-tight belly bulge from your volume.  [if {SSVG}Despite her surprise and her difficulty breathing through the fabric of her pillow, she raises her ass higher and presses against you more eagerly, to drink every drop, despite being so full already that it begins to spill from her and splash back onto you.][if {SSVKHN}Her legs clench and tighten against her hips, locking you in place as she instinctively yearns to keep every drop inside her.  <i>“I had no idea you were so pent up,”</i> she says through shuddering, lusty breaths.  <i>“You should come to me more often.  I’ll make sure[if (pc.hasBalls = true) those heavy nuts of] you[if (pc.hasBalls = true)rs] never get this backed up again.”</i>]");
-
-output("\n\nYou thrust impiously with every pulse of your [pc.cock] as you unload into her, until your hips cramp and your dick grows oversensitive from the stimulation.  The last of your load dribbles from your [pc.cockHead] into her honeypot, and you both collapse, spent.  Before you have a chance to un-cross your eyes, Paige has her face, and her lips, against yours – the kiss is quick, but passionate, and with a little bit of tongue.");
-
-output("\n\n[=Afterglow=]");
-output("\n\n// end scene (scene: SSVE4); go to (scene: SSVAG)");
-
-output("\n\n// (scene: SSVE5)");
-
-output("\n\nPaige struggles momentarily, her fingers clenching at the bed and her body quivering beneath you as she cums from a combination of your domination and the rough fucking you’re giving her.  With what little leverage her arms have, she uses the last of her strength to buck against you, begging with her pussy for you to join her in orgasm.  The only noise she makes is a long, weak squeal, muffled through her pillowcase.");
-
-output("\n\nYou acquiesce; Paige has taken to the role of the bottom well, and it wouldn’t be right to not reward her.  You thrust twice more, burying yourself to your [pc.base][if (pc.cumQuantity <= 299), and then the orgasm you’ve been vying for rocks up, through your cock and into your bitch.  Your hand tugs on her tail a little harder than you meant, and your grip tightens as you feel her ripple and squeeze, drinking your [pc.cum] eagerly and massaging you for more.  You thrust in time with your pulses, sowing her deeply; each push no less enthusiastic even as you[if (pc.hasBalls = true)r [pc.balls] become less dense and your loads] get drier and drier.][if (pc.cumQuantity >= 300) so that your prodigious quantity has nowhere to go but deep inside your bitch, soaking her womb and rounding her tight tummy with your [pc.cum].  Paige is helpless to resist or even vocalize, but from the way her cunt grips you and the way her body shudders again and again beneath you, she’s loving every thick wad of cum she feels spread inside her.  You never stop your thrusting through the whole thing, even as your cum bursts from her tunnel and soaks back against you.  Your frenzied breeding of your Ausar underling slows only with your orgasm, until you[if (pc.hasBalls = true) and your once-dense [pc.balls]] are completely dried.]");
-
-output("\n\nWhen it ends and you have nothing more to give, you release your grip on her tail and your weight on her shoulders.  You fall to the side, out of breath but feeling nonetheless powerful and, for lack of a better word, masculine.  Paige, for a moment, is content to maintain her position, face in the pillow and ass in the air, until, groggily, she twists her body to face yours, eye-to-eye and lips-to-lips in a soft, slow, sensual kiss with her alpha.");
-
-output("\n\n[=Afterglow=]");
-output("\n\n// end scene (scene: SSVE5); go to (scene: SSVAG)");
-
-output("\n\n// (scene: SSVAG)");
-
-output("\n\n[if {not SSVE5}<i>“You are just a treasure, aren’t you, [pc.name]?”</i> she asks.][if {SSVE5}<i>“Stars, but being the bottom is fun sometimes,”</i> she pants exhaustively.]  <i>“[if {SSVE1}A perfect, attentive lover.  Gentle and pliant.  God, I could see myself fucking you for years.”</i>  You laugh: it’s hardly the most romantic way for Paige to admit her feelings, but you leave it to her not wanting to admit them yet.  She laughs too, knowing exactly what she said.][if {SSVE2, SSVE3 or SSVE4}You know exactly when to take an opportunity when you see one.  [if {SSVCh}The girls are going to feel that in the morning – but they wouldn’t mind feeling it a whole lot more.”</i>  You grin exaggeratingly, showing off your teeth and give them a quick gloss with your tongue.  <i>“Not too rough, and just rough enough,”</i> she says, rubbing her tit with her free hand where you bit her.  <i>“You have some really impressive control.”</i>][if {SSVAP}I liked what you did at the end, too.  Don’t be afraid to twist me around,”</i> she winks.  <i>“All those years doing yoga, a weird position like that isn’t going to hurt me at all.”</i>  Her hand reaches out to yours, interlocking your fingers again.  <i>“If you’re the top, you do</i> whatever <i>you want.  I’m all yours, sweet thing.”</i>][if {SSVG}And I love the way you know when not to press too hard.  Once you got me ass up, you turned into such a gentle{wo}man – I’d never been so dominated by someone so gentle.  It was the whole package.”</i>  She smiles lazily, her eyes drooping.  <i>“Fuck,”</i> she whispers, her hand caressing her belly, <i>“thinking about it is making me horny for it all over again.”</i>][if {SSVMH, SSVLnS, or SSVKHN}Gentle and loving, but when there’s a chance to strike, you’re all over me like a rabid wolf.”</i>  She grins predatorily, and her hand reaches over to you, trailing down your side and resting on your [pc.hip].  <i>“I like a lover that knows when to take what [pc.heShe] wants.  And there’s gonna be more where that came from, sweet thing.”</i>]][if {SSVE5}You’re not often that rabid, or domineering, or...</i> forceful,”</i> she says huskily.  <i>“Once you got on top, there was no stopping you.  I think we’ll need to explore this side of you more often.”</i>  Her hand snakes out, raking the claws on her fingers across your [pc.skinFurScales] lustily.  <i>“After seven years of not getting laid, I completely forgot how good it is to get fucked raw.  I’d ask you to do it again if I didn’t know I’m already going to walk funny tomorrow.”</i>]");
-
-output("\n\n<i>“You got someplace you need to be?”</i> she asks suddenly, and you answer negatively.  <i>“Good.  Let’s just stay like this for a little while longer.”</i>  Sounds like a plan to you: you two stay together in that position, long after your [pc.cock] softens and slips out of her[if (pc.cumQuantity >= 300), spilling yet more seed that Paige couldn’t contain onto yourself]; you gently tease each other and whisper a bunch of nothings as the time passes.");
-
-output("\n\nEventually, rested and satiated, you both grow restless, and Paige lets you get up and out of her bed.  <i>“I enjoyed that,”</i> she tells you.  <i>“All of it.  The sex and the cuddling.  Let’s do it again sometime, [pc.name].”</i>  You tell her that it’s a promise.");
-
-output("\n\nA short while later, you’ve got your gear back on you, and, energized, you leave Paige’s unit and ready to tackle your next adventure.");
-
-output("\n\n// end scene (scene: SSVAG); reduce Lust to 0; advance clock by two hours; place PC one square outside Paige’s Unit");
-
-output("\n\n[=Anal=]");
-output("\n\n// Requires a penis that has an area of 50 or less.");
-output("\n\n// Tooltip (No penis): You need a penis to have sex with Paige this way!");
-output("\n\n// Tooltip (Penis is too large): You need a smaller penis to take the back door.  You don’t want to hurt her!");
-output("\n\n// Tooltip (Yes penis): Knowing Paige, she’ll probably let you do this.  Couldn’t hurt to try!");
-output("\n\n// Action tree: http://i.imgur.com/GqjxQnn.png");
-output("\n\n// (scene: SSAI)");
-
-output("\n\nYou grind your [pc.cock] up between Paige’s cheeks as she humps and teases you.  You gently snake your hands up her thighs until they come to a rest on her pert, tight asscheeks, gripping them in your fingers and pulling them apart to make room for your dick[if (pc.cocks >= 2).  [EachCock] sit between your bodies, sandwiched between your lower belly and her sopping cunt, purple with blood and the heavy pressure above them].");
-
-output("\n\nShe moans wordlessly as you tease each other.  You wait for just a moment, and then shift your [pc.hips], aligning your [pc.cockHead] with her asshole.  [if {First time}Paige tenses and gets goosebumps, taken by surprise by the sudden plying][if {Not first time}Paige shudders, but doesn’t skip a beat and keeps teasing you].  [if {First time}You ask Paige if she’s feeling a little adventurous today.  You’ll only go as far as she lets you][if {First time, and PC has seen FTFHB1}You remind Paige that she was willing to try something a little more adventurous, and ask her if she’s okay with giving it a try][if {Not first time}You ask Paige if she’s up for some more butt stuff.  She was pretty into it last time].");
-
-output("\n\nPaige hums in thought as she bounces on you.  She leans forward and, with some exaggeration, draws your dick, from [pc.base] to tip, all through the cleft of her cheeks.  Her bottom lip is bit in concentration – you realize that she’s measuring you with her ass!  <i>“[if {First time}I’ve never done it up the ass,”</i> she admits.  <i>“But my life has been full of firsts since you came into it.  I’ll give it a try – with you][if {First time, and PC has seen FTFHB1}I did say that, didn’t I?”</i> she reminisces.  <i>“This is a bit... more than a finger, though.  I trust you, [pc.name].  Let’s give it a shot][if {Not first time}I dunno if I’m just a slut for butt stuff or if I’m a slut for you,”</i> she says sultrily, licking her lips, <i>“but if you want another round, I’m all for it, sweet thing].”</i>");
-
-output("\n\nThat’s all you need to hear.  You frig your prick between her globes another few times, your [pc.precum] beading down and slicking your shaft and her taint in preparation.  You’re so close, a quick thrust would be all you need – but are you in that sort of rush?  You could take things a little easier, if you’d rather.");
-
-output("\n\n[=Gently=][=Raw=][=Prep=]");
-output("\n\n// end scene (scene: SSAI)");
-
-output("\n\n[=Prep=]");
-output("\n\n// Tooltip: This scene involves rimming and will lead into the <i>“Gently”</i> path.");
-output("\n\n// (scene: SSAP1)");
-
-output("\n\n<i>“We’re in no rush,”</i> you tell Paige, your [pc.cockHead] straining against her, begging to differ.  <i>“Why don’t we get each other ready?”</i>");
-
-output("\n\n[if {PC has only ever seen SSAP1}Paige squints her eyes in your (general) direction, trying to get a read on your tone.  <i>“You’re suggesting you eat my ass, right?”</i> she asks incredulously.  You hum affirmatively.  Paige clicks her tongue as she thinks about it.  <i>“[if {First time anal}Hell, I already said I’d let you fuck it.  Let’s make tonight a night of firsts.  Just remember – you offered][if {Not first time anal}Hell, why not?  I’m already a big fan of having my ass played with.  Let’s go for the whole package.  Just remember – you offered].”</i>][if {PC has only ever made it to SSAP2}Paige smirks a bit as she considers it.  <i>“Well, hell, any excuse to get your dick in my mouth, [pc.name],”</i> she says, <i>“But something about my ass must have been a good time if you’re willing to do</i> that <i>again.”</i>  You make no comment.  <i>“Alright then, perv, let’s get to it.”</i>][if {PC has seen SSAP3}Paige smirks as she considers it.  <i>“I guess we’ve both got our vices,”</i> she sighs.  <i>“I’m a cum-thirsty whore and I like having things up my butt – and you like having your face in it.  Hell, I’m not going to complain.  You want another taste, sweet thing, you got it.”</i>]");
-
-output("\n\nPaige, with excited swiftness, lifts one leg over your head as she pivots around and leans forward, your cock in her face and your face under her tail.  Her soaking cunt and puffy vulva press into your collarbone, knowing that tonight isn’t about them – your eyes go north, to her dry, winking anus, the star of the show.");
-
-output("\n\nPaige wastes no time in stuffing your [pc.cock] into her mouth, lathering it with her wet tongue.  You tense as you feel it wrap around your shaft, her thick Ausar tongue expertly covering everything in one pass, but she doesn’t stop, getting you nice and slick.  It takes you a moment to remember that you should be doing the same, and you crane your head forward, sticking out your [pc.tongue] and giving her ass a long, lascivious lick.");
-
-output("\n\nYou feel her abdomen tense, then relax lazily as the sensations of having a tongue against her asshole cause her to melt in pleasure.  You draw your tongue back in, soaking it in spit, then back out, getting her nice and lubed for your cock.  Your nose brushes against the underside of her tail’s base with every upward swing, and, it being an erogenous zone, she moans in pleasure each time.");
-
-output("\n\nAfter a few minutes, you’re nice, hard, and wet, and her hole is about as lubed as you’re going to get it.  You could stick around and make <i>absolutely</i> sure, though.");
-
-output("\n\n[=Gently=][=Keep Prepping=]");
-output("\n\n// end scene (scene: SSAP1)");
-
-output("\n\n[=Keep Prepping=]");
-output("\n\n// Tooltip: Better safe than sorry!");
-output("\n\n// (scene: SSAP2)");
-
-output("\n\nYou’re rather content where you are, you decide.  Paige’s ass is one of her finer features, and she knows it, constantly showing it off and deliberately taking some lewder yoga poses that really highlights it.  The idea of motorboating those tight cheeks and getting a good taste has crossed your mind once or twice.");
-
-output("\n\n<i>“Damn,”</i> Paige moans as she feels you press your face deeper into her cleft.  <i>“Eager [pc.boyGirl]!”</i>  She wiggles her butt, massaging your face with her tight ass as your tongue swipes across her hole and pierces into its clenching center now and again.  <i>“You getting comfortable back there, [pc.name]?  Don’t forget, that’s only the entrée before the main course.”</i>");
-
-output("\n\nYour hands reach up to grip onto her ass, letting your fingers clench into the sort fur and taut flesh, pulling them apart and pressing them together, squishing your nose and tongue as you work her over.  Paige is back on your dick, making sure it’s as wet and ready as ever, although she’s trying to keep herself restrained: she’s committed to having you in her ass, and she doesn’t want you to cum beforehand.");
-
-output("\n\nYou barely notice her slowing down on you, you’re so focused on her ass.  You hear her moan, and you just want to keep doing what you’re doing.  <i>“[if {PC has not seen SSAP3}I’m all for showing my ass some attention, [pc.name], but it’s not going to get any more ready for you,”</i> she chides playfully.  <i>“Give your tongue a rest and let [pc.name] Junior take over][if {PC has seen SSAP3}I know for a fact you’re ready to go, [pc.name],”</i> she chides playfully, <i>“but, knowing you, you’re probably going to want to just keep going, right?  I guess I can give you another minute].”</i>");
-
-output("\n\n[=Gently=][=Keep <i>“Prepping”</i>=]");
-output("\n\n// end scene (scene: SSAP2)");
-
-output("\n\n[=Keep <i>“Prepping”</i>=]");
-output("\n\n// Tooltip: Maybe just a little longer.");
-output("\n\n// Tooltip (Silly Mode, if possible): You just like eating ass, don’t you, [pc.name]?");
-output("\n\n// (scene: SSAP3)");
-
-output("\n\nYou unwaveringly proceed.  Paige laughs, then disengages from your [pc.cock] entirely, letting it stand, hard, wet, and cooling in the air, as she squats on your face.  <i>“Fine,”</i> she says, letting her full weight rest on your face.  <i>“Get in there deep, [pc.name].  Show me how much you love my ass.”</i>");
-
-output("\n\nYou don’t register the words, but you obey them nonetheless: your dedication to lubing her progresses to you fucking her ass with your mouth.  Paige hums in enjoyment at the attention, but she refuses to touch herself and keeps her arms up and over her head while she rides your face.");
-
-output("\n\nSomething about your position keeps you there: it might be how Paige’s body is the pinnacle of feminine fitness, and being where you are is like a reward of some kind; it might be the way you hear her moan as she sits on you making you feel powerful yourself, knowing that <i>you</i> are doing that to her and that <i>you</i> are giving her that pleasure; it might be that you just love the sheer subservience of having your tongue in someone else’s asshole, their cheeks framing your face so warmly and comfortably.  Whatever the case, you lose yourself in your ‘job,’ licking her and thrusting into her absently–");
-
-output("\n\n<i>“Alright, that’s enough,”</i> Paige says, lifting her off your face and subjecting you to the sudden comparative chill of the room.  <i>“Having a tongue in my butt is great and all, but I want a dick in there, [pc.name], and it won’t do to have either of us cum before we get there.”</i> ");
-
-output("\n\nYou’re in something of a daze and you only catch half of what she says, but, when your eyes focus, you see her back in her position, her legs on either side of your [pc.hips] as she aligns your [pc.cockHead] with her thoroughly lubed anus.  Her pussy is red and puffy with sheer desire; Paige is already on the verge of cumming a geyser and it must have taken a bit of willpower on her part to force you to stop.");
-
-output("\n\n[=Gently=]");
-output("\n\n// end scene (scene: SSAP3)");
-
-output("\n\n[=Gently=]");
-output("\n\n// (scene: SSAG)");
-
-output("\n\n[if {Coming from SSAP1 or SSAP2}That’s enough: you’re as hard as can be and slick with spit, and Paige’s tight asshole has been as moistened as you can make it.  You tell her that you’re ready, and, legs quaking with excitement, she lifts her body off you and pivots back around, her legs straddling your body and your [pc.cockHead] aligned with her exit once more.]");
-
-output("\n\n[if {Coming from SSAP3}The sensation of Paige’s body heat against the head of your dick snaps you out of the dizzy reverie you built up from being face-deep in her booty.  You’re reminded of exactly how hard and needy you are, and when your eyes uncross enough to make out the red gorging of her vulva, you learn exactly how needy she is too.]");
-
-output("\n\n[if {Neither}You rock your lower body against hers a few more times, readying your [pc.cock], not that it needed more readying.  The heat of her body excites you even further, and you finally your hips back, lining yourself up with her exit.  You give her a teasing moment, wordlessly offering her the chance to back out, but her bit bottom lip and anxious smile are all the answer you need.]");
-
-output("\n\nAlmost reflexively, you buck your [pc.hips] upward, spearing into her ass.  You don’t go far – just the [pc.cockHead] – but you want to take things slowly and gently for her, to adjust to your size.  Paige inhales sharply through her nose and exhales in a pleasant moan: all the sign you need to keep going.");
-
-output("\n\n[if (pc.cockLength <= 9)After a tantalizing journey, Paige’s pert, tight asscheeks rest against your pelvis, with every bit of you stuffed inside her butt.  Paige exhales in exhilaration, satisfied in a unique way, at the sensation of having every part of you[if (pc.cocks >= 2) (or, every part of <i>one</i> of you)] inside her.][if (pc.cockLength >= 10)Paige grunts in a weird mix of pleasure and frustration as you feel her butt clench tightly around your shaft, and you watch her ripped abs flex in effort.  <i>“I think that’s about my limit,”</i> she says[if (pc.cockLength = 10), to your dismay – you’re so close!  But you don’t push her.  It’s her ass].  <i>“I’ll have to look into fixing that.  I... I kind of want more,”</i> she laughs sheepishly.]");
-
-output("\n\nWith her boundaries defined, Paige leans backward, her hands on either side of your ankles, as she lifts up her butt until you’re barely still inside her, and then slams back down, as far as she can.  [if {SSAP1 or SSAP2}The time you spent lubing each other up really comes into play, removing much of the friction of the act][if {SSAP3}The combined spit on your dick and her ass makes the fucking a lubricated cinch, although somewhere in the back of your mind, you regret that it wasn’t easier].  Paige’s puffy, needy honeypot bounces with the rest of her, right in front of you, and Paige is too busy keeping herself steady to pay attention to it.  You could help her out, if you wanted....");
-
-output("\n\n[=Finger Her=][=Do Nothing=]");
-output("\n\n// end scene (scene: SSAG)");
-
-output("\n\n[=Raw=]");
-output("\n\n// (scene: SSAR)");
-
-output("\n\n[if {First time}You’re a little overeager, you realize, but Paige is a tough girl, and, knowing her, she’d probably like it][if {Not first time}Paige knows exactly what she’s getting into with you, and, to be frank, she’s a bit of a butt-slut.  Hell, she might even appreciate skipping the foreplay to get to the good stuff].  You thrust into her, burying more than a little bit of your [pc.cock] into her asshole[if {Not first time}, but not more than you know she’s comfortable with].");
-
-output("\n\nPaige nearly shouts in surprise at your intrusion, and she goes stiff all over as she adjusts with you inside her.  Before she gets too comfortable, you pull out slightly, only to thrust back in further than before.  The only lube between you is your [pc.precum], which is enough for you.  [if {First time}You keep your eyes on Paige’s expression, just in case you’re being too sudden, but she’s all mischievous-smiles.  <i>“Guess I should have seen this coming,”</i> she laughs, and then starts matching your pace.  <i>“Come on, then, [pc.name].  Let’s really break my ass in!”</i>][if {Not first time}You’re both grinning at the pleasure, and the unsaid contest between you and Paige to find her breaking point.  Of course, you’re not anywhere near it.  <i>“I love that you know when to take me hard, [pc.name],”</i> she says through gritted teeth.  <i>“Give your slutty puppy what she wants!”</i>]");
-
-output("\n\nYou do exactly what she asks, and lay into her, your [pc.hips] pumping up while hers hump down, squeezing your [pc.cock] into her bowels again and again.  Paige’s abs and strong calves ripple and flex around your body as she takes you into her butt again and again; her breathing quickens in excitement as she feels every throb of your dick inside her.  Her toes begin to splay and she even drools a little onto bouncing titties.");
-
-output("\n\n<i>“Hold on a second,”</i> Paige asks you, a flash on inspiration crossing her muzzle.  She stops her bouncing on your lap – which stops your pleasure.  You practically ache inside her, edging closer to your release, yet it’s still so far away.  You’re sure Paige would understand if you didn’t stop like she asked, or you could see what’s on her mind.");
-
-output("\n\n[=Wait=][=Pull Her Down=]");
-output("\n\n// end scene (scene: SSAR)");
-
-output("\n\n[=Finger Her=]");
-output("\n\n// (scene: SSAFH1)");
-
-output("\n\nWell, hell, it’s so inviting; it would be rude to turn it down when it asked so nicely.");
-
-output("\n\nYou reach forward, one hand playing and lightly clawing down her chiseled abs, and the other tickling along her left calf, as both hands make their way to her dripping cunt.  Your left hand’s fingers find her vulva, pulling and squishing and playing with her lips between your fingers, while your right thumb finds her clit, pressing her button and flicking her switch.");
-
-output("\n\n<i>“Ah, fuck, right there,”</i> she says, throwing her head back and gripping onto the sheets of her bed in pleasure.  <i>“Gods above but don’t you make the best of any situation, don’t you, [pc.name]?  What did I ever do to deserve you?”</i>  You respond to her compliments by playing with her bits some more, teasingly slipping a finger in and feeling how her body eagerly sucks you in, milking your digit.");
-
-output("\n\nNeither of you stop the real entertainment, naturally, but your extra attention pays off: with every sensitive nub you happen to brush against, her ass clenches down on you, providing that little extra warmth and friction for you to fuck into.  You slip a second finger inside her, feeling her heartbeat all the way down to her pussy, and you time her beats with light brushes against her clit.");
-
-output("\n\n[=Next=]");
-output("\n\n// end scene (scene: SSAFH1); go to (scene: SSAFH2)");
-
-output("\n\n[=Do Nothing=]");
-output("\n\n// (scene: SSADN1)");
-
-output("\n\nIt’s a bit selfish of you, but in your defense, you’re a little preoccupied and splitting your focus would mean you wouldn’t do either as well as you could.  You focus on plowing Paige’s ass, knowing that she’s clearly into it, and hoping that it would be enough.");
-
-output("\n\nShe bounces on your [pc.cock], breathing steadily and deeply through her nose.  You match her rhythm, pulling out when she rises and feeling her body contort around you as you penetrate her when she falls.  She controls the flow, and she’s taking it at a relaxed pace.  <i>“You’re being awfully passive, [pc.name], considering your dick is in my ass,”</i> Paige chides playfully.");
-
-output("\n\nIn response, you double the pace for a few pumps, surprising her and lifting her with the force of your hips.  The breath leaves her in surprise, and then she laughs.  <i>“It wasn’t a challenge!”</i> she says, cooing at the friction.  <i>“But hey, now that you’ve started, you may as well keep going.”</i>");
-
-output("\n\nThat’s an invitation if you’ve ever heard one.  You grip onto Paige’s ankles, steadying yourself.");
-
-output("\n\n[=Next=]");
-output("\n\n// end scene (scene: SSADN1); go to (scene: SSADN2)");
-
-output("\n\n[=Wait=]");
-output("\n\n// (scene: SSAW)");
-
-output("\n\nYou do as Paige asks and stop your thrusting into her butt, difficult as it is – you’re anxious to keep going for your own pleasure, but if Paige has an idea, it’s probably a good one.");
-
-output("\n\nWith some skill, Paige lifts one leg over your body, your dick still firmly lodged inside her as she twists herself around.  You bite your lower lip in concentration as the sensation of her whole body twisting and pulling at the skin of your shaft tickles nerves you didn’t know could be tickled that way.  She pulls the other over you, and she’s spun around entirely.");
-
-output("\n\nSighing in delight, Paige leans into you[if (pc.biggestTitSize <= 2), her back flat against your [pc.chest]][if (pc.biggestTitSize >= 3)[if (pc.biggestTitSize <= 6), your [pc.chest] giving her something soft to lay into]][if (pc.biggestTitSize >= 7), squirming snuggly in the valley of your [pc.chest] until she’s good and nestled].  <i>“There we go,”</i> she says, reaching up and running her fingers through your [pc.hair] as she settles.  <i>“This ought to give you more to play with.”</i>");
-
-output("\n\nBut, you complain, Paige doesn’t have any thrusting power – it means you also have to do all the work!  <i>“Oh, I’m sorry,”</i> she rebukes.  <i>“If fucking my ass is too much work for you, we can always stop.”</i>");
-
-output("\n\nYou both laugh and you both definitely don’t stop.  But she <i>is</i> right: you have some more options for your roaming hands.  But where do you focus?  Decisions, decisions.");
-
-output("\n\n[=Up Top=][=Down Low=]");
-output("\n\n// end scene (scene: SSAW)");
-
-output("\n\n[=Pull Her Down=]");
-output("\n\n// (scene: SSAPHD)");
-
-output("\n\nFuck that, things were just getting good.  You lean forward to grab her by the wrists, and you yank her forward, taking away her balance and toppling her onto you.");
-
-output("\n\n<i>“Oh!”</i> she exclaims, her breasts squishing against your [pc.chest].  You don’t stop your thrusting: if anything, you take advantage of Paige’s disorientation to fuck her harder, your hips audibly clapping against hers[if (pc.hasBalls = true) and your [pc.balls] bouncing up to brush against the finer fur of her ass].  It takes a few more thrusts until Paige rights herself and catches her breath.  <i>“Message received,”</i> she laughs.  <i>“Let’s just fuck my ass, then, [pc.name]!”</i>");
-
-output("\n\nYou continue gladly, letting Paige lean on her elbows for her own comfort as you thrust into her and she backs into you.  Paige’s breath comes out in billows between you, and her boobs press against you[if (pc.biggestTitSize <= 1)r [pc.chest] warmly, cushioning you both with their firmness][if (pc.biggestTitSize >= 2)[if (pc.biggestTitSize <= 5)r [pc.chest], electrifying you both when your [pc.nipples] rub against each other in the heat]][if (pc.biggestTitSize >= 6] ineffectually: her firm tits do little more than flatten against your [pc.chest], easily dwarfed by your own].  Her body goes limper with every other thrust into her as she loses cognizance to your brutalizing her asshole.");
-
-output("\n\nShe’s fairly pliable in your hands as you ream her, and your hands are both free now that she’s fine with you doing what you’re doing to her.  There are a few things you could think to do to her while she’s unfocused.");
-
-output("\n\n[=Kiss Her=][=Finger Her=]");
-output("\n\n// end scene (scene: SSAPHD)");
-
-output("\n\n// (scene: SSAFH2)");
-
-output("\n\nPaige rocks awkwardly on top of you, attempting to alternate between stuffing your [pc.cock] into her and attempting to snatch more of your hand into her.  She accomplishes neither, but she clearly doesn’t care; her breathing gets shallow and her moans rise in pitch quickly.  <i>“I’m getting close,”</i> she warns you, her head still thrown back.  Her breasts heave with her shallow breath and her abs flex and then don’t un-flex.  <i>“Damn, really close!”</i>");
-
-output("\n\nYour own focus is torn between fingering her so she gets there before you, and fucking her harder so that you reach your climax sooner.  Paige, noticing your flagging focus, reaches forward and grips your wrist tightly, shoving your hand deeper into her cooch.  <i>“Don’t you fucking slow down on me, [pc.name],”</i> she dares you.  <i>“I’m... nearly there!”</i>");
-
-output("\n\nPaige fucks herself with your hand, taking the decision away from you and giving you a chance to focus on fucking her ass.  With renewed vigor, you plow into her all the harder – and in no time at all, your orgasm is hot on your heels.  The familiar bubbling in your [if (pc.hasBalls = true)[pc.balls]][if (pc.hasBalls = false)loins] rushes higher and higher up your [pc.cock] until, just as Paige cums, clenching your fingers and hard onto your dick, you can hardly contain yourself as you explode inside her.");
-
-output("\n\n[=Climax=]");
-output("\n\n// end scene (scene: SSAFH2); go to (scene: SSAE1)");
-
-output("\n\n// (scene: SSADN2)");
-
-output("\n\nAnchoring yourself to Paige’s bed, you lay into her with all the force and energy still in your pelvis to fuck your Ausar’s ass until her puffy twat you’ve neglected explodes all over you.");
-
-output("\n\nPaige loves it: her tight ring clenches around your impulsive shaft and doesn’t let up no matter how much you pound into it.  She crunches her abdomen reflexively as you go, forcing more resistance onto you, but that’s all for the better for you both: the unique contours of her butt massage you in a way her pussy couldn’t, and you love it.");
-
-output("\n\nYou let Paige know you love it by fucking her harder.  The sound of your hips clapping into hers[if (pc.hasBalls = true), your [pc.sack] bouncing up with the rest of you] fills the room, fighting with Paige’s lustful gasps and rising yips as she gets closer.  <i>“Fuck me,”</i> she manages to stutter out between forceful pushes up.  <i>“I’m close, [pc.name], fuck my ass!  Fuck it like you own it!  You</i> own <i>it, [pc.name]!”</i>");
-
-output("\n\nHer shouts and exaltations are what she needs to go the last little way, and with a few more pumps into her, she’s cumming on top of you.  Her body stiffens and spasms involuntarily, sending quakes down your shaft and into your loins; her orgasm is what you need, and soon, you’re cumming right after her.");
-
-output("\n\n[=Climax=]");
-output("\n\n// end scene (scene: SSADN2); go to (scene: SSAE2)");
-
-output("\n\n[=Up Top=]");
-output("\n\n// (scene: SSAUT)");
-
-output("\n\nThe horny Ausar is practically <i>begging</i> you to fondle her boobs, and really, who are you to turn down an invitation like that?  Nobody in their right mind would pass up the chance to grab a handful of those tight yoga tits.");
-
-output("\n\nThirsty, your hands strike at her chest, gripping at each boob suddenly and a little rougher than you meant.  Her pointed nipples, practically sharp, dig into your palms as you squish and knead her flesh, unsynchronized from your abject fucking into her butt.  <i>“Good [pc.boyGirl],”</i> Paige sighs, one hand firmly on your skull and the other on yours, guiding it along the erogenous spots of her titflesh.  <i>“The girls just</i> love <i>getting some attention.  Pinch my nipples a bit, sweet thing.”</i>");
-
-output("\n\nYou do as she command, pinching both nipples and pulling on them just a little.  She winces through clenched teeth and you feel her sphincter tighten around your [pc.cock].  <i>“That’s good, just like that!”</i> she shouts, and you continue to handle her nipples the way she likes.  <i>“Gods, having my tits handled gets me close.  Cum with me, [pc.name]!  Cum in my ass!  Fill me up!”</i>");
-
-output("\n\nPaige combats your every thrust by slamming her rump back down onto you as best she can, lodging you as deeply into her as she can take with every push[if (pc.cockLength >= 10), and ‘as deeply’ keeps getting redefined].  With one last bounce, she stops entirely, her body stiffens, her breath leaves her, and her ass grips you almost painfully tightly.");
-
-output("\n\nWhich is good, because you’re on the verge of an orgasm yourself.");
-
-output("\n\n[=Climax=]");
-output("\n\n// end scene (scene: SSAUT); go to (scene: SSAE3)");
-
-output("\n\n[=Down Low=]");
-output("\n\n// (scene: SSADL)");
-
-output("\n\nIf there’s any part of Paige that desperately needs some attention right now, it’s her neglected cooch, even if it isn’t the focus of the show.");
-
-output("\n\nYou keep one hand rested on her belly, admiring and playing with the ridges of her toned six-pack abs, while the other travels farther down, gliding seamlessly over her vagina, your middle finger easing itself between the lips of her vulva.  You palm gently yet insistently against her clit, swishing it up and down with every other pass.  Your hand is <i>soaked</i> the moment you complete one full pass.");
-
-output("\n\n<i>“Shit!”</i> Paige whispers sharply, her grip on your skull tightening and her biceps bulging in barely-restrained pleasure.  Her belly, along with the rest of her, rocks in time to your palming her pussy, which is in time with your thrusting into her butt.  You change your attack by thrusting your middle finger up and in, crooking it against her tight vaginal walls, and using your thumb to continue passively assaulting her button.  <i>“Shit!”</i> she mouths again.");
-
-output("\n\nKnowing that you’ve robbed Paige of the coherence to say much else draws your orgasm all the closer.  You latch your lips to her neck, sucking on the taut skin and fur there, and then draw your [pc.tongue] up along her neck and up to the back of her triangular ear.");
-
-output("\n\nThat’s enough for her, and she squeals through pursed lips as her tunnel clamps on your finger and her sphincter seals itself damn-near airtight on your [pc.cock].  The paltry fluids on your palm before is nothing compared to the veritable waterfall gushing from her now.  With so many fluids of hers on you, it would be rude to not give some back.");
-
-output("\n\n[=Climax=]");
-output("\n\n// end scene (scene: SSADL); go to (scene: SSAE2)");
-
-output("\n\n[=Kiss Her=]");
-output("\n\n// (scene: SSAKH)");
-
-output("\n\nYou keep one hand on the meat of her ass to keep her steady (and also to grab a handful.  Who wouldn’t?), and you use the other to gently cup the underside of Paige’s muzzle to direct her eyes to yours.  Once they [if {Paige is blind}(generally)] meet and lock, you lean forward, aggressively putting your lips to hers and, forgoing the foreplay, stick your tongue out.");
-
-output("\n\nShe has enough sense to reciprocate, opening her mouth and allowing you in, although she’s fairly lazy about it.  Your [pc.tongue] plays and dances with her long-and-flat Ausar tongue, tasting each other’s nuances and counting the teeth in each other’s jaws.  You slow your fucking her ass slightly, your attention divided, though you hardly stop.");
-
-output("\n\nWhile your mouth is busy, the hand on her ass crawls its fingers into the cleft of her cheeks, tickling at the rim of her asshole as it gets reamed again and again.  Paige hardly notices; her eyes are closed deliriously and her tongue is moving in broad, sweeping strokes with your own.  Her mind’s taken a back-seat, overloaded with the sensations in both ends of her body.");
-
-output("\n\nYou can’t tell how close she is, but you know you’re just a few pumps away.  You give Paige a shock to her system by releasing her asscheek and grabbing the base of her tail, your fingers scratching along its underside.  You know it’s a particularly vulnerable erogenous zone, and it does what you hoped: Paige’s body stiffens and she squeals into your mouth, while her ass grips you tighter and she soaks your crotch in her feminine cum.");
-
-output("\n\nAnd not a moment too soon....");
-
-output("\n\n[=Climax=]");
-output("\n\n// end scene (scene: SSAKH); go to (scene: SSAE3)");
-
-output("\n\n[=Finger Her=]");
-output("\n\n// (scene: SSAFH3)");
-
-output("\n\nIf there’s any one thing that will probably snap her back to reality, and it’s <i>not</i> a dick in the ass, it’s a finger up the cooch[if (pc.hasVagina = true), speaking from experience].");
-
-output("\n\nIt’s a bit tricky to worm your hand in between your rocking, humping bodies, but you get it in there with every outward thrust of your hips, getting it closer and closer until you find your hot and sopping wet prize.  You wait until your hips are apart, and then you strike, crooking a finger and letting Paige land right on it, spearing into her suddenly.");
-
-output("\n\n<i>“Whoa!”</i> Paige says, eyes wide and unfocused.  Your palm does not stay with her on your ‘backswing,’ and instead acts as a peg to impale Paige with every other swing in.  She breaths in through her nose and it comes out as a stiff hiss; her clit bounces hard against your upturned palm with every thrust, sending shivers up her body[if (pc.cocks >= 2).  You realize that using just your finger is a bit ineffectual when you <i>could</i> just use[if (pc.cocks = 2] your [pc.cock2]][if (pc.cocks >= 3) another one of [pc.eachCock]], but that would mean pulling out and shuffling your equipment around, and that’s a lot of hassle considering you’re about to burst right now].");
-
-output("\n\n<i>“Fuck me,”</i> Paige whispers, more as a statement than a demand or request.  She humps against your hand whenever it and her pussy meet, sliding up and down on both your digit and your member, squeezing as much pleasure out of both as she can.  <i>“Nearly there,”</i> she warns you, and in response, you clamp your hand against her, thrusting your ring finger inside her cooch as well.  <i>“A whole lot closer now!”</i> she hollers, before stiffening.");
-
-output("\n\nA gush of womanly cum drenches your hand as your fingers splay inside her.  You’re about to reciprocate with a gush of your own fluids....");
-
-output("\n\n[=Climax=]");
-output("\n\n// end scene (scene: SSAFH3); go to (scene: SSAE4)");
-
-output("\n\n// (scene: SSAE1)");
-
-output("\n\nPaige draws in one, long hiss of air, and then goes silent on top of you.  Her body is hardly still: her lower abdomen convulses in pleasure, the muscles of her abdominals crunching from her lower belly to her jiggling breasts.  Her pussy gushes flow after flow of her girl jizz all over your hand and across your own [pc.belly]; and her ass becomes almost painfully tight, clenching you involuntarily in its ring.");
-
-output("\n\nKnowing that Paige is having an orgasm on top, and because, of you, triggers something primeval in your head, and you join her, [if (pc.cumQuantity <= 299)painting her insides with your [pc.cum].  Y[if (pc.hasBalls = true)our [pc.sack] tenses in time with your jets, coiling up against your taint with every shot of cum, and y]our shaft flexes in time with your shots, blood coursing through its bloated veins, depositing every little bit you have into your Ausar lover.  <i>“Fuck,”</i> Paige manages to gasp out, composing herself just enough.  <i>“I can feel it, [pc.name],”</i> she whispers.  <i>“I can feel every drop in me.  I want it all, [pc.name].  Give me all you have.”</i>][if (pc.cumQuantity >= 300)blasting your [pc.cum] into her body.  Your impressive load pools within her, y[if (pc.hasBalls = true)our [pc.balls] flexing like pumps to deposit every drop they have into your fleshy, furry comdom.  Y]our [if (pc.hasBalls = true)struggling shaft fights to][if (pc.hasBalls = false)shaft struggling to] get your jizz out and into your Ausar, but it can barely flex wide enough to accommodate your load while Paige’s sphincter strangles it.  <i>“Holy shit,”</i> Paige gasps out, cognizant enough to run her mouth.  <i>“It... I can feel it.  I can feel all of your cum, [pc.name].”</i>  She tries to remain still, yet the telltale convulsions around your fingers make it difficult for her.  <i>“I want it all... I want it all inside me.  Don’t stop.  Don’t stop!”</i>]");
-
-output("\n\nKnowing how thirsty Paige is spurs you on to give her all you can.  You shoot every drop into her ass, just like she asked you.  She occasionally rocks her hips and gyrates on top of you, coaxing out everything she can[if (pc.cumQuantity <= 299), even after your orgasm peters to nothing][if (pc.cumQuantity >= 300), even after her belly begins to paunch from the load she’s already taken].  Your hand starts to turn purple from how hard she’s squeezing it against her cooch, but neither of you notice.");
-
-output("\n\n[=Afterglow=]");
-output("\n\n// end scene (scene: SSAE1); go to (scene: SSAAG)");
-
-output("\n\n// (scene: SSAE2)");
-
-output("\n\nYou’re assaulted by a number of sensations, from Paige squirting all over the place to her toned ass clenching so tightly that you find it too difficult to thrust into her anymore.  She doesn’t have the cognizance (or the breath) to say anything: her explosive orgasm is her only means to communicate with you.");
-
-output("\n\nYou reply to her message with an orgasm of your own: [if (pc.cumQuantity <= 299)you press in as deeply as you can before shooting, your [pc.cock] bloating as much as it can and firing your [pc.cum] as deeply into her bowels as you can reach.  Paige’s body is rigid, but you can feel her flex and tense with your every load.  <i>“You,”</i> she finds the strength to gasp out, <i>“you’re cumming in my ass... I can feel it, [pc.name].  It feels so warm.”</i>  She whimpers and tries to writhe on you, to suck out more cum from y[if (pc.hasBalls = true)our [pc.balls]][if (pc.hasBalls = false)ou].  <i>“Give me more....”</i>[if (pc.cumQuantity >= 300)with one final thrust, you lodge yourself as deeply into her body as you can, and you unleash the torrent that is your [pc.cum].  The breath leaves Paige’s lungs in coughs timed with your waves; her yoga-trained glutes become water-tight and don’t allow a single drop of you to escape her, and in no time at all, you watch as her belly begins to bloat and misshape from your quantity[if (pc.hasBalls = true), and yet, from the mildly-unsatisfied tingling in your [pc.balls], you know you have so much more to give her].  <i>“I love it,”</i> she says meekly, unable to control her still-spasming, still-squirting quim.]");
-
-output("\n\nYou[if {SSADL}r hand and most of the bed] are completely soaked and drenched in Paige’s cum – you’re going to smell like a bitch Ausar in heat for a while yet.  And yet Paige’s orgasm soldiers on: her honeypot’s run dry of fluids to squirt, but her convulsions continue, growing weaker as time goes on but lasting far longer than yours[if (pc.cumQuantity >= 300), despite your immense load][if (pc.hasVagina = true).  It honestly makes you a little jealous].");
-
-output("\n\n[=Afterglow=]");
-output("\n\n// end scene (scene: SSAE2); go to (scene: SSAAG)");
-
-output("\n\n// (scene: SSAE3)");
-
-output("\n\n[if {SSAUT}Paige awkwardly shifts her body, thrusting her chest into your hands and pressing her butt onto your crotch][if {SSAKH}Paige’s tongue lies still in your mouth, yet her tail sways stiffly with your every scratch at her zone] while she shamelessly cums and cums again from having her ass fucked and owned.  She makes no attempt to move, lacking the strength as the convulsions from her pussy control her every other muscle, other than to shift her ass from side to side just enough to try and lodge you deeper into her.");
-
-output("\n\nHer orgasm is, in a way, her congratulations to you for fucking her practically senseless, and with the burst of pride at a good job comes a burst of something else: [if (pc.cumQuantity <= 299)with one final pump to dig yourself as deeply inside her as you can, you shoot your [pc.cum] into her; you feel the individual bursts rise from your [if (pc.hasBalls = true)[pc.balls][if (pc.hasBalls = false)loins] and make their way up her bowels.  Paige takes your load like the champion she is, exhaling with every new wave of liquid heat she feels crawl up her abdomen.  [if {SSAUT}<i>“It’s so deep,”</i> she whispers, rocking her hips on yours to get it even deeper.  <i>“I can feel it go so deep inside me, [pc.name].”</i>  She laughs.  <i>“I feel it rising... I wonder how deep it’ll go?”</i>][if {SSAKH}Paige’s tongue flops around in your mouth in time with every new sensation in her ass, moaning in delirious pleasure as she feels your warm cum rise higher and higher into her abdomen.]][if (pc.cumQuantity >= 300)you cum just as you thrust one final time, getting a headstart for your massive load.  In one long, drawn-out burst, you’ve cum more than the average [pc.race], and there’s oh-so-much more to go: Paige’s body bloats around your payload and already you feel it start to backwash against your [pc.cock], but the almost superhuman tightness of her anus keeps it all watertight.  [if {SSAUT}<i>“Oh wow,”</i> Paige says, almost whimsically[if (pc.hasBalls = true), and she gasps out with every new pulse in your [pc.balls] and a new load in her bowels].  <i>“It’s so deep... It’s so warm....”</i>  Her hand gently grips at your head as she tries to control her body.  <i>“Keep filling me.  I want it deeper....”</i>][if {SSAKH}Paige goes completely slack on your body and in your mouth, humming insensately as she feels your cum pool deeper inside her body.  You keep kissing her, doing all the tongue-wrestling for the both of you, but she’s clearly just along for the ride as her ass absorbs the sensation of having so much cum inside it.]]");
-
-output("\n\n[if {SSAUT}You don’t ignore Paige’s breasts in your hand, working them expertly][if {SSAKH}Your bodies are still and lame] as you both ride out your orgasms.  As Paige had asked of you, you fill her with as much as you can offer,[if (pc.cumQuantity <= 299) and yet the thirsty bitch keeps rubbing her rump on you to try and eke out just a little more][if (pc.cumQuantity >= 300) and you’re not even sure she regrets it even after her belly loses its definition and rounds out like a balloon].  [if {SSAKH}She finally disengages her mouth from yours, laying her head on your collarbone][if {SSAUT}She finally relaxes her back, gently coming to rest on your [pc.chest]], and you both begin to wind down from your intense anal session.");
-
-output("\n\n[=Afterglow=]");
-output("\n\n// end scene (scene: SSAE3); to go (scene: SSAAG)");
-
-output("\n\n// (scene: SSAE4)");
-
-output("\n\nThere are alternating waves of convulsions between Paige’s cooch and her asshole: the former wants to milk your intrusive fingers for whatever cum they can spare (which isn’t a lot, it turns out) while her ass doesn’t naturally ‘milk’ you for anything but nonetheless attempts to clench even tighter around you, strangling your [pc.cock] for its load.");
-
-output("\n\nDespite your Ausar bitch’s tightness and adamant musculature, your load can’t be denied, [if (pc.cumQuantity <= 299)and your [pc.cum] rockets up and through your shaft, into the tight confines of her rectum.  You jill her further, clenching your own fingers involuntarily with every spurt of hot cum, rubbing the butt of her palm a little roughly against her clit, but all the sensations serve to heighten her orgasm.  <i>“I want every fucking drop,”</i> she tells you through clenched teeth.  Y[if (pc.hasBalls = true)our [pc.balls] are more than happy to comply, and y]our shaft bloats rhythmically with every gooey wad you loose into her.  <i>“It’s so warm, [pc.name].”</i>  The puddle of girlcum on your [pc.belly] grows with your every spurt.  <i>“I want it all.”</i>][if (pc.cumQuantity >= 300)bloating your vas deferens as it erupts from you, fighting against the pinch of her anus to deposit your gargantuan load.  Your [pc.cock], and also her asshole, relax after the first wad, but then the second comes, shooting a heftier wad than most [pc.race]s could hope to match in a whole orgasm.  You jill her off, thrusting into her in time with your own shots, but you needn’t waste the effort: orgasm after orgasm wracks Paige with every hot bubble she feels deposit in her innards.  <i>“Holy shit, [pc.name],”</i> she says breathlessly, unable to process the explosive squirting from herself and the pandemonium happing in her ass.  <i>“Give me every drop you have, you assfucker!”</i> she demands[if (pc.hasBalls = true), unaware just how much more your [pc.balls] have left to give].  <i>“Fuck my ass!”</i>");
-
-output("\n\nBy the time you’re both done, Paige’s ass is stuffed with cream[if (pc.cumQuantity >= 300) to spare], and your [pc.belly] is soaked up to the chest in horny Ausar girl-jizz.  Your hand begins to cramp from the awkward angle it’s been in, and you go through the effort of peeling your [pc.skinFurScales] from between you.  You’re both out of breath and exhausted, but settle into bed beyond satisfied with each other.");
-
-output("\n\n[=Afterglow=]");
-output("\n\n// end scene (scene: SSAE4); go to (scene: SSAAG)");
-
-output("\n\n// (scene: SSAAG)");
-
-output("\n\nYou lay together, out of breath and winding down, waiting for your [pc.cock] to deflate enough to slide out of Paige’s ass.  [if {SSAE1 or SSAE4}You’re soaked from your stomach to your lower chest in Paige’s cum][if {SSAUT}You can feel Paige’s heart beating through the flesh and fur of her breasts][if {SSAKH}She’s still on top of you, her breasts pressed to your [pc.chest] and her breath washing against your neck in stutters][if {None of the above}You’re both well-worn and exhausted from one of your more exciting trysts], proof of your satisfaction with one-another.  You already know this probably won’t be a one-time thing, if you don’t want.");
-
-output("\n\n<i>“Goddamn,”</i> Paige whispers finally, her strength returning to her.  <i>“[if {First time}I’ve never had anything up my ass before, [pc.name].”</i>  She giggles.  <i>“And I can already tell you, if every time is going to feel that... exotic, it won’t be the last either][if {Not first time}It’s almost like every time I shove you up my ass is a brand new experience, [pc.name],”</i> she giggles.  <i>“I’m glad the one to bring out my inner butt-slut was you][if {SSAP1 or SSAP2}.  You don’t have to eat my ass out every time, too,”</i> she says, giggling again, <i>“but, fair warning, I won’t say no if you offer again][if {SSAP3}And I doubt that’ll be the last time you’ll be shoving your face up there too,”</i> she mocks, giggling again.  <i>“I don’t blame you, though.  It’s a pretty perfect ass.]”</i>");
-
-output("\n\nPaige shifts herself on your lap, feeling your still-turgid-but-softening [pc.cock] shift inside her.  <i>“[if (pc.cumQuantity <= 299)Mmm, Gods above, but that feels so</i> different<i>,”</i> she says, one hand trailing down to her tummy.  <i>“I could feel you cum inside me, but it felt different from in my cooch.  I liked it!  I dunno if I liked it</i> more <i>than in my cooch, but I liked it][if (pc.cumQuantity >= 300)Mmmmmm, you just cum like a firehose, don’t you, [pc.name]?”</i> she slurs, rubbing her mildly-bloated tummy.  <i>“It felt like you weren’t going to stop.  I could feel it all the way up my stomach.  I feel so warm... I hope this doesn’t hurt my figure too much[if {SSAP3}.  Do you always cum that much?  Is eating asses your secret, [pc.name]?]]”</i>");
-
-output("\n\nEventually, she stops talking – or you pass out, you’re not certain which one happens first.  Either way, when you’re sensate again, you’re soft as could be and you’ve long-since fallen out of Paige’s ass[if (pc.cumQuantity >= 300), along with the excess seed lodged in Paige’s belly].  You arduously pull each other apart, despite Paige’s half-hearted attempts to get you rowdy for a round two; [if {SSAE1 or SSAE4}you still stink of her girl-cum and bits of her fur stick to your [pc.skinFurScales], and ]as much as you think you might[if {SSAP3} (like she said, it’s a pretty perfect ass)], you two have other things you need to do today.");
-
-output("\n\n<i>“Hey,”</i> she says, <i>“all joking aside, I enjoyed that.  You probably don’t get told that often from all the people I’m sure you’ve drilled in the butt,”</i> she laughs.  <i>“It won’t take much to convince me to try it again, if it’s with you.”</i>  You tell her that, hell, if she’s down, you’re down.");
-
-output("\n\nA short while later, you’ve got your gear back on you, and, energized, you leave Paige’s unit and ready to tackle your next adventure.");
-
-output("\n\n// end scene (scene: SSAAG); reduce Lust to 0; advance clock by two hours; place PC one square outside Paige’s Unit");
-
 output("\n\n[=Tribadism=]");
 output("\n\n// Requires a vagina and a LACK of a penis, or no endowments at all; grey out for men and herms");
 output("\n\n// Tooltip (PC has a penis but no vagina): Vaginas only – no penises allowed!");
@@ -2308,7 +3002,7 @@ output("\n\n// Continue here if Paige is focusing on the PC’s vagina, or if th
 
 output("\n\nPaige plays with you[if (pc.hasVagina = true)r [pc.vagina], tickling at your labia with gentle passes of her fingers against your sensitive skin[if (pc.cocks = 1) while her other hand busies itself with your half-mast-and-rising-fast [pc.cock][if (pc.cocks > 1) and yet leaves the rest of you alone and frustrated, her attention elsewhere].  You’re slick as could be, so you don’t need more teasing, and you show her as much by grabbing the back of her head and thrusting your [pc.hips] forward, squashing her nose right up against your [pc.clit]][if (pc.hasVagina = false)r empty crotch, trailing her fingers along the valley there.  You don’t need teasing, since there isn’t anything to tease, and you let Paige know as much by grabbing her head and meshing her face up against your [pc.crotch].  There’s nothing there to lord over her with, but the action alone is more than enough for her to get the message].");
 
-output("\n\nPaige gasps in surprise[if (pc.hasVagina = true), taking in a whiff of your feminine scent, buried up to the nostrils in your [pc.vagina] – after a pause, she takes a much deeper one, immersing herself in her position and your scent.  She goes limp in your grip, nuzzling her cold Ausar nose into your bits, getting her snout drenched in your [pc.girlCum][if (pc.hasCock = true).  [pc.eachCock] leaks [pc.preCum], the juices slowly dripping down your shaft[if (pc.cock > 1)s] until they drop low enough to mingle with the rest of your fluids, but Paige is already deeply entranced by your pussy’s juice and, besides stroking you and occasionally bumping your base with her nose, pays [pc.eachCock] only a token thought]][if (pc.hasVagina = false), taking in the scent of your [pc.skinFurScales], her nose squashed a bit painfully against your pelvis – and then submits, nuzzling her nose against you, leaning in and angling her nose upward to more appropriately appreciate her station.  Her tail wages lazily behind her as she waits for your command, verbal or otherwise, to begin what she set out to do].");
+output("\n\nPaige gasps in surprise[if (pc.hasVagina = true), taking in a whiff of your feminine scent, buried up to the nostrils in your [pc.vagina] – after a pause, she takes a much deeper one, immersing herself in her position and your scent.  She goes limp in your grip, nuzzling her cold Ausar nose into your bits, getting her snout drenched in your [pc.girlCum][if (pc.hasCock = true).  [pc.eachCock] leaks pre-Cum, the juices slowly dripping down your shaft[if (pc.cock > 1)s] until they drop low enough to mingle with the rest of your fluids, but Paige is already deeply entranced by your pussy’s juice and, besides stroking you and occasionally bumping your base with her nose, pays [pc.eachCock] only a token thought]][if (pc.hasVagina = false), taking in the scent of your [pc.skinFurScales], her nose squashed a bit painfully against your pelvis – and then submits, nuzzling her nose against you, leaning in and angling her nose upward to more appropriately appreciate her station.  Her tail wages lazily behind her as she waits for your command, verbal or otherwise, to begin what she set out to do].");
 
 output("\n\nYou reach down, hooking a thumb into Paige’s mouth.  She opens up, suckling on your digit a bit, gliding her tongue over it.  You lead it from her mouth, out into the open air, and[if (pc.hasVagina = true) into your sodden tunnel, as deeply as you can until her lips mesh against your mons, letting her take it from there][if (pc.hasVagina = false) against your [pc.crotch], giving her the go-ahead she was looking for.  She has no singular target and instead blankets you with her tongue, coating your pelvis in her saliva, slowly and steadily].");
 
@@ -2332,7 +3026,7 @@ output("\n\nDip lower she does, until half of you is inside her maw[if (pc.CockL
 
 output("\n\n// Continue here if Paige is focusing on the PC’s vagina, or if the PC is sexless");
 
-output("\n\nPaige hums appreciatively as you play with her hair, making sure it stays out of her mouth as she [if (pc.hasVagina = true)eats your [pc.vagina].  She’s slow and meticulous; her tongue doesn’t penetrate into you and instead lingers and plays with your labia, pressing flat against your genitals and covering every centimeter of your sex with a single, languid lick, from bottom to button, before doing it again[if {pc.vaginas = 2}.  Mindful of your extra equipment, she switches between your cunt and your {pc.vagina 1}, repeating the process on her sister twice before swapping again[if (pc.hasCock = true).  Her hands on your [pc.cock] never forget their mission; she keeps you up, one hand pinching lightly at your base and the other gently making passes over your [pc.cockHead], collecting and spreading the [pc.precum] beading there occasionally.  Her every jerk up your shaft coaxes out some more, soaking her hand even further].][if (pc.hasVagina = false)licks at your [pc.crotch].  She’s attentive and dedicated, even when there’s nothing for her to play with; her hands crawl down your [pc.ass] and grab at the globes there, kneading the thick flesh of your butt as she hungrily licks, kisses, nips and gnaws at you.  The sensation reminds you of what it was like to have something there, and, though it’s a ways away, the tingling sensation of an orgasm is nonetheless present deep within you.]");
+output("\n\nPaige hums appreciatively as you play with her hair, making sure it stays out of her mouth as she [if (pc.hasVagina = true)eats your [pc.vagina].  She’s slow and meticulous; her tongue doesn’t penetrate into you and instead lingers and plays with your labia, pressing flat against your genitals and covering every centimeter of your sex with a single, languid lick, from bottom to button, before doing it again[if {pc.vaginas = 2}.  Mindful of your extra equipment, she switches between your cunt and your {pc.vagina 1}, repeating the process on her sister twice before swapping again[if (pc.hasCock = true).  Her hands on your [pc.cock] never forget their mission; she keeps you up, one hand pinching lightly at your base and the other gently making passes over your [pc.cockHead], collecting and spreading the pre-cum beading there occasionally.  Her every jerk up your shaft coaxes out some more, soaking her hand even further].][if (pc.hasVagina = false)licks at your [pc.crotch].  She’s attentive and dedicated, even when there’s nothing for her to play with; her hands crawl down your [pc.ass] and grab at the globes there, kneading the thick flesh of your butt as she hungrily licks, kisses, nips and gnaws at you.  The sensation reminds you of what it was like to have something there, and, though it’s a ways away, the tingling sensation of an orgasm is nonetheless present deep within you.]");
 
 output("\n\nShe takes another deep breath, [if (pc.hasVagina = true)twisting her head to one side as if she were kissing you, then drives her tongue forward, slipping it inside your moist pocket.  You gasp in pleasure as she goes, wriggling her tongue up and down and side to side, bloating it to fill you out as much as she can and press against your every pleasurable nook.  She angles her head up, lining her upper lip with your [pc.clit], then makes a light chewing motion to include it in her deliberation against your [pc.vagina][if (pc.hasCock = true).  [pc.eachcock] is rigid as could be, the residual pleasure from your girly bits having you hard as could be for some extra attention, even though the most you’ll get is her hand].][if (pc.hasVagina = false)really taking in your scent to acclimatize herself to her position.  Her fingers trail farther up your butt until they meet at the cleft, interlocking behind you – and then, suddenly, she slips a finger in between your crack, seeking out your [pc.asshole].  You shudder and relax: you weren’t going to ask Paige to do this, but hell, if she’s offering, you won’t say no.  It’ll make things a little saucier for you both, and get you closer to that edge that isn’t easy for you to reach nowadays.]");
 
@@ -2356,7 +3050,7 @@ output("\n\nThough Paige is held still in your grip, she does all she can to enh
 
 output("\n\n// Continue here if Paige is focusing on the PC’s vagina, or if the PC is sexless");
 
-output("\n\nYou aren’t tight enough to make her yip in pain, but you’re tight enough that she can’t turn to one side or the other without twisting them.  With your grip secured, you thrust forward, slamming your pelvis against Paige’s listless face, inundating her nose with [if (pc.hasVagina = true)your wet scent.  You rub her face in your [pc.vagina], getting her acquainted with its every nuance[if {pc.vaginas = 2}, then you shift your [pc.hips] a bit to align her snout with your {pc.vagina 1}, letting Paige know exactly what it is she’s getting into][if (pc.hasCock = true).  [pc.eachCock] swings in the air under her weak grip, slapping into her forehead[if (pc.hasBalls = true) and your [pc.balls] across the bridge of her nose], spewing your [pc.precum] up and across her hair]][if (pc.hasVagina = false)the scent and texture of your [pc.skinFurScales].  You have no dick to shove down her throat and no cunt to take advantage of her tongue, but in some perverse way, that makes your experience all the stronger, knowing that Paige is on her knees servicing <i>you</i> and not any set of genitals].");
+output("\n\nYou aren’t tight enough to make her yip in pain, but you’re tight enough that she can’t turn to one side or the other without twisting them.  With your grip secured, you thrust forward, slamming your pelvis against Paige’s listless face, inundating her nose with [if (pc.hasVagina = true)your wet scent.  You rub her face in your [pc.vagina], getting her acquainted with its every nuance[if {pc.vaginas = 2}, then you shift your [pc.hips] a bit to align her snout with your {pc.vagina 1}, letting Paige know exactly what it is she’s getting into][if (pc.hasCock = true).  [pc.eachCock] swings in the air under her weak grip, slapping into her forehead[if (pc.hasBalls = true) and your [pc.balls] across the bridge of her nose], spewing your pre-cum up and across her hair]][if (pc.hasVagina = false)the scent and texture of your [pc.skinFurScales].  You have no dick to shove down her throat and no cunt to take advantage of her tongue, but in some perverse way, that makes your experience all the stronger, knowing that Paige is on her knees servicing <i>you</i> and not any set of genitals].");
 
 output("\n\nPaige does not struggle in your grip or under your control; she dutifully sticks out her tongue, sliding it wetly [if (pc.hasVagina = true)into your [pc.vagina], eager to taste you and bring you pleasure.  She moans into you, her lips sealing against your body to make sure that no drop of [pc.girlCum] is lost between you two.  She makes a light chewing motion with her lips, tickling your vulva and using her upper lip to brush against your [pc.clit] with every pass[if (pc.hasCock = true).  Her hands are busy, tending to [pc.eachCock]; despite your rampant humping against her maw and the mild discomfort of your grip on her Ausar ears, her hands are deft and sure, as if this sort of multitasking is second-nature to her and she’s been through worse].][if (pc.hasVagina = false)against your [pc.crotch], tasting what she finds there.  She moans out, her vibrating tongue tickling at your pelvis as she does so, familiarizing herself with the canvas that is your body.  She brings her hands up to your [pc.ass], at first holding onto the flesh she finds there for stability – then, without being coy about it, you feel one of her fingers crawl upward, into your cleft, seeking out your [pc.asshole].  You weren’t about to ask for that sort of attention, but hell, if that’s what she wants to make things even saucier for you two, you’re all for it.]");
 
@@ -2408,7 +3102,7 @@ output("\n\nWhy tell Paige how good of a job she’s doing, when you can show he
 
 output("\n\n// Continue here if Paige is focusing on the PC’s penis");
 
-output("\n\nYou massage [if {SSDYHH}her scalp, playing with her hair][if {SSDYHE}her ears, flicking the flexible skin] and you moan loudly and lewdly for her benefit.  You hold Paige’s head still with one hand and grip [if (pc.cocks = 1)the [pc.knot] of your [pc.cock].  You point it inside her maw, rubbing your tip against the roof of her mouth and along the inside of her cheeks before laying it flat on her tongue, rubbing it against her.  Your orgasm is incoming, and you reward her still obedience with a hot splurt of [pc.precum][if (pc.cocks >= 2)your [pc.cock 1] with your other.  You grunt as she works you over, licking and sucking, playing with your [pc.cock] with her tongue; you bathe her tongue with [pc.precum] while your second cock shows its adoration by shooting its own into her hair and across her cheek, which she takes without resistance[if (pc.cocks >= 3).  The rest of [pc.eachCock] flops about, hard as nails and neglected, their own brands and juices going every which way as your [pc.hips] rock into her mouth][if (pc.cocks = 2).  You’re hard as nails, your [pc.hips] rocking into her mouth], signs of your impending orgasm just on the horizon].");
+output("\n\nYou massage [if {SSDYHH}her scalp, playing with her hair][if {SSDYHE}her ears, flicking the flexible skin] and you moan loudly and lewdly for her benefit.  You hold Paige’s head still with one hand and grip [if (pc.cocks = 1)the [pc.knot] of your [pc.cock].  You point it inside her maw, rubbing your tip against the roof of her mouth and along the inside of her cheeks before laying it flat on her tongue, rubbing it against her.  Your orgasm is incoming, and you reward her still obedience with a hot splurt of pre-cum[if (pc.cocks >= 2)your [pc.cock 1] with your other.  You grunt as she works you over, licking and sucking, playing with your [pc.cock] with her tongue; you bathe her tongue with pre-cum while your second cock shows its adoration by shooting its own into her hair and across her cheek, which she takes without resistance[if (pc.cocks >= 3).  The rest of [pc.eachCock] flops about, hard as nails and neglected, their own brands and juices going every which way as your [pc.hips] rock into her mouth][if (pc.cocks = 2).  You’re hard as nails, your [pc.hips] rocking into her mouth], signs of your impending orgasm just on the horizon].");
 
 output("\n\nPaige moans as you control her, sending good vibrations down your dick[if (pc.hasBalls = true), bubbling the cum in your [pc.balls], getting them ever closer to release].  You play with her hair as you hump her face, running your fingers messily and wantonly through her strands, exaggerating your motions intentionally.  Your breathing deepens and your thrusting grows fiercer[if (pc.CockLength <= 11), your [pc.crotch] slapping her on the nose as you slip every inch of yourself down her gullet][if (pc.CockLength >= 12), doing everything you can to impiously stuff your entire length into her mouth].");
 
@@ -2432,13 +3126,13 @@ output("\n\nThe position Paige has put yourself in, and the position she’s put
 
 output("\n\n// Continue here if Paige is focusing on the PC’s penis");
 
-output("\n\nYou rear your [pc.hips] back, holding Paige steady.  She grunts in confusion as you leave just your tip in her mouth.  She rolls with it, licking at it gently – and then you thrust in[if (pc.CockLength <= 11), practically punching Paige in the teeth with your [pc.knot][if (pc.CockLength >= 12), ramming in until your head punches her in the soft palette.  You only stopped from going further because you had the sense to].  Her eyes go wide, and she sputters around your thick shaft, but you don’t stop: you pull out again, then ram back in hard][if (pc.cocks >= 2).  [pc.eachCock] flops and slaps against Paige loosely, taken for the ride, sputtering their [pc.precum] all through the air, through her hair, and all across her face][if (pc.hasBalls = true)as your [pc.balls] audibly slapping her in the chin with every thrust][if (pc.hasVagina = true).[pg]Paige’s fingers are still locked in your [pc.vagina], bless her, but, taken as ferociously and so suddenly as she is, she doesn’t have the wherewithal to maintain her thrusting or playing and just has them sit in there.  That’s fine.  You’ll manage].");
+output("\n\nYou rear your [pc.hips] back, holding Paige steady.  She grunts in confusion as you leave just your tip in her mouth.  She rolls with it, licking at it gently – and then you thrust in[if (pc.CockLength <= 11), practically punching Paige in the teeth with your [pc.knot][if (pc.CockLength >= 12), ramming in until your head punches her in the soft palette.  You only stopped from going further because you had the sense to].  Her eyes go wide, and she sputters around your thick shaft, but you don’t stop: you pull out again, then ram back in hard][if (pc.cocks >= 2).  [pc.eachCock] flops and slaps against Paige loosely, taken for the ride, sputtering their pre-cum all through the air, through her hair, and all across her face][if (pc.hasBalls = true)as your [pc.balls] audibly slapping her in the chin with every thrust][if (pc.hasVagina = true).[pg]Paige’s fingers are still locked in your [pc.vagina], bless her, but, taken as ferociously and so suddenly as she is, she doesn’t have the wherewithal to maintain her thrusting or playing and just has them sit in there.  That’s fine.  You’ll manage].");
 
 output("\n\nYou treat Paige as little more than an object for your pleasure: your hips jackhammer against her, bruising her lips and making her gag every time you [if (pc.CockLength <= 11)bottom out][if (pc.CockLength >= 12)hit her limit].  Her own breathing grows shallow and needy as time goes on: she takes deep huffs every time you pull out and tries to hold her breath when you’re in.  You grunt in animalistic need as you plough her mouth, ignoring the displeasure of your [pc.hips] battering into her face[if (pc.hasBalls = true), and the general sting of your [pc.sack] slapping her in the chin][if (pc.cocks >= 2), and [pc.eachCock] wagging in the air, directionless and slapping against her every facial feature].  You just need to cum!");
 
 output("\n\n// Continue here if Paige is focusing on the PC’s vagina, or if the PC is sexless");
 
-output("\n\nYou keep Paige’s head still and pull your [pc.hips] away from her, far enough to withdraw her tongue.  She hums in curiosity, keeping her tongue out and panting for you – and then you thrust back onto her face, [if (pc.hasVagina = true)slamming your [pc.vagina] onto her unsuspecting tongue.  You grunt out, half in sexual ecstasy and half in some sort of primal victory, as you conquer Paige’s face with your cunt in one messy, wet, borderline visceral swing.  It feels so good that you rear back to do it again[if (pc.hasCock = true).  You don’t even care that [pc.eachCock] isn’t getting anything out of the whole ordeal other than waving in the air impetuously, spewing their [pc.precum] every which way].][if (pc.hasVagina = false)slamming your [pc.crotch] onto her unsuspecting tongue.  You grunt out, half in sexual ecstasy and half in some sort of primal victory, as you conquer Paige’s face with your blank crotch in one hard, borderline aggressive swing.  You don’t know what it is that’s making you act like this: Paige going down on you isn’t exactly as fulfilling as when you had genitals, but, just something <i>about</i> the scenario is rising something inside you – something akin to an orgasm.  Or, what you remember an orgasm to be.]");
+output("\n\nYou keep Paige’s head still and pull your [pc.hips] away from her, far enough to withdraw her tongue.  She hums in curiosity, keeping her tongue out and panting for you – and then you thrust back onto her face, [if (pc.hasVagina = true)slamming your [pc.vagina] onto her unsuspecting tongue.  You grunt out, half in sexual ecstasy and half in some sort of primal victory, as you conquer Paige’s face with your cunt in one messy, wet, borderline visceral swing.  It feels so good that you rear back to do it again[if (pc.hasCock = true).  You don’t even care that [pc.eachCock] isn’t getting anything out of the whole ordeal other than waving in the air impetuously, spewing their pre-cum every which way].][if (pc.hasVagina = false)slamming your [pc.crotch] onto her unsuspecting tongue.  You grunt out, half in sexual ecstasy and half in some sort of primal victory, as you conquer Paige’s face with your blank crotch in one hard, borderline aggressive swing.  You don’t know what it is that’s making you act like this: Paige going down on you isn’t exactly as fulfilling as when you had genitals, but, just something <i>about</i> the scenario is rising something inside you – something akin to an orgasm.  Or, what you remember an orgasm to be.]");
 
 output("\n\nPaige goes limp under your control, staying still in your grip with her tongue out for you to fuck.  [if (pc.hasVagina = true)You impale yourself on her tongue again and again, relishing in the act more than the sensation of her listless tongue doing any work.  Your fluids splash across her nose, drowning her nostrils in your scent, while more than a little bit collects on her tongue before washing down her throat.  In just a moment, there will be a whole lot more where that came from[if (pc.hasCock = true).[pg]The same tingling builds in [pc.eachCock], starting at their base, inside your crotch, and quickly making its way up.  You hope Paige enjoys getting messy].][if (pc.hasVagina = false)Like you had hoped, the tingling sensation of an orgasm is building quickly inside your [pc.crotch].  It’s not going to have an outlet, and it’s tempered somewhat by that fact, but it’s coming.  It’s been a very long time since you’ve felt anything akin to a proper one, and this one is shaping up to come very, <i>very</i> close.]");
 
@@ -2675,7 +3369,7 @@ output("\n\n<i>“I’m close too,”</i> you all but plead.  <i>“I don’t th
 
 output("\n\nIn response, she kicks you away, turning to one side and motioning for you to get onto the bed.  <i>“Quick!”</i> she demands, flapping her hand at you.  <i>I can’t wait another minute!”</i>");
 
-output("\n\nYou do as she demands, vaulting onto the bed and onto your back, y[if (pc.hasCock = true)our [pc.eachCock] swollen with desire, your [pc.precum] leaking and dribbling all over the place with your erratic movements][if (pc.isHerm = true), and y][if (pc.hasVagina = true)our [pc.vagina] soaking wet, desperate for attention as your [pc.girlCum] leaks down your [pc.legs] in smooth torrents][if (pc.gender = 0)our [pc.crotch] facing upward.  You’re not visibly aroused, but that doesn’t mean you aren’t, and you’re positive Paige will know what to do for you].");
+output("\n\nYou do as she demands, vaulting onto the bed and onto your back, y[if (pc.hasCock = true)our [pc.eachCock] swollen with desire, your pre-cum leaking and dribbling all over the place with your erratic movements][if (pc.isHerm = true), and y][if (pc.hasVagina = true)our [pc.vagina] soaking wet, desperate for attention as your [pc.girlCum] leaks down your [pc.legs] in smooth torrents][if (pc.gender = 0)our [pc.crotch] facing upward.  You’re not visibly aroused, but that doesn’t mean you aren’t, and you’re positive Paige will know what to do for you].");
 
 output("\n\nShe doesn’t waste a moment and clambers onto you, the pussy you’ve grown acquainted with squatting on your nose, ready for some more attention.  At the same time, Paige, desperate, immediately dives for your crotch, ready to do whatever it takes to get off.]");
 
@@ -2687,7 +3381,7 @@ output("\n\nShe’s not kidding: her girlish lube is <i>coating</i> her pussy, m
 
 output("\n\nYou plunge your tongue into her, reaching as deeply as you can, assisted by gravity pulling Paige’s strong hips down and onto your willing face.  You reach up, gripping onto her ass with both hands, massaging the taut butt-flesh you find and keeping her horny hips in place for you to properly service.  You pull back, stretching out your tongue to reach forward, batting at her clit before drawing languidly up and across her vulva, then repeat the process.");
 
-output("\n\nPaige focuses on you in kind, [if (pc.gender = 1)taking your [pc.cock] eagerly into her maw, introducing you to the warm wetness and gentle attention of her tongue.  Her efforts are rewarded with a quick spurt of [pc.precum], a taste of what you have in store for her.  She takes you as deeply as she can, and when she draws up, keeps her lips to your shaft, tickling every centimeter of [pc.skinFurScales] as she does, before giving your [pc.cockHead] a kiss and starting again][if (pc.gender = 2]mimicking your technique by diving as deeply into your [pc.vagina] as she can, tasting every nuance of your essence.  She twists and bloats her tongue inside you, getting against every sensitive muscles and tendon as she can.  When she pulls out for a breath, she turns her head sideways, tracing along the inside of your pussy lips and batting your [pc.clit] with her tongue][if pc.gender = 3]indecisive at first on which part of you to focus on, then decides on sticking your [pc.cock] in her mouth and shoving two fingers deep into your [pc.vagina].  She alternates between both your sexes, going deep as she pulls out, then thrusting in as she backs off.  A hot spurt of [pc.precum] lodges into her mouth and her hand is soaked to the wrist in moments; after having a thorough taste, she switches, leaning forward to stick her tongue in your twat while she uses her freshly-lubed hand to press your [pc.cock] against her cheek to jerk you off][if (pc.gender = 0)pressing her tongue against your [pc.crotch].  You have nothing for her to focus on, though, but, horny as she is, she doesn’t ask questions and just does it: her tongue swaths across your pelvis, tasting the sweat on your [pc.skinFurScales] as she goes.  Her own hands hook to your [pc.ass], massaging your globes as she goes].");
+output("\n\nPaige focuses on you in kind, [if (pc.gender = 1)taking your [pc.cock] eagerly into her maw, introducing you to the warm wetness and gentle attention of her tongue.  Her efforts are rewarded with a quick spurt of pre-cum, a taste of what you have in store for her.  She takes you as deeply as she can, and when she draws up, keeps her lips to your shaft, tickling every centimeter of [pc.skinFurScales] as she does, before giving your [pc.cockHead] a kiss and starting again][if (pc.gender = 2]mimicking your technique by diving as deeply into your [pc.vagina] as she can, tasting every nuance of your essence.  She twists and bloats her tongue inside you, getting against every sensitive muscles and tendon as she can.  When she pulls out for a breath, she turns her head sideways, tracing along the inside of your pussy lips and batting your [pc.clit] with her tongue][if pc.gender = 3]indecisive at first on which part of you to focus on, then decides on sticking your [pc.cock] in her mouth and shoving two fingers deep into your [pc.vagina].  She alternates between both your sexes, going deep as she pulls out, then thrusting in as she backs off.  A hot spurt of pre-cum lodges into her mouth and her hand is soaked to the wrist in moments; after having a thorough taste, she switches, leaning forward to stick her tongue in your twat while she uses her freshly-lubed hand to press your [pc.cock] against her cheek to jerk you off][if (pc.gender = 0)pressing her tongue against your [pc.crotch].  You have nothing for her to focus on, though, but, horny as she is, she doesn’t ask questions and just does it: her tongue swaths across your pelvis, tasting the sweat on your [pc.skinFurScales] as she goes.  Her own hands hook to your [pc.ass], massaging your globes as she goes].");
 
 output("\n\nYou’re a whole lot closer than you realized; after just a moment of her work on you, you can feel your orgasm coming just around the corner.  From the sounds of Paige’s frantic moaning down by your [pc.legs], she’s the same way.  No point in wasting breath talking sexy: you have more important work for your mouth.");
 
@@ -2796,7 +3490,7 @@ output("\n\nYou don’t <i>hate</i> your position, and to enhance it for her, yo
 
 output("\n\nPaige doesn’t get up right away, enjoying her own afterglow and eking out her chance at sexual dominance a bit longer.  <i>“Phew!”</i> she finally gasps, satisfied.  <i>“Damn, do you know how to eat a box, [pc.name].  I’ll have to beat the shit out of you more often!”</i>");
 
-output("\n\nShe disengages, you and take a deep breath of fresh air for the first time in what feels like an air.  Your mouth is still absolutely caked in her juices, and you doubt you’ll be tasting anything else for a little while.  Y[if (pc.hasCock = true)our [pc.eachCock] is rigid as could be, dripping your [pc.precum] impetuously][if (pc.isHerm = true) and y][if (pc.hasVagina = true)our [pc.vagina] is soaked through, your own [pc.girlCum] soaking the floor through in a lewd and expanding puddle][if (pc.gender = 0)ou’re frustrated for some kind of relief yourself after such an incredible display, yet you have nothing that Paige could return the favor with, if she even would].");
+output("\n\nShe disengages, you and take a deep breath of fresh air for the first time in what feels like an air.  Your mouth is still absolutely caked in her juices, and you doubt you’ll be tasting anything else for a little while.  Y[if (pc.hasCock = true)our [pc.eachCock] is rigid as could be, dripping your pre-cum impetuously][if (pc.isHerm = true) and y][if (pc.hasVagina = true)our [pc.vagina] is soaked through, your own [pc.girlCum] soaking the floor through in a lewd and expanding puddle][if (pc.gender = 0)ou’re frustrated for some kind of relief yourself after such an incredible display, yet you have nothing that Paige could return the favor with, if she even would].");
 
 output("\n\nYou watch Paige as she gets to her feet and dresses herself.  <i>“Thanks!”</i> she says to you casually, like you just lent her a twenty.  She’s well aware of your situation but she’s pretending not to notice or care – while cold, you know it’s also part of the game.  <i>“Hurry up and beat me, [pc.name], so you can show</i> me <i>what a loser properly deserves.”</i>  Once she’s fully dressed, she blows you a kiss and leaves the room.");
 
