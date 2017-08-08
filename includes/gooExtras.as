@@ -1066,6 +1066,16 @@ public function gooBodyCustomizer():void
 	if((pc.skinType == GLOBAL.SKIN_TYPE_GOO || pc.hasSkinFlag(GLOBAL.FLAG_GOOEY)) && pc.hairType == GLOBAL.HAIR_TYPE_GOO) addGhostButton(10,"Match Color",revertGooBodyColor,"menu","Match Colors","Force the color of your body or hair to match one another.");
 	else addDisabledGhostButton(10,"Match Color","Match Colors","You’ll need to have gooey skin and gooey hair in order to try this!");
 	
+	if(pc.cumflationEnabled())
+	{
+		if(pc.hasStatusEffect("Gel Body"))
+		{
+			if (pc.isCumflated()) addGhostButton(11, "Ingest", gooAbsorbFluids, undefined, "Ingest Cumflation Fluids", "Absorb the fluids that have been pumped into you.");
+			else addDisabledGhostButton(11, "Ingest", "Ingest Cumflation Fluids", "You are currently not inflated with any fluids.");
+		}
+		else addDisabledGhostButton(0,"Locked","Locked","It takes four doses of GaloMax to unlock this option.");
+	}
+	
 	addGhostButton(14,"Back",gooShiftMenu);
 }
 public function adjustGooBody(arg:Array):void
@@ -3209,6 +3219,46 @@ public function gooVaginaDeflate(arg:int = 0):void
 	
 	clearGhostMenu();
 	addGhostButton(0,"Next",vaginaGooRootMenu);
+}
+
+public function gooAbsorbFluids():void
+{
+	clearOutput2();
+	
+	var fluidQ:Number = pc.cumFlationAmount();
+	
+	output2("You notice your middle is a bit bigger than normal... and judging by the look of things, it is because you are currently filled with " + Math.round(fluidQ) + " mLs of sexual fluids.");
+	output2("\n\nAre you sure you want to absorb the contents of your [pc.belly]?");
+	
+	clearGhostMenu();
+	addGhostButton(0, "Yes", gooAbsorbFluidsGo, fluidQ);
+	addGhostButton(1, "No", gooBodyCustomizer);
+}
+public function gooAbsorbFluidsGo(fluidQ:Number):void
+{
+	clearOutput2();
+	
+	output2("You lick your [pc.lips]");
+	if(pc.isBimbo()) output2(" and wiggle your [pc.hips]");
+	output2(" at the thought of consuming");
+	if(fluidQ < 100) output2(" a tiny snack");
+	else if(fluidQ < 500) output2(" a small meal");
+	else if(fluidQ < 1000) output2(" a good meal");
+	else if(fluidQ < 5000) output2(" a heavy meal");
+	else if(fluidQ < 10000) output2(" a full dinner");
+	else if(fluidQ < 50000) output2(" a couple dinners");
+	else output2(" a massive, multi-course dinner");
+	output2(". Suddenly, you fizz from the inside, the contents in your [pc.belly] swirling, mixing, then turning into tiny bubbles that disperse outwards to be infused by the rest of your body. Your head tingles as your belly deflates, your gooey body taking its fill to sate your appetite. Once the feeling subsides, the fluid volume is converted over to your biomass reserves and your middle is back to its normal size");
+	if(pc.isPregnant()) output2(", more or less");
+	output2(".");
+	output2("<i>" + (!pc.isBimbo() ? "Delicious!" : "Mmm, yummy!") + "</i>");
+	
+	// Maybe about 1/3 of it is retained?
+	gooBiomass(Math.round(fluidQ / 3));
+	pc.flushCumflation();
+	
+	clearGhostMenu();
+	addGhostButton(0, "Next", gooBodyCustomizer);
 }
 
 
