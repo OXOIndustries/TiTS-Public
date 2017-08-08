@@ -1171,7 +1171,7 @@ public function appearance(forTarget:Creature):void
 		if(target.hasStatusEffect("Cum Soaked"))
 		{
 			fluidLayers += target.statusEffectv1("Cum Soaked");
-			fluidLayer = target.statusEffectv1("Cum Soaked");
+			fluidLayer = Math.ceil(target.statusEffectv1("Cum Soaked"));
 			if(fluidLayer > 3) fluidLayer = 3;
 			fluidVisc = ["cum", "spooge", "gooey semen" , "goopey spunk"];
 			fluidDesc += fluidVisc[fluidLayer];
@@ -1183,7 +1183,7 @@ public function appearance(forTarget:Creature):void
 		if(target.hasStatusEffect("Pussy Drenched"))
 		{
 			fluidLayers += target.statusEffectv1("Pussy Drenched");
-			fluidLayer = target.statusEffectv1("Pussy Drenched");
+			fluidLayer = Math.ceil(target.statusEffectv1("Pussy Drenched"));
 			if(fluidLayer > 3) fluidLayer = 3;
 			fluidVisc = ["girl-lube", "girl-juice", "slimy girl-cum", "sloppy fem-cum"];
 			fluidDesc += fluidVisc[fluidLayer];

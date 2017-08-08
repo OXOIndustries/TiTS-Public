@@ -2,6 +2,7 @@ package classes.Engine.Utility
 {
 	import classes.kGAMECLASS;
 	import classes.StringUtil;
+	import classes.Engine.Map.InShipInterior;
 	
 	/**
 	 * ...
@@ -9,13 +10,17 @@ package classes.Engine.Utility
 	 */
 	public function getSystemName():String
 	{
-		var pName:String = kGAMECLASS.rooms[kGAMECLASS.shipLocation].system;
-
-		if (pName.indexOf(":") != -1)
-			pName = pName.split(": ")[1];
-	
-		if (pName == "REDACTED") pName = "<i>Unknown</i>";
-		else pName = StringUtil.toTitleCase(pName.toLowerCase());
+		var pName:String = kGAMECLASS.rooms[(InShipInterior() ? kGAMECLASS.shipLocation : kGAMECLASS.currentLocation)].system;
+		
+		if (pName.indexOf(":") != -1) pName = pName.split(": ")[1];
+		
+		switch(pName)
+		{
+			case "REDACTED":
+			case "UNKNOWN": return "<i>Unknown</i>"; break;
+		}
+		
+		pName = StringUtil.toTitleCase(pName.toLowerCase());
 		
 		return pName;
 	}

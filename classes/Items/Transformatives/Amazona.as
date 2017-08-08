@@ -572,7 +572,7 @@
 					else output(" someone");
 					output(" is looking, and dip a finger into your honeypot. You find nothing out of the ordinary, until you start to press against your inner-walls. They stretch out a good bit further than you’ve ever felt them; they’re definitely more pliant now.");
 					
-					target.vaginas[vIdx].bonusCapacity += 1;
+					target.vaginas[vIdx].bonusCapacity += 10;
 				}
 				// Fertility
 				// Increases by 1

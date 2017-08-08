@@ -3899,6 +3899,7 @@
 		
 		public function cumflationEnabled():Boolean
 		{
+			if(hasStatusEffect("Cumflation Immune")) return false;
 			return (fluidSimulate || this is PlayerCharacter);
 		}
 		public function maxOutCumflation(orifice:String, cumFrom:Creature):void
@@ -4449,7 +4450,7 @@
 		}
 		public function willpowerMax(): Number {
 			var bonuses:int = 0;
-			//if(hasPerk("Iron Will")) bonuses += Math.floor(physiqueMax()/5);
+			if(hasPerk("Iron Will")) bonuses += Math.floor(physiqueMax()/5);
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
 			return ((level * 5) + bonuses);
 		}
@@ -18210,7 +18211,7 @@
 			var notice:String = "";
 			var amountVented:Number;
 			var removals:Array = new Array();
-			var cumDrain:Boolean = !hasPerk("No Cum Leakage");
+			var cumDrain:Boolean = (!hasPerk("No Cum Leakage") && !hasStatusEffect("No Cum Leakage"));
 			var amountStored:Number = 0;
 			var omitNotice:Boolean = hasStatusEffect("Omit Cumflation Messages");
 
@@ -19185,12 +19186,13 @@
 					case "Pussy Drenched":
 						if(hasSkinFlag(GLOBAL.FLAG_ABSORBENT))
 						{
+							var cumScale:Number = Math.min((deltaT / 60), 1);
 							if(this is PlayerCharacter && hairType == GLOBAL.HAIR_TYPE_GOO)
 							{
-								addBiomass(20);
-								if(hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) addBiomass(20);
+								addBiomass(Math.round(20 * cumScale));
+								if(hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) addBiomass(Math.round(20 * cumScale));
 							}
-							thisStatus.value1--;
+							thisStatus.value1 -= cumScale;
 							if(thisStatus.value1 <= 0) requiresRemoval = true;
 						}
 						break;

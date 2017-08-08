@@ -879,10 +879,16 @@ public function statisticsScreen(showID:String = "All"):void
 				if(StatTracking.getStat("pregnancy/total day care") > 0)
 					output2("\n<b>* Total @ Daycare:</b> " + StatTracking.getStat("pregnancy/total day care"));
 				// Mother
+				if(StatTracking.getStat("pregnancy/fertile bothrioc eggs") > 0)
+					output2("\n<b>* Births, Bothrioc Eggs, Fertile:</b> " + StatTracking.getStat("pregnancy/fertile bothrioc eggs"));
+				if(StatTracking.getStat("pregnancy/infertile bothrioc eggs") > 0)
+					output2("\n<b>* Births, Bothrioc Eggs, Infertile:</b> " + StatTracking.getStat("pregnancy/infertile bothrioc eggs"));
 				if(StatTracking.getStat("pregnancy/cockvine seedlings birthed") > 0)
 					output2("\n<b>* Births, Cockvines:</b> " + StatTracking.getStat("pregnancy/cockvine seedlings birthed"));
 				if(StatTracking.getStat("pregnancy/cockvine seedlings captured") > 0)
 					output2("\n<b>* Births, Cockvines, Captured:</b> " + StatTracking.getStat("pregnancy/cockvine seedlings captured"));
+				if(StatTracking.getStat("pregnancy/cuntsnake hatched") > 0)
+					output2("\n<b>* Births, Cuntsnake Eggs, Hatched:</b> " + StatTracking.getStat("pregnancy/cuntsnake hatched"));
 				if(StatTracking.getStat("pregnancy/lapinara eggs") > 0)
 					output2("\n<b>* Births, Lapinara Eggs:</b> " + StatTracking.getStat("pregnancy/lapinara eggs"));
 				if(StatTracking.getStat("pregnancy/milodan births") > 0)
@@ -3532,7 +3538,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Residential Deck Stuff!
-			if(flags["AINA_DAY_MET"] != undefined || flags["SEEN_FYN"] == true || flags["MET_SEMITH"] == true || flags["MET_LIAMME"] != undefined || flags["FISI_MET"] != undefined)
+			if(flags["AINA_DAY_MET"] != undefined || flags["SEEN_FYN"] == true || flags["MET_SEMITH"] == true || flags["MET_LIAMME"] != undefined || flags["FISI_MET"] != undefined || flags["MET_PAIGE"] != undefined)
 			{
 				output2("\n<b><u>Residential Deck</u></b>");
 				// Aina
@@ -3595,6 +3601,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Liamme:</b> Met him");
 					if(flags["SEXED_LIAMME"] > 0) output2("\n<b>* Liamme, Times Sexed:</b> " + flags["SEXED_LIAMME"]);
+				}
+				// Paige
+				if(flags["MET_PAIGE"] != undefined)
+				{
+					output2("\n<b>* Paige:</b> Met her");
+					if(flags["SEXED_PAIGE"] > 0) output2("\n<b>* Paige, Times Sexed:</b> " + flags["SEXED_PAIGE"]);
 				}
 				// Semith
 				if(flags["MET_SEMITH"] == true)
