@@ -791,9 +791,9 @@ public function treatmentHourProcs(totalHours:int):void
 		//Change it silently. Leave notification status effect that triggers off the next time cuntchange is called. Followup message:
 		if(pc.hasVagina() && startHours < 123 && treatedHours >= 123)
 		{
-			if(pc.elasticity < 2.5 || pc.vaginas[0].bonusCapacity < 150)
+			if(pc.elasticity < (pc.hasPerk("Elasticity") ? 3.0 : 2.5) || pc.vaginas[0].bonusCapacity < 150)
 			{
-				if(pc.elasticity < 2.5) pc.elasticity = 2.5;
+				if(pc.elasticity < (pc.hasPerk("Elasticity") ? 3.0 : 2.5)) pc.elasticity = (pc.hasPerk("Elasticity") ? 3.0 : 2.5);
 				for(var cuntCount:int = 0; cuntCount < pc.totalVaginas(); cuntCount++)
 				{
 					if(pc.vaginas[cuntCount].bonusCapacity < 150) pc.vaginas[cuntCount].bonusCapacity = 150;
@@ -2661,9 +2661,9 @@ public function treatmentHourProcs(totalHours:int):void
 		
 		//Elasticity + bonus capacity to make sure the girl can handle roughly 24" by 4.5" poles.
 		//Change it silently. Leave notification status effect that triggers off the next time cuntchange is called. Followup message:
-		if(pc.elasticity < 3.5 && treatedHours >= 155)
+		if(pc.elasticity < (pc.hasPerk("Elasticity") ? 4.0 : 3.5) && treatedHours >= 155)
 		{
-			pc.elasticity = 3.5;
+			pc.elasticity = (pc.hasPerk("Elasticity") ? 4.0 : 3.5);
 			if(pc.hasVagina())
 			{
 				for(var cuntCount2:int = 0; cuntCount2 < pc.totalVaginas(); cuntCount2++)

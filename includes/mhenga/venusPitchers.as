@@ -1321,9 +1321,9 @@ public function venusPitcherLayUnfertilizedEgg():void {
 	if (pData && pData.pregnancyQuantity > 1) output("\n\nThe size of your [pc.belly] indicates that you’re going to be going through this at least once more. You can’t stop your [pc.vaginas] from tingling hotly at the thought.");
 	
 	//Increase elasticity .1 towards a cap of 1.6
-	if (pc.elasticity < 1.6)
+	if (pc.elasticity < (pc.hasPerk("Elasticity") ? 3.2 : 1.6))
 	{
-		pc.elasticity += 0.1;
+		pc.elasticity += (pc.hasPerk("Elasticity") ? 0.2 : 0.1);
 		output("\n\nAt least you feel a little stretchier now, like the act has left you better-prepared to both take and pass large insertions without issue.\n\n");
 	}
 	
@@ -1440,10 +1440,10 @@ public function layFertilizedVenusPitcherEgg():void
 		flags["LAID VENUS PITCHER SEEDS"]++;
 	}
 	//Increase elasticity .1 towards a cap of 2
-	if (pc.elasticity < 2.0)
+	if (pc.elasticity < (pc.hasPerk("Elasticity") ? 4.0 : 2.0))
 	{
-		pc.elasticity += 0.1;
-		if (pc.elasticity > 2.0) pc.elasticity = 2.0;
+		pc.elasticity += (pc.hasPerk("Elasticity") ? 0.2 : 0.1);
+		if (pc.elasticity > (pc.hasPerk("Elasticity") ? 4.0 : 2.0)) pc.elasticity = 4.0;
 
 		output("\n\nAt least you feel a little stretchier now, like the act has left you better-prepared to both take and pass large insertions without issue.");
 	}

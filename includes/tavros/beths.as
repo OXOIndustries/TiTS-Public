@@ -2289,10 +2289,10 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			}
 			/*
 			// Asshole gains elasticity 3
-			if(pc.elasticity < 3)
+			if(pc.elasticity < (pc.hasPerk("Elasticity") ? 3.5 : 3))
 			{
 				msg += ParseText("It’s tempting to suppose the way your [pc.anus] keeps clenching up has to do with the butterflies in your gut, but it’s eventually impossible to ignore the fact that it itself is changing. The exploration of two tentative, exploring fingers tells you that it hasn’t become looser, exactly, but... you gasp slightly as you pull it wide open and then release, at which point it immediately puckers back in, as if your sphincter were a particularly thick, tight and flexible band of elastic. Perfect for someone who might reasonably expect to be taking thick, hard cock up the ass a lot. ");
-				pc.elasticity = 3;
+				pc.elasticity = (pc.hasPerk("Elasticity") ? 3.5 : 3);
 				minPass += 2;
 			}
 			*/
