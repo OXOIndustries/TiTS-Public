@@ -488,6 +488,7 @@ public function galoMaxTFProc():void
 		output(".</b>");
 		revertGooBody();
 		pc.createStatusEffect("Gel Body");
+		if(pc.elasticity < 3.5) pc.elasticity = 3.5;
 	}
 	else if(flags["GALOMAX_DOSES"] == 5)
 	{
@@ -508,6 +509,7 @@ public function galoMaxTFProc():void
 		pc.genitalSpot = 0;
 		//Set v1 of Gel Body to 1. Better than piling on more wasted status effects.
 		pc.addStatusValue("Gel Body",1,1);
+		if(pc.elasticity < 4) pc.elasticity = 4;
 		//Mimbranes!
 		pc.removeStatusEffect("Mimbrane Foot Left");
 		pc.removeStatusEffect("Mimbrane Foot Right");

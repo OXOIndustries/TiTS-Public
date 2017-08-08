@@ -18988,6 +18988,13 @@
 				
 				switch (thisStatus.storageName)
 				{
+					case "GastiUnlockTimer":
+						if (this is PlayerCharacter && requiresRemoval)
+						{
+							//email unlock
+							kGAMECLASS.goMailGet("gastigoth_unlock");
+						}
+						break;
 					case "Laquine Ears":
 						if(this is PlayerCharacter)
 						{
@@ -19138,22 +19145,22 @@
 					case "Clippex Gel":
 						if(this is PlayerCharacter)
 						{
-						Clippex.ClippexLustIncrease(deltaT, doOut, this, thisStatus);
-						
-						if (requiresRemoval)
-						{
-							Clippex.ClippexTF(deltaT, doOut, this, thisStatus); 
-						}
+							Clippex.ClippexLustIncrease(deltaT, doOut, this, thisStatus);
+
+							if (requiresRemoval)
+							{
+								Clippex.ClippexTF(deltaT, doOut, this, thisStatus); 
+							}
 						}
 						break;
 					case "Semen's Candy":
 						if(this is PlayerCharacter)
 						{
-						SemensFriend.LibidoIncrease(deltaT, doOut, this, thisStatus);
-						if (requiresRemoval)
-						{
-							SemensFriend.TFProcs(deltaT, doOut, this, thisStatus);
-						}
+							SemensFriend.LibidoIncrease(deltaT, doOut, this, thisStatus);
+							if (requiresRemoval)
+							{
+								SemensFriend.TFProcs(deltaT, doOut, this, thisStatus);
+							}
 						}
 						break;
 					case "Cerespirin":
@@ -19174,11 +19181,17 @@
 							Priapin.effectEnds(maxEffectLength, doOut, this, thisStatus);
 						}
 						break;
-					case "GastiUnlockTimer":
-						if (this is PlayerCharacter && requiresRemoval)
+					case "Cum Soaked":
+					case "Pussy Drenched":
+						if(hasSkinFlag(GLOBAL.FLAG_ABSORBENT))
 						{
-							//email unlock
-							kGAMECLASS.goMailGet("gastigoth_unlock");
+							if(this is PlayerCharacter && hairType == GLOBAL.HAIR_TYPE_GOO)
+							{
+								addBiomass(20);
+								if(hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) addBiomass(20);
+							}
+							thisStatus.value1--;
+							if(thisStatus.value1 <= 0) requiresRemoval = true;
 						}
 						break;
 					case "Hair Regoo":
