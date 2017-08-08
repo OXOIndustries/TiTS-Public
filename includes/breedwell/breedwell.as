@@ -333,7 +333,16 @@ public function approachQuaelle():void
 public function quaelleMainMenu(fromIntro:Boolean = false):void
 {
 	clearMenu();
-	if(!breedwellInductionCheck()) addButton(0, "Induction", ((flags["BREEDWELL_STATUS_BREEDER"] == undefined && flags["BREEDWELL_STATUS_DONATOR"] == undefined) ? breedwellInductionRouter : breedwellInductionUpdate), undefined, "Induction", "Get the low-down on what this job offer really is.");
+	if(!breedwellInductionCheck()) addButton(0, "Induction", ((flags["BREEDWELL_STATUS_BREEDER"] == undefined && flags["BREEDWELL_STATUS_DONATOR"] == undefined) ? breedwellInductionRouter : breedwellInductionUpdate), undefined, "Induction", ((flags["BREEDWELL_STATUS_BREEDER"] == undefined && flags["BREEDWELL_STATUS_DONATOR"] == undefined) ? "Get the low-down on what this job offer really is." : "See what your other half might be in for."));
+	else if(flags["BREEDWELL_STATUS_BREEDER"] == undefined || flags["BREEDWELL_STATUS_DONATOR"] == undefined)
+	{
+		if(!pc.hasGenitals()) addDisabledButton(0, "Induction", "Induction", "You do not yet qualify. Get some genitals first!");
+		else if(pc.isHerm() && !breedwellCheckBirth() && !breedwellCheckSperm()) addDisabledButton(0, "Induction", "Induction", "You do not yet qualify. Get to popping out more children or have your cum milked somewhere first!");
+		else if(pc.hasVagina() && !breedwellCheckBirth() && flags["BREEDWELL_STATUS_BREEDER"] == undefined) addDisabledButton(0, "Induction", "Induction", "You do not yet qualify. Get to popping out more children already!");
+		else if(pc.hasCock() && !breedwellCheckSperm() && flags["BREEDWELL_STATUS_DONATOR"] == undefined) addDisabledButton(0, "Induction", "Induction", "You do not yet qualify. Go get your cum milked somewhere!");
+		else addDisabledButton(0, "Induction", "Induction", "Not necessary--You’ve already been qualified!");
+	}
+	else addDisabledButton(0, "Induction", "Induction", "Not necessary--You’ve already been qualified for both areas already!");
 	addButton(1, "Talk", quaelleTalk);
 	if(flags["QUAELLE_HUGGED"] != undefined) addButton(2, "Hug", quaelleGetAHug);
 	if(9999 == 0) addButton(3, "Sex", mainGameMenu, undefined, "Sex", "");
@@ -399,8 +408,8 @@ public function breedwellInductionCheck():Boolean
 	if(pc.isFemale() && flags["BREEDWELL_STATUS_BREEDER"] != undefined) return true;
 	if(pc.isMale() && flags["BREEDWELL_STATUS_DONATOR"] != undefined) return true;
 	// Viability checks - interrupts button generation if not eligible candidate.
-	if(pc.hasVagina() && !breedwellCheckBirth()) return true;
-	if(pc.hasCock() && !breedwellCheckSperm()) return true;
+	if(pc.hasVagina() && flags["BREEDWELL_STATUS_BREEDER"] == undefined) return (!breedwellCheckBirth());
+	if(pc.hasCock() && flags["BREEDWELL_STATUS_DONATOR"] == undefined) return (!breedwellCheckSperm());
 	// Show button if haven't yet inducted!
 	return false;
 }

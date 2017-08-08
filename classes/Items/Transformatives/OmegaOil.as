@@ -243,7 +243,7 @@ package classes.Items.Transformatives
 				TFlist.push(1);
 			//Elasticity
 			//Effect: 25% chance of increasing elasticity by 0,25
-			if(pc.elasticity < 3)
+			if(pc.elasticity < (pc.hasPerk("Elasticity") ? 4 : 3))
 				TFlist.push(2);
 			//Adds lust
 			//Effect: 75% chance of raising pc lust by 10

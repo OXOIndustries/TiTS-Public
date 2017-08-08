@@ -219,6 +219,7 @@ public function galoMaxTFProc():void
 		if(pc.hairType == GLOBAL.HAIR_TYPE_TENTACLES) pc.hairStyle = "tentacle";
 		else pc.hairStyle = "null";
 		pc.hairType = GLOBAL.HAIR_TYPE_GOO;
+		if(!pc.hasStatusEffect("Cumflation Immune")) pc.createStatusEffect("Cumflation Immune");
 	}
 	//Dose 2
 	//Sexual fluids replaced with hairColor slime + biomass vent (increases cumQ or girlCumQ by biomass quantities. Toggled in goo submenu)
@@ -401,7 +402,7 @@ public function galoMaxTFProc():void
 		pc.createStatusEffect("Goo Crotch");
 		//Elasticity to 3
 		//Cocks/Cunts to goo
-		if(pc.elasticity < 3) pc.elasticity = 3;
+		if(pc.elasticity < (pc.hasPerk("Elasticity") ? 4 : 3)) pc.elasticity = (pc.hasPerk("Elasticity") ? 4 : 3);
 		var x:int = 0;
 		for(x = 0; x < pc.totalCocks(); x++)
 		{
@@ -488,7 +489,7 @@ public function galoMaxTFProc():void
 		output(".</b>");
 		revertGooBody();
 		pc.createStatusEffect("Gel Body");
-		if(pc.elasticity < 3.5) pc.elasticity = 3.5;
+		if(pc.elasticity < (pc.hasPerk("Elasticity") ? 4.5 : 3.5)) pc.elasticity = (pc.hasPerk("Elasticity") ? 4.5 : 3.5);
 	}
 	else if(flags["GALOMAX_DOSES"] == 5)
 	{
@@ -509,7 +510,7 @@ public function galoMaxTFProc():void
 		pc.genitalSpot = 0;
 		//Set v1 of Gel Body to 1. Better than piling on more wasted status effects.
 		pc.addStatusValue("Gel Body",1,1);
-		if(pc.elasticity < 4) pc.elasticity = 4;
+		if(pc.elasticity < (pc.hasPerk("Elasticity") ? 5 : 4)) pc.elasticity = (pc.hasPerk("Elasticity") ? 5 : 4);
 		//Mimbranes!
 		pc.removeStatusEffect("Mimbrane Foot Left");
 		pc.removeStatusEffect("Mimbrane Foot Right");
@@ -772,6 +773,11 @@ public function gooShiftMenu():void
 		else addGhostButton(4,"Fix Vent",doseEffectRevertFix,"vent");
 	}
 	else addDisabledGhostButton(4,"Locked","Locked","It takes two doses of GaloMax to unlock this option.");
+	
+	addGhostButton(5, "Cumflation", gooCumflationOptions, undefined, "Cumflation Options", "Adjust whether or not you want to retain the fluids pumped into you or convert them to biomass.");
+	
+	if(pc.hasSkinFlag(GLOBAL.FLAG_ABSORBENT) && (pc.hasStatusEffect("Cum Soaked") || pc.hasStatusEffect("Pussy Drenched"))) addGhostButton(6, "Clean Self", gooCleanSelf, undefined, "Clean Yourself", "Use your absorbant skin to clean off the sex fluids you are covered in.");
+	
 	addGhostButton(14, "Back", backToAppearance, pc);
 }
 
@@ -3131,7 +3137,7 @@ public function gooVaginaPuffMenu():void
 		clearGhostMenu();
 		if(pc.vaginas[0].hasFlag(GLOBAL.FLAG_GOOEY))
 		{
-			output2("How do  you want to change your vagina?\n");
+			output2("How do you want to change your vagina?\n");
 			if(pc.vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED)) addDisabledGhostButton(0,"Inflate","Inflate Vagina","Your vagina is as puffy as it is going to get!");
 			else if(gooBiomass() >= 100) addGhostButton(0,"Inflate",gooVaginaInflate,0,"Inflate Vagina","Inflate your vagina.\n\n<b>100 mLs Biomass</b>");
 			else addDisabledGhostButton(0,"Inflate","Inflate Vagina","You do not have enough biomass for this!\n\n<b>100 mLs Biomass</b>");
@@ -3209,6 +3215,117 @@ public function gooVaginaDeflate(arg:int = 0):void
 	
 	clearGhostMenu();
 	addGhostButton(0,"Next",vaginaGooRootMenu);
+}
+
+// Cumflation options
+public function gooCumflationOptions():void
+{
+	clearOutput2();
+	
+	var cumflate:Boolean = (!pc.hasStatusEffect("Cumflation Immune"));
+	var leakage:Boolean = (!pc.hasStatusEffect("No Cum Leakage"));
+	output2("Currently, you are " + (!cumflate ? "not allowing" : "allowing") + " your body to cumflate.");
+	if(!cumflate) output2("\n\nThis means that when you take in a load, your body will automatically convert the fluids into goo biomass.");
+	else
+	{
+		output2("\n\nAllowing your body to do this will prevent it from automatically absorbing some injected fluids.");
+		if(!leakage) output2(" Fortunately, you have chosen to not let your body leak the fluids stored inside you.");
+		else output2(" Be careful, however, since doing that may lead to leakage!");
+		output2(" In any case, you can choose to <b>Ingest</b> the fluids if you like, preventing leaks by absorbing the fluids into your body and converting it to goo biomass.");
+	}
+	
+	clearGhostMenu();
+	
+	addGhostButton(0, "Cumflate:" + (!cumflate ? "OFF" : "ON"), gooToggleCumflation, undefined, "Toggle Cumflation " + (!cumflate ? "On" : "Off"), (!cumflate ? "Activate the ability to cumflate." : "Disable cumflation and automatically absorb the loads put into you."));
+	if (cumflate) addGhostButton(1, "Leaking:" + (!leakage ? "OFF" : "ON"), gooToggleLeaking, undefined, "Toggle Leaking " + (!leakage ? "On" : "Off"), (!leakage ? "Enable your body to leak your cumflated fluids." : "Prevent the cumflated fluids in your body from leaking out."));
+	if (pc.isCumflated()) addGhostButton(2, "Ingest", gooAbsorbFluids, undefined, "Ingest Cumflation Fluids", "Absorb the fluids that have been pumped into you.");
+	else addDisabledGhostButton(2, "Ingest", "Ingest Cumflation Fluids", "You are currently not inflated with any fluids.");
+	
+	addGhostButton(14, "Back", gooShiftMenu);
+}
+public function gooToggleCumflation():void
+{
+	if(!pc.hasStatusEffect("Cumflation Immune")) pc.createStatusEffect("Cumflation Immune");
+	else pc.removeStatusEffect("Cumflation Immune");
+	
+	gooCumflationOptions();
+}
+public function gooToggleLeaking():void
+{
+	if(!pc.hasStatusEffect("No Cum Leakage")) pc.createStatusEffect("No Cum Leakage");
+	else pc.removeStatusEffect("No Cum Leakage");
+	
+	gooCumflationOptions();
+}
+public function gooAbsorbFluids():void
+{
+	clearOutput2();
+	
+	var fluidQ:Number = pc.cumFlationAmount();
+	
+	output2("You notice your middle is a bit bigger than normal... and judging by the look of things, it is because you are currently filled with " + Math.round(fluidQ) + " mLs of sexual fluids.");
+	output2("\n\nAre you sure you want to absorb the contents of your [pc.belly]?");
+	
+	clearGhostMenu();
+	addGhostButton(0, "Yes", gooAbsorbFluidsGo, fluidQ);
+	addGhostButton(1, "No", gooCumflationOptions);
+}
+public function gooAbsorbFluidsGo(fluidQ:Number):void
+{
+	clearOutput2();
+	
+	output2("You lick your [pc.lips]");
+	if(pc.isBimbo()) output2(" and wiggle your [pc.hips]");
+	output2(" at the thought of consuming");
+	if(fluidQ < 100) output2(" a tiny snack");
+	else if(fluidQ < 500) output2(" a small meal");
+	else if(fluidQ < 1000) output2(" a good meal");
+	else if(fluidQ < 5000) output2(" a heavy meal");
+	else if(fluidQ < 10000) output2(" a full dinner");
+	else if(fluidQ < 50000) output2(" a couple dinners");
+	else output2(" a massive, multi-course dinner");
+	output2(". Suddenly, you fizz from the inside, the contents in your [pc.belly] swirling, mixing, then turning into tiny bubbles that disperse outwards to be infused by the rest of your body. Your [pc.hair] tingles as your belly deflates, your");
+	if(pc.hasStatusEffect("Gel Body")) output2(" gooey");
+	output2(" body taking its fill to sate your appetite. Once the feeling subsides, the fluid volume is converted over to your biomass reserves and your middle is back to its normal size again");
+	if(pc.isPregnant()) output2(", more or less");
+	output2(".");
+	output2("<i>" + (!pc.isBimbo() ? "Delicious!" : "Mmm, yummy!") + "</i>");
+	
+	gooBiomass(Math.round(fluidQ));
+	pc.flushCumflation();
+	
+	clearGhostMenu();
+	addGhostButton(0, "Next", gooShiftMenu);
+}
+
+// Absorbent skin
+public function gooCleanSelf():void
+{
+	clearOutput2();
+	
+	output2("Your body is definitely covered in sexual fluids, making it obvious to anyone of what activities you have been involved in...");
+	output2("\n\nDo you use your absorbent skin to clean yourself off?");
+	
+	clearGhostMenu();
+	addGhostButton(0, "Yes", gooCleanSelfGo);
+	addGhostButton(1, "No", gooShiftMenu);
+}
+public function gooCleanSelfGo():void
+{
+	clearOutput2();
+	
+	output2("With some concentration, you stimulate your [pc.skinNoun] to accept the fluids. Your body soaks it up like a sponge, wicking up the sex juices greedily and leaving you a little more cleansed - and a little more filled in the reserves.");
+	
+	var cumScale:Number = ((pc.statusEffectv1("Cum Soaked") + pc.statusEffectv1("Pussy Drenched")) / 60);
+	
+	gooBiomass(Math.round(20 * cumScale));
+	if(pc.hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) gooBiomass(Math.round(20 * cumScale));
+	
+	pc.removeStatusEffect("Cum Soaked");
+	pc.removeStatusEffect("Pussy Drenched");
+	
+	clearGhostMenu();
+	addGhostButton(0, "Next", gooShiftMenu);
 }
 
 

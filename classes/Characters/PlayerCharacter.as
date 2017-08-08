@@ -71,7 +71,7 @@ package classes.Characters
 		{
 			kGAMECLASS.mimbraneFeed("vagina");
 			//Goo TFed? GATHER BIOMASS
-			if(hairType == GLOBAL.HAIR_TYPE_GOO)
+			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
@@ -92,7 +92,7 @@ package classes.Characters
 		{
 			kGAMECLASS.mimbraneFeed("ass");
 			//Goo TFed? GATHER BIOMASS
-			if(hairType == GLOBAL.HAIR_TYPE_GOO)
+			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
@@ -173,7 +173,7 @@ package classes.Characters
 			
 			kGAMECLASS.mimbraneFeed("face");
 			//Goo TFed? GATHER BIOMASS
-			if(hairType == GLOBAL.HAIR_TYPE_GOO)
+			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);

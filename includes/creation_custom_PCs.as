@@ -407,7 +407,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.createStatusEffect("Goo Vent");
 			pc.createStatusEffect("Goo Crotch");
 			flags["GALOMAX_DOSES"] = 5;
-			if(pc.elasticity < 3) pc.elasticity = 3;
+			if(pc.elasticity < (pc.hasPerk("Elasticity") ? 4 : 3)) pc.elasticity = (pc.hasPerk("Elasticity") ? 4 : 3);
 			for(i = 0; i < pc.totalCocks(); i++)
 			{
 				if(!pc.hasCockFlag(GLOBAL.FLAG_GOOEY,i)) pc.cocks[i].addFlag(GLOBAL.FLAG_GOOEY);
