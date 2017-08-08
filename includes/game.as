@@ -779,6 +779,29 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			}
 		}
 	}
+	if (annoIsCrew())
+	{
+		count++;
+		if (!counter)
+		{
+			//25% chance of special maid scene proccing if Anno has the maid outfit and haven't seen the scene in a day - gotta have a dink that fits and not be naga or taur
+			if (flags["ANNO_MAID_OUTFIT"] != undefined && rand(4) == 0 && !pc.hasStatusEffect("The Lusty Ausar Maid") && !pc.isTaur() && !pc.isNaga() && pc.cockThatFits(anno.vaginalCapacity()) >= 0)
+			{
+				addButton((count + other) - 1, "Anno", annoFrenchMaid);
+				if (rand(2) == 0) crewMessages += "\n\nAnno's not in her quarters as you'd expect. Instead you find her prancing about the common area of your ship, dressed in what appears to be... a maid outfit?";
+				else crewMessages += "\n\nAnno doesn't seem to be in her quarters at the moment, leaving the room strikingly empty, but you think you catch a few glimpses of the snowy pup cavorting about your ship's common area. Odd.";
+			}
+			else
+			{
+				addButton((count + other) - 1, "Anno", annoFollowerApproach);
+				if (hours >= 6 && hours <= 7 || hours >= 19 && hours <= 20) crewMessages += "\n\nAnno is walking about in her quarters, sorting through her inventory and organizing some of her equipment.";
+				else if (hours >= 12 || hours <= 13) crewMessages += "\n\nAnno’s busy doing a quick workout in her quarters to the beat of some fast-paced ausar heavy metal. <i>“Gotta keep in shape!”</i> she says.";
+				else if (!curedReahaInDebt() && rand(3) == 0) crewMessages += "\n\nAnno’s sitting in the kitchen with a [reaha.milkNoun] moustache on her upper lip, looking awfully happy with herself. You can’t imagine where that came from...";
+				else crewMessages += "\n\nAnno is sitting in the common area with her nose buried in half a dozen different data slates. It looks like she’s splitting her attention between the latest Warp Gate research and several different field tests of experimental shield generators.";
+			}
+		}
+		//output("\n\n{PC has Freed Reaha and Anno, add to Anno’s random selection: }");
+	}
 	if (seraIsCrew())
 	{
 		count++;
