@@ -18,6 +18,7 @@ public function pcAppearance(e:MouseEvent = null):void
 	}
 	else if (pButton.isActive && pButton.isHighlighted)
 	{
+		clearBust();
 		backToPrimaryOutput();
 		userInterface.showingPCAppearance = false;
 	}

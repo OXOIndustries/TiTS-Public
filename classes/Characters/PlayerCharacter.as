@@ -450,6 +450,15 @@ package classes.Characters
 			}
 		}
 		
+		override public function get bustDisplay():String
+		{
+			var sBust:String = "PC";
+			
+			if(isNude()) sBust += "_NUDE";
+			
+			return sBust;
+		}
+		
 		override public function getCombatName():String
 		{
 			return "you";
