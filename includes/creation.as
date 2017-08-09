@@ -54,8 +54,7 @@ public function creationRouter(e:Event = null):void {
 
 public function showPCBust():void
 {
-	if(pc.isNude()) showBust("PC_NUDE");
-	else showBust("PC");
+	showBust(chars["PC"].bustDisplay);
 }
 public function creationHeader(sName:String = ""):void
 {
