@@ -6647,7 +6647,7 @@
 			if (output != "") output += " ";
 
 			var nouns:Array = ["hand"];
-			if(hasArmFlag(GLOBAL.FLAG_PAWS)) nouns.push("paw");
+			if(hasArmFlag(GLOBAL.FLAG_PAWS) && armType != GLOBAL.TYPE_AVIAN) nouns.push("paw");
 			output += RandomInCollection(nouns);
 			return output;
 		}
@@ -6864,7 +6864,7 @@
 			//Noun
 			if (output != "") output += " ";
 			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hooves";
-			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && rand(10) < 8) output += "paws";
+			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && legType != GLOBAL.TYPE_AVIAN && rand(10) < 8) output += "paws";
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilia";
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && rand(2) == 0) output += "high-heels";
 			else if (legType == GLOBAL.TYPE_LIZAN) output += "footclaws";
@@ -6884,7 +6884,7 @@
 			//Noun
 			if (output != "") output += " ";
 			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hoof";
-			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && rand(10) < 8) output += "paw";
+			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && legType != GLOBAL.TYPE_AVIAN && rand(10) < 8) output += "paw";
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "undercarriage";
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && rand(2) == 0) output += "high-heel";
 			else if (legType == GLOBAL.TYPE_LIZAN) output += "footclaw";
@@ -6903,7 +6903,7 @@
 			var output: String = "";
 			//Noun
 			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hoof-tips";
-			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && rand(2) == 0) output += "paw-toes";
+			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && legType != GLOBAL.TYPE_AVIAN && rand(2) == 0) output += "paw-toes";
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilia";
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && rand(2) == 0) output += "pointed toes";
 			else if (legType == GLOBAL.TYPE_LIZAN) output += "claws";
@@ -17123,6 +17123,9 @@
 		
 		public function addPregnancyBellyMod(pregSlot:int, value:Number, perOffspring:Boolean = true):void
 		{
+			// Error, out of range!
+			if(pregSlot < 0 || pregSlot >= pregnancyData.length) return;
+			
 			var pData:PregnancyData = pregnancyData[pregSlot];
 			var addValue:Number = value;
 			

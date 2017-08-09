@@ -1223,17 +1223,9 @@ public function ovalastingPrematureBirth():void
 	
 	// Switch failed egg off
 	var ovaEffect:StorageClass = pc.getStatusEffect("Ovalasting");
-	if(ovaEffect != null)
-	{
-		switch(pregSlot)
-		{
-			case 0: ovaEffect.value1 = 0; break;
-			case 1: ovaEffect.value2 = 0; break;
-			case 2: ovaEffect.value3 = 0; break;
-			case 3: ovaEffect.value4 = 0; break;
-		}
-	}
-	ovaEffect.tooltip = ovalastingTooltip(ovaEffect);
+	eggTrainerOvalastingCleanup(ovaEffect, pregSlot);
+	
+	if(pc.statusEffectv1("Ovalasting Big Egg " + pregSlot) > 0) pc.removeStatusEffect("Ovalasting Big Egg " + pregSlot);
 	
 	pc.removeStatusEffect("Ovalasting Early Clutch Timer");
 	
@@ -1433,16 +1425,7 @@ public function eggTrainerOvalastingRemoval(oIdx:int = -2):void
 	output("\n\nThe machine beeps something at you, but you’re way too worn out to get up and read it. Smiling to yourself, you glance into the tub, and see a pink ball slightly bigger than the other eggs resting atop the trainer’s payload, slowly submerging in the heated lube. A pang of... regret? Longing? Some emotion you can’t quite put words to tugs at your heartstrings for a moment as the lid slides closed, and you’re left to recover.");
 	
 	var pregSlot:int = (oIdx < 0 ? 3 : oIdx);
-	switch(pregSlot)
-	{
-		case 0: ovaEffect.value1 = 0; break;
-		case 1: ovaEffect.value2 = 0; break;
-		case 2: ovaEffect.value3 = 0; break;
-		case 3: ovaEffect.value4 = 0; break;
-	}
-	ovaEffect.tooltip = ovalastingTooltip(ovaEffect);
-	
-	if(ovaEffect.value1 == 0 && ovaEffect.value2 == 0 && ovaEffect.value3 == 0 && ovaEffect.value4 == 0) pc.removeStatusEffect("Ovalasting");
+	eggTrainerOvalastingCleanup(ovaEffect, pregSlot);
 	
 	for(var i:int = -1; i < pc.pregnancyData.length; i++)
 	{
@@ -1455,6 +1438,20 @@ public function eggTrainerOvalastingRemoval(oIdx:int = -2):void
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+public function eggTrainerOvalastingCleanup(ovaEffect:StorageClass, pregSlot:int = -1):void
+{
+	switch(pregSlot)
+	{
+		case 0: ovaEffect.value1 = 0; break;
+		case 1: ovaEffect.value2 = 0; break;
+		case 2: ovaEffect.value3 = 0; break;
+		case 3: ovaEffect.value4 = 0; break;
+	}
+	ovaEffect.tooltip = ovalastingTooltip(ovaEffect);
+	
+	if(ovaEffect.value1 == 0 && ovaEffect.value2 == 0 && ovaEffect.value3 == 0 && ovaEffect.value4 == 0) pc.removeStatusEffect("Ovalasting");
 }
 
 /*
