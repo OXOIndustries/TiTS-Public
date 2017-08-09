@@ -54,7 +54,7 @@ public function creationRouter(e:Event = null):void {
 
 public function showPCBust():void
 {
-	showBust(chars["PC"].bustDisplay());
+	showBust(chars["PC"].bustDisplay);
 }
 public function creationHeader(sName:String = ""):void
 {
