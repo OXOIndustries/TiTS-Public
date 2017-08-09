@@ -59,9 +59,8 @@ public function reahaMoosAboutNewTexas():Boolean
 
 		clearOutput();
 
-		showName("\nREAHA");
+		showReaha();
 		author("Savin");
-		showBust("REAHA");
 
 		output("As you’re fiddling with the boarding ramp controls, you hear Reaha’s bare feet padding up behind you. You turn to face her, and find yourself staring down the strawberry-haired cow, her big blue eyes locked with yours.");
 		
@@ -91,8 +90,7 @@ public function talkWithFollowerReaha():void
 public function reahaFirstTalk():void
 {
 	clearOutput();
-	showName("\nREAHA");
-	showBust("REAHA");
+	showReaha();
 	author("Savin");
 
 	flags["REAHA_DONE_NEWTEXAS_FOLLOWUP"] = 1;

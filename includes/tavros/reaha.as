@@ -12,17 +12,20 @@
 
 public function reahaHeader(nude:Boolean = false):void
 {
-	showName("\nREAHA");
 	author("Savin");
 	showReaha(nude);
 }
 
 public function showReaha(nude:Boolean = false):void
 {
-	//var nudeBonus:String = "";
-	//if(nude) nudeBonus = "_NUDE";
-	//showBust("REAHA"+nudeBonus);
-	showBust("REAHA");
+	showName("\nREAHA");
+	showBust(reahaBustDisplay(nude));
+}
+public function reahaBustDisplay(nude:Boolean = false):String
+{
+	var sBust:String = "REAHA";
+	//if(nude) sBust += "_NUDE";
+	return sBust;
 }
 
 public function reahaRecruited():Boolean
@@ -545,7 +548,7 @@ public function ReahaBrothelSexMenu():void
 	author("Savin");
 	if(flags["KAT_MET"] != undefined) showName("KAT &\nREAHA");
 	else showName("MISTRESS &\nREAHA");
-	showBust("BORING_MISTRESS","REAHA");
+	showBust("BORING_MISTRESS",reahaBustDisplay());
 	
 
 	//time 0600-0959
@@ -686,7 +689,7 @@ public function buyCowslutsForYou():void
 	author("Savin");
 	clearOutput();
 	showName("\nREAHA");
-	showBust("BORING_MISTRESS","REAHA");
+	showBust("BORING_MISTRESS",reahaBustDisplay());
 	flags["REAHA_BOUGHT"] = 1;
 	flags["REAHA_IS_CREW"] = 1;
 

@@ -1250,6 +1250,7 @@ public function buttFuckReahaSlooot():void
 {
 	clearOutput();
 	if(reaha.ass.hasFlag(GLOBAL.FLAG_PUMPED) || reaha.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) showBust("REAHA_ANUSOFT");
+	else showBust(reahaBustDisplay());
 	showName("\nREAHA");
 	author("Savin");
 	var x:int = -1;
@@ -1294,6 +1295,7 @@ public function goddamnSavinsAsslust(x:int):void
 {
 	clearOutput();
 	if(reaha.ass.hasFlag(GLOBAL.FLAG_PUMPED) || reaha.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) showBust("REAHA_ANUSOFT");
+	else showBust(reahaBustDisplay());
 	showName("\nREAHA");
 	author("Savin");
 	output("While Reaha’s gasping for breath, nuzzling against your shoulder, you reach into the nightstand and pull out a pair of fuzzy handcuffs halfway into the mound of toys. She looks back at you with eyes blanked with lust, utterly limp in your grasp as you push her forward, planting her face a bare inch from the stained wall she’s left dripping with her breasts’ bounty, and pull her arms behind her back. Realizing what’s about to happen, she resists for the first time, trying to pull her hands free - but her knees just buckle, leaving her defenseless as you tie your milk whore’s hands and secure the link between the cuffs in your grasp.");
@@ -1353,6 +1355,7 @@ public function goGentleIntoThatDarkNightReaha(x:int):void
 {
 	clearOutput();
 	if(reaha.ass.hasFlag(GLOBAL.FLAG_PUMPED) || reaha.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) showBust("REAHA_ANUSOFT");
+	else showBust(reahaBustDisplay());
 	showName("\nREAHA");
 	author("Savin");
 	output("You heft Reaha up, one arm wrapped under her heaving chest, and the other cupping her cheek. She moans weakly, twisting to accept a long, tongue-filled kiss. Her broad hips press back against your groin, rubbing the cum-and-lube-slathered mound of her sex into your crotch. Even in her half-delirious post-climactic haze, she manages to reach back and ");
