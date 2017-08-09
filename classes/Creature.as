@@ -2625,6 +2625,7 @@
 			return slots;
 		}
 		
+		/*
 		public function hasItem(arg:ItemSlotClass,amount:int = 1):Boolean
 		{
 			if(arg == null || inventory.length == 0) return false;
@@ -2648,6 +2649,7 @@
 			if(foundAmount >= amount) return true;
 			return false;
 		}
+		*/
 		public function hasItemByClass(ref:Class, amount:int = 1):Boolean
 		{
 			if (ref == null || inventory.length == 0) return false;
@@ -2674,7 +2676,7 @@
 			if (amt >= amount) return true;
 			return false;
 		}
-		
+		/*
 		public function destroyItemByName(arg:String, amount:int = 1):void
 		{
 			if (arg == null || inventory.length == 0 || amount == 0) return;
@@ -2719,6 +2721,7 @@
 			}
 			return;
 		}
+		*/
 		public function destroyItemByReference(arg:ItemSlotClass):void
 		{
 			if (arg == null || inventory.length == 0) return;
@@ -12926,9 +12929,9 @@
 				{
 					descript += RandomInCollection(["very long", "back-length"]);
 				}
-				else if (hairLength < tallness / 1.7) {
+				else if (hairLength < tallness / 1.6) {
 					if(rand(3) == 0) descript += "cascading";
-					else if(hairLength < tallness/1.6) 
+					else if(hairLength < tallness / 1.7) 
 					{
 						descript += "ass-length";
 					}
@@ -19192,8 +19195,8 @@
 							var cumScale:Number = Math.min((deltaT / 60), 1);
 							if(this is PlayerCharacter && hairType == GLOBAL.HAIR_TYPE_GOO)
 							{
-								addBiomass(Math.round(20 * cumScale));
-								if(hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) addBiomass(Math.round(20 * cumScale));
+								addBiomass(Math.round(500 * cumScale));
+								if(hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) addBiomass(Math.round(500 * cumScale));
 							}
 							thisStatus.value1 -= cumScale;
 							if(thisStatus.value1 <= 0) requiresRemoval = true;

@@ -113,22 +113,25 @@
 			_buttonB.ToggleState();
 			_buttonB.ToggleState();
 			
-			if (_optsPropertyA && _optsPropertyA in kGAMECLASS.gameOptions)
+			if (_optsPropertyA)
 			{
-				var optsValA:Boolean = kGAMECLASS.gameOptions[_optsPropertyA];
-				
-				if (optsValA == true && !_buttonA.IsOn())
+				if (_optsPropertyA in kGAMECLASS.gameOptions)
 				{
-					_buttonA.ToggleState();
+					var optsValA:Boolean = kGAMECLASS.gameOptions[_optsPropertyA];
+					
+					if (optsValA == true && !_buttonA.IsOn())
+					{
+						_buttonA.ToggleState();
+					}
+					else if (optsValA == false && _buttonA.IsOn())
+					{
+						_buttonA.ToggleState();
+					}
 				}
-				else if (optsValA == false && _buttonA.IsOn())
+				else
 				{
-					_buttonA.ToggleState();
+					trace("Options property not found. Looking for " + _optsPropertyA);
 				}
-			}
-			else
-			{
-				trace("Options property not found. Looking for " + _optsPropertyA);
 			}
 			
 			if (_optsPropertyB && _optsPropertyB in kGAMECLASS.gameOptions)

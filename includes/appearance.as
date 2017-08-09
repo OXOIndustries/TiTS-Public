@@ -992,7 +992,8 @@ public function appearance(forTarget:Creature):void
 			output2(", covered in a layer of " + target.skinFurScales(true, true));
 			break;
 		case GLOBAL.SKIN_TYPE_GOO:
-			output2(", all of them glittering, semi-transparent goo");
+			if(target.hasStatusEffect("Opaque Skin")) output2(", covered in a layer of glistening goo");
+			else output2(", all of them glittering, semi-transparent goo");
 			break;
 		case GLOBAL.SKIN_TYPE_FEATHERS:
 			output2(", covered in " + (rand(2) == 0 ? "patches" : "a layer") + " of " + target.skinFurScales(true, true));

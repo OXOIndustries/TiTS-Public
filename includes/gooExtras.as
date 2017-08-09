@@ -3229,7 +3229,7 @@ public function gooCumflationOptions():void
 	else
 	{
 		output2("\n\nAllowing your body to do this will prevent it from automatically absorbing some injected fluids.");
-		if(!leakage) output2(" Fortunately, you have chosen to not let your body leak the fluids stored inside you.");
+		if(!leakage) output2(" Fortunately, you have chosen not to let your body leak the fluids stored inside you.");
 		else output2(" Be careful, however, since doing that may lead to leakage!");
 		output2(" In any case, you can choose to <b>Ingest</b> the fluids if you like, preventing leaks by absorbing the fluids into your body and converting it to goo biomass.");
 	}
@@ -3318,8 +3318,8 @@ public function gooCleanSelfGo():void
 	
 	var cumScale:Number = ((pc.statusEffectv1("Cum Soaked") + pc.statusEffectv1("Pussy Drenched")) / 60);
 	
-	gooBiomass(Math.round(20 * cumScale));
-	if(pc.hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) gooBiomass(Math.round(20 * cumScale));
+	gooBiomass(Math.round(500 * cumScale));
+	if(pc.hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) gooBiomass(Math.round(500 * cumScale));
 	
 	pc.removeStatusEffect("Cum Soaked");
 	pc.removeStatusEffect("Pussy Drenched");
