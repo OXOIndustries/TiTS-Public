@@ -47,6 +47,8 @@ public function processGastigothEvents():void
 	//if(flags["ICEQUEEN COMPLETE"] == 2) prisonerSent += 1; // Zaalt
 	//if(flags["PQ_SECURED_LAH"] == 2) prisonerSent += 1; // R.K.Lah
 	
+	if(prisonerSent <= 0) return;
+	
 	pc.createStatusEffect("GastiUnlockTimer");
 	pc.setStatusMinutes("GastiUnlockTimer",5*24*60);
 	flags["GASTIGOTH_UNLOCKNUM"] = prisonerSent;
