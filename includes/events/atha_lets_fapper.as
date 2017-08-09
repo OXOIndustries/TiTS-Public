@@ -38,6 +38,7 @@ public function smutFapMenu(fromPrevious:Boolean = false):void
 	var possibleFuncs:Array = [];
 	if (MailManager.isEntryViewed("lets_fap_unlock")) possibleFuncs.push( { t: "LetsFap", th: "Let’s Fap", tb: "Atha’s Let’s Fap episodes", f: letsFapSelectionMain, ar: undefined } );
 	if (MailManager.isEntryViewed("steph_on_demand")) possibleFuncs.push( { t: "Steph OD", th: "Steph Irson: On Demand", tb: "On demand episodes of Steph Irson: Galactic Huntress", f: stephOnDemandVODs, ar: undefined } );
+	if (MailManager.isEntryViewed("syri_video")) possibleFuncs.push( { t: "Syri", th: "Syri", tb: "Take a good look at that very private video Syri sent you. ", f: syriJackVid, ar: undefined } );
 	
 	clearMenu();
 	

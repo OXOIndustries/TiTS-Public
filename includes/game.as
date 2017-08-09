@@ -2480,6 +2480,13 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			else if(GetGameTimestamp() >= (flags["KASHIMA_DELAY_TIMER"] + 60*24*5)) goMailGet("ushamee_meet");
 		}
 		
+		//Syri Panty vid
+		if (!MailManager.isEntryUnlocked("syri_video") && flags["SYRI_GIFT_PANTY"] != undefined)
+		{
+			if(flags["SYRI_VIDEO_DELAY_TIMER"] == undefined) flags["SYRI_VIDEO_DELAY_TIMER"] = GetGameTimestamp();
+			else if(GetGameTimestamp() >= (flags["SYRI_VIDEO_DELAY_TIMER"] + 60*24*3)) goMailGet("syri_video");
+		}
+		
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette();
 	}
