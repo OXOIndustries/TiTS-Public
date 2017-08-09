@@ -1052,6 +1052,7 @@ public function stayForQuest():void
 	output("\n\n<i>“You just landed your ship in the middle of a special forces raid on a Black Void base. What in the everlasting fuck are you doing here, Steele?”</i> she asks, smoothly drawing her sidearm and cocking it, waiting for an answer. <i>“Choose your next words carefully.”</i>");
 	output("\n\nYou open your mouth to reply, but just then an explosion rocks the asteroid, sending everyone nearby - Riya and Grence included - sprawling to the ground. You quickly gain your [pc.legs], taking cover and grabbing your [pc.weapon] as more Void soldiers pour through the hangar doors. Riya and company are on their feet in record time, trading fire with the pirates in a series of plasma flashes so bright as to be nearly blinding.");
 	processTime(13);
+	
 	//Recycle pirate mob from Karaquest
 	var h:Array = [new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt()];
 
@@ -1070,6 +1071,7 @@ public function riyaQuestCombat1Loss():void
 {
 	showName("\nOH NO...");
 	output("As your knees hit the metal of the deck, you look up to see the pirates advancing on you, the sound of their taunting laughter filling your ears - then a blinding flash, and then... nothing. Grence, Riya and the rest may make it out without you, or they may not. It’s of no consequence to the pile of charcoal that used to be [pc.name] Steele.");
+	processTime(1);
 	badEnd("GAME OVER.");
 }
 
@@ -1133,6 +1135,7 @@ public function afterPostCombatTalkies():void
 	clearOutput();
 	showRiya();
 	output("Making your way further into the asteroid complex, you’re stopped by a barricade, small arms fire spraying out from behind it - up until the kaithrit you spoke to earlier lifts his rifle next to your shoulder and fires the grenade launcher slung under the rifle’s barrel. The barricade explodes in a deafening hail of shrapnel and fire, and you continue on. The group doesn’t get very far though, before you find yourselves in what appears to be a planning room - datachips, holo-tapes and even regular old-fashioned stacks of paper are strewn haphazardly across the many tables, control centers and desks. Buttons and beeping alarms are flashing everywhere, and a few helmless pirates of assorted races are frantically setting fire to everything and smashing computers with sledgehammers. They stop when your group enters the room, diving for cover and drawing their weapons.");
+	processTime(2);
 	
 	//Fight(Recycle pirate mob from Karaquest, 3 pirates)
 	//Recycle pirate mob from Karaquest
@@ -1156,6 +1159,7 @@ public function riyaQuestCombat2Victory():void
 	showName("RIYA\n& CO");
 	showBust("RIYA","GRENCE");
 	output("As the last of the pirates you were fighting collapses, you see movement out of the corner of your eye - head swiveling, you see it’s Commander Grence, kicking and clawing frantically as she’s dragged down a hallway by two pirates in full armor, her eyes wild and full of terror. More pirates are laying down covering fire on you and the Ebon Wing troopers beside you. They must’ve seen her rank and grabbed her while everyone was distracted fighting!\n\n");
+	processTime(2);
 	CombatManager.genericVictory();
 	eventQueue.push(riyaQuestCombat2VictoryMenu);
 }
@@ -1169,6 +1173,7 @@ public function riyaQuestCombat2VictoryMenu():void
 	output("\n\n<i>“You... saved me. You risked your life. I thought-”</i> the ausar cuts off as Riya begins to talk over her.");
 	output("\n\n<i>“All fucking ausar must fucking hang,”</i> Riya says, smug grin on her face. Grence just stares at her in bewilderment for a second... and then slaps her across the face and storms away, the sound cracking through the room. The kaithrit soldier shakes his head slowly as the group begins to rifle through the scattered datacards and other bits of information in the room, Grence joining in with her ears pinned flat against her skull while Riya stands guard, smirking. A few short moments later, Grence’s ears stand straight up and her bushy golden tail begins to wag slowly. The ausar officer hurriedly and carefully places a stack of papers into Riya’s hands, her earlier anger seemingly forgotten amidst the excitement of whatever she’s found. Riya takes it and stares at it for a moment before smiling and wrapping one arm around Grence’s shoulders, pulling the high-ranking pup tight against her side.");
 	output("\n\n<i>“Jackpot,”</i> she says, handing the papers off to another helmeted trooper who stows them in a duffel bag at his side, the container already almost overflowing with other captured information. <i>“Alright,”</i> Riya says, releasing a now confused-looking Commander Grence, <i>“let’s get the fuck out of here before more scumbags show up.”</i>");
+	processTime(3);
 	clearMenu();
 	addButton(0,"Next",riyaQuestCombat3Setup);
 }
@@ -1179,6 +1184,8 @@ public function riyaQuestCombat3Setup():void
 	showName("OH\nSHIT!");
 	showBust("JUGGERNAUT","HOVER_DRONE","HOVER_DRONE");
 	output("Just then, as if on cue, you hear the sound of metal clanking against the deck plates. Turning, you see a hulking humanoid in Black Void armor bringing weapons to bear on you, two sentry drones angrily buzzing about him.");
+	processTime(1);
+	
 	//Recycle Black Void Juggernaut from Karaquest, plus Security Drone from Karaquest x2
 	var h:Array = [new KQ2Juggernaut(), new KQ2SecurityDroid(), new KQ2SecurityDroid()];
 
@@ -1198,6 +1205,7 @@ public function riyaQuestCombat3Loss():void
 {
 	showName("\nUH OH...");
 	output("As your knees hit the metal of the deck, you look up to see the Juggernaut advancing on you, the sound of his taunting laughter filling your ears - then a blinding flash, and then... nothing. Grence, Riya and the rest may make it out without you, or they may not. It’s of no consequence to the pile of charcoal that used to be [pc.name] Steele.");
+	processTime(1);
 	badEnd("GAME OVER");
 }
 
@@ -1208,6 +1216,7 @@ public function riyaQuestCombat3Victory():void
 	showName("RIYA\n& CO.");
 	showBust("GRENCE","RIYA");
 	output("As the last of your enemies falls, you look over to see Riya and co. rifling through the pockets of their fallen foes, presumably looking for more information or trophies. After a moment they’re finished, jogging back down the corridor towards the hangar as the asteroid takes another impact, your feet barely staying under you. You meet no opposition on your way back to the hangar, though you notice the short run has poor Commander Grence completely out of breath, her fluffy ears drooping as she struggles to hold the duffel bag in her arms aloft. Riya slows down as you reach the hangar, plucks the bag out of the tuckered-out ausar’s hands and bends down, scooping the unresisting Commander up around her belly and carrying her into their ship.\n\n");
+	processTime(2);
 	CombatManager.genericVictory();
 	eventQueue.push(riyaQuestCombat3VictoryMenu);
 }

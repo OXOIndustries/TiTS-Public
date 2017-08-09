@@ -4489,7 +4489,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["UVETO_HUSKAR_FOURSOME_MOUNTUP"] != undefined) output2("\n<b>* Anno, Times Mounted with Marina and Galina:</b> " + flags["UVETO_HUSKAR_FOURSOME_MOUNTUP"]);
 					if(flags["UVETO_HUSKAR_FOURSOME_POUNDPUPPIES"] != undefined) output2("\n<b>* Anno, Times Pounded Both Marina and Galina:</b> " + flags["UVETO_HUSKAR_FOURSOME_POUNDPUPPIES"]);
 					if(annoIsPet()) output2("\n<b>* Anno, Times Walked:</b> " + annoTimesWalked());
-					if (flags["ANNO_MAID_SEX"] != undefined) output2("\n<b>* Anno, Times Fucked Her in Maid Outfit:</b> " + flags["ANNO_MAID_SEX"]);
+					if(flags["ANNO_MAID_SEX"] != undefined) output2("\n<b>* Anno, Times Fucked Her in Maid Outfit:</b> " + flags["ANNO_MAID_SEX"]);
 				}
 				variousCount++;
 			}
@@ -5040,12 +5040,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			//The Entite
-			if (flags["SEER_MET"] != undefined)
+			if(flags["SEER_MET"] != undefined)
 			{
 				output2("\n<b><u>The Entite</u></b>");
 				//The Seer
 				output2("\n<b>* The Seer:</b> Met her... you think");
-				if (flags["SEER_SEXED"] != undefined) output2("\n<b>* The Seer, Times Sexed:</b> " + flags["SEER_SEXED"]);
+				if(flags["SEER_SEXED"] != undefined) output2("\n<b>* The Seer, Times Sexed:</b> " + flags["SEER_SEXED"]);
 				variousCount++;
 			}
 			// Silken Serenity
@@ -5920,8 +5920,8 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Brandt:</b> Met her");
 				if(flags["BRANDT_FLIRTED"] != undefined) output2(", Flirted with");
 				if(flags["BRANDT_HATES_YOU"] != undefined) output2(", She despises you");
-				if(flags["SEXED_BRANDT"] != undefined)  output2("\n<b>* Brandt, Times Sexed:</b> " + flags["SEXED_BRANDT"]);
-				if(flags["BRANDT_ANAL"] != undefined)  output2("\n<b>* Brandt, Times Fucked Her Ass:</b> " + flags["BRANDT_ANAL"]);
+				if(flags["SEXED_BRANDT"] != undefined) output2("\n<b>* Brandt, Times Sexed:</b> " + flags["SEXED_BRANDT"]);
+				if(flags["BRANDT_ANAL"] != undefined) output2("\n<b>* Brandt, Times Fucked Her Ass:</b> " + flags["BRANDT_ANAL"]);
 				variousCount++;
 			}
 			// Warden
@@ -5935,9 +5935,9 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["TAMTAM_PRISONED"] != undefined || flags["KASKA_PRISONED"] != undefined || flags["KHORGAN_PRISONED"] != undefined)
 			{
 				output2("\n<b><u>Inmate Visitations</u></b>");
-				if(flags["TAMTAM_PRISONED"] != undefined)  output2("\n<b>* Tam, Times Sexed:</b> " + flags["TAMTAM_PRISONED"]);
-				if(flags["KASKA_PRISONED"] != undefined)  output2("\n<b>* Kaska, Times Sexed:</b> " + flags["KASKA_PRISONED"]);
-				if(flags["KHORGAN_PRISONED"] != undefined)  output2("\n<b>* Khorgan, Times Sexed:</b> " + flags["KHORGAN_PRISONED"]);
+				if(flags["TAMTAM_PRISONED"] != undefined) output2("\n<b>* Tam, Times Sexed:</b> " + flags["TAMTAM_PRISONED"]);
+				if(flags["KASKA_PRISONED"] != undefined) output2("\n<b>* Kaska, Times Sexed:</b> " + flags["KASKA_PRISONED"]);
+				if(flags["KHORGAN_PRISONED"] != undefined) output2("\n<b>* Khorgan, Times Sexed:</b> " + flags["KHORGAN_PRISONED"]);
 				variousCount++;
 			}
 		}
