@@ -91,6 +91,13 @@
 			}
 		}
 		
+		public static function getCustomBust(bustName:String):CustomBust
+		{
+			var embedded:Class = getBust(bustName);
+			if (!embedded) return null;
+			var custom:CustomBust = new CustomBust(bustName, embedded);
+			return custom;
+		}
 		// Return the required bust class definition based on the current game settings.
 		public static function getBust(bustName:String):Class
 		{
