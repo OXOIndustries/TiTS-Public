@@ -631,6 +631,10 @@ package classes.Resources.Busts
 		public var Bust_ZIL_HOVERFLY_NUDE:Class;
 		public function get Bounds_ZIL_HOVERFLY_NUDE():Rectangle { return Bounds_ZIL_HOVERFLY; }
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/zil9tail.png", mimeType = "image/png")]
+		public var Bust_ZIL9TAIL:Class;
+		public var Bounds_ZIL9TAIL:Rectangle = new Rectangle(46, 15, 96, 55);
+
 		CONFIG::IMAGEPACK
 		{
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/able.png", mimeType = "image/png")]
@@ -1194,6 +1198,9 @@ package classes.Resources.Busts
 			public var Full_ZIL_HOVERFLY:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/hoverfly_nude.png", mimeType = "image/png")]
 			public var Full_ZIL_HOVERFLY_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/zil9tail.png", mimeType = "image/png")]
+			public var Full_ZIL9TAIL:Class;
 		}
 	}
 
