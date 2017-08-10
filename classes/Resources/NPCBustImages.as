@@ -26,11 +26,13 @@
 		public static var DAMNIT:Object = new DamnitBusts();
 		public static var DOCBADGER:Object = new DocBadgerBusts();
 		public static var DOXY:Object = new DoxyBusts();
+		public static var FUBMISTRESS:Object = new FubMistressBusts();
 		public static var GATS:Object = new GatsBusts();
 		public static var GATSOLD:Object = new GatsOldBusts();
 		public static var JACQUES:Object = new JacquesBusts();
 		public static var JAMESAB:Object = new JamesABBusts();
 		public static var JAYECHO:Object = new JayEchoBusts();
+		public static var JAYFIREGROWLITHE:Object = new JayfireGrowlitheBusts();
 		public static var LAPINBEAU:Object = new LapinbeauBusts();
 		public static var LILIRURU:Object = new LiliRuruBusts();
 		public static var MANIACPAINT:Object = new ManiacPaintBusts();
@@ -40,8 +42,6 @@
 		public static var SHOU:Object = new ShouBusts();
 		public static var UTHSTAR:Object = new UthstarBusts();
 		public static var WOLFYNAIL:Object = new WolfyNailBusts();
-		public static var FUBMISTRESS:Object = new FubMistressBusts();
-		public static var JAYFIREGROWLITHE:Object = new JayfireGrowlitheBusts();
 		
 		public static function hasBustsForCharacter(bustName:String):Boolean
 		{
