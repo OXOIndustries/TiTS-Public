@@ -63,11 +63,19 @@ Romancing/Recruiting the sharkMILF!
 
 
  
-public function showAzra(nude:Boolean = false):void
+public function showAzra(nude:Boolean = false, cock:Boolean = false):void
 {
-	var nudeS:String = "";
-	if(nude) nudeS = "_NUDE";
-	showBust("AZRA" + nudeS);
+	var sBust:String = "AZRA";
+	
+	if(chars["AZRA"].isPregnant() && chars["AZRA"].bellyRating() >= 10) sBust += "_PREG_NUDE";
+	else
+	{
+		if(chars["AZRA"].breastRows[0].breastRatingRaw > 15) sBust += "_BIG";
+		if(!nude && cock) sBust += "_DONG";
+		if(nude) sBust += "_NUDE";
+	}
+	
+	showBust(sBust);
 	showName("\nAZRA");
 }
 
@@ -317,8 +325,8 @@ public function azraAppearance():void
 	output("\n\nTiny, interlocking scales serve as her skin, shimmering softly under any light. They’re rich gold in hue, and with nine feet of suula to cover, ");
 	if(flags["AZRA_SEXED"] == undefined) output("you imagine ");
 	output("there’s no shortage of glittering girl to admire. She covers up most of her form with a restricting suit of armor most of the time, but not even the padded chestplate can ");
-	if(9999 == 9999) output("conceal her soccerball-sized breasts");
-	else if(9999 == 0) output("cover up her massive, motherly breasts");
+	if(chars["AZRA"].breastRows[0].breastRatingRaw <= 15) output("conceal her soccerball-sized breasts");
+	else if(chars["AZRA"].breastRows[0].breastRatingRaw <= 30) output("cover up her massive, motherly breasts");
 	else output("contain her mountainous, back-breaking boobs. A lesser creature would collapse under the weight, but not Azra");
 	output(". Her shapely nature is further compounded by her height and slim nature, highlighting the suula’s motherly curvaceousness.");
 
@@ -326,10 +334,10 @@ public function azraAppearance():void
 	if(flags["AZRA_SEXED"] != undefined)
 	{
 		output("\n\nYou know that under all that protective padding is a wonderland of female flesh. Azra’s pendulous breasts are soft and supple in all the right ways, capped by succulent nipples that beg you to feast your lips upon them until they can’t help but dribble milk. ");
-		if(9999 == 0) output("And dribble milk they do. Ever since she started lactating, her breasts have given up their creamy flow at the slightest provocation. Azra makes sure to milk herself regularly, lest she transform into a walking white stain. ");
+		if(chars["AZRA"].isLactating()) output("And dribble milk they do. Ever since she started lactating, her breasts have given up their creamy flow at the slightest provocation. Azra makes sure to milk herself regularly, lest she transform into a walking white stain. ");
 		output("Her middle ");
-		if(9999 == 9999) output("is softened by a life well lived and years of motherly stress, giving it the slightest hint of pooch when she’s sitting or crouching.");
-		else if(9999 == 99999) output("capped by the unmistakeable bump of a pregnancy in progress - your doing, no doubt. The tender reminder of your past pleasures is difficult to keep your hands away from. Azra too struggles with this. You can catch her patting your unborn child when she thinks you aren’t looking.");
+		if(!chars["AZRA"].isPregnant() || chars["AZRA"].bellyRating() < 10) output("is softened by a life well lived and years of motherly stress, giving it the slightest hint of pooch when she’s sitting or crouching.");
+		else if(chars["AZRA"].bellyRating() < 50) output("capped by the unmistakeable bump of a pregnancy in progress - your doing, no doubt. The tender reminder of your past pleasures is difficult to keep your hands away from. Azra too struggles with this. You can catch her patting your unborn child when she thinks you aren’t looking.");
 		else output("is home to gravid dome - proof of your virility and affection for the lovely suula. She’s always encouraging you to rub your belly and feel your child kick. Sometimes you catch her cradling it and smiling when she thinks no one is looking.");
 	}
 	//Merge

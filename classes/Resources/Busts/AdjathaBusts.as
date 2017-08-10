@@ -60,18 +60,25 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/azra.png", mimeType = "image/png")]
 		public var Bust_AZRA:Class;
+		public var Bounds_AZRA:Rectangle = new Rectangle(65, 0, 80, 80);
 		[Embed(source = "../../../assets/images/npcs/adjatha/azra_dong.png", mimeType = "image/png")]
 		public var Bust_AZRA_DONG:Class;
+		public var Bounds_AZRA_DONG:Rectangle = new Rectangle(53, 0, 80, 80);
 		[Embed(source = "../../../assets/images/npcs/adjatha/azra_nude.png", mimeType = "image/png")]
 		public var Bust_AZRA_NUDE:Class;
+		public var Bounds_AZRA_NUDE:Rectangle = new Rectangle(53, 0, 80, 80);
 		[Embed(source = "../../../assets/images/npcs/adjatha/azra_preg_nude.png", mimeType = "image/png")]
 		public var Bust_AZRA_PREG_NUDE:Class;
+		public var Bounds_AZRA_PREG_NUDE:Rectangle = new Rectangle(56, 0, 80, 80);
 		[Embed(source = "../../../assets/images/npcs/adjatha/azra_big.png", mimeType = "image/png")]
 		public var Bust_AZRA_BIG:Class;
+		public var Bounds_AZRA_BIG:Rectangle = new Rectangle(55, 0, 80, 80);
 		[Embed(source = "../../../assets/images/npcs/adjatha/azra_big_dong.png", mimeType = "image/png")]
 		public var Bust_AZRA_BIG_DONG:Class;
+		public var Bounds_AZRA_BIG_DONG:Rectangle = new Rectangle(56, 0, 80, 80);
 		[Embed(source = "../../../assets/images/npcs/adjatha/azra_big_nude.png", mimeType = "image/png")]
 		public var Bust_AZRA_BIG_NUDE:Class;
+		public var Bounds_AZRA_BIG_NUDE:Rectangle = new Rectangle(53, 0, 80, 80);
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/ben.png", mimeType = "image/png")]
 		public var Bust_BEN:Class;
