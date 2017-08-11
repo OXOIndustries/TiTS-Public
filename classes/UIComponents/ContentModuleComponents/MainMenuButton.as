@@ -18,7 +18,7 @@
 		private var _background:Sprite;
 		private var _text:TextField;
 		
-		private var _displayText:String;
+		private var _displayText:String = "A Button";
 		
 		private var _function:Function;
 		private var _argument:*;
@@ -30,7 +30,11 @@
 		public function set arg(v:*):void { _argument = v; }
 		
 		public function get buttonName():String { return _displayText; }
-		public function set buttonName(v:String):void { _displayText = v; _text.text = v; }
+		public function set buttonName(v:String):void
+		{
+			_displayText = v;
+			if (_text) _text.text = v;
+		}
 		
 		private var _toggledOn:Boolean;
 		
@@ -79,7 +83,7 @@
 			_text.antiAliasType = AntiAliasType.ADVANCED;
 			_text.multiline = true;
 			_text.wordWrap = true;
-			_text.text = "A Button";
+			_text.text = _displayText;
 			_text.mouseEnabled = false;
 			_text.mouseWheelEnabled = false;
 			
