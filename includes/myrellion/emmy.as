@@ -828,7 +828,7 @@ public function askEmmyBoutMeleeShit():void
 		else if(pc.isBro()) 
 		{
 			output("You grunt in displeasure at her evaluation of your strength. ");
-			if(pc.isTreated()) output("Just because you don’t have show muscles doesn’t mean you couldn’t single-handedly till a field.");
+			if(pc.isTreated()) output("Just because you don’t have show muscles doesn’t mean you couldn’t single-handedly until a field.");
 			else output("Just because you’ve focused on other disciplines for now doesn’t mean you won’t hit the gym later.");
 		}
 		else if(pc.isNice()) output("<i>“It pays to be prepared.”</i>");
@@ -3916,7 +3916,7 @@ public function emmyHardLightProstateFillerUp():void
 	{
 		output("<i>“You want to do what?”</i> Emmy asks, coyly.");
 		if(pc.isBimbo()) output("\n\n<i>“Stick a toy up your butt and, like, tickle your prostate,”</i> you answer cheerfully. Even the hyper-sexual herm seems just a bit stunned by your brazenness. <i>“It’s super fun, I hear!”</i> you add.");
-		else if(pc.isBro()) output("\n\n<i>“Work your prostate ‘til you cum,”</i> you grunt.");
+		else if(pc.isBro()) output("\n\n<i>“Work your prostate till you cum,”</i> you grunt.");
 		else output("\n\nYou look innocent. <i>“Stimulate your prostate. You’ll enjoy it, I promise.”</i>");
 		output("\n\nEmmy quickly gets into the spirit, however. She leans on the counter, squishing her cleavage to maximum display - possibly unintentionally, but probably not - and traces some idle doodles on the countertop with her finger. <i>“Show me how.”</i>");
 		output("\n\nBaring your intent");

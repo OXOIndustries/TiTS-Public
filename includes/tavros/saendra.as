@@ -1323,7 +1323,7 @@ public function saendraProbesYourCuntWithHerMechaArm():void
 		output("\n\nAs you suck Saen’s metal tentacle, she kindly returns the favor. Your entire body convulses as her hot breath sears across your bare cockflesh, making you tremble with anticipation as she nuzzles up against your shaft. Her bestial tongue flickers across the base of your shaft, coiling around it with slow, languid ease. The halfbreed grins up at you as she massages your prick with her rough alien tongue, slathering it just as you’re doing to her probe before releasing you. <i>“Don’t worry");
 		if (pc.tallness < (saendra.tallness - 6)) output(" little");
 		else output(" big");
-		output(" fella,”</i> Saen coos, kissing the tip, <i>“we’ll convince [pc.name] to ram you up my ass and fuck me silly next time. ‘Til then, here’s something to remember me by....”</i>");
+		output(" fella,”</i> Saen coos, kissing the tip, <i>“we’ll convince [pc.name] to ram you up my ass and fuck me silly next time. till then, here’s something to remember me by....”</i>");
 		output("\n\nSaen cups her hefty breasts and presses them around your cock. Your eyes roll back into your head as she starts to titfuck you, moving her entire body up and down your shaft with practiced speed, enveloping every inch of your [pc.cock] in warm, soft titflesh with each and every motion. You groan in her grasp, reveling in the sensation of her magnificent rack worshipping your cock as it smears thick stains of pre through the wide valley of her cleavage.");
 	}
 	else
@@ -1594,7 +1594,7 @@ public function saendraTakesItUpDaButte():void
 
 	pc.orgasm();
 
-	output("\n\nYou carry on, panting and groaning as you hump away, fucking like mad until every last drop of your orgasmic seed has coated Saendra’s thighs, leaving her groin a sticky [pc.cumColor] mess. She grins, rubbing your thick spooge in before licking it off her fingertips, moaning in satisfaction. <i>“Oh yeah, that’s good... god, I don’t just get </i>covered<i> in cum nearly enough. What do you say, hero? Wanna let me jerk your [pc.cock "+ selCock +"] off again and again ‘til I’m just dripping [pc.cumColor]?”</i>");
+	output("\n\nYou carry on, panting and groaning as you hump away, fucking like mad until every last drop of your orgasmic seed has coated Saendra’s thighs, leaving her groin a sticky [pc.cumColor] mess. She grins, rubbing your thick spooge in before licking it off her fingertips, moaning in satisfaction. <i>“Oh yeah, that’s good... god, I don’t just get </i>covered<i> in cum nearly enough. What do you say, hero? Wanna let me jerk your [pc.cock "+ selCock +"] off again and again till I’m just dripping [pc.cumColor]?”</i>");
 
 	// [Anal] [Tail Wank]
 	clearMenu();
@@ -1871,7 +1871,7 @@ public function newFutaSaendraScenes():void
 	output(" as she rubs the lube in, fingering your [pc.vagOrAss " + x + "] and spreading the shockingly cold stuff around.");
 
 	output("\n\n<i>“Oooh, that’s good,”</i> Saen purrs. <i>“");
-	if(pc.buttRating() <= 5) output("I love tight little butts. Gonna smack this ass ‘til you scream");
+	if(pc.buttRating() <= 5) output("I love tight little butts. Gonna smack this ass till you scream");
 	else if(pc.buttRating() <= 10) output("You’ve got a great little bubble butt back here, Hero. I’m gonna enjoy making it bounce.");
 	else output("Oh man, you have such a huge fuckin’ ass. Gonna make it bounce like jelly in a second.");
 	output("”</i>");

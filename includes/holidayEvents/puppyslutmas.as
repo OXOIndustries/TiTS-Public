@@ -572,7 +572,7 @@ public function puppyslutmasMeetSyri():void
 		output("\n\nSyri gives you an approving look and claps her sister on the shoulder. <i>“Good for you two.”</i>");
 	}
 	
-	output("\n\nAfter a moment, Syri adds, <i>“Hey, look, I’m flying solo tonight. Would you mind if I tag around with you guys for a while? At least ‘til we go meet Mom and Dad? I don’t want to run into them solo.”</i>");
+	output("\n\nAfter a moment, Syri adds, <i>“Hey, look, I’m flying solo tonight. Would you mind if I tag around with you guys for a while? At least till we go meet Mom and Dad? I don’t want to run into them solo.”</i>");
 	
 	output("\n\n<i>“Sure!”</i> Anno beams. <i>“Ah, it’s gonna be like a real family reunion now!”</i>");
 	

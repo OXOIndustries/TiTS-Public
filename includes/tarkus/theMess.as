@@ -933,7 +933,7 @@ public function disarmDelsTrap():void
 		output("\n\nThe trap-boy’s pleasurable grunts stop abruptly when the door to the employee area swings open. His eyes widen and Beth Carver walks through the entrance like a bitch cheerleader in a teen movie, brushing her hair off of one shoulder and flashing a smug half-smile when she sees Del being pounded in the ass. She stops in front of him and leans on the counter with both hands palm-down, in a domineering posture that causes her big, unrestrained breasts to swing right in his face.");
 		output("\n\n<i>“So, Delilah, working hard?”</i> she asks. ");
 		//(sexed<5)
-		if(delSexed < 5) output("<i>“You haven’t been a very good employee ‘til now... it’s nice to see you getting accustomed to your place.”</i>");
+		if(delSexed < 5) output("<i>“You haven’t been a very good employee till now... it’s nice to see you getting accustomed to your place.”</i>");
 		else output("<i>“You’ve become quite the model employee since accepting your place.”</i>");
 		output(" Del blushes, but doesn’t answer; he’s too busy staring at Bethany’s swaying breasts. You can feel his deeply-suppressed manhood begin to stir in his strokes, which get harder and longer and drag his glans against the bottom of your [pc.tailCunt], dredging it for pleasure.");
 

@@ -448,7 +448,7 @@ public function reahaTalkNewTexasII():void
 
 		output("<i>“So, how come you never told me you had sisters before?”</i>");
 		
-		output("\n\nReaha shrugs. <i>“Up ‘til recently, I thought you bought me to");
+		output("\n\nReaha shrugs. <i>“Up till recently, I thought you bought me to");
 		if (reahaFree()) output(" suck dick");
 		else output(" be your personal milk maid");
 		output(", not talk.");

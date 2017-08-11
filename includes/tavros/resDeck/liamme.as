@@ -163,7 +163,7 @@ public function liammeMenu():void
 {
 	clearMenu();
 	//[Appearance]
-	addButton(0,"Appearance",liammeAppearance,undefined,"Appearance","Check out the lil trap.");
+	addButton(0,"Appearance",liammeAppearance,undefined,"Appearance","Check out the lil’ trap.");
 	//[Talk] Have a chat with Liamme.
 	addButton(1,"Talk",talkToLiamme,undefined,"Talk","Have a chat with Liamme.");
 	//[Sex] There isn’t anything to suggest Lia </i>isn’t<i> down for a good lay.

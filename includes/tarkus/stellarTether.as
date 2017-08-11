@@ -1068,7 +1068,7 @@ public function demandSurrenderFromPirate():void
 	showName("CAPTAIN\nKHORGAN");
 	output("<i>“You’ve got no chance, captain. How about YOU put your weapon down,”</i> you say, holding your ground.");
 	output("\n\n<i>“Ballsy,”</i> she laughs, still clutching her force cutlass tight. <i>“I like that in a " + pc.mf("","wo") + "man. Tell you what: force me to. Fight me, Steele, and if you win, the detonator is yours... and me with it. If you lose, though, I’ll still take you as my personal fuck-slave.”</i>");
-	output("\n\n<i>“Or would you rather we sit here flapping our gums ‘til the timer runs out? That’ll be a hell of a way to go, out with a blast, huh!?”</i>");
+	output("\n\n<i>“Or would you rather we sit here flapping our gums till the timer runs out? That’ll be a hell of a way to go, out with a blast, huh!?”</i>");
 	output("\n\nIf you want to get out of this, it doesn’t look like you’re going to have much of a choice after all.");
 	processTime(1);
 	//[Fight!]

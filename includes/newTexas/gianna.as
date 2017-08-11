@@ -1276,7 +1276,7 @@ public function dissuadeGiannaSheTotesIsAThing():void
 {
 	clearOutput();
 	giannaDisplay();
-	output("<i>“Gianna, be honest with yourself. No matter your sapience, you are still a thing. He </i>owned<i> you, and the Treated him did not have time for his old things. It’s terrible that you had to go through that. He certainly could have handled it better - maybe sold you off to someone on the extranet, but it was well within his right to wander off and plug some girls ‘til those cows came home.”</i> You speak matter of factly, stating what you see as simple truth.");
+	output("<i>“Gianna, be honest with yourself. No matter your sapience, you are still a thing. He </i>owned<i> you, and the Treated him did not have time for his old things. It’s terrible that you had to go through that. He certainly could have handled it better - maybe sold you off to someone on the extranet, but it was well within his right to wander off and plug some girls till those cows came home.”</i> You speak matter of factly, stating what you see as simple truth.");
 	output("\n\nGianna’s lip quivers, and she appears on the verge of crying. The pained look in her eyes flickers and dies, replaced by a depressing sort of acceptance. <i>“Fine.... I just... I’ve been alone so long and every here-”</i> She glances back your way and wilts. <i>“Never mind. Was there something else you would like me to do?”</i>");
 	processTime(2);
 	giannaPersonality(-10);
@@ -1335,7 +1335,7 @@ public function talkToGiannaAboutBigT():void
 	output("\n\nReally?");
 	output("\n\nSeeing your disbelief, she nods again. <i>“Don’t get me wrong, his dick looked like someone had snuck a support beam into the seam of his pants, but he didn’t try to push it on me. I could tell that just by being alive, or as close as I can get to it, I had made him happy.”</i>");
 	output("\n\n<i>“Wow.”</i>");
-	output("\n\n<i>“I know, right?”</i> the naked, artificial woman seems as wowed as you. <i>“I didn’t figure it out ‘til later, but treated people put out pheromones like smoke from chimneys. They can practically smell each other’s consent. I don’t produce pheromones, so the lug, no matter how confident he may be with the cow-girls, never made a move on me.”</i>");
+	output("\n\n<i>“I know, right?”</i> the naked, artificial woman seems as wowed as you. <i>“I didn’t figure it out till later, but treated people put out pheromones like smoke from chimneys. They can practically smell each other’s consent. I don’t produce pheromones, so the lug, no matter how confident he may be with the cow-girls, never made a move on me.”</i>");
 	//Treated/bimbo/studmuffin
 	if(pc.isBimbo() || pc.isBro())
 	{
@@ -1399,7 +1399,7 @@ public function giannaBodyModMenu(display:Boolean = true):void
 		if(flags["BEEN_IN_GIANNA_BODYMOD_MENU"] == undefined)
 		{
 			output("<i>“Would you resize yourself if I asked you to?”</i> you question.");
-			output("\n\nGianna poses for you. <i>“Baby, I can look like anything from an ultraporn star to a newly-matured maiden.”</i> She hefts her breasts. <i>“I can blow these up ‘til I have trouble walking.”</i> She spins to shake her ass at you. <i>“I can make this ass so big that you’d need climbing equipment for doggy-style.”</i> Looking over her shoulder, she purses her plump lips. <i>“I can even make these so big that the bulls won’t be able to walk past without needing to ram their cock into my mouth, just to feel these pillows on their dick.”</i>");
+			output("\n\nGianna poses for you. <i>“Baby, I can look like anything from an ultraporn star to a newly-matured maiden.”</i> She hefts her breasts. <i>“I can blow these up till I have trouble walking.”</i> She spins to shake her ass at you. <i>“I can make this ass so big that you’d need climbing equipment for doggy-style.”</i> Looking over her shoulder, she purses her plump lips. <i>“I can even make these so big that the bulls won’t be able to walk past without needing to ram their cock into my mouth, just to feel these pillows on their dick.”</i>");
 			output("\n\nFinally, she straightens and considers you. <i>“I find my current attributes to be a decent middle-ground between being sexually attractive and able to move about unhindered by my own weight. I wouldn’t really mind toning it down for you, if that’s what you really wanted, so long as you keep visiting. The bulls like how I look now, and I’m not sure how I could handle being ignored if there wasn’t at least someone to keep me company.”</i> A sly smirk spreads across her lips. <i>“Unless... you wanted me to pump myself up for you. I wouldn’t mind blowing up my tits for you, or giving you a rump you could really sink your fingers into. Just so long as we don’t go so big that I can’t work.”</i>");
 			output("\n\nSurprised at just how far she’s willing to go to please and curious if you can push her further, you ask her what she would do if you really wanted her to be immobilized by her breasts, or sport a butt that pinned her to the floor.");
 			output("\n\nEyes dimming thoughtfully, Gianna answers, <i>“I’d get them as close as I could without immobilizing myself. I can’t just lay around all day being your over-inflated fuck-pillow, after all.”</i> She tugs at her braid. <i>“And it doesn’t matter anyway. The silicone I have in me is all I have!”</i>");
@@ -1616,7 +1616,7 @@ public function increaseGiannaBoobs(siliconeUsed:int):void
 	{
 		output("<i>“Could you go a little bigger?”</i>");
 		output("\n\nGianna’s eyebrows shoot up in surprise, then drop into a low, sultry look. <i>“");
-		if(giannaPersonality() >= 75) output("Could they go bigger? Of course they could. I can swell them up ‘til they’re bigger than your head, with nipples so large you could palm them. Just watch.");
+		if(giannaPersonality() >= 75) output("Could they go bigger? Of course they could. I can swell them up till they’re bigger than your head, with nipples so large you could palm them. Just watch.");
 		else if(giannaPersonality() >= 25) output("You want me to have boobs like the cows huh? Big, fat tits that just look they’d hose milk at the slightest provocation? Well, I won’t be able to lactate, but I can certainly be your big-breasted android bimbo, if that’s what you want. Just watch.");
 		else output("Of course I can go bigger, if that’s what you wish. I can go much, much bigger, but for now, I’ll merely go a little bigger, as you requested. Then, if you want me even curvier, I can do it for you.");
 		output("”</i> ");

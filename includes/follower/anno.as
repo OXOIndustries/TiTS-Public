@@ -2836,7 +2836,7 @@ public function annoFollowerTailcockSex(asFollower:Boolean = true):void
 	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(" Your [pc.tongue] swirls deeper into her love tunnel, brushing her cervix. Anno goes crazy when you do so, moaning, bucking and thrusting her pussy into your face.");
 	else output(" Unfortunately, you can only reach so far.");
 
-	output(" You reach up with one hand and start teasing her prominent clit with your thumb, which sets off another chorus of moans. With your other hand, you grope at her buxom chest and pinch a nipple. Anno squeals loudly and cums, spraying your face with her musky fluids. You wait till she comes down off her orgasmic high before standing up and wiping your face off.");
+	output(" You reach up with one hand and start teasing her prominent clit with your thumb, which sets off another chorus of moans. With your other hand, you grope at her buxom chest and pinch a nipple. Anno squeals loudly and cums, spraying your face with her musky fluids. You wait until she comes down off her orgasmic high before standing up and wiping your face off.");
 
 	output("\n\n<i>“Time for the main course,”</i> you say, grinning. You take off your [pc.gear] and toss it to the side, letting your [pc.cocks] flop free on Anno’s thigh.");
 

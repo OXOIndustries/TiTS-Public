@@ -17,7 +17,7 @@ public function zephyrRoomBonus():Boolean
 	//Annoyed
 	else if(pc.hasStatusEffect("Zephyr Annoyed"))
 	{
-		output("\n\nZephyr, the secretary, looks up at you and snorts, waving dismissively at you. If you want anything from it her, it might be best to wait till she cools off.");
+		output("\n\nZephyr, the secretary, looks up at you and snorts, waving dismissively at you. If you want anything from it her, it might be best to wait until she cools off.");
 		addDisabledButton(0,"Zephyr","Zephyr","Zephyr annoyed. You should probably wait to approach her until she's in a better mood.");
 	}
 	//Fuckin’ Mad
