@@ -363,12 +363,12 @@ package classes.Items.Transformatives
 				if(pc.ballSizeUnlocked(16))
 				{
 					//1-2 diameter (to “large” size.)
-					if(pc.ballDiameter() < 2)
+					if(pc.ballDiameter() < 1)
 					{
 						textBuff += "You gasp as your movements cause your [pc.sack] to squeeze tightly against your body - surprisingly tightly. Reaching down to handle it, <b>you discover that your testes have enlarged to the size of eggs.</b>";
 					}
 					//2-3 diameter (to “baseball”)
-					else if(pc.ballDiameter() < 3)
+					else if(pc.ballDiameter() < 2)
 					{
 						textBuff += "You take a quick break from your activities when your [pc.sack] grows warm and tight, then hotter and even more constricting.";
 						if(!pc.isCrotchExposed()) textBuff += " Peeling your [pc.crotchCover] out of the way";
@@ -379,7 +379,7 @@ package classes.Items.Transformatives
 						textBuff += ". Then the pattern repeats, jostling your nuts about as they swell. They finally settle down a minute later, an inch bigger - roughly the size of baseballs.";
 					}
 					//3-4 diameter (to “apple”)
-					else if(pc.ballDiameter() < 4)
+					else if(pc.ballDiameter() < 3)
 					{
 						textBuff += "You’re quite certain [pc.balls] are expanding. They feel heavier, for one, slapping against the side of your [pc.leg] as you move. For another, you find yourself suddenly and unexpectedly aroused, but your [pc.cocks] ";
 						if(pc.cockTotal() == 1) textBuff += "is";
@@ -388,7 +388,7 @@ package classes.Items.Transformatives
 						pc.lust(15);
 					}
 					//4-5 diameter (to grapefruit)
-					else if(pc.ballDiameter() < 5)
+					else if(pc.ballDiameter() < 4)
 					{
 						textBuff += "Gentle, lapping warmth enfolds your [pc.sack]. It’s like sitting in the universe’s gentlest, most perfectly temperature-calibrated hot-tub. A sigh slips out of you as you luxuriate in the sensation. It’s too pleasant too ignore. ";
 						if(pc.isCrotchExposed()) textBuff += "Before your eyes";
@@ -987,7 +987,7 @@ package classes.Items.Transformatives
 				choices.push(2);
 			}
 			//Ball growth
-			if(pc.balls > 0 && pc.ballDiameter() < 4 && pc.hasCock()) 
+			if(pc.hasCock() && pc.balls > 0 && pc.ballDiameter() < 4)
 			{
 				choices.push(3);
 				choices.push(3);

@@ -1448,8 +1448,24 @@ public function renvraDoubleTrouble():void
 	var x:int = -1;
 	if(pc.hasVagina()) 
 	{
-		x = pc.cuntThatFits(renvra.cockVolume(0));
-		if(x < 0) x = rand(pc.totalVaginas());
+		var nonPregWombsFit:Array = [];
+		var nonPregWombs:Array = [];
+		for(var i:int = 0; i < pc.vaginas.length; i++)
+		{
+			if(!pc.isPregnant(i))
+			{
+				if(pc.vaginalCapacity(i) >= renvra.cockVolume(0)) nonPregWombsFit.push(i);
+				nonPregWombs.push(i);
+			}
+		}
+		
+		if(nonPregWombsFit.length > 0) x = nonPregWombsFit[rand(nonPregWombsFit.length)];
+		else if(nonPregWombs.length > 0) x = nonPregWombs[rand(nonPregWombs.length)];
+		else
+		{
+			x = pc.cuntThatFits(renvra.cockVolume(0));
+			if(x < 0) x = rand(pc.totalVaginas());
+		}
 	}
 	if(pc.isBimbo()) 
 	{

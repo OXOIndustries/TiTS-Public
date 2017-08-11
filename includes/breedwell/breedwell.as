@@ -1227,16 +1227,26 @@ public function breedwellPodEnd(numEggs:int = 0):void
 */
 public function breedwellCumCreditValue(amount:Number = 0):Number
 {
-	if(amount <= 0) return 10;
+	if(amount <= 0) return 5;
 	
 	// New calculations!
 	var maxCredVal:Number = 10; // Maximum credit value to start.
 	var normalAmount:Number = 500000; // Point where credit value is at 1 credit/mL before degrading.
 	// Build function curve with these values to get the multiplier!
-	var creditVal:Number = ( maxCredVal / Math.pow((((2 * amount) / normalAmount) + 1), 2) );
+	var curveMult:Number = 2; // The curve magnitude.
+	var scalar:Number = 1; // Scale of the entire amount.
+	
 	// Other adjustments...
-	var cashOut:Number = (amount * creditVal);
-	if(cashOut > (normalAmount * 1.5)) cashOut = (normalAmount * 1.5);
+	normalAmount = 1500000;
+	curveMult = 4;
+	scalar = 0.50;
+	
+	var creditVal:Number = ( maxCredVal / Math.pow((((curveMult * amount) / normalAmount) + 1), 2) );
+	var cashOut:Number = (amount * creditVal * scalar);
+	
+	// Hard cap
+	var maxCredCap:Number = 500000;
+	if(cashOut > maxCredCap) cashOut = maxCredCap;
 	
 	if(debug)
 	{
