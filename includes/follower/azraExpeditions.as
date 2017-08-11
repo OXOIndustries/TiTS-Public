@@ -763,7 +763,7 @@ public function spankDatZilBut():void
 	else output("drops to the ground, too well and truly beaten to remain upright");
 	output(", Azra trots up, satchel of samples in hand. <i>“Let’s get out of here before any more show up.”</i>");
 	output("\n\nShe’s right");
-	if(pc.lust() >= 60) output(", much as it pains you to admit it. You’ll have to put your needs on hold till after you get back to safety");
+	if(pc.lust() >= 60) output(", much as it pains you to admit it. You’ll have to put your needs on hold until after you get back to safety");
 	output(". The entire village could descend upon you in an angry swarm at any time, and that fight was far from silent.");
 	output("\n\n<i>“All right, let’s go.”</i>");
 	processTime(10);

@@ -684,7 +684,7 @@ public function wispedSeer():void
 	
 	output("After holding you place for some time, the Seers amber eyes brighten up, even more so than usual.");
 	output("\n\n<i>“What a plan, a perfect plan... imperfect in its perfection, oh I can barely contain myself,”</i> she rambles, holding her wrist to her forehead like an overly dramatic actress.");
-	output("\n\nAs you’re reeled in by her arm tentacles, she produces a " + (flags["USED_WISP"] != undefined ? "familiar amphora of Wiff-O-Wisp" : "a strange glass bottle of reddish liquid") + "from... <i>somewhere</i>. As you’re dragged in closer till you both touch - her E-cup chest pressing warmly against your [pc.skinFurScales] - she holds the amphora in between the two of you. Without a pause, she inhales deeply through her nose and thick vapours rise ex nihilo from the glass vial.");
+	output("\n\nAs you’re reeled in by her arm tentacles, she produces a " + (flags["USED_WISP"] != undefined ? "familiar amphora of Wiff-O-Wisp" : "a strange glass bottle of reddish liquid") + "from... <i>somewhere</i>. As you’re dragged in closer until you both touch - her E-cup chest pressing warmly against your [pc.skinFurScales] - she holds the amphora in between the two of you. Without a pause, she inhales deeply through her nose and thick vapours rise ex nihilo from the glass vial.");
 	output("\n\n<i>Breathe</i>");
 	output("\n\nThis thought reverberates through your mind, but one that’s not organic to your reaction. Was that... <i>her</i> voice? Breathe...? Should I...?");
 	output("\n\n<i>Breathe</i>.");

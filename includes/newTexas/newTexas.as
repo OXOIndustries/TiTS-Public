@@ -318,7 +318,7 @@ public function talkToOggyAbootTreatManz():void
 	output("\n\nOgram shrugs, <i>“Hey, if you want the tourist pitch, talk to Amma. I just live here.”</i>");
 	output("\n\n<i>“But you got the Treatment,”</i> you suggest, indicating his bulging muscles and bull-horns.");
 	output("\n\n<i>“Heh. Yeah. Kind of a snap decision, but... well, it’s actually pretty cool, you know. I was pretty ripped before -- kind of a requirement when you’re a bodyguard -- but </i>damn<i> that stuff jacked my muscles out. Could bend bars, these guns,”</i> he says, flexing. <i>“Plus I put on another foot of height and got these love-handles.”</i> He jerks a thumb towards his enormous horns.");
-	output("\n\n<i>“Pretty weird how different it works on guys and gals, though. When I got it, I figured I was gonna get huge tits and turn into a bimbo. Never actually occurred to me to talk to a bull around here, I guess. Didn’t see one ‘til after I ran into the gift shop and Treated up.”</i>");
+	output("\n\n<i>“Pretty weird how different it works on guys and gals, though. When I got it, I figured I was gonna get huge tits and turn into a bimbo. Never actually occurred to me to talk to a bull around here, I guess. Didn’t see one till after I ran into the gift shop and Treated up.”</i>");
 	output("\n\nOg leans back in his chair, locking his fingers behind his head. <i>“Can’t complain, really. After I got it, they let me have the run of the place. Any girl I wanted spread her legs for nothing. Especially if you catch ‘em in the milk barns... they practically beg for it, all hooked up to their milkers. Should hear Amma when she’s getting milked... any cock in a storm, that girl.”</i>");
 	output("\n\n<i>“Especially if it’s yours!”</i> she calls over with a wink.");
 	output("\n\nOgram grins, his pants visibly straining.");
@@ -1887,7 +1887,7 @@ public function carrieBlowjobsGo():void
 		else if(cumQ < 1500) 
 		{
 			output("\n\nYour [pc.cock " + x + "] swells and you exhale hoarsely as you orgasm, hot [pc.cumNoun] surging into the cow girl’s suck in heavy, juicy bursts. She swallows wetly, eyes closed as she aids your cascading high on with drags of her lips and close slides of her tongue. You go on and on, riding your intense pulses, intent on pumping every last drop of your thick, generous seed into her; the next moment she pulls out, and carefully directs your throbbing dick at the large glass jar between her knees. You shudder and huff, blowing the last half of your load into it, coaxed on by her wringing, rubbing hand. You exhale with pure contentment when she tugs out the last of it, oozing into the almost-full container.");
-			output("\n\n<i>“Mmm,”</i> she says happily, licking her lips as she slaps a lid down on your “donation”. <i>“A li’l something for the bank... and a li’l something for me. Deserve a reward for all the hard work I do with the milking machine, don’cha think?”</i>");
+			output("\n\n<i>“Mmm,”</i> she says happily, licking her lips as she slaps a lid down on your “donation”. <i>“A lil’ something for the bank... and a lil’ something for me. Deserve a reward for all the hard work I do with the milking machine, don’cha think?”</i>");
 			if(pc.isTreatedBull()) output(" You grin down at her absurdly, feeling nothing but shining fondness and warmth for the auburn cock-polisher.");
 			else output(" You grin down at the auburn cock-polisher, contentment throbbing through you.");
 		}
@@ -1906,7 +1906,7 @@ public function carrieBlowjobsGo():void
 		output("\n\n<i>“Oh, no!”</i> giggles Carrie, sounding honestly surprised by your question. <i>“Sucking dick is its own reward, silly. Well, maybe not for you,”</i> she goes on, brow crinkling " + (hours >= 6 && hours < 20 ? "as a gray cloud vaguely intrudes on an eternally sunlit mind" : "as crickets chirp in the night") + ". <i>“But for cows it’s... the taste, and... when it touches the back of your throat, and... how happy and sweet and relaxed it makes you bulls...”</i> her eyes have gone a bit vague.");
 		output("\n\n<i>“Swing back around anytime ");
 		if(pc.tallness >= 72) output("big ");
-		else if(pc.tallness < 60) output("li’l ");
+		else if(pc.tallness < 60) output("lil’ ");
 		output(pc.mf("guy","girl") + ", least when I’m not on shift,”</i> she says at last with a grin, picking herself ");
 		if(cumQ >= 500) output("and her full, gloopy jar ");
 		output("up.");
@@ -2122,7 +2122,7 @@ public function carrieBlowjobsGo():void
 		else if(cumQ < 1500)
 		{
 			output("\n\nYour [pc.cock " + x + "] swells and you exhale hoarsely as you orgasm, hot [pc.cumNoun] surging into the cow girl’s suck in heavy, juicy bursts. She swallows wetly, eyes closed as she aids your cascading high on with drags of her lips and close slides of her tongue. You go on and on, riding your intense pulses, intent on pumping every last drop of your thick, generous seed into her; the next moment she pulls out, and carefully directs your throbbing dick at the large glass jar between her knees. You shudder and huff, blowing the last half of your load into it, coaxed on by her wringing, rubbing hand. You exhale with pure contentment when she tugs out the last of it, oozing into the almost-full container.");
-			output("\n\n<i>“Mmm,”</i> she says happily, licking her lips as she slaps a lid down on your “donation”. <i>“A li’l something for the bank... and a li’l something for me. Deserve a reward for all the hard work I do with the milking machine, don’cha think?”</i>");
+			output("\n\n<i>“Mmm,”</i> she says happily, licking her lips as she slaps a lid down on your “donation”. <i>“A lil’ something for the bank... and a lil’ something for me. Deserve a reward for all the hard work I do with the milking machine, don’cha think?”</i>");
 			if(pc.isTreatedBull()) output(" You grin down at her absurdly, feeling nothing but shining fondness and warmth for the auburn cock-polisher.");
 			else output(" You grin down at the auburn cock-polisher, contentment throbbing through you.");
 		}
@@ -2137,7 +2137,7 @@ public function carrieBlowjobsGo():void
 		//merge
 		output("\n\n<i>“Swing back around anytime ");
 		if(pc.tallness >= 72) output("big ");
-		else if(pc.tallness < 60) output("li’l ");
+		else if(pc.tallness < 60) output("lil’ ");
 		output("guy, least when I’m not on shift,”</i> she says at last with a grin, picking herself ");
 		if(cumQ >= 500) output("and her full, gloopy jar ");
 		output("up.");
@@ -2614,7 +2614,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			output("You slip your hand into Carrie’s own small, warm mitt and stroll with her beyond the barn and up a little trail leading eastwards.");
 			output("\n\nIt really is extremely pleasant on New Texas. There’s a timeless quality to the prairies and vast sky stretching out in all directions, as if nothing could possibly trouble you so long as you empty your mind and let your thoughts drift into the dusty green and powdery blue. Every huge, widely spaced building you can see looks well used, cared for... well, except <i>that</i> one.");
 			output("\n\n<i>“What’s that?”</i> you ask, pointing at the derelict skeleton of concrete and leaning wood.");
-			output("\n\n<i>“It was gonna be the semen bottling facility for Big T’s ranch,”</i> sighs Carrie, kicking at a pebble. <i>“We export the stuff you know, it’s almost as prized as our milk in the Beyond. But the bulls who were constructing it got transferred to Berylhead and nobody’s picked it up since, cuz there aren’t really enough bulls ‘round here to justify it. So now it’s just me and my dinky lil milker.”</i>");
+			output("\n\n<i>“It was gonna be the semen bottling facility for Big T’s ranch,”</i> sighs Carrie, kicking at a pebble. <i>“We export the stuff you know, it’s almost as prized as our milk in the Beyond. But the bulls who were constructing it got transferred to Berylhead and nobody’s picked it up since, cuz there aren’t really enough bulls ‘round here to justify it. So now it’s just me and my dinky lil’ milker.”</i>");
 			// Male Treated:
 			if(pc.isTreatedBull()) output("\n\nIt hurts you on some deep, profound level to see a heavy lifting job like that left unfinished...");
 			

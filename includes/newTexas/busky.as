@@ -1351,7 +1351,7 @@ public function buskySexMotivation():void {
 	output("\n\n<i>“Now look here [pc.name], you know you’re gonna have to keep your end of the bargain right?”</i> Busky chuckles as he slowly lowers the weight down to his chest and back up again. <i>“That’s one press right there, get ready to pay up.”</i>");
 	output("\n\nYou watch his arms strain under the weight, glistening with beads of sweat, slowly trickling down his figure. Some drip down to the floor, most of them however, are just soaked up by his undershirt, all of this only adds to the familiar musk of the bull. You stand in a trance, only snapping out of it when you realize he already completed his third rep.");
 	output("\n\nYou don’t want to make it <i>too</i> easy though, so you lower yourself to your knees. You level with his crotch and gaze at his large bulge, quite visible against the saggy gym shorts. But, you decide you’d rather see a bit more, so you pull off his gym shorts. As soon as his shorts come off his hypnotizing aroma permeates the air, making your mouth water with cocklust. Without a moment’s hesitation you tug at the jockstrap, attempting to free his bountiful crotch. You pull down his jockstrap only to be caught on his flare, after a bit of fiddling his now turgid horsecock springs out, almost smacking you in the face. As soon as you get his jockstrap off of his legs you hold it up to your face, basking in the deep, musky scent.");
-	output("\n\n<i>“Hey, what you think you’re doing down there? Can’t wait ‘til I’m done?”</i>");
+	output("\n\n<i>“Hey, what you think you’re doing down there? Can’t wait till I’m done?”</i>");
 	
 	output("\n\nYou ignore Busky’s comments");
 	if (pc.hasArmor()) output(", strip off your [pc.armor]");

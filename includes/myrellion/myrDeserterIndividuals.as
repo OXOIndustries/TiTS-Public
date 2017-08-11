@@ -2754,7 +2754,7 @@ public function teaseBrihaWithDildoStealAsshole():void
 			output("\n\n<i>“Why don’t you come and take it? That’s the rule here,”</i> you cajole.");
 		}
 		output(" You hold the toy out to her and pull it back when she grabs for it.");
-		if(pc.isBro()) output("<i>“Just keeping it for a li’l while. Prob’ly.”</i>");
+		if(pc.isBro()) output("<i>“Just keeping it for a lil’ while. Prob’ly.”</i>");
 		else output("<i>“I’ll give it back next time... probably.”</i>");
 		if(!pc.isAss()) output(" You wink.");
 

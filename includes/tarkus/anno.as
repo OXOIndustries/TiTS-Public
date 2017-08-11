@@ -1006,7 +1006,7 @@ public function anyoneSpecial():void
 	output("You ask Anno if there’s anyone special in her life. She laughs, <i>“What’re you, trying to sell me the Good Book or something?”</i>");
 	output("\n\nYou cock an eyebrow at her. <i>“Sorry. Uh, well... kind of? I’ve got a girlfriend, Kaede, but we’re kind of in an on-again-off-again sort of place right now. Plus we’ve always been in an open relationship, so don’t worry... I’m not out of your reach yet, " + pc.mf("Mr.","Ms.") + " Steele!”</i> she teases, giving you a wink.");
 	output("\n\nYou follow up, asking her to tell you about the special lady.");
-	output("\n\n<i>“Kaede? Oh, I met her while I was doing grad work at Ausaril Tech. Go Jackals! I was a few years older than her, but we hit it off... dated for a couple years ‘til she had to withdraw. She was actually through here just a few weeks ago, helping me with some things: we had a run-in with some mercs and raskvel. Fun times. Anyway, she’s a freighter captain, independent. Cute, nerdy, with curves in all the right places... plus a big dick, which is, you know, pretty great.");
+	output("\n\n<i>“Kaede? Oh, I met her while I was doing grad work at Ausaril Tech. Go Jackals! I was a few years older than her, but we hit it off... dated for a couple years till she had to withdraw. She was actually through here just a few weeks ago, helping me with some things: we had a run-in with some mercs and raskvel. Fun times. Anyway, she’s a freighter captain, independent. Cute, nerdy, with curves in all the right places... plus a big dick, which is, you know, pretty great.");
 	processTime(2);
 	if(pc.hasCock())
 	{

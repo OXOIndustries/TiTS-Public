@@ -253,7 +253,7 @@ public function useTheMilkersMillie():void
 	//First time
 	if(flags["MILLIE_MILK_COUNT"] == undefined)
 	{
-		output("\n\n<i>“One down!”</i> she proudly announces while twisting around for the next. <i>“Just wait ‘til I turn the suction on");
+		output("\n\n<i>“One down!”</i> she proudly announces while twisting around for the next. <i>“Just wait till I turn the suction on");
 		if(pc.isTreated()) output(" - you’re going to love it!");
 		else output(", and you’ll feel sooo much better.");
 		output(" There’s nothing quite like the feel of letting all that pressure get sucked out while you get to cum again and again.”</i> Millie presses the second pump into place, making your [pc.nipple] instantly harden from the gentle suction.");
@@ -761,7 +761,7 @@ public function millieFuckFinale(cumQ:Number):void
 	//Knot:
 	if(pc.hasKnot(x)) 
 	{
-		output("tries to get off of you, but the knot holds her firm. She gives up after a few tries and looks at you with an expression between annoyance and sublime pleasure. <i>“You’re just gonna pin all that cum in me ‘til I get knocked up, ain’t ya?”</i>");
+		output("tries to get off of you, but the knot holds her firm. She gives up after a few tries and looks at you with an expression between annoyance and sublime pleasure. <i>“You’re just gonna pin all that cum in me till I get knocked up, ain’t ya?”</i>");
 		output("\n\nYou nod, still reeling from the extreme pleasure your rigid prick provides.");
 		output("\n\nMillie lays her head down");
 		if(pc.tallness >= 84) output(" on your chest, kissing a nipple.");

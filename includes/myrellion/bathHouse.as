@@ -1205,7 +1205,7 @@ public function assistanceWithPrivateBath():void
 	else output(" The soap feels cool on your heated skin, quickly turning to bubbles as she scrubs it in with a silky washcloth");
 	output(".");
 	
-	output("\n\nThe orderly assistant’s hands explore your body as she rubs in the cleaning concoction. Her touches run briskly over your sex, but the movements are wholly professional for the time being. Beneath the water, she scrubs till the soap dissipates, distributing it evenly on your ");
+	output("\n\nThe orderly assistant’s hands explore your body as she rubs in the cleaning concoction. Her touches run briskly over your sex, but the movements are wholly professional for the time being. Beneath the water, she scrubs until the soap dissipates, distributing it evenly on your ");
 	if(!pc.isTaur()) output("[pc.legOrLegs]");
 	else output("tauric hindquarters");
 	output(". Once her hands are free of foam, she takes the pitcher from before, using it to clean away the suds from your body.");
@@ -1316,7 +1316,7 @@ public function acceptPrivateBathHJs(dick:Boolean = false):void
 		if(pc.hasClit()) output(" before focusing on your [pc.clit]");
 		output(". Her hands move with surprising speed under the water, showing just how skillful she is.");
 		output("\n\n<i>“Many of the lower ranking members of red myr command come here to cleanse themselves and relieve stress. I hear gold queens visited the baths on occasion, but if that’s true it was before my time,”</i> she continues, and you nod as you half-listen to her words, the rest of your attention snared by her touch.");
-		output("\n\nThe bathhouse adherent’s free hand slides smoothly over your body, stopping to squeeze one of your buttcheeks. You can see the flush in your partner’s face even through the silky veil over her nose, and her stiff nipples press into your [pc.chest]. She leans in close, licking your chin and prodding your lips till they part for her tongue. Any attempts to resist her are quickly calmed by a sensual warmth.");
+		output("\n\nThe bathhouse adherent’s free hand slides smoothly over your body, stopping to squeeze one of your buttcheeks. You can see the flush in your partner’s face even through the silky veil over her nose, and her stiff nipples press into your [pc.chest]. She leans in close, licking your chin and prodding your lips until they part for her tongue. Any attempts to resist her are quickly calmed by a sensual warmth.");
 		output("\n\nThis is the real stuff, multitudes better than a facsimile. The diluted lotion is nothing compared to the aching lust created by the full strength venom in her saliva. You melt into her kiss, ");
 		//unaddicted/addicted:
 		if(flags["VENOM_ADDICTION"] == undefined) output("wanting");

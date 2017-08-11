@@ -314,7 +314,7 @@ public function bodyShotsWithDel():void
 	else output("girly little prick");
 	output(" throbs under her skirt, squirting all over her thighs.");
 
-	output("\n\n<i>“W-why am I getting off on this so much?”</i> she giggles, crossing her ankles behind your back, pulling your [pc.face] into her liquored-up belly. <i>“Whatever! Just don’t stop ‘till this bottle’s empty.”</i>");
+	output("\n\n<i>“W-why am I getting off on this so much?”</i> she giggles, crossing her ankles behind your back, pulling your [pc.face] into her liquored-up belly. <i>“Whatever! Just don’t stop till this bottle’s empty.”</i>");
 	output("\n\nYou grin up at her, drawing your [pc.tongue] along the underside of a breast, then around a rock-hard nipple. You loop your tongue through her ring piercing, giving it a tug until Delilah redirects the flow of liquor down her tits. You don’t really bother drinking it anymore; the booze is a bonus on top of tongue-bathing the dusky slut, teasing her over-tender flesh until she’s gasping and her dick is squirting again.");
 	output("\n\nDel lets the bottle clatter on the table, grabbing her mouth to keep herself from squealing in pleasure. Her cock’s a leaking faucet now, pouring out the content of her ");
 	if(chars["DELILAH"].hasCock(GLOBAL.TYPE_EQUINE)) output("hefty black horseballs");
@@ -416,7 +416,7 @@ public function askDelAboutTheDel():void
 	clearOutput();
 	showDel();
 	output("<i>“So, now that you have a decent mistress, are you starting to get some plans for the future?”</i>");
-	output("\n\n<i>“I don’t know,”</i> she says, shrugging lightly. <i>“Kind of? I still have a lot of debt to pay off, and when I do... I don’t exactly have a lot going for me, you know. Guess I’d have to move back in with my parents for a little bit, find a job somewhere, or go work for them. Just ‘till I get back on my feet.”</i>");
+	output("\n\n<i>“I don’t know,”</i> she says, shrugging lightly. <i>“Kind of? I still have a lot of debt to pay off, and when I do... I don’t exactly have a lot going for me, you know. Guess I’d have to move back in with my parents for a little bit, find a job somewhere, or go work for them. Just till I get back on my feet.”</i>");
 	output("\n\nYou nod. <i>“And after that?”</i>");
 	output("\n\n<i>“Well, I’d like to get back to painting,”</i> she laughs. <i>“Maybe take up cum as my new medium: ");
 	if(chars["DELILAH"].hasCock(GLOBAL.TYPE_EQUINE)) output("I’ve got pretty much an infinite supply now!");

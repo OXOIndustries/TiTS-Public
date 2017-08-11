@@ -1512,7 +1512,7 @@ public function haleyEllieThreesome():void
 	{
 		output(" You remain behind Haley, blissfully pumping every bit of cum you have in your body into her " + (subCockIdx >= 0 ? "pussy" : "holes") + " even as she very shakily dismounts from a groaning Ellie, taking a prostrate position on the floor with her ass raised in the air for you to fuck.");
 		if (pc.isBimbo()) output("\n\n<i>“Aww, you’re so obed- obe... such a good girl,”</i> you pant distractedly, riding out the last of your orgasm. <i>“You’re taking it all, just like good girls are meant to!”</i>");
-		else output("\n\n<i>“That’s right, keep it up there ‘till I’m done,”</i> you pant, gripping her ass hard. <i>“You make a good bitch.”</i>");
+		else output("\n\n<i>“That’s right, keep it up there till I’m done,”</i> you pant, gripping her ass hard. <i>“You make a good bitch.”</i>");
 		output("\n\n<i>“Oh god,”</i> Haley moans, front half bowed low in deference. <i>“It feels so... so...”</i>");
 		output("\n\n<i>“You look so pretty like this,”</i> you murmur as Haley trails off. <i>“Legs spread and shaking with your ass held high. My perfect little slut.”</i>");
 	}

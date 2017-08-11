@@ -943,7 +943,7 @@ public function kallyTalksAboutKiro():void
 	else output("Kiro didn’t seem to think she would.");
 	output("\n\nKally flips her bar rag over her shoulder and leans across the bar. <i>“Hell yeah I do. Is she an outlaw? Sure. Is she a pirate? You bet. A murderer and a rapist? I don’t think so. Look her up on the e-net. Plenty of injuries, a merc stupid enough to frag himself on his ordinance, but no mass murder, not even when it would make her life easier. And take a peek at all those supposed rapes. Every one of them, an attractive woman. Not a single injury outside of a strained orifice... well, aside from the one that broke her arm after she slipped in cum and fell.”</i>");
 	output("\n\nYou raise an eyebrow, but that does jive with what you’ve seen and heard about Kiro.");
-	output("\n\n<i>“Void, I respect the hell out of her.”</i> Kally’s eyes sparkle. <i>“She was a backwater nothing with a sister who gave her endless trouble. There was zero chance that either one of us would get out and about on our own, but she did it. She did it with nothing more than guts, wit, and an idea.”</i> She picks up a shot glass and spins it around. <i>“Truth is, I wouldn’t be here talking to you if it wasn’t for her giving me the idea to try it myself. My way might have been more legal, but if I made the wrong choices, signed up with the wrong people, I could’ve wound up a slave. The paperwork would call me an indentured servant while a corporation turned me into a whore. We both gambled. She pulled the slots ‘til she won big. I spent my time, building up a few winnings in blackjack. Not as quick, but more stable and less at the whim of lady luck.”</i>");
+	output("\n\n<i>“Void, I respect the hell out of her.”</i> Kally’s eyes sparkle. <i>“She was a backwater nothing with a sister who gave her endless trouble. There was zero chance that either one of us would get out and about on our own, but she did it. She did it with nothing more than guts, wit, and an idea.”</i> She picks up a shot glass and spins it around. <i>“Truth is, I wouldn’t be here talking to you if it wasn’t for her giving me the idea to try it myself. My way might have been more legal, but if I made the wrong choices, signed up with the wrong people, I could’ve wound up a slave. The paperwork would call me an indentured servant while a corporation turned me into a whore. We both gambled. She pulled the slots till she won big. I spent my time, building up a few winnings in blackjack. Not as quick, but more stable and less at the whim of lady luck.”</i>");
 	//Bro
 	if(pc.isBro()) output("\n\nYou grunt agreeably.");
 	//Bimbo
@@ -1456,7 +1456,7 @@ public function kallyIsHotKiroSays():void
 	processTime(1);
 	clearMenu();
 	addButton(0,"Okay",okayKiroYourSisAintHot,undefined,"Okay","Don’t rock the boat.");
-	addButton(1,"Push Her",pushKiroToWannaFuckHerSis,undefined,"Push Her","There’s no way Kiro doesn’t think her sis is a stone cold fox. Push her till she admits it.");
+	addButton(1,"Push Her",pushKiroToWannaFuckHerSis,undefined,"Push Her","There’s no way Kiro doesn’t think her sis is a stone cold fox. Push her until she admits it.");
 }
 
 //[Ok]
@@ -3656,7 +3656,7 @@ public function rahnMilkerFunTimes(arg:String):void
 	{
 		output("You choose the devious purple pussy over the the other exotic choices on offer. ");
 		if(!pc.isCrotchExposed()) output("A few quick tugs frees your [pc.cock " + x + "] from confinement and has it ready to go. ");
-		output("The innocuous-looking entrance reacts to your proximity by spreading its lips before you even make content, revealing a pink-tinted interior that seems to wink at you even as its clit engorges. You jerk to a stop at the sight, but the pussy just keeps getting wetter and wetter. The lips visibly puff up. The clit turns a deeper purple, almost black, and grows till it’s nearly an inch long. This sinful slit seems to be doing everything it can to beckon you into its velvety folds.");
+		output("The innocuous-looking entrance reacts to your proximity by spreading its lips before you even make content, revealing a pink-tinted interior that seems to wink at you even as its clit engorges. You jerk to a stop at the sight, but the pussy just keeps getting wetter and wetter. The lips visibly puff up. The clit turns a deeper purple, almost black, and grows until it’s nearly an inch long. This sinful slit seems to be doing everything it can to beckon you into its velvety folds.");
 		output("\n\n<i>As if you needed any encouragement.</i>");
 		output("\n\nYou");
 		if(pc.totalCocks() > 1)
