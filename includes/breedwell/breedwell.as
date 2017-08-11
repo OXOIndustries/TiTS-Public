@@ -29,7 +29,7 @@ public function breedwellCheckBirth():Boolean
 }
 public function breedwellCheckSperm():Boolean
 {
-	return (StatTracking.getStat("milkers/cum milked") >= 500000 || StatTracking.getStat("milkers/cum jarred") >= 500000);
+	return (StatTracking.getStat("milkers/cum milked") + StatTracking.getStat("milkers/cum jarred") >= 500000);
 }
 public function breedwellTryUnlock():void
 {
