@@ -35,7 +35,7 @@ public function breedwellTryUnlock():void
 {
 	if(MailManager.isEntryUnlocked("breedwell_unlock")) return;
 	
-	if(CodexManager.entryViewed("Rahn") && (breedwellCheckBirth() || breedwellCheckSperm()))
+	if(breedwellCheckBirth() || breedwellCheckSperm())
 	{
 		goMailGet("breedwell_unlock");
 	}
@@ -342,7 +342,7 @@ public function quaelleMainMenu(fromIntro:Boolean = false):void
 		else if(pc.hasCock() && !breedwellCheckSperm() && flags["BREEDWELL_STATUS_DONATOR"] == undefined) addDisabledButton(0, "Induction", "Induction", "You do not yet qualify. Go get your cum milked somewhere!");
 		else addDisabledButton(0, "Induction", "Induction", "Not necessary--You’ve already been qualified!");
 	}
-	else addDisabledButton(0, "Induction", "Induction", "Not necessary--You’ve already been qualified for both areas already!");
+	else addDisabledButton(0, "Induction", "Induction", "Not necessary--You’ve been qualified for both areas already!");
 	addButton(1, "Talk", quaelleTalk);
 	if(flags["QUAELLE_HUGGED"] != undefined) addButton(2, "Hug", quaelleGetAHug);
 	if(9999 == 0) addButton(3, "Sex", mainGameMenu, undefined, "Sex", "");
@@ -363,7 +363,7 @@ public function quaelleAppearance():void
 	if(quelleIsPregnant())
 	{
 		var bellyF:Number = quelleBellyRatingFront();
-		var bellyB:Number =  quelleBellyRatingBack();
+		var bellyB:Number = quelleBellyRatingBack();
 		
 		// Front only
 		if(bellyF >= 10 && bellyB < 10)
