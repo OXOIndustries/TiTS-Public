@@ -79,6 +79,12 @@ package classes.Resources
 		{
 			Cache[ _bustName ].flags = 1;
 		}
+		
+		public static function customBustLoaded(bustName:String):Boolean
+		{
+			var info:Object = Cache[ bustName ];
+			return info && info.flags == 2;
+		}
 	}
 
 }

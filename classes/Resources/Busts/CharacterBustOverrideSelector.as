@@ -7,6 +7,7 @@ package classes.Resources.Busts
 	import flash.display.Sprite;
 	import classes.GLOBAL;
 	import classes.Resources.NPCBustImages;
+	import classes.Resources.CustomBust;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.text.TextField;
@@ -30,6 +31,9 @@ package classes.Resources.Busts
 		private var _close:MainMenuButton;
 		private var _blank:MainMenuButton;
 		private var _clear:MainMenuButton;
+		private var _reveal:MainMenuButton;
+		
+		private var _infoText:TextField;
 		
 		public function CharacterBustOverrideSelector(bustList:Array, bustIdx:int) 
 		{
@@ -50,8 +54,25 @@ package classes.Resources.Busts
 		
 		public function Build():void
 		{
+			_background = new Sprite();
+			addChild(_background);
+			
+			_infoText = new TextField();
+			_infoText.border = false;
+			_infoText.background = false;
+			_infoText.multiline = false;
+			_infoText.wordWrap = false;
+			_infoText.embedFonts = true;
+			_infoText.antiAliasType = AntiAliasType.ADVANCED;
+			_infoText.width = 715;
+			_infoText.x = 10;
+			_infoText.y = 10;
+			_infoText.styleSheet = UIStyleSettings.gSharedStyleSheet;
+			_infoText.text = showBustName();
+			//_infoText.height = 30;
+			_background.addChild(_infoText);
 			_container = new Sprite();
-			addChild(_container);
+			_background.addChild(_container);
 			
 			for (var i:int = 0; i < GLOBAL.VALID_ARTISTS.length; i++)
 			{
@@ -97,36 +118,31 @@ package classes.Resources.Busts
 				i++;
 			}
 			
-			_background = new Sprite();
+			_container.x = Math.round((735 - _container.width) / 2) - 10;
+			_container.y = 20 + _infoText.textHeight;
+			
 			_background.graphics.beginFill(UIStyleSettings.gBackgroundColour);
 			_background.graphics.lineStyle(3, UIStyleSettings.gForegroundColour);
-			_background.graphics.drawRect(0, 0, 735, _container.height + 80);
+			_background.graphics.drawRect(0, 0, 735, _container.y + _container.height + 70);
 			_background.graphics.endFill();
-			addChildAt(_background, 0);
 			
 			_background.x = Math.round(stage.stageWidth - _background.width) / 2;
 			_background.y = 15;
 			_background.addChild(_container);
 			
-			_container.x = Math.round((735 - _container.width) / 2) - 10;
-			_container.y = 10;
-			
-			
 			_close = new MainMenuButton();
-			addChild(_close);
+			_background.addChild(_close);
 			_close.buttonName = "Save";
 			_close.func = saveSetting;
 			_close.x = _background.width - 10 - _close.width;
 			_close.y = _background.height - 10 - _close.height;
-			_background.addChild(_close);
 			
 			_blank = new MainMenuButton();
-			addChild(_blank);
+			_background.addChild(_blank);
 			_blank.buttonName = "Hide Character";
 			_blank.func = setNoBustDisplayed;
 			_blank.x = _close.x - _blank.width - 10;
 			_blank.y = _close.y;
-			_background.addChild(_blank);
 			if (_bustName in kGAMECLASS.gameOptions.configuredBustPreferences)
 			{
 				if (kGAMECLASS.gameOptions.configuredBustPreferences[_bustName] == "NONE")
@@ -136,12 +152,36 @@ package classes.Resources.Busts
 			}
 			
 			_clear = new MainMenuButton();
-			addChild(_clear);
+			_background.addChild(_clear);
 			_clear.buttonName = "Clear Setting";
 			_clear.func = clearBustSetting;
 			_clear.x = _blank.x - _clear.width - 10;
 			_clear.y = _blank.y;
-			_background.addChild(_clear);
+			
+			_reveal = new MainMenuButton();
+			_background.addChild(_reveal);
+			_reveal.buttonName = "Bust Name";
+			_reveal.func = toggleBustName;
+			_reveal.x = _clear.x - _reveal.width - 10;
+			_reveal.y = _clear.y;
+		}
+		
+		private function toggleBustName():void
+		{
+			if(_reveal.IsOn()) _reveal.DeHighlight();
+			else _reveal.Highlight();
+			
+			_infoText.text = showBustName(_reveal.IsOn());
+		}
+		private function showBustName(reveal:Boolean = false):String
+		{
+			var msg:String = "<span class='words'><p>";
+			if(reveal) msg += "<b>Bust Name:</b> Bust_" + _bustName + " ";
+			else msg += " ";
+			if(CustomBust.customBustLoaded(_bustName)) msg += "<i>(Custom bust overrides selection.)</i>";
+			msg += "</p></span>";
+			
+			return msg;
 		}
 		
 		private function clearBustSetting():void
@@ -183,21 +223,7 @@ package classes.Resources.Busts
 		{
 			stage.removeChild(stage.getChildByName("bustSelector"));
 			
-			// For some reason, kGAMECLASS.showBust() can't take in an array input and output the result properly...
-			switch(_bustList.length)
-			{
-				case 2: kGAMECLASS.showBust(_bustList[0],_bustList[1]); break;
-				case 3: kGAMECLASS.showBust(_bustList[0],_bustList[1],_bustList[2]); break;
-				case 4: kGAMECLASS.showBust(_bustList[0],_bustList[1],_bustList[2],_bustList[3]); break;
-				case 5: kGAMECLASS.showBust(_bustList[0],_bustList[1],_bustList[2],_bustList[3],_bustList[4]); break;
-				case 6: kGAMECLASS.showBust(_bustList[0],_bustList[1],_bustList[2],_bustList[3],_bustList[4],_bustList[5]); break;
-				case 7: kGAMECLASS.showBust(_bustList[0],_bustList[1],_bustList[2],_bustList[3],_bustList[4],_bustList[5],_bustList[6]); break;
-				case 8: kGAMECLASS.showBust(_bustList[0],_bustList[1],_bustList[2],_bustList[3],_bustList[4],_bustList[5],_bustList[6],_bustList[7]); break;
-				default: kGAMECLASS.showBust(_bustName); break;
-			}
-			/*
 			kGAMECLASS.showBust(_bustList);
-			*/
 		}
 		
 		private function addSelectableBust(artistName:String, targetBustName:String):void

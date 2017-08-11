@@ -499,7 +499,9 @@ package classes.UIComponents.SideBarComponents
 				return;
 			}
 			
-			var o:CharacterBustOverrideSelector = new CharacterBustOverrideSelector(lastBustList, lastBustList.indexOf(lastSetBust));
+			// passing a shallow copy to selector because we get the array ref back on dialog close
+			// and lastBustList.length = 0; in showMultipleBusts would break bust refresh
+			var o:CharacterBustOverrideSelector = new CharacterBustOverrideSelector(lastBustList.slice(), lastBustList.indexOf(lastSetBust));
 			stage.addChild(o);
 		}
 		
