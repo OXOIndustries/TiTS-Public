@@ -34,6 +34,7 @@ public function yogaToning(arg:Number):void
 	if(pc.tone >= 85) arg = 0;
 	pc.modTone(arg);
 	if(flags["PAIGE_YOGA_DAY"] == undefined || flags["PAIGE_YOGA_DAY"] != days) flags["PAIGE_YOGA_DAY"] = days;
+	soreDebuff(4);
 }
 
 public function paigeBlind():Boolean
@@ -55,6 +56,11 @@ public function showIddi():void
 	showBust("IDDI");
 	showName("\nIDDI");
 	author("B");
+}
+
+public function paigeIsCrew():Boolean
+{
+	return false;
 }
 
 public function moveSouth():void
@@ -694,6 +700,16 @@ public function paigeMenu():void
 
 		if(hours >= 0 && hours < 9) addButton(6,"Rest",restOnSomeSchtuff,undefined,"Rest","No yoga and no sex – just some cuddling with Paige for a good night’s rest.");
 		else addDisabledButton(6,"Rest","Rest","Who goes to bed in the middle of the day? Come on.");
+		if(flags["PAIGE_TALK_SELF"] == 5)
+		{
+			if(hours >= 17) 
+			{
+				if(paigeBlind()) addButton(7,"Spar",sparWithPaige,undefined,"Spar","Paige mentioned that she would like a sparring match against you. Even though she’s blind, don’t expect an easy fight!");
+				else addDisabledButton(7,"Spar","Spar","Paige mentioned that she would like a sparring match against you. Don’t expect an easy fight!");
+			}
+			else addDisabledButton(7,"Spar","Spar","Tonight’s not the night for fighting. You might cause a disturbance with the noise among the other units, besides.");
+		}
+		else addDisabledButton(7,"Locked","Locked","You don't know her well enough for this.");
 	}
 	addButton(14,"Leave",leavePaige);
 }
@@ -1302,7 +1318,10 @@ public function paigeAppearance():void
 	else output("Still, compared to you, she doesn’t <i>quite</i> stack up.");
 
 	output("\n\nPaige’s fur coloration is dark brown, with large pools of black, especially along her limbs and back, and long streaks of white, especially along her front, from her neck to her groin. She’s taken gene mods for her fur to cover every bit of skin, and her nose has elongated into a snout, like a true canine’s. Her fur is about three centimeters thick, or just over an inch, uniform all over her body. She has brown hair, just a touch lighter in hue, going from her scalp to her just below her shoulders. She has perky, triangular, wolfish ears that she can fold and flex, and they stand about twelve centimeters at their longest. Her tail is bushy-but-not-fluffy, covered with black fur on the top and beige-brown on the bottom, which reaches to her tendons.");
-	output("\n\nPaige likes to wear a sleeveless jumper vest that hugs her torso well, bulging against her C-cup breasts and clinging to her tight abs that covers up to her neck and down to her waist. When she’s doing yoga, she wears tight yoga pants, stretched thin against the contours of her legs, but when she’s relaxing at home, she switches out for grey sweatpants. During the daytime, she prefers to have her long hair done up in a cute bun[if {PC has had sex with Paige}, while during the night, she lets it down. For underwear, she a white sports bra that keeps the girls from getting too wild during yoga, and she wears frilly white panties to keep her otherwise decent].");
+	output("\n\nPaige likes to wear a sleeveless jumper vest that hugs her torso well, bulging against her C-cup breasts and clinging to her tight abs that covers up to her neck and down to her waist. When she’s doing yoga, she wears tight yoga pants, stretched thin against the contours of her legs, but when she’s relaxing at home, she switches out for grey sweatpants. During the daytime, she prefers to have her long hair done up in a cute bun");
+	//if {PC has had sex with Paige}
+	if(flags["SEXED_PAIGE"] != undefined) output(", while during the night, she lets it down. For underwear, she a white sports bra that keeps the girls from getting too wild during yoga, and she wears frilly white panties to keep her otherwise decent");
+	output(".");
 	//Paige is blind
 	if(paigeBlind()) output("\n\nBeing blind, Paige wears an earpiece in her right ear, with a long stem going from the base to just before her eyes.  Not many people know the truth about the piece: its part one-way communicator with Paige’s assistant droid, and its part projector.  Paige is blind from an injury that goes across her eyes, and the projector hides the cataracts in her eyes as well as the scar that goes across the bridge of her nose.  Nobody can tell when the projector is on, but it does a brilliant job of hiding the scar and displaying instead a beautiful set of deep blue eyes.  When it’s off, her eyes are grey and cloudy, and her scar is so wide and deep, it still looks fresh.");
 	// end scene (scene: Paige’s Appearance)
@@ -1530,68 +1549,136 @@ public function leavePaige():void
 	addButton(0,"Next",moveSouth);
 }
 
+//[=Spar=]
+// Reveal this option after the PC has seen (scene: Paige 6), and grey it out unless the time is between 17:00 and 00:00
+// Tooltip: Paige mentioned that she would like a sparring match against you. Even though she’s blind, don’t expect an easy fight!
+// Tooltip (unacceptable hours): Tonight’s not the night for fighting. You might cause a disturbance with the noise among the other units, besides.
+// (scene: Spar)
+
+//flags["PAIGE_SPAR_RESULT"] = ; {loss/win}
+//flags["PAIGE_SPAR_WINS"] = ;
+//flags["PAIGE_SPAR_LOSSES"] = ;
+public function sparWithPaige():void
+{
+	clearOutput();
+	showPaige();
+	output("You say to Paige that you’ve been thinking about her challenge to a sparring match. <i>“Oh yeah!”</i> she chirps. <i>“");
+	//if {never challenged Paige before}
+	if(flags["PAIGE_SPAR_RESULT"] == undefined) output("You put any thought into it, sweet thing? Decide that you’re not afraid to fight a blind woman?");
+	//if {won the previous encounter with Paige}
+	else if(flags["PAIGE_SPAR_RESULT"] == "win") output("Wanna go another round? I’ve been thinking about why I lost last time. It’s not gonna be any easier this time, I can promise you that!");
+	//if {lost the previous encounter with Paige via HP}
+	else if(flags["PAIGE_SPAR_RESULT"] == "loss") output("Thinking of putting your pride on the line a second time? Hope you brought your A-game this time, sweet thing!");
+	//[if {lost the previous encounter with Paige via Lust}
+	else if(flags["PAIGE_SPAR_RESULT"] == "slut") output("Got all that tension out of your system, did you? I hope you realize how disappointed I’ll be if you decide to fuck off again.");
+	//if {last encounter ended in a Stalemate}
+	else if(flags["PAIGE_SPAR_RESULT"] == "stalemate") output("Got your nerve built up this time? I’d better hope so! The last match ended on such a lame, boring note. I hope you really give it your all this time!");
+	//if {last encounter ended by Yielding}
+	else if(flags["PAIGE_SPAR_RESULT"] == "yeild") output("Think you’ve toughened up enough for me? I don’t hold it against you for backing down last time, but if you’re ready for a serious go, then I’m game too!");
+	output("”</i>");
+
+	//if {Never challenged Paige before}
+	if(flags["PAIGE_SPAR_RESULT"] == undefined)
+	{
+		output("\n\nYou tell her that you’ve thought about it, and you’re interested in having an honest sparring match with her.  You promise that you won’t hold back ");
+		if(paigeBlind()) output("just because she’s blind ");
+		output("– you respect her more than that.  <i>“Good idea.  You’re going to need every trick up your sleeve!”</i> she guffaws, then flexes her arms, showing off her weapons.");
+
+		output("\n\n<i>“I just have one rule, though,”</i> she says. <i>“No weapons. Shields and armor, that’s fine, if you don’t mind hiding behind a shield.”</i> She smiles cockily and brings her hands together, popping her knuckles. <i>“But this is a sparring match. I want to test what we’re capable of. It’s not that hard to pull a trigger.”</i> She presses her arms against her boobs, deepening their cleavage for you. <i>“Let’s not forget what the ultimate prize is for the winner, too,”</i> she says, licking her lips.");
+
+		output("\n\nDo you accept her terms?");
+	}
+	else if(flags["PAIGE_SPAR_RESULT"] == "win")
+	{
+		output("\n\nYou reply that you <i>hope</i> she’s thought about it. You were bored enough whupping her ass across her yoga studio last time and this time, you expect her to give you a better challenge. <i>“That’s the shit-talk I want to hear!”</i> she laughs. She places her hands on her hips and flexes her abs and pectorals. <i>“Let’s hear it keep up when my fist is in your mouth, sweet thing!");
+		output("\n\n<i>“Before we go, though, I just want to be clear that the rules are the same: no weapons. You can use your armor and your shields if you think you need them – and you will – but I don’t want to see any plasma rifles or energy swords or whatever the hell. You still game?”</i> She raises her hands to her breasts and openly gropes them in front of you. <i>“The reward’s still the same, and still ripe for the taking, sweet thing.”</i>");
+		output("\n\nDo you accept her terms?");
+	}
+	else
+	{
+		output("\n\nYou promise Paige that the last time you danced was just a fluke, and this time, you’ve got her figured out.  You’ll be cleaning the mats with her fur before the hour is out.  <i>“Big talk, after what happened last time!”</i> she chortles.  She spreads her legs and flexes them, and the definition in them practically pop straight through her fur.  <i>“For your sake, you better hope you got something better this time.  Who wants to lose to a ");
+		if(paigeBlind()) output("blind ");
+		output("woman</i> again<i>?”</i>");
+
+		output("\n\n<i>“Before we go, though, I just want to be clear that the rules are the same: no weapons. You can use your armor and your shields if you think you need them – and you will – but I don’t want to see any plasma rifles or energy swords or whatever the hell. You still game?”</i> She turns around and slaps her own ass hard, letting the cracking sound reverberate off the walls of her unit. <i>“Maybe I’ll let you take charge of some of</i> this <i>if you win!”</i>");
+
+		output("\n\nDo you accept her terms?");
+	}
+	processTime(7);
+	//[=Accept=][=Decline=]
+	// end scene (scene: Spar)
+	clearMenu();
+	addButton(0,"Accept",paigeSparAccept);
+	addButton(1,"Decline",declareSparWithPaige);
+}
+
+//[=Decline=]
+// (scene: Spar Decline)
+public function declareSparWithPaige():void
+{
+	clearOutput();
+	showPaige();
+	output("No weapons? Um...");
+	output("\n\n<i>“What, you don’t want to fight a ");
+	if(paigeBlind()) output("blind ");
+	output("woman at arm’s length?”</i> she chides, keeping up the boastful demeanor but subtly disappointed that you’re so hesitant.  <i>“That’s fine, [pc.name].  I could fight off more than my fair share of Black Void pirates");
+	if(paigeBlind()) output(" when I could see");
+	output(", so I’m not exactly a slouch.  When you’re feeling a bit braver, feel free to come at me.  I’ll be here!”</i>");
+
+	output("\n\nYou can’t help but feel you’ve let Paige down a bit, but still, you kind of value your personal health. Maybe you’ll take her advice and come back when you’re ‘braver.’");
+
+	// return to Paige Select 2, no penalty
+	// end scene (scene: Spar Decline)
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",backToPaigeMenu);
+}
+
+//[=Accept=]
+// (scene: Spar Accept)
+public function paigeSparAccept():void
+{
+	clearOutput();
+	showPaige(true);
+	output("No weapons? Child’s play! You’re more than happy to fight Paige bare-knuckled.");
+	output("\n\n<i>“Not bare knuckled,”</i> she advises. <i>“My yoga class is a wide open space and it’s closed for the day. I got some gloves we can use – soft on the face but they don’t lose any power in the swing. Let’s do this there.”</i>");
+	output("\n\n");
+	if(paigeBlind()) output("You let Paige lead you out of her unit (instructing Iddi to remain there, and that she’ll be back soon) and to her yoga class just one room over.  When you’re inside, she locks the door and hides her earpiece on a small corner table next to the door.");
+	else output("You let Paige lead the way as she takes you through the belly of your ship, towards your cargo hold.  You’re not really using it for anything, and from the looks of things, Paige has been busy, setting up a number of mats placed together to form your arena.");
+	output("\n\n<i>“Let’s do this proper,”</i> she says, stepping onto the yoga mat with you and handing you the gloves she promised.  They’re fairly basic, but the material, as she promised, is soft and malleable, providing some cushion for impact without inhibiting your power.  <i>“I want a good, clean fight.  Toe the line; no hitting below the belt.  And all that shit.  You ready?”</i>");
+
+	output("\n\nYou find yourself a spot directly across from Paige on the center of the mat.  She raises her gloved fists, facing towards you, taking an experienced boxer’s position – her arms are protecting her body and her fists are protecting her face.  It’s clear that she knows her way around a fight – ");
+	if(paigeBlind()) output("and even with her disability, ");
+	output("this won’t be easy at all.");
+
+	output("\n\n<b>It’s a fight with Paige!</b>");
+
+	// Refer to Combat With Paige document to proceed; inflict Disarm on the PC
+	// end scene (scene: Spar Accept)
+	processTime(3);
+	paigeSparSetup();
+}
+
+public function paigeSparSetup():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors(pc);
+
+	var enemy:Creature = new Paige();
+	//9999 - adjust Paige stats to scale to PC level :3
+
+	if(!pc.hasStatusEffect("Disarmed")) pc.createStatusEffect("Disarmed", 4, 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0, 0xFF0000);
+	CombatManager.setHostileActors(enemy);
+	CombatManager.victoryScene(paigeSparringVictory);
+	CombatManager.lossScene(loseToPaige);
+	CombatManager.displayLocation("PAIGE");
+
+	clearMenu();
+	addButton(0,"Next",CombatManager.beginCombat);
+}
+
+
 /*
-output("\n\n[=Spar=]");
-output("\n\n// Reveal this option after the PC has seen (scene: Paige 6), and grey it out unless the time is between 17:00 and 00:00");
-output("\n\n// Tooltip: Paige mentioned that she would like a sparring match against you. Even though she’s blind, don’t expect an easy fight!");
-output("\n\n// Tooltip (unacceptable hours): Tonight’s not the night for fighting. You might cause a disturbance with the noise among the other units, besides.");
-output("\n\n// (scene: Spar)");
-
-output("\n\nYou say to Paige that you’ve been thinking about her challenge to a sparring match. <i>“Oh yeah!”</i> she chirps. <i>“[if {never challenged Paige before}You put any thought into it, sweet thing? Decide that you’re not afraid to fight a blind woman?][if {won the previous encounter with Paige}Wanna go another round? I’ve been thinking about why I lost last time. It’s not gonna be any easier this time, I can promise you that!][if {lost the previous encounter with Paige via HP}Thinking of putting your pride on the line a second time? Hope you brought your A-game this time, sweet thing!][if {lost the previous encounter with Paige via Lust}Got all that tension out of your system, did you? I hope you realize how disappointed I’ll be if you decide to fuck off again.][if {last encounter ended in a Stalemate}Got your nerve built up this time? I’d better hope so! The last match ended on such a lame, boring note. I hope you really give it your all this time!][if {last encounter ended by Yielding}Think you’ve toughened up enough for me? I don’t hold it against you for backing down last time, but if you’re ready for a serious go, then I’m game too!]”</i>");
-
-output("\n\n[if {Never challenged Paige before}You tell her that you’ve thought about it, and you’re interested in having an honest sparring match with her.  You promise that you won’t hold back [if {Paige is blind}just because she’s blind] – you respect her more than that.  <i>“Good idea.  You’re going to need every trick up your sleeve!”</i> she guffaws, then flexes her arms, showing off her weapons.");
-
-output("\n\n<i>“I just have one rule, though,”</i> she says. <i>“No weapons. Shields and armor, that’s fine, if you don’t mind hiding behind a shield.”</i> She smiles cockily and brings her hands together, popping her knuckles. <i>“But this is a sparring match. I want to test what we’re capable of. It’s not that hard to pull a trigger.”</i> She presses her arms against her boobs, deepening their cleavage for you. <i>“Let’s not forget what the ultimate prize is for the winner, too,”</i> she says, licking her lips.");
-
-output("\n\nDo you accept her terms?]");
-
-output("\n\n[if {Won the previous encounter with Paige}You reply that you <i>hope</i> she’s thought about it. You were bored enough whupping her ass across her yoga studio last time and this time, you expect her to give you a better challenge. <i>“That’s the shit-talk I want to hear!”</i> she laughs. She places her hands on her hips and flexes her abs and pectorals. <i>“Let’s hear it keep up when my fist is in your mouth, sweet thing!");
-
-output("\n\n<i>“Before we go, though, I just want to be clear that the rules are the same: no weapons. You can use your armor and your shields if you think you need them – and you will – but I don’t want to see any plasma rifles or energy swords or whatever the hell. You still game?”</i> She raises her hands to her breasts and openly gropes them in front of you. <i>“The reward’s still the same, and still ripe for the taking, sweet thing.”</i>");
-
-output("\n\nDo you accept her terms?]");
-
-output("\n\n[if {Lost/Stalemate/Yielded the previous encounter with Paige}You promise Paige that the last time you danced was just a fluke, and this time, you’ve got her figured out.  You’ll be cleaning the mats with her fur before the hour is out.  <i>“Big talk, after what happened last time!”</i> she chortles.  She spreads her legs and flexes them, and the definition in them practically pop straight through her fur.  <i>“For your sake, you better hope you got something better this time.  Who wants to lose to a [if {Paige is blind}blind] woman</i> again<i>?”</i>");
-
-output("\n\n<i>“Before we go, though, I just want to be clear that the rules are the same: no weapons. You can use your armor and your shields if you think you need them – and you will – but I don’t want to see any plasma rifles or energy swords or whatever the hell. You still game?”</i> She turns around and slaps her own ass hard, letting the cracking sound reverberate off the walls of her unit. <i>“Maybe I’ll let you take charge of some of</i> this <i>if you win!”</i>");
-
-output("\n\nDo you accept her terms?]");
-
-output("\n\n[=Accept=][=Decline=]");
-output("\n\n// end scene (scene: Spar)");
-
-output("\n\n[=Decline=]");
-output("\n\n// (scene: Spar Decline)");
-
-No weapons? Um...
-
-output("\n\n<i>“What, you don’t want to fight a [if {Paige is blind}blind] woman at arm’s length?”</i> she chides, keeping up the boastful demeanor but subtly disappointed that you’re so hesitant.  <i>“That’s fine, [pc.name].  I could fight off more than my fair share of Black Void pirates[if {Paige is blind} when I could see], so I’m not exactly a slouch.  When you’re feeling a bit braver, feel free to come at me.  I’ll be here!”</i>");
-
-output("\n\nYou can’t help but feel you’ve let Paige down a bit, but still, you kind of value your personal health. Maybe you’ll take her advice and come back when you’re ‘braver.’");
-
-output("\n\n// return to Paige Select 2, no penalty");
-output("\n\n// end scene (scene: Spar Decline)");
-
-output("\n\n[=Accept=]");
-output("\n\n// (scene: Spar Accept)");
-
-output("\n\nNo weapons? Child’s play! You’re more than happy to fight Paige bare-knuckled.");
-
-output("\n\n<i>“Not bare knuckled,”</i> she advises. <i>“My yoga class is a wide open space and it’s closed for the day. I got some gloves we can use – soft on the face but they don’t lose any power in the swing. Let’s do this there.”</i>");
-
-output("\n\n[if {Paige is blind}You let Paige lead you out of her unit (instructing Iddi to remain there, and that she’ll be back soon) and to her yoga class just one room over.  When you’re inside, she locks the door and hides her earpiece on a small corner table next to the door.][if {Paige can see}You let Paige lead the way as she takes you through the belly of your ship, towards your cargo hold.  You’re not really using it for anything, and from the looks of things, Paige has been busy, setting up a number of mats placed together to form your arena.]");
-
-output("\n\n<i>“Let’s do this proper,”</i> she says, stepping onto the yoga mat with you and handing you the gloves she promised.  They’re fairly basic, but the material, as she promised, is soft and malleable, providing some cushion for impact without inhibiting your power.  <i>“I want a good, clean fight.  Toe the line; no hitting below the belt.  And all that shit.  You ready?”</i>");
-
-output("\n\nYou find yourself a spot directly across from Paige on the center of the mat.  She raises her gloved fists, facing towards you, taking an experienced boxer’s position – her arms are protecting her body and her fists are protecting her face.  It’s clear that she knows her way around a fight – [if {Paige is blind}and even with her disability, ]this won’t be easy at all.");
-
-output("\n\n<b>It’s a fight with Paige!</b>");
-
-output("\n\n// Refer to Combat With Paige document to proceed; inflict Disarm on the PC");
-output("\n\n// end scene (scene: Spar Accept)");
-
-
-
 output("\n\n// (scene: Her Eyes 2)");
 
 output("\n\nYou sit with Paige in silence for a moment, contemplative.  You’ve already made up your mind, but your heart needs a moment to catch up to your head.  That’s an enormous amount of money you’re about to put down on Paige.");

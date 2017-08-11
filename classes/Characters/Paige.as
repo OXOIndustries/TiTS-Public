@@ -155,39 +155,5 @@
 			
 			this._isLoading = false;
 		}
-		
-		public function UpgradeVersion1(dataObject:Object):void
-		{
-			if (dataObject.legFlags.length == 0)
-			{
-				dataObject.legFlags.push(GLOBAL.FLAG_DIGITIGRADE);
-			}
-		}
-		
-		public function UpgradeVersion2(dataObject:Object):void
-		{
-			dataObject.physiqueRaw = 10;
-			dataObject.reflexesRaw = 8;
-			dataObject.aimRaw = 6;
-			dataObject.intelligenceRaw = 4;
-			dataObject.willpowerRaw = 3;
-		}
-		
-		public function UpgradeVersion3(dataObject:Object):void
-		{
-			dataObject.vaginas[0].bonusCapacity = 20;
-			dataObject.elasticity = 3;
-		}
-		
-		public function UpgradeVersion4(dataObject:Object):void
-		{
-			// Clear out this shit and let the default constructor handle it.
-			delete dataObject.meleeWeapon;
-			delete dataObject.rangedWeapon;
-			delete dataObject.lustVuln;
-			delete dataObject.resistances;
-			delete dataObject.bonusResistances;
-			delete dataObject.bonusLustVuln;
-		}
 	}
 }
