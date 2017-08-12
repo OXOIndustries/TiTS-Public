@@ -380,7 +380,7 @@ public function loseToThatIcyBimbo():void
 
 	output("\n\nOne of Krym’s hands play across your [pc.crotch], teasing the tender flesh on offer in return for your continued worship of her pussy. Her hips rock up and down, riding the [pc.tongue] thrust into her slit and moaning openly.");
 
-	output("\n\nBut a stormy amazon like her can’t be satisfied just by owning you face...");
+	output("\n\nBut a stormy amazon like her can’t be satisfied just by owning your face...");
 	processTime(30);
 	pc.lust(100);
 	krymCombatTrack(false);
