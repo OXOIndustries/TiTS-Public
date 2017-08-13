@@ -1142,7 +1142,7 @@ public function haleyEllieVoyeurEncounter():void
 	{
 		output(" [pc.OneCock] is instantly raging hard");
 		if (pc.isCrotchExposed()) output(", straining in the air while pre forms at your tip.");
-		else output(", straining against your [pc.underGarments] while pre forms at your tip.");
+		else output(", straining against your [pc.lowerGarments] while pre forms at your tip.");
 	}
 	if (!pc.hasCock() && pc.hasVagina()) output(" [pc.OnePussy] is instantly soaking wet, dribbling its eagerness down the insides of your " + (pc.hasLegs() ? "[pc.legs]" : "[pc.thighs]") + ".");
 	if (pc.hasCock() && pc.hasVagina()) output(" [pc.OneCock] is instantly raging hard, the pre forming at its tip complementing [pc.onePussy] dribbling its eagerness down the insides of your " + (pc.hasLegs() ? "[pc.legs]" : "[pc.thighs]") + ".");
@@ -1371,7 +1371,7 @@ public function haleyEllieThreesome():void
 	output("\n\n<i>“She didn’t </i>tame<i> me, Ellie, I just want to try something new,”</i> Haley scowls and shakes her head, pawing at the ground unconsciously. <i>“Treated girls...”</i>");
 	output("\n\nEllie gives you a big, obvious wink and a thumbs-up.");
 	output("\n\nWhen Haley shifts Ellie’s blanket aside, the effect is immediate. The already-crowded stall suddenly seems impossibly cramped as her irresistible mare-musk washes over you, your [pc.cocks] instantly rock-hard");
-	if (!pc.isCrotchExposed()) output(" in your [pc.underGarments]. You hurriedly strip all of your clothes with single-minded focus - they’re just in the way");
+	if (!pc.isCrotchExposed()) output(" in your [pc.lowerGarments]. You hurriedly strip all of your clothes with single-minded focus - they’re just in the way");
 	output(". Haley groans desperately from beside you, her massive cock slapping against her underside and leaving a puddle of precum under her.");
 	output("\n\n<i>“No need for foreplay, girls,”</i> Ellie coos, wiggling her curvaceous butt. <i>“Come and get it.”</i>");
 	output("\n\nHaley doesn’t need to be told twice, seizing Ellie’s ass in her hands and squeezing hard as she rears up and mounts her.");

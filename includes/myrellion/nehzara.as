@@ -412,7 +412,7 @@ public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 	output(".");
 
 	output("\n\nYou couldn’t be happier. Down here between the Red Myr officer’s legs, [pc.face] buried in her warm cunt so firmly you’re practically making out with it. You’re overwhelmed by a tingly, electric excitement that you can’t fully describe. Though you started out trying to make the cool, dismissive woman lose her cool and descend into moaning ecstasy, you are quickly realizing that the tables have turned. You reach down ");
-	if(pc.lowerUndergarment.shortName != "") output("into your [pc.underGarments] ");
+	if(!pc.isCrotchExposed() && !pc.isAssExposed()) output("into your [pc.lowerGarment] ");
 	output("to ");
 	if(!pc.hasCock()) output("push a couple fingers into your [pc.vagOrAss]");
 	else output("grasp at your [pc.cockBiggest]");

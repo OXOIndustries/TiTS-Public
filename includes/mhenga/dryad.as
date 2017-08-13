@@ -581,7 +581,7 @@ public function forceDryadOff():void
 	dryadHeader();
 	author("Wsan");
 	output("You pop yourself out of her lips before she can get you back to full hardness");
-	if(!pc.isCrotchExposed()) output(" and shove your dick back in your [pc.underGarments]");
+	if(!pc.isCrotchExposed()) output(" and shove your dick back in your [pc.lowerGarment]");
 	output(", wagging your finger.");
 
 	output("\n\n<i>“Bad dryad. I have things to do too, you know. I can’t just stand here all day pumping cum into you,”</i> you chide her, <i>“as attractive as that prospect might be.”</i>");
@@ -677,7 +677,7 @@ public function dryadSuperCumSuckEpilogue():void
 	dryadHeader();
 	author("Wsan");
 	output("You’re roused from your stupor by the call of a wild animal somewhere in the jungle. Probably best to get a move on, even if you’re still slightly sore from the horny taur’s treatment.");
-	if(!pc.isCrotchExposed()) output(" You gingerly place your dick back in your [pc.underGarments] and get up to continue your journey.");
+	if(!pc.isCrotchExposed()) output(" You gingerly place your dick back in your [pc.lowerGarment] and get up to continue your journey.");
 	else output(" You gingerly get up to continue your journey.");
 	processTime(25);
 	clearMenu();

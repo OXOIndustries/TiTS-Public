@@ -2073,6 +2073,7 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b>* Status:</b>");
 				switch(flags["SATELLITE_QUEST"])
 				{
+					case -2: output2(" Accepted, Lost hard drive, Failed"); break;
 					case -1: output2(" Refused to help Pyrite Rep"); break;
 					case 1:
 						output2(" Accepted");
@@ -2082,7 +2083,16 @@ public function displayQuestLog(showID:String = "All"):void
 					case 2: output2(" Accepted, Obtained and returned hard drive, Completed"); break;
 					default: output2(" <i>In progress...</i>"); break;
 				}
-				if(flags["SATELLITE_GRYVAIN_DEFEAT"] != undefined) output2("\n<b>* Gryvain Agent:</b> Defeated her in combat");
+				if(flags["SATELLITE_GRYVAIN_DEFEAT"] != undefined)
+				{
+					output2("\n<b>* Gryvain Agent:</b>");
+					switch(flags["SATELLITE_GRYVAIN_DEFEAT"])
+					{
+						case -1: output2(" Lost against her in combat"); break;
+						case 0: output2(" Did not engage her in combat"); break;
+						case 1: output2(" Defeated her in combat"); break;
+					}
+				}
 				sideCount++;
 			}
 			// Zil Capture

@@ -1215,7 +1215,7 @@ public function pcLoses2Hornet():void
 		if(pc.hasVagina()) 
 		{
 			output("[pc.EachVagina] responds immediately to her venom, juicing ");
-			if(!pc.isCrotchExposed()) output("your [pc.underGarments] ");
+			if(!pc.isCrotchExposed()) output("your [pc.lowerGarment] ");
 			output("so badly it’s like somebody just turned a warm tap on down there. ");
 		}
 		else if(pc.hasCock())
@@ -1230,7 +1230,7 @@ public function pcLoses2Hornet():void
 		{
 			output(" She raises a woad-daubed eyebrow as her gaze travels further down - presumably taking in the fact you aren’t tent-poling like mad ");
 			if(pc.isCrotchExposed()) output("downstairs");
-			else output("in your [pc.underGarments]");
+			else output("in your [pc.lowerGarmentOuter]");
 			output(" - before athletically swinging her armored yellow legs around your neck.");
 		}
 		if(pc.hasCock()) 
