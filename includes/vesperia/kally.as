@@ -3592,6 +3592,7 @@ public function rahnMilkerFunTimes(arg:String):void
 	showKallyAndKiroAndVixette(true);
 	author("Fenoxo");
 	var x:int = pickSpunkBunkerCock();
+	var cumQ:Number = pc.cumQ();
 	//Rahn cunt
 	if(arg == "pink")
 	{
@@ -3625,10 +3626,10 @@ public function rahnMilkerFunTimes(arg:String):void
 			output(" out of the way and");
 		}
 		output(" gently insert your [pc.cockHead " + x + "] into the horticultural hole. It’s cool to the touch but delightful low-friction. You slide in without the aid of any juices");
-		if(pc.cumQ() >= 200) 
+		if(cumQ >= 200) 
 		{
 			output(", save for your ");
-			if(pc.cumQ() >= 2000) output("ever-dribbling ");
+			if(cumQ >= 2000) output("ever-dribbling ");
 			output("pre");
 		}
 		output(". The passage is smooth but tight. You can feel it deform to accommodate your shape with every inch you plunge inside, providing an airtight embrace that feels like it never wants to let you go. The petaly lips cup your [pc.knotOrSheath " + x + "] as soon as you bottom out");
@@ -3770,6 +3771,9 @@ public function rahnMilkerFunTimes(arg:String):void
 		else output("the floor below");
 		output(", but the dick-slurping machinery and Kally’s fervent lip-lock hold you up.");
 	}
+	
+	if(pc.ballFullness < 100) pc.ballFullness = 100;
+	
 	//Pinkgasm
 	if(arg == "pink")
 	{
@@ -3793,7 +3797,11 @@ public function rahnMilkerFunTimes(arg:String):void
 	{
 		output("\n\nIt doesn’t end. No matter how much seed you shoot from your hyper-swollen balls, your orgasm never winds down. All is warm, slick pussy and the beautiful embrace it grants your spasming member, the feel of your urethra dilating again and again with the torrential outflows of [pc.cum]. You cum, and you cum, and you cum, but your balls won’t return to normal. Their enormous weight is a constant reminder of just how much more you can feed into the purple slit, how completely you can stuff the perfect being trapped in the wall.");
 		output("\n\nMore tiny pricks assail your [pc.cock " + x + "], and it grows bigger still, the better to unleash the tinal wave within. Your mind all but shuts down under the onslaught of pleasure. The most you manage is sucking on Kally’s face and maintain a vague sort of happiness over being so <i>obedient</i>.");
+		pc.ballFullness += 500;
 	}
+	
+	cumQ = pc.cumQ();
+	
 	//Kally cums
 	output("\n\nThe chubby bartender moans into your mouth a moment before breaking the kiss. You blink open your orgasm-dazzled eyes in time to see her shudder from head to toe.");
 	output("\n\n<i>“Kiiiiiroooo~!”</i> she cries, arching her back and wagging her tail. <i>“I’m c-c-cumming!”</i>");
@@ -3809,6 +3817,9 @@ public function rahnMilkerFunTimes(arg:String):void
 	if(arg != "purple") output("\n\nAll three of you empty your spunk-swollen balls into your respective receptacles over the course of several moan-filled minutes. Gallons of creamy ‘nuki goo launch themselves into the industrial dick-drainers, mixed with your own potent Steele seed. The concealed storage tanks, elsewhere in the facility must be filling to capacity; trickles of [pc.cumNoun] are backwashing out around your [pc.cockBiggest]. Kiro and Kally too have small waterfalls of alien seed mixing into the puddles of pussyjuice between their thighs.");
 	//Succubuts interruptus
 	else output("\n\nIt seems to last forever, but eventually, your floor-dragging sack begins to shrink back to its normal size. The smaller they get, the less hypnotic your milker seems, the more you can establish your own rhythm and remember that you’re here to have fun with Kiro and Kally, not pledge your soul to some extradimensional pleasure being. That was... <i>fun</i>. No... it was <i>awesome</i>. Better than fun. Wow.");
+	
+	StatTracking.track("spunk bunker/cum milked", cumQ);
+	
 	//merge
 	output("\n\nThe robotic fox fans herself while you finish up, reveling in the slurping wall-cunt’s incessant suckling upon your hyper-sensitized mast. <i>“Wow... thank you. Mistress Kally... uh...”</i> A silvery tongue licks its lips distractedly. <i>“Lovely... delicious... creamy... buhhh...”</i> Unable to stop herself, the vixen drops to her knees between Kally’s legs and laps at the leaking cream. <i>“So good. Mmmm... thank you so much for your generous contributions.”</i>");
 	output("\n\nKiro drags near two feet of swollen dick from the pheromonal cunt, still leaking jism. Her balls have shrunk down to the size of apples - no longer immobilizingly swollen but still enough to make a galotian’s mouth water. <i>“Yeahhh... this was a great idea Kally.”</i> She notices the robot polishing her sister’s nads and smearing the excess goo across her chassis. <i>“Oh! I see you made a friend.”</i>");

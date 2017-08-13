@@ -1125,6 +1125,7 @@ public function haleyChallenge():void
 		
 		StatTracking.track("contests/haley milker losses");
 	}
+	StatTracking.track("haley milker/cum milked", cumMilked);
 	flags["USED_MILKER"] = 1;
 	processTime(10 + rand(6));
 	clearMenu();

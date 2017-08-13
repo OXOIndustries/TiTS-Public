@@ -3970,6 +3970,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["FUCKED_BY_HALEY"] != undefined) output2(", Fucked by her");
 					if(flags["USED_MILKER"] != undefined) output2("\n<b>* Haley, Times Used Taur-Milker:</b> " + flags["USED_MILKER"]);
 					if(StatTracking.getStat("contests/haley milker losses") + StatTracking.getStat("contests/haley milker wins") > 0) output2("\n<b>* Haley, Milking Competition, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/haley milker wins") + "/" + StatTracking.getStat("contests/haley milker losses") + ", of " + (StatTracking.getStat("contests/haley milker losses") + StatTracking.getStat("contests/haley milker wins")) + " games");
+					if(StatTracking.getStat("haley milker/cum milked") > 0) output2("\n<b>* Haley, Milking Competition, Your Cum Milked:</b> " + StatTracking.getStat("haley milker/cum milked") + " mLs");
 					if(pc.hasStatusEffect("Won Haley's Credits")) output2("\n<b>* Haley, Milking Competition, Time Until Next Prize:</b> " + prettifyMinutes(pc.getStatusMinutes("Won Haley's Credits")));
 				}
 				// Millie milks!
@@ -5903,10 +5904,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Spunk Bunker
-			if(flags["KIRO_KALLY_TEAM_MILKED"] != undefined || flags["VIXETTE_MOUTHGASMED"] != undefined)
+			if(flags["KIRO_KALLY_TEAM_MILKED"] != undefined || flags["VIXETTE_MOUTHGASMED"] != undefined || StatTracking.getStat("spunk bunker/cum milked") > 0)
 			{
 				output2("\n<b><u>Spunk Bunker</u></b>");
 				if(flags["KIRO_KALLY_TEAM_MILKED"] != undefined) output2("\n<b>* Services, Times Cock-Milked with Kiro and Kally:</b> " + flags["KIRO_KALLY_TEAM_MILKED"]);
+				if(StatTracking.getStat("spunk bunker/cum milked") > 0) output2("\n<b>* Services, Cock-Milker, Cum Milked:</b> " + StatTracking.getStat("spunk bunker/cum milked") + " mLs");
 				if(flags["VIXETTE_MOUTHGASMED"] != undefined) output2("\n<b>* Vixette, Times She Sucked Your Dick:</b> " + flags["VIXETTE_MOUTHGASMED"]);
 				variousCount++;
 			}
