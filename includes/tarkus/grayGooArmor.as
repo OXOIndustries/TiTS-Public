@@ -975,7 +975,7 @@ public function gooArmorCrewOption(arg:Array):void
 				txt += "\n\nYou nod and tell her you are.";
 				txt += "\n\n<i>“Like, can I join, too?”</i>";
 				txt += "\n\nShe’s waterproof, you think to yourself. <i>“Sure, why not?”</i>";
-				txt += "\n\n<i>“Yay!”</i> With that, she jumps with excitement. <i>“Ooh, let me get dressed first!”</i> She shuffles in place, peeling off her pretend goo clothing. <i>“And no peeking...”</i> she winks, <i>“... unless you want to!”</i>";
+				txt += "\n\n<i>“Yay!”</i> With that, she jumps with excitement. <i>“Ooh, let me get dressed first!”</i> She shuffles in place, peeling off her pretend goo clothing. <i>“And no peeking...”</i> she winks, <i>“...unless you want to!”</i>";
 				txt += "\n\nWith some concentration, [goo.name]’s form rearranges itself and a new shape appears around the surface of her body. Two string-like blobs appear on each of her jiggly breasts, barely covering her silvery nipples, creating a kind of loose bikini top.";
 				if(chars["GOO"].legCount <= 1) txt += " Her lower body splits into two, forming shapely legs that";
 				else if(chars["GOO"].legCount == 2) txt += " Her shapely legs spread apart slightly to";
@@ -1012,7 +1012,7 @@ public function gooArmorCrewOption(arg:Array):void
 				txt += "\n\n<i>“Wh-what happened?”</i>";
 				txt += "\n\n<i>“Please don’t get mad at me, [pc.name]...”</i> She begs a caveat.";
 				txt += "\n\n" + (pc.isAss() ? "You swing your arms in the air. <i>C’mon out with it already! What happened?”</i>" : "You nod and assure her you won’t, whatever it is.") + " You just want to know what’s wrong with her.";
-				txt += "\n\nGurgle. <i>“W-well... like...”</i> Bubble. <i>“... you know those energy drinks you keep in your pack?”</i>";
+				txt += "\n\nGurgle. <i>“W-well... like...”</i> Bubble. <i>“...you know those energy drinks you keep in your pack?”</i>";
 				txt += "\n\nEnergy drinks? What energy drinks?";
 				txt += "\n\n<i>“I-I wanted to taste them... and they were </i>too<i> yummy... and... and I drank a whole, whole bunch! I couldn’t help myself! I’m SOOOO sorry!”</i> She blurts, hands now covering her mouth. The gurgling seems to have instantly stopped after the climax of her confession. <i>“Hm?”</i>";
 				txt += "\n\nYou double-check your inventory and notice it being a bit lighter than you remember. Open and mostly-empty canisters roll out, one by one, and fall to the hard floor. You squat down to investigate. Hm. It seems [goo.name] has been drinking - or in her case, assimilating - the gray microbots you’ve been holding in your inventory... You stand up to let [goo.name] know exactly what she drank, but as you turn to her, an unnoticed puddle of gray microbots forces you to slip and lose your balance. You go head first toward a nearby wall and your vision goes black.";
@@ -1063,77 +1063,77 @@ public function gooArmorCrewOption(arg:Array):void
 				var msg:String = "";
 				
 				msg = " the various encounters she’s seen on your adventure.";
-				msg += "\n\n<i>“... and I’ve learned so much from that. That’s why it’s great tagging along with you!”</i> she confesses.";
+				msg += "\n\n<i>“...and I’ve learned so much from that. That’s why it’s great tagging along with you!”</i> she confesses.";
 				msg += "\n\n" + (pc.isBimbo() ? "You give your silver girlfriend a great big hug, squeezing her so hard you swear she could burst into candy and rainbows at any moment. She’s always been so positive!" : "You thank her for the much needed compliment. In a universe where things can get dark fast, you are glad there is some positivity to help balance things out.");
 				chats.push(msg);
 				
 				msg = " a topic about some parasitic creature.";
-				msg += "\n\n<i>“... and you should be careful around them, or they’ll go up your butt and never come out!”</i> she concludes.";
+				msg += "\n\n<i>“...and you should be careful around them, or they’ll go up your butt and never come out!”</i> she concludes.";
 				msg += "\n\n" + (pc.isBimbo() ? "Yikes, that sound both exciting and possibly painful!" : "You shrug, not sure where she made that observation, but that does sound like a good enough reason to be careful!");
 				chats.push(msg);
 				
 				msg = " what planets she would like to travel to next.";
-				msg += "\n\n<i>“... I think so, too! Yep. Ice Cream Planet... or Frozen Yogurt. Whatever!”</i> she imagines.";
+				msg += "\n\n<i>“...I think so, too! Yep. Ice Cream Planet... or Frozen Yogurt. Whatever!”</i> she imagines.";
 				msg += "\n\n" + (pc.isBimbo() ? "Mmm, that does sound totally yummy! Then after that, Beach Planet!" : "You laugh. She must really like ice cream!");
 				if(!pc.hasStatusEffect("Bitterly Cold")) chats.push(msg);
 				
 				msg = " the freezing weather.";
-				msg += "\n\n<i>“... but it’s soooo " + (!pc.hasHeatBelt() ? "c-c-c-cooooooold..." : "cold here!") + "”</i> she whines, then huffs, <i>“" + (!pc.hasHeatBelt() ? "d-d-" : "") + "do you think Ice Cream Planet will be this " + (!pc.hasHeatBelt() ? "c-" : "") + "cold?”</i>";
+				msg += "\n\n<i>“...but it’s soooo " + (!pc.hasHeatBelt() ? "c-c-c-cooooooold..." : "cold here!") + "”</i> she whines, then huffs, <i>“" + (!pc.hasHeatBelt() ? "d-d-" : "") + "do you think Ice Cream Planet will be this " + (!pc.hasHeatBelt() ? "c-" : "") + "cold?”</i>";
 				msg += "\n\n" + (pc.isBimbo() ? "<i>“I hope not! Besides, this weather is, like, " + (pc.felineScore() >= 3 ? "purr-" : "per") + "fect for wearing more fur, right?”</i> you answer" + (!pc.hasHeatBelt() ? ", hoping to cheer the poor slime-girl up" : " in hopes of appealing to her fashion sense") + "." : "You manage to chuckle a little. It seems " + (!pc.hasHeatBelt() ? "the poor goo-girl" : "she") + " is better suited for warmer climates.");
 				if(pc.hasStatusEffect("Bitterly Cold")) chats.push(msg);
 				
 				msg = " how ausars speak. She tries to imitate different dialects of the ausar language, failing horribly.";
-				msg += "\n\n<i>“... I know right? I can’t really tell the difference either!”</i> she replies.";
+				msg += "\n\n<i>“...I know right? I can’t really tell the difference either!”</i> she replies.";
 				msg += "\n\n" + (pc.isBimbo() ? "Like, at least she tried her best! Maybe you two should take a trip to Ausaril some time to learn!" : "You don’t blame her, their language is tricky to foreigners if their tongue isn’t trained for it.");
 				chats.push(msg);
 				
 				msg = " a previous public debate in U.G.C. politics.";
-				msg += "\n\n<i>“... and I don’t know much about that foreign gobbly-gook she keeps talking about, but she looks like a total bitch! I mean, have you heard her laugh?”</i> she comments.";
+				msg += "\n\n<i>“...and I don’t know much about that foreign gobbly-gook she keeps talking about, but she looks like a total bitch! I mean, have you heard her laugh?”</i> she comments.";
 				msg += "\n\n" + (pc.isBimbo() ? "<i>“Oh, totally, that senator has the most bitchiest bitch-face ever, ugh!”</i> you agree, remembering that almost-demonic laugh during the debate." : "While the senator’s politics don’t really mesh with yours, you can agree with [goo.name] on one thing: that senator needs some mods to fix her face for sure--and her voice. Lady laughs like a banshee.");
 				if(!pc.isNice()) chats.push(msg);
 				
 				msg = " a recent charity to help fund research for a remedy to some rare SSTD.";
-				msg += "\n\n<i>“... and yeah, I would totally help if I could earn the credits. You think I can give blowjobs for donations?”</i> she ponders.";
+				msg += "\n\n<i>“...and yeah, I would totally help if I could earn the credits. You think I can give blowjobs for donations?”</i> she ponders.";
 				msg += "\n\n" + (pc.isBimbo() ? "<i>“Oh, that would be, like, the best fundraiser ever--I’ll even join you! Double the effort, double the earnings!”</i> you agree, letting the thought linger a little more while you two hatch a hypothetical plan...." : "Hypothetically indulging her silly idea, if given the right circumstances, you could probably send her to a red-light district to shake her money maker and then send the proceeds to the fundraiser....");
 				if(pc.isNice()) chats.push(msg);
 				
 				msg = " a questionable mod being advertised on the holo-boards.";
-				msg += "\n\n<i>“... and I dunno, changing yourself into that might not be a good idea, right?”</i> she asks.";
+				msg += "\n\n<i>“...and I dunno, changing yourself into that might not be a good idea, right?”</i> she asks.";
 				msg += "\n\n" + (pc.isBimbo() ? "You think about it, but you can’t make an opinion one way or the other. You guess it’s just up to the user to decide!" : "She’s probably right, but you find it humorous that she is concerned about change when she’s a goo-girl who changes form constantly.");
 				chats.push(msg);
 				
 				msg = " a legend about pastry golems.";
-				msg += "\n\n<i>“... ooOooOoo--and maybe chocolate! Hm, I wonder what their filling tastes like? Probably yummy!”</i> she comments.";
+				msg += "\n\n<i>“...ooOooOoo--and maybe chocolate! Hm, I wonder what their filling tastes like? Probably yummy!”</i> she comments.";
 				msg += "\n\n" + (pc.isBimbo() ? "She’s so silly! Like, no way, how can cupcakes come to life?" : "What a silly idea! There’s no such thing as a cupcake--... is there?");
 				if(silly) chats.push(msg);
 				
 				msg = " a plan to surprise Celise at her next birthday.";
-				msg += "\n\n<i>“... and that’s when we throw her a big party and everything, yah?”</i> she asks.";
+				msg += "\n\n<i>“...and that’s when we throw her a big party and everything, yah?”</i> she asks.";
 				msg += "\n\nYou " + (pc.isBimbo() ? "giggle back and nod in agreement. That totally sounds fun!" : "nod, agreeing with her--that does sound like it’d be a lot of fun.");
 				if(celiseIsCrew()) chats.push(msg);
 				
 				msg = " an idea involving Reaha and settling here on New Texas.";
-				msg += "\n\n<i>“... and we can have a big farm to put her in!”</i> she illustrates with her hands. <i>“Hmm... I really don’t know what I can be. What do you think she’ll like better: a chicken, a pig, or a horse?”</i> ";
+				msg += "\n\n<i>“...and we can have a big farm to put her in!”</i> she illustrates with her hands. <i>“Hmm... I really don’t know what I can be. What do you think she’ll like better: a chicken, a pig, or a horse?”</i> ";
 				msg += "\n\n" + (pc.isBimbo() ? "You think it over and tell [goo.name] she would probably look super cute if she changed herself into a chubbly little piggy girl!" : "You don’t really know what Reaha would prefer, but if you were to hazard a guess... maybe the goo-girl could turn herself into a horse - of course!");
 				if(reahaIsCrew() && getPlanetName() == "New Texas" && !InShipInterior()) chats.push(msg);
 				
 				msg = " Anno’s grooming habits.";
-				msg += "\n\n<i>“... and that’s what I think would help if she looked into it more. Oh, I wonder how fluffy her tail can get...”</i> she ponders.";
+				msg += "\n\n<i>“...and that’s what I think would help if she looked into it more. Oh, I wonder how fluffy her tail can get...”</i> she ponders.";
 				msg += "\n\n" + (pc.isBimbo() ? "The two of you secretly plot a way to change the snow-colored ausar’s shampoo to try to get her super fluffy!" : "You bet Anno can get it pretty fluffy if she used the right conditioners... or mods.");
 				if(annoIsCrew() && InShipInterior()) chats.push(msg);
 				
 				msg = " a discussion about a particular product.";
-				msg += "\n\n<i>“... like, BIG-big! Hmmm... do you think [bess.name] would know if JoyCo sells something like that?”</i> she asks.";
+				msg += "\n\n<i>“...like, BIG-big! Hmmm... do you think [bess.name] would know if JoyCo sells something like that?”</i> she asks.";
 				msg += "\n\n" + (pc.isBimbo() ? "Wow, that’s pretty big! You pout while pondering... You don’t think they have any <i>that</i> big. But maybe you could call in and make a request!" : "You are pretty sure those are a part of JoyCo’s line-up somewhere... just not anywhere near <i>that</i> big.");
 				if(flags["BESS_FULLY_CONFIGURED"] != undefined && bessIsCrew()) chats.push(msg);
 				
 				msg = " some comments about Yammi’s cooking--namely her desserts.";
-				msg += "\n\n<i>“... Oh, yesssssss! She makes the yummiest milkshakes and sundaes, too!”</i> she exclaims.";
-				msg += "\n\n" + (pc.isBimbo() ? "You lick your [pc.lips] in response, mentally drooling at the thought. Sounds like a good reason to throw an at-home ice cream party!" : "All this talk is gving you quite a craving for some homemade meals, that’s for sure!.");
+				msg += "\n\n<i>“...Oh, yesssssss! She makes the yummiest milkshakes and sundaes, too!”</i> she exclaims.";
+				msg += "\n\n" + (pc.isBimbo() ? "You lick your [pc.lips] in response, mentally drooling at the thought. Sounds like a good reason to throw an at-home ice cream party!" : "All this talk is giving you quite a craving for some homemade meals, that’s for sure!.");
 				if(yammiIsCrew() && flags["YAMMI_TALK"] >= 2) chats.push(msg);
 				
 				msg = " some factoids about ancient, New Texan creatures.";
-				msg += "\n\n<i>“... oooh, like dinosaurs?”</i> she asks, wide-eyed. She then morphs herself into her own interpretation of a prehistoric varmint and attempts to chase your own varmint around. <i>“RAWR! I’m gonna get you!”</i>";
+				msg += "\n\n<i>“...oooh, like dinosaurs?”</i> she asks, wide-eyed. She then morphs herself into her own interpretation of a prehistoric varmint and attempts to chase your own varmint around. <i>“RAWR! I’m gonna get you!”</i>";
 				msg += "\n\nYour blue pet playfully tackles the silver goo-dino and gives her a couple loving licks, which instantenously reverts her form back and she gives it a great big hug." + (pc.isBimbo() ? " They are having so much fun together!" : " Those two seem to be getting along very well!");
 				if(varmintIsTame() && hasVarmintBuddy() && InRoomWithFlag(GLOBAL.OUTDOOR)) chats.push(msg);
 				
@@ -1245,7 +1245,7 @@ public function gooArmorCrewOption(arg:Array):void
 			else txt += "Ohmygosh, [pc.name]! You should really go to an emergency med center, quick!";
 			txt += "”</i> she says as she quickly assesses the damage. <i>“";
 			if(hpQ > 75) txt += "You’re just a " + (pc.tallness < 48 ? "little" : "big") + " baby, aren’t you?";
-			else if(hpQ > 50) txt += "... and I’ll kiss it to make it feel better!";
+			else if(hpQ > 50) txt += "...and I’ll kiss it to make it feel better!";
 			else if(hpQ > 25) txt += "Here, let me see if I can help!";
 			else if(hpQ > 10) txt += "I’ll do my best to help anyway!";
 			else txt += "I’m not sure how much I can help, but I’ll try my best!";
@@ -1505,7 +1505,7 @@ public function gooArmorCrewTalk(arg:Array):void
 			txt += "\n\nShe can’t hear you. She falls to her [goo.knees] and futilely smacks the floor a few times before finally looking up at you. Her eyes are wide with desperation. She crawls towards you, climbs your torso, and deperately clings to your shoulders. You hold onto her for support.";
 			txt += "\n\nHer gaze softens as she seems to take in her last breaths of air.";
 			txt += "\n\nHer eyelids slowly fall... then close.";
-			txt += "\n\n.....";
+			txt += "\n\n....";
 			txt += "\n\nWith her still body in your arms, you look away.";
 			
 			processTime(5);
@@ -1533,7 +1533,7 @@ public function gooArmorCrewTalk(arg:Array):void
 			var isHerm:Boolean = (pc.isHerm() || (pc.balls > 0 && pc.hasVagina()));
 			
 			txt += "A voice emanates from below you.";
-			txt += "\n\n<i>“You know...”</i> Silver tendrils crawl up and around your [pc.lowerBody]. <i>“... You’re looking quite sexy today... And <b>I wanna be sexy too!</b>”</i>";
+			txt += "\n\n<i>“You know...”</i> Silver tendrils crawl up and around your [pc.lowerBody]. <i>“...You’re looking quite sexy today... And <b>I wanna be sexy too!</b>”</i>";
 			txt += "\n\nThe reflexive coils manage to grope your rear on the way up,";
 			if(assExposed) txt += " then a tedril slides between your [pc.butts] and prods and traces the rim of your [pc.asshole]. <i>“Ooo, naughty.”</i>";
 			else txt += " making sure you feel their presence.";
@@ -2080,12 +2080,12 @@ public function gooArmorChangeArmor(arg:Array):void
 			gooArmorCheck(true);
 			processTime(5);
 			
-			txt += "\n\n<i>“... aaaand done!”</i>";
+			txt += "\n\n<i>“...aaaand done!”</i>";
 			txt += "\n\nWith that, you feel your armor is back to it’s normal self again. <i>“Thanks, [goo.name]!”</i>";
 		}
 		else
 		{
-			txt += "\n\n<i>“... No anomalies detected! No need for repairs, silly!”</i>";
+			txt += "\n\n<i>“...No anomalies detected! No need for repairs, silly!”</i>";
 			txt += "\n\nAh, it must have been a false alarm...";
 		}
 		
@@ -2135,7 +2135,7 @@ public function gooArmorChangeArmor(arg:Array):void
 	var airtight:Boolean = pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT);
 	pc.armor.hasRandomProperties = true;
 	
-	txt += "As she shifts around your body, you feel the surface of your [pc.belly] tingle--and then a voice eminating from it.";
+	txt += "As she shifts around your body, you feel the surface of your [pc.belly] tingle--and then a voice emanating from it.";
 	
 	switch(toggle)
 	{
@@ -2195,7 +2195,7 @@ public function gooArmorChangeArmor(arg:Array):void
 			if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
 			{
 				txt += "\n\n<i>“" + (hasGenitals ? "Oo-hoo, covering up the good bits, I see..." : "Nothing wrong with covering a bare spot, I’d say!") + "”</i> [goo.name] replies from under you.";
-				if(!crotchExposed || !hasGenitals) txt += " With a quick twirl, the silvery goo-girl closes the gap to completely cloak your crotch. <i>“... And finished!”</i> she says, punctuated by a short giggle.";
+				if(!crotchExposed || !hasGenitals) txt += " With a quick twirl, the silvery goo-girl closes the gap to completely cloak your crotch. <i>“...And finished!”</i> she says, punctuated by a short giggle.";
 				else
 				{
 					if(pc.hasCock())
@@ -2747,7 +2747,7 @@ public function gooArmorChangeStyle(arg:Array):void
 			break;
 		case 1:
 			txt += " Small plates, straps, and other ornaments form around your suit, making you appear to be fully prepared for anything. Although you know it doesn’t change the armor rating in the least, it still looks pretty cool.";
-			txt += "\n\n<i>“Yep, I think it looks pretty cool, too!”</i> the voice eminating from your belly agrees.";
+			txt += "\n\n<i>“Yep, I think it looks pretty cool, too!”</i> the voice emanating from your belly agrees.";
 			break;
 		case 2:
 			txt += " Large pieces of armor flare out from your suit, giving you a bulkier look. Huge pauldrons and arm guards form at your sides";
@@ -2870,7 +2870,7 @@ public function gooArmorChangePattern(arg:Array):void
 			txt += " Lines of silver are drawn on your suit, bending in angles and ending either off the edge or capped with a dot or circle shape. This circuit board pattern makes your suit look very tech-oriented.";
 			break;
 		case 4:
-			txt += " " + (pc.armor.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR) ? "L" : "Eminating from the collar, l") + "ines are drawn downward and across certain anatomical seams along your suit, segmenting it into major portions yet still retaining the one-piece look.";
+			txt += " " + (pc.armor.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR) ? "L" : "Emanating from the collar, l") + "ines are drawn downward and across certain anatomical seams along your suit, segmenting it into major portions yet still retaining the one-piece look.";
 			break;
 		default:
 			txt += " Gradually, the new pattern you requested emerges on the surface of the suit until your suit is covered in the new design.";
@@ -2951,7 +2951,7 @@ public function gooArmorChangeHelmet(arg:Array):void
 			txt += "\n\n<i>“How do you like that? Nice and stylish!”</i>";
 			break;
 		case 2:
-			txt += "\n\nThe helmet’s form twists and shifts, with edges and sharp points appearing across its surface. The viewable area narrows until your reflection shows that it has become a linear slit masking your eyes. The helmet itself is flush with the shape of your head, allowing it to move in sync without wobbling. In the right lighting, at the right angle, you can almost see a piercing glow eminating from your eye slit.";
+			txt += "\n\nThe helmet’s form twists and shifts, with edges and sharp points appearing across its surface. The viewable area narrows until your reflection shows that it has become a linear slit masking your eyes. The helmet itself is flush with the shape of your head, allowing it to move in sync without wobbling. In the right lighting, at the right angle, you can almost see a piercing glow emanating from your eye slit.";
 			txt += "\n\n<i>“Ooh, yeah. Now you look super scary!”</i>";
 			break;
 		case 3:
@@ -2975,11 +2975,11 @@ public function gooArmorChangeHelmet(arg:Array):void
 			txt += "\n\n<i>“Cool, you look kinda like a pirate now!”</i>";
 			break;
 		case 8:
-			txt += "\n\nThe silver surface of the new helmet begins to split and form seperate plates of armor. The plates move and position themselves around your head, creating a regal, crown-like shape at the top and leaving a “Y”-shaped gap as a primary slit for your eyes.";
+			txt += "\n\nThe silver surface of the new helmet begins to split and form separate plates of armor. The plates move and position themselves around your head, creating a regal, crown-like shape at the top and leaving a “Y”-shaped gap as a primary slit for your eyes.";
 			txt += "\n\n<i>“I hereby dub thee, Knight of Steele!”</i>";
 			break;
 		case 9:
-			txt += "\n\nThe helmet then forms a cloth-shaped piece that extends in front of you, draping over your head, falling to the sides, and resting atop your shoulders, resulting in a very rouge-like hood. The inside of the helmet is covered in shadow when you are in the right light.";
+			txt += "\n\nThe helmet then forms a cloth-shaped piece that extends in front of you, draping over your head, falling to the sides, and resting atop your shoulders, resulting in a very rogue-like hood. The inside of the helmet is covered in shadow when you are in the right light.";
 			txt += "\n\n<i>“Hoodies like this are in style, right?”</i>";
 			break;
 		default:
