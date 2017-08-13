@@ -223,7 +223,7 @@ public function approachRamis(special:String = "none"):void
 	}
 	
 	// First approach
-	output("<i>“... dangling backwards it was! Silly willy didn’t check the airlocks.”</i> As her friends guffaw, the seven foot tall kaithrit swings around on her stool to regard you with unfocused, golden eyes. She narrowly avoids whacking you with her large, tank-top clad boobs. <i>“Oh aye, what d’we have here then?”</i> Her accent lilts and lollops around the words, drawing out “l”s and making every finishing sentence a musical declamation.");
+	output("<i>“...dangling backwards it was! Silly willy didn’t check the airlocks.”</i> As her friends guffaw, the seven foot tall kaithrit swings around on her stool to regard you with unfocused, golden eyes. She narrowly avoids whacking you with her large, tank-top clad boobs. <i>“Oh aye, what d’we have here then?”</i> Her accent lilts and lollops around the words, drawing out “l”s and making every finishing sentence a musical declamation.");
 	// PC is female or futa
 	if(pc.isFemale() || pc.isFemHerm() || pc.isSexless() || pc.isShemale())
 	{

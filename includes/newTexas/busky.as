@@ -734,7 +734,7 @@ public function buskySexAnalPitch():void {
 		output("\n\nYou mindlessly try to pull out, only to be met with a tug of resistance, forgetting about your knot. Busky pulls his face out of the puddle cum and wipes it off with his hand, before turning back to face you.");
 		output("\n\n<i>“Why aren’t you... oh yeah,”</i> he sheepishly looks away.");
 		output("\n\nYou lean over and whisper into his ears that this might take a while. All he can do is nod and reply.");
-		output("\n\n<i>“... I’m going to move back over to the other side of the counter, I still have to ring people up...”</i>");
+		output("\n\n<i>“...I’m going to move back over to the other side of the counter, I still have to ring people up...”</i>");
 		output("\n\nYou agree with him, and you both awkwardly make your way back around the counter as he activates a cleaning drone to wipe up the counter and tosses on his stock standard undershirt.");
 		output("\n\nAn hour passes, with Busky trying to ring up customers as nonchalantly as possible, trying not to bring attention to the cock knotted in his ass, and the person attached to it. However, as Busky is ringing up a customer, you start to feel your knot die down, and you start to pull.");
 		
@@ -1462,7 +1462,7 @@ public function buskySexMotivationFollowUpFollowUp():void {
 	
 	output("After you’ve fully rested, you get out of his lap and stretch. Busky follows you back to the bench where your romp started, only to find it entirely wiped down. The only proof of your sexual escapade being Busky’s jockstrap, hanging from the weight with a note tacked to it.");
 	output("\n\n<i>“I took the liberty of moving your clothes back to Straps for you, Busky.”</i> ~Q");
-	output("\n\n<i>“... Dammit Quenton,”</i> Busky chuckles.");
+	output("\n\n<i>“...Dammit Quenton,”</i> Busky chuckles.");
 	output("\n\nAfter a brief goodbye, you and Busky part ways. The massive bull, wearing nothing but his jockstrap, walks back to his shop, attracting the eyes of more than a few cows.");
 	
 	processTime(80 + rand(15));
@@ -1600,7 +1600,7 @@ public function buskySexHotTubFuck():void {
 
 	if(pc.isBro()) {
 		output("\n\n<i>“Hey! Step off bimbo! Can’t you stop thinking about cock for long enough to realize that maybe there’s a reason he came here with me?”</i>");
-		output("\n\n<i>“... HEY!”</i> the cowgirl whines, <i>“I don’t care, I saw him first. And he’s probably just shy. C’mon, ya big lug,”</i> she turns back to Busky, tugging at his arm. <i>“Let’s get out of here!”</i>");
+		output("\n\n<i>“...HEY!”</i> the cowgirl whines, <i>“I don’t care, I saw him first. And he’s probably just shy. C’mon, ya big lug,”</i> she turns back to Busky, tugging at his arm. <i>“Let’s get out of here!”</i>");
 		output("\n\n<i>“He’s gay you cockguzzling cowslut! You’d realize that if you’d stop begging for dick for half a second!”</i>");
 
 	} else {

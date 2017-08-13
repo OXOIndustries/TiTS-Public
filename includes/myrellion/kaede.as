@@ -201,7 +201,7 @@ public function kaedeMyrellionTalkRenWorld():void
 
 	output("<i>“So, this RhenWorld contract...”</i>");
 	
-	output("\n\nKaede blushes, cheeks reddening like rosepetals as you start to ask your question. <i>“I, uh, got lucky is all,”</i> she says, running a hand through her crimson hair. <i>“I bumped into a V.P. of the company in an elevator on Tavros. We, uh.... we hit it off, I guess, and she invited me to come do a few jobs for the company.”</i>");
+	output("\n\nKaede blushes, cheeks reddening like rosepetals as you start to ask your question. <i>“I, uh, got lucky is all,”</i> she says, running a hand through her crimson hair. <i>“I bumped into a V.P. of the company in an elevator on Tavros. We, uh... we hit it off, I guess, and she invited me to come do a few jobs for the company.”</i>");
 	
 	output("\n\n<i>“You hit it off, huh?”</i>");
 	

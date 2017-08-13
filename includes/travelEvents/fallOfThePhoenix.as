@@ -722,7 +722,7 @@ public function phoenixTRYAGAINCHAMP():void
 	
 	author("Savin");
 	showValeria();
-	output("\n\n<i>“It’s too much! Engines going critical!”</i> Valeria shouts, bringing up several readouts around her avatar, working feverishly. <i>“Emergency shutdown protocols initiated.... done!”</i>");
+	output("\n\n<i>“It’s too much! Engines going critical!”</i> Valeria shouts, bringing up several readouts around her avatar, working feverishly. <i>“Emergency shutdown protocols initiated... done!”</i>");
 
 	output("\n\nIn front of you, the engines spin back down. A moment later, they’re silent. ");
 

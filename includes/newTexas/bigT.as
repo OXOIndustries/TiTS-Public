@@ -348,7 +348,7 @@ public function bigTHasABigDDeskBlowjob():void
 		output("\n\nIs someone distracting him from your wonderful blowjob, and more importantly, from getting your delicious bull cream? You cradle his massive, virile balls in your hands and bob your head back and forth, deliberately trying to distract Big T from the call, feeling a naughty, possessive instinct overtake you. Your eyes flick upwards, eagerly watching his reaction.");
 		output("\n\nBig Tee can’t help himself, roughly thrusting his hips to meet your every motion. His flat tip flares in your throat as he struggles to control himself. <i>“A-ah heck! I’m sure that milk’ll show up soon enough, maybe sooner than you think--?”</i> He grabs your head and grinds you against his base, and your [pc.thighs] tremble with delight.");
 		output("\n\nAs the man on the screen complains more, you slide your tongue teasingly along the underside of his mammoth cock, and Tee’s eyes roll back. <i>“Tee, are you rolling your eyes at me--?!?”</i> The man yells. ");
-		output("\n\nCompletely ignoring him, Tee suddenly grabs your head and shoves forward, letting out a bellowing roar. <i>“... I’M COMING--!”</i> You utterly bliss out as he buries his flat-tipped horse cock down your throat, where it flares and explodes. Thick jets of hot bull semen slides down your gullet and you swallow Tee’s cum eagerly, trembling as it slides into your eager belly.");
+		output("\n\nCompletely ignoring him, Tee suddenly grabs your head and shoves forward, letting out a bellowing roar. <i>“...I’M COMING--!”</i> You utterly bliss out as he buries his flat-tipped horse cock down your throat, where it flares and explodes. Thick jets of hot bull semen slides down your gullet and you swallow Tee’s cum eagerly, trembling as it slides into your eager belly.");
 		pc.exhibitionism(1);
 	}
 	else // No phone call
@@ -398,7 +398,7 @@ public function bigTCockSuckPartII():void
 	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your [pc.gear] to your cum covered [pc.chestSimple]. You’re in a complete daze as you stumble giddily pass his receptionist,");
 	if(!pc.isNude()) output(" half");
 	output(" naked and too spaced out to care.");
-	output("\n\nAs you leave, you barely register the governor buzzing Zephyr on the intercom, and the rough, breathless voice that follows. <i>“... Cancel my next few appointments, Zephyr. This bull’s all worn out!”</i>");
+	output("\n\nAs you leave, you barely register the governor buzzing Zephyr on the intercom, and the rough, breathless voice that follows. <i>“...Cancel my next few appointments, Zephyr. This bull’s all worn out!”</i>");
 	sexedBigT();
 	// Might want to kick the player two squares south after this. 
 	flags["FUCKED_BY_BIGT"] = 1;
@@ -605,7 +605,7 @@ public function pitchTOverATable():void
 	output("\n\nYour orgasm is throttled, however, as your [pc.cum] surges up your [pc.cocks] only to be obstructed by his clenching ring. You’re utterly consumed by mind-numbing pleasure as you’re forcefully kept at the pinnacle of your climax. Pleasure-pain seizes your loins, your release denied, until Tee’s ass finally lets up. Your [pc.cum] explodes into his ass all at once and you nearly black out, holding onto his horns for dear life.");
 
 	output("\n\nYou cling to them and spurt burst after burst of spunk into the big bull’s ass. Finally you can hold yourself up no more and fall against his muscular back. You can feel yourself quivering, and he too, both of you absolutely wrecked from your respective orgasms. It takes you a long time to slide off, and when you finally do, your [pc.cumVisc] [pc.cumNoun] drools down his barrel-like thighs, coating them in [pc.cumColor].");
-	output("\n\n<i>“... Hot damn. It’s been a long time since I’ve came like that from a bull ride!”</i> Tee guffaws. It takes him a while to turn around on his wobbly legs and seat himself in his chair. <i>“Ahh--! I don’t think I’m going to be walking anywhere for the rest of the day, no siree.”</i>");
+	output("\n\n<i>“...Hot damn. It’s been a long time since I’ve came like that from a bull ride!”</i> Tee guffaws. It takes him a while to turn around on his wobbly legs and seat himself in his chair. <i>“Ahh--! I don’t think I’m going to be walking anywhere for the rest of the day, no siree.”</i>");
 	output("\n\nAfter slipping your gear back on, you say goodbye to Tee and slip out. You notice Zephyr is giving you a smug, knowing look. Well, it wasn’t exactly like the two of you were quiet, and she’s probably familiar with his noise....");
 	// Might want to kick the player two squares south after this. 
 	flags["FUCKED_BY_BIGT"] = 1;
@@ -775,7 +775,7 @@ public function bigTFucksYouEpilogue():void
 	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your gear to your cum covered [pc.chestSimple]. You’re in a complete daze as you stumble giddily pass his receptionist,");
 	if(!pc.isNude()) output(" half");
 	output(" naked and too spaced out to care.");
-	output("\n\nAs you leave, you barely register the governor buzzing Zephyr on the intercom, and the rough, breathless voice that follows. <i>“... Cancel my next few appointments, Zephyr. This bull’s all worn out!”</i>");
+	output("\n\nAs you leave, you barely register the governor buzzing Zephyr on the intercom, and the rough, breathless voice that follows. <i>“...Cancel my next few appointments, Zephyr. This bull’s all worn out!”</i>");
 	// Might want to kick the player two squares south after this. 
 	flags["FUCKED_BY_BIGT"] = 1;
 	processTime(59);

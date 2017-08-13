@@ -1316,7 +1316,7 @@ public function stephIrsonBountHunterEpisodeOne():void {
 	
 	output("\n\n<i>“Uh-oh, she’s noticed me! If I try to run, she’ll hunt me down in an instant! All I can do is lie perfectly still and hope she backs off! As a predator, the naleen shouldn’t bother me if I’m dead still.”</i>");
 	
-	output("\n\n<i>“... I can hear you,”</i> the busty monster sighs, cocking an eyebrow at Steph as she lies face-down in the dirt, heart-shaped ass swaying just inches in front of the camera.");
+	output("\n\n<i>“...I can hear you,”</i> the busty monster sighs, cocking an eyebrow at Steph as she lies face-down in the dirt, heart-shaped ass swaying just inches in front of the camera.");
 	
 	output("\n\n<i>“Crikey! Looks like she’s coming in for the kill! All I can do now is try to overpower her!”</i> Steph shouts, leaping to her feet and tackling the naleen, throwing the two of them over the boulder and into the brush. The camera drone speedily follows the brawl as Steph and the naleen tumble around in the dirt, eventually rolling into a wet mud-pit at the edge of the clearing.");
 	

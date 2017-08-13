@@ -738,7 +738,7 @@ public function pennySexFirstTime():void {
 		if(pc.tallness <= 60) output("your ear");
 		else if(pc.tallness <= 72) output("your neck");
 		else output("your side");
-		output(", <i>“... or who knows what she’ll do.”</i>");
+		output(", <i>“...or who knows what she’ll do.”</i>");
 		
 		output("\n\nThe fox-morph grabs your [pc.butt] in her hands, squeezing your cheeks momentarily, distracting you from the loss of heat against your front. Once she lets go, you discover that Penny has circled around you. She’s at a doorway now, her butt wiggling in your direction with her tail upraised as she fiddles with the portal’s control panel. You come after her, but the door chooses that moment to open, allowing Penny to slip away. The last thing you see is the flash of a tail vanishing into the darkness. Well, you may as well follow and finish what you started...");
 		//[Next]
@@ -1044,7 +1044,7 @@ public function stickAHugeDickInPennysWorld():void {
 	output("Stepping into the next room, you hear the gentle sound of a running shower. You follow the auditory trail through another doorway, getting hit by a wave of steam and a view of feminine curves all at once. Penny is standing in a surprisingly large shower stall with the door open and the water running down her back, slicking her fur down so that it shines with the moisture. She beckons you closer, saying, <i>“I don’t bite... much.”</i>");
 	
 	output("\n\nYou step over the lip of a large basin at the base of the shower, similar to a giant-sized tub, and let the water wash over your nude form. [pc.EachCock] is already suitably hard after the striptease Penny gave you. This is only a problem due to the mass of your [pc.cockBiggest]. It juts hard out in front of you, pressing against Penny’s belly button when you first enter, eager to reach inside her but so big that there’s no way the petite fennec could handle such a big, bitch-breaking fuck-stick. She shifts sideways, dragging it across her moisture-glossed fur inadvertently in a way that makes you groan. No matter how you move, your titanic endowment always seems to butt up against her body, forcing her to acknowledge your dick while simultaneously dulling your wits, flooding your mind with a haze of lustful impulses.");
-	output("\n\nGrabbing hold of your [pc.cockBiggest], the fox-girl giggles, pointing it up so that it’s a bit less obtrusive. Her fingers can’t even fully encircle its thickness; the best she can do is lamely heft the shaft, her fingers sinking slightly into the fleshy mast due to its weight. <i>“You know, I had meant to ambush you and take you as my prey, but hung like that...”</i> Penny half growls, half purrs, <i>“... there’s no doubt about it. You’re my mate... my thick... pulsating... monstrously endowed mate.”</i> Penny leans forward to lick you, letting her warm, slippery tongue slide across every vein and feature, her moist nose exhaling panting breaths that wash across the rest of the twitching package.");
+	output("\n\nGrabbing hold of your [pc.cockBiggest], the fox-girl giggles, pointing it up so that it’s a bit less obtrusive. Her fingers can’t even fully encircle its thickness; the best she can do is lamely heft the shaft, her fingers sinking slightly into the fleshy mast due to its weight. <i>“You know, I had meant to ambush you and take you as my prey, but hung like that...”</i> Penny half growls, half purrs, <i>“...there’s no doubt about it. You’re my mate... my thick... pulsating... monstrously endowed mate.”</i> Penny leans forward to lick you, letting her warm, slippery tongue slide across every vein and feature, her moist nose exhaling panting breaths that wash across the rest of the twitching package.");
 	
 	output("\n\nYou lean against the wall and grab a nearby shower rung, nonchalantly standing there as the prick-hungry vixen worships your musky tool, rubbing her face against it with great enthusiasm. ");
 	if(pc.hasKnot(x)) output("When she sees your knot, she gives it a happy squeeze.");
@@ -1445,7 +1445,7 @@ public function touchFluffyTail():void {
 	else output("grabbing your [pc.butt]");
 	output(" almost immediately, rubbing your most sensitive places with knowing caresses.");
 	
-	output("\n\n<i>“Now, my prey, I think it’s time you...”</i> Penny leans over, bending almost double to put her face next to your ear, <i>“... satisfy the predator, don’t you think?”</i> The ‘k’ in think is punctuated by the sound of her jaws snapping closed.");
+	output("\n\n<i>“Now, my prey, I think it’s time you...”</i> Penny leans over, bending almost double to put her face next to your ear, <i>“...satisfy the predator, don’t you think?”</i> The ‘k’ in think is punctuated by the sound of her jaws snapping closed.");
 	output("\n\nIt looks like Penny has got you where she wants you. What do you do?");
 	pc.lust(15);
 	//Display sex menu.

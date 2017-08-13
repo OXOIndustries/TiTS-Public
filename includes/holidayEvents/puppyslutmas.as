@@ -280,7 +280,7 @@ public function syriWearTheDamnDress():void
 	
 	output("\n\n<i>“You look good,”</i> you tell her reassuringly, though that doesn’t seem to soften her reaction to the whole thing.");
 	
-	output("\n\nAfter a moment of silence, Syri scowls and says, <i>“Can I take this off now?”</i> You give her a look, and she sighs, <i>“You’re really gonna push this, aren’t you? Ugghh.... fine! I’ll wear it... if it’ll make you happy.”</i>");
+	output("\n\nAfter a moment of silence, Syri scowls and says, <i>“Can I take this off now?”</i> You give her a look, and she sighs, <i>“You’re really gonna push this, aren’t you? Ugghh... fine! I’ll wear it... if it’ll make you happy.”</i>");
 	
 	output("\n\nYou smile at Syri, putting your hands on her shoulders. To your surprise, she returns the gesture, if less warmly. Even... nervously, perhaps.");
 	

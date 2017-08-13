@@ -55,7 +55,7 @@ public function seraSexXXXTFModsAsk():void
 	author("Nonesuch");
 	showSera();
 	
-	output("<i>“Do you have anything that’s a bit more...”</i> You want to say “interesting”. <i>“... exotic?”</i>");
+	output("<i>“Do you have anything that’s a bit more...”</i> You want to say “interesting”. <i>“...exotic?”</i>");
 	
 	// PC has submitted
 	if(seraIsMistress())

@@ -113,7 +113,7 @@ public function askTlakoAboutUvetanHistory():void
 	output("\n\nGiven the mountain of paperwork you navigated to dock here, you're uncertain if using the station was actually easier. You ask what the Camarilla gets out of it.");
 	output("\n\nTlako chirps and smooths down her bustier with all four hands. <i>“In order to maintain Uveto Station, the Camarilla levies a small tax on all incoming and outgoing traffic... with variances based on cargo load,”</i> she adds.");
 	output("\n\nYou frown, and she adds in hurriedly. <i>“Primarily for large-scale mining transport. In general, you won't be charged very much for private transport.”</i>");
-	output("\n\n<i>“Here aboard Uveto Station, you can enjoy many of the amenities of a colonized planet. Shops, food, and even, um...”</i> she pulls a small, circular disk from the top of her bustier, scrolling her finger across its screen, <i>“... forniculations are possible here on Uveto Station. Of course, the engineering levels are not accessible for you - as they are built to tove aquatic standards, and exist primarily below the walking deck.</i>\"");
+	output("\n\n<i>“Here aboard Uveto Station, you can enjoy many of the amenities of a colonized planet. Shops, food, and even, um...”</i> she pulls a small, circular disk from the top of her bustier, scrolling her finger across its screen, <i>“...forniculations are possible here on Uveto Station. Of course, the engineering levels are not accessible for you - as they are built to tove aquatic standards, and exist primarily below the walking deck.</i>\"");
 	processTime(6);
 	tlakoMenu(askTlakoAboutUvetanHistory);
 }
@@ -182,7 +182,7 @@ public function buyAStupidSluttyWhaleCumBasket():void
 		output("\n\nYou finally get the wrappings off and pull out a trio of items.");
 		output("\n\n<i>“It's Kalocrunch!”</i> she says, pointing up at the silver bag. <i>“Walking through snow and exploring frozen hellscapes can burn you out fast. Kalocrunch has the highest calorie-to-mass index of any food in existence. It's PERFECT for someone trekking across tundras,”</i> she trills happily.");
 		output("\n\n<i>“That's a Thermal Pack!”</i> she says, as you lift out a small metallic egg. <i>“It'll generate a microwave field around you for 24 hours. It'll keep off the worst of the cold down there on Uveto VII. I figured that most people coming through the station are going down there for some reason or another.”</i>");
-		output("\n\n<i>“And that's Yibb-Tstll’s Reflexive Lube! It's 'Good for What Rails You!'”</i> she says as you investigate the last item. The small, green capsule bears a picture of a tove with four thumbs up and an unsettling grin across his face. <i>“YTR Lube is the best in defensive lubrication. Pop it in your orifice, and you'll more easily accommodate girthier insertion for a few days. You know, in case of...”</i> she leans in and whispers conspiratorially, <i>“... surprising anal insertions.”</i>");
+		output("\n\n<i>“And that's Yibb-Tstll’s Reflexive Lube! It's 'Good for What Rails You!'”</i> she says as you investigate the last item. The small, green capsule bears a picture of a tove with four thumbs up and an unsettling grin across his face. <i>“YTR Lube is the best in defensive lubrication. Pop it in your orifice, and you'll more easily accommodate girthier insertion for a few days. You know, in case of...”</i> she leans in and whispers conspiratorially, <i>“...surprising anal insertions.”</i>");
 	}
 	else
 	{
@@ -274,7 +274,7 @@ public function tlakoThanksScene():void
 	showTlako();
 	flags["TLAKO_THANKED"] = 1;
 	output("\n\nThe rightmost door wooshes open, revealing the diminutive pink form of Tlako. The little pink tove looks up at you. <i>“You have no idea how much of a credit saver you are,”</i> she says with a warm smile. <i>“I've finally paid off Sub-Madam Xotchi Tzall for the loan on the Welcome Baskets. People are actually buying them now, and I even received a missive from the Camarilla Department of Intraorganization - I'm being considered for a promotion! And that's all thanks to you! You're just so amazing!”</i>");
-	output("\n\n<i>“I was looking up ways to thank you, and I was wondering if you wanted to make use of my implant,”</i> she says, a little embarrassed. <i>“Is that an okay thing to offer? I mean, it'd only work if you had something to put in it. It's not a pleasure organ for me like it is for you folks, so I wouldn't feel it in the same way as you might, but if it's something you'd like, I'd be happy to let you, um...”</i> she glances at her handheld, <i>“... flork me.”</i>");
+	output("\n\n<i>“I was looking up ways to thank you, and I was wondering if you wanted to make use of my implant,”</i> she says, a little embarrassed. <i>“Is that an okay thing to offer? I mean, it'd only work if you had something to put in it. It's not a pleasure organ for me like it is for you folks, so I wouldn't feel it in the same way as you might, but if it's something you'd like, I'd be happy to let you, um...”</i> she glances at her handheld, <i>“...flork me.”</i>");
 	clearMenu();
 	//[pc has two legs and a cock]
 	if(!pc.isTaur() && pc.hasCock()) addButton(0,"Flork Her",florkDatFuckinMuppet,undefined,"Flork Her","There's never a bad time for florking!");

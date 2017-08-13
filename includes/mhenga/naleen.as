@@ -218,7 +218,7 @@ public function ohNoNoCawkNaleenLoss():void {
 	
 	output("\n\nYou try to answer, but all your limp tongue can gurgle out is an animalistic grunt, which soon earns you a coo of delight from the predatory woman. <i>“You like my tail, no? Don’t worry, my pet, you’ll soon be moaning in pleasure for me,”</i> she laughs, and suddenly your head is wrapped between her slender fingers, face shifted to be mere inches from her own. With surprising gentleness she pulls you down onto her, kissing your numb lips as her soft digits play down your body, tearing away what remains of your equipment until the tips brush along the very edge of your [pc.vagOrAss " + x + "]. Your breath catches as she circles your vulnerable hole once, twice, then presses in, a single finger vanishing up to the knuckle. The muscles of your helpless orifice are completely unable to resist, to even squeeze or contract around the probing finger, letting it slide effortlessly into you.");
 	
-	output("\n\n<i>“Perrrrrffeeeeecct, little pet,”</i> the naleen grins, <i>“Nice and loose and soooo.... unresisting for me.”</i>");
+	output("\n\n<i>“Perrrrrffeeeeecct, little pet,”</i> the naleen grins, <i>“Nice and loose and soooo... unresisting for me.”</i>");
 	
 	output("\n\nSlowly, she withdraws her finger, leaving your [pc.vagOrAss " + x + "] feeling agape and empty, almost cold in how unfilled it is. But the sudden sensation of leathery scales sliding across your bare [pc.butt] promises a quick remedy to your emptiness; you whine pathetically as the naleen’s huge tail wraps once around your [pc.leg], the slender tip caressing your bare cheek before you feel a swelling pressure building at the ");
 	if(pc.hasVagina()) output("lips of your [pc.vagina " + x + "]");
@@ -271,7 +271,7 @@ public function beatDatCatNaga():void {
 	// if by Physical damage:
 	if(enemy.HP() <= 0) output("Battered and beaten, the strange alien feline-naga collapses into the dirt. She shakily tries to pick herself up, but only serves to flop down on her side, staring up at you with wide, slitted eyes. <i>“So... you were strong enough after all. So very rare on this planet. Very well, off-worlder. What will you do with me, hmm? Perhaps I can offer you something; an apology for my attack, hmm? I have soooo many ways to make it up to you,”</i> she says with a light coo, a hand resting on her big hip, with her huge bosom bared to you, so soft and inviting.\n\n");
 	// if by Lust:
-	else output("A master of carnal desire such as you is more than a match for such a lusty huntress. Panting heavily, the alien kitty-naga collapses to the ground, her desire clearly visible through the slick, parted folds of her sex. True to form, though, she shakily rights herself, resting on an elbow with her great big tits on enticing display as one hand dives toward her sex, starting to finger the wanton hole. <i>“You’re so.... so sensual, so beautiful. I am at your mercy, off-worlder. My body is yours to command, and I do so hope you can forgive my attack... I have soooo many ways to make it up to you.”</i>\n\n");
+	else output("A master of carnal desire such as you is more than a match for such a lusty huntress. Panting heavily, the alien kitty-naga collapses to the ground, her desire clearly visible through the slick, parted folds of her sex. True to form, though, she shakily rights herself, resting on an elbow with her great big tits on enticing display as one hand dives toward her sex, starting to finger the wanton hole. <i>“You’re so... so sensual, so beautiful. I am at your mercy, off-worlder. My body is yours to command, and I do so hope you can forgive my attack... I have soooo many ways to make it up to you.”</i>\n\n");
 	
 	clearMenu();
 	if(pc.lust() >= 33)
@@ -348,7 +348,7 @@ public function naleenTitFuck():void {
 	
 	output("\n\nAll the while, your [pc.cockBiggest] ceaselessly assaults her cleavage, pounding her tits until the first sticky smears of pre wet her fur. Panting hard, practically quivering in her afterglow, the naleen is putty in your hands, listlessly allowing your to mash her tits around your rod and fuck her harder. You settle into a steady, intense rhythm at the limp naleen’s expense, basking in the sensation of feeling cum welling up your throbbing fur-sheathed vein.");
 	
-	output("\n\nA weak voice below you murmurs, <i>“Your hands.... mmm, so strong.”</i> You look into the naleen’s slitted, feline eyes, seeing the renewed lust in them, watching her slender forked tongue flick across her lips as she rights herself, leaning up on her elbows. Your cock twitches mightily, discharging a thick stream of pre that dribbles back down the valley of her tits.");
+	output("\n\nA weak voice below you murmurs, <i>“Your hands... mmm, so strong.”</i> You look into the naleen’s slitted, feline eyes, seeing the renewed lust in them, watching her slender forked tongue flick across her lips as she rights herself, leaning up on her elbows. Your cock twitches mightily, discharging a thick stream of pre that dribbles back down the valley of her tits.");
 	
 	output("\n\n<i>“You really like my tits, hmm pet?”</i> she asks, wrapping her hands around the pair of huge orbs, so large and yielding that they spill out around her fingers. <i>“Then why not give me a big, creamy load right between them? Something to remember you by until we meet again...”</i>");
 	

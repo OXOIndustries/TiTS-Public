@@ -1076,7 +1076,7 @@ public function playAndSpray():void {
 	else output(" Y");
 	output("ou bend and stretch Flahne’s ductile rod as low and as far forward as it will go, nearly brushing the blue slit with her head, and her next squirt of cum is aimed right between the woman’s legs and into her cute little pussy, coating her labia. Three strokes fire into it before the woman reacts, knocking Flahne’s ovipositor away with her hand and covering herself.");
 	
-	output("\n\n<i>“What...”</i> the blue visitor begins, pulling her hand back up to her face as Flahne’s extended prick squirts the last of her orgasm. <i>“... is this cum? Did you just cum on me? Oh my God, did you get it inside me? What the FUCK!?”</i>");
+	output("\n\n<i>“What...”</i> the blue visitor begins, pulling her hand back up to her face as Flahne’s extended prick squirts the last of her orgasm. <i>“...is this cum? Did you just cum on me? Oh my God, did you get it inside me? What the FUCK!?”</i>");
 	
 	output("\n\n<i>“N-no,”</i> Flahne replies in a startled voice that suggests her eyes are as wide as plates.");
 	

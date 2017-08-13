@@ -298,7 +298,7 @@ public function iceQueenHelpHim():void
 	output("\n\nHer lips twist in an irate scowl. <i>“No. But we’re screwed if he doesn’t. Gotta make this stupid delivery, and Zaalt’s the least qualified to make repairs here. If anybody’s going, it’s him.”</i>");
 	
 	output("\n\n<i>“So what’s so important about these");
-	if (pc.isBimbo()) output(", uh.... like,");
+	if (pc.isBimbo()) output(", uh... like,");
 	output(" computer parts?”</i>");
 	
 	output("\n\n<i>“No idea. I’m a mechanic, not a computer nerd. All I know is some Uvetan company is paying top creds for express delivery... and we’re going expressly nowhere while our engine’s belching gas at us.”</i>");
@@ -1117,7 +1117,7 @@ public function iceQueenKaraShowsUpInterruptSex():void
 
 	flags["ICEQUEEN KARA STUFF"] = 3;
 
-	output("<i>“I guess we can call it even,”</i> you answer, reaching across the table to stroke one of Kara’s hands. <i>“... if you throw in a little </i>extra<i>.”</i>");
+	output("<i>“I guess we can call it even,”</i> you answer, reaching across the table to stroke one of Kara’s hands. <i>“...if you throw in a little </i>extra<i>.”</i>");
 	
 	output("\n\nKara giggles, chewing on a lip for a moment before giving you a smile. <i>“I was starting to think");
 	if (flags["SEXED_KARA"] == undefined) output(" you’d never ask");

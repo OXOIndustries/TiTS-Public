@@ -483,7 +483,7 @@ public function appearanceOfNayna():void
 	showNayna();
 	output("Nayna");
 	if(flags["NAYNA_LAST_NAME"] != undefined) output(" Triverre");
-	output(" is..... Well, she’s a rabbit-woman, like most laquine. She’s got big bunny ears that seem content to droop down the back of head and fur that covers every visible part of her body. Her black and white hair is tied back in a sensible ponytail, which when combined with her ears, could easily be mistaken for a trio of ponytails. A triangular black nose tips her short, rabbit-like muzzle, matched by inky little lips that seem ready to smile at a moment’s notice.");
+	output(" is.... Well, she’s a rabbit-woman, like most laquine. She’s got big bunny ears that seem content to droop down the back of head and fur that covers every visible part of her body. Her black and white hair is tied back in a sensible ponytail, which when combined with her ears, could easily be mistaken for a trio of ponytails. A triangular black nose tips her short, rabbit-like muzzle, matched by inky little lips that seem ready to smile at a moment’s notice.");
 	//Warm!
 	if(naynaWarm())
 	{

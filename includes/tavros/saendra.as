@@ -561,7 +561,7 @@ public function saendraHerArm():void
 	
 	output("\n\nValeria shimmers to life on her wrist, waving at you.");
 	
-	output("\n\n<i>“... built a telescoping probe out of some old mil-spec hardware. Good for fuckin’ and fixin’. Oh, and a flamethrower. Just some old fuel cells and a lighter, but good enough to burn the next pirate that wants a piece of me! I’d show you, but, uh, I don’t want to burn the place down. But it totally works!”</i>");
+	output("\n\n<i>“...built a telescoping probe out of some old mil-spec hardware. Good for fuckin’ and fixin’. Oh, and a flamethrower. Just some old fuel cells and a lighter, but good enough to burn the next pirate that wants a piece of me! I’d show you, but, uh, I don’t want to burn the place down. But it totally works!”</i>");
 	
 	output("\n\n<i>“Right. So about that probe...?”</i>");
 	

@@ -430,7 +430,7 @@ public function repeatableMirrinTraining():void
 		output("\n\nShe unloads her barbell onto the nearby rack. It’s amazing how it seems to always grow in size every time you see her use it and now it’s probably at around 450 kilos...");
 		output("\n\n<i>“Just some ground rules: You focus on me and only me. What I say goes, if you falter, I’ll help but that’s not likely to happen,”</i> she explains.");
 		if(pc.isTreated()) output(" It might be hard to focus with all these hefty, heaving bulls and cows smelling so <i>good</i> all the time...");
-		output("\n\n<i>“Right now.... I want to see you squat,”</i> she finishes, more forwardly than you expected.");
+		output("\n\n<i>“Right now... I want to see you squat,”</i> she finishes, more forwardly than you expected.");
 		if(pc.isNice()) output("\n\n<i>“I-if you’re sure...”</i> you say, a little cautious at the prospect.");
 		else if(pc.isMischievous()) output("\n\n<i>“Just had to ask, big girl,”</i> you say with a wink. She briefly raises an eyebrow.");
 		else output("\n\n<i>“Better be fair with me...”</i> you tepidly say.");
@@ -919,7 +919,7 @@ public function foodWithMirrin():void
 		}
 		output("\n\nThere’s a ding and a cow-server comes by with food. She gives you both a wink, presenting just two big punnets of food: More cheesy gravy fries but also what looks like huge slab of pulled pork smothered in a dark glaze.");
 		output("\n\n<i>“Eat up, babes,”</i> she winks to you both, then trots off with a wiggle of her hips.");
-		output("\n\nMirrin is sitting there slack jawed. <i>“Hoooo.... ly shit. I just... dibs!”</i> she calls out, stabbing it in the side with a disposable fork.");
+		output("\n\nMirrin is sitting there slack jawed. <i>“Hoooo... ly shit. I just... dibs!”</i> she calls out, stabbing it in the side with a disposable fork.");
 		output("\n\nSo much for last session’s restraint...");
 		output("\n\nYou jump into the substantially overstacked meal, the smoky sauce glaze is particularly friendly to your nose.");
 		if(pc.isTreated()) output(" Something about it reminds you of the indescribably rich musk of your dragon trainer. Ooo, if only you could get that close again...");
@@ -999,7 +999,7 @@ public function foodWithMirrin():void
 		output("\n\nOut of nowhere, she suckerpunches him right in the guts!");
 		output("\n\nThe effect is immediate. He buckles over her fist, grasping for something to hold on to. There’s no visible damage but his buddies go paramedic on the disabled bull. Only just able to hold himself up, he tries saying something even though he’s thoroughly winded. <i>“Lucky... shot... *<i>hnggg</i>*”</i>");
 		output("\n\nThe three ne’er-do-wells hightail out of the eatery with the incapacitated Doug having to slowly limp out the door.");
-		output("\n\nMirrin’s still visibly fuming. <i>“Fucking... fucking.... <b>fucking</b>...”</i> you can hear her fume under her breath. Well, you have to say something!");
+		output("\n\nMirrin’s still visibly fuming. <i>“Fucking... fucking... <b>fucking</b>...”</i> you can hear her fume under her breath. Well, you have to say something!");
 		if(pc.isNice()) output("\n\n<i>“Mirrin...? You’ve done all you need...”</i> you meekly say, placing a hand on her hip from behind. You can feel the raw tension in her muscles.");
 		else if(pc.isMischievous()) output("\n\n<i>“Heeeey, big girl... time to reign it in,”</i> you say with a light-hearted tone. You place a hand on her hip. Even in that spot, you can feel the tension.");
 		else output("\n\n<i>“That’s enough. He’s not coming back,”</i> you say sternly, conveying authority. You slowly place your hand on her hip.");

@@ -1046,8 +1046,8 @@ public function chooseSexualGift():void {
 	//NEW
 	author("Fenoxo & JimThermic");
 	// Almost completely rewritten to accommodate for tooltips, future-proof against new traits, and reduce the utter yawn factor from throwing a million descriptions of traits at the PC. Also some lore mentioning of why the PC might get more cool traits later on but for some reason can only get one at birth. Tooltips added.
-	output("<i>“Great!”</i> Your personal physician notes the choice, then hands Victor the datapad. <i>“... We’re almost done, but I’ve left the trickiest for last.”</i>");
-	output("\n\n<i>“What’s this?”</i> The mining magnate asks, looking downward. <i>“... A list of specialized treatments?”</i>");
+	output("<i>“Great!”</i> Your personal physician notes the choice, then hands Victor the datapad. <i>“...We’re almost done, but I’ve left the trickiest for last.”</i>");
+	output("\n\n<i>“What’s this?”</i> The mining magnate asks, looking downward. <i>“...A list of specialized treatments?”</i>");
 	output("\n\n<i>“Sort of,”</i> the doctor explains, <i>“One of the things we can do is work a special tweak into your successor’s genome; something that will give them a special gift, even beyond the choices you’ve made thus far.”</i>");
 	output("\n\n<i>“Are they safe?”</i>");
 	output("\n\n<i>“Perfectly - so long as only one is inserted into your child’s genome. Any more than that risks instability. Perhaps by the time your child is an adult, we’ll have made more advances in that area. For now, though, one’s the limit.”</i>");
@@ -1612,7 +1612,7 @@ public function tutorialIntro4():void {
 	output("\n\nSure, whatever.");
 	output("\n\n<i>“I’ve arranged to have a few dozen probes sent through the gates once they open. Each one is military grade hardened and keyed to only open for one of our family, so don’t lose too much of yourself. They all have clues pointing towards other probes secreted inside them, except for one. One has my personal, encrypted key. With that, you can open my deposit box in the bank I own on this station and take control of my company,”</i> Even projected through the soulless holoprojector, your dad’s spirit shines through his tear-misted eyes. <i>“I’m sure you’ll make me proud out there.”</i>");
 	output("\n\nThe projection of your father tilts its head, gesturing towards another door behind it. <i>“Through the door behind, you’ll find a hangar with the ship I started my journey on, repaired to usable condition and outfitted with standard, modernized technology. It’s a good starting point, but you should see if you can jump up to something better, particularly if you pick up the number of crewmates I did. That little junker can only hold a few people.”</i>");
-	output("\n\nYou rise to progress, but Dad keeps talking. <i>“One more thing.... there’s a Galotian in the next room, right next to the ship’s key. If you want to do this, you’ve gotta subdue her. Galotians are voracious protein hunters, but they’re not truly dangerous. She’s still a tough little foe, though. I’ve set up some recordings to assist you in learning how to handle creatures like this during your adventures.”</i> Dad winks. <i>“Good luck!”</i>");
+	output("\n\nYou rise to progress, but Dad keeps talking. <i>“One more thing... there’s a Galotian in the next room, right next to the ship’s key. If you want to do this, you’ve gotta subdue her. Galotians are voracious protein hunters, but they’re not truly dangerous. She’s still a tough little foe, though. I’ve set up some recordings to assist you in learning how to handle creatures like this during your adventures.”</i> Dad winks. <i>“Good luck!”</i>");
 	//[Open Door]
 	clearMenu();
 	addButton(0,"Open Door",openDoorToTutorialCombat);

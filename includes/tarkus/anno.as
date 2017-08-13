@@ -1717,7 +1717,7 @@ public function joinCrewPlanetCrackerVersion():void
 	if (pc.isNice()) output(" And I feel bad about my dad’s company just leaving you here, even after the planet exploded and all.");
 	output(" Besides, you’re not doing the company much good in a shop nobody visits.”</i>");
 	
-	output("\n\n<i>“Hey, I-”</i> Anno starts to protest, stopping when you give her a knowing wink. <i>“... I guess you’re right! But I can’t get Corporate to approve my transfer requests, boss. I’d LOVE to come with you, but unless you’ve gotten the whole CEO thing sorted out, I’d lose my job. Not that I exactly have a high job satisfaction right now or anything, but I like not being homeless, too.”</i>");
+	output("\n\n<i>“Hey, I-”</i> Anno starts to protest, stopping when you give her a knowing wink. <i>“...I guess you’re right! But I can’t get Corporate to approve my transfer requests, boss. I’d LOVE to come with you, but unless you’ve gotten the whole CEO thing sorted out, I’d lose my job. Not that I exactly have a high job satisfaction right now or anything, but I like not being homeless, too.”</i>");
 	
 	processTime(2);
 	
@@ -1980,7 +1980,7 @@ public function deck13AirlockFunc():Boolean
 
 		output("\n\n<i>“I knew it,”</i> Anno says, pulling up her map of the ship on a wrist computer. <i>“Here we are. Deck 13, and nowhere near any of those maintenance closets. Something’s on the other side of this hatch, boss. Something that doesn’t want to be found.”</i>");
 
-		output("\n\nShe pulls a small wire from her wrist and plugs it into a dim readout beside the airlock. A moment later, the display flickers to life, beeping weakly as Anno restores power to it. <i>“Almost.... got it!”</i> she says, quickly followed by a pneumatic hiss as the hatch slides open. ");
+		output("\n\nShe pulls a small wire from her wrist and plugs it into a dim readout beside the airlock. A moment later, the display flickers to life, beeping weakly as Anno restores power to it. <i>“Almost... got it!”</i> she says, quickly followed by a pneumatic hiss as the hatch slides open. ");
 
 		output("\n\n<i>“Alright, we’re in!”</i> she cheers, leaping from the grappling gun’s rope and into the airlock. You follow close behind, soon finding yourself choking on centuries’ worth of kicked-up dust. You cover your mouth and wave your arms through the thick mist until it finally settles down. ");
 
@@ -2664,7 +2664,7 @@ public function lossToGrayPrime():void
 		output(" single long, slender tendril slithers between the cheeks of your [pc.butt], spreading you apart with alacrity. Oh, no.... You brace yourself as best you can as the cold, slippery goo-tentacle presses against your [pc.asshole]; it doesn’t take long to spread you open. You give a shrill, desperate cry as the tentacle squirms into you, writhing through your anal passage as more and more gray goo enters you.");
 	}
 
-	output("\n\n<i>“You’re lucky,”</i> the goo-girl coos as her tentacles fuck you and your ausar companion, filling every hole on offer. <i>“Lucky that gray goo needs a certain kind of lubrication to work right. Biological, warm, fresh. Nothing on Tarkus like it, even in this whole junkyard of a planet, except good old fashioned sex juice. Well, not unless you want to get deadly, anyway. But then you’re just a one-time meal, and where’s the use in that.... when we could have you forever?”</i> ");
+	output("\n\n<i>“You’re lucky,”</i> the goo-girl coos as her tentacles fuck you and your ausar companion, filling every hole on offer. <i>“Lucky that gray goo needs a certain kind of lubrication to work right. Biological, warm, fresh. Nothing on Tarkus like it, even in this whole junkyard of a planet, except good old fashioned sex juice. Well, not unless you want to get deadly, anyway. But then you’re just a one-time meal, and where’s the use in that... when we could have you forever?”</i> ");
 	
 	output("\n\nYour eyes go wide, but the goo surging into your mouth prevents you from speaking - or doing much more than moan and gag as you’re viciously throat-fucked. Strangely, you’re not having any problem breathing around the gray tentacle rammed stomach-deep into you - almost like you can breathe through it. You don’t have much time to consider the implications of that, though, before the tentacles around your lower half start really pumping, moving faster and faster into your spread-open hole");
 	if (pc.hasVagina()) output("s");

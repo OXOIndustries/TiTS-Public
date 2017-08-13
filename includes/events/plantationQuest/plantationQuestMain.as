@@ -393,7 +393,7 @@ public function askWhereLahIs():void
 	output("<i>“Do you have any idea where Lah is holed up?”</i> you ask. Darnock silently brings up the map of the nearby jungle again. A large area to the north is circled.");
 	output("\n\n<i>“The zil have attempted to disguise their paths of approach, but satellite surveillance shows that they have almost certainly made camp on the highlands to the north. There seems to be a zil settlement there, at the head of a large waterfall. You will find our ausar friend there, I am sure of it.”</i>");
 	output("\n\n<i>“If you know where they are...”</i> you say slowly.");
-	output("\n\n<i>“... why haven’t I directed an orbital laser strike on their position? Hired a team of SagiTom mercs to go up there and, ah, take care of business?”</i> The professor smiles at you humorlessly. <i>“Firstly: I want Remi alive. He is not some psychopathic pirate with his empathy burnt out, beyond redemption. His and the zils’ eternal souls can be saved. They WILL be saved. Secondly: He is playing a clever game, Steele. Such brute tactics would be noticed, recorded and would </i>prove<i> that Mhen’ga is too dangerous to be civilized. I shall not make a martyr of him. That is why I turn to a single trustworthy hunter, well experienced with the Mhen’gan jungle, to bring him back.”</i>");
+	output("\n\n<i>“...why haven’t I directed an orbital laser strike on their position? Hired a team of SagiTom mercs to go up there and, ah, take care of business?”</i> The professor smiles at you humorlessly. <i>“Firstly: I want Remi alive. He is not some psychopathic pirate with his empathy burnt out, beyond redemption. His and the zils’ eternal souls can be saved. They WILL be saved. Secondly: He is playing a clever game, Steele. Such brute tactics would be noticed, recorded and would </i>prove<i> that Mhen’ga is too dangerous to be civilized. I shall not make a martyr of him. That is why I turn to a single trustworthy hunter, well experienced with the Mhen’gan jungle, to bring him back.”</i>");
 	processTime(3);
 	pquestIntroChatMenu();
 }
@@ -488,7 +488,7 @@ public function talkToAbleAboutValue():void
 	showAble();
 	author("Nonesuch");
 	output("<i>“And what do the zil value?”</i> you persist.");
-	output("\n\n<i>“... sex?”</i> mumbles Able after a pause, shrugging. <i>“Um. We don’t like it when people take our belongings without winning them fairly. That’s the whole reason why the clan are attacking the plantation. We like being able to roam the forests free of danger. And... there’s something else the ausar is giving them. I don’t know what, but they are really committed to protecting him, it’s as if- as if he were an endless supply of food, or something. If you can work out what it is he’s offering them...”</i>");
+	output("\n\n<i>“...sex?”</i> mumbles Able after a pause, shrugging. <i>“Um. We don’t like it when people take our belongings without winning them fairly. That’s the whole reason why the clan are attacking the plantation. We like being able to roam the forests free of danger. And... there’s something else the ausar is giving them. I don’t know what, but they are really committed to protecting him, it’s as if- as if he were an endless supply of food, or something. If you can work out what it is he’s offering them...”</i>");
 	processTime(1);
 	flags["PQUEST_ABLE_VALUE_TALK"] = 1;
 	//[Customs] [Leave]
@@ -2276,7 +2276,7 @@ public function doSomePeaceStuff():void
 	author("Nonesuch");
 	output("<i>“You need to come to some sort of compromise with star-people,”</i> you say. <i>“Show that you are peaceful. If not with Snugglé, then someone. If you just keep attacking whoever, eventually you’ll get soldiers landing here, and things will get ugly.”</i>");
 	output("\n\n<i>“Are you saying that we cannot drive off whoever we choose?”</i> Quinn raises a gleaming black eyebrow at you.");
-	output("\n\n<i>“... Yes?”</i> you have to reply. <i>“You already know star-people have vastly better tech--”</i>");
+	output("\n\n<i>“...Yes?”</i> you have to reply. <i>“You already know star-people have vastly better tech--”</i>");
 	output("\n\n<i>“What I know,”</i> the female zil interrupts with an irritated slap on her throne, <i>“is that the land-stealers hide and quiver in their palace from our attacks. That these Esbeth people of yours barely dare set foot outside their homes for fear of us. We are zil! We fight fearlessly and relentlessly, guided now by the star knowledge of the word-wolf! You seek to threaten us, alien, as if we weren’t warriors. Do not do so again.”</i>");
 	output("\n\nThere’s a clash of weapons and a loud, buzzing cheer behind you. Lah hasn’t said a word this time, but a glance over your shoulder tells you he’s looking unbearably smug.");
 	processTime(5);

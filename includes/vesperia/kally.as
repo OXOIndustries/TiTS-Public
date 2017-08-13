@@ -3404,7 +3404,7 @@ public function kiroAndKallyGoToGetMilkedThreesome2():void
 	else
 	{
 		output("\n\n<i>“So where are we going?”</i> Kiro asks, groaning and shifting to make room for a pair of nuts suddenly the size of cantaloupes.");
-		output("\n\nKally caresses one slowly, adoringly. She sips her drink to buy herself more time for ball fondling. <i>“To the Spunk Bunker.”</i> She squeezes, then shudders and wobbles as her own testes experience a sudden surge of growth. The swell of her fuzzy pouch peeks under the hem of her skirt. <i>“It’s a... a.... mmm... a specialty parlor for protein scavenging life forms - galotians, rahn, and the like.”</i>");
+		output("\n\nKally caresses one slowly, adoringly. She sips her drink to buy herself more time for ball fondling. <i>“To the Spunk Bunker.”</i> She squeezes, then shudders and wobbles as her own testes experience a sudden surge of growth. The swell of her fuzzy pouch peeks under the hem of her skirt. <i>“It’s a... a... mmm... a specialty parlor for protein scavenging life forms - galotians, rahn, and the like.”</i>");
 		//Bimbo
 		if(pc.isBimbo()) 
 		{

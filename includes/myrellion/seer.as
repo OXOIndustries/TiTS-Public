@@ -38,9 +38,14 @@ public function entiteExteriorShitz():void
 {
 	if (!entiteAvailable())
 	{
-		output("\n\nIt’s funny, you could’ve sworn that where you’re standing had a shop right next to you. Something purplish and... ah whatever, it’s probably just deja vu kicking you round the head again.");
+		if (flags["SEEN_ENTITE"] == undefined) output("\n\nYou feel a strange presense here... like there is supposed to be another shop front next to you... but obviously, there isn’t. Weird.");
+		else output("\n\nIt’s funny, you could’ve sworn that where you’re standing had a shop right next to you. Something purplish and... ah whatever, it’s probably just deja vu kicking you round the head again.");
 	}
-	else output("\n\nThere’s a familiarly Terran-looking shop just to your side. It’s old looking and the shop front seems medieval in design. Calligraphic letters spell out ‘The Entite’ in gold lettering over a purple sign that hangs above the solid wooden door. You get the feeling you’ve already been there before, maybe in another, more whimsical lifetime.");
+	else
+	{
+		output("\n\nThere’s a familiarly Terran-looking shop just to your side. It’s old looking and the shop front seems medieval in design. Calligraphic letters spell out ‘The Entite’ in gold lettering over a purple sign that hangs above the solid wooden door. You get the feeling you’ve already been there before, maybe in another, more whimsical lifetime.");
+		flags["SEEN_ENTITE"] = 1;
+	}
 }
 
 public function theEntiteBonus():Boolean
@@ -68,7 +73,7 @@ public function theEntiteBonus():Boolean
 	}
 	
 	output("The Entite seems to have drawn you into its being. You feel as if you’ve been here before... wait, you <i>have</i> been here before. You even remember what it looks like. It seems off though: Was that candle always on that book stack? That statue staring at you? Both? But maybe neither?");
-	output("\n\nThe shopkeeper is behind the counter, which you’ve seen her do before. Possibly. Have you even met her before? What was her name again? Did she do anything to you last time? You’re sure <i>something</i> did, maybe. ");
+	output("\n\nThe shopkeeper is behind the counter, which you’ve seen her do before. Possibly. Have you even met her before? What was her name again? Did she do anything to you last time? You’re sure <i>something</i> did, maybe.");
 	if (flags["SEER_LOUNGE"] != undefined) output(" Your body seems to remember: A strange sinking sensation rushes through you at an ephemeral pace when you glance at the shopkeeper.");
 	output("\n\nShe rises to welcome you with her left hand outstretched.");
 	var option:int = rand(4);
@@ -664,7 +669,7 @@ public function lezSeer4():void
 	output("You wake up. Where are you? Where did the... pale lady go...");
 	output("\n\nHuh?");
 	output("\n\nYou’re sitting against a wall in the streets of Gildenmere. Funny, you could’ve sworn that there was... ah yes! There’s that shop. You read the sign outside to remind yourself.");
-	output("\n\nEnt....ite?");
+	output("\n\nEnt...ite?");
 	output("\n\nEn...tite?");
 	output("\n\nYou put a hand to your sternum: There’s a gnawing sense of apprehension knotting inside but you can’t place why. It feels like... a sense of loss.");
 	output("\n\nWell, if it can’t be explained! You pick yourself up and get back to your business.");

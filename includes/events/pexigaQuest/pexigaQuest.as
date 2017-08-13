@@ -809,7 +809,7 @@ public function bimboBadgerPostDollmakuhFoight():void
 	output("\n\n<i>“Uh? This? No, silly! This is a gift! From me.”</i> She holds it out but then gives it an envious glance and pulls it back. <i>“Uh, to me, I mean. Yeah.”</i> Her expression changes to shock and delight. <i>“Wha? A Bitch-Breaker 9000? Just what I always wanted! Thanks, me!”</i> She hugs the arm-thick tool, gives the tip a little lick, then sets it down.");
 	if(pc.isBimbo()) output(" You can’t help but grump a little bit. You could’ve been the broken bitch!");
 	output("\n\n<i>“Is that your sister?”</i> the greedy slut asks, pointing to the blue girl crawling on all fours next to you. <i>“You two don’t look like each other at all!”</i>");
-	output("\n\nYou remind her about the pexiga who needs to get smarter and the doctor smiles with recognition. <i>“Oh, right right right. Yeah, that’ll be fun! Let’s do...”</i> she pauses for dramatic effect, <i>“... the THING!”</i> She launches into what you assume was supposed to be a sinister laugh, but actually just comes out as snorting giggles. ");
+	output("\n\nYou remind her about the pexiga who needs to get smarter and the doctor smiles with recognition. <i>“Oh, right right right. Yeah, that’ll be fun! Let’s do...”</i> she pauses for dramatic effect, <i>“...the THING!”</i> She launches into what you assume was supposed to be a sinister laugh, but actually just comes out as snorting giggles. ");
 	if(!pc.isBimbo()) output("You glance at the pexiga as further doubts in the good doctor’s capabilities pile on.");
 	else output("You help out by joining her in the sinister giggling laughter, but your heart really isn’t in it. You can’t stop thinking about that vibrator!");
 	processTime(4);
