@@ -490,6 +490,7 @@ public function thareAbleResponse(response:String = "none"):void
 			
 			// If time 07:01-17:59, + 4 hours, health + energy = 100%
 			processTime((4 * 60) + rand(16));
+			eventBufferXP();
 			sleepHeal();
 			
 			// Next
@@ -505,6 +506,7 @@ public function thareAbleResponse(response:String = "none"):void
 			
 			// If time 18:00-22:30, set time to 08:00 next morning, health + energy = 100%
 			processTime(((24 - hours + 7) * 60) + (60 - minutes));
+			eventBufferXP();
 			sleepHeal();
 			
 			// Next
