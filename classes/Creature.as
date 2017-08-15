@@ -19002,6 +19002,12 @@
 							kGAMECLASS.goMailGet("gastigoth_unlock");
 						}
 						break;
+					case "PAIGE_COMA_EMAIL_CD":
+						if (this is PlayerCharacter && requiresRemoval)
+						{
+							kGAMECLASS.eventQueue.push(kGAMECLASS.paigeEyeholeEmailEvent);
+						}
+						break;
 					case "Laquine Ears":
 						if(this is PlayerCharacter)
 						{

@@ -1,7 +1,251 @@
+public function paigeSparSetup():void
+{
+	if(!pc.hasStatusEffect("PAIGE_SPAR")) 
+	{
+		var paigesLevel:Number = pc.level;
+		//Blind Paige stuck at level 10.
+		if(paigeBlind()) paigesLevel = 10;
+		//Unblind Paige gets bumped to 12 regardless of if PC is there, otherwise levels are even
+		else if(pc.level < 12) paigesLevel = 12;
+		//Paige is a max-physique character who scales up with the PC, and as such will have the same or more spar HP than any PC, barring max-physique bumps.
+		var sparHP:int = Math.ceil(pc.physique()/10 * pc.HP()/pc.HPMax());
+		if(sparHP < 1) sparHP = 1;
+		pc.createStatusEffect("PAIGE_SPAR",Math.floor(paigesLevel/2),sparHP,1+rand(3),0);
+	}
+	clearMenu();
+	addButton(0,"Next",paigeSparringScreen);
+}
+
+public function paigeSparringScreen():void
+{
+	clearOutput();
+	showPaige();
+	if(paigeIsCrew()) output("<b>You are sparring Paige!</b>\n\nYou're standing in your ship's cargo hold. Your Ausar opponent stands across from you, her fists raised and close to her face. Her stance is wide and steady; unaggressive, yet you know that a moment's hesitation will get you opened up. Her clothing offers little protection, but her muscles serve as her armor. Now that she can see, her determination to earn her victory has never been sturdier, and she's about to prove it to you.");
+	else output("<b>You are sparring Paige!</b>\n\nYou're standing in her yoga class. Your Ausar opponent stands across from you, her fists raised and close to her face. Her stance is wide and steady, but unaggressive; she isn't about to make the first move. Despite her battle-unprepared clothing and her disability, you know that this fight isn't going to be an easy one. She wants to prove herself <i>to</i> herself, and she'll fight like a beast to do it.");
+	output("\n\n<u>Your HP:</u> " + pc.statusEffectv2("PAIGE_SPAR") + "\n<u>Paige's HP:</u> " + pc.statusEffectv1("PAIGE_SPAR"));
+	output("\n\nWhat will you do?");
+	//Hook -> Uppercut -> Jab
+	clearMenu();
+	addButton(0,"Hook",paigeSparAction,1,"Hook","Throw a hook to hit her from the side. It ought to shot down an uppercut in its tracks, assuming she doesn't jab you first.");
+	addButton(1,"Uppercut",paigeSparAction,2,"Uppercut","Clock her in the jaw with an uppercut. You should be able to block any jabs. Just hope she doesn't tag you with a right hook!");
+	addButton(2,"Jab",paigeSparAction,3,"Jab","Hit her with a quick jab. It'll interrupt her attempts at throwing a hook but leave you open to an uppercut.");
+	//v1 = paige HP, v2 = pc HP, v3 = next turn action :3
+	addButton(4,"Yield",yield2Paige,undefined,"Yield","Do this if you're not interested in getting hurt just to satisfy Paige's pride.");
+}
+
+public function paigeExitWrapper():void
+{
+	if(currentLocation != "SHIP INTERIOR") moveSouth();
+	else mainGameMenu();
+}
+
+public function paigeSparAction(arg:Number = 1):void
+{
+	clearOutput();
+	showPaige();
+	showName("\nSPARRING");
+	var hit:Boolean = false;
+	var paigeHit:Boolean = false;
+	var paigeMove:Number = pc.statusEffectv3("PAIGE_SPAR");
+	//PC throws a hook
+	if(arg == 1)
+	{
+		output("You try to tag her with a right hook!");
+		if(paigeMove == 1)
+		{
+			paigeHit = true;
+			hit = true;
+		}
+		else if(paigeMove == 2)
+		{
+			hit = true;
+			paigeHit = false;
+		}
+		else
+		{
+			hit = false;
+			paigeHit = true;
+		}
+	}
+	//PC throws a uppercut
+	else if(arg == 2)
+	{
+		output("You come in low, then strike high, aiming for her chin!");
+		if(paigeMove == 1)
+		{
+			paigeHit = true;
+			hit = false;
+		}
+		else if(paigeMove == 2)
+		{
+			paigeHit = true;
+			hit = true;
+		}
+		else
+		{
+			paigeHit = false;
+			hit = true;
+		}
+	}
+	else
+	{
+		output("You make a quick jab for her solar plexus!");
+		if(paigeMove == 1)
+		{
+			paigeHit = false;
+			hit = true;
+		}
+		else if(paigeMove == 2)
+		{
+			hit = false;
+			paigeHit = true;
+		}
+		else
+		{
+			hit = true;
+			paigeHit = true;
+		}
+	}
+	if(!hit)
+	{
+		output(" ");
+		if(rand(4) == 0) output("Paige deftly ducks from your wide swing, her body moving with practiced fluidity. You could swear, with her reflexes, she wasn't actually blind.");
+		else if(rand(3) == 0) output("Paige steps away from your attack, and you run out of reach, stumbling forward. It was as if she saw your movement coming from miles away.");
+		else if(rand(2) == 0) output("Paige sidesteps your strike, giving her full access to your open side. Her clouded eyes are focused on yours with an eerie discipline – she doesn’t even need eyes to read your body language.");
+		else output("Paige, with impeccable reflexes belying her disability and a cocksure expression on her face, blocks your attack easily and maneuvers herself into your now-open flank.");
+	}
+	// if Paige does not dodge the attack
+	// Randomly play one of the following
+	else
+	{
+		output(" ");
+		pc.addStatusValue("PAIGE_SPAR",1,-1);
+		if(pc.statusEffectv1("PAIGE_SPAR") <= 0)
+		{
+			output("The blow lands hard and does visible damage to Paige’s form and stance, and after a few moments of her trying and failing to collect herself, you understand just how hard you hit her. Eventually, she falls, and she does not get back up.");
+		}
+		else if(rand(4) == 0) output("Paige’s eyes go wide as your attack strikes true. Just before you felt your knuckles on her fur, it seems she realized her mistake and it was too late to try and fix it.");
+		else if(rand(3) == 0) output("Paige winces – and almost flinches – just as you land the blow. Although it felt like punching concrete, it’s clear, from her pained gasp, it had the intended effect on her.");
+		else if(rand(2) == 0) output("Paige’s teeth clench as your fist connects. She reels in surprise, but rights herself quickly and doesn’t let the shock to her cheek confuse her.");
+		else output("Paige gasps out in surprise and turns her body to avoid your attack, but she’s too late, and soon your clenched hand makes contact, knocking her back a pace.");
+		output(" (-1 Paige HP)");
+	}
+	//Paige swing!
+	if(pc.statusEffectv1("PAIGE_SPAR") > 0)
+	{
+		// if Paige’s counterattack is unsuccessful
+		// Randomly play one of the following
+		output("\n\n");
+		if(!paigeHit)
+		{
+			//hook -> uppercut -> jab
+			if(paigeMove == 1) 
+			{
+				output("Her left hook never gets a chance to connect, not after you tagged her with that brutal jab.");
+			}
+			else if(paigeMove == 2) output("She's reeling so badly that her aggressive attempt at an uppercut completely misses you.");
+			else output("Her jab glances off your elbow. Not today, Paige!");
+		}
+		// if Paige’s counterattack is successful
+		// Randomly play one of the following
+		else
+		{
+			if(paigeMove == 3) 
+			{
+				if(rand(2) == 0) output("Her closed fist swings forward and, before you could react yourself, connects with your lower ribs.");
+				else output("She clenches her fist and strikes forward with a fierce jab to your open stomach!");
+			}
+			else if(paigeMove == 2)
+			{
+				output("Her hand rushes in and up, coming in low, for a devastating uppercut to your exposed jaw. Your teeth crunch together in the blow, and the shock rattles your whole head.");
+			}
+			else output("Her fist comes in from the side, catching you completely off guard. Ouch!");
+			pc.addStatusValue("PAIGE_SPAR",2,-1);
+			output(" (-1 HP)");
+		}
+	}
+	if(pc.statusEffectv1("PAIGE_SPAR") <= 0)
+	{
+		output("\n\n<b>You win!</b>");
+		pc.energy(-50);
+		clearMenu();
+		addButton(0,"Next",paigeSparringVictory);
+	}
+	else if(pc.statusEffectv2("PAIGE_SPAR") <= 0)
+	{
+		output("\n\n<b>That last one has you feeling like maybe sitting down a while...</b>");
+		pc.HP(-pc.HPMax());
+		clearMenu();
+		addButton(0,"Next",loseToPaige);
+	}
+	else
+	{
+		//hook -> uppercut -> jab
+		var nextMove:Number = 1 + rand(3);
+		if(!paigeBlind() && rand(3) == 0)
+		{
+			if(rand(3) == 0) output("\n\nPaige shuffles cautiously, doing her best to make it impossible to get a read on her next move. You’ll have to guess!");
+			else if(rand(2) == 0) output("\n\nPaige hops from foot to foot, changing stances by the moment in an effort to conceal her next move. Who knows what’s coming next?");
+			else output("\n\nPaige laughs, <i>“What’s the matter, can’t handle me now that I can see?”</i>");
+		}
+		else if(nextMove == 1)
+		{
+			if(rand(3) == 0) output("\n\n<i>“I hope you can handle this,”</i> Paige taunts.");
+			else if(rand(2) == 0) output("\n\nPaige cocks her arm back.");
+			else output("\n\nPaige hops to your left, then to your right.");
+		}
+		else if(nextMove == 2)
+		{
+			if(rand(3) == 0) output("\n\nPaige crouches low, ready for the next exchange.");
+			else if(rand(2) == 0) output("\n\nPaige seems to be looking right through you.");
+			else output("\n\nPaige's left ear flicks in irritation, despite her smile.");
+		}
+		else if(nextMove == 3)
+		{
+			if(rand(3) == 0) output("\n\nPaige pulls her guard in tight.");
+			else if(rand(2) == 0) output("\n\nPaige rolls her shoulders before resuming a fighting stance.");
+			else output("\n\nPaige’s right ear twitches.");
+		}
+		pc.setStatusValue("PAIGE_SPAR",3,nextMove);
+		clearMenu();
+		addButton(0,"Next",paigeSparringScreen);
+	}
+}
+
+public function yield2Paige():void
+{
+	clearOutput();
+	showPaige();
+	if(paigeIsCrew())
+	{
+		output("You drop your fighting stance and bend your knee to Paige. <i>“I give up,”</i> you tell her. Paige looks on as you sink before her, bemused. <i>“I don’t think I can win against you, and I don’t want to get hurt trying.”</i>");
+		output("\n\nPaige clicks her tongue as she takes a casual stance. <i>“Well, that’s boring,”</i> she hums, placing her hands on her hips. <i>“But I guess that’s the smarter move. Gotta pick your battles, and all that.”</i> She smiles toothily at you, in an almost mocking way. <i>“And now that I can see, I’ve never felt better. I feel like I could fight three of you!”</i>");
+		output("\n\nBlind or not, you point out, she’s still built like concrete. <i>“I try!”</i> she laughs. <i>“I don’t hold it against you for wanting to not get hurt, [pc.name]. If I had the luxury back then, I probably would have run too.”</i> She turns around and bends at the waist, lifting her tail to give you a somewhat-clothed view of what it is you’re not fighting for. <i>“But I guess we’ll be saving these spoils,”</i> she says, slapping her own left cheek, <i>“for some other victory.”</i>");
+	}
+	else
+	{
+		output("You drop your fighting stance and raise a hand in surrender. <i>“I give up, Paige,”</i> you say to her. Her stance doesn’t drop, but her ears perk up at the news. <i>“I don’t think I can win, and I don’t want to get hurt trying.”</i>");
+		output("\n\nPaige clicks her tongue as she takes a casual stance. <i>“Well, that’s boring,”</i> she hums, placing her hands on her hips. <i>“But I guess that’s the smarter move. Gotta pick your battles, and all that.”</i> She smiles toothily at you, in an almost mocking way. <i>“And a blind woman isn’t in that league for you, I take it.”</i>");
+		output("\n\nYou point out that, despite being blind, she’s also built like a truck. <i>“I try!”</i> she laughs. <i>“I don’t hold it against you for wanting to not get hurt, [pc.name]. If I had the luxury back then, I probably would have run too.”</i> She turns around and bends at the waist, lifting her tail to give you a somewhat-clothed view of what it is you’re not fighting for. <i>“But I guess we’ll be saving these spoils,”</i> she says, slapping her own left cheek, <i>“for some other victory.”</i>");
+	}
+	flags["PAIGE_SPAR_RESULT"] = "yield";
+	//[=Next=]
+	processTime(5);
+	pc.lust(5);
+	pc.removeStatusEffect("PAIGE_SPAR");
+	// place PC one square outside of Paige's Yoga Class
+	// end scene (scene: Yield)
+	clearMenu();
+	addButton(0,"Next",paigeExitWrapper);
+}
+
 // The remainder of the document is combat win/loss versus Paige.
 // (scene: Fair Fight – Loss)
 public function loseToPaige():void
 {
+	clearOutput();
+	showPaige(true);
+	pc.removeStatusEffect("PAIGE_SPAR");
 	flags["PAIGE_SPAR_RESULT"] = "loss";
 	IncrementFlag("PAIGE_SPAR_LOSSES");
 	output("You’re battered, bruised, a little disoriented with the flurry of horny motion around you, and, before you realize it, naked. You lay there as Paige has her way with you, stripping you of your effects, y");
@@ -114,13 +358,13 @@ public function FFLO():void
 	output("\n\nYou’re dazed, beaten, exhausted, and horny as you could possibly be. If you went to Paige right now and asked her to fuck you, you know damn well she’d reciprocate for another round. But until you make that decision to swallow your pride, all you can do is put your effects back on and leave after her.");
 
 	// end scene (scene: FFLO); place PC one square outside of Paige’s Yoga Class or back to the ship’s main menu; increase Lust by 50; add Cum Soaked status
-	if(currentLocation != "SHIP INTERIOR") currentLocation = rooms[currentLocation].southExit;
 	applyCumSoaked(pc);
 	pc.girlCumInMouth(paige);
 	processTime(20);
 	pc.lust(50);
 	output("\n\n");
-	CombatManager.genericLoss();
+	clearMenu();
+	addButton(0,"Next",paigeExitWrapper);
 }
 
 //[=Vaginal=]
@@ -201,8 +445,8 @@ public function FFLV():void
 	if(pc.hasCock()) pc.orgasm();
 	soreDebuff(3);
 	pc.lust(50);
-	if(currentLocation != "SHIP INTERIOR") currentLocation = rooms[currentLocation].southExit;
-	CombatManager.genericLoss();
+	clearMenu();
+	addButton(0,"Next",paigeExitWrapper);
 }
 
 //[=Anal=]
@@ -273,8 +517,8 @@ public function FFLA():void
 		pc.createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
 		pc.ballFullness = 100;
 	}
-	if(currentLocation != "SHIP INTERIOR") currentLocation = rooms[currentLocation].southExit;
-	CombatManager.genericLoss();
+	clearMenu();
+	addButton(0,"Next",paigeExitWrapper);
 }
 
 
@@ -282,6 +526,9 @@ public function FFLA():void
 // Action Tree: http://i.imgur.com/bUxVDtB.png
 public function paigeSparringVictory():void
 {
+	clearOutput();
+	showPaige(true);
+	pc.removeStatusEffect("PAIGE_SPAR");
 	flags["PAIGE_SPAR_RESULT"] = "win";
 	IncrementFlag("PAIGE_SPAR_WINS");
 	//showPaige(true);
@@ -1164,9 +1411,9 @@ public function FFWOE(args:Array):void
 	// end scene (scene: FFWOE); reduce Lust to 0; place PC one square outside Paige’s Yoga Class, or put them in the ship’s main menu
 	pc.orgasm();
 	
-	if(currentLocation != "SHIP INTERIOR") currentLocation = rooms[currentLocation].southExit;
 	output("\n\n");
-	CombatManager.genericVictory();
+	clearMenu();
+	addButton(0,"Next",paigeExitWrapper);
 }
 
 // (scene: FFWVE)
@@ -1211,9 +1458,9 @@ public function FFWVE(args:Array):void
 	// end scene (scene: FFWVE); reduce Lust to 0; place PC one square outside Paige’s Yoga Class, or put them in the ship’s main menu
 	processTime(5);
 	pc.orgasm();
-	if(currentLocation != "SHIP INTERIOR") currentLocation = rooms[currentLocation].southExit;
 	output("\n\n");
-	CombatManager.genericVictory();
+	clearMenu();
+	addButton(0,"Next",paigeExitWrapper);
 }
 
 // (scene: FFWAE)
@@ -1247,7 +1494,7 @@ public function FFWAE(args:Array):void
 	// end scene (scene: FFWAE); reduce Lust to 0; place PC one square outside Paige’s Yoga Class, or put them in the ship’s main menu
 	processTime(5);
 	pc.orgasm();
-	if(currentLocation != "SHIP INTERIOR") currentLocation = rooms[currentLocation].southExit;
 	output("\n\n");
-	CombatManager.genericVictory();
+	clearMenu();
+	addButton(0,"Next",paigeExitWrapper);
 }

@@ -571,6 +571,7 @@ public const CREW_GOO_ARMOR_NOT:int = 9;
 public const CREW_VARMINT:int = 10;
 public const CREW_SIEGEWFULFE:int = 11;
 public const CREW_AZRA:int = 12;
+public const CREW_PAIGE:int = 13;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -587,6 +588,7 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (yammiIsCrew()) crewMembers.push(CREW_YAMMI);
 	if (gooArmorIsCrew()) crewMembers.push(CREW_GOO_ARMOR_IS_CREW);
 	if (pexigaIsCrew()) crewMembers.push(CREW_PEXIGA);
+	if (paigeIsCrew()) crewMembers.push(CREW_PAIGE);
 
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -671,6 +673,7 @@ public function getCrewOnShip():Array
 	if (annoIsCrew()) c.push(anno);
 	//9999 - not sure what I need to set up for this. Probably just a creature link but none done yet:
 	//if (azraIsCrew()) c.push(azra);
+	//if (paigeIsCrew()) c.push(paige);
 	if (bessIsCrew()) c.push(bess);
 	if (celiseIsCrew()) c.push(celise);
 	if (reahaIsCrew()) c.push(reaha);
@@ -737,6 +740,15 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			if(reahaIsCrew() && !curedReahaInDebt() && rand(3) == 0) crewMessages += "\n\nCelise looks strangely [reaha.milkColor] at the moment, a cloud of discolored liquid floating listlessly inside her. Looks like she’s been feeding off a certain bovine lately...";
 			else crewMessages += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
 			addButton(btnSlot++, "Celise", celiseFollowerInteractions);
+		}
+	}
+	if (paigeIsCrew())
+	{
+		count++;
+		if(!counter)
+		{
+			crewMessages += "\n\nPaige mostly keeps to her room when not helping you navigate the starways.";
+			addButton(btnSlot++,"Paige",paigeCrewApproach);
 		}
 	}
 	if (pippaOnShip())
@@ -1303,6 +1315,12 @@ public function shipMenu():Boolean
 		azraInShipGreeting();
 		return true;
 	}
+	//Paige follower greeting
+	if(paigeIsCrew() && flags["PAIGE_SHIP_GREETING"] == undefined) 
+	{
+		firstTimePaigeCrewHiHi();
+		return true;
+	}
 	
 	// Location Exceptions
 	if(shipLocation == "600") myrellionLeaveShip();
@@ -1316,6 +1334,11 @@ public function shipMenu():Boolean
 		addButton(4, "Shower", showerMenu);
 		if(shipLocation == "K16_DOCK") addButton(5,"Take Off",leaveZePrison);
 		else addButton(5, "Fly", flyMenu);
+		if(pc.hasStatusEffect("PAIGE_COMA_CD")) 
+		{
+			output("\n\n<b>No sense leaving while Paige is still in surgery...</b>");
+			addDisabledButton(5,"Fly","Fly","Maybe you should stay close while Paige is in surgery.");
+		}
 	}
 	
 	return false;
@@ -1346,7 +1369,15 @@ public function flyMenu():void
 		if(flags["CHECKED_GEAR_AT_OGGY"] != undefined) flags["CHECKED_GEAR_AT_OGGY"] = undefined;
 		pc.removeStatusEffect("Disarmed");
 	}
-	output("Where do you want to go?");
+	if(paigeIsCrew())
+	{
+		showPaige();
+		showName("WHERE\nTO?");
+		output("You ring Paige up on your ship’s intercom. <i>“Paige to the bridge,”</i> you say into the receiver, <i>“Paige to the bridge.”</i>");
+		output("\n\nYour Ausar navigator is by your side in just another moment. <i>“Yes, captain?”</i> she asks cheerfully.");
+		output("\n\nYou tell her that you’re setting off, and you want your navigator to plot you a course. <i>“Of course!”</i> she says, excited to get to work. <i>“Where are we headed?”</i>");
+	}
+	else output("Where do you want to go?");
 	clearMenu();
 	//TAVROS
 	if(shipLocation != "TAVROS HANGAR") addButton(0, "Tavros", flyTo, "Tavros");
@@ -1538,8 +1569,8 @@ public function flyTo(arg:String):void
 			interruptMenu = flyToBreedwell();
 			break;
 	}
-	
 	var timeFlown:Number = (shortTravel ? 30 + rand(10) : 600 + rand(30));
+	if(paigeIsCrew()) timeFlown = Math.floor(timeFlown * 0.75);
 	StatTracking.track("movement/time flown", timeFlown);
 	processTime(timeFlown);
 	setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
