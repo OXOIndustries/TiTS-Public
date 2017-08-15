@@ -630,7 +630,7 @@ public function vavaGroomServiceGrooming(page:int = 0):void
 			break;
 		case 1:
 			output("<i>“Stage 2,”</i> growls Cruff softly.");
-			if(!pc.isTaur()) output(" You are slightly shaken out of your happy reverie as the pads underneath you rearrange themselves so that you are slid back into the upright seated position.");
+			if(!pc.isTaur()) output(" You are shaken out of your reverie as the pads underneath you rearrange themselves so that you are slid back into the upright seated position.");
 			output(" The pads serving as arm rest stretch out, allowing Estie to take hold of one of your hands and apply a file to the");
 			if(pc.hasArmFlag(GLOBAL.FLAG_HOOVES)) output(" hooves");
 			else if(pc.hasClawedHands()) output(" claws");
@@ -663,7 +663,7 @@ public function vavaGroomServiceGrooming(page:int = 0):void
 			if(pc.hasHair() && pc.hairType == GLOBAL.HAIR_TYPE_REGULAR) output("Your head is dipped in warm water, and then Cruff sets about it with comb and brush. ");
 			// Animal ears/elf ears:
 			if(pc.hasLongEars() || pc.hasEmoteEars()) output("You don’t know if he spends an inordinate amount of time stroking behind your [pc.ears] on purpose - tightening his focus down until he’s applying just the right amount of pressure to make tingles run up your spine - but it’s intensely, almost shamefully pleasurable.");
-			output("\n\nEstie scrapes away the cream on your face, and finally they both stand back to allow mechanical arms to reach down from the ceiling and blast you from all sides with warm, dry air.");
+			output("\n\nEstie scrapes away the cream on your face, and they both stand back to allow mechanical arms to reach down from the ceiling and blast you from all sides with warm, dry air.");
 			if((pc.hasHair() && pc.hairType == GLOBAL.HAIR_TYPE_REGULAR) || pc.hasPartFur() || pc.hasPartFeathers()) output(" Cruff closes in for one last careful brushing.");
 			output(" Finally, Estie takes the eye pads off, and both of them come around to hold up mirrors to your face and back, swiveling them so you can see everything.");
 			
@@ -687,7 +687,7 @@ public function vavaGroomServiceGrooming(page:int = 0):void
 			if(pc.hasArmor()) output(" as you climb back into your [pc.armor]");
 			else if(pc.canCoverSelf(false, "wings") && pc.statusEffectv1("Wing Position") == 1) output(" as you sweep your [pc.wings] back around you");
 			output(". <i>“It’s good to work with such healthy material.”</i>");
-			output("\n\n<i>“See you soon [pc.name]!”</i> says Estie as she leads you back to the reception area. You are going to practically bounce out of here - your whole body feels rested and refreshed. You just want to strut around, on Tavros maybe, see how many people you can make stare. <i>“");
+			output("\n\n<i>“See you soon [pc.name]!”</i> says Estie after she leads you back to the reception area. You are going to practically bounce out of here - your whole body feels rested and refreshed. You just want to strut around, on Tavros maybe, see how many people you can make stare. <i>“");
 			
 			var estieFin:Array = [];
 			
@@ -702,7 +702,7 @@ public function vavaGroomServiceGrooming(page:int = 0):void
 			
 			if(estieFin.length > 0) output(RandomInCollection(estieFin));
 			else output("Knock ‘em dead!");
-			output("”</i>");
+			output("”</i> She adds as you leave.");
 			
 			processTime(17);
 			
