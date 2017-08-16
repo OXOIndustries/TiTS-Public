@@ -325,7 +325,7 @@ public function lerrisConsumeItem(itemInstance:ItemSlotClass):void
 		
 		output("\n\nYou grin up at her, saying that you remembered her having said she never got the mods to complete her transformation into a full-fledged dickgirl. So you thought you’d help her out with that... if she wants.");
 		
-		output("\n\nLerris glances between you and the pussy-growth drug. Her ears are tucked down against her scalp, and her twinned tails brush slowly against your [pc.leg]. <i>“Uhhh.... wow,”</i> she breathes, chewing on her lip ring. <i>“[pc.name], that’s... that’s <b>so generous</b> of you. I don’t know what to say.”</i>");
+		output("\n\nLerris glances between you and the pussy-growth drug. Her ears are tucked down against her scalp, and her twinned tails brush slowly against your [pc.leg]. <i>“Uhhh... wow,”</i> she breathes, chewing on her lip ring. <i>“[pc.name], that’s... that’s <b>so generous</b> of you. I don’t know what to say.”</i>");
 		
 		output("\n\nA yes or no to accepting it would be a start.");
 		
@@ -381,7 +381,7 @@ public function lerrisConsumeItem(itemInstance:ItemSlotClass):void
 		output("\n\n<i>“Wait!”</i> you start to say, <i>“You’re only supposed to take one!”</i>");
 		if (silly) output(" Why doesn’t anybody ever read directions!?!!?");
 
-		output("\n\nHer eyes go wide. <i>“Uh.... uh-oh.”</i>");
+		output("\n\nHer eyes go wide. <i>“Uh... uh-oh.”</i>");
 
 		if (lerris.breastRows[0].breastRatingRaw < 23.5)
 		{

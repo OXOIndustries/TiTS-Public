@@ -298,7 +298,7 @@ public function iceQueenHelpHim():void
 	output("\n\nHer lips twist in an irate scowl. <i>“No. But we’re screwed if he doesn’t. Gotta make this stupid delivery, and Zaalt’s the least qualified to make repairs here. If anybody’s going, it’s him.”</i>");
 	
 	output("\n\n<i>“So what’s so important about these");
-	if (pc.isBimbo()) output(", uh.... like,");
+	if (pc.isBimbo()) output(", uh... like,");
 	output(" computer parts?”</i>");
 	
 	output("\n\n<i>“No idea. I’m a mechanic, not a computer nerd. All I know is some Uvetan company is paying top creds for express delivery... and we’re going expressly nowhere while our engine’s belching gas at us.”</i>");
@@ -962,7 +962,7 @@ public function iceQueenKaraShowsUpCOOLIT():void
 	
 	output("\n\n<i>“Okay, all set,”</i> Kara says, giving you another playful wink. <i>“Thanks "+ pc.mf("boys", "you guys") + ", I’ll make sure this gets to the right place. And for you...”</i>");
 	
-	output("\n\nThe cobalt kaithrit fishes a credit chit from out of her skintight suit’s very generous cleavage, planting it on the table and sliding it across. <i>“Divvy it up however you want. As for me, I have an appointment to keep. It was good seeing you again, [pc.name]. Till next time.”</i>");
+	output("\n\nThe cobalt kaithrit fishes a credit chit from out of her skintight suit’s very generous cleavage, planting it on the table and sliding it across. <i>“Divvy it up however you want. As for me, I have an appointment to keep. It was good seeing you again, [pc.name]. till next time.”</i>");
 	
 	output("\n\nKara slips out of her seat and heads for the dock");
 	if (flags["SEXED_KARA"] != undefined) output(", pausing to plant a parting kiss on your brow");
@@ -1117,7 +1117,7 @@ public function iceQueenKaraShowsUpInterruptSex():void
 
 	flags["ICEQUEEN KARA STUFF"] = 3;
 
-	output("<i>“I guess we can call it even,”</i> you answer, reaching across the table to stroke one of Kara’s hands. <i>“... if you throw in a little </i>extra<i>.”</i>");
+	output("<i>“I guess we can call it even,”</i> you answer, reaching across the table to stroke one of Kara’s hands. <i>“...if you throw in a little </i>extra<i>.”</i>");
 	
 	output("\n\nKara giggles, chewing on a lip for a moment before giving you a smile. <i>“I was starting to think");
 	if (flags["SEXED_KARA"] == undefined) output(" you’d never ask");

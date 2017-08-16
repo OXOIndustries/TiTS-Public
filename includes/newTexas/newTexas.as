@@ -318,7 +318,7 @@ public function talkToOggyAbootTreatManz():void
 	output("\n\nOgram shrugs, <i>“Hey, if you want the tourist pitch, talk to Amma. I just live here.”</i>");
 	output("\n\n<i>“But you got the Treatment,”</i> you suggest, indicating his bulging muscles and bull-horns.");
 	output("\n\n<i>“Heh. Yeah. Kind of a snap decision, but... well, it’s actually pretty cool, you know. I was pretty ripped before -- kind of a requirement when you’re a bodyguard -- but </i>damn<i> that stuff jacked my muscles out. Could bend bars, these guns,”</i> he says, flexing. <i>“Plus I put on another foot of height and got these love-handles.”</i> He jerks a thumb towards his enormous horns.");
-	output("\n\n<i>“Pretty weird how different it works on guys and gals, though. When I got it, I figured I was gonna get huge tits and turn into a bimbo. Never actually occurred to me to talk to a bull around here, I guess. Didn’t see one ‘til after I ran into the gift shop and Treated up.”</i>");
+	output("\n\n<i>“Pretty weird how different it works on guys and gals, though. When I got it, I figured I was gonna get huge tits and turn into a bimbo. Never actually occurred to me to talk to a bull around here, I guess. Didn’t see one till after I ran into the gift shop and Treated up.”</i>");
 	output("\n\nOg leans back in his chair, locking his fingers behind his head. <i>“Can’t complain, really. After I got it, they let me have the run of the place. Any girl I wanted spread her legs for nothing. Especially if you catch ‘em in the milk barns... they practically beg for it, all hooked up to their milkers. Should hear Amma when she’s getting milked... any cock in a storm, that girl.”</i>");
 	output("\n\n<i>“Especially if it’s yours!”</i> she calls over with a wink.");
 	output("\n\nOgram grins, his pants visibly straining.");
@@ -368,7 +368,7 @@ public function oggysOldJob():void
 	output("\n\n<i>“I didn’t say anything!”</i>");
 	output("\n\n<i>“Bodyguarding. I was a bodyguard, basically. Got to wear the black suit and sunglasses, carry a machine pistol in my briefcase. It was pretty great. People I worked for were mostly scum, big corp. executives with enough creds to build their mansions out of their tax return slips. Kiha, JoyCo, Steele, you name it. But I got to go all over the galaxy, see cool aliens. Blow some up. Fucked others. Sometimes even fuck the people I was escorting.”</i>");
 	output("\n\n<i>“So you </i>were<i> a...”</i> Amma starts to laugh, cut off when Og pushes a button on his console. She shudders. ");
-	output("\n\n<i>“Hey, don’t judge a guy for working hard to get his bonuses.”</i> He sighs, leaning back in his chair and propping his legs up. <i>“Could have had a worse gig. But I like what I do here. New Texas’s been good to me.... wouldn’t go back to that for the world.”</i>");
+	output("\n\n<i>“Hey, don’t judge a guy for working hard to get his bonuses.”</i> He sighs, leaning back in his chair and propping his legs up. <i>“Could have had a worse gig. But I like what I do here. New Texas’s been good to me... wouldn’t go back to that for the world.”</i>");
 	processTime(5);
 	talkToOggy(false);
 	removeButton(2);
@@ -490,7 +490,7 @@ public function askAmmaAbootZeTreatManz():void
 	output("\n\n<i>“Is it reversible?”</i>");
 	output("\n\nAmma blinks, completely taken by surprise. <i>“Why would you want to stop being Treated? It’s the best!”</i>");
 	output("\n\n<i>“That’s not an answer,”</i> you say.");
-	output("\n\nShe fidgets. <i>“Uh, well, I don’t think it is. Probably not. I dunno, nobody’s ever really wanted to! It’s so nice... I couldn’t imagine living without my Treatment. Life,”</i> she pauses, leaning in to whisper <i>“and sex.... would be sooooo boring. It makes the pleasure-feelers in your brain go wild, and your endor... uh, endarfins...”</i>");
+	output("\n\nShe fidgets. <i>“Uh, well, I don’t think it is. Probably not. I dunno, nobody’s ever really wanted to! It’s so nice... I couldn’t imagine living without my Treatment. Life,”</i> she pauses, leaning in to whisper <i>“and sex... would be sooooo boring. It makes the pleasure-feelers in your brain go wild, and your endor... uh, endarfins...”</i>");
 	output("\n\n<i>“Endorphins,”</i> Ograms says, not looking up from his terminal.");
 	output("\n\n<i>“Endorphins! You get lots more of them, too. Did I mention that it made sex feel soooo good? And lactation! Oh, wow, giving milk is just the best... I feel bad for my poor bulls, who never get to do it!”</i>");
 	processTime(7);
@@ -1342,7 +1342,7 @@ public function stephIrsonEp3Pt2():void
 	stephHeader(3);
 	
 	output("Steph sets her big bucket down, cracks her knuckles, and wipes the milk from her lips. <i>“Right, then. That’s a Tehan sheila for you. Now, we’re going to have to be a little more careful up ahead: we’re on a quest to find a Tehan male. Now, these bovine ladies we’ve met so far are typical of their sex here: quiet, content, eager to please. But the studs here on Grand Teh are a bit more aggressive. They’re slightly outnumbered by the females, with each bull able to sate his base urges on a whim, spreading their wild oats freely among all the girls. But the Treatment’s made ‘em big, burly, and eager to go toe-to-toe on a hairpin.”</i>");
-	output("\n\nAs she’s talking, Steph’s walks out of the stall and back into the barn proper. Her <i>“quest”</i> takes her all the way to the other end of the barn, where in the background of her narration, you can see a huge, muscular man pounding away at one of the harnessed-up cowgirls, plunging his cock into her spread pussy as the automated milkers work their magic on her. Seeing the proceedings out of the corner of her gray eye, Steph freezes mid-step, hunching down and whispering to the camera drone, <i>“Alright, here we go. I’m going to have to be very, very careful not to earn this bull’s ire. Small words, a non-threatening tone.... I absolutely do not want to be seen as a threat, especially during what must be mating season here on Teh.”</i>");
+	output("\n\nAs she’s talking, Steph’s walks out of the stall and back into the barn proper. Her “quest” takes her all the way to the other end of the barn, where in the background of her narration, you can see a huge, muscular man pounding away at one of the harnessed-up cowgirls, plunging his cock into her spread pussy as the automated milkers work their magic on her. Seeing the proceedings out of the corner of her gray eye, Steph freezes mid-step, hunching down and whispering to the camera drone, <i>“Alright, here we go. I’m going to have to be very, very careful not to earn this bull’s ire. Small words, a non-threatening tone.... I absolutely do not want to be seen as a threat, especially during what must be mating season here on Teh.”</i>");
 	output("\n\nIn proper <i>Galactic Huntress</i> fashion, Steph starts to creep up toward the bull, stealthily making her way up behind his pistoning hips. The camera drone floats around to get a better picture of him: mostly human, but freakishly tall, with massive bull horns growing from his brow. The man’s muscular to the point of a bodybuilder, with a thick layer of body hair that clings tightly to his darkly tanned skin. His jaw is locked in a frown of effort, and he’s grunting deeply, almost like a real bull. Every powerful hip-thrust sends the cow-girl rocking in her harness, her assflesh rippling with the impacts.");
 	output("\n\n<i>“G’day, mate!”</i> Steph says suddenly from the stud’s side, leaning against the stall wall.");
 	output("\n\n<i>“‘Sup,”</i> he answers, not breaking pace nor looking up.");
@@ -1887,7 +1887,7 @@ public function carrieBlowjobsGo():void
 		else if(cumQ < 1500) 
 		{
 			output("\n\nYour [pc.cock " + x + "] swells and you exhale hoarsely as you orgasm, hot [pc.cumNoun] surging into the cow girl’s suck in heavy, juicy bursts. She swallows wetly, eyes closed as she aids your cascading high on with drags of her lips and close slides of her tongue. You go on and on, riding your intense pulses, intent on pumping every last drop of your thick, generous seed into her; the next moment she pulls out, and carefully directs your throbbing dick at the large glass jar between her knees. You shudder and huff, blowing the last half of your load into it, coaxed on by her wringing, rubbing hand. You exhale with pure contentment when she tugs out the last of it, oozing into the almost-full container.");
-			output("\n\n<i>“Mmm,”</i> she says happily, licking her lips as she slaps a lid down on your “donation”. <i>“A li’l something for the bank... and a li’l something for me. Deserve a reward for all the hard work I do with the milking machine, don’cha think?”</i>");
+			output("\n\n<i>“Mmm,”</i> she says happily, licking her lips as she slaps a lid down on your “donation”. <i>“A lil’ something for the bank... and a lil’ something for me. Deserve a reward for all the hard work I do with the milking machine, don’cha think?”</i>");
 			if(pc.isTreatedBull()) output(" You grin down at her absurdly, feeling nothing but shining fondness and warmth for the auburn cock-polisher.");
 			else output(" You grin down at the auburn cock-polisher, contentment throbbing through you.");
 		}
@@ -1906,7 +1906,7 @@ public function carrieBlowjobsGo():void
 		output("\n\n<i>“Oh, no!”</i> giggles Carrie, sounding honestly surprised by your question. <i>“Sucking dick is its own reward, silly. Well, maybe not for you,”</i> she goes on, brow crinkling " + (hours >= 6 && hours < 20 ? "as a gray cloud vaguely intrudes on an eternally sunlit mind" : "as crickets chirp in the night") + ". <i>“But for cows it’s... the taste, and... when it touches the back of your throat, and... how happy and sweet and relaxed it makes you bulls...”</i> her eyes have gone a bit vague.");
 		output("\n\n<i>“Swing back around anytime ");
 		if(pc.tallness >= 72) output("big ");
-		else if(pc.tallness < 60) output("li’l ");
+		else if(pc.tallness < 60) output("lil’ ");
 		output(pc.mf("guy","girl") + ", least when I’m not on shift,”</i> she says at last with a grin, picking herself ");
 		if(cumQ >= 500) output("and her full, gloopy jar ");
 		output("up.");
@@ -2122,7 +2122,7 @@ public function carrieBlowjobsGo():void
 		else if(cumQ < 1500)
 		{
 			output("\n\nYour [pc.cock " + x + "] swells and you exhale hoarsely as you orgasm, hot [pc.cumNoun] surging into the cow girl’s suck in heavy, juicy bursts. She swallows wetly, eyes closed as she aids your cascading high on with drags of her lips and close slides of her tongue. You go on and on, riding your intense pulses, intent on pumping every last drop of your thick, generous seed into her; the next moment she pulls out, and carefully directs your throbbing dick at the large glass jar between her knees. You shudder and huff, blowing the last half of your load into it, coaxed on by her wringing, rubbing hand. You exhale with pure contentment when she tugs out the last of it, oozing into the almost-full container.");
-			output("\n\n<i>“Mmm,”</i> she says happily, licking her lips as she slaps a lid down on your “donation”. <i>“A li’l something for the bank... and a li’l something for me. Deserve a reward for all the hard work I do with the milking machine, don’cha think?”</i>");
+			output("\n\n<i>“Mmm,”</i> she says happily, licking her lips as she slaps a lid down on your “donation”. <i>“A lil’ something for the bank... and a lil’ something for me. Deserve a reward for all the hard work I do with the milking machine, don’cha think?”</i>");
 			if(pc.isTreatedBull()) output(" You grin down at her absurdly, feeling nothing but shining fondness and warmth for the auburn cock-polisher.");
 			else output(" You grin down at the auburn cock-polisher, contentment throbbing through you.");
 		}
@@ -2137,7 +2137,7 @@ public function carrieBlowjobsGo():void
 		//merge
 		output("\n\n<i>“Swing back around anytime ");
 		if(pc.tallness >= 72) output("big ");
-		else if(pc.tallness < 60) output("li’l ");
+		else if(pc.tallness < 60) output("lil’ ");
 		output("guy, least when I’m not on shift,”</i> she says at last with a grin, picking herself ");
 		if(cumQ >= 500) output("and her full, gloopy jar ");
 		output("up.");
@@ -2614,7 +2614,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			output("You slip your hand into Carrie’s own small, warm mitt and stroll with her beyond the barn and up a little trail leading eastwards.");
 			output("\n\nIt really is extremely pleasant on New Texas. There’s a timeless quality to the prairies and vast sky stretching out in all directions, as if nothing could possibly trouble you so long as you empty your mind and let your thoughts drift into the dusty green and powdery blue. Every huge, widely spaced building you can see looks well used, cared for... well, except <i>that</i> one.");
 			output("\n\n<i>“What’s that?”</i> you ask, pointing at the derelict skeleton of concrete and leaning wood.");
-			output("\n\n<i>“It was gonna be the semen bottling facility for Big T’s ranch,”</i> sighs Carrie, kicking at a pebble. <i>“We export the stuff you know, it’s almost as prized as our milk in the Beyond. But the bulls who were constructing it got transferred to Berylhead and nobody’s picked it up since, cuz there aren’t really enough bulls ‘round here to justify it. So now it’s just me and my dinky lil milker.”</i>");
+			output("\n\n<i>“It was gonna be the semen bottling facility for Big T’s ranch,”</i> sighs Carrie, kicking at a pebble. <i>“We export the stuff you know, it’s almost as prized as our milk in the Beyond. But the bulls who were constructing it got transferred to Berylhead and nobody’s picked it up since, cuz there aren’t really enough bulls ‘round here to justify it. So now it’s just me and my dinky lil’ milker.”</i>");
 			// Male Treated:
 			if(pc.isTreatedBull()) output("\n\nIt hurts you on some deep, profound level to see a heavy lifting job like that left unfinished...");
 			

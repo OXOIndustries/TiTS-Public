@@ -1175,7 +1175,7 @@ public function doubleTeamingWithTheJimTOnSomeAntSlutQueenMayhapIDunno():void
 	else
 	{
 		output("You fondly reminisce about the time you were sandwiched between Iriella and one of her harem. Given it was so fun last time you’re eager to try it again, and you state as much to Irellia.");
-		output("\n\n<i>“That <i>was</i> fun, wasn’t it?”</i> The gold queen flushes. Her arms cross underneath her titanic tits and she deliciously hefts them. <i>“... What’s your preference this time?”</i>");
+		output("\n\n<i>“That <i>was</i> fun, wasn’t it?”</i> The gold queen flushes. Her arms cross underneath her titanic tits and she deliciously hefts them. <i>“...What’s your preference this time?”</i>");
 	}
 	//[Muscular] [Moderate] [Feminine]
 	processTime(1);
@@ -1202,9 +1202,9 @@ public function muscleMyrDoubleTeamGO():void
 		output("\n\nNeither of you have to wait long before what can only be described as an alien adonis strides into the room. With striking black hair, perfect pectorals, and purposeful gait, you touch your mouth to check that you’re not drooling. Yow!");
 		output("\n\nFurther down, things just keep getting better. Between those powerfully thick thighs is a golden cock truly made for a queen. Even with all that muscle, his dick is disproportionate to his body size, dangling down near his amber knees. It takes you a moment to spot his equally mammoth balls tucked behind his incredible girth.");
 		output("\n\nHas he taken mods? He looks like he’s taken mods. That <i>can’t</i> be the product of nature. He’s just-he’s just way too perfect.");
-		output("\n\n<i>“... I want your job,”</i> you huskily admit to Irellia, and the gold queen chuckles.");
+		output("\n\n<i>“...I want your job,”</i> you huskily admit to Irellia, and the gold queen chuckles.");
 		output("\n\nThe muscular myr kneels before you both, bowing solemly. <i>“My queen and company - how may I be of assistance?”</i> His voice is quite gravelly, matching his rugged exterior.");
-		output("\n\n<i>“[pc.fullname], meet Iloden. As you can see, he’s very unusual compared to most other males, though I understand his type isn’t uncommon for you off-worlders,”</i> Irellia remarks. She then gestures in your direction. <i>“... Iloden, you will be pleasuring us both. I hope you are up to the task?”</i>");
+		output("\n\n<i>“[pc.fullname], meet Iloden. As you can see, he’s very unusual compared to most other males, though I understand his type isn’t uncommon for you off-worlders,”</i> Irellia remarks. She then gestures in your direction. <i>“...Iloden, you will be pleasuring us both. I hope you are up to the task?”</i>");
 
 		output("\n\n<i>“Always, my lady.”</i> You swear you spot a slight smile tugging at the side of his lips, though it is hastily suppressed.");
 		flags["MET_ILODEN"] = 1;
@@ -1215,8 +1215,8 @@ public function muscleMyrDoubleTeamGO():void
 		output("When it comes to myr males, you can’t think of anyone better than Iloden. Just thinking about his pectorals and glorious black hair - not to mention his titanic tool - sends a delicious shiver down your spine. You tell Irellia as much.");
 		output("\n\n<i>“I’m sure he’ll be glad to hear it,”</i> she musically laughs, and then calls for him. It’s not long at all before he’s purposefully pacing into the room and kneeling before you both.");
 		output("\n\n<i>“My queen, [pc.master] Steele - how may I be of assistance to you both?”</i> He asks in that wonderfully gravelly voice. You swear you see a glimmer of delight in those black eyes of his. It’s so hard to tell with these myr!");
-		output("\n\n<i>“... Iloden, you will be pleasuring us both once again. It seems [pc.fullname] has taken a liking to you.”</i>");
-		output("\n\n<i>“... Oh?”</i> There’s a definite lilt of pleasure in his voice, just barely suppressed. You can’t help but grin - it seems you weren’t the only one who enjoyed yourself last time!");
+		output("\n\n<i>“...Iloden, you will be pleasuring us both once again. It seems [pc.fullname] has taken a liking to you.”</i>");
+		output("\n\n<i>“...Oh?”</i> There’s a definite lilt of pleasure in his voice, just barely suppressed. You can’t help but grin - it seems you weren’t the only one who enjoyed yourself last time!");
 	}
 	processTime(3);
 	clearMenu();
@@ -1239,7 +1239,7 @@ public function fuckAGenericMyrWithQueenIrellia():void
 		output("\n\nLike most myr, he’s buck naked and his bits are dangling between those tightly toned thighs. His golden phallus is built for breeding, dangling down near his knees. His gilded balls are equally sizable and well hidden behind his glorious cock.");
 		output("\n\n<i>“Hot damn,”</i> you exclaim. It’s a good thing it’s okay to stare, because if you saw him on the street, you’re not sure you could help yourself. Talk about eye candy!");
 		output("\n\nThe totally hunky myr kneels before you both, bowing solemnly. <i>“My exquisite queen and company - how may I be of assistance today?”</i> His voice is a powerful, robust baritone. For some reason, it reminds you of melting chocolate; it’s just that deliciously rich.");
-		output("\n\n<i>“[pc.fullname], meet Aurin. He’s one of my regular attendants, and quite skilled at his job.”</i> Irellia informs you. She then gestures in your direction. <i>“... Aurin, I trust you’ll have no trouble pleasuring us both? I know you love a challenge.”</i>");
+		output("\n\n<i>“[pc.fullname], meet Aurin. He’s one of my regular attendants, and quite skilled at his job.”</i> Irellia informs you. She then gestures in your direction. <i>“...Aurin, I trust you’ll have no trouble pleasuring us both? I know you love a challenge.”</i>");
 		output("\n\n<i>“Do I ever.”</i> Aurin replies, a charming smile flashing across those perfect lips. Apparently among the queen’s attendants, this particular drone is allowed a little more informality. He must really be one of her favorites!");
 	}
 	//Not first time with Aurin/Moderate myr:
@@ -1248,7 +1248,7 @@ public function fuckAGenericMyrWithQueenIrellia():void
 		output("Aurin springs to mind; what with his gorgeously thick sandy blonde hair, lean, sexy body, and gorgeous grin. You tell Irellia you’d like a bit of <i>that</i> action.");
 		output("\n\n<i>“Really? I’m feeling Aurin too,”</i> she also admits, and then calls for him. It’s not long at all before he’s striding confidently into the room and kneeling before you both.");
 		output("\n\n<i>“My lovely royal ladies - how may I be of assistance to you both?”</i> The myr male asks with a roguish smile. It never fails to impress exactly how bold he is in front of his queen and company. She really would let him get away with murder, but with that smile and those kissable lips, who wouldn’t?");
-		output("\n\n<i>“... Aurin, you will be pleasuring us both once more. I trust you have no complaints-?”</i> Irellia playfully asks. The question is of course rhetorical.");
+		output("\n\n<i>“...Aurin, you will be pleasuring us both once more. I trust you have no complaints-?”</i> Irellia playfully asks. The question is of course rhetorical.");
 		output("\n\n<i>“Nothing would please me more,”</i> he genuinely responds in that sexy, baritone voice. A delightful little shiver runs down your spine and travels right down to your [pc.feet].");
 	}
 	processTime(3);
@@ -1274,7 +1274,7 @@ public function tellIrelliaYouLikeEmGirly():void
 		output("\n\n<i>“Y-yes I am, " + pc.mf("s-sir!","m-ma’am!") + "”</i> The girly-boy stammers back, clearly flustered by your blurted words. The queen laughs, but then composes herself with a quick cough.");
 		output("\n\n<i>“My apologies, dear Etheln. I didn’t mean to laugh,”</i> she flushes. <i>“Etheln is a rare occurrence among we gold myr. Just like me, he is a ‘honeypot myr’. A male honeypot myr is exceedingly rare.”</i>");
 		output("\n\nYou look down at his golden bosom and notice his puffy nipples are indeed lactating an amber-hued nectar, just like Irellia. His breasts look so swollen and cute!");
-		output("\n\n<i>“... Etheln, you will be pleasuring us both today. That’s not too much for you to handle, is it?”</i> Irellia playfully asks.");
+		output("\n\n<i>“...Etheln, you will be pleasuring us both today. That’s not too much for you to handle, is it?”</i> Irellia playfully asks.");
 		output("\n\n<i>“N-no my queen!”</i> Etheln stammers back. You notice his girthy member twitches at the news - he seems barely able to contain his delight. It’s not just his looks, but his personality is rather adorable as well. He is definitely more ‘boy’ than ‘man’, despite that considerable package between his legs.");
 	}
 	//Else
@@ -1283,7 +1283,7 @@ public function tellIrelliaYouLikeEmGirly():void
 		output("Etheln immediately springs to mind; you’d definitely like to play around with him again. You tell Irellia as much.");
 		output("\n\n<i>“He is rather cute, isn’t he?”</i> Irellia admits, before turning to one of her handmaidens. <i>“Go fetch Etheln!”</i> It’s not long before the effeminate looking myr is dashing into the room.");
 		output("\n\nThe moment he reaches you both, he falls to one knee. As he bows to you both, you get a nice view of his well rounded breasts and pert nipples. Delicious!");
-		output("\n\n<i>“... Etheln, you will be pleasuring us both once more. Are you sure you’re... fit for the task?”</i> The gold queen titters, all the while holding one of her hands in front of her mouth.");
+		output("\n\n<i>“...Etheln, you will be pleasuring us both once more. Are you sure you’re... fit for the task?”</i> The gold queen titters, all the while holding one of her hands in front of her mouth.");
 		output("\n\n<i>“O-of course!”</i> The girly-boy nervously stammers, but his dark eyes are glimmering with delight. He tucks one of his scarlet bangs behind his ear and looks at you. The moment your eyes meet, his considerable manhood begins to twitch and stir.");
 	}
 	processTime(3);
@@ -1358,7 +1358,7 @@ public function partTwoOfAntSlootBoogalooDoubleteam(partner:String = ""):void
 			else output(" You ");
 			output("can tell by the swelling of his ample sized cock that he’s definitely enjoying the sight.");
 		}
-		output("\n\nYou stride forward until you’re inches away from each other. With a single hand, you reach down and grab his twitching shaft. In his ear, you whisper <i>“... Are you enjoying the sight? No lying now.”</i> Your cheek is pressed against his and you can feel the warmth of his blush against your [pc.skinFurScales].");
+		output("\n\nYou stride forward until you’re inches away from each other. With a single hand, you reach down and grab his twitching shaft. In his ear, you whisper <i>“...Are you enjoying the sight? No lying now.”</i> Your cheek is pressed against his and you can feel the warmth of his blush against your [pc.skinFurScales].");
 		output("\n\nThe femboy shyly nods. With long, languid strokes, you tease his girthy cock with your fingers. He lets out a trembling moan and buries his face in your shoulders. All it takes is a few strokes before there’s the wet, sticky sensation of pre-cum dribbling over your fingers.");
 		output("\n\nYou pointedly squeeze his cock and make a chastising noise. <i>“Tsk-don’t you have any control? You’re the one meant to be pleasuring <i>us</i>, not the other way around.”</i> With both hands you passionately work his shaft, increasing his obvious frustration. He lets out a long, heated whine from his soft, girly lips.");
 		output("\n\n<i>“I-I-I can’t hold on any longer-!”</i> He pants and whimpers. With a violent little spasm, he trembles and shoots long, sticky arcs of his gooey myr spunk all over your [pc.belly]. It gushes down your hands - there’s so much of it! He may be a pushover, but he’s a potent one. Gushes of warm alien cum stream down his shaft and all over your fingers for what seems like an eternity as he moans with absolute delight.");

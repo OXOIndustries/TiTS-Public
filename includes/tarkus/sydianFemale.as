@@ -889,7 +889,7 @@ public function femSydianCallOthers():void
 		if (enemy.hairColor == "orange") output(" flame-colored");
 		output(" hair waves in the air from the force of his lovemaking. He gropes her with one hand, squeezing a yielding breast, and his thrusts are so vigorous that you can hear the ‘schlick’ sounds of wet sex from feet away.");
 
-		output("\n\n<i>“No...”</i> she grunts, covering his big paw, <i>“... don’t.”</i> She tries to pull him from her vulnerable breast, but he only knocks her hand away.");
+		output("\n\n<i>“No...”</i> she grunts, covering his big paw, <i>“...don’t.”</i> She tries to pull him from her vulnerable breast, but he only knocks her hand away.");
 		
 		output("\n\n<i>“Don’t you want the seed of a powerful male?”</i> he teases, passing an antenna through his fist. Coated with a thick sheen of enzyme, he caresses her stomach almost lovingly.");
 		if (enemy.hairColor == "orange") output(" The girl’s skin flushes when the new dose hits; her cunt must have tightened up, because her lover clenches his teeth and pushes as deeply into her as he can.");
@@ -987,7 +987,7 @@ public function femSydianGiveThrob():void
 	if (enemy.lust() >= enemy.lustMax()) output(" sopping");
 	output(" pussy distract her again - teasing the rim, you feel the surging temperature that heralds sudden growth. She squirms in your hands, unable to recover her composure in your intense stare.");
 	
-	output("\n\n<i>“Nnnn...”</i> she groans, <i>“... it’s hot!”</i> Even her neck begins to burn with racing blood, pulsing against your lips. You slide your fingers in deeper and kiss the woman’s inflamed skin, watching her measured, dominating persona crumble away.");
+	output("\n\n<i>“Nnnn...”</i> she groans, <i>“...it’s hot!”</i> Even her neck begins to burn with racing blood, pulsing against your lips. You slide your fingers in deeper and kiss the woman’s inflamed skin, watching her measured, dominating persona crumble away.");
 
 	output("\n\nThe sydian’s hips begin to tremble as pressure mounts. <i>“What the fuck did you do?”</i> she shrieks, pulling away from your fingers. Her pelvis pounds the air, hammering and writhing, and tears well up in her eyes. The sydian’s crotch-plate smokes like an unlubricated sex droid as she rakes it with her fingers, producing puffs of dried mud. With huge effort she pries the thin covering up, snapping it in half with a ceramic noise and hurling it away in a fit. With it gone, you can see her true skin.");
 	
@@ -1172,7 +1172,7 @@ public function femSydianGiveThrob():void
 		
 		output("\n\nHer pussy seems to ratchet tighter with every stroke up her cock, until your own prick is fit to burst all over her insides. You exercise titanic restraint, trying to fuck her well enough that she’ll never forget the "+ pc.mf("man", "woman") +" who gave her her first dual orgasm. Judging by the way she writhes like a snake with a pinned tail, she isn’t far off.");
 		
-		output("\n\n<i>“N-no...”</i> she moans, <i>“... cumming soon! Don’t stop!”</i> Her hand is a gray blur on her angry, swollen cock, stroking so hard that pre-cum is flung off the end without the chance to lubricate a damn thing.");
+		output("\n\n<i>“N-no...”</i> she moans, <i>“...cumming soon! Don’t stop!”</i> Her hand is a gray blur on her angry, swollen cock, stroking so hard that pre-cum is flung off the end without the chance to lubricate a damn thing.");
 		if (!pc.isTaur()) output(" As you watch, one of the globlets hits her in the face");
 		else output(" Many of the globlets spatter on your belly");
 		output("; she pays no mind and continues jerking, tickling her urethra with a thumbtip like an experienced masturbator. Your own climax hits you, and you hilt deep in pussy to deliver your seed. The sydian notices, and you can feel her balls tighten with the base of your penis as the anticipation pushes her over her limit. Her pussy begins to quake just as the [pc.cum] climbs your shaft.");

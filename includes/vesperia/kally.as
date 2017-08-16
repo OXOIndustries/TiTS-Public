@@ -943,7 +943,7 @@ public function kallyTalksAboutKiro():void
 	else output("Kiro didn’t seem to think she would.");
 	output("\n\nKally flips her bar rag over her shoulder and leans across the bar. <i>“Hell yeah I do. Is she an outlaw? Sure. Is she a pirate? You bet. A murderer and a rapist? I don’t think so. Look her up on the e-net. Plenty of injuries, a merc stupid enough to frag himself on his ordinance, but no mass murder, not even when it would make her life easier. And take a peek at all those supposed rapes. Every one of them, an attractive woman. Not a single injury outside of a strained orifice... well, aside from the one that broke her arm after she slipped in cum and fell.”</i>");
 	output("\n\nYou raise an eyebrow, but that does jive with what you’ve seen and heard about Kiro.");
-	output("\n\n<i>“Void, I respect the hell out of her.”</i> Kally’s eyes sparkle. <i>“She was a backwater nothing with a sister who gave her endless trouble. There was zero chance that either one of us would get out and about on our own, but she did it. She did it with nothing more than guts, wit, and an idea.”</i> She picks up a shot glass and spins it around. <i>“Truth is, I wouldn’t be here talking to you if it wasn’t for her giving me the idea to try it myself. My way might have been more legal, but if I made the wrong choices, signed up with the wrong people, I could’ve wound up a slave. The paperwork would call me an indentured servant while a corporation turned me into a whore. We both gambled. She pulled the slots ‘til she won big. I spent my time, building up a few winnings in blackjack. Not as quick, but more stable and less at the whim of lady luck.”</i>");
+	output("\n\n<i>“Void, I respect the hell out of her.”</i> Kally’s eyes sparkle. <i>“She was a backwater nothing with a sister who gave her endless trouble. There was zero chance that either one of us would get out and about on our own, but she did it. She did it with nothing more than guts, wit, and an idea.”</i> She picks up a shot glass and spins it around. <i>“Truth is, I wouldn’t be here talking to you if it wasn’t for her giving me the idea to try it myself. My way might have been more legal, but if I made the wrong choices, signed up with the wrong people, I could’ve wound up a slave. The paperwork would call me an indentured servant while a corporation turned me into a whore. We both gambled. She pulled the slots till she won big. I spent my time, building up a few winnings in blackjack. Not as quick, but more stable and less at the whim of lady luck.”</i>");
 	//Bro
 	if(pc.isBro()) output("\n\nYou grunt agreeably.");
 	//Bimbo
@@ -1456,7 +1456,7 @@ public function kallyIsHotKiroSays():void
 	processTime(1);
 	clearMenu();
 	addButton(0,"Okay",okayKiroYourSisAintHot,undefined,"Okay","Don’t rock the boat.");
-	addButton(1,"Push Her",pushKiroToWannaFuckHerSis,undefined,"Push Her","There’s no way Kiro doesn’t think her sis is a stone cold fox. Push her till she admits it.");
+	addButton(1,"Push Her",pushKiroToWannaFuckHerSis,undefined,"Push Her","There’s no way Kiro doesn’t think her sis is a stone cold fox. Push her until she admits it.");
 }
 
 //[Ok]
@@ -3404,7 +3404,7 @@ public function kiroAndKallyGoToGetMilkedThreesome2():void
 	else
 	{
 		output("\n\n<i>“So where are we going?”</i> Kiro asks, groaning and shifting to make room for a pair of nuts suddenly the size of cantaloupes.");
-		output("\n\nKally caresses one slowly, adoringly. She sips her drink to buy herself more time for ball fondling. <i>“To the Spunk Bunker.”</i> She squeezes, then shudders and wobbles as her own testes experience a sudden surge of growth. The swell of her fuzzy pouch peeks under the hem of her skirt. <i>“It’s a... a.... mmm... a specialty parlor for protein scavenging life forms - galotians, rahn, and the like.”</i>");
+		output("\n\nKally caresses one slowly, adoringly. She sips her drink to buy herself more time for ball fondling. <i>“To the Spunk Bunker.”</i> She squeezes, then shudders and wobbles as her own testes experience a sudden surge of growth. The swell of her fuzzy pouch peeks under the hem of her skirt. <i>“It’s a... a... mmm... a specialty parlor for protein scavenging life forms - galotians, rahn, and the like.”</i>");
 		//Bimbo
 		if(pc.isBimbo()) 
 		{
@@ -3481,10 +3481,10 @@ public function kiroAndKallyGoToGetMilkedThreesome4():void
 	showKallyAndKiro(true);
 	author("Fenoxo");
 	output("Kally reaches across to slap Kiro’s tits. <i>“No! If I can’t... can’t cum... you can’t either!”</i>");
-	output("\n\nThe pirate’s reacts in typical Kiro fashion: by squirting a torrential volley of pre-spunk in between her tits. The trapped horse-cock’s flare is easily visible, jutting from the middle of her cleavage, and it gets more visible with every passing second. The upper portions of her dress become quite transparent once suitably soaked, displaying rich chocolate nipples and pebbly equine flare with equal ease. The sex-addicted tanuki-girl rubs at her sore boob. Her juices squish around so loudly that you wonder if they can hear it from inside a nearby shop. Hell, there’s a visible lake of the stuff, trapped between tits and tool, and it’s only getting bigger. Soon it’s going to spill out over Kiro’s plunging neckline.");
+	output("\n\nThe pirate’s cock reacts in typical Kiro fashion: by squirting a torrential volley of pre-spunk in between her tits. The trapped horse-cock’s flare is easily visible, jutting from the middle of her cleavage, and it gets more visible with every passing second. The upper portions of her dress become quite transparent once suitably soaked, displaying rich chocolate nipples and pebbly equine flare with equal ease. The sex-addicted tanuki-girl rubs at her sore boob. Her juices squish around so loudly that you wonder if they can hear it from inside a nearby shop. Hell, there’s a visible lake of the stuff, trapped between tits and tool, and it’s only getting bigger. Soon it’s going to spill out over Kiro’s plunging neckline.");
 	output("\n\nYou pity the poor station janitor.");
-	output("\n\n<i>“Bitchy Ice Queen,”</i> Kiro whimpers, stealing glances at Kally’s nuts as she stumbles on. Both sisters are still growing, both in size and eagerness. If they aren’t careful, they just barely touch the station’s smooth deckplates. The older sibling’s directions are hard to understand with all the ecstatic sighs and ‘fuck’s she interrupts herself with, but it sounds like you’re closing in your destination. Good thing, too. If you the trip took too much longer, you’d have to drag the kui-tan along on their beanbag chair-sized nads. In four or five minutes, their feet wouldn’t touch the ground.");
-	output("\n\nOne thing becomes clear as you close in on the neon-lit <i>“Spunk Bunker”</i> sign: the more over-sized the girls’ nuts get, the more deferential to your opinion they become. Neither seems the least offended by your casual guidance, nor by their sibling’s biting criticisms. Kally’s rolls her hips against your own and never stops trying to entice you into giving her a handjob. Kiro is just as bad and twice as wanton, grinding herself against you from the other side, letting the pre-spunk spill down your side so that she can hump you all the easier. She grouses when you spin her forward, making her push her bloated ballsack through the door on her tippy toes, but her protest seems half-hearted, like she does so more out of habit than genuine feeling. She’s just happy you’re paying attention.");
+	output("\n\n<i>“Bitchy Ice Queen,”</i> Kiro whimpers, stealing glances at Kally’s nuts as she stumbles on. Both sisters are still growing, both in size and eagerness. If they aren’t careful, they just barely touch the station’s smooth deckplates. The older sibling’s directions are hard to understand with all the ecstatic sighs and <i>‘fuck’</i>s she interrupts herself with, but it sounds like you’re closing in your destination. Good thing, too. If you the trip took too much longer, you’d have to drag the kui-tan along on their beanbag chair-sized nads. In four or five minutes, their feet wouldn’t touch the ground.");
+	output("\n\nOne thing becomes clear as you close in on the neon-lit “Spunk Bunker” sign: the more over-sized the girls’ nuts get, the more deferential to your opinion they become. Neither seems the least offended by your casual guidance, nor by their sibling’s biting criticisms. Kally rolls her hips against your own and never stops trying to entice you into giving her a handjob. Kiro is just as bad and twice as wanton, grinding herself against you from the other side, letting the pre-spunk spill down your side so that she can hump you all the easier. She grouses when you spin her forward, making her push her bloated ballsack through the door on her tippy toes, but her protest seems half-hearted, like she does so more out of habit than genuine feeling. She’s just happy you’re paying attention.");
 	//Nuki nutted up yourself
 	if(pc.hasStatusEffect("Egregiously Endowed") || pc.hasStatusEffect("Ludicrously Endowed") || pc.hasStatusEffect("Overwhelmingly Endowed"))
 	{
@@ -3529,7 +3529,7 @@ public function kiroAndKallyGoToGetMilkedThreesome5():void
 		output("\n\n<i>“Hello Mistress Kally,”</i> the shapely android chirps. <i>“I see you’ve brought three wonderfully... exquisitely... scrumptious looking friends.”</i> She licks her lips, revealing a long purple tongue that glitters like an amethyst serpent in the artificial light. <i>“Are you all here for a milking, or are they just going to help you with your... donation.”</i> A convincingly high-pitched whine escapes her throat.");
 		output("\n\n<i>“A milking... please!”</i> Kally cries.");
 		output("\n\n<i>“Why couldn’t they have installed my AI core into the milkers?”</i> the slutty robo-vixen sighs forlornly, staring at each of your bulging crotches in turn. <i>“Please tell me you’re all getting milked. Please.”</i>");
-		output("\n\nKido nods, stroking herself. At long last, she finally manages to free her dick from her dress. It glitters with moisture, dripping thick webs of excitement to the floor.");
+		output("\n\nKiro nods, stroking herself. At long last, she finally manages to free her dick from her dress. It glitters with moisture, dripping thick webs of excitement to the floor.");
 		output("\n\n<i>“Oh fuck yes. Right this way, please.”</i>");
 	}
 	//Repeat
@@ -3592,6 +3592,7 @@ public function rahnMilkerFunTimes(arg:String):void
 	showKallyAndKiroAndVixette(true);
 	author("Fenoxo");
 	var x:int = pickSpunkBunkerCock();
+	var cumQ:Number = pc.cumQ();
 	//Rahn cunt
 	if(arg == "pink")
 	{
@@ -3625,10 +3626,10 @@ public function rahnMilkerFunTimes(arg:String):void
 			output(" out of the way and");
 		}
 		output(" gently insert your [pc.cockHead " + x + "] into the horticultural hole. It’s cool to the touch but delightful low-friction. You slide in without the aid of any juices");
-		if(pc.cumQ() >= 200) 
+		if(cumQ >= 200) 
 		{
 			output(", save for your ");
-			if(pc.cumQ() >= 2000) output("ever-dribbling ");
+			if(cumQ >= 2000) output("ever-dribbling ");
 			output("pre");
 		}
 		output(". The passage is smooth but tight. You can feel it deform to accommodate your shape with every inch you plunge inside, providing an airtight embrace that feels like it never wants to let you go. The petaly lips cup your [pc.knotOrSheath " + x + "] as soon as you bottom out");
@@ -3656,7 +3657,7 @@ public function rahnMilkerFunTimes(arg:String):void
 	{
 		output("You choose the devious purple pussy over the the other exotic choices on offer. ");
 		if(!pc.isCrotchExposed()) output("A few quick tugs frees your [pc.cock " + x + "] from confinement and has it ready to go. ");
-		output("The innocuous-looking entrance reacts to your proximity by spreading its lips before you even make content, revealing a pink-tinted interior that seems to wink at you even as its clit engorges. You jerk to a stop at the sight, but the pussy just keeps getting wetter and wetter. The lips visibly puff up. The clit turns a deeper purple, almost black, and grows till it’s nearly an inch long. This sinful slit seems to be doing everything it can to beckon you into its velvety folds.");
+		output("The innocuous-looking entrance reacts to your proximity by spreading its lips before you even make content, revealing a pink-tinted interior that seems to wink at you even as its clit engorges. You jerk to a stop at the sight, but the pussy just keeps getting wetter and wetter. The lips visibly puff up. The clit turns a deeper purple, almost black, and grows until it’s nearly an inch long. This sinful slit seems to be doing everything it can to beckon you into its velvety folds.");
 		output("\n\n<i>As if you needed any encouragement.</i>");
 		output("\n\nYou");
 		if(pc.totalCocks() > 1)
@@ -3770,6 +3771,9 @@ public function rahnMilkerFunTimes(arg:String):void
 		else output("the floor below");
 		output(", but the dick-slurping machinery and Kally’s fervent lip-lock hold you up.");
 	}
+	
+	if(pc.ballFullness < 100) pc.ballFullness = 100;
+	
 	//Pinkgasm
 	if(arg == "pink")
 	{
@@ -3793,7 +3797,11 @@ public function rahnMilkerFunTimes(arg:String):void
 	{
 		output("\n\nIt doesn’t end. No matter how much seed you shoot from your hyper-swollen balls, your orgasm never winds down. All is warm, slick pussy and the beautiful embrace it grants your spasming member, the feel of your urethra dilating again and again with the torrential outflows of [pc.cum]. You cum, and you cum, and you cum, but your balls won’t return to normal. Their enormous weight is a constant reminder of just how much more you can feed into the purple slit, how completely you can stuff the perfect being trapped in the wall.");
 		output("\n\nMore tiny pricks assail your [pc.cock " + x + "], and it grows bigger still, the better to unleash the tinal wave within. Your mind all but shuts down under the onslaught of pleasure. The most you manage is sucking on Kally’s face and maintain a vague sort of happiness over being so <i>obedient</i>.");
+		pc.ballFullness += 500;
 	}
+	
+	cumQ = pc.cumQ();
+	
 	//Kally cums
 	output("\n\nThe chubby bartender moans into your mouth a moment before breaking the kiss. You blink open your orgasm-dazzled eyes in time to see her shudder from head to toe.");
 	output("\n\n<i>“Kiiiiiroooo~!”</i> she cries, arching her back and wagging her tail. <i>“I’m c-c-cumming!”</i>");
@@ -3809,6 +3817,9 @@ public function rahnMilkerFunTimes(arg:String):void
 	if(arg != "purple") output("\n\nAll three of you empty your spunk-swollen balls into your respective receptacles over the course of several moan-filled minutes. Gallons of creamy ‘nuki goo launch themselves into the industrial dick-drainers, mixed with your own potent Steele seed. The concealed storage tanks, elsewhere in the facility must be filling to capacity; trickles of [pc.cumNoun] are backwashing out around your [pc.cockBiggest]. Kiro and Kally too have small waterfalls of alien seed mixing into the puddles of pussyjuice between their thighs.");
 	//Succubuts interruptus
 	else output("\n\nIt seems to last forever, but eventually, your floor-dragging sack begins to shrink back to its normal size. The smaller they get, the less hypnotic your milker seems, the more you can establish your own rhythm and remember that you’re here to have fun with Kiro and Kally, not pledge your soul to some extradimensional pleasure being. That was... <i>fun</i>. No... it was <i>awesome</i>. Better than fun. Wow.");
+	
+	StatTracking.track("spunk bunker/cum milked", cumQ);
+	
 	//merge
 	output("\n\nThe robotic fox fans herself while you finish up, reveling in the slurping wall-cunt’s incessant suckling upon your hyper-sensitized mast. <i>“Wow... thank you. Mistress Kally... uh...”</i> A silvery tongue licks its lips distractedly. <i>“Lovely... delicious... creamy... buhhh...”</i> Unable to stop herself, the vixen drops to her knees between Kally’s legs and laps at the leaking cream. <i>“So good. Mmmm... thank you so much for your generous contributions.”</i>");
 	output("\n\nKiro drags near two feet of swollen dick from the pheromonal cunt, still leaking jism. Her balls have shrunk down to the size of apples - no longer immobilizingly swollen but still enough to make a galotian’s mouth water. <i>“Yeahhh... this was a great idea Kally.”</i> She notices the robot polishing her sister’s nads and smearing the excess goo across her chassis. <i>“Oh! I see you made a friend.”</i>");

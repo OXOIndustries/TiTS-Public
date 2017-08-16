@@ -1348,9 +1348,8 @@ public function rumblyInYourTummy():void
 	AddLogEvent(ParseText("The [pc.skin] across your [pc.belly] stretches as your alien young incubate inside your womb. It’s actually quite a satisfying sensation, though it does leave your face a little flushed. More slime bathes your netherlips as your body gets into its role as a receptacle for venus pitcher seeds. There’s so much of the slick stuff that your crotch appears practically oiled with it."), "passive");
 
 	//Increase bellymod to 14 * amount
-	var pData:PregnancyData = (pc as PlayerCharacter).getPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
-	pc.bellyRatingMod = 14 * pData.pregnancyQuantity;
-	pData.pregnancyBellyRatingContribution += 2 * pData.pregnancyQuantity;
+	var pregSlot:int = pc.findPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
+	pc.addPregnancyBellyMod(pregSlot, 14, true);
 }
 
 public function poppingSoonAlert1():void

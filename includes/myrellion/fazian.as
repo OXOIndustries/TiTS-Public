@@ -1243,7 +1243,7 @@ public function fazianQuestGeneListen():void
 	showBust("GENE");
 	author("Nonesuch");
 
-	output("<i>“... which is why burgundy is the true stripe of masculinity, and not a splurge of gaudy rainbow, whatever other examples of avian sentience have to say on the matter,”</i> Gene continues, some time later. He pauses finally, frowning. You stir, coming to your senses slightly.");
+	output("<i>“...which is why burgundy is the true stripe of masculinity, and not a splurge of gaudy rainbow, whatever other examples of avian sentience have to say on the matter,”</i> Gene continues, some time later. He pauses finally, frowning. You stir, coming to your senses slightly.");
 	
 	output("\n\n<i>“Now, what was it that he was wittering on about that day? Ah, yes! He said he had an invitation to do a private performance with some very select myr that night, after he finished at his club. I can’t tell you what kind of myr, or where... but it sounded as if he was preparing for a fair bit of travel.”</i> He sniffs. <i>“That’s all I know I’m afraid, Steele. Best of luck finding the silly little peacock.”</i>");
 
@@ -2336,7 +2336,7 @@ public function fazianQuestCompleteBlurbs():void
 	{
 		output("\n\n<i>“Thank you so much for what you did,”</i> she says, her fair-sized bosom pressed into your [pc.chest]. Her high voice is rather choked. <i>“I couldn’t sleep after I sent you to Kressia. I kept thinking that I’d sent one of my guests to face danger I wouldn’t have - for nothing at all. Fazian told me about what was going on in that place, and - you are brave and selfless beyond words, starwalker. I hope one day my people and the reds can join you above the sky, so we too can learn the lessons of nobility your race clearly have.”</i>");
 		
-		output("\n\n<i>“... the shows are back on, right?”</i> you say after a moment, slightly embarrassedly. The gold myr smiles toothily.");
+		output("\n\n<i>“...the shows are back on, right?”</i> you say after a moment, slightly embarrassedly. The gold myr smiles toothily.");
 		
 		flags["MET_HEPANE"] = 2;
 		

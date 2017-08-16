@@ -1249,8 +1249,10 @@ public function curedReahaSexApproach():void
 public function buttFuckReahaSlooot():void
 {
 	clearOutput();
-	reahaHeader();
 	if(reaha.ass.hasFlag(GLOBAL.FLAG_PUMPED) || reaha.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) showBust("REAHA_ANUSOFT");
+	else showBust(reahaBustDisplay());
+	showName("\nREAHA");
+	author("Savin");
 	var x:int = -1;
 	if(pc.hasCock())
 	{
@@ -1292,8 +1294,10 @@ public function buttFuckReahaSlooot():void
 public function goddamnSavinsAsslust(x:int):void
 {
 	clearOutput();
-	reahaHeader();
 	if(reaha.ass.hasFlag(GLOBAL.FLAG_PUMPED) || reaha.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) showBust("REAHA_ANUSOFT");
+	else showBust(reahaBustDisplay());
+	showName("\nREAHA");
+	author("Savin");
 	output("While Reaha’s gasping for breath, nuzzling against your shoulder, you reach into the nightstand and pull out a pair of fuzzy handcuffs halfway into the mound of toys. She looks back at you with eyes blanked with lust, utterly limp in your grasp as you push her forward, planting her face a bare inch from the stained wall she’s left dripping with her breasts’ bounty, and pull her arms behind her back. Realizing what’s about to happen, she resists for the first time, trying to pull her hands free - but her knees just buckle, leaving her defenseless as you tie your milk whore’s hands and secure the link between the cuffs in your grasp.");
 	output("\n\n<i>“Now, let’s see that big cow tongue of yours at work,”</i> you say, running an appreciative hand across the great big curves of her tremendous rump, patting the tattooed flanks - and giving your milky servant just enough push toward the wall to put her nose in it. Reaha groans, looking over her shoulder to stare at you with her big blue eyes, her tiny little cow horns just catching the light. You smirk, <i>“Clean it up, and I’ll fuck you again.”</i>");
 	output("\n\nThat’s all the encouragement she needs. Reaha’s long, wide tongue slips from between her lips, dragging across the nearest [reaha.milk]-smeared bulkhead, licking up her own orgasm. As a reward, you gently dig your fingers into her big, soft ass, kneading her supple flesh until you can hear her moaning, wiggling her hips as if to entice you further. Such a wanton girl... you give Reaha a quick, affectionate spank, sending her swaying as you ");
@@ -1350,8 +1354,10 @@ public function goddamnSavinsAsslust(x:int):void
 public function goGentleIntoThatDarkNightReaha(x:int):void
 {
 	clearOutput();
-	reahaHeader();
 	if(reaha.ass.hasFlag(GLOBAL.FLAG_PUMPED) || reaha.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) showBust("REAHA_ANUSOFT");
+	else showBust(reahaBustDisplay());
+	showName("\nREAHA");
+	author("Savin");
 	output("You heft Reaha up, one arm wrapped under her heaving chest, and the other cupping her cheek. She moans weakly, twisting to accept a long, tongue-filled kiss. Her broad hips press back against your groin, rubbing the cum-and-lube-slathered mound of her sex into your crotch. Even in her half-delirious post-climactic haze, she manages to reach back and ");
 	if(x < 0) output("flick on your hardlight panties");
 	else output("grab your half-hard prick");
@@ -2400,7 +2406,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 			output("\n\nYou’re really turning Reaha into a shameless anal addict, aren’t you?");
 			output("\n\nEnough foreplay. You twist open the container and scoop out the cream onto your fingers, lathering up before smearing it through the crack of Reaha’s ass. She gasps at the shock of cold, but it turns into a lustful purr as you start to spread the stuff around, coating her plump pucker ring in glistening anusoft. The rest of the cream goes inside, smearing it around the inside of her derriere, just inside the lip-like sphincter. Gotta make sure she’s nice and stretchy-soft inside and out!");
 			output("\n\nReaha loves every second of it, pushing back against your hand and showering you in a chorus of moans, groans, and sweet pleasured whimpers. Of course, that’s only partly due to your finger-fucking her: while you’re still buried knuckle-deep in Reaha’s pucker, her plump ring starts to thicken and expand, swelling up and out away from her behind. A rubbery tightness squeezes down on your digit, wrapping you up in a warm, almost spongy grip that clenches rhythmically around you.");
-			output("\n\n<i>“Oh God, it feels so.... so <b>fat</b>!”</i> Reaha groans, squeezing down as hard as she can... which feels just like a feather’s kiss on your [pc.skinFurScales]. Just to show her how deliciously right she is, you reach in and pinch one edge of the fat black rim - each side is as thick as a finger now, and you’re able to roll her rim between your fingers until Reaha’s trembling in your grasp.");
+			output("\n\n<i>“Oh God, it feels so... so <b>fat</b>!”</i> Reaha groans, squeezing down as hard as she can... which feels just like a feather’s kiss on your [pc.skinFurScales]. Just to show her how deliciously right she is, you reach in and pinch one edge of the fat black rim - each side is as thick as a finger now, and you’re able to roll her rim between your fingers until Reaha’s trembling in your grasp.");
 			output("\n\nGrinning, you release her and step back, admiring your work. Reaha’s asshole is plump, black, and utterly bestial - it looks like it would belong more on a randy leithan than a humanoid girl, and the sheer thickness of it keeps her asscheeks spread just a little, showing off her donut-like tailhole for anyone to see.");
 			output("\n\nIt takes a moment for Reaha to catch her breath after that. When she does, she rights herself and turns to you with a look of wanton, unabashed desire on her blushing face. <i>“I need you. Right now. Please, [pc.name].”</i>");
 			processTime(10);

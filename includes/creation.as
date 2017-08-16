@@ -54,8 +54,7 @@ public function creationRouter(e:Event = null):void {
 
 public function showPCBust():void
 {
-	if(pc.isNude()) showBust("PC_NUDE");
-	else showBust("PC");
+	showBust(chars["PC"].bustDisplay);
 }
 public function creationHeader(sName:String = ""):void
 {
@@ -1047,8 +1046,8 @@ public function chooseSexualGift():void {
 	//NEW
 	author("Fenoxo & JimThermic");
 	// Almost completely rewritten to accommodate for tooltips, future-proof against new traits, and reduce the utter yawn factor from throwing a million descriptions of traits at the PC. Also some lore mentioning of why the PC might get more cool traits later on but for some reason can only get one at birth. Tooltips added.
-	output("<i>“Great!”</i> Your personal physician notes the choice, then hands Victor the datapad. <i>“... We’re almost done, but I’ve left the trickiest for last.”</i>");
-	output("\n\n<i>“What’s this?”</i> The mining magnate asks, looking downward. <i>“... A list of specialized treatments?”</i>");
+	output("<i>“Great!”</i> Your personal physician notes the choice, then hands Victor the datapad. <i>“...We’re almost done, but I’ve left the trickiest for last.”</i>");
+	output("\n\n<i>“What’s this?”</i> The mining magnate asks, looking downward. <i>“...A list of specialized treatments?”</i>");
 	output("\n\n<i>“Sort of,”</i> the doctor explains, <i>“One of the things we can do is work a special tweak into your successor’s genome; something that will give them a special gift, even beyond the choices you’ve made thus far.”</i>");
 	output("\n\n<i>“Are they safe?”</i>");
 	output("\n\n<i>“Perfectly - so long as only one is inserted into your child’s genome. Any more than that risks instability. Perhaps by the time your child is an adult, we’ll have made more advances in that area. For now, though, one’s the limit.”</i>");
@@ -1613,7 +1612,7 @@ public function tutorialIntro4():void {
 	output("\n\nSure, whatever.");
 	output("\n\n<i>“I’ve arranged to have a few dozen probes sent through the gates once they open. Each one is military grade hardened and keyed to only open for one of our family, so don’t lose too much of yourself. They all have clues pointing towards other probes secreted inside them, except for one. One has my personal, encrypted key. With that, you can open my deposit box in the bank I own on this station and take control of my company,”</i> Even projected through the soulless holoprojector, your dad’s spirit shines through his tear-misted eyes. <i>“I’m sure you’ll make me proud out there.”</i>");
 	output("\n\nThe projection of your father tilts its head, gesturing towards another door behind it. <i>“Through the door behind, you’ll find a hangar with the ship I started my journey on, repaired to usable condition and outfitted with standard, modernized technology. It’s a good starting point, but you should see if you can jump up to something better, particularly if you pick up the number of crewmates I did. That little junker can only hold a few people.”</i>");
-	output("\n\nYou rise to progress, but Dad keeps talking. <i>“One more thing.... there’s a Galotian in the next room, right next to the ship’s key. If you want to do this, you’ve gotta subdue her. Galotians are voracious protein hunters, but they’re not truly dangerous. She’s still a tough little foe, though. I’ve set up some recordings to assist you in learning how to handle creatures like this during your adventures.”</i> Dad winks. <i>“Good luck!”</i>");
+	output("\n\nYou rise to progress, but Dad keeps talking. <i>“One more thing... there’s a Galotian in the next room, right next to the ship’s key. If you want to do this, you’ve gotta subdue her. Galotians are voracious protein hunters, but they’re not truly dangerous. She’s still a tough little foe, though. I’ve set up some recordings to assist you in learning how to handle creatures like this during your adventures.”</i> Dad winks. <i>“Good luck!”</i>");
 	//[Open Door]
 	clearMenu();
 	addButton(0,"Open Door",openDoorToTutorialCombat);
@@ -1811,7 +1810,7 @@ public function checkOutYourShip():void {
 	
 	output("A sprawling, brightly lit hangar greets your eyes, empty save for a single ship near the back. Your gaze is pulled away from the distant craft by the sheer size of the enclosure. A hangar like this must have cost your father a veritable fortune to buy out - not much considering how wealthy he was, but no insignificant chunk of change. Magnetically-bounded plasma shields hold in the atmosphere while remaining transparent enough for you to view the nearby warp gate and inky blackness beyond. Perhaps the only thing this place couldn’t hold would be a capital ship, but a number of moorings with connective umbilicals stand by to tether one outside in that extreme scenario.");
 	output("\n\nYou chuckle and wonder if you’ll ever need anything that grandiose while you turn your attention back to the light craft in the corner, currently surrounded by techs. Breezing up to them, you get your first good look at your inheritance; in short, it’s a bit of a junker. The hull plating is ancient and rusted in a dozen places where the paint has long since rotted off. Whole pieces of it are still on the floor, being cut into with plasma torches to replace dead tech, and the design of it is a century out of date. You bite back your sigh before it leaves your mouth, noting the newly installed engines and computer systems. Still, new engines don’t make it look any less like a elderly rim-jockey’s heap.");
-	output("\n\n<i>“Hello there! You must be the young Captain Steele! A pleasure to meet you,”</i> one of the technicians says once he spots you. <i>“Sorry the ship is in such rough shape. Towing it all the way out here took a little longer than anticipated, so we got a late start. We’re pulling a double shift to get it all done by tonight. Just give us a little more time, maybe get a bite to eat and a place to stay ‘til morning. She’ll look a hundred times better once we finish up, I promise.”</i>");
+	output("\n\n<i>“Hello there! You must be the young Captain Steele! A pleasure to meet you,”</i> one of the technicians says once he spots you. <i>“Sorry the ship is in such rough shape. Towing it all the way out here took a little longer than anticipated, so we got a late start. We’re pulling a double shift to get it all done by tonight. Just give us a little more time, maybe get a bite to eat and a place to stay till morning. She’ll look a hundred times better once we finish up, I promise.”</i>");
 	output("\n\nYou shake the hangar tech’s hand and nod to him, understanding the enormity of the project before them. The nametag on his jumper lists him as ‘Zeke’. He nods and jovially quips, <i>“Yah, my name’s Zeke, or Z if you really wanna get short with it. Whatever you bring in here, I’ll keep maintained or fix up. Cleaning up other folks’ messes is kinda my business.”</i> Zeke waves you off. <i>“Go on, get something to eat. I’m sure you had a shitty day and don’t wanna spend the rest of it hanging around us while we put this back together.”</i>");
 	output("\n\nA clearly marked exit portal dilates as you approach, and you step out into the station’s main thoroughfare. It’s surprisingly quiet and devoid of the shops you’d expect to see. The only place with any grub looks to be an “Anon’s Bar”</i>, though it boasts mention of rooms for rent as well.");
 	output("\n\nYou head on in...");

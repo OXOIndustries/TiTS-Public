@@ -289,6 +289,7 @@ package classes.Characters
 		}
 		
 		public var ShipStorageInventory:Array = [];
+		/*
 		public function hasItemInStorage(arg:ItemSlotClass,amount:int = 1):Boolean
 		{
 			if(ShipStorageInventory.length == 0) return false;
@@ -320,6 +321,7 @@ package classes.Characters
 			}
 			return;
 		}
+		*/
 		public function hasItemInStorageByClass(ref:Class, amount:int = 1):Boolean
 		{
 			if(ShipStorageInventory.length == 0) return false;
@@ -446,6 +448,15 @@ package classes.Characters
 					}
 				}
 			}
+		}
+		
+		override public function get bustDisplay():String
+		{
+			var sBust:String = "PC";
+			
+			if(isNude()) sBust += "_NUDE";
+			
+			return sBust;
 		}
 		
 		override public function getCombatName():String

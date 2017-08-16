@@ -58,6 +58,28 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/atha_zil.png", mimeType = "image/png")]
 		public var Bust_ATHA_ZIL:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/azra.png", mimeType = "image/png")]
+		public var Bust_AZRA:Class;
+		public var Bounds_AZRA:Rectangle = new Rectangle(65, 0, 80, 80);
+		[Embed(source = "../../../assets/images/npcs/adjatha/azra_dong.png", mimeType = "image/png")]
+		public var Bust_AZRA_DONG:Class;
+		public var Bounds_AZRA_DONG:Rectangle = new Rectangle(53, 0, 80, 80);
+		[Embed(source = "../../../assets/images/npcs/adjatha/azra_nude.png", mimeType = "image/png")]
+		public var Bust_AZRA_NUDE:Class;
+		public var Bounds_AZRA_NUDE:Rectangle = new Rectangle(53, 0, 80, 80);
+		[Embed(source = "../../../assets/images/npcs/adjatha/azra_preg_nude.png", mimeType = "image/png")]
+		public var Bust_AZRA_PREG_NUDE:Class;
+		public var Bounds_AZRA_PREG_NUDE:Rectangle = new Rectangle(56, 0, 80, 80);
+		[Embed(source = "../../../assets/images/npcs/adjatha/azra_big.png", mimeType = "image/png")]
+		public var Bust_AZRA_BIG:Class;
+		public var Bounds_AZRA_BIG:Rectangle = new Rectangle(55, 0, 80, 80);
+		[Embed(source = "../../../assets/images/npcs/adjatha/azra_big_dong.png", mimeType = "image/png")]
+		public var Bust_AZRA_BIG_DONG:Class;
+		public var Bounds_AZRA_BIG_DONG:Rectangle = new Rectangle(56, 0, 80, 80);
+		[Embed(source = "../../../assets/images/npcs/adjatha/azra_big_nude.png", mimeType = "image/png")]
+		public var Bust_AZRA_BIG_NUDE:Class;
+		public var Bounds_AZRA_BIG_NUDE:Rectangle = new Rectangle(53, 0, 80, 80);
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/ben.png", mimeType = "image/png")]
 		public var Bust_BEN:Class;
 
@@ -609,6 +631,10 @@ package classes.Resources.Busts
 		public var Bust_ZIL_HOVERFLY_NUDE:Class;
 		public function get Bounds_ZIL_HOVERFLY_NUDE():Rectangle { return Bounds_ZIL_HOVERFLY; }
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/zil9tail.png", mimeType = "image/png")]
+		public var Bust_ZIL9TAIL:Class;
+		public var Bounds_ZIL9TAIL:Rectangle = new Rectangle(46, 15, 96, 55);
+
 		CONFIG::IMAGEPACK
 		{
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/able.png", mimeType = "image/png")]
@@ -655,6 +681,21 @@ package classes.Resources.Busts
 			public var Full_ATHA_TERRAN:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha_zil.png", mimeType = "image/png")]
 			public var Full_ATHA_ZIL:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra.png", mimeType = "image/png")]
+			public var Full_AZRA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra_dong.png", mimeType = "image/png")]
+			public var Full_AZRA_DONG:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra_nude.png", mimeType = "image/png")]
+			public var Full_AZRA_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra_preg_nude.png", mimeType = "image/png")]
+			public var Full_AZRA_PREG_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra_big.png", mimeType = "image/png")]
+			public var Full_AZRA_BIG:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra_big_dong.png", mimeType = "image/png")]
+			public var Full_AZRA_BIG_DONG:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra_big_nude.png", mimeType = "image/png")]
+			public var Full_AZRA_BIG_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ben.png", mimeType = "image/png")]
 			public var Full_BEN:Class;
@@ -1157,6 +1198,9 @@ package classes.Resources.Busts
 			public var Full_ZIL_HOVERFLY:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/hoverfly_nude.png", mimeType = "image/png")]
 			public var Full_ZIL_HOVERFLY_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/zil9tail.png", mimeType = "image/png")]
+			public var Full_ZIL9TAIL:Class;
 		}
 	}
 

@@ -67,7 +67,7 @@ public function bountyBoardExtra():Boolean
 	if(mhengaActiveBounty()) output(" <b>There are new notices there.</b>");
 	var btnSlot:int = 0;
 	addButton(btnSlot++,"Bulletins",checkOutBountyBoard);
-	repeatRepresentativeSatelliteShit(btnSlot++);
+	if(flags["SATELLITE_QUEST"] == 1 || flags["SATELLITE_QUEST"] == -1) repeatRepresentativeSatelliteShit(btnSlot++);
 	return false;
 }
 public function checkOutBountyBoard():void

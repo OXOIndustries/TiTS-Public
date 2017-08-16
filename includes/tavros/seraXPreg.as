@@ -160,8 +160,8 @@ public function seraBreedBegAction(response:String = ""):void
 			output("\n\n<i>“Please mistress,”</i> you say, [pc.eyes] wide. <i>“Give me your babies. Stuff my womb...”</i>");
 			output("\n\n<i>“Full of your hot demon seed,”</i> Sera supplies. She’s trying hard not to grin.");
 			output("\n\n<i>“Full of your hot demon seed!”</i> you repeat, with as much lusty vim as you can.");
-			if(success) output("\n\n<i>“Well...”</i> she says, gazing down at you and not trying anymore, <i>“... come back tomorrow. Things might have changed by then, who knows?”</i>");
-			else output("\n\n<i>“Hmm...”</i> she says, gazing down at you and not trying anymore, <i>“... no. I did tell you, slut - as pretty as you look on your knees, I’ve got bigger things to think about. But do keep trying pointlessly. It’s very pleasing.”</i>");
+			if(success) output("\n\n<i>“Well...”</i> she says, gazing down at you and not trying anymore, <i>“...come back tomorrow. Things might have changed by then, who knows?”</i>");
+			else output("\n\n<i>“Hmm...”</i> she says, gazing down at you and not trying anymore, <i>“...no. I did tell you, slut - as pretty as you look on your knees, I’ve got bigger things to think about. But do keep trying pointlessly. It’s very pleasing.”</i>");
 			break;
 		case "heels":
 			output("<i>“Your shoes look a little dusty,”</i> you murmur, fixing your gaze on the tall, black heels.");

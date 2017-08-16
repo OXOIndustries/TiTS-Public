@@ -1065,7 +1065,7 @@ public function kq2GibEngyDirtyMag():void
 	clearOutput();
 	showKQ2Engineer();
 
-	output("<i>“... give me that magazine!”</i> she says, pointing to the hentai comic sticking out of your pack.");
+	output("<i>“...give me that magazine!”</i> she says, pointing to the hentai comic sticking out of your pack.");
 	
 	output("\n\nWell, that’s a pretty low price. You take it out and give it to the tiny dick-girl, noticing her cock harden as she takes possession of it. Her dog");
 	if (flags["KQ2_ENGINEER_NUM_DRONES"] > 1) output("s");
@@ -1100,7 +1100,7 @@ public function kq2GibEngyCash():void
 	clearOutput();
 	showKQ2Engineer();
 
-	output("<i>“... give me a thousand credits!”</i> she says, extending a hand to you, palm open and expectant. You dig a credit chit out of your pack and plant it in her outstretched hand. The engineer squeals in excitement, bouncing around on her powerful legs. <i>“Score! Take the card, I’m going on a SHOPPING SPREE! Whoo!”</i>");
+	output("<i>“...give me a thousand credits!”</i> she says, extending a hand to you, palm open and expectant. You dig a credit chit out of your pack and plant it in her outstretched hand. The engineer squeals in excitement, bouncing around on her powerful legs. <i>“Score! Take the card, I’m going on a SHOPPING SPREE! Whoo!”</i>");
 	
 	pc.credits -= 1000;
 	
@@ -1128,7 +1128,7 @@ public function kq2GibEngyDankHoles():void
 
 	var engineer:KQ2Engineer = new KQ2Engineer();
 
-	output("<i>“... bend over and let me fuck you!”</i> the lapinara finishes, thrusting her crotch at you. Her bright red puppy pecker bobs eagerly, a tiny glint of moisture already on its tip. <i>“All the other pirates call me a parasite and won’t touch me! Please... I’m so horny, I’ll trade the card for just a quick fuck.”</i>");
+	output("<i>“...bend over and let me fuck you!”</i> the lapinara finishes, thrusting her crotch at you. Her bright red puppy pecker bobs eagerly, a tiny glint of moisture already on its tip. <i>“All the other pirates call me a parasite and won’t touch me! Please... I’m so horny, I’ll trade the card for just a quick fuck.”</i>");
 
 	if (flags["KQ2_KARA_WITH_PC"] == 1) output("\n\n<i>“I’ll just, uh, wait outside.... Cover the door for you.”</i> Kara says, slipping away.");
 

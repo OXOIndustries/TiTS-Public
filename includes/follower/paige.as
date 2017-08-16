@@ -1,6 +1,6 @@
 //Overview:
 
-//This document is for a new character for Paige, a female Ausar yoga instructor that lives on Tavros Station.  I heard through a game of Telephone with Shou that Savin wanted me to write <i>“Space Brooke,”</i> and hell, getting a request from one of the project leads is quite flattering, so why not?
+//This document is for a new character for Paige, a female Ausar yoga instructor that lives on Tavros Station. I heard through a game of Telephone with Shou that Savin wanted me to write <i>“Space Brooke,”</i> and hell, getting a request from one of the project leads is quite flattering, so why not?
 //
 //Paige is full-blooded Ausar, but she’s used gene mods on herself to make her full-fledged furry, not just half-and-half. She works as a yoga instructor on Tavros Station, holding classes on the residential floor. She lives in one unit and rents out another one for the classes; the income from her classes is enough to cover the rent. She is in the peak of her physical condition, but she’s not overly muscle-bound; her abs are solid and her biceps are clear through her clothing, but she isn’t huge and burly like Yancy.
 //
@@ -34,11 +34,12 @@ public function yogaToning(arg:Number):void
 	if(pc.tone >= 85) arg = 0;
 	pc.modTone(arg);
 	if(flags["PAIGE_YOGA_DAY"] == undefined || flags["PAIGE_YOGA_DAY"] != days) flags["PAIGE_YOGA_DAY"] = days;
+	soreDebuff(4);
 }
 
 public function paigeBlind():Boolean
 {
-	return true;
+	return (flags["PAIGE_CREW"] == undefined);
 }
 
 public function showPaige(nude:Boolean = false):void
@@ -47,6 +48,7 @@ public function showPaige(nude:Boolean = false):void
 	if(nude) nudeS = "_NUDE";
 	if(currentLocation == "PAIGE_HOUSE") showBust("PAIGE_HOME" + nudeS);
 	else showBust("PAIGE" + nudeS);
+	if(flags["MET_PAIGE"] != undefined) showName("\nPAIGE");
 	author("B");
 }
 
@@ -57,11 +59,27 @@ public function showIddi():void
 	author("B");
 }
 
-public function moveSouth():void
+public function paigeIsCrew():Boolean
 {
-	move(rooms[currentLocation].southExit);
+	return (flags["PAIGE_CREW"] == 1);
 }
 
+public function paigeRecruited():Boolean
+{
+	return (flags["PAIGE_CREW"] != undefined);
+}
+
+public function moveSouth():void
+{
+	if(InShipInterior(pc)) mainGameMenu();
+	else if(rooms[currentLocation].southExit == "") mainGameMenu();
+	else move(rooms[currentLocation].southExit);
+}
+
+public function paigeCost():Number
+{
+	return 500000;
+}
 public function paigeRoomsUpdate():void
 {
 	//Paige house open :3
@@ -91,7 +109,7 @@ public function paigeRoomsUpdate():void
 
 public function yogaIntro():Boolean
 {
-	//  PC finds Paige’s Yoga Class in the Residential Deck for the first time, between the hours of 17:01 and 08:59 (scene: Pre-Intro)
+	// PC finds Paige’s Yoga Class in the Residential Deck for the first time, between the hours of 17:01 and 08:59 (scene: Pre-Intro)
 	if((hours >= 17 || hours < 9))
 	{
 		if(flags["MET_PAIGE"] == undefined)
@@ -194,6 +212,33 @@ public function yogaIntro():Boolean
 				addButton(0,"Next",moveSouth);
 				return true;
 			}
+			else if(paigeIsCrew())
+			{
+				output("You show yourself into Paige’s yoga classroom and are greeted by the all-too-familiar sight of Paige personally instructing a student on how to hold their form properly. It’s a little nostalgic for you – it seemed like just yesterday when you first walked into her class and introduced yourself. You two have come an awfully long way.");
+				output("\n\nPaige looks up from her student, her eyes locking onto yours, and she smiles brightly. <i>“Hey there, [pc.name],”</i> she calls, snickering a little bit at the fact that she doesn’t have to call you ‘captain’ while she’s on shore-leave. <i>“It’s good to see you here! Are you interested in joining my class today? You know what to do if you are.”</i>");
+				output("\n\nYou consider it.");
+				//[=Easy Mode=][=Medium Mode=][=Hard Mode=][=Other=][=Leave=]
+				// end scene (scene: Tavros (Crewmate) – Yoga Class)
+				// If the PC attempt to enter between the hours of 17:01 and 08:59, just include a short sentence about the door being locked in the square outside the class’s description.
+				processTime(2);
+				clearMenu();
+				if(pc.legCount != 2 || pc.isGoo())
+				{
+					addDisabledButton(0,"Easy Mode","Easy Mode","You'd need to be both a biped and non-gooey for this.");
+					addDisabledButton(1,"Medium M.","Medium M.","You'd need to be both a biped and non-gooey for this.");
+					addDisabledButton(2,"Hard Mode","Hard Mode","You'd need to be both a biped and non-gooey for this.");
+					addButton(3,"Other",otherWorkSlooootNonGoo,undefined,"Other","As a non-traditional creature, your yoga options are limited.");
+				}
+				else
+				{
+					addButton(0,"Easy Mode",paigeYogaEasyMode);
+					addButton(1,"Medium M.",yogaMediumMode);
+					if(flags["YOGA_MEDIUM"] != undefined && flags["YOGA_MEDIUM"] >= 4) addButton(2,"Hard Mode",yogaHardMode);
+					else addDisabledButton(2,"Hard Mode","Hard Mode","That is still beyond your capabilities.");
+					addDisabledButton(3,"Other","Other","This is for non-bipeds and creatures made of goo.");
+				}
+				return true;
+			}
 			// any valid lesson; PC has 19 credits or less (scene: invalid credits)
 			else if(pc.credits < 20)
 			{
@@ -207,6 +252,7 @@ public function yogaIntro():Boolean
 				addButton(0,"Next",moveSouth);
 				return true;
 			}
+
 			// next valid lesson (scene: intro 2)
 			else if(flags["PAIGE_YOGA"] == undefined)
 			{
@@ -252,7 +298,7 @@ public function yogaIntro():Boolean
 			// The PC goes to Paige’s Yoga Class any valid time it’s open, with enough credits, and after scene: intro 3 is completed (scene: Difficulty Select 1)
 			else
 			{
-				output("You show yourself into Paige’s Yoga class.  She’s busy helping one of her other students work their way into a different position, making sure their knees are bent where they’re supposed to and that their backs are completely straight. ");
+				output("You show yourself into Paige’s Yoga class. She’s busy helping one of her other students work their way into a different position, making sure their knees are bent where they’re supposed to and that their backs are completely straight. ");
 				//if PC has completed scene: Paige 1
 				if(flags["MET_IDDI"] != undefined) output("Paige’s robotic helper Iddi");
 				else output("The floating monitor with eyes");
@@ -527,9 +573,9 @@ public function yogaHardMode():void
 		if(pc.tailCount > 0) output(", especially with your [pc.tails] getting squished between you");
 		output(". <i>“Align your toes with my armpits.”</i> A bit of a crass instruction, but you comply. <i>“Now, without moving your legs, I want you to grip my ankles.”</i>");
 		output("\n\nYou look behind you, seeing just how far away Paige’s feet are from your position. You have to bend backward to reach them, effectively folding yourself over her already-folded form. They’re only a half-body-length away, but she may as well have asked you to stretch your arms a country mile.");
-		output("\n\nYou stop your complaining and do as she told you.  You lean back, your spine folding the wrong way over Paige’s upturned rump, her");
+		output("\n\nYou stop your complaining and do as she told you. You lean back, your spine folding the wrong way over Paige’s upturned rump, her");
 		if(pc.tailCount > 0) output(" own");
-		output(" tail painfully pushing down between you.  You run your hands along her legs behind you, trying to find her ankles.  <i>“Keep going,”</i> she says comfortingly whenever you pause because you think you’re at your limit.");
+		output(" tail painfully pushing down between you. You run your hands along her legs behind you, trying to find her ankles. <i>“Keep going,”</i> she says comfortingly whenever you pause because you think you’re at your limit.");
 		output("\n\nYou find her knees, then her calves, and finally, with your back bent like a horseshoe and your chest feeling like it’s going to burst out of your skin, you find the talus bone of her ankle. Every breath comes out forced, because your upper body is stretched so thin, there’s barely any room for oxygen. This pose puts the stretch on your knees, hips, shoulders and elbows, but more importantly, on every bone and muscle in your whole torso.");
 		output("\n\n<i>“Calm, easy breaths, [pc.name],”</i> says Paige, feeling you stutter with strain. <i>“Your pose is called the ‘backward bend.’ Just hold it for another few seconds.”</i>");
 		output("\n\nThey pass torturously, but you feel a type of elation and self-accomplishment you don’t often feel anymore when Paige orders you off her.");
@@ -645,6 +691,11 @@ public function paigesUnitDurhurrrrrrrrrrFenWroteUNIT():Boolean
 		paigeSexPrologue();
 		return true;
 	}
+	else if(paigeIsCrew())
+	{
+		paigeUnitAsCrewmate();
+		return true;
+	}
 	// PC enters Paige’s Unit any time between 17:00 and 00:00 after scene: Paige 1 (scene: Paige Select 1)
 	else if(flags["SEXED_PAIGE"] == undefined)
 	{
@@ -679,7 +730,14 @@ public function paigeMenu():void
 	clearMenu();
 	addButton(0,"About Paige",askPaigeAbootHerself,undefined,"About Paige","Ask Paige for more of her story.");
 	addButton(1,"About Iddi",aboutIddiTalk,undefined,"About Iddi","Ask Paige about her robotic companion Iddi.");
-	if(flags["PAIGE_TALK_SELF"] != undefined && flags["PAIGE_TALK_SELF"] >= 3) addButton(2,"Her Eyes",askPaigeAboutHerEyes,undefined,"Her Eyes","Ask Paige about her eyes. She mentioned that she was interested in synthetic implants?");
+	//[=About Iddi=]// If the PC is currently on their ship, grey this option out and display the following tooltip. Otherwise, continue as normal from the original scene.
+	if(currentLocation == "SHIP INTERIOR") addDisabledButton(1,"About Iddi","About Iddi","It’d be awkward to ask for more details about Iddi when it’s not here. You can always head back to Tavros and meet Paige in her unit if you’re really curious.");
+
+	if(flags["PAIGE_TALK_SELF"] != undefined && flags["PAIGE_TALK_SELF"] >= 3) 
+	{
+		if(paigeIsCrew()) addButton(2,"Her Eyes",crewPaigeEyeholes,undefined,"Her Eyes","Ask Paige about her new eyes.");
+		else addButton(2,"Her Eyes",askPaigeAboutHerEyes,undefined,"Her Eyes","Ask Paige about her eyes. She mentioned that she was interested in synthetic implants?");
+	}
 	else addDisabledButton(2,"Locked","Locked","You don't know enough about her for this.");
 	addButton(3,"Appearance",paigeAppearance,undefined,"Appearance","Give Paige the once-over with your eyes. She’s been sculpting her body for years – she’d probably enjoy the attention.");
 
@@ -692,8 +750,23 @@ public function paigeMenu():void
 		if(pc.lust() >= 33) addButton(5,"Sex",sexWithPaige,undefined,"Sex","You could really do with some release, and something tells you yoga’s not gonna cut it.");
 		else addDisabledButton(5,"Sex","Sex","You’re not aroused enough to have sex with Paige. There are several ways to fix that, of course.");
 
-		if(hours >= 0 && hours < 9) addButton(6,"Rest",restOnSomeSchtuff,undefined,"Rest","No yoga and no sex – just some cuddling with Paige for a good night’s rest.");
-		else addDisabledButton(6,"Rest","Rest","Who goes to bed in the middle of the day? Come on.");
+		if(currentLocation == "PAIGE_HOUSE")
+		{
+			if(hours >= 0 && hours < 9) addButton(6,"Rest",restOnSomeSchtuff,undefined,"Rest","No yoga and no sex – just some cuddling with Paige for a good night’s rest.");
+			else addDisabledButton(6,"Rest","Rest","Who goes to bed in the middle of the day? Come on.");
+		}
+
+		if(flags["PAIGE_TALK_SELF"] == 5)
+		{
+			if(hours >= 17 || paigeIsCrew()) 
+			{
+				if(paigeBlind()) addButton(7,"Spar",sparWithPaige,undefined,"Spar","Paige mentioned that she would like a sparring match against you. Even though she’s blind, don’t expect an easy fight!");
+				else addButton(7,"Spar",sparWithPaige,undefined,"Spar","Paige mentioned that she would like a sparring match against you. Given her strength and her fixed eyes, she might be your toughest challenge yet!");
+				if(pc.HP() <= 1) addDisabledButton(7,"Spar","Spar","You're a little too hurt to do any sparring right now.");
+			}
+			else addDisabledButton(7,"Spar","Spar","Tonight’s not the night for fighting. You might cause a disturbance with the noise among the other units, besides.");
+		}
+		else addDisabledButton(7,"Locked","Locked","You don't know her well enough for this.");
 	}
 	addButton(14,"Leave",leavePaige);
 }
@@ -800,6 +873,7 @@ public function givePaigHoneyWine():void
 	output("\n\nYou sigh. <i>“In that case,”</i> you say as you withdraw your bottle of Honey Wine, <i>“I guess this Honey Wine will have to do instead.”</i>");
 	output("\n\nHer ears perk straight up when she hears the viscous sloshing of the alcohol in its bottle. <i>“Hot damn!”</i> she shouts, her grabby hands reaching for the wine. You let her snatch it from your grip. Within moments, her practiced yoga grip has the cork out, but she takes her time gargling it down and instead takes a heady whiff of the drink.");
 	output("\n\n<i>“That’s the stuff,”</i> she says dreamily. <i>“Tonight’s gonna be a great night.”</i> She puts the cork back in the neck of the bottle and faces you attentively, a sweet, sincere smile on her face. <i>“Fair’s fair! So, where did we leave off?”</i>");
+	IncrementFlag("PAIGES_WINES");
 	processTime(3);
 	clearMenu();
 	//[=Next=]
@@ -839,7 +913,7 @@ public function askPaigeAbootHerself2(arg:Number = -1):void
 		output("\n\n<i>“My dad was a bit of a workaholic; he was never too far from his ledger or from his codex or communicator. I never saw him on the weekdays – he was gone before I left for school and he was back when I was in bed – but he made the most out of every minute we had on the weekends. When I was really young, and still did a lot of tumbling, he would tumble all over the place with me.”</i>");
 		output("\n\nShe laughs softly to herself as she reminisces. <i>“He’s the one who introduced me to yoga. Probably because it was pretty tough for a man in his mid-thirties to do as much tumbling and somersaulting as a five-year-old, but he still wanted to be a part of my interests. At his peak, he was about as good at yoga as I am now, but... well, arthritis makes fools of us all, it turns out.”</i>");
 		output("\n\n<i>“Now, my mom,”</i> she began, changing her tone. <i>“She’s the calculating sort: she likes to plan four or five steps ahead for anything. She’s the type that tries to get as many things done in one single move as possible. Putting me in gymnastics class killed a bunch of birds with one stone: it was social; it got me lots of exercise; it gave my poor dad’s back a break; and it may have just paved the way for my future, since I loved to tumble anyway. She even had contingencies for if it didn’t work out. She is</i> impossible <i>to beat at chess.”</i>");
-		output("\n\n<i>“My mom was the sort to push me to be the best I could be, but that’s not to say she was stiff or controlling.  She always let me decide what it was I wanted to be, and she worked with me to achieve them.  When I told her I didn’t want to be a gymnast because I couldn’t handle the motion sickness, she was completely supportive.  When I tried being a photographer, she...”</i> Paige pauses for a moment, blinking hard.  <i>“She took out a pretty big loan to get me the best camera on the market.  I still have it, and you better believe I paid her back, but the price tag on it was astronomical.  And we’re in space right now!”</i>");
+		output("\n\n<i>“My mom was the sort to push me to be the best I could be, but that’s not to say she was stiff or controlling. She always let me decide what it was I wanted to be, and she worked with me to achieve them. When I told her I didn’t want to be a gymnast because I couldn’t handle the motion sickness, she was completely supportive. When I tried being a photographer, she...”</i> Paige pauses for a moment, blinking hard. <i>“She took out a pretty big loan to get me the best camera on the market. I still have it, and you better believe I paid her back, but the price tag on it was astronomical. And we’re in space right now!”</i>");
 		output("\n\n<i>“And finally, I got myself a little brother. His name’s Mason.”</i> She rubs at the bottom of her muzzle as she remembers him. <i>“He’s not the whole-nine-yard furry like yours truly: he’s half-Ausar and he looks like it. We actually don’t keep in touch all that often anymore. He’s got himself a job on our home planet Ausaril as a miner. Specifically, gold. But he doesn’t like it when I call him a gold digger, and he prefers I just call him a miner. He was promoted to senior something-or-other back before my third job. He likes to act aloof and distant, but only because he thinks it’s cool. If you know him well enough, it’s pretty easy to get him to laugh or cry.”</i>");
 		output("\n\nOnce Paige is done describing her family, you broach another topic on a whim: if her mother is an Ausar and if she and her brother are only half-Ausars, why is Paige covered in fur from top to bottom? <i>“Gene mods. Duh.”</i> Well, okay, you concede, but <i>why</i> did she take gene mods? She opens her mouth to answer, but then quickly reconsiders. <i>“You know, I could tell you,”</i> she says. <i>“But I won’t. We can save that one for some other time.”</i>");
 		output("\n\nYou sigh in defeat. Well, if she’s not in the mood to talk about her gene mods, maybe you’ll get it out of her next time.");
@@ -880,14 +954,14 @@ public function askPaigeAbootHerself2(arg:Number = -1):void
 		output("\n\n<i>“Officially speaking – or, as ‘officially’ as piracy gets – I was a navigator. I plotted our courses and made sure our way went between galactic patrols and stayed clear of a planet’s airspace. My captain was a Kui-Tan lady named Kiro Tamahime.”</i> She laughs. <i>“Maybe ‘lady’ is a bit of a strong word to describe any Kui-Tan. Have you met her?”</i>");
 		//if {PC has rescued Kiro}
 		if(flags["RESCUE KIRO FROM BLUEBALLS"] == 1) output("\n\nYou reply that, um, you have. Yes, you have met Kiro. Paige’s expression twists just slightly. She probably knows what ‘meeting’ Kiro entails.");
-		else output("\n\nYou reply that you aren’t familiar with the name.  <i>“Oh, really?  I thought she’d be halfway famous by now.  You’d probably love her, she’s a real hoot at parties.”</i>");
+		else output("\n\nYou reply that you aren’t familiar with the name. <i>“Oh, really? I thought she’d be halfway famous by now. You’d probably love her, she’s a real hoot at parties.”</i>");
 		output("\n\n<i>“Kiro is my closest friend. We actually met at gymnastics class. She dropped out earlier than I did, though. Turns out, being a maturing Kui-Tan and constantly surrounded by gymnasts kind of, uh, threw off their balance, considering their species’ attributes");
 		if(flags["RESCUE KIRO FROM BLUEBALLS"] != 1) output(". You’ll probably know what I mean as soon as you meet her");
 		output(".”</i>");
 		output("\n\n<i>“It was a three-man operation: myself, my captain, and my brother, the gold miner. It was Kiro’s idea to begin with. I don’t know when she got into piracy or how she got so good at it, but after seeing some of the spoils a single haul could bring in, it was pretty hard to say no to the job offer. I couldn’t convince my brother, but Kiro could. I don’t know what she did and I don’t</i> want <i>to know, but after a weekend on Ausaril and a promise of a bigger cut, he was in.”</i>");
 		output("\n\n<i>“We had a pretty smooth thing going on. Every month I’d visit the family on Ausaril, including Mason. He’d give me handwritten times and coordinates for shipments of unprocessed gold to be sent from Ausaril to anywhere in the galaxy. When Kiro and I picked one, my job was to decide where along the caravan’s route was farthest and safest from any planet’s jurisdictional airspace, and Kiro’s job was to make sure the caravan didn’t cross paths with any patrol and to make sure we were geared appropriately for the mission.”</i>");
 		output("\n\nPaige wrings her hands together, nervous about continuing. She closes her eyes tightly – so tight, it’s almost as if she’s trying to hide from something, and shutting her eyes would make it easier. <i>“I loved it,”</i> she said through stuttering breaths. <i>“We lived like royalty. It was exhilarating. I could afford anything I wanted.”</i>");
-		output("\n\nHer eyes open slowly.  She pulls her hands apart, and with her left, reaches out for yours.  She feels along your arm and finds it, and when she does, she grips it tightly.  <i>“It was " + (days+2414) + " Solar days ago,”</i> she says.  <i>“It was a routine pick.  The caravan was small and unguarded.  It had just enough gold to last us the month.  It didn’t have an escort.  Its arms weren’t enough to deter us.  In and out.”</i>  She takes a deep breath through her nose.");
+		output("\n\nHer eyes open slowly. She pulls her hands apart, and with her left, reaches out for yours. She feels along your arm and finds it, and when she does, she grips it tightly. <i>“It was " + (days+2414) + " Solar days ago,”</i> she says. <i>“It was a routine pick. The caravan was small and unguarded. It had just enough gold to last us the month. It didn’t have an escort. Its arms weren’t enough to deter us. In and out.”</i> She takes a deep breath through her nose.");
 		output("\n\n<i>“The Black Void thought so, too.”</i>");
 		// end scene (scene: Paige 5)
 		clearMenu();
@@ -897,26 +971,56 @@ public function askPaigeAbootHerself2(arg:Number = -1):void
 	// Once Paige 6 is unlocked, the PC no longer requires going to yoga class (since she won’t accept them as a student anymore) and they no longer require Honey Wine to ask Paige more about herself.
 	else if(flags["PAIGE_TALK_SELF"] == 4 || arg == 4)
 	{
-		output("There isn’t much more you can think to ask Paige to elaborate on when it comes to her personal life. You know about her professional lives; her personal lives; and the injury and how it transformed her. Frankly, there isn’t much more that you’re curious about, and you’re worried that asking irresponsibly might come off as prying or creepy.");
-		output("\n\nPaige, in the meantime, takes the initiative as you juggle your potential questions. <i>“I got a question to ask you,”</i> she says, surprising you out of your stupor. <i>“It’s gonna sound pretty dumb, but I think you can handle pretty and dumb, can’t ya, sweet thing?”</i> You tell her that there are no dumb questions. <i>“Ha! What a load.”</i>");
-		output("\n\nPaige clears her throat, but otherwise doesn’t seem too apprehensive. <i>“So, I’m coming up on my next anniversary since my injury. It’s been a long while since I’ve lost my eyes, but I’ve gotten really good at dealing with my surroundings since then.”</i> You listen attentively. <i>“My yoga has kept me in great shape all my life. And, you know, I used to be a swashbucklin’, scallywaggin’ space scoundrel once upon a time.”</i> You wonder where she might be going with this.");
-		output("\n\n<i>“Let me make one thing clear, sweet thing,”</i> she says, placing a finger on your nose. <i>“I haven’t had many lovers, and I don’t just let anyone between my legs. They gotta be able to keep up with me. You’re alright at yoga. And you’re pretty great at fuckin’, absolutely no qualms there. But I want more.”</i>");
-		output("\n\nYou ask her what more she could possibly want. No challenge is too great.");
-		output("\n\n<i>“I want you to fight me.”</i>");
-		output("\n\nYou don’t respond.");
-		output("\n\n<i>“I guess that wasn’t really a question, was it?”</i> she asks, laughing. <i>“Look, I’m not gonna lie, not to you. I’ve always kind of blamed myself for losing my eyes. I’ve always tried to tell myself that it wasn’t my fault; that we were outnumbered and outgunned; that the Black Void bitch just got lucky. But the fact is, I lost my eyes, and Kiro won the fight against three other Black Void pirates by herself. It’s made me feel like a third wheel; like a lame horse, you know? If I had Kiro’s skill, I could have avoided my, uh, my predicament.”</i>");
-		output("\n\nYou want to tell her not to think like that, but it’s pretty clear from her demeanor that she isn’t looking for pity. Still, you tell Paige that you’re not comfortable fighting a blind woman, even if Iddi is coaching or whatever she has planned. <i>“Hah!”</i> she laughs spitefully. <i>“Afraid you’ll lose, Steele? I wouldn’t want any of this either!”</i> she flexes both arms, showing off what years and years of intense yoga have done for her definition. To further her point, she crunches her belly, and her abs accentuate themselves hard enough to file metal.");
-		output("\n\nShe squats herself onto your lap, both of her arms wrapping around your shoulders. Her breasts press into your [pc.chest] as she closes the gap between your face and hers. <i>“But seriously,”</i> she says, lowering her tone. <i>“It’s just an honest sparring match. I may be blind, but I know my way around a crowded floor or a busy room. And, really, I</i> do <i>want to make sure my skills haven’t gotten rusty. I was tough enough to take out three Black Void pirates by myself before Kiro had to clean up. Let me make sure that it was just a lucky hit, and not because I wasn’t good enough.”</i>");
-		output("\n\nShe grins, then begins to grind her crotch against you. Her toned, strong body moves and roils in front of you, her every muscle in her stomach and chest flexing in an erotic way, a way that you can’t help but taste with your eyes. Y");
-		if(pc.hasCock()) output("ou weren’t erect before, but Paige is working quickly to change that");
-		if(pc.isHerm()) output(", and just centimetres south, y");
-		if(pc.hasVagina()) output("our [pc.vagina] stirs from its dry slumber, lubing not enough to make you horny, but enough to put you in the mood");
-		if(!pc.hasGenitals()) output("ou breathe faster at the mere suggestion.");
-		output(".");
-		output("\n\n<i>“I’ll make the deal sweeter for you, sweet thing,”</i> she says huskily. <i>“The winner gets it however they want it, wherever they want it.”</i>");
-		output("\n\nYour own hands raise and trail her body, from her arms to her ribs, to the curve of her belly and the swell of her hips, until you grab yourself two fistfuls of tight, furry ass. <i>“That sounds like a fight with no losers,”</i> you say to her, pressing your nose to hers.");
-		output("\n\n<i>“Then what’s the problem?”</i> she asks, licking her lips. <i>“We don’t have to go at it right this red hot second. But just keep in mind.”</i> She flexes her ass and pushes her lower body out, filling your hands with more of herself. <i>“The offer’s on the table.”</i>");
-		output("\n\nShe disengages from you, leaving you teased and tempted. You’re still not too thrilled with the idea of fighting a blind woman, but that said, something tells you that even if you did, it wouldn’t be the easiest lay of your life.");
+		//[=About Paige=]
+		// (scene: Crewmate: Paige 6)
+		// This scene is a minor variant of the original Paige 6 scene, to be played if the PC hasn’t seen Paige 6 before fixing her eyes.
+		if(!paigeBlind())
+		{
+			output("There isn’t much more you can think to ask Paige to elaborate on when it comes to her personal life. You know about her professional lives; her personal lives; and the injury and how it transformed her. Frankly, there isn’t a whole lot left for you to ask about, especially now that your relationship has progressed so far that she’s now your ship’s navigator.");
+			output("\n\nPaige, in the meantime, takes the initiative as you juggle your potential questions. <i>“I got a question to ask you,”</i> she says, surprising you out of your stupor. <i>“It’s gonna sound pretty dumb, but I think you can handle pretty and dumb, can’t ya, sweet thing?”</i> You tell her that there are no dumb questions. <i>“Ha! What a load.”</i>");
+			output("\n\nPaige clears her throat, but otherwise doesn’t seem too apprehensive. <i>“So, I’m coming up on my next anniversary since my injury. It’s been a long while since I’ve lost my eyes, and I felt like I got a hang of my new life once I lost them, before you came along.”</i> You listen attentively. <i>“My yoga has kept me in great shape all my life. And, you know, I used to be a swashbucklin’, scallywaggin’ space scoundrel once upon a time.”</i> You wonder where she might be going with this.");
+			output("\n\n<i>“Let me make one thing clear, sweet thing,”</i> she says, placing a finger on your nose. <i>“If there’s any one thing I love about my romantic and sexual partners, it’s that they keep up with me. You’re alright at yoga. And you’re pretty great at fuckin’, absolutely no qualms there. But I want more.”</i>");
+			output("\n\nYou ask her what more she could possibly want. No challenge is too great.");
+			output("\n\n<i>“I want you to fight me.”</i>");
+			output("\n\nYou don’t respond.");
+			output("\n\n<i>“I guess that wasn’t really a question, was it?”</i> she asks, laughing. <i>“Look, I’m not gonna lie, not to you. I’ve always kind of blamed myself for losing my eyes. I’ve always tried to tell myself that it wasn’t my fault; that we were outnumbered and outgunned; that the Black Void bitch just got lucky. But the fact is, I lost my eyes, and Kiro won the fight against three other Black Void pirates by herself. It’s made me feel like a third wheel; like a lame horse, you know? If I had Kiro’s skill, I could have avoided my, uh, my predicament.”</i>");
+			output("\n\nYou want to tell her not to think like that, but it’s pretty clear from her demeanor that she isn’t looking for pity. Still, you tell Paige that fighting your navigator was... kinda on the bottom of your expectations when you brought her on. <i>“Hah!”</i> she laughs spitefully. <i>“Afraid you’ll lose, Captain? I wouldn’t want any of this either!”</i> she flexes both arms, showing off what years and years of intense yoga have done for her definition. To further her point, she crunches her belly, and her abs accentuate themselves hard enough to file metal.");
+			output("\n\nShe pushes you onto her bed and squats herself onto your lap, both of her arms wrapping around your shoulders. Her breasts press into your [pc.chest] as she closes the gap between your face and hers. <i>“But seriously,”</i> she says, lowering her tone. <i>“It’s just an honest sparring match. All those years being blind have left me out-of-practice, and, really, I</i> do <i>want to make sure my skills haven’t gotten rusty. I was tough enough to take out three Black Void pirates by myself before Kiro had to clean up. Let me make sure that it was just a lucky hit, and not because I wasn’t good enough.”</i>");
+			output("\n\nShe grins, then begins to grind her crotch against you. Her toned, strong body moves and roils in front of you, her every muscle in her stomach and chest flexing in an erotic way, a way that you can’t help but taste with your eyes. Y");
+			if(pc.hasCock()) output("ou weren’t erect before, but Paige is working quickly to change that");
+			if(pc.isHerm()) output(", and just centimetres south, y");
+			if(pc.hasVagina()) output("our [pc.vagina] stirs from its slumber, lubing not enough to make you horny, but enough to put you in the mood");
+			output(".");
+
+			output("\n\n<i>“I’ll make the deal sweeter for you, sweet thing,”</i> she says huskily. <i>“The winner gets it however they want it, wherever they want it.”</i>");
+			output("\n\nYour own hands raise and trail her body, from her arms to her ribs, to the curve of her belly and the swell of her hips, until you grab yourself two fistfuls of tight, furry ass. <i>“That sounds like a fight with no losers,”</i> you say to her, pressing your nose to hers.");
+			output("\n\n<i>“Then what’s the problem?”</i> she asks, licking her lips. <i>“We don’t have to go at it right this red hot second. But just keep in mind.”</i> She flexes her ass and pushes her lower body out, filling your hands with more of herself. <i>“The offer’s on the table.”</i>");
+			output("\n\nShe disengages from you, leaving you teased and tempted. You’re still not too thrilled with the idea of fighting a crewmate, but that said, something tells you that even if you did, it wouldn’t be the easiest lay of your life.");
+			// end scene (scene: Crewmate: Paige 6)
+		}
+		else
+		{
+			output("There isn’t much more you can think to ask Paige to elaborate on when it comes to her personal life. You know about her professional lives; her personal lives; and the injury and how it transformed her. Frankly, there isn’t much more that you’re curious about, and you’re worried that asking irresponsibly might come off as prying or creepy.");
+			output("\n\nPaige, in the meantime, takes the initiative as you juggle your potential questions. <i>“I got a question to ask you,”</i> she says, surprising you out of your stupor. <i>“It’s gonna sound pretty dumb, but I think you can handle pretty and dumb, can’t ya, sweet thing?”</i> You tell her that there are no dumb questions. <i>“Ha! What a load.”</i>");
+			output("\n\nPaige clears her throat, but otherwise doesn’t seem too apprehensive. <i>“So, I’m coming up on my next anniversary since my injury. It’s been a long while since I’ve lost my eyes, but I’ve gotten really good at dealing with my surroundings since then.”</i> You listen attentively. <i>“My yoga has kept me in great shape all my life. And, you know, I used to be a swashbucklin’, scallywaggin’ space scoundrel once upon a time.”</i> You wonder where she might be going with this.");
+			output("\n\n<i>“Let me make one thing clear, sweet thing,”</i> she says, placing a finger on your nose. <i>“I haven’t had many lovers, and I don’t just let anyone between my legs. They gotta be able to keep up with me. You’re alright at yoga. And you’re pretty great at fuckin’, absolutely no qualms there. But I want more.”</i>");
+			output("\n\nYou ask her what more she could possibly want. No challenge is too great.");
+			output("\n\n<i>“I want you to fight me.”</i>");
+			output("\n\nYou don’t respond.");
+			output("\n\n<i>“I guess that wasn’t really a question, was it?”</i> she asks, laughing. <i>“Look, I’m not gonna lie, not to you. I’ve always kind of blamed myself for losing my eyes. I’ve always tried to tell myself that it wasn’t my fault; that we were outnumbered and outgunned; that the Black Void bitch just got lucky. But the fact is, I lost my eyes, and Kiro won the fight against three other Black Void pirates by herself. It’s made me feel like a third wheel; like a lame horse, you know? If I had Kiro’s skill, I could have avoided my, uh, my predicament.”</i>");
+			output("\n\nYou want to tell her not to think like that, but it’s pretty clear from her demeanor that she isn’t looking for pity. Still, you tell Paige that you’re not comfortable fighting a blind woman, even if Iddi is coaching or whatever she has planned. <i>“Hah!”</i> she laughs spitefully. <i>“Afraid you’ll lose, Steele? I wouldn’t want any of this either!”</i> she flexes both arms, showing off what years and years of intense yoga have done for her definition. To further her point, she crunches her belly, and her abs accentuate themselves hard enough to file metal.");
+			output("\n\nShe squats herself onto your lap, both of her arms wrapping around your shoulders. Her breasts press into your [pc.chest] as she closes the gap between your face and hers. <i>“But seriously,”</i> she says, lowering her tone. <i>“It’s just an honest sparring match. I may be blind, but I know my way around a crowded floor or a busy room. And, really, I</i> do <i>want to make sure my skills haven’t gotten rusty. I was tough enough to take out three Black Void pirates by myself before Kiro had to clean up. Let me make sure that it was just a lucky hit, and not because I wasn’t good enough.”</i>");
+			output("\n\nShe grins, then begins to grind her crotch against you. Her toned, strong body moves and roils in front of you, her every muscle in her stomach and chest flexing in an erotic way, a way that you can’t help but taste with your eyes. Y");
+			if(pc.hasCock()) output("ou weren’t erect before, but Paige is working quickly to change that");
+			if(pc.isHerm()) output(", and just centimetres south, y");
+			if(pc.hasVagina()) output("our [pc.vagina] stirs from its dry slumber, lubing not enough to make you horny, but enough to put you in the mood");
+			if(!pc.hasGenitals()) output("ou breathe faster at the mere suggestion.");
+			output(".");
+			output("\n\n<i>“I’ll make the deal sweeter for you, sweet thing,”</i> she says huskily. <i>“The winner gets it however they want it, wherever they want it.”</i>");
+			output("\n\nYour own hands raise and trail her body, from her arms to her ribs, to the curve of her belly and the swell of her hips, until you grab yourself two fistfuls of tight, furry ass. <i>“That sounds like a fight with no losers,”</i> you say to her, pressing your nose to hers.");
+			output("\n\n<i>“Then what’s the problem?”</i> she asks, licking her lips. <i>“We don’t have to go at it right this red hot second. But just keep in mind.”</i> She flexes her ass and pushes her lower body out, filling your hands with more of herself. <i>“The offer’s on the table.”</i>");
+			output("\n\nShe disengages from you, leaving you teased and tempted. You’re still not too thrilled with the idea of fighting a blind woman, but that said, something tells you that even if you did, it wouldn’t be the easiest lay of your life.");
+		}
 		//[=Next=]
 		// end scene (scene: Paige 6)
 		// unlock [=Spar=] option in (scene: Paige Select 2)
@@ -928,7 +1032,19 @@ public function askPaigeAbootHerself2(arg:Number = -1):void
 	// (scene: Paige 7)
 	else
 	{
-		output("You sit across from Paige silently, for the moment just enjoying your time with her. While there isn’t much more you want to ask her, Paige is nonetheless a good storyteller. Maybe she won’t mind retelling one of her stories?");
+		// (scene: Crewmate: Paige 7)
+		// This scene is a minor variant of the original Paige 7 scene, to accommodate the fact they aren’t in Paige’s Unit.
+		if(!paigeBlind())
+		{
+			output("You and Paige sit at her desk, barely large enough to seat two, for the moment just enjoying your time with her. While there isn’t much more you want to ask her, Paige is nonetheless a good storyteller. Maybe she won’t mind retelling one of her stories?");
+			//[=Yoga=][=Family=][=Blindness=][=Piracy=][=Never Mind=]
+			// Display the tooltips and go to the scenes as described in (scene: Paige 7)
+			// end scene (scene: Crewmate: Paige 7)
+		}
+		else
+		{
+			output("You sit across from Paige silently, for the moment just enjoying your time with her. While there isn’t much more you want to ask her, Paige is nonetheless a good storyteller. Maybe she won’t mind retelling one of her stories?");
+		}
 		processTime(1);
 		//[=Yoga=][=Family=][=Blindness=][=Piracy=][=Never Mind=]
 		clearMenu();
@@ -955,7 +1071,7 @@ public function paigeStoryEpilogue():void
 	clearOutput();
 	showPaige();
 	output("You both lose track of time as Paige retells her life story for you. You finally get the sense to glance at your codex for the hour, and, with some reluctance, pull yourself away from Paige. <i>“Yeah, we’ve been going at it for a while, haven’t we, sweet thing?”</i> she asks. <i>“You go on out of here. I’m sure there’s more to the universe for you than some yoga on Tavros. But I better see you back here again before you, you hear me?”</i>");
-	output("\n\nYou assure her that it’s a promise.  She sees you off with a smile and, to your surprise, a quick kiss on your [pc.lipsChaste].  No tongue, but with some passion, and then you’re back on the residential deck of the Tavros station.");
+	output("\n\nYou assure her that it’s a promise. She sees you off with a smile and, to your surprise, a quick kiss on your [pc.lipsChaste]. No tongue, but with some passion, and then you’re back on the residential deck of the Tavros station.");
 	// end scene (scene: Paige epilogue); place the PC one square outside of Paige’s Unit; advance the clock two hours
 	processTime(20);
 	clearMenu();
@@ -1020,7 +1136,7 @@ public function paigeSexPrologue2():void
 {
 	clearOutput();
 	showPaige();
-	output("<i>“Now, what we’re about to do, [pc.name]?”</i> she says, taking a more aggressive tone with her words.  <i>“Let’s not call this ‘love.’  That’s a strong word to be throwing around</i> just <i>yet.  But the truth is that I haven’t had sex since my injury because I was afraid I might not be able to keep my mouth shut if I screw just any ole’ body.  Coming up on however many years without some lovin’, now.  I trust you as a friend, and I need to get laid</i> pretty <i>fucking badly.”</i>");
+	output("<i>“Now, what we’re about to do, [pc.name]?”</i> she says, taking a more aggressive tone with her words. <i>“Let’s not call this ‘love.’ That’s a strong word to be throwing around</i> just <i>yet. But the truth is that I haven’t had sex since my injury because I was afraid I might not be able to keep my mouth shut if I screw just any ole’ body. Coming up on however many years without some lovin’, now. I trust you as a friend, and I need to get laid</i> pretty <i>fucking badly.”</i>");
 	output("\n\nShe stands up, your hand still in hers, and she pulls you up with her. <i>“I appreciate the compliment on my lingerie, but let’s be honest,”</i> she says, <i>“we’re both more concerned with how I’ll look </i> out <i>of it.”</i>");
 	output("\n\nPaige eagerly shows you into her room. You can smell vanilla in the air and you see faint streams of smoke wafting from some scented candles placed on her dresser – it’s clear that she considers this to be more than just sex. She throws you onto the bed, your [pc.legs] still draped over the side");
 	if(pc.isNude() || (pc.isChestExposed() && pc.isCrotchExposed() && pc.isAssExposed()))
@@ -1049,14 +1165,14 @@ public function paigeSexPrologue2():void
 	}
 	output("\n\n<i>“You know what yoga and sex have in common?”</i> she asks rhetorically. <i>“They’re best done with a friend. Maybe two. ");
 	//if {the PC has given Paige zero Honey Wines}
-	if(9999)
+	if(flags["PAIGES_WINES"] == undefined)
 	{
 		output("And I’m lucky enough to have landed myself a friend that knows their way around a yoga mat");
 		if(flags["YOGA_HARD"] != undefined) output(", and then some. If you can fuck as well as you can do yoga, I might not let you leave");
 		output(".");
 	}
 	//if {the PC has given Paige between one and three Honey Wines}
-	else if(9999)
+	else if(flags["PAIGES_WINES"] <= 3)
 	{
 		output("You shown me you’re not such a slouch at yoga, but we’ll see if you can keep up with</i> these <i>stretches, sweet thing.");
 	}
@@ -1126,11 +1242,11 @@ public function iddiCustomizationsTalk():void
 {
 	clearOutput();
 	showPaige();
-	output("You ask Paige how customizable the PAAs are.  Can Iddi be programed to handle any other tasks besides the ones it’s been assigned as a visual aide?  <i>“Nope,”</i> she answers simply.  <i>“Iddi’s only any good to handle blindness; if I were to wind up deaf and mute too, I’d need to get some more droids.  I can’t even trade Iddi with another blind person because Iddi has been training these past years to be</i> my <i>assistant, not anyone else’s.  Not that I’d ever want to.”</i>");
+	output("You ask Paige how customizable the PAAs are. Can Iddi be programed to handle any other tasks besides the ones it’s been assigned as a visual aide? <i>“Nope,”</i> she answers simply. <i>“Iddi’s only any good to handle blindness; if I were to wind up deaf and mute too, I’d need to get some more droids. I can’t even trade Iddi with another blind person because Iddi has been training these past years to be</i> my <i>assistant, not anyone else’s. Not that I’d ever want to.”</i>");
 	output("\n\nFor your next question, you ask how customizable Iddi in particular is. Can it have other personalities? A different voice? <i>“Yep! Every PAA can do all those things. They can speak other languages, too.”</i> Paige leans forward and cups her hands around her mouth. <i>“Iddi!”</i> she hollers. <i>“Could you come here, please?”</i>");
 	output("\n\nWithin moments, the floating monitor is before you both. Its screen is filled with baby-blue pixels surrounding two tall, thin, pixelated, cartoony eyes. When it stops in front of Paige, its eyes shrink and turn to happy crescents to make way for a wide smile.");
 	output("\n\n<i>“How can I help today, momma?”</i> Iddi asks joyfully, its young, boyish voice accentuating its cutesy look.");
-	output("\n\n<i>“Gimme administrative access, sweet thing. The password thirty-one four-five-seven decimal one.”</i> She gives you a sweet smile. <i>“That’s my birth date.  You better not forget it, sweet thing.”</i>");
+	output("\n\n<i>“Gimme administrative access, sweet thing. The password thirty-one four-five-seven decimal one.”</i> She gives you a sweet smile. <i>“That’s my birth date. You better not forget it, sweet thing.”</i>");
 	output("\n\nIddi’s face goes blank and every pixel turns black. It’s as if someone had found its remote and switched it off. <i>“Administrator access granted,”</i> Iddi says – taking a far more masculine, yet robotic and monotonous voice. <i>“Awaiting input.”</i>");
 	output("\n\n<i>“I want to change your personality. Gimme... gimme a sultry, sexy and submissive mature momma droid.”</i>");
 	output("\n\n<i>“Current profiles will be permanently overwritten after five minutes,”</i> Iddi warns. <i>“Confirm?”</i>");
@@ -1183,9 +1299,9 @@ public function earpiecePage():void
 	output("\n\nYou ask Paige something a bit silly. Could... could you try wearing it? She laughs. <i>“Fuck it, why not? Try not to break it, of course. JoyCo will always replace earpieces for free, no questions asked, but the mods take time and money.”</i>");
 	output("\n\nShe hands you the gear. It’s a little bit lighter than you expected. You lift it to your right [pc.ear] – it’s custom-fitted for Paige, but you manage to fight it in, if a bit uncomfortably. <i>“So now what?”</i> you ask.");
 	output("\n\n<i>“Along the stem of the projector are two buttons,”</i> she instructs. <i>“The one closest to your ear will start the projector on your eyes. The other one will call Iddi, but he won’t come here unless you actually yell out for him.”</i>");
-	output("\n\nShutting your eyes, you press the first button.  You can see a dim light through your eyelids; you slowly squint your eyes open, getting used to the light being sprayed from the stem of the earpiece.  It’s not as bad as you thought: it’s some kind of ‘soft’ light that rapidly overlays a moving image over your eyes, updating every time you blink or look in another direction.  It moves so quickly over your eyes and the bridge of your nose that you barely register it as a light flashing in your eyes.  It’s as if the earpiece is a printer, and you are the paper.");
+	output("\n\nShutting your eyes, you press the first button. You can see a dim light through your eyelids; you slowly squint your eyes open, getting used to the light being sprayed from the stem of the earpiece. It’s not as bad as you thought: it’s some kind of ‘soft’ light that rapidly overlays a moving image over your eyes, updating every time you blink or look in another direction. It moves so quickly over your eyes and the bridge of your nose that you barely register it as a light flashing in your eyes. It’s as if the earpiece is a printer, and you are the paper.");
 	output("\n\n<i>“How do you look?”</i> she asks. You look around the room for a mirror, but there isn’t one (obviously). Instead, you pull out your codex, and you put the screen to sleep, so you can look at its glossy screen and use that as a mirror instead.");
-	output("\n\nYour face is largely the same, except around the eyes. Where your usual [pc.skinFurScales] was around your eyes and just above your nose, was fine, brown ‘fur,’ or some facsimile of it. Due to the nature of the projector, it ‘bleeds’ into your actual [pc.skinFurScales] perfectly and seamlessly – you run your finger along where you end and the projector begins, just to make sure that it’s not real. But moreover, the projector also changes your eye color: your [pc.eyes] are replaced with Paige’s stunning, immersive blue.  The projector even matches your eyes: it tracks the movement of your pupils and iris’ to ensure that the projection is as accurate as possible. It’s like you’re looking right into her eyes rather than your own.");
+	output("\n\nYour face is largely the same, except around the eyes. Where your usual [pc.skinFurScales] was around your eyes and just above your nose, was fine, brown ‘fur,’ or some facsimile of it. Due to the nature of the projector, it ‘bleeds’ into your actual [pc.skinFurScales] perfectly and seamlessly – you run your finger along where you end and the projector begins, just to make sure that it’s not real. But moreover, the projector also changes your eye color: your [pc.eyes] are replaced with Paige’s stunning, immersive blue. The projector even matches your eyes: it tracks the movement of your pupils and iris’ to ensure that the projection is as accurate as possible. It’s like you’re looking right into her eyes rather than your own.");
 	output("\n\n<i>“It works,”</i> you tell her. She giggles as you remove the earpiece and hand it back to her. <i>“Did you mod it yourself?”</i>");
 	output("\n\n<i>“I’m blind, [pc.name],”</i> she answered, deadpan. Well... yeah, that was a dumb question. <i>“I knew a guy from my piracy days. It took him a while and it cost a small chunk of change, but I’m not complaining about the results.”</i>");
 	output("\n\nAs she shouldn’t, you tell her. It was like your eyes were hers. <i>“Well, good. Money well spent.”</i>");
@@ -1230,7 +1346,7 @@ public function askPaigeAboutHerEyes():void
 	output("\n\n<i>“You’ve done plenty, baby,”</i> says Paige, blowing Iddi a kiss. <i>“Go back to what you were doing. Love you, Iddi.”</i>");
 	output("\n\n<i>“Love you too, momma!”</i> And then Iddi’s gone.");
 	output("\n\n<i>“So, yeah. That’s a bit of a number, isn’t it? That’s for the eyes and for the surgery together.”</i> She frowns before continuing. <i>“At the rate I’m going, I should be able to afford it by the time I’m in my late sixties. That’s a long way away. But, you know, like I said, I’d love nothing more than to see again. I can be patient.”</i>");
-	if(pc.credits < 500000) 
+	if(pc.credits < paigeCost()) 
 	{
 		output("\n\nYou hum in thought. You’re the heir" + pc.mf("","ess") + " to Steele Tech, one of the richest companies in the universe. Is there nothing you can do? You don’t like the thought of Paige having to wait so long and save so much money, but you can’t exactly get the company to float her, and you don’t have that sort of cash in your pocket...");
 	}
@@ -1243,7 +1359,7 @@ public function askPaigeAboutHerEyes():void
 	processTime(20);
 	clearMenu();
 	//[=Offer=][=Back=]
-	if(pc.credits >= 500000) 
+	if(pc.credits >= paigeCost()) 
 	{
 		addButton(0,"Offer",confirmThePayment,undefined,"Offer","Offer to pay for Paige’s synthetic eyes and for the surgery.");
 		addButton(1,"Back",backToPaigeMenu,undefined,"Back","Five hundred thousand credits is no small number. You’ll need some time to think about it.");
@@ -1264,7 +1380,6 @@ public function confirmThePayment():void
 	processTime(1);
 	clearMenu();
 	//[=Yes=][=Uhh...=]
-	//9999
 	
 	if(silly) addButton(0,"Yes",confirmTheHalfMilMoron,undefined,"Yes","Let’s be real, you can just hack them back in later.");
 	else addButton(0,"Yes",confirmTheHalfMilMoron,undefined,"Yes","She’s worth every single one.");
@@ -1274,9 +1389,8 @@ public function confirmThePayment():void
 
 public function confirmTheHalfMilMoron():void
 {
-	clearOutput();
-	showPaige();
 	// Continue at (scene: Her Eyes 2); because the following content is so long and disconnected from the rest of Paige’s conversation options, I’ll be continuing it after the [=Spar=] scene.
+	herEyes2();
 }
 
 
@@ -1284,7 +1398,9 @@ public function dontConfirmTheHalfMilMoron():void
 {
 	clearOutput();
 	showPaige();
-	//99999!
+	output("You speedily backpedal, much to Paige's chagrin. Maybe now would be a good time to leave...");
+	clearMenu();
+	addButton(0,"Next",moveSouth);
 }
 
 
@@ -1295,16 +1411,19 @@ public function paigeAppearance():void
 {
 	clearOutput();
 	showPaige();
-	output("Paige is a tall Ausar woman, standing just shy of 180 centimeters, or just below six feet.  She has very little fat on her body, but she’s also not especially musclebound – the years of yoga have sheered the fat off her body and left nothing but tone and definition.  That said, holding all those unique poses have done wonders for her muscle mass: the muscles on her arms and legs are quite pronounced and her abs have been sculpted into perfect six-pack abs after all those crunches.  While she’s no bodybuilder and she won’t win any strongwoman competitions, she’s no doubt stronger than your average Ausar, man or woman.  ");
+	output("Paige is a tall Ausar woman, standing just shy of 180 centimeters, or just below six feet. She has very little fat on her body, but she’s also not especially musclebound – the years of yoga have sheered the fat off her body and left nothing but tone and definition. That said, holding all those unique poses have done wonders for her muscle mass: the muscles on her arms and legs are quite pronounced and her abs have been sculpted into perfect six-pack abs after all those crunches. While she’s no bodybuilder and she won’t win any strongwoman competitions, she’s no doubt stronger than your average Ausar, man or woman. ");
 	if(pc.PQ() <= 50) output("She’s quite a bit stronger than you, that’s for sure.");
 	else if(pc.PQ() <= 75) output("You’re not a slouch when it comes to muscle mass, but Paige probably still has your number.");
 	else if(pc.PQ() <= 99) output("You’ve got quite a bit of muscle yourself, but it wouldn’t be fair to say which of you two would have more.");
 	else output("Still, compared to you, she doesn’t <i>quite</i> stack up.");
 
 	output("\n\nPaige’s fur coloration is dark brown, with large pools of black, especially along her limbs and back, and long streaks of white, especially along her front, from her neck to her groin. She’s taken gene mods for her fur to cover every bit of skin, and her nose has elongated into a snout, like a true canine’s. Her fur is about three centimeters thick, or just over an inch, uniform all over her body. She has brown hair, just a touch lighter in hue, going from her scalp to her just below her shoulders. She has perky, triangular, wolfish ears that she can fold and flex, and they stand about twelve centimeters at their longest. Her tail is bushy-but-not-fluffy, covered with black fur on the top and beige-brown on the bottom, which reaches to her tendons.");
-	output("\n\nPaige likes to wear a sleeveless jumper vest that hugs her torso well, bulging against her C-cup breasts and clinging to her tight abs that covers up to her neck and down to her waist. When she’s doing yoga, she wears tight yoga pants, stretched thin against the contours of her legs, but when she’s relaxing at home, she switches out for grey sweatpants. During the daytime, she prefers to have her long hair done up in a cute bun[if {PC has had sex with Paige}, while during the night, she lets it down. For underwear, she a white sports bra that keeps the girls from getting too wild during yoga, and she wears frilly white panties to keep her otherwise decent].");
+	output("\n\nPaige likes to wear a sleeveless jumper vest that hugs her torso well, bulging against her C-cup breasts and clinging to her tight abs that covers up to her neck and down to her waist. When she’s doing yoga, she wears tight yoga pants, stretched thin against the contours of her legs, but when she’s relaxing at home, she switches out for grey sweatpants. During the daytime, she prefers to have her long hair done up in a cute bun");
+	//if {PC has had sex with Paige}
+	if(flags["SEXED_PAIGE"] != undefined) output(", while during the night, she lets it down. For underwear, she a white sports bra that keeps the girls from getting too wild during yoga, and she wears frilly white panties to keep her otherwise decent");
+	output(".");
 	//Paige is blind
-	if(paigeBlind()) output("\n\nBeing blind, Paige wears an earpiece in her right ear, with a long stem going from the base to just before her eyes.  Not many people know the truth about the piece: its part one-way communicator with Paige’s assistant droid, and its part projector.  Paige is blind from an injury that goes across her eyes, and the projector hides the cataracts in her eyes as well as the scar that goes across the bridge of her nose.  Nobody can tell when the projector is on, but it does a brilliant job of hiding the scar and displaying instead a beautiful set of deep blue eyes.  When it’s off, her eyes are grey and cloudy, and her scar is so wide and deep, it still looks fresh.");
+	if(paigeBlind()) output("\n\nBeing blind, Paige wears an earpiece in her right ear, with a long stem going from the base to just before her eyes. Not many people know the truth about the piece: its part one-way communicator with Paige’s assistant droid, and its part projector. Paige is blind from an injury that goes across her eyes, and the projector hides the cataracts in her eyes as well as the scar that goes across the bridge of her nose. Nobody can tell when the projector is on, but it does a brilliant job of hiding the scar and displaying instead a beautiful set of deep blue eyes. When it’s off, her eyes are grey and cloudy, and her scar is so wide and deep, it still looks fresh.");
 	// end scene (scene: Paige’s Appearance)
 	clearMenu();
 	addButton(0,"Next",backToPaigeMenu);
@@ -1320,15 +1439,35 @@ public function paigeAtHomeYoga():void
 {
 	clearOutput();
 	showPaige();
-	output("You ask Paige if she’s willing to do some one-on-one yoga with you. You know that, since you’ve taken Paige as a lover, she can’t have you as a student due to professional courtesy, but you’d love to do a little bit if she’s okay with doing it for free.");
-	output("\n\n<i>“Aww, [pc.name],”</i> she coos, <i>“that’s so sweet that you want to be a part of my interests even after you got into my pants. Of course I’d love to do some yoga with you! It’s more than a job to me – it’s my passion, and I’d love you to be a part of it");
-	if(hours >= 0 && hours < 9) output(", even at this unruly hour");
-	output("!”</i>");
-	output("\n\nThe main room to her unit, besides the couch, the recliner, and the coffee table, is mostly bare. On top of it is one single, massive yoga mat that, until you met her, Paige used by herself. <i>“Strip out of your gear,”</i> she says, and you do.");
-	output("\n\n[if {the PC has never done Difficult Select 1 and has gotten into Paige’s pants entirely via Honey Wine}<i>“I’m really glad you want to give yoga another try with me, [pc.name]. You haven’t been to a class since I invited you into my unit – I was wondering if maybe I had scared you off of it. Don’t worry though, baby. I’ll be gentle.”</i>");
-	//if {the PC hasn’t unlocked Hard Mode}
-	if(flags["YOGA_MEDIUM"] == undefined || flags["YOGA_MEDIUM"] < 4)  output("\n\n<i>“So, what are we in the mood for today? We can try something a little easier, or we can start working our way into the more exotic poses.”</i>");
-	else output("\n\n<i>“Whatever you’re in the mood for, baby, we can do it. If you want to take it easy with something simpler, I’m down. Or, if you want to try the intense stuff, the poses-for-two... maybe we can work a happy ending into it.”</i>");
+	if(currentLocation == "SHIP INTERIOR")
+	{
+		output("You ask Paige if she’s willing to do some one-on-one yoga with you. You know that, since you’ve taken Paige as a lover, she can’t have you as a student due to professional courtesy, but you’d love to do a little bit if she’s okay with doing it for free.");
+		output("\n\n<i>“Aww, [pc.name],”</i> she coos, <i>“that’s so sweet that you want to be a part of my interests even after you got into my pants. Of course I’d love to do some yoga with you! It’s more than a job to me – it’s my passion, and I’d love you to be a part of it");
+		if(hours >= 0 && hours < 9) output(", even at this unruly hour");
+		output("!”</i>");
+		output("\n\nBesides the monitor Paige uses to communicate with Iddi; her bed; a small desk with two chairs; and a personal refrigerator, the bulk of Paige’s personal quarters are taken up by a large yoga mat. She mostly uses it for herself. <i>“Strip out of your gear,”</i> she commands, and you do.");
+
+		//if {the PC has never done Difficult Select 1 and has gotten into Paige’s pants entirely via Honey Wine}
+		if(flags["PAIGES_WINES"] != undefined && flags["PAIGE_YOGA"] == undefined || (flags["PAIGE_YOGA"] != undefined && flags["PAIGE_YOGA"] < 4)) output(" <i>“I’m really glad you want to give yoga another try with me, [pc.name]. You haven’t been to a class since I invited you into my unit – I was wondering if maybe I had scared you off of it. Don’t worry though, baby. I’ll be gentle.”</i>");
+		//if {the PC hasn’t unlocked Hard Mode}
+		if(flags["YOGA_MEDIUM"] == undefined || flags["YOGA_MEDIUM"] < 4) output(" <i>“So, what are we in the mood for today? We can try something a little easier, or we can start working our way into the more exotic poses.”</i>]");
+		else output(" <i>“Whatever you’re in the mood for, baby, we can do it. If you want to take it easy with something simpler, I’m down. Or, if you want to try the intense stuff, the poses-for-two... maybe we can work a happy ending into it.”</i>");
+		//[=Easy Mode=][=Medium Mode=][=Hard Mode=][=Other=]
+		// play the usual difficulty modes and Difficulty Select 2 endings
+		// end scene (scene: Crewmate: Difficulty Select 2)
+	}
+	else
+	{
+		output("You ask Paige if she’s willing to do some one-on-one yoga with you. You know that, since you’ve taken Paige as a lover, she can’t have you as a student due to professional courtesy, but you’d love to do a little bit if she’s okay with doing it for free.");
+		output("\n\n<i>“Aww, [pc.name],”</i> she coos, <i>“that’s so sweet that you want to be a part of my interests even after you got into my pants. Of course I’d love to do some yoga with you! It’s more than a job to me – it’s my passion, and I’d love you to be a part of it");
+		if(hours >= 0 && hours < 9) output(", even at this unruly hour");
+		output("!”</i>");
+		output("\n\nThe main room to her unit, besides the couch, the recliner, and the coffee table, is mostly bare. On top of it is one single, massive yoga mat that, until you met her, Paige used by herself. <i>“Strip out of your gear,”</i> she says, and you do.");
+		output("\n\n[if {the PC has never done Difficult Select 1 and has gotten into Paige’s pants entirely via Honey Wine}<i>“I’m really glad you want to give yoga another try with me, [pc.name]. You haven’t been to a class since I invited you into my unit – I was wondering if maybe I had scared you off of it. Don’t worry though, baby. I’ll be gentle.”</i>");
+		//if {the PC hasn’t unlocked Hard Mode}
+		if(flags["YOGA_MEDIUM"] == undefined || flags["YOGA_MEDIUM"] < 4) output("\n\n<i>“So, what are we in the mood for today? We can try something a little easier, or we can start working our way into the more exotic poses.”</i>");
+		else output("\n\n<i>“Whatever you’re in the mood for, baby, we can do it. If you want to take it easy with something simpler, I’m down. Or, if you want to try the intense stuff, the poses-for-two... maybe we can work a happy ending into it.”</i>");
+	}
 	processTime(5);
 	//[=Easy Mode=][=Medium Mode=][=Hard Mode=][=Other=]
 	// end scene (scene: Difficulty Select 2)
@@ -1375,9 +1514,9 @@ public function mediumModeEndingInApartment():void
 	clearOutput();
 	showPaige();
 	output("It’s strenuous, demanding, and more than a little difficult, but after an hour of different stretches and poses, Paige calls it quits and lets you unwind. You unfurl into a person-shaped puddle on the floor, feeling different muscles all over your body spasm with their exertions. Paige laughs, but convinces you that it’s within your best interest to do some simple cool down stretches to unwind your body.");
-	output("\n\n<i>“You did very well today, sweet thing,”</i> she says.  She frames your face with her hands as she speaks to you, her eyes ");
+	output("\n\n<i>“You did very well today, sweet thing,”</i> she says. She frames your face with her hands as she speaks to you, her eyes ");
 	if(paigeBlind()) output("very nearly ");
-	output("on yours.  <i>“You’ve made me very proud as a teacher.  You could have given up, but you stuck it out.”</i>  She leans forward and plants a kiss on your [pc.lips] – it lasts quite a bit longer than her usual lovey kisses.");
+	output("on yours. <i>“You’ve made me very proud as a teacher. You could have given up, but you stuck it out.”</i> She leans forward and plants a kiss on your [pc.lips] – it lasts quite a bit longer than her usual lovey kisses.");
 	output("\n\nYou tell her that you wouldn’t have even thought of making it this far without her and her tutelage. <i>“You could,”</i> she replies. <i>“It’s not like I’m making you do yoga. But the fact that you’re involving yourself in my interests... that means a lot to me. I appreciate it.”</i>");
 	output("\n\nYour muscles are still quaking from the exercise, and it takes a bit more effort to put your things back on. You’re in no rush anyway. Paige fills the air with talking about how well you’ve been doing and how excited she is for some future poses she could try with you, if you’re willing to push yourself a bit harder. <i>“We still have some time to kill, sweet thing,”</i> she says lovingly, wrapping her arms around your left one and hugging it tight. <i>“Anything else you want to do today?”</i>");
 	// end scene (scene: Medium Mode Ending 2); advance time by one hour; increase Physique by 2; increase Tone by 7; deduct 40 energy
@@ -1402,7 +1541,7 @@ public function apartmentYogaEndings():void
 	output("\n\n<i>“Been there,”</i> she whispers. <i>“You get used to it.”</i> You ask her how long it took for her to ‘get used to it.’ <i>“Years.”</i> You laugh in sheer defeat.");
 	output("\n\nPaige rolls onto her stomach, then slowly crawls towards you");
 	if(paigeBlind()) output(", using her hands to feel her way towards you");
-	output(".  She finds your shoulder, then your arm, then your hand.  She feels her way around your [pc.belly], then across you as she climbs on top of you.  She lays her face against your [pc.chest], then scoots up to your neck.");
+	output(". She finds your shoulder, then your arm, then your hand. She feels her way around your [pc.belly], then across you as she climbs on top of you. She lays her face against your [pc.chest], then scoots up to your neck.");
 	output("\n\nShe lays on top of you gently for a moment, listening to your heartbeat, breathing in time with you. <i>“It means a lot to me that you’re willing to do this, [pc.name],”</i> she tells you. <i>“I’ve never had a yoga partner that could keep up with me. You’ve filled a lot of gaps in my life.”</i>");
 	output("\n\nShe grinds forward, her chest against yours. You can feel her Ausar nipples against your [pc.nipples], and her knee bends and gently brushes into your [pc.crotch].");
 	if(pc.hasCock()) output(" <i>“I have one more gap to fill if you think");
@@ -1521,671 +1660,640 @@ public function leavePaige():void
 {
 	clearOutput();
 	showPaige();
-	output("It’s been fun, but it’s time to say ‘till next time to Paige. <i>“Aw, so soon?”</i> she pouts, then perks back up. <i>“I understand, sweet thing. Being an adventurer is an all-day gig. Get out there and show the universe how a [pc.race] does it!”</i>");
+	output("It’s been fun, but it’s time to say until next time to Paige. <i>“Aw, so soon?”</i> she pouts, then perks back up. <i>“I understand, sweet thing. Being an adventurer is an all-day gig. Get out there and show the universe how a [pc.race] does it!”</i>");
 	output("\n\nPaige follows you to the door of her unit.");
 	if(flags["SEXED_PAIGE"] != undefined) output(" Before you leave, she spins you around and gives you a quick kiss on your lips.");
 	output(" <i>“See you around,”</i> she giggles, then pushes you out.");
 	processTime(1);
 	clearMenu();
+	if(paigeIsCrew()) addButton(0,"Next",crew);
+	else addButton(0,"Next",moveSouth);
+}
+
+//[=Spar=]
+// Reveal this option after the PC has seen (scene: Paige 6), and grey it out unless the time is between 17:00 and 00:00
+// Tooltip: Paige mentioned that she would like a sparring match against you. Even though she’s blind, don’t expect an easy fight!
+// Tooltip (unacceptable hours): Tonight’s not the night for fighting. You might cause a disturbance with the noise among the other units, besides.
+// (scene: Spar)
+
+//flags["PAIGE_SPAR_RESULT"] = ; {loss/win}
+//flags["PAIGE_SPAR_WINS"] = ;
+//flags["PAIGE_SPAR_LOSSES"] = ;
+public function sparWithPaige():void
+{
+	clearOutput();
+	showPaige();
+	output("You say to Paige that you’ve been thinking about her challenge to a sparring match. <i>“Oh yeah!”</i> she chirps. <i>“");
+	//if {never challenged Paige before}
+	if(flags["PAIGE_SPAR_RESULT"] == undefined) output("You put any thought into it, sweet thing? Decide that you’re not afraid to fight a blind woman?");
+	//if {won the previous encounter with Paige}
+	else if(flags["PAIGE_SPAR_RESULT"] == "win") output("Wanna go another round? I’ve been thinking about why I lost last time. It’s not gonna be any easier this time, I can promise you that!");
+	//if {lost the previous encounter with Paige via HP}
+	else if(flags["PAIGE_SPAR_RESULT"] == "loss") output("Thinking of putting your pride on the line a second time? Hope you brought your A-game this time, sweet thing!");
+	//[if {lost the previous encounter with Paige via Lust}
+	else if(flags["PAIGE_SPAR_RESULT"] == "slut") output("Got all that tension out of your system, did you? I hope you realize how disappointed I’ll be if you decide to fuck off again.");
+	//if {last encounter ended in a Stalemate}
+	else if(flags["PAIGE_SPAR_RESULT"] == "stalemate") output("Got your nerve built up this time? I’d better hope so! The last match ended on such a lame, boring note. I hope you really give it your all this time!");
+	//if {last encounter ended by Yielding}
+	else if(flags["PAIGE_SPAR_RESULT"] == "yeild") output("Think you’ve toughened up enough for me? I don’t hold it against you for backing down last time, but if you’re ready for a serious go, then I’m game too!");
+	output("”</i>");
+
+	//if {Never challenged Paige before}
+	if(flags["PAIGE_SPAR_RESULT"] == undefined)
+	{
+		output("\n\nYou tell her that you’ve thought about it, and you’re interested in having an honest sparring match with her. You promise that you won’t hold back ");
+		if(paigeBlind()) output("just because she’s blind ");
+		output("– you respect her more than that. <i>“Good idea. You’re going to need every trick up your sleeve!”</i> she guffaws, then flexes her arms, showing off her weapons.");
+
+		output("\n\n<i>“I just have one rule, though,”</i> she says. <i>“No weapons. Shields and armor, that’s fine, if you don’t mind hiding behind a shield.”</i> She smiles cockily and brings her hands together, popping her knuckles. <i>“But this is a sparring match. I want to test what we’re capable of. It’s not that hard to pull a trigger.”</i> She presses her arms against her boobs, deepening their cleavage for you. <i>“Let’s not forget what the ultimate prize is for the winner, too,”</i> she says, licking her lips.");
+
+		output("\n\nDo you accept her terms?");
+	}
+	else if(flags["PAIGE_SPAR_RESULT"] == "win")
+	{
+		output("\n\nYou reply that you <i>hope</i> she’s thought about it. You were bored enough whupping her ass across her yoga studio last time and this time, you expect her to give you a better challenge. <i>“That’s the shit-talk I want to hear!”</i> she laughs. She places her hands on her hips and flexes her abs and pectorals. <i>“Let’s hear it keep up when my fist is in your mouth, sweet thing!”</i>");
+		output("\n\n<i>“Before we go, though, I just want to be clear that the rules are the same: no weapons. You can use your armor and your shields if you think you need them – and you will – but I don’t want to see any plasma rifles or energy swords or whatever the hell. You still game?”</i> She raises her hands to her breasts and openly gropes them in front of you. <i>“The reward’s still the same, and still ripe for the taking, sweet thing.”</i>");
+		output("\n\nDo you accept her terms?");
+	}
+	else
+	{
+		output("\n\nYou promise Paige that the last time you danced was just a fluke, and this time, you’ve got her figured out. You’ll be cleaning the mats with her fur before the hour is out. <i>“Big talk, after what happened last time!”</i> she chortles. She spreads her legs and flexes them, and the definition in them practically pop straight through her fur. <i>“For your sake, you better hope you got something better this time. Who wants to lose to a ");
+		if(paigeBlind()) output("blind ");
+		output("woman</i> again<i>?”</i>");
+
+		output("\n\n<i>“Before we go, though, I just want to be clear that the rules are the same: no weapons. You can use your armor and your shields if you think you need them – and you will – but I don’t want to see any plasma rifles or energy swords or whatever the hell. You still game?”</i> She turns around and slaps her own ass hard, letting the cracking sound reverberate off the walls of her unit. <i>“Maybe I’ll let you take charge of some of</i> this <i>if you win!”</i>");
+
+		output("\n\nDo you accept her terms?");
+	}
+	processTime(7);
+	//[=Accept=][=Decline=]
+	// end scene (scene: Spar)
+	clearMenu();
+	addButton(0,"Accept",paigeSparAccept);
+	addButton(1,"Decline",declareSparWithPaige);
+}
+
+//[=Decline=]
+// (scene: Spar Decline)
+public function declareSparWithPaige():void
+{
+	clearOutput();
+	showPaige();
+	output("No weapons? Um...");
+	output("\n\n<i>“What, you don’t want to fight a ");
+	if(paigeBlind()) output("blind ");
+	output("woman at arm’s length?”</i> she chides, keeping up the boastful demeanor but subtly disappointed that you’re so hesitant. <i>“That’s fine, [pc.name]. I could fight off more than my fair share of Black Void pirates");
+	if(paigeBlind()) output(" when I could see");
+	output(", so I’m not exactly a slouch. When you’re feeling a bit braver, feel free to come at me. I’ll be here!”</i>");
+
+	output("\n\nYou can’t help but feel you’ve let Paige down a bit, but still, you kind of value your personal health. Maybe you’ll take her advice and come back when you’re ‘braver.’");
+
+	// return to Paige Select 2, no penalty
+	// end scene (scene: Spar Decline)
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",backToPaigeMenu);
+}
+
+//[=Accept=]
+// (scene: Spar Accept)
+public function paigeSparAccept():void
+{
+	clearOutput();
+	showPaige(true);
+	if(paigeIsCrew())
+	{
+		output("No weapons? You ask Paige: aren’t we beyond that, now that she doesn’t have her disability?");
+		output("\n\n<i>“We’d still be wearing the gloves,”</i> she laughs. <i>“But I hear what you’re saying. To be honest, these sparring matches are supposed to be about who between us is the better fighter. It’s not about who has the biggest, baddest sword, or how well they can use it. It’s down to you, me, and our fists. There’s no tricks or excuses. One of us is the better fighter, and that’s all there is to it.”</i>");
+		output("\n\nYou can respect that. You ask her where she intends to spar. <i>“There’s plenty of room in the cargo hold. We barely use it for anything. I can set up a couple yoga mats down there to make things a bit softer.”</i> Sounds good to you! You leave your weapons in her unit and you both head to the ship’s hold.");
+		output("\n\nMoments later, you have a respectable ring in the hold of your ship. Paige gives you the gloves with the soft, malleable material that provides some cushioning without losing your power. <i>“Let’s just go over the rules,”</i> she says as you slip the gloves on. <i>“The basic shit. No hitting the groin; first to say uncle; and all that.”</i> She raises her own gloved fists, grinning at you as she stares you down with her brilliant blue eyes. <i>“When you’re ready.”</i>");
+		output("\n\nYou raise your own gloved fists as you take your spot across from Paige. Her stance is similar to an experienced boxer’s position – her arms are protecting her body and her fists are protecting her face. Her time with you has made her stronger than she ever has been before, and now that she can see, she has no more obstacles between her and her victory.");
+		output("\n\nExcept one.");
+		output("\n\n<b>You.</b>");
+	}
+	else
+	{
+		output("No weapons? Child’s play! You’re more than happy to fight Paige bare-knuckled.");
+		output("\n\n<i>“Not bare knuckled,”</i> she advises. <i>“My yoga class is a wide open space and it’s closed for the day. I got some gloves we can use – soft on the face but they don’t lose any power in the swing. Let’s do this there.”</i>");
+		output("\n\n");
+		if(paigeBlind()) output("You let Paige lead you out of her unit (instructing Iddi to remain there, and that she’ll be back soon) and to her yoga class just one room over. When you’re inside, she locks the door and hides her earpiece on a small corner table next to the door.");
+		else output("You let Paige lead the way as she takes you through the belly of your ship, towards your cargo hold. You’re not really using it for anything, and from the looks of things, Paige has been busy, setting up a number of mats placed together to form your arena.");
+		output("\n\n<i>“Let’s do this proper,”</i> she says, stepping onto the yoga mat with you and handing you the gloves she promised. They’re fairly basic, but the material, as she promised, is soft and malleable, providing some cushion for impact without inhibiting your power. <i>“I want a good, clean fight. Toe the line; no hitting below the belt. And all that shit. You ready?”</i>");
+
+		output("\n\nYou find yourself a spot directly across from Paige on the center of the mat. She raises her gloved fists, facing towards you, taking an experienced boxer’s position – her arms are protecting her body and her fists are protecting her face. It’s clear that she knows her way around a fight – ");
+		if(paigeBlind()) output("and even with her disability, ");
+		output("this won’t be easy at all.");
+
+		output("\n\n<b>It’s a fight with Paige!</b>");
+	}
+	// Refer to Combat With Paige document to proceed; inflict Disarm on the PC
+	//Fen note: fuck that, original sparring wasn't fun. Replaced with minigame.
+	// end scene (scene: Spar Accept)
+	processTime(3);
+	paigeSparSetup();
+}
+
+// (scene: Her Eyes 2)
+public function herEyes2():void
+{
+	clearOutput();
+	showPaige();
+	output("You sit with Paige in silence for a moment, contemplative. You’ve already made up your mind, but your heart needs a moment to catch up to your head. That’s an enormous amount of money you’re about to put down on Paige.");
+	output("\n\n<i>“Terra to [pc.name]?”</i> Paige says playfully, nudging you after you don’t respond to her questions. <i>“It’s okay; that price tag knocked me for a loop too. Don’t space out on me now!”</i>");
+	output("\n\nYour mouth is dry as you turn to her. Would she accept it? You don’t take Paige to be the type to accept a lot of handouts. But, there’s no point in beating around the bush. <i>“I can afford that,”</i> you say.");
+	output("\n\nPaige hesitates. <i>“What?”</i> she asks, her playful tone remaining. You’re sure she heard you clearly the first time.");
+	output("\n\n<i>“I can afford that,”</i> you say again. <i>“You don’t have to be blind until you’re old. I can help you with your eyes, Paige.”</i>");
+	output("\n\nPaige’s eyes fixate in your direction. Her smile fades but her cheeks remain raised in hope. Her tail is still as could be, but her ears perk straight up, her undivided attention on you. <i>“I, uh,”</i> she stutters, at a loss for words for the first time since you met her. <i>“That’s sweet, [pc.name], but even if you could, I don’t need a handout.”</i>");
+	output("\n\n<i>“I’m not offering because you need one, Paige,”</i> you insist, reaching out and grabbing her hand, squeezing it gently. <i>“I’m not trying to solve the universe’s problems. I want to help you because...,”</i> you gasp, trying to put your thoughts to words. Paige doesn’t interrupt and listens to you intently, her damaged eyes wide and her hand trembling in yours. <i>“You’re more to me than just a teacher. I want to help you; I want to see you happy, and if that means half a million credits to fix your eyes, I’d pay it. I’d pay it twice over, if I had to.”</i>");
+	output("\n\nPaige is still as a statue and her expression goes narrow, processing what you’ve said to her. You can feel her pulse quickening in your hand and you can hear her hold her breath. <i>“It’s,”</i> she says, struggling with the words she feels she needs to say, <i>“it’s too much money, [pc.name]. Spend it on something else.”</i>");
+	output("\n\n<i>“Paige!”</i> you yell, frustrated, <i>“stop thinking about your pride for a minute and just think about yourself! You can be seeing out of your</i> own <i>eyes again in a matter of days. I’m trying to help make your dream come true; stop trying to convince us both that you aren’t worth it!”</i>");
+	output("\n\nYou bite your lip, waiting for Paige’s response. Her eyes begin to water and her own upper lip starts to quiver. Her other hand finds yours, still gripping her first, and trails its way up your arm, hurried and erratic as it crawls up your bicep to your shoulder, then to your neck and face. <i>“[pc.name],”</i> she says, then falls into you, burying her face into your shoulder. Her arm wraps tightly around you, and then she starts sobbing.");
+
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",herEyes3);
+}
+
+// (scene: Her Eyes 3)
+public function herEyes3():void
+{
+	clearOutput();
+	showPaige();
+	output("Her sobs are muffled by your [pc.uppergarments], her grip hard as iron on your hand and the arm locked around your shoulders almost tight enough to be painful. <i>“[pc.name]”</i> she repeats, struggling to maintain her composure. Every time she stiffens up, she promptly collapses into you again.");
+	output("\n\nYou remain on her couch for a moment, holding your Ausar lover as she gets everything she needs out of her, out of her. You stroke at her back tenderly as you wait. <i>“This is,”</i> she tries to say, then stops to take a breath. <i>“This is the nicest thing anyone’s ever done for me, [pc.name],”</i> she tells you. <i>“That’s... that’s five hundred thousand credits! Half a million! That’s....”</i>");
+	output("\n\n<i>“Please stop reminding me,”</i> you chuckle. <i>“I’m not going to back down, but saying it over and over doesn’t make it easier.”</i>");
+	output("\n\nShe laughs cutely between her sniffles. <i>“Right.”</i>");
+	output("\n\nYou stay together for a bit longer, waiting for Paige to calm down. It takes her about ten minutes to completely settle, but neither of you break the embrace or the silence: you’ve taken your relationship to some other level now, something that words don’t do justice right at this moment. Well, except one word.");
+	output("\n\n<i>“Are we calling this ‘love?’”</i> she asks you. <i>“Is that a strong enough word to be throwing around right now?”</i>");
+	output("\n\nYou smile and squeeze her with both hands, one still holding hers and the other around her own shoulders. <i>“What do you think?”</i>");
+	output("\n\nShe leans back slightly, her nose against yours. <i>“I’ll show you what I think.”</i> She closes the gap and plants a kiss, right on your lips. Long, lingering, and loving.");
+	output("\n\nWhen she pulls away, her familiar, confident smile spreads across her lips. <i>“So I’m worth exactly one million credits, am I, sweet thing?”</i> she asks playfully. <i>“If the surgery was one-million-and-one credits, is that the line?”</i>");
+	output("\n\n<i>“Oh, shut up,”</i> you chide.");
+	processTime(10);
+	pc.lust(5);
+	clearMenu();
+	addButton(0,"Next",herEyes4);
+}
+
+public function herEyes4():void
+{
+	clearOutput();
+	showPaige();
+	// Place PC at a lone square called ‘Operating Room Lobby’
+	currentLocation = "TAVROS_TEMPO";
+	generateMap();
+	output("The next morning, you and Paige are in Tavros’s Medical Bay, normally inaccessible to the public, at the waiting lobby for the operating room. The process to pay for Paige’s surgery and get everything in line was surprisingly succinct: Paige did most of the paperwork (which was ironic and sort of cruel, considering) while you just threw money around until you got what you wanted. With the advancements of modern medicine, and with Tavros Station being fairly tame in terms of disease or injuries, there was no wait time: you got started immediately on fixing Paige’s eyes.");
+	output("\n\nPaige’s hand hadn’t left yours since you arrived in the bay. She giddily signed her papers and spoke with the nurses and helper droids and she chatted you up all morning, up until the very last step. Knowing that her future, a brighter future, was behind a pair of tightly shut, whitewashed metal doors – doors she could reach out and touch – changed her demeanor entirely.");
+	output("\n\nShe had been dragging you by the hand back and forth across the room since they had put you two there. When she sat you both down, she couldn’t sit for a few minutes before she got back up. She had been mostly silent, and she kept shrugging her shoulders and kicking her legs, resetting her clothes.");
+	output("\n\n<i>“Nervous?”</i> you ask her.");
+
+	output("\n\n<i>“G-Gods, how can I not be?”</i> she asks back. <i>“[pc.name], I’ve been blind for " + (days + 2414) + " days. I’ve counted. I had been pinching credits to save up for this. I thought I was going to be old and grey by the time I could see again. And it’s....”</i> She stops and approaches the door, resting her hand on its smooth, cool, metal frame. <i>“It’s right there.”</i>");
+
+	output("\n\n<i>“We could call it off, if you’d like,”</i> you snicker.");
+
+	output("\n\n<i>“Don’t even joke!”</i> she spits, but she smiles, knowing you’re just trying to calm her down. <i>“I’ve wanted to look Iddi in his adorable monitor since I first got him. I’ll be able to see the stars again after this! I can go back to photography, or navigation! And,”</i> she says, squeezing your hand and turning to look you in the eyes (or thereabouts), <i>“I’ll be able to look my lovely sponsor in the eye....”</i> She pulls you closer, whispering the last words to you, <i>“and maybe give [pc.himHer] a proper thank-you later.”</i>");
+
+	output("\n\nThe white metal doors hiss and quickly slide open, startling you two. <i>“Miss Paige?”</i> asks a nurse droid, hovering five feet off the ground. Its single lens rotates in its socket as it scans the room for its patient. A second droid accompanies it, equipped with two padded ‘arms’ on its frame for Paige to grasp onto. <i>“We’re ready for you.”</i>");
+
+	output("\n\nPaige stands still, taking a deep breath through her nose and out her mouth. <i>“Okay.”</i> For the first time that day, she lets go of your hand. <i>“[pc.name],”</i> she says, looking over her shoulder as she approaches the droid with arms. She smiles that confident, loving smile at you as she finds the droid with her hand. <i>“I’ll see you later.”</i>");
+
+	output("\n\nShe and the droid walk into the surgery room, leaving you alone in the lobby with the other one. <i>“" + pc.mf("Mister","Miss") + " [pc.name]?”</i> it asks, facing you. You acknowledge it. <i>“Miss Paige’s surgery will take about twelve hours to complete. You’re welcome to wait here in the lobby if you’d like; if you’d instead like to leave, we can message your codex when she’s ready.”</i>");
+
+	output("\n\nYou hum as you consider it.");
+	
+	var time2Go:Number = 0;
+	if(hours < 8) time2Go = (8 - hours) * 60;
+	else if(hours > 8) time2Go = 8*60 + (24-hours)*60;
+	else time2Go = 50;
+	processTime(time2Go);
+	//[=Stay=][=Leave=]
+	// end scene (scene: Her Eyes 4); advance clock to 08:00; deduct 500,000 credits
+	pc.credits -= paigeCost();
+	pc.createStatusEffect("PAIGE_COMA_CD");
+	pc.setStatusMinutes("PAIGE_COMA_CD",60*30);
+	clearMenu();
+	addButton(0,"Stay",paigeEyeholeEmailEvent);
+	addButton(1,"Leave",leavePaigesEyeholes);
+}
+
+//[=Leave=]
+// (scene: Her Eyes: Leave)
+public function leavePaigesEyeholes():void
+{
+	clearOutput();
+	showPaige();
+	pc.createStatusEffect("PAIGE_COMA_EMAIL_CD");
+	pc.setStatusMinutes("PAIGE_COMA_EMAIL_CD",60*12);
+	output("There are some errands you’d like to get to today. As important as today is for both you and especially Paige, you’re sure she’d understand that you’re not too excited about staying in a room with nothing to do or to entertain you for twelve straight hours. You tell the droid you’ll be leaving.");
+	output("\n\n<i>“Very well,”</i> it answers curtly. <i>“Expect a message on your codex when Miss Paige’s surgery has concluded.”</i>");
+	output("\n\nYou’ll be sure to.");
+	// end scene (scene: Her Eyes: Leave); place PC one square outside Paige’s Unit
+	currentLocation = "PAIGE_HOUSE";
+	clearMenu();
 	addButton(0,"Next",moveSouth);
 }
 
-/*
-output("\n\n[=Spar=]");
-output("\n\n// Reveal this option after the PC has seen (scene: Paige 6), and grey it out unless the time is between 17:00 and 00:00");
-output("\n\n// Tooltip: Paige mentioned that she would like a sparring match against you. Even though she’s blind, don’t expect an easy fight!");
-output("\n\n// Tooltip (unacceptable hours): Tonight’s not the night for fighting. You might cause a disturbance with the noise among the other units, besides.");
-output("\n\n// (scene: Spar)");
-
-output("\n\nYou say to Paige that you’ve been thinking about her challenge to a sparring match. <i>“Oh yeah!”</i> she chirps. <i>“[if {never challenged Paige before}You put any thought into it, sweet thing? Decide that you’re not afraid to fight a blind woman?][if {won the previous encounter with Paige}Wanna go another round? I’ve been thinking about why I lost last time. It’s not gonna be any easier this time, I can promise you that!][if {lost the previous encounter with Paige via HP}Thinking of putting your pride on the line a second time? Hope you brought your A-game this time, sweet thing!][if {lost the previous encounter with Paige via Lust}Got all that tension out of your system, did you? I hope you realize how disappointed I’ll be if you decide to fuck off again.][if {last encounter ended in a Stalemate}Got your nerve built up this time? I’d better hope so! The last match ended on such a lame, boring note. I hope you really give it your all this time!][if {last encounter ended by Yielding}Think you’ve toughened up enough for me? I don’t hold it against you for backing down last time, but if you’re ready for a serious go, then I’m game too!]”</i>");
-
-output("\n\n[if {Never challenged Paige before}You tell her that you’ve thought about it, and you’re interested in having an honest sparring match with her.  You promise that you won’t hold back [if {Paige is blind}just because she’s blind] – you respect her more than that.  <i>“Good idea.  You’re going to need every trick up your sleeve!”</i> she guffaws, then flexes her arms, showing off her weapons.");
-
-output("\n\n<i>“I just have one rule, though,”</i> she says. <i>“No weapons. Shields and armor, that’s fine, if you don’t mind hiding behind a shield.”</i> She smiles cockily and brings her hands together, popping her knuckles. <i>“But this is a sparring match. I want to test what we’re capable of. It’s not that hard to pull a trigger.”</i> She presses her arms against her boobs, deepening their cleavage for you. <i>“Let’s not forget what the ultimate prize is for the winner, too,”</i> she says, licking her lips.");
-
-output("\n\nDo you accept her terms?]");
-
-output("\n\n[if {Won the previous encounter with Paige}You reply that you <i>hope</i> she’s thought about it. You were bored enough whupping her ass across her yoga studio last time and this time, you expect her to give you a better challenge. <i>“That’s the shit-talk I want to hear!”</i> she laughs. She places her hands on her hips and flexes her abs and pectorals. <i>“Let’s hear it keep up when my fist is in your mouth, sweet thing!");
-
-output("\n\n<i>“Before we go, though, I just want to be clear that the rules are the same: no weapons. You can use your armor and your shields if you think you need them – and you will – but I don’t want to see any plasma rifles or energy swords or whatever the hell. You still game?”</i> She raises her hands to her breasts and openly gropes them in front of you. <i>“The reward’s still the same, and still ripe for the taking, sweet thing.”</i>");
-
-output("\n\nDo you accept her terms?]");
-
-output("\n\n[if {Lost/Stalemate/Yielded the previous encounter with Paige}You promise Paige that the last time you danced was just a fluke, and this time, you’ve got her figured out.  You’ll be cleaning the mats with her fur before the hour is out.  <i>“Big talk, after what happened last time!”</i> she chortles.  She spreads her legs and flexes them, and the definition in them practically pop straight through her fur.  <i>“For your sake, you better hope you got something better this time.  Who wants to lose to a [if {Paige is blind}blind] woman</i> again<i>?”</i>");
-
-output("\n\n<i>“Before we go, though, I just want to be clear that the rules are the same: no weapons. You can use your armor and your shields if you think you need them – and you will – but I don’t want to see any plasma rifles or energy swords or whatever the hell. You still game?”</i> She turns around and slaps her own ass hard, letting the cracking sound reverberate off the walls of her unit. <i>“Maybe I’ll let you take charge of some of</i> this <i>if you win!”</i>");
-
-output("\n\nDo you accept her terms?]");
-
-output("\n\n[=Accept=][=Decline=]");
-output("\n\n// end scene (scene: Spar)");
-
-output("\n\n[=Decline=]");
-output("\n\n// (scene: Spar Decline)");
-
-No weapons? Um...
-
-output("\n\n<i>“What, you don’t want to fight a [if {Paige is blind}blind] woman at arm’s length?”</i> she chides, keeping up the boastful demeanor but subtly disappointed that you’re so hesitant.  <i>“That’s fine, [pc.name].  I could fight off more than my fair share of Black Void pirates[if {Paige is blind} when I could see], so I’m not exactly a slouch.  When you’re feeling a bit braver, feel free to come at me.  I’ll be here!”</i>");
-
-output("\n\nYou can’t help but feel you’ve let Paige down a bit, but still, you kind of value your personal health. Maybe you’ll take her advice and come back when you’re ‘braver.’");
-
-output("\n\n// return to Paige Select 2, no penalty");
-output("\n\n// end scene (scene: Spar Decline)");
-
-output("\n\n[=Accept=]");
-output("\n\n// (scene: Spar Accept)");
-
-output("\n\nNo weapons? Child’s play! You’re more than happy to fight Paige bare-knuckled.");
-
-output("\n\n<i>“Not bare knuckled,”</i> she advises. <i>“My yoga class is a wide open space and it’s closed for the day. I got some gloves we can use – soft on the face but they don’t lose any power in the swing. Let’s do this there.”</i>");
-
-output("\n\n[if {Paige is blind}You let Paige lead you out of her unit (instructing Iddi to remain there, and that she’ll be back soon) and to her yoga class just one room over.  When you’re inside, she locks the door and hides her earpiece on a small corner table next to the door.][if {Paige can see}You let Paige lead the way as she takes you through the belly of your ship, towards your cargo hold.  You’re not really using it for anything, and from the looks of things, Paige has been busy, setting up a number of mats placed together to form your arena.]");
-
-output("\n\n<i>“Let’s do this proper,”</i> she says, stepping onto the yoga mat with you and handing you the gloves she promised.  They’re fairly basic, but the material, as she promised, is soft and malleable, providing some cushion for impact without inhibiting your power.  <i>“I want a good, clean fight.  Toe the line; no hitting below the belt.  And all that shit.  You ready?”</i>");
-
-output("\n\nYou find yourself a spot directly across from Paige on the center of the mat.  She raises her gloved fists, facing towards you, taking an experienced boxer’s position – her arms are protecting her body and her fists are protecting her face.  It’s clear that she knows her way around a fight – [if {Paige is blind}and even with her disability, ]this won’t be easy at all.");
-
-output("\n\n<b>It’s a fight with Paige!</b>");
-
-output("\n\n// Refer to Combat With Paige document to proceed; inflict Disarm on the PC");
-output("\n\n// end scene (scene: Spar Accept)");
-
-
-
-output("\n\n// (scene: Her Eyes 2)");
-
-output("\n\nYou sit with Paige in silence for a moment, contemplative.  You’ve already made up your mind, but your heart needs a moment to catch up to your head.  That’s an enormous amount of money you’re about to put down on Paige.");
-
-output("\n\n<i>“Terra to [pc.name]?”</i> Paige says playfully, nudging you after you don’t respond to her questions.  <i>“It’s okay; that price tag knocked me for a loop too.  Don’t space out on me now!”</i>");
-
-output("\n\nYour mouth is dry as you turn to her.  Would she accept it?  You don’t take Paige to be the type to accept a lot of handouts.  But, there’s no point in beating around the bush.  <i>“I can afford that,”</i> you say.");
-
-output("\n\nPaige hesitates.  <i>“What?”</i> she asks, her playful tone remaining.  You’re sure she heard you clearly the first time.");
-
-output("\n\n<i>“I can afford that,”</i> you say again.  <i>“You don’t have to be blind until you’re old.  I can help you with your eyes, Paige.”</i>");
-
-output("\n\nPaige’s eyes fixate in your direction.  Her smile fades but her cheeks remain raised in hope.  Her tail is still as could be, but her ears perk straight up, her undivided attention on you.  <i>“I, uh,”</i> she stutters, at a loss for words for the first time since you met her.  <i>“That’s sweet, [pc.name], but even if you could, I don’t need a handout.”</i>");
-
-output("\n\n<i>“I’m not offering because you need one, Paige,”</i> you insist, reaching out and grabbing her hand, squeezing it gently.  <i>“I’m not trying to solve the universe’s problems.  I want to help you because...,”</i> you gasp, trying to put your thoughts to words.  Paige doesn’t interrupt and listens to you intently, her damaged eyes wide and her hand trembling in yours.  <i>“You’re more to me than just a teacher.  I want to help you; I want to see you happy, and if that means half a million credits to fix your eyes, I’d pay it.  I’d pay it twice over, if I had to.”</i>");
-
-output("\n\nPaige is still as a statue and her expression goes narrow, processing what you’ve said to her.  You can feel her pulse quickening in your hand and you can hear her hold her breath.  <i>“It’s,”</i> she says, struggling with the words she feels she needs to say, <i>“it’s too much money, [pc.name].  Spend it on something else.”</i>");
-
-output("\n\n<i>“Paige!”</i> you yell, frustrated, <i>“stop thinking about your pride for a minute and just think about yourself!  You can be seeing out of your</i> own <i>eyes again in a matter of days.  I’m trying to help make your dream come true; stop trying to convince us both that you aren’t worth it!”</i>");
-
-output("\n\nYou bite your lip, waiting for Paige’s response.  Her eyes begin to water and her own upper lip starts to quiver.  Her other hand finds yours, still gripping her first, and trails its way up your arm, hurried and erratic as it crawls up your bicep to your shoulder, then to your neck and face.  <i>“[pc.name],”</i> she says, then falls into you, burying her face into your shoulder.  Her arm wraps tightly around you, and then she starts sobbing.");
-
-output("\n\n[=Next=]");
-output("\n\n// end scene (scene: Her Eyes 2)");
-
-output("\n\n// (scene: Her Eyes 3)");
-
-output("\n\nHer sobs are muffled by your [pc.uppergarments], her grip hard as iron on your hand and the arm locked around your shoulders almost tight enough to be painful.  <i>“[pc.name]”</i> she repeats, struggling to maintain her composure.  Every time she stiffens up, she promptly collapses into you again.");
-
-output("\n\nYou remain on her couch for a moment, holding your Ausar lover as she gets everything she needs out of her, out of her.  You stroke at her back tenderly as you wait.  <i>“This is,”</i> she tries to say, then stops to take a breath.  <i>“This is the nicest thing anyone’s ever done for me, [pc.name],”</i> she tells you.  <i>“That’s... that’s five hundred thousand credits!  Half a million!  That’s....”</i>");
-
-output("\n\n<i>“Please stop reminding me,”</i> you chuckle.  <i>“I’m not going to back down, but saying it over and over doesn’t make it easier.”</i>");
-
-output("\n\nShe laughs cutely between her sniffles.  <i>“Right.”</i>");
-
-output("\n\nYou stay together for a bit longer, waiting for Paige to calm down.  It takes her about ten minutes to completely settle, but neither of you break the embrace or the silence: you’ve taken your relationship to some other level now, something that words don’t do justice right at this moment.  Well, except one word.");
-
-output("\n\n<i>“Are we calling this ‘love?’”</i> she asks you.  <i>“Is that a strong enough word to be throwing around right now?”</i>");
-
-output("\n\nYou smile and squeeze her with both hands, one still holding hers and the other around her own shoulders.  <i>“What do you think?”</i>");
-
-output("\n\nShe leans back slightly, her nose against yours.  <i>“I’ll show you what I think.”</i>  She closes the gap and plants a kiss, right on your lips.  Long, lingering, and loving.");
-
-output("\n\nWhen she pulls away, her familiar, confident smile spreads across her lips.  <i>“So I’m worth exactly one million credits, am I, sweet thing?”</i> she asks playfully.  <i>“If the surgery was one-million-and-one credits, is that the line?”</i>");
-
-output("\n\n<i>“Oh, shut up,”</i> you chide.");
-
-output("\n\n[=Next=]");
-output("\n\n// end scene (scene: Her Eyes 3)");
-
-output("\n\n// (scene: Her Eyes 4)");
-output("\n\n// Place PC at a lone square called ‘Operating Room Lobby’");
-
-output("\n\nThe next morning, you and Paige are in Tavros’s Medical Bay, normally inaccessible to the public, at the waiting lobby for the operating room.  The process to pay for Paige’s surgery and get everything in line was surprisingly succinct: Paige did most of the paperwork (which was ironic and sort of cruel, considering) while you just threw money around until you got what you wanted.  With the advancements of modern medicine, and with Tavros Station being fairly tame in terms of disease or injuries, there was no wait time: you got started immediately on fixing Paige’s eyes.");
-
-output("\n\nPaige’s hand hadn’t left yours since you arrived in the bay.  She giddily signed her papers and spoke with the nurses and helper droids and she chatted you up all morning, up until the very last step.  Knowing that her future, a brighter future, was behind a pair of tightly shut, whitewashed metal doors – doors she could reach out and touch – changed her demeanor entirely.");
-
-output("\n\nShe had been dragging you by the hand back and forth across the room since they had put you two there.  When she sat you both down, she couldn’t sit for a few minutes before she got back up.  She had been mostly silent, and she kept shrugging her shoulders and kicking her legs, resetting her clothes.");
-
-output("\n\n<i>“Nervous?”</i> you ask her.");
-
-output("\n\n<i>“G-Gods, how can I not be?”</i> she asks back.  <i>“[pc.name], I’ve been blind for {current day + 2414} days.  I’ve counted.  I had been pinching credits to save up for this.  I thought I was going to be old and grey by the time I could see again.  And it’s....”</i>  She stops and approaches the door, resting her hand on its smooth, cool, metal frame.  <i>“It’s right there.”</i>");
-
-output("\n\n<i>“We could call it off, if you’d like,”</i> you snicker.");
-
-output("\n\n<i>“Don’t even joke!”</i> she spits, but she smiles, knowing you’re just trying to calm her down.  <i>“I’ve wanted to look Iddi in his adorable monitor since I first got him.  I’ll be able to see the stars again after this!  I can go back to photography, or navigation!  And,”</i> she says, squeezing your hand and turning to look you in the eyes (or thereabouts), <i>“I’ll be able to look my lovely sponsor in the eye....”</i>  She pulls you closer, whispering the last words to you, <i>“and maybe give [pc.himHer] a proper thank-you later.”</i>");
-
-output("\n\nThe white metal doors hiss and quickly slide open, startling you two.  <i>“Miss Paige?”</i> asks a nurse droid, hovering five feet off the ground.  Its single lens rotates in its socket as it scans the room for its patient.  A second droid accompanies it, equipped with two padded ‘arms’ on its frame for Paige to grasp onto.  <i>“We’re ready for you.”</i>");
-
-output("\n\nPaige stands still, taking a deep breath through her nose and out her mouth.  <i>“Okay.”</i>  For the first time that day, she lets go of your hand.  <i>“[pc.name],”</i> she says, looking over her shoulder as she approaches the droid with arms.  She smiles that confident, loving smile at you as she finds the droid with her hand.  <i>“I’ll see you later.”</i>");
-
-output("\n\nShe and the droid walk into the surgery room, leaving you alone in the lobby with the other one.  <i>“{Mister/Miss} [pc.name]?”</i> it asks, facing you.  You acknowledge it.  <i>“Miss Paige’s surgery will take about twelve hours to complete.  You’re welcome to wait here in the lobby if you’d like; if you’d instead like to leave, we can message your codex when she’s ready.”</i>");
-
-output("\n\nYou hum as you consider it.");
-
-output("\n\n[=Stay=][=Leave=]");
-output("\n\n// end scene (scene: Her Eyes 4); advance clock to 08:00; deduct 500,000 credits");
-
-output("\n\n[=Leave=]");
-output("\n\n// (scene: Her Eyes: Leave)");
-
-output("\n\nThere are some errands you’d like to get to today.  As important as today is for both you and especially Paige, you’re sure she’d understand that you’re not too excited about staying in a room with nothing to do or to entertain you for twelve straight hours.  You tell the droid you’ll be leaving.");
-
-output("\n\n<i>“Very well,”</i> it answers curtly.  <i>“Expect a message on your codex when Miss Paige’s surgery has concluded.”</i>");
-
-output("\n\nYou’ll be sure to.");
-output("\n\n// end scene (scene: Her Eyes: Leave); place PC one square outside Paige’s Unit");
-
-output("\n\n// After twelve hours, play the following message:");
-output("\n\n// (scene: E-Mail)");
-
-output("\n\nThe familiar tone of receiving a new email rings through the air.  You bring your codex off your hip, checking who it’s from – it’s from Tavros’ Infirmary!");
-
-output("\n\n<i>“{Mister/Miss} [pc.name],”</i> it reads, <i>“you’re receiving this message as Miss Paige’s partner and sponsor.  We’re happy to report that her surgery to replace her damaged eyes with a synthetic, biologically identical set has been a success.”</i>  That’s a relief.  And that’s exciting!  Paige will be able to see again!  <i>“Miss Paige is currently in an induced coma; we request your presence within the next twelve hours to proceed.”</i>");
-
-output("\n\n[if {PC is on Tavros}Hell, those twelve hours went by like they were nothing!  There’s no time to lose: you need to get to the Medical Bay right now!]");
-
-output("\n\n[if {PC is not on Tavros}You knew that a round-trip to the nearest planet or station off Tavros was twenty hours.  You hope you made the right decision in pursuing your off-station errands while Paige was under the knife.  That aside, you can still make it back to Tavros with time to spare if you hurry!]");
-
-output("\n\n// if PC is on Tavros, proceed to (scene: Her Eyes 6); if not, do nothing.");
-
-output("\n\n[=Stay=]");
-output("\n\n// (scene: Her Eyes 5)");
-
-output("\n\nNothing you have in the agenda is as important as making sure you’re here for Paige.  You’re fine with waiting the twelve hours here in the medbay.  <i>“Are you certain?”</i> the droid asks you, and you confirm.  <i>“Very well.  You’ll be informed when Miss Paige’s surgery is completed.”</i>");
-
-output("\n\nThe droid follows Paige into the operating room, and the whitewashed metal doors clank shut, leaving you alone in the waiting room.  A red light above the door turns on, letting everyone that sees it know that the room is, in a word, occupied.");
-
-output("\n\nYou take a seat, getting comfortable in the plain room.  There is no music and the few magazines offering off-world fashions and news from the corners of the universe are all outdated by several solar months.  The medbay gives you access to the extranet via your codex, but the speeds leave something to be desired; who could survive on twenty paltry gigabytes a second?");
-
-output("\n\nWell, you’ve made your decision.  You settle in for the long haul.");
-
-output("\n\n...");
-
-output("\n\n...");
-
-output("\n\nA few hours pass.  You’re getting awfully hungry.  There’s a vending machine available, offering some chips, cookies, and fizzy drinks, though none of them look particularly appetizing.  You’re tempting to go to the merchant deck for something to eat, but... you decide instead to just fill up on water.");
-
-output("\n\n...");
-
-output("\n\n...");
-
-output("\n\nFunny thing about filling up on water: it makes you pee a lot.  You’ve been to the bathroom four times in the space of an hour, now.  At least you’re well hydrated.");
-
-output("\n\n...");
-
-output("\n\n...");
-
-output("\n\nYou lounge in your seat and scratch at your groin, your pile of completed magazines slowly building to your right.  You check the clock.  You’ve been here for five hours.");
-
-output("\n\nGreat.");
-
-output("\n\n[=Next=]");
-output("\n\n// end scene (scene: Her Eyes 5)");
-
-output("\n\n// (scene: Her Eyes 6)");
-
-output("\n\n[if {PC was not on Tavros when they received the message}As soon as your ship touches down in Tavros’ landing bay, you’re out the door and for the elevator, in a mad dash to get to the Medical Bay as quickly as possible.]");
-
-output("\n\n[if {continue here if the PC chose to [=Leave=]}You rush into the Medical Bay, to the waiting room you had last seen Paige in.  She’s not there; it’s barren, except for the nurse droid that spoke with you last.  <i>“Where is Paige?”</i> you ask it hurriedly.");
-
-output("\n\nThe droid turns in your direction, focusing its lens on you, spinning its gears as it gets a good look at your features.  <i>“{Mister/Miss} [pc.name],”</i> it begins, <i>“I’m happy to inform you that Miss Paige’s procedure has completed successfully with no complications.”</i>  You hunch over, taking in a deep breath and exhaling it as a huge sigh of relief.  [if {it has been thirty hours or less since Paige’s surgery began}<i>“As written in your message, Miss Paige is currently in an induced coma.  We are prepared to wake her up on your instruction.”</i>][if {it has been thirty-one hours or more since Paige’s surgery began}<i>“As written in your message, Miss Paige</i> was <i>in an induced coma, but she had since metabolized the injections and is now awake.”</i>");
-
-output("\n\n[if {PC chose to [=Stay=]}You’re not afraid to admit that you fell asleep.  What else were you supposed to do for twelve hours?  It was difficult at first; you were too anxious over Paige to fall asleep at first, but, you suppose, you exhausted yourself to sleep.");
-
-output("\n\n<i>“{Mister/Miss} [pc.name]?”</i> you hear a voice call, then a second time, louder.  The noise jostles you awake at first, and then, as soon as you’re cognizant, you remember where you are and the situation.  You sit up, eyes unfocused, until they find the droid you had spoken to twelve hours ago, its lens facing you.");
-
-output("\n\n<i>“I’m pleased to inform you,”</i> it begins, not giving you a chance to wake yourself up any further, <i>“that Miss Paige’s procedure has been completed successfully and with no complications.”</i>  The news is all you need to hear to pull yourself to your [pc.feet], excited to meet Paige and have her see you for the first time.  <i>“She is currently in an induced coma and we are prepared to wake her on your instruction.”</i>]");
-
-output("\n\n<i>“Of course!”</i> you say, <i>“let’s not waste any time!”</i>");
-
-output("\n\n<i>“As you say.”</i>  The droid then begins hovering away from the whitewashed doors.  The red light from above it has been turned off.  <i>“Miss Paige has been moved to our recovery ward; we can proceed from there.”</i>");
-
-output("\n\nYou follow the droid eagerly through the white, winding halls of the Medical Bay on Tavros Station.  Your focus is only on the little robot as it leads you up several floors and past half a dozen double doors until you get to an area labeled as the ‘recovery ward;’ you peek into the rooms as you pass by, looking for Paige despite the nurse droid moving past them entirely.");
-
-output("\n\nFinally, it turns once, into one patient’s room.  A clipboard filled out with the occupant’s medical information rests on a bin next to the door.  And on the bed, undeniably, is your Ausar, Paige.");
-
-output("\n\n[=Next=]");
-output("\n\n// end scene (scene: Her Eyes 6)");
-
-output("\n\n// (scene: Her Eyes 7)");
-output("\n\n// if it’s been thirty hours or less, play from here:");
-
-output("\n\nThe lights in the room are very dim; it’s almost as if the room is candlelit.  Paige rests on the hospital bed, sleeping soundly underneath the fresh covers, her arms and upper chest exposed.  She’s wearing what appears to be a plain, baby-blue hospital gown – most discerningly, she has several layers of gauze wrapped around her head, pressed tightly against her eyes.");
-
-output("\n\nStanding next to her bed is who you assume to be the surgeon that had worked on her.  The doctor is a petite woman, standing up to Paige’s neck at her tallest; it’s difficult to make out her finer features in the shoddy lighting, other than her neck-length blonde hair and the fact that she’s human.  She appears busy with some paperwork when you walk in; when you arrive, she lifts her head and smiles warmly at you.");
-
-output("\n\n<i>“You must be [pc.name],”</i> she says, her voice lower than you had expected.  She reaches out her hand for you to shake, and you do so gladly.  <i>“My name is Tilim Hannoway.  I’m the ophthalmologist that performed on Paige today.”</i>");
-
-output("\n\nThere’s a seat next to Paige that you gladly take once you release Hannoway’s hand.  <i>“That’s a five dollar word if I’ve ever heard one,”</i> you laugh.");
-
-output("\n\n<i>“Imagine trying to spell it,”</i> she laughs with you.  <i>“I’m happy to inform you that Paige’s operation was a complete success, with no complications at all.  Miss Paige had asked us to wait for you before we woke her up, assuming she didn’t wake up herself first.”</i>  Hannoway smiles at you sweetly.  <i>“She probably wanted you to be the first thing she saw.”</i>");
-
-output("\n\n<i>“Well, let’s not keep her waiting,”</i> you implore, gesturing to her.  <i>“Let’s see those baby blues of hers!”</i>");
-
-output("\n\n<i>“Of course.”</i>  Hannoway reaches for a needle sitting on a tray next to Paige’s bed, full of a clear liquid.  With a practiced swing, she removes its cap and sticks it into Paige’s wrist, pressing the plunger.  When it’s empty, she removes it and tosses it into a bin mounted on the wall.  Then, you wait.");
-
-output("\n\nYou sit in tense silence, waiting for any sign of consciousness.  It takes only a minute for the drug to work: Paige begins to stir, moaning deliriously on her bed, twisting her head from side to side.  Her breathing halts for a moment, then she lets out a long sigh.  <i>“Hello?”</i> she asks, her mouth dry.");
-
-output("\n\n<i>“I’m here, Paige,”</i> you say gently, cupping her right hand in yours, stroking it with your thumbs.");
-
-output("\n\n<i>“Mmmm, [pc.name]?”</i> she asks, her head facing your direction.  <i>“Where am I?  Why can’t I see you?”</i>");
-
-output("\n\n<i>“It’s because you have gauze over your eyes.”</i>");
-
-output("\n\nPaige tentatively raises her left hand, gently feeling at her eyes and trailing her furry fingers over the bandages wrapped around her head.  <i>“Checks out.”</i>");
-
-output("\n\nHannoway steps forward, interrupting you two.  <i>“Miss Paige?”</i> she says.  <i>“I’m Tilim Hannoway, your ophthalmologist.  I’d like to–”</i>");
-
-output("\n\n<i>“My</i> what<i>?”</i>");
-
-output("\n\n<i>“I’m... your doctor.  I performed your operation today.”</i>");
-
-output("\n\n<i>“Oh yeah,”</i> she says drolly, <i>“<i>the cute human.  Sorry.  I’m a little... I’m not all here, yet.”</i>");
-
-output("\n\n<i>“Thank you for the compliment!”</i> the doctor replies earnestly.  <i>“I’d like to inform you that your operation was a complete success.  We’ve transplanted your eyes without any complications.”</i>");
-
-output("\n\n<i>“Wicked.”</i>  She leans into her pillow, returning your hand-holding lazily.  <i>“Let’s get this thing off of me.”</i>");
-
-output("\n\nWithout a word, Hannoway reaches for a pair of scissors off the same tray she pulled the syringe.  With a little more caution than the needle, she snips off the end of the gauze, then makes half a circle around Paige’s head.  When she gets to you, she offers you the end she’s holding.  <i>“Care to do the honors?”</i>");
-
-output("\n\nYou’d love to.");
-
-output("\n\n// if it’s been thirty-one hours or more, play here");
-
-output("\n\nThe lights in the room are very dim; it’s almost as if the room is candlelit.  Paige rests on the hospital bed, her arms and upper chest exposed.  She’s wearing what appears to be a plain, baby-blue hospital gown – most discerningly, she has several layers of gauze wrapped around her head, pressed tightly against her eyes.");
-
-output("\n\nStanding next to her bed is who you assume to be the surgeon that had worked on her.  The doctor is a petite woman, standing up to Paige’s neck at her tallest; it’s difficult to make out her finer features in the shoddy lighting, other than her neck-length blonde hair and the fact that she’s human.  She and Paige are busy with some smalltalk by the time you walk in; when you do, she stops immediately and smiles at you warmly.");
-
-output("\n\n<i>“The guest of the hour is here, Miss Paige,”</i> says the doctor.  She extends her hand towards you.  <i>“I’m Tilim Hannoway, and I was Miss Paige’s acting ophthalmologist.”</i>");
-
-output("\n\nYou accept the handshake, but stare at her blankly.  <i>“She was my surgeon,”</i> Paige says.  <i>“It’s a bit of a five-dollar word, isn’t it, sweet thing?”</i>");
-
-output("\n\nHannoway laughs.  <i>“Spelling it was a bit of a challenge at first,”</i> she admits.  <i>“{Miss/Mister} [pc.name], you’ll be glad to hear that the operation on Miss Paige was a complete success; we’ve transplanted her new eyes without any complications.”</i>");
-
-output("\n\n<i>“Yes, the nurse droid told me,”</i> you say, taking a seat next to Paige’s bed.  You find her hand with yours, cupping it gently and stroking it with your thumb.  Paige squeezes back lovingly, returning the gesture.  <i>“What’s left to do?”</i>");
-
-output("\n\n<i>“Nothing,”</i> the doctor replies, <i>“other than to remove the gauze.  We were just waiting for you to get here.”</i>");
-
-output("\n\n<i>“Sorry I’m late, then,”</i> you say to Paige as Hannoway reaches for a tray next to the bed, pulling out a pair of scissors.  With some caution, she makes one quick snip against the fabric, starting an unraveling line around Paige’s head.  Paige herself is calm, and even a little apprehensive, nervous of the results of the surgery.");
-
-output("\n\nWhen Hannoway gets to you, she offers you the end of the gauze.  <i>“Care to do the honors?”</i>");
-
-output("\n\nYou’d love to.");
-
-output("\n\n[=The Big Moment!=]");
-output("\n\n// end scene (scene: Her Eyes 7)");
-
-output("\n\n// (scene: The Big Moment)");
-
-output("\n\nYou release your hold on Paige’s hand and stand next to the bed, slowly and gingerly unwrapping the cloth from Paige’s head.  You go slowly, less from dramatic effect and more because you’re sure she must be a little sensitive from the operation.  The grip the gauze has on her gets looser with your every orbit around her, until you get to the last layer, and it falls away.");
-
-output("\n\nYou hand the scissors back to Hannoway and grip onto Paige’s hand once again.  There is a large, circular incision going from the bridge of her nose and around both eyes that’s been stitched together.  The scar going across both eyes is still there, the fur gone and the tissue scarred.  Her eyes are closed, her brown eyelids fluttering lightly – and then, she opens them.");
-
-output("\n\nBefore, her eyes were bluish-gray and clouded with cataracts, with asymmetrical pupils as a result of her injury.  What you see instead are brilliantly blue eyes, with perfectly healthy irises and large, dilated, round pupils.  She grunts in pain at first and squeezes her eyes shut – with concentrated effort, she slowly blinks them open, adjusting to the light of the room: even dim as it is, it’s a little much.  Her eyes find your hand first, then trail up your arm, then lock onto yours.");
-
-output("\n\nYou stare at each other for a moment.  Paige’s grip on your hand tightens almost painfully as she studies you and your features: from your eyes, to your [pc.lips] and [pc.face], to your eyes, then to your [pc.face] and your [pc.ears], to your eyes, to your [pc.hair] and back to your eyes.  She bites her lower lip and chokes out a single, joyful laugh through a pursed smile as her new, young, functional eyes begin to moisten.  <i>“Good news,”</i> she says to you and Hannoway as the tears quickly stream unabated down her cheeks, <i>“the tears work.”</i>");
-
-output("\n\nYou’re content to sit there for as long as she needs, letting her see new things for the first time in a lifetime for her.  <i>“You’re blurry,”</i> Paige criticizes, lifting her left hand to your face and watching herself touch your facial features.  <i>“Unless that’s just what [pc.race]s look like now.”</i>");
-
-output("\n\n<i>“Your vision is blurry because your brain is trying to ‘relearn’ how to see,”</i> Hannoway explains.  <i>“It’s a skill it’s had to make do without for a very long time, now.  Give it a day or two.  We’ll be keeping the lights dim until then.”</i>");
-
-output("\n\n<i>“She’s staying here?”</i> you ask the doctor, keeping your gaze on your Ausar.");
-
-output("\n\n<i>“Just for another day or two.  We still need to do some rudimentary tests – you know, making sure she’s not colorblind or anything.  We also need to remove her stitches, of course.”</i>  Hannoway steps towards the door, her hands in the pockets of her coat.  <i>“I’ll leave you two alone for now; I have some reports to file and I’m sure I’d just ruin the moment.”</i>");
-
-output("\n\n<i>“Thank you,”</i> Paige says to Hannoway as she leaves.  <i>“Thank you!”</i>");
-
-output("\n\n[=Next=]");
-output("\n\n// end scene (scene: The Big Moment)");
-
-output("\n\n// (scene: The Big Moment 2)");
-
-output("\n\nYou spend the next twenty-four hours with Paige, easing her into her new sense of vision.  You play silly games with each other: you ask her about the shapes and colors of various objects around the room, and you hold up some fingers and ask her how many you’re holding up.  You write your name on a piece of paper, then you ask her to write hers.  She finds inventive ways to describe your [pc.face] and she [if {PC has hair}admires how you keep your [pc.hair]][if {PC is bald}jokes about how she can see herself in your hairless head].  She loves every second of it: she can’t stop smiling or laughing at the smallest or the silliest jokes.  When you’re too tired to keep going, you sleep on your chair next to her, resting your head next to her hand.");
-
-output("\n\nShe passes Hannoway’s follow-up exams easily, picking out her greens from her blues and reds, and her circles from her squares and triangles.  Throughout the day, Hannoway turns the brightness up in the room until it’s as bright as the rest of the medbay.  Removing the stitches was a simple, quick process, and by the time hour twenty-three rolls around, Paige has Hannoway’s clean bill of health to leave and go back to her unit on the residential deck.");
-
-output("\n\nYou still have to lead her through the station by hand because she doesn’t recognize where she is, and her muscle memory is thrown off by her sight.  She warmly greets nearly everyone she passes, smiling and waving to them, telling them how good they look and wishing them a nice day.  She’s quivering in excitement by the time you get her to her unit, excited to see her own housing for the first time – and to see her helper droid.");
-
-output("\n\n<i>“Iddi?”</i> Paige yells when she walks in, less concerned with the décor and more about her robot.  Right on cue, you hear the gentle humming of levitating pulsars from around the corner, and Iddi’s large monitor flits about.");
-
-output("\n\n<i>“Hello momma!”</i> Iddi greets as usual.  Rather than the usual small-talk between Paige and her droid, she lunges forward, wrapping her arms around Iddi’s monitor and hugging it tightly to her chest.  <i>“Wow!”</i> Iddi exclaims, its monitor turning bright pink and its eyes turning to small crescents.  <i>“This is nice!”</i>");
-
-output("\n\nPaige pulls away, looking Iddi at its large, pixelated, cartoonish eyes.  She begins sniffling, on the verge of crying again, but nothing could break the huge smile on her face.  <i>“It sure is, baby,”</i> she says, rubbing her hands along Iddi’s smooth, chrome frame.");
-
-output("\n\n<i>“Are you okay, momma?”</i> Iddi asks concernedly.");
-
-output("\n\n<i>“I’ve never been better, Iddi.”</i>  She leans in, planting a kiss on Iddi’s frame.  <i>“I had my surgery the day before yesterday.  I can see you.”</i>  She runs a finger along Iddi’s monitor, watching its trail as she goes.  <i>“I can see you, Iddi.  I’ve waited to see you since the day I got you.”</i>");
-
-output("\n\nUnexpectedly, Iddi’s eyes arc with pixelated eyebrows, and its background turns a dark blue.  Iddi seems... scared, all of a sudden.  <i>“Are,”</i> it asks haltingly, <i>“are you gonna get rid of me?”</i>");
-
-output("\n\n<i>“What?!  Of course not!”</i>");
-
-output("\n\nIddi’s expression doesn’t change, apparently unconvinced.  <i>“But you don’t need me anymore.”</i>");
-
-output("\n\nPaige presses her nose against the glass of Iddi’s monitor, squinting her eyes and taking a softer tone.  <i>“Iddi, you’re more to me than a helper droid.  Hell, you’re more than a pet, too.  It doesn’t matter whether I ‘need’ you or not, sweet thing; you’re a part of my life now, and I wouldn’t give you up for the world.  JoyCo doesn’t need to know I’m not blind anymore, and even if they did, I’d like to see them</i> try <i>to take you from me!”</i>");
-
-output("\n\nIddi’s eyes turn to its usual, happy crescents, and configures its background into repeating hearts of pink and red.  Its pulsars thrust up, pressing its metal body against Paige’s.  <i>“I love you, momma!”</i>");
-
-output("\n\n<i>“I love you too, baby,”</i> Paige replies, hugging Iddi tightly.  <i>“And if you’re really worried about being ‘useful’ to me, I have a couple ideas on how you can still help around the house.”</i>");
-
-output("\n\n<i>“Like how?”</i>");
-
-output("\n\nPaige, in response, turns to you.  <i>“Well, I first need to speak with [pc.name].”</i>");
-
-output("\n\n[=Next=]");
-output("\n\n// end scene (scene: The Big Moment 2); advance day by 1");
-
-output("\n\n// (scene: The Big Moment 3)");
-
-output("\n\nPaige takes a deep breath, in through her nose and out through her mouth, just like she had practiced in yoga.  Her gaze is locked onto you, watching your every move and detail, almost like she’s staring you down.  <i>“There’s no real way to lead into this, I don’t think,”</i> she says, <i>“so, I’m just going to say it.  [pc.name], I want you to take me with you on your crew.”</i>");
-
-output("\n\nYou tell her that you’d love to.");
-
-output("\n\n<i>“It’s because I – wait, what?”</i>");
-
-output("\n\nYou have all the reasons in the known universe to bring Paige onto your ship.  She used to be a navigator for Kiro back before her injury, and you could definitely use one.  She’s a yoga master, and you could use a fitness instructor onboard to keep you and the rest of your crew in shape.  She an expert combatant, capable of bringing down three Black Void pirates by herself.  She’s been cooped up in her unit on Tavros for such a long time, she’s probably anxious as anything to get out and start seeing the universe again.  And finally... Paige is more to you personally than any of those.  You’d love to explore the stars with her by your side.");
-
-output("\n\nPaige smirks as you list off all the reasons why you’d like to make Paige an addition to your crew.  She studies you, noting your sincerity and your body language, appreciating every word that comes out of your mouth.  <i>“I see you’ve given this some thought, too.”</i>");
-
-output("\n\nYou shake your head.  <i>“I had my mind made up a while ago.  I was going to ask if you weren’t going to offer.”</i>  Still, you have some concerns.  What about her yoga class?  Is she going to close up shop for your sake?");
-
-output("\n\n<i>“That’s what Iddi’s going to help me with,”</i> she says, patting Iddi on top of its frame before facing its screen.  <i>“Momma’s going to go with [pc.name], Iddi.  We’re going to explore the stars together.  I need you to stay here.”</i>");
-
-output("\n\n<i>“What will I do, momma?”</i>");
-
-output("\n\n<i>“You’re going to look after my unit; my yoga studio; and my class, Iddi.  Here’s what we’re going to do: I’m going to set up a video stream on [pc.name]’s ship, two-way.  I’ll be able to see everything you see, and you’ll be able to see me.  That way, no matter where I am in the galaxy, I’ll never be too far away from you, okay?”</i>");
-
-output("\n\n<i>“That sounds like fun!”</i> Iddi answers, its screen turning green in delight.");
-
-output("\n\n<i>“That’s right!  I’ll still be able to teach yoga through you, Iddi, but you know enough to help my students on your own when I’m busy working with [pc.name].  And I’ll visit you</i> every <i>time we visit Tavros again, okay?”</i>");
-
-output("\n\n<i>“Okay!”</i>");
-
-output("\n\n<i>“That’s my baby,”</i> she finishes, planting another kiss on Iddi’s frame.  She straightens herself and turns to you once again.  <i>“So!  All that’s left is for me to pack my things and establish that video stream with Iddi.  Is there anything else I should know about before I get started?”</i>");
-
-output("\n\n[if {PC has at least one crewmate}One thing does immediately spring to mind – something you’ve been meaning to talk with Paige about ever since your relationship... escalated.  There’s never been a good time to bring it up, and there won’t ever <i>be</i> a good time.  You probably won’t get another opportunity to bite the bullet....][if {PC has no other crewmates}You rack your mind for a little bit, but you come up blank.  You’ve got a big, empty ship, and you’d love to have someone keep you some company on those long flights, as soon as possible.  <i>“Alright then!”</i> Paige says, turning towards her room (which takes her a second to find, unused to seeing it with her eyes).  <i>“I shouldn’t be too long.  I’ll meet you down at the landing bay, [pc.name]!”</i>");
-
-output("\n\nYou ask her if she knows where it is.  <i>“Nope.  But I can find it pretty easily, I bet.  I want to at least try; one of the big things I’m looking forward to now that I can see again is finding things on my own.  Something as little as finding the toilet is its own adventure all over again!”</i>");
-
-output("\n\nWell, at least she’s excited.]");
-
-output("\n\n[=Promiscuity=][=Stay Silent=][=Next=]");
-output("\n\n// end scene (scene: The Big Moment 3); if [=Next=], place PC one square outside of Paige’s Unit and queue (scene: Welcoming); if the PC has no crew, remove the first two buttons and vice versa if the PC has at least one crewmate");
-
-output("\n\n[=Promiscuity=]");
-output("\n\n// (scene: Promiscuity)");
-
-output("\n\nYou tell Paige that you already have some crew onboard your ship, and while you definitely have enough room to support one more, you have certain... obligations to them, as a captain and as a person, that you can’t rightfully deny them just because she’s coming onboard too.");
-
-output("\n\n<i>“What, are you doin’ them?”</i> she asks, point-blank.  You stutter at first, trying to find a way to describe their needs and necessities better than that.  <i>“Hah, I was right!  To be honest, [pc.name], I was kind of hoping for an open relationship, myself.”</i>  She’s taking this a lot better than you thought.  To help you relax, Paige massages your shoulder with her left hand.  <i>“I don’t really care who you bang, because I know, at the end of the day, even if I’m sharing this,”</i> she accentuates, cupping your [pc.crotch] with her right hand, <i>“nobody else is taking this,”</i> she says, placing her hand over your heart.");
-
-output("\n\nThat’s true: you don’t have the same connection with the rest of your crew that you do with Paige, and she’s absolutely right.  If she’s okay with sharing you, then, you suppose there isn’t a problem.  <i>“Besides,”</i> she says huskily, licking her lips as she leans in, whispering, <i>“having a crew full of horny studs and sluts sounds like a good time to me, too.”</i>");
-
-output("\n\nThat said, Paige pulls away from you, resuming her earlier, energetic disposition.  <i>“Alright then!”</i> she says, turning towards her room (which takes her a second to find, unused to seeing it with her eyes).  <i>“I shouldn’t be too long.  I’ll meet you down at the landing bay, [pc.name]!”</i>");
-
-output("\n\nYou ask her if she knows where it is.  <i>“Nope.  But I can find it pretty easily, I bet.  I want to at least try; one of the big things I’m looking forward to now that I can see again is finding things on my own.  Something as little as finding the toilet is its own adventure all over again!”</i>");
-
-output("\n\nWell, at least she’s excited.");
-
-output("\n\n[=Stay Silent=]");
-output("\n\n// (scene: Stay Silent)");
-
-output("\n\nYou know it’s wrong to not let Paige in on what she should expect on your ship, but you honestly can’t find a way to explain your prior obligations to your other crew to her.  You’re scared it would break her heart and have her call the whole thing off, but you know she’ll figure it out as soon as she steps on board.  <i>“No,”</i> you answer gutlessly.");
-
-output("\n\n<i>“Alright then!”</i> she says, turning towards her room (which takes her a second to find, unused to seeing it with her eyes).  <i>“I shouldn’t be too long.  I’ll meet you down at the landing bay, [pc.name]!”</i>");
-
-output("\n\nYou ask her if she knows where it is.  <i>“Nope.  But I can find it pretty easily, I bet.  I want to at least try; one of the big things I’m looking forward to now that I can see again is finding things on my own.  Something as little as finding the toilet is its own adventure all over again!”</i>");
-
-output("\n\nWell, at least she’s excited.");
-
-output("\n\n// end both scenes here; add Paige as a crewmate");
-
-output("\n\n// if the PC attempts to enter Paige’s Unit after Paige is made a crewmate, between the hours of 09:00 and 17:00");
-output("\n\n// (scene: Tavros (Crewmate) – Busy Hours)");
-
-output("\n\nYou step into Paige’s unit.  Everything is exactly as she left it when she was made your ship’s navigator.");
-
-output("\n\nNeither Paige herself nor her helper droid Iddi are here; you’re totally alone in her apartment.  You can occasionally hear voices from one room over, in Paige’s yoga studio.  You check your codex – it <i>is</i> her usual hours, so it makes sense.");
-
-output("\n\nThere’s nothing here for you right now, so you turn to leave.");
-
-output("\n\n[=Next=]");
-output("\n\n// end scene (scene: Tavros (Crewmate) – Busy Hours); place PC one square outside Paige’s Unit");
-output("\n\n// if the PC attempts to enter Paige’s Unit after Paige is made a crewmate, between the hours of 17:01 and 08:59");
-output("\n\n// (scene: Tavros (Crewmate) – Off-Duty Hours)");
-
-output("\n\nYou step into Paige’s unit.  Everything is exactly as she left it when she was made your ship’s navigator.");
-
-output("\n\nPaige is there, lounging on her couch and enjoying her shore-leave from your ship.  Despite the constant travelling to new and exotic lands, there is, after all, no place like home.  Her helper droid, Iddi, sits on its charging dock in the next room.");
-
-output("\n\n<i>“Hey there, [pc.name]!”</i> she says, waving you in.  You mock-frown at her, putting your hands on your [pc.hips].  <i>“Hey we’re not on any ship, I ain’t calling you ‘captain’ anything when we’re in my own house.”</i>  She laughs and sits up, patting the seat next to her.  <i>“Come on in, let’s burn some candlelight before we leave again.  I could use the company!”</i>");
-
-output("\n\n[=About Paige=][=About Iddi=][=Her Eyes=][=Appearance=][=Yoga=][=Sex=] [=Rest=][=Spar=][=Leave=]");
-
-output("\n\n// if the PC attempts to enter Paige’s Yoga Class after Paige is made a crewmate, between the hours of 09:00 and 17:00");
-output("\n\n// (scene: Tavros (Crewmate) – Yoga Class)");
-
-output("\n\nYou show yourself into Paige’s yoga classroom and are greeted by the all-too-familiar sight of Paige personally instructing a student on how to hold their form properly.  It’s a little nostalgic for you – it seemed like just yesterday when you first walked into her class and introduced yourself.  You two have come an awfully long way.");
-
-output("\n\nPaige looks up from her student, her eyes locking onto yours, and she smiles brightly.  <i>“Hey there, [pc.name],”</i> she calls, snickering a little bit at the fact that she doesn’t have to call you ‘captain’ while she’s on shore-leave.  <i>“It’s good to see you here!  Are you interested in joining my class today?  You know what to do if you are.”</i>");
-
-output("\n\nYou consider it.");
-
-output("\n\n[=Easy Mode=][=Medium Mode=][=Hard Mode=][=Other=][=Leave=]");
-output("\n\n// end scene (scene: Tavros (Crewmate) – Yoga Class)");
-output("\n\n// If the PC attempt to enter between the hours of 17:01 and 08:59, just include a short sentence about the door being locked in the square outside the class’s description.");
-
-output("\n\n// The PC boards their ship for the first time since Paige joined as a crewmate");
-output("\n\n// (scene: Welcoming)");
-
-output("\n\n// Continue here if the PC has any other crew");
-
-output("\n\nThe first thing to greet you when you step onto your ship is Paige, walking casually up to you with a bit of a sashay in her hips.  It’s good to see that she found the place just fine[if {Silly Mode}, although you wonder how she got here before you.  Eh, fuck it].  <i>“[if {PC chose to [=Stay Silent=]}You didn’t tell me you had any other crew on this ship,”</i> she starts.  You were dreading this conversation, although Paige seems to have a fairly casual tone to her voice.][if {PC chose to admit their [=Promiscuity=]}I had the chance to meet some of your other crew,”</i> she starts.  You’re curious to hear what she thinks about the rest of your merry bunch.  <i>“You’ve sure got a... unique taste in company.  Present company included, I suppose.”</i>]");
-
-output("\n\n[if {Anno}<i>“I see I’m not the first Ausar to catch your fancy.  I mean, damn, I can see why: the first thing I see when I step foot on this ship is a bombshell like Anno?  You sure know how to pick them, stud!  I wonder if she’d be down for a little bit of extra fun on the side.”</i>]");
-
-output("\n\n[if {Bess/Ben}<i>“Your robo-buddy seems pretty cool.  I gotta admit, I never really thought of the logistics behind a sexbot.  [if {Bess}If you slapped Bess’s ass, would it jiggle?  Or is it as tight as mine?][if {Ben}When Ben gets hard, does it fill with, like, oil?  Or air?  Or is it all hydraulics?]”</i>]");
-
-output("\n\n[if {Celise}<i>“That Galotian of yours is pretty bubbly.  I’m not gonna judge you on your sense of character – after all, you chose me, and I’m pretty great – but I kinda wonder what Celise’s story is.  Is she a pet?  Is she, like, some kind of master gunner or something under that liquid exterior?”</i>]");
-
-output("\n\n[if {Nova, and PC is not currently wearing her}<i>“Your gray-goo, uh, companion is... she’s awfully forward.  I love a good hug as much as the next gal, but funny thing about goo people is that their hugs are kinda... full-body.  And she’s got enough ‘material’ to make it a whole other experience, if you get me.  [if {Celise}Speaking of, you got something for goo girls or what?  All that malleability is pretty hot, for sure.]”</i>]");
-
-output("\n\n[if {Pexiga}<i>“I’m a little, um, concerned about that albino pexiga you got on board.  Don’t get me wrong, I’m a fan of some big ole’ titties myself, but the way she talks is like she isn’t quite all there.  I’m assuming she’s some kind of rescue case and not something a little more</i> sinister <i>on your part.”</i>]");
-
-output("\n\n[if {Reaha}<i>“The human with the big boobs is a bit of a firecracker, isn’t she?  I kinda had Reaha pegged for a dumb pushover at first, but if you can get past the temper, she’s actually pretty smart.  She gave me some sob story about her being a slave before you bought her contract?  She seems to like being with you, so that’s pretty sweet, I guess.  Also, I</i> love <i>her hair.”</i>]");
-
-output("\n\n[if {Sera}<i>“I met that demon-thing you keep in a collar.  No way would a girl like</i> that <i>ever agree to call someone else ‘captain,’ [if {Sera isn’t broken}and it looks like there’s still a bit of fight in her.  Hell, [pc.name], I love a good challenge; if you need help showing her who’s the boss, I can lend a hand!][if {Sera is broken}but it looks like you’ve got things pretty under control.  It’s clear she’s smitten with you, and she’s so well-spoken!  I kind of wish I was here to see what sort of hoops you had to go through to break her in like that.]  She’s got a pretty juicy dick, too, not gonna lie.”</i>]");
-
-output("\n\n[if {Yammi}<i>“I have no idea what Yammi even is.  I hope that’s not speciesist.  She seems cool; apparently she’s onboard as your chef?  And she and the pexiga are a part of a package somehow?  I’ll have to ask her again for the details.  She makes one</i> hell <i>of an ice cream, though.  I wonder what her secret is.”</i>]");
-
-output("\n\n// continue here if the PC chose to [=Stay Silent=]");
-
-output("\n\nYou’re utterly confused; you don’t know whether she’s being earnest and her reaction to your eclectic crew is completely casual, or if she’s feigning some kind of bubbling rage.  You sheepishly apologize for not telling her about your crew earlier.");
-
-output("\n\n<i>“Why didn’t you?”</i>");
-
-output("\n\nYou admit that you weren’t sure how she would take sharing the ship with a crew that had certain... <i>requirements</i> as yours.  You have... <i>obligations</i> as this ship’s captain, and you weren’t sure how to explain that to her.  Hell, you still don’t.");
-
-output("\n\n<i>“’Obligations?’  Hah!  That’s a pretty vague way of saying you fuck most of them, if not all of them.”</i>  You say nothing.  <i>“Hey, don’t worry about it, [pc.name]!  Look, I’m going to be totally honest with you: I was kind of hoping for an open relationship myself.”</i>");
-
-output("\n\nThat takes you by surprise.  Paige never gave you any hint of the sort.  <i>“Because I was worried how</i> you <i>were going to take it!  A thing as sweet as you, [pc.name], I wasn’t sure if you were the type to be so... active!”</i>  She approaches you, wrapping an arm around your shoulder.  <i>“It’s fine with me, [pc.name], because I feel safe knowing that, even if I have to share this,”</i> she says, cupping your [pc.crotch] with her other hand, <i>“nobody else is taking this,”</i> she says, placing her hand over your heart.");
-
-output("\n\nYou’re relieved to hear that she’s not only okay with it, but she’s practically encouraging it.  <i>“Well, I should hope so.”</i>  She leans in, breathing hotly into your ear as she whispers, <i>“A ship full of horny studs and sluts sounds like a fun time to me, too.”</i>");
-
-output("\n\n// continue here if the PC chose to admit their [=Promiscuity=]");
-
-output("\n\n<i>“All-in-all, a pretty swarthy bunch you’ve got so far.  And I doubt it’s going to stay this small for long, you charmer.”</i>");
-
-output("\n\nYou smile, glad to hear that Paige seems to be getting along just fine with the rest of her crewmates.  <i>“I’m sure we’ll be doing more than ‘getting along,’ knowing the two of us,”</i> she smiles toothily.  <i>“I’ve been chaste all those years before I met you, [pc.name], and if you’re going to be fucking just anybody on this crew, I’m sure as shit not going to be twiddling my thumbs in my room.”</i>");
-
-output("\n\nYou ask her politely to not... break any of them.  Paige can be very competitive in bed and you’re not sure how well the others can keep up.  <i>“I promise nothing.”</i>");
-
-output("\n\n// Merge here");
-
-output("\n\nShe claps her hands together, straightening her stance and taking a more professional demeanor.  <i>“Now then, Captain Steele,”</i> she says, standing straight, trying to look stern and disciplined but her goofy smile and wagging tail give her away.  <i>“Where are my quarters?  I have some things I need to be setting up.”</i>");
-
-output("\n\n<b>Paige is now a crewmate!</b>");
-
-output("\n\n// Continue here if the PC has no other crew");
-
-output("\n\nThe first thing to greet you when you step onto your ship is Paige, walking casually up to you with a bit of a sashay in her hips.  It’s good to see that she found the place just fine[if {Silly Mode}, although you wonder how she got here before you.  Eh, fuck it].  <i>“Is it just the two of us?”</i> she asks you, looking you in the eye.");
-
-output("\n\nYou tell her that, at the moment, yes, it’s just you two.  You realize that you’re hardly much of a ‘captain’ when you have no crew to lead, but, on the bright side, not only do you have the hunk of junk to yourselves, but Paige also has seniority rights to any quarters she wants.  <i>“Even yours?”</i> she asks, then continues, <i>“I’m sure I’ll be spending a lot of time in yours either way.”</i>");
-
-output("\n\nYou laugh, then take the time to show her around the ship.  It’s not much of a ship, and it’s not much of a tour: the crew quarters; the mess; the cargo hold; the bridge; and, finally, the captain’s quarters.  Paige is respectfully silent through the tour until the end.  <i>“She’s a fine ship,”</i> she says.");
-
-output("\n\n<i>“You don’t have to lie,”</i> you retort, smirking at her.");
-
-output("\n\n<i>“Well... I’ve been on worse ships,”</i> she giggles.  <i>“It’s certainly spacious enough; I have a few ideas on how to manage my own quarters to keep up my yoga with Iddi.  And we don’t seem to be using the cargo hold for a lot.  Maybe I can turn it into a gym or something.”</i>  She turns to you, smiling giddily.  <i>“With your permission, of course, Captain Steele.”</i>");
-
-output("\n\nCaptain Steele.  You kind of like the sound of that.  <i>“I already know where I’m setting up,”</i> she continues, standing at attention, trying to look stern and disciplined but her goofy smile and wagging tail give her away.  <i>“Permission to start making myself at home. {Sir/Ma’am}?”</i>");
-
-output("\n\nYou ask Paige if this is going to be a regular thing between you two.  <i>“Nah,”</i> she laughs, relaxing and stepping away from you, towards the quarters she’d already picked out for herself.");
-
-output("\n\n<b>Paige is now a crewmate!</b>");
-
-output("\n\n[=Next=]");
-output("\n\n// end scene (scene: Welcoming)");
-
-output("\n\n// When Paige is on the PC’s crew, play the following message whenever the player selects [=Fly=] while on their ship.");
-output("\n\n// (scene: Flight)");
-
-output("\n\nYou ring Paige up on your ship’s intercom.  <i>“Paige to the bridge,”</i> you say into the receiver, <i>“Paige to the bridge.”</i>");
-
-output("\n\nYour Ausar navigator is by your side in just another moment.  <i>“Yes, captain?”</i> she asks cheerfully.");
-
-output("\n\nYou tell her that you’re setting off, and you want your navigator to plot you a course.  <i>“Of course!”</i> she says, excited to get to work.  <i>“Where are we headed?”</i>");
-
-output("\n\n// This is just a thought, but maybe, as an additional incentive to add Paige as a navigator, have travel between planets take less time?  It currently takes ten hours and fifteen minutes to go to any location.  Maybe cut it down to, I don’t know, six?  It’s a pretty minor buff, but it would at least have a mechanical impact to having a navigator on board.  Again, just an idea.");
-output("\n\n// end scene (scene: Flight); display usual flight options");
-
-output("\n\n// The PC talks to Paige on their ship between the hours of 09:00 and 17:00");
-output("\n\n// (scene: Crewmate Paige: Class Hours)");
-
-output("\n\nYou approach Paige’s quarters and knock on her door.  You can hear her talking softly to someone through the metal of her walls.  With a hiss, the door slides open, showing you into her personal quarters.");
-
-output("\n\n<i>“Raise your leg a little higher, and keep it straight,”</i> Paige says to a video feed on a small, free-standing monitor she set up against a wall.  She looks over her shoulder, and when she sees it’s you, goes back to the screen.  <i>“Iddi, I’ve got some company.  Keep watch over the class for me, would you?”</i>");
-
-output("\n\n<i>“Yes, momma!”</i> you hear Iddi’s voice, garbled slightly through the speakers of her monitor.");
-
-output("\n\n<i>“That’s my babe,”</i> she says, then presses a button on her monitor, turning it off.  With that out of the way, she turns to face you, standing straight.  She’s wearing her usual yoga attire and she’s panting lightly from exertion; she must have been leading her class through the exercises via Iddi.");
-
-output("\n\n<i>“Captain!”</i> she says, reaching out to you and wrapping her arm around your shoulder warmly.  <i>“It’s good to see you today.  What can I do for you?”</i>");
-
-output("\n\n[=About Paige=][=About Iddi=][=Her Eyes=][=Appearance=][=Yoga=][=Sex=] [=Spar=][=Leave=]");
-
-output("\n\n// The PC talks to Paige on their ship between the hours of 17:01 and 08:59");
-output("\n\n// (scene: Crewmate Paige: After Hours)");
-
-output("\n\nYou approach Paige’s quarters and knock on her door.  <i>“Yep, come on in!”</i> you hear her shout through the thin metal of her walls.  With a hiss, the door slides open, showing you into her personal quarters.");
-
-output("\n\nPaige is lounging on her bed, relaxing with a book in her hands.  She lifts her studying eyes from its pages to yours when you enter, and when she sees it’s you, she slides the book beneath her bed and stands up.  You lean to one side, trying to see how many books she’s got under there – you can’t tell exactly, but it’s more than a handful.  <i>“Captain!”</i> she says jovially, standing straight and at attention in your presence.  <i>“It’s good to see you today.  What can I do for you?”</i>");
-
-output("\n\n[=About Paige=][=About Iddi=][=Her Eyes=][=Appearance=][=Yoga=][=Sex=] [=Spar=][=Leave=]");
-
-output("\n\n[=About Paige=]");
-output("\n\n// (scene: Crewmate: Paige 6)");
-output("\n\n// This scene is a minor variant of the original Paige 6 scene, to be played if the PC hasn’t seen Paige 6 before fixing her eyes.");
-
-output("\n\nThere isn’t much more you can think to ask Paige to elaborate on when it comes to her personal life.  You know about her professional lives; her personal lives; and the injury and how it transformed her.  Frankly, there isn’t a whole lot left for you to ask about, especially now that your relationship has progressed so far that she’s now your ship’s navigator.");
-
-output("\n\nPaige, in the meantime, takes the initiative as you juggle your potential questions.  <i>“I got a question to ask you,”</i> she says, surprising you out of your stupor.  <i>“It’s gonna sound pretty dumb, but I think you can handle pretty and dumb, can’t ya, sweet thing?”</i>  You tell her that there are no dumb questions.  <i>“Ha!  What a load.”</i>");
-
-output("\n\nPaige clears her throat, but otherwise doesn’t seem too apprehensive.  <i>“So, I’m coming up on my next anniversary since my injury.  It’s been a long while since I’ve lost my eyes, and I felt like I got a hang of my new life once I lost them, before you came along.”</i>  You listen attentively.  <i>“My yoga has kept me in great shape all my life.  And, you know, I used to be a swashbucklin’, scallywaggin’ space scoundrel once upon a time.”</i>  You wonder where she might be going with this.");
-
-output("\n\n<i>“Let me make one thing clear, sweet thing,”</i> she says, placing a finger on your nose.  <i>“If there’s any one thing I love about my romantic and sexual partners, it’s that they keep up with me.  You’re alright at yoga.  And you’re pretty great at fuckin’, absolutely no qualms there.  But I want more.”</i>");
-
-output("\n\nYou ask her what more she could possibly want.  No challenge is too great.");
-
-output("\n\n<i>“I want you to fight me.”</i>");
-
-output("\n\nYou don’t respond.");
-
-output("\n\n<i>“I guess that wasn’t really a question, was it?”</i> she asks, laughing.  <i>“Look, I’m not gonna lie, not to you.  I’ve always kind of blamed myself for losing my eyes.  I’ve always tried to tell myself that it wasn’t my fault; that we were outnumbered and outgunned; that the Black Void bitch just got lucky.  But the fact is, I lost my eyes, and Kiro won the fight against three other Black Void pirates by herself.  It’s made me feel like a third wheel; like a lame horse, you know?  If I had Kiro’s skill, I could have avoided my, uh, my predicament.”</i>");
-
-output("\n\nYou want to tell her not to think like that, but it’s pretty clear from her demeanor that she isn’t looking for pity.  Still, you tell Paige that fighting your navigator was... kinda on the bottom of your expectations when you brought her on.  <i>“Hah!”</i> she laughs spitefully.  <i>“Afraid you’ll lose, Captain?  I wouldn’t want any of this either!”</i> she flexes both arms, showing off what years and years of intense yoga have done for her definition.  To further her point, she crunches her belly, and her abs accentuate themselves hard enough to file metal.");
-
-output("\n\nShe pushes you onto her bed and squats herself onto your lap, both of her arms wrapping around your shoulders.  Her breasts press into your [pc.chest] as she closes the gap between your face and hers.  <i>“But seriously,”</i> she says, lowering her tone.  <i>“It’s just an honest sparring match.  All those years being blind have left me out-of-practice, and, really, I</i> do <i>want to make sure my skills haven’t gotten rusty.  I was tough enough to take out three Black Void pirates by myself before Kiro had to clean up.  Let me make sure that it was just a lucky hit, and not because I wasn’t good enough.”</i>");
-
-output("\n\nShe grins, then begins to grind her crotch against you.  Her toned, strong body moves and roils in front of you, her every muscle in her stomach and chest flexing in an erotic way, a way that you can’t help but taste with your eyes.  Y[if (pc.hasCock = true)ou weren’t erect before, but Paige is working quickly to change that][if (pc.isHerm = true), and just centimetres south, y][if (pc.hasVagina = true)our [pc.vagina] stirs from its dry slumber, lubing not enough to make you horny, but enough to put you in the mood].");
-
-output("\n\n<i>“I’ll make the deal sweeter for you, sweet thing,”</i> she says huskily.  <i>“The winner gets it however they want it, wherever they want it.”</i>");
-
-output("\n\nYour own hands raise and trail her body, from her arms to her ribs, to the curve of her belly and the swell of her hips, until you grab yourself two fistfuls of tight, furry ass.  <i>“That sounds like a fight with no losers,”</i> you say to her, pressing your nose to hers.");
-
-output("\n\n<i>“Then what’s the problem?”</i> she asks, licking her lips.  <i>“We don’t have to go at it right this red hot second.  But just keep in mind.”</i>  She flexes her ass and pushes her lower body out, filling your hands with more of herself.  <i>“The offer’s on the table.”</i>");
-
-output("\n\nShe disengages from you, leaving you teased and tempted.  You’re still not too thrilled with the idea of fighting a crewmate, but that said, something tells you that even if you did, it wouldn’t be the easiest lay of your life.");
-
-output("\n\n// end scene (scene: Crewmate: Paige 6)");
-
-output("\n\n// (scene: Crewmate: Paige 7)");
-output("\n\n// This scene is a minor variant of the original Paige 7 scene, to accommodate the fact they aren’t in Paige’s Unit.");
-
-output("\n\nYou and Paige sit at her desk, barely large enough to seat two, for the moment just enjoying your time with her.  While there isn’t much more you want to ask her, Paige is nonetheless a good storyteller.  Maybe she won’t mind retelling one of her stories?");
-
-output("\n\n[=Yoga=][=Family=][=Blindness=][=Piracy=][=Never Mind=]");
-
-output("\n\n// Display the tooltips and go to the scenes as described in (scene: Paige 7)");
-output("\n\n// end scene (scene: Crewmate: Paige 7)");
-
-output("\n\n[=About Iddi=]");
-output("\n\n// If the PC is currently on their ship, grey this option out and display the following tooltip.  Otherwise, continue as normal from the original scene.");
-output("\n\n// Tooltip: It’d be awkward to ask for more details about Iddi when it’s not here.  You can always head back to Tavros and meet Paige in her unit if you’re really curious.");
-
-output("\n\n[=Her Eyes=]");
-output("\n\n// (scene: Crewmate: Her Eyes)");
-
-output("\n\nYou ask Paige how her new eyes.  How is she enjoying them?");
-
-output("\n\nThe question hits her a little harder than you expected, and she slowly begins to tear up as a warm, elated smile spreads across her lips.  <i>“I try not to think about it,”</i> she laughs, <i>“because then I start crying like a little girl over how happy I am.  [pc.name], I really can’t thank you enough.  You’ve... you’ve changed my life.”</i>");
-
-output("\n\nYou don’t try to play it humbly, knowing that downplaying it would be downplaying what having her eyesight back means to her.  You say nothing as Paige’s hand reaches for your own, squeezing it tightly.  <i>“I was convinced I was going to stay blind until I was old.  I had accepted it.  I was willing to work for it.  And you... Gods above, like a guardian angel, straight out of a storybook, you come along and you make me feel like the luckiest Ausar in the universe.  You’d think being a pirate for a stint would have given me terrible karma, but, here you are.”</i>");
-
-output("\n\nShe gets out of her seat and leans into you, placing her lips against your own gently.  It’s a purely chaste, asexual kiss, and you respond in kind, stroking down her side as you enjoy the intimacy.  <i>“I had my future all planned out,”</i> she says when she pulls away.  <i>“I was going to sit still for decades on end until I could see again.  I have no idea what the future holds for either of us, [pc.name], and I love that.  I</i> love <i>that.  Not knowing what’s ahead; not knowing where we’ll be in a year, or a month, or even next week.  But one thing I know is that,”</i> she finishes, squeezing your hand even tighter, <i>“wherever we’ll be, I’ll be with you.”</i>");
-
-output("\n\nYou enjoy the warmth of the room together for a moment, sitting still and holding hands in the silence of her quarters.  <i>“To answer your question,”</i> she says suddenly, back to her regular, upbeat self, <i>“my eyes are great!  I’m not going colorblind; they aren’t unfocused or anything; it’s as if I never lost them to begin with.  I love that they’re</i> mine, <i>too.  Grown in a tube somewhere, but with my stem cells, so they’re</i> mine <i>and not a donor’s, or some copper and metal fake eyes, or anything.  They’re working great!”</i>");
-
-output("\n\nYou’re glad to hear that.");
-output("\n\n// end scene (scene: Crewmate: Her Eyes)");
-
-output("\n\n[=Appearance=]");
-output("\n\n// Just play (scene: Paige’s Appearance)");
-
-output("\n\n[=Yoga=]");
-output("\n\n// Available at every hour that Paige is accessible, but only once per day.");
-output("\n\n// Tooltip: Even though you’re not ‘officially’ a student of hers, you could still try asking Paige if she’s willing to do some yoga.");
-output("\n\n// Tooltip (already done yoga once that day): It’s not a good idea to do extended yoga sessions more than once a day.  You might hurt yourself!");
-output("\n\n// This scene is a minor variant of the original Difficulty Select 2 scene, to accommodate the fact they aren’t in Paige’s Unit, to be played if they’re on the ship.");
-output("\n\n// (scene: Crewmate: Difficulty Select 2)");
-
-output("\n\nYou ask Paige if she’s willing to do some one-on-one yoga with you.  You know that, since you’ve taken Paige as a lover, she can’t have you as a student due to professional courtesy, but you’d love to do a little bit if she’s okay with doing it for free.");
-
-output("\n\n<i>“Aww, [pc.name],”</i> she coos, <i>“that’s so sweet that you want to be a part of my interests even after you got into my pants.  Of course I’d love to do some yoga with you!  It’s more than a job to me – it’s my passion, and I’d love you to be a part of it[if {time is between 00:01 and 08:59}, even at this unruly hour]!”</i>");
-
-output("\n\nBesides the monitor Paige uses to communicate with Iddi; her bed; a small desk with two chairs; and a personal refrigerator, the bulk of Paige’s personal quarters are taken up by a large yoga mat.  She mostly uses it for herself.  <i>“Strip out of your gear,”</i> she commands, and you do.");
-
-output("\n\n[if {the PC has never done Difficult Select 1 and has gotten into Paige’s pants entirely via Honey Wine}<i>“I’m really glad you want to give yoga another try with me, [pc.name].  You haven’t been to a class since I invited you into my unit – I was wondering if maybe I had scared you off of it.  Don’t worry though, baby.  I’ll be gentle.”</i>");
-
-output("\n\n[if {the PC hasn’t unlocked Hard Mode}<i>“So, what are we in the mood for today?  We can try something a little easier, or we can start working our way into the more exotic poses.”</i>]");
-
-output("\n\n[if {the PC has unlocked Hard Mode}<i>“Whatever you’re in the mood for, baby, we can do it.  If you want to take it easy with something simpler, I’m down.  Or, if you want to try the intense stuff, the poses-for-two... maybe we can work a happy ending into it.”</i>]");
-
-output("\n\n[=Easy Mode=][=Medium Mode=][=Hard Mode=][=Other=]");
-output("\n\n// play the usual difficulty modes and Difficulty Select 2 endings");
-output("\n\n// end scene (scene: Crewmate: Difficulty Select 2)");
-
-output("\n\n[=Sex=]");
-output("\n\n// Just play (scene: Paige Foreplay)");
-
-output("\n\n[=Spar=]");
-output("\n\n// Reveal this option after the PC has seen (scene: Paige 6), and grey it out unless the time is between 17:01 and 08:59");
-output("\n\n// Tooltip: Paige mentioned that she would like a sparring match against you.  Given her strength and her fixed eyes, she might be your toughest challenge yet!");
-output("\n\n// Tooltip (unacceptable hours): Tonight’s not the night for fighting.  You have responsibilities as captain other than beating up your crew, anyway.");
-output("\n\n// Just play (scene: Spar)");
-*/
+// After twelve hours, play the following message:
+// (scene: E-Mail)
+public function paigeEyeholeEmailEvent():void
+{
+	clearOutput();
+	showName("SURGERY\nALERT!");
+	output("The familiar tone of receiving a new message rings through the air. You bring your codex off your hip, checking who it’s from – it’s from Tavros’ Infirmary!");
+	output("\n\n<i>“" + pc.mf("Mister","Miss") + " [pc.name],”</i> it reads, <i>“you’re receiving this message as Miss Paige’s partner and sponsor. We’re happy to report that her surgery to replace her damaged eyes with a synthetic, biologically identical set has been a success.”</i> That’s a relief. And that’s exciting! Paige will be able to see again! <i>“Miss Paige is currently in an induced coma; we request your presence within the next twelve hours to proceed.”</i>");
+	//if {PC is on Tavros}
+	output("\n\nHell, those twelve hours went by like they were nothing! There’s no time to lose: you need to get to the Medical Bay right now!");
+	// if PC is on Tavros, proceed to (scene: Her Eyes 6); if not, do nothing.*/
+	clearMenu();
+	addButton(0,"Next",herEyes6,true);
+}
+//[=Stay=]
+// (scene: Her Eyes 5)
+public function stayForPaigesEyeholes():void
+{
+	clearOutput();
+	showPaige();
+	output("Nothing you have in the agenda is as important as making sure you’re here for Paige. You’re fine with waiting the twelve hours here in the medbay. <i>“Are you certain?”</i> the droid asks you, and you confirm. <i>“Very well. You’ll be informed when Miss Paige’s surgery is completed.”</i>");
+	output("\n\nThe droid follows Paige into the operating room, and the whitewashed metal doors clank shut, leaving you alone in the waiting room. A red light above the door turns on, letting everyone that sees it know that the room is, in a word, occupied.");
+	output("\n\nYou take a seat, getting comfortable in the plain room. There is no music and the few magazines offering off-world fashions and news from the corners of the universe are all outdated by several solar months. The medbay gives you access to the extranet via your codex, but the speeds leave something to be desired; who could survive on twenty paltry gigabytes a second?");
+	output("\n\nWell, you’ve made your decision. You settle in for the long haul.");
+	output("\n\n...");
+	output("\n\n...");
+	output("\n\nA few hours pass. You’re getting awfully hungry. There’s a vending machine available, offering some chips, cookies, and fizzy drinks, though none of them look particularly appetizing. You’re tempting to go to the merchant deck for something to eat, but... you decide instead to just fill up on water.");
+	output("\n\n...");
+	output("\n\n...");
+	output("\n\nFunny thing about filling up on water: it makes you pee a lot. You’ve been to the bathroom four times in the space of an hour, now. At least you’re well hydrated.");
+	output("\n\n...");
+	output("\n\n...");
+	output("\n\nYou lounge in your seat and scratch at your groin, your pile of completed magazines slowly building to your right. You check the clock. You’ve been here for five hours.");
+	output("\n\nGreat.");
+	processTime(5*60);
+	clearMenu();
+	addButton(0,"Next",herEyes6);
+}
+
+// (scene: Her Eyes 6)
+public function herEyes6(fromEmail:Boolean = false):void
+{
+	clearOutput();
+	showPaige();
+	//if {PC was not on Tavros when they received the message}
+	if(fromEmail) 
+	{
+		currentLocation = "TAVROS_TEMPO";
+		generateMap();
+		//if {continue here if the PC chose to [=Leave=]}
+		output("You rush into the Medical Bay, to the waiting room you had last seen Paige in. She’s not there; it’s barren, except for the nurse droid that spoke with you last. <i>“Where is Paige?”</i> you ask it hurriedly.");
+		output("\n\nThe droid turns in your direction, focusing its lens on you, spinning its gears as it gets a good look at your features. <i>“" + pc.mf("Mister","Miss") + " [pc.name],”</i> it begins, <i>“I’m happy to inform you that Miss Paige’s procedure has completed successfully with no complications.”</i> You hunch over, taking in a deep breath and exhaling it as a huge sigh of relief.");
+		//if {it has been thirty hours or less since Paige’s surgery began}
+		output("<i>“As written in your message, Miss Paige is currently in an induced coma. We are prepared to wake her up on your instruction.”</i>");
+	}
+	else
+	{
+		output("You’re not afraid to admit that you fell asleep. What else were you supposed to do for twelve hours? It was difficult at first; you were too anxious over Paige to fall asleep at first, but, you suppose, you exhausted yourself to sleep.");
+		output("\n\n<i>“" + pc.mf("Mister","Miss") + " [pc.name]?”</i> you hear a voice call, then a second time, louder. The noise jostles you awake at first, and then, as soon as you’re cognizant, you remember where you are and the situation. You sit up, eyes unfocused, until they find the droid you had spoken to twelve hours ago, its lens facing you.");
+		output("\n\n<i>“I’m pleased to inform you,”</i> it begins, not giving you a chance to wake yourself up any further, <i>“that Miss Paige’s procedure has been completed successfully and with no complications.”</i> The news is all you need to hear to pull yourself to your [pc.feet], excited to meet Paige and have her see you for the first time. <i>“She is currently in an induced coma and we are prepared to wake her on your instruction.”</i>");
+		output("\n\n<i>“Of course!”</i> you say, <i>“let’s not waste any time!”</i>");
+		output("\n\n<i>“As you say.”</i> The droid then begins hovering away from the whitewashed doors. The red light from above it has been turned off. <i>“Miss Paige has been moved to our recovery ward; we can proceed from there.”</i>");
+		output("\n\nYou follow the droid eagerly through the white, winding halls of the Medical Bay on Tavros Station. Your focus is only on the little robot as it leads you up several floors and past half a dozen double doors until you get to an area labeled as the ‘recovery ward;’ you peek into the rooms as you pass by, looking for Paige despite the nurse droid moving past them entirely.");
+		output("\n\nFinally, it turns once, into one patient’s room. A clipboard filled out with the occupant’s medical information rests on a bin next to the door. And on the bed, undeniably, is your Ausar, Paige.");
+	}
+	processTime(10);
+	//[=Next=]
+	// end scene (scene: Her Eyes 6)
+	clearMenu();
+	addButton(0,"Next",herEyes7);
+}
+
+// (scene: Her Eyes 7)
+
+public function herEyes7():void
+{
+	clearOutput();
+	showPaige();
+	// if it’s been thirty hours or less, play from here:
+	if(pc.hasStatusEffect("PAIGE_COMA_CD"))
+	{
+		output("The lights in the room are very dim; it’s almost as if the room is candlelit. Paige rests on the hospital bed, sleeping soundly underneath the fresh covers, her arms and upper chest exposed. She’s wearing what appears to be a plain, baby-blue hospital gown – most discerningly, she has several layers of gauze wrapped around her head, pressed tightly against her eyes.");
+		output("\n\nStanding next to her bed is who you assume to be the surgeon that had worked on her. The doctor is a petite woman, standing up to Paige’s neck at her tallest; it’s difficult to make out her finer features in the shoddy lighting, other than her neck-length blonde hair and the fact that she’s human. She appears busy with some paperwork when you walk in; when you arrive, she lifts her head and smiles warmly at you.");
+		output("\n\n<i>“You must be [pc.name],”</i> she says, her voice lower than you had expected. She reaches out her hand for you to shake, and you do so gladly. <i>“My name is Tilim Hannoway. I’m the ophthalmologist that performed on Paige today.”</i>");
+		output("\n\nThere’s a seat next to Paige that you gladly take once you release Hannoway’s hand. <i>“That’s a five dollar word if I’ve ever heard one,”</i> you laugh.");
+		output("\n\n<i>“Imagine trying to spell it,”</i> she laughs with you. <i>“I’m happy to inform you that Paige’s operation was a complete success, with no complications at all. Miss Paige had asked us to wait for you before we woke her up, assuming she didn’t wake up herself first.”</i> Hannoway smiles at you sweetly. <i>“She probably wanted you to be the first thing she saw.”</i>");
+		output("\n\n<i>“Well, let’s not keep her waiting,”</i> you implore, gesturing to her. <i>“Let’s see those baby blues of hers!”</i>");
+		output("\n\n<i>“Of course.”</i> Hannoway reaches for a needle sitting on a tray next to Paige’s bed, full of a clear liquid. With a practiced swing, she removes its cap and sticks it into Paige’s wrist, pressing the plunger. When it’s empty, she removes it and tosses it into a bin mounted on the wall. Then, you wait.");
+		output("\n\nYou sit in tense silence, waiting for any sign of consciousness. It takes only a minute for the drug to work: Paige begins to stir, moaning deliriously on her bed, twisting her head from side to side. Her breathing halts for a moment, then she lets out a long sigh. <i>“Hello?”</i> she asks, her mouth dry.");
+		output("\n\n<i>“I’m here, Paige,”</i> you say gently, cupping her right hand in yours, stroking it with your thumbs.");
+		output("\n\n<i>“Mmmm, [pc.name]?”</i> she asks, her head facing your direction. <i>“Where am I? Why can’t I see you?”</i>");
+		output("\n\n<i>“It’s because you have gauze over your eyes.”</i>");
+		output("\n\nPaige tentatively raises her left hand, gently feeling at her eyes and trailing her furry fingers over the bandages wrapped around her head. <i>“Checks out.”</i>");
+		output("\n\nHannoway steps forward, interrupting you two. <i>“Miss Paige?”</i> she says. <i>“I’m Tilim Hannoway, your ophthalmologist. I’d like to–”</i>");
+		output("\n\n<i>“My</i> what<i>?”</i>");
+		output("\n\n<i>“I’m... your doctor. I performed your operation today.”</i>");
+		output("\n\n<i>“Oh yeah,”</i> she says drolly, <i>“the cute human. Sorry. I’m a little... I’m not all here, yet.”</i>");
+		output("\n\n<i>“Thank you for the compliment!”</i> the doctor replies earnestly. <i>“I’d like to inform you that your operation was a complete success. We’ve transplanted your eyes without any complications.”</i>");
+		output("\n\n<i>“Wicked.”</i> She leans into her pillow, returning your hand-holding lazily. <i>“Let’s get this thing off of me.”</i>");
+		output("\n\nWithout a word, Hannoway reaches for a pair of scissors off the same tray she pulled the syringe. With a little more caution than the needle, she snips off the end of the gauze, then makes half a circle around Paige’s head. When she gets to you, she offers you the end she’s holding. <i>“Care to do the honors?”</i>");
+		output("\n\nYou’d love to.");
+	}
+	// if it’s been thirty-one hours or more, play here
+	else
+	{
+		output("The lights in the room are very dim; it’s almost as if the room is candlelit. Paige rests on the hospital bed, her arms and upper chest exposed. She’s wearing what appears to be a plain, baby-blue hospital gown – most discerningly, she has several layers of gauze wrapped around her head, pressed tightly against her eyes.");
+		output("\n\nStanding next to her bed is who you assume to be the surgeon that had worked on her. The doctor is a petite woman, standing up to Paige’s neck at her tallest; it’s difficult to make out her finer features in the shoddy lighting, other than her neck-length blonde hair and the fact that she’s human. She and Paige are busy with some smalltalk by the time you walk in; when you do, she stops immediately and smiles at you warmly.");
+		output("\n\n<i>“The guest of the hour is here, Miss Paige,”</i> says the doctor. She extends her hand towards you. <i>“I’m Tilim Hannoway, and I was Miss Paige’s acting ophthalmologist.”</i>");
+		output("\n\nYou accept the handshake, but stare at her blankly. <i>“She was my surgeon,”</i> Paige says. <i>“It’s a bit of a five-dollar word, isn’t it, sweet thing?”</i>");
+		output("\n\nHannoway laughs. <i>“Spelling it was a bit of a challenge at first,”</i> she admits. <i>“" + pc.mf("Mister","Miss") + " [pc.name], you’ll be glad to hear that the operation on Miss Paige was a complete success; we’ve transplanted her new eyes without any complications.”</i>");
+		output("\n\n<i>“Yes, the nurse droid told me,”</i> you say, taking a seat next to Paige’s bed. You find her hand with yours, cupping it gently and stroking it with your thumb. Paige squeezes back lovingly, returning the gesture. <i>“What’s left to do?”</i>");
+		output("\n\n<i>“Nothing,”</i> the doctor replies, <i>“other than to remove the gauze. We were just waiting for you to get here.”</i>");
+		output("\n\n<i>“Sorry I’m late, then,”</i> you say to Paige as Hannoway reaches for a tray next to the bed, pulling out a pair of scissors. With some caution, she makes one quick snip against the fabric, starting an unraveling line around Paige’s head. Paige herself is calm, and even a little apprehensive, nervous of the results of the surgery.");
+		output("\n\nWhen Hannoway gets to you, she offers you the end of the gauze. <i>“Care to do the honors?”</i>");
+		output("\n\nYou’d love to.");
+	}
+	processTime(10);
+	clearMenu();
+	addButton(0,"Next",theBigMoment);
+}
+
+public function theBigMoment():void
+{
+	clearOutput();
+	showPaige();
+	output("You release your hold on Paige’s hand and stand next to the bed, slowly and gingerly unwrapping the cloth from Paige’s head. You go slowly, less from dramatic effect and more because you’re sure she must be a little sensitive from the operation. The grip the gauze has on her gets looser with your every orbit around her, until you get to the last layer, and it falls away.");
+	output("\n\nYou hand the scissors back to Hannoway and grip onto Paige’s hand once again. There is a large, circular incision going from the bridge of her nose and around both eyes that’s been stitched together. The scar going across both eyes is still there, the fur gone and the tissue scarred. Her eyes are closed, her brown eyelids fluttering lightly – and then, she opens them.");
+	output("\n\nBefore, her eyes were bluish-gray and clouded with cataracts, with asymmetrical pupils as a result of her injury. What you see instead are brilliantly blue eyes, with perfectly healthy irises and large, dilated, round pupils. She grunts in pain at first and squeezes her eyes shut – with concentrated effort, she slowly blinks them open, adjusting to the light of the room: even dim as it is, it’s a little much. Her eyes find your hand first, then trail up your arm, then lock onto yours.");
+	output("\n\nYou stare at each other for a moment. Paige’s grip on your hand tightens almost painfully as she studies you and your features: from your eyes, to your [pc.lips] and [pc.face], to your eyes, then to your [pc.face] and your [pc.ears], to your eyes, to your [pc.hair] and back to your eyes. She bites her lower lip and chokes out a single, joyful laugh through a pursed smile as her new, young, functional eyes begin to moisten. <i>“Good news,”</i> she says to you and Hannoway as the tears quickly stream unabated down her cheeks, <i>“the tears work.”</i>");
+	output("\n\nYou’re content to sit there for as long as she needs, letting her see new things for the first time in a lifetime for her. <i>“You’re blurry,”</i> Paige criticizes, lifting her left hand to your face and watching herself touch your facial features. <i>“Unless that’s just what [pc.race]s look like now.”</i>");
+	output("\n\n<i>“Your vision is blurry because your brain is trying to ‘relearn’ how to see,”</i> Hannoway explains. <i>“It’s a skill it’s had to make do without for a very long time, now. Give it a day or two. We’ll be keeping the lights dim until then.”</i>");
+	output("\n\n<i>“She’s staying here?”</i> you ask the doctor, keeping your gaze on your Ausar.");
+	output("\n\n<i>“Just for another day or two. We still need to do some rudimentary tests – you know, making sure she’s not colorblind or anything. We also need to remove her stitches, of course.”</i> Hannoway steps towards the door, her hands in the pockets of her coat. <i>“I’ll leave you two alone for now; I have some reports to file and I’m sure I’d just ruin the moment.”</i>");
+	output("\n\n<i>“Thank you,”</i> Paige says to Hannoway as she leaves. <i>“Thank you!”</i>");
+	pc.removeStatusEffect("PAIGE_COMA_CD");
+	//[=Next=]
+	// end scene (scene: The Big Moment)
+	processTime(10);
+	clearMenu();
+	addButton(0,"Next",theBigMoment2);
+}
+
+public function theBigMoment2():void
+{
+	clearOutput();
+	showPaige();
+	output("You spend the next twenty-four hours with Paige, easing her into her new sense of vision. You play silly games with each other: you ask her about the shapes and colors of various objects around the room, and you hold up some fingers and ask her how many you’re holding up. You write your name on a piece of paper, then you ask her to write hers. She finds inventive ways to describe your [pc.face] and she ");
+	//if {PC has hair}
+	if(pc.hasHair()) output("admires how you keep your [pc.hair]");
+	else output("jokes about how she can see herself in your hairless head");
+	output(". She loves every second of it: she can’t stop smiling or laughing at the smallest or the silliest jokes. When you’re too tired to keep going, you sleep on your chair next to her, resting your head next to her hand.");
+
+	output("\n\nShe passes Hannoway’s follow-up exams easily, picking out her greens from her blues and reds, and her circles from her squares and triangles. Throughout the day, Hannoway turns the brightness up in the room until it’s as bright as the rest of the medbay. Removing the stitches was a simple, quick process, and by the time hour twenty-three rolls around, Paige has Hannoway’s clean bill of health to leave and go back to her unit on the residential deck.");
+
+	output("\n\nYou still have to lead her through the station by hand because she doesn’t recognize where she is, and her muscle memory is thrown off by her sight. She warmly greets nearly everyone she passes, smiling and waving to them, telling them how good they look and wishing them a nice day. She’s quivering in excitement by the time you get her to her unit, excited to see her own housing for the first time – and to see her helper droid.");
+	output("\n\n<i>“Iddi?”</i> Paige yells when she walks in, less concerned with the décor and more about her robot. Right on cue, you hear the gentle humming of levitating pulsars from around the corner, and Iddi’s large monitor flits about.");
+	output("\n\n<i>“Hello momma!”</i> Iddi greets as usual. Rather than the usual small-talk between Paige and her droid, she lunges forward, wrapping her arms around Iddi’s monitor and hugging it tightly to her chest. <i>“Wow!”</i> Iddi exclaims, its monitor turning bright pink and its eyes turning to small crescents. <i>“This is nice!”</i>");
+	output("\n\nPaige pulls away, looking Iddi at its large, pixelated, cartoonish eyes. She begins sniffling, on the verge of crying again, but nothing could break the huge smile on her face. <i>“It sure is, baby,”</i> she says, rubbing her hands along Iddi’s smooth, chrome frame.");
+	output("\n\n<i>“Are you okay, momma?”</i> Iddi asks concernedly.");
+	output("\n\n<i>“I’ve never been better, Iddi.”</i> She leans in, planting a kiss on Iddi’s frame. <i>“I had my surgery the day before yesterday. I can see you.”</i> She runs a finger along Iddi’s monitor, watching its trail as she goes. <i>“I can see you, Iddi. I’ve waited to see you since the day I got you.”</i>");
+	output("\n\nUnexpectedly, Iddi’s eyes arc with pixelated eyebrows, and its background turns a dark blue. Iddi seems... scared, all of a sudden. <i>“Are,”</i> it asks haltingly, <i>“are you gonna get rid of me?”</i>");
+	output("\n\n<i>“What?! Of course not!”</i>");
+	output("\n\nIddi’s expression doesn’t change, apparently unconvinced. <i>“But you don’t need me anymore.”</i>");
+	output("\n\nPaige presses her nose against the glass of Iddi’s monitor, squinting her eyes and taking a softer tone. <i>“Iddi, you’re more to me than a helper droid. Hell, you’re more than a pet, too. It doesn’t matter whether I ‘need’ you or not, sweet thing; you’re a part of my life now, and I wouldn’t give you up for the world. JoyCo doesn’t need to know I’m not blind anymore, and even if they did, I’d like to see them</i> try <i>to take you from me!”</i>");
+	output("\n\nIddi’s eyes turn to its usual, happy crescents, and configures its background into repeating hearts of pink and red. Its pulsars thrust up, pressing its metal body against Paige’s. <i>“I love you, momma!”</i>");
+	output("\n\n<i>“I love you too, baby,”</i> Paige replies, hugging Iddi tightly. <i>“And if you’re really worried about being ‘useful’ to me, I have a couple ideas on how you can still help around the house.”</i>");
+	output("\n\n<i>“Like how?”</i>");
+	output("\n\nPaige, in response, turns to you. <i>“Well, I first need to speak with [pc.name].”</i>");
+	processTime(60*24);
+	clearMenu();
+	addButton(0,"Next",theBigMoment3);
+}
+
+public function theBigMoment3():void
+{
+	clearOutput();
+	showPaige();
+	output("Paige takes a deep breath, in through her nose and out through her mouth, just like she had practiced in yoga. Her gaze is locked onto you, watching your every move and detail, almost like she’s staring you down. <i>“There’s no real way to lead into this, I don’t think,”</i> she says, <i>“so, I’m just going to say it. [pc.name], I want you to take me with you on your crew.”</i>");
+	output("\n\nYou tell her that you’d love to.");
+	output("\n\n<i>“It’s because I – wait, what?”</i>");
+	output("\n\nYou have all the reasons in the known universe to bring Paige onto your ship. She used to be a navigator for Kiro back before her injury, and you could definitely use one. She’s a yoga master, and you could use a fitness instructor onboard to keep you and the rest of your crew in shape. She an expert combatant, capable of bringing down three Black Void pirates by herself. She’s been cooped up in her unit on Tavros for such a long time, she’s probably anxious as anything to get out and start seeing the universe again. And finally... Paige is more to you personally than any of those. You’d love to explore the stars with her by your side.");
+	output("\n\nPaige smirks as you list off all the reasons why you’d like to make Paige an addition to your crew. She studies you, noting your sincerity and your body language, appreciating every word that comes out of your mouth. <i>“I see you’ve given this some thought, too.”</i>");
+	output("\n\nYou shake your head. <i>“I had my mind made up a while ago. I was going to ask if you weren’t going to offer.”</i> Still, you have some concerns. What about her yoga class? Is she going to close up shop for your sake?");
+	output("\n\n<i>“That’s what Iddi’s going to help me with,”</i> she says, patting Iddi on top of its frame before facing its screen. <i>“Momma’s going to go with [pc.name], Iddi. We’re going to explore the stars together. I need you to stay here.”</i>");
+	output("\n\n<i>“What will I do, momma?”</i>");
+	output("\n\n<i>“You’re going to look after my unit; my yoga studio; and my class, Iddi. Here’s what we’re going to do: I’m going to set up a video stream on [pc.name]’s ship, two-way. I’ll be able to see everything you see, and you’ll be able to see me. That way, no matter where I am in the galaxy, I’ll never be too far away from you, okay?”</i>");
+	output("\n\n<i>“That sounds like fun!”</i> Iddi answers, its screen turning green in delight.");
+	output("\n\n<i>“That’s right! I’ll still be able to teach yoga through you, Iddi, but you know enough to help my students on your own when I’m busy working with [pc.name]. And I’ll visit you</i> every <i>time we visit Tavros again, okay?”</i>");
+	output("\n\n<i>“Okay!”</i>");
+	output("\n\n<i>“That’s my baby,”</i> she finishes, planting another kiss on Iddi’s frame. She straightens herself and turns to you once again. <i>“So! All that’s left is for me to pack my things and establish that video stream with Iddi. Is there anything else I should know about before I get started?”</i>");
+	//if {PC has at least one crewmate}
+	if(crew(true) > 0) 
+	{
+		output("\n\nOne thing does immediately spring to mind – something you’ve been meaning to talk with Paige about ever since your relationship... escalated. There’s never been a good time to bring it up, and there won’t ever <i>be</i> a good time. You probably won’t get another opportunity to bite the bullet....");
+		//[=Promiscuity=][=Stay Silent=][=Next=]
+		// end scene (scene: The Big Moment 3); if [=Next=], place PC one square outside of Paige’s Unit and queue (scene: Welcoming); if the PC has no crew, remove the first two buttons and vice versa if the PC has at least one crewmate
+		clearMenu();
+		addButton(0,"Promiscuity",promiscuityTalkWivPaige);
+		addButton(1,"Stay Silent",stayQuietAboutSluttery2Paige);
+	}
+	else 
+	{
+		output("\n\nYou rack your mind for a little bit, but you come up blank. You’ve got a big, empty ship, and you’d love to have someone keep you some company on those long flights, as soon as possible. <i>“Alright then!”</i> Paige says, turning towards her room (which takes her a second to find, unused to seeing it with her eyes). <i>“I shouldn’t be too long. I’ll meet you down at the landing bay, [pc.name]!”</i>");
+		output("\n\nYou ask her if she knows where it is. <i>“Nope. But I can find it pretty easily, I bet. I want to at least try; one of the big things I’m looking forward to now that I can see again is finding things on my own. Something as little as finding the toilet is its own adventure all over again!”</i>");
+		output("\n\nWell, at least she’s excited.");
+		clearMenu();
+		currentLocation = "PAIGE_HOUSE";
+		addButton(0,"Next",moveSouth);
+	}
+	flags["PAIGE_CREW"] = 1;
+	currentLocation = "PAIGE_HOUSE";
+	processTime(20);
+}
+
+//[=Promiscuity=]
+// (scene: Promiscuity)
+public function promiscuityTalkWivPaige():void
+{
+	clearOutput();
+	showPaige();
+	output("You tell Paige that you already have some crew onboard your ship, and while you definitely have enough room to support one more, you have certain... obligations to them, as a captain and as a person, that you can’t rightfully deny them just because she’s coming onboard too.");
+	output("\n\n<i>“What, are you doin’ them?”</i> she asks, point-blank. You stutter at first, trying to find a way to describe their needs and necessities better than that. <i>“Hah, I was right! To be honest, [pc.name], I was kind of hoping for an open relationship, myself.”</i> She’s taking this a lot better than you thought. To help you relax, Paige massages your shoulder with her left hand. <i>“I don’t really care who you bang, because I know, at the end of the day, even if I’m sharing this,”</i> she accentuates, cupping your [pc.crotch] with her right hand, <i>“nobody else is taking this,”</i> she says, placing her hand over your heart.");
+	output("\n\nThat’s true: you don’t have the same connection with the rest of your crew that you do with Paige, and she’s absolutely right. If she’s okay with sharing you, then, you suppose there isn’t a problem. <i>“Besides,”</i> she says huskily, licking her lips as she leans in, whispering, <i>“having a crew full of horny studs and sluts sounds like a good time to me, too.”</i>");
+	output("\n\nThat said, Paige pulls away from you, resuming her earlier, energetic disposition. <i>“Alright then!”</i> she says, turning towards her room (which takes her a second to find, unused to seeing it with her eyes). <i>“I shouldn’t be too long. I’ll meet you down at the landing bay, [pc.name]!”</i>");
+	output("\n\nYou ask her if she knows where it is. <i>“Nope. But I can find it pretty easily, I bet. I want to at least try; one of the big things I’m looking forward to now that I can see again is finding things on my own. Something as little as finding the toilet is its own adventure all over again!”</i>");
+
+	output("\n\nWell, at least she’s excited.");
+	processTime(5);
+	flags["PAIGE_CREW"] = 1;
+	flags["PAIGE_POLYAMORY"] = 1;
+	clearMenu();
+	currentLocation = "PAIGE_HOUSE";
+	addButton(0,"Next",moveSouth);
+}
+
+//[=Stay Silent=]
+// (scene: Stay Silent)
+public function stayQuietAboutSluttery2Paige():void
+{
+	clearOutput();
+	showPaige();
+	output("You know it’s wrong to not let Paige in on what she should expect on your ship, but you honestly can’t find a way to explain your prior obligations to your other crew to her. You’re scared it would break her heart and have her call the whole thing off, but you know she’ll figure it out as soon as she steps on board. <i>“No,”</i> you answer gutlessly.");
+	output("\n\n<i>“Alright then!”</i> she says, turning towards her room (which takes her a second to find, unused to seeing it with her eyes). <i>“I shouldn’t be too long. I’ll meet you down at the landing bay, [pc.name]!”</i>");
+	output("\n\nYou ask her if she knows where it is. <i>“Nope. But I can find it pretty easily, I bet. I want to at least try; one of the big things I’m looking forward to now that I can see again is finding things on my own. Something as little as finding the toilet is its own adventure all over again!”</i>");
+	output("\n\nWell, at least she’s excited.");
+	flags["PAIGE_POLYAMORY"] = -1;
+	// end both scenes here; add Paige as a crewmate
+	flags["PAIGE_CREW"] = 1;
+	clearMenu();
+	currentLocation = "PAIGE_HOUSE";
+	addButton(0,"Next",moveSouth);
+}
+
+// if the PC attempts to enter Paige’s Unit after Paige is made a crewmate, between the hours of 09:00 and 17:00
+// (scene: Tavros (Crewmate) – Busy Hours)
+public function paigeUnitAsCrewmate():void
+{
+	clearOutput();
+	showPaige();
+	output("You step into Paige’s unit. Everything is exactly as she left it when she was made your ship’s navigator.");
+	output("\n\nPaige is there, lounging on her couch and enjoying her shore-leave from your ship. Despite the constant travelling to new and exotic lands, there is, after all, no place like home. Her helper droid, Iddi, sits on its charging dock in the next room.");
+	output("\n\n<i>“Hey there, [pc.name]!”</i> she says, waving you in. You mock-frown at her, putting your hands on your [pc.hips]. <i>“Hey we’re not on any ship, I ain’t calling you ‘captain’ anything when we’re in my own house.”</i> She laughs and sits up, patting the seat next to her. <i>“Come on in, let’s burn some candlelight before we leave again. I could use the company!”</i>");
+	processTime(4);
+	//[=About Paige=][=About Iddi=][=Her Eyes=][=Appearance=][=Yoga=][=Sex=] [=Rest=][=Spar=][=Leave=]
+	paigeMenu();
+}
+
+// The PC boards their ship for the first time since Paige joined as a crewmate
+// (scene: Welcoming)
+public function firstTimePaigeCrewHiHi():void
+{
+	clearOutput();
+	showPaige();
+	// Continue here if the PC has any other crew
+	if(crew(true) > 0)
+	{
+		output("The first thing to greet you when you step onto your ship is Paige, walking casually up to you with a bit of a sashay in her hips. It’s good to see that she found the place just fine");
+		if(silly) output(", although you wonder how she got here before you. Eh, fuck it");
+		output(". <i>“");
+		//if {PC chose to [=Stay Silent=]}
+		if(flags["PAIGE_POLYAMORY"] == -1) output("You didn’t tell me you had any other crew on this ship,”</i> she starts. You were dreading this conversation, although Paige seems to have a fairly casual tone to her voice.");
+		else if(flags["PAIGE_POLYAMORY"] == 1) output("I had the chance to meet some of your other crew,”</i> she starts. You’re curious to hear what she thinks about the rest of your merry bunch. <i>“You’ve sure got a... unique taste in company. Present company included, I suppose.”</i>");
+
+		if(annoIsCrew()) output("\n\n<i>“I see I’m not the first Ausar to catch your fancy. I mean, damn, I can see why: the first thing I see when I step foot on this ship is a bombshell like Anno? You sure know how to pick them, stud! I wonder if she’d be down for a little bit of extra fun on the side.”</i>");
+		if(bessIsCrew()) 
+		{
+			output("\n\n<i>“Your robo-buddy seems pretty cool. I gotta admit, I never really thought of the logistics behind a sexbot. ");
+			if(bess.mf("","Bess") == "Bess") output("If you slapped Bess’s ass, would it jiggle? Or is it as tight as mine?");
+			else output("When Ben gets hard, does it fill with, like, oil? Or air? Or is it all hydraulics?");
+			output("”</i>");
+		}
+		if(celiseIsCrew()) output("\n\n<i>“That Galotian of yours is pretty bubbly. I’m not gonna judge you on your sense of character – after all, you chose me, and I’m pretty great – but I kinda wonder what Celise’s story is. Is she a pet? Is she, like, some kind of master gunner or something under that liquid exterior?”</i>");
+
+		//if {Nova, and PC is not currently wearing her}
+		if(gooArmorIsCrew()) 
+		{
+			output("\n\n<i>“Your gray-goo, uh, companion is... she’s awfully forward. I love a good hug as much as the next gal, but funny thing about goo people is that their hugs are kinda... full-body. And she’s got enough ‘material’ to make it a whole other experience, if you get me.");
+			if(celiseIsCrew()) output(" Speaking of, you got something for goo girls or what? All that malleability is pretty hot, for sure.");
+			output("”</i>");
+		}
+		if(pexigaIsCrew()) output("<i>“I’m a little, um, concerned about that albino pexiga you got on board. Don’t get me wrong, I’m a fan of some big ole’ titties myself, but the way she talks is like she isn’t quite all there. I’m assuming she’s some kind of rescue case and not something a little more</i> sinister <i>on your part.”</i>");
+		if(reahaIsCrew()) output("<i>“The human with the big boobs is a bit of a firecracker, isn’t she? I kinda had Reaha pegged for a dumb pushover at first, but if you can get past the temper, she’s actually pretty smart. She gave me some sob story about her being a slave before you bought her contract? She seems to like being with you, so that’s pretty sweet, I guess. Also, I</i> love <i>her hair.”</i>");
+		if(seraIsCrew()) 
+		{
+			output("<i>“I met that demon-thing you keep in a collar. No way would a girl like</i> that <i>ever agree to call someone else ‘captain,’ ");
+			//if {Sera isn’t broken}
+			if(flags["SERA_OBEDIENCE_MIN"] <= 0) output("and it looks like there’s still a bit of fight in her. Hell, [pc.name], I love a good challenge; if you need help showing her who’s the boss, I can lend a hand!");
+			else output("but it looks like you’ve got things pretty under control. It’s clear she’s smitten with you, and she’s so well-spoken! I kind of wish I was here to see what sort of hoops you had to go through to break her in like that.");
+			output(" She’s got a pretty juicy dick, too, not gonna lie.”</i>");
+		}
+		if(yammiIsCrew()) output("\n\n<i>“I have no idea what Yammi even is. I hope that’s not speciesist. She seems cool; apparently she’s onboard as your chef? And she and the pexiga are a part of a package somehow? I’ll have to ask her again for the details. She makes one</i> hell <i>of an ice cream, though. I wonder what her secret is.”</i>");
+
+		// continue here if the PC chose to [=Stay Silent=]
+		if(flags["PAIGE_POLYAMORY"] == -1)
+		{
+			output("\n\nYou’re utterly confused; you don’t know whether she’s being earnest and her reaction to your eclectic crew is completely casual, or if she’s feigning some kind of bubbling rage. You sheepishly apologize for not telling her about your crew earlier.");
+			output("\n\n<i>“Why didn’t you?”</i>");
+			output("\n\nYou admit that you weren’t sure how she would take sharing the ship with a crew that had certain... <i>requirements</i> as yours. You have... <i>obligations</i> as this ship’s captain, and you weren’t sure how to explain that to her. Hell, you still don’t.");
+			output("\n\n<i>“’Obligations?’ Hah! That’s a pretty vague way of saying you fuck most of them, if not all of them.”</i> You say nothing. <i>“Hey, don’t worry about it, [pc.name]! Look, I’m going to be totally honest with you: I was kind of hoping for an open relationship myself.”</i>");
+			output("\n\nThat takes you by surprise. Paige never gave you any hint of the sort. <i>“Because I was worried how</i> you <i>were going to take it! A thing as sweet as you, [pc.name], I wasn’t sure if you were the type to be so... active!”</i> She approaches you, wrapping an arm around your shoulder. <i>“It’s fine with me, [pc.name], because I feel safe knowing that, even if I have to share this,”</i> she says, cupping your [pc.crotch] with her other hand, <i>“nobody else is taking this,”</i> she says, placing her hand over your heart.");
+			output("\n\nYou’re relieved to hear that she’s not only okay with it, but she’s practically encouraging it. <i>“Well, I should hope so.”</i> She leans in, breathing hotly into your ear as she whispers, <i>“A ship full of horny studs and sluts sounds like a fun time to me, too.”</i>");
+			flags["PAIGE_POLYAMORY"] = 2;
+		}
+		// continue here if the PC chose to admit their [=Promiscuity=]
+		else if(flags["PAIGE_POLYAMORY"] == 1)
+		{
+			output("\n\n<i>“All-in-all, a pretty swarthy bunch you’ve got so far. And I doubt it’s going to stay this small for long, you charmer.”</i>");
+			output("\n\nYou smile, glad to hear that Paige seems to be getting along just fine with the rest of her crewmates. <i>“I’m sure we’ll be doing more than ‘getting along,’ knowing the two of us,”</i> she smiles toothily. <i>“I’ve been chaste all those years before I met you, [pc.name], and if you’re going to be fucking just anybody on this crew, I’m sure as shit not going to be twiddling my thumbs in my room.”</i>");
+			output("\n\nYou ask her politely to not... break any of them. Paige can be very competitive in bed and you’re not sure how well the others can keep up. <i>“I promise nothing.”</i>");
+		}
+		// Merge here
+		output("\n\nShe claps her hands together, straightening her stance and taking a more professional demeanor. <i>“Now then, Captain Steele,”</i> she says, standing straight, trying to look stern and disciplined but her goofy smile and wagging tail give her away. <i>“Where are my quarters? I have some things I need to be setting up.”</i>");
+		output("\n\n<b>Paige is now a crewmate!</b>");
+	}
+	// Continue here if the PC has no other crew
+	else
+	{
+		output("The first thing to greet you when you step onto your ship is Paige, walking casually up to you with a bit of a sashay in her hips. It’s good to see that she found the place just fine");
+		if(silly) output(", although you wonder how she got here before you. Eh, fuck it");
+		output(". <i>“Is it just the two of us?”</i> she asks you, looking you in the eye.");
+
+		output("\n\nYou tell her that, at the moment, yes, it’s just you two. You realize that you’re hardly much of a ‘captain’ when you have no crew to lead, but, on the bright side, not only do you have the hunk of junk to yourselves, but Paige also has seniority rights to any quarters she wants. <i>“Even yours?”</i> she asks, then continues, <i>“I’m sure I’ll be spending a lot of time in yours either way.”</i>");
+		output("\n\nYou laugh, then take the time to show her around the ship. It’s not much of a ship, and it’s not much of a tour: the crew quarters; the mess; the cargo hold; the bridge; and, finally, the captain’s quarters. Paige is respectfully silent through the tour until the end. <i>“She’s a fine ship,”</i> she says.");
+		output("\n\n<i>“You don’t have to lie,”</i> you retort, smirking at her.");
+		output("\n\n<i>“Well... I’ve been on worse ships,”</i> she giggles. <i>“It’s certainly spacious enough; I have a few ideas on how to manage my own quarters to keep up my yoga with Iddi. And we don’t seem to be using the cargo hold for a lot. Maybe I can turn it into a gym or something.”</i> She turns to you, smiling giddily. <i>“With your permission, of course, Captain Steele.”</i>");
+		output("\n\nCaptain Steele. You kind of like the sound of that. <i>“I already know where I’m setting up,”</i> she continues, standing at attention, trying to look stern and disciplined but her goofy smile and wagging tail give her away. <i>“Permission to start making myself at home. " + pc.mf("Sir","Ma’am") + "?”</i>");
+		output("\n\nYou ask Paige if this is going to be a regular thing between you two. <i>“Nah,”</i> she laughs, relaxing and stepping away from you, towards the quarters she’d already picked out for herself.");
+
+		output("\n\n<b>Paige is now a crewmate!</b>");
+	}
+	//[=Next=]
+	// end scene (scene: Welcoming)
+	processTime(10);
+	flags["PAIGE_SHIP_GREETING"] = 1;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+
+// The PC talks to Paige on their ship between the hours of 09:00 and 17:00
+// (scene: Crewmate Paige: Class Hours)
+public function paigeCrewApproach():void
+{
+	clearOutput();
+	showPaige();
+	if(hours >= 9 && hours < 17)
+	{
+		output("You approach Paige’s quarters and knock on her door. You can hear her talking softly to someone through the metal of her walls. With a hiss, the door slides open, showing you into her personal quarters.");
+		output("\n\n<i>“Raise your leg a little higher, and keep it straight,”</i> Paige says to a video feed on a small, free-standing monitor she set up against a wall. She looks over her shoulder, and when she sees it’s you, goes back to the screen. <i>“Iddi, I’ve got some company. Keep watch over the class for me, would you?”</i>");
+		output("\n\n<i>“Yes, momma!”</i> you hear Iddi’s voice, garbled slightly through the speakers of her monitor.");
+		output("\n\n<i>“That’s my babe,”</i> she says, then presses a button on her monitor, turning it off. With that out of the way, she turns to face you, standing straight. She’s wearing her usual yoga attire and she’s panting lightly from exertion; she must have been leading her class through the exercises via Iddi.");
+		output("\n\n<i>“Captain!”</i> she says, reaching out to you and wrapping her arm around your shoulder warmly. <i>“It’s good to see you today. What can I do for you?”</i>");
+		//[=About Paige=][=About Iddi=][=Her Eyes=][=Appearance=][=Yoga=][=Sex=] [=Spar=][=Leave=]
+	}
+	// The PC talks to Paige on their ship between the hours of 17:01 and 08:59
+	else
+	{
+		// (scene: Crewmate Paige: After Hours)
+		output("You approach Paige’s quarters and knock on her door. <i>“Yep, come on in!”</i> you hear her shout through the thin metal of her walls. With a hiss, the door slides open, showing you into her personal quarters.");
+		output("\n\nPaige is lounging on her bed, relaxing with a book in her hands. She lifts her studying eyes from its pages to yours when you enter, and when she sees it’s you, she slides the book beneath her bed and stands up. You lean to one side, trying to see how many books she’s got under there – you can’t tell exactly, but it’s more than a handful. <i>“Captain!”</i> she says jovially, standing straight and at attention in your presence. <i>“It’s good to see you today. What can I do for you?”</i>");
+		//[=About Paige=][=About Iddi=][=Her Eyes=][=Appearance=][=Yoga=][=Sex=] [=Spar=][=Leave=]
+	}
+	processTime(2);
+	paigeMenu();
+}
+
+//[=Her Eyes=]
+// (scene: Crewmate: Her Eyes)
+public function crewPaigeEyeholes():void
+{
+	clearOutput();
+	showPaige();
+	output("You ask Paige how her new eyes. How is she enjoying them?");
+	output("\n\nThe question hits her a little harder than you expected, and she slowly begins to tear up as a warm, elated smile spreads across her lips. <i>“I try not to think about it,”</i> she laughs, <i>“because then I start crying like a little girl over how happy I am. [pc.name], I really can’t thank you enough. You’ve... you’ve changed my life.”</i>");
+	output("\n\nYou don’t try to play it humbly, knowing that downplaying it would be downplaying what having her eyesight back means to her. You say nothing as Paige’s hand reaches for your own, squeezing it tightly. <i>“I was convinced I was going to stay blind until I was old. I had accepted it. I was willing to work for it. And you... Gods above, like a guardian angel, straight out of a storybook, you come along and you make me feel like the luckiest Ausar in the universe. You’d think being a pirate for a stint would have given me terrible karma, but, here you are.”</i>");
+	output("\n\nShe gets out of her seat and leans into you, placing her lips against your own gently. It’s a purely chaste, asexual kiss, and you respond in kind, stroking down her side as you enjoy the intimacy. <i>“I had my future all planned out,”</i> she says when she pulls away. <i>“I was going to sit still for decades on end until I could see again. I have no idea what the future holds for either of us, [pc.name], and I love that. I</i> love <i>that. Not knowing what’s ahead; not knowing where we’ll be in a year, or a month, or even next week. But one thing I know is that,”</i> she finishes, squeezing your hand even tighter, <i>“wherever we’ll be, I’ll be with you.”</i>");
+	output("\n\nYou enjoy the warmth of the room together for a moment, sitting still and holding hands in the silence of her quarters. <i>“To answer your question,”</i> she says suddenly, back to her regular, upbeat self, <i>“my eyes are great! I’m not going colorblind; they aren’t unfocused or anything; it’s as if I never lost them to begin with. I love that they’re</i> mine, <i>too. Grown in a tube somewhere, but with my stem cells, so they’re</i> mine <i>and not a donor’s, or some copper and metal fake eyes, or anything. They’re working great!”</i>");
+
+	output("\n\nYou’re glad to hear that.");
+	// end scene (scene: Crewmate: Her Eyes)
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",backToPaigeMenu);
+}

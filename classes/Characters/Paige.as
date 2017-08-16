@@ -15,10 +15,10 @@
 			this._neverSerialize = true;
 			
 			this.short = "Paige";
-			this.originalRace = "human";
+			this.originalRace = "half-ausar";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "uncreated";
+			this.long = "You're standing in her yoga class. Your Ausar opponent stands across from you, her fists raised and close to her face. Her stance is wide and steady, but unaggressive; she isn't about to make the first move. Despite her battle-unprepared clothing and her disability, you know that this fight isn't going to be an easy one. She wants to prove herself <i>to</i> herself, and she'll fight like a beast to do it.";
 			this.customDodge = "uncreated";
 			this.customBlock = "uncreated";
 			this.isPlural = false;
@@ -45,24 +45,24 @@
 			this.femininity = 85;
 			this.eyeType = 0;
 			this.eyeColor = "blue";
-			this.tallness = 60;
-			this.thickness = 40;
-			this.tone = 70;
-			this.hairColor = "red";
-			this.scaleColor = "bronze";
-			this.furColor = "tawny";
-			this.hairLength = 3;
+			this.tallness = 68; //Just picked something since I didnt see a specific value.
+			this.thickness = 30;
+			this.tone = 85;
+			this.hairColor = "light brown";
+			this.scaleColor = "blue";
+			this.furColor = "brown";
+			this.hairLength = 11;
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
 			this.skinType = GLOBAL.SKIN_TYPE_FUR;
-			this.skinTone = "pink";
+			this.skinTone = "tan";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.TYPE_VULPINE;
+			this.faceType = GLOBAL.TYPE_CANINE;
 			this.faceFlags = new Array();
 			this.tongueType = 0;
-			this.lipMod = 1;
-			this.earType = GLOBAL.TYPE_VULPINE;
+			this.lipMod = 0;
+			this.earType = GLOBAL.TYPE_CANINE;
 			this.antennae = 0;
 			this.antennaeType = 0;
 			this.horns = 0;
@@ -78,7 +78,7 @@
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.TYPE_VULPINE;
+			this.tailType = GLOBAL.TYPE_CANINE;
 			this.tailCount = 1;
 			this.tailFlags = [GLOBAL.FLAG_FLUFFY,GLOBAL.FLAG_LONG,GLOBAL.FLAG_THICK,GLOBAL.FLAG_FURRED];
 			//Used to set cunt or dick type for cunt/dick tails!
@@ -100,7 +100,7 @@
 			//10 - curvy//flaring
 			//15 - child-bearing/fertile
 			//20 - inhumanly wide
-			this.hipRatingRaw = 8;
+			this.hipRatingRaw = 3;
 			//buttRating
 			//0 - buttless
 			//2 - tight
@@ -111,7 +111,7 @@
 			//13 - expansive
 			//16 - huge
 			//20 - inconceivably large/big/huge etc
-			this.buttRatingRaw = 7;
+			this.buttRatingRaw = 6;
 			//No dicks here!
 			this.cocks = new Array();
 			//balls
@@ -120,17 +120,17 @@
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
 			this.cumType = GLOBAL.FLUID_TYPE_CUM;
-			this.ballSizeRaw = 2;
+			this.ballSizeRaw = 0;
 			this.ballFullness = 100;
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 4;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
-			this.minutesSinceCum = 9000;
-			this.timesCum = 785;
+			this.refractoryRate = 1;
+			this.minutesSinceCum = 3679200;
+			this.timesCum = 1024;
 			this.cockVirgin = true;
 			this.vaginalVirgin = false;
-			this.analVirgin = false;
+			this.analVirgin = true;
 			this.vaginas = new Array();
 			this.createVagina();
 			this.vaginas[0].hymen = false;
@@ -138,15 +138,14 @@
 			this.vaginas[0].wetnessRaw = 2;
 			this.vaginas[0].loosenessRaw = 1;
 			this.vaginas[0].bonusCapacity = 20;
-			//Goo is hyper friendly!
-			this.elasticity = 3;
+			this.elasticity = 2;
 			//Fertility is a % out of 100. 
 			this.fertilityRaw = 1;
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 			
-			this.breastRows[0].breastRatingRaw = 6;
-			this.nippleColor = "pink";
+			this.breastRows[0].breastRatingRaw = 3; ///C-cups
+			this.nippleColor = "pink"; //presumably
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
@@ -154,40 +153,37 @@
 			this.ass.wetnessRaw = 0;
 			
 			this._isLoading = false;
+			this.createPerk("Multiple Attacks",1,0,0,0,"");
+			this.createStatusEffect("Disarm Immune");
+			this.createStatusEffect("Blind-ish", 0, 0, 0, 0, false, "Blind", "Paige may not see very well, but years of adapting to her current state leave her less impaired than you might think.", true, 0, 0xFF0000);
 		}
-		
-		public function UpgradeVersion1(dataObject:Object):void
+		override public function isDefeated():Boolean
 		{
-			if (dataObject.legFlags.length == 0)
-			{
-				dataObject.legFlags.push(GLOBAL.FLAG_DIGITIGRADE);
-			}
+			if (HP() <= 0) return true;
+			return false;
 		}
-		
-		public function UpgradeVersion2(dataObject:Object):void
+		override public function lustMax():Number
 		{
-			dataObject.physiqueRaw = 10;
-			dataObject.reflexesRaw = 8;
-			dataObject.aimRaw = 6;
-			dataObject.intelligenceRaw = 4;
-			dataObject.willpowerRaw = 3;
+			return 99;
 		}
-		
-		public function UpgradeVersion3(dataObject:Object):void
+		override public function setDefaultSexualPreferences():void
 		{
-			dataObject.vaginas[0].bonusCapacity = 20;
-			dataObject.elasticity = 3;
-		}
-		
-		public function UpgradeVersion4(dataObject:Object):void
-		{
-			// Clear out this shit and let the default constructor handle it.
-			delete dataObject.meleeWeapon;
-			delete dataObject.rangedWeapon;
-			delete dataObject.lustVuln;
-			delete dataObject.resistances;
-			delete dataObject.bonusResistances;
-			delete dataObject.bonusLustVuln;
+			//Likes:
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE,		GLOBAL.KINDA_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,			GLOBAL.KINDA_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BUTTS,		GLOBAL.REALLY_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.KINDA_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS,	GLOBAL.KINDA_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS,			GLOBAL.REALLY_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_MULTIPLES,		GLOBAL.KINDA_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_TAILS,			GLOBAL.REALLY_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_LONG_HAIR,		GLOBAL.KINDA_LIKES_SEXPREF);
+			//Dislikes
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BUTTS,		GLOBAL.KINDA_DISLIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS,		GLOBAL.REALLY_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_HYPER,			GLOBAL.REALLY_DISLIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_TAILGENITALS,		GLOBAL.REALLY_DISLIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_LACTATION,		GLOBAL.KINDA_DISLIKES_SEXPREF);
 		}
 	}
 }

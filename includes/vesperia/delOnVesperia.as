@@ -314,7 +314,7 @@ public function bodyShotsWithDel():void
 	else output("girly little prick");
 	output(" throbs under her skirt, squirting all over her thighs.");
 
-	output("\n\n<i>“W-why am I getting off on this so much?”</i> she giggles, crossing her ankles behind your back, pulling your [pc.face] into her liquored-up belly. <i>“Whatever! Just don’t stop ‘till this bottle’s empty.”</i>");
+	output("\n\n<i>“W-why am I getting off on this so much?”</i> she giggles, crossing her ankles behind your back, pulling your [pc.face] into her liquored-up belly. <i>“Whatever! Just don’t stop till this bottle’s empty.”</i>");
 	output("\n\nYou grin up at her, drawing your [pc.tongue] along the underside of a breast, then around a rock-hard nipple. You loop your tongue through her ring piercing, giving it a tug until Delilah redirects the flow of liquor down her tits. You don’t really bother drinking it anymore; the booze is a bonus on top of tongue-bathing the dusky slut, teasing her over-tender flesh until she’s gasping and her dick is squirting again.");
 	output("\n\nDel lets the bottle clatter on the table, grabbing her mouth to keep herself from squealing in pleasure. Her cock’s a leaking faucet now, pouring out the content of her ");
 	if(chars["DELILAH"].hasCock(GLOBAL.TYPE_EQUINE)) output("hefty black horseballs");
@@ -416,7 +416,7 @@ public function askDelAboutTheDel():void
 	clearOutput();
 	showDel();
 	output("<i>“So, now that you have a decent mistress, are you starting to get some plans for the future?”</i>");
-	output("\n\n<i>“I don’t know,”</i> she says, shrugging lightly. <i>“Kind of? I still have a lot of debt to pay off, and when I do... I don’t exactly have a lot going for me, you know. Guess I’d have to move back in with my parents for a little bit, find a job somewhere, or go work for them. Just ‘till I get back on my feet.”</i>");
+	output("\n\n<i>“I don’t know,”</i> she says, shrugging lightly. <i>“Kind of? I still have a lot of debt to pay off, and when I do... I don’t exactly have a lot going for me, you know. Guess I’d have to move back in with my parents for a little bit, find a job somewhere, or go work for them. Just till I get back on my feet.”</i>");
 	output("\n\nYou nod. <i>“And after that?”</i>");
 	output("\n\n<i>“Well, I’d like to get back to painting,”</i> she laughs. <i>“Maybe take up cum as my new medium: ");
 	if(chars["DELILAH"].hasCock(GLOBAL.TYPE_EQUINE)) output("I’ve got pretty much an infinite supply now!");
@@ -1073,7 +1073,7 @@ public function slootyDelBootyBangingTrainingTrapPCEpilogue():void
 	showDel(true);
 	author("Savin");
 	if(silly) author("Slavin");
-	output("You lick up a few drops of cum off your cheeks during your short reprieve before a large, moose-bodied tauric woman steps up and unleashes a mammoth member in front of you: two feet of solid tapered shaft that nearly knocks you cold with the sheer <i>smell</i> of it, so rich and manly and.... and when did you start sucking it? Your eyes just about roll up as your lips slurp up as much of this massive moose-member as you can get, doing everything in your power to kill off your gag reflex as your jaw stretches out to accommodate it. You look up to the hermaphroditic woman, unable to see her face under the bulk of her bestial body. Her chest heaves, breathing heavily, and you can hear faint moans echoing from high above you. Her small hooves click and stomp on the bench, giving voice to the small relays of pleasure coursing through her undercarriage.");
+	output("You lick up a few drops of cum off your cheeks during your short reprieve before a large, moose-bodied tauric woman steps up and unleashes a mammoth member in front of you: two feet of solid tapered shaft that nearly knocks you cold with the sheer <i>smell</i> of it, so rich and manly and... and when did you start sucking it? Your eyes just about roll up as your lips slurp up as much of this massive moose-member as you can get, doing everything in your power to kill off your gag reflex as your jaw stretches out to accommodate it. You look up to the hermaphroditic woman, unable to see her face under the bulk of her bestial body. Her chest heaves, breathing heavily, and you can hear faint moans echoing from high above you. Her small hooves click and stomp on the bench, giving voice to the small relays of pleasure coursing through her undercarriage.");
 	output("\n\nThe four-legged babe puts a hand on your [pc.butt], cooing softly as you manhandle the majority of her mammoth member into your mouth. You reach down and cup her heavy balls, practically able to feel them churning with pent-up seed, straining against their furry sack. It takes a moment for you to realize you’re trembling with excitement at the thought of her emptying those thick, meaty nads down your throat, bloating your belly with cum until you look ");
 	if(!pc.isPregnant() && pc.bellyRating() < 20) output("positively pregnant");
 	else output("even more pregnant than you are");

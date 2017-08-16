@@ -522,7 +522,7 @@ public function seraTalkTopics(response:String = ""):void
 			else
 			{
 				output("\n\nHer eyes swim slightly.");
-				output("\n\n<i>“... I don’t care,”</i> she repeats, once she’s taken a deep breath, <i>“that this is pretty much exactly what dad said would happen. It might have been a colossal fuck up, but it was </i>my<i> colossal fuck up. I would rather be here");
+				output("\n\n<i>“...I don’t care,”</i> she repeats, once she’s taken a deep breath, <i>“that this is pretty much exactly what dad said would happen. It might have been a colossal fuck up, but it was </i>my<i> colossal fuck up. I would rather be here");
 				if(pc.hasCock()) output(" sucking dick");
 				else if(pc.hasVagina()) output(" being force-fed pussy");
 				else output(" kneeling for sex");

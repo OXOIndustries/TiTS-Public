@@ -2625,6 +2625,7 @@
 			return slots;
 		}
 		
+		/*
 		public function hasItem(arg:ItemSlotClass,amount:int = 1):Boolean
 		{
 			if(arg == null || inventory.length == 0) return false;
@@ -2648,6 +2649,7 @@
 			if(foundAmount >= amount) return true;
 			return false;
 		}
+		*/
 		public function hasItemByClass(ref:Class, amount:int = 1):Boolean
 		{
 			if (ref == null || inventory.length == 0) return false;
@@ -2674,7 +2676,7 @@
 			if (amt >= amount) return true;
 			return false;
 		}
-		
+		/*
 		public function destroyItemByName(arg:String, amount:int = 1):void
 		{
 			if (arg == null || inventory.length == 0 || amount == 0) return;
@@ -2719,6 +2721,7 @@
 			}
 			return;
 		}
+		*/
 		public function destroyItemByReference(arg:ItemSlotClass):void
 		{
 			if (arg == null || inventory.length == 0) return;
@@ -6647,7 +6650,7 @@
 			if (output != "") output += " ";
 
 			var nouns:Array = ["hand"];
-			if(hasArmFlag(GLOBAL.FLAG_PAWS)) nouns.push("paw");
+			if(hasArmFlag(GLOBAL.FLAG_PAWS) && armType != GLOBAL.TYPE_AVIAN) nouns.push("paw");
 			output += RandomInCollection(nouns);
 			return output;
 		}
@@ -6864,7 +6867,7 @@
 			//Noun
 			if (output != "") output += " ";
 			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hooves";
-			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && rand(10) < 8) output += "paws";
+			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && legType != GLOBAL.TYPE_AVIAN && rand(10) < 8) output += "paws";
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilia";
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && rand(2) == 0) output += "high-heels";
 			else if (legType == GLOBAL.TYPE_LIZAN) output += "footclaws";
@@ -6884,7 +6887,7 @@
 			//Noun
 			if (output != "") output += " ";
 			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hoof";
-			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && rand(10) < 8) output += "paw";
+			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && legType != GLOBAL.TYPE_AVIAN && rand(10) < 8) output += "paw";
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "undercarriage";
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && rand(2) == 0) output += "high-heel";
 			else if (legType == GLOBAL.TYPE_LIZAN) output += "footclaw";
@@ -6903,7 +6906,7 @@
 			var output: String = "";
 			//Noun
 			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hoof-tips";
-			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && rand(2) == 0) output += "paw-toes";
+			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && legType != GLOBAL.TYPE_AVIAN && rand(2) == 0) output += "paw-toes";
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilia";
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && rand(2) == 0) output += "pointed toes";
 			else if (legType == GLOBAL.TYPE_LIZAN) output += "claws";
@@ -12926,9 +12929,9 @@
 				{
 					descript += RandomInCollection(["very long", "back-length"]);
 				}
-				else if (hairLength < tallness / 1.7) {
+				else if (hairLength < tallness / 1.6) {
 					if(rand(3) == 0) descript += "cascading";
-					else if(hairLength < tallness/1.6) 
+					else if(hairLength < tallness / 1.7) 
 					{
 						descript += "ass-length";
 					}
@@ -17123,6 +17126,9 @@
 		
 		public function addPregnancyBellyMod(pregSlot:int, value:Number, perOffspring:Boolean = true):void
 		{
+			// Error, out of range!
+			if(pregSlot < 0 || pregSlot >= pregnancyData.length) return;
+			
 			var pData:PregnancyData = pregnancyData[pregSlot];
 			var addValue:Number = value;
 			
@@ -18996,6 +19002,12 @@
 							kGAMECLASS.goMailGet("gastigoth_unlock");
 						}
 						break;
+					case "PAIGE_COMA_EMAIL_CD":
+						if (this is PlayerCharacter && requiresRemoval)
+						{
+							kGAMECLASS.eventQueue.push(kGAMECLASS.paigeEyeholeEmailEvent);
+						}
+						break;
 					case "Laquine Ears":
 						if(this is PlayerCharacter)
 						{
@@ -19189,8 +19201,8 @@
 							var cumScale:Number = Math.min((deltaT / 60), 1);
 							if(this is PlayerCharacter && hairType == GLOBAL.HAIR_TYPE_GOO)
 							{
-								addBiomass(Math.round(20 * cumScale));
-								if(hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) addBiomass(Math.round(20 * cumScale));
+								addBiomass(Math.round(500 * cumScale));
+								if(hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) addBiomass(Math.round(500 * cumScale));
 							}
 							thisStatus.value1 -= cumScale;
 							if(thisStatus.value1 <= 0) requiresRemoval = true;
@@ -19362,7 +19374,7 @@
 						{
 							var ovaBigEggMsg:String = "";
 							// Ten minutes later if Egg Trainer level < 3
-							if(flags["EGG_TRAINING"] < 3) ovaBigEggMsg += "Warm gooeyness continues to ooze out of your [pc.vagOrAss " + thisStatus.value1 + "] and down your [pc.thigh], conspicuously not getting soaked up by the Ovalasting eggs within. Presumably they’ve gotten all they want - or they can sense, somehow, you aren’t built to take any more swelling. You feel a nagging annoyance about that. What a nice feature it is, to not worry about " + (isCrotchGarbed() ? "ruining your [pc.underGarments]" : "leaving a trail of cum behind you") + " every time you take a good, hard fuck. Perhaps if you egg trained yourself a little more...?";
+							if(flags["EGG_TRAINING"] < 3) ovaBigEggMsg += "Warm gooeyness continues to ooze out of your [pc.vagOrAss " + thisStatus.value1 + "] and down your [pc.thigh], conspicuously not getting soaked up by the Ovalasting eggs within. Presumably they’ve gotten all they want - or they can sense, somehow, you aren’t built to take any more swelling. You feel a nagging annoyance about that. What a nice feature it is, to not worry about " + (isCrotchGarbed() ? "ruining your [pc.lowerGarments]" : "leaving a trail of cum behind you") + " every time you take a good, hard fuck. Perhaps if you egg trained yourself a little more...?";
 							else ovaBigEggMsg += "Warmth throbs within you, the Ovalasting eggs within your [pc.vagOrAss " + thisStatus.value1 + "] reacting eagerly to the second bath of healthy, filthy fluids you’ve soaked them in. You groan with sheer contentment as your [pc.belly] swells even further, your brood already pushing against your sensitive walls, eager to colonize every last inch of space you have to give. Hell in the Void, is this making you feel ponderous... and amazing. Perhaps you could call back your last lover, see if they aren’t willing to pump you even fuller?";
 							AddLogEvent(ovaBigEggMsg, "passive", maxEffectLength);
 						}
@@ -19732,6 +19744,38 @@
 					else victim.createStatusEffect("Undetected Sneezing Tits", 0, 0, 0, 0, true, "Icon_Boob_Torso", "Hidden Sneezing Tits infection!", false, 10080, 0xFF69B4);
 					break;
 			}
+		}
+		public function applyCumSoaked():void
+		{
+			var desc:String = "";
+			
+			if(!this.hasStatusEffect("Cum Soaked"))
+			{
+				if(this is PlayerCharacter) desc = "You’re drenched in cum! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
+				else desc = this.capitalA + this.short + " is completely covered in cum!";
+				this.createStatusEffect("Cum Soaked",1,0,0,0,false,"Icon_Splatter",desc,false,0,0xB793C4);
+			}
+			else this.addStatusValue("Cum Soaked",1,1);
+			
+			if(this is PlayerCharacter) kGAMECLASS.mimbraneFeed("all");
+		}
+		public function applyPussyDrenched():void
+		{
+			applyPussySoaked();
+		}
+		public function applyPussySoaked():void
+		{
+			var desc:String = "";
+			
+			if(!this.hasStatusEffect("Pussy Drenched"))
+			{
+				if(this is PlayerCharacter) desc = "You’re drenched in girlcum! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
+				else desc = this.capitalA + this.short + " is completely covered in girlcum!";
+				this.createStatusEffect("Pussy Drenched",1,0,0,0,false,"Icon_Water_Drop",desc,false,0,0xB793C4);
+			}
+			else this.addStatusValue("Pussy Drenched",1,1);
+			
+			if(this is PlayerCharacter) kGAMECLASS.mimbraneFeed("all");
 		}
 	}
 }

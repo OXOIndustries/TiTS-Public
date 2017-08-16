@@ -750,7 +750,7 @@ public function talkToSyriNumber2():void {
 	author("Savin");
 	output("Talking with Syri for a few minutes, the topic eventually drifts towards her past. You can’t help but ask, then, where’d the dick come from?");
 
-	output("\n\n<i>“Oh, this little thing?”</i> Syri laughs, uncrossing her legs in a very unladylike manner. <i>“Sorry, sorry. What, don’t think my parents just had a dickgirl fetish and popped me out with it?... I think there’s a law against that, actually. But no, yeah, you got a big throbbing puppy pecker on your mind, Steele? Better question is, where’d my girly bits go? I’ll, uh, let you know when they show up again. ‘Til then I’m just holding on to this prick for safe-keeping until Valden gets back.”</i>");
+	output("\n\n<i>“Oh, this little thing?”</i> Syri laughs, uncrossing her legs in a very unladylike manner. <i>“Sorry, sorry. What, don’t think my parents just had a dickgirl fetish and popped me out with it?... I think there’s a law against that, actually. But no, yeah, you got a big throbbing puppy pecker on your mind, Steele? Better question is, where’d my girly bits go? I’ll, uh, let you know when they show up again. till then I’m just holding on to this prick for safe-keeping until Valden gets back.”</i>");
 
 	output("\n\n<i>“What.”</i>");
 
@@ -873,11 +873,11 @@ public function talkToSyriNumber4():void {
 
 	output("\n\n<i>“Combat engineer?”</i> you ask, cocking an eyebrow.");
 
-	output("\n\n<i>“Yep! 30th J.A.F. Royal Engineers. Put in eight years, right out of high school ‘til the transporter snafu. Don’t go thinking I’m some kinda badass commando or anything, though. Mostly had us building bridges or, if we were </i>really<i> lucky, blowing them up. Bridges and roads and shit fucking everywhere, man. But hey, I got to see the galaxy, from Terra and the Core Worlds to the Rendau Cluster and the Elyssian Expanse. And I built a bridge on all of ‘em, let me tell you,”</i> she sighs, finishing her whiskey.");
+	output("\n\n<i>“Yep! 30th J.A.F. Royal Engineers. Put in eight years, right out of high school till the transporter snafu. Don’t go thinking I’m some kinda badass commando or anything, though. Mostly had us building bridges or, if we were </i>really<i> lucky, blowing them up. Bridges and roads and shit fucking everywhere, man. But hey, I got to see the galaxy, from Terra and the Core Worlds to the Rendau Cluster and the Elyssian Expanse. And I built a bridge on all of ‘em, let me tell you,”</i> she sighs, finishing her whiskey.");
 
 	output("\n\n<i>“So, ever see combat?”</i> you ask.");
 
-	output("\n\n<i>“Twice,”</i> she says, somewhat hesitantly. <i>“A rebel ambush on Rendau Nine. Kind of a skirmish, really. Scary as hell, but it wasn’t big. Nobody died on either side, just took some pot shots at each other ‘til the marines showed up. The second time... I, uh, went in with the first wave on Khaleen.”</i>");
+	output("\n\n<i>“Twice,”</i> she says, somewhat hesitantly. <i>“A rebel ambush on Rendau Nine. Kind of a skirmish, really. Scary as hell, but it wasn’t big. Nobody died on either side, just took some pot shots at each other till the marines showed up. The second time... I, uh, went in with the first wave on Khaleen.”</i>");
 
 	output("\n\nYou remember hearing about that back in school. A big joint operation between a bunch of Confederate armies that smashed a rogue planet’s entire civilization to bits. It was big news at the time, and got a lot of people angry. From the far-away look the ausar’s adopted, it doesn’t look like she’s in the mood to talk about it. Maybe later.");
 	processTime(6);
@@ -2146,7 +2146,7 @@ public function getFuckedBySyri():void
 
 	output("\n\n<i>“Oh fuck,”</i> your lover moans, bracing her arms against the back of the couch and panting hard into your ear. <i>“Oh, I needed that...”</i>");
 	output("\n\nYou grin at her and reach around her waist, grabbing the last of the buzzing anal beads and giving it a gentle tug. She tenses and whines as you pull and pull, finally popping it out and letting the train of knot-shaped beads clatter to the floor. They just keep buzzing, moving around in a sea of lube and cum on your deck as Syri crawls onto the couch with you, trailing kisses up your neck.");
-	output("\n\n<i>“Now look what you made me do,”</i> she teases, patting your crotch just over her knot. <i>“Now I’m stuck here ‘til it’s deflated.”</i>");
+	output("\n\n<i>“Now look what you made me do,”</i> she teases, patting your crotch just over her knot. <i>“Now I’m stuck here till it’s deflated.”</i>");
 	output("\n\n<i>“Is that so bad?”</i> you ask, grabbing a blanket from nearby and throwing it over her back.");
 	output("\n\nShe flashes you a smile. <i>“Not bad at all.”</i>");
 	//[Next]

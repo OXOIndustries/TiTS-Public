@@ -18,6 +18,7 @@ public function pcAppearance(e:MouseEvent = null):void
 	}
 	else if (pButton.isActive && pButton.isHighlighted)
 	{
+		clearBust();
 		backToPrimaryOutput();
 		userInterface.showingPCAppearance = false;
 	}
@@ -427,7 +428,7 @@ public function appearance(forTarget:Creature):void
 			break;
 		case GLOBAL.TYPE_AVIAN:
 			if(target.eyeColor == "black") output2(" Your eyes resemble black beads, shiny and expressionless. Only the occasional flickering of your nictitating membranes reveal that they are not made of glass.");
-			else output2(" Your eyes are human-like at first glance, but the black iris, " + target.eyeColor + " sclera, unwinking stare, and the occasional flickering of your nictitating membranes hint at their avian nature.");
+			else output2(" Your eyes are human-like at first glance, but the black iris, " + target.eyeColor + " sclera, unblinking stare, and the occasional flickering of your nictitating membranes hint at their avian nature.");
 			break;
 		case GLOBAL.TYPE_LEITHAN:
 			output2(" Your eyes each feature a secondary pupil, ");
@@ -970,7 +971,7 @@ public function appearance(forTarget:Creature):void
 		else
 		{
 			if(rand(2) == 0) output2(" A huge " + target.getStatusTooltip("Hair Flower") + " orchid grows from the side of your head, its big long petals flopping gaily when you move.");
-			else output2(" Nestled in one side of your head, there is " + indefiniteArticle(target.getStatusTooltip("Hair Flower")) + " orchid. It looks like you stuck it there but it’s very much a part of you, flourishing from your scalp merrily.");
+			else output2(" Nestled at one side of your head, there is " + indefiniteArticle(target.getStatusTooltip("Hair Flower")) + " orchid. It looks like you stuck it there but it’s very much a part of you, flourishing from your scalp merrily.");
 		}
 	}
 	
@@ -992,7 +993,8 @@ public function appearance(forTarget:Creature):void
 			output2(", covered in a layer of " + target.skinFurScales(true, true));
 			break;
 		case GLOBAL.SKIN_TYPE_GOO:
-			output2(", all of them glittering, semi-transparent goo");
+			if(target.hasStatusEffect("Opaque Skin")) output2(", covered in a layer of glistening goo");
+			else output2(", all of them glittering, semi-transparent goo");
 			break;
 		case GLOBAL.SKIN_TYPE_FEATHERS:
 			output2(", covered in " + (rand(2) == 0 ? "patches" : "a layer") + " of " + target.skinFurScales(true, true));
@@ -2154,7 +2156,7 @@ public function appearance(forTarget:Creature):void
 			else output2(" You have thick rabbit legs that terminate in " + target.feet(true,true) + ". At least jumping should be a breeze.");
 			break;
 		case GLOBAL.TYPE_AVIAN:
-			output2(" You have thick, powerful thighs perfect for launching you into the air which ends in slender bird-like legs, covered with ");
+			output2(" You have thick, powerful thighs perfect for launching you into the air which end in slender bird-like legs, covered with ");
 			if(target.hasLegFlag(GLOBAL.FLAG_GOOEY))
 			{
 				output2("feather-shaped shingles of goo down to your " + (target.hasSkinFlag(GLOBAL.FLAG_FLUFFY) ? " ankles" : " knees"));

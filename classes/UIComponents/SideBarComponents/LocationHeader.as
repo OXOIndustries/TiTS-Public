@@ -3,6 +3,7 @@ package classes.UIComponents.SideBarComponents
 	import classes.GameData.GameOptions;
 	import classes.Items.Armor.VoidPlateArmor;
 	import classes.Resources.Busts.CharacterBustOverrideSelector;
+	import classes.Resources.CustomBust;
 	import classes.Resources.StatusIcons;
 	import fl.transitions.Tween;
 	import flash.display.Bitmap;
@@ -498,7 +499,9 @@ package classes.UIComponents.SideBarComponents
 				return;
 			}
 			
-			var o:CharacterBustOverrideSelector = new CharacterBustOverrideSelector(lastBustList, lastBustList.indexOf(lastSetBust));
+			// passing a shallow copy to selector because we get the array ref back on dialog close
+			// and lastBustList.length = 0; in showMultipleBusts would break bust refresh
+			var o:CharacterBustOverrideSelector = new CharacterBustOverrideSelector(lastBustList.slice(), lastBustList.indexOf(lastSetBust));
 			stage.addChild(o);
 		}
 		
@@ -591,17 +594,17 @@ package classes.UIComponents.SideBarComponents
 		
 		private function showSingleBust(name:String):void
 		{
-			var bustT:Class;
+			var bust:CustomBust;
 			
-			if (name == "none") bustT = null;
-			else bustT = NPCBustImages.getBust(name);
+			if (name == "none") bust = null;
+			else bust = NPCBustImages.getCustomBust(name);
 			
 			lastSetBust = name;
 			bustList = [name];
 			lastBustList = [name];
 			_bustSwapControlBack.visible = _bustSwapControl.visible = false;
 			
-			if (bustT != null)
+			if (bust != null)
 			{
 				_bustOrderSet = false;
 				
@@ -609,7 +612,7 @@ package classes.UIComponents.SideBarComponents
 				if (_npcBusts.numChildren == 1)
 				{
 					// If its the same bust we've already got, just make sure its visible
-					if (_npcBusts.getChildAt(0) is bustT)
+					if ((_npcBusts.getChildAt(0) as CustomBust).bustId == bust.bustId)
 					{
 						_npcBusts.visible = true;
 						_bustBackground.visible = true;
@@ -629,10 +632,9 @@ package classes.UIComponents.SideBarComponents
 				}
 				
 				// Display the new bust
-				var bustObj:Bitmap = new bustT();
-				bustObj.smoothing = true;
-				_npcBusts.addChild(bustObj);
-				bustObj.y = -(bustObj.height);
+				bust.init();
+				bust.y = -(bust.height);
+				_npcBusts.addChild(bust);
 				_npcBusts.visible = true;
 				_bustBackground.visible = true;
 				_roomText.filters = [UIStyleSettings.gRoomLocationTextBustGlow];
@@ -652,13 +654,13 @@ package classes.UIComponents.SideBarComponents
 			
 			// Build a list of available busts from the incoming args
 			var available:Array = new Array();
-			var bustT:Class;
+			var bust:CustomBust;
 			
 			for (var i:int = 0; i < args.length; i++)
 			{
-				bustT = NPCBustImages.getBust(args[i]);
-				if (bustT != null) available.push(bustT);
-				if (bustT != null || kGAMECLASS.gameOptions.configuredBustPreferences[args[i]] == "NONE")
+				bust = NPCBustImages.getCustomBust(args[i]);
+				if (bust != null) available.push(bust);
+				if (bust != null || kGAMECLASS.gameOptions.configuredBustPreferences[args[i]] == "NONE")
 				{
 					if(lastBustList.indexOf(args[i]) == -1)
 					{
@@ -682,7 +684,7 @@ package classes.UIComponents.SideBarComponents
 				{
 					for (var ob:int = 0; ob < _npcBusts.numChildren; ob++)
 					{
-						if (_npcBusts.getChildAt(ob) is available[o]) matches++;
+						if ((_npcBusts.getChildAt(ob) as CustomBust).bustId == available[o].bustId) matches++;
 					}
 				}
 				
@@ -725,8 +727,8 @@ package classes.UIComponents.SideBarComponents
 			
 			for (var b:int = 0; b < available.length; b++)
 			{
-				var bustObj:* = new available[b]();
-				bustObj.smoothing = true;
+				var bustObj:CustomBust = available[b];
+				bustObj.init();
 				bustObj.x = tarX;
 				bustObj.y = tarY - bustObj.height;
 				

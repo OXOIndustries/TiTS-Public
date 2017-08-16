@@ -332,7 +332,7 @@ public function shotgunWeddingDream3(cockHolding:Creature):void
 public function reahaDreamSequenceForNerdsByNerdsDesignedByNerdsToArouseNerdsForNerdpletion():void
 {
 	clearOutput();
-	showReaha(true);
+	showBust(reahaBustDisplay(true));
 	author("Shadefalcon");
 	showName("THE\nBARN");
 	//Nerds
@@ -354,7 +354,7 @@ public function reahaDreamSequenceForNerdsByNerdsDesignedByNerdsToArouseNerdsFor
 public function reahaDreamPart2():void
 {
 	clearOutput();
-	showReaha(true);
+	showBust(reahaBustDisplay(true));
 	author("Shadefalcon");
 	showName("PRIZED\nCOW");
 	output("Normally, you’d be content just looking at the flying white arcs and the relieved expression on her adorable face, but this time you’re all too well aware of her quivering body and the slight stream of fem-spunk dripping down along your crotch. It took every ounce of your willpower to control your urges when she just sat on you, but feeling her naked skin on yours, and hearing her groans of pleasure, there’s nothing that can stop your mast");

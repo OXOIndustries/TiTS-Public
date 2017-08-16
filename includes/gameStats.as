@@ -2073,6 +2073,7 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b>* Status:</b>");
 				switch(flags["SATELLITE_QUEST"])
 				{
+					case -2: output2(" Accepted, Lost hard drive, Failed"); break;
 					case -1: output2(" Refused to help Pyrite Rep"); break;
 					case 1:
 						output2(" Accepted");
@@ -2082,7 +2083,16 @@ public function displayQuestLog(showID:String = "All"):void
 					case 2: output2(" Accepted, Obtained and returned hard drive, Completed"); break;
 					default: output2(" <i>In progress...</i>"); break;
 				}
-				if(flags["SATELLITE_GRYVAIN_DEFEAT"] != undefined) output2("\n<b>* Gryvain Agent:</b> Defeated her in combat");
+				if(flags["SATELLITE_GRYVAIN_DEFEAT"] != undefined)
+				{
+					output2("\n<b>* Gryvain Agent:</b>");
+					switch(flags["SATELLITE_GRYVAIN_DEFEAT"])
+					{
+						case -1: output2(" Lost against her in combat"); break;
+						case 0: output2(" Did not engage her in combat"); break;
+						case 1: output2(" Defeated her in combat"); break;
+					}
+				}
 				sideCount++;
 			}
 			// Zil Capture
@@ -3960,6 +3970,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["FUCKED_BY_HALEY"] != undefined) output2(", Fucked by her");
 					if(flags["USED_MILKER"] != undefined) output2("\n<b>* Haley, Times Used Taur-Milker:</b> " + flags["USED_MILKER"]);
 					if(StatTracking.getStat("contests/haley milker losses") + StatTracking.getStat("contests/haley milker wins") > 0) output2("\n<b>* Haley, Milking Competition, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/haley milker wins") + "/" + StatTracking.getStat("contests/haley milker losses") + ", of " + (StatTracking.getStat("contests/haley milker losses") + StatTracking.getStat("contests/haley milker wins")) + " games");
+					if(StatTracking.getStat("haley milker/cum milked") > 0) output2("\n<b>* Haley, Milking Competition, Your Cum Milked:</b> " + StatTracking.getStat("haley milker/cum milked") + " mLs");
 					if(pc.hasStatusEffect("Won Haley's Credits")) output2("\n<b>* Haley, Milking Competition, Time Until Next Prize:</b> " + prettifyMinutes(pc.getStatusMinutes("Won Haley's Credits")));
 				}
 				// Millie milks!
@@ -4489,7 +4500,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["UVETO_HUSKAR_FOURSOME_MOUNTUP"] != undefined) output2("\n<b>* Anno, Times Mounted with Marina and Galina:</b> " + flags["UVETO_HUSKAR_FOURSOME_MOUNTUP"]);
 					if(flags["UVETO_HUSKAR_FOURSOME_POUNDPUPPIES"] != undefined) output2("\n<b>* Anno, Times Pounded Both Marina and Galina:</b> " + flags["UVETO_HUSKAR_FOURSOME_POUNDPUPPIES"]);
 					if(annoIsPet()) output2("\n<b>* Anno, Times Walked:</b> " + annoTimesWalked());
-					if (flags["ANNO_MAID_SEX"] != undefined) output2("\n<b>* Anno, Times Fucked Her in Maid Outfit:</b> " + flags["ANNO_MAID_SEX"]);
+					if(flags["ANNO_MAID_SEX"] != undefined) output2("\n<b>* Anno, Times Fucked Her in Maid Outfit:</b> " + flags["ANNO_MAID_SEX"]);
 				}
 				variousCount++;
 			}
@@ -5040,12 +5051,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			//The Entite
-			if (flags["SEER_MET"] != undefined)
+			if(flags["SEER_MET"] != undefined)
 			{
 				output2("\n<b><u>The Entite</u></b>");
 				//The Seer
 				output2("\n<b>* The Seer:</b> Met her... you think");
-				if (flags["SEER_SEXED"] != undefined) output2("\n<b>* The Seer, Times Sexed:</b> " + flags["SEER_SEXED"]);
+				if(flags["SEER_SEXED"] != undefined) output2("\n<b>* The Seer, Times Sexed:</b> " + flags["SEER_SEXED"]);
 				variousCount++;
 			}
 			// Silken Serenity
@@ -5893,10 +5904,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Spunk Bunker
-			if(flags["KIRO_KALLY_TEAM_MILKED"] != undefined || flags["VIXETTE_MOUTHGASMED"] != undefined)
+			if(flags["KIRO_KALLY_TEAM_MILKED"] != undefined || flags["VIXETTE_MOUTHGASMED"] != undefined || StatTracking.getStat("spunk bunker/cum milked") > 0)
 			{
 				output2("\n<b><u>Spunk Bunker</u></b>");
 				if(flags["KIRO_KALLY_TEAM_MILKED"] != undefined) output2("\n<b>* Services, Times Cock-Milked with Kiro and Kally:</b> " + flags["KIRO_KALLY_TEAM_MILKED"]);
+				if(StatTracking.getStat("spunk bunker/cum milked") > 0) output2("\n<b>* Services, Cock-Milker, Cum Milked:</b> " + StatTracking.getStat("spunk bunker/cum milked") + " mLs");
 				if(flags["VIXETTE_MOUTHGASMED"] != undefined) output2("\n<b>* Vixette, Times She Sucked Your Dick:</b> " + flags["VIXETTE_MOUTHGASMED"]);
 				variousCount++;
 			}
@@ -5920,8 +5932,8 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Brandt:</b> Met her");
 				if(flags["BRANDT_FLIRTED"] != undefined) output2(", Flirted with");
 				if(flags["BRANDT_HATES_YOU"] != undefined) output2(", She despises you");
-				if(flags["SEXED_BRANDT"] != undefined)  output2("\n<b>* Brandt, Times Sexed:</b> " + flags["SEXED_BRANDT"]);
-				if(flags["BRANDT_ANAL"] != undefined)  output2("\n<b>* Brandt, Times Fucked Her Ass:</b> " + flags["BRANDT_ANAL"]);
+				if(flags["SEXED_BRANDT"] != undefined) output2("\n<b>* Brandt, Times Sexed:</b> " + flags["SEXED_BRANDT"]);
+				if(flags["BRANDT_ANAL"] != undefined) output2("\n<b>* Brandt, Times Fucked Her Ass:</b> " + flags["BRANDT_ANAL"]);
 				variousCount++;
 			}
 			// Warden
@@ -5935,9 +5947,9 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["TAMTAM_PRISONED"] != undefined || flags["KASKA_PRISONED"] != undefined || flags["KHORGAN_PRISONED"] != undefined)
 			{
 				output2("\n<b><u>Inmate Visitations</u></b>");
-				if(flags["TAMTAM_PRISONED"] != undefined)  output2("\n<b>* Tam, Times Sexed:</b> " + flags["TAMTAM_PRISONED"]);
-				if(flags["KASKA_PRISONED"] != undefined)  output2("\n<b>* Kaska, Times Sexed:</b> " + flags["KASKA_PRISONED"]);
-				if(flags["KHORGAN_PRISONED"] != undefined)  output2("\n<b>* Khorgan, Times Sexed:</b> " + flags["KHORGAN_PRISONED"]);
+				if(flags["TAMTAM_PRISONED"] != undefined) output2("\n<b>* Tam, Times Sexed:</b> " + flags["TAMTAM_PRISONED"]);
+				if(flags["KASKA_PRISONED"] != undefined) output2("\n<b>* Kaska, Times Sexed:</b> " + flags["KASKA_PRISONED"]);
+				if(flags["KHORGAN_PRISONED"] != undefined) output2("\n<b>* Khorgan, Times Sexed:</b> " + flags["KHORGAN_PRISONED"]);
 				variousCount++;
 			}
 		}

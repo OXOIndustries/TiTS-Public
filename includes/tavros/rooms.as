@@ -1,6 +1,16 @@
 import classes.RoomClass;
 public function initTavrosRooms():void
 {
+	//Room for holding PC with no exits for oddball locations that are not mapped
+	rooms["TAVROS_TEMPO"] = new RoomClass(this);
+	rooms["TAVROS_TEMPO"].roomName = "\nROOM";
+	rooms["TAVROS_TEMPO"].description = "";
+	rooms["TAVROS_TEMPO"].planet = "TAVROS STATION";
+	rooms["TAVROS_TEMPO"].system = "SYSTEM: KALAS";
+	rooms["TAVROS_TEMPO"].moveMinutes = 1;
+	rooms["TAVROS_TEMPO"].addFlag(GLOBAL.INDOOR);
+	rooms["TAVROS_TEMPO"].addFlag(GLOBAL.PRIVATE);
+
 	rooms["HOTEL ROOM"] = new RoomClass(this);
 	rooms["HOTEL ROOM"].roomName = "HOTEL\nROOM";
 	rooms["HOTEL ROOM"].description = "This small, station-bound room is attached to Anon’s Bar and Board. The quarters are cramped, there are no windows, and worst of all, your cousin has a headstart on locking down your deceased father’s fortune. Luckily, the galaxy is vast. Your cousin won’t be claiming anything for at least a few months if the scale of your father’s challenge is anything like you expect. The door to the east is unlocked, leading back into the hallway above the bar. <b>Once you leave, it will seal shut behind you, since you only payed for one night.</b>";

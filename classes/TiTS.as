@@ -26,10 +26,10 @@
 	import flash.net.SharedObject;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.system.Capabilities;
 	import flash.text.Font;
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
-	import flash.display.MovieClip;
 	import flash.text.Font;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
@@ -134,6 +134,7 @@
 		include "../includes/follower/multi_interactions.as";
 		include "../includes/follower/paige.as";
 		include "../includes/follower/paigeSex.as";
+		include "../includes/follower/paigeSpar.as";
 		include "../includes/follower/pippa.as";
 		include "../includes/follower/siegwulfe.as";
 		include "../includes/follower/yammi.as";
@@ -356,6 +357,7 @@
 		// GASTIGOTH!
 		include "../includes/gastigoth/gastigoth.as";
 		include "../includes/gastigoth/rooms.as";
+		include "../includes/gastigoth/sam.as";
 		
 		// Karaquest 2- Karaharder.
 		include "../includes/events/karaquest2/content.as";
@@ -504,7 +506,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.79";
+			version = "0.7.82";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -581,12 +583,19 @@
 		
 		private function uncaughtErrorHandler(e:UncaughtErrorEvent):void
 		{
+			output("<b>[Uncaught " + getQualifiedClassName(e.error) + "]</b>", false, false);
+			
 			if (e.error is Error)
 			{
 				var ee:Error = e.error as Error;
 				
 				output("\n\n<b>Something bad happened!</b>\n\n<b>Please report this message, and include any prior scene text or a description of what you did before seeing this message:</b>\n\n");
-				output("Version: " + version + "\n\n");
+				//output("Version: " + version + "\n\n");
+				output("Flash Player:  " + Capabilities.playerType + " - " + Capabilities.os + "\n");
+				output("Flash Version: " + Capabilities.version + "\n");
+				output("Game Version: " + version + "\n\n");
+				output("Error Name: " + ee.name + "\n", false, false);
+				output("Error Mesg: " + ee.message + "\n", false, false);
 				output(ee.getStackTrace(), false, false);
 				clearMenu();
 				addButton(14, "Next", mainGameMenu);

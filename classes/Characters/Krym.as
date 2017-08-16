@@ -40,7 +40,7 @@ package classes.Characters
 			this.a = "";
 			this.capitalA = "";
 			// this.long = "You're fighting a pirate techie, an ausar woman in a flight suit with a machine pistol at her hip. She's got a shock of blonde hair, perky breasts under her suit, and a shield generator that's thrumming with overcharged energy."
-			this.long = "The woman standing between you and the warmth of the camp isn’t terribly imposing in her own right, standing shy of six feel and kitted up in snowy armor that hugs her womanly curves almost like a bodysuit, but she’s packing enough weaponry to arm a small colony. Krym is carrying a crackling energy pike in one hand and a hardlight shield in the other, and you can see a laser pistol slung on one of her hips... and something tells you all those turrets and traps around the arena aren’t off-limits to the feisty Lancer.";
+			this.long = "The woman standing between you and the warmth of the camp isn’t terribly imposing in her own right, standing shy of six feet and kitted up in snowy armor that hugs her womanly curves almost like a bodysuit, but she’s packing enough weaponry to arm a small colony. Krym is carrying a crackling energy pike in one hand and a hardlight shield in the other, and you can see a laser pistol slung on one of her hips... and something tells you all those turrets and traps around the arena aren’t off-limits to the feisty Lancer.";
 			this.customBlock = "Her armor deflects your attack with an alarming ease.";
 			this.isPlural = false;
 			isLustImmune = false;

@@ -425,7 +425,11 @@
 		}
 		override public function get bustDisplay():String
 		{
-			return "AZRA";
+			var sBust:String = "AZRA";
+			
+			if(breastRows[0].breastRatingRaw > 15 || isPregnant()) sBust += "_BIG";
+			
+			return sBust;
 		}
 	}
 

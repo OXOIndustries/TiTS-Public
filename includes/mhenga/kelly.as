@@ -402,8 +402,8 @@ public function kellySkySapCollect():void
 	{
 		output("Kelly looks up at you as you enter, shooting you her warm, trademark smile, <i>“Oh, [pc.name]! Guess what? We’ve got a new product for sale, all thanks to those sap samples you keep bringing us.”</i>");
 		output("\n\n<i>“It’s called ‘Synth Sap’ - not a terribly original name, if you ask me.”</i>");
-		output("\n\nYou ask Kelly what it does. She brings up a long looking holodoc and reads from it. <i>“... Well, it’s a transformative. Apparently Doctor Haswell tried to create a substance that would recreate the extinct vanae male and bring the species back to life. That’s Xenogen for you - shaking up one world at a time.”</i>");
-		output("\n\nDid he succeed? The secretary flips down the page. She shakes her head. <i>“... Almost, but not quite. If you consume it, it’ll give you the external appearance of what a vanae male was like.”</i>");
+		output("\n\nYou ask Kelly what it does. She brings up a long looking holodoc and reads from it. <i>“...Well, it’s a transformative. Apparently Doctor Haswell tried to create a substance that would recreate the extinct vanae male and bring the species back to life. That’s Xenogen for you - shaking up one world at a time.”</i>");
+		output("\n\nDid he succeed? The secretary flips down the page. She shakes her head. <i>“...Almost, but not quite. If you consume it, it’ll give you the external appearance of what a vanae male was like.”</i>");
 		output("\n\n<i>“Your genitals will transform and apparently you’ll get glow-in-the-dark semen,”</i> Kelly raises an eyebrow, <i>“That sounds... pretty nifty. However, except for a sharp virility spike, your sperm will remain untouched.”</i>");
 		output("\n\n<i>“If you want to buy some, just ask. We’ve got a fair bit in stock. You’ll need to sign a disclaimer before you try it, though -- cutting edge products and all that.”</i>");
 		

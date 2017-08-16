@@ -1000,7 +1000,7 @@ public function eatOutPexigoo4():void
 	clearOutput();
 	showYammiAndPexiga(true);
 	author("Adjatha");
-	output("Pulling back from the pexiga’s pussy, you move to Yammi’s side to make sure she’s alright. Her breathing is shallow but steady and while her scarlet eyes don’t seem to respond to light, a faint mumble of wordless bliss gurgles up from her emerald lips. Still on the table, [pexiga.name] looks at you with a glance of panting helplessness. She tries to tug her tongue free, but the hefty piercing inside the orange cook is far too large for the clenching girl’s overwrought pussy to release. In all likelihood, she’ll be stuck there till Yammi comes to.");
+	output("Pulling back from the pexiga’s pussy, you move to Yammi’s side to make sure she’s alright. Her breathing is shallow but steady and while her scarlet eyes don’t seem to respond to light, a faint mumble of wordless bliss gurgles up from her emerald lips. Still on the table, [pexiga.name] looks at you with a glance of panting helplessness. She tries to tug her tongue free, but the hefty piercing inside the orange cook is far too large for the clenching girl’s overwrought pussy to release. In all likelihood, she’ll be stuck there until Yammi comes to.");
 	output("\n\nSeems a shame to leave them like this, but there’s nothing you can do for your crewmates right now. Maybe they’ll learn a lesson on limits, you muse, licking the pexiga’s heady flavor from your lips.");
 	processTime(3);
 	pc.energy(33);
