@@ -37,34 +37,15 @@ public function emmyIsCrew():Boolean
 {
 	return false;
 }
+/*Moved these into the Creature block.*/
 public function applyCumSoaked(arg:Creature):void
 {
-	var desc:String = "";
-	
-	if(!arg.hasStatusEffect("Cum Soaked"))
-	{
-		if(arg == chars["PC"]) desc = "You’re drenched in cum! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
-		else desc = arg.capitalA + arg.short + " is completely covered in cum!";
-		arg.createStatusEffect("Cum Soaked",1,0,0,0,false,"Icon_Splatter",desc,false,0,0xB793C4);
-	}
-	else arg.addStatusValue("Cum Soaked",1,1);
-	
-	if(arg == chars["PC"]) mimbraneFeed("all");
+	arg.applyCumSoaked();
 }
 
 public function applyPussyDrenched(arg:Creature):void
 {
-	var desc:String = "";
-	
-	if(!arg.hasStatusEffect("Pussy Drenched"))
-	{
-		if(arg == chars["PC"]) desc = "You’re drenched in girl-cum! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
-		else desc = arg.capitalA + arg.short + " is completely covered in girl-cum!";
-		arg.createStatusEffect("Pussy Drenched",1,0,0,0,false,"Icon_Water_Drop",desc,false,0,0xB793C4);
-	}
-	else arg.addStatusValue("Pussy Drenched",1,1);
-	
-	if(arg == chars["PC"]) mimbraneFeed("all");
+	arg.applyPussyDrenched();
 }
 
 //Push it out?

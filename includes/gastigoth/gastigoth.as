@@ -1192,6 +1192,8 @@ public function sexHaverTerminalTime(fromBack:Boolean = false):void
 		output("\n\\\[Pirate\\\] Khorgan");
 		addButton(button++,"Khorgan",prisonerStatline,"Khorgan","Captain Khorgan","Pay a visit to the bad-ass space-pirate you defeated on Tarkus.");
 	}
+	output("\n\\\[Criminal Scum\\\] Sam");
+	addButton(button++,"Sam",prisonerStatline,"Sam","Sam","Pay a visit to Sam.");
 	/*
 	if(flags["DR_BADGER_TURNED_IN"] == 0)
 	{
@@ -1231,6 +1233,17 @@ public function prisonerStatline(prisonerName:String):void
 	*/
 	switch(prisonerName)
 	{
+		case "Sam":
+			showSam();
+			output("<b>Name:</b> Samurenth <i>“Sam”</i> Tyraso");
+			output("\n<b>Age:</b> 24");
+			output("\n<b>Sex:</b> Female");
+			output("\n<b>Race:</b> Ausar");
+			output("\n\nConvicted of: 2 counts of Piracy, 7 counts of Grand Hacking, 17 counts of Cyber Theft, 3 counts of Cyber Assault, 4,478 counts of Identity Theft, Kidnapping, Assault With a Deadly Weapon, 2 counts of Attempted Homicide");
+			if(silly) output(", Cyber Bullying, and Hand Holding");
+			output(".");
+			addButton(0,"Visit",visitAPrisoner,"Sam","Sam","Visit the ausar with a rap sheet a mile long. She's anything but a \"Good Girl.\"\n\n<b>Cost:</b> 1,000 credits");
+			break;
 		case "Tamtam":
 			showTamtamPrison();
 			output("<b>Name:</b> Tam Tam");
@@ -1322,6 +1335,7 @@ public function prisonerTimes(prisonerName:String):void
 		case "Badger": /* 9999 return; */ break;
 		case "Zaalt": /* 9999 return; */ break;
 		case "Lah": /* 9999 return; */ break;
+		case "Sam": samsPrisonRoom(); return; break;
 	}
 	clearOutput();
 	clearBust();

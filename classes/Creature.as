@@ -19745,6 +19745,38 @@
 					break;
 			}
 		}
+		public function applyCumSoaked():void
+		{
+			var desc:String = "";
+			
+			if(!this.hasStatusEffect("Cum Soaked"))
+			{
+				if(this is PlayerCharacter) desc = "You’re drenched in cum! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
+				else desc = this.capitalA + this.short + " is completely covered in cum!";
+				this.createStatusEffect("Cum Soaked",1,0,0,0,false,"Icon_Splatter",desc,false,0,0xB793C4);
+			}
+			else this.addStatusValue("Cum Soaked",1,1);
+			
+			if(this is PlayerCharacter) kGAMECLASS.mimbraneFeed("all");
+		}
+		public function applyPussyDrenched():void
+		{
+			applyPussySoaked();
+		}
+		public function applyPussySoaked():void
+		{
+			var desc:String = "";
+			
+			if(!this.hasStatusEffect("Pussy Drenched"))
+			{
+				if(this is PlayerCharacter) desc = "You’re drenched in girlcum! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
+				else desc = this.capitalA + this.short + " is completely covered in girlcum!";
+				this.createStatusEffect("Pussy Drenched",1,0,0,0,false,"Icon_Water_Drop",desc,false,0,0xB793C4);
+			}
+			else this.addStatusValue("Pussy Drenched",1,1);
+			
+			if(this is PlayerCharacter) kGAMECLASS.mimbraneFeed("all");
+		}
 	}
 }
 
