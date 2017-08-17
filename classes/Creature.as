@@ -12439,14 +12439,14 @@
 						adjectives.push("big-but-fit ");
 						adjectives.push("powerful, squeezable ");
 						adjectives.push("large ");
-						adjectives.push("callipygean ");
+						adjectives.push("callipygian ");
 				}
 				//Nondescript
 					else if (tone >= 30 && !softbutt) {
 						adjectives.push("squeezable ");
 						adjectives.push("large ");
 						adjectives.push("substantial ");
-						adjectives.push("callipygean ");
+						adjectives.push("callipygian ");
 				}
 				//FLABBAH
 				else {
@@ -12459,7 +12459,7 @@
 						adjectives.push("cushiony ");
 						adjectives.push("plush ");
 						adjectives.push("pleasantly plump ");
-						adjectives.push("callipygean ");
+						adjectives.push("callipygian ");
 				}
 			} else if (buttRating() < 13) {
 				//TOIGHT LIKE A TIGER
@@ -17764,7 +17764,7 @@
 			if(InCollection(partName, "total", "all", "body", "everything", "full")) partName = "total";
 			else if(InCollection(partName, "breast", "breasts", "boob", "boobs", "tit", "tits")) partName = "breast";
 			else if(InCollection(partName, "belly", "tummy", "stomach", "womb")) partName = "belly";
-			else if(InCollection(partName, "butt", "ass", "booty", "rump", "rear", "hiney")) partName = "butt";
+			else if(InCollection(partName, "butt", "ass", "booty", "rump", "rear", "heinie")) partName = "butt";
 			else if(InCollection(partName, "clitoris", "clit", "clits", "button", "buzzer")) partName = "clitoris";
 			else if(InCollection(partName, "penis", "penises", "cock", "cocks", "dong", "wiener")) partName = "penis";
 			else if(InCollection(partName, "testicle", "testicles", "balls", "scrotum", "nuts", "prostate")) partName = "testicle";
