@@ -84,8 +84,8 @@ public function anonsBarWaitressApproach():void {
 		output("\n\n<i>“Go ahead and stare all you want sweetie, but can I get you anything to drink while you do?”</i> she asks with a knowing grin that shakes you from your stupor. <i>“My name is Sellesy, and I’ll be taking care of you all night...”</i> she continues, adding a sultry tone to the end, which you could easily have missed, hard as it is to look up from the incredible bust sitting directly in the center of your vision. <i>“We have quite a few delicious drinks ‘on tap’ tonight!”</i> she notes, seemingly not minding your fascination, and giggles away to herself, amused by her own joke.");
 		//[CHOICE: ORDER A DRINK / LEAVE]
 		clearMenu();
-		addButton(0,"OrderDrink",firstDrinkFromSellesy);
-		addButton(14,"Leave",mainGameMenu);
+		addButton(0,"OrderDrink", firstDrinkFromSellesy, true, "Order Drink", "Order a drink for 50 credits.");
+		addButton(14, "Leave", mainGameMenu);
 	}
 	//************************
 	//1B. “Returning to the Bar”
@@ -96,10 +96,10 @@ public function anonsBarWaitressApproach():void {
 		output("\n\n<i>“Welcome back baby. I knew you couldn’t stay away for long. Are you feeling THIRSTY? Or were you hoping to skip straight to the ‘deposit’ this time?”</i> she asks with a knowing grin.");
 		//[CHOICE: ORDER A DRINK / LEAVE]
 		clearMenu();
-		addButton(0,"OrderDrink",firstDrinkFromSellesy,false);
-		addButton(14,"Leave",mainGameMenu);
+		addButton(0, "OrderDrink", firstDrinkFromSellesy, false, "Order Drink", "Order a drink for 50 credits.");
+		addButton(14, "Leave", mainGameMenu);
 	}
-	
+	if(pc.credits < 50) addDisabledButton(0, "OrderDrink", "Order Drink", "You don’t have the 50 credits to order a drink!");
 }
 
 //*********************************
@@ -151,7 +151,7 @@ public function firstDrinkFromSellesy(first:Boolean = true):void {
 }
 
 public function genderlessEpilogueForSellesy():void {
-	output("\n\nSellesy openly presses against your groin and then frowns, obviously disappointed with what she finds there. Before you have a moment to react, she spins away with a murmured “thank you.”");
+	output("\n\nSellesy openly presses against your groin and then frowns, obviously disappointed with what she finds there. Before you have a moment to react, she spins away with a murmured <i>“thank you.”</i>");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -162,7 +162,7 @@ public function firstTimeWithSellesyForCocks():void {
 	showSellesy();
 	author("Mr. Writer");
 	output("The gyration of her hips increase in intensity. A series of delicate little moans escapes her, biting her lip in ecstasy. ");
-	//For massive cocks, 24” plus: 
+	//For massive cocks, 24" plus: 
 	if(pc.shortestCockLength() >= 24) 
 	{
 		output("Your massive cock, already hardened by the experience thus far");

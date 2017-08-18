@@ -57,6 +57,28 @@ public function genericRareDrops(loot:Array):Array
 	return loot;
 }
 
+public function gimmeBooks():void
+{
+	var tempLoot:Array = [];
+	
+	tempLoot.push(new BecomingOneOfTheGirls());
+	tempLoot.push(new BXBIOne());
+	tempLoot.push(new BXBITwo());
+	tempLoot.push(new CapturedByTheDemons());
+	tempLoot.push(new EightClicks());
+	tempLoot.push(new FuckTheSystem());
+	tempLoot.push(new SatyrSlave());
+	tempLoot.push(new StolenGoods());
+	tempLoot.push(new TentaclesAndTanukis());
+	
+	clearOutput();
+	output("Beep boop. All the codes are ready!");
+	output("\n\n");
+	
+	clearMenu();
+	addButton(0, "Next", itemCollect, tempLoot);
+}
+
 public function isEaster():Boolean
 {
 	//checkDate(day:int, month:int, dayRange:int)

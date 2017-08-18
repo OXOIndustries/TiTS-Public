@@ -4376,10 +4376,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Colenso's
-			if(flags["ASKED_COLENSO_ABOUT_HIS_THEORIES"] != undefined)
+			if(flags["BEEN_TO_COLENSOS"] != undefined)
 			{
 				output2("\n<b><u>Colenso’s Junk</u></b>");
-				output2("\n<b>* Colenso:</b> Met him, Asked about his theories");
+				output2("\n<b>* Colenso:</b> Met him");
+				if(flags["ASKED_COLENSO_ABOUT_HIS_THEORIES"] != undefined) output2(", Asked about his theories");
 				variousCount++;
 			}
 			// Doctor Lash
