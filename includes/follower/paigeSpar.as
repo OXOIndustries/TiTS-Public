@@ -20,17 +20,17 @@ public function paigeSparringScreen():void
 {
 	clearOutput();
 	showPaige();
-	if(paigeIsCrew()) output("<b>You are sparring Paige!</b>\n\nYou're standing in your ship's cargo hold. Your Ausar opponent stands across from you, her fists raised and close to her face. Her stance is wide and steady; unaggressive, yet you know that a moment's hesitation will get you opened up. Her clothing offers little protection, but her muscles serve as her armor. Now that she can see, her determination to earn her victory has never been sturdier, and she's about to prove it to you.");
-	else output("<b>You are sparring Paige!</b>\n\nYou're standing in her yoga class. Your Ausar opponent stands across from you, her fists raised and close to her face. Her stance is wide and steady, but unaggressive; she isn't about to make the first move. Despite her battle-unprepared clothing and her disability, you know that this fight isn't going to be an easy one. She wants to prove herself <i>to</i> herself, and she'll fight like a beast to do it.");
-	output("\n\n<u>Your HP:</u> " + pc.statusEffectv2("PAIGE_SPAR") + "\n<u>Paige's HP:</u> " + pc.statusEffectv1("PAIGE_SPAR"));
+	if(paigeIsCrew()) output("<b>You are sparring Paige!</b>\n\nYou’re standing in your ship’s cargo hold. Your Ausar opponent stands across from you, her fists raised and close to her face. Her stance is wide and steady; unaggressive, yet you know that a moment’s hesitation will get you opened up. Her clothing offers little protection, but her muscles serve as her armor. Now that she can see, her determination to earn her victory has never been sturdier, and she’s about to prove it to you.");
+	else output("<b>You are sparring Paige!</b>\n\nYou’re standing in her yoga class. Your Ausar opponent stands across from you, her fists raised and close to her face. Her stance is wide and steady, but unaggressive; she isn’t about to make the first move. Despite her battle-unprepared clothing and her disability, you know that this fight isn’t going to be an easy one. She wants to prove herself <i>to</i> herself, and she’ll fight like a beast to do it.");
+	output("\n\n<u>Your HP:</u> " + pc.statusEffectv2("PAIGE_SPAR") + "\n<u>Paige’s HP:</u> " + pc.statusEffectv1("PAIGE_SPAR"));
 	output("\n\nWhat will you do?");
 	//Hook -> Uppercut -> Jab
 	clearMenu();
-	addButton(0,"Hook",paigeSparAction,1,"Hook","Throw a hook to hit her from the side. It ought to shot down an uppercut in its tracks, assuming she doesn't jab you first.");
-	addButton(1,"Uppercut",paigeSparAction,2,"Uppercut","Clock her in the jaw with an uppercut. You should be able to block any jabs. Just hope she doesn't tag you with a right hook!");
-	addButton(2,"Jab",paigeSparAction,3,"Jab","Hit her with a quick jab. It'll interrupt her attempts at throwing a hook but leave you open to an uppercut.");
+	addButton(0,"Hook",paigeSparAction,1,"Hook","Throw a hook to hit her from the side. It ought to shot down an uppercut in its tracks, assuming she doesn’t jab you first.");
+	addButton(1,"Uppercut",paigeSparAction,2,"Uppercut","Clock her in the jaw with an uppercut. You should be able to block any jabs. Just hope she doesn’t tag you with a right hook!");
+	addButton(2,"Jab",paigeSparAction,3,"Jab","Hit her with a quick jab. It’ll interrupt her attempts at throwing a hook but leave you open to an uppercut.");
 	//v1 = paige HP, v2 = pc HP, v3 = next turn action :3
-	addButton(4,"Yield",yield2Paige,undefined,"Yield","Do this if you're not interested in getting hurt just to satisfy Paige's pride.");
+	addButton(4,"Yield",yield2Paige,undefined,"Yield","Do this if you’re not interested in getting hurt just to satisfy Paige’s pride.");
 }
 
 public function paigeExitWrapper():void
@@ -109,7 +109,7 @@ public function paigeSparAction(arg:Number = 1):void
 	if(!hit)
 	{
 		output(" ");
-		if(rand(4) == 0) output("Paige deftly ducks from your wide swing, her body moving with practiced fluidity. You could swear, with her reflexes, she wasn't actually blind.");
+		if(rand(4) == 0) output("Paige deftly ducks from your wide swing, her body moving with practiced fluidity. You could swear, with her reflexes, she wasn’t actually blind.");
 		else if(rand(3) == 0) output("Paige steps away from your attack, and you run out of reach, stumbling forward. It was as if she saw your movement coming from miles away.");
 		else if(rand(2) == 0) output("Paige sidesteps your strike, giving her full access to your open side. Her clouded eyes are focused on yours with an eerie discipline – she doesn’t even need eyes to read your body language.");
 		else output("Paige, with impeccable reflexes belying her disability and a cocksure expression on her face, blocks your attack easily and maneuvers herself into your now-open flank.");
@@ -143,7 +143,7 @@ public function paigeSparAction(arg:Number = 1):void
 			{
 				output("Her left hook never gets a chance to connect, not after you tagged her with that brutal jab.");
 			}
-			else if(paigeMove == 2) output("She's reeling so badly that her aggressive attempt at an uppercut completely misses you.");
+			else if(paigeMove == 2) output("She’s reeling so badly that her aggressive attempt at an uppercut completely misses you.");
 			else output("Her jab glances off your elbow. Not today, Paige!");
 		}
 		// if Paige’s counterattack is successful
@@ -198,7 +198,7 @@ public function paigeSparAction(arg:Number = 1):void
 		{
 			if(rand(3) == 0) output("\n\nPaige crouches low, ready for the next exchange.");
 			else if(rand(2) == 0) output("\n\nPaige seems to be looking right through you.");
-			else output("\n\nPaige's left ear flicks in irritation, despite her smile.");
+			else output("\n\nPaige’s left ear flicks in irritation, despite her smile.");
 		}
 		else if(nextMove == 3)
 		{
@@ -548,7 +548,7 @@ public function paigeSparringVictory():void
 	processTime(5);
 	clearMenu();
 	addButton(0,"Oral",FFWO,undefined,"Oral","What better way to assert yourself over Paige than to have her service you?");
-	if((pc.hasCock() && pc.cockThatFits(paige.vaginalCapacity(0)) >= 0) || pc.hasVagina()) addButton(1,"Vaginal",FFWV,undefined,"FFWV","Paige has already taken a beating; let’s see if she can take a pounding.");
+	if((pc.hasCock() && pc.cockThatFits(paige.vaginalCapacity(0)) >= 0) || pc.hasVagina()) addButton(1,"Vaginal",FFWV,undefined,"Vaginal","Paige has already taken a beating; let’s see if she can take a pounding.");
 	else if(pc.hasCock()) addDisabledButton(1,"Vaginal","Vaginal","Tab D is too big for slot P.");
 	else addDisabledButton(1,"Vaginal","Vaginal","You need genitals to do this.");
 	if(flags["PAIGE_ANAL"] != undefined)
@@ -896,7 +896,7 @@ public function FFWVR(args:Array):void
 	processTime(5);
 	pc.lust(10);
 	clearMenu();
-	addButton(0,"Don't Care",FFWVDC,args);
+	addButton(0,"Don’t Care",FFWVDC,args);
 	addButton(1,"Own Her",FFWVOH,args);
 }
 
@@ -949,7 +949,7 @@ public function FFWAR(args:Array):void
 	// end scene (scene: FFWAR)
 	clearMenu();
 	addButton(0,"Own Her",FFWAOH,args);
-	addButton(1,"Just Give 'Er",FFWAJGE,args);
+	addButton(1,"Just Give ‘Er",FFWAJGE,args);
 }
 
 //[=Enjoy It=]

@@ -3616,7 +3616,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_PAIGE"] != undefined)
 				{
 					output2("\n<b>* Paige:</b> Met her");
-					if(flags["SEXED_PAIGE"] > 0) output2("\n<b>* Paige, Times Sexed:</b> " + flags["SEXED_PAIGE"]);
+					if(paigeRecruited())
+					{
+						output2(", Crew member");
+						if(paigeIsCrew()) output2(" (Onboard Ship)");
+					}
+					if(flags["SEXED_PAIGE"] != undefined) output2("\n<b>* Paige, Times Sexed:</b> " + flags["SEXED_PAIGE"]);
 				}
 				// Semith
 				if(flags["MET_SEMITH"] == true)

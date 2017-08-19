@@ -1320,8 +1320,8 @@ public function sexWithPaige():void
 	else if(pc.cLength(0) > paige.vaginalCapacity(0)) addDisabledButton(0,"Vanilla","Vanilla","You might literally split the poor girl in half with your monster! Maybe you should look into some reduction to have sex with Paige this way.");
 	else addButton(0,"Vanilla",SSVI,undefined,"Vanilla","Just straight, no-nonsense ugly bumping.");
 	if(!pc.hasCock()) addDisabledButton(1,"Anal","Anal","You need a penis to have sex with Paige this way!");
-	else if(pc.cockVolume(0) > paige.analCapacity()) addDisabledButton(1,"Anal","Anal","You need a smaller penis to take the back door. You don't want to hurt her!");
-	else addButton(1,"Anal",SSAI,undefined,"Anal","Knowing Paige, she'll probably let you do this. Couldn't hurt to try!");
+	else if(pc.cockVolume(0) > paige.analCapacity()) addDisabledButton(1,"Anal","Anal","You need a smaller penis to take the back door. You don’t want to hurt her!");
+	else addButton(1,"Anal",SSAI,undefined,"Anal","Knowing Paige, she’ll probably let you do this. Couldn’t hurt to try!");
 
 	if(pc.hasCock() && !pc.hasVagina()) addDisabledButton(2,"Tribadism","Tribadism","Vaginas only – no penises allowed!");
 	else if(pc.hasCock()) addDisabledButton(2,"Tribadism","Tribadism","You can’t do this if you have a penis! Why not just use it instead?");
@@ -1334,7 +1334,7 @@ public function sexWithPaige():void
 	else addButton(3,"Down On You",SSDY,undefined,"Down On You","You don’t have anything for Paige to play with, but if you asked nicely, she’d at least pretend.");
 	addButton(4,"Down On Her",SSDH,undefined,"Down On Her","You wouldn’t mind going down on Paige this time. She’d probably love to hear you say that.");
 	if(paigeIsCrew()) addButton(5,"Reenact",SSR,undefined,"Reenact","Replay the night you and Paige first had sex. To the best of your memory, anyway...");
-	else addDisabledButton(5,"Locked","Locked","Paige's relationship with you is not developed enough for this...");
+	else addDisabledButton(5,"Locked","Locked","Paige’s relationship with you is not developed enough for this...");
 }
 
 //[=Vanilla=]
@@ -3565,8 +3565,8 @@ public function SSDYLH(args:Array):void
 				if(pc.cockTotal() == 1) output("it’s");
 				else output("they’ve");
 				output(" ever been, which makes it all the harder to mentally deal with, knowing ");
-				if(pc.cockTotal() == 1) output("it isn't");
-				else output("they aren't");
+				if(pc.cockTotal() == 1) output("it isn’t");
+				else output("they aren’t");
 				output(" the treasure Paige is after");
 			}
 		}
@@ -3636,7 +3636,7 @@ public function SSDYTC(args:Array):void
 		}
 		output(", ready for her service.");
 		//if (pc.hasVagina = true)
-		if(pc.hasVagina()) output("\n\nYour [pc.cocks]' sister is wet and envious but patient, knowing that this show isn’t about her. Still, Paige, attentive and loving as she is, doesn’t leave your [pc.vagina] unattended; even in the confusion, she doesn’t forget to keep a hand against your mons, playing with your labia there.");
+		if(pc.hasVagina()) output("\n\nYour [pc.cocks]’ sister is wet and envious but patient, knowing that this show isn’t about her. Still, Paige, attentive and loving as she is, doesn’t leave your [pc.vagina] unattended; even in the confusion, she doesn’t forget to keep a hand against your mons, playing with your labia there.");
 		output("\n\nWhen it’s clear she’s not the one in control, Paige goes slack in your grip, allowing you to have your way with her. Your grind your crotch into her face, sliding [pc.eachCock] against her features, feeling yourself get harder with every upward thrust against the fine fur on her cheek. You feel her take a deep breath through her nose, taking in your scent");
 		if(pc.balls > 0) output(", and you then feel her warm, flat Ausar tongue massage at your [pc.balls] in her submissive servitude.");
 		else output(", and then her tongue snakes out to lap at the base of [pc.eachCock], coaxing you to the last bit of stiffness you need.");

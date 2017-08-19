@@ -224,9 +224,9 @@ public function yogaIntro():Boolean
 				clearMenu();
 				if(pc.legCount != 2 || pc.isGoo())
 				{
-					addDisabledButton(0,"Easy Mode","Easy Mode","You'd need to be both a biped and non-gooey for this.");
-					addDisabledButton(1,"Medium M.","Medium M.","You'd need to be both a biped and non-gooey for this.");
-					addDisabledButton(2,"Hard Mode","Hard Mode","You'd need to be both a biped and non-gooey for this.");
+					addDisabledButton(0,"Easy Mode","Easy Mode","You’d need to be both a biped and non-gooey for this.");
+					addDisabledButton(1,"Medium M.","Medium M.","You’d need to be both a biped and non-gooey for this.");
+					addDisabledButton(2,"Hard Mode","Hard Mode","You’d need to be both a biped and non-gooey for this.");
 					addButton(3,"Other",otherWorkSlooootNonGoo,undefined,"Other","As a non-traditional creature, your yoga options are limited.");
 				}
 				else
@@ -320,9 +320,9 @@ public function yogaIntro():Boolean
 				clearMenu();
 				if(pc.legCount != 2 || pc.isGoo())
 				{
-					addDisabledButton(0,"Easy Mode","Easy Mode","You'd need to be both a biped and non-gooey for this.");
-					addDisabledButton(1,"Medium M.","Medium M.","You'd need to be both a biped and non-gooey for this.");
-					addDisabledButton(2,"Hard Mode","Hard Mode","You'd need to be both a biped and non-gooey for this.");
+					addDisabledButton(0,"Easy Mode","Easy Mode","You’d need to be both a biped and non-gooey for this.");
+					addDisabledButton(1,"Medium M.","Medium M.","You’d need to be both a biped and non-gooey for this.");
+					addDisabledButton(2,"Hard Mode","Hard Mode","You’d need to be both a biped and non-gooey for this.");
 					addButton(3,"Other",otherWorkSlooootNonGoo,undefined,"Other","As a non-traditional creature, your yoga options are limited.");
 				}
 				else
@@ -738,7 +738,7 @@ public function paigeMenu():void
 		if(paigeIsCrew()) addButton(2,"Her Eyes",crewPaigeEyeholes,undefined,"Her Eyes","Ask Paige about her new eyes.");
 		else addButton(2,"Her Eyes",askPaigeAboutHerEyes,undefined,"Her Eyes","Ask Paige about her eyes. She mentioned that she was interested in synthetic implants?");
 	}
-	else addDisabledButton(2,"Locked","Locked","You don't know enough about her for this.");
+	else addDisabledButton(2,"Locked","Locked","You don’t know enough about her for this.");
 	addButton(3,"Appearance",paigeAppearance,undefined,"Appearance","Give Paige the once-over with your eyes. She’s been sculpting her body for years – she’d probably enjoy the attention.");
 
 	if(flags["SEXED_PAIGE"] != undefined)
@@ -762,11 +762,11 @@ public function paigeMenu():void
 			{
 				if(paigeBlind()) addButton(7,"Spar",sparWithPaige,undefined,"Spar","Paige mentioned that she would like a sparring match against you. Even though she’s blind, don’t expect an easy fight!");
 				else addButton(7,"Spar",sparWithPaige,undefined,"Spar","Paige mentioned that she would like a sparring match against you. Given her strength and her fixed eyes, she might be your toughest challenge yet!");
-				if(pc.HP() <= 1) addDisabledButton(7,"Spar","Spar","You're a little too hurt to do any sparring right now.");
+				if(pc.HP() <= 1) addDisabledButton(7,"Spar","Spar","You’re a little too hurt to do any sparring right now.");
 			}
 			else addDisabledButton(7,"Spar","Spar","Tonight’s not the night for fighting. You might cause a disturbance with the noise among the other units, besides.");
 		}
-		else addDisabledButton(7,"Locked","Locked","You don't know her well enough for this.");
+		else addDisabledButton(7,"Locked","Locked","You don’t know her well enough for this.");
 	}
 	addButton(14,"Leave",leavePaige);
 }
@@ -1060,7 +1060,7 @@ public function backToPaigeMenu():void
 {
 	clearOutput();
 	showPaige();
-	output("Is there something else you'd like to do with Paige?");
+	output("Is there something else you’d like to do with Paige?");
 	paigeMenu();
 }
 
@@ -1209,7 +1209,7 @@ public function aboutIddiTalk():void
 	clearMenu();
 	addButton(0,"Purchase",iddiPurchaseTalk,undefined,"Purchase","Ask Paige if droids like Iddi are available to purchase in the general market. Maybe having one to clean around the ship or something wouldn’t be so bad.");
 	if(flags["SEXED_PAIGE"] != undefined) addButton(1,"Customizations",iddiCustomizationsTalk,undefined,"Customizations","Ask Paige if Iddi could be customized, either as an assistant or just its personality.");
-	else addDisabledButton(1,"Customizations","Customizations","You don't want to delve too deep into Iddi's workings just yet. Paige might think you're prying.");
+	else addDisabledButton(1,"Customizations","Customizations","You don’t want to delve too deep into Iddi’s workings just yet. Paige might think you’re prying.");
 	if(flags["SEXED_PAIGE"] == undefined) addDisabledButton(2,"Earpiece","Earpiece","Knowing exactly what the earpiece is hiding, you don’t want to be too brazen and ask something out-of-turn. Better hold off until you and Paige are more comfortable with each other.");
 	else addButton(2,"Earpiece",earpiecePage,undefined,"Earpiece","Ask Paige about the earpiece she uses to maintain a connection with Iddi.");
 	addButton(4,"Appearance",iddisAppearance);
@@ -1236,7 +1236,7 @@ public function iddiPurchaseTalk():void
 //[=Customizations=]
 // keep this scene inaccessible until the PC has had sex with Paige once
 // Tooltip (accessible): Ask Paige if Iddi could be customized, either as an assistant or just its personality.
-// Tooltip (inaccessible): You don't want to delve too deep into Iddi's workings just yet. Paige might think you're prying.
+// Tooltip (inaccessible): You don’t want to delve too deep into Iddi’s workings just yet. Paige might think you’re prying.
 // (scene: Customizations)
 public function iddiCustomizationsTalk():void
 {
@@ -1398,7 +1398,7 @@ public function dontConfirmTheHalfMilMoron():void
 {
 	clearOutput();
 	showPaige();
-	output("You speedily backpedal, much to Paige's chagrin. Maybe now would be a good time to leave...");
+	output("You speedily backpedal, much to Paige’s chagrin. Maybe now would be a good time to leave...");
 	clearMenu();
 	addButton(0,"Next",moveSouth);
 }
@@ -1450,7 +1450,7 @@ public function paigeAtHomeYoga():void
 		//if {the PC has never done Difficult Select 1 and has gotten into Paige’s pants entirely via Honey Wine}
 		if(flags["PAIGES_WINES"] != undefined && flags["PAIGE_YOGA"] == undefined || (flags["PAIGE_YOGA"] != undefined && flags["PAIGE_YOGA"] < 4)) output(" <i>“I’m really glad you want to give yoga another try with me, [pc.name]. You haven’t been to a class since I invited you into my unit – I was wondering if maybe I had scared you off of it. Don’t worry though, baby. I’ll be gentle.”</i>");
 		//if {the PC hasn’t unlocked Hard Mode}
-		if(flags["YOGA_MEDIUM"] == undefined || flags["YOGA_MEDIUM"] < 4) output(" <i>“So, what are we in the mood for today? We can try something a little easier, or we can start working our way into the more exotic poses.”</i>]");
+		if(flags["YOGA_MEDIUM"] == undefined || flags["YOGA_MEDIUM"] < 4) output(" <i>“So, what are we in the mood for today? We can try something a little easier, or we can start working our way into the more exotic poses.”</i>");
 		else output(" <i>“Whatever you’re in the mood for, baby, we can do it. If you want to take it easy with something simpler, I’m down. Or, if you want to try the intense stuff, the poses-for-two... maybe we can work a happy ending into it.”</i>");
 		//[=Easy Mode=][=Medium Mode=][=Hard Mode=][=Other=]
 		// play the usual difficulty modes and Difficulty Select 2 endings
@@ -1476,9 +1476,9 @@ public function paigeAtHomeYoga():void
 	clearMenu();
 	if(pc.legCount != 2 || pc.isGoo())
 	{
-		addDisabledButton(0,"Easy Mode","Easy Mode","You'd need to be both a biped and non-gooey for this.");
-		addDisabledButton(1,"Medium M.","Medium M.","You'd need to be both a biped and non-gooey for this.");
-		addDisabledButton(2,"Hard Mode","Hard Mode","You'd need to be both a biped and non-gooey for this.");
+		addDisabledButton(0,"Easy Mode","Easy Mode","You’d need to be both a biped and non-gooey for this.");
+		addDisabledButton(1,"Medium M.","Medium M.","You’d need to be both a biped and non-gooey for this.");
+		addDisabledButton(2,"Hard Mode","Hard Mode","You’d need to be both a biped and non-gooey for this.");
 		addButton(3,"Other",otherWorkSlooootNonGoo,undefined,"Other","As a non-traditional creature, your yoga options are limited.");
 	}
 	else
@@ -1819,7 +1819,7 @@ public function herEyes3():void
 {
 	clearOutput();
 	showPaige();
-	output("Her sobs are muffled by your [pc.uppergarments], her grip hard as iron on your hand and the arm locked around your shoulders almost tight enough to be painful. <i>“[pc.name]”</i> she repeats, struggling to maintain her composure. Every time she stiffens up, she promptly collapses into you again.");
+	output("Her sobs are muffled by your [pc.upperGarments], her grip hard as iron on your hand and the arm locked around your shoulders almost tight enough to be painful. <i>“[pc.name]”</i> she repeats, struggling to maintain her composure. Every time she stiffens up, she promptly collapses into you again.");
 	output("\n\nYou remain on her couch for a moment, holding your Ausar lover as she gets everything she needs out of her, out of her. You stroke at her back tenderly as you wait. <i>“This is,”</i> she tries to say, then stops to take a breath. <i>“This is the nicest thing anyone’s ever done for me, [pc.name],”</i> she tells you. <i>“That’s... that’s five hundred thousand credits! Half a million! That’s....”</i>");
 	output("\n\n<i>“Please stop reminding me,”</i> you chuckle. <i>“I’m not going to back down, but saying it over and over doesn’t make it easier.”</i>");
 	output("\n\nShe laughs cutely between her sniffles. <i>“Right.”</i>");
