@@ -1242,7 +1242,7 @@ public function prisonerStatline(prisonerName:String):void
 			output("\n\nConvicted of: 2 counts of Piracy, 7 counts of Grand Hacking, 17 counts of Cyber Theft, 3 counts of Cyber Assault, 4,478 counts of Identity Theft, Kidnapping, Assault With a Deadly Weapon, 2 counts of Attempted Homicide");
 			if(silly) output(", Cyber Bullying, and Hand Holding");
 			output(".");
-			addButton(0,"Visit",visitAPrisoner,"Sam","Sam","Visit the ausar with a rap sheet a mile long. She's anything but a \"Good Girl.\"\n\n<b>Cost:</b> 1,000 credits");
+			addButton(0,"Visit",visitAPrisoner,"Sam","Sam","Visit the ausar with a rap sheet a mile long. She’s anything but a “Good Girl.”\n\n<b>Cost:</b> 1,000 credits");
 			break;
 		case "Tamtam":
 			showTamtamPrison();

@@ -51,14 +51,14 @@ public function samsPrisonRoom():void
 	output(", PLEASE!”</i> Sam writhes against her restraints as she begs you in a babbling, whining voice, only managing to move an inch or so before she eventually tires and goes limp in her bonds, her ears flat and her tail hanging low.");
 
 	output("\n\n");
-	if(flags["MET_SAM"] != undefined) output(" It doesn’t seem like she recognizes you, or if she does, she doesn’t care.");
+	if(flags["MET_SAM"] != undefined) output("It doesn’t seem like she recognizes you, or if she does, she doesn’t care.");
 
 	if(pc.hasCock() && pc.cockThatFits(samCapacity()) >= 0) addButton(0,"Use Dick",samPrisonStuff,true,"Use Dick","Take her with your dick.");
-	else if(pc.hasCock()) addDisabledButton(0,"Use Dick","Use Dick","Much as you might want to give her exactly what she wants, there's no way you could fit inside her.");
-	else addDisabledButton(0,"Use Dick","Use Dick","You'd need a penis in order to use it.");
+	else if(pc.hasCock()) addDisabledButton(0,"Use Dick","Use Dick","Much as you might want to give her exactly what she wants, there’s no way you could fit inside her.");
+	else addDisabledButton(0,"Use Dick","Use Dick","You’d need a penis in order to use it.");
 
 	if(pc.hasHardLightEquipped()) addButton(1,"Use Strap-on",samPrisonStuff,false,"Use Strap-on","Give her an approximation of what she wants. A hardlight dick is still a dick, right?");
-	else addDisabledButton(1,"Use Strap-on","Use Strap-on","You don't have a strap-on to use!");
+	else addDisabledButton(1,"Use Strap-on","Use Strap-on","You don’t have a strap-on to use!");
 
 	addButton(14,"Nevermind",backOuttaKaska);
 }
@@ -66,14 +66,14 @@ public function samsPrisonRoom():void
 public function samPrisonStuff(cocked:Boolean = false):void
 {
 	clearOutput();
-	showSam();
+	showSam(true);
 	author("Night Trap");
 	output(" <i>“I think that can be arranged,”</i> you tell Sam, circling around behind her. Reacting purely on instinct, she raises her tail and firm little butt as high as her restraints will allow before she even consciously processes your words. Her ears perk up once she realizes what you’ve said, and she wags her tail as much as she can in its extreme vertical position. Just the presence of someone behind her causes her sopping puss to trickle fresh moisture in excitement. The air fills with even more of those pheromones, and when you actually begin to grope her small but muscular rump, the stain on her crotch nearly doubles in size.");
 
 	output("\n\nSam lets out a keening whine as your molesting hands sink low enough to prod at her cunny. She instantly tries to buck her hips back to pull your fingers in, but her chains and the fabric of her suit bottom deny her effort. She wiggles her hind-end into your fingers desperately, panting and whining as she moistens to an unholy degree. Smirking to yourself, you slowly tug her ruined pants down, finding it quite easy given her tiny ass and hips. The only point of resistance is her pussy, a vibrant, pink flower blooming in arousal and leaking a visible stream of feminine nectar that sticks briefly in thick strands to the crotch of her pants before breaking its hold on the fabric. Sam moans desperately as her womanhood is bared, her vulva puffy and the entrance of her most private place winking at you hungrily.");
 
 	output("\n\nWith nothing filtering it and your face this close to the source, the ");
-	if(pc.isTreated() || pc.race().indexOf("ausar") != -1 || pc.race().indexOf("huskar") != -1) output("primally familiar");
+	if(pc.isTreated() || pc.isAusar()) output("primally familiar");
 	else output("alien");
 	output(" scent of her arousal is intoxicating. You swear you feel light-headed for an instant as what feels like every drop of blood in your body rushes to your crotch, and before you can stop yourself you immediately begin lapping at the breed-ready ausar’s pussy. Sam moans loudly and instantly cums, squirting a torrent of ladyjizz onto your face, filling your sinuses with her pheromone-rich odor and soaking you in her pussy-scent. You wrap your [pc.lips] around her spasming lower ones and drink in as much of her orgasmic fluid as possible, probing your [pc.tongue] out to bathe your taste buds in her bitter-sweet juices.");
 
@@ -120,7 +120,7 @@ public function samPrisonStuff(cocked:Boolean = false):void
 
 		output("\n\nIn short order you’ve fucked the dark-skinned beauty into another squirting orgasm, and another soon after that. By now the both of you are covered in sweat and girly fluids. Sam is simply lying slack on the table, whining softly and panting heavily with her tongue out and drool puddling under her the way her cunny honey is puddling under your feet. Your [pc.cock " + x + "] is painfully erect and spurting creamy pre-cum freely. ");
 		//ausar/huskar/half or any Treated: 
-		if(pc.isTreated() || pc.race().indexOf("ausar") != -1 || pc.race().indexOf("huskar") != -1) 
+		if(pc.isTreated() || pc.isAusar()) 
 		{
 			output("Sam’s fertile pheromones have fogged your mind to the point that you’re a beast in rut, thinking only of driving your cock as deeply into a wet hole as possible, of impregnating the fertile female below you. You clutch her hips in a deathgrip instinctively, ensuring your bitch can’t leave before you seed her womb, heedless of the high-tech restraints already keeping her captive");
 			if(9999 == 0) output(" or that she’s pregnant already");
@@ -133,7 +133,7 @@ public function samPrisonStuff(cocked:Boolean = false):void
 		output("\n\nInstinctively sensing what’s happening, Sam stirs from her fucked-apart stupor and looks back at you. The ausar raises her tail again and humps back into you as hard as she can while struggling to form words between animalistic grunts and whines. <i>“Cum! Cu-UUHH-m in me! Knot me! Please fuUUUCK me ");
 		//pregnant:
 		if(9999 == 0) output("even more ");
-		output("pregnant! I can’t- GODS PLEASE- I can’t calm down until you FUCKING CUM IN ME!!!”</i>");
+		output("pregnant! I can’t - GODS PLEASE - I can’t calm down until you FUCKING CUM IN ME!!!”</i>");
 
 		output("\n\nSam’s words and behavior are more than enough to push you past the tipping point. With a feral roar, you grab her by the scruff of the neck and force her face down on the table, using your other hand to pull her narrow hips into you as hard as possible with each thrust of your hips. Your show of dominance thrills the submissive female to her core, and her whole body trembles with the mother of all orgasms as her cunt drenches your cock. ");
 		//Knot: 
@@ -233,12 +233,12 @@ public function samPrisonStuff(cocked:Boolean = false):void
 		output("\n\nThroughout Sam’s shuddering orgasm, her wet, velvety folds flutter, stroke, and clench every inch of your member, gripping it fiercely from every angle possible. You want so badly to just thrust to the hilt and enjoy the milking motions, but you know you’ll be pushed over the edge again and again if you do, and you don’t want this to end so simply. Instead, you increase the speed and force of your thrusts until you’re pushing Sam across the table with each hump, determined to maximize your pleasure before this drug-fueled ausar can force you to cum again. Sam’s howl cracks, the pitch of her voice wavering with every hip-jarring thrust of your strapon into her thirsty cunt.");
 		output("\n\nIn short order you’ve fucked the dark-skinned beauty into another squirting orgasm, and another soon after that. By now the both of you are covered in sweat and girly fluids. Sam is simply lying slack on the table, whining softly and panting heavily with her tongue out and drool puddling under her the way her cunny honey is puddling under your feet. ");
 		//ausar/huskar/half or any Treated AND has penis: 
-		if(pc.isTreated() || pc.race().indexOf("ausar") != -1 || pc.race().indexOf("huskar") != -1) output("Sam’s fertile pheromones have fogged your mind to the point that you’re a beast in rut, thinking only of driving your cock as deeply into a wet hole as possible, of impregnating the fertile female below you. You clutch her hips in a deathgrip instinctively, ensuring your bitch can’t leave before you seed her womb, heedless of the high-tech restraints already keeping her captive, or that you can’t impregnate her with a hardlight cock. ");
+		if(pc.isTreated() || pc.isAusar()) output("Sam’s fertile pheromones have fogged your mind to the point that you’re a beast in rut, thinking only of driving your cock as deeply into a wet hole as possible, of impregnating the fertile female below you. You clutch her hips in a deathgrip instinctively, ensuring your bitch can’t leave before you seed her womb, heedless of the high-tech restraints already keeping her captive, or that you can’t impregnate her with a hardlight cock. ");
 		output("You recognize from the the tight feeling in your lower half that you’re on the verge of cumming, and you resolve to make the most of it. You grunt with effort as you hump Sam as fast as possible, slapping your [pc.hips] into her ass hard enough to bruise the both of you.");
 
 		output("\n\nInstinctively sensing what’s happening, Sam stirs from her fucked-apart stupor and looks back at you. The ausar raises her tail again and humps back into you as hard as she can while struggling to form words between animalistic grunts and whines. <i>“Cum! Cu-UUHH-m in me! Knot me! Please fuUUUCK me ");
 		if(9999 == 0) output("even more ");
-		output("pregnant! I can’t- GODS PLEASE- I can’t calm down until you FUCKING CUM IN ME!!!”</i>");
+		output("pregnant! I can’t - GODS PLEASE - I can’t calm down until you FUCKING CUM IN ME!!!”</i>");
 
 		output("\n\nSam’s words and behavior are more than enough to push you past the tipping point. With a feral roar, you grab her by the scruff of the neck and force her face down on the table, using your other hand to pull her narrow hips into you as hard as possible with each thrust of your hips. Your show of dominance thrills the submissive female to her core, and her whole body trembles with the mother of all orgasms as her cunt drenches your hardlight. Unfortunately for Sam, you don’t have the knot she’s begging you to plug her with, or the virile seed she so desperately needs to quench the raging fires of her lust. As your strapon twitches and throbs powerfully in orgasm, you stuff her box in time with your ecstatic pulses, almost blacking out at the feeling of her swampy cunny feverishly pulling your member back in each time. You groan loudly and double over her sweat-slicked back as your mock-breed her orgasmically-contracting pussy.");
 
@@ -255,6 +255,7 @@ public function samPrisonStuff(cocked:Boolean = false):void
 		pc.orgasm();
 	}
 	flags["MET_SAM"] = 1;
+	IncrementFlag("SAM_PRISONED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
