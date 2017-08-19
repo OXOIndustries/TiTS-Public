@@ -1,7 +1,7 @@
 //Sam in the Galactic Prison
 //Night Trap
 //Rap Sheet
-//Name: Samurenth <i>“Sam”</i> Tyraso
+//Name: Samurenth “Sam” Tyraso
 //Age: 24
 //Crimes: 2 counts of Piracy, 7 counts of Grand Hacking, 17 counts of Cyber Theft, 3 counts of Cyber Assault, 4,478 counts of Identity Theft, Kidnapping, Assault With a Deadly Weapon, 2 counts of Attempted Homicide{Sillly mode:, Cyber Bullying, Hand Holding, Being a Girl on the Extranet}.
 

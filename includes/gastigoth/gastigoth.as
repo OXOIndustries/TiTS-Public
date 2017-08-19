@@ -1235,7 +1235,7 @@ public function prisonerStatline(prisonerName:String):void
 	{
 		case "Sam":
 			showSam();
-			output("<b>Name:</b> Samurenth <i>“Sam”</i> Tyraso");
+			output("<b>Name:</b> Samurenth “Sam” Tyraso");
 			output("\n<b>Age:</b> 24");
 			output("\n<b>Sex:</b> Female");
 			output("\n<b>Race:</b> Ausar");
