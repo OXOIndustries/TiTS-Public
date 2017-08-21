@@ -77,6 +77,19 @@ public function approachCiaran():void
 		output("\n\nCiaran cocks an eyebrow and grins at your introduction. <i>“Well then, 'Steele, [pc.name] Steele,' it's a pleasure to meet you.”</i> He smiles playfully, amused by his own lame joke. <i>“What can I do for you, kid?”</i>");
 		flags["CIARAN_MET"] = 1;
 	}
+	else if (flags["CIARAN_SCRITCH"] == 2 
+			&& !InCollection(pc.earType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_FROG, 
+				GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_OVIR, 
+				GLOBAL.TYPE_SUULA, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_DAYNAR, 
+				GLOBAL.TYPE_VANAE, GLOBAL.TYPE_DRIDER) 
+			&& pc.femininity >= 60)
+	{
+		ciaranGetScritched();
+		flags["CIARAN_SCRITCH"] = 1;
+		processTime(15);
+		addButton(0, "Next", mainGameMenu, undefined, "", "");
+		return;
+	}
 	else
 	{
 		output("Figuring he could use some entertainment, you mosey over to Ciaran's table. The massive hellhound tips his hat back as you approach and grins at you. <i>“Just had to come back for seconds, huh? I guess every man since me has paled in comparison.”</i>");
@@ -86,6 +99,7 @@ public function approachCiaran():void
 		output("\n\nHe throws his clawed hands in the air good-naturedly, grumbling out in his deep voice, <i>“Well what did you come over here for if not to inflate my ego? Did you want to help inflate my knot instead?”</i> He asks the last question in a seductive tone, a lusty grin on his face.");
 	}
 	
+	processTime(3);
 	ciaranMainMenu();
 }
 
@@ -141,6 +155,7 @@ public function ciaranTalk():void
 	output("\n\nYou chuckle at that, insisting that that is exactly the sort of story you expect he has in spades.");
 	output("\n\nHe waves a massive, clawed hand at you in good-natured exasperation. <i>“Alright, I'll humor you for now. What did you want to ask me about?”</i>");
 	
+	processTime(3);
 	ciaranTalkMenu();
 }
 
@@ -194,6 +209,7 @@ public function ciaranTalkHimself():void
 	output("\n\nThere's a subtle hardening of Ciaran's features when you say that; his frame seems to tense, and his cocksure smile almost slips away entirely as his fiery eyes stare fiercely into your own. Before the situation can get awkward though, he forces a soft chuckle. <i>“That's a story for another time. How about you ask me something else and I act all evasive again?”</i>");
 	output("\n\nSeems you've found a sensitive topic. Maybe you should get to know him better before asking again. Or perhaps someone who knew him well would be able to tell you more?");
 	
+	processTime(3);
 	flags["CIARAN_TALKED"] = 1;
 	ciaranTalkMenu();
 	addDisabledButton(0, "Himself", "Himself", "You just talked about this.");
@@ -271,6 +287,7 @@ public function ciaranTalkOutfit():void
 		output("\n\nThis Ms. Kittie must be something else if she can turn a predator like Ciaran bashful!");
 	}
 	
+	processTime(3);
 	flags["CIARAN_OUTFIT"] = 1;
 	flags["CIARAN_TALKED"] = 1;
 	ciaranTalkMenu();
@@ -404,6 +421,7 @@ public function ciaranTalkScars():void
 	output("\n\nYou thank Ciaran for explaining his scars to you.");
 	output("\n\nHe flashes his usual cocky grin as he responds, <i>“Anytime kid, anytime. Not every day you see scars like these anymore, so I'm always happy to show them off.”</i>");
 	
+	processTime(8);
 	flags["CIARAN_SCARS"] = 1;
 	flags["CIARAN_TALKED"] = 1;
 	ciaranTalkMenu();
@@ -423,7 +441,7 @@ public function ciaranTalkScritches():void
 		output("\n\nYou put on a face like butter wouldn't melt in your mouth and innocently explain to the older ausar as you step behind his chair that you'd simply like to take a closer look at his old-fashioned hat.");
 		output("\n\nHe scoffs at your explanation. <i>“Yeah, you and every other tourist in this joint. Hell, if you want it so bad kid, how about you wear it for a bit? Maybe the tourists will think </i>you're<i> the outlaw for once.”</i> With that he reaches up to doff his hat before passing it to you. ");
 		if (pc.tallness >= 8*12) output("It's a little snug on your head, but that's not what matters. ");
-		else if (pc.tallness >= 7*12) output("It's an almost perfect fit for you" + (InCollection(pc.earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE) ? "and it even has holes for your ears to fit through," : "") + " but that's not what matters. ");
+		else if (pc.tallness >= 7*12) output("It's an almost perfect fit for you" + (InCollection(pc.earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_VULPINE) ? "and it even has holes for your ears to fit through," : "") + " but that's not what matters. ");
 		else if (pc.tallness >= 6*12) output("His hat's just too big for your smaller head, slipping down over your eyes and blocking your vision, forcing you to wear it at a tilted angle. That's not what matters though. ");
 		else output("His hat is comically large on you, making you look like a child wearing their father's hat and forcing you to tilt it back at an extreme angle to hang off your brow, but that's not what matters. ");
 		output("What matters is that the ausar has unwittingly cooperated with your plan. ");
@@ -436,7 +454,7 @@ public function ciaranTalkScritches():void
 	}
 	output("\n\nYou take a moment to stare at Ciaran's head and formulate your plan of attack. You can see that he has the usual two anubis-like ears of most ausar poking up through the thick black hair of his head, though the fur of his ears is thicker than is typical of most ausar, and his left ear has been notched by a past injury. Far less typical though are the massive horns poking out of his skull and up through his hair. You're pretty sure you heard somewhere that bovines enjoy having the base of their horns scratched. You'll just have to hope that's true of hellhounds as well.");
 	output("\n\nSetting your strategy in motion, you move your fingers to Ciaran's canid ears, alternating between scratching at the bases and gliding your nails up the lengths of those aural attachments. You don't seem to elicit any reaction yet, but you're confident that will change with time. The fur of his ears is ridiculously soft and far finer than the hair on his head. It's a joy just to run your fingertips over the lustrous strands, so you begin lightly pinching the edges of his ears with your fingers to feel both inside and out. Whenever you linger for too long on one spot, the respective ear flicks reflexively.");
-	output("\n\nYour DILFy puppy growls a complaint at you the third time this happens. <i>“Hey, those are more sensitive than they look. You're really just itching me when you do that. " + (InCollection(["ausar", "half-ausar", "huskar", "half-huskar"], pc.race()) ? "How do you not know this when your ears are the same?" : "") + "”</i> ");
+	output("\n\nYour DILFy puppy growls a complaint at you the third time this happens. <i>“Hey, those are more sensitive than they look. You're really just itching me when you do that. " + (InCollection(pc.race(), "ausar", "half-ausar", "huskar", "half-huskar") ? "How do you not know this when your ears are the same?" : "") + "”</i> ");
 	output("\n\nYou apologize to Ciaran, assuring him that you know what you're doing. To prove your words you increase the intensity of your scratching, compressing his ears and massaging them between your fingers and his skull, truly putting force behind the strokes of your digits. It's barely audible, but you think you hear a stifled groan of pleasure. The older ausar is trying his level best to hide how much he's enjoying being treated like a little puppy, but his struggles only spur you on to spoil him even more. You begin to alternate between scratching those furry aural organs and scratching at his scalp. The response is immediate: Ciaran's tail starts wagging, thumping into his chair at the apex of each swing. You place your mouth right next to his ear and whisper a very important question to him. <i>“Who's a good boy?”</i> It's barely audible, but you know he heard it.");
 	output("\n\nThe ausar grunts and tries to respond evenly, <i>“Shut up, kid!”</i> but he stutters a little from the pleasure of your ministrations. Grinning, you decide it's time to enact the last masterstroke of your strategy. Adding in another stop on the circuit your hands have been following around Ciaran's head, you worm your fingertips through your puppy's hair to the base of his horns and begin scratching around their circumference. The hellhound instantly lets out a groan of pleasure, and his tail doubles the speed of its wagging. He's actually panting now, his tongue drooping slightly out of the side of his mouth. You repeat your earlier question, loud enough for those around you to hear this time. <i>“Are you a good puppy? Tell me who's a good little boy.”</i>");
 	output("\n\nCiaran closes his eyes in pleasure and hoarsely mutters, <i>“Me.”</i>");
@@ -459,8 +477,31 @@ public function ciaranTalkPast():void
 	author("Night Trap");
 	showCiaran();
 	
+	output("You ask Ciaran if he's from New Texas; given his lack of an accent he must surely be from elsewhere?");
+	output("\n\nIt's almost too quick to be sure, but you think you see him frown at this question. By the time you notice the change however, he's all smiles again. <i>“Where to begin? ");
+	if (silly) output("Between the time when the oceans drank Atlantis and the rise of the sons of Aryas, there was an age undreamed of. And unto this, Ciaran, destined to wear the jeweled crown of Ausarilonia upon a troubled brow. ");
+	output("I was one of the first children born on a newly-colonized world on the frontier. It was pretty much on the fringe of civilized space at the time, and even now I promise you've never heard of the place. It's an agricultural world very like New Texas, only a good deal hotter. We dealt with a lot of raids from pirates and slavers over the years.”</i> He pauses briefly, adopting a more serious tone. <i>“I actually lost my mother and siblings to slavers when I was fairly young.”</i>");
+	output("\n\nYou're shocked to hear him tell you something so personal when you haven't even asked him directly. It must show plainly on your face, because Ciaran cuts you off when you try to speak.");
+	output("\n\n<i>“Don't worry about it. I came to terms with it decades ago. Which brings me nicely to the next part of my story: joining my planet's self-defense force. See, I was damned determined to make sure nobody else went through what I did, so as soon as I came of age I joined the planetary defense force, the marines specifically. After I finished my first tour of duty two years later I had a little angel that I named after my mother, Celina. She's beautiful, just like my mother before her. Actually, I've got some pictures of my little Celina right here.”</i> He pulls a codex out of his comparatively massive pocket and moves to the seat next to your own, opening a few files on the device's screen before presenting it to you. The album in front of you is filled with thousands of pictures and videos of a beautiful girl with long, lavender hair. Her round-pupiled gold eyes, lavender-furred limbs, sharp claws, and two long and incredibly fluffy tails clearly mark her as a kaithrit-ausar hybrid.");
+	output("\n\nCiaran's normally hyper-sexual attitude has completely disappeared, replaced with simple paternal pride and affection for his daughter as he shows you images, videos, and holo-clips of Celina. In just a few minutes the enthusiastic ausar takes you through his daughter's life from infancy all the way to her recent college graduation. Strangely, only a small handful of the images after the first dozen or so contain Ciaran, and most bizarrely of all is that none show Celina with anyone who could be mistaken for her mother. In most pictures or videos where you would expect to see the young girl's parents, you instead see an increasingly elderly kaithrit couple, and in some photos you even see " + (flags["MET_BEA_HUBBY"] != undefined ? "Mrs. Reasner and her husband Traven " : "an older, maternal Terran woman with brown hair and a ruggedly handsome, white-haired half-ausar man ") + "with Celina. Ciaran is also absent from many of the photos, and only in the recent graduation shot is he Treated. Eventually Ciaran pockets his codex and continues telling his story, cutting off any chance you may have had to ask further questions.");
+	output("\n\n<i>“I re-enlisted when Celina was two. My father had just passed away of natural causes, and I came under even more stress shortly after that. I enlisted this time with the Royal Ausaril Reconnaissance Marines, for the better pay and family benefits. I served with enough distinction to actually work my way up to commissioned officer. You're talking to First Lieutenant Eildean right now.”</i> The older man adopts a mock military pose and a falsely serious expression for a moment before chuckling and relaxing again.");
+	output("\n\n<i>“I ended up spending most of my service time in the wilderness, and I absolutely loved it. Sure, it was often a horrifying death world we got sent, but I was getting a chance to see the galaxy, break up slaver rings, and kill pirates, all while getting paid. But a few near-death experiences made me think I might be in the wrong line of work. After the third time I had my guts shoved back into me, I was given a medical discharge. I decided a slightly safer job would be more my speed, so I signed on with a ship called the </i>S.S. Inexorable<i>. ");
+	if (flags["BEA_RELATIONSHIP"] != undefined) output("You're surprised to hear a ship you actually know of. You tell Ciaran that you have met the captain of the <i>S.S. Inexorable</i>. The hellhound looks incredibly wistful when he hears that. In his usual evasive manner though, he continues on without an explanation of his reaction.");
+	output("\n\n<i>“Those years on the </i>Inexorable<i> were some of the best of my life. I was in a pretty bad place emotionally when I signed on. The captain and her husband really helped me get my shit together; being part of their crew is less like being an employee and more like being a member of their family. They even had me move Celina onto the ship with me, and treated her like she was their own daughter. And apparently they thought I was good at my job. Hell, if I had stayed another few years I would've been a department head.”</i>");
+	output("\n\n<i>“If?”</i> you ask. If his time on the <i>Inexorable</i> was as good for him as he said, why did he leave?");
+	output("\n\nCiaran sighs deeply at your question, taking a moment to consider his words. <i>“That's really a story for another time. All I'll say is that even though I was working through my old problems, I started developing some new ones, and the only solution to them was to part ways. I left amicably; hell, I played host to the captain's husband, Traven, just last year when he visited New Texas. It was just time for me to go my own way for once. By this point I had a pretty impressive resume, so I was able to use all that training and experience to become a fairly high-class bodyguard in the core worlds. I spent years moving from contract to contract, taking on the jobs nobody else was stupid enough to in hopes of finding something lucrative that would last more than a few months. Ironically, it was when I was between jobs that I ended up getting my big break.”</i>");
+	output("\n\nYou crook an eyebrow at that and admit you're curious just what he means.");
+	output("\n\nHis cocky grin returns as he responds more than a little smugly. <i>“Well you know the governor of this planet, Governor Tee?”</i>");
+	output("\n\nIt's your turn to be smug when you answer " + (flags["MET_BIG_T"] != undefined ? "yes, you do know Big T and were invited to New Texas by him personally. " : "hat though you were invited to New Texas by Big T, you haven't managed to meet him yet.") + "");
+	output("\n\nCiaran gives an impressed-sounding whistle, but his next statement makes it seem a bit sarcastic. <i>“Well, not all of us are important enough to get an invitation from the planetary governor. In my case I was just walking down a lonely street one evening when I bumped into a huge human with bull horns and a tail. Keep in mind I was still barely over six feet at the time, so I bounce off this towering human and fall on my tail. While he's still apologizing to me I see a group of people with knives and clubs stepping out of a nearby alley behind him. Firearms were off-limits to civilians on this world, but since I was a bodyguard I was licensed to carry one, and it was damn lucky that I had actually worn my gun that day, because the group starts shouting about how this giant human has been oppressing people and mind-controlling them with poison, and about how they're there to kill him to make a statement about freedom. As soon as they start rushing him, I just throw myself in between him and the assassins. I got stabbed a few times for my trouble; they were just flesh wounds, so I still managed to fend the lunatics off until peace-keepers arrived. As the saying goes, once a marine, always a marine.”</i>");
+	output("\n\nYou compliment Ciaran on his heroics " + (pc.characterClass  == GAME.CLASS_MERCENARY ? " and ask how many of the assassins he defeated" : "") + ".");
+	output("\n\nThe retired marine holds his hands up in false modesty. <i>“Oh, there were just a little over two dozen of them. I shot half of them. The peace-keepers got there pretty quickly or I would've gotten more; thankfully they all survived since they got medical attention immediately. The important bit though is that their would-be victim turned out to be Big T's cousin. He promised me I'd never have to risk my life again if I didn't want to, and that he'd set me up on New Texas with the Treatment and any job I wanted with enough pay to keep me and my family comfortable for life.”</i>");
+	output("\n\nYou flash him a puzzled look, asking if he was at all concerned about taking the Treatment after what he heard his assailants say about it.");
+	output("\n\nCiaran throws his head back and laughs at your question. <i>“I don't generally put much stock in what crazy alley assassins say. Now I did look into the Treatment before I took it, and I can't say I'm totally in love with every aspect of it. For example, I like women with something between their ears besides thoughts of cock. When I read more about it though I figured I could work with it. After all, the cows aren't actually stupid. No, they're just... distracted, and you would be amazed at what some of them will do if you promise them the right thing. In the first year I was here I promised a cow I'd arrange a gang-bang in the milking barn for her if she could solve a few calculus equations from one of my old textbooks by hand. She had to study for a few days to learn how to do it, but once she got the hang of it she solved them right away. I had to pay for the cleaning bill in the milk barn, but I think it was worth it. I don't believe the Treatment's a bad thing at all. I certainly wouldn't give it to the whole galaxy, but the only time I've ever been happier since taking the Treatment was when Celina was born.”</i>");
+	output("\n\nDespite the grin as he claims this, you can't help but feel that Ciaran is leaving some key details out of this story: namely, he never mentioned anything about Celina's mother, and you didn't see her in any of the pictures or holos he showed you. Perhaps if he trusted you more and you had a bit of privacy, he might open up?");
 	
-	
+	processTime(8);
+	flags["CIARAN_PAST"] = 1;
 	flags["CIARAN_TALKED"] = 1;
 	ciaranTalkMenu();
 	addDisabledButton(6, "His Past", "His Past", "You just talked about this.");
@@ -480,3 +521,24 @@ public function ciaranTalkAnnebelle():void
 	addDisabledButton(8, "Annebelle", "Annebelle", "You just talked about this.");
 }
 */
+
+public function ciaranGetScritched():void
+{
+	output("You're surprised when Ciaran wordlessly shifts over to the seat next to your own; you're downright stunned when he cups your cheek and kisses you tenderly. You swoon as his free hand moves to your [pc.ear], scratching the delicate skin just behind the protrusion. The DILF continues his surprisingly delicate kiss until you run out of air, continuing to pet your [pc.ear] even when you break the liplock to pant for breath. <i>“Good [pc.boyGirl],”</i> he whispers to you softly, just a hint of a grin on his rugged face.");
+	output("\n\nYou blush heavily, finally realizing that he's paying you back for your previous treatment of him, in more ways than one. Ciaran strokes your cheek briefly with his furred hand before moving that same hand to your head. He uses his claws to scratch at your scalp while running his fingers through your [pc.hair] tenderly. You feel tingles run through your body from the pleasurable contact, and you eagerly nuzzle into the hellhound's warm touch. The claws of Ciaran's left hand are extremely sharp, but he strokes you with the greatest finesse, never even coming close to harming you. ");
+	if (pc.race() == "kaithrit" || pc.race() == "half-kaithrit") output("You're amazed at how skilled the ausar is at petting you given that you're a [pc.race]; he must have a great deal of experience lavishing affection on kaithrit to be so adept at pampering you. The sharp touch of his claws excites your own instincts as a [pc.race]. This is exactly how another kaithrit would stroke you! The DILF gently tilts your head back with his other hand and begins stroking your chin and throat as he whispers so softly that only you can hear it. <i>“Good kitty. You're such a good little kitty.”</i> His praises make you purr happily. ");
+	output("He places both hands on the top of your head and repeatedly runs his fingers through your [pc.hair], tickling your scalp with his claws " + (pc.hasHorns() ? "and massaging the base of your [pc.horns] delightfully " : "") + "as he continues to whisper quiet praises to you.");
+	output("\n\nCiaran spends a few minutes massaging and scratching at your head before he starts to slow down. You press eagerly into his hands, but he completely stops his ministrations when you do. The low rumble of his voice breaks you from your reverie. <i>“I only pet good " + (InCollection(pc.race(), "kaithrit", "half-kaithrit", "naleen") ? "kitties" : "puppies") + " for longer than this. If you want me to keep it up, you'll have to tell everybody exactly what kind of " + (InCollection(pc.race(), "kaithrit", "half-kaithrit", "naleen") ? "kitty" : "puppy") + " you are.”</i>");
+	output("\n\nYou blink a few times before what Ciaran is asking you to do sinks in. You hesitate momentarily; when you do, he starts to remove his hands from your head. Without thinking, you immediately and loudly declare that you are a very good "+ (InCollection(pc.race(), "kaithrit", "half-kaithrit", "naleen") ? "kitty" : "puppy") +  ", and that you want Ciaran to keep praising you like the little pet you are. Your cheeks burn and you close your eyes in embarrassment when you realize what you've said and just how many people are now staring at you and chuckling, but your words have the desired effect. The ausar redoubles his earlier efforts, scratching affectionately at ");
+	if (pc.earType == GLOBAL.TYPE_HUMAN && !pc.hasHorns()) output("all of the most sensitive spots on your head and neck, including several you didn't even know you had");
+	else 
+	{
+		output("your animal anatomy, demonstrating his mastery at massaging your ears");
+		if (pc.hasHorns()) output(" and around your horns");
+	}
+	output(". You involuntarily " + (InCollection(pc.race(), "kaithrit", "half-kaithrit", "naleen") ? "purr" : "sigh") + " in pleasure as your whole body tingles. Ciaran spends the next quarter of an hour pampering you. He scratches and rubs around your [pc.ears] with the skill of a master, he compliments all of your features, and above all else assures you that you are indeed a very good [pc.boyGirl]. ");
+	output("\n\nWhen you receive a final pat on the head and one last <i>“Good [pc.boyGirl],”</i> you open your eyes in confusion. As soon as you do Ciaran pulls you by the chin into a warm, passionate kiss, sending you swooning again. His kiss is tender, sensual, and sadly brief. You moan in disappointment as the hellhound separates from you, already feeling a bit lonely without his touch on your body.");
+	output("\n\nCiaran smiles at you mirthfully. <i>“Sorry, but that's the same amount of time you gave me. Of course, I've got a lot more experience, so I'm a lot better at this whole petting thing than you are, kid. I think </i>you<i> might even owe </i>me<i> some ear-scratching now.”</i> He punctuates his teasing words with a good-natured wink. You roll your eyes and thank Ciaran for his efforts. He just grins and chuckles deeply as he stands up from his seat and moseys over to the bar. <i>“Anytime, [pc.name]. Anytime.”</i>");
+	output("\n\nYou collect yourself and leave the table as well. With skills like that Ciaran could probably work as a masseuse!");
+}	
+	
