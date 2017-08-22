@@ -2092,7 +2092,7 @@ public function kiroFucksYourCuntPartIII(x:int = 0):void
 	processTime(16);
 	pc.shower();
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next", move, flags["PREV_LOCATION"]);
 }
 
 //[Repeat Vaginal]
@@ -2241,7 +2241,7 @@ public function repeatFillingKirosCuntEpilogue():void
 	processTime(10);
 	pc.shower();
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next", move, flags["PREV_LOCATION"]);
 }
 
 //Milker Doubletime, By Savin
@@ -2277,7 +2277,7 @@ public function kiroMilkerDoubleTimeBySavin():void
 	pc.orgasm();
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next", move, shipLocation);
 }
 
 //Manual Milking
@@ -2305,11 +2305,11 @@ public function manualMilkingFromSavin():void
 	output("\n\n<i>“Uh... forget something, angel?”</i> Kiro whines, shaking her booty at you - which has the delightful effect of making what bits of horsecock aren’t inside her sway enticingly. You pat one of her fuzzy cheeks reassuringly, but do nothing to remove the horsecock in her ass, only nudge it aside with the tip of the pink toy. Kiro gives a sharp gasp as you push the crown of the pink toy into her pucker, which stretches deliciously thanks to the special lube your kui-tan uses; her ass can do nothing but submit to your will, held agape as you slide the next toy in and hit the vibrate setting.");
 	output("\n\n<i>“O-oh shit,”</i> Kiro groans, biting her lip as you stretch her ass out, thrusting in and out with her vibrator to give her ass a nice fucking on top of it all . <i>“Too... too much. There’s too much!”</i>");
 	output("\n\nYou watch giddily as the kui-tan’s oversized horsecock throbs and twitches, cum oozing out quicker into the beanbag-like condom behind you. Panting heavily, trying not to cum and failing beautifully, Kiro lets out a shrill, girlish cry as her dick erupts into the tight-wrapped sheath around it, flooding it with a sea of salty spunk with enough force to knock you right off, sending you toppling onto the bed beside her. Kiro’s hips buck and thrust as she comes, pounding an imaginary pussy full of her cum - or more likely, getting reamed from behind like a bitch in heat as she creams herself from the overwhelming anal pleasure.");
-	output("\n\nThe condom on Kiro’s cock stretches and bloats as the tanuki slut pumps it with her seemingly endless supply of spooge, filling it until even its advanced material seems like it couldn’t take another spurt before popping. But thankfully, it holds, and Kiro’s able to flop face-down onto the bed, panting and moaning as the vibrator and horsecock continue to stimulate her even after orgasm. Chuckling, you remove the intruding members - which only gives Kiro another thrill, bloating the condom further. Her ass still agape, a perfect black <i>“O”</i> of ecstasy between her cheeks, you decide to leave her to recover... and find something to do with that cumbomb of hers.");
+	output("\n\nThe condom on Kiro’s cock stretches and bloats as the tanuki slut pumps it with her seemingly endless supply of spooge, filling it until even its advanced material seems like it couldn’t take another spurt before popping. But thankfully, it holds, and Kiro’s able to flop face-down onto the bed, panting and moaning as the vibrator and horsecock continue to stimulate her even after orgasm. Chuckling, you remove the intruding members - which only gives Kiro another thrill, bloating the condom further. Her ass still agape, a perfect black “O” of ecstasy between her cheeks, you decide to leave her to recover... and find something to do with that cumbomb of hers.");
 	processTime(25);
 	kiro.orgasm();
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next", move, shipLocation);
 }
 
 //Kiro Fluffy Pawjobs - 3,000 twerds!
@@ -2483,7 +2483,7 @@ public function yesKiroIDoWantPubbieFJ():void
 	output("\n\n<i>“Ahhh, that was fun, angel. You should load up like that more often so I can make you nut in public again.”</i>");
 	output("\n\nYou wobble, slightly more sober after the extended climax but still feeling tingly and a little unbalanced.");
 	output("\n\nKiro’s palm pats your [pc.butt] as she gets up to leave. She’s proudly wearing your [pc.cum] as footwear, daring someone to comment on it with an imperious gaze. <i>“I’ve got to tend to some things. I might be right back, I might not, but you’d better go get your fortune... unless you want to spend your days being my whore.”</i>");
-	//Set alcohol to buzzed, add status affect that increases lust gain over time and makes you vulnerable to teases. <i>“Tallavarian Tingler”</i>
+	//Set alcohol to buzzed, add status affect that increases lust gain over time and makes you vulnerable to teases. “Tallavarian Tingler”
 	pc.imbibeAlcohol(50);
 	kiro.ballSizeRaw += 10;
 	//Pass forty minutes or an hour if huge orgasm.
@@ -2619,7 +2619,7 @@ public function balljobFromKiro():void
 	kiro.orgasm();
 	clearMenu();
 	flags["KIRO_BALLJOBBED_YOU"] = 1;
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next", move, shipLocation);
 }
 
 //Body-Bloating, Butt-Obliterating Bowel Basting
