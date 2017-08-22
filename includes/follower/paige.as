@@ -1666,7 +1666,7 @@ public function leavePaige():void
 	output(" <i>“See you around,”</i> she giggles, then pushes you out.");
 	processTime(1);
 	clearMenu();
-	if(paigeIsCrew()) addButton(0,"Next",crew);
+	if(InShipInterior(pc) && paigeIsCrew()) addButton(0,"Next",crew);
 	else addButton(0,"Next",moveSouth);
 }
 
