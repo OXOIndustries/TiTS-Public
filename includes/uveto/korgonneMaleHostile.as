@@ -89,7 +89,6 @@ public function korgMaleEncounter():void
 	if(flags["MET_KORG_MALE"] == undefined)
 	{
 		var missed:Boolean = true;
-		flags["MET_KORG_MALE"] = 1;
 		output("\n\nSomething flies past you and buries itself in the snow! ");
 		//(high rfx dodges)
 		if(rangedCombatMiss(tEnemy, pc)) output("You immediately hunch low and sidestep just as two more hit where you were standing. One disappears, but the other gets stuck in your densely-packed tracks.");
@@ -199,6 +198,7 @@ public function korgMaleEncounter():void
 		}
 		output("\n\n<b>It’s a fight!</b>");
 	}
+	IncrementFlag("MET_KORG_MALE");
 	//begin combat
 	clearMenu();
 	addButton(0,"Next",CombatManager.beginCombat);
@@ -325,11 +325,11 @@ public function korgWinSexMenu():void
 	}
 	else
 	{
-		addDisabledButton(0,"Cowgirl","Cowgirl","You aren't aroused enough for this.");
-		addDisabledButton(1,"Cowgirl(Tail)","Cowgirl(Tail)","You aren't aroused enough for this.");
-		addDisabledButton(2,"Pitch Anal","Pitch Anal","You aren't aroused enough for this.");
-		addDisabledButton(3,"Pussy-Worship","Pussy-Worship","You aren't aroused enough for this.");
-		addDisabledButton(4,"Mutual Mast.","Mutual Mast.","You aren't aroused enough for this.");
+		addDisabledButton(0,"Cowgirl","Cowgirl","You aren’t aroused enough for this.");
+		addDisabledButton(1,"Cowgirl(Tail)","Cowgirl (Tail)","You aren’t aroused enough for this.");
+		addDisabledButton(2,"Pitch Anal","Pitch Anal","You aren’t aroused enough for this.");
+		addDisabledButton(3,"Pussy-Worship","Pussy-Worship","You aren’t aroused enough for this.");
+		addDisabledButton(4,"Mutual Mast.","Mutual Masturbation","You aren’t aroused enough for this.");
 	}
 	addButton(14,"Leave",CombatManager.genericVictory);
 }
