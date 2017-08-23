@@ -222,7 +222,8 @@ public function winVsKorgonneMale():void
 		output("”</i>");
 
 		//load gem reward into enemy loot.
-		enemy.inventory.push(new Savicite());
+		if(rand(2) == 0) enemy.inventory.push(new Savicite());
+		else enemy.inventory.push(new Picardine());
 
 		output("\n\nThe fight has concluded on very good terms. ");
 		//(PC lust too low)

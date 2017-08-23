@@ -92,7 +92,7 @@
 			this.hairType = GLOBAL.TYPE_RASKVEL;
 			this.scaleColor = "blue";;
 			this.furColor = "tan";
-			this.hairLength = 14;
+			this.hairLength = 2;
 			
 			this.beardLength = 0;
 			this.beardStyle = 0;
