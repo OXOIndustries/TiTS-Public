@@ -170,10 +170,11 @@
 			//balls
 			this.balls = 1;
 			this.cumMultiplierRaw = 20;
+			this.impregnationType = "KorgonnePregnancy";
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
-			this.cumQualityRaw = 1;
+			this.cumQualityRaw = 3;
 			this.cumType = GLOBAL.FLUID_TYPE_CUM;
-			this.ballSizeRaw = 15;
+			this.ballSizeRaw = 25;
 			this.ballFullness = 100;
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 80;

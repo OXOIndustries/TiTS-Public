@@ -280,7 +280,7 @@ public function winVsKorgonneMale():void
 		//else present sex menu
 	}
 	//if tailcunt hasn’t been fed
-	if (target.hasCuntSnake() && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7)
+	if (pc.hasCuntSnake() && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7)
 	{
 		output("You consider the korgonne, but before you have time to make a decision, one is made for you! Your parasitic [pc.tail], starved of intimacy for too long, lunges at the korgonne’s crotch!");
 		//go automatically to ‘Cowgirl’ sex, tailcunt var.
@@ -1861,62 +1861,109 @@ output("\n\n	medium defence vs. Cold attacks, adds one inventory slot");
 output("\n\n-empty slot/no drop (replaces female’s flashbangs and pistol)");
 output("\n\n-Savicite (only from mercy’s reward)");
 output("\n\n-Picardine (only from mercy’s reward)");
-
-
-
-output("\n\nkorgonne pregnancy (target 1000 wds):");
-output("\n\n//korg men are more fertile than average (either through virility or volume, you pick) because their female’s breeding window is smaller");
-output("\n\n//reminder: PC has /much/ lower odds of falling pregnant from vaginal sex if the korg slips out because the chosen pussy is loose");
-output("\n\n//baseline 7-month or 210-day gestation (longer post-birth development period allows shorter gestation)");
-
-output("\n\n//korgonne gestation stages (with base timing for reference)");
-output("\n\n//one - feeling ill - @30 days");
-output("\n\nYour stomach turns suddenly, sending you into a panic of nausea. You lean over, feeling as if you could vomit, but hold it in. That was abrupt.");
-
-output("\n\n//two - suspiciously long stomach flu - @45 days");
-output("\n\nYour occasional nausea returns, this time stronger. It can’t be something you ate... it’s been too persistent. You check your Codex for a reading and confirm your suspicion: <b>pregnant</b>");
-
-output("\n\n//three - bad sickness, tiny gut - @75 days");
-output("\n\nThe nausea that’s been plaguing you is persistent every morning now, like a background hum. Your [pc.belly] is {a bit/(already preg)even more} rounded.");
-
-output("\n\n//four - start to show - @100 days");
-output("\n\nYour pregnancy has progressed to the point that people who bother to look are starting to notice - your {(only 1 preg)belly is distended with a growing baby or babies. /(else multiple)waistband is expanding further every day. }");
-
-output("\n\n//five - getting jolly round - lactation begins - @130 days");
-output("\n\nYour [pc.belly] is starting to become cumbersome, pushing the straps of your gear out of place. It’s a bit early for it to be this far progressed... your baby is probably not a human child. You examine your Codex for another scan: it’s a hybrid of {pc’s reproductive species here, e.g. human} and korgonne, the dog-like natives of Uveto VII. {(not already lactating)Your [pc.breasts] are also beginning to swell and dribble milk, preparing to nurse the new lives. <b>You are lactating!</b> } ");
-
-output("\n\n//six - really out there - minor rfx penalty? - @160 days");
-output("\n\nIt’s hard to move quickly with how swollen you are; your [pc.belly] seems to get in the way of everything. Still, you can get by with a bit of extra effort, and the accelerated pace of this baby suggests that you won’t have to endure much longer.");
-
-output("\n\n//seven - hard to move - rfx penalty increases? - @180 days");
-output("\n\nThe bulge in your belly is a perfect egg-shape, reducing your quickest trots and sexiest sashays to pregnant waddles. Still, your hormones are running high, your skin is glowing{(in public), and judging by the prurient glances you get when people think you’re not watching, you’re still <i>somebody’s</i> fetish}.");
-output("\n\n//minor lust gain if in public");
-
-output("\n\n//eight - any day now - @200 days");
-output("\n\nYour {(lactating)nipples leak milk {into your [pc.upperUndergarment] }constantly and your }[pc.belly] is further stretched than the pregnancy handbooks say possible. If you get any more swollen, you’re not going to be able to move. When will the baby come?");
-
-output("\n\n//childbirth - removes rfx penalty - @210 days");
-output("\n\nYour gut aches suddenly, and a sudden spot of damp grows on your {(nude)[pc.thighs]/[pc.lowerUndergarment]}... your water just broke!");
-
-output("\n\n//on PC’s ship without automatic medbay");
-output("\n\nYou grab some medical supplies and head for your berth, hoping the alienness of the baby doesn’t cause any complications. Stripping your gear as quickly as your [pc.belly] allows, you recline and begin to breathe in preparation for the labor.");
-
-output("\n\n//9999on a ship with auto-medbay (not yet available; reminder comment only)");
-
-output("\n\n//in public place");
-output("\n\nYour gut cramps in a second contraction, and your pained face attracts the attention of some passers-by. After some confusion and dithering, they help you to a medical aid station and leave you in the capable hands of the staff... and luckily, their painkillers.");
-
-output("\n\n//in the jungle like a Tarzan bride");
-output("\n\n//minor HP damage if you want");
-output("\n\nOh, god... the timing couldn’t be worse. You look around furtively for help, but of course there’s no one out here but you. You strip your gear and arrange it to try and keep the baby off of the ground, planning to cope as best you can....");
-
-output("\n\n//merge all openers");
-output("\n\nFor what feels like hours but in reality is no more than forty-five minutes, you grunt and push, forcing the baby through. It’s a big, healthy child{(tight vag)... you’re glad, of course, but a small part of you screaming out for relief would have been happier with one just a bit smaller. /(else loose), and your stretched-out sex is more than ready to accommodate. }The most work is done getting the widest part of the baby through; once you have, it smoothly slides the rest of the way free, followed by the placenta.");
-
-output("\n\nThe babe is a {boy/girl} and is every bit the hybrid you expected. The downy beginnings of a shaggy korgonne mop top {his/her} head, and two canine ears prick from it. {His/Her} face is almost human, but with large sideburns, and the slightest up-turned snub-nose. Tellingly, {his/her} lips are cerulean blue like a korgonne’s, and though the belly is bare, the downy fur continues down {his/her} back, covering {his/her} butt and legs. A tiny nub of a tail quivers from the warmth and closeness of your body.");
-
-output("\n\nYou call for the transport{(if lactating) and, while waiting, bring the whimpering infant to your breast. Strong hands grasp you and {he/she} starts to suckle greedily - {his/her} appetite is as healthy as {he/she} is. /(else not lactating for some reason)and amuse the little one by tickling {him/her} with a finger. {He/She} catches on it quickly with a strong grip and tries to put it in {his/her} mouth, chewing at it with small, gummy bites. }The transport arrives too soon, and beeps at you insistently until you agree to put the child inside, not quite having had your fill of playing with {him/her}. Wistfully, you watch as it whisks your child away from the frontier to safety and security.");
-output("\n\n//increment child count");
-output("\n\n//pregnancy is kor-gone");
-
 */
+//childbirth - removes rfx penalty - @210 days
+public function korgonneBabyBirthing(pregSlot:int,c:Child):void
+{
+	clearOutput();
+	author("Zeikfried");
+	showName("KORGONNE\nBIRTH!");
+	var pData:PregnancyData = (pc.pregnancyData[pregSlot] as PregnancyData);
+	var x:int = pregSlot;
+	if(pregSlot == 3) x == -1;
+	
+	output("Your gut aches suddenly, and a sudden spot of damp grows on your ");
+	//(nude)
+	if(pc.isCrotchExposed()) output("[pc.thighs]");
+	else output("[pc.lowerUndergarment]");
+	output("... your water just broke!");
+
+	//on PC’s ship without automatic medbay
+	if (InShipInterior())
+	{
+		output("\n\nYou grab some medical supplies and head for your berth, hoping the alienness of the baby doesn’t cause any complications. Stripping your gear as quickly as your [pc.belly] allows, you recline and begin to breathe in preparation for the labor.");
+	}
+	//9999on a ship with auto-medbay (not yet available; reminder comment only)
+	else if(9999 == 0)
+	{
+
+	}
+	//in public place
+	else if(InPublicSpace())
+	{
+		output("\n\nYour gut cramps in a second contraction, and your pained face attracts the attention of some passers-by. After some confusion and dithering, they help you to a medical aid station and leave you in the capable hands of the staff... and luckily, their painkillers.");
+	}
+	//in the jungle like a Tarzan bride
+	else
+	{
+		//minor HP damage if you want
+		output("\n\nOh, god... the timing couldn’t be worse. You look around furtively for help, but of course there’s no one out here but you. You strip your gear and arrange it to try and keep the baby off of the ground, planning to cope as best you can....");
+	}
+	//merge all openers
+	output("\n\nFor what feels like hours but in reality is no more than forty-five minutes, you grunt and push, forcing the baby through. It’s a big, healthy child");
+	//(tight vag)
+	if(pc.vaginas[x].looseness() <= 2) output("... you’re glad, of course, but a small part of you screaming out for relief would have been happier with one just a bit smaller.");
+	else output(", and your stretched-out sex is more than ready to accommodate.");
+	output(" The most work is done getting the widest part of the baby through; once you have, it smoothly slides the rest of the way free, followed by the placenta.");
+	if(x >= 0) pc.cuntChange(x,1000);
+	else pc.buttChange(1000);
+
+	var itsABoy:Boolean = (c.NumMale > 0);
+	output("\n\nThe babe is a ");
+	if(itsABoy) output("boy");
+	else output("girl");
+	output(" and is every bit the hybrid you expected. The downy beginnings of a shaggy korgonne mop top ");
+	if(itsABoy) output("his");
+	else output("her");
+	output(" head, and two canine ears prick from it. ");
+	if(itsABoy) output("His");
+	else output("Her");
+	output(" face is almost human, but with large sideburns, and the slightest up-turned snub-nose. Tellingly, ");
+	if(itsABoy) output("his");
+	else output("her");
+	output(" lips are cerulean blue like a korgonne’s, and though the belly is bare, the downy fur continues down ");
+	if(itsABoy) output("his");
+	else output("her");
+	output(" back, covering ");
+	if(itsABoy) output("his");
+	else output("her");
+	output(" butt and legs. A tiny nub of a tail quivers from the warmth and closeness of your body.");
+
+	output("\n\nYou call for the transport");
+	if(pc.isLactating()) 
+	{
+		output(" and, while waiting, bring the whimpering infant to your breast. Strong hands grasp you and ");
+		if(itsABoy) output("he");
+		else output("she");
+		output(" starts to suckle greedily - ");
+		if(itsABoy) output("his");
+		else output("her");
+		output(" appetite is as healthy as ");
+		if(itsABoy) output("he");
+		else output("she");
+		output(" is.");
+	}
+	else
+	{
+		output(" and amuse the little one by tickling ");
+		if(itsABoy) output("him");
+		else output("her");
+		output(" with a finger. ");
+		if(itsABoy) output("He");
+		else output("She");
+		output(" catches on it quickly with a strong grip and tries to put it in ");
+		if(itsABoy) output("his");
+		else output("her");
+		output(" mouth, chewing at it with small, gummy bites.");
+	}
+	output(" The transport arrives too soon, and beeps at you insistently until you agree to put the child inside, not quite having had your fill of playing with ");
+	if(itsABoy) output("him");
+	else output("her");
+	output(". Wistfully, you watch as it whisks your child away from the frontier to safety and security.");
+
+	//increment child count
+	//pregnancy is kor-gone
+	processTime(45);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
