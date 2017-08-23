@@ -46,7 +46,8 @@ public function processGastigothEvents():void
 	//if(flags["DR_BADGER_TURNED_IN"] == 0) prisonerSent += 1; // Dr. Badger
 	//if(flags["ICEQUEEN COMPLETE"] == 2) prisonerSent += 1; // Zaalt
 	//if(flags["PQ_SECURED_LAH"] == 2) prisonerSent += 1; // R.K.Lah
-	
+	if(samImprisoned()) prisonerSent += 1;
+
 	if(prisonerSent <= 0) return;
 	
 	pc.createStatusEffect("GastiUnlockTimer");
@@ -1192,8 +1193,11 @@ public function sexHaverTerminalTime(fromBack:Boolean = false):void
 		output("\n\\\[Pirate\\\] Khorgan");
 		addButton(button++,"Khorgan",prisonerStatline,"Khorgan","Captain Khorgan","Pay a visit to the bad-ass space-pirate you defeated on Tarkus.");
 	}
-	output("\n\\\[Criminal Scum\\\] Sam");
-	addButton(button++,"Sam",prisonerStatline,"Sam","Sam","Pay a visit to Sam.");
+	if(samImprisoned())
+	{
+		output("\n\\\[Pirate\\\] Sam");
+		addButton(button++,"Sam",prisonerStatline,"Sam","Sam","Pay a visit to Sam.");
+	}
 	/*
 	if(flags["DR_BADGER_TURNED_IN"] == 0)
 	{

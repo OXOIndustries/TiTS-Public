@@ -11,18 +11,23 @@ public function showSam(nude:Boolean = false):void
 	showName("\nSAM");
 	var nudeS:String = "";
 	if(nude) nudeS = "_NUDE";
-	showBust("SAM" + nudeS);
+	showBust("TECHGUARD" + nudeS);
 }
 public function samCapacity():Number
 {
 	return 300;
 }
 
+public function samImprisoned():Boolean
+{
+	return (flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] != undefined && flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] != 4);
+}
+
 //The Fun Part
 public function samsPrisonRoom():void
 {
 	clearOutput();
-	showSam();
+	showSam(true);
 	author("Night Trap");
 	output("Upon entering the room, you are greeted to the ");
 	if(flags["MET_SAM"] == undefined) output("sight of a dark-skinned ausar woman with light blonde hair and fur, who according to prison records goes by the name Sam.");
