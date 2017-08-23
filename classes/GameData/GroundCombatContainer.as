@@ -585,6 +585,21 @@ package classes.GameData
 					target.removeStatusEffect("Evasion Boost");
 				}
 			}
+			if (target.hasStatusEffect("Poison"))
+			{
+				if (target is PlayerCharacter) output("\n\n<b>The poison continues to exhaust you" + (target.statusEffectv2("Poison") >= 1 ? ". You're ready for this fight to be over!" : ", though you feel a bit better after. It must be <i>wearing off</i>.") + "</b>");
+				else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " movements become more sluggish" + (target.statusEffectv2("Poison") ? "; poison flows through their wounds, weakening them further." : ", though the poison is fading, its damage done.") + "</b>");
+				if (target.statusEffectv2("Poison") >= 1)
+				{
+					target.addStatusValue("Poison", 2, -1);
+				}
+				else
+				{
+					target.removeStatusEffect("Poison");
+				}
+				applyDamage(damageRand(new TypeCollection( { poison: target.statusEffectv1("Poison") * target.statusEffectv3("Poison") } ), 15), null, target);
+				target.energy(-5);
+			}
 			if (target.hasStatusEffect("Bleeding"))
 			{
 				if (target is PlayerCharacter) output("\n\n<b>Your wounds continue to take their toll on your body; " + (target.statusEffectv2("Bleeding") >= 1 ? "your microsugeons working overtime to stem the ongoing damage" : "your microsurgeons have triaged the worst of it, but you’ll need proper rest to heal") + ".</b>");
@@ -1326,6 +1341,11 @@ package classes.GameData
 				else if (_hostiles.length == 1 && _hostiles[0] is CrystalGooT2 && (_hostiles[0] as CrystalGooT2).ShouldIntercept({ isWait: true }))
 				{
 					(_hostiles[0] as CrystalGooT2).SpecialAction( { isWait: true } );
+				}
+				//Flag PC as having waited like a good boy and or girl.
+				else if (_hostiles.length == 1 && _hostiles[0] is KorgonneMale)
+				{
+					(_hostiles[0] as KorgonneMale).setStatusValue("SURPRISE_MUTHA_TRUCKAH",1,1);
 				}
 				kGAMECLASS.sneezingTitsCombatWaitBonus(_hostiles);
 				processCombat();
@@ -3752,8 +3772,9 @@ package classes.GameData
 				addButton(0, "Victory", function(t_enemy:Creature, t_victoryFunctor:Function):Function {
 					return function():void {
 						clearOutput();
-						
-						if (t_enemy.HP() <= 0) output("<b>You’ve knocked the resistance out of " + t_enemy.getCombatName() + ".</b>\n\n");
+						//Special texts for this :3
+						if (t_enemy.hasStatusEffect("PEACEFUL_WIN")) {}
+						else if (t_enemy.HP() <= 0) output("<b>You’ve knocked the resistance out of " + t_enemy.getCombatName() + ".</b>\n\n");
 						else if (t_enemy.lust() >= 100) 
 						{
 							var msg:String = "";
