@@ -36,7 +36,7 @@ public function samsPrisonRoom():void
 	//Lightly pregnant:
 	if(9999 == 0) output("You can see a subtle swell to her belly. They’ve probably just been giving her extra rations as a reward, right?");
 	else if(9999 == 0) output("She’s <i>unmistakably</i> pregnant: her formerly washboard abdomen is straining against her suit’s top and her tiny tits are beginning to swell.");
-	else output("Her pregnant belly is absolutely massive, making it painfully obvious that she’s carrying more than one child. The staff have given her an anti-gravity harness for her swollen middle, and a few pillows to support her growing breasts for extra comfort.");
+	else if(9999 == 0) output("Her pregnant belly is absolutely massive, making it painfully obvious that she’s carrying more than one child. The staff have given her an anti-gravity harness for her swollen middle, and a few pillows to support her growing breasts for extra comfort.");
 
 	output("\n\nThe earthy, feminine smell of her arousal is overwhelming. Even while still constrained in her prison uniform, her desperately horny pussy has managed to fill the room with a dense cloud of fuck-me pheromones that instantly ");
 	if(pc.hasCock()) output("hardens your [pc.cocks]");
@@ -73,7 +73,7 @@ public function samPrisonStuff(cocked:Boolean = false):void
 	clearOutput();
 	showSam(true);
 	author("Night Trap");
-	output(" <i>“I think that can be arranged,”</i> you tell Sam, circling around behind her. Reacting purely on instinct, she raises her tail and firm little butt as high as her restraints will allow before she even consciously processes your words. Her ears perk up once she realizes what you’ve said, and she wags her tail as much as she can in its extreme vertical position. Just the presence of someone behind her causes her sopping puss to trickle fresh moisture in excitement. The air fills with even more of those pheromones, and when you actually begin to grope her small but muscular rump, the stain on her crotch nearly doubles in size.");
+	output("<i>“I think that can be arranged,”</i> you tell Sam, circling around behind her. Reacting purely on instinct, she raises her tail and firm little butt as high as her restraints will allow before she even consciously processes your words. Her ears perk up once she realizes what you’ve said, and she wags her tail as much as she can in its extreme vertical position. Just the presence of someone behind her causes her sopping puss to trickle fresh moisture in excitement. The air fills with even more of those pheromones, and when you actually begin to grope her small but muscular rump, the stain on her crotch nearly doubles in size.");
 
 	output("\n\nSam lets out a keening whine as your molesting hands sink low enough to prod at her cunny. She instantly tries to buck her hips back to pull your fingers in, but her chains and the fabric of her suit bottom deny her effort. She wiggles her hind-end into your fingers desperately, panting and whining as she moistens to an unholy degree. Smirking to yourself, you slowly tug her ruined pants down, finding it quite easy given her tiny ass and hips. The only point of resistance is her pussy, a vibrant, pink flower blooming in arousal and leaking a visible stream of feminine nectar that sticks briefly in thick strands to the crotch of her pants before breaking its hold on the fabric. Sam moans desperately as her womanhood is bared, her vulva puffy and the entrance of her most private place winking at you hungrily.");
 
