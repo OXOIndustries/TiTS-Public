@@ -580,6 +580,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "LapinaraPregnancy": output2(" Lapinara, Eggs"); break;
 						case "RahnPregnancy": output2(" Rahn, Eggs"); break;
 						case "RahnPregnancyBreedwell": output2(" Breedwell Rahn, Eggs"); break;
+						case "KorgonnePregnancy": output2(" Korgonne"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -889,6 +890,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Cockvines, Captured:</b> " + StatTracking.getStat("pregnancy/cockvine seedlings captured"));
 				if(StatTracking.getStat("pregnancy/cuntsnake hatched") > 0)
 					output2("\n<b>* Births, Cuntsnake Eggs, Hatched:</b> " + StatTracking.getStat("pregnancy/cuntsnake hatched"));
+				if(StatTracking.getStat("pregnancy/korgonne births") > 0)
+					output2("\n<b>* Births, Korgonne Young:</b> " + StatTracking.getStat("pregnancy/korgonne births"));
 				if(StatTracking.getStat("pregnancy/lapinara eggs") > 0)
 					output2("\n<b>* Births, Lapinara Eggs:</b> " + StatTracking.getStat("pregnancy/lapinara eggs"));
 				if(StatTracking.getStat("pregnancy/milodan births") > 0)

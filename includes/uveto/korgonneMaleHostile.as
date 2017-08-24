@@ -296,7 +296,7 @@ public function winVsKorgonneMale():void
 		output(".");
 		if(pc.lust() >= 33) output(" His eyes dance with alive interest in you... you could have him if you want. Do you take him, and how?");
 
-		//buttons ‘Cowgirl’,  ‘Pitch Anal’, ‘Pussy-worship’, ‘Mutual Masturbation’
+		//buttons ‘Cowgirl’, ‘Pitch Anal’, ‘Pussy-worship’, ‘Mutual Masturbation’
 	}
 	output("\n\n");
 	korgWinSexMenu();
@@ -391,7 +391,7 @@ public function korgCowgirlWin(tailForce:Boolean = false):void
 	else output("[pc.ass]");
 	output(". You ");
 	if(pc.isTaur()) output("stick your ass out and ");
-	output("rub against it,  and feel a sigh of pleasure {under your hands }in the rise and fall of the korgonne’s chest. ");
+	output("rub against it, and feel a sigh of pleasure {under your hands }in the rise and fall of the korgonne’s chest. ");
 	if(tailForce) output("Your [pc.tail] is sitting like a cap atop his penis, pushed up by the rapid erection; with great gusto, you slide it down again, consuming the raider in your alien parasite pussy.");
 	else if(pc.isTaur()) 
 	{
@@ -1763,7 +1763,7 @@ public function worstKorgLoss():void
 	//slight pregnancy chance if gooey + has vagina
 	if(pc.isGoo())
 	{
-		output("\n\nAs the korgonne’s intensity grows, so too does his frustration -  even with help from his hands, your soft, gooey [pc.thighs] can’t stay firm enough to put pressure on his straining, inflated knot. <i>“Useless fish paste,”</i> he mumbles, trying to mold you into a usable shape.");
+		output("\n\nAs the korgonne’s intensity grows, so too does his frustration - even with help from his hands, your soft, gooey [pc.thighs] can’t stay firm enough to put pressure on his straining, inflated knot. <i>“Useless fish paste,”</i> he mumbles, trying to mold you into a usable shape.");
 		output("\n\nSoon his frustration takes form. Heaving a great sigh-cum-moan, he releases you, allowing your goopy piles to assume their usual slump... then reaches right into your ass! His leathery, smooth fingers push your malleable membrane ahead of them as they sink into you, burrowing down toward his knot. The greedy dog actually grabs his fat dick through your body, wrapping both hands around it through a thin cushion of you! Massive shudders rock his hips as he begins to squeeze down at last, squirting his painful-looking buildup of puppy spunk; as his tongue lolls from his mouth absently, his cock angles up from its new grip until it sinks completely into your lower body again. The hot loads are absorbed into your body, permeating your " + pc.skinTone + " with cum-off-white that spreads and infiltrates everywhere");
 		if(!pc.hasPregnancy() && pc.hasVagina())
 		{
