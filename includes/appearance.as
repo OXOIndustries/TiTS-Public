@@ -391,7 +391,7 @@ public function appearance(forTarget:Creature):void
 			else if(hasGemstoneEyes) output2(" each nestled in a shimmering gemstone-like " + target.eyeColor + " iris.");
 			else if(hasLuminousEyes) output2(" each nestled within " + indefiniteArticle(target.eyeColor) + " iris.");
 			else output2(" each sat within " + indefiniteArticle(target.eyeColor) + " iris.");
-			output2(" Tendrils of black crawl across your eyeballs proper, extending from a dark ring just barely visible at the edges.");
+			output2(" Tendrils of black crawl across your sclera, extending from a dark ring just barely visible at the edges.");
 			break;
 		case GLOBAL.TYPE_BEE:
 			if(target.eyeColor == "gold") output2(" Your eyes are completely pitch black with the exception of your vibrant golden irises.");
@@ -422,8 +422,8 @@ public function appearance(forTarget:Creature):void
 			if(target.eyeType != GLOBAL.TYPE_DEMONIC) output2(".");
 			else
 			{
-				if(rand(3) == 0) output2(" and nestled within the inky blackness of your eyeball proper.");
-				else output2(" and nestled within the blacken depths of your sclera.");
+				if(rand(3) == 0) output2(" and nestled within the inky blackness of your sclera.");
+				else output2(" and nestled within the pitch black depths of your sclera.");
 			}
 			break;
 		case GLOBAL.TYPE_AVIAN:

@@ -82,6 +82,13 @@ public function paigeCost():Number
 }
 public function paigeRoomsUpdate():void
 {
+	// During operation
+	if(pc.hasStatusEffect("PAIGE_COMA_CD")) 
+	{
+		rooms["RESIDENTIAL DECK 14"].northExit = "";
+		rooms["YOGA_HOUSE"].removeFlag(GLOBAL.COMMERCE);
+		return;
+	}
 	//Paige house open :3
 	//Paige house unlocked after yoga lesson 3 and between specific hours :3
 	if(flags["PAIGE_VISIT_DAY"] != days && flags["PAIGE_YOGA"] != undefined && flags["PAIGE_YOGA"] >= 3 && (hours >= 17 || (hours < 17 && flags["SEXED_PAIGE"] != undefined && hours < 9)))
@@ -109,6 +116,12 @@ public function paigeRoomsUpdate():void
 
 public function yogaIntro():Boolean
 {
+	// During operation
+	if(pc.hasStatusEffect("PAIGE_COMA_CD"))
+	{
+		output("You approach Paige’s Yoga Class & Seminar, but with the door locked and the closed sign, you remember that Paige is currently undergoing her operation. It might be best to return after she has recovered from the procedure.");
+		return false;
+	}
 	// PC finds Paige’s Yoga Class in the Residential Deck for the first time, between the hours of 17:01 and 08:59 (scene: Pre-Intro)
 	if((hours >= 17 || hours < 9))
 	{
@@ -745,6 +758,7 @@ public function paigeMenu():void
 	{
 		//[=Yoga=][=Sex=] [=Rest=][=Spar=]
 		if(flags["PAIGE_YOGA_DAY"] == days) addDisabledButton(4,"Yoga","Yoga","It’s not a good idea to do extended yoga sessions more than once a day. You might hurt yourself!");
+		else if(pc.isPregnant() && pc.bellyRating() >= 90) addDisabledButton(4,"Yoga","Yoga","It’s not a good idea to do extended yoga sessions while you are heavily pregnant!");
 		else addButton(4,"Yoga",paigeAtHomeYoga,undefined,"Yoga","Even though you’re not ‘officially’ a student of hers, you could still try asking Paige if she’s willing to do some yoga.");
 
 		if(pc.lust() >= 33) addButton(5,"Sex",sexWithPaige,undefined,"Sex","You could really do with some release, and something tells you yoga’s not gonna cut it.");
@@ -2193,15 +2207,16 @@ public function firstTimePaigeCrewHiHi():void
 			if(celiseIsCrew()) output(" Speaking of, you got something for goo girls or what? All that malleability is pretty hot, for sure.");
 			output("”</i>");
 		}
-		if(pexigaIsCrew()) output("<i>“I’m a little, um, concerned about that albino pexiga you got on board. Don’t get me wrong, I’m a fan of some big ole’ titties myself, but the way she talks is like she isn’t quite all there. I’m assuming she’s some kind of rescue case and not something a little more</i> sinister <i>on your part.”</i>");
-		if(reahaIsCrew()) output("<i>“The human with the big boobs is a bit of a firecracker, isn’t she? I kinda had Reaha pegged for a dumb pushover at first, but if you can get past the temper, she’s actually pretty smart. She gave me some sob story about her being a slave before you bought her contract? She seems to like being with you, so that’s pretty sweet, I guess. Also, I</i> love <i>her hair.”</i>");
+		if(pexigaIsCrew()) output("\n\n<i>“I’m a little, um, concerned about that albino pexiga you got on board. Don’t get me wrong, I’m a fan of some big ole’ titties myself, but the way she talks is like she isn’t quite all there. I’m assuming she’s some kind of rescue case and not something a little more</i> sinister <i>on your part.”</i>");
+		if(reahaIsCrew()) output("\n\n<i>“The human with the big boobs is a bit of a firecracker, isn’t she? I kinda had Reaha pegged for a dumb pushover at first, but if you can get past the temper, she’s actually pretty smart. She gave me some sob story about her being a slave before you bought her contract? She seems to like being with you, so that’s pretty sweet, I guess. Also, I</i> love <i>her hair.”</i>");
 		if(seraIsCrew()) 
 		{
-			output("<i>“I met that demon-thing you keep in a collar. No way would a girl like</i> that <i>ever agree to call someone else ‘captain,’ ");
+			output("\n\n<i>“I met that demon-thing you keep in a collar. No way would a girl like</i> that <i>ever agree to call someone else ‘captain,’ ");
 			//if {Sera isn’t broken}
 			if(flags["SERA_OBEDIENCE_MIN"] <= 0) output("and it looks like there’s still a bit of fight in her. Hell, [pc.name], I love a good challenge; if you need help showing her who’s the boss, I can lend a hand!");
 			else output("but it looks like you’ve got things pretty under control. It’s clear she’s smitten with you, and she’s so well-spoken! I kind of wish I was here to see what sort of hoops you had to go through to break her in like that.");
-			output(" She’s got a pretty juicy dick, too, not gonna lie.”</i>");
+			if(sera.hasCock()) output(" She’s got a pretty juicy dick, too, not gonna lie.");
+			output("”</i>");
 		}
 		if(yammiIsCrew()) output("\n\n<i>“I have no idea what Yammi even is. I hope that’s not speciesist. She seems cool; apparently she’s onboard as your chef? And she and the pexiga are a part of a package somehow? I’ll have to ask her again for the details. She makes one</i> hell <i>of an ice cream, though. I wonder what her secret is.”</i>");
 
