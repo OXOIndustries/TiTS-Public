@@ -894,16 +894,14 @@ public function hikeAndFuck():void
 	processTime(19);
 	clearMenu();
 	//[Vaginal] [Anal]
-	addButton(0,"Vaginal",vaginalHikeNFuck,undefined,"Vaginal","Put it in her vagina.");
-	if(silly) addButton(1,"Anal",anzhelaAnalSexHikeAndFuck,undefined,"Anal","Put your sharpie in her pooper.");
-	else addButton(1,"Anal",anzhelaAnalSexHikeAndFuck,undefined,"Anal","Put it right between her buns.");
+	addButton(0,"Vaginal",vaginalHikeNFuck,x,"Vaginal","Put it in her vagina.");
+	if(silly) addButton(1,"Anal",anzhelaAnalSexHikeAndFuck,x,"Anal","Put your sharpie in her pooper.");
+	else addButton(1,"Anal",anzhelaAnalSexHikeAndFuck,x,"Anal","Put it right between her buns.");
 }
 
 //Vaginal
-public function vaginalHikeNFuck():void
+public function vaginalHikeNFuck(x:int = 0):void
 {
-	var x:int = pc.cockThatFits(1000);
-	if(x < 0) x = pc.smallestCockIndex();
 	clearOutput();
 	showAnzhela(true);
 	output("With primal need, you grab her gorgeous garter-clad hips and ease your [pc.cock " + x + "] into the hot, silky depths of her welcoming pussy. ");
@@ -967,7 +965,7 @@ public function vaginalHikeNFuck():void
 }
 
 //Anal
-public function anzhelaAnalSexHikeAndFuck():void
+public function anzhelaAnalSexHikeAndFuck(x:int = 0):void
 {
 	clearOutput();
 	showAnzhela(true);
