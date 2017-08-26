@@ -238,7 +238,6 @@ public function stayWithSellesy():void {
 		//[TRIPLE FOOTJOB - For Males/Herms with BIG dicks, too big for her maximum of 24" length, 3"wide.] 
 		if(pc.biggestCockLength() >= 24) addButton(1,"Tri-Footjob",tripleFootjob);
 		else addDisabledButton(1,"Tri-Footjob");
-		//addDisabledButton(3,"Sixtynine","Sixtynine","You’ll need a vagina to see this scene.");
 	}
 	else
 	{
@@ -254,7 +253,8 @@ public function stayWithSellesy():void {
 	{
 		addDisabledButton(2,"Tribadism","Tribadism","You’ll need a vagina for this.");
 	}
-	addButton(3,"SixtyNine",ladyType69WithSellesy,undefined,"Sixty-Nine",("Sixty-nine with the bartender. " + (pc.hasVagina() ? "You’ve both got pussies and tongues - why not use them" : "At least you’ll get to eat her pussy, right") + "?"));
+	if(pc.hasCock()) addDisabledButton(3,"SixtyNine","Sixty-Nine","You can’t have a penis for this.");
+	else addButton(3,"SixtyNine",ladyType69WithSellesy,undefined,"Sixty-Nine",("Sixty-nine with the bartender. " + (pc.hasVagina() ? "You’ve both got pussies and tongues - why not use them" : "At least you’ll get to eat her pussy, right") + "?"));
 	
 	//button name (probably): Strap-on Play
 	if(pc.hasHardLightEquipped() && pc.hasHardLightUpgraded()) addButton(4,"Strap-On Play",sellesyHardlightScene,undefined,"Strap-On Play","Let Sellesy play with your adjustable hardlight.");
