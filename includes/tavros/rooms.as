@@ -350,10 +350,24 @@ public function initTavrosRooms():void
 	rooms["9010"].southExit = "9011";
 	rooms["9010"].northExit = "9009";
 	rooms["9010"].eastExit = "INESSA";
+	rooms["9010"].westExit = "THE JOYSTIQ";
 	rooms["9010"].moveMinutes = 1;
 	rooms["9010"].addFlag(GLOBAL.INDOOR);
 	rooms["9010"].addFlag(GLOBAL.PUBLIC);
 	rooms["9010"].runOnEnter = undefined;
+	
+	//The Joystiq
+	rooms["THE JOYSTIQ"] = new RoomClass(this);
+	rooms["THE JOYSTIQ"].roomName = "JOYSTIQ \n ARCADE";
+	rooms["THE JOYSTIQ"].description = "'The Joystiq' arcade sits in a darkened alcove off the main walk of Tavros. The middle of the wide open space is occupied by rows of gaming cabinets that stretch towards the back of the storefront. Other machines line the walls tothe left and right. The left side of the arcade, where a lit old-school ticket counter sits, breaks the otherwise uniform layout.\n\n";
+	rooms["THE JOYSTIQ"].planet = "TAVROS STATION";
+	rooms["THE JOYSTIQ"].system = "SYSTEM: KALAS";
+	rooms["THE JOYSTIQ"].eastExit = "9010";
+	rooms["THE JOYSTIQ"].moveMinutes = 1;
+	rooms["THE JOYSTIQ"].addFlag(GLOBAL.INDOOR);
+	rooms["THE JOYSTIQ"].addFlag(GLOBAL.PUBLIC);
+	rooms["THE JOYSTIQ"].addFlag(GLOBAL.COMMERCE);
+	rooms["THE JOYSTIQ"].runOnEnter = joystiqBonus;
 
 	//9011
 	rooms["9011"] = new RoomClass(this);
