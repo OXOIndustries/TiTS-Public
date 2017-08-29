@@ -1,0 +1,515 @@
+/**************************************************************
+ * JOYSTIQ CONTENT START*
+ * 
+ * This is an unpolished PoC. Further work will be done once I know its 
+ * time worth spending. Menu logic/transitions/timelapses have not been completely smoothed out.
+ * Just enough work to make this presentable before more time is spent.
+ * 
+ * 
+ * WALKTHROUGH:
+ * 
+ * Implimented is an introduction to the arcade, and starting content.
+ * Walk in and talk to the owner.
+ * Ask about her past and the arcade.
+ * The opton to talk about yourself becomes available.
+ * The ability to advance at this point depends on the players progress.
+ * Probes must be collected from 
+ * *Mhenga 
+ * *Tarkus 
+ * *Myrellion
+ * to continue. Once those options are finished she'll ask the player to donate memories.
+ * This option has two scenes before the end of current content.
+ * 
+ * NOTES:
+ * 
+ * Content as stands is written with Female/Femboy PC's in mind. Restrictions blocking tauric weirdness in scenes
+ * has not yet been added.
+ * 
+ * Later content will involve the player being offered a job as a mascot
+ * and a bad-end path involved when baal sees the advantage in keeping her
+ * cash cow close. This content has been written, but left un-implimented until feedback is received from fenco.
+ * 
+ * Nothing here is written in stone, and I am open to changes in terminology needed to make this canon.
+ * 
+ * Note: Work on this began before the implimentation of Luca's arcade. I apologize for redundancy. 
+ * One advantage is that this content is mostly finished in writing. Any expansions would primarily involve widening body 
+ * configurations acknowledged by scenes.
+ * 
+ * Some scenes use parser calls that I intend to change to make the scenes better. Much of this can be considered 
+ * proof of concept rough draft work.
+ * ************************************************************/
+//output("\n\n<i>“” </i>");
+
+import classes.Characters.PlayerCharacter;
+
+public function joystiqBonus():Boolean
+{
+	if(flags["FIRST_TIME_JOYSTIQ"] == undefined){
+	firstTimeJoystiq();
+	return true;
+	} else if (flags["BAAL_KNOWS_YOU"] == 6) {
+		clearMenu();
+		clearOutput();
+		IncrementFlag("BAAL_KNOWS_YOU");
+		baalEmbarassedBlurb();
+	} else if (flags ["BAAL_KNOWS_YOU"] == 8) {
+		clearMenu();
+		clearOutput();
+		IncrementFlag("BAAL_KNOWS_YOU");
+		output("You come back to “The Joystick” after a day has passed, and are surprised to note a subtle increase in customers. Before when you've come to see Baal, it was simply a matter of walking up to the counter. Today you stand in a modest line for several minutes before you manage to get close. As the customers grab their arcade-compatible credit chit, they all seem to walk to back beyond the door with the console emulators and PC's.");
+		output("\n\nYou're not sure if you're imagining it, but there seems to be another line outside of the last door in the very back. Every now and again, the door opens and someone passes through back into the main floor. A few customers mill around the consoles, but more still filter past your waiting line. A passing male Ausar pulls a double take after glancing at you, tail working into a breeze creating wag. The thorough eyeballling has become awkward by the time he passes you and stumbles into another patron entering the arcade.");
+		output("\n\n<i>“[pc.name]!” </i>");
+		output("Your shuffling feet have brought you up to the counter before you realize it, and Baal almost glows with mirth when she greets you. Her bright red eyes lock onto yours, and her smile is completely genuine when she walks around the counter and hugs you.");
+		output("\n\n<i>“I knew that purchase was a good idea, and your help really made it worth while. I've been busy since the back room opened, and I think I'm actually on track to turn the first profit I've had since this place opened. A small one, but it's better than nothing.” </i>");
+		output("\n\nShe reins in her excitement, and attempts a more business like expression while she walks back behind the counter and taps at the register on the counter.");
+		output("\n\n<i>“Your games are 50% off from here on out, and I definitely wouldn't argue if you wanted to donate another experience.” </i>");
+		baalMenuMain();
+		//output("\n\n<i>“” </i>");
+	} else if (flags["JOYSTIQ_MEM_DONATION"] == 1) {
+	output("The soft undercurrent of chattering voices has added to hum and song of the arcade cabinets. This place is pretty busy."); 
+	} else if (flags["JOYSTIQ_MEM_DONATION"] == 2) {
+	output("The once empty arcade now enjoys a respectable customer base. The majority of the crowd lines up around the NR room in the back, a slow trickle of people from that back door fanning out to play the consoles or talk among themselves.\n\n");
+	}
+		
+		output("Baal, the petite modded store owner busies herself behind the counter. She does her best to smile when she sees you. ");
+		addButton(0, "Baal", baalMenuMain);
+	return false;
+	}
+
+public function firstTimeJoystiq(): void
+{
+	clearOutput();
+	author("Sebi");
+	output("Curious, you head west into the open storefront, wondering at the noises and flashing lights. Up close you see what's clearly a recreation of an arcade. Well, an old school arcade like the kind you've seen in history depictions of old earth 90's shopping malls.");
+	output(" Rows and rows of game cabinets stretch into a room lit only by flashing lights from the noisy machines. The space is filled with the sound of various music themes and sound effects of machines in play.");
+	output("\n\nThe middle row of back-to-back cabinets ends at a glass double door that leads deeper into the escapist haven. Above it sits a sign with simple lettering that reads 'PC Games and Console Emulators'.");
+	output("\n\nFor all of the artificial activity on the cabinets, there is a distinct lack of living activity among the flashing screens. A few humans sit around an old-school 2D fighter in the back corner, and occasional motion from a single ausar signals her pivot to aim a wired flash gun at a different part of a brightly lit display. ");
+	output("Otherwise, the room appears to be empty, and for a moment you wonder how anyone can keep a business running with so few customers.\n\n");
+	output("A flustered curse loud enough to be heard over the buzzes, beeps, and explosions draws your attenetion to a glass conter pressed against the left side of the arcade wall. It takes a moment to distinguish movement behind the goofy prizes labeled with ticket prices. You take a few steps towards the cunter and move to peek over, hands pressed against the lit glass display.\n\n");
+	output("To your surprise, a head pops up over the counter. A woman with remarkably red skin and a scowl moves her eyes from something beneath the display up to yours. After a second, she realizes that you may be a customer and after a show of intense effort, her features soften into a slightly less intense scowl.");
+	output("\n\nShe looks at you with bright red eyes hooded by long eyelashes. They seem disproportionately large on her heart shaped face, and the cutesy proportions stand at odds with her harsh expression. A reflection of the light brings attention to her juicy lips and the piercing there. Her hair is styled into a half hawk, and hanging strands threaten to fall down over her right eye.");
+	output(" You realize that she's not sitting down, and her head barely clears the counter. She's obviously seen some mod work.\n\n");
+	output("She's wearing a tight-fitting short sleeved white shirt, emblazoned with the name of the arcade 'The Joystiq' above a stylized cartoon version of the item. Khaki shorts hug her hips, and simple white sneakers shuffle over the floor while she eyes you impatiently.\n\n");
+	output("A not-so-subtle cough breaks you out of your visual exploration and you look back into her red eyes. She's managed to turn the scowl into an incredulous neutral expression at your brazen roaming.");
+	output("\n\n<i>“Are you here to play, or are you..?”  </i> She looks to the side as she searches for the word.");
+	output("\n\n<i>“Browsing? There are plenty of other shops for that.” </i>");
+	output("\n\nHer tone leaves no doubt as to what she means. Caught red-handed, you straighten up and consider your options.");
+	
+	processTime(3);
+	IncrementFlag("FIRST_TIME_JOYSTIQ");
+	clearMenu();
+	baalMenuMain();
+}
+
+public function baalMenuMain(): void 
+{
+	addButton(0, "Appearance", baalAppearance);
+	addButton(1, "Play", playOptions);
+	addButton(2, "Talk", baalTalkMenu);
+	addButton(14, "Leave", move, rooms[currentLocation].eastExit);
+	
+}
+
+public function baalAppearance():void
+{
+	clearOutput();
+	output("Baal looks at you with bright red eyes hooded by long eyelashes. They seem disproportionately large on her heart shaped face, and the cutesy proportions stand at odds with her expression. A single silver stud brings attention to her juicy lips and the piercing on her bottom lip.  Her hair is styled into a half hawk, and hanging strands threaten to fall down over the right side of her face to block her vision. You realize that she's not sitting down, and her head barely clears the counter even while standing.  She's obviously seen some mod work.\n\n");
+	output("She's wearing a tight fitting short sleeved white shirt, emblazoned with the name of the Arcade 'The Joystiq' above a stylized cartoon version of the item. Khaki shorts hug her hips, and simple white sneakers scuff against the floor while she eyes you impatiently.");
+	clearMenu();
+	baalMenuMain();
+}
+
+public function playOptions():void
+{
+	clearOutput();
+	clearMenu();
+	output("This is currently a placeholder. It will be structured as follows if implemented:");
+	output("\n\nOption 1, Arcade Cabinets - This will give the player a blurb about turning credit chits into coins for authenticity and playing around on the arcade machines. \n\nOption 2, Consoles - Gives player time to play on console emulators with punny game names. \n\nOption 3, PC play.");
+	output("\n\nThe effects of these options are currently unexplored, and the text for them not yet in. On the off chance this content is implimented, I didn't want to take liberties with buffs or effects. This could be an alternative way to training aim or reflexes, which makes a bit more sense than time spent at the gym. An eye-strain debuff could keep the PC from spamming, or just using one of the other existing debuffs to limit usage by time.");
+	addButton(0, "Back", baalMenuMain);
+	
+}
+
+public function baalTalkMenu():void
+{
+	clearOutput();
+	
+	output("You tell her you'd just like to talk about her. She looks genuinely surprised, and you can barely hear her mutter, 'uh sure' under her breath.");
+	clearMenu();
+	addButton(0, "Past", baalPast);
+	addButton(1, "Arcade", whyArcade);
+	if (baalInterested())
+	addButton(2, "You", youJoystiq);
+	if (flags["BAAL_KNOWS_YOU"] >= 6) {
+	addButton(3, "Memory Donation", baalMemDonation);	
+	}
+	addButton(14, "Back", baalMenuMain);
+}
+
+public function baalPast():void
+{
+	clearOutput();
+	output("You ask the crimson impess about her past. For a moment, she looks like she's about to protest, but after a sigh and a huff, starts to speak.");
+	output("\n\n<i>“I'm from a pretty small family from the core systems and I had an uneventful childhood. My parents were hardcore millitary types, so everything was 'yes sir, no sir'. Straight laces and iron tight schedules. They shipped me off to millitary college as soon as I was old enough. It was never for me though. That may have been my dad's fault. I grew up listening to him tell these amazing stories about far-away lands and nail-biting encounters on exotic planets. ”  </i>");
+	output("\n\n<i>“I didn't get what he wanted me to from it though. I fell in love with stories and spent hours watching films, and reading books. After I found a decent job, I left, just flunked out and didn't tell them. I wound up enrolled at a community college in a program for writing. My dad made it a point to forget I existed after that. I didn't hear from them for a good 2 years until Madeline, my sister, died in some training exercise accident. There's nothing like a funeral to bring a family back together.”  </i>");
+	output("\n\nShe taps her faingernails absently on the glass surface, and her gaze becomes laser focused on a smudge that she doesn't bother to wipe away. Her tone is bitter.");
+	output("\n\n<i>“I think my mom was relieved that I hadn't gone after that, and they both gave the ok to whatever I wanted to pursue. Anyway, I realized pretty quickly that taking small editing jobs wasn't going to help me finish paying for school, and every story humanity had to tell was pretty much told by the time we made it into the stars. Companies were still looking for programmers to help maintain VI, so I started teaching myself to code. It was close enough to Engligh I guess. Structure, Syntax, et cetera. I picked it up pretty easy anyway. I didn't do a whole lot with it besides work stuff, but then a friend showed me an emulator full of old-earth games. The same skill I used for my job could just as easily be used for those silly little games. I fell in love, with it. I couuld tell plenty of tiny, interactive stories with those tiny projects. I goofed around with a few small personal projects when I wasn't working. Realized that I didn't need to tell the next best story, just needed to combine some old ideas until something stuck.”  </i>");
+	clearMenu();
+	addButton(0, "Next", baalPast2);
+}
+
+public function baalPast2():void
+{
+	clearOutput();
+	output("You ask how she wound up way out in rush space, since she hasn't come close to explaining it.");
+	output("\n\n<i>“Oh yea, that. Believe it or not, my roomate and a few friends pooled up money for a bunch of lottery tickets. I bought in and even split 5 ways wound up getting over 2 million credits. I paid my debt, and came out here to live the dream. It was such a relief to be in control of my life. No more debt, no more parents dictating every hour of my day. Just what I could achieve with that lucky win and a good idea.</i>");
+	output("\n\nShe casts a somber glance around the empty arcade.");
+	output("\n\n<i>“Well, it seemed like a good idea at the time. At least I'm in control of my life here, and I'll do anything to keep it that way.” </i>");
+	clearMenu();
+	if (flags["ASKED_BAAL_PAST"] == undefined){
+	IncrementFlag("ASKED_BAAL_PAST");
+	}
+	
+	addButton(0, "Done", baalTalkMenu);
+	
+}
+
+public function whyArcade():void 
+{
+	clearOutput();
+	output("So of all the things she could have done with the money, why open an arcade? At first she says nothing, focusing instead on organizing the many unclaimed prizes under the counter. You're about to ask again when she speaks up.");
+	output("\n\n<i>“Well, I knew I didn't want to buy shit no one needs with it. I'd wind up back in debt somewhere or worse, having to ask my parents for help. I didn't want to work for someone else since. Well.” </i>");
+	output("\n\nThe morph shrugs, eyes rolling with her shoulders.");
+	output("\n\n<i>“I didn't have to. I thought a long time about what I could do that could eventually make money down the line so I'd never have to worry again. I didn't exactly study to get an MBA, so no alarms went off when I thought of opening up an earth-style arcade on the frontier. I thought it was a great way to combine passions, so I'm not sure you coulda told me it wouldn't get anywhere. I mean, from telling stories around a camp fire, we went to acting them out, reading them off paper and finally living through them in more and more detail until our fantasies were only separated from reality by real versus virtual danger. I guess this place is as much a museum of gaming as it is an arcade. Even made some of the 8 bit games in here myself.” </i>");
+	output("\n\nShe smirks, and her gaze roams around the mostly-empty room before settling onto you.");
+	output("\n\n<i>“I don't regret it. I can afford to live this fantasy for at least another year. Maybe by then I can find a way to make it work. You done prying yet?” </i>");
+	//output("\n\n<i>“” </i>");
+	if (flags["ASKED_BAAL_ARCADE"] == undefined){
+	IncrementFlag("ASKED_BAAL_ARCADE");
+	}
+	
+	clearMenu();
+	addButton(0, "Back", baalTalkMenu);
+	
+}
+
+public function baalInterested():Boolean {
+	if ((flags["ASKED_BAAL_ARCADE"] && flags["ASKED_BAAL_PAST"]) != undefined)
+	return true;
+	else
+	return false;
+	
+}
+
+/*Add You Interactions and build-up to donation:
+Add flag to unlock the "You" button.
+*/
+
+public function youJoystiq(): void {
+	clearOutput();
+	joystiqLevel();
+	
+	output("The petite morph stares at you for a moment before her look of suspicion fades away.");
+	output("\n\n<i>“You're awful curious about the owner of some tiny arcade. I've told you my story, what's yours?” </i>");
+	clearMenu();
+	
+	addButton(0, "You", youLvl_1);
+	if ((flags["BAAL_KNOWS_YOU"] >= 2) && (flags["MHENGA_PROBE_CASH_GOT"]) != undefined ) {	
+	addButton(1, "Mhen'Ga", youLvl_2);
+	}
+	if ((flags["BAAL_KNOWS_YOU"] >= 3) && (flags["TARKUS_PROBE_CASH_GOT"]) != undefined) {
+	addButton(2, "Tarkus", youLvl_3);
+	}
+	if ((flags["BAAL_KNOWS_YOU"] >= 4) && (flags["MYRELLION_PROBE_CASH_GOT"]) != undefined) {
+	addButton(3, "Myrellion", youLvl_4);
+	}
+	addButton(14, "Back", baalTalkMenu);
+}
+
+public function youLvl_1():void
+{
+	clearOutput();
+	clearMenu();
+	if (flags["BAAL_KNOWS_YOU"] < 2){
+	IncrementFlag("BAAL_KNOWS_YOU");
+	}
+	output("You talk about starting out on your mission to inherit your father's fortune and become the CEO of steeletech. Her eyes light up for a second, and then goes back to a subtle smirk. She asks the occasional question, and makes the odd comment. For the most part, any reaction to your possible fortune is masked behind Baal's very controlled features.");
+	output("When you finish she seems to be chuckling to herself.\n\n<i>“Sounds like we're both lottery winners.” </i>");
+	output("She winks at you before turning to help a customer waiting further down the counter.");
+	addButton(14, "Back", youJoystiq);
+}
+
+public function youLvl_2():void
+{
+	clearOutput();
+	clearMenu();
+	if (flags["BAAL_KNOWS_YOU"] < 3){
+	IncrementFlag("BAAL_KNOWS_YOU");
+	}
+	output("She asks if you've had any adventures since the last time you spoke. You go on at some length about the insane things you've seen in Rush space. Particularly the Venus pitchers, Naleen and Zil of Mhen'Ga.");
+	output("\n\n<i>“They Hypnotise you? With their breasts!?” </i>");
+	output("She asks with wide eyes and a giggle when you mention the trance-like state that the busty plant-women induce. By the time you finish regaling her with tales both dangerous and lewd, she's leaning towards you over the counter and hanging onto your every word.");
+	output("\n\n<i>“And I thought running this place was hard. Come back when you've seen more. I love stories.” </i>");
+	addButton(14, "Back", youJoystiq);
+}
+
+public function youLvl_3():void
+{
+	clearOutput();
+	clearMenu();
+	if (flags["BAAL_KNOWS_YOU"] < 4){
+	IncrementFlag("BAAL_KNOWS_YOU");
+	}
+	output("Baal stands a little taller when you mention stories again, leaning against the counter to give you her rapt attention. You talk about the fluid eating goo girls and the lusty raskvel on Tarkus. When you bring up the pirate base she abruptly lifts up a hand.");
+	output("\n\n<i>“Could you give me a moment” </i>");
+	output("She disappears into a door that leads to what you assume is the back office. A moment later she comes out with a pen and pad, bright red eyes boring into you while she stares eagerly. When your confusion becomes obvious she gives an embarrassed 'Oh' Before explaining.");
+	output("\n\n<i>“You don't mind if I take notes do you?” </i>");
+	output("You ask her why and she responds.");
+	output("\n\n<i>“Well besides them being great, I'd love to use some of this material somehow. You might not realize this, but not everyone has the time or the resources to run around rush space. If this isn't book or game material, I don't know what is.” </i>");
+	output("\n\nFlattered, you continue the story, giving dramatic pauses when you mention fighting through turrets and defusing a bomb after getting through three dangerous sexpots Tam,  Kaska, and their lusty leader Captain Khrogan.");
+	output("You swear she's pressing her thighs together by the time you finish the tale. She smiles and thanks you for the story, tucking her tablet under the counter.");
+	addButton(14, "Back", youJoystiq);
+	//output("\n\n<i>“” </i>");
+	
+}
+
+public function youLvl_4():void
+{
+	clearOutput();
+	clearMenu();
+	if (flags["BAAL_KNOWS_YOU"] < 5){
+	IncrementFlag("BAAL_KNOWS_YOU");
+	}
+	output("This time when you mention having new tales to tell, Baal is ready. You blink and her tablet appears as if by magic. She nods at you to speak and you comply.\n\nYou talk in some detail about the conflict between the gold and red myr. Then you go on to describe the dense jungle and dangerous caverns filled with Nyrea and fungal creatures. She asks some pointed questions about the Nyrea Alphas and Betas, but otherwise allows you to continue uninterrupted.");
+	output("\n\nYou've told Baal many a story, and after some practice, you've gotten pretty good at spinning words as strong as the powerful binding web of the bothriac that you describe to her.\n\n");
+	output("She stops you several times when you mention the way that their eggs create willing submissive incubators. You have to go into some detail to describe the changes that its supposed to cause in willing hosts. Her eyes seem to dance an even brighter shade of red as you speak, and it becomes an effort to convince yourself that its just an effect of flashing arcade lights.");
+	output("\n\nWhen you finish she's all but forgotten her tablet and is looking at you with fully dilated eyes. Her uncomfortable shifting is a little hard to ignore. She bites her lower lip and burns your gaze with a smoldering look.");
+	output("\n\n<i>“So you've uh... Fucked a lot of exotic, sexy creatures huh?” </i>");
+	output("\n\nFor a moment you think of all the space boning you've done and concede the point with a short nod.");
+	output(" She leans over the glass desk as far as she can manage on her tip toes, B cup breasts pressing into the glass. Her voice is a pitched whisper that barely manages to carry between the cacophony of space blasters and pinball machine music.");
+	output("\n\n<i>“Want to add one more?” </i> She asks, eyes locked onto yours.");
+	
+	addButton(0, "Yes", baalBackroomSexytimes);
+	addButton(1, "No", baalBackroomRejection);
+	
+}
+
+public function baalBackroomSexytimes():void {
+	
+	clearOutput();
+	clearMenu();
+	output("You grin back in response and she takes that as an acceptance. She gestures towards the half door separating the back of the counter from the gaming area. The moment you step through it she grabs your wrist and and pulls you into the back room. There's a loud thump and a click as the door slams shut behind her, muffling the ceaseless activity of the arcade.\n\n ");
+	output("The backroom is a surprisingly small space. A single simple wooden desk sits against the back wall, a neat stack of papers sitting atop it. The walls are covered with a bulletin board; notes, graphs and figures are plastered across it, leaving barely a sliver of uncovered space.\n\n");
+	
+	output("She pulls you to her level, locking you into an insistent kiss. Baal is an aggressive lover and she only breaks her hold on you after a minute or so assaulting your tongue with her own. With more than a bit of haste, she removes her tight tee-shirt, pert B-cup breasts bouncing when they come free of the fabric. Her hands come to your clothing next, helping you out of your [pc.gear] before signaling for you to lay on your back. ");
+	output("You're treated to the pretty sight of her shimmying free from her tight khaki shorts and simple panties, both garments neatly folded and set aside before she steps over to straddle you. For a long moment she simply stares down at your body, eyes exploring you [pc.belly] and roaming up to your [pc.chest]. Finally her eyes settle on your [pc.crotch]. There's a brief flash of uncertainty before she looks you in the eye with her usual smirk.");
+	output("\n\nWithout a word, she steps over your head, giving you a view of her exposed pussy. Black pubic hair has been shaved into a neat landing strip above her clitoral hood, and a few glistening streaks of fluid make her excitement obvious. Her feet shuffle around as she reverses direction towards your legs. The next thing you know she's on her knees above you, the scent of her arousal pressed into your nose and [pc.lips].");
+	output("\n\nWithout missing a beat, You bring your hands up to her thighs and begin assaulting her needy cunt with your [pc.tongue]. You tease her engorged lips, alternating between short and long laps of the tongue. Holding her close with one hand wrapped around her thigh, the other explores the V below her navel, fingers massaging, and teasing the area around her clit. You can hear her breathing become heavier above you, and after a few moments, she leans down to brace her hands on your knees.");
+	output("\n\nDone with teasing, you plunge your tongue into her sopping pussy, occasionally bringing your lips together to kiss and suck at her sensitive places. Your fingers continue outlining and rubbing into the sides of her labia, teasing and probing at the parts of her womanhood spared by your tongue. She leans down over your groin, and you feel the familiar sensation of warm breath on your [pc.groin]. It's coming in ragged waves, and it isn't long before the lithe figure above you trembles and gives voice to her pleasure with a high pitched moan. Fem-cum rolls in streams onto your face. Her muscles spasm and twitch while she rides out the orgasm.");
+	output("\n\n<i>“No fair.” </i> She says in a breathless whisper. After a few moments, she leans back down to return the favor.");
+	output(" The experience gap is obvious, and after a few minutes of her inexpertly handling your [pc.groin] you're aroused but no closer to orgasm. A light push signals for her to get up and she complies, but her embarrassment is obvious. \n\nFor the first time since you've met her, she avoids making eye contact, bright red eyes cast downwards while you wipe yourself down and dress quietly. Her uncertainty dissipates when you pull her into another passionate kiss. With a wink and a smile you go to the door and re-enter the arcade proper, slightly disheveled, pent-up and smelling of sex.");
+	pc.lust(75);
+	if (flags["BAAL_KNOWS_YOU"] < 6){
+	IncrementFlag("BAAL_KNOWS_YOU");
+	}
+	addButton(0, "Next", move, rooms[currentLocation].eastExit);
+	//output("\n\n<i>“” </i>");
+	
+	
+}
+
+public function baalBackroomRejection():void {
+	clearOutput();
+	clearMenu();
+	output("Baal is obviously disappointed. What might be a pained expression at the rejection comes and goes in a moment, and you wonder whether you imagined it in the lighting. She smiles and nods before you two say your goodbyes.");
+	addButton(0, "Next", move, rooms[currentLocation].eastExit);
+}
+
+public function joystiqLevel():void
+{
+	if ((baalInterested()) && (flags["BAAL_KNOWS_YOU"] == undefined)){
+	flags["BAAL_KNOWS_YOU"] = 1;
+	}
+/*
+	
+	if ((flags["BAAL_KNOWS_YOU"] == 1) && (flags["MHENGA_PROBE_CASH_GOT"]) != undefined){
+	IncrementFlag("BAAL_KNOWS_YOU");
+	}
+	
+	if ((flags["BAAL_KNOWS_YOU"] == 2) && (flags["TARKUS_PROBE_CASH_GOT"]) != undefined){
+	IncrementFlag("BAAL_KNOWS_YOU");
+	}
+	*/
+}
+
+public function baalEmbarassedBlurb():void 
+{
+	clearMenu();
+	clearOutput();
+	output("When you approach the glass ticket case this time, Baal makes a show of pretending not to notice you. Her red eyes dart about in every direction but yours. Its only when you place your hands on the silver frame of the case and lean forward that she can't pretend she doesn't see you.");
+	output("She makes a show of the recognition, red eyes meeting your [pc.eyeColor] color ones and a nervous smile on her lips.");
+	output("\n\n<i>“I was kind of worried you weren't going to come back. I'm glad you did.” </i>");
+	addButton(0, "Next", baalMemDonation);
+	addButton(1, "Leave", oopsWrongArcade);
+}
+
+public function baalMemDonation():void 
+{
+	clearMenu();
+	clearOutput();
+	if (flags["BAAL_KNOWS_YOU"] >= 8) {
+	baalSecondDonation();
+	return;
+	}
+	output("She looks relieved that you aren't bailing on her. Her body language loosens considerably when she realizes that you're still interested in talking with her.");
+	output("\n\n<i>“Look, I guess I should have mentioned that I'm... inexperienced. It's always been easier for me live vicariously through other people. Real relationships always seemed so... Messy.” </i>");
+	output("\n\nThere's an awkward pause before she perks up and continues, once more becoming the business-minded woman you first met.");
+	output("\n\n<i>“Your stories have inspired me to expand my business here. It was a bit risky, but I bought a new gaming machine. They're pretty common in well-to-do game lounges, but can break the bank of uh... Less successful businesses. Chances are I'll be going under if this investment doesn't work out. Come see!” </i>");
+	output("\n\nYou nod, and she rounds the desk to lead the way. The two of you pass through the rows of arcade cabinets and into the Emulator/PC lounge through the double doors in the back. She leads you still further on, to a black door painted the same color as the rest of the wall on the very back wall.");
+	output("\n\n<i>“This section isn't open yet, but as soon as I get my new toy working, I think it'll be the busiest in the arcade. I've been planning it for a while, but I was kind of hoping things would pick up first. I'm not sure they will without it now. We'll just say there's a reason I'm in the red-zone district.” </i>\n\n");
+	output("She gives a prideful grin, turns the knob and presses on into the next room. Much like her office, this room is a muffled reprieve from the incessant arcade chatter. The space is roughly the same size as the previous two open arcade spaces, and the walls are painted the same shade of black. \n\nThe difference seems to be in simplicity. Rather than being full from front to back with whirring machines, this room is dominated by a single large chair decked out in technological attachments. The seat and back are heavily padded, promising a great deal of comfort. The only signs of its extra-curricular usage are padded straps where the arms and legs rest, and a simple white helmet stuffed to the brim with hanging wires and a holo-light visor hanging over the eye slot. It looks like a tricked out bike helmet.\n\n");
+	output("Baal walks to the side of the chair, leaning on one of the arms in a way that pushes her plush ass out behind her.");
+	if (pc.isAss()) {
+	output("\n\n<i>““Fantastic, a chair”.” </i> You deadpan. \n\nShe smirks at you in response.");
+	} else if (pc.isMischievous()) {
+	output	("\n\n<i>“I'm not sure how much I'd pay for a comfortable seat and a bad case of helmet hair.” </i> You say. She can't help but giggle.");
+	}else if (pc.isNice()) {
+	output("\n\n<i>“Cool, how does it work?” </i>");
+	}
+	
+	output("\n\n<i>“It's a lucid memory machine! Neuro-Reality, like VR, but you know, in your brain.” </i>");
+	output("She says this excitedly excitedly, as though that explains everything.");
+	if (pc.characterClass != GLOBAL.CLASS_ENGINEER) {
+	output(" Your blank look tells her how informative you find the declaration.");
+	} else { output(" That rings quite a few bells, and you look on the chair with a bit more respect.");}
+	output("\n\n<i>“It can work one of two ways. You can either enjoy someone else's memories as though you were there in the flesh. It replicates every sensation by priming neurons in your brain.”” </i>");
+	output("She punctuates her sentence by pointing to the wired pads inside the helmet.");
+	output("\n\n<i>“Or it can copy your memory to playback for some one else. Memories are of course extremely spotty, so blocks have to be filled in by pre-programmed libraries. An administrator, That's me, can use notes to fill in the blanks with machine preferences. There's a lot of work on the front end, but its the ultimate in immersive storytelling. It'll be a huge hit!” </i>");
+	output("\n\n<i>“That is if I can get someone to donate a few memories worth re-living....” </i>");
+	output("\n\nYou see where this is going. Her eyes come up to yours pleadingly.");
+	addButton(0, "Yes", baalMemDonation2);
+	addButton(1, "No", baalMemRejection);
+	
+	//output("\n\n<i>“” </i>");
+
+	
+}
+
+public function baalMemDonation2():void 
+{
+	clearOutput();
+	clearMenu();
+	IncrementFlag("JOYSTIQ_MEM_DONATION");
+	output("<i>“Alright.” </i> you say, resigning yourself to the fiery woman's desires.");
+	output(" <i>“Is this thing safe?” </i> you ask, walking up to the chair and settling yourself into the comfortable cushy seat.");
+	output(" She's gushing with excitement as she sets about helping you get situated.");
+	output("\n\n<i>“Of course it is, they use it all over the core in pleasure lounges and adult arcades. I think there's another pleasure arcade with them somewhere else out here in the rush.” </i>");
+	output("\n\nThe straps are quickly secured around your ankles, and wrists, and she tests them repeatedly to make sure they aren't uncomfortable. The helmet comes next, and Baal makes sure that the hanging pads are secured properly to your temples before lowering the tech filled monstrosity over your head.");
+	output("\n\nShe taps on the holo-visor over your eyes");
+	output("\n\n<i>“It starts by helping you into a relaxed state so that your mind doesn't focus on any one thing. Its sort of like being asleep. ” </i>");
+	output(" She looks over the machine with you securely in place, quiet as she gathers her thoughts.");
+	output("\n\n<i>“The helmet uses subtle suggestions based on the technician's notes to coax your relaxed mind into the memory you want to relive and download. The machine maps the pattern of your neural connections and firing synapses, and replays them in a virtual brain modeled after yours. After that, a few programs parse the information into visual and sensory equivalents and uses a reference library to build the experience for others to enjoy.” </i>");
+	output("\n\n<i>“And these straps?” </i> You ask, tugging at the leather around your arms to illustrate the point.");
+	output(" Her impish grin returns, and she straddles your lap to lean in very close to your face. You can smell what must be cinnamon gum on her light breath.");
+	output("\n\n<i>“Everything is more fun with straps.” </i>");
+	output("Her lips come teasingly close to yours before she steps away and moves to a panel set into the side of the chair. You can't see her as she taps at the console, but her voice comes floating from over your shoulder.");
+	output("\n\n<i>“Seriously though, they're for your own protection. The machine doesn't completely replicate sleep, and you don't want to try acting out the memories as you re-live them.” </i>");
+	output("She steps back to the chair in your peripheral view. Soft fingers grab your chin and she pulls you into a , gentle kiss.");
+	output("\n\n<i>“Not without me at least.” </i>");
+	output("\n\nBaal disappears again, and a loud tap at the console is the last thing you hear before the holoscreen flashes to life and a deep feeling of calm settles over you.");
+	processTime(30);
+	addButton(0, "Next", baalMemDonation3);
+	//output("\n\n<i>“” </i>");
+}
+
+public function baalMemDonation3():void
+{
+	clearOutput();
+	clearMenu();
+	output("You come to an indistinct amount of time later, a lingering sensation of pleasure and wisps of lewd memory passing into and out of your returning awareness.");
+	output("\n\nA familiar sensation brings your attention to your nether region, where you've managed to cum all over yourself as though from a wet dream. A lingering soreness around your wrists and ankles are the only indication that you've been more than a little active while under the chair's influence.");
+	output("\n\nAfter a few minutes, the door opens and noise briefly floods your senses before it shuts and blocks the sounds out again. Baal is a whirlwind of smiles and chatter commenting on how happy she is to have a memory to get the back room running while she massages your limbs and unstraps you bit by bit. When she gets to the helmet she lifts it up quickly and hugs you around the neck.");
+	output("\n\n<i>“You have no idea how much this will help the arcade. Thank you!” </i>");
+	output("She extends a hand and helps you up out of the pads, making sure you're steady on your feet before walking over to the panel and tapping away at the interface.");
+	output("\n\n<i>“I've still got a bit of work to do for the memories to render into anything usable. That will take about a day even with these computers. The sentient brain is still immensely complicated. Come back later and I'll show you that this was worth it.” </i>");
+	output("\n\nWith a final smile, she gestures at the door and focuses back on the console, thin fingers a blur.");
+	IncrementFlag("BAAL_KNOWS_YOU"); //should be 7 here.
+	addButton(0, "Next", move, rooms[currentLocation].eastExit);
+	
+}
+
+public function baalMemRejection():void 
+{
+	clearOutput();
+	clearMenu();
+	output("You're not sure that you trust Baal, or this machine, and you make that much clear. Baal looks devastated at the rejection, but tries not to show it. There are tears in the corner of her eyes as she nods calmly and points you towards the door. She follows you out silently, taking her position back behind the glass counter, and trying not to look your way.");
+	baalMenuMain();
+}
+
+public function baalSecondDonation():void
+{
+	clearMenu();
+	clearOutput();
+	output("You mention to Baal that you'd like to make another experience donation. Her eyes go wide as she visibly processes that information and what it means. She suddenly becomes a wirlwind of activity. A sign that reads 'On Break' is placed on the glass counter top. With quick steps, she rounds the counter and grabs your hand, leading you back into the emulator section and up to the door with the the NR machine.");
+	output("\n\nYou two wait there for almost 20 minutes as the line dies down to nothing. The last user, a heavily pierced human, comes out of the door and freezes when she sees you.");
+	output("\n\n<i>“Are you?...” </i> Her gaze turns glassy and she shakes her head as though trying to wake up. She shakes it insistently, trying to dislodge the fugue before saying <i>“ Sorry, of course not. Must be machine hangover.” </i>");
+	output("\n\nShe stumbles away and Baal winks at you. A sign that reads 'Maitenance in progress' is placed over the door handle before she ushers you inside and locks it behind her.");
+	output("\n\nYou're quickly seated and strapped into the familiar machine. Baal again disappears to the console on the side of the chair. ");
+	output("\n\n<i>“I really can't thank you enough for this. Are you ready?” </i> You hear her ask.");
+	output("You nod dumbly before realizing that she can't possibly see you from her angle.");
+	if (pc.isBimbo()) {
+	output("\n\n<i>“Yea!” </i> you exclaim.")	
+	} else { output("\n\n<i>“Yes.” </i> you say as clearly as you can."); }
+	
+	output("There's a telltale 'TAP' from beyond your vision, and the amazing sense of calm washes over you once more.");
+	addButton(0, "Next", baalSecondDonation2);
+	
+}
+
+public function baalSecondDonation2():void {
+	clearMenu();
+	clearOutput();
+	IncrementFlag("JOYSTIQ_MEM_DONATION");
+	output("There's no way of knowing how long you've been out when you come-to. It takes a few moments for the fog to clear your mind and clear sensation to return to your limbs. You feel something wet and warm moving against your manhood/womanhood and a moan rises out of your chest before you think about it. The larger part of your mind writes it off as an effect of the machine, but that's before you open your eyes.");
+	output("\n\nBaal has settled herself between your legs, and your nethers are obscured from view by the top of her head."); 
+	if (pc.hasCock()) {
+		output( " You feel her lips close over your [pc.balls], and her tongue massage them. She sucks and breaks free with a loud 'smak' sound before her tongue glides up the underside of your [pc.cock]. You moan again, and she repositions her head, red hot eyes flicking up to yours.");
+	} else if (pc.hasVagina()) { output("You feel her lips close over your [pc.cuntColor] lips, her tongoue massaging them and darting between the folds. She sucks and breaks free with a loud 'smak' sound before running her tongue up around your [pc.clit]. You moan again, and she repositions her head, red hot eyes flicking up to yours."); }
+	
+	output("\n\n<i>“Oh! You're awake.” </i> She nuzzles against your [pc.groin] and fixes you with a coquettish grin.");
+	output("Her tongue flicks out to lick a ");
+	if (pc.hasCock()) { output("bead of pre-cum from your glans") } else if (pc.hasVagina()) { output("trickle of fluid from your engorged lips."); }
+	output("\n\n<i>“The machine didn't get you off this time, and you looked real pent up.” </i>");
+	output("She pauses, trailing kisses over your [pc.groin].");
+	output("\n\n<i>“I thought I'd give some release to my favorite helper.” </i>");
+	if (pc.hasCock()) {
+		output("Her eyes never leave yours as she starts to facefuck herself on your straining member.");
+	} else if (pc.hasVagina()) {
+		output("Her eyes never leave yours as she starts to vigorously tongue fuck your dripping pussy.");
+	}
+	output(" Your hands clench and toes curl as the sensation of impending orgasm builds up. You can't help but think she's found some way to practice what she left unfinished last time. She virtually worships you with her tongue, playing to your reactions to draw out the pleasure.");
+	output(" After a few more moments you're painting her tongue and the front of the seat in your approval, hips jerking uncontrollably.");
+	if (pc.hasCock()) {
+	output(" She coaxes the first few ropes of your [pc.cum] out directly into her waiting mouth and then detaces herself with a wet 'mwah'. One hand sits on your inner thigh while the other jerks your remaining load across her sultry features.");	
+	} else if (pc.hasVagina()) {
+		output(" She laps enthusiastically at your [pc.vagina] and kisses around your mons, coating her lips in a thin sheen of your satisfaction");
+	}
+	
+	output("\n\nShe grins impishly at your bodily approval and stands up. For a moment she disappears from your vision but then returns with a white towel, wiping you and the chair down. Next she removes the straps and helmet. When the latter is secured above you, she leans in for a kiss that last several seconds. When it breaks she settles her eyes onto yours. Soft fingers press into the side of your face while her hard lusty gaze bores into your blissed out stare.");
+	output(" After a moment of eye-fucking you, she disappears again around the side of the chair, and a familiar tapping sound fills the room. ");
+	output("\n\n<i>“Thanks again [pc.name]. You're a real life saver. I've got half a mind to give you a job and put you to work. Your memories are really saving this place.” </i>");
+	output("\n\nWith some effort you manage to stand up and adjust your clothing");
+	output("\n\n<i>“Go ahead and see yourself out. Come back in a day or so. Things are really looking up for The Joystick!” </i> She doesn't look your way as her hands thunder across the display.");
+	output("With a few tentative steps to test your legs, you walk over to the door and re-enter the arcade proper.");
+	addButton(0, "Next", move, rooms[currentLocation].eastExit);
+	
+	
+}
+
+public function oopsWrongArcade():void {
+	clearOutput();
+	clearMenu();
+	output("You're not sure how it happened, but you didn't mean to come back here. It's awkward, but you back away and leave a deflated Baal at the counter.");
+	addButton(0, "leave", move, rooms[currentLocation].eastExit);
+}
+
