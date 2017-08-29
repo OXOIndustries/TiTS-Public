@@ -165,6 +165,7 @@
 		include "../includes/tavros/aina.as";
 		include "../includes/tavros/aliss.as";
 		include "../includes/tavros/alex.as";
+		include "../includes/tavros/baal.as";
 		include "../includes/tavros/beths.as";
 		include "../includes/tavros/fyn.as";
 		include "../includes/tavros/gil.as";
