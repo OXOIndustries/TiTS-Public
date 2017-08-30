@@ -19,13 +19,11 @@
  * CIARAN_LAP			- how many times lap sex
  * CIARAN_HEAT			- how many times heat sex
  * 
- *
- * 
  */
 
-public function ciaranAvailable():void
+public function ciaranAvailable():Boolean
 {
-    
+    return !pc.hasStatusEffect("Ciaran Disabled");
 }
 
 public function showCiaran(nude:Boolean = false):void
@@ -112,11 +110,11 @@ public function ciaranMainMenu():void
 
 	if (pc.femininity >= 60)
 	{ 
-		if (pc.lust() >= 33) addButton(7, "Sex", ciaranSex, undefined, "Sex", "Seduce the studly older man. Or more likely get dominated and pounded bareback in front of the whole saloon. Either one.");
-		else addDisabledButton(7, "Sex", "Sex", "You aren't turned on enough for sex.")
+		if (pc.lust() >= 33) addButton(2, "Sex", ciaranSex, undefined, "Sex", "Seduce the studly older man. Or more likely get dominated and pounded bareback in front of the whole saloon. Either one.");
+		else addDisabledButton(2, "Sex", "Sex", "You aren't turned on enough for sex.")
 	}
 	else if (flags["CIARAN_DENIED"] == undefined) addButton(2, "Sex", ciaranNoSex, undefined, "Sex", "Seduce the studly older man. Or more likely get dominated and pounded bareback in front of the whole saloon. Either one.");
-	else if (pc.hasStatusEffect("Heat")) addButton(2, "Sex", ciaranSexHeat, undefined, "", "Ciaran looks restless. Maybe he'd be willing to make an exception for you as long as you're in heat?");
+	else if (pc.hasStatusEffect("Heat") && !pc.isNaga() && pc.hasVagina()) addButton(2, "Sex", ciaranSexHeat, undefined, "Sex", "Ciaran looks restless. Maybe he'd be willing to make an exception for you as long as you're in heat?");
 	else addDisabledButton(2, "Sex", "Sex", "Ciaran already turned you down once, and judging from how he looks at you, you're still not girly enough for his tastes. Don't make it awkward for both of you.");
 	
 	addButton(14, "Leave", mainGameMenu, undefined, "", "");
@@ -541,4 +539,126 @@ public function ciaranGetScritched():void
 	output("\n\nCiaran smiles at you mirthfully. <i>“Sorry, but that's the same amount of time you gave me. Of course, I've got a lot more experience, so I'm a lot better at this whole petting thing than you are, kid. I think </i>you<i> might even owe </i>me<i> some ear-scratching now.”</i> He punctuates his teasing words with a good-natured wink. You roll your eyes and thank Ciaran for his efforts. He just grins and chuckles deeply as he stands up from his seat and moseys over to the bar. <i>“Anytime, [pc.name]. Anytime.”</i>");
 	output("\n\nYou collect yourself and leave the table as well. With skills like that Ciaran could probably work as a masseuse!");
 }	
+
+public function ciaranNoSex(talk:Boolean = false):void
+{
+	clearOutput();
+	author("Night Trap");
+	showCiaran();
+	clearMenu();
 	
+	output("You feel like a roll in the hay with the handsome hellhound, but as if he had a sixth sense for your arousal his deep voice rumbles out before you can proposition him.");
+	output("\n\n<i>“I know what you're thinking there, kid. I can " + (pc.isTreated() ? "smell" : "see") + " it before you even ask. I'll go ahead and save you some trouble: I understand why you'd want to hop on my cock, but I'm just not really interested. I prefer folks who are more on the feminine side, regardless of what's in their pants.”</i> Ciaran tries to soften the blow, but you're still disappointed. ");
+	output("\n\nHe notices your expression and smiles more genuinely at you. <i>“Hey, don't feel bad, kiddo. You're on a whole planet of horny bulls and cows who are much less discriminating. I just prefer more feminine types when I can get them. And like I said, there's a whole planet's worth of horny cows I can bend over and fuck any time I want. Maybe if we were the only ones around for a couple days though, then I might interested. It'd be far from the first time,”</i> he says with a wink.");
+	output("\n\nAt first you think Ciaran might be joking, but his tone and expression are totally serious. You change the topic before the situation can become awkward, but you're left wondering how exactly you might end up alone with the oddly-attired ausar for a few days. ");
+	flags["CIARAN_DENIED"] = 1;
+	
+	if (talk) ciaranTalkMenu();
+	else ciaranMainMenu();
+}
+
+public function ciaranSex():void
+{
+	clearOutput();
+	author("Night Trap");
+	showCiaran();
+	clearMenu();
+	
+	output("You feel like a roll in the hay with the handsome hellhound, but as if he had a sixth sense for your arousal his deep voice rumbles out before you can proposition him.");
+	output("\n\n<i>“" + (silly ? "U wan sum fuk? ;)" : "So you want to fuck?") + "”</i> Ciaran grins at you wolfishly, the bulge in his pants visibly shifting and growing. <i>“Most girls just give me a good blowjob, but I've got a few other ideas for you.”</i> He's already standing up and moving towards you, bulge still growing. He stops when he's standing behind your chair, leaving you in his massive shadow as he places his furred hands on your shoulders. You can feel the power of his muscles through his grip and the claws of his fingers pricking at your [pc.skinFurScales]" + (pc.isNude() ? "" : " through your gear") + "; your body flushes with warmth as his scent and raw masculine presence completely subsume your personal space.");
+	output("\n\nIt's clear from his aggressive posture that he will be the dominant partner in any sexual activity here. How will you have him take you?");
+	
+	//Fingerfuck
+	if (!pc.isTaur() && pc.hasGenitals()) addButton(0, "GetFingers", ciaranFingers, undefined, "Get Fingerfucked", "Have the handsome hellhound put those big hands of his to work. He'll probably feed you your cum if you have any.");
+	else if (!pc.isTaur()) addDisabledButton(0, "GetFingers", "Get Fingerfucked", "You need genitals to have your genitals fingered.")
+	else addDisabledButton(0, "GetFingers", "Get Fingerfucked", "You must not be a taur for this scene.");
+	
+	//Spanks
+	addButton(1, "GetSpanks", , undefined, "Get Spanked", "");
+	
+	//Vanilla
+	if (!pc.isTaur()) addButton(2, "Vanilla", , undefined, "Vanilla", "Knock boots with the studly ausar in a more private and intimate setting.");
+	else addDisabledButton(2, "Vanilla", "Vanilla", "You must not be a taur for this scene.")
+	
+	//Lap ride
+	if (!pc.isTaur() && pc.vaginas.length > 0) addButton(3, "Lap Fuck", , undefined, "Lap Fuck", "Ride that red rocket and getted knotted extra hard. You <i>/may<i> be biting off more than you can chew.");
+	else if (pc.isTaur()) addDisabledButton(3, "Lap Fuck", "Lap Fuck", "You must not be a taur for this scene.");
+	else addDisabledButton(3, "Lap Fuck", "Lap Fuck", "You need a pussy for this scene.");
+	
+	//Heat sex
+	if (!pc.hasVagina()) addDisabledButton(4, "Heat Sex", "Heat Sex", "Ciaran can't breed you if you don't have a vagina.");
+	else if (pc.isNaga()) addDisabledButton(4, "Heat Sex", "Heat Sex", "This scene isn't compatible with naga body types.");
+	else if (!pc.hasStatusEffect("Heat")) addDisabledButton(4, "Heat Sex", "Heat Sex", "You would <i>probably</i> need to be in heat for this.");
+	else addButton(4, "Heat Sex", , undefined, "Heat Sex", "An ausar like Ciaran would be very easy to excite in your current needy state. Bend over and offer him the chance to mate with you.");
+}
+
+public function ciaranFingers():void
+{
+	clearMenu();
+	if (pc.cocks.length > 0) addButton(0, "Cock", ciaranFingers2, true, "Cock", "You're going to get some fingers in your ass and some of your own cum in your mouth. And you're going to like it.");
+	if (pc.vaginas.length > 0) addButton(1, "Pussy", ciaranFingers2, false, "Pussy", "Get your pussy played with!");
+}
+
+public function ciaranFingers2(cock:Boolean = true):void
+{
+	clearOutput();
+	author("Night Trap");
+	showCiaran();
+	clearMenu();
+	
+	output("You shudder as Ciaran firmly squeezes your shoulders a few times, the smells of distant lightning and rain on hot earth intensifying as his pheromone production ratchets up, conjuring mental images of a powerful summer storm approaching you. The ausar leans down to position his face less than an inch from your head, filling your senses with yet more of his personal scent. When he speaks, it's in a rumbling whisper that you both feel and hear. ");
+	if (silly) output("<i>“Do you even knot, bro?”</i> ");
+	else output("<i>“I think I'll just strip you down and toy with you a bit. Would you like that young " + pc.mf("man", "lady") + "?”</i> ");
+	output("His lips nip at your [pc.ears] as he asks you this, the short hairs of his beard adding a scruffy, masculine texture to the experience. Your cheeks color as you mutter your agreement to his proposal.");
+	output("\n\nThe moment you do, Ciaran's powerful arms lift you out of your seat and pull you flush you with his body, his groin pressing into your ");
+	if (pc.tallness < 4*12) output("shoulders");
+	else if (pc.tallness < 7*12) output("back");
+	else output("[pc.ass]");
+	output(". He feels incredibly warm, almost feverish compared to a normal human or ausar, and his body heat only adds to the feeling of dominance he has over you right now; you aren't even in full control of your own temperature anymore, your face already flushing from the heat as much as the arousal.");
+	if (!pc.isNude()) output("\n\nHe takes his time with your [pc.gear], scattering pieces everywhere as he strips you, lingering far longer than necessary on any interesting bits of anatomy he uncovers. As the DILF finishes denuding you, his ");
+	else output("\n\nCiaran's ");
+	output("furred hand grabs your chin and forcefully turns your head towards him. Your partner cups your cheek as he leans in to kiss your [pc.lipsChaste], his beard brushing your face. His broad, powerful tongue penetrates your mouth, dominating your [pc.tongue] in a mirror of his domination of your body. Ciaran cups one of your [pc.breasts] and roughly tweaks your [pc.milkyNipple]" + (pc.isLactating() ? ", his bulge swelling with excitement and pressing harder into you when [pc.milk] wets his fingers" : "") + ". He then slides that same hand down your [pc.belly], his sharp claws grazing you just enough for you to know he could hurt you if he wished before arriving at your [pc.groin].");
+	output("\n\n");
+	if (cock)
+	{
+		output("\n\nThe ausar's sharp claws dance over your [pc.cockSmallest] before he starts slowly but forcefully jerking your shaft, his thumb teasing your [pc.cockHeadSmallest] at the apex of each pump and slathering pre-cum on your shaft. Within just a short time, you've smeared your member and his fur with your [pc.cumFlavor] pre-seed, and you moan into his kiss when a particularly large spurt of the the stuff is pumped out of you by the forceful hellhound. ");
+		output("\n\nCiaran breaks the kiss to chastise you, his low voice practically vibrating through you when he speaks. <i>“Now look what you've done. You've gotten my hand downright filthy. " + pc.mf("Boys", "Girls") + " have to clean up after themselves when they make a mess.”</i> With that he stuffs his digits into your mouth, being careful not to scratch you with his claws. Your own [pc.cumFlavor] scent cuts through the fog of pheromones that have been swamping you as you are forced to suckle your pre-cum off of the fingers you so diligently soiled. Ciaran doesn't content himself with simply filling your maw; he lewdly thrusts his digits in and out of your mouth as if he were finger-fucking your face, not stopping until well after all of his fingers are cleaned of your fluids. ");
+		output("\n\nAfter all the steamy kissing and finger sucking, your breathing is ragged. You've barely had a spare moment to think about anything other than the pleasure being forced through your body since the start of this encounter, much less catch your breath. As sweat beads on your face and limbs, Ciaran whispers to you again, <i>“That was very good, kid. Now I'm clean enough for what comes next.”</i> His saliva-soaked fingers stroke your cheek possessively before moving down and around your body. You feel a fluffy texture and sudden pressure at your [pc.asshole], and your eyes go wide as you realize Ciaran is forcing his fingers into your ass. Thanks to the spit you so lovingly applied to the digits, one of those thick appendages batters right into your sphincter, ");
+		if (pc.ass.looseness() < 3) output("even in spite of your tightness. The sudden penetration leaves your ass spasming in a vain attempt to keep out the probing digit, but it just ends up making the ausar wiggle his excessively warm finger around even more in an effort to force you open. ");
+		else output("your trained orifice gladly accepting something warm to keep it company. The ausar wiggles his digit around in your anus, stoking your passion even higher.");
+		output("\n\nYou cry out as Ciaran's warm finger slides in past the knuckle and wiggles inside you, but the real treat comes when he starts slowly thrusting the digit in and out. You rock your [pc.hips] back and forth reflexively, which your partner takes as a sign to speed up his fingering. Easing your clenching " + (silly ? "boipucci" : "sphincter") + " open with his ministrations, Ciaran adds a second thick finger to your [pc.asshole], the heat of his digits sending shivers of pleasure through you. He starts kissing and nipping at your ears and neck, leaving trails of hickeys and love bites" + (!pc.hasFur() ? " for everyone to see" : "") + ". His breath comes hot on your neck, making you sweat even more. ");
+		output("\n\nBy now your arousal is almost painful, your neglected [pc.cockSmallest] hard and dripping pre-cum onto the floor. You beg Ciaran to stop teasing you as your hips buck helplessly in an effort to find any sort stimulation for your manhood you possibly can. All you manage to do is drive yourself even crazier, the sensation of the air itself tickling your shaft arousing you to madness.");
+		output("\n\nThe ausar DILF lets you thrust into the breeze for a few moments while he continues molesting you, tracing his lips over your face and neck, nibbling your ears, and teasing your ass with his powerful, furred fingers. Just when you feel you simply can't stand it anymore, he growls into your [pc.ear] in a harsh, mocking whisper <i>“Are you sure you can handle the next part? I'm not entirely convinced you can, little " + pc.mf("boy", "girl") + ".”</i>");
+		output("\n\nYou loudly cry out that what you can't handle is anymore teasing, and you're more than ready for him to finish you off. You don't care if everyone around can hear or see you; right now you are so horny that release is all you can think of.");
+		output("\n\nThis answer seems to be what Ciaran wanted to hear, as he grins wickedly and quietly rumbles out <i>“You asked for it.”</i> You moan happily as his free hand swiftly grasps your [pc.cockSmallest] and begins jerking you off, the action producing loud, lewd sounds and causing more pre-seed to leak into the small puddle you've already created beneath you. Your eyes cross and your [pc.tongue] drops out of your mouth as you feel his fingers suddenly press into your prostate. The dominant ausar alternates the movement of his hands so that each forward thrust of your [pc.hips] has his hand sliding down your dick, and each return has your prostate battering right into those thick fingers buried in your ass. You feel your [pc.balls] tightening and a tensing sensation in your lower abdomen, and you exultantly announce to Ciaran and every other person in the room that you're cumming!");
+		output("\n\nYou feel like a champagne bottle shaken until the cork bursts out as [pc.cum] erupts out of you in messy spurts. ");
+		if (pc.cumQ() < 3000) output("You groan as you pump rope after rope of [pc.cumColor] seed on the floor, the puddle of pre-cum from earlier tripling in size as [pc.cum] splatters onto your [pc.feet]. Ciaran prolongs your orgasm by milking your prostate " + (pc.hasKnot(smallestCockIndex()); ? "and squeezing your knot " : "") + "throughout. ");
+		else output("Your virility tends to make a mess of things, and now is no exception: you groan as you fire off rope after slimy rope of [pc.cumColor] goo, splattering jizz on the floor, your chair, and even the table in front of you as Ciaran milks every ounce you have to give from your prostate. You're left an insensate mess by the time you finally stop cumming. ");
+		if (pc.isHerm()) output("[pc.EachVagina] creams itself and everything in your vicinity, leaving your [pc.legs] soaked with copious amounts of [pc.girlCum].");
+		output("\n\nRather than stopping or even slowing down once you've finished cumming, the domineering hellhound actually doubles the speed and intensity of his strokes. He fits a third finger into your asshole, ramming it in even through the clenching of your sphincter. You whine from the overstimulation. Your [pc.cockSmallest] is so ridiculously sensitive after such an intense orgasm that it's almost painful. You shout out obscenities and desperately flail your arms back at Ciaran, begging the older man to stop. He simply grins down at you lustily, those sharp teeth bared in the most predatory look you've yet seen from him. Your [pc.legs] spasm for a moment before giving out entirely, but the hellhound easily supports your full weight without missing a beat in his torturous performance, leaving just one more part of your being in his full control.");
+		output("\n\nThe already-furious handjob picks up in intensity as Ciaran fits a fourth finger into your spasming [pc.asshole] to join its sinfully thick brothers in raking at your prostate. Even though you just got through an orgasm such a short time ago, your body is forced to dredge up another. Your ");
+		if (pc.balls < 1) output("prostate has");
+		else if (pc.balls < 2) output("[pc.balls] has");
+		else output("[pc.balls] have");
+		output(" nothing to give, but it doesn't stop your [pc.cockSmallest] from spasming frantically, an aching feeling of emptiness emanating from your " + (pc.balls > 0 ? "[pc.balls]" : "prostate") + ".");
+		output("\n\nWhen your second orgasm finishes, Ciaran finally stops masturbating you. He removes his fingers from your [pc.asshole], leaving your anus agape and feeling as empty as your " + (pc.balls > 0 ? "[pc.balls]" : "prostate") + ". He gathers up the [pc.cum] still clinging to your shaft using his other hand, bringing it to your mouth for you to taste. Your chest is still heaving from the exertion of your back-to-back orgasms, but you dutifully clean the soiled fur of his fingers, your [pc.cumFlavor] taste swamping your tastebuds. Once the ausar is satisfied with your spit-shine, he pops his digits free of your mouth and spins you around before planting a deep kiss on your lips, his tongue plundering your mouth for all the residual [pc.cumNoun] clinging to your gums and teeth. It's a far more passionate kiss than his previous lustful ones, and somehow it almost seems apologetic. It doesn't last very long, and while you're thankful to have a chance to breathe again, you're a little sad it's over.");
+		output("\n\nSeeing that your [pc.legs] still won't support you, Ciaran gently sets you down in your chair. Now that you're away from his incredible body heat the room actually feels a bit cold. You cross your [pc.arms] and pull your [pc.legs] into your seat, the sweat covering your [pc.skinFurScales] exacerbating the chilled feeling rising in you. When your paramour notices your plight, he reaches into his pocket and produces an enormous handkerchief. He sets about cleaning off your sweat and sexual fluids, and you're happy to have a bit of his warmth again. You settle back and enjoy your afterglow as the DILF tends to you almost like a father would a child who had spilled something on themselves. When he's satisfied that you're clean and warm enough, he gathers up your [pc.gear] and sets it all on the table in front of you. Only when you stand up to get dressed again do you notice that most of the nearby patrons in the saloon have been watching the two of you. Most of them stop looking when they realize there isn't going to be any more action, but you still feel " + (pc.exhibitionism() >= 66 ? "proud" : "embarassed") + " that so many people just watched you cum yourself stupid.");
+		output("\n\nCiaran breaks your reverie with a genial laugh and a surprisingly gentle pat on the back. <i>“You make for a pretty fun toy, kid. Hopefully I didn't go too hard on you, because I'd love to play with you again.”</i> ");
+		output("\n\nYou blush fiercely at the thought, but you tell him that you're going to need some time to recharge before he can play with you again.");
+		output("\n\nHe chuckles at your response. <i>“Well while you do that, I'm gonna go find somebody to handle this hard-on you gave me. Take care, kid.”</i> He kisses you on the forehead and bids farewell before walking over to a trio of half-kaithrit whores. You watch him take all three feline girls under his arms and disappear up the stairs with them, the young women giggling the whole way. You can guess what they're about to be doing. " + (silly ? "Playing boardgames of course. " : "") + "You put on the last of your gear before you step away from the table, an employee with a high-tech wet-vacuum disguised as an old-fashioned push broom already beginning to clean up the mess you made.");
+	}
+	else
+	{
+		
+		
+	}
+	
+	pc.orgasm();
+	processTime(30);
+	pc.orgasm();
+	pc.exhibitionism(1);
+	
+	pc.createStatusEffect("Ciaran Disabled", 0, 0, 0, 0, true, "", "", false, 2*60);
+	currentLocation = "BUCKING BRONCO";
+	addButton(0, "Next", mainGameMenu, undefined, "", "");
+}
