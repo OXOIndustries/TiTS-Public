@@ -114,7 +114,7 @@ public function ciaranMainMenu():void
 		else addDisabledButton(2, "Sex", "Sex", "You aren't turned on enough for sex.")
 	}
 	else if (flags["CIARAN_DENIED"] == undefined) addButton(2, "Sex", ciaranNoSex, undefined, "Sex", "Seduce the studly older man. Or more likely get dominated and pounded bareback in front of the whole saloon. Either one.");
-	else if (pc.hasStatusEffect("Heat") && !pc.isNaga() && pc.hasVagina()) addButton(2, "Sex", ciaranSexHeat, undefined, "Sex", "Ciaran looks restless. Maybe he'd be willing to make an exception for you as long as you're in heat?");
+	else if (pc.hasStatusEffect("Heat") && !pc.isNaga() && pc.hasVagina()) addButton(2, "Sex", ciaranHeat, undefined, "Sex", "Ciaran looks restless. Maybe he'd be willing to make an exception for you as long as you're in heat?");
 	else addDisabledButton(2, "Sex", "Sex", "Ciaran already turned you down once, and judging from how he looks at you, you're still not girly enough for his tastes. Don't make it awkward for both of you.");
 	
 	addButton(14, "Leave", mainGameMenu, undefined, "", "");
@@ -180,7 +180,7 @@ public function ciaranTalkMenu():void
 		else addDisabledButton(7, "Sex", "Sex", "You aren't turned on enough for sex.")
 	}
 	else if (flags["CIARAN_DENIED"] == undefined) addButton(7, "Sex", ciaranNoSex, undefined, "Sex", "Seduce the studly older man. Or more likely get dominated and pounded bareback in front of the whole saloon. Either one.");
-	else if (pc.hasStatusEffect("Heat")) addButton(7, "Sex", ciaranSexHeat, undefined, "", "Ciaran looks restless. Maybe he'd be willing to make an exception for you as long as you're in heat?");
+	else if (pc.hasStatusEffect("Heat")) addButton(7, "Sex", ciaranHeat, undefined, "", "Ciaran looks restless. Maybe he'd be willing to make an exception for you as long as you're in heat?");
 	else addDisabledButton(7, "Sex", "Sex", "Ciaran already turned you down once, and judging from how he looks at you, you're still not girly enough for his tastes. Don't make it awkward for both of you.");
 
 	/* 99999 assuming Annebelle's meet flag will be ANNEBELLE_MET - Implement if/when Annebelle is
@@ -694,12 +694,79 @@ public function ciaranFingers2(cock:Boolean = true):void
 
 public function ciaranSpanks():void
 {
+	clearOutput();
+	author("Night Trap");
+	showCiaran();
+	clearMenu();
 	
+	if (flags["CIARAN_SPANK"] == undefined) output("Remembering the warning Ciaran gave you when you last scratched his head, you decide you'd like to see how far you can push the hellhound with some real teasing. ");
+	else output("You know just how to push Ciaran's buttons now, and you're in the mood for some more <i>“punishment”</i>.");
+	output("\n\nYou rise from your seat and move over behind the hellhound just as you did when you scratched his ears and horns.");
+	output("\n\nCiaran looks at you expectantly as you move behind him. <i>“What are you doing, kid? Are you gonna pet me again? It's pretty embarrassing, but I can't say I don't love it when yo-”</i> His words are cut short when you rudely snatch his cowboy hat away from him, pulling his ears sharply and unexpectedly as they are forced through the holes in the brim. The older ausar cries out in surprise and pain and glares at you. <i>“What the fuck are you doing kid?”</i>");
+	output("\n\nWith a devious smirk you declare <i>“I don't think little puppies should have hats.”</i> You punctuate your words with a playful wink and a seductive pose, your hip thrust out to the side coquettishly as you spin his hat on an outstretched finger. ");
+	output("\n\nHis expression softens a bit, but you're not sure if the coloring of cheeks is arousal, embarrassment, anger, or all of the above. <i>“What did you just call me?”</i> His voice is quiet and menacing, and as he speaks you can see his extra-sharp canines more clearly than usual.");
+	output("\n\nYour heart begins to race nervously. Is he going along with your game or have you crossed a line? Ciaran's face seems playful, but his tone is deathly serious. Having come this far already, you decide to stick to your guns. You turn your back to him and feign huffing dismissively. <i>“Well first I called you a puppy, but now I'm thinking maybe 'old man' would be more appropriate. Even your name sounds like an old man's name; 'Old man Eildean.' That's what I'll call you now.”</i> You peek over your shoulder at the older man after dropping your last jab. Your ");
+	if (pc.hasCock() && pc.hasVagina()) output("[pc.cocks] jump" + (pc.cocks.length < 2 ? "s" : "") + " and your [pc.cunts] moisten" + (pc.vaginas.length < 2 ? "s" : "") + " ");
+	else if (pc.hasCock()) output("[pc.cocks] jump" + (pc.cocks.length < 2 ? "s" : "") + " ");
+	else if (pc.hasVagina()) output("[pc.cunts] moisten" + (pc.vaginas.length < 2 ? "s" : "") + " ");
+	else output("pulse quickens ");
+	output("when you see the fiery, predatory gaze Ciaran is boring into your [pc.ass]; he's " + (pc.isNude() ? "practically fucking you " : "already undressing you ") + "with his flaming orange eyes, and his aphrodisiac scent is pouring off of him in waves, washing over you and announcing his lust for you. Once you notice where Ciaran's looking, you ask him <i>“Why won't you come over here and get your silly hat back? Do you not think you're man enough? Is the dog maybe too old and tired?”</i> You shake your rump at him seductively as you tease him.");
+	output("\n\nThat's the final straw for Ciaran. Your ass may as well have been a red cloth in front of a bull, because he jumps out of his seat and charges at you before you can even react. His clawed hands are all over you, and he uses his great strength and size to force your arms behind your back before dragging you over to the table. " + (pc.isCrotchGarbed() ? "He pulls down your [pc.lowerGarments] before sitting down and hoisting you across his lap. " : "He pulls off your [pc.gear] and sits down before hoisting you across his lap. ") + "His pheromone production is through the roof now. All you can smell is Ciaran's personal scents of warmth and an approaching thunderstorm. You shudder in arousal and anticipation. This is exactly what you wanted!");
+	output("\n\nThe DILF's voice is a harsh growl as he sneers down at you. <i>“If you want to act like a spoiled little [pc.boyGirl], then I hope you're ready to get treated like a spoiled little [pc.boyGirl].”</i>");
+	output("\n\n");
+	if (pc.hasTail()) output("He gives [pc.eachTail] a sharp upwards jerk, hard enough to hurt. <i>“You'd better hold that pose if you know what's good for you”</i> he growls. ");
+	output("You tense up in anticipation, awaiting the first delicious slap across your [pc.ass], closing your eyes and holding your breath. When several seconds pass and you still haven't received your punishment, you open your eyes and look up at your canine disciplinarian. The moment you make eye contact with him, he smiles deviously and slaps you <i>hard</i> on the ass. You gasp sharply at the stinging sensation and tense up again. The hellhound seems to be able to read you like a book, as the moment you start to relax he smacks your bottom again with his powerful hand.");
+	output("\n\nHe takes a moment to lightly rake his claws over your still-stinging asscheek, the sharp points just barely catching your skin and adding a whole new sensation to the pleasurable pain in your buttocks. The stimulation is enough to make you shiver. He gives you another harsh slap, this time on your other cheek. He punctuates the slap with a question. <i>“Why are you being punished?”</i> he barks loudly. You simply squeak in masochistic pain, too surprised to answer. He smacks your [pc.butt] again, his huge, furred hand slapping both cheeks at once this time. <i>“</i>Why<i> are you being punished?”</i>");
+	output("\n\nYou bite your lip to stifle a little moan before stuttering out an answer. <i>“I-I don't know!”</i>");
+	output("\n\nHis hand flies through the air and impacts your [pc.butt] harder than ever. <i>SMACK!</i> <i>“Yes you do you bratty little [pc.boyGirl]! You know why you're being punished! So I'm gonna ask again. Why are you being punished?”</i>");
+	if (pc.hasGenitals())
+	{
+		output("\n\nYour eyes water a bit from the pain, but your ");
+		if (pc.hasCock() && pc.hasVagina()) output("[pc.cunt] leaks [pc.girlcum] all over your thighs, and your [pc.cockLargest] throbs and dribbles precum to join the [pc.girlcum] you're already puddling on the floor. ");
+		else if (pc.hasCock()) output("[pc.cockLargest] throbs and leaks precum onto the floor. ");
+		else output("[pc.cunt] leaks [pc.girlcum] all over your thighs, some of it even dripping to the floor. ");
+	}
+	else output("\n\nYour eyes water a bit from the pain. ");
+	output("You struggle to keep your voice level when you answer. <i>“B-because I stole your hat?”</i>");
+	output("\n\nSMACK! <i>“That's not why I'm spanking you. Tell me the real reason!”</i> Ciaran drags his claws over your reddening ass while awaiting your answer.");
+	output("\n\nYou cry out in pain at his blows, but your [pc.groin] is burning with arousal at the shameful display that's being made of you. It's all you can do to focus on answering the older ausar. <i>“It's because I called you old isn't it?”</i>");
+	output("\n\nSMACK! The DILF rains another blissful clap on your buttocks. <i>“Try again little [pc.boyGirl]! You're being punished because of </i>why<i> you did those things. Tell me why you acted like a spoiled brat!”</i>");
+	output("\n\nYou bite down on your lip almost hard enough to draw blood. The sensation of being dominated so completely by this confident older man is overwhelming you with arousal, your submissive urges mixing with the pain he's inflicting on your bottom and the aphrodisiac scent of his pheromones to form a heady cocktail of stimulation. You inhale deeply to savor the smell of the hellhound before you answer him again. <i>“I did all that because I wanted you to punish me!”</i>");
+	output("\n\nSMACK! He chuckles richly at your reply as he rewards you with another stinging slap on the ass. This close to him you feel the rumbles of his laugh as much as you hear them. <i>“And why did you want to be punished? What did you think would happen?”</i>");
+	output("\n\nYou whimper in masochistic delight, your breath coming in short, panting gasps as your arousal spikes from admitting the truth. <i>“I- I wanted to be spanked! I wanted you to put me over your lap and spank my bare ass like the bad little [pc.boyGirl] I am" + (pc.exhibitionism() >= 66? " in front of the whole saloon! I wanted to be spanked in front of everybody" : "") + "! Now please, please keep spanking me!”</i> You provocatively wiggle your still-stinging behind in an effort to tempt Ciaran into continuing. ");
+	output("\n\nYour efforts pay off as the ausar DILF brings that furred hand down on your ass again with a laugh, satisfied at how you've debased yourself. His scent fills your nostrils, all sex and warmth and pure animal lust. The muscular lawman rains blow after delightfully painful blow on your helpless bottom, and you wouldn't have it any other way. You relish every second of your “punishment” and cry out each time his palm makes contact with your asscheeks, eventually just moaning in pleasure rather than crying in pain.");
+	output("\n\nCiaran's pheromones cloud your perception of time and drive your arousal to a fever pitch; combined with the delicious blows on your [pc.ass] you are driven to the edge of orgasm. You begin to buck your hips in pleasure, reflexively trying to find some sort of sexual stimulation. Unfortunately for your ");
+	if (pc.hasCock() && pc.hasVagina()) output("naughty bits");
+	else if (pc.hasCock()) output("manhood");
+	else if (pc.hasVagina()) output("womanhood");
+	else output("sphincter");
+	output(", the storm of blows being rained on your ass is the only stimulation you're going to get. Just when your arousal is so overwhelming that you think you'll cum from the next spank the hellhound gives you, he breaks his rhythm. Instead of a firm strike on your buttocks you instead receive an affectionate stroke. You look up at Ciaran in confusion, but he just grins down at you. <i>“It wouldn't be much of a punishment if you got to cum, now would it?”</i>");
+	output("\n\nYou mewl pathetically and shake your [pc.ass] to try to entice him, but he simply " + (pc.isCrotchGarbed() ? "pulls your [pc.lowerGarments] up again and " : "") + "sets you on your feet again before standing up himself. He walks over and picks his hat up off the floor. You hadn't even realized you dropped it when he pounced on you earlier. Humming " + (pc.isTreated() ? "a strangely familiar " : "an unfamiliar ") + "tune to himself, he places it on his head again before moseying over to his chair and sitting down like nothing had ever happened. He speaks to you again with that usual cocksure grin when you just stand there dumbly. <i>“Well don't just stand there kid. It makes me uncomfortable when people just hover near me while I sit.”</i>");
+	output("\n\nYou rub your tender bottom and tell him you'll be ready to take a seat when your ass gets a rest.");
+	output("\n\nHe throws his head back and laughs uproariously. <i>“Well I guess you should've thought of that before you decided you wanted a spanking.”</i> He then goes back to drinking his beer, pretending you aren't even present.");
+	output("\n\nYou blush in embarrassment and squirm with unfulfilled need. Your loins are burning with arousal right now, but Ciaran is enjoying ignoring you. You see him look at your dilemma out of the corner of his eye from time to time with a smirk. Groaning in frustration, you storm off, horny beyond all belief and with a butt too sore to sit on. And you wouldn't have it any other way.");
 	
+	processTime(10);
+	pc.lust(pc.lustMax() - pc.lust());
+	pc.exhibitionism(2);
 	
-	
-	
-	
+	IncrementFlag("CIARAN_SPANK");
+	currentLocation = "BUCKING BRONCO";
+	addButton(0, "Next", mainGameMenu, undefined, "", "");
+}
+
+public function ciaranVanilla():void
+{
+	clearMenu();
+	addButton(0, "Anal", ciaranVanilla2, true);
+	if (pc.vaginas.length > 0) addButton(1, "Vaginal", ciaranVanilla2, false);
+	else addDisabledButton(1, "Vaginal", "Vaginal", "")
+}
+
+public function ciaranVanilla2(anal:Boolean = true)
+{
 	
 	
 }
+
+
