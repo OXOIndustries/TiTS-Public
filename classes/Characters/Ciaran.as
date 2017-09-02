@@ -51,7 +51,13 @@ package classes.Characters
 			this.nipplesPerBreast = 1;
 			this.nippleColor = "brown";
 			
+			this.cocks = new Array();
 			this.createCock();
+			this.cocks[0].cThicknessRatioRaw = 1.2;
+			this.cocks[0].cLengthRaw = 14;
+			this.cocks[0].addFlag(GLOBAL.FLAG_TAPERED);
+			this.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
+			
 			this.balls = 4;
 			this.timesCum = 0;
 			this.minutesSinceCum = 9999;

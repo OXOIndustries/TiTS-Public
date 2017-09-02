@@ -1413,6 +1413,10 @@
 		{
 			return chars["KRYM"];
 		}
+		public function get ciaran():Ciaran
+		{
+			return chars["CIARAN"];
+		}
 
 		public function testShipCombat():void
 		{
