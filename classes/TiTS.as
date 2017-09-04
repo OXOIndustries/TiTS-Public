@@ -507,7 +507,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.84";
+			version = "0.7.85";
 
 			//temporary nonsense variables.
 			temp = 0;
