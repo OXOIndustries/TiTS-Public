@@ -490,6 +490,7 @@ public function thareAbleResponse(response:String = "none"):void
 			
 			// If time 07:01-17:59, + 4 hours, health + energy = 100%
 			processTime((4 * 60) + rand(16));
+			eventBufferXP();
 			sleepHeal();
 			
 			// Next
