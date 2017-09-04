@@ -127,7 +127,7 @@ public function approachLiamme():void
 		else output("sit up straight");
 		output(". He smiles at you again, <i>“It’s like a compliment whenever someone makes that, uh, ‘mistake.’”</i>");
 
-		output("\n\nYou grin back at him and decide to say something before all your dignity is lost, <i>“In that case: you’re welcome.”</i> Your eyes dart down for a split second and are able to spot a well-hidden, but visible bulge in his pants.");
+		output("\n\nYou grin back at him and decide to say something before all your dignity is lost, <i>“In that case: you’re welcome.”</i> Your eyes dart down for a split second and are able to spot a well-hidden, but visible bulge " + (liammeSkirted() ? "under his skirt" : "in his pants") + ".");
 		output("\n\nHis tail starts to wag enough that it becomes visible, appearing on either side of him as it sways, coloured a deep-blonde like the rest of his fur. <i>“I’m Liamme, by the way,”</i> he says, pointing a furry thumb at his own chest, <i>“Most people call me Lia though.”</i>");
 		output("\n\nYou introduce yourself as <i>“[pc.name]”</i> in turn.");
 

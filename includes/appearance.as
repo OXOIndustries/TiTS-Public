@@ -99,12 +99,13 @@ public function appearance(forTarget:Creature):void
 	}
 	if(allExposed && !target.canUseTailsOrFurAsClothes())
 	{
-		if(target.exhibitionism() >= 100) output2(" You’re a shameless exhibitionist and proud of it, flaunting your naked body and giving the entire galaxy quite an eyeful!");
-		else if(target.exhibitionism() >= 66) output2(" Your naked body is like a second outfit for you, giving you naughty thoughts when in the public’s gaze.");
-		else if(target.exhibitionism() >= 50) output2(" Maybe you’re some kind of nudist, but it’s not like you mind being naked anyway.");
-		else if(target.exhibitionism() >= 33) output2(" It’s okay to show some nudity once in a while, right?");
-		else if(target.exhibitionism() >= 20) output2(" If anyone sees you this way, you can’t help but be aroused a little.");
-		else if(target.exhibitionism() >= 10) output2(" If anyone sees you now, they’re sure to think you’re a nudist...");
+		var exhibitionism:Number = target.exhibitionism();
+		if(exhibitionism >= 100) output2(" You’re a shameless exhibitionist and proud of it, flaunting your naked body and giving the entire galaxy quite an eyeful!");
+		else if(exhibitionism >= 66) output2(" Your naked body is like a second outfit for you, giving you naughty thoughts when in the public’s gaze.");
+		else if(exhibitionism >= 50) output2(" Maybe you’re some kind of nudist, but it’s not like you mind being naked anyway.");
+		else if(exhibitionism >= 33) output2(" It’s okay to show some nudity once in a while, right?");
+		else if(exhibitionism >= 20) output2(" If anyone sees you this way, you can’t help but be aroused a little.");
+		else if(exhibitionism >= 10) output2(" If anyone sees you now, they’re sure to think you’re a nudist...");
 		else output2(" If anyone sees you now, they’re sure to think you’re a nudist!");
 	}
 	
@@ -1528,42 +1529,43 @@ public function appearance(forTarget:Creature):void
 		}
 		output2(".");
 	}
-	//Hip info only displays if you aren't a centaur. 
+	//Hip info only displays if you aren't a centaur.
+	var hipRating:Number = target.hipRating();
 	if(!target.isTaur()) {
 		if(target.thickness > 70) {
 			output2(" You have " + target.hipsDescript());
-			if(target.hipRating() < 6) {
+			if(hipRating < 6) {
 				if(target.tone < 65) output2(" buried under a noticeable muffin-top, and");
 				else output2(" that blend into your pillar-like waist, and");
 			}
-			if(target.hipRating() >= 6 && target.hipRating() < 10) output2(" that blend into the rest of your thick form, and");
-			if(target.hipRating() >= 10 && target.hipRating() < 15) output2(" that would be much more noticeable if you weren’t so wide-bodied, and");
-			if(target.hipRating() >= 15 && target.hipRating() < 20) output2(" that sway and emphasize your thick, curvy shape, and");
-			if(target.hipRating() >= 20) output2(" that sway hypnotically on your extra-curvy frame, and");
+			else if(hipRating < 10) output2(" that blend into the rest of your thick form, and");
+			else if(hipRating < 15) output2(" that would be much more noticeable if you weren’t so wide-bodied, and");
+			else if(hipRating < 20) output2(" that sway and emphasize your thick, curvy shape, and");
+			else output2(" that sway hypnotically on your extra-curvy frame, and");
 		}
 		else if(target.thickness < 30) {
 			output2(" You have " + target.hipsDescript());
-			if(target.hipRating() < 6) output2(" that match your trim, lithe body, and");
-			if(target.hipRating() >= 6 && target.hipRating() < 10) output2(" that sway to and fro, emphasized by your trim body, and");
-			if(target.hipRating() >= 10 && target.hipRating() < 15) output2(" that swell out under your trim waistline, and");
-			if(target.hipRating() >= 15 && target.hipRating() < 20) output2(", emphasized by your narrow waist, and");
-			if(target.hipRating() >= 20) output2(" that swell disproportionately wide on your lithe frame, and");
+			if(hipRating < 6) output2(" that match your trim, lithe body, and");
+			else if(hipRating < 10) output2(" that sway to and fro, emphasized by your trim body, and");
+			else if(hipRating < 15) output2(" that swell out under your trim waistline, and");
+			else if(hipRating < 20) output2(", emphasized by your narrow waist, and");
+			else output2(" that swell disproportionately wide on your lithe frame, and");
 		}
 		//STANDARD
 		else {
 			output2(" You have " + target.hipsDescript());
-			if(target.hipRating() < 6) output2(", and");
-			if(target.femininity > 50) {
-				if(target.hipRating() >= 6 && target.hipRating() < 10) output2(" that draw the attention of those around you, and");
-				if(target.hipRating() >= 10 && target.hipRating() < 15) output2(" that make you move with a sexy, swinging gait, and");
-				if(target.hipRating() >= 15 && target.hipRating() < 20) output2(" that make it look like you’ve birthed many children, and");
-				if(target.hipRating() >= 20) output2(" that make you look more like an animal waiting to be bred than any kind of human, and");
+			if(hipRating < 6) output2(", and");
+			else if(target.femininity > 50) {
+				if(hipRating < 10) output2(" that draw the attention of those around you, and");
+				else if(hipRating < 15) output2(" that make you move with a sexy, swinging gait, and");
+				else if(hipRating < 20) output2(" that make it look like you’ve birthed many children, and");
+				else output2(" that make you look more like an animal waiting to be bred than any kind of human, and");
 			}
 			else {
-				if(target.hipRating() >= 6 && target.hipRating() < 10) output2(" that give you a graceful stride, and");
-				if(target.hipRating() >= 10 && target.hipRating() < 15) output2(" that add a little feminine swing to your gait, and");
-				if(target.hipRating() >= 15 && target.hipRating() < 20) output2(" that force you to sway and wiggle as you move, and");
-				if(target.hipRating() >= 20) {
+				if(hipRating < 10) output2(" that give you a graceful stride, and");
+				else if(hipRating < 15) output2(" that add a little feminine swing to your gait, and");
+				else if(hipRating < 20) output2(" that force you to sway and wiggle as you move, and");
+				else {
 					output2(" that give your ");
 					if(target.balls > 0) output2("balls plenty of room to breathe");
 					else if(target.hasCock()) output2(target.multiCockDescript() + " plenty of room to swing");
@@ -1576,27 +1578,28 @@ public function appearance(forTarget:Creature):void
 	}
 	//ASS
 	//Horse version
+	var buttRating:Number = target.buttRating();
 	if(target.isTaur()) {
 		//FATBUTT
 		if(target.tone < 65 || target.hasSoftButt()) {
 			output2(" Your " + target.buttDescript());
-			if(target.buttRating() < 4) output2(" is lean, from what you can see of it.");
-			else if(target.buttRating() < 6) output2(" looks fairly average.");
-			else if(target.buttRating() < 10) output2(" is fairly plump and healthy.");
-			else if(target.buttRating() < 15) output2(" jiggles a bit as you trot around.");
-			else if(target.buttRating() < 20) output2(" jiggles and wobbles as you trot about.");
-			else if(target.buttRating() < 25) output2(" is eye-drawing in the extreme, particularly when it keeps wobbling long after you stop trotting around.");
+			if(buttRating < 4) output2(" is lean, from what you can see of it.");
+			else if(buttRating < 6) output2(" looks fairly average.");
+			else if(buttRating < 10) output2(" is fairly plump and healthy.");
+			else if(buttRating < 15) output2(" jiggles a bit as you trot around.");
+			else if(buttRating < 20) output2(" jiggles and wobbles as you trot about.");
+			else if(buttRating < 25) output2(" is eye-drawing in the extreme, particularly when it keeps wobbling long after you stop trotting around.");
 			else output2(" is obscenely large, bordering freakish, even for a tauric being.");
 		}
 		//GIRL LOOK AT DAT BOOTY
 		else {
 			output2(" Your " + target.buttDescript());
-			if(target.buttRating() < 4) output2(" is barely noticable, showing off the muscles of your haunches.");
-			else if(target.buttRating() < 6) output2(" matches your toned, tauric frame quite well.");
-			else if(target.buttRating() < 10) output2(" gives hints of just how much muscle you could put into a kick.");
-			else if(target.buttRating() < 15) output2(" surges with muscle whenever you trot about.");
-			else if(target.buttRating() < 20) output2(" flexes its considerable mass as you move.");
-			else if(target.buttRating() < 25) output2(" is stacked with layers of muscle, huge even for a tauric being.");
+			if(buttRating < 4) output2(" is barely noticable, showing off the muscles of your haunches.");
+			else if(buttRating < 6) output2(" matches your toned, tauric frame quite well.");
+			else if(buttRating < 10) output2(" gives hints of just how much muscle you could put into a kick.");
+			else if(buttRating < 15) output2(" surges with muscle whenever you trot about.");
+			else if(buttRating < 20) output2(" flexes its considerable mass as you move.");
+			else if(buttRating < 25) output2(" is stacked with layers of muscle, huge even for a tauric being.");
 			else output2(" is stacked with freakish amounts of muscle, so much so that it bulges and flexes obscenely while trotting around.");
 		}
 	}
@@ -1605,35 +1608,35 @@ public function appearance(forTarget:Creature):void
 		//TUBBY ASS
 		if(target.tone < 60 || target.hasSoftButt()) {
 			output2(" your " + target.buttDescript());
-			if(target.buttRating() < 4) output2(" looks great under your gear.");
-			else if(target.buttRating() < 6) output2(" has the barest amount of sexy jiggle.");
-			else if(target.buttRating() < 10) output2(" fills out your clothing nicely.");
-			else if(target.buttRating() < 15) output2(" wobbles enticingly with every step.");
-			else if(target.buttRating() < 20) output2(" wobbles like a bowl full of jello as you [target.walk].");
-			else if(target.buttRating() < 25) output2(" is eye-catching in the extreme, wobbling hypnotically long after you stop moving.");
+			if(buttRating < 4) output2(" looks great under your gear.");
+			else if(buttRating < 6) output2(" has the barest amount of sexy jiggle.");
+			else if(buttRating < 10) output2(" fills out your clothing nicely.");
+			else if(buttRating < 15) output2(" wobbles enticingly with every step.");
+			else if(buttRating < 20) output2(" wobbles like a bowl full of jello as you [target.walk].");
+			else if(buttRating < 25) output2(" is eye-catching in the extreme, wobbling hypnotically long after you stop moving.");
 			else output2(" is obscenely large, bordering freakish, and makes it difficult to run.");
 		}
 		//FITBUTT
 		else {
 			output2(" your " + target.buttDescript());
-			if(target.buttRating() < 4) output2(" molds closely against your form.");
-			else if(target.buttRating() < 6) output2(" contracts with every motion, displaying the detailed curves of its lean musculature.");
-			else if(target.buttRating() < 10) 
+			if(buttRating < 4) output2(" molds closely against your form.");
+			else if(buttRating < 6) output2(" contracts with every motion, displaying the detailed curves of its lean musculature.");
+			else if(buttRating < 10) 
 			{
 				if(!target.isAssExposed()) output2(" fills out your clothing nicely.");
 				else output2(" is a nice, big canvas for displaying your well-developed musculature.");
 			}
-			else if(target.buttRating() < 15) 
+			else if(buttRating < 15) 
 			{
 				if(!target.isAssExposed()) output2(" stretches your gear, flexing it with each step.");
 				else output2(" is big enough to draw the eye and strong enough to crush any hand daring enough to try for a grope.");
 			}
-			else if(target.buttRating() < 20) 
+			else if(buttRating < 20) 
 			{
 				if(!target.isAssExposed()) output2(" threatens to bust out from under your kit each time you clench it.");
 				else output2(" flexes delightfully with every move you make. Any clothing you put over it would be in immediately danger of splitting in half.");
 			}
-			else if(target.buttRating() < 25) output2(" is obscenely large and completely stacked with muscle.");
+			else if(buttRating < 25) output2(" is obscenely large and completely stacked with muscle.");
 			else output2(" strains your ability to comprehend its size and near-freakish levels of muscular development.");
 		}
 	}

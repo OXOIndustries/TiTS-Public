@@ -12209,9 +12209,10 @@
 		}
 		public function hipDescript(asPlural:Boolean = false):String 
 		{
+			var hips: Number = hipRating();
 			var desc: String = "";
 			var adjectives: Array = [];
-			if (hipRating() <= 1) {
+			if (hips <= 1) {
 				if (thickness > 70) {
 					adjectives.push("tiny ");
 					adjectives.push("narrow ");
@@ -12228,7 +12229,7 @@
 					adjectives.push("narrow ");
 					adjectives.push("boyish ");
 				}
-			} else if (hipRating() < 4) {
+			} else if (hips < 4) {
 				if (thickness < 30) {
 					adjectives.push("slightly-flared ");
 					adjectives.push("curved ");
@@ -12238,7 +12239,7 @@
 					adjectives.push("narrow ");
 					adjectives.push("thin ");
 				}
-			} else if (hipRating() < 6) {
+			} else if (hips < 6) {
 				if (thickness < 30) {
 					adjectives.push("flared ");
 					adjectives.push("curvy ");
@@ -12247,7 +12248,7 @@
 					adjectives.push("well-formed ");
 					adjectives.push("pleasant ");
 				}
-			} else if (hipRating() < 10) {
+			} else if (hips < 10) {
 				if (thickness < 30) {
 					adjectives.push("flared ");
 					adjectives.push("waspish ");
@@ -12257,7 +12258,7 @@
 					adjectives.push("noticeable ");
 					adjectives.push("girly ");
 				}
-			} else if (hipRating() < 15) {
+			} else if (hips < 15) {
 				if (thickness < 30) {
 					adjectives.push("flared ");
 					adjectives.push("waspish ");
@@ -12267,7 +12268,7 @@
 					adjectives.push("curvy ");
 					adjectives.push("wide ");
 				}
-			} else if (hipRating() < 20) {
+			} else if (hips < 20) {
 				if (thickness < 40) {
 					adjectives.push("flared, voluptuous ");
 					adjectives.push("waspish, voluptuous ");
@@ -12341,6 +12342,7 @@
 		}
 		public function buttDescript(asPlural:Boolean = false, onlyCheek:Boolean = false):String 
 		{
+			var butt: Number = buttRating();
 			var desc: String = "";
 			var rando: Number = 0;
 			var softbutt: Boolean = hasSoftButt();
@@ -12354,14 +12356,14 @@
 			{
 				var adjectives: Array = [];
 				
-			if (buttRating() <= 1) {
+			if (butt <= 1) {
 					if (tone >= 60 && !softbutt) adjectives.push("incredibly tight, perky ");
 				else {
 					//Soft PC's buns!
 						if ((tone <= 30 || softbutt) && rand(3) == 0) adjectives.push("tiny yet soft ", "tiny yet soft ", "very small yet soft ", "dainty yet soft ");
 						else adjectives.push("tiny ", "tiny ", "very small ", "dainty ");
 				}
-			} else if (buttRating() < 4) {
+			} else if (butt < 4) {
 					if (tone >= 65 && !softbutt) {
 						adjectives.push("perky, muscular ");
 						adjectives.push("tight, toned ");
@@ -12387,7 +12389,7 @@
 						adjectives.push("petite ");
 						adjectives.push("snug ");
 				}
-			} else if (buttRating() < 6) {
+			} else if (butt < 6) {
 				//TOIGHT LIKE A TIGER
 					if (tone >= 65 && !softbutt) {
 						adjectives.push("nicely muscled ");
@@ -12410,7 +12412,7 @@
 						adjectives.push("cushy ");
 						adjectives.push("soft, squeezable ");
 				}
-			} else if (buttRating() < 8) {
+			} else if (butt < 8) {
 				//TOIGHT LIKE A TIGER
 					if (tone >= 65 && !softbutt) {
 						if (rand(7) == 0) {
@@ -12448,7 +12450,7 @@
 						adjectives.push("soft, shapely ");
 						adjectives.push("rounded, spongy ");
 					}
-			} else if (buttRating() < 10) {
+			} else if (butt < 10) {
 				//TOIGHT LIKE A TIGER
 					if (tone >= 65 && !softbutt) {
 						adjectives.push("large, muscular ");
@@ -12481,7 +12483,7 @@
 						adjectives.push("pleasantly plump ");
 						adjectives.push("callipygian ");
 				}
-			} else if (buttRating() < 13) {
+			} else if (butt < 13) {
 				//TOIGHT LIKE A TIGER
 					if (tone >= 65 && !softbutt) {
 						adjectives.push("thick, muscular ");
@@ -12512,7 +12514,7 @@
 						adjectives.push("spacious ");
 						adjectives.push("soft, plump ");
 				}
-			} else if (buttRating() < 16) {
+			} else if (butt < 16) {
 				//TOIGHT LIKE A TIGER
 					if (tone >= 65 && !softbutt) {
 						adjectives.push("expansive, muscled ");
@@ -12545,7 +12547,7 @@
 						adjectives.push("voluminous ");
 						adjectives.push("soft, padded ");
 				}
-			} else if (buttRating() < 20) {
+			} else if (butt < 20) {
 					if (tone >= 65 && !softbutt) {
 						adjectives.push("huge, toned ");
 						adjectives.push("vast, muscular ");
@@ -12626,7 +12628,7 @@
 				else if (rando <= 9) desc += "ass";
 				else if (rando <= 11) desc += "backside";
 				else if (rando == 12) {
-					if (buttRating() >= 10) desc += "booty";
+					if (butt >= 10) desc += "booty";
 					else desc += "derriere";
 				}
 				else desc += RandomInCollection(["rump", "bottom", mf("butt", "tush"), "rear end"]);
