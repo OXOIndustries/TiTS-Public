@@ -82,7 +82,7 @@
 			
 			// Do some outpootis.
 			AddLogEvent(ParseText("Your womb rumbles audibly as the plant-matter inside you reacts to something, and your [pc.belly] visibly swells." + (kGAMECLASS.flags["LAID VENUS PITCHER SEEDS"] != undefined ? " Mmmm, another batch of pods are growing inside you, fertilized by your latest tryst." : " The stuff the venus pitcher put inside you... it’s growing! The latest pitcher must have done something to it... fertilized it, perhaps.") + " A few droplets of pale-green slime leak from your lips" + (mother.isCrotchGarbed() ? " into your " + mother.lowerUndergarment.longName + ".": ".")), "passive");
-
+			
 			// Change bellyMod
 			mother.addPregnancyBellyMod(pregSlot, 4, true);
 		}
@@ -119,6 +119,7 @@
 			if (pData.pregnancyQuantity <= 0)
 			{
 				if (target.hasStatusEffect("Venus Pitcher Egg Incubation Finished")) target.removeStatusEffect("Venus Pitcher Egg Incubation Finished");
+				target.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 				pData.reset();
 			}
 		}

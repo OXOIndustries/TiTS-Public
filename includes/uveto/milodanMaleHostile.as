@@ -389,15 +389,17 @@ public function rideVaginalMilodanMaleBecauseTHEYIFFENING():void
 	output("\n\n<i>“That’s a good boy,”</i> you say breathlessly, feeling his inches slowly filling your cunt.");
 	output("\n\nHis member sinks into the depths of your pussy, the heat of him assuaging the inner need you didn’t even know you had. Sighing with happiness, you slide down his length until your progress is arrested by his hips. You experimentally gyrate across his adonis belt, enjoying the feeling of the barbarian fully hilted inside your pussy.");
 
-	var x:int = pc.findEmptyPregnancySlot(1);
-	if(x < 0) x = rand(pc.totalVaginas());
+	var vIdx:int = pc.findEmptyPregnancySlot(1);
+	if(vIdx < 0) vIdx = rand(pc.totalVaginas());
 
 	output("\n\nAt ease atop the milodan, you start to raise your hips before dropping yourself back down. A little spike of pleasure radiates outwards from your groin, rebounding and growing in intensity until you’re crying out and shaking your ass, pulling your legs together and squeezing his cock in orgasm. Wriggling and bucking on top of him, you slowly come down from your high and look at him with a touch more respect.");
 	output("\n\n<i>“Still hard, huh? Looks like you </i>do<i> fuck better than you fight. How long can you keep that up for me?”</i>");
 	output("\n\nHe makes no show of understanding or replying, prompting you to shrug and put your hands on his chest.");
 	output("\n\n<i>“I think I’m going to ride you until I’m bored.”</i>");
-	pc.cuntChange(x,enemy.cockVolume(0));
-	output("\n\nYou follow through on exactly that, pounding his cock into your pussy over and over, repeatedly bringing yourself to the peak of orgasm and always reaching it before he does. His lower half is soaked in your [pc.girlCum], your [pc.pussy " + x + "] still clinging tightly to his cock as you drag it up and down his shaft.");
+	
+	pc.cuntChange(vIdx,enemy.cockVolume(0));
+	
+	output("\n\nYou follow through on exactly that, pounding his cock into your pussy over and over, repeatedly bringing yourself to the peak of orgasm and always reaching it before he does. His lower half is soaked in your [pc.girlCum], your [pc.pussy " + vIdx + "] still clinging tightly to his cock as you drag it up and down his shaft.");
 	if(pc.biggestTitSize() >= 1) output("\n\nYour [pc.breasts] jiggle and shake with every slap of flesh");
 	else output("\n\nYour chest heaves with every slap of flesh");
 	output(", your sweat running down your body to be wicked away into the fur of the milodan’s stomach. Your face is flushed red ");
@@ -410,12 +412,12 @@ public function rideVaginalMilodanMaleBecauseTHEYIFFENING():void
 	processTime(50);
 	pc.lust(9001);
 	clearMenu();
-	addButton(0,"Yes",takeALootInYerCooterFromMildan,x,"Yes","Take a load in the pussy.");
+	addButton(0,"Yes",takeALootInYerCooterFromMildan,vIdx,"Yes","Take a load in the pussy.");
 	addButton(1,"No",noPuppyPoppersForYou,undefined,"No","In the far future, the pull-out method has a 100% success rate.");
 }
 
 //[Yes]
-public function takeALootInYerCooterFromMildan(x:int):void
+public function takeALootInYerCooterFromMildan(vIdx:int):void
 {
 	clearOutput();
 	showMilodanMale(true);
@@ -431,7 +433,7 @@ public function takeALootInYerCooterFromMildan(x:int):void
 	if(!pc.isCrotchExposed()) output("throw your clothes back on and ");
 	output("head out, leaving the milodan lying in the snow with orders to <i>“Stay”</i> until you’re gone.\n\n");
 
-	pc.loadInCunt(enemy,x);
+	pc.loadInCunt(enemy,vIdx);
 	processTime(5);
 	pc.orgasm();
 	CombatManager.genericVictory();
