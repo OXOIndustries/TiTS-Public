@@ -255,6 +255,7 @@ public function showQuaelle(nude:Boolean = false):void
 	else if(quelleBellyRatingBack() >= 50) sBust += "_B2";
 	if(nude) sBust += "_NUDE";
 	showName("\nQUAELLE");
+	showBust(sBust);
 }
 public function quelleIsLover():Boolean
 {

@@ -1284,6 +1284,7 @@
 			"WOLFYNAIL",
 			"FUBMISTRESS",
 			"JAYFIREGROWLITHE",
+			"YOHSL",
 		];
 		
 		// Any time we want to show a name, this is where it'll be getting pulled from
@@ -1314,6 +1315,7 @@
 			"Wolfy-Nail",
 			"FubMistress",
 			"JayfireGrowlithe",
+			"YohSL",
 		];
 		
 		// These are what show up in the options menu combo boxes

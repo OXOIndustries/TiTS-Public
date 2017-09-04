@@ -11,7 +11,9 @@ public function showSam(nude:Boolean = false):void
 	showName("\nSAM");
 	var nudeS:String = "";
 	if(nude) nudeS = "_NUDE";
-	showBust("TECHGUARD" + nudeS);
+	//Pregnant
+	if(9999 == 0) showBust("TECHGUARD_JAIL_PREG");
+	else showBust("TECHGUARD_JAIL" + nudeS);
 }
 public function samCapacity():Number
 {
@@ -27,7 +29,7 @@ public function samImprisoned():Boolean
 public function samsPrisonRoom():void
 {
 	clearOutput();
-	showSam(true);
+	showSam();
 	author("Night Trap");
 	output("Upon entering the room, you are greeted to the ");
 	if(flags["MET_SAM"] == undefined) output("sight of a dark-skinned ausar woman with light blonde hair and fur, who according to prison records goes by the name Sam.");
