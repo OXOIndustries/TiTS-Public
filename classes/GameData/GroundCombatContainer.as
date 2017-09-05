@@ -4111,6 +4111,16 @@ package classes.GameData
 			}
 			
 			// TODO: I guess this would be the place to point out blindness or whatever.
+			if(kGAMECLASS.uvetoBlizzardCombat()) {
+				for (i = 0; i < _hostiles.length; i++)
+				{
+					CombatAttacks.applyBlind(_hostiles[i], 3, true, "The blizzard running through the environment makes it difficult to see!\n\nAccuracy is reduced, and ranged attacks are far more likely to miss.");
+				}
+				for (i = 0; i < _friendlies.length; i++)
+				{
+					CombatAttacks.applyBlind(_friendlies[i], 3, true, "The blizzard running through the environment makes it difficult to see!\n\nAccuracy is reduced, and ranged attacks are far more likely to miss.");
+				}
+			}
 			var totalBlinded:int = 0;
 			for (i = 0; i < _friendlies.length; i++)
 			{

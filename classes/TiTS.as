@@ -385,6 +385,7 @@
 		include "../includes/uveto/korgonneFemaleHostile.as";
 		include "../includes/uveto/korgonneMaleHostile.as";
 		include "../includes/uveto/krym.as";
+		include "../includes/uveto/milodanFertilityPriestess.as";
 		include "../includes/uveto/milodanMaleHostile.as";
 		include "../includes/uveto/natalie.as";
 		include "../includes/uveto/nayna.as";

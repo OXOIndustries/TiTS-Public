@@ -1214,7 +1214,6 @@ public function arbetzSexScenes(response:String = ""):void
 		
 		// - 100% Lust, - 5% HP, - 10% Energy
 		processTime(35);
-		pc.lust(-100);
 		pc.HP(-5);
 		pc.energy(-10);
 		pc.orgasm();

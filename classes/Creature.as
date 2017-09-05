@@ -11,6 +11,7 @@
 	import classes.Items.Melee.*
 	import classes.Items.Miscellaneous.*;
 	import classes.Items.Transformatives.*;
+	import classes.Items.Treasures.Savicite;
 	import classes.Ships.IOwner;
 	import classes.Ships.Modules.ShipModule;
 	import classes.VaginaClass;
@@ -18904,6 +18905,7 @@
 			if (hasStatusEffect("Egg Addled 1")) prodFactor *= 1.25;
 			if (hasStatusEffect("Egg Addled 3")) prodFactor *= 1.75;
 			if (hasStatusEffect("X-Zil-Rate") || hasStatusEffect("Mead")) prodFactor *= 4;
+			if (hasItemByClass(Savicite)) prodFactor *= (1.2 * numberOfItemByClass(Savicite));
 			if (hasPerk("Ice Cold")) prodFactor /= 2;
 			if (hasStatusEffect("Oil Numbed")) prodFactor /= 1.2;
 			
@@ -19049,6 +19051,18 @@
 						if (this is PlayerCharacter && requiresRemoval)
 						{
 							kGAMECLASS.eventQueue.push(kGAMECLASS.paigeEyeholeEmailEvent);
+						}
+						break;
+					case "Uveto Cloudy":
+						if (this is PlayerCharacter && requiresRemoval)
+						{
+							kGAMECLASS.uvetoCloudyEnds(deltaT);
+						}
+						break;
+					case "Uveto Blizzard":
+						if (this is PlayerCharacter && requiresRemoval)
+						{
+							kGAMECLASS.uvetoIntenseBlizzardEnds();
 						}
 						break;
 					case "Laquine Ears":

@@ -1377,8 +1377,8 @@ public function releaseCuntTailOnSeraCleanup():void
 	processTime(50 + rand(11));
 	pc.loadInMouth(chars["COCKVINE"]);
 	//Reduce PC health by 5% and energy by 30%, move them to square outside Dark Chrysalis
-	pc.HP(-1 * pc.HPMax() * 0.05);
-	pc.energy(-1 * pc.energyMax() * 0.05);
+	pc.HP(-5);
+	pc.energy(-30);
 
 	output("You lean against the wall outside the Dark Chrysalis a while later, gathering yourself. Your mouth is absolutely caked with the musky, slightly herbal tang of plant cum, and your [pc.ass] and back sting mightily from the whip welts that have been enthusiastically applied there. You can’t help but look venomously down at your [pc.cockTail], which is still throbbing with post-coital bliss. Next time, you swear to yourself. Next time, you’ll control it.");
 	

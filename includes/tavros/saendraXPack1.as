@@ -218,7 +218,7 @@ public function sx1PirateGroupPCLoss():void
 	
 	output("\n\nThe woman twists Saen’s face, making her look at you. One of the heavy-armored men around you rears back the butt of his weapon and cracks you in the back of the skull. You see stars and reel from the impact.");
 	
-	if(pc.HPRaw > 15) pc.HPRaw -= 15;
+	if(pc.HPRaw > 15) applyDamage(new TypeCollection( { unresistablehp: 15 }, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
 	
 	output("\n\nThe woman reaches down and grabs one of Saendra’s tits, reaching right into her shirt. Saen recoils, struggling against the men holding her down.... until her hand comes back with a small data chit, still stuck to a piece of tape.");
 	
@@ -988,8 +988,10 @@ public function sx1TechguardPCLoss():void
 	output("\n\nHer boot comes down with an agonizing <i>crack</i>, and your world goes black.");
 	
 	processTime(1);
-	pc.HPRaw -= 35;
-	if(pc.HPRaw < 1) pc.HPRaw = 1;
+	var damage:Number = 35;
+	var maxDamage:Number = (pc.HPRaw - 1);
+	if (damage > maxDamage) damage = maxDamage;
+	if (damage > 0) applyDamage(new TypeCollection( { unresistablehp: damage }, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
 
 	clearMenu();
 	addButton(0, "Next", sx1TechguardPCLossII);

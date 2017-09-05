@@ -53,7 +53,9 @@ public function naynaShutterUpdate():void
 		//0 = clear
 		//1 = closed,
 		//2 = cloud
-		flags["SHUTTER_STATUS"] = rand(3);
+		flags["SHUTTER_STATUS"] = 0;
+		if(uvetoBlizzard()) flags["SHUTTER_STATUS"] = 1;
+		else if(uvetoCloudy()) flags["SHUTTER_STATUS"] = 2;
 		flags["UVETO_UPDATE"] = hours;
 	}
 }

@@ -27,6 +27,13 @@ public function altTooltip(itemName:String = "none"):String
 			if(pc.characterClass == GLOBAL.CLASS_ENGINEER) tooltip += " It’s the perfect weapon for a tech specialist to start with.";
 			break;
 		
+		// Treasures
+		case "Savicite":
+			if(getPlanetName().toLowerCase().indexOf("uveto") != -1) tooltip += "Savicite, an item that seems too useful and too ubiquitous to be real, yet here it is. It has uses in everything from starship fuel to medical treatments and more. You could sell this for a pretty penny.";
+			else tooltip += "Savicite is a moderately rare mineral used as both a fuel source and a psionic focus by several Confederate-space factions. The chunks found in the wilderlands of Uveto are usually fist-sized green rocks with a strangely fuzzy texture.";
+			tooltip += "\n\nJust holding it makes your skin feel oddly warm, flushed with unbidden desire.";
+			break;
+		
 		// Consumables
 		case "AmazonaClassic":
 			tooltip += "A 23 oz tin can labeled: “Amazona Classic.” The can is decorated with a stylized drawing of a large, muscular woman showing off her ripped figure. Small text reveals that this is " + (silly ? "Clit Kiwi" : "Grapefruit") + " flavored.";

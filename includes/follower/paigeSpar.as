@@ -174,7 +174,7 @@ public function paigeSparAction(arg:Number = 1):void
 	else if(pc.statusEffectv2("PAIGE_SPAR") <= 0)
 	{
 		output("\n\n<b>That last one has you feeling like maybe sitting down a while...</b>");
-		pc.HP(-pc.HPMax());
+		pc.HPRaw = 0;
 		clearMenu();
 		addButton(0,"Next",loseToPaige);
 	}

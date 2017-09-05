@@ -2405,6 +2405,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	
 	var totalDays:uint = ((GetGameTimestamp() + deltaT) / 1440) - days;
 	
+	processUvetoWeather(deltaT, doOut);
 	processRenvraMessageEvents(deltaT, doOut);
 	processQueenOfTheDeepMessageEvents(deltaT, doOut);
 	processTarkusBombTimerEvents(deltaT, doOut);
