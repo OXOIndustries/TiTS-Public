@@ -4,11 +4,13 @@
 	import classes.Creature;
 	import classes.GameData.ChildManager;
 	import classes.GameData.Pregnancy.Handlers.BothriocPregnancyHandler;
+	import classes.GameData.Pregnancy.Handlers.BreedwellRahnPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.PsychicTentacles;
 	import classes.GameData.Pregnancy.Handlers.EggTrainerCarryTraining;
 	import classes.GameData.Pregnancy.Handlers.EggTrainerFauxPreg;
 	import classes.GameData.Pregnancy.Handlers.CockvinePregnancy;
 	import classes.GameData.Pregnancy.Handlers.LapinaraPregnancyHandler;
+	import classes.GameData.Pregnancy.Handlers.KorgonnePregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.MilodanPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.NyreaHuntressPregnancy;
 	import classes.GameData.Pregnancy.Handlers.OvalastingEggPregnancy;
@@ -37,6 +39,7 @@
 			PregnancyManager.insertNewHandler(new RenvraFullPregnancy());
 			PregnancyManager.insertNewHandler(new CockvinePregnancy());
 			PregnancyManager.insertNewHandler(new LapinaraPregnancyHandler());
+			PregnancyManager.insertNewHandler(new KorgonnePregnancyHandler());
 			PregnancyManager.insertNewHandler(new MilodanPregnancyHandler());
 			PregnancyManager.insertNewHandler(new NyreaHuntressPregnancy());
 			PregnancyManager.insertNewHandler(new QueenOfTheDeepPregnancy());
@@ -49,6 +52,7 @@
 			PregnancyManager.insertNewHandler(new SydianPregnancyHandler());
 			PregnancyManager.insertNewHandler(new SeraSpawnPregnancyHandler());
 			PregnancyManager.insertNewHandler(new BothriocPregnancyHandler());
+			PregnancyManager.insertNewHandler(new BreedwellRahnPregnancyHandler());
 		}
 		
 		// Would use a vector, but vectors can't store derived types. WORST VECTOR CLASS EVER.

@@ -483,7 +483,7 @@ public function appearanceOfNayna():void
 	showNayna();
 	output("Nayna");
 	if(flags["NAYNA_LAST_NAME"] != undefined) output(" Triverre");
-	output(" is..... Well, she’s a rabbit-woman, like most laquine. She’s got big bunny ears that seem content to droop down the back of head and fur that covers every visible part of her body. Her black and white hair is tied back in a sensible ponytail, which when combined with her ears, could easily be mistaken for a trio of ponytails. A triangular black nose tips her short, rabbit-like muzzle, matched by inky little lips that seem ready to smile at a moment’s notice.");
+	output(" is.... Well, she’s a rabbit-woman, like most laquine. She’s got big bunny ears that seem content to droop down the back of head and fur that covers every visible part of her body. Her black and white hair is tied back in a sensible ponytail, which when combined with her ears, could easily be mistaken for a trio of ponytails. A triangular black nose tips her short, rabbit-like muzzle, matched by inky little lips that seem ready to smile at a moment’s notice.");
 	//Warm!
 	if(naynaWarm())
 	{
@@ -1650,7 +1650,7 @@ public function naynaDockingForHyperPCs():void
 		output(". It surges out into her waiting palms, letting her guide its engorgement at the perfect waist height for her. <i>“...naughty... fuckable....”</i>");
 		output("\n\nNayna stops talking and simply stares, shifting the weight of your enormous boner into the crook of her arm so that she can stretch her clingy undergarment out of the way. Her dick springs out, rock hard and ready to go, the tip fully engorged and leaking.");
 		output("\n\n<i>“Somebody’s being naughty and fuckable,”</i> you point out, grabbing your outsized dong in both hands to take the pressure off the fluffy little sex-pot, aiming your [pc.cockHead " + x + "] square at her animalistic endowment.");
-		output("\n\nJumping like she’s been shot, Nayna shakes her head, clapping her hands over her chubby, laquine prick. <i>“No I’m... oh, fuck it!”</i> Curling her padded palms around to the sides, she starts jacking herself off, moaning at her own lewd display. <i>“Maybe I am!”</i> Her hips shake like a jackhammer, plowing her pre-greased palms with reckless abandon. <i>“Maybe I’m just as filthy inside as some rushward whore! Maybe I just want to fuck you ‘till you’re a cummy wreck!”</i> Nayna stumbles forward, her slobbering prick a hairsbreadth away from your pulsing, eager urethra. She growls, <i>“But right now all I can think about is stuffing that ridiculous dick of yours with enough spunk to drown a galotian.”</i>");
+		output("\n\nJumping like she’s been shot, Nayna shakes her head, clapping her hands over her chubby, laquine prick. <i>“No I’m... oh, fuck it!”</i> Curling her padded palms around to the sides, she starts jacking herself off, moaning at her own lewd display. <i>“Maybe I am!”</i> Her hips shake like a jackhammer, plowing her pre-greased palms with reckless abandon. <i>“Maybe I’m just as filthy inside as some rushward whore! Maybe I just want to fuck you till you’re a cummy wreck!”</i> Nayna stumbles forward, her slobbering prick a hairsbreadth away from your pulsing, eager urethra. She growls, <i>“But right now all I can think about is stuffing that ridiculous dick of yours with enough spunk to drown a galotian.”</i>");
 	}
 	IncrementFlag("NAYNA_HYPERDOCKED");
 	//Merge

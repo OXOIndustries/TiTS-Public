@@ -15,7 +15,8 @@ SHADE_IS_YER_SIS : Tracks non-incestuous sister relationship.
 	undefined - It is not mutually acknowleged that Shade is Steele's sister and incest is still possible
 	-1 - Shade's sister mode is negative.
 	0 - Shade's sister mode is ambiguous.
-	1 - Shade is defeinitely in sister mode.
+	1 - Shade is definitely in sister mode.
+	2 - Shade's sister mode had been acknowledged, but ignored anyway for mutual incest.
 */
 
 public function shadeBustDisplay(nude:Boolean = false):String
@@ -629,8 +630,7 @@ public function askShade4SexOnUveto():void
 	output("\n\n<i>“Now,”</i> she purrs, grinding her hips in your hands, <i>“let’s get you nice and warmed up...”</i>");
 	
 	processTime(15);
-	currentLocation = "UVI P30";
-	generateMap();
+	moveTo("UVI P30");
 	
 	//Insert sex menu here.
 	shadeSexMenu();
@@ -691,8 +691,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			showBust(shadeBustDisplay());
 			showName("\nSHADE");
 			
-			currentLocation = "UVI P30";
-			generateMap();
+			moveTo("UVI P30");
 			removeUvetoCold();
 			
 			output("You step up to the front door of the tiny little hut bearing your lover’s name and tap the doorbell. An electronic chime echoes from inside, just barely audible over the howl of the frozen winds over the high walls of Irestead. A moment passes in the cold before a small holoscreen next to the door shudders to life, showing you the familiar, smiling face of a certain kaithrit huntress.");
@@ -792,8 +791,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			showBust(shadeBustDisplay());
 			showName("\nSHADE");
 			
-			currentLocation = "UVI P30";
-			generateMap();
+			moveTo("UVI P30");
 			removeUvetoCold();
 			
 			output("You approach the Irons residence with a nervous twitch in your step. Somehow you know this isn’t going to be easy -- Shade was positively freaking out the last time you met, and God knows how the time apart has changed her mind. But you steel yourself: you can’t leave things the way they are now. Your lover... and your sister... is waiting for you.");
@@ -842,8 +840,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			showBust(shadeBustDisplay());
 			showName("\nSHADE");
 			
-			currentLocation = "UVI P30";
-			generateMap();
+			moveTo("UVI P30");
 			removeUvetoCold();
 			
 			output("\n\nTaking a deep breath, you tap the buzzer beside the door. An electronic chime echoes from inside, just barely audible over the howl of the frozen winds over the high walls of Irestead. A moment passes in the cold before a small holoscreen next to the door shudders to life, showing you the familiar face of the kaithrit huntress. Her natural, cool confidence is gone, replaced by a weary, sad look. Still, Shade forces a smile when she sees you on the holo.");
@@ -1043,6 +1040,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			pc.lust(15);
 			
 			flags["SHADE_ON_UVETO"] = 3;
+			flags["SHADE_IS_YER_SIS"] = 2; // 2 for incest sister
 			
 			// Insert Shade's sex menu.
 			shadeSexMenu();

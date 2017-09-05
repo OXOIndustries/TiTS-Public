@@ -1267,8 +1267,8 @@ public function venusSubmission(arg:Number = 0):Number {
 
 public function venusPitcherLayUnfertilizedEgg():void {
 	clearOutput();
-	showBust("VENUSPITCHER");
-	showName("VENUS\nPITCHER");
+	showBust("");
+	showName("VENUS\nPOD!");
 	author("Fenoxo");
 	
 	var pData:PregnancyData = pc.getPregnancyOfType("VenusPitcherSeedCarrier");
@@ -1321,23 +1321,57 @@ public function venusPitcherLayUnfertilizedEgg():void {
 	if (pData && pData.pregnancyQuantity > 1) output("\n\nThe size of your [pc.belly] indicates that you’re going to be going through this at least once more. You can’t stop your [pc.vaginas] from tingling hotly at the thought.");
 	
 	//Increase elasticity .1 towards a cap of 1.6
-	if (pc.elasticity < 1.6)
+	if (pc.elasticity < (pc.hasPerk("Elasticity") ? 3.2 : 1.6))
 	{
-		pc.elasticity += 0.1;
+		pc.elasticity += (pc.hasPerk("Elasticity") ? 0.2 : 0.1);
 		output("\n\nAt least you feel a little stretchier now, like the act has left you better-prepared to both take and pass large insertions without issue.\n\n");
 	}
 	
 	//Gain Venus Pod (TF item go!)
+	venusPitcherPodReward(1);
+}
+public function venusPitcherSeedNurseryEnds(nEggs:int = 0):void
+{
+	clearOutput();
+	showBust("");
+	showName("VENUS\nPOD!");
+	
+	StatTracking.track("pregnancy/unfertilized venus pitcher seeds", nEggs);
+	StatTracking.track("pregnancy/venus pitcher seeds", nEggs);
+	StatTracking.track("pregnancy/total births", nEggs);
+	
+	venusPitcherPodReward(nEggs);
+}
+public function venusPitcherPodReward(nEggs:int = 0):void
+{
 	var podLoot:Array = [];
-	podLoot.push(new VenusPod());
+	var idx:int = 0;
+	
+	while(nEggs > 0)
+	{
+		// Create item
+		podLoot.push(new VenusPod());
+		// Determine item quantity relative to stack
+		var nQuantity:int = Math.min(nEggs, podLoot[idx].stackSize);
+		// Change item quantity
+		podLoot[idx].quantity = nQuantity;
+		// Update counters
+		nEggs -= nQuantity;
+		idx++;
+	}
+	
+	if(podLoot.length <= 0)
+	{	
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;
 	useItemFunction = mainGameMenu;
 	
 	itemCollect(podLoot);
-
-	//clearMenu();
-	//addButton(0, "Next", mainGameMenu);
 }
 
 public function rumblyInYourTummy():void 
@@ -1348,9 +1382,8 @@ public function rumblyInYourTummy():void
 	AddLogEvent(ParseText("The [pc.skin] across your [pc.belly] stretches as your alien young incubate inside your womb. It’s actually quite a satisfying sensation, though it does leave your face a little flushed. More slime bathes your netherlips as your body gets into its role as a receptacle for venus pitcher seeds. There’s so much of the slick stuff that your crotch appears practically oiled with it."), "passive");
 
 	//Increase bellymod to 14 * amount
-	var pData:PregnancyData = (pc as PlayerCharacter).getPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
-	pc.bellyRatingMod = 14 * pData.pregnancyQuantity;
-	pData.pregnancyBellyRatingContribution += 2 * pData.pregnancyQuantity;
+	var pregSlot:int = pc.findPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
+	pc.addPregnancyBellyMod(pregSlot, 14, true);
 }
 
 public function poppingSoonAlert1():void
@@ -1440,10 +1473,10 @@ public function layFertilizedVenusPitcherEgg():void
 		flags["LAID VENUS PITCHER SEEDS"]++;
 	}
 	//Increase elasticity .1 towards a cap of 2
-	if (pc.elasticity < 2.0)
+	if (pc.elasticity < (pc.hasPerk("Elasticity") ? 4.0 : 2.0))
 	{
-		pc.elasticity += 0.1;
-		if (pc.elasticity > 2.0) pc.elasticity = 2.0;
+		pc.elasticity += (pc.hasPerk("Elasticity") ? 0.2 : 0.1);
+		if (pc.elasticity > (pc.hasPerk("Elasticity") ? 4.0 : 2.0)) pc.elasticity = 4.0;
 
 		output("\n\nAt least you feel a little stretchier now, like the act has left you better-prepared to both take and pass large insertions without issue.");
 	}
@@ -1533,8 +1566,7 @@ public function venusPitcherBadEnd2():void
 	author("Fenoxo");
 	
 	pc.removeAll();
-	currentLocation = "GAME OVER";
-	generateMap();
+	moveTo("GAME OVER");
 	
 	output("Merely being in contact with a venus pitcher is enough to make the world spin in the background. Wait... No, she’s flipping you upside down, carrying you down into her subterranean bulb. The sensation is familiar enough to you that you can recognize it even when your world is centered wholly on the perfect breasts upon which you now nurse. Even when her pollen comes thicker and muggier than a sauna’s steam, crowding aside more complex thoughts with bubbling passion and waves of flaxen acceptance.");
 	output("\n\n<i>“It’s so silly that you ever thought you were meant for something else.”</i> Her words are as sweet as the nectar leaking into your mouth. <i>“You were meant for me... and my sisters. We needed you, and you need us, don’t you.”</i>");

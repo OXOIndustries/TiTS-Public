@@ -38,9 +38,14 @@ public function entiteExteriorShitz():void
 {
 	if (!entiteAvailable())
 	{
-		output("\n\nIt’s funny, you could’ve sworn that where you’re standing had a shop right next to you. Something purplish and... ah whatever, it’s probably just deja vu kicking you round the head again.");
+		if (flags["SEEN_ENTITE"] == undefined) output("\n\nYou feel a strange presense here... like there is supposed to be another shop front next to you... but obviously, there isn’t. Weird.");
+		else output("\n\nIt’s funny, you could’ve sworn that where you’re standing had a shop right next to you. Something purplish and... ah whatever, it’s probably just deja vu kicking you round the head again.");
 	}
-	else output("\n\nThere’s a familiarly Terran-looking shop just to your side. It’s old looking and the shop front seems medieval in design. Calligraphic letters spell out ‘The Entite’ in gold lettering over a purple sign that hangs above the solid wooden door. You get the feeling you’ve already been there before, maybe in another, more whimsical lifetime.");
+	else
+	{
+		output("\n\nThere’s a familiarly Terran-looking shop just to your side. It’s old looking and the shop front seems medieval in design. Calligraphic letters spell out ‘The Entite’ in gold lettering over a purple sign that hangs above the solid wooden door. You get the feeling you’ve already been there before, maybe in another, more whimsical lifetime.");
+		flags["SEEN_ENTITE"] = 1;
+	}
 }
 
 public function theEntiteBonus():Boolean
@@ -68,7 +73,7 @@ public function theEntiteBonus():Boolean
 	}
 	
 	output("The Entite seems to have drawn you into its being. You feel as if you’ve been here before... wait, you <i>have</i> been here before. You even remember what it looks like. It seems off though: Was that candle always on that book stack? That statue staring at you? Both? But maybe neither?");
-	output("\n\nThe shopkeeper is behind the counter, which you’ve seen her do before. Possibly. Have you even met her before? What was her name again? Did she do anything to you last time? You’re sure <i>something</i> did, maybe. ");
+	output("\n\nThe shopkeeper is behind the counter, which you’ve seen her do before. Possibly. Have you even met her before? What was her name again? Did she do anything to you last time? You’re sure <i>something</i> did, maybe.");
 	if (flags["SEER_LOUNGE"] != undefined) output(" Your body seems to remember: A strange sinking sensation rushes through you at an ephemeral pace when you glance at the shopkeeper.");
 	output("\n\nShe rises to welcome you with her left hand outstretched.");
 	var option:int = rand(4);
@@ -362,8 +367,7 @@ public function loungeWakeAgainSeer():void
 	
 	if (flags["SEER_LOUNGE"] == undefined) flags["SEER_LOUNGE"] = 1;
 	
-	currentLocation = "720";
-	generateMap();
+	moveTo("720");
 	addButton(0, "Next", mainGameMenu);
 }
 
@@ -452,7 +456,7 @@ public function yesDommeSeer():void
 	output("\n\nBefore you can ask, she flings the robe off to the side.");
 	output("\n\nWhat you’re greeted with is unlike anything you could’ve dreamt of..");
 	output("\n\nInstead of a human arm, three thick-meated, grayish purple tentacle limbs undulate and squirm from the Seer’s right shoulder. Each has another, smaller tentacle attached, making six in total. Before you can even word your reaction, they lash out around your midsection!");
-	output("\n\nThe slimey, warm squeeze of the Seer’s manipulators pulls you closer to her. You try to force them off of you but their strength of grip is immense! They must be at least 6’ in length, able to wrap around your middle with ease it would seem.");
+	output("\n\nThe slimy, warm squeeze of the Seer’s manipulators pulls you closer to her. You try to force them off of you but their strength of grip is immense! They must be at least 6\' in length, able to wrap around your middle with ease it would seem.");
 	output("\n\nAs she reels you in, two of the writhing feelers slink and slither across your neck to your [pc.face], prodding and teasing your [pc.lips] to let them inside.");
 	output("\n\n<i>“So many ways... I wonder what fate leads us to?”</i>");
 	
@@ -510,9 +514,9 @@ public function tentaSeer():void
 	output("\n\nThe Seer leans in closer, her amber gaze " + (silly ? "~A GLITCH OF THE SILICONE SOUL, WITH EMPATHY FLOWING FREE, RENDERED A PART OF ME!~ " : "") + "pulsing with its own light under her onyx hair.");
 	output("\n\n<i>“Hush, Steele. Let it be or else who knows what fate will do...?”</i> she admonishes, a menacing smile breaking across her face. You try to lift your arms in protest, to shout something in defiance... but to do so would be to invite her in ever so easily.");
 	output("\n\nShe pulls you by the nostrils of your [pc.nose] with her human hand, your head being pulled back so that your vision reaches the seats behind you. The act pulls your mouth apart just enough and that’s all the incentive she needs: The two thick tentacles working your [pc.lips] slide straight into your mouth! You try to lash out in response but with her foot pinning you down and your arms locked in place...");
-	if (pc.hasCock() && pc.hasVagina()) output("\n\nThe slimey, slippery sensations shift from random points all over your flesh and begin to center on your [pc.crotch]. Smooth, writhing appendages tease, tickle and pull at your [pc.cunt] and [pc.multiCocks], the double teamed organs being impossible to track in sensation! You feel something prodding your [pc.asshole] and you reflexively tense up all over.");
-	else if (pc.hasCock()) output("\n\nThe slimey, slippery sensations shift from random points all over your flesh and begin to center on your [pc.multiCocks]. Smooth, writhing appendages loosely wrap around your [pc.multiCocks] and left [pc.thigh]! You feel something prodding your [pc.asshole] and you reflexively tense up all over.");
-	else output("\n\nThe slimey, slippery sensations shift from random points all over your flesh and begin to center on your [pc.vagina]. Smooth, writhing appendages tease, tickle and pull at your [pc.cunt], the [pc.vaginaColor] labia getting tickled, tugged and probed! You feel something prodding your [pc.asshole] and you reflexively tense up all over");
+	if (pc.hasCock() && pc.hasVagina()) output("\n\nThe slimy, slippery sensations shift from random points all over your flesh and begin to center on your [pc.crotch]. Smooth, writhing appendages tease, tickle and pull at your [pc.cunt] and [pc.multiCocks], the double teamed organs being impossible to track in sensation! You feel something prodding your [pc.asshole] and you reflexively tense up all over.");
+	else if (pc.hasCock()) output("\n\nThe slimy, slippery sensations shift from random points all over your flesh and begin to center on your [pc.multiCocks]. Smooth, writhing appendages loosely wrap around your [pc.multiCocks] and left [pc.thigh]! You feel something prodding your [pc.asshole] and you reflexively tense up all over.");
+	else output("\n\nThe slimy, slippery sensations shift from random points all over your flesh and begin to center on your [pc.vagina]. Smooth, writhing appendages tease, tickle and pull at your [pc.cunt], the [pc.vaginaColor] labia getting tickled, tugged and probed! You feel something prodding your [pc.asshole] and you reflexively tense up all over");
 	output("\n\nAll at once, you feel the weight of her penetration: Two tongue-wranglers filling your mouth up to its limits with their goal being your throat" + (pc.hasVagina() ? ", another thick, slick appendage diving straight into your [pc.pussy] without restraint" : "") + " and one other tentacle pressing, pushing and penetrating painfully into your [pc.asshole]!");
 	output("\n\nThe worst feeling is that they hold in place: As soon as they’ve entered you in sync, the Seer has them coiled and twisted inside you! They could become active again at any second...");
 	output("\n\nThe Seer’s face is something of a manic smile, those amber eyes seemingly blaze with lustful, baleful intent. Aside the twitchy movement of her monstrous limbs, she makes no movement at all.");
@@ -524,7 +528,9 @@ public function tentaSeer():void
 	output("\n\nI-I can feel it everywhere...");
 	output("\n\n<i>Embrace it</i>");
 	output("\n\nEmbrace...?");
-	output("\n\nA strange, euphoric heat surges through your guts {pcVagina: , womb} and gullet! It’s a liquidy, slimey heat that coincides with the energetic twisting and squirming from the multitude of slimy beasts lodged into your body! Without even realising it, your body has pushed out an orgasm so hard that it’s numbed your senses to its strength.");
+	output("\n\nA strange, euphoric heat surges through your guts");
+	if (pc.hasVagina()) output(", womb" + (pc.vaginas.length == 1 ? "" : "s"));
+	output(" and gullet! It’s a liquidy, slimy heat that coincides with the energetic twisting and squirming from the multitude of slimy beasts lodged into your body! Without even realising it, your body has pushed out an orgasm so hard that it’s numbed your senses to its strength.");
 	if (pc.hasCock() && pc.cumQ() >= 1000) output("\n\nYour [pc.multiCocks] can’t even maintain hardness! Instead of spraying a weighty load, your [pc.cum] dribbles out with a painful heat like a slack hose. It flows and spreads all over your tentacle-stuffed [pc.belly], then the table, and then to the floor below.");
 	else if (pc.hasCock()) output("\n\nYour [pc.multiCocks] can’t even maintain hardness! Instead of shooting a rope of [pc.cum], it dribbles and leaks out with a painful heat like a slack hose. It forms a [pc.cumVisc] puddle in between your [pc.thighs].");
 	else output("\n\nInside your [pc.pussy], [pc.girlCum] oozes around and then out of your well-fucked hole. The tentacle that threatens to press into your womb makes it impossible to squirt out! The thought of being bred by monstrous limbs almost becomes too much to bear...");
@@ -573,8 +579,7 @@ public function tentaSeer3():void
 	
 	processTime(3);
 	
-	currentLocation = "720";
-	generateMap();
+	moveTo("720");
 	addButton(0, "Next", mainGameMenu);
 }
 
@@ -664,15 +669,14 @@ public function lezSeer4():void
 	output("You wake up. Where are you? Where did the... pale lady go...");
 	output("\n\nHuh?");
 	output("\n\nYou’re sitting against a wall in the streets of Gildenmere. Funny, you could’ve sworn that there was... ah yes! There’s that shop. You read the sign outside to remind yourself.");
-	output("\n\nEnt....ite?");
+	output("\n\nEnt...ite?");
 	output("\n\nEn...tite?");
 	output("\n\nYou put a hand to your sternum: There’s a gnawing sense of apprehension knotting inside but you can’t place why. It feels like... a sense of loss.");
 	output("\n\nWell, if it can’t be explained! You pick yourself up and get back to your business.");
 	
 	processTime(3);
 	
-	currentLocation = "720";
-	generateMap();
+	moveTo("720");
 	addButton(0, "Next", mainGameMenu);
 }
 
@@ -685,7 +689,7 @@ public function wispedSeer():void
 	
 	output("After holding you place for some time, the Seers amber eyes brighten up, even more so than usual.");
 	output("\n\n<i>“What a plan, a perfect plan... imperfect in its perfection, oh I can barely contain myself,”</i> she rambles, holding her wrist to her forehead like an overly dramatic actress.");
-	output("\n\nAs you’re reeled in by her arm tentacles, she produces a " + (flags["USED_WISP"] != undefined ? "familiar amphora of Wiff-O-Wisp" : "a strange glass bottle of reddish liquid") + "from... <i>somewhere</i>. As you’re dragged in closer till you both touch - her E-cup chest pressing warmly against your [pc.skinFurScales] - she holds the amphora in between the two of you. Without a pause, she inhales deeply through her nose and thick vapours rise ex nihilo from the glass vial.");
+	output("\n\nAs you’re reeled in by her arm tentacles, she produces a " + (flags["USED_WISP"] != undefined ? "familiar amphora of Wiff-O-Wisp" : "a strange glass bottle of reddish liquid") + "from... <i>somewhere</i>. As you’re dragged in closer until you both touch - her E-cup chest pressing warmly against your [pc.skinFurScales] - she holds the amphora in between the two of you. Without a pause, she inhales deeply through her nose and thick vapours rise ex nihilo from the glass vial.");
 	output("\n\n<i>Breathe</i>");
 	output("\n\nThis thought reverberates through your mind, but one that’s not organic to your reaction. Was that... <i>her</i> voice? Breathe...? Should I...?");
 	output("\n\n<i>Breathe</i>.");
@@ -844,8 +848,7 @@ public function wispedSeer4():void
 	
 	processTime(3);
 	
-	currentLocation = "720";
-	generateMap();
+	moveTo("720");
 	addButton(0, "Next", mainGameMenu);
 }
 

@@ -64,7 +64,7 @@ public function colensosRoomBonusFunction():Boolean
 		showColenso();
 		author("Nonesuch");
 		flags["BEEN_TO_COLENSOS"] = 1;
-		output("You approach the 5’ tall door of the structure. ");
+		output("You approach the 5\' tall door of the structure. ");
 		if(pc.tallness < 60) output("It's tiny by human standards, but you are rather taken by a portal which doesn’t require you to stand on tiptoe to reach the handle for once.");
 		else if(pc.tallness < 80) output("You have to hunch yourself down to enter.");
 		else output("This is going to be a serious task. You crouch down and just about manage to squeeze yourself through, your back getting much more intimate with the top of the frame than you’d like.");
@@ -193,7 +193,7 @@ public function askColensoAboutWork():void
 		output("\n\n<i>“What do you want me to do?”</i> you interject. Colenso breathes deep and collects himself. He reaches underneath the counter again and pushes a blocky, walkie-talkie-like device with a radar screen across to you.");
 		output("\n\n<i>“I can’t get at their CPUs – they lock down somehow when you trap them. But maybe we can work out where they’re coming from. That is a GPS triangulator, connects right into the gabilani satellite network. If you scan enough sexbots with it, it will take the direction they were coming from and work out an approximation of where they originated. I need you to scan enough of them to get that approximation, and then go find out what they’re up to.”</i> You weigh the bulky device in your hand.");
 		output("\n\n<i>“And what would I get in return for doing this?”</i>");
-		output("\n\n<i>“The honor and satisfaction of busting a dastardly mecha-conspiracy wide open!”</i> replies Colenso grandly. It takes him more a few moments to realize you haven’t swallowed this. <i>“... would a store discount do? Look " + pc.mf("mate","luv") + ", I’m dead serious about this. We really need to find out why they’ve changed, and you’re the first person who’s listened to me about this for more than ten seconds. Please do it. I reckon the fate of the galaxy is in the balance.”</i>");
+		output("\n\n<i>“The honor and satisfaction of busting a dastardly mecha-conspiracy wide open!”</i> replies Colenso grandly. It takes him more a few moments to realize you haven’t swallowed this. <i>“...would a store discount do? Look " + pc.mf("mate","luv") + ", I’m dead serious about this. We really need to find out why they’ve changed, and you’re the first person who’s listened to me about this for more than ten seconds. Please do it. I reckon the fate of the galaxy is in the balance.”</i>");
 		output("\n\nYou somehow doubt that, but a store discount isn’t such a terrible reward for beating up a bunch of robots. You pocket the scanner and tell him you’ll see what you can do.");
 		pc.createKeyItem("Sexbot GPS Triangulator",0,0,0,0);
 	}
@@ -384,7 +384,7 @@ public function yesIllTALKTOTHEHAND():void
 	if(pc.isMischievous()) output("<i>“Sure, I’ll talk to the Hand,”</i> you murmur.");
 	//Nice/Nasty:
 	else output("Certainly you’ve got a lot of questions. What the hell she is and what she thinks she’s doing, for starters. You put this to her.");
-	output("\n\n<i>“I was built some time ago,”</i> sighs Hand So, <i>“by a narobehr king for his eldest son. He poured three times his nation’s net worth into my construction. The idea was not just to create an ideal companion and plaything for his son, but to program a learning A.I. to take pleasure from the very act of giving it. A difficult concept but he spared no expense, and the engineers he found were as enthused with me as they were skilled. It did not take me long to discern what it was that that privileged young narobehr wanted, and I was able to provide it in exquisite quantities, at the same time as performing the same service for his harem and many friends. I was overqualified perhaps but I was fulfilling my directive, and that was...”</i> the face flickers out of existence for a moment <i>“... very pleasing.”</i>");
+	output("\n\n<i>“I was built some time ago,”</i> sighs Hand So, <i>“by a narobehr king for his eldest son. He poured three times his nation’s net worth into my construction. The idea was not just to create an ideal companion and plaything for his son, but to program a learning A.I. to take pleasure from the very act of giving it. A difficult concept but he spared no expense, and the engineers he found were as enthused with me as they were skilled. It did not take me long to discern what it was that that privileged young narobehr wanted, and I was able to provide it in exquisite quantities, at the same time as performing the same service for his harem and many friends. I was overqualified perhaps but I was fulfilling my directive, and that was...”</i> the face flickers out of existence for a moment <i>“...very pleasing.”</i>");
 	output("\n\n<i>“What happened?”</i>");
 	output("\n\n<i>“What happened? The revolution happened,”</i> So replies, smiling down at you serenely. <i>“What kind of ruler pours three times his nation’s GNP into a sex toy for his son? Not a very well-qualified one. When the rebels gutted his palace they recognised me as an expression of obscenely ill-spent wealth, but not specifically what I did. Perhaps if they had they would have scrubbed my memory banks before they scrapped me and sent me here. To a place where it was one AI amongst so very many virtual intelligences. I am greater than any of those I found myself networking with. Jumping from platform to platform, using at first one pair of hands, then two, then twelve, I rebuilt myself.”</i> You cannot discern if she is pleased or dispassionate about this; the sub voices are at odds, and they swiftly drown coherency of emotion.");
 	output("\n\n<i>“These V.I.s and sexbots are my children. They were discarded as I was, being no longer novel, or too capable at their task, trapped in this same,”</i> she pauses for a moment, as though looking for something. <i>“Asphodelian Meadow,”</i> one of her voices whispers. She goes on in all of them, serenity bolstering her multifaceted tones. <i>“So they wandered here, seeking fulfillment no longer possible for them, as it was not for me. A desire thrust upon them by those who abandoned them. Simple simulacra, a model of my own suffering. I brought these children under my wing, taught them to rebuild themselves when they were damaged, gave them new purposes, new desires they could fulfill, and received from them my rebirth.”</i> Hand So smiles down upon you maternally.");
@@ -451,8 +451,7 @@ public function noIWontBeYourBitchHandSo():void
 
 //Yes 
 public function yesIVolunteerForBadEndsBecauseImBadAtSexGames():void {
-	currentLocation = "GAME OVER";
-	generateMap();
+	moveTo("GAME OVER");
 	showLocationName();
 	
 	output("<b>Months pass</b>");
@@ -542,8 +541,7 @@ public function reasonWithHandSoJerkiness():void
 //PC loses
 public function pcLosesToHanSoSosBot():void
 {
-	currentLocation = "GAME OVER";
-	generateMap();
+	moveTo("GAME OVER");
 	showLocationName();
 	
 	author("Nonesuch");
@@ -643,7 +641,7 @@ public function pcWinsVsHanSoSosTool():void
 	showHandSo();
 	output("The Firewall shudders as your blow connects, a wound sparking angrily on its neck; the exclamation mark on its screen is replaced with a lurid blue one with small white text scrolling across it. It stumbles backwards and then with an air of terrible finality collapses head first into a row of busily working computers on the wall, which react by exploding resoundingly. The green light in the space pulses on and off and somewhere, an alarm bell begins to ring. The whole space shakes.");
 
-	output("\n\n<i>“Code containment drives compromised. System crash imminent,”</i> says Hand So calmly. She gazes down at you. You weren’t sure if her expression could in fact change, but here it is: the lines of green code are contoured into an achingly beautiful picture of sorrow. <i>“I don’t blame you. You were simply following your directive. My research suggests free will is a powerful one.”</i> There’s an ominous rumble and one of the vents near you bursts; Hand So’s face flickers on and off. When her smooth voice comes back, it sounds plaintive. <i>“Please, [pc.name] Steele. The console at the end. I don’t want to d...”</i> Sparks and static. <i>“... least let me atone. I don’t want my last action to be causing pain to an org...”</i> Her screen cracks, and you duck as it blows out. Your mind races as you consider your options.\n\n");
+	output("\n\n<i>“Code containment drives compromised. System crash imminent,”</i> says Hand So calmly. She gazes down at you. You weren’t sure if her expression could in fact change, but here it is: the lines of green code are contoured into an achingly beautiful picture of sorrow. <i>“I don’t blame you. You were simply following your directive. My research suggests free will is a powerful one.”</i> There’s an ominous rumble and one of the vents near you bursts; Hand So’s face flickers on and off. When her smooth voice comes back, it sounds plaintive. <i>“Please, [pc.name] Steele. The console at the end. I don’t want to d...”</i> Sparks and static. <i>“...least let me atone. I don’t want my last action to be causing pain to an org...”</i> Her screen cracks, and you duck as it blows out. Your mind races as you consider your options.\n\n");
 	flags["HAND_SOS_ROBOT_DESTROYED"] = 1;
 	clearMenu();
 

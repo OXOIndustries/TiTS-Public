@@ -454,8 +454,7 @@ public function sexWithGilYaDumbshit(fromTrade:Boolean = false):void
 
 	output("\n\nYou both head for your ship. He shadows you, trying his best to stay inconspicuous.");
 
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 
 	output("\n\nOnce you are both inside your bedroom, he begins to undress, pulling up his dark blue hoodie and white undershirt showing off his thin chest covered in brown fur.");
 	flags["GIL_UPPER_BODY_REVEAL"] = 1;

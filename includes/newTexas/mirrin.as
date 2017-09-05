@@ -430,7 +430,7 @@ public function repeatableMirrinTraining():void
 		output("\n\nShe unloads her barbell onto the nearby rack. It’s amazing how it seems to always grow in size every time you see her use it and now it’s probably at around 450 kilos...");
 		output("\n\n<i>“Just some ground rules: You focus on me and only me. What I say goes, if you falter, I’ll help but that’s not likely to happen,”</i> she explains.");
 		if(pc.isTreated()) output(" It might be hard to focus with all these hefty, heaving bulls and cows smelling so <i>good</i> all the time...");
-		output("\n\n<i>“Right now.... I want to see you squat,”</i> she finishes, more forwardly than you expected.");
+		output("\n\n<i>“Right now... I want to see you squat,”</i> she finishes, more forwardly than you expected.");
 		if(pc.isNice()) output("\n\n<i>“I-if you’re sure...”</i> you say, a little cautious at the prospect.");
 		else if(pc.isMischievous()) output("\n\n<i>“Just had to ask, big girl,”</i> you say with a wink. She briefly raises an eyebrow.");
 		else output("\n\n<i>“Better be fair with me...”</i> you tepidly say.");
@@ -782,8 +782,7 @@ public function foodWithMirrin():void
 	clearOutput();
 	showMirrin();
 	author("SoAndSo");
-	currentLocation = "528";
-	generateMap();
+	moveTo("528");
 	if(flags["MIRRIN_TRAINED"] == 1)
 	{
 		//1st Food! Scene
@@ -920,7 +919,7 @@ public function foodWithMirrin():void
 		}
 		output("\n\nThere’s a ding and a cow-server comes by with food. She gives you both a wink, presenting just two big punnets of food: More cheesy gravy fries but also what looks like huge slab of pulled pork smothered in a dark glaze.");
 		output("\n\n<i>“Eat up, babes,”</i> she winks to you both, then trots off with a wiggle of her hips.");
-		output("\n\nMirrin is sitting there slack jawed. <i>“Hoooo.... ly shit. I just... dibs!”</i> she calls out, stabbing it in the side with a disposable fork.");
+		output("\n\nMirrin is sitting there slack jawed. <i>“Hoooo... ly shit. I just... dibs!”</i> she calls out, stabbing it in the side with a disposable fork.");
 		output("\n\nSo much for last session’s restraint...");
 		output("\n\nYou jump into the substantially overstacked meal, the smoky sauce glaze is particularly friendly to your nose.");
 		if(pc.isTreated()) output(" Something about it reminds you of the indescribably rich musk of your dragon trainer. Ooo, if only you could get that close again...");
@@ -1000,7 +999,7 @@ public function foodWithMirrin():void
 		output("\n\nOut of nowhere, she suckerpunches him right in the guts!");
 		output("\n\nThe effect is immediate. He buckles over her fist, grasping for something to hold on to. There’s no visible damage but his buddies go paramedic on the disabled bull. Only just able to hold himself up, he tries saying something even though he’s thoroughly winded. <i>“Lucky... shot... *<i>hnggg</i>*”</i>");
 		output("\n\nThe three ne’er-do-wells hightail out of the eatery with the incapacitated Doug having to slowly limp out the door.");
-		output("\n\nMirrin’s still visibly fuming. <i>“Fucking... fucking.... <b>fucking</b>...”</i> you can hear her fume under her breath. Well, you have to say something!");
+		output("\n\nMirrin’s still visibly fuming. <i>“Fucking... fucking... <b>fucking</b>...”</i> you can hear her fume under her breath. Well, you have to say something!");
 		if(pc.isNice()) output("\n\n<i>“Mirrin...? You’ve done all you need...”</i> you meekly say, placing a hand on her hip from behind. You can feel the raw tension in her muscles.");
 		else if(pc.isMischievous()) output("\n\n<i>“Heeeey, big girl... time to reign it in,”</i> you say with a light-hearted tone. You place a hand on her hip. Even in that spot, you can feel the tension.");
 		else output("\n\n<i>“That’s enough. He’s not coming back,”</i> you say sternly, conveying authority. You slowly place your hand on her hip.");
@@ -1366,10 +1365,9 @@ public function mirrinTreatmentTalk():void
 public function mirrinFirstTImeOneOffSex():void
 {
 	clearOutput();
-	currentLocation = "MIRRINS";
-	generateMap();
 	showMirrin();
 	author("SoAndSo");
+	moveTo("MIRRINS");
 	output("She gestures her hand towards the gyms exit, intending for you to go first. She follows behind you and you can hear her inhaling and exhaling rather deeply. You wave to the staff members on your way out, Quenton especially giving you a wink and a toothy smile. Mirrin doesn’t seem to react at all, merely keeping by your side as you both exit.");
 	output("\n\nAs you leave, she begins talking to you from behind.");
 	output("\n\n<i>“So... New Texas is all business for me. At least, I hoped it would be. Stay here a few years, expand the fanbase, try other things... that mostly turned out ok. But it’s so </i>lonely<i>. Almost everyone here is like uhhh, always horny or really close to it. They see me - this extranet famous model - and it’s like a competition. They all get in my face, can’t stand it. Doesn’t help that their Treatment or whatever just doesn’t react with me,”</i> she says, rather matter-of-factly.");
@@ -1732,10 +1730,9 @@ public function mirrinYerConfidenceBaaaaaeby():void
 public function visitMirrinsPlace():void
 {
 	clearOutput();
-	currentLocation = "MIRRINS";
-	author("SoAndSo");
-	generateMap();
 	showMirrin();
+	author("SoAndSo");
+	moveTo("MIRRINS");
 	//PC gains maximum lust/full bar.
 	//PC is kind:
 	if(pc.isNice())

@@ -400,8 +400,7 @@ public function seraIsRepoed():void
 }
 public function seraIsRepoedPtII():void
 {
-	currentLocation = shipLocation;
-	generateMap();
+	moveTo(shipLocation);
 	showLocationName();
 	
 	clearOutput();
@@ -901,7 +900,7 @@ public function approachServantSera(introText:Boolean = false):void
 			{
 				output("<i>“Hey, [pc.master].”</i> Sera is considering her make-up in a pocket mirror. She traces the line of an arching eyebrow. <i>“Pockets feeling heavier?”</i>");
 				output("\n\n<i>“You paid me back,”</i> you say. <i>“With interest, even.”</i>");
-				output("\n\n<i>“You didn’t think I would, did you?”</i> the succubus sneers, snapping the compact closed. <i>“It’s alright, you can admit it. It was just sugar liberally applied to one of your hos to you, wasn’t it? Another chain around my ankle, maybe. But not to me.”</i> Teeth and various forms of luminescence flash at you fiercely. <i>“I paid it off so I could tell myself I did. That I could make a business work, if I put my ass into it. And now my indenture-hood is just this thing. Not the be all and end all. It’ll be over soon enough. And then...”</i> there’s a lot going on in that tight, toothy expression hiked across her face. Anger. Pride. A lot of lust. <i>“... perhaps <b>I</b> will be the one who gives <b>you</b> the loan? Or two. Or three. Who knows where that might lead us... [pc.Master].”</i>");
+				output("\n\n<i>“You didn’t think I would, did you?”</i> the succubus sneers, snapping the compact closed. <i>“It’s alright, you can admit it. It was just sugar liberally applied to one of your hos to you, wasn’t it? Another chain around my ankle, maybe. But not to me.”</i> Teeth and various forms of luminescence flash at you fiercely. <i>“I paid it off so I could tell myself I did. That I could make a business work, if I put my ass into it. And now my indenture-hood is just this thing. Not the be all and end all. It’ll be over soon enough. And then...”</i> there’s a lot going on in that tight, toothy expression hiked across her face. Anger. Pride. A lot of lust. <i>“...perhaps <b>I</b> will be the one who gives <b>you</b> the loan? Or two. Or three. Who knows where that might lead us... [pc.Master].”</i>");
 				output("\n\nHearing your pussy cat growl like this is giving you a sincere desire to fuck her silly. In a big pile of credits, possibly.");
 				
 				// + Lust
@@ -2905,6 +2904,7 @@ public function seranigansRainbowtoxColors():Array
 }
 public function seranigansTrigger(sEvent:String = "none"):Boolean
 {
+	if(!seraRecruited()) return false;
 	if(!pc.hasStatusEffect("Seranigans Event") || pc.hasStatusEffect("Seranigans")) return false;
 	
 	var eventList:Array = [];
@@ -3000,7 +3000,8 @@ public function seranigansEvent(sEvent:String = "none"):void
 		// Tripped when PC returns to ship square on any planet
 		case "hijacked":
 			rooms[shipLocation].removeFlag(GLOBAL.SHIPHANGAR);
-			generateMap();
+			moveTo(shipLocation, true);
+			showLocationName();
 			
 			output("Mind on the alien sights and sounds you’ve recently experienced, you meander back to your... you stare. Where is your ship? You wave your hands in a juddering panic at the gaping hole where it once stood, as if that will magic it back into existence. You race around the docking area, futilely attempting to locate it, speaking to every official you can collar. Nobody noted anything unusual - it seems <b>someone</b> on your crew got departure clearance and then cleared off with it.");
 			output("\n\nThere’s nothing you can do but to wait and desperately hope they come back...");
@@ -3296,7 +3297,7 @@ public function seraBitcheningTalkAmbition(response:String = "intro"):void
 			addButton(0, "Next", approachServantSera);
 			break;
 		case "encourage sure":
-			output("<i>“Oh...”</i> you keep her in suspense for a moment, enjoying the look of intense anticipation on her face. <i>“... why not. But!”</i> you continue sharply, her plush boobs pressing into your [pc.chest] as she immediately bear hugs you, <i>“you are going to pay it back. And you aren’t going to waste it all on mods that YOU happen to like. Alright?”</i>");
+			output("<i>“Oh...”</i> you keep her in suspense for a moment, enjoying the look of intense anticipation on her face. <i>“...why not. But!”</i> you continue sharply, her plush boobs pressing into your [pc.chest] as she immediately bear hugs you, <i>“you are going to pay it back. And you aren’t going to waste it all on mods that YOU happen to like. Alright?”</i>");
 			output("\n\n<i>“Thank you so much, [pc.master]! And yes, yes, of course.”</i> A firm look has appeared on Sera’s face by the time she’s disentangled herself from you. <i>“I’m gonna make it work this time. I don’t have rent to pay, I just need to work out how to connect with my suppliers, and then - yeah. I’m gonna work my butt off to get this off the ground, I promise you that!”</i>");
 			output("\n\nYou get out your device, sort out a new business account for her and then divert 15,000 credits into it from your own account. It turns out to be remarkably straightforward, as legally she’s basically a subsidiary of you. By the time you’re done, Sera’s delighted smile has taken on a more familiar, sly and mischievous bend.");
 			output("\n\n<i>“Sure you don’t want me to throw in a few sex toys when I’m making my first orders? I know how you like to experiment... alright, alright,”</i> she says, catching your own expression. She pulls her own holo pad over in a business-like manner. <i>“If you’ll excuse me - I’ve got a few messages to send.”</i>");
@@ -4370,8 +4371,7 @@ public function seraBitcheningPunishWalkiesGoPtII():void
 	showSera();
 	author("Nonesuch");
 	
-	currentLocation = "LIFT: RESIDENTIAL DECK";
-	generateMap();
+	moveTo("LIFT: RESIDENTIAL DECK");
 	showLocationName();
 	
 	var hasSchoolgirl:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anySchoolgirl) != 0;
@@ -4423,8 +4423,7 @@ public function seraBitcheningPunishWalkiesGoPtII():void
 // Aina met
 public function seraBitcheningPunishWalkiesWitnessAina():void
 {
-	currentLocation = "RESIDENTIAL DECK 8";
-	generateMap();
+	moveTo("RESIDENTIAL DECK 8");
 	showLocationName();
 	
 	clearOutput();
@@ -4456,8 +4455,7 @@ public function seraBitcheningPunishWalkiesWitnessFyn():void
 	showSera();
 	author("Nonesuch");
 	
-	currentLocation = "RESIDENTIAL DECK 6";
-	generateMap();
+	moveTo("RESIDENTIAL DECK 6");
 	showLocationName();
 	
 	var hasSchoolgirl:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anySchoolgirl) != 0;
@@ -4491,8 +4489,7 @@ public function seraBitcheningPunishWalkiesWitnessSemith():void
 	showSera();
 	author("Nonesuch");
 	
-	currentLocation = "RESIDENTIAL DECK 4";
-	generateMap();
+	moveTo("RESIDENTIAL DECK 4");
 	showLocationName();
 	
 	output("You run into Semith the vulkrim along the Eastern Plaza, engrossed in his holo-pad. The besuited little devil gives you a distracted grin at first glance, a more interested gaze at the second.");
@@ -4515,8 +4512,7 @@ public function seraBitcheningPunishWalkiesWitnessJardi():void
 	showSera();
 	author("Nonesuch");
 	
-	currentLocation = "RESIDENTIAL DECK 2";
-	generateMap();
+	moveTo("RESIDENTIAL DECK 2");
 	showLocationName();
 	
 	var hasWhip:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anyWhip) != 0;
@@ -4528,7 +4524,7 @@ public function seraBitcheningPunishWalkiesWitnessJardi():void
 	output("...”</i> Jardi pauses once she’s hurried over, almond eyes flicking between the two of you, unsure of what to say. <i>“I don’t understand. Why aren’t you still in hiding? Did- did [pc.name] capture you?”</i> You have to laugh.");
 	output("\n\n<i>“What have you been telling Jardi over the extranet?!”</i> Sternly, you " + (hasWhip ? "crack the whip" : "draw the leash in closer") + ". <i>“Tell her the truth, bitch. Now.”</i>");
 	output("\n\n<i>“The- the truth is...”</i> Sera’s brilliant eyes roll, but there’s no escape here. Nothing but the cleansing burn of humiliation. <i>“The truth is that I’m not on the run,”</i> she mutters at last. Gently you put your finger underneath her chin and raise it, so she’s looking the rahn in the eye. <i>“There’s no pirates or... any of the other stuff I said. What happened was, I ran up a whole bunch of debt that [pc.name] cleared. So I - I belong to [pc.him] now.”</i>");
-	output("\n\n<i>“And...”</i> Jardi, hands clutched together, still looks very confused. She turns to you. <i>“... you’re happy with this?”</i>");
+	output("\n\n<i>“And...”</i> Jardi, hands clutched together, still looks very confused. She turns to you. <i>“...you’re happy with this?”</i>");
 	output("\n\n<i>“Very much so!”</i> you reply with all the brightness you can muster. <i>“It was tough work, breaking her into her new arrangement - and she still needs plenty of discipline, as you can see - but it’s ultimately been a satisfying and pleasurable experience for us both. Isn’t that right, bitch?”</i>");
 	output("\n\n<i>“Yes, [pc.master],”</i> whispers Sera. You could cook toast with her cheeks right now.");
 	output("\n\n<i>“Lovely seeing you,”</i> you tell the petite, white rahn. She looks down, embarrassed and demure, and the memory of a flood of fluid hitting sheets fills your ears. <i>“And perhaps if you’re interested in a similar arrangement... we can talk more.”</i> You breeze on, tugging the leash briskly.");
@@ -4548,8 +4544,7 @@ public function seraBitcheningPunishWalkiesNext():void
 	showSera();
 	author("Nonesuch");
 	
-	currentLocation = "RESIDENTIAL DECK 2";
-	generateMap();
+	moveTo("RESIDENTIAL DECK 2");
 	showLocationName();
 	
 	var hasSchoolgirl:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anySchoolgirl) != 0;

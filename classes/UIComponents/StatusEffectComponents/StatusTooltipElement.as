@@ -351,7 +351,7 @@ package classes.UIComponents.StatusEffectComponents
 					outStr += rDays + "D";
 				}
 				
-				if (rHours > 0)
+				if (rHours > 0 || rDays > 0)
 				{
 					if (rDays > 0)
 					{
@@ -360,9 +360,9 @@ package classes.UIComponents.StatusEffectComponents
 					outStr += rHours + "H";
 				}
 				
-				if (rMins > 0)
+				if (rMins > 0 || rHours > 0)
 				{
-					if (rHours > 0)
+					if (rHours > 0 || rDays > 0)
 					{
 						outStr += ", ";
 					}

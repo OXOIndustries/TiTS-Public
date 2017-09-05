@@ -1438,7 +1438,7 @@
 
 		public function showBust(... args):void 
 		{
-			var busts:Array = (args is String ? [args] : args);
+			var busts:Array = args.length && args[0] is Array ? args[0] : args;
 			
 			_leftSideBar.locationBlock.showBust(busts);
 		}

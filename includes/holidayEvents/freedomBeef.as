@@ -456,7 +456,7 @@ public function freedomBeefLikedIt(beefType:uint):void
 	}
 	else
 	{
-		output(" pacing around to face you. <i>“Just, um, I’ve only ever been with ‘taurs like me before, so.... wanna teach a big ol’ girl a new trick or two?”</i>");
+		output(" pacing around to face you. <i>“Just, um, I’ve only ever been with ‘taurs like me before, so... wanna teach a big ol’ girl a new trick or two?”</i>");
 	}
 	
 	output("\n\nRiley gives you a wink and cups her hands under her titanic rack, already starting to work the holopin clasp holding it back.");

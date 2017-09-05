@@ -680,7 +680,7 @@ public function brothelTurnTrixLady():void
 			{
 				// Repeat if PC tripped masculine line and is now either femboy or female
 				case -1:
-					output("<i>“... It’s you again, isn’t it? The guy who was asking about turning tricks here? You’re, uh... different, these days,”</i> says the dark-haired mistress, peering at you closely. She wiggles her eyebrows at you sardonically. <i>“If you actually were interested in getting in touch with your feminine side, why didn’t you take us up on the special offer? Never mind - I can definitely let you work now, if you still want to. Can’t offer you the same rate as the contracted girls, though. 50/50 split with the house, unless you license up.”</i>");
+					output("<i>“...It’s you again, isn’t it? The guy who was asking about turning tricks here? You’re, uh... different, these days,”</i> says the dark-haired mistress, peering at you closely. She wiggles her eyebrows at you sardonically. <i>“If you actually were interested in getting in touch with your feminine side, why didn’t you take us up on the special offer? Never mind - I can definitely let you work now, if you still want to. Can’t offer you the same rate as the contracted girls, though. 50/50 split with the house, unless you license up.”</i>");
 					flags["BETHS_ASKED_TO_WHORE"] = (pc.isFemboy() ? 0 : 2);
 					break;
 				// Repeat if PC tripped fem-herm/shemale line and is now either femboy or female
@@ -1840,8 +1840,7 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 	}
 	else if(response == "end")
 	{
-		currentLocation = "GAME OVER";
-		generateMap();
+		moveTo("GAME OVER");
 		showLocationName();
 		
 		showBust("");
@@ -1942,7 +1941,7 @@ public function brothelTurnTrixLadyNonFem():void
 		{
 			output("\n\n<i>“Without wishing to pry: you pack, don’t you?”</i> she says, leaning over the desk to peer down towards your [pc.groin]. <i>“Yeeees. We limit the number of dick-girls who work here, you know; Terensha, Vaande and the ovir hit the quota. Some of our customers do like a bit of pork with their chicken, but most find it off-putting. Also, no offense, but futa are usually </i>terrible<i> with the rest of the stock. Think they can stick their pricks anywhere. Worse than guys for it.”</i>");
 			output("\n\n<i>“Stereotyping aside,”</i> you say, <i>“is there anything you can offer me?”</i>");
-			output("\n\n<i>“I can always use more females,”</i> the mistress says, examining her nails. <i>“Cheery girls with nothing too unusual in their pants, they never go out of fashion. I also need girly boys. Flat-chested, pouty buttsluts - they’re hard to source and harder to hold onto. In fact, we...”</i> she pauses. <i>“... we - that is to say Beth’s - offer a course of gene-mods upfront, top shelf stuff, to any prospective employee who doesn’t mind becoming one. You’d have to stay here until you worked off the cost and interest, of course, but it’s pretty comfortable, and it probably wouldn’t take you more than a few weeks. Is that something that’d interest you?”</i> She gives you a thin smirk. <i>“");
+			output("\n\n<i>“I can always use more females,”</i> the mistress says, examining her nails. <i>“Cheery girls with nothing too unusual in their pants, they never go out of fashion. I also need girly boys. Flat-chested, pouty buttsluts - they’re hard to source and harder to hold onto. In fact, we...”</i> she pauses. <i>“...we - that is to say Beth’s - offer a course of gene-mods upfront, top shelf stuff, to any prospective employee who doesn’t mind becoming one. You’d have to stay here until you worked off the cost and interest, of course, but it’s pretty comfortable, and it probably wouldn’t take you more than a few weeks. Is that something that’d interest you?”</i> She gives you a thin smirk. <i>“");
 			if(pc.isFemHerm()) output("You’d lose your puss and boobs, and it might slim your bits down a bit but it otherwise wouldn’t be a huge change, right?");
 			else output("You’d lose your boobs and it might slim your bits down a bit but it otherwise wouldn’t be a huge change, right?");
 			output("”</i>");
@@ -1954,7 +1953,7 @@ public function brothelTurnTrixLadyNonFem():void
 		{
 			output("\n\n<i>“I admire your moxie and all, Bluto,”</i> she replies, <i>“but we have a few man-whores on tap already, and we don’t need all that many of them.”</i> She gestures over to one side of a stage, where a couple of well-built, well-shaven and well-bow-tied ausar and human males loiter.");
 			output("\n\n<i>“Is there anything you are looking for?”</i> you ask.");
-			output("\n\n<i>“I can always use more females,”</i> the mistress says, examining her nails. <i>“Cheery girls with nothing too unusual in their pants, they never go out of fashion. I also need girly boys. Flat-chested, pouty buttsluts - they’re hard to source and harder to hold onto. In fact, we...”</i> she pauses, and focuses on you properly for the first time. <i>“... we - that is to say Beth’s - offer a course of gene-mods upfront, top shelf stuff, to any prospective employee who doesn’t mind becoming one. You’d have to stay here until you worked off the cost and interest, of course, but it’s pretty comfortable, and it probably wouldn’t take you more than a few weeks. Is that something that’d interest you?”</i> She gives you a thin smirk. <i>“I think you’d make a really cute trap, you know.”</i>");
+			output("\n\n<i>“I can always use more females,”</i> the mistress says, examining her nails. <i>“Cheery girls with nothing too unusual in their pants, they never go out of fashion. I also need girly boys. Flat-chested, pouty buttsluts - they’re hard to source and harder to hold onto. In fact, we...”</i> she pauses, and focuses on you properly for the first time. <i>“...we - that is to say Beth’s - offer a course of gene-mods upfront, top shelf stuff, to any prospective employee who doesn’t mind becoming one. You’d have to stay here until you worked off the cost and interest, of course, but it’s pretty comfortable, and it probably wouldn’t take you more than a few weeks. Is that something that’d interest you?”</i> She gives you a thin smirk. <i>“I think you’d make a really cute trap, you know.”</i>");
 			
 			flags["BETHS_ASKED_TO_WHORE"] = -1;
 		}
@@ -2060,14 +2059,14 @@ public function brothelTrappifyVerify(response:String = "intro"):void
 			}
 			else if(pc.isShemale() || pc.isFemHerm())
 			{
-				output("\n\n<i>“I can always use more females,”</i> the mistress says, examining her nails. <i>“Cheery girls with nothing too unusual in their pants, they never go out of fashion. I also need girly boys. Flat-chested, pouty buttsluts - they’re hard to source and harder to hold onto. In fact, we...”</i> she pauses. <i>“... we - that is to say Beth’s - offer a course of gene-mods upfront, top shelf stuff, to any prospective employee who doesn’t mind becoming one. You’d have to stay here until you worked off the cost and interest, of course, but it’s pretty comfortable, and it probably wouldn’t take you more than a few weeks. Is that something that’d interest you?”</i> She gives you a thin smirk. <i>“");
+				output("\n\n<i>“I can always use more females,”</i> the mistress says, examining her nails. <i>“Cheery girls with nothing too unusual in their pants, they never go out of fashion. I also need girly boys. Flat-chested, pouty buttsluts - they’re hard to source and harder to hold onto. In fact, we...”</i> she pauses. <i>“...we - that is to say Beth’s - offer a course of gene-mods upfront, top shelf stuff, to any prospective employee who doesn’t mind becoming one. You’d have to stay here until you worked off the cost and interest, of course, but it’s pretty comfortable, and it probably wouldn’t take you more than a few weeks. Is that something that’d interest you?”</i> She gives you a thin smirk. <i>“");
 				if(pc.isFemHerm()) output("You’d lose your puss and boobs, and it might slim your bits down a bit but it otherwise wouldn’t be a huge change, right?");
 				else output("You’d lose your boobs and it might slim your bits down a bit but it otherwise wouldn’t be a huge change, right?");
 				output("”</i>");
 			}
 			else
 			{
-				output("\n\n<i>“I can always use more females,”</i> the mistress says, examining her nails. <i>“Cheery girls with nothing too unusual in their pants, they never go out of fashion. I also need girly boys. Flat-chested, pouty buttsluts - they’re hard to source and harder to hold onto. In fact, we...”</i> she pauses, and focuses on you properly for the first time. <i>“... we - that is to say Beth’s - offer a course of gene-mods upfront, top shelf stuff, to any prospective employee who doesn’t mind becoming one. You’d have to stay here until you worked off the cost and interest, of course, but it’s pretty comfortable, and it probably wouldn’t take you more than a few weeks. Is that something that’d interest you?”</i> She gives you a thin smirk. <i>“I think you’d make a really cute trap, you know.”</i>");
+				output("\n\n<i>“I can always use more females,”</i> the mistress says, examining her nails. <i>“Cheery girls with nothing too unusual in their pants, they never go out of fashion. I also need girly boys. Flat-chested, pouty buttsluts - they’re hard to source and harder to hold onto. In fact, we...”</i> she pauses, and focuses on you properly for the first time. <i>“...we - that is to say Beth’s - offer a course of gene-mods upfront, top shelf stuff, to any prospective employee who doesn’t mind becoming one. You’d have to stay here until you worked off the cost and interest, of course, but it’s pretty comfortable, and it probably wouldn’t take you more than a few weeks. Is that something that’d interest you?”</i> She gives you a thin smirk. <i>“I think you’d make a really cute trap, you know.”</i>");
 			}
 			
 			if(pc.isShemale() || pc.isFemHerm()) flags["BETHS_ASKED_TO_WHORE"] = -2;
@@ -2290,10 +2289,10 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			}
 			/*
 			// Asshole gains elasticity 3
-			if(pc.elasticity < 3)
+			if(pc.elasticity < (pc.hasPerk("Elasticity") ? 3.5 : 3))
 			{
 				msg += ParseText("It’s tempting to suppose the way your [pc.anus] keeps clenching up has to do with the butterflies in your gut, but it’s eventually impossible to ignore the fact that it itself is changing. The exploration of two tentative, exploring fingers tells you that it hasn’t become looser, exactly, but... you gasp slightly as you pull it wide open and then release, at which point it immediately puckers back in, as if your sphincter were a particularly thick, tight and flexible band of elastic. Perfect for someone who might reasonably expect to be taking thick, hard cock up the ass a lot. ");
-				pc.elasticity = 3;
+				pc.elasticity = (pc.hasPerk("Elasticity") ? 3.5 : 3);
 				minPass += 2;
 			}
 			*/
@@ -2490,8 +2489,7 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			break;
 		// Game Over
 		case "bad end":
-			currentLocation = "GAME OVER";
-			generateMap();
+			moveTo("GAME OVER");
 			showLocationName();
 			
 			showBust("");

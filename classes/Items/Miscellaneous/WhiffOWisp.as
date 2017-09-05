@@ -105,6 +105,7 @@
 					output("\n\nAs you desperately snort and sniff at the last few vapours left, desperately trying to understand why they’re not fixing your sudden case of decaying nervous system, you try dumping the rest of the fluid right into your nose!");
 					output("\n\nWell that’s no good, you’re now a mindless gibbering wreck who didn’t read the label! You spend the rest of your years not being cognizant of the world around you in a nice little white room with a window and fresh flowers every day.");
 					kGAMECLASS.badEnd("GAME OVER");
+					return true;
 				}
 			}
 			else

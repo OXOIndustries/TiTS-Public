@@ -2625,6 +2625,7 @@
 			return slots;
 		}
 		
+		/*
 		public function hasItem(arg:ItemSlotClass,amount:int = 1):Boolean
 		{
 			if(arg == null || inventory.length == 0) return false;
@@ -2648,6 +2649,7 @@
 			if(foundAmount >= amount) return true;
 			return false;
 		}
+		*/
 		public function hasItemByClass(ref:Class, amount:int = 1):Boolean
 		{
 			if (ref == null || inventory.length == 0) return false;
@@ -2674,7 +2676,7 @@
 			if (amt >= amount) return true;
 			return false;
 		}
-		
+		/*
 		public function destroyItemByName(arg:String, amount:int = 1):void
 		{
 			if (arg == null || inventory.length == 0 || amount == 0) return;
@@ -2719,6 +2721,7 @@
 			}
 			return;
 		}
+		*/
 		public function destroyItemByReference(arg:ItemSlotClass):void
 		{
 			if (arg == null || inventory.length == 0) return;
@@ -3783,6 +3786,7 @@
 				if(hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) muskLevel += 2;
 			}
 			if(accessory is Allure) muskLevel += 1;
+			if(hasStatusEffect("Roehm Slimed")) muskLevel += Math.min((statusEffectv4("Roehm Slimed") * 3), statusEffectv3("Roehm Slimed"));
 			
 			return muskLevel;
 		}
@@ -3898,6 +3902,7 @@
 		
 		public function cumflationEnabled():Boolean
 		{
+			if(hasStatusEffect("Cumflation Immune")) return false;
 			return (fluidSimulate || this is PlayerCharacter);
 		}
 		public function maxOutCumflation(orifice:String, cumFrom:Creature):void
@@ -4135,6 +4140,12 @@
 			if (hasStatusEffect("Watered Down")) currReflexes *= 0.9;
 			if (hasStatusEffect("Pitch Black")) currReflexes *= 0.66;
 			if (hasStatusEffect("Psychic Leech")) currReflexes *= 0.85;
+			var bellySize:Number = bellyRating();
+			if(bellySize >= 50) {
+				if(bellySize >= 90) currReflexes *= 0.5;
+				else if(bellySize >= 70) currReflexes *= 0.7;
+				else currReflexes *= 0.9;
+			}
 
 			if (currReflexes > reflexesMax())
 			{
@@ -4348,8 +4359,12 @@
 			if (hasStatusEffect("Myr Venom Withdrawal")) currLib /= 2;
 			if (hasStatusEffect("Mare Musk")) currLib += 10;
 			if (hasStatusEffect("Adorahol")) currLib += (5 * statusEffectv1("Adorahol"));
-			if (hasPerk("Slut Stamp") && hasGenitals() && isCrotchGarbed()) currLib += perkv1("Slut Stamp");
-			if (perkv1("Dumb4Cum") > 24) currLib += perkv1("Dumb4Cum")-24;
+			if (hasGenitals() && isCrotchGarbed())
+			{
+				if (hasPerk("Slut Stamp"))currLib += perkv1("Slut Stamp");
+				if (hasPerk("Barcoded")) currLib += 10;
+			}
+			if (perkv1("Dumb4Cum") > 24) currLib += (perkv1("Dumb4Cum") - 24);
 			currLib += statusEffectv3("Heat");
 			currLib += statusEffectv1("Rut");
 			currLib += statusEffectv1("Lagonic Rut");
@@ -4392,7 +4407,7 @@
 			//Temporary Stuff
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
 			if (hasStatusEffect("Aphrodisiac Milk")) bonus += 33;
-			if (perkv1("Dumb4Cum") > 24) bonus += perkv1("Dumb4Cum")-24;
+			if (perkv1("Dumb4Cum") > 24) bonus += (perkv1("Dumb4Cum") - 24);
 			if (hasStatusEffect("Adorahol")) bonus += (5 * statusEffectv1("Adorahol"));
 			bonus += statusEffectv1("Sexy Costume");
 			bonus += statusEffectv4("Priapin");
@@ -4424,6 +4439,12 @@
 			
 			var scalar:Number = 1;
 			if(hasPerk("Resin")) scalar = perkv1("Resin");
+			var bellySize:Number = bellyRating();
+			if(bellySize >= 50) {
+				if(bellySize >= 90) scalar *= 0.5;
+				else if(bellySize >= 70) scalar *= 0.7;
+				else scalar *= 0.9;
+			}
 			
 			return ((level * 5 * scalar) + bonuses);
 		}
@@ -4436,12 +4457,8 @@
 			var bonuses:int = 0;
 			if(hasPerk("Cybernetic Synchronization")) bonuses += (perkv1("Cybernetic Synchronization") * cyborgScore());
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
-			if(hasPerk("Dumb4Cum"))
-			{
-				bonuses += level;
-				if(perkv1("Dumb4Cum") > 24) bonuses -= (perkv1("Dumb4Cum") - 24);
-			}
-
+			if(hasPerk("Dumb4Cum")) bonuses += level*2;
+			
 			var amount:Number = ((level * 5) + bonuses);
 			if(amount < Creature.STAT_CLAMP_VALUE) amount = Creature.STAT_CLAMP_VALUE;
 			return amount;
@@ -4456,15 +4473,18 @@
 			var bonuses:int = 0;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 50;
 			if(hasPerk("Slut Stamp")) bonuses += perkv3("Slut Stamp");
+			if(hasPerk("Barcoded")) bonuses += 10;
 			return (100 + bonuses);
 		}
 		public function libidoMin(): Number {
 			var bonus:int = 0;
 			if(hasPerk("Drug Fucked")) bonus += 40;
 			if(hasPerk("Slut Stamp")) bonus += perkv2("Slut Stamp");
+			if(hasPerk("Barcoded")) bonus += 10;
 			if(perkv1("Flower Power") > 0) bonus += perkv3("Flower Power");
 			// Slave collar increases minimum by set level.
 			if(hasStatusEffect("Psi Slave Collar")) bonus += statusEffectv3("Psi Slave Collar");
+			if(hasStatusEffect("Roehm Slimed")) bonus += statusEffectv1("Roehm Slimed");
 			return (0 + bonus);
 		}
 		public function slowStatLoss(stat:String, arg:Number = 0):Number
@@ -4897,6 +4917,7 @@
 			if (hasStatusEffect("Resolve")) temp += 50;
 			if (hasStatusEffect("Spear Wall")) temp += 50;
 			if (hasStatusEffect("Leech Empowerment")) temp += 50;
+			if (hasStatusEffect("Roehm Slimed")) temp += statusEffectv2("Roehm Slimed");
 			temp += statusEffectv2("Water Veil");
 			temp += statusEffectv2("Deep Freeze");
 			temp += statusEffectv1("Evasion Boost");
@@ -4904,7 +4925,15 @@
 			//Nonspecific evasion boost status effect enemies can use.
 			//Now reduced by restraints - 25% per point
 			temp = temp * (1 - statusEffectv1("Restrained") * 0.25);
-			
+
+			//Preggo belly slows ya down!
+			var bellySize:Number = bellyRating();
+			if(bellySize >= 50) {
+				if(bellySize >= 90) temp *= 0.5;
+				else if(bellySize >= 70) temp *= 0.7;
+				else temp *= 0.9;
+			}
+
 			if (temp > 90) temp = 90;
 			if (temp < 1) temp = 1;
 			
@@ -6641,7 +6670,7 @@
 			if (output != "") output += " ";
 
 			var nouns:Array = ["hand"];
-			if(hasArmFlag(GLOBAL.FLAG_PAWS)) nouns.push("paw");
+			if(hasArmFlag(GLOBAL.FLAG_PAWS) && armType != GLOBAL.TYPE_AVIAN) nouns.push("paw");
 			output += RandomInCollection(nouns);
 			return output;
 		}
@@ -6858,7 +6887,7 @@
 			//Noun
 			if (output != "") output += " ";
 			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hooves";
-			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && rand(10) < 8) output += "paws";
+			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && legType != GLOBAL.TYPE_AVIAN && rand(10) < 8) output += "paws";
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilia";
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && rand(2) == 0) output += "high-heels";
 			else if (legType == GLOBAL.TYPE_LIZAN) output += "footclaws";
@@ -6878,7 +6907,7 @@
 			//Noun
 			if (output != "") output += " ";
 			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hoof";
-			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && rand(10) < 8) output += "paw";
+			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && legType != GLOBAL.TYPE_AVIAN && rand(10) < 8) output += "paw";
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "undercarriage";
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && rand(2) == 0) output += "high-heel";
 			else if (legType == GLOBAL.TYPE_LIZAN) output += "footclaw";
@@ -6897,7 +6926,7 @@
 			var output: String = "";
 			//Noun
 			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hoof-tips";
-			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && rand(2) == 0) output += "paw-toes";
+			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && legType != GLOBAL.TYPE_AVIAN && rand(2) == 0) output += "paw-toes";
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilia";
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && rand(2) == 0) output += "pointed toes";
 			else if (legType == GLOBAL.TYPE_LIZAN) output += "claws";
@@ -12180,9 +12209,10 @@
 		}
 		public function hipDescript(asPlural:Boolean = false):String 
 		{
+			var hips: Number = hipRating();
 			var desc: String = "";
 			var adjectives: Array = [];
-			if (hipRating() <= 1) {
+			if (hips <= 1) {
 				if (thickness > 70) {
 					adjectives.push("tiny ");
 					adjectives.push("narrow ");
@@ -12199,7 +12229,7 @@
 					adjectives.push("narrow ");
 					adjectives.push("boyish ");
 				}
-			} else if (hipRating() < 4) {
+			} else if (hips < 4) {
 				if (thickness < 30) {
 					adjectives.push("slightly-flared ");
 					adjectives.push("curved ");
@@ -12209,7 +12239,7 @@
 					adjectives.push("narrow ");
 					adjectives.push("thin ");
 				}
-			} else if (hipRating() < 6) {
+			} else if (hips < 6) {
 				if (thickness < 30) {
 					adjectives.push("flared ");
 					adjectives.push("curvy ");
@@ -12218,7 +12248,7 @@
 					adjectives.push("well-formed ");
 					adjectives.push("pleasant ");
 				}
-			} else if (hipRating() < 10) {
+			} else if (hips < 10) {
 				if (thickness < 30) {
 					adjectives.push("flared ");
 					adjectives.push("waspish ");
@@ -12228,7 +12258,7 @@
 					adjectives.push("noticeable ");
 					adjectives.push("girly ");
 				}
-			} else if (hipRating() < 15) {
+			} else if (hips < 15) {
 				if (thickness < 30) {
 					adjectives.push("flared ");
 					adjectives.push("waspish ");
@@ -12238,7 +12268,7 @@
 					adjectives.push("curvy ");
 					adjectives.push("wide ");
 				}
-			} else if (hipRating() < 20) {
+			} else if (hips < 20) {
 				if (thickness < 40) {
 					adjectives.push("flared, voluptuous ");
 					adjectives.push("waspish, voluptuous ");
@@ -12312,6 +12342,7 @@
 		}
 		public function buttDescript(asPlural:Boolean = false, onlyCheek:Boolean = false):String 
 		{
+			var butt: Number = buttRating();
 			var desc: String = "";
 			var rando: Number = 0;
 			var softbutt: Boolean = hasSoftButt();
@@ -12325,14 +12356,14 @@
 			{
 				var adjectives: Array = [];
 				
-			if (buttRating() <= 1) {
+			if (butt <= 1) {
 					if (tone >= 60 && !softbutt) adjectives.push("incredibly tight, perky ");
 				else {
 					//Soft PC's buns!
 						if ((tone <= 30 || softbutt) && rand(3) == 0) adjectives.push("tiny yet soft ", "tiny yet soft ", "very small yet soft ", "dainty yet soft ");
 						else adjectives.push("tiny ", "tiny ", "very small ", "dainty ");
 				}
-			} else if (buttRating() < 4) {
+			} else if (butt < 4) {
 					if (tone >= 65 && !softbutt) {
 						adjectives.push("perky, muscular ");
 						adjectives.push("tight, toned ");
@@ -12358,7 +12389,7 @@
 						adjectives.push("petite ");
 						adjectives.push("snug ");
 				}
-			} else if (buttRating() < 6) {
+			} else if (butt < 6) {
 				//TOIGHT LIKE A TIGER
 					if (tone >= 65 && !softbutt) {
 						adjectives.push("nicely muscled ");
@@ -12381,7 +12412,7 @@
 						adjectives.push("cushy ");
 						adjectives.push("soft, squeezable ");
 				}
-			} else if (buttRating() < 8) {
+			} else if (butt < 8) {
 				//TOIGHT LIKE A TIGER
 					if (tone >= 65 && !softbutt) {
 						if (rand(7) == 0) {
@@ -12419,7 +12450,7 @@
 						adjectives.push("soft, shapely ");
 						adjectives.push("rounded, spongy ");
 					}
-			} else if (buttRating() < 10) {
+			} else if (butt < 10) {
 				//TOIGHT LIKE A TIGER
 					if (tone >= 65 && !softbutt) {
 						adjectives.push("large, muscular ");
@@ -12430,14 +12461,14 @@
 						adjectives.push("big-but-fit ");
 						adjectives.push("powerful, squeezable ");
 						adjectives.push("large ");
-						adjectives.push("callipygean ");
+						adjectives.push("callipygian ");
 				}
 				//Nondescript
 					else if (tone >= 30 && !softbutt) {
 						adjectives.push("squeezable ");
 						adjectives.push("large ");
 						adjectives.push("substantial ");
-						adjectives.push("callipygean ");
+						adjectives.push("callipygian ");
 				}
 				//FLABBAH
 				else {
@@ -12450,9 +12481,9 @@
 						adjectives.push("cushiony ");
 						adjectives.push("plush ");
 						adjectives.push("pleasantly plump ");
-						adjectives.push("callipygean ");
+						adjectives.push("callipygian ");
 				}
-			} else if (buttRating() < 13) {
+			} else if (butt < 13) {
 				//TOIGHT LIKE A TIGER
 					if (tone >= 65 && !softbutt) {
 						adjectives.push("thick, muscular ");
@@ -12483,7 +12514,7 @@
 						adjectives.push("spacious ");
 						adjectives.push("soft, plump ");
 				}
-			} else if (buttRating() < 16) {
+			} else if (butt < 16) {
 				//TOIGHT LIKE A TIGER
 					if (tone >= 65 && !softbutt) {
 						adjectives.push("expansive, muscled ");
@@ -12516,7 +12547,7 @@
 						adjectives.push("voluminous ");
 						adjectives.push("soft, padded ");
 				}
-			} else if (buttRating() < 20) {
+			} else if (butt < 20) {
 					if (tone >= 65 && !softbutt) {
 						adjectives.push("huge, toned ");
 						adjectives.push("vast, muscular ");
@@ -12597,7 +12628,7 @@
 				else if (rando <= 9) desc += "ass";
 				else if (rando <= 11) desc += "backside";
 				else if (rando == 12) {
-					if (buttRating() >= 10) desc += "booty";
+					if (butt >= 10) desc += "booty";
 					else desc += "derriere";
 				}
 				else desc += RandomInCollection(["rump", "bottom", mf("butt", "tush"), "rear end"]);
@@ -12920,9 +12951,9 @@
 				{
 					descript += RandomInCollection(["very long", "back-length"]);
 				}
-				else if (hairLength < tallness / 1.7) {
+				else if (hairLength < tallness / 1.6) {
 					if(rand(3) == 0) descript += "cascading";
-					else if(hairLength < tallness/1.6) 
+					else if(hairLength < tallness / 1.7) 
 					{
 						descript += "ass-length";
 					}
@@ -16673,8 +16704,8 @@
 		public function virility(arg:Number = 0):Number
 		{
 			return cumQuality(arg);
-			}
-			
+		}
+		
 		public var pregnancyIncubationBonusFatherRaw:Number = 1;
 		public var pregnancyIncubationBonusFatherMod:Number = 0;
 		public function pregnancyIncubationBonusFather():Number
@@ -17117,6 +17148,9 @@
 		
 		public function addPregnancyBellyMod(pregSlot:int, value:Number, perOffspring:Boolean = true):void
 		{
+			// Error, out of range!
+			if(pregSlot < 0 || pregSlot >= pregnancyData.length) return;
+			
 			var pData:PregnancyData = pregnancyData[pregSlot];
 			var addValue:Number = value;
 			
@@ -17752,7 +17786,7 @@
 			if(InCollection(partName, "total", "all", "body", "everything", "full")) partName = "total";
 			else if(InCollection(partName, "breast", "breasts", "boob", "boobs", "tit", "tits")) partName = "breast";
 			else if(InCollection(partName, "belly", "tummy", "stomach", "womb")) partName = "belly";
-			else if(InCollection(partName, "butt", "ass", "booty", "rump", "rear", "hiney")) partName = "butt";
+			else if(InCollection(partName, "butt", "ass", "booty", "rump", "rear", "heinie")) partName = "butt";
 			else if(InCollection(partName, "clitoris", "clit", "clits", "button", "buzzer")) partName = "clitoris";
 			else if(InCollection(partName, "penis", "penises", "cock", "cocks", "dong", "wiener")) partName = "penis";
 			else if(InCollection(partName, "testicle", "testicles", "balls", "scrotum", "nuts", "prostate")) partName = "testicle";
@@ -18205,7 +18239,7 @@
 			var notice:String = "";
 			var amountVented:Number;
 			var removals:Array = new Array();
-			var cumDrain:Boolean = !hasPerk("No Cum Leakage");
+			var cumDrain:Boolean = (!hasPerk("No Cum Leakage") && !hasStatusEffect("No Cum Leakage"));
 			var amountStored:Number = 0;
 			var omitNotice:Boolean = hasStatusEffect("Omit Cumflation Messages");
 
@@ -18983,6 +19017,19 @@
 				
 				switch (thisStatus.storageName)
 				{
+					case "GastiUnlockTimer":
+						if (this is PlayerCharacter && requiresRemoval)
+						{
+							//email unlock
+							kGAMECLASS.goMailGet("gastigoth_unlock");
+						}
+						break;
+					case "PAIGE_COMA_EMAIL_CD":
+						if (this is PlayerCharacter && requiresRemoval)
+						{
+							kGAMECLASS.eventQueue.push(kGAMECLASS.paigeEyeholeEmailEvent);
+						}
+						break;
 					case "Laquine Ears":
 						if(this is PlayerCharacter)
 						{
@@ -19133,22 +19180,22 @@
 					case "Clippex Gel":
 						if(this is PlayerCharacter)
 						{
-						Clippex.ClippexLustIncrease(deltaT, doOut, this, thisStatus);
-						
-						if (requiresRemoval)
-						{
-							Clippex.ClippexTF(deltaT, doOut, this, thisStatus); 
-						}
+							Clippex.ClippexLustIncrease(deltaT, doOut, this, thisStatus);
+
+							if (requiresRemoval)
+							{
+								Clippex.ClippexTF(deltaT, doOut, this, thisStatus); 
+							}
 						}
 						break;
 					case "Semen's Candy":
 						if(this is PlayerCharacter)
 						{
-						SemensFriend.LibidoIncrease(deltaT, doOut, this, thisStatus);
-						if (requiresRemoval)
-						{
-							SemensFriend.TFProcs(deltaT, doOut, this, thisStatus);
-						}
+							SemensFriend.LibidoIncrease(deltaT, doOut, this, thisStatus);
+							if (requiresRemoval)
+							{
+								SemensFriend.TFProcs(deltaT, doOut, this, thisStatus);
+							}
 						}
 						break;
 					case "Cerespirin":
@@ -19169,11 +19216,18 @@
 							Priapin.effectEnds(maxEffectLength, doOut, this, thisStatus);
 						}
 						break;
-					case "GastiUnlockTimer":
-						if (this is PlayerCharacter && requiresRemoval)
+					case "Cum Soaked":
+					case "Pussy Drenched":
+						if(hasSkinFlag(GLOBAL.FLAG_ABSORBENT))
 						{
-							//email unlock
-							kGAMECLASS.goMailGet("gastigoth_unlock");
+							var cumScale:Number = Math.min((deltaT / 60), 1);
+							if(this is PlayerCharacter && hairType == GLOBAL.HAIR_TYPE_GOO)
+							{
+								addBiomass(Math.round(500 * cumScale));
+								if(hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) addBiomass(Math.round(500 * cumScale));
+							}
+							thisStatus.value1 -= cumScale;
+							if(thisStatus.value1 <= 0) requiresRemoval = true;
 						}
 						break;
 					case "Hair Regoo":
@@ -19342,7 +19396,7 @@
 						{
 							var ovaBigEggMsg:String = "";
 							// Ten minutes later if Egg Trainer level < 3
-							if(flags["EGG_TRAINING"] < 3) ovaBigEggMsg += "Warm gooeyness continues to ooze out of your [pc.vagOrAss " + thisStatus.value1 + "] and down your [pc.thigh], conspicuously not getting soaked up by the Ovalasting eggs within. Presumably they’ve gotten all they want - or they can sense, somehow, you aren’t built to take any more swelling. You feel a nagging annoyance about that. What a nice feature it is, to not worry about " + (isCrotchGarbed() ? "ruining your [pc.underGarments]" : "leaving a trail of cum behind you") + " every time you take a good, hard fuck. Perhaps if you egg trained yourself a little more...?";
+							if(flags["EGG_TRAINING"] < 3) ovaBigEggMsg += "Warm gooeyness continues to ooze out of your [pc.vagOrAss " + thisStatus.value1 + "] and down your [pc.thigh], conspicuously not getting soaked up by the Ovalasting eggs within. Presumably they’ve gotten all they want - or they can sense, somehow, you aren’t built to take any more swelling. You feel a nagging annoyance about that. What a nice feature it is, to not worry about " + (isCrotchGarbed() ? "ruining your [pc.lowerGarments]" : "leaving a trail of cum behind you") + " every time you take a good, hard fuck. Perhaps if you egg trained yourself a little more...?";
 							else ovaBigEggMsg += "Warmth throbs within you, the Ovalasting eggs within your [pc.vagOrAss " + thisStatus.value1 + "] reacting eagerly to the second bath of healthy, filthy fluids you’ve soaked them in. You groan with sheer contentment as your [pc.belly] swells even further, your brood already pushing against your sensitive walls, eager to colonize every last inch of space you have to give. Hell in the Void, is this making you feel ponderous... and amazing. Perhaps you could call back your last lover, see if they aren’t willing to pump you even fuller?";
 							AddLogEvent(ovaBigEggMsg, "passive", maxEffectLength);
 						}
@@ -19712,6 +19766,38 @@
 					else victim.createStatusEffect("Undetected Sneezing Tits", 0, 0, 0, 0, true, "Icon_Boob_Torso", "Hidden Sneezing Tits infection!", false, 10080, 0xFF69B4);
 					break;
 			}
+		}
+		public function applyCumSoaked():void
+		{
+			var desc:String = "";
+			
+			if(!this.hasStatusEffect("Cum Soaked"))
+			{
+				if(this is PlayerCharacter) desc = "You’re drenched in cum! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
+				else desc = this.capitalA + this.short + " is completely covered in cum!";
+				this.createStatusEffect("Cum Soaked",1,0,0,0,false,"Icon_Splatter",desc,false,0,0xB793C4);
+			}
+			else this.addStatusValue("Cum Soaked",1,1);
+			
+			if(this is PlayerCharacter) kGAMECLASS.mimbraneFeed("all");
+		}
+		public function applyPussyDrenched():void
+		{
+			applyPussySoaked();
+		}
+		public function applyPussySoaked():void
+		{
+			var desc:String = "";
+			
+			if(!this.hasStatusEffect("Pussy Drenched"))
+			{
+				if(this is PlayerCharacter) desc = "You’re drenched in girlcum! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
+				else desc = this.capitalA + this.short + " is completely covered in girlcum!";
+				this.createStatusEffect("Pussy Drenched",1,0,0,0,false,"Icon_Water_Drop",desc,false,0,0xB793C4);
+			}
+			else this.addStatusValue("Pussy Drenched",1,1);
+			
+			if(this is PlayerCharacter) kGAMECLASS.mimbraneFeed("all");
 		}
 	}
 }

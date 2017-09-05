@@ -71,7 +71,7 @@ package classes.Characters
 		{
 			kGAMECLASS.mimbraneFeed("vagina");
 			//Goo TFed? GATHER BIOMASS
-			if(hairType == GLOBAL.HAIR_TYPE_GOO)
+			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
@@ -92,7 +92,7 @@ package classes.Characters
 		{
 			kGAMECLASS.mimbraneFeed("ass");
 			//Goo TFed? GATHER BIOMASS
-			if(hairType == GLOBAL.HAIR_TYPE_GOO)
+			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
@@ -173,7 +173,7 @@ package classes.Characters
 			
 			kGAMECLASS.mimbraneFeed("face");
 			//Goo TFed? GATHER BIOMASS
-			if(hairType == GLOBAL.HAIR_TYPE_GOO)
+			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
@@ -289,6 +289,7 @@ package classes.Characters
 		}
 		
 		public var ShipStorageInventory:Array = [];
+		/*
 		public function hasItemInStorage(arg:ItemSlotClass,amount:int = 1):Boolean
 		{
 			if(ShipStorageInventory.length == 0) return false;
@@ -320,6 +321,7 @@ package classes.Characters
 			}
 			return;
 		}
+		*/
 		public function hasItemInStorageByClass(ref:Class, amount:int = 1):Boolean
 		{
 			if(ShipStorageInventory.length == 0) return false;
@@ -446,6 +448,15 @@ package classes.Characters
 					}
 				}
 			}
+		}
+		
+		override public function get bustDisplay():String
+		{
+			var sBust:String = "PC";
+			
+			if(isNude()) sBust += "_NUDE";
+			
+			return sBust;
 		}
 		
 		override public function getCombatName():String

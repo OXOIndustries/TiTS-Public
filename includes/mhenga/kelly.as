@@ -402,8 +402,8 @@ public function kellySkySapCollect():void
 	{
 		output("Kelly looks up at you as you enter, shooting you her warm, trademark smile, <i>“Oh, [pc.name]! Guess what? We’ve got a new product for sale, all thanks to those sap samples you keep bringing us.”</i>");
 		output("\n\n<i>“It’s called ‘Synth Sap’ - not a terribly original name, if you ask me.”</i>");
-		output("\n\nYou ask Kelly what it does. She brings up a long looking holodoc and reads from it. <i>“... Well, it’s a transformative. Apparently Doctor Haswell tried to create a substance that would recreate the extinct vanae male and bring the species back to life. That’s Xenogen for you - shaking up one world at a time.”</i>");
-		output("\n\nDid he succeed? The secretary flips down the page. She shakes her head. <i>“... Almost, but not quite. If you consume it, it’ll give you the external appearance of what a vanae male was like.”</i>");
+		output("\n\nYou ask Kelly what it does. She brings up a long looking holodoc and reads from it. <i>“...Well, it’s a transformative. Apparently Doctor Haswell tried to create a substance that would recreate the extinct vanae male and bring the species back to life. That’s Xenogen for you - shaking up one world at a time.”</i>");
+		output("\n\nDid he succeed? The secretary flips down the page. She shakes her head. <i>“...Almost, but not quite. If you consume it, it’ll give you the external appearance of what a vanae male was like.”</i>");
 		output("\n\n<i>“Your genitals will transform and apparently you’ll get glow-in-the-dark semen,”</i> Kelly raises an eyebrow, <i>“That sounds... pretty nifty. However, except for a sharp virility spike, your sperm will remain untouched.”</i>");
 		output("\n\n<i>“If you want to buy some, just ask. We’ve got a fair bit in stock. You’ll need to sign a disclaimer before you try it, though -- cutting edge products and all that.”</i>");
 		
@@ -3942,7 +3942,7 @@ public function kellyDPForTaursThatWannaGetDPed():void
 	{
 		output("\n\nKelly grabs ahold of your tail, ready to use it as an anchor, when she sees the slightest dribble of your [pc.girlCumColor] juice drip down from it onto your haunches. <i>“<i>Well, Someone likes this cute parasite, doesn’t [pc.heShe]? Or do you think of it more like a symbiote? Either way, I’m going to make all of your holes feel good.</i>”</i> She starts licking at it, and you can feel the nerves in your tail shooting pleasure into your brain. You have a strange conflict in your mind between wanting a dick in your rear, or in your tail.");
 		
-		if(pc.willpower()/2 + rand(20) + 1 > 15) output(" You manage to resist the [pc.tailGina]’s urges though, and let Kelly continue to pleasure it the way you want her to. It may have thought it was the predator, but now, it was the prey of your powerful mind.");
+		if(pc.willpower()/2 + rand(20) + 1 > 15) output(" You manage to resist the [pc.tailgina]’s urges though, and let Kelly continue to pleasure it the way you want her to. It may have thought it was the predator, but now, it was the prey of your powerful mind.");
 		else
 		{
 			tailginad = true;
@@ -4007,7 +4007,7 @@ public function taurKellyDPCumInside(x:int):void
 	output("You can almost feel your belly swelling up underneath you. She may make others swell like balloons, but not you. ");
 	if(tailginad && !pc.hasCock()) output("Your tail begins to swell, too much honey filling it. It quickly surrenders, and simply lets her cum drip out, like a perverted waterfall onto the bed. ");
 	//if tailingulus: 
-	if(pc.hasCuntTail() && !tailginad) output("You can feel your tail scrunch and almost flail in Kelly’s grip as she eats it, pressing down on its mons and pressing into your [pc.tailGina] insides. ");
+	if(pc.hasCuntTail() && !tailginad) output("You can feel your tail scrunch and almost flail in Kelly’s grip as she eats it, pressing down on its mons and pressing into your [pc.tailgina] insides. ");
 	output("Rope after thick, impregnating rope of her jism fills you, making you cum in an almost motherly bliss.");
 	if(pc.isPregnant(x) || (pc.isPregnant(y) && (!tailginad || pc.hasCock()))) output(" Maybe you’ll let her knock you up one day.");
 	else output(" You want her to make you pregnant, you don’t care about anything else right now. Pure instinct has you need to make life.");

@@ -58,6 +58,28 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/atha_zil.png", mimeType = "image/png")]
 		public var Bust_ATHA_ZIL:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/azra.png", mimeType = "image/png")]
+		public var Bust_AZRA:Class;
+		public var Bounds_AZRA:Rectangle = new Rectangle(65, 0, 80, 80);
+		[Embed(source = "../../../assets/images/npcs/adjatha/azra_dong.png", mimeType = "image/png")]
+		public var Bust_AZRA_DONG:Class;
+		public var Bounds_AZRA_DONG:Rectangle = new Rectangle(53, 0, 80, 80);
+		[Embed(source = "../../../assets/images/npcs/adjatha/azra_nude.png", mimeType = "image/png")]
+		public var Bust_AZRA_NUDE:Class;
+		public var Bounds_AZRA_NUDE:Rectangle = new Rectangle(53, 0, 80, 80);
+		[Embed(source = "../../../assets/images/npcs/adjatha/azra_preg_nude.png", mimeType = "image/png")]
+		public var Bust_AZRA_PREG_NUDE:Class;
+		public var Bounds_AZRA_PREG_NUDE:Rectangle = new Rectangle(56, 0, 80, 80);
+		[Embed(source = "../../../assets/images/npcs/adjatha/azra_big.png", mimeType = "image/png")]
+		public var Bust_AZRA_BIG:Class;
+		public var Bounds_AZRA_BIG:Rectangle = new Rectangle(55, 0, 80, 80);
+		[Embed(source = "../../../assets/images/npcs/adjatha/azra_big_dong.png", mimeType = "image/png")]
+		public var Bust_AZRA_BIG_DONG:Class;
+		public var Bounds_AZRA_BIG_DONG:Rectangle = new Rectangle(56, 0, 80, 80);
+		[Embed(source = "../../../assets/images/npcs/adjatha/azra_big_nude.png", mimeType = "image/png")]
+		public var Bust_AZRA_BIG_NUDE:Class;
+		public var Bounds_AZRA_BIG_NUDE:Rectangle = new Rectangle(53, 0, 80, 80);
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/ben.png", mimeType = "image/png")]
 		public var Bust_BEN:Class;
 
@@ -347,6 +369,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/kiro_xl_2_nude.png", mimeType = "image/png")]
 		public var Bust_KIRO_XL_2_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/krym.png", mimeType = "image/png")]
+		public var Bust_KRYM:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/krym_nude.png", mimeType = "image/png")]
+		public var Bust_KRYM_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/lah.png", mimeType = "image/png")]
 		public var Bust_LAH:Class;
 		public var Bounds_LAH:Rectangle = new Rectangle(30, 0, 65, 65);
@@ -398,6 +425,13 @@ package classes.Resources.Busts
 		public var Bust_MIRIAN:Class;
 		public var Bounds_MIRIAN:Rectangle = new Rectangle(92, 0, 70, 70);
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/naleen_bros.png", mimeType = "image/png")]
+		public var Bust_NALEEN_BROS:Class;
+		public function get Bust_NALEEN_BROTHER_A():Class { return Bust_NALEEN_BROS; }
+		public function get Bust_NALEEN_BROTHER_B():Class { return Bust_NALEEN_BROS; }
+		public var Bounds_NALEEN_BROTHER_B:Rectangle = new Rectangle(65, 10, 45, 45);
+		public var Bounds_NALEEN_BROTHER_A:Rectangle = new Rectangle(108, 10, 45, 45);
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/nova.png", mimeType = "image/png")]
 		public var Bust_NOVA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/nova_nude.png", mimeType = "image/png")]
@@ -541,6 +575,12 @@ package classes.Resources.Busts
 		public var Bust_TECHGUARD:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/techie_nude.png", mimeType = "image/png")]
 		public var Bust_TECHGUARD_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/techie_jail.png", mimeType = "image/png")]
+		public var Bust_TECHGUARD_JAIL:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/techie_jail_nude.png", mimeType = "image/png")]
+		public var Bust_TECHGUARD_JAIL_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/techie_jail_preg.png", mimeType = "image/png")]
+		public var Bust_TECHGUARD_JAIL_PREG:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/terensha.png", mimeType = "image/png")]
 		public var Bust_TERENSHA:Class;
@@ -609,6 +649,10 @@ package classes.Resources.Busts
 		public var Bust_ZIL_HOVERFLY_NUDE:Class;
 		public function get Bounds_ZIL_HOVERFLY_NUDE():Rectangle { return Bounds_ZIL_HOVERFLY; }
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/zil9tail.png", mimeType = "image/png")]
+		public var Bust_ZIL9TAIL:Class;
+		public var Bounds_ZIL9TAIL:Rectangle = new Rectangle(46, 15, 96, 55);
+
 		CONFIG::IMAGEPACK
 		{
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/able.png", mimeType = "image/png")]
@@ -655,6 +699,21 @@ package classes.Resources.Busts
 			public var Full_ATHA_TERRAN:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha_zil.png", mimeType = "image/png")]
 			public var Full_ATHA_ZIL:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra.png", mimeType = "image/png")]
+			public var Full_AZRA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra_dong.png", mimeType = "image/png")]
+			public var Full_AZRA_DONG:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra_nude.png", mimeType = "image/png")]
+			public var Full_AZRA_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra_preg_nude.png", mimeType = "image/png")]
+			public var Full_AZRA_PREG_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra_big.png", mimeType = "image/png")]
+			public var Full_AZRA_BIG:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra_big_dong.png", mimeType = "image/png")]
+			public var Full_AZRA_BIG_DONG:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra_big_nude.png", mimeType = "image/png")]
+			public var Full_AZRA_BIG_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ben.png", mimeType = "image/png")]
 			public var Full_BEN:Class;
@@ -912,6 +971,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro_xl_2_nude.png", mimeType = "image/png")]
 			public var Full_KIRO_XL_2_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/krym.png", mimeType = "image/png")]
+			public var Full_KRYM:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/krym_nude.png", mimeType = "image/png")]
+			public var Full_KRYM_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lah.png", mimeType = "image/png")]
 			public var Full_LAH:Class;
 
@@ -959,6 +1023,9 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mirian.png", mimeType = "image/png")]
 			public var Full_MIRIAN:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/naleen_bros.png", mimeType = "image/png")]
+			public var Full_NALEEN_BROS:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nova.png", mimeType = "image/png")]
 			public var Full_NOVA:Class;
@@ -1094,6 +1161,12 @@ package classes.Resources.Busts
 			public var Full_TECHGUARD:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/techie_nude.png", mimeType = "image/png")]
 			public var Full_TECHGUARD_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/techie_jail.png", mimeType = "image/png")]
+			public var Full_TECHGUARD_JAIL:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/techie_jail_nude.png", mimeType = "image/png")]
+			public var Full_TECHGUARD_JAIL_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/techie_jail_preg.png", mimeType = "image/png")]
+			public var Full_TECHGUARD_JAIL_PREG:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/terensha.png", mimeType = "image/png")]
 			public var Full_TERENSHA:Class;
@@ -1157,6 +1230,9 @@ package classes.Resources.Busts
 			public var Full_ZIL_HOVERFLY:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/hoverfly_nude.png", mimeType = "image/png")]
 			public var Full_ZIL_HOVERFLY_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/zil9tail.png", mimeType = "image/png")]
+			public var Full_ZIL9TAIL:Class;
 		}
 	}
 

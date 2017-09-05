@@ -1125,6 +1125,7 @@ public function haleyChallenge():void
 		
 		StatTracking.track("contests/haley milker losses");
 	}
+	StatTracking.track("haley milker/cum milked", cumMilked);
 	flags["USED_MILKER"] = 1;
 	processTime(10 + rand(6));
 	clearMenu();
@@ -1142,7 +1143,7 @@ public function haleyEllieVoyeurEncounter():void
 	{
 		output(" [pc.OneCock] is instantly raging hard");
 		if (pc.isCrotchExposed()) output(", straining in the air while pre forms at your tip.");
-		else output(", straining against your [pc.underGarments] while pre forms at your tip.");
+		else output(", straining against your [pc.lowerGarments] while pre forms at your tip.");
 	}
 	if (!pc.hasCock() && pc.hasVagina()) output(" [pc.OnePussy] is instantly soaking wet, dribbling its eagerness down the insides of your " + (pc.hasLegs() ? "[pc.legs]" : "[pc.thighs]") + ".");
 	if (pc.hasCock() && pc.hasVagina()) output(" [pc.OneCock] is instantly raging hard, the pre forming at its tip complementing [pc.onePussy] dribbling its eagerness down the insides of your " + (pc.hasLegs() ? "[pc.legs]" : "[pc.thighs]") + ".");
@@ -1371,7 +1372,7 @@ public function haleyEllieThreesome():void
 	output("\n\n<i>“She didn’t </i>tame<i> me, Ellie, I just want to try something new,”</i> Haley scowls and shakes her head, pawing at the ground unconsciously. <i>“Treated girls...”</i>");
 	output("\n\nEllie gives you a big, obvious wink and a thumbs-up.");
 	output("\n\nWhen Haley shifts Ellie’s blanket aside, the effect is immediate. The already-crowded stall suddenly seems impossibly cramped as her irresistible mare-musk washes over you, your [pc.cocks] instantly rock-hard");
-	if (!pc.isCrotchExposed()) output(" in your [pc.underGarments]. You hurriedly strip all of your clothes with single-minded focus - they’re just in the way");
+	if (!pc.isCrotchExposed()) output(" in your [pc.lowerGarments]. You hurriedly strip all of your clothes with single-minded focus - they’re just in the way");
 	output(". Haley groans desperately from beside you, her massive cock slapping against her underside and leaving a puddle of precum under her.");
 	output("\n\n<i>“No need for foreplay, girls,”</i> Ellie coos, wiggling her curvaceous butt. <i>“Come and get it.”</i>");
 	output("\n\nHaley doesn’t need to be told twice, seizing Ellie’s ass in her hands and squeezing hard as she rears up and mounts her.");
@@ -1512,7 +1513,7 @@ public function haleyEllieThreesome():void
 	{
 		output(" You remain behind Haley, blissfully pumping every bit of cum you have in your body into her " + (subCockIdx >= 0 ? "pussy" : "holes") + " even as she very shakily dismounts from a groaning Ellie, taking a prostrate position on the floor with her ass raised in the air for you to fuck.");
 		if (pc.isBimbo()) output("\n\n<i>“Aww, you’re so obed- obe... such a good girl,”</i> you pant distractedly, riding out the last of your orgasm. <i>“You’re taking it all, just like good girls are meant to!”</i>");
-		else output("\n\n<i>“That’s right, keep it up there ‘till I’m done,”</i> you pant, gripping her ass hard. <i>“You make a good bitch.”</i>");
+		else output("\n\n<i>“That’s right, keep it up there till I’m done,”</i> you pant, gripping her ass hard. <i>“You make a good bitch.”</i>");
 		output("\n\n<i>“Oh god,”</i> Haley moans, front half bowed low in deference. <i>“It feels so... so...”</i>");
 		output("\n\n<i>“You look so pretty like this,”</i> you murmur as Haley trails off. <i>“Legs spread and shaking with your ass held high. My perfect little slut.”</i>");
 	}

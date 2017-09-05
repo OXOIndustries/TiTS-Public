@@ -891,8 +891,7 @@ public function battleWithChaurmineVoluntarily():void
 
 	processTime(30);
 	//move to riiift
-	currentLocation = "UVIP Z22";
-	generateMap();
+	moveTo("UVIP Z22");
 	
 	var chaur:Creature = new Chaurmine();
 	chaur.credits = 300 + rand(201);

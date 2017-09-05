@@ -89,8 +89,7 @@ public function approachUshameeCorridor2():void
 	clearMenu();
 	chiefNeykkarHeader();
 	
-	currentLocation = "CANADA5";
-	generateMap();
+	moveTo("CANADA5");
 	
 	output("The leithan woman guides you over to ");
 	if (flags["MET_KALLY"] != undefined) output("the lodge");
@@ -244,8 +243,7 @@ public function firstDateUsha():void
 	clearMenu();
 	chiefNeykkarHeader();
 	
-	currentLocation = "GAME OVER";
-	generateMap();
+	moveTo("GAME OVER");
 	
 	output("<i>“There’s the gravball arena a couple blocks from here,”</i> Usha suggests as the two of you -- and a crowd of local bulls -- gather onto a spacious elevator and head towards the ground floor. <i>“And I’m pretty sure there’s a game in just a couple hours.”</i>");
 	output("\n\nSounds fun. You tell her to lead the way, falling in beside the towering leithan. Happily, the sidewalks on Vesperia are made for ‘taurs, so there’s plenty of room for both of you to walk side by side. Usha’s arm settles around your shoulder, pulling you against her flank and guiding you towards your destination. It isn’t long before you arrive at a wide, flat arena covered in banners for local sports teams and Vesperian lagers.");
@@ -274,8 +272,7 @@ public function secondDateUsha():void
 	clearMenu();
 	chiefNeykkarHeader();
 	
-	currentLocation = "GAME OVER";
-	generateMap();
+	moveTo("GAME OVER");
 	
 	output("<i>“I’ve got an idea,”</i> Usha says, leading you towards the edge of the city. <i>“C’mon, it’s not far.”</i>");
 	output("\n\nFair enough. You " + (pc.isTaur() ? "trot along beside Usha" : "hop onto Usha’s back") + " and set out to your mystery destination. Usha’s not exactly a master conversationalist, but over the half hour or so you end up walking, you manage to coax her into talking a little about her work with NovaSec.");
@@ -371,8 +368,7 @@ public function sexUsha():void
 	clearMenu();
 	chiefNeykkarHeader();
 	
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	
 	if (flags["USHA_SEXED"] == undefined)
 	{

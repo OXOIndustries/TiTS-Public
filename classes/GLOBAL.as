@@ -223,6 +223,7 @@
 		public static const TYPE_LUPINE:int 								= 75;
 		public static const TYPE_SHEEP:int 									= 76;
 		public static const TYPE_REDPANDA:int 								= 77;
+		public static const TYPE_RAHN:int 									= 78;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -303,6 +304,7 @@
 			"Lupine",
 			"Sheep",
 			"Lesser Panda",
+			"Rahn",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -1282,6 +1284,7 @@
 			"WOLFYNAIL",
 			"FUBMISTRESS",
 			"JAYFIREGROWLITHE",
+			"YOHSL",
 		];
 		
 		// Any time we want to show a name, this is where it'll be getting pulled from
@@ -1312,6 +1315,7 @@
 			"Wolfy-Nail",
 			"FubMistress",
 			"JayfireGrowlithe",
+			"YohSL",
 		];
 		
 		// These are what show up in the options menu combo boxes

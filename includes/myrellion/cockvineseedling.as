@@ -151,7 +151,7 @@ public function cockvineSeedlingJoin(sCockType:int = 0):void
 
 	if (pc.isBro() || pc.isTreatedMale())
 	{
-		output("\n\n<i>“C’mon lil bro,”</i> you say, grinning winningly and giving it a double finger shoot. <i>“This planet is chick city and I need a wingman. Time to join up with a winner!”</i>");
+		output("\n\n<i>“C’mon lil’ bro,”</i> you say, grinning winningly and giving it a double finger shoot. <i>“This planet is chick city and I need a wingman. Time to join up with a winner!”</i>");
 	}
 	else if (pc.isNice())
 	{

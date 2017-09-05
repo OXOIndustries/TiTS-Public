@@ -1152,7 +1152,7 @@ public function getOralFromCeria():void
 		output("\n\n<i>“Ooh, you’re giving me some options here. Let’s see here, I think I’ll try...”</i> Her finger hovers back and forth over your groin before settling on ");
 		if(dick) output("[pc.oneCock]");
 		else output("[pc.oneVagina]");
-		output(". <i>“... This one.”</i>");
+		output(". <i>“...This one.”</i>");
 	}
 	
 	var x:int = -1;

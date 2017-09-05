@@ -55,7 +55,7 @@ public function seraSexXXXTFModsAsk():void
 	author("Nonesuch");
 	showSera();
 	
-	output("<i>“Do you have anything that’s a bit more...”</i> You want to say “interesting”. <i>“... exotic?”</i>");
+	output("<i>“Do you have anything that’s a bit more...”</i> You want to say “interesting”. <i>“...exotic?”</i>");
 	
 	// PC has submitted
 	if(seraIsMistress())
@@ -2515,7 +2515,7 @@ public function seraGiftCollar(page:int = 0):void
 			break;
 		case 2:
 			output("The collar strains your neck as you wrap your hand around the hot, purple meat of Sera’s shaft. Just enough to be uncomfortable, just enough to remind you of its presence, whilst you pull her to full, wooden erection and spread your [pc.lips] over the bulbous tip, savoring the heavy, spicy flavor of her musk spreading over your taste buds.");
-			output("\n\n<i>“I know the dildo won’t be as good as the real thing,”</i> Sera murmurs, exhaling long and low and closing her eyes as you open wide and fill your mouth with her cock. <i>“That’s why we make the most of these li’l opportunities...”</i> ");
+			output("\n\n<i>“I know the dildo won’t be as good as the real thing,”</i> Sera murmurs, exhaling long and low and closing her eyes as you open wide and fill your mouth with her cock. <i>“That’s why we make the most of these lil’ opportunities...”</i> ");
 			output("\n\nYou sink deep onto her hot, delicious root, deep enough for the bulb to press against your tonsils, before slowly slurping outwards, retracting so you can lick her further down, fondling her big, heavy balls as you do it, creeping your fingers further inside even to trace the lips of her pussy. Her husky groans, and the presence of sharp nails stroking");
 			if(!pc.hasHair()) output(" behind your [pc.ear]");
 			else output(" you through your [pc.hair]");

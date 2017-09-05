@@ -393,7 +393,7 @@ public function askWhereLahIs():void
 	output("<i>“Do you have any idea where Lah is holed up?”</i> you ask. Darnock silently brings up the map of the nearby jungle again. A large area to the north is circled.");
 	output("\n\n<i>“The zil have attempted to disguise their paths of approach, but satellite surveillance shows that they have almost certainly made camp on the highlands to the north. There seems to be a zil settlement there, at the head of a large waterfall. You will find our ausar friend there, I am sure of it.”</i>");
 	output("\n\n<i>“If you know where they are...”</i> you say slowly.");
-	output("\n\n<i>“... why haven’t I directed an orbital laser strike on their position? Hired a team of SagiTom mercs to go up there and, ah, take care of business?”</i> The professor smiles at you humorlessly. <i>“Firstly: I want Remi alive. He is not some psychopathic pirate with his empathy burnt out, beyond redemption. His and the zils’ eternal souls can be saved. They WILL be saved. Secondly: He is playing a clever game, Steele. Such brute tactics would be noticed, recorded and would </i>prove<i> that Mhen’ga is too dangerous to be civilized. I shall not make a martyr of him. That is why I turn to a single trustworthy hunter, well experienced with the Mhen’gan jungle, to bring him back.”</i>");
+	output("\n\n<i>“...why haven’t I directed an orbital laser strike on their position? Hired a team of SagiTom mercs to go up there and, ah, take care of business?”</i> The professor smiles at you humorlessly. <i>“Firstly: I want Remi alive. He is not some psychopathic pirate with his empathy burnt out, beyond redemption. His and the zils’ eternal souls can be saved. They WILL be saved. Secondly: He is playing a clever game, Steele. Such brute tactics would be noticed, recorded and would </i>prove<i> that Mhen’ga is too dangerous to be civilized. I shall not make a martyr of him. That is why I turn to a single trustworthy hunter, well experienced with the Mhen’gan jungle, to bring him back.”</i>");
 	processTime(3);
 	pquestIntroChatMenu();
 }
@@ -488,7 +488,7 @@ public function talkToAbleAboutValue():void
 	showAble();
 	author("Nonesuch");
 	output("<i>“And what do the zil value?”</i> you persist.");
-	output("\n\n<i>“... sex?”</i> mumbles Able after a pause, shrugging. <i>“Um. We don’t like it when people take our belongings without winning them fairly. That’s the whole reason why the clan are attacking the plantation. We like being able to roam the forests free of danger. And... there’s something else the ausar is giving them. I don’t know what, but they are really committed to protecting him, it’s as if- as if he were an endless supply of food, or something. If you can work out what it is he’s offering them...”</i>");
+	output("\n\n<i>“...sex?”</i> mumbles Able after a pause, shrugging. <i>“Um. We don’t like it when people take our belongings without winning them fairly. That’s the whole reason why the clan are attacking the plantation. We like being able to roam the forests free of danger. And... there’s something else the ausar is giving them. I don’t know what, but they are really committed to protecting him, it’s as if- as if he were an endless supply of food, or something. If you can work out what it is he’s offering them...”</i>");
 	processTime(1);
 	flags["PQUEST_ABLE_VALUE_TALK"] = 1;
 	//[Customs] [Leave]
@@ -1067,8 +1067,7 @@ public function pcDunFallsOffDatHill():Boolean
 		pc.createStatusEffect("Sweaty", 0, 0, 0, 0, false, "Icon_Smelly", "You are covered with sweat from a hard climb, reducing your potential sexiness to many foes. Some, however, may like it.", false, 0);
 		//Place PC in WP square, +1 hour
 		processTime(60);
-		currentLocation = "2. WATERFALL POOL";
-		generateMap();
+		moveTo("2. WATERFALL POOL");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 		return true;
@@ -1216,7 +1215,7 @@ public function pcLoses2Hornet():void
 		if(pc.hasVagina()) 
 		{
 			output("[pc.EachVagina] responds immediately to her venom, juicing ");
-			if(!pc.isCrotchExposed()) output("your [pc.underGarments] ");
+			if(!pc.isCrotchExposed()) output("your [pc.lowerGarment] ");
 			output("so badly it’s like somebody just turned a warm tap on down there. ");
 		}
 		else if(pc.hasCock())
@@ -1231,7 +1230,7 @@ public function pcLoses2Hornet():void
 		{
 			output(" She raises a woad-daubed eyebrow as her gaze travels further down - presumably taking in the fact you aren’t tent-poling like mad ");
 			if(pc.isCrotchExposed()) output("downstairs");
-			else output("in your [pc.underGarments]");
+			else output("in your [pc.lowerGarmentOuter]");
 			output(" - before athletically swinging her armored yellow legs around your neck.");
 		}
 		if(pc.hasCock()) 
@@ -1275,8 +1274,7 @@ public function zilHornetCuntLoss2():void
 {
 	clearOutput();
 	author("Nonesuch");
-	currentLocation = "2. WATERFALL POOL";
-	generateMap();
+	moveTo("2. WATERFALL POOL");
 	output("You come to your senses in slow, woozy stages, each fresh awakening seeming to trigger a new set of aches somewhere on your frame. The booming crash of water informs you that you are at the bottom of the waterfall again - you vaguely remember the creak of a rope, a rough, careless descent... your [pc.thighs] and much of your [pc.legOrLegs] are utterly slathered in a filthy slurry of honey and your own seed, and your front is covered in angry red stings that are already beginning to itch.");
 	output("\n\nStill: She didn’t kill you. Your possessions are scattered around you. She left you right next to an ice-cold bath. You doubt you’ll be able to attempt the climb again anytime soon, but these are all reasons to be grateful.\n\n");
 	processTime(50);
@@ -1288,8 +1286,7 @@ public function zilHornetDickloss2():void
 {
 	clearOutput();
 	author("Nonesuch");
-	currentLocation = "2. WATERFALL POOL";
-	generateMap();
+	moveTo("2. WATERFALL POOL");
 	output("You come to your senses in slow, woozy stages, each fresh awakening seeming to trigger a new set of aches somewhere on your frame. The booming crash of water informs you that you are at the bottom of the waterfall again - you vaguely remember the creak of a rope, a rough, careless descent... your [pc.thighs] and much of your [pc.legOrLegs] are utterly slathered in a filthy slurry of honey and your own seed, and your front is covered in angry red stings that are already beginning to itch.");
 	output("\n\nStill: She didn’t kill you. Your possessions are scattered around you. She left you right next to an ice-cold bath. You doubt you’ll be able to attempt the climb again anytime soon, but there are reasons to be grateful.");
 	output("\n\n");
@@ -1377,8 +1374,7 @@ public function loseToHoverfly():void
 	output("\n\n<i>“We aren’t your personal honey trove, land-stealer,”</i> he growls, laying your unresisting body down next to the waterfall pool. <i>“Tell your masters that - and stay in the jungle if you want more.”</i> He buzzes off with a high whine.\n\n");
 	pc.loadInMouth(enemy);
 	processTime(25);
-	currentLocation = "2. WATERFALL POOL";
-	generateMap();
+	moveTo("2. WATERFALL POOL");
 	CombatManager.genericLoss();
 }
 
@@ -1413,8 +1409,7 @@ public function beatUpNaleenRapeBall():void
 		output("\n\nYou crawl for a little while on your hands and [pc.knees], trying to put as much distance between you and the naleen whilst recovering your breath and senses in the dark. After a short amount of time, things start to turn a little grayer, and the omnipresent roar of the waterfall overhead starts to sound a little clearer. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
 		output("\n\nYou will have to start the climb again - but that seems a fairly small price to pay, weighed against not dying and not getting gang-raped by serpents.\n\n");
 	}
-	currentLocation = "2. WATERFALL POOL";
-	generateMap();
+	moveTo("2. WATERFALL POOL");
 	CombatManager.genericVictory();
 }
 
@@ -1535,8 +1530,7 @@ public function naleenBallLossFinisher():void
 	output("\n\nOver the course of the next half hour, you find your [pc.gear] scattered around you and put it all back on. You then crawl slowly in the direction you think you detect a slight breeze coming from. As you progress the light starts to become a bit grayer, the sound of the waterfall a bit clearer, and you have enough about you to get up and start gingerly waddling instead. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
 	output("\n\nYou will have to start the climb again - but at least you’re still alive. And you do now know where the most rapacious pitfall on this planet lies.\n\n");
 	processTime(120);
-	currentLocation = "2. WATERFALL POOL";
-	generateMap();
+	moveTo("2. WATERFALL POOL");
 	CombatManager.genericLoss();
 }
 
@@ -2282,7 +2276,7 @@ public function doSomePeaceStuff():void
 	author("Nonesuch");
 	output("<i>“You need to come to some sort of compromise with star-people,”</i> you say. <i>“Show that you are peaceful. If not with Snugglé, then someone. If you just keep attacking whoever, eventually you’ll get soldiers landing here, and things will get ugly.”</i>");
 	output("\n\n<i>“Are you saying that we cannot drive off whoever we choose?”</i> Quinn raises a gleaming black eyebrow at you.");
-	output("\n\n<i>“... Yes?”</i> you have to reply. <i>“You already know star-people have vastly better tech--”</i>");
+	output("\n\n<i>“...Yes?”</i> you have to reply. <i>“You already know star-people have vastly better tech--”</i>");
 	output("\n\n<i>“What I know,”</i> the female zil interrupts with an irritated slap on her throne, <i>“is that the land-stealers hide and quiver in their palace from our attacks. That these Esbeth people of yours barely dare set foot outside their homes for fear of us. We are zil! We fight fearlessly and relentlessly, guided now by the star knowledge of the word-wolf! You seek to threaten us, alien, as if we weren’t warriors. Do not do so again.”</i>");
 	output("\n\nThere’s a clash of weapons and a loud, buzzing cheer behind you. Lah hasn’t said a word this time, but a glance over your shoulder tells you he’s looking unbearably smug.");
 	processTime(5);
@@ -2775,8 +2769,9 @@ public function manerLahTurnInProc():void
 	showBust("LAH","DARNOCK");
 	showName("DARNOCK\n& RK LAH");
 	output("Able buzzes out of the air and opens the gate for you. His tar black eyes flick from you to the fugitive ausar, his slender face full of questions - but he doesn’t ask them.");
-	currentLocation = "THARE MANOR";
-	generateMap();
+	
+	moveTo("THARE MANOR");
+	
 	output("\n\n<i>“Sir is waiting for you.”</i>");
 	output("\n\nThat he is. Darnock stands on the steps of the manor, a proud beam splitting his face, and opens his arms wide as you come up the driveway, Lah in front of you.");
 	output("\n\n<i>“My dear [pc.boyGirl],”</i> the old human exults. <i>“I knew I had placed my faith wisely when I put you in charge of this little matter. Well done, ah, well done indeed!”</i>");
@@ -2878,8 +2873,9 @@ public function returnToPlantationWithoutLah():void
 	output("\n\n<i>“Sir is waiting for you.”</i>");
 	output("\n\nThat he is. Darnock stands on the manor steps, watching you approach up the gravel drive with a quizzical, searching expression.");
 	output("\n\n<i>“Steele! You return. In one piece - which is excellent to see - but also, I note, empty-handed. May I ask what has happened to our erstwhile escapee?”</i>");
-	currentLocation = "THARE MANOR";
-	generateMap();
+	
+	moveTo("THARE MANOR");
+	
 	output("\n\nYou go inside to his dining room and wait for him to settle in his chair before giving a debriefing. The old human plays with a pen, humorless smile frozen on his lips as you explain that you settled matters with the zil, and they agreed to stop attacking the plantation - but that Lah himself escaped into the jungle before you could nab him.");
 	output("\n\n<i>“A fine tale, one which I’m sure will garner you much acclaim once the celebrity sites get ahold of it,”</i> he says at last, tapping the pen on his desk. <i>“" + pc.mf("Dashing Sir","Delightful Miss") + " Steele melts the heart of the sultry alien princess and solves the stand-off through wit and chivalry - alas, the fiery rabble rouser slips through [pc.hisHer] grasp. To appear dramatically in a later installment, perhaps! However. Allow me to apply a less rosy gloss to this.”</i>");
 	output("\n\nDarnock gets up and walks slowly over to the veranda, arms behind his back.");

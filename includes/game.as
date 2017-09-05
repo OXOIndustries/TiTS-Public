@@ -203,10 +203,6 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	if (!disableExploreEvents())
 	{
 		if (tryEncounterFreedomBeef()) return;
-		if (currentLocation == shipLocation)
-		{
-			if(seraRecruited() && seranigansTrigger("hijacked")) return;
-		}
 	}
 	
 	if(inCombat())
@@ -575,6 +571,7 @@ public const CREW_GOO_ARMOR_NOT:int = 9;
 public const CREW_VARMINT:int = 10;
 public const CREW_SIEGEWFULFE:int = 11;
 public const CREW_AZRA:int = 12;
+public const CREW_PAIGE:int = 13;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -591,6 +588,7 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (yammiIsCrew()) crewMembers.push(CREW_YAMMI);
 	if (gooArmorIsCrew()) crewMembers.push(CREW_GOO_ARMOR_IS_CREW);
 	if (pexigaIsCrew()) crewMembers.push(CREW_PEXIGA);
+	if (paigeIsCrew()) crewMembers.push(CREW_PAIGE);
 
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -675,6 +673,7 @@ public function getCrewOnShip():Array
 	if (annoIsCrew()) c.push(anno);
 	//9999 - not sure what I need to set up for this. Probably just a creature link but none done yet:
 	//if (azraIsCrew()) c.push(azra);
+	//if (paigeIsCrew()) c.push(paige);
 	if (bessIsCrew()) c.push(bess);
 	if (celiseIsCrew()) c.push(celise);
 	if (reahaIsCrew()) c.push(reaha);
@@ -702,17 +701,28 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if (!counter)
 		{
-			if (hours >= 6 && hours <= 7 || hours >= 19 && hours <= 20) crewMessages += "\n\nAnno is walking about in her quarters, sorting through her inventory and organizing some of her equipment.";
-			else if (hours >= 12 || hours <= 13) crewMessages += "\n\nAnno’s busy doing a quick workout in her quarters to the beat of some fast-paced ausar heavy metal. <i>“Gotta keep in shape!”</i> she says.";
-			else if (!curedReahaInDebt() && rand(3) == 0) crewMessages += "\n\nAnno’s sitting in the kitchen with a [reaha.milkNoun] moustache on her upper lip, looking awfully happy with herself. You can’t imagine where that came from...";
-			else crewMessages += "\n\nAnno is sitting in the common area with her nose buried in half a dozen different data slates. It looks like she’s splitting her attention between the latest Warp Gate research and several different field tests of experimental shield generators.";
-			addButton(btnSlot++, "Anno", annoFollowerApproach);
+			//25% chance of special maid scene proccing if Anno has the maid outfit and haven't seen the scene in a day - gotta have a dink that fits and not be naga or taur
+			if (flags["ANNO_MAID_OUTFIT"] != undefined && rand(4) == 0 && !pc.hasStatusEffect("The Lusty Ausar Maid") && !pc.isTaur() && !pc.isNaga() && pc.cockThatFits(anno.vaginalCapacity()) >= 0)
+			{
+				if (rand(2) == 0) crewMessages += "\n\nAnno’s not in her quarters as you’d expect. Instead you find her prancing about the common area of your ship, dressed in what appears to be... a maid outfit?";
+				else crewMessages += "\n\nAnno doesn’t seem to be in her quarters at the moment, leaving the room strikingly empty, but you think you catch a few glimpses of the snowy pup cavorting about your ship’s common area. Odd.";
+				addButton(btnSlot++, "Anno", annoFrenchMaid);
+			}
+			else
+			{
+				if (hours >= 6 && hours <= 7 || hours >= 19 && hours <= 20) crewMessages += "\n\nAnno is walking about in her quarters, sorting through her inventory and organizing some of her equipment.";
+				else if (hours >= 12 || hours <= 13) crewMessages += "\n\nAnno’s busy doing a quick workout in her quarters to the beat of some fast-paced ausar heavy metal. <i>“Gotta keep in shape!”</i> she says.";
+				// PC has Freed Reaha and Anno, add to Anno’s random selection:
+				else if (!curedReahaInDebt() && rand(3) == 0) crewMessages += "\n\nAnno’s sitting in the kitchen with a [reaha.milkNoun] moustache on her upper lip, looking awfully happy with herself. You can’t imagine where that came from...";
+				else crewMessages += "\n\nAnno is sitting in the common area with her nose buried in half a dozen different data slates. It looks like she’s splitting her attention between the latest Warp Gate research and several different field tests of experimental shield generators.";
+				addButton(btnSlot++, "Anno", annoFollowerApproach);
+			}
 		}
 	}
 	if (azraIsCrew())
 	{
-		if(!counter) crewMessages += azraCrewBlurbs(btnSlot++);
 		count++;
+		if(!counter) crewMessages += azraCrewBlurbs(btnSlot++);
 	}
 	if (bessIsCrew())
 	{
@@ -730,6 +740,15 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			if(reahaIsCrew() && !curedReahaInDebt() && rand(3) == 0) crewMessages += "\n\nCelise looks strangely [reaha.milkColor] at the moment, a cloud of discolored liquid floating listlessly inside her. Looks like she’s been feeding off a certain bovine lately...";
 			else crewMessages += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
 			addButton(btnSlot++, "Celise", celiseFollowerInteractions);
+		}
+	}
+	if (paigeIsCrew())
+	{
+		count++;
+		if(!counter)
+		{
+			crewMessages += "\n\nPaige mostly keeps to her room when not helping you navigate the starways.";
+			addButton(btnSlot++,"Paige",paigeCrewApproach);
 		}
 	}
 	if (pippaOnShip())
@@ -1296,6 +1315,12 @@ public function shipMenu():Boolean
 		azraInShipGreeting();
 		return true;
 	}
+	//Paige follower greeting
+	if(paigeIsCrew() && flags["PAIGE_SHIP_GREETING"] == undefined) 
+	{
+		firstTimePaigeCrewHiHi();
+		return true;
+	}
 	
 	// Location Exceptions
 	if(shipLocation == "600") myrellionLeaveShip();
@@ -1309,6 +1334,11 @@ public function shipMenu():Boolean
 		addButton(4, "Shower", showerMenu);
 		if(shipLocation == "K16_DOCK") addButton(5,"Take Off",leaveZePrison);
 		else addButton(5, "Fly", flyMenu);
+		if(pc.hasStatusEffect("PAIGE_COMA_CD")) 
+		{
+			output("\n\n<b>No sense leaving while Paige is still in surgery...</b>");
+			addDisabledButton(5,"Fly","Fly","Maybe you should stay close while Paige is in surgery.");
+		}
 	}
 	
 	return false;
@@ -1317,13 +1347,7 @@ public function shipMenu():Boolean
 public function flyMenu():void
 {
 	clearOutput();
-
-	//Start the stuff to unlock flying to space jail...
-	if(flags["TARKUS_BOMB_TIMER"] == 0 && !pc.hasStatusEffect("GastiUnlockTimer"))
-	{
-		prisonerSent(3);
-	}
-
+	
 	//Make sure you can leave the planet!
 	if(!leavePlanetOK())
 	{
@@ -1345,7 +1369,15 @@ public function flyMenu():void
 		if(flags["CHECKED_GEAR_AT_OGGY"] != undefined) flags["CHECKED_GEAR_AT_OGGY"] = undefined;
 		pc.removeStatusEffect("Disarmed");
 	}
-	output("Where do you want to go?");
+	if(paigeIsCrew())
+	{
+		showPaige();
+		showName("WHERE\nTO?");
+		output("You ring Paige up on your ship’s intercom. <i>“Paige to the bridge,”</i> you say into the receiver, <i>“Paige to the bridge.”</i>");
+		output("\n\nYour Ausar navigator is by your side in just another moment. <i>“Yes, captain?”</i> she asks cheerfully.");
+		output("\n\nYou tell her that you’re setting off, and you want your navigator to plot you a course. <i>“Of course!”</i> she says, excited to get to work. <i>“Where are we headed?”</i>");
+	}
+	else output("Where do you want to go?");
 	clearMenu();
 	//TAVROS
 	if(shipLocation != "TAVROS HANGAR") addButton(0, "Tavros", flyTo, "Tavros");
@@ -1412,14 +1444,26 @@ public function flyMenu():void
 	//Gastigoth
 	if(MailManager.isEntryViewed("gastigoth_unlock"))
 	{
-		if(shipLocation == "K16_DOCK") addDisabledButton(9,"Gastigoth","Gastigoth","You're already there!");
+		if(shipLocation == "K16_DOCK") addDisabledButton(9,"Gastigoth","Gastigoth","You’re already here!");
 		else addButton(9,"Gastigoth",flyTo,"Gastigoth");
 	}
-	else addDisabledButton(9,"Locked","Locked","You have not learned of this location's coordinates yet.");
+	else addDisabledButton(9,"Locked","Locked","You have not learned of this location’s coordinates yet.");
+	//Breedwell
+	if(MailManager.isEntryViewed("breedwell_unlock"))
+	{
+		// PC must not be a taur, infertile or e.g. on Sterilex to choose this option before they’ve been there at all.
+		if(shipLocation == "BREEDWELL_DOCK") addDisabledButton(10, "Breedwell", "Breedwell Centre", "You’re already here.");
+		else if(!CodexManager.entryViewed("Rahn")) addDisabledButton(10, "Breedwell", "Breedwell Centre", "Maybe you should read up on the rahn before traveling to this location...");
+		else if(!pc.hasGenitals()) addDisabledButton(10, "Breedwell", "Breedwell Centre", "It might be a pointless journey if you have no genitals to make use of this location...");
+		else if((!pc.hasVagina() || pc.fertility() <= 0) && (!pc.hasCock() || pc.virility() <= 0)) addDisabledButton(10, "Breedwell", "Breedwell Centre", "Probably unwise to check this place out whilst you’re infertile. The ad gave you the distinct impression that the Breedwell Centre was counting on you being... fruitful.");
+		else if(pc.isTaur()) addDisabledButton(10, "Breedwell", "Breedwell Centre", "One of the disclaimers from the ad did stick with you: <i>“Tauric beings not supported”</i>. Gobsmacking discrimination, really.");
+		else addButton(10, "Breedwell", flyTo, "Breedwell");
+	}
+	else addDisabledButton(10, "Locked", "Locked", "You have not learned of this location’s coordinates yet.");
 	//KQ2
 	if (flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_DETAILED"] == undefined)
 	{
-		addButton(10, "Kara", flyTo, "karaQuest2", "Kara", "Go see what Kara has up her sleeve.");
+		addButton(11, "Kara", flyTo, "karaQuest2", "Kara", "Go see what Kara has up her sleeve.");
 	}
 	
 	addButton(14, "Back", mainGameMenu);
@@ -1519,9 +1563,14 @@ public function flyTo(arg:String):void
 			currentLocation = "K16_DOCK";
 			arrivalAtGastibooty();
 			break;
+		case "Breedwell":
+			shipLocation = "BREEDWELL_HANGAR";
+			currentLocation = "BREEDWELL_HANGAR";
+			interruptMenu = flyToBreedwell();
+			break;
 	}
-	
 	var timeFlown:Number = (shortTravel ? 30 + rand(10) : 600 + rand(30));
+	if(paigeIsCrew()) timeFlown = Math.floor(timeFlown * 0.75);
 	StatTracking.track("movement/time flown", timeFlown);
 	processTime(timeFlown);
 	setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
@@ -1720,8 +1769,7 @@ public function sneakBackYouNudist():void
 	clearOutput();
 	output("You meticulously make your way back to the ship using every ounce of subtlety you possess. It takes way longer than you would have thought thanks to a couple of near-misses, but you make it safe and sound to the interior of your craft.");
 	processTime(180+rand(30));
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1748,7 +1796,13 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	}
 	//Reset the thing that disabled encounters
 	flags["ENCOUNTERS_DISABLED"] = undefined;
-
+	
+	//Procs on approaching ship dock:
+	if (arg == shipLocation)
+	{
+		if(disableExploreEvents() && currentLocation != "SHIP INTERIOR" && seranigansTrigger("hijacked")) return;
+	}
+	
 	//Procs on ship exit:
 	if(currentLocation == "SHIP INTERIOR")
 	{
@@ -1788,15 +1842,21 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	if(moveMinutes < 0) moveMinutes = 0;
 	StatTracking.track("movement/time travelled", moveMinutes);
 	processTime(moveMinutes);
-	flags["PREV_LOCATION"] = currentLocation;
-	currentLocation = arg;
-	generateMap();
+	moveTo(arg, true);
 	if(pc.hasStatusEffect("Treatment Exhibitionism Gain 4 DickGirls") && pc.hasCock() && rooms[arg].hasFlag(GLOBAL.PUBLIC)) treatmentCumCowExhibitionism();
 	if(pc.hasPerk("Ultra-Exhibitionist")) exhibitionismLocationToggle();
 	trace("Printing map for " + currentLocation);
 	//mapper.printMap(map);
 	//process time here, then back to mainGameMenu!
 	if(goToMainMenu) mainGameMenu(moveMinutes);
+}
+// Place PC and update map!
+// No time or event triggers.
+public function moveTo(arg:String, logPrevious:Boolean = false):void
+{
+	if(logPrevious) flags["PREV_LOCATION"] = currentLocation;
+	currentLocation = arg;
+	generateMap();
 }
 
 public function variableRoomUpdateCheck():void
@@ -1830,6 +1890,8 @@ public function variableRoomUpdateCheck():void
 		rooms["RESIDENTIAL DECK 15"].removeFlag(GLOBAL.NPC);
 		lockAinasRoom();
 	}
+	//Paige's place/yoga:
+	paigeRoomsUpdate();
 	//Place/remove Semith's NPC flag from chess area based on time and if pc played with him already
 	if (hours >= 12 && hours <= 17) rooms["RESIDENTIAL DECK 7"].addFlag(GLOBAL.NPC);
 	else rooms["RESIDENTIAL DECK 7"].removeFlag(GLOBAL.NPC);
@@ -2391,6 +2453,9 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		geneSubmissionLevelDecay(totalDays);
 		seraBitcheningStoreInventory(totalDays);
 		seraOnTavrosObedience(totalDays);
+		processGastigothEvents();
+		breedwellTryUnlock();
+		//9999 processQuaellePregEvents(deltaT, doOut, totalDays);
 	}
 	
 	var totalHours:uint = Math.floor((minutes + deltaT) / 60);
@@ -2478,6 +2543,13 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		{
 			if(flags["KASHIMA_DELAY_TIMER"] == undefined) flags["KASHIMA_DELAY_TIMER"] = GetGameTimestamp();
 			else if(GetGameTimestamp() >= (flags["KASHIMA_DELAY_TIMER"] + 60*24*5)) goMailGet("ushamee_meet");
+		}
+		
+		//Syri Panty vid
+		if (!MailManager.isEntryUnlocked("syri_video") && flags["SYRI_GIFT_PANTY"] != undefined)
+		{
+			if(flags["SYRI_VIDEO_DELAY_TIMER"] == undefined) flags["SYRI_VIDEO_DELAY_TIMER"] = GetGameTimestamp();
+			else if(GetGameTimestamp() >= (flags["SYRI_VIDEO_DELAY_TIMER"] + 60*24*3)) goMailGet("syri_video");
 		}
 		
 		//Other Email Checks!

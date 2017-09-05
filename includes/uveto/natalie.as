@@ -164,7 +164,7 @@ public function greetNatalie(response:String = "none"):void
 				output(" Now that she mentions it, though, it’s suddenly real easy to mentally undress the sexy blonde. You’ve already seen all those supple curves, seen her body jiggling in all the right places, just on another person. Your mind automatically fills in the blanks left by Nat’s heavy coat and tight shirt.");
 				if(pc.biggestCockLength() >= 18) output(" There’s an audible <i>thunk</i> as your [pc.cockBiggest] throbs with interest, bouncing off the table’s underside.");
 			}
-			output("\n\nNat squirms under your continued gaze. <i>“That’s why I took this posting. Get away from people for a bit, ‘till Steph’s season is over.”</i>");
+			output("\n\nNat squirms under your continued gaze. <i>“That’s why I took this posting. Get away from people for a bit, till Steph’s season is over.”</i>");
 			output("\n\nFiguring you ought to change the subject before poor Nat goes permanently red in the face, you ask what posting that is: who’s she working for?");
 			output("\n\n<i>“The Confederate Scout Authority,”</i> she answers quickly. <i>“I just finished my master’s in xeno-zoology, and the last scientist they had here just got married, so when I heard the station was open, I jumped at it! It’s not glorious frontier work, but there’s so many species here on Uveto that we still know next to nothing about! The inner ocean is just teeming with life, at least some of which is sapient... and completely out of communication even after centuries of colonization.”</i>");
 			output("\n\nGet her talking, and that nasty stutter just vanishes! You grin and nod");
@@ -336,8 +336,7 @@ public function talkNatalie(response:String = "none"):void
 			break;
 		case "varmint tame":
 			// Take PC to ship. Pass 30 minutes. Remove Silicone Bag.
-			currentLocation = "SHIP INTERIOR";
-			generateMap();
+			moveTo("SHIP INTERIOR");
 			processTime(25 + rand(10));
 			pc.destroyItemByClass(Silicone, 1);
 			flags["NATALIE_NEED_SILICONE"] = undefined;

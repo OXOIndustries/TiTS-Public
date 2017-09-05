@@ -664,7 +664,7 @@ public function lirielTitFuck(myrWomen:Boolean = false):void
 	}
 	else
 	{
-		output("\n\n<i>“Sorry hun,”</i> Liriel says as you take a step closer, <i>“... but that’s way too thick for some nipple action.”</i> And with that, she leans forward and turns over, showing off her impressive green rack in all its glory. Apparently you’ve been upgraded to full titty fuck.");
+		output("\n\n<i>“Sorry hun,”</i> Liriel says as you take a step closer, <i>“...but that’s way too thick for some nipple action.”</i> And with that, she leans forward and turns over, showing off her impressive green rack in all its glory. Apparently you’ve been upgraded to full titty fuck.");
 		output("\n\nSo you climb onto the buxom broad, sitting your bare ass on her slim tummy, and place your [pc.cock " + x + "] between her warm emerald tits. As you do, she takes her tits in hand and smashes them together before saying, ");
 		if (myrWomen) output("<i>“Ladies, make sure you try this at home,”</i> to the crowd of myr women who respond with much swooning and fawning.");
 		else output("<i>“Go ahead tiger, show me how much you like these big ol’ knockers.”</i>");

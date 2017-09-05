@@ -529,6 +529,9 @@ public function nurseryPlayerApptFunc():Boolean
 	else if (flags["BRIGET_MET"] == undefined) addDisabledButton(0, "Maternity", "Maternity Wait", "Perhaps you should meet with the head nurse before trying to do this...");
 	else addDisabledButton(0, "Maternity", "Maternity Wait", "If you were pregnant, you could probably camp out here and be looked after until you were due...");
 	addButton(1, "Shower", showerMenu, "nursery"); // this will probably require some tweaking internally to allow it to make complete sense off of the players actual ship.
+	
+	// Belly size hotfix
+	if (!pc.isPregnant() && pc.bellyRatingMod != 0) addButton(4, "Fix Belly", nurseryFixBelly, undefined, "Fix Belly", "It seems your belly size is off...");
 
 	return false;
 }
@@ -1150,7 +1153,16 @@ public function nurseryDisplayGenericChildren(sortedTypedBuckets:Object):void
 				var entries:Array = [];
 				if (b.Male > 0) entries.push(b.Male + " son" + (b.Male == 1 ? "" : "s"));
 				if (b.Female > 0) entries.push(b.Female + " daughter" + (b.Female == 1 ? "" : "s"));
-				if (b.Intersex > 0) entries.push(b.Intersex + " mixed-gender");
+				if (b.Intersex > 0)
+				{
+					switch(int(key))
+					{
+						case GLOBAL.TYPE_GOOEY:
+						case GLOBAL.TYPE_BOTHRIOC:
+						case GLOBAL.TYPE_RAHN: entries.push(b.Intersex + " monogender" + (b.Intersex == 1 ? "" : "s")); break;
+						default: entries.push(b.Intersex + " mixed-gender"); break;
+					}
+				}
 				if (b.Neuter > 0) entries.push(b.Neuter + " ungendered");
 
 				if(entries.length > 0)
@@ -1250,14 +1262,32 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 					if(baby.NumNeuter > 0) output(" Sexless");
 					if(baby.NumFemale > 0) output(" Female");
 					if(baby.NumMale > 0) output(" Male");
-					if(baby.NumIntersex > 0) output(" Hermaphrodite");
+					if(baby.NumIntersex > 0)
+					{
+						switch(baby.RaceType)
+						{
+							case GLOBAL.TYPE_GOOEY:
+							case GLOBAL.TYPE_BOTHRIOC:
+							case GLOBAL.TYPE_RAHN: output(" Monogender"); break;
+							default: output(" Hermaphrodite"); break;
+						}
+					}
 				}
 				else if(baby.Quantity > 1)
 				{
 					var sexes:Array = [];
 					if(baby.NumMale > 0) sexes.push(baby.NumMale + " son" + (baby.NumMale == 1 ? "" : "s"));
 					if(baby.NumFemale > 0) sexes.push(baby.NumFemale + " daughter" + (baby.NumFemale == 1 ? "" : "s"));
-					if(baby.NumIntersex > 0) sexes.push(baby.NumIntersex + " mixed-gender");
+					if(baby.NumIntersex > 0)
+					{
+						switch(baby.RaceType)
+						{
+							case GLOBAL.TYPE_GOOEY:
+							case GLOBAL.TYPE_BOTHRIOC:
+							case GLOBAL.TYPE_RAHN: sexes.push(baby.NumIntersex + " monogender" + (baby.NumIntersex == 1 ? "" : "s")); break;
+							default: sexes.push(baby.NumIntersex + " mixed-gender"); break;
+						}
+					}
 					if(baby.NumNeuter > 0) sexes.push(baby.NumNeuter + " ungendered");
 					if(sexes.length > 0) output(" " + CompressToList(sexes));
 				}
@@ -1358,7 +1388,7 @@ public function nurseryMeetBrigetII(acceptedHug:Boolean):void
 			output("\n\nEducation, you know, Briget can handle in spades. She looks every bit the sexy teacher, and has the cyber-brain to match.");
 			break;
 		/*case GLOBAL.UPBRINGING_SLUTTY:
-			output("\n\nBriget must not have realized exactly what you were up to all those years, but you feel that she won't let them get up to anything naughty for a long while.");
+			output("\n\nBriget must not have realized exactly what you were up to all those years, but you feel that she won’t let them get up to anything naughty for a long while.");
 			break;*/
 		case GLOBAL.UPBRINGING_BALANCED:
 		default:
@@ -1820,6 +1850,33 @@ public function nurseryMaternityWaitPostBirths(args:Object):void
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+public function nurseryFixBelly(response:String = "intro"):void
+{
+	clearOutput();
+	showName("BELLY\nFIX");
+	clearMenu();
+	
+	switch(response)
+	{
+		case "intro":
+			output("Choosing to do this will clear your excess belly size and revert your belly back to its default size. Are you sure you want to do this?");
+			addButton(0, "Yes", nurseryFixBelly, "yes");
+			addButton(1, "No", nurseryFixBelly, "no");
+			break;
+		case "yes":
+			output("Your nanomachines get to work and tingles run across your [pc.belly]. Suddenly, it shifts and reverts back to its former shape... more or less.");
+			
+			pc.bellyRatingMod = 0;
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		case "no":
+			output("It’s just a minor bug, really. Maybe later perhaps?");
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
 }
 
 public function nurserySpecialistCockvine(numVines:int = 1):void

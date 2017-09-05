@@ -85,6 +85,8 @@ package classes.GameData.Pregnancy.Handlers
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
 						AddLogEvent("Your stomach continues to swell inexorably outwards, damping your body in a swelter of soft warmth and low-level horniness. The areola of your [pc.nipples] have spread a bit, and your [pc.chest] in general feels sensitive and pleasant to touch. More difficult to quantify is a certain self-satisfied rightness; a deep, ancient knowledge of contentment. You certainly feel a lot more sold on this interminable pregnancy than you did a couple of months ago.", "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1, true);
+						if(kGAMECLASS.pc.milkMultiplier < 25) kGAMECLASS.pc.milkMultiplier = 25;
+						if(kGAMECLASS.pc.milkFullness < 25) kGAMECLASS.pc.milkFullness = 25;
 						kGAMECLASS.pc.milkFullness += 15;
 					}, true);
 				}
@@ -92,8 +94,10 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i == 175)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						AddLogEvent("You now walk with a rounded gait in order to support the soccer ball you’re toting out in front of you, and you feel very nervy about attempting to run." + (kGAMECLASS.pc.biggestTitSize() > 1 ? " " + (kGAMECLASS.pc.isLactating() ? "Your [pc.breasts] are also starting to leak [pc.milk] at the most inopportune of moments" : "Your [pc.breasts] are also starting to swell with even more [pc.milk] than usual") : "") + ", your body stepping up its anticipation of providing for your growing child. You start slightly as something boops against the taut skin of your stomach from within.", "passive");
+						AddLogEvent("You now walk with a rounded gait in order to support the soccer ball you’re toting out in front of you, and you feel very nervy about attempting to run." + (kGAMECLASS.pc.biggestTitSize() > 1 ? " " + (!kGAMECLASS.pc.isLactating() ? "Your [pc.breasts] are also starting to leak [pc.milk] at the most inopportune of moments" : "Your [pc.breasts] are also starting to swell with even more [pc.milk] than usual") : "") + ", your body stepping up its anticipation of providing for your growing child. You start slightly as something boops against the taut skin of your stomach from within.", "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1.5, true);
+						if(kGAMECLASS.pc.milkMultiplier < 50) kGAMECLASS.pc.milkMultiplier = 50;
+						if(kGAMECLASS.pc.milkFullness < 50) kGAMECLASS.pc.milkFullness = 50;
 						kGAMECLASS.pc.milkFullness += 15;
 						// Insert Reflex reduction modifier
 						if(kGAMECLASS.pc.hasStatusEffect("Sera Spawn Reflex Mod")) kGAMECLASS.pc.addStatusValue("Sera Spawn Reflex Mod", 1, 5);

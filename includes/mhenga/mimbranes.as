@@ -3419,7 +3419,7 @@ public function mimbraneCombatInterference():Boolean
 				if (eligibleMimbranes[i] == "Mimbrane Cock")
 				{
 					output("Some unrelenting pressure in your");
-					if(pc.isCrotchGarbed()) output(" [pc.underGarments]");
+					if(pc.isCrotchGarbed()) output(" [pc.lowerGarments]");
 					else output(" crotch");
 					output(" is getting unbearable, forcing you to find out what’s going on. The moment you peek inside, your [pc.cock] overwhelms you with a potent blast of sexual fog. Your Mimbrane-controlled dick works furiously to smother you in its sexual cloud before you can entomb it back under your garments, only its furious chirps able to escape.");
 				}

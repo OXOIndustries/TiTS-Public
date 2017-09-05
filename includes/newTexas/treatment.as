@@ -590,7 +590,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//E -> big E
 					else if(pc.breastRows[0].breastRatingRaw < 8)
 					{
-						AddLogEvent(ParseText("You let your hand play across your [pc.nipple] during an idle moment, just to check if your sensitivity is getting crazy or anything. The cow-girls seem to enjoy it, but while it gives you a fluttery thrill, it doesn’t make you weak in the knees. It doesn’t make you moo and moan in equal measure, though the thought of squeezing on some slutty cow till she does makes your nips perk quite nicely. Kneading your pillowy mammaries and smiling, you admire how big they’re getting, reveling in how the pliant flesh bulges between your questing fingers. It’s the only part of you that’s getting softer, and you’re completely okay with that."), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("You let your hand play across your [pc.nipple] during an idle moment, just to check if your sensitivity is getting crazy or anything. The cow-girls seem to enjoy it, but while it gives you a fluttery thrill, it doesn’t make you weak in the knees. It doesn’t make you moo and moan in equal measure, though the thought of squeezing on some slutty cow until she does makes your nips perk quite nicely. Kneading your pillowy mammaries and smiling, you admire how big they’re getting, reveling in how the pliant flesh bulges between your questing fingers. It’s the only part of you that’s getting softer, and you’re completely okay with that."), "passive", (i * 3) * 60);
 						ExtendLogEvent("\n\n<b>You’re almost too big for an E-cup.</b>");
 						//+3 lust
 						pc.lust(3);
@@ -791,9 +791,9 @@ public function treatmentHourProcs(totalHours:int):void
 		//Change it silently. Leave notification status effect that triggers off the next time cuntchange is called. Followup message:
 		if(pc.hasVagina() && startHours < 123 && treatedHours >= 123)
 		{
-			if(pc.elasticity < 2.5 || pc.vaginas[0].bonusCapacity < 150)
+			if(pc.elasticity < (pc.hasPerk("Elasticity") ? 3.0 : 2.5) || pc.vaginas[0].bonusCapacity < 150)
 			{
-				if(pc.elasticity < 2.5) pc.elasticity = 2.5;
+				if(pc.elasticity < (pc.hasPerk("Elasticity") ? 3.0 : 2.5)) pc.elasticity = (pc.hasPerk("Elasticity") ? 3.0 : 2.5);
 				for(var cuntCount:int = 0; cuntCount < pc.totalVaginas(); cuntCount++)
 				{
 					if(pc.vaginas[cuntCount].bonusCapacity < 150) pc.vaginas[cuntCount].bonusCapacity = 150;
@@ -1304,7 +1304,7 @@ public function treatmentHourProcs(totalHours:int):void
 			ExtendLogEvent("With an audible pop, you suddenly feel immense relief from the pain - but not from the lust. You’re hornier than ever, and a barrage of foreign sensations emanate from your crotch. You reach down, expecting to find a sloppily drooling pussy, and instead bump into the rigid firmness of your new maleness. <b>You have a cock.</b>");
 			ExtendLogEvent("\n\nThe discovery isn’t as unnerving as you feel it should be, though maybe that’s the scintillating pleasure that it grants with every touch. In no time flat, you’re wrapping a palm around and furiously stroking, humping your fist in a lewd declaration of pleasure, dribbling pre-cum over your knuckles and drool down your chin. Having a dick feels good! You whimper once, thrusting especially powerfully, then hump again, twice as hard.");
 			ExtendLogEvent(ParseText("\n\nInternal muscles clench powerfully, triggering a cascade of endorphins and blissful relief in the moment of your climax. [pc.Cum] spills out onto the ground from your whorish masturbation, but you can’t bring yourself to stop, not until you squeezed every droplet of pleasure from this wondrous new appendage."));
-			ExtendLogEvent("\n\nAfter a minute or so of tugging on your new dick, you moo softly to yourself and finally stop, staring in awe at the instrument of your desire while imagining the possibilities it opens up. You can fuck cow-girls now! You can fuck boys in the ass, ream them till they’re giggly, spunk-oozing messes. Hell, you can even rub dicks with a big bull until one of you glazes the other. Awesome!");
+			ExtendLogEvent("\n\nAfter a minute or so of tugging on your new dick, you moo softly to yourself and finally stop, staring in awe at the instrument of your desire while imagining the possibilities it opens up. You can fuck cow-girls now! You can fuck boys in the ass, ream them until they’re giggly, spunk-oozing messes. Hell, you can even rub dicks with a big bull until one of you glazes the other. Awesome!");
 			pc.orgasm();
 			pc.lust(4);
 			pc.createCock();
@@ -1802,7 +1802,7 @@ public function treatmentHourProcs(totalHours:int):void
 					else ExtendLogEvent("shemale cow");
 					ExtendLogEvent(ParseText(".\n\nContinuing to jack yourself off, you wait for any further changes, but nothing comes, not even your orgasm, at least not yet. If you’re going to be any use at all today, you’re probably going to need to find someone to get you off. Maybe that someone could be you. Does having proper balls make [pc.cumNoun] taste any better? Will it be thicker or sweeter?"));
 					if(pc.canAutoFellate(-1)) ExtendLogEvent(ParseText(" All you need to do is slip your [pc.cockHeadBiggest] into your lips and start sucking, and you’ll find out."));
-					else ExtendLogEvent(ParseText(" All you need to do is get a little longer so that you can slip your [pc.cockHeadBiggest] between your lips, and you can suck till you find out."));
+					else ExtendLogEvent(ParseText(" All you need to do is get a little longer so that you can slip your [pc.cockHeadBiggest] between your lips, and you can suck until you find out."));
 					ExtendLogEvent(" Ooh, that’d be nice....");
 					pc.balls = 2;
 					if(pc.ballSizeRaw < 4) pc.ballSizeRaw = 4;
@@ -2661,9 +2661,9 @@ public function treatmentHourProcs(totalHours:int):void
 		
 		//Elasticity + bonus capacity to make sure the girl can handle roughly 24" by 4.5" poles.
 		//Change it silently. Leave notification status effect that triggers off the next time cuntchange is called. Followup message:
-		if(pc.elasticity < 3.5 && treatedHours >= 155)
+		if(pc.elasticity < (pc.hasPerk("Elasticity") ? 4.0 : 3.5) && treatedHours >= 155)
 		{
-			pc.elasticity = 3.5;
+			pc.elasticity = (pc.hasPerk("Elasticity") ? 4.0 : 3.5);
 			if(pc.hasVagina())
 			{
 				for(var cuntCount2:int = 0; cuntCount2 < pc.totalVaginas(); cuntCount2++)
@@ -4685,7 +4685,7 @@ public function standardTreatmentDickStuff(treatedHours:Number, startHours:Numbe
 					AddLogEvent("In an instant, your " + pc.cocksDescript() + " become distressingly hard, ", "passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60));
 					if(pc.isCrotchGarbed()) ExtendLogEvent(ParseText("threatening to shred your [pc.lowerGarments] no matter how sturdy the construction. It’s like walking around with ill-fitting titanium bars stuffed into your pants. You pull the offending equipment out of the way, and the relief is so palpable that you could fill a pool with it"));
 					else ExtendLogEvent("jutting out from your crotch like levers from a perverse control panel. You aren’t sure you’d be able to stand having erections like this trapped within any kind of clothing. For once, nudity pays off");
-					ExtendLogEvent(". They’re getting harder by the second, still. A part of you wonders if they’re going to pump up till they burst, overwhelmed by some kind of incredible, internal pressure.");
+					ExtendLogEvent(". They’re getting harder by the second, still. A part of you wonders if they’re going to pump up until they burst, overwhelmed by some kind of incredible, internal pressure.");
 					//No spines
 					if(pc.cocks[targetDick].hasFlag(GLOBAL.FLAG_NUBBY))
 					{

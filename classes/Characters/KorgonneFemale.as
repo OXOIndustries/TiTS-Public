@@ -411,7 +411,7 @@
 					applyDamage(damage, this, target);
 					if(target.physique()/2 + rand(20) + 1 < 10 + this.physique()/2)
 					{
-						output(" <b>You are sent realing by the blow, staggered.</b>");
+						output(" <b>You are sent reeling by the blow, staggered.</b>");
 						CombatAttacks.applyStagger(target, 5, true);
 					}
 				}

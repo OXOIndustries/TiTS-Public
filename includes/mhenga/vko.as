@@ -469,10 +469,10 @@ public function stressReliefGo():void
 	output("V-Ko eyes flicker pink, and her voice drops to a low, husky tone. <i>“That... is the right question.”</i> Despite the fact that her body is exactly the same as it was a moment ago, she seems almost a different person. Her facial expression is completely different; her eyelashes hang low, and her lips are subtly parted as if begging to be kissed. V-Ko’s hips are sensuously wiggling. Her middle is even heaving in a way that perfectly emulates someone breathing deeply and excitedly.");
 	if(flags["GOT_VKO_STRESS_RELIEF"] == undefined) 
 	{
-		output("Oh wow! You do your best to stifle a smile at this discovery.");
+		output("\n\nOh wow! You do your best to stifle a smile at this discovery.");
 		flags["GOT_VKO_STRESS_RELIEF"] = 1;
 	}
-	else output("A knowing smile creeps across your features as you activate the nurse-droid’s hidden “stress relief” subroutine.");
+	else output("\n\nA knowing smile creeps across your features as you activate the nurse-droid’s hidden “stress relief” subroutine.");
 	output(" The nurse-bot falls to her knees before you and licks her lips with a long, thick tongue that appears slick with some manner of inorganic lubricant, leaving her puckered mouth shining as she opens it wide. Her tongue curls, pointing at the entrance in what can only be a “come hither” gesture. Roaming of her body, the V-Ko’s hands cup her small, pert bosom and present it to you, aided by an incredible arch of her back.");
 	output("\n\nYour [pc.cocks] stiffen");
 	if(pc.cockTotal() == 1) output("s");
@@ -610,7 +610,7 @@ public function VKoStressReliefForLadyginas():void
 		output("\n\nOh wow! You do your best to stifle a smile at this discovery.");
 		flags["GOT_VKO_STRESS_RELIEF"] = 1;
 	}
-	else output("A knowing smile creeps across your features as you activate the nurse-droid’s hidden “stress relief” subroutine.");
+	else output("\n\nA knowing smile creeps across your features as you activate the nurse-droid’s hidden “stress relief” subroutine.");
 	output(" The nurse-bot falls to her knees before you and licks her lips with a long, thick tongue that appears slick with some manner of inorganic lubricant, leaving her puckered mouth shining as she opens it wide. Her tongue curls, pointing at the entrance in what can only be a “come hither” gesture. Roaming of her body, the V-Ko’s hands cup her small, pert bosom and present it to you, aided by an incredible arch of her back.");
 
 	//Clothed
@@ -655,7 +655,7 @@ public function VKoStressReliefForLadyginas():void
 	else output("\n\nV-Ko examines you with a knowing smile. <i>“A pussy like this can be easily brought to full and proper satiation with the proper techniques. Five minutes of my mouth should be more than enough to reduce you to a quivering, stress-free wreck.”</i>");
 
 	output("\n\nThe nursedroid licks her lips one more time, leaving them glossy and shining with artificial slipperiness, then pulls her tongue back inside. She gives you a tender smile and advances, placing her hands on your [pc.butt] before pressing her face against your cleft to give it a kiss. V-Ko’s lips have the perfect amount of warmth for pressing against a lusty pussy, and they are sinfully slick, coaxing shivers of pure delight with each slobbery kiss. She noisily gulps, and you hear something click deep within the artificial nurse.");
-	output("\n\nWhen she opens her mouth, you’re immediately made aware that she’s done something with her tongue. Instead of a narrow tongue pressing into your gates, it’s something hard, thick, phallic, and even warmer than her lips. It wiggles slightly to change its alignment, earning an appreciate gasp from you, and slowly, inexorably works its way inside, filling you with its springy firmness. It goes in an inch at a time, slowly suffusing you with synthetic cock until you can bear no more. At that point, her lips brush");
+	output("\n\nWhen she opens her mouth, you’re immediately made aware that she’s done something with her tongue. Instead of a narrow tongue pressing into your gates, it’s something hard, thick, phallic, and even warmer than her lips. It wiggles slightly to change its alignment, earning an appreciative gasp from you, and slowly, inexorably works its way inside, filling you with its springy firmness. It goes in an inch at a time, slowly suffusing you with synthetic cock until you can bear no more. At that point, her lips brush");
 	if(pc.hasClit()) output(" [pc.oneClit]");
 	else output(" your labia");
 	output(" meaningfully.");

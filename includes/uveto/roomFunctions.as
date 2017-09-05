@@ -26,6 +26,8 @@ public function TundraEncounterBonus():Boolean
 		//POSSIBLE ENCOUNTERS! KORGI!
 		choices[choices.length] = encounterAKorgonneFemaleHostile;
 		choices[choices.length] = encounterAKorgonneFemaleHostile;
+		choices[choices.length] = korgMaleEncounter;
+		choices[choices.length] = korgMaleEncounter;
 		
 		//Run the event
 		choices[rand(choices.length)]();
@@ -50,6 +52,7 @@ public function GlacialRiftEncounterBonus():Boolean
 		choices[choices.length] = encounterAMilodan;
 		//POSSIBLE ENCOUNTERS! KORGI!
 		choices[choices.length] = encounterAKorgonneFemaleHostile;
+		choices[choices.length] = korgMaleEncounter;
 
 		if(flags["MET_CHAURMINE"] < 2 && chaurmineOnUveto()) 
 		{
@@ -300,6 +303,8 @@ public function uvetoUnlocked():Boolean
 
 public function flyToUveto():void
 {
+	if (annoIsCrew() && flags["ANNO_MAID_OUTFIT"] == undefined) flags["ANNO_MAID_OUTFIT"] = 2;
+	
 	if (flags["DO UVETO ICEQUEEN ENTRY"] != undefined) clearOutput();
 	author("Savin");
 
@@ -730,8 +735,7 @@ public function uvetoAwakenInMedCenter(rescuer:String):void
 	removeUvetoCold();
 	pc.HP(pc.HPMax());
 	pc.energy(pc.energyMax());
-	currentLocation = "UVI H32";
-	generateMap();
+	moveTo("UVI H32");
 
 	processTime(30);
 	addButton(0, "Next", mainGameMenu);
@@ -839,7 +843,7 @@ public function watchTankBlowFirstPornLoad():void
 	output("\n\nStanding a little too close to the camera, the young hybrid scratches the back of his neck nervously. <i>“H-hey ‘net! My name’s... Tank. Yeah. Tank Kannon...”</i> He grins to himself, apparently pleased with his own trite cleverness. <i>“...and I’m got something to show you.”</i> He hops down from his perch, allowing the wide-angle lens to capture every inch of sizable body - and more sizable endowments. His cock, half-hard but rapidly thickening, is laid out across an expanse of slick-looking plastic, ending in a ramp leading up to an expansive bathtub. It’s obvious from the size of the room and the niceties on display that Tank’s station has already started to improve at the time of this recording.");
 	output("\n\nThe ever-erect Mr. Kannon is grinning like a cheshire cat and gently patting the top of his insurmountable swell. <i>“Yes, ladies and gents - it’s all real. I haven’t been implanted. I don’t have a disease to my name. This is 100%, naturally grown UGC-approved cock-meat, though I will admit that certain... growth aids were used to help this little pony grow into the bitch-basting stallion he is today.”</i> Groaning in pleasure, Tank struggles to keep his slobbering, canine tongue in his mouth. <i>“S-sorry! I’ve got an assistant just out of frame, one thing they don’t warn you about when your balls get this big is how good it feels to have them licked. I can’t help but throb, and when I throb, my dick drags itself a few inches back and forth along this very, very slick plastic. Hnng!”</i>");
 	output("\n\nTank looks like he’s having trouble keeping it together. A few beads of sweat roll down his brow, and the muscles in his well-defined pectorals and biceps visibly clench. Veins in his cock swell, as thick as pipes, pumping gallons of blood in an effort to maintain the impressively-endowed amateur’s erect state. His eyelids flutter closed, and his hips lurch, compressing his sheath slightly before finally transferring the movement into the dozen feet of dick on display. Plastic crinkles beneath it, threatening to be drowned out by the sloppy sound of lube parting around the indiscrete erection.");
-	output("\n\n<i>“W-w-wow,”</i> Tank gasps, openly stroking his cock. <i>“I’ve never...”</i> He pants, his watermelon-sized nuts clenching and wobbling, undoubtedly in reaction to a salacious tongue-bath from behind. <i>“... had a setup like this,”</i> he tries to explain midway through a thrust. <i>“I’m n-not sure how long I’ll last! Fuck, babe keep licking like that!”</i>");
+	output("\n\n<i>“W-w-wow,”</i> Tank gasps, openly stroking his cock. <i>“I’ve never...”</i> He pants, his watermelon-sized nuts clenching and wobbling, undoubtedly in reaction to a salacious tongue-bath from behind. <i>“...had a setup like this,”</i> he tries to explain midway through a thrust. <i>“I’m n-not sure how long I’ll last! Fuck, babe keep licking like that!”</i>");
 	output("\n\nA little post-production magic has the camera zooming in on Tank’s tip, propped up on the edge of the tub. The head swells, bloating wider and wider, transforming from a blunt tip into an obscenely swollen crown, fully revealing his equine heritage. Bubbles of clear pre-cum appear, easily the size of water balloons, briefly hanging from from the masculine monument before their own mass pulls them down into the rapidly filling tub. Tank’s cock visibly lifts six inches into the air with each jet of anxious pre, carried upward by the hydraulic pressure provided by his rhythmically bloating urethra.");
 	output("\n\n<i>“There’s so much! Ooooh....”</i> Tank’s quavering voice tries to explain how it feels, but he sounds like he’s struggling to string words together into coherent thoughts. <i>“I’m so close to c-cumming,”</i> he announces alongside the sound of pre-spunk splattering off the bathroom wall, <i>“and there’s so m-much! L-like I’ve got a line of cocks all the way to the tub, and each of them is slipping and sliding on that lubed-up plastic. S-stars!”</i> His eyes close, and he completely abandons his narration, grunting and groaning as he vigorously pumps his hips, earning giggles from behind after his nuts slap into the unseen helper.");
 	output("\n\nThe disembodied voice of Tank’s ball-polishing enthusiast urges, <i>“Don’t make the viewers wait, Tank.”</i> Another giggle surfaces at his chosen pseudonym, swiftly forgotten when confronted by her stallion’s needs.");

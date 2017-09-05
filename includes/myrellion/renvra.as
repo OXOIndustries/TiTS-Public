@@ -1448,8 +1448,24 @@ public function renvraDoubleTrouble():void
 	var x:int = -1;
 	if(pc.hasVagina()) 
 	{
-		x = pc.cuntThatFits(renvra.cockVolume(0));
-		if(x < 0) x = rand(pc.totalVaginas());
+		var nonPregWombsFit:Array = [];
+		var nonPregWombs:Array = [];
+		for(var i:int = 0; i < pc.vaginas.length; i++)
+		{
+			if(!pc.isPregnant(i))
+			{
+				if(pc.vaginalCapacity(i) >= renvra.cockVolume(0)) nonPregWombsFit.push(i);
+				nonPregWombs.push(i);
+			}
+		}
+		
+		if(nonPregWombsFit.length > 0) x = nonPregWombsFit[rand(nonPregWombsFit.length)];
+		else if(nonPregWombs.length > 0) x = nonPregWombs[rand(nonPregWombs.length)];
+		else
+		{
+			x = pc.cuntThatFits(renvra.cockVolume(0));
+			if(x < 0) x = rand(pc.totalVaginas());
+		}
 	}
 	if(pc.isBimbo()) 
 	{
@@ -1586,7 +1602,7 @@ public function renvraDoubleTrouble():void
 	if(pc.biggestTitSize() >= 1) output("crushing yours might be un");
 	else output("might be quite ");
 	output("pleasant, but you can’t even parse it with your head swimming in cum-induced delirium. More than once, a red fuzz encroaches on your vision and you almost slip into unconsciousness from overstimulation.");
-	output("\n\n<i>“... Hey!”</i> shouts Renvra, slapping your face gently. You blink the fuzz away and try to slow down your mind to focus on her. <i>“You’re not done yet,”</i> she says. A lump pushes against your swollen ");
+	output("\n\n<i>“...Hey!”</i> shouts Renvra, slapping your face gently. You blink the fuzz away and try to slow down your mind to focus on her. <i>“You’re not done yet,”</i> she says. A lump pushes against your swollen ");
 	if(x >= 0) output("labia");
 	else output("anus");
 	output(" and you look down, only to see the alien rubbing her bulging ballsack on it, equine ovipositor swaying in the air. The red delirium returns as you watch her egg-spewing cock swell from half-hard to fully erect again, and a voice cuts into your racing thoughts.");
@@ -1626,7 +1642,7 @@ public function renvraSuperCumPartII(x:int = -1):void
 	output("\n\nYou realize you’re still bent over her desk. Your gut throbs and moving brings a twinge of dull ache; you try to stand up but you’re practically glued to the furniture by sticky pink slime. Your belly sloshes, and the enormous loads of Renvra’s sexual fluids that were pumped into you come back in an aggravating flash.");
 	output("\n\n<i>“Not that you don’t look hot draped on my desk with my cum drooling from your hole");
 	if(pc.hasVagina()) output("s");
-	output("...”</i> the half-myr begins, brushing your [pc.skinFurScales] with her fingers almost affectionately, <i>“... but you should ");
+	output("...”</i> the half-myr begins, brushing your [pc.skinFurScales] with her fingers almost affectionately, <i>“...but you should ");
 	if(!pc.isNude()) output("throw some " + pc.mf("pants","panties") + " on and ");
 	output("get the fuck out - people in the neighborhood are starting to wonder why they never saw you leave the store.”</i>");
 	output("\n\nYou nod dumbly, still high as a kite on myr venom, and collect your gear. Renvra steps aside as you move to take the door handle, but then grabs you and pulls you into a kiss.");

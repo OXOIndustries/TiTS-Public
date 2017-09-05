@@ -195,7 +195,7 @@ public function getFuckedByBimboPenny():void
 	output("\n\n<i>“Mhmmm, that’s good girl,”</i> you sigh happily. <i>“You’re good at this, aren’t you?”</i>");
 	output("\n\n<i>“Yes, yes, yes,”</i> she pants, each word in time with her thrusts.");
 	output("\n\nYou lean back into it, savoring the feeling of her thick cock pushing so deep inside you. <i>“That’s what you’re for, isn’t it girl? Being always ready to fuck, whenever I want...”</i>");
-	output("\n\n<i>“Yes... yes... yes...”</i> She’s having trouble concentrating enough to speak, only managing to get words out once every few thrusts, and the rest of the time her longue tongue simply hangs needfully from her muzzle.");
+	output("\n\n<i>“Yes... yes... yes...”</i> She’s having trouble concentrating enough to speak, only managing to get words out once every few thrusts, and the rest of the time her long tongue simply hangs needfully from her muzzle.");
 	output("\n\n<i>“This is what you are now; an eager, bimbo slut,");
 	if(pc.isBimbo()) output(" just like me,");
 	output(" and doesn’t it feel good?”</i>");

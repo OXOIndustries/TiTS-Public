@@ -2,6 +2,8 @@
 
 public function flyToTavros():void
 {
+	if (annoIsCrew() && flags["ANNO_MAID_OUTFIT"] == undefined) flags["ANNO_MAID_OUTFIT"] = 1;
+	
 	output("You fly to Tavros");
 	if(leaveShipOK()) output(" and step out of your ship.");
 }
@@ -14,8 +16,7 @@ public function puntToShip():Boolean
 		return true;
 	}
 	output("You really don’t want to step out into the cold void of space. Maybe you should land somewhere?");
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	showLocationName();
 	processTime(1);
 	clearMenu();

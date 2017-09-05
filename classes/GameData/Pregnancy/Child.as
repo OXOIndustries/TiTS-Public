@@ -115,7 +115,7 @@ package classes.GameData.Pregnancy
 		
 		public function get Days():int
 		{
-			// ((now - born) * rate of maturity / minutes in a month
+			// ((now - born) * rate of maturity / minutes in a day
 			return int(int((kGAMECLASS.GetGameTimestamp() - BornTimestamp) * MaturationRate) / 1440);
 		}
 		

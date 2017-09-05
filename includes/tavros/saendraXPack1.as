@@ -962,7 +962,7 @@ public function sx1TechguardPCVictory():void
 	output("\n\nSitting on the bed with ropes tied around his arms and legs is a grizzled looking human who’s clearly had some better days: he’s gotten roughed up pretty good, and his mechanic’s outfit’s been darkened with blood and grease. Saendra runs over to him and grabs the man’s shoulders.");
 	
 	processTime(1);
-
+	flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] = 3;
 	// {To Rescue scene}
 	clearMenu();
 	addButton(0, "Next", sx1RescueTheDude, true);

@@ -84,8 +84,8 @@ public function anonsBarWaitressApproach():void {
 		output("\n\n<i>“Go ahead and stare all you want sweetie, but can I get you anything to drink while you do?”</i> she asks with a knowing grin that shakes you from your stupor. <i>“My name is Sellesy, and I’ll be taking care of you all night...”</i> she continues, adding a sultry tone to the end, which you could easily have missed, hard as it is to look up from the incredible bust sitting directly in the center of your vision. <i>“We have quite a few delicious drinks ‘on tap’ tonight!”</i> she notes, seemingly not minding your fascination, and giggles away to herself, amused by her own joke.");
 		//[CHOICE: ORDER A DRINK / LEAVE]
 		clearMenu();
-		addButton(0,"OrderDrink",firstDrinkFromSellesy);
-		addButton(14,"Leave",mainGameMenu);
+		addButton(0,"OrderDrink", firstDrinkFromSellesy, true, "Order Drink", "Order a drink for 50 credits.");
+		addButton(14, "Leave", mainGameMenu);
 	}
 	//************************
 	//1B. “Returning to the Bar”
@@ -96,10 +96,10 @@ public function anonsBarWaitressApproach():void {
 		output("\n\n<i>“Welcome back baby. I knew you couldn’t stay away for long. Are you feeling THIRSTY? Or were you hoping to skip straight to the ‘deposit’ this time?”</i> she asks with a knowing grin.");
 		//[CHOICE: ORDER A DRINK / LEAVE]
 		clearMenu();
-		addButton(0,"OrderDrink",firstDrinkFromSellesy,false);
-		addButton(14,"Leave",mainGameMenu);
+		addButton(0, "OrderDrink", firstDrinkFromSellesy, false, "Order Drink", "Order a drink for 50 credits.");
+		addButton(14, "Leave", mainGameMenu);
 	}
-	
+	if(pc.credits < 50) addDisabledButton(0, "OrderDrink", "Order Drink", "You don’t have the 50 credits to order a drink!");
 }
 
 //*********************************
@@ -151,7 +151,7 @@ public function firstDrinkFromSellesy(first:Boolean = true):void {
 }
 
 public function genderlessEpilogueForSellesy():void {
-	output("\n\nSellesy openly presses against your groin and then frowns, obviously disappointed with what she finds there. Before you have a moment to react, she spins away with a murmured “thank you.”");
+	output("\n\nSellesy openly presses against your groin and then frowns, obviously disappointed with what she finds there. Before you have a moment to react, she spins away with a murmured <i>“thank you.”</i>");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -162,7 +162,7 @@ public function firstTimeWithSellesyForCocks():void {
 	showSellesy();
 	author("Mr. Writer");
 	output("The gyration of her hips increase in intensity. A series of delicate little moans escapes her, biting her lip in ecstasy. ");
-	//For massive cocks, 24” plus: 
+	//For massive cocks, 24" plus: 
 	if(pc.shortestCockLength() >= 24) 
 	{
 		output("Your massive cock, already hardened by the experience thus far");
@@ -238,7 +238,6 @@ public function stayWithSellesy():void {
 		//[TRIPLE FOOTJOB - For Males/Herms with BIG dicks, too big for her maximum of 24" length, 3"wide.] 
 		if(pc.biggestCockLength() >= 24) addButton(1,"Tri-Footjob",tripleFootjob);
 		else addDisabledButton(1,"Tri-Footjob");
-		//addDisabledButton(3,"Sixtynine","Sixtynine","You’ll need a vagina to see this scene.");
 	}
 	else
 	{
@@ -254,7 +253,8 @@ public function stayWithSellesy():void {
 	{
 		addDisabledButton(2,"Tribadism","Tribadism","You’ll need a vagina for this.");
 	}
-	addButton(3,"SixtyNine",ladyType69WithSellesy,undefined,"Sixty-Nine",("Sixty-nine with the bartender. " + (pc.hasVagina() ? "You’ve both got pussies and tongues - why not use them" : "At least you’ll get to eat her pussy, right") + "?"));
+	if(pc.hasCock()) addDisabledButton(3,"SixtyNine","Sixty-Nine","You can’t have a penis for this.");
+	else addButton(3,"SixtyNine",ladyType69WithSellesy,undefined,"Sixty-Nine",("Sixty-nine with the bartender. " + (pc.hasVagina() ? "You’ve both got pussies and tongues - why not use them" : "At least you’ll get to eat her pussy, right") + "?"));
 	
 	//button name (probably): Strap-on Play
 	if(pc.hasHardLightEquipped() && pc.hasHardLightUpgraded()) addButton(4,"Strap-On Play",sellesyHardlightScene,undefined,"Strap-On Play","Let Sellesy play with your adjustable hardlight.");
@@ -873,7 +873,7 @@ public function sellesyHardlightScene():void
 	if(pc.hasCock())
 	{
 		output("\n\nSellesy shifts her weight and leans back, bending your hardlight away; a clitoris unwinds from the dildo and creeps free, squirming between your sticky pelvises and her sweat-sheened thighs, oily and willful. The red tongue walks along your body like an octopus, wrinkling your [pc.lowerUndergarment], and then curls over your [pc.cock], stroking it through the fabric. You look up at Sellesy, who’s still throwing her head back as she rises and falls - her eye catches yours, and twinkles mischievously.");
-		output("\n\nThe flexible organ finds your [pc.cockHeadNoun] and pinches it softly, pulling it away from your body and then releasing it to smack against your [pc.legFurScales] again; it dabbles in the stream of precum seeping through the cloth, smearing and spreading it until it mingles with Sellesy’s natural lubrication and your underwear become translucent at the spot. <i>“I wonder...”</i> Sellesy muses, <i>“... how quickly I can make you finish?”</i> The woman’s ominous tone draws you to her face, which is grinning ghoulishly.");
+		output("\n\nThe flexible organ finds your [pc.cockHeadNoun] and pinches it softly, pulling it away from your body and then releasing it to smack against your [pc.legFurScales] again; it dabbles in the stream of precum seeping through the cloth, smearing and spreading it until it mingles with Sellesy’s natural lubrication and your underwear become translucent at the spot. <i>“I wonder...”</i> Sellesy muses, <i>“...how quickly I can make you finish?”</i> The woman’s ominous tone draws you to her face, which is grinning ghoulishly.");
 		output("\n\n");
 		if(pc.smallestCockVolume() <= 9999) 
 		{

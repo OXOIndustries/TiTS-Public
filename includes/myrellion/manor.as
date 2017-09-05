@@ -261,8 +261,7 @@ public function approachSellera():void
 	clearOutput();
 	selleraHeader();
 	
-	currentLocation = "841";
-	generateMap();
+	moveTo("841");
 
 	output("Giving a nod to the Red soldier, you head into the office and wait for one of the uniformed women to approach you. Once again, you follow the soldier to a side-room, onto a lift, and down into the basement lair of Field Marshal Sellera.");
 	

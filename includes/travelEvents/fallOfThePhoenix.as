@@ -487,7 +487,7 @@ public function victoryOverPhoenixPirates():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("SAENDRA","VALERIA");
+	showBust(saendraBustDisplay(),"VALERIA");
 
 	output("The last pirate drops under your combined assault, and the din of gunfire dies down. You blink hard, your ears ringing from so much fire in such tight quarters. Checking to make sure the pirates are down for the count, you lower your");
 	if (!pc.rangedWeapon is Rock || !pc.meleeWeapon is Rock) output(" weapon");
@@ -722,7 +722,7 @@ public function phoenixTRYAGAINCHAMP():void
 	
 	author("Savin");
 	showValeria();
-	output("\n\n<i>“It’s too much! Engines going critical!”</i> Valeria shouts, bringing up several readouts around her avatar, working feverishly. <i>“Emergency shutdown protocols initiated.... done!”</i>");
+	output("\n\n<i>“It’s too much! Engines going critical!”</i> Valeria shouts, bringing up several readouts around her avatar, working feverishly. <i>“Emergency shutdown protocols initiated... done!”</i>");
 
 	output("\n\nIn front of you, the engines spin back down. A moment later, they’re silent. ");
 

@@ -1343,7 +1343,7 @@ public function lieveFuckHaremDickVersion(tempVenomEnabled:Boolean = false):void
 	
 	if (!lieveVenomEnabled() && !tempVenomEnabled)
 	{
-		output("\n\n<i>“That’s a good question,”</i> Lieve says, her smile widening. <i>“I’ve got plenty to share.... or do I need to hold back? It’s alright, nobody would think less of you if you didn’t want a big, strong ant to turn you into a screaming, blubbering bag of lust... just putty in my girls’ hands, cumming again and again and again.”</i>");
+		output("\n\n<i>“That’s a good question,”</i> Lieve says, her smile widening. <i>“I’ve got plenty to share... or do I need to hold back? It’s alright, nobody would think less of you if you didn’t want a big, strong ant to turn you into a screaming, blubbering bag of lust... just putty in my girls’ hands, cumming again and again and again.”</i>");
 	
 		output("\n\nThough she’s teasing you, Lieve doesn’t make a move until you answer.");
 

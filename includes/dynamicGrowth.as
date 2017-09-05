@@ -405,8 +405,7 @@ public function bigBallBadEnd():void
 			}
 		}
 		pc.ballSizeRaw = 30;
-		currentLocation = "SHIP INTERIOR";
-		generateMap();
+		moveTo("SHIP INTERIOR");
 		processTime(1382);
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);

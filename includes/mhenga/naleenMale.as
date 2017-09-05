@@ -1323,7 +1323,7 @@ public function maleNaleenSucksPCOff():void
 	{
 		output("\n\nYou give your partner a quick shove which knocks him on his back hard.");
 		output("\n\n<i>“Hey, " + pc.mf("man","girl") + "! Can you be a bit more care-”</i> the naleen starts to complain, but is cut short when pinch one of his nipples hard. He let’s out a half-pained half-aroused hiss instead.");
-		if(pc.isBimbo()) output("\n\n<i>“Like be quiet, I’m your mitress.... missess? Uh...you know... I’m like the one in charge here.”</i>");
+		if(pc.isBimbo()) output("\n\n<i>“Like be quiet, I’m your mitress... missess? Uh...you know... I’m like the one in charge here.”</i>");
 		else output("\n\n<i>“Silence, my submissive fucktoy. I want to hear nothing from you but moans for your [pc.master].”</i>");
 		output(" You start to slowly pump his rigid shaft in your hand, caressing the glands on its underside and gently massaging his entire length with skillful strokes, enjoying the sight of your toy as it squirms in your grasp afraid to make any noise but low pleasured groans.");
 		output("\n\nYou pinch his nipple once more for emphasis then, without further ado, you slide yourself down his body until your head rests close to his twin shafts. The musky smell of his reptile-cocks assaults your nose and ");

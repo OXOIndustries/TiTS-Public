@@ -465,7 +465,7 @@
 					}
 				}
 				//Increase elasticity/depth
-				if(pc.elasticity < 2 && pc.hasVagina() && rand(3) == 0 && changes < changeLimit)
+				if(pc.elasticity < (pc.hasPerk("Elasticity") ? 3 : 2) && pc.hasVagina() && rand(3) == 0 && changes < changeLimit)
 				{
 					kGAMECLASS.output("\n\nWarmth pushes into the sensitive inner parts of your [pc.vaginas], massaging your tunnel");
 					if(pc.totalVaginas() > 1) kGAMECLASS.output("s and wombs");

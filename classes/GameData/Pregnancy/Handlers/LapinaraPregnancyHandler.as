@@ -333,7 +333,7 @@ package classes.GameData.Pregnancy.Handlers
 					if(pData.pregnancyQuantity > 1) buffer += num2Text(Math.floor(pData.pregnancyQuantity/2)) + " eggs";
 					else buffer += "one egg has";
 					buffer += " been this this much fun, how much more fun would it be if you had a few more?";
-					kGAMECLASS.pc.elasticity++;
+					kGAMECLASS.pc.elasticity += (kGAMECLASS.pc.hasPerk("Elasticity") ? 1.5 : 1);
 				}
 				else
 				{
@@ -428,7 +428,7 @@ package classes.GameData.Pregnancy.Handlers
 				AddLogEvent(buffer);
 			}, true);
 			_onSuccessfulImpregnation = lapinaraOnSuccessfulImpregnation;
-			_onSuccessfulImpregnationOutput = BasePregnancyHandler.defaultOnSuccessfulImpregnationOutput;
+			_onSuccessfulImpregnationOutput = lapinaraOnSuccessfulImpregnationOutput;
 			_onDurationEnd = lapinaraOnDurationEnd;
 		}
 		public function lapiPregModMax(part:String = "hip"):Number 

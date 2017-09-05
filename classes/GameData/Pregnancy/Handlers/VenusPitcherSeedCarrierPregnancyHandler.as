@@ -87,8 +87,7 @@ package classes.GameData.Pregnancy.Handlers
 			BasePregnancyHandler.defaultOnSuccessfulImpregnation(father, mother, pregSlot, thisPtr);
 			
 			// Bellymod from the eggs
-			mother.bellyRatingMod += 10 * mother.pregnancyData[pregSlot].pregnancyQuantity;
-			(mother.pregnancyData[pregSlot] as PregnancyData).pregnancyBellyRatingContribution = 10 * mother.pregnancyData[pregSlot].pregnancyQuantity;
+			mother.addPregnancyBellyMod(pregSlot, 10, true);
 			
 			// If the mother still has the seed residue from a previous seeding, convert to fertilized
 			if (mother.hasStatusEffect("Venus Pitcher Seed Residue"))
@@ -128,6 +127,16 @@ package classes.GameData.Pregnancy.Handlers
 			
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 			
+			var tEventCall:Function = (function():Function
+			{
+				return function():void
+				{
+					kGAMECLASS.venusPitcherSeedNurseryEnds(pData.pregnancyQuantity);
+				}
+			})();
+			
+			kGAMECLASS.eventQueue.push(tEventCall);
+			
 			pData.reset();
 			
 			return null;
@@ -143,17 +152,21 @@ package classes.GameData.Pregnancy.Handlers
 		
 		public static function cleanupPregnancy(target:Creature):void
 		{
-			var pData:PregnancyData = target.getPregnancyOfType("VenusPitcherSeedCarrier");
+			var pregSlot:int = target.findPregnancyOfType("VenusPitcherSeedCarrier");
+			var pData:PregnancyData = target.pregnancyData[pregSlot];
+			
+			if(pData == null || pData.pregnancyType != "VenusPitcherSeedCarrier")
+			{
+				/* Error, no pregnancy! */
+				return;
+			}
 			
 			pData.pregnancyQuantity--;
 			pData.pregnancyIncubation = 240 + rand(30);
-			pData.pregnancyBellyRatingContribution -= 10;
-			target.bellyRatingMod -= 10;
+			target.addPregnancyBellyMod(pregSlot, -10, false);
 			
-			if (pData.pregnancyQuantity == 0)
+			if (pData.pregnancyQuantity <= 0)
 			{
-				pData.reset();
-				
 				if (target.hasStatusEffect("Venus Pitcher Egg Incubation Finished")) target.removeStatusEffect("Venus Pitcher Egg Incubation Finished");
 				
 				if (!target.hasStatusEffect("Venus Pitcher Seed Residue"))
@@ -164,6 +177,8 @@ package classes.GameData.Pregnancy.Handlers
 				{
 					target.setStatusMinutes("Venus Pitcher Seed Residue", 20160); // Reset back to 2 weeks
 				}
+				target.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
+				pData.reset();
 			}
 		}
 		

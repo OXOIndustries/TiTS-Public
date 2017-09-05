@@ -1143,6 +1143,24 @@ package classes.GameData
 			damage = target.statusEffectv3("Bleeding");
 			target.setStatusTooltip("Bleeding", (target is PlayerCharacter ? "You’re bleeding!" : "Suffering bleeding damage over time.") + "\n" + damage + " bleed strength.\n" + stacks + " stack" + ((stacks == 1) ? "" : "s") + ".\n" + rounds + " round" + ((rounds == 1) ? "" : "s") + " remaining.");
 		}
+		public static function applyPoison(target:Creature, stacks:int = 1, rounds:int = 3, damage:int = 15, apply:Boolean = false):void
+		{
+			/* Poison
+			v1 = stacks
+			v2 = remaining rounds
+			v3 = base damage
+			*/
+			target.createStatusEffect("Poison", 0, 0, 0, 0, false, "Icon_Poison", "", true, 0);
+			// Add a stack and refresh duration
+			if(apply) target.setStatusValue("Poison", 1, stacks);
+			else target.addStatusValue("Poison", 1, stacks);
+			target.setStatusValue("Poison", 2, rounds);
+			target.setStatusValue("Poison", 3, damage);
+			stacks = target.statusEffectv1("Poison");
+			rounds = target.statusEffectv2("Poison");
+			damage = target.statusEffectv3("Poison");
+			target.setStatusTooltip("Poison", (target is PlayerCharacter ? "You’re poisoned!" : "Suffering poison damage over time.") + "\n" + damage + " poison strength.\n" + stacks + " stack" + ((stacks == 1) ? "" : "s") + ".\n" + rounds + " round" + ((rounds == 1) ? "" : "s") + " remaining.");
+		}
 		public static function applyBlind(target:Creature, turns:int = 3, apply:Boolean = false, tooltip:String = ""):void
 		{
 			target.createStatusEffect("Blinded", 0, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0, 0xFF0000);
@@ -1866,20 +1884,16 @@ package classes.GameData
 				{
 					output("\nIt had little effect on your automated foe!");
 				}
-				else if ((attacker.physique() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) || target is Kaska)
+				else if (target is Kaska)
 				{
-					if (target is Kaska)
-					{
-						output("\nKaska’s eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of her plump lips. <b>She’s very, very stunned.</b>");
-						applyStun(target, 3 + rand(2), false, "Cannot act for a while. You hit her balls pretty hard!");
-					}
-					else
-					{
-						if (target is PlayerCharacter) output("\n<b>You are stunned!</b>");
-						else output("\n<b>[target.CombatName] is stunned.</b>");
-						
-						applyStun(target, 2 + rand(2), false, "Cannot act for a while.");
-					}
+					output("\nKaska’s eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of her plump lips. <b>She’s very, very stunned.</b>");
+					applyStun(target, 3 + rand(2), false, "Cannot act for a while. You hit her balls pretty hard!");
+				}
+				else if (attacker.physique() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune"))
+				{
+					if (target is PlayerCharacter) output("\n<b>You are stunned!</b>");
+					else output("\n<b>[target.CombatName] is stunned.</b>");
+					applyStun(target, 2 + rand(2), false, "Cannot act for a while.");
 				}
 				else
 				{

@@ -35,7 +35,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Ovir", ovirCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Rahn", rahnCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Rodenians", rodenianCodexEntry);
-	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Roehm", roehmCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Roehm", roehmCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Siel", sielCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Saeri", saeriCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Saurmorians",saurmorianCodexEntry,true);
@@ -798,7 +798,7 @@ public function rahnCodexEntry():void
 	outputCodex(header("Fuu’Rahn and ’Rahn"));
 	outputCodex("<i>They may just be one cell, but really they’re all heart.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Rahn");
-	outputCodex("\n<b>Sexes:</b> “Female”");
+	outputCodex("\n<b>Sexes:</b> Monogendered, usually considered “Female”");
 	outputCodex("\n<b>Height:</b> 4\' to 5\' 8\" commonly. Most are shorter, but a rare few can attain heights as tall as six feet.");
 	outputCodex("\n<b>Weight:</b> 60 to 140 pounds.");
 	outputCodex("\n<b>Hair:</b> Rahn do not have hair in the traditional sense, though most will morph their body to have the appearance of hair after sufficient exposure to haired races.");

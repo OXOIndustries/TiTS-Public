@@ -245,11 +245,11 @@
 		//Rend
 		public function naleenRendoPotato(target:Creature):void
 		{
-			output("<i>“Bleed.”</i> The other naleen swipes at you with his claws!");
+			output("<i>“Bleed.”</i> The other naleen swipes at " + target.getCombatName() + " with his claws!");
 			if(combatMiss(this, target)) 
 			{
 				if(target is PlayerCharacter) output(" You duck out of the way!");
-				else output(target.short + " ducks out of the way.");
+				else output(target.getCombatName() + " ducks out of the way.");
 			}
 			//75% damage on hit, +rending status
 			else
@@ -266,7 +266,7 @@
 		private function naleenDoubleAttack(target:Creature):void
 		{
 			author("Savin");
-			output("The naleen surges forward, lunging at you and swinging his razor-sharp claws right at your throat!\n");
+			output("The naleen surges forward, lunging at " + (target is PlayerCharacter ? "you" : "Azra") + " and swinging his razor-sharp claws right at your throat!\n");
 			CombatAttacks.SingleMeleeAttackImpl(this, target, true);
 			output("\n");
 			CombatAttacks.SingleMeleeAttackImpl(this, target, true);
@@ -275,17 +275,23 @@
 		public function naleenTailTrip(target:Creature):void
 		{
 			var damage:TypeCollection = meleeDamage();
-			output("<i>“You should be on the ground. Let me help you.”</i> The second naleen pivots his tail to slap at your [pc.feet].");
-			if(this.physique()/2 + rand(20) + 5 < target.reflexes()/2 + 10) output(" You hop over it!");
+			output("<i>“You should be on the ground. Let me help you.”</i> The second naleen pivots his tail to slap at " + (target is PlayerCharacter ? "your [pc.feet]" : "Azra’s feet") + ".");
+			if(this.physique()/2 + rand(20) + 5 < target.reflexes()/2 + 10)
+			{
+				if(target is PlayerCharacter) output(" You hop over it!");
+				else output(" Azra dodges the attack!");
+			}
 			else if(this.physique()/2 + rand(20) + 5 < target.physique()/2 + 10)
 			{
-				output(" It smacks off your [pc.leg]. It hurts, but you’re not going down that easy.");
+				if(target is PlayerCharacter) output(" It smacks off your [pc.leg]. It hurts, but you’re not going down that easy.");
+				else output(" It strikes Azra’s leg, but to little effect.");
 				damage.multiply(0.40);
 				applyDamage(damageRand(damage, 15), this, target);
 			}
 			else
 			{
-				output(" The world spins 90 degrees as <b>you’re tripped</b>! Ouch!");
+				if(target is PlayerCharacter) output(" The world spins 90 degrees as <b>you’re tripped</b>! Ouch!");
+				else output(" Losing her footing, she falls to the floor--<b>Azra is tripped</b>!");
 				//40% melee damage.
 				damage.multiply(0.40);
 				applyDamage(damageRand(damage, 15), this, target);
@@ -319,99 +325,5 @@
 				CombatAttacks.applyBlind(target);
 			}
 		}
-
-
-		/* OLD NALEEN SHIT
-		private function dudeNaleenPounce(target:Creature):void
-		{
-			output("With a snarl ending in a hiss, he launches to the air. He strikes at you with claw and fang in a mighty pounce!");
-	
-			var damage:TypeCollection;
-			var damageResult:DamageResult;
-			
-			//Miss:
-			if(combatMiss(this, target))
-			{
-				output(" You quickly get out of his way as he impacts the ground where you were mere moments ago. You step back, narrowly avoiding his sweeping snake half as he uses his momentum in an attempt to trip you.");
-			}
-			//Hit Shield:
-			else if(target.shieldsRaw > 0) 
-			{
-				output("You yelp as you are brought crashing down onto the ground. Luckily your shield seems to have taken the brunt of his blow. You push him off, watching as he flops on the ground with a pained yowl. He quickly gets back on his coils, though it seems like he didn’t get out of this unscathed.");
-				damage = new TypeCollection( { kinetic: 1 + rand(3) } );
-				damageResult = calculateDamage(damage, this, target, "pounce");
-				
-				if (damageResult.shieldDamage > 0 && damageResult.hpDamage == 0) output(" Your shield crackles but holds.");
-				else if (damageResult.shieldDamage > 0 && damageResult.hpDamage > 0) output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
-				
-				outputDamage(damageResult);
-				
-				calculateDamage(new TypeCollection( { electric: 3 + rand(4) } ), target, this);
-			}
-			//Hit HP for BIG DAMAGE!
-			else
-			{
-				damage = new TypeCollection( { kinetic: 10 + rand(5) } );
-				damageResult = calculateDamage(damage, this, target, "pounce");
-				
-				output("You yelp as you are brought crashing down onto the ground. Without shields to protect you, you are left to struggle against his slashing claws and bites. You eventually manage to push him off you, but not before taking significant damage.");
-				outputDamage(damageResult);
-			}
-		}
-		
-		private function biteAttackDudeleen(target:Creature):void
-		{
-			author("Savin");
-			output("His coils tighten ever so slightly, further immobilising you. With a menacing growl he exposes his fangs and ");
-			if(!target.isChestGarbed()) output("bites the exposed skin near your shoulder");
-			else output("bites, punching through a thin spot in your [pc.upperGarment]");
-			output(". You yell as you feel his venom pumping into your bloodstream. Ceasing your struggle momentarily, your thoughts become hazy and your movements sluggish; suddenly the idea of surrendering to this powerful male’s coils doesn’t sound like such a bad idea....");
-			//Effect: Moderate Speed/Dex/Whatever drain. If reduced to 0, auto lose (as if by lust).
-			if(!target.hasStatusEffect("Naleen Venom")) target.createStatusEffect("Naleen Venom",0,0,0,0,false,"Poison","This venom reduces strength, aim, reflexes, and willpower! If you take in too much of it while fighting a naleen, you’ll lose!",false,10,0xFF0000);
-			target.physiqueMod -= .5;
-			target.aimMod -= .5;
-			target.willpowerMod -= .5;
-			target.reflexesMod -= .5;
-			target.addStatusValue("Naleen Venom",1,.5);
-			target.lust(10+rand(10));
-			if(target.lust() >= target.lustMax() || ((target.physique() == 0 || target.willpower() == 0) && target.hasStatusEffect("Naleen Venom"))) output("\n\n<b>You’re too doped up to care anymore. You give in.</b>");
-		}
-		
-		private function naleenDudeAttack(target:Creature):void
-		{
-			output("The naleen quickly slithers your way, using his serpentine body to gain altitude and maul with a vicious downward strike!\n");
-			CombatAttacks.SingleMeleeAttackImpl(this, target, false);
-		}
-		
-		private function naleenDudeConstrict(target:Creature):void
-		{
-			if(!target.hasStatusEffect("Naleen Coiled"))
-			{
-				output("The naleen lunges at you, but you nimbly dodge the attack. However, before you can blink, you feel his leathery scales coursing across your body as he moves around you, squeezing tight! Your breath is knocked away, and in a moment you’re seeing stars!");
-				
-				target.createStatusEffect("Naleen Coiled",0,0,0,0,false,"Constrict","You’re trapped in the naleen’s coils!",true,0);
-			}
-			else
-			{
-				output("The naleen grins predatorily, constricting his lower half in a painful vice. You groan as well as you can under the pressure of his bone-crushing coils.");
-			}
-			
-			var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: 5 + rand(5) } ), 15);
-			var damageResult:DamageResult = calculateDamage(damage, this, target, "dudeconstrict");
-			
-			if (damageResult.shieldDamage > 0)
-			{
-				if (damageResult.hpDamage == 0) output(" Your shield crackles but holds. ");
-				else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. ");
-			}
-			
-			if (damageResult.hpDamage > 0)
-			{
-				if (damageResult.shieldDamage == 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you’re seeing stars! ");
-			}
-			
-			outputDamage(damageResult);
-		}
-		*/
 	}
 }
