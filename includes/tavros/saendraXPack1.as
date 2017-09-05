@@ -1188,6 +1188,23 @@ public function sx1TalkPirates():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
+// Techie Hotfix
+public function sx1TalkTechGuardFix():void
+{
+	clearOutput();
+	showSaendra();
+	author("Jacques00");
+
+	output("You ask Saendra about the whereabouts of the ausar techie the two of you encountered during her rescue mission on Deck 92.");
+	output("\n\nThe crimson halfbreed perks up. <i>“Oh? I distinctly remember we defeated her in a fight... and it’s very likely she was sent off to the bowels of Gastigoth with the rest of the other low-lives. Bitch got what was coming to her if you ask me!”</i>");
+	output("\n\nAs she continues with a more snarled expression, you tap your codex and make a note then segway the conversation to something less triggering. Soon, you find yourself chuckling at one of Val’s compromising anecdotes about Saendra with an embarrassed Saendra just taking it with some modest humility.");
+	
+	processTime(5);
+	flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] = 3;
+	
+	clearMenu();
+	addButton(0, "Next", sx1RescueTheDude, true);
+}
 
 // Zil Call Girl:
 //There's stuff for her being pregnant in here. I didn't write the actual pregpath, but if somebody else wants to, the groundwork's there. 
@@ -2514,3 +2531,4 @@ public function zilCallgirlPregnantAgain():void
 		zilCallgirlSexMenu(true);
 	}
 }
+

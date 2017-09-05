@@ -2650,9 +2650,9 @@
 			return false;
 		}
 		*/
-		public function hasItemByClass(ref:Class, amount:int = 1):Boolean
+		public function numberOfItemByClass(ref:Class):int
 		{
-			if (ref == null || inventory.length == 0) return false;
+			if (ref == null || inventory.length == 0) return 0;
 			
 			var amt:int = 0;
 			
@@ -2660,12 +2660,11 @@
 			{
 				if (inventory[i] is ref) amt += inventory[i].quantity;
 			}
-			if (amt >= amount) return true;
-			return false;
+			return amt;
 		}
-		public function hasItemType(arg:int, amount:int = 1):Boolean
+		public function numberOfItemType(arg:int):int
 		{
-			if (inventory.length == 0) return false;
+			if (inventory.length == 0) return 0;
 			
 			var amt:int = 0;
 			
@@ -2673,6 +2672,23 @@
 			{
 				if (inventory[i].type == arg) amt += inventory[i].quantity;
 			}
+			return amt;
+		}
+		public function hasItemByClass(ref:Class, amount:int = 1):Boolean
+		{
+			if (ref == null || inventory.length == 0) return false;
+			
+			var amt:int = numberOfItemByClass(ref);
+			
+			if (amt >= amount) return true;
+			return false;
+		}
+		public function hasItemType(arg:int, amount:int = 1):Boolean
+		{
+			if (inventory.length == 0) return false;
+			
+			var amt:int = numberOfItemType(arg);
+			
 			if (amt >= amount) return true;
 			return false;
 		}
@@ -5320,7 +5336,7 @@
 					if(!nonFurrySkin) adjectives.push("furry", "softly furred");
 					break;
 				case GLOBAL.TYPE_LEITHAN:
-					adjectives = ["leithan", "elven", "pointy", "inhuman", "pointed"];
+					adjectives = ["leithan", "elven-like", "pointy", "inhuman", "pointed"];
 					break;
 				case GLOBAL.TYPE_OVIR:
 					adjectives = ["ovir", "reptilian", "dot", "hidden"];
@@ -5340,7 +5356,7 @@
 					if(!nonFurrySkin) adjectives.push("softly furred");
 					break;
 				case GLOBAL.TYPE_GABILANI:
-					adjectives = ["gabilani", "pointy goblin", "long triangular", "sharp alien", "elven"];
+					adjectives = ["gabilani", "pointy goblin", "long triangular", "sharp alien", "elven-like"];
 					break;
 				case GLOBAL.TYPE_FROG:
 					adjectives = ["amphibian", "frog-like", "dot", "hidden"];
@@ -12299,7 +12315,7 @@
 				else {
 					adjectives.push("inhumanly-wide ");
 					adjectives.push("cow-like ");
-			}
+				}
 				if (femininity > 50 || hasVagina()) {
 					if (thickness < 40) {
 						adjectives.push("flaring, broodmother-sized ");
@@ -12308,6 +12324,11 @@
 					else {
 						adjectives.push("broodmother-sized ");
 					}
+				}
+				if (hips >= 30 && thickness >= 25) {
+					adjectives.push("thicc ");
+					if(thickness >= 50) adjectives.push("extra-thicc ");
+					if(thickness >= 75) adjectives.push("massively-thicc ");
 				}
 			}
 			if(adjectives.length > 0) desc += adjectives[rand(adjectives.length)];

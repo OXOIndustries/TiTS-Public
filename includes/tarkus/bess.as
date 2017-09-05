@@ -11519,7 +11519,7 @@ public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
 		}
 		output(" of your [pc.cum] slides down [bess.hisHer] inner thighs.");
 		
-		if (bessIsEqual()) output("\n\n<i>“Mmm, that was wonderful. I love feeling your [pc.cumNoun] deep inside of me,</i> the insatiable synthetic dreamily tells you, a spaced out look in [bess.hisHer] eyes.");
+		if (bessIsEqual()) output("\n\n<i>“Mmm, that was wonderful. I love feeling your [pc.cumNoun] deep inside of me,”</i> the insatiable synthetic dreamily tells you, a spaced out look in [bess.hisHer] eyes.");
 		else if (bessIsDom())
 		{
 			output("\n\n<i>“You’re not just planning to leave me marked like this, are you, "+ bessPCSexName() +"?”</i> [bess.name] commands you out of the blue. [bess.HeShe] then turns and pushes [bess.hisHer] [pc.cumNoun] splatted "+ (bTargetVag ? "snatch" : "buttocks") +" right in your face. <i>“Now, lick it off.”</i>");
