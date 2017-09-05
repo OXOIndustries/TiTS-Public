@@ -1199,13 +1199,12 @@ public function sx1TalkTechGuardFix():void
 
 	output("You ask Saendra about the whereabouts of the ausar techie the two of you encountered during her rescue mission on Deck 92.");
 	output("\n\nThe crimson halfbreed perks up. <i>“Oh? I distinctly remember we defeated her in a fight... and it’s very likely she was sent off to the bowels of Gastigoth with the rest of the other low-lives. Bitch got what was coming to her if you ask me!”</i>");
-	output("\n\nAs she continues with a more snarled expression, you tap your codex and make a note then segway the conversation to something less triggering. Soon, you find yourself chuckling at one of Val’s compromising anecdotes about Saendra with an embarrassed Saendra just taking it with some modest humility.");
+	output("\n\nAs she continues with a more snarled expression, you tap your codex and make a note then segway the conversation to something less hostile. Soon, you find yourself chuckling at one of Val’s compromising anecdotes about Saendra with an embarrassed Saendra just taking it with some modest humility.");
 	
 	processTime(5);
 	flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] = 3;
 	
-	clearMenu();
-	addButton(0, "Next", sx1RescueTheDude, true);
+	saendrasBarMenu();
 }
 
 // Zil Call Girl:
