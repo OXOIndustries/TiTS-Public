@@ -12969,16 +12969,12 @@
 					descript += RandomInCollection(["long","lengthy"]);
 				}
 				//Relativistic hair
-				else if (hairLength < tallness / 2.5)
-				{
+				else if (hairLength < tallness / 2.5) {
 					descript += RandomInCollection(["very long", "back-length"]);
 				}
 				else if (hairLength < tallness / 1.6) {
 					if(rand(3) == 0) descript += "cascading";
-					else if(hairLength < tallness / 1.7) 
-					{
-						descript += "ass-length";
-					}
+					else if(hairLength < tallness / 1.7) descript += "ass-length";
 					else descript += "thigh-length";
 				}
 				else if (hairLength < tallness / 1.3) 
@@ -13171,14 +13167,16 @@
 					else if(hairLength < 8) descript += "neck-length";
 					else descript += "shoulder-length";
 				}
-				else if (hairLength < 16) descript += "long";
-				//Relativistic hair
-				else if (hairLength < tallness / 2.5)
-				{
-					descript += RandomInCollection(["very long", "back-length", "lengthy"]);
+				else if (hairLength < 16) {
+					descript += RandomInCollection(["long","lengthy"]);
 				}
-				else if (hairLength < tallness / 1.7) {
-					if(hairLength < tallness/1.6) descript += "ass-length";
+				//Relativistic hair
+				else if (hairLength < tallness / 2.5) {
+					descript += RandomInCollection(["very long", "back-length"]);
+				}
+				else if (hairLength < tallness / 1.6) {
+					if(rand(3) == 0) descript += "cascading";
+					else if(hairLength < tallness / 1.7) descript += "ass-length";
 					else descript += "thigh-length";
 				}
 				else if (hairLength < tallness / 1.3) 
