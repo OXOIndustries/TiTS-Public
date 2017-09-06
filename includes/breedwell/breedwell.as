@@ -409,8 +409,14 @@ public function breedwellInductionCheck():Boolean
 	if(pc.isFemale() && flags["BREEDWELL_STATUS_BREEDER"] != undefined) return true;
 	if(pc.isMale() && flags["BREEDWELL_STATUS_DONATOR"] != undefined) return true;
 	// Viability checks - interrupts button generation if not eligible candidate.
-	if(pc.hasVagina() && flags["BREEDWELL_STATUS_BREEDER"] == undefined) return (!breedwellCheckBirth());
-	if(pc.hasCock() && flags["BREEDWELL_STATUS_DONATOR"] == undefined) return (!breedwellCheckSperm());
+	if(pc.hasVagina() && flags["BREEDWELL_STATUS_BREEDER"] == undefined)
+	{
+		if(!pc.hasCock() || flags["BREEDWELL_STATUS_DONATOR"] != undefined) return (!breedwellCheckBirth());
+	}
+	if(pc.hasCock() && flags["BREEDWELL_STATUS_DONATOR"] == undefined)
+	{
+		if(!pc.hasVagina() || flags["BREEDWELL_STATUS_BREEDER"] != undefined) return (!breedwellCheckSperm());
+	}
 	// Show button if haven't yet inducted!
 	return false;
 }
@@ -1321,7 +1327,7 @@ public function breedwellCockmilkerCockSelect():void
 	for(var i:int = 0; i < pc.totalCocks(); i++)
 	{
 		output("\n<b>#" + (i + 1) + ":</b> " + formatFloat(pc.cLength(i) , 3) + " in long, " + pc.cocks[i].cockColor + " [pc.accurateCockName " + i + "]");
-		addButton(i,"#" + (i + 1), breedwellCockmilkerStart, i, num2Ordinal(i + 1) + " Cock","Get your [pc.cockNoun " + i + "] milked.");
+		addButton(i,"#" + (i + 1), breedwellCockmilkerStart, i, StringUtil.capitalize(num2Ordinal(i + 1)) + " Cock","Get your [pc.cockNoun " + i + "] milked.");
 	}
 }
 public function breedwellCockmilkerStart(cIdx:int = -1):void
