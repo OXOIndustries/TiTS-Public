@@ -1242,7 +1242,7 @@ public function southernResidentialBonus():Boolean
 
 public function processUvetoWeather(deltaT:uint, doOut:Boolean):void
 {
-	var sLocation = getPlanetName().toLowerCase();
+	var sLocation:String = getPlanetName().toLowerCase();
 	// Only on Uveto
 	if(sLocation.indexOf("uveto") == -1) return;
 	// If no cooldown or not already happening
@@ -1264,7 +1264,7 @@ public function processUvetoWeather(deltaT:uint, doOut:Boolean):void
 }
 public function uvetoCloudyEnds(deltaT:uint):void
 {
-	var sLocation = getPlanetName().toLowerCase();
+	var sLocation:String = getPlanetName().toLowerCase();
 	
 	if(sLocation.indexOf("uveto") != -1) {
 		var msg:String = "";

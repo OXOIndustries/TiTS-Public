@@ -2688,7 +2688,7 @@ package classes.GameData
 			//Reqs: PC has a naga tail
 			if(pc.isNaga()) choices.push(3);
 			//Reqs: PC is in combat with a naleen, PC has a naga tail
-			if(target is Naleen && pc.isNaga()) choices.push(4);
+			if(target.originalRace == "naleen" && pc.isNaga()) choices.push(4);
 			//Reqs: Hips skill 75+
 			if(flags["TIMES_HIPS_TEASED"] >= 75) choices.push(5);
 
@@ -2714,15 +2714,16 @@ package classes.GameData
 			//Reqs: PC is in combat with a naleen, PC has a naga tail
 			else if(select == 4)
 			{
+				var isNaleen:Boolean = (pc.raceShort() == "naleen");
 				msg = "You slither towards the ";
-				if(pc.race() == "naleen") msg += "other ";
+				if(isNaleen) msg += "other ";
 				msg += "naleen, idly swaying your [pc.hips] to show off your tail.";
 				//PC’s original race is not some sort of naga that may be introduced in the future:
 				msg += " <i>“I used to have spindly little legs, you know.”</i>";
 				//PC’s original race is some sort of naga: msg += " <i>“Plenty of other races out there have spindly little legs they have to move around on.”</i>";
 				msg += " You offer a smirk of superiority as you slither in a circle around your foe, your tail leaving a trail in the brush where it passes. <i>“This is </i>much<i> better, don’t you agree?";
-				if(pc.race() != "naleen") msg += " I may not be a naleen, but I can still appreciate a strong, </i>thick<i> snake tail like mine... or yours.";
-				else output(" Becoming a naleen’s given me an appreciation for big, long tails like this one... or like yours.");
+				if(!isNaleen) msg += " I may not be a naleen, but I can still appreciate a strong, </i>thick<i> snake tail like mine... or yours.";
+				else msg += " Becoming a naleen’s given me an appreciation for big, long tails like this one... or like yours.";
 				msg += "”</i> You let your tailtip brush over some of your foe’s length before you pull away, allowing them a brief view of your backside and your tail curling up to support you as you resume the fight.";
 				output(msg);
 			}

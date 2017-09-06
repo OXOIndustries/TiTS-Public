@@ -16460,13 +16460,13 @@
 			return "one of your " + plural(cockHead(-1));
 		}
 		public function cockHead(cockNum: Number = 0): String {
+			if (cockNum > cocks.length - 1) return "ERROR";
 			var temp: int;
 			var type: int;
 			if (cocks.length == 0)
 				return "ERROR. CockHead lookup with no cocks!";
 			if (cockNum < 0) type = GLOBAL.TYPE_HUMAN;
 			else type = cocks[cockNum].cType;
-			if (cockNum > cocks.length - 1) return "ERROR";
 
 			return cockHeadGetName(type);
 		}

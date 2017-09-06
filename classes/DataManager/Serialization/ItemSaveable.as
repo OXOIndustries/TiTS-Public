@@ -79,7 +79,7 @@
 			{
 				for each (var prop:XML in _dl)
 				{
-					if (_ignoredFields.length > 0 && _ignoredFields.indexOf(prop.@name) == -1)
+					if (_ignoredFields.length > 0 && _ignoredFields.indexOf(prop.@name as String) == -1)
 					{
 						if (this[prop.@name] != null && this[prop.@name] != undefined)
 						{
@@ -195,7 +195,7 @@
 					
 					if (_ignoredFields.length > 0)
 					{
-						if (_ignoredFields.indexOf(prop) == -1)
+						if (_ignoredFields.indexOf(prop as String) == -1)
 						{
 							if (this[prop] is ISaveable)
 							{
