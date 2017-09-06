@@ -1486,7 +1486,7 @@ public function oserreDildoDisplayScene():void
 	//merge intros
 	output("\n\nYou take the myr’s hands eagerly, posing her in your mind like a love doll, trying to decide on the best way to have her. A simple cowgirl position seems the best way to enjoy her enthusiasm - and those gorgeous, heavy tits.");
 	output("\n\nOserre follows obediently as you lead her to her personal bath. You take a seat at poolside, ");
-	if(pc.isTaur()) output("awkwardly resting your {num. of legs}-legged bulk against the adjoining wall,");
+	if(pc.isTaur()) output("awkwardly resting your " + num2Text(pc.legCount) + "-legged bulk against the adjoining wall,");
 	else output("dangling your [pc.feet] in the water,");
 	output(" and pull the unwary matron onto your lap - the sudden descent elicits a gasp from her, and the sharp intake of air presses her breasts against you, with their hard, wet nipples. Speaking of... you tug at Oserre’s neckline, trying to free her gorgeous bust. The myr helps, impatiently grabbing the fabric in four hands and tearing a deep rip. She reaches in and lifts her breasts free of her robe, allowing them to jiggle as she moves, bumping into your");
 	if(pc.biggestTitSize() < 1) output(" chest");
