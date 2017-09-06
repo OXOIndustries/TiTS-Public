@@ -79,73 +79,78 @@
 			{
 				for each (var prop:XML in _dl)
 				{
-					if (_ignoredFields.length > 0 && _ignoredFields.indexOf(prop.@name as String) == -1)
+					var propName:String = prop.@name.toString();
+					if (_ignoredFields.length > 0 && _ignoredFields.indexOf(propName) == -1)
 					{
-						if (this[prop.@name] != null && this[prop.@name] != undefined)
+						if (this[propName] != null && this[propName] != undefined)
 						{
-							if (this[prop.@name] is ISaveable)
+							if (this[propName] is ISaveable)
 							{
-								dataObject[prop.@name] = this[prop.@name].getSaveObject();
+								dataObject[propName] = this[propName].getSaveObject();
 							}
-							else if (this[prop.@name] is Array)
+							else if (this[propName] is Array)
 							{
-								if (this[prop.@name].length > 0)
+								if (this[propName].length > 0)
 								{
-									if (this[prop.@name][0] is ISaveable)
+									if (this[propName][0] is ISaveable)
 									{
-										dataObject[prop.@name] = new Array();
+										dataObject[propName] = new Array();
 										
-										for (i = 0; i < this[prop.@name].length; i++)
+										for (i = 0; i < this[propName].length; i++)
 										{
-											dataObject[prop.@name].push(this[prop.@name][i].getSaveObject());
+											dataObject[propName].push(this[propName][i].getSaveObject());
 										}
 									}
-									else if (isBasicType(this[prop.@name][0]))
+									else if (isBasicType(this[propName][0]))
 									{
-										dataObject[prop.@name] = new Array();
+										dataObject[propName] = new Array();
 										
-										for (i = 0; i < this[prop.@name].length; i++)
+										for (i = 0; i < this[propName].length; i++)
 										{
-											dataObject[prop.@name].push(this[prop.@name][i]);
+											dataObject[propName].push(this[propName][i]);
 										}
 									}
 									else
 									{
-										dataObject[prop.@name] = this[prop.@name];
-										trace("Potential serialization issue with property: " + prop.@name);
+										dataObject[propName] = this[propName];
+										trace("Potential serialization issue with property: " + propName);
 									}
 								}
 								else
 								{
-									dataObject[prop.@name] = new Array();
+									dataObject[propName] = new Array();
 								}
 							}
-							else if (isBasicType(this[prop.@name]))
+							else if (isBasicType(this[propName]))
 							{
-								dataObject[prop.@name] = this[prop.@name];
+								dataObject[propName] = this[propName];
 							}
 							else
 							{
-								dataObject[prop.@name] = this[prop.@name];
-								trace("Potential serialization issue with property: " + prop.@name);
+								dataObject[propName] = this[propName];
+								trace("Potential serialization issue with property: " + propName);
 							}
 						}
 					}
 				}
 				
+				if ( this.hasUniqueName ) {
+					dataObject.shortName = this.shortName;
+				}
+				
 				for each (var accs:XML in _da)
 				{
+					var accsName:String = accs.@name.toString();
 					if (_ignoredFields.length > 0)
 					{
-						var tProp:String = accs.@name;
-						if (_ignoredFields.indexOf(tProp) == -1)
+						if (_ignoredFields.indexOf(accsName) == -1)
 						{
-							dataObject[accs.@name] = this[accs.@name];
+							dataObject[accsName] = this[accsName];
 						}
 					}
 					else
 					{
-						dataObject[accs.@name] = this[accs.@name];
+						dataObject[accsName] = this[accsName];
 					}
 				}
 			}
@@ -193,25 +198,26 @@
 				{
 					if (!hasOwnProperty(prop)) continue;
 					
+					var tProp:String = prop.toString();
 					if (_ignoredFields.length > 0)
 					{
-						if (_ignoredFields.indexOf(prop as String) == -1)
+						if (_ignoredFields.indexOf(tProp) == -1)
 						{
-							if (this[prop] is ISaveable)
+							if (this[tProp] is ISaveable)
 							{
-								var classT:Class = getDefinitionByName(dataObject[prop].classInstance) as Class;
-								this[prop] = new classT();
-								this[prop].loadSaveObject(dataObject[prop]);
+								var classT:Class = getDefinitionByName(dataObject[tProp].classInstance) as Class;
+								this[tProp] = new classT();
+								this[tProp].loadSaveObject(dataObject[tProp]);
 							}
 							else
 							{
-								this[prop] = dataObject[prop];
+								this[tProp] = dataObject[tProp];
 							}
 						}
 					}
 					else
 					{
-						this[prop] = dataObject[prop];
+						this[tProp] = dataObject[tProp];
 					}
 				}
 				if (dataObject.hasUniqueName == true)
@@ -228,17 +234,19 @@
 				
 				for each (prop in _dl)
 				{
-					if (this[prop.@name] != null && this[prop.@name] != undefined)
+					var propName:String = prop.@name.toString();
+					if (this[propName] != null && this[propName] != undefined)
 					{
-						this[prop.@name] = dataObject[prop.@name];
+						this[propName] = dataObject[propName];
 					}
 				}
 				
 				for each (var accs:* in _da)
 				{
-					if (accs.@name != "prototype" && accs.@name != "neverSerialize")
+					var accsName:String = accs.@name.toString();
+					if (accsName != "prototype" && accsName != "neverSerialize")
 					{
-						this[accs.@name] = dataObject[accs.@name];
+						this[accsName] = dataObject[accsName];
 					}
 				}
 			}
