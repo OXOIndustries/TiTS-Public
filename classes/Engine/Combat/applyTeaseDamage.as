@@ -5,10 +5,12 @@ package classes.Engine.Combat
 	import classes.Characters.*;
 	import classes.Engine.Interfaces.*;
 	import classes.GameData.CombatManager;
+	import classes.GameData.CombatAttacks;
 	import classes.Engine.Utility.rand;
 	import classes.StringUtil;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.teaseReactions;
 	import classes.Engine.Utility.possessive;
 	/**
 	 * ...
@@ -22,7 +24,7 @@ package classes.Engine.Combat
 			CombatManager.processCombat();
 			return;
 		}
-			
+		
 		var factor:Number = 1;
 		var factorMax:Number = 2;
 		var bonus:int = 0;
@@ -126,7 +128,11 @@ package classes.Engine.Combat
 			if (attacker.hasPheromones()) damage += 1 + rand(4);
 			damage *= (rand(31) + 85) / 100;
 			
-			damage = (Math.min(damage, 15 + attacker.level * 2 +  attacker.statusEffectv3("Painted Penis")) * factor);
+			var bonusCap:Number = 0;
+			bonusCap += attacker.statusEffectv3("Painted Penis");
+			
+			var cap:Number = 15 + attacker.level * 2 + bonusCap;
+			damage = (Math.min(damage, cap) * factor);
 			
 			//Tease % resistance.
 			if (teaseType == "SQUIRT") damage = (1 - (target.getLustResistances().drug.damageValue / 100)) * damage;
@@ -145,9 +151,8 @@ package classes.Engine.Combat
 			//Tease armor - only used vs weapon-type attacks at present.
 			//damage -= target.lustDef();
 
+			cap = 30 + bonusCap;
 			//Damage cap
-			var cap:Number = 30 + attacker.statusEffectv3("Painted Penis");
-			
 			if (damage > cap) damage = cap;
 			//Damage min
 			if (damage < 0) damage = 0;
@@ -220,7 +225,6 @@ package classes.Engine.Combat
 		// kGAMECLASS.setEnemy(target);
 		if (attacker is PlayerCharacter) kGAMECLASS.playerMimbraneSpitAttack();
 	}
-
 }
 
 function teaseSkillUp(teaseType:String):void
