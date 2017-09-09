@@ -441,7 +441,7 @@ public function FTGHI1(args:Array):void
 		output("\n\n<i>“I love the way you touch me, [pc.name],”</i> she whispers over the sound of her body clapping onto yours. <i>“You’re good at finding all the best spots. Keep going....”</i> At her insistence, you continue your ministrations for her benefit.");
 	}
 	// Continue here if the PC has a vagina, or curiously lacks sexual endowments
-	if(pc.hasVagina() || !pc.hasCock())
+	else
 	{
 		output("\n\nYou thrust up and against her, feeling her heat against you");
 		if(pc.hasVagina()) output("r [pc.vaginas]");
@@ -1399,7 +1399,7 @@ public function SSVBT(args:Array):void
 	clearOutput();
 	showPaige(true);
 	output("Paige is naturally dominant in the sack, but that gets boring (and kind of emasculating) the more often you let her do it. You decide that this time, you want to be the top, and you’re prepared to ‘convince’ Paige to let you.");
-	output("\n\nYou tease her, rubbing your [pc.cockHead] against her mons until she sighs in horny exasperation. When she does, you lift up, grabbing her by just under her tit and lifting her off you and to your side. <i>“Oh, big [pc.boyGirl] wants to top, does [pc.heShe]?”</i> Paige asks playfully, then resists, locking her legs on either side of your [pc.waist] and flexes her arms against yours, fighting to keep herself upright.");
+	output("\n\nYou tease her, rubbing your [pc.cockHead] against her mons until she sighs in horny exasperation. When she does, you lift up, grabbing her by just under her tit and lifting her off you and to your side. <i>“Oh, big [pc.boyGirl] wants to top, does [pc.heShe]?”</i> Paige asks playfully, then resists, locking her legs on either side of your waist and flexes her arms against yours, fighting to keep herself upright.");
 	output("\n\nIt’s an intense struggle between you two: not only do you have to push Paige down beneath you, but you have to keep her from impaling herself on your [pc.cock]. If she does, she wins. And with the way her cunt keeps sliding over your tool, and how your head sometimes slips in, and how your best source of leverage is to grab her boobs (and of course you’re copping a good feel too, why not), you keep getting harder and the fight keeps slipping from your control.");
 	output("\n\nFinally, you manage to one-up her by bending at the hip, grabbing her by her ass, and turning as you toss her into the air. She comes crashing down, giggling like a horny freshman with you on top of her");
 	if(pc.PQ() < 60) output(". Although you take pride in the win, you can’t help but feel Paige might have given it to you.");
@@ -1925,7 +1925,7 @@ public function SSVAG(args:Array):void
 	if(InCollection("SSVE5", args)) output("You’re not often that rabid, or domineering, or...</i> forceful,”</i> she says huskily. <i>“Once you got on top, there was no stopping you. I think we’ll need to explore this side of you more often.”</i> Her hand snakes out, raking the claws on her fingers across your [pc.skinFurScales] lustily. <i>“After seven years of not getting laid, I completely forgot how good it is to get fucked raw. I’d ask you to do it again if I didn’t know I’m already going to walk funny tomorrow.”</i>");
 	output("\n\n<i>“You got someplace you need to be?”</i> she asks suddenly, and you answer negatively. <i>“Good. Let’s just stay like this for a little while longer.”</i> Sounds like a plan to you: you two stay together in that position, long after your [pc.cock] softens and slips out of her");
 	if(pc.cumQ() >= 300) output(", spilling yet more seed that Paige couldn’t contain onto yourself");
-	output("); you gently tease each other and whisper a bunch of nothings as the time passes.");
+	output("; you gently tease each other and whisper a bunch of nothings as the time passes.");
 
 	output("\n\nEventually, rested and satiated, you both grow restless, and Paige lets you get up and out of her bed. <i>“I enjoyed that,”</i> she tells you. <i>“All of it. The sex and the cuddling. Let’s do it again sometime, [pc.name].”</i> You tell her that it’s a promise.");
 	output("\n\nA short while later, you’ve got your gear back on you, and, energized, you leave Paige’s unit and ready to tackle your next adventure.");
@@ -2115,10 +2115,10 @@ public function SSAG(args:Array):void
 	pc.cockChange();
 	output("\n\nWith her boundaries defined, Paige leans backward, her hands on either side of your ankles, as she lifts up her butt until you’re barely still inside her, and then slams back down, as far as she can. ");
 	//if {SSAP1 or SSAP2}
-	if(InCollection("SSAP1", args) || InCollection("SSAP2", args)) output("The time you spent lubing each other up really comes into play, removing much of the friction of the act");
+	if(InCollection("SSAP1", args) || InCollection("SSAP2", args)) output("The time you spent lubing each other up really comes into play, removing much of the friction of the act.");
 	//if {SSAP3}
-	else if(InCollection("SSAP3", args)) output("The combined spit on your dick and her ass makes the fucking a lubricated cinch, although somewhere in the back of your mind, you regret that it wasn’t easier");
-	output(". Paige’s puffy, needy honeypot bounces with the rest of her, right in front of you, and Paige is too busy keeping herself steady to pay attention to it. You could help her out, if you wanted....");
+	else if(InCollection("SSAP3", args)) output("The combined spit on your dick and her ass makes the fucking a lubricated cinch, although somewhere in the back of your mind, you regret that it wasn’t easier.");
+	output(" Paige’s puffy, needy honeypot bounces with the rest of her, right in front of you, and Paige is too busy keeping herself steady to pay attention to it. You could help her out, if you wanted....");
 
 	processTime(5);
 	pc.lust(10);
@@ -2510,11 +2510,13 @@ public function SSAE3(args:Array):void
 		//if {SSAKH}
 		else output("Paige goes completely slack on your body and in your mouth, humming insensately as she feels your cum pool deeper inside her body. You keep kissing her, doing all the tongue-wrestling for the both of you, but she’s clearly just along for the ride as her ass absorbs the sensation of having so much cum inside it.");
 	}
+	output("\n\n");
 	//if {SSAUT}
-	if(InCollection("SSAUT", args)) output("You don’t ignore Paige’s breasts in your hand, working them expertly,");
+	if(InCollection("SSAUT", args)) output("You don’t ignore Paige’s breasts in your hand, working them expertly");
 	//if {SSAKH}
-	else output("Your bodies are still and lame] as you both ride out your orgasms. As Paige had asked of you, you fill her with as much as you can offer,");
-	if(pc.cumQ() < 300) output(" and yet the thirsty bitch keeps rubbing her rump on you to try and eke out just a little more]");
+	else output("Your bodies are still and lame");
+	output(" as you both ride out your orgasms. As Paige had asked of you, you fill her with as much as you can offer,");
+	if(pc.cumQ() < 300) output(" and yet the thirsty bitch keeps rubbing her rump on you to try and eke out just a little more");
 	else output(" and you’re not even sure she regrets it even after her belly loses its definition and rounds out like a balloon");
 	output(". ");
 	//if {SSAKH}
@@ -2585,12 +2587,12 @@ public function SSAAG(args:Array):void
 	output(", proof of your satisfaction with one-another. You already know this probably won’t be a one-time thing, if you don’t want.");
 	output("\n\n<i>“Goddamn,”</i> Paige whispers finally, her strength returning to her. <i>“");
 	//if {First time}
-	if(flags["PAIGE_ANAL"] == 1) output("I’ve never had anything up my ass before, [pc.name].”</i> She giggles. <i>“And I can already tell you, if every time is going to feel that... exotic, it won’t be the last either");
-	else output("It’s almost like every time I shove you up my ass is a brand new experience, [pc.name],”</i> she giggles. <i>“I’m glad the one to bring out my inner butt-slut was you");
+	if(flags["PAIGE_ANAL"] == 1) output("I’ve never had anything up my ass before, [pc.name].”</i> She giggles. <i>“And I can already tell you, if every time is going to feel that... exotic, it won’t be the last either.");
+	else output("It’s almost like every time I shove you up my ass is a brand new experience, [pc.name],”</i> she giggles. <i>“I’m glad the one to bring out my inner butt-slut was you.");
 	//if {SSAP1 or SSAP2}
-	if(InCollection("SSAP1", args) || InCollection("SSAP2", args)) output(". You don’t have to eat my ass out every time, too,”</i> she says, giggling again, <i>“but, fair warning, I won’t say no if you offer again");
+	if(InCollection("SSAP1", args) || InCollection("SSAP2", args)) output(" You don’t have to eat my ass out every time, too,”</i> she says, giggling again, <i>“but, fair warning, I won’t say no if you offer again.");
 	//if {SSAP3}
-	else if(InCollection("SSAP3", args)) output(". And I doubt that’ll be the last time you’ll be shoving your face up there too,”</i> she mocks, giggling again. <i>“I don’t blame you, though. It’s a pretty perfect ass.");
+	else if(InCollection("SSAP3", args)) output(" And I doubt that’ll be the last time you’ll be shoving your face up there too,”</i> she mocks, giggling again. <i>“I don’t blame you, though. It’s a pretty perfect ass.");
 	output("”</i>");
 
 	output("\n\nPaige shifts herself on your lap, feeling your still-turgid-but-softening [pc.cock] shift inside her. <i>“");
@@ -2598,9 +2600,9 @@ public function SSAAG(args:Array):void
 	if(pc.cumQ() < 300) output("Mmm, Gods above, but that feels so</i> different<i>,”</i> she says, one hand trailing down to her tummy. <i>“I could feel you cum inside me, but it felt different from in my cooch. I liked it! I dunno if I liked it</i> more <i>than in my cooch, but I liked it");
 	else 
 	{
-		output("Mmmmmm, you just cum like a firehose, don’t you, [pc.name]?”</i> she slurs, rubbing her mildly-bloated tummy. <i>“It felt like you weren’t going to stop. I could feel it all the way up my stomach. I feel so warm... I hope this doesn’t hurt my figure too much");
+		output("Mmmmmm, you just cum like a firehose, don’t you, [pc.name]?”</i> she slurs, rubbing her mildly-bloated tummy. <i>“It felt like you weren’t going to stop. I could feel it all the way up my stomach. I feel so warm... I hope this doesn’t hurt my figure too much.");
 		//if {SSAP3}
-		if(InCollection("SSAP3", args)) output(". Do you always cum that much? Is eating asses your secret, [pc.name]?");
+		if(InCollection("SSAP3", args)) output(" Do you always cum that much? Is eating asses your secret, [pc.name]?");
 	}
 	output("”</i>");
 	
@@ -3999,10 +4001,10 @@ public function SSDYSH(args:Array):void
 			//if {SSDYHE}
 			else
 			{
-				output("her ears, flicking the flexible skin] as you hump her face, your [pc.clit] slapping against her nose repeatedly in your horny fervor");
+				output("her ears, flicking the flexible skin as you hump her face, your [pc.clit] slapping against her nose repeatedly in your horny fervor");
 				if(pc.totalVaginas() == 2) output(". Your [pc.vagina 1] squeezes against Paige’s cheek, soaping her fur with your girlish lube, demanding the same attention Paige is showing her sister, yet she only has one tongue to use on you");
-				output(".");
 			}
+			output(".");
 		}
 		if(!pc.hasVagina())
 		{
@@ -4127,7 +4129,7 @@ public function SSDYE(args:Array):void
 		{
 			output("\n\nYour [pc.vagina] clenches around her fingers, deluging her hand up to her wrist in your [pc.girlCum]. It spasms uselessly, jealous at her lucky brother");
 			if(pc.cockTotal() > 1) output("s");
-			output("); you cum from your feminine half with nothing but Paige’s useful fingers and the residual pleasure coming from your masculine half.");
+			output("; you cum from your feminine half with nothing but Paige’s useful fingers and the residual pleasure coming from your masculine half.");
 		}
 		paige.loadInMouth(pc);
 	}
@@ -4184,9 +4186,9 @@ public function SSDYAG(args:Array):void
 
 	output("\n\n<i>“");
 	//if {SSDYHE}
-	if(InCollection("SSDYHE", args)) output("I love it when you take charge,”</i> she tells you, trailing a finger down your [pc.chest]. <i>“Putting a hot little number like me on my knees and controlling me like that... I’m all for being up top, but heavens if being the bottom isn’t a huge thrill sometimes. Just... be a little gentler on the ears next time, okay? Just a little");
+	if(InCollection("SSDYHE", args)) output("I love it when you take charge,”</i> she tells you, trailing a finger down your [pc.chest]. <i>“Putting a hot little number like me on my knees and controlling me like that... I’m all for being up top, but heavens if being the bottom isn’t a huge thrill sometimes. Just... be a little gentler on the ears next time, okay? Just a little.");
 	//if {SSDYTH}
-	else if(InCollection("SSDYTH", args)) output("You know what one of the sexiest things a [pc.guyGirl] can do when you’re going down on them is?”</i> she asks rhetorically. <i>“It’s all the noises. The moaning; the grunting; telling you you’re pleasuring them. Stars above, that got me so</i> hot. <i>Talk to me more next time, sweet thing");
+	else if(InCollection("SSDYTH", args)) output("You know what one of the sexiest things a [pc.guyGirl] can do when you’re going down on them is?”</i> she asks rhetorically. <i>“It’s all the noises. The moaning; the grunting; telling you you’re pleasuring them. Stars above, that got me so</i> hot. <i>Talk to me more next time, sweet thing.");
 	else output("I dunno if it’s just that I haven’t done that in a dog’s age, [pc.name], but you might have to tell me what it is you’re eating,”</i> she tells you, errantly playing with a [pc.nipple]. <i>“It was delicious. Or maybe I’ll just keep eating you. Call me crazy, but I think you might be okay with that.");
 	output("”</i>");
 
@@ -4465,9 +4467,10 @@ public function SSDHAG(args:Array):void
 	else if(pc.hasVagina()) output(", your neglected and lonely [pc.vagina], dripping and hot, coming just millimeters from her satiated own");
 	output(".");
 
-	output("\n\n<i>“You should teach classes,”</i> she says, making idle conversation while she unwinds and you two cuddle. <i>“You can use my studio. We can have sessions after hours. What you do is an</i> art. <i>It’d be a crime to horde it from the rest of the universe");
+	output("\n\n<i>“You should teach classes,”</i> she says, making idle conversation while she unwinds and you two cuddle. <i>“You can use my studio. We can have sessions after hours. What you do is an</i> art. <i>It’d be a crime to horde it from the rest of the universe.");
 	//if {SSDHIHA}
-	if(InCollection("SSDHIHA", args)) output(". I’m sure a lot of men and herms would love to experience the way you do butt stuff, too].”</i> She’s just bullshitting (you think), but you laugh with her as she congratulates you in new ways again and again.");
+	if(InCollection("SSDHIHA", args)) output(" I’m sure a lot of men and herms would love to experience the way you do butt stuff, too.");
+	output("”</i> She’s just bullshitting (you think), but you laugh with her as she congratulates you in new ways again and again.");
 	output("\n\n<i>“Sometimes I wonder what I did to deserve you, seriously,”</i> she says, nuzzling her nose into your neck. She doesn’t say anything more, and even dozes off for a moment in your embrace on her bed. You enjoy the downtime between you, giving your mouth the break it’s earned.");
 	output("\n\nShe’s reluctant to let you go when you get up, playfully keeping you in place until you struggle away from her. <i>“You’ve set the bar for me pretty damn high,”</i> she says, admiring you");
 	//if {Paige is blind}
@@ -4500,7 +4503,7 @@ public function SSDO1(args:Array):void
 	if(InCollection("SSDYLH", args)) 
 	{
 		output("You think to yourself what Paige must be feeling, on her knees, between yours, ready and willing to go down on you like the good lover she is. She must be pretty horny herself, and it would be rude of you to leave her excluded. <i>“Paige,”</i> you say, patting her on the forehead to keep her still, <i>“wanna make this a little more... inclusive? I’m not the only one that needs some release, I bet.”</i>");
-		output("\n\n<i>“Fuck yeah, I do,”</i> Paige says quickly, pulling herself to her feet. Her wet Ausar pussy is displayed for you, proof of your correct assumption. You could tell, not just from her words or expression, that she was hoping you’d offer. <i>“You mind if I’m on top, though? I cum harder when I’m the top.");
+		output("\n\n<i>“Fuck yeah, I do,”</i> Paige says quickly, pulling herself to her feet. Her wet Ausar pussy is displayed for you, proof of your correct assumption. You could tell, not just from her words or expression, that she was hoping you’d offer. <i>“You mind if I’m on top, though? I cum harder when I’m the top.”</i>");
 	}
 	output("\n\nFair trade!");
 	if(silly) output(" You’ll just roll over when you’re done and she can have the wet spot.");
@@ -4540,7 +4543,7 @@ public function SSDO2(args:Array):void
 		output("Fuck, the sight of Paige on the verge of an earthshattering orgasm is <i>hot.</i> So hot that you’re almost as aroused as she is, and you’re probably just as close. <i>“Paige,”</i> you say huskily.");
 		output("\n\n<i>“What!”</i> she responds brashly and immediately. She’s so close, you pulling away to talk to her is borderline torture.");
 		output("\n\n<i>“I’m close too,”</i> you all but plead. <i>“I don’t think a hand is going to do me, Paige.”</i>");
-		output("\n\nIn response, she kicks you away, turning to one side and motioning for you to get onto the bed. <i>“Quick!”</i> she demands, flapping her hand at you. <i>I can’t wait another minute!”</i>");
+		output("\n\nIn response, she kicks you away, turning to one side and motioning for you to get onto the bed. <i>“Quick!”</i> she demands, flapping her hand at you. <i>“I can’t wait another minute!”</i>");
 
 		output("\n\nYou do as she demands, vaulting onto the bed and onto your back, y");
 		if(pc.hasCock()) output("our [pc.cocks] swollen with desire, your pre-cum leaking and dribbling all over the place with your erratic movements");
