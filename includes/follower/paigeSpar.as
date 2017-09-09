@@ -435,7 +435,8 @@ public function FFLV():void
 	output(".");
 
 	output("\n\n<i>“Godsdamn, does it feel good to be the winner.”</i> Paige congratulates herself as she disengages from you");
-	if(pc.hasCock()) output(", your [pc.cum] leaking from her tunnel as she does]. <i>“Hurry up and win a match, [pc.name], so you can know what it’s like. I’m excited to see what kind of kinks you have in mind for me.”</i>");
+	if(pc.hasCock()) output(", your [pc.cum] leaking from her tunnel as she does");
+	output(". <i>“Hurry up and win a match, [pc.name], so you can know what it’s like. I’m excited to see what kind of kinks you have in mind for me.”</i>");
 
 	output("\n\nYou lay on the floor, physically and sexually dominated and defeated as Paige casually redresses. You’re exhausted and stiff, and Paige does nothing to alleviate you or help you with your pain – which is a little cold, but it’s all playing the part of the dominant victor, you realize, and her pleasure for her victory didn’t necessarily involve your own. You’re alone in the room before you have the strength to get up and gather your effects.");
 
