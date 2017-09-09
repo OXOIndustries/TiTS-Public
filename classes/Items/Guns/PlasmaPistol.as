@@ -10,6 +10,7 @@
 	
 	public class PlasmaPistol extends ItemSlotClass
 	{
+		//Level 9 (Common). Balance 2.0
 		//constructor
 		public function PlasmaPistol()
 		{
@@ -43,8 +44,8 @@
 			this.attack = -1;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.electric.damageValue = 1;
-			baseDamage.burning.damageValue = 30;
+			//baseDamage.electric.damageValue = 1;
+			baseDamage.burning.damageValue = 28;
 			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_BURN);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			

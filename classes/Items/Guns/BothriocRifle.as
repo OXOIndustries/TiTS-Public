@@ -10,6 +10,7 @@
 	public class BothriocRifle extends ItemSlotClass
 	{
 		//constructor
+		//Not rebalanced - appears to be an NPC-only item.
 		public function BothriocRifle()
 		{
 			this._latestVersion = 1;

@@ -9,6 +9,7 @@
 	
 	public class BoltActionRifle extends ItemSlotClass
 	{
+		//Level 6 (Common). Balance 2.0
 		//constructor
 		public function BoltActionRifle()
 		{
@@ -39,16 +40,16 @@
 			
 			//Information
 			this.basePrice = 2500;
-			this.attack = -30;
+			this.attack = -10;
 			
-			baseDamage.kinetic.damageValue = 20;
+			baseDamage.kinetic.damageValue = 23;
 			baseDamage.addFlag(DamageFlag.BULLET);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 3;
+			this.critBonus = 7;
 			this.evasion = 0;
 			this.fortification = 0;
 

@@ -13,7 +13,7 @@ package classes.Items.Guns
 	 */
 	public class NovaPistol extends ItemSlotClass
 	{
-		
+		//Level 5 (Rare). Balance 2.0
 		public function NovaPistol() 
 		{
 			this._latestVersion = 1;
@@ -42,11 +42,11 @@ package classes.Items.Guns
 			
 			//Information
 			this.basePrice = 2000;
-			this.attack = 0;
+			this.attack = 1;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.electric.damageValue = 1;
-			baseDamage.burning.damageValue = 13;
+			//baseDamage.electric.damageValue = 1;
+			baseDamage.burning.damageValue = 18;
 			baseDamage.addFlag(DamageFlag.LASER);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
@@ -55,7 +55,7 @@ package classes.Items.Guns
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 3;
+			this.critBonus = 4;
 			this.evasion = 0;
 			this.fortification = 0;
 

@@ -13,6 +13,7 @@ package classes.Items.Guns
 	 */
 	public class CustomLP17 extends ItemSlotClass
 	{
+		//Level 2 (Rare). Balance 2.0
 		public function CustomLP17() 
 		{
 			this._latestVersion = 1;
@@ -42,11 +43,11 @@ package classes.Items.Guns
 			
 			//Information
 			this.basePrice = 1; // Intentionally giving the items from Kiro a shit value so that they won't outweigh the 1k credit reward from /not/ taking any items.
-			this.attack = 3;
+			this.attack = 1;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.electric.damageValue = 1;
-			baseDamage.burning.damageValue = 6;
+			//baseDamage.electric.damageValue = 1;
+			baseDamage.burning.damageValue = 8;
 			baseDamage.addFlag(DamageFlag.LASER);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
@@ -55,7 +56,7 @@ package classes.Items.Guns
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 3;
+			this.critBonus = 4;
 			this.evasion = 0;
 			this.fortification = 0;
 			

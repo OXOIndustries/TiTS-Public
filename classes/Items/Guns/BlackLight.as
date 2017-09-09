@@ -13,7 +13,7 @@ package classes.Items.Guns
 	 */
 	public class BlackLight extends ItemSlotClass
 	{
-		
+		//Level 8 (Common). Balance 2.0
 		public function BlackLight() 
 		{
 			this._latestVersion = 1;
@@ -42,7 +42,7 @@ package classes.Items.Guns
 			
 			//Information
 			this.basePrice = 27000;
-			this.attack = 5;
+			this.attack = 4;
 			
 			baseDamage.electric.damageValue = 0;
 			baseDamage.burning.damageValue = 25;

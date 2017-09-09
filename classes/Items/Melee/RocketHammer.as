@@ -9,13 +9,11 @@
 	
 	public class RocketHammer extends ItemSlotClass
 	{
+		//Level 4 (Common). Balance 2.0
 		//constructor
 		public function RocketHammer()
 		{
 			this._latestVersion = 1;
-			
-			//A KNIFE
-			//4
 			
 			//this.indexNumber = 4;
 			this.quantity = 1;
@@ -45,10 +43,10 @@
 			this.attack = 0;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 17;
+			baseDamage.kinetic.damageValue = 16;
 			baseDamage.addFlag(DamageFlag.CRUSHING);
 			
-			this.defense = 0;
+			this.defense = 4;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;

@@ -9,6 +9,7 @@
 	
 	public class HammerPistol extends ItemSlotClass
 	{
+		//Level 2 (Common). Balance 2.0
 		//constructor
 		public function HammerPistol()
 		{

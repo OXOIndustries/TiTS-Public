@@ -9,9 +9,9 @@
 	
 	public class HardlightBow extends ItemSlotClass
 	{
-		// Hardlight Bow (Level 8)
 		// by HugsAlright
 		// Vendor: Nerrasa
+		// Level 8 (Common). Balance 2.0
 		public function HardlightBow()
 		{
 			_latestVersion = 1;
@@ -48,7 +48,7 @@
 			shieldDefense = 0;
 			shields = 0;
 			sexiness = 0;
-			evasion = 0;
+			evasion = 4;
 			fortification = 0;
 			
 			addFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON);

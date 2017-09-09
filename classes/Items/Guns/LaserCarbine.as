@@ -10,6 +10,7 @@
 	
 	public class LaserCarbine extends ItemSlotClass
 	{
+		//Level 4 (Common). Balance 2.0
 		//constructor
 		public function LaserCarbine()
 		{
@@ -39,7 +40,7 @@
 			
 			//Information
 			this.basePrice = 3750;
-			this.attack = 3;
+			this.attack = 8;
 			
 			baseDamage = new TypeCollection();
 			baseDamage.electric.damageValue = 1;

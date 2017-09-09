@@ -13,7 +13,7 @@ package classes.Items.Guns
 	 */
 	public class ArcCaster extends ItemSlotClass
 	{
-		
+		//Level 8 (Rare). Balance 2.0
 		public function ArcCaster() 
 		{
 			this._latestVersion = 1;
@@ -42,9 +42,9 @@ package classes.Items.Guns
 			
 			//Information
 			this.basePrice = 6700;
-			this.attack = 2;
+			this.attack = 0;
 			
-			baseDamage.electric.damageValue = 14;
+			baseDamage.electric.damageValue = 22;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
@@ -52,7 +52,7 @@ package classes.Items.Guns
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 3;
+			this.critBonus = 7;
 			this.evasion = 0;
 			this.fortification = 0;
 

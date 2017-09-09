@@ -13,7 +13,7 @@ package classes.Items.Guns
 	 */
 	public class NovaRifle extends ItemSlotClass
 	{
-		
+		//Level 5 (Rare). Balance 2.0
 		public function NovaRifle() 
 		{
 			this._latestVersion = 1;
@@ -42,10 +42,10 @@ package classes.Items.Guns
 			
 			//Information
 			this.basePrice = 2000;
-			this.attack = 3;
+			this.attack = 7;
 			
-			baseDamage.electric.damageValue = 1;
-			baseDamage.burning.damageValue = 13;
+			//baseDamage.electric.damageValue = 1;
+			baseDamage.burning.damageValue = 18;
 			baseDamage.addFlag(DamageFlag.LASER);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);

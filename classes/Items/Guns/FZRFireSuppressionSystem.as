@@ -13,6 +13,7 @@
 		// FZR Fire Suppression System (Level 6 or 7, Maybe 8)
 		// by HugsAlright
 		// Vendor: Anno or Shekka?
+		//Level 7 (Common). Balance 2.0
 		public function FZRFireSuppressionSystem()
 		{
 			_latestVersion = 1;
@@ -38,19 +39,19 @@
 			basePrice = 20000;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.freezing.damageValue = 22;
+			baseDamage.freezing.damageValue = 24;
+			baseDamage.addFlag(DamageFlag.NO_CRIT);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
+			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
-			attack = 10;
+			attack = 20;
 			critBonus = 0;
 			defense = 0;
 			shieldDefense = 0;
 			shields = 0;
 			sexiness = 0;
-			evasion = -10;
+			evasion = -5;
 			fortification = 0;
-			
-			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
 			version = _latestVersion;
 			

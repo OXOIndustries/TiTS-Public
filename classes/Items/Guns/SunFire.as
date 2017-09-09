@@ -13,6 +13,7 @@ package classes.Items.Guns
 	 */
 	public class SunFire extends ItemSlotClass
 	{
+		//Level 8 (Common). Balance 2.0
 		public function SunFire() 
 		{
 			this._latestVersion = 1;
@@ -41,11 +42,12 @@ package classes.Items.Guns
 			
 			//Information
 			this.basePrice = 27500;
-			this.attack = 5;
+			this.attack = 9;
 			
-			baseDamage.burning.damageValue = 21;
+			baseDamage.burning.damageValue = 22;
 
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
+			baseDamage.addFlag(DamageFlag.NO_CRIT);
 			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_BURN);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			

@@ -66,13 +66,13 @@ package classes.Engine.Combat
 			if (special == "melee")
 			{
 				// Melee crit
-				if(attacker.critBonus(true) + crittyBonus >= rand(100) + 1 && (attacker is PlayerCharacter || attacker.hasPerk("Can Crit")))
+				if(attacker.critBonus(true) + crittyBonus >= rand(100) + 1 && (attacker is PlayerCharacter || attacker.hasPerk("Can Crit")) && !baseHPDamage.hasFlag(DamageFlag.NO_CRIT))
 				{
 					damageResult.wasCrit = true;
 					baseHPDamage.multiply(2);
 				}
 				//Alpha strike forcing them criiiiiits!
-				else if (attacker.hasPerk("Alpha Strike") && !attacker.hasStatusEffect("AlphaedStroked"))
+				else if (attacker.hasPerk("Alpha Strike") && !attacker.hasStatusEffect("AlphaedStroked") && !baseHPDamage.hasFlag(DamageFlag.NO_CRIT))
 				{
 					damageResult.wasCrit = true;
 					baseHPDamage.multiply(2);
@@ -117,13 +117,13 @@ package classes.Engine.Combat
 				}
 				
 				// Ranged crit 
-				if(attacker.critBonus(false) + crittyBonus >= rand(100) + 1 && (attacker is PlayerCharacter || attacker.hasPerk("Can Crit")))
+				if(attacker.critBonus(false) + crittyBonus >= rand(100) + 1 && (attacker is PlayerCharacter || attacker.hasPerk("Can Crit")) && !baseHPDamage.hasFlag(DamageFlag.NO_CRIT))
 				{
 					damageResult.wasCrit = true;
 					baseHPDamage.multiply(2);
 				}
 				//Alpha strike forcing them criiiiiits!
-				else if (attacker.hasPerk("Alpha Strike") && !attacker.hasStatusEffect("AlphaedStroked"))
+				else if (attacker.hasPerk("Alpha Strike") && !attacker.hasStatusEffect("AlphaedStroked") && !baseHPDamage.hasFlag(DamageFlag.NO_CRIT))
 				{
 					damageResult.wasCrit = true;
 					baseHPDamage.multiply(2);

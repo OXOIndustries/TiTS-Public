@@ -8,6 +8,7 @@ package classes.Items.Guns
 	
 	public class SlutRayAdvanced extends ItemSlotClass
 	{
+		//Level 5 (Rare). Balance 2.0
 		public function SlutRayAdvanced()
 		{
 			_latestVersion = 1;
@@ -33,7 +34,8 @@ package classes.Items.Guns
 			
 			basePrice = 4500;
 			attack = 0;
-			baseDamage.tease.damageValue = 12;
+			baseDamage.tease.damageValue = 5;
+			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			addFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON);
 			
@@ -41,7 +43,7 @@ package classes.Items.Guns
 			shieldDefense = 0;
 			shields = 0;
 			sexiness = 0;
-			critBonus = 2;
+			critBonus = 5;
 			evasion = 0;
 			fortification = 0;
 			

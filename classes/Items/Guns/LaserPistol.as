@@ -9,6 +9,7 @@
 	
 	public class LaserPistol extends ItemSlotClass
 	{
+		//Level 2 (Common). Balance 2.0
 		//constructor
 		public function LaserPistol()
 		{
@@ -39,11 +40,11 @@
 			
 			//Information
 			this.basePrice = 1050;
-			this.attack = 2;
+			this.attack = 0;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.electric.damageValue = 1;
-			baseDamage.burning.damageValue = 5;
+			//baseDamage.electric.damageValue = 1;
+			baseDamage.burning.damageValue = 6;
 			baseDamage.addFlag(DamageFlag.LASER);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
@@ -52,7 +53,7 @@
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 1;
+			this.critBonus = 6;
 			this.evasion = 0;
 			this.fortification = 0;
 			

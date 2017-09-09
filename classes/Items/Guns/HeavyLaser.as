@@ -9,6 +9,7 @@
 	
 	public class HeavyLaser extends ItemSlotClass
 	{
+		//Level 2 (Rare). Balance 2.0
 		//constructor
 		public function HeavyLaser()
 		{
@@ -52,7 +53,7 @@
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 3;
+			this.critBonus = 4;
 			this.evasion = 0;
 			this.fortification = 0;
 			

@@ -8,6 +8,7 @@ package classes.Items.Guns
 	
 	public class SlutRay extends ItemSlotClass
 	{
+		//Level 4 (Common). Balance 2.0
 		//constructor
 		public function SlutRay()
 		{
@@ -39,7 +40,8 @@ package classes.Items.Guns
 			//Information
 			this.basePrice = 1500;
 			this.attack = 0;
-			baseDamage.tease.damageValue = 6;
+			baseDamage.tease.damageValue = 4;
+			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			addFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON);
 			

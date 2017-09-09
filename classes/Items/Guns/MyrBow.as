@@ -9,6 +9,7 @@
 	
 	public class MyrBow extends ItemSlotClass
 	{
+		//Level 6 (Common). Balance 2.0
 		//constructor
 		public function MyrBow()
 		{
@@ -39,15 +40,16 @@
 			//Information
 			this.basePrice = 6500;
 			
-			baseDamage.kinetic.damageValue = 1;
-			baseDamage.drug.damageValue = 10;
+			//baseDamage.kinetic.damageValue = 0;
+			baseDamage.acid.damageValue = 12;
 			
+			this.attack = 4;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
 			this.critBonus = 3;
-			this.evasion = 0;
+			this.evasion = 5;
 			this.fortification = 0;
 			
 			this.addFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON);

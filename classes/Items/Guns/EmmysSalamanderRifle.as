@@ -10,6 +10,8 @@
 	
 	public class EmmysSalamanderRifle extends ItemSlotClass
 	{
+		//Level 7 (Rare). Balance 2.04
+
 		//constructor
 		public function EmmysSalamanderRifle()
 		{
@@ -40,11 +42,11 @@
 			
 			//Information
 			this.basePrice = 14000;
-			this.attack = 5;
+			this.attack = 10;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.electric.damageValue = 1;
-			baseDamage.burning.damageValue = 19;
+			//baseDamage.electric.damageValue = 1;
+			baseDamage.burning.damageValue = 21;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			baseDamage.addFlag(DamageFlag.LASER);
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
@@ -53,7 +55,7 @@
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 2;
+			this.critBonus = 4;
 			this.evasion = 0;
 			this.fortification = 0;
 			

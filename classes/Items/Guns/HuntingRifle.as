@@ -9,6 +9,7 @@
 	
 	public class HuntingRifle extends ItemSlotClass
 	{
+		//Level 6 (Common). Balance 2.0
 		//constructor
 		public function HuntingRifle()
 		{
@@ -40,7 +41,7 @@
 			this.basePrice = 4500;
 			this.attack = 5;
 			
-			baseDamage.kinetic.damageValue = 14;
+			baseDamage.kinetic.damageValue = 21;
 			baseDamage.addFlag(DamageFlag.BULLET);
 			
 			this.defense = 0;

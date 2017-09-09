@@ -10,6 +10,7 @@
 	public class QueensBow extends ItemSlotClass
 	{
 		//constructor
+		//Level 8 (Rare). Balance 2.0
 		public function QueensBow()
 		{
 			this._latestVersion = 1;
@@ -39,8 +40,8 @@
 			//Information
 			this.basePrice = 6500;
 			
-			baseDamage.kinetic.damageValue = 3;
-			baseDamage.drug.damageValue = 12;
+			//baseDamage.kinetic.damageValue = 3;
+			baseDamage.drug.damageValue = 6;
 			
 			this.attack = 2;
 			this.defense = 0;
@@ -48,7 +49,7 @@
 			this.shields = 0;
 			this.sexiness = 0;
 			this.critBonus = 4;
-			this.evasion = 0;
+			this.evasion = 6;
 			this.fortification = 0;
 			
 			this.addFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON);

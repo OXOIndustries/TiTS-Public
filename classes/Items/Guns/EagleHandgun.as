@@ -9,6 +9,7 @@
 	
 	public class EagleHandgun extends ItemSlotClass
 	{
+		//Level 1. Balance 2.0
 		//constructor
 		public function EagleHandgun()
 		{
@@ -41,14 +42,14 @@
 			this.basePrice = 420;
 			this.attack = 0;
 			
-			baseDamage.kinetic.damageValue = 7;
+			baseDamage.kinetic.damageValue = 6;
 			baseDamage.addFlag(DamageFlag.BULLET);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 0;
+			this.critBonus = 2;
 			this.evasion = 0;
 			this.fortification = 0;
 
