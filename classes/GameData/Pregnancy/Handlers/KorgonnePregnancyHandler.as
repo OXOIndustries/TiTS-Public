@@ -80,14 +80,14 @@ package classes.GameData.Pregnancy.Handlers
 			}, true);
 			//five - getting jolly round - lactation begins - @130 days
 			addStageProgression(_basePregnancyIncubationTime - (130 * 24 * 60), function(pregSlot:int):void {
-				var textBuff:String = "Your [pc.belly] is starting to become cumbersome, pushing the straps of your gear out of place. It’s a bit early for it to be this far progressed... your baby is probably not a human child. You examine your Codex for another scan: it’s a hybrid of human and korgonne, the dog-like natives of Uveto VII.";
+				var textBuff:String = ParseText("Your [pc.belly] is starting to become cumbersome, pushing the straps of your gear out of place. It’s a bit early for it to be this far progressed... your baby is probably not a human child. You examine your Codex for another scan: it’s a hybrid of human and korgonne, the dog-like natives of Uveto VII.");
 				if(!kGAMECLASS.pc.canLactate()) 
 				{
-					textBuff += " Your [pc.breasts] are also beginning to swell and dribble milk, preparing to nurse the new lives. <b>You are lactating!</b>";
+					textBuff += ParseText(" Your [pc.breasts] are also beginning to swell and dribble milk, preparing to nurse the new lives. <b>You are lactating!</b>");
 					if(kGAMECLASS.pc.milkMultiplier < 100) kGAMECLASS.pc.milkMultiplier = 100;
 					kGAMECLASS.pc.milkFullness += 20;
 				}
-				AddLogEvent(ParseText(textBuff), "passive");
+				AddLogEvent(textBuff, "passive");
 				kGAMECLASS.pc.bellyRatingMod += 10;
 				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 10;
@@ -120,7 +120,7 @@ package classes.GameData.Pregnancy.Handlers
 				if(kGAMECLASS.pc.canLactate()) 
 				{
 					textBuff += "nipples leak milk ";
-					if(!kGAMECLASS.pc.isChestExposed()) textBuff += "into your [pc.chestCover] ";
+					if(!kGAMECLASS.pc.isChestExposed()) textBuff += "into your [pc.upperGarment] ";
 					textBuff += "constantly and your ";
 				}
 				textBuff += "[pc.belly] is further stretched than the pregnancy handbooks say possible. If you get any more swollen, you’re not going to be able to move. When will the baby come?";

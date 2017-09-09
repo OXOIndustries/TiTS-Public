@@ -3369,9 +3369,15 @@ public function annoUvetoHuskarFoursomePoundPuppiesII():void
 
 	output("Anno did a fine job getting her ready! Marina’s ass opens for you, already nice and wet from Anno’s oral attentions. Slow and steady, you sink yourself in inch by inch, loving the way she squeezes and kneads your meat. Rather than fighting, it feels like her asshole’s trying to draw you in, desperate for more. That toy in her twat must be driving her wild, the way she’s panting and gasping and shaking her hips for you already.");
 	
-	output("\n\nYour crotch butts up against the flat head of the toy on the in-thrust, and the moment you do, a shockwave of pleasure hits you like a truck. Before you can blink, you cum, jerking your hips forward and pumping a load of " + (pc.hasCock() ? "[pc.cum]" : "lubricant") + " into the ausar’s waiting rectum. Marina yelps when she feels your " + (pc.hasCock() ? "seed painting" : "ejaculate splash against") + " her walls" + (pc.hasCock() ? " [pc.cumColor]" : "") + ", and you’re sure you’ve set off another orgasm in the " + (pc.hasCock() ? "cock" : "rod") + "-stuffed slut. Femcum drools down her thighs, squirting around the thick shaft, and her ass clenches around your [pc.cockOrStrapon] until you’ve got no choice but to keep still, just rocking your hips against her plush behind.");
+	output("\n\nYour crotch butts up against the flat head of the toy on the in-thrust, and the moment you do, a shockwave of pleasure hits you like a truck. Before you can blink, you cum, jerking your hips forward");
+	if(pc.hasCock()) output(" and pumping a load of [pc.cum]");
+	output(" into the ausar’s waiting rectum. Marina yelps");
+	if(pc.hasCock()) output(" when she feels your seed painting her walls [pc.cumColor],");
+	output(" and you’re sure you’ve set off another orgasm in the " + (pc.hasCock() ? "cock" : "rod") + "-stuffed slut. Femcum drools down her thighs, squirting around the thick shaft, and her ass clenches around your [pc.cockOrStrapon] until you’ve got no choice but to keep still, just rocking your hips against her plush behind.");
 	
-	output("\n\nThe waves of shuddering pleasure radiating from the toy’s merest touch don’t let up. You almost end up doubling over on Marina’s back, squirting more " + (pc.hasCock() ? "cum" : "fluid") + " than you’d thought possible from a single load. It takes a concentrated force of will to pull back, pulling out of her behind with a wet <i>pop!</i> You stagger back, almost falling over from a sudden crushing fatigue. Blinking, you catch yourself on something fluffy and soft, and get a yelp of pleasure in response. A look shows you that Anno’s behind you, wet and randy and flushed a dark pink. Galina’s propped up on her shoulders, a musky smear of fem-cum splattered on her cheeks - guess Anno’s been going for a ride while you were distracted.");
+	output("\n\nThe waves of shuddering pleasure radiating from the toy’s merest touch don’t let up. You almost end up doubling over on Marina’s back");
+	if(pc.hasCock()) output(", squirting more cum than you’d thought possible from a single load");
+	output(". It takes a concentrated force of will to pull back, pulling out of her behind with a wet <i>pop!</i> You stagger back, almost falling over from a sudden crushing fatigue. Blinking, you catch yourself on something fluffy and soft, and get a yelp of pleasure in response. A look shows you that Anno’s behind you, wet and randy and flushed a dark pink. Galina’s propped up on her shoulders, a musky smear of fem-cum splattered on her cheeks - guess Anno’s been going for a ride while you were distracted.");
 	
 	output("\n\n<i>“Ooh, does that mean I’m next?”</i> Anno giggles, brushing your hand off her breast... and down to the sodden gash of her sex. <i>“You’re just a machine, aren’t ya [pc.name]?”</i>");
 
@@ -3387,7 +3393,7 @@ public function annoUvetoHuskarFoursomePoundPuppiesII():void
 	else output("It feels like magic!");
 	output("”</i>");
 	
-	output("\n\nOne touch made you blow your load - imagine having that crammed inside you, rubbing against your every most-tender nerve. How Anno isn’t just cumming her brains out on the spot, you’ve got no idea.");
+	output("\n\nOne touch made you " + (pc.hasCock() ? "blow your load" : "cum yourself") + " - imagine having that crammed inside you, rubbing against your every most-tender nerve. How Anno isn’t just cumming her brains out on the spot, you’ve got no idea.");
 	
 	output("\n\nThen again, the way she’s leaking and squirting, maybe she’s just locked in one constant, unending climax.");
 	
