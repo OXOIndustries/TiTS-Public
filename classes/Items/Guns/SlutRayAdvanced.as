@@ -5,6 +5,7 @@ package classes.Items.Guns
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	import classes.GameData.CombatAttacks;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	public class SlutRayAdvanced extends ItemSlotClass
 	{
