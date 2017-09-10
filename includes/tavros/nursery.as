@@ -1655,6 +1655,8 @@ public function nurseryMaternityWaitTime(duration:int = 0):void
 	var firstDuration:int = PregnancyManager.getRemainingDurationForSlot(pc, firstSlot);
 	output("\n\nYou get up and are on your way" + (firstDuration <= 30 ? " -- extremely close to delivering at any moment!" : "."));
 	
+	dailyAutoSleep(duration);
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1800,7 +1802,9 @@ public function nurseryMaternityWaitGo():void
 	flags["NURSERY_MATERNITY_WAIT_ACTIVE"] = 1;
 	processTime(finalDuration);
 	flags["NURSERY_MATERNITY_WAIT_ACTIVE"] = undefined;
-
+	
+	dailyAutoSleep(firstDuration);
+	
 	clearMenu();
 	addButton(0, "Next", nurseryMaternityWaitPostBirths, { births: allBirths, dur: finalDuration });
 }
