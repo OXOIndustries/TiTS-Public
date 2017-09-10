@@ -10,6 +10,7 @@
 	
 	public class Jolthammer extends ItemSlotClass
 	{
+		//Level 7 (Common). Balance 2.0
 		//constructor
 		public function Jolthammer()
 		{
@@ -40,21 +41,21 @@
 			
 			//Information
 			this.basePrice = 15499;
-			this.attack = 0;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 3;
-			baseDamage.electric.damageValue = 21;
+			baseDamage.kinetic.damageValue = 6;
+			baseDamage.electric.damageValue = 20;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			baseDamage.addFlag(DamageFlag.CRUSHING);
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
+			this.attack = -5;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 0;
-			this.evasion = -6;
+			this.critBonus = 5;
+			this.evasion = -3;
 			this.fortification = 0;
 			
 			this.version = _latestVersion;

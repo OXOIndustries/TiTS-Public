@@ -42,14 +42,14 @@ package classes.Items.Melee
 			this.attack = -2;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 16;
+			baseDamage.kinetic.damageValue = 21;
 			baseDamage.addFlag(DamageFlag.CRUSHING);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = 0;
-			this.critBonus = 3;
+			this.sexiness = 1;
+			this.critBonus = 8;
 			this.evasion = 0;
 			this.fortification = 0;
 

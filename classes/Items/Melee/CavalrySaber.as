@@ -10,6 +10,7 @@
 	public class CavalrySaber extends ItemSlotClass
 	{
 		//constructor
+		//Level 6 (Common). Balance 2.0
 		public function CavalrySaber()
 		{
 			this._latestVersion = 1;
@@ -39,17 +40,17 @@
 			
 			//Information
 			this.basePrice = 3200;
-			this.attack = 0;
 			
-			baseDamage.kinetic.damageValue = 8;
+			baseDamage.kinetic.damageValue = 13;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			
+			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = 1;
-			this.critBonus = 3;
-			this.evasion = 0;
+			this.sexiness = 2;
+			this.critBonus = 6;
+			this.evasion = 1;
 			this.fortification = 0;
 
 			this.version = _latestVersion;

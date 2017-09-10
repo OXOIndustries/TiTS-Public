@@ -12,6 +12,8 @@ package classes.Items.Melee
 	 */
 	public class BothriocRapier extends ItemSlotClass
 	{	
+		//Level 7 (Common). Balance 2.0
+		//Gave some dagger stats
 		public function BothriocRapier() 
 		{
 			this._latestVersion = 1;
@@ -34,8 +36,12 @@ package classes.Items.Melee
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.basePrice = 350;
-			this.attack = 3;
-			baseDamage.kinetic.damageValue = 10.0;
+			
+			this.attack = 5;
+			this.critBonus = 5;
+			this.evasion = 5;
+
+			baseDamage.kinetic.damageValue = 13.0;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			
 			this.version = _latestVersion;

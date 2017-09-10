@@ -9,6 +9,8 @@
 	
 	public class HardlightDagger extends ItemSlotClass
 	{
+		//Level 7 (Common). Balance 2.0
+
 		// Hardlight Dagger (Level 6-7)
 		// by HugsAlright
 		// Vendor: Anno or Nerrasa?
@@ -43,12 +45,12 @@
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			
 			attack = 0;
-			critBonus = 0;
+			critBonus = 3;
 			defense = 0;
 			shieldDefense = 0;
 			shields = 0;
 			sexiness = 0;
-			evasion = 8;
+			evasion = 6;
 			fortification = 0;
 			
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);

@@ -9,13 +9,11 @@
 	
 	public class ShockBlade extends ItemSlotClass
 	{
+		//Level 3 (Rare). Balance 2.0
 		//constructor
 		public function ShockBlade()
 		{
 			this._latestVersion = 1;
-			
-			//A KNIFE
-			//4
 			
 			//this.indexNumber = 4;
 			this.quantity = 1;
@@ -43,14 +41,14 @@
 			
 			//Information
 			this.basePrice = 1450;
-			this.attack = 0;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.electric.damageValue = 9;
+			baseDamage.electric.damageValue = 10;
 			baseDamage.kinetic.damageValue = 3;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
+			this.attack = 1;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;

@@ -7,6 +7,7 @@ package classes.Items.Melee
 	
 	public class BioWhip extends ItemSlotClass
 	{
+		//Level 4 (Common). Balance 2.0
 		//constructor
 		public function BioWhip()
 		{
@@ -37,11 +38,12 @@ package classes.Items.Melee
 			
 			//Information
 			this.basePrice = 4500;
-			this.attack = 5;
 			
-			baseDamage.kinetic.damageValue = 2;
-			baseDamage.drug.damageValue = 13;
-			
+			//baseDamage.kinetic.damageValue = 2;
+			baseDamage.drug.damageValue = 3;
+			this.addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
+
+			this.attack = 2;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;

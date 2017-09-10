@@ -10,6 +10,7 @@
 	
 	public class ThermalScalpel extends ItemSlotClass
 	{
+		//Level 8 (Common). Balance 2.0
 		//constructor
 		public function ThermalScalpel()
 		{
@@ -44,7 +45,7 @@
 			
 			baseDamage = new TypeCollection();
 			baseDamage.kinetic.damageValue = 2;
-			baseDamage.burning.damageValue = 21;
+			baseDamage.burning.damageValue = 15;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_BURN);
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);

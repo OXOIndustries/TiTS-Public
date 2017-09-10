@@ -9,6 +9,7 @@
 	
 	public class Machette extends ItemSlotClass
 	{
+		//Level 2 (Common). Balance 2.0
 		//constructor
 		public function Machette()
 		{
@@ -41,14 +42,14 @@
 			this.attack = 0;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 8;
+			baseDamage.kinetic.damageValue = 9;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 0;
+			this.critBonus = 2;
 			this.evasion = 0;
 			this.fortification = 0;
 

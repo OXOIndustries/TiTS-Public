@@ -40,17 +40,18 @@
 			
 			//Information
 			this.basePrice = 1850;
-			this.attack = 0;
-			
+					
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 16;
+			baseDamage.kinetic.damageValue = 14;
 			baseDamage.addFlag(DamageFlag.CRUSHING);
+			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_STUN);
 			
-			this.defense = 4;
+			this.attack = -3;
+			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 0;
+			this.critBonus = 4;
 			this.evasion = 0;
 			this.fortification = 0;
 

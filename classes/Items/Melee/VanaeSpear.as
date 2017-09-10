@@ -12,6 +12,7 @@ package classes.Items.Melee
 	 */
 	public class VanaeSpear extends ItemSlotClass
 	{	
+		//Level 4 (Rare). Balance 2.0
 		public function VanaeSpear() 
 		{
 			this._latestVersion = 1;
@@ -34,8 +35,8 @@ package classes.Items.Melee
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.basePrice = 250;
-			this.attack = 2;
-			baseDamage.kinetic.damageValue = 8;
+			this.attack = 12;
+			baseDamage.kinetic.damageValue = 12;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			
 			this.version = _latestVersion;

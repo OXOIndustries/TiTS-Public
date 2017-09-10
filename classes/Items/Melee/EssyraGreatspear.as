@@ -10,6 +10,7 @@ package classes.Items.Melee
 	 * ...
 	 * @author Gedan
 	 */
+	//Level 8 (Common). Balance 2.0
 	public class EssyraGreatspear extends ItemSlotClass
 	{	
 		public function EssyraGreatspear() 
@@ -34,10 +35,10 @@ package classes.Items.Melee
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.basePrice = 10000;
-			this.attack = 3;
-			this.critBonus = 5;
-			baseDamage.kinetic.damageValue = 20.0;
-			evasion = 5;
+			this.attack = 11;
+			this.critBonus = 0;
+			baseDamage.kinetic.damageValue = 25.0;
+			//evasion = 5;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			
 			this.version = _latestVersion;
