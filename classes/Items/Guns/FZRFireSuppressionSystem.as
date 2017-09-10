@@ -43,6 +43,7 @@
 			baseDamage.addFlag(DamageFlag.NO_CRIT);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
+			addFlag(GLOBAL.ITEM_FLAG_BLIND_IGNORE);
 			
 			attack = 20;
 			critBonus = 0;

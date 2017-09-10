@@ -12,10 +12,10 @@ package classes.Engine.Combat
 	public function blindMiss(attacker:Creature, target:Creature, melee:Boolean = false):Boolean 
 	{
 		//Some weapons ignore bliiiiind :3
-		/*if ((melee && attacker.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_BLIND_IGNORE)) || (!melee && attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_BLIND_IGNORE)))
+		if ((melee && attacker.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_BLIND_IGNORE)) || (!melee && attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_BLIND_IGNORE)))
 		{
 			return false;
-		}*/
+		}
 		//Melee has 50% bonus miss chance. Ranged 75%.
 		if (attacker.isBlind() && ((melee && rand(2) > 0) || (!melee && rand(4) > 0)))
 		{
