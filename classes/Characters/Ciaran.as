@@ -59,6 +59,16 @@ package classes.Characters
 			this.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
 			
 			this.balls = 4;
+			this.cumMultiplierRaw = 25;
+			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
+			this.cumQualityRaw = 15;
+			this.cumType = GLOBAL.FLUID_TYPE_CUM;
+			this.ballSizeRaw = 10;
+			this.ballFullness = 100;
+			//How many "normal" orgams worth of jizz your balls can hold.
+			this.ballEfficiency = 200;
+			//Scales from 0 (never produce more) to infinity.
+			this.refractoryRate = 9999;
 			this.timesCum = 0;
 			this.minutesSinceCum = 9999;
 			
