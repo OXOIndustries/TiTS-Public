@@ -40,11 +40,11 @@
 			
 			//Information
 			this.basePrice = 2050;
-			this.attack = -2;
+			this.attack = -1;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.electric.damageValue = 1;
-			baseDamage.burning.damageValue = 8;
+			//baseDamage.electric.damageValue = 1;
+			baseDamage.burning.damageValue = 9;
 			baseDamage.addFlag(DamageFlag.LASER);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);

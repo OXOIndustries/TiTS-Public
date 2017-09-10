@@ -46,10 +46,10 @@
 			
 			//Information
 			this.basePrice = 350;
-			this.attack = 2;
+			this.attack = 3;
 			
-			baseDamage.electric.damageValue = 1;
-			baseDamage.burning.damageValue = 4;
+			//baseDamage.electric.damageValue = 1;
+			baseDamage.burning.damageValue = 5;
 			baseDamage.addFlag(DamageFlag.LASER);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			

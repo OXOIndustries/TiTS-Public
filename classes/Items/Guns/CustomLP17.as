@@ -43,7 +43,7 @@ package classes.Items.Guns
 			
 			//Information
 			this.basePrice = 1; // Intentionally giving the items from Kiro a shit value so that they won't outweigh the 1k credit reward from /not/ taking any items.
-			this.attack = 1;
+			this.attack = 2;
 			
 			baseDamage = new TypeCollection();
 			//baseDamage.electric.damageValue = 1;

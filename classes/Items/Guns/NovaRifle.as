@@ -42,7 +42,7 @@ package classes.Items.Guns
 			
 			//Information
 			this.basePrice = 2000;
-			this.attack = 7;
+			this.attack = 8;
 			
 			//baseDamage.electric.damageValue = 1;
 			baseDamage.burning.damageValue = 18;

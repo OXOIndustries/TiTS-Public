@@ -40,7 +40,7 @@
 			
 			//Information
 			this.basePrice = 1050;
-			this.attack = 0;
+			this.attack = 1;
 			
 			baseDamage = new TypeCollection();
 			//baseDamage.electric.damageValue = 1;
