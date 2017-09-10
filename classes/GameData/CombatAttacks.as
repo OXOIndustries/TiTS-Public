@@ -592,7 +592,7 @@ package classes.GameData
 				return false;
 			}
 			
-			if ((attacker.hasStatusEffect("Blinded") || attacker.hasStatusEffect("Smoke Grenade")) && rand(4) > 0)
+			if (blindMiss(attacker, target, false))
 			{
 				if (attacker is PlayerCharacter) output("Your blind-fired shot doesn’t manage to connect.");
 				else output(possessive(attacker.getCombatName()) + " blind " + attacker.rangedWeapon.attackNoun + " fails to connect!");
@@ -681,8 +681,7 @@ package classes.GameData
 				else output("[target.CombatName] manage" + (target.isPlural ? "" : "s") + " to avoid " + possessive(attacker.getCombatName()) + " " + attacker.meleeWeapon.attackNoun + ".");
 				return false;
 			}
-			
-			if ((attacker.hasStatusEffect("Blinded") || attacker.hasStatusEffect("Smoke Grenade")) && rand(2) > 0)
+			if (blindMiss(attacker, target, true))
 			{
 				if (attacker is PlayerCharacter) output("Your blind strike doesn’t manage to connect.");
 				else output(" " + possessive(attacker.getCombatName()) + " blind " + attacker.meleeWeapon.attackNoun + " fails to connect!");
@@ -1294,7 +1293,7 @@ package classes.GameData
 				}
 			}
 			//Extra miss for blind
-			else if (attacker.hasStatusEffect("Blinded") && rand(2) > 0)
+			else if (blindMiss(attacker, target, true))
 			{
 				if (attacker is PlayerCharacter) output("Your blind strike fails to connect.");
 				else output("[attacker.CombatHisHer] blind strike fails to connect.");
@@ -1356,7 +1355,7 @@ package classes.GameData
 				return;
 			}
 			
-			if (attacker.hasStatusEffect("Blinded") && rand(10) > 0)
+			if (blindMiss(attacker, target, true))
 			{
 				output(StringUtil.capitalize(possessive(attacker.getCombatName()), false) + " blind power strike missed.");
 				
@@ -1530,7 +1529,7 @@ package classes.GameData
 				return;
 			}
 			
-			if ((attacker.hasStatusEffect("Blinded") || attacker.hasStatusEffect("Smoke Grenade")) && rand(10) > 0)
+			if (blindMiss(attacker, target, false))
 			{
 				if (attacker is PlayerCharacter) output("Your blind-fired, overcharged shot missed!");
 				else if (target is PlayerCharacter) output(possessive(attacker.getCombatName()) + " blind-fired, overcharged shot misses you!");
@@ -1874,7 +1873,7 @@ package classes.GameData
 				else if (attacker is PlayerCharacter) output("You miss!");
 				else output("You narrowly avoid the attack!");
 			}
-			else if (attacker.hasStatusEffect("Blinded") && rand(2) > 0)
+			else if (blindMiss(attacker, target, true))
 			{
 				if (attacker is PlayerCharacter) output("Your blind strike fails to connect.");
 				else output(possessive(attacker.getCombatName()) + " blind strike" + (attacker.isPlural ? "s fail" : " fails") + " to connect.");
@@ -1948,10 +1947,10 @@ package classes.GameData
 				return;
 			}
 			
-			if ((attacker.hasStatusEffect("Blinded") || attacker.hasStatusEffect("Smoke Grenade")) && rand(10) > 0)
+			if (attacker.isBlind())
 			{
-				if (attacker is PlayerCharacter) output("Your blind-fired shot fails to connect.");
-				else output(possessive(attacker.getCombatName()) + " blind-fired shot fails to connect.");
+				if (attacker is PlayerCharacter) output("Your blind-fired shot had no chance to connect with such a tiny target!");
+				else output(possessive(attacker.getCombatName()) + " blind-fired shot had no chance of connecting!");
 				return;
 			}
 			
@@ -2146,7 +2145,7 @@ package classes.GameData
 			{
 				output(" You let fly, but the arrow sails clean past your intended target" + (target.isPlural ? "s" : "") + ".");
 			}
-			else if (attacker.hasStatusEffect("Blinded") && rand(10) > 0)
+			else if (blindMiss(attacker, target, false))
 			{
 				output(" Your blind <b>concussion shot</b> missed.");
 			}
@@ -2204,7 +2203,7 @@ package classes.GameData
 					else if (cTarget is PlayerCharacter) output("[attacker.CombatName] lets loose, but the arrows sail clean past you.");
 					else output("[attacker.CombatName] lets loose, but the arrows sail clean past [attacker.combatHisHer] intended target.");
 				}
-				else if (attacker.hasStatusEffect("Blinded") && rand(10) > 0)
+				else if (blindMiss(attacker, target, false))
 				{
 					if (attacker is PlayerCharacter) output("Your blind <b>multi-arrow shot</b> missed " + cTarget.getCombatName() + ".");
 					else if (attacker.isPlural) output("[attacker.CombatName] blind <b>multi-arrow shot</b> missed " + cTarget.getCombatName() + ".");

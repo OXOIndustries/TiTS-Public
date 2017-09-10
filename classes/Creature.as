@@ -6357,6 +6357,9 @@
 		public function isGrappled(): Boolean {
 			return (hasStatusEffect("Grappled") || hasStatusEffect("Naleen Coiled"));
 		}
+		public function isBlind(): Boolean {
+			return (hasStatusEffect("Blinded") || hasStatusEffect("Smoke Grenade"));
+		}
 		public function legs(forceType: Boolean = false, forceAdjective: Boolean = false): String 
 		{
 			return plural(leg(forceType, forceAdjective, true));

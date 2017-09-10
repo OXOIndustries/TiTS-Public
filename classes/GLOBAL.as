@@ -1123,7 +1123,7 @@
 		public static const ITEM_FLAG_UNDROPPABLE:int					= 17; // For items that cannot be dropped.
 		public static const ITEM_FLAG_TRANSPARENT:int					= 18; // Used specifically for clothing/armor that is see-through.
 		public static const ITEM_FLAG_ANTIGRAV:int						= 19; // Used for items that can levitate heavy parts.
-		
+		public static const ITEM_FLAG_IGNORE_BLIND:int 					= 20; // Used for items with no penalties for blind-fire.
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
 			"Energy Weapon",
@@ -1145,6 +1145,7 @@
 			"Undroppable",
 			"Transparent",
 			"Anti-Gravity",
+			"Ignores Blindness",
 		];
 		
 		/**
@@ -1192,7 +1193,6 @@
 		public static const SEXPREF_BALDNESS:int = 24;
 		public static const SEXPREF_LONG_HAIR:int = 25;
 		public static const SEXPREF_NEUTER:int = 26
-		
 		public static const MAX_SEXPREF_VALUE:int = 27; // Keep this as a book-end on the values. Check penny for how you'd random shit
 		
 		// Not ideal, but it's possibly better than using switch statements, plus it keeps the Keys ^ with Descriptors \/
