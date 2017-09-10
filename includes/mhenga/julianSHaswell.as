@@ -4,7 +4,7 @@
 public function showDrHaswell(nude:Boolean = false):void {
 	if(!nude) showBust("DR_HASWELL");
 	else showBust("DR_HASWELL_NUDE");
-	if(flags["MET_DR_HASWELL"] != undefined) showName("\nSCIENTIST");
+	if(flags["MET_DR_HASWELL"] == undefined) showName("\nSCIENTIST");
 	else showName("DR. JULIAN\nS. HASWELL");
 }
 
