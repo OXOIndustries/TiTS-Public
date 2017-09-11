@@ -7,6 +7,7 @@
 	
 	public class SleekParka extends ItemSlotClass
 	{
+		//Level 8 (Common). Balance 2.0
 		//constructor
 		public function SleekParka()
 		{
@@ -43,9 +44,9 @@
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
-			this.fortification = 5;
+			this.fortification = 6;
 			
-			resistances.freezing.resistanceValue = 80.0;
+			resistances.freezing.resistanceValue = 50.0;
 			
 			this.version = _latestVersion;
 		}

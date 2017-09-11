@@ -7,7 +7,7 @@ package classes.Items.Apparel
 
 	public class MaidOutfit extends ItemSlotClass
 	{
-		
+		//Level 3 (Common). Balance 2.0
 		public function MaidOutfit() 
 		{
 			this._latestVersion = 1;
@@ -34,10 +34,12 @@ package classes.Items.Apparel
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
-			this.sexiness = 5;
+			this.sexiness = 3;
 			this.critBonus = 0;
-			this.evasion = 0;
+			this.evasion = 2;
 			this.fortification = 0;
+
+			resistances.electric.resistanceValue = 34.0;
 			
 			this.version = this._latestVersion;
 		}

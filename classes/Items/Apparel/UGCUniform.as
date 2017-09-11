@@ -11,7 +11,7 @@ package classes.Items.Apparel
 	 */
 	public class UGCUniform extends ItemSlotClass
 	{
-		
+		//Level 2 (Common). Balance 2.0
 		public function UGCUniform() 
 		{
 			this._latestVersion = 1;
@@ -36,12 +36,12 @@ package classes.Items.Apparel
 			
 			this.basePrice = 200;
 			this.attack = 0;
-			this.defense = 0;
+			this.defense = 2;
 			this.shieldDefense = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
-			this.evasion = 0;
-			this.fortification = 0;
+			this.evasion = 2;
+			this.fortification = 15;
 			
 			this.version = this._latestVersion;
 		}

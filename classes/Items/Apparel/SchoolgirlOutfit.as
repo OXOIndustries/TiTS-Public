@@ -10,7 +10,7 @@ package classes.Items.Apparel
 	 */
 	public class SchoolgirlOutfit extends ItemSlotClass
 	{
-		
+		//Not PC accessible?
 		public function SchoolgirlOutfit() 
 		{
 			this._latestVersion = 1;

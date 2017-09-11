@@ -10,7 +10,7 @@ package classes.Items.Apparel
 	 */
 	public class CheerleaderUniform extends ItemSlotClass
 	{
-		
+		//Level 3 (Common). Balance 2.0
 		public function CheerleaderUniform() 
 		{
 			this._latestVersion = 1;
@@ -39,7 +39,7 @@ package classes.Items.Apparel
 			this.shieldDefense = 0;
 			this.sexiness = 5;
 			this.critBonus = 0;
-			this.evasion = 0;
+			this.evasion = 4;
 			this.fortification = 0;
 			
 			this.version = this._latestVersion;

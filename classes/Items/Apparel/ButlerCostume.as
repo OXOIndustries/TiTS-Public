@@ -8,7 +8,7 @@ package classes.Items.Apparel
 	
 	public class ButlerCostume extends ItemSlotClass
 	{
-		
+		//Level 2 (Common). Balance 2.0
 		public function ButlerCostume() 
 		{
 			_latestVersion = 1;
@@ -37,7 +37,7 @@ package classes.Items.Apparel
 			shieldDefense = 0;
 			sexiness = 5;
 			critBonus = 0;
-			evasion = 0;
+			evasion = 2;
 			fortification = 0;
 			
 			version = _latestVersion;

@@ -11,7 +11,7 @@ package classes.Items.Armor
 	 */
 	public class VoidPlateArmor extends ItemSlotClass
 	{
-		
+		//Level 7 (Rare). Balance 2.0
 		public function VoidPlateArmor() 
 		{
 			this._latestVersion = 1;
@@ -41,13 +41,14 @@ package classes.Items.Armor
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
-			this.fortification = 2;
+			this.fortification = 3;
 			
-			this.resistances.kinetic.resistanceValue = 15;
-			this.resistances.electric.resistanceValue = 30;
-			this.resistances.burning.resistanceValue = 30;
-			this.resistances.corrosive.resistanceValue = 15;
-			this.resistances.poison.resistanceValue = 15;
+			//this.resistances.kinetic.resistanceValue = 15;
+			this.resistances.electric.resistanceValue = 10;
+			this.resistances.burning.resistanceValue = 10;
+			this.resistances.freezing.resistanceValue = 10;
+			this.resistances.corrosive.resistanceValue = 10;
+			this.resistances.poison.resistanceValue = 3;
 			
 			this.resistances.addFlag(DamageFlag.MIRRORED);
 			//this.resistances.addFlag(DamageFlag.GROUNDED);

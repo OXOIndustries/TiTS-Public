@@ -8,6 +8,7 @@
 	
 	public class ChitinArmor extends ItemSlotClass
 	{
+		//Level 6 (Common). Balance 2.0
 		//constructor
 		public function ChitinArmor()
 		{
@@ -49,6 +50,7 @@
 			this.fortification = 2;
 			
 			resistances.kinetic.resistanceValue = 5.0;
+			resistances.burning.resistanceValue = -7.0;
 			resistances.addFlag(DamageFlag.ABLATIVE);
 			
 			this.version = _latestVersion;

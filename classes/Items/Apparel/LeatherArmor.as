@@ -37,13 +37,15 @@
 			//Information
 			this.basePrice = 400;
 			this.attack = 0;
-			this.defense = 1;
+			this.defense = 2;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
-			this.evasion = 0;
+			this.evasion = 1;
 			this.fortification = 0;
+
+			resistances.electric.resistanceValue = 12.0;
 			
 			this.version = _latestVersion;
 		}

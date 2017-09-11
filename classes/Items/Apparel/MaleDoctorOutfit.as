@@ -10,7 +10,7 @@ package classes.Items.Apparel
 	 */
 	public class MaleDoctorOutfit extends ItemSlotClass
 	{
-		
+		//Level 6 (Common). Balance 2.0
 		public function MaleDoctorOutfit() 
 		{
 			this._latestVersion = 1;
@@ -37,9 +37,9 @@ package classes.Items.Apparel
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
-			this.sexiness = 3;
+			this.sexiness = 8;
 			this.critBonus = 0;
-			this.evasion = 0;
+			this.evasion = 8;
 			this.fortification = 0;
 			
 			this.version = this._latestVersion;

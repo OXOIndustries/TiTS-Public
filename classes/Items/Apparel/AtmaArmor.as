@@ -11,7 +11,7 @@ package classes.Items.Apparel
 	 */
 	public class AtmaArmor extends ItemSlotClass
 	{
-		
+		//Level 4 (Rare). Balance 2.0
 		public function AtmaArmor() 
 		{
 			this._latestVersion = 1;
@@ -30,10 +30,9 @@ package classes.Items.Apparel
 
 			this.attackVerb = "";
 			
-			resistances.psionic.resistanceValue = 30.0;
-			resistances.drug.resistanceValue = 30.0;
-			resistances.pheromone.resistanceValue = 30.0;
-			resistances.tease.resistanceValue = 30.0;
+			resistances.pheromone.resistanceValue = 14.0;
+			resistances.drug.resistanceValue = 15.0;
+			resistances.tease.resistanceValue = 14.0;
 			
 			this.basePrice = 1550;
 			this.attack = 0;

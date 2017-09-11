@@ -10,7 +10,7 @@ package classes.Items.Apparel
 	 */
 	public class WinterGear extends ItemSlotClass
 	{
-		
+		//Level 8 (Common). Balance 2.0
 		public function WinterGear() 
 		{
 			this._latestVersion = 1;
@@ -35,17 +35,17 @@ package classes.Items.Apparel
 			
 			this.basePrice = 7000;
 			this.attack = 0;
-			this.defense = 2;
+			this.defense = 4;
 			this.shieldDefense = 0;
 			this.sexiness = 2;
 			this.critBonus = 0;
 			this.evasion = 0;
-			this.fortification = 0;
-			resistances.freezing.resistanceValue = 40.0;
+			this.fortification = 4;
+			resistances.freezing.resistanceValue = 50.0;
+			resistances.electric.resistanceValue = 15.0;
 			resistances.burning.resistanceValue = -10.0;
 			resistances.pheromone.resistanceValue = -10.0;
 
-			
 			this.version = this._latestVersion;
 		}
 	}

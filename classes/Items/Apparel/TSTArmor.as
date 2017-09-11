@@ -11,7 +11,7 @@ package classes.Items.Apparel
 	 */
 	public class TSTArmor extends ItemSlotClass
 	{
-		
+		//Level 4 (Common). Balance 2.0
 		public function TSTArmor() 
 		{
 			this._latestVersion = 1;
@@ -20,7 +20,7 @@ package classes.Items.Apparel
 			this.stackSize = 1;
 			this.type = GLOBAL.ARMOR;
 			
-			this.shortName = "TST Armor";
+			this.shortName = "TSTArmor";
 			
 			this.longName = "TS-T armor plating";
 			
@@ -36,15 +36,15 @@ package classes.Items.Apparel
 			
 			this.basePrice = 200;
 			this.attack = 0;
-			this.defense = 1;
+			this.defense = 2;
 			this.shieldDefense = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
-			this.fortification = 1;
+			this.fortification = 10;
 			
-			resistances.electric.resistanceValue = 20.0;
-			resistances.burning.resistanceValue = 30.0;
+			resistances.electric.resistanceValue = 15.0;
+			resistances.burning.resistanceValue = 20.0;
 			
 			this.version = this._latestVersion;
 		}

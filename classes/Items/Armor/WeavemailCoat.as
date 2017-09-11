@@ -8,6 +8,7 @@
 	
 	public class WeavemailCoat extends ItemSlotClass
 	{
+		//Level 8 (Common). Balance 2.0
 		//constructor
 		public function WeavemailCoat()
 		{
@@ -47,8 +48,8 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
-			resistances.kinetic.resistanceValue = 25.0;
-			resistances.freezing.resistanceValue = 20.0;
+			//resistances.kinetic.resistanceValue = 25.0;
+			resistances.freezing.resistanceValue = 18.0;
 			//resistances.addFlag(DamageFlag.ABLATIVE);
 			
 			this.version = _latestVersion;

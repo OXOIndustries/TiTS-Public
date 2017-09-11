@@ -10,6 +10,7 @@
 	
 	public class Smartclothes extends ItemSlotClass
 	{
+		//Level 4 (Common). Balance 2.0
 		//constructor
 		public function Smartclothes()
 		{
@@ -49,7 +50,7 @@
 			this.fortification = 0;
 			
 			resistances.electric.resistanceValue = 30.0;
-			resistances.burning.resistanceValue = 30.0;
+			resistances.burning.resistanceValue = 24.0;
 			
 			this.version = _latestVersion;
 		}	

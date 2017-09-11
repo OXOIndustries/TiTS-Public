@@ -12,7 +12,7 @@ package classes.Items.Apparel
 	 */
 	public class TSTArmorMkII extends ItemSlotClass
 	{
-		
+		//Not attainable.
 		public function TSTArmorMkII() 
 		{
 			this._latestVersion = 1;

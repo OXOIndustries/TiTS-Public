@@ -4,9 +4,11 @@
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	public class TrashArmor extends ItemSlotClass
 	{
+		//Level 4 (Common). Balance 2.0
 		//constructor
 		public function TrashArmor()
 		{
@@ -40,13 +42,14 @@
 			this.defense = 8;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = -2;
+			this.sexiness = -5;
 			this.critBonus = 0;
 			this.evasion = 0;
-			this.fortification = 0;
+			this.fortification = 20;
 			
 			itemFlags = [GLOBAL.ITEM_FLAG_AIRTIGHT];
-			
+			resistances.addFlag(DamageFlag.PLATED);
+
 			this.version = _latestVersion;
 		}
 	}

@@ -5,6 +5,7 @@ package classes.Items.Armor
 	import classes.StringUtil;
 	import classes.GameData.TooltipManager;
 	
+	//Level 6 (Common). Balance 2.0
 	public class ArmstrongSuitBlue extends ItemSlotClass
 	{
 		public function ArmstrongSuitBlue()
@@ -32,17 +33,15 @@ package classes.Items.Armor
 			
 			basePrice = 2400;
 			attack = 0;
-			defense = 3;
-			shields = 5;
-			sexiness = 3;
+			defense = 2;
+			shields = 4;
+			sexiness = 5;
 			critBonus = 0;
 			evasion = 0;
 			fortification = 0;
 			
-			resistances.burning.resistanceValue = 15.0;
-			resistances.freezing.resistanceValue = 15.0;
-			
-			resistances.pheromone.resistanceValue = 100.0;
+			resistances.burning.resistanceValue = 10.0;
+			resistances.freezing.resistanceValue = 10.0;
 			
 			// Note: Since the suit creates a stable environment any gaseous based damage wouldn't work against it.
 			itemFlags = [];

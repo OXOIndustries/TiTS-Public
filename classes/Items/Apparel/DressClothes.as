@@ -7,6 +7,7 @@
 	
 	public class DressClothes extends ItemSlotClass
 	{
+		//Level 1 (Starter). Balance 2.0
 		//constructor
 		public function DressClothes()
 		{

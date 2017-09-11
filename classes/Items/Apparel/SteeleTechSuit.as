@@ -11,7 +11,7 @@ package classes.Items.Apparel
 	 */
 	public class SteeleTechSuit extends ItemSlotClass
 	{
-		
+		//Level 6 (Rare). Balance 2.0
 		public function SteeleTechSuit() 
 		{
 			this._latestVersion = 1;
@@ -44,9 +44,9 @@ package classes.Items.Apparel
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 15;
-			this.sexiness = 0;
+			this.sexiness = 2;
 			this.critBonus = 0;
-			this.evasion = 0;
+			this.evasion = 2;
 			this.fortification = 0;
 			
 			resistances.electric.resistanceValue = 30.0;

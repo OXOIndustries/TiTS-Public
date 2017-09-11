@@ -8,6 +8,7 @@
 	
 	public class NyreanChain extends ItemSlotClass
 	{
+		//Level 6 (Common). Balance 2.0
 		//constructor
 		public function NyreanChain()
 		{
@@ -45,10 +46,10 @@
 			this.shields = 0;
 			this.sexiness = 6;
 			this.critBonus = 0;
-			this.evasion = 0;
-			this.fortification = 2;
+			this.evasion = 8;
+			this.fortification = 4;
 			
-			resistances.kinetic.resistanceValue = 10.0;
+			//resistances.kinetic.resistanceValue = 10.0;
 			
 			this.version = _latestVersion;
 		}

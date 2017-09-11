@@ -116,11 +116,12 @@ package classes.Engine.Combat.DamageTypes
 						
 					case MIRRORED:
 						createTrigger(LASER, 0.1);
+						createTrigger(BULLET, 1.3);
 						break;
 					
 					case CRYSTAL:
 						createTrigger(LASER, 0.6);
-						createTrigger(EXPLOSIVE, 1.4);
+						createTrigger(EXPLOSIVE, 1.25);
 						break;
 						
 					case NULLIFYING:

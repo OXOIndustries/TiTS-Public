@@ -1149,8 +1149,9 @@ public function armorGooVictoryShits():void
 	output("\n\n<i>“Like my new look?”</i> [goo.name] grins, twirling around to show off a growing number of spikey gray crystal plates forming on her chest and back, forming pauldrons and a solid breastplate. You’re sure that, when it comes time to have a little fun, the plates could easily be absorbed back into her. But here in a place rife with danger, well, she almost looks like a sexified version of a proper knight now!");
 	output("\n\nShe giggles at the praise and bounds back to you. <i>“Ready to go, [pc.name]!”</i>\n\n");
 
-	if(pc.armor is GooArmor)
+	if(pc.armor is GooArmor && flags["GOO_ARMOR_CRYSTAL_UPGRADE"] == undefined)
 	{
+		flags["GOO_ARMOR_CRYSTAL_UPGRADE"] = 1;
 		pc.armor.hasRandomProperties = true;
 		pc.armor.defense += 2;
 		pc.armor.resistances.addFlag(DamageFlag.MIRRORED);
@@ -1160,9 +1161,9 @@ public function armorGooVictoryShits():void
 	for(var x:int = 0; x < pc.inventory.length; x++)
 	{
 		trace("LOOKING FOR GOO ARMOR. @: " + pc.inventory[x].longName);
-		if(pc.inventory[x].shortName == "Goo Armor")
+		if(pc.inventory[x].shortName == "Goo Armor" && flags["GOO_ARMOR_CRYSTAL_UPGRADE"] == undefined)
 		{
-			trace("UPGRADING GOOSHIT!");
+			flags["GOO_ARMOR_CRYSTAL_UPGRADE"] = 1;
 			pc.inventory[x].hasRandomProperties = true;
 			pc.inventory[x].defense += 2;
 			pc.inventory[x].resistances.addFlag(DamageFlag.MIRRORED);

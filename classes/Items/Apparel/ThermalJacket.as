@@ -8,6 +8,7 @@
 	public class ThermalJacket extends ItemSlotClass
 	{
 		//constructor
+		//Level 2 (Common). Balance 2.0
 		public function ThermalJacket()
 		{
 			this._latestVersion = 1;
@@ -37,16 +38,16 @@
 			//Information
 			this.basePrice = 120;
 			this.attack = 0;
-			this.defense = 0;
+			this.defense = 1;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = -1;
 			this.critBonus = 0;
 			this.evasion = 0;
-			this.fortification = 0;
+			this.fortification = 16;
 			
 			resistances.burning.resistanceValue = 20.0;
-			resistances.freezing.resistanceValue = 20.0;
+			resistances.freezing.resistanceValue = 40.0;
 			resistances.kinetic.resistanceValue = -15.0;
 			
 			this.version = _latestVersion;

@@ -7,6 +7,7 @@ package classes.Items.Armor
 	
 	public class GemstoneLinks extends ItemSlotClass
 	{
+		//Level 8 (Common). Balance 2.0
 		//constructor
 		public function GemstoneLinks()
 		{
@@ -40,7 +41,7 @@ package classes.Items.Armor
 			this.shields = 0;
 			this.sexiness = 10;
 			this.critBonus = 0;
-			this.evasion = 5;
+			this.evasion = 11;
 			this.fortification = 0;
 			
 			itemFlags = [];

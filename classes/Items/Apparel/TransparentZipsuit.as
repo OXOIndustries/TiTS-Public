@@ -11,7 +11,7 @@ package classes.Items.Apparel
 	 */
 	public class TransparentZipsuit extends ItemSlotClass
 	{
-		
+		//Level 6 (Common). Balance 2.0
 		public function TransparentZipsuit() 
 		{
 			this._latestVersion = 1;
@@ -41,10 +41,12 @@ package classes.Items.Apparel
 			this.sexiness = 6;
 			this.critBonus = 0;
 			this.evasion = 2;
-			this.fortification = 1;
+			this.fortification = 0;
 			
-			resistances.electric.resistanceValue = 50.0;
-			resistances.burning.resistanceValue = 25.0;
+			resistances.electric.resistanceValue = 40.0;
+			resistances.burning.resistanceValue = 15.0;
+			resistances.tease.resistanceValue = -15.0;
+			resistances.pheromone.resistanceValue = -10.0;
 			
 			itemFlags = [];
 			itemFlags.push(GLOBAL.ITEM_FLAG_TRANSPARENT);
