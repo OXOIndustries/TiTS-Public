@@ -60,6 +60,20 @@ public function milkBarn514Func():Boolean
 
 public function manMilkerRoomBonusFunc():Boolean
 {
+	//Special Cameron Scene
+	//PC has cock, has sexed Cameron, has used the milker, the milker isn't broken, hasn't done the scene in 24 hours, 
+	//and then it's a ~15% chance
+	if (pc.hasCock() 
+			&& flags["SEXED_CAMERON"] != undefined 
+			&& StatTracking.getStat("milkers/prostate milker uses") > 0 
+			&& flags["MILK_BARN_COCKMILKER_BROKEN"] == undefined
+			&& !pc.hasStatusEffect("Cameron Milker Cooldown")
+			&& rand(7) == 0)
+	{
+		cameronCockMilker();
+		return true;
+	}
+	
 	output("Unlike most of the stalls in the Milk Barn, this one isn’t closed or empty.");
 	if(StatTracking.getStat("milkers/prostate milker uses") == 0) output(" A single auburn-haired cow");
 	else output(" Carrie");
@@ -140,6 +154,9 @@ public function randomBarnEntranceEventsFunc():Boolean
 public function randomBarnEventFunc():Boolean
 {
 	var retVal:Boolean = false;
+	
+	//If Cameron is getting milked right now disable entering the male milker
+	if (currentLocation == "511" && pc.hasStatusEffect("Cameron Getting Milked")) flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
 	
 	//Chance to proc any one of these events when passing by a milking stall. Each can proc 1/day at most.
 	if(flags["MILK_BARN_EVENT_TODAY"] == undefined && rand(10) == 0)
