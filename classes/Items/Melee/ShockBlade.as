@@ -40,7 +40,7 @@
 			attackNoun = "shocking slash";
 			
 			//Information
-			this.basePrice = 1450;
+			this.basePrice = 600;
 			
 			baseDamage = new TypeCollection();
 			baseDamage.electric.damageValue = 10;

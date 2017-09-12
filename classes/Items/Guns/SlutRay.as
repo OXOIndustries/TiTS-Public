@@ -39,7 +39,7 @@ package classes.Items.Guns
 			attackNoun = "sexual fantasy";
 			
 			//Information
-			this.basePrice = 1500;
+			this.basePrice = 900;
 			this.attack = 0;
 			baseDamage.tease.damageValue = 4;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);

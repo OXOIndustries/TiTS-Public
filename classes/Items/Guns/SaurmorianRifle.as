@@ -41,7 +41,7 @@ package classes.Items.Guns
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 25000;
+			this.basePrice = 41000;
 			
 			baseDamage.kinetic.damageValue = 41;
 			baseDamage.addFlag(DamageFlag.PENETRATING);

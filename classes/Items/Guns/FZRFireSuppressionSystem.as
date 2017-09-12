@@ -36,7 +36,7 @@
 			attackVerb = "shoot";
 			attackNoun = "blast";
 			
-			basePrice = 20000;
+			basePrice = 6700;
 			
 			baseDamage = new TypeCollection();
 			baseDamage.freezing.damageValue = 24;

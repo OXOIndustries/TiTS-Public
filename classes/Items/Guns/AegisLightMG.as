@@ -41,7 +41,7 @@ package classes.Items.Guns
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 12500;
+			this.basePrice = 20000;
 			this.attack = 10;
 			
 			baseDamage.kinetic.damageValue = 29;

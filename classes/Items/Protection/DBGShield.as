@@ -8,6 +8,7 @@ package classes.Items.Protection
 	// Debug item much?
 	public class DBGShield extends ItemSlotClass
 	{
+		//UNUSED
 		public function DBGShield()
 		{
 			this._latestVersion = 1;

@@ -40,7 +40,7 @@
 			attackNoun = "burning hack";
 			
 			//Information
-			this.basePrice = 18000;
+			this.basePrice = 13000;
 			this.attack = 1;
 			
 			baseDamage = new TypeCollection();

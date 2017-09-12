@@ -40,7 +40,7 @@
 			attackNoun = "laser beam";
 			
 			//Information
-			this.basePrice = 13500;
+			this.basePrice = 11000;
 			this.attack = 8;
 			
 			baseDamage = new TypeCollection();

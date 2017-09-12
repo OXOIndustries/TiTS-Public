@@ -8,7 +8,7 @@
 	
 	public class ArcticWarfareBelt extends ItemSlotClass
 	{
-		
+		//Level 8 (Common). Balance 2.0
 		//constructor
 		public function ArcticWarfareBelt()
 		{
@@ -37,7 +37,7 @@
 			this.attackVerb = "null";
 			
 			//Information
-			this.basePrice = 10000;
+			this.basePrice = 12800;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
@@ -48,8 +48,10 @@
 			this.fortification = 0;
 			
 			resistances = new TypeCollection();
+			resistances.kinetic.resistanceValue = 10.0;
 			resistances.freezing.resistanceValue = 40.0;
-			resistances.burning.resistanceValue = 40.0;
+			resistances.electric.resistanceValue = -50.0;
+			resistances.burning.resistanceValue = -20.0;
 			
 			itemFlags = [];
 			itemFlags.push(GLOBAL.ITEM_FLAG_HEATBELT);

@@ -38,7 +38,7 @@ package classes.Items.Guns
 			attackNoun = "goo";
 			
 			//Information
-			this.basePrice = 4280;
+			this.basePrice = 420;
 			this.attack = 1;
 			/*
 			 Goovolver needs to be unwound from combat code. We can now convey lust damage as a damage type on weapons.

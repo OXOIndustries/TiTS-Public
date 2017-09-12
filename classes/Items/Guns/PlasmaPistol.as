@@ -40,7 +40,7 @@
 			attackNoun = "plasma ball";
 			
 			//Information
-			this.basePrice = 100050;
+			this.basePrice = 28000;
 			this.attack = -1;
 			
 			baseDamage = new TypeCollection();

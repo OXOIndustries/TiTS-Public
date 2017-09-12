@@ -41,7 +41,7 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 850;
+			this.basePrice = 600;
 			
 			baseDamage.kinetic.damageValue = 13;
 			baseDamage.addFlag(DamageFlag.CRUSHING);

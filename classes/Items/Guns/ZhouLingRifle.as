@@ -39,7 +39,7 @@
 			attackNoun = "icicle";
 			
 			//Information
-			this.basePrice = 23000;
+			this.basePrice = 2500;
 			this.attack = 4;
 			
 			baseDamage = new TypeCollection();

@@ -40,7 +40,7 @@
 			attackNoun = "slash";
 			
 			//Information
-			this.basePrice = 24000;
+			this.basePrice = 13000;
 					
 			baseDamage = new TypeCollection();
 			baseDamage.kinetic.damageValue = 20;

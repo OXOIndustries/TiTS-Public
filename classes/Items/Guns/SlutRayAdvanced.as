@@ -33,7 +33,7 @@ package classes.Items.Guns
 			attackVerb = "shoot";
 			attackNoun = "sexual fantasy";
 			
-			basePrice = 4500;
+			basePrice = 2500;
 			attack = 0;
 			baseDamage.tease.damageValue = 5;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);

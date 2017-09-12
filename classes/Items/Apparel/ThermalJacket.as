@@ -36,7 +36,7 @@
 			this.attackVerb = "null";
 			
 			//Information
-			this.basePrice = 120;
+			this.basePrice = 220;
 			this.attack = 0;
 			this.defense = 1;
 			this.shieldDefense = 0;

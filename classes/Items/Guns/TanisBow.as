@@ -38,7 +38,7 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 6500;
+			this.basePrice = 300;
 			
 			baseDamage.kinetic.damageValue = 1;
 			baseDamage.corrosive.damageValue = 5;

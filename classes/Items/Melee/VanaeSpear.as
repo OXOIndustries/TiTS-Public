@@ -34,7 +34,7 @@ package classes.Items.Melee
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
-			this.basePrice = 250;
+			this.basePrice = 1200;
 			this.attack = 12;
 			baseDamage.kinetic.damageValue = 12;
 			baseDamage.addFlag(DamageFlag.PENETRATING);

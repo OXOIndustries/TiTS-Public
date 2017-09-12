@@ -40,7 +40,7 @@
 			attackNoun = "shocking smash";
 			
 			//Information
-			this.basePrice = 15499;
+			this.basePrice = 10000;
 			
 			baseDamage = new TypeCollection();
 			baseDamage.kinetic.damageValue = 7;

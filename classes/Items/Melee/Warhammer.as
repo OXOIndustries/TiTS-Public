@@ -38,7 +38,7 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 550;
+			this.basePrice = 200;
 			this.attack = -4;
 			
 			baseDamage = new TypeCollection();

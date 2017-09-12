@@ -40,7 +40,7 @@
 			attackNoun = "crackling slice";
 			
 			//Information
-			this.basePrice = 15499;
+			this.basePrice = 11000;
 			
 			baseDamage = new TypeCollection();
 			baseDamage.kinetic.damageValue = 7;

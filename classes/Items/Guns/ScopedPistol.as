@@ -45,7 +45,7 @@
 			attackNoun = "shot";
 			
 			//Information
-			this.basePrice = 350;
+			this.basePrice = 120;
 			this.attack = 3;
 			
 			//baseDamage.electric.damageValue = 1;

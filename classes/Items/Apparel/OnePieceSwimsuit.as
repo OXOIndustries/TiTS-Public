@@ -33,7 +33,7 @@ package classes.Items.Apparel
 			
 			attackVerb = "";
 			
-			basePrice = 700;
+			basePrice = 400;
 			attack = 0;
 			defense = 0;
 			shieldDefense = 0;

@@ -35,7 +35,7 @@
 			attackVerb = "shoot";
 			attackNoun = "shocking arrow";
 			
-			basePrice = 10000;
+			basePrice = 3500;
 			
 			baseDamage = new TypeCollection();
 			baseDamage.kinetic.damageValue = 7;

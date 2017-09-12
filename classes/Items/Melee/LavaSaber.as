@@ -40,7 +40,7 @@
 			attackNoun = "burning slash";
 			
 			//Information
-			this.basePrice = 14199;
+			this.basePrice = 6400;
 			
 			baseDamage = new TypeCollection();
 			baseDamage.kinetic.damageValue = 5;

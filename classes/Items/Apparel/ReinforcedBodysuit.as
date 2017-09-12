@@ -34,7 +34,7 @@ package classes.Items.Apparel
 			
 			this.attackVerb = "";
 			
-			this.basePrice = 4000;
+			this.basePrice = 3700;
 			this.attack = 0;
 			this.defense = 5;
 			this.shieldDefense = 0;

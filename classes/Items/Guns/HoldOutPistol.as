@@ -39,7 +39,7 @@
 			attackNoun = "shot";
 			
 			//Information
-			this.basePrice = 300;
+			this.basePrice = 105;
 			this.attack = 0;
 			
 			baseDamage.kinetic.damageValue = 5;

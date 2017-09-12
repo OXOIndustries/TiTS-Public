@@ -34,7 +34,7 @@ package classes.Items.Melee
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
-			this.basePrice = 10000;
+			this.basePrice = 12800;
 			this.attack = 11;
 			this.critBonus = 0;
 			baseDamage.kinetic.damageValue = 25.0;

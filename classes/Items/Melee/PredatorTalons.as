@@ -40,7 +40,7 @@
 			attackNoun = "burning claw";
 			
 			//Information
-			this.basePrice = 25000;
+			this.basePrice = 13000;
 			
 			baseDamage = new TypeCollection();
 			baseDamage.burning.damageValue = 17;

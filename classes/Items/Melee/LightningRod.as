@@ -35,7 +35,7 @@
 			attackVerb = "swing";
 			attackNoun = "shocking thrust";
 			
-			basePrice = 10000;
+			basePrice = 3400;
 			
 			baseDamage = new TypeCollection();
 			baseDamage.kinetic.damageValue = 7;

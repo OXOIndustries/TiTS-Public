@@ -38,7 +38,7 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 6500;
+			this.basePrice = 4000;
 			
 			baseDamage.kinetic.damageValue = 15;
 			baseDamage.addFlag(DamageFlag.PENETRATING);

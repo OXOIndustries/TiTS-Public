@@ -40,7 +40,7 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 3450;
+			this.basePrice = 900;
 			this.attack = 3;
 			
 			baseDamage.electric.damageValue = 13;

@@ -34,7 +34,7 @@ package classes.Items.Armor
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 4500;
+			this.basePrice = 14080;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;

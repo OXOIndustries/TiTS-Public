@@ -36,7 +36,7 @@
 			attackVerb = "slash";
 			attackNoun = "hardlight slash";
 			
-			basePrice = 13800;
+			basePrice = 13000;
 			
 			baseDamage = new TypeCollection();
 			baseDamage.kinetic.damageValue = 8;

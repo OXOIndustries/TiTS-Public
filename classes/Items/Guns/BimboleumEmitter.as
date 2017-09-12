@@ -32,7 +32,7 @@ package classes.Items.Guns
 			attackVerb = "shoot";
 			attackNoun = "bimbofication";
 			
-			basePrice = 5500;
+			basePrice = 22000;
 			attack = 0;
 			baseDamage.tease.damageValue = 8;
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);

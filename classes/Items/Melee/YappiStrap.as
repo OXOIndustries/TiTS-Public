@@ -38,7 +38,7 @@ package classes.Items.Melee
 			attackNoun = "smack";
 			
 			//Information
-			this.basePrice = 500;
+			this.basePrice = 12800;
 			this.attack = -2;
 			
 			baseDamage = new TypeCollection();

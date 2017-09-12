@@ -3,7 +3,7 @@
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Items.Melee.Fists;
-	import classes.Items.Protection.DecentShield;
+	import classes.Items.Protection.NovaShield;
 	import classes.kGAMECLASS;
 	import classes.Util.RandomInCollection;
 
@@ -13,9 +13,9 @@
 	import classes.Items.Miscellaneous.Satyrite;
 	import classes.Items.Drinks.RedMyrVenom;
 	import classes.Items.Transformatives.NyreanCandy;
+	
 	import classes.GLOBAL;
 	import classes.CockClass;
-	
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	import classes.Engine.Combat.DamageTypes.*;
@@ -193,8 +193,17 @@
 			if (rand(20) == 0) inventory.push(new Kirkite());
 			else if(rand(20) == 0) inventory.push(new Satyrite());
 			else if (rand(20) == 0) inventory.push(meleeWeapon.makeCopy());
-			else if (rand(3) == 0) inventory.push(new RedMyrVenom());
-			else if (rand(3) == 0) inventory.push(new NyreanCandy());
+			else if (rand(5) == 0)
+			{
+				inventory.push(new NovaShield());
+				shield = new NovaShield();
+				shields(shieldsMax());
+				this.long += "\n\n<b>This Nyrea has a shield generator! If you can beat her, you can claim it for yourself...</b>";
+				this.HPMod = -10;
+				this.HPRaw = this.HPMax();
+			}
+			if (rand(3) == 0) inventory.push(new NyreanCandy());
+			if (rand(3) == 0) inventory.push(new RedMyrVenom());
 			
 			sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,		GLOBAL.REALLY_LIKES_SEXPREF);
 			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.REALLY_LIKES_SEXPREF);

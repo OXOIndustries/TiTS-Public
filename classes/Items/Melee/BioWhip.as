@@ -37,7 +37,7 @@ package classes.Items.Melee
 			attackNoun = "whip";
 			
 			//Information
-			this.basePrice = 4500;
+			this.basePrice = 800;
 			
 			//baseDamage.kinetic.damageValue = 2;
 			baseDamage.drug.damageValue = 3;

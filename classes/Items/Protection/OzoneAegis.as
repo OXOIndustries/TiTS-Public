@@ -8,7 +8,7 @@
 	
 	public class OzoneAegis extends ItemSlotClass
 	{
-		
+		//Level 6 (Common). Balance 2.0
 		//constructor
 		public function OzoneAegis()
 		{
@@ -37,20 +37,20 @@
 			this.attackVerb = "null";
 			
 			//Information
-			this.basePrice = 9999;
+			this.basePrice = 3200;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
-			this.shields = 50;
+			this.shields = 70;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
 			
 			resistances = new TypeCollection();
-			resistances.electric.resistanceValue = 35.0;
-			resistances.kinetic.resistanceValue = 20.0;
-			resistances.burning.resistanceValue = -25.0;
+			resistances.electric.resistanceValue = 20.0;
+			resistances.kinetic.resistanceValue = 10.0;
+			resistances.burning.resistanceValue = -65.0;
 			
 			this.version = _latestVersion;
 		}

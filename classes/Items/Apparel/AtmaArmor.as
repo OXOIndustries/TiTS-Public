@@ -34,7 +34,7 @@ package classes.Items.Apparel
 			resistances.drug.resistanceValue = 15.0;
 			resistances.tease.resistanceValue = 14.0;
 			
-			this.basePrice = 1550;
+			this.basePrice = 1400;
 			this.attack = 0;
 			this.defense = 2;
 			this.shieldDefense = 0;
