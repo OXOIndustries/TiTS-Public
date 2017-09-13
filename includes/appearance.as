@@ -1640,6 +1640,11 @@ public function appearance(forTarget:Creature):void
 			else output2(" strains your ability to comprehend its size and near-freakish levels of muscular development.");
 		}
 	}
+	// Extra hip blurbs
+	if(hipRating >= 25 && target.hasLegs()) {
+		if(rand(2) == 0) output2(" Your broad hips are so distended that someone could slide their head between the gap in your " + target.thighsDescript() + " where you stand. You wouldn’t even have to move a muscle.");
+		else output2(" Your mammoth hips swing widely from side-to-side with every step you take. You have no hope of walking normally, the closest you could come would be a sashay.");
+	}
 	
 	//Tramp Stamps
 	if(target.hasPerk("Barcoded"))
@@ -2159,7 +2164,7 @@ public function appearance(forTarget:Creature):void
 			else output2(" You have thick rabbit legs that terminate in " + target.feet(true,true) + ". At least jumping should be a breeze.");
 			break;
 		case GLOBAL.TYPE_AVIAN:
-			output2(" You have thick, powerful thighs perfect for launching you into the air which end in slender bird-like legs, covered with ");
+			output2(" You have powerful thighs perfect for launching you into the air which end in slender bird-like legs, covered with ");
 			if(target.hasLegFlag(GLOBAL.FLAG_GOOEY))
 			{
 				output2("feather-shaped shingles of goo down to your " + (target.hasSkinFlag(GLOBAL.FLAG_FLUFFY) ? " ankles" : " knees"));
