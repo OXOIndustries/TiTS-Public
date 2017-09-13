@@ -3879,6 +3879,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 					if(flags["CARRIE_SMALLCOCK_SUX"] != undefined) output2(", Sucked your small cock");
 					if(StatTracking.getStat("milkers/cum jarred") > 0) output2("\n<b>* Carrie, Cum Jarred:</b> " + StatTracking.getStat("milkers/cum jarred") + " mLs");
+					if(flags["CAMERON_MILKED"] != undefined) output2("\n<b>* Carrie, Times fucked her and Cameron:</b> " + flags["CAMERON_MILKED"]);
 					if(flags["CORA_SUCKED"] != undefined)
 					{
 						output2("\n<b>* Cora:</b> Met her, Sucked your dick with Carrie");
