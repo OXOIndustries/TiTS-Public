@@ -1988,7 +1988,7 @@ public function appearance(forTarget:Creature):void
 			break;
 		case GLOBAL.TYPE_TENTACLE:
 			if(target.tailCount == 1) output2(" A long, writhing, tentacle-like tail flows after you, bobbing and undulating with the slightest movement of your hips.");
-			else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " long, writing, tentacle tails flow after you, all similar in appearance. Studying one of them, you find that you have excellent control over their movements."); 
+			else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " long, writhing, tentacle tails flow after you, all similar in appearance. Studying one of them, you find that you have excellent control over their movements."); 
 			break;
 	}
 	//Tail cunts
@@ -3889,7 +3889,7 @@ public function selectTentacleLegsPref():void
 	
 	clearGhostMenu();
 	
-	addGhostButton(0, "Normal", setTentacleLegsPref, undefined, "Normal Form", "Support yourself on a writing mass of tentacles.");
+	addGhostButton(0, "Normal", setTentacleLegsPref, undefined, "Normal Form", "Support yourself on a writhing mass of tentacles.");
 	addGhostButton(1, "Legs", setTentacleLegsPref, undefined, "Legs Form", "Form your tentacles into two legs.");
 	
 	if(!pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))
