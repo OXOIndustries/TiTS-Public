@@ -297,7 +297,7 @@ public function healFromVi():void
 	output(".");
 
 	//Cost = 5 times HP 
-	var cost:int = pc.HPMax() - pc.HP();
+	var cost:int = Math.round(pc.HPMax() - pc.HP());
 	cost *= 5;
 
 	output("\n\n<i>“Good,”</i> Vi visibly sighs with relief, pressing a hand to her chest. <i>“Judging by your injuries, your treatment should cost " + num2Text(cost) + " credits in total. Are you okay with that, " + pc.mf("sir","ma’am") + "?”</i>");

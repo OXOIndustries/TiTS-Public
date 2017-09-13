@@ -9,6 +9,7 @@
 	
 	public class HammerCarbine extends ItemSlotClass
 	{
+		//Level 3 (Common). Balance 2.0
 		//constructor
 		public function HammerCarbine()
 		{
@@ -37,11 +38,11 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 4000;
-			this.attack = 1;
+			this.basePrice = 450;
+			this.attack = 4;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 14;
+			baseDamage.kinetic.damageValue = 12;
 			baseDamage.addFlag(DamageFlag.BULLET);
 			
 			this.defense = 0;

@@ -29,5 +29,4 @@ package classes.Engine.Combat
 		if (attacker.accessory.hasFlag(GLOBAL.ITEM_FLAG_REDUCED_ACCURACY) && rand(10) == 0) return true;
 		return false;
 	}
-
 }

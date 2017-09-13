@@ -9,6 +9,7 @@
 	
 	public class HammerPistolScavenged extends ItemSlotClass
 	{
+		//Level 2 (Common). Balance 2.0
 		//constructor
 		public function HammerPistolScavenged()
 		{
@@ -37,7 +38,7 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 800;
+			this.basePrice = 210;
 			this.attack = 0;
 			
 			baseDamage = new TypeCollection();

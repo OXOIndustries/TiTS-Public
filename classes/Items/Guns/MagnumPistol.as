@@ -10,6 +10,7 @@
 	
 	public class MagnumPistol extends ItemSlotClass
 	{
+		//Level 2 (Common). Balance 2.0
 		//constructor
 		public function MagnumPistol()
 		{
@@ -38,17 +39,17 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 2000;
-			this.attack = -2;
+			this.basePrice = 200;
+			this.attack = -5;
 			
-			baseDamage.kinetic.damageValue = 12;
+			baseDamage.kinetic.damageValue = 11;
 			baseDamage.addFlag(DamageFlag.BULLET);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 0;
+			this.critBonus = 2;
 			this.evasion = 0;
 			this.fortification = 0;
 

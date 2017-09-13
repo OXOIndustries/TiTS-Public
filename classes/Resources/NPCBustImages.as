@@ -42,6 +42,7 @@
 		public static var SHOU:Object = new ShouBusts();
 		public static var UTHSTAR:Object = new UthstarBusts();
 		public static var WOLFYNAIL:Object = new WolfyNailBusts();
+		public static var YOHSL:Object = new YohSLBusts();
 		
 		public static function hasBustsForCharacter(bustName:String):Boolean
 		{

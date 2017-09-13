@@ -30,17 +30,17 @@ package classes.Items.Armor.Unique
 			
 			attackVerb = "";
 			
-			basePrice = 500;
+			basePrice = 700;
 			attack = 0;
-			defense = 1;
-			shields = 5;
-			sexiness = 0;
+			defense = 3;
+			shields = 0;
+			sexiness = 7;
 			critBonus = 0;
-			evasion = 5;
+			evasion = 2;
 			fortification = 0;
 			
-			resistances.burning.resistanceValue = 15.0;
-			resistances.electric.resistanceValue = 15.0;
+			resistances.burning.resistanceValue = 34.0;
+			resistances.electric.resistanceValue = 40.0;
 			resistances.corrosive.resistanceValue = 15.0;
 			resistances.tease.resistanceValue = -25.0;
 			

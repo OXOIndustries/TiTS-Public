@@ -1147,10 +1147,8 @@ public function sleep(outputs:Boolean = true):void {
 
 public function sleepHeal():void
 {
-	if (pc.HPRaw < pc.HPMax()) 
-	{
-		pc.HP(Math.round(pc.HPMax()));
-	}
+	if (pc.HPRaw < pc.HPMax()) pc.HPRaw = pc.HPMax();
+	
 	// Fecund Figure shape loss (Lose only after sore/working out)
 	if(pc.hasPerk("Fecund Figure") && pc.isSore())
 	{
@@ -1189,6 +1187,25 @@ public function genericSleep(baseTime:int = 480):void
 	eventBufferXP();
 	sleepHeal();
 	processTime(totalTime);
+}
+
+public function dailyAutoSleep(nMin:int = 0):void
+{
+	var nHour:int = Math.floor(nMin / 60);
+	var numSleeps:int = Math.floor(nHour / 24);
+	if(numSleeps > 0)
+	{
+		for(var i:int = 0; i < numSleeps; i++)
+		{
+			sleepHeal();
+		}
+		eventBufferXP();
+	}
+	else if(nHour >= 8)
+	{
+		sleepHeal();
+		eventBufferXP();
+	}
 }
 
 public function eventBufferXP():void
@@ -2405,6 +2422,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	
 	var totalDays:uint = ((GetGameTimestamp() + deltaT) / 1440) - days;
 	
+	processUvetoWeather(deltaT, doOut);
 	processRenvraMessageEvents(deltaT, doOut);
 	processQueenOfTheDeepMessageEvents(deltaT, doOut);
 	processTarkusBombTimerEvents(deltaT, doOut);

@@ -10,7 +10,7 @@ package classes.Items.Apparel
 	 */
 	public class MilitaryUniform extends ItemSlotClass
 	{
-		
+		//Bess only?
 		public function MilitaryUniform() 
 		{
 			this._latestVersion = 1;

@@ -13,7 +13,7 @@ package classes.Items.Guns
 	 */
 	public class PlasmaBore extends ItemSlotClass
 	{
-		
+		//Level 8 (Common). Balance 2.0
 		public function PlasmaBore() 
 		{
 			this._latestVersion = 1;
@@ -41,13 +41,14 @@ package classes.Items.Guns
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 25000;
-			this.attack = -1;
+			this.basePrice = 14000;
+			this.attack = 10;
 			
 			//baseDamage.electric.damageValue = 5;
-			baseDamage.burning.damageValue = 25;
+			baseDamage.burning.damageValue = 27;
 
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
+			baseDamage.addFlag(DamageFlag.NO_CRIT);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
 			this.defense = 0;
@@ -55,7 +56,7 @@ package classes.Items.Guns
 			this.shields = 0;
 			this.sexiness = 0;
 			this.critBonus = 5;
-			this.evasion = 0;
+			this.evasion = -3;
 			this.fortification = 0;
 
 			this.version = _latestVersion;

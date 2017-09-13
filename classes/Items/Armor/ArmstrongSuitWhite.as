@@ -7,6 +7,7 @@ package classes.Items.Armor
 	
 	public class ArmstrongSuitWhite extends ItemSlotClass
 	{
+		//Level 6 (Common). Balance 2.0
 		public function ArmstrongSuitWhite()
 		{
 			_latestVersion = 1;
@@ -34,9 +35,9 @@ package classes.Items.Armor
 			attack = 0;
 			defense = 0;
 			shields = 20;
-			sexiness = 5;
+			sexiness = 6;
 			critBonus = 0;
-			evasion = 3;
+			evasion = 8;
 			fortification = 0;
 			
 			// Note: The Premium White Armstrong Suit is meant to be a teasing item but as the genitals are exposed the character should still be flagged for being naked if possible. If not the description/tooltip can be modified upon request.

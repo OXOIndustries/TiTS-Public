@@ -580,6 +580,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "LapinaraPregnancy": output2(" Lapinara, Eggs"); break;
 						case "RahnPregnancy": output2(" Rahn, Eggs"); break;
 						case "RahnPregnancyBreedwell": output2(" Breedwell Rahn, Eggs"); break;
+						case "KorgonnePregnancy": output2(" Korgonne"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -889,6 +890,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Cockvines, Captured:</b> " + StatTracking.getStat("pregnancy/cockvine seedlings captured"));
 				if(StatTracking.getStat("pregnancy/cuntsnake hatched") > 0)
 					output2("\n<b>* Births, Cuntsnake Eggs, Hatched:</b> " + StatTracking.getStat("pregnancy/cuntsnake hatched"));
+				if(StatTracking.getStat("pregnancy/korgonne births") > 0)
+					output2("\n<b>* Births, Korgonne Young:</b> " + StatTracking.getStat("pregnancy/korgonne births"));
 				if(StatTracking.getStat("pregnancy/lapinara eggs") > 0)
 					output2("\n<b>* Births, Lapinara Eggs:</b> " + StatTracking.getStat("pregnancy/lapinara eggs"));
 				if(StatTracking.getStat("pregnancy/milodan births") > 0)
@@ -3616,7 +3619,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_PAIGE"] != undefined)
 				{
 					output2("\n<b>* Paige:</b> Met her");
-					if(flags["SEXED_PAIGE"] > 0) output2("\n<b>* Paige, Times Sexed:</b> " + flags["SEXED_PAIGE"]);
+					if(paigeRecruited())
+					{
+						output2(", Crew member");
+						if(paigeIsCrew()) output2(" (Onboard Ship)");
+					}
+					if(flags["SEXED_PAIGE"] != undefined) output2("\n<b>* Paige, Times Sexed:</b> " + flags["SEXED_PAIGE"]);
 				}
 				// Semith
 				if(flags["MET_SEMITH"] == true)
@@ -4376,10 +4384,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Colenso's
-			if(flags["ASKED_COLENSO_ABOUT_HIS_THEORIES"] != undefined)
+			if(flags["BEEN_TO_COLENSOS"] != undefined)
 			{
 				output2("\n<b><u>Colenso’s Junk</u></b>");
-				output2("\n<b>* Colenso:</b> Met him, Asked about his theories");
+				output2("\n<b>* Colenso:</b> Met him");
+				if(flags["ASKED_COLENSO_ABOUT_HIS_THEORIES"] != undefined) output2(", Asked about his theories");
 				variousCount++;
 			}
 			// Doctor Lash
@@ -5738,12 +5747,16 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Ice Plains
-			if(flags["MET_FEMKORGONNE"] != undefined || flags["MET_MILODAN_MALE"] != undefined || flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined || flags["9999"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined)
+			if(flags["MET_FEMKORGONNE"] != undefined || flags["MET_KORG_MALE"] != undefined || flags["MET_MILODAN_MALE"] != undefined || flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined || flags["9999"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined)
 			{
 				output2("\n<b><u>Ice Plains</u></b>");
 				if(flags["MET_FEMKORGONNE"] != undefined) output2("\n<b>* Female Korgonne, Times Encountered:</b> " + flags["MET_FEMKORGONNE"]);
-				if(flags["MET_MILODAN_MALE"] != undefined) output2("\n<b>* Male Milodan, Times Encountered:</b> " + flags["MET_MILODAN_MALE"]);
-				if(flags["MILO_MALE_CON_LOSSES"] > 1) output2("\n<b>* Male Milodan, Combat, Times You Consecutively Lost:</b> " + flags["MILO_MALE_CON_LOSSES"]);
+				if(flags["MET_KORG_MALE"] != undefined) output2("\n<b>* Male Korgonne, Times Encountered:</b> " + flags["MET_KORG_MALE"]);
+				if(flags["MET_MILODAN_MALE"] != undefined)
+				{
+					output2("\n<b>* Male Milodan, Times Encountered:</b> " + flags["MET_MILODAN_MALE"]);
+					if(flags["MILO_MALE_CON_LOSSES"] > 1) output2("\n<b>* Male Milodan, Combat, Times You Consecutively Lost:</b> " + flags["MILO_MALE_CON_LOSSES"]);
+				}
 				if(flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined)
 				{
 					output2("\n<b>* Milodan Priestess, Times Encountered:</b> " + flags["FERTILITY_PRIESTESSES_FOUGHT"]);
@@ -5950,6 +5963,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["TAMTAM_PRISONED"] != undefined) output2("\n<b>* Tam, Times Sexed:</b> " + flags["TAMTAM_PRISONED"]);
 				if(flags["KASKA_PRISONED"] != undefined) output2("\n<b>* Kaska, Times Sexed:</b> " + flags["KASKA_PRISONED"]);
 				if(flags["KHORGAN_PRISONED"] != undefined) output2("\n<b>* Khorgan, Times Sexed:</b> " + flags["KHORGAN_PRISONED"]);
+				if(flags["SAM_PRISONED"] != undefined) output2("\n<b>* Sam, Times Sexed:</b> " + flags["SAM_PRISONED"]);
 				variousCount++;
 			}
 		}

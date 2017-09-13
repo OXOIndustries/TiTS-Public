@@ -7,6 +7,7 @@
 	
 	public class NaleenArmor extends ItemSlotClass
 	{
+		//Level 3 (Common). Balance 2.0
 		//constructor
 		public function NaleenArmor()
 		{
@@ -35,9 +36,9 @@
 			this.attackVerb = "null";
 			
 			//Information
-			this.basePrice = 2200;
+			this.basePrice = 440;
 			this.attack = 0;
-			this.defense = 3;
+			this.defense = 4;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
@@ -45,6 +46,8 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
+			resistances.corrosive.resistanceValue = 22.0;
+
 			this.version = _latestVersion;
 		}
 	}

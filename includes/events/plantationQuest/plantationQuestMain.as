@@ -1080,12 +1080,12 @@ public function pcDunFallsOffDatHill():Boolean
 		if(InCollection(currentLocation, ["5. RED ROCK LEDGE", "6. WATERFALL STAIRWAY", "7. DRIFTWOOD SHOULDER", "8. RED ROCK SCREE", "10. TOP OF THE CLIFF"])) 
 		{
 			output("\n\nSMACK. You thump hip-first into another sandstone outcrop, narrowly avoiding cracking your chin on it as you recoil. Chest heaving, you fearfully grab onto it, managing to stop yourself from falling any further. You’re alive. Just about. As you get your breath back and more of the world comes back into focus, horrible pain flares in your [pc.legOrLegs] and the wounds on your chest and face begin to sink their teeth into you. You stare hollow-eyed up to where you were only a moment ago, where a smirking zil is just disappearing from view. The only comfort, your imagination lets you know in graphic detail, is that taking a fall like that could have ended a lot worse.");
-			pc.HP(-1000);
+			applyDamage(new TypeCollection( { kinetic: 1000 }, DamageFlag.CRUSHING, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
 		}
 		else
 		{
 			output("\n\nSPLAT. You thump into the moist turf at the bottom of the cliff, narrowly avoiding the deadly rocky outcrop nearby. Chest heaving, you curl into a foetal position and groan. You’re alive. Just about. As you get your breath back and more of the world comes back into focus, horrible pain flares in your [pc.legOrLegs] and the wounds on your chest and face begin to sink their teeth into you. You stare hollow-eyed up to where you were only a moment ago, where a smirking zil is just disappearing from view. The only comfort, your imagination lets you know in graphic detail, is that taking a fall like that could have ended a lot worse.");
-			pc.HP(-10);
+			applyDamage(new TypeCollection( { kinetic: 10 }, DamageFlag.CRUSHING, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
 		}
 		//Take 75% HP damage. If 2 < squares move down 2 squares, If less move to WP square
 		//Gotta make individual shit for individual rooms. Thanks 'suchy.

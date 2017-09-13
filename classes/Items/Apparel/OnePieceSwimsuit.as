@@ -7,6 +7,7 @@ package classes.Items.Apparel
 	
 	public class OnePieceSwimsuit extends ItemSlotClass
 	{
+		//Level 3 (Common). Balance 2.0
 		public function OnePieceSwimsuit()
 		{
 			_latestVersion = 1;
@@ -32,13 +33,13 @@ package classes.Items.Apparel
 			
 			attackVerb = "";
 			
-			basePrice = 700;
+			basePrice = 400;
 			attack = 0;
 			defense = 0;
 			shieldDefense = 0;
-			sexiness = 2;
+			sexiness = 6;
 			critBonus = 0;
-			evasion = 0;
+			evasion = 3;
 			fortification = 0;
 			
 			itemFlags = [GLOBAL.ITEM_FLAG_SWIMWEAR];

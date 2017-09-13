@@ -9,6 +9,7 @@
 	
 	public class ZilBow extends ItemSlotClass
 	{
+		//Level 6 (Rare). Balance 2.0
 		//constructor
 		public function ZilBow()
 		{
@@ -37,18 +38,18 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 6500;
+			this.basePrice = 4000;
 			
-			baseDamage.kinetic.damageValue = 4;
+			baseDamage.kinetic.damageValue = 15;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			
-			this.attack = 0;
+			this.attack = 4;
 			this.critBonus = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.evasion = 5;
+			this.evasion = 6;
 			this.fortification = 0;
 			
 			this.addFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON);

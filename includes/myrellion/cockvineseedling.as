@@ -68,7 +68,7 @@ public function cockvineSeedlingChase():void
 		output(" and then turn back to the path, rubbing your sore spot and cursing.");
 
 		// -5% HP
-		pc.HP(0.05 * pc.HPMax());
+		applyDamage(new TypeCollection( { kinetic: 5 }, DamageFlag.BYPASS_SHIELD, DamageFlag.CRUSHING ), null, pc, "minimal");
 
 		clearMenu()
 		addButton(0, "Next", mainGameMenu);

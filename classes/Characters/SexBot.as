@@ -6,6 +6,7 @@
 	import classes.Items.Guns.*
 	import classes.Items.Melee.Rock;
 	import classes.Items.Protection.ImprovisedShield;
+	import classes.Items.Protection.HammerShield;
 	import classes.Items.Melee.RaskvelWrench;
 	import classes.Items.Miscellaneous.*
 	import classes.kGAMECLASS;
@@ -187,8 +188,15 @@
 		private function randomise():void
 		{
 			sexualPreferences.setRandomPrefs(2 + rand(3));
-			credits = 200 + rand(200);
+			credits = 100 + rand(100);
 			
+			if(rand(4) == 0) 
+			{
+				this.inventory.push(new HammerShield());
+				this.shield = new HammerShield();
+				this.shields(this.shieldsMax());
+			}
+
 			//Male or female configuration
 			var manbot:Boolean = false;
 

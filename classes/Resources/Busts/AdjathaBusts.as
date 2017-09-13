@@ -369,6 +369,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/kiro_xl_2_nude.png", mimeType = "image/png")]
 		public var Bust_KIRO_XL_2_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/krym.png", mimeType = "image/png")]
+		public var Bust_KRYM:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/krym_nude.png", mimeType = "image/png")]
+		public var Bust_KRYM_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/lah.png", mimeType = "image/png")]
 		public var Bust_LAH:Class;
 		public var Bounds_LAH:Rectangle = new Rectangle(30, 0, 65, 65);
@@ -420,6 +425,13 @@ package classes.Resources.Busts
 		public var Bust_MIRIAN:Class;
 		public var Bounds_MIRIAN:Rectangle = new Rectangle(92, 0, 70, 70);
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/naleen_bros.png", mimeType = "image/png")]
+		public var Bust_NALEEN_BROS:Class;
+		public function get Bust_NALEEN_BROTHER_A():Class { return Bust_NALEEN_BROS; }
+		public function get Bust_NALEEN_BROTHER_B():Class { return Bust_NALEEN_BROS; }
+		public var Bounds_NALEEN_BROTHER_B:Rectangle = new Rectangle(65, 10, 45, 45);
+		public var Bounds_NALEEN_BROTHER_A:Rectangle = new Rectangle(108, 10, 45, 45);
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/nova.png", mimeType = "image/png")]
 		public var Bust_NOVA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/nova_nude.png", mimeType = "image/png")]
@@ -563,6 +575,12 @@ package classes.Resources.Busts
 		public var Bust_TECHGUARD:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/techie_nude.png", mimeType = "image/png")]
 		public var Bust_TECHGUARD_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/techie_jail.png", mimeType = "image/png")]
+		public var Bust_TECHGUARD_JAIL:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/techie_jail_nude.png", mimeType = "image/png")]
+		public var Bust_TECHGUARD_JAIL_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/techie_jail_preg.png", mimeType = "image/png")]
+		public var Bust_TECHGUARD_JAIL_PREG:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/terensha.png", mimeType = "image/png")]
 		public var Bust_TERENSHA:Class;
@@ -953,6 +971,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro_xl_2_nude.png", mimeType = "image/png")]
 			public var Full_KIRO_XL_2_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/krym.png", mimeType = "image/png")]
+			public var Full_KRYM:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/krym_nude.png", mimeType = "image/png")]
+			public var Full_KRYM_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lah.png", mimeType = "image/png")]
 			public var Full_LAH:Class;
 
@@ -1000,6 +1023,9 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mirian.png", mimeType = "image/png")]
 			public var Full_MIRIAN:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/naleen_bros.png", mimeType = "image/png")]
+			public var Full_NALEEN_BROS:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nova.png", mimeType = "image/png")]
 			public var Full_NOVA:Class;
@@ -1135,6 +1161,12 @@ package classes.Resources.Busts
 			public var Full_TECHGUARD:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/techie_nude.png", mimeType = "image/png")]
 			public var Full_TECHGUARD_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/techie_jail.png", mimeType = "image/png")]
+			public var Full_TECHGUARD_JAIL:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/techie_jail_nude.png", mimeType = "image/png")]
+			public var Full_TECHGUARD_JAIL_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/techie_jail_preg.png", mimeType = "image/png")]
+			public var Full_TECHGUARD_JAIL_PREG:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/terensha.png", mimeType = "image/png")]
 			public var Full_TERENSHA:Class;

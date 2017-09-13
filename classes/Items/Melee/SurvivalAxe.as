@@ -13,13 +13,10 @@ package classes.Items.Melee
 	 */
 	public class SurvivalAxe extends ItemSlotClass
 	{
-		
+		//Level 6 (Common). Balance 2.0
 		public function SurvivalAxe() 
 		{
 			this._latestVersion = 1;
-			
-			//A KNIFE
-			//4
 			
 			//this.indexNumber = 4;
 			this.quantity = 1;
@@ -46,7 +43,7 @@ package classes.Items.Melee
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 1600;
+			this.basePrice = 3200;
 			
 			baseDamage.kinetic.damageValue = 18;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
@@ -55,7 +52,7 @@ package classes.Items.Melee
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 0;
+			this.critBonus = 8;
 			this.evasion = 0;
 			this.fortification = 0;
 

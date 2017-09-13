@@ -8,6 +8,7 @@ package classes.Items.Guns
 	
 	public class Goovolver extends ItemSlotClass
 	{
+		//Level 3 (Common). Balance 2.0
 		//constructor
 		public function Goovolver()
 		{
@@ -37,20 +38,20 @@ package classes.Items.Guns
 			attackNoun = "goo";
 			
 			//Information
-			this.basePrice = 4280;
-			this.attack = 0;
+			this.basePrice = 420;
+			this.attack = 1;
 			/*
 			 Goovolver needs to be unwound from combat code. We can now convey lust damage as a damage type on weapons.
 			this.damage = 0;
 			this.damageType = GLOBAL.NO_TYPE;
 			*/
-			baseDamage.tease.damageValue = 15;
+			baseDamage.tease.damageValue = 3;
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 0;
+			this.critBonus = 2;
 			this.evasion = 0;
 			this.fortification = 0;
 			

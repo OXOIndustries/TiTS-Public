@@ -212,7 +212,7 @@ One of the naleen brothers holds the left flank of the jungle against you and Az
 
 public function showNaleenBros():void
 {
-	showBust("NALEEN_BROTHER_A","NALEEN_BROTHER_B");
+	showBust("NALEEN_BROS");
 	showName("NALEEN\nBROS");
 }
 

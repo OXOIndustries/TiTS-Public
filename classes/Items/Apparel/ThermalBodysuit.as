@@ -10,7 +10,7 @@ package classes.Items.Apparel
 	 */
 	public class ThermalBodysuit extends ItemSlotClass
 	{
-		
+		//Level 8 (Common). Balance 2.0
 		public function ThermalBodysuit() 
 		{
 			this._latestVersion = 1;
@@ -33,13 +33,13 @@ package classes.Items.Apparel
 			
 			this.attackVerb = "";
 			
-			this.basePrice = 4000;
+			this.basePrice = 13000;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
-			this.sexiness = 5;
+			this.sexiness = 3;
 			this.critBonus = 0;
-			this.evasion = 5;
+			this.evasion = 3;
 			this.fortification = 0;
 			resistances.freezing.resistanceValue = 20.0;
 			resistances.burning.resistanceValue = 20.0;

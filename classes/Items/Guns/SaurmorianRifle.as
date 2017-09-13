@@ -13,6 +13,7 @@ package classes.Items.Guns
 	 */
 	public class SaurmorianRifle extends ItemSlotClass
 	{
+		//Level 9 (Rare). Balance 2.0
 		public function SaurmorianRifle() 
 		{
 			this._latestVersion = 1;
@@ -40,18 +41,22 @@ package classes.Items.Guns
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 25000;
+			this.basePrice = 41000;
 			
-			baseDamage.kinetic.damageValue = 28;
+			baseDamage.kinetic.damageValue = 41;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
-			
-			this.attack = -2;
-			this.critBonus = -2;
+			baseDamage.addFlag(DamageFlag.BULLET);
+			addFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR);
+			addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
+			baseDamage.addFlag(DamageFlag.NO_CRIT);
+
+			this.attack = 7;
+			this.critBonus = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.evasion = -5;
+			this.evasion = -3;
 			this.fortification = 0;
 			
 			//addFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR);

@@ -10,6 +10,7 @@
 	
 	public class SalamanderPistol extends ItemSlotClass
 	{
+		//Level 7 (Common). Balance 2.0
 		//constructor
 		public function SalamanderPistol()
 		{
@@ -39,12 +40,12 @@
 			attackNoun = "laser beam";
 			
 			//Information
-			this.basePrice = 13500;
-			this.attack = 0;
+			this.basePrice = 7000;
+			this.attack = 3;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.electric.damageValue = 1;
-			baseDamage.burning.damageValue = 19;
+			//baseDamage.electric.damageValue = 1;
+			baseDamage.burning.damageValue = 20;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			baseDamage.addFlag(DamageFlag.LASER);
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
@@ -53,7 +54,7 @@
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 5;
+			this.critBonus = 6;
 			this.evasion = 0;
 			this.fortification = 0;
 			

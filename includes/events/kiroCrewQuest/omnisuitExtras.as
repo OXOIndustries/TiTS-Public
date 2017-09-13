@@ -25,16 +25,19 @@ public function statOutOmniCollar():void
 		{
 			pc.armor.defense = 3;
 			pc.armor.sexiness = 7;
+			pc.armor.evasion = 2;
 		}
 		else if(pc.libido() < 66)
 		{
 			pc.armor.defense = 2;
 			pc.armor.sexiness = 10;
+			pc.armor.evasion = 4;
 		}
 		else
 		{
 			pc.armor.defense = 1;
 			pc.armor.sexiness = 15;
+			pc.armor.evasion = 6;
 		}
 	}
 }

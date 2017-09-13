@@ -10,7 +10,7 @@ package classes.Items.Apparel
 	 */
 	public class SpacePirateOutfit extends ItemSlotClass
 	{
-		
+		//Level 3 (Common). Balance 2.0
 		public function SpacePirateOutfit() 
 		{
 			this._latestVersion = 1;
@@ -33,9 +33,9 @@ package classes.Items.Apparel
 			
 			this.attackVerb = "";
 			
-			this.basePrice = 1000;
+			this.basePrice = 440;
 			this.attack = 0;
-			this.defense = 2;
+			this.defense = 4;
 			this.shieldDefense = 0;
 			this.sexiness = 2;
 			this.critBonus = 0;

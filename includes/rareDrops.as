@@ -7,6 +7,7 @@ import classes.Items.Stories.SatyrSlave;
 import classes.Items.Stories.CapturedByTheDemons;
 import classes.Items.Stories.TentaclesAndTanukis;
 import classes.Items.Stories.StolenGoods;
+import classes.Items.Treasures.Savicite;
 
 
 public function genericRareDrops(loot:Array):Array
@@ -30,6 +31,7 @@ public function genericRareDrops(loot:Array):Array
 				if(!CodexManager.entryUnlocked("||||||||")) tempLoot.push(new EightClicks());
 				if(!CodexManager.entryUnlocked("Fuck the System")) tempLoot.push(new FuckTheSystem());
 				if(!CodexManager.entryUnlocked("Stolen Goods")) tempLoot.push(new StolenGoods());
+				if(!CodexManager.entryUnlocked("Becoming One...")) tempLoot.push(new BecomingOneOfTheGirls());
 				break;
 			case "myrellion":
 				if(!CodexManager.entryUnlocked("Captured...")) tempLoot.push(new CapturedByTheDemons());
@@ -37,16 +39,16 @@ public function genericRareDrops(loot:Array):Array
 				if(!CodexManager.entryUnlocked("Fuck the System")) tempLoot.push(new FuckTheSystem());
 				if(!CodexManager.entryUnlocked("Stolen Goods")) tempLoot.push(new StolenGoods());
 				break;
+			case "uveto vii":
+				tempLoot.push(new Savicite());
+				break;
 			default:
 				break;
 		}
 		//Universal rare drops~
 		if(tempLoot.length == 0) 
 		{
-			/*
-			// Missing entries?
-			if(!CodexManager.entryUnlocked("Becoming One...")) tempLoot.push(new BecomingOneOfTheGirls());
-			*/
+			/* Nothing yet */
 		}
 	}
 	//Easter special!
@@ -55,6 +57,28 @@ public function genericRareDrops(loot:Array):Array
 	//Add one item from tempLoot to loot.
 	if(tempLoot.length > 0) loot.push(tempLoot[rand(tempLoot.length)]);
 	return loot;
+}
+
+public function gimmeBooks():void
+{
+	var tempLoot:Array = [];
+	
+	tempLoot.push(new BecomingOneOfTheGirls());
+	tempLoot.push(new BXBIOne());
+	tempLoot.push(new BXBITwo());
+	tempLoot.push(new CapturedByTheDemons());
+	tempLoot.push(new EightClicks());
+	tempLoot.push(new FuckTheSystem());
+	tempLoot.push(new SatyrSlave());
+	tempLoot.push(new StolenGoods());
+	tempLoot.push(new TentaclesAndTanukis());
+	
+	clearOutput();
+	output("Beep boop. All the codes are ready!");
+	output("\n\n");
+	
+	clearMenu();
+	addButton(0, "Next", itemCollect, tempLoot);
 }
 
 public function isEaster():Boolean

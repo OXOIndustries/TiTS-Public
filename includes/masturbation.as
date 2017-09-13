@@ -2746,7 +2746,7 @@ public function pureLadyWaifuPussyRubFap(waifu:String):void
 	output(" and making your [pc.vaginas] sing.");
 
 	output("\n\nBucking wildly against her " + getPantyColor(waifu) + " underwear, it’s not long before you’re defiling her crotch-fabric with your slick wetness, forming dark stains in the fabric. With burning cheeks, you moan and buck harder, totally turned on by the idea of staining her sweet underthings with your naughty girl juices. You’re breathing hard and wildly humping the fabric, knowing her muskiness is touching yours, the panty fabric stroking your [pc.clits] like her own sex meshing up against yours.");
-	output("\n\nWith a deliriously happy cry, you spasm and go over the edge, coating the insides of her " + waifu + "’s well-used panties with your girl juices. You’re practically stuffing her underwear into your spasming pussy as you cum, your fingers dipping the fabric deep into your netherlips as you cum <i>hard</i> on them When you finally finish, you’re left panting for breath and thrumming with a glorious afterglow, not to mention a thin sheen of sweat. Wow!");
+	output("\n\nWith a deliriously happy cry, you spasm and go over the edge, coating the insides of her " + waifu + "’s well-used panties with your girl juices. You’re practically stuffing her underwear into your spasming pussy as you cum, your fingers dipping the fabric deep into your netherlips as you cum <i>hard</i> on them. When you finally finish, you’re left panting for breath and thrumming with a glorious afterglow, not to mention a thin sheen of sweat. Wow!");
 	output("\n\nOnce you’re finally able to move, you pick up " + waifu + "’s sticky panties and do what you can to clean them off for future use.");
 
 	processTime(17+rand(4));

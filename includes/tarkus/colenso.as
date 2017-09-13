@@ -64,7 +64,7 @@ public function colensosRoomBonusFunction():Boolean
 		showColenso();
 		author("Nonesuch");
 		flags["BEEN_TO_COLENSOS"] = 1;
-		output("You approach the 5’ tall door of the structure. ");
+		output("You approach the 5\' tall door of the structure. ");
 		if(pc.tallness < 60) output("It's tiny by human standards, but you are rather taken by a portal which doesn’t require you to stand on tiptoe to reach the handle for once.");
 		else if(pc.tallness < 80) output("You have to hunch yourself down to enter.");
 		else output("This is going to be a serious task. You crouch down and just about manage to squeeze yourself through, your back getting much more intimate with the top of the frame than you’d like.");

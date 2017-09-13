@@ -8,7 +8,7 @@
 	
 	public class HeatBelt extends ItemSlotClass
 	{
-		
+		//Level 1 (Common). Balance 2.0
 		//constructor
 		public function HeatBelt()
 		{
@@ -37,19 +37,20 @@
 			this.attackVerb = "null";
 			
 			//Information
-			this.basePrice = 250;
+			this.basePrice = 150;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
-			this.shields = 0;
+			this.shields = 15;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
 			
 			resistances = new TypeCollection();
-			resistances.freezing.resistanceValue = 25.0;
-			resistances.burning.resistanceValue = 25.0;
+			resistances.freezing.resistanceValue = 30.0;
+			resistances.kinetic.resistanceValue = 10.0;
+			resistances.electric.resistanceValue = -50.0;
 			
 			itemFlags = [];
 			itemFlags.push(GLOBAL.ITEM_FLAG_HEATBELT);

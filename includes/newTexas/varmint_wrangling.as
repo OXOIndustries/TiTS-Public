@@ -410,9 +410,10 @@ public function pcLosesToVarmint(clearText:Boolean = false):void
 	author("Savin");
 	showName("LOST VS:\nVARMINT");
 	showBust("VARMINT");
-	pc.HP(-(pc.HPMax()-1));
-	pc.lust(-50);
 	output("Suddenly, the varmint lunges up and takes you right in the chest with its horned head, knocking you onto the ground. The creature barrels you over and gives you another brutal WHACK with its horns, and everything goes black....");
+	var damage:Number = (pc.HPRaw - 1);
+	if (damage > 0) applyDamage(new TypeCollection( { unresistablehp: damage }, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
+	pc.lust(-50);
 	clearMenu();
 	addButton(0,"Next",pcLosesToVarmint2);
 }

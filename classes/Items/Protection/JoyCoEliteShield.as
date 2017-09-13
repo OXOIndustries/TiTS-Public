@@ -7,7 +7,7 @@ package classes.Items.Protection
 	
 	public class JoyCoEliteShield extends ItemSlotClass
 	{
-		
+		//Level 6 (Common). Balance 2.0
 		//constructor
 		public function JoyCoEliteShield()
 		{
@@ -35,17 +35,18 @@ package classes.Items.Protection
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 8000;
+			this.basePrice = 3200;
 			this.attack = 0;
 			this.defense = 0;
-			this.shieldDefense = 0;
+			this.shieldDefense = 7;
 			this.shields = 60;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
-			this.fortification = 5;
+			this.fortification = 0;
 			
-			resistances.kinetic.resistanceValue = 35.0;
+			resistances.kinetic.resistanceValue = 25.0;
+			resistances.electric.resistanceValue = -55.0;
 			
 			this.version = _latestVersion;
 		}

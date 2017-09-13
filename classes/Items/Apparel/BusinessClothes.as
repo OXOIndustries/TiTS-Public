@@ -11,7 +11,7 @@ package classes.Items.Apparel
 	 */
 	public class BusinessClothes extends ItemSlotClass
 	{
-		
+		//Level 6 (Common). Balance 2.0
 		public function BusinessClothes() 
 		{
 			this._latestVersion = 1;
@@ -35,13 +35,13 @@ package classes.Items.Apparel
 			this.attackVerb = "";
 			
 			this.basePrice = 800;
-			this.attack = 0;
+			this.attack = 3;
 			this.defense = 3;
 			this.shieldDefense = 0;
-			this.sexiness = 0;
-			this.critBonus = 0;
-			this.evasion = 0;
-			this.fortification = 0;
+			this.sexiness = 3;
+			this.critBonus = 3;
+			this.evasion = 3;
+			this.fortification = 14;
 			
 			this.version = this._latestVersion;
 		}

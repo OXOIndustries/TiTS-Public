@@ -10,7 +10,7 @@ package classes.Items.Apparel
 	 */
 	public class ClassySuit extends ItemSlotClass
 	{
-		
+		//Level 8 (Common). Balance 2.0
 		public function ClassySuit() 
 		{
 			this._latestVersion = 1;
@@ -33,14 +33,18 @@ package classes.Items.Apparel
 			
 			this.attackVerb = "";
 			
-			this.basePrice = 4000;
+			this.basePrice = 14000;
 			this.attack = 0;
-			this.defense = 0;
+			this.defense = 1;
 			this.shieldDefense = 0;
-			this.sexiness = 6;
+			this.sexiness = 7;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
+			
+			resistances.corrosive.resistanceValue = 10.0;
+			resistances.poison.resistanceValue = 10.0;
+			resistances.drug.resistanceValue = 10.0;
 			
 			this.version = this._latestVersion;
 		}

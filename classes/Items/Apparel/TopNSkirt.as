@@ -7,7 +7,7 @@ package classes.Items.Apparel
 
 	public class TopNSkirt extends ItemSlotClass
 	{
-		
+		//Not PC attainable?
 		public function TopNSkirt() 
 		{
 			this._latestVersion = 1;

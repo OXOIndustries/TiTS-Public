@@ -255,6 +255,7 @@ public function showQuaelle(nude:Boolean = false):void
 	else if(quelleBellyRatingBack() >= 50) sBust += "_B2";
 	if(nude) sBust += "_NUDE";
 	showName("\nQUAELLE");
+	showBust(sBust);
 }
 public function quelleIsLover():Boolean
 {
@@ -408,8 +409,14 @@ public function breedwellInductionCheck():Boolean
 	if(pc.isFemale() && flags["BREEDWELL_STATUS_BREEDER"] != undefined) return true;
 	if(pc.isMale() && flags["BREEDWELL_STATUS_DONATOR"] != undefined) return true;
 	// Viability checks - interrupts button generation if not eligible candidate.
-	if(pc.hasVagina() && flags["BREEDWELL_STATUS_BREEDER"] == undefined) return (!breedwellCheckBirth());
-	if(pc.hasCock() && flags["BREEDWELL_STATUS_DONATOR"] == undefined) return (!breedwellCheckSperm());
+	if(pc.hasVagina() && flags["BREEDWELL_STATUS_BREEDER"] == undefined)
+	{
+		if(!pc.hasCock() || flags["BREEDWELL_STATUS_DONATOR"] != undefined) return (!breedwellCheckBirth());
+	}
+	if(pc.hasCock() && flags["BREEDWELL_STATUS_DONATOR"] == undefined)
+	{
+		if(!pc.hasVagina() || flags["BREEDWELL_STATUS_BREEDER"] != undefined) return (!breedwellCheckSperm());
+	}
 	// Show button if haven't yet inducted!
 	return false;
 }
@@ -1320,7 +1327,7 @@ public function breedwellCockmilkerCockSelect():void
 	for(var i:int = 0; i < pc.totalCocks(); i++)
 	{
 		output("\n<b>#" + (i + 1) + ":</b> " + formatFloat(pc.cLength(i) , 3) + " in long, " + pc.cocks[i].cockColor + " [pc.accurateCockName " + i + "]");
-		addButton(i,"#" + (i + 1), breedwellCockmilkerStart, i, num2Ordinal(i + 1) + " Cock","Get your [pc.cockNoun " + i + "] milked.");
+		addButton(i,"#" + (i + 1), breedwellCockmilkerStart, i, StringUtil.capitalize(num2Ordinal(i + 1)) + " Cock","Get your [pc.cockNoun " + i + "] milked.");
 	}
 }
 public function breedwellCockmilkerStart(cIdx:int = -1):void
@@ -1790,11 +1797,11 @@ public function rahnBreedwellBirthing(pregSlot:int = 0, numEggs:int = 2):void
 	// If on ship:
 	if(InShipInterior()) output("\n\nAs quickly as you can, you waddle into your room, switch the auto-medkit on in the bathroom, carefully place yourself on the bed" + (!pc.isNude() ? ", rip off your [pc.gear]" : "") + " and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
 	// If in public:
-	else if(InPublicSpace()) output("\n\nAs quickly as you can, you waddle into the nearest rest room, grab the medkit drone off the wall (frontier bathrooms are thankfully readily equipped for this sort of thing), lock yourself in a cubicle and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
+	else if(InPublicSpace() || rooms[currentLocation].planet.toLowerCase().indexOf("station") != -1 || rooms[currentLocation].hasFlag(GLOBAL.INDOOR)) output("\n\nAs quickly as you can, you waddle into the nearest rest room, grab the medkit drone off the wall (frontier bathrooms are thankfully readily equipped for this sort of thing), lock yourself in a cubicle and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
 	// If in wild:
 	else output("\n\nGroaning at the timing, you" + (!pc.isNude() ? " shed your [pc.gear] and" : "") + " position yourself the best you can in the inhospitable and non-hospital-able terrain. The wish that you’d stayed somewhere indoors and safe hums through your thoughts like a mosquito, but there’s no helping it now -- you’ll have to deliver on your own.");
 	output("\n\n");
-	if(9999 == 0) output("The medkit drone monitors your pulse and places a large sheet beneath your thighs, instructing you to bear down rhythmically with soft, wordless beeps. ");
+	if(InShipInterior() && 9999 == 0) output("The medkit drone monitors your pulse and places a large sheet beneath your thighs, instructing you to bear down rhythmically with soft, wordless beeps. ");
 	output("You huff, sensation ripples and spasms in your stomach, you puff, your vaginal tunnel swells, you lose all of your breath, sense of time... and then in a rush a flood of gooey life pours easily out of your engorged pussy and onto the " + (InShipInterior() ? "sheets" : "floor") + ", a 6 pound single cell that huffs, takes a deep breath, and then begins to wail shrilly.");
 	output("\n\nWow, that was so easy! Only boneless lifeforms boning you from now on! Pleasurable even, the way that slick, thickness poured over your puffy lips and [pc.eachClit]. It’s just as well, because... oh Void... it’s");
 	if(numEggs > 2) output(" definitely");

@@ -1267,8 +1267,8 @@ public function venusSubmission(arg:Number = 0):Number {
 
 public function venusPitcherLayUnfertilizedEgg():void {
 	clearOutput();
-	showBust("VENUSPITCHER");
-	showName("VENUS\nPITCHER");
+	showBust("");
+	showName("VENUS\nPOD!");
 	author("Fenoxo");
 	
 	var pData:PregnancyData = pc.getPregnancyOfType("VenusPitcherSeedCarrier");
@@ -1328,16 +1328,50 @@ public function venusPitcherLayUnfertilizedEgg():void {
 	}
 	
 	//Gain Venus Pod (TF item go!)
+	venusPitcherPodReward(1);
+}
+public function venusPitcherSeedNurseryEnds(nEggs:int = 0):void
+{
+	clearOutput();
+	showBust("");
+	showName("VENUS\nPOD!");
+	
+	StatTracking.track("pregnancy/unfertilized venus pitcher seeds", nEggs);
+	StatTracking.track("pregnancy/venus pitcher seeds", nEggs);
+	StatTracking.track("pregnancy/total births", nEggs);
+	
+	venusPitcherPodReward(nEggs);
+}
+public function venusPitcherPodReward(nEggs:int = 0):void
+{
 	var podLoot:Array = [];
-	podLoot.push(new VenusPod());
+	var idx:int = 0;
+	
+	while(nEggs > 0)
+	{
+		// Create item
+		podLoot.push(new VenusPod());
+		// Determine item quantity relative to stack
+		var nQuantity:int = Math.min(nEggs, podLoot[idx].stackSize);
+		// Change item quantity
+		podLoot[idx].quantity = nQuantity;
+		// Update counters
+		nEggs -= nQuantity;
+		idx++;
+	}
+	
+	if(podLoot.length <= 0)
+	{	
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;
 	useItemFunction = mainGameMenu;
 	
 	itemCollect(podLoot);
-
-	//clearMenu();
-	//addButton(0, "Next", mainGameMenu);
 }
 
 public function rumblyInYourTummy():void 

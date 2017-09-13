@@ -7,7 +7,7 @@ package classes.Items.Protection
 	
 	public class ReaperArmamentsMarkIShield extends ItemSlotClass
 	{
-		
+		//Level 7 (Rare). Balance 2.0
 		//constructor
 		public function ReaperArmamentsMarkIShield()
 		{
@@ -35,17 +35,18 @@ package classes.Items.Protection
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 3500;
+			this.basePrice = 10000;
 			this.attack = 0;
 			this.defense = 0;
-			this.shieldDefense = 0;
-			this.shields = 80;
+			this.shieldDefense = 3;
+			this.shields = 115;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
 			
-			resistances.kinetic.resistanceValue = 40.0;
+			resistances.kinetic.resistanceValue = 45.0;
+			resistances.electric.resistanceValue = -50.0;
 			
 			this.version = _latestVersion;
 		}

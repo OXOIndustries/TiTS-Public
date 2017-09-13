@@ -2693,20 +2693,15 @@ public function pippaTalkYammi():void
 	
 	if (recruitedPippa())
 	{
-		output("Pippa’s eyes light up. <i>“Yammi’s great, isn’t she? I can sit and chat with her while she cooks and it’s like having a personal chef.”</i>");
-		
-		if (pippaYammiThreesomeCount(0) > 0) output(" She grins at you salaciously. <i>“And of course, she sure is a sexy little thing. I can’t get enough of the two of you.");
-		
+		output("Pippa’s eyes light up. <i>“Yammi’s great, isn’t she? I can sit and chat with her while she cooks and it’s like having a personal chef.");
+		if (pippaYammiThreesomeCount(0) > 0) output("”</i> She grins at you salaciously. <i>“And of course, she sure is a sexy little thing. I can’t get enough of the two of you.");
 		output(" Joining your crew might just be the best decision I’ve ever made.");
-		
 		if (pippaKickedOffShip()) output("... Now if only you’d let me back on the ship.");
-		
 		output("”</i>");
 	}
 	else
 	{
 		output("Pippa previously mentioned that she was a fan of cow-girl ice cream. <i>“You know, the cashier from a New Texas Iced Teats location is currently on my crew. She’s my chef.”</i>");
-		
 		output("\n\nHer eyes light up. <i>“Is that so? I’ll have to keep that in mind. Maybe I can pay her a visit some time. Especially if she can get me some ice cream.”</i>");
 	}
 	

@@ -13,6 +13,7 @@ package classes.Items.Melee
 	 */
 	public class SaurmorianHammer extends ItemSlotClass
 	{
+		//Level 9 (Rare). Balance 2.0
 		public function SaurmorianHammer() 
 		{
 			this._latestVersion = 1;
@@ -40,14 +41,14 @@ package classes.Items.Melee
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 25000;
+			this.basePrice = 39000;
 			
-			baseDamage.kinetic.damageValue = 25;
+			baseDamage.kinetic.damageValue = 35;
 			baseDamage.addFlag(DamageFlag.CRUSHING);
 			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_STUN);
 			
 			this.attack = -7;
-			this.critBonus = 0;
+			this.critBonus = 9;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;

@@ -382,6 +382,7 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	//Special Vendor/Item Overrides
 	if(shopkeep is Colenso && arg is TarkusJokeBook)
 	{
+		pc.credits -= price;
 		output("Colenso hands you the card, which you scan into your codex. It beeps.\n\n<b>A new codex entry under Fiction is available!</b>");
 		CodexManager.unlockEntry("Diverting Jokes");
 		//’Next’ button can either return to shop menu or go directly to the codex entry, you choose

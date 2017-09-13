@@ -127,6 +127,16 @@ package classes.GameData.Pregnancy.Handlers
 			
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 			
+			var tEventCall:Function = (function():Function
+			{
+				return function():void
+				{
+					kGAMECLASS.venusPitcherSeedNurseryEnds(pData.pregnancyQuantity);
+				}
+			})();
+			
+			kGAMECLASS.eventQueue.push(tEventCall);
+			
 			pData.reset();
 			
 			return null;
@@ -157,8 +167,6 @@ package classes.GameData.Pregnancy.Handlers
 			
 			if (pData.pregnancyQuantity <= 0)
 			{
-				pData.reset();
-				
 				if (target.hasStatusEffect("Venus Pitcher Egg Incubation Finished")) target.removeStatusEffect("Venus Pitcher Egg Incubation Finished");
 				
 				if (!target.hasStatusEffect("Venus Pitcher Seed Residue"))
@@ -169,6 +177,8 @@ package classes.GameData.Pregnancy.Handlers
 				{
 					target.setStatusMinutes("Venus Pitcher Seed Residue", 20160); // Reset back to 2 weeks
 				}
+				target.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
+				pData.reset();
 			}
 		}
 		

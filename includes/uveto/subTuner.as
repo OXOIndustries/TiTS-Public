@@ -56,6 +56,7 @@ public function uvetoSubtunerCollectionBootyButtsSupremeEatDabootyLikeGroceries(
 {
 	clearOutput();
 	showName("SUB-\nTUNER");
+	showBust("SUBTUNER");
 	author("HugsAlright");
 	output("Walking over to the sleek white table, you ");
 	if(pc.isBimbo()) output("bend all the way over");
@@ -81,6 +82,7 @@ public function putOnACyberneticDoggieCollarBecauseYoureNotVerySmart():void
 {
 	clearOutput();
 	author("HugsAlright");
+	showBust("SUBTUNER");
 	output("Abandoning whatever caution you may have had before, you bring the collar to your neck, slowly wrapping it around your nape until the two ends of its buckle are right next to each other. Well, you’ve come this far already, no turning back now. You let the two electro-magnets snap closed together with a metallic <i>ca-thunk</i>, and as soon as the buckle is well and shut, a small red light turns on. Shortly after the crimson beacon starts blinking in the corner of your eye, the collar starts to emit a soft metallic hum. You feel your thoughts growing hazy as that gentle noise floods your mind.");
 	output("\n\nIt’s as if your own body is becoming heavier under the weight of the sound, almost to the point where you consider sitting down before a static-filled voice coming from the collar breaks your focus.");
 	output("\n\n<i>“Well, well,”</i> is the first thing you hear; the voice is poised, and most definitely feminine, <i>“Looks like someone other than me finally found my collar.”</i>");
@@ -101,6 +103,7 @@ public function leaveTheSubTuner():void
 {
 	clearOutput();
 	author("HugsAlright");
+	showBust("SUBTUNER");
 	output("Knowing full well that this thing is not your average collar, you carefully place the ring of leather and wires back where you found it, right under the chair.");
 	output("\n\nMaybe someone meant to leave it there?");
 	processTime(1);

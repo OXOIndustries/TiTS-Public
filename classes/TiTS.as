@@ -383,7 +383,9 @@
 		include "../includes/uveto/kaede.as";
 		include "../includes/uveto/kirila.as";
 		include "../includes/uveto/korgonneFemaleHostile.as";
+		include "../includes/uveto/korgonneMaleHostile.as";
 		include "../includes/uveto/krym.as";
+		include "../includes/uveto/milodanFertilityPriestess.as";
 		include "../includes/uveto/milodanMaleHostile.as";
 		include "../includes/uveto/natalie.as";
 		include "../includes/uveto/nayna.as";
@@ -506,7 +508,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.82";
+			version = "0.7.89";
 
 			//temporary nonsense variables.
 			temp = 0;

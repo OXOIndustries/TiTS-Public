@@ -8,7 +8,7 @@
 	
 	public class BasicShield extends ItemSlotClass
 	{
-		
+		//Level 1 (Common). Balance 2.0
 		//constructor
 		public function BasicShield()
 		{
@@ -37,7 +37,7 @@
 			this.attackVerb = "null";
 			
 			//Information
-			this.basePrice = 50;
+			this.basePrice = 100;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
@@ -48,7 +48,9 @@
 			this.fortification = 0;
 			
 			resistances = new TypeCollection();
-			resistances.kinetic.resistanceValue = 45.0;
+			resistances.kinetic.resistanceValue = 40.0;
+			resistances.burning.resistanceValue = 10.0;
+			resistances.electric.resistanceValue = -50.0;
 			
 			this.version = _latestVersion;
 		}

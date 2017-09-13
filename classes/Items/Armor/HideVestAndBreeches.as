@@ -10,7 +10,7 @@ package classes.Items.Armor
 	 */
 	public class HideVestAndBreeches extends ItemSlotClass
 	{
-		
+		//Level 8 (Common). Balance 2.0
 		public function HideVestAndBreeches() 
 		{
 			this._latestVersion = 1;
@@ -33,15 +33,15 @@ package classes.Items.Armor
 			
 			this.attackVerb = "";
 			
-			this.basePrice = 4000;
+			this.basePrice = 14080;
 			this.attack = 0;
-			this.defense = 5;
+			this.defense = 2;
 			this.shieldDefense = 0;
-			this.sexiness = 4;
+			this.sexiness = 3;
 			this.critBonus = 0;
-			this.evasion = 0;
+			this.evasion = 5;
 			this.fortification = 0;
-			resistances.burning.resistanceValue = 25.0;
+			resistances.burning.resistanceValue = 20.0;
 			
 			this.version = this._latestVersion;
 		}

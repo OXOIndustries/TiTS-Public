@@ -3942,7 +3942,7 @@ public function kellyDPForTaursThatWannaGetDPed():void
 	{
 		output("\n\nKelly grabs ahold of your tail, ready to use it as an anchor, when she sees the slightest dribble of your [pc.girlCumColor] juice drip down from it onto your haunches. <i>“<i>Well, Someone likes this cute parasite, doesn’t [pc.heShe]? Or do you think of it more like a symbiote? Either way, I’m going to make all of your holes feel good.</i>”</i> She starts licking at it, and you can feel the nerves in your tail shooting pleasure into your brain. You have a strange conflict in your mind between wanting a dick in your rear, or in your tail.");
 		
-		if(pc.willpower()/2 + rand(20) + 1 > 15) output(" You manage to resist the [pc.tailGina]’s urges though, and let Kelly continue to pleasure it the way you want her to. It may have thought it was the predator, but now, it was the prey of your powerful mind.");
+		if(pc.willpower()/2 + rand(20) + 1 > 15) output(" You manage to resist the [pc.tailgina]’s urges though, and let Kelly continue to pleasure it the way you want her to. It may have thought it was the predator, but now, it was the prey of your powerful mind.");
 		else
 		{
 			tailginad = true;
@@ -4007,7 +4007,7 @@ public function taurKellyDPCumInside(x:int):void
 	output("You can almost feel your belly swelling up underneath you. She may make others swell like balloons, but not you. ");
 	if(tailginad && !pc.hasCock()) output("Your tail begins to swell, too much honey filling it. It quickly surrenders, and simply lets her cum drip out, like a perverted waterfall onto the bed. ");
 	//if tailingulus: 
-	if(pc.hasCuntTail() && !tailginad) output("You can feel your tail scrunch and almost flail in Kelly’s grip as she eats it, pressing down on its mons and pressing into your [pc.tailGina] insides. ");
+	if(pc.hasCuntTail() && !tailginad) output("You can feel your tail scrunch and almost flail in Kelly’s grip as she eats it, pressing down on its mons and pressing into your [pc.tailgina] insides. ");
 	output("Rope after thick, impregnating rope of her jism fills you, making you cum in an almost motherly bliss.");
 	if(pc.isPregnant(x) || (pc.isPregnant(y) && (!tailginad || pc.hasCock()))) output(" Maybe you’ll let her knock you up one day.");
 	else output(" You want her to make you pregnant, you don’t care about anything else right now. Pure instinct has you need to make life.");

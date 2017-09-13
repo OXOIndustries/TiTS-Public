@@ -9,6 +9,7 @@
 	
 	public class ZKRifle extends ItemSlotClass
 	{
+		//Level 3 (Rare). Balance 2.0
 		//constructor
 		public function ZKRifle()
 		{
@@ -37,11 +38,11 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 3500;
-			this.attack = 5;
+			this.basePrice = 600;
+			this.attack = 6;
 						
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 12;
+			baseDamage.kinetic.damageValue = 13;
 			baseDamage.addFlag(DamageFlag.BULLET);
 			
 			this.defense = 0;

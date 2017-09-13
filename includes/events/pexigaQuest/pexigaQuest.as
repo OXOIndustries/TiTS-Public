@@ -864,8 +864,9 @@ public function stepOutDuringBimboBadgerwerk():void
 	output("\n\nJust how many of these old, automated systems are still online? You brace your hands against the door and give it a jiggle, just like Badger recommended. There’s a faint clanking from inside the steel, so you give it another, harder shove. The small screen flips to a violent red but you don’t have time to read the new message. A tremendous crack of thunder fills your ears followed by ringing silence as the door electrifies itself, blinding pain cascading through your body like boiling water being poured inside your skin.");
 	output("\n\nSmouldering, your muscles clenched and your vision flooding with pops of brilliant white light, you slowly fall backwards. You’re out before you hit the ground.");
 	processTime(4);
-	//Go to <i>“Next”</i>
-	pc.HP(-1000);
+	//Go to “Next”
+	pc.shieldsRaw = 0;
+	applyDamage(new TypeCollection( { electric: 1000 }, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
 	clearMenu();
 	addButton(0,"Next",postBimboBadgerWerkwerkwerk);
 }

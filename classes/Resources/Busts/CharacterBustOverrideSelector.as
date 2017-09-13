@@ -178,7 +178,7 @@ package classes.Resources.Busts
 			var msg:String = "<span class='words'><p>";
 			if(reveal) msg += "<b>Bust Name:</b> Bust_" + _bustName + " ";
 			else msg += " ";
-			if(CustomBust.customBustLoaded(_bustName)) msg += "<i>(Custom bust overrides selection.)</i>";
+			if(CustomBust.customBustLoaded(_bustName)) msg += "<i>" + CustomBust.customBustStatus(_bustName) + "</i>";
 			msg += "</p></span>";
 			
 			return msg;

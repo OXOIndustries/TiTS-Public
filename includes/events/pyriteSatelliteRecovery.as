@@ -400,6 +400,7 @@ public function rideDatCockAndShit():void
 	output("\n\n");
 
 	processTime(30);
+	pc.orgasm();
 	clearMenu();
 	CombatManager.genericVictory();
 }
@@ -475,6 +476,7 @@ public function fuckDatGryvainShit():void
 	output("\n\n");
 	enemy.loadInCunt(pc,0);
 	processTime(30);
+	pc.orgasm();
 	clearMenu();
 	CombatManager.genericVictory();
 }

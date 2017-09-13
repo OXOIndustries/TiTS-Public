@@ -73,7 +73,7 @@ public function krymCampBonus():void
 	}
 	else if(krymRespectsYou())
 	{
-		addButton(1,"Use Beacon",useBeacon,undefined,"Use Beacon","Krym won’t mind if you use the beacon while she sleeps.");
+		addButton(1,"Use Beacon",useUvetoBeacon,undefined,"Use Beacon","Krym won’t mind if you use the beacon while she sleeps.");
 	}
 }
 
@@ -139,7 +139,7 @@ public function krymMenu():void
 	addButton(14,"Leave",mainGameMenu);
 	if(krymRespectsYou())
 	{
-		addButton(1,"Use Beacon",useBeacon,undefined,"Use Beacon","Ask Krym if you can use the Taxi beacon.");
+		addButton(1,"Use Beacon",useUvetoBeacon,undefined,"Use Beacon","Ask Krym if you can use the Taxi beacon.");
 		addButton(2,"Rest",restOfKrym,undefined,"Rest","Take a rest in the safety of Krym’s camp.");
 	}
 	else
@@ -147,7 +147,7 @@ public function krymMenu():void
 		addDisabledButton(1,"Use Beacon","Use Beacon","You’ll need to win her approval (or pity) to use this.");
 		addDisabledButton(2,"Rest","Rest","If you want to rest in her camp, you’ll need to earn her respect.");
 	}
-	if(pc.hasStatusEffect("Transmitter-APPROVED")) addButton(1,"Use Beacon",useBeacon,undefined,"Use Beacon","Ask Krym if you can use the Taxi beacon.");
+	if(pc.hasStatusEffect("Transmitter-APPROVED")) addButton(1,"Use Beacon",useUvetoBeacon,undefined,"Use Beacon","Ask Krym if you can use the Taxi beacon.");
 }
 
 //Track last result and consecutive wins. If consecutive wins hit 3, she respects you and that stops tracking.
@@ -222,7 +222,7 @@ public function duelKrym():void
 
 //Use Beacon
 //Ask Krym if you can use the Taxi beacon.
-public function useBeacon():void
+public function useUvetoBeacon():void
 {
 	clearOutput();
 	showKrym();
@@ -231,14 +231,25 @@ public function useBeacon():void
 	{
 		output("<i>“Sure thing, Steele,”</i> Krym says, jerking a thumb toward the beeping Q-COMM beacon in the middle of the pillar forest. <i>“Just hook your Codex in and she’ll get a signal anywhere on-planet.”</i>");
 		output("\n\nYou do as she says, syncing your Codex up with the Stormguard network, and a moment later, that of the Confederate Scout Authority and their rapid transit system. You can call in for pickup here, no problem.");
+		if(inCombat()) 
+		{
+			if(eventQueue.indexOf(useUvetoBeaconMenu) == -1) eventQueue.push(useUvetoBeaconMenu);
+			output("\n\n");
+			CombatManager.genericVictory();
+		}
+		else useUvetoBeaconMenu();
 	}
 	else 
 	{
 		showName("\nTRANSIT!");
 		showBust("");
 		output("You sync your Codex up with the Stormguard network, and a moment later, that of the Confederate Scout Authority and their rapid transit system. You can call in for pickup here, no problem.");
+		useUvetoBeaconMenu();
 	}
 	processTime(2);
+}
+public function useUvetoBeaconMenu():void
+{
 	clearMenu();
 	//Display destination options
 	addButton(0,"Irestead",uvetoTaxiShitGooo,"UVI P40");
@@ -570,7 +581,7 @@ public function combatVictoryWithKrymm():void
 	else addDisabledButton(0,"Fuck Her","Fuck Her","You aren’t aroused enough for this.");
 
 	addButton(1,"Rest",restOfKrym,undefined,"Rest","Take a rest in the safety of Krym’s camp.");
-	addButton(2,"Use Beacon",useBeacon,undefined,"Use Beacon","Ask Krym if you can use the Taxi beacon.");
+	addButton(2,"Use Beacon",useUvetoBeacon,undefined,"Use Beacon","Ask Krym if you can use the Taxi beacon.");
 	addButton(14,"Leave",CombatManager.genericVictory);
 }
 //Go to [Fuck Krym] option, above.

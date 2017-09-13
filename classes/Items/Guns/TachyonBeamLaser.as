@@ -12,6 +12,7 @@ package classes.Items.Guns
 	 */
 	public class TachyonBeamLaser extends ItemSlotClass
 	{
+		//UNUSED? UNUSED.
 		//constructor
 		public function TachyonBeamLaser()
 		{
@@ -52,9 +53,6 @@ package classes.Items.Guns
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
-			
-			baseDamage.drug.damageValue = 5;
-			baseDamage.tease.damageValue = 5;
 			
 			this.defense = 0;
 			this.shieldDefense = 0;

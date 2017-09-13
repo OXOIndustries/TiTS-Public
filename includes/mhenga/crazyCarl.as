@@ -417,7 +417,7 @@ public function shockBowBuyTalk():void {
 	processTime(1);
 	output("\n")
 	output("\nAccuracy Bonus: 2");
-	output("\nDamage Rating: 18");
+	output("\nDamage Rating: 13");
 	output("\nDamage Type: Electricity");
 	clearMenu();
 	//[Buy] [Back]
@@ -432,7 +432,7 @@ public function lightningRodBuyTalk():void {
 	output("You push a button to rotate the display case until it stops to a quarterstaff-type weapon. <i>“A weapon of choice by the Ausar riot police. ‘Lightning Rods,’ they call ‘em. If you don’t knock an opponent into submission in the first hit, you at least have a chance to stun them with some nasty electric shocks.”</i>");
 	processTime(1);
 	output("\n");
-	output("\nDamage Rating: 18");
+	output("\nDamage Rating: 13");
 	output("\nDamage Type: Electricity");
 	clearMenu();
 	//[Buy] [Back]

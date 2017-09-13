@@ -992,7 +992,7 @@ public function talkToKallyAboutNewTexas():void
 	output("\n\n<i>“Nice place though. Clean air, rustic scenery, and people almost too sexy and friendly to be believed. Every woman looks like a fetish model, and every man like he does nothing but lift weights and fuck day in and day out.”</i> The kui-tan shakes her head, but one of the ruffles on her skirt lifts higher than the rest. <i>“It’s hard to argue with the results, but the Treatment seems like pretty insidious stuff. It’s one thing to hit puberty and have your body’s hormones force you into thinking about sex. It’s quite another to design something like that artificially, then expect every single person on an entire planet to take it.”</i>");
 	if(pc.isBro()) output("\n\nYou grunt and flex the muscles in your arm, trying to see if turning her on will get her to talk about the funner stuff.");
 	else if(pc.isBimbo()) output("\n\nYou giggle. <i>“Trust me, the Treatment is way cool. I’m so much happier like, all the time now!”</i>");
-	else output("You stroke your chin and nod.");
+	else output("\n\nYou stroke your chin and nod.");
 	output("\n\nKally shakes her head. <i>“");
 	if(!pc.isBimbo()) output("Yeah, ");
 	else output("But ");
@@ -2126,7 +2126,7 @@ public function tapKallysKegAsBimboII():void
 
 		output("\n\nThen they shrink, one rhythmic pulse at a time.");
 		output("\n\nThose same pulses arrive in the ‘nuki’s dick a split-second later, prying your [pc.lips] still wider. Her cum barrels through her urethra and into your throat. There, it’s free to squirt out like water from a firehose, splashing down into your belly with aplomb. You can faintly hear your stomach gurgling, just like you can faintly smell her nutty jism in the back of your nose, but most importantly, you can feel just how good of a job you’ve done.");
-		output("\n\nEvery single jet of kui-tan cream is an affirmation of your status as a premiere cock-sucker and blast of bubbly bimbo bliss in your brain. To a [pc.boyGirl] like you, cum is part declaration of a job well down and part hard-wired signal that you should be cumming right alongside your partner. Sparks of jizzy ecstasy travel down your spine to your groin, bubbling through your [pc.groin]. At first, it’s simple, lusty pleasure. But as you devour the last dregs of Kally’s seed, it gets harder and harder to control yourself.");
+		output("\n\nEvery single jet of kui-tan cream is an affirmation of your status as a premiere cock-sucker and blast of bubbly bimbo bliss in your brain. To a [pc.boyGirl] like you, cum is part declaration of a job well done and part hard-wired signal that you should be cumming right alongside your partner. Sparks of jizzy ecstasy travel down your spine to your groin, bubbling through your [pc.groin]. At first, it’s simple, lusty pleasure. But as you devour the last dregs of Kally’s seed, it gets harder and harder to control yourself.");
 		output("\n\nYour [pc.hips] jerk madly.");
 		if(pc.hasVagina()) 
 		{

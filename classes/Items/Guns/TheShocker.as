@@ -10,6 +10,7 @@
 	
 	public class TheShocker extends ItemSlotClass
 	{
+		//Level 2 (Common). Balance 2.0
 		//constructor
 		public function TheShocker()
 		{
@@ -39,7 +40,7 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 2300;
+			this.basePrice = 250;
 			this.attack = 2;
 			
 			baseDamage.electric.damageValue = 8;
