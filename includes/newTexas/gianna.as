@@ -4359,6 +4359,8 @@ public function getButtReamedByFutaGigi():void
 
 	processTime(20+rand(11));
 	pc.orgasm();
+	pc.loadInAss(gianna);
+	pc.maxOutCumflation("ass", gianna);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

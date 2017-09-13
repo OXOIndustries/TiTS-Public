@@ -69,6 +69,7 @@ public function saloonInteriorBonus():Boolean
 	addButton(4,"Ride Bronco",ridingTheBuckingBronco,undefined,"Ride Bronco","Get on that perverted horsey!");
 	//put the bar-based NPC blurbs like Kiro, Erra, and Anno here
 	roamingBarEncounter(5);
+	if (ciaranAvailable()) ciaranBroncoAddendum(7);
 	// 9999 - Disable other directions until content is available!
 	setNavDisabled(NAV_EAST_DISABLE);
 	setNavDisabled(NAV_WEST_DISABLE);

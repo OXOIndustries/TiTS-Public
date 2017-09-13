@@ -284,6 +284,7 @@
 		include "../includes/newTexas/brynn.as";
 		include "../includes/newTexas/buckingBronco.as";
 		include "../includes/newTexas/busky.as";
+		include "../includes/newTexas/ciaran.as";
 		include "../includes/newTexas/ellie.as";
 		include "../includes/newTexas/haley.as";
 		include "../includes/newTexas/gianna.as";
@@ -1431,9 +1432,15 @@
 		{
 			return chars["KRYM"];
 		}
+
 		public function get paige():Paige 
 		{
 			return chars["PAIGE"];
+		}
+		
+		public function get ciaran():Ciaran
+		{
+			return chars["CIARAN"];
 		}
 
 		public function testShipCombat():void

@@ -2034,7 +2034,7 @@ package classes.GameData
 				return;
 			}
 			
-			if (attacker is PlayerCharacter) output("Tossing a hissing grenade in the general direction of your target" + (target.isPlural ? "s" : "") + ", you watch the gaseous stuff do its trick.");
+			if (attacker is PlayerCharacter) output("Tossing a hissing grenade in the general direction of your target" + (aTarget.isPlural ? "s" : "") + ", you watch the gaseous stuff do its trick.");
 			else if (aTarget is PlayerCharacter) output(StringUtil.capitalize(attacker.getCombatName(), false) + " toss" + (attacker.isPlural ? " small devices" : "es a small device") + " in your direction, great clouds of thick, gaseous vapor pouring from " + (attacker.isPlural ? "each of them" : "within its body") + ".");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " toss" + (attacker.isPlural ? " small devices" : "es a small device") + " in " + possessive(aTarget.getCombatName()) + " direction, " + (attacker.isPlural ? "thick trails of gaseous vapor hang heavily in the air to demark their arcing path" : "a thick trail of gaseous vapor hanging heavily in the air to demark the arcing path taken") + ".");
 			

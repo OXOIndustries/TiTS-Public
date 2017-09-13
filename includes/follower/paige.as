@@ -766,7 +766,7 @@ public function paigeMenu():void
 
 		if(currentLocation == "PAIGE_HOUSE")
 		{
-			if(hours >= 0 && hours < 9) addButton(6,"Rest",restOnSomeSchtuff,undefined,"Rest","No yoga and no sex – just some cuddling with Paige for a good night’s rest.");
+			if(hours >= 20) addButton(6,"Rest",restOnSomeSchtuff,undefined,"Rest","No yoga and no sex – just some cuddling with Paige for a good night’s rest.");
 			else addDisabledButton(6,"Rest","Rest","Who goes to bed in the middle of the day? Come on.");
 		}
 

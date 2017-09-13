@@ -12329,10 +12329,13 @@
 						adjectives.push("broodmother-sized ");
 					}
 				}
-				if (hips >= 30 && thickness >= 25) {
-					adjectives.push("thicc ");
-					if(thickness >= 50) adjectives.push("extra-thicc ");
-					if(thickness >= 75) adjectives.push("massively-thicc ");
+				if (hips >= 30) {
+					adjectives.push("jutting ");
+					adjectives.push("broadly-sloped ");
+					adjectives.push("colossal ");
+					adjectives.push("immensely broad ");
+					adjectives.push("far-reaching ");
+					adjectives.push("gargantuanly splayed ");
 				}
 			}
 			if(adjectives.length > 0) desc += adjectives[rand(adjectives.length)];
@@ -12348,7 +12351,17 @@
 			return desc;
 		}
 		public function thighDescript():String {
-			return "thigh";
+			var hips: Number = hipRating();
+			var desc: String = "";
+			var adjectives: Array = [];
+			
+			if(hips >= 5 && thickness >= 25) adjectives.push("thicc");
+			if(hips >= 10 && thickness >= 50) adjectives.push("extra-thicc");
+			if(hips >= 20 && thickness >= 75) adjectives.push("massively-thicc");
+			
+			if(adjectives.length > 0) desc += adjectives[rand(adjectives.length)] + " ";
+			desc += "thigh";
+			return desc;
 		}
 		public function thighsDescript():String {
 			return plural(thighDescript());

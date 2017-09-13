@@ -1368,7 +1368,7 @@ public function giveEmmyAnItemMenu():void
 	if(pc.hasItemByClass(Kirkite)) addButton(0,"Kirkite",giveEmmyAnItem,"Kirkite","Kirkite","Give Emmy a piece of Kirkite.");
 	else addDisabledButton(0,"Kirkite","Kirkite","You don’t have any Kirkite.");
 	if(pc.hasItemByClass(Satyrite)) addButton(1,"Satyrite",giveEmmyAnItem,"Satyrite","Satyrite","Give Emmy a piece of Satyrite.");
-	else addDisabledButton(1,"Satyrite","Satyrite","You don’t have any Kirkite.");
+	else addDisabledButton(1,"Satyrite","Satyrite","You don’t have any Satyrite.");
 	if(pc.hasItemByClass(Picardine)) addButton(2,"Picardine",giveEmmyAnItem,"Picardine","Picardine","Give Emmy a piece of Picardine.");
 	else addDisabledButton(2,"Picardine","Picardine","You don’t have any Picardine.");
 	if(pc.hasItemByClass(CrystalShard))
