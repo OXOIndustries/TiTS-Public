@@ -5993,6 +5993,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Services, Sperm Donation Bay, Times Donated:</b> " + flags["BREEDWELL_TIMES_DONATED"]);
 					if(flags["BREEDWELL_DONATION_LOCKED"] != undefined) output2(", Locked");
+					else if(flags["BREEDWELL_DONATION_USED"] != undefined && (flags["BREEDWELL_DONATION_USED"] < days)) output2(", Last used " + ((days - flags["BREEDWELL_DONATION_USED"] == 1) ? "yesterday" : ((days - flags["BREEDWELL_DONATION_USED"]) + " days ago")));
 					output2("\n<b>* Services, Sperm Donation Bay, Cum Milked:</b> " + StatTracking.getStat("breedwell/cum milked") + " mLs");
 				}
 				variousCount++;

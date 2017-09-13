@@ -235,7 +235,7 @@ public function breedwellDonationBonus():Boolean
 	else if(!pc.hasCock()) addDisabledButton(0, "Cubicle", "Cockmilker", "You require a penis to try this.");
 	else if(!breedwellCheckSperm()) addDisabledButton(0, "Cubicle", "Cockmilker", "Milking your semen? You don’t think you’re exprienced enough to try this yet...");
 	else if(pc.virility() <= 0) addDisabledButton(0, "Cubicle", "Cockmilker", "You’re not virile enough to do this.");
-	else if(pc.hasStatusEffect("Breedwell Cockmilker Cooldown"))
+	else if(flags["BREEDWELL_DONATION_USED"] == days)
 	{
 		output("\n\nThe cubicles refuse to open when you approach them. They’re evidently programmed not to for those who have already given their donation for the day.");
 		addDisabledButton(0, "Cubicle", "Cockmilker", "You can't use this at the moment. Maybe later?");
@@ -1234,8 +1234,6 @@ public function breedwellPodEnd(numEggs:int = 0):void
 */
 public function breedwellCumCreditValue(amount:Number = 0):Number
 {
-	if(amount <= 0) return 5;
-	
 	// New calculations!
 	var maxCredVal:Number = 10; // Maximum credit value to start.
 	var normalAmount:Number = 500000; // Point where credit value is at 1 credit/mL before degrading.
@@ -1246,13 +1244,15 @@ public function breedwellCumCreditValue(amount:Number = 0):Number
 	// Other adjustments...
 	normalAmount = 1500000;
 	curveMult = 4;
-	scalar = 0.50;
+	scalar = 0.005 * pc.cumQuality();
 	
 	var creditVal:Number = ( maxCredVal / Math.pow((((curveMult * amount) / normalAmount) + 1), 2) );
 	var cashOut:Number = (amount * creditVal * scalar);
 	
 	// Hard cap
+	var minCredCap:Number = 5;
 	var maxCredCap:Number = 500000;
+	if(cashOut < minCredCap) cashOut = minCredCap;
 	if(cashOut > maxCredCap) cashOut = maxCredCap;
 	
 	if(debug)
@@ -1311,8 +1311,8 @@ public function breedwellCockmilkerEnd(cumTotal:Number = 0):void
 	pc.removeStatusEffect("Breedwell Cockmilker Dildo");
 	StatTracking.track("breedwell/cum milked", cumTotal);
 	IncrementFlag("BREEDWELL_TIMES_DONATED");
-	// Disable cockmilker for a day.
-	pc.createStatusEffect("Breedwell Cockmilker Cooldown", 0, 0, 0, 0, true, "", "", false, 1440);
+	// Disable cockmilker for the day.
+	flags["BREEDWELL_DONATION_USED"] = days;
 }
 // Intro
 public function breedwellCockmilkerCockSelect():void

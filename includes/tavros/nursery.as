@@ -1851,6 +1851,7 @@ public function nurseryMaternityWaitPostBirths(args:Object):void
 	output("\n\nNow unburdened of your pregnancy, you figure it’s time to get back on the space-trail.");
 
 	processTime(15);
+	pc.shower();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
