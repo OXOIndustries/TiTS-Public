@@ -1378,6 +1378,7 @@ public function getKorgedInTheButtOrPussy():void
 	}
 	//no preg check
 	//else tight enough to knot ending
+	else
 	{
 		output("\n\nThe korgonne’s knot is so big now, he can barely move inside your [pc.vagOrAss " + x + "]. But rather than lessen his pleasure, he seems to be getting closer and closer to orgasm every time he tugs, abusing and stretching you to fit his growing alien monster.");
 		output("\n\n<i>“Knot so joyful,”</i> he moans. The korgonne’s cock twitches, and he pulls so hard against your ");
