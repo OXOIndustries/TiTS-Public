@@ -2728,10 +2728,10 @@ public function processShadeEvents(deltaT:uint, doOut:Boolean):void
 
 public function processGiannaEvents(deltaT:uint, doOut:Boolean):void
 {
-	if (flags["GIANNA_AWAY_TIMER"] != undefined && flags["GIANNA_AWAY_TIMER"] > 0) giannaAWOL( -1);
+	if (flags["GIANNA_AWAY_TIMER"] != undefined && flags["GIANNA_AWAY_TIMER"] > 0) giannaAWOL(-deltaT);
 	
 	if (flags["GIANNA_FUCK_TIMER"] != undefined) flags["GIANNA_FUCK_TIMER"] += deltaT;
-	}
+}
 
 public function processTreatmentEvents(deltaT:uint, doOut:Boolean):void
 {
