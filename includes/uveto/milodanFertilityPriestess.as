@@ -494,7 +494,9 @@ public function fertilityPriestessFuckHerSwitch():void
 	}
 	else
 	{
-		output("\n\nSlowly, you lean back and pull out of her, letting loose a deluge of pent-up [pc.cum] from her ass that joins the juicy mess on the ground. She shudders at the sensation, tongue lolling from the side of her mouth. Now <i>that</i>’s a good look for her...");
+		output("\n\nSlowly, you lean back and pull out of her");
+		if(pc.hasCock()) output(", letting loose a deluge of pent-up [pc.cumNoun] from her ass that joins the juicy mess on the ground");
+		output(". She shudders at the sensation, tongue lolling from the side of her mouth. Now <i>that</i>’s a good look for her...");
 	}
 
 	output("\n\nYou rise up and give the winded cat a parting slap on the ass. What little strength she had left fails her, and the priestess’s legs and arms go splaying out to either side of her. <i>“Oof! You might be a deviant, but at least you fuck like a warrior... could have been worse,”</i> she grunts, giving you a wolfish grin over her shoulder. <i>“Just be careful it’s not you bending over for my staff next time!”</i>");
