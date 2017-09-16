@@ -35,7 +35,7 @@ public function breedwellTryUnlock():void
 {
 	if(MailManager.isEntryUnlocked("breedwell_unlock")) return;
 	
-	if(breedwellCheckBirth() || breedwellCheckSperm())
+	if((breedwellCheckBirth() && pc.fertility() > 0) || (breedwellCheckSperm() && pc.virility() > 0))
 	{
 		goMailGet("breedwell_unlock");
 	}
