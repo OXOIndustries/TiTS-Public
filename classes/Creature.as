@@ -8130,13 +8130,18 @@
 			var cylinder: Number = Math.PI * 1.5 / 2 * 1.5 / 2 * (8 - 1.5);
 			var tip: Number = (4 / 3 * Math.PI * 1.5 / 2 * 1.5 / 2 * 1.5 / 2) / 2;
 			//If blunt, tip is converted to cylinder as well.
-			if (tailGenitalArg == GLOBAL.TYPE_EQUINE) tip = (Math.PI * 1.5 / 2 * 1.5 / 2 * 1.5);
+			if (tailGenitalArg == GLOBAL.TYPE_EQUINE || hasTailFlag(GLOBAL.FLAG_BLUNT)) tip = (Math.PI * 1.5 / 2 * 1.5 / 2 * 1.5);
 			//If flared, tip is multiplied by 1.3.
-			if (tailGenitalArg == GLOBAL.TYPE_EQUINE) tip = tip * 1.3;
+			if (tailGenitalArg == GLOBAL.TYPE_EQUINE || hasTailFlag(GLOBAL.FLAG_FLARED)) tip = tip * 1.3;
 			//If tapered, reduce total by a factor of 75%
-			if (tailGenitalArg == GLOBAL.TYPE_CANINE) {
+			if (tailGenitalArg == GLOBAL.TYPE_CANINE || hasTailFlag(GLOBAL.FLAG_TAPERED)) {
 				tip = tip * .75;
 				cylinder = cylinder * .75;
+			}
+			//If double headed, the tip is approximately two half-diameter hemispheres plus a cylinder of full diameter and half height.
+			if (tailGenitalArg == GLOBAL.TYPE_GABILANI || hasTailFlag(GLOBAL.FLAG_DOUBLE_HEADED))
+			{
+				tip = (2 * 2/3 * Math.PI * (1.5/4 * 1.5/4 * 1.5/4)) + (2 * Math.PI * 1.5/2 * 1.5/2 * 1.5/4);
 			}
 			var temp: Number = Math.round((tip + cylinder) * 100) / 100;
 			if (effective) {
@@ -8169,6 +8174,11 @@
 			if (dickNippleType == GLOBAL.TYPE_CANINE) {
 				tip = tip * .75;
 				cylinder = cylinder * .75;
+			}
+			//If double headed, the tip is approximately two half-diameter hemispheres plus a cylinder of full diameter and half height.
+			if (dickNippleType == GLOBAL.TYPE_GABILANI)
+			{
+				tip = (2 * 2/3 * Math.PI * (w/4 * w/4 * w/4)) + (2 * Math.PI * w/2 * w/2 * w/4);
 			}
 			var temp: Number = Math.round((tip + cylinder) * 100) / 100;
 			return Math.round(temp * 100) / 100;

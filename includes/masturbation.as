@@ -300,7 +300,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 			faps.push(fap);
 		}
 	}
-	if (flags["LAQUINE_LASS_TRYSTS"] != undefined && LaquineEars.lassLaquineAcceptable(pc,pc.biggestCockIndex()))
+	if (flags["LAQUINE_LASS_TRYSTS"] != undefined  && pc.hasCock() && LaquineEars.lassLaquineAcceptable(pc,pc.biggestCockIndex()))
 	{
 		fap = new FapCommandContainer();
 		fap.text = "F.Laquine";
