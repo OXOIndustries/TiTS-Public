@@ -2452,8 +2452,8 @@ public function treatmentHourProcs(totalHours:int):void
 		//Max size stored in v3
 		//Raise femininity to max, then add lipRating as needed.
 		//Final lip rating = 4 to 6.
-			
-		if(pc.statusEffectv3("Treated") > pc.lipRating() && treatedHours >= 121 && startHours < 168)
+		
+		if((pc.femininity < 100 || pc.statusEffectv3("Treated") > pc.lipRating()) && treatedHours >= 121 && startHours < 168)
 		{
 			var femGainStarts:Array = [121, 130, 140, 150, 160, 168];
 			
@@ -2493,7 +2493,7 @@ public function treatmentHourProcs(totalHours:int):void
 						pc.lust(1);
 					}
 					//1 to 2 mod.
-					else
+					else if(pc.lipMod < 2)
 					{
 						AddLogEvent(ParseText("You purse your [pc.lips] in front of your Codex, just to look at them. To your surprise, they’re even bigger than before. You lick them, making them shine. They’re almost... hypnotic. You purse your dazzling kissers, then smile. These lips are gorgeous. You could probably make guys rip holes in their pants, just by talking to them."), "passive", (femGainStarts[i] - startHours) * 60);
 						pc.lipMod = 2;
