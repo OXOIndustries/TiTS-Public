@@ -480,7 +480,7 @@ public function treatedPCsGetCuntFilledAndMilkedPtI():void
 	if(!pc.biggestTitSize() < 1) output(" Oh, your chest is amazing too! Your [pc.nipples] are all puffy, ready to be milked, so flushed.");
 	else output(" Oh, your [pc.chest] are amazing too! They’re jiggling around with every panting breath you take, the [pc.nipples] so prominent that anyone who sees you will know that they exist just to be licked, teased, and milked.");
 
-	output("\n\n<i>“Yeaaaaah.”</i> Your reply is slow and dreamy. You stop trying to talk so that you can moan. Your internal muscles give Yancy a happy squeeze. So what if you jumped on his cock at the drop of his cock. You rub the tiny bit that’s still exposed, amazed at how those bumps pulse under your fingertips. <i>“It’s an awesome cock,”</i> you declare. <i>“Nothing wrong with an ap-... appreciation for one.”</i> Rippling those internal muscles again, you feel a hot jet of pre-cum against your cervix. Talking is hard, but Yancy seems to like it.");
+	output("\n\n<i>“Yeaaaaah.”</i> Your reply is slow and dreamy. You stop trying to talk so that you can moan. Your internal muscles give Yancy a happy squeeze. So what if you jumped on his cock at the drop of his cock. You rub the tiny bit that’s still exposed, amazed at how those bumps pulse under your fingertips. <i>“It’s an awesome cock,”</i> you declare. <i>“Nothing wrong with an ap-... appreciation for one.”</i> Rippling those internal muscles again, you feel a hot jet of pre-cum against your " + ((pc.hasVagina() && x >= 0) ? "cervix" : "insides") + ". Talking is hard, but Yancy seems to like it.");
 
 	output("\n\nThe bull uses his free hand to grab one of the milker’s cups and places it over a tit. The machine’s idle suction is enough to prickle your [pc.nipple] and hold the glass tube in place without any assistance, but not quite enough to make your boobs drool.");
 
@@ -584,7 +584,11 @@ public function treatedPCsGetCuntFilledAndMilkedPtIII():void
 	if(!pc.hasVagina()) output("sperm-splattered ");
 	output("derriere on the table and flicks the switch to the <i>“off”</i> position. At some point, your [pc.fullChest] went dry, and your [pc.nipples] have gotten so sore and sensitive, despite the [pc.milkColor] sheen that they still shine with. Standing up seems a little too hard, given your " + possessive(pc.legOrLegs()) + " boneless twitching, so you dip your finger into your [pc.vagOrAss] and idly stir it around, keeping the happy glow going as long as possible.");
 	output("\n\nTossing you your stuff with a knowing smile, Yancy explains, <i>“");
-	if(flags["YANCY_EXPLAINED_HIS_PILLS"] == undefined) 
+	if(!pc.hasVagina()) 
+	{
+		output("Not that we need it for this, but it’s just habit, you know?");
+	}
+	else if(flags["YANCY_EXPLAINED_HIS_PILLS"] == undefined) 
 	{
 		output("Shame I have to take pills to keep from knocking all my clients up. You’d look awful hot with twins inside you.");
 		flags["YANCY_EXPLAINED_HIS_PILLS"] = 1;
