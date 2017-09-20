@@ -3319,7 +3319,7 @@
 				if
 				(	(wingType == GLOBAL.TYPE_DOVE && wingCount >= 4)
 				||	(hasJointedWings() && statusEffectv1("Wing Position") == 1)
-				||	(hairLength >= tallness/4 && !InCollection(hairStyle, ["ponytail", "mohawk", "afro"]))
+				||	(hairLength >= tallness/4 && !InCollection(hairStyle, ["ponytail", "mohawk", "afro", "spikes", "front wave", "backwards slick", "messy chignon", "tight chignon", "side plait", "single braid", "crown braid", "pigtail buns"]))
 				) bitsNeedCover = 0;
 			}
 			
@@ -12973,7 +12973,7 @@
 				return descript;
 			}
 			//25% odds of adjectives
-			if ((forceLength || rand(4) == 0) && !InCollection(hairStyle, "afro", "mohawk")) {
+			if ((forceLength || rand(4) == 0) && !InCollection(hairStyle, ["afro", "mohawk", "spikes"])) {
 				if (hairLength < 1) {
 					if (rand(2) == 0) descript += "close-cropped";
 					else descript += "trim";
@@ -13104,8 +13104,11 @@
 					else if(hairStyle == "pigtails") descript += "pigtailed hair";
 					else if(hairStyle == "curls") descript += "curled hair";
 					else if(hairStyle == "braided") descript += "braid";
+					else if(hairStyle.indexOf(" braid") != -1) descript += "braided hair";
 					else if(hairStyle == "afro") descript += "afro";
 					else if(hairStyle == "mohawk") descript += "mohawk";
+					else if(hairStyle == "spikes") descript += "spiked hair";
+					else if(hairStyle == "twintails") descript += "twintailed hair";
 					else descript += "hair";
 				}
 			}
@@ -13256,9 +13259,11 @@
 				if(hairStyle == "ponytail") descript += "ponytail-bound locks";
 				else if(hairStyle == "pigtails") descript += "pigtails";
 				else if(hairStyle == "curls") descript += "curls";
-				else if(hairStyle == "braided") descript += "braid-bound locks";
+				else if(hairStyle == "braided" || hairStyle.indexOf(" braid") != -1) descript += "braid-bound locks";
 				else if(hairStyle == "afro") descript += "afro-puffed locks";
 				else if(hairStyle == "mohawk") descript += "mohawk-shaped locks";
+				else if(hairStyle == "spikes") descript += "spiky locks";
+				else if(hairStyle == "twintails") descript += "twintails";
 				else descript += "locks";
 			}
 			if (hairType == GLOBAL.HAIR_TYPE_GOO && rand(2) == 0) descript += " of goo";

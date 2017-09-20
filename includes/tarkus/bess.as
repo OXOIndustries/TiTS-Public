@@ -2056,17 +2056,17 @@ public function talkToBessAboutHairStyle():void
 
 	var options:Array = [];
 	
-	if (bess.hairLength < 12) options.push("spikes");
-	options.push("mess of curls", "front wave", "backwards slick", "ruffled layers");
+	if (bess.hairLength < 12) options.push(["Spikes", "spikes"]);
+	options.push(["Messy Curls", "mess of curls"], ["Front Wave", "front wave"], ["Back Slick", "backwards slick"], ["Ruff.Layers", "ruffled layers"]);
 	if (bess.hairLength >= 6)
 	{
-		options.push("simple part", "side part");
-		if (bess.hairLength < 12) options.push("bob");
-		options.push("hime cut");
-		if (bess.hairLength < 24) options.push("messy chignon", "tight chignon");
-		options.push("ponytail", "side plait", "single braid", "crown braid");
-		if (bess.hairLength < 24) options.push("pigtail buns");
-		options.push("set of twintails");
+		options.push(["Simple Part", "simple part"], ["Side Part", "side part"]);
+		if (bess.hairLength < 12) options.push(["Bob", "bob"]);
+		options.push(["Hime", "hime cut"]);
+		if (bess.hairLength < 24) options.push(["M.Chignon", "messy chignon"], ["T.Chignon", "tight chignon"]);
+		options.push(["Ponytail", "ponytail"], ["Side Plait", "side plait"], ["Single Braid", "single braid"], ["Crown Braid", "crown braid"]);
+		if (bess.hairLength < 24) options.push(["Pigtail Buns", "pigtail buns"]);
+		options.push(["Twintails", "set of twintails"]);
 	}
 
 	var optSlot:int = -1;
@@ -2082,7 +2082,7 @@ public function talkToBessAboutHairStyle():void
 			optSlot++;
 		}
 
-		addButton(i, StringUtil.toTitleCase(options[optSlot]), bessSetHairStyle, options[optSlot]);
+		addButton(i, options[optSlot][0], bessSetHairStyle, options[optSlot][1], StringUtil.toTitleCase(options[optSlot][1]), "Select this hair style for [bess.name].");
 	}
 }
 
