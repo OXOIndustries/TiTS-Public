@@ -391,10 +391,12 @@ public function nurseryCafeteriaFunc():Boolean
 {
 	output("\n\nA pair of server bots are sitting in the kitchen, making sure there’s plenty of food and drink to go around.");
 	if (yammiIsFollower() && !yammiIsCrew()) output(" Yammi’s hanging out in the kitchen, too, overseeing things while she’s not assigned to your ship’s crew.");
-	
-	seraNurseryCafeteriaBonus(1);
 
 	nurseryZilCallgirlRandomEvents();
+	
+	var btnSlot:int = 0;
+	if(seraAtNursery()) seraNurseryCafeteriaBonus(btnSlot++);
+	if(riyaAtNursery()) riyaNurseryCafeteriaBonus(btnSlot++);
 	
 	return false;
 }

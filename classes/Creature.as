@@ -4148,6 +4148,7 @@
 
 			var bonus:int = 0;
 			bonus += statusEffectv1("Sera Spawn Reflex Mod");
+			bonus += statusEffectv1("Riya Spawn Reflex Mod");
 
 			var currReflexes:int = reflexesRaw + reflexesMod + bonus;
 

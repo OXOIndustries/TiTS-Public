@@ -581,6 +581,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "RahnPregnancy": output2(" Rahn, Eggs"); break;
 						case "RahnPregnancyBreedwell": output2(" Breedwell Rahn, Eggs"); break;
 						case "KorgonnePregnancy": output2(" Korgonne"); break;
+						case "RiyaPregnancy": output2(" Riya"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -926,6 +927,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Rahn Eggs @ TamaniCorp:</b> " + StatTracking.getStat("pregnancy/rahn eggs/tamani"));
 				if(StatTracking.getStat("pregnancy/renvra kids") > 0)
 					output2("\n<b>* Births, Renvra’s Children:</b> " + StatTracking.getStat("pregnancy/renvra kids"));
+				if(StatTracking.getStat("pregnancy/riya kids") > 0)
+					output2("\n<b>* Births, Riya’s Children:</b> " + StatTracking.getStat("pregnancy/riya kids"));
 				if(StatTracking.getStat("pregnancy/sera kids") > 0)
 					output2("\n<b>* Births, Sera’s Children:</b> " + StatTracking.getStat("pregnancy/sera kids"));
 				if(StatTracking.getStat("pregnancy/sydian births") > 0)
