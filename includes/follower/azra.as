@@ -55,18 +55,16 @@ Romancing/Recruiting the sharkMILF!
 	AZRA_SEXED 				Count of times sexual acts done.
 	AZRA_SEX_KNOWN			1 if you know about Azra's ween & cunt.
 
+	AZRA_BOYFRIEND			1 if Azra calls you her boyfriend/grilfriend
+
 	AZRA_RACE_TALK			1 if you've talked with her about suulaness.
 	AZRA_DAUGHTER_TALK		1 if you've talked about her daughters
 	AZRA_STUD_TALK 			1 if talked about her "stud"
 */
 
-
-
- 
-public function showAzra(nude:Boolean = false, cock:Boolean = false):void
+public function azraBustString(nude:Boolean = false, cock:Boolean = false):String
 {
 	var sBust:String = "AZRA";
-	
 	if(chars["AZRA"].isPregnant() && chars["AZRA"].bellyRating() >= 10) sBust += "_PREG_NUDE";
 	else
 	{
@@ -74,8 +72,11 @@ public function showAzra(nude:Boolean = false, cock:Boolean = false):void
 		if(!nude && cock) sBust += "_DONG";
 		if(nude) sBust += "_NUDE";
 	}
-	
-	showBust(sBust);
+	return sBust;
+}
+public function showAzra(nude:Boolean = false, cock:Boolean = false):void
+{
+	showBust(azraBustString(nude,cock));
 	showName("\nAZRA");
 }
 
@@ -87,6 +88,13 @@ public function azraIsCrew():Boolean
 {
 	return (flags["AZRA_ONBOARD"] != undefined && flags["AZRA_DISABLED"] == undefined);
 }
+
+public function azraBoyfriend():String
+{
+	if(flags["AZRA_BOYFRIEND"] == 1) return "[pc.boyGirl]friend";
+	return "Captain";
+}
+
 
 //Tavros elevator or Uveto elevator, procs after using it the fourth time.
 public function azraBonusProc(btnSlot:int = 0):Boolean
@@ -255,7 +263,12 @@ public function azraCrewBlurbs(button:Number):String
 		addDisabledButton(button,"Azra","Azra","She’s too busy with the latest sample to be bothered right now.");
 		return buffer;
 	}
-	
+	else if(pc.hasStatusEffect("Azra CD"))
+	{
+		buffer += "\n\nAzra isn't available at the moment. You'll have to come back later.";
+		addDisabledButton(button,"Azra","Azra","Azra isn't available. Come back later.");
+		return buffer;
+	}
 	switch(rand(10))
 	{
 		case 9: buffer += "\n\nAzra is sitting in front a codex-projected hardlight terminal. She appears to be answering emails."; break;

@@ -37,6 +37,7 @@
 			this.isPlural = false;
 			
 			this.meleeWeapon.attackVerb = "punch";
+			this.meleeWeapon.attackNoun = "punch";
 			this.meleeWeapon.longName = "fist";
 			this.meleeWeapon.hasRandomProperties = true;
 			
@@ -274,8 +275,8 @@
 			//{3x flurry paunch}
 			for (var i:int = 0; i < 3; i++)
 			{
+				output("\n");
 				CombatAttacks.SingleMeleeAttackImpl(this, target, true);
-				if(i != 2) output("\n");
 			}
 		}
 		//Uppercut (only on foes 6' or taller)
@@ -364,14 +365,14 @@
 			else
 			{
 				output("slams into [target.combatName]! <i>“Take that!”</i>");
+				var damage:TypeCollection = meleeDamage();
+				applyDamage(damageRand(damage, 15), this, target);
 				//Chance of staggered.
 				if(physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 				{
 					output(" <b>[target.HeShe] is staggered.</b>");
 					CombatAttacks.applyStagger(target);
 				}
-				var damage:TypeCollection = meleeDamage();
-				applyDamage(damageRand(damage, 15), this, target);
 			}
 		}
 		//Sharklust - At 60+ lust - 1x per combat
