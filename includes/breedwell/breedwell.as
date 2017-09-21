@@ -35,7 +35,7 @@ public function breedwellTryUnlock():void
 {
 	if(MailManager.isEntryUnlocked("breedwell_unlock")) return;
 	
-	if(breedwellCheckBirth() || breedwellCheckSperm())
+	if((breedwellCheckBirth() && pc.fertility() > 0) || (breedwellCheckSperm() && pc.virility() > 0))
 	{
 		goMailGet("breedwell_unlock");
 	}
@@ -214,7 +214,7 @@ public function breedwellLoungeBonus():Boolean
 	if(flags["BREEDWELL_STATUS_BREEDER"] == undefined) addDisabledButton(0, "Pod", "Pod", "You are not familiar with this yet. You probably need to be properly introduced before using it.");
 	else if(!pc.hasVagina()) addDisabledButton(0, "Pod", "Pod", "You require a vagina to try this.");
 	else if(!breedwellCheckBirth()) addDisabledButton(0, "Pod", "Pod", "Making babies? You don’t think you’re exprienced enough to try this yet...");
-	else if(pc.isFullyWombPregnant()) addDisabledButton(0, "Pod", "Pod", "You’re already too stuffed to do this.");
+	else if(pc.isFullyWombPregnant() && totalPregRahnEggs() >= (breedwellBreederLevel() * 2 * totalRahnPregnancies())) addDisabledButton(0, "Pod", "Pod", "You’re already too stuffed to do this.");
 	else if(pc.fertility() <= 0) addDisabledButton(0, "Pod", "Pod", "You’re not fertile enough to do this.");
 	else addButton(0, "Pod", breedwellApproachPod, undefined, "Pod", "Harness yourself up and get ready for a breeding.");
 	
@@ -235,7 +235,7 @@ public function breedwellDonationBonus():Boolean
 	else if(!pc.hasCock()) addDisabledButton(0, "Cubicle", "Cockmilker", "You require a penis to try this.");
 	else if(!breedwellCheckSperm()) addDisabledButton(0, "Cubicle", "Cockmilker", "Milking your semen? You don’t think you’re exprienced enough to try this yet...");
 	else if(pc.virility() <= 0) addDisabledButton(0, "Cubicle", "Cockmilker", "You’re not virile enough to do this.");
-	else if(pc.hasStatusEffect("Breedwell Cockmilker Cooldown"))
+	else if(flags["BREEDWELL_DONATION_USED"] == days)
 	{
 		output("\n\nThe cubicles refuse to open when you approach them. They’re evidently programmed not to for those who have already given their donation for the day.");
 		addDisabledButton(0, "Cubicle", "Cockmilker", "You can't use this at the moment. Maybe later?");
@@ -870,6 +870,50 @@ public function getBreedwellRahnPregContainer(rahnType:int = 0):PregnancyPlaceho
 	250%+ Fertility				+1
 	Premium Breeder				+1
 */
+public function eggBreederLevel(bWomb:Boolean = true):int
+{
+	var level:int = 1;
+	if(flags["EGG_TRAINING"] >= 1) level++;
+	if(flags["EGG_TRAINING"] >= 2) level++;
+	if(flags["EGG_TRAINING"] >= 3) level++;
+	if(flags["EGG_TRAINING"] >= 4) level++;
+	if(pc.hasPerk("Broodmother")) level += 2;
+	// Womb bonuses
+	if(bWomb && pc.hasVagina())
+	{
+		var nFertility:Number = pc.fertility();
+		if(nFertility >= 2.5) level++;
+		if(nFertility >= 5) level++;
+		if(nFertility >= 10) level++;
+	}
+	
+	return level;
+}
+public function breedwellBreederLevel():int
+{
+	var level:int = eggBreederLevel();
+	if(flags["BREEDWELL_STATUS_BREEDER"] >= 2) level += 2;
+	
+	return level;
+}
+public function totalPregRahnEggs():int
+{
+	var nEggs:int = 0;
+	for(var i:int = 0; i < pc.vaginas.length; i++)
+	{
+		if(InCollection(pc.pregnancyData[i].pregnancyType, ["RahnPregnancy", "RahnPregnancyBreedwell"])) nEggs += pc.pregnancyData[i].pregnancyQuantity;
+	}
+	return nEggs;
+}
+public function totalRahnPregnancies():int
+{
+	var nRahn:int = 0;
+	for(var i:int = 0; i < pc.vaginas.length; i++)
+	{
+		if(InCollection(pc.pregnancyData[i].pregnancyType, ["RahnPregnancy", "RahnPregnancyBreedwell"])) nRahn++;
+	}
+	return nRahn;
+}
 // PC receives 300 credits for every egg they take after a session, then 600 credits for every rahn carried to term at birth.
 public function breedwellApproachPod():void
 {
@@ -946,13 +990,7 @@ public function breedwellApproachPod():void
 	sceneList.push(6);
 	sceneList.push(7);
 	
-	var sceneCount:int = 1;
-	// Womb Egg Trainer Level		+1 every second level. e.g. +1 at level 2, +2 at level 4
-	if(flags["EGG_TRAINING"] >= 2) sceneCount++;
-	if(flags["EGG_TRAINING"] >= 4) sceneCount++;
-	// 250%+ Fertility				+1
-	if(pc.fertility() >= 2.50) sceneCount++;
-	// Premium Breeder				+1
+	var sceneCount:int = Math.min(breedwellBreederLevel(), 4);
 	if(flags["BREEDWELL_STATUS_BREEDER"] >= 2) sceneCount++;
 	
 	clearMenu();
@@ -995,7 +1033,7 @@ public function breedwellPodScenes(arg:Array):void
 		// Then look for ongoing rahn pregnancies.
 		for(i = 0; i < pc.vaginas.length; i++)
 		{
-			if(InCollection(pc.pregnancyData[i].pregnancyType, ["RahnPregnancy", "RahnPregnancyBreedwell"])) rahnWombs.push(i);
+			if(InCollection(pc.pregnancyData[i].pregnancyType, ["RahnPregnancy", "RahnPregnancyBreedwell"]) && pc.pregnancyData[i].pregnancyQuantity < (breedwellBreederLevel() * 2)) rahnWombs.push(i);
 		}
 		if(rahnWombs.length > 0) vIdx = rahnWombs[rand(rahnWombs.length)];
 		// Otherwise, just choose a random vagina.
@@ -1234,8 +1272,6 @@ public function breedwellPodEnd(numEggs:int = 0):void
 */
 public function breedwellCumCreditValue(amount:Number = 0):Number
 {
-	if(amount <= 0) return 5;
-	
 	// New calculations!
 	var maxCredVal:Number = 10; // Maximum credit value to start.
 	var normalAmount:Number = 500000; // Point where credit value is at 1 credit/mL before degrading.
@@ -1246,13 +1282,15 @@ public function breedwellCumCreditValue(amount:Number = 0):Number
 	// Other adjustments...
 	normalAmount = 1500000;
 	curveMult = 4;
-	scalar = 0.50;
+	scalar = 0.005 * pc.cumQuality();
 	
 	var creditVal:Number = ( maxCredVal / Math.pow((((curveMult * amount) / normalAmount) + 1), 2) );
 	var cashOut:Number = (amount * creditVal * scalar);
 	
 	// Hard cap
+	var minCredCap:Number = 5;
 	var maxCredCap:Number = 500000;
+	if(cashOut < minCredCap) cashOut = minCredCap;
 	if(cashOut > maxCredCap) cashOut = maxCredCap;
 	
 	if(debug)
@@ -1311,8 +1349,8 @@ public function breedwellCockmilkerEnd(cumTotal:Number = 0):void
 	pc.removeStatusEffect("Breedwell Cockmilker Dildo");
 	StatTracking.track("breedwell/cum milked", cumTotal);
 	IncrementFlag("BREEDWELL_TIMES_DONATED");
-	// Disable cockmilker for a day.
-	pc.createStatusEffect("Breedwell Cockmilker Cooldown", 0, 0, 0, 0, true, "", "", false, 1440);
+	// Disable cockmilker for the day.
+	flags["BREEDWELL_DONATION_USED"] = days;
 }
 // Intro
 public function breedwellCockmilkerCockSelect():void

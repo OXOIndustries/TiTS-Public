@@ -1487,9 +1487,9 @@ package classes.Items.Transformatives
 				pc.ballSizeRaw += 1;
 			}
 		}
-		public static function lassLaquineAcceptable(pc:Creature,x:int):Boolean
+		public static function lassLaquineAcceptable(pc:Creature,cIdx:int):Boolean
 		{
-			return ((pc.earType == GLOBAL.TYPE_LAPINE || pc.earType == GLOBAL.TYPE_QUAD_LAPINE) && pc.cocks[x].cType == GLOBAL.TYPE_EQUINE && pc.cocks[x].cLength() >= 16 && pc.tailCount >= 1 && pc.tailType == GLOBAL.TYPE_LAPINE && pc.armType == GLOBAL.TYPE_LAPINE);
+			return (cIdx >= 0 && (pc.earType == GLOBAL.TYPE_LAPINE || pc.earType == GLOBAL.TYPE_QUAD_LAPINE) && pc.cocks[cIdx].cType == GLOBAL.TYPE_EQUINE && pc.cocks[cIdx].cLength() >= 16 && pc.tailCount >= 1 && pc.tailType == GLOBAL.TYPE_LAPINE && pc.armType == GLOBAL.TYPE_LAPINE);
 		}
 		public static function bunnyGirlFapScene(pc:Creature,masturbate:Boolean = false,deltaShift:Number = 0):void
 		{

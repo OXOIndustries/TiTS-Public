@@ -55,7 +55,7 @@ public function winVsZil():void {
 	// Lust
 	else
 	{
-		output("The zil tugs on his his boner almost feverishly by this point, throwing back his head and whimpering when amber juices begin to roll out of his concealed crown, beading on his knuckles before dripping free. His wings cease their fluttering and drop him to the ground. Kneeling, he looks up at you eagerly and admits, <i>“I’ve never lost to an alien before. Are you going to " + (pc.hasVagina() ? "breed me" : "fuck me") + "<i>?”</i> Regardless of your choice, his essence is flooding the air between you and driving your body to take him up on his offer. What do you do?");
+		output("The zil tugs on his his boner almost feverishly by this point, throwing back his head and whimpering when amber juices begin to roll out of his concealed crown, beading on his knuckles before dripping free. His wings cease their fluttering and drop him to the ground. Kneeling, he looks up at you eagerly and admits, <i>“I’ve never lost to an alien before. Are you going to " + (pc.hasVagina() ? "breed" : "fuck") + " me?”</i> Regardless of your choice, his essence is flooding the air between you and driving your body to take him up on his offer. What do you do?");
 	}
 	//Raise lust to 33 minimum, menu.
 	if(pc.lust() < 33) pc.lust(33-pc.lust());

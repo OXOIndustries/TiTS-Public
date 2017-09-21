@@ -1,6 +1,4 @@
-﻿
-
-//Aurora created by Magic Ted.
+﻿//Aurora created by Magic Ted.
 /*
 Exterior
 
@@ -540,228 +538,119 @@ public function shopAtAuroras():void
 	output("\n\nAurora looks “down” to you expectantly all the while, of course.");
 	processTime(1);
 	clearMenu();
-	addButton(0,"RocketHammer",rocketHammerDescription,undefined,"RocketHammer","Ask Aurora about her rocket hammer.");
-	//addItemButton(x, shopkeep.inventory[x], buyItemGo, shopkeep.inventory[x], null, null, shopkeep, pc);
-	addButton(1,"Electrogun",electrogunStuffAtAuroras,undefined,"Electrogun","Ask Aurora about her electrogun. You suppose it’s an electricity based weapon, given the name.");
-	//addItemButton(slot:int, item:ItemSlotClass, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, seller:Creature = null, buyer:Creature = null):void
-	//addItemButton(2,new ChoppyThing(), choppyBecauseWarhammer40kDidntDoThisAlready);
-	addButton(3,"P.Jacket",protectiveJacketFromAurora,undefined,"Protective Jacket","Ask Aurora about a jacket with protective qualities.");
-	addButton(4,"TrashArmor",trashArmor,undefined,"Trash Armor","Ask Aurora about something called “Trash Armor.”");
-	addButton(5,"AimEyepiece",aimAssistEyepiece,undefined,"Aim-Assist Eyepiece","Ask Aurora about her aim-assisting eyepiece.");
-
+	addAuroraItemButton(0, new RocketHammer());
+	addAuroraItemButton(1, new Electrogun());
+	//addAuroraItemButton(2, new ChoppyThing());
+	addAuroraItemButton(3, new ProtectiveJacket());
+	addAuroraItemButton(4, new TrashArmor());
+	addAuroraItemButton(5, new AimEyepiece());
 	addButton(14,"Back",auroraBaseMenu);
 }
-
-
-public function lootRocketHammer():void {
-	clearOutput();
-	var foundLootItems:Array = new Array();
-	foundLootItems[foundLootItems.length] = new RocketHammer();
-	//Set quantity!
-	
-	itemScreen = mainGameMenu;
-	lootScreen = mainGameMenu;
-	useItemFunction = mainGameMenu;
-	//Start loot
-	itemCollect(foundLootItems);
-}
-public function lootElectrogun():void {
-	clearOutput();
-	var foundLootItems:Array = new Array();
-	foundLootItems[foundLootItems.length] = new Electrogun();
-	//Set quantity!
-	
-	itemScreen = mainGameMenu;
-	lootScreen = mainGameMenu;
-	useItemFunction = mainGameMenu;
-	//Start loot
-	itemCollect(foundLootItems);
-}
-public function lootProtectiveJacket():void {
-	clearOutput();
-	var foundLootItems:Array = new Array();
-	foundLootItems[foundLootItems.length] = new ProtectiveJacket();
-	//Set quantity!
-	
-	itemScreen = mainGameMenu;
-	lootScreen = mainGameMenu;
-	useItemFunction = mainGameMenu;
-	//Start loot
-	itemCollect(foundLootItems);
-}
-public function lootTrashArmor():void {
-	clearOutput();
-	var foundLootItems:Array = new Array();
-	foundLootItems[foundLootItems.length] = new TrashArmor();
-	//Set quantity!
-	
-	itemScreen = mainGameMenu;
-	lootScreen = mainGameMenu;
-	useItemFunction = mainGameMenu;
-	//Start loot
-	itemCollect(foundLootItems);
-}
-public function lootAimEye():void {
-	clearOutput();
-	var foundLootItems:Array = new Array();
-	foundLootItems[foundLootItems.length] = new AimEyepiece();
-	//Set quantity!
-	
-	itemScreen = mainGameMenu;
-	lootScreen = mainGameMenu;
-	useItemFunction = mainGameMenu;
-	//Start loot
-	itemCollect(foundLootItems);
-}
-public function buyFromAurora(arg:String = "ERROR"):void {
-	var cost:int = 0;
-	if(arg == "RocketHammer")
+public function addAuroraItemButton(btnSlot:int, item:ItemSlotClass):void
+{
+	var tooltip:String = "Take a closer look at this item.";
+	switch(item.longName)
 	{
-		cost = 1850;
-		eventQueue[eventQueue.length] = lootRocketHammer;
+		case "rocket hammer": tooltip = "Ask Aurora about her rocket hammer."; break;
+		case "electrogun": tooltip = "Ask Aurora about her electrogun. You suppose it’s an electricity based weapon, given the name."; break;
+		case "choppy thing": tooltip = "Ask Aurora about the weird  “Choppy Thing.”"; break;
+		case "protective jacket": tooltip = "Ask Aurora about a jacket with protective qualities."; break;
+		case "ancient space suit": tooltip = "Ask Aurora about something called “Trash Armor.”"; break;
+		case "aim-assisting eyepiece": tooltip = "Ask Aurora about her aim-assisting eyepiece."; break;
 	}
-	else if(arg == "Electrogun")
-	{
-		cost = 3450;
-		eventQueue[eventQueue.length] = lootElectrogun;
-	}
-	else if(arg == "ProtectiveJacket")
-	{
-		cost = 2500;
-		eventQueue[eventQueue.length] = lootProtectiveJacket;
-	}
-	else if(arg == "TrashArmor")
-	{
-		cost = 3000;
-		eventQueue[eventQueue.length] = lootTrashArmor;
-	}
-	else if(arg == "AimEye")
-	{
-		cost = 800;
-		eventQueue[eventQueue.length] = lootAimEye;
-	}
-	clearOutput();
-	output("You purchase a " + arg + " for " + cost + ".");
-	pc.credits -= cost;
-	clearMenu();
-	addButton(0,"Next",shopAtAuroras);
+	addButton(btnSlot, item.shortName, auroraBuyTalk, item, StringUtil.toDisplayCase(item.longName), tooltip);
+}
+public function getAuroraPrice(item:ItemSlotClass):Number {
+	return Math.round(item.basePrice);
 }
 
-//Rocket Hammer
-public function rocketHammerDescription():void
+public function auroraBuyTalk(item:ItemSlotClass):void
 {
 	clearOutput();
 	author("Magic Ted");
 	auroraBust();
-	output("<i>“Oooh, I know right? A name like that just attracts everyone’s attention, huh? I’m proud of it! It’s simple, just a hammer with a rocket attached to it!”</i> Before your imagination can so much as start to whirr Aurora waddles down the rafter and around a rack out of view, coming back with the weapon clutched over her head and nearly touching the ground rather haphazardly.");
-	output("\n\n<i>“You hit stuff with it! Durr. It’s too big for anyone here to really use, and I have to admit, it doesn’t work all the time. The ignitor just doesn’t kick! Cuz it gets messed around when you hit stuff with it, probably. Design flaw! But sometimes it does!”</i> Ready to prove it, Aurora slips her clawed feet around one of the nearby dangling lamps, gripping into the metallic shade as she starts to swing the hammer back and forth like a dangerous pendulum. Already, you feel <i>entirely</i> unsafe and you barely recognize that she starts talking again, too focused on potentially avoiding something.");
-	output("\n\n<i>“Just press this button in the shaft to activate it! Doesn’t need any fuel or anything, it just takes off! Like... This! This! Hm. This? Thisthisthis-”</i> You want to put a stop to it before she hurts herself or ");
-	if(pc.isAss()) output("more importantly, ");
-	output("you, but your voice of concern is cut off when it actually <i>does</i> work as intended, to mutual surprise. With a shrill shriek, the accelerant inside comes to life and some sort of flame comes roaring out, sending the poor bat spinning circles on a lamp-based rodeo and endangering anyone’s head at the wrong sort of height - like yours.");
-	output("\n\nYou hit the deck before that can happen, and the little show comes to an end in short order, giving you a brief moment to gain your composure as Aurora fights to keep the room from spinning, for her, anyway. <i>“Eh... That was fun. Ah! See! Works perfectly. Sometimes. Want it?”</i>");
-	processTime(3);
-	// It should be weaker than a actual sledgehammer item, like the one in, say, Molar’s shop, but should have a higher crit chance and higher crit damage. Whether or not it also needs a strength score is up to you boss, but it’s supposed to be relatively lighter - hence the less damage.
-	clearMenu();
-	if(pc.credits >= 1850) addOverrideItemButton(0, new RocketHammer(), "Buy", buyFromAurora, "RocketHammer");
-	else addDisabledButton(0,"Buy","Buy","You cannot afford the 1850 credits for this item.");
-	addButton(14,"Back",shopAtAuroras);
 	
+	switch(item.longName)
+	{
+		//Rocket Hammer
+		case "rocket hammer":
+			output("<i>“Oooh, I know right? A name like that just attracts everyone’s attention, huh? I’m proud of it! It’s simple, just a hammer with a rocket attached to it!”</i> Before your imagination can so much as start to whirr Aurora waddles down the rafter and around a rack out of view, coming back with the weapon clutched over her head and nearly touching the ground rather haphazardly.");
+			output("\n\n<i>“You hit stuff with it! Durr. It’s too big for anyone here to really use, and I have to admit, it doesn’t work all the time. The ignitor just doesn’t kick! Cuz it gets messed around when you hit stuff with it, probably. Design flaw! But sometimes it does!”</i> Ready to prove it, Aurora slips her clawed feet around one of the nearby dangling lamps, gripping into the metallic shade as she starts to swing the hammer back and forth like a dangerous pendulum. Already, you feel <i>entirely</i> unsafe and you barely recognize that she starts talking again, too focused on potentially avoiding something.");
+			output("\n\n<i>“Just press this button in the shaft to activate it! Doesn’t need any fuel or anything, it just takes off! Like... This! This! Hm. This? Thisthisthis-”</i> You want to put a stop to it before she hurts herself or ");
+			if(pc.isAss()) output("more importantly, ");
+			output("you, but your voice of concern is cut off when it actually <i>does</i> work as intended, to mutual surprise. With a shrill shriek, the accelerant inside comes to life and some sort of flame comes roaring out, sending the poor bat spinning circles on a lamp-based rodeo and endangering anyone’s head at the wrong sort of height - like yours.");
+			output("\n\nYou hit the deck before that can happen, and the little show comes to an end in short order, giving you a brief moment to gain your composure as Aurora fights to keep the room from spinning, for her, anyway. <i>“Eh... That was fun. Ah! See! Works perfectly. Sometimes. Want it?”</i>");
+			processTime(3);
+			// It should be weaker than a actual sledgehammer item, like the one in, say, Molar’s shop, but should have a higher crit chance and higher crit damage. Whether or not it also needs a strength score is up to you boss, but it’s supposed to be relatively lighter - hence the less damage.
+			break;
+		//Electrogun
+		case "electrogun":
+			output("<i>“It’s weird! People tend to buy these little things the most out of the usual selection, I dunno why. They’re pretty lame. The raskvel especially love ‘em, cuz they use zappy stuff to ruin people’s personal shields! Then they can hit ‘em with a stick and run with their wallet. Allegedly.”</i>");
+			output("\n\nYou watch as Aurora scampers over to the side, taking something off one of the nearby shelves and bringing it back to you for presentation. It looks like a fairly routine, if cheap laser pistol, clad in a dull brown plastic-like casing with the usual pistol appearance. However, instead of a flashy barrel to give it the appearance of a snazzy laser, it’s largely smashed open with metal prongs sticking out every which way as if it had recently exploded.");
+			output("\n\nWhich, given the sort of shop you are in, isn’t all that farfetched.");
+			output("\n\n<i>“I just changed the emitter so it shoots a electrical charge, mostly forward! It’ll spread out some so it messes with shields and gives people the shakes! But... it kinda runs out of batteries pretty fast, cuz it’s not designed to run so inefficiently. And if you wanna actually... ya know, end something with it, you’re going to be at it for a while...”</i>");
+			output("\n\n<i>“So, er, want it?”</i>");
+			processTime(2);
+			// Bzzt! Should be straightforward, comparable damage to Carl’s guns but uses a anti-shield damage type or something.
+			break;
+		//Choppy-thing
+		case "choppy thing":
+			// Tooltip: The mad amalgamation of a variety of ruined, modern day bladed weapons. They’re all fused together in some form of a unwieldy, entirely destructive weapon. The vibrations make your hand go numb when it’s on, though. And no, it wouldn’t be a good idea to use it as a sex aid.
+			output("The first entry on the list that you actually have to ask about for context and, it turns out, you really wish you hadn’t. Aurora awkwardly hefts up a extremely unbalanced looking war-axe, the unnecessarily over-sized head of which was made by awkwardly fusing a host of other weapons to it, all merging on a thick, sharpened point. It’s easy to see that many of these “borrowed” weapons are augmented in some way and not merely sharpened bits of metal by the utter mess of wires coiled around the hilt. Various miniature power sources carved into the stalk provide the power. There must be three different thermal and two vibro blades alone!");
+			output("\n\n<i>“Find lots of stuff out there, from </i>old<i> stuff to more recent stuff when those weirdo nanomachines or rusties get to adventurers like you and mess with ‘em! I’m not some weirdo with a beard, so I can’t just remake them either... so sometimes I put them together! This one didn’t explode!”</i> It’s pretty telling that she ends her sales pitch with that, but looking at the beautiful, vulgar mess being presented, that’s a pretty important bullet point.");
+			output("\n\nBrandishing the weapon and turning it on by a button at the hilt, Aurora barely keeps the now growling, shaking weapon steady in her claws. It vibrates aggressively, little shocks of electricity racing across the miniscule parts in the blades as hissing steam intermixes with it, a mixture of vibro, shocking and heat weaponry coming together among potential others. It looks rather unstable, though despite that the shopkeep doesn’t seem too worried - even as her arm quakes, causing the leather of her lengthy wings to buzz like a softly tapped drum. Besides, the fact that it works at all is rather inspiring to begin with.");
+			output("\n\n<i>“So! Interested?”</i>");
+			// oh jesus I don’t even know
+			processTime(2);
+			break;
+		//Protective Jacket
+		case "protective jacket":
+			output("Admittedly, you’re rather surprised about this entry in particular on the listing. Some sort of fashion was a stark departure from the variety of weapons and assorted gizmos in the shop, sparking your suspicions. Still, you aren’t particularly surprised when Aurora comes back with it, the heavy object dangling from her arms. Brown in color, it looks like it was picked up somewhere in the scrap heaps of the planet and then brought back just like everything else lying around, the coat looking worn and stretched with age, use and, more importantly, misuse. It’s bigger than she is, which makes her awkward attempts to bring it over all the more amusing. However, last you checked you’re not some kid, and eyeballing it, you see that it could fit on you pretty well. Yet... why is it jingling?");
+			output("\n\n<i>“It’s a jacket!”</i>");
+			output("\n\nYes, thank you.");
+			output("\n\n<i>“It’s got tons of shaved down and repurposed little bits of metal inside it, like some sorta chain shirt! Or scales! It’ll protect you from hits and make you look good doing it!”</i> Admittedly, it’s pretty ");
+			if(!silly) output("good looking");
+			else output("swank");
+			output(". <i>“It’s nothing special or advanced, but it’s certainly a step up from regular clothing. These things sell like hot cakes, and this one doesn’t even have any holes in it to cut you or anything! Want it?”</i>");
+			// Minor armor, minor bonus to sexiness. Because SWANK. Should basically be the safe upgrade from comfortable clothes. I guess if Shekka sells elemental resists, it’d be the TS-T armor that Anno sells for tease-y people.
+			processTime(2);
+			break;
+		//Trash Armor
+		case "ancient space suit":
+			output("Instead of bringing it to you, this time Aurora tugs at your hand and brings you along into the dark recesses of the shop, guiding you around piles of junk or at the very most relatively shallow ones that you can navigate through without much fear of tripping and catastrophic doom. Shortly after you round one of the lengthy shelves, you understand why. There’s no way Aurora could bring this thing out herself!");
+			output("\n\nPropped up on an unseen stand or mannequin, you could have easily mistaken this “armor” for a vending machine or a rather bulky trash can. The dull gray metal resembles a humanoid shape, the limbs looking surprisingly mobile for all its blockiness from the crude-looking metallic slabs. Still, despite the recycled materials, it looks immaculately crafted, not so much of a single weld line visible as if the armor itself was molded this way. Aurora had every right to be beaming proudly beside it as she presented it, despite being the one who named it.");
+			output("\n\n<i>“It’s a metal suit! You just wiggle on in it, and you’re protected from just about everything! ...Well, maybe a thousand years ago, but you’re still pretty well off! The joints move just fine, but it’s really heavy! You can’t really go anywhere fast, and you’re probably going to fall over a bunch, and it’s going to be pretty bad on your back, but... It works! And it’s padded inside, too, so it’s pretty comfortable! Sorta. Kinda. It’s not all metal!”</i>");
+			output("\n\nIt’s pretty ghetto, but you’re not exactly in a primetime weapons dealer, either. It’s big enough that no raskvel could fit in it, certainly, and Aurora doesn’t really even have arms - no one in the Novahome had any hope of using it, just “upstart adventurers” like you. It looks like it had a surprising amount of effort put into it, you certainly aren’t getting ripped off with it.");
+			output("\n\nAurora’s eyes silently ask a question as they stare down to you; want it?");
+			// Ha ha haaa. Reflex and sexiness penalty, high defense. Maybe fortifaction?! Whatever that stat is. Probably should have a straight malus for your dexterous stats, as opposed to a cap. Painful on the wallet, though.;
+			processTime(3);
+			break;
+		//Aim assist eyepiece
+		case "aim-assisting eyepiece":
+			//A squat little thing, placed on your eye like half of a pair of glasses. It operates as a targeting assist, hooking up with the muzzle of a ranged weapon and giving you some flexibility of being able to aim without glaring down the sight of the weapon. The lack of depth perception means it’s only useful shooting across your living room, however.
+			output("<i>“It’s an accessory!”</i> Aurora chirps rather immediately, swinging herself to the side to reach for the nearby device. It’s pretty small and easily fits in her small “hand”, most of the mass being a faux-glass display and then some sort of clip on. There isn’t a lot to see, nor do you expect Aurora had a lot of hand in this one. <i>“You place it by your eyes and hook it up to a pistol or something! Then it says where you’re aiming stuff! I used it on a screwdriver once and it got </i>really<i> confused.”</i> Nodding, you muse it over. The lack of depth perception means it wouldn’t be helpful very far, but at the very least you wouldn’t have to constantly aim down the sights of your weapon to get an accurate shot. Good for a scuffle.");
+			output("\n\n<i>“Want it? It’s cheeeap.”</i>");
+			// It is indeed cheap! Gives +1 aim. Maybe +2.*/
+			processTime(1);
+			break;
+	}
 	
-}
-
-//Electrogun
-public function electrogunStuffAtAuroras():void
-{
-	clearOutput();
-	author("Magic Ted");
-	auroraBust();
-	output("<i>“It’s weird! People tend to buy these little things the most out of the usual selection, I dunno why. They’re pretty lame. The raskvel especially love ‘em, cuz they use zappy stuff to ruin people’s personal shields! Then they can hit ‘em with a stick and run with their wallet. Allegedly.”</i>");
-	output("\n\nYou watch as Aurora scampers over to the side, taking something off one of the nearby shelves and bringing it back to you for presentation. It looks like a fairly routine, if cheap laser pistol, clad in a dull brown plastic-like casing with the usual pistol appearance. However, instead of a flashy barrel to give it the appearance of a snazzy laser, it’s largely smashed open with metal prongs sticking out every which way as if it had recently exploded.");
-	output("\n\nWhich, given the sort of shop you are in, isn’t all that farfetched.");
-	output("\n\n<i>“I just changed the emitter so it shoots a electrical charge, mostly forward! It’ll spread out some so it messes with shields and gives people the shakes! But... it kinda runs out of batteries pretty fast, cuz it’s not designed to run so inefficiently. And if you wanna actually... ya know, end something with it, you’re going to be at it for a while...”</i>");
-	output("\n\n<i>“So, er, want it?”</i>");
-	processTime(2);
-	// Bzzt! Should be straightforward, comparable damage to Carl’s guns but uses a anti-shield damage type or something.
 	clearMenu();
-	if(pc.credits >= 3450) addOverrideItemButton(0, new Electrogun(), "Buy", buyFromAurora, "Electrogun");
-	else addDisabledButton(0,"Buy","Buy","You cannot afford the 3450 credits for this item.");
-	addButton(14,"Back",shopAtAuroras);
+	if(pc.credits >= getAuroraPrice(item)) addOverrideItemButton(0, item, "Buy", buyFromAurora, item);
+	else addDisabledButton(0, "Buy", "Buy", "You cannot afford the " + getAuroraPrice(item) + " credits for this item.");
+	addButton(14, "Back", shopAtAuroras);
 }
 
-//Choppy-thing
-public function choppyBecauseWarhammer40kDidntDoThisAlready():void
-{
+public function buyFromAurora(item:ItemSlotClass):void {
 	clearOutput();
-	author("Magic Ted");
-	auroraBust();
-	//Tooltip
-	//output("The mad amalgamation of a variety of ruined, modern day bladed weapons. They’re all fused together in some form of a unwieldy, entirely destructive weapon. The vibrations make your hand go numb when it’s on, though. And no, it wouldn’t be a good idea to use it as a sex aid.");
-	output("The first entry on the list that you actually have to ask about for context and, it turns out, you really wish you hadn’t. Aurora awkwardly hefts up a extremely unbalanced looking war-axe, the unnecessarily over-sized head of which was made by awkwardly fusing a host of other weapons to it, all merging on a thick, sharpened point. It’s easy to see that many of these “borrowed” weapons are augmented in some way and not merely sharpened bits of metal by the utter mess of wires coiled around the hilt. Various miniature power sources carved into the stalk provide the power. There must be three different thermal and two vibro blades alone!");
-	output("\n\n<i>“Find lots of stuff out there, from </i>old<i> stuff to more recent stuff when those weirdo nanomachines or rusties get to adventurers like you and mess with ‘em! I’m not some weirdo with a beard, so I can’t just remake them either... so sometimes I put them together! This one didn’t explode!”</i> It’s pretty telling that she ends her sales pitch with that, but looking at the beautiful, vulgar mess being presented, that’s a pretty important bullet point.");
-	output("\n\nBrandishing the weapon and turning it on by a button at the hilt, Aurora barely keeps the now growling, shaking weapon steady in her claws. It vibrates aggressively, little shocks of electricity racing across the miniscule parts in the blades as hissing steam intermixes with it, a mixture of vibro, shocking and heat weaponry coming together among potential others. It looks rather unstable, though despite that the shopkeep doesn’t seem too worried - even as her arm quakes, causing the leather of her lengthy wings to buzz like a softly tapped drum. Besides, the fact that it works at all is rather inspiring to begin with.");
-	output("\n\n<i>“So! Interested?”</i>");
-	// oh jesus I don’t even know
+	output("You purchase " + item.description + " for " + getAuroraPrice(item) + " credits.");
+	pc.credits -= getAuroraPrice(item);
+	
+	itemScreen = shopAtAuroras;
+	lootScreen = shopAtAuroras;
+	useItemFunction = shopAtAuroras;
+	
+	output("\n\n");
+	itemCollect([item]);
 }
 
-//Protective Jacket
-public function protectiveJacketFromAurora():void
-{
-	clearOutput();
-	author("Magic Ted");
-	auroraBust();
-	//Tooltip:
-	output("Admittedly, you’re rather surprised about this entry in particular on the listing. Some sort of fashion was a stark departure from the variety of weapons and assorted gizmos in the shop, sparking your suspicions. Still, you aren’t particularly surprised when Aurora comes back with it, the heavy object dangling from her arms. Brown in color, it looks like it was picked up somewhere in the scrap heaps of the planet and then brought back just like everything else lying around, the coat looking worn and stretched with age, use and, more importantly, misuse. It’s bigger than she is, which makes her awkward attempts to bring it over all the more amusing. However, last you checked you’re not some kid, and eyeballing it, you see that it could fit on you pretty well. Yet... why is it jingling?");
-	output("\n\n<i>“It’s a jacket!”</i>");
-	output("\n\nYes, thank you.");
-	output("\n\n<i>“It’s got tons of shaved down and repurposed little bits of metal inside it, like some sorta chain shirt! Or scales! It’ll protect you from hits and make you look good doing it!”</i> Admittedly, it’s pretty ");
-	if(!silly) output("good looking");
-	else output("swank");
-	output(". <i>“It’s nothing special or advanced, but it’s certainly a step up from regular clothing. These things sell like hot cakes, and this one doesn’t even have any holes in it to cut you or anything! Want it?”</i>");
-	// Minor armor, minor bonus to sexiness. Because SWANK. Should basically be the safe upgrade from comfortable clothes. I guess if Shekka sells elemental resists, it’d be the TS-T armor that Anno sells for tease-y people.
-	processTime(2);
-	clearMenu();
-	if(pc.credits >= 2500) addOverrideItemButton(0, new ProtectiveJacket(), "Buy", buyFromAurora, "ProtectiveJacket");
-	else addDisabledButton(0,"Buy","Buy","You cannot afford the 2500 credits for this item.");
-	addButton(14,"Back",shopAtAuroras);
-}
-
-//Trash Armor
-public function trashArmor():void
-{
-	clearOutput();
-	author("Magic Ted");
-	auroraBust();
-	output("Instead of bringing it to you, this time Aurora tugs at your hand and brings you along into the dark recesses of the shop, guiding you around piles of junk or at the very most relatively shallow ones that you can navigate through without much fear of tripping and catastrophic doom. Shortly after you round one of the lengthy shelves, you understand why. There’s no way Aurora could bring this thing out herself!");
-	output("\n\nPropped up on an unseen stand or mannequin, you could have easily mistaken this “armor” for a vending machine or a rather bulky trash can. The dull gray metal resembles a humanoid shape, the limbs looking surprisingly mobile for all its blockiness from the crude-looking metallic slabs. Still, despite the recycled materials, it looks immaculately crafted, not so much of a single weld line visible as if the armor itself was molded this way. Aurora had every right to be beaming proudly beside it as she presented it, despite being the one who named it.");
-	output("\n\n<i>“It’s a metal suit! You just wiggle on in it, and you’re protected from just about everything! ...Well, maybe a thousand years ago, but you’re still pretty well off! The joints move just fine, but it’s really heavy! You can’t really go anywhere fast, and you’re probably going to fall over a bunch, and it’s going to be pretty bad on your back, but... It works! And it’s padded inside, too, so it’s pretty comfortable! Sorta. Kinda. It’s not all metal!”</i>");
-	output("\n\nIt’s pretty ghetto, but you’re not exactly in a primetime weapons dealer, either. It’s big enough that no raskvel could fit in it, certainly, and Aurora doesn’t really even have arms - no one in the Novahome had any hope of using it, just “upstart adventurers” like you. It looks like it had a surprising amount of effort put into it, you certainly aren’t getting ripped off with it.");
-	output("\n\nAurora’s eyes silently ask a question as they stare down to you; want it?");
-
-	// Ha ha haaa. Reflex and sexiness penalty, high defense. Maybe fortifaction?! Whatever that stat is. Probably should have a straight malus for your dexterous stats, as opposed to a cap. Painful on the wallet, though.
-	output("\n\nDefense Rating: +8");
-	output("\nAppearance Rating: -2");
-	output("\nAccuracy Rating: -2");
-	output("\nPrice: 3000");
-	clearMenu();
-	processTime(3);
-	if(pc.credits >= 3000) addOverrideItemButton(0, new TrashArmor(), "Buy", buyFromAurora, "TrashArmor");
-	else addDisabledButton(0,"Buy","Buy","You cannot afford the 3000 credits for this item.");
-	addButton(14,"Back",shopAtAuroras);
-}
-//Aim assist eyepiece
-//A squat little thing, placed on your eye like half of a pair of glasses. It operates as a targeting assist, hooking up with the muzzle of a ranged weapon and giving you some flexibility of being able to aim without glaring down the sight of the weapon. The lack of depth perception means it’s only useful shooting across your living room, however.
-
-public function aimAssistEyepiece():void
-{
-	clearOutput();
-	author("Magic Ted");
-	auroraBust();
-	output("<i>“It’s an accessory!”</i> Aurora chirps rather immediately, swinging herself to the side to reach for the nearby device. It’s pretty small and easily fits in her small “hand”, most of the mass being a faux-glass display and then some sort of clip on. There isn’t a lot to see, nor do you expect Aurora had a lot of hand in this one. <i>“You place it by your eyes and hook it up to a pistol or something! Then it says where you’re aiming stuff! I used it on a screwdriver once and it got </i>really<i> confused.”</i> Nodding, you muse it over. The lack of depth perception means it wouldn’t be helpful very far, but at the very least you wouldn’t have to constantly aim down the sights of your weapon to get an accurate shot. Good for a scuffle.");
-	output("\n\n<i>“Want it? It’s cheeeap.”</i>");
-	// It is indeed cheap! Gives +1 aim. Maybe +2.*/
-	clearMenu();
-	processTime(1);
-	if(pc.credits >= 800) addOverrideItemButton(0, new AimEyepiece(), "Buy", buyFromAurora, "AimEye");
-	else addDisabledButton(0,"Buy","Buy","You cannot afford the 800 credits for this item.");
-	addButton(14,"Back",shopAtAuroras);
-}

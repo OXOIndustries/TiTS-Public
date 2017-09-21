@@ -1938,7 +1938,7 @@ public function variableRoomUpdateCheck():void
 		rooms["NURSERYE14"].removeFlag(GLOBAL.NPC);
 		rooms["NURSERYG8"].addFlag(GLOBAL.NPC);
 	}
-	if(seraAtNursery()) rooms["NURSERYG12"].addFlag(GLOBAL.NPC);
+	if(seraAtNursery() || riyaAtNursery()) rooms["NURSERYG12"].addFlag(GLOBAL.NPC);
 	else rooms["NURSERYG12"].removeFlag(GLOBAL.NPC);
 	
 	if((hours < 4 || hours >= 12) && !pc.hasStatusEffect("Liamme Disabled")) 
@@ -1958,7 +1958,12 @@ public function variableRoomUpdateCheck():void
 	}
 	else rooms["RESIDENTIAL DECK 5"].removeFlag(GLOBAL.NPC);
 
-	if(riyaOnCanada())
+	if(flags["MET_RIYA"] != undefined && riyaAtNursery())
+	{
+		rooms["CANADA4"].removeFlag(GLOBAL.NPC);
+		rooms["9008"].removeFlag(GLOBAL.NPC);
+	}
+	else if(riyaOnCanada())
 	{
 		//Riya isnt there:
 		if(pc.hasStatusEffect("RIYA_CANADIA_CD"))
@@ -2441,6 +2446,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processAlissEvents(deltaT, doOut);
 	processPennyEvents(deltaT, doOut);
 	processSeraEvents(deltaT, doOut);
+	processRiyaEvents(deltaT, doOut);
 	processReahaEvents(deltaT, doOut, totalDays);
 	processGobblesEvents(deltaT, doOut);
 	processIrelliaEvents(deltaT, doOut);
@@ -2728,10 +2734,10 @@ public function processShadeEvents(deltaT:uint, doOut:Boolean):void
 
 public function processGiannaEvents(deltaT:uint, doOut:Boolean):void
 {
-	if (flags["GIANNA_AWAY_TIMER"] != undefined && flags["GIANNA_AWAY_TIMER"] > 0) giannaAWOL( -1);
+	if (flags["GIANNA_AWAY_TIMER"] != undefined && flags["GIANNA_AWAY_TIMER"] > 0) giannaAWOL(-deltaT);
 	
 	if (flags["GIANNA_FUCK_TIMER"] != undefined) flags["GIANNA_FUCK_TIMER"] += deltaT;
-	}
+}
 
 public function processTreatmentEvents(deltaT:uint, doOut:Boolean):void
 {
@@ -2929,6 +2935,39 @@ public function processSeraEvents(deltaT:uint, doOut:Boolean):void
 		
 		seraNurseryVisitCheck(totalAttempts);
 		seranigansCheck(totalAttempts);
+	}
+}
+
+public function processRiyaEvents(deltaT:uint, doOut:Boolean):void
+{
+	if (deltaT >= 1440 || (hours < 18 && hours + Math.floor(deltaT / 60) >= 18))
+	{
+		var totalAttempts:int = 1;
+		
+		if (deltaT >= 1440)
+		{
+			var d:int = days;
+			var h:int = hours;
+			var m:int = minutes;
+			
+			m += deltaT % 60;
+			if (m >= 60)
+			{
+				h++;
+				m = 0;
+			}
+			
+			h += Math.floor(deltaT / 60);
+			if (h >= 24)
+			{
+				d += Math.floor(h / 24);
+			}
+			
+			totalAttempts = d - days;
+			if (h >= 18) totalAttempts++;
+		}
+		
+		riyaNurseryVisitCheck(totalAttempts);
 	}
 }
 

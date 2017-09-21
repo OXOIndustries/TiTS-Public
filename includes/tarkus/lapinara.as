@@ -28,7 +28,7 @@ public function encounterALapinara():void
 	IncrementFlag("ENCOUNTERED_PARASITIC_LAPINARA");
 	
 	var lapButt:LapinaraFemale = new LapinaraFemale();
-	if(!pc.hasPregnancyOfType("LapinaraPregnancy")) lapButt.impregnationType = "LapinaraPregnancy";
+	lapButt.impregnationType = "LapinaraPregnancy";
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc);
 	CombatManager.setHostileActors(lapButt);
@@ -77,12 +77,78 @@ Baldness: Dislikes!
 Exotic body shapes: Kinda likes!
 */
 
+public function lapinaraBreederLevel(bWomb:Boolean = true):int
+{
+	var level:int = eggBreederLevel(bWomb);
+	if(flags["LAPITRAIN"] >= 1) level++;
+	if(flags["LAPITRAIN"] >= 2) level++;
+	if(flags["LAPITRAIN"] >= 3) level++;
+	if(flags["LAPITRAIN"] >= 4) level++;
+	
+	return level;
+}
+public function totalPregLapinaraEggs():int
+{
+	var nEggs:int = 0;
+	for(var i:int = 0; i < pc.vaginas.length; i++)
+	{
+		if(InCollection(pc.pregnancyData[i].pregnancyType, ["LapinaraPregnancy"])) nEggs += pc.pregnancyData[i].pregnancyQuantity;
+	}
+	return nEggs;
+}
+public function totalLapinaraPregnancies():int
+{
+	var nLapinara:int = 0;
+	for(var i:int = 0; i < pc.vaginas.length; i++)
+	{
+		if(InCollection(pc.pregnancyData[i].pregnancyType, ["LapinaraPregnancy"])) nLapinara++;
+	}
+	return nLapinara;
+}
+public function lapinaraEggStuffCheck(nEggs:int = 2, x:int = -99, bOutput:Boolean = true, bOverride:Boolean = false):void
+{
+	var bStuffed:Boolean = false;
+	var nEggLoss:int = 0;
+	if(x == -1 || (x >= 0 && x < pc.pregnancyData.length))
+	{
+		var idx:int = (x >= 0 ? x : 3);
+		if(pc.pregnancyData[idx].pregnancyType == "LapinaraPregnancy")
+		{
+			var nEggGain:int = nEggs;
+			var nEggNew:int = (pc.pregnancyData[idx].pregnancyQuantity + nEggGain);
+			var nEggMax:int = (lapinaraBreederLevel(x >= 0 ? true : false) * 2);
+			if(!bOverride && nEggNew > nEggMax)
+			{
+				nEggLoss = (nEggNew - nEggMax);
+				if(nEggLoss > nEggs) nEggLoss = nEggs;
+				if(nEggLoss < 0) nEggLoss = 0;
+				if(nEggLoss > 0)
+				{
+					nEggGain = Math.max((nEggs - nEggLoss), 0);
+					bStuffed = true;
+				}
+			}
+			if(nEggGain > 0)
+			{
+				addLapinaraEgg(nEggGain, x);
+			}
+		}
+		else if(pc.isPregnant(idx)) bStuffed = true;
+	}
+	if(bOutput && bStuffed)
+	{
+		output("\n\nNot too soon after, you feel " + (nEggLoss == 1 ? "an egg" : (nEggLoss == nEggs ? "the eggs" : "eggs")) + " quickly dissolve away... perhaps due to your " + (idx == 3 ? "ass" : "womb") + " already being occupied?");
+	}
+}
+
 //Sex Scenes:
 //Egg Implantation (lapinara wins):
 public function loseToFemaleLapinara():void
 {
-	if(!pc.hasVagina() || (pc.isFullyWombPregnant() && !pc.hasAnalPregnancy()) || (pc.hasCock() && rand(2) == 0)) loseToLapinaraAndGetEggplantedDudesAndNeuters();
-	else loseToLapinaraAndGetEggplantedChicks();
+	var lossFunc:Array = [];
+	if(!pc.hasVagina() || (pc.hasCock() && rand(pc.totalVaginas()) == 0)) lossFunc.push(loseToLapinaraAndGetEggplantedDudesAndNeuters);
+	if(pc.hasVagina()) lossFunc.push(loseToLapinaraAndGetEggplantedChicks);
+	lossFunc[rand(lossFunc.length)]();
 }
 
 public function loseToLapinaraAndGetEggplantedDudesAndNeuters():void
@@ -129,13 +195,12 @@ public function loseToLapinaraAndGetEggplantedDudesAndNeuters():void
 
 	output("\n\n<i>“You felt amazing, tiger,”</i> she comments. <i>“We should do that again sometime.”</i>");
 	output("\n\nIt’s then that she leaves without another word, rapidly disappearing into the landscape.");
-	if(pc.hasAnalPregnancy() && pc.pregnancyData[3].pregnancyType != "LapinaraPregnancy") output("\n\nNot too soon after, you feel the eggs quickly dissolve away... perhaps due to your ass already being occupied?");
-	output("\n\n");
 	//No orgasm? +10 lust!
 	pc.lust(10+rand(3));
+	lapinaraEggStuffCheck(2, -1);
 	pc.loadInAss(enemy);
-	addLapinaraEgg(2);
 	processTime(20+rand(4));
+	output("\n\n");
 	CombatManager.genericLoss();
 }
 
@@ -144,7 +209,21 @@ public function loseToLapinaraAndGetEggplantedChicks():void
 {
 	author("Anonymous Drake");
 	lapinaraBust();
-	var x:int = rand(pc.vaginaTotal());
+	// Prioritize empty wombs
+	var x:int = pc.findEmptyPregnancySlot(1);
+	// If all full, look for wombs that need filling.
+	if(x < 0) {
+		var lapiWombs:Array = [];
+		var nEggMax:int = (lapinaraBreederLevel(true) * 2);
+		for(var i:int = 0; i < pc.vaginas.length; i++)
+		{
+			if(pc.pregnancyData[i].pregnancyType == "LapinaraPregnancy" && pc.pregnancyData[i].pregnancyQuantity < nEggMax) lapiWombs.push(i);
+		}
+		if(lapiWombs.length > 0) x = lapiWombs[rand(lapiWombs.length)];
+	}
+	// Otherwise, choose a random womb
+	if(x < 0) x = rand(pc.vaginaTotal());
+	
 	output("\n\nYour lapinara assailant grins wickedly as she admires you, her prize. She approaches you, forcibly removing your [pc.gear]. The sex-crazed bunny-girl takes a moment to inspect your [pc.crotch]. You see her nodding in silent approval. She then moves a hand down to play with [pc.oneVagina], licking her lips in anticipation as she gently");
 	if(pc.hasClit()) output(" rubs your [pc.clits] with her thumb, another finger prodding");
 	else output(" prods");
@@ -187,14 +266,13 @@ public function loseToLapinaraAndGetEggplantedChicks():void
 	output("\n\n<i>“You felt amazing, Babe. We should do that again sometime.”</i>");
 
 	output("\n\nShe leaves without another word, rapidly disappearing into the landscape.");
-	if(pc.isPregnant(x) && pc.pregnancyData[x].pregnancyType != "LapinaraPregnancy") output("\n\nNot too soon after, you feel the eggs quickly dissolve away... perhaps due to your womb already being occupied?");
-	output("\n\n");
 
 	//No cums for pc. +10 lust. Poor PC.
 	pc.lust(10);
 	processTime(20+rand(4));
+	lapinaraEggStuffCheck(2, x);
 	pc.loadInCunt(enemy,x);
-	addLapinaraEgg(2);
+	output("\n\n");
 	CombatManager.genericLoss();
 }
 
@@ -237,7 +315,7 @@ public function defeatDatLapinara():void
 	else addDisabledButton(2,"Get Licked","Get Licked","This scene requires a vagina.");
 	if(pc.hasCuntTail()) addButton(3,"Tail-Milk",cuntTailFuckLapinaraParasitic,undefined,"Tail-Milk","Use your parasitic cunt tail to suck on her ovipositor.");
 	else addDisabledButton(3,"Tail-milk","Tail-milk","This requires a parasitic vagina tail to access.");
-	if(!pc.isTaur() && !pc.hasPregnancyOfType("LapinaraPregnancy") && pc.findEmptyPregnancySlot(0) != -1) addButton(4,"Get Stuffed",getStuffedInTheStuffByStuffWithStuffForStuffFREEEEEEDOOOOM,undefined,"Get Stuffed","Lie back and have the lapinara put that handsome ovi-dong to work. You’ll probably get stuffed with more than just an ovipositor though....");
+	if(!pc.isTaur() && pc.findEmptyPregnancySlot(0) != -1) addButton(4,"Get Stuffed",getStuffedInTheStuffByStuffWithStuffForStuffFREEEEEEDOOOOM,undefined,"Get Stuffed","Lie back and have the lapinara put that handsome ovi-dong to work. You’ll probably get stuffed with more than just an ovipositor though....");
 	else if(pc.isTaur()) addDisabledButton(4,"Get Stuffed","Get Stuffed","The poor little rabbit-girl just can’t line things up with your tauric anatomy. Sorry!");
 	else addDisabledButton(4,"Get Stuffed","Get Stuffed","It probably isn’t a good idea to do this when you’re already so pregnant.");
 	addButton(14,"Leave",CombatManager.genericVictory);
@@ -469,6 +547,9 @@ public function getStuffedInTheStuffByStuffWithStuffForStuffFREEEEEEDOOOOM():voi
 	author("ThaumX");
 
 	var x:int = pc.findEmptyPregnancySlot(1);
+	if(x < 0) {
+		if(pc.isPregnant(3)) x = (rand(pc.vaginas.length + 1) - 1);
+	}
 
 	output("You gaze at the defeated lapinara, your roving [pc.eyes] eyes pausing to examine the thick ovi-dong between its legs. ");
 	//IF flag.LapiTrain ==  0 THEN
@@ -534,12 +615,12 @@ public function getStuffedInTheStuffByStuffWithStuffForStuffFREEEEEEDOOOOM():voi
 
 	// Two Options are possible: Ending 1 or Continuation 1.
 	//Ending 1
-	//Button Text: <i>“It’s Enough”</i>
-	//Button Tooltip: <i>“You’ve spent enough time getting plowed, it’s time to move on.”</i>
+	//Button Text: “It’s Enough”
+	//Button Tooltip: “You’ve spent enough time getting plowed, it’s time to move on.”
 	//Orifice Priority: Same orifice as previous
 	//Prerequisites: LapiTrain > 0 && Willpower Ratio < 50 || LapiTrain < 1
-	// LapiTrain of 1+ means continuation 1 will be available, so there won’t be a <i>“no available choices”</i> situation.
-	//Greyed-Out Text: <i>“There’s no way you could willingly leave with this hard meat still stretching you out inside.”</i>
+	// LapiTrain of 1+ means continuation 1 will be available, so there won’t be a “no available choices” situation.
+	//Greyed-Out Text: “There’s no way you could willingly leave with this hard meat still stretching you out inside.”
 	clearMenu();
 	//Fen note: adjusted so if you’re trained, you can only turn it down with good will, contrary to the check as written by the author
 	if((lapiTrain() >= 1 && pc.WQ() >= 50) || lapiTrain() < 1) addButton(0,"It’s Enough",voluntaryEggEnding1,x,"It’s Enough","You’ve spent enough time getting plowed, it’s time to move on.");
@@ -557,7 +638,7 @@ public function voluntaryEggEnding1(x:int):void
 	author("ThaumX");
 	output("Gathering your strength, you push the lapinara away from you. You barely contain a sigh of disappointment as the thick egg-layer is pulled from your depths. You are quickly consoled by the chemical contentment emerging from deep inside you. The futa bunny climbs to her feet, her member jutting out at you and ready to go. You quickly avert your gaze to avoid the temptation, determined not to let yourself change your mind. Instead you see the sad expression of the lapinara, a mixture of disappointment and unfulfilled need written plainly across her face.");
 	output("\n\nYou turn away, determined to go, and retrieve your gear. You dress in silence, neither of you speaking. When you’re, finished you glance backward over your shoulder, taking one last look at the resigned bunny before setting off across the sand.");
-	addLapinaraEgg(2);
+	addLapinaraEgg(2, x);
 	processTime(5);
 	// PC has lapinara egg pregnancy, pregnancyQuantity = 4
 	//Fen note: should be handled by "loadIn" calls.
@@ -566,11 +647,11 @@ public function voluntaryEggEnding1(x:int):void
 }
 
 //Optional Continuation 1 - Locked Legs
-//Button Text: <i>“Keep Going”</i>
-//Button Tooltip: <i>“You’ve already started, why stop now? Why would you even want to?”</i>
+//Button Text: “Keep Going”
+//Button Tooltip: “You’ve already started, why stop now? Why would you even want to?”
 //Orifice Priority: Same orifice as used in previous scene.
 //Prerequisites: LapiTraining > 0 |or| eggTrainerTraining > 0 // |or| pc.libido > 75 ??
-//Greyed-Out Text: <i>“As enticing as it seems, you’re not sure if your body is ready to handle any more eggs just yet. Maybe once you’ve finished incubating these....”</i>
+//Greyed-Out Text: “As enticing as it seems, you’re not sure if your body is ready to handle any more eggs just yet. Maybe once you’ve finished incubating these....”
 public function lapinaraBonusInsemination1(x:int):void
 {
 	clearOutput();
@@ -599,19 +680,19 @@ public function lapinaraBonusInsemination1(x:int):void
 	else pc.loadInAss(enemy);
 	// Choice between Ending 2 or Continuation 2
 	clearMenu();
-	if((lapiTrain() > 1 && pc.WQ() >= 50) || lapiTrain() <= 1 || !pc.hasVagina()) addButton(1,"Leave",lapinaraEggStuffEnding2,undefined,"Leave","You’re feeling great already, there’s no need to take advantage of your defeated foe any longer.");
-	else addDisabledButton(1,"Leave","Leave","You may think you’re satisfied, but your body has other ideas. It’s like it knows it should get more babies while it can, and you can’t seem to work up the willpower to refuse.");
+	if((lapiTrain() > 1 && pc.WQ() >= 50) || lapiTrain() <= 1 || !pc.hasVagina()) addButton(14,"Leave",lapinaraEggStuffEnding2,x,"Leave","You’re feeling great already, there’s no need to take advantage of your defeated foe any longer.");
+	else addDisabledButton(14,"Leave","Leave","You may think you’re satisfied, but your body has other ideas. It’s like it knows it should get more babies while it can, and you can’t seem to work up the willpower to refuse.");
 	if(lapiTrain() > 1 && pc.hasVagina()) addButton(0,"Cowgirl",continueToGetEggStuffedByLapiButtsPart2,x,"Cowgirl","If your bunny lover is out of breath, perhaps it’s time you climbed on top and did some of the work.");
 	else addDisabledButton(0,"Cowgirl","Cowgirl","No matter how much your body wants to, you aren’t sure it’s safe to be taking more alien eggs inside you. Maybe after this litter is born you’ll be able to handle a few more... assuming you have the right anatomy.");
 }
 
-//Button Text: <i>“Leave”</i>
-//Button Tooltip: <i>“You’re feeling great already, there’s no need to take advantage of your defeated foe any longer.”</i>
+//Button Text: “Leave”
+//Button Tooltip: “You’re feeling great already, there’s no need to take advantage of your defeated foe any longer.”
 //Orifice Priority: Same orifice as previous
 //Prerequisites: LapiTrain > 1 && Willpower Ratio < 50 && pc.hasVagina = True || LapiTrain > 2 && pc.hasVagina = True
-// LapiTrain of 2+ means continuation 2 will be available, so there won’t be a <i>“no available choices”</i> situation. PC vagina argument ensures it won’t be grayed out in case of a lack of vagina.
-//Greyed-Out Text: <i>“You may think you’re satisfied, but your body has other ideas. It’s like it knows it should get more babies while it can, and you can’t seem to work up the willpower to refuse.”</i>
-public function lapinaraEggStuffEnding2():void
+// LapiTrain of 2+ means continuation 2 will be available, so there won’t be a “no available choices” situation. PC vagina argument ensures it won’t be grayed out in case of a lack of vagina.
+//Greyed-Out Text: “You may think you’re satisfied, but your body has other ideas. It’s like it knows it should get more babies while it can, and you can’t seem to work up the willpower to refuse.”
+public function lapinaraEggStuffEnding2(x:int):void
 {
 	clearOutput();
 	lapinaraBust();
@@ -629,17 +710,17 @@ public function lapinaraEggStuffEnding2():void
 	// Apply vaginally/anally filled status as appropriate, 1800ml
 	//Fen note: done in prev scene
 	// PC has lapinara egg pregnancy, pregnancyQuantity = 6
-	addLapinaraEgg(4);
+	addLapinaraEgg(4, x);
 	output("\n\n");
 	CombatManager.genericVictory();
 }
 
 //Optional Continuation 2 - Cowgirl
-//Button Text: <i>“Cowgirl”</i>
-//Button Tooltip: <i>“If your bunny lover is out of breath, perhaps it’s time you climbed on top and did some of the work.”</i>
+//Button Text: “Cowgirl”
+//Button Tooltip: “If your bunny lover is out of breath, perhaps it’s time you climbed on top and did some of the work.”
 //Orifice Priority: Same orifice as used in previous scene.
 //Prerequisites: LapiTraining > 1 && pc.hasVagina = true //only check if pc HAS a vagina, not if the currently used orifice is a vagina. Biology reasons.
-//Greyed-Out Text: <i>“No matter how much your body wants to, you aren’t sure it’s safe to be taking more alien eggs inside you. Maybe after this litter is born you’ll be able to handle a few more... assuming you have the right anatomy.”</i>
+//Greyed-Out Text: “No matter how much your body wants to, you aren’t sure it’s safe to be taking more alien eggs inside you. Maybe after this litter is born you’ll be able to handle a few more... assuming you have the right anatomy.”
 public function continueToGetEggStuffedByLapiButtsPart2(x:int):void
 {
 	clearOutput();
@@ -719,20 +800,20 @@ public function continueToGetEggStuffedByLapiButtsPart2(x:int):void
 	else pc.loadInAss(enemy);
 	// Choice between Ending 3 or Continuation 3
 	clearMenu();
-	if((lapiTrain() > 2 && pc.WQ() >= 50) || lapiTrain() <= 2) addButton(1,"Give Up",lapinaraImpregShitEnding3,undefined,"Give Up","The fact that you can hardly move anymore means that it’s probably time to call it quits. Besides, you have things to do.");
+	if((lapiTrain() > 2 && pc.WQ() >= 50) || lapiTrain() <= 2) addButton(1,"Give Up",lapinaraImpregShitEnding3,x,"Give Up","The fact that you can hardly move anymore means that it’s probably time to call it quits. Besides, you have things to do.");
 	else addDisabledButton(1,"Give Up","Give Up","You know there are more of those wonderful eggs waiting for you in this cute bunny’s sack. There’s no way you can leave without at least <i>trying</i> to help them get where they belong.");
 	if(lapiTrain() >= 2) addButton(0,"Egg Milking",finalLapinaraEggStuffScene,x,"Egg Milking","You may not be able to ride the ovi-dong anymore, but there are other ways to get your little bunny to cum.");
 	else addDisabledButton(0,"Egg Milking","Egg Milking","No matter how much your body wants to, you aren’t sure if you can fit more eggs inside you. You’re certain that after this litter is born you’ll be able to handle it.");
 }
 //Ending 3
-//Button Text: <i>“Give Up”</i>
-//Button Tooltip: <i>“The fact that you can hardly move anymore means that it’s probably time to call it quits. Besides, you have things to do.”</i>
+//Button Text: “Give Up”
+//Button Tooltip: “The fact that you can hardly move anymore means that it’s probably time to call it quits. Besides, you have things to do.”
 //Orifice Priority: Same orifice as previous
 //Prerequisites: LapiTrain == 3 && Willpower Ratio < 50 || LapiTrain > 3
-// LapiTrain of 3+ means continuation 3 will be available, so there won’t be a <i>“no available choices”</i> situation.
-//Greyed-Out Text: <i>“You know there are more of those wonderful eggs waiting for you in this cute bunny’s sack. There’s no way you can leave without at least <i>trying</i> to help them get where they belong.”</i>
+// LapiTrain of 3+ means continuation 3 will be available, so there won’t be a “no available choices” situation.
+//Greyed-Out Text: “You know there are more of those wonderful eggs waiting for you in this cute bunny’s sack. There’s no way you can leave without at least <i>trying</i> to help them get where they belong.”
 
-public function lapinaraImpregShitEnding3():void
+public function lapinaraImpregShitEnding3(x:int):void
 {
 	clearOutput();
 	lapinaraBust();
@@ -746,17 +827,17 @@ public function lapinaraImpregShitEnding3():void
 	// Apply vaginally/anally filled status as appropriate, 2400ml
 	//Fen note: done in prev scene.
 	// PC has lapinara egg pregnancy, pregnancyQuantity = 8
-	addLapinaraEgg(6);
+	addLapinaraEgg(6, x);
 	output("\n\n");
 	CombatManager.genericVictory();
 }
 
 //Optional Continuation 3 - Reverse Cowgirl Milking
-//Button Text: <i>“Egg Milking”</i>
-//Button Tooltip: <i>“You may not be able to ride the ovi-dong anymore, but there are other ways to get your little bunny to cum.”</i>
+//Button Text: “Egg Milking”
+//Button Tooltip: “You may not be able to ride the ovi-dong anymore, but there are other ways to get your little bunny to cum.”
 //Orifice Priority: Same orifice as used in previous scene.
 //Prerequisites: LapiTraining > 2
-//Greyed-Out Text: <i>“No matter how much your body wants to, you aren’t sure if you can fit more eggs inside you. You’re certain that after this litter is born you’ll be able to handle it.”</i>
+//Greyed-Out Text: “No matter how much your body wants to, you aren’t sure if you can fit more eggs inside you. You’re certain that after this litter is born you’ll be able to handle it.”
 
 //variable to randomize lapinara’s total egg count. Results in either 1 or 2
 public function finalLapinaraEggStuffScene(x:int):void
@@ -766,7 +847,7 @@ public function finalLapinaraEggStuffScene(x:int):void
 	author("ThaumX");
 	var randEggs:Number = rand(2) + 1;
 	//IF LapiTrain == 4 THEN
-	if(lapiTrain() == 4) output("This isn’t your first time squeezing the most out of a defeated futa bunny, so you know exactly what to do. You lick your [pc.lips] as you prepare to get started, wondering if this time you’ll be able to completely empty the bunny’s pseudo-sack inside you.");
+	if(lapiTrain() >= 4) output("This isn’t your first time squeezing the most out of a defeated futa bunny, so you know exactly what to do. You lick your [pc.lips] as you prepare to get started, wondering if this time you’ll be able to completely empty the bunny’s pseudo-sack inside you.");
 	else output("Sitting on what is rapidly becoming your favorite spot, you run your hand " + (pc.hasHair() ? "through your [pc.hair]" : "across your head") + " and ponder the problem of making your bunny cum. She may technically be female, but you figure that it’d probably work if you treated her like a normal male you wanted to milk.");
 	output(" When you prepare to reposition yourself, you find that your anticipation has restored some measure of strength to your [pc.legOrLegs]. You lift yourself halfway off the rod embedded in you and start to turn your body. It’s a bit awkward, but before long you’re able to plop back down in a reverse cowgirl position. You sigh contentedly as your [pc.vagOrAss " + x + "] is once again full, momentarily distracted by a brief intensification of your fading orgasm. You won’t be sidetracked, however, and immediately continue your preparations. You take all the weight off your [pc.legOrLegs]");
 	if(pc.legCount > 1 && pc.hasKnees()) output(", and leverage your [pc.hips] to splay your [pc.legsNoun] open wide and rest the heels of your [pc.feet] on the sand");
@@ -827,7 +908,7 @@ public function finalLapinaraEggStuffScene(x:int):void
 
 	//This part is a sort of reward for players with the broodmother perk. Instead of passing out with the second egg, the PC manages to milk the bunny dry before passing out. It’s hinted at in the beginning of Cont. 3, where the PC mentions finally getting all the eggs.
 	// IF LapiTrain == 4 THEN
-	if(lapiTrain() == 4)
+	if(lapiTrain() >= 4)
 	{
 		output("\n\nYou steel yourself for the onslaught of pleasure you know is coming, attempting to focus exclusively on the somewhat deflated bag cupped in your hand. When you feel the next egg bolus sliding into you, you bite your [pc.lip], using the pain to help keep you in control. You squeeze the bunny’s egg sack harder, and push like you’re trying to shove the whole thing back inside her body. Your efforts bear fruit, and you feel the eggs being sucked up toward the lapinara’s ovipositor one-by-one. One, two, ");
 		if(randEggs == 1) output("and finally three eggs disappear into the bunny’s body to start making their way into their new home.");
@@ -850,10 +931,10 @@ public function finalLapinaraEggStuffScene(x:int):void
 	if(x >= 0) pc.loadInCunt(enemy,x);
 	else pc.loadInAss(enemy);
 	clearMenu();
-	addButton(0,"Next",finalEggSlutWrapup,randEggs);
+	addButton(0,"Next",finalEggSlutWrapup,[randEggs, x]);
 }
 
-public function finalEggSlutWrapup(randEggs:Number):void
+public function finalEggSlutWrapup(arg:Array):void
 {
 	clearOutput();
 	lapinaraBust();
@@ -873,14 +954,14 @@ public function finalEggSlutWrapup(randEggs:Number):void
 		//Apply vaginally/anally filled status as appropriate, 5000ml
 		//Fen note: Done in previous scene via load-in
 		//PC has lapinara egg pregnancy, pregnancyQuantity = 16 + (randEggs * 2) //18 or 20
-		addLapinaraEgg(14 + (randEggs*2));
+		addLapinaraEgg(14 + (arg[0]*2), arg[1]);
 	}
 	else
 	{
 		//Apply vaginally/anally filled status as appropriate, 3000ml
 		//Fen note: Done in previous scene via load-in
 		//PC has lapinara egg pregnancy, pregnancyQuantity = 12
-		addLapinaraEgg(10);
+		addLapinaraEgg(10, arg[1]);
 	}
 	output("\n\n");
 	CombatManager.genericVictory();
@@ -888,18 +969,28 @@ public function finalEggSlutWrapup(randEggs:Number):void
 
 
 // Egg check
-public function addLapinaraEgg(arg:Number):void
+public function addLapinaraEgg(nEggs:int = 2, x:int = -99):void
 {
-	for (var i:int = 0; i < pc.pregnancyData.length; i++)
-	{
-		//pc.pregnancyData[i];
-		if(pc.pregnancyData[i].pregnancyType == "LapinaraPregnancy") 
+	// Specific womb
+	var idx:int = -99;
+	
+	if(x == -1 || (x >= 0 && x < pc.pregnancyData.length)) {
+		idx = (x == -1 ? 3 : x);
+	}
+	// Any valid womb
+	else {
+		for(var i:int = 0; i < pc.pregnancyData.length; i++)
 		{
-			//output("\nOLD EGGS: " + pc.pregnancyData[i].pregnancyQuantity);
-			pc.pregnancyData[i].pregnancyQuantity += arg;
-			//output("\n NEW EGGS: " + pc.pregnancyData[i].pregnancyQuantity);
-			pc.addPregnancyBellyMod(i, arg*5, false);
+			if(pc.pregnancyData[i].pregnancyType == "LapinaraPregnancy") { idx = i; break; }
 		}
+	}
+	
+	if(idx < 0) return;
+	
+	if(pc.pregnancyData[idx].pregnancyType == "LapinaraPregnancy")
+	{
+		pc.pregnancyData[idx].pregnancyQuantity += nEggs;
+		pc.addPregnancyBellyMod(idx, nEggs * 5, false);
 	}
 }
 

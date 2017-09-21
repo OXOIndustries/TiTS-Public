@@ -391,10 +391,12 @@ public function nurseryCafeteriaFunc():Boolean
 {
 	output("\n\nA pair of server bots are sitting in the kitchen, making sure there’s plenty of food and drink to go around.");
 	if (yammiIsFollower() && !yammiIsCrew()) output(" Yammi’s hanging out in the kitchen, too, overseeing things while she’s not assigned to your ship’s crew.");
-	
-	seraNurseryCafeteriaBonus(1);
 
 	nurseryZilCallgirlRandomEvents();
+	
+	var btnSlot:int = 0;
+	if(seraAtNursery()) seraNurseryCafeteriaBonus(btnSlot++);
+	if(riyaAtNursery()) riyaNurseryCafeteriaBonus(btnSlot++);
 	
 	return false;
 }
@@ -489,7 +491,7 @@ public function nurserySpecialistRooms():Boolean
 	{
 		var numTentacles:int = ChildManager.numOfType(GLOBAL.TYPE_TENTACLE);
 		
-		output("\n\nA" + (numSpecials == 0 ? "" : "nother") +" modular chamber with very thick glass holds your " + (numTentacles == 1 ? "tentacle child" : (num2Text(numTentacles) + "tentacle children")) + ". The chamber itself looks very sturdy and high-tech. You’re told that the viewing glass is a one-way mirror to prevent the beast" + (numTentacles == 1 ? "" : "s") + " from peering back at any unsuspecting passerbys. The inside speakers also emit soothing harmonics to keep " + (numTentacles == 1 ? "it" : "them") + " less agitated. " + (numTentacles == 1 ? "It looks" : "They look") + " quite happy in there.");
+		output("\n\nA" + (numSpecials == 0 ? "" : "nother") +" modular chamber with very thick glass holds your " + (numTentacles == 1 ? "tentacle child" : (num2Text(numTentacles) + " tentacle children")) + ". The chamber itself looks very sturdy and high-tech. You’re told that the viewing glass is a one-way mirror to prevent the beast" + (numTentacles == 1 ? "" : "s") + " from peering back at any unsuspecting passerbys. The inside speakers also emit soothing harmonics to keep " + (numTentacles == 1 ? "it" : "them") + " less agitated. " + (numTentacles == 1 ? "It looks" : "They look") + " quite happy in there.");
 		numSpecials++;
 	}
 
@@ -1851,6 +1853,7 @@ public function nurseryMaternityWaitPostBirths(args:Object):void
 	output("\n\nNow unburdened of your pregnancy, you figure it’s time to get back on the space-trail.");
 
 	processTime(15);
+	pc.shower();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

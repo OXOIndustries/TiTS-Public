@@ -581,6 +581,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "RahnPregnancy": output2(" Rahn, Eggs"); break;
 						case "RahnPregnancyBreedwell": output2(" Breedwell Rahn, Eggs"); break;
 						case "KorgonnePregnancy": output2(" Korgonne"); break;
+						case "RiyaPregnancy": output2(" Riya"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -926,6 +927,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Rahn Eggs @ TamaniCorp:</b> " + StatTracking.getStat("pregnancy/rahn eggs/tamani"));
 				if(StatTracking.getStat("pregnancy/renvra kids") > 0)
 					output2("\n<b>* Births, Renvra’s Children:</b> " + StatTracking.getStat("pregnancy/renvra kids"));
+				if(StatTracking.getStat("pregnancy/riya kids") > 0)
+					output2("\n<b>* Births, Riya’s Children:</b> " + StatTracking.getStat("pregnancy/riya kids"));
 				if(StatTracking.getStat("pregnancy/sera kids") > 0)
 					output2("\n<b>* Births, Sera’s Children:</b> " + StatTracking.getStat("pregnancy/sera kids"));
 				if(StatTracking.getStat("pregnancy/sydian births") > 0)
@@ -5993,6 +5996,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Services, Sperm Donation Bay, Times Donated:</b> " + flags["BREEDWELL_TIMES_DONATED"]);
 					if(flags["BREEDWELL_DONATION_LOCKED"] != undefined) output2(", Locked");
+					else if(flags["BREEDWELL_DONATION_USED"] != undefined && (flags["BREEDWELL_DONATION_USED"] < days)) output2(", Last used " + ((days - flags["BREEDWELL_DONATION_USED"] == 1) ? "yesterday" : ((days - flags["BREEDWELL_DONATION_USED"]) + " days ago")));
 					output2("\n<b>* Services, Sperm Donation Bay, Cum Milked:</b> " + StatTracking.getStat("breedwell/cum milked") + " mLs");
 				}
 				variousCount++;

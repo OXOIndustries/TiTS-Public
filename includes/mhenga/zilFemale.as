@@ -954,7 +954,7 @@ public function dudesGetStangRoad():void {
 		else output(" thrusts");
 		output(" up and directly into your needy twat");
 		if(pc.tailCount > 1 && pc.vaginaTotal() > 1) output("s");
-		output(", stuffing you full of your own quivering, spurting warmth. It’s even better than the honeyed hole that’s drinking from your other snatch-filler; you can feel this one from both ends, both receiving the [pc.cum] filling inside you and getting to feel your [pc.cockTail] absolutely give in to your [pc.vagina " + z + "].");
+		output(", stuffing you full of your own quivering, spurting warmth. It’s even better than the honeyed hole that’s drinking from your other snatch-filler; you can feel this one from both ends, both receiving the [pc.cum] filling inside you and getting to feel your [pc.cockTail] absolutely give in to your " + ((pc.tailCount <= 1 || pc.vaginaTotal() == 1) ? "[pc.vagina]" : "[pc.vaginas]") + ".");
 		//Stretch appropriate cunt{s}!
 		for(var z:int = 0; z < pc.totalVaginas(); z++) {
 			//If you got enough tails to fill that cunt, STREEEETCH IT

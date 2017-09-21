@@ -638,32 +638,65 @@ public function ceriaHairStyleChoices():void
 	output("<i>“Okay, let me show you some of our styles.”</i> Ceria pulls out a small tablet and shows you several different pictures modeling various hairstyles. <i>“Just let me know what you’re interested in.”</i>");
 	//[All options go to Style Confirmation]
 	clearMenu();
-	//[Straight] Sets [pc.hairstyle] to null.
-	if(pc.hairStyle != "null" && pc.hairStyle != "straight") addButton(0,"Straight",styleConfirmation,"straight","Straight","Get your hair styled into a plain, straight do.");
-	else addDisabledButton(0,"Straight","Straight","Your hair is already straight.");
-	//[Ponytail]
-	if(pc.hairStyle != "ponytail" && pc.hairLength >= 5) addButton(1,"Ponytail",styleConfirmation,"ponytail","Ponytail","Get your hair styled into a ponytail.");
-	else if(pc.hairStyle != "ponytail") addDisabledButton(1,"Ponytail","Ponytail","Your hair isn’t long enough to get put into a ponytail.");
-	else addDisabledButton(1,"Ponytail","Ponytail","You already have a ponytail.");
-	//[Pigtails]
-	if(pc.hairStyle != "pigtails" && pc.hairLength >= 5) addButton(2,"Pigtails",styleConfirmation,"pigtails","Pigtails","Get your hair styled into pigtails.");
-	else if(pc.hairStyle != "pigtails") addDisabledButton(2,"Pigtails","Pigtails","Your hair isn’t long enough to get put into pigtails.");
-	else addDisabledButton(2,"Pigtails","Pigtails","You already have a pigtails.");
-	//[Curls]
-	if(pc.hairStyle != "curls") addButton(3,"Curls",styleConfirmation,"curls","Curls","Get your hair styled into curls.");
-	else addDisabledButton(3,"Curls","Curls","You already have your hair curled.");
-	//[Braided]
-	if(pc.hairStyle != "braided" && pc.hairLength >= 5) addButton(4,"Braided",styleConfirmation,"braided","Braided","Get your hair styled into a braid.");
-	else if(pc.hairStyle != "braided") addDisabledButton(4,"Braided","Braided","Your hair isn’t long enough to be braided.");
-	else addDisabledButton(4,"Braided","Braided","You already have your hair braided!");
-	//[Afro]
-	if(pc.hairStyle != "afro" && pc.hairLength <= 12) addButton(5,"Afro",styleConfirmation,"afro","Afro","Get your hair styled into an afro.");
-	else if(pc.hairStyle != "afro") addDisabledButton(5,"Afro","Afro","Your hair is too long to be styled into an afro.");
-	else addDisabledButton(5,"Afro","Afro","You already have an afro.");
-	//[Mohawk]
-	if(pc.hairStyle != "mohawk" && pc.hairLength <= 12) addButton(6,"Mohawk",styleConfirmation,"mohawk","Mohawk","Get your hair styled into a mohawk.");
-	else if(pc.hairStyle != "mohawk") addDisabledButton(6,"Mohawk","Mohawk","Your hair is too long to be styled into a mohawk.");
-	else addDisabledButton(6,"Mohawk","Mohawk","You already have a mohawk.");
+	var options:Array = [];
+	
+	options.push(["Straight", "straight", "a plain, straight do", "straight hair", 1, 0]);
+	options.push(["Ponytail", "ponytail", "a ponytail", "a ponytail", 5, 0]);
+	options.push(["Pigtails", "pigtails", "pigtails", "pigtails", 5, 0]);
+	options.push(["Curls", "curls", "curls", "your hair curled", 0, 0]);
+	options.push(["Braided", "braided", "a braid", "your hair braided", 5, 0]);
+	options.push(["Afro", "afro", "an afro", "an afro", 0, 12]);
+	options.push(["Mohawk", "mohawk", "a mohawk", "a mohawk", 0, 12]);
+	
+	options.push(["Spikes", "spikes", "spikes", "spikes", 0, 12]);
+	options.push(["Messy Curls", "mess of curls", "messy curls", "messy curls", 0, 0]);
+	options.push(["Front Wave", "front wave", "a front wave", "a front wave", 0, 0]);
+	options.push(["Back Slick", "backwards slick", "a backwards slick", "a backwards slick", 0, 0]);
+	options.push(["Ruff.Layers", "ruffled layers", "ruffled layers", "your hair in ruffled layers", 0, 0]);
+	options.push(["Simple Part", "simple part", "a simple part", "simple parted hair", 5, 0]);
+	options.push(["Side Part", "side part", "a side part", "side parted hair", 5, 0]);
+	options.push(["Bob", "bob cut", "a bob cut", "a bob cut", 5, 12]);
+	options.push(["Hime", "hime cut", "a hime cut", "a hime cut", 5, 0]);
+	options.push(["M.Chignon", "messy chignon", "a messy chignon", "a messy chignon", 5, 24]);
+	options.push(["T.Chignon", "tight chignon", "a tight chignon", "a tight chignon", 5, 24]);
+	options.push(["Side Plait", "side plait", "a side plait", "a side plait", 5, 0]);
+	options.push(["Single Braid", "single braid", "a single braid", "a single braid", 5, 0]);
+	options.push(["Crown Braid", "crown braid", "a crown braid", "a crown braid", 5, 0]);
+	options.push(["Pigtail Buns", "pigtail buns", "pigtail buns", "pigtail buns", 5, 24]);
+	options.push(["Twintails", "twintails", "a set of twintails", "a set of twintails", 5, 0]);
+	
+	var btnSlot:int = 0;
+	for(var i:int = 0; i < options.length; i++)
+	{
+		var hairBtn:String = options[i][0];
+		var hairStyle:String = options[i][1];
+		var hairTitle:String = StringUtil.toDisplayCase(options[i][1]);
+		var hairDescA:String = options[i][2];
+		var hairDescB:String = options[i][3];
+		var lengthMin:Number = options[i][4];
+		var lengthMax:Number = options[i][5];
+		
+		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", hairworkFromCeria);
+			btnSlot++;
+		}
+		
+		if(pc.hairStyle != hairStyle) {
+			if(lengthMax != 0 && pc.hairLength > lengthMax) addDisabledButton(btnSlot, hairBtn, hairTitle, "Your hair is too long to be styled into " + hairDescA + ".");
+			else if(lengthMin != 0 && pc.hairLength < lengthMin) addDisabledButton(btnSlot, hairBtn, hairTitle, "Your hair isn’t long enough to get put into " + hairDescA + ".");
+			else addButton(btnSlot, hairBtn, styleConfirmation, hairStyle, hairTitle, "Get your hair styled into " + hairDescA + ".");
+		}
+		else addDisabledButton(btnSlot, hairBtn, hairTitle, "You already have " + hairDescB + ".");
+		btnSlot++;
+		
+		if(options.length > 14 && (i + 1) == options.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			addButton(btnSlot, "Back", hairworkFromCeria);
+		}
+	}
+	
 	//[Back] Go To Hairwork
 	processTime(1);
 	addButton(14,"Back",hairworkFromCeria);

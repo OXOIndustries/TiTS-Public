@@ -1837,7 +1837,7 @@ public function roughButtfuckFromKiroGo(threesomeTalkIntro:Boolean = false):void
 			if(pc.tone < 50 && pc.thickness > 75) output(" in spite of your squishy body’s attempts to conceal it");
 			output(".");
 		}
-		else output("actually shifts your womb forward, making your belly bulge that much more obscenely.");
+		else output("actually shifts your " + (pc.hasVagina() ? "womb" : "anally-pregnant mass") + " forward, making your belly bulge that much more obscenely.");
 		output("\n\nWith a wet clap, her swelling balls smack into your lube-and-pre smeared asscheeks.");
 	}
 	//Gaped
@@ -1848,9 +1848,10 @@ public function roughButtfuckFromKiroGo(threesomeTalkIntro:Boolean = false):void
 		if(!pc.isPregnant()) output("When your belly bulges with the shape of it");
 		else
 		{
-			output("When your ass gets so full that your womb");
-			if(pc.totalVaginas() > 1) output("s are");
-			else output(" is");
+			output("When your ass gets so full that your");
+			if(pc.totalVaginas() > 1) output(" wombs are");
+			else if(pc.hasVagina()) output(" womb is");
+			else output(" anally-pregnant mass is");
 			output(" shifted forward, bulging your belly further");
 		}
 		output(", your sigh deepens. Kiro fills you up so perfectly, so completely, that even when her balls clap against your sore cheeks, you wish she could go further, if only to extend your own ecstasy. Her animalistic sheath bunches up against your ruined derriere as she pushes harder, flattening your [pc.butt] if only to squeeze an extra inch worth of pleasure from her gaped cocksleeve.");
