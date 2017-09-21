@@ -622,7 +622,7 @@ package classes.GameData
 				{
 					target.addStatusValue("Staggered", 1, -1);
 					if (target is PlayerCharacter) output("\n\n<b>You’re still reeling from the force of the blows to which you’ve been subjected.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is still reeling from the force of the blows to which they’ve been subject!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is still reeling from the force of the blows to which they’ve been subjected!</b>");
 				}
 				else
 				{
@@ -4399,7 +4399,14 @@ package classes.GameData
 				if (victoryArgument.isDefeated()) return true;
 				return false;
 			}
-			
+			else if (victoryCondition == CombatManager.ANY_TARGET_DEFEATED)
+			{
+				for (var ii:int = 0; ii < _hostiles.length; ii++)
+				{
+					if (_hostiles[ii].isDefeated()) return true;
+				}
+				return false;
+			}
 			return false;
 		}
 		
@@ -4423,6 +4430,14 @@ package classes.GameData
 			{
 				if (lossArgument == null || _friendlies.indexOf(lossArgument) == -1) throw new Error("Unique target for loss as a win condition, with no target defined.");
 				if (lossArgument.isDefeated()) return true;
+				return false;
+			}
+			else if (lossCondition == CombatManager.ANY_TARGET_DEFEATED)
+			{
+				for (var ii:int = 0; ii < _friendlies.length; ii++)
+				{
+					if (_friendlies[ii].isDefeated()) return true;
+				}
 				return false;
 			}
 			else if (lossCondition == CombatManager.ESCAPE && atEndOfRound)

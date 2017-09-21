@@ -111,6 +111,7 @@ package classes.GameData
 		public static const ENTIRE_PARTY_DEFEATED:String = "all_defeated";
 		public static const SURVIVE_WAVES:String = "survival";
 		public static const ESCAPE:String = "escape";
+		public static const ANY_TARGET_DEFEATED:String = "single_target_defeat";
 		
 		public static function victoryCondition(condition:String, arg:* = undefined):void
 		{
