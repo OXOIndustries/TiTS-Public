@@ -17,6 +17,11 @@ Uses two high caliber pistols and a two electrified blades.
 [Lose] Dane violates the PC then hops on the gunship.
 */
 
+public function rivalIsActive():Boolean 
+{
+	if(flags["RIVALCONFIGURED"] == undefined || flags["COUSIN_EXECUTED"] != undefined || flags["COUSIN_EGGSLUT"] != undefined || flags["COUSIN_BEDWARMER"] != undefined) return false;
+	return true;
+}
 public function showRival(nude:Boolean = false):void
 {
 	showName("\n" + chars["RIVAL"].short.toUpperCase());

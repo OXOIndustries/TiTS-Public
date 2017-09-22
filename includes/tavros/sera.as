@@ -379,13 +379,25 @@ public function seraAppearance():void
 	if(seraRecruited()) output(" open");
 	else output(" air-conditioned station");
 	output(" air. They’re the kind of boobs that just beg to be fondled");
-	if(!seraRecruited()) output(", and Sera’s open display of them shows just how much she knows it");
+	if(flags["SERA_PREGNANCY_TIMER"] >= 200) output(", an impression heightened by the fact they are now heavy and swollen with milk, her " + (chars["SERA"].skinTone != "bright pink" ? "navy" : "magenta") + " areola spreading.");
+	else if(!seraRecruited()) output(", and Sera’s open display of them shows just how much she knows it");
 	output(".");
 	output("\n\n");
 	if(chars["SERA"].hasCock()) output("A foot-long cock, maybe a bit longer, dangles down between her toned thighs, backed up by a pair of balls that sit on the upper end of the terran norm when it comes to size. ");
 	output("Sera’s ass is nothing to sneeze at either; it’s large, nicely rounded, and crowned with a prehensile, spaded tail.");
 	if(seraRecruited()) output(" The spade at the end seems a little big and bulgy, reminiscent of a cock head.");
 	else output(" She spanks a cheek with it when she catches you looking, sending a kinetic ripple across her crack. At the same time, the spade at the end seems a little bigger and bulgier, perhaps engorged by the contact.");
+	
+	if(flags["SERA_PREGNANCY_TIMER"] >= 30)
+	{
+		output("\n\n");
+		if(flags["SERA_PREGNANCY_TIMER"] <= 90) output("Her taut belly seems very smooth yet a little curved.");
+		else if(flags["SERA_PREGNANCY_TIMER"] <= 160) output("Her usually-taut belly has taken on a slight curve. On her exquisitely crafted body, it stands out more than it ordinarily would.");
+		else if(flags["SERA_PREGNANCY_TIMER"] <= 210) output("She’s touting a fair-sized baby bump, her belly swollen with growing pregnancy. It looks odd upon a sex demon, and the fact she keeps touching it suggests she’s very aware of that.");
+		else if(flags["SERA_PREGNANCY_TIMER"] <= 251) output("Sera has grown into her pregnancy, her hips and boobs widening to accommodate her beachball of a belly, and she doesn’t look quite as strange as she did. Perhaps as a result there’s a calmer, more accepting air to her; she waddles around with an almost proud, aloof air.");
+		else output("She looks just about ready to pop, the curve of her belly protruding way out in front of her, milk-swollen boobs resting on top. The demon-morph is flushed and rather moody looking, evidently unhappy about having to sit down every two dozen steps or so.");
+	}
+	
 	if(seraRecruited())
 	{
 		output("\n\nSilk fishnets and garters join her technological-looking frilly corset to her shapely legs. Her feet are perched upon toe-covering, six-inch stilettos, but when she walks in them it’s as if it’s the most natural thing in the world, perhaps counterbalanced by her tail.");

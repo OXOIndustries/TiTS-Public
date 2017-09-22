@@ -96,7 +96,7 @@ public function toTheSlutGoo():void
 	output("\n\nFinally, while you and Azra scrape your jaws off the floor, the goo resolves into a pair of identically attractive heads, complete with luscious lips and approximations of meticulously styled hair.");
 	output("\n\n<i>“Hiya!”</i> two voices purr.");
 	//No Codex:
-	if(CodexManager.hasUnlockedEntry("Gray Goos"))
+	if(!CodexManager.hasUnlockedEntry("Gray Goos"))
 	{
 		output("\n\nYour Codex beeps an urgent warning: <i>“Gray goo detected. These active micro-machine clusters are known to attack without provocation. U.G.C. Scout Authority suggests extreme caution, as well as hydration, around the native goo.”</i>");
 		CodexManager.unlockEntry("Gray Goos");
@@ -201,7 +201,9 @@ public function volunteerToGrayGooFeed():void
 		if(pc.cockTotal() == 1) output("it");
 		else output("them");
 		output(" to the air. <i>“I </i>liked<i> that!”</i> The mercurial beauty bats four pairs of dripping eyelashes at you. <i>“");
-
+		
+		flags["DOUBLE_GOO_SLUT_RESULT"] = 4;
+		
 		//Fork no new PG based on cumQ.
 		//Not Enough
 		if(pc.cumQ() < 100) 
@@ -254,7 +256,7 @@ public function weakAssSlutGooFeeding(totalCum:Number):void
 	output(" with virginal tightness mated with whorish desire. The disagreement doesn’t stop her from fucking you. No matter how her heads bicker, the wobbling woman’s too-thick thighs continue to bounce atop you in almost-perfect rhythm. The left will spout some pithy remark, and her cunt will viciously tug. The right will retort, and a callous ripple will slide along your length, milking you callously.");
 
 	output("\n\nSilver droplets splatter off your [pc.belly], slick and oily, sliding down your side to journey back into the goo-girls’ legs. She’s less solid than before, and hotter too, like the act of churning your loins for seed is slowly causing her to overhead. More viscous dollops drip off when she jerks too hard or fucks too fast, but she doesn’t seem to care. They wiggle through the dirt and back into her without a care in the world. The mercury madam may as well be a machine for how relentlessly she pumps your [pc.cocks]. Up, down, squeeze, up, down, twist... She doesn’t stop, not even when your whole body is shuddering and your [pc.balls] ");
-	if(pc.balls == 1) output("is");
+	if(pc.balls <= 1) output("is");
 	else output("are");
 	output(" cramping with the effort of giving her exactly what she wants...");
 
@@ -362,10 +364,10 @@ public function negotiateWithSlutGoo():void
 	showSlutGoo();
 	showName("\nNEGOTIATING");
 	//Bimbo
-	if(pc.isBimbo())
+	if(pc.isBimbo() && flags["AZRA_SEX_KNOWN"] != undefined)
 	{
 		output("<i>“Like, she’s all cummed out!”</i> You step up to the goliath goo and pantomime giving a very messy-looking blowjob. <i>“Her big ol’ sharkballs are totes drained, and its soooo sad. First she had to pay these greedy raskvel, and then like, I needed a snack, and then there was this other gray goo who sucked her for an hour.”</i> You gesture over your shoulder. <i>“I think her dick would break if we tried to get any more.”</i> You try to keep from tearing up at the thought.");
-		output("\n\nThe goo woman(women?) actually do, favoring Azra with a tender expression. <i>“You poor thing!”</i> <i>“Need food. Make more cummies.”</i> The left head and the right look at each other in unison. <i>“I know! Take ‘shrooms! Eat five and come back after nap.”</i> The right adds. <i>“Then have plenty of girl cummies too!”</i>");
+		output("\n\nThe goo woman (women?) actually do, favoring Azra with a tender expression. <i>“You poor thing!”</i> <i>“Need food. Make more cummies.”</i> The left head and the right look at each other in unison. <i>“I know! Take ‘shrooms! Eat five and come back after nap.”</i> The right adds. <i>“Then have plenty of girl cummies too!”</i>");
 		output("\n\nAzra blushes hotter than a dying star. <i>“No... uh... yeah... okay.”</i> She nods gratefully at you and the giant-sized goo woman. <i>“I... will. Sorry.”</i>");
 		output("\n\n<i>“Don’t worry,”</i> the right head graciously answers. <i>“We still have plenty of mush-mush for lots more cum-cums.”</i> The left adds looks to the right. <i>“More mush?”</i> Her sister answers, <i>“Fuck yes!”</i> Both hands pluck stalks from the ground as the voracious creature resumes feeding itself, squirting silver from small orgasms with every bite.");
 		output("\n\nAzra turns away in a hurry to gather her own, leaving you with nothing to do but watch the two-headed goo-girl eat and cum and eat in cum. She’s so curvaceous, and she cums so noisily. You can feel yourself getting hot under the collar. Familiar urges well up inside you, and you realize that if you don’t do something about it, you’ll wind up horny and distracted for the rest of the day. Maybe the nice goo could help you out?");
@@ -405,9 +407,11 @@ public function waitForBimboNegotiationsAndGetHornedUp():void
 	output("\n\nYou nod and turn to leave, but at the last minute you remember your manners and spin about. <i>“Thanks so much! I hope you get lots of cummies!”</i> You vigorously wave");
 	if(pc.biggestTitSize() >= 4) output(", [pc.chest] bouncing");
 	output(".");
-
 	output("\n\n<i>“You too!”</i> paired voices answer.");
 	output("\n\nWell, they were nice.");
+	
+	flags["DOUBLE_GOO_SLUT_RESULT"] = 2;
+	
 	processTime(15);
 	clearMenu();
 	addButton(0,"Next",motherhuskEncounter);
@@ -485,6 +489,9 @@ public function getHelpWithGooSlutBimboStuff():void
 	output(". <i>“Motherfucks,”</i> you supply. <i>“Gotta get motherfucks.”</i>");
 	output("\n\nAzra facepalms. <i>“Mother</i>husks<i>.”</i>");
 	output("\n\n<i>“Right.”</i>");
+	
+	flags["DOUBLE_GOO_SLUT_RESULT"] = 3;
+	
 	processTime(25);
 	pc.orgasm();
 	clearMenu();
@@ -549,7 +556,8 @@ public function loseToSlutGoo():void
 	output("You stagger over to Azra with an apologetic look on your face and help her to her feet");
 	if(pc.tallness < 7 * 12) output(", which is easier said than done considering she’s nine feet tall and you’re barely over " + num2Text(Math.floor(pc.tallness/12)) + ". The poor girl is absolutely shell-shocked, but she manages a few half-hearted tugs at her dripping dong all the same. <i>“Wha... so much... cum?”</i> You drag her away before the silver behemoth decides to come back for thirds. What a mess.");
 	//Pc seen wango!
-	kGAMECLASS.flags["AZRA_SEX_KNOWN"] = 1;
+	flags["AZRA_SEX_KNOWN"] = 1;
+	flags["DOUBLE_GOO_SLUT_RESULT"] = -1;
 	processTime(20);
 	clearMenu();
 	addButton(0,"Next",loseToGrayGo2);
@@ -614,6 +622,9 @@ public function winVsSlutGoo():void
 	//Merge
 	output("\n\n<i>“The motherhusks are not far. Surely there we won’t encounter trouble two times in one trip,”</i> Azra says, looking at her handheld for directions.");
 	output("\n\nSpoken like a girl who hasn’t had to wander these wastes on her own...");
+	
+	flags["DOUBLE_GOO_SLUT_RESULT"] = 1;
+	
 	output("\n\n");
 	processTime(12);
 	CombatManager.genericVictory();
@@ -705,7 +716,7 @@ public function buzzIntoRaskland():void
 	output("You press the intercom button. The answering buzz, though muted by the walls, carries through the structure with such volume that you can feel it vibrating against your fingertips. You jerk back in shock.");
 	output("\n\n<i>“Whaddya want?”</i> a staticky voice barks through the embedded speaker. <i>“I’m full up till tomorrow.”</i>");
 	output("\n\nAzra’s bafflement is obvious, and you aren’t much better off. <i>“Say something,”</i> she whispers.");
-	output("\n\nYou clear your throat and press down the \"talk\”</i> button. <i>“");
+	output("\n\nYou clear your throat and press down the “talk” button. <i>“");
 	if(pc.isBimbo()) output("Ummm... like, we just wanted to see if we could have some motherhusks.”</i> After a second, you remember to add, <i>“We have credits and stuff.”</i>");
 	else output("Uh... we wanted to buy some motherhuskers. Our sensors indicate you have a sizeable supply.”</i> Azra flashes you a thumbs up.");
 	output("\n\nFive or six seconds pass in complete silence. You’re about to try again when the intercom clicks on. <i>“Nope. No motherhusks here. Whatever those are. You should look somewhere else. I bet they’re somewhere else besides here.”</i>");
@@ -2265,6 +2276,7 @@ public function nineTailZilIntro(choice:String = "talk"):void
 			output("\n\n<i>“[pc.name]! I was so worried he was going to catch you,”</i> Azra says, scaled tail wagging behind her. <i>“Let’s get out of here before he comes back.”</i>");
 			output("\n\nYou give her an affirmative nod and leave for Mhen’ga. On your way back, you wonder if the zil will figure out that it was all a ruse. Probably not. He didn’t seem like the type to miss one flower.");
 			processTime(30);
+			flags["AVOID_9TAIL"] = 2;
 			clearMenu();
 			addButton(0,"Next",azraMhengaMissionEpilgue);
 		}
@@ -2297,6 +2309,7 @@ public function nineTailZilIntro(choice:String = "talk"):void
 			output("\n\n<i>“No thanks,”</i> you interject, giving him a friendly wave. <i>“I just remembered I left my ship idling. Have fun!”</i>");
 			output("\n\n<i>“You can’t... just... wait!”</i> He calls after you, though he makes no move to pursue you.");
 			processTime(20);
+			flags["AVOID_9TAIL"] = 1;
 			clearMenu();
 			addButton(0,"Next",azraMhengaMissionEpilgue);
 		}
@@ -2526,7 +2539,7 @@ public function zil9TailFullGameOver2():void
 	output("Months crawl by, and more cunt-snakes are affixed to you, usually after you’ve been fucked into unconsciousness. That’s fine though, the new parasites can help you satisfy your growing desires. Sometimes they even let you fuck that suula girl you got caught with so that you can sample a different flavor of jizz. She’s been pretty consistently pregnant ever since they figured out that the kids come out more zil than suula.");
 	output("\n\nLife as a fuck-toy is sort of degrading, but you’re taking care of. You don’t need to worry about responsibility or planning. You can content yourself with effortless climaxes and an ever-increasing addiction to honey-cum.");
 	//[Bad End]
-	kGAMECLASS.badEnd("GAME OVER.");
+	badEnd("GAME OVER.");
 }
 
 //Zilscunnies Defeated!

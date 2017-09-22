@@ -216,6 +216,17 @@
 		{
 			kGAMECLASS.approachSera();
 		}
+		
+		override public function isPregnant(vIdx:int = 0):Boolean
+		{
+			if(kGAMECLASS.flags["SERA_PREGNANCY_TIMER"] != undefined) return true;
+			return false;
+		}
+		override public function bellyRating():Number
+		{
+			if(!isPregnant()) return 0;
+			return Math.round(kGAMECLASS.flags["SERA_PREGNANCY_TIMER"] / 3);
+		}
 	}
 
 }
