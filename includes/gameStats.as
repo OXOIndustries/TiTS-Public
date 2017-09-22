@@ -1978,12 +1978,15 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["AZRA_EXP_FAILED"] == "mhen'ga") output2(" Defeated by naleen brothers");
 				else if(flags["AZRA_MHENGAED"] != 0) output2(" Defeated naleen brothers");
 				else output2(" Accepted");
+				if(flags["AVOID_9TAIL"] == 1) output2(", Distracted nine-tailed zil");
+				if(flags["AVOID_9TAIL"] == 2) output2(", Avoided nine-tailed zil");
 				if(flags["FOUGHT_9TAIL"] != undefined) output2(", Defeated nine-tailed zil");
 				if(flags["FED_9TAIL"] != undefined) output2(", Fed nine-tailed zil");
 				if(flags["AZRA_MHENGAED"] == -1) output2(", Completed, Resisted Azra");
 				else if(flags["AZRA_MHENGAED"] == 1) output2(", Completed, Welcomed Azra");
 				else if(flags["AZRA_EXP_FAILED"] == "mhen'ga") output2(", Failed");
 				else output2(", <i>In progress...</i>");
+				if(flags["FUCK_LILLIES_USED"] != undefined) output2("\n<b>* Fuck Lillies, Times Sexed:</b> " + flags["FUCK_LILLIES_USED"]);
 				sideCount++;
 			}
 			// The Forge Machina
@@ -2129,6 +2132,38 @@ public function displayQuestLog(showID:String = "All"):void
 		
 		if(showID == "Tarkus" || showID == "All")
 		{
+			// Azra's Expeditions
+			if(flags["AZRA_MHENGAED"] >= 1 || flags["AZRA_EXP_FAILED"] == "tarkus")
+			{
+				output2("\n<b><u>Azra’s Expedition</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(flags["DOUBLE_GOO_SLUT_RESULT"] != undefined)
+				{
+					switch(flags["DOUBLE_GOO_SLUT_RESULT"])
+					{
+						case -1: output2(" Defeated by double gray goo"); break;
+						case 1: output2(" Defeated double gray goo"); break;
+						case 2: output2(" Negotiated with double gray goo"); break;
+						case 3: output2(" Persuaded and sexed double gray goo"); break;
+						case 4: output2(" Fed double gray goo"); break;
+					}
+				}
+				else output2(" Accepted");
+				if(flags["9999"] != undefined) output2(", Completed");
+				else if(flags["AZRA_EXP_FAILED"] == "tarkus") output2(", Failed");
+				else output2(", <i>In progress...</i>");
+				if(flags["9999"] != undefined)
+				{
+					output2("\n<b>* Bunker:</b>");
+					if(flags["RASKDOOR_BROKE"] != undefined) output2(" Broke door");
+					else if(flags["9999"] != undefined) output2(" Hacked door");
+					else output2(" Found");
+				}
+				if(flags["9999"] != undefined) output2("Slutshroom, Times Harvested: " + flags["9999"]);
+				if(flags["9999"] != undefined) output2("Spunkshroom, Times Harvested: " + flags["9999"]);
+				if(flags["9999"] != undefined) output2("Motherhusk, Times Harvested: " + flags["9999"]);
+				sideCount++;
+			}
 			// Dr. Badger's Job
 			if(flags["BADGER_QUEST"] != undefined)
 			{
