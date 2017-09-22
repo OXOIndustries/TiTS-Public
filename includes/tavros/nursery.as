@@ -1421,11 +1421,21 @@ public function nurseryApproachBriget():void
 public function nurseryBrigetMenu():void
 {
 	clearMenu();
+	
 	//addButton(0, "Talk", nurseryBrigetTalkMenu, undefined, "Talk", "Sit and have a chat with Briget.");
 	addButton(1, "Nursery", nurseryBrigetNurseryTalk, undefined, "Nursery", "Discuss the nursery’s status and functions with its head nurse.");
 	//if (hours >= 7 && hours <= 16) addButton(2, "PrivateRoom", nurseryBrigetPrivateRoom, undefined, "Private Room", "Suggest that you and Briget move somewhere more private");
 	//else addButton(2, "Sex", nurseryBrigetSex, undefined, "Sex", "See if you can make this motherly gynoid feel like a woman...");
-	//addButton(10, "Appearance", );
+	//addButton(10, "Appearance", nurseryBrigetAppearance);
+	
+	var btnSlot:int = 5;
+	
+	if(seraPregnancyIsDue())
+	{
+		if(flags["SERA_PREGNANCY_CHECK"] != undefined && (flags["SERA_PREGNANCY_CHECK"] + 1) >= days) addDisabledButton(btnSlot++, "Sera", "Sera", "Maybe you should wait before checking on her again.");
+		else addButton(btnSlot++, "Sera", brigetSeraPregCheck, undefined, "Sera", (flags["SERA_PREGNANCY_CHECK"] == undefined ? "Ask where she is." : "Ask how she’s doing."));
+	}
+	
 	addButton(14, "Back", mainGameMenu);
 }
 

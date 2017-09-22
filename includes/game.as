@@ -1060,6 +1060,12 @@ public function sleep(outputs:Boolean = true):void {
 						interrupt = true;
 					}
 					break;
+				case "BESS":
+					if (bessIsCrew() && rand(3) == 0)
+					{
+						flags["BESS_SLEEPWITH_DOMORNING"] = 1;
+					}
+					break;
 				case "REAHA":
 					if (reahaIsCrew() && rand(3) == 0)
 					{
@@ -1067,16 +1073,21 @@ public function sleep(outputs:Boolean = true):void {
 						interrupt = true;
 					}
 					break;
-				case "BESS":
-					if (bessIsCrew() && rand(3) == 0)
+				case "SERA":
+					if (seraIsCrew() && rand(3) == 0)
 					{
-						flags["BESS_SLEEPWITH_DOMORNING"] = 1;
+						interrupt = seraBitchImpregnateBed();
 					}
 					break;
 				// No partner selected.
 				default:
+					// SERA IMPREGNATIONS
+					if(!interrupt && seraIsCrew() && flags["SERA_TALKS_IMPREGNATE"] >= 2 && rand(3) == 0 && flags["SERA_NO_SLEEP"] == undefined)
+					{
+						interrupt = seraBitchImpregnateBed();
+					}
 					//CELISE NIGHT TIME BEDTIMEZ
-					if(celiseIsCrew() && rand(3) == 0 && flags["CELISE_NO_BED_SENPAI"] == undefined)
+					if(!interrupt && celiseIsCrew() && rand(3) == 0 && flags["CELISE_NO_BED_SENPAI"] == undefined)
 					{
 						celiseOffersToBeYourBedSenpai();
 						interrupt = true;
@@ -1091,14 +1102,10 @@ public function sleep(outputs:Boolean = true):void {
 	sleepHeal();
 	
 	processTime(minPass);
-	
-	
 
 	// Time passing effects
 	if(passiveTimeEffects(minPass)) return;
 	
-	
-
 	// Dream events
 	var dreamed:Boolean = dreamChances();
 	
@@ -1133,6 +1140,11 @@ public function sleep(outputs:Boolean = true):void {
 		if (flags["BESS_SLEEPWITH_DOMORNING"] == 1)
 		{
 			addButton(0, "Next", bessMorningEvents);
+			return;
+		}
+		if (seraBitchImpregnateBedWakeCheck())
+		{
+			addButton(0, "Next", seraBitchImpregnateBedWake);
 			return;
 		}
 		if (tryProcDommyReahaTime(minPass - rand(301)))
@@ -1817,7 +1829,11 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	//Procs on approaching ship dock:
 	if (arg == shipLocation)
 	{
-		if(disableExploreEvents() && currentLocation != "SHIP INTERIOR" && seranigansTrigger("hijacked")) return;
+		if(currentLocation != "SHIP INTERIOR")
+		{
+			if(!disableExploreEvents() && seranigansTrigger("hijacked")) return;
+			if(flags["SERA_QUIT_SMOKING"] == undefined && flags["SERA_PREGNANCY_TIMER"] >= 24) eventQueue.push(seraPregQuitSmoking);
+		}
 	}
 	
 	//Procs on ship exit:
@@ -2445,7 +2461,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processAnnoEvents(deltaT, doOut);
 	processAlissEvents(deltaT, doOut);
 	processPennyEvents(deltaT, doOut);
-	processSeraEvents(deltaT, doOut);
+	processSeraEvents(deltaT, doOut, totalDays);
 	processRiyaEvents(deltaT, doOut);
 	processReahaEvents(deltaT, doOut, totalDays);
 	processGobblesEvents(deltaT, doOut);
@@ -2902,7 +2918,7 @@ public function processPennyEvents(deltaT:uint, doOut:Boolean):void
 	}
 }
 
-public function processSeraEvents(deltaT:uint, doOut:Boolean):void
+public function processSeraEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
 {
 	seraLustGain(deltaT);
 	
@@ -2936,6 +2952,8 @@ public function processSeraEvents(deltaT:uint, doOut:Boolean):void
 		seraNurseryVisitCheck(totalAttempts);
 		seranigansCheck(totalAttempts);
 	}
+	
+	seraPregnancyIsDue(totalDays);
 }
 
 public function processRiyaEvents(deltaT:uint, doOut:Boolean):void

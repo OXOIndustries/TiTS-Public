@@ -580,10 +580,20 @@ public function seraOnShipBonus(btnSlot:int = 0):String
 {
 	var bonusText:String = "";
 	
-	//bonusText += "\n\nSera, your [sera.skinColor] servant, is in her room. You can approach her if you choose.";
-	bonusText += "\n\nThe whiff of cigarette smoke and the occasional muffled, sardonic laugh tells you that Sera is in her room - although Void knows what she’s gotten up to on your ship in your absence.";
-	// [Sera]
-	addButton(btnSlot, "Sera", approachServantSera, true, "Sera", "Visit the demoness.");
+	if(pc.hasStatusEffect("Sera Morning Sickness") || (flags["SERA_PREGNANCY_TIMER"] >= 30 && flags["SERA_PREGNANCY_TIMER"] < 90 && hours >= 6 && hours < 10 && rand(3) == 0))
+	{
+		bonusText += "\n\nYou hear the distinct sound of someone throwing up, followed by a moaned <i>“Fuck thiiiiiiis”</i> in the direction of Sera’s room. Probably best to leave her alone for a while.";
+		pc.createStatusEffect("Sera Morning Sickness", 0, 0, 0, 0, true, "", "", false, 120);
+		addDisabledButton(btnSlot, "Sera", "Sera", "She seems to be sick or something...");
+	}
+	else
+	{
+		bonusText += "\n\nThe";
+		if(flags["SERA_QUIT_SMOKING"] == undefined) bonusText += " whiff of cigarette smoke and the";
+		bonusText += " occasional muffled, sardonic laugh tells you that Sera is in her room - although Void knows what she’s gotten up to on your ship in your absence.";
+		// [Sera]
+		addButton(btnSlot, "Sera", approachServantSera, true, "Sera", "Visit the demoness.");
+	}
 	
 	return bonusText;
 }
@@ -765,6 +775,11 @@ public function approachServantSera(introText:Boolean = false):void
 		approachServantSeraOnTavros(introText);
 		return;
 	}
+	if(!disableExploreEvents() && flags["SERA_PREGNANCY_TIMER"] >= 195)
+	{
+		seraPregMoveToTavros();
+		return;
+	}
 	
 	var obedience:Number = seraObedience();
 	
@@ -891,6 +906,7 @@ public function approachServantSera(introText:Boolean = false):void
 		
 		addButton(13, "Boot", evictServantSera, undefined, "Evict Sera", "Boot her off the ship, put her up at your Nursery. This will probably adversely affect her training.");
 	}
+	// Trained Sera
 	else
 	{
 		if(introText)
@@ -954,7 +970,10 @@ public function approachServantSera(introText:Boolean = false):void
 			}
 			else
 			{
-				output("<i>“Oh, hello [pc.master],”</i> purrs Sera, laying her holo-device to one side. She stretches herself out on her bed, giving you an unadulterated view of your property, claws slowly sliding up a [sera.skinColor] thigh. Her expression is one of simmering, provocative mischief. <i>“How are you intending on blighting my existence today?”</i>");
+				output("<i>“Oh, hello [pc.master],”</i> purrs Sera, laying her holo-device to one side. She stretches herself out on her bed, giving you an unadulterated view of your property");
+				if(flags["SERA_PREGNANCY_TIMER"] >= 110) output(" - and her swelling, pregnant belly");
+				else output(", claws slowly sliding up a [sera.skinColor] thigh");
+				output(". Her expression is one of simmering, provocative mischief. <i>“How are you intending on blighting my existence today?”</i>");
 			}
 			processTime(1);
 		}
@@ -985,6 +1004,22 @@ public function approachServantSera(introText:Boolean = false):void
 		addButton(5, "Sex", seraBitcheningSexMenu, undefined, "Sex", "Approach your slave for some sex.");
 		
 		addButton(13, "Boot", evictServantSera, undefined, "Evict Sera", "Boot her off the ship, put her up at the Nursery.");
+	}
+	
+	if(flags["SERA_TALKS_IMPREGNATE"] >= 2) addDisabledButton(6, "Impregnate", "Impregnate", "You and Sera have already agreed to make this possible.");
+	else if(!pc.hasGenitals()) addDisabledButton(6, "Impregnate", "Impregnate", "You will probably need genitals for this...");
+	else if((pc.hasCock() && !chars["SERA"].hasVagina()) || (pc.hasVagina() && !chars["SERA"].hasCock())) addDisabledButton(6, "Impregnate", "Impregnate", "Maybe if your genitals were compatible for breeding with hers, this would be possible...");
+	else if(flags["SERA_DISABLE_IMPREGNATE"] != undefined && (flags["SERA_DISABLE_IMPREGNATE"] + 7) > days) addDisabledButton(6, "Impregnate", "Impregnate", "Better to wait a bit before bringing it up again.");
+	else if(!canImpregnateSera()) addDisabledButton(6, "Impregnate", "Impregnate", "Better to get a little further down the road with her before bringing it up.");
+	else addButton(6, "Impregnate", seraBitcheningImpregnate, undefined, "Impregnate", "Is that allowed by the terms of her contract?");
+	
+	if(flags["SERA_PREGNANCY_TIMER"] >= 110) addButton(7, "Belly Rubs", seraPregBellyRubs, undefined, "Belly Rubs", "Rub her belly...");
+	
+	// Option turns up in her main menu after she has been barred for >3 days
+	if(flags["SERA_NO_SLEEP"] != undefined)
+	{
+		if((days - flags["SERA_NO_SLEEP"]) <= 3) addDisabledButton(9, "Debar", "Debar", "Sera is probably still upset. You can’t do this yet.");
+		else addButton(9, "Debar", seraBitchImpregnateBedResponse, "debar", "Debar", "Having her sleep with you would be nice, actually. Is it possible to entice her back?");
 	}
 	
 	addButton(14, "Leave", crew);
@@ -1886,15 +1921,16 @@ public function seraBitchTrainingTeaseFemCum(vIdx:int = 0):void
 // Ride
 public function seraBitchTrainingRide():void
 {
-	clearOutput();
-	showSera(true);
-	author("Nonesuch");
-	clearMenu();
-	
 	var obedience:Number = seraObedience();
 	var vIdx:int = pc.cuntThatFits(chars["SERA"].cockVolume(0));
 	if(vIdx < 0) vIdx = pc.biggestVaginaIndex();
 	var tinyVag:Boolean = (pc.vaginalCapacity(vIdx) < chars["SERA"].cockVolume(0) || pc.vaginas[vIdx].looseness() < 4);
+	
+	if(flags["SERA_TALKS_IMPREGNATE"] >= 2)
+	{
+		seraBitchImpregnateRide(vIdx, tinyVag);
+		return;
+	}
 	
 	// Final
 	// Requires: 80 obedience, medium/high lust
@@ -1903,6 +1939,11 @@ public function seraBitchTrainingRide():void
 		seraBitchTrainingRideFinale(vIdx);
 		return;
 	}
+	
+	clearOutput();
+	showSera(true);
+	author("Nonesuch");
+	clearMenu();
 	
 	// First
 	if(flags["SERA_BITCHENING_RIDE"] == undefined)
@@ -4393,6 +4434,7 @@ public function seraBitcheningPunishWalkiesGoPtII():void
 	var passerA:Function = null;
 	var passerB:Function = null;
 	
+	if(rivalIsActive()) witness.push(seraBitcheningPunishWalkiesWitnessRival);
 	if(flags["AINA_DAY_MET"] != undefined) witness.push(seraBitcheningPunishWalkiesWitnessAina);
 	if(flags["SEEN_FYN"] == true) witness.push(seraBitcheningPunishWalkiesWitnessFyn);
 	if(flags["MET_SEMITH"] == true) witness.push(seraBitcheningPunishWalkiesWitnessSemith);
@@ -4529,6 +4571,41 @@ public function seraBitcheningPunishWalkiesWitnessJardi():void
 	output("\n\n<i>“Yes, [pc.master],”</i> whispers Sera. You could cook toast with her cheeks right now.");
 	output("\n\n<i>“Lovely seeing you,”</i> you tell the petite, white rahn. She looks down, embarrassed and demure, and the memory of a flood of fluid hitting sheets fills your ears. <i>“And perhaps if you’re interested in a similar arrangement... we can talk more.”</i> You breeze on, tugging the leash briskly.");
 	output("\n\n<i>“Human relationships are so WEIRD,”</i> reaches your ears before you get completely out of earshot.");
+	
+	processTime(5);
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+	
+	return;
+}
+// Rival met
+public function seraBitcheningPunishWalkiesWitnessRival():void
+{
+	clearOutput();
+	showSera();
+	author("Nonesuch");
+	
+	moveTo("RESIDENTIAL DECK 3");
+	showLocationName();
+	
+	output("<i>“You! - what are you doing?”</i>");
+	output("\n\nYour cousin, slim and sharply dressed, is stood in the middle of the Residential thoroughfare, staring at you - or more specifically slightly beyond you, at the individual on the end of your leash. It’s a slight shock to see [rival.himHer] in a setting where you don’t want to kill [rival.himHer], but you immediately decide to style it out.");
+	if(!pc.isBimbo())
+	{
+		output("\n\n<i>“Taking one of my bitches for a walk. Say hello to my cousin, Sera.”</i>");
+		output("\n\n<i>“Hi,”</i> mutters Sera, staring at the ground.");
+		output("\n\n<i>“I’ve been collecting them,”</i> you tell [rival.name]. You crook your eyebrow at [rival.himHer]. <i>“Why, you interested?”</i>");
+	}
+	else
+	{
+		output("\n\n<i>“Taking one of my pets for a walk!”</i> you say brightly. <i>“Say woof woof to my lovely cousin, Sera!”</i>");
+		output("\n\n<i>“Hi,”</i> mutters Sera, staring at the ground.");
+		output("\n\n<i>“I love my good little pets and I’ve been collecting them!”</i> you enthuse to [rival.name]. <i>“Do you want to be one? I’ll take good care of you!”</i>");
+	}
+	output("\n\n<i>“No! God no.”</i> [rival.name] is still staring at Sera, expression frozen, foot tapping impulsively; [rival.hisHer] usual snap and sting are completely absent. <i>“Well! I suppose I should get back out to the frontier. Seems you’ve basically thrown in the towel, if this is how you’re wasting your time.”</i>");
+	output("\n\n<i>“What are <i>you</i> doing here?”</i> you inquire.");
+	output("\n\n<i>“Nothing! None of your business!”</i> [rival.heShe] strides away without another word. [rival.HeShe] can’t stop himself shooting a couple of glances back over [rival.hisHer] shoulder at the pair of you, though.");
 	
 	processTime(5);
 	
@@ -4767,14 +4844,30 @@ public function seraOnTavrosBonus(btnSlot:int = 0):String
 	}
 	else
 	{
-		if(flags["SERA_OBEDIENCE_MIN"] <= 0) bonusText += " Maybe you are in the mood to retrieve and train the demoness some more?";
+		pc.removeStatusEffect("Sera at Nursery");
+		
+		if(pc.hasStatusEffect("Sera Mommy Time"))
+		{
+			bonusText += " The door is closed, leaving Sera some private time to recover and bond with her newborn.";
+			addDisabledButton(btnSlot, "Sera", "Sera", "Sera is still ");
+		}
+		else if(pc.hasStatusEffect("Sera Morning Sickness") || (flags["SERA_PREGNANCY_TIMER"] >= 30 && flags["SERA_PREGNANCY_TIMER"] < 90 && hours >= 6 && hours < 10 && rand(3) == 0))
+		{
+			bonusText += " You hear the distinct sound of someone throwing up, followed by a moaned <i>“Fuck thiiiiiiis”</i> from Sera’s room. Probably best to leave her alone for a while.";
+			pc.createStatusEffect("Sera Morning Sickness", 0, 0, 0, 0, true, "", "", false, 120);
+			addDisabledButton(btnSlot, "Sera", "Sera", "She seems to be sick or something...");
+		}
 		else
 		{
-			bonusText += " Perhaps you should pay your recruit a little visit";
-			if(flags["SERA_MERCHANT"] != undefined) bonusText += " and maybe take a peek at her inventory";
-			bonusText += "?";
+			if(flags["SERA_OBEDIENCE_MIN"] <= 0) bonusText += " Maybe you are in the mood to retrieve and train the demoness some more?";
+			else
+			{
+				bonusText += " Perhaps you should pay your recruit a little visit";
+				if(flags["SERA_MERCHANT"] != undefined) bonusText += " and maybe take a peek at her inventory";
+				bonusText += "?";
+			}
+			addButton(btnSlot, "Sera", approachServantSeraOnTavros, true, "Sera", "Pay Sera a visit.");
 		}
-		addButton(btnSlot, "Sera", approachServantSeraOnTavros, true, "Sera", "Pay Sera a visit.");
 	}
 	
 	return bonusText;
@@ -4785,6 +4878,15 @@ public function approachServantSeraOnTavros(introText:Boolean = false):void
 	// Sera Salary hotfix check
 	if(seraSalaryCheck()) return;
 	
+	if(seraPregnancyIsDue())
+	{
+		output("Sera’s room is empty. It looks slightly more dishevelled than usual, although that’s a difficult thing to judge.");
+		output("\n\n...How long has she been pregnant for, again?");
+		// [Sera] option added to Briget’s menu
+		addButton(14, "Leave", mainGameMenu);
+		return;
+	}
+	
 	generateMapForLocation("NURSERYSERA");
 	
 	clearOutput();
@@ -4792,39 +4894,66 @@ public function approachServantSeraOnTavros(introText:Boolean = false):void
 	author("Nonesuch");
 	clearMenu();
 	
-	// Untrained
-	if(flags["SERA_OBEDIENCE_MIN"] <= 0)
+	if(introText)
 	{
-		output("Sera rolls her eyes at you as you enter her room. It’s horrifically untidy, an achievement given she only owns what the Nursery staff have loaned her. She’s wearing a staid outfit of jeans and t-shirt, presumably forced upon her for the sake of the children by " + (flags["BRIGET_MET"] == undefined ? "the head nurse" : "Briget") + ".");
-		output("\n\n<i>“Welcome, great and honorable [pc.master] that enslaved me only to then abandon me in this pastel-shaded booze-less hellhole,”</i> she yawns. <i>“You here to fuck me? I almost welcome it, it’s that boring around here.”</i>");
-		
-		processTime(1);
-	}
-	// Trained
-	else
-	{
-		// !Merchant Sera:
-		if(flags["SERA_MERCHANT"] == undefined)
+		// Untrained
+		if(flags["SERA_OBEDIENCE_MIN"] <= 0)
 		{
-			output("<i>“You’ve come to pick me up, haven’t you?”</i> says Sera the second you enter her room. It’s horrifically untidy, an achievement given she only owns what the Nursery staff have loaned her. She’s wearing a staid outfit of jeans and t-shirt, presumably forced upon her for the sake of the children by " + (flags["BRIGET_MET"] == undefined ? "the head nurse" : "Briget") + ". <i>“C’mon. Let’s blow this popsicle stand. Please? [pc.master]?”</i>");
+			output("Sera rolls her eyes at you as you enter her room. It’s horrifically untidy, an achievement given she only owns what the Nursery staff have loaned her. She’s wearing a staid outfit of jeans and t-shirt, presumably forced upon her for the sake of the children by " + (flags["BRIGET_MET"] == undefined ? "the head nurse" : "Briget") + ".");
+			output("\n\n<i>“Welcome, great and honorable [pc.master] that enslaved me only to then abandon me in this pastel-shaded booze-less hellhole,”</i> she yawns. <i>“You here to fuck me? I almost welcome it, it’s that boring around here.”</i>");
 			
-			// [Recruit] [Leave]
+			processTime(1);
+			if(flags["MET_SERA_IN_NURSERY"] == undefined) flags["MET_SERA_IN_NURSERY"] = 1;
 		}
-		// Merchant Sera:
+		// Trained
 		else
 		{
-			output("<i>“I told you not to - oh. Hey, [pc.master].”</i>");
-			output("\n\nSera blinks up from her holopad at you as you enter her room. It’s horrifically untidy, stacks and slews of packaged gene-mods and promotional material everywhere you look. She’s wearing a staid outfit of jeans and t-shirt, presumably forced upon her for the sake of the children by " + (flags["BRIGET_MET"] == undefined ? "the head nurse" : "Briget") + ".");
+			// !Merchant Sera:
+			if(flags["SERA_MERCHANT"] == undefined)
+			{
+				if(flags["SERA_PREGNANCY_TIMER"] >= 195)
+				{
+					output("<i>“Hey [pc.master]! I knew you’d come and visit.”</i>");
+					output("\n\nSera puts down her holopad and grins up at you when you enter her room. Though she’s clad in her modest jeans and blouse outfit she still stretches herself out for you, letting you take in her heavy, rounded belly and milk-swollen tits. Going off the state of her room, pregnancy has intensified her predilection for untidiness more than anything.");
+					output("\n\n<i>“Cuz I knew you can’t get enough of drinking in your handiwork,”</i> she husks, feline and serene.");
+				}
+				else
+				{
+					output("<i>“You’ve come to pick me up, haven’t you?”</i> says Sera the second you enter her room. It’s horrifically untidy, an achievement given she only owns what the Nursery staff have loaned her. She’s wearing a staid outfit of jeans and t-shirt, presumably forced upon her for the sake of the children by " + (flags["BRIGET_MET"] == undefined ? "the head nurse" : "Briget") + ". <i>“C’mon. Let’s blow this popsicle stand. Please? [pc.master]?”</i>");
+				}
+				// [Recruit] [Leave]
+			}
+			// Merchant Sera:
+			else
+			{
+				if(flags["SERA_PREGNANCY_TIMER"] >= 195)
+				{
+					output("<i>“Hey [pc.master]! How’s it going?”</i>");
+					output("Sera puts down her holopad and grins up at you when you enter her room. She’s sat on her side in bed, resting her large, round belly, surrounded by slews of packaged gene mods and promotional material. Going off the state of her room, pregnancy has intensified her predilection for untidiness more than anything.");
+				}
+				else
+				{
+					output("<i>“I told you not to - oh. Hey, [pc.master].”</i>");
+					output("\n\nSera blinks up from her holopad at you as you enter her room. It’s horrifically untidy, stacks and slews of packaged gene-mods and promotional material everywhere you look. She’s wearing a staid outfit of jeans and t-shirt, presumably forced upon her for the sake of the children by " + (flags["BRIGET_MET"] == undefined ? "the head nurse" : "Briget") + ".");
+				}
+				// [Recruit] [Buy] [Leave]
+			}
 			
-			// [Recruit] [Buy] [Leave]
-			addButton(1, "Buy", seraBitcheningStore, "buy");
-			addButton(2, "Sell", seraBitcheningStore, "sell");
+			processTime(1);
+			if(flags["MET_SERA_IN_NURSERY"] == undefined) flags["MET_SERA_IN_NURSERY"] = 1;
 		}
-		
-		processTime(1);
 	}
 	
-	addButton(0, "Recruit", seraOnTavrosRecruit, undefined, "Recruit", "Put her back on board your ship.");
+	addButton(0, "Appearance", seraAppearance);
+	if(flags["SERA_MERCHANT"] != undefined)
+	{
+		addButton(1, "Buy", seraBitcheningStore, "buy");
+		addButton(2, "Sell", seraBitcheningStore, "sell");
+	}
+	if(flags["SERA_PREGNANCY_TIMER"] >= 195) addButton(3, "Talk", seraPregTalk);
+	if(flags["SERA_PREGNANCY_TIMER"] >= 195) addDisabledButton(4, "Recruit", "Recruit", "She is currently being taken care of at the nursery and is far too pregnant to board your ship.");
+	else addButton(4, "Recruit", seraOnTavrosRecruit, undefined, "Recruit", "Put her back on board your ship.");
+	if(flags["SERA_PREGNANCY_TIMER"] >= 110) addButton(7, "Belly Rubs", seraPregBellyRubs, undefined, "Belly Rubs", "Rub her belly...");
 	addButton(14, "Leave", mainGameMenu);
 	
 	return;

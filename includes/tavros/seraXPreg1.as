@@ -429,7 +429,7 @@ public function seraBreedResponse(arg:Array):void
 			output("\n\nYou slide yourself down the arc of her broad bitch-breaker, the passage made incredibly easy by the copious amount of cum slathered across both tab and slot. Perhaps once you would have found taking an energetically merciless demon’s fervent twelve inch erection tough, painful - now, it swelling your");
 			if(pc.hasCock()) output(" female");
 			output(" sex outwards and upwards feels like the most right thing in the world. You quiver around her when the thought that this thing is going to whelp you, consigning you to nine months of soft, hormone-soaked rotundity, flashes across your brain.");
-			output("\n\nSera exhales throatily as you rock on top of her steadily as best you can with your hands tied, her own navy nipples protuberant on top of her gently trembling boobs. This is evidently a little downtime for her; her immediate animal lust bitten, she now watches you bend and milk her pole until [pc.femcum] " + (pc.isSquirter(vag) ? "dribbles" : "courses") + " freely down it with obvious enjoyment. She snags your nipple chain with a claw or her teeth as she pleases, the");
+			output("\n\nSera exhales throatily as you rock on top of her steadily as best you can with your hands tied, her own " + (chars["SERA"].skinTone != "bright pink" ? "navy" : "magenta") + " nipples protuberant on top of her gently trembling boobs. This is evidently a little downtime for her; her immediate animal lust bitten, she now watches you bend and milk her pole until [pc.femcum] " + (pc.isSquirter(vag) ? "dribbles" : "courses") + " freely down it with obvious enjoyment. She snags your nipple chain with a claw or her teeth as she pleases, the");
 			if(pc.hasErectNipples(0)) output(" sharp pinches");
 			else if(pc.hasFuckableNipples(0)) output("n digs into the soft insides of your breasts,");
 			else output("n presses firmly on the patches, sending shocks of lust into your chest and");
@@ -605,7 +605,7 @@ public function seraSpawnPregnancyEnds():void
 		output("\n\nA passer-by comes over to check on you, and begins to panic when you explain the situation. You default to giving short, simple orders, and your new deputy calms down. Together, you make it to a place where you can get medical aid.");
 	}
 	// in the jungle like a Tarzan bride
-	else if(InRoomWithFlag(GLOBAL.JUNGLE))
+	else if(InRoomWithFlag(GLOBAL.OUTDOOR))
 	{
 		output("\n\nGroaning at the timing, you shed your [pc.gear] and position yourself the best you can in the inhospitable and non-hospital-able terrain. The wish that you’d stayed somewhere indoors and safe hums through your thoughts like a mosquito, but there’s no help for it -- you’ll have to deliver the baby on your own.");
 		// minor HP damage?
@@ -743,6 +743,7 @@ public function listSeraNoNameBabies():Array
 {
 	return listSeraBabies(true);
 }
+/*
 public function displaySeraBabies():void
 {
 	var babies:Array = listSeraBabies();
@@ -791,6 +792,7 @@ public function displaySeraBabies():void
 		output("\n<i>* There are no babies currently in the nursery for Sera.</i>");
 	}
 }
+*/
 
 // Sera Nursery Visits
 // Per day Sera has a 50% chance of appearing in the Cafeteria between 18:00 - 21:30 if Seraspawn has arrived. Dark Chrysalis should be closed at this time if it’s triggered.
@@ -804,15 +806,17 @@ public function seraNurseryVisitCheck(totalAttempts:int = 1):void
 {
 	if(totalAttempts < 1 || (!seraRecruited() && currentLocation == "DARK CHRYSALIS")) return;
 	
-	var prob:int = Math.round((1 - Math.pow((1 / 2), totalAttempts)) * 1000);
+	var probMax:int = (seraRecruited() ? 1 : 1000);
+	var prob:int = Math.round((1 - Math.pow((1 / 2), totalAttempts)) * probMax);
 	
-	if(seraHasKidInNursery(true) || (seraHasKidInNursery() && rand(1000) <= prob))
+	if(seraHasKidInNursery(true) || (seraHasKidInNursery() && rand(probMax) <= prob))
 	{
 		pc.createStatusEffect("Sera at Nursery");
 	}
 }
 public function seraAtNursery():Boolean
 {
+	if(pc.hasStatusEffect("Sera Mommy Time")) return false;
 	if(pc.hasStatusEffect("Sera at Nursery") && (hours == 18 || (hours > 18 && hours < 21) || (hours == 21 && minutes <= 30))) return true;
 	
 	return false;
@@ -869,7 +873,7 @@ public function seraNurseryCafeteriaApproach():void
 		addButton(0, "Next", nameSeraSpawn, [babyIdx, babym, babyName, 0]);
 	}
 	// Repeat naming if PC has other kids by Sera, because one wasn’t fucking enough
-	else if(flags["SERA_NAMED_KID"] != undefined && seraNoNameBabies.length > 0)
+	else if(seraNoNameBabies.length > 0)
 	{
 		processTime(1);
 		
@@ -877,7 +881,9 @@ public function seraNurseryCafeteriaApproach():void
 		babym = (seraNoNameBabies[babyIdx].NumMale > 0 ? true : false);
 		babyName = seraNoNameBabies[babyIdx].Name;
 		
-		output("<i>“I still can’t believe you put yourself through another nine months of morning sickness and looking like a tank,”</i> Sera says when you sit yourself down opposite her. <i>“Did your dad mod you so that you’d have the breeding bug bad? Would make sense of this place.”</i> She concentrates on swallowing her current mouthful of cauli-nubbs before going on in an overly casual tone. <i>“What are we calling this little " + (babym ? "bastard" : "moppet") + ", then?”</i>");
+		output("<i>“I still can’t believe you put yourself through");
+		if(flags["SERA_NAMED_KID"] != undefined) output(" another");
+		output(" nine months of morning sickness and looking like a tank,”</i> Sera says when you sit yourself down opposite her. <i>“Did your dad mod you so that you’d have the breeding bug bad? Would make sense of this place.”</i> She concentrates on swallowing her current mouthful of cauli-nubbs before going on in an overly casual tone. <i>“What are we calling this little " + (babym ? "bastard" : "moppet") + ", then?”</i>");
 		
 		// [Enter Name]
 		addButton(0, "Next", nameSeraSpawn, [babyIdx, babym, babyName, 0]);
@@ -916,7 +922,8 @@ public function nameSeraSpawn(arg:Array):void
 	var babyIdx:int = arg[0];
 	var babym:Boolean = arg[1];
 	var babyName:String = arg[2];
-	var namedBabies:int = arg[3];
+	var namedBabies:int = (arg.length > 3 ? arg[3] : 0);
+	var fromSera:Boolean = (arg.length > 4 ? arg[4] : false);
 	
 	output("Sera is asking you to name your " + (babym ? "handsome baby boy" : "beautiful baby girl") + ". What do you decide to name " + (babym ? "him" : "her") + "?");
 	displayInput();
@@ -924,7 +931,7 @@ public function nameSeraSpawn(arg:Array):void
 	output("\n\n\n");
 	
 	clearMenu();
-	addButton(0, "Next", nameSeraSpawnCheck, [babyIdx, babym, babyName, namedBabies]);
+	addButton(0, "Next", nameSeraSpawnCheck, [babyIdx, babym, babyName, namedBabies, fromSera]);
 }
 public function nameSeraSpawnCheck(arg:Array):void
 {
@@ -932,6 +939,7 @@ public function nameSeraSpawnCheck(arg:Array):void
 	var babym:Boolean = arg[1];
 	var babyName:String = arg[2];
 	var namedBabies:int = arg[3];
+	var fromSera:Boolean = arg[4];
 	
 	if(this.userInterface.textInput.text == "")
 	{
@@ -954,7 +962,7 @@ public function nameSeraSpawnCheck(arg:Array):void
 	}
 	babyName = this.userInterface.textInput.text;
 	if(stage.contains(this.userInterface.textInput)) this.removeInput();
-	nameSeraSpawnResult([babyIdx, babym, babyName, namedBabies]);
+	nameSeraSpawnResult([babyIdx, babym, babyName, namedBabies, fromSera]);
 }
 public function nameSeraSpawnResult(arg:Array):void
 {
@@ -968,18 +976,20 @@ public function nameSeraSpawnResult(arg:Array):void
 	var babym:Boolean = arg[1];
 	var babyName:String = arg[2];
 	var namedBabies:int = (arg[3] + 1);
+	var fromSera:Boolean = arg[4];
 	
 	// Special Names:
 	var setName:String = (babyName.toLowerCase());
 	
 	// PC inputs any of the following text-strings: Fuck, Tit, Bitch, Ass, Slut, Whore, Butt, Dick, Piss, Shit, Cock, Cunt, Cum, Pussy, Wank
-	if(InCollection(setName, ["fuck", "tit", "bitch", "ass", "slut", "whore", "butt", "dick", "piss", "shit", "cock", "cunt", "cum", "pussy", "wank"]))
+	if(InCollection(setName, ["fuck", "tit", "bitch", "ass", "slut", "whore", "butt", "dick", "piss", "shit", "cock", "cunt", "cum", "pussy", "wank", "faggot", "asshole", "dickhead", "buttslut"]))
 	{
-		output("Sera laughs uproariously, drawing curious glances from the kitchen staff.");
+		if(!fromSera) output("Sera laughs uproariously, drawing curious glances from the kitchen staff.");
+		else output("Sera manages a single crow croak of a laugh.");
 		output("\n\n<i>“We can’t call it that,”</i> she cries. <i>“" + (babym ? "He" : "She") + " will grow up thinking daddy keeps mixing " + (babym ? "him" : "her") + " up with mommy! C’mon, seriously now.”</i>");
 		
 		// Show textbox again
-		addButton(0, "Next", nameSeraSpawn, [babyIdx, babym, babyName]);
+		addButton(0, "Next", nameSeraSpawn, [babyIdx, babym, babyName, arg[3], fromSera]);
 		return;
 	}
 	// PC calls male child Damien
@@ -1000,10 +1010,19 @@ public function nameSeraSpawnResult(arg:Array):void
 		output("<i>“" + babyName + ",”</i> Sera tries, rolling it around her mouth. <i>“Alright, I’m on board. Worst things " + (babym ? "he" : "she") + " could be called, I guess.”</i>");
 	}
 	// merge
-	output("\n\nThe purple-skinned succubus goes back to toying with her meal.");
-	output("\n\n<i>“I guess I can come up here every once in a while,”</i> she says. <i>“Make sure they don’t sell little " + babyName + " to a corporation or whatever, whilst you’re slutting it up on the frontier. The food’s pretty good for a kiddie joint, so I’m perfectly happy to keep freeloading here until they start refusing to let me in.”</i>");
-	output("\n\n<i>“And also because you think your " + (babym ? "son" : "daughter") + "’s really cute,”</i> you say, gazing at her shrewdly. <i>“Don’t you?”</i>");
-	output("\n\nSera brushes the smirk off her face and goes on eating without deigning to answer. She can do nothing about the suggestion of navy across her cheeks, though.");
+	if(!fromSera)
+	{
+		output("\n\nThe purple-skinned succubus goes back to toying with her meal.");
+		output("\n\n<i>“I guess I can come up here every once in a while,”</i> she says. <i>“Make sure they don’t sell little " + babyName + " to a corporation or whatever, whilst you’re slutting it up on the frontier. The food’s pretty good for a kiddie joint, so I’m perfectly happy to keep freeloading here until they start refusing to let me in.”</i>");
+		output("\n\n<i>“And also because you think your " + (babym ? "son" : "daughter") + "’s really cute,”</i> you say, gazing at her shrewdly. <i>“Don’t you?”</i>");
+		output("\n\nSera brushes the smirk off her face and goes on eating without deigning to answer. She can do nothing about the suggestion of " + (chars["SERA"].skinTone != "bright pink" ? "navy" : "magenta") + " across her cheeks, though.");
+	}
+	else
+	{
+		output("\n\n<i>“I don’t mind staying here, if you don’t want me back as your ship slut straight away,”</i> she says, eyes returning to the bundle in her arms. <i>“The food here is pretty good. And somebody’s got to make sure they don’t sell [ss#.name] to a corporation or whatever, right?”</i>");
+		output("\n\n<i>“And also because you think your " + (babym ? "son" : "daughter") + "’s really cute,”</i> you say, gazing at her shrewdly. <i>“Don’t you?”</i>");
+		output("\n\nSera brushes the smirk off her face and doesn’t deign to answer. She can’t do anything about the suggestion of " + (chars["SERA"].skinTone != "bright pink" ? "navy" : "magenta") + " across her cheeks, though. You give her a kiss on the hot, salty forehead, and exit left.");
+	}
 	
 	processTime(3);
 	
@@ -1014,9 +1033,9 @@ public function nameSeraSpawnResult(arg:Array):void
 	
 	clearMenu();
 	// More babies...
-	if((seraNoNameBabies.length - 1) > 0) addButton(0, "Next", nameSeraSpawnResultPlus, [babyIdx, babym, babyName, namedBabies]);
+	if((seraNoNameBabies.length - 1) > 0) addButton(0, "Next", nameSeraSpawnResultPlus, [babyIdx, babym, babyName, namedBabies, fromSera]);
 	// Bounce back to Cafeteria main menu
-	else addButton(0, "Next", seraNurseryCafeteriaApproach);
+	else addButton(0, "Next", (!fromSera ? seraNurseryCafeteriaApproach : brigetSeraPregCheckFinish));
 }
 public function nameSeraSpawnResultPlus(arg:Array):void
 {
@@ -1030,12 +1049,13 @@ public function nameSeraSpawnResultPlus(arg:Array):void
 	var babym:Boolean = (seraNoNameBabies[babyIdx].NumMale > 0 ? true : false);
 	var babyName:String = seraNoNameBabies[babyIdx].Name;
 	var namedBabies:int = arg[3];
+	var fromSera:Boolean = arg[4];
 	
 	if(namedBabies == 1) output("<i>“We overdid it on the whole fertility kick, didn’t we?”</i> Sera goes on with a smirk. <i>“Nearly ran when I looked through the incubator glass. What do you want to call the other one?”</i>");
-	else output("<i>“And the other one?”</i> continue Sera, with an air of tribulation.");
+	else output("<i>“And the other one?”</i> continues Sera, with an air of tribulation.");
 	
 	// [Enter Name]
-	addButton(0, "Next", nameSeraSpawn, [babyIdx, babym, babyName, namedBabies]);
+	addButton(0, "Next", nameSeraSpawn, [babyIdx, babym, babyName, namedBabies, fromSera]);
 }
 
 public function seraNurseryActions(arg:Array):void
@@ -1056,11 +1076,13 @@ public function seraNurseryActions(arg:Array):void
 	
 	switch(response)
 	{
+		/*
 		case "stats":
 			displaySeraBabies()
 			
 			addButton(14, "Back", seraNurseryCafeteriaApproach);
 			break;
+		*/
 		case "visit":
 			for(i = 0; i < seraBabies.length; i++)
 			{
@@ -1089,7 +1111,7 @@ public function seraNurseryActions(arg:Array):void
 			
 			visitList.push([
 				(	babyName + " laboriously clambers to their feet and leans on " + (babym ? "his" : "her") + " crib railing as " + (babym ? "his" : "her") + " parents enter " + (babym ? "his" : "her") + " room, before doing what babies do best: stare. Sera goes across and puts a clawed hand up; with the same expression of furrowed concentration, " + babyName + " carefully draws their own tiny paw back and then pats it into her palm."
-				+	"\n\n<i>“" + (babym ? "He" : "She") + " has... um. You know I was only joking about it not being mine, right?”</i> The demon-morph says. There’s a soft, unfocused look on her face that you don’t see anywhere else. She gently runs her fingers over the hazel down on top of the baby’s head. <i>“" + (babym ? "He" : "She") + "’s got my natural color. That’s the first thing I noticed.”</i>"
+				+	"\n\n<i>“" + (babym ? "He" : "She") + " has... um." + (!seraRecruited() ? " You know I was only joking about it not being mine, right?" : "") + "”</i> The demon-morph says. There’s a soft, unfocused look on her face that you don’t see anywhere else. She gently runs her fingers over the hazel down on top of the baby’s head. <i>“" + (babym ? "He" : "She") + "’s got my natural color. That’s the first thing I noticed.”</i>"
 				), "SERA_NURSERY_VISIT_1"
 			]);
 			visitList.push([
@@ -1131,12 +1153,12 @@ public function seraNurseryActions(arg:Array):void
 			if(flags["SERA_NURSERY_VISIT_1"] != undefined && flags["SERA_NURSERY_VISIT_2"] != undefined && flags["SERA_NURSERY_VISIT_3"] != undefined && flags["SERA_NURSERY_VISIT_4"] != undefined)
 			{
 				output("You spend a few more minutes interacting with " + babyName + " and then head back out to the corridor. You’re always wary of... you are startled out of your thoughts by something that sounds like a pig that’s been made to run too fast.");
-				output("\n\n<i>“Onedammit son of a bitch,”</i> sniffs Sera, furiously wiping away her tears and then blowing her nose. <i>“That stupid bundle of fucking joy... I was always warned this would happen. Eventually, the sub breaks YOU.”</i>");
+				output("\n\n<i>“One dammit son of a bitch,”</i> sniffs Sera, furiously wiping away her tears and then blowing her nose. <i>“That stupid bundle of fucking joy... I " + (!seraRecruited() ? "was always warned this would happen. Eventually, the sub breaks YOU" : "NEVER wanted you to make me cry. I just didn’t know how far you’d go..") + ".”</i>");
 				output("\n\nYou give her a hug, and after a moment, she squeezes you back tightly. You go back to the cafeteria arm in arm.");
-				output("\n\n<i>“None of my other sluts find out about this, okay?”</i> she says, settling herself down again. <i>“This place is a...”</i>");
+				output("\n\n<i>“None of " + (!seraRecruited() ? "my" : "your") + " other sluts find out about this, okay?”</i> she says, settling herself down again. <i>“This place is a...”</i>");
 				output("\n\n<i>“Safe spot,”</i> you suggest.");
-				output("\n\n<i>“Yeah. Where I can let all my emotions go and shit, so I can be a callous bitch the rest of the time. Understood?”</i>");
-				output("\n\nYou lean over and plant a kiss on her forehead. You receive a glower and two navy cheeks in response.");
+				output("\n\n<i>“Yeah. Where I can let all my emotions go and shit, so I can be a " + (!seraRecruited() ? "callous bitch" : "nasty slut") + " the rest of the time. Understood?”</i>");
+				output("\n\nYou lean over and plant a kiss on her forehead. You receive a glower and two " + (chars["SERA"].skinTone != "bright pink" ? "navy" : "magenta") + " cheeks in response.");
 				
 				processTime(5);
 			}
@@ -1170,8 +1192,8 @@ public function seraNurseryActions(arg:Array):void
 			else if(numKids <= 4) output(" with your other kids");
 			else if(numKids > 4) output(" with some of your other kids");
 			output(" for evening playtime. " + babyName + "’s face lights up when " + (babym ? "he" : "she") + " catches sight of " + (babym ? "his" : "her") + " parents.");
-			output("\n\n<i>“Popo mommy!”</i> " + (babym ? "he" : "she") + " cries, toddling towards you. <i>“Biisht " + pc.mf("daddy", "mommy") + "!”</i>");
-			if(flags["SERA_NURSERY_PLAY"] == undefined) output("\n\nYou cover your eyes despairingly, Sera’s delighted laughter ringing in your ears.");
+			output("\n\n<i>“" + (chars["SERA"].skinTone == "bright pink" ? "Pick" : "Popo") + " mommy!”</i> " + (babym ? "he" : "she") + " cries, toddling towards you. <i>“" + (!seraRecruited() ? "Biisht" : pc.mf("Mash Toe", "Mishtiss")) + " " + pc.mf("daddy", "mommy") + "!”</i>");
+			if(flags["SERA_NURSERY_PLAY"] == undefined) output("\n\n" + (!seraRecruited() ? "You cover your eyes despairingly, Sera’s delighted laughter ringing" : "Oh no. Sera’s delighted laughter rings") + " in your ears.");
 			else output("\n\nYou really hope you can get " + (babym ? "him" : "her") + " to grow out of that soon.");
 			
 			processTime(1);

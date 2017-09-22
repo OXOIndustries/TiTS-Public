@@ -2237,6 +2237,9 @@
 				case "clits":
 					buffer = clitsDescript(arg2);
 					break;
+				case "clitsNoun":
+					buffer = clitsDescript(arg2, true);
+					break;
 				case "tailVagina":
 				case "tailCunt":
 				case "cuntTail":
@@ -13285,14 +13288,14 @@
 			if (totalClits() > 1) return "one of your " + plural(clitDescript());
 			return "your " + clitDescript();
 		}
-		public function clitsDescript(pussy: Number = -1): String {
+		public function clitsDescript(pussy: Number = -1, nounOnly:Boolean = false): String {
 			if (pussy >= 0)
 			{
-				if (vaginas[pussy].clits == 1) return clitDescript(pussy);
-				return plural(clitDescript(pussy));
+				if (vaginas[pussy].clits == 1) return clitDescript(pussy, nounOnly);
+				return plural(clitDescript(pussy, nounOnly));
 			}
-			if (totalClits() != 1) return plural(clitDescript());
-			return clitDescript();
+			if (totalClits() != 1) return plural(clitDescript(pussy, nounOnly));
+			return clitDescript(pussy, nounOnly);
 		}
 		public function clitDescript(pussy: Number = -1, nounOnly:Boolean = false): String {
 			if (vaginas.length <= 0) return ("ERROR: CLITDESCRIPT WITH NO VAGINA");

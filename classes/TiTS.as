@@ -198,7 +198,8 @@
 		include "../includes/tavros/sera.as";
 		include "../includes/tavros/seraXPack1.as";
 		include "../includes/tavros/seraXPack2.as";
-		include "../includes/tavros/seraXPreg.as";
+		include "../includes/tavros/seraXPreg1.as";
+		include "../includes/tavros/seraXPreg2.as";
 		include "../includes/tavros/shearBeauty.as";
 		include "../includes/tavros/shelly.as";
 		include "../includes/tavros/tamaniCorpShop.as";
