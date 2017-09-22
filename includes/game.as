@@ -1074,7 +1074,7 @@ public function sleep(outputs:Boolean = true):void {
 					}
 					break;
 				case "SERA":
-					if (seraIsCrew() && rand(3) == 0)
+					if (seraIsCrew())
 					{
 						interrupt = seraBitchImpregnateBed();
 					}
