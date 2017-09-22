@@ -625,104 +625,321 @@ public function motherhuskEncounter():void
 	clearMenu();
 	addButton(0,"Next",move,shipLocation);
 }
-/*
-output("\n\nMotherhusk Puzzlefuck");
-output("\n\n//Huge hacking puzzle to get at motherhusks that a raskvel broodmother has kept to herself. So pregnant she can’t stop you.");
 
-output("\n\n>Security grid hack -> lights out.");
-output("\n\n>Security door override -> turnydoodlepuzzle. Should be obnoxious but un-losable");
+//Motherhusk Puzzlefuck
+//Huge hacking puzzle to get at motherhusks that a raskvel broodmother has kept to herself. So pregnant she can’t stop you.
+//>Security grid hack -> lights out.
+//>Security door override -> turnydoodlepuzzle. Should be obnoxious but un-losable
 
-output("\n\n//Intro");
-output("\n\nAs you journey closer to the motherhusk deposit, you note that the terrain is changing. The mountains of garbage are higher, and their sides are smoother, almost as if all the usable handholds have been cut away. Azra’s coordinates lead you into a valley between two of the higher mounds, sloping down to a makeshift structure composed of hastily-welded starship hulls. A squat, raskvel-sized security door is placed in the very center, flanked by what looks like a simple intercom.");
-output("\n\n//Nonbimbo");
-output("\n\n<i>“This could be a trap. Perfect ambush point,”</i> you observe.");
-output("\n\nAzra nods. <i>“It could be, but the contents of that structure are vital to my research. We knew these expeditions would be risky when we set out.”</i>");
-output("\n\n<i>“Indeed.”</i> You hold your [pc.weapon] a little closer.");
-output("\n\n//Bimbo");
-output("\n\n<i>“Ooooh, this is the prettiest house I’ve seen on Tarkus!”</i> you observe.");
-output("\n\nAzra nods. <i>“But it may be a trap. The walls high walls make this place ideal for ambush. We must proceed carefully.”</i>");
-output("\n\n<i>“Sure thing, Doctor Sharky!”</i>");
-output("\n\n//Merge");
-output("\n\n[Next]");
-output("\n\nThe slope into the valley slowly descends to the armored structure. It’s an easy walk. The gritty soil is packed into a solid, rust-road road by frequent travel. Sharp ruts from an iron-wheeled vehicle line the sides, but whatever left them has long-since rolled on. Azra scans the sides of the valley for ambush, wings twitching nervously. You keep your eyes on the shadows, yet you see nothing save for dim crags and cracked pipes.");
-output("\n\nThe wind whistles by.");
-output("\n\nYou’re standing in front of the door before you know it. The intercom panel is buzzing faintly, the call button glowing with dim green luminescence. No sign of hostiles has presented itself.");
-output("\n\nAzra checks the scans on her Codex, overlaid across a topography scan. <i>“They’re inside. I’m not sure why. Perhaps the motherhusks are being farmed.”</i> She looks over her shoulder, then back to you. <i>“Shall we try the buzzer?”</i>");
-output("\n\n[Buzz In] [Knock]");
+//Intro
+public function actualMotherHuskIntro():void
+{
+	clearOutput();
+	showAzra();
+	showName("HUNTING\nMOTHERHUSKS");
+	//9999 set location a new location
 
-output("\n\n//Knock:");
-output("\n\nYou knock. The door makes a hollow-sounding ‘clang.’");
-output("\n\nNothing happens.");
-output("\n\nAzra shrugs. <i>“Let’s just use the intercom.”</i>");
+	output("As you journey closer to the motherhusk deposit, you note that the terrain is changing. The mountains of garbage are higher, and their sides are smoother, almost as if all the usable handholds have been cut away. Azra’s coordinates lead you into a valley between two of the higher mounds, sloping down to a makeshift structure composed of hastily-welded starship hulls. A squat, raskvel-sized security door is placed in the very center, flanked by what looks like a simple intercom.");
 
-output("\n\n//Buzzer");
-output("\n\nYou press the intercom button. The answering buzz, though muted by the walls, carries through the structure with such volume that you can feel it vibrating against your fingertips. You jerk back in shock.");
-output("\n\n<i>“Whaddya want?”</i> a staticky voice barks through the embedded speaker. <i>“I’m full up till tomorrow.”</i>");
-output("\n\nAzra’s bafflement is obvious, and you aren’t much better off. <i>“Say something,”</i> she whispers.");
-output("\n\nYou clear your throat and press down the \"talk\”</i> button. <i>“{Ummm... like, we just wanted to see if we could have some motherhusks.”</i> After a second, you remember to add, <i>“We have credits and stuff.”</i>/Uh... we wanted to buy some motherhuskers. Our sensors indicate you have a sizeable supply.”</i> Azra flashes you a thumbs up.}");
-output("\n\nFive or six seconds pass in complete silence. You’re about to try again when the intercom clicks on. <i>“Nope. No motherhusks here. Whatever those are. You should look somewhere else. I bet they’re somewhere else besides here.”</i>");
-output("\n\nAzra glances at her Codex. <i>“They’re definitely here, [pc.name].”</i>");
-output("\n\n<i>“Surely there’s some kind of trade we can make.”</i> You try your best to be diplomatic.");
-output("\n\nWhen the intercom clicks back on, the voice on the other side is breathing heavily. <i>“Uhhh, n-n-nope! I’ve got all the cum I need for today. You might as well leave. ‘Sides, you big, sexy off-worlders would just steal them anyway.”</i> Whoever it is, she moans after that. <i>“Ooh, and uh... there’s no way you could get through my defenses. Even though I’m so pregnant I can’t move, you’d never be able to get inside and have your way with me. So you should find some other girl to trick into f-f-fuuuuuucking!”</i> The last word comes out as a screech of pleasure, then abruptly cuts off.");
-output("\n\n[Next]");
-output("\n\nAzra rolls her eyes. <i>“It’s so strange that everyone we meet is so obsessed with sex. She sounded like she was masturbating in there for heaven’s sake!”</i>");
-output("\n\nHer assessment seems on the money. <i>“So what do you want to do? It’s your mission.”</i>");
-output("\n\nAzra turns her eyes back to the door. <i>“I say we go for it. Between the two of us, we can find a solution to deal with her so-called defenses. Important scientific work should not be stopped because of the deviances of a single native. Besides, it seems clear to me that she wants us to get inside. Such marvellous sexual deviancy...”</i> She taps her chin. <i>“But if you truly have qualms about invading her home, we could move on. We will surely miss out on numerous scientific advancements, but there are thousands more waiting to be catalogued.”</i>");
-output("\n\nDo you break in or move on?");
-output("\n\n//[Break In] [Move On]");
+	//Nonbimbo
+	if(!pc.isBimbo())
+	{
+		output("\n\n<i>“This could be a trap. Perfect ambush point,”</i> you observe.");
+		output("\n\nAzra nods. <i>“It could be, but the contents of that structure are vital to my research. We knew these expeditions would be risky when we set out.”</i>");
+		output("\n\n<i>“Indeed.”</i> You hold your [pc.weapon] a little closer.");
+	}
+	//Bimbo
+	else
+	{
+		output("\n\n<i>“Ooooh, this is the prettiest house I’ve seen on Tarkus!”</i> you observe.");
+		output("\n\nAzra nods. <i>“But it may be a trap. The walls high walls make this place ideal for ambush. We must proceed carefully.”</i>");
+		output("\n\n<i>“Sure thing, Doctor Sharky!”</i>");
+	}
+	//Merge
+	//[Next]
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",raskvelBunkerApproach);
+}
 
-output("\n\n//Move On");
-output("\n\n<i>“{Pshhh. Fuck this mess. I’m not going to break down a door just for some pregnant alien pussy. Besides, I’m sure there’s like, tons more pregnancy plants on other planets./Let’s move on. The sooner we get the last thing on your list, the sooner we can move on to the next planet.}”</i>");
-output("\n\nAzra looks longingly at the door, then sighs. <i>“Very well.”</i> She taps at her codex thoughtfully. <i>“I’ve identified a path that should get us to the spunkshrooms with minimal exposure to hostile natives.”</i> Her tail curls protectively around your [pc.hips]. <i>“No reason to risk my protector’s safety any more than necessary.”</i>");
-output("\n\n{Smiling back at her,/Wearing a cocksure grin,/Nodding severely,} you leave the bunker behind you, the pregnant-slut inside to remain forever a mystery.");
-output("\n\n//[Next] -> On to the spunkshroom intro :3");
+public function raskvelBunkerApproach():void
+{
+	clearOutput();
+	showAzra();
+	showName("APPROACHING\nBUNKER");
+	output("The slope into the valley slowly descends to the armored structure. It’s an easy walk. The gritty soil is packed into a solid, rust-road road by frequent travel. Sharp ruts from an iron-wheeled vehicle line the sides, but whatever left them has long-since rolled on. Azra scans the sides of the valley for ambush, wings twitching nervously. You keep your eyes on the shadows, yet you see nothing save for dim crags and cracked pipes.");
+	output("\n\nThe wind whistles by.");
+	output("\n\nYou’re standing in front of the door before you know it. The intercom panel is buzzing faintly, the call button glowing with dim green luminescence. No sign of hostiles has presented itself.");
+	output("\n\nAzra checks the scans on her Codex, overlaid across a topography scan. <i>“They’re inside. I’m not sure why. Perhaps the motherhusks are being farmed.”</i> She looks over her shoulder, then back to you. <i>“Shall we try the buzzer?”</i>");
+	processTime(2);
+	clearMenu();
+	//[Buzz In] [Knock]
+	//9999
+}
 
-output("\n\n//Break in");
-output("\n\n<i>“Let’s break in.”</i>");
-output("\n\nAzra’s smile bares a disturbing amount of sharp, triangular teeth. <i>“I was hoping you’d say that.”</i> She tucks her codex away and cracks her knuckles. <i>“The way I see it, we have a couple options. Brute force, for starters. While I’m no gym bunny, my size alone affords me considerable leverage. I’m sure that we could pry it open if we both put our backs into it. Alternatively, you could try to hack it. The comms panel looks to be screwed in place. It’d be easy to get at the wiring behind, if you’ve got the knowledge.”</i> She smiles sadly. <i>“I certainly don’t.”</i>");
-output("\n\nYou scratch your chin, mulling it over. {You’ve more than got the experience to hack it./You’re no expert when it comes to hacking, but you know enough to take a crack at hotwiring an ancient door. How hard can it be?}");
+//Knock:
+public function knockOnRaskBunker():void
+{
+	clearOutput();
+	showAzra();
+	showName("KNOCK\nKNOCK");
+	output("You knock. The door makes a hollow-sounding ‘clang.’");
+	output("\n\nNothing happens.");
+	output("\n\nAzra shrugs. <i>“Let’s just use the intercom.”</i>");
+	addDisabledButton(1,"Knock","Knock","You already tried that.");
+}
 
-output("\n\n//Brute force");
-output("\n\n//DC 30 strength check. Repeatable. Every attempt uses up five energy. If PC has no energy, DC 35.");
-output("\n\n//First time");
-output("\n\nYou put your fist on the door. <i>“Let’s get this fucker open.”</i>");
-output("\n\n<i>“I was hoping you would say that.”</i> Azra stretches, hands high over her head. Her wings flutter excitedly as she works through more movements, preparing her muscles for the strain to come. <i>“Ready?”</i>");
-output("\n\nYou roll your shoulders, then brace against the door frame. A pitted crease midway down the seam provides a decent enough handhold for you. Azra taps a few buttons on her wrist, and the fingertips on her armor begin to glow. She slaps them into place a little farther up. <i>“Magnetic adhesion,”</i> she explains. <i>“These were meant to hold onto the side of a ship in vacuum, but they’ll be just as useful here.”</i>");
-output("\n\nYou nod. <i>“You ready?”</i>");
-output("\n\n<i>“Yeah.”</i>");
-output("\n\nYou could down. <i>“Three... two... one... heave!”</i>");
-output("\n\n//Second time");
-output("\n\n<i>“One more try.”</i> You slap the door. <i>“We can do this.”</i>");
-output("\n\nAzra nods soberly. <i>“Sure thing.”</i>");
-output("\n\n<i>“Here we go,”</i> you say. <i>“Three... two... one... heave!”</i>");
-output("\n\n//Third+ time");
-output("\n\n<i>“Ugh... we can’t give up now.”</i> You nod at Azra. <i>“Another go.”</i>");
-output("\n\n<i>“Okay...”</i> She doesn’t look very convinced, but she steps into position all the same. <i>“Count it down.”</i>");
-output("\n\n<i>“Three... two... one... GOOOO!”</i>");
-output("\n\n//Success");
-output("\n\nYou and the suula grunt and strain against the mechanisms behind the wall, tugging with all your might. At first, your efforts seem in vain, but with a screech of grinding metal, an inch-wide gap opens at the top. Ripping a nearby pipe out of the ground, you slam it into the space to brace it open. Azra grabs the end and violently twists it like a crowbar, prying the reinforced portal wider and wider. The motors inside the walls spark and hiss as they are overloaded, then give out entirely. A child could finish opening it at this point. Azra slams it open instead.");
-output("\n\n<i>“After you.”</i>");
-output("\n\n[Next] - use the following text for all intros");
-output("\n\nYou {bump your head on your way in/squeeze into the door without much issue/casually stroll inside. Sometimes it’s nice to be short}. The interior is cramped but well lit. The rust you’ve seen everyone else on this planet is nowhere to be seen. Any exposed metal is devoid of blemishes and well-maintained, for something cobbled together from a half-dozen different wrecks. It’s impossible to pick out where the pieces join together; they’ve blended together into a piecemeal hodgepodge.");
-output("\n\nYou look back over your shoulder as Azra climbs in with you. She struggles to get her wings through, but once inside, she’s able to move in relative comfort... so long as she crawls on her hands and knees.");
-output("\n\n//Broke in");
-output("\n\nA staticky voice reverberates out of the ceiling, <i>“Heyyyy! Since you cunts broke my door, I think I’m gonna have to break you. No hard feelings!”</i> Three recessed turrets swivel out of the wall in front of you, each armed with a different type of gun. At a glance, you guess there’s a machine-gun, a flamethrower, and some kind of ray-gun.");
-output("\n\n<i>“I can’t fight in here!”</i> Azra barks in a panic. At least she’s out of the way, behind you. Then again, you won’t be able to flee with her blocking the tunnel... <b>You have to fight!</b>");
-output("\n\n//Didn’t break in");
-output("\n\nA familiar voice broadcasts from the ceiling, <i>“Heyyyy! You guys are pretty smart for off-worlders, rewiring the door like that.”</i> It pitches into a husky whisper. <i>“How about a test? You disable these turrets, and I’ll let you take whatever you want from me.”</i> Three turrets swivel out of the wall along with a digital display covered in power relays. <i>“Even my dignity. Mmmm... don’t die, ‘kay?”</i>");
-output("\n\nThey’re inactive right now, but you’re relatively sure that if you don’t play along, they’ll gun you down. You’ll need to purge the power from every single relay if you don’t want them to attack.");
-output("\n\n//TO HAXING MINIGAME!");
-output("\n\n//Fail");
-output("\n\nYou and the suula grunt and strain against the mechanisms holding the door closed, but no matter how you tug and pull, it will not move. The most disheartening part is that it doesn’t even budge. Not one millimeter. For all your pain and effort, you’re right back where you started - only with a bit less energy. Ugh. (-5 energy!)");
-output("\n\n//Repeat Fail");
-output("\n\nJust like last time, your efforts accomplish little more than tiring you out. The door may as well be made from concrete. As you’re panting for breath, you find yourself wondering if it was just painted on in order to waste your time. (-5 energy!)");
-output("\n\n//All repeats");
-output("\n\nDo you want to try again, try to hack it, or leave?");
+//Buzzer
+public function buzzIntoRaskland():void
+{
+	clearOutput();
+	showAzra();
+	showName("BUZZ\nIN");
+	output("You press the intercom button. The answering buzz, though muted by the walls, carries through the structure with such volume that you can feel it vibrating against your fingertips. You jerk back in shock.");
+	output("\n\n<i>“Whaddya want?”</i> a staticky voice barks through the embedded speaker. <i>“I’m full up till tomorrow.”</i>");
+	output("\n\nAzra’s bafflement is obvious, and you aren’t much better off. <i>“Say something,”</i> she whispers.");
+	output("\n\nYou clear your throat and press down the \"talk\”</i> button. <i>“");
+	if(pc.isBimbo()) output("Ummm... like, we just wanted to see if we could have some motherhusks.”</i> After a second, you remember to add, <i>“We have credits and stuff.”</i>");
+	else output("Uh... we wanted to buy some motherhuskers. Our sensors indicate you have a sizeable supply.”</i> Azra flashes you a thumbs up.");
+	output("\n\nFive or six seconds pass in complete silence. You’re about to try again when the intercom clicks on. <i>“Nope. No motherhusks here. Whatever those are. You should look somewhere else. I bet they’re somewhere else besides here.”</i>");
+	output("\n\nAzra glances at her Codex. <i>“They’re definitely here, [pc.name].”</i>");
+	output("\n\n<i>“Surely there’s some kind of trade we can make.”</i> You try your best to be diplomatic.");
+	output("\n\nWhen the intercom clicks back on, the voice on the other side is breathing heavily. <i>“Uhhh, n-n-nope! I’ve got all the cum I need for today. You might as well leave. ‘Sides, you big, sexy off-worlders would just steal them anyway.”</i> Whoever it is, she moans after that. <i>“Ooh, and uh... there’s no way you could get through my defenses. Even though I’m so pregnant I can’t move, you’d never be able to get inside and have your way with me. So you should find some other girl to trick into f-f-fuuuuuucking!”</i> The last word comes out as a screech of pleasure, then abruptly cuts off.");
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",buzzIntoRaskland2);
+}
 
-output("\n\n//Hack it");
-output("\n\n<i>“{Oooh! You just watch. I’m gonna fuck the hell out of this door!/I think I can hack this.}”</i> you declare.");
-output("\n\nThe panel is ridiculously easy to get off{ with your toolkit/, even with an improvised tool harvested from the surrounding junk}. Inside is a mess of wiring that looks more like spaghetti than an intelligently laid out circuit. If you want to get the door open, you’ll have to wire an electrical current into the servos that power the door - without electrocuting yourself in the progress...{ Lucky for you, this isn’t your first rodeo. It should be a piece of cake!}");
-output("\n\n//Hacking minigame!");
+public function buzzIntoRaskland2():void
+{
+	clearOutput();
+	showAzra();
+	showName("MAKE\nA CHOICE");
+	output("Azra rolls her eyes. <i>“It’s so tiresome that everyone we meet is so obsessed with sex. She sounded like she was masturbating in there for heaven’s sake!”</i>");
+	output("\n\nHer assessment seems on the money. <i>“So what do you want to do? It’s your mission.”</i>");
+	output("\n\nAzra turns her eyes back to the door. <i>“I say we go for it. Between the two of us, we can find a solution to deal with her so-called defenses. Important scientific work should not be stopped because of the deviances of a single native. Besides, it seems clear to me that she wants us to get inside. Such marvelous sexual deviancy...”</i> She taps her chin. <i>“But if you truly have qualms about invading her home, we could move on. We will surely miss out on numerous scientific advancements, but there are thousands more waiting to be cataloged.”</i>");
+	output("\n\nDo you break in or move on?");
+	processTime(3);
+	//[Break In] [Move On]
+	clearMenu();
+	//9999
+}
+
+//Move On
+public function moveOnAndSkipMotherbutts():void
+{
+	clearOutput();
+	showAzra();
+	showName("\nMOVING ON");
+	output("<i>“");
+	if(pc.isBimbo() || pc.isBro()) output("Pshhh. Fuck this mess. I’m not going to break down a door just for some pregnant alien pussy. Besides, I’m sure there’s like, tons more pregnancy plants on other planets.");
+	else output("Let’s move on. The sooner we get the last thing on your list, the sooner we can move on to the next planet.");
+	output("”</i>");
+	output("\n\nAzra looks longingly at the door, then sighs. <i>“Very well.”</i> She taps at her codex thoughtfully. <i>“I’ve identified a path that should get us to the spunkshrooms with minimal exposure to hostile natives.”</i> Her tail curls protectively around your [pc.hips]. <i>“No reason to risk my protector’s safety any more than necessary.”</i>");
+	output("\n\n");
+	if(pc.isNice()) output("Smiling back at her,");
+	else if(pc.isMischievous()) output("Wearing a cocksure grin,");
+	else output("Nodding severely,");
+	output(" you leave the bunker behind you, the pregnant-slut inside to remain forever a mystery.");
+	//[Next] -> On to the spunkshroom intro :3
+	clearMenu();
+	//addButton(0,"Next",9999spunkshroomIntro);
+}
+
+//Break in
+public function breakIntoRaskbutts():void
+{
+	clearOutput();
+	showAzra();
+	showName("BREAKING\nBADLY");
+	output("<i>“Let’s break in.”</i>");
+	output("\n\nAzra’s smile bares a disturbing amount of sharp, triangular teeth. <i>“I was hoping you’d say that.”</i> She tucks her codex away and cracks her knuckles. <i>“The way I see it, we have a couple options. Brute force, for starters. While I’m no gym bunny, my size alone affords me considerable leverage. I’m sure that we could pry it open if we both put our backs into it. Alternatively, you could try to hack it. The comms panel looks to be screwed in place. It’d be easy to get at the wiring behind, if you’ve got the knowledge.”</i> She smiles sadly. <i>“I certainly don’t.”</i>");
+	output("\n\nYou scratch your chin, mulling it over. ");
+	if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output("You’ve more than got the experience to hack it.");
+	else output("You’re no expert when it comes to hacking, but you know enough to take a crack at hotwiring an ancient door. How hard can it be?");
+
+	processTime(2);
+	clearMenu();
+	//9999
+}
+
+//Brute force
+//DC 30 strength check. Repeatable. Every attempt uses up five energy.
+public function bruteForceTheDoor():void
+{
+	clearOutput();
+	showAzra();
+	showName("PUSHING\nIT");
+	//First time
+	if(!pc.hasStatusEffect("RASKDOOR_ATTEMPT"))
+	{
+		output("You put your fist on the door. <i>“Let’s get this fucker open.”</i>");
+		output("\n\n<i>“I was hoping you would say that.”</i> Azra stretches, hands high over her head. Her wings flutter excitedly as she works through more movements, preparing her muscles for the strain to come. <i>“Ready?”</i>");
+		output("\n\nYou roll your shoulders, then brace against the door frame. A pitted crease midway down the seam provides a decent enough handhold for you. Azra taps a few buttons on her wrist, and the fingertips on her armor begin to glow. She slaps them into place a little farther up. <i>“Magnetic adhesion,”</i> she explains. <i>“These were meant to hold onto the side of a ship in vacuum, but they’ll be just as useful here.”</i>");
+		output("\n\nYou nod. <i>“You ready?”</i>");
+		output("\n\n<i>“Yeah.”</i>");
+		output("\n\nYou count down. <i>“Three... two... one... heave!”</i>");
+	}
+	//Second time
+	else if(pc.statusEffectv1("RASKDOOR_ATTEMPT") == 1)
+	{
+		output("<i>“One more try.”</i> You slap the door. <i>“We can do this.”</i>");
+		output("\n\nAzra nods soberly. <i>“Sure thing.”</i>");
+		output("\n\n<i>“Here we go,”</i> you say. <i>“Three... two... one... heave!”</i>");
+	}
+	//Third+ time
+	else
+	{
+		output("<i>“Ugh... we can’t give up now.”</i> You nod at Azra. <i>“Another go.”</i>");
+		output("\n\n<i>“Okay...”</i> She doesn’t look very convinced, but she steps into position all the same. <i>“Count it down.”</i>");
+		output("\n\n<i>“Three... two... one... GOOOO!”</i>");
+	}
+	//Success
+	if(pc.physique()/2 + rand(20) + 1 >= 30)
+	{
+		output("\n\nYou and the suula grunt and strain against the mechanisms behind the wall, tugging with all your might. At first, your efforts seem in vain, but with a screech of grinding metal, an inch-wide gap opens at the top. Ripping a nearby pipe out of the ground, you slam it into the space to brace it open. Azra grabs the end and violently twists it like a crowbar, prying the reinforced portal wider and wider. The motors inside the walls spark and hiss as they are overloaded, then give out entirely. A child could finish opening it at this point. Azra slams it open instead.");
+		output("\n\n<i>“After you.”</i>");
+		flags["RASKDOOR_BROKE"] = 1;
+		processTime(2);
+		clearMenu();
+		addButton(0,"Next",brokeIntoRaskDoor);
+		return;
+	}
+	//Fail
+	else
+	{
+		if(!pc.hasStatusEffect("RASKDOOR_ATTEMPT"))
+		{
+			output("\n\nYou and the suula grunt and strain against the mechanisms holding the door closed, but no matter how you tug and pull, it will not move. The most disheartening part is that it doesn’t even budge. Not one millimeter. For all your pain and effort, you’re right back where you started - only with a bit less energy. Ugh. (-5 energy!)");
+		}
+		else output("\n\nJust like last time, your efforts accomplish little more than tiring you out. The door may as well be made from concrete. As you’re panting for breath, you find yourself wondering if it was just painted on in order to waste your time. (-5 energy!)");
+		pc.energy(-5);
+		output("\n\nDo you want to try again, try to hack it, or leave?");
+		
+		if(!pc.hasStatusEffect("RASKDOOR_ATTEMPT")) 
+		{
+			pc.createStatusEffect("RASKDOOR_ATTEMPT");
+			pc.setStatusMinutes("RASKDOOR_ATTEMPT",200);
+		}
+		pc.addStatusValue("RASKDOOR_ATTEMPT",1,1);
+		//9999 choice menu
+	}
+}
+
+//[Next] - use the following text for all intros
+public function brokeIntoRaskDoor():void
+{
+	clearOutput();
+	showAzra();
+	showName("\nBUNKER");
+
+	output("You ");
+	if(pc.tallness >= 7*12) output("bump your head on your way in");
+	else if(pc.tallness >= 5*12) output("squeeze into the door without much issue");
+	else output("casually stroll inside. Sometimes it’s nice to be short");
+	output(". The interior is cramped but well lit. The rust you’ve seen everyone else on this planet is nowhere to be seen. Any exposed metal is devoid of blemishes and well-maintained for something cobbled together from a half-dozen different wrecks. It’s impossible to pick out where the pieces join together; they’ve blended together into a piecemeal hodgepodge.");
+	output("\n\nYou look back over your shoulder as Azra climbs in with you. She struggles to get her wings through, but once inside, she’s able to move in relative comfort... so long as she crawls on her hands and knees.");
+
+	//Broke in
+	if(flags["RASKDOOR_BROKE"] == 1)
+	{
+		output("\n\nA staticky voice reverberates out of the ceiling, <i>“Heyyyy! Since you cunts broke my door, I think I’m gonna have to break you. No hard feelings!”</i> Three recessed turrets swivel out of the wall in front of you, each armed with a different type of gun. At a glance, you guess there’s a machine-gun, a flamethrower, and some kind of ray-gun.");
+		output("\n\n<i>“I can’t fight in here!”</i> Azra barks in a panic. At least she’s out of the way, behind you. Then again, you won’t be able to flee with her blocking the tunnel... <b>You have to fight!</b>");
+	}
+	//Didn’t break in
+	else
+	{
+		output("\n\nA familiar voice broadcasts from the ceiling, <i>“Heyyyy! You guys are pretty smart for off-worlders, rewiring the door like that.”</i> It pitches into a husky whisper. <i>“How about a test? You disable these turrets, and I’ll let you take whatever you want from me.”</i> Three turrets swivel out of the wall along with a digital display covered in power relays. <i>“Even my dignity. Mmmm... don’t die, ‘kay?”</i>");
+		output("\n\nThey’re inactive right now, but you’re relatively sure that if you don’t play along, they’ll gun you down. You’ll need to purge the power from every single relay if you don’t want them to attack.");
+		//TO HAXING MINIGAME!
+	}
+	//9999 routing go!
+}
+
+//Hack it
+public function hackThatRaskDoor():void
+{
+	clearOutput();
+	showAzra();
+	showName("\nHACKING");
+	if(silly) showName("YOU ARE...\nHACKERMAN!");
+
+	output("<i>“");
+	if(pc.isBimbo()) output("Oooh! You just watch. I’m gonna fuck the hell out of this door!");
+	else output("I think I can hack this.");
+	output("”</i> you declare.");
+
+	output("\n\nThe panel is ridiculously easy to get off");
+	if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output(" with your toolkit");
+	else output(", even with an improvised tool harvested from the surrounding junk");
+	output(". Inside is a mess of wiring that looks more like spaghetti than an intelligently laid out circuit. If you want to get the door open, you’ll have to wire an electrical current into the servos that power the door - without electrocuting yourself in the progress...");
+	if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output(" Lucky for you, this isn’t your first rodeo. It should be a piece of cake!");
+	
+	processTime(1);
+	clearMenu();
+	//Geddystyle Hacking minigame!
+	//9999
+}
+
+private function azraQuestRaskOverrideGame():void
+{
+	userInterface.showMinigame();
+	var gm:RotateMinigameModule = userInterface.getMinigameModule();
+	
+	var g:uint = RGMK.NODE_GOAL;
+	var i:uint = RGMK.NODE_INTERACT;
+	var l:uint = RGMK.NODE_LOCKED;
+	
+	var n:uint = RGMK.CON_NORTH;
+	var e:uint = RGMK.CON_EAST;
+	var s:uint = RGMK.CON_SOUTH;
+	var w:uint = RGMK.CON_WEST;
+	
+	//Baby difficulty
+	if(pc.characterClass == GLOBAL.CLASS_ENGINEER)
+	{
+		gm.setPuzzleState(azraQuestHackerDoor, 3, 3,
+		[
+			g | s    ,	i | w | n,	i | n | w,
+			i | e | w,	i | w | e,	g | n    ,
+			i | s | w,	i | s | e,	i | s | n
+		]);
+	}
+	/*Commented out for Gedan to look at it.
+	else if(pc.isBimbo() || pc.IQ() <= 30)
+	{
+		gm.setPuzzleState(azraQuestHackerDoor, 6, 6,
+		[
+			l        ,	i | n | e,	i | e | w,	i | s | w,	i | n | w,	l        ,
+			i | n | w,	i | w | n,	i | n | s,	i | n | w,	i | e | s,	i | e | w,
+			i | s | n,	i | e | w,	i | n | s,	i | n | s,	l | n | s,	i | w | s,
+			i | e | n,	l | n | w,	i | w | s,	i | e | w,	i | n | e,	i | w | n,
+			i | w | e,	l        ,	i | e | w,	i | s | w,	i | s | e,	i | w | s,
+			g | n | e,	i | n | s,	i | n | s,	i | e | s,	i | w | n,	g | s    ,
+		]);
+	}*/
+	else
+	{
+		gm.setPuzzleState(azraQuestHackerDoor, 5, 5,
+		[
+			i | s | w,	i | n | e,	i | n | e,	i | s | e,	i | n | w,
+			g | n | s,	i | w | e,	i | n | e,	i | s | w,	g | w    ,
+			i | s | w,	i | s | w,	l | s | w,	i | e | w,	l        ,
+			i | n | w,	l | e | s,	i | n | w,	i | s | w,	l        ,
+			i | n | w,	i | s | e,	i | e | w,	i | e | s,	l        ,
+		]);
+	}
+}
+
+public function azraQuestHackerDoor():void
+{
+	clearOutput();
+
+	output("You did it!");
+}/*
+
+
+
 
 output("\n\n//Somehow fail? Not sure I’ll even have this be an option");
 output("\n\nWith a whirring hum, the door slowly rolls open, revealing the corridor beyond.");
