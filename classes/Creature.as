@@ -8045,7 +8045,7 @@
 		}
 		public function isErect():Boolean
 		{
-			return (lust() >= 66);
+			return (lust() >= 66 || hasStatusEffect("Priapism"));
 		}
 		public function hasASheath(): Boolean {
 			for (var x: int = 0; x < cocks.length; x++) {

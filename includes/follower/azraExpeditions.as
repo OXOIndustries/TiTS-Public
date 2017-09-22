@@ -12,6 +12,12 @@ public function showSlutGoo():void
 	showBust("SLUTGOO");
 	showName("DOUBLE\nGRAY GOO");
 }
+
+public function showPregRask():void
+{
+	showBust("PREGRASK");
+	showName("PREGNANT\nRASKVEL");
+}
 public function azraTarkusQuestSetup():void
 {
 	//Level up! :3
@@ -674,7 +680,8 @@ public function raskvelBunkerApproach():void
 	processTime(2);
 	clearMenu();
 	//[Buzz In] [Knock]
-	//9999
+	addButton(0,"Buzz In",buzzIntoRaskland);
+	addButton(1,"Knock",knockOnRaskBunker);
 }
 
 //Knock:
@@ -722,7 +729,8 @@ public function buzzIntoRaskland2():void
 	processTime(3);
 	//[Break In] [Move On]
 	clearMenu();
-	//9999
+	addButton(0,"Break In",breakIntoRaskbutts);
+	addButton(1,"Move On",moveOnAndSkipMotherbutts);
 }
 
 //Move On
@@ -760,7 +768,8 @@ public function breakIntoRaskbutts():void
 
 	processTime(2);
 	clearMenu();
-	//9999
+	addButton(0,"Hack In",hackThatRaskDoor,undefined,"Hack In","Do you have what it takes to route the power to its destination?");
+	addButton(1,"BruteForce",bruteForceTheDoor,undefined,"Brute Force","Between the two of you, you just might have the physique to pry it open. Failure may be tiring...");
 }
 
 //Brute force
@@ -822,7 +831,10 @@ public function bruteForceTheDoor():void
 			pc.setStatusMinutes("RASKDOOR_ATTEMPT",200);
 		}
 		pc.addStatusValue("RASKDOOR_ATTEMPT",1,1);
-		//9999 choice menu
+		clearMenu();
+		addButton(0,"Hack In",hackThatRaskDoor,undefined,"Hack In","Do you have what it takes to route the power to its destination?");
+		addButton(1,"BruteForce",bruteForceTheDoor,undefined,"Brute Force","Between the two of you, you just might have the physique to pry it open. Failure may be tiring...");
+		addButton(2,"Move On",moveOnAndSkipMotherbutts);
 	}
 }
 
@@ -845,6 +857,15 @@ public function brokeIntoRaskDoor():void
 	{
 		output("\n\nA staticky voice reverberates out of the ceiling, <i>“Heyyyy! Since you cunts broke my door, I think I’m gonna have to break you. No hard feelings!”</i> Three recessed turrets swivel out of the wall in front of you, each armed with a different type of gun. At a glance, you guess there’s a machine-gun, a flamethrower, and some kind of ray-gun.");
 		output("\n\n<i>“I can’t fight in here!”</i> Azra barks in a panic. At least she’s out of the way, behind you. Then again, you won’t be able to flee with her blocking the tunnel... <b>You have to fight!</b>");
+		//to turretfight
+		CombatManager.newGroundCombat();
+		CombatManager.setFriendlyActors(pc);
+		CombatManager.setHostileActors(new RaskTurretA, new RaskTurretB, new RaskTurretC);
+		CombatManager.victoryScene(defeatDemTurrets);
+		CombatManager.lossScene(turretDeath);
+		CombatManager.displayLocation("TURRETS");
+		clearMenu();
+		addButton(0,"Next",CombatManager.beginCombat);
 	}
 	//Didn’t break in
 	else
@@ -852,8 +873,18 @@ public function brokeIntoRaskDoor():void
 		output("\n\nA familiar voice broadcasts from the ceiling, <i>“Heyyyy! You guys are pretty smart for off-worlders, rewiring the door like that.”</i> It pitches into a husky whisper. <i>“How about a test? You disable these turrets, and I’ll let you take whatever you want from me.”</i> Three turrets swivel out of the wall along with a digital display covered in power relays. <i>“Even my dignity. Mmmm... don’t die, ‘kay?”</i>");
 		output("\n\nThey’re inactive right now, but you’re relatively sure that if you don’t play along, they’ll gun you down. You’ll need to purge the power from every single relay if you don’t want them to attack.");
 		//TO HAXING MINIGAME!
+		clearMenu();
+		addButton(0,"Next",lightsOutTurretPrep);
 	}
-	//9999 routing go!
+}
+
+public function turretDeath():void
+{
+	clearOutput();
+	showBust("TURRET_MG","TURRET_LASER","TURRET_FLAMER");
+	showName("GAME\nOVER");
+	output("Your wounds overtake you, and as you slump to the bloodied floor, all you can hear are Azra's panicked screams.");
+	kGAMECLASS.badEnd("YOU DIED.");
 }
 
 //Hack it
@@ -878,7 +909,7 @@ public function hackThatRaskDoor():void
 	processTime(1);
 	clearMenu();
 	//Geddystyle Hacking minigame!
-	//9999
+	addButton(0,"Next",azraQuestRaskOverrideGame);
 }
 
 private function azraQuestRaskOverrideGame():void
@@ -924,9 +955,9 @@ private function azraQuestRaskOverrideGame():void
 		[
 			i | s | w,	i | n | e,	i | n | e,	i | s | e,	i | n | w,
 			g | n | s,	i | w | e,	i | n | e,	i | s | w,	g | w    ,
-			i | s | w,	i | s | w,	l | s | w,	i | e | w,	l        ,
-			i | n | w,	l | e | s,	i | n | w,	i | s | w,	l        ,
-			i | n | w,	i | s | e,	i | e | w,	i | e | s,	l        ,
+			i | s | w,	i | s | w,	l | s | w,	i | e | w,	i        ,
+			i | n | w,	l | e | s,	i | n | w,	i | s | w,	i        ,
+			i | n | w,	i | s | e,	i | e | w,	i | e | s,	i        ,
 		]);
 	}
 }
@@ -934,225 +965,671 @@ private function azraQuestRaskOverrideGame():void
 public function azraQuestHackerDoor():void
 {
 	clearOutput();
+	showAzra();
+	showName("\nSUCCESS!");
+	output("With a whirring hum, the door slowly rolls open, revealing the corridor beyond.");
+	output("\n\n<i>“Yes!”</i> Azra cheers, sweeping you into a surprise hug from behind. Her feathers curl around you as she squeezes tight, tickling your [pc.skin]. This close, you can smell");
+	if(pc.isTreated()) output(" the residue of her recently spilled seed as well as");
+	output(" her natural scent, peachy and sweet. After a moment, she lets go, blushing hotly. <i>“I didn’t realize you were so talented.”</i>");
 
-	output("You did it!");
-}/*
+	//Misch/Bimbo
+	if(pc.isMischievous() || pc.isBimbo()) output("\n\n<i>“You should see me in the bedroom.”</i>");
+	//Bro
+	else if(pc.isBro()) output("\n\n<i>“...in bed,”</i> you finish the sentence for her.");
+	//Either
+	if(pc.isBro() || pc.isBimbo() || pc.isMischievous()) output("\n\nAzra blushes, tail swishing behind her. <i>“Save that kind of talk for later.... Would you mind leading the way? I doubt I’d fit properly.”</i>");
+	else 
+	{
+		output("\n\n<i>“What can I say? I’m good at my job.”</i>");
+		output("\n\nAzra’s eyes twinkle. <i>“Of course you are. Would you mind leading the way? I’m too big to fit in there very well...”</i>");
+	}
+	//Merge all
+	//[Next] -> To entry text
+	clearMenu();
+	addButton(0,"Next",brokeIntoRaskDoor);
+}
 
+public function lightsOutTurretPrep():void
+{
+	configureLightsOut(azraQuestTurretShutdown,backwardsHackTurretsIdiot, [0,1,2,3,4,5,6,7,8,10,11,12]);
+}
 
+//Turn the turrets on
+public function backwardsHackTurretsIdiot():void
+{
+	clearOutput();
+	showBust("TURRET_MG","TURRET_FLAMER");
+	showName("\nWHOOPS!");
+	output("The turrets hum with power as they switch from passive to active mode. The closest, a machine-gun, clacks noisily as shells slam into place. You can’t run, not with Azra blocking the tunnel behind. <b>You’ll have to fight!</b>");
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new RaskTurretA, new RaskTurretB, new RaskTurretC);
+	CombatManager.victoryScene(defeatDemTurrets);
+	CombatManager.lossScene(turretDeath);
+	CombatManager.displayLocation("TURRETS");
+	clearMenu();
+	addButton(0,"Next",CombatManager.beginCombat);
+}
+//Disable ‘dem turreeeeeets
+public function defeatDemTurrets():void
+{
+	flags["RASKTURRETS_BROKE"] = 1;
+	azraQuestTurretShutdown();
+}
 
+public function azraQuestTurretShutdown():void
+{
+	clearOutput();
+	showAzra();
+	output("The turrets suddenly sag down to point at the floor, indicator lights blinking out one by one as their capacitors drain. <i>“Yes!”</i> You pump your arm happily.");
+	output("\n\nAzra calls from behind. <i>“Did you do it? Are we safe?”</i>");
+	output("\n\n<i>“Yeah, I got it!”</i>");
+	output("\n\n<i>“Fantastic!”</i> the suula scientist cheers. <i>“I hope we’re close. I’m not certain how much more time on my knees I can take.”</i>");
 
-output("\n\n//Somehow fail? Not sure I’ll even have this be an option");
-output("\n\nWith a whirring hum, the door slowly rolls open, revealing the corridor beyond.");
-output("\n\n<i>“Yes!”</i> Azra cheers, sweeping you into a surprise hug from behind. Her feathers curl around you as she squeezes tight, tickling your [pc.skin]. This close, you can smell{ the residue of her recently spilled seed as well as }her natural scent, peachy and sweet. After a moment, she lets go, blushing hotly. <i>“I didn’t realize you were so talented.”</i>");
-output("\n\n//Misch/Bimbo");
-output("\n\n<i>“You should see me in the bedroom.”</i>");
-output("\n\n//Bro");
-output("\n\n<i>“...in bed,”</i> you finish the sentence for her.");
-output("\n\n//Either");
-output("\n\nAzra blushes, tail swishing behind her. <i>“Save that kind of talk for later.... Would you mind leading the way? I doubt I’d fit properly.”</i>");
-output("\n\n//else");
-output("\n\n<i>“What can I say? I’m good at my job.”</i>");
-output("\n\nAzra’s eyes twinkles. <i>“Of course you are. Would you mind leading the way? I’m too big to fit in there very well...”</i>");
-output("\n\n//Merge all");
-output("\n\n[Next] -> To entry text");
+	//Bimbo
+	if(pc.isBimbo()) output("\n\nYou blithely retort, <i>“Practice makes perfect, hun!”</i>");
+	//Bro
+	else if(pc.isBro()) output("\n\nYou chortle in amusement. Honestly it’s a good look for her. Shame the ceilings on your ship aren’t shorter.");
+	//Nice
+	else if(pc.isNice()) output("\n\nYou look back in concern. <i>“Hang in there. We’ve got to be close. This building isn’t </i>that<i> big.”</i>");
+	//Misch
+	else if(pc.isMischievous()) output("\n\nYou chuckle. <i>“We’ve got to be close. The building isn’t that big. Besides, it’s good practice!”</i>");
+	//Hard
+	else output("\n\nYou facepalm. <i>“You’re the one that wanted to come inside here. Suck it up, cupcake. We’re close.”</i>");
 
-output("\n\n//HAXXING MINIGAME!");
-output("\n\n//Lights out, just like on Tarkus’s bomb mission. Start with most lights lit up except for three in the corner so idiots can accidentally turn the turrets on themselves with ease :3");
+	//Merge
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",fuckUpTurrets);
+}
 
-output("\n\n//Turn the turrets on");
-output("\n\nThe turrets hum with power as they switch from passive to active mod. The closest, a machine-gun, clacks noisily as shells slam into place. You can’t run, not with Azra blocking the tunnel behind. <b>You’ll have to fight!</b>");
+public function fuckUpTurrets():void
+{
+	clearOutput();
+	showPregRask();
+	output("Just past the turrets is another door. This one has no security panel, just a simple toggle switch to pop it open. You wait for Azra to catch up, then press it.");
+	output("\n\nA high-pressure, pneumatic hiss sounds as the door slides up into the ceiling. The next room is dark, so dark that it takes your eyes a second to adjust.");
 
-output("\n\n//Disable ‘dem turreeeeeets");
-output("\n\nThe turrets suddenly sag down to point at the floor, indicator lights blinking out one by one as their capacitors drain. <i>“Yes!”</i> You pump your arm happily.");
-output("\n\nAzra calls from behind. <i>“Did you do it? Are we safe?”</i>");
-output("\n\n<i>“Yeah, I got it!”</i>");
-output("\n\n<i>“Fantastic!”</i> the suula scientist cheers. <i>“I hope we’re close. I’m not certain how much more time on my knees I can take.”</i>");
-output("\n\n//Bimbo");
-output("\n\nYou blithely retort, <i>“Practice makes perfect, hun!”</i>");
-output("\n\n//Bro");
-output("\n\nYou chortle in amusement. Honestly it’s a good look for her. Shame the ceilings on your ship aren’t shorter.");
-output("\n\n//Nice");
-output("\n\nYou look back in concern. <i>“Hang in there. We’ve got to be close. This building isn’t </i>that<i> big.”</i>");
-output("\n\n//Misch");
-output("\n\nYou chuckle. <i>“We’ve got to be close. The building isn’t that big. Besides, it’s good practice!”</i>");
-output("\n\n//Hard");
-output("\n\nYou facepalm. <i>“You’re the one that wanted to come inside here. Suck it up, cupcake. We’re close.”</i>");
-output("\n\n//Merge");
-output("\n\n[Next]");
-output("\n\nJust past the turrets is another door. This one has no security panel, just a simple toggle switch to pop it open. You wait for Azra to catch up, then press it.");
-output("\n\nA high-pressure, pneumatic hiss sounds as the door slides up into the ceiling. The next room is dark, so dark that it takes your eyes a second to adjust.");
-output("\n\n//Haxxored both!");
-output("\n\n<i>“Ohhh no! The sexy aliens disabled all my traps with their superior intelligence, and I’m too pregnant to escaaaaape! Please don’t {pull out your dick and shove it in me... everywhere/make me eat your muff until I give birth. Please}. It’s just the hormones making me all wet, juicy, and fuckable. I’d be so distraught if you turned me into your personal fuckmeat!”</i>");
-output("\n\n//Haxxed one but failed one");
-output("\n\n<i>“Ohhh no! They’ve breached my control room. Fuck, you guys are sexy too? As if being smart and strong wasn’t enough. How am I supposed to keep my thighs closed when you’re this close, and I’m this pregnant? I should’ve built better defenses. Now I’m stuck, soaking wet, and totally at your mercy!”</i>");
-output("\n\n//Force in");
-output("\n\n<i>“Ohhh no! You smashed right through my defenses like they were nothing at all! How’s a girl supposed to keep herself from being raped, again and again, when big, strong aliens just smash down every attempt to keep my hot little cunny all to myself? Are you going to rape me? Please don’t rape me... I’d </i>hate<i> if you tied me up and kept me as your knocked-up broodmare for months!”</i>");
-output("\n\n//Merge");
-output("\n\nWithout the interference from the intercom system, the voice sounds even more wanton, layered thick in lurid intent. You can make out the shape of the speaker against the far wall. She’s a short thing, no more than four feet tall, but obscenely swollen around the middle, pinned to the floor by her immensely gravid belly and ridiculously wide hips. When you spy her ears, draped across her swollen tits, hanging over her belly like clothing, that you identify her as a raskvel. A raskvel that’s more pregnant than any raskvel you’ve seen in Novahome.");
-output("\n\nAzra enters the room with her Codex’s light turned on. She seems elated to discover that the ceiling is higher here, allowing her to stand up straight. Her back cracks five or six times on the way up, accompanied by sounds of mild discomfort. Panning the light around, she illuminates your former tormentor.");
-output("\n\n<i>“Sprat, that’s bright!”</i> the hyper-pregnant raskvel shrieks, shielding her eyes. <i>“I’ll {suck your dicks/eat your pussies/suck your dick} if you turn that light off.”</i> Whatever hormones are coursing through her, they’ve been good to her. Her feathery hair is glossy blue and longer than you’ve seen on any in the wild, matched by lips lacquered in a matching shade. Her tits are huge, for a raskvel. On a human, they’d be a hair over average, but on her small frame, they seem positively mountainous. Fortunately for her, she’s got a big, ripe belly to support them.");
-output("\n\nAzra pans the light around, gasping when she sees a cluster of gray, tubular structures sprouting through a hole in the floor. They’ve grown in a thick ring, several feet across. The ones in the center are the tallest and the widest. Motes of some kind of pollen or spores float around them. Closer to the floor, obvious teeth-marks show where pieces have been bit off and consumed wholesale.");
-output("\n\n<i>“Oh... you really don’t want to fuck?”</i> the raskvel sounds almost put out. <i>“You really just wanted my motherhusk stash?”</i> She lifts an ear to expose a boob, then slowly circles the areola with a finger. Somehow, she makes it look sulky. <i>“But I got all worked up watching you get here.”</i> She gestures to a flickering monitor, then at the crinkled, firm tips of her tits. Beneath her, the deck is glossy with feminine lube. <i>“And it’s so hard to reach my cuuuuunt.”</i>");
-output("\n\nAzra looks at the raskvel, then jerks her head away, trying not to look at the display of wanton sexuality. <i>“Like [pc.name] said, we wanted to trade for the motherhusks.{ I’ll reimburse you for the door.} If you’d like, I can offer you some credits for the samples I’ll be taking, but I will be taking them. This is a rare species with properties that can advance the galaxy as a whole.”</i>");
-output("\n\n<i>“Fuck your credits,”</i> the short-stacked raskvel says. <i>“Get over here and fuck me if you want to give me something.”</i>");
-output("\n\nAzra shakes her head once more. <i>“Sorry, but I’d prefer to keep my amorous intentions for those I’ve developed a relationship with, not new acquaintances, no matter how fuckable.”</i> She kneels next to the husks and retrieves some gloves from her pack. <i>“[pc.name] might be willing to help you out. [pc.HeShe] seems like [pc.heShe]’d be a capable lover.”</i> Azra’s tail swishes playfully behind her. <i>“Harvesting these properly will take some time. Feel free to indulge yourself if the urge strikes.”</i>");
-output("\n\n//High intelligence");
-output("\n\nYou note that Azra has placed her Codex on the ground in such a way that the raskvel is well-illuminated. Perhaps she intends to sneak a peek of at any potential action... or record it for later viewing.");
-output("\n\n//Merge");
-output("\n\n<i>“Whaddya say? [pc.name], right? I promise we could have so much fun.{ My pussy’ll be the perfect sleeve for that dick./ I don’t care if you’re too big to fit inside a little thing like me. I wanna taste it!/ I could probably cum just from you straddling my face./ We could make out while you rub my belly, and I bet I’d still cum.}”</i> Her hips quiver, grinding her swollen mound against the diamond patterned deck plates. <i>“I’ll be the perfect, pregnant fucktoy!”</i>");
-output("\n\n//Bimbo -disable non-sex options if PC has genitals.");
-output("\n\nYou look her up and down. It’d be better if she had a dick, but you can hardly turn down the chance to tangle tongues with such a petite cutie.");
-output("\n\n//Bro");
-output("\n\nJob  complete and a free lay as a prize? Fuck yeah. You resolve to plow the kobold cutie so well that Azra lines up for the next round.");
-output("\n\n//Else high libido or lust");
-output("\n\nThat’s a hard offer to turn down. Your loins burn at the offer, and Azra is going to be busy for a few minutes... just enough time to get your rocks off. A quick bang will be... preparation for the trials to come.");
-output("\n\n//Else low lust");
-output("\n\nThe offer is tempting enough to stir your otherwise slumbering passion. Taking her up on it wouldn’t be a bad way to pass the time.");
-output("\n\n//Else normal lust");
-output("\n\nThere’s not much else to do, and Azra doesn’t seem to mind. Now would be as good a time as any to blow off some excess steam.");
-output("\n\n//[Fuck Her] [Hyper Fun]  [Face Ride][Wait it Out]");
+	//Haxxored both!
+	if(flags["RASKDOOR_BROKE"] == undefined && flags["RASKTURRETS_BROKE"] == undefined)
+	{
+		output("\n\n<i>“Ohhh no! The sexy aliens disabled all my traps with their superior intelligence, and I’m too pregnant to escaaaaape! Please don’t ");
+		if(pc.hasCock()) output("pull out your dick and shove it in me... everywhere");
+		else output("make me eat your muff until I give birth. Please");
+		output(". It’s just the hormones making me all wet, juicy, and fuckable. I’d be so distraught if you turned me into your personal fuckmeat!”</i>");
+	}
+	//Haxxed one but failed one
+	else if(flags["RASKDOOR_BROKE"] == undefined || flags["RASKTURRETS_BROKE"] == undefined)
+	{
+		output("\n\n<i>“Ohhh no! They’ve breached my control room. Fuck, you guys are sexy too? As if being smart and strong wasn’t enough. How am I supposed to keep my thighs closed when you’re this close, and I’m this pregnant? I should’ve built better defenses. Now I’m stuck, soaking wet, and totally at your mercy!”</i>");
+	}
+	//Force in
+	else
+	{
+		output("\n\n<i>“Ohhh no! You smashed right through my defenses like they were nothing at all! How’s a girl supposed to keep herself from being raped, again and again, when big, strong aliens just batter down every attempt to keep my hot little cunny all to myself? Are you going to rape me? Please don’t rape me... I’d </i>hate<i> if you tied me up and kept me as your knocked-up broodmare for months!”</i>");
+	}
+	//Merge
+	output("\n\nWithout the interference from the intercom system, the voice sounds even more wanton, layered thick in lurid intent. You can make out the shape of the speaker against the far wall. She’s a short thing, no more than four feet tall, but obscenely swollen around the middle, pinned to the floor by her immensely gravid belly and ridiculously wide hips. When you spy her ears, draped across her swollen tits, hanging over her belly like clothing, that you identify her as a raskvel. A raskvel that’s more pregnant than any raskvel you’ve seen in Novahome.");
+	output("\n\nAzra enters the room with her Codex’s light turned on. She seems elated to discover that the ceiling is higher here, allowing her to stand up straight. Her back cracks five or six times on the way up, accompanied by sounds of mild discomfort. Panning the light around, she illuminates your former tormentor.");
+	output("\n\n<i>“Sprat, that’s bright!”</i> the hyper-pregnant raskvel shrieks, shielding her eyes. <i>“I’ll ");
+	if(pc.hasCock()) output("suck your dicks");
+	else if(pc.hasVagina()) output("eat your pussies");
+	else output("suck your dick");
+	output(" if you turn that light off.”</i> Whatever hormones are coursing through her, they’ve been good to her. Her feathery hair is glossy blue and longer than you’ve seen on any raskvel in the wild, matched by lips lacquered in a matching shade. Her tits are huge, for a raskvel. On a human, they’d be a hair over average, but on her small frame, they seem positively mountainous. Fortunately for her, she’s got a big, ripe belly to support them.");
+	output("\n\nAzra pans the light around, gasping when she sees a cluster of gray, tubular structures sprouting through a hole in the floor. They’ve grown in a thick ring, several feet across. The ones in the center are the tallest and the widest. Motes of some kind of pollen or spores float around them. Closer to the floor, obvious teeth-marks show where pieces have been bit off and consumed wholesale.");
+	output("\n\n<i>“Oh... you really don’t want to fuck?”</i> the raskvel sounds almost put out. <i>“You really just wanted my motherhusk stash?”</i> She lifts an ear to expose a boob, then slowly circles the areole with a finger. Somehow, she makes it look sulky. <i>“But I got all worked up watching you get here.”</i> She gestures to a flickering monitor, then at the crinkled, firm tips of her tits. Beneath her, the deck is glossy with feminine lube. <i>“And it’s so hard to reach my cuuuuunt.”</i>");
+	output("\n\nAzra looks at the raskvel, then jerks her head away, trying not to give in to the display of wanton sexuality. <i>“Like [pc.name] said, we wanted to trade for the motherhusks.");
+	if(flags["RASKDOOR_BROKE"] != undefined) output(" I’ll reimburse you for the door.");
+	output(" If you’d like, I can offer you some credits for the samples I’ll be taking, but I will be taking them. This is a rare species with properties that can advance the galaxy as a whole.”</i>");
+	output("\n\n<i>“Fuck your credits,”</i> the short-stacked raskvel says. <i>“Get over here and fuck me if you want to give me something.”</i>");
+	output("\n\nAzra shakes her head once more. <i>“Sorry, but I’d prefer to keep my amorous intentions for those I’ve developed a relationship with, not new acquaintances, no matter how... attractive.”</i> She kneels next to the husks and retrieves some gloves from her pack. <i>“[pc.name] might be willing to help you out. [pc.HeShe] seems like [pc.heShe]’d be a capable lover.”</i> Azra’s tail swishes playfully behind her. <i>“Harvesting these properly will take some time. Feel free to indulge yourself if the urge strikes.”</i>");
 
-output("\n\nWait It Out");
-output("\n\n<i>“No thanks,”</i> you tell the pregnant raskvel. <i>“But don’t let me stop you from enjoying yourself.”</i>");
-output("\n\nThe feather-haired lizard-girl rolls her eyes. <i>“Suit yourself, sweet stuff.”</i> She brushes her ears out of the way and wraps her fingers around her pregnancy-swollen teats, rolling the tender nubs in her fingers. Meanwhile, her tail curls around to stroke the taut skin of her belly. It slips and slides all over the fecund dome, and it must feel good for how she moans. Yet the rask doesn’t push herself. Laconic movements and gentle strokes are the order of the day. She’s not working toward an orgasm; she’s playing her body like an instrument, riding the edge of ecstasy without plunging over into an exhausting orgasm.");
-output("\n\nYou pull up the extranet on your Codex and try ignore the rask’s pleasure-soaked vocalizations. Azra seems to be doing the same as she intently picks over the plant growth.");
-output("\n\nAlmost twenty minutes pass like this, though four or five in, the raskvel’s tail took a journey beneath her thighs, and her moans jumped up an octave. You couldn’t keep your eyes from watching, not when there’s a plump, purple mound having its doubled clits stroked by a mischievous tail. It’s almost hypnotic. You wonder how much time this raskvel spends pregnant. From the way she greeted you on the intercom, she probably has a line of suitors that check back from day to day, hoping for a chance to sire her latest litter.");
-output("\n\n<i>“All done.”</i> Azra’s voice pulls you from your thoughts. The big suula gal shoulders her pack, samples secured, and tries to hide her blushing face behind her sunset-hued locks. It almost works. <i>“Let’s get out of here before something comes in after us.”</i>");
-output("\n\nThe only thing coming after you is the pregnant raskvel. She does so quite loudly.");
+	//High intelligence
+	if(pc.IQ() >= 70) output("\n\nYou note that Azra has placed her Codex on the ground in such a way that the raskvel is well-illuminated. Perhaps she intends to sneak a peek of at any potential action... or record it for later viewing.");
+	//Merge
+	output("\n\n<i>“Whaddya say? [pc.name], right? I promise we could have so much fun.");
+	if(pc.hasCock()) 
+	{
+		if(pc.cockThatFits(700) >= 0) output(" My pussy’ll be the perfect sleeve for that dick.");
+		else output(" I don’t care if you’re too big to fit inside a little thing like me. I wanna taste it!");
+	}
+	else if(pc.hasVagina()) output(" I could probably cum just from you straddling my face.");
+	else output(" We could make out while you rub my belly, and I bet I’d still cum.");
+	output("”</i> Her hips quiver, grinding her swollen mound against the diamond patterned deck plates. <i>“I’ll be the perfect, pregnant fucktoy!”</i>");
 
-output("\n\n[Hyper Fun]");
-output("\n\n//Crown fellating followed by hugjob, shaftlicking, and a stcky shower.");
-output("\n\n//Make sure to set x to biggest and add to parser calls. Kthnx, futureFen.");
-output("\n\n//Crotchcovered:");
-output("\n\nThe second you begin to unwrap your concealed cock, the raskvel’s eyes go wide. She leans closer, nostrils flaring and sniffing, her nipples visibly perking. Her lips purse as she struggles for words. Then your [pc.cock] flops out in all its immensity, {half-turgid and growing under her spellbound gaze/massively turgid, the veins pumping beneath her spellbound gaze}. She whimpers, her hands subconsciously squeezing her tits, her tail wagging back and forth through the cummy mess on the floor.");
-output("\n\n//Uncovered");
-output("\n\nThe second you bring your proudly-displayed member toward the pregnant raskvel, her eyes go wide. She leans closer, as much as her bloated frame will allow, nipples visibly perking. Her lips purse as she struggles to find the words. Proud of the effect you’re having on her, you switch your hips forward, bouncing {the half-turgid dick before her as it slowly inflates, locking her spellbound gaze to the inhumanly thick veins/the massively engorged dick before her as the inhumanly thick veins throb and ache for penetration.} She whimpers, her hands subconsciously squeezing her tits, her tail wagging back and forth through the cummy mess on the floor.");
-output("\n\n//merge");
-output("\n\n<i>“W-wow. It’s so big.”</i> the purple-scaled lizard-girl reaches out experimentally, as if she can’t quite believe that it’s real. When she makes contact, a shiver of pleasure runs through you, and it throbs against her armored skin{, leaking a fat drop of pre-cum onto her wrist/, drooling a stream of pre-cum all over her wrist}. Her expression sours. <i>“I wish I wasn’t pregnant.”</i> Tiny hands grab you just behind the [pc.cockHead] and gently tug you closer.");
-output("\n\nYou let them.");
-output("\n\n<i>“If I wasn’t pregnant, you could knock me up with this monster. You’d give me the biggest, rounded eggs ever. Sire a whole clan of big-dicked sons to make the next generation of raskvel girls stumble around bow-legged...”</i> Her face is an inch away from your [pc.cockNoun], but her eyes have drifted closed. The short, stacked alien is lost in her own fantasy, navigating her lips to greet your eager flesh by smell and feel alone{, and from how she whimpers after every breath, she likes it. When she pauses and sniffs deeply, her tiny frame shudders in response to the hyper-concentrated dose of pheromones{. You silently praise whoever invented the Treatment}}.");
-output("\n\nFrom behind you, you hear a clattering sound as Azra drops a tool.");
-output("\n\nSoft lips are on you before you can check to see if she’s okay. They press against the meatiest part of your [pc.cockHead], already slick with spit and eager to touch every part of your sensitive maleness. Tingling bolts of pleasure shoot through your sensitive mast as the miniature succubus’s fingers work over the skin, teasing and testing it{, dancing across the pronounced medial ring/, admiring the smooth taper of the shaft/, lovingly circling around every little nodule/, slipping through the wiggling tendrils, one at a time/, palming at the uninflated weight of your [pc.knot]/, tenderly exploring a genital slit that seems too small for the totem pole sliding out of it/, tenderly exploring the musky folds of your sheath}.{ Your body responds by oozing a steady flow of pre into her maw, feeding her biological proof that she’s a world-class cock-sucker. She savors it with gusto./ Your body responds by dribbling pre into her maw, providing biological evidence that she’s a world-class cock-sucker.}");
-output("\n\nThe raskvel’s hungry eyes pop open abruptly, and she breaks her dick-licking kiss to look up at you. Her hands, fortunately, do not stop their worship. <i>“Can I collect your cum.”</i> Her eyes are eager and earnest. <i>“I... there’s a bucket.”</i>{ She licks stray pre from her lips, though the effect is more to smear it across the bottom one like lip gloss./ She licks her lips} <i>“And I want to have your babies. After these.”</i> She lifts your dick with both hands, grunting with the effort, then feathers kisses along the underside of your shaft{, sucking on the soft, feline \"barbs\”</i> one at a time}. <i>“You’re the best daddy I’m ever going to meet.”</i>");
-output("\n\nYou doubt you could stop her from gathering some if you wanted to.{Bro/HighLib: Besides, a hidden part of you thrills at knowing this waddling baby-factory is going to play host to your children. Maybe she even has a system to preserve your cum, so she can pump out litters of little Steeles for years to come.} <i>“{Go ahead,”</i> you grunt./Like, O-M-G that would amazalicious!”</i> you cheerily exclaim, happy to feed her all the dick she could ever want./Just stop teasing me, and you can do whatever you want with the cum,”</i> you implore, hips shuddering. Her fingers are too damned good at their job.}");
-output("\n\nThe raskvel giggles. <i>“{You boys are so easy./A few strokes to the dick, and you get so generous.} Don’t worry. If there’s one thing I know, it’s how to make a cock feel good. Well, that and how to remodulate an ionic conductor for usage in a particle cannon, but getting knocked up is wayyy more fun!”</i> She’s back on your [pc.cock] as soon as you finish, pulling it - and you - closer so that she can recline. So positioned, the pregnant raskvel is able to grind you against her belly and thread you through her tits, smearing your {oozing/streaming/all but gushing} pre across her soft-scaled skin.");
-output("\n\nShe grabs a bucket from under the console while you adjust to the sudden onslaught of friction. <i>“Goddamn, that is some premium dick,”</i> the raskvel coos. She grabs one enormous ear and lays it across the top left side of your member. The inside is velvety soft warm. The other falls onto the other side a second later. <i>“I swear I can feel your dick all the way in my ovaries.”</i> Her legs tremble. <i>“Like they know I’m rubbing your big, fat, alien cumstick right next to them.”</i>");
-output("\n\nThe scaley slut’s hands return to their former place, this time pressing through her sensitive ears. It must feel good, because her eyes roll halfway back, interrupting her attempts to kiss your [pc.cockHead], but nothing could stop her from stroking you, pressing her tits together on either side with her forearms and jacking her perfectly textured ears up and down over every inch of cock she can reach. She drools into her cleavage, and her legs twitch with pleasure, trying to thrust her nearly-immobilized form against something, anything to get a little friction on her twat.");
-output("\n\nYou know how she feels. Your [pc.cock] is violently throbbing from the treatment. Your heart hammers in your chest with alarming rapidly. All you want is her to stroke a little faster, squeeze a little tighter, and you could cum. Orgasm is so close you can feel it, and the raskvel surely can too with how your large [pc.cockHead] swells.{ Your [pc.cockTail] slithers down behind and slams into her well-used cunt, but it still isn’t enough. You need more.}");
-output("\n\nTwo alien feet press down on your [pc.knot] from either side, toes squeezing. They’re slippering from all the girlcum on the floor, making her grip tenuous. Better still, her quaking thighs make them shudder like they’re strapped to a high-powered vibrator. You groan and thrust forward, slamming your dicktip against her cerulean lips, and she moans right along with you, her soprano voice tickling already overloaded nerves with another layer of impregnation-obsessed pleasure.");
-output("\n\nThe dam breaks, and you erupt into the raskvel’s maw.");
-output("\n\n//Cum variants! - no new PG");
-output("\n\n//Nojizz! - ANGER leads to the dark side.");
-output("\n\nWhen your oversized organ does nothing but spasm climacticly, the purple-scaled mynx’s expression sours, her passion calming in the face of an orgasm with nothing more than a small, tongue-moistening dribble of [pc.cumNoun].");
-output("\n\n<i>“That’s it?”</i> the raskvel says, gesturing wildly. <i>“All that effort and you barely get me half a dozen orgasms, and enough jizz to impregnate an ant? How dafuck am I supposed to get knocked up when {your balls are/your ball is/your body} is more dried out than sydian’s sense of humor? It’s like you bolted a fucking a giant, discount dildo on your crotch.”</i> She windmills her tiny fists in irritation, screaming, <i>“GET YOUR SHIT AND GET OUT! Fucking... fake-ass dick-having off-world losers!”</i>");
-output("\n\nMaybe if you had some time to rest, you would’ve had a better load for her. Too late now.");
-output("\n\n[Next]");
-output("\n\n<i>“All done.”</i> Azra’s voice pulls you from your thoughts. The big suula gal shoulders her pack, samples secured, and tries to hide her blushing face behind her sunset-hued locks. It almost works. <i>“Let’s get out of here before something comes in after us.”</i>");
-output("\n\nThe only thing coming after you is the pregnant raskvel’s taunts. <i>“You see this bucket? This is where I’d keep your spunk... if you had any!”</i>");
-output("\n\n//<50jizz - spit into bucket, a little disappointed but not mad. Recommends you eat some spunkshrooms.");
-output("\n\nA few powerful, mouth-filling spurts spray out of your oversized organ, packing themselves deep into the raskvel’s cheeks. She shudders, cunt-leaking in sympathetic orgasm, but somehow, she doesn’t swallow. Instead, her feet pump you harder, milking the last few dregs into her maw.");
-output("\n\nWhen she’s sure she’s harvested every drop, her hands and feet release your {slowly deflating meat/still-hard cock}. She leans to the side, grabs the bucket, and spits out your wad without a hint of shame. Only then, does she have a moment to reflect on what happened. <i>“Not too bad, star-stuff.”</i> She licks the residue from her lips and noisily swallows. <i>“Bet it must be some virile stuff, to come all the way out of that big, swinging dick of yours.”</i> Kissing the top of your cock like a favorite pet, she smiles. <i>“You did real good.”</i>");
-output("\n\n[Next]");
-output("\n\n<i>“All done.”</i> Azra’s voice pulls you from your thoughts. The big suula gal shoulders her pack, samples secured, and tries to hide her blushing face behind her sunset-hued locks. It almost works. <i>“Let’s get out of here before something comes in after us.”</i>");
-output("\n\nThe only thing coming after you is the sound of the pregnant raskvel’s voice through the intercom. <i>“Thanks again for visiting. Come back real soon, okay? I’ll make sure to tape the birth for you~!”</i>");
-output("\n\n//< 200 jizz - get mouthful, then aim rest into bucket. Polite thank you.");
-output("\n\nA powerful, cheek-bulging squirt sprays out of your oversized organ. Still latched onto your [pc.cockNoun], the gravid girl takes it like a champ, swallowing noisily even as her pussy fountains clear girl-cum onto the floor. With shuddering hands, she grabs the bucket, swapping it into place just before your next squirt can take her in the face. You’re forced to watch your orgasm shoot into the rustic vessel, spurt after spurt puddling in the bottom while slippery soles work your [pc.knot] to squeeze out even more.");
-output("\n\n<i>“Ah-ahhh yes!”</i> the gravid girl cries, shuddering again and again. You swear you can feel her strained stomach ballooning in response to the loads pumping through your urethra, so close by. <i>“Just like that!”</i> She twists her feet in half-circles, stunning you with hellish pleasure to help you leak out a few last drops. Only then does she let you go and put the bucket back on the floor.");
-output("\n\nA face blushed nearly pink greets you, illuminated with a cum-splattered smile and bright, pleased eyes. <i>“That was really nice. Really nice.{ Almost enough to make up for breaking my {door/turrets}./ Almost as good as popping out your eggs is going to be.}”</i> She pats your dick affectionately. <i>“I think there’s enough for three or four pregnancies there, if I’m smart about it, but I bet you’d rather I just poured it all with a funnel first chance I get, wouldn’t ya, {stud/slut}?”</i>");
-output("\n\n{You nod vigorously, wishing you could watch her do it./You giggle and shrug. Like, cum is great no matter how it slides into you!/You shrug nonchalantly, a little tired.}");
-output("\n\n<i>“Well I’m a raskvel, and that means I’m smarter than the stingy angel-shark over, and everybody else on this dustball of a planet.”</i> The raskvel thumps her fist proudly against her chest. Her exposed tits jiggle, glossy with sweat. <i>“I’ll ration it out. Maybe even mix it in with some raskvel nut if I think it needs a little help. I’m going to get so pregnant from you so many times, just you watch.”</i>");
-output("\n\n//[Next] with the same text as previous");
-output("\n\n//< 1000 jizz - get mouthful+facial, then collect rest in bucket while blind.");
-output("\n\nA powerful, cheek-bulging squirt sprays out of your oversized organ. The gravid-girl’s mouth can’t even contain it all. She’s forced off your dick by the heated flow and takes the rest square in the face. Ribbons of [pc.cumNoun] cascade down her cheeks. [pc.CumGem] droplets dribble from her chin, but the raskvel still manages to remember her bucket and lift it into place, even while she’s trying to swallow her leftover mouthful. You can’t see her face with the spooge-vessel thrust in front of it, but you can hear her moans imploring you to give her more.");
-output("\n\nStrangely, she seems to be getting off on it. Every time your [pc.cockNoun] shoots a flood of [pc.cumNoun] through its urethra, you can feel her strained belly pressing back harder against you, as if the mere presence of sperm nearby is enough to make her reproductive system accelerate. Squirts of girlcum hit your [pc.feet] as she quivers, making her tiny soles pump your [pc.knot] harder, squeezing even more of your potent fluids into the bucket.");
-output("\n\n<i>“Holey fucking condoms, that’s a lotta jizz!”</i> the raskvel squeaks, gushing again. <i>“You’re gonna get me pregnant for weeks, {stud/slut}!”</i> The bucket sloshes higher as you spend the last of your liquid passion. She sets it down, giving you a good look at her [pc.cumColor]-painted maw. Streams of [pc.cumVisc] [pc.cumNoun] hang from her chin, and she’s constantly blinking her gunked-up eyes to try and see. <i>“I think my ovaries might have mutated again. Something definitely happened down there. I bet when I get pregnant with your kids, I’ll have even more. My current record is fifteen.”</i> An absurdly proud smile appears beneath the layer of sexual filth.");
-output("\n\n[Next] -> same text as previous");
-output("\n\n//< 3000 jizz - get mouthful+facial+plastered hair, then collect rest in bucket");
-output("\n\nAn immense, mouth-flooding squirt sprays out of your oversized organ - and directly past her lips. She’s forced off your dick by the eruption of [pc.cum] with her cheeks bulging wider than a squirrel’s and a shocked look in her eyes. It doesn’t last long, not when the rest of your spermy shot goes across her nose, cheek, and forehead, all the way up into her {once-}blue hair. Her arms flail around for the bucket, but by the time she gets it in front of your [pc.cockHead], she’s entirely drenched.");
-output("\n\nYou’ve only just begun to climax, spilling more virile liquid into the bucket than this raskvel likely sees in a month. She’s loving it too. You can tell by the way she squirms below you, her feet quivering on your [pc.knot] whenever another pulse of [pc.cumNoun] passes through your urethra. Cunt-juice splatters the floor. The messy-little kobold is apparently quite the squirter. Stranger still, it seems like her belly gets bigger the more you go off, like having that much jizz that close to her womb is enough to make her reproductive system go into overdrive.");
-output("\n\nHigher and higher, the cummy tide rises in the bucket, sloshing. As it reaches near the lip, your shots cause some to splatter out on the raskvel mother’s tits, a sight erotic enough to help you squirt an extra time or two - just enough to fill it to the top.");
-output("\n\n<i>“Homyfuckinggoddamn that is a lot of cum!”</i> The pregnant lizard-girl tries to set down the bucket, but a few cupfulls slosh out in the process. She giggles and shovels some into her mouth, completing the image of a completely debauched cum-slut. <i>“And it tastes so strong! You’re going to give me babies for months, you know that right?”</i> She smears more cum on her stomach, making the scales there shine. <i>“You’re my primo baby-daddy. Gonna put more raskvel on this planet than a whole generation of rask boys.”</i> She kisses your dick, then hugs it passionately.");
-output("\n\n<i>“You and your cock are welcome here anytime. Just walk in and shove anybody else out of the way, because you are my number one lay from now on, got it?”</i> the smutty broodmother jabs a finger in your direction. <i>“I’m {almost glad you smashed up my {door/turrets}/so glad you decided to force your way in here to meet me.}”</i>");
-output("\n\n//Next -> same as other cummy epilgoues.");
-output("\n\n//< 10000 jizz - choke on jizz, + full body drench, and bucket overflows.");
-output("\n\nAn immense, overwhelmingly virile stream issues forth. The tide of jism instantly balloons the raskvel’s cheeks to comical proportions, then blows her off the end of your dick entirely. Unbound, semen sprays across her features. First, it drenches her shockingly parted lips, then splatters across her cheek so hard that it coats everything from the bridge of her nose the curve of her jawline. [pc.CumGem] dribbles from her chin as her jaw works to swallow the first [pc.cumFlavor] mouthful, but you’re far from done. Your [pc.cock] bucks like a raging bronco, and the hose of seed takes her across the forehead for a moment before soaking her hair.");
-output("\n\nIn desperation, the semen-coated lizard scrabbles for her bucket. She gets it up in time to catch your second shot - most of it anyhow. It fills with alarming rapidity, something that clearly delights the raskvel from how she moans and squirts intermittently. While you fill the bucket, the constant caresses coaxing ever more from your body, you realize that her belly is getting larger. You aren’t sure why or how, maybe her hyper-developed reproductive system can tell that gallons of virile seed are flowing by, just inches away, packed into your highly-pressurized urethra. Maybe she’s so eager to funnel all that [pc.cumVisc] [pc.cumNoun] into her snatch that she’s accelerating her pregnancy through willpower alone.");
-output("\n\nMaybe the motherhusks have turned her into a baby-making machine.");
-output("\n\nYou don’t really care either way, not when she’s still wringing your [pc.cock] with those lovely ears of hers, jacking your [pc.knot] with her feet, and begging you to keep cumming. When your [pc.cum] sloshes over the edge of the bucket, you groan in delight. It slips out of her fingers not long after, all but forgotten on the floor. She’ll be glad when she realizes it didn’t tip over, though more than half of her precious baby batter spilled to the floor.");
-output("\n\nNo matter. You dump load after load onto her tits, first left, then right. Once they’re sufficiently soaked (with a small lake in her cleavage), you turn your attention south to her belly. The fecund dome is soon takes on the appearance of a well-glazed pastry, with trickles of [pc.cumColor] icing dripping down the sides.");
-output("\n\nStill, she begs, <i>“My pussy!”</i>");
-output("\n\nYou violently yank your cock out of her hands and shove it low, right up against the lips of her double-clitted pussy. The nubs press down on your [pc.cockHead] from either side as the lips yield to the torrents of spooge you push out, cream-filling her passage in one blissful squirt. Her plugged-up cervix won’t let her take any more, so you pull back and jack the last few squirts from your dick onto her puffy mound, letting the excess drip off her thighs.");
-output("\n\n<i>“S-so much fucking cum!”</i> the raskvel screams, violently orgasming one last time as she smears the dregs of your climax across her taut tummy. <i>“It’s everywhere.”</i> She looks dazedly at the bucket. It’s almost as filthy with your jism as she is. <i>“I think I love you.”</i> The declaration is whispered tiredly, but there is no hint of deception in her voice. To her, you’re clearly the perfect mate.");
-output("\n\nHer lingering declaration hangs heavy in your mind. <i>“{Awww, you’re a super good fuck yourself. I’d fill your pussy any time!/You’re not so bad yourself,”</i> you grunt. <i>“Not bad./You’re amazing, though I don’t think I’m ready to drop the ‘L’ word myself./You’re not bad yourself, little lady. I’d knock you up any day of the way./You love my dick,”</i> you explain, shaking it at her. <i>“But thanks anyways. I know it can have that effect.}”</i>");
-output("\n\n<i>“Do you have any idea how many babies you’re going to give me?”</i> She scoops cum out from between her tits, then dumps it in the bucket. <i>“You’re going to father to a whole generation of virile, big-dicked raskvel boys.”</i> After a moment of thought, she adds. <i>“You should come back. Next time, I can be the cum-bucket.”</i>");
-output("\n\nSomehow you doubt she’s capable of making that many children, but it brings a smile to your face all the same.");
-output("\n\n//[Next] -> to usual outro, but with new dialogue:");
-output("\n\n<i>“Thank you so much for all the cum! I’m going to record the births, every one of them, then post them on the extranet. People in the core actually pay to watch! Look me up sometime.”</i>");
-output("\n\nYou’re pretty sure Azra facepalms, even though she’s crawling behind you on her hands and knees.");
-output("\n\n<i>“And come back soon. Fresh cum is so much better!”</i>");
-output("\n\nFuck Her");
-output("\n\n//"Her womb may be full, but her pussy isn’t.”</i>");
-output("\n\n{You hurriedly free your [pc.cocks] from {its/their} irksome confinement. The long-concealed flesh springs free and rapidly engorges before the raskvel’s eyes./You casually grasp your [pc.cocks] and shake {it/them} at the horny raskvel.} She smiles wide with licentious intent, licking her blue-painted lips and tossing her hair.");
-output("\n\n<i>“You gonna stick it in?”</i> The purple-scaled lizard rolls to the side, lifting one leg high into the air to reveal an obscenely swollen cunt, flanked by bright pink, marble-sized clitties. The folds themselves are thick and juicy, dribbling eager cuntjuice across the floor. No matter how many birth’s they’ve passed, they’re plush enough to squeeze down on a pinky, let alone your [pc.cock]. <i>“Or are you just teasing a poor, immobile rask girl?”</i> She grabs her ankle and pulls her leg higher until her lips part, releasing a small gush of lube. <i>“Maybe aliens are just shy...”</i>");
-output("\n\n//Very tall.");
-output("\n\nHardly. She’s just so small. Getting a huge creature like yourself to line up with that slobbering slot takes significant effort and a small amount of engineering. Between shoving a few cushions under her ass and awkwardly squatting down, you make it work.{ Life... uh... finds a way.}");
-output("\n\n//Else");
-output("\n\nHardly. You squat down to line yourself up, nearly slipping in the leaking girlslime in the process.");
-output("\n\n//Merge");
-output("\n\n<i>“...Maybe you’re just afraid of a little raskvel pussy. Like you know you’ll be lining up at my door day after day once you taste it,”</i> the sultry tart suggests.");
-output("\n\nGrabbing her belly to brace yourself, you thrust inside. {Her pussy parts easily around your [pc.cock], and her diatribe cuts off with a high-pitched squeak of pleasure./Her pussy reluctantly parts for your [pc.cock], clutching it tightly as her diatribe cuts off with a high-pitched squeak of pleasure./Her pussy strains to accept your girthy tool, its thick lips stretched wide enough to pass an egg. A high-pitched wail of pleasure interrupts the little slut’s diatribe at the penetration. Evidently she’s a fan of pushing herself to the absolute limit.} That saucy slot feels lovely wrapped around you. Her folds are absolutely soaked, and the pudgy pussy-lips press hotly against your crotch, a gentle reminder that you’ve buried yourself completely inside her.");
-output("\n\n//2");
-output("\n\nMeanwhile, your second dick rubs against her slippery crease of her thigh, pressing its [pc.cockHead2] up against the underside of her fertile belly. The mix of sweat and cunt-juice coating her soft-scaled skin allows it to glide effortlessly against her, right up until she wraps her fingers around it to give it a tug. <i>“I see you brought extra for the rest of me. How thoughtful...”</i> Her fingers twist and swirl while her cunt clenches.");
-output("\n\n//More");
-output("\n\nMeanwhile, your extra dicks rub against the slippery creases of her thighs, pressing their turgid tips up against the underside of her fertile belly. The mix of sweat and cunt-juice coating her soft-scaled skin allows them to glide effortlessly against her, right up until she grabs {both of them/two of them} to give them a tug. <i>“I see you packed enough to share. How thoughtful...”</i> She pumps both hard. <i>“I could use a facial.”</i>");
-output("\n\n//Merge");
-output("\n\nWhatever your floor-bound partner may think, you hold all the cards. You’re the one doing the fucking, looming over her. You’re the one who moves her thigh to make the muscles inside her twat clamp down tighter on your rod. She can whimper, her hands caressing your body in ways that make you groan, but there’s nothing she can do to change your tempo, nothing she can do to give her pause when you pound her drooling cunt hard enough to make her chirp out an orgasm.");
-output("\n\nYou’re just getting warmed up. You hammer her well-used cunt with powerful strokes. When you pull back, ropes of girl-jizz spatter the floor, hanging off your [pc.cock] in webs. When you thrust in, still more squirts out, splattering your thighs and hers alike. When you bury yourself to the hilt, crushing her clits between your bodies, she squeals and trembles. You can’t tell if she’s cumming over and over, or if she just can’t handle how good it feels to have her pregnant pussy taken by a talented lover. You like it either way.");
-output("\n\nBehind you, Azra grunts in what you take for irritation, but when you glance back, you see she’s popped the release on her crotch to let an absolutely enormous suula-cock dangle out. She’s hard and leaky, but she’s still doing her best to harvest the motherhusks. In her hurry, a piece cracks apart into dust, motes of falling down over her exposed groin. She doesn’t seem to notice, and returns to gathering the rest.");
-output("\n\nA powerful, seismic clench yanks your attention back to the lizard-girl in front of you. She’s smiling saucily, her tail lashing back and forth. It {cradles your balls, then wraps around them with surprising tenderness. The warm cocoon of scaly flesh makes it seem almost too easy to spill your load./teasingly wanders over your slit, then slips inside. The slippery scales inside you make it almost too easy to spill your load./slips back to tease your [pc.asshole]. At first, it’s playfully circling, but after a particularly forceful thrust on your part, she slides it in. The pressure on your prostate makes it seem almost too easy to spill your load} One errant thought and you’ll be giving her an enormous, cunt-bathing creampie.");
-output("\n\n<i>“You know, if you give me enough c-cuuUUUM~! ...I can save some to get pregnant with after this batch.”</i> Her pussy quivers, leaking runnels of slick, reptilian goo. <i>“I bet you’ll make me ever bigger. Think about it. Your own little egg-slut, saving your cum so she can get knocked up again and again.”</i>");
-output("\n\n{Fuuuck that’s exactly what you want to do. You want to strap her to the wall in your ship and dump endless loads into her, using her as equal parts sex-toy and virility measuring stick. Maybe you might even get her some mods or an exoskeleton to let her get around the ship. In between laying eggs she could dress herself in skimpy slutwear and slowly ruin it as her pregnancy progresses.../You feel like you ought to be a little worried or disgusted about such brazen usage of your sexual fluids, but your body isn’t. Your traitorous rod{s} love{s} the idea of siring a whole clan of horny fuck-lizards. She’s tickled your most basic, unthinking instincts in ways that make your [pc.cockNoun] throb and your {[pc.balls]/crotch} clench.}");
-output("\n\nYou bury yourself deep and unload. There’s no other option. The climax is entirely beyond your control, more a sudden venting of pressure than anything you have to work for. The pregnant raskvel’s oozy, clutching slit squeezes it out of you in {weak trickles/fat globs/thick streams/enormous gushes/titanic waves}, her well-used form wringing your [pc.cockNoun] for all its worth. Her cunt a warm, wet heaven, clutching you tightly, drowning you in ecstasy in pussyjuice alike{ while your pressurized seed vents back out all over the floor}. You shudder and groan with each successive spurt until your dick finally goes dry. Even then, the scaled vixen’s tunnel massages you pleasantly, begging you to stay inside and enjoy the post-coital massage.");
-output("\n\n<i>“All done?”</i> Azra asks from over your shoulder.");
-output("\n\nWhen did she get back there? Her dick is packed away and the samples safely holstered in her bag.");
-output("\n\n<i>“Yeaaahh,”</i> you offer, trying to suppress a groan as you pull yourself free from your egg-obsessed lover. Your [pc.cockNoun] gleams with a fresh coat of pussy-juice while dribbles of [pc.cumColor] spooge leak from the tip. Azra’s eyes favor it with a longing look.");
-output("\n\n<i>“Then we should get going. Only one sample left!”</i> Azra brushes back her hair and turns away, giving you a moment to make yourself decent before setting off.");
-output("\n\nThe purple-scaled cum-dump on the floor grins giddily, stirring your offering around inside herself with a finger. She doesn’t seem like she’ll be talking just yet.");
-output("\n\n[Next]");
-output("\n\nAs you travel back through the tunnel, the comms click on once more. <i>“{Heyyy, you were pretty good at that... for an alien. You didn’t have much cum, but if you wanna play when I’m all pregger-horny, just stop by and gimme a ring, ‘kay?/Heyyy, thanks again for the donation. I scooped some out to save for later, so I’ll definitely get to have some of your kids.{ Lots of your kids, I guess. There’s like a whole bucket of it. You’re a super good breeder, you know that?} Anycooch, I guess you can come back and knock me up whenever you want. You’re real good at it.{ Almost makes it worth getting all my stuff smashed up...}}”</i>");
-output("\n\nAzra mutters something from behind you, but when you look back, she’s facepalming.");
-output("\n\n<i>“Don’t wait too long. It’s always better fresh!”</i>");
+	//Bimbo -disable non-sex options if PC has genitals.
+	if(pc.isBimbo()) output("\n\nYou look her up and down. It’d be better if she had a dick, but you can hardly turn down the chance to tangle tongues with such a petite cutie.");
+	//Bro
+	else if(pc.isBro()) output("\n\nJob  complete and a free lay as a prize? Fuck yeah. You resolve to plow the kobold cutie so well that Azra lines up for the next round.");
+	//Else high libido or lust
+	else if(pc.libido() >= 70 || pc.lust() >= 60) output("\n\nThat’s a hard offer to turn down. Your loins burn at the offer, and Azra is going to be busy for a few minutes... just enough time to get your rocks off. A quick bang will be... preparation for the trials to come.");
+	//Else low lust
+	else if(pc.lust() < 33) output("\n\nThe offer is tempting enough to stir your otherwise slumbering passion. Taking her up on it wouldn’t be a bad way to pass the time.");
+	//Else normal lust
+	else output("\n\nThere’s not much else to do, and Azra doesn’t seem to mind. Now would be as good a time as any to blow off some excess steam.");
+	processTime(10);
+	pc.lust(5);
+	//[Fuck Her] [Hyper Fun]  [Face Ride][Wait it Out]
+	clearMenu();
+	if(pc.biggestCockVolume() > 700) addButton(1,"Hyper Fun",hyperRaskFun);
+	else addDisabledButton(1,"Hyper Fun","Hyper Fun","You need a huge penis for this.");
 
-output("\n\nFace Ride");
-output("\n\n//Straddle her face as she eats you out, then slip in her cuntjuice for musky fun :3");
-output("\n\nYou advance on the immobile raskvel{, silently peeling the covers from your [pc.vaginas]/, silently wiggling your hips to display your [pc.vaginas]}. <i>“{You’re just the right height./I bet all the girls love seeing you stuck on your knees.}{ Now how about you lick all the cum out of me. {Nice&misch/hard:The glaze just makes it better, right?/Sluts like you </i>crave<i> it.}/ Now why don’t you put that tongue to work before my feathery friend finds an excuse to keep us apart?/ Now put that tongue to work, and we’ll see if you’re really keyed up enough to get off from the taste of another{ pregnant}{ person/ woman}’s pussy.”</i>");
-output("\n\n<i>“Mmmm... been a while since I sucked pussy,”</i> the pregnant raskvel admits. Her eyes are wide and lustily locked on your slit{s}. It’d take a raskvel boy, dribbling cum and begging to fuck, to distract her for how she stares. She wants the pussy, and she wants it bad. Rocking forward, the lizard-girl strains to plant a kiss on your mound, but her pregnant bulk drags her right back, forcing her to settle down on her fattened haunches with an annoyed wobble. <i>“...Please? I can’t reach.”</i> She looks up imploringly, tugging her nipples as much for show as for her own pleasure.");
-output("\n\nYou {step to the side and carefully climb up onto her console’s ledge. It’s the only way you’ll get your cunt at the right level with how short you both are./take a step closer.} The violet lizard-girl smiles eagerly. Then, too fast to be seen, she worms her tongue into your [pc.vagina]. One moment, you’re inching your hips closer. The next, a thick spear of oral flesh is wriggling inside your most sensitive place. It’s a disproportionately large thing too - nearly six inches long and fat enough around to shame a few of the galaxy’s bigger races.");
-output("\n\nA sigh of delight slips from your mouth as your hips instinctively push back, pressing your lips to hers, [pc.oneClit] booping her on the nose. Your pregnant pussy-licker takes your vocalizations as encouragement and places her hands {on your [pc.butt]/on either [pc.thigh]}, squeezing as her luscious, blue-painted lips slip back and forth on your arousal-slickened flesh.{ Her mouth works to swallow the cum inside. For how fast she guzzles it down, scooping more into her maw with practiced curls of her tongue, she loves it.}{ You’re so wet that excess moisture stains your muff-mounted raskvel’s cheeks{ and drips from her chin in small waterfalls}.}");
-output("\n\n<i>“Deeper,”</i> you urge, rocking back and forth on your face. Your pussy spasms around the tiny beast-girl’s rather... gifted tongue in pulsing waves that echo your own mounting ecstasy. When that wiggling organ draws back, you whimper in desperation and disappointment only to have your cry transform into a full-throated screech of pleasure once she coils it around [pc.oneClit]{, tugging it like a full-blown cock}. The best part of it all is just how slick and <i>hot</i> it all feels, like the nerves into your [pc.vagina] are firing so strongly that everything below your waist may as well be tongue-bathed pussyflesh.");
-output("\n\nShe knows what she’s doing, that’s for sure.");
-output("\n\n<i>“Mmmm,”</i> the short, stacked MILF moans into your cunt. Her fingers squeeze harder, claw-like nails {scrabbling across your chitin./digging into your [pc.skinFurScalesNoun].} Coils of pleasure twist through your nethers as the tongue abandons your clit and burrows deeper once more, feeling around the inside of your passage, stretching it open{ and letting it snap back into place/ and watching the [pc.girlCum] {drool/leak} out}.{ A tongue alone isn’t enough to satisfy you, however, and she knows it. Raising an arm, the purple-scaled nympho balls her small hand into a fist and thrusts it inside, twisting her neck so that her tongue can taste your oozing [pc.girlCum] while she pleases your capacious cunny.}");
-output("\n\nBursts of stars explode behind your eyelids as the pleasure crashes into you. Whimpering and oozing, you shake and shudder, paroxysms of ecstasy wracking your frame, grinding your overheated slit into the cunt-smeared hussy’s blissfully unconcerned face. You dimly register the feel of her voice crying out into you, her sounds of pleasure little more than a booster rocket carrying you into orgasm-land by vibration alone.");
-output("\n\n//Squirter + hugecumQ");
-output("\n\nAnd there’s so much [pc.girlCumNoun]. It sprays into the raskvel’s mouth and washes down her cheeks. When she draws back to breathe, it splatters across her nose and forehead. Eventually she gives up and tips her head back, stabbing her tongue into you again and again, making your pressurized pussy spurt its fragrant liquid <i>everywhere</i>: on her tits, on her swollen belly. It even creates puddles on the floor that slowly wind their way toward a well-placed drainage grate.");
-output("\n\n//Squirter");
-output("\n\nYou pay the soft-scaled slut back in big, wet squirts of [pc.girlCum] that run down her chin and pool in her tits. Her skill as a slit-licker demands it. Your [pc.vaginas] will accept nothing less, not when climax has you in its grip and wrings you for every drop of feminine goo you can give.");
-output("\n\n//Not squirter, very wet");
-output("\n\nYou pay the soft-scaled slut back in a steady river of [pc.girlCum]. She all but purrs at the taste of it, throat bobbing in an effort to devour it all. When she sees you watching, she slurps louder, tugging on your netherlips, intent on wringing every drop of feminine lust from you before you continue on your journeys, and it’s working.");
-output("\n\n//Regular wet");
-output("\n\nYou pay the soft-scaled slut back in lurid moans and dribbles of [pc.girlCum]. She ravenously devours them, her tongue twirling inside you to gather it up and channel the flow directly into her maw. You hear her gulp once, then return to her work with the passion of an individual who truly loves the act of giving pleasure.");
-output("\n\n//Merge");
-output("\n\nAs you come down, shuddering through aftershocks, you run your fingers through her feathers. They’re down-soft, and the sensation combined with the taste of your post-coital cunt sends her over the edge. She whimpers, lower lip shaking against [pc.oneClit]’s hood, and her pregnant quim goes off, splattering pregnant raskvel-honey across the deck{ to mix with your own}. She rolls part way back, enough to give your [pc.vaginas] some relief, and you gingerly separate, panting and tired in the aftermath.");
-output("\n\n<i>“Wow,”</i> you mumble, too cummed-out for words.{ There’s so much pink, cotton-candy fuzz twirling around in your head that you doubt you could complete a sentence, much less manage a witty entendre.}");
-output("\n\nThe raskvel broodmother, pats her tummy. Did it get bigger? It definitely looks bigger... <i>“Mmm... that was fun. Not as fun as birth, mind you, but fun.”</i> She burps, and the scent of pussy in the air grows a little stronger.");
-output("\n\n[Next]");
-output("\n\nA metallic click and heavy footfalls turn you away from your recent conquest. Azra has already packed away the samples, and she’s gesturing toward the tunnel back to the wastes. <i>“Only one more sample to go, [pc.name].”</i> She’s blushing heavily, eyes darting back and forth from your brazenly exposed [pc.vaginaNoun] to the raskvel’s own dewy entrance. <i>“We can’t just... fuck all day.”</i> She turns away in a hurry. Is she... walking stiffly?");
-output("\n\n//Bimbo");
-output("\n\nSomebody’s got a boner~!");
-output("\n\n//Else");
-output("\n\nYou get the impression she did more than just sample the mushrooms, but don’t see much point in bringing it up, not when you’re this well-fucked.");
-output("\n\n<i>“Heyyy,”</i> the pregnant raskvel’s voice bursts out of the comms above. <i>“Your pussy tastes way better than raskvel or sydian-cunt. Just let me know that you’re Miss Superpuss if you come back, and I’ll let you right back in.{.. once I fix the {doors//and//guns}. Don’t break ‘em again, please-kay-thanks!}”</i>");
-output("\n\n<i>“That so?”</i> Azra muses from behind you, under her breath.");
+	if(pc.hasCock() && pc.cockThatFits(700) >= 0) addButton(0,"Fuck Her",fuckDatRaskipoo,undefined,"Fuck Her","Her womb may be full, but her pussy isn’t.");
+	else if(pc.hasCock()) addDisabledButton(0,"Fuck Her","Fuck Her","You're too big to fit inside.");
+	else addDisabledButton(0,"Fuck Her","Fuck Her","You have no penis to fuck her with.");
+
+	if(pc.hasVagina()) addButton(2,"Face Ride",faceRideTheRaskPreg);
+	else addDisabledButton(2,"Face Ride","Face Ride","You need a vagina to rub on her face for this.");
+
+	addButton(3,"Wait It Out",waitOutPregRask);
+}
+
+//Wait It Out
+public function waitOutPregRask():void
+{
+	clearOutput();
+	showPregRask();
+	showName("\n...SUCCESS?");
+	output("<i>“No thanks,”</i> you tell the pregnant raskvel. <i>“But don’t let me stop you from enjoying yourself.”</i>");
+	output("\n\nThe feather-haired lizard-girl rolls her eyes. <i>“Suit yourself, sweet stuff.”</i> She brushes her ears out of the way and wraps her fingers around her pregnancy-swollen teats, rolling the tender nubs in her fingers. Meanwhile, her tail curls around to stroke the taut skin of her belly. It slips and slides all over the fecund dome, and it must feel good for how she moans. Yet the rask doesn’t push herself. Laconic movements and gentle strokes are the order of the day. She’s not working toward an orgasm; she’s playing her body like an instrument, riding the edge of ecstasy without plunging over into an exhausting orgasm.");
+	output("\n\nYou pull up the extranet on your Codex and try ignore the rask’s pleasure-soaked vocalizations. Azra seems to be doing the same as she intently picks over the plant growth.");
+	output("\n\nAlmost twenty minutes pass like this, though four or five in, the raskvel’s tail took a journey beneath her thighs, and her moans jumped up an octave. You couldn’t keep your eyes from watching, not with a plump, purple mound having its doubled clits stroked by a mischievous tail. It’s almost hypnotic. You wonder how much time this raskvel spends pregnant. From the way she greeted you on the intercom, she probably has a line of suitors that check back from day to day, hoping for a chance to sire her latest litter.");
+	output("\n\n<i>“All done.”</i> Azra’s voice pulls you from your thoughts. The big suula gal shoulders her pack, samples secured, and tries to hide her blushing face behind her sunset-hued locks. It almost works. <i>“Let’s get out of here before something comes in after us.”</i>");
+	output("\n\nThe only thing coming after you is the pregnant raskvel. She does so quite loudly.");
+	processTime(8);
+	clearMenu();
+	addButton(0,"Next",spunkShroomTrapQueen);
+}
+
+//[Hyper Fun]
+//Crown fellating followed by hugjob, shaftlicking, and a stcky shower.
+//Make sure to set x to biggest and add to parser calls. Kthnx, futureFen.
+public function hyperRaskFun():void
+{
+	clearOutput();
+	showPregRask();
+	var x:int = pc.biggestCockIndex();
+
+	//Crotchcovered:
+	if(!pc.isCrotchExposed())
+	{
+		output("The second you begin to unwrap your concealed cock, the raskvel’s eyes go wide. She leans closer, nostrils flaring and sniffing, her nipples visibly perking. Her lips purse as she struggles for words. Then your [pc.cock " + x + "] flops out in all its immensity, ");
+		if(!pc.isErect()) output("half-turgid and growing under her spellbound gaze");
+		else output("massively turgid, the veins pumping beneath her spellbound gaze");
+		output(". She whimpers, her hands subconsciously squeezing her tits, her tail wagging back and forth through the cummy mess on the floor.");
+	}
+	//Uncovered
+	else
+	{
+		output("The second you bring your proudly-displayed member toward the pregnant raskvel, her eyes go wide. She leans closer, as much as her bloated frame will allow, nipples visibly perking. Her lips purse as she struggles to find the words. Proud of the effect you’re having on her, you switch your hips forward, bouncing ");
+		if(!pc.isErect()) output("the half-turgid dick before her as it slowly inflates, locking her spellbound gaze to the inhumanly thick veins");
+		else output("the massively engorged dick before her as the inhumanly thick veins throb and ache for penetration.");
+		output(" She whimpers, her hands subconsciously squeezing her tits, her tail wagging back and forth through the cummy mess on the floor.");
+	}
+	//merge
+	output("\n\n<i>“W-wow. It’s so big.”</i> the purple-scaled lizard-girl reaches out experimentally, as if she can’t quite believe that it’s real. When she makes contact, a shiver of pleasure runs through you, and it throbs against her armored skin");
+	if(pc.cumQ() >= 40 && pc.cumQ() < 500) output(", leaking a fat drop of pre-cum onto her wrist");
+	else if(pc.cumQ() >= 500) output(", drooling a stream of pre-cum all over her wrist");
+	output(". Her expression sours. <i>“I wish I wasn’t pregnant.”</i> Tiny hands grab you just behind the [pc.cockHead " + x + "] and gently tug you closer.");
+	output("\n\nYou let them.");
+
+	output("\n\n<i>“If I wasn’t pregnant, you could knock me up with this monster. You’d give me the biggest, rounded eggs ever. Sire a whole clan of big-dicked sons to make the next generation of raskvel girls stumble around bow-legged...”</i> Her face is an inch away from your [pc.cockNoun " + x + "], but her eyes have drifted closed. The short, stacked alien is lost in her own fantasy, navigating her lips to greet your eager flesh by smell and feel alone");
+	if(pc.isTreated() || pc.cocks[x].cType == GLOBAL.TYPE_EQUINE || pc.hasPheromones()) 
+	{
+		output(", and from how she whimpers after every breath, she likes it. When she pauses and sniffs deeply, her tiny frame shudders in response to the hyper-concentrated dose of pheromones");
+		if(pc.isTreated()) output(". You silently praise whoever invented the Treatment");
+	}
+	output(".");
+
+	output("\n\nFrom behind you, you hear a clattering sound as Azra drops a tool.");
+
+	output("\n\nSoft lips are on you before you can check to see if she’s okay. They press against the meatiest part of your [pc.cockHead " + x + "], already slick with spit and eager to touch every part of your sensitive maleness. Tingling bolts of pleasure shoot through your sensitive mast as the miniature succubus’s fingers work over the skin, teasing and testing it");
+	if(pc.cocks[x].cType == GLOBAL.TYPE_EQUINE) output(", dancing across the pronounced medial ring");
+	else if(pc.cocks[x].cType == GLOBAL.TYPE_CANINE) output(", admiring the smooth taper of the shaft");
+	else if(pc.cocks[x].cType == GLOBAL.TYPE_FELINE || pc.hasCockFlag(GLOBAL.FLAG_NUBBY,x)) output(", lovingly circling around every little nodule");
+	else if(pc.cocks[x].cType == GLOBAL.TYPE_SUULA) output(", slipping through the wiggling tendrils, one at a time");
+	else if(pc.hasKnot(x)) output(", palming at the uninflated weight of your [pc.knot " + x + "]");
+	else if(pc.hasStatusEffect("Genital Slit")) output(", tenderly exploring a genital slit that seems too small for the totem pole sliding out of it");
+	else if(pc.hasSheath(x)) output(", tenderly exploring the musky folds of your sheath");
+	output(".");
+	if(pc.cumQ() >= 500) output(" Your body responds by oozing a steady flow of pre into her maw, feeding her biological proof that she’s a world-class cock-sucker. She savors it with gusto.");
+	else if(pc.cumQ() >= 50) output(" Your body responds by dribbling pre into her maw, providing biological evidence that she’s a world-class cock-sucker.");
+
+	output("\n\nThe raskvel’s hungry eyes pop open abruptly, and she breaks her dick-licking kiss to look up at you. Her hands, fortunately, do not stop their worship. <i>“Can I collect your cum.”</i> Her eyes are eager and earnest. <i>“I... there’s a bucket.”</i>");
+	if(pc.cumQ() >= 50) output(" She licks stray pre from her lips, though the effect is more to smear it across the bottom one like lip gloss.");
+	else output(" She licks her lips");
+	output(" <i>“And I want to have your babies. After these.”</i> She lifts your dick with both hands, grunting with the effort, then feathers kisses along the underside of your shaft");
+	if(pc.cocks[x].cType == GLOBAL.TYPE_FELINE) output(", sucking on the soft, feline \"barbs” one at a time");
+	output(". <i>“You’re the best daddy I’m ever going to meet.”</i>");
+
+	output("\n\nYou doubt you could stop her from gathering some if you wanted to.");
+	if(pc.isBro() || pc.libido() >= 75) output(" Besides, a hidden part of you thrills at knowing this waddling baby-factory is going to play host to your children. Maybe she even has a system to preserve your cum, so she can pump out litters of little Steeles for years to come.");
+	output(" <i>“");
+	if(pc.isBro()) output("Go ahead,”</i> you grunt.");
+	else if(pc.isBimbo()) output("Like, O-M-G that would amazalicious!”</i> you cheerily exclaim, happy to feed her all the dick she could ever want.");
+	else output("Just stop teasing me, and you can do whatever you want with the cum,”</i> you implore, hips shuddering. Her fingers are too damned good at their job.");
+
+	output("\n\nThe raskvel giggles. <i>“" + pc.mf("You boys are so easy.","A few strokes to the dick, and you get so generous.") + " Don’t worry. If there’s one thing I know, it’s how to make a cock feel good. Well, that and how to remodulate an ionic conductor for usage in a particle cannon, but getting knocked up is wayyy more fun!”</i> She’s back on your [pc.cock] as soon as you finish, pulling it - and you - closer so that she can recline. So positioned, the pregnant raskvel is able to grind you against her belly and thread you through her tits, smearing your ");
+	if(pc.cumQ() < 500) output("oozing");
+	else if(pc.cumQ() < 1000) output("streaming");
+	else output("all but gushing");
+	output(" pre across her soft-scaled skin.");
+
+	output("\n\nShe grabs a bucket from under the console while you adjust to the sudden onslaught of friction. <i>“Goddamn, that is some premium dick,”</i> the raskvel coos. She grabs one enormous ear and lays it across the top left side of your member. The inside is velvety soft warm. The other falls onto the other side a second later. <i>“I swear I can feel your dick all the way in my ovaries.”</i> Her legs tremble. <i>“Like they know I’m rubbing your big, fat, alien cumstick right next to them.”</i>");
+	output("\n\nThe scaley slut’s hands return to their former place, this time pressing through her sensitive ears. It must feel good, because her eyes roll halfway back, interrupting her attempts to kiss your [pc.cockHead " + x + "], but nothing could stop her from stroking you, pressing her tits together on either side with her forearms and jacking her perfectly textured ears up and down over every inch of cock she can reach. She drools into her cleavage, and her legs twitch with pleasure, trying to thrust her nearly-immobilized form against something, anything to get a little friction on her twat.");
+	output("\n\nYou know how she feels. Your [pc.cock " + x + "] is violently throbbing from the treatment. Your heart hammers in your chest with alarming rapidly. All you want is her to stroke a little faster, squeeze a little tighter, and you could cum. Orgasm is so close you can feel it, and the raskvel surely can too with how your large [pc.cockHead " + x + "] swells.");
+	if(pc.hasCockTail()) output(" Your [pc.cockTail] slithers down behind and slams into her well-used cunt, but it still isn’t enough. You need more.");
+	output("\n\nTwo alien feet press down on your [pc.knot " + x + "] from either side, toes squeezing. They’re slipping from all the girlcum on the floor, making her grip tenuous. Better still, her quaking thighs make them shudder like they’re strapped to a high-powered vibrator. You groan and thrust forward, slamming your dicktip against her cerulean lips, and she moans right along with you, her soprano voice tickling already overloaded nerves with another layer of impregnation-obsessed pleasure.");
+	output("\n\nThe dam breaks, and you erupt into the raskvel’s maw.");
+
+	var cummed:Number = pc.cumQ();
+	//Cum variants! - no new PG
+	//Nojizz! - ANGER leads to the dark side.
+	if(cummed < 5) 
+	{
+		output("\n\nWhen your oversized organ does nothing but spasm climacticly, the purple-scaled mynx’s expression sours, her passion calming in the face of an orgasm with nothing more than a small, tongue-moistening dribble of [pc.cumNoun].");
+		output("\n\n<i>“That’s it?”</i> the raskvel says, gesturing wildly. <i>“All that effort and you barely get me half a dozen orgasms, and enough jizz to impregnate an ant? How dafuck am I supposed to get knocked up when ");
+		if(pc.balls > 1) output("your balls are");
+		else if(pc.balls == 1) output("your ball is");
+		else output("your body");
+		output(" is more dried out than sydian’s sense of humor? It’s like you bolted a fucking a giant, discount dildo on your crotch.”</i> She windmills her tiny fists in irritation, screaming, <i>“GET YOUR SHIT AND GET OUT! Fucking... fake-ass dick-having off-world losers!”</i>");
+		output("\n\nMaybe if you had some time to rest, you would’ve had a better load for her. Too late now.");
+		processTime(20);
+		pc.orgasm();
+		clearMenu();
+		addButton(0,"Next",hyperFunPostGame,cummed);
+	}
+	//<50jizz - spit into bucket, a little disappointed but not mad. Recommends you eat some spunkshrooms.
+	else if(cummed < 50)
+	{
+		output("\n\nA few powerful, mouth-filling spurts spray out of your oversized organ, packing themselves deep into the raskvel’s cheeks. She shudders, cunt-leaking in sympathetic orgasm, but somehow, she doesn’t swallow. Instead, her feet pump you harder, milking the last few dregs into her maw.");
+		output("\n\nWhen she’s sure she’s harvested every drop, her hands and feet release your ");
+		if(!pc.hasStatusEffect("Priapism") || pc.libido() >= 80) output("slowly deflating meat");
+		else output("still-hard cock");
+		output(". She leans to the side, grabs the bucket, and spits out your wad without a hint of shame. Only then, does she have a moment to reflect on what happened. <i>“Not too bad, star-stuff.”</i> She licks the residue from her lips and noisily swallows. <i>“Bet it must be some virile stuff, to come all the way out of that big, swinging dick of yours.”</i> Kissing the top of your cock like a favorite pet, she smiles. <i>“You did real good.”</i>");
+		processTime(20);
+		pc.orgasm();
+		clearMenu();
+		addButton(0,"Next",hyperFunPostGame,cummed);
+	}
+	//< 200 jizz - get mouthful, then aim rest into bucket. Polite thank you.
+	else if(cummed < 200)
+	{
+		output("\n\nA powerful, cheek-bulging squirt sprays out of your oversized organ. Still latched onto your [pc.cockNoun " + x + "], the gravid girl takes it like a champ, swallowing noisily even as her pussy fountains clear girl-cum onto the floor. With shuddering hands, she grabs the bucket, swapping it into place just before your next squirt can take her in the face. You’re forced to watch your orgasm shoot into the rustic vessel, spurt after spurt puddling in the bottom while slippery soles work your [pc.knot " + x + "] to squeeze out even more.");
+		output("\n\n<i>“Ah-ahhh yes!”</i> the gravid girl cries, shuddering again and again. You swear you can feel her strained stomach ballooning in response to the loads pumping through your urethra, so close by. <i>“Just like that!”</i> She twists her feet in half-circles, stunning you with hellish pleasure to help you leak out a few last drops. Only then does she let you go and put the bucket back on the floor.");
+		output("\n\nA face blushed nearly pink greets you, illuminated with a cum-splattered smile and bright, pleased eyes. <i>“That was really nice. Really nice.");
+		if(flags["RASKDOOR_BROKE"] != undefined || flags["RASKTURRETS_BROKE"] != undefined) 
+		{
+			output(" Almost enough to make up for breaking my ");
+			if(flags["RASKDOOR_BROKE"] != undefined) output("door");
+			if(flags["RASKDOOR_BROKE"] != undefined && flags["RASKTURRETS_BROKE"] != undefined) output(" and ");
+			if(flags["RASKTURRETS_BROKE"] != undefined) output("turrets");
+			output(".");
+		}
+		else output(" Almost as good as popping out your eggs is going to be.");
+		output("”</i> She pats your dick affectionately. <i>“I think there’s enough for three or four pregnancies there, if I’m smart about it, but I bet you’d rather I just poured it all with a funnel first chance I get, wouldn’t ya, " + pc.mf("stud","slut") + "?”</i>");
+
+		if(pc.isBro()) output("\n\nYou nod vigorously, wishing you could watch her do it.");
+		else if(pc.isBimbo()) output("\n\nYou giggle and shrug. Like, cum is great no matter how it slides into you!");
+		else output("\n\nYou shrug nonchalantly, a little tired.");
+
+		output("\n\n<i>“Well I’m a raskvel, and that means I’m smarter than the stingy yellow shark over there, and everybody else on this dustball of a planet.”</i> The raskvel thumps her fist proudly against her chest. Her exposed tits jiggle, glossy with sweat. <i>“I’ll ration it out. Maybe even mix it in with some raskvel nut if I think it needs a little help. I’m going to get so pregnant from you so many times, just you watch.”</i>");
+		//[Next] with the same text as previous
+		processTime(20);
+		pc.orgasm();
+		clearMenu();
+		addButton(0,"Next",hyperFunPostGame,cummed);
+	}
+	//< 1000 jizz - get mouthful+facial, then collect rest in bucket while blind.
+	else if(cummed < 1000)
+	{
+		output("\n\nA powerful, cheek-bulging squirt sprays out of your oversized organ. The gravid-girl’s mouth can’t even contain it all. She’s forced off your dick by the heated flow and takes the rest square in the face. Ribbons of [pc.cumNoun] cascade down her cheeks. [pc.CumGem] droplets dribble from her chin, but the raskvel still manages to remember her bucket and lift it into place, even while she’s trying to swallow her leftover mouthful. You can’t see her face with the spooge-vessel thrust in front of it, but you can hear her moans imploring you to give her more.");
+		output("\n\nStrangely, she seems to be getting off on it. Every time your [pc.cockNoun " + x + "] shoots a flood of [pc.cumNoun] through its urethra, you can feel her strained belly pressing back harder against you, as if the mere presence of sperm nearby is enough to make her reproductive system accelerate. Squirts of girlcum hit your [pc.feet] as she quivers, making her tiny soles pump your [pc.knot " + x + "] harder, squeezing even more of your potent fluids into the bucket.");
+		output("\n\n<i>“Holey fucking condoms, that’s a lotta jizz!”</i> the raskvel squeaks, gushing again. <i>“You’re gonna get me pregnant for weeks, " + pc.mf("stud","slut") + "!”</i> The bucket sloshes higher as you spend the last of your liquid passion. She sets it down, giving you a good look at her [pc.cumColor]-painted maw. Streams of [pc.cumVisc] [pc.cumNoun] hang from her chin, and she’s constantly blinking her gunked-up eyes to try and see. <i>“I think my ovaries might have mutated again. Something definitely happened down there. I bet when I get pregnant with your kids, I’ll have even more. My current record is fifteen.”</i> An absurdly proud smile appears beneath the layer of sexual filth.");
+		//[Next] -> same text as previous
+		processTime(20);
+		pc.orgasm();
+		clearMenu();
+		addButton(0,"Next",hyperFunPostGame,cummed);
+	}
+	//< 3000 jizz - get mouthful+facial+plastered hair, then collect rest in bucket
+	else if(cummed < 3000)
+	{
+		output("\n\nAn immense, mouth-flooding squirt sprays out of your oversized organ - and directly past her lips. She’s forced off your dick by the eruption of [pc.cum] with her cheeks bulging wider than a squirrel’s and a shocked look in her eyes. It doesn’t last long, not when the rest of your spermy shot goes across her nose, cheek, and forehead, all the way up into her ");
+		if(pc.cumColor() != "blue") output("once-");
+		output("blue hair. Her arms flail around for the bucket, but by the time she gets it in front of your [pc.cockHead " + x + "], she’s entirely drenched.");
+
+		output("\n\nYou’ve only just begun to climax, spilling more virile liquid into the bucket than this raskvel likely sees in a month. She’s loving it too. You can tell by the way she squirms below you, her feet quivering on your [pc.knot " + x + "] whenever another pulse of [pc.cumNoun] passes through your urethra. Cunt-juice splatters the floor. The messy-little kobold is apparently quite the squirter. Stranger still, it seems like her belly gets bigger the more you go off, like having that much jizz that close to her womb is enough to make her reproductive system go into overdrive.");
+		output("\n\nHigher and higher, the cummy tide rises in the bucket, sloshing. As it reaches near the lip, your shots cause some to splatter out on the raskvel mother’s tits, a sight erotic enough to help you squirt an extra time or two - just enough to fill it to the top.");
+		output("\n\n<i>“Homyfuckinggoddamn that is a lot of cum!”</i> The pregnant lizard-girl tries to set down the bucket, but a few cupfulls slosh out in the process. She giggles and shovels some into her mouth, completing the image of a completely debauched cum-slut. <i>“And it tastes so strong! You’re going to give me babies for months, you know that right?”</i> She smears more cum on her stomach, making the scales there shine. <i>“You’re my primo baby-daddy. Gonna put more raskvel on this planet than a whole generation of rask boys.”</i> She kisses your dick, then hugs it passionately.");
+		output("\n\n<i>“You and your cock are welcome here anytime. Just walk in and shove anybody else out of the way, because you are my number one lay from now on, got it?”</i> the smutty broodmother jabs a finger in your direction. <i>“I’m ");
+		if(flags["RASKDOOR_BROKE"] != undefined || flags["RASKTURRETS_BROKE"] != undefined) 
+		{
+			output("almost glad you smashed up my ");
+			if(flags["RASKDOOR_BROKE"] != undefined) output("door");
+			if(flags["RASKDOOR_BROKE"] != undefined && flags["RASKTURRETS_BROKE"] != undefined) output(" and ");
+			if(flags["RASKTURRETS_BROKE"] != undefined) output("turrets");
+			output(".");
+		}
+		else output("so glad you decided to force your way in here to meet me.");
+		output("”</i>");
+		//Next -> same as other cummy epilgoues.
+		processTime(20);
+		pc.orgasm();
+		clearMenu();
+		addButton(0,"Next",hyperFunPostGame,cummed);
+	}
+	//< 10000 jizz - choke on jizz, + full body drench, and bucket overflows.
+	else
+	{
+		output("\n\nAn immense, overwhelmingly virile stream issues forth. The tide of jism instantly balloons the raskvel’s cheeks to comical proportions, then blows her off the end of your dick entirely. Unbound, semen sprays across her features. First, it drenches her shockingly parted lips, then splatters across her cheek so hard that it coats everything from the bridge of her nose the curve of her jawline. [pc.CumGem] dribbles from her chin as her jaw works to swallow the first [pc.cumFlavor] mouthful, but you’re far from done. Your [pc.cock " + x + "] bucks like a raging bronco, and the hose of seed takes her across the forehead for a moment before soaking her hair.");
+		output("\n\nIn desperation, the semen-coated lizard scrabbles for her bucket. She gets it up in time to catch your second shot - most of it anyhow. It fills with alarming rapidity, something that clearly delights the raskvel from how she moans and squirts intermittently. While you fill the bucket, the constant caresses coaxing ever more from your body, you realize that her belly is getting larger. You aren’t sure why or how, maybe her hyper-developed reproductive system can tell that gallons of virile seed are flowing by, just inches away, packed into your highly-pressurized urethra. Maybe she’s so eager to funnel all that [pc.cumVisc] [pc.cumNoun] into her snatch that she’s accelerating her pregnancy through willpower alone.");
+		output("\n\nMaybe the motherhusks have turned her into a baby-making machine.");
+		output("\n\nYou don’t really care either way, not when she’s still wringing your [pc.cock] with those lovely ears of hers, jacking your [pc.knot " + x + "] with her feet, and begging you to keep cumming. When your [pc.cum] sloshes over the edge of the bucket, you groan in delight. It slips out of her fingers not long after, all but forgotten on the floor. She’ll be glad when she realizes it didn’t tip over, though more than half of her precious baby batter spilled to the floor.");
+		output("\n\nNo matter. You dump load after load onto her tits, first left, then right. Once they’re sufficiently soaked (with a small lake in her cleavage), you turn your attention south to her belly. The fecund dome is soon takes on the appearance of a well-glazed pastry, with trickles of [pc.cumColor] icing dripping down the sides.");
+		output("\n\nStill, she begs, <i>“My pussy!”</i>");
+		output("\n\nYou violently yank your cock out of her hands and shove it low, right up against the lips of her double-clitted pussy. The nubs press down on your [pc.cockHead " + x + "] from either side as the lips yield to the torrents of spooge you push out, cream-filling her passage in one blissful squirt. Her plugged-up cervix won’t let her take any more, so you pull back and jack the last few squirts from your dick onto her puffy mound, letting the excess drip off her thighs.");
+		output("\n\n<i>“S-so much fucking cum!”</i> the raskvel screams, violently orgasming one last time as she smears the dregs of your climax across her taut tummy. <i>“It’s everywhere.”</i> She looks dazedly at the bucket. It’s almost as filthy with your jism as she is. <i>“I think I love you.”</i> The declaration is whispered tiredly, but there is no hint of deception in her voice. To her, you’re clearly the perfect mate.");
+		output("\n\nHer lingering declaration hangs heavy in your mind. <i>“");
+		if(pc.isBimbo()) output("Awww, you’re a super good fuck yourself. I’d fill your pussy any time!");
+		else if(pc.isBro()) output("You’re not so bad yourself,”</i> you grunt. <i>“Not bad.");
+		else if(pc.isNice()) output("You’re amazing, though I don’t think I’m ready to drop the ‘L’ word myself.");
+		else if(pc.isMischievous()) output("You’re not bad yourself, little lady. I’d knock you up any day of the way.");
+		else output("You love my dick,”</i> you explain, shaking it at her. <i>“But thanks anyways. I know it can have that effect.");
+		output("”</i>");
+		output("\n\n<i>“Do you have any idea how many babies you’re going to give me?”</i> She scoops cum out from between her tits, then dumps it in the bucket. <i>“You’re going to father to a whole generation of virile, big-dicked raskvel boys.”</i> After a moment of thought, she adds. <i>“You should come back. Next time, I can be the cum-bucket.”</i>");
+		output("\n\nSomehow you doubt she’s capable of making that many children, but it brings a smile to your face all the same.");
+
+		//[Next] -> to usual outro, but with new dialogue:
+		processTime(20);
+		pc.orgasm();
+		clearMenu();
+		addButton(0,"Next",hyperFunPostGame,cummed);
+	}
+}
+
+public function hyperFunPostGame(cummed:Number = 0):void
+{
+	clearOutput();
+	showAzra();
+	showName("\nSUCCESS!");
+	if(cummed < 5)
+	{
+		output("<i>“All done.”</i> Azra’s voice pulls you from your thoughts. The big suula gal shoulders her pack, samples secured, and tries to hide her blushing face behind her sunset-hued locks. It almost works. <i>“Let’s get out of here before something comes in after us.”</i>");
+		output("\n\nThe only thing coming after you is the pregnant raskvel’s taunts. <i>“You see this bucket? This is where I’d keep your spunk... if you had any!”</i>");
+	}
+	else
+	{
+		output("<i>“All done.”</i> Azra’s voice pulls you from your thoughts. The big suula gal shoulders her pack, samples secured, and tries to hide her blushing face behind her sunset-hued locks. It almost works. <i>“Let’s get out of here before something comes in after us.”</i>");
+		if(cummed < 3000) output("\n\nThe only thing coming after you is the sound of the pregnant raskvel’s voice through the intercom. <i>“Thanks again for visiting. Come back real soon, okay? I’ll make sure to tape the birth for you~!”</i>");
+		else
+		{
+			output("\n\n<i>“Thank you so much for all the cum! I’m going to record the births, every one of them, then post them on the extranet. People in the core actually pay to watch! Look me up sometime.”</i>");
+			output("\n\nYou’re pretty sure Azra facepalms, even though she’s crawling behind you on her hands and knees.");
+			output("\n\n<i>“And come back soon. Fresh cum is so much better!”</i>");
+		}
+	}
+	processTime(10);
+	clearMenu();
+	addButton(0,"Next",spunkShroomTrapQueen);
+}
+
+//Fuck Her
+//"Her womb may be full, but her pussy isn’t.”</i>
+public function fuckDatRaskipoo():void
+{
+	clearOutput();
+	showPregRask();
+	var x:int = pc.cockThatFits(700);
+	if(!pc.isCrotchExposed()) 
+	{
+		output("You hurriedly free your [pc.cocks] from ");
+		if(pc.cockTotal() == 1) output("its");
+		else output("their");
+		output(" irksome confinement. The long-concealed flesh springs free and rapidly engorges before the raskvel’s eyes.");
+	}
+	else
+	{
+		output("You casually grasp your [pc.cocks] and shake ");
+		if(pc.cockTotal() == 1) output("it");
+		else output("them");
+		output(" at the horny raskvel.");
+	}
+	output(" She smiles wide with licentious intent, licking her blue-painted lips and tossing her downy hair.");
+
+	output("\n\n<i>“You gonna stick it in?”</i> The purple-scaled lizard rolls to the side, lifting one leg high into the air to reveal an obscenely swollen cunt, flanked by bright pink, marble-sized clitties. The folds themselves are thick and juicy, dribbling eager pussyjuice across the floor. No matter how many birth’s they’ve passed, they’re plush enough to squeeze down on a pinky, let alone your [pc.cock " + x + "]. <i>“Or are you just teasing a poor, immobile rask girl?”</i> She grabs her ankle and pulls her leg higher until her lips part, releasing a small gush of lube. <i>“Maybe aliens are just shy...”</i>");
+	//Very tall.
+	if(pc.tallness >= 6*12+6) 
+	{
+		output("\n\nHardly. She’s just so small. Getting a huge creature like yourself to line up with that slobbering slot takes significant effort and a small amount of engineering. Between shoving a few cushions under her ass and awkwardly squatting down, you make it work.");
+		if(silly) output(" Life... uh... finds a way.");
+	}
+	//Else
+	else
+	{
+		output("\n\nHardly. You squat down to line yourself up, nearly slipping in the leaking girlslime in the process.");
+	}
+	//Merge
+	output("\n\n<i>“...Maybe you’re just afraid of a little raskvel pussy. Like you know you’ll be lining up at my door day after day once you taste it,”</i> the sultry tart suggests.");
+	output("\n\nGrabbing her belly to brace yourself, you thrust inside. ");
+	if(pc.cockVolume(x) < 300) output("Her pussy parts easily around your [pc.cock " + x + "], and her diatribe cuts off with a high-pitched squeak of pleasure.");
+	else if(pc.cockVolume(x) < 500) output("Her pussy reluctantly parts for your [pc.cock " + x + "], clutching it tightly as her diatribe cuts off with a high-pitched squeak of pleasure.");
+	else output("Her pussy strains to accept your girthy tool, its thick lips stretched wide enough to pass an egg. A high-pitched wail of pleasure interrupts the little slut’s diatribe at the penetration. Evidently she’s a fan of pushing herself to the absolute limit.");
+	output(" That saucy slot feels lovely wrapped around you. Her folds are absolutely soaked, and the pudgy pussy-lips press hotly against your crotch, a gentle reminder that you’ve buried yourself completely inside her.");
+	pc.cockChange();
+	var y:int = pc.cockThatFits2(700);
+	//2
+	if(y >= 0 && pc.cockTotal() == 2)
+	{
+		output("\n\nMeanwhile, your second dick rubs against her slippery crease of her thigh, pressing its [pc.cockHead " + x + "] up against the underside of her fertile belly. The mix of sweat and cunt-juice coating her soft-scaled skin allows it to glide effortlessly against her, right up until she wraps her fingers around it to give it a tug. <i>“I see you brought extra for the rest of me. How thoughtful...”</i> Her fingers twist and swirl while her cunt clenches.");
+	}
+	//More
+	else if(y >= 0)
+	{
+		output("\n\nMeanwhile, your extra dicks rub against the slippery creases of her thighs, pressing their turgid tips up against the underside of her fertile belly. The mix of sweat and cunt-juice coating her soft-scaled skin allows them to glide effortlessly against her, right up until she grabs ");
+		if(pc.cockTotal() == 3) output("both of them");
+		else output("two of them");
+		output(" to give them a tug. <i>“I see you packed enough to share. How thoughtful...”</i> She pumps both hard. <i>“I could use a facial.”</i>");
+	}
+	//Merge
+	output("\n\nWhatever your floor-bound partner may think, you hold all the cards. You’re the one doing the fucking, looming over her. You’re the one who moves her thigh to make the muscles inside her twat clamp down tighter on your rod. She can whimper, her hands caressing your body in ways that make you groan, but there’s nothing she can do to change your tempo, nothing she can do to give her pause when you pound her drooling cunt hard enough to make her chirp out an orgasm.");
+	output("\n\nYou’re just getting warmed up. You hammer her well-used cunt with powerful strokes. When you pull back, ropes of girl-jizz spatter the floor, hanging off your [pc.cock " + x + "] in webs. When you thrust in, still more squirts out, splattering your thighs and hers alike. When you bury yourself to the hilt, crushing her clits between your bodies, she squeals and trembles. You can’t tell if she’s cumming over and over, or if she just can’t handle how good it feels to have her pregnant pussy taken by a talented lover. You like it either way.");
+	output("\n\nBehind you, Azra grunts in what you take for irritation, but when you glance back, you see she’s popped the release on her crotch to let an absolutely enormous suula-cock dangle out. She’s hard and leaky, but she’s still doing her best to harvest the motherhusks. In her hurry, a piece cracks apart into dust, motes of falling down over her exposed groin. She doesn’t seem to notice, and returns to gathering the rest.");
+	output("\n\nA powerful, seismic clench yanks your attention back to the lizard-girl in front of you. She’s smiling saucily, her tail lashing back and forth. It ");
+	if(pc.balls > 1) output("cradles your balls, then wraps around them with surprising tenderness. The warm cocoon of scaly flesh makes it seem almost too easy to spill your load.");
+	else if(pc.hasVagina()) output("teasingly wanders over your slit, then slips inside. The slippery scales inside you make it almost too easy to spill your load.");
+	else output("slips back to tease your [pc.asshole]. At first, it’s playfully circling, but after a particularly forceful thrust on your part, she slides it in. The pressure on your prostate makes it seem almost too easy to spill your load.");
+	output(" One errant thought and you’ll be giving her an enormous, cunt-bathing creampie.");
+
+	output("\n\n<i>“You know, if you give me enough c-cuuUUUM~! ...I can save some to get pregnant with after this batch.”</i> Her pussy quivers, leaking runnels of slick, reptilian goo. <i>“I bet you’ll make me ever bigger. Think about it. Your own little egg-slut, saving your cum so she can get knocked up again and again.”</i>");
+
+	output("\n\n");
+	if(pc.isBro() || pc.libido() >= 75) output("Fuuuck that’s exactly what you want to do. You want to strap her to the wall in your ship and dump endless loads into her, using her as equal parts sex-toy and virility measuring stick. Maybe you might even get her some mods or an exoskeleton to let her get around the ship. In between laying eggs she could dress herself in skimpy slutwear and slowly ruin it as her pregnancy progresses...");
+	else 
+	{
+		output("You feel like you ought to be a little worried or disgusted about such brazen usage of your sexual fluids, but your body isn’t. Your traitorous rod");
+		if(pc.cockTotal() > 1) output("s love");
+		else output(" loves");
+		output(" the idea of siring a whole clan of horny fuck-lizards. She’s tickled your most basic, unthinking instincts in ways that make your [pc.cockNoun " + x + "] throb and your ");
+		if(pc.balls > 0) output("[pc.balls]");
+		else output("crotch");
+		output(" clench.");
+	}
+
+	output("\n\nYou bury yourself deep and unload. There’s no other option. The climax is entirely beyond your control, more a sudden venting of pressure than anything you have to work for. The pregnant raskvel’s oozy, clutching slit squeezes it out of you in ");
+	var cummies:Number = pc.cumQ();
+	if(cummies < 5) output("weak trickles");
+	else if(cummies < 25) output("fat globs");
+	else if(cummies < 175) output("thick streams");
+	else if(cummies < 1000) output("enormous gushes");
+	else output("titanic waves");
+	output(", her well-used form wringing your [pc.cockNoun " + x + "] for all its worth. Her cunt a warm, wet heaven, clutching you tightly, drowning you in ecstasy in pussyjuice alike");
+	if(cummies >= 2000) output(" while your pressurized seed vents back out all over the floor");
+	output(". You shudder and groan with each successive spurt until your dick finally goes dry. Even then, the scaled vixen’s tunnel massages you pleasantly, begging you to stay inside and enjoy the post-coital massage.");
+
+	output("\n\n<i>“All done?”</i> Azra asks from over your shoulder.");
+	output("\n\nWhen did she get back there? Her dick is packed away and the samples safely holstered in her bag.");
+	output("\n\n<i>“Yeaaahh,”</i> you offer, trying to suppress a groan as you pull yourself free from your egg-obsessed lover. Your [pc.cockNoun " + x + "] gleams with a fresh coat of pussy-juice while dribbles of [pc.cumColor] spooge leak from the tip. Azra’s eyes favor it with a longing look.");
+	output("\n\n<i>“Then we should get going. Only one sample left!”</i> Azra brushes back her hair and turns away, giving you a moment to make yourself decent before setting off.");
+	output("\n\nThe purple-scaled cum-dump on the floor grins giddily, stirring your offering around inside herself with a finger. She doesn’t seem like she’ll be talking just yet.");
+
+	processTime(30);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",cameInRaskSlut,cummies);
+}
+
+public function cameInRaskSlut(cummies:Number):void
+{
+	clearOutput();
+	showAzra();
+	showName("\nSUCCESS!");
+	output("As you travel back through the tunnel, the comms click on once more. <i>“");
+	if(cummies < 100) output("Heyyy, you were pretty good at that... for an alien. You didn’t have much cum, but if you wanna play when I’m all pregger-horny, just stop by and gimme a ring, ‘kay?");
+	else
+	{
+		output("Heyyy, thanks again for the donation. I scooped some out to save for later, so I’ll definitely get to have some of your kids.");
+		if(cummies > 1000) output(" Lots of your kids, I guess. There’s like a whole bucket of it. You’re a super good breeder, you know that?");
+		output(" Anycooch, I guess you can come back and knock me up whenever you want. You’re real good at it.");
+		if(flags["RASKDOOR_BROKE"] != undefined	|| flags["RASKTURRETS_BROKE"] != undefined) output(" Almost makes it worth getting all my stuff smashed up...");
+	}
+	output("”</i>");
+	output("\n\nAzra mutters something from behind you, but when you look back, she’s facepalming.");
+	output("\n\n<i>“Don’t wait too long. It’s always better fresh!”</i>");
+	processTime(20);
+	clearMenu();
+	addButton(0,"Next",spunkShroomTrapQueen);
+}
+
+//Face Ride
+//Straddle her face as she eats you out, then slip in her cuntjuice for musky fun :3
+public function faceRideTheRaskPreg():void
+{
+	clearOutput();
+	showPregRask();
+	output("You advance on the immobile raskvel");
+	if(!pc.isCrotchExposed()) output(", silently peeling the covers from your [pc.vaginas]");
+	else output(", silently wiggling your hips to display your [pc.vaginas]");
+	output(". <i>“");
+	if(pc.tallness >= 5*12) output("You’re just the right height.");
+	else output("I bet all the girls love seeing you stuck on your knees.");
+	if(pc.hasStatusEffect("Vaginally-Filled"))
+	{
+		output(" Now how about you lick all the cum out of me. ");
+		if(pc.isNice() || pc.isMischievous()) output("The glaze just makes it better, right?");
+		else output("Sluts like you </i>crave<i> it.");
+	}
+	else if(pc.isNice() || pc.isMischievous()) output(" Now why don’t you put that tongue to work before my feathery friend finds an excuse to keep us apart?");
+	else
+	{
+		output(" Now put that tongue to work, and we’ll see if you’re really keyed up enough to get off from the taste of another");
+		if(pc.isPregnant()) output(" pregnant");
+		output(pc.mf(" person"," woman") + "’s pussy.");
+	}
+	output("”</i>");
+	output("\n\n<i>“Mmmm... been a while since I sucked pussy,”</i> the pregnant raskvel admits. Her eyes are wide and lustily locked on your slit");
+	if(pc.totalVaginas() > 1) output("s");
+	output(". It’d take a raskvel boy, dribbling cum and begging to fuck, to distract her for how she stares. She wants the pussy, and she wants it bad. Rocking forward, the lizard-girl strains to plant a kiss on your mound, but her pregnant bulk drags her right back, forcing her to settle down on her fattened haunches with an annoyed wobble. <i>“...Please? I can’t reach.”</i> She looks up imploringly, tugging her nipples as much for show as for her own pleasure.");
+
+	output("\n\nYou ");
+	if(pc.tallness < 5*12) output("step to the side and carefully climb up onto her console’s ledge. It’s the only way you’ll get your cunt at the right level with how short you both are.");
+	else output("take a step closer.");
+	output(" The violet lizard-girl smiles eagerly. Then, too fast to be seen, she worms her tongue into your [pc.vagina]. One moment, you’re inching your hips closer. The next, a thick spear of oral flesh is wriggling inside your most sensitive place. It’s a disproportionately large thing too - nearly six inches long and fat enough around to shame a few of the galaxy’s bigger races.");
+
+	output("\n\nA sigh of delight slips from your mouth as your hips instinctively push back, pressing your lips to hers, [pc.oneClit] booping her on the nose. Your pregnant pussy-licker takes your vocalizations as encouragement and places her hands ");
+	if(!pc.isTaur()) output("on your [pc.butt]");
+	else output("on either [pc.thigh]");
+	output(", squeezing as her luscious, blue-painted lips slip back and forth on your arousal-slickened flesh.");
+	if(pc.hasStatusEffect("Vaginally-Filled")) output(" Her mouth works to swallow the cum inside. For how fast she guzzles it down, scooping more into her maw with practiced curls of her tongue, she loves it.");
+	if(pc.wettestVaginalWetness() >= 3)
+	{
+		output(" You’re so wet that excess moisture stains your muff-mounted raskvel’s cheeks");
+		if(pc.wettestVaginalWetness() >= 5) output(" and drips from her chin in small waterfalls");
+		output(".");
+	}
+
+	output("\n\n<i>“Deeper,”</i> you urge, rocking back and forth on your face. Your pussy spasms around the tiny beast-girl’s rather... gifted tongue in pulsing waves that echo your own mounting ecstasy. When that wiggling organ draws back, you whimper in desperation and disappointment only to have your cry transform into a full-throated screech of pleasure once she coils it around [pc.oneClit]");
+	if(pc.clitLength >= 4) output(", tugging it like a full-blown cock");
+	output(". The best part of it all is just how slick and <i>hot</i> it all feels, like the nerves into your [pc.vagina] are firing so strongly that everything below your waist may as well be tongue-bathed pussyflesh.");
+
+	output("\n\nShe knows what she’s doing, that’s for sure.");
+
+	output("\n\n<i>“Mmmm,”</i> the short, stacked MILF moans into your cunt. Her fingers squeeze harder, claw-like nails ");
+	if(pc.hasChitin()) output("scrabbling across your chitin.");
+	else output("digging into your [pc.skinFurScalesNoun].");
+	output(" Coils of pleasure twist through your nethers as the tongue abandons your clit and burrows deeper once more, feeling around the inside of your passage, stretching it open");
+	if(pc.looseness() < 3) output(" and letting it snap back into place");
+	else 
+	{
+		output(" and watching the [pc.girlCum] leak out");
+	}
+	output(".");
+	if(pc.looseness() >= 4) output(" A tongue alone isn’t enough to satisfy you, however, and she knows it. Raising an arm, the purple-scaled nympho balls her small hand into a fist and thrusts it inside, twisting her neck so that her tongue can taste your oozing [pc.girlCum] while she pleases your capacious cunny.");
+
+	output("\n\nBursts of stars explode behind your eyelids as the pleasure crashes into you. Whimpering and oozing, you shake and shudder, paroxysms of ecstasy wracking your frame, grinding your overheated slit into the cunt-smeared hussy’s blissfully unconcerned face. You dimly register the feel of her voice crying out into you, her sounds of pleasure little more than a booster rocket carrying you into orgasm-land by vibration alone.");
+
+	//Squirter + hugecumQ
+	if(pc.isSquirter() && pc.girlCumQ() >= 2000)
+	{
+		output("\n\nAnd there’s so much [pc.girlCumNoun]. It sprays into the raskvel’s mouth and washes down her cheeks. When she draws back to breathe, it splatters across her nose and forehead. Eventually she gives up and tips her head back, stabbing her tongue into you again and again, making your pressurized pussy spurt its fragrant liquid <i>everywhere</i>: on her tits, on her swollen belly. It even creates puddles on the floor that slowly wind their way toward a well-placed drainage grate.");
+	}
+	//Squirter
+	else if(pc.isSquirter()) output("\n\nYou pay the soft-scaled slut back in big, wet squirts of [pc.girlCum] that run down her chin and pool in her tits. Her skill as a slit-licker demands it. Your [pc.vaginas] will accept nothing less, not when climax has you in its grip and wrings you for every drop of feminine goo you can give.");
+	//Not squirter, very wet
+	else if(pc.wettestVaginalWetness() >= 3) output("\n\nYou pay the soft-scaled slut back in a steady river of [pc.girlCum]. She all but purrs at the taste of it, throat bobbing in an effort to devour it all. When she sees you watching, she slurps louder, tugging on your netherlips, intent on wringing every drop of feminine lust from you before you continue on your journeys, and it’s working.");
+	//Regular wet
+	else output("\n\nYou pay the soft-scaled slut back in lurid moans and dribbles of [pc.girlCum]. She ravenously devours them, her tongue twirling inside you to gather it up and channel the flow directly into her maw. You hear her gulp once, then return to her work with the passion of an individual who truly loves the act of giving pleasure.");
+	//Merge
+	output("\n\nAs you come down, shuddering through aftershocks, you run your fingers through her feathers. They’re down-soft, and the sensation combined with the taste of your post-coital cunt sends her over the edge. She whimpers, lower lip shaking against [pc.oneClit]’s hood, and her pregnant quim goes off, splattering pregnant raskvel-honey across the deck");
+	if(pc.isSquirter()) output(" to mix with your own");
+	output(". She rolls part way back, enough to give your [pc.vaginas] some relief, and you gingerly separate, panting and tired in the aftermath.");
+	output("\n\n<i>“Wow,”</i> you mumble, too cummed-out for words.");
+	if(pc.isBimbo()) output(" There’s so much pink, cotton-candy fuzz twirling around in your head that you doubt you could complete a sentence, much less manage a witty entendre.");
+	output("\n\nThe raskvel broodmother, pats her tummy. Did it get bigger? It definitely looks bigger... <i>“Mmm... that was fun. Not as fun as birth, mind you, but fun.”</i> She burps, and the scent of pussy in the air grows a little stronger.");
+	processTime(30);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",postPregRaskLicky);
+}
+
+public function postPregRaskLicky():void
+{
+	clearOutput();
+	showAzra();
+	showName("\nSUCCESS!");
+	output("A metallic click and heavy footfalls turn you away from your recent conquest. Azra has already packed away the samples, and she’s gesturing toward the tunnel back to the wastes. <i>“Only one more sample to go, [pc.name].”</i> She’s blushing heavily, eyes darting back and forth from your brazenly exposed [pc.vaginaNoun] to the raskvel’s own dewy entrance. <i>“We can’t just... fuck all day.”</i> She turns away in a hurry. Is she... walking stiffly?");
+	//Bimbo
+	if(pc.isBimbo()) output("\n\nSomebody’s got a boner~!");
+	else output("\n\nYou get the impression she did more than just sample the mushrooms, but don’t see much point in bringing it up, not when you’re this well-fucked.");
+	output("\n\n<i>“Heyyy,”</i> the pregnant raskvel’s voice bursts out of the comms above. <i>“Your pussy tastes way better than raskvel or sydian-cunt. Just let me know that you’re Miss Superpuss if you come back, and I’ll let you right back in.");
+	if(flags["RASKDOOR_BROKE"] != undefined || flags["RASKTURRETS_BROKE"] != undefined)
+	{
+		output(".. once I fix the ");
+		if(flags["RASKDOOR_BROKE"] != undefined) output("doors");
+		if(flags["RASKDOOR_BROKE"] != undefined && flags["RASKTURRETS_BROKE"] != undefined) output(" and ");
+		if(flags["RASKTURRETS_BROKE"] != undefined) output("guns");
+
+		output(". Don’t break ‘em again, please-kay-thanks!");
+	}
+	output("”</i>");
+	output("\n\n<i>“That so?”</i> Azra muses from behind you, under her breath.");
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",spunkShroomTrapQueen);
+}
+
+public function spunkShroomTrapQueen():void
+{
+	flags["RASKDOOR_BROKE"] = undefined;
+	flags["RASKTURRETS_BROKE"] = undefined;
+	clearOutput();
+	output("You did it! ...well, two of the three parts, anyway. The rest isn't coded, so the quest is reset if you want to repeat the first two parts in the first time!");
+	moveTo(shipLocation);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+/*
 output("\n\nSpunkshroom Trapqueen");
 
 output("\n\n//Female Sydian Matron tending to spunkshrooms (+moderate libido, moderate fertility, +balls? +cumstorage) and her two trappy raskvel boitoys.	");
