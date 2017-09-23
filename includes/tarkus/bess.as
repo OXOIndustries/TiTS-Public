@@ -194,21 +194,25 @@ public function bessNippleType():String
 
 public function bessAssSize():String
 {
-	if (bess.buttRatingRaw <= 0) return "boyish";
-	if (bess.buttRatingRaw <= 2) return "slender";
-	if (bess.buttRatingRaw <= 5) return "average";
-	if (bess.buttRatingRaw <= 8) return "ample";
-	if (bess.buttRatingRaw <= 16) return "voluptuous";
+	if (bess.buttRatingRaw <= 0) return "buttless";
+	if (bess.buttRatingRaw <= 2) return "tight";
+	if (bess.buttRatingRaw <= 4) return "average";
+	if (bess.buttRatingRaw <= 6) return "noticable";
+	if (bess.buttRatingRaw <= 8) return "large";
+	if (bess.buttRatingRaw <= 10) return "jiggly";
+	if (bess.buttRatingRaw <= 13) return "expansive";
+	if (bess.buttRatingRaw <= 16) return "huge";
 	return "massive";
 }
 
 public function bessThighSize():String
 {
-	if (bess.hipRatingRaw <= 0) return "boyish";
+	if (bess.hipRatingRaw == 0) return "boyish";
 	if (bess.hipRatingRaw <= 2) return "slender";
-	if (bess.hipRatingRaw <= 5) return "average";
-	if (bess.hipRatingRaw <= 8) return "ample";
-	if (bess.hipRatingRaw <= 16) return "voluptuous";
+	if (bess.hipRatingRaw <= 4) return "average";
+	if (bess.hipRatingRaw <= 6) return "ample";
+	if (bess.hipRatingRaw <= 10) return "curvy";
+	if (bess.hipRatingRaw <= 15) return "voluptuous";
 	return "massive";
 }
 
@@ -2655,14 +2659,16 @@ public function talkToBessAboutHips():void
 	else addButton(0, "Boyish", setBessHipSize, 0);
 	if (bess.hipRatingRaw == 2) addDisabledButton(1, "Slender");
 	else addButton(1, "Slender", setBessHipSize, 2);
-	if (bess.hipRatingRaw == 5) addDisabledButton(2, "Average");
+	if (bess.hipRatingRaw == 4) addDisabledButton(2, "Average");
 	else addButton(2, "Average", setBessHipSize, 5);
-	if (bess.hipRatingRaw == 8) addDisabledButton(3, "Ample");
+	if (bess.hipRatingRaw == 6) addDisabledButton(3, "Ample");
 	else addButton(3, "Ample", setBessHipSize, 8);
-	if (bess.hipRatingRaw == 16) addDisabledButton(4, "Voluptuous");
+	if (bess.hipRatingRaw == 10) addDisabledButton(4, "Curvy");
 	else addButton(4, "Voluptuous", setBessHipSize, 16);
+	if (bess.hipRatingRaw == 15) addDisabledButton(4, "Voluptuous");
+	else addButton(5, "Voluptuous", setBessHipSize, 16);
 	if (bess.hipRatingRaw == 20) addDisabledButton(5, "Massive");
-	else addButton(5, "Massive", setBessHipSize, 20);
+	else addButton(6, "Massive", setBessHipSize, 20);
 
 	addButton(14, "Back", talkToBessAboutBodyShape);
 }
@@ -2680,18 +2686,24 @@ public function talkToBessAboutButt():void
 	output("<i>“My ass, huh? Were you thinking of putting some junk in this trunk, or taking some out, "+ bessPCName() +"?”</i>");
 
 	clearMenu();
-	if (bess.buttRatingRaw == 0) addDisabledButton(0, "Boyish");
-	else addButton(0, "Boyish", setBessButtSize, 0);
-	if (bess.buttRatingRaw == 2) addDisabledButton(1, "Slender");
-	else addButton(1, "Slender", setBessButtSize, 2);
-	if (bess.buttRatingRaw == 5) addDisabledButton(2, "Average");
+	if (bess.buttRatingRaw == 0) addDisabledButton(0, "Buttless");
+	else addButton(0, "Buttless", setBessButtSize, 0);
+	if (bess.buttRatingRaw == 2) addDisabledButton(1, "Tight");
+	else addButton(1, "Tight", setBessButtSize, 2);
+	if (bess.buttRatingRaw == 4) addDisabledButton(2, "Average");
 	else addButton(2, "Average", setBessButtSize, 5);
-	if (bess.buttRatingRaw == 8) addDisabledButton(3, "Ample");
-	else addButton(3, "Ample", setBessButtSize, 8);
-	if (bess.buttRatingRaw == 16) addDisabledButton(4, "Voluptuous");
-	else addButton(4, "Voluptuous", setBessButtSize, 16);
+	if (bess.buttRatingRaw == 6) addDisabledButton(3, "Noticable");
+	else addButton(3, "Noticable", setBessButtSize, 8);
+	if (bess.buttRatingRaw == 8) addDisabledButton(4, "Large");
+	else addButton(4, "Large", setBessButtSize, 16);
+	if (bess.buttRatingRaw == 10) addDisabledButton(5, "Jiggly");
+	else addButton(5, "Jiggly", setBessButtSize, 20);
+	if (bess.buttRatingRaw == 13) addDisabledButton(5, "Expansive");
+	else addButton(6, "Expansive", setBessButtSize, 20);
+	if (bess.buttRatingRaw == 16) addDisabledButton(5, "Huge");
+	else addButton(7, "Huge", setBessButtSize, 20);
 	if (bess.buttRatingRaw == 20) addDisabledButton(5, "Massive");
-	else addButton(5, "Massive", setBessButtSize, 20);
+	else addButton(8, "Massive", setBessButtSize, 20);
 
 	addButton(14, "Back", talkToBessAboutBodyShape);
 }
