@@ -2664,7 +2664,7 @@ public function talkToBessAboutHips():void
 	if (bess.hipRatingRaw == 20) addDisabledButton(5, "Massive");
 	else addButton(5, "Massive", setBessHipSize, 20);
 
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", talkToBessAboutBodyShape);
 }
 
 public function setBessHipSize(newRating:int):void
@@ -2693,7 +2693,7 @@ public function talkToBessAboutButt():void
 	if (bess.buttRatingRaw == 20) addDisabledButton(5, "Massive");
 	else addButton(5, "Massive", setBessButtSize, 20);
 
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", talkToBessAboutBodyShape);
 }
 
 public function setBessButtSize(newRating:int):void
@@ -2720,7 +2720,7 @@ public function talkToBessAboutTone():void
 	if (bess.tone == 0) addDisabledButton(4, "Soft");
 	else addButton(4, "Soft", setBessTone, 0);
 	
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", talkToBessAboutBodyShape);
 }
 
 public function setBessTone(newTone:int):void
@@ -2747,7 +2747,7 @@ public function talkToBessAboutThickness():void
 	if (bess.thickness == 0) addDisabledButton(4, "Thin");
 	else addButton(4, "Thin", setBessThickness, 0);
 	
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", talkToBessAboutBodyShape);
 }
 
 public function setBessThickness(newThickness:int):void
@@ -2821,7 +2821,7 @@ public function talkToBessAboutStomach():void
 	if (bess.bellyRatingRaw == 100) addDisabledButton(10, "StupidlyHuge");
 	else addButton(10, "StupidlyHuge", setBessBelly, 100);
 	
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", talkToBessAboutBodyShape);
 }
 
 public function setBessBelly(newRating:int):void
@@ -3026,7 +3026,7 @@ public function talkToBessAboutCock():void
 	else if (bessHasCockType(BESS_COCKTYPE_VENUSPITCHER)) addButton(12, "Plant", setBessCockType, GLOBAL.TYPE_VENUSPITCHER);
 	else addDisabledButton(12, "Plant", "Plant", "[bess.name] doesn’t have access to this cock style!");
 
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", talkToBessAboutGenitals);
 }
 
 public function setBessCockType(newType:int):void
@@ -3295,7 +3295,7 @@ public function talkToBessAboutPussy():void
 	if (bess.hasVagina()) addButton(1, "LosePussy", bessRemovePussy);
 	else addDisabledButton(1, "LosePussy");
 
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", talkToBessAboutGenitals);
 }
 
 public function bessRemovePussy():void
@@ -3351,7 +3351,7 @@ public function talkToBessAboutKnot():void
 		addButton(1, "LoseKnot", bessRemoveKnot);
 	}
 
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", talkToBessAboutGenitals);
 }
 
 public function bessGainKnot():void
@@ -3446,7 +3446,7 @@ public function talkToBessAboutCumFlavour(asCock:Boolean):void
 	
 	if (opts.length < 15)
 	{
-		addButton(14, "Back", bessFunctionsMenu);
+		addButton(14, "Back", talkToBessAboutGenitals);
 	}
 }
 
