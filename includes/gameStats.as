@@ -2345,7 +2345,7 @@ public function displayQuestLog(showID:String = "All"):void
 			// Lane's Illegal Activity
 			if(flags["MET_LANE"] != undefined)
 			{
-				output2("\n<b><u>Lane’s Plane</u></b>");
+				output2("\n<b><u>Lane’s Hypnotism</u></b>");
 				output2("\n<b>* Status:</b>");
 				if(flags["LANE_FULLY_HYPNOTISED_FOREVER"] == undefined)
 				{
@@ -2367,13 +2367,6 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["PC_PAYS_LANE_ERRY_DAY"] != undefined) output2(", Get taxed 500 credits per day");
 				if(flags["LANE_DISABLED"] != undefined) output2(", Completed");
 				if(flags["LANE_DETOX_COUNTER"] != undefined) output2("\n<b>* Hypnotism Detoxification Duration:</b> " + prettifyMinutes(flags["LANE_DETOX_COUNTER"]));
-				output2("\n<b>* Lane:</b>");
-				if(flags["LANE_DISABLED"] != undefined) output2(" Inactive");
-				else output2(" Active");
-				if(flags["LANE_HYPNOSIS_LEVEL"] != 0 && flags["LANE_HYPNOSIS_LEVEL"] != undefined) output2("\n<b>* Lane, Hypnosis Level:</b> " + flags["LANE_HYPNOSIS_LEVEL"]);
-				if(flags["LANE_TIMES_HYPNOTISED"] > 0) output2("\n<b>* Lane, Times Hypnotized By:</b> " + flags["LANE_TIMES_HYPNOTISED"]);
-				if(flags["LANE_MALE_SEXED"] > 0) output2("\n<b>* Lane, Times Sexed Him:</b> " + flags["LANE_MALE_SEXED"]);
-				if(flags["LANE_FEMALE_SEXED"] > 0) output2("\n<b>* Lane, Times Sexed Her:</b> " + flags["LANE_FEMALE_SEXED"]);
 				sideCount++;
 			}
 		}
@@ -4718,6 +4711,19 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["BESS_INTIMATE_FUCKED"] > 0) output2("\n<b>* [bess.name], Times Intimate Fucked:</b> " + flags["BESS_INTIMATE_FUCKED"]);
 					}
 				}
+				variousCount++;
+			}
+			// Lane's Plane
+			if(flags["MET_LANE"] != undefined)
+			{
+				output2("\n<b><u>Lane’s Plane</u></b>");
+				output2("\n<b>* Lane:</b>");
+				if(flags["LANE_DISABLED"] != undefined) output2(" Inactive");
+				else output2(" Active");
+				if(flags["LANE_HYPNOSIS_LEVEL"] != 0 && flags["LANE_HYPNOSIS_LEVEL"] != undefined) output2("\n<b>* Lane, Hypnosis Level:</b> " + flags["LANE_HYPNOSIS_LEVEL"]);
+				if(flags["LANE_TIMES_HYPNOTISED"] > 0) output2("\n<b>* Lane, Times Hypnotized By:</b> " + flags["LANE_TIMES_HYPNOTISED"]);
+				if(flags["LANE_MALE_SEXED"] > 0) output2("\n<b>* Lane, Times Sexed Him:</b> " + flags["LANE_MALE_SEXED"]);
+				if(flags["LANE_FEMALE_SEXED"] > 0) output2("\n<b>* Lane, Times Sexed Her:</b> " + flags["LANE_FEMALE_SEXED"]);
 				variousCount++;
 			}
 			// Wastes

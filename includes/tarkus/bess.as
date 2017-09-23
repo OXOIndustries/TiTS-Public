@@ -11290,7 +11290,7 @@ public function bessGetBlowjob():void
 		else output(" ass");
 		output(" is clearly getting [bess.himHer] off. [bess.HeShe] begins convulsing and falls on [bess.hisHer] back; it looks almost as if [bess.heShe]’s giving");
 		if (!bess.hasVagina()) output(" ass");
-		output(" birth to a mass of [pc.cumColor]-colored gelotians.");
+		output(" birth to a mass of [pc.cumColor]-colored galotians.");
 		
 		output("\n\n[bess.name]’s eyes soon roll into [bess.hisHer] head from sheer ecstasy, each spasm causing your pooled spunk to spray out of [bess.hisHer]");
 		if (bess.hasVagina()) output(" snatch");
