@@ -1339,7 +1339,7 @@ public function bessFollowerMenu():void
 	clearMenu();
 	
 	addButton(0, "Discuss", talkToBessAboutThings);
-	addButton(1, "Functions", bessFunctions, undefined, "Functions", "Go about setting [bess.name]’s various functions, from what [bess.heShe] calls you, [bess.hisHer] sexual roles, what [bess.heShe] wears, to [bess.hisHer] customizable body parts.");
+	addButton(1, "Functions", bessFunctionsMenu, undefined, "Functions", "Go about setting [bess.name]’s various functions, from what [bess.heShe] calls you, [bess.hisHer] sexual roles, what [bess.heShe] wears, to [bess.hisHer] customizable body parts.");
 	addButton(2, "Accessories", talkToBessAboutAccessories);
 	
 	if ((flags["BESS_FRIEND"] != undefined || flags["BESS_LOVER"] != undefined) && bessAffection() < 30)
@@ -1491,7 +1491,8 @@ public function bessAppearance():void
 }
 
 //Functions
-public function bessFunctions():void
+
+public function bessFunctionsMenu():void
 {
 	clearOutput();
 	bessHeader();
@@ -1528,11 +1529,6 @@ public function bessFunctions():void
 		output("\n\n<i>“Of course, "+ bessPCName() +"! What would you like me to change?”</i> [bess.name]’s [bess.eyeColor] eyes are " + bess.mf("shining brightly","positively glittering") + ", waiting to hear what you want to switch up.");
 	}
 
-	bessFunctionsMenu();
-}
-
-public function bessFunctionsMenu():void
-{
 	clearMenu();
 	addButton(0, "Titles", talkToBessAboutTitles, undefined, "Titles", "Change [bess.name]’s name or what you call each other in sexual and non-sexual encounters.");
 
@@ -1638,7 +1634,7 @@ public function bessTitlesAcceptRename():void
 	output("<i>“Very well, from now on I shall be known as [bess.name]!”</i>");
 
 	clearMenu();
-	addButton(0, "Next", bessFunctions);
+	addButton(0, "Next", bessFunctionsMenu);
 }
 
 public function bessTitlesYourTitles():void
@@ -1924,7 +1920,7 @@ public function talkToBessAboutHairColor():void
 	{
 		if (i > 0 && (i + 1) % 15 == 0)
 		{
-			addButton(i, "Back", bessFunctionsMenu);
+			addButton(i, "Back", talkToBessAboutHair);
 			continue;
 		}
 		else
@@ -1985,7 +1981,7 @@ public function talkToBessAboutHairLength():void
 		}
 	}
 
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", talkToBessAboutHair);
 }
 
 public function bessSetHairLength(newLength:int):void
@@ -2074,7 +2070,7 @@ public function talkToBessAboutHairStyle():void
 	{
 		if (i > 0 && (i + 1) % 15 == 0)
 		{
-			addButton(i, "Back", bessFunctionsMenu);
+			addButton(i, "Back", talkToBessAboutHair);
 			continue;
 		}
 		else
