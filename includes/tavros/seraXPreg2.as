@@ -359,11 +359,12 @@ Begins to proc once ‘Ambition’ is resolved.
 Like Celise she has a chance to turn up in bed every time the PC rests on ship unless barred. Concubine Sera chance 33%, Merchant Sera chance 20%.
 If PC allows her though she will always turn up (superseding Celise and Reaha) until they kick her out again. So three states: Trying, Invited, Barred.
 */
-public function seraBitchImpregnateBed():Boolean
+public function seraBitchImpregnateBed(bSleep:Boolean = false):Boolean
 {
 	var chance:int = 33;
 	if(seraIsMerchant()) chance = 20;
-	if(rand(100) > chance) return false;
+	if(flags["CREWMEMBER_SLEEP_WITH"] == "SERA") chance = 75;
+	if(!bSleep && rand(100) > chance) return false;
 	
 	clearOutput();
 	showSera(true);
@@ -485,7 +486,7 @@ public function seraBitchImpregnateBedResumeSleep(bSet:Boolean = false):void
 // Randomly select one from dom pool if PC chose cuddling, from sub pool if PC chose foot warmer.
 public function seraBitchImpregnateBedWakeCheck():Boolean
 {
-	if(flags["CREWMEMBER_SLEEP_WITH"] != "SERA") return false;
+	if(flags["CREWMEMBER_SLEEP_WITH"] != "SERA" || !seraIsCrew()) return false;
 	
 	var chance:int = 80;
 	if(chars["SERA"].isPregnant()) chance = 50;
@@ -664,7 +665,6 @@ public function seraBitchImpregnateBedWake():void
 			output("\n\nBe that as it may, you should probably get into action. You shoo her off you and head for the shower, still enjoying little aftershocks and a certain loosened tenderness. You could definitely get used to being woken up this way.");
 			processTime(35);
 			pc.orgasm();
-			pc.loadInCunt(chars["SERA"], vIdx);
 			break;
 		case 4:
 			output("");

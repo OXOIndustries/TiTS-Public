@@ -409,6 +409,12 @@ public function bessIsSleepCompanion():Boolean
 	return (flags["CREWMEMBER_SLEEP_WITH"] == "BESS");
 }
 
+public function bessTavrosBonus(btnSlot:int = 2):void 
+{
+	output("\n\n[bess.name] is here, waiting around and generally staying out of the way as best [bess.heShe] can.");
+	addButton(btnSlot, bess.short, approachBessAtTavros);
+}
+
 public function bessTopStripScene():void
 {
 	if (bess.isChestGarbed())

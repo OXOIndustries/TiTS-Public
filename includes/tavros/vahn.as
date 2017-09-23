@@ -37,6 +37,18 @@ public function getVahnPregContainer():PregnancyPlaceholder
 	return ppVahn;
 }
 
+public function vahnTavrosBonus(btnSlot:int = 0):void 
+{
+	if(flags["MET_VAHN"] == undefined) {
+		output("\n\nYou spot a blonde, half-ausar technician standing next to your ship, looking down at a datapad.");
+		addButton(btnSlot, "Tech", VahnTheMechanic);
+	}
+	else
+	{
+		output("\n\nVahn’s around here somewhere, if you want to look for him.");
+		addButton(btnSlot, "Vahn", VahnTheMechanic);
+	}
+}
 public function VahnTheMechanic():void 
 {
 	clearOutput();

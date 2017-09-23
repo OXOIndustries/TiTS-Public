@@ -2995,13 +2995,14 @@ public function displayQuestLog(showID:String = "All"):void
 			{
 				output2(" Responded, Cleared Deck 92, Rescue time expired, Peter died");
 				if(flags["SAENDRA_XPACK1_CREDITOFFER"] == 2) output2(", Paid for the <i>Phoenix</i>, Completed");
-				if(flags["ZIL_CALLGIRL_SEXED"] != undefined && flags["ZIL_CALLGIRL_SEXED"] > 0) output2("\n<b>* " + (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "Call Girl" : "Zheniya") + ", Times Sexed:</b> " + zilCallGirlSexed());
 			}
 			
 			if(flags["SAENDRA_XPACK1_CALLGIRLSTATE"] != undefined)
 			{
 				output2("\n<b>* " + (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "Call Girl" : "Zheniya") + ":</b> Met her");
 				if(flags["SAENDRA_XPACK1_CALLGIRLSTATE"] >= 2) output2(", Paid her for sex");
+				if(flags["ZIL_CALLGIRL_PREG"] != undefined && flags["ZIL_CALLGIRL_GESTATION"] != undefined) output2("\n<b>* " + (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "Call Girl" : "Zheniya") + ", Days Pregnant:</b> " + Math.floor(zilCallGirlPregTime() / 60 / 24));
+				if(flags["ZIL_CALLGIRL_SEXED"] != undefined && flags["ZIL_CALLGIRL_SEXED"] > 0) output2("\n<b>* " + (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "Call Girl" : "Zheniya") + ", Times Sexed:</b> " + zilCallGirlSexed());
 			}
 			if(flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] != undefined)
 			{
@@ -3446,6 +3447,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				output2("\n<b>* Sera, Skin Tone:</b> " + StringUtil.toDisplayCase(chars["SERA"].skinTone));
 				if(flags["SERA_INCH_STEAL"] != undefined) output2("\n<b>* Sera, Tail Length:</b> " + prettifyLength(36 + seraInchGain()));
+				if(flags["SERA_PREGNANCY_TIMER"] != undefined) output2("\n<b>* Sera, Days Pregnant:</b> " + flags["SERA_PREGNANCY_TIMER"]);
 				if(fuckedSeraBefore())
 				{
 					output2("\n<b>* Sera, Sex Organs:</b> " + listCharGenitals("SERA"));
@@ -5474,6 +5476,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* " + redMyrDeserterName + "</b>");
 					if(flags["RED_MYR_DESERTER_BEATEN"] != undefined && flags["RED_MYR_DESERTER_BEATEN"] >= 5) output2(" <b>(Non-hostile)</b>");
 					output2("<b>, Times Encountered:</b> " + flags["MET_RED_DESERTER"]);
+					if(flags["BRIHA_INCUBATION_TIMER"] != undefined) output2("\n<b>* " + redMyrDeserterName + ", Days Pregnant:</b> " + flags["BRIHA_INCUBATION_TIMER"]);
 					if(flags["RED_DILDOED"] != undefined) output2("\n<b>* " + redMyrDeserterName + ", Times Used Dildo:</b> " + flags["RED_DILDOED"]);
 					if(flags["BRIHA_HARDLIGHT_STUFFED"] != undefined) output2("\n<b>* " + redMyrDeserterName + ", Times Fucked Her With Hardlight Strap-On:</b> " + flags["BRIHA_HARDLIGHT_STUFFED"]);
 				}
