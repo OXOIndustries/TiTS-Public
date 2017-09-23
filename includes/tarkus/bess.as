@@ -1495,8 +1495,7 @@ public function bessAppearance():void
 }
 
 //Functions
-
-public function bessFunctionsMenu():void
+public function bessFunctions():void
 {
 	clearOutput();
 	bessHeader();
@@ -1533,6 +1532,11 @@ public function bessFunctionsMenu():void
 		output("\n\n<i>“Of course, "+ bessPCName() +"! What would you like me to change?”</i> [bess.name]’s [bess.eyeColor] eyes are " + bess.mf("shining brightly","positively glittering") + ", waiting to hear what you want to switch up.");
 	}
 
+	bessFunctionsMenu();
+}
+
+public function bessFunctionsMenu():void
+{
 	clearMenu();
 	addButton(0, "Titles", talkToBessAboutTitles, undefined, "Titles", "Change [bess.name]’s name or what you call each other in sexual and non-sexual encounters.");
 
@@ -1554,6 +1558,7 @@ public function bessFunctionsMenu():void
 	addButton(14, "Back", bessFollowerMenu);
 }
 
+
 //Titles
 public function talkToBessAboutTitles():void
 {
@@ -1569,7 +1574,7 @@ public function talkToBessAboutTitles():void
 	addButton(3, "YourSexName", bessTitlesYourSexName, undefined, "Your Sex Name", "The name that [bess.name] will call you in sexual encounters.");
 	addButton(4, bess.mf("His", "Her") + "SexName", bessTitlesTheirSexName, undefined, bess.mf("His", "Her") + " Sex Name", "The title that you will call [bess.name] in sexual encounters.");
 
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", bessFunctions);
 }
 
 public function bessTitlesTheirName():void
@@ -1638,7 +1643,7 @@ public function bessTitlesAcceptRename():void
 	output("<i>“Very well, from now on I shall be known as [bess.name]!”</i>");
 
 	clearMenu();
-	addButton(0, "Next", bessFunctionsMenu);
+	addButton(0, "Next", bessFunctions);
 }
 
 public function bessTitlesYourTitles():void
@@ -1781,7 +1786,7 @@ public function bessTitleList(tarPC:Boolean, sex:Boolean):void
 	{
 		if (i > 0 && (i + 1) % 15 == 0)
 		{
-			addButton(i, "Back", bessFunctionsMenu);
+			addButton(i, "Back", talkToBessAboutTitles);
 			continue;
 		}
 		else
@@ -1841,7 +1846,7 @@ public function bessSetTitleOption(opts:Array):void
 	if (!tarPC &&  sex) flags["BESS_SEX_NAME"] = newTitle;
 
 	clearMenu();
-	addButton(0, "Next", bessFunctionsMenu);
+	addButton(0, "Next", bessFunctions);
 }
 
 public function talkToBessAboutRoles():void
@@ -1868,7 +1873,7 @@ public function talkToBessAboutRoles():void
 	else if (sRole == 1) output(" the role of a dominant partner.)")
 	else if (sRole == 2) output(" the role of a submissive partner.)");
 	
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", bessFunctions);
 }
 
 public function setBessRole(newRole:int):void
@@ -1905,7 +1910,7 @@ public function talkToBessAboutHair():void
 	if (bess.hairLength > 0) addButton(2, "Style", talkToBessAboutHairStyle);
 	else addDisabledButton(2, "Style", "Hair Style", "[bess.name] has to have hair to be able to select its style!");
 
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", bessFunctions);
 }
 
 public function talkToBessAboutHairColor():void
@@ -2041,7 +2046,7 @@ public function bessSetHairLength(newLength:int):void
 	output("!</b>");
 
 	clearMenu();
-	addButton(0, "Next", bessFunctionsMenu);
+	addButton(0, "Next", bessFunctions);
 }
 
 public function talkToBessAboutHairStyle():void
@@ -2131,7 +2136,7 @@ public function talkToBessAboutEyes():void
 	{
 		if (i > 0 && (i + 1) % 15 == 0)
 		{
-			addButton(i, "Back", bessFunctionsMenu);
+			addButton(i, "Back", bessFunctions);
 			continue;
 		}
 		else
@@ -2151,7 +2156,7 @@ public function talkToBessAboutEyes():void
 
 	if (options.length < 15)
 	{
-		addButton(14, "Back", bessFunctionsMenu);
+		addButton(14, "Back", bessFunctions);
 	}
 }
 
@@ -2195,7 +2200,7 @@ public function talkToBessAboutBoobs():void
 	if (flags["BESS_BOOBCHANGED"] == undefined) addDisabledButton(2, "Nipples");
 	else addButton(2, "Nipples", talkToBessAboutNipples);
 	
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", bessFunctions);
 }
 
 public function talkToBessAboutBoobSize():void
@@ -2217,7 +2222,7 @@ public function talkToBessAboutBoobSize():void
 	{
 		if (i > 0 && (i + 1) % 15 == 0)
 		{
-			addButton(i, "Back", bessFunctionsMenu);
+			addButton(i, "Back", bessFunctions);
 			continue;
 		}
 		else
@@ -2644,7 +2649,7 @@ public function talkToBessAboutBodyShape():void
 	addButton(3, "Stomach", talkToBessAboutStomach);
 	addButton(4, "Thickness", talkToBessAboutThickness);
 
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", bessFunctions);
 }
 
 public function talkToBessAboutHips():void
@@ -2978,7 +2983,7 @@ public function talkToBessAboutGenitals():void
 	if (bess.hasCock()) addButton(2, "Knot", talkToBessAboutKnot, undefined, "Cock Knot", "Whenever [bess.name] penetrates you with [bess.hisHer] cock, it will swell and lock inside until [bess.heShe] has finished cumming inside.");
 	else addDisabledButton(2, "Knot", "Knot State", "[bess.name] needs to be sporting a cock to configure its knottyness!");
 
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", bessFunctions);
 }
 
 public function talkToBessAboutCock():void
@@ -3411,7 +3416,7 @@ public function talkToBessAboutCum():void
 	if (bess.hasVagina()) addButton(1, "GirlCum F", talkToBessAboutCumFlavour, false, "Girl Cum Flavor", "Change [bess.hisHer] girl cum flavor.");
 	else addDisabledButton(1, "GirlCum F");
 
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", bessFunctions);
 }
 
 public function talkToBessAboutCumFlavour(asCock:Boolean):void
@@ -3435,7 +3440,7 @@ public function talkToBessAboutCumFlavour(asCock:Boolean):void
 	{
 		if (i > 0 && (i + 1) % 15 == 0)
 		{
-			addButton(i, "Back", bessFunctionsMenu);
+			addButton(i, "Back", talkToBessAboutCum);
 			continue;
 		}
 		else
@@ -3458,7 +3463,7 @@ public function talkToBessAboutCumFlavour(asCock:Boolean):void
 	
 	if (opts.length < 15)
 	{
-		addButton(14, "Back", talkToBessAboutGenitals);
+		addButton(14, "Back", talkToBessAboutCum);
 	}
 }
 
@@ -3521,7 +3526,7 @@ public function talkToBessAboutClothes():void
 	addButton(6, "Wings", talkToBessAboutWings, undefined, "Wings", "Change [bess.hisHer] wings.");
 	addButton(7, "Items", talkToBessAboutItems, undefined, "Items", "Change [bess.hisHer] accessories.");
 
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", bessFunctions);
 }
 
 // this is only really used to handle nudity
