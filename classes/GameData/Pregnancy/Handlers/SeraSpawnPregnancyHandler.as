@@ -23,7 +23,7 @@ package classes.GameData.Pregnancy.Handlers
 			_handlesType = "SeraSpawnPregnancy";
 			_basePregnancyIncubationTime = (60 * 24 * 272); // 9 Months
 			_basePregnancyChance = 0.1;
-			_alwaysImpregnate = true;
+			_alwaysImpregnate = false;
 			_ignoreInfertility = false;
 			_ignoreFatherInfertility = false;
 			_ignoreMotherInfertility = false;
