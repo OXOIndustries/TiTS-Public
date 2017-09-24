@@ -1366,7 +1366,7 @@ public function bessFollowerMenu():void
 
 	if (flags["BESS_EVENT_24"] == undefined)
 	{
-		addDisabledButton(5, "Date");
+		addDisabledButton(5,"Locked","Locked","You don’t know her well enough for this.");
 	}
 	else
 	{
@@ -1382,7 +1382,7 @@ public function bessFollowerMenu():void
 		}
 		else
 		{
-			addDisabledButton(5, "Date");
+			addDisabledButton(5, "Date","Locked","It doens't look like [bess.name] wants to go on a date again anytime soon.");
 		}
 	}
 
@@ -2665,14 +2665,14 @@ public function talkToBessAboutHips():void
 	if (bess.hipRatingRaw == 2) addDisabledButton(1, "Slender");
 	else addButton(1, "Slender", setBessHipSize, 2);
 	if (bess.hipRatingRaw == 4) addDisabledButton(2, "Average");
-	else addButton(2, "Average", setBessHipSize, 5);
+	else addButton(2, "Average", setBessHipSize, 4);
 	if (bess.hipRatingRaw == 6) addDisabledButton(3, "Ample");
-	else addButton(3, "Ample", setBessHipSize, 8);
+	else addButton(3, "Ample", setBessHipSize, 6);
 	if (bess.hipRatingRaw == 10) addDisabledButton(4, "Curvy");
-	else addButton(4, "Voluptuous", setBessHipSize, 16);
-	if (bess.hipRatingRaw == 15) addDisabledButton(4, "Voluptuous");
-	else addButton(5, "Voluptuous", setBessHipSize, 16);
-	if (bess.hipRatingRaw == 20) addDisabledButton(5, "Massive");
+	else addButton(4, "Curvy", setBessHipSize, 10);
+	if (bess.hipRatingRaw == 15) addDisabledButton(5, "Voluptuous");
+	else addButton(5, "Voluptuous", setBessHipSize, 15);
+	if (bess.hipRatingRaw == 20) addDisabledButton(6, "Massive");
 	else addButton(6, "Massive", setBessHipSize, 20);
 
 	addButton(14, "Back", talkToBessAboutBodyShape);
@@ -2696,18 +2696,18 @@ public function talkToBessAboutButt():void
 	if (bess.buttRatingRaw == 2) addDisabledButton(1, "Tight");
 	else addButton(1, "Tight", setBessButtSize, 2);
 	if (bess.buttRatingRaw == 4) addDisabledButton(2, "Average");
-	else addButton(2, "Average", setBessButtSize, 5);
+	else addButton(2, "Average", setBessButtSize, 4);
 	if (bess.buttRatingRaw == 6) addDisabledButton(3, "Noticable");
-	else addButton(3, "Noticable", setBessButtSize, 8);
+	else addButton(3, "Noticable", setBessButtSize, 6);
 	if (bess.buttRatingRaw == 8) addDisabledButton(4, "Large");
-	else addButton(4, "Large", setBessButtSize, 16);
+	else addButton(4, "Large", setBessButtSize, 8);
 	if (bess.buttRatingRaw == 10) addDisabledButton(5, "Jiggly");
-	else addButton(5, "Jiggly", setBessButtSize, 20);
-	if (bess.buttRatingRaw == 13) addDisabledButton(5, "Expansive");
-	else addButton(6, "Expansive", setBessButtSize, 20);
-	if (bess.buttRatingRaw == 16) addDisabledButton(5, "Huge");
-	else addButton(7, "Huge", setBessButtSize, 20);
-	if (bess.buttRatingRaw == 20) addDisabledButton(5, "Massive");
+	else addButton(5, "Jiggly", setBessButtSize, 10);
+	if (bess.buttRatingRaw == 13) addDisabledButton(6, "Expansive");
+	else addButton(6, "Expansive", setBessButtSize, 13);
+	if (bess.buttRatingRaw == 16) addDisabledButton(7, "Huge");
+	else addButton(7, "Huge", setBessButtSize, 16);
+	if (bess.buttRatingRaw == 20) addDisabledButton(8, "Massive");
 	else addButton(8, "Massive", setBessButtSize, 20);
 
 	addButton(14, "Back", talkToBessAboutBodyShape);
