@@ -1363,10 +1363,15 @@ public function bessFollowerMenu():void
 	{
 		addButton(4, "Int. Sex", bessIntimateSexMenu);
 	}
+	else
+	{
+		addDisabledButton(4,"Locked","Locked","You don’t know her well enough for this.");
+	}
 
 	if (flags["BESS_EVENT_24"] == undefined)
 	{
 		addDisabledButton(5,"Locked","Locked","You don’t know her well enough for this.");
+		
 	}
 	else
 	{
@@ -1382,7 +1387,7 @@ public function bessFollowerMenu():void
 		}
 		else
 		{
-			addDisabledButton(5, "Date","Locked","It doens't look like [bess.name] wants to go on a date again anytime soon.");
+			addDisabledButton(5, "Date","Locked","It doens't seem like [bess.name] wants to go on a date ever again after the hassle on Ekurana.");
 		}
 	}
 
@@ -2086,8 +2091,15 @@ public function talkToBessAboutHairStyle():void
 		{
 			optSlot++;
 		}
-
-		addButton(i, StringUtil.toTitleCase(options[optSlot]), bessSetHairStyle, options[optSlot]);
+		// bessSetHairStyle() adds an article to some of the styles, so lets check both possibilities
+		if (options[optSlot] == bessHairStyle() || indefiniteArticle(options[optSlot]) == bessHairStyle())
+		{
+			addDisabledButton(i, StringUtil.toTitleCase(options[optSlot]));
+		}
+		else
+		{
+			addButton(i, StringUtil.toTitleCase(options[optSlot]), bessSetHairStyle, options[optSlot]);
+		}
 	}
 }
 
