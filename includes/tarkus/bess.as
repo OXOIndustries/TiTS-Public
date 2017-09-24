@@ -1365,12 +1365,12 @@ public function bessFollowerMenu():void
 	}
 	else
 	{
-		addDisabledButton(4,"Locked","Locked","You don’t know her well enough for this.");
+		addDisabledButton(4,"Locked","Locked","You don’t know [bess.himHer] well enough for this.");
 	}
 
 	if (flags["BESS_EVENT_24"] == undefined)
 	{
-		addDisabledButton(5,"Locked","Locked","You don’t know her well enough for this.");
+		addDisabledButton(5,"Locked","Locked","You don’t know [bess.himHer] well enough for this.");
 	}
 	else
 	{
