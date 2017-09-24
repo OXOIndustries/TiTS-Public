@@ -642,14 +642,434 @@
  	output("\n\nShe looks to be about a minute away from cumming. This seems like a good time to plan your next move. Do you want to finish jacking off the little kui-tan, or deny her the pleasure of cumming? ");
  	if (pc.hasCock() && !pc.isTaur()) output("Alternatively, she's at an awfully convenient angle for a good fucking. ");
  	
+ 	processTime(10+rand(3));
  	pc.addMischievous(3);
  	pc.lust(20);
  	
- 	addButton(0, "JackHer", , undefined, "Jack Her Off", "");
- 	if (!pc.isTaur() && pc.hasCock()) addButton(1, "Suspension", , undefined, "Suspension Fuck", "");
+ 	addButton(0, "JackHer", praiPlayJackSecond, undefined, "Jack Her Off", "");
+ 	if (!pc.isTaur() && pc.hasCock()) addButton(1, "Suspension", praiPlaySusSecond, undefined, "Suspension Fuck", "");
  	else addDisabledButton(1, "Suspension", "Suspension Fuck", "You need a cock and to not be a taur for this.")
- 	if (pc.hasCock()) addButton(2, "MakeHerBeg", , undefined, "Make Her Beg", "");
- 	else addDisabledButton(2, "MakeHerBeg", "Maker Her Bed", "You need a cock for this.")
- 	addButton(3, "Leave", , undefined, "", "");
+ 	if (pc.hasCock()) addButton(2, "MakeHerBeg", praiPlayBegSecond, undefined, "Make Her Beg", "");
+ 	else addDisabledButton(2, "MakeHerBeg", "Maker Her Beg", "You need a cock for this.")
+ 	addButton(3, "Leave", praiPlayLeaveSecond, undefined, "", "");
+ }
+ 
+ public function praiPlayLeaveSecond():void
+ {
+ 	author("Frogapus");
+ 	showPrai(1);
+ 	clearOutput();
+ 	clearMenu();
+ 	
+ 	output("You give Prai a shove forward, sending her swinging in her vine restraints and inform her that you'll be leaving her here. She yelps loudly against her gag, " + (flags["PRAI_MOOD"] == 2 ? "thrashing in her vines" : "her round ears drooping") + ". You smirk and walk away from the bound and gagged kui-tan, leaving her and the snoring pitcher plant behind you.");
+ 	
+ 	processTime(3+rand(3));
+ 	pc.addHard(flags["PRAI_MOOD"] == 1 ? 6 : 3);
+ 	flags["PRAI_MOOD"] = 2;
+ 	flags["PRAI_EMAIL_NUMBER"] = 6;
+ 	flags["PRAI_EMAIL_STAMP"] = GetGameTimestamp();
+ 	
+ 	addButton(0, "Next", mainGameMenu, undefined, "", "");
+ }
+ 
+ public function praiPlayJackSecond():void
+ {
+ 	author("Frogapus");
+ 	showPrai(2);
+ 	clearOutput();
+ 	clearMenu();
+ 	
+ 	output("You decide that a bound and gagged kui-tan is just the sort of thing to make your day.");
+ 	output("\n\nYou pull her tightly against you, one arm wrapped around her taut waist, the other grasping her three-inch cock. Prai must have had a mod or two, because instead of a kui-tan dick, hers is clearly equine. Only about an inch thick and barely three inches long, it's the same glossy black as her nose and lips. It's little, flared head is already flaring in your grasp, but it's barely long enough to get more than a few fingers around it.");
+ 	output("\n\nHer slim body writhes against you, her round butt rubbing against your hips. " + (flags["PRAI_MOOD"] == 2 ? "Prai tenses, but her head tilts almost unconsciously to one side. " : "Prai tilts her head to one side, presenting more of her neck to you. ") + "You oblige and bite her neck harder, drawing a quivering moan from the gagged trap. Her cock pulses in your hand, oozing another load of hot, clear pre over your fingers.");
+ 	output("\n\nYou drum your fingers against her length. " + (flags["PRAI_MOOD"] == 2 ? "She pants, kicking her legs uselessly in her restraints. " : "She squeals, another happy shiver running through her body.") + "");
+ 	output("\n\n<i>“Mmmph!”</i> she groans, trying to hump back against you. Suspended, she can go little more than wiggle in your embrace. You grin and press your lips to her neck, sucking softly, drawing out another full-body quiver from the kui-tan.");
+ 	output("\n\nYou decide to take your time, slowly pumping her dick. Prai trembles against you as you pull her tight against your body");
+ 	if (pc.hasBreasts()) output(", your [pc.breasts] pressing against her back");
+ 	else if (pc.hasCock()) output(", the bulge of your [pc.cocks] planted firmly against her plump ass");
+ 	output(". You slide your arm up, splaying your fingers across her chest and returning to her nipples. With a slow turn of your wrist, you strum your fingertips one at a time over her puffy, black buds.");
+ 	output("\n\nPrai gasps in your arms, her breathing growing ragged. It looks like the kui-tan has neared orgasm in very short order--it must have something to do with such a long period of teasing, which gives you a wonderful idea. You hold her tight against you, suspended and helpless in your arms. You nip the back of her neck and slow your pumping fist.");
+ 	output("\n\nShe wriggles in protest, humping her dick against your hand. As she does so, you open your hand, leaving her pumping her hips fruitlessly. She gives a frustrated grunt through her gag, but after a final thrash, stills her hips. You close your fist again around her pre-soaked cock, and pump her short cock slowly. She lets out a frustrated noise, but rocks her hips against you to the rhythm you set.");
+ 	output("\n\nGradually, you speed up, and her grunts turn to sweet, muffled moans. Just when she starts to frantically pant her pleasure, you stop, returning to a slow, steady pump. She squeals her protest, but slows herself again, following your rhythm. To reward her, you run your fingertips across her nipples, teasing them lightly.");
+ 	output("\n\n<i>“Nnnnnnnnnnnnn!”</i> she groans, straining her chest against you.");
+ 	output("\n\nYou and Prai go through this a dozen times, bringing her nearly to orgasm, then back down again. The kui-tan is trembling from her toes to her nose at this point, and you decide to finally let her cum. You pump her dick faster and faster, hearing her happy squeals even through the gag. Your fist is a blur against her hips, and she's twisting and writhing against you, practically thrashing in her desperation to cum.");
+ 	output("\n\nWhen you pinch your fingers around her nipple, she lets out a strangled cry through her gag. She arches her back in your embrace, her meat throbbing in your hand. Her cock spasms in your hand, firing out a hot, thick load through the air, splashing against the roots criss-crossing the forest floor. You keep pumping her, milking her tiny dick, until she squeals and fires out a second load, a glob of her thick semen arching a white streak through the air.");
+ 	output("\n\nPrai sags in your arms, and you're suddenly aware that the vines that were holding her up are no longer doing so. You glance up, seeing the pitcher plant's tendrils slowly snaking back to life. You glance down at her. Regardless of how you might feel about tentacle plants, the little kui-tan seems extremely out of it after her mid-air handjob. It'd probably be best to get her clear of the plant.");
+ 	output("\n\nYou hustle backward as the pitcher plant lazily comes back to life, its female torso stretching decadently, breasts bobbing as it blinks sleepily. By the time it seems aware of its surroundings, you're a solid distance away, sitting on a fallen log. Prai curls up on the ground next to you, her head resting in your lap. You remove the gag from her mouth, wringing it out the best you can.");
+ 	output("\n\nIt takes the kui-tan a few minutes to refocus on her surroundings. You pet her hair gently, fondling her ears a bit as she blinks slowly, shifting her weight. " + (flags["PRAI_MOOD"] == 2 ? "<i>“[pc.name], you … you jerk,”</i> " : "<i>“Oh, crackers! The plant was waking up, wasn't it?”</i> ") + "she finally manages to mumble. ");
+ 	output("\n\nYou inform her of what happened, and she makes a face. ");
+ 	if (flags["PRAI_MOOD"] == 2) output("\n\n<i>“I knew it was a bad idea to get me off there,”</i> she says. There's not really much heat to the words, though, and she finishes her statement by snuggling deeper against your lap. <i>“Totally all your fault,”</i> she mumbles.");
+ 	else 
+ 	{
+ 		output("\n\n<i>“I'm sorry. I guess I was really too out of it to keep track of the plant. Thank you for rescuing me--even if you were the reason it almost got me a second time.”</i>");
+ 		output("\n\nYou ruffle at that and open your mouth to give her a sharp response, only to find her looking up at you with her pink tongue sticking out.");
+ 	}
+ 	output("\n\n<i>“Kidding, [pc.name]--just kidding,”</i> she smiles. Prai takes in a very deep breath, and stretches a bit. She slowly clambers back to her feet, staggering a bit before brushing her dress off. <i>“I really do appreciate the save. We should do this again sometime.”</i>");
+ 	output("\n\nYou agree, but suggest that maybe she not get herself captured again.");
+ 	output("\n\n<i>“No promises!”</i> she laughs, then gives you a hug and heads off through the jungle.");
+ 	
+ 	processTime(40+rand(15));
+ 	pc.addNice(3);
+ 	flags["PRAI_MOOD"] = 1;
+ 	flags["PRAI_EMAIL_NUMBER"] = 3;
+ 	flags["PRAI_EMAIL_STAMP"] = GetGameTimestamp();
+ 	
+ 	addButton(0, "Next", mainGameMenu, undefined, "", "");
+ }
+ 
+ public function praiPlaySusSecond():void
+ {
+ 	author("Frogapus");
+ 	showPrai(2);
+ 	clearOutput();
+ 	clearMenu();
+ 	
+ 	output("You lean forward and run your finger along the length of her tail. Her breath hisses out through the gag and her ringed tail fluffs out at your touch, curling up into a perfect question mark and lifting her skirt with it.");
+ 	output("\n\nAs the curtain of her skirt rises, her rump emerges, veiled in her panties, a bulge tucked between her thighs, already dripping with precum. You reach forward, lightly running your fingertips across her bottom, coaxing a soft gasp from between her lips. You feel her rump tremble beneath your fingers as she moans helplessly.");
+ 	output("\n\n");
+ 	if (flags["PRAI_MOOD"] == 2) output("<i>“[pc.name], this--this doesn't f-feel like untying me,”</i> she protests weakly. ");
+ 	else output("<i>“Oh, yes, [pc.name], more, mmmmmorrrre ... <i>“ she moans. ");
+ 	output("You stroke her tail, running your hand up its length and listening to the minute gasps and mewls Prai makes. She sways her hips, begging for more than light touches.");
+ 	output("\n\nYou oblige, and grasp the base of her tail firmly, tugging down her panties with your other hand. Her three inch cock springs free, trailing a line of pre down to her panties, her small sack tucked tight against the base of it, already smeared with her fluids. She squeals happily, and you grind your [pc.cock] against her exposed booty, sliding it between the cheeks of her generous ass.");
+ 	output("\n\nPrai lets out a ragged moan, her skirt rising up as she wriggles helplessly in the air. <i>“" + (flags["PRAI_MOOD"] == 2 ? "Oh crackers! I don't even care anymore. " : "") + "Please! Please put it in me! I need it!”</i> she groans.");
+ 	output("\n\nYou spend a few minutes just grinding against her, feeling the slippery slide of her cheeks against your cock, listening to her moan. You hold her tail, tugging gently, setting the a rhythm that she enthusiastically follows. Suspended as she is, she can do little to affect her own movements, and for now, she's entirely in your control. ");
+ 	output("\n\nYou slowly stop sliding and are rewarded by a plaintive moan from Prai. You pull the gag from her mouth, letting her speak. <i>“Hahhhhh …. Wh-why'd you stop, [pc.name]?”</i>");
+ 	output("\n\n<i>“Beg for it,”</i> you whisper. The kui-tan responds with a shiver that runs from her rounded ears all the way down to her bushy tail.output("\n\n");");
+ 	output("\n\n<i>“Please!”</i> she croaks, her voice husky with desire. <i>“Please fuck me. Sneezes and snakes, I need it so bad. I need …”</i> she trails off as you slide your dick between her cheeks.");
+ 	output("\n\nWhen her words stop, you stop. She whines in protest, <i>“Please! I need your cock in my ass. I neeeeeeed to cum …”</i>");
+ 	output("\n\nYou squeeze her tail tighter, drawing a yelp and a shiver from her. <i>“I want your cock so bad,”</i> she moans. <i>“I need it. I'll do anything for it. Pleaaaassssse!”</i>");
+ 	output("\n\nYou suppose you could give her what she wants. On the other hand, she's got quite a mouth on her when she's not babbling non sequiturs; it might be more beneficial to leave her in this state.");
+ 	
+ 	pc.lust(20);
+ 	processTime(10+rand(3));
+ 	
+ 	addButton(0, "Fuck", praiPlaySusFuckSecond, undefined, "", "");
+ 	addButton(1, "Leave", praiPlaySusLeaveSecond, undefined, "", "");
+ }
+ 
+ public function praiPlaySusLeaveSecond():void
+ {
+ 	author("Frogapus");
+ 	showPrai(2);
+ 	clearOutput();
+ 	clearMenu();
+ 	
+ 	output("You decide to teach the uppity little kui-tan a lesson.");
+ 	output("\n\n<i>“No,”</i> you say simply. ");
+ 	output("\n\nPrai actually continues her begging and moaning for a minute before your word registers with her.");
+ 	output("\n\n<i>“I need your cock in my hot little … wait--what???”</i> She blinks her eyes and looks over her shoulder, her sexed-out haze appearing to clear a little.");
+ 	output("\n\n<i>“No,”</i> you say again, and inform her that you'll be heading out.");
+ 	output("\n\n<i>“What the--sneezes and flashlights and luftballoons!”</i> she stammers.");
+ 	output("\n\nYou bid her farewell as she thrashes against the vines. <i>“Hey! HEY! You can't just leave me here!”</i>");
+ 	output("\n\nWhistling, you leave Prai behind in the forest clearing.");
+ 	
+ 	processTime(3+rand(3));
+ 	pc.addHard(flags["PRAI_MOOD"] == 1 ? 6 : 3);
+ 	flags["PRAI_MOOD"] = 2;
+ 	flags["PRAI_EMAIL_NUMBER"] = 6;
+ 	flags["PRAI_EMAIL_STAMP"] = GetGameTimestamp();
+ 	
+ 	addButton(0, "Next", mainGameMenu, undefined, "", "");
+ }
+ 
+ public function praiPlaySusFuckSecond():void
+ {
+ 	author("Frogapus");
+ 	showPrai(2);
+ 	clearOutput();
+ 	clearMenu();
+ 	
+ 	output("You are more than happy to oblige her request. You " + (!pc.isNude() ? "undo your [pc.clothes] and " : "") + "set aside your gear as she whimpers softly in anticipation.");
+ 	output("\n\n<i>“Please, [pcname], I need it so bad. I'm dripping through my skirt!”</i> she moans piteously.");
+ 	output("\n\nYou spare a glance down and note that it looks like she's soaked the entire front of her skirt with pre-cum, and the sodden material is so sopping wet, it actually is dripping her fluids down to the forest floor.");
+ 	output("\n\nYou step out of the rest of your garments and lean in close to her. Your hands grip her ass, your fingers sinking into her plush rump. She churrs happily, and her tail arches up even further over her back. With a squeeze, you spread her cheeks apart and expose the shiny black pucker of her asshole.");
+ 	output("\n\n<i>“This is for being a good girl,”</i> you " + (pc.isMasculine() ? "chuckle" : "giggle") + ".");
+ 	output("\n\nPrai gasps sharply at your words, her back arching and her tailhole giving a twitch. Even a little perk of her hips makes her bounce in her restraints. <i>“Oh please! Please, [pc.Name], I can't take another minute of teasing. Stick it in me already. I need to be fuuuuuuucked!”</i> she whines.");
+ 	output("\n\nYou could give it to her, but who is she to tell you what to do?");
+ 	output("\n\nYou spread her cheeks wide, and she lets out a quaking sigh, anticipating your dick against her twitching asshole. ");
+ 	output("\n\nInstead, you slide your [pc.cocks] under her small package. The top of your shaft rubs firmly against the underside of her balls, then against the underside of her dick. She's soaked herself and find yourself slathering your own dick with her pre as you massage hers.");
+ 	output("\n\n<i>“Nuh-nuuuu ….”</i> she moans. <i>“Nah-not … not whata--what I … wanned …”</i> she babbles, barely coherent. You swear that you can feel her balls churning, resting hot and tight just atop the base of your shaft.");
+ 	output("\n\nYou stay there for a while, rocking back and forth, letting her bask in your rhythm. She's moaning, shifting her hips back against you. She obviously wants you inside her, but she's enjoying the frottage too much to mouth any sort of protest at this point.");
+ 	output("\n\nWhen you eventually slide out from under her, thin ropes of pre trailing from your dick to hers, she mewls softly. You give her a sharp shove forward, and she lurches toward the hanging tangle of vines in front of the sleeping pitcher. She grabs on to them and, unbalanced, swings softly back and forth, her weight resting partly on her toes.");
+ 	output("\n\n<i>“Pleeeeeze …”</i> she moans, swaying drunkenly against the vines.");
+ 	output("\n\nYou grin and grab her tail by the base, pulling her back and pressing the [pc.cockHead] of your cock against her twitching, black bud.");
+ 	output("\n\nShe lets out a low, shuddering moan, trying in vain to push back against you, put finding no purchase in the swaying vines. Settling your other hand on her hip, you slowly pull her in against you, sinking your ");
+ 	if (pc.cocks[0].cLength < 6) output("small");
+ 	else if (pc.cocks[0].cLength < 14) output("fat");
+ 	else output("massive");
+ 	output(" dick into her ass, watching it disappear inch by inch. She groans, a long and quavering sound as the ring of her asshole stretches to accommodate your girth.");
+ 	output("\n\nHalf-babbled gratitude spills from her lips as you fill her, and her cock gives a twitch, and you hear the patter of liquid against fabric. She pants, whimpering softly--it looks like she came from your insertion. Too bad you're not finished yet.");
+ 	output("\n\nYou push further and further in, already slick with her pre. Prai gasps, rocking against the vines and mewling piteously as her little cock oozes out cum. You pull her tail tight up against you, feeling the gentle bucks of her hips against yours.");
+ 	output("\n\n<i>“Good girl,”</i> you chuckle, and you see a wiggle of pleasure from her rump, shifting your cock around against her tight hole.");
+ 	output("\n\nIf she's this enthusiastic, you might as well respond in kind. You grip her tail and hip hard and push against them, rocking her forward against the vines. She squeaks, nearly losing her balance as she swings back, driving hard down your shaft.");
+ 	output("\n\n<i>“Unf!”</i> she grunts, her plump ass bouncing against your hips as you bury yourself to the hilt inside her.");
+ 	output("\n\nYou smile, enjoying the easy rhythm of shoving her forward and feeling her rock back against your dick. She churrs as you swing her out and moans in pleasure as you drive into her. You repeat the process over and over, letting momentum impale her over and over on your dick, enjoying her slippery tightness wrapping around you each time. Eventually, your own breathing grows ragged, as you feel your pleasure build.output("\n\n");");
+ 	output("\n\nShe's squeezing down tight around you, squeaking a symphony of pleasure. <i>“Cum! Please cum! Fill me up with your hot goo!”</i> she pants, barely able to form the words. <i>“Witch hazel and whiskers! Oh please!”</i>");
+ 	output("\n\nHer tightness, her begging--it's all too much to bear. You groan hauling back on her tail as you cum. You slamming your hips against her plump ass, a ");
+ 	if (pc.cumQ() < 10) output("squirt");
+ 	else if (pc.cumQ() < 100) output("jet");
+ 	else if (pc.cumQ() < 1000) output("massive jet");
+ 	else output("flood of cum");
+ 	output(" firing out from your cock into her desperate ass.");
+ 	output("\n\nShe's like an animal--humping back desperately against you, trying to get herself off. You groan, sinking your fingers in deep against the curve of her ass. <i>“Oh fidgets and freon! Oh! Oh crackers!”</i> she gasps, cumming back in kind. Her short cock spurts against the ground spattering thick cum with enough force that you feel it splash against your legs. She tenses, her muscles taut against her bindings, before finally going limp, hanging loosely against the vines.");
+ 	output("\n\nYou grind against her, feeling her asshole slowly unclenching around your ");
+ 	if (pc.cocks[0].cLength < 4) output("tiny");
+ 	else if (pc.cocks[0].cLength < 7) output("slim");
+ 	else if (pc.cocks[0].cLength < 10) output("thick");
+ 	else if (pc.cocks[0].cLength < 13) output("large");
+ 	else output("massive");
+ 	output(" cock. She's panting heavily, almost in synch with you. " + (!pc.isGoo() ? "You feel an ache in your [pc.legs] as the odd position of fucking the trussed-up kui-tan begins to catch up with you." : "") + "");
+ 	output("\n\n<i>“Ummma …. <i>“ she groans, slumped against the vines holding her up, her knees trembling.");
+ 	output("\n\nIt looks like the little kui-tan is spent. Do you want to release Prai and make sure she's alright, or leave her here for to fend for herself?");
+ 	
+ 	processTime(20+rand(8));
+ 	pc.orgasm();
+ 	pc.addMischievous(3);
+ 	
+ 	addButton(0, "Release", praiPlaySusFuckReleaseSecond, undefined, "", "");
+ 	addButton(1, "Leave", praiPlaySusFuckLeaveSecond, undefined, "", "");
+ }
+ 
+ public function praiPlaySusFuckLeaveSecond():void
+ {
+ 	author("Frogapus");
+ 	showPrai(2);
+ 	clearOutput();
+ 	clearMenu();
+ 	
+ 	output("You decide that now is a good time to pack up and head out.");
+ 	output("\n\nIt's a credit to your sexual prowess that Prai seems to not even register you as you " + (pc.isNude() ? "brush the leaves from your body" : "slip your [pc.clothes] on") + ". Her legs are trembling as she hangs, suspended in vines, a ");
+ 	if (pc.cumQ() < 10) output("dribble");
+ 	else if (pc.cumQ() < 100) output("trickle");
+ 	else if (pc.cumQ() < 1000) output("stream");
+ 	else output("flood");
+ 	output(" of cum running from her ");
+ 	if (pc.cocks[0].cLength < 6) output("twitching");
+ 	else if (pc.cocks[0].cLength < 14) output("stretched");
+ 	else output("gaping");
+ 	output(" asshole and down her thigh.");
+ 	output("\n\nIt looks like the kui-tan trap is only vaguely aware of you as her eyes drift in and out of focus. You note a small movement in her bandolier, as a tiny gummy creature emerges. Seemingly stirred by the presence of cum, the little " + (flags["PRAI_WHO"] == undefined ? "creature" : "Gemu") + " slowly makes its way up Prai's dress, across her chest, and to her wrists. It looks like it's slowly chewing its way through the vines.");
+ 	output("\n\nThe tiny creature might release her before the pitcher plant awakes, but either way, it's not your problem. You shrug and continue along your way.");
+ 	
+ 	processTime(3+rand(3));
+ 	pc.addHard(6);
+ 	flags["PRAI_MOOD"] = 2;
+ 	flags["PRAI_EMAIL_NUMBER"] = 6;
+ 	flags["PRAI_EMAIL_STAMP"] = GetGameTimestamp();
+ 	
+ 	addButton(0, "Next", mainGameMenu, undefined, "", "");
+ }
+ 
+ public function praiPlaySusFuckReleaseSecond():void
+ {
+ 	author("Frogapus");
+ 	showPrai(2);
+ 	clearOutput();
+ 	clearMenu();
+ 	
+ 	output("You decide that the little kui-tan has had more than enough and reach up to untangle her hands from the vines. Prai's barely coherent, murmuring  nonsense sounds to herself as she trembles, suspended in vines, a ");
+ 	if (pc.cumQ() < 10) output("dribble");
+ 	else if (pc.cumQ() < 100) output("trickle");
+ 	else if (pc.cumQ() < 1000) output("stream");
+ 	else output("flood");
+ 	output(" of cum running from her ");
+ 	if (pc.cocks[0].cLength < 6) output("twitching");
+ 	else if (pc.cocks[0].cLength < 14) output("stretched");
+ 	else output("gaping");
+ 	output(" asshole and down her thigh.");
+ 	output("\n\nWhen you finally undo the last of the vines, she slumps against you" + (pc.physique()/pc.physiqueMax() <= 0.33 ? ", nearly bowling you over" : "") + ". The kui-tan is in no condition to walk, but you're fairly sure that waiting to recover next to the pitcher plant won't do her much good. You lay her down gently on the forest floor and quickly " + (pc.isNude() ? "double check your gear" : "don your [pc.clothes]") + ". You " + (pc.physique()/pc.physiqueMax() < 0.5 ? "grab her by her arms and slide her across the forest floor " : "pick up the kui-tan trap in your arms, and carry her ") + "well away from the pitcher plant.");
+ 	output("\n\nPrai still looks incredibly dazed, blinking at you with unfocused eyes. <i>“[pc.name]?”</i> she manages to murmur before trembling softly. You " + (pc.physique()/pc.physiqueMax() < 0.5 ? "sit down next to her, and slide your arms under her shoulders, pulling her up into your lap" : "slowly sink to the ground, keeping her cradled in your lap") + ". She sighs softly, churring again, her round ears twitching as she curls up against you.");
+ 	output("\n\nYou hold the kui-tan girl against you, feeling her tremble. A stirring against your chest makes you glance down in surprise, noting a tiny creature emerging from Prai's bandolier. " + (flags["PRAI_WHO"] == undefined ? "Her pet" : "The Gemu") + " slides out, humanoid save for a slug-like undercarriage. The mouse-sized creature slowly moves along Prai's body, leaving her clean and cum-free.");
+ 	output("\n\nPrai sighs against you, and you lean down ");
+ 	if (pc.isNice()) output("nuzzling the top of her head");
+ 	else if (pc.isMischievous()) output(" giving her ear a soft nibble");
+ 	else output("bumping your chin softly against the top of her head");
+ 	output(". A smile spreads across her muzzle and her eyes blink open. She looks up at you, her eyes finally focusing on your [pc.face].");
+ 	output("\n\n<i>“Thank you for rescuing me,”</i> she whispers.");
+ 	output("\n\nYou smile back at her and hold her until the trembling in her body fades away. She nuzzles against your neck and gives you a soft, warm kiss. Prai slowly untangles herself from you, standing up with your help. She checks her gear, then smoothes down her dress before blushing shyly and ");
+ 	if (pc.tallness < 5*12+2) output("bending down");
+ 	else if (pc.tallness > 5*12+2) output("tiptoeing up");
+ 	else output("leaning forward");
+ 	output(" to kiss you once more.");
+ 	output("\n\n<i>“I should be on my way,”</i> she says with another smile. <i>“Thank you so much for staying with me while I was worn out.”</i>");
+ 	output("\n\nYou inform her that cuddling with an adorable kui-tan was no trouble at all.");
+ 	output("\n\n<i>“Well,”</i> she says with a grin, <i>“if this is the sort of treatment that I can look forward to, maybe getting tied up isn't so bad after all!”</i>output("\n\n");");
+ 	output("\n\nYou're not entirely sure that that's the right lesson for her to learn, but she seems happy enough as she skips off through the woods.");
+ 	
+ 	processTime(15+rand(6));
+ 	flags["PRAI_MOOD"] = 1;
+ 	flags["PRAI_EMAIL_NUMBER"] = 3;
+ 	flags["PRAI_EMAIL_STAMP"] = GetGameTimestamp();
+ 	
+ 	addButton(0, "Next", mainGameMenu, undefined, "", "");
+ }
+ 
+ public function praiPlayBegSecond():void
+ {
+ 	author("Frogapus");
+ 	showPrai(2);
+ 	clearOutput();
+ 	clearMenu();
+ 	
+ 	output("You brush your lips against Prai's black, fuzzy ear and whisper that if she wants to finish, she'll have to satisfy </i>you<i> first.");
+ 	if (flags["PRAI_MOOD"] == 2)
+ 	{
+ 		output("\n\nShe stiffens against you, and you tug the gag from her mouth. <i>“Sneezes and snakes!”</i> she gasps. <i>“I … I …”</i> she huffs, building up a head of steam. ");
+ 		output("\n\n<i>“Of all the things to ask! Why in the world would I beg for it?”</i>");
+ 		output("\n\nYou raise your eyebrows at the straining cock tent in her skirt and she glances down. <i>“Well, maybe I can just take care of that later.”</i> She huffs.");
+ 		output("\n\nYou bend down to undo the vines at her ankles, leaving her legs swaying before undoing the vines at her wrists, letting the kui-tan drop down to the forest floor. She catches herself with a small stumble, straightening up and giving you a hard stare.");
+ 		if (pc.isAss())
+ 		{
+ 			output("\n\nYou decide that you've had quite enough of the kui-tan's games. In your most commanding tones, you order her to get down on her knees and beg for your dick. ");
+ 			output("\n\nIt's like flipping a switch. Prai bites her lip and flushes, her eyes looking at you with a hunger you haven't seen there before. She lowers her head, sinking down to her knees. <i>“Y-yes, sir,”</i> she murmurs.");
+ 			output("\n\nIt looks like for all her bluster, Prai's submissive streak is several miles wide. Direct orders push a very obedient button for her.");
+ 		}
+ 		else if (pc.isMischievous())
+ 		{
+ 			output("\n\nYou note that it's a long walk back to Esbeth, and that with her track record, she'd probably get caught by something even worse--especially if she stops to masturbate.");
+ 			output("\n\nShe wrinkles her black, shiny nose at you. <i>“Will not!”</i>");
+ 			output("\n\nYou shrug, and as she takes her first step away from you, you point out that walking through the jungle with a hard-on is going to be incredibly uncomfortable, and probably a little painful versus the relative ease of taking a few orders from you.");
+ 			output("\n\nShe hesitates and lowers her foot back down, her brow furrowing as she evaluates her situation.");
+ 			output("\n\nYou smile and point at the ground. Her eyes flick to you and she sticks her tongue out, but nevertheless sinks down to her hands and knees.");
+ 		}
+ 		else
+ 		{
+ 			output("\n\nYou point out that turned-on as she is, Prai will undoubtedly run into trouble between here and Esbeth. Also, given her track record, it's pretty likely that something will assault her, especially if she stops to masturbate.");
+ 			output("\n\nPrai grimaces. <i>“Oh crackers, you're probably right,”</i> she admits. <i>“And this begging stuff is just pretend, right? I'm not your sex servant or anything,”</i> she adds, sternly.");
+ 			output("\n\nA breeze gusts through leaves, tugging at the hem of her skirt. Her fur bristles up and she bites her lip, shivering as her bulge twitches. <i>“Nnnnn, okay, okay …”</i> she groans. <i>“So how do you want it? On my knees?”</i> She asks, sinking down to the forest ground.");
+ 			output("\n\nYou nod, smiling.");
+ 		}
+ 	}
+ 	else
+ 	{
+ 		output("\n\nShe stiffens against you, and you tug the gag from her mouth. <i>“I … I want that, too”</i> she breathes. <i>“How would you want me?”</i>");
+ 		output("\n\nYou bend down to undo the vines at her ankles, leaving her legs swaying before undoing the vines at her wrists, letting the kui-tan drop down to the forest floor. ");
+ 		if (pc.isAss()) output("\n\nYou see her wobble, but let her stumble. She collapses to the forest floor, her hands splayed across the dirt. She looks up at you in shock, and you lock eyes with her, until she drops her head. She looks abashed, but you catch a glimpse of the small lip bite, and the smile flickering across her face.");
+ 		else if (pc.isMischievous())
+ 		{
+ 			output("\n\nPrai's feet touch down, and she wobbles immediately. You reach out to grab her arm. She grasps at you, half-regaining her balance. As she teeters, you lock eyes with her, and grin wickedly. You let go of her hand, and she cries out, falling back on her plump butt.");
+ 			output("\n\n<i>“Ow! What was that for?”</i> she groans, pushing herself halfway up.");
+ 			output("\n\n<i>“You look good on your knees,”</i> you snark, throwing her a wink.");
+ 			output("\n\n<i>“I … oh!”</i> she says, understanding dawning on her face. <i>“There </i>are<i> easier ways of getting me on my knees,”</i> she notes.");
+ 			output("\n\n<i>“This was was more fun,”</i> you reply. Prai says nothing, but rolls her eyes and smiles.");
+ 		}
+ 		else
+ 		{
+ 			output("\n\n You place a hand on her back, steadying her as she finds her balance. When she stops swaying, she looks into your eyes, a small blush spreading across her cheeks. You slide your hands up to her face, running them back and tousling her short, messy hair. A little bit of a push is all the guidance she needs as she slowly sinks down to her knees.");
+ 			output("\n\nShe looks up at you, her eyes wide and questioning. <i>“Like this?”</i> she asks softly.");
+ 			output("\n\nYou nod, smiling.");
+ 		}
+ 	}
+ 	output("\n\nOn her knees, she looks up at you, frustration and desperation written all over her face. With a broad smile you nod to her, encouraging her to speak.");
+ 	output("\n\n<i>“P-please, [pc.name] can you help me get off?”</i> she murmurs up to you. In response you " + (pc.isNude() ? "place your hands on your hips and grin" : "undo your [pc.clothes]") + ", revealing your [pc.cock], already rigid. Her eyes snap to your equipment and widen. Her plump lips part and she licks them, staring at your tool" + (pc.totalCocks() > 1 ? "s" : "") + ".");
+ 	output("\n\nYou twirl your finger in the air and she looks back up, biting her pink-lipsticked lip. With a small huffing noise, she drops to all fours, turning around and lifting her plump ass in the air. From behind, her yellow skirt clings to her curves, barely revealing the pink polka dots of her panties. Kneesocks hug her legs, just below the white and gray expanse of her furred thighs. Her tail emerges from a slot just below the waistband of her skirt, swaying softly.");
+ 	output("\n\n<i>“Like … like this?”</i> she asks breathlessly.");
+ 	output("\n\nYou lean forward and run your finger along the length of her tail. Her breath hisses out and her ringed tail fluffs out at your touch, curling up into a perfect question mark and lifting her skirt with it. As the curtain rises, her rump emerges, veiled yet in her panties, a bulge tucked between her thighs, already dripping with pre.");
+ 	output("\n\n<i>“Just like that,”</i> you assure her, and she shivers at your words.");
+ 	output("\n\nYou reach forward, lightly running your fingertips across her bottom.");
+ 	output("\n\n<i>“Oh crackers!”</i> she gasps softly. You feel her rump tremble beneath your fingers as she moans helplessly.");
+ 	output("\n\nYou stroke her tail, running your hand up its length and listening to the minute gasps and mewls Prai makes. She sways her hips, begging for more than light touches.");
+ 	output("\n\nYou decide to oblige, and grasp the base of her tail firmly, tugging down her panties with your other hand. Her three inch cock springs free, trailing a line of pre down to her panties, her small sack tucked tight against the base of it, already smeared with her fluids. She squeals softly, and you " + (pc.isTaur() ? "let go of her tail and surge forward, grinding" : "grind") + " your [pc.cock] against her exposed booty, sliding it between the cheeks of her generous ass.");
+ 	output("\n\nPrai lets out a ragged moan, her skirt rising up as she rocks backward against you. <i>“Stars and starlings, yesssss …”</i>");
+ 	output("\n\nYou spend a few minutes just grinding against her, feeling the slippery slide of her cheeks against your cock, listening to her moan. " + (pc.isTaur() ? "You run your fingers through her hair, then slowly close your fists, grabbing handfuls of her chocolate-colored hair. Prai answers with a happy gasp, and you rock forward against her," : "You hold her tail, tugging gently,") + " setting the a rhythm that she enthusiastically follows. Her tight hole feels already slicked and lubed against your dick. It seems that Prai’s copious precum leaked down during her suspension via vines. That, or she's got a mod or two of her own.");
+ 	output("\n\nYou slowly stop sliding and are rewarded by a plaintive moan from Prai. <i>“Wh-why'd you stop, [pc.name]?”</i>");
+ 	output("\n\n<i>“Beg for it,”</i> you whisper. The kui-tan responds with a shiver that runs from her rounded ears all the way down to her bushy tail.");
+ 	output("\n\n<i>“Please!”</i> she croaks, her voice husky with desire. <i>“Please fuck me. Sneezes and snakes, I need it so bad. I need …”</i> she trails off, grinding her plump ass back against you.");
+ 	output("\n\nYou grip her " + (pc.isTaur() ? "hair" : "tail") + ", stalling her humping, and she whines in protest, <i>“Please! I need your cock in my ass. I neeeeeeed to cum …”</i>");
+ 	output("\n\nYou " + (pc.isTaur() ? "give her hair a sharp tug" : "squeeze her tail tighter") + ", drawing a yelp and a shiver from her. <i>“I want your cock so bad,”</i> she moans. <i>“I need it. I'll do anything for it. Pleaaaassssse!”</i>");
+ 	output("\n\nYou suppose you could give her what she wants. On the other hand, she's got quite a mouth on her when she's not babbling non sequiturs; it might be more beneficial to leave her in this state.");
+ 	
+ 	pc.lust(20);
+ 	processTime(10+rand(3));
+ 	
+ 	addButton(0, "Fuck", praiPlayBegFuckSecond, undefined, "", "");
+ 	addButton(1, "Leave", praiPlayBegLeaveSecond, undefined, "", "");
+ }
+ 
+ public function praiPlayBegLeaveSecond():void
+ {
+ 	author("Frogapus");
+ 	showPrai(2);
+ 	clearOutput();
+ 	clearMenu();
+ 	
+ 	output("You decide to teach the uppity little kui-tan a lesson.");
+ 	output("\n\n<i>“No,”</i> you say simply.");
+ 	output("\n\nPrai actually continues shaking her ass and moaning for a minute before your word registers with her.");
+ 	output("\n\n<i>“I need your cock in my hot little … wait--what???”</i> She blinks her eyes and looks over her shoulder, her sexed-out haze appearing to clear a little.");
+ 	output("\n\n<i>“No,”</i> you say again, and inform her that you'll be heading out.");
+ 	output("\n\n<i>“What the--sneezes and flashlights and luftballoons!”</i> she stammers. Her legs wobble in confusion, and she lurches forward all the way to the ground, lying unceremoniously amidst the bracken.");
+ 	output("\n\nYou bid her farewell as she clambers to her feet. <i>“Fruits and fritters! What in the world was THAT all about?”</i> she demands.");
+ 	output("\n\nWhistling, you leave Prai behind in the forest clearing.");
+ 	
+ 	processTime(3+rand(3));
+ 	pc.addHard(flags["PRAI_MOOD"] == 1 ? 6 : 3);
+ 	flags["PRAI_MOOD"] = 2;
+ 	flags["PRAI_EMAIL_NUMBER"] = 7;
+ 	flags["PRAI_EMAIL_STAMP"] = GetGameTimestamp();
+ 	
+ 	addButton(0, "Next", mainGameMenu, undefined, "", "");
+ }
+ 
+ public function praiPlayBegFuckSecond():void
+ {
+ 	author("Frogapus");
+ 	showPrai(2);
+ 	clearOutput();
+ 	clearMenu();
+ 	
+ 	output("You are more than happy to oblige her request. You undo your [pc.clothes] as she whimpers softly in anticipation.");
+ 	output("\n\n<i>“Please, [pc.name], I need it so bad. I'm dripping through my skirt!”</i> she moans piteously.");
+ 	output("\n\nYou spare a glance down and note that it looks like she's soaked the entire front of her skirt with pre-cum, and the sodden material is so sopping wet, it actually is dripping her fluids down to the forest floor.");
+ 	output("\n\nYou step out of the rest of your garments and lean in close to her. Your hands grip her ass, your fingers sinking into her plush rump. She churrs happily, and her tail arches up even further over her back. With a squeeze, you spread her cheeks apart and expose the shiny black pucker of her asshole.");
+ 	output("\n\n<i>“This is for being a good girl,”</i> you " + (pc.isMasculine() ? "chuckle" : "giggle") + ".");
+ 	output("\n\nPrai gasps sharply at your words, her back arching and her tailhole giving a twitch. <i>“Oh please! Please, [pc.name], I can't take another minute of teasing. Stick it in me already. I need to be fuuuuuuucked!”</i> she whines. You decide that Prai can wait a moment for you to get properly lubed up. " + (pc.isTaur() ? "You slide forward, standing over the shivering kui-tan and slide your dick beneath hers. A few quick pumps completely slathers your cock with her slippery pre, and sends another cascade of happy shivers through Prai's slim frame. " : "You lean forward, reaching your arm around her front and up, under her skirt. You drench your fingers with the river of pre flowing out from Prai's dick, drawing out a cascade of mewls and churrs from Prai's lips. You pull your hand away and slather your own dick with the kui-tan's pre, lubing yourself up before smearing another glob of it against her tight asshole. ") + "");
+ 	output("\n\nYou grin and grab her " + (pc.isTaur() ? "hair" : "tail by the base") + ", pulling her back inexorably against the [pc.cockHead] of your cock. Her black bud twitches hotly against your meat as she lets out a low, shuddering moan.");
+ 	output("\n\n<i>“I can't take it anymore! Fuck me like an animal, [pc.name]!”</i> she begs.");
+ 	output("\n\nYou decide to let her have her way. You pull on her with a growl, and haul her back against your dick. She lets out a small, strangled cry as you shove your ");
+ 	if (pc.cocks[0].cLength < 6) output("small");
+ 	else if (pc.cocks[0].cLength < 14) output("fat");
+ 	else output("massive");
+ 	output(" length into her ass. Thanks to the trap's copious pre, you manage to slide all the way into her ridiculously tight hole. Prai doesn't seem to be in pain, but the kui-tan's gone completely rigid.");
+ 	output("\n\nPrai lets out the tiniest of strangled squeaks, her whole body tensed, barely moving as she gulps in a sharp breath. The suddenness of being impaled likely shocked her, but you're not in the mood to let her recover. Just as she draws in another shuddering breath, you pull your hips back from her, sliding your cock out of her tight hole.");
+ 	output("\n\n<i>“Auuuh!”</i> she moans, desperately shoving her hips back against you, trying to keep you inside her. It looks like the little thing doesn't want to stop being filled by you. It's a good thing you're happy to oblige.");
+ 	output("\n\nYou thrust back hard against her, shoving deep into her round ass. Caught off guard, Prai's hands slip, and she falls face-first into the dirt. You'd be concerned for her if she didn't immediately turn her head to the side and hiss a hungry, <i>“Oh, yesssss!”</i>");
+ 	output("\n\nEncouraged, you draw back again. Prai lets out barely a whimper at this, anticipating what's to come. When you slam back into her, she groans, her cheek grinding against the forest floor. <i>“More, [pc.name]! More!”</i> she moans.");
+ 	output("\n\nYou lose track of time, pounding Prai's ass into the ground" + (pc.balls > 0 ? ", your balls slapping against her tight package" : "") + ". What you can see of her face is plastered with leaves and dirt, and mud is streaked against her white blouse. Her knees must be scraped raw from her rough fucking, but she's still begging for it, her pleas growing more insistent with each pump of your dick.");
+ 	output("\n\n" + (pc.physique()/pc.physiqueMax() <= 0.33 ? "You're actually having trouble keeping up with the frantic thrusts of her hips. " : "Finally, someone that can keep up with your stamina! ") + "Your own breathing quickens, the hot embrace of Prai's ass around your dick somehow still as tight as when you began. You're close to cumming, and from the sounds of it, so is Prai.");
+ 	output("\n\n<i>“Need! Cum!”</i> are the only intelligible words out of her mouth at this point. Everything else is high-pitched grunts and growls. As you near your climax, you pick up the pace, rewarded by a satisfied squeal from Prai as she matches your thrusts with happy slams of her raised ass back against you.");
+ 	output("\n\nHer pleas, her degradation, her tight little ass, it all culminates as you slam your dick into her, cumming deep inside her hungry little fuckhole. You ");
+ 	if (pc.cumQ() < 10) output("squirt a hot dribble");
+ 	else if (pc.cumQ() < 100) output("fire a thick jet");
+ 	else if (pc.cumQ() < 1000) output("fire several thick jets");
+ 	else output("gush a veritable gallon");
+ 	output(" of cum inside the kui-tan trap. Her hot ass tightens around you as you pump your seed into her ass.");
+ 	output("\n\nShe screams in bliss as her knees collapse under her, you overbalance and follower her down; her slim frame falling into the dirt with you atop her. You feel a quivering from her hips beneath you, and some telltale bucking from Prai as she hiccups in pleasure. The rough fucking has pushed the little trap over the edge too, and she's cum pinned beneath your body, against the ground.");
+ 	output("\n\n<i>“Oh flashlights … oh crackers …”</i> she mutters in a distant voice.");
+ 	output("\n\nHer climax sends a ripple of pleasure through your own body, your cock giving a throb inside her quivering booty. She groans beneath you, still quaking in the aftershocks of pleasure. " + (!pc.isTaur() && !pc.isNaga && !pc.isGoo() ? "You feel a dull ache in your knees--it feels like the rough sex took its toll on you as well. " : "") + "You take a few minutes to catch your breath, lying atop the kui-tan to think up your next move.");
+ 	output("\n\nYou could stick around and help clean Prai up, or you could leave the little tart face-down in the dirt.");
+ 	
+ 	processTime(25+rand(10));
+ 	pc.orgasm();
+ 	
+ 	addButton(0, "Help", praiPlayBegFuckHelpSecond, undefined, "Help", "Help her with cuddles and cleaning.");
+ 	addButton(1, "Leave", praiPlayBegFuckLeaveSecond, undefined, "", "");
+ }
+ 
+ public function praiPlayBegFuckLeaveSecond():void
+ {
+ 	author("Frogapus");
+ 	showPrai(2);
+ 	clearOutput();
+ 	clearMenu();
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
  	
  }
