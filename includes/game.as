@@ -1074,7 +1074,7 @@ public function sleep(outputs:Boolean = true):void {
 					}
 					break;
 				case "SERA":
-					if (seraIsCrew())
+					if (seraIsCrew() && flags["SERA_NO_SLEEP"] == undefined)
 					{
 						interrupt = seraBitchImpregnateBed(true);
 					}

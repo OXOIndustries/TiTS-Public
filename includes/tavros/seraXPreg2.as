@@ -427,7 +427,7 @@ public function seraBitchImpregnateBedResponse(response:String = ""):void
 			pc.lust(15);
 			flags["CREWMEMBER_SLEEP_WITH"] = "SERA";
 			flags["SERA_SLEEP_CHOICE"] = 0;
-			addButton(0, "Next", sleep, true);
+			addButton(0, "Next", seraBitchImpregnateBedResumeSleep);
 			break;
 		case "cuddle":
 			output("You sigh, take off your [pc.gear] and climb into bed with her. Whatever. You’re tired, and falling asleep with demon boobies pillowed into you will be a pleasure.");
@@ -439,7 +439,7 @@ public function seraBitchImpregnateBedResponse(response:String = ""):void
 			pc.lust(15);
 			flags["CREWMEMBER_SLEEP_WITH"] = "SERA";
 			flags["SERA_SLEEP_CHOICE"] = 1;
-			addButton(0, "Next", sleep, true);
+			addButton(0, "Next", seraBitchImpregnateBedResumeSleep);
 			break;
 		case "debar":
 			output("As airily as you can, you say you don’t mind her getting into your room, if she really wants.");
