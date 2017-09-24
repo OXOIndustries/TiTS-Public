@@ -207,7 +207,7 @@ public function bessAssSize():String
 
 public function bessThighSize():String
 {
-	if (bess.hipRatingRaw == 0) return "boyish";
+	if (bess.hipRatingRaw <= 0) return "boyish";
 	if (bess.hipRatingRaw <= 2) return "slender";
 	if (bess.hipRatingRaw <= 4) return "average";
 	if (bess.hipRatingRaw <= 6) return "ample";
@@ -1371,7 +1371,6 @@ public function bessFollowerMenu():void
 	if (flags["BESS_EVENT_24"] == undefined)
 	{
 		addDisabledButton(5,"Locked","Locked","You don’t know her well enough for this.");
-		
 	}
 	else
 	{
@@ -1539,7 +1538,7 @@ public function bessFunctions():void
 
 	bessFunctionsMenu();
 }
-
+//used when returning from customizing something, keeps the previous text onscreen
 public function bessFunctionsMenu():void
 {
 	clearMenu();
