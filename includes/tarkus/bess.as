@@ -1562,7 +1562,6 @@ public function bessFunctionsMenu():void
 	addButton(14, "Back", bessFollowerMenu);
 }
 
-
 //Titles
 public function talkToBessAboutTitles():void
 {
