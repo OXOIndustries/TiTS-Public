@@ -2232,7 +2232,7 @@ public function talkToBessAboutBoobSize():void
 	{
 		if (i > 0 && (i + 1) % 15 == 0)
 		{
-			addButton(i, "Back", bessFunctions);
+			addButton(i, "Back", talkToBessAboutBoobs);
 			continue;
 		}
 		else
