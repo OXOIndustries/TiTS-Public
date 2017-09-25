@@ -409,6 +409,12 @@ public function bessIsSleepCompanion():Boolean
 	return (flags["CREWMEMBER_SLEEP_WITH"] == "BESS");
 }
 
+public function bessTavrosBonus(btnSlot:int = 2):void 
+{
+	output("\n\n[bess.name] is here, waiting around and generally staying out of the way as best [bess.heShe] can.");
+	addButton(btnSlot, bess.short, approachBessAtTavros);
+}
+
 public function bessTopStripScene():void
 {
 	if (bess.isChestGarbed())
@@ -11290,7 +11296,7 @@ public function bessGetBlowjob():void
 		else output(" ass");
 		output(" is clearly getting [bess.himHer] off. [bess.HeShe] begins convulsing and falls on [bess.hisHer] back; it looks almost as if [bess.heShe]’s giving");
 		if (!bess.hasVagina()) output(" ass");
-		output(" birth to a mass of [pc.cumColor]-colored gelotians.");
+		output(" birth to a mass of [pc.cumColor]-colored galotians.");
 		
 		output("\n\n[bess.name]’s eyes soon roll into [bess.hisHer] head from sheer ecstasy, each spasm causing your pooled spunk to spray out of [bess.hisHer]");
 		if (bess.hasVagina()) output(" snatch");

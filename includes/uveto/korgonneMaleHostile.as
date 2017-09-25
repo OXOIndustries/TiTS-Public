@@ -190,7 +190,9 @@ public function korgMaleEncounter():void
 		if(combatMiss(tEnemy, pc)) output("Already on alert in korgonne lands, you sidestep and one of their raiders sails by, knife in hand. He plants face-first in the snow, then scrambles to his feet and challenges you again.");
 		else
 		{
-			output("The weight of a stocky korgonne raider hits you, grappling and slashing at you. You recover your wits and push him back, but not before he’s done some superficial damage{ to your shield.");
+			output("The weight of a stocky korgonne raider hits you, grappling and slashing at you. You recover your wits and push him back, but not before he’s done some superficial");
+			if(pc.hasShields() && pc.shields() > 0) output(" damage to your shield");
+			output(".");
 			//deal simple kinetic slashing damage if hit (no bleed)
 			var damage:TypeCollection = tEnemy.meleeDamage();
 			damageRand(damage, 15);
@@ -398,7 +400,9 @@ public function korgCowgirlWin(tailForce:Boolean = false):void
 	else output("[pc.ass]");
 	output(". You ");
 	if(pc.isTaur()) output("stick your ass out and ");
-	output("rub against it, and feel a sigh of pleasure {under your hands }in the rise and fall of the korgonne’s chest. ");
+	output("rub against it, and feel a sigh of pleasure");
+	if(!pc.isTaur()) output(" under your hands");
+	output(" in the rise and fall of the korgonne’s chest. ");
 	if(tailForce) output("Your [pc.tail] is sitting like a cap atop his penis, pushed up by the rapid erection; with great gusto, you slide it down again, consuming the raider in your alien parasite pussy.");
 	else if(pc.isTaur()) 
 	{
@@ -418,7 +422,7 @@ public function korgCowgirlWin(tailForce:Boolean = false):void
 		if(pc.isBimbo()) output("; you continue so long, gyrating and brushing pre from his throbbing cock, that he whimpers like a puppy");
 		output(". Then, with a smooth downward push, you finally grant yourself the next stage of relief.");
 	}
-	output("\n\nYour itch-scratching is interrupted, though, by a surprise the korgonne. A bulge swells inside your ");
+	output("\n\nYour itch-scratching is interrupted, though, by a surprise korgonne. A bulge swells inside your ");
 	if(tailForce) output("tail");
 	else output("[pc.vagOrAss " + vIdx + "]");
 	output(", pressing outward, pinning your nerves. His alien cock is growing! The base inflates slowly, insistently, as if filling with pressurized fluid, balling up into a hard knot.");
@@ -1895,7 +1899,7 @@ public function korgonneBabyBirthing(pregSlot:int,c:Child):void
 	//9999on a ship with auto-medbay (not yet available; reminder comment only)
 	else if(9999 == 0)
 	{
-
+		
 	}
 	//in public place
 	else if(InPublicSpace())

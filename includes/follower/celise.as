@@ -19,6 +19,12 @@ public function showCelise():void
 }
 
 
+//Celise In Tavros
+public function celiseTavrosBonus(btnSlot:int = 1):void 
+{
+	output("\n\nCelise is lounging here, just as green as ever and chatting amicably with one of the station’s mechanics.");
+	addButton(btnSlot, "Celise", approachNonCrewCelise);
+}
 //Crewmember Celise’s Screen
 public function celiseFollowerInteractions():void {
 	//Giga Celise has her own thing!
@@ -115,18 +121,18 @@ public function sendCeliseAway():void
 		output("\n\nWith a glittering green grin and a wink, the ");
 		if(flags["GIGACELISE"] == undefined) output("buxom");
 		else output("tentacled");
-		output(" galotian gives you a super-sized thumbs up. <i>“Sure thing, boss! I wonder if I’ll run into that ");
-		if(rand(10) == 0) output("cute kui-tan");
-		else if(rand(9) == 0) output("adorable blue rahn");
-		else if(rand(8) == 0) output("red-haired half-ausar");
-		else if(rand(7) == 0) output("moo-cow girl and her dick-girl friend");
-		else if(rand(6) == 0) output("weird merc with the crazy eyes");
-		else if(rand(5) == 0) output("weird man-herm guy");
-		else if(rand(4) == 0) output("egg-laying girl");
-		else if(rand(3) == 0) output("mean purple dick-girl");
-		else if(rand(2) == 0) output("fluffy panda");
-		else output("cat-dog girl");
-		output(" again.”</i> She pauses and flashes saucer-sized eyes at you imploringly.");
+		output(" galotian gives you a super-sized thumbs up. <i>“Sure thing, boss! I wonder if I’ll run into that " + RandomInCollection([
+			"cute kui-tan",
+			"adorable blue rahn",
+			"red-haired half-ausar",
+			"moo-cow girl and her dick-girl friend",
+			"weird merc with the crazy eyes",
+			"weird man-herm guy",
+			"egg-laying girl",
+			"mean purple dick-girl",
+			"fluffy panda",
+			"cat-dog girl",
+		]) + " again.”</i> She pauses and flashes saucer-sized eyes at you imploringly.");
 		if(shipLocation != "TAVROS HANGAR") 
 		{
 			output(" <i>“You should come to Tavros sometime - there’s so many cool people on station!”</i>");

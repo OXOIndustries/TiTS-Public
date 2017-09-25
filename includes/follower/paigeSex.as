@@ -4264,7 +4264,7 @@ public function SSDHDI(args:Array):void
 	output("\n\nYou lean in, but before you get to it, you snake both your hands around her waist, aiming for the fat of her ass (not that there’s much of that, toned as she is), gripping onto it for stability. <i>Then</i> you dive right in: your nose bumps against her clit unceremoniously as your [pc.lipsChaste] mesh with her labia, forming the perfect seal for your tongue to spear into her.");
 	output("\n\nPaige tenses in suspense, then struggles to maintain her voice, ready to cry out in pleasure as you work her over. Her taste in uniquely Paige, a flavor you can’t describe but instinctually crave more of: your [pc.tongue] wriggles inside her, desperate to get every drop she’s secreting, collecting on its broad side before trickling slowly down your tastebuds and into your flexing mouth. You twist your tongue to the side and start all over again.");
 	output("\n\n<i>“Holy shit,”</i> Paige says, already panting at your ministrations. You have enthusiasm, finesse, and technique, but eating out your woman is hardly an exact science: you fuck her with your tongue, doing tricks and pulling stunts that no dick could hope to achieve");
-	if(pc.cocks[0].hasFlag(GLOBAL.FLAG_PREHENSILE)) output(" (except maybe yours)");
+	if(pc.hasCock() && pc.cocks[0].hasFlag(GLOBAL.FLAG_PREHENSILE)) output(" (except maybe yours)");
 	output(". You already have her squirming underneath you, and you’ve both only just started.");
 
 	output("\n\nYou grope at her ass, pulling at her taut skin there. As you adjust your grip, your fingers get a little deeper into the cleavage of her butt than you meant, but it gave you an idea. You have more than just a tongue – now, where to put your fingers to work....");

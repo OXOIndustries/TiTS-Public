@@ -272,6 +272,10 @@ public function seraBitcheningImpregnate(response:String = "intro"):void
 			addButton(0, "Next", approachServantSera);
 			break;
 	}
+	seraBitcheningImpregnateToggle();
+}
+public function seraBitcheningImpregnateToggle():void
+{
 	if(flags["SERA_TALKS_IMPREGNATE"] >= 2)
 	{
 		chars["SERA"].impregnationType = "SeraSpawnPregnancy";
@@ -295,6 +299,8 @@ public function seraBitchImpregnateRide(vIdx:int = 0, tinyVag:Boolean = false):v
 	clearOutput();
 	showSera(true);
 	author("Nonesuch");
+	
+	seraBitcheningImpregnateToggle();
 	
 	output("You smile at Sera and, without saying a word, twirl a finger. The fantastically augmented human flips over onto her back immediately, grinning back.");
 	output("\n\n<i>“Has [pc.master] come for a nice long ride on the Sera train?”</i> she coos, twiddling and tweaking her nipple piercings as she gazes up at you, generous erection pointing upwards.");
@@ -347,6 +353,8 @@ public function seraBitchImpregnateRideEnd(vIdx:int = 0):void
 	pc.loadInCunt(chars["SERA"], vIdx);
 	pc.orgasm();
 	
+	IncrementFlag("SERA_BITCHENING_RIDE");
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -359,11 +367,14 @@ Begins to proc once ‘Ambition’ is resolved.
 Like Celise she has a chance to turn up in bed every time the PC rests on ship unless barred. Concubine Sera chance 33%, Merchant Sera chance 20%.
 If PC allows her though she will always turn up (superseding Celise and Reaha) until they kick her out again. So three states: Trying, Invited, Barred.
 */
-public function seraBitchImpregnateBed():Boolean
+public function seraBitchImpregnateBed(bSleep:Boolean = false):Boolean
 {
+	if(flags["SERA_OBEDIENCE_MIN"] <= 0 || flags["SERA_NO_SLEEP"] != undefined) return false;
+	
 	var chance:int = 33;
 	if(seraIsMerchant()) chance = 20;
-	if(rand(100) > chance) return false;
+	if(flags["CREWMEMBER_SLEEP_WITH"] == "SERA") chance = 75;
+	if(!bSleep && rand(100) > chance) return false;
 	
 	clearOutput();
 	showSera(true);
@@ -405,6 +416,7 @@ public function seraBitchImpregnateBedResponse(response:String = ""):void
 			output("<i>“Get,”</i> you say, pointing at the door. You let an amused grin pull at the corners of your mouth, but keep your voice firm. ");
 			output("\n\n<i>“You’re no fuuuuuun,”</i> the succubus whines, as she gets up and stomps out of your room. Her spade tail accidentally-on-purpose blats against your arm as she swishes past you. The war is not over.");
 			// Sera still set to trying. Standard rest scene from here
+			if(flags["CREWMEMBER_SLEEP_WITH"] == "SERA") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 			processTime(1);
 			addButton(0, "Next", seraBitchImpregnateBedResumeSleep);
 			break;
@@ -414,6 +426,7 @@ public function seraBitchImpregnateBedResponse(response:String = ""):void
 			output("\n\n<i>“Alright! Alright! Jeez.”</i> The succubus scrambles off your sheets in an undignified hurry. She glares at you, lower lip thrust out, as she stomps out. <i>“You are the most miserable harem-owner in this entire shitty galaxy, you know that?”</i>");
 			output("\n\nThat’s a bridge that’ll take some rebuilding. Still, you can rest easy that she won’t be trying to get into your inner sanctum any time soon.");
 			// Sera set to banned. Standard rest scene from here
+			if(flags["CREWMEMBER_SLEEP_WITH"] == "SERA") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 			processTime(1);
 			addButton(0, "Next", seraBitchImpregnateBedResumeSleep, true);
 			break;
@@ -424,9 +437,9 @@ public function seraBitchImpregnateBedResponse(response:String = ""):void
 			// +Lust, Sera set to invited
 			processTime(1);
 			pc.lust(15);
-			flags["CREWMEMBER_SLEEP_WITH"] = "SERA";
+			if(flags["CREWMEMBER_SLEEP_WITH"] != "SERA") flags["CREWMEMBER_SLEEP_WITH"] = "SERA";
 			flags["SERA_SLEEP_CHOICE"] = 0;
-			addButton(0, "Next", sleep, true);
+			addButton(0, "Next", seraBitchImpregnateBedResumeSleep);
 			break;
 		case "cuddle":
 			output("You sigh, take off your [pc.gear] and climb into bed with her. Whatever. You’re tired, and falling asleep with demon boobies pillowed into you will be a pleasure.");
@@ -436,9 +449,9 @@ public function seraBitchImpregnateBedResponse(response:String = ""):void
 			// +Lust, Sera set to invited
 			processTime(1);
 			pc.lust(15);
-			flags["CREWMEMBER_SLEEP_WITH"] = "SERA";
+			if(flags["CREWMEMBER_SLEEP_WITH"] != "SERA") flags["CREWMEMBER_SLEEP_WITH"] = "SERA";
 			flags["SERA_SLEEP_CHOICE"] = 1;
-			addButton(0, "Next", sleep, true);
+			addButton(0, "Next", seraBitchImpregnateBedResumeSleep);
 			break;
 		case "debar":
 			output("As airily as you can, you say you don’t mind her getting into your room, if she really wants.");
@@ -485,7 +498,7 @@ public function seraBitchImpregnateBedResumeSleep(bSet:Boolean = false):void
 // Randomly select one from dom pool if PC chose cuddling, from sub pool if PC chose foot warmer.
 public function seraBitchImpregnateBedWakeCheck():Boolean
 {
-	if(flags["CREWMEMBER_SLEEP_WITH"] != "SERA") return false;
+	if(flags["CREWMEMBER_SLEEP_WITH"] != "SERA" || !seraIsCrew() || flags["SERA_NO_SLEEP"] >= 0) return false;
 	
 	var chance:int = 80;
 	if(chars["SERA"].isPregnant()) chance = 50;
@@ -534,6 +547,7 @@ public function seraBitchImpregnateBedWake():void
 			processTime(3);
 			break;
 		case 1:
+			seraBitcheningImpregnateToggle();
 			if(pc.hasVagina()) vIdx = rand(pc.vaginas.length);
 			if(pc.hasCock()) cIdx = rand(pc.cocks.length);
 			
@@ -591,8 +605,10 @@ public function seraBitchImpregnateBedWake():void
 			pc.orgasm();
 			if(vIdx >= 0) pc.loadInCunt(chars["SERA"], vIdx);
 			else pc.loadInAss(chars["SERA"]);
+			IncrementFlag("SERA_WAKEUP_SEX");
 			break;
 		case 2:
+			seraBitcheningImpregnateToggle();
 			cIdx = rand(pc.cocks.length);
 			
 			output("You’re being held down and ridden briskly by a snake-headed alien princess, in some deranged, open-air palace out of M.C. Escher’s most warped fantasies. You have been here for years, deathless aeons perhaps, but that doesn’t matter. What matters is the moment; what matters is your [pc.cock " + cIdx + "] sunk deep in sopping, muscular pussy that writhes and wrings it with jealous zeal. You don’t dare reach up and touch the snake princess’s perfect breasts or curvy hips, because then she’ll bite you, and then the clear venom she’s drooling all over your [pc.belly] and [pc.chest] will enter your veins. You just have to lie perfectly still and let her take her satisfaction from you... be her slave, and let the wet, wringing heat around your cock overwhelm you...");
@@ -605,10 +621,10 @@ public function seraBitchImpregnateBedWake():void
 			output("\n\n<i>“No, no, [pc.master], I’ll do everything. Doesn’t this feel good?”</i> She moves her hip back and forth, and you groan woozily as her pussy tightens... then loosens, tightens... then loosens around your eagerly erect prick. <i>“Isn’t that wonderful?”</i> she purrs, " + (pc.hasHair() ? "running her claws through your [pc.hair]" : "stroking your pate with her claws") + " before firmly pushing your " + (pc.tallness > (chars["SERA"].tallness + 6) ? "head over shoulder" : ("head into her big, soft, " + (chars["SERA"].skinTone!= "bright pink" ? "purple" : "pink") + " cleavage")) + ". <i>“I modded every part of my body to be in control. To make my every bitc... lover powerless against me. Because doesn’t it feel good? For me to be in control?”</i>");
 			output("\n\nWith the barest of movement, the soaked tunnel of her pussy tightens up like a silken vice around you, and when she writhes her curves against you it <i>jerks </i> your [pc.cock] most sensitive zone so that you reflexively arch your back to it. Void yes... it does feel so good to let go and let her have you however she wants...");
 			output("\n\n<i>“Thaaaat’s it,”</i> sniggers Sera. She exhales slowly into your ear as she sinks herself even further down your shaft,");
-			if(pc.cockVolume(cIdx) <= chars["SERA"].vaginaCapacity(0)) output(" enveloping the entirety of it in supple, wet magic");
+			if(pc.cockVolume(cIdx) <= chars["SERA"].vaginalCapacity(0)) output(" enveloping the entirety of it in supple, wet magic");
 			else output(" enveloping even more of the long, ponderous fuck-stick in supple, wet magic");
 			output(". Again she rotates her thick hips back and forth, swivelling you masterfully in her depths, using you to stir herself");
-			if(pc.cockVolume(cIdx) > chars["SERA"].vaginaCapacity(0) || pc.cocks[cIdx].hasFlag(GLOBAL.FLAG_KNOTTED) || pc.cocks[cIdx].hasFlag(GLOBAL.FLAG_NUBBY) || pc.cocks[cIdx].hasFlag(GLOBAL.FLAG_RIBBED) || pc.cocks[cIdx].hasFlag(GLOBAL.FLAG_STINGER_BASED))
+			if(pc.cockVolume(cIdx) > chars["SERA"].vaginalCapacity(0) || pc.cocks[cIdx].hasFlag(GLOBAL.FLAG_KNOTTED) || pc.cocks[cIdx].hasFlag(GLOBAL.FLAG_NUBBY) || pc.cocks[cIdx].hasFlag(GLOBAL.FLAG_RIBBED) || pc.cocks[cIdx].hasFlag(GLOBAL.FLAG_STINGER_BASED))
 			{
 				output(", your");
 				if(pc.cocks[cIdx].hasFlag(GLOBAL.FLAG_NUBBY)) output(" swollen barbs");
@@ -617,7 +633,7 @@ public function seraBitchImpregnateBedWake():void
 				output(" rubbing against her walls causing her to groan with content");
 			}
 			output(".");
-			output("\n\n<i>“Who’s an obedient [pc.boy]? Every mistress needs one of you in her bed, a " + (pc.cockVolume(cIdx) > chars["SERA"].vaginaCapacity(0) ? "big heated dildo" : "heated little fuck toy") + " to enjoy at her leisure in a morning. You’re gonna cum so hard to this, aren’t you?”</i> She asks, smoothing her hand over your [pc.ass] as she’s talking, and she grips it hard when she poses the question, making you twitch. It’s so hard to think in this dreamy state, not when she’s working and milking your [pc.cock " + cIdx + "] so exquisitely within her... <i>“When I say so, anyway. Because if you do jizz yourself like some spotty teenager, I can always do this...”</i> You gasp, clutching her reactively as she tightens her thighs around you and her cunt seems to limpet your cock at the base, fastening it deep in her hot, soaking embrace. <i>“...and keep fucking you until I’ve decided we’re done.”</i>");
+			output("\n\n<i>“Who’s an obedient [pc.boy]? Every mistress needs one of you in her bed, a " + (pc.cockVolume(cIdx) > chars["SERA"].vaginalCapacity(0) ? "big heated dildo" : "heated little fuck toy") + " to enjoy at her leisure in a morning. You’re gonna cum so hard to this, aren’t you?”</i> She asks, smoothing her hand over your [pc.ass] as she’s talking, and she grips it hard when she poses the question, making you twitch. It’s so hard to think in this dreamy state, not when she’s working and milking your [pc.cock " + cIdx + "] so exquisitely within her... <i>“When I say so, anyway. Because if you do jizz yourself like some spotty teenager, I can always do this...”</i> You gasp, clutching her reactively as she tightens her thighs around you and her cunt seems to limpet your cock at the base, fastening it deep in her hot, soaking embrace. <i>“...and keep fucking you until I’ve decided we’re done.”</i>");
 			output("\n\nThe succubus screws you slowly and rhythmically, her soft breasts pillowing into " + (pc.tallness < chars["SERA"].tallness ? "your face" : "your [pc.chest]") + ", the hypnotic movements of her inhumanely spry and flexible cock-trap keeping you sunk deep under her spell. Her wicked murmurs and teasings eventually pick up into passionate grunts and hisses as her ardour coils tighter, claws digging into your [pc.ass] as she works you harder and harder. You moan woozily as pussy juices dribble down your " + (pc.balls > 0 ? "[pc.balls]" : "[pc.thighs]") + ".");
 			output("\n\n");
 			// If not pregnant AND barebacking:
@@ -641,6 +657,7 @@ public function seraBitchImpregnateBedWake():void
 			knockUpSeraChance();
 			pc.orgasm();
 			pc.ballFullness = 0;
+			IncrementFlag("SERA_WAKEUP_SEX");
 			break;
 		case 3:
 			vIdx = rand(pc.vaginas.length);
@@ -664,13 +681,17 @@ public function seraBitchImpregnateBedWake():void
 			output("\n\nBe that as it may, you should probably get into action. You shoo her off you and head for the shower, still enjoying little aftershocks and a certain loosened tenderness. You could definitely get used to being woken up this way.");
 			processTime(35);
 			pc.orgasm();
-			pc.loadInCunt(chars["SERA"], vIdx);
+			IncrementFlag("SERA_WAKEUP_SEX");
 			break;
 		case 4:
+			seraBitcheningImpregnateToggle();
+			
 			output("");
 			output("\n\n");
 			output("\n\n");
 			processTime(3);
+			pc.orgasm();
+			IncrementFlag("SERA_WAKEUP_SEX");
 			break;
 	}
 	

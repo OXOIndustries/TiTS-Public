@@ -1,6 +1,6 @@
 //Overview:
 
-//This document is for a new character for Paige, a female Ausar yoga instructor that lives on Tavros Station. I heard through a game of Telephone with Shou that Savin wanted me to write <i>“Space Brooke,”</i> and hell, getting a request from one of the project leads is quite flattering, so why not?
+//This document is for a new character for Paige, a female Ausar yoga instructor that lives on Tavros Station. I heard through a game of Telephone with Shou that Savin wanted me to write “Space Brooke,” and hell, getting a request from one of the project leads is quite flattering, so why not?
 //
 //Paige is full-blooded Ausar, but she’s used gene mods on herself to make her full-fledged furry, not just half-and-half. She works as a yoga instructor on Tavros Station, holding classes on the residential floor. She lives in one unit and rents out another one for the classes; the income from her classes is enough to cover the rent. She is in the peak of her physical condition, but she’s not overly muscle-bound; her abs are solid and her biceps are clear through her clothing, but she isn’t huge and burly like Yancy.
 //
@@ -407,7 +407,7 @@ public function yogaLesson3Cont():void
 
 	output("\n\n<i>“I’m just trying to make sure your form is correct, that’s all,”</i> she assures you, taking a submissive tone in her voice. <i>“Yoga is a very physical practice, and sometimes I need to take a more hands-on form of teaching to make sure my students don’t hurt themselves.”</i>");
 	output("\n\nYou reply that the floating monitor-thing helps just as well, and it doesn’t have hands to touch people with. Paige becomes visibly nervous, and you consider backing down – you didn’t want to start a fight or anything, but she may be getting the wrong message.");
-	output("\n\n<i>“Look, sweet thing, I have another class coming up very shortly. Can you do me a favor and stop by my unit later tonight, after five but before twelve? I live in the unit directly next to this classroom. We can pick up from there.”</i>");
+	output("\n\n<i>“Look, sweet thing, I have another class coming up very shortly. Can you do me a favor and stop by my unit later tonight, after 17:00 but before midnight? I live in the unit directly next to this classroom. We can pick up from there.”</i>");
 	output("\n\nThat wasn’t the response you were expecting, but it’s a modest request. You tell her to expect you there later tonight. <i>“Thanks a lot,”</i> she says, and you’re soon out of her classroom.");
 	// end scene (scene: intro 3); place PC one square outside of Paige’s Yoga Class; increase Physique by 1(if PC is goo, do nothing); increase Tone by 5(if PC is goo, do nothing); deduct 20 credits; deduct 20 energy(if PC is goo, do nothing); advance clock one hour; reveal Paige’s Unit directly beside Paige’s Yoga Class
 	//No stat gains as mentioned

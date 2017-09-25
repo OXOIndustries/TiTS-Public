@@ -48,7 +48,7 @@ Romancing/Recruiting the sharkMILF!
 /*Flags:
 
 	MET_AZRA 				1 if met Azra.
-	AZRA_DISABLED			1 if Azra is disabled from any other interactions.
+	AZRA_DISABLED			0 if met but did not recruit Azra yet, 1 if Azra is disabled from any other interactions.
 	AZRA_RECRUITED			1 if recruited, 2 if ship intro has happened.
 	AZRA_ONBOARD			1 if Azra is onboard the ship presently.
 	AZRA_KISSED 			Count of times kissy kissed.
@@ -99,9 +99,9 @@ public function azraBoyfriend():String
 //Tavros elevator or Uveto elevator, procs after using it the fourth time.
 public function azraBonusProc(btnSlot:int = 0):Boolean
 {
-	showAzra();
 	if(flags["MET_AZRA"] == undefined)
 	{
+		showAzra();
 		output("\n\nAn enormous, armored figure joins you in the elevator. She - and it must be a she based on the wide hips, narrow waist, and conspicuous bosom - ");
 		if(pc.tallness < 84) output("bends her impressive stature low in order to make eye contact");
 		else output("looks you square in the eye");
@@ -161,6 +161,7 @@ public function notYetAzra():void
 	showAzra();
 	output("<i>“Not yet,”</i> you answer, <i>“but that could change.”</i>");
 	output("\n\nThe suula’s golden visage brightens. <i>“Oh, Captain Steele, thank you for even considering my situation. When you are able to accommodate me, let me know. I have my equipment packed for travel and armor fit for enduring the harshest rimward climes.”</i> She gives a small bow, then steps away, leaving you to return to your business.");
+	flags["AZRA_DISABLED"] = 0;
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -174,7 +175,6 @@ public function walkUpToRepeatElevatorAzra():void
 	output("Azra pipes up as soon as you turn her way. <i>“I’m still ready to go if you are.”</i>");
 	processTime(1);
 	clearMenu();
-
 	addButton(0,"Sure",recruitDatSharkMomma);
 	addButton(1,"Not Yet",notYetCrewAzraRepeat);
 }
@@ -186,6 +186,7 @@ public function notYetCrewAzraRepeat():void
 	showAzra();
 	output("<i>“Not yet,”</i> you answer.");
 	output("\n\n<i>“Oh, okay.”</i> Azra sighs and turns away. <i>“Let me know if you change your mind.”</i>");
+	flags["AZRA_DISABLED"] = 0;
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -200,6 +201,7 @@ public function recruitDatSharkMomma():void
 	output("\n\nAzra smiles, displaying a small army of extremely pointed teeth. <i>“Thank you for this chance, Captain Steele. I cannot adequately express my gratitude, but I’m sure our time together will give me plenty of opportunities to try.”</i> She walks away, armor-encased hips swaying, the long, sinuous tail of a suula waving behind.");
 	flags["AZRA_RECRUITED"] = 1;
 	flags["AZRA_ONBOARD"] = 1;
+	flags["AZRA_DISABLED"] = undefined;
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

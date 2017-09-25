@@ -378,6 +378,7 @@ public function seraBreedResponse(arg:Array):void
 			// Give Sera pregnancy powers!
 			serasBodyIsReady();
 			chars["SERA"].impregnationType = "SeraSpawnPregnancy";
+			chars["SERA"].removeStatusEffect("Infertile");
 			chars["SERA"].createStatusEffect("Priapin", 1, 1, 1.75, 30, false, "Icon_DrugVial", "Masculine virility has been piqued temporarily.", false, 1440);
 			
 			// merge
@@ -551,6 +552,7 @@ public function seraBreedResponse(arg:Array):void
 			
 			// Sera is done using Priapin and no longer a breeding machine
 			chars["SERA"].removeStatusEffect("Priapin");
+			chars["SERA"].createStatusEffect("Infertile");
 			chars["SERA"].impregnationType = "";
 			
 			pc.removeStatusEffect("Sera Breed No Sex");
@@ -1019,7 +1021,7 @@ public function nameSeraSpawnResult(arg:Array):void
 	}
 	else
 	{
-		output("\n\n<i>“I don’t mind staying here, if you don’t want me back as your ship slut straight away,”</i> she says, eyes returning to the bundle in her arms. <i>“The food here is pretty good. And somebody’s got to make sure they don’t sell [ss#.name] to a corporation or whatever, right?”</i>");
+		output("\n\n<i>“I don’t mind staying here, if you don’t want me back as your ship slut straight away,”</i> she says, eyes returning to the bundle in her arms. <i>“The food here is pretty good. And somebody’s got to make sure they don’t sell " + babyName + " to a corporation or whatever, right?”</i>");
 		output("\n\n<i>“And also because you think your " + (babym ? "son" : "daughter") + "’s really cute,”</i> you say, gazing at her shrewdly. <i>“Don’t you?”</i>");
 		output("\n\nSera brushes the smirk off her face and doesn’t deign to answer. She can’t do anything about the suggestion of " + (chars["SERA"].skinTone != "bright pink" ? "navy" : "magenta") + " across her cheeks, though. You give her a kiss on the hot, salty forehead, and exit left.");
 	}

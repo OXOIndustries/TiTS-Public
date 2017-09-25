@@ -177,7 +177,7 @@ public function baseHypnosisWearsOff(effectToRemove:String):void
 
 					output("\n\nJust then, your thoughts are drawn to Lane. You recall the lizard-person’s hut");
 					//output(" in the caves of Venar");
-					output("in the forest near Novahome");
+					output(" in the forest near Novahome");
 					output(", and the business [lane.heShe] runs in hypnotism, and – wait. Hypnotism?");
 
 					switch (effectToRemove)

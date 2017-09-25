@@ -4660,7 +4660,7 @@
 		}
 		public function hasShieldGenerator(active:Boolean = false):Boolean
 		{
-			if(active && shield.shields == 0) return false;
+			if(active && shield.shields <= 0) return false;
 			return !(shield is EmptySlot);
 		}
 		public function hasAccessory():Boolean

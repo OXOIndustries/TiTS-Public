@@ -1074,15 +1074,15 @@ public function sleep(outputs:Boolean = true):void {
 					}
 					break;
 				case "SERA":
-					if (seraIsCrew() && rand(3) == 0)
+					if (seraIsCrew())
 					{
-						interrupt = seraBitchImpregnateBed();
+						interrupt = seraBitchImpregnateBed(true);
 					}
 					break;
 				// No partner selected.
 				default:
 					// SERA IMPREGNATIONS
-					if(!interrupt && seraIsCrew() && flags["SERA_TALKS_IMPREGNATE"] >= 2 && rand(3) == 0 && flags["SERA_NO_SLEEP"] == undefined)
+					if(!interrupt && seraIsCrew())
 					{
 						interrupt = seraBitchImpregnateBed();
 					}

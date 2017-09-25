@@ -810,6 +810,7 @@ public function timesFuckedSera():Number
 	if(flags["SERA_BITCHENING_RIDE"] != undefined) totalSex += flags["SERA_BITCHENING_RIDE"];
 	if(flags["SERA_BITCHENING_BUTTFUCK"] != undefined) totalSex += flags["SERA_BITCHENING_BUTTFUCK"];
 	if(flags["SERA_BITCHENING_SEXED"] != undefined) totalSex += flags["SERA_BITCHENING_SEXED"];
+	if(flags["SERA_WAKEUP_SEX"] != undefined) totalSex += flags["SERA_WAKEUP_SEX"];
 	
 	return totalSex;
 }
