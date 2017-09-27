@@ -903,7 +903,7 @@ public function turretDeath():void
 	clearOutput();
 	showBust("TURRET_MG","TURRET_LASER","TURRET_FLAMER");
 	showName("GAME\nOVER");
-	output("Your wounds overtake you, and as you slump to the bloodied floor, all you can hear are Azra's panicked screams.");
+	output("Your wounds overtake you, and as you slump to the bloodied floor, all you can hear are Azra’s panicked screams.");
 	kGAMECLASS.badEnd("YOU DIED.");
 }
 
@@ -1003,6 +1003,7 @@ public function azraQuestHackerDoor():void
 		output("\n\n<i>“What can I say? I’m good at my job.”</i>");
 		output("\n\nAzra’s eyes twinkle. <i>“Of course you are. Would you mind leading the way? I’m too big to fit in there very well...”</i>");
 	}
+	flags["RASKDOOR_HACKED"] = 1;
 	//Merge all
 	//[Next] -> To entry text
 	clearMenu();
@@ -1136,7 +1137,7 @@ public function fuckUpTurrets():void
 	else addDisabledButton(1,"Hyper Fun","Hyper Fun","You need a huge penis for this.");
 
 	if(pc.hasCock() && pc.cockThatFits(700) >= 0) addButton(0,"Fuck Her",fuckDatRaskipoo,undefined,"Fuck Her","Her womb may be full, but her pussy isn’t.");
-	else if(pc.hasCock()) addDisabledButton(0,"Fuck Her","Fuck Her","You're too big to fit inside.");
+	else if(pc.hasCock()) addDisabledButton(0,"Fuck Her","Fuck Her","You’re too big to fit inside.");
 	else addDisabledButton(0,"Fuck Her","Fuck Her","You have no penis to fuck her with.");
 
 	if(pc.hasVagina()) addButton(2,"Face Ride",faceRideTheRaskPreg);
@@ -1157,7 +1158,8 @@ public function waitOutPregRask():void
 	output("\n\nAlmost twenty minutes pass like this, though four or five in, the raskvel’s tail took a journey beneath her thighs, and her moans jumped up an octave. You couldn’t keep your eyes from watching, not with a plump, purple mound having its doubled clits stroked by a mischievous tail. It’s almost hypnotic. You wonder how much time this raskvel spends pregnant. From the way she greeted you on the intercom, she probably has a line of suitors that check back from day to day, hoping for a chance to sire her latest litter.");
 	output("\n\n<i>“All done.”</i> Azra’s voice pulls you from your thoughts. The big suula gal shoulders her pack, samples secured, and tries to hide her blushing face behind her sunset-hued locks. It almost works. <i>“Let’s get out of here before something comes in after us.”</i>");
 	output("\n\nThe only thing coming after you is the pregnant raskvel. She does so quite loudly.");
-	processTime(8);
+	processTime(22);
+	flags["PREG_RASK_GUARD_RESULT"] = -1;
 	clearMenu();
 	addButton(0,"Next",spunkShroomTrapQueen);
 }
@@ -1391,12 +1393,13 @@ public function hyperFunPostGame(cummed:Number = 0):void
 		}
 	}
 	processTime(10);
+	flags["PREG_RASK_GUARD_RESULT"] = 1;
 	clearMenu();
 	addButton(0,"Next",spunkShroomTrapQueen);
 }
 
 //Fuck Her
-//"Her womb may be full, but her pussy isn’t.”</i>
+//"Her womb may be full, but her pussy isn’t."
 public function fuckDatRaskipoo():void
 {
 	clearOutput();
@@ -1518,6 +1521,7 @@ public function cameInRaskSlut(cummies:Number):void
 	output("\n\nAzra mutters something from behind you, but when you look back, she’s facepalming.");
 	output("\n\n<i>“Don’t wait too long. It’s always better fresh!”</i>");
 	processTime(20);
+	flags["PREG_RASK_GUARD_RESULT"] = 2;
 	clearMenu();
 	addButton(0,"Next",spunkShroomTrapQueen);
 }
@@ -1635,6 +1639,7 @@ public function postPregRaskLicky():void
 	output("”</i>");
 	output("\n\n<i>“That so?”</i> Azra muses from behind you, under her breath.");
 	processTime(5);
+	flags["PREG_RASK_GUARD_RESULT"] = 3;
 	clearMenu();
 	addButton(0,"Next",spunkShroomTrapQueen);
 }
@@ -1645,7 +1650,7 @@ public function spunkShroomTrapQueen():void
 	flags["RASKDOOR_BROKE"] = undefined;
 	flags["RASKTURRETS_BROKE"] = undefined;
 	clearOutput();
-	output("You did it! ...well, two of the three parts, anyway. The rest isn't coded, so the quest is reset if you want to repeat the first two parts in the first time!");
+	output("You did it! ...well, two of the three parts, anyway. The rest isn’t coded, so the quest is reset if you want to repeat the first two parts in the first time!");
 	moveTo(shipLocation);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1739,9 +1744,9 @@ public function trapQueenMeeting():void
 	processTime(3);
 	clearMenu();
 	//[Beg] [Berate] [Let Azra]
-	addButton(2,"Let Azra",letAzraTrapQueenTalk,undefined,"Let Azra","Maybe Azra should handle this one. She's the scientist.");
+	addButton(2,"Let Azra",letAzraTrapQueenTalk,undefined,"Let Azra","Maybe Azra should handle this one. She’s the scientist.");
 	addButton(0,"Beg",begForMercy,undefined,"Beg","Since she styles herself a Queen, perhaps begging would be your best option?");
-	addButton(1,"Berate",berateTheQueen,undefined,"Berate","Fuck this. If she's a Queen, then she's a terrible one. Point out all the problems with this situation in no uncertain terms and hope she has enough sense not to fuck with you.");
+	addButton(1,"Berate",berateTheQueen,undefined,"Berate","Fuck this. If she’s a Queen, then she’s a terrible one. Point out all the problems with this situation in no uncertain terms and hope she has enough sense not to fuck with you.");
 }
 
 public function hasAWeapon():Boolean
@@ -1758,7 +1763,7 @@ public function letAzraTrapQueenTalk():void
 {
 	clearOutput();
 	showBust("TRAPQUEEN",azraBustString());
-	showName("AZRA'S\nSPEECH");
+	showName("AZRA’S\nSPEECH");
 	output("You nod to Azra. <i>“");
 	if(pc.isBimbo() || pc.isMischievous()) output("You go, girl.");
 	else output("Go ahead.");
@@ -1800,7 +1805,7 @@ public function letAzraTrapQueenTalk():void
 		output("\n\nAzaphel looks to his queen adoringly. <i>“Thank you Mistress. I’m sooo backed up. I haven’t cum in two whole hours!”</i>");
 		output("\n\n<i>“I know, sweetness. Don’t be too long.”</i>");
 		output("\n\nAzra blanches. Looks like you’re going to need to suck some dick.");
-		//Sex options here. Might just be blowies}
+		//Sex options here. Might just be blowies
 		clearMenu();
 		addButton(0,"Get Sucking",acceptPunishmentSucky);
 	}
@@ -1836,9 +1841,10 @@ public function giveQueenAWeapon(slot:Number = -1):void
 
 	output("\n\nThe Queen smirks. <i>“I will take care for my subjects as I always have. Unless you would like to join us? You look like very fitting... treats.”</i>");
 
-	output("\n\n<i>“I uh,”</i> stumbles Azra, pointing at her collection of fungus. <i>“I’d sooner examine these, thank you, your Majesty. But I can wait here and do that if you want to go along with them, [pc.name]... <i>“");
+	output("\n\n<i>“I uh,”</i> stumbles Azra, pointing at her collection of fungus. <i>“I’d sooner examine these, thank you, your Majesty. But I can wait here and do that if you want to go along with them, [pc.name]...”</i>");
 
 	processTime(6);
+	flags["SYDIAN_QUEEN_RESULT"] = 1;
 	clearMenu();
 	//[Yes] [No]
 	addButton(0,"Yes",multiBalljobRaskTraps);
@@ -1883,6 +1889,7 @@ public function berateTheQueen():void
 	output("\n\nAzra lets out a breath you never knew she was holding. <i>“Come on... before they change their minds.”</i>");
 	output("\n\nYeah, that’s probably a good idea.");
 	processTime(7);
+	flags["SYDIAN_QUEEN_RESULT"] = 2;
 	clearMenu();
 	addButton(0,"Next",backSafeAndSoundAfterTarkusBooty);
 }
@@ -1902,6 +1909,7 @@ public function begForMercy():void
 	output("\n\nAzra’s shoulders slump. <i>“Come on, [pc.name]. Let’s just get it over with.”</i> She smiles wryly. <i>“We might as well try to enjoy it.”</i>");
 
 	processTime(5);
+	flags["SYDIAN_QUEEN_RESULT"] = 3;
 	//[Accept] [Reject]
 	clearMenu();
 	addButton(0,"Accept",acceptPunishmentSucky);
@@ -1955,7 +1963,7 @@ public function acceptPunishmentSucky():void
 		output("\n\nOh, brother. You set your teeth against Brave Sir Azaphel’s dick - a little warning not to milk it too much - and then withdraw to energetically thrust your mouth up and down his cock, hollowing your cheeks around it stringently, eager to get him off as quickly as possible.");
 		output("\n\nThe raskvel boi is evidently not one to look a gift suck in the mouth, and is quiet aside from his deepening, ragged breath as you blow him hard and fast, filling the hollow with slurps and smacks of your [pc.lips]. Eventually though the pent-up trap can’t contain his excitement, and he grabs your head with feverish hands and gives back with athletic, juddering thrusts of his muscle-packed hips. You gag slightly as the pointed, pre-beading end sticks into your throat, but fortunately the thing is shaped so it’s much easier to take than it ordinarily would. You control yourself and let him face-fuck you, concentrating on keeping your mouth pliant and open for him, trying to ignore his giant balls slapping against your chin.");
 	}
-	//{merge}
+	// {merge}
 	output("\n\nWith a fluttering moan Azaphel mires himself into your mouth as deep as he can, his hands tighten on your [pc.hair], his giant testicles rise and tense, a fluttering moan is forced past his open lips, and a sudden cascade of cum warms your throat and gut. He’s forced back a bit by the sheer force of it, so that the next salty load swells your cheeks and squirts out around the seal of his girth and your lips... and then suddenly he’s pulled out entirely, his drooling, railing-like prick still sternly erect but no longer flexing. You blink. Was that it? With bollocks the size of his, you were expecting receipt of a meal and a half.");
 	output("\n\n<i>“Can...”</i> he gasps in his fluttering, androgynous voice. <i>“Can I not...?”</i>");
 	output("\n\n<i>“No,”</i> the tall sydian replies coolly. <i>“You know the code: One orgasm per deed. Be gracious to your Majesty, and then get back in line.”</i>");
@@ -2016,7 +2024,7 @@ public function multiBalljobRaskTraps():void
 	}
 	else output("How did you mess up negotiating with these savages so badly you’re being forced to do this? You’d love to know off whom the raskvel got those extremely powerful guns they’re packing. Whoever they are have got a lot to answer for.");
 
-	//{merge}
+	// {merge}
 	output("\n\n<i>“I will have the supplicants service me on my own to begin with,”</i> says Azaphel, beaming as he steps forward into his red letter day. <i>“Just to make sure it’s worth the rest of you fellers’ time, you know.”</i>");
 	output("\n\n<i>“You’re a real piece of ‘lani, Zaph,”</i> growls another, looking you up and down enviously.");
 
@@ -2328,8 +2336,8 @@ public function followAzraForFirstTimeBango():void
 	processTime(10);
 	pc.lust(15);
 	clearMenu();
-	if(pc.hasCock()) addButton(0,"FuckHerCunt",penisRouter,[fuckAzrasCuntPussy1stTimeEverytime,azra.vaginalCapacity(0),false],"FUckHerCunt","Give Azra's pussy the fucking it so clearly needs.");
-	else addDisabledButton(0,"FuckHerCunt","FuckHerCunt","You need an appropriately sized penis for this.");
+	if(pc.hasCock()) addButton(0,"FuckHerCunt",penisRouter,[fuckAzrasCuntPussy1stTimeEverytime,azra.vaginalCapacity(0),false],"Fuck Her Cunt","Give Azra’s pussy the fucking it so clearly needs.");
+	else addDisabledButton(0,"FuckHerCunt","Fuck Her Cunt","You need an appropriately sized penis for this.");
 	if(pc.hasVagina()) addButton(1,"Tribbing",azraTribbyTribbyBangBang,undefined,"Tribbing","Rub pussies together in the way that only two females can.");
 	else addDisabledButton(1,"Tribbing","Tribbing","You need a vagina to rub against hers for this.");
 }
@@ -2709,7 +2717,7 @@ public function chooseLimitedFucking():void
 	clearMenu();
 	//[Yep] [Nope]
 	addButton(0,"Yep",yepImYerBoyfriend,undefined,"Yep","That sounds great!");
-	addButton(1,"Nope",nopeNotYerBoyfriend,undefined,"Nope","No, you don't want to give her the wrong impression about your relationship...");
+	addButton(1,"Nope",nopeNotYerBoyfriend,undefined,"Nope","No, you don’t want to give her the wrong impression about your relationship...");
 }
 
 //Nope
@@ -3008,7 +3016,7 @@ public function movingOnOutToMhengaExp():void
 /*Naleen Brothers Fight:
 //Naleen A: Zilmusk bombs.
 //Beaten by Physical or psychic only.
-A naleen circles on the right. His build is typical of the kitty-snakes of Mhen'ga: snake from the waist down and furry, humanoid feline from the waist up. Sharp-clawed fingers wiggle eagerly at the sight of you, darting to a bandoleer of amber-colored bottles that ring his torso as if he cannot wait to unleash whatever is contained within. His ears are alert and playful. His dicks are too, jutting free from a reptilian slit to stab accusingly in your direction.
+A naleen circles on the right. His build is typical of the kitty-snakes of Mhen’ga: snake from the waist down and furry, humanoid feline from the waist up. Sharp-clawed fingers wiggle eagerly at the sight of you, darting to a bandoleer of amber-colored bottles that ring his torso as if he cannot wait to unleash whatever is contained within. His ears are alert and playful. His dicks are too, jutting free from a reptilian slit to stab accusingly in your direction.
 
 //Naleen B:
 //Beaten by lust. Resistant to physical and psychic.

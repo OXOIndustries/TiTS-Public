@@ -2133,35 +2133,67 @@ public function displayQuestLog(showID:String = "All"):void
 		if(showID == "Tarkus" || showID == "All")
 		{
 			// Azra's Expeditions
-			if(flags["AZRA_MHENGAED"] >= 1 || flags["AZRA_EXP_FAILED"] == "tarkus")
+			if(flags["AZRA_TARKUSED"] != undefined || flags["AZRA_MHENGAED"] >= 1 || flags["AZRA_EXP_FAILED"] == "tarkus")
 			{
 				output2("\n<b><u>Azra’s Expedition</u></b>");
 				output2("\n<b>* Status:</b>");
-				if(flags["DOUBLE_GOO_SLUT_RESULT"] != undefined)
-				{
-					switch(flags["DOUBLE_GOO_SLUT_RESULT"])
-					{
-						case -1: output2(" Defeated by double gray goo"); break;
-						case 1: output2(" Defeated double gray goo"); break;
-						case 2: output2(" Negotiated with double gray goo"); break;
-						case 3: output2(" Persuaded and sexed double gray goo"); break;
-						case 4: output2(" Fed double gray goo"); break;
-					}
-				}
+				if(flags["AZRA_TARKUSED"] != undefined) output2(" Slutshrooms, Motherhusks, and Spunkshrooms harvested");
 				else output2(" Accepted");
-				if(flags["9999"] != undefined) output2(", Completed");
+				if(flags["AZRA_TARKUSED"] != undefined) output2(", Completed");
 				else if(flags["AZRA_EXP_FAILED"] == "tarkus") output2(", Failed");
 				else output2(", <i>In progress...</i>");
-				if(flags["9999"] != undefined)
+				if(flags["DOUBLE_GOO_SLUT_RESULT"] != undefined)
+				{
+					output2("\n<b>* Double Gray Goo:</b> Met her");
+					switch(flags["DOUBLE_GOO_SLUT_RESULT"])
+					{
+						case -1: output2(", Defeated by her in combat"); break;
+						case 1: output2(", Defeated her in combat"); break;
+						case 2: output2(", Negotiated with her"); break;
+						case 3: output2(", Persuaded and sexed her"); break;
+						case 4: output2(", Fed her"); break;
+					}
+				}
+				if(flags["RASKDOOR_BROKE"] != undefined || flags["RASKDOOR_HACKED"] != undefined || flags["AZRA_TARKUS_SKIP"] != undefined)
 				{
 					output2("\n<b>* Bunker:</b>");
-					if(flags["RASKDOOR_BROKE"] != undefined) output2(" Broke door");
-					else if(flags["9999"] != undefined) output2(" Hacked door");
-					else output2(" Found");
+					if(flags["RASKDOOR_BROKE"] != undefined) {
+						output2(" Broke door");
+						if(flags["RASKTURRETS_BROKE"] != undefined) output2(" and turrets");
+						else output2(", Hacked turrets");
+					}
+					else if(flags["RASKDOOR_HACKED"] != undefined) {
+						output2(" Hacked door");
+						if(flags["RASKTURRETS_BROKE"] != undefined) output2(", Broke turrets");
+						else output2(" and turrets");
+					}
+					else output2(" Visited");
+					if(flags["AZRA_TARKUS_SKIP"] != undefined) output2(", Skipped passed");
 				}
-				if(flags["9999"] != undefined) output2("Slutshroom, Times Harvested: " + flags["9999"]);
-				if(flags["9999"] != undefined) output2("Spunkshroom, Times Harvested: " + flags["9999"]);
-				if(flags["9999"] != undefined) output2("Motherhusk, Times Harvested: " + flags["9999"]);
+				if(flags["PREG_RASK_GUARD_RESULT"] != undefined)
+				{
+					output2("\n<b>* Pregnant Rask Guard:</b> Met her");
+					switch(flags["PREG_RASK_GUARD_RESULT"])
+					{
+						case -1: output2(", Waited her out"); break;
+						case 1: output2(", Sexed her with your hyper-sized penis"); break;
+						case 2: output2(", Fucked her"); break;
+						case 3: output2(", She ate you out"); break;
+					}
+				}
+				if(flags["SYDIAN_QUEEN_RESULT"] != undefined)
+				{
+					output2("\n<b>* Sydian Queen:</b> Met her");
+					switch(flags["SYDIAN_QUEEN_RESULT"])
+					{
+						case 1: output2(", Gave her weapon"); break;
+						case 2: output2(", Berated her"); break;
+						case 3: output2(", Begged her for mercy"); break;
+					}
+					output2("\n<b>* Azaphel:</b> Met him");
+					if(flags["AZRA_RASK_PC_SUCKED"] != undefined) output2(", Sucked his dick");
+					if(flags["AZRA_RASK_ORGIED"] != undefined) output2(", Sexed him in raskvel orgy");
+				}
 				sideCount++;
 			}
 			// Dr. Badger's Job
@@ -6132,6 +6164,13 @@ public function displayEncounterLog(showID:String = "All"):void
 				else if(flags["AZRA_ONBOARD"] == undefined) output2(" (At Mhen’ga)");
 			}
 			else if(flags["AZRA_DISABLED"] != undefined) output2(", <i>Whereabouts unknown</i>");
+			if(flags["AZRA_CHOSE_PROFESSIONAL"] != undefined || flags["AZRA_BOYFRIEND"] != undefined)
+			{
+				output2("\n<b>* Azra, Relationship:</b>");
+				if(flags["AZRA_BOYFRIEND"] == 1) output2(" You’re her [pc.boy]friend");
+				else if(flags["AZRA_BOYFRIEND"] == -1) output2(" Fuck-buddies");
+				else output2(" Professional");
+			}
 			if(flags["AZRA_KISSED"] != undefined) output2("\n<b>* Azra, Times Kissed:</b> " + flags["AZRA_KISSED"]);
 			if(flags["AZRA_SEXED"] != undefined) output2("\n<b>* Azra, Times Sexed:</b> " + flags["AZRA_SEXED"]);
 			roamCount++;
