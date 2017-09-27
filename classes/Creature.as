@@ -12369,9 +12369,18 @@
 			var desc: String = "";
 			var adjectives: Array = [];
 			
-			if(hips >= 5 && thickness >= 25) adjectives.push("thicc");
-			if(hips >= 10 && thickness >= 50) adjectives.push("extra-thicc");
-			if(hips >= 20 && thickness >= 75) adjectives.push("massively-thicc");
+			if(kGAMECLASS.silly)
+			{
+				if(hips >= 5 && thickness >= 25) adjectives.push("THICC");
+				if(hips >= 10 && thickness >= 50) adjectives.push("extra-THICC");
+				if(hips >= 20 && thickness >= 75) adjectives.push("massively-THICC");
+			}
+			else
+			{
+				if(hips >= 5 && thickness >= 25) adjectives.push("thick");
+				if(hips >= 10 && thickness >= 50) adjectives.push("extra-thick");
+				if(hips >= 20 && thickness >= 75) adjectives.push("massively-thick");
+			}
 			
 			if(adjectives.length > 0) desc += adjectives[rand(adjectives.length)] + " ";
 			desc += "thigh";
