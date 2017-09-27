@@ -810,6 +810,11 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			crewMessages += seraOnShipBonus(btnSlot++);
 		}
 	}
+	if (kaseIsCrew())
+	{
+		count++;
+		if(!counter) crewMessages += kaseCrewBlurbs(btnSlot++);
+	}
 	if (yammiIsCrew())
 	{
 		count++;
@@ -1319,6 +1324,12 @@ public function shipMenu():Boolean
 	if(paigeIsCrew() && flags["PAIGE_SHIP_GREETING"] == undefined) 
 	{
 		firstTimePaigeCrewHiHi();
+		return true;
+	}
+	//Kase follower greeting
+	if(kaseIsCrew() && flags["KASE_CREW"] == 1)
+	{
+		kaseCrewGreeting();
 		return true;
 	}
 	
