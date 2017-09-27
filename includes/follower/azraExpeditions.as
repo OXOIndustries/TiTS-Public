@@ -677,7 +677,7 @@ public function actualMotherHuskIntro():void
 	else
 	{
 		output("\n\n<i>“Ooooh, this is the prettiest house I’ve seen on Tarkus!”</i> you observe.");
-		output("\n\nAzra nods. <i>“But it may be a trap. The walls high walls make this place ideal for ambush. We must proceed carefully.”</i>");
+		output("\n\nAzra nods. <i>“But it may be a trap. The shigh walls make this place ideal for ambush. We must proceed carefully.”</i>");
 		output("\n\n<i>“Sure thing, Doctor Sharky!”</i>");
 	}
 	//Merge
