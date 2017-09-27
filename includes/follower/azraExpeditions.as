@@ -2746,7 +2746,7 @@ public function azraExpeditionAvailable():Boolean
 	}
 	if(getPlanetName().toLowerCase() == "tarkus")
 	{
-		if(flags["AZRA_MHENGAED"] == 1 && flags["AZRA_TARKUSED"] == undefined) return true;
+		if((flags["AZRA_MHENGAED"] == 1 || azraProfessional()) && flags["AZRA_TARKUSED"] == undefined) return true;
 	}
 	return false;
 }
