@@ -23,7 +23,7 @@
 	{
 		public function Azra() 
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -150,8 +150,10 @@
 			this.vaginas[0].wetnessRaw = 3;
 			this.vaginas[0].loosenessRaw = 2;
 			this.vaginas[0].vaginaColor = "black";
+			this.vaginas[0].bonusCapacity = 700;
 			this.vaginas[0].vagooFlags = [GLOBAL.FLAG_STINGER_BASED];
 			
+
 			//balls
 			this.balls = 2;
 			this.cumMultiplierRaw = 15;
@@ -187,7 +189,14 @@
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 1;
+			this.ass.bonusCapacity = 500;
 			createPerk("Fixed CumQ",2500,0,0,0);
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.vaginas[0].bonusCapacity = 700;
+			dataObject.ass.bonusCapacity = 500;
 		}
 
 		/* DESC UPDATE ON COMBAT STUFF: Azra stands by your side, garbed in a suit of heavy armor that makes the otherwise unarmed siren seem even more imposing than her nine foot stature alone. Still, she moves with grace and purpose, and her armored fists could pack quite a wallop.{ She’d be far more imposing if it wasn’t for the fact that her 20" dick and soft-ball sized balls are swinging in the open, doing their best to dribble pre everywhere she goes.}*/
