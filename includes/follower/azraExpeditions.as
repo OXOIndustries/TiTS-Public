@@ -2286,9 +2286,17 @@ public function followAzraForFirstTimeBango():void
 {
 	clearOutput();
 	showAzra(true);
-	output("You step into the steam-filled bathroom, shedding gear as you go. All the moisture in the air makes the caked on grime");
-	if(pc.hasStatusEffect("Cum Soaked") || pc.hasStatusEffect("Pussy Drenched")) output(", cum,");
-	output(" and rust from the Tarkus wilds cling to your [pc.skin] in an oily slurry. A shower is just what you need.");
+	output("You step into the steam-filled bathroom");
+	if(flags["AZRA_SEXED"] == undefined) 
+	{
+		output(", shedding gear as you go. All the moisture in the air makes the caked on grime");
+		if(pc.hasStatusEffect("Cum Soaked") || pc.hasStatusEffect("Pussy Drenched")) output(", cum,");
+		output(" and rust from the Tarkus wilds cling to your [pc.skin] in an oily slurry. ");
+	}
+	else output(". ");
+	output("A shower");
+	if(flags["AZRA_SEXED"] != undefined) output("-fuck");
+	output(" is just what you need.");
 	output("\n\nSilhouetted through the shower’s privacy field is Azra, completely nude and aroused, if the pixelated distention emerging from her crotch is any indication. Azra is <i>hung</i>. It’s big enough for her to give ");
 	if(kiroSexed()) output("Kiro a run for her money.");
 	else if(flags["EMMY_FUCKED"] != undefined) output("Emmy a complex over her smaller size.");
@@ -2358,7 +2366,10 @@ public function fuckAzrasCuntPussy1stTimeEverytime(xx:int):void
 
 	output("\n\nYou raise an eyebrow. <i>“Seriously?”</i>");
 
-	output("\n\n<i>“Seriously.”</i> Azra’s tail lashes back and forth excitedly behind her, thumping powerfully into the narrow walls. <i>“You’re not my stud yet, Captain.”</i> She kisses you hard. <i>“But if you fuck half as well as you kiss, you might convince me yet.”</i> Another soul-searing kiss is thrust upon you. All the while, Azra’s hips wiggle in small circles against your questing digits, drenching your fingertips in a much slicker liquid than shower water. A condom is pressed into your other hand as the kiss breaks. <i>“Suit up.”</i>");
+	output("\n\n<i>“Seriously.”</i> Azra’s tail lashes back and forth excitedly behind her, thumping powerfully into the narrow walls. <i>“You’re not my stud yet, Captain.”</i> ");
+	if(flags["AZRA_SEXED"] != undefined) output("She winks playfully at you, then s");
+	else  output("S");
+	output("he kisses you hard. <i>“But if you fuck half as well as you kiss, you might convince me yet.”</i> Another soul-searing kiss is thrust upon you. All the while, Azra’s hips wiggle in small circles against your questing digits, drenching your fingertips in a much slicker liquid than shower water. A condom is pressed into your other hand as the kiss breaks. <i>“Suit up.”</i>");
 	processTime(2);
 	pc.lust(10);
 	//[Suit Up]
@@ -2543,8 +2554,16 @@ public function fuckAzrasCuntPussy1stTimeEverytime6(xx:int):void
 	pc.shower();
 	//Disable Azra 10 hours. When Azra is back, cue relationship talk.
 	IncrementFlag("AZRA_SEXED");
-	pc.createStatusEffect("Azra CD");
-	pc.setStatusMinutes("Azra CD",10*60);
+	if(flags["AZRA_SEXED"] == 1)
+	{
+		pc.createStatusEffect("Azra CD");
+		pc.setStatusMinutes("Azra CD",10*60);
+	}
+	else 
+	{
+		pc.createStatusEffect("Azra Sex CD");
+		pc.setStatusMinutes("Azra Sex CD",24*60);
+	}
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -2670,8 +2689,16 @@ public function azraTribbyTribbyBangBang4():void
 	processTime(5);
 	pc.shower();
 	IncrementFlag("AZRA_SEXED");
-	pc.createStatusEffect("Azra CD");
-	pc.setStatusMinutes("Azra CD",10*60);
+	if(flags["AZRA_SEXED"] == 1)
+	{
+		pc.createStatusEffect("Azra CD");
+		pc.setStatusMinutes("Azra CD",10*60);
+	}
+	else 
+	{
+		pc.createStatusEffect("Azra Sex CD");
+		pc.setStatusMinutes("Azra Sex CD",24*60);
+	}
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

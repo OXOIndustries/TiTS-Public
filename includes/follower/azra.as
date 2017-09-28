@@ -1047,8 +1047,8 @@ public function noAzraStayOnMhenga():void
 public function azraSexMenu():void
 {
 	clearMenu();
-	addDisabledButton(0,"FuckHerVag","Fuck Her Vagina","This scene isn't written yet. Sorry!");
-	addDisabledButton(1,"Get Fucked","Get Fucked","This scene also isn't written yet. Please no kill Fenoxo!");
+	if(pc.hasGenitals()) addButton(0,"Shower Sex",azraRepeatShowerSexStuff,undefined,"Shower Sex","Take Azra in the shower, just like the first time.");
+	else addDisabledButton(0,"Shower Sex","Shower Sex","You need genitals for shower sex.");
 	//Use penis router to allow dick selection!
 	if(pc.biggestCockVolume(false) > azra.vaginalCapacity(0)) addButton(1,"HyperDocking",penisRouter,[azraHyperDocking,900000000,false,(azra.vaginalCapacity(0)+0.1)],"Hyper Docking","Azra is no slouch, but the size of her maleness pales next to your own. Maybe, just maybe, she could slip her cock inside your truly monstrous boner.");
 	else addDisabledButton(1,"HyperDocking","Hyper Docking","You need a truly monstrous penis for this.");
@@ -1338,4 +1338,15 @@ public function azraHyperDocking(x:int):void
 	pc.setStatusMinutes("Azra Sex CD",24*60);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function azraRepeatShowerSexStuff():void
+{
+	clearOutput();
+	showAzra(true);
+	output("<i>“In the shower, just  like the first time.”</i>");
+	output("\n\nAzra's tail sways behind her. <i>“Then I'd better hurry off to get the water running, hadn't I?”</i> She prances toward the bathroom, stopping to lean on the doorframe as she looks back, all smiles. <i>“Ooooh, it'll be like roleplay!”</i>");
+	output("\n\nYou nod to the turned-on shark, and she vanishes into the bathroom. Idly toying with yourself, you wait a minute for her to get the water going, just like the first time. This is going to be fun...");
+	clearMenu();
+	addButton(0,"Next",followAzraForFirstTimeBango);
 }
