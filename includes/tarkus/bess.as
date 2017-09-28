@@ -1861,8 +1861,8 @@ public function talkToBessAboutRoles():void
 
 	//[Equal] [Dominant] [Submissive]
 	clearMenu();
-	if (flags["BESS_SEX_ROLE"] == 0) addDisabledButton(0, "Equals"); 
-	else addButton(0, "Equals", setBessRole, 0);
+	if (flags["BESS_SEX_ROLE"] == 0) addDisabledButton(0, "Equal"); 
+	else addButton(0, "Equal", setBessRole, 0);
 	if (flags["BESS_SEX_ROLE"] == 1) addDisabledButton(1, "Dominant");
 	else addButton(1, "Dominant", setBessRole, 1);
 	if (flags["BESS_SEX_ROLE"] == 2) addDisabledButton(2, "Submissive");
@@ -2650,7 +2650,7 @@ public function talkToBessAboutBodyShape():void
 	clearOutput();
 	bessHeader();
 
-	output("<i>“My body shape is easily changed. What would you like me to alter...?</i>");
+	output("<i>“My body shape is easily changed. What would you like me to alter...?”</i>");
 
 	clearMenu();
 	addButton(0, "Hips", talkToBessAboutHips);
@@ -3498,7 +3498,7 @@ public function bessSetCumFlavor(opts:Array):void
 	{
 		bess.girlCumType = flav;
 		if (flav != GLOBAL.FLUID_TYPE_GIRLCUM) output("of " + bessGirlCumFlavor());
-		else output(" like regular girlcum");
+		else output("like regular girlcum");
 	}
 	output("!</i> [bess.name] cheerfully exclaims.");
 	
@@ -4313,7 +4313,7 @@ public function talkToBessAboutThings():void
 
 	clearMenu();
 	addButton(0, "SpendTime", bessSpendTime);
-	addButton(1, bessName(), talkToBessAboutBess);
+	addButton(1, StringUtil.toTitleCase(bessName()), talkToBessAboutBess);
 	addButton(2, "You", talkToBessAboutPC);
 	
 	if (flags["BESS_EVENT_28"] == undefined) addButton(3, "JoyCo", talkToBessAboutJoyco);
