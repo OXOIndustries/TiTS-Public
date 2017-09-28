@@ -873,7 +873,7 @@ public function sellesyHardlightScene():void
 	if(pc.hasCock())
 	{
 		output("\n\nSellesy shifts her weight and leans back, bending your hardlight away; a clitoris unwinds from the dildo and creeps free, squirming between your sticky pelvises and her sweat-sheened thighs, oily and willful. The red tongue walks along your body like an octopus, wrinkling your [pc.lowerUndergarment], and then curls over your [pc.cock], stroking it through the fabric. You look up at Sellesy, who’s still throwing her head back as she rises and falls - her eye catches yours, and twinkles mischievously.");
-		output("\n\nThe flexible organ finds your [pc.cockHeadNoun] and pinches it softly, pulling it away from your body and then releasing it to smack against your [pc.legFurScales] again; it dabbles in the stream of precum seeping through the cloth, smearing and spreading it until it mingles with Sellesy’s natural lubrication and your underwear become translucent at the spot. <i>“I wonder...”</i> Sellesy muses, <i>“...how quickly I can make you finish?”</i> The woman’s ominous tone draws you to her face, which is grinning ghoulishly.");
+		output("\n\nThe flexible organ finds your [pc.cockHead] and pinches it softly, pulling it away from your body and then releasing it to smack against your [pc.legFurScales] again; it dabbles in the stream of precum seeping through the cloth, smearing and spreading it until it mingles with Sellesy’s natural lubrication and your underwear become translucent at the spot. <i>“I wonder...”</i> Sellesy muses, <i>“...how quickly I can make you finish?”</i> The woman’s ominous tone draws you to her face, which is grinning ghoulishly.");
 		output("\n\n");
 		if(pc.smallestCockVolume() <= 9999) 
 		{
@@ -931,7 +931,7 @@ public function sellesyHardlightScene():void
 		else
 		{
 			output("\n\nInstead, she hooks her shirt and slowly pulls over her head, finally revealing her gorgeous breasts. With a jaunty fingertip, she pulls your [pc.cockNounSimple] toward her while she leans forward, tucking it into her cleavage.");
-			output("\n\n<i>“Much cleaner this way,”</i> she says idly. Before you can parse, she rises up, dragging your dick through her tits, and captures the [pc.cockHeadNoun] with her mouth; her clit unwinds, and your load boils forth. ");
+			output("\n\n<i>“Much cleaner this way,”</i> she says idly. Before you can parse, she rises up, dragging your dick through her tits, and captures the [pc.cockHead] with her mouth; her clit unwinds, and your load boils forth. ");
 			//(small/med cum)
 			if(pc.cumQ() < 1000)
 			{

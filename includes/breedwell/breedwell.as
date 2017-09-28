@@ -1579,7 +1579,7 @@ public function breedwellPornScenes(arg:Array):void
 			output("\n\n<i>“Put that");
 			if(cLength > 4) output(" gorgeous piece of meat");
 			else output(" cute lil’ toy");
-			output(" into the slot,”</i> whispers Toon Tamani, blinking her big eyes at you. <i>“For Tamani.”</i> You do so, sighing as you slide your [pc.cock " + cIdx + "] into the silky, slinky embrace of the receiver. A pleasurable tremor runs through it as the machine vibrates, adjusting to your side and stimulating you until you are hard and ready. You gasp as the base suddenly tightens up, vice-like, around your base.");
+			output(" into the slot,”</i> whispers Toon Tamani, blinking her big eyes at you. <i>“For Tamani.”</i> You do so, sighing as you slide your [pc.cock " + cIdx + "] into the silky, slinky embrace of the receiver. A pleasurable tremor runs through it as the machine vibrates, adjusting to your size and stimulating you until you are hard and ready. You gasp as the base suddenly tightens up, vice-like, around your base.");
 			output("\n\n<i>“Theeere we go,”</i> purrs Tamani, swaggering up behind the visualization of you, strap-on waggling. <i>“It’d be a dreadful shame for you to get away before I’ve milked every last drop out of you, wouldn’t it?”</i>");
 			output("\n\nShe grips the hips of the cartoon version of you, positions her comically oversized dildo between your butt cheeks, and then slowly works her way in. You gasp and tense up slightly as the mechanical prosthetic mirrors exactly what’s happening on screen, piercing your [pc.anus] and slowly working its way into your sensitive insides.");
 			output("\n\n<i>“Relax, sweet buttslut of mine,”</i> says Tamani soothingly. <i>“Wait just a sec...”</i> she reaches up and squeezes one of her plush tits, biting her lip with pleasure. As she does, your back passage is warmed by a sudden gush of lubricant squirted out of the dildo’s end. <i>“Theeere we go!”</i> the human cries winningly, thrusting her pink hips into cartoon you with enough force to make their flesh ripple. The actual prosthetic follows suit, of course, and you whine as it easily slides all the way in, opening your colon up and pressing into you deep.");
@@ -1853,7 +1853,7 @@ public function rahnBreedwellBirthing(pregSlot:int = 0, numEggs:int = 2):void
 	}
 	else if(numEggs <= 8)
 	{
-		output(" your arms full of rahn babies. The wailing has mostly stopped, and they are snuffling, frowning and cooing at their surrogate mom and the big wide world in general. They are cutest goddamn things.");
+		output(" your arms full of rahn babies. The wailing has mostly stopped, and they are snuffling, frowning and cooing at their surrogate mom and the big wide world in general. They are the cutest goddamn things.");
 		if(pc.isLactating())
 		{
 			output(" They’re wedged against parts of your body they clearly understand, however, and in a few moments you’re sighing in peace as tiny mouths hungrily suckle your [pc.breasts].");

@@ -1050,7 +1050,7 @@ public function azraSexMenu():void
 	addDisabledButton(0,"FuckHerVag","Fuck Her Vagina","This scene isn't written yet. Sorry!");
 	addDisabledButton(1,"Get Fucked","Get Fucked","This scene also isn't written yet. Please no kill Fenoxo!");
 	//Use penis router to allow dick selection!
-	if(pc.biggestCockVolume() > azra.vaginalCapacity(0)) addButton(1,"HyperDocking",penisRouter,[azraHyperDocking,900000000,false,(azra.vaginalCapacity(0)+0.1)],"Hyper Docking","Azra is no slouch, but the size of her maleness pales next to your own. Maybe, just maybe, she could slip her cock inside your truly monstrous boner.");
+	if(pc.biggestCockVolume(false) > azra.vaginalCapacity(0)) addButton(1,"HyperDocking",penisRouter,[azraHyperDocking,900000000,false,(azra.vaginalCapacity(0)+0.1)],"Hyper Docking","Azra is no slouch, but the size of her maleness pales next to your own. Maybe, just maybe, she could slip her cock inside your truly monstrous boner.");
 	else addDisabledButton(1,"HyperDocking","Hyper Docking","You need a truly monstrous penis for this.");
 	addButton(14,"Back",azraTalk,true);
 }

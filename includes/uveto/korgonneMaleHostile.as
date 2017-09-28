@@ -577,7 +577,7 @@ public function actualKorgAnalPitch(target:Number):void
 		output("\n\nThe korgonne stares " + pc.mf("quizzically","excitedly") + " when you ");
 		if(pc.isCrotchExposedByArmor()) output("show off");
 		else output("strip down to");
-		output(" your [pc.lowerUndergament], but you quickly set him straight - with a ‘bzzt’, you key up the hardlight projector and manifest your nine-inch, holographic prick. The dog-man’s caprine eyes quiver at the sight, and his mouth turns down in a frown... ");
+		output(" your [pc.lowerUndergarment], but you quickly set him straight - with a ‘bzzt’, you key up the hardlight projector and manifest your nine-inch, holographic prick. The dog-man’s caprine eyes quiver at the sight, and his mouth turns down in a frown... ");
 		if(pc.hasVagina()) output("either because he’s not getting to explore the girly bits underneath your cute underwear or, more probably, because ");
 		output("he’s just realized that he’s in for a hard time with your hard light.");
 	}
@@ -628,7 +628,7 @@ public function actualKorgAnalPitch(target:Number):void
 	output(", so frantic that it’s becoming difficult to stay lined-up with him. When you can wait no more, you lean into the raider; he stiffens and grimaces, knowing what comes next - his back straightens, trying to make your path as direct as possible, and a soft, anxious whine still escapes, even through gritted teeth. You slip the ");
 	if(target == -2) output("crown of the hardlight toy");
 	else if(target == -1) output("glans of the alien parasite");
-	else output("[pc.cockHeadNoun " + target + "] of your [pc.cockNounSimple " + target + "]");
+	else output("[pc.cockHead " + target + "] of your [pc.cockNounSimple " + target + "]");
 	output(" into the korgonne’s ass and rest atop of him, feeling his back move with short, tense breaths.");
 	pc.cockChange();
 
@@ -977,7 +977,7 @@ public function mutualMasturbkorg():void
 	if(!pc.isCrotchExposed())
 	{
 		output("\n\nYou ");
-		if(!pc.isCrotchExposedByArmor()) output("reach for the fasteners to your [pc.outerGarment], then slip out with a shimmy");
+		if(!pc.isCrotchExposedByArmor()) output("reach for the fasteners to your [pc.armor], then slip out with a shimmy");
 		if(!pc.isCrotchExposedByArmor() && !pc.isCrotchExposedByLowerUndergarment()) output(" and ");
 		if(!pc.isCrotchExposedByLowerUndergarment()) output("slip a finger into the waist of your [pc.lowerUndergarment]");
 		output(". Watching to make sure the korgonne’s eyes are riveted to you, you expose your ");
@@ -1080,7 +1080,7 @@ public function mutualMasturbkorg():void
 
 	if(cockSelect)
 	{
-		output("\n\nHe resumes stroking, and your [pc.cockNounSimple " + x + "] appreciatively dribbles its own pre, matting the alien’s furry hand. It lingers atop of your cock, caressing your [pc.cockHeadNoun " + x + "] and sensitive underside with smooth, leathery fingers, working up a load to paint his palm [pc.cumColor]. You hold it for as long as you can, and then let yourself blow. ");
+		output("\n\nHe resumes stroking, and your [pc.cockNounSimple " + x + "] appreciatively dribbles its own pre, matting the alien’s furry hand. It lingers atop of your cock, caressing your [pc.cockHead " + x + "] and sensitive underside with smooth, leathery fingers, working up a load to paint his palm [pc.cumColor]. You hold it for as long as you can, and then let yourself blow. ");
 		if(pc.cumQ() < 5) output("A small sprinkle of [pc.cumNoun] oozes from your upright cock, barely making it down to the korgonne’s hand before spending itself.");
 		else if(pc.cumQ() < 50)
 		{

@@ -201,7 +201,7 @@ public function penisRouter(args:Array):void
 	if(pc.hasHardLightEquipped() && straponAllowed) choices.push(-1);
 	for(var x:int = 0; x < pc.cockTotal(); x++)
 	{
-		if(pc.cockVolume(x) <= maxFit && pc.cockVolume(x) >= minFit) choices.push(x);
+		if(pc.cockVolume(x, true) <= maxFit && pc.cockVolume(x, false) >= minFit) choices.push(x);
 		else ineligibles.push(x);
 	}
 	//Only 1 choice? Go right ahead with no menu.
@@ -269,9 +269,9 @@ public function penisRouter(args:Array):void
 		if(ineligibles.length > 0) output("\n\nUnsuitable:")
 		for(x = 0; x < ineligibles.length; x++)
 		{
-			output("\n" + pc.NumTwoText(ineligibles[x]+1) + " penis, type: [pc.cockNoun " + choices[x] + "].");
-			if(pc.cockVolume(ineligibles[x]) > maxFit) output(" Reason: Too large.");
-			if(pc.cockVolume(ineligibles[x]) < minFit) output(" Reason: Too small.");
+			output("\n" + pc.NumTwoText(ineligibles[x]+1) + " penis, type: [pc.cockNoun " + ineligibles[x] + "].");
+			if(pc.cockVolume(ineligibles[x], true) > maxFit) output(" Reason: Too large.");
+			if(pc.cockVolume(ineligibles[x], false) < minFit) output(" Reason: Too small.");
 		}
 	}
 	//Failsafe - assume primary ween

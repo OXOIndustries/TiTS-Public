@@ -1362,7 +1362,7 @@ public function haleyEllieThreesome():void
 	output("\n\nHaley looks at you uncertainly. <i>“Just because </i>I<i> cum a lot doesn’t mean I want </i>you<i> to.”</i>");
 	output("\n\nYou continue as if you hadn’t heard her. <i>“I saw the faces you were making at me after our little ‘competition’, Haley.”</i> Smiling sweetly at her, you call her bluff. <i>“There’s nothing you want more than to have your tight little leithan cunt </i>crammed<i> full of dominant, virile cock, just pumping you full with </i>load<i> after </i>load<i> until you can’t take any more...”</i>");
 	output("\n\nHaley’s cheeks are flushing red, perceptible even under her chocolate skin. She looks ");
-	if (pc.tallness < 120) output("down");
+	if (pc.tallness < 120) output("down ");
 	output("at you with utter fascination, her mouth hanging open before she catches herself. <i>“I - I don’t...” </i> she stutters, losing her train of thought.");
 	output("\n\nYou press up against her, gently pulling her arms away from her voluptuous breasts and looking her in the eye. <i>“Don’t lie to yourself, Haley. Ellie and I would both be sad if you didn’t have fun with this.”</i>");
 	output("\n\nHaley looks from you, to Ellie, then back to you. Then back to Ellie. She drops her gaze to the floor.");
@@ -1481,7 +1481,7 @@ public function haleyEllieThreesome():void
 			else output("your other dick");
 			output(" too, providing a softer contrast when her puffy donut turns inward.");
 		}
-		else output("overfilled womb.");
+		else output(" overfilled womb.");
 		if (pc.isBimbo()) output("\n\n<i>“Fuuuck, you feel amazing, Hales,”</i> you pant, excitedly spanking her sweaty flank as one of her legs twitches unconsciously. <i>“Your body’s like, </i>made<i> for sex!”</i>");
 		else output("\n\n<i>“Fuck, your body is amazing,”</i> you sigh in satisfaction, rubbing her sweaty flank as one of her legs twitches excitedly.");
 		output("\n\n<i>“I could- nngh! Say, the same, for yours,”</i> she pants through gritted teeth before her hindquarters start shaking again.");
