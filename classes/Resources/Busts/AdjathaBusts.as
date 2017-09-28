@@ -471,6 +471,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/pexiga_bimbo.png", mimeType = "image/png")]
 		public var Bust_PEXIGA_BIMBO:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/broodmother.png", mimeType = "image/png")]
+		public var Bust_PREGRASK:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/quenton.png", mimeType = "image/png")]
 		public var Bust_QUENTON:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/quenton_nude.png", mimeType = "image/png")]
@@ -560,6 +563,11 @@ package classes.Resources.Busts
 		public var Bust_STEPH_6:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/steph_6_nude.png", mimeType = "image/png")]
 		public var Bust_STEPH_6_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/syri.png", mimeType = "image/png")]
+		public var Bust_SYRI:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/syri_nude.png", mimeType = "image/png")]
+		public var Bust_SYRI_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/tamani.png", mimeType = "image/png")]
 		public var Bust_TAMANI:Class;
@@ -1067,6 +1075,9 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/petr_nude.png", mimeType = "image/png")]
 			public var Full_PETR_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/broodmother.png", mimeType = "image/png")]
+			public var Full_PREGRASK:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/pexiga.png", mimeType = "image/png")]
 			public var Full_PEXIGA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/pexiga_bimbo.png", mimeType = "image/png")]
@@ -1151,6 +1162,11 @@ package classes.Resources.Busts
 			public var Full_STEPH_6:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_6_nude.png", mimeType = "image/png")]
 			public var Full_STEPH_6_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/syri.png", mimeType = "image/png")]
+			public var Full_SYRI:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/syri_nude.png", mimeType = "image/png")]
+			public var Full_SYRI_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tam.png", mimeType = "image/png")]
 			public var Full_TAMTAM:Class;
