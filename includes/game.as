@@ -1048,6 +1048,13 @@ public function sleep(outputs:Boolean = true):void {
 				annoSleepWithIntroduce();
 				return;
 			}
+
+			// Azra interjection! - Req's Azra onboard, not professional, banged once, nobody else in bed, and a week since your last visit to the sharkgal. Also a dick that fits inside.
+			if(azraIsCrew() && !azraProfessional() && flags["AZRA_SEXED"] != undefined && (flags["CREWMEMBER_SLEEP_WITH"] == undefined || flags["CREWMEMBER_SLEEP_WITH"] == 0) && flags["AZRA_VISITED"] + (60*24*7) < GetGameTimestamp() && pc.hasCock() && pc.cockThatFits(azra.vaginalCapacity(0)) >= 0) 
+			{
+				neglectedAzraFunsies();
+				return;
+			}
 			
 			var interrupt:Boolean = false;
 			
