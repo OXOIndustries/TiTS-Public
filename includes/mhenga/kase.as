@@ -26,10 +26,10 @@ public function showKase(nude:Boolean = false):void
 public function kaseBustDisplay(nude:Boolean = false):String
 {
 	//Kase w/ broken arm in Pyrite suit 		= KASE
-	//Kase w/o broken arm in Pyrite suit 		= KASE_HEALED
+	//Kase w/o broken arm in Pyrite suit		= KASE_HEALED
 	//Kase w/ broken arm in SteeleTech suit 	= KASE_ST
-	//Kase w/o broken arm in SteeleTech suit 	= KASE_ST_HEALED
-	//Kase w/o broken arm nude 					= KASE_NUDE
+	//Kase w/o broken arm in SteeleTech suit	= KASE_ST_HEALED
+	//Kase w/o broken arm nude					= KASE_NUDE
 	
 	var sBust:String = "KASE";
 	
@@ -50,7 +50,7 @@ public function kaseAtBurts():Boolean
 public function kaseAtBurtsAddendum(btnSlot:int = 0):void
 {
 	if (flags["KASE_INTRO"] == undefined) output("\n\nLooking around, you manage to spot a familiar face; it's that kaithrit who sent you out to find a Pyrite satellite. He's sitting at a table all by his lonesome, and looking a little down, too.");
-	else output("\n\nKase is sitting all by himself at a nearby table, writing on his holopad while he waits for Pyrite to redeploy him off this jungle world. Maybe he could use some company… or a new job.");
+	else output("\n\nKase is sitting all by himself at a nearby table, writing on his holopad while he waits for Pyrite to redeploy him off this jungle world. Maybe he could use some company... or a new job.");
 	addButton(btnSlot, (flags["KASE_INTRO"] == undefined ? "PyriteBoy" : "Kase"), approachKase, undefined, "", "");
 }
 
@@ -100,7 +100,7 @@ public function kaseMenu():void
 	addButton(14, "Leave", mainGameMenu, undefined, "", "");
 }
 
-public function kaseAppearance(crew:Boolean = false):void
+public function kaseAppearance():void
 {
 	author("HugsAlright");
 	showKase();
@@ -117,7 +117,7 @@ public function kaseAppearance(crew:Boolean = false):void
 	output("\n\nA cute kitty if you've ever seen one.");
 	
 	processTime(3);
-	if(crew) kaseCrewMenu();
+	if(kaseIsCrew()) kaseCrewMenu();
 	else kaseMenu();
 	addDisabledButton(0, "Appearance", "Appearance", "You're looking at him right now.");
 }
@@ -142,23 +142,32 @@ public function kaseTalkMenu():void
 	addButton(14, "Back", kaseMenu, undefined, "", "");
 }
 
-public function kaseTalkHim():void
+public function kaseTalkHim(btnSlot:int = 0):void
 {
 	author("HugsAlright");
 	showKase();
 	clearOutput();
 	clearMenu();
 	
-	output("<i>“Me? Well, as you already know I work for Pyrite, but beyond that I guess I could tell you a bit about myself. That is, of course, if you want to hear,”</i> Kase explains, keeping his straight posture and looking at you expectantly.");
+	output("<i>“Me? Well, as you already know I "+(kaseIsCrew()?"used to ":"")+"work for Pyrite, but beyond that I guess I could tell you a bit about myself. That is, of course, if you want to hear,”</i> Kase explains, keeping his straight posture and looking at you expectantly.");
 	output("\n\nYou tell the pretty kitty " + (pc.isNice() ? "you'd love to learn some more about him, giving him an inviting smile as you do so" : "you wouldn't have asked if you didn't want to hear, rolling your eyes as you do so") + ".");
-	output("\n\n<i>“Right then,”</i> Kase begins, ready to delve into his stories, <i>“I was born on a colony, and a diverse one at that. So I grew up alongside many core races, ausar and humans especially. My parents, of course, were both kaithrit.”</i> His posture seems to slump a bit through explaining that, which he quickly notices and corrects, sitting up straight again before he continues, <i>“Growing up, I found I always had a knack for math and organization, and I enjoyed them both quite a bit. So, when the time finally came, I ended up getting a job working in that field. You see, Pyrite Industries was very influential on our planet, and some of my family worked for them, so it was relatively easy for me to get work in their logistics division.”</i> Kase once again seems to shrink in his seat, <i>“And that's how I ended up here, and why I'm <i>still</i> here, with a broken arm.”</i>");
-	output("\n\n" + (pc.isAss() ? "Eh, you've been through worse. " : "Wow, sounds like a bad deal to you. ") + "Maybe you could ask him about his work later.");
-	output("\n\n<i>“But, other than that, I don't believe I'm all that interesting,”</i> he continues, gesturing with his one good arm, <i>“I like to run calculations and organize in my spare time, normally with some music. Slow and melodic songs help me to think more clearly.”</i>");
+	output("\n\n<i>“Right then,”</i> Kase begins, ready to delve into his stories, <i>“I was born on a colony, and a diverse one at that. So I grew up alongside many core races, ausar and humans especially. My parents, of course, were both kaithrit.”</i> His posture seems to slump a bit through explaining that, which he quickly notices and corrects, sitting up straight again before he continues, <i>“Growing up, I found I always had a knack for math and organization, and I enjoyed them both quite a bit. So, when the time finally came, I ended up getting a job working in that field. You see, Pyrite Industries was very influential on our planet, and some of my family worked for them, so it was relatively easy for me to get work in their logistics division.”</i> Kase"+(kaseIsCrew()?"'s posture seems to stiffen with confidence, <i>“And that's how I ended up on Mhen'ga, and how I ended up on your crew.”</i>":" once again seems to shrink in his seat, <i>“And that's how I ended up here, and why I'm <i>still</i> here, with a broken arm.”</i>"));
+	if(kaseIsCrew()) output("\n\nHe smiles warmly after saying that, seems like Kase is pretty happy with his new job.");
+	else output("\n\n" + (pc.isAss() ? "Eh, you've been through worse. " : "Wow, sounds like a bad deal to you. ") + "Maybe you could ask him about his work later.");
+	output("\n\n<i>“But, other than that, I don't believe I'm all that interesting,”</i> he continues, " + (flags["KASE_HEALED"] == undefined ? "gesturing with his one good arm, " : "") + "<i>“I like to run calculations and organize in my spare time, normally with some music. Slow and melodic songs help me to think more clearly.”</i>");
 	
 	processTime(5 + rand(5));
 	
-	kaseTalkMenu();
-	addDisabledButton(0, "Him");
+	if(kaseIsCrew())
+	{
+		kaseCrewTalkMenu();
+		addDisabledButton(btnSlot, "Him");
+	}	
+	else 
+	{
+		kaseTalkMenu();
+		addDisabledButton(0, "Him");
+	}
 }
 
 public function kaseTalkWork():void
@@ -168,7 +177,7 @@ public function kaseTalkWork():void
 	clearOutput();
 	clearMenu();
 	
-	output("<i>“Working for Pyrite wasn't terrible, at first anyway,”</i> Kase states, <i>“I enjoyed running numbers, keeping track of supplies arriving on and shipping off the planet, but then, after some promotions they started shipping <i>me</i> off-world.”</i> The kitty boy slumps and shakes his head, <i>“They sent me to rush worlds to recover lost shipments, take over logistic branches when their original managers got injured by some forsaken rush-monster. Then, like you saw first hand here, they send me into the wilderness to find lost satellites... to get injured by forsaken rush-monsters. Now they have me waiting here in this… shanty town for redeployment to the next issue I am privileged to fix. <b>I believe I'll only be here for another ");
+	output("<i>“Working for Pyrite wasn't terrible, at first anyway,”</i> Kase states, <i>“I enjoyed running numbers, keeping track of supplies arriving on and shipping off the planet, but then, after some promotions they started shipping <i>me</i> off-world.”</i> The kitty boy slumps and shakes his head, <i>“They sent me to rush worlds to recover lost shipments, take over logistic branches when their original managers got injured by some forsaken rush-monster. Then, like you saw first hand here, they send me into the wilderness to find lost satellites... to get injured by forsaken rush-monsters. Now they have me waiting here in this... shanty town for redeployment to the next issue I am privileged to fix. <b>I believe I'll only be here for another ");
 	if (GetGameTimestamp()-(1*24*60) < flags["KASE_TIMER"]) output("week");
 	else if (GetGameTimestamp()-(2*24*60) < flags["KASE_TIMER"]) output("6 days"); 
 	else if (GetGameTimestamp()-(3*24*60) < flags["KASE_TIMER"]) output("5 days"); 
@@ -178,7 +187,7 @@ public function kaseTalkWork():void
 	else output("!KASE SHOULDN'T BE HERE MAN!");
 	output("before that happens, though.</b>”</i>");
 	output("\n\nHe lets out a long sigh and rubs his broken arm for a moment, leading you to ask him if he's thought of getting work anywhere else.");
-	output("\n\n<i>“Oh, believe me I have,”</i> the Kaithrit continues, straightening his posture, <i>“But I'm under contract, and until I find someone who is willing to buy that contract, or this contract ends, I am stuck with Pyrite and their… wonderful medical policies.”</i>");
+	output("\n\n<i>“Oh, believe me I have,”</i> the Kaithrit continues, straightening his posture, <i>“But I'm under contract, and until I find someone who is willing to buy that contract, or this contract ends, I am stuck with Pyrite and their... wonderful medical policies.”</i>");
 	output("\n\nYou ask him what he means by that.");
 	output("\n\n<i>“It means each time I enter a rush-system, I have to sign a waiver that renders Pyrite's health incapable of covering any injuries I receive while out in the field, leaving me nursing this poor arm on my payroll,”</i> he explains, emphasizing his injured limb. ");
 	output("\n\nSounds like a pretty shit deal.");
@@ -190,7 +199,7 @@ public function kaseTalkWork():void
 	addDisabledButton(1, "Work");
 }
 
-public function kaseTalkArm():void
+public function kaseTalkArm(btnSlot:int = 0):void
 {
 	author("HugsAlright");
 	showKase();
@@ -203,15 +212,23 @@ public function kaseTalkArm():void
 	else 
 	{
 		output("You look down to see his arm is free of its sling, and a very happy kaithrit above that, but regardless, you ask him how he's feeling.");
-		output("\n\n<i>“All better!”</i> Kase exclaims, <i>“Why, I feel like I could have gone after that satellite myself!”</i>");
+		output("\n\n<i>“All better!”</i> Kase exclaims, " + (kaseIsCrew() ? "<i>“And now I can do my job to the fullest of my abilities, Captain.”</i>" : "<i>“Why, I feel like I could have gone after that satellite myself!”</i>") + "");
 		output("\n\nYou smile and tell him you're glad his arm's okay.");
 		flags["KASE_HEALED"] = 1;
 	}
 	
 	processTime(2 + rand(2));
 	
-	kaseTalkMenu();
-	addDisabledButton(2, "Arm");	
+	if(kaseIsCrew())
+	{
+		kaseCrewTalkMenu();
+		addDisabledButton(btnSlot, "Arm");
+	}	
+	else 
+	{
+		kaseTalkMenu();
+		addDisabledButton(2, "Arm");
+	}
 }
 
 public function kaseStressRelief():void
@@ -225,7 +242,7 @@ public function kaseStressRelief():void
 	output("\n\n<i>“Oh, uhm,”</i> he stammers for a moment, <i>“did you need something, " + pc.mf("sir", "ma'am") + "?”</i>");
 	output("\n\nYou tell him that you don't need anything from him, but you thought you could give him a little something to make his arm feel a bit better, and quickly reach a hand down to grab at the visible bulge in his armor's groin.");
 	output("\n\nHe gasps with surprise as your hand makes contact with his still clothed cock, shoulders jumping before he settles down, slumping a bit in his seat.");
-	output("\n\n<i>“Y-yes,”</i>  he stutters, breathing heavy, <i>“I-I think the release of endorphins from some intimate contact should dilute the pain…”</i>");
+	output("\n\n<i>“Y-yes,”</i>  he stutters, breathing heavy, <i>“I-I think the release of endorphins from some intimate contact should dilute the pain...”</i>");
 	output("\n\nYou smile, wondering if Kase's sudden loss of composure is due to lust or surprise, but all the same, you put an arm over his shoulder and reach up to the zipper of his armoured suit with another.");
 	output("\n\nThe kaithrit's breath goes ragged as you start to pull downward, parting his clothing and revealing the pale skin of his smooth chest all the way down to his svelte tummy until the zipper reaches his groin. Then it's just a little trip south before you finally free Kase's cat-cock, letting his slowly stiffening tool pop free of its confines with a relieved sigh, already radiating warmth onto your palm and pulsing with each beat of the kitty's heart. ");
 	output("\n\nIt's hard to tell his length now, but you're sure Kase has a thick shaft, one you quickly wrap your fingers around, drawing quivering and stuttering noises from the kaithrit. You lean into him, and once you've got a good grip on his manhood, you start to stroke, gently fondling his cock to hardness. Grinning, you look at his face, getting a good look at his beet-red and lust-ridden visage, but he keeps his gaze downwards, focusing on the hand jerking him off.");
@@ -239,6 +256,7 @@ public function kaseStressRelief():void
 	output("\n\nYou smile and tell him he's welcome, then slip out from his side of the table and back to yours, leaving the kitty boy with a red face, heaving chest, and hopefully a better-feeling arm.");
 	
 	flags["KASE_STRESS"] = 1;
+	IncrementFlag("KASE_SEXED");
 	pc.lust(33);
 	processTime(15+rand(5));
 	
@@ -253,7 +271,7 @@ public function kaseJoinCrew():void
 	clearMenu();
 	
 	output("Looking at Kase's situation, you wonder if you could buy his contract, leading you to tell him about the ship you own, and ask him if he'd be interested in joining your crew as a logistics officer. ");
-	output("\n\nHis eyes widen at the suggestion. <i>“R-really?”</i> he exclaims in shock, right before his surprise turns to disappointment, <i>“I would love to get out of Pyrite and off this planet more than anything else, but that unfortunately doesn't change the fact that I'm still under contract…”</i>");
+	output("\n\nHis eyes widen at the suggestion. <i>“R-really?”</i> he exclaims in shock, right before his surprise turns to disappointment, <i>“I would love to get out of Pyrite and off this planet more than anything else, but that unfortunately doesn't change the fact that I'm still under contract...”</i>");
 	
 	if (pc.credits >= 5000) addButton(0, "BuyContract", kaseBuyContract, undefined, "Buy Contract", "Offer to buy his contract. It'll probably cost you about 5000 credits.");
 	else addDisabledButton(0, "BuyContract", "Buy Contract", "You don't have the 5000 credits needed for the buy out.");
@@ -270,12 +288,12 @@ public function kaseBuyContract():void
 	clearMenu();
 	
 	output("You smile and pull out your Codex and get ready to fill out some paperwork and transfer some credits, telling him you'd be happy to buy his contract.");
-	output("\n\n<i>“You're… You're being serious aren't you?”</i> he asks, slitted pupils wide and fluffy green ears perking up.");
+	output("\n\n<i>“You're... You're being serious aren't you?”</i> he asks, slitted pupils wide and fluffy green ears perking up.");
 	output("\n\nGiving him a nod, you gesture towards his datapad, which has Kase scrambling for the small holographic.");
 	output("\n\n<i>“Here,”</i> he says, turning the holopad on and looking down at it, <i>“I'll forward you some forms you'll need to fill out, and then we can get to the nitty-gritty with the credits.”</i>");
 	output("\n\n<b>Some amount of paperwork later...</b>");
-	output("\n\n<i>“And that's everything,”</i> Kase says, finally putting down his datapad, <i>“That's it then, isn't it? I'm finally done with Pyrite… it's honestly hard to believe after all these years.”</i> He closes his eyes and takes a deep breath, remaining silent for a moment before opening his eyes again and looking at you, <i>“Alright, I I'll pack my things and head off to your ship straight away.”</i>");
-	output("\n\nWith that, he stands from his seat and goes to make his way out of the bar. Before he does, though, he turns back to you, and raises his good arm to you in a salute, <i>“Captain…”</i> Then, he's off again, back to your ship…");
+	output("\n\n<i>“And that's everything,”</i> Kase says, finally putting down his datapad, <i>“That's it then, isn't it? I'm finally done with Pyrite... it's honestly hard to believe after all these years.”</i> He closes his eyes and takes a deep breath, remaining silent for a moment before opening his eyes again and looking at you, <i>“Alright, I I'll pack my things and head off to your ship straight away.”</i>");
+	output("\n\nWith that, he stands from his seat and goes to make his way out of the bar. Before he does, though, he turns back to you, and raises his good arm to you in a salute, <i>“Captain...”</i> Then, he's off again, back to your ship...");
 	
 	pc.credits -= 5000;
 	flags["KASE_CREW"] = 1;
@@ -292,12 +310,12 @@ public function kaseHireSteeleTech():void
 	clearMenu();
 	
 	output("You lean forward and ask him if he'd like to work for SteeleTech on your ship. ");
-	output("\n\n<i>“SteeleTech?”</i> he says, slitted pupils wide, looking almost bewildered, <i>“You could get me a job with SteeleTech? I mean their health policy alone makes them a better employer than Pyrite…”</i>");
+	output("\n\n<i>“SteeleTech?”</i> he says, slitted pupils wide, looking almost bewildered, <i>“You could get me a job with SteeleTech? I mean their health policy alone makes them a better employer than Pyrite...”</i>");
 	output("\n\nGrinning, you tell him you have quite the in with SteeleTech, and one of their employees on your ship.");
-	output("\n\n<i>“You're… You're being serious aren't you?”</i> he asks, fluffy green ears perking up.");
+	output("\n\n<i>“You're... You're being serious aren't you?”</i> he asks, fluffy green ears perking up.");
 	output("\n\nYou tell him that if he's interested he should head to your ship at the docks and talk to the white-haired ausar aboard your craft, Anno Dorna.");
 	output("\n\nThe kaithrit hurriedly stands out of his seat, <i>“Yes, I'll gather my things and head there right now! I thank you from the depths of my heart for this opportunity, " + pc.mf("sir", "ma'am") + ".”</i>");
-	output("\n\nWith that, he goes to make his way out of the bar. Before he does, though, he turns back to you, and raises his good arm to you in a salute, <i>“Captain…”</i> Then, he's off again, back to your ship…");
+	output("\n\nWith that, he goes to make his way out of the bar. Before he does, though, he turns back to you, and raises his good arm to you in a salute, <i>“Captain...”</i> Then, he's off again, back to your ship...");
 	
 	flags["KASE_CREW"] = 1;
 	flags["KASE_STEELETECH"] = 1;

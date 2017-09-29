@@ -1078,6 +1078,13 @@ public function sleep(outputs:Boolean = true):void {
 						flags["BESS_SLEEPWITH_DOMORNING"] = 1;
 					}
 					break;
+				case "KASE":
+					if (kaseIsCrew() && rand(3) == 0)
+					{
+						kaseCrewSleep();
+						interrupt = true;
+					}
+					break;
 				// No partner selected.
 				default:
 					//CELISE NIGHT TIME BEDTIMEZ
@@ -1138,6 +1145,11 @@ public function sleep(outputs:Boolean = true):void {
 		if (flags["BESS_SLEEPWITH_DOMORNING"] == 1)
 		{
 			addButton(0, "Next", bessMorningEvents);
+			return;
+		}
+		if (flags["KASE_SLEEPWITH_DOMORNNING"] == 1)
+		{
+			addButton(0, "Next", kaseCrewWake, undefined, "", "");
 			return;
 		}
 		if (tryProcDommyReahaTime(minPass - rand(301)))
