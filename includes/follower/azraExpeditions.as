@@ -110,7 +110,7 @@ public function toTheSlutGoo():void
 	if(hasGooArmorOnSelf())
 	{
 		output("\n\n<i>“Ooh-ooh! I want yummy cummy! Me too! Me too!”</i>");
-		if(target.armor is GooArmor) output(" Your goo armor squirms around your body");
+		if(pc.armor is GooArmor) output(" Your goo armor squirms around your body");
 		else output(" A familiar item in your inventory exclaims");
 		output(". Great, she even has [goo.name] craving for cum as well...");
 		flags["DOUBLE_GOO_SLUT_MET_GOO_ARMOR"] = 1;
