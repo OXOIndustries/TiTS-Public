@@ -55,6 +55,7 @@ Romancing/Recruiting the sharkMILF!
 	AZRA_SEXED 				Count of times sexual acts done.
 	AZRA_SEX_KNOWN			1 if you know about Azra's ween & cunt.
 	AZRA_DOCKED				# of times hyper docking has been done.
+	AZRA_THIGHTFROTTED		# of times done the hyper thighjob shower scene.
 
 	AZRA_BOYFRIEND			1 if Azra calls you her boyfriend/grilfriend, -1 if not.
 	AZRA_MHENGAED			1 if smoochy, -1 if chose nonsmoochy. Use azraProfessional() to check!

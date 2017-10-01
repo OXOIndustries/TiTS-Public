@@ -2346,10 +2346,138 @@ public function followAzraForFirstTimeBango():void
 	processTime(10);
 	pc.lust(15);
 	clearMenu();
-	if(pc.hasCock()) addButton(0,"FuckHerCunt",penisRouter,[fuckAzrasCuntPussy1stTimeEverytime,azra.vaginalCapacity(0),false],"Fuck Her Cunt","Give Azra’s pussy the fucking it so clearly needs.");
-	else addDisabledButton(0,"FuckHerCunt","Fuck Her Cunt","You need an appropriately sized penis for this.");
+	if(pc.hasCock()) 
+	{
+		addButton(0,"FuckHerCunt",penisRouter,[fuckAzrasCuntPussy1stTimeEverytime,azra.vaginalCapacity(0),false],"Fuck Her Cunt","Give Azra’s pussy the fucking it so clearly needs.");
+		if(pc.biggestCockVolume() > azra.vaginalCapacity(0)) addButton(2,"Thighs&Frot",thighsAndFrottageGogogo,undefined,"Thighs & Frottage","Use her thighs to please your giant-sized dick, all while grinding it against her smaller member.");
+		else addDisabledButton(2,"Thighs&Frot","Thighs&Frot","You need an absolutely enormous penis in order to do this.");
+	}
+	else 
+	{
+		addDisabledButton(0,"FuckHerCunt","Fuck Her Cunt","You need an appropriately sized penis for this.");
+		addDisabledButton(2,"Thighs&Frot","Thighs&Frot","You need a huge penis for this.");
+	}
 	if(pc.hasVagina()) addButton(1,"Tribbing",azraTribbyTribbyBangBang,undefined,"Tribbing","Rub pussies together in the way that only two females can.");
 	else addDisabledButton(1,"Tribbing","Tribbing","You need a vagina to rub against hers for this.");
+}
+
+//Thighs&Frot
+public function thighsAndFrottageGogogo():void
+{
+	clearOutput();
+	showAzra(true);
+	var x:int = pc.biggestCockIndex();
+	var len:Number = pc.cocks[x].cLength();
+	var cumQ:Number = pc.cumQ();
+	//Bimbo
+	if(pc.isBimbo())
+	{
+		output("<i>“Ummm, I think I’d probably split you in half if I shoved this dick inside you.”</i> You playfully shake your pole at her, splashing shower water every which way and thumping it noisily into the wall.");
+		if(annoIsCrew()) output("\n\nFrom elsewhere in the ship, you hear Anno’s voice holler, <i>“Keep it down!”</i>\n\n");
+		output(" Infinite fuckable possibilities spool through your oversexed mind until at least you settle on one: <i>“So I’m gonna shove this jizztank through your thighs and rub it on your cute lil sharky-dong till you cum... all... over me.”</i> Further thought is impossible with jizz on the brain, but you muddle through. <i>“And then I can cum on you.”</i>");
+	}
+	//Bro
+	else if(pc.isBro()) 
+	{
+		output("You look at the tree trunk between your legs, then back at Azra, then back at your dick. <i>“Won’t fit inside.”</i> After a moment’s consideration, you posit a solution. <i>“Your thighs.”</i>");
+		output("\n\n<i>“What?”</i> Azra asks.");
+		output("\n\nYou point at her smooth, soft-looking legs. <i>“I’ll fuck them.”</i> You step closer, putting your hand on her knee. <i>“It’ll feed good, ‘cause I’m so big it’ll be rubbing on your cute little girl-cock.”</i>");
+	}
+	//Else
+	else output("After a moment’s consideration, you offer. <i>“I doubt I’d fit inside, but I could definitely fuck your thighs.”</i> You eyeball her dripping dick and smile. <i>“Even grind it up against your dick until we cum all over each other.”</i>");
+	//Merge
+	if(flags["AZRA_THIGHTFROTTED"] == undefined && flags["AZRA_DOCKED"] == undefined)
+	{
+		output("\n\nAzra rocks back as if slapped, her hand over her mouth. <i>“Oh... oh my.”</i> The wide orbs of her violet eyes track your weighty member as you adjust to better fit inside the shower with her. <i>“That’s... obscene.”</i> She bites her lip, leaning closer to examine your cock. <i>“This isn’t the kind of thing I expected to encounter in the shower. Maybe out on the surface, forced by some uncouth... lewd alien.”</i> She pauses, chest heaving. A warm palm falls upon the top of your dick. <i>“Yet you deserve better than judgement, saddled with your monstrous member and its... potent desires.”</i>");
+		output("\n\nThe more she talks, the more of your gargantuan phallus her hand explores. A fingertip traces the arches and forks of one straining vein, curiously dancing back and forth as the suula’s excitement overwhelms her innocence. <i>“");
+		if(pc.isBimbo()) output("Like, that means yes, right?");
+		else output("So you’ll do it?");
+		output("”</i>");
+	}
+	else
+	{
+		output("\n\nAzra slyly covers her mouth and steps back, feigning offense. <i>“Why I never!”</i> The wide orbs of her violet eyes track your weighty member as you adjust to better fit both it and Azra inside the shower. <i>“That’s... obscene.”</i> Giggling, she bites her lip, leaning closer to examine it in detail. <i>“To request such a lewd act from me of all people...”</i> She pauses, chest heaving. A warm palm falls upon the top of your dick. <i>“You’re going to ruin me for " + pc.mf("other boys","men the galaxy over") + ". You and that monstrously potent fuckstick of yours.”</i>");
+		output("\n\nThe more she talks, the more of your gargantuan phallus her hand explores. A fingertip traces the arches and forks of one straining vein, playfully dancing back and forth as the suula’s excitement overwhelms her feigned innocence. <i>“");
+		if(pc.isBimbo()) output("Like, that means yes, right?");
+		else output("So you’ll do it?");
+		output("”</i>");
+	}
+
+	output("\n\nAzra nods, her other palm coming to rest alongside the first. One thumb strokes back and forth while its partner gently squeezes in disbelief. The suula seems to expect it to flicker and fade away, a hardlight projection too large to be anything but a detailed render of a teenager’s wet dream. A slight smile crooks the corner of her mouth. <i>“You are a wonder, [pc.name] Steele. Only you could accomplish so much, yet have the body of an adult holo star.”</i> She gives you one long stroke, base to tip");
+	if(cumQ >= 1000) output(", milking a long flow of pre-cum out to lubricate your dick.");
+	else output(", holding you under her leaky shaft to paint you in her freely leaking pre-cum.");
+	output(" <i>“Oh... look at how it shines!”</i> A note of girlish excitement creeps into her voice, odd given her motherly form. <i>“How should I do this?”</i>");
+	output("\n\n<i>“Lie down,”</i> you instruct, pointing to the floor. <i>“Legs up. I’ll do the rest.”</i>");
+	output("\n\nAzra smears the pre around, mixing it with the water until your whole [pc.cockNoun " + x + "] is gleaming. <i>“Okay.”</i> She lets go regretfully and eases herself down onto her back, tail sticking straight down and legs in the air, tightly closed. They do nothing to hide the weighty mass of her balls, bulging out above her tail, though they do give you a lovely view of the space you’ll soon be fucking.");
+	output("\n\nA shiver of excitement runs down your [pc.cock " + x + "] as you step into position. Hands on the siren’s lovely ankles, you let the weight of your obviously enhanced genitalia fall against her legs. A forceful tug pulls the nervous hermaphrodite’s legs apart and flop the heavy length into the middle. You can feel her cock, just under yours. Maybe two feet of turgid suula shaft that throbs back at your touch, leaking all over your skin.");
+	output("\n\nAzra gasps, <i>“It’s hot!”</i> and blushes shyly, looking to the side.");
+	output("\n\n<i>“So are you,”</i> you counter, pushing her ankles back together so that her soft thighs close around your cock in a warm vice. This time, it’s your turn to gasp at the sensation. Somehow, it’s better than contact with her comparatively diminutive dick. You need the extra stimulation, you realize. Frottage would never be enough, not as Azra is now. Thighs, arms, maybe even her whole body - you need more than a standard endowment to see to your release.");
+	output("\n\nFor her, it must be amazing. You can see her panting and biting at one of her knuckles to stifle a moan. She’s pinned beneath your mast, every inch of her hermhood sandwiched between her supple tummy and your pornographicly large prick. Her tendrils writhe, and the shaft itself throbs achingly, making your far bigger dick wobble to the beat of her heart. It’s cute.");
+	output("\n\n<i>“Uhhh... [pc.name]?”</i> Azra whines, suddenly flushed two shades darker. Her nipples seem harder, all of a sudden");
+	if(len >= 40) output(", now that your dick is between them, forcing them to point to the side");
+	output(".");
+	output("\n\nYou grunt, rocking back to drag your cock through the siren’s perfect, golden thighs. The importance of that friction seems paramount, in this moment. You want it... and you don’t want it to stop.");
+	output("\n\nAzra whimpers and twists, muscles flexing against your tumescent pole, her two-foot cock grinding hard into your underside, sliding back and forth along your sensitive urethra. With every stroke, that area seems a little more sensitive, your shaft itself a little harder. The water is warmer, and the siren’s thighs are curtains of delight, providing you with inhuman levels of pleasure");
+	if(pc.isTreated()) output(", just the sort of thing you’ve craved since taken the Treatment.");
+	else if(pc.isBimbo()) output(", just the sort of thing you crave, your rewired brain thrilling at the enhanced pleasure centers finally getting use.");
+	else output(".");
+
+	output("\n\n<i>“[pc.name]! I’m sorry!”</i> Azra cries. She screams out a moan and grabs her tits, squeezing them tightly her cock’s drooling increases into pulses of eager leakage. <i>“I didn’t mean... ugh! My venom...”</i> Her tendrils swirl against your hypersensitive skin like tiny fingertips, leaving burning arcs of bliss in their wake.");
+	output("\n\nAphrodisiacs! You should probably have a feeling about the chemicals her body is feeding is you: outrage, disgust, or simple violated trust. Instead, you’re busy feeling the pleasure of making love to a suula matron, watching her soaked wings weakly tremble in the water. You thrust through her thighs until your [pc.cockHead " + x + "] ");
+	if(len >= 66) output("is jutting over her shoulder");
+	else if(len >= 53) output("is kissing her lips");
+	else if(len >= 40) output("is buried in her tits");
+	else output("is aimed squarely at her underboob");
+	output(", aching and trembling. White spills out from underneath it as Azra cums, spreading into a sticky web as it oozes down her thighs.");
+
+	output("\n\nYour [pc.cum] ");
+	if(len >= 66) output("fires into the wall, saving Azra from a direct facial by virtue of your raw length");
+	else if(len >= 53) output("fires directly into her wide-open mouth. Azra responds by trying to drink the offered goo, wrapping her arms around the [pc.cockHead " + x + "] and pinning it into her boobs.");
+	else output("fires into her silky cleavage. Azra responds by cupping her arms around her boobs to press them tighter, squeezing out dollops of [pc.cumColor] release.");
+	output(" The suula is almost too affectionate. Even when her ankles slip from your weakening hands, she holds her legs together.");
+
+	output("\n\nAny restraint the suula once had is completely obliterated as she unashamedly works her body against your tremendous endowment, her tongue lolling. She grabs your dick and milks it for every drop you’ll give");
+	if(cumQ >= 30000) output(", even when the tub itself seems like it will overflow.");
+	else if(cumQ >= 500 && len >= 66 || len < 53) output(", even when her whole body seems decorated in [pc.cumGem]s.");
+	else output(".");
+	output(" Azra is moaning, and whimpering, and cumming like crazy.");
+	output("\n\nHer tail thrashes, sweeping your [pc.legs] out from under you, and you crash to the ground, oozing [pc.cumNoun].");
+
+	processTime(30);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",thighFrot2,[x,cumQ]);
+}
+
+public function thighFrot2(args:Array):void
+{
+	clearOutput();
+	showAzra(true);
+	x = args[0];
+	var cumQ:Number = args[1];
+	output("<i>“Are you alright?”</i> Azra crawls up onto you, brushing a ");
+	if(cumQ >= 500 && pc.cocks[x].cLength() >= 66) output("despoiled");
+	else output("dripping wet");
+	output(" lock of hair aside so that she can check your eyes. <i>“I’m sorry! I couldn’t control it!”</i>");
+	output("\n\nAside from a sore ass and a cock that won’t seem to go soft for the moment, you’re doing okay. You give the concerned hermaphrodite a thumbs up.");
+	output("\n\nAzra babbles, helping you to your feet, the water washing her cum from the bottom of your [pc.cock " + x + "]. <i>“I should be better at controlling it, but sometimes I get too excited and they sting everything. Even me.”</i> The nine-foot tall siren looks exceedingly silly, acting as ashamed as a first year school child. <i>“That’s why I’m still kind of hard, and why my knees won’t stop wobbling...”</i>");
+	output("\n\nYou wave off her worries. <i>“I was the one thrusting my cock against yours. You’d think the size would afford me some resistance...”</i>");
+	output("\n\nWings lifting, Azra giggles. <i>“The size of your endowments likely made it more effective. I can only imagine the hormone cascade it set off in you.”</i> She presses close, snuggling into you. <i>“Let’s clean up this mess... and you can see about talking me into trying this again later.”</i>");
+	processTime(55);
+	IncrementFlag("AZRA_SEXED");
+	IncrementFlag("AZRA_THIGHTFROTTED");
+	if(flags["AZRA_SEXED"] == 1)
+	{
+		pc.createStatusEffect("Azra CD");
+		pc.setStatusMinutes("Azra CD",10*60);
+	}
+	else 
+	{
+		pc.createStatusEffect("Azra Sex CD");
+		pc.setStatusMinutes("Azra Sex CD",24*60);
+	}
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //FuckHerCunt
