@@ -2348,7 +2348,8 @@ public function followAzraForFirstTimeBango():void
 	clearMenu();
 	if(pc.hasCock()) 
 	{
-		addButton(0,"FuckHerCunt",penisRouter,[fuckAzrasCuntPussy1stTimeEverytime,azra.vaginalCapacity(0),false],"Fuck Her Cunt","Give Azra’s pussy the fucking it so clearly needs.");
+		if(pc.cockThatFits(azra.vaginalCapacity(0)) >= 0) addButton(0,"FuckHerCunt",penisRouter,[fuckAzrasCuntPussy1stTimeEverytime,azra.vaginalCapacity(0),false],"Fuck Her Cunt","Give Azra’s pussy the fucking it so clearly needs.");
+		else addDisabledButton(0,"FuckHerCunt","FuckHerCunt","You do not have an appropriately sized penis for this.");
 		if(pc.biggestCockVolume() > azra.vaginalCapacity(0)) addButton(2,"Thighs&Frot",thighsAndFrottageGogogo,undefined,"Thighs & Frottage","Use her thighs to please your giant-sized dick, all while grinding it against her smaller member.");
 		else addDisabledButton(2,"Thighs&Frot","Thighs&Frot","You need an absolutely enormous penis in order to do this.");
 	}
