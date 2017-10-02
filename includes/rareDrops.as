@@ -32,6 +32,7 @@ public function genericRareDrops(loot:Array):Array
 				if(!CodexManager.entryUnlocked("Fuck the System")) tempLoot.push(new FuckTheSystem());
 				if(!CodexManager.entryUnlocked("Stolen Goods")) tempLoot.push(new StolenGoods());
 				if(!CodexManager.entryUnlocked("Becoming One...")) tempLoot.push(new BecomingOneOfTheGirls());
+				
 				break;
 			case "myrellion":
 				if(!CodexManager.entryUnlocked("Captured...")) tempLoot.push(new CapturedByTheDemons());
@@ -53,6 +54,11 @@ public function genericRareDrops(loot:Array):Array
 	}
 	//Easter special!
 	if(isEaster() && rand(100) <= threshold+1) tempLoot.push(eggSelect());
+	//Bonus special TF items 15% of the time.
+	if(planet == "tarkus" && rand(100) <= 15)
+	{
+		tempLoot.push(new SlutShroom());
+	}
 
 	//Add one item from tempLoot to loot.
 	if(tempLoot.length > 0) loot.push(tempLoot[rand(tempLoot.length)]);

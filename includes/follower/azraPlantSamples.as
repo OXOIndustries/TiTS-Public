@@ -56,6 +56,8 @@ public function azraPlantSamples(back:Boolean = false):void
 	}
 	clearMenu();
 	addButton(0,"Fuck Lillies",approachFuckLillies);
+	if(flags["AZRA_TARKUSED"] == 1) addButton(1,"Slutshrooms",slutShroomApproach);
+	else addDisabledButton(1,"Undiscovered","Undiscovered","You have not yet saved this plant.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -188,4 +190,36 @@ public function rideDatFuckLily():void
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",fuckFlowerEpilogue);
+}
+
+public function slutShroomApproach():void
+{
+	clearOutput();
+	showName("\nSLUTSHROOMS");
+	output("The pink-colored mushrooms, so-called ‘slutshrooms’ have taken to captivity with gusto. Azra has them growing in a bed of iron-enriched soil, kept moist by a steady stream of mist from a climate simulation unit. A holographic display at the base of the planter reads, <i>“Scortum Duonus.”</i> Azra wasted no time in naming her discoveries. Further notes expound that preliminary tests reveal them to be non-toxic, if unpredictable.");
+	output("\n\nPotential effects on ingestion include increased vaginal wetness, undue vaginal secretions, enhanced libido, and modification of certain neural structures in the brain (pending further research). ");
+	if(pc.statusEffectv1("Slutshroom CD") >= 4) output("<b>Azra has left a note telling you to leave her samples some time to recover from your previous harvests.</b>");
+	else if(!pc.hasVagina()) output("No point in taking them without any sort of vagina, you suppose.");
+	else output("You suppose you could pick one if you wanted to get a little slicker.");
+	processTime(2);
+	clearMenu();
+	if(pc.statusEffectv1("Slutshroom CD") >= 4) addDisabledButton(0,"Pick One","Pick One","You should give the plants a break before taking any more.");
+	else addButton(0,"Pick One",pickASlootShroom);
+	addButton(14,"Back",azraPlantSamples,true);
+}
+
+//Pick one
+public function pickASlootShroom():void
+{
+	clearOutput();
+	showName("\nYOINK");
+	output("You grab one of the mushrooms by the stalk, and it immediately breaks off in your hand. Azra surely had a devil of a time collecting these without damaging them herself. Perhaps a new one will grow back from the abandoned root system?\n\n");
+	processTime(1);
+	//After taking four, needs a 4 day CD. CD resets on each pick.
+	if(!pc.hasStatusEffect("Slutshroom CD")) pc.createStatusEffect("Slutshroom CD",1);
+	else pc.addStatusValue("Slutshroom CD",1,1);
+	pc.setStatusMinutes("Slutshroom CD",60*24*4);
+	//Standard item collection here
+	eventQueue.push(slutShroomApproach);
+	quickLoot(new SlutShroom());
 }

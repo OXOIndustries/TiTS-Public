@@ -9754,7 +9754,7 @@
 		}
 		public function isSquirter(arg: int = -1): Boolean {
 			if (!hasVagina()) return false;
-			if (arg >= (totalVaginas() - 1)) return false;
+			if (arg > (totalVaginas() - 1)) return false;
 			if (arg < 0)
 			{
 				if(wettestVaginalWetness() >= 4) return true;
@@ -9786,12 +9786,11 @@
 			}
 			else
 			{
-				tempGirlCumMultiplier += vaginas[arg].wetness();
-				if (isSquirter(arg)) squirterBonus += vaginas[arg].wetness();
+				tempGirlCumMultiplier += vaginas[0].wetness();
+				if (isSquirter(0)) squirterBonus += vaginas[0].wetness();
 				girlCumAmount++;
 			}
 			// Scale values.
-			tempGirlCumMultiplier *= 1; // 1x per vagina's wetness level
 			girlCumAmount *= 5; // 5 ml produced per vagina
 			squirterBonus *= 10; // extra 10 mL produced per extra squirter bonus
 			// Estimate initial quantity.
@@ -9811,8 +9810,11 @@
 		{
 			while(arg > 0)
 			{
-				if(girlCumMultiplier() < 10) girlCumMultiplier(2);
-				else if(girlCumMultiplier() < 50) girlCumMultiplier(1);
+				if(girlCumMultiplier() < 100) girlCumMultiplier(4);
+				else if(girlCumMultiplier() < 500) girlCumMultiplier(3);
+				else if(girlCumMultiplier() < 1000) girlCumMultiplier(2);
+				else if(girlCumMultiplier() < 5000) girlCumMultiplier(1);
+				else girlCumMultiplier(0.5);
 				arg -= 2;
 			}
 		}
