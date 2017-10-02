@@ -2598,7 +2598,15 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			if(flags["SYRI_VIDEO_DELAY_TIMER"] == undefined) flags["SYRI_VIDEO_DELAY_TIMER"] = GetGameTimestamp();
 			else if(GetGameTimestamp() >= (flags["SYRI_VIDEO_DELAY_TIMER"] + 60*24*3)) goMailGet("syri_video");
 		}
-		
+		//Prai email stuff
+		if (flags["PRAI_EMAIL_NUMBER"] != undefined && GetGameTimestamp() >= (flags["PRAI_EMAIL_STAMP"] + 60*10))
+		{
+			if (MailManager.hasEntry("prai_email")) MailManager.deleteMailEntry("prai_email");
+			MailManager.addMailEntry("prai_email", praiEmailText, praiSubjectText, "Prai Ellit", "Prai@Xenotech.net", quickPCTo, quickPCToAddress);
+			goMailGet("prai_email");
+			flags["PRAI_EMAIL_NUMBER"] = undefined;
+			flags["PRAI_EMAIL_STAMP"] = undefined;
+		}
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette();
 	}
