@@ -2095,8 +2095,10 @@ public function talkToBessAboutHairStyle():void
 		{
 			optSlot++;
 		}
+		
 		// bessSetHairStyle() adds an article to some of the styles, so lets check both possibilities
-		if (options[optSlot] == bessHairStyle() || indefiniteArticle(options[optSlot]) == bessHairStyle())
+		var bhStyle:String = bessHairStyle();
+		if (InCollection(bhStyle, options[optSlot], indefiniteArticle(options[optSlot])))
 		{
 			addDisabledButton(i, StringUtil.toTitleCase(options[optSlot]));
 		}
