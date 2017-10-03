@@ -1008,7 +1008,7 @@ public function approachServantSera(introText:Boolean = false):void
 	
 	if(flags["SERA_TALKS_IMPREGNATE"] >= 2) addDisabledButton(6, "Impregnate", "Impregnate", "You and Sera have already agreed to make this possible.");
 	else if(!pc.hasGenitals()) addDisabledButton(6, "Impregnate", "Impregnate", "You will probably need genitals for this...");
-	else if((pc.hasCock() && !chars["SERA"].hasVagina()) || (pc.hasVagina() && !chars["SERA"].hasCock())) addDisabledButton(6, "Impregnate", "Impregnate", "Maybe if your genitals were compatible for breeding with hers, this would be possible...");
+	else if(!pc.isHerm() && (!chars["SERA"].hasGenitals() || (pc.hasCock() && !chars["SERA"].hasVagina()) || (pc.hasVagina() && !chars["SERA"].hasCock()))) addDisabledButton(6, "Impregnate", "Impregnate", "Maybe if your genitals were compatible for breeding with hers, this would be possible...");
 	else if(flags["SERA_DISABLE_IMPREGNATE"] != undefined && (flags["SERA_DISABLE_IMPREGNATE"] + 7) > days) addDisabledButton(6, "Impregnate", "Impregnate", "Better to wait a bit before bringing it up again.");
 	else if(!canImpregnateSera()) addDisabledButton(6, "Impregnate", "Impregnate", "Better to get a little further down the road with her before bringing it up.");
 	else addButton(6, "Impregnate", seraBitcheningImpregnate, undefined, "Impregnate", "Is that allowed by the terms of her contract?");
@@ -1581,6 +1581,7 @@ public function seraBitchTrainingTeaseFinale():void
 	
 	processTime(32);
 	
+	knockUpSeraChance();
 	chars["SERA"].orgasm();
 	pc.orgasm();
 	
@@ -3897,6 +3898,7 @@ public function seraBitcheningSexDoublePenetration():void
 	
 	processTime(30 + rand(11));
 	
+	knockUpSeraChance();
 	chars["SERA"].orgasm();
 	pc.orgasm();
 	

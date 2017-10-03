@@ -190,21 +190,21 @@ public function volunteerToGrayGooFeed():void
 		else if(pc.tallness >= 6*12 && pc.thickness > 70) output("enormous ");
 		else output("chubby ");
 
-		output(" frame. Your movements reflect in the cascading waves they generate, rippling across the silver slut’s hypersexualized frame until they crash into one another in viscous bursts of pleasure. You [pc.cocks] answer with ");
-		if(pc.cockTotal() == 1) output("its");
-		else output("their");
-		output("own thickened liquid");
+		output(" frame. Your movements reflect in the cascading waves they generate, rippling across the silver slut’s hypersexualized frame until they crash into one another in viscous bursts of pleasure. Your [pc.cocks] answer" + (pc.cockTotal() == 1 ? "s with its" : " with their") + " own thickened liquid");
 		if(pc.cockTotal() > 1) output("s");
 		output(", ");
-		if(pc.cumQ() < 8) output("leaking out");
-		else if(pc.cumQ() < 100) output("jetting out");
-		else if(pc.cumQ() < 1000) output("spraying out");
-		else if(pc.cumQ() < 5000) output("gushing out");
+		
+		var totalCum:Number = pc.cumQ();
+		
+		if(totalCum < 8) output("leaking out");
+		else if(totalCum < 100) output("jetting out");
+		else if(totalCum < 1000) output("spraying out");
+		else if(totalCum < 5000) output("gushing out");
 		else output("erupting out");
 		output(" the promised meal.");
-		if(pc.cumQ() < 8) output(" It vanishes into her with little fanfare and a few wondrous, blissful quivers. Nothing more.");
-		else if(pc.cumQ() < 100) output(" It vanishes into her, pulse by pulse, wicked up into her jiggling form with coos of delight. Not a single hint of your moisture remains on your flesh, so effectively does the greedy goo-ess suckle you.");
-		else if(pc.cumQ() < 1000) output(" It vanishes into her with audible squelches, fattening the greedy goo-ess with [pc.cumNoun] by the cupfull. She drinks deeply of it, so deeply that not a single drop of [pc.cumGem] fluid can flow back across your [pc.cockSkin].");
+		if(totalCum < 8) output(" It vanishes into her with little fanfare and a few wondrous, blissful quivers. Nothing more.");
+		else if(totalCum < 100) output(" It vanishes into her, pulse by pulse, wicked up into her jiggling form with coos of delight. Not a single hint of your moisture remains on your flesh, so effectively does the greedy goo-ess suckle you.");
+		else if(totalCum < 1000) output(" It vanishes into her with audible squelches, fattening the greedy goo-ess with [pc.cumNoun] by the cupfull. She drinks deeply of it, so deeply that not a single drop of [pc.cumGem] fluid can flow back across your [pc.cockSkin].");
 		else output(" It floods into her by the liter. The raw volume is so great as to bloat her already immense frame, her tits spilling farther and farther to your sides, her ass swelling up like cum-infused mountains. Her metallic luster fades a bit, infused with the [pc.cumColor] color of your [pc.cumNoun], and then she can drink no more. Spare spooge rolls down your thighs and puddles below. There’s so much, but you offer her more. You can scarcely stop the offering of your endless bounty any more than she can help but try (and fail) to keep up.");
 
 		output("\n\n<i>“Ooooh,”</i> twinned voices cry in delight, arching their conjoined back until the weighty orbs of the goo-slut’s tits are yanked off your [pc.cocks], exposing ");
@@ -216,9 +216,8 @@ public function volunteerToGrayGooFeed():void
 		
 		//Fork no new PG based on cumQ.
 		//Not Enough
-		if(pc.cumQ() < 100) 
+		if(totalCum < 100) 
 		{
-			var totalCum:Number = pc.cumQ();
 			output("\n\n<i>“But not enough.”</i> The right head nods agreeably. <i>“Need at least... three times that much.”</i> The left shakes, setting off a boob-quake. <i>“Four. Four cummies.”</i>");
 			output("\n\nUh oh.");
 			output("\n\nThey round on you in unison, the perfect silver body bending low, obscuring your view of anything but gargantuan tits and squishy, reflective body.");
@@ -2623,14 +2622,18 @@ public function fuckAzrasCuntPussy1stTimeEverytime5(xx:int):void
 	output(" you. <i>“Easy Cap’n. Suula venom is strong stuff.”</i> Her angular snout nuzzles into the nape of your neck. <i>“I didn’t want to, but sometimes it just happens in the moment. Even hits me too.”</i> She peppers you with kisses.");
 	output("\n\nYou pat her acceptingly. <i>“No harm done.”</i>");
 	processTime(10);
+	var cumQ:Number = pc.cumQ();
 	pc.orgasm();
 	pc.energy(-50);
 	clearMenu();
-	addButton(0,"Next",fuckAzrasCuntPussy1stTimeEverytime6,xx);
+	addButton(0,"Next",fuckAzrasCuntPussy1stTimeEverytime6,[xx, cumQ]);
 }
 
-public function fuckAzrasCuntPussy1stTimeEverytime6(xx:int):void
+public function fuckAzrasCuntPussy1stTimeEverytime6(arg:Array):void
 {
+	var xx:int = arg[0];
+	var cumQ:Number = arg[1];
+	
 	clearOutput();
 	showAzra(true);
 	//Knot
@@ -2649,7 +2652,6 @@ public function fuckAzrasCuntPussy1stTimeEverytime6(xx:int):void
 	}
 	//Merge
 	output("\n\nSliding out reveals a very, very well-lubed condom");
-	var cumQ:Number = pc.cumQ();
 	if(cumQ >= 15) output(" - and the balloon attached to the end of it");
 	output(".");
 	if(cumQ >= 7000) 

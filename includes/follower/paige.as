@@ -1084,7 +1084,7 @@ public function paigeStoryEpilogue():void
 {
 	clearOutput();
 	showPaige();
-	output("You both lose track of time as Paige retells her life story for you. You finally get the sense to glance at your codex for the hour, and, with some reluctance, pull yourself away from Paige. <i>“Yeah, we’ve been going at it for a while, haven’t we, sweet thing?”</i> she asks. <i>“You go on out of here. I’m sure there’s more to the universe for you than some yoga on Tavros. But I better see you back here again before you, you hear me?”</i>");
+	output("You both lose track of time as Paige retells her life story for you. You finally get the sense to glance at your codex for the hour, and, with some reluctance, pull yourself away from Paige. <i>“Yeah, we’ve been going at it for a while, haven’t we, sweet thing?”</i> she asks. <i>“You go on out of here. I’m sure there’s more to the universe for you than some yoga on Tavros. But I better see you back here again before you leave, you hear me?”</i>");
 	output("\n\nYou assure her that it’s a promise. She sees you off with a smile and, to your surprise, a quick kiss on your [pc.lipsChaste]. No tongue, but with some passion, and then you’re back on the residential deck of the Tavros station.");
 	// end scene (scene: Paige epilogue); place the PC one square outside of Paige’s Unit; advance the clock two hours
 	processTime(20);
@@ -1170,10 +1170,10 @@ public function paigeSexPrologue2():void
 		}
 		output(".");
 	}
-	output("\n\n<i>“There’s another reason why I took up yoga,”</i> she admits breathlessly. <i>“The stretching; the flowing; that’s all well and good and good for you. But it’s also pretty sexy. I love the way how I can flaunt my ass and my legs and call it a ‘stretch,’ and nobody will ask any questions. Some poses-for-two could have come from the Kama Sutra. I’m very nearly flexible enough to eat my own pussy. I know it’s possible");
+	output("\n\n<i>“There’s another reason why I took up yoga,”</i> she admits breathlessly. <i>“The stretching; the flowing; that’s all well and good and good for you. But it’s also pretty sexy. I love the way how I can flaunt my ass and my legs and call it a ‘stretch,’ and nobody will ask any questions. Some poses-for-two could have come from the Kama Sutra. I’m very nearly flexible enough to eat my own pussy. I know it’s possible.”</i>");
 	if(pc.hasCock()) 
 	{
-		output(".”</i> She fondles your [pc.cocks]");
+		output(" She fondles your [pc.cocks]");
 		if(!pc.isCrotchExposed()) output(" through your [pc.crotchCovers]");
 		output(" while she licks her lips. <i>“Sometimes, I kind of wish I had one of these. I wonder how it would feel? How would I taste?”</i>");
 	}
@@ -1188,13 +1188,13 @@ public function paigeSexPrologue2():void
 	//if {the PC has given Paige between one and three Honey Wines}
 	else if(flags["PAIGES_WINES"] <= 3)
 	{
-		output("You shown me you’re not such a slouch at yoga, but we’ll see if you can keep up with</i> these <i>stretches, sweet thing.");
+		output("You’ve shown me you’re not such a slouch at yoga, but we’ll see if you can keep up with </i>these<i> stretches, sweet thing.");
 	}
 	else output("Which you’d know if you hadn’t been skipping classes to buy me Honey Wine. But that’s okay. I’ll make sure we make up for lost time tonight.");
 	output("”</i>\n\n");
 
 	if(!pc.isChestExposed()) output("You finish removing your [pc.upperGarments], exposing your [pc.chest] and [pc.belly] to the warm air of her bedroom, just as ");
-	output("Paige is");
+	output("Paige is ");
 	//if {the PC is wearing lower garments}
 	if(!pc.isCrotchExposed() || !pc.isAssExposed()) output("done removing your [pc.crotchCovers], revealing your naked [pc.crotch] to her. She’s ");
 	output("finished talking – knowing there’s nothing between her and all of you, she stalks her way forward to claim you for herself.");

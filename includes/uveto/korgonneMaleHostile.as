@@ -1766,7 +1766,6 @@ public function worstKorgLoss():void
 		if(pc.tone < 50) output("soft ");
 		output("thighs, you can feel every vein and bump on its surface, inflamed with blood. His knees shake and he stumbles slightly, causing his fat dog-dork to rub against your [pc.belly] as well... apparently this pleases him, because he readjusts his feet to lower himself and keep it pressed against you");
 		if(pc.biggestTitSize() >= 3 && pc.tallness < 90) output(", just barely poking into the cleavage of your [pc.chest].");
-
 	}
 	output("\n\nThe strokes begin to increase in speed, and as his cock-skin strains and tugs at your [pc.legFurScales], the korgonne’s breath comes in shorter and hotter pulses. He abuses your [pc.legs], railing them like a pussy with his hard hammer of a knot, enough to leave a bruise. You can feel it growing through your deadened nerves; every stroke the alien makes, his knot swells a bit more.");
 	output("\n\nHe continues to pump until, with a great howl, he climaxes... but the relief you expect doesn’t come. Instead, he switches from long, full-shaft strokes to short jerks with the hard knot buried deep in you. If anything, he’s actually <i>increasing</i> his pace....");

@@ -548,26 +548,33 @@ public function taurssionaryWithFloofyBoyslut():void
 	output("<i>“Get up,”</i> you command, beckoning the milodan over. <i>“On your knees. Oof, that’s cold,”</i> you complain as you lie down, rolling onto your back with your legs spread. <i>“Get over here and warm me up.”</i>");
 	output("\n\nThe milodan scuffles forward on his knees, eyes fixated on your [pc.vagOrAss] and his cock tenting his loincloth. Once it’s clear that you’re giving him the lead, he wastes no time in grabbing your hindlegs and sliding his prick into your warm fuckhole, a pleased grunt escaping his lips at the reprieve from the harsh wind. You throw your head back and moan while he pushes in, the nubs on his crown rubbing your sensitive walls in all the right ways as he spreads you wide around his cock.");
 	output("\n\nThe milodan shoves himself to the hilt in your sweltering [pc.vagOrAss], sending a shiver up your spine that has nothing to do with the cold. Deigning to let this brute fuck you after beating him only turns you on all the more, and he certainly seems grateful for the chance. He’s fucking your [pc.vagOrAss] with a determination that suggests he wants to reclaim his honor - or maybe he just wants to breed your unfamiliar form. The mostly-silent barbarian is somewhat of an enigma, but if nothing else, he’s a fantastic fucktoy.");
-	if(pc.hasVagina()) pc.cuntChange(x,enemy.cockVolume(0));
+	
+	var vIdx:int = -1;
+	if(pc.hasVagina()){
+		vIdx = pc.findEmptyPregnancySlot(1);
+		if(vIdx < 0) vIdx = rand(pc.totalVaginas());
+	}
+	
+	if(vIdx >= 0) pc.cuntChange(vIdx, enemy.cockVolume(0));
 	else pc.buttChange(enemy.cockVolume(0));
-
+	
 	output("\n\nLeaning over your tauric stomach, he takes ahold of your underside with his left hand and begins hammering you with rough movements of his hips, reaching down with the other to ");
-	if(pc.hasVagina()) output("rub your [pc.clits], bringing you to thunderous orgasm in a matter of seconds. You unconsciously buck your hips, gritting your teeth as the rush of endorphins floods your body. The barbarian holds you down with a firm hand on your stomach, keeping you grounded while your back arches and your voice comes out in high-pitched moans.");
+	if(vIdx >= 0) output("rub your [pc.clits " + vIdx + "], bringing you to thunderous orgasm in a matter of seconds. You unconsciously buck your hips, gritting your teeth as the rush of endorphins floods your body. The barbarian holds you down with a firm hand on your stomach, keeping you grounded while your back arches and your voice comes out in high-pitched moans.");
 	else output("jack your [pc.cock], bringing you to a back-arching orgasm in a matter of seconds. Your legs flex and shake as you grit your teeth and grunt, [pc.cumColor] [pc.cum] spurting across your underside as the rush of endorphins floods your body. The barbarian holds you down with a firm hand on your stomach, keeping you grounded while he continues stroking your prostate with his cock and your voice comes out in stumbling utterances.");
 
 	output("\n\nHe doesn’t let up, keeping a maddeningly pleasurable rhythm going all throughout your orgasm. You realize with some trepidation, amidst your sweaty, panting fucking, that the milodan shows no signs of wearing out or slowing down. His cock driving into you over and over makes it hard to maintain a semblance of conscious thought, but you wonder wildly what lucky bitch gets to be his breeding mate. By the time he fucks the next trembling, brain-melting orgasm out of you, you’re starting to realize he probably won’t stop until you actually tell him to. Part of you wonders what it’d be like to just let him keep going for as long as he wants...");
-
+	
 	processTime(30);
 	pc.orgasm();
 	pc.orgasm();
 	//[Keep going] [Cum]
 	clearMenu();
-	addButton(0,"Keep Going",keepGoingAndBadEndYourselfOrSomeShitOnMilodanEndurance);
-	addButton(1,"Cum",cumFromMilodanButtpounds);
+	addButton(0,"Keep Going",keepGoingAndBadEndYourselfOrSomeShitOnMilodanEndurance, vIdx);
+	addButton(1,"Cum",cumFromMilodanButtpounds, vIdx);
 }
 
 //[Keep going]
-public function keepGoingAndBadEndYourselfOrSomeShitOnMilodanEndurance():void
+public function keepGoingAndBadEndYourselfOrSomeShitOnMilodanEndurance(vIdx:int = -1):void
 {
 	clearOutput();
 	showMilodanMale(true);
@@ -576,17 +583,17 @@ public function keepGoingAndBadEndYourselfOrSomeShitOnMilodanEndurance():void
 	output("\n\nYour lower half completely locks up in orgasm, every muscle tensed to the point it’s almost painful while the waves of pleasure roll over you.");
 	output("\n\n<i>“Fuh, fuu- guh! Fuuuck,”</i> you groan, realizing you might have bitten off more than you can chew. <i>“Oh, </i>god!<i>”</i>");
 	output("\n\nDisplaying tremendous strength, he lifts your entire back half with his massive arms to get a better angle to fuck you into submission. You can scarcely keep ahold of your senses, your hands scrabbling through the snow as you try to steady your uncooperative body. The milodan is the one in control now, each stroke and touch making your body respond in turn, your ");
-	if(pc.hasVagina()) output("cunt");
+	if(vIdx >= 0) output("cunt");
 	else output("ring");
 	output(" tightening around him every time he pushes into you, your lips singing his praises every time he hilts himself.");
 
 	output("\n\nAt some point over the next couple of hours he flips you onto your stomach, holding your legs apart and fucking your behind with abandon. He lets go to give your [pc.butt] a fierce slap knowing he can get away with it, and all you can do is give him a fucked-silly mewl of a moan as you ");
-	if(pc.hasVagina()) output("cum on his cock");
+	if(vIdx >= 0) output("cum on his cock");
 	else output("shudder in orgasm, your cock spurting spunk across the ground");
 	output(". He’s pushing you further and further towards unconsciousness, his relentless conquest of your fuckhole continuing despite the fact your cries and gasps have become wordless grunts and ragged moans, your full-body bucks and twists now exhausted shaking and shuddering.");
 
 	output("\n\nHe gives a bestial roar when he finally cums, flooding your abused hole with a torrent of built-up spunk as your eyes threaten to roll back into your head at the sensation. ");
-	if(pc.hasVagina()) output(" The feeling of his swollen knot pressing down on your [pc.clits] drives you to one last orgasm, unable to resist");
+	if(vIdx >= 0) output(" The feeling of his swollen knot pressing down on your [pc.clits " + vIdx + "] drives you to one last orgasm, unable to resist");
 	else output(" The feeling of his pulsing cock pressing down on your prostate drives you to one last orgasm, unable to resist");
 	output(". Your hindlegs involuntarily kick outwards as he dismounts, your lack of control self-evident. The milodan walks away, leaving you lying in the snow.");
 
@@ -595,13 +602,15 @@ public function keepGoingAndBadEndYourselfOrSomeShitOnMilodanEndurance():void
 	output("before you head out.");
 
 	processTime(145);
+	if(vIdx >= 0) pc.loadInCunt(enemy, vIdx);
+	else pc.loadInAss(enemy);
 	for(var x:int = 0; x < 20; x++) { pc.orgasm(); }
 	output("\n\n");
 	CombatManager.genericVictory();
 }
 
 //[Cum]
-public function cumFromMilodanButtpounds():void
+public function cumFromMilodanButtpounds(vIdx:int = -1):void
 {
 	clearOutput();
 	showMilodanMale(true);
@@ -614,6 +623,9 @@ public function cumFromMilodanButtpounds():void
 	if(!pc.isCrotchExposed() && !pc.isAssExposed()) output("put your clothes on before you ");
 	output("head out.");
 	processTime(15);
+	
+	if(vIdx >= 0) pc.loadInCunt(enemy, vIdx);
+	else pc.loadInAss(enemy);
 	pc.orgasm();
 	output("\n\n");
 	CombatManager.genericVictory();

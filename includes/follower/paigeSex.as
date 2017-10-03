@@ -80,7 +80,7 @@ public function FTEH1(args:Array):void
 	clearMenu();
 	if(pc.cockVolume(0) >= paige.vaginalCapacity(0)) addButton(0,"Love Her",FTLH1,args,"Love Her","You’re too big to fuck Paige. But that doesn’t mean you can’t still love her...");
 	else addButton(0,"Love Her",FTLH1,args);
-	if((pc.hasCock() && pc.cockVolume(0) <= paige.vaginalCapacity(0)) || (pc.hasVagina()) || !pc.hasGenitals()) addButton(1,"Take Her",FTTH1,args);
+	if((pc.hasCock() && pc.cockVolume(0) <= paige.vaginalCapacity(0)) || (pc.hasVagina() && (!pc.hasCock() || pc.cockVolume(0) <= paige.vaginalCapacity(0))) || !pc.hasGenitals()) addButton(1,"Take Her",FTTH1,args);
 	else addDisabledButton(1,"Take Her","Take Her","You’re too big to fuck Paige. But there are other ways to enjoy each other...");
 	addButton(2,"More Teasing",FTMT1,args);
 }
@@ -92,7 +92,7 @@ public function FTGHA1(args:Array):void
 	clearOutput();
 	showPaige(true);
 	args.push("FTGHA1");
-	output("You bring both your hands forward and swiftly clap them both onto both cheeks of her tight ass. You’ve wanted it since the first time you’ve seen her in class, and she said herself, she loves the way she can flaunt it and call it yoga. It’s all yours now, and you won’t wait a second longer.");
+	output("You bring both your hands forward and swiftly clap them onto both cheeks of her tight ass. You’ve wanted it since the first time you’ve seen her in class, and she said herself, she loves the way she can flaunt it and call it yoga. It’s all yours now, and you won’t wait a second longer.");
 	output("\n\nPaige catapults from the kiss, yelping in surprise at the ferocity of your hands. Her fur stands on end, but when she feels your grip on her, she coos and smiles down at you. <i>“Should have seen this one coming,”</i> she laughs. <i>“But I don’t blame you for wanting to get right to the good stuff. It</i> is <i> a pretty fine ass, after all.”</i>");
 	output("\n\nYou grip her tightly and readjust your fingers several times in affirmation. She hums in delight and, from her higher position, grinds more forcefully onto you. ");
 	if(pc.hasCock())
@@ -110,7 +110,7 @@ public function FTGHA1(args:Array):void
 	clearMenu();
 	//[=Take Her=][=Hotdog=][=69=]
 	// end scene (scene: FTGHA1)
-	if((pc.hasCock() && pc.cockVolume(0) <= paige.vaginalCapacity(0)) || (pc.hasVagina()) || !pc.hasGenitals()) addButton(0,"Take Her",FTTH1,args);
+	if((pc.hasCock() && pc.cockVolume(0) <= paige.vaginalCapacity(0)) || (pc.hasVagina() && (!pc.hasCock() || pc.cockVolume(0) <= paige.vaginalCapacity(0))) || !pc.hasGenitals()) addButton(0,"Take Her",FTTH1,args);
 	else addDisabledButton(0,"Take Her","Take Her","You’re too big to fuck Paige. But there are other ways to enjoy each other...");
 	if(pc.hasCock()) addButton(1,"Hotdog",FTHD1,args);
 	else addDisabledButton(1,"Hotdog","Hotdog","This scene requires a penis.");
@@ -259,7 +259,7 @@ public function FTLH1(args:Array):void
 	
 	if(pc.hasCock()) 
 	{
-		//{PC has a dick that’s too big}
+		// {PC has a dick that’s too big}
 		if(pc.cockVolume(0) > paige.vaginalCapacity(0))
 		{
 			output("\n\nPaige leans her body back, bumping her butt and raised tail against your colossal [pc.cock]. She draws her lower body up, pressing her upper body down and into yours, as she measures you with her ass – and she gets some fun out of it, rubbing the lips of her pussy against you, marking you with herself. The skin she touches grows cool in the surrounding air, damp with her juices.");
@@ -282,7 +282,7 @@ public function FTLH1(args:Array):void
 			pc.cockChange();
 		}
 	}
-	//{the PC has only a vagina, or has a vagina with too large a penis}
+	// {the PC has only a vagina, or has a vagina with too large a penis}
 	if(pc.hasVagina() && (!pc.hasCock() || pc.cockVolume(0) > paige.vaginalCapacity(0))) 
 	{
 		output("\n\nShe leans back");
@@ -307,7 +307,7 @@ public function FTLH1(args:Array):void
 		else if(pc.isNaga()) output("\n\nShe grips hard onto your hips");
 		else output("\n\nShe lifts your [pc.leg] up");
 		output(" for support as she braces for contact. You see her abs crunch and tense in anticipation – she can’t see, so every centimeter without contact is another unbearable centimeter of suspense. You feel the moisture of her pussy before you feel her vulva make contact with yours.");
-		output("\n\nAnd feel it, you do.]");
+		output("\n\nAnd feel it, you do.");
 	}
 	//[=Next=]
 	processTime(5);
@@ -359,7 +359,7 @@ public function FTBHT1(args:Array):void
 	pc.lust(10);
 	//[=Resist=][=With Pleasure!=]
 	// end scene (scene: FTBHT1)
-
+	clearMenu();
 	if(pc.hasGenitals()) addButton(0,"Resist",FTR1,args);
 	else addDisabledButton(0,"Resist","Resist","You could bargain with Paige, but seeing as you have no gender to bargain with, that would be awfully difficult.");
 	addButton(1,"With Pleasure!",FTWP1,args);
@@ -675,11 +675,11 @@ public function FT692(args:Array):void
 	}
 	else if(pc.hasVagina())
 	{
-		output("She hooks both her hands underneath your body to clasp onto your [pc.ass] to lock you both into place, and she lunges into your [pc.vagina], slavishly penetrating into you as you are into her. Her long, flat Ausar tongue reaches deep into you, twisting and pushing at every ridge and cranny it finds.\n\nMimicking your technique, her lips purse rhythmically with her tongue’s lunges, eking out as much pleasure from every facet of your feminine parts as she can. With her superior position, she has an easier time using your lower lip to rub at your [pc.clit], and with each press of that particular button, you involuntarily thrust your hips into her thirst mouth");
+		output("She hooks both her hands underneath your body to clasp onto your [pc.ass] to lock you both into place, and she lunges into your [pc.vagina], slavishly penetrating into you as you are into her. Her long, flat Ausar tongue reaches deep into you, twisting and pushing at every ridge and cranny it finds.\n\nMimicking your technique, her lips purse rhythmically with her tongue’s lunges, eking out as much pleasure from every facet of your feminine parts as she can. With her superior position, she has an easier time using her lower lip to rub at your [pc.clit], and with each press of that particular button, you involuntarily thrust your hips into her thirst mouth");
 	}
 	output(".");
 
-	output("\n\nYour senses are overwhelmed with Paige and everything about her. Her taste cakes your tongue and floods your mouth; you inhale her scent with every breath, your nose pressed firmly against her taint; her fur digs and brushes over your skin as she rocks back and forth on top of you; the sounds of her pussy’s wet squelching as you kiss and suck it, and the sounds of Paige moaning in the pleasure you’re giving her, fill your ears; and, of course, there’s not much else to see but Paige’s tone, tight, furry Ausar ass above you, her tail wagging slowly in contentment.");
+	output("\n\nYour senses are overwhelmed with Paige and everything about her. Her taste cakes your tongue and floods your mouth; you inhale her scent with every breath, your nose pressed firmly against her taint; her fur digs and brushes over your skin as she rocks back and forth on top of you; the sounds of her pussy’s wet squelching as you kiss and suck it, and the sounds of Paige moaning in the pleasure you’re giving her, fill your ears; and, of course, there’s not much else to see but Paige’s toned, tight, furry Ausar ass above you, her tail wagging slowly in contentment.");
 	output("\n\nThe pleasure you’re giving each other using only your mouths is intense, and after several minutes, it’s clear to you both that you have no intention of stopping, even if it meant something better. The quivering on Paige’s hips get more and more intense the longer you two remain in place, and her devotions to your own hips and crotch become more and more eager and wanting. She’s very close, but she wants nothing more than to taste you, <i>all</i> of you, and she’s doing her level best to hold off until you cum with her.");
 	output("\n\nShe doesn’t wait long...");
 	processTime(6);
@@ -707,13 +707,13 @@ public function FTLH2(args:Array):void
 
 		if(pc.cocks[0].cLength() <= 13) output("\n\nYour [pc.cockHead] grazes the underside of her breasts, wedging itself in the valley of her abdominals and enjoying the warm, tight ridges there. With every push up, Paige’s hands fondle and tickle your shaft, and occasionally she brushes her thumb over the tip, swiping away the liquids that have pooled there to lube her hands further.");
 		else if(pc.cocks[0].cLength() <= 25) output("\n\nYour [pc.cockHead] nestles itself warmly between the valley of Paige’s breasts – the beat of your heart communicates with her own through the turgid flesh of your steely dick. Paige uses her hands to tickle your shaft and her forearms to squeeze her tits together, ensuring that the ride is amazing all the way through. She occasionally dips her head down to run her tongue along your sensitive head, sampling your liquids before they overflow into her soft fur.");
-		else output("\n\nYour [pc.cockHead] lurches up and past Paige’s head, dwarfing her kneeling form and obscuring her from your sight. Paige, for her part, doesn’t miss a beat, and wraps the whole of her body around your monster of a dick to pleasure as much of it as she can. Her breasts form a fine, warm, furry wrapping around one part of your dick, while her mouth kisses and licks higher up, and her hips bump and hump against lower down. Occasional beads of your pre cascades from your summit, sometimes dripping onto Paige’s hair and sometimes finding its way onto her tongue.");
+		else output("\n\nYour [pc.cockHead] lurches up and past Paige’s head, dwarfing her kneeling form and obscuring her from your sight. Paige, for her part, doesn’t miss a beat, and wraps the whole of her body around your monster of a dick to pleasure as much of it as she can. Her breasts form a fine, warm, furry wrapping around one part of your dick, while her mouth kisses and licks higher up, and her hips bump and hump lower down. Occasional beads of your pre cascades from your summit, sometimes dripping onto Paige’s hair and sometimes finding its way onto her tongue.");
 
-		output("\n\nHer slavish effort pay off for you both: the sensations of her skin drawing over yours, and the heat of your pole searing into her hands and fur, and the smell of your overpowering masculinity, and just the <i>perverseness</i> of the whole scenario, gets to Paige, and soon she’s distracting herself from pleasuring you to pleasuring herself by using you. Her moans escalate with every push forward, and soon she’s calling your name as her hips take control of herself.");
+		output("\n\nHer slavish efforts pay off for you both: the sensations of her skin drawing over yours, and the heat of your pole searing into her hands and fur, and the smell of your overpowering masculinity, and just the <i>perverseness</i> of the whole scenario, gets to Paige, and soon she’s distracting herself from pleasuring you to pleasuring herself by using you. Her moans escalate with every push forward, and soon she’s calling your name as her hips take control of herself.");
 
 		output("\n\nYou feel a gush of liquid splash against your crotch, where Paige’s unseen cunt meshes against you. You feel a certain gush of another liquid rising from somewhere else...");
 	}
-	else if(pc.hasCock()) 
+	else if(pc.hasCock() && pc.cockVolume(0) <= paige.vaginalCapacity(0)) 
 	{
 		output("\n\nBut more than that is the fact that you’re making love to her. Paige is doing most of the work, but nonetheless, your [pc.cock] juts into her: the smoothness of your shaft melds with the ripples of her tunnel, and you bottom out just before you bump into the dead end. She fits you like a glove, and from the delighted moans above you and the way her body’s rocking is picking up in speed, you fit her like a key.");
 		pc.cockChange();
@@ -1048,7 +1048,7 @@ public function FTWP2(args:Array):void
 	if(pc.hasCock()) output("A vibrator would never ask me to keep going or tell me how much they love it");
 	else if(pc.hasVagina()) output("A hot little bitch for the hot top bitch to play with");
 	else output("The fact you don’t have anything to work with makes it even hotter. Like it’s something else I can dominate you with");
-	output(". <i>“</i> She leans forward, her hands drawing across your torso. <i>“I love all my pets. They make me happy. And I like making them happy.”</i> Her bouncing grows more intense and needy as her breaths come out in heavier draws – all the dominant talk has gotten her very close. <i>“What can I do to make you happy, [pc.name]?”</i>");
+	output(".”</i> She leans forward, her hands drawing across your torso. <i>“I love all my pets. They make me happy. And I like making them happy.”</i> Her bouncing grows more intense and needy as her breaths come out in heavier draws – all the dominant talk has gotten her very close. <i>“What can I do to make you happy, [pc.name]?”</i>");
 	output("\n\nHer fingers tense sharply, gripping onto your flesh for control and stability. You yelp in surprise as your own release bubbles inside you, just moments away from exploding. <i>“I’m close!”</i> you shout helplessly");
 	if(!pc.hasGenitals()) output(", more for effect than anything");
 	output(".");
@@ -1076,11 +1076,11 @@ public function FT69E(args:Array):void
 	// Continue here if the PC is male or herm
 	if(pc.hasCock())
 	{
-		output("\n\nYour orgasm is hot in her heels, and the sensation of her losing control sends you over yourself. Your cum surges from you");
+		output("\n\nYour orgasm is hot on her heels, and the sensation of her losing control sends you over yourself. Your cum surges from you");
 		if(pc.balls > 0) output("r [pc.balls]");
 		output(" and up your shaft, ");
 		if(pc.cLength(0) <= 12) output("which is lodged deep in Paige’s mouth as she sucks you fervently for her prize.");
-		else output("the exposed skin bloating visibly before reaching your glands, which are comfortably lodged in Paige’s hungry mouth.");
+		else output("the exposed skin bloating visibly before reaching your glans, which is comfortably lodged in Paige’s hungry mouth.");
 
 		if(pc.cumQ() <= 349) output("\n\nYour [pc.cum] returns the gesture and paints Paige’s mouth with itself, which she willingly and joyfully accepts. You pump your hips impishly against her, depositing your load as deep into her throat as you can, and she lovingly takes it all, swallowing one mouthful before sucking down another. She easily and expertly handles everything you give her, and when you finish (before her, you note), she patiently suckles on you for anything you might have hidden from her.");
 		else if(pc.cumQ() < 1000) output("\n\nYour initial burst takes her aback, but she relaxes as she swallows you patiently, as though she were drinking from an exceptional straw. You feel each individual bubble of your [pc.cum] travel up your shaft and across her waiting tongue, inflating her cheeks just slightly before she, with a sexy sigh, swallows it to make room for your next batch. You share fluids like that for a moment, each pulse of yours timed perfectly with hers until you’re both dry.");
@@ -1095,7 +1095,7 @@ public function FT69E(args:Array):void
 	// Continue here if PC is vanilla female
 	else
 	{
-		output("\n\nYour orgasm is hot in her heels, and the sensation of her losing control sends you over yourself. Your [pc.girlCum] bursts from your [pc.vagina] in equal fervor, soaking Paige’s hard-working tongue and into her Ausar mouth. She lazily yet expertly hits all the spots that are clenching the hardest as she happily gulps down your juice with as much enjoyment as you.");
+		output("\n\nYour orgasm is hot on her heels, and the sensation of her losing control sends you over yourself. Your [pc.girlCum] bursts from your [pc.vagina] in equal fervor, soaking Paige’s hard-working tongue and into her Ausar mouth. She lazily yet expertly hits all the spots that are clenching the hardest as she happily gulps down your juice with as much enjoyment as you.");
 		output("\n\nHer grip on your [pc.ass] tightens as she pulls you into her face, not letting a single drop of you escape: her wide, flat tongue rakes over your sensitive folds again and again, rewarding her for her diligence with more cum for her to collect.");
 		output("\n\nShe, of course, pays no small attention to [pc.eachClit]; not enough to make it painful, but enough to remind you how hard you came when she did, which makes you cum again. It’s a feedback loop that doesn’t stop until you can take no more.");
 	}
@@ -1265,16 +1265,15 @@ public function FTAG(args:Array):void
 
 	output("\n\n<i>“I’m not going anywhere,”</i> you reassure her, and to seal your word, you lean forward, giving her a kiss on the forehead.");
 
-	output("\n\nShe smiles and sighs, then lays her head down, resting her cheek just above your breast. You lay with each other for a moment, still winding down from the excitement. <i>“");
+	output("\n\nShe smiles and sighs, then lays her head down, resting her cheek just above your breast. You lay with each other for a moment, still winding down from the excitement.");
 	//if {FT69E}
-	if(InCollection("FT69E", args)) output("And we didn’t even get to the main course. If you’re as good at fucking as you are eating pussy, we’ll never leave this room.");
+	if(InCollection("FT69E", args)) output(" <i>“And we didn’t even get to the main course. If you’re as good at fucking as you are eating pussy, we’ll never leave this room.”</i>");
 	//if {FTFHB1}
-	if(InCollection("FTFHB1", args)) output("I meant what I said, by the way. I never even thought to try having something up my ass. I’m willing to give it a try if you are.");
+	if(InCollection("FTFHB1", args)) output(" <i>“I meant what I said, by the way. I never even thought to try having something up my ass. I’m willing to give it a try if you are.”</i>");
 	//if {FTPFE}
-	if(InCollection("FTPFE", args)) output("You... you don’t mind if I get aggressive in bed, right? If you wanted me to stop, I would have stopped.”</i> You tell her that you wouldn’t mind changing it up now and again, but if being the top is what she enjoys, you’re all for it. <i>“Good.");
+	if(InCollection("FTPFE", args)) output(" <i>“You... you don’t mind if I get aggressive in bed, right? If you wanted me to stop, I would have stopped.”</i> You tell her that you wouldn’t mind changing it up now and again, but if being the top is what she enjoys, you’re all for it. <i>“Good.”</i>");
 	//if {FTLE}
-	if(InCollection("FTLE", args)) output("Hey, um...,”</i> she stutters. With her head on your chest, you feel her mouth words to herself, but she says nothing. <i>“Never mind.");
-	output("”</i>");
+	if(InCollection("FTLE", args)) output(" <i>“Hey, um...,”</i> she stutters. With her head on your chest, you feel her mouth words to herself, but she says nothing. <i>“Never mind.”</i>");
 
 	output("\n\nYou and Paige both pass out for hours. When you awake, you stink like a horny Ausar and you’re plastered to the bed – but you’ve never felt fresher or more energetic. She’s hesitant to let you go, and from the way she fondles you as you redress yourself, she’s two words away from throwing you back onto the bed and ruining it some more. But, she knows, she can’t – you’re both responsible adults, after all.");
 

@@ -57,17 +57,18 @@
 			if(target is PlayerCharacter)
 			{
 				var isMilkable:Boolean = (target.isMilkTank() || target.canLactate() || target.milkQ() >= 200);
+				var inNursery:Boolean = (kGAMECLASS.currentLocation.indexOf("NURSERY") != -1);
 				
 				kGAMECLASS.clearOutput();
-				if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.NOFAP))
+				if(!inNursery && kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.NOFAP))
 				{
 					kGAMECLASS.output("Masturbating here would be impossible.");
 				}
-				else if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL))
+				else if(!inNursery && kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL))
 				{
 					kGAMECLASS.output("Public masturbation is illegal here. Trying to masturbate would almost certainly land you in jail.");
 				}
-				else if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) && target.exhibitionism() < 33 && target.libido() < 70)
+				else if(!inNursery && kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) && target.exhibitionism() < 33 && target.libido() < 70)
 				{
 					kGAMECLASS.output("You cannot use the Magic-Milker 7 at this time!");
 				}

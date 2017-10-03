@@ -1,12 +1,4 @@
-//Upon Consumption always try to do three transformations:
-//If 0 cocks always grow one
-//If has cock and not maximum number gives a 10% chance of growing another cock
-//If failure to grow cock or already has 10 cocks do:
-//* If any cock is less than 4.1 inches do "Length+Thick" on that cock.
-//* Else do either one or more of: increase cum quality, cock length, thickness.
-
 package classes.Items.Transformatives {
-	import classes.CockClass;
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
@@ -15,9 +7,7 @@ package classes.Items.Transformatives {
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	import classes.Engine.Interfaces.*;
-	import classes.Util.InCollection;
 	import classes.Engine.Utility.rand;
-	import classes.Engine.Utility.num2Text;
 	
 	public class SlutShroom extends ItemSlotClass {
 		public function SlutShroom() {
