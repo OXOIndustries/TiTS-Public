@@ -3,6 +3,7 @@ public function hasSmutOptions():Boolean
 {
 	if(MailManager.isEntryViewed("lets_fap_unlock")) return true;
 	if(MailManager.isEntryViewed("steph_on_demand")) return true;
+	if(MailManager.isEntryViewed("syri_video")) return true;
 	return false;
 }
 

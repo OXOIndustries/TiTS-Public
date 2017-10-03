@@ -239,6 +239,7 @@
 		include "../includes/mhenga/naleenMale.as";
 		include "../includes/mhenga/penny.as";
 		include "../includes/mhenga/penny_bimbo.as";
+		include "../includes/mhenga/prai.as";
 		include "../includes/mhenga/rooms.as";
 		include "../includes/mhenga/roomFunctions.as";
 		include "../includes/mhenga/scrapyard.as";
