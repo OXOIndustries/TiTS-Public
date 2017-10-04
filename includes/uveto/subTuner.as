@@ -1652,6 +1652,7 @@ public function cleanupOfRivalSluttery():void
 	pc.shower();
 
 	IncrementFlag("SUBTUNER_EXHIBITIONISM");
+	IncrementFlag("SUBTUNER_COUSINCESTED");
 	pc.exhibitionism(2);
 	clearMenu();
 	addButton(0,"Next",leaveAccuPitchLabs);
