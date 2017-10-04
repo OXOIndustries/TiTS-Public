@@ -220,13 +220,13 @@ public function initUvetoRooms():void
 	rooms["UVS F9"].runOnEnter = subTunerBonusButts;
 
 	rooms["SUBSHIT"] = new RoomClass(this);
-	rooms["SUBSHIT"].roomName = "";
-	rooms["SUBSHIT"].description = "";
+	rooms["SUBSHIT"].roomName = "ACCUPITCH\nLABS";
+	rooms["SUBSHIT"].description = "Walking into Accu-Pitch labs again, your eyes are greeted by a wealth of scientific equipment: blinking lights and computers, and bundles of wires lining the walls of the small lab. Though, beyond that most of the equipment seems to be related to audio: radios and speakers, various instruments lined up next to microphones, even a row of wine glasses and spoons placed carefully near a group of transceivers.";
 	rooms["SUBSHIT"].planet = "UVETO STATION";
 	rooms["SUBSHIT"].system = "SYSTEM: SIRETTA";
 	rooms["SUBSHIT"].northExit = "UVS F9";
 	rooms["SUBSHIT"].moveMinutes = 1;
-	rooms["SUBSHIT"].runOnEnter = accupitchLabBonus;
+	rooms["SUBSHIT"].runOnEnter = accupitchLabsBonus;
 	rooms["SUBSHIT"].addFlag(GLOBAL.INDOOR);
 	rooms["SUBSHIT"].addFlag(GLOBAL.PUBLIC);
 
