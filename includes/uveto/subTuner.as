@@ -66,6 +66,8 @@ public function getBellePregContainer():PregnancyPlaceholder
 public function saecVaginaCapacity():Number { return 1000; }
 public function saecPreg():Boolean { return false; }
 public function pregSaec():Boolean { return saecPreg(); }
+public function fuckedSaec():Boolean { return false; } //9999
+public function ausaurKaithrit():Boolean { return (pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1); }
 public function saecBustString(nude:Boolean = true):String
 {
 	if(nude) return "SAEC_NUDE";
@@ -853,6 +855,11 @@ public function newSubTunerOpening():void
 }
 public function accupitchLabsBonus():Boolean
 {
+	if(pc.hasStatusEffect("Belle Hypno") && pc.hasGenitals()) 
+	{
+		labWalkInHypnoEvent();
+		return true;
+	}
 	//Along with the original opening with the original opening scanner and Accu-Pitch descriptions, these blurbs can show up after that, random chance for each:
 	if(rand(3) == 0) output("\n\nBelle is nearby, her pants looking as full as ever, jotting down notes on a holo-pad as she moves from terminal to terminal, working diligently.");
 	//OR
@@ -1125,18 +1132,18 @@ public function newExperimentsWithBelle():void
 	output("\n\n<i>“Alright then, pet,”</i> your new master says, <i>“Where do we start with you today?”</i>");
 
 	processTime(4);
-	clearMenu();
-	//9999
+	belleExperimentsMenu();
+}
 
-	//[Trifecta] Get spanked, walked, and thoroughly bred. //This should go to the original <i>“Experiments”</i> scene, DIRECTLY to the Kennel scene, specifically.
+public function belleExperimentsMenu():void
+{
+	clearMenu();
 	addButton(0,"Trifecta",kennelSubTuner,undefined,"Trifecta","Get spanked, walked, and thoroughly bred.");
 	if(flags["SUBTUNER_TENTACLES"] == undefined) addButton(1,"MorePets?",morePetsSlashTentacles,undefined,"More Pets?","Belle seems like an adamant master, surely she has more pets you could play with!");
 	else addButton(1,"Tentacles!",morePetsSlashTentacles,undefined,"Tentacles!","Have some more fun with Belle’s <i>“pet”</i> tentacle monster.");
 	//[Exhibition] Get stuffed with toys and sent out on an experiment.
 	addButton(2,"Exhibition",exhibitionismCollarWithBelle)
-	//[Hypnotism] Have some fun with Belle’s personal project.
-	//Tentacles
-	
+	addButton(3,"Hypnotism",subTunerHypnoShit,undefined,"Hypnotism","Have some fun with Belle’s personal project.");
 }
 
 //[MorePets?/Tentacles!]
@@ -2019,135 +2026,256 @@ public function subTunerKiroExhib3():void
 	//[Next] //Returns the PC outside Belle’s lab.
 }
 
-/*
-output("\n\n ");
-output("\n\n//Hypnotism");
-output("\n\n[Hypnotism]");
+//Hypnotism
+//[Hypnotism]
+public function subTunerHypnoShit():void
+{
+	clearOutput();
+	showBelle();
+	//firstTime:
+	if(flags["SUBTUNER_HYPNOED"] == undefined)
+	{
+		output("<i>“I think I want to try something a bit different today,”</i> Belle says, walking over to a nearby lab bench and procuring a strange device covered in circuitry. It almost looks like a visor of some sort. <i>“Now, this experiment’s thesis is a </i>bit<i> less founded in scientific fact than I’d like it to be, but nevertheless I’d like to test it out. Any success with this device could prove very fruitful to my research.”</i>");
+		output("\n\nYou cock your head at your master.");
+		output("\n\n<i>“Well, you see... this device is the result of too much free time and extranet access, and is supposed to induce a more ‘traditional’ hypnotic trance,”</i> the lady scientist explains, bringing the strange object in her hands over to you, <i>“Making the wearer more... susceptible to suggestion while entranced, or that’s what it’s supposed to do. Honestly, I don’t expect much from it.”</i> Belle kneels down in front of you with the device in hand, getting about eye-level with you, <i>“I would like you to help me with these tests, but, I need to know if this is something you’re comfortable with doing... don’t feel obligated to help me if you’re not okay with such a thing.”</i>");
+		output("\n\nWith that the lady scientist takes a hand and cups your chin, gently stroking your cheek with her thumb, drawing a happy smile from you. Looks like Belle needs to know if you’re comfortable with this... and not just as her pet. <i>Part of you tells you that you should help your master either way, but then you’re reminded good pets shouldn’t lie.</i>");
+	}
+	//Else:
+	else
+	{
+		output("<i>“Well...”</i> Belle breathes, walking over to a nearby bench to procure her special <i>“hypnosis”</i>-visor before making her way back to you, <i>“I’ve made a few changes to this, and I think it might actually stand a chance of working now.”</i> The lady scientist kneels down in front of you, getting about eye-level with you, <i>“That is if you’re still comfortable with testing it, [pc.boyGirl].”</i>");
+		output("\n\nWith that she reaches out to cup your chin, stroking your cheek with a thumb and putting a smile on your face. Looks like you need to let Belle know if you’re comfortable with testing her machine again.");
+	}
+	processTime(5);
+	//[Yes] Tell Belle you would like to help her test that {firstTime: special device //Else: hypnosis machine}.
+	//[No] Tell Belle you’re not comfortable with that type of thing. //Returns the PC back to the Experiments menu.
+	clearMenu();
+	addButton(0,"Yes",sayYesToHypnoShit,undefined,"Yes","Tell Belle you would like to help her test that special device.");
+	addButton(1,"No",rejectTheHypno,undefined,"No","Tell Belle you’re not comfortable with that type of thing.");
+}
 
-output("\n\n{firstTime:");
-output("\n\n<i>“I think I want to try something a bit different today,”</i> Belle says, walking over to a nearby lab bench and procuring a strange device covered in circuitry. It almost looks like a visor of some sort. <i>“Now, this experiment’s thesis is a </i>bit<i> less founded in scientific fact than I’d like it to be, but nevertheless I’d like to test it out. Any success with this device could prove very fruitful to my research.”</i>");
+//Yes
+//[Yes]
+public function sayYesToHypnoShit():void
+{
+	clearOutput();
+	showBelle();
+	output("You give your master a nod, informing her that you’re ready to assist her with this special experiment of hers. This draws a wide smile from her, and prompts her to reach up from your chin to ");
+	if(ausaurKaithrit()) output("scritch at your ears");
+	else output("pat you on the head");
+	output(".");
 
-output("\n\nYou cock your head at your master.");
+	output("\n\n<i>“I knew you’d be up for it, [pc.boyGirl],”</i> Belle coos before standing herself back up, <i>“Now, why don’t you have a seat over there and get yourself comfortable while I get this ready.”</i> The woman points out a nearby chair and holds up the device in her hand as she finishes her sentence.");
+	output("\n\nYou heed your command <i>like a good puppy</i> and crawl your way over to the nearby seat then plop your [pc.ass] right down in it. Once you’re nice and settled, you notice Belle tightening a few bolts on that visor, and It’s only a moment before she’s done with her work and making her way back towards you.");
+	output("\n\n<i>“Alright,”</i> she begins, lifting the device over your head and slowly lowering it, <i>“Now, once this is on, I’m going to turn it on, and its effects, along with your collar, should induce some sort of mentally vulnerable state. <b>Should</b>.”</i> With that the visor descends over your eyes, blocking your vision with what looks to be a turned-off holo-screen, the sound of velcro straps securing the piece of tech to your head loud in your ears. <i>“Now where did I wire the- ah! There it is,”</i> the lady scientist says, her hand tracing along her invention until she reaches a single small button, <i>“Let’s begin.”</i>");
+	output("\n\nWith that, Belle presses the button and closes a circuit, turning on the visor. Almost immediately the screen lights up, pulsing with gentle slowly changing colour. They’re... calming, making you sink back into your seat a bit.");
+	output("\n\nYour master seems to notice your relaxed posture. She chuckles, <i>“That’s nice, isn’t it? Doesn’t being here with your master just make you feel good... safe?”</i>");
+	output("\n\n<i>Yeah, it does. It’s like you can feel her arms around you, one hand tight on your leash, whispering praises in your ears. It’s so nice being a good pet and having a master like Belle to take all your worries away.</i> Just as those thoughts begins to fade the lights seems to change, patterns appearing in the colours, almost clearing your mind until it’s all you can focus on, Belle’s voice seeming to flow into the patterns.");
+	output("\n\n<i>“I bet you’d like to reward your master, wouldn’t you? Make her feel nice, loved, happy. Such a good [pc.boyGirl] should want to make their master feel good.”</i>");
+	output("\n\n<i>Yes, you do want to make her feel good. Her arms seems to slide across your body, running over your crotch and chest, and though you know she isn’t there, it makes you gasp and moan all the same.</i> All these thoughts begin to feel heavy, weighing down on your eyelids and limbs like a hard day’s work. Belle’s voice and the changing colours before you gently fade until you can’t hear or see them... but you hear something, something saying <i>“Good [pc.boyGirl].”</i>");
 
-output("\n\n<i>“Well, you see... this device is the result of too much free time and extranet access, and is supposed to induce a more ‘traditional’ hypnotic trance,”</i> the lady scientist explains, bringing the strange object in her hands over to you, <i>“Making the wearer more... susceptible to suggestion while entranced, or that’s what it’s supposed to do. Honestly, I don’t expect much from it.”</i> Belle kneels down in front of you with the device in hand, getting about eye-level with you, <i>“I would like you to help me with these tests, but, I need to know if this is something you’re comfortable with doing... don’t feel obligated to help me if you’re not okay with such a thing.”</i>");
+	processTime(8);
+	clearMenu();
+	addButton(0,"Next",sayYesToHypnoShit2);
+}
 
-output("\n\nWith that the lady scientist takes a hand and cups your chin, gently stroking your cheek with her thumb, drawing a happy smile from you. Looks like Belle needs to know if you’re comfortable with this... and not just as her pet. <i>Part of you tells you that you should help your master either way, but then you’re reminded good pets shouldn’t lie.</i>");
-output("\n\n//Else:");
-output("\n\n<i>“Well...”</i> Belle breathes, walking over to a nearby bench to procure her special <i>“hypnosis”</i>-visor before making her way back to you, <i>“I’ve made a few changes to this, and I think it might actually stand a chance of working now.”</i> The lady scientist kneels down in front of you, getting about eye-level with you, <i>“That is if you’re still comfortable with testing it, [pc.boyGirl].”</i>");
+public function sayYesToHypnoShit2():void
+{
+	clearOutput();
+	showBelle();
+	output("You awaken to the sharp noise of a finger snap, opening your eyes only to see that the holo-screen visor has gone black. Before you can try to recollect what just happened, you feel Belle working the device off your noggin. With a few straps loosened, she pulls her invention from your head to reveal her smiling face.");
+	output("\n\n<i>“Well,”</i> the human woman says, looking very giddy as she places the visor aside, <i>“Do you feel any different? Any thoughts out of the ordinary? Anything particular you want to do right now?”</i>");
+	output("\n\nSitting yourself up in your seat, you ponder your state for a moment, only to realize that you don’t really feel too different, maybe a bit more well rested, but nothing out of the ordinary.");
+	output("\n\nYour master sighs and frowns, <i>“I guess that’s to be expected.”</i>");
+	output("\n\nYou look at Belle with a quivering lip, <i>after all, you want her experiments to work, and part of you feels like it’s </i>your<i> fault</i>.");
+	output("\n\nA smile quickly reappears on the lady scientist’s face, accompanied by a hand reaching up to ");
+	if(ausaurKaithrit()) output("scratch your [pc.ears]");
+	else output("pat you on the head");
+	output(", <i>“Don’t worry, [pc.boyGirl]. It’s not your fault, just some... less-than-reliable pseudoscience.”</i>");
 
-output("\n\nWith that she reaches out to cup your chin, stroking your cheek with a thumb and putting a smile on your face. Looks like you need to let Belle know if you’re comfortable with testing her machine again.");
-output("\n\n}");
+	output("\n\nYou coo as her hand runs ");
+	if(ausaurKaithrit()) output("over your sensitive aural organs");
+	else if(pc.hasHair()) output("through your hair");
+	else output("over your scalp");
+	output(".");
 
-output("\n\n[Yes] Tell Belle you would like to help her test that {firstTime: special device //Else: hypnosis machine}.");
-output("\n\n[No] Tell Belle you’re not comfortable with that type of thing. //Returns the PC back to the Experiments menu.");
+	output("\n\n<i>“Alright, up, [pc.boyGirl],”</i> Belle commands with her much-sterner tone, <i>“Looks like we’re done experimenting for now.”</i>");
+	output("\n\nYou do as your master says and rise to your feet in front of her, and without hesitation, she unhinges her leash from your collar, and flips the single switch on its side, turning it off.");
+	output("\n\nThough, your pet-like feelings don’t so much as fade this time, quite enjoying the feeling of being Belle’s pet, still smiling at her with your heart fluttering. After a few more moments of silence though, your master speaks up: <i>“Well, I suppose you should be on your way then, my pet.”</i>");
+	output("\n\nYeah, that sounds like a good idea right about now.");
 
-output("\n\n//Yes");
-output("\n\n[Yes]");
+	//[Next] Exits the lab tile and adds a <i>“Belle Hypnosis”</i> flag that can trigger any of the following scenes while the PC still has it.
+	processTime(60);
+	IncrementFlag("SUBTUNER_HYPNOED");
+	if(!pc.hasStatusEffect("Belle Hypno")) pc.createStatusEffect("Belle Hypno");
+	pc.setStatusMinutes("Belle Hypno",60*72*2);
+	clearMenu();
+	addButton(0,"Next",leaveAccuPitchLabs);
+	//[Next] //Returns the PC outside Belle’s lab.
+}
 
-output("\n\nYou give your master a nod, informing her that you’re ready to assist her with this special experiment of hers. This draws a wide smile from her, and prompts her to reach up from your chin to {pcAusar/Kaithrit/Half: scritch at your ears //Else: pat you on the head}.");
+//Masturbation
+//Triggers if the PC has the Belle hypnosis flag and chooses the masturbation option.
+public function belleMasturbationProc():void
+{
+	clearOutput();
+	showBelle();
+	output("As soon as the miniscule possibility of touching yourself crosses your mind, you find your thoughts flooded with thoughts of Belle, her hands all over your body. It’s like you can feel her touching you in the most pleasurable ways while an invisible force tugs on an intangible leash, flushing your body with heat.");
+	output("\n\nThere’s no way of stopping yourself at this point ");
+	//inCivilization:
+	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output(", even though you’re in public");
+	output(". ");
+	if(!pc.isCrotchExposed() && !pc.isAssExposed() && !pc.isChestExposed()) 
+	{
+		output("You frantically tear your clothes off, baring yourself to the open");
+		if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output(" and everyone around you");
+		output(", ready to pleasure yourself");
+		output(". Barely thinking, you lean against the nearest ");
+		if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) || InShipInterior(pc)) output("wall");
+		else output("flat surface");
+		output(" as your knees start to wobble.");
+	}
+	else
+	{
+		output("Already bared to the open");
+		if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output(" and everyone around you");
+		output(", you lean yourself against the nearest ");
+		if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) || InShipInterior(pc)) output("wall");
+		else output("flat surface");
+		output(", knees shaking with lust.");
+	}
+	//hasCock:
+	if(pc.hasCock())
+	{
+		output("\n\nYou reach a hand down to your [pc.cockBiggest] and lick your lips, wrapping your fingers around all the cockmeat you can. Once you’re sure you’ve gotten a good enough grip, you go to town, stroking your manhood as fast as you can, tearing pleasured groans from your own lips.");
+		//fuckedSaec:
+		if(fuckedSaec()) output(" You think about Saec as you go on, imagining yourself ramming her tight ausar pussy, breeding her until she gets all the pups she could ever want. It’s all so vivid, like you can feel her ass quaking against your thighs with each imaginary thrust.");
+		else output(" You think of Belle as you go on, imagining yourself sitting in her lap, speared on her cock while a caressing palm jerks you off. It’s all so vivid, like you can feel her breath on your shoulder, whispering praise in your ears.");
 
-output("\n\n<i>“I knew you’d be up for it, {girl/boy},”</i> Belle coos before standing herself back up, <i>“Now, why don’t you have a seat over there and get yourself comfortable while I get this ready.”</i> The woman points out a nearby chair and holds up the device in her hand as she finishes her sentence.");
+		output("\n\nYou seem to be losing control over your own body at this point, unable to stop the vigorous pumping of your shaft, <i>not like you’d want to</i>. Your thoughts drift between sexual fantasy with your master as your orgasm begins to mount, unable to do anything but moan");
+		//inCivilization:
+		if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output(", even as a crowd gathers around to watch your exhibitionist excursion");
+		output(". Your eyes flutter shut, your once gentle stroking becoming an ever-changing sequence of pleasurable rhythms, your mind trying to wring all the pleasure from a simple handjob that it can.");
 
-output("\n\nYou heed your command <i>like a good puppy</i> and crawl your way over to the nearby seat then plop your [pc.ass] right down in it. Once you’re nice and settled, you notice Belle tightening a few bolts on that visor, and It’s only a moment before she’s done with her work and making her way back towards you.");
+		output("\n\nEventually, a burning in your loins signals your need for release, and with nary a partner to please, you let your willpower slip away and your climax to begin. You cum with explosive force, quivering in your spot as you thrust against your own hand. Ecstasy rocks your body as you pant and moan, eyes rolling back with bliss. Your [pc.cocks] spasm");
+		if(pc.cockTotal() == 1) output("s");
+		output(", emptying the contents of your [pc.balls] all over the ");
+		if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) || InShipInterior(pc)) output("floor");
+		else output("ground");
+		output(", still dreaming of Belle.");
+	}
+	//Else:
+	else
+	{
+		output("\n\nYou reach a hand down to your [pc.vagina] and quickly sink a pair of fingers into your honeypot with a pleasured gasp. Spreading your fingers, you allow your feminine fluids to spill onto your palm before you start moving your wrist, sliding your digits in and out of your slick cunt until you groan. You think of Belle as you touch yourself, imagine yourself bent over and speared on her twin cocks. It’s all so vivid, like you can feel your pussy spreading around her shaft and her hips slamming against your own. Your eyes flutter closed as you continue, losing yourself to thoughts of your master and all her wonderful leashes and experiments.");
+		output("\n\nYou seem to be losing control over your own body at this point, unable to stop the vigorous mastubation, <i>not like you’d want to</i>. Your thoughts drift between sexual fantasy with your master as your orgasm begins to mount, unable to do anything but moan");
+		if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output(", even as a crowd gathers around to watch your exhibitionist excursion");
+		output(". A once-gentle fingering turns into a energetic finger-fucking, teasing your slit and [pc.clit] with fast, short movements. Though, sometimes massive shockwaves of pleasure leave you still for a moment to recover from many a near-climax.");
 
-output("\n\n<i>“Alright,”</i> she begins, lifting the device over your head and slowly lowering it, <i>“Now, once this is on, I’m going to turn it on, and its effects, along with your collar, should induce some sort of mentally vulnerable state. </b>Should<b>.”</i> With that the visor descends over your eyes, blocking your vision with what looks to be a turned-off holo-screen, the sound of velcro straps securing the piece of tech to your head loud in your ears. <i>“Now where did I wire the- ah! There it is,”</i> the lady scientist says, her hand tracing along her invention until she reaches a single small button, <i>“Let’s begin.”</i>");
+		output("\n\nEventually, a burning in your loins signals your need for release, and with nary a partner to please, you let your willpower slip away and your climax to begin. You cum with explosive force, quivering in your spot as your [pc.vagina] clamps down around your fingers and [pc.girlCum] spills out, splattering your thighs and hand until you’re thoroughly drenched. Ecstasy rocks your body as you pant and moan, eyes rolling back with bliss. Your inner walls spasm against your digits, wringing every last ounce of pleasure from your orgasm as you ride it out with no end to the pleasure in sight.");
+	}
 
-output("\n\nWith that, Belle presses the button and closes a circuit, turning on the visor. Almost immediately the screen lights up, pulsing with gentle slowly changing colour. They’re... calming, making you sink back into your seat a bit.");
+	output("\n\nAfter a few last good");
+	if(pc.hasCock()) output(" jerky pumps of your [pc.hips]");
+	else output(" shifts of your [pc.hips]");
+	output(", your peak finally seems to plateau with a contented sigh. You look down at the mess you’ve made of the ");
+	if(InShipInterior(pc)) output("floor");
+	else output("ground");
+	output(" around you, ");
+	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("and up at the now dispersing crowd that had gathered, ");
+	output("reveling in the afterglow of a job well done. Your mind feels a lot more... clear after that, like some sort of lock was taken off and thrown away, letting you navigate your own thoughts a bit easier.");
 
-output("\n\nYour master seems to notice your relaxed posture. She chuckles, <i>“That’s nice, isn’t it? Doesn’t being here with your master just make you feel good... safe?”</i>");
+	output("\n\nWith that all out of the way, you ");
+	if(!pc.isCrotchExposed() && !pc.isAssExposed() && !pc.isChestExposed()) output("gather your things and ");
+	output(" prepare to continue your journey, a bit less horny than before.");
 
-output("\n\n<i>Yeah, it does. It’s like you can feel her arms around you, one hand tight on your leash, whispering praises in your ears. It’s so nice being a good pet and having a master like Belle to take all your worries away.</i> Just as those thoughts begins to fade the lights seems to change, patterns appearing in the colours, almost clearing your mind until it’s all you can focus on, Belle’s voice seeming to flow into the patterns.");
+	processTime(20);
+	pc.orgasm();
+	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) pc.exhibitionism(2);
+	//[Next] //Drains lust and removes the hypnosis flag.
+	pc.removeStatusEffect("Belle Hypno");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-output("\n\n<i>“I bet you’d like to reward your master, wouldn’t you? Make her feel nice, loved, happy. Such a good [pc.boyGirl] should want to make their master feel good.”</i>");
+//Lab Walk-In
+//Triggers if the PC has the Belle hypnosis flag and enters the Accu-Pitch labs tile and is not nude, Should be added onto the rest of the entering-lab text, Should also remove the PC’s gear and place it in inventory and remove the hypnosis flag.
+public function labWalkInHypnoEvent():void
+{
+	showName("\nWEIRD!");
+	output("\n\nAfter standing there for a moment, <b>you’re hit by the strangest urge, and then everything just goes blank.</b>");
+	output("\n\nYour limbs start to move on their own volitions, working diligently to tear away ");
+	if(!(pc.armor is EmptySlot)) 
+	{
+		output("the layers of your [pc.armor]");
+		if(!(pc.lowerUndergarment is EmptySlot)) output(" before carefully removing your [pc.lowerUndergarment]");
+	}
+	else output("your undergarments");
+	output(" to leave you bare in the confines of Belle’s lab.");
 
-output("\n\n<i>Yes, you do want to make her feel good. Her arms seems to slide across your body, running over your crotch and chest, and though you know she isn’t there, it makes you gasp and moan all the same.</i> All these thoughts begin to feel heavy, weighing down on your eyelids and limbs like a hard day’s work. Belle’s voice and the changing colours before you gently fade until you can’t hear or see them... but you hear something, something saying <i>“Good [pc.boyGirl].”</i>");
+	output("\n\nYou snap back to reality, only to feel the air on your skin, realizing that you’ve stripped yourself... or at least you think you stripped yourself. Your master still hasn’t noticed you, and Saec isn’t around, so you’re really the only person that could’ve... but you don’t remember it.");
 
-output("\n\n[Next]");
+	output("\n\nWeird.\n\n");
 
-output("\n\n[Next]");
+	processTime(5);
+	//purge hypno
+	pc.removeStatusEffect("Belle Hypno");
+	pc.lust(5);
+	var loots:Array = [];
+	if(!(pc.armor is EmptySlot)) loots.push(pc.armor);
+	if(!(pc.lowerUndergarment is EmptySlot)) loots.push(pc.lowerUndergarment);
+	if(!(pc.upperUndergarment is EmptySlot)) loots.push(pc.upperUndergarment);
+	if(loots.length > 0)
+	{
+		quickLoot(pc.armor,pc.lowerUndergarment,pc.upperUndergarment);
+		eventQueue.push(newApproachBelle);
+	}
+	else
+	{
+		clearMenu();
+		addButton(0,"Next",newApproachBelle);
+	}
+}
 
-output("\n\nYou awaken to the sharp noise of a finger snap, opening your eyes only to see that the holo-screen visor has gone black. Before you can try to recollect what just happened, you feel Belle working the device off your noggin. With a few straps loosened, she pulls her invention from your head to reveal her smiling face.");
+//Uveto Landing
+//Triggers when the PC lands on Uveto and exits their ship with the Belle hypnosis flag.
+public function uvetoLandingHypno():void
+{
+	clearOutput();
+	showName("\nOH!");
+	output("Stepping out into the wabeship of Uveto station, you’re hit by the urge to visit Belle at her lab, <i>though, you feel that pretty often</i>. <i>You want to help her with experiments... pleasure her... make her happy.</i>");
+	output("\n\nYeah, you’re starting to think you should get to Accu-Pitch.");
 
-output("\n\n<i>“Well,”</i> the human woman says, looking very giddy as she places the visor aside, <i>“Do you feel any different? Any thoughts out of the ordinary? Anything particular you want to do right now?”</i>");
+	output("\n\n<i><b>Fast.</b></i>");
 
-output("\n\nSitting yourself up in your seat, you ponder your state for a moment, only to realize that you don’t really feel too different, maybe a bit more well rested, but nothing out of the ordinary.");
+	//[Next] //Should add some lust and remove the hypnosis flag.
+	pc.lust(50);
+	pc.removeStatusEffect("Belle Hypno");
+	clearMenu();
+	addButton(0,"Next",move,rooms["SUBSHIT"].northExit);
+}
 
-output("\n\nYour master sighs and frowns, <i>“I guess that’s to be expected.”</i>");
+//No
+//[No]
+public function rejectTheHypno():void
+{
+	clearOutput();
+	showBelle();
+	output("You shake your head and give your master and apologetic look, informing her you’re not really okay with what she’s proposing.");
+	output("\n\nYour response prompts a warm smile from Belle, who pulls her hand back and places it on your head, giving you a good ");
+	if(ausaurKaithrit()) output("scritch");
+	else output("head pat");
+	output(". <i>“That’s just fine, [pc.boyGirl], I wouldn’t want you to do anything you’re uncomfortable with.”</i>");
 
-output("\n\nYou look at Belle with a quivering lip, <i>after all, you want her experiments to work, and part of you feels like it’s </i>your<i> fault</i>.");
+	output("\n\nThe woman picks herself back up, leash still in hand, and places the wire-covered headwear back on the bench she got it from. <i>“I guess we’ll just have to find something else to do today, hmm, [pc.boyGirl],”</i> she says with a grin on her face.");
 
-output("\n\nA smile quickly reappears on the lady scientist’s face, accompanied by a hand reaching up to {pcAusar/Kaithrit/Half: scratch your [pc.ears] //Else: pat you on the head}, <i>“Don’t worry, [pc.boyGirl]. It’s not your fault, just some... less-than-reliable pseudoscience.”</i>");
+	//[Next] //Actually I guess all the Experiment menu options should be here.
+	processTime(3);
+	belleExperimentsMenu();
+	addDisabledButton(3,"Hypnotism","Hypnotism","You just shot that down.");
+}
 
-output("\n\nYou coo as her hand runs {pcAusar/Kaithrit/Half: over your sensitive aural organs //Else: {hasHair: through your hair //Else: over your scalp}}.");
-
-output("\n\n<i>“Alright, up, [pc.boyGirl],”</i> Belle commands with her much-sterner tone, <i>“Looks like we’re done experimenting for now.”</i>");
-
-output("\n\nYou do as your master says and rise to your feet in front of her, and without hesitation, she unhinges her leash from your collar, and flips the single switch on its side, turning it off.");
-
-output("\n\nThough, your pet-like feelings don’t so much as fade this time, quite enjoying the feeling of being Belle’s pet, still smiling at her with your heart fluttering. After a few more moments of silence though, your master speaks up: <i>“Well, I suppose you should be on your way then, my pet.”</i>");
-
-output("\n\nYeah, that sounds like a good idea right about now.");
-
-output("\n\n[Next] Exits the lab tile and adds a <i>“Belle Hypnosis”</i> flag that can trigger any of the following scenes while the PC still has it.");
-
-output("\n\n//Masturbation");
-output("\n\n//Triggers if the PC has the Belle hypnosis flag and chooses the masturbation option.");
-
-output("\n\nAs soon as the miniscule possibility of touching yourself crosses your mind, you find your thoughts flooded with thoughts of Belle, her hands all over your body. It’s like you can feel her touching you in the most pleasurable ways while an invisible force tugs on an intangible leash, flushing your body with heat.");
-
-output("\n\nThere’s no way of stopping yourself at this point {inCivilization:, even though you’re in public}. {notNude: You frantically tear your [pc.gear] off, baring yourself to the open {inCivilization: and everyone around you,} ready to pleasure yourself. Barely thinking, you lean against the nearest {inCiv/Ship: wall //Else: flat surface} as your knees start to wobble. //Else: Already bared to the open {inCivilization: and everyone around you,} you lean yourself against the nearest {inCiv/Ship: wall //Else: flat surface}, knees shaking with lust.}");
-
-output("\n\n{hasCock:");
-output("\n\nYou reach a hand down to your [pc.cockBiggest] and lick your lips, wrapping your fingers around all the cockmeat you can. Once you’re sure you’ve gotten a good enough grip, you go to town, stroking your manhood as fast as you can, tearing pleasured groans from your own lips. {fuckedSaec: You think about Saec as you go on, imagining yourself ramming her tight ausar pussy, breeding her until she gets all the pups she could ever want. It’s all so vivid, like you can feel her ass quaking against your thighs with each imaginary thrust. //Else: You think of Belle as you go on, imagining yourself sitting in her lap, speared on her cock while a caressing palm jerks you off. It’s all so vivid, like you can feel her breath on your shoulder, whispering praise in your ears.} //This variant has a 50/50 chance if both requirements are met.");
-
-output("\n\nYou seem to be losing control over your own body at this point, unable to stop the vigorous pumping of your shaft, <i>not like you’d want to</i>. Your thoughts drift between sexual fantasy with your master as your orgasm begins to mount, unable to do anything but moan {inCivilization:, even as a crowd gathers around to watch your exhibitionist excursion}. Your eyes flutter shut, your once gentle stroking becoming an ever-changing sequence of pleasurable rhythms, your mind trying to wring all the pleasure from a simple handjob that it can.");
-
-output("\n\nEventually, a burning in your loins signals your need for release, and with nary a partner to please, you let your willpower slip away and your climax to begin. You cum with explosive force, quivering in your spot as you thrust against your own hand. Ecstasy rocks your body as you pant and moan, eyes rolling back with bliss. Your [pc.cocks] spasm{s}, emptying the contents of your [pc.balls] all over the {inShip: floor //Else: ground}, still dreaming of Belle.");
-output("\n\n/Else:");
-output("\n\nYou reach a hand down to your [pc.vagina] and quickly sink a pair of fingers into your honeypot with a pleasured gasp. Spreading your fingers, you allow your feminine fluids to spill onto your palm before you start moving your wrist, sliding your digits in and out of your slick cunt until you groan. You think of Belle as you touch yourself, imagine yourself bent over and speared on her twin cocks. It’s all so vivid, like you can feel your pussy spreading around her shaft and her hips slamming against your own. Your eyes flutter closed as you continue, losing yourself to thoughts of your master and all her wonderful leashes and experiments.");
-
-output("\n\nYou seem to be losing control over your own body at this point, unable to stop the vigorous mastubation, <i>not like you’d want to</i>. Your thoughts drift between sexual fantasy with your master as your orgasm begins to mount, unable to do anything but moan {inCivilization:, even as a crowd gathers around to watch your exhibitionist excursion}. A once-gentle fingering turns into a energetic finger-fucking, teasing your slit and [pc.clit] with fast, short movements. Though, sometimes massive shockwaves of pleasure leave you still for a moment to recover from many a near-climax.");
-
-output("\n\nEventually, a burning in your loins signals your need for release, and with nary a partner to please, you let your willpower slip away and your climax to begin. You cum with explosive force, quivering in your spot as your [pc.vagina] clamps down around your fingers and [pc.girlcum] spills out, splattering your thighs and hand until you’re thoroughly drenched. Ecstasy rocks your body as you pant and moan, eyes rolling back with bliss. Your inner walls spasm against your digits, wringing every last ounce of pleasure from your orgasm as you ride it out with no end to the pleasure in sight.");
-output("\n\n}");
-
-output("\n\nAfter a few last good {hasCock: jerky pumps of your [pc.hips] //Else: shifts of your [pc.hips]}, your peak finally seems to plateau with a contented sigh. You look down at the mess you’ve made of the {inShip: floor //Else: ground} around you, {inCivilization: and up at the now dispersing crowd that had gathered,} reveling in the afterglow of a job well done. Your mind feels a lot more... clear after that, like some sort of lock was taken off and thrown away, letting you navigate your own thoughts a bit easier.");
-
-output("\n\nWith that all out of the way, you {notNude: gather your [pc.gear] and} prepare to continue your journey, a bit less horny than before.");
-
-output("\n\n[Next] //Drains lust and removes the hypnosis flag.");
-
-output("\n\n//Lab Walk-In");
-output("\n\n//Triggers if the PC has the Belle hypnosis flag and enters the Accu-Pitch labs tile and is not nude, Should be added onto the rest of the entering-lab text, Should also remove the PC’s gear and place it in inventory and remove the hypnosis flag.");
-
-output("\n\nAfter standing there for a moment, you’re hit by the strangest urge, and then everything just goes blank.");
-
-output("\n\nYour limbs start to move on their own volitions, working diligently to tear away  {pcHasArmorAndUnderWear: your armor before carefully removing your [pc.undergarments] //pcHasArmorOnly: the layers of your [pc.armor] //Else: your undergarments} to leave you bare in the confines of Belle’s lab.");
-
-output("\n\nYou snap back to reality, only to feel the air on your skin, realizing that you’ve stripped yourself... or at least you think you stripped yourself. Your master still hasn’t noticed you, and Saec isn’t around, so you’re really the only person that could’ve... but you don’t remember it.");
-
-output("\n\nWeird.");
-output("\n\n//Uveto Landing");
-output("\n\n//Triggers when the PC lands on Uveto and exits their ship with the Belle hypnosis flag.");
-
-output("\n\nStepping out into the wabeship of Uveto station, you’re hit by the urge to visit Belle at her lab, <i>though, you feel that pretty often</i>. <i>You want to help her with experiments... pleasure her... make her happy.</i>");
-
-output("\n\nYeah, you’re starting to think you should get to Accu-Pitch.");
-
-output("\n\n<i><b>Fast.</b></i>");
-
-output("\n\n[Next] //Should add some lust and remove the hypnosis flag.");
-output("\n\n//No");
-output("\n\n[No]");
-
-output("\n\nYou shake your head and give your master and apologetic look, informing her you’re not really okay with what she’s proposing.");
-
-output("\n\nYour response prompts a warm smile from Belle, who pulls her hand back and places it on your head, giving you a good {pcAusar/Kaithrit/Half: scritch //Else: head pat}. <i>“That’s just fine, [pc.boyGirl], I wouldn’t want you to do anything you’re uncomfortable with.”</i>");
-
-output("\n\nThe woman picks herself back up, leash still in hand, and places the wire-covered headwear back on the bench she got it from. <i>“I guess we’ll just have to find something else to do today, hmm, [pc.boyGirl],”</i> she says with a grin on her face.");
-
-output("\n\n[Next] //Actually I guess all the Experiment menu options should be here.");
-output("\n\n//Dates");
+/*output("\n\n//Dates");
 output("\n\n[Dates]");
 
 output("\n\nRubbing your hands together tentatively, you ask Belle if the two of you could spend some time together, without all the experiments.");

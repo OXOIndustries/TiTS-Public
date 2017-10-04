@@ -567,6 +567,12 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		output("Public masturbation is illegal here. Trying to masturbate would almost certainly land you in jail.");
 		aborted = true;
 	}
+	//Subtuner hypnoproc.
+	else if(pc.hasStatusEffect("Belle Hypno") && pc.hasGenitals()) 
+	{
+		belleMasturbationProc();
+		return;
+	}
 	//Exhibitionism masturbation
 	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
 	{

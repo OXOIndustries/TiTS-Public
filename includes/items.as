@@ -1675,6 +1675,19 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 	
 	var target:PlayerCharacter = pc;
 	
+	//Strip out any emptyslots for when stripping PC nakkers.
+	for (var ii:int = 0; ii < newLootList.length; ii++)
+	{
+		if(newLootList[ii] is EmptySlot) 
+		{
+			newLootList.splice(ii,1);
+			//Back it up since we just yanked our current spot out.
+			ii--;
+		}		
+	}
+	//Failsafe: Give the PC a rock if you're somehow collecting nothing.
+	if(newLootList.length <= 0) newLootList.push(new Rock());
+
 	output("You acquire " + newLootList[0].description + " (x" + newLootList[0].quantity + ")");
 	
 	var tItem:ItemSlotClass = newLootList[0];

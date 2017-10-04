@@ -112,6 +112,15 @@ public function uvetoShipDock():Boolean
 {
 	removeUvetoCold(true);
 	
+	if(pc.hasStatusEffect("Belle Hypno"))
+	{
+		if(pc.statusEffectv1("Belle Hypno") < 1) pc.addStatusValue("Belle Hypno",1,1);
+		else 
+		{
+			uvetoLandingHypno();
+			return true;
+		}
+	}
 	//Shade Uveto welcome message.
 	getLetterFromShade();
 	
