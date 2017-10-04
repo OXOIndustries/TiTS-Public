@@ -825,7 +825,7 @@ public function subTunerOvah():void
 public function newSubTunerOpening():void
 {
 	clearOutput();
-	
+	author("HugsAlright");
 	moveTo("SUBSHIT");
 	showName("ACCUPITCH\nLABS");
 
@@ -867,6 +867,7 @@ public function accupitchLabsBonus():Boolean
 		labWalkInHypnoEvent();
 		return true;
 	}
+	author("HugsAlright");
 	//Along with the original opening with the original opening scanner and Accu-Pitch descriptions, these blurbs can show up after that, random chance for each:
 	if(rand(3) == 0) output("\n\nBelle is nearby, her pants looking as full as ever, jotting down notes on a holo-pad as she moves from terminal to terminal, working diligently.");
 	//OR
@@ -918,6 +919,7 @@ public function newApproachBelle(back:Boolean = false):void
 {
 	clearOutput();
 	showBelle();
+	author("HugsAlright");
 	if(back) output("What now?");
 	else
 	{
@@ -947,6 +949,7 @@ public function belleAppearance():void
 {
 	clearOutput();
 	showBelle();
+	author("HugsAlright");
 	output("Dr. Belle Baslocvicz is a 5’11”, slightly-modded human woman. Her hair is black, long, and kept in a ponytail to keep it out of the way of the lady scientist’s fair-skinned face and equipment. With her locks pulled away like curtains, Belle’s face is easily visible, from the soft, feminine curves of her face, to her pouty lips and green eyes; a lovely-looking woman if you ever saw one.");
 	output("\n\nPast the features of her visage, Dr. Baslocvicz’s body is truly something to behold. She’s got very large breasts that jiggle and quake with every step she takes, double-Ds at the least, though, you can’t help but wonder if they get in the way of her work. Past her chest rests Belle’s svelte midsection, along with a comparatively wide, impressive set of hips below that, and an even more impressive derriere behind that.");
 	output("\n\nThough, most of your interest lies in what’s inside Belle’s pants, mainly her twin Terran cocks. Each one easily measures a foot in length, with a big, bitch-breaking knot at the bottom of each of her shafts, just perfect for taking care of her pets. Her large balls swing heavily between her legs, oh-so full of cum. Opposite her dual-dongs rest a pink human pussy, rarely used by the lady scientist herself.");
@@ -975,6 +978,7 @@ public function talkToBelle():void
 {
 	clearOutput();
 	showBelle();
+	author("HugsAlright");
 	output("<i>“Oh?”</i> Belle coos, bringing one of her hands up to cup your cheeks, stroking your [pc.skinFurScales] with her thumb, <i>“Have something you want to ask me, my little pet?”</i>");
 
 	processTime(1);
@@ -994,6 +998,7 @@ public function belleTalkMenu():void
 public function talkToBelleAboutHer():void
 {
 	clearOutput();
+	author("HugsAlright");
 	showBelle();
 	output("<i>“Me?”</i> Belle asks, placing a hand just above her impressive bust, <i>“Well, if you really want to know, I could share a few things.”</i> The woman walks over to nearby pair of chairs before extending an arm, <i>“Here, [pc.name], have a seat.”</i>");
 	output("\n\nYou do as she says and sit down in one of the chairs, and she does the same in the seat across from you. The piece of furniture is rather cushy for being in a lab.");
@@ -1034,6 +1039,7 @@ public function talkToBelleAboutHer():void
 public function workWithBelle():void
 {
 	clearOutput();
+	author("HugsAlright");
 	showBelle();
 	output("<i>“You mean what I do here at the lab?”</i> Belle asks, <i>“Well, I’m an acoustical engineer of sorts, and over the past few years I’ve been looking deeper and deeper into how exactly you can affect the thought-patterns of sentient creatures with it.”</i>");
 
@@ -1082,6 +1088,7 @@ public function belleMasterTalk():void
 {
 	clearOutput();
 	showBelle();
+	author("HugsAlright");
 	output("<i>“Oh, aren’t pets just lovely?”</i> Belle exclaims, clasping her hands together and smiling, <i>“No matter what happens you love them and they love you, as unconditional as anything good in the world can get.”</i>");
 	output("\n\nStill grinning wide, Belle looks at you and continues her happy little explanation, ");
 	//metSaec:
@@ -1125,6 +1132,7 @@ public function newExperimentsWithBelle():void
 {
 	clearOutput();
 	showBelle();
+	author("HugsAlright");
 	output("You tell Belle that you would very much like to help her with more of her experiments, resulting in a big grin from your soon-to-be master.");
 
 	//notWearingSubTuner:
@@ -1157,6 +1165,7 @@ public function belleExperimentsMenu():void
 public function morePetsSlashTentacles():void
 {
 	clearOutput();
+	author("HugsAlright");
 	showName("\nTENTACLES!");
 	showBust("ROSWELL",saecBustString());
 
@@ -1288,6 +1297,7 @@ public function morePetsSlashTentacles():void
 public function tentacleStuffSubTwo():void
 {
 	clearOutput();
+	author("HugsAlright");
 	showBust("BELLE","ROSWELL",saecBustString());
 	output("The sound of Belle’s voice wakes you from your post-coital slumber, still with Saec in your arms, <i>“Well, it looks like you all had a good time.”</i>  You open your eyes to see the lady scientist standing in the doorframe for a moment before walking towards you.");
 	output("\n\n<i>“Oh!”</i> Roswell exclaims through your thoughts as his <i>“mother”</i> approaches, wriggling joyously, <i>“Yeah we had lots of fun together! I think they’re still pretty tired though...”</i>");
@@ -1312,6 +1322,7 @@ public function tentacleStuffSubTwo():void
 public function exhibitionismCollarWithBelle():void
 {
 	clearOutput();
+	author("HugsAlright");
 	showBelle();
 	output("<i>“Hmm,”</i> Belle deliberates for a moment, <i>“");
 	if(flags["SUBTUNER_EXHIBITIONISM"] == undefined) output("I was going to go through a few more beta versions before testing these, but now that you’re here, it seem like the perfect time to try them out.");
@@ -1472,6 +1483,7 @@ public function subTunerExhibRouter():void
 public function subTunerRivalBullshit():void
 {
 	clearOutput();
+	author("HugsAlright");
 	showRival(true);
 	
 	output("You wander around the great wabeship that is Uveto station for some time, absent-mindedly whining and moaning under the pleasurable weight of the vibrators inside you. Unfortunately, finding someone to pleasure is proving troublesome: the toves you meet are not at all interested in your sexual escapades, and most of the alien strangers that you kneel before simply smile, pat your head and call you a good puppy... <i>and you really wish your master was here</i>.");
@@ -1601,6 +1613,7 @@ public function subTunerRivalBullshit():void
 public function aftermathOfRivalIncestYaCunts():void
 {
 	clearOutput();
+	author("HugsAlright");
 	showBelle();
 	moveTo("SUBSHIT");
 	output("It isn’t too long before you’re back within the confines of Belle’s lab, your master waiting there at the entrance for you with a big smile on her face. You quickly walk your way up to her and she greets you with a hearty <i>“Good [pc.boyGirl]”</i> and a ");
@@ -1619,6 +1632,7 @@ public function aftermathOfRivalIncestYaCunts():void
 public function cleanupOfRivalSluttery():void
 {
 	clearOutput();
+	author("HugsAlright");
 	showBelle();
 	output("Belle takes good care of you, stripping you of your soiled suit and removing all her toys from your nipples and sodden, well-used holes");
 	if(pc.hasVagina()) output("s");
@@ -1644,28 +1658,12 @@ public function cleanupOfRivalSluttery():void
 	//[Next] //Returns the PC outside Belle’s lab.
 }
 
-/*9999
-output("\n\n//Email");
-output("\n\n//After this specific variant the PC can receive this email.");
-
-output("\n\n<b>From:</b> {Jack/Jill} Steele <{Jack/Jill}_Steele@MaxSteele.org>");
-output("\n\n<b>To:</b> [pc.name] Steele <[pc.mail]@SteeleTech.corp>");
-output("\n\n<b>Subject:</b> Mutt.");
-
-output("\n\nLook at you, you incestuous mutt!");
-
-output("\n\n<i>Attached to this single line of text is a high-definition, first-person video of you {maleRival: sucking your own cousin’s cock from Jack’s perspective //Else: eating out your own cousin from Jill’s perspective}. You seem pretty into it during the whole video... and so does {Jack/Jill}, with you thoroughly {maleRival: speared on Jack’s cock and his hand running through your [pc.hair] //Else: buried in Jill’s muff and her hand running through your [pc.hair]}, all those moans and groans filling your ears. You reminisce on that whole act of incest and sexual deviance for a moment, getting a little hot and bothered...</i>");
-
-output("\n\n<i>You should probably delete that video... or you could keep it.</i>");
-
-output("\n\n//This email is deletable, but the PC can get it multiple times if they trigger the same variant.");
-*/
-
 //Anno
 //This variant can occur if the Anno is on crew.
 public function subTunerAnnoExhib():void
 {
 	clearOutput();
+	author("HugsAlright");
 	showAnno(true);
 	output("You wander around the the great wabeship that is Uveto station for some time, absent-mindedly whining and moaning under the pleasurable weight of the vibrators inside you. Unfortunately, finding someone to pleasure is proving troublesome: the toves you meet are not at all interested in your sexual escapades, and most of the alien strangers that you kneel before simply smile, pat your head and call you a good puppy... <i>and you really wish your master was here</i>.");
 	output("\n\nAfter a few more moments of scouting for sex, your ears are greeted by a familiar, playful voice.");
@@ -1690,6 +1688,7 @@ public function subTunerAnnoExhib():void
 public function subTunerAnnoExhib2():void
 {
 	clearOutput();
+	author("HugsAlright");
 	showAnno(true);
 	output("After getting back up on your [pc.feet], Anno leads you around the best she can without a leash to the building she was talking about. Sleek and featureless like most of the places on the station, the SteeleTech storage’s only defining attribute is the control panel next to the door which Anno quickly taps a few keys on. Watching the ausar’s tail wagging like it is makes you think she’s just as excited for this as you are. A moment later and the door swishes open, and Anno walks her way into the storage depot, stopping in the door to look over her shoulder at you.");
 	output("\n\n<i>“Coming?”</i>");
@@ -1772,6 +1771,7 @@ public function subTunerAnnoExhib2():void
 public function subTunerAnnoExhib3():void
 {
 	clearOutput();
+	author("HugsAlright");
 	showBelle();
 	moveTo("SUBSHIT");
 	output("It isn’t too long before you’re back within the confines of Belle’s lab, your master waiting there at the entrance for you with a big smile on her face. You quickly walk your way up to her and she greets you with a hearty <i>“Good [pc.boyGirl]”</i> and a ");
@@ -1789,6 +1789,7 @@ public function subTunerAnnoExhib3():void
 public function subTunerAnnoExhib4():void
 {
 	clearOutput();
+	author("HugsAlright");
 	showBelle();
 	output("Belle takes good care of you, stripping you of your soiled suit and removing all her toys from your nipples and sodden, well-used holes");
 	if(pc.hasVagina()) output("s");
@@ -1819,6 +1820,7 @@ public function subTunerAnnoExhib4():void
 public function syriExhibStuff():void
 {
 	clearOutput();
+	author("HugsAlright");
 	showSyri();
 	output("You wander around the the great wabeship that is Uveto station for some time, absent-mindedly whining and moaning under the pleasurable weight of the vibrators inside you. Unfortunately, finding someone to pleasure is proving troublesome: the toves you meet are not at all interested in your sexual escapades, and most of the alien strangers that you kneel before simply smile, pat your head and call you a good puppy... <i>and you really wish your master was here</i>.");
 
@@ -1897,6 +1899,7 @@ public function syriExhibStuff():void
 public function syriExhibStuff2():void
 {
 	clearOutput();
+	author("HugsAlright");
 	showBelle();
 	output("It isn’t too long before you’re back within the confines of Belle’s lab, your master waiting there at the entrance for you with a big smile on her face. You quickly walk your way up to her and she greets you with a hearty <i>“Good [pc.boyGirl]”</i> and a ");
 	if(pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1) output("scritch of your ears");
@@ -1913,6 +1916,7 @@ public function syriExhibStuff2():void
 public function syriExhibStuff3():void
 {
 	clearOutput();
+	author("HugsAlright");
 	showBelle();
 	output("Belle takes good care of you, stripping you of your soiled suit and removing all her toys from your nipples and sodden, well-used holes");
 	if(pc.hasVagina()) output("s");
@@ -1942,6 +1946,7 @@ public function syriExhibStuff3():void
 public function subTunerKiroExhib():void
 {
 	clearOutput();
+	author("HugsAlright");
 	showKiro(true);
 	output("You wander around the the great wabeship that is Uveto station for some time, absent-mindedly whining and moaning under the pleasurable weight of the vibrators inside you. Unfortunately, finding someone to pleasure is proving troublesome: the toves you meet are not at all interested in your sexual escapades, and most of the alien strangers that you kneel before simply smile, pat your head and call you a good puppy... <i>and you really wish your master was here</i>.");
 	output("\n\nAfter a few more moments of scouting for sex, you ears are greeted by a familiar voice calling out nearby.");
@@ -1992,6 +1997,7 @@ public function subTunerKiroExhib():void
 public function subTunerKiroExhib2():void
 {
 	clearOutput();
+	author("HugsAlright");
 	showBelle();
 	moveTo("SUBSHIT");
 	output("It isn’t too long before you’re back within the confines of Belle’s lab, your master waiting there at the entrance for you with a big smile on her face. You quickly walk your way up to her and she greets you with a hearty <i>“Good [pc.boyGirl]”</i> and a ");
@@ -2008,6 +2014,7 @@ public function subTunerKiroExhib2():void
 public function subTunerKiroExhib3():void
 {
 	clearOutput();
+	author("HugsAlright");
 	showBelle();
 	output("Belle takes good care of you, stripping you of your soiled suit and removing all her toys from your nipples and sodden, well-used holes");
 	if(pc.hasVagina()) output("s");
@@ -2039,6 +2046,7 @@ public function subTunerHypnoShit():void
 {
 	clearOutput();
 	showBelle();
+	author("HugsAlright");
 	//firstTime:
 	if(flags["SUBTUNER_HYPNOED"] == undefined)
 	{
@@ -2067,6 +2075,7 @@ public function sayYesToHypnoShit():void
 {
 	clearOutput();
 	showBelle();
+	author("HugsAlright");
 	output("You give your master a nod, informing her that you’re ready to assist her with this special experiment of hers. This draws a wide smile from her, and prompts her to reach up from your chin to ");
 	if(ausarKaithrit()) output("scritch at your ears");
 	else output("pat you on the head");
@@ -2090,6 +2099,7 @@ public function sayYesToHypnoShit2():void
 {
 	clearOutput();
 	showBelle();
+	author("HugsAlright");
 	output("You awaken to the sharp noise of a finger snap, opening your eyes only to see that the holo-screen visor has gone black. Before you can try to recollect what just happened, you feel Belle working the device off your noggin. With a few straps loosened, she pulls her invention from your head to reveal her smiling face.");
 	output("\n\n<i>“Well,”</i> the human woman says, looking very giddy as she places the visor aside, <i>“Do you feel any different? Any thoughts out of the ordinary? Anything particular you want to do right now?”</i>");
 	output("\n\nSitting yourself up in your seat, you ponder your state for a moment, only to realize that you don’t really feel too different, maybe a bit more well rested, but nothing out of the ordinary.");
@@ -2127,6 +2137,7 @@ public function belleMasturbationProc():void
 {
 	clearOutput();
 	showBelle();
+	author("HugsAlright");
 	output("As soon as the miniscule possibility of touching yourself crosses your mind, you find your thoughts flooded with thoughts of Belle, her hands all over your body. It’s like you can feel her touching you in the most pleasurable ways while an invisible force tugs on an intangible leash, flushing your body with heat.");
 	output("\n\nThere’s no way of stopping yourself at this point ");
 	//inCivilization:
@@ -2210,6 +2221,7 @@ public function belleMasturbationProc():void
 public function labWalkInHypnoEvent():void
 {
 	showName("\nWEIRD!");
+	author("HugsAlright");
 	output("\n\nAfter standing there for a moment, <b>you’re hit by the strangest urge, and then everything just goes blank.</b>");
 	output("\n\nYour limbs start to move on their own volitions, working diligently to tear away ");
 	if(!(pc.armor is EmptySlot)) 
@@ -2268,6 +2280,7 @@ public function rejectTheHypno():void
 {
 	clearOutput();
 	showBelle();
+	author("HugsAlright");
 	output("You shake your head and give your master and apologetic look, informing her you’re not really okay with what she’s proposing.");
 	output("\n\nYour response prompts a warm smile from Belle, who pulls her hand back and places it on your head, giving you a good ");
 	if(ausarKaithrit()) output("scritch");
@@ -2288,6 +2301,7 @@ public function datingBelle():void
 {
 	clearOutput();
 	showBelle();
+	author("HugsAlright");
 	output("Rubbing your hands together tentatively, you ask Belle if the two of you could spend some time together, without all the experiments.");
 	output("\n\nThe lady scientist give you a big smile in response, taking a few steps closer to you and cupping your cheek with one of her hands. <i>“Aww, isn’t that adorable,”</i> Belle coos, stroking your cheek with a thumb, <i>“You want to spend some time with your master, [pc.boyGirl]?”</i>");
 	output("\n\nAll you can do is blush in her grasp and respond to her query with a nod.");
@@ -2306,7 +2320,7 @@ public function datingBelle():void
 	else if(fuckedSaec()) addDisabledButton(0,"Saec","Saec","You need a penis that will fit inside her for this. Sorry!");
 	else addDisabledButton(0,"Saec","Saec","You need to have had sex with Saec before you can date her.");
 
-	if(pc.hasGenitals() && 9999 == 9999) addButton(1,"Race",raceTrackDateEvent,undefined,"Race","Taur races seem to be a popular thing on Uveto, maybe you could go to one with her?");
+	if(pc.hasGenitals() && flags["TAUR_STADIUMED"] != undefined) addButton(1,"Race",raceTrackDateEvent,undefined,"Race","Taur races seem to be a popular thing on Uveto, maybe you could go to one with her?");
 	else if(!pc.hasGenitals()) addDisabledButton(1,"Race","Race","You need genitals of some sort for this.");
 	else addDisabledButton(1,"Race","Race","You need to have been to the racetrack at least once first.");
 
@@ -2334,6 +2348,7 @@ public function saeccyDatey():void
 {
 	clearOutput();
 	showBust("BELLE",saecBustString());
+	author("HugsAlright");
 	output("<i>“Hmm?”</i> Belle hums, either confused or intrigued by your proposal of a date with Saec, <i>“");
 	//firstTime:
 	if(flags["SAEC_DATES"] == undefined) output("Actually... that sounds like a fine idea. I’ve been meaning to take her out somewhere nice, but I’ve just been so busy at the lab, though, and such a patient girl like her deserves a nice day out. I’m sure she’d just </i>love<i> to go on a date with you.");
@@ -2366,6 +2381,7 @@ public function saecDate2():void
 {
 	clearOutput();
 	showSaec();
+	author("HugsAlright");
 	output("Almost as soon as you’re out of the lab and walking away, you can feel warm fur brushing against your hand. You turn to see Saec facing away from you, but quickly realize that her fur-covered digits are wrapping around your own, taking hold of the same hand that’s holding her leash.");
 	output("\n\nThe gesture makes you smile, and you return the display of affection by firming up your grip and rubbing a thumb along the back of the ausar’s fluffy hand, making her blush all the more.");
 	output("\n\nSo, the two of you walk hand-in-hand through the halls in a blissful silence, making your way to an elevator and dropping a few levels, hoping to find that restaurant Belle told you about. ");
@@ -2447,6 +2463,7 @@ public function saecDate3():void
 {
 	clearOutput();
 	showSaec();
+	author("HugsAlright");
 	var x:int = pc.cockThatFits(saecVaginaCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	var y:int = pc.cockThatFits2(saecVaginaCapacity());
@@ -2555,6 +2572,7 @@ public function saecDate4():void
 {
 	clearOutput();
 	showSaec();
+	author("HugsAlright");
 	output("You yawn into a pair of warm chest-pillows as you wake. Lifting yourself with a stuttering groan, you pull yourself from Saec’s embrace, looking down only to realize that she’s still asleep. You figure it’s probably best to let the girl continue her post-coital nap, though you’ll have to get going yourself.");
 	output("\n\nSo, as carefully as you can, you pick yourself up and get yourself off the mattress, ");
 	if(!pc.isChestExposed() && !pc.isCrotchExposed()) output("gathering your [pc.gear] and ");
@@ -2578,6 +2596,7 @@ public function raceTrackDateEvent():void
 {
 	clearOutput();
 	showBelle();
+	author("HugsAlright");
 	output("<i>“The racetrack?”</i> Belle responds, stroking her chin with a finger and thumb, <i>“");
 	//firstTime:
 	if(flags["BELLE_TAURRACED"] == undefined) output("Now there’s somewhere I haven’t been in awhile.");
@@ -2612,7 +2631,8 @@ public function raceTrackDateEvent2():void
 {
 	clearOutput();
 	showBelle(true);
-
+	author("HugsAlright");
+	moveTo("UVI STADINT");
 	var ppBelle:PregnancyPlaceholder = getBellePregContainer();
 	var x:int = pc.cuntThatFits(ppBelle.cockVolume(0));
 	if(x < 0) x = rand(pc.totalVaginas());
@@ -2740,6 +2760,7 @@ public function postGasmDayAtTheRaces():void
 {
 	clearOutput();
 	showBelle(true);
+	author("HugsAlright");
 	output("Throughout the day, Belle fucks you and knots you again and again, keeping you in a constant cycle of pleasure, orgasm, and respite, letting you rest between races before starting the whole rotation again.");
 	output("\n\nUnfortunately though, it seems your wonderful date is to come to an end as the last race of the day finishes.");
 	output("\n\n<i>“Looks like we have to get going, [pc.boyGirl],”</i> your master breathes, running a hand through your [pc.hair] and waking you from your post-coital nap, <i>“Alright, [pc.name], up-up.”</i>");
@@ -2779,6 +2800,8 @@ public function peerReviewParty():void
 {
 	clearOutput();
 	showBelle();
+	flags["SUBTUNER_PARTY_TIMER"] = GetGameTimestamp();
+	author("HugsAlright");
 	output("Belle paces back and forth for a moment before fixing her attention on you again, <i>“I’m actually glad you’re here, [pc.boyGirl]. I was afraid I was going to have to reach you over the extranet.”</i>");
 
 	//wearingSubTuner:
@@ -2802,7 +2825,7 @@ public function peerReviewParty():void
 
 	output("\n\n<i>“You see,”</i> she explains, pacing back and forth again, <i>“After so many success with your experiments involving the Sub-Tuner, I’ve organized a bit of a ‘peer-review’ with some of my colleagues. Well, it’s honestly more of a party than anything, because I’ve invited some friends with... similar interests. I’ve already got all the drinks, hors d’oeuvres, and fittings all set, but needless to say, I need you to be there for it. How does that sound?”</i>");
 
-	output("\n\n<i>A party?! With your master?! You’d never say no to an opportunity like that! All you can do is look up at Belle and nod eagerly.");
+	output("\n\n<i>A party?! With your master?!</i> You’d never say no to an opportunity like that! All you can do is look up at Belle and nod eagerly.");
 	output("\n\n<i>“Good,”</i> she coos happily, returning your nod with a smile, <i>“Now, I have to go get ready for this little get-together. You just wait here, [pc.boyGirl].”</i> Then, like that, the Terran drops your leash and starts to walk towards the other room, leaving you painfully alone to wait for her return.");
 	output("\n\nIt’s not a long wait, thankfully, because soon your master is back again, and with a new outfit: in place of her usual lab coat and fatigues is a short, sheer-fitting black dress and modest, well-polished jewelry. It hugs at all her curves nicely, not too tightly, but enough to accentuate her frame and highlight her bulge quite well.");
 	output("\n\nYou manage to keep yourself from drooling at the sight of Belle as she walks back towards you, giving you quite the smirk.");
@@ -2825,6 +2848,7 @@ public function peerReviewParty2():void
 {
 	clearOutput();
 	showBelle();
+	author("HugsAlright");
 	output("Sure enough, the guests come: a lot of well-dressed scientists and investors, as well as those friends with <i>“similar interests”</i> Belle was speaking of, people with their own pets on leashes moving around the party. There’s not many people, a small get-together if you’ve ever seen one, groups of three or four people talking over glasses of wine that you and your master drift between. Yes, you stay close to the lovely lady holding your leash the whole time as she leads you to different guests. The more scientifically-minded seem to simply inspect your appearance, analyzing the collar around your neck while Belle demonstrates some simple commands for you to follow with her colleagues. The more deviant minded, on the other hand, seem to be more interested in your simple ability to follow your master’s orders... and that tight, tight attire of yours. A few try to get a bit grabby with you, but Belle keeps them at bay.");
 	output("\n\nEventually, you come across another fellow scientist who seems to be of <i>both</i> minds. She gives your master a hearty greeting as she walks over to the both of you. <i>“Doctor Baslocvicz!”</i> she calls, out getting close enough that you can get a good look at her, <i>“I’m surprised I haven’t bumped into the heart of the party yet.”</i>");
 	output("\n\nThe woman appear to be a rahn, a bright blue one at that. She’s quite a bit shorter than Belle, her gel molded into cyan hair and looking at her with similarly coloured eyes.");
@@ -2870,6 +2894,7 @@ public function peerReviewParty3():void
 {
 	clearOutput();
 	showBelle(true);
+	author("HugsAlright");
 	output("It doesn’t take long for Belle to find a nice, comfy looking chair on the opposite end of the room, and she quickly lead you over to it. She gives you a command of <i>“Stay.”</i> as you reach the seat, and, <i>like the good puppy you are</i>, you wait there on your knees while your master sits down.");
 
 	output("\n\nOnce she’s gotten herself settled, the lady scientist seems to forget you’re at a party and lifts her dress up and spreads her legs, allowing her two stiffening cocks and hefty balls to flop free. Your eyes go wide at the sight of Belle’s package, a wonderful musk already filling your nostrils and clouding your senses. It’s hard to resist throwing yourself onto her dicks right then and there, <i>but you wait for your orders because you’re a good puppy</i>.");
@@ -2978,9 +3003,10 @@ public function peerReviewParty4():void
 {
 	clearOutput();
 	showBelle();
+	author("HugsAlright");
 	output("The party passes along like it did before, with you and Belle mingling with scientists and pet-play enthusiasts alike. As things go on, you spot a few other pets pleasuring their masters just like you did. Eventually, though, guests begin to leave, and the already-small gathering begins to die down until it’s just you and Belle alone, a happy pair if there ever was one.");
 	output("\n\nOnce the last guest does leave, your master takes a deep breath and turns to you with a smile, <i>“Well, that went rather well, don’t you think?”</i>");
-	output("\n\n<i>That was a fun party for sure!<i> So, you look up at the woman with a grin matching hers and nod.");
+	output("\n\n<i>That was a fun party for sure!</i> So, you look up at the woman with a grin matching hers and nod.");
 	output("\n\n<i>“No doubt it went as good as it did thanks to you, [pc.boyGirl],”</i> she coos, kneeling down beside you and unbuckling her leash, <i>“And with any luck, we’ll have made a few friends and secured a few research grants.”</i> Then she reaches for the switch on your collar, and turns it off.");
 	output("\n\nYour pet-like feelings don’t so much as fade, though. In fact, you find yourself wishing you were still on your master’s leash, being loved and taken care of. A pang of sadness fills your heart, but luckily you don’t endure that for long, because Belle gingerly cups your cheek, and gives you a kiss, holding her lips to yours for a moment that doesn’t last nearly long enough before she pulls back.");
 	output("\n\n<i>“Well, [pc.boyGirl],”</i> she sighs, stroking your [pc.skinFurScales] with a thumb, <i>“I guess it’s about time you ");
@@ -3057,6 +3083,7 @@ public function randomSubTunerShit():void
 public function subTunahDream():void
 {
 	clearOutput();
+	author("HugsAlright");
 	showBelle(true);
 	output("You awake to the gentle moaning of pleasure and the sound of skin slapping against skin. Confused you move your tired limbs around, turning your neck until you feel the collar around it... and it’s humming.");
 	output("\n\nWait, is your collar on!? You can’t really find yourself caring though, <i>because all you can feel is an overwhelming need for your master</i>, but where is she?");
@@ -3109,6 +3136,7 @@ public function subTunahDream():void
 public function subTunahDream2():void
 {
 	clearOutput();
+	author("HugsAlright");
 	showName("JUST\nA DREAM...");
 	output("You wake up with a gasp, only able to feel an aching need in your loins as you realize your lovely bed-time visit from your master was only a dream. A very tangible sense of disappointment floods your body at that realization, ");
 	//annoBedPartner:
@@ -3123,87 +3151,128 @@ public function subTunahDream2():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+//Taur Race Stadium
+//This will be a new area on Uveto, pretty close to the town.
+//Tile Text
+public function taurStadiumInterior():void
+{
+	author("HugsAlright");
+	output("[pc.Moving] inside, you’re greeted by the warmth of artificial heating and the gentle rumbling of crowds moving in and out of the arena. Looking around, you can see stairwells leading to what must be the stands, snack stands, money-changers, floor-men, and cashiers, all ready to take your money. The whole arena is painted a deep-blue with highlights of white and icy mints; holo-signs and brightly-coloured advertisements line the walls. It seems a testament to the power of the galaxy’s corporations that a place like this can exist on a small, frozen moon in the middle of nowhere.");
+	output("\n\nThere’s a girl with brightly-coloured, scaled skin who appears to be a cashier with an empty line in front of her. Seems like she’d be your in if you want to get in on some of the races here.");
 
-/*
-output("\n\n//Taur Race Stadium");
-output("\n\n//This will be a new area on Uveto, pretty close to the town.");
-output("\n\n//Tile Text");
-output("\n\n//Outside tile text");
-output("\n\nTo the {north/south/east/west} you can see a massive stadium with a holo-sign reading <b>"Racetrack U7”</i></b>. It’s completely enclosed by the looks of what you can see from out here, shielded from the cold, cold weather of this frozen iceball of a moon. The thing almost looks like one of those old coliseums from ancient Earth, with dozens of large, crescent-topped entrances along its circumference, and it looks like you could use one to get in if you wanted.");
-output("\n\n//Tile Text");
-output("\n\n[pc.Walk]ing inside, you’re greeted by the warmth of artificial heating and the gentle rumbling of crowds moving in and out of the arena. Looking around, you can see stairwells leading to what must be the stands, snack stands, money-changers, floor-men, and cashiers, all ready to take your money. The whole arena is painted a deep-blue with highlights of white and icy mints; holo-signs and brightly-coloured advertisements line the walls. It seems a testament to the power of the galaxy’s corporations that a place like this can exist on a small, frozen moon in the middle of nowhere.");
+	addButton(0,"Cashier",taurStadiumCashier);
+}
 
-output("\n\nThere’s a girl with brightly-coloured, scaled skin who appears to be a cashier with an empty line in front of her. Seems like she’d be your in if you want to get in on some of the races here.");
+public function showTaurCashier():void
+{
+	showName("\nCASHIER");
+	showBust("STADIUM_CASHIER");
+}
+//[Cashier]
+public function taurStadiumCashier():void
+{
+	clearOutput();
+	author("HugsAlright");
+	showTaurCashier();
+	//firstTime:
+	if(flags["TAUR_STADIUMED"] == undefined)
+	{
+		output("You [pc.walk] your way up to the bright-green girl, taking note of the feathery appearance of her hair... along with what appears to be plates of bones or chitin on her face, closing around her eyes like a mask, and ending at her upper lip.");
+		output("\n\n<i>“Oh, hello! Welcome to U7,”</i> she says with what sounds to be perfectly-practiced corporate jubilance, <i>“I don’t believe I’ve seen you here before, new to the track?”</i>");
+		output("\n\nSeeing her talk, you notice some of those bony plates on her face <i>moving</i>, like mandibles, folding outward with each syllable until her mouth closes. You manage to tear yourself from the woman’s alien appearance and tell her that you haven’t been here before.");
+		output("\n\n<i>“Well, if you have any questions then, or want to bet on any of our contestants, feel free to talk to me or any of the other cashiers!”</i> the alien girl responds, <i>“of course, we open our races to free viewings certain times of the day.”</i>");
+		output("\n\nStill not to sure what U7 is about, you ask the cashier exactly <i>what</i> they race here.");
+		output("\n\n<i>“Oh, we race people,”</i> she answers with a smile on her face, or as much of a smile as her species’ faces can make.");
+		if(pc.isBimbo()) output("\n\nAfter imagining ausar and humans on all-fours running through a racetrack, you give the cashier a confused look.");
+		else output("\n\nYou cock an eyebrow.");
+		output("\n\n<i>“Our more... tauric citizens,”</i> the woman explains, mandibles moving in and out as her reptilian eyes stay fixed on you, <i>“With RhenWorld around, leithans have become popular contestants in out races, for instance.”</i>");
+		output("\n\nAfter giving her an understanding nod, the cashier offers her services to you again.");
+		flags["TAUR_STADIUMED"] = 1;
+	}
+	//Else:
+	else
+	{
+		output("You [pc.walk] your way up to the familiar, reptilian cashier nearby, her small green scales shimmering in the artificial light of the racetrack.");
+		output("\n\n<i>“Ah, welcome back!”</i> the alien woman says with a click of her bony mandibles, <i>“Can I help you with anything today?”</i>");
+	}
+	//[WatchRace] Spend some time watching a race for free.
+	//[BetRace] Bet on and watch a race here at U7.
+	//[EnterRace?] Ask her if you can enter the races here. //Only accessible if the PC is a taur.
+	processTime(2);
+	clearMenu();
+	addButton(0,"WatchRace",actuallyWatchTaurRace,undefined,"WatchRace","Spend some time watching a race for free.");
+	addButton(1,"BetRace",betRaceOnUveto,undefined,"BetRace","Bet on and watch a race here at U7.");
+	addButton(2,"EnterRace?",enterTheRace,undefined,"Enter Race?","Ask her if you can enter the races here.");
+	addButton(14,"Leave",mainGameMenu);
 
-output("\n\n[Cashier]");
-output("\n\n//Cashier");
-output("\n\n[Cashier]");
+}
+	
+//[WatchRace]
+public function watchTaurRace():void
+{
+	clearOutput();
+	author("HugsAlright");
+	showTaurCashier();
+	showName("RACE\nWATCHIN'");
+	output("You tell the woman that you’ve come to spend some time watching some races and ask for directions.");
+	output("\n\n<i>“Of course,”</i> she says with some sort of faux-smile, <i>“Just make your way up the stairs to our lower stadium seating.”</i>");
+	if(pc.isAss()) output("\n\nWith a nod");
+	else output("\n\nThanking the cashier");
+	output(", you start to make your way towards the stairs she pointed out, ready to spend some time relaxing and watching a few races.");
 
-output("\n\n{firstTime:");
-output("\n\nYou [pc.walk] your way up to the bright-green girl, taking note of the feathery appearance of her hair... along with what appears to be plates of bones or chitin on her face, closing around her eyes like a mask, and ending at her upper lip.");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",actuallyWatchTaurRace);
+}
 
-output("\n\n<i>“Oh, hello! Welcome to U7,”</i> she says with what sounds to be perfectly-practiced corporate jubilance, <i>“I don’t believe I’ve seen you here before, new to the track?”</i>");
+public function actuallyWatchTaurRace():void
+{
+	clearOutput();
+	author("HugsAlright");
+	showName("RACE\nWATCHIN'");
+	if(flags["TAUR_STADIUM_WATCHED"] == undefined)
+	{
+		output("Entering the stadium, you come to the realization that this place is <b><i>huge</i></b>; miles of synthetic-earth in a pill-shape beneath you forms the track of the stadium, while the fully-enclosed ceiling stretches high and far above you.");
+	}
+	//Else:
+	else output("Entering the stadium, you find yourself less surprised by the sheer size of the building, but still find it impressive by the standards of a small, frozen moon in terms of infrastructure.");
 
-output("\n\nSeeing her talk, you notice some of those bony plates on her face <i>moving</i>, like mandibles, folding outward with each syllable until her mouth closes. You manage to tear yourself from the woman’s alien appearance and tell her that you haven’t been here before.");
+	output("\n\nYou walk your way through the rows and rows of chairs for quite some time, and after reaching a suitable seat ");
+	if(pc.isTaur()) output("for your tauric body ");
+	output("to watch the races from, you sit your [pc.ass] down and get yourself comfortable before the next race starts.");
 
-output("\n\n<i>“Well, if you have any questions then, or want to bet on any of our contestants, feel free to talk to me or any of the other cashiers!”</i> the alien girl responds, <i>“of course, we open our races to free viewings certain times of the day.”</i>");
+	//firstTime:
+	if(flags["TAUR_STADIUM_WATCHED"] == undefined)
+	{
+		output("\n\nCheering and clapping fills the air when the races begin, and you lean forward in your chair to get a better look at what’s going on. As you expected, a buzzer rings and you can already see tauric people charging out the gates: leithans mainly, with many a other species thrown in, even a few modded humans.");
+		output("\n\nWhat you <i>didn’t</i> expect to see though is the racer’s jockeys, all of them are bipedal... and riding <i>under</i> their respective contestant. Even more interesting, though, is the fact that they’re all naked, riders and racers alike... and if you were to wager a guess ");
+		if(silly) output("(since you aren’t even betting on this race) ");
+		output("there’s definitely something going on between their bodies. Though you can’t really hear or see it, there’s probably a few taurs packing and well-sheathed inside their riders.");
 
-output("\n\nStill not to sure what U7 is about, you ask the cashier exactly <i>what</i> they race here.");
+		output("\n\nWhat ");
+		if(pc.isBimbo()) output("a great sport!");
+		else output("an odd sport.");
+	}
+	//Else:
+	else
+	{
+		output("\n\nCheering and clapping fills the air when the races begin, and you lean forward in your chair to get a better look at what’s going on. Just like last time, the buzzer sounds and the tauric racers shoot from their gates like bullets, jockeys riding underneath. They maneuver the turns of the track like veterans of the track, and the riders beneath seem to be enjoying being along for the ride.");
+	}
 
-output("\n\n<i>“Oh, we race people,”</i> she answers with a smile on her face, or as much of a smile as her species’ faces can make.");
+	output("\n\nOnce the contestants finish their loop around the track, the ruckus of the stadium quiets down, aside from a few unhappy cusses from those upset with the outcome of their bets.");
+	output("\n\nWell, it looks like you could take your leave.");
+	//Fen note: cut the "Watch More" option due to total pointlessness.
+	//if you feel inclined to do so, or keep your spot and watch some more races to pass the time.");
 
-output("\n\n{pcBimbo: After imagining ausar and humans on all-fours running through a racetrack, you give the cashier a confused look //Else: You cock an eyebrow}.");
+	processTime(25);
+	IncrementFlag("TAUR_STADIUM_WATCHED");
+	clearMenu();
+	//[WatchMore] //This option passes 3 hours each time it’s chosen.
+	//[Finish] //Takes the PC back to the stadium tile.
+	addButton(0,"Next",mainGameMenu);
+}
 
-output("\n\n<i>“Our more... tauric citizens,”</i> the woman explains, mandibles moving in and out as her reptilian eyes stay fixed on you, <i>“With RhenWorld around, leithans have become popular contestants in out races, for instance.”</i>");
-
-output("\n\nAfter giving her an understanding nod, the cashier offers her services to you again.");
-output("\n\n//Else:");
-output("\n\nYou [pc.walk] your way up to the familiar, reptilian cashier nearby, her small green scales shimmering in the artificial light of the racetrack.");
-
-output("\n\n<i>“Ah, welcome back!”</i> the alien woman says with a click of her bony mandibles, <i>“Can I help you with anything today?”</i>");
-output("\n\n}");
-
-output("\n\n[WatchRace] Spend some time watching a race for free.");
-output("\n\n[BetRace] Bet on and watch a race here at U7.");
-output("\n\n[EnterRace?] Ask her if you can enter the races here. //Only accessible if the PC is a taur.");
-output("\n\n//Watch Race");
-output("\n\n[WatchRace]");
-
-output("\n\nYou tell the woman that you’ve come to spend some time watching some races and ask for directions.");
-
-output("\n\n<i>“Of course,”</i> she says with some sort of faux-smile, <i>“Just make your way up the stairs to our lower stadium seating.”</i>");
-
-output("\n\n{pcHard: With a nod //Else: Thanking the cashier,} you start to make your way towards the stairs she pointed out, ready to spend some time relaxing and watching a few races.");
-
-output("\n\n[Next]");
-
-output("\n\n[Next]");
-
-output("\n\n{firstTime:");
-output("\n\nEntering the stadium, you come to the realization that this place is <b><i>huge</i></b>; miles of synthetic-earth in a pill-shape beneath you forms the track of the stadium, while the fully-enclosed ceiling stretches high and far above you.");
-output("\n\n//Else:");
-output("\n\nEntering the stadium, you find yourself less surprised by the sheer size of the building, but still find it impressive by the standards of a small, frozen moon in terms of infrastructure.");
-output("\n\n}");
-
-output("\n\nYou walk your way through the rows and rows of chairs for quite some time, and after reaching a suitable seat {pcTaur: for your tauric body} to watch the races from, you sit your [pc.ass] down and get yourself comfortable before the next race starts.");
-
-output("\n\n{firstTime:");
-output("\n\nCheering and clapping fills the air when the races begin, and you lean forward in your chair to get a better look at what’s going on. As you expected, a buzzer rings and you can already see tauric people charging out the gates: leithans mainly, with many a other species thrown in, even a few modded humans.");
-
-output("\n\nWhat you <i>didn’t</i> expect to see though is the racer’s jockeys, all of them are bipedal... and riding <i>under</i> their respective contestant. Even more interesting, though, is the fact that they’re all naked, riders and racers alike... and if you were to wager a guess {ifSilly: (since you aren’t even betting on this race)} there’s definitely something going on between their bodies. Though you can’t really hear or see it, there’s probably a few taurs packing and well-sheathed inside their riders.");
-
-output("\n\nWhat {pcBimbo: a great sport! //Else: an odd sport.}");
-output("\n\nElse:");
-output("\n\nCheering and clapping fills the air when the races begin, and you lean forward in your chair to get a better look at what’s going on. Just like last time, the buzzer sounds and the tauric racers shoot from their gates like bullets, jockeys riding underneath. They maneuver the turns of the track like veterans of the track, and the riders beneath seem to be enjoying being along for the ride.");
-output("\n\n}");
-
-output("\n\nOnce the contestants finish their loop around the track, the ruckus of the stadium quiets down, aside from a few unhappy cusses from those upset with the outcome of their bets.");
-
-output("\n\nWell, it looks like you could leave if you feel inclined to do so, or keep your spot and watch some more races to pass the time.");
-
-output("\n\n[WatchMore] //This option passes 3 hours each time it’s chosen.");
-output("\n\n[Finish] //Takes the PC back to the stadium tile.");
-
+/* DIS IS CUT
 output("\n\n//Watch More");
 output("\n\n[WatchMore]");
 
@@ -3216,85 +3285,122 @@ output("\n\n[Finish]");
 
 output("\n\nDeciding you’ve had your fill of taur’ racing for one day, you stand up and make your way back to the stadium entrance.");
 
-output("\n\n[Next]");
+output("\n\n[Next]");*/
 
-output("\n\n//Bet Race");
-output("\n\n[BetRace]");
+//Bet Race
+//[BetRace]
+public function betRaceOnUveto():void
+{
+	clearOutput();
+	showTaurCashier();
+	author("HugsAlright");
+	showName("\nBETTING");
+	output("You ask the girl if there’s any races available that you could place a bet on, prompting a warm look from the alien cashier.");
 
-output("\n\nYou ask the girl if there’s any races available that you could place a bet on, prompting a warm look from the alien cashier.");
+	output("\n\n<i>“We certainly do!”</i> she exclaims, flipping on a holo-pad that’s imbedded into the counter in front of her, <i>“Here’s a list of our upcoming races! Once you feel like you’ve made a choice on your racer, just tell me and we can work out a credit transfer.”</i>");
 
-output("\n\n<i>“We certainly do!”</i> she exclaims, flipping on a holo-pad that’s imbedded into the counter in front of her, <i>“Here’s a list of our upcoming races! Once you feel like you’ve made a choice on your racer, just tell me and we can work out a credit transfer.”</i>");
+	//Bimbo takes priority to low/high intelligence.
+	//pcBimbo:
+	if(pc.isBimbo()) output("\n\nLooking at the list of names on the holographic screen before you, you locate the racer with the cutest, prettiest name and pick them, a good a choice as any.");
+	//HighInt:
+	else if(pc.IQ() >= 70) output("\n\nYou scan the list of names and statistics before you, balancing out your best shot at winning a bet with some hefty mental-math.");
+	//LowInt:
+	else output("\n\nAfter the woman finishes speaking, you do your best to pick out a likely winner from the list of names before you.");
 
-output("\n\n//Bimbo takes priority to low/high intelligence.");
+	output("\n\nOnce you’ve made your choice, you inform the cashier and take out your Codex, ready to make a transfer.");
 
-output("\n\n{pcBimbo:");
-output("\n\nLooking at the list of names on the holographic screen before you, you locate the racer with the cutest, prettiest name and pick them, a good a choice as any.");
-output("\n\n//HighInt:");
-output("\n\nYou scan the list of names and statistics before you, balancing out your best shot at winning a bet with some hefty mental-math.");
-output("\n\n//LowInt:");
-output("\n\nAfter the woman finishes speaking, you do your best to pick out a likely winner from the list of names before you.");
-output("\n\n}");
+	output("\n\n<i>“Perfect!”</i> she says, <i>“Now I should inform you that most bets carried out officially in this establishment are those for high-rollers”</i> She hits a button behind her counter and a list of prices appears on the holo-pad in the counter.");
 
-output("\n\nOnce you’ve made your choice, you inform the cashier and take out your Codex, ready to make a transfer.");
+	output("\n\nYour eyes widen at the buy-in prices; they’re all pretty hefty, and would make a stingier " + pc.mf("man","woman") + " fall over dead, no doubt. At the same time, you stand to make a lot of money if you place your bets right.");
 
-output("\n\n<i>“Perfect!”</i> she says, <i>“Now I should inform you that most bets carried out officially in this establishment are those for high-rollers”</i> She hits a button behind her counter and a list of prices appears on the holo-pad in the counter.");
+	processTime(4);
+	clearMenu();
+	//[1,000] Bet 1,000 credits. //Requires 1,000 credits.
+	if(pc.credits >= 1000) addButton(0,"1,000",bettingAtTheTaurRaces,1000,"1,000 Credits","Bet 1,000 credits.");
+	else addDisabledButton(0,"1,000","1,000","You don't have the cash to make that bet.");
+	//[3,000] Bet 3,000 credits. //Requires 3,000 credits.
+	if(pc.credits >= 3000) addButton(1,"3,000",bettingAtTheTaurRaces,3000,"3,000 Credits","Bet 3,000 credits.");
+	else addDisabledButton(1,"3,000","3,000","You don't have the cash to make that bet.");
+	//[10,000] Bet 10,000 credits. //Requires 10,000 credits.
+	if(pc.credits >= 10000) addButton(2,"10,000",bettingAtTheTaurRaces,10000,"10,000 Credits","Bet 10,000 credits.");
+	else addDisabledButton(2,"10,000","10,000","You don't have the cash to make that bet.");
+	//[Nevermind]
+	addButton(3,"Nevermind",neverMindTaurStadium);
+}
 
-output("\n\nYour eyes widen at the buy-in prices; they’re all pretty hefty, and would make a stingier {man/woman} fall over dead, no doubt. At the same time, you stand to make a lot of money if you place your bets right.");
+//Choosing any of these will trigger an INT check based on the bet chosen. Lower-priced bets have a higher success rate, while the higher-priced ones have a much lower success rate. These chances are multiplied by the PC’s intelligence. Bimbo PCs automatically have a 50/50 success chance. Winning a bet doubles payment.
 
-output("\n\n[1,000] Bet 1,000 credits. //Requires 1,000 credits.");
-output("\n\n[3,000] Bet 3,000 credits. //Requires 3,000 credits.");
-output("\n\n[10,000] Bet 10,000 credits. //Requires 10,000 credits.");
-output("\n\n[Nevermind]");
+//Fen note: Nope! 51/49 is the best possible result. Bimbos/braindead get 11% base chance + 1% per 2 IQ.
 
-output("\n\n//Choosing any of these will trigger an INT check based on the bet chosen. Lower-priced bets have a higher success rate, while the higher-priced ones have a much lower success rate. These chances are multiplied by the PC’s intelligence. Bimbo PCs automatically have a 50/50 success chance. Winning a bet doubles payment.");
+public function bettingAtTheTaurRaces(bet:Number):void
+{
+	clearOutput();
+	author("HugsAlright");
+	//Win
+	if(rand(100)+1 <= 11 + pc.IQ()/2)
+	{
+		output("You tap your Codex a few times and transfer your chosen amount of credits over to the cashier who nods when she receives your payment.");
+		output("\n\n<i>“Alright, " + pc.mf("sir","ma’am") + ",”</i> the alien girl says, flipping the counter-mounted holo-pad off, <i>“You can head to our stadium seating up the stairs here and watch the race. When it’s concluded you can return here.”</i>");
+		if(pc.isAss()) output("\n\nYou nod");
+		else output("thank the woman");
+		output(" and make your way towards the stairs, climbing the steps until your eyes are greeted by the huge, open arena of the U7 racing stadium. It won’t be long before the race starts, so you skip finding a seat and lean yourself against a guardrail to get a closer look at the action.");
+		output("\n\nBefore too long cheering and clapping fills the air when as the race begins. The buzzer sounds and the tauric racers shoot from their gates like bullets, jockeys riding underneath. They maneuver the turns of the track like veteran racers, and the riders beneath seem to be enjoying being along for the ride.");
+		output("\n\nYou keep your eyes fixed on the mass of contestants as they round corners and reach the finish line. Your grip tightens with anticipation as your number starts to pull ahead of the pack, gaining a lead until you’re practically screaming and cheering loud enough for the whole stadium to hear. Sure enough, they cross the finish line first with a cry of victory from you, and the rest of the crowd that bet on them.");
+		output("\n\nWith a smile, you leave the arena and walk your way back to the cashier, who greets you with a wave and a <i>“Welcome back,”</i> appearing to know that you’ve already won. The transaction is carried out quickly, and you’re left a richer " + pc.mf("man","woman") + " for it.");
+		pc.credits += bet;
+		showName("\nWINNING!");
+	}
+	//Loss
+	else
+	{
+		output("You tap your Codex a few times and transfer your chosen amount of credits over to the cashier who nods when she receives your payment.");
+		output("\n\n<i>“Alright, " + pc.mf("sir","ma’am") + ",”</i> the alien girl says, flipping the counter-mounted holo-pad off, <i>“You can head to our stadium seating up the stairs here and watch the race. When it’s concluded you can return here.”</i>");
+		output("\n\nYou ");
+		if(pc.isAss()) output("nod");
+		else output("thank the woman");
+		output(" and make your way towards the stairs, climbing the steps until your eyes are greeted by the huge, open arena of the U7 racing stadium. It won’t be long before the race starts, so you skip finding a seat and lean yourself against a guardrail to get a closer look at the action.");
+		output("\n\nBefore too long cheering and clapping fills the air when as the race begins. The buzzer sounds and the tauric racers shoot from their gates like bullets, jockeys riding underneath. They maneuver the turns of the track like veteran racers, and the riders beneath seem to be enjoying being along for the ride.");
 
-output("\n\n//Win");
-output("\n\nYou tap your Codex a few times and transfer your chosen amount of credits over to the cashier who nods when she receives your payment.");
+		output("\n\nYou keep your eyes fixed on the mass of contestants as they round corners and reach the finish line. Your grip tightens as your number starts to fall behind in the pack, leading you to scream their name at the top of your lungs. Unfortunately, your efforts seem for naught, as someone else crosses the finish line long before them. You ");
+		if(pc.isAss()) output("curse");
+		else output("slump your shoulders");
+		output(" in disappointment as most of the crowd continues to cheer.");
+		output("\n\nWith a much-emptier credit-account, you pry yourself from the guardrail and walk your way out of the stadium.");
+		output("\n\nBetter luck next time...");
+		pc.credits -= bet;
+		showName("\nWHELP.");
+		//[Next] //Returns the PC to the racetrack’s main menu.
+	}
+	processTime(28);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-output("\n\n<i>“Alright, {sir/ma’am},”</i> the alien girl says, flipping the counter-mounted holo-pad off, <i>“You can head to our stadium seating up the stairs here and watch the race. When it’s concluded you can return here.”</i>");
+//Nevermind
+public function neverMindTaurStadium():void
+{
+	clearOutput();
+	author("HugsAlright");
+	showName("\nNEVERMIND.");
+	output("You take a look down at your credit balance and ponder your chances for a moment before telling the cashier that you’ve changed your mind.");
+	output("\n\n<i>“Oh, that’s alright,”</i> she says, flipping off the holo-pad as you go to put away your Codex, <i>“If you ever do feel like you’d want to place a bet, U7 is always open!”</i>");
 
-output("\n\nYou {pcHard: nod //Else: thank the woman} and make your way towards the stairs, climbing the steps until your eyes are greeted by the huge, open arena of the U7 racing stadium. It won’t be long before the race starts, so you skip finding a seat and lean yourself against a guardrail to get a closer look at the action.");
+	//[Next] //Returns the PC to the racetrack’s main menu.
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-output("\n\nBefore too long cheering and clapping fills the air when as the race begins. The buzzer sounds and the tauric racers shoot from their gates like bullets, jockeys riding underneath. They maneuver the turns of the track like veteran racers, and the riders beneath seem to be enjoying being along for the ride.");
-
-output("\n\nYou keep your eyes fixed on the mass of contestants as they round corners and reach the finish line. Your grip tightens with anticipation as your number starts to pull ahead of the pack, gaining a lead until you’re practically screaming and cheering loud enough for the whole stadium to hear. Sure enough, they cross the finish line first with a cry of victory from you, and the rest of the crowd that bet on them.");
-
-output("\n\nWith a smile, you leave the arena and walk your way back to the cashier, who greets you with a wave and a <i>“Welcome back,”</i> appearing to know that you’ve already won. The transaction is carried out quickly, and you’re left a richer {man/woman} for it.");
-
-output("\n\n[Next] //Returns the PC to the racetrack’s main menu.");
-
-output("\n\n//Loss");
-output("\n\nYou tap your Codex a few times and transfer your chosen amount of credits over to the cashier who nods when she receives your payment.");
-
-output("\n\n<i>“Alright, {sir/ma’am},”</i> the alien girl says, flipping the counter-mounted holo-pad off, <i>“You can head to our stadium seating up the stairs here and watch the race. When it’s concluded you can return here.”</i>");
-
-output("\n\nYou {pcHard: nod //Else: thank the woman} and make your way towards the stairs, climbing the steps until your eyes are greeted by the huge, open arena of the U7 racing stadium. It won’t be long before the race starts, so you skip finding a seat and lean yourself against a guardrail to get a closer look at the action.");
-
-output("\n\nBefore too long cheering and clapping fills the air when as the race begins. The buzzer sounds and the tauric racers shoot from their gates like bullets, jockeys riding underneath. They maneuver the turns of the track like veteran racers, and the riders beneath seem to be enjoying being along for the ride.");
-
-output("\n\nYou keep your eyes fixed on the mass of contestants as they round corners and reach the finish line. Your grip tightens as your number starts to fall behind in the pack, leading you to scream their name at the top of your lungs. Unfortunately, your efforts seem for naught, as someone else crosses the finish line long before them. You {pcHard: curse //Else: slump your shoulders} in disappointment as most of the crowd continues to cheer.");
-
-output("\n\nWith a much-emptier credit-account, you pry yourself from the guardrail and walk your way out of the stadium.");
-
-Better luck next time...
-
-output("\n\n[Next] //Returns the PC to the racetrack’s main menu.");
-output("\n\n//Nevermind");
-output("\n\n[Nevermind]");
-
-output("\n\nYou take a look down at your credit balance and ponder your chances for a moment before telling the cashier that you’ve changed your mind.");
-
-output("\n\n<i>“Oh, that’s alright,”</i> she says, flipping off the holo-pad as you go to put away your Codex, <i>“If you ever do feel like you’d want to place a bet, U7 is always open!”</i>");
-
-output("\n\n[Next] //Returns the PC to the racetrack’s main menu.");
-output("\n\n//Enter Race?");
-output("\n\n[EnterRace?]");
-
-output("\n\nBeing of the tauric persuasion yourself, you ask the cashier if there’s any way you could participate in the races that take place here.");
-
-output("\n\nA face that <i>appears</i> to be apologetic appears on the woman’s face. <i>“Unfortunately, no,”</i> she says with a shake of her head, <i>“We can’t take on any new racers or jockeys at the moment, our entire roster is full for the time being, and for quite a while still by my guess.”</i>");
-
-output("\n\nWell, no one can say you didn’t try.");
-
-output("\n\n[Next]");
-
+//Enter Race?
+//[EnterRace?]
+public function enterTheRace():void
+{
+	clearOutput();
+	showTaurCashier();
+	author("HugsAlright");
+	output("Being of the tauric persuasion yourself, you ask the cashier if there’s any way you could participate in the races that take place here.");
+	output("\n\nA face that <i>appears</i> to be apologetic appears on the woman’s face. <i>“Unfortunately, no,”</i> she says with a shake of her head, <i>“We can’t take on any new racers or jockeys at the moment, our entire roster is full for the time being, and for quite a while still by my guess.”</i>");
+	output("\n\nWell, no one can say you didn’t try.");
+	processTime(2);
+	addDisabledButton(2,"EnterRace?","EnterRace?","No go on that, good buddy.");
+	//[Next]
+}

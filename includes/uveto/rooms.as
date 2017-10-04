@@ -518,12 +518,37 @@ public function initUvetoRooms():void
 	rooms["UVI N42"].planet = "PLANET: UVETO VII";
 	rooms["UVI N42"].system = "SYSTEM: SIRETTA";
 	rooms["UVI N42"].northExit = "UVI N40";
+	rooms["UVI N42"].southExit = "UVI STADENTRY";
 	rooms["UVI N42"].westExit = "UVI L42";
 	rooms["UVI N42"].eastExit = "S&S_KIRILA";
 	rooms["UVI N42"].moveMinutes = 3;
 	rooms["UVI N42"].runOnEnter = addUvetoColdBonus;
 	rooms["UVI N42"].addFlag(GLOBAL.OUTDOOR);
 	rooms["UVI N42"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["UVI STADENTRY"] = new RoomClass(this);
+	rooms["UVI STADENTRY"].roomName = "STADIUM\nEXTERIOR";
+	rooms["UVI STADENTRY"].description = "To the south you can see a massive stadium with a holo-sign reading <b>“Racetrack U7”</i></b>. It’s completely enclosed by the looks of what you can see from out here, shielded from the cold, cold weather of this frozen iceball of a moon. The thing almost looks like one of those old coliseums from ancient Earth, with dozens of large, crescent-topped entrances along its circumference, and it looks like you could use one to get in if you wanted.";
+	rooms["UVI STADENTRY"].planet = "PLANET: UVETO VII";
+	rooms["UVI STADENTRY"].system = "SYSTEM: SIRETTA";
+	rooms["UVI STADENTRY"].northExit = "UVI N42";
+	rooms["UVI STADENTRY"].southExit = "UVI STADINT";
+	rooms["UVI STADENTRY"].moveMinutes = 3;
+	rooms["UVI STADENTRY"].runOnEnter = addUvetoColdBonus;
+	rooms["UVI STADENTRY"].addFlag(GLOBAL.OUTDOOR);
+	rooms["UVI STADENTRY"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["UVI STADINT"] = new RoomClass(this);
+	rooms["UVI STADINT"].roomName = "STADIUM\nINTERIOR";
+	rooms["UVI STADINT"].description = "";
+	rooms["UVI STADINT"].planet = "PLANET: UVETO VII";
+	rooms["UVI STADINT"].system = "SYSTEM: SIRETTA";
+	rooms["UVI STADINT"].northExit = "UVI STADENTRY";
+	rooms["UVI STADINT"].moveMinutes = 3;
+	rooms["UVI STADINT"].runOnEnter = taurStadiumInterior;
+	rooms["UVI STADINT"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI STADINT"].addFlag(GLOBAL.PUBLIC);
+	rooms["UVI STADINT"].addFlag(GLOBAL.NPC);
 
 	rooms["S&S_KIRILA"] = new RoomClass(this);
 	rooms["S&S_KIRILA"].roomName = "SPINARRAN\nSILK & STEEL";

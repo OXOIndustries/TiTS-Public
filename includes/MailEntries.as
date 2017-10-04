@@ -183,6 +183,25 @@ public function configureMails():void
 	"doubledog27@ausal.ril",
 	quickPCTo,
 	quickPCToAddress);
+	
+	MailManager.addMailEntry("rivalSubtunerSucked",
+	function():String {
+		var msg:String = "";
+		msg += "Look at you, you incestuous mutt!\n\n<i>Attached to this single line of text is a high-definition, first-person video of you ";
+		if(rival.hasCock()) msg += "sucking your own cousin’s cock from Jack’s perspective";
+		else msg += "eating out your own cousin from Jill’s perspective";
+		msg += ". You seem pretty into it during the whole video... and so does [rival.name], with you thoroughly ";
+		if(rival.hasCock()) msg += "speared on Jack’s cock and his hand running over your head";
+		else msg += "buried in Jill’s muff and her hand running over your head";
+		msg += ", all those moans and groans filling your ears. You reminisce on that whole act of incest and sexual deviance for a moment, getting a little hot and bothered...</i>";
+		msg += "\n\n<i>You should probably delete that video... or you could keep it.</i>";
+		return ParseText(msg);
+	},
+	"Mutt.",
+	cuzName,
+	cuzMail,
+	quickPCTo,
+	quickPCToAddress);
 
 	MailManager.addMailEntry("cuzfuckball", cuzFuckball, "Jealous?", cuzName, cuzMail, quickPCTo, quickPCToAddress);
 

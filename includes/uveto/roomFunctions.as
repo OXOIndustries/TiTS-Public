@@ -111,7 +111,7 @@ public function HereBeDragonBonus():Boolean
 public function uvetoShipDock():Boolean
 {
 	removeUvetoCold(true);
-	
+	if (!MailManager.isEntryUnlocked("rivalSubtunerSucked")) goMailGet("rivalSubtunerSucked");
 	if(pc.hasStatusEffect("Belle Hypno"))
 	{
 		if(pc.statusEffectv1("Belle Hypno") < 1) pc.addStatusValue("Belle Hypno",1,1);
