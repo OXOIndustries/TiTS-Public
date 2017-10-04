@@ -1071,7 +1071,7 @@ public function equipmentDisplay():void
 public function inventoryDisplay():void
 {
 	var x:int = 0;
-	output("<b><u>Inventory:</u></b>");
+	output("<b><u>Inventory:</u></b> (" + pc.inventory.length + "/" + pc.inventorySlots() + " slots used.)");
 	if(pc.inventory.length > 0)
 	{
 		for(x = 0; x < pc.inventory.length; x++)
@@ -1082,7 +1082,7 @@ public function inventoryDisplay():void
 			output(StringUtil.toDisplayCase(item.longName));
 		}
 	}
-	else output("\n<i>Empty</i>");
+	else output("\n<i>Empty</i> (" + pc.inventorySlots() + " slots available.)");
 	output("\n\n");
 }
 

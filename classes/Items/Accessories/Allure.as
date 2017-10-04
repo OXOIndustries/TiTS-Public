@@ -50,7 +50,7 @@
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = 3;
+			this.sexiness = 7;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;

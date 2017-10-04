@@ -2626,6 +2626,7 @@
 			if(accessory is Cargobot) slots += 2;
 			if(armor is InsulatedCoat) slots += 1;
 			if(hasPerk("Hidden Loot")) slots += 2;
+			slots += statusEffectv1("Backpack Upgrade");
 			return slots;
 		}
 		

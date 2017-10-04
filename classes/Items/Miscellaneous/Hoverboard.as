@@ -20,7 +20,7 @@
 			this.type = GLOBAL.GADGET;
 			
 			//Used on inventory buttons
-			this.shortName = "Hoverboard";
+			this.shortName = "Hovrbrd";
 			
 			//Regular name
 			this.longName = "pink hoverboard";
