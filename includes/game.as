@@ -1351,6 +1351,16 @@ public function shipMenu():Boolean
 	// Main ship interior buttons
 	if(currentLocation == "SHIP INTERIOR")
 	{
+		//Also the Anno-Kase Voyeur scene
+			//Kase is crew, Anno is crew, Anno is wearing catsuit, done the Anno-Kase 3sum, 
+			//haven't seen the Voyeur scene in 24hrs, then finally 10% chance
+		if(kaseIsCrew() && annoIsCrew() && annoWearingCatsuit() && flags["KASE_3SUM_ANNO"] != undefined 
+			&& !pc.hasStatusEffect("Kase-Anno Voyeur Cooldown") && rand(100) < 10)
+		{
+			kaseVoyeurAnno();
+			return true;
+		}
+		
 		if (crew(true, true) > 0) addButton(2, "Crew", crew);
 		if (hasShipStorage()) addButton(3, "Storage", shipStorageMenuRoot);
 		else addDisabledButton(3, "Storage");

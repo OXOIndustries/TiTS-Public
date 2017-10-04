@@ -580,7 +580,7 @@ public function kaseSexThreesomeAnno():void
 	output("<i>“Miss Dorna?”</i> he asks,  gulping audibly, <i>“I-I find it's best not to encourage her… but if that's what you want captain, then I'd be happy to join you for a little excursion with her.”</i> He smiles as best he can at you, but you can't help but notice the hint of nervousness in his mien.");
 	output("\n\nStill, you're glad he accepted your offer, and quickly suggest the two of you go find your snowy-haired pup. Kase nods in response and stands up straight, following you out into the corridors of your ship.");
 	output("\n\nIt's not long before you reach Anno's room. Her door's open, and she's typing away at her terminal, a pair of headphones pumping some pop beats into her happily twitching ears. You knock on her already open doorway to get her attention. ");
-	output("\n\nHer big, fluffy ears swivel towards you, followed by the rest of her head, and a smile quickly appears on the ausar's face when she realizes who's come to visit. <i>“Hey guys,”</i> she says, taking off her headphones, <i>“You " + pc.mf("boys","two") + " need anything?”</i> She accentuates that last word by thrusting her impressive bust out just a bit, stretching the fabrics of her " + (anno.armor is AnnosCatsuit ? "suit" : "clothes") + ".");
+	output("\n\nHer big, fluffy ears swivel towards you, followed by the rest of her head, and a smile quickly appears on the ausar's face when she realizes who's come to visit. <i>“Hey guys,”</i> she says, taking off her headphones, <i>“You " + pc.mf("boys","two") + " need anything?”</i> She accentuates that last word by thrusting her impressive bust out just a bit, stretching the fabrics of her " + (annoWearingCatsuit() ? "suit" : "clothes") + ".");
 	output("\n\nKase blushes hard beside you as you answer the pup, telling her that you and your junior subordinate were hoping to spend some time with her" + (pc.isMischievous() ? ", and that it was his idea. Before the kaithrit can even try to respond, Anno speaks up again" : "") + ".");
 	output("\n\n");
 	if(flags["KASE_3SUM_ANNO"] == undefined) output("<i>“Awww, Kase,”</i> the ausar coos happily" + (!pc.isMischievous() ? " in response" : "") + ", <i>“I knew you'd warm up to me eventually.”</i> ");
@@ -598,7 +598,7 @@ public function kaseSexThreesomeAnno():void
 	output("\n\nKase whimpers as the faux-cockhead finally spreads his tailhole, and starts to moan and whine quietly as your ausar companion pushes the plastic phallus further into him. The kaithrit is forced to stretch as much as he can around the foot long cock, screaming with pleasure and pain while Anno watches on estatically. Your lovingly applied lube aids with the insertion quite a bit, letting the toy's blissful journey into Kase continue with one long stroke, until that knot reaches his pucker, that is.");
 	output("\n\nThe feline femboy can only grit his teeth when the ball of plastic cockflesh finally reaches his already stretching entrance, and Anno doesn't give him a moment to catch his breath. Kase cries out all the louder as the ausar starts to push that breeder’s knob into him, spreading him wider and wider until his back is arching uncontrollably. Then, the thick bulb of synthetic dick finally pops into him, leaving Kase panting at the sheer girth.");
 	output("\n\nThe catboy's fun doesn't end there, though, because Anno flips a single switch on the dildo's handle, and it immediately starts buzzing away inside Kase. He moans as plastic cockflesh vibrates against his inner walls, teasing his prostate until his kitty-dick twitches and leaks a thick glob of pre onto his stomach. Anno pulls back, eyeing up all the kaithrit lying bare before you, licking her lips at the sight of his needy cock. Though, you can see a problem rising: there's only one dick there, and two of you.");
-	output("\n\nBefore you can get any ideas though, Anno shouts out <i>“Me first! Me first!”</i> and begins to hurriedly strip herself. Well, by galactic law of dibs, she's first, but you smile all the same and help the pup out of her clothes by grabbing at her " + (anno.armor is AnnosCatsuit ? "suitand pulling it" : "pants and pulling them") + " down over her legs until she's good and nude. She gives you a quick <i>“Thanks, babe,”</i> her tail wagging happily as she tosses her garment aside. The ausar turns to the still-moaning Kase, grinning deviously and crawling on top of his hips, ready to mount his throbbing, barb-covered rod.");
+	output("\n\nBefore you can get any ideas though, Anno shouts out <i>“Me first! Me first!”</i> and begins to hurriedly strip herself. Well, by galactic law of dibs, she's first, but you smile all the same and help the pup out of her clothes by grabbing at her " + (annoWearingCatsuit() ? "suitand pulling it" : "pants and pulling them") + " down over her legs until she's good and nude. She gives you a quick <i>“Thanks, babe,”</i> her tail wagging happily as she tosses her garment aside. The ausar turns to the still-moaning Kase, grinning deviously and crawling on top of his hips, ready to mount his throbbing, barb-covered rod.");
 	output("\n\nThe kaithrit can only look up at Anno as she takes hold of his cock and angles it towards her drooling slit. You sit back and watch as the alien beauty presses Kase's tip to her nether lips and starts to slide down, whimpering slightly as his glans slips into her. She doesn't stop once he's in and continues her ride down, letting her pleasured tones rise above her subordinate's as the kitty-boy's extra-thick tool spreads her wide. It isn't until she's taken all nine inches and there's a visible bulge in her tummy that she stops her decent, panting from the trip down. But, as you've seen, Anno's not interested in taking things slow today, and starts to grind her flared hips against his. She moans aloud, her sensitive inner walls caressed by soft barbs lining Kase's cock, keeping her stretched wide, even as his own sodden hole is strained by the toy inside it.");
 	output("\n\nAnno's indomitable lust drives her to speed up, to the point where she's practically bouncing on Kase's nubby length, big, soft breasts shaking and quaking pleasingly. Her natural lubricants pour out around the kaithrit's shaft, a sure sign of the fun she's having. The whole room is alight with their audible pleasure: moaning, groaning, and whimpering under the pleasure of their lovemaking. Then, the ausar's hip movements become jerky, stopping on her downstrokes to grind against Kase's girly hips. Her blissful tones are stuttered and erratic, her body tensing until she can't hold on any longer.");
 	output("\n\nA peak-pitched cry of pleasure tears itself from Anno's lips, her cock-riding finally coming to a pause as her orgasm ensues. You can just barely see her pink, puffy pussy clenching around Kase's tool, crystal-clear girlcum drenching the kaithrit's svelte stomach and thick shaft. She reaches a fluffy hand up to her chest and pinches at one of her stiff, pink nipple, groping herself in an attempt to milk as much pleasure from her climax as she can. Though, it all seems to come to an end much too soon for the alien girl, coming down from her peak with a few bucks of her hips and a deep breath.");
@@ -833,4 +833,67 @@ public function kaseJoinSteele():void
 	
 	addButton(0, "Here", kaseTryHere, true, "Here", "Have the kitty strip right here for you and Anno.");
 	addButton(1, "Private", kaseTryPrivate, true, "Private", "Let Kase change in private.");
+}
+
+public function kaseVoyeurAnno():void
+{
+	author("HugsAlright");
+	showName("KASE\nAND ANNO");
+	showBust("KASE", "ANNO");
+	clearOutput();
+	clearMenu();
+	
+	output("[pc.Walk]ing around your ship, you notice Kase standing alone. He seems deep in thought, tapping away at his datapad, looking quite determined and not taking notice of you in the slightest. Before you can make your way to him and see what he's up to, Anno appears from the other side of the room, right behind your kaithrit employee. Holding a finger to her mouth, she makes a shushing motion then reaches up to her catsuit's zipper, and pulls it down just enough so her uniform parts around her sizable breasts, showing just the slightest hint of pink nipple. ");
+	output("\n\nThen, with a devious grin, she takes a step forward and presses herself right against Kase, her big, soft titties resting against the back of his head. The kaithrit jumps, ears swiveling all around and his green-and-gold eyes going wide at the sudden touch, nearly dropping his holopad.");
+	output("\n\n<i>“Hey, Kase,”</i> Anno breathes lustfully, wrapping her arms around the much-shorter femboy's waist, <i>“Whatcha doing here?”</i>");
+	output("\n\n<i>“M-m-m-miss Dorna!”</i> he stutters in response, <i>“I-I was just working on some calculations an-and I got caught up out here…”</i>");
+	output("\n\nThe attacking ausar smiles, leaning into Kase, <i>“Sounds like fun. You know, you should stop by my quarters some time… let me help you with work a bit.”</i> The alien girl's hand travels up to the femboy's svelte chest, fluffy fingers toying with his zipper.");
+	output("\n\n<i>“O-oh! I-I would ma'am, but uhm, I'm…”</i> the femboy says, blushing red, nearly in a panic, <i>“I'm just so busy, is all.”</i>");
+	output("\n\n<i>“Maybe I should just stop by your room, then,”</i> Anno responds, starting to pull down on his suit's seam.");
+	output("\n\nThe kaithrit's eyes go wide, <i>“I-is there something wrong with my uniform, ma'am?”</i>");
+	output("\n\nAnno smirks, <i>“Yeah, you're still wearing it.”</i>");
+	output("\n\nWith that, she parts the latex of Kase's clothing, tugging the zipper down all the way to his crotch while the poor kitty's breath goes ragged. The feline femboy seems aroused, at the least, judging by how his cock pops free of its confines, wobbling in the air. Anno coos at the sight, quickly taking the thick slab of cockflesh into the embrace of her fluffy fingers and stroking it. ");
+	output("\n\nKase can only whimper in response to her wrists movements, trembling in his spot with a combination of lust and surprise… or fear.");
+	output("\n\nYou smile and lean up against a nearby wall to enjoy the show, watching as Anno works all that kitty-cock with her hands, and only then does your now-aware feline crewmate notices your presence.");
+	output("\n\nHe fidgets in the embrace of your ausar companion, <i>“M-miss Dorna! The- unf! The Captain's here!”</i>");
+	output("\n\n<i>“I know,”</i> Anno responds with a smile, <i>“You can go play with " + pc.mf("him", "her") +  "later, or we can all play together, if you want.”</i> She winks towards you after saying that.");
+	output("\n\nThough, it seems Kase isn't going to last long with both a steady handjob and the pressure of an onlooker, and your snowy-haired pup knows it. She speeds up her stroking, whispering into Kase's twitching ears about how much she wants to make him cum for you, and it's all too much for the kaithrit.");
+	output("\n\nHe cries out, wide hips lurching forward against his hand as his cock spasms in Anno's embrace. A long rope of white kitty-spooge shoots forth and splatters along the ground, followed by a few smaller spurts that dirty your floor and Anno's fingers. The femboy's bare chest heaves as your fellow crewmate releases him, panting hard while she smiles happily at a job well done.");
+	output("\n\n<i>“Well,”</i> the ausar chimes, <i>“catch ya later, Kase!”</i> Then, she prances off like nothing even happened.");
+	output("\n\n<i>“Y-yes,”</i> the catboy says shakily, barb-lined tool leaking onto the floor in the open, <i>“Th-thank you, ma'am… I'll, uh, see you some other time.”</i> He then looks toward you and gives an awkward smile, blushing hard with his package still dangling in the open, legs all wobbly with the force of his climax, <i>“I- uhm, Captain…”</i>");
+	output("\n\nYou give him a little salute and a grin, then leave him alone to rest, all naked by himself. What a crew you run here.");
+	
+	pc.lust(33);
+	pc.createStatusEffect("Kase-Anno Voyeur Cooldown",0,0,0,0,true,"","",false,60*24);
+	processTime(10+rand(5));
+	
+	addButton(0, "Next", mainGameMenu, undefined, "", "");
+}
+
+public function kaseEvict():void
+{
+	author("HugsAlright");
+	showKase();
+	clearOutput();
+	clearMenu();
+	
+	output("You " + (!pc.isAss() ? "sigh heavy and " : "") + "tell Kase that it's time for him to leave the ship and he should pack his things.");
+	output("\n\nHis ears swivel rounds and perk at your word, looking like he didn't hear you quite right. <i>“Oh, of course, " + pc.m("sir","ma'am") + ",”</i> he says, keeping his poise, <i>“There's " + (flags["KASE_STEELETECH"] != undefined ? "a place on Tavros SteeleTech has payed for so I can carry out my work when I'm not onboard your ship" : "an apartment on Tavros I rent out for any delays I had between Pyrite deployments") + ", I'll head there, for now. I'm sure you can find me there if you require my services again.”</i>");
+	output("\n\nWith that, Kase quickly begins gathering his things, finding containers to neatly pack away his belongings in. Seems like he's taking the sudden eviction well, at least, an unflinching employee if there ever was one.");
+	
+	processTime(3);
+	flags["KASE_CREW"] = undefined;
+	
+	addButton(0,"Next",mainGameMenu);
+}
+
+//YEAH THIS SHIT IS ACTUALLY ON TAVROS WANNA FIGHT ABOUT IT???
+public function kaseApartmentHandler(btnSlot:int = 0):void
+{
+	
+	
+	
+	
+	
+	
 }

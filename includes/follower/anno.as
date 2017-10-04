@@ -56,6 +56,12 @@ public function annoNotCrew():Boolean
 	return false;
 }
 
+//I got tired of importing the catsuit for all these Hugs scenes
+public function annoWearingCatsuit():Boolean
+{
+	return (anno.armor is AnnosCatsuit);
+}
+
 public function annoFollowerHeader(nude:Boolean = false):void
 {
 	showAnno(nude);
