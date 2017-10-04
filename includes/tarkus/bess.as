@@ -2098,13 +2098,14 @@ public function talkToBessAboutHairStyle():void
 		
 		// bessSetHairStyle() adds an article to some of the styles, so lets check both possibilities
 		var bhStyle:String = bessHairStyle();
-		if (InCollection(bhStyle, options[optSlot], indefiniteArticle(options[optSlot])))
+		var isPlural:Boolean = InCollection(options[optSlot][1], ["spikes", "pigtail buns", "ruffled layers"]);
+		if (InCollection(bhStyle, [options[optSlot][1], indefiniteArticle(options[optSlot][1])]))
 		{
-			addDisabledButton(i, StringUtil.toTitleCase(options[optSlot]));
+			addDisabledButton(i, options[optSlot][0], StringUtil.toTitleCase(options[optSlot][1]), "[bess.name]’s hair is already styled in" + (isPlural ? "to " + options[optSlot][1] : " " + indefiniteArticle(options[optSlot][1])) + ".");
 		}
 		else
 		{
-			addButton(i, StringUtil.toTitleCase(options[optSlot]), bessSetHairStyle, options[optSlot]);
+			addButton(i, options[optSlot][0], bessSetHairStyle, options[optSlot][1], StringUtil.toTitleCase(options[optSlot][1]), "Style [bess.name]’s hair into " + (isPlural ? options[optSlot][1] : indefiniteArticle(options[optSlot][1])) + ".");
 		}
 	}
 }

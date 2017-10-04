@@ -943,7 +943,7 @@ public function mutualMasturbkorg():void
 	}
 	else
 	{
-		for(var ii:int = 0; ii < pc.cockTotal(); ii++)
+		for(var ii:int = 0; ii < pc.totalVaginas(); ii++)
 		{
 			if(pc.vaginas[ii].type == GLOBAL.TYPE_CANINE) x = ii;
 		}
