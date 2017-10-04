@@ -8889,7 +8889,7 @@
 			}
 			return puffScore;
 		}
-		//Find the biggest cock that fits inside a given value
+		//Find the best-fitting cunt that fits inside a given dick
 		public function cuntThatFits(fits: Number = 0): Number {
 			if (vaginas.length <= 0) return -1;
 			var counter: Number = vaginas.length;

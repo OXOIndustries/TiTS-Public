@@ -2482,6 +2482,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processEmmyEvents(deltaT, doOut, totalDays);
 	processZheniyaEvents(deltaT, doOut, totalDays);
 	processHLPantyShit();
+	processSubTunerShit();
 	processHardlightAGThongBlurbs(deltaT, doOut);
 	
 	// Per-day events

@@ -66,12 +66,17 @@ public function getBellePregContainer():PregnancyPlaceholder
 public function saecVaginaCapacity():Number { return 1000; }
 public function saecPreg():Boolean { return false; }
 public function pregSaec():Boolean { return saecPreg(); }
-public function fuckedSaec():Boolean { return false; } //9999
-public function ausaurKaithrit():Boolean { return (pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1); }
+public function fuckedSaec():Boolean { return (flags["SEXED_SAEC"] != undefined); }
+public function ausarKaithrit():Boolean { return (pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1); }
 public function saecBustString(nude:Boolean = true):String
 {
 	if(nude) return "SAEC_NUDE";
 	return "SAEC";
+}
+public function equipTheSubTuner():void
+{
+	var itm:StorageClass = pc.getKeyItem("Sub-Tuner Collar");
+	if(itm != null) itm.value1 = 1;
 }
 
 public function subTunerUpgraded():Boolean
@@ -613,11 +618,12 @@ public function postWalkiesHeat2(ppBelle:PregnancyPlaceholder):void
 		//pcAusar/Kaithrit/Half:
 		if(pc.isPuppyorKitten() && pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output("[pc.tail] wagging in an off-beat rhythm, ");
 		output("barely able to contain your excitement.");
-		output("\n\n<i>“Good,”</i> the lady scientist coos, smiling at your impatience before turning to face her other pet and giving the ausar a scratch between her ears, <i>“Alright, girl, think you’re ready for more pups?”</i>");
+		output("\n\n<i>“Good,”</i> the lady scientist coos, smiling at your impatience before turning to face her other pet and giving the ausar a scratch between her ears, <i>“Alright, girl, think you’re ready for pups?”</i>");
 		output("\n\nThe blonde-haired girl takes her gaze off Belle for a moment to look at you, and your [pc.cocks] in particular before a big, dumb grin appears on her face. Turning back to her master, she nods vigorously, clearly ready to take what you plan to give her. Belle gives the pup one last <i>“Good girl”</i> as she lets go of Saec’s leash, allowing the happy ausar to crawl her way over to you on her fluffy hands and her fuzzy knees before she throws herself onto her back. Once she’s well and in position, the slutpuppy spreads her shapely legs for you, giving you a good view of her slobbering cunt, looking at you with a gaze that’s just as hungry as yours.");
 		output("\n\nThat’s all the invitation you’ll ever need. You’re on the horny ausar in seconds, mounting her, straddling her on all fours and driving your [pc.cock " + x + "] deep into her pussy. The blonde beauty cries out with pleasure, throwing her legs around your back as you shove more and more cock into her drooling pink slit.");
 		if(pc.isLactating()) output(" Saec takes quick notice of your [pc.nipples] as you spread her lower-lips wide open, and eagerly takes one into her mouth, voraciously suckling on your [pc.breasts] and setting you moaning.");
 		output("\n\nWith the onslaught of pleasure you’re experiencing, all you can stand to do is move your hips, dragging your [pc.cock " + x + "] in and out of Saec’s cunt as it squeezes and hugs at your tool, all while Belle watches happily and pleasured tones fill the room. <i>It just feels so good to breed this ausar like a proper bitch.</i>");
+		IncrementFlag("SEXED_SAEC");
 		pc.cockChange();
 	}
 	//hasVag:
@@ -643,6 +649,7 @@ public function postWalkiesHeat2(ppBelle:PregnancyPlaceholder):void
 		output("\n\nIt isn’t long before your master’s ever-expansive hips start to move, fucking you like the bitch in heat you are, her knots spreading your supple entrances with each thrust. <i>The feeling of being bred like this, of having your hungers sated, it all feels so good.</i> You moan as loud as you can with each thrust of Belle’s foot-long cocks, crying out as your inner walls hug at her shafts, eagerly accepting her turgid dicks into your waiting holes.");
 		pc.cuntChange(v,ppBelle.cockVolume(0));
 		pc.buttChange(ppBelle.cockVolume(1));
+		IncrementFlag("SEXED_SAEC");
 	}
 	//hasCock:
 	if(x >= 0)
@@ -873,7 +880,7 @@ public function accupitchLabsBonus():Boolean
 		}
 		//OR
 		//pregSaec:
-		else if(9999 == 0)
+		else if(pregSaec())
 		{
 			output("\n\nBelle is nearby, working at one of her benches, but she’s got Saec on a leash next to her. The ausar girl affectionately nuzzles and rubs against the lady scientist’s legs while she goes about her business, seeming happy to just be next to her master.");
 			output("\n\nMore importantly, though, Saec’s normally flat tummy seems quite a bit swollen, and her breasts quite a bit fuller. By your guess, she’s most definitely pregnant, and you think that might be your doing.");
@@ -881,7 +888,7 @@ public function accupitchLabsBonus():Boolean
 		}
 		//OR
 		//datedSaec:
-		else if(9999 == 0)
+		else if(flags["SAEC_DATES"] != undefined)
 		{
 			output("\n\nBelle is nearby, working at a computer terminal with Saec on a leash... right between her legs. You’re able to catch a glimpse of the ausar’s head as it bobs back and forth on one of her master’s foot-long cocks, moaning and whining gently.");
 			if(pregSaec()) output(" Her swollen, pregnant belly is easily visible as its taut flesh is caressed by one of Saec’s blonde-furred hands.");
@@ -930,7 +937,7 @@ public function newApproachBelle(back:Boolean = false):void
 	addButton(0,"Appearance",belleAppearance,undefined,"Appearance","Get a look at this lovely-looking lady.");
 	addButton(1,"Experiments",newExperimentsWithBelle,undefined,"Experiments","Ask to participate in more experiments for Belle.");
 	addButton(2,"Talk",talkToBelle,undefined,"Talk","See if you can have a chat with the woman.");
-	//addButton(3,"Dates",,undefined,"Dates","Maybe you can have some alone time with your favourite master?");
+	addButton(3,"Dates",datingBelle,undefined,"Dates","Maybe you can have some alone time with your favourite master?");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -1294,6 +1301,7 @@ public function tentacleStuffSubTwo():void
 	output("\n\nYeah, that sounds like a good idea right about now.");
 	processTime(60);
 	IncrementFlag("SUBTUNER_TENTACLES");
+	IncrementFlag("SEXED_SAEC");
 	clearMenu();
 	addButton(0,"Next",leaveAccuPitchLabs);
 	//[Next] //Returns the PC outside Belle’s lab.
@@ -1890,7 +1898,6 @@ public function syriExhibStuff2():void
 {
 	clearOutput();
 	showBelle();
-	//9999 move to lab
 	output("It isn’t too long before you’re back within the confines of Belle’s lab, your master waiting there at the entrance for you with a big smile on her face. You quickly walk your way up to her and she greets you with a hearty <i>“Good [pc.boyGirl]”</i> and a ");
 	if(pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1) output("scritch of your ears");
 	else output("pat on your head");
@@ -2061,7 +2068,7 @@ public function sayYesToHypnoShit():void
 	clearOutput();
 	showBelle();
 	output("You give your master a nod, informing her that you’re ready to assist her with this special experiment of hers. This draws a wide smile from her, and prompts her to reach up from your chin to ");
-	if(ausaurKaithrit()) output("scritch at your ears");
+	if(ausarKaithrit()) output("scritch at your ears");
 	else output("pat you on the head");
 	output(".");
 
@@ -2089,12 +2096,12 @@ public function sayYesToHypnoShit2():void
 	output("\n\nYour master sighs and frowns, <i>“I guess that’s to be expected.”</i>");
 	output("\n\nYou look at Belle with a quivering lip, <i>after all, you want her experiments to work, and part of you feels like it’s </i>your<i> fault</i>.");
 	output("\n\nA smile quickly reappears on the lady scientist’s face, accompanied by a hand reaching up to ");
-	if(ausaurKaithrit()) output("scratch your [pc.ears]");
+	if(ausarKaithrit()) output("scratch your [pc.ears]");
 	else output("pat you on the head");
 	output(", <i>“Don’t worry, [pc.boyGirl]. It’s not your fault, just some... less-than-reliable pseudoscience.”</i>");
 
 	output("\n\nYou coo as her hand runs ");
-	if(ausaurKaithrit()) output("over your sensitive aural organs");
+	if(ausarKaithrit()) output("over your sensitive aural organs");
 	else if(pc.hasHair()) output("through your hair");
 	else output("over your scalp");
 	output(".");
@@ -2263,7 +2270,7 @@ public function rejectTheHypno():void
 	showBelle();
 	output("You shake your head and give your master and apologetic look, informing her you’re not really okay with what she’s proposing.");
 	output("\n\nYour response prompts a warm smile from Belle, who pulls her hand back and places it on your head, giving you a good ");
-	if(ausaurKaithrit()) output("scritch");
+	if(ausarKaithrit()) output("scritch");
 	else output("head pat");
 	output(". <i>“That’s just fine, [pc.boyGirl], I wouldn’t want you to do anything you’re uncomfortable with.”</i>");
 
@@ -2275,514 +2282,849 @@ public function rejectTheHypno():void
 	addDisabledButton(3,"Hypnotism","Hypnotism","You just shot that down.");
 }
 
-/*output("\n\n//Dates");
-output("\n\n[Dates]");
-
-output("\n\nRubbing your hands together tentatively, you ask Belle if the two of you could spend some time together, without all the experiments.");
-
-output("\n\nThe lady scientist give you a big smile in response, taking a few steps closer to you and cupping your cheek with one of her hands. <i>“Aww, isn’t that adorable,”</i> Belle coos, stroking your cheek with a thumb, <i>“You want to spend some time with your master, [pc.boyGirl]?”</i>");
-
-output("\n\nAll you can do is blush in her grasp and respond to her query with a nod.");
-
-output("\n\n<i>“Well, I’d love to do something like that,”</i> she says very calmly, her voice sending shivers down your spine, <i>“Just give me a moment to decide what we should do.”</i>");
-
-output("\n\n[Saec] Actually... you were hoping to spend some time with your {pregSaec: baby-momma //Else: playmate, Saec}. //Requires PC to have fucked Saec and a cock.");
-output("\n\n[Race] Taur races seem to be a popular thing on Uveto, maybe you could go to one with her? //Requires the PC to have been to the taur racetrack and a cock or vagina.");
-output("\n\n[Party] Belle seems like a classy lady, so she probably has a few parties she could take you to. //Requires the PC to have completed multiple experiments, can only be done once a week.");
-output("\n\n//Saec");
-output("\n\n[Saec]");
-
-output("\n\n<i>“Hmm?”</i> Belle hums, either confused or intrigued by your proposal of a date with Saec, <i>“{firstTime: Actually... that sounds like a fine idea. I’ve been meaning to take her out somewhere nice, but I’ve just been so busy at the lab, though, and such a patient girl like her deserves a nice day out. I’m sure she’d just </i>love<i> to go on a date with you. //Else: If you and Saec keep going out with each other like this... I might just get jealous, but I think that’s a wonderful idea, the girl could use some time out of the lab.}”</i> The lady scientist begins to walk toward a nearby room before turning around to face you, <i>“I’m going to go get Saec ready quick, if you’ll just wait here a moment.”</i>");
-
-output("\n\nYou do as the woman suggest and just... wait there, rocking back and forth on your {hooves/heels} as you think about Saec and what you’ll do on her date. Luckily it doesn’t take to long for Belle to return to the lab’s atrium with Saec in tow.");
-
-output("\n\nYour heart speeds up at the sight of the girl: she’s dressed - unlike her usual, prefered nakedness - in an orange sundress draping down over her {pregSaec: big, pregnant belly //Else: body} and down to her thighs, leaving quite a fair bit of cleavage visible. The ausar keeps her hands clasped together as her master leads her over to you on a leash, blushing and averting her gaze from you.");
-
-output("\n\n<i>“She cleans up quite nice, wouldn’t you say?”</i> the woman asks, stopping in front of you to lovingly cup Saec’s chin, <i>“Yes, I think she’s perfectly ready for a day out in the station with you.”</i>");
-
-output("\n\nYou nod in acknowledgement to that statement, smiling as you look into the puppy’s big blue eyes.");
-
-output("\n\n<i>“Ah! But you’ll be needing this,”</i> Belle interrupts, reaching out to hand you Saec’s leash.");
-
-output("\n\nYou shoot the woman a questioning look, but take the leather tether from her, holding it tight in your grip, making the ausar it’s attached to grin wider than she was before.");
-
-output("\n\n<i>“What’s that look for?”</i> her master asks, <i>“</i>You<i> are going to be Saec’s master for this little date, so you’ll need her leash. Don’t want the puppy to get lost, do you?”</i>");
-
-output("\n\nGiving the lady scientist a shake of your head, you straighten your posture and step a bit closer to Saec, almost protectively.");
-
-output("\n\n<i>“Good,”</i> she states, <i>“Now why don’t you two be on your way, lots of work to be done at the lab today.”</i> Belle starts to walk towards the door as she finishes that sentence, and beckons you to follow her. You take her lead and make your way to the entrance with Saec in tow. <i>“I’m sure now how these things go, [pc.name]. Take her someplace nice, bring her home before eight, and don’t be </i>too<i> rough with her... just enough,”</i> she says as you finally reach the door, already open, <i>“Oh, and if you want my advice, there’s a lovely little restaurant where you two could go for a nice lunch a few levels down.”</i> With that, the lady scientist is inviting you both out.");
-
-output("\n\nYou give Belle another smile and nod, and Saec does the same before looking at you with a still-blushing face, clearly eager for your date. After that little exchange of glances, you’re both making your way out the door, your mutual master waving goodbye and calling out, <i>“Be safe you two!”</i>");
-
-output("\n\n[Next]");
-
-output("\n\n[Next]");
-
-output("\n\nAlmost as soon as you’re out of the lab and walking away, you can feel warm fur brushing against your hand. You turn to see Saec facing away from you, but quickly realize that her fur-covered digits are wrapping around your own, taking hold of the same hand that’s holding her leash.");
-
-output("\n\nThe gesture makes you smile, and you return the display of affection by firming up your grip and rubbing a thumb along the back of the ausar’s fluffy hand, making her blush all the more.");
-
-output("\n\nSo, the two of you walk hand-in-hand through the halls in a blissful silence, making your way to an elevator and dropping a few levels, hoping to find that restaurant Belle told you about. {firstTime: Luckily, it seems Saec knows the place, or has been there before with her master, //Else: Luckily, it seems Saec remembers where it is from when you last went there,} because when you meet a quaint, rustic looking building standing out amongst the sleek structures of Uveto station, she taps on your shoulder and points it out.");
-
-output("\n\nYou turn to look at the building, standing out like a single coloured hair among a head of grey strands, complete with a wooden sign labeling it as <i>“Manni’s Too”</i>. Saec smiles wide next to you at the simple fact that she’s {firstTime: here with you //Else: here with you again}. Seeing that look on her face makes your heart flutter, and you’re eager to get on with this date, so you quickly lead your pet in through the entrance.");
-
-output("\n\nWalking in, you spot a podium with who must be the day’s grey-skinned, tauric hostess standing behind. She greets you with a practiced, business-like grin as you approach.");
-
-output("\n\n<i>“Hello,”</i> the leithan girl says, <i>“Table for two today or picking an order up?”</i>");
-
-output("\n\nAs you’re telling the girl you’d like a booth for two, she turns towards your date and smile a bit more genuinely, <i>“Oh, hey there Saec! Is doctor Baslocvicz not with you today?”</i>");
-
-output("\n\nYour ausar companion shakes her head in response, but still keeps a happy look on her face, from ear to big, fluffy ear. {firstTime: So Saec has been here before, which would explain why the hostess isn’t too intrigued by the collar and leash around the canine girl’s neck.}");
-
-output("\n\n<i>“Oh, well, good to see a good customer like you around anyways!”</i> she exclaims, grabbing a couple of menus before extending a hand, <i>“I’ll take you to your seats.”</i>");
-
-output("\n\nThe leithan hostess maneuvers the comparatively-narrow aisles of the restaurant’s booths with surprising grace, trailing her large, tauric half behind her until she reaches a clear table and place a menu on either side of it, <i>“Here’s your seats, your waitress will be with you shortly!”</i> With that she smiles and makes her way back to her place near the building’s entrance, leaving you and Saec alone again.");
-
-output("\n\nYou invite your date to take a seat and she does, {pregSaec: being careful with her pregnant belly as she sits down} with you following her into the booth soon after, quickly picking up your menus. Looking around between glances at your choices, you take in the sight of the eatery around you; it’s quite old fashioned: everything seems to be made of lacquered wood, with nice tinted glass obstructing views between booths and brass lighting fixtures keeping the whole restaurant at quite a cozy level of dimness. Leather-covered cushions squeak beneath your [pc.ass] as you shift in your seat.");
-
-output("\n\nAfter a little while a tall, thin kaithrit waitress comes to take your order of drinks and food before walking off again.");
-
-output("\n\nWell, it looks like you and Saec are gonna be waiting her for a bit, so you figure you should break the ice and ask the ausar if she’d like to talk with you until your meals get here.");
-
-output("\n\n<i>“O-oh, sure!”</i> she says with a tone so soft and warm it could melt an Uveto glacier, {firstTime: reminding you that this is the first time you’ve actually heard Saec’s voice outside of it being a moan or pleasured whimper,} <i>“I usually don’t talk unless Belle gives me permission, though... so I guess I need yours now, right?”</i>");
-
-output("\n\n{pcHard:");
-output("\n\nYou give the ausar a nod, and she smiles in return, her posture relaxing a bit at receiving that little gesture.");
-output("\n\n//Else:");
-output("\n\nYou tell the ausar beauty she’s always free to talk with you, and that seems to relax her posture more than it already was.");
-output("\n\n}");
-
-output("\n\n<i>“Yay!”</i> she exclaims before settling down and resting her hand in her lap {pregSaec: as best she can with that tummy in the way}, <i>“So what should we talk about?”</i>");
-
-output("\n\n{firstTime:");
-output("\n\nThinking about it for a moment, you realize you and Saec don’t know each other that well and tell her she ought to speak about herself for a bit.");
-
-output("\n\n<i>“Oh, okay, yeah... I guess we should get to know each other,”</i> the blonde pup ponders for a moment, <i>“Alright... so I didn’t grow up here on Uveto, but you probably figured that out when you didn’t see any of that huskar fluff-stuff on my neck!”</i> She pauses and smiles, rubbing her indeed-furless neck before continuing again, <i>“I was born on Ausaril... but I didn’t know my parents, and I was raised in a shelter for most of my life, and I didn’t get out until I was sixteen.”</i>");
-
-output("\n\nSaec looks a bit down after regaling that part of her tale, and you can understand why, being abandoned by your parents and having to raise yourself like that for years. You ask the ausar if she had any other family that she knew.");
-
-output("\n\nShe quickly shakes her head, <i>“No, well... there was my brother, we were both put into the shelter together, and he got adopted when we were both still young. He probably wasn’t even a year old then.”</i> Saec smiles warmly and twiddles her thumbs, <i>“I still remember what he looks like, he was so small and cute, even for a pup... blonde fur and blue eyes just like me... I wonder how he’s doing now... or where he is.”</i>");
-
-output("\n\n{metLiamme:");
-output("\n\nWait... she couldn’t be talking about Lia- nah, no way. The galaxy’s a big place with a lot of blonde ausar, but then again, there’s always that chance.");
-output("\n\n}");
-
-output("\n\n{metLiamme: Shaking that thought from your head, you //Else: You} think on Saec’s words for a moment then ask her what exactly brought her to Uveto after leaving the shelter.");
-
-output("\n\nShe takes a deep breath, puffing out her chest and releasing, clearing her thoughts before she continues, <i>“After I got out... actually ‘kicked out’ is what I should’ve said, I needed to work, so I worked. I couldn’t really hold anything down for long, so I had a lot of different jobs, and then one day I got an offer from a place on Uveto that I applied to, an actual full-time job.”</i> Saec sighs heavily and looks down at her feet under the table, <i>“That was all a scam. I got there, they got my information, and then they took all the money I had saved up over the past eight years. I didn’t have anything, and I couldn’t even get off this stupid moon.”</i> The ausar turns back towards you, her face quite a bit warmer now that that part of her story is over, <i>“That’s when I met Belle. I was looking for some way to make a little money, at least enough to rent a warm room, and I found an ad for Accu-Pitch saying they were hiring test subjects. I didn’t have anywhere else to go, so I went there. The doctor was just... so nice to me. No one had ever treated me like she did, and I loved it... the whole ‘pet’ thing.”</i> Saec pauses and looks right into your eyes, <i>“And then I met you... and I like you a lot... I don’t think I’ve ever had a ‘playmate’ before, so it’s nice to see someone else happy with Belle, and me.”</i> {pregSaec: The ausar girl reaches down to caress her pup-swollen belly, <i>“Then there’s this. I- it’s weird, but I just feel so good about it... especially if it’s with someone like you, someone Doctor Belle trusts. It kind of makes me nervous at the same time, but thinking about having my own kids in a nice home, safe and warm with their mommy... to get what I never had. It makes me happy.”</i>}");
-
-output("\n\nThe girl’s whole story brings a smile to your face, all those hardships persevered then rewarded with a good place at Belle’s side {pregSaec: and a tummy full of young}. {pcKind: You thank her for telling you all that.}");
-output("\n\n//Else:");
-output("\n\nThis time, you decide to take the initiative and tell Saec a bit about your journeys since you’ve last met. She watches and listens with great attention until you finish, and once you’re done the blonde pup takes her turn to tell you her latest stories: some movies she saw, a few nice places she’s been, and some stories from the lab that you don’t think Belle would tell you herself.");
-output("\n\n}");
-
-output("\n\nAs your conversation is coming to a close, that kaithrit waitress returns with your meals and awkwardly positions them in front of the two of you, then giving a cheery <i>“Enjoy your meal!”</i> and leaving again.");
-
-output("\n\nMuch like your walk to the restaurant, your lunch passes in a blissful silence with you and Saec enjoying your food and each other’s company. It doesn’t take too long before you’ve both had your fill and are ready to go. The waitress is back around soon after you’re finished, and tells you that your check has been put on Belle’s tab, leading you to turn to Saec, who gives you a big, knowing grin in return.");
-
-output("\n\nYou both get up from your seats, and you’re already thinking of what you can do with Saec next. Turning to look at her gives you a few ideas: she’s got quite a lusty look in her eyes, her face turning red as you take hold of her leash again, and looking at her and all that cleavage on display, you’re feeling quite flushed yourself. For being so bashful about this date, Saec’s still got that ausar libido, and seems more than happy to let things get more intimate with you, if your fun together at Accu-Pitch is any indicator.");
-
-output("\n\nBiting your lip, you take the ausar’s hands in your own (yes, both of them), lacing your fingers between her own fluffy digits and ask her if she’d like to find somewhere private where you two could play.");
-
-output("\n\nA smile quickly appears on Saec’s face, eyes fluttering, <i>“I don’t think there’s any other way this date could end.”</i> She ponders for a moment before speaking up again, <i>“I think I know somewhere we could go: my room at the lab. I don’t use it very often, so the bed should be nice and clean for us to make a mess of!”</i> Finishing with a playful grin on her face, she bounces giddily in place as she waits for your response.");
-
-output("\n\nYou tell her that sounds like a great idea.");
-
-output("\n\n[Next]");
-
-output("\n\n[Next]");
-
-output("\n\nYou and Saec walk hand and hand back to the lab, leash interlaced between your fingers as you make your way through the wide open wabeship that is Uveto station. All the way back, your lover is unable to stop her big, fluffy tail from wagging, batting it against your back or butt uncontrollably, though you can tell the furry appendage’s movements are certainly affectionate.");
-
-output("\n\nWith lust burning in your loins, the trip back seems almost longer, each step stiffening your [pc.cocks]. Luckily, you both reach the lab without delay. Once you’re at the door Saec’s quick to pull up her dress <i>just enough</i> that she can place her own barcode on the door’s scanner and open it, sticking her tongue out and giving you a mischievous smirk.");
-
-output("\n\nYou stumble into the lab with your ausar pet in tow, walking right past Belle who tries to start a conversation, barely getting out a <i>“Back already?”</i> before you’re both at Saec’s door. It hisses open as you near it, and at this point your leashed-up ausar is leading you into her room by the end of her leash. The entrance swishes close behind you once you’re both in, but you think you catch a glimpse of your mutual-master winking at you before it shuts.");
-
-output("\n\nSaec wastes no time in throwing herself down onto the mattress, looking up at you with a hungry gaze and her arms curled up like a puppy’s. No doubt your date is looking for something long and hard between her legs. You lick your lips and {notNude: strip yourself of your [pc.gear] before} follow{ing} your lover down onto the bed and straddling her on all fours, {pregSaec: being extra careful with her belly}. It only takes a moment of looking deep into her blue, blue eyes before you succumb to your sexual hungers and press your lips to hers. Saec returns the kiss with surprising force for such a subby puppy, letting her flat tongue slide into your mouth to dance with your own [pc.tongue]. You press yourself into Saec, only to feel stiff nipples poking through her sundress and rubbing against your [pc.chest]. If you were to guess, this girl’s chest needs a little attention, and you intend to give it some. With your mouth still being filled with ausar-tongue, you reach a hand up to one of your lover’s breasts and squeeze, drawing a chorus of pleasured mewls from the ausar. She sounds like a needy puppy if you’ve ever heard one.");
-
-output("\n\nYour kissing and groping continues for quite some time, with you and Saec sliding your oral organs against each other and your hands moving across her still-clothed tits, pinching at nipples and caressing warm boob until you feel a hint of dampness on your lover’s dress. You break your tongue-tying embrace to look down at Saec’s chest, only to realize she’s {firstTime: quite the milky bitch //Else: leaking sweet ausar milk again}, wetting her sundress with beads of lactatious nectars. By the time you’re thinking about returning to the kiss, you can feel your pet shifting her hips against yours, trying to line up her pussy with your package.");
-
-output("\n\nIf Saec’s ready to move onto the next course, so are you. Smirking at the horny puppy, you bring yourself up on your knees, positioning yourself between her akimbo legs. There’s no time to waste stripping the girl, so you just go ahead and hike up her dress while she wiggles in anticipation, and there it is: Saec’s dripping ausar pussy. She’s not even wearing any panties, already leaking fem-lube all over the sheet with a glaze of her feminine liquids all over her inner-thighs. The heavenly musk coming from between the ausar’s legs make your tongue loll and sends a wave of lust-inducing chemicals shooting through your mind, telling you to pick up the pace and fuck her already.");
-
-output("\n\nNot one to deny your baser instincts, you reach down and grab a handful of plush ausar thigh in each hand, making Saec gasp before you lift and spread her legs wide, lifting her ass off the mattress just a touch. Your pet whines furiously, begging for a good fucking as she rocks her hips, trying to get her pussy closer to your already rock-hard cock{s}. You smile and rub a fur-covered thigh affectionately, telling your pet not to worry and that you’ll take good care of her.");
-
-output("\n\nWith that done, you shift your [pc.hips], lining up your [pc.cockBiggest] with that pink slit and pressing your tip against her sopping folds just enough to make Saec whimper. {multiCock: At the same time, you move your second cock into position, right against the ausar’s tight pucker, ready to give your lover some double-penetration loving, just the way she likes it.} Looking in your pet’s needy eyes once more is all the motivation you need to push forward, applying a little pressure and gently spreading her sodden hole{s} with a gasp. You don’t let up and continue your slow thrust in, stretching Saec’s tightly squeezing cunt {multiCock: and asshole} ever wider as moaning and groans fill your ears.");
-
-output("\n\nYour lover is left panting by the time you bottom out inside her, pussy {multiCock: and pucker} spasming around {multiCock: both} of your [pc.cocks]. You smile down at the puppy as she adjusts to your {multiCock: twin} girth{s}, and feeling compelled to, you bend down and kiss her right on the lips. Pulling back again, you can hear Saec’s tail whipping against the sheets.");
-
-output("\n\nYou decide it best not to keep the girl waiting anymore and start to pull back, dragging your [pc.cocks] against her inner walls and pulling a low groan from her lungs. She whines when you’re almost out of her, with your glans meeting her {multiCock: ass and} lube-leaking cunt again, begging for more. You give Saec what she (and you) want and start to slide back into her, a bit faster this time, releasing a renewed chorus of moans into the room around you. Then you pull back again, and thrust in again, and again, and again, gradually building up in speed until there’s not a moment of silence between your lover’s pleasured calls. Saec’s braless breasts jiggle and quake with every pump of your [pc.hips], gradually rocking free of her sundress until they’re bare. Each wobble of her massive tits sends flicks of milk dripping all over the bed and running down the ausar’s warm boobflesh. The sight of seeing all that ausar chest fucked free of their confines alone leads you to speed up your love making, and it’s all too much for Saec.");
-
-output("\n\nA high-pitched cry of pleasure permeates the once-steady moaning of the room, causing you to look down just in time to see your pet’s back arch.  You can feel {multiCock: both of} Saec’s well-satisfied {multiCock: pussy //Else: holes} clamp down around {multiCock: both} of your turgid cock{s}, her inner walls spasming around your sensitive flesh as they try to wring out every last ounce of pleasure they can. It feels like your [pc.cocks] are being milked, and pulls you over the edge of your climax. {hasKnot: With a feral grunt you slam your hips forward, your knot meeting Saec’s spasming slit with a gasp, stretching it around your bitch-breaker until it pops in, almost seeming to send your lover into another orgasmic fit. //Else: With a feral grunt you slam your hips forward, burying it inside Saec’s spasming slit with a gasp.} {multiCock: At the same time, your lower dong thrusts into her tightly-clenching pucker, pushing hard until {hasKnot: you knot your bitch’s other hole //Else: you’re hilt deep}.");
-
-output("\n\n{hasKnot: With your pet tied to you at the crotch //Else: With your [pc.cocks] planted deep inside your pet}, you allow your willpower to slide away and your pleasure to peak. Your sides buck jerkily against Saec’s wide hips, making her breasts bounce and sending more milk all over while your shaft{s} start to spasm. Another sharp breath from your ausar companion fills the air as your [pc.balls] begin to empty, the first shot of your warm [pc.cumNoun] splattering her inner walls and painting them [pc.cumColor]. {lotsOfCum: {pregSaec: You’re almost wishing Saec wasn’t pregnant at this point, so you could watch her belly swell full of your seed //Else: Saec whimpers as you pump her full of your seed, your tremendous load flooding her womb {multiCock: and bowels alike} until her belly swells to pregnant proportions.} //Else: Saec whimpers as you pump her full of your seed, filling her womb {multiCock: and bowels alike} until she’s good and full.}");
-
-output("\n\nYou finally come down from your peak alongside your lover, both of you panting and still shivering with the bliss of your afterglow. There’s not really much you can do at this point besides fall forward onto Saec and bury your head between her heaving breasts. A moment later the puppy lets out a happy coo and wraps her arms around you, and you groan with fatigue-filled contentment, ready to drift off to sleep with your lover.");
-
-output("\n\n[Next]");
-
-output("\n\n[Next]");
-
-output("\n\nYou yawn into a pair of warm chest-pillows as you wake. Lifting yourself with a stuttering groan, you pull yourself from Saec’s embrace, looking down only to realize that she’s still asleep. You figure it’s probably best to let the girl continue her post-coital nap, though you’ll have to get going yourself.");
-
-output("\n\nSo, as carefully as you can, you pick yourself up and get yourself off the mattress, {notNude: gathering your [pc.gear] and} giving your stiff limbs a good stretch before heading to the door. It hisses open as you near it, not nearly loud enough to wake Saec, thankfully. Heading back out into the lab and still wiping some sleep from your eyes, you see Belle, who’s turning around and giving you a smile.");
-
-output("\n\n<i>“I guess you two had a nice date, then?”</i> she asks, giving you an I-know-what-you-did type of look and placing a hand on her hip.");
-
-output("\n\nYou give your master a smile and nod in response, leading her to cup your cheek and pull you in for a quick kiss.");
-
-output("\n\n<i>“Thank you so much for doing this, [pc.boyGirl],”</i> the lady scientist says as her lips part yours, <i>“Poor girl needs to get out of the lab more often, and spend time with someone other than me.”</i> Belle smiles and lets her hand fall from your face, <i>“Now, why don’t you go get some more rest and come back when you’re good any ready for some more experiments... or another playdate?”</i>");
-
-output("\n\nYeah, that sounds like a good idea.");
-
-output("\n\n[Next] Returns the PC outside of the lab.");
-
-output("\n\n//Taur Race");
-output("\n\n[Race]");
-
-output("\n\n<i>“The racetrack?”</i> Belle responds, stroking her chin with a finger and thumb, <i>“{firstTime: Now there’s somewhere I haven’t been in awhile. //Else: Well, that last time we went there was </i>quite<i> enjoyable.}”</i> Your master turns to you with a grin and nods her head, <i>“Yes, I think the track sounds like a wonderful idea.”</i> Cupping your cheeks rather suddenly, she pulls you in for a quick kiss on your forehead, <i>“Good thinking, [pc.boyGirl]. Now, if you’ll just wait here a moment I’ll go get myself ready.”</i>");
-
-output("\n\nWith that, Belle turns on a heel and walks away, entering another room and leaving you alone to wait for you. It’s not a long wait, thankfully, because soon your master is back again, and with a new outfit: in place of her usual lab coat and fatigues is a short, sheer-fitting black dress and modest, well-polished jewelry. It hugs at all her curves nicely, not too tightly, but enough to accentuate her frame and highlight her bulge quite well.");
-
-output("\n\nYou manage to keep yourself from drooling at the sight of Belle as she walks back towards you, giving you quite the smirk.");
-
-output("\n\n<i>“How do I look, [pc.boyGirl]?”</i> she asks, giving herself a little spin so you can see <i>everything</i>, <i>“Think I’m ready for our date?”</i>");
-
-output("\n\nYou nod eagerly; your master’s a beautiful woman if you’ve ever seen one.");
-
-output("\n\n{wearingSubTuner:");
-output("\n\nShe smiles in response, then lifts the leash she’s been holding to your neck and attaches it to your collar, but she doesn’t turn it on, leaving you a little confused.");
-output("\n\n//Else:");
-output("\n\nShe smiles in response, then lifts the leash she’s been holding to your neck, and you quickly realize she’s planning on tethering you, but you don’t have your collar on! So, you reach into your bags as quickly as you can, pulling out the Sub-Tuner, fumbling with it for a moment, then handing it to Belle. She grins and takes it, unlocking the neckwear and bringing it around your neck before snapping the buckle shut. All the lady scientist has to do then is attach her leash, but she doesn’t turn your collar on, leaving you a little confused.");
-output("\n\n}");
-
-output("\n\nGrabbing at your collar, you give the lady scientist a curious look, and she chuckles in response, <i>“We won’t be needing that on today, [pc.boyGirl]. Today... it’s just a master and her pet, having a nice time together, no experiments.”</i>");
-
-output("\n\n<i>That does sound nice, and it’s not like you need the Sub-Tuner to be Belle’s perfect puppy. No, you’ll have a great time without it.</i>");
-
-output("\n\n<i>“Now come on, [pc.boyGirl],”</i> she commands, wrapping your leash around her hand and walking towards the door, <i>“Let’s get to the track, hmm?”</i>");
-
-output("\n\n[Next] //Should equip the Sub-Tuner.");
-
-output("\n\n[Next]");
-
-output("\n\nBelle leads you through the wabeship that is Uveto station with a firm grip on your leash, making sure she’s always got an eye on you like the good master she is. With her in command, it’s not long before you’re on the surface and making your way to U7. It’s a brief walk through the cold open air of this frozen moon before you’re through one of the dozen entrances to the racetrack and artificial heating is warming your [pc.skinFurScales].");
-
-output("\n\nOnce you’re both inside, Belle takes a quick look around through the crowd moving in and out of the stadium before moving towards a nearby cashier’s desk, and taking you with her. As you walk up to the counter, your master catches the attention of a well-dressed leithan man, who brings himself around the desk to greet you.");
-
-output("\n\n<i>“Ah! Hello, Doctor Baslocvicz,”</i> he calls out before noticing you attached to Belle at the leash, <i>“Are you and your friend here looking for anything today?”</i>");
-
-output("\n\n<i>“Yes, actually,”</i> the lady scientist says in response, <i>“I think I’d like to use my booth today, but I have some special instruction.”</i> With that she beckons the leithan man closer by waving her hand, and keeping her eyes fixed on you, the human woman whispers something in one of his more elfen ears before pulling back.");
-
-output("\n\n<i>“Of course!”</i> the man exclaims, turning around to wave a nearby employee of the racetrack over, <i>“Anything for the daughter of one of our valued investors. I’ll have someone on it right away and it should be done before you get to your booth.”</i>");
-
-output("\n\n<i>“Excellent,”</i> Belle says, turning towards you again, <i>“Come along then, [pc.name], we’re going to have a good time today, you and I.”</i>");
-
-output("\n\nThe lady scientist begins to walk away, and you follow her closely through the crowds until you reach a pair of sliding doors with a small control panel next to it. After Belle presses a few buttons on the control panel, the entry swishes open to reveal the inside of an elevator, and she quickly leads you inside.");
-
-output("\n\nIt’s a short ride in the lift until you reach your destination about five levels up, and the doors open again to reveal a rather empty, carpeted, curving hallway, which your master quickly steps out into. You’re lead silently through the corridor until you both come upon a lacquered, wooden door, covered in ornamental carvings.");
-
-output("\n\n<i>“Here we are,”</i> Belle chimes, reaching for the brass knob of the lumber portal and turning it. The door opens to reveal a nice, spacious balcony overlooking the entire stadium as the woman leads you inside and closes the entrance behind you.");
-
-output("\n\nYou scan the room around you, noting the rug beneath you, the small table with an ice bucket and bottle of champagne atop it, and the single, leather-bound chair. What really catches your eye, though, is the view; you can see the whole stadium from up here! Walking up to it, you place your hands on the railing and look out over the racetrack.");
-
-output("\n\n<i>“Quite the view isn’t it?”</i> asks Belle, sitting down in the leather seat behind you.");
-
-output("\n\nYou turn back around and nod at the woman, smiling as you do so.");
-
-output("\n\n<i>“Well, [pc.boyGirl],”</i> she coos, reaching for the edge of her dress, <i>“The races are going to be starting soon... why don’t you take a seat?”</i> With a sly smile the lady scientist pulls up on her skirt to reveal her two stiffening, knotted human cock, taking hold of her upper tool and stroking it.");
-
-output("\n\nWell, now you know why there’s only one chair up here. You lick your lips at the sight of your master’s package, and you definitely wouldn’t mind taking a seat on them.");
-
-output("\n\n{notNude:");
-output("\n\nStill clothed, you slowly strip yourself of your [pc.gear] before your master, blushing quite a bit {highExhib: and enjoying a slight rush at the thought that anyone in the stadium could be watching you right now}. Your undressing has Belle sighing with bliss, the gentle pumping of her shaft seeming to speed up.");
-output("\n\n}");
-
-output("\n\n{notNude: Once you’re //Else: Already} good and bare, you stride your way over to the lady holding your leash, leather tether slacking as you near her, and her grin growing ever more lustful until you’re right in front of her.");
-
-output("\n\n<i>“Now turn around, [pc.boyGirl],”</i> she commands, twirling a finger in the air, letting her erect cock fall free of her hand.");
-
-output("\n\nYou do as she says and spin on a heel, turning your back, and your [pc.ass], to Belle, right before you feel a hand grope at your ass.");
-
-output("\n\n<i>“Mmm,”</i> the human woman coos, spreading your lower cheeks and giving them a firm spank, hard enough to make you gasp, <i>“Now, sit.”</i>");
-
-output("\n\nEven without your collar being turned on, you feel compelled to do what your master says and slowly start to lower yourself onto her lap. One of her hands still toys with your ass while another grabs at your hip to steady your descent until you feel {hasVag: her twin cockheads //Else: one of her twin cockheads} press against {hasVag: both of} your eager {hasVag: holes //Else: asshole}. You whimper slightly when your master forces you down harder, putting pressure on your [pc.asshole] {hasVag: and pussy alike //Else:, while her upper dong falls perfectly into the crack of your ass}. {hasVag: Her glans easily spread your needy nether lips, and with //Else: With} a little relaxing on your end, your [pc.asshole] is penetrated, leaving you to shiver with pleasure.");
-
-output("\n\nBelle doesn’t let up and pulls you down onto her double dongs, and all you can do is moan as hot Terran cock stretches you wide and caresses your inner walls. The stillness you’re left with when the herm woman’s knot{s} meet your sodden entrance{s} is almost unbearable. You want her to fuck you so bad! Instead though, your master tugs your leash, and you fall backwards onto her soft, dress-filling breasts, panting.");
-
-output("\n\nYou wiggler and squirm in your place, but Belle keeps you still, leaning forward to whisper in your ear. <i>“Just calm down, [pc.boyGirl],”</i> she breathes, sending a shiver down your spine, <i>“The race is about to start.”</i>");
-
-output("\n\nSure enough, after she says that the buzzer sounds and the racers are off, tauric peoples pouring out from their gates and kicking up dirt.");
-
-output("\n\n<i>“Look at the jockeys,”</i> Belle whispers again, taking a hand and pointing to the track.");
-
-output("\n\nYou do as she says and turn your gaze to the bipedal races riding underneath their racers. They’re all naked, and almost all of them seem to be enjoying themselves, looking rather blissed-out.");
-
-output("\n\nAs you’re watching the contestants round the first turn, your master trails a hand up your waist and breathes against your [pc.ear], <i>“I’d like to see you out there like that one of these days... it’s just so enticing to watch.”</i> With that, Belle starts to slowly rock her hips, dragging hard Terran rod against your sensitive flesh and drawing a chorus of lewd groans from your lips. <i>“You know,”</i> she says with another wiggle of her sides, <i>“I bet there’s plenty of people in this stadium doing exactly what we’re doing right now. This sport is just so easy to get off to, isn’t it, [pc.boyGirl]?”</i>");
-
-output("\n\nThe doctor accentuates that last word with a quick thrust of her hips, driving her {hasVag: twin //Else: thick} dick{s} into you and ripping a moan from your lungs. She doesn’t stop there, though, she keeps going, faster and faster, fucking {hasVag: both of your //Else: your needy} hole{s} while you cry out with pleasure atop her. You can feel her knot{s} stretching you wider the closer the racers get to the finish line, driving you to your climax until you can barely keep yourself from cumming.");
-
-output("\n\nThen, just as contestants and jockeys cross that checkered line, Belle gives you what you want and thrusts her bitch-breakers into you. {They/It} stretch{es} your {hasVag: [pc.vagina] and} pucker as wide as {they’ll/it will} go until they finally pop in with a moan and a contented sigh from your master, your sensitive inner walls hugging at her knot{s}.");
-
-output("\n\nIt was hard to stop your orgasm before, and there’s no way you could now. Your {hasVag: pussy and} ass spasm{s} around your master’s cock{s} as bliss shoots through your body like electricity, causing you to tense up and quake with orgasmic pleasure. {hasVag: Your [pc.vagina] clamps down around Belle’s lower shaft, squirting [pc.girlcum] all over her lap.} {hasCock: Convulsing wildly, your [pc.cocks] empt{y/ies} {itself/themselves} onto your thighs, coating them with [pc.cum] while your hips buck into the air.}");
-
-output("\n\nJust as your peak seems to be coming down, your master’s begins. She holds you down tightly on her big, girthy member{s}, as {they/it} spasm{s} inside you. {hasVag: Hot Terran cum floods your womb and bowels alike, filling you with warmth and making you whimper, and it’s all enough to swell your [pc.stomach] until you’re round and full of seed.  //Else: Hot Terran cum floods your depths, filling you with warmth and making your [pc.stomach] swell while Belle’s upper dong coats your back, and its owner, with delicious alabaster seed.}");
-
-output("\n\nWhile you’re reeling with the afterglow of your orgasm, Belle barely seems phased by her climax, opting to whisper in your ear again, <i>“I think you better rest up, [pc.boyGirl]. We’re going to watch a lot more races before we’re done here.”</i> You can almost see the Terran smirk over your shoulder.");
-
-output("\n\nHer words make you shiver with post-orgasmic bliss, and have you falling back into your master’s arms as they wrap around you, holding you close while you rest. It’s already seeming like the racetrack was a good choice for your date.");
-
-output("\n\n[Next]");
-
-output("\n\n[Next]");
-
-output("\n\nThroughout the day, Belle fucks you and knots you again and again, keeping you in a constant cycle of pleasure, orgasm, and respite, letting you rest between races before starting the whole rotation again.");
-
-output("\n\nUnfortunately though, it seems your wonderful date is to come to an end as the last race of the day finishes.");
-
-output("\n\n<i>“Looks like we have to get going, [pc.boyGirl],”</i> your master breathes, running a hand through your [pc.hair] and waking you from your post-coital nap, <i>“Alright, [pc.name], up-up.”</i>");
-
-output("\n\nYou barely have time to wipe the sleep from your eyes before you feel hands grabbing at your sides and lifting you up. Doing your best to help Belle, you pull yourself off her softened knot{s}, nigh a day’s worth of cum spilling out from your {hasVag: holes //Else: [pc.asshole]}, your pregnant looking tummy still full of the gooey white stuff.");
-
-output("\n\nOnce you’re free of her breeder’s knob{s} and standing again, you give your limbs a good stretch {notNude: and gather your [pc.gear]} before turning to your lovely lady scientist again.");
-
-output("\n\n<i>“I guess we should be off,”</i> she says, finishing pulling her dress back over her cum-slicked cocks and taking hold of your leash again, <i>“Ready to head back to the lab.”</i>");
-
-output("\n\nYou really wish you didn’t have to, but you nod in response and get ready to make your way back to Accu-Pitch with Belle.");
-
-output("\n\n[Next] //Should return the PC outside (inside?) the lab tile.");
-output("\n\n//Peer Review");
-output("\n\n[Party]");
-
-output("\n\nBelle paces back and forth for a moment before fixing her attention on you again, <i>“I’m actually glad you’re here, [pc.boyGirl]. I was afraid I was going to have to reach you over the extranet.”</i>");
-
-output("\n\n{wearingSubTuner:");
-output("\n\nThe lady scientist quickly reaches into her pockets to procure a leash before clipping the tether onto your collar, just moments before she flips the Sub-Tuner on.");
-output("\n\n//Else:");
-output("\n\nThe lady scientist quickly reaches into her pockets to procure a leash before asking you <i>“Do you have the collar, [pc.boyGirl]?”</i> leading you to fumble around with things for a moment before pulling the Sub-Tuner from your pack and handing it to your master.");
-
-output("\n\nBelle smiles and thanks you, taking the ring of {upgradedSubTuner: metal //Else: leather} from you and wrapping it around you neck, buckle snapping shut. Then she reaches for the single switch on the collar, and flips it on.");
-output("\n\n}");
-
-output("\n\nAlmost immediately submissive thoughts begin to fill your head, almost bringing you to your knees. <i>Void, you need orders, to be put in your place!</i>");
-
-output("\n\nLuckily for you, Belle is an attentive master, and is already giving you what you want. <i>“Down, [pc.boyGirl],”</i> she says, her voice gentle but commanding.");
-
-output("\n\nYou do as she says and quickly drop to your knees in front of her, prompting a smile from the Terran woman.");
-
-output("\n\n<i>“You see,”</i> she explains, pacing back and forth again, <i>“After so many success with your experiments involving the Sub-Tuner, I’ve organized a bit of a ‘peer-review’ with some of my colleagues. Well, it’s honestly more of a party than anything, because I’ve invited some friends with... similar interests. I’ve already got all the drinks, hors d’oeuvres, and fittings all set, but needless to say, I need you to be there for it. How does that sound?”</i>");
-
-output("\n\n<i>A party?! With your master?! You’d never say no to an opportunity like that! All you can do is look up at Belle and nod eagerly.");
-
-output("\n\n<i>“Good,”</i> she coos happily, returning your nod with a smile, <i>“Now, I have to go get ready for this little get-together. You just wait here, [pc.boyGirl].”</i> Then, like that, the Terran drops your leash and starts to walk towards the other room, leaving you painfully alone to wait for her return.");
-
-output("\n\nIt’s not a long wait, thankfully, because soon your master is back again, and with a new outfit: in place of her usual lab coat and fatigues is a short, sheer-fitting black dress and modest, well-polished jewelry. It hugs at all her curves nicely, not too tightly, but enough to accentuate her frame and highlight her bulge quite well.");
-
-output("\n\nYou manage to keep yourself from drooling at the sight of Belle as she walks back towards you, giving you quite the smirk.");
-
-output("\n\n<i>“Now let’s get you ready, [pc.boyGirl],”</i> she says, walking to a nearby closet before opening it and taking something shiny and black off a holo-hanger, <i>“Here we go.”</i> With some sort of outfit in hand, the lady scientist makes her way back to you, and kneels down in front of you. {notNude: Belle scans your still clothed frame for a moment before giving you an order of <i>“Arms up”</i> that you quickly obey. Once you’re in the position she needs you in, the herm woman takes her time stripping you of your [pc.gear] until you’re good and bare, then replaces your nudity with a slick, black, Accu-Pitch logo-bearing catsuit. //Else: Already good and bare, Belle scans your frame for a moment before replacing your nudity with a slick, black, Accu-Pitch logo-bearing catsuit.} The steel zipper of the tight-fitting jumpsuit slowly travels up your body as your master handles it, gradually covering all your naked flesh. Though, it’s definitely not the most modest attire, serving to highlight all your curves and shapeliness {hasCock:... and your bulge}.");
-
-output("\n\n<i>“There we go,”</i> Belle chimes as she goes to stand up again, taking hold of your leash once more, <i>“Now we just have to wait for the guests to arrive...”</i>");
-
-output("\n\n[Next]");
-
-output("\n\n[Next]");
-
-output("\n\nSure enough, the guests come: a lot of well-dressed scientists and investors, as well as those friends with <i>“similar interests”</i> Belle was speaking of, people with their own pets on leashes moving around the party. There’s not many people, a small get-together if you’ve ever seen one, groups of 3 or 4 people talking over glasses of wine that you and your master drift between. Yes, you stay close to the lovely lady holding your leash the whole time as she leads you to different guests. The more scientifically-minded seem to simply inspect your appearance, analyzing the collar around your neck while Belle demonstrates some simple commands for you to follow with her colleagues. The more deviant minded, on the other hand, seem to be more interested in your simple ability to follow your master’s orders... and that tight, tight attire of yours. A few try to get a bit grabby with you, but Belle keeps them at bay.");
-
-output("\n\nEventually, you come across another fellow scientist who seems to be of <i>both</i> minds. She gives your master a hearty greeting as she walks over to the both of you. <i>“Doctor Baslocvicz!”</i> she calls, out getting close enough that you can get a good look at her, <i>“I’m surprised I haven’t bumped into the heart of the party yet.”</i>");
-
-output("\n\nThe woman appear to be a rahn, a bright blue one at that. She’s quite a bit shorter than Belle, her gel molded into cyan hair and looking at her with similarly coloured eyes.");
-
-output("\n\n<i>“Doctor Lara, good to see you again,”</i> your master says, extending an arm for Lara to shake at.");
-
-output("\n\nThe gel-woman takes hold of her hand and shakes it, turning her gaze to look at you, <i>“And this is the ‘Sub-Tuner’ I’m here about?”</i> Before getting an answer, the rahn takes a knee in front of you cocking her head and looking right into your eyes.");
-
-output("\n\n<i>“It most certainly is,”</i> Belle responds, keeping a close eye on Doctor Lara lest she do anything shifty.");
-
-output("\n\n<i>“You don’t mind if I examine your pet here quickly, do you?”</i> the bright-blue lady asks, not taking her gaze off you.");
-
-output("\n\nThe Terran woman holding your leash smirks down at her, <i>“Go ahead.”</i>");
-
-output("\n\nWith an exclamation of <i>“Great!”</i> Lara’s inspection begins, and her hands are grabbing all over you face, holding your eyelids open so she can examine your eyes, pulling back your lips to look at your gums and teeth, and having you lift your arms and carefully examining how much they move. The whole process is fairly uncomfortable, and you give Belle a slightly worried look. She only gives you a nod in return, <i>but that small movement is enough to put your mind at ease</i>.");
-
-output("\n\nEventually, the rahn finishes her examination and stands herself up again. <i>“Well, I have to say, I looked over all the schematics for this collar of yours and I’m actually surprised!”</i> she says, placing her hands on her hips, <i>“No pupil dilation, no gum bleeding, no shakes. One-hundred percent reliable, drug-free hypnotic suggestion! Amazing!”</i>");
-
-output("\n\nHer fellow scientist smiles complacently, <i>“I’m glad you’re impressed, Lara. This project has been a long way coming, and I couldn’t have done it without my wonderful test subject here.”</i>");
-
-output("\n\nOnce again, the rahn turns her gaze on you, and places a hand on your head. <i>“You wouldn’t mind if I test [pc.himHer] out myself, would you?”</i> she asks playfully.");
-
-output("\n\nIt doesn’t even take a single second for Belle to formulate her response, <i>“I’m afraid I </i>do<i> mind.”</i>");
-
-output("\n\n<i>“Aww,”</i> Lara whines, taking her hand off you, <i>“You always were such a grouch when it came to your pets, glad to see that hasn’t changed.”</i> The blue woman gives her colleague a smile, <i>“Well, nice seeing this little project in action, guess I’ll go mingle some more!”</i>");
-
-output("\n\nWith that, she’s gone, leaving you and Belle relatively alone in the middle of the room. A moment later you feel {pcAusar/Kaithrit/Half: fingers scritching between your ears //Else: a hand patting your hand} accompanied by Belle’s voice.");
-
-output("\n\n<i>“Good job with that, [pc.boyGirl],”</i> she coos, giving you one last good {pcAusar/Kaithrit/Half: pet //Else: pat} before pulling her arm back, <i>“But this party’s getting a little boring, don’t you think? Why don’t we go have some real fun?”</i>");
-
-output("\n\n<i>Knowing her, there’s only one thing she could mean, and it’s the only thing you could want.</i> You look up at your master and nod eagerly, already expecting to be happy with whatever it is she wants to do.");
-
-output("\n\n<i>“Alright then, [pc.boyGirl],”</i> Belle says with a smirk, <i>“Let’s go find somewhere comfortable to sit then, hmm?”</i>");
-
-output("\n\n[Next]");
-
-output("\n\n[Next]");
-output("\n\nIt doesn’t take long for Belle to find a nice, comfy looking chair on the opposite end of the room, and she quickly lead you over to it. She gives you a command of <i>“Stay.”</i> as you reach the seat, and, <i>like the good puppy you are</i>, you wait there on your knees while your master sits down.");
-
-output("\n\nOnce she’s gotten herself settled, the lady scientist seems to forget you’re at a party and lifts her dress up and spreads her legs, allowing her two stiffening cocks and hefty balls to flop free. Your eyes go wide at the sight of Belle’s package, a wonderful musk already filling your nostrils and clouding your senses. It’s hard to resist throwing yourself onto her dicks right then and there, <i>but you wait for your orders because you’re a good puppy</i>.");
-
-output("\n\nYour good behavior doesn’t go unnoticed, because your master is giving you a happy smirk and issuing her next command, <i>“Fetch.”</i>");
-
-output("\n\nIt’s barely a second before you’re on Belle, taking her lower cockhead into your mouth, slathering it with your tongue before you continue your way down her shaft. Your [pc.lips] caress her sensitive flesh all the way down while your tongue does the same to her undercarriage, all until you feel her glans press against the back of your throat. Your master coos and reaches a hand down to your head, her womanly digits running {hasHair: through your [pc.hair] //Else: along your bare scalp}. Without any further motivation, you start to bob your head up and down, letting Belle revel in your oral pleasures with your tongue swirling all around her cock.");
-
-output("\n\nThough, the woman’s other tool seems quite neglected, rubbing against your cheek with its heat pouring off onto your [pc.skinFurScales]. So, you do the only thing a good pet could do and take the poor, needy shaft into the warm embrace of your hand, gently stroking it until its owner is on the verge of moaning.");
-
-output("\n\n{subSeraCrew:");
-output("\n\nAs you’re getting into your blowjob, a familiar voice fills your ears, {firstTime: <i>“Wait, is that you, {master/mistress}?!”</i> //Else: <i>“You again? Well isn’t this a treat.”</i>}");
-
-output("\n\nYou do your best to look over your shoulder at the source of that question with a cock in your mouth, only to see Sera, your demon-morph sub, sending a shock of worry through your system.");
-
-output("\n\n<i>“Oh, hello, Sera,”</i> Belle chimes in, her hips gently rolling, <i>“{firstTime: You... know my pet here? //Else: Nice to see you again.}”</i>");
-
-output("\n\n{firstTime:");
-output("\n\n<i>“Know [pc.himHer]?!”</i> the demoness exclaims, placing her hands on her hips, <i>“I have to live with the runt!”</i>");
-
-output("\n\nYour master chuckles, <i>“Well I haven’t heard of that!”</i> Then she reaches down and cups your chin, getting your to look up at her, <i>“Is this true, [pc.boyGirl]?”</i>");
-
-output("\n\nAgain, doing the best you can with a thick, hard shaft in your mouth, you nod.");
-
-output("\n\n<i>“Well,”</i> Belle says, turning her gaze back to Sera, <i>“Small galaxy, hmm?”</i>");
-output("\n\n}");
-
-output("\n\n<i>“Yeah...”</i> the {purple/pink}-skinned woman trails off, her gaze seemingly fixed on your ass, all wrapped in that tight catsuit, <i>“Hey you think I could get a piece of that?”</i>");
-
-output("\n\nYour master grins almost deviously and looks down at you again, <i>“Seeing as you apparently know [pc.name] so well, I don’t see why not.”</i>");
-
-output("\n\nSera only licks her lips in response before she kneels down behind you, bending herself over you and reaching for the zipper of your jumpsuit. <i>“Alright, let’s get this shit off you,”</i> she grunts, pulling down until your clothing is completely open. You try to focus on your blowjob again, but find it hard to keep your cock-polishing steady with hands running all over your body. It doesn’t take long before Sera’s peeling away your catsuit, baring your flesh to the open air until she’s finished pulling the suit over your ass and is digging her fingers into your lower cheeks.");
-
-output("\n\n<i>“Oh yeah,”</i> the demon-morph breathes a moment before spreading your cheeks wide. Then, like you’d expect, something long and hard presses against your pucker. Sera’s nowhere near as gentle as Belle, and doesn’t even give you a moment to relax, thrusting into you, stretching you wide enough to make you whimper. She doesn’t stop there of course, and continues her interminable penetration, driving more and more big, {purple/pink} cock into your ass, rubbing it against your inner walls fast enough to make you moan. It isn’t long before she bottoms out inside you and sets to thrusting, not even giving you a moment to adjust to her length.");
-output("\n\n}");
-
-output("\n\n{subSeraCrew: Even with Sera pounding your ass, you //Else: You} quickly redouble your efforts on pleasuring Belle; you vigorously jerk the woman’s upper-cock off while you lovingly lavish her second dong, treating it with love and you lick at it and bob your head up and down. Before too long your master loses a bit of her composure and starts to thrust into your mouth and against your hand. Her wide hips pump wildly against your maw, and all that girth of hers hurts your jaw a little, <i>but you take it all happily, because it feels so good to please your master like this</i>. Eventually, you begin to pull yourself off her shaft to lick and kiss at her knot, catching your breath for a moment before continuing your blowjob.");
-
-output("\n\n{subSeraCrew:");
-output("\n\nSera’s still thrusting away at your [pc.asshole], {hasSubmittedToSera: and something about submitting to her like this again, to have her on top, feels so <i>good</i> //Else: and something about her being on top feels so good}. Each time her hips connect against yours drives a whimper or a groan from your lungs. All this pressure on your pucker and all that feral grunting coming from the demoness are pulling you closer to climax, and you don’t think Sera’s feeling too different either.");
-
-output("\n\nIt quickly gets to the point where you can no longer hold back the wave of endorphins battering your mind’s shore, and you do the only thing you can do: <i>cum</i>. You moan onto Belle’s twin dongs as your [pc.asshole] spasms around Sera’s shaft. Orgasmic bliss makes your quake in your place, {hasCock: your [pc.cocks] emptying onto the ground below you, coating the floor with slick [pc.cumNoun] //Else: your [pc.vaginas] clamp down around a shaft that isn’t there, spraying the floor down with [pc.girlcum]}.");
-
-output("\n\nYou clenching pucker seems to coax the demoness behind you into orgasm, because you feel her hips ram forward, burying her thick cock in your [pc.ass], spasming inside you. Her hips buck jerkily against your own as a sudden gush of hot alabaster seed fills your ass, leaving you to whimper.");
-output("\n\n}");
-
-output("\n\n{subSeraCrew: Almost in sync with Sera, Belle’s own orgasm begins //Else: With all the oral attention she’s receiving, it’s no surprise when Belle’s orgasm begins}. Her twin dicks spasm between your lips, knots inflating to the point where you can feel their heat against your face. Her balls empty down you throat, filling your stomach until your tummy starts to balloon with her seed. At the same time, her upper-cock contents itself with coating your face and [pc.hair] with a nice layer of warm Terran cum.");
-
-output("\n\n{SubSeraCrew:");
-output("\n\nWith everyone coming down from their peaks, moaning and pleasured tones give way to panting and deep breaths. Sera, not seeming to be in the mood for a cuddle, pulls her cock from your ass, leaving you to shudder and your [pc.asshole] with quite the spunk-filled gape. The demon-morph stands straight up after that like nothing even happened.");
-
-output("\n\n<i>“Fucking nice!”</i> she exclaims, still dripping cum onto the floor, <i>“Thanks for the freebie, Belle, guess I’ll catch you later.”</i>");
-
-output("\n\nWith a wave and a smile, she’s off again, back to mingle with the rest of the guests, leaving you and your master to each other.");
-output("\n\n}");
-
-output("\n\nBelle takes a deep breath as you pull yourself off her softening, spit-slick shaft with a wet pop, licking excess jizz off your lips. The woman smiles down at you, cupping your chin to get a good look at your cum-covered face before she chuckles, <i>“That’s a good look for you, [pc.boyGirl].”</i> Then that same hand moves upward to give you a quick little pet, letting you know you did a good job taking care of your master. The lady scientist pulls her dress back down to cover herself, standing up out of her seat as she does so.");
-
-output("\n\nLooking around, it seems like almost no one really cared about you and Belle’s spontaneous lovemaking... maybe it’s a normal thing for these parties?");
-
-output("\n\n<i>“Alright, [pc.boyGirl],”</i> the Terran says, halting your train of thought, <i>“Let’s get back to the party, shall we?”</i>");
-
-output("\n\n<i>If it sounds like a plan to Belle, it sounds like a plan to you.</i>");
-
-output("\n\n[Next]");
-
-output("\n\n[Next]");
-
-output("\n\nThe party passes along like it did before, with you and Belle mingling with scientists and pet-play enthusiasts alike. As things go on, you spot a few other pets pleasuring their masters just like you did. Eventually, though, guests begin to leave, and the already-small gathering begins to die down until it’s just you and Belle alone, a happy pair if there ever was one.");
-
-output("\n\nOnce the last guest does leave, your master takes a deep breath and turns to you with a smile, <i>“Well, that went rather well, don’t you think?”</i>");
-
-output("\n\n<i>That was a fun party for sure!<i> So, you look up at the woman with a grin matching hers and nod.");
-
-output("\n\n<i>“No doubt it went as good as it did thanks to you, [pc.boyGirl],”</i> she coos, kneeling down beside you and unbuckling her leash, <i>“And with any luck, we’ll have made a few friends and secured a few research grants.”</i> Then she reaches for the switch on your collar, and turns it off.");
-
-output("\n\nYour pet-like feelings don’t so much as fade, though. In fact, you find yourself wishing you were still on your master’s leash, being loved and taken care of. A pang of sadness fills your heart, but luckily you don’t endure that for long, because Belle gingerly cups your cheek, and gives you a kiss, holding her lips to yours for a moment that doesn’t last nearly long enough before she pulls back.");
-
-output("\n\n<i>“Well, [pc.boyGirl],”</i> she sighs, stroking your [pc.skinFurScales] with a thumb, <i>“I guess it’s about time you {notNude: got dressed and} left. I’ve probably kept you here longer than I should have already. Oh, and don’t worry about the party. I think {metSaec: Saec and I will //Else: I’ll} clean up just fine.”</i>");
-
-output("\n\nAs much as you don’t want to leave... you still have a fortune to chase.");
-
-output("\n\n[Next] //Should return the PC outside the lab and equip the Sub-Tuner.");
-
-output("\n\n//Timed Blurbs");
-output("\n\n//These blurbs can occur once a day (probably less) if the PC is wearing the Sub-Tuner (no particular order).");
-
-output("\n\n//1:");
-
-output("\n\nYou’re suddenly stricken by thoughts of Belle as you go about your day, feeling a sudden need to have her hands all over your body, making you hers.");
-
-output("\n\nAfter daydreaming for a few more moments, you pull yourself from your dirty thoughts only to be stricken by powerful lust.");
-
-output("\n\n... This collar is off, right?");
-
-output("\n\n[Next] //Should add lust.");
-
-output("\n\n//2:");
-
-output("\n\nAs you’re going about your day, you find yourself tugging at your collar, or wanting it to be tugged on, more precisely. You can’t help but imagine a leash attached to the ring of {upgradedSubTuner: metal //Else: leather} around your neck, being held by a big, strong master to gently guide you.");
-
-output("\n\n... Maybe you could pay Belle a visit soon.");
-
-output("\n\n[Next]");
-
-output("\n\n//3:");
-
-output("\n\nYou go rigid for a moment as you’re walking as a shock of need and heat hits your loins before quickly fading, leaving you panting.");
-
-output("\n\nAfter trying to figure out what happened, you tug at the collar around your neck and remember the special function Belle gave it and wonder it the thing is actually off or not.");
-
-output("\n\n[Next] //Should add lust.");
-
-output("\n\n//4 (Requires the PC to have fucked Saec):");
-
-output("\n\nAs you’re walking, you find your thoughts drifting to Saec, that lovely blonde pup of Belle’s, her soft fur, her warm smile, her womanly figure, and her big, squeezable breasts. You smile at the picture of the ausar, and ponder if the big blonde puppy could use a playmate in the near future.");
-
-output("\n\n[Next]");
-output("\n\n//Dream");
-output("\n\n//This dream can proc if the PC goes to sleep wearing the Sub-Tuner.");
-
-output("\n\nYou awake to the gentle moaning of pleasure and the sound of skin slapping against skin. Confused you move your tired limbs around, turning your neck until you feel the collar around it... and it’s humming.");
-
-
-output("\n\nWait, is your collar on!? You can’t really find yourself caring though, <i>because all you can feel is an overwhelming need for your master</i>, but where is she?");
-
-output("\n\nYou hastily look around, only to be greeted by the source of that gentle moaning on the other side of the bed: {annoBedPartner: it’s Anno, with both her pussy and asshole stretching around Belle’s twin cocks, slowly fucking the snowy pup as she lies there in bliss. She’s wearing a collar that looks like yours, red light blinking. //Else: it’s Saec, with both her pussy and asshole stretching around Belle’s twin cocks, slowly fucking the ausar as she lies there in bliss. She’s wearing her collar as usual, though it appears to be turned off.}");
-
-output("\n\nYou tongue nearly lolls from your mouth at the sight of your master going at {annoBedPartner: your lover //Else: the blonde pup} like that. <i>Though, you can’t help but feel the need to have her inside you like that.</i>");
-
-output("\n\nNot too long after you see things getting started, they already seem to be coming to a close. While the speed of her gentle thrusting remains the same, Belle’s voice, along with the voice of the ausar under her reaches a fever pitch of moaning and gasping. Before you know it the lady scientist slams her cocks to the edge of her knots deep inside {annoBedPartner: Anno //Else: Saec}. You watch your master’s hips buck jerkily against into her pet, seeing the ausar girl’s belly distend and hearing her cry out as Belle pumps her full of cum.");
-
-output("\n\nAfter she rides out the bliss of her orgasm, the Terran woman pulls her softening shafts out of {annoBedPartner: Anno //Else: Saec} with little more than a whimper from the canine girl, leaving alabaster seed to dribble out onto the sheets. As the {annoBedPartner: snowy //Else: blonde} pup’s chest heaves, Belle suddenly turns to look at you, sending a little tingle down your spine.");
-
-output("\n\n<i>“Don’t worry, [pc.boyGirl],”</i> she says, her voice as gentle and poised as ever, music to your ears, <i>“I haven’t forgotten about you.”</i>");
-
-output("\n\nWith that, she smiles at you and makes her way over to your side of the bed, <i>and all you can feel is the need to spread your [pc.legs] for her as she approaches</i>. You follow your instincts and open your legs wide for Belle, and she quickly kneels down between them.");
-
-output("\n\n<i>Yes! Yes! Your master’s going to give you the best treat in the world!</i>");
-
-output("\n\nBelle straddles you on all fours, leaving her jugs jiggling above you and her face inches from yours. The woman quickly darts down and traps you in a kiss, pressing her plump lips to yours for a short moment. <i>It feels like the touch of her lips alone is enough to make you cum!</i> Before you can get too excited, Belle pulls back from the kiss and goes to line her twin cocks up with {hasVag: both of your eager holes //Else: your [pc.asshole], with her upper cock left grinding against your {hasCock: [pc.cocks] //Else: bare crotch}.");
-
-output("\n\n<i>She’s already hard again!</i>");
-
-You gasp as Belle pushes her hips forward, putting pressure on your supple holes{s} until...
-
-output("\n\n[Next]");
-
-output("\n\n[Next]");
-
-output("\n\nYou wake up with a gasp, only able to feel an aching need in your loins as you realize your lovely bed-time visit from your master was only a dream. A very tangible sense of disappointment floods your body at that realization, {annoBedPartner: looking over to see Anno still asleep}, a need for release burning inside you.");
-
-output("\n\nYou pick yourself up from bed and go to get ready, hoping to wash away your lust with a shower, or maybe a lover... <i>actually, maybe you could take a trip to Uveto and visit Belle.</i>");
-
-output("\n\n[Next] //Should leave the PC at max lust.");
-
-
+//Dates
+//[Dates]
+public function datingBelle():void
+{
+	clearOutput();
+	showBelle();
+	output("Rubbing your hands together tentatively, you ask Belle if the two of you could spend some time together, without all the experiments.");
+	output("\n\nThe lady scientist give you a big smile in response, taking a few steps closer to you and cupping your cheek with one of her hands. <i>“Aww, isn’t that adorable,”</i> Belle coos, stroking your cheek with a thumb, <i>“You want to spend some time with your master, [pc.boyGirl]?”</i>");
+	output("\n\nAll you can do is blush in her grasp and respond to her query with a nod.");
+	output("\n\n<i>“Well, I’d love to do something like that,”</i> she says very calmly, her voice sending shivers down your spine, <i>“Just give me a moment to decide what we should do.”</i>");
+	//[Saec] Actually... you were hoping to spend some time with your {pregSaec: baby-momma //Else: playmate, Saec}. //Requires PC to have fucked Saec and a cock.
+
+	//[Race] Taur races seem to be a popular thing on Uveto, maybe you could go to one with her? //Requires the PC to have been to the taur racetrack and a cock or vagina.
+	
+	//[Party] Belle seems like a classy lady, so she probably has a few parties she could take you to. //Requires the PC to have completed multiple experiments, can only be done once a week.
+	processTime(4);
+	var saecBonusString:String = "playmate, Saec";
+	if(saecPreg()) saecBonusString = "baby-momma";
+
+	clearMenu();
+	if(pc.hasCock() && pc.cockThatFits(saecVaginaCapacity()) >= 0 && fuckedSaec()) addButton(0,"Saec",saeccyDatey,undefined,"Saec","Actually... you were hoping to spend some time with your " + saecBonusString + ".");
+	else if(fuckedSaec()) addDisabledButton(0,"Saec","Saec","You need a penis that will fit inside her for this. Sorry!");
+	else addDisabledButton(0,"Saec","Saec","You need to have had sex with Saec before you can date her.");
+
+	if(pc.hasGenitals() && 9999 == 9999) addButton(1,"Race",raceTrackDateEvent,undefined,"Race","Taur races seem to be a popular thing on Uveto, maybe you could go to one with her?");
+	else if(!pc.hasGenitals()) addDisabledButton(1,"Race","Race","You need genitals of some sort for this.");
+	else addDisabledButton(1,"Race","Race","You need to have been to the racetrack at least once first.");
+
+	if(flags["SUBTUNER_PARTY_TIMER"] == undefined) flags["SUBTUNER_PARTY_TIMER"] = 0;
+
+	var belleExperiments:Number = 0;
+	if(flags["SUB_TUNERED"] != undefined) belleExperiments++;
+	if(flags["SUBTUNER_TENTACLES"] != undefined) belleExperiments++;
+	if(flags["SUBTUNER_EXHIBITIONISM"] != undefined) belleExperiments++;
+	if(flags["SUBTUNER_HYPNOED"] != undefined) belleExperiments++;
+
+	if(flags["SUBTUNER_PARTY_TIMER"] + 60*24*7 < GetGameTimestamp()) 
+	{
+		if(belleExperiments >= 3) addButton(2,"Party",peerReviewParty,undefined,"Party","Belle seems like a classy lady, so she probably has a few parties she could take you to.");
+		else addDisabledButton(2,"Party","Party","You might need to get to know her a bit better - maybe do some experiments.");
+	}
+	else addDisabledButton(2,"Party","Party","It's too soon to have another party.");
+
+	addButton(14,"Back",newApproachBelle,true);
+}
+
+//Saec
+//[Saec]
+public function saeccyDatey():void
+{
+	clearOutput();
+	showBust("BELLE",saecBustString());
+	output("<i>“Hmm?”</i> Belle hums, either confused or intrigued by your proposal of a date with Saec, <i>“");
+	//firstTime:
+	if(flags["SAEC_DATES"] == undefined) output("Actually... that sounds like a fine idea. I’ve been meaning to take her out somewhere nice, but I’ve just been so busy at the lab, though, and such a patient girl like her deserves a nice day out. I’m sure she’d just </i>love<i> to go on a date with you.");
+	else output("If you and Saec keep going out with each other like this... I might just get jealous, but I think that’s a wonderful idea, the girl could use some time out of the lab.");
+	output("”</i> The lady scientist begins to walk toward a nearby room before turning around to face you, <i>“I’m going to go get Saec ready quick, if you’ll just wait here a moment.”</i>");
+
+	output("\n\nYou do as the woman suggest and just... wait there, rocking back and forth on your [pc.feet] as you think about Saec and what you’ll do on her date. Luckily it doesn’t take to long for Belle to return to the lab’s atrium with Saec in tow.");
+
+	output("\n\nYour heart speeds up at the sight of the girl: she’s dressed - unlike her usual, prefered nakedness - in an orange sundress draping down over her ");
+	if(pregSaec()) output("big, pregnant belly");
+	else output("body");
+	output(" and down to her thighs, leaving quite a fair bit of cleavage visible. The ausar keeps her hands clasped together as her master leads her over to you on a leash, blushing and averting her gaze from you.");
+
+	output("\n\n<i>“She cleans up quite nice, wouldn’t you say?”</i> the woman asks, stopping in front of you to lovingly cup Saec’s chin, <i>“Yes, I think she’s perfectly ready for a day out in the station with you.”</i>");
+
+	output("\n\nYou nod in acknowledgement to that statement, smiling as you look into the puppy’s big blue eyes.");
+	output("\n\n<i>“Ah! But you’ll be needing this,”</i> Belle interrupts, reaching out to hand you Saec’s leash.");
+	output("\n\nYou shoot the woman a questioning look, but take the leather tether from her, holding it tight in your grip, making the ausar it’s attached to grin wider than she was before.");
+	output("\n\n<i>“What’s that look for?”</i> her master asks, <i>“</i>You<i> are going to be Saec’s master for this little date, so you’ll need her leash. Don’t want the puppy to get lost, do you?”</i>");
+	output("\n\nGiving the lady scientist a shake of your head, you straighten your posture and step a bit closer to Saec, almost protectively.");
+	output("\n\n<i>“Good,”</i> she states, <i>“Now why don’t you two be on your way, lots of work to be done at the lab today.”</i> Belle starts to walk towards the door as she finishes that sentence, and beckons you to follow her. You take her lead and make your way to the entrance with Saec in tow. <i>“I’m sure now how these things go, [pc.name]. Take her someplace nice, bring her home before eight, and don’t be </i>too<i> rough with her... just enough,”</i> she says as you finally reach the door, already open, <i>“Oh, and if you want my advice, there’s a lovely little restaurant where you two could go for a nice lunch a few levels down.”</i> With that, the lady scientist is inviting you both out.");
+	output("\n\nYou give Belle another smile and nod, and Saec does the same before looking at you with a still-blushing face, clearly eager for your date. After that little exchange of glances, you’re both making your way out the door, your mutual master waving goodbye and calling out, <i>“Be safe you two!”</i>");
+
+	processTime(30);
+	clearMenu();
+	addButton(0,"Next",saecDate2);
+}
+
+public function saecDate2():void
+{
+	clearOutput();
+	showSaec();
+	output("Almost as soon as you’re out of the lab and walking away, you can feel warm fur brushing against your hand. You turn to see Saec facing away from you, but quickly realize that her fur-covered digits are wrapping around your own, taking hold of the same hand that’s holding her leash.");
+	output("\n\nThe gesture makes you smile, and you return the display of affection by firming up your grip and rubbing a thumb along the back of the ausar’s fluffy hand, making her blush all the more.");
+	output("\n\nSo, the two of you walk hand-in-hand through the halls in a blissful silence, making your way to an elevator and dropping a few levels, hoping to find that restaurant Belle told you about. ");
+	//firstTime:
+	if(flags["SAEC_DATES"] == undefined) output("Luckily, it seems Saec knows the place, or has been there before with her master,");
+	else output("Luckily, it seems Saec remembers where it is from when you last went there,");
+	output(" because when you meet a quaint, rustic looking building standing out amongst the sleek structures of Uveto station, she taps on your shoulder and points it out.");
+
+	output("\n\nYou turn to look at the building, standing out like a single coloured hair among a head of grey strands, complete with a wooden sign labeling it as <i>“Manni’s Too”</i>. Saec smiles wide next to you at the simple fact that she’s ");
+	if(flags["SAEC_DATES"] == undefined) output("here with you");
+	else output("here with you again");
+	output(". Seeing that look on her face makes your heart flutter, and you’re eager to get on with this date, so you quickly lead your pet in through the entrance.");
+
+	output("\n\nWalking in, you spot a podium with who must be the day’s grey-skinned, tauric hostess standing behind. She greets you with a practiced, business-like grin as you approach.");
+
+	output("\n\n<i>“Hello,”</i> the leithan girl says, <i>“Table for two today or picking an order up?”</i>");
+
+	output("\n\nAs you’re telling the girl you’d like a booth for two, she turns towards your date and smile a bit more genuinely, <i>“Oh, hey there Saec! Is doctor Baslocvicz not with you today?”</i>");
+
+	output("\n\nYour ausar companion shakes her head in response, but still keeps a happy look on her face, from ear to big, fluffy ear.");
+	if(flags["SAEC_DATES"] == undefined) output(" So Saec has been here before, which would explain why the hostess isn’t too intrigued by the collar and leash around the canine girl’s neck.");
+	output("\n\n<i>“Oh, well, good to see a good customer like you around anyways!”</i> she exclaims, grabbing a couple of menus before extending a hand, <i>“I’ll take you to your seats.”</i>");
+	output("\n\nThe leithan hostess maneuvers the comparatively-narrow aisles of the restaurant’s booths with surprising grace, trailing her large, tauric half behind her until she reaches a clear table and place a menu on either side of it, <i>“Here’s your seats, your waitress will be with you shortly!”</i> With that she smiles and makes her way back to her place near the building’s entrance, leaving you and Saec alone again.");
+	output("\n\nYou invite your date to take a seat and she does, ");
+	if(pregSaec()) output("being careful with her pregnant belly as she sits down ");
+	output("with you following her into the booth soon after, quickly picking up your menus. Looking around between glances at your choices, you take in the sight of the eatery around you; it’s quite old fashioned: everything seems to be made of lacquered wood, with nice tinted glass obstructing views between booths and brass lighting fixtures keeping the whole restaurant at quite a cozy level of dimness. Leather-covered cushions squeak beneath your [pc.ass] as you shift in your seat.");
+
+	output("\n\nAfter a little while a tall, thin kaithrit waitress comes to take your order of drinks and food before walking off again.");
+	output("\n\nWell, it looks like you and Saec are gonna be waiting her for a bit, so you figure you should break the ice and ask the ausar if she’d like to talk with you until your meals get here.");
+	output("\n\n<i>“O-oh, sure!”</i> she says with a tone so soft and warm it could melt an Uveto glacier, ");
+	if(flags["SAEC_DATES"] == undefined) output("reminding you that this is the first time you’ve actually heard Saec’s voice outside of it being a moan or pleasured whimper, ");
+	output("<i>“I usually don’t talk unless Belle gives me permission, though... so I guess I need yours now, right?”</i>");
+
+	//pcHard:
+	if(pc.isAss()) output("\n\nYou give the ausar a nod, and she smiles in return, her posture relaxing a bit at receiving that little gesture.");
+	//Else:
+	else output("\n\nYou tell the ausar beauty she’s always free to talk with you, and that seems to relax her posture more than it already was.");
+
+	output("\n\n<i>“Yay!”</i> she exclaims before settling down and resting her hand in her lap");
+	if(pregSaec()) output(" as best she can with that tummy in the way");
+	output(", <i>“So what should we talk about?”</i>");
+
+	//firstTime:
+	if(flags["SAEC_DATES"] == undefined)
+	{
+		output("\n\nThinking about it for a moment, you realize you and Saec don’t know each other that well and tell her she ought to speak about herself for a bit.");
+		output("\n\n<i>“Oh, okay, yeah... I guess we should get to know each other,”</i> the blonde pup ponders for a moment, <i>“Alright... so I didn’t grow up here on Uveto, but you probably figured that out when you didn’t see any of that huskar fluff-stuff on my neck!”</i> She pauses and smiles, rubbing her indeed-furless neck before continuing again, <i>“I was born on Ausaril... but I didn’t know my parents, and I was raised in a shelter for most of my life, and I didn’t get out until I was sixteen.”</i>");
+		output("\n\nSaec looks a bit down after regaling that part of her tale, and you can understand why, being abandoned by your parents and having to raise yourself like that for years. You ask the ausar if she had any other family that she knew.");
+		output("\n\nShe quickly shakes her head, <i>“No, well... there was my brother, we were both put into the shelter together, and he got adopted when we were both still young. He probably wasn’t even a year old then.”</i> Saec smiles warmly and twiddles her thumbs, <i>“I still remember what he looks like, he was so small and cute, even for a pup... blonde fur and blue eyes just like me... I wonder how he’s doing now... or where he is.”</i>");
+		//metLiamme:
+		if(flags["MET_LIAMME"] != undefined) output("\n\nWait... she couldn’t be talking about Lia- nah, no way. The galaxy’s a big place with a lot of blonde ausar, but then again, there’s always that chance.\n\nShaking that thought from your head, you");
+		else output("\n\nYou");
+		output(" think on Saec’s words for a moment then ask her what exactly brought her to Uveto after leaving the shelter.");
+
+		output("\n\nShe takes a deep breath, puffing out her chest and releasing, clearing her thoughts before she continues, <i>“After I got out... actually ‘kicked out’ is what I should’ve said, I needed to work, so I worked. I couldn’t really hold anything down for long, so I had a lot of different jobs, and then one day I got an offer from a place on Uveto that I applied to, an actual full-time job.”</i> Saec sighs heavily and looks down at her feet under the table, <i>“That was all a scam. I got there, they got my information, and then they took all the money I had saved up over the past eight years. I didn’t have anything, and I couldn’t even get off this stupid moon.”</i> The ausar turns back towards you, her face quite a bit warmer now that that part of her story is over, <i>“That’s when I met Belle. I was looking for some way to make a little money, at least enough to rent a warm room, and I found an ad for Accu-Pitch saying they were hiring test subjects. I didn’t have anywhere else to go, so I went there. The doctor was just... so nice to me. No one had ever treated me like she did, and I loved it... the whole ‘pet’ thing.”</i> Saec pauses and looks right into your eyes, <i>“And then I met you... and I like you a lot... I don’t think I’ve ever had a ‘playmate’ before, so it’s nice to see someone else happy with Belle, and me.”</i>");
+		if(pregSaec()) output(" The ausar girl reaches down to caress her pup-swollen belly, <i>“Then there’s this. I- it’s weird, but I just feel so good about it... especially if it’s with someone like you, someone Doctor Belle trusts. It kind of makes me nervous at the same time, but thinking about having my own kids in a nice home, safe and warm with their mommy... to get what I never had. It makes me happy.”</i>");
+
+		output("\n\nThe girl’s whole story brings a smile to your face, all those hardships persevered then rewarded with a good place at Belle’s side");
+		if(pregSaec()) output(" and a tummy full of young");
+		output(".");
+		if(pc.isNice()) output(" You thank her for telling you all that.");
+	}
+	//Else:
+	else output("\n\nThis time, you decide to take the initiative and tell Saec a bit about your journeys since you’ve last met. She watches and listens with great attention until you finish, and once you’re done the blonde pup takes her turn to tell you her latest stories: some movies she saw, a few nice places she’s been, and some stories from the lab that you don’t think Belle would tell you herself.");
+	output("\n\nAs your conversation is coming to a close, that kaithrit waitress returns with your meals and awkwardly positions them in front of the two of you, then giving a cheery <i>“Enjoy your meal!”</i> and leaving again.");
+	output("\n\nMuch like your walk to the restaurant, your lunch passes in a blissful silence with you and Saec enjoying your food and each other’s company. It doesn’t take too long before you’ve both had your fill and are ready to go. The waitress is back around soon after you’re finished, and tells you that your check has been put on Belle’s tab, leading you to turn to Saec, who gives you a big, knowing grin in return.");
+	output("\n\nYou both get up from your seats, and you’re already thinking of what you can do with Saec next. Turning to look at her gives you a few ideas: she’s got quite a lusty look in her eyes, her face turning red as you take hold of her leash again, and looking at her and all that cleavage on display, you’re feeling quite flushed yourself. For being so bashful about this date, Saec’s still got that ausar libido, and seems more than happy to let things get more intimate with you, if your fun together at Accu-Pitch is any indicator.");
+	output("\n\nBiting your lip, you take the ausar’s hands in your own (yes, both of them), lacing your fingers between her own fluffy digits and ask her if she’d like to find somewhere private where you two could play.");
+	output("\n\nA smile quickly appears on Saec’s face, eyes fluttering, <i>“I don’t think there’s any other way this date could end.”</i> She ponders for a moment before speaking up again, <i>“I think I know somewhere we could go: my room at the lab. I don’t use it very often, so the bed should be nice and clean for us to make a mess of!”</i> Finishing with a playful grin on her face, she bounces giddily in place as she waits for your response.");
+
+	output("\n\nYou tell her that sounds like a great idea.");
+	processTime(70);
+	pc.lust(5);
+	clearMenu();
+	addButton(0,"Next",saecDate3);
+}
+
+public function saecDate3():void
+{
+	clearOutput();
+	showSaec();
+	var x:int = pc.cockThatFits(saecVaginaCapacity());
+	if(x < 0) x = pc.smallestCockIndex();
+	var y:int = pc.cockThatFits2(saecVaginaCapacity());
+	output("You and Saec walk hand and hand back to the lab, leash interlaced between your fingers as you make your way through the wide open wabeship that is Uveto station. All the way back, your lover is unable to stop her big, fluffy tail from wagging, batting it against your back or butt uncontrollably, though you can tell the furry appendage’s movements are certainly affectionate.");
+
+	output("\n\nWith lust burning in your loins, the trip back seems almost longer, each step stiffening your [pc.cocks]. Luckily, you both reach the lab without delay. Once you’re at the door Saec’s quick to pull up her dress <i>just enough</i> that she can place her own barcode on the door’s scanner and open it, sticking her tongue out and giving you a mischievous smirk.");
+
+	output("\n\nYou stumble into the lab with your ausar pet in tow, walking right past Belle who tries to start a conversation, barely getting out a <i>“Back already?”</i> before you’re both at Saec’s door. It hisses open as you near it, and at this point your leashed-up ausar is leading you into her room by the end of her leash. The entrance swishes close behind you once you’re both in, but you think you catch a glimpse of your mutual-master winking at you before it shuts.");
+
+	output("\n\nSaec wastes no time in throwing herself down onto the mattress, looking up at you with a hungry gaze and her arms curled up like a puppy’s. No doubt your date is looking for something long and hard between her legs. You lick your lips and ");
+	if(!pc.isCrotchExposed() && !pc.isChestExposed()) output("strip yourself of your things before ");
+	output("follow");
+	if(!pc.isChestExposed() && !pc.isCrotchExposed()) output("ing");
+	output(" your lover down onto the bed and straddling her on all fours");
+	if(pregSaec()) output(", being extra careful with her belly");
+	output(". It only takes a moment of looking deep into her blue, blue eyes before you succumb to your sexual hungers and press your lips to hers. Saec returns the kiss with surprising force for such a subby puppy, letting her flat tongue slide into your mouth to dance with your own [pc.tongue]. You press yourself into Saec, only to feel stiff nipples poking through her sundress and rubbing against your [pc.chest]. If you were to guess, this girl’s chest needs a little attention, and you intend to give it some. With your mouth still being filled with ausar-tongue, you reach a hand up to one of your lover’s breasts and squeeze, drawing a chorus of pleasured mewls from the ausar. She sounds like a needy puppy if you’ve ever heard one.");
+
+	output("\n\nYour kissing and groping continues for quite some time, with you and Saec sliding your oral organs against each other and your hands moving across her still-clothed tits, pinching at nipples and caressing warm boob until you feel a hint of dampness on your lover’s dress. You break your tongue-tying embrace to look down at Saec’s chest, only to realize she’s ");
+	if(flags["SAEC_DATES"] == undefined) output("quite the milky bitch");
+	else output("leaking sweet ausar milk again");
+	output(", wetting her sundress with beads of lactatious nectars. By the time you’re thinking about returning to the kiss, you can feel your pet shifting her hips against yours, trying to line up her pussy with your package.");
+
+	output("\n\nIf Saec’s ready to move onto the next course, so are you. Smirking at the horny puppy, you bring yourself up on your knees, positioning yourself between her akimbo legs. There’s no time to waste stripping the girl, so you just go ahead and hike up her dress while she wiggles in anticipation, and there it is: Saec’s dripping ausar pussy. She’s not even wearing any panties, already leaking fem-lube all over the sheet with a glaze of her feminine liquids all over her inner-thighs. The heavenly musk coming from between the ausar’s legs make your tongue loll and sends a wave of lust-inducing chemicals shooting through your mind, telling you to pick up the pace and fuck her already.");
+	output("\n\nNot one to deny your baser instincts, you reach down and grab a handful of plush ausar thigh in each hand, making Saec gasp before you lift and spread her legs wide, lifting her ass off the mattress just a touch. Your pet whines furiously, begging for a good fucking as she rocks her hips, trying to get her pussy closer to your already rock-hard cock");
+	if(pc.cockTotal() > 1) output("s");
+	output(". You smile and rub a fur-covered thigh affectionately, telling your pet not to worry and that you’ll take good care of her.");
+
+	output("\n\nWith that done, you shift your [pc.hips], lining up your [pc.cock " + x + "] with that pink slit and pressing your tip against her sopping folds just enough to make Saec whimper.");
+	if(y >= 0) output(" At the same time, you move your second cock into position, right against the ausar’s tight pucker, ready to give your lover some double-penetration loving, just the way she likes it.");
+	output(" Looking in your pet’s needy eyes once more is all the motivation you need to push forward, applying a little pressure and gently spreading her sodden hole");
+	if(y >= 0) output("s");
+	output(" with a gasp. You don’t let up and continue your slow thrust in, stretching Saec’s tightly squeezing cunt");
+	if(y >= 0) output(" and asshole");
+	output(" ever wider as moaning and groans fill your ears.");
+	pc.cockChange();
+
+	output("\n\nYour lover is left panting by the time you bottom out inside her, pussy ");
+	//multiCock:
+	if(y >= 0) output(" and pucker");
+	output(" spasming around ");
+	if(y >= 0) output("both ");
+	output("of your [pc.cocks]. You smile down at the puppy as she adjusts to your ");
+	if(y >= 0) output("twin ");
+	output("girth");
+	if(y >= 0) output("s");
+	output(", and feeling compelled to, you bend down and kiss her right on the lips. Pulling back again, you can hear Saec’s tail whipping against the sheets.");
+
+	output("\n\nYou decide it best not to keep the girl waiting anymore and start to pull back, dragging your [pc.cocks] against her inner walls and pulling a low groan from her lungs. She whines when you’re almost out of her, with your glans meeting her ");
+	if(y >= 0) output("ass and ");
+	output("lube-leaking cunt again, begging for more. You give Saec what she (and you) want and start to slide back into her, a bit faster this time, releasing a renewed chorus of moans into the room around you. Then you pull back again, and thrust in again, and again, and again, gradually building up in speed until there’s not a moment of silence between your lover’s pleasured calls. Saec’s braless breasts jiggle and quake with every pump of your [pc.hips], gradually rocking free of her sundress until they’re bare. Each wobble of her massive tits sends flicks of milk dripping all over the bed and running down the ausar’s warm boobflesh. The sight of seeing all that ausar chest fucked free of their confines alone leads you to speed up your love making, and it’s all too much for Saec.");
+
+	output("\n\nA high-pitched cry of pleasure permeates the once-steady moaning of the room, causing you to look down just in time to see your pet’s back arch.  You can feel ");
+	if(y >= 0) output("both of ");
+	output("Saec’s well-satisfied ");
+	if(y >= 0) output("holes");
+	else output("pussy");
+	output(" clamp down around ");
+	if(y >= 0) output("both ");
+	output("of your turgid cock");
+	if(y >= 0) output("s");
+	output(", her inner walls spasming around your sensitive flesh as they try to wring out every last ounce of pleasure they can. It feels like your [pc.cocks] are being milked, and pulls you over the edge of your climax.");
+	if(pc.hasKnot(x)) output(" With a feral grunt you slam your hips forward, your knot meeting Saec’s spasming slit with a gasp, stretching it around your bitch-breaker until it pops in, almost seeming to send your lover into another orgasmic fit.");
+	else output(" With a feral grunt you slam your hips forward, burying it inside Saec’s spasming slit with a gasp.");
+	if(y >= 0) 
+	{
+		output(" At the same time, your lower dong thrusts into her tightly-clenching pucker, pushing hard until ");
+		if(pc.hasKnot(y)) output("you knot your bitch’s other hole.");
+		else output("you’re hilt deep.");
+	}
+
+	if(pc.hasKnot(x))
+	{
+		output("\n\nWith your pet tied to you at the crotch");
+	}
+	else if(y < 0) output("\n\nWith your [pc.cock " + x + "] planted deep inside your pet");
+	else output("\n\nWith your [pc.cocks] planted deep inside your pet");
+	output(", you allow your willpower to slide away and your pleasure to peak. Your sides buck jerkily against Saec’s wide hips, making her breasts bounce and sending more milk all over while your shaft");
+	if(y >= 0) output("s");
+	output(" start to spasm. Another sharp breath from your ausar companion fills the air as your [pc.balls] begin to empty, the first shot of your warm [pc.cumNoun] splattering her inner walls and painting them [pc.cumColor].");
+	//lotsOfCum: 
+	if(pc.cumQ() >= 3000)
+	{
+		if(pregSaec()) output(" You’re almost wishing Saec wasn’t pregnant at this point, so you could watch her belly swell full of your seed.");
+		else 
+		{
+			output(" Saec whimpers as you pump her full of your seed, your tremendous load flooding her womb ");
+			if(y >= 0) output("and bowels alike ");
+			output("until her belly swells to pregnant proportions.");
+		}
+	}
+	else
+	{
+		output(" Saec whimpers as you pump her full of your seed, filling her womb ");
+		if(y >= 0) output("and bowels alike ");
+		output("until she’s good and full.");
+	}
+	output("\n\nYou finally come down from your peak alongside your lover, both of you panting and still shivering with the bliss of your afterglow. There’s not really much you can do at this point besides fall forward onto Saec and bury your head between her heaving breasts. A moment later the puppy lets out a happy coo and wraps her arms around you, and you groan with fatigue-filled contentment, ready to drift off to sleep with your lover.");
+
+	processTime(35);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",saecDate4);
+}
+
+public function saecDate4():void
+{
+	clearOutput();
+	showSaec();
+	output("You yawn into a pair of warm chest-pillows as you wake. Lifting yourself with a stuttering groan, you pull yourself from Saec’s embrace, looking down only to realize that she’s still asleep. You figure it’s probably best to let the girl continue her post-coital nap, though you’ll have to get going yourself.");
+	output("\n\nSo, as carefully as you can, you pick yourself up and get yourself off the mattress, ");
+	if(!pc.isChestExposed() && !pc.isCrotchExposed()) output("gathering your [pc.gear] and ");
+	output("giving your stiff limbs a good stretch before heading to the door. It hisses open as you near it, not nearly loud enough to wake Saec, thankfully. Heading back out into the lab and still wiping some sleep from your eyes, you see Belle, who’s turning around and giving you a smile.");
+
+	output("\n\n<i>“I guess you two had a nice date, then?”</i> she asks, giving you an I-know-what-you-did type of look and placing a hand on her hip.");
+	output("\n\nYou give your master a smile and nod in response, leading her to cup your cheek and pull you in for a quick kiss.");
+	output("\n\n<i>“Thank you so much for doing this, [pc.boyGirl],”</i> the lady scientist says as her lips part yours, <i>“Poor girl needs to get out of the lab more often, and spend time with someone other than me.”</i> Belle smiles and lets her hand fall from your face, <i>“Now, why don’t you go get some more rest and come back when you’re good any ready for some more experiments... or another playdate?”</i>");
+	output("\n\nYeah, that sounds like a good idea.");
+	processTime(45);
+	pc.energy(10);
+	//[Next] Returns the PC outside of the lab.
+	IncrementFlag("SAEC_DATES");
+	clearMenu();
+	addButton(0,"Next",leaveAccuPitchLabs);
+}
+
+//Taur Race
+//[Race]
+public function raceTrackDateEvent():void
+{
+	clearOutput();
+	showBelle();
+	output("<i>“The racetrack?”</i> Belle responds, stroking her chin with a finger and thumb, <i>“");
+	//firstTime:
+	if(flags["BELLE_TAURRACED"] == undefined) output("Now there’s somewhere I haven’t been in awhile.");
+	else output("Well, that last time we went there was </i>quite<i> enjoyable.");
+	output("”</i> Your master turns to you with a grin and nods her head, <i>“Yes, I think the track sounds like a wonderful idea.”</i> Cupping your cheeks rather suddenly, she pulls you in for a quick kiss on your forehead, <i>“Good thinking, [pc.boyGirl]. Now, if you’ll just wait here a moment I’ll go get myself ready.”</i>");
+
+	output("\n\nWith that, Belle turns on a heel and walks away, entering another room and leaving you alone to wait for you. It’s not a long wait, thankfully, because soon your master is back again, and with a new outfit: in place of her usual lab coat and fatigues is a short, sheer-fitting black dress and modest, well-polished jewelry. It hugs at all her curves nicely, not too tightly, but enough to accentuate her frame and highlight her bulge quite well.");
+
+	output("\n\nYou manage to keep yourself from drooling at the sight of Belle as she walks back towards you, giving you quite the smirk.");
+
+	output("\n\n<i>“How do I look, [pc.boyGirl]?”</i> she asks, giving herself a little spin so you can see <i>everything</i>, <i>“Think I’m ready for our date?”</i>");
+
+	output("\n\nYou nod eagerly; your master’s a beautiful woman if you’ve ever seen one.");
+
+	//wearingSubTuner:
+	if(wearingSubTuner()) output("\n\nShe smiles in response, then lifts the leash she’s been holding to your neck and attaches it to your collar, but she doesn’t turn it on, leaving you a little confused.");
+	//Else:
+	else output("\n\nShe smiles in response, then lifts the leash she’s been holding to your neck, and you quickly realize she’s planning on tethering you, but you don’t have your collar on! So, you reach into your bags as quickly as you can, pulling out the Sub-Tuner, fumbling with it for a moment, then handing it to Belle. She grins and takes it, unlocking the neckwear and bringing it around your neck before snapping the buckle shut. All the lady scientist has to do then is attach her leash, but she doesn’t turn your collar on, leaving you a little confused.");
+
+	output("\n\nGrabbing at your collar, you give the lady scientist a curious look, and she chuckles in response, <i>“We won’t be needing that on today, [pc.boyGirl]. Today... it’s just a master and her pet, having a nice time together, no experiments.”</i>");
+
+	output("\n\n<i>That does sound nice, and it’s not like you need the Sub-Tuner to be Belle’s perfect puppy. No, you’ll have a great time without it.</i>");
+	output("\n\n<i>“Now come on, [pc.boyGirl],”</i> she commands, wrapping your leash around her hand and walking towards the door, <i>“Let’s get to the track, hmm?”</i>");
+	processTime(10);
+	clearMenu();
+	//[Next] //Should equip the Sub-Tuner.//
+	equipTheSubTuner();
+	addButton(0,"Next",raceTrackDateEvent2);
+}
+
+public function raceTrackDateEvent2():void
+{
+	clearOutput();
+	showBelle(true);
+
+	var ppBelle:PregnancyPlaceholder = getBellePregContainer();
+	var x:int = pc.cuntThatFits(ppBelle.cockVolume(0));
+	if(x < 0) x = rand(pc.totalVaginas());
+	output("Belle leads you through the wabeship that is Uveto station with a firm grip on your leash, making sure she’s always got an eye on you like the good master she is. With her in command, it’s not long before you’re on the surface and making your way to U7. It’s a brief walk through the cold open air of this frozen moon before you’re through one of the dozen entrances to the racetrack and artificial heating is warming your [pc.skinFurScales].");
+
+	output("\n\nOnce you’re both inside, Belle takes a quick look around through the crowd moving in and out of the stadium before moving towards a nearby cashier’s desk, and taking you with her. As you walk up to the counter, your master catches the attention of a well-dressed leithan man, who brings himself around the desk to greet you.");
+	output("\n\n<i>“Ah! Hello, Doctor Baslocvicz,”</i> he calls out before noticing you attached to Belle at the leash, <i>“Are you and your friend here looking for anything today?”</i>");
+	output("\n\n<i>“Yes, actually,”</i> the lady scientist says in response, <i>“I think I’d like to use my booth today, but I have some special instruction.”</i> With that she beckons the leithan man closer by waving her hand, and keeping her eyes fixed on you, the human woman whispers something in one of his more elfen ears before pulling back.");
+	output("\n\n<i>“Of course!”</i> the man exclaims, turning around to wave a nearby employee of the racetrack over, <i>“Anything for the daughter of one of our valued investors. I’ll have someone on it right away and it should be done before you get to your booth.”</i>");
+	output("\n\n<i>“Excellent,”</i> Belle says, turning towards you again, <i>“Come along then, [pc.name], we’re going to have a good time today, you and I.”</i>");
+	output("\n\nThe lady scientist begins to walk away, and you follow her closely through the crowds until you reach a pair of sliding doors with a small control panel next to it. After Belle presses a few buttons on the control panel, the entry swishes open to reveal the inside of an elevator, and she quickly leads you inside.");
+	output("\n\nIt’s a short ride in the lift until you reach your destination about five levels up, and the doors open again to reveal a rather empty, carpeted, curving hallway, which your master quickly steps out into. You’re lead silently through the corridor until you both come upon a lacquered, wooden door, covered in ornamental carvings.");
+	output("\n\n<i>“Here we are,”</i> Belle chimes, reaching for the brass knob of the lumber portal and turning it. The door opens to reveal a nice, spacious balcony overlooking the entire stadium as the woman leads you inside and closes the entrance behind you.");
+	output("\n\nYou scan the room around you, noting the rug beneath you, the small table with an ice bucket and bottle of champagne atop it, and the single, leather-bound chair. What really catches your eye, though, is the view; you can see the whole stadium from up here! Walking up to it, you place your hands on the railing and look out over the racetrack.");
+	output("\n\n<i>“Quite the view isn’t it?”</i> asks Belle, sitting down in the leather seat behind you.");
+	output("\n\nYou turn back around and nod at the woman, smiling as you do so.");
+	output("\n\n<i>“Well, [pc.boyGirl],”</i> she coos, reaching for the edge of her dress, <i>“The races are going to be starting soon... why don’t you take a seat?”</i> With a sly smile the lady scientist pulls up on her skirt to reveal her two stiffening, knotted human cock, taking hold of her upper tool and stroking it.");
+	output("\n\nWell, now you know why there’s only one chair up here. You lick your lips at the sight of your master’s package, and you definitely wouldn’t mind taking a seat on them.");
+
+	//notNude:
+	if(!pc.isCrotchExposed() && !pc.isChestExposed()) 
+	{
+		output("\n\nStill clothed, you slowly strip yourself of your offending garb before your master, blushing quite a bit");
+		if(pc.exhibitionism() >= 66) output(" and enjoying a slight rush at the thought that anyone in the stadium could be watching you right now");
+		output(". Your undressing has Belle sighing with bliss, the gentle pumping of her shaft seeming to speed up. Already");
+	}
+	else output("\n\nOnce you’re");
+ 	output(" good and bare, you stride your way over to the lady holding your leash, leather tether slacking as you near her, and her grin growing ever more lustful until you’re right in front of her.");
+ 	output("\n\n<i>“Now turn around, [pc.boyGirl],”</i> she commands, twirling a finger in the air, letting her erect cock fall free of her hand.");
+ 	output("\n\nYou do as she says and spin on a heel, turning your back, and your [pc.ass], to Belle, right before you feel a hand grope at your ass.");
+ 	output("\n\n<i>“Mmm,”</i> the human woman coos, spreading your lower cheeks and giving them a firm spank, hard enough to make you gasp, <i>“Now, sit.”</i>");
+ 	output("\n\nEven without your collar being turned on, you feel compelled to do what your master says and slowly start to lower yourself onto her lap. One of her hands still toys with your ass while another grabs at your hip to steady your descent until you feel ");
+ 	if(pc.hasVagina()) output("her twin cockheads");
+ 	else output("one of her twin cockheads");
+ 	output(" press against ");
+ 	if(pc.hasVagina()) output("both of ");
+ 	output("your eager ");
+ 	if(pc.hasVagina()) output("holes");
+ 	else output("asshole");
+ 	output(". You whimper slightly when your master forces you down harder, putting pressure on your [pc.asshole]");
+ 	if(pc.hasVagina()) output(" and pussy alike");
+ 	else output(", while her upper dong falls perfectly into the crack of your ass");
+ 	output(".");
+ 	if(pc.hasVagina()) output(" Her glans easily spread your needy nether lips, and with");
+ 	else output(" With");
+ 	output(" a little relaxing on your end, your [pc.asshole] is penetrated, leaving you to shiver with pleasure.");
+
+ 	//Stretch goez here
+ 	pc.cuntChange(x,ppBelle.cockVolume(0));
+ 	pc.buttChange(ppBelle.cockVolume(0));
+
+ 	output("\n\nBelle doesn’t let up and pulls you down onto her double dongs, and all you can do is moan as hot Terran cock stretches you wide and caresses your inner walls. The stillness you’re left with when the herm woman’s knot{s} meet your sodden entrance{s} is almost unbearable. You want her to fuck you so bad! Instead though, your master tugs your leash, and you fall backwards onto her soft, dress-filling breasts, panting.");
+ 	output("\n\nYou wiggler and squirm in your place, but Belle keeps you still, leaning forward to whisper in your ear. <i>“Just calm down, [pc.boyGirl],”</i> she breathes, sending a shiver down your spine, <i>“The race is about to start.”</i>");
+ 	output("\n\nSure enough, after she says that the buzzer sounds and the racers are off, tauric peoples pouring out from their gates and kicking up dirt.");
+ 	output("\n\n<i>“Look at the jockeys,”</i> Belle whispers again, taking a hand and pointing to the track.");
+ 	output("\n\nYou do as she says and turn your gaze to the bipedal races riding underneath their racers. They’re all naked, and almost all of them seem to be enjoying themselves, looking rather blissed-out.");
+
+ 	output("\n\nAs you’re watching the contestants round the first turn, your master trails a hand up your waist and breathes against your [pc.ear], <i>“I’d like to see you out there like that one of these days... it’s just so enticing to watch.”</i> With that, Belle starts to slowly rock her hips, dragging hard Terran rod against your sensitive flesh and drawing a chorus of lewd groans from your lips. <i>“You know,”</i> she says with another wiggle of her sides, <i>“I bet there’s plenty of people in this stadium doing exactly what we’re doing right now. This sport is just so easy to get off to, isn’t it, [pc.boyGirl]?”</i>");
+
+ 	output("\n\nThe doctor accentuates that last word with a quick thrust of her hips, driving her ");
+ 	if(pc.hasVagina()) output("twin");
+ 	else output("thick");
+ 	output(" dick");
+ 	if(pc.hasVagina()) output("s");
+ 	output(" into you and ripping a moan from your lungs. She doesn’t stop there, though, she keeps going, faster and faster, fucking");
+ 	if(pc.hasVagina()) output(" both of your");
+ 	else output(" your needy");
+ 	output(" hole");
+ 	if(pc.hasVagina()) output("s");
+ 	output(" while you cry out with pleasure atop her. You can feel her knot");
+ 	if(pc.hasVagina()) output("s");
+ 	output(" stretching you wider the closer the racers get to the finish line, driving you to your climax until you can barely keep yourself from cumming.");
+
+ 	output("\n\nThen, just as contestants and jockeys cross that checkered line, Belle gives you what you want and thrusts her bitch-breakers into you. ");
+ 	if(pc.hasVagina()) output("They");
+ 	else output("It");
+ 	output(" stretch");
+ 	if(!pc.hasVagina()) output("es");
+ 	output(" your ");
+ 	if(pc.hasVagina()) output("[pc.vagina] and ");
+ 	output("pucker as wide as ");
+ 	if(pc.hasVagina()) output("they’ll");
+ 	else output("it will");
+ 	output(" go until they finally pop in with a moan and a contented sigh from your master, your sensitive inner walls hugging at her knot");
+ 	if(pc.hasVagina()) output("s");
+ 	output(".");
+
+ 	output("\n\nIt was hard to stop your orgasm before, and there’s no way you could now. Your ");
+ 	if(pc.hasVagina()) output("pussy and ");
+ 	output("ass spasm");
+ 	if(!pc.hasVagina()) output("s");
+ 	output(" around your master’s cock");
+ 	if(pc.hasVagina()) output("s");
+ 	output(" as bliss shoots through your body like electricity, causing you to tense up and quake with orgasmic pleasure.");
+ 	if(pc.hasVagina() && pc.isSquirter()) output(" Your [pc.vagina] clamps down around Belle’s lower shaft, squirting [pc.girlcum] all over her lap.");
+ 	//hasCock:
+ 	if(pc.hasCock())
+ 	{
+ 		output(" Convulsing wildly, your [pc.cocks] empt");
+ 		if(pc.cockTotal() == 1) output("ies itself");
+ 		else output("y themselves");
+ 		output(" onto your thighs, coating them with [pc.cum] while your hips buck into the air.");
+ 	}
+
+ 	output("\n\nJust as your peak seems to be coming down, your master’s begins. She holds you down tightly on her big, girthy member");
+ 	if(pc.hasVagina()) output("s, as they spasm");
+ 	else output(", as it spasms");
+ 	output(" inside you.");
+ 	if(pc.hasVagina()) output(" Hot Terran cum floods your womb and bowels alike, filling you with warmth and making you whimper, and it’s all enough to swell your [pc.belly] until you’re round and full of seed.");
+ 	else output(" Hot Terran cum floods your depths, filling you with warmth and making your [pc.belly] swell while Belle’s upper dong coats your back, and its owner, with delicious alabaster seed.");
+
+ 	output("\n\nWhile you’re reeling with the afterglow of your orgasm, Belle barely seems phased by her climax, opting to whisper in your ear again, <i>“I think you better rest up, [pc.boyGirl]. We’re going to watch a lot more races before we’re done here.”</i> You can almost see the Terran smirk over your shoulder.");
+
+ 	output("\n\nHer words make you shiver with post-orgasmic bliss, and have you falling back into your master’s arms as they wrap around you, holding you close while you rest. It’s already seeming like the racetrack was a good choice for your date.");
+
+ 	processTime(30);
+
+ 	if(pc.hasVagina()) pc.loadInCunt(ppBelle,x)
+ 	pc.loadInAss(ppBelle);
+ 	clearMenu();
+ 	addButton(0,"Next",postGasmDayAtTheRaces);
+}
+
+public function postGasmDayAtTheRaces():void
+{
+	clearOutput();
+	showBelle(true);
+	output("Throughout the day, Belle fucks you and knots you again and again, keeping you in a constant cycle of pleasure, orgasm, and respite, letting you rest between races before starting the whole rotation again.");
+	output("\n\nUnfortunately though, it seems your wonderful date is to come to an end as the last race of the day finishes.");
+	output("\n\n<i>“Looks like we have to get going, [pc.boyGirl],”</i> your master breathes, running a hand through your [pc.hair] and waking you from your post-coital nap, <i>“Alright, [pc.name], up-up.”</i>");
+	output("\n\nYou barely have time to wipe the sleep from your eyes before you feel hands grabbing at your sides and lifting you up. Doing your best to help Belle, you pull yourself off her softened knot{s}, nigh a day’s worth of cum spilling out from your ");
+	if(pc.hasVagina()) output("holes");
+	else output("[pc.asshole]");
+	output(", your pregnant looking tummy still full of the gooey white stuff.");
+
+	output("\n\nOnce you’re free of her breeder’s knob{s} and standing again, you give your limbs a good stretch");
+	if(!pc.isChestExposed() && !pc.isCrotchExposed()) output(" and gather your stuff");
+	output(" before turning to your lovely lady scientist again.");
+
+	output("\n\n<i>“I guess we should be off,”</i> she says, finishing pulling her dress back over her cum-slicked cocks and taking hold of your leash again, <i>“Ready to head back to the lab.”</i>");
+
+	output("\n\nYou really wish you didn’t have to, but you nod in response and get ready to make your way back to Accu-Pitch with Belle.");
+
+	processTime(8*60);
+	var ppBelle:PregnancyPlaceholder = getBellePregContainer();
+	for(var x:int = 0; x < pc.totalVaginas(); x++)
+	{
+		pc.loadInCunt(ppBelle,x);
+		pc.loadInCunt(ppBelle,x);
+	}
+	for(x = 0; x < 7; x++)
+	{
+		pc.orgasm();
+		pc.loadInAss(ppBelle);
+	}
+	//[Next] //Should return the PC outside (inside?) the lab tile.
+	clearMenu();
+	addButton(0,"Next",move,"SUBSHIT");
+}
+
+//Peer Review
+//[Party]
+public function peerReviewParty():void
+{
+	clearOutput();
+	showBelle();
+	output("Belle paces back and forth for a moment before fixing her attention on you again, <i>“I’m actually glad you’re here, [pc.boyGirl]. I was afraid I was going to have to reach you over the extranet.”</i>");
+
+	//wearingSubTuner:
+	if(wearingSubTuner()) output("\n\nThe lady scientist quickly reaches into her pockets to procure a leash before clipping the tether onto your collar, just moments before she flips the Sub-Tuner on.");
+	else 
+	{
+		output("\n\nThe lady scientist quickly reaches into her pockets to procure a leash before asking you <i>“Do you have the collar, [pc.boyGirl]?”</i> leading you to fumble around with things for a moment before pulling the Sub-Tuner from your pack and handing it to your master.");
+
+		output("\n\nBelle smiles and thanks you, taking the ring of ");
+		if(subTunerUpgraded()) output("metal");
+		else output("leather");
+		output(" from you and wrapping it around you neck, buckle snapping shut. Then she reaches for the single switch on the collar, and flips it on.");
+	}
+	//equip subtunah
+	equipTheSubTuner();
+	output("\n\nAlmost immediately submissive thoughts begin to fill your head, almost bringing you to your knees. <i>Void, you need orders, to be put in your place!</i>");
+
+	output("\n\nLuckily for you, Belle is an attentive master, and is already giving you what you want. <i>“Down, [pc.boyGirl],”</i> she says, her voice gentle but commanding.");
+
+	output("\n\nYou do as she says and quickly drop to your knees in front of her, prompting a smile from the Terran woman.");
+
+	output("\n\n<i>“You see,”</i> she explains, pacing back and forth again, <i>“After so many success with your experiments involving the Sub-Tuner, I’ve organized a bit of a ‘peer-review’ with some of my colleagues. Well, it’s honestly more of a party than anything, because I’ve invited some friends with... similar interests. I’ve already got all the drinks, hors d’oeuvres, and fittings all set, but needless to say, I need you to be there for it. How does that sound?”</i>");
+
+	output("\n\n<i>A party?! With your master?! You’d never say no to an opportunity like that! All you can do is look up at Belle and nod eagerly.");
+	output("\n\n<i>“Good,”</i> she coos happily, returning your nod with a smile, <i>“Now, I have to go get ready for this little get-together. You just wait here, [pc.boyGirl].”</i> Then, like that, the Terran drops your leash and starts to walk towards the other room, leaving you painfully alone to wait for her return.");
+	output("\n\nIt’s not a long wait, thankfully, because soon your master is back again, and with a new outfit: in place of her usual lab coat and fatigues is a short, sheer-fitting black dress and modest, well-polished jewelry. It hugs at all her curves nicely, not too tightly, but enough to accentuate her frame and highlight her bulge quite well.");
+	output("\n\nYou manage to keep yourself from drooling at the sight of Belle as she walks back towards you, giving you quite the smirk.");
+
+	output("\n\n<i>“Now let’s get you ready, [pc.boyGirl],”</i> she says, walking to a nearby closet before opening it and taking something shiny and black off a holo-hanger, <i>“Here we go.”</i> With some sort of outfit in hand, the lady scientist makes her way back to you, and kneels down in front of you. ");
+	if(!pc.isChestExposed() && !pc.isCrotchExposed()) output("Belle scans your still clothed frame for a moment before giving you an order of <i>“Arms up”</i> that you quickly obey. Once you’re in the position she needs you in, the herm woman takes her time stripping you of your [pc.gear] until you’re good and bare, then replaces your nudity with a slick, black, Accu-Pitch logo-bearing catsuit.");
+	else output("Already good and bare, Belle scans your frame for a moment before replacing your nudity with a slick, black, Accu-Pitch logo-bearing catsuit.");
+	output(" The steel zipper of the tight-fitting jumpsuit slowly travels up your body as your master handles it, gradually covering all your naked flesh. Though, it’s definitely not the most modest attire, serving to highlight all your curves and shapeliness");
+	if(pc.hasCock()) output("... and your bulge");
+	output(".");
+
+	output("\n\n<i>“There we go,”</i> Belle chimes as she goes to stand up again, taking hold of your leash once more, <i>“Now we just have to wait for the guests to arrive...”</i>");
+
+	processTime(25);
+	clearMenu();
+	addButton(0,"Next",peerReviewParty2);
+}
+
+public function peerReviewParty2():void
+{
+	clearOutput();
+	showBelle();
+	output("Sure enough, the guests come: a lot of well-dressed scientists and investors, as well as those friends with <i>“similar interests”</i> Belle was speaking of, people with their own pets on leashes moving around the party. There’s not many people, a small get-together if you’ve ever seen one, groups of three or four people talking over glasses of wine that you and your master drift between. Yes, you stay close to the lovely lady holding your leash the whole time as she leads you to different guests. The more scientifically-minded seem to simply inspect your appearance, analyzing the collar around your neck while Belle demonstrates some simple commands for you to follow with her colleagues. The more deviant minded, on the other hand, seem to be more interested in your simple ability to follow your master’s orders... and that tight, tight attire of yours. A few try to get a bit grabby with you, but Belle keeps them at bay.");
+	output("\n\nEventually, you come across another fellow scientist who seems to be of <i>both</i> minds. She gives your master a hearty greeting as she walks over to the both of you. <i>“Doctor Baslocvicz!”</i> she calls, out getting close enough that you can get a good look at her, <i>“I’m surprised I haven’t bumped into the heart of the party yet.”</i>");
+	output("\n\nThe woman appear to be a rahn, a bright blue one at that. She’s quite a bit shorter than Belle, her gel molded into cyan hair and looking at her with similarly coloured eyes.");
+	output("\n\n<i>“Doctor Lara, good to see you again,”</i> your master says, extending an arm for Lara to shake at.");
+	output("\n\nThe gel-woman takes hold of her hand and shakes it, turning her gaze to look at you, <i>“And this is the ‘Sub-Tuner’ I’m here about?”</i> Before getting an answer, the rahn takes a knee in front of you cocking her head and looking right into your eyes.");
+	output("\n\n<i>“It most certainly is,”</i> Belle responds, keeping a close eye on Doctor Lara lest she do anything shifty.");
+	output("\n\n<i>“You don’t mind if I examine your pet here quickly, do you?”</i> the bright-blue lady asks, not taking her gaze off you.");
+	output("\n\nThe Terran woman holding your leash smirks down at her, <i>“Go ahead.”</i>");
+
+	output("\n\nWith an exclamation of <i>“Great!”</i> Lara’s inspection begins, and her hands are grabbing all over you face, holding your eyelids open so she can examine your eyes, pulling back your lips to look at your gums and teeth, and having you lift your arms and carefully examining how much they move. The whole process is fairly uncomfortable, and you give Belle a slightly worried look. She only gives you a nod in return, <i>but that small movement is enough to put your mind at ease</i>.");
+
+	output("\n\nEventually, the rahn finishes her examination and stands herself up again. <i>“Well, I have to say, I looked over all the schematics for this collar of yours and I’m actually surprised!”</i> she says, placing her hands on her hips, <i>“No pupil dilation, no gum bleeding, no shakes. One-hundred percent reliable, drug-free hypnotic suggestion! Amazing!”</i>");
+
+	output("\n\nHer fellow scientist smiles complacently, <i>“I’m glad you’re impressed, Lara. This project has been a long way coming, and I couldn’t have done it without my wonderful test subject here.”</i>");
+
+	output("\n\nOnce again, the rahn turns her gaze on you, and places a hand on your head. <i>“You wouldn’t mind if I test [pc.himHer] out myself, would you?”</i> she asks playfully.");
+
+	output("\n\nIt doesn’t even take a single second for Belle to formulate her response, <i>“I’m afraid I </i>do<i> mind.”</i>");
+
+	output("\n\n<i>“Aww,”</i> Lara whines, taking her hand off you, <i>“You always were such a grouch when it came to your pets, glad to see that hasn’t changed.”</i> The blue woman gives her colleague a smile, <i>“Well, nice seeing this little project in action, guess I’ll go mingle some more!”</i>");
+
+	output("\n\nWith that, she’s gone, leaving you and Belle relatively alone in the middle of the room. A moment later you feel ");
+	if(ausarKaithrit()) output("fingers scritching between your ears");
+	else output("a hand patting your hand");
+	output(" accompanied by Belle’s voice.");
+
+	output("\n\n<i>“Good job with that, [pc.boyGirl],”</i> she coos, giving you one last good ");
+	if(ausarKaithrit()) output("pet");
+	else output("pat");
+	output(" before pulling her arm back, <i>“But this party’s getting a little boring, don’t you think? Why don’t we go have some real fun?”</i>");
+
+	output("\n\n<i>Knowing her, there’s only one thing she could mean, and it’s the only thing you could want.</i> You look up at your master and nod eagerly, already expecting to be happy with whatever it is she wants to do.");
+
+	output("\n\n<i>“Alright then, [pc.boyGirl],”</i> Belle says with a smirk, <i>“Let’s go find somewhere comfortable to sit then, hmm?”</i>");
+
+	processTime(30);
+	pc.lust(5);
+	clearMenu();
+	addButton(0,"Next",peerReviewParty3);
+}
+
+public function peerReviewParty3():void
+{
+	clearOutput();
+	showBelle(true);
+	output("It doesn’t take long for Belle to find a nice, comfy looking chair on the opposite end of the room, and she quickly lead you over to it. She gives you a command of <i>“Stay.”</i> as you reach the seat, and, <i>like the good puppy you are</i>, you wait there on your knees while your master sits down.");
+
+	output("\n\nOnce she’s gotten herself settled, the lady scientist seems to forget you’re at a party and lifts her dress up and spreads her legs, allowing her two stiffening cocks and hefty balls to flop free. Your eyes go wide at the sight of Belle’s package, a wonderful musk already filling your nostrils and clouding your senses. It’s hard to resist throwing yourself onto her dicks right then and there, <i>but you wait for your orders because you’re a good puppy</i>.");
+
+	output("\n\nYour good behavior doesn’t go unnoticed, because your master is giving you a happy smirk and issuing her next command, <i>“Fetch.”</i>");
+
+	output("\n\nIt’s barely a second before you’re on Belle, taking her lower cockhead into your mouth, slathering it with your tongue before you continue your way down her shaft. Your [pc.lips] caress her sensitive flesh all the way down while your tongue does the same to her undercarriage, all until you feel her glans press against the back of your throat. Your master coos and reaches a hand down to your head, her womanly digits running ");
+	if(pc.hasHair()) output("through your [pc.hair]");
+	else output("along your bare scalp");
+	output(". Without any further motivation, you start to bob your head up and down, letting Belle revel in your oral pleasures with your tongue swirling all around her cock.");
+
+	output("\n\nThough, the woman’s other tool seems quite neglected, rubbing against your cheek with its heat pouring off onto your [pc.skinFurScales]. So, you do the only thing a good pet could do and take the poor, needy shaft into the warm embrace of your hand, gently stroking it until its owner is on the verge of moaning.");
+
+	//seraIsCrew:
+	if(seraIsCrew())
+	{
+		output("\n\nAs you’re getting into your blowjob, a familiar voice fills your ears, ");
+		//firstTime:
+		if(flags["SUBTUNER_PARTY_SUBSERAD"] == undefined) output("<i>“Wait, is that you, " + pc.mf("master","mistress") + "?!”</i>");
+		else output("<i>“You again? Well isn’t this a treat.”</i>");
+
+		output("\n\nYou do your best to look over your shoulder at the source of that question with a cock in your mouth, only to see Sera, your demon-morph sub, sending a shock of worry through your system.");
+		output("\n\n<i>“Oh, hello, Sera,”</i> Belle chimes in, her hips gently rolling, <i>“");
+		if(flags["SUBTUNER_PARTY_SUBSERAD"] == undefined) output("You... know my pet here?");
+		else output("Nice to see you again.");
+		output("”</i>");
+
+		//firstTime:
+		if(flags["SUBTUNER_PARTY_SUBSERAD"] == undefined) 
+		{
+			output("\n\n<i>“Know [pc.himHer]?!”</i> the demoness exclaims, placing her hands on her hips, <i>“I have to live with the runt!”</i>");
+			output("\n\nYour master chuckles, <i>“Well I haven’t heard of that!”</i> Then she reaches down and cups your chin, getting your to look up at her, <i>“Is this true, [pc.boyGirl]?”</i>");
+			output("\n\nAgain, doing the best you can with a thick, hard shaft in your mouth, you nod.");
+			output("\n\n<i>“Well,”</i> Belle says, turning her gaze back to Sera, <i>“Small galaxy, hmm?”</i>");
+		}
+		output("\n\n<i>“Yeah...”</i> the ");
+		if(chars["SERA"].skinTone != "bright pink") output("purple");
+		else output("pink");
+		output("-skinned woman trails off, her gaze seemingly fixed on your ass, all wrapped in that tight catsuit, <i>“Hey you think I could get a piece of that?”</i>");
+
+		output("\n\nYour master grins almost deviously and looks down at you again, <i>“Seeing as you apparently know [pc.name] so well, I don’t see why not.”</i>");
+
+		output("\n\nSera only licks her lips in response before she kneels down behind you, bending herself over you and reaching for the zipper of your jumpsuit. <i>“Alright, let’s get this shit off you,”</i> she grunts, pulling down until your clothing is completely open. You try to focus on your blowjob again, but find it hard to keep your cock-polishing steady with hands running all over your body. It doesn’t take long before Sera’s peeling away your catsuit, baring your flesh to the open air until she’s finished pulling the suit over your ass and is digging her fingers into your lower cheeks.");
+
+		output("\n\n<i>“Oh yeah,”</i> the demon-morph breathes a moment before spreading your cheeks wide. Then, like you’d expect, something long and hard presses against your pucker. Sera’s nowhere near as gentle as Belle, and doesn’t even give you a moment to relax, thrusting into you, stretching you wide enough to make you whimper. She doesn’t stop there of course, and continues her interminable penetration, driving more and more big, ");
+		if(chars["SERA"].skinTone != "bright pink") output("purple");
+		else output("pink");
+		output(" cock into your ass, rubbing it against your inner walls fast enough to make you moan. It isn’t long before she bottoms out inside you and sets to thrusting, not even giving you a moment to adjust to her length.");
+		pc.buttChange(chars["SERA"].cockVolume(0));
+	}
+	if(seraIsCrew())
+	{
+		output("\n\nEven with Sera pounding your ass, you ");
+	}
+	else output("\n\nYou ");
+	output(" quickly redouble your efforts on pleasuring Belle; you vigorously jerk the woman’s upper-cock off while you lovingly lavish her second dong, treating it with love and you lick at it and bob your head up and down. Before too long your master loses a bit of her composure and starts to thrust into your mouth and against your hand. Her wide hips pump wildly against your maw, and all that girth of hers hurts your jaw a little, <i>but you take it all happily, because it feels so good to please your master like this</i>. Eventually, you begin to pull yourself off her shaft to lick and kiss at her knot, catching your breath for a moment before continuing your blowjob.");
+
+	//seraIsCrew:
+	if(seraIsCrew()) 
+	{
+		output("\n\nSera’s still thrusting away at your [pc.asshole], ");
+		//hasSubmittedToSera: Fen note9999: Sera's content is fucknormous and I'd rather just not bother:
+		//if(hasSubmittedToSera()) output("and something about submitting to her like this again, to have her on top, feels so <i>good</i>");
+		//else 
+		output("and something about her being on top feels so good");
+		output(". Each time her hips connect against yours drives a whimper or a groan from your lungs. All this pressure on your pucker and all that feral grunting coming from the demoness are pulling you closer to climax, and you don’t think Sera’s feeling too different either.");
+	}
+	output("\n\nIt quickly gets to the point where you can no longer hold back the wave of endorphins battering your mind’s shore, and you do the only thing you can do: <i>cum</i>. You moan onto Belle’s twin dongs as your [pc.asshole] spasms around Sera’s shaft. Orgasmic bliss makes your quake in your place, ");
+	if(pc.hasCock()) output("your [pc.cocks] emptying onto the ground below you, coating the floor with slick [pc.cumNoun]");
+	else output("your [pc.vaginas] clamp down around a shaft that isn’t there, spraying the floor down with [pc.girlcum].");
+	
+	if(seraIsCrew())
+	{
+		output("\n\nYou clenching pucker seems to coax the demoness behind you into orgasm, because you feel her hips ram forward, burying her thick cock in your [pc.ass], spasming inside you. Her hips buck jerkily against your own as a sudden gush of hot alabaster seed fills your ass, leaving you to whimper.");
+
+		output("\n\nAlmost in sync with Sera, Belle’s own orgasm begins");
+	}
+	else output("\n\nWith all the oral attention she’s receiving, it’s no surprise when Belle’s orgasm begins");
+	output(". Her twin dicks spasm between your lips, knots inflating to the point where you can feel their heat against your face. Her balls empty down you throat, filling your stomach until your tummy starts to balloon with her seed. At the same time, her upper-cock contents itself with coating your face and [pc.hair] with a nice layer of warm Terran cum.");
+	
+
+	//SubSeraCrew:
+	if(seraIsCrew())
+	{
+		output("\n\nWith everyone coming down from their peaks, moaning and pleasured tones give way to panting and deep breaths. Sera, not seeming to be in the mood for a cuddle, pulls her cock from your ass, leaving you to shudder and your [pc.asshole] with quite the spunk-filled gape. The demon-morph stands straight up after that like nothing even happened.");
+		
+		output("\n\n<i>“Fucking nice!”</i> she exclaims, still dripping cum onto the floor, <i>“Thanks for the freebie, Belle, guess I’ll catch you later.”</i>");
+		output("\n\nWith a wave and a smile, she’s off again, back to mingle with the rest of the guests, leaving you and your master to each other.");
+	}
+	output("\n\nBelle takes a deep breath as you pull yourself off her softening, spit-slick shaft with a wet pop, licking excess jizz off your lips. The woman smiles down at you, cupping your chin to get a good look at your cum-covered face before she chuckles, <i>“That’s a good look for you, [pc.boyGirl].”</i> Then that same hand moves upward to give you a quick little pet, letting you know you did a good job taking care of your master. The lady scientist pulls her dress back down to cover herself, standing up out of her seat as she does so.");
+	output("\n\nLooking around, it seems like almost no one really cared about you and Belle’s spontaneous lovemaking... maybe it’s a normal thing for these parties?");
+	output("\n\n<i>“Alright, [pc.boyGirl],”</i> the Terran says, halting your train of thought, <i>“Let’s get back to the party, shall we?”</i>");
+	output("\n\n<i>If it sounds like a plan to Belle, it sounds like a plan to you.</i>");
+
+	processTime(30);
+	var ppBelle:PregnancyPlaceholder = getBellePregContainer();
+	pc.loadInMouth(ppBelle)
+	pc.loadInMouth(ppBelle)
+	if(seraIsCrew()) pc.loadInAss(chars["SERA"]);
+	pc.applyCumSoaked();
+	clearMenu();
+	addButton(0,"Next",peerReviewParty4);
+}
+
+public function peerReviewParty4():void
+{
+	clearOutput();
+	showBelle();
+	output("The party passes along like it did before, with you and Belle mingling with scientists and pet-play enthusiasts alike. As things go on, you spot a few other pets pleasuring their masters just like you did. Eventually, though, guests begin to leave, and the already-small gathering begins to die down until it’s just you and Belle alone, a happy pair if there ever was one.");
+	output("\n\nOnce the last guest does leave, your master takes a deep breath and turns to you with a smile, <i>“Well, that went rather well, don’t you think?”</i>");
+	output("\n\n<i>That was a fun party for sure!<i> So, you look up at the woman with a grin matching hers and nod.");
+	output("\n\n<i>“No doubt it went as good as it did thanks to you, [pc.boyGirl],”</i> she coos, kneeling down beside you and unbuckling her leash, <i>“And with any luck, we’ll have made a few friends and secured a few research grants.”</i> Then she reaches for the switch on your collar, and turns it off.");
+	output("\n\nYour pet-like feelings don’t so much as fade, though. In fact, you find yourself wishing you were still on your master’s leash, being loved and taken care of. A pang of sadness fills your heart, but luckily you don’t endure that for long, because Belle gingerly cups your cheek, and gives you a kiss, holding her lips to yours for a moment that doesn’t last nearly long enough before she pulls back.");
+	output("\n\n<i>“Well, [pc.boyGirl],”</i> she sighs, stroking your [pc.skinFurScales] with a thumb, <i>“I guess it’s about time you ");
+	//notNude:
+	if(!pc.isChestExposed() && !pc.isCrotchExposed() && !pc.isAssExposed()) output("got dressed and ");
+	output("left. I’ve probably kept you here longer than I should have already. Oh, and don’t worry about the party. I think");
+	if(flags["MET_SAEC"] == undefined) output(" Saec and I will");
+	else output(" I’ll");
+	output(" clean up just fine.”</i>");
+
+	output("\n\nAs much as you don’t want to leave... you still have a fortune to chase.");
+
+	processTime(20);
+	//[Next] //Should return the PC outside the lab and equip the Sub-Tuner.
+	clearMenu();
+	addButton(0,"Next",leaveAccuPitchLabs);
+}
+
+
+//Timed Blurbs
+//These blurbs can occur once a day (probably less) if the PC is wearing the Sub-Tuner (no particular order).
+//Once every five days.
+
+public function processSubTunerShit():void
+{
+	if(wearingSubTuner())
+	{
+		if(flags["SUBTUNER_TIMED_PROCS"] == undefined) flags["SUBTUNER_TIMED_PROCS"] = GetGameTimestamp();
+		else if(flags["SUBTUNER_TIMED_PROCS"] + 60*24*5 < GetGameTimestamp() && rand(1) == 0) randomSubTunerShit();
+	}
+}
+
+public function randomSubTunerShit():void
+{
+	flags["SUBTUNER_TIMED_PROCS"] = GetGameTimestamp();
+	var buffer:String = "";
+	//1:
+	if(rand(4) == 0) 
+	{
+		AddLogEvent(ParseText("\n\nYou’re suddenly stricken by thoughts of Belle as you go about your day, feeling a sudden need to have her hands all over your body, making you hers.\n\nAfter daydreaming for a few more moments, you pull yourself from your dirty thoughts only to be stricken by powerful lust.\n\n... This collar is off, right?"));
+		pc.lust(10);
+	}
+	//2:
+	else if(rand(3) == 0)
+	{
+
+		buffer += ParseText("\n\nAs you’re going about your day, you find yourself tugging at your collar, or wanting it to be tugged on, more precisely. You can’t help but imagine a leash attached to the ring of ");
+		//upgradedSubTuner:
+		if(subTunerUpgraded()) buffer += ParseText("metal");
+		else buffer += ParseText("leather");
+		buffer += ParseText(" around your neck, being held by a big, strong master to gently guide you.");
+		buffer += ParseText("\n\n...Maybe you could pay Belle a visit soon.");
+
+		AddLogEvent(buffer);
+	}
+	//3:
+	else if(rand(2) == 0)
+	{
+		buffer += ParseText("\n\nYou go rigid for a moment as you’re walking as a shock of need and heat hits your loins before quickly fading, leaving you panting.");
+		buffer += ParseText("\n\nAfter trying to figure out what happened, you tug at the collar around your neck and remember the special function Belle gave it and wonder it the thing is actually off or not.");
+		AddLogEvent(buffer);
+		pc.lust(10);
+	}
+	//4 (Requires the PC to have fucked Saec):
+	else
+	{
+		AddLogEvent(ParseText("\n\nAs you’re walking, you find your thoughts drifting to Saec, that lovely blonde pup of Belle’s, her soft fur, her warm smile, her womanly figure, and her big, squeezable breasts. You smile at the picture of the ausar, and ponder if the big blonde puppy could use a playmate in the near future."));
+	}
+}
+
+
+//Dream
+//This dream can proc if the PC goes to sleep wearing the Sub-Tuner & Met Saec
+public function subTunahDream():void
+{
+	clearOutput();
+	showBelle(true);
+	output("You awake to the gentle moaning of pleasure and the sound of skin slapping against skin. Confused you move your tired limbs around, turning your neck until you feel the collar around it... and it’s humming.");
+	output("\n\nWait, is your collar on!? You can’t really find yourself caring though, <i>because all you can feel is an overwhelming need for your master</i>, but where is she?");
+	output("\n\nYou hastily look around, only to be greeted by the source of that gentle moaning on the other side of the bed: ");
+	//annoBedPartner:
+	if(flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") output("it’s Anno, with both her pussy and asshole stretching around Belle’s twin cocks, slowly fucking the snowy pup as she lies there in bliss. She’s wearing a collar that looks like yours, red light blinking.");
+	else output("it’s Saec, with both her pussy and asshole stretching around Belle’s twin cocks, slowly fucking the ausar as she lies there in bliss. She’s wearing her collar as usual, though it appears to be turned off.");
+
+	output("\n\nYou tongue nearly lolls from your mouth at the sight of your master going at ");
+	if(flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") output("your lover");
+	else output("the blonde pup");
+	output(" like that. <i>Though, you can’t help but feel the need to have her inside you like that.</i>");
+
+	output("\n\nNot too long after you see things getting started, they already seem to be coming to a close. While the speed of her gentle thrusting remains the same, Belle’s voice, along with the voice of the ausar under her reaches a fever pitch of moaning and gasping. Before you know it the lady scientist slams her cocks to the edge of her knots deep inside ");
+	if(flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") output("Anno");
+	else output("Saec");
+	output(". You watch your master’s hips buck jerkily against into her pet, seeing the ausar girl’s belly distend and hearing her cry out as Belle pumps her full of cum.");
+
+	output("\n\nAfter she rides out the bliss of her orgasm, the Terran woman pulls her softening shafts out of ");
+	if(flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") output("Anno");
+	else output("Saec");
+	output(" with little more than a whimper from the canine girl, leaving alabaster seed to dribble out onto the sheets. As the ");
+	if(flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") output("snowy");
+	else output("blonde");
+	output(" pup’s chest heaves, Belle suddenly turns to look at you, sending a little tingle down your spine.");
+
+	output("\n\n<i>“Don’t worry, [pc.boyGirl],”</i> she says, her voice as gentle and poised as ever, music to your ears, <i>“I haven’t forgotten about you.”</i>");
+
+	output("\n\nWith that, she smiles at you and makes her way over to your side of the bed, <i>and all you can feel is the need to spread your [pc.legs] for her as she approaches</i>. You follow your instincts and open your legs wide for Belle, and she quickly kneels down between them.");
+	output("\n\n<i>Yes! Yes! Your master’s going to give you the best treat in the world!</i>");
+	output("\n\nBelle straddles you on all fours, leaving her jugs jiggling above you and her face inches from yours. The woman quickly darts down and traps you in a kiss, pressing her plump lips to yours for a short moment. <i>It feels like the touch of her lips alone is enough to make you cum!</i> Before you can get too excited, Belle pulls back from the kiss and goes to line her twin cocks up with ");
+	if(pc.hasVagina()) output("both of your eager holes");
+	else 
+	{
+		output("your [pc.asshole], with her upper cock left grinding against your ");
+		if(pc.hasCock()) output("[pc.cocks]");
+		else output("bare crotch");
+	}
+	output(".");
+
+	output("\n\n<i>She’s already hard again!</i>");
+	output("\n\nYou gasp as Belle pushes her hips forward, putting pressure on your supple holes");
+	if(pc.hasVagina()) output("s");
+	output(" until...");
+	pc.lust(100);
+	clearMenu();
+	addButton(0,"Next",subTunahDream2);
+}
+
+public function subTunahDream2():void
+{
+	clearOutput();
+	showName("JUST\nA DREAM...");
+	output("You wake up with a gasp, only able to feel an aching need in your loins as you realize your lovely bed-time visit from your master was only a dream. A very tangible sense of disappointment floods your body at that realization, ");
+	//annoBedPartner:
+	if(flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") output(" looking over to see Anno still asleep");
+	output(", a need for release burning inside you.");
+
+	output("\n\nYou pick yourself up from bed and go to get ready, hoping to wash away your lust with a shower, or maybe a lover... <i>actually, maybe you could take a trip to Uveto and visit Belle.</i>");
+
+	//[Next] //Should leave the PC at max lust.
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+
+/*
 output("\n\n//Taur Race Stadium");
 output("\n\n//This will be a new area on Uveto, pretty close to the town.");
 output("\n\n//Tile Text");
@@ -2956,11 +3298,3 @@ output("\n\nWell, no one can say you didn’t try.");
 
 output("\n\n[Next]");
 
-output("\n\n//Needs Changing (Old Content)");
-output("\n\n//Highlighted the line in the old Sub-Tuner content that needs changing.");
-
-//Original
-"Good," the lady scientist coos, smiling at your impatience before turning to face her other pet and giving the ausar a scratch between her ears, "Alright, girl, think you're ready for more pups?" 
-//New
-"Good," the lady scientist coos, smiling at your impatience before turning to face her other pet and giving the ausar a scratch between her ears, "Alright, girl, think you're ready for pups?" 
-*/

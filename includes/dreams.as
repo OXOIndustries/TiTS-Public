@@ -27,6 +27,7 @@ public function dreamChances():Boolean
 		{
 			dreams.push(angelDreamGo);
 		}
+		if(wearingSubTuner() && flags["MET_SAEC"] != undefined) dreams.push(subTunahDream);
 		if(venusSubmission() >= 65)
 		{
 			if(pc.hasVagina()) dreams.push(everyLittleInchDream);
