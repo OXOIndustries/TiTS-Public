@@ -564,7 +564,7 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/steph_6_nude.png", mimeType = "image/png")]
 		public var Bust_STEPH_6_NUDE:Class;
 
-		[Embed(source = "../../../assets/images/npcs/adjatha/syri.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/adjatha/syri_coat.png", mimeType = "image/png")]
 		public var Bust_SYRI:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/syri_nude.png", mimeType = "image/png")]
 		public var Bust_SYRI_NUDE:Class;
@@ -1163,7 +1163,7 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_6_nude.png", mimeType = "image/png")]
 			public var Full_STEPH_6_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/syri.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/syri_coat.png", mimeType = "image/png")]
 			public var Full_SYRI:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/syri_nude.png", mimeType = "image/png")]
 			public var Full_SYRI_NUDE:Class;
