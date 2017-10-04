@@ -110,6 +110,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/brandy_nude.png", mimeType = "image/png")]
 		public var Bust_BRANDY_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/brandt.png", mimeType = "image/png")]
+		public var Bust_BRANDT:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/brandt_nude.png", mimeType = "image/png")]
+		public var Bust_BRANDT_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/briget.png", mimeType = "image/png")]
 		public var Bust_BRIGET:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/briget_nude.png", mimeType = "image/png")]
@@ -751,6 +756,11 @@ package classes.Resources.Busts
 			public var Full_BORING_MISTRESS:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kat_nude.png", mimeType = "image/png")]
 			public var Full_BORING_MISTRESS_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/brandt.png", mimeType = "image/png")]
+			public var Full_BRANDT:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/brandt_nude.png", mimeType = "image/png")]
+			public var Full_BRANDT_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget.png", mimeType = "image/png")]
 			public var Full_BRIGET:Class;
