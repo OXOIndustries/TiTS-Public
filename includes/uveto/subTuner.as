@@ -880,14 +880,6 @@ public function accupitchLabsBonus():Boolean
 			output("\n\nYou can’t help but feel a pang of jealousy seeing Belle treat someone else like that. Maybe you could do something like that with her one day...");
 		}
 		//OR
-		//pregSaec:
-		else if(pregSaec())
-		{
-			output("\n\nBelle is nearby, working at one of her benches, but she’s got Saec on a leash next to her. The ausar girl affectionately nuzzles and rubs against the lady scientist’s legs while she goes about her business, seeming happy to just be next to her master.");
-			output("\n\nMore importantly, though, Saec’s normally flat tummy seems quite a bit swollen, and her breasts quite a bit fuller. By your guess, she’s most definitely pregnant, and you think that might be your doing.");
-			output("\n\nWhoops.");
-		}
-		//OR
 		//datedSaec:
 		else if(flags["SAEC_DATES"] != undefined)
 		{
@@ -897,6 +889,14 @@ public function accupitchLabsBonus():Boolean
 			if(pregSaec()) output(", seeing your knocked-up bitch sucking someone else’s shaft like that, but at the same time you wish");
 			else output(", wishing");
 			output(" it was you between Belle’s legs right now.");
+		}
+		//OR
+		//pregSaec:
+		else if(pregSaec())
+		{
+			output("\n\nBelle is nearby, working at one of her benches, but she’s got Saec on a leash next to her. The ausar girl affectionately nuzzles and rubs against the lady scientist’s legs while she goes about her business, seeming happy to just be next to her master.");
+			output("\n\nMore importantly, though, Saec’s normally flat tummy seems quite a bit swollen, and her breasts quite a bit fuller. By your guess, she’s most definitely pregnant, and you think that might be your doing.");
+			output("\n\nWhoops.");
 		}
 		//OR
 		//metSaec:
@@ -1093,7 +1093,7 @@ public function belleMasterTalk():void
 	output("\n\nStill grinning wide, Belle looks at you and continues her happy little explanation, ");
 	//metSaec:
 	if(flags["MET_SAEC"] != undefined) output("<i>“Speaking of, you’ve met Saec already, right?”</i> The lady scientist turns away from you for a moment and starts to call out, <i>“Saec, girl, why don’t you come out and say ‘hi’ to [pc.name] while they’re here?”</i>");
-	else output("<i>“Speaking of, I don’t think you’ve met my pet, Saec, have you?”</i> After you give the woman a shake of your head, she starts  to call out, <i>“Saec, girl, why don’t you come out here? I’ve got a guest that would like to meet you.”</i>");
+	else output("<i>“Speaking of, I don’t think you’ve met my pet, Saec, have you?”</i> After you give the woman a shake of your head, she starts to call out, <i>“Saec, girl, why don’t you come out here? I’ve got a guest that would like to meet you.”</i>");
 
 	//metSaec:
 	if(flags["MET_SAEC"] != undefined)
@@ -1116,7 +1116,7 @@ public function belleMasterTalk():void
 	}
 
 	output("\n\n<i>“Such a good girl, isn’t she?”</i> Belle asks, looking fondly upon her pet as she nuzzles against you, <i>“I first met Saec when this project was just getting started. I had put out notices for willing test subjects: notified them of the risks, the pay, and she was one of the few who were willing to aid me in my experiments. Poor girl was desperate for credits, homeless, abandoned, so we went through the tests and I paid her accordingly, but then she asked to stay with me... begged me, and what else could I do besides let her?”</i> She lets out a long sigh before calling the ausar over to her again, petting her gently and looking down at her pet, <i>“So, here she is, right where she belongs, happy with her master.”</i>");
-	output("\n\n<i>“Imagine for a moment, [pc.name],”</i> Belle instructs, running a finger along the edge of one of Saec’s big fluffy ears, <i>“How happy everyone would be if they could have something like this, a master or a pet, someone to love or someone to take care of...”</i>  The woman lets out a long sigh and looks back up at you, Saec following suite and beaming up at you, her tail wagging gently, <i>“So, yes, you could say I’m privy to this lifestyle, and I love all my pets dearly.”</i>");
+	output("\n\n<i>“Imagine for a moment, [pc.name],”</i> Belle instructs, running a finger along the edge of one of Saec’s big fluffy ears, <i>“How happy everyone would be if they could have something like this, a master or a pet, someone to love or someone to take care of...”</i> The woman lets out a long sigh and looks back up at you, Saec following suite and beaming up at you, her tail wagging gently, <i>“So, yes, you could say I’m privy to this lifestyle, and I love all my pets dearly.”</i>");
 
 	output("\n\nBelle bends down and gives Saec a little kiss on her forehead before sending the ausar on her merry way, leaving the two of you alone again, and the lady scientist with a smile on her face.");
 
@@ -1299,8 +1299,8 @@ public function tentacleStuffSubTwo():void
 	clearOutput();
 	author("HugsAlright");
 	showBust("BELLE","ROSWELL",saecBustString());
-	output("The sound of Belle’s voice wakes you from your post-coital slumber, still with Saec in your arms, <i>“Well, it looks like you all had a good time.”</i>  You open your eyes to see the lady scientist standing in the doorframe for a moment before walking towards you.");
-	output("\n\n<i>“Oh!”</i> Roswell exclaims through your thoughts as his <i>“mother”</i> approaches, wriggling joyously, <i>“Yeah we had lots of fun together! I think they’re still pretty tired though...”</i>");
+	output("The sound of Belle’s voice wakes you from your post-coital slumber, still with Saec in your arms, <i>“Well, it looks like you all had a good time.”</i> You open your eyes to see the lady scientist standing in the doorframe for a moment before walking towards you.");
+	output("\n\n<i>“Oh!”</i> Roswell exclaims through your thoughts as his “mother” approaches, wriggling joyously, <i>“Yeah we had lots of fun together! I think they’re still pretty tired though...”</i>");
 	output("\n\nYour master chuckles as she nears you, <i>“I think they’ll be just fine, Roswell, c’mon " + pc.mf("boy, girl","girls") + ", up.”</i>");
 	output("\n\n<i>You still feel tired, but Belle’s command sends a burst of adrenaline through your veins,</i> and you’re back on your knees alongside your ausar companion, looking up at your mutual master with smiling faces");
 	if(pc.race().indexOf("ausar") != -1 && pc.tailCount > 0) output(" and wagging tails");
@@ -1831,7 +1831,7 @@ public function syriExhibStuff():void
 	//pcAusar/Half:
 	if(pc.race().indexOf("ausar") != -1)
 	{
-		output("\n\nShe rolls those blue eyes of hers and give you a look that you know is supposed to make you feel shame, <i>but there’s no shame in being a good pet<i>.  <i>“");
+		output("\n\nShe rolls those blue eyes of hers and give you a look that you know is supposed to make you feel shame, <i>but there’s no shame in being a good pet<i>. <i>“");
 		if(flags["SUBTUNER_SYRIED"] == undefined) output("Nice getup,");
 		else output("C’mon, </i>again<i>?");
 		output("”</i> she chides, clearly not pleased with your choice of attire and collars, <i>“Out here giving all the rest of us a bad name, I see, just like my sister.”</i>");
@@ -2338,7 +2338,7 @@ public function datingBelle():void
 		if(belleExperiments >= 3) addButton(2,"Party",peerReviewParty,undefined,"Party","Belle seems like a classy lady, so she probably has a few parties she could take you to.");
 		else addDisabledButton(2,"Party","Party","You might need to get to know her a bit better - maybe do some experiments.");
 	}
-	else addDisabledButton(2,"Party","Party","It's too soon to have another party.");
+	else addDisabledButton(2,"Party","Party","It’s too soon to have another party.");
 
 	addButton(14,"Back",newApproachBelle,true);
 }
@@ -2516,7 +2516,7 @@ public function saecDate3():void
 	if(y >= 0) output("ass and ");
 	output("lube-leaking cunt again, begging for more. You give Saec what she (and you) want and start to slide back into her, a bit faster this time, releasing a renewed chorus of moans into the room around you. Then you pull back again, and thrust in again, and again, and again, gradually building up in speed until there’s not a moment of silence between your lover’s pleasured calls. Saec’s braless breasts jiggle and quake with every pump of your [pc.hips], gradually rocking free of her sundress until they’re bare. Each wobble of her massive tits sends flicks of milk dripping all over the bed and running down the ausar’s warm boobflesh. The sight of seeing all that ausar chest fucked free of their confines alone leads you to speed up your love making, and it’s all too much for Saec.");
 
-	output("\n\nA high-pitched cry of pleasure permeates the once-steady moaning of the room, causing you to look down just in time to see your pet’s back arch.  You can feel ");
+	output("\n\nA high-pitched cry of pleasure permeates the once-steady moaning of the room, causing you to look down just in time to see your pet’s back arch. You can feel ");
 	if(y >= 0) output("both of ");
 	output("Saec’s well-satisfied ");
 	if(y >= 0) output("holes");
@@ -3205,7 +3205,6 @@ public function taurStadiumCashier():void
 	addButton(1,"BetRace",betRaceOnUveto,undefined,"BetRace","Bet on and watch a race here at U7.");
 	addButton(2,"EnterRace?",enterTheRace,undefined,"Enter Race?","Ask her if you can enter the races here.");
 	addButton(14,"Leave",mainGameMenu);
-
 }
 	
 //[WatchRace]
@@ -3214,7 +3213,7 @@ public function watchTaurRace():void
 	clearOutput();
 	author("HugsAlright");
 	showTaurCashier();
-	showName("RACE\nWATCHIN'");
+	showName("RACE\nWATCHIN’");
 	output("You tell the woman that you’ve come to spend some time watching some races and ask for directions.");
 	output("\n\n<i>“Of course,”</i> she says with some sort of faux-smile, <i>“Just make your way up the stairs to our lower stadium seating.”</i>");
 	if(pc.isAss()) output("\n\nWith a nod");
@@ -3230,7 +3229,7 @@ public function actuallyWatchTaurRace():void
 {
 	clearOutput();
 	author("HugsAlright");
-	showName("RACE\nWATCHIN'");
+	showName("RACE\nWATCHIN’");
 	if(flags["TAUR_STADIUM_WATCHED"] == undefined)
 	{
 		output("Entering the stadium, you come to the realization that this place is <b><i>huge</i></b>; miles of synthetic-earth in a pill-shape beneath you forms the track of the stadium, while the fully-enclosed ceiling stretches high and far above you.");
@@ -3318,13 +3317,13 @@ public function betRaceOnUveto():void
 	clearMenu();
 	//[1,000] Bet 1,000 credits. //Requires 1,000 credits.
 	if(pc.credits >= 1000) addButton(0,"1,000",bettingAtTheTaurRaces,1000,"1,000 Credits","Bet 1,000 credits.");
-	else addDisabledButton(0,"1,000","1,000","You don't have the cash to make that bet.");
+	else addDisabledButton(0,"1,000","1,000","You don’t have the cash to make that bet.");
 	//[3,000] Bet 3,000 credits. //Requires 3,000 credits.
 	if(pc.credits >= 3000) addButton(1,"3,000",bettingAtTheTaurRaces,3000,"3,000 Credits","Bet 3,000 credits.");
-	else addDisabledButton(1,"3,000","3,000","You don't have the cash to make that bet.");
+	else addDisabledButton(1,"3,000","3,000","You don’t have the cash to make that bet.");
 	//[10,000] Bet 10,000 credits. //Requires 10,000 credits.
 	if(pc.credits >= 10000) addButton(2,"10,000",bettingAtTheTaurRaces,10000,"10,000 Credits","Bet 10,000 credits.");
-	else addDisabledButton(2,"10,000","10,000","You don't have the cash to make that bet.");
+	else addDisabledButton(2,"10,000","10,000","You don’t have the cash to make that bet.");
 	//[Nevermind]
 	addButton(3,"Nevermind",neverMindTaurStadium);
 }

@@ -3834,14 +3834,14 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["CIARAN_MET"] != undefined)
 				{
 					output2("\n<b>* Ciaran:</b> Met him");
-					if (flags["CIARAN_LAP"] != undefined || flags["CIARAN_VANILLA"] != undefined || flags["CIARAN_HEAT"] != undefined || flags["CIARAN_FINGER"] != undefined) output2(", Sexed him");
-					if (flags["CIARAN_SCRITCH_HIM"] != undefined) output2("\n<b>* Ciaran, Times Scritched:</b> " + flags["CIARAN_SCRITCH_HIM"]);
-					if (flags["CIARAN_SPANK"] != undefined) output2("\n<b>* Ciaran, Times He Spanked You:</b> " + flags["CIARAN_SPANK"]);
+					if(flags["CIARAN_LAP"] != undefined || flags["CIARAN_VANILLA"] != undefined || flags["CIARAN_HEAT"] != undefined || flags["CIARAN_FINGER"] != undefined) output2(", Sexed him");
+					if(flags["CIARAN_SCRITCH_HIM"] != undefined) output2("\n<b>* Ciaran, Times Scritched:</b> " + flags["CIARAN_SCRITCH_HIM"]);
+					if(flags["CIARAN_SPANK"] != undefined) output2("\n<b>* Ciaran, Times He Spanked You:</b> " + flags["CIARAN_SPANK"]);
 					var ciaranCum:int = 0;
-					if (flags["CIARAN_LAP"] != undefined) ciaranCum += flags["CIARAN_LAP"];
-					if (flags["CIARAN_VANILLA"] != undefined) ciaranCum += flags["CIARAN_VANILLA"];
-					if (flags["CIARAN_HEAT"] != undefined) ciaranCum += flags["CIARAN_HEAT"];
-					if (ciaranCum > 0) output2("\n<b>* Ciaran, Times You Made Him Cum:</b> " + ciaranCum);
+					if(flags["CIARAN_LAP"] != undefined) ciaranCum += flags["CIARAN_LAP"];
+					if(flags["CIARAN_VANILLA"] != undefined) ciaranCum += flags["CIARAN_VANILLA"];
+					if(flags["CIARAN_HEAT"] != undefined) ciaranCum += flags["CIARAN_HEAT"];
+					if(ciaranCum > 0) output2("\n<b>* Ciaran, Times You Made Him Cum:</b> " + ciaranCum);
 				}
 				variousCount++;
 			}
@@ -5609,10 +5609,15 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b><u>Accu-Pitch Labs</u></b>");
 				output2("\n<b>* Belle:</b> Met her");
 				if(pc.hasKeyItem("Sub-Tuner Collar")) output2(", You’re her pet");
-				if(flags["SUB_TUNERED"] != undefined)
+				if(flags["SUB_TUNERED"] != undefined) output2("\n<b>* Belle, Experiments, Trifecta, Total:</b> " + flags["SUB_TUNERED"]);
+				if(flags["SUBTUNER_TENTACLES"] != undefined) output2("\n<b>* Belle, Experiments, Tentacles, Total:</b> " + flags["SUBTUNER_TENTACLES"]);
+				if(flags["SUBTUNER_EXHIBITIONISM"] != undefined) output2("\n<b>* Belle, Experiments, Exhibitionism, Total:</b> " + flags["SUBTUNER_EXHIBITIONISM"]);
+				if(flags["SUBTUNER_HYPNOED"] != undefined) output2("\n<b>* Belle, Experiments, Hypnotism, Total:</b> " + flags["SUBTUNER_HYPNOED"]);
+				if(flags["MET_SAEC"] != undefined)
 				{
-					output2(", Walked you");
-					if(flags["SUB_TUNERED"] > 1) output2(" " + num2Text(flags["SUB_TUNERED"]) + " times");
+					output2("\n<b>* Saec:</b> Met her");
+					if(flags["SAEC_DATES"] != undefined) output2("\n<b>* Saec, Times Dated:</b> " + flags["SAEC_DATES"]);
+					if(flags["SEXED_SAEC"] != undefined) output2("\n<b>* Saec, Times Sexed:</b> " + flags["SEXED_SAEC"]);
 				}
 				variousCount++;
 			}
