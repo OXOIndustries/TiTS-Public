@@ -4216,6 +4216,13 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["TIMES_FUCKED_BURT"] != undefined) output2("\n<b>* Burt, Times Sexed:</b> " + flags["TIMES_FUCKED_BURT"]);
 					if(flags["TIMES_THREE_D_SURPRISE_SEXED"] != undefined) output2("\n<b>* Three-Dee, Times Surprise Sexed:</b> " + flags["TIMES_THREE_D_SURPRISE_SEXED"]);
 				}
+				//Kase the pyrite kittyboi 
+				if(flags["KASE_INTRO"] != undefined)
+				{
+					output2("\n<b>* Kase:</b> Met him" + (flags["KASE_TIMER"]+(60*24*7) <= GetGameTimestamp() && flags["KASE_CREW"] == undefined ? ", Left Mhen’ga" : "") + (flags["KASE_CREW"] != undefined ? ", Joined crew" : "") + (flags["KASE_HEALED"] == 1 ? ", Arm healed" : ""));
+					if(flags["KASE_SEXED"] != undefined) output2("\n<b>* Kase, Times Sexed:</b> " + flags["KASE_SEXED"]);
+					if(flags["KASE_3SUM_ANNO"] != undefined) output2("\n<b>* Kase, Times had threesome with Anno:</b> " + flags["KASE_3SUM_ANNO"]);
+				}
 				// Kelly Golden Honey Bunny Butts!
 				if(flags["KELLY_MET"] != undefined && flags["KELLY_ENCOUNTERED_AT_THE_BAR"] != undefined)
 				{
