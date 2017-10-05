@@ -176,7 +176,7 @@ public function configureMails():void
 		}
 		msg += "\n\n<i>At the bottom of the message, you see several stellar coordinates: the next probe’s location! Well, looks like Benedict Ausar just saved your inheritance!</i>";
 
-		return msg;
+		return ParseText(msg);
 	},
 	"Your cousin’s a cocksucker.",
 	"Dane",
