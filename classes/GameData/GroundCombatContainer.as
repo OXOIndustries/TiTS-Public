@@ -3828,11 +3828,11 @@ package classes.GameData
 			if(kGAMECLASS.uvetoBlizzardCombat()) {
 				for (i = 0; i < _hostiles.length; i++)
 				{
-					CombatAttacks.applyBlind(_hostiles[i], 3, true, "The blizzard running through the environment makes it difficult to see!\n\nAccuracy is reduced, and ranged attacks are far more likely to miss.");
+					if(!_hostiles[i].hasBlindImmunity()) CombatAttacks.applyBlind(_hostiles[i], 3, true, "The blizzard running through the environment makes it difficult to see!\n\nAccuracy is reduced, and ranged attacks are far more likely to miss.");
 				}
 				for (i = 0; i < _friendlies.length; i++)
 				{
-					CombatAttacks.applyBlind(_friendlies[i], 3, true, "The blizzard running through the environment makes it difficult to see!\n\nAccuracy is reduced, and ranged attacks are far more likely to miss.");
+					if(!_friendlies[i].hasBlindImmunity()) CombatAttacks.applyBlind(_friendlies[i], 3, true, "The blizzard running through the environment makes it difficult to see!\n\nAccuracy is reduced, and ranged attacks are far more likely to miss.");
 				}
 			}
 			var totalBlinded:int = 0;

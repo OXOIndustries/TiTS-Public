@@ -1957,7 +1957,7 @@ public function processHLPantyShit():void
 		//Broken!
 		else if(flags["ALISS_FIXED_HL"] == -1)
 		{
-			if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP) && rooms[currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL)) return;
+			if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP) || rooms[currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL)) return;
 			if(rand(25) == 0 && !pc.hasStatusEffect("PANTYBREAK_CD")) 
 			{
 				pc.createStatusEffect("PANTYBREAK_CD", 0, 0, 0, 0, true, "", "", false, 48*60);
