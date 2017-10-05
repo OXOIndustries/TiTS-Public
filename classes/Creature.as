@@ -4162,12 +4162,7 @@
 			if (hasStatusEffect("Watered Down")) currReflexes *= 0.9;
 			if (hasStatusEffect("Pitch Black")) currReflexes *= 0.66;
 			if (hasStatusEffect("Psychic Leech")) currReflexes *= 0.85;
-			var bellySize:Number = bellyRating();
-			if(bellySize >= 50) {
-				if(bellySize >= 90) currReflexes *= 0.5;
-				else if(bellySize >= 70) currReflexes *= 0.7;
-				else currReflexes *= 0.9;
-			}
+			if (hasStatusEffect("Bulky Belly")) currReflexes *= statusEffectv1("Bulky Belly");
 
 			if (currReflexes > reflexesMax())
 			{
@@ -4461,12 +4456,7 @@
 			
 			var scalar:Number = 1;
 			if(hasPerk("Resin")) scalar = perkv1("Resin");
-			var bellySize:Number = bellyRating();
-			if(bellySize >= 50) {
-				if(bellySize >= 90) scalar *= 0.5;
-				else if(bellySize >= 70) scalar *= 0.7;
-				else scalar *= 0.9;
-			}
+			if(hasStatusEffect("Bulky Belly")) scalar *= statusEffectv1("Bulky Belly");
 			
 			return ((level * 5 * scalar) + bonuses);
 		}
@@ -4949,12 +4939,7 @@
 			temp = temp * (1 - statusEffectv1("Restrained") * 0.25);
 
 			//Preggo belly slows ya down!
-			var bellySize:Number = bellyRating();
-			if(bellySize >= 50) {
-				if(bellySize >= 90) temp *= 0.5;
-				else if(bellySize >= 70) temp *= 0.7;
-				else temp *= 0.9;
-			}
+			if (hasStatusEffect("Bulky Belly")) temp *= statusEffectv1("Bulky Belly");
 
 			if (temp > 90) temp = 90;
 			if (temp < 1) temp = 1;
@@ -18110,8 +18095,8 @@
 					else nRatio = biggestTitSize() / tallness;
 				}
 			}
-			else if(partName == "belly") nRatio = bellyRating() / tallness;
-			else if(partName == "butt") nRatio = buttRating() / tallness;
+			else if(partName == "belly") nRatio = bellyRating() / 20;
+			else if(partName == "butt") nRatio = buttRating() / 20;
 			else if(partName == "clitoris")
 			{
 				if(hasVagina()) nRatio = clitLength / tallness;
