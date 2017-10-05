@@ -391,10 +391,12 @@ public function nurseryCafeteriaFunc():Boolean
 {
 	output("\n\nA pair of server bots are sitting in the kitchen, making sure there’s plenty of food and drink to go around.");
 	if (yammiIsFollower() && !yammiIsCrew()) output(" Yammi’s hanging out in the kitchen, too, overseeing things while she’s not assigned to your ship’s crew.");
-	
-	seraNurseryCafeteriaBonus(1);
 
 	nurseryZilCallgirlRandomEvents();
+	
+	var btnSlot:int = 0;
+	if(seraAtNursery()) seraNurseryCafeteriaBonus(btnSlot++);
+	if(riyaAtNursery()) riyaNurseryCafeteriaBonus(btnSlot++);
 	
 	return false;
 }
@@ -489,7 +491,7 @@ public function nurserySpecialistRooms():Boolean
 	{
 		var numTentacles:int = ChildManager.numOfType(GLOBAL.TYPE_TENTACLE);
 		
-		output("\n\nA" + (numSpecials == 0 ? "" : "nother") +" modular chamber with very thick glass holds your " + (numTentacles == 1 ? "tentacle child" : (num2Text(numTentacles) + "tentacle children")) + ". The chamber itself looks very sturdy and high-tech. You’re told that the viewing glass is a one-way mirror to prevent the beast" + (numTentacles == 1 ? "" : "s") + " from peering back at any unsuspecting passerbys. The inside speakers also emit soothing harmonics to keep " + (numTentacles == 1 ? "it" : "them") + " less agitated. " + (numTentacles == 1 ? "It looks" : "They look") + " quite happy in there.");
+		output("\n\nA" + (numSpecials == 0 ? "" : "nother") +" modular chamber with very thick glass holds your " + (numTentacles == 1 ? "tentacle child" : (num2Text(numTentacles) + " tentacle children")) + ". The chamber itself looks very sturdy and high-tech. You’re told that the viewing glass is a one-way mirror to prevent the beast" + (numTentacles == 1 ? "" : "s") + " from peering back at any unsuspecting passerbys. The inside speakers also emit soothing harmonics to keep " + (numTentacles == 1 ? "it" : "them") + " less agitated. " + (numTentacles == 1 ? "It looks" : "They look") + " quite happy in there.");
 		numSpecials++;
 	}
 
@@ -1419,11 +1421,21 @@ public function nurseryApproachBriget():void
 public function nurseryBrigetMenu():void
 {
 	clearMenu();
+	
 	//addButton(0, "Talk", nurseryBrigetTalkMenu, undefined, "Talk", "Sit and have a chat with Briget.");
 	addButton(1, "Nursery", nurseryBrigetNurseryTalk, undefined, "Nursery", "Discuss the nursery’s status and functions with its head nurse.");
 	//if (hours >= 7 && hours <= 16) addButton(2, "PrivateRoom", nurseryBrigetPrivateRoom, undefined, "Private Room", "Suggest that you and Briget move somewhere more private");
 	//else addButton(2, "Sex", nurseryBrigetSex, undefined, "Sex", "See if you can make this motherly gynoid feel like a woman...");
-	//addButton(10, "Appearance", );
+	//addButton(10, "Appearance", nurseryBrigetAppearance);
+	
+	var btnSlot:int = 5;
+	
+	if(seraPregnancyIsDue())
+	{
+		if(flags["SERA_PREGNANCY_CHECK"] != undefined && (flags["SERA_PREGNANCY_CHECK"] + 1) >= days) addDisabledButton(btnSlot++, "Sera", "Sera", "Maybe you should wait before checking on her again.");
+		else addButton(btnSlot++, "Sera", brigetSeraPregCheck, undefined, "Sera", (flags["SERA_PREGNANCY_CHECK"] == undefined ? "Ask where she is." : "Ask how she’s doing."));
+	}
+	
 	addButton(14, "Back", mainGameMenu);
 }
 
@@ -1655,6 +1667,8 @@ public function nurseryMaternityWaitTime(duration:int = 0):void
 	var firstDuration:int = PregnancyManager.getRemainingDurationForSlot(pc, firstSlot);
 	output("\n\nYou get up and are on your way" + (firstDuration <= 30 ? " -- extremely close to delivering at any moment!" : "."));
 	
+	dailyAutoSleep(duration);
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1800,7 +1814,9 @@ public function nurseryMaternityWaitGo():void
 	flags["NURSERY_MATERNITY_WAIT_ACTIVE"] = 1;
 	processTime(finalDuration);
 	flags["NURSERY_MATERNITY_WAIT_ACTIVE"] = undefined;
-
+	
+	dailyAutoSleep(firstDuration);
+	
 	clearMenu();
 	addButton(0, "Next", nurseryMaternityWaitPostBirths, { births: allBirths, dur: finalDuration });
 }
@@ -1847,6 +1863,7 @@ public function nurseryMaternityWaitPostBirths(args:Object):void
 	output("\n\nNow unburdened of your pregnancy, you figure it’s time to get back on the space-trail.");
 
 	processTime(15);
+	pc.shower();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

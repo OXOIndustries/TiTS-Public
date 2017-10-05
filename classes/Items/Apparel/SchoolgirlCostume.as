@@ -8,7 +8,7 @@ package classes.Items.Apparel
 	
 	public class SchoolgirlCostume extends ItemSlotClass
 	{
-		
+		//Sexu schoolgrill.
 		public function SchoolgirlCostume() 
 		{
 			_latestVersion = 1;
@@ -31,13 +31,13 @@ package classes.Items.Apparel
 			
 			attackVerb = "";
 			
-			basePrice = 1500;
+			basePrice = 3400;
 			attack = 0;
 			defense = 0;
 			shieldDefense = 0;
-			sexiness = 5;
+			sexiness = 8;
 			critBonus = 0;
-			evasion = 0;
+			evasion = 5;
 			fortification = 0;
 			
 			version = _latestVersion;

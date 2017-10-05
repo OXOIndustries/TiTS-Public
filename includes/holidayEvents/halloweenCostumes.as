@@ -70,6 +70,9 @@ public function landingOnPoeA():void
 	output("\n\nVirtually every building has its windows thrown open, with yet more celebrants leaning out or piling onto reinforced balconies. High above the press of the ground, these merrymakers attend to other impulses, couples or whole groups pressed together tightly, their moans of delight lost in the deafening bedlam of the festival. Some of the revelers above toss colored streamers into the air, letting the spiralling paper slowly float down in a dizzying array of color. Others throw small trifles to those riding the floats - plastic necklaces of glittering beads, in most cases, though more than a few fling lacy articles of clothing to coax more party goers to their rooms.");
 	output("\n\nAfter taking in the sheer spectacle for a few minutes, you step forward to join in the fun, only to find your way blocked by a small mob of revelers who have turned to you and stare silently. The heat and fun of the festival cools considerably in the cold gazes of these stationary sentinels. You back away and try a different street, but run into the same problem. Fearing that you may have accidentally broken some unwritten rule of The Masque, you start to look up details when it hits you. You don’t have a costume! Literally every single person around you is wearing some kind of mask or decorative dress and it was just so universal that you didn’t give it any thought. Most people probably bring their own costume, but there’s gotta be some stores on-world who can help you out.");
 	output("\n\nThere are plenty, as it turns out, but every single one of them are closed, sold out, or more commonly, both. Frustratingly, it seems you’re a bit unprepared for this year and, coming so close to the end of the season, just about everything’s gone. Unwilling to leave empty handed, you turn off the main streets and start wandering some of the less crowded alleys, trying to ask revelers for directions in the quieter sections, only to be greeted by the same icy hush of the others. Before long, you start feeling a bit discouraged by all the stonewalling and you seek out an alley with lit signs but no silent, judging, masked faces to dishearten you further.");
+	
+	pc.shower();
+	
 	clearMenu();
 	addButton(0,"Next",holidayoweenPartDues);
 }
@@ -261,6 +264,8 @@ public function goblinPartTwo():void
 	output("\n\nThe suppressed flow builds within you, cock-milk ballooning your belly until, muscles aching and body trembling from the endless orgasm, your concentration slips and the pressure breaks your embrace. Like a rocket, you launch off of the kui-tan’s supernova, arcing through the air in delirious bliss. The planet’s lower gravity takes you over the heads of the leering onlookers, who are immediately soaked in the splashing spunk of the explosive release. Those directly beneath you are coated in a thick glaze of pearl goo as you fly overhead, spasming slit unable to hold in the nectar bloating your body to spherical proportions.");
 	processTime(22);
 	pc.orgasm();
+	applyCumSoaked(pc);
+	applyCumSoaked(pc);
 	clearMenu();
 	addButton(0,"Next",gobboPart3);
 }
@@ -290,6 +295,9 @@ public function gobboPart3():void
 		pc.maxOutCumflation("mouth", pp);
 		pc.maxOutCumflation("ass", pp);
 	}
+	applyCumSoaked(pc);
+	applyCumSoaked(pc);
+	applyCumSoaked(pc);
 	clearMenu();
 	addButton(0,"Next",gobboEpilogue);
 }
@@ -313,6 +321,7 @@ public function gobboEpilogue():void
 		}
 	}
 	if(pc.hipRatingRaw < 20) pc.hipRatingRaw = 20;
+	else pc.hipRatingRaw += 2;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -482,7 +491,21 @@ public function bountyHuntsPart2():void
 	if(pc.milkMultiplier < 100) pc.milkMultiplier = 100;
 	pc.milked();
 	processTime(45);
-	for(x = 0; x < 25; x++) { pc.orgasm(); }
+	applyCumSoaked(pc);
+	var cumQ:Number = 0;
+	if(pc.hasCock()) {
+		cumQ = pc.cumQ();
+		if(cumQ >= 1000) applyCumSoaked(pc);
+		if(cumQ >= 5000) applyCumSoaked(pc);
+		if(cumQ >= 10000) applyCumSoaked(pc);
+	}
+	if(pc.hasVagina()) {
+		cumQ = pc.girlCumQ();
+		if(cumQ >= 1000) applyPussyDrenched(pc);
+		if(cumQ >= 5000) applyPussyDrenched(pc);
+		if(cumQ >= 10000) applyPussyDrenched(pc);
+	}
+	for(var x:int = 0; x < 25; x++) { pc.orgasm(); }
 	clearMenu();
 	addButton(0,"Next",bountyHuntEpilogue);
 }

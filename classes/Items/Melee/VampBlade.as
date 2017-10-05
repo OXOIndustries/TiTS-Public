@@ -10,6 +10,7 @@
 	
 	public class VampBlade extends ItemSlotClass
 	{
+		//Level 7 (Common). Balance 2.0
 		//constructor
 		public function VampBlade()
 		{
@@ -39,16 +40,16 @@
 			attackNoun = "crackling slice";
 			
 			//Information
-			this.basePrice = 15499;
-			this.attack = 6;
+			this.basePrice = 6400;
 			
 			baseDamage = new TypeCollection();
 			baseDamage.kinetic.damageValue = 7;
-			baseDamage.electric.damageValue = 12;
+			baseDamage.electric.damageValue = 15;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			baseDamage.addFlag(DamageFlag.DRAINING);
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
+			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;

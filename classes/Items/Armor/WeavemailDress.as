@@ -8,6 +8,7 @@
 	
 	public class WeavemailDress extends ItemSlotClass
 	{
+		//Level 8 (Common). Balance 2.0
 		//constructor
 		public function WeavemailDress()
 		{
@@ -37,7 +38,7 @@
 			this.attackVerb = "null";
 			
 			//Information
-			this.basePrice = 18000;
+			this.basePrice = 15000;
 			this.attack = 0;
 			this.defense = 8;
 			this.shieldDefense = 0;
@@ -47,8 +48,8 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
-			resistances.kinetic.resistanceValue = 25.0;
-			resistances.freezing.resistanceValue = 20.0;
+			//resistances.kinetic.resistanceValue = 25.0;
+			resistances.freezing.resistanceValue = 19.0;
 			//resistances.addFlag(DamageFlag.ABLATIVE);
 			
 			this.version = _latestVersion;

@@ -176,6 +176,7 @@ package classes.Characters
 			this.ass.wetnessRaw = 0;
 			
 			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			createStatusEffect("Disarm Immune");
 			
 			isUniqueInFight = false;
 			btnTargetText = "VoidPirate";

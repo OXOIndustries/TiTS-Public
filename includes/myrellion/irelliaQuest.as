@@ -434,8 +434,8 @@ public function beADumbShitFallGuyForTheRebels():void
 	
 	if(pc.HPRaw > 5)
 	{
-		pc.HPRaw -= 50;
-		if(pc.HPRaw < 5) pc.HPRaw = 5;
+		var damage:Number = (pc.HPRaw < 55 ? (pc.HPRaw - 5) : 50);
+		if(damage > 0) applyDamage(new TypeCollection( { kinetic: damage }, DamageFlag.BYPASS_SHIELD, DamageFlag.PENETRATING, DamageFlag.EXPLOSIVE ), null, pc, "minimal");
 	}
 	pc.credits = 0;
 	pc.removeEquipment();

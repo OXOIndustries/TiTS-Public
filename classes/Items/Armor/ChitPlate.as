@@ -8,6 +8,7 @@
 	
 	public class ChitPlate extends ItemSlotClass
 	{
+		//Level 6 (Common). Balance 2.0
 		//constructor
 		public function ChitPlate()
 		{
@@ -38,7 +39,7 @@
 			this.attackVerb = "null";
 			
 			//Information
-			this.basePrice = 6000;
+			this.basePrice = 3500;
 			this.attack = 0;
 			this.defense = 9;
 			this.shieldDefense = 0;
@@ -46,7 +47,7 @@
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
-			this.fortification = 5;
+			this.fortification = 2;
 			
 			resistances.burning.resistanceValue = -20.0;
 			resistances.kinetic.resistanceValue = 10.0;

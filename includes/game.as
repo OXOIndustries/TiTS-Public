@@ -1053,6 +1053,13 @@ public function sleep(outputs:Boolean = true):void {
 				annoSleepWithIntroduce();
 				return;
 			}
+
+			// Azra interjection! - Req's Azra onboard, not professional, banged once, nobody else in bed, and a week since your last visit to the sharkgal. Also a dick that fits inside.
+			if(azraIsCrew() && !azraProfessional() && flags["AZRA_SEXED"] != undefined && (flags["CREWMEMBER_SLEEP_WITH"] == undefined || flags["CREWMEMBER_SLEEP_WITH"] == 0) && flags["AZRA_VISITED"] + (60*24*7) < GetGameTimestamp() && pc.hasCock() && pc.cockThatFits(azra.vaginalCapacity(0)) >= 0) 
+			{
+				neglectedAzraFunsies();
+				return;
+			}
 			
 			var interrupt:Boolean = false;
 			
@@ -1065,6 +1072,12 @@ public function sleep(outputs:Boolean = true):void {
 						interrupt = true;
 					}
 					break;
+				case "BESS":
+					if (bessIsCrew() && rand(3) == 0)
+					{
+						flags["BESS_SLEEPWITH_DOMORNING"] = 1;
+					}
+					break;
 				case "REAHA":
 					if (reahaIsCrew() && rand(3) == 0)
 					{
@@ -1072,10 +1085,10 @@ public function sleep(outputs:Boolean = true):void {
 						interrupt = true;
 					}
 					break;
-				case "BESS":
-					if (bessIsCrew() && rand(3) == 0)
+				case "SERA":
+					if (seraIsCrew())
 					{
-						flags["BESS_SLEEPWITH_DOMORNING"] = 1;
+						interrupt = seraBitchImpregnateBed(true);
 					}
 					break;
 				case "KASE":
@@ -1087,8 +1100,13 @@ public function sleep(outputs:Boolean = true):void {
 					break;
 				// No partner selected.
 				default:
+					// SERA IMPREGNATIONS
+					if(!interrupt && seraIsCrew())
+					{
+						interrupt = seraBitchImpregnateBed();
+					}
 					//CELISE NIGHT TIME BEDTIMEZ
-					if(celiseIsCrew() && rand(3) == 0 && flags["CELISE_NO_BED_SENPAI"] == undefined)
+					if(!interrupt && celiseIsCrew() && rand(3) == 0 && flags["CELISE_NO_BED_SENPAI"] == undefined)
 					{
 						celiseOffersToBeYourBedSenpai();
 						interrupt = true;
@@ -1103,14 +1121,10 @@ public function sleep(outputs:Boolean = true):void {
 	sleepHeal();
 	
 	processTime(minPass);
-	
-	
 
 	// Time passing effects
 	if(passiveTimeEffects(minPass)) return;
 	
-	
-
 	// Dream events
 	var dreamed:Boolean = dreamChances();
 	
@@ -1147,14 +1161,19 @@ public function sleep(outputs:Boolean = true):void {
 			addButton(0, "Next", bessMorningEvents);
 			return;
 		}
-		if (flags["KASE_SLEEPWITH_DOMORNNING"] == 1)
+		if (seraBitchImpregnateBedWakeCheck())
 		{
-			addButton(0, "Next", kaseCrewWake, undefined, "", "");
+			addButton(0, "Next", seraBitchImpregnateBedWake);
 			return;
 		}
 		if (tryProcDommyReahaTime(minPass - rand(301)))
 		{
 			addButton(0, "Next", reahaDommyFuxTime);
+			return;
+		}
+		if (flags["KASE_SLEEPWITH_DOMORNNING"] == 1)
+		{
+			addButton(0, "Next", kaseCrewWake, undefined, "", "");
 			return;
 		}
 	}
@@ -1164,10 +1183,8 @@ public function sleep(outputs:Boolean = true):void {
 
 public function sleepHeal():void
 {
-	if (pc.HPRaw < pc.HPMax()) 
-	{
-		pc.HP(Math.round(pc.HPMax()));
-	}
+	if (pc.HPRaw < pc.HPMax()) pc.HPRaw = pc.HPMax();
+	
 	// Fecund Figure shape loss (Lose only after sore/working out)
 	if(pc.hasPerk("Fecund Figure") && pc.isSore())
 	{
@@ -1206,6 +1223,25 @@ public function genericSleep(baseTime:int = 480):void
 	eventBufferXP();
 	sleepHeal();
 	processTime(totalTime);
+}
+
+public function dailyAutoSleep(nMin:int = 0):void
+{
+	var nHour:int = Math.floor(nMin / 60);
+	var numSleeps:int = Math.floor(nHour / 24);
+	if(numSleeps > 0)
+	{
+		for(var i:int = 0; i < numSleeps; i++)
+		{
+			sleepHeal();
+		}
+		eventBufferXP();
+	}
+	else if(nHour >= 8)
+	{
+		sleepHeal();
+		eventBufferXP();
+	}
 }
 
 public function eventBufferXP():void
@@ -1833,7 +1869,11 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	//Procs on approaching ship dock:
 	if (arg == shipLocation)
 	{
-		if(disableExploreEvents() && currentLocation != "SHIP INTERIOR" && seranigansTrigger("hijacked")) return;
+		if(currentLocation != "SHIP INTERIOR")
+		{
+			if(!disableExploreEvents() && seranigansTrigger("hijacked")) return;
+			if(flags["SERA_QUIT_SMOKING"] == undefined && flags["SERA_PREGNANCY_TIMER"] >= 24) eventQueue.push(seraPregQuitSmoking);
+		}
 	}
 	
 	//Procs on ship exit:
@@ -1954,7 +1994,7 @@ public function variableRoomUpdateCheck():void
 		rooms["NURSERYE14"].removeFlag(GLOBAL.NPC);
 		rooms["NURSERYG8"].addFlag(GLOBAL.NPC);
 	}
-	if(seraAtNursery()) rooms["NURSERYG12"].addFlag(GLOBAL.NPC);
+	if(seraAtNursery() || riyaAtNursery()) rooms["NURSERYG12"].addFlag(GLOBAL.NPC);
 	else rooms["NURSERYG12"].removeFlag(GLOBAL.NPC);
 	
 	if((hours < 4 || hours >= 12) && !pc.hasStatusEffect("Liamme Disabled")) 
@@ -1974,7 +2014,12 @@ public function variableRoomUpdateCheck():void
 	}
 	else rooms["RESIDENTIAL DECK 5"].removeFlag(GLOBAL.NPC);
 
-	if(riyaOnCanada())
+	if(flags["MET_RIYA"] != undefined && riyaAtNursery())
+	{
+		rooms["CANADA4"].removeFlag(GLOBAL.NPC);
+		rooms["9008"].removeFlag(GLOBAL.NPC);
+	}
+	else if(riyaOnCanada())
 	{
 		//Riya isnt there:
 		if(pc.hasStatusEffect("RIYA_CANADIA_CD"))
@@ -2438,6 +2483,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	
 	var totalDays:uint = ((GetGameTimestamp() + deltaT) / 1440) - days;
 	
+	processUvetoWeather(deltaT, doOut);
 	processRenvraMessageEvents(deltaT, doOut);
 	processQueenOfTheDeepMessageEvents(deltaT, doOut);
 	processTarkusBombTimerEvents(deltaT, doOut);
@@ -2455,7 +2501,8 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processAnnoEvents(deltaT, doOut);
 	processAlissEvents(deltaT, doOut);
 	processPennyEvents(deltaT, doOut);
-	processSeraEvents(deltaT, doOut);
+	processSeraEvents(deltaT, doOut, totalDays);
+	processRiyaEvents(deltaT, doOut);
 	processReahaEvents(deltaT, doOut, totalDays);
 	processGobblesEvents(deltaT, doOut);
 	processIrelliaEvents(deltaT, doOut);
@@ -2584,7 +2631,15 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			if(flags["SYRI_VIDEO_DELAY_TIMER"] == undefined) flags["SYRI_VIDEO_DELAY_TIMER"] = GetGameTimestamp();
 			else if(GetGameTimestamp() >= (flags["SYRI_VIDEO_DELAY_TIMER"] + 60*24*3)) goMailGet("syri_video");
 		}
-		
+		//Prai email stuff
+		if (flags["PRAI_EMAIL_NUMBER"] != undefined && GetGameTimestamp() >= (flags["PRAI_EMAIL_STAMP"] + 60*10))
+		{
+			if (MailManager.hasEntry("prai_email")) MailManager.deleteMailEntry("prai_email");
+			MailManager.addMailEntry("prai_email", praiEmailText, praiSubjectText, "Prai Ellit", "Prai@Xenotech.net", quickPCTo, quickPCToAddress);
+			goMailGet("prai_email");
+			flags["PRAI_EMAIL_NUMBER"] = undefined;
+			flags["PRAI_EMAIL_STAMP"] = undefined;
+		}
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette();
 	}
@@ -2743,10 +2798,10 @@ public function processShadeEvents(deltaT:uint, doOut:Boolean):void
 
 public function processGiannaEvents(deltaT:uint, doOut:Boolean):void
 {
-	if (flags["GIANNA_AWAY_TIMER"] != undefined && flags["GIANNA_AWAY_TIMER"] > 0) giannaAWOL( -1);
+	if (flags["GIANNA_AWAY_TIMER"] != undefined && flags["GIANNA_AWAY_TIMER"] > 0) giannaAWOL(-deltaT);
 	
 	if (flags["GIANNA_FUCK_TIMER"] != undefined) flags["GIANNA_FUCK_TIMER"] += deltaT;
-	}
+}
 
 public function processTreatmentEvents(deltaT:uint, doOut:Boolean):void
 {
@@ -2911,7 +2966,7 @@ public function processPennyEvents(deltaT:uint, doOut:Boolean):void
 	}
 }
 
-public function processSeraEvents(deltaT:uint, doOut:Boolean):void
+public function processSeraEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
 {
 	seraLustGain(deltaT);
 	
@@ -2944,6 +2999,41 @@ public function processSeraEvents(deltaT:uint, doOut:Boolean):void
 		
 		seraNurseryVisitCheck(totalAttempts);
 		seranigansCheck(totalAttempts);
+	}
+	
+	seraPregnancyIsDue(totalDays);
+}
+
+public function processRiyaEvents(deltaT:uint, doOut:Boolean):void
+{
+	if (deltaT >= 1440 || (hours < 18 && hours + Math.floor(deltaT / 60) >= 18))
+	{
+		var totalAttempts:int = 1;
+		
+		if (deltaT >= 1440)
+		{
+			var d:int = days;
+			var h:int = hours;
+			var m:int = minutes;
+			
+			m += deltaT % 60;
+			if (m >= 60)
+			{
+				h++;
+				m = 0;
+			}
+			
+			h += Math.floor(deltaT / 60);
+			if (h >= 24)
+			{
+				d += Math.floor(h / 24);
+			}
+			
+			totalAttempts = d - days;
+			if (h >= 18) totalAttempts++;
+		}
+		
+		riyaNurseryVisitCheck(totalAttempts);
 	}
 }
 

@@ -129,8 +129,10 @@
 		include "../includes/follower/anno.as";
 		include "../includes/follower/azra.as";
 		include "../includes/follower/azraExpeditions.as";
+		include "../includes/follower/azraPlantSamples.as";
 		include "../includes/follower/celise.as";
 		include "../includes/follower/celiseGiga.as";
+		include "../includes/follower/kase.as";
 		include "../includes/follower/multi_interactions.as";
 		include "../includes/follower/paige.as";
 		include "../includes/follower/paigeSex.as";
@@ -198,7 +200,8 @@
 		include "../includes/tavros/sera.as";
 		include "../includes/tavros/seraXPack1.as";
 		include "../includes/tavros/seraXPack2.as";
-		include "../includes/tavros/seraXPreg.as";
+		include "../includes/tavros/seraXPreg1.as";
+		include "../includes/tavros/seraXPreg2.as";
 		include "../includes/tavros/shearBeauty.as";
 		include "../includes/tavros/shelly.as";
 		include "../includes/tavros/tamaniCorpShop.as";
@@ -231,12 +234,14 @@
 		include "../includes/mhenga/flahne.as";
 		include "../includes/mhenga/frogGirls.as";
 		include "../includes/mhenga/julianSHaswell.as";
+		include "../includes/mhenga/kase.as";
 		include "../includes/mhenga/kelly.as";
 		include "../includes/mhenga/mimbranes.as";
 		include "../includes/mhenga/naleen.as";
 		include "../includes/mhenga/naleenMale.as";
 		include "../includes/mhenga/penny.as";
 		include "../includes/mhenga/penny_bimbo.as";
+		include "../includes/mhenga/prai.as";
 		include "../includes/mhenga/rooms.as";
 		include "../includes/mhenga/roomFunctions.as";
 		include "../includes/mhenga/scrapyard.as";
@@ -284,6 +289,7 @@
 		include "../includes/newTexas/brynn.as";
 		include "../includes/newTexas/buckingBronco.as";
 		include "../includes/newTexas/busky.as";
+		include "../includes/newTexas/ciaran.as";
 		include "../includes/newTexas/ellie.as";
 		include "../includes/newTexas/haley.as";
 		include "../includes/newTexas/gianna.as";
@@ -385,6 +391,7 @@
 		include "../includes/uveto/korgonneFemaleHostile.as";
 		include "../includes/uveto/korgonneMaleHostile.as";
 		include "../includes/uveto/krym.as";
+		include "../includes/uveto/milodanFertilityPriestess.as";
 		include "../includes/uveto/milodanMaleHostile.as";
 		include "../includes/uveto/natalie.as";
 		include "../includes/uveto/nayna.as";
@@ -507,7 +514,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.85";
+			version = "0.7.95";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1430,9 +1437,15 @@
 		{
 			return chars["KRYM"];
 		}
+
 		public function get paige():Paige 
 		{
 			return chars["PAIGE"];
+		}
+		
+		public function get ciaran():Ciaran
+		{
+			return chars["CIARAN"];
 		}
 
 		public function testShipCombat():void

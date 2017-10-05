@@ -992,7 +992,7 @@ public function talkToKallyAboutNewTexas():void
 	output("\n\n<i>“Nice place though. Clean air, rustic scenery, and people almost too sexy and friendly to be believed. Every woman looks like a fetish model, and every man like he does nothing but lift weights and fuck day in and day out.”</i> The kui-tan shakes her head, but one of the ruffles on her skirt lifts higher than the rest. <i>“It’s hard to argue with the results, but the Treatment seems like pretty insidious stuff. It’s one thing to hit puberty and have your body’s hormones force you into thinking about sex. It’s quite another to design something like that artificially, then expect every single person on an entire planet to take it.”</i>");
 	if(pc.isBro()) output("\n\nYou grunt and flex the muscles in your arm, trying to see if turning her on will get her to talk about the funner stuff.");
 	else if(pc.isBimbo()) output("\n\nYou giggle. <i>“Trust me, the Treatment is way cool. I’m so much happier like, all the time now!”</i>");
-	else output("You stroke your chin and nod.");
+	else output("\n\nYou stroke your chin and nod.");
 	output("\n\nKally shakes her head. <i>“");
 	if(!pc.isBimbo()) output("Yeah, ");
 	else output("But ");
@@ -1837,7 +1837,7 @@ public function roughButtfuckFromKiroGo(threesomeTalkIntro:Boolean = false):void
 			if(pc.tone < 50 && pc.thickness > 75) output(" in spite of your squishy body’s attempts to conceal it");
 			output(".");
 		}
-		else output("actually shifts your womb forward, making your belly bulge that much more obscenely.");
+		else output("actually shifts your " + (pc.hasVagina() ? "womb" : "anally-pregnant mass") + " forward, making your belly bulge that much more obscenely.");
 		output("\n\nWith a wet clap, her swelling balls smack into your lube-and-pre smeared asscheeks.");
 	}
 	//Gaped
@@ -1848,9 +1848,10 @@ public function roughButtfuckFromKiroGo(threesomeTalkIntro:Boolean = false):void
 		if(!pc.isPregnant()) output("When your belly bulges with the shape of it");
 		else
 		{
-			output("When your ass gets so full that your womb");
-			if(pc.totalVaginas() > 1) output("s are");
-			else output(" is");
+			output("When your ass gets so full that your");
+			if(pc.totalVaginas() > 1) output(" wombs are");
+			else if(pc.hasVagina()) output(" womb is");
+			else output(" anally-pregnant mass is");
 			output(" shifted forward, bulging your belly further");
 		}
 		output(", your sigh deepens. Kiro fills you up so perfectly, so completely, that even when her balls clap against your sore cheeks, you wish she could go further, if only to extend your own ecstasy. Her animalistic sheath bunches up against your ruined derriere as she pushes harder, flattening your [pc.butt] if only to squeeze an extra inch worth of pleasure from her gaped cocksleeve.");

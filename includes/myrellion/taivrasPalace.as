@@ -1149,8 +1149,9 @@ public function armorGooVictoryShits():void
 	output("\n\n<i>“Like my new look?”</i> [goo.name] grins, twirling around to show off a growing number of spikey gray crystal plates forming on her chest and back, forming pauldrons and a solid breastplate. You’re sure that, when it comes time to have a little fun, the plates could easily be absorbed back into her. But here in a place rife with danger, well, she almost looks like a sexified version of a proper knight now!");
 	output("\n\nShe giggles at the praise and bounds back to you. <i>“Ready to go, [pc.name]!”</i>\n\n");
 
-	if(pc.armor is GooArmor)
+	if(pc.armor is GooArmor && flags["GOO_ARMOR_CRYSTAL_UPGRADE"] == undefined)
 	{
+		flags["GOO_ARMOR_CRYSTAL_UPGRADE"] = 1;
 		pc.armor.hasRandomProperties = true;
 		pc.armor.defense += 2;
 		pc.armor.resistances.addFlag(DamageFlag.MIRRORED);
@@ -1160,9 +1161,9 @@ public function armorGooVictoryShits():void
 	for(var x:int = 0; x < pc.inventory.length; x++)
 	{
 		trace("LOOKING FOR GOO ARMOR. @: " + pc.inventory[x].longName);
-		if(pc.inventory[x].shortName == "Goo Armor")
+		if(pc.inventory[x].shortName == "Goo Armor" && flags["GOO_ARMOR_CRYSTAL_UPGRADE"] == undefined)
 		{
-			trace("UPGRADING GOOSHIT!");
+			flags["GOO_ARMOR_CRYSTAL_UPGRADE"] = 1;
 			pc.inventory[x].hasRandomProperties = true;
 			pc.inventory[x].defense += 2;
 			pc.inventory[x].resistances.addFlag(DamageFlag.MIRRORED);
@@ -2120,7 +2121,7 @@ public function cousinGetsExecuted():void
 	author("Savin");
 	output("<i>“Kill [rival.himHer],”</i> you say, sneering at your helpless cousin.");
 	output("\n\nTaivra chuckles and nods at a couple of her soldiers, who latch their arms on [rival.name]’s shoulder and start to pull [rival.himHer] away. <i>“Good choice, my new mate... better to have your rivals killed than risk their coming back to harm you later. I’ll have gallows erected in the village, and we’ll dispose of this worm.”</i>");
-	output("\n\n[rival.name] screams a host of profanities, but is helpless to resist as [rival.heShe]’s dragged away her [rival.hisHer] doom. Taivra’s hand tightens around your waist as your rival is dragged off, until it’s almost painful. <i>“Now then, I believe it’s time you paid your fealty to me...”</i>");
+	output("\n\n[rival.name] screams a host of profanities, but is helpless to resist as [rival.heShe]’s dragged away to [rival.hisHer] doom. Taivra’s hand tightens around your waist as your rival is dragged off, until it’s almost painful. <i>“Now then, I believe it’s time you paid your fealty to me...”</i>");
 	flags["COUSIN_EXECUTED"] = 1;
 	clearMenu();
 	addButton(0,"Next",badEndWithTaivraShit);
@@ -2138,7 +2139,7 @@ public function cousinTurnsEggSlut():void
 	if(pc.hasCock()) output("Many sired by you, I’m sure.");
 	else output("Perhaps you’d rather your cousin bear your burden of eggs? A fitting fate, I suppose.");
 	output(" Very well, I will order [rival.himHer] bathed and set aside with the rest of my favored incubators. A better life that that worm deserves, but one that is at least productive. You are both wise and magnanimous, my mate.”</i>");
-	output("\n\n[rival.name] screams a host of profanities, but is helpless to resist as [rival.heShe]’s dragged away her [rival.hisHer] doom. Taivra’s hand tightens around your waist as your rival is dragged off, until it’s almost painful. <i>“Now then, I believe it’s time you paid your fealty to me...”</i>");
+	output("\n\n[rival.name] screams a host of profanities, but is helpless to resist as [rival.heShe]’s dragged away to [rival.hisHer] doom. Taivra’s hand tightens around your waist as your rival is dragged off, until it’s almost painful. <i>“Now then, I believe it’s time you paid your fealty to me...”</i>");
 	flags["COUSIN_EGGSLUT"] = 1;
 	clearMenu();
 	addButton(0,"Next",badEndWithTaivraShit);

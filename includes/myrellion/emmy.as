@@ -1368,7 +1368,7 @@ public function giveEmmyAnItemMenu():void
 	if(pc.hasItemByClass(Kirkite)) addButton(0,"Kirkite",giveEmmyAnItem,"Kirkite","Kirkite","Give Emmy a piece of Kirkite.");
 	else addDisabledButton(0,"Kirkite","Kirkite","You don’t have any Kirkite.");
 	if(pc.hasItemByClass(Satyrite)) addButton(1,"Satyrite",giveEmmyAnItem,"Satyrite","Satyrite","Give Emmy a piece of Satyrite.");
-	else addDisabledButton(1,"Satyrite","Satyrite","You don’t have any Kirkite.");
+	else addDisabledButton(1,"Satyrite","Satyrite","You don’t have any Satyrite.");
 	if(pc.hasItemByClass(Picardine)) addButton(2,"Picardine",giveEmmyAnItem,"Picardine","Picardine","Give Emmy a piece of Picardine.");
 	else addDisabledButton(2,"Picardine","Picardine","You don’t have any Picardine.");
 	if(pc.hasItemByClass(CrystalShard))
@@ -2584,9 +2584,9 @@ public function emmyCockSlobber():void
 	else output("Just shut up and let me do this,");
 	output("”</i> you say with a knowing smile.");
 
-	output("\n\nEmmy pants and staggers back, dick already throbbing, creating a spherical distention in the poor herm’s suit at the top of her lewdly-jutting member. <i>“");
-	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("\n\nR-really? O-okay, I didn’t expect you to be so much like... like, well, me.”</i> She sounds almost concerned about you. <i>“I mean, you don’t have an implant in your head making sure that you’re always ready for a surprise blowjob.”</i> With each word, she sounds less worried and more excited. <i>“Oh god, just suck my cock already, [pc.name]!”</i>");
-	else output("O-okay, but i-it’s not sex. Just a little fun.”</i> She sounds more like she’s trying to assuage her own guilty conscience than talk to you. Either way, her dick is clearly ready for some loving.");
+	output("\n\nEmmy pants and staggers back, dick already throbbing, creating a spherical distention in the poor herm’s suit at the top of her lewdly-jutting member.");
+	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output(" <i>“R-really? O-okay, I didn’t expect you to be so much like... like, well, me.”</i> She sounds almost concerned about you. <i>“I mean, you don’t have an implant in your head making sure that you’re always ready for a surprise blowjob.”</i> With each word, she sounds less worried and more excited. <i>“Oh god, just suck my cock already, [pc.name]!”</i>");
+	else output(" <i>“O-okay, but i-it’s not sex. Just a little fun.”</i> She sounds more like she’s trying to assuage her own guilty conscience than talk to you. Either way, her dick is clearly ready for some loving.");
 	output("\n\nYou sink to your knees, already shivering in anticipation, and lean forward slightly, running your hands along the straining fabric, marvelling at how effectively the mystery material contains what feels like enough pre to fill a coffee cup. Emmy rewards you with her hands on your head");
 	if(pc.hasHair()) output(", running through you hair");
 	else output(", stroking your [pc.skinFurScales]");

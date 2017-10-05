@@ -75,13 +75,13 @@ package classes.Characters
 			
 			this.femininity = 85;
 			this.eyeType = GLOBAL.TYPE_HUMAN;
-			this.eyeColor = "black";
-			this.tallness = 24;
-			this.thickness = 70;
+			this.eyeColor = "silver";
+			this.tallness = 73;
+			this.thickness = 45;
 			this.tone = 60;
-			this.hairColor = "none";
-			this.scaleColor = "none";
-			this.furColor = "none";
+			this.hairColor = "steel gray";
+			this.scaleColor = "steel gray";
+			this.furColor = "steel gray";
 			this.hairLength = 0;
 			this.hairType = GLOBAL.TYPE_HUMAN;
 			this.beardLength = 0;
@@ -158,6 +158,7 @@ package classes.Characters
 			pTits.breastRatingRaw = 14;
 			pTits.breasts = 2;
 			this.breastRows = [pTits];
+			this.nippleColor = "silver";
 			
 			//No dicks here!
 			this.cocks = new Array();

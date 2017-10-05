@@ -20,6 +20,7 @@ package classes.GameData
 	import flash.utils.Dictionary;
 	import classes.Engine.Combat.damageRand;
 	import classes.Engine.Combat.outputDamage;
+	import classes.Engine.Combat.applyTeaseDamage;
 	import classes.StringUtil;
 	import classes.Items.Miscellaneous.*;
 	import classes.Engine.Utility.num2Text;
@@ -621,7 +622,7 @@ package classes.GameData
 				{
 					target.addStatusValue("Staggered", 1, -1);
 					if (target is PlayerCharacter) output("\n\n<b>You’re still reeling from the force of the blows to which you’ve been subjected.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is still reeling from the force of the blows to which they’ve been subject!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is still reeling from the force of the blows to which they’ve been subjected!</b>");
 				}
 				else
 				{
@@ -2688,7 +2689,7 @@ package classes.GameData
 			//Reqs: PC has a naga tail
 			if(pc.isNaga()) choices.push(3);
 			//Reqs: PC is in combat with a naleen, PC has a naga tail
-			if(target is Naleen && pc.isNaga()) choices.push(4);
+			if(target.originalRace == "naleen" && pc.isNaga()) choices.push(4);
 			//Reqs: Hips skill 75+
 			if(flags["TIMES_HIPS_TEASED"] >= 75) choices.push(5);
 
@@ -2714,15 +2715,16 @@ package classes.GameData
 			//Reqs: PC is in combat with a naleen, PC has a naga tail
 			else if(select == 4)
 			{
+				var isNaleen:Boolean = (pc.raceShort() == "naleen");
 				msg = "You slither towards the ";
-				if(pc.race() == "naleen") msg += "other ";
+				if(isNaleen) msg += "other ";
 				msg += "naleen, idly swaying your [pc.hips] to show off your tail.";
 				//PC’s original race is not some sort of naga that may be introduced in the future:
 				msg += " <i>“I used to have spindly little legs, you know.”</i>";
 				//PC’s original race is some sort of naga: msg += " <i>“Plenty of other races out there have spindly little legs they have to move around on.”</i>";
 				msg += " You offer a smirk of superiority as you slither in a circle around your foe, your tail leaving a trail in the brush where it passes. <i>“This is </i>much<i> better, don’t you agree?";
-				if(pc.race() != "naleen") msg += " I may not be a naleen, but I can still appreciate a strong, </i>thick<i> snake tail like mine... or yours.";
-				else output(" Becoming a naleen’s given me an appreciation for big, long tails like this one... or like yours.");
+				if(!isNaleen) msg += " I may not be a naleen, but I can still appreciate a strong, </i>thick<i> snake tail like mine... or yours.";
+				else msg += " Becoming a naleen’s given me an appreciation for big, long tails like this one... or like yours.";
 				msg += "”</i> You let your tailtip brush over some of your foe’s length before you pull away, allowing them a brief view of your backside and your tail curling up to support you as you resume the fight.";
 				output(msg);
 			}
@@ -3278,294 +3280,6 @@ package classes.GameData
 			pc.milked(25);
 		}
 		
-		private function applyTeaseDamage(attacker:Creature, target:Creature, teaseCount:Number, teaseType:String, likeAdjustments:Array = null):void
-		{
-			if (target is Celise)
-			{
-				output("\n");
-				processCombat();
-				return;
-			}
-			
-			var factor:Number = 1;
-			var factorMax:Number = 2;
-			var bonus:int = 0;
-			var msg:String = "";
-			
-			if (likeAdjustments && likeAdjustments.length > 0)
-			{
-				for (var i:int = 0; i < likeAdjustments.length; i++) factor *= likeAdjustments[i];
-			}
-			
-			if (attacker.hasStatusEffect("Sex On a Meteor") || attacker.hasStatusEffect("Tallavarian Tingler")) factor *= 1.5;
-			if (attacker.hasStatusEffect("Well-Groomed")) factor *= attacker.statusEffectv2("Well-Groomed");
-			if ((target.originalRace == "nyrea" && attacker.hasPerk("Nyrean Royal")) || attacker.hasStatusEffect("Oil Aroused")) factor *= 1.1;
-			if (attacker.hasFur())
-			{
-				if (target.statusEffectv2("Furpies Simplex H") == 1 || target.statusEffectv2("Furpies Simplex C") == 1 || target.statusEffectv2("Furpies Simplex D") == 1) factor *= 1.25;
-			}
-			
-			if (factor > factorMax) factor = factorMax;
-		
-			if (attacker.hasPheromones()) bonus += attacker.pheromoneLevel();
-			if (teaseType == "SQUIRT") bonus += 2;
-			if (attacker.hasStatusEffect("Sweet Tooth")) bonus += 1;
-			
-			var sweatyBonus:int = 0;
-			if(attacker.hasStatusEffect("Sweaty") && target.hasPerk("Likes_Sweaty")) 
-			{
-				//-5 per level normally, so add twice that since we flippin it'
-				sweatyBonus = attacker.statusEffectv1("Sweaty") * 10;
-				//Furries dont benefit quite as much.
-				if(attacker.hasFur()) sweatyBonus = attacker.statusEffectv1("Sweaty") * 5;
-			}
-			
-			if (target.isLustImmune || (target.willpower() / 2 + rand(20) + 1 > attacker.level * 2.5 * factor + 10 + teaseCount / 10 + attacker.sexiness() + bonus + sweatyBonus))
-			{
-				if(target is HandSoBot)
-				{
-					output("\n\n<i>“An attempt to confuse and overwhelm an enemy with an overt display of sexual dominance,”</i> says So. She sounds genuinely interested. <i>“An unorthodox but effective strategy in many known organic cultures’ approach to war. I was unaware sentients of a human upbringing had any experience of such a thing, however. Perhaps that explains why you are attempting it against a foe that cannot in any way feel desire.”</i>");
-				}
-				else if(target.isLustImmune == true) 
-				{
-					msg = "\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false);
-					if(target.isPlural) msg += " don’t";
-					else msg += " doesn’t";
-					msg += " seem to care for your erotically-charged display.</b>";
-					output(msg);
-				}
-				else if(teaseType == "SQUIRT") 
-				{
-					output("\n\nYour milk goes wide.");
-					output(" (<b>0</b>)");
-					teaseSkillUp(teaseType);
-				}
-				else if(teaseType == "DICK SLAP")
-				{
-					output("\n\nYour foe looks more annoyed than aroused at your antics as they wipe your girl lube off.");
-					if(kGAMECLASS.silly) output(" You pity them somewhat. Your [pc.cumNoun] has a lot of nutrients in it...");
-					output(" (<b>0</b>)");
-					teaseSkillUp(teaseType);
-				}
-				else if (target is HuntressVanae || target is MaidenVanae)
-				{
-					output("\n\n");
-					output(teaseReactions(0, target));
-					output(" (<b>0</b>)");
-					teaseSkillUp(teaseType);
-				}
-				else if (target is WetraHound)
-				{
-					output("\n\n");
-					kGAMECLASS.wetraHoundAnimalIntellect();
-					output(" (<b>0</b>)");
-					teaseSkillUp(teaseType);
-				}
-				//Enemies with special fail messages
-				else if(target is MaidenVanae || target is HuntressVanae)
-				{
-					output("\n\n" + teaseReactions(0, target) + " (<b>0</b>)");
-					teaseSkillUp(teaseType);
-				}
-				else if(target is KorgonneFemale)
-				{
-					output("\n\nThe barbarian girl flashes a savage grin, apparently unfazed." + ((kGAMECLASS.silly) ? " <i>“No. So no. Wow. Very no.”</i>" : ""));
-					output(" (<b>0</b>)");
-					teaseSkillUp(teaseType);
-				}
-				else
-				{
-					output("\n\n" + StringUtil.capitalize(target.getCombatName()), false);
-					if(target.isPlural) output(" resist");
-					else output(" resists");
-					output(" your erotically charged display... this time.");
-					output(" (<b>0</b>)");
-					teaseSkillUp(teaseType);
-				}
-			}
-			else
-			{
-				var damage:Number = 10 * (teaseCount / 100 + 1) + attacker.sexiness() / 2 + sweatyBonus / 2 + attacker.statusEffectv2("Painted Penis") + attacker.statusEffectv4("Heat");
-				if (teaseType == "SQUIRT") damage += 5;
-				if (attacker.hasPheromones()) damage += 1 + rand(4);
-				damage *= (rand(31) + 85) / 100;
-				
-				var cap:Number = 15 + attacker.level * 2 + attacker.statusEffectv3("Painted Penis");
-				if (damage > cap) damage = cap;
-				damage *= factor;
-				
-				//Tease % resistance.
-				if (teaseType == "SQUIRT") damage = (1 - (target.getLustResistances().drug.damageValue / 100)) * damage;
-				else damage = (1 - (target.getLustResistances().tease.damageValue / 100)) * damage;
-				//Level % reduction
-				var levelDiff:Number = target.level - attacker.level;
-				//Reduce tease damage by 50% for every level down the PC is.
-				if(levelDiff > 0)
-				{
-					for(var z:int = levelDiff; z > 0; z--)
-					{
-						damage *= 0.70;
-					}
-				}
-
-				//Tease armor - only used vs weapon-type attacks at present.
-				//damage -= target.lustDef();
-
-				cap = 30 + attacker.statusEffectv3("Painted Penis");
-				//Damage cap
-				if (damage > cap) damage = cap;
-				//Damage min
-				if (damage < 0) damage = 0;
-				
-				if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
-				damage = Math.ceil(damage);
-			
-				output("\n\n");
-				switch(teaseType)
-				{
-					case "SQUIRT":
-						if(target.isPlural)
-						{
-							output(StringUtil.capitalize(target.getCombatName(), false) + " are splattered with your [pc.milk], unable to get it off.");
-							if(damage > 0) output(" All of a sudden, their faces begin to flush, and they look quite aroused.");
-							else output(" They seem unimpressed.");
-						}
-						else
-						{
-							output(StringUtil.capitalize(target.getCombatName(), false) + " is splattered with your [pc.milk], unable to get it off.");
-							if(damage > 0) output(" All of a sudden, " + target.mfn("his","her","its") + " " + target.face() + " begins to flush, and " + target.mfn("he","she","it") + " looks quite aroused.");
-							else output(" " + target.mfn("He","She","It") + " seems unimpressed.");
-						}
-						break;
-					case "DICK SLAP":
-						if(target.isPlural)
-						{
-							output(StringUtil.capitalize(possessive(target.getCombatName()), false));
-							if(damage > 0) output(" faces look rather flush as they");
-							output(" quickly wipe your [pc.cum] off.");
-						}
-						else
-						{
-							output(StringUtil.capitalize(possessive(target.getCombatName()), false));
-							if(damage > 0) output(" face looks rather flush as " + target.mfn("he","she","it"));
-							output(" quickly wipes your [pc.cum] off.");
-						}
-						if(kGAMECLASS.silly) output(" Ha! GOT ‘EM!");
-						break;
-					default:
-						output(teaseReactions(damage,target));
-						break;
-				}
-				target.lust(damage);
-				
-				var damageResult:DamageResult = new DamageResult();
-				if (damage > 0)
-				{
-					damageResult.lustDamage = damage;
-					damageResult.typedLustDamage.tease.damageValue = damage;
-				}
-				else
-				{
-					damageResult.lustResisted = true;
-				}
-				
-				outputDamage(damageResult);
-				
-				teaseSkillUp(teaseType);
-				
-				if(target is MyrInfectedFemale && damage >= 10)
-				{
-					//output("\n\n<b>Your teasing has the poor girl in a shuddering mess as she tries to regain control of her lust addled nerves.</b>");
-					var stunDur:int = 1 + rand(2);
-					CombatAttacks.applyStun(target, stunDur);
-					CombatAttacks.applyLustStun(target, stunDur);
-				}
-			}
-			
-			// kGAMECLASS.setEnemy(target);
-			if (attacker is PlayerCharacter) kGAMECLASS.playerMimbraneSpitAttack();
-		}
-		
-		public static function teaseReactions(damage:Number, target:Creature):String 
-		{
-			var pc:Creature = kGAMECLASS.pc;
-			
-			var buffer:String = "";
-			var textRands:Array = [];
-			if (target is PlayerCharacter)
-			{
-				if (damage == 0) buffer = "You seem unimpressed.";
-				else if (damage < 4) buffer = "You look a little intrigued by what you see.";
-		 		else if (damage < 10) buffer = "You definitely seem to be enjoying the show.";
-		 		else if (damage < 15) buffer = "You openly touch yourself as you watch lustfully.";
-		 		else if (damage < 20) buffer = "You flush hotly with desire, your eyes filled with longing.";
-		 		else buffer = "You lick your lips in anticipation, your hands idly stroking your own body.";
-			}
-			else if (target is HuntressVanae)
-			{
-				if (damage == 0)
-				{
-					textRands = [
-						"The blind huntress snorts at your display and makes a quick jab at you with her spear. You leap out of the way just in time. <i>“All you’re doing is leaving yourself open, " + ((pc.zilScore() >= 4 || pc.naleenScore() >= 5) ? "[pc.race]" : "outsider") + "!”</i> she exclaims.",
-						"You utterly fail to entice the huntress. You barely dodge an attack that causes you to cease your efforts. You’re going to have to do better, or try something else...",
-						"The alien huntress seems to be getting into it, moving towards you... only to swipe her spear at your head. You barely duck in time. Seems she didn’t go for it at all!"
-					];
-					
-					buffer = textRands[rand(textRands.length)];
-				}
-				else if (damage < 4) buffer = "The busty huntress moans and begins cupping one of her " + target.breastDescript(0) + ", clearly titillated by your performance.";
-				else if (damage < 10) buffer = "Your stacked opponent huskily moans and slips a webbed hand between her thighs, lewdly stroking her slit. She snaps out of it a few seconds later, biting her lip.";
-				else if (damage < 20) buffer = "The alien huntress clenches her thighs together as she watches you, rubbing them together as she desperately tries to hide her arousal. Clearly you’re having an effect on her!"
-				else buffer = "The busty amazon parts her thighs and begins to stroke her twin clits to your lewd display, unable to stop herself. A few seconds later she jerks her webbed hand back, flushing wildly.";
-			}
-			else if (target is KorgonneFemale)
-			{
-				//Teased
-				buffer = "Clearly delighted, the raider’s mouth hangs open in a dopey grin; her tongue lolls from the side of her mouth as she holds one arm tightly across her prodigious chest. She becomes aware of her licentious weakness and swallows her tongue again with a gulp." + ((kGAMECLASS.silly) ? " <i>“So seduce. Such flirt. Much babies. Wow.”</i>" : "");
-			}
-			else if (target is MaidenVanae)
-			{
-				if (damage == 0)
-				{
-					textRands = [
-						"The young alien huntress jabs at you with her spear, forcing you to leap out of the way. <i>“Hey, this may be my first time, but I’m not </i>that<i> easy!”</i> she exclaims.",
-						"The virgin huntress quirks her head, clearly baffled by your actions. It seems you utterly failed to entice her....",
-						"The alien huntress fans her face with a webbed hand and moves closer to you. <i>“Oooh, I think I’m getting the vapors... </i>psyche<i>!”</i>",
-					];
-					
-					buffer = textRands[rand(textRands.length)];
-				}
-				else if (damage < 4) buffer = "The virgin huntress blushes and begins eagerly touching one of her [vanaeMaiden.nipples]. She’s clearly aroused by your performance.";
-				else if (damage < 10) buffer = "The virgin huntress lets out a little moan and slips one of her webbed hands between her thighs. She awkwardly teases her glistening slit, getting all worked up.";
-				else if (damage < 20) buffer = "The young alien huntress places a hand over her loins and rubs her thighs together. She’s desperately trying to hide her rather obvious arousal. The sweet scent of her arousal fills the air.";
-				else buffer = "The wispy amazon parts her thighs and begins to stroke her twin clits to your lewd display, unable to stop herself. A few seconds later she jerks her webbed back, flushing wildly.";
-			}
-			else if (target.isPlural) {
-				if (damage == 0) buffer = StringUtil.capitalize(target.getCombatName(), false) + " seem unimpressed.";
-				else if (damage < 4) buffer = StringUtil.capitalize(target.getCombatName(), false) + " look intrigued by what they see.";
-				else if (damage < 10) buffer = StringUtil.capitalize(target.getCombatName(), false) + " definitely seem to be enjoying the show.";
-				else if (damage < 15) buffer = StringUtil.capitalize(target.getCombatName(), false) + " openly stroke themselves as they watch you.";
-				else if (damage < 20) buffer = StringUtil.capitalize(target.getCombatName(), false) + " flush hotly with desire, their eyes filled with longing.";
-				else buffer = StringUtil.capitalize(target.getCombatName(), false) + " lick their lips in anticipation, their hands idly stroking their bodies.";
-			}
-			else {
-				if (damage == 0) buffer = StringUtil.capitalize(target.getCombatName(), false) + " seems unimpressed.";
-				else if (damage < 4) buffer = StringUtil.capitalize(target.getCombatName(), false) + " looks a little intrigued by what " + target.getCombatPronoun("heshe") + " sees.";
-				else if (damage < 10) buffer = StringUtil.capitalize(target.getCombatName(), false) + " definitely seems to be enjoying the show.";
-				else if (damage < 15) buffer = StringUtil.capitalize(target.getCombatName(), false) + " openly touches " + target.getCombatPronoun("himher") + "self as " + target.getCombatPronoun("heshe") + " watches you.";
-				else if (damage < 20) buffer = StringUtil.capitalize(target.getCombatName(), false) + " flushes hotly with desire, " + target.getCombatPronoun("hisher") + " eyes filled with longing.";
-				else buffer = StringUtil.capitalize(target.getCombatName(), false) + " licks " + target.getCombatPronoun("hisher") + " lips in anticipation, " + target.getCombatPronoun("hisher") + " hands idly stroking " + target.getCombatPronoun("hisher") + " own body.";
-			}
-			return buffer;
-		}
-		
-		private function teaseSkillUp(teaseType:String):void
-		{
-			if (teaseType == "SQUIRT") teaseType = "CHEST";
-			else if(teaseType == "DICK SLAP") teaseType = "CROTCH";
-			flags["TIMES_" + teaseType + "_TEASED"]++; // the menu display handles wrapping this so w/e
-		}
-		
 		private function generateSenseMenu(attacker:Creature, target:Creature):void
 		{
 			clearOutput();
@@ -4111,6 +3825,16 @@ package classes.GameData
 			}
 			
 			// TODO: I guess this would be the place to point out blindness or whatever.
+			if(kGAMECLASS.uvetoBlizzardCombat()) {
+				for (i = 0; i < _hostiles.length; i++)
+				{
+					CombatAttacks.applyBlind(_hostiles[i], 3, true, "The blizzard running through the environment makes it difficult to see!\n\nAccuracy is reduced, and ranged attacks are far more likely to miss.");
+				}
+				for (i = 0; i < _friendlies.length; i++)
+				{
+					CombatAttacks.applyBlind(_friendlies[i], 3, true, "The blizzard running through the environment makes it difficult to see!\n\nAccuracy is reduced, and ranged attacks are far more likely to miss.");
+				}
+			}
 			var totalBlinded:int = 0;
 			for (i = 0; i < _friendlies.length; i++)
 			{
@@ -4675,7 +4399,14 @@ package classes.GameData
 				if (victoryArgument.isDefeated()) return true;
 				return false;
 			}
-			
+			else if (victoryCondition == CombatManager.ANY_TARGET_DEFEATED)
+			{
+				for (var ii:int = 0; ii < _hostiles.length; ii++)
+				{
+					if (_hostiles[ii].isDefeated()) return true;
+				}
+				return false;
+			}
 			return false;
 		}
 		
@@ -4699,6 +4430,14 @@ package classes.GameData
 			{
 				if (lossArgument == null || _friendlies.indexOf(lossArgument) == -1) throw new Error("Unique target for loss as a win condition, with no target defined.");
 				if (lossArgument.isDefeated()) return true;
+				return false;
+			}
+			else if (lossCondition == CombatManager.ANY_TARGET_DEFEATED)
+			{
+				for (var ii:int = 0; ii < _friendlies.length; ii++)
+				{
+					if (_friendlies[ii].isDefeated()) return true;
+				}
 				return false;
 			}
 			else if (lossCondition == CombatManager.ESCAPE && atEndOfRound)

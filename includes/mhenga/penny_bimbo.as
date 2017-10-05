@@ -294,7 +294,7 @@ public function getOralFromBimboPenny():void
 	{
 		output(" Your unnattended cock");
 		if(pc.cockTotal() > 2) output("s also fire");
-		else output("also fires off");
+		else output(" also fires");
 		output(" off, sending long slick waves of [pc.cumColor] cum sliding down her fur.");
 	}
 	output(" She cums too, so blissfully happy to have successfully been of service, her thick cock spurting again and again down beneath the desk");

@@ -84,7 +84,10 @@ public function loseToKorgonneFemaleAsScentTaurus():void
 	showKorgiFemaleHostile();
 	author("Adjatha");
 	output("When you sink to the ground, the barbarian nods with satisfaction. The tan korgonne offers a slight smirk before swinging her spear around and cracking it against the back of your skull. Your sight blossoms into a brilliant sea of white, as if the permafrost had swallowed you whole. Numbness. Darkness. A sensation of tugging and pushing. When you come to, your situation seems more or less unchanged. Judging by the snow, it looks like the little native tried dragging you somewhere, but the bulk of your tauric body proved too heavy for her. What a lucky break!");
-	pc.HP(-pc.HPMax());
+	var damage:Number = (pc.HPMax() - 1);
+	var maxDamage:Number = (pc.HPRaw - 1);
+	if (damage > maxDamage) damage = maxDamage;
+	if (damage > 0) applyDamage(new TypeCollection( { unresistablehp: damage }, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
 	output("\n\n");
 	CombatManager.genericLoss();
 	//(maybe the player loses a consumable in their inventory? Doesn’t make a ton of sense for a barbarian to steal credits, but I guess she could do that too.)
@@ -99,7 +102,7 @@ public function loseToKorgonneFemaleIfHasCock():void
 	else 
 	{
 		output("When you sink to the ground, the barbarian nods with satisfaction. The tan korgonne offers a slight smirk before swinging her spear around and cracking it against the back of your skull. Your sight blossoms into a brilliant sea of white, as if the permafrost had swallowed you whole. Numbness. Darkness. A sensation of movement. When you come to, the snow is gone but the snow’s daughter remains.");
-		pc.HP(-10);
+		applyDamage(new TypeCollection( { unresistablehp: 10 }, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
 	}
 	processTime(30);
 	clearMenu();
@@ -795,7 +798,7 @@ public function loseToKorgonneWithABigDickAfterGivingHerBigDickFetish1():void
 		if(pc.lust() < pc.lustMax()) 
 		{
 			output("swinging her spear around and cracking it against the back of your skull. The strike has little effect on your gooey frame, but you act dazed to avoid letting your captor know too much.");
-			pc.HP(-5);
+			applyDamage(new TypeCollection( { unresistablehp: 5 }, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
 		}
 		else output("hefting her spear and giving you a warning look. It’s a wasted gesture; you’re too turned on and eager for whatever she has planned to resist in the slightest.");
 		output(" With a self-satisfied nod, she grabs hold and begins to drag you toward a snow bank that conceals a small cave.");
@@ -806,7 +809,7 @@ public function loseToKorgonneWithABigDickAfterGivingHerBigDickFetish1():void
 		if(pc.lust() < pc.lustMax()) 
 		{
 			output("swinging her spear around and cracking it against the back of your skull. Your sight blossoms into a brilliant sea of white, as if the permafrost had swallowed you whole. Numbness. Darkness. A sensation of movement. When you come to, the snow is gone but the snow’s daughter remains.");
-			pc.HP(-10);
+			applyDamage(new TypeCollection( { unresistablehp: 10 }, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
 		}
 		else output("hefting her spear and giving you a warning look. It’s a wasted gesture; you’re too turned on and eager for whatever she has planned to resist in the slightest. With a self-satisfied nod, she grabs hold and begins to drag you toward a snow bank that conceals a small cave.");
 	}

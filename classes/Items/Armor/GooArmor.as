@@ -8,6 +8,7 @@
 	
 	public class GooArmor extends ItemSlotClass
 	{
+		//Level 5 (Rare). Balance 2.0
 		//constructor
 		public function GooArmor()
 		{

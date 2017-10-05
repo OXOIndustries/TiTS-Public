@@ -7,7 +7,7 @@ package classes.Items.Apparel
 
 	public class NurseOutfit extends ItemSlotClass
 	{
-		
+		//Level 6 (Common). Balance 2.0
 		public function NurseOutfit() 
 		{
 			this._latestVersion = 1;
@@ -30,13 +30,13 @@ package classes.Items.Apparel
 			
 			this.attackVerb = "";
 			
-			this.basePrice = 1000;
+			this.basePrice = 3400;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
-			this.sexiness = 5;
+			this.sexiness = 10;
 			this.critBonus = 0;
-			this.evasion = 0;
+			this.evasion = 6;
 			this.fortification = 0;
 			
 			this.version = this._latestVersion;

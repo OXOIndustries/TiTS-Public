@@ -152,7 +152,7 @@ public function giannaBonusShit(btnSlot:int = 0):void
 	{
 		output("\n\nA raven-haired beauty is busy tweaking one of the machines embedded in the wall, standing straight-kneed and bent provocatively. Glowing light emanates from her eyes and illuminates the panels she’s fiddling with. This girl is either a cyborg or a synthetic, no doubt about it. She wiggles her unclothed backside for you, smiling as she catches you looking in her direction.");
 	}
-	if(flags["ANNO_SEXED"] != undefined && flags["ANNO_SEXED"] > 0 && annoIsCrew() && flags["MET_GIANNA"] != undefined && pc.cockThatFits(anno.vaginalCapacity(0)) >= 0 && rand(5) == 0)
+	if(flags["ANNO_SEXED"] != undefined && flags["ANNO_SEXED"] > 0 && annoIsCrew() && flags["MET_GIANNA"] != undefined && pc.cockThatFits(anno.vaginalCapacity(0)) >= 0 && !pc.hasStatusEffect("Anno X Gianna Cooldown") && rand(5) == 0)
 	{
 		output("\n\nThere’s no mistaking the twitching of Anno’s alabaster ears, even when she’s hunched over Gianna’s shoulder. The companion droid doesn’t seem to mind the weight riding on her shoulders, judging by the way she wiggles her [gianna.butt] into the ausar’s creamy thighs. <b>What could those two be up to?</b>");
 		addButton(0,"Anno/Gianna",approachAnnoXXXGianna);
@@ -3392,6 +3392,9 @@ public function coochFuckThreeMaybeFourInOne():void
 	output(" Your robotic mate is leaning against the table with her palm flat against her mons");
 	if(gianna.hasCock()) output(", her dick pushed aside");
 	output(", slipping two fingers into her audibly wet snatch.");
+	
+	IncrementFlag("FUCKED_GIANNA_VAGINALLY");
+	
 	//Normal Variant - Not a taur.
 	if(!pc.isTaur())
 	{
@@ -4359,6 +4362,8 @@ public function getButtReamedByFutaGigi():void
 
 	processTime(20+rand(11));
 	pc.orgasm();
+	pc.loadInAss(gianna);
+	pc.maxOutCumflation("ass", gianna);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -4382,6 +4387,10 @@ public function approachAnnoXXXGianna():void
 	}
 	output("\n\nYou could get their attention and join in, or leave and let them have a little girl on girl time in peace. What do you do?");
 	processTime(1);
+	
+	giannaAWOL(50 + rand(11));
+	pc.createStatusEffect("Anno X Gianna Cooldown", 0, 0, 0, 0, true, "", "", false, 720);
+	
 	clearMenu();
 	//[Cough] [Leave]
 	addButton(0,"Cough",coughAtAnnoXGianna);
@@ -4426,6 +4435,11 @@ public function coughAtAnnoXGianna():void
 
 public function giannaXAnnoThreesomeGo(x:int):void
 {
+	rooms["512"].removeFlag(GLOBAL.NPC);
+	currentLocation = "STALL EAST";
+	rooms[currentLocation].addFlag(GLOBAL.NPC);
+	generateMap();
+	
 	clearOutput();
 	showName("ANNO\n& GIANNA");
 	showBust("ANNO_NUDE",giannaBustDisplay());
@@ -4551,6 +4565,11 @@ public function giannaXAnnoThreesomeGo4(x:int):void
 	output("\n\nYou feel inclined to agree.");
 	IncrementFlag("GIANNA_X_ANNO_3SUM");
 	processTime(2);
+	
+	rooms[currentLocation].removeFlag(GLOBAL.NPC);
+	rooms["512"].addFlag(GLOBAL.NPC);
+	currentLocation = "512";
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

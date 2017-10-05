@@ -10,14 +10,12 @@
 	
 	public class Electrogun extends ItemSlotClass
 	{
+		//Level 4 (Common). Balance 2.0
 		//constructor
 		public function Electrogun()
 		{
 			this._latestVersion = 1;
-			
-			//A KNIFE
-			//4
-			
+						
 			//this.indexNumber = 4;
 			this.quantity = 1;
 			this.stackSize = 1;
@@ -42,10 +40,10 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 3450;
-			this.attack = 2;
+			this.basePrice = 900;
+			this.attack = 3;
 			
-			baseDamage.electric.damageValue = 12;
+			baseDamage.electric.damageValue = 13;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			

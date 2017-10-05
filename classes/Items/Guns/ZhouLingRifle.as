@@ -9,6 +9,7 @@
 	
 	public class ZhouLingRifle extends ItemSlotClass
 	{
+		//Level 5 (Rare). Balance 2.0
 		//constructor
 		public function ZhouLingRifle()
 		{
@@ -38,12 +39,12 @@
 			attackNoun = "icicle";
 			
 			//Information
-			this.basePrice = 23000;
+			this.basePrice = 2500;
 			this.attack = 4;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 11;
-			baseDamage.freezing.damageValue = 11;
+			baseDamage.kinetic.damageValue = 10;
+			baseDamage.freezing.damageValue = 10;
 			//baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			//this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
@@ -51,7 +52,7 @@
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 1;
+			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
 			

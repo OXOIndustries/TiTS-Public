@@ -7,6 +7,7 @@ package classes.Items.Melee
 	
 	public class Whip extends ItemSlotClass
 	{
+		//Level 2 (Common). Balance 2.0
 		//constructor
 		public function Whip()
 		{
@@ -37,10 +38,11 @@ package classes.Items.Melee
 			
 			//Information
 			this.basePrice = 250;
-			this.attack = 5;
-			
-			baseDamage.kinetic.damageValue = 2;
-			
+					
+			baseDamage.kinetic.damageValue = 8;
+			addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
+
+			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;

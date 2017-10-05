@@ -142,26 +142,14 @@ public function hangarMoveTo(arg:Array):void
 
 public function tavrosHangarStuff():Boolean
 {
-	if(flags["MET_VAHN"] == undefined) {
-		output("\n\nYou spot a blonde, half-ausar technician standing next to your ship, looking down at a datapad.");
-		addButton(0,"Tech",VahnTheMechanic);
-	}
-	else
-	{
-		output("\n\nVahn’s around here somewhere, if you want to look for him.");
-		addButton(0,"Vahn",VahnTheMechanic);
-	}
-	//Celise In Tavros
-	if(celiseIsFollower() && !celiseIsCrew())
-	{
-		output("\n\nCelise is lounging here, just as green as ever and chatting amicably with one of the station’s mechanics.");
-		addButton(1,"Celise",approachNonCrewCelise);
-	}
-	if (bessAtTavros())
-	{
-		output("\n\n[bess.name] is here, waiting around and generally staying out of the way as best [bess.heShe] can.");
-		addButton(2, bess.short, approachBessAtTavros);
-	}
+	// NPCs
+	var btnSlot:int = 0;
+	vahnTavrosBonus(btnSlot++);
+	if(celiseIsFollower() && !celiseIsCrew()) celiseTavrosBonus(btnSlot++);
+	if(bessAtTavros()) bessTavrosBonus(btnSlot++);
+	if(flags["AZRA_DISABLED"] == 0) azraBonusProc(btnSlot++);
+	
+	// Ships
 	if (flags["FALL OF THE PHOENIX STATUS"] == 1)
 	{
 		output("\n\n<i>The Phoenix</i> is nearby, only a stones-throw away from your own ship, docked in a much smaller neighboring hangar.");
@@ -171,6 +159,7 @@ public function tavrosHangarStuff():Boolean
 		else
 			addDisabledButton(7, "The Phoenix", "The Phoenix", "This ship is locked and cannot be entered.");
 	}
+	
 	return false;
 }
 

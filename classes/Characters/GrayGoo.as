@@ -71,7 +71,7 @@
 			this.thickness = 45;
 			this.tone = 0;
 			this.hairColor = "silver";
-			this.scaleColor = this.scaleColor;
+			this.scaleColor = "gray";
 			this.furColor = "gray";
 			this.hairLength = 31;
 			this.hairType = GLOBAL.TYPE_HUMAN;
@@ -168,7 +168,7 @@
 			this.pregnancyMultiplierRaw = 1;
 
 			this.breastRows[0].breastRatingRaw = 21;
-			this.nippleColor = "black";
+			this.nippleColor = "steel gray";
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.

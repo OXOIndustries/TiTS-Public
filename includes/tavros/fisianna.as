@@ -240,7 +240,7 @@ public function stayGirls():void
 			case GLOBAL.UPBRINGING_ATHLETIC: output("\n\nYou regale the ladies with stories of your childhood, telling them about a rather intense game you played while growing up and making a big play that won your team the championship."); break;
 			case GLOBAL.UPBRINGING_BOOKWORM: output("\n\nYou regale the ladies with stories of your childhood, telling them about a particularly interesting sci-fi book that you read as a child that wound up becoming true."); break;
 			case GLOBAL.UPBRINGING_AUSTERE: output("\n\nYou regale the ladies with stories of your childhood, telling them about the struggles of finding a suitable job while living a tough but hard working life."); break;
-			case GLOBAL.UPBRINGING_PAMPERED: output("\n\nYou regale the ladies with stories of your childhood, telling them about things you did with your father while growing up and reflecting on things you wish you did with him now that he is gone."); break;
+			case GLOBAL.UPBRINGING_BALANCED: output("\n\nYou regale the ladies with stories of your childhood, telling them about things you did with your father while growing up and reflecting on things you wish you did with him now that he is gone."); break;
 			default: output("\n\nMISSING FLAVOR TEXT FOR AN UPBRINGING.");
 		}
 	}
@@ -1504,7 +1504,7 @@ public function thirdDateFisi():void
 	output("\n\n<i>“Wow, this setup is amazing! I’ve never would have thought that it would be this... grand.”</i> Fisianna stares pointedly at the holo-screen. Shortly after she turns to you. <i>“We should find an open space to set up on. I’d hate to wind up too far away or smooshed between too many people.”</i>");
 	output("\n\nThe two of you head down to the field and look for any open spaces you can find. You eventually find one at a comfortable distance from the holo-screen with a good amount of space around it to give the both of you plenty of room to relax. Fisianna sets her blanket down on the ground and places the picnic basket down next to her, after which she unpacks the contents in the basket. You sit down on the blanket and after reclining back, your feline companion sits down next to you and wraps her arms around you in a hug, relaxing against you.");
 	output("\n\n<i>“I wonder what movie they’re going to be airing right now?”</i> Fisianna ponders to you. Thinking of which, you actually have no idea which movie is going to be airing right at this moment. You remember seeing a schedule somewhere on the poster you saw before, but you are starting to wish you read it in more detail. You shrug the shoulder that Fisianna is not resting on and tell her that you don’t have the faintest idea yourself.");
-	output("\n\n<i>“Oh well...  I imagine it’ll be good anyways, especially with you here.”</i> Fisianna says dotingly, squeezing herself tighter to you. The two of you spend a few more moments in each other’s arms, eating Fisianna’s homemade snacks before the previews finish and the movie starts.");
+	output("\n\n<i>“Oh well... I imagine it’ll be good anyways, especially with you here.”</i> Fisianna says dotingly, squeezing herself tighter to you. The two of you spend a few more moments in each other’s arms, eating Fisianna’s homemade snacks before the previews finish and the movie starts.");
 	output("\n\nThe movie starts rather innocently enough; a starship cruiser is headed for a derelict space station to scavenge for parts. The ship lands and the scavenging crew gathers everything they can reuse. The operation goes smoothly enough and the crew heads back to the ship, though there are subtle undertones of mystery as an unidentified figure flashes across the screen and into the vessel just as the door is closing. Fisianna grips onto you tighter as this happens. The title screen comes up afterwards, reading: “<i>The Intruder.</i>“ You start to feel a bit of dread yourself as you are beginning to think that this movie may not be the most pleasant of movies to watch on a date.");
 	output("\n\nSure enough, later on in the movie, crew members start to go missing and the captain of the ship orders a ship-wide assessment of the situation. Things grow even more bleak when several members of the search party go missing and only bloodstains are found. When a lieutenant makes their way down to the cargo bay area, he looks around until he finds a badly mutilated body. You can hear Fisianna gasp in terror as a shadow forms behind the hapless crew member. The officer notices a little too late and comes face to face with the grotesque alien that stowed away on the ship. He screams and manages to fire only a few shots off from his pistol before the alien comes down on him. Fisianna buries her head into your shoulder and shakes in fright. You rub her back gently until she is brave enough to bring her eyes back to the screen again. ");
 	output("\n\nOnce the threat is identified, the whole ship goes into red alert while the crew sets about to hunt the alien down. Fisianna shrinks into your arms each time a member of the crew falls victim to the alien. Eventually there are only a few remaining surviving crew members left on the space cruiser, including the captain. He sets the ship to autopilot as the alien aims to break into the cockpit. The remaining crew members attempt to blast the foreign intruder when it successfully breaks in, to little avail. One of the privates fighting the alien pleads for the captain to escape while they still can. ");
@@ -2414,28 +2414,28 @@ public function leaveFisi():void
 
 public function fisiannaApartmentHandler(btnSlot:int = 0):void
 {
-	flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
+	flags["NAV_DISABLED"] |= NAV_WEST_DISABLE;
 	
 	output("\n\nTo the west, there is a lightly decorated, quaint-looking apartment. The number displayed on a plaque next to the entrance reads 124. ");
 	if (flags["FISI_SLEPT_WITH"] == undefined) 
 	{
 		output("It probably wouldn’t be a good idea to disturb the inhabitant of this home without any reason to do so.");
-		addDisabledButton(btnSlot, "Knock", "Knock", "It wouldn’t be a good idea to knock here at this time.");
+		addDisabledButton(btnSlot, "KnockWest", "Knock West", "It wouldn’t be a good idea to knock here at this time.");
 	}
 	else if (fisiAtResDeck())
 	{
 		output("Fisianna is likely hanging around the North-East plaza around this time. It wouldn’t do any good knocking at her door right now.");
-		addDisabledButton(btnSlot, "Knock", "Knock", "It wouldn’t be a good idea to knock here at this time.");
+		addDisabledButton(btnSlot, "KnockWest", "Knock West", "It wouldn’t be a good idea to knock here at this time.");
 	}
 	else if (flags["FISI_REJECTED"] != undefined)
 	{
 		output("After breaking things off with Fisianna the way you did, the last thing you want to do is to show up at her doorstep. You shrug off any temptation to knock at her door.");
-		addDisabledButton(btnSlot, "Knock", "Knock", "It wouldn’t be a good idea to knock here at this time.");
+		addDisabledButton(btnSlot, "KnockWest", "Knock West", "It wouldn’t be a good idea to knock here at this time.");
 	}
 	else
 	{
 		output("Fisianna looks to be home at the moment, but she is likely either sleeping or working, knowing her schedule. You could try knocking to see if she will answer.");
-		addButton(btnSlot, "Knock", knockKnockKnockinOnFisisDoor, undefined, "Knock", "Knock and see if Fisianna will answer.");
+		addButton(btnSlot, "KnockWest", knockKnockKnockinOnFisisDoor, undefined, "Knock West", "Knock and see if Fisianna will answer.");
 	}
 }
 

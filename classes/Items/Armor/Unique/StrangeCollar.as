@@ -30,7 +30,7 @@ package classes.Items.Armor.Unique
 			
 			attackVerb = "";
 			
-			basePrice = 500;
+			basePrice = 700;
 			attack = 0;
 			defense = 0;
 			shields = 0;

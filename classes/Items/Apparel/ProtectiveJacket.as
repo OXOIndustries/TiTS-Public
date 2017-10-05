@@ -8,6 +8,7 @@
 	public class ProtectiveJacket extends ItemSlotClass
 	{
 		//constructor
+		//Level 4 (Common). Balance 2.0
 		public function ProtectiveJacket()
 		{
 			this._latestVersion = 1;
@@ -35,12 +36,12 @@
 			this.attackVerb = "null";
 			
 			//Information
-			this.basePrice = 2500;
-			this.attack = 0;
+			this.basePrice = 900;
+			this.attack = 1;
 			this.defense = 4;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = 1;
+			this.sexiness = 4;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;

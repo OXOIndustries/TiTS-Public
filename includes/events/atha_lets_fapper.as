@@ -3,6 +3,7 @@ public function hasSmutOptions():Boolean
 {
 	if(MailManager.isEntryViewed("lets_fap_unlock")) return true;
 	if(MailManager.isEntryViewed("steph_on_demand")) return true;
+	if(MailManager.isEntryViewed("syri_video")) return true;
 	return false;
 }
 
@@ -31,14 +32,14 @@ public function smutFapMenu(fromPrevious:Boolean = false):void
 	// First time: Cock Review
 	// Repeat: New Let’s Fap
 	// If the player becomes a Champeon: Let’s Fap
-	// Champeons select from any of the episodes they’ve already viewed, or the newest one. The newest episode is just marked <i>“New Let’s Fap”</i> to keep the cock type a surprise.
+	// Champeons select from any of the episodes they’ve already viewed, or the newest one. The newest episode is just marked “New Let’s Fap” to keep the cock type a surprise.
 
 	// New Let’s Fap episodes come out a week of game time after the player has viewed the most recent one, so that players don’t actually miss an episode if they don’t remember to check every week
 	// Maybe add recordings of Steph’s show (up to the point that the PC has seen so far) for more starting smut options?
 	var possibleFuncs:Array = [];
-	if (MailManager.isEntryViewed("lets_fap_unlock")) possibleFuncs.push( { t: "LetsFap", th: "Let’s Fap", tb: "Atha’s Let’s Fap episodes", f: letsFapSelectionMain, ar: undefined } );
-	if (MailManager.isEntryViewed("steph_on_demand")) possibleFuncs.push( { t: "Steph OD", th: "Steph Irson: On Demand", tb: "On demand episodes of Steph Irson: Galactic Huntress", f: stephOnDemandVODs, ar: undefined } );
-	if (MailManager.isEntryViewed("syri_video")) possibleFuncs.push( { t: "Syri", th: "Syri", tb: "Take a good look at that very private video Syri sent you. ", f: syriJackVid, ar: undefined } );
+	if (MailManager.isEntryViewed("lets_fap_unlock")) possibleFuncs.push( { t: "LetsFap", th: "Let’s Fap", tb: "Watch Atha’s Let’s Fap episodes.", f: letsFapSelectionMain, ar: undefined } );
+	if (MailManager.isEntryViewed("steph_on_demand")) possibleFuncs.push( { t: "Steph OD", th: "Steph Irson: On Demand", tb: "Watch on-demand episodes of Steph Irson: Galactic Huntress.", f: stephOnDemandVODs, ar: undefined } );
+	if (MailManager.isEntryViewed("syri_video")) possibleFuncs.push( { t: "Syri", th: "Syri", tb: "Take a good look at that very private video Syri sent you.", f: syriJackVid, ar: undefined } );
 	
 	clearMenu();
 	
@@ -62,7 +63,7 @@ public function backToSmutMenu(toMainMenu:Boolean = false):void
 
 Atha - Futa Let’s Player
 Design notes
-Basically does a ‘net show (Let’s Fap) where she gets a variety of cocks, describes the feelings, then jerks off for the audience and gives it a review. Could also do a few variations on the formula, like an <i>“unboxing”</i> video, by trying out a new cock by cream pie’ing a friend’s <i>“box.”</i> Or a live streamed show where she takes prompts from the audience (player can vote on stuff to happen, etc.) Or a silly mode scene where she hosts a Q&A with various references and such in there (’how do you fap with boxing gloves on?’). Could have her videos on <i>“Cum Streamer”</i> or <i>“Tremble”</i> or something like it, possibly making it a subscription service or have her advertise her <i>“Champeon”</i> account for added monies. Players could subscribe to access her much older videos (prequel events). And don’t forget to Love, Comment, and Support!
+Basically does a ‘net show (Let’s Fap) where she gets a variety of cocks, describes the feelings, then jerks off for the audience and gives it a review. Could also do a few variations on the formula, like an “unboxing” video, by trying out a new cock by cream pie’ing a friend’s “box.” Or a live streamed show where she takes prompts from the audience (player can vote on stuff to happen, etc.) Or a silly mode scene where she hosts a Q&A with various references and such in there (’how do you fap with boxing gloves on?’). Could have her videos on “Cum Streamer” or “Tremble” or something like it, possibly making it a subscription service or have her advertise her “Champeon” account for added monies. Players could subscribe to access her much older videos (prequel events). And don’t forget to Love, Comment, and Support!
 */
 
 public function showAtha(bonus:String = ""):void

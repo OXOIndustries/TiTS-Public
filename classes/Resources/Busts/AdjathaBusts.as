@@ -471,6 +471,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/pexiga_bimbo.png", mimeType = "image/png")]
 		public var Bust_PEXIGA_BIMBO:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/broodmother.png", mimeType = "image/png")]
+		public var Bust_PREGRASK:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/quenton.png", mimeType = "image/png")]
 		public var Bust_QUENTON:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/quenton_nude.png", mimeType = "image/png")]
@@ -524,6 +527,13 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/shelly_nude.png", mimeType = "image/png")]
 		public var Bust_SHELLY_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/double_goo.png", mimeType = "image/png")]
+		public var Bust_SLUTGOO:Class;
+		public function get Bust_SLUTGOO_L():Class { return Bust_SLUTGOO; }
+		public var Bounds_SLUTGOO_L:Rectangle = new Rectangle(107, 22, 31, 31);
+		public function get Bust_SLUTGOO_R():Class { return Bust_SLUTGOO; }
+		public var Bounds_SLUTGOO_R:Rectangle = new Rectangle(74, 28, 31, 31);
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/simone.png", mimeType = "image/png")]
 		public var Bust_SIMONE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/simone_nude.png", mimeType = "image/png")]
@@ -553,6 +563,11 @@ package classes.Resources.Busts
 		public var Bust_STEPH_6:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/steph_6_nude.png", mimeType = "image/png")]
 		public var Bust_STEPH_6_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/syri.png", mimeType = "image/png")]
+		public var Bust_SYRI:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/syri_nude.png", mimeType = "image/png")]
+		public var Bust_SYRI_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/tamani.png", mimeType = "image/png")]
 		public var Bust_TAMANI:Class;
@@ -1060,6 +1075,9 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/petr_nude.png", mimeType = "image/png")]
 			public var Full_PETR_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/broodmother.png", mimeType = "image/png")]
+			public var Full_PREGRASK:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/pexiga.png", mimeType = "image/png")]
 			public var Full_PEXIGA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/pexiga_bimbo.png", mimeType = "image/png")]
@@ -1115,6 +1133,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/simone_nude.png", mimeType = "image/png")]
 			public var Full_SIMONE_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/double_goo.png", mimeType = "image/png")]
+			public var Full_SLUTGOO:Class;
+			public function get Full_SLUTGOO_L():Class { return Full_SLUTGOO; }
+			public function get Full_SLUTGOO_R():Class { return Full_SLUTGOO; }
+			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph.png", mimeType = "image/png")]
 			public var Full_STEPH:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_nude.png", mimeType = "image/png")]
@@ -1139,6 +1162,11 @@ package classes.Resources.Busts
 			public var Full_STEPH_6:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_6_nude.png", mimeType = "image/png")]
 			public var Full_STEPH_6_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/syri.png", mimeType = "image/png")]
+			public var Full_SYRI:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/syri_nude.png", mimeType = "image/png")]
+			public var Full_SYRI_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tam.png", mimeType = "image/png")]
 			public var Full_TAMTAM:Class;

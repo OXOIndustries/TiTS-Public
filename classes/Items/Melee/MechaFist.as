@@ -12,7 +12,7 @@ package classes.Items.Melee
 	 */
 	public class MechaFist extends ItemSlotClass
 	{
-		
+		//NPC only? Left alone.
 		public function MechaFist() 
 		{
 			this._latestVersion = 1;

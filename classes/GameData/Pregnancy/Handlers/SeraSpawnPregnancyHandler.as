@@ -23,7 +23,7 @@ package classes.GameData.Pregnancy.Handlers
 			_handlesType = "SeraSpawnPregnancy";
 			_basePregnancyIncubationTime = (60 * 24 * 272); // 9 Months
 			_basePregnancyChance = 0.1;
-			_alwaysImpregnate = true;
+			_alwaysImpregnate = false;
 			_ignoreInfertility = false;
 			_ignoreFatherInfertility = false;
 			_ignoreMotherInfertility = false;
@@ -51,7 +51,7 @@ package classes.GameData.Pregnancy.Handlers
 				if(i == 45)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						AddLogEvent("Your stomach lurches, and you stop what you’re doing. It feels like you’re going to puke. Urk... bleah- nope. You take long breaths, waiting for the nausea to recede, before carrying on.", "passive");
+						AddLogEvent("Your stomach lurches, and you stop what you’re doing. It feels like you’re going to puke. Urk... bleah - nope. You take long breaths, waiting for the nausea to recede, before carrying on.", "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1, true);
 					}, true);
 				}

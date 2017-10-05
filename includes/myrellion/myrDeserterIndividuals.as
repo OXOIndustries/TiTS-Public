@@ -3107,11 +3107,21 @@ public function useBrihasVibeAnal():void
 		//flag Briha’s vibro as used 1
 		//if taur, reduce shields by 1 point
 	}
+	if(inCombat())
+	{
+		output("\n\n");
+		if(pc.HP() <= 0 || pc.lust() >= pc.lustMax()) CombatManager.genericLoss();
+		else CombatManager.genericVictory();
+	}
+	else
+	{
+		setEnemy(null);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 	processTime(20);
 	pc.orgasm();
 	if(pc.isTaur()) pc.shields(-1);
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
 }
 
 //requiring Lys’s dildo
@@ -3184,11 +3194,21 @@ public function didloDPWivStolenDildo(target:String = "vag"):void
 		}
 		output("\n\nSpent, you lay down for a brief rest. The sex toys stuffing your hole are a problem for the awake you.");
 	}
+	if(inCombat())
+	{
+		output("\n\n");
+		if(pc.HP() <= 0 || pc.lust() >= pc.lustMax()) CombatManager.genericLoss();
+		else CombatManager.genericVictory();
+	}
+	else
+	{
+		setEnemy(null);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 	//end, lust, time, set ‘used’ flag for Lys’s toy
 	processTime(30);
 	pc.orgasm();
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
 }
 
 //Give Flower - new scene for Lys
@@ -3431,11 +3451,21 @@ public function useCockOnLysPostFlower(tailCawk:Boolean = false):void
 	if(pc.isNice()) output("laugh");
 	else output("roll your eyes");
 	output(", then collect your gear. Lys re-equips as well, holding the flower away to prevent crushing it, and then you bid one another goodbye.");
+	if(inCombat())
+	{
+		output("\n\n");
+		if(pc.HP() <= 0 || pc.lust() >= pc.lustMax()) CombatManager.genericLoss();
+		else CombatManager.genericVictory();
+	}
+	else
+	{
+		setEnemy(null);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 	//end, reduce lust, time, remove 1x venus flower
 	processTime(21);
 	pc.orgasm();
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
 }
 
 //Cunnilingus/Analingus
@@ -3492,11 +3522,21 @@ public function enolAngusAkaColonelAngus(puss:Boolean = true):void
 	if(pc.isNice()) output("laugh");
 	else output("roll your eyes");
 	output(", then collect your gear. Lys re-equips as well, holding the flower away to prevent crushing it, and then you bid one another goodbye.");
+	if(inCombat())
+	{
+		output("\n\n");
+		if(pc.HP() <= 0 || pc.lust() >= pc.lustMax()) CombatManager.genericLoss();
+		else CombatManager.genericVictory();
+	}
+	else
+	{
+		setEnemy(null);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 	//end, reduce lust, time, remove 1x venus flower
 	processTime(20);
 	pc.orgasm();
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
 }
 
 //double dildo stuffing on Briha [title: 'Compare Toys']
@@ -3752,15 +3792,10 @@ public function doubleDildoBrihaStuffing():void
 		else output("The girl");
 		output(" gasps as you back away, leaving her at the mercy of her enthusiastic mechanical companion. She flops over, laid out in a haze of sex and sweat, stomach muscles working as the toy continues to ravish her; you pick up your things and leave, but don’t get far enough away before you hear the low moans of an ant-girl in orgasm reverberate through the cave a second time.");
 	}
-	//do pc orgasm unless unsexed, pass time
-	processTime(19);
-	IncrementFlag("BRIHA_HARDLIGHT_STUFFED");
-	pc.orgasm();
-	clearMenu();
-	if(inCombat()) 
+	if(inCombat())
 	{
 		output("\n\n");
-		if(inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax())) CombatManager.genericLoss();
+		if(pc.HP() <= 0 || pc.lust() >= pc.lustMax()) CombatManager.genericLoss();
 		else CombatManager.genericVictory();
 	}
 	else
@@ -3769,4 +3804,8 @@ public function doubleDildoBrihaStuffing():void
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
+	//do pc orgasm unless unsexed, pass time
+	processTime(19);
+	IncrementFlag("BRIHA_HARDLIGHT_STUFFED");
+	pc.orgasm();
 }

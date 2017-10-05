@@ -10,6 +10,7 @@
 	
 	public class RudimentaryRevolver extends ItemSlotClass
 	{
+		//Level 4 (Common). Balance 2.0
 		//constructor
 		public function RudimentaryRevolver()
 		{
@@ -39,10 +40,10 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 1300;
+			this.basePrice = 700;
 			this.attack = -2;
 			
-			baseDamage.kinetic.damageValue = 3;
+			baseDamage.kinetic.damageValue = 9;
 			baseDamage.addFlag(DamageFlag.BULLET);
 			
 			this.defense = 0;

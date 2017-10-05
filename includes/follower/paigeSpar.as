@@ -174,7 +174,7 @@ public function paigeSparAction(arg:Number = 1):void
 	else if(pc.statusEffectv2("PAIGE_SPAR") <= 0)
 	{
 		output("\n\n<b>That last one has you feeling like maybe sitting down a while...</b>");
-		pc.HP(-pc.HPMax());
+		pc.HPRaw = 0;
 		clearMenu();
 		addButton(0,"Next",loseToPaige);
 	}
@@ -435,7 +435,8 @@ public function FFLV():void
 	output(".");
 
 	output("\n\n<i>“Godsdamn, does it feel good to be the winner.”</i> Paige congratulates herself as she disengages from you");
-	if(pc.hasCock()) output(", your [pc.cum] leaking from her tunnel as she does]. <i>“Hurry up and win a match, [pc.name], so you can know what it’s like. I’m excited to see what kind of kinks you have in mind for me.”</i>");
+	if(pc.hasCock()) output(", your [pc.cum] leaking from her tunnel as she does");
+	output(". <i>“Hurry up and win a match, [pc.name], so you can know what it’s like. I’m excited to see what kind of kinks you have in mind for me.”</i>");
 
 	output("\n\nYou lay on the floor, physically and sexually dominated and defeated as Paige casually redresses. You’re exhausted and stiff, and Paige does nothing to alleviate you or help you with your pain – which is a little cold, but it’s all playing the part of the dominant victor, you realize, and her pleasure for her victory didn’t necessarily involve your own. You’re alone in the room before you have the strength to get up and gather your effects.");
 
@@ -483,7 +484,7 @@ public function FFLA():void
 
 	output("\n\n<i>“But the good Gods probably shouldn’t have made taking it up the butt so much fun! Maybe it’s because it’s so wrong? Maybe it’s because my ass is one of my sexier assets? Whatever the case, I’m getting about the same results. What do you think?”</i>");
 
-	output("\n\nYou can’t muster any sort of reply, focused too much on tanking her punishment. <i>“That’s what I thought, [pc.name].”</i> Paige breathes calmly through her nose as she fucks you; you wince through clenched teeth as you take it. Paige’s hips move fluidly and with a sort of grace that only a yoga master could achieve with something in their butt; the few times you find pleasure between her ruthless pounding is insulted by your agitated body fidgeting helplessly beneath you.");
+	output("\n\nYou can’t muster any sort of reply, focused too much on taking her punishment. <i>“That’s what I thought, [pc.name].”</i> Paige breathes calmly through her nose as she fucks you; you wince through clenched teeth as you take it. Paige’s hips move fluidly and with a sort of grace that only a yoga master could achieve with something in their butt; the few times you find pleasure between her ruthless pounding is insulted by your agitated body fidgeting helplessly beneath you.");
 
 	output("\n\nYou attempt to involve yourself in the sex a bit, raising your hands to grab onto something of hers: a thick globe of ass, or a strong thigh, or a bouncy boob. But Paige angrily slaps your hands away each time you try and punishes you by squatting on you and clenching even harder, somehow. <i>“Don’t go getting comfortable on me, now,”</i> she taunts. <i>“When you win, you get to touch whatever you want, [pc.name], but until then, you’re</i> my <i>bitch, useful for nothing but a good reaming, got me?”</i>");
 
@@ -739,18 +740,18 @@ public function FFWOC(args:Array):void
 		if(pc.hasVagina()) output("in my cunt");
 		else output("against my skin");
 		output(", is as much a privilege for me as it is for you");
-		output(".”</i> She closes her eyes and hums, relaxing into her service and enjoying your words. The effect is what you’d hoped: ");
-		if(pc.hasCock()) output("her technique changes from ardent sucking and licking to something gentler but nonetheless craving; while she’s a thirsty girl, she also wants to make it last");
-		else 
-		{
-			output("her craving, searching tongue relaxes a bit and she takes longer, broader strokes ");
-			if(pc.hasVagina()) output("inside");
-			else output("against");
-			output(" you");
-			if(pc.hasVagina()) output(", collecting and savoring every drop of your [pc.girlCum] before lunging in for another mouthful");
-		}
-		output(".");
 	}
+	output(".”</i> She closes her eyes and hums, relaxing into her service and enjoying your words. The effect is what you’d hoped: ");
+	if(pc.hasCock()) output("her technique changes from ardent sucking and licking to something gentler but nonetheless craving; while she’s a thirsty girl, she also wants to make it last");
+	else 
+	{
+		output("her craving, searching tongue relaxes a bit and she takes longer, broader strokes ");
+		if(pc.hasVagina()) output("inside");
+		else output("against");
+		output(" you");
+		if(pc.hasVagina()) output(", collecting and savoring every drop of your [pc.girlCum] before lunging in for another mouthful");
+	}
+	output(".");
 	output("\n\n<i>“Don’t tell me you threw the match on purpose, just so you could ");
 	if(pc.hasCock()) output("suck me off");
 	else output("eat me out");
@@ -833,9 +834,10 @@ public function FFWVG(args:Array):void
 	showPaige(true);
 	args.push("FFWVG");
 	output("You’re not totally convinced that the whole thing was a charade to see who would top whom, and what Paige really wanted was just a good ol’ fashioned fucking. You’re okay with that.");
+	var x:int = -1;
 	if(pc.hasCock() && pc.cockThatFits(paige.vaginalCapacity(0)) >= 0)
 	{
-		var x:int = pc.cockThatFits(paige.vaginalCapacity(0));
+		x = pc.cockThatFits(paige.vaginalCapacity(0));
 		output("You grip onto Paige’s thighs for support and start to casually rail her; you withdraw until Paige is gripping onto your [pc.cockHead " + x + "], then you push yourself back in sensually, twisting your [pc.hips] a bit so she can really feel every fiber and vein on your shaft as you go in.");
 	}
 	else if(pc.hasVagina()) output("You grip onto Paige’s upraised leg for support and start to casually trib her; your upward strokes are lazy and elongated, making her wait for your downward stroke. You twist your [pc.hips] as you descend, so she can really feel every contour and nuance of your [pc.vagina] as you fuck her.");
@@ -843,7 +845,9 @@ public function FFWVG(args:Array):void
 
 	output("\n\nYou settle into a rhythm; your body is a little tense from the awkward angle, but you’re getting what you both want. You watch your conquest from your higher angle, appreciating her form: you love the way her abs pop out when you push in and the way her biceps bulge when you bottom out inside her. You claw at her thighs to see her reaction. <i>“Gods,”</i> she whispers, biting her bottom lip in pleasure.");
 
-	output("\n\nIt’s not quite as intimate as whenever you have sex on her bed, but the setting has certainly done something to you both: Paige is wetter[if (pc.hasCock = true) and tighter] for you than usual, and the way she’s moving her body off-time with yours – her hands above her head; her abdominals clenched; her hips moving to one side on the outswing and the other on the inswing – she’s clearly into this far more than you expected.");
+	output("\n\nIt’s not quite as intimate as whenever you have sex on her bed, but the setting has certainly done something to you both: Paige is wetter");
+	if(x >= 0) output(" and tighter");
+	output(" for you than usual, and the way she’s moving her body off-time with yours – her hands above her head; her abdominals clenched; her hips moving to one side on the outswing and the other on the inswing – she’s clearly into this far more than you expected.");
 	output("\n\nYou lean in closer to Paige, doubling over her body so you can talk to her nose-to-nose. You don’t dare stop your humping. <i>“Paige,”</i> you ask lowly, <i>“did you lose on purpose? Be honest.”</i>");
 	output("\n\n<i>“I would never,”</i> she answers. From her tone and body language, she’s telling the truth.");
 	output("\n\n<i>“So,”</i> you ask slowly, drawing a hand up to pinch her left nipple, <i>“you just like losing?”</i>");

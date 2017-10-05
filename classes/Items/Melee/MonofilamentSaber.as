@@ -10,6 +10,7 @@
 	
 	public class MonofilamentSaber extends ItemSlotClass
 	{
+		//Level 8 (Common). Balance 2.0
 		//constructor
 		public function MonofilamentSaber()
 		{
@@ -39,21 +40,21 @@
 			attackNoun = "slash";
 			
 			//Information
-			this.basePrice = 24000;
-			this.attack = 0;
-			
+			this.basePrice = 13000;
+					
 			baseDamage = new TypeCollection();
 			baseDamage.kinetic.damageValue = 20;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			//baseDamage.addFlag(DamageFlag.CHANCE_APPLY_BURN);
 			//addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
+			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
 			this.critBonus = 5;
-			this.evasion = 3;
+			this.evasion = 4;
 			this.fortification = 0;
 			
 			this.version = _latestVersion;

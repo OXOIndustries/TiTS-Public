@@ -101,22 +101,27 @@ package classes.GameData.Pregnancy
 		public function set NumMale(v:int):void { NumGenders.Male = v; }
 		public function set NumIntersex(v:int):void { NumGenders.Intersex = v; }
 		
+		private function childAge():int
+		{
+			// Avoid negative number crashes
+			return Math.max((kGAMECLASS.GetGameTimestamp() - BornTimestamp), 0);
+		}
 		public function get Years():int
 		{
 			// ((now - born) * rate of maturity) / minutes in a year
-			return int(int((kGAMECLASS.GetGameTimestamp() - BornTimestamp) * MaturationRate) / 525600);
+			return int(int(childAge() * MaturationRate) / 525600);
 		}
 		
 		public function get Months():int
 		{
 			// ((now - born) * rate of maturity) / minutes in a month
-			return int(int((kGAMECLASS.GetGameTimestamp() - BornTimestamp) * MaturationRate) / 43200);
+			return int(int(childAge() * MaturationRate) / 43200);
 		}
 		
 		public function get Days():int
 		{
 			// ((now - born) * rate of maturity / minutes in a day
-			return int(int((kGAMECLASS.GetGameTimestamp() - BornTimestamp) * MaturationRate) / 1440);
+			return int(int(childAge() * MaturationRate) / 1440);
 		}
 		
 		public function GetSaveObject():Object

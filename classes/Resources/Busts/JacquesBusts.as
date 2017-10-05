@@ -208,6 +208,8 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/riya.png", mimeType = "image/png")]
 		public var Bust_RIYA:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/riya_casual.png", mimeType = "image/png")]
+		public var Bust_RIYA_CASUAL:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/riya_nude.png", mimeType = "image/png")]
 		public var Bust_RIYA_NUDE:Class;
 		

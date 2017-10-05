@@ -7,6 +7,7 @@ package classes.Items.Armor
 	
 	public class GemstoneLinks extends ItemSlotClass
 	{
+		//Level 8 (Common). Balance 2.0
 		//constructor
 		public function GemstoneLinks()
 		{
@@ -33,14 +34,14 @@ package classes.Items.Armor
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 4500;
+			this.basePrice = 14080;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 10;
 			this.critBonus = 0;
-			this.evasion = 5;
+			this.evasion = 11;
 			this.fortification = 0;
 			
 			itemFlags = [];

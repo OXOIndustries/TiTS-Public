@@ -13,26 +13,23 @@ public function novaBustDisplay(nude:Boolean = false, special:String = "none"):S
 {
 	var bustName:String = "";
 	
-	if(chars["GOO"].hairStyle == "ponytail")
+	switch(chars["GOO"].hairStyle)
 	{
-		bustName = "GRAY_GOO_PRIME";
-	}
-	else if(chars["GOO"].hairStyle == "loose")
-	{
-		bustName = "GRAY_GOO";
-	}
-	else
-	{
-		bustName = "NOVA";
-		if(nude)
-		{
-			bustName += "_NUDE";
-			switch(special)
+		case "ponytail": bustName = "GRAY_GOO_PRIME"; break;
+		case "loose": bustName = "GRAY_GOO"; break;
+		case "double": bustName = "SLUTGOO"; break;
+		default:
+			bustName = "NOVA";
+			if(nude)
 			{
-				case "tits": bustName += "_0"; break;
-				case "cock": bustName += "_1"; break;
+				bustName += "_NUDE";
+				switch(special)
+				{
+					case "tits": bustName += "_0"; break;
+					case "cock": bustName += "_1"; break;
+				}
 			}
-		}
+			break;
 	}
 	
 	return bustName;
@@ -1202,12 +1199,23 @@ public function gooArmorCrewOption(arg:Array):void
 				
 				processTime(1);
 				
-				if(chars["GOO"].hairStyle != "null") gooArmorAddButton(fromCrew, 0, "Normal", gooArmorChangeBody, ["null", fromCrew], "Appear Normal", "Change to look like her normal self.");
-				else gooArmorAddDisabledButton(fromCrew, 0, "Normal");
-				if(chars["GOO"].hairStyle != "loose") gooArmorAddButton(fromCrew, 1, "Gray Goo", gooArmorChangeBody, ["loose", fromCrew], "Appear Like a Gray Goo", "Change to look like the common gray goo that roam the wilds of Tarkus.");
-				else gooArmorAddDisabledButton(fromCrew, 1, "Gray Goo");
-				if(chars["GOO"].hairStyle != "ponytail") gooArmorAddButton(fromCrew, 2, "Capt. Morrow", gooArmorChangeBody, ["ponytail", fromCrew], "Appear Like Victoria Morrow", "Change to look like the Captain of the ship she originated from.");
-				else gooArmorAddDisabledButton(fromCrew, 2, "Capt. Morrow");
+				var bodyBtn:int = 0;
+				if(chars["GOO"].hairStyle != "null") gooArmorAddButton(fromCrew, bodyBtn++, "Normal", gooArmorChangeBody, ["null", fromCrew], "Appear Normal", "Change to look like her normal self.");
+				else gooArmorAddDisabledButton(fromCrew, bodyBtn++, "Normal");
+				if(flags["MET_GRAY_GOO"] != undefined)
+				{
+					if(chars["GOO"].hairStyle != "loose") gooArmorAddButton(fromCrew, bodyBtn++, "Gray Goo", gooArmorChangeBody, ["loose", fromCrew], "Appear Like a Gray Goo", "Change to look like the common gray goo that roam the wilds of Tarkus.");
+					else gooArmorAddDisabledButton(fromCrew, bodyBtn++, "Gray Goo");
+				}
+				else gooArmorAddDisabledButton(fromCrew, bodyBtn++, "Locked", "Locked", "Try exploring Tarkus some more!");
+				if(chars["GOO"].hairStyle != "ponytail") gooArmorAddButton(fromCrew, bodyBtn++, "Capt. Morrow", gooArmorChangeBody, ["ponytail", fromCrew], "Appear Like Victoria Morrow", "Change to look like the Captain of the ship she originated from.");
+				else gooArmorAddDisabledButton(fromCrew, bodyBtn++, "Capt. Morrow");
+				if(flags["DOUBLE_GOO_SLUT_MET_GOO_ARMOR"] != undefined)
+				{
+					if(chars["GOO"].hairStyle != "double") gooArmorAddButton(fromCrew, bodyBtn++, "DblGoo", gooArmorChangeBody, ["double", fromCrew], "Appear Like the Double-Headed Gray Goo Slut", "Change to look like the double headed gray goo you met on Tarkus.");
+					else gooArmorAddDisabledButton(fromCrew, bodyBtn++, "DblGoo");
+				}
+				
 				gooArmorAddButton(fromCrew, 14, "Back", gooArmorChangeBody, ["back", fromCrew]);
 			}
 			break;
@@ -1660,6 +1668,7 @@ public function gooArmorChangeBody(arg:Array):void
 				else txt += " gooey";
 				txt += " tendrils relax back into her body, she gives her ass a loud smack, breaking you from your entranced daze. <i>“You like this form better, right?”</i>";
 				txt += "\n\nYou take a moment to soak in her new look.";
+				chars["GOO"].tallness = 73;
 				chars["GOO"].legCount = 1;
 				chars["GOO"].legType = GLOBAL.TYPE_GOOEY;
 				chars["GOO"].legFlags = [GLOBAL.FLAG_AMORPHOUS];
@@ -1671,6 +1680,7 @@ public function gooArmorChangeBody(arg:Array):void
 				txt += "\n\nYou shake your head in this girl’s attempt at being monstrous.";
 				txt += "\n\n<i>“Just kidding!”</i> she says, breaking character. <i>“Ee-hee... I hope no one confuses me for being a hostile goo though!”</i>";
 				txt += "\n\nYou take a moment to review her new look.";
+				chars["GOO"].tallness = 70;
 				chars["GOO"].legCount = 1;
 				chars["GOO"].legType = GLOBAL.TYPE_GOOEY;
 				chars["GOO"].legFlags = [GLOBAL.FLAG_AMORPHOUS];
@@ -1683,9 +1693,25 @@ public function gooArmorChangeBody(arg:Array):void
 				txt += "er body seems to have formed a kind of tight spacer uniform, each shoulder bearing a Bell-Isle/Grunmann patch. The outfit is wide open, letting her still bouncy tits and crotch display openly in the air.";
 				txt += "\n\n<i>“Oops!”</i> [goo.name] squeaks as she notices her lewd exposure and tries to adopt a more conservative look. A tiny “zipper handle” appears below her pussy and proceeds to close up her silver gray-colored uniform, covering the naked areas in its path--traveling from the bulge of her camel toe, sliding across her navel, and stops just below her now half-covered tits. It struggles a bit, making the tightly-compressed muffin-top of breast flesh quake in response. With a cute huff, the goo exhales and the zipper wins the battle, shooting up her cleavage and sealing the round chest globes in a taut encasing, slowing its journey at the base of the neck collar. With that, she looks at you and smiles, trying hard to get into character. <i>“So who’s the " + (crew(true) > 0 ? "crew" : "ship") + "’s captain now?”</i>";
 				txt += "\n\nYou take a moment to admire her new look.";
+				chars["GOO"].tallness = 73;
 				chars["GOO"].legCount = 2;
 				chars["GOO"].legType = GLOBAL.TYPE_GOOEY;
 				chars["GOO"].legFlags = [GLOBAL.FLAG_PLANTIGRADE, GLOBAL.FLAG_SMOOTH, GLOBAL.FLAG_GOOEY];
+				break;
+			case "double":
+				txt += "You suggest that [goo.name] change herself into the shape of the double-headed goo slut the two of you have met during your slutshroom harvesting mission with Azra.";
+				txt += "\n\n<i>“Oh, I remember her!”</i> The goo girl squeals <i>“So nice... and hungry!”</i>. She quickly melts into an amorphous silver blob of goo, the mass then trailing up your [pc.leg] and towards your [pc.crotch]. <i>“Like, all growing girls need a good meal!”</i> she teases. Her formless body then climbs your [pc.butt] and [pc.hips] and scales your back until she reaches your shoulders. From there, two orbs form on either side of your head.";
+				txt += "\n\n<i>“Hiya!”</i> Two voices eminate simultaneously from the orbs as they each produce a mouth, distinct faces forming and long hair framing them.";
+				txt += "\n\n<i>“Hello there, lovely,”</i> says the calm right side, long liquid lashes softly fluttering in your direction.";
+				txt += "\n\n<i>“I can’t wait for some yummy cummy!”</i> the bubbly left head exclaims as her gooey tongue runs across her pursed and ready, extra plump lips.";
+				txt += "\n\nLooks like you have a Double [goo.name] now.";
+				txt += "\n\nThe rest of [goo.name]’s body blooms forth from underneath the two heads, making sure to be exaggeratingly curvy and exceptionally tall--almost twice her usual size. Her massive, hyper-sexualized form gently rolls off you before giving you a teasing bump with her gooey ghetto booty. Now used to her new shape, she makes some superficial tweaks to herself.";
+				txt += "\n\n<i>“Wow, girl, lookin’ good!”</i> One head turned to the other, she compliments herself. <i>“You too, sexy!”</i> Then both turning to you, the two ask in unison, <i>“So, what do ya think?”</i>";
+				txt += "\n\nYou take a moment to admire her new look.";
+				chars["GOO"].tallness = 135;
+				chars["GOO"].legCount = 1;
+				chars["GOO"].legType = GLOBAL.TYPE_GOOEY;
+				chars["GOO"].legFlags = [GLOBAL.FLAG_AMORPHOUS];
 				break;
 		}
 		chars["GOO"].hairStyle = newStyle;

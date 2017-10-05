@@ -1497,7 +1497,7 @@ public function bubbleBuddyVaandeEpilogue():void
 	output("\n\nFragments of memories come back to you and you start putting together the tricky, mesmeric feat the pheromone-flooded rahn must’ve accomplished. You even recall someone from the front desk calling to check in on you mid-way through the gluttonous girl’s harvest. How long have you been here? You grab your [pc.gear] and check your Codex quickly. TWELVE HOURS?! No wonder Vaande seems to have suddenly inherited her own sperm bank!");
 	output("\n\nGroaning, you pick up the sorely abused Bubble Buddy off of the floor and stow it with your other belongings. Poor girl had nearly as tough a time as you did yourself! You notice a credit chit on the nightstand and grab it in consideration of your unexpected generosity. At the very least, it should cover the added expenses the brothel mistress was so keen to hit you with. You leave with a mental note to avoid putting yourself on the wrong end of a hungry doh’rahn again.");
 	processTime(660);
-	pc.energy(-9999);
+	pc.energyRaw = 0;
 	pc.HP(-Math.round(pc.HPMax()/2));
 	for(var x:int = 0; x < 15; x++) { pc.orgasm(); }
 	clearMenu();

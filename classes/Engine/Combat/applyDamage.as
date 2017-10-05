@@ -39,11 +39,11 @@ package classes.Engine.Combat
 		target.OnTakeDamage(damageResult.typedTotalDamage);
 		
 		// Damage has already been applied by this point, so we can skip output if we want...
-		if (special == "suppress" || attacker == null)
+		if (special == "suppress" || (attacker == null && special != "minimal"))
 		{
 			return damageResult;
 		}
-		else if (special == "minimal")
+		else if (special == "minimal" || attacker == null)
 		{
 			outputDamage(damageResult);
 			return damageResult;

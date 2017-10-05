@@ -7,7 +7,7 @@
 	
 	public class LittleBlackDress extends ItemSlotClass
 	{
-
+		//Bess Only?
 		//constructor
 		public function LittleBlackDress()
 		{

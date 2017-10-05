@@ -9,6 +9,7 @@
 	public class MilitaryPick extends ItemSlotClass
 	{
 		//constructor
+		//Level 6 (Common). Balance 2.0
 		public function MilitaryPick()
 		{
 			this._latestVersion = 1;
@@ -38,9 +39,9 @@
 			
 			//Information
 			this.basePrice = 3000;
-			this.attack = -3;
+			this.attack = -2;
 			
-			baseDamage.kinetic.damageValue = 14;
+			baseDamage.kinetic.damageValue = 21;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			
 			this.defense = 0;

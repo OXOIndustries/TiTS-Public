@@ -122,7 +122,7 @@ public function beatriceBonusButts(button:int = 0):void
 		addButton(button,"Woman",approachBeatrice,undefined,"Woman","Visit the friendly lady in uniform.");
 	}
 	//Repeat
-	else
+	else if(flags["BEA_TITLE"] != undefined)
 	{
 		output("\n\n" + flags["BEA_TITLE"] + " is here again, sipping her amber colored drink and enjoying the warm fire. She gives you a friendly smile.");
 		addButton(button,flags["BEA_TITLE"],approachBeatrice,undefined,flags["BEA_TITLE"],"Head to her table.");

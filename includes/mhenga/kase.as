@@ -44,7 +44,7 @@ public function kaseBustDisplay(nude:Boolean = false):String
 public function kaseAtBurts():Boolean
 {
 	//Must have completed Satellite Quest, Kase must not have left yet, and Kase must not be crew
-	return (flags["SATELLITE_QUEST"] == 2 && (flags["KASE_TIMER"]+(60*24*7) > GetGameTimestamp()) && flags["KASE_CREW"] == undefined);
+	return (flags["SATELLITE_QUEST"] == 2 && (flags["KASE_TIMER"] == undefined || flags["KASE_TIMER"]+(60*24*7) > GetGameTimestamp()) && flags["KASE_CREW"] == undefined);
 }
 
 public function kaseAtBurtsAddendum(btnSlot:int = 0):void
@@ -58,9 +58,9 @@ public function approachKase():void
 {
 	if (flags["KASE_OUTFIT"] == undefined) flags["KASE_OUTFIT"] = 0;
 	
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	if (flags["KASE_INTRO"] == undefined)
@@ -102,9 +102,9 @@ public function kaseMenu():void
 
 public function kaseAppearance():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("You'd guess the pale-skinned Kase is about 5'5”, which is pretty normal for a kaithrit. What's even more inherent of his race, though, is his figure. His frame is slight, but the curves of his hips, thighs, and midsection, along with his svelte shoulders, give him a very girlish, dainty shape, which seems common for his species' males.");
@@ -124,9 +124,9 @@ public function kaseAppearance():void
 
 public function kaseTalk():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("What should you and Kase talk about?");
@@ -144,9 +144,9 @@ public function kaseTalkMenu():void
 
 public function kaseTalkHim(btnSlot:int = 0):void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("<i>“Me? Well, as you already know I "+(kaseIsCrew()?"used to ":"")+"work for Pyrite, but beyond that I guess I could tell you a bit about myself. That is, of course, if you want to hear,”</i> Kase explains, keeping his straight posture and looking at you expectantly.");
@@ -172,9 +172,9 @@ public function kaseTalkHim(btnSlot:int = 0):void
 
 public function kaseTalkWork():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("<i>“Working for Pyrite wasn't terrible, at first anyway,”</i> Kase states, <i>“I enjoyed running numbers, keeping track of supplies arriving on and shipping off the planet, but then, after some promotions they started shipping <i>me</i> off-world.”</i> The kitty boy slumps and shakes his head, <i>“They sent me to rush worlds to recover lost shipments, take over logistic branches when their original managers got injured by some forsaken rush-monster. Then, like you saw first hand here, they send me into the wilderness to find lost satellites... to get injured by forsaken rush-monsters. Now they have me waiting here in this... shanty town for redeployment to the next issue I am privileged to fix. <b>I believe I'll only be here for another ");
@@ -185,7 +185,7 @@ public function kaseTalkWork():void
 	else if (GetGameTimestamp()-(6*24*60) < flags["KASE_TIMER"]) output("couple of days"); 
 	else if (GetGameTimestamp()-(7*24*60) < flags["KASE_TIMER"]) output("day"); 
 	else output("!KASE SHOULDN'T BE HERE MAN!");
-	output("before that happens, though.</b>”</i>");
+	output(" before that happens, though.</b>”</i>");
 	output("\n\nHe lets out a long sigh and rubs his broken arm for a moment, leading you to ask him if he's thought of getting work anywhere else.");
 	output("\n\n<i>“Oh, believe me I have,”</i> the Kaithrit continues, straightening his posture, <i>“But I'm under contract, and until I find someone who is willing to buy that contract, or this contract ends, I am stuck with Pyrite and their... wonderful medical policies.”</i>");
 	output("\n\nYou ask him what he means by that.");
@@ -201,9 +201,9 @@ public function kaseTalkWork():void
 
 public function kaseTalkArm(btnSlot:int = 0):void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	if (GetGameTimestamp()-(3*24*60) < flags["KASE_TIMER"]) output("<i>“Oh,”</i> he says, gently rubbing his injured appendage, <i>“It has healing to do. I should be able to move it freely again in about a week, by my estimate. If I hadn't had to buy cheap medical supplies, I'd probably be better already.”</i>");
@@ -233,9 +233,9 @@ public function kaseTalkArm(btnSlot:int = 0):void
 
 public function kaseStressRelief():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("You smirk and slide your way over to Kase's side of the table, getting rather close to him, enough to make his face turn red.");
@@ -265,9 +265,9 @@ public function kaseStressRelief():void
 
 public function kaseJoinCrew():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("Looking at Kase's situation, you wonder if you could buy his contract, leading you to tell him about the ship you own, and ask him if he'd be interested in joining your crew as a logistics officer. ");
@@ -282,9 +282,9 @@ public function kaseJoinCrew():void
 
 public function kaseBuyContract():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("You smile and pull out your Codex and get ready to fill out some paperwork and transfer some credits, telling him you'd be happy to buy his contract.");
@@ -304,9 +304,9 @@ public function kaseBuyContract():void
 
 public function kaseHireSteeleTech():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("You lean forward and ask him if he'd like to work for SteeleTech on your ship. ");
@@ -326,9 +326,9 @@ public function kaseHireSteeleTech():void
 
 public function kaseNevermind():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("You figure you probably shouldn't go around buying employee contracts like this and " + (pc.isAss() ? "tell Kase you can't hire him" : "apologize for getting his hopes up") + ".");

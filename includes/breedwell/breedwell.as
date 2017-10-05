@@ -35,7 +35,7 @@ public function breedwellTryUnlock():void
 {
 	if(MailManager.isEntryUnlocked("breedwell_unlock")) return;
 	
-	if(breedwellCheckBirth() || breedwellCheckSperm())
+	if((breedwellCheckBirth() && pc.fertility() > 0) || (breedwellCheckSperm() && pc.virility() > 0))
 	{
 		goMailGet("breedwell_unlock");
 	}
@@ -214,7 +214,7 @@ public function breedwellLoungeBonus():Boolean
 	if(flags["BREEDWELL_STATUS_BREEDER"] == undefined) addDisabledButton(0, "Pod", "Pod", "You are not familiar with this yet. You probably need to be properly introduced before using it.");
 	else if(!pc.hasVagina()) addDisabledButton(0, "Pod", "Pod", "You require a vagina to try this.");
 	else if(!breedwellCheckBirth()) addDisabledButton(0, "Pod", "Pod", "Making babies? You don’t think you’re exprienced enough to try this yet...");
-	else if(pc.isFullyWombPregnant()) addDisabledButton(0, "Pod", "Pod", "You’re already too stuffed to do this.");
+	else if(pc.isFullyWombPregnant() && totalPregRahnEggs() >= (breedwellBreederLevel() * 2 * totalRahnPregnancies())) addDisabledButton(0, "Pod", "Pod", "You’re already too stuffed to do this.");
 	else if(pc.fertility() <= 0) addDisabledButton(0, "Pod", "Pod", "You’re not fertile enough to do this.");
 	else addButton(0, "Pod", breedwellApproachPod, undefined, "Pod", "Harness yourself up and get ready for a breeding.");
 	
@@ -235,7 +235,7 @@ public function breedwellDonationBonus():Boolean
 	else if(!pc.hasCock()) addDisabledButton(0, "Cubicle", "Cockmilker", "You require a penis to try this.");
 	else if(!breedwellCheckSperm()) addDisabledButton(0, "Cubicle", "Cockmilker", "Milking your semen? You don’t think you’re exprienced enough to try this yet...");
 	else if(pc.virility() <= 0) addDisabledButton(0, "Cubicle", "Cockmilker", "You’re not virile enough to do this.");
-	else if(pc.hasStatusEffect("Breedwell Cockmilker Cooldown"))
+	else if(flags["BREEDWELL_DONATION_USED"] == days)
 	{
 		output("\n\nThe cubicles refuse to open when you approach them. They’re evidently programmed not to for those who have already given their donation for the day.");
 		addDisabledButton(0, "Cubicle", "Cockmilker", "You can't use this at the moment. Maybe later?");
@@ -409,8 +409,14 @@ public function breedwellInductionCheck():Boolean
 	if(pc.isFemale() && flags["BREEDWELL_STATUS_BREEDER"] != undefined) return true;
 	if(pc.isMale() && flags["BREEDWELL_STATUS_DONATOR"] != undefined) return true;
 	// Viability checks - interrupts button generation if not eligible candidate.
-	if(pc.hasVagina() && flags["BREEDWELL_STATUS_BREEDER"] == undefined) return (!breedwellCheckBirth());
-	if(pc.hasCock() && flags["BREEDWELL_STATUS_DONATOR"] == undefined) return (!breedwellCheckSperm());
+	if(pc.hasVagina() && flags["BREEDWELL_STATUS_BREEDER"] == undefined)
+	{
+		if(!pc.hasCock() || flags["BREEDWELL_STATUS_DONATOR"] != undefined) return (!breedwellCheckBirth());
+	}
+	if(pc.hasCock() && flags["BREEDWELL_STATUS_DONATOR"] == undefined)
+	{
+		if(!pc.hasVagina() || flags["BREEDWELL_STATUS_BREEDER"] != undefined) return (!breedwellCheckSperm());
+	}
 	// Show button if haven't yet inducted!
 	return false;
 }
@@ -864,6 +870,50 @@ public function getBreedwellRahnPregContainer(rahnType:int = 0):PregnancyPlaceho
 	250%+ Fertility				+1
 	Premium Breeder				+1
 */
+public function eggBreederLevel(bWomb:Boolean = true):int
+{
+	var level:int = 1;
+	if(flags["EGG_TRAINING"] >= 1) level++;
+	if(flags["EGG_TRAINING"] >= 2) level++;
+	if(flags["EGG_TRAINING"] >= 3) level++;
+	if(flags["EGG_TRAINING"] >= 4) level++;
+	if(pc.hasPerk("Broodmother")) level += 2;
+	// Womb bonuses
+	if(bWomb && pc.hasVagina())
+	{
+		var nFertility:Number = pc.fertility();
+		if(nFertility >= 2.5) level++;
+		if(nFertility >= 5) level++;
+		if(nFertility >= 10) level++;
+	}
+	
+	return level;
+}
+public function breedwellBreederLevel():int
+{
+	var level:int = eggBreederLevel();
+	if(flags["BREEDWELL_STATUS_BREEDER"] >= 2) level += 2;
+	
+	return level;
+}
+public function totalPregRahnEggs():int
+{
+	var nEggs:int = 0;
+	for(var i:int = 0; i < pc.vaginas.length; i++)
+	{
+		if(InCollection(pc.pregnancyData[i].pregnancyType, ["RahnPregnancy", "RahnPregnancyBreedwell"])) nEggs += pc.pregnancyData[i].pregnancyQuantity;
+	}
+	return nEggs;
+}
+public function totalRahnPregnancies():int
+{
+	var nRahn:int = 0;
+	for(var i:int = 0; i < pc.vaginas.length; i++)
+	{
+		if(InCollection(pc.pregnancyData[i].pregnancyType, ["RahnPregnancy", "RahnPregnancyBreedwell"])) nRahn++;
+	}
+	return nRahn;
+}
 // PC receives 300 credits for every egg they take after a session, then 600 credits for every rahn carried to term at birth.
 public function breedwellApproachPod():void
 {
@@ -940,13 +990,7 @@ public function breedwellApproachPod():void
 	sceneList.push(6);
 	sceneList.push(7);
 	
-	var sceneCount:int = 1;
-	// Womb Egg Trainer Level		+1 every second level. e.g. +1 at level 2, +2 at level 4
-	if(flags["EGG_TRAINING"] >= 2) sceneCount++;
-	if(flags["EGG_TRAINING"] >= 4) sceneCount++;
-	// 250%+ Fertility				+1
-	if(pc.fertility() >= 2.50) sceneCount++;
-	// Premium Breeder				+1
+	var sceneCount:int = Math.min(breedwellBreederLevel(), 4);
 	if(flags["BREEDWELL_STATUS_BREEDER"] >= 2) sceneCount++;
 	
 	clearMenu();
@@ -989,7 +1033,7 @@ public function breedwellPodScenes(arg:Array):void
 		// Then look for ongoing rahn pregnancies.
 		for(i = 0; i < pc.vaginas.length; i++)
 		{
-			if(InCollection(pc.pregnancyData[i].pregnancyType, ["RahnPregnancy", "RahnPregnancyBreedwell"])) rahnWombs.push(i);
+			if(InCollection(pc.pregnancyData[i].pregnancyType, ["RahnPregnancy", "RahnPregnancyBreedwell"]) && pc.pregnancyData[i].pregnancyQuantity < (breedwellBreederLevel() * 2)) rahnWombs.push(i);
 		}
 		if(rahnWombs.length > 0) vIdx = rahnWombs[rand(rahnWombs.length)];
 		// Otherwise, just choose a random vagina.
@@ -1228,8 +1272,6 @@ public function breedwellPodEnd(numEggs:int = 0):void
 */
 public function breedwellCumCreditValue(amount:Number = 0):Number
 {
-	if(amount <= 0) return 5;
-	
 	// New calculations!
 	var maxCredVal:Number = 10; // Maximum credit value to start.
 	var normalAmount:Number = 500000; // Point where credit value is at 1 credit/mL before degrading.
@@ -1240,13 +1282,15 @@ public function breedwellCumCreditValue(amount:Number = 0):Number
 	// Other adjustments...
 	normalAmount = 1500000;
 	curveMult = 4;
-	scalar = 0.50;
+	scalar = 0.005 * pc.cumQuality();
 	
 	var creditVal:Number = ( maxCredVal / Math.pow((((curveMult * amount) / normalAmount) + 1), 2) );
 	var cashOut:Number = (amount * creditVal * scalar);
 	
 	// Hard cap
+	var minCredCap:Number = 5;
 	var maxCredCap:Number = 500000;
+	if(cashOut < minCredCap) cashOut = minCredCap;
 	if(cashOut > maxCredCap) cashOut = maxCredCap;
 	
 	if(debug)
@@ -1305,8 +1349,8 @@ public function breedwellCockmilkerEnd(cumTotal:Number = 0):void
 	pc.removeStatusEffect("Breedwell Cockmilker Dildo");
 	StatTracking.track("breedwell/cum milked", cumTotal);
 	IncrementFlag("BREEDWELL_TIMES_DONATED");
-	// Disable cockmilker for a day.
-	pc.createStatusEffect("Breedwell Cockmilker Cooldown", 0, 0, 0, 0, true, "", "", false, 1440);
+	// Disable cockmilker for the day.
+	flags["BREEDWELL_DONATION_USED"] = days;
 }
 // Intro
 public function breedwellCockmilkerCockSelect():void
@@ -1321,7 +1365,7 @@ public function breedwellCockmilkerCockSelect():void
 	for(var i:int = 0; i < pc.totalCocks(); i++)
 	{
 		output("\n<b>#" + (i + 1) + ":</b> " + formatFloat(pc.cLength(i) , 3) + " in long, " + pc.cocks[i].cockColor + " [pc.accurateCockName " + i + "]");
-		addButton(i,"#" + (i + 1), breedwellCockmilkerStart, i, num2Ordinal(i + 1) + " Cock","Get your [pc.cockNoun " + i + "] milked.");
+		addButton(i,"#" + (i + 1), breedwellCockmilkerStart, i, StringUtil.capitalize(num2Ordinal(i + 1)) + " Cock","Get your [pc.cockNoun " + i + "] milked.");
 	}
 }
 public function breedwellCockmilkerStart(cIdx:int = -1):void
@@ -1535,7 +1579,7 @@ public function breedwellPornScenes(arg:Array):void
 			output("\n\n<i>“Put that");
 			if(cLength > 4) output(" gorgeous piece of meat");
 			else output(" cute lil’ toy");
-			output(" into the slot,”</i> whispers Toon Tamani, blinking her big eyes at you. <i>“For Tamani.”</i> You do so, sighing as you slide your [pc.cock " + cIdx + "] into the silky, slinky embrace of the receiver. A pleasurable tremor runs through it as the machine vibrates, adjusting to your side and stimulating you until you are hard and ready. You gasp as the base suddenly tightens up, vice-like, around your base.");
+			output(" into the slot,”</i> whispers Toon Tamani, blinking her big eyes at you. <i>“For Tamani.”</i> You do so, sighing as you slide your [pc.cock " + cIdx + "] into the silky, slinky embrace of the receiver. A pleasurable tremor runs through it as the machine vibrates, adjusting to your size and stimulating you until you are hard and ready. You gasp as the base suddenly tightens up, vice-like, around your base.");
 			output("\n\n<i>“Theeere we go,”</i> purrs Tamani, swaggering up behind the visualization of you, strap-on waggling. <i>“It’d be a dreadful shame for you to get away before I’ve milked every last drop out of you, wouldn’t it?”</i>");
 			output("\n\nShe grips the hips of the cartoon version of you, positions her comically oversized dildo between your butt cheeks, and then slowly works her way in. You gasp and tense up slightly as the mechanical prosthetic mirrors exactly what’s happening on screen, piercing your [pc.anus] and slowly working its way into your sensitive insides.");
 			output("\n\n<i>“Relax, sweet buttslut of mine,”</i> says Tamani soothingly. <i>“Wait just a sec...”</i> she reaches up and squeezes one of her plush tits, biting her lip with pleasure. As she does, your back passage is warmed by a sudden gush of lubricant squirted out of the dildo’s end. <i>“Theeere we go!”</i> the human cries winningly, thrusting her pink hips into cartoon you with enough force to make their flesh ripple. The actual prosthetic follows suit, of course, and you whine as it easily slides all the way in, opening your colon up and pressing into you deep.");
@@ -1791,11 +1835,11 @@ public function rahnBreedwellBirthing(pregSlot:int = 0, numEggs:int = 2):void
 	// If on ship:
 	if(InShipInterior()) output("\n\nAs quickly as you can, you waddle into your room, switch the auto-medkit on in the bathroom, carefully place yourself on the bed" + (!pc.isNude() ? ", rip off your [pc.gear]" : "") + " and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
 	// If in public:
-	else if(InPublicSpace()) output("\n\nAs quickly as you can, you waddle into the nearest rest room, grab the medkit drone off the wall (frontier bathrooms are thankfully readily equipped for this sort of thing), lock yourself in a cubicle and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
+	else if(InPublicSpace() || rooms[currentLocation].planet.toLowerCase().indexOf("station") != -1 || rooms[currentLocation].hasFlag(GLOBAL.INDOOR)) output("\n\nAs quickly as you can, you waddle into the nearest rest room, grab the medkit drone off the wall (frontier bathrooms are thankfully readily equipped for this sort of thing), lock yourself in a cubicle and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
 	// If in wild:
 	else output("\n\nGroaning at the timing, you" + (!pc.isNude() ? " shed your [pc.gear] and" : "") + " position yourself the best you can in the inhospitable and non-hospital-able terrain. The wish that you’d stayed somewhere indoors and safe hums through your thoughts like a mosquito, but there’s no helping it now -- you’ll have to deliver on your own.");
 	output("\n\n");
-	if(9999 == 0) output("The medkit drone monitors your pulse and places a large sheet beneath your thighs, instructing you to bear down rhythmically with soft, wordless beeps. ");
+	if(InShipInterior() && 9999 == 0) output("The medkit drone monitors your pulse and places a large sheet beneath your thighs, instructing you to bear down rhythmically with soft, wordless beeps. ");
 	output("You huff, sensation ripples and spasms in your stomach, you puff, your vaginal tunnel swells, you lose all of your breath, sense of time... and then in a rush a flood of gooey life pours easily out of your engorged pussy and onto the " + (InShipInterior() ? "sheets" : "floor") + ", a 6 pound single cell that huffs, takes a deep breath, and then begins to wail shrilly.");
 	output("\n\nWow, that was so easy! Only boneless lifeforms boning you from now on! Pleasurable even, the way that slick, thickness poured over your puffy lips and [pc.eachClit]. It’s just as well, because... oh Void... it’s");
 	if(numEggs > 2) output(" definitely");
@@ -1809,7 +1853,7 @@ public function rahnBreedwellBirthing(pregSlot:int = 0, numEggs:int = 2):void
 	}
 	else if(numEggs <= 8)
 	{
-		output(" your arms full of rahn babies. The wailing has mostly stopped, and they are snuffling, frowning and cooing at their surrogate mom and the big wide world in general. They are cutest goddamn things.");
+		output(" your arms full of rahn babies. The wailing has mostly stopped, and they are snuffling, frowning and cooing at their surrogate mom and the big wide world in general. They are the cutest goddamn things.");
 		if(pc.isLactating())
 		{
 			output(" They’re wedged against parts of your body they clearly understand, however, and in a few moments you’re sighing in peace as tiny mouths hungrily suckle your [pc.breasts].");

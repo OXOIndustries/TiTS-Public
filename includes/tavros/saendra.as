@@ -275,6 +275,11 @@ public function saendrasBarMenu():void
 		// followup about rescue
 		addButton(5, "Pirates", sx1TalkPirates, undefined, "The Pirates", "Follow up with Saendra about the pirates. You deserve answers after all of this.");
 	}
+	// Techie Hotfix
+	if ((flags["SAENDRA_XPACK1_STATUS"] == 9 || flags["SAENDRA_XPACK1_STATUS"] == 10) && flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] != undefined && flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] == undefined)
+	{
+		addButton(6, "Tech Guard?", sx1TalkTechGuardFix, undefined, "Ausar Engineer?", "Ask Saendra about what happened to the techie guard during your run with her on Deck 92.");
+	}
 
 	addButton(14, "Leave", leaveSaendraAtTheBar, undefined);
 }

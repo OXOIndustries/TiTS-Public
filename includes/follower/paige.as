@@ -1,6 +1,6 @@
 //Overview:
 
-//This document is for a new character for Paige, a female Ausar yoga instructor that lives on Tavros Station. I heard through a game of Telephone with Shou that Savin wanted me to write <i>“Space Brooke,”</i> and hell, getting a request from one of the project leads is quite flattering, so why not?
+//This document is for a new character for Paige, a female Ausar yoga instructor that lives on Tavros Station. I heard through a game of Telephone with Shou that Savin wanted me to write “Space Brooke,” and hell, getting a request from one of the project leads is quite flattering, so why not?
 //
 //Paige is full-blooded Ausar, but she’s used gene mods on herself to make her full-fledged furry, not just half-and-half. She works as a yoga instructor on Tavros Station, holding classes on the residential floor. She lives in one unit and rents out another one for the classes; the income from her classes is enough to cover the rent. She is in the peak of her physical condition, but she’s not overly muscle-bound; her abs are solid and her biceps are clear through her clothing, but she isn’t huge and burly like Yancy.
 //
@@ -407,7 +407,7 @@ public function yogaLesson3Cont():void
 
 	output("\n\n<i>“I’m just trying to make sure your form is correct, that’s all,”</i> she assures you, taking a submissive tone in her voice. <i>“Yoga is a very physical practice, and sometimes I need to take a more hands-on form of teaching to make sure my students don’t hurt themselves.”</i>");
 	output("\n\nYou reply that the floating monitor-thing helps just as well, and it doesn’t have hands to touch people with. Paige becomes visibly nervous, and you consider backing down – you didn’t want to start a fight or anything, but she may be getting the wrong message.");
-	output("\n\n<i>“Look, sweet thing, I have another class coming up very shortly. Can you do me a favor and stop by my unit later tonight, after five but before twelve? I live in the unit directly next to this classroom. We can pick up from there.”</i>");
+	output("\n\n<i>“Look, sweet thing, I have another class coming up very shortly. Can you do me a favor and stop by my unit later tonight, after 17:00 but before midnight? I live in the unit directly next to this classroom. We can pick up from there.”</i>");
 	output("\n\nThat wasn’t the response you were expecting, but it’s a modest request. You tell her to expect you there later tonight. <i>“Thanks a lot,”</i> she says, and you’re soon out of her classroom.");
 	// end scene (scene: intro 3); place PC one square outside of Paige’s Yoga Class; increase Physique by 1(if PC is goo, do nothing); increase Tone by 5(if PC is goo, do nothing); deduct 20 credits; deduct 20 energy(if PC is goo, do nothing); advance clock one hour; reveal Paige’s Unit directly beside Paige’s Yoga Class
 	//No stat gains as mentioned
@@ -766,7 +766,7 @@ public function paigeMenu():void
 
 		if(currentLocation == "PAIGE_HOUSE")
 		{
-			if(hours >= 0 && hours < 9) addButton(6,"Rest",restOnSomeSchtuff,undefined,"Rest","No yoga and no sex – just some cuddling with Paige for a good night’s rest.");
+			if(hours >= 20) addButton(6,"Rest",restOnSomeSchtuff,undefined,"Rest","No yoga and no sex – just some cuddling with Paige for a good night’s rest.");
 			else addDisabledButton(6,"Rest","Rest","Who goes to bed in the middle of the day? Come on.");
 		}
 
@@ -1084,7 +1084,7 @@ public function paigeStoryEpilogue():void
 {
 	clearOutput();
 	showPaige();
-	output("You both lose track of time as Paige retells her life story for you. You finally get the sense to glance at your codex for the hour, and, with some reluctance, pull yourself away from Paige. <i>“Yeah, we’ve been going at it for a while, haven’t we, sweet thing?”</i> she asks. <i>“You go on out of here. I’m sure there’s more to the universe for you than some yoga on Tavros. But I better see you back here again before you, you hear me?”</i>");
+	output("You both lose track of time as Paige retells her life story for you. You finally get the sense to glance at your codex for the hour, and, with some reluctance, pull yourself away from Paige. <i>“Yeah, we’ve been going at it for a while, haven’t we, sweet thing?”</i> she asks. <i>“You go on out of here. I’m sure there’s more to the universe for you than some yoga on Tavros. But I better see you back here again before you leave, you hear me?”</i>");
 	output("\n\nYou assure her that it’s a promise. She sees you off with a smile and, to your surprise, a quick kiss on your [pc.lipsChaste]. No tongue, but with some passion, and then you’re back on the residential deck of the Tavros station.");
 	// end scene (scene: Paige epilogue); place the PC one square outside of Paige’s Unit; advance the clock two hours
 	processTime(20);
@@ -1170,10 +1170,10 @@ public function paigeSexPrologue2():void
 		}
 		output(".");
 	}
-	output("\n\n<i>“There’s another reason why I took up yoga,”</i> she admits breathlessly. <i>“The stretching; the flowing; that’s all well and good and good for you. But it’s also pretty sexy. I love the way how I can flaunt my ass and my legs and call it a ‘stretch,’ and nobody will ask any questions. Some poses-for-two could have come from the Kama Sutra. I’m very nearly flexible enough to eat my own pussy. I know it’s possible");
+	output("\n\n<i>“There’s another reason why I took up yoga,”</i> she admits breathlessly. <i>“The stretching; the flowing; that’s all well and good and good for you. But it’s also pretty sexy. I love the way how I can flaunt my ass and my legs and call it a ‘stretch,’ and nobody will ask any questions. Some poses-for-two could have come from the Kama Sutra. I’m very nearly flexible enough to eat my own pussy. I know it’s possible.”</i>");
 	if(pc.hasCock()) 
 	{
-		output(".”</i> She fondles your [pc.cocks]");
+		output(" She fondles your [pc.cocks]");
 		if(!pc.isCrotchExposed()) output(" through your [pc.crotchCovers]");
 		output(" while she licks her lips. <i>“Sometimes, I kind of wish I had one of these. I wonder how it would feel? How would I taste?”</i>");
 	}
@@ -1188,13 +1188,13 @@ public function paigeSexPrologue2():void
 	//if {the PC has given Paige between one and three Honey Wines}
 	else if(flags["PAIGES_WINES"] <= 3)
 	{
-		output("You shown me you’re not such a slouch at yoga, but we’ll see if you can keep up with</i> these <i>stretches, sweet thing.");
+		output("You’ve shown me you’re not such a slouch at yoga, but we’ll see if you can keep up with </i>these<i> stretches, sweet thing.");
 	}
 	else output("Which you’d know if you hadn’t been skipping classes to buy me Honey Wine. But that’s okay. I’ll make sure we make up for lost time tonight.");
 	output("”</i>\n\n");
 
 	if(!pc.isChestExposed()) output("You finish removing your [pc.upperGarments], exposing your [pc.chest] and [pc.belly] to the warm air of her bedroom, just as ");
-	output("Paige is");
+	output("Paige is ");
 	//if {the PC is wearing lower garments}
 	if(!pc.isCrotchExposed() || !pc.isAssExposed()) output("done removing your [pc.crotchCovers], revealing your naked [pc.crotch] to her. She’s ");
 	output("finished talking – knowing there’s nothing between her and all of you, she stalks her way forward to claim you for herself.");

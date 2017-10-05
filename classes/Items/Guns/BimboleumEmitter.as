@@ -8,6 +8,7 @@ package classes.Items.Guns
 	
 	public class BimboleumEmitter extends ItemSlotClass
 	{
+		//Level 8 (Rare). Balance 2.0
 		public function BimboleumEmitter()
 		{
 			_latestVersion = 1;
@@ -31,9 +32,9 @@ package classes.Items.Guns
 			attackVerb = "shoot";
 			attackNoun = "bimbofication";
 			
-			basePrice = 5500;
+			basePrice = 22000;
 			attack = 0;
-			baseDamage.tease.damageValue = 16;
+			baseDamage.tease.damageValue = 8;
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			addFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON);
 			
@@ -41,7 +42,7 @@ package classes.Items.Guns
 			shieldDefense = 0;
 			shields = 0;
 			sexiness = 0;
-			critBonus = 2;
+			critBonus = 3;
 			evasion = 0;
 			fortification = 0;
 			

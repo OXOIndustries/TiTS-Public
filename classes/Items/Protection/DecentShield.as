@@ -8,7 +8,7 @@
 	
 	public class DecentShield extends ItemSlotClass
 	{
-		
+		//Level 1 (Rare). Balance 2.0
 		//constructor
 		public function DecentShield()
 		{
@@ -36,7 +36,7 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 325;
+			this.basePrice = 200;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
@@ -47,8 +47,11 @@
 			this.fortification = 0;
 			
 			resistances = new TypeCollection();
-			resistances.kinetic.damageValue = 45.0;
-			
+			resistances.kinetic.damageValue = 40.0;
+			resistances.burning.damageValue = 20.0;
+			resistances.corrosive.damageValue = 20.0;
+			resistances.electric.damageValue = -50.0;
+
 			this.version = _latestVersion;
 		}
 	}

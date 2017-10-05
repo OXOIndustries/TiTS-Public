@@ -55,18 +55,11 @@ public function encounterLandmines():void
 
 		output("\n\nBy the void, it isn’t deadly, but you quickly find your flesh reddening, sensitivity and desire spreading through your body. What you wouldn’t give for a nice ant-cooch to lick right about now... wait, what?");
 
+		var physDamage:Number = (pc.shields() > 0 ? 20 : 40);
+		var lustDamage:Number = 40;
+		applyDamage(new TypeCollection( { kinetic: physDamage, pheromone: lustDamage }, DamageFlag.BYPASS_SHIELD, DamageFlag.PENETRATING, DamageFlag.EXPLOSIVE ), null, pc, "minimal");
+		pc.shieldsRaw = 0;
 		processTime(20);
-
-		pc.lust(40);
-		if (pc.shields() == 0)
-		{
-			pc.HPRaw -= pc.HPMax() / 2;
-		}
-		if (pc.shields() > 0)
-		{
-			pc.shieldsRaw = 0;
-			pc.HPRaw -= pc.HPMax() / 3;
-		}
 	}
 
 	clearMenu();

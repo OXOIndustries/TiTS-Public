@@ -37,6 +37,18 @@ public function getVahnPregContainer():PregnancyPlaceholder
 	return ppVahn;
 }
 
+public function vahnTavrosBonus(btnSlot:int = 0):void 
+{
+	if(flags["MET_VAHN"] == undefined) {
+		output("\n\nYou spot a blonde, half-ausar technician standing next to your ship, looking down at a datapad.");
+		addButton(btnSlot, "Tech", VahnTheMechanic);
+	}
+	else
+	{
+		output("\n\nVahn’s around here somewhere, if you want to look for him.");
+		addButton(btnSlot, "Vahn", VahnTheMechanic);
+	}
+}
 public function VahnTheMechanic():void 
 {
 	clearOutput();
@@ -181,7 +193,7 @@ public function vahnSexMenu():void
 		addDisabledButton(3,"Pussy Rub","Pussy Rub","You need a pussy to get Vahn to rub on it. Duh.")
 	}
 	addButton(4,"Catch Anal",vahnFucksYourButt,undefined,"Catch Anal","See if you can get the ausar mechanic to get to work on your backdoor...");
-	addButton(5,"Give Handjob",giveVahnAHandy,undefined,"Give Handjob","Bend Vahn over and play with his tasty red rocket... and maybe something dirtier...");
+	addButton(5,"Give Handjob",giveVahnAHandy,undefined,"Give Handjob","Bend Vahn over and play with his tasty rocket... and maybe something dirtier...");
 	addButton(6,"Dommy Anal",vahnDomsYourButt,undefined,"Dommy Anal","Get Vahn to take the lead and claim your ass for his own!")
 
 	addButton(14,"Back",VahnTheMechanic);
@@ -326,7 +338,7 @@ public function giveVahnAnal():void
 		output("\n\nWith a " + pc.mf("cheeky","sultry") + " smile, you decide to give him a little strip tease.");
 		if(!(pc.armor is EmptySlot)) output(" Slowly and sensuously, you strip off your [pc.armor] before letting it fall to the floor.");
 		if(!(pc.upperUndergarment is EmptySlot)) output(" Reaching up, your [pc.upperGarment] comes off – tossed aside and liberating your [pc.chest].");
-		if(!(pc.lowerUndergarment is EmptySlot)) output(" Your [pc.lowerGarment] is slid off inch by inch, exposing your [pc.groin]. Vahn lets out a <i>very</i> appreciative groan at the sight. His bushy blonde tail is wagging madly!");
+		if(!(pc.lowerUndergarment is EmptySlot)) output(" Your [pc.lowerGarment] are slid off inch by inch, exposing your [pc.groin]. Vahn lets out a <i>very</i> appreciative groan at the sight. His bushy blonde tail is wagging madly!");
 	}
 
 	output("\n\nYou " + pc.mf("stride up","saunter up") + " and, grabbing his slim hips, turn him around on the spot. Leading him up to one of the cargo crates, you bite his ear and whisper for him to bend over. Obeying your command, the handsome half ausar delightedly gulps and bends forward, lifting his fluffy tail in the air – just like a bitch in heat. As he braces himself against the crate, you grind your [pc.cockNounSimple " + x + "] between his firm butt-cheeks and he excitedly flushes.");

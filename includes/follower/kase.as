@@ -9,7 +9,7 @@ import classes.Items.Apparel.AnnosCatsuit;
  * KASE_INTRO		- 1 if player has met Kase at the bar and knows his name,
  * 							to tell if player has ever met Kase use flags["SATELLITE_QUEST"] != undefined
  * KASE_TIMER		- timestamp of when player first meets Kase at bar, after 1 week he gone 5evar
- * KASE_CREW		- 1 if Kase is a crewmember
+ * KASE_CREW		- 1 if Kase is a new crew member, 2 if crew member, 0 if evicted
  * KASE_STRESS		- 1 if PC gave Kase stress relief this encounter
  * KASE_JOB			- 1 if talked to Kase about jobs
  * KASE_OUTFIT		- 0 for Pyrite outfit, 1 for SteeleTech outfit
@@ -25,7 +25,7 @@ import classes.Items.Apparel.AnnosCatsuit;
 
 public function kaseIsCrew():Boolean
 {
-	return (flags["KASE_CREW"] != undefined);
+	return (flags["KASE_CREW"] > 0);
 }
 
 public function kaseCrewBlurbs(btnSlot:int):String
@@ -44,9 +44,9 @@ public function kaseCrewBlurbs(btnSlot:int):String
 
 public function kaseCrewGreeting():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	flags["KASE_CREW"] = 2;
@@ -98,9 +98,9 @@ public function kaseCrewGreeting():void
 
 public function kaseTryHere(beenCrew:Boolean = false):void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("You grin and tell Kase he can change right here... much to Anno's delight, judging by the tail now batting against your butt.");
@@ -131,12 +131,12 @@ public function kaseTryHere(beenCrew:Boolean = false):void
 
 public function kaseTryPrivate(beenCrew:Boolean = false):void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
-	output("You point out a nearby room for him to change in, much to Anno's disappointment.output("\n\n");");
+	output("You point out a nearby room for him to change in, much to Anno's disappointment.");
 	output("\n\n<i>“Awww,”</i> she whines as Kase nods and walks off to try on his new suit, <i>“You're no fun.”</i>");
 	output("\n\nYou chuckle and shake your head at the ausar and tell her " + (pc.isAss() ? "she's right, leading her to pout a bit" : "she's welcome to try and get Kase to strip for her on her own, to which she sticks her tongue out") + ".");
 	output("\n\nAfter a few moments of patient waiting, your new kaithrit crewmember appears again, all dressed in his SteeleTech suit. His Pyrite-issue suit may have also been frame-hugging, but not like these SteeleTech suits, easily showing off all his curves and that bulge between his legs.");
@@ -156,9 +156,9 @@ public function kaseTryPrivate(beenCrew:Boolean = false):void
 
 public function kaseApproachCrew(blurb:int = 0):void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	switch(blurb)
@@ -184,15 +184,16 @@ public function kaseCrewMenu():void
 {
 	clearMenu();
 	
-	addButton(0, "Appearance", kaseAppearance, true, "Appearance", "Take a look at Kase.");
-	addButton(1, "Talk", kaseCrewTalkMenu, undefined, "Talk", "Have a chat with your kitty boy crewmate.");
+	addButton(0, "Appearance", kaseAppearance, undefined, "Appearance", "Take a look at Kase.");
+	addButton(1, "Talk", kaseCrewTalk, undefined, "Talk", "Have a chat with your kitty boy crewmate.");
 	if(flags["KASE_HEALED"] != undefined && pc.lust() >= 33) addButton(2, "Sex", kaseSex, undefined, "Sex", "See if Kase is down for a little fun.");
 	else if(flags["KASE_HEALED"] == undefined) addDisabledButton(2, "Sex", "Sex", "You can't do that! This poor kitty's arm is still broken. You might hurt him!");
 	else addDisabledButton(2, "Sex", "Sex", "You aren't turned on enough to have sex.");
-	if(flags["KASE_STRESS"] = 0) addButton(3, "StressRelief", kaseCrewStressRelief, undefined, "Stress Relief", "Maybe work has gotten Kase a little wound-up. Give him some relief, with your hands.");
+	if(flags["KASE_STRESS"] == 0) addButton(3, "StressRelief", kaseCrewStressRelief, undefined, "Stress Relief", "Maybe work has gotten Kase a little wound-up. Give him some relief, with your hands.");
 	else addDisabledButton(3, "StressRelief", "Stress Relief", "You already eased his tension.");
 	addButton(4, "Scritches", kaseScritches, undefined, "Scritches", "Pet the pretty kitty.");
-	if (flags["CREWMEMBER_SLEEP_WITH"] == "KASE") addButton(5, "No Sleep W.", kaseSleepToggleOff, undefined, "Don’t Sleep With", "Tell Kase you don't want him in your bed anymore.");
+	if(flags["KASE_HEALED"] == undefined) addDisabledButton(5, "Sleep With", "Sleep With", "Maybe you should let Kase's arm heal before you start pulling him into your bunk.");
+	else if (flags["CREWMEMBER_SLEEP_WITH"] == "KASE") addButton(5, "No Sleep W.", kaseSleepToggleOff, undefined, "Don’t Sleep With", "Tell Kase you don't want him in your bed anymore.");
 	else addButton(5, "Sleep With", kaseSleepToggleOn, undefined, "Sleep With", "Ask Kase to join you in your bed.");
 	if(flags["KASE_STEELETECH"] == undefined && annoIsCrew()) addButton(6, "JoinSteele", kaseJoinSteele, undefined, "Join SteeleTech", "See if your crewmate is interested in joining SteeleTech.");
 	addButton(13, "Evict", kaseEvict, undefined, "", "");
@@ -201,9 +202,9 @@ public function kaseCrewMenu():void
 
 public function kaseCrewTalk():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("<i>“Sure thing, Captain!”</i> he exclaims, <i>“Anything in particular?”</i>");
@@ -226,7 +227,7 @@ public function kaseCrewTalkMenu():void
 	else addDisabledButton(bNum++, "Preferences", "Preferences", "It'd be odd to ask his sexual preferences without having a more intimate relationship.");
 	
 	if (!CodexManager.entryViewed("Kaithrit")) addDisabledButton(bNum++, "TailTouching", "TailTouching", "It'd help to know what Kaithrit tail touching actually is.");
-	else if (!(pc.race("kaithrit") || pc.race("half-kaithrit"))) addDisabledButton(bNum++, "TailTouching", "TailTouching", "Tail touching is usually a kaithrit to kaithrit thing"+(silly?" YOU FUCKING RACIST":)+".");
+	else if (!(pc.race() == "kaithrit" || pc.race() == "half-kaithrit")) addDisabledButton(bNum++, "TailTouching", "TailTouching", "Tail touching is usually a kaithrit to kaithrit thing"+(silly?" YOU FUCKING RACIST":"")+".");
 	else if (!pc.hasTailFlag(GLOBAL.FLAG_PREHENSILE) || pc.tailCount < 2) addDisabledButton(bNum++, "TailTouching", "TailTouching", "You don't have the tails for this tango.");
 	else addButton(bNum, "TailTouching", kaseTailTouch, bNum++, "Tail Touching", "Maybe Kase can teach you a little about Kaithrit tail touching?");
 	
@@ -235,9 +236,9 @@ public function kaseCrewTalkMenu():void
 
 public function kaseTalkCrewWork(btnSlot:int = 0):void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	if(flags["KASE_STEELETECH"] != undefined)
@@ -271,9 +272,9 @@ public function kaseTalkCrewWork(btnSlot:int = 0):void
 
 public function kaseTalkFamily(btnSlot:int = 0):void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("<i>“It's not very big,”</i> Kase says, pondering his relationships for a moment, <i>“There's my mother, she works for Pyrite as a laborer on the planet I grew up on, while my father works for a local real estate company selling plots of land on colony to smaller corporations.”</i> He pauses for a moment and smiles, going through memories of his parents, <i>“My mother's such a gentle-giant, tall and imposing but the nicest woman you'll ever met. My father, on the other hand, is quite reserved, intelligent, though caring. They both taught me most of what I knew about math when I was younger too.”</i>");
@@ -289,9 +290,9 @@ public function kaseTalkFamily(btnSlot:int = 0):void
 
 public function kaseTalkPref(btnSlot:int = 0):void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("Kase blushes hard at the question, pale cheeks turning bright red. <i>“We have gotten pretty friendly, haven't we, Captain?”</i> he says, a quiver to his voice, <i>“I guess it would be good to know for... future excursions.”</i>");
@@ -306,9 +307,9 @@ public function kaseTalkPref(btnSlot:int = 0):void
 
 public function kaseTailTouch(btnSlot:int = 0):void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("You explain to Kase how you've read that most kaithrit can communicate emotions and intentions by touching their tails to each other, but growing up on Terra never gave you a chance to experience it, and you were wondering if he could show you a bit.");
@@ -330,9 +331,9 @@ public function kaseTailTouch(btnSlot:int = 0):void
 
 public function kaseSex():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("Kase blushes red at your suggestion, but attempts to keep his composure. <i>“Y-yes, Captain, that sounds lovely,”</i> he stutters, sitting up straight with an almost-shy smile, <i>“But, if I may, I'd prefer for you to lead... if that's fine with you.”</i>");
@@ -385,9 +386,9 @@ public function kaseSexGiveOral():void
 
 public function kaseSexRecOral():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("Smirking, you take a seat on the edge of the bed and spread your legs, then tell Kase to get between them.");
@@ -440,9 +441,9 @@ public function kaseSexRecOral():void
 
 public function kaseSexPitchAnal():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase(true);
-	clearOutput();
 	clearMenu();
 	
 	output("You tell the blushing kaithrit to strip himself and lie down on the bed for you, grabbing at your " + (!pc.isNude() ? "still-clothed " : "") + "[pc.cocks] as you do so. ");
@@ -480,9 +481,9 @@ public function kaseSexPitchAnal():void
 
 public function kaseSexGetFuck():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase(true);
-	clearOutput();
 	clearMenu();
 	
 	if(pc.isNude()) output("You throw yourself back onto Kase's bed, and instruct him to disrobe himself.");
@@ -495,7 +496,7 @@ public function kaseSexGetFuck():void
 	output("\n\nKase is quick to take the hint and put some pressure behind his wide hips, thrusting forward against your [pc.vagOrAss] until he penetrates your waiting entrance. You cry out as his thick, barb-covered cock spreads you wide, leaving his glans pressing against your " + (pc.hasVagina() ? "juicy labia" : "clenching sphincter") + " before he continues to push in. He stretches you wide as he thrusts further into you, pulling back then pushing forward again and again, shoving more and more of his nubby tool into you each time.");
 	output("\n\nYou're left moaning by the time he bottoms out inside your fuckhole, " + (pc.hasVagina() ? "feminine fluids leaking out around his shaft" : "asshole spasming around his shaft") + ". He's panting over you, breath shuddering as he tries to suppress needy groans forcing their way out of lips, but Kase doesn't seem keen on moving. So, with a smirk, you do the moving for him. You roll your hips against his, getting the soft barbs lining the kaithrit's cock to rub against your sensitive, stretching inner walls until you moan aloud. It seems like that, and a simple, shakey <i>“C'mon”</i> from you are enough to prompt your subordinate to start moving again.");
 	output("\n\nKase pulls his wide hips back, dragging his kitty-cock against your [pc.vagOrAss] until his tip reaches the edge of your now spread hole again, then he pushes back in. The room erupts into a chorus pleasured tones from both you and your subordinate, hips rolling and thrusting as thick, barb-covered cock keeps you stretched wide and in constant pleasure. Though, you're sure you're generating most of the movement in the room, with Kase's thrust sloppy and slow, like he's nervous.");
-	output("\n\nStill, his pumping hips give you more than enough to keep you moaning, Kase's soft barbs touching and caressing all your most sensitive places like a living sextoy. " + ((pc.hasVagina() && pc.looseness() >= 3) || (!pc.hasVagina() && pc.ass.looseness() >= 3) ? "Even with the looseness of your [pc.vagOrAss], the kaithrit's girth still leaves you hugging at his shaft. " : "You clench down around his tool, making him work for every inch he moves. ") + "Your lover's voice quivers and stutters, his thrusts becoming jerky and fast, bouncing your body " + (pc.hasBreasts() ? "and [pc.breasts] " : "") + "back and forth against the mattress as he fucks you, racing towards his orgasm.";
+	output("\n\nStill, his pumping hips give you more than enough to keep you moaning, Kase's soft barbs touching and caressing all your most sensitive places like a living sextoy. " + ((pc.hasVagina() && pc.looseness() >= 3) || (!pc.hasVagina() && pc.ass.looseness() >= 3) ? "Even with the looseness of your [pc.vagOrAss], the kaithrit's girth still leaves you hugging at his shaft. " : "You clench down around his tool, making him work for every inch he moves. ") + "Your lover's voice quivers and stutters, his thrusts becoming jerky and fast, bouncing your body " + (pc.hasBreasts() ? "and [pc.breasts] " : "") + "back and forth against the mattress as he fucks you, racing towards his orgasm.");
 	output("\n\n<i>“C-captain,”</i> he shudders between pleasured groans, <i>“" + (silly ? "M-my brogurt!" : "I-I'm going to- unf!") + "”</i>");
 	output("\n\nWith that, his wide hips lurch forward, driving his thick cock deep inside of you, and setting you crying out all over again. The kaithrit grunts hard, and you can feel his already monstrous length engorging and convulsing inside your [pc.vagOrAss]. You nearly scream when the first shot of his molten, alabaster cum hits your inner walls, Kase beginning to buck against your [pc.hips] with his own. And with you still grinding your sides against your lover's spasming dick, you feel compelled to cum yourself.");
 	output("\n\nYou do just that, your need for release overtaking your willpower until a wave of endorphins slams into your mind's shore. A cry of bliss permeates the once steady moaning of the room. Your [pc.vagOrAss] clenches down around Kase's engorged shaft, convulsing around it as your climax ensues. " + (pc.hasVagina() ? "[pc.Girlcum] pools out around your lover's cock, spraying down his svelte midsection and wetting his pale flesh with your feminine nectar" : "Your inner walls spasm against your lover's cock, making the feline femboy groan as your [pc.asshole] clenches around him") + ". " + (pc.hasCock() ? "You grit your teeth as your [pc.cocks] empty themselves all over your [pc.chest], coating you with [pc.cum]. " : "") + "All the while, Kase fills you with his cum, letting his heavy sack empty into your " + (pc.hasVagina() ? "womb" : "depths") + " until you're feeling bloated and full of warm, thick seed.");
@@ -505,7 +506,8 @@ public function kaseSexGetFuck():void
 	output("\n\nThen, at some point amidst your gentle kissing and cuddling, you and your subordinate drift off into a warm, peaceful sleep.");
 	
 	//Syri's cock is roughly the size of Kase's
-	pc.holeChange((pc.hasVagina() ? 0 : -1), syri.cockVolume(0), true, false, false);
+	output("\n\n");
+	pc.holeChange((pc.hasVagina() ? 0 : -1), syri.cockVolume(0), (pc.hasVagina() ? pc.vaginalVirgin : pc.analVirgin), false, false);
 	processTime(45+rand(10));
 	pc.orgasm();
 	
@@ -516,9 +518,9 @@ public function kaseSexGetFuck():void
 
 public function kaseSexFrott():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase(true);
-	clearOutput();
 	clearMenu();
 	
 	output("You order Kase to lie down on the bed for you, and while that isn't much for the kaithrit to go off of, he happily complies with a call of <i>“Yes, " + pc.mf("sir","ma'am") + ".”</i> He lowers himself onto the mattress until he's flat on his back, looking up at your with an expectant, blushing face.");
@@ -554,9 +556,9 @@ public function kaseSexFrott():void
 
 public function kaseSexThreesome():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("<i>“A third?”</i> he questions, blushing a bit harder, <i>“Well, I suppose that's well and good depending on who it is.”</i>");
@@ -571,10 +573,10 @@ public function kaseSexThreesome():void
 
 public function kaseSexThreesomeAnno():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showName("KASE\nAND ANNO");
 	showBust("KASE_NUDE", "ANNO_NUDE");
-	clearOutput();
 	clearMenu();
 	
 	output("<i>“Miss Dorna?”</i> he asks,  gulping audibly, <i>“I-I find it's best not to encourage her… but if that's what you want captain, then I'd be happy to join you for a little excursion with her.”</i> He smiles as best he can at you, but you can't help but notice the hint of nervousness in his mien.");
@@ -625,7 +627,7 @@ public function kaseSexThreesomeAnno():void
 	output("\n\n[pc.Chest] still heaving, you tell the sleepy puppy " + (pc.isAss() ? "that's now an official order" : "that sounds like a plan") + ", and promptly collapse on the bed next to Kase along side her. You both smile at each other and wrap your arms around your mutual lover, encasing the well-used femboy in an embrace of warm skin, fur, and wagging tails, whispering sweet nothings into each other's ears until you all fall asleep in one big pile of inter-office love.");
 	
 	//Syri's cock is roughly the size of Kase's
-	pc.holeChange((pc.hasVagina() ? 0 : -1), syri.cockVolume(0), true, false, false);
+	pc.holeChange((pc.hasVagina() ? 0 : -1), syri.cockVolume(0), (pc.hasVagina() ? pc.vaginalVirgin : pc.analVirgin), false, false);
 	processTime(60+rand(15));
 	pc.orgasm();
 	
@@ -637,9 +639,9 @@ public function kaseSexThreesomeAnno():void
 
 public function kaseCrewStressRelief():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("You smirk and sit yourself next to Kase, telling him that you don't need anything from him, but that he seems a little stressed from all his work, and quickly reach a hand down to grab at the visible bulge in his suit's groin.");
@@ -667,13 +669,13 @@ public function kaseCrewStressRelief():void
 
 public function kaseScritches():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("You grin at the feline and reach a hand down right between his perky cat ears. They twitch in response and their owners gasps at the sudden touch, but as soon as your fingers start moving, scritching at those pointy green ears, any worry he had seems to fade away.");
-	output("\n\nA happy smile appears on the femboy's face and his eyes shut as your digits work their way across his aural organs. Kase coos happily, obviously enjoying the sensation of your hands playing across his ears, tracing along their sensitive edges and scratching at their base while your other hand holds his cheek or runs through his pine-green locks.output("\n\n");");
+	output("\n\nA happy smile appears on the femboy's face and his eyes shut as your digits work their way across his aural organs. Kase coos happily, obviously enjoying the sensation of your hands playing across his ears, tracing along their sensitive edges and scratching at their base while your other hand holds his cheek or runs through his pine-green locks.");
 	output("\n\nIt takes some time and a lot of effort for you to finally pull back from your petting and scritches, leaving Kase looking up at you with happy green-and-gold eyes.");
 	output("\n\n<i>“Thank you for that, Captain,”</i> he says with a warm smile, <i>“" + (flags["KASE_SCRITCH"] == undefined ? "It's hard to remember the last time someone ever touched me like that… it feels better than I remembered." : "It's nice being touched like that every once in a while.") + "”</i>");
 	output("\n\nYou tell him you're glad to help your employees feel better.");
@@ -683,13 +685,14 @@ public function kaseScritches():void
 	processTime(15+rand(5));
 	
 	kaseCrewMenu();
+	addDisabledButton(4, "Scritches");
 }
 
 public function kaseSleepToggleOn():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("You put on your straightest, most dignified posture for the kaithrit and quickly give him his new orders, <i>“Meet me in my quarters tonight, Officer Kase, and wear something comfortable. " + (silly ? "We'll bang, okay?" : "") + "”</i>");
@@ -704,9 +707,9 @@ public function kaseSleepToggleOn():void
 
 public function kaseSleepToggleOff():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	if(pc.isAss()) output("You quickly explain to Kase that you don't want him sleeping with you anymore and that he should stick to his own quarters tonight.");
@@ -722,9 +725,9 @@ public function kaseSleepToggleOff():void
 
 public function kaseCrewSleep():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 
 	if(flags["KASE_SNOOZED"] == undefined)
@@ -759,9 +762,9 @@ public function kaseCrewWake():void
 {
 	flags["KASE_SLEEPWITH_DOMORNING"] = undefined;
 	
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	switch(rand(3))
@@ -799,9 +802,9 @@ public function kaseCrewWake():void
 
 public function kaseJoinSteele():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("Grinning, you ask Kase if he'd be interested in joining SteeleTech while he's part of your crew.");
@@ -837,10 +840,10 @@ public function kaseJoinSteele():void
 
 public function kaseVoyeurAnno():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showName("KASE\nAND ANNO");
-	showBust("KASE", "ANNO");
-	clearOutput();
+	showBust((flags["KASE_HEALED"] == 1 ? "KASE_HEALED" : "KASE"), "ANNO");
 	clearMenu();
 	
 	output("[pc.Walk]ing around your ship, you notice Kase standing alone. He seems deep in thought, tapping away at his datapad, looking quite determined and not taking notice of you in the slightest. Before you can make your way to him and see what he's up to, Anno appears from the other side of the room, right behind your kaithrit employee. Holding a finger to her mouth, she makes a shushing motion then reaches up to her catsuit's zipper, and pulls it down just enough so her uniform parts around her sizable breasts, showing just the slightest hint of pink nipple. ");
@@ -872,17 +875,18 @@ public function kaseVoyeurAnno():void
 
 public function kaseEvict():void
 {
+	clearOutput();
 	author("HugsAlright");
 	showKase();
-	clearOutput();
 	clearMenu();
 	
 	output("You " + (!pc.isAss() ? "sigh heavy and " : "") + "tell Kase that it's time for him to leave the ship and he should pack his things.");
-	output("\n\nHis ears swivel rounds and perk at your word, looking like he didn't hear you quite right. <i>“Oh, of course, " + pc.m("sir","ma'am") + ",”</i> he says, keeping his poise, <i>“There's " + (flags["KASE_STEELETECH"] != undefined ? "a place on Tavros SteeleTech has payed for so I can carry out my work when I'm not onboard your ship" : "an apartment on Tavros I rent out for any delays I had between Pyrite deployments") + ", I'll head there, for now. I'm sure you can find me there if you require my services again.”</i>");
+	output("\n\nHis ears swivel rounds and perk at your word, looking like he didn't hear you quite right. <i>“Oh, of course, " + pc.mf("sir","ma'am") + ",”</i> he says, keeping his poise, <i>“There's " + (flags["KASE_STEELETECH"] != undefined ? "a place on Tavros SteeleTech has payed for so I can carry out my work when I'm not onboard your ship" : "an apartment on Tavros I rent out for any delays I had between Pyrite deployments") + ", I'll head there, for now. I'm sure you can find me there if you require my services again.”</i>");
 	output("\n\nWith that, Kase quickly begins gathering his things, finding containers to neatly pack away his belongings in. Seems like he's taking the sudden eviction well, at least, an unflinching employee if there ever was one.");
 	
 	processTime(3);
-	flags["KASE_CREW"] = undefined;
+	flags["KASE_CREW"] = 0;
+	flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 	
 	addButton(0,"Next",mainGameMenu);
 }
@@ -890,10 +894,79 @@ public function kaseEvict():void
 //YEAH THIS SHIT IS ACTUALLY ON TAVROS WANNA FIGHT ABOUT IT???
 public function kaseApartmentHandler(btnSlot:int = 0):void
 {
+	flags["NAV_DISABLED"] |= NAV_EAST_DISABLE;
 	
+	if(flags["KASE_CREW"] == 0)
+	{
+		output("\n\nA room lies to the east, Kase's place of residence specifically, the door is spick and span with a fresh batch of room numbers hanging on it, ready for a good knocking, should you need to speak with the kaithrit femboy. ");
+		addButton(btnSlot, "KnockEast", kaseApartmentKnock, undefined, "", "");
+	}
+	else if(kaseIsCrew())
+	{
+		output("\n\nKase's vacant appartment lies to the east, empty and unused with the kaithrit boy currently bunking on your ship.");
+		addDisabledButton(btnSlot, "KnockEast");
+	}
+	else 
+	{
+		output("\n\nAn unoccupied aparment lies to the east. No one you know lives there, but judging from the clean door, the room is well-kept.");
+		addDisabledButton(btnSlot, "KnockEast");
+	}
 	
+}
+
+public function kaseApartmentKnock():void
+{
+	clearOutput();
+	author("HugsAlright");
+	showKase();
+	clearMenu();
 	
+	currentLocation = "RESIDENTIAL DECK KASES APARTMENT";
+	generateMap();
+	currentLocation = "RESIDETIAL DECK 13";
 	
+	output("You give the door a good rapping with your knuckles, creating a loud enough noise to get the attention of Kase, or at least you assume it to be, with his sensitive kaithrit ears.");
+	output("\n\nSure enough, the door opens soon after, revealing a green-haired kitty boy on the other side. A smile appears upon his face once he sees who's greeting him, <i>“Hello there, Captain! I wasn't expecting you here today, but please, come in!”</i>");
+	output("\n\nYou accept the kaithrit's invitation and follow him inside, stopping a moment to take in the sight of Kase's well-kept room, neat and clean, much like your ship seems to be when he's on board.");
+	output("\n\n<i>“So, " + pc.mf("sir","ma'am") + ",”</i> he says, closing the door once you're both inside, <i>“What was it that brought you to my abode?”</i>");
 	
+	processTime(5);
 	
+	addButton(0, "Checkup", kaseApartmentCheckup, undefined, "Checkup", "See how your pretty kitty is doing on his lonesome.");
+	addButton(1, "JoinCrew", kaseApartmentJoin, undefined, "Join Crew", "Ask Kase to join you on your ship again.");
+	addButton(14, "Leave", mainGameMenu, undefined, "Leave", "Bid Kase farewell. ");
+}
+
+public function kaseApartmentCheckup():void
+{
+	clearOutput();
+	author("HugsAlright");
+	showKase();
+	
+	output("You tell Kase you're stopping by to see how he's doing all by himself here on Tavros. ");
+	if(flags["KASE_STEELETECH"] == 1) output("\n\n<i>“Oh, well, it's been fine, more or less,”</i> he says, keeping his straight and proper posture, <i>“SteeleTech has been keeping me busy with work, plenty of accounting and logistics operations that can be taken care of remotely.”</i> Kase pauses and lets out a long sigh, <i>“But, in all honesty, Captain, it's nowhere near the… purpose I felt working on your ship.”</i>");
+	else output("\n\n<i>“In all honesty, Captain,”</i> he says, keeping his straight posture, <i>“It's been quite boring. There's been odd jobs here and there, but none of it even comes close to working on the ship with you.”</i> Kase pauses and lets out a long sigh, <i>“But, I'll be here if that's where you need me, " + pc.mf("sir","ma'am") + ".”</i>");
+	
+	processTime(3+rand(3));
+	
+	addDisabledButton(0, "Checkup");
+}
+
+public function kaseApartmentJoin():void
+{
+	clearOutput();
+	author("HugsAlright");
+	showKase();
+	clearMenu();
+	
+	output("You grin and ask Kase if he'd like to work on your ships again, prompting a pair of wide eyes and perking ears from the kaithrit.");
+	output("\n\n<i>“Yes, " + pc.mf("sir","ma'am") + "!”</i> he exclaims, barely able to keep himself from shaking with joy, <i>“There's nothing I'd like more than to be in your employ again.”</i>");
+	output("\n\nThose words bring a smile to your face, and you tell the femboy to gather his things and meet you on your ship.");
+	output("\n\n<i>“Aye-aye, Captain!”</i> he says ecstatically, saluting you before he heads off to gather his belongings, <i>“I'll be there before you know it!”</i>");
+	output("\n\nWith that, he's packing his things, tails moving in what you can only assume to be happy, if a bit erratic patterns. You guess you should leave Kase to finish his preparations.");
+	
+	processTime(5+rand(3));
+	flags["KASE_CREW"] = 2;
+	
+	addButton(0, "Next", mainGameMenu, undefined, "", "");
 }

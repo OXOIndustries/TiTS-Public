@@ -7,6 +7,7 @@ import classes.Items.Stories.SatyrSlave;
 import classes.Items.Stories.CapturedByTheDemons;
 import classes.Items.Stories.TentaclesAndTanukis;
 import classes.Items.Stories.StolenGoods;
+import classes.Items.Treasures.Savicite;
 
 
 public function genericRareDrops(loot:Array):Array
@@ -30,6 +31,8 @@ public function genericRareDrops(loot:Array):Array
 				if(!CodexManager.entryUnlocked("||||||||")) tempLoot.push(new EightClicks());
 				if(!CodexManager.entryUnlocked("Fuck the System")) tempLoot.push(new FuckTheSystem());
 				if(!CodexManager.entryUnlocked("Stolen Goods")) tempLoot.push(new StolenGoods());
+				if(!CodexManager.entryUnlocked("Becoming One...")) tempLoot.push(new BecomingOneOfTheGirls());
+				
 				break;
 			case "myrellion":
 				if(!CodexManager.entryUnlocked("Captured...")) tempLoot.push(new CapturedByTheDemons());
@@ -37,20 +40,25 @@ public function genericRareDrops(loot:Array):Array
 				if(!CodexManager.entryUnlocked("Fuck the System")) tempLoot.push(new FuckTheSystem());
 				if(!CodexManager.entryUnlocked("Stolen Goods")) tempLoot.push(new StolenGoods());
 				break;
+			case "uveto vii":
+				tempLoot.push(new Savicite());
+				break;
 			default:
 				break;
 		}
 		//Universal rare drops~
 		if(tempLoot.length == 0) 
 		{
-			/*
-			// Missing entries?
-			if(!CodexManager.entryUnlocked("Becoming One...")) tempLoot.push(new BecomingOneOfTheGirls());
-			*/
+			/* Nothing yet */
 		}
 	}
 	//Easter special!
 	if(isEaster() && rand(100) <= threshold+1) tempLoot.push(eggSelect());
+	//Bonus special TF items 15% of the time.
+	if(planet == "tarkus" && rand(100) <= 15)
+	{
+		tempLoot.push(new SlutShroom());
+	}
 
 	//Add one item from tempLoot to loot.
 	if(tempLoot.length > 0) loot.push(tempLoot[rand(tempLoot.length)]);

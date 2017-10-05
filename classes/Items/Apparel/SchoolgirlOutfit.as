@@ -10,7 +10,7 @@ package classes.Items.Apparel
 	 */
 	public class SchoolgirlOutfit extends ItemSlotClass
 	{
-		
+		//Not PC accessible?
 		public function SchoolgirlOutfit() 
 		{
 			this._latestVersion = 1;
@@ -33,7 +33,7 @@ package classes.Items.Apparel
 			
 			this.attackVerb = "";
 			
-			this.basePrice = 1000;
+			this.basePrice = 3400;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;

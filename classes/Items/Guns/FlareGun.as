@@ -13,7 +13,7 @@ package classes.Items.Guns
 	 */
 	public class FlareGun extends ItemSlotClass
 	{
-		
+		//Level 7 (Common). Balance 2.0
 		public function FlareGun() 
 		{
 			this._latestVersion = 1;
@@ -41,9 +41,10 @@ package classes.Items.Guns
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 5000;
+			this.basePrice = 6600;
 			
-			baseDamage.burning.damageValue = 10;
+			baseDamage.burning.damageValue = 13;
+			baseDamage.kinetic.damageValue = 4;
 			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_BURN);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
@@ -51,7 +52,7 @@ package classes.Items.Guns
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 3;
+			this.critBonus = 9;
 			this.evasion = 0;
 			this.fortification = 0;
 

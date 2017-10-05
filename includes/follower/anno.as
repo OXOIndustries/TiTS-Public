@@ -3375,9 +3375,15 @@ public function annoUvetoHuskarFoursomePoundPuppiesII():void
 
 	output("Anno did a fine job getting her ready! Marina’s ass opens for you, already nice and wet from Anno’s oral attentions. Slow and steady, you sink yourself in inch by inch, loving the way she squeezes and kneads your meat. Rather than fighting, it feels like her asshole’s trying to draw you in, desperate for more. That toy in her twat must be driving her wild, the way she’s panting and gasping and shaking her hips for you already.");
 	
-	output("\n\nYour crotch butts up against the flat head of the toy on the in-thrust, and the moment you do, a shockwave of pleasure hits you like a truck. Before you can blink, you cum, jerking your hips forward and pumping a load of [pc.cum] into the ausar’s waiting rectum. Marina yelps when she feels your seed painting her walls [pc.cumColor], and you’re sure you’ve set off another orgasm in the cock-stuffed slut. Femcum drools down her thighs, squirting around the thick shaft, and her ass clenches around your [pc.cockOrStrapon] until you’ve got no choice but to keep still, just rocking your hips against her plush behind.");
+	output("\n\nYour crotch butts up against the flat head of the toy on the in-thrust, and the moment you do, a shockwave of pleasure hits you like a truck. Before you can blink, you cum, jerking your hips forward");
+	if(pc.hasCock()) output(" and pumping a load of [pc.cum]");
+	output(" into the ausar’s waiting rectum. Marina yelps");
+	if(pc.hasCock()) output(" when she feels your seed painting her walls [pc.cumColor],");
+	output(" and you’re sure you’ve set off another orgasm in the " + (pc.hasCock() ? "cock" : "rod") + "-stuffed slut. Femcum drools down her thighs, squirting around the thick shaft, and her ass clenches around your [pc.cockOrStrapon] until you’ve got no choice but to keep still, just rocking your hips against her plush behind.");
 	
-	output("\n\nThe waves of shuddering pleasure radiating from the toy’s merest touch don’t let up. You almost end up doubling over on Marina’s back, squirting more cum than you’d thought possible from a single load. It takes a concentrated force of will to pull back, pulling out of her behind with a wet <i>pop!</i> You stagger back, almost falling over from a sudden crushing fatigue. Blinking, you catch yourself on something fluffy and soft, and get a yelp of pleasure in response. A look shows you that Anno’s behind you, wet and randy and flushed a dark pink. Galina’s propped up on her shoulders, a musky smear of fem-cum splattered on her cheeks - guess Anno’s been going for a ride while you were distracted.");
+	output("\n\nThe waves of shuddering pleasure radiating from the toy’s merest touch don’t let up. You almost end up doubling over on Marina’s back");
+	if(pc.hasCock()) output(", squirting more cum than you’d thought possible from a single load");
+	output(". It takes a concentrated force of will to pull back, pulling out of her behind with a wet <i>pop!</i> You stagger back, almost falling over from a sudden crushing fatigue. Blinking, you catch yourself on something fluffy and soft, and get a yelp of pleasure in response. A look shows you that Anno’s behind you, wet and randy and flushed a dark pink. Galina’s propped up on her shoulders, a musky smear of fem-cum splattered on her cheeks - guess Anno’s been going for a ride while you were distracted.");
 	
 	output("\n\n<i>“Ooh, does that mean I’m next?”</i> Anno giggles, brushing your hand off her breast... and down to the sodden gash of her sex. <i>“You’re just a machine, aren’t ya [pc.name]?”</i>");
 
@@ -3393,7 +3399,7 @@ public function annoUvetoHuskarFoursomePoundPuppiesII():void
 	else output("It feels like magic!");
 	output("”</i>");
 	
-	output("\n\nOne touch made you blow your load - imagine having that crammed inside you, rubbing against your every most-tender nerve. How Anno isn’t just cumming her brains out on the spot, you’ve got no idea.");
+	output("\n\nOne touch made you " + (pc.hasCock() ? "blow your load" : "cum yourself") + " - imagine having that crammed inside you, rubbing against your every most-tender nerve. How Anno isn’t just cumming her brains out on the spot, you’ve got no idea.");
 	
 	output("\n\nThen again, the way she’s leaking and squirting, maybe she’s just locked in one constant, unending climax.");
 	
@@ -3422,10 +3428,10 @@ public function annoUvetoHuskarFoursomePoundPuppiesIII():void
 	output("Running a hand along soft feminine flesh as you go, you circle around the desk and present your");
 	if (pc.cocks.length > 1) output(" [pc.multiCocks]");
 	else output(" [pc.cockOrStrapon]");
-	output(" to Anno and Marina. The girls’ mouths are already open, panting with lust and pleasure; it takes no effort to sheath your cock right in");
+	output(" to Anno and Marina. The girls’ mouths are already open, panting with lust and pleasure; it takes no effort to sheath your " + (pc.hasCock() ? "" : "hardlight-") + "cock right in");
 	if (pc.cocks.length > 1) output(" their mouths");
 	else output(" Anno’s waiting mouth");
-	output(", shivering as your cockflesh is slurped up by wet ausar tongue. Anno moans around your manhood, fluttering her big blue eyes up at you. You grin and give her a scratch between the ears, which is all the encouragement she needs to really start sucking.");
+	output(", shivering as your " + (pc.hasCock() ? "cockflesh" : "holo-dick hard-on") + " is slurped up by wet ausar tongue. Anno moans around your manhood, fluttering her big blue eyes up at you. You grin and give her a scratch between the ears, which is all the encouragement she needs to really start sucking.");
 	if (pc.cocks.length > 1) output(" Marina, meanwhile, has nothing to distract her from gobbling cock, and she’s taking your shaft deep down her throat without prompting.");
 	
 	output("\n\nYou’re treated to a view of two snowy tails swishing behind Gal’s jiggling ass as she bounces; her tail flicks across your [pc.face], ticking your nose until your grab it and give her a rough pull - none of that! She squeals, giving you a pouty look over her shoulder that lasts only until you reach up and slap her behind, pushing her forward so you can get a good look at her rump while she rides. Since you’ve still got a hand free, you might as well put it to use.... You reach forward and slip a few fingers in between the rocky toy and Galina’s quim, thrusting knuckle-deep into her well-fucked slit.");
@@ -3433,7 +3439,7 @@ public function annoUvetoHuskarFoursomePoundPuppiesIII():void
 	output("\n\nBetween thrusting your hips into Anno’s face and digging your digits into Gal’s sodden quim, you’re getting quite the workout - not to mention keeping the puppy-sluts nice and busy. Only Marina isn’t getting pleasured, and her sister soon remedies that, reaching down and giving her sister a little manual attention.");
 	if (pc.cocks.length > 1) output(" You can tell the exact moment she starts, too: Marina’s mouth acts like a vacuum on your second cock, sucking hard and fast when her sister’s furry paws get inside her. After the first shock, though, Mari’s tongue goes to work instead, wrapping around your cockhead and flicking across your glans.");
 	
-	output("\n\nWith this kind of treatment, it’s only a matter of time before you feel that familiar pressure thrumming in your [pc.balls]. More than eager to give these lusty huskies a proper treat, you keep your [pc.hips] moving, thrusting in and out of the mouth");
+	output("\n\nWith this kind of treatment, it’s only a matter of time before you feel that familiar pressure thrumming in your " + (pc.hasCock() ? "[pc.balls]" : "[pc.crotch]") + ". More than eager to give these lusty huskies a proper treat, you keep your [pc.hips] moving, thrusting in and out of the mouth");
 	if (pc.cocks.length > 1) output("s");
 	output(" working your " + (pc.hasCock() ? "[pc.multiCocks]" : "hardlight strapon") + ".");
 	if (pc.cocks.length <= 1) output(" Seeing what’s about to happen, Marina greedily reaches up as best she can, licking at the base of your [pc.cockOrStrapon] and starting to pump it with her hands, adding on to the pleasure Anno’s already giving you.");
@@ -4147,7 +4153,7 @@ public function annoFrenchMaidGimmeMoreMore(x:int):void
 	if (!pc.hasKnot(x))
 	{
 		output("\n\nAnno pushes herself down on your [pc.cock " + x + "] for the who-knows-how-manyeth time. She lets out a muffled cry of pleasure as her snatch spasms around your tired manhood, pussy-juice spraying onto the now cum-soaked chair. She stays on your turgid length for a moment as she comes down from her orgasm, panting, tail still waving to and fro. Anno pulls herself off your softening [pc.cockNoun " + x + "], an abundance of [pc.cum] leaking from her now-gaping cunt. The canid-girl can barely hold herself upright, her arms and legs quivering until she falls forward onto you, her chin resting on your shoulder. Anno throws her arms around your neck to secure herself, panting happily into your ear.");
-		output("\n\nBetween pants the tired puppy manages to string some words together. <i>“Sorry... boss... ”</i> she takes in a deep breath, <i>“I don’t think I have another round in me.”</i> ");
+		output("\n\nBetween pants the tired puppy manages to string some words together. <i>“Sorry... boss...”</i> she takes in a deep breath, <i>“I don’t think I have another round in me.”</i> ");
 		output("\n\nYou pat the ausar maid on the the ass and tell her that’s just fine, though you think the ship might need some more work. Anno manages to chuckle.");
 		output("\n\n<i>“Think it’d be okay if we stay like this for a while?”</i> your spent lover whispers into your ear, <i>“I don’t think I could move right now.”</i>");
 		output("\n\nYou breathe deep and give the girl another pat on the ass.");
@@ -4156,8 +4162,8 @@ public function annoFrenchMaidGimmeMoreMore(x:int):void
 	}
 	else
 	{
-		output("\n\nAnno pushes down on your [pc.cock " + x + "], forcing herself down harder than the past who-knows-how-many times, allowing your turgid [pc.knotNoun " + x + "] to slip into her. She lets out a muffled cry of pleasure as her snatch spasms around your tired cock, pussy-juice spraying onto the now cum-soaked chair. You’re not too far behind the ausar and join her in orgasm, knot expanding as your breeding-rod sprays what little [pc.cum] it has left into Anno’s waiting cunt. She stays in her spot for a moment as she comes down from her orgasm, panting, tail still waving to and fro. She pulls herself back to look at you, but the canid-girl can barely hold herself upright, her arms and legs quivering until she falls forward onto you, with her chin resting on your shoulder. Anno throws her arms around your neck to secure herself, panting happily into your ear.");
-		output("\n\nBetween pants the tired puppy manages to string some words together. <i>“Sorry... boss... ”</i> she takes in a deep breath, <i>“I think... we might be stuck here for... a while.”</i> ");
+		output("\n\nAnno pushes down on your [pc.cock " + x + "], forcing herself down harder than the past who-knows-how-many times, allowing your turgid [pc.knot " + x + "] to slip into her. She lets out a muffled cry of pleasure as her snatch spasms around your tired cock, pussy-juice spraying onto the now cum-soaked chair. You’re not too far behind the ausar and join her in orgasm, knot expanding as your breeding-rod sprays what little [pc.cum] it has left into Anno’s waiting cunt. She stays in her spot for a moment as she comes down from her orgasm, panting, tail still waving to and fro. She pulls herself back to look at you, but the canid-girl can barely hold herself upright, her arms and legs quivering until she falls forward onto you, with her chin resting on your shoulder. Anno throws her arms around your neck to secure herself, panting happily into your ear.");
+		output("\n\nBetween pants the tired puppy manages to string some words together. <i>“Sorry... boss...”</i> she takes in a deep breath, <i>“I think... we might be stuck here for... a while.”</i> ");
 		output("\n\nYou pat the ausar maid on the ass and tell her that you’re fine with that. ");
 		output("\n\nShe coos happily and nuzzles her head into the nape of your neck, <i>“That’s good. I don’t think I could move right now anyway.”</i>");
 		output("\n\nHonestly, you don’t feel like you could move yourself. You wrap your arms around Anno’s back and pull your knotted maid close, her double-D’s pressing into your [pc.chest], radiating heat through the soft, thin fabrics of her now cum-soaked maid outfit.");

@@ -699,6 +699,7 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 13"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 13"].southExit = "RESIDENTIAL DECK 12";
 	rooms["RESIDENTIAL DECK 13"].westExit = "RESIDENTIAL DECK FISIS APARTMENT";
+	rooms["RESIDENTIAL DECK 13"].eastExit = "RESIDENTIAL DECK KASES APARTMENT";
 	rooms["RESIDENTIAL DECK 13"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 13"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 13"].addFlag(GLOBAL.PUBLIC);
