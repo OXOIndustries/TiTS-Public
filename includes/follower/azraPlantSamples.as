@@ -58,6 +58,9 @@ public function azraPlantSamples(back:Boolean = false):void
 	addButton(0,"Fuck Lillies",approachFuckLillies);
 	if(flags["AZRA_TARKUSED"] == 1) addButton(1,"Slutshrooms",slutShroomApproach);
 	else addDisabledButton(1,"Undiscovered","Undiscovered","You have not yet saved this plant.");
+	addDisabledButton(2,"Undiscovered","Undiscovered","You have not yet saved this plant.");
+	if(flags["AZRA_TARKUSED"] == 1) addButton(3,"Spunkshroom",spunkshroomApproach);
+	else addDisabledButton(3,"Undiscovered","Undiscovered","You have not yet saved this plant.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -190,6 +193,37 @@ public function rideDatFuckLily():void
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",fuckFlowerEpilogue);
+}
+public function spunkshroomApproach():void
+{
+	clearOutput();
+	showName("\nSHROOMS!");
+	output("Azra has placed the so-called ‘spunkshrooms’ in a bed of orange-hued soil ringed by evenly spaced posts designed to mimic the lighting conditions where you found them. At first, they look sort of sick, but you then you remember that they’re fat, droopy things. Their caps hang down all the way to the soil for a reason known only to the fungi themselves. A holographic display at the base of the planter reads, <i>“Ferrous Ejaculatus.”</i> Azra wastes no time in naming her discoveries. Further notes expound that preliminary tests reveal them to be mildly toxic and mutagenic.");
+
+	output("\n\nPotential effects on ingestion include unexpected leakages of sperm-supporting fluids, increased virility, unexplained breeding urges. ");
+	if(pc.statusEffectv1("Spunkshroom CD") >= 4) output("<b>Azra has left a note telling you to leave her samples alone for the time being. They need to recover from your previous harvests.</b>");
+	else if(!pc.hasCock()) output("No point in taking one without any sort of penis, you suppose.");
+	else output("You suppose you could pick one if you wanted to get a little masculine enhancement.");
+	
+	processTime(2);
+	clearMenu();
+	if(pc.statusEffectv1("Spunkshroom CD") >= 4) addDisabledButton(0,"Pick One","Pick One","You should give the plants a break before taking any more.");
+	else addButton(0,"Pick One",pickASpunkshroom);
+	addButton(14,"Back",azraPlantSamples,true);
+}
+
+public function pickASpunkshroom():void
+{
+	clearOutput();
+	showName("\nYOINK!");
+	output("You reach under the enormous cap to grab a mushroom by the stalk and nearly recoil when you make contact with the slimy fungus. The drape-like top may help them trap moisture for their root systems, but it makes tugging one out of the ground more work than it ought to be. The mushroom breaks off after a few both and forth tugs.\n\n");
+	//After taking four, needs a 4 day CD. CD resets on each pick.
+	if(!pc.hasStatusEffect("Spunkshroom CD")) pc.createStatusEffect("Spunkshroom CD",1);
+	else pc.addStatusValue("Spunkshroom CD",1,1);
+	pc.setStatusMinutes("Spunkshroom CD",60*24*4);
+	//Standard item collection here
+	eventQueue.push(spunkshroomApproach);
+	quickLoot(new SpunkShroom());
 }
 
 public function slutShroomApproach():void

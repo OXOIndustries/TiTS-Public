@@ -1663,7 +1663,7 @@ public function actualSydianTrapQueenIntro():void
 {
 	clearOutput();
 	showAzra();
-	showName("HUNTING\nSPUNKSHROOM");
+	showName("HUNTING\nSHROOMS");
 	output("Out in the bright tarkus sunlight once more, Azra takes a minute to direct you toward the next bio-cache. <i>“Once we climb out of this depression, take a left and press forward for 437 meters. The orbital scan places our targets amongst several spires of oxidized ferrite.”</i> She sighs. <i>“With how today is going, I expect we’ll find a sydian present.”</i>");
 	output("\n\nYou nod, and together you and the suula scientist set off toward the next prize. It takes you all of ten minutes to reach it.");
 	processTime(10);
@@ -1691,7 +1691,7 @@ public function meetTrapQueensSubject():void
 {
 	clearOutput();
 	showAzra();
-	showName("\nSPUNKSHROOM!");
+	showName("\nSHROOMS");
 	output("Azra guides you deeper into the strange formations. Supposedly the spunkshrooms are <i>“Just ahead,”</i> like they have been for the past few minutes. Brushing the crumbling flakes from your ");
 	if(pc.hasPartFur("arms")) output("fuzzy ");
 	output("fingers, you mantle over a fallen pillar and bump into a very surprised raskvel girl.");
@@ -1919,7 +1919,7 @@ public function begForMercy():void
 public function acceptPunishmentSucky():void
 {
 	clearOutput();
-	showBust("RASK_TRAP");
+	showBust("RASK_TRAP_NUDE");
 	showName("\nAZAPHEL");
 
 	//Solo Blowjob
@@ -2012,7 +2012,7 @@ public function nahImNotASloot():void
 public function multiBalljobRaskTraps():void
 {
 	clearOutput();
-	showBust("RASK_TRAP",azraBustString(true),"RASK_TRAP","RASK_TRAP");
+	showBust("RASK_TRAP_NUDE",azraBustString(true),"RASK_TRAP_NUDE","RASK_TRAP_NUDE");
 	if(silly) showName("MULTI-\nBALL!");
 	else showName("RASKVEL\nSERVICE");
 	author("Nonesuch");
@@ -2079,7 +2079,7 @@ public function multiBalljobRaskTraps():void
 public function multiBalljobRaskTraps2():void
 {
 	clearOutput();
-	showBust("RASK_TRAP",azraBustString(true),"RASK_TRAP","RASK_TRAP");
+	showBust("RASK_TRAP_NUDE",azraBustString(true),"RASK_TRAP_NUDE","RASK_TRAP_NUDE");
 	if(silly) showName("MULTI-\nBALL!");
 	else showName("RASKVEL\nSERVICE");
 	author("Nonesuch");
@@ -2120,7 +2120,7 @@ public function multiBalljobRaskTraps2():void
 public function multiBalljobRaskTraps3():void
 {
 	clearOutput();
-	showBust("RASK_TRAP",azraBustString(true),"RASK_TRAP","RASK_TRAP");
+	showBust("RASK_TRAP_NUDE",azraBustString(true),"RASK_TRAP_NUDE","RASK_TRAP_NUDE");
 	if(silly) showName("MULTI-\nBALL!");
 	else showName("RASKVEL\nSERVICE");
 	author("Nonesuch");

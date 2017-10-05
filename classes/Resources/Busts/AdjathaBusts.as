@@ -58,6 +58,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/atha_zil.png", mimeType = "image/png")]
 		public var Bust_ATHA_ZIL:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/azaphel.png", mimeType = "image/png")]
+		public var Bust_AZAPHEL:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/azaphel_nude.png", mimeType = "image/png")]
+		public var Bust_AZAPHEL_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/azra.png", mimeType = "image/png")]
 		public var Bust_AZRA:Class;
 		public var Bounds_AZRA:Rectangle = new Rectangle(65, 0, 80, 80);
@@ -488,6 +493,9 @@ package classes.Resources.Busts
 		public var Bust_QUINN:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/quinn_nude.png", mimeType = "image/png")]
 		public var Bust_QUINN_NUDE:Class;
+		
+		public function get Bust_RASK_TRAP():Class { return Bust_AZAPHEL; }
+		public function get Bust_RASK_TRAP_NUDE():Class { return Bust_AZAPHEL_NUDE; }
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/reaha_anusoft.png", mimeType = "image/png")]
 		public var Bust_REAHA_ANUSOFT:Class;
@@ -719,6 +727,11 @@ package classes.Resources.Busts
 			public var Full_ATHA_TERRAN:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha_zil.png", mimeType = "image/png")]
 			public var Full_ATHA_ZIL:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azaphel.png", mimeType = "image/png")]
+			public var Full_AZAPHEL:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azaphel_nude.png", mimeType = "image/png")]
+			public var Full_AZAPHEL_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra.png", mimeType = "image/png")]
 			public var Full_AZRA:Class;
