@@ -11019,7 +11019,7 @@
 		public function isPuppyorKitten():Boolean
 		{
 			var sRaceShort:String = raceShort();
-			if(InCollection(sRaceShort, ["ausar", "kaithrit", "huskar", "milodan", "korgonne", "canine", "feline", "vulpine", "lupine"])) return true;
+			if(InCollection(sRaceShort, ["ausar", "kaithrit", "naleen", "huskar", "milodan", "korgonne", "canine", "feline", "vulpine", "lupine"])) return true;
 			return false;
 		}
 		public function isAusar():Boolean
@@ -19733,7 +19733,7 @@
 		public function catDog(c:String, d:String, prefDog:Boolean = true):String
 		{
 			var r:String = raceShort();
-			if (r.indexOf("kaithrit") != -1 || r.indexOf("feline") != -1) return c;
+			if (r.indexOf("kaithrit") != -1 || r.indexOf("feline") != -1 || r.indexOf("naleen") != -1) return c;
 			if (r.indexOf("ausar") != -1 || r.indexOf("huskar") != -1 || r.indexOf("milodan") != -1 || r.indexOf("korgonne") != -1 || r.indexOf("canine") != -1 || r.indexOf("vulpine") != -1 || r.indexOf("lupine") != -1) return d;
 			return (prefDog ? d : c);
 		}
