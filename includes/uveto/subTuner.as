@@ -2242,12 +2242,15 @@ public function labWalkInHypnoEvent():void
 	pc.removeStatusEffect("Belle Hypno");
 	pc.lust(5);
 	var loots:Array = [];
-	if(!(pc.armor is EmptySlot)) { loots.push(pc.armor); pc.armor = new EmptySlot(); }
-	if(!(pc.lowerUndergarment is EmptySlot)) { loots.push(pc.lowerUndergarment); pc.lowerUndergarment = new EmptySlot(); }
-	if(!(pc.upperUndergarment is EmptySlot)) { loots.push(pc.upperUndergarment); pc.upperUndergarment = new EmptySlot(); }
+	if(!(pc.armor is EmptySlot)) loots.push(pc.armor);
+	if(!(pc.lowerUndergarment is EmptySlot)) loots.push(pc.lowerUndergarment);
+	if(!(pc.upperUndergarment is EmptySlot)) loots.push(pc.upperUndergarment);
 	if(loots.length > 0)
 	{
 		quickLoot(pc.armor,pc.lowerUndergarment,pc.upperUndergarment);
+		if(!(pc.armor is EmptySlot)) pc.armor = new EmptySlot();
+		if(!(pc.lowerUndergarment is EmptySlot)) pc.lowerUndergarment = new EmptySlot();
+		if(!(pc.upperUndergarment is EmptySlot)) pc.upperUndergarment = new EmptySlot();
 		eventQueue.push(newApproachBelle);
 	}
 	else
