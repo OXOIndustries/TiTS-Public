@@ -215,7 +215,7 @@ package classes.Characters
 					
 					output("\n\nIt seems she’s changed her skin to match her surroundings like instant camouflage. You can still see her, but while she’s camouflaged it is going to be harder to hit her and dodge her attacks.");
 					
-					createStatusEffect("Camouflage", 3, 0, 0, 0);
+					createStatusEffect("Camouflage", 3, 0, 0, 0, false, "Icon_Blind", "Active camouflage makes it harder for opponents to target.");
 					reflexesMod += 8;
 					aimMod += 8;
 				}

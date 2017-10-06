@@ -554,6 +554,9 @@
  	else if (flags["PRAI_MOOD"] == 2) output("She immediately shoves back against you, wobbling at bit at the edge of the branch, just managing to maintain her balance.");
  	output("\n\nYou cough a bit and suggest that you make your way down to the ground.");
  	output("\n\n<i>“Oh my goodness grapejuice, you’re right! We could break our necks staying up here in this tree!”</i>");
+ 	output("\n\nShe nervously steps from one branch to the next, following you down the natural path to the jungle floor. Once there, she smiles ");
+ 	if (pc.tallness < 5*12+2) output("down ");
+ 	else if (pc.tallness > 5*12+2) output("up ");
  	output("at you, and toys with the hem of her skirt, giving you a little bob. <i>“Thank you very much for saving me, albeit in such an unorthodox way,”</i> she glances to the side, blushing. <i>“Um, is there anything I can do for you?”</i>");
  	
  	processTime(15+rand(5));

@@ -1529,11 +1529,10 @@ public function sydianPregnancyEnds():void
 	showName("\nBIRTHING!");
 
 	var se:StorageClass = pc.getStatusEffect("Sydian Pregnancy Ends");
-	
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;
-	var babym:Boolean = (se.value4 == 1 ? false : true);
+	var babym:Boolean = (se.value4 == 1 ? true : false);
 	
 	output("Pain in your gut bends you over and fluid spills");
 	if (!pc.isCrotchExposed()) output(" into your [pc.lowerGarment]");
