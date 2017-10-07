@@ -4880,6 +4880,10 @@ public function approachServantSeraOnTavros(introText:Boolean = false):void
 	// Sera Salary hotfix check
 	if(seraSalaryCheck()) return;
 	
+	clearOutput();
+	author("Nonesuch");
+	clearMenu();
+	
 	if(seraPregnancyIsDue())
 	{
 		output("Sera’s room is empty. It looks slightly more dishevelled than usual, although that’s a difficult thing to judge.");
@@ -4891,10 +4895,7 @@ public function approachServantSeraOnTavros(introText:Boolean = false):void
 	
 	generateMapForLocation("NURSERYSERA");
 	
-	clearOutput();
 	showSera();
-	author("Nonesuch");
-	clearMenu();
 	
 	if(introText)
 	{
