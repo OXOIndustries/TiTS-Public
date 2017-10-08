@@ -5043,7 +5043,7 @@ public function aboutBess1():void
 
 	output("You question [bess.name] about [bess.hisHer] past before you discovered her, though your query seems to confuse [bess.himHer].");
 	
-	output("\n\n<i>“Before you activated me I was built at a JoyCo factory on Panara, "+bessPCName()+". Unplugging the power coupling and seeing you are the the first memories I have.”</i>");
+	output("\n\n<i>“Before you activated me I was built at a JoyCo factory on Panara, "+bessPCName()+". Unplugging the power coupling and seeing you are the first memories I have.”</i>");
 	
 	output("\n\nIt seems when [bess.heShe] rebooted, [bess.hisHer] entire memory was wiped, including how [bess.heShe] ended up on the planet in the first place. You decide to ask [bess.himHer] when [bess.heShe] was issued from the JoyCo factory.");
 	
@@ -8005,7 +8005,7 @@ public function bessEvent15():void
 	clearOutput();
 	bessHeader();
 
-	output("You find [bess.name] in [bess.hisHer] little nook curled up reading a book as per usual, [bess.hisHer] [bess.eyeColor] eyes fixated on the pages before [bess.himHer]. [bess.HeShe] seems to be reading The Lord of the Rings trilogy by J. R. R. Tolkien. You can see [bess.heShe]’s up to The Return of the King, the final book in the series; the The Hobbit and The Silmarillion are lying finished nearby.");
+	output("You find [bess.name] in [bess.hisHer] little nook curled up reading a book as per usual, [bess.hisHer] [bess.eyeColor] eyes fixated on the pages before [bess.himHer]. [bess.HeShe] seems to be reading The Lord of the Rings trilogy by J. R. R. Tolkien. You can see [bess.heShe]’s up to The Return of the King, the final book in the series; The Hobbit and The Silmarillion are lying finished nearby.");
 	
 	output("\n\n[bess.HeShe] must be really enjoying the book because [bess.heShe] still hasn’t noticed you standing there. If you wanted, you could easily turn the tables on [bess.himHer], since [bess.heShe]’s always trying to wind you up...");
 

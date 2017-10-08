@@ -305,7 +305,7 @@ if (vagina)
 //Check vaginal virginity and hymen loss
 //Stretch vagina versus 1.5 inch width item
 if (ass)
-"Aww, is it a bit rough getting your bad side violated like this?" she taunts you as she works the stick deeper inside your [ass], your back stiffening uncomfortably at the the rough invasion. She forces you to gasp in pain, when she starts working the shaft around in circles and twisting around your colon. "Yeah, that's right. Keep making those noises, this stick up your ass isn't going to announce itself." You can't do much else, and the damn goblin seems to be really enjoying torturing you with her tool.
+"Aww, is it a bit rough getting your bad side violated like this?" she taunts you as she works the stick deeper inside your [ass], your back stiffening uncomfortably at the rough invasion. She forces you to gasp in pain, when she starts working the shaft around in circles and twisting around your colon. "Yeah, that's right. Keep making those noises, this stick up your ass isn't going to announce itself." You can't do much else, and the damn goblin seems to be really enjoying torturing you with her tool.
 
 //Check anal virginity
 //stretch ass versus 1.5 inch width item

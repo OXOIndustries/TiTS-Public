@@ -434,7 +434,7 @@ public function talkToBrandtAboutHerSweetBooty():void
 		output("\n\nBrandt considers you for a long moment. <i>“If I told you that, by removing a hemisphere of your brain, I could make you happier... would you do it?”</i>");
 		if(pc.isBro() && pc.isTreated()) output("\n\nDude, totally.");
 		else if(pc.isTreated() && pc.isBimbo()) output("\n\nLike, been there, done that!");
-		else output("Uhhhh...");
+		else output("\n\nUhhhh...");
 
 		output("\n\n<i>“As I said, it is not my intention to be unfriendly or cold. But the idea of having a full third of my mental faculties stripped is difficult to countenance. Not to mention the lingering possibility of mishap in surgery, or mental defect. Having grey-matter implants removed completely is rare and dangerous, even today. I am... content to be difficult to talk to. My job requires little more than terse call and response, after all.”</i>");
 
@@ -708,7 +708,7 @@ public function brandMissionarySex(x:int):void
 	output("\n\n<i>“Come on,”</i> Hélla murmurs, nibbling at your [pc.ear]. <i>“Take me.”</i>");
 	if(pc.isMischievous()) output("\n\n<i>“Yes ma’am.”</i> You grin.");
 	else output("\n\nLike you needed more of an invitation!");
-	output(" Her thick, scaly tail brushes up against your back, pushing you in until your [pc.chest] is pressed against her perky little tits, and your [pc.cockOrStrapon " + x + "] grinds against the thick lips of her sex, picking up lubrication from her free-flowing excitement. The halfbreed shivers and gasps, feeling your prick rub against her cherry bulb, faster and faster until a motion of your [pc.hips] pulls it back and presses the crown against her hungry slit.");
+	output(" Her thick, scaly tail brushes up against your back, pushing you in until your [pc.chest] " + (pc.biggestTitSize() >= 1 ? "are" : "is") + " pressed against her perky little tits, and your [pc.cockOrStrapon " + x + "] grinds against the thick lips of her sex, picking up lubrication from her free-flowing excitement. The halfbreed shivers and gasps, feeling your prick rub against her cherry bulb, faster and faster until a motion of your [pc.hips] pulls it back and presses the crown against her hungry slit.");
 	output("\n\nYou push forward, and her body yields, opening like a flower to accept the stiff mast of your [pc.cockOrStrapon " + x + "]. Wet heat envelops you, caressing you and drawing you deeper into the halfbreed girl’s sensual embrace.");
 	if(x >= 0) pc.cockChange();
 	output("\n\n<i>“A-ah! I feel it!”</i> Hélla gasps, arching her back from the chair, thrashing her tail against your [pc.leg]. She moans, softly at first, then higher as you press forward.");

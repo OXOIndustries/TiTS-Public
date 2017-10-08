@@ -1819,7 +1819,7 @@ public function tittyBlow():void
 	//Dick 5" thick or more.
 	else
 	{
-		output("\n\n<i>“You asked for it.”</i> Hefting your enormous slab of cock, you awkwardly position the the tip of your gigantic boner against a cunt that suddenly seems far too small for it.");
+		output("\n\n<i>“You asked for it.”</i> Hefting your enormous slab of cock, you awkwardly position the tip of your gigantic boner against a cunt that suddenly seems far too small for it.");
 		output("\n\nSylvie shivers from the tip of her fluffy tail all the way to her luscious locks. <i>“I can take it.”</i>");
 		output("\n\nPutting her words to the test, you thrust ahead. There’s almost no give at first. Her pussy might as well be a brick wall. Then, Sylvie moans and, with a shudder, gives way to your [pc.cock " + x + "]. Her sodden entrance dilates once, not enough, but close. You shove again, grunting with the effort, and Sylvie’s purple pussy opens up for you like a blooming flower. It does so reluctantly, perhaps even if with a bit of pain, but it does so all the same. She’s wet enough that as soon as it does, you slip a whole foot inside in a single stroke, spearing her, stretching her bestial channel wider than it has ever been before.");
 		output("\n\n<i>“Fu-fuck, no I can’t!”</i> the moose-woman cries, tossing her hair. It catches on her jutting, pink nipples. <i>“Too much!”</i>");

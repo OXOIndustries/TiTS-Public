@@ -397,7 +397,7 @@ public function puppyslutmasArrive():void
 	showLocationName();
 	author("Savin");
 
-	output("Settling back into the captain’s seat, you plug in the address your companion gave you, which sets the autopilot towards a large office complex in one of the the metropolitan northern cities. The descent to Ausaril is easy, gliding through thick and bustling lines of stellar traffic down through the atmosphere. Rolling blue clouds give way to a vast desert vista, golden sand stretching out as far as the eye can see, dotted by outcroppings of mountains and cityscapes interconnected by coiling hover-tracks.");
+	output("Settling back into the captain’s seat, you plug in the address your companion gave you, which sets the autopilot towards a large office complex in one of the metropolitan northern cities. The descent to Ausaril is easy, gliding through thick and bustling lines of stellar traffic down through the atmosphere. Rolling blue clouds give way to a vast desert vista, golden sand stretching out as far as the eye can see, dotted by outcroppings of mountains and cityscapes interconnected by coiling hover-tracks.");
 	
 	output("\n\nThe autopilot guides your vessel across one of the tracks, following it for a few miles and into one of the larger cities. It’s a short jaunt from there to the office complex and into an open docking bay on one of the upper floors. The building’s extremely wide, giving plenty of room for you to park alongside a handful of other small space ships: mostly pleasure yachts and designer sports racers, all decadently expensive.");
 	

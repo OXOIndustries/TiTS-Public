@@ -233,7 +233,7 @@ public function setBeatriceName(arg:String):void
 	output("\n\n<i>“So, sweetie,”</i> she sets her snifter down and laces her fingers together, <i>“why don’t you tell me a bit about yourself. I’m sure you have many interesting stories to share.”</i>");
 	output("\n\nYou indulge her, recounting for her the details of your current quest and of your late father’s wish, leaving out certain need-to-know information. She hangs on your every word.");
 	output("\n\n<i>“That’s quite impressive,”</i> she says, <i>“I hope you don’t mind if I congratulate you early, since I know you’ll succeed.”</i>");
-	output("\n\nIt becomes quiet, and the two of you enjoy the the fire. It seems that " + flags["BEA_TITLE"] + " is the type of woman who simply likes the company of others, even if there isn’t anything to talk about at the moment.");
+	output("\n\nIt becomes quiet, and the two of you enjoy the fire. It seems that " + flags["BEA_TITLE"] + " is the type of woman who simply likes the company of others, even if there isn’t anything to talk about at the moment.");
 	output("\n\nBut what do you want?");
 	processTime(6);
 	//[Appearance] [Talk] [Leave]
@@ -772,7 +772,7 @@ public function cowgirlMissReasner():void
 	author("Tacit");
 	var virgin:Boolean = pc.cockVirgin;
 	output(flags["BEA_TITLE"] + " takes you in her arms, slowly bringing her beautiful visage closer to your [pc.face] and lightly kissing you, tenderly catching your upper [pc.lipChaste] between hers. You eagerly return her ministrations while exploring her body and lifting her hefty bust, feeling the firm cups of her bra through her blouse. Her tongue traces the outline of your lips before slipping deeper into your mouth.");
-	output("\n\nYour [pc.tongue] swirls around hers, moaning into each other’s mouth and inhaling her smoky breath until you get a little dizzy. [pc.SkinFurScalesColor] hands unbutton the the front of " + flags["BEA_TITLE"] + "’s blouse, slip inside around her narrow waist and unhook her bra. She sucks your bottom [pc.lipChaste] into her mouth and pulls on it until the kiss breaks, leaving only a trail of spit connecting your mouths.");
+	output("\n\nYour [pc.tongue] swirls around hers, moaning into each other’s mouth and inhaling her smoky breath until you get a little dizzy. [pc.SkinFurScalesColor] hands unbutton the front of " + flags["BEA_TITLE"] + "’s blouse, slip inside around her narrow waist and unhook her bra. She sucks your bottom [pc.lipChaste] into her mouth and pulls on it until the kiss breaks, leaving only a trail of spit connecting your mouths.");
 	output("\n\n" + flags["BEA_TITLE"] + " pulls away and slowly starts to undress, giving you a little show by pushing out her chest as she removes her blouse and lacy bra, letting her milky F-cups hang free; circling and squeezing her brown areola makes her inverted nipples pop out. " + flags["BEA_TITLE"] + " shows off her body to you, leisurely stroking her limbs and down her midriff to finally undo her belt, letting her long skirt fall to the floor, leaving only her panties, sheer stockings and garter belt; all of it black and lacy with floral patterns. She hooks her thumbs around the sides of her panties and pulls them down her long legs, revealing her [bea.vagina], topped with a soft bush of brown pubic hair.");
 	output("\n\nYou ");
 	if(!pc.isCrotchExposed()) output("join her in stripping off your [pc.lowerGarments], and ");

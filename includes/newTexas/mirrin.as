@@ -932,7 +932,7 @@ public function foodWithMirrin():void
 		if(pc.isBimbo() && pc.isTreated()) output(" He’s a proper bull alright and you’d be pulling down those useless shorts there and then if you could, just go get a taste...");
 		output("\n\n<i>“Yeah, that’sa spirit, Doug!”</i> says a random voice behind him.");
 		output("\n\nMirrin just stands there, leaning on a forward thrusted hoof. Her look is one of sheer incredulity. She places her bottle back on the counter.");
-		output("\n\n<i>“Uh, whatsaname... Doug? Listen to me, Doug,”</i> she begins, a feigned note of friendliness in her voice. She slaps a particularly quick hand onto the the bulls bulging shoulder. He’s still smiling.");
+		output("\n\n<i>“Uh, whatsaname... Doug? Listen to me, Doug,”</i> she begins, a feigned note of friendliness in her voice. She slaps a particularly quick hand onto the bull’s bulging shoulder. He’s still smiling.");
 		output("\n\n<i>“Here’s the thing...”</i>");
 		output("\n\nYou see her slowly squeeze, claws dug into his muscle.");
 		output("\n\n<i>“Sure, that sort of thing could work on any respectable cow...”</i>");

@@ -3656,7 +3656,7 @@ public function rahnMilkerFunTimes(arg:String):void
 	//Purple “The Succubus” - Very ordinary (if high grade pleasure tube) operated by psychic, pleasure-feeding being with access to high grade pharmaceuticals.
 	else
 	{
-		output("You choose the devious purple pussy over the the other exotic choices on offer. ");
+		output("You choose the devious purple pussy over the other exotic choices on offer. ");
 		if(!pc.isCrotchExposed()) output("A few quick tugs frees your [pc.cock " + x + "] from confinement and has it ready to go. ");
 		output("The innocuous-looking entrance reacts to your proximity by spreading its lips before you even make content, revealing a pink-tinted interior that seems to wink at you even as its clit engorges. You jerk to a stop at the sight, but the pussy just keeps getting wetter and wetter. The lips visibly puff up. The clit turns a deeper purple, almost black, and grows until it’s nearly an inch long. This sinful slit seems to be doing everything it can to beckon you into its velvety folds.");
 		output("\n\n<i>As if you needed any encouragement.</i>");

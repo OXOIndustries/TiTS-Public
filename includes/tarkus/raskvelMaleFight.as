@@ -1879,7 +1879,7 @@ public function seduceCuntTailMilk(raskWinner:String = "big"):void
 	
 	if (pc.isNice()) output("\n\nA sheepish grin spreads across your face. You might have been a little too rough with the poor thing. As you turn around to leave, you see the unconscious forms of the other two raskvel, and your embarrassed grin turns into an awkward wince. You feel rather guilty about the chaos you’ve wrought, but what’s done is done. You give an apologetic bow to nothing in particular and scurry off.");
 	if (pc.isMischievous()) output("\n\n<i>“Aww, is somebody sore?”</i> you tease. He grunts incoherently and rolls over, keeping his back to you. You laugh and step over the other two raskvel, idly wondering which side wound up with the better deal. It doesn’t really matter in the end, because none of them got off as well as you did. You smile and set out across Tarkus once more, tail curling happily around your leg.");
-	if (pc.isAss()) output("You let out a sigh that draws the the raskvel away from his aching groin. <i>“You’re fine. Walk if off.”</i> He clears his throat and shakily stands up, managing a few steps and an embarrassed grimace. He does his best to come off as a victorious, dominating Alpha, but looks anything but. You shake your head and set off across Tarkus once more.");
+	if (pc.isAss()) output("You let out a sigh that draws the raskvel away from his aching groin. <i>“You’re fine. Walk if off.”</i> He clears his throat and shakily stands up, managing a few steps and an embarrassed grimace. He does his best to come off as a victorious, dominating Alpha, but looks anything but. You shake your head and set off across Tarkus once more.");
 
 	processTime(17);
 	pc.loadInCuntTail(enemy);

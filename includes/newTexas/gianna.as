@@ -673,7 +673,7 @@ public function giannaAppearance():void
 	else if(tempBelly <= 80) output(" Her [gianna.belly] is obscene testament to what her body can endure. You wonder if she can even see her [gianna.feet].");
 	else if(tempBelly <= 90) output(" Her [gianna.belly] is so big that it makes her [gianna.skin] tight and shiny. Her movement must be a bit impractical with the extra bulk.");
 	else output(" Her [gianna.belly] protrudes obscenely from her form, hanging heavily. Getting around should be a struggle with so much extra mass on her.");
-	if(tempBelly >= 10 && gianna.isCumflated()) output(".. all this thanks the the spunk that’s stuffed in her!");
+	if(tempBelly >= 10 && gianna.isCumflated()) output(".. all this thanks to the spunk that’s stuffed in her!");
 	
 	//Butt & Hips Variant
 	var tempButt:Number = gianna.buttRating();

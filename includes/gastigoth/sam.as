@@ -133,7 +133,7 @@ public function samPrisonStuff(cocked:Boolean = false):void
 			if(9999 == 0) output(" or that she’s pregnant already");
 			output(". ");
 		}
-		output("You recognize from the the tight feeling in your [pc.balls] that you’re on the verge of cumming, and you resolve to make the most of it. You grunt with effort as you hump Sam as fast as possible, slapping your ");
+		output("You recognize from the tight feeling in your [pc.balls] that you’re on the verge of cumming, and you resolve to make the most of it. You grunt with effort as you hump Sam as fast as possible, slapping your ");
 		if(pc.balls > 1) output("balls into her clit and your ");
 		output("hips into her ass hard enough to bruise the both of you.");
 
@@ -241,7 +241,7 @@ public function samPrisonStuff(cocked:Boolean = false):void
 		output("\n\nIn short order you’ve fucked the dark-skinned beauty into another squirting orgasm, and another soon after that. By now the both of you are covered in sweat and girly fluids. Sam is simply lying slack on the table, whining softly and panting heavily with her tongue out and drool puddling under her the way her cunny honey is puddling under your feet. ");
 		//ausar/huskar/half or any Treated AND has penis: 
 		if(pc.isTreated() || pc.isAusar()) output("Sam’s fertile pheromones have fogged your mind to the point that you’re a beast in rut, thinking only of driving your cock as deeply into a wet hole as possible, of impregnating the fertile female below you. You clutch her hips in a deathgrip instinctively, ensuring your bitch can’t leave before you seed her womb, heedless of the high-tech restraints already keeping her captive, or that you can’t impregnate her with a hardlight cock. ");
-		output("You recognize from the the tight feeling in your lower half that you’re on the verge of cumming, and you resolve to make the most of it. You grunt with effort as you hump Sam as fast as possible, slapping your [pc.hips] into her ass hard enough to bruise the both of you.");
+		output("You recognize from the tight feeling in your lower half that you’re on the verge of cumming, and you resolve to make the most of it. You grunt with effort as you hump Sam as fast as possible, slapping your [pc.hips] into her ass hard enough to bruise the both of you.");
 
 		output("\n\nInstinctively sensing what’s happening, Sam stirs from her fucked-apart stupor and looks back at you. The ausar raises her tail again and humps back into you as hard as she can while struggling to form words between animalistic grunts and whines. <i>“Cum! Cu-UUHH-m in me! Knot me! Please fuUUUCK me ");
 		if(9999 == 0) output("even more ");

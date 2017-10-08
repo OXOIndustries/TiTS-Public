@@ -223,7 +223,7 @@ public function approachJerynn():void
 				if (pc.buttRating() <= 15) output(" at");
 				else output(" a handful of");
 			}
-			output(" your [pc.ass] possessively, the the glassy-smooth scales on her fingers gliding effortlessly over your [pc.skinFurScales].");
+			output(" your [pc.ass] possessively, the glassy-smooth scales on her fingers gliding effortlessly over your [pc.skinFurScales].");
 		}
 
 		output("\n\n<i>“No. Oh no no no. I have something far </i>far<i> better in mind,”</i> she whispers in your [pc.ear], a firm <i>bite</i> punctuating the implied offer. <i>“Jerynn. Remember the name. You’ll be </i>screaming<i> it later.”</i>");
@@ -293,7 +293,7 @@ public function approachJerynn():void
 				if (pc.buttRating() <= 15) output(" at");
 				else output(" a handful of");
 			}
-			output(" your [pc.ass] possessively, the the glassy-smooth scales on her fingers gliding effortlessly over your [pc.skinFurScales].");
+			output(" your [pc.ass] possessively, the glassy-smooth scales on her fingers gliding effortlessly over your [pc.skinFurScales].");
 		}
 
 		output("\n\n<i>“Here to pay off your tab, </i>friend<i>?”</i> she lustily drawls directly into your [pc.ear].");
@@ -2066,7 +2066,7 @@ public function jerynnPetstuffOptIn():void
 	
 	output("\n\n<i>“Well, I didn’t expect that. Come on, the sooner we get you started the sooner you’ll be the perfect little cock-socket,”</i> she says happily.");
 	
-	output("\n\nStill wearing her half of the harness contraption, she fiddles with the tablet for a couple of moments before the the magnetic interlocks click on. You shift slightly as they center and then lock together, once more attached to the underside of the taur, once more full-to-bursting with her throbbing cock. Her coat is back over the two of you in short order, and all you can do is hang there. At least this time you have the pleasure of hugging her flanks with your stumpy limbs, a much more personal orientation.");
+	output("\n\nStill wearing her half of the harness contraption, she fiddles with the tablet for a couple of moments before the magnetic interlocks click on. You shift slightly as they center and then lock together, once more attached to the underside of the taur, once more full-to-bursting with her throbbing cock. Her coat is back over the two of you in short order, and all you can do is hang there. At least this time you have the pleasure of hugging her flanks with your stumpy limbs, a much more personal orientation.");
 	
 	output("\n\nTime becomes irrelevant in the cocoon of the woolen coat, the taur soon making her way out of the apartment and back onto the streets of Uveto. You simply lose yourself to the impromptu fucking motion, no longer caring much of the possibility that you might be discovered, simply content to fuck, to be used as little more than a living onahole.");
 	

@@ -1461,7 +1461,7 @@ public function talkToShadeAboutTailCunt():void
 	output("\n\n<i>“Few too many of ‘em, though, and this clever girl managed to get in behind me. Jumped up and bit me right in the ass, started burning into my skin. I got my backup gun out and put a bullet through her head while she was melding - took out a hunk from my back, too, just about paralyzed myself; I’ll admit I was panicking pretty hard. Eating a six-millimeter right in the middle of it must have fouled up whatever fuses a cunt-snake to your nervous system, because this new tail of mine’s got a mind of her own still. Don’t you, girl?”</i>");
 	output("\n\nHer tail wriggles around her arm,");
 	if(flags["SHADE_ON_UVETO"] == undefined) output(" drooling lube onto her leg");
-	else output(" staining itd sock with lube");
+	else output(" staining its sock with lube");
 	output(". Shade chuckles and rubs it under what passes for a chin, just under its lips. <i>“Anyway, I managed to stop bleeding all over myself long enough to bust into the lab proper and pistol whip the doctor about five steps from his hover car door. Narrow catch, but the bounty set me up nice and cozy for the rest of the year.”</i>");
 	output("\n\n<i>“So you decided to keep the tail?”</i>");
 	output("\n\n<i>“Heh, ‘decided’ might be a little strong of a word. When she bit into me, my cat-tail burned off to make room. Hurt like a bitch. Didn’t feel right walking around without a tail, and while I had the doc tied down, my new one decided to feed on him. For a couple of hours. Good thing kui-tan are </i>productive<i>, because she has an insatiable appetite. After that, I figured I’d keep her around. She’s a pain sometimes, but I feel everything she does... and it’s pretty amazing.");

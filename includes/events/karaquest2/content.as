@@ -354,7 +354,7 @@ public function kq2KaraThePlan():void
 
 	output("\n\n<i>“Really!”</i> Kara says, a little defensive. <i>“They’re not expecting trouble - they don’t think anybody knows they’re there.");
 	if (kara.isMischievous()) output(" P-probably!");
-	output(" It’s a backwater research base, after all. A couple dozen foot-soldiers at worst, plus some automated security. But leave that to me - punching through security systems is my specialty. If I can get access to their communications systems or a computer, I’ll be able to shut down the alarms and make sure no reinforcements show up. Once done, we push into the the subterranean research complex, and shut it down. Permanently.”</i>");
+	output(" It’s a backwater research base, after all. A couple dozen foot-soldiers at worst, plus some automated security. But leave that to me - punching through security systems is my specialty. If I can get access to their communications systems or a computer, I’ll be able to shut down the alarms and make sure no reinforcements show up. Once done, we push into the subterranean research complex, and shut it down. Permanently.”</i>");
 
 	output("\n\n<i>“Any idea what they’re researching, exactly?”</i>");
 

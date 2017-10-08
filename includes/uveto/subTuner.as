@@ -613,7 +613,14 @@ public function postWalkiesHeat2(ppBelle:PregnancyPlaceholder):void
 		output("\n\nYou nod as fast as you can, hoping Belle can do something to fix this terrible rut you’re in, with your desire to cum only having grown since your earlier escapades with the human woman.");
 		output("\n\n<i>“Just wait here a moment,”</i> she says, dropping your leash and walking towards another room in her lab, <i>“I have just the thing you need.”</i>");
 		output("\n\nA strange feeling of sorrow overtakes your lust for a moment as your master leaves you there, <i>because what’s a pet without their master</i>. You don’t have to endure that pain for long though, because soon after she leaves, Belle is back again, and with a new friend: she’s got a pretty blonde ausar girl on a leash, wearing a collar similar to yours, and by all standards she’s quite the beautiful bitch, with her flowing mane, womanly figure and full breasts all put on display.");
-		output("\n\n<i>“This is Saec,”</i> the human woman starts, leading her blonde ausar beauty over to you, <i>“She’s another one of my pets, and she just </i>loves<i> being bred by big, thick cocks; don’t you, girl?”</i> The ausar gives a happy little bark in response, like a good puppy, before her master turns back to you, <i>“And I want </i>you<i> to breed her for me. How does that sound?”</i>");
+		output("\n\n<i>“");
+		if(flags["MET_SAEC"] == undefined)
+		{
+			output("This is Saec,”</i> the human woman starts, leading her blonde ausar beauty over to you, <i>“She’s another one of my pets, and she just </i>loves<i> being bred by big, thick cocks");
+			flags["MET_SAEC"] = 1;
+		}
+		else output("I think Saec is ready to be bred by a big, thick cock");
+		output("; don’t you, girl?”</i> The ausar gives a happy little bark in response, like a good puppy, before her master turns back to you, <i>“And I want </i>you<i> to breed her for me. How does that sound?”</i>");
 		output("\n\nYou take one look at Saec before nodding eagerly, ");
 		//pcAusar/Kaithrit/Half:
 		if(pc.isPuppyorKitten() && pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output("[pc.tail] wagging in an off-beat rhythm, ");
@@ -868,45 +875,39 @@ public function accupitchLabsBonus():Boolean
 		return true;
 	}
 	author("HugsAlright");
+	var msgList = [];
 	//Along with the original opening with the original opening scanner and Accu-Pitch descriptions, these blurbs can show up after that, random chance for each:
-	if(rand(3) == 0) output("\n\nBelle is nearby, her pants looking as full as ever, jotting down notes on a holo-pad as she moves from terminal to terminal, working diligently.");
+	msgList.push(
+		"\n\nBelle is nearby, her pants looking as full as ever, jotting down notes on a holo-pad as she moves from terminal to terminal, working diligently."
+	);
 	//OR
 	//noSaec:
-	if(rand(2) == 0)
-	{
-		if(flags["MET_SAEC"] == undefined)
-		{
-			output("\n\nBelle is nearby, sitting in a chair and playing with what looks to be a pretty blonde ausar girl. She’s wearing a collar very similar to yours, nuzzling against Belle’s legs as she’s pet and showered with praise by the lady scientist, fluffy tail swaying happily.");
-			output("\n\nYou can’t help but feel a pang of jealousy seeing Belle treat someone else like that. Maybe you could do something like that with her one day...");
-		}
+	if(flags["MET_SAEC"] == undefined) msgList.push(
+			"\n\nBelle is nearby, sitting in a chair and playing with what looks to be a pretty blonde ausar girl. She’s wearing a collar very similar to yours, nuzzling against Belle’s legs as she’s pet and showered with praise by the lady scientist, fluffy tail swaying happily." + 
+			"\n\nYou can’t help but feel a pang of jealousy seeing Belle treat someone else like that. Maybe you could do something like that with her one day..."
+		);
+	else {
 		//OR
 		//datedSaec:
-		else if(flags["SAEC_DATES"] != undefined)
-		{
-			output("\n\nBelle is nearby, working at a computer terminal with Saec on a leash... right between her legs. You’re able to catch a glimpse of the ausar’s head as it bobs back and forth on one of her master’s foot-long cocks, moaning and whining gently.");
-			if(pregSaec()) output(" Her swollen, pregnant belly is easily visible as its taut flesh is caressed by one of Saec’s blonde-furred hands.");
-			output("\n\nYou wince with jealousy ");
-			if(pregSaec()) output(", seeing your knocked-up bitch sucking someone else’s shaft like that, but at the same time you wish");
-			else output(", wishing");
-			output(" it was you between Belle’s legs right now.");
-		}
+		if(flags["SAEC_DATES"] != undefined) msgList.push(
+			"\n\nBelle is nearby, working at a computer terminal with Saec on a leash... right between her legs. You’re able to catch a glimpse of the ausar’s head as it bobs back and forth on one of her master’s foot-long cocks, moaning and whining gently." + (pregSaec() ? " Her swollen, pregnant belly is easily visible as its taut flesh is caressed by one of Saec’s blonde-furred hands." : "") +
+			"\n\nYou wince with jealousy " + (pregSaec() ? ", seeing your knocked-up bitch sucking someone else’s shaft like that, but at the same time you wish" : ", wishing") + " it was you between Belle’s legs right now."
+		);
 		//OR
 		//pregSaec:
-		else if(pregSaec())
-		{
-			output("\n\nBelle is nearby, working at one of her benches, but she’s got Saec on a leash next to her. The ausar girl affectionately nuzzles and rubs against the lady scientist’s legs while she goes about her business, seeming happy to just be next to her master.");
-			output("\n\nMore importantly, though, Saec’s normally flat tummy seems quite a bit swollen, and her breasts quite a bit fuller. By your guess, she’s most definitely pregnant, and you think that might be your doing.");
-			output("\n\nWhoops.");
-		}
+		if(pregSaec()) msgList.push(
+			"\n\nBelle is nearby, working at one of her benches, but she’s got Saec on a leash next to her. The ausar girl affectionately nuzzles and rubs against the lady scientist’s legs while she goes about her business, seeming happy to just be next to her master." +
+			"\n\nMore importantly, though, Saec’s normally flat tummy seems quite a bit swollen, and her breasts quite a bit fuller. By your guess, she’s most definitely pregnant, and you think that might be your doing." +
+			"\n\nWhoops."
+		);
 		//OR
 		//metSaec:
-		else
-		{
-			output("\n\nBelle is nearby, and she’s sitting down with Saec in her lap, showering the blonde pup with kisses who in turn giggles happily. You can see her master’s hands work their way all over the ausar girls body, caressing all her curves.");
-			output("\n\nA very tangible feeling of jealousy washes over you at the sight of that, leaving you to wonder why you haven’t received a greeting like that...");
-		}
-		
+		else msgList.push(
+			"\n\nBelle is nearby, and she’s sitting down with Saec in her lap, showering the blonde pup with kisses who in turn giggles happily. You can see her master’s hands work their way all over the ausar girls body, caressing all her curves." +
+			"\n\nA very tangible feeling of jealousy washes over you at the sight of that, leaving you to wonder why you haven’t received a greeting like that..."
+		);
 	}
+	output(msgList[msgList.length]);
 	processTime(2);
 
 	addButton(0,"Belle",newApproachBelle,undefined,"Belle","Meet with the doctor.");
@@ -1007,28 +1008,31 @@ public function talkToBelleAboutHer():void
 	output("\n\nThe lady scientist is left smiling wide after that, content in her own achievements, but it prompts you to ask her what she actually specialized in, what kind of education she got, and what got her this lab.");
 	output("\n\n<i>“My parents insisted I got the best money could buy,”</i> Belle starts to explain, <i>“and no matter how much I told them that I would pay my own tuition at a much less... prestigious university, mother and father sent me all the way to Luna Polytechnic, on the lunar colonies. While I was there I got my doctorate in acoustical engineering, my degrees xenobiology and neurobiology, specializing in how the brain receives audio feedback, of course, and learned to play piano quite a bit. Accu-Pitch employed me almost immediately after I graduated, no doubt partly due to my parents’ reputation, but I like to think my thesis did most of the work.”</i> The woman gives you a little wink after that, almost like you know something you probably don’t, <i>“And, after a few secured grants and hefty patents, Accu-Pitch gave me my own lab here on Uveto, mostly so I could keep to myself.”</i>");
 	output("\n\nBelle gives you a little smirk and leans a bit closer to you, <i>“Though, none of that is nearly as interesting as you, is it, " + pc.mf("Mister","Misses") + " Steele?”</i>");
-	output("\n\nYour eyes go wide at that little accusation, and you tentatively ask the woman how much she actually knows about you.");
-	output("\n\n<i>“Oh, quite a bit,”</i> Belle says cheerfully, standing up from her seat to walk over towards a nearby terminal, <i>“Like I said before, I keep quite detailed files on all my pets and subjects.”</i> With that she flicks the holo-terminal on and scrolls through all the text lining the screen, <i>“");
-	//ifNotALoser: 
-	if(flags["PLANET_3_UNLOCKED"] != undefined) output("Mhen’ga, Tarkus, Myrellion...");
-	else
+	if(flags["SUBTUNER_NAMED"] == undefined || flags["SUBTUNER_NAMED"] == 1)
 	{
-		output("From ");
-		if(9999 == 9999) output("Mhen’ga");
-		else output("Phaedra");
-		output(" all the way to Uveto...");
-	}
-	output(" quite the little adventure you’ve been on, hmm?”</i>");
-	output("\n\nSeems like Belle is quite the knowledgeable individual, either that or she just really likes you.");
+		output("\n\nYour eyes go wide at that little accusation, and you tentatively ask the woman how much she actually knows about you.");
+		output("\n\n<i>“Oh, quite a bit,”</i> Belle says cheerfully, standing up from her seat to walk over towards a nearby terminal, <i>“Like I said before, I keep quite detailed files on all my pets and subjects.”</i> With that she flicks the holo-terminal on and scrolls through all the text lining the screen, <i>“");
+		//ifNotALoser: 
+		if(flags["PLANET_3_UNLOCKED"] != undefined) output("Mhen’ga, Tarkus, Myrellion...");
+		else
+		{
+			output("From ");
+			if(9999 == 9999) output("Mhen’ga");
+			else output("Phaedra");
+			output(" all the way to Uveto...");
+		}
+		output(" quite the little adventure you’ve been on, hmm?”</i>");
+		output("\n\nSeems like Belle is quite the knowledgeable individual, either that or she just really likes you.");
 
-	//annoCrew:
-	if(annoIsCrew()) 
-	{
-		output("\n\n<i>“I also hear you’re friends with the esteemed Anno Dorna,”</i> the scientist chimes in again with a big smile on her face, <i>“Maybe she’d like to come down to my lab for some friendly discussions with a fellow lady of science, or maybe participate in a few experiments with you.”</i>");
-		output("\n\n<i>Yeah... maybe she would.</i>");
+		//annoCrew:
+		if(annoIsCrew()) 
+		{
+			output("\n\n<i>“I also hear you’re friends with the esteemed Anno Dorna,”</i> the scientist chimes in again with a big smile on her face, <i>“Maybe she’d like to come down to my lab for some friendly discussions with a fellow lady of science, or maybe participate in a few experiments with you.”</i>");
+			output("\n\n<i>Yeah... maybe she would.</i>");
+		}
+		//[Next] //This scene should give the same “Belle knows the PC’s name” flag that the random encounters with Anno, Syri, and Kiro give.
+		flags["SUBTUNER_NAMED"] = 2;
 	}
-	//[Next] //This scene should give the same <i>“Belle knows the PC’s name”</i> flag that the random encounters with Anno, Syri, and Kiro give.
-	flags["BELLE_KNOWS_PC_NAME"] = 1;
 	processTime(15);
 	//belleTalkMenu();
 	addDisabledButton(0,"Her","Her","You just had this discussion!");
@@ -1066,7 +1070,7 @@ public function workWithBelle():void
 	//wearingSubTuner:
 	if(wearingSubTuner()) output("you’re wearing");
 	else output("I gave you");
-	output(",”</i> Belle explains leaning to the side in her chair, resting her chin on her fingers in a very practiced, poised manner, <i>“The Sub-Tuner is more of a proof of concept, a thesis of sorts on how sound can make a person more... compliant. The real purpose of the technology embedded in that collar is non-lethal weaponry, crowd-control, riot pacification without casualties, that kind of thing. Of course, I made the Sub-Tuner to help me test specific programs and frequencies on individuals rather than full the crowds of people this technology would most likely be used on... and I’m very fond of collars.”</i>");
+	output(",”</i> Belle explains leaning to the side in her chair, resting her chin on her fingers in a very practiced, poised manner, <i>“The Sub-Tuner is more of a proof of concept, a thesis of sorts on how sound can make a person more... compliant. The real purpose of the technology embedded in that collar is non-lethal weaponry, crowd-control, riot pacification without casualties, that kind of thing. Of course, I made the Sub-Tuner to help me test specific programs and frequencies on individuals rather than full crowds of people this technology would most likely be used on... and I’m very fond of collars.”</i>");
 
 	output("\n\nBelle smiles and leans forward in her seat, taking up a less elegant post and resting a cheek in her own hand, <i>“It’s amazing, isn’t it, what simple vibrations in the air can do to the brain? Order notes in a song just the right way and you can bring an entire crowd to tears, or applause... that was just the beginning of what got me interested in this particular field of study. I always wondered how far sound alone could push the mind, and now I’m learning. The simplest of tones played at the right frequencies can have a very calming effect on subjects, as I’ve found out with my little prototype that you’re wearing, but I’ve yet to explore the other side of the spectrum, with...”</i>");
 
@@ -1121,7 +1125,7 @@ public function belleMasterTalk():void
 	output("\n\nBelle bends down and gives Saec a little kiss on her forehead before sending the ausar on her merry way, leaving the two of you alone again, and the lady scientist with a smile on her face.");
 
 	processTime(15);
-	//[Next] //Should give a <i>“met Saec”</i> type flag.
+	//[Next] //Should give a “met Saec” type flag.
 	addDisabledButton(2,"Master","Master","You just had this discussion!");
 }
 
@@ -1666,7 +1670,7 @@ public function subTunerAnnoExhib():void
 	clearOutput();
 	author("HugsAlright");
 	showAnno(true);
-	output("You wander around the the great wabeship that is Uveto station for some time, absent-mindedly whining and moaning under the pleasurable weight of the vibrators inside you. Unfortunately, finding someone to pleasure is proving troublesome: the toves you meet are not at all interested in your sexual escapades, and most of the alien strangers that you kneel before simply smile, pat your head and call you a good puppy... <i>and you really wish your master was here</i>.");
+	output("You wander around the great wabeship that is Uveto station for some time, absent-mindedly whining and moaning under the pleasurable weight of the vibrators inside you. Unfortunately, finding someone to pleasure is proving troublesome: the toves you meet are not at all interested in your sexual escapades, and most of the alien strangers that you kneel before simply smile, pat your head and call you a good puppy... <i>and you really wish your master was here</i>.");
 	output("\n\nAfter a few more moments of scouting for sex, your ears are greeted by a familiar, playful voice.");
 	output("\n\n<i>“Hey boss!”</i> the voice says, prompting you to turn towards it’s source, <i>“Fancy meeting you here like this.”</i>");
 	output("\n\nSure enough, your eyes are greeted by your own snowy-haired ausar tech, Anno Dorna, holo-pad in hand. <i>Almost immediately your mind is filled with thoughts of how you could please this possible master</i>, because surely, of all the people on Uveto, Anno would have the least problem with letting you pleasure her.");
@@ -1823,7 +1827,7 @@ public function syriExhibStuff():void
 	clearOutput();
 	author("HugsAlright");
 	showSyri();
-	output("You wander around the the great wabeship that is Uveto station for some time, absent-mindedly whining and moaning under the pleasurable weight of the vibrators inside you. Unfortunately, finding someone to pleasure is proving troublesome: the toves you meet are not at all interested in your sexual escapades, and most of the alien strangers that you kneel before simply smile, pat your head and call you a good puppy... <i>and you really wish your master was here</i>.");
+	output("You wander around the great wabeship that is Uveto station for some time, absent-mindedly whining and moaning under the pleasurable weight of the vibrators inside you. Unfortunately, finding someone to pleasure is proving troublesome: the toves you meet are not at all interested in your sexual escapades, and most of the alien strangers that you kneel before simply smile, pat your head and call you a good puppy... <i>and you really wish your master was here</i>.");
 
 	output("\n\nAfter a few more moments of scouting for sex, your eyes are met with an unmistakable raven mane standing out amongst the rest of the station, currently facing away from you.");
 	output("\n\nThinking this could be your ticket to climax, you make your way towards that head of dark hair, and sure enough, it’s attached to your friendly neighborhood ausar-shemale: Syri, who quickly takes notice of your approach.");
@@ -1949,7 +1953,7 @@ public function subTunerKiroExhib():void
 	clearOutput();
 	author("HugsAlright");
 	showKiro(true);
-	output("You wander around the the great wabeship that is Uveto station for some time, absent-mindedly whining and moaning under the pleasurable weight of the vibrators inside you. Unfortunately, finding someone to pleasure is proving troublesome: the toves you meet are not at all interested in your sexual escapades, and most of the alien strangers that you kneel before simply smile, pat your head and call you a good puppy... <i>and you really wish your master was here</i>.");
+	output("You wander around the great wabeship that is Uveto station for some time, absent-mindedly whining and moaning under the pleasurable weight of the vibrators inside you. Unfortunately, finding someone to pleasure is proving troublesome: the toves you meet are not at all interested in your sexual escapades, and most of the alien strangers that you kneel before simply smile, pat your head and call you a good puppy... <i>and you really wish your master was here</i>.");
 	output("\n\nAfter a few more moments of scouting for sex, you ears are greeted by a familiar voice calling out nearby.");
 	output("\n\n<i>“Angel, is that you?”</i> it asks, drawing your attention, sounding like it’s moving closer to you.");
 	output("\n\nYou turn towards the source of the voice only to see Kiro, your cock-wielding kui-tan space-pirate friend. That tail of hers is <i>unmistakable</i>.");
@@ -2066,7 +2070,7 @@ public function subTunerHypnoShit():void
 	//[Yes] Tell Belle you would like to help her test that {firstTime: special device //Else: hypnosis machine}.
 	//[No] Tell Belle you’re not comfortable with that type of thing. //Returns the PC back to the Experiments menu.
 	clearMenu();
-	addButton(0,"Yes",sayYesToHypnoShit,undefined,"Yes","Tell Belle you would like to help her test that special device.");
+	addButton(0,"Yes",sayYesToHypnoShit,undefined,"Yes","Tell Belle you would like to help her test that " + (flags["SUBTUNER_HYPNOED"] == undefined ? "special device" : "hypnosis machine") + ".");
 	addButton(1,"No",rejectTheHypno,undefined,"No","Tell Belle you’re not comfortable with that type of thing.");
 }
 
@@ -2637,9 +2641,14 @@ public function raceTrackDateEvent2():void
 	showBelle(true);
 	author("HugsAlright");
 	moveTo("UVI STADINT");
+	
 	var ppBelle:PregnancyPlaceholder = getBellePregContainer();
-	var x:int = pc.cuntThatFits(ppBelle.cockVolume(0));
-	if(x < 0) x = rand(pc.totalVaginas());
+	var x:int = -1;
+	if(pc.hasVagina())
+	{
+		x = pc.cuntThatFits(ppBelle.cockVolume(0));
+		if(x < 0) x = rand(pc.totalVaginas());
+	}
 	output("Belle leads you through the wabeship that is Uveto station with a firm grip on your leash, making sure she’s always got an eye on you like the good master she is. With her in command, it’s not long before you’re on the surface and making your way to U7. It’s a brief walk through the cold open air of this frozen moon before you’re through one of the dozen entrances to the racetrack and artificial heating is warming your [pc.skinFurScales].");
 
 	output("\n\nOnce you’re both inside, Belle takes a quick look around through the crowd moving in and out of the stadium before moving towards a nearby cashier’s desk, and taking you with her. As you walk up to the counter, your master catches the attention of a well-dressed leithan man, who brings himself around the desk to greet you.");
@@ -2669,26 +2678,26 @@ public function raceTrackDateEvent2():void
  	output("\n\nYou do as she says and spin on a heel, turning your back, and your [pc.ass], to Belle, right before you feel a hand grope at your ass.");
  	output("\n\n<i>“Mmm,”</i> the human woman coos, spreading your lower cheeks and giving them a firm spank, hard enough to make you gasp, <i>“Now, sit.”</i>");
  	output("\n\nEven without your collar being turned on, you feel compelled to do what your master says and slowly start to lower yourself onto her lap. One of her hands still toys with your ass while another grabs at your hip to steady your descent until you feel ");
- 	if(pc.hasVagina()) output("her twin cockheads");
+ 	if(x >= 0) output("her twin cockheads");
  	else output("one of her twin cockheads");
  	output(" press against ");
- 	if(pc.hasVagina()) output("both of ");
+ 	if(x >= 0) output("both of ");
  	output("your eager ");
- 	if(pc.hasVagina()) output("holes");
+ 	if(x >= 0) output("holes");
  	else output("asshole");
  	output(". You whimper slightly when your master forces you down harder, putting pressure on your [pc.asshole]");
- 	if(pc.hasVagina()) output(" and pussy alike");
+ 	if(x >= 0) output(" and pussy alike");
  	else output(", while her upper dong falls perfectly into the crack of your ass");
  	output(".");
- 	if(pc.hasVagina()) output(" Her glans easily spread your needy nether lips, and with");
+ 	if(x >= 0) output(" Her glans easily spread your needy nether lips, and with");
  	else output(" With");
  	output(" a little relaxing on your end, your [pc.asshole] is penetrated, leaving you to shiver with pleasure.");
 
  	//Stretch goez here
- 	pc.cuntChange(x,ppBelle.cockVolume(0));
+ 	if(x >= 0) pc.cuntChange(x,ppBelle.cockVolume(0));
  	pc.buttChange(ppBelle.cockVolume(0));
 
- 	output("\n\nBelle doesn’t let up and pulls you down onto her double dongs, and all you can do is moan as hot Terran cock stretches you wide and caresses your inner walls. The stillness you’re left with when the herm woman’s knot{s} meet your sodden entrance{s} is almost unbearable. You want her to fuck you so bad! Instead though, your master tugs your leash, and you fall backwards onto her soft, dress-filling breasts, panting.");
+ 	output("\n\nBelle doesn’t let up and pulls you down onto her double dongs, and all you can do is moan as hot Terran cock stretches you wide and caresses your inner walls. The stillness you’re left with when the herm woman’s knot" + (x < 0 ? "" : "s") + " meet your sodden entrance" + (x < 0 ? "" : "s") + " is almost unbearable. You want her to fuck you so bad! Instead though, your master tugs your leash, and you fall backwards onto her soft, dress-filling breasts, panting.");
  	output("\n\nYou wiggler and squirm in your place, but Belle keeps you still, leaning forward to whisper in your ear. <i>“Just calm down, [pc.boyGirl],”</i> she breathes, sending a shiver down your spine, <i>“The race is about to start.”</i>");
  	output("\n\nSure enough, after she says that the buzzer sounds and the racers are off, tauric peoples pouring out from their gates and kicking up dirt.");
  	output("\n\n<i>“Look at the jockeys,”</i> Belle whispers again, taking a hand and pointing to the track.");
@@ -2697,41 +2706,41 @@ public function raceTrackDateEvent2():void
  	output("\n\nAs you’re watching the contestants round the first turn, your master trails a hand up your waist and breathes against your [pc.ear], <i>“I’d like to see you out there like that one of these days... it’s just so enticing to watch.”</i> With that, Belle starts to slowly rock her hips, dragging hard Terran rod against your sensitive flesh and drawing a chorus of lewd groans from your lips. <i>“You know,”</i> she says with another wiggle of her sides, <i>“I bet there’s plenty of people in this stadium doing exactly what we’re doing right now. This sport is just so easy to get off to, isn’t it, [pc.boyGirl]?”</i>");
 
  	output("\n\nThe doctor accentuates that last word with a quick thrust of her hips, driving her ");
- 	if(pc.hasVagina()) output("twin");
+ 	if(x >= 0) output("twin");
  	else output("thick");
  	output(" dick");
- 	if(pc.hasVagina()) output("s");
+ 	if(x >= 0) output("s");
  	output(" into you and ripping a moan from your lungs. She doesn’t stop there, though, she keeps going, faster and faster, fucking");
- 	if(pc.hasVagina()) output(" both of your");
+ 	if(x >= 0) output(" both of your");
  	else output(" your needy");
  	output(" hole");
- 	if(pc.hasVagina()) output("s");
+ 	if(x >= 0) output("s");
  	output(" while you cry out with pleasure atop her. You can feel her knot");
- 	if(pc.hasVagina()) output("s");
+ 	if(x >= 0) output("s");
  	output(" stretching you wider the closer the racers get to the finish line, driving you to your climax until you can barely keep yourself from cumming.");
 
  	output("\n\nThen, just as contestants and jockeys cross that checkered line, Belle gives you what you want and thrusts her bitch-breakers into you. ");
- 	if(pc.hasVagina()) output("They");
+ 	if(x >= 0) output("They");
  	else output("It");
  	output(" stretch");
- 	if(!pc.hasVagina()) output("es");
+ 	if(x < 0) output("es");
  	output(" your ");
- 	if(pc.hasVagina()) output("[pc.vagina] and ");
+ 	if(x >= 0) output("[pc.vagina " + x + "] and ");
  	output("pucker as wide as ");
- 	if(pc.hasVagina()) output("they’ll");
+ 	if(x >= 0) output("they’ll");
  	else output("it will");
  	output(" go until they finally pop in with a moan and a contented sigh from your master, your sensitive inner walls hugging at her knot");
- 	if(pc.hasVagina()) output("s");
+ 	if(x >= 0) output("s");
  	output(".");
 
  	output("\n\nIt was hard to stop your orgasm before, and there’s no way you could now. Your ");
- 	if(pc.hasVagina()) output("pussy and ");
+ 	if(x >= 0) output("pussy and ");
  	output("ass spasm");
- 	if(!pc.hasVagina()) output("s");
+ 	if(x < 0) output("s");
  	output(" around your master’s cock");
- 	if(pc.hasVagina()) output("s");
+ 	if(x >= 0) output("s");
  	output(" as bliss shoots through your body like electricity, causing you to tense up and quake with orgasmic pleasure.");
- 	if(pc.hasVagina() && pc.isSquirter()) output(" Your [pc.vagina] clamps down around Belle’s lower shaft, squirting [pc.girlcum] all over her lap.");
+ 	if(x >= 0 && pc.isSquirter(x)) output(" Your [pc.vagina " + x + "] clamps down around Belle’s lower shaft, squirting [pc.girlcum] all over her lap.");
  	//hasCock:
  	if(pc.hasCock())
  	{
@@ -2742,10 +2751,10 @@ public function raceTrackDateEvent2():void
  	}
 
  	output("\n\nJust as your peak seems to be coming down, your master’s begins. She holds you down tightly on her big, girthy member");
- 	if(pc.hasVagina()) output("s, as they spasm");
+ 	if(x >= 0) output("s, as they spasm");
  	else output(", as it spasms");
  	output(" inside you.");
- 	if(pc.hasVagina()) output(" Hot Terran cum floods your womb and bowels alike, filling you with warmth and making you whimper, and it’s all enough to swell your [pc.belly] until you’re round and full of seed.");
+ 	if(x >= 0) output(" Hot Terran cum floods your womb and bowels alike, filling you with warmth and making you whimper, and it’s all enough to swell your [pc.belly] until you’re round and full of seed.");
  	else output(" Hot Terran cum floods your depths, filling you with warmth and making your [pc.belly] swell while Belle’s upper dong coats your back, and its owner, with delicious alabaster seed.");
 
  	output("\n\nWhile you’re reeling with the afterglow of your orgasm, Belle barely seems phased by her climax, opting to whisper in your ear again, <i>“I think you better rest up, [pc.boyGirl]. We’re going to watch a lot more races before we’re done here.”</i> You can almost see the Terran smirk over your shoulder.");
@@ -2754,7 +2763,7 @@ public function raceTrackDateEvent2():void
 
  	processTime(30);
 
- 	if(pc.hasVagina()) pc.loadInCunt(ppBelle,x)
+ 	if(x >= 0) pc.loadInCunt(ppBelle,x)
  	pc.loadInAss(ppBelle);
  	clearMenu();
  	addButton(0,"Next",postGasmDayAtTheRaces);
@@ -2768,12 +2777,12 @@ public function postGasmDayAtTheRaces():void
 	output("Throughout the day, Belle fucks you and knots you again and again, keeping you in a constant cycle of pleasure, orgasm, and respite, letting you rest between races before starting the whole rotation again.");
 	output("\n\nUnfortunately though, it seems your wonderful date is to come to an end as the last race of the day finishes.");
 	output("\n\n<i>“Looks like we have to get going, [pc.boyGirl],”</i> your master breathes, running a hand through your [pc.hair] and waking you from your post-coital nap, <i>“Alright, [pc.name], up-up.”</i>");
-	output("\n\nYou barely have time to wipe the sleep from your eyes before you feel hands grabbing at your sides and lifting you up. Doing your best to help Belle, you pull yourself off her softened knot{s}, nigh a day’s worth of cum spilling out from your ");
+	output("\n\nYou barely have time to wipe the sleep from your eyes before you feel hands grabbing at your sides and lifting you up. Doing your best to help Belle, you pull yourself off her softened knot" + (!pc.hasVagina() ? "" : "s") + ", nigh a day’s worth of cum spilling out from your ");
 	if(pc.hasVagina()) output("holes");
 	else output("[pc.asshole]");
 	output(", your pregnant looking tummy still full of the gooey white stuff.");
 
-	output("\n\nOnce you’re free of her breeder’s knob{s} and standing again, you give your limbs a good stretch");
+	output("\n\nOnce you’re free of her breeder’s knob" + (!pc.hasVagina() ? "" : "s") + " and standing again, you give your limbs a good stretch");
 	if(!pc.isChestExposed() && !pc.isCrotchExposed()) output(" and gather your stuff");
 	output(" before turning to your lovely lady scientist again.");
 

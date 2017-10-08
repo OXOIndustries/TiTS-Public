@@ -1276,7 +1276,7 @@ public function acceptPrivateBathHJs(dick:Boolean = false):void
 		else output("takes as much of your length as she can handle, grazing your cockflesh with her teeth as gently as she can manage");
 		output(". The venom in her saliva gushes through your bloodstream, leaking between failsafes already weakened by the heat of the bath. The aphrodisiac moves like a living thing, starting in your loins before fanning out to your limbs. Finally it settles in your chest like the warmth of a midsummer fire before creeping into your mind with bubbly promises of release.");
 		output("\n\nYou find yourself unable to judge the ant-girl’s efforts, as her venom renders you unable to remember if she dove minutes or seconds ago. Time slips out of your comprehension, and all you can think of is the heat and the feeling of her lips on your [pc.cockBiggest]. Jets of pre-cum serve to further wetten her throat, preparing it for your load.");
-		output("\n\nAll at once the the heat in your body collects into your crotch, and you feel your ");
+		output("\n\nAll at once, the heat in your body collects into your crotch, and you feel your ");
 		if(pc.balls > 0) output("[pc.balls]");
 		else output("prostate");
 		if(pc.balls <= 1) output(" tightens");

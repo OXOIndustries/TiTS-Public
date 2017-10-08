@@ -174,7 +174,7 @@ public function codexHomeFunction():void
 	outputCodex("\n\t<span class='locked'>\\\[Missing Entries\\\]</span> are red.");
 	outputCodex("\n\t<span class='active'>\\\[Active Entries\\\]</span> are blue.");
 
-	outputCodex("\n\nSteele Industries® would like to thank [pc.name] for additionally equipping this CODEX™ device with the the following optional modules:");
+	outputCodex("\n\nSteele Industries® would like to thank [pc.name] for additionally equipping this CODEX™ device with the following optional modules:");
 	outputCodex("\n\tSteele Industries® Resource Acquisition System™ (RAS™)");
 	outputCodex("\n\tSteele Industries® Automated Fringe Classifier™ (ScanNow™)");
 	outputCodex("\n\tSteele Industries® Biosign Monitor Alerting™ (MedSign™)");
@@ -3224,7 +3224,7 @@ public function branFlazinganCodex():void
 	outputCodex("There aren’t many environs he won’t inhabit - or let his cock inhabit, for that matter. Bran is well known for being the tycoon that will quite literally stick his junk in anything and everything for a thrill.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("History/Personality:"));
-	outputCodex("Bran Flazingan is well known as the the Universe’s sixth richest man and a thoroughly eccentric one to boot. The extranet adores his antics and follows his escapades, most of which are highly scandalous and sexual in nature.");
+	outputCodex("Bran Flazingan is well known as the Universe’s sixth richest man and a thoroughly eccentric one to boot. The extranet adores his antics and follows his escapades, most of which are highly scandalous and sexual in nature.");
 	outputCodex("\n\nHis most infamous act is attempting to get an entire planet pregnant with his sperm. After several virility enhancements, he offered two large credit payments. The first for anyone who had sex with him without protection, and the second for anyone who became pregnant with his child. He also offered free transgender treatment for any men who wished to take him up on the offer.");
 	outputCodex("\n\nDespite his antics he is also a shrewd businessman who has made billions of credits by selling sex products to the galaxy through his company, Humphard Inc. His outrageous persona has only added to his sales figures over the years.");
 	outputCodex("\n\nClaiming to be on the forefront of sexploration, Bran spends a good deal of his time documenting his travels and trialling his products in the field. He is well known for giving a “Humpter Score” for both his products and the places he visits. Bran was also a friend of influential tycoon and fellow hedonist Victor Steele.");

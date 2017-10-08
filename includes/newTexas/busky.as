@@ -713,7 +713,7 @@ public function buskySexAnalPitch():void {
 	output("\n\nBusky’s ass");
 	if(pc.hasKnot()) output(" continues");
 	else output(" begins");
-	output(" to clench and tighten in preparation for orgasm, but that’s not the the only way you can tell.");
+	output(" to clench and tighten in preparation for orgasm, but that’s not the only way you can tell.");
 	
 	if (!pc.isTaur()) output(" You let go of his ass cheeks and move boths hands to");
 	else output(" You turn your attention to");

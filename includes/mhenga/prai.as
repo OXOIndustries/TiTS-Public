@@ -955,7 +955,7 @@
  			output("\n\n<i>“Ow! What was that for?”</i> she groans, pushing herself halfway up.");
  			output("\n\n<i>“You look good on your knees,”</i> you snark, throwing her a wink.");
  			output("\n\n<i>“I... oh!”</i> she says, understanding dawning on her face. <i>“There </i>are<i> easier ways of getting me on my knees,”</i> she notes.");
- 			output("\n\n<i>“This was was more fun,”</i> you reply. Prai says nothing, but rolls her eyes and smiles.");
+ 			output("\n\n<i>“This was more fun,”</i> you reply. Prai says nothing, but rolls her eyes and smiles.");
  		}
  		else
  		{
