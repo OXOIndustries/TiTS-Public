@@ -3531,7 +3531,7 @@
 			if (hasArmor() && armor.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR))
 			{
 				// Swimsuit outfits should not have undergarments on. That's not fashionable!
-				if (hasUpperGarment() || hasLowerGarment()) return false;
+				if ((hasUpperGarment() && !upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR)) || (hasLowerGarment() && !lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR))) return false;
 				// Swimsuit outfits with no undies? Yes.
 				return true;
 			}
@@ -15775,8 +15775,8 @@
 					break;
 				case GLOBAL.FLUID_TYPE_SPECIAL_GOO:
 				case GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO:
-					if(skinType == GLOBAL.SKIN_TYPE_GOO) collection.push(String(skinTone));
-					else if(hairType == GLOBAL.HAIR_TYPE_GOO) collection.push(String(hairColor));
+					if(skinType == GLOBAL.SKIN_TYPE_GOO) collection.push(skinTone);
+					else if(hairType == GLOBAL.HAIR_TYPE_GOO) collection.push(hairColor);
 					else collection.push("green", "emerald");
 					break;
 				case GLOBAL.FLUID_TYPE_FRUIT_CUM:

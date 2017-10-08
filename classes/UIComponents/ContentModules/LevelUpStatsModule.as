@@ -190,8 +190,6 @@ package classes.UIComponents.ContentModules
 				}
 			}
 			
-			if (_availablePoints < _initialPoints) kGAMECLASS.userInterface.addGhostButton(13, "Reset", resetPoints);
-			
 			updateButton();
 		}
 		

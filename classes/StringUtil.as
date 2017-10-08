@@ -129,7 +129,6 @@ package  classes
 		public static function printPlusMinus(aVal:Number = 0):String
 		{
 			if (aVal > 0) return String("+" + aVal);
-			if (aVal < 0) return String("-" + aVal);
 			
 			return String(aVal);
 		}

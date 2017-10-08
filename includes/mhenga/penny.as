@@ -54,7 +54,7 @@ public function pennyAffection(arg:int = 0):Number {
 	if(arg != 0) flags["PENNY_AFFECTION"] += arg;
 	if(flags["PENNY_AFFECTION"] > 100) flags["PENNY_AFFECTION"] = 100;
 	else if(flags["PENNY_AFFECTION"] < 0) flags["PENNY_AFFECTION"] = 0;
-	return arg;
+	return flags["PENNY_AFFECTION"];
 }
 
 public function pennysOffice():void {

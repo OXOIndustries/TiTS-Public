@@ -13,7 +13,7 @@ private var lvlRatioBalls:Array = [(9/60), (15/60), (25/60), (40/60)];
 private var lvlRatioPenis:Array = [(9999/60), (9999/60), (9999/60), (9999/60)]; //[(16/60), (32/60), (64/60), (128/60)];
 private var lvlRatioClits:Array = [(9999/60), (9999/60), (9999/60), (9999/60)]; //[(16/60), (32/60), (64/60), (128/60)];
 private var lvlRatioBoobs:Array = [(9999/60), (9999/60), (9999/60), (9999/60)]; //[(25/60), (50/60), (100/60), (200/60)];
-private var lvlRatioBelly:Array = [(9999/60), (9999/60), (9999/60), (9999/60)]; //[(50/20), (70/20), (90/20), (120/20)];
+private var lvlRatioBelly:Array = [(50/20), (70/20), (90/20), (120/20)];
 private var lvlRatioButts:Array = [(20/20), (30/20), (50/20), (80/20)];
 // Threshold percentages for each level:
 private var percentBalls:Array = [10, 25, 50, 100];
@@ -256,31 +256,35 @@ private function bodyPartUpdates(partName:String = "none", deltaT:uint = 0):void
 			// v1: Multiplier that affects max reflexes, reflexes and evasion.
 			pc.createStatusEffect("Bulky Belly", 1.0, 0, 0, 0, false, "Icon_Belly_Pregnant", "", false, 0);
 			var nCurBellyDebuff:Number = pc.statusEffectv1("Bulky Belly");
-			var nNewBellyDebuff:Number = 0;
+			var nNewBellyDebuff:Number = 1.0;
 			
 			if(heightQ >= lvlRatioBelly[0])
 			{
-				if(nCurBellyDebuff != 0.9) msg = "You shift your weight and notice you are getting a little bit slower than usual... it looks like your mid-section’s size is affecting your mobility a little.";
+				if(nCurBellyDebuff > 0.9) msg = "You shift your weight and notice you are getting a little bit slower than usual... it looks like your mid-section’s size is affecting your mobility a little.";
+				if(nCurBellyDebuff < 0.9) msg = "A bit easier to move, your belly seems a little less burdensome now.";
 				nNewBellyDebuff = 0.9;
 			}
 			if(heightQ >= lvlRatioBelly[1])
 			{
-				if(nCurBellyDebuff != 0.7) msg = "You notice a little more lag in your movements as of late. The size of your belly has been a bit more burdensome, affecting your reaction time.";
+				if(nCurBellyDebuff > 0.7) msg = "You notice a little more lag in your movements as of late. The size of your belly has been a bit more burdensome, affecting your reaction time.";
+				if(nCurBellyDebuff < 0.7) msg = "Feeling some of your reflexes return to you, you see that your belly is a bit less bulky now.";
 				nNewBellyDebuff = 0.7;
 			}
 			if(heightQ >= lvlRatioBelly[2])
 			{
-				if(nCurBellyDebuff != 0.5) msg = "It’s really getting harder to move around as easily now. It looks like your reflexes have been greatly reduced due to your burgeoning belly.";
+				if(nCurBellyDebuff > 0.5) msg = "It’s really getting harder to move around as easily now. It looks like your reflexes have been greatly reduced due to your burgeoning belly.";
+				if(nCurBellyDebuff < 0.5) msg = "Though still in the way, your belly seems a little less cumbersome than before.";
 				nNewBellyDebuff = 0.5;
 			}
 			if(heightQ >= lvlRatioBelly[3])
 			{
-				if(nCurBellyDebuff != 0.3) msg = "You move but your reaction time is extremely late. You’re belly is just too massive and cumbersome for you to move yourself normally anymore!";
+				if(nCurBellyDebuff > 0.3) msg = "You move but your reaction time is extremely late. You’re belly is just too massive and cumbersome for you to move yourself normally anymore!";
+				if(nCurBellyDebuff < 0.3) msg = "Though still greatly in the way, your belly seems a little less massive than before.";
 				nNewBellyDebuff = 0.3;
 			}
-			if(msg != "") AddLogEvent(msg, "passive", deltaT);
 			
-			if(nNewBellyDebuff > 0 && nCurBellyDebuff != nNewBellyDebuff) {
+			if(nCurBellyDebuff != nNewBellyDebuff) {
+				if(msg != "") AddLogEvent(msg, "passive", deltaT);
 				pc.setStatusValue("Bulky Belly", 1, nNewBellyDebuff);
 				pc.setStatusTooltip("Bulky Belly", "The size of your belly weighs you down, dropping your reflexes and evasion chances by " + ((1.0 - nNewBellyDebuff) * 100) + "%.");
 			}

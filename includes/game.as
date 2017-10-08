@@ -71,7 +71,7 @@ public function processEventBuffer():Boolean
 				h = h % 24;
 			}
 			
-			output("\n\n\\\[<span class='" + tEvent.style + "'><b>D: " + d + " T: " + (h < 10 ? (String("0") + h) : String(h)) + ":" + (m < 10 ? (String("0") + m) : String(m)) + "</b></span>\\\] " + tEvent.msg);
+			output("\n\n\\\[<span class='" + tEvent.style + "'><b>D: " + d + " T: " + (h < 10 ? ("0" + h) : h) + ":" + (m < 10 ? ("0" + m) : m) + "</b></span>\\\] " + tEvent.msg);
 		}
 		
 		timestampedEventBuffer = [];

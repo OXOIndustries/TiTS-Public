@@ -198,7 +198,7 @@
 				{
 					if (!hasOwnProperty(prop)) continue;
 					
-					var tProp:String = prop.toString();
+					var tProp:String = prop;
 					if (_ignoredFields.length > 0)
 					{
 						if (_ignoredFields.indexOf(tProp) == -1)

@@ -95,6 +95,8 @@ package classes.UIComponents.ContentModules
 			
 			_perkList.setInitialState(creature);
 			
+			perkButtonReset();
+			
 			// Give ourselves a disabled button
 			kGAMECLASS.userInterface.addGhostButton(0, "Confirm", confirmSelection, gavePoints, "Confirm Selection", "Confirm the current perk selection, if any.");
 		}
@@ -111,15 +113,22 @@ package classes.UIComponents.ContentModules
 				else buttonGroup.buttonOne.removeSelected();
 				
 				if (_selectedPerkButton != null && (_selectedPerkButton.isUnavailable || _selectedPerkButton.isTaken)) _selectedPerkButton.removeSelected();
+				
+				_selectedPerkButton = tarButton;
+				_selectedPerkDetails.selectedPerkName = _selectedPerkButton.perkReference.perkName;
+				_selectedPerkDetails.selectedPerkText = ParseText(_selectedPerkButton.perkReference.perkDescription);
 			}
 			else
 			{
 				tarButton.removeSelected();
+				perkButtonReset();
 			}
-			
-			_selectedPerkButton = tarButton;
-			_selectedPerkDetails.selectedPerkName = _selectedPerkButton.perkReference.perkName;
-			_selectedPerkDetails.selectedPerkText = ParseText(_selectedPerkButton.perkReference.perkDescription);
+		}
+		private function perkButtonReset():void
+		{
+			_selectedPerkButton = null;
+			_selectedPerkDetails.selectedPerkName = "";
+			_selectedPerkDetails.selectedPerkText = "";
 		}
 		
 		public function confirmSelection(gavePoints:Boolean = false):void

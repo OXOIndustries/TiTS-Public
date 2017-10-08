@@ -1880,7 +1880,7 @@ package classes.GameData
 			}
 			else
 			{
-				if (attacker is PlayerCharacter) output("You connect with your target" + (target.isPlural ? "" : "s") + "!");
+				if (attacker is PlayerCharacter) output("You connect with your target" + (!target.isPlural ? "" : "s") + "!");
 				else if (target is PlayerCharacter) output(possessive(attacker.getCombatName()) + " strike" + (attacker.isPlural ? "s connect" : " connects") + " with you!");
 				else output(possessive(attacker.getCombatName()) + " strike" + (attacker.isPlural ? "s connect" : " connects") + " with [target.combatName]!");
 				
@@ -1935,7 +1935,7 @@ package classes.GameData
 			{
 				if (attacker is PlayerCharacter) output("You try to disarm [target.combatName] but can’t. <b>They’ve already been disarmed!</b>");
 				else if (target is PlayerCharacter) output("[attacker.CombatName] tr" + (attacker.isPlural ? "y" : "ies") + " to disarm you but can’t!");
-				else output("[attacker.CombatName] tr" + (attacker.isPlural ? "y" : "ies") + " to disarm [target.combatName] but can’t. <b>" + (attacker.isPlural ? "They’ve" : "[attacker.CombatHeShe]") + " already been disarmed!</b>");
+				else output("[attacker.CombatName] tr" + (attacker.isPlural ? "y" : "ies") + " to disarm [target.combatName] but can’t. <b>" + (target.isPlural ? "They’ve" : "[target.CombatHeShe]") + " already been disarmed!</b>");
 				return;
 			}
 			
@@ -2097,7 +2097,7 @@ package classes.GameData
 			{
 				if (attacker is PlayerCharacter)
 				{
-					if(target.customDodge.length == 0) output("They miss!");
+					if(target.customDodge.length == 0) output("You miss!");
 					else output(target.customDodge);
 				}
 				else

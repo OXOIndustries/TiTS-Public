@@ -64,13 +64,21 @@ package classes.GameData
 		
 		
 		// Is a level-tiered perk
-		private var _levelLimitedPerk:Boolean = false;
-		public function get isLevelLimited():Boolean { return _levelLimitedPerk; }
-		
 		// Level/Tier this perk is limited to
 		private var _levelLimit:int = -1;
 		public function get levelLimit():int { return _levelLimit; }
-		public function set levelLimit(v:int):void { _levelLimit = v; if (v != -1) _levelLimit = v; }
+		public function set levelLimit(v:int):void { _levelLimit = v; }
+		public function get isLevelLimited():Boolean 
+		{ 
+			if (_levelLimit == -1) 
+			{
+				return false; 
+			}
+			else 
+			{
+				return true; 
+			}
+		}
 		
 		// Storage class value usage
 		private var _valueStorageNames:Array = ["", "", "", ""];

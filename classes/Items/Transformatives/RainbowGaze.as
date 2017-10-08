@@ -153,8 +153,8 @@
 					btnSlot++;
 				}
 				
-				if(target.eyeColor != colorList[i][0]) addButton(btnSlot, colorList[i][1], rbgUse, [target,colorList[i][0]], StringUtil.toDisplayCase(colorList[i][0]), String("Change the color of your eyes to " + colorList[i][0] + "."));
-				else addDisabledButton(btnSlot, colorList[i][1], StringUtil.toDisplayCase(colorList[i][0]), String("Your eyes are already " + colorList[i][0] + "."));
+				if(target.eyeColor != colorList[i][0]) addButton(btnSlot, colorList[i][1], rbgUse, [target,colorList[i][0]], StringUtil.toDisplayCase(colorList[i][0]), ("Change the color of your eyes to " + colorList[i][0] + "."));
+				else addDisabledButton(btnSlot, colorList[i][1], StringUtil.toDisplayCase(colorList[i][0]), ("Your eyes are already " + colorList[i][0] + "."));
 				btnSlot++;
 				
 				if(colorList.length > 14 && (i + 1) == colorList.length)

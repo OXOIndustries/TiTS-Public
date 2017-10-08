@@ -875,7 +875,7 @@ public function accupitchLabsBonus():Boolean
 		return true;
 	}
 	author("HugsAlright");
-	var msgList = [];
+	var msgList:Array = [];
 	//Along with the original opening with the original opening scanner and Accu-Pitch descriptions, these blurbs can show up after that, random chance for each:
 	msgList.push(
 		"\n\nBelle is nearby, her pants looking as full as ever, jotting down notes on a holo-pad as she moves from terminal to terminal, working diligently."
