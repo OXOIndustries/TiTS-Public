@@ -112,7 +112,7 @@ public function lerrisProducts():void
 	// No point in it being sold again if it's already installed!
 	if(flags["EGG_TRAINER_INSTALLED"] != 1) chars["LERRIS"].inventory.push(new EggTrainer());
 	chars["LERRIS"].inventory.push(new FertitePlus());
-	if(flags["PLANET_3_UNLOCKED"] != undefined) chars["LERRIS"].inventory.push(new FrontRackCream());
+	chars["LERRIS"].inventory.push(new FrontRackCream());
 	chars["LERRIS"].inventory.push(new Lactaid());
 	chars["LERRIS"].inventory.push(new LactaidMilkTank());
 	chars["LERRIS"].inventory.push(new LactaidOverdrive());
