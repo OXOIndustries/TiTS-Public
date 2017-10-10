@@ -26,6 +26,7 @@ public function burtsBarFunc():Boolean {
 	if(debug) addButton(4,"Oil Cheat",oilyButt);
 	else vendingMachineButton(4, "XXX");
 	addButton(1,"Watch Screen",stephIrsonBountHunterEpisodeOne,undefined,"Watch Screen","Watch an episode of Steph Irson: Galactic Hunter.");
+	if (kaseAtBurts()) kaseAtBurtsAddendum(5);
 	return false;
 }
 

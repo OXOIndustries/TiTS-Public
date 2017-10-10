@@ -699,11 +699,12 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 13"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 13"].southExit = "RESIDENTIAL DECK 12";
 	rooms["RESIDENTIAL DECK 13"].westExit = "RESIDENTIAL DECK FISIS APARTMENT";
+	rooms["RESIDENTIAL DECK 13"].eastExit = "RESIDENTIAL DECK KASES APARTMENT";
 	rooms["RESIDENTIAL DECK 13"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 13"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 13"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 13"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["RESIDENTIAL DECK 13"].runOnEnter = fisiannaApartmentHandler;
+	rooms["RESIDENTIAL DECK 13"].runOnEnter = northWalkwayBonus;
 	
 	//Fisianna's Apartment - Doesn't do much for now.
 	rooms["RESIDENTIAL DECK FISIS APARTMENT"] = new RoomClass(this);
@@ -715,6 +716,17 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK FISIS APARTMENT"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK FISIS APARTMENT"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK FISIS APARTMENT"].addFlag(GLOBAL.PRIVATE);
+	
+	//Kase's Apartment if he's been evicted.
+	rooms["RESIDENTIAL DECK KASES APARTMENT"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK KASES APARTMENT"].roomName = "KASE’S\nAPARTMENT";
+	rooms["RESIDENTIAL DECK KASES APARTMENT"].description = "";
+	rooms["RESIDENTIAL DECK KASES APARTMENT"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK KASES APARTMENT"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK KASES APARTMENT"].westExit = "RESIDENTIAL DECK 13";
+	rooms["RESIDENTIAL DECK KASES APARTMENT"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK KASES APARTMENT"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK KASES APARTMENT"].addFlag(GLOBAL.PRIVATE);
 	
 	//1014 West Walkway 1
 	rooms["RESIDENTIAL DECK 14"] = new RoomClass(this);
