@@ -278,3 +278,9 @@ public function northEastPlazaBonus():void
 {
 	fisiAtResDeckAddendum(0);
 }
+
+public function northWalkwayBonus():void
+{
+	fisiannaApartmentHandler(0);
+	kaseApartmentHandler(1);
+}

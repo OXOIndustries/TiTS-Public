@@ -317,7 +317,7 @@ package classes.Resources.Busts
 		public var Bust_KALLY_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/pyrite.png", mimeType = "image/png")]
-		public var Bust_KAITHRIT_SATELLITE_GUY:Class;
+		public var Bust_KASE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/nessa.png", mimeType = "image/png")]
 		public var Bust_KAITHRIT_SCOUT:Class;
@@ -956,7 +956,7 @@ package classes.Resources.Busts
 			public var Full_KELLY_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/pyrite.png", mimeType = "image/png")]
-			public var Full_KAITHRIT_SATELLITE_GUY:Class;
+			public var Full_KASE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nessa.png", mimeType = "image/png")]
 			public var Full_KAITHRIT_SCOUT:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nessa_big.png", mimeType = "image/png")]

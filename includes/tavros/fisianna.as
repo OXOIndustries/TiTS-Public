@@ -2414,28 +2414,28 @@ public function leaveFisi():void
 
 public function fisiannaApartmentHandler(btnSlot:int = 0):void
 {
-	flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
+	flags["NAV_DISABLED"] |= NAV_WEST_DISABLE;
 	
 	output("\n\nTo the west, there is a lightly decorated, quaint-looking apartment. The number displayed on a plaque next to the entrance reads 124. ");
 	if (flags["FISI_SLEPT_WITH"] == undefined) 
 	{
 		output("It probably wouldn’t be a good idea to disturb the inhabitant of this home without any reason to do so.");
-		addDisabledButton(btnSlot, "Knock", "Knock", "It wouldn’t be a good idea to knock here at this time.");
+		addDisabledButton(btnSlot, "KnockWest", "Knock West", "It wouldn’t be a good idea to knock here at this time.");
 	}
 	else if (fisiAtResDeck())
 	{
 		output("Fisianna is likely hanging around the North-East plaza around this time. It wouldn’t do any good knocking at her door right now.");
-		addDisabledButton(btnSlot, "Knock", "Knock", "It wouldn’t be a good idea to knock here at this time.");
+		addDisabledButton(btnSlot, "KnockWest", "Knock West", "It wouldn’t be a good idea to knock here at this time.");
 	}
 	else if (flags["FISI_REJECTED"] != undefined)
 	{
 		output("After breaking things off with Fisianna the way you did, the last thing you want to do is to show up at her doorstep. You shrug off any temptation to knock at her door.");
-		addDisabledButton(btnSlot, "Knock", "Knock", "It wouldn’t be a good idea to knock here at this time.");
+		addDisabledButton(btnSlot, "KnockWest", "Knock West", "It wouldn’t be a good idea to knock here at this time.");
 	}
 	else
 	{
 		output("Fisianna looks to be home at the moment, but she is likely either sleeping or working, knowing her schedule. You could try knocking to see if she will answer.");
-		addButton(btnSlot, "Knock", knockKnockKnockinOnFisisDoor, undefined, "Knock", "Knock and see if Fisianna will answer.");
+		addButton(btnSlot, "KnockWest", knockKnockKnockinOnFisisDoor, undefined, "Knock West", "Knock and see if Fisianna will answer.");
 	}
 }
 
