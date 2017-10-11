@@ -327,7 +327,7 @@
 						output("\n\nYour [pc.cock " + i + "] grows painfully hard before a pleasant warmth flows through it, base to tip, then back up again. It feels really, really good. You ");
 						if(!pc.isCrotchExposedByArmor()) output("pull the lower part of your [pc.armor] forward and ");
 						output("look down ");
-						if(!pc.isCrotchExposedByLowerUndergarment()) output("into your [pc.lowerUndergarments] ");
+						if(!pc.isCrotchExposedByLowerUndergarment()) output("into your [pc.lowerUndergarment] ");
 						output("to find that your penis has changed into an smoothly contoured tube. The head is now a tapered point, and downy-soft fins ring the base. <b>You have a shark cock now!</b>");
 						pc.cocks[i].cType = GLOBAL.TYPE_SHARK;
 						pc.shiftCock(i,GLOBAL.TYPE_SHARK);
@@ -437,7 +437,7 @@
 				return false;
 			}			
 			else {
-				kGAMECLASS.output(target.capitalA + target.short + " injects the Sylvanol to no effect.");
+				kGAMECLASS.output(target.capitalA + target.short + " eats the jerky to no effect.");
 			}
 			return false;
 		}

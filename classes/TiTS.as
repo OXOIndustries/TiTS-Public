@@ -499,7 +499,7 @@
 		}
 		
 		private function init(e:Event):void
-		{				
+		{
 			loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, uncaughtErrorHandler);
 			
 			stage.quality = StageQuality.BEST;
@@ -535,7 +535,7 @@
 			itemUser = undefined;
 			itemTarget = undefined;
 
-			this.inSceneBlockSaving = false;
+			inSceneBlockSaving = false;
 			gameOverEvent = false;
 			
 			eventQueue = [];
@@ -591,11 +591,14 @@
 		
 		private function uncaughtErrorHandler(e:UncaughtErrorEvent):void
 		{
+			if(stage.contains(userInterface.textInput)) removeInput();
+			
 			output("<b>[Uncaught " + getQualifiedClassName(e.error) + "]</b>", false, false);
 			
 			if (e.error is Error)
 			{
 				var ee:Error = e.error as Error;
+				var bGameOver:Boolean = true;
 				
 				output("\n\n<b>Something bad happened!</b>\n\n<b>Please report this message, and include any prior scene text or a description of what you did before seeing this message:</b>\n\n");
 				//output("Version: " + version + "\n\n");
@@ -606,7 +609,13 @@
 				output("Error Mesg: " + ee.message + "\n", false, false);
 				output(ee.getStackTrace(), false, false);
 				clearMenu();
-				addButton(14, "Next", mainGameMenu);
+				if(bGameOver)
+				{
+					gameOverEvent = true;
+					backToPrimaryOutput();
+					output("\n\n(Access the main menu to start a new game or use the data menu to load a previously saved game. The buttons are located in the lower left of the game screen.)");
+				}
+				else addButton(14, "Next", mainGameMenu);
 			}
 		}
 		
