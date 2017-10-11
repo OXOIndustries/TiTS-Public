@@ -489,7 +489,7 @@ public function missionaryWithRensa():void
 	//if low-med cum:
 	else if(pc.cumQ() < 1500) output("\n\nYour cock throbs powerfully, clenching from [pc.cockHead] to base before a rush of heat glides through you. Completely on instinct, your grip on Ren’s breasts tightens, and your [pc.hips] slam themselves against her up-raised ass, driving your cock deep into her latex quim before unloading a wad of steaming hot seed into her womb.");
 	//if hugecum:
-	else output("\n\nYou’re already leaking some much pre into the slick latex channel that it feels more like a floodgate slowly opening than a normal mortal’s orgasm. You grip Ren as fiercely as you can, thrusting deep into her whorish depths before the full force of the geyser hits. The sheer force of your ejaculate is enough to distend her bodysuit, pushing it deeper into her womb and bloating it out even worse than her own balloon-tipped prick, filling her belly with hot seed. She grows the more you pump into her, her belly distending around your godly orgasm until she looks positively pregnant.");
+	else output("\n\nYou’re already leaking so much pre into the slick latex channel that it feels more like a floodgate slowly opening than a normal mortal’s orgasm. You grip Ren as fiercely as you can, thrusting deep into her whorish depths before the full force of the geyser hits. The sheer force of your ejaculate is enough to distend her bodysuit, pushing it deeper into her womb and bloating it out even worse than her own balloon-tipped prick, filling her belly with hot seed. She grows the more you pump into her, her belly distending around your godly orgasm until she looks positively pregnant.");
 
 	if(x >= 0)
 	{
