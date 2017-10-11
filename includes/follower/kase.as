@@ -75,7 +75,7 @@ public function kaseCrewGreeting():void
 		output("\n\nKase gulps, <i>“Well, I just wanted to thank you again for giving me this opportunity, and I will do all that is in my power to make your journey run smoothly.”</i>");
 		if (pc.isAss()) output("\n\n You give him a nod in response");
 		else output("\n\nYou smile at his enthusiasm and thank him");
-		output("\n\n, right before Anno returns, clutching a SteeleTech suit in her fluffy hands.");
+		output(", right before Anno returns, clutching a SteeleTech suit in her fluffy hands.");
 		output("\n\n<i>“Here,”</i> she says, handing the latex suit to Kase, <i>“If you're gonna be part of the SteeleTech family, you're gonna need one of these.”</i>");
 		output("\n\nThe kaithrit happily accepts the suit, examining its colours and materials while Anno returns to your side. <i>“Do you have a place where I could try this on?”</i>");
 		output("\n\nThe ausar beauty is quick to lean in next to your [pc.ear] and whisper, <i>“He could try it on heeeeerrreee.”</i>");

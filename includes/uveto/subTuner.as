@@ -907,7 +907,7 @@ public function accupitchLabsBonus():Boolean
 			"\n\nA very tangible feeling of jealousy washes over you at the sight of that, leaving you to wonder why you haven’t received a greeting like that..."
 		);
 	}
-	output(msgList[msgList.length]);
+	output(msgList[rand(msgList.length)]);
 	processTime(2);
 
 	addButton(0,"Belle",newApproachBelle,undefined,"Belle","Meet with the doctor.");
