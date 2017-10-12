@@ -61,7 +61,7 @@ package classes.Items.Transformatives {
 				{
 					if(pc.cumQualityRaw < 2)
 					{
-						output("\n\nA warm glow radiates from your [pc.belly] down to your loins. That's it?!");
+						output("\n\nA warm glow radiates from your [pc.belly] down to your loins. That’s it?!");
 					}
 					//Sub 2-3
 					else if(pc.cumQualityRaw < 3) output("\n\nA twinge in your loins is the only reaction your body gives to the exotic fungus. Maybe you ought to fuck somebody, just to see if anything changed...");
@@ -162,7 +162,7 @@ package classes.Items.Transformatives {
 						else output(" You should probably stop or something,");
 						output(" but your vision is all twirly and swirly. You’re seeing tits and bent-over asses in everything, the world itself displaying a visual feast for your pumping hand. Pre issues forth with every pump");
 						if(pc.balls > 1) output(", but your balls feel like they’re getting even heavier");
-						else if(pc.balls == 1) output(", but your ball feels like it's even heavier.");
+						else if(pc.balls == 1) output(", but your ball feels like it’s even heavier.");
 						else output(", but you feel more pent-up than ever");
 						output(". It splatters out in progressively lewder cascades.");
 
