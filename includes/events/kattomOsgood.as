@@ -7,7 +7,7 @@ public function pattonIsHere():Boolean
 		flags["KATTOM_LOCATION"] = "SHIP INTERIOR"; //Probably not a real room so please don't go there, kthnx.
 	}
 	//If 35 hours since his last move, move him.
-	if(flags["KATTOM_MOVE_CD"] + 2100 < GetGameTimestamp())// && rand(10) == 0
+	if(flags["KATTOM_MOVE_CD"] + 2100 < GetGameTimestamp() && rand(10) == 0)
 	{
 		flags["KATTOM_LOCATION"] = currentLocation;
 		generateMap();
