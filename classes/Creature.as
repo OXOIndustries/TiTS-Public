@@ -2588,10 +2588,11 @@
 					// Gedan: I ain't seeing no errors, so I'm gonna Throw on unknown tags to make their presence 120% obvious when turbotesting scenes.
 					//throw new Error("Unmatched tag descriptor: " + desc);
 					trace("ERROR: Unmatched tag descriptor detected: " + desc);
-					return null; // "<b>Error, invalid description. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
+					return "<b>Error, invalid description for " + short + ". Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
 					
 					break;
 			}
+			if (buffer == null) return "<b>Error, description for " + short + " returned undefined/null. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
 			if (arg.charCodeAt(0) > 64 && arg.charCodeAt(0) < 90) buffer = upperCase(buffer);
 			// trace("BUFFER OUT: " + buffer);
 			return buffer;
@@ -4444,48 +4445,64 @@
 			
 			return (0 + bonus);
 		}
-		public function physiqueMax(): Number {
+		public function physiqueMax(raw:Boolean = false): Number {
 			var bonuses:int = 0;
-			if(hasStatusEffect("Quivering Quasar")) bonuses += 5;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
+			if(!raw) {
+				if(hasStatusEffect("Quivering Quasar")) bonuses += 5;
+			}
 			return ((level * 5) + bonuses);
 		}
-		public function reflexesMax(): Number {
+		public function reflexesMax(raw:Boolean = false): Number {
 			var bonuses:int = 0;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
 			
 			var scalar:Number = 1;
-			if(hasPerk("Resin")) scalar = perkv1("Resin");
-			if(hasStatusEffect("Bulky Belly")) scalar *= statusEffectv1("Bulky Belly");
+			if(hasPerk("Resin")) scalar *= perkv1("Resin");
+			if(!raw) {
+				if(hasStatusEffect("Bulky Belly")) scalar *= statusEffectv1("Bulky Belly");
+			}
 			
 			return ((level * 5 * scalar) + bonuses);
 		}
-		public function aimMax(): Number {
+		public function aimMax(raw:Boolean = false): Number {
 			var bonuses:int = 0;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
+			if(!raw) {
+				// Nothing yet!
+			}
 			return ((level * 5) + bonuses);
 		}
-		public function intelligenceMax(): Number {
+		public function intelligenceMax(raw:Boolean = false): Number {
 			var bonuses:int = 0;
-			if(hasPerk("Cybernetic Synchronization")) bonuses += (perkv1("Cybernetic Synchronization") * cyborgScore());
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
+			if(hasPerk("Cybernetic Synchronization")) bonuses += (perkv1("Cybernetic Synchronization") * cyborgScore());
 			if(hasPerk("Dumb4Cum")) bonuses += level*2;
+			if(!raw) {
+				// Nothing yet!
+			}
 			
 			var amount:Number = ((level * 5) + bonuses);
 			if(amount < Creature.STAT_CLAMP_VALUE) amount = Creature.STAT_CLAMP_VALUE;
 			return amount;
 		}
-		public function willpowerMax(): Number {
+		public function willpowerMax(raw:Boolean = false): Number {
 			var bonuses:int = 0;
-			if(hasPerk("Iron Will")) bonuses += Math.floor(physiqueMax()/5);
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
+			if(hasPerk("Iron Will")) bonuses += Math.floor(physiqueMax()/5);
+			if(!raw) {
+				// Nothing yet!
+			}
 			return ((level * 5) + bonuses);
 		}
-		public function libidoMax(): Number {
+		public function libidoMax(raw:Boolean = false): Number {
 			var bonuses:int = 0;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 50;
 			if(hasPerk("Slut Stamp")) bonuses += perkv3("Slut Stamp");
 			if(hasPerk("Barcoded")) bonuses += 10;
+			if(!raw) {
+				// Nothing yet!
+			}
 			return (100 + bonuses);
 		}
 		public function libidoMin(): Number {
@@ -4517,27 +4534,27 @@
 			{
 				case "physique":
 				statCurrent = physique();
-				statPercent = statCurrent / physiqueMax() * 100;
+				statPercent = statCurrent / physiqueMax(true) * 100;
 					break;
 				case "reflexes":
 				statCurrent = reflexes();
-				statPercent = statCurrent / reflexesMax() * 100;
+				statPercent = statCurrent / reflexesMax(true) * 100;
 					break;
 				case "aim":
 				statCurrent = aim();
-				statPercent = statCurrent / aimMax() * 100;
+				statPercent = statCurrent / aimMax(true) * 100;
 					break;
 				case "intelligence":
 				statCurrent = intelligence();
-				statPercent = statCurrent / intelligenceMax() * 100;
+				statPercent = statCurrent / intelligenceMax(true) * 100;
 					break;
 				case "willpower":
 				statCurrent = willpower();
-				statPercent = statCurrent / willpowerMax() * 100;
+				statPercent = statCurrent / willpowerMax(true) * 100;
 					break;
 				case "libido":
 				statCurrent = libido();
-				statPercent = statCurrent / libidoMax() * 100;
+				statPercent = statCurrent / libidoMax(true) * 100;
 					break;
 				default:
 				kGAMECLASS.output("ERROR: slowStatGain called with stat argument of " + stat + ". This isn’t a real stat!");

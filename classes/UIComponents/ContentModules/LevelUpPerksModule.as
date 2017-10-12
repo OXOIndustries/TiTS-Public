@@ -1,7 +1,6 @@
 package classes.UIComponents.ContentModules 
 {
 	import classes.Characters.PlayerCharacter;
-	import classes.Creature;
 	import classes.UIComponents.ContentModule;
 	import classes.UIComponents.ContentModuleComponents.PerkButton;
 	import classes.UIComponents.ContentModuleComponents.PerkButtonGroup;
@@ -31,7 +30,7 @@ package classes.UIComponents.ContentModules
 		private var _perkList:PerkClassTree;
 		private var _selectedPerkDetails:PerkDetailsPane;
 		
-		private var _targetCreature:Creature;
+		private var _targetCreature:PlayerCharacter;
 		private var _selectedPerkButton:PerkButton;
 		
 		public function LevelUpPerksModule() 
@@ -87,7 +86,7 @@ package classes.UIComponents.ContentModules
 			this.addChild(_perkList);
 		}
 		
-		public function setCreatureData(creature:Creature, gavePoints:Boolean = false):void
+		public function setCreatureData(creature:PlayerCharacter, gavePoints:Boolean = false):void
 		{
 			_targetCreature = creature;
 			

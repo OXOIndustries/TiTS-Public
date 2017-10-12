@@ -3288,7 +3288,10 @@ public function processEmmyEvents(deltaT:uint, doOut:Boolean, totalDays:uint):vo
 
 public function badEnd(displayGG:String = "GAME OVER"):void 
 {
+	if(stage.contains(userInterface.textInput)) removeInput();
+	
 	gameOverEvent = true;
+	backToPrimaryOutput();
 	
 	// Todo -- Hook alternate game ends in here, and also maybe look into some kind of categorisation system.
 	
