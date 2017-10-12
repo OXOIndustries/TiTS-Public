@@ -185,6 +185,7 @@ public function rustPlainsEncounters():Boolean {
 		output("\n\nAs you walk along the jagged, rusted metal of Tarkus’ surface, you spy another XenoGen SynthSheath. As you gently run a hand along your crotch, you remember the last time you used one of these. Do you pick it up?");
 		addButton(0,"Synthsheath",grabARubbahTube);
 	}
+	else if(pattonIsHere()) pattonAppearance();
 	return false;
 }
 
@@ -222,6 +223,7 @@ public function rustCoastEncounters():Boolean {
 		output("\n\nAs you walk along the jagged, rusted metal of Tarkus’ surface, you spy another XenoGen SynthSheath. As you gently run a hand along your crotch, you remember the last time you used one of these. Do you pick it up?");
 		addButton(0,"Synthsheath",grabARubbahTube);
 	}
+	else if(pattonIsHere()) pattonAppearance();
 	return false;
 }
 
@@ -262,6 +264,7 @@ public function rustRidgesEncounters():Boolean {
 		output("\n\nAs you walk along the jagged, rusted metal of Tarkus’ surface, you spy another XenoGen SynthSheath. As you gently run a hand along your crotch, you remember the last time you used one of these. Do you pick it up?");
 		addButton(0,"Synthsheath",grabARubbahTube);
 	}
+	else if(pattonIsHere()) pattonAppearance();
 	return false;
 }
 //Goos and Saxbots

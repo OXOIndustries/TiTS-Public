@@ -247,6 +247,8 @@ public function jungleEncounterChances():Boolean {
 	}
 	if (tryEncounterMango()) return true;
 	
+	if(pattonIsHere()) pattonAppearance();
+
 	return false;
 }
 
@@ -303,6 +305,8 @@ public function jungleMiddleEncounters():Boolean {
 	}
 	
 	if (tryEncounterMango()) return true;
+
+	if(pattonIsHere()) pattonAppearance();
 	
 	return false;
 }
@@ -401,6 +405,8 @@ public function jungleDeepEncounters():Boolean {
 	if(pc.level < 2) output("\n\n<b>You can’t help but feel that this part of the jungle would chew you up and spit you out. Maybe you should come back after leveling up a little bit.</b>");
 	
 	if (tryEncounterMango()) return true;
+
+	if(pattonIsHere()) pattonAppearance();
 	
 	return false;
 }

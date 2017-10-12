@@ -606,7 +606,7 @@ public function noManzLandBonus():Boolean
 	{
 		return true;
 	}
-	
+	if(pattonIsHere()) pattonAppearance();
 	return false;
 }
 
@@ -928,6 +928,7 @@ public function DeepCavesBonus():Boolean
 		choices[rand(choices.length)]();
 		return true;
 	}
+	if(pattonIsHere()) pattonAppearance();
 	return false;
 }
 
