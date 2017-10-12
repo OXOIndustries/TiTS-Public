@@ -251,6 +251,11 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	
 	//Display movement shits - after clear menu for extra options!
 	if(rooms[currentLocation].runOnEnter != undefined) {
+		//If in a hazard area
+		if(rooms[currentLocation].hasFlag(GLOBAL.HAZARD) && !disableExploreEvents())
+		{
+			if(pattonIsHere()) pattonAppearance();
+		}
 		if(rooms[currentLocation].runOnEnter()) return;
 	}
 	
@@ -328,7 +333,6 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		if (!isNavDisabled(NAV_IN_DISABLE)) addButton(5, "Enter Ship", move, "SHIP INTERIOR");
 		else addDisabledButton(5, "Enter Ship", rooms[currentLocation].inText, "You can’t enter your ship here!");
 	}
-	
 	if (rooms[currentLocation].runAfterEnter != null) rooms[currentLocation].runAfterEnter();
 
 	flags["NAV_DISABLED"] = undefined; // Clear disabled directions.

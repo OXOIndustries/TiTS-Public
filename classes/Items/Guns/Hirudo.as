@@ -7,11 +7,11 @@
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
-	public class AutoShotgun extends ItemSlotClass
+	public class Hirudo extends ItemSlotClass
 	{
-		//Level 4 (Rare). Balance 2.0
+		//Level 9 (Rare). Balance 2.0
 		//constructor
-		public function AutoShotgun()
+		public function Hirudo()
 		{
 			this._latestVersion = 1;
 
@@ -20,40 +20,42 @@
 			this.type = GLOBAL.RANGED_WEAPON;
 			
 			//Used on inventory buttons
-			this.shortName = "A.S.G.";
+			this.shortName = "Hirudo";
 			
 			//Regular name
-			this.longName = "auto shotgun"
+			this.longName = "Hirudo devourer"
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "an auto shotgun";
+			this.description = "a Hirudo devourer";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "One of the best civilian shotguns available in the market. The CF22 offers outstanding firepower combined with an impressive rate of fire and a large drum magazine. It's high modularity and adaptability has made this shotgun a very popular piece of equipment, as it can be quickly converted from a roomsweeper to a shot-mid range assault weapon by simple exchanging barrels, muzzles and ammunition.";
+			this.tooltip = "A living weapon, genetically modified and grown in a lab. The Hirudo series of living weapons is an improved strain derived from the Lampetra series; it offers a noticeable increase in range and firepower, and like many of its sisters, it's capable of healing its host when properly fed.";
 			this.attackVerb = "shoot";
-			attackNoun = "shot";
+			attackNoun = "tendrils";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 1300;
-			this.attack = 10;
+			this.basePrice = 40000;
+			this.attack = 0;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 20;
-			baseDamage.addFlag(DamageFlag.BULLET);
+			baseDamage.corrosive.damageValue = 16;
+			baseDamage.kinetic.damageValue = 16;
 			//baseDamage.addFlag(DamageFlag.NO_CRIT);
-			//addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
-			
+			//addFlag(GLOBAL.ITEM_FLAG_BLIND_IGNORE);
+			baseDamage.addFlag(DamageFlag.VAMPIRIC);
+			baseDamage.addFlag(DamageFlag.PENETRATING);
+
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 0;
-			this.evasion = -3;
-			this.fortification = 0;
+			this.critBonus = 5;
+			this.evasion = 0;
+			this.fortification = -15;
 
 			this.version = _latestVersion;
 		}

@@ -7,11 +7,11 @@
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
-	public class AutoShotgun extends ItemSlotClass
+	public class Crucifer extends ItemSlotClass
 	{
-		//Level 4 (Rare). Balance 2.0
+		//Level 9 (Rare). Balance 2.0
 		//constructor
-		public function AutoShotgun()
+		public function Crucifer()
 		{
 			this._latestVersion = 1;
 
@@ -20,40 +20,42 @@
 			this.type = GLOBAL.RANGED_WEAPON;
 			
 			//Used on inventory buttons
-			this.shortName = "A.S.G.";
+			this.shortName = "Crucifer";
 			
 			//Regular name
-			this.longName = "auto shotgun"
+			this.longName = "Crucifer spitter"
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "an auto shotgun";
+			this.description = "a Crucifer spitter";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "One of the best civilian shotguns available in the market. The CF22 offers outstanding firepower combined with an impressive rate of fire and a large drum magazine. It's high modularity and adaptability has made this shotgun a very popular piece of equipment, as it can be quickly converted from a roomsweeper to a shot-mid range assault weapon by simple exchanging barrels, muzzles and ammunition.";
+			this.tooltip = "The Crucifer is an organism vagely resembling a gun. This little fella only needs a bit of your delicious internal fluids and it will happily fuction as a living, breathing acid-spitting gun.";
 			this.attackVerb = "shoot";
-			attackNoun = "shot";
+			attackNoun = "acid";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 1300;
-			this.attack = 10;
+			this.basePrice = 40000;
+			this.attack = 0;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 20;
-			baseDamage.addFlag(DamageFlag.BULLET);
+			baseDamage.poison.damageValue = 30;
+			//baseDamage.kinetic.damageValue = 16;
 			//baseDamage.addFlag(DamageFlag.NO_CRIT);
-			//addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
-			
+			//addFlag(GLOBAL.ITEM_FLAG_BLIND_IGNORE);
+			//baseDamage.addFlag(DamageFlag.VAMPIRIC);
+			//baseDamage.addFlag(DamageFlag.PENETRATING);
+
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 0;
-			this.evasion = -3;
-			this.fortification = 0;
+			this.critBonus = 10;
+			this.evasion = 0;
+			this.fortification = -10;
 
 			this.version = _latestVersion;
 		}

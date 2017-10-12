@@ -7,11 +7,11 @@
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
-	public class AutoShotgun extends ItemSlotClass
+	public class Entropy extends ItemSlotClass
 	{
-		//Level 4 (Rare). Balance 2.0
+		//Level 9 (Common). Balance 2.0
 		//constructor
-		public function AutoShotgun()
+		public function Entropy()
 		{
 			this._latestVersion = 1;
 
@@ -20,39 +20,40 @@
 			this.type = GLOBAL.RANGED_WEAPON;
 			
 			//Used on inventory buttons
-			this.shortName = "A.S.G.";
+			this.shortName = "Entropy";
 			
 			//Regular name
-			this.longName = "auto shotgun"
+			this.longName = "LM19 “Entropy” kinetic decelerator";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "an auto shotgun";
+			this.description = "a freeze gun";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "One of the best civilian shotguns available in the market. The CF22 offers outstanding firepower combined with an impressive rate of fire and a large drum magazine. It's high modularity and adaptability has made this shotgun a very popular piece of equipment, as it can be quickly converted from a roomsweeper to a shot-mid range assault weapon by simple exchanging barrels, muzzles and ammunition.";
+			this.tooltip = "The LM19 was originally created to produce rapid cooling necessary for the successful creation of several varieties of superhard alloys. In practice, it has found more use taming hostile, cold-blooded races. When you are capable of arresting the movement of atomic particles to instantly induce a state of hypothermia, bloodlessly putting down rebellion is a cakewalk.";
 			this.attackVerb = "shoot";
-			attackNoun = "shot";
+			attackNoun = "cold beam";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 1300;
-			this.attack = 10;
+			this.basePrice = 27000;
+			this.attack = 6;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 20;
-			baseDamage.addFlag(DamageFlag.BULLET);
-			//baseDamage.addFlag(DamageFlag.NO_CRIT);
-			//addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
+			baseDamage.freezing.damageValue = 27;
+			//baseDamage.addFlag(DamageFlag.BULLET);
+			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
+			//baseDamage.addFlag(DamageFlag.LASER);
+			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
-			this.evasion = -3;
+			this.evasion = 0;
 			this.fortification = 0;
 
 			this.version = _latestVersion;

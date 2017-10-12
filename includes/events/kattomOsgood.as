@@ -4,12 +4,13 @@ public function pattonIsHere():Boolean
 	if(flags["KATTOM_MOVE_CD"] == undefined) 
 	{
 		flags["KATTOM_MOVE_CD"] = GetGameTimestamp();
-		flags["KATTOM_LOCATION"] = "NOWHERE"; //Probably not a real room so please don't go there, kthnx.
+		flags["KATTOM_LOCATION"] = "SHIP INTERIOR"; //Probably not a real room so please don't go there, kthnx.
 	}
 	//If 35 hours since his last move, move him.
-	if(flags["KATTOM_MOVE_CD"] + 2100 < GetGameTimestamp())
+	if(flags["KATTOM_MOVE_CD"] + 2100 < GetGameTimestamp())// && rand(10) == 0
 	{
 		flags["KATTOM_LOCATION"] = currentLocation;
+		generateMap();
 		flags["KATTOM_MOVE_CD"] = GetGameTimestamp();
 		setKattomsInventory();
 		showBust("KATTOM_OSGOOD");
@@ -21,19 +22,8 @@ public function pattonIsHere():Boolean
 		return true;
 	}
 	return false;
-}
+}	
 
-/*
-Uveto/P5:
-Hirudo (Cor)
-NanDeconstructor (Cor)
-Entropy (Cold)
-Apollo Plasma Rifle
-Gatling Laser
-Crucifer (Pois)
-Vanquisher
-Stormbull
-*/
 public function setKattomsInventory():void
 {
 	var patty:Creature = chars["KATTON"];
@@ -85,41 +75,27 @@ public function setKattomsInventory():void
 			else patty.inventory.push(new MyrVenomThrower());
 			break;
 		case "uveto vii":
-			//Acid Launcher
-			if(rand(2) == 0) patty.inventory.push(new AcidLauncher());
-			//Chaingun
-			else patty.inventory.push(new Chaingun());
-			//Cryrolizer(R)
-			if(rand(2) == 0) patty.inventory.push(new Cryrolizer());
-			//ElectricLauncher (R)
-			else patty.inventory.push(new ElectroLauncher());
-			//Hardlight Rifle (R)
-			if(rand(2) == 0) patty.inventory.push(new HardlightRifle());
-			//MyrGasser
-			else patty.inventory.push(new MyrVenomThrower());
+			//Hirudo (Cor) (R)
+			if(rand(2) == 0) patty.inventory.push(new Hirudo());
+			//NanDeconstructor (Cor)
+			else patty.inventory.push(new NANDeconstructor());
+			//Entropy (Cold)
+			patty.inventory.push(new Entropy());
+			//Apollo Plasma Rifle (R)
+			if(rand(2) == 0) patty.inventory.push(new ApolloPlasmaRifle());
+			//Gatling Laser
+			else patty.inventory.push(new Chainlaser());
+			//Crucifer (Pois) (R)
+			if(rand(2) == 0) patty.inventory.push(new Crucifer());
+			//Vanquisher
+			else patty.inventory.push(new Vanquisher());
+			//Stormbull
+			patty.inventory.push(new Stormbull());
 			break;
 		default:
 			patty.inventory.push(new Savicite());
 			break;
 	}
-	if(getPlanetName().toLowerCase() == "mhen'ga")
-	{
-
-	}
-	if(getPlanetName().toLowerCase() != "tarkus")
-	{
-
-	}
-	if(getPlanetName().toLowerCase() != "myrellion")
-	{
-
-	}
-	if(getPlanetName().toLowerCase().indexOf("uveto") != -1)
-	{
-
-	}
-
-
 }
 
 public function showKattom():void

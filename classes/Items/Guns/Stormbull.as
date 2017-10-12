@@ -7,11 +7,11 @@
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
-	public class AutoShotgun extends ItemSlotClass
+	public class Stormbull extends ItemSlotClass
 	{
-		//Level 4 (Rare). Balance 2.0
+		//Level 9 (Common). Balance 2.0
 		//constructor
-		public function AutoShotgun()
+		public function Stormbull()
 		{
 			this._latestVersion = 1;
 
@@ -20,29 +20,29 @@
 			this.type = GLOBAL.RANGED_WEAPON;
 			
 			//Used on inventory buttons
-			this.shortName = "A.S.G.";
+			this.shortName = "Strmbull";
 			
 			//Regular name
-			this.longName = "auto shotgun"
+			this.longName = "Stormbull shotgun"
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "an auto shotgun";
+			this.description = "a Stormbull shotgun";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "One of the best civilian shotguns available in the market. The CF22 offers outstanding firepower combined with an impressive rate of fire and a large drum magazine. It's high modularity and adaptability has made this shotgun a very popular piece of equipment, as it can be quickly converted from a roomsweeper to a shot-mid range assault weapon by simple exchanging barrels, muzzles and ammunition.";
+			this.tooltip = "A popular bullpup semi-automatic shotgun with a drum magazine. Its large shell gauge, combined with the bullpup design, provides a good amount of firepower at close quarters, and the revolving drum magazine ensures the shotgun will not jam and can be reloaded quickly.";
 			this.attackVerb = "shoot";
-			attackNoun = "shot";
+			attackNoun = "buckshot";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 1300;
-			this.attack = 10;
+			this.basePrice = 27000;
+			this.attack = 18;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 20;
+			baseDamage.kinetic.damageValue = 35;
 			baseDamage.addFlag(DamageFlag.BULLET);
 			//baseDamage.addFlag(DamageFlag.NO_CRIT);
 			//addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
@@ -52,7 +52,7 @@
 			this.shields = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
-			this.evasion = -3;
+			this.evasion = -6;
 			this.fortification = 0;
 
 			this.version = _latestVersion;

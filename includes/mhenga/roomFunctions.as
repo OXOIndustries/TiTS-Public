@@ -247,8 +247,6 @@ public function jungleEncounterChances():Boolean {
 	}
 	if (tryEncounterMango()) return true;
 	
-	if(pattonIsHere()) pattonAppearance();
-
 	return false;
 }
 
@@ -306,8 +304,6 @@ public function jungleMiddleEncounters():Boolean {
 	
 	if (tryEncounterMango()) return true;
 
-	if(pattonIsHere()) pattonAppearance();
-	
 	return false;
 }
 
@@ -406,8 +402,6 @@ public function jungleDeepEncounters():Boolean {
 	
 	if (tryEncounterMango()) return true;
 
-	if(pattonIsHere()) pattonAppearance();
-	
 	return false;
 }
 

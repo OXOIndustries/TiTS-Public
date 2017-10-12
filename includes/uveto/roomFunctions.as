@@ -32,7 +32,6 @@ public function TundraEncounterBonus():Boolean
 	}
 	if (tryUvetoWeatherEvent(flags["TUNDRA_STEP"])) return true;
 	if (tryEncounterSavicite(flags["TUNDRA_STEP"])) return true;
-	if(pattonIsHere()) pattonAppearance();
 	return false;
 }
 public function GlacialRiftEncounterBonus():Boolean
@@ -75,7 +74,6 @@ public function GlacialRiftEncounterBonus():Boolean
 	}
 	if (tryUvetoWeatherEvent(flags["TUNDRA_STEP"])) return true;
 	if (tryEncounterSavicite(flags["TUNDRA_STEP"])) return true;
-	if(pattonIsHere()) pattonAppearance();
 	return false;
 }
 
