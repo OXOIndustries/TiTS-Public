@@ -8,10 +8,10 @@
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	
-	public class PattonOsgood extends Creature
+	public class KattomOsgood extends Creature
 	{
 		//constructor
-		public function PattonOsgood()
+		public function KattomOsgood()
 		{
 			this._latestVersion = 1;
 			this.version = _latestVersion;
