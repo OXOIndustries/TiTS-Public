@@ -34,7 +34,7 @@ package classes.Items.Guns
 			this.description = "a chainlaser";
 			
 			//Displayed on tooltips during mouseovers
-			tooltip = "One of the chief drawbacks of energy weapons is the high heat generation and the power draw required to feed it. The chainlaser solves both of these in typical thraggen fashion: by making the weapon so big and cumbersome that it provides endless surface area with which to dissipated heat. The weight of the batteries hardly matters when you're already lugging around six barrels and a servo to spin them (to further facilitate cooling). While it is possible to fire all six at once in \"Alpha Strike\" pattern, this can sometimes result in catastrophic failure of the weapon. Models sold to non-thraggen typically come with this \"feature\" disabled.";
+			tooltip = "One of the chief drawbacks of energy weapons is the high heat generation and the power draw required to feed it. The chainlaser solves both of these in typical thraggen fashion: by making the weapon so big and cumbersome that it provides endless surface area with which to dissipated heat. The weight of the batteries hardly matters when you’re already lugging around six barrels and a servo to spin them (to further facilitate cooling). While it is possible to fire all six at once in “Alpha Strike” pattern, this can sometimes result in catastrophic failure of the weapon. Models sold to non-thraggen typically come with this “feature” disabled.";
 			this.attackVerb = "shoot";
 			attackNoun = "laser beam"
 			

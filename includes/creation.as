@@ -1478,6 +1478,12 @@ public function setClass(arg:int = 0):void {
 			break;
 		case GLOBAL.CLASS_ENGINEER:
 			pc.rangedWeapon = new classes.Items.Guns.ScopedPistol();
+			pc.rangedWeapon.shortName = "S.Pistol*";
+			pc.rangedWeapon.tooltip = "This compact laser pistol is equipped with a rather impressive scope and energy cell of your own manufacture. It is quite accurate but relatively low-powered.";
+			TooltipManager.addFullName(pc.rangedWeapon.shortName, StringUtil.toTitleCase(pc.rangedWeapon.longName));
+			TooltipManager.addTooltip(pc.rangedWeapon.shortName, pc.rangedWeapon.tooltip);
+			pc.rangedWeapon.hasUniqueName = true;
+			pc.rangedWeapon.hasRandomProperties = true;
 			pc.shield = new classes.Items.Protection.DecentShield();
 			break;
 	}

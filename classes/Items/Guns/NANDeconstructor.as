@@ -31,7 +31,7 @@
 			this.description = "a NaN Deconstructor";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This rare weapon fires a blob of modified microsurgeons programed to eat through both organic and inorganic targets. Its sale has been banned as 'cruel' throughout most of the core. On the fringes, it can still find use, but most prefer to stick to weapons that won't eat them alive if they spill the ammo.";
+			this.tooltip = "This rare weapon fires a blob of modified microsurgeons programed to eat through both organic and inorganic targets. Its sale has been banned as ‘cruel’ throughout most of the core. On the fringes, it can still find use, but most prefer to stick to weapons that won’t eat them alive if they spill the ammo.";
 			this.attackVerb = "shoot";
 			attackNoun = "nanite blob";
 			

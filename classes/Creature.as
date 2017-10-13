@@ -10920,6 +10920,7 @@
 				else race = "huskar";
 			}
 			if (demonScore() >= 5) race = "demon-morph";
+			if (dragonScore() >= 5) race = "dragon-morph";
 			if (gabilaniScore() >= 5) race = "gabilani";
 			if (frogScore() >= 5) race = "kerokoras";
 			if (kaithritScore() >= 6) race = "kaithrit";

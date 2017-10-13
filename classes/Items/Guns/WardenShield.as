@@ -31,7 +31,7 @@
 			this.description = "a warden shield";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "The warden shield is an exotic, scarcely manufactured piece. After failing at market over ten years ago, it fell into obscurity and disuse. The design is fairly basic, with a wrist strap designed to attach to the shield on command. The shield itself has a basic hoverdrive built into the underside to allow it to be thrown extremely long distances - and return to the wielder on command. It is a \"weapon\" for the user who would rather fight with brute strength than the finesse of a firearm.";
+			this.tooltip = "The warden shield is an exotic, scarcely manufactured piece. After failing at market over ten years ago, it fell into obscurity and disuse. The design is fairly basic, with a wrist strap designed to attach to the shield on command. The shield itself has a basic hoverdrive built into the underside to allow it to be thrown extremely long distances - and return to the wielder on command. It is a “weapon” for the user who would rather fight with brute strength than the finesse of a firearm.";
 			this.attackVerb = "throw";
 			attackNoun = "shield";
 			

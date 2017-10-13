@@ -42,7 +42,7 @@
 			this.attack = 10;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.freezing.damageValue = 16;
+			baseDamage.burning.damageValue = 16;
 			baseDamage.addFlag(DamageFlag.NO_CRIT);
 			addFlag(GLOBAL.ITEM_FLAG_BLIND_IGNORE);
 			

@@ -31,7 +31,7 @@
 			this.description = "a Hirudo devourer";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A living weapon, genetically modified and grown in a lab. The Hirudo series of living weapons is an improved strain derived from the Lampetra series; it offers a noticeable increase in range and firepower, and like many of its sisters, it's capable of healing its host when properly fed.";
+			this.tooltip = "A living weapon, genetically modified and grown in a lab. The Hirudo series of living weapons is an improved strain derived from the Lampetra series; it offers a noticeable increase in range and firepower, and like many of its sisters, it’s capable of healing its host when properly fed.";
 			this.attackVerb = "shoot";
 			attackNoun = "tendrils";
 			
