@@ -2641,17 +2641,17 @@ public function fuckAzrasCuntPussy1stTimeEverytime6(arg:Array):void
 	{
 		output("Extricating your shrink-wrapped cunt-stuffer is no easy affair");
 		output(", not with such a titanic knot. Azra looks like she’s about to be split in half from how you gape her leaky pussy. No matter how you wiggle, or how she giggles at your efforts, there’s no freeing your [pc.cock " + xx + "]. After a few minutes, she asks you to stop before you get her all worked up again. Instead of struggling to separate, she plies you with seemingly endless hypothetical questions, ranging from inane celebrity queries to philosophical quandaries that leave your head spinning.");
-		output("\n\nAfter a steam-filled Q-and-A that goes on for the better part of an hour, you realize you’ve finally calmed down enough for your knot to deflate.");
+		output("\n\nAfter a steam-filled Q-and-A that goes on for the better part of an hour, you realize you’ve finally calmed down enough for your knot to deflate.\n\n");
 	}
 	//Smaller Knot
 	else if(pc.hasKnot(xx))
 	{
 		output("Tugging your shrink-wrapped cunt-stuffer free is no easy affair, not with an inflated bulb of flesh at the base doing its best to keep you sealed inside. You wiggle back and forth, pulling hard enough to drag Azra an inch across the slick shower floor. She giggles at times, gasps at others, and sometimes even moans from the stimulation of her hypersensitive puss.");
 		output("\n\n<i>“Here, let me help,”</i> Azra suggests after a few micro-orgasms. She braces her legs and places her palms to either side of her puffy mound, doing her best to spread it open. <i>“Now pull!”</i>");
-		output("\n\nYou push back against her, wincing from the pressure on your delicate organ. Simultaneously you watch Azra’s golden cunt part around your [pc.cockColor " + xx + "] bulb. It strains wider, and winder, and in an explosion of gushing siren-goo, finally releases your knot.");
+		output("\n\nYou push back against her, wincing from the pressure on your delicate organ. Simultaneously you watch Azra’s golden cunt part around your [pc.cockColor " + xx + "] bulb. It strains wider, and winder, and in an explosion of gushing siren-goo, finally releases your knot.\n\n");
 	}
 	//Merge
-	output("\n\nSliding out reveals a very, very well-lubed condom");
+	output("Sliding out reveals a very, very well-lubed condom");
 	if(cumQ >= 15) output(" - and the balloon attached to the end of it");
 	output(".");
 	if(cumQ >= 7000) 

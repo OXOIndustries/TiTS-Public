@@ -58,7 +58,8 @@ public function azraPlantSamples(back:Boolean = false):void
 	addButton(0,"Fuck Lillies",approachFuckLillies);
 	if(flags["AZRA_TARKUSED"] == 1) addButton(1,"Slutshrooms",slutShroomApproach);
 	else addDisabledButton(1,"Undiscovered","Undiscovered","You have not yet saved this plant.");
-	addDisabledButton(2,"Undiscovered","Undiscovered","You have not yet saved this plant.");
+	if(flags["AZRA_TARKUSED"] == 1 && flags["AZRA_TARKUS_SKIP"] != 1) addButton(2,"Motherhusks",motherhuskApproach);
+	else addDisabledButton(2,"Undiscovered","Undiscovered","You have not yet saved this plant.");
 	if(flags["AZRA_TARKUSED"] == 1) addButton(3,"Spunkshroom",spunkshroomApproach);
 	else addDisabledButton(3,"Undiscovered","Undiscovered","You have not yet saved this plant.");
 	addButton(14,"Leave",mainGameMenu);
@@ -256,4 +257,37 @@ public function pickASlootShroom():void
 	//Standard item collection here
 	eventQueue.push(slutShroomApproach);
 	quickLoot(new SlutShroom());
+}
+
+public function motherhuskApproach():void
+{
+	clearOutput();
+	showName("MOTHER\nHUSKS");
+	output("The motherhusks have taken to captivity with gusto. Already, a two foot spire of segmented growth has emerged from a bed of rust-red soil intermixed with silvery aluminium filings. A hardlight terrarium keeps the floating spores safely contained, so as not to contaminate the lab - or Azra’s ovaries. The sharky scientist has placed a small display at the base that reads <i>“Matar Factorum.”</i> Further notes explain that you are free to harvest the smaller spires surrounding the main growth. Simply press a button on the right side to reduce the strength of the hardlight shield to a fist-permeable level.");
+	output("\n\nFor raw usage, it is suggested to crush a single husk to powder and inhale the airborne particles released. Side effects are largely unknown, but minor corruption of the user’s genome is likely. The benefits are expounded upon in far greater detail: increased nutrient delivery to the womb, more rapid zygote development, and optimizations to the imbiber’s genome to support more rapidly developing the womb’s pregnancy support structures. ");
+	if(!pc.hasVagina()) output("No point in grabbing one without any wombs, you suppose.");
+	else if(pc.statusEffectv1("Motherhusk CD") < 2) output("You could take one, if you wanted your pregnancies to progress at superhuman speed.");
+	else output("<b>Azra has left a note telling you to leave this sample alone for the time being. It needs time to recover after your previous harvest.</b>");
+	processTime(1);
+	clearMenu();
+	if(pc.statusEffectv1("Motherhusk CD") >= 2) addDisabledButton(0,"Pick One","Pick One","You should give the plants a break before taking any more.");
+	else addButton(0,"Pick One",pickAMotherHusk);
+	addButton(14,"Back",azraPlantSamples,true);
+}
+
+//Pick one
+public function pickAMotherHusk():void
+{
+	clearOutput();
+	showName("\nYOINK!");
+	output("You tap a button on the side of the projector, and the fizzing hardlight shield dims to a barely perceptible hum. You gingerly press your hand against it. To your surprise, it parts easily for your fist, allowing you to grab hold of a ridged piece and snap it off. A cloudy puff of spores vents into the containment area");
+	if(pc.isBimbo() || (pc.IQ() < 40) || pc.libido() >= 100) output(", and part of you wishes could just stuff your head in and huff the whole mess. Azra would get super mad, probably");
+	processTime(1);
+	output(".\n\n");
+	if(!pc.hasStatusEffect("Motherhusk CD")) pc.createStatusEffect("Motherhusk CD",1);
+	else pc.addStatusValue("Motherhusk CD",1,1);
+	pc.setStatusMinutes("Motherhusk CD",60*24*4);
+	//Standard item collection here
+	eventQueue.push(motherhuskApproach);
+	quickLoot(new Motherhusk());
 }
