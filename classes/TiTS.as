@@ -1445,6 +1445,21 @@
 		{
 			return chars["CIARAN"];
 		}
+		
+		public function get sam():SX1Techguard
+		{
+			return chars["SX1TECHGUARD"];
+		}
+		
+		public function get khorgan():CaptainKhorgan
+		{
+			return chars["CAPTAINKHORGAN"];
+		}
+		
+		public function get tamtam():TamTam
+		{
+			return chars["TAMTAM"];
+		}
 
 		public function testShipCombat():void
 		{

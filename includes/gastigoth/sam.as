@@ -26,7 +26,7 @@ public function samImprisoned():Boolean
 }
 
 //The Fun Part
-public function samsPrisonRoom():void
+public function samsPrisonRoom(impregnate:Boolean = false):void
 {
 	clearOutput();
 	showSam();
@@ -59,19 +59,28 @@ public function samsPrisonRoom():void
 
 	output("\n\n");
 	if(flags["MET_SAM"] != undefined) output("It doesn’t seem like she recognizes you, or if she does, she doesn’t care.");
-
-	if(pc.hasCock() && pc.cockThatFits(samCapacity()) >= 0) addButton(0,"Use Dick",samPrisonStuff,true,"Use Dick","Take her with your dick.");
+	
+	if(impregnate)
+	{
+		addButton(0, "Next", samPrisonStuff, [true, true]);
+		return;
+	}
+	
+	if(pc.hasCock() && pc.cockThatFits(samCapacity()) >= 0) addButton(0,"Use Dick",samPrisonStuff,[true, false],"Use Dick","Take her with your dick.");
 	else if(pc.hasCock()) addDisabledButton(0,"Use Dick","Use Dick","Much as you might want to give her exactly what she wants, there’s no way you could fit inside her.");
 	else addDisabledButton(0,"Use Dick","Use Dick","You’d need a penis in order to use it.");
 
-	if(pc.hasHardLightEquipped()) addButton(1,"Use Strap-on",samPrisonStuff,false,"Use Strap-on","Give her an approximation of what she wants. A hardlight dick is still a dick, right?");
+	if(pc.hasHardLightEquipped()) addButton(1,"Use Strap-on",samPrisonStuff,[false, false],"Use Strap-on","Give her an approximation of what she wants. A hardlight dick is still a dick, right?");
 	else addDisabledButton(1,"Use Strap-on","Use Strap-on","You don’t have a strap-on to use!");
 
 	addButton(14,"Nevermind",backOuttaKaska);
 }
 
-public function samPrisonStuff(cocked:Boolean = false):void
+public function samPrisonStuff(args:Array):void
 {
+	var cocked:Boolean = args[0];
+	var impregnate:Boolean = args[1];
+	
 	clearOutput();
 	showSam(true);
 	author("Night Trap");
@@ -214,6 +223,7 @@ public function samPrisonStuff(cocked:Boolean = false):void
 		//PUSSY-SOAKED CONDITION, pass an hour or whatever I don’t care, PC should cum once, Sam should have a high chance to get knocked the fuck up if/when that’s ever a thing.
 		processTime(30);
 		pc.applyPussySoaked();
+		if(impregnate) tryKnockUpSam();
 		pc.orgasm();
 	}
 	//Hardlight:
@@ -265,4 +275,16 @@ public function samPrisonStuff(cocked:Boolean = false):void
 	IncrementFlag("SAM_PRISONED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function tryKnockUpSam():void
+{
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -1166,6 +1166,9 @@ public function prisonerStatline(prisonerName:String):void
 			if(silly) output(", Cyber Bullying, and Hand Holding");
 			output(".");
 			addButton(0,"Visit",visitAPrisoner,"Sam","Sam","Visit the ausar with a rap sheet a mile long. She’s anything but a “Good Girl.”\n\n<b>Cost:</b> 1,000 credits");
+			if(!pc.hasCock()) addDisabledButton(1, "Impregnate". "Impregnate", "You need a cock to knock someone up.");
+			else if(sam.isPregnant()) addDisabledButton(1, "Impregnate", "Impregnate", "Sam is already pregnant.");
+			else addButton(1, "Impregnate", impregAPrisoner, "Sam", "Impregnate", "Let's talk about breeding this particular inmate...");
 			break;
 		case "Tamtam":
 			showTamtamPrison();
@@ -1175,6 +1178,9 @@ public function prisonerStatline(prisonerName:String):void
 			output("\n<b>Race:</b> Kaithrit");
 			output("\n\nConvicted of: Attempted Destruction of a Planet, Unlicensed Software Editing, 12 Counts of Piracy, 3 Counts of Grand Piracy, Piracy in the Third Degree, Attempted Rape, Rape, and Jaywalking.");
 			addButton(0,"Visit",visitAPrisoner,"Tamtam","Tam-Tam","Visit the spunky cat-girl mechanic you helped bust on Tarkus.\n\n<b>Cost:</b> 1,000 credits");
+			if(!pc.hasCock()) addDisabledButton(1, "Impregnate". "Impregnate", "You need a cock to knock someone up.");
+			else if(tamtam.isPregnant()) addDisabledButton(1, "Impregnate", "Impregnate", "Tam-Tam is already pregnant.");
+			else addButton(1, "Impregnate", impregAPrisoner, "Tamtam", "Impregnate", "Let's talk about breeding this particular inmate...");
 			break;
 		case "Kaska":
 			showKaska();
@@ -1193,6 +1199,9 @@ public function prisonerStatline(prisonerName:String):void
 			output("\n<b>Race:</b> Thraggen");
 			output("\n\nConvicted of: Attempted Destruction of a Planet, Murder, 8 Counts of Grand Piracy, Piracy in the First Degree, Rape, Unlicensed Use of Power Armor, and Grand Theft Spacecraft.");
 			addButton(0,"Visit",visitAPrisoner,"Khorgan","Captain Khorgan","Visit the bad-ass space-pirate you defeated on Tarkus.\n\n<b>Cost:</b> 1,000 credits");
+			if(!pc.hasCock()) addDisabledButton(1, "Impregnate". "Impregnate", "You need a cock to knock someone up.");
+			else if(khorgan.isPregnant()) addDisabledButton(1, "Impregnate", "Impregnate", "Khorgan is already pregnant.");
+			else addButton(1, "Impregnate", impregAPrisoner, "Khorgan", "Impregnate", "Let's talk about breeding this particular inmate...");
 			break;
 		case "Badger":
 			showDrBadger();
@@ -1268,7 +1277,7 @@ public function prisonerTimes(prisonerName:String):void
 }
 
 //Tam Tam
-public function tamtamStuffGo():void
+public function tamtamStuffGo(impregnate:Boolean = false):void
 {
 	clearOutput();
 	showTamtamPrison();
@@ -1350,14 +1359,18 @@ public function tamtamStuffGo():void
 	processTime(20);
 	pc.lust(100);
 	clearMenu();
-	addButton(0,"Next",tamtamPrisonFinisher,x);
+	addButton(0,"Next",tamtamPrisonFinisher,[x, impregnate]);
 }
 
-public function tamtamPrisonFinisher(x:int):void
+public function tamtamPrisonFinisher(args:Array):void
 {
 	clearOutput();
 	showTamtamPrison();
 	author("Savin");
+	
+	var x:int = args[0];
+	var impregnate:Boolean = args[1];
+	
 	output("You start to thrust, pumping your hips into Tam’s backside until her assflesh is quaking with the force of impacts, her lusty moans filling your ears with every movement as you spread her pussy wide on your [pc.cockOrStrapon " + x + "]. She’s leaking like a faucet around you, cunny-juices running faster every time your [pc.hips] slam into hers, spattering the both of you with her excitement. Tam’s twin pink tails slip around your waist, trying to pull you in every time you pull out, coaxing you back with purrs and moans and the jiggle of her luscious ass and bouncing tits. Oh, those look tempting.... Between thrusts, you shift your grip on your feline lover, reaching up and squeezing her sinfully soft tits; they’re like water in your hands, flowing right around your fingers as her body is pushed up with the force of another pumping of your crotch.");
 	output("\n\n<i>“Oh, yes!”</i> she yelps as your [pc.hips] slap into her ass again, <i>“Harder! Harder! Fuck me harder!”</i>");
 	output("\n\nWell, she did say she liked it rough!");
@@ -1376,12 +1389,13 @@ public function tamtamPrisonFinisher(x:int):void
 	IncrementFlag("TAMTAM_PRISONED");
 	processTime(25);
 	pc.orgasm();
+	if(impregnate) tryKnockUpTam();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
 //Captain Khorgan
-public function capnKhorganPrisonVisit():void
+public function capnKhorganPrisonVisit(impregnate:Boolean = false):void
 {
 	clearOutput();
 	showKhorganPrison();
@@ -1418,6 +1432,14 @@ public function capnKhorganPrisonVisit():void
 	pc.lust(100);
 
 	clearMenu();
+	
+	//Quick and Dirty way to do impregnation
+	if(impregnate)
+	{
+		addButton(0, "Next", khorganDickyWickyTrickyDo, true, "", "");
+		return;
+	}
+	
 	addButton(1,"Girly Fun",khorganLesboPrisonSex,undefined,"Girly Fun","Make sure every pussy on the deck gets licked, regardless of owner.");
 	if(pc.hasCock()) 
 	{
@@ -1428,7 +1450,7 @@ public function capnKhorganPrisonVisit():void
 }
 
 //Dick Fuck
-public function khorganDickyWickyTrickyDo():void
+public function khorganDickyWickyTrickyDo(impregnate:Boolean = false):void
 {
 	clearOutput();
 	showKhorganPrison();
@@ -1457,6 +1479,7 @@ public function khorganDickyWickyTrickyDo():void
 	IncrementFlag("KHORGAN_PRISONED");
 	processTime(20+rand(10));
 	chars["CAPTAINKHORGAN"].loadInCunt(pc,0);
+	if(impregnate) tryKnockUpKhorgan();
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
