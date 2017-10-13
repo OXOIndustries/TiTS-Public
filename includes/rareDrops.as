@@ -57,7 +57,10 @@ public function genericRareDrops(loot:Array):Array
 	//Bonus special TF items 15% of the time.
 	if(planet == "tarkus" && rand(100) <= 15)
 	{
-		if(pc.hasVagina()) tempLoot.push(new SlutShroom());
+		if(pc.hasVagina()) {
+			tempLoot.push(new SlutShroom());
+			if(pc.pregnancyIncubationBonusMotherRaw < 7) tempLoot.push(new Motherhusk());
+		}
 		else if(pc.hasCock()) tempLoot.push(new SpunkShroom());
 	}
 
