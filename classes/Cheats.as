@@ -339,12 +339,14 @@
 			
 			switch(unit)
 			{
-				case 0: kGAMECLASS.processTime(sTime); return;
-				case 1: kGAMECLASS.processTime(sTime*60); return;
-				case 2: kGAMECLASS.processTime(sTime*60*24); return;
-				case 3: kGAMECLASS.processTime(sTime*60*24*30); return;
-				case 4: kGAMECLASS.processTime(sTime*60*24*365); return;
+				case 0: kGAMECLASS.processTime(sTime); break;
+				case 1: kGAMECLASS.processTime(sTime*60); break;
+				case 2: kGAMECLASS.processTime(sTime*60*24); break;
+				case 3: kGAMECLASS.processTime(sTime*60*24*30); break;
+				case 4: kGAMECLASS.processTime(sTime*60*24*365); break;
 			}
+			
+			Cheats.TimeSkip();
 		}
 	}
 }
