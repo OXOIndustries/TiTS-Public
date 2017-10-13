@@ -1499,9 +1499,9 @@ public function zeiksCeliseSubmersionTechnique():void
 			//(non-taur)
 			else
 			{
-				output("Celise gasps and forces your arm forward, holding your free hand over the head of your penis while the other rubs out your orgasm. Warm, [pc.cumVisc] semen covers your palm, over and over, falling back to ooze down your spasming [pc.cockNoun] and into the gel below each time. She moans happily as your crotch turns into a ");
+				output(" Celise gasps and forces your arm forward, holding your free hand over the head of your penis while the other rubs out your orgasm. Warm, [pc.cumVisc] semen covers your palm, over and over, falling back to ooze down your spasming [pc.cockNoun] and into the gel below each time. She moans happily as your crotch turns into a ");
 				if(pc.cumColor() == "green") output("deep green");
-				else output("sickly, greenish-[pc.cumColor]] swamp.");
+				else output("sickly, greenish-[pc.cumColor] swamp.");
 			}
 		}
 	}
