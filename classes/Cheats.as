@@ -304,5 +304,47 @@
 				kGAMECLASS.output(msg);
 			}
 		}
+		
+		public static function TimeSkip():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			
+			Cheats.OutputStuff(true);
+			
+			kGAMECLASS.output("\nEnter an amount and select a unit of time to skip ahead.");
+			kGAMECLASS.displayInput();
+			kGAMECLASS.userInterface.textInput.text = "";
+			kGAMECLASS.clearMenu();
+			kGAMECLASS.addButton(0, "Minutes", Cheats.TryTimeSkip, 0);
+			kGAMECLASS.addButton(1, "Hours", Cheats.TryTimeSkip, 1);
+			kGAMECLASS.addButton(2, "Days", Cheats.TryTimeSkip, 2);
+			kGAMECLASS.addButton(3, "Months", Cheats.TryTimeSkip, 3);
+			kGAMECLASS.addButton(4, "Years", Cheats.TryTimeSkip, 4);
+			kGAMECLASS.addButton(14, "Back", Cheats.BackOutFromTeleport);
+		}
+		
+		public static function TryTimeSkip(unit:int):void
+		{
+			if (kGAMECLASS.userInterface.textInput.text == "" || int(kGAMECLASS.userInterface.textInput.text) <= 0)
+			{
+				Cheats.TimeSkip();
+				kGAMECLASS.output("\n\n\n\nYou gots to gimme an amount yo.");
+				return;
+			}
+			
+			var sTime:int = int(kGAMECLASS.userInterface.textInput.text);
+			
+			switch(unit)
+			{
+				case 0: kGAMECLASS.processTime(sTime); return;
+				case 1: kGAMECLASS.processTime(sTime*60); return;
+				case 2: kGAMECLASS.processTime(sTime*60*24); return;
+				case 3: kGAMECLASS.processTime(sTime*60*24*30); return;
+				case 4: kGAMECLASS.processTime(sTime*60*24*365); return;
+			}
+		}
 	}
 }
