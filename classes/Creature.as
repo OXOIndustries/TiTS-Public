@@ -19818,7 +19818,7 @@
 		}
 		public function sstdChecks(cumFrom:Creature = null, location:String = "ass"):void
 		{
-			if(this.isSSTDImmune() || cumFrom = null || cumFrom.isSSTDImmune()) return;
+			if(this.isSSTDImmune() || cumFrom == null || cumFrom.isSSTDImmune()) return;
 			
 			var catchSSTD:String = "";
 			if(!(cumFrom is PlayerCharacter) && cumFrom.hasSSTD())
