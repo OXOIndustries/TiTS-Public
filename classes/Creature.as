@@ -3633,13 +3633,13 @@
 				if(personality < 50) personality = 50;
 			}
 		}
-		public function isMasculine():Boolean
+		public function isMasculine(ignorePref:Boolean = false):Boolean
 		{
-			return (mf("m", "f") == "m");
+			return (mf("m", "f", ignorePref) == "m");
 		}
-		public function isFeminine():Boolean
+		public function isFeminine(ignorePref:Boolean = false):Boolean
 		{
-			return (mf("m", "f") == "f");
+			return (mf("m", "f", ignorePref) == "f");
 		}
 		public function isBimbo():Boolean
 		{
