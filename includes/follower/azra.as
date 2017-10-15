@@ -1418,7 +1418,7 @@ public function azraMorningFucko():void
 	{
 		output("\n\n<i>“Still sleeping after all that?”</i> Azra quips, wrapping a hand around [pc.oneCock]");
 		if(pc.totalCocks() > 1) output(" while teasing another with her pinky finger");
-		output(". <i>“I must be time for your wakeup call...”</i> Warm lips seal your [pc.cockHead " + x + "] in delicious suction, joined by the back-and-forth journey of a slippery tongue across your urethra.");
+		output(". <i>“It must be time for your wakeup call...”</i> Warm lips seal your [pc.cockHead " + x + "] in delicious suction, joined by the back-and-forth journey of a slippery tongue across your urethra.");
 		output("\n\nYour body responds for you, stiffening with pleasurable anticipation, your budding tumescence forcing inch after inch into Azra’s suckling maw. Her eyes flick up at you, a bemused twinkle in her eye. She slurps whorishly");
 		if(pc.cocks[x].cLength() < 8)
 		{

@@ -19814,16 +19814,18 @@
 		}
 		public function isSSTDImmune():Boolean
 		{
-			return hasPerk("STD Immune");
+			return (hasPerk("STD Immune") || hasStatusEffect("STD Immunity"));
 		}
 		public function sstdChecks(cumFrom:Creature = null, location:String = "ass"):void
 		{
+			if(this.isSSTDImmune() || cumFrom = null || cumFrom.isSSTDImmune()) return;
+			
 			var catchSSTD:String = "";
-			if(!(cumFrom is PlayerCharacter) && cumFrom.hasSSTD() && !this.isSSTDImmune())
+			if(!(cumFrom is PlayerCharacter) && cumFrom.hasSSTD())
 			{
 				sstdCatch(cumFrom, this, location);
 			}
-			if((cumFrom is PlayerCharacter) && this.hasSSTD() && !cumFrom.isSSTDImmune())
+			if((cumFrom is PlayerCharacter) && this.hasSSTD())
 			{
 				sstdCatch(this, cumFrom, location);
 			}
