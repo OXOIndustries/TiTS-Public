@@ -2585,7 +2585,7 @@ public function tellSiervaTheBadNews():void
 	clearOutput();
 	showName("\nSIERVA");
 	output("<i>“I’ve got some bad news for you, Sierva,”</i> you whisper, subtly pawning the ID tag back to her while Lieve isn’t looking. <i>“Iaya’s unit got wiped out. I’m sorry.”</i>");
-	output("\n\nSierva’s black eyes go wide, and her lips tremble as her fingers close around her myr dog tags. <i>“Oh,”</i> she manages to say, voice cracking. You give her shoulder a squeeze and tell her to stay strong.”</i>");
+	output("\n\nSierva’s black eyes go wide, and her lips tremble as her fingers close around her myr dog tags. <i>“Oh,”</i> she manages to say, voice cracking. You give her shoulder a squeeze and tell her to stay strong.");
 	output("\n\nYou excuse yourself, letting Sierva take the time she needs to process what you’ve told her.");
 	processTime(2);
 	

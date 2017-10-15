@@ -525,6 +525,15 @@
 					}
 				}
 				
+				//Lose Gills
+				if (pc.gills && changes < changeLimit && rand(2) == 0)
+				{
+					kGAMECLASS.output("\n\nYou feel a tingle above your [pc.chest]. The [pc.gills] below your neck begin to close and shrink until they completly fade away. You rub the area to make certain you weren’t just imagining things and sure enough, <b>you have lost your gills.</b>");
+					
+					pc.gills = false;
+					changes++;
+				}
+				
 				if(changes == 0)
 				{
 					kGAMECLASS.output("\n\nNothing changed. What a rip-off.");

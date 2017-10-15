@@ -443,7 +443,7 @@ public function anarrieAmbush():void
 	else output("The red myr is bright with anticipation, brimming with fervor and ready for a show. Her excitement turns to alarmed surprise when she sees her wife’s hungry grin.");
 	output(" Shiare grasps the smaller woman firmly around both her hips and midsection, lifting with a grunt of effort and tossing her onto the queen-sized bed.");
 
-	output("\n\n<i>“Quick, hold her legs!”</i> she shouts to you, quickly positioning herself atop the bewildered red myr’s stomach. You grasp Anarrie’s unmachined leg, not anticipation much resistance from the bulky prosthetic. The eager gold myr restrains her victim, two hands clasped around her wrists, and the second pair fondling her sensitive A-cups.");
+	output("\n\n<i>“Quick, hold her legs!”</i> she shouts to you, quickly positioning herself atop the bewildered red myr’s stomach. You grasp Anarrie’s unmachined leg, not anticipating much resistance from the bulky prosthetic. The eager gold myr restrains her victim, two hands clasped around her wrists, and the second pair fondling her sensitive A-cups.");
 
 	output("\n\n<i>“W-wait! Can’t we talk about this?”</i> Ana asks timidly, not so much struggling as squirming uncomfortably beneath your combined confinement.");
 
