@@ -314,9 +314,10 @@
 			
 			Cheats.OutputStuff(true);
 			
-			kGAMECLASS.output("\nEnter an amount and select a unit of time to skip ahead.");
+			kGAMECLASS.output("\nEnter an amount and select a unit of time to skip ahead. MAX: 50 Years");
 			kGAMECLASS.displayInput();
 			kGAMECLASS.userInterface.textInput.text = "";
+			kGAMECLASS.output("\n\n\n\n<b>It is possible when skipping extremely large amounts of time for certain events to not process correctly. USE AT YOUR OWN RISK.</b>");
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0, "Minutes", Cheats.TryTimeSkip, 0);
 			kGAMECLASS.addButton(1, "Hours", Cheats.TryTimeSkip, 1);
@@ -339,12 +340,22 @@
 			
 			switch(unit)
 			{
-				case 0: kGAMECLASS.processTime(sTime); break;
-				case 1: kGAMECLASS.processTime(sTime*60); break;
-				case 2: kGAMECLASS.processTime(sTime*60*24); break;
-				case 3: kGAMECLASS.processTime(sTime*60*24*30); break;
-				case 4: kGAMECLASS.processTime(sTime*60*24*365); break;
+				case 1: sTime *= 60; break;
+				case 2: sTime *= 60*24; break;
+				case 3: sTime *= 60*24*30; break;
+				case 4: sTime *= 60*24*365; break;
 			}
+			
+			if(sTime > 60*24*365*50)
+			{
+				Cheats.TimeSkip();
+				kGAMECLASS.output("\n\n\n\nBAD! You can't skip more than 50 years at a time.");
+				return;
+			}
+			//Breaking it up into 5 processTime calls should make stuff proc more consistently
+			else if(sTime >= 60*24)
+				for(var i:int = 0; i < 5; i++)
+					kGAMECLASS.processTime(sTime/5);
 			
 			Cheats.TimeSkip();
 		}
