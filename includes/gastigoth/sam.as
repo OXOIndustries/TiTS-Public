@@ -36,9 +36,9 @@ public function samsPrisonRoom(impregnate:Boolean = false):void
 	else output("familiar sight of Sam the ausar.");
 	output(" The curves of her petite frame are almost totally obscured by her orange suit, but her top has been unzipped enough for you to enjoy the cleavage of her extremely modest A-cup breasts, which are slightly emphasized by gravity. ");
 	//Lightly pregnant:
-	if(flags["SAM_PREGNANCY_TIMER"] <= 60) output("You can see a sutble swell to her belly. It looks like the email you received was true.");
-	else if(flags["SAM_PREGNANCY_TIMER"] <= 180) output("She’s <i>unmistakably</i> pregnant: her formerly washboard abdomen is straining against her suit’s top and her tiny tits are beginning to swell.");
-	else if(flags["SAM_PREGNANCY_TIMER"] != undefined) output("Her pregnant belly is absolutely massive, making it painfully obvious that she’s carrying more than one child. The staff have given her an anti-gravity harness for her swollen middle, and a few pillows to support her growing breasts for extra comfort.");
+	if(flags["SAM_GAST_PREG_TIMER"] <= 45) output("You can see a subtle swell to her belly. It looks like the email you received was true.");
+	else if(flags["SAM_GAST_PREG_TIMER"] <= 135) output("She’s <i>unmistakably</i> pregnant: her formerly washboard abdomen is straining against her suit’s top and her tiny tits are beginning to swell.");
+	else if(flags["SAM_GAST_PREG_TIMER"] != undefined) output("Her pregnant belly is absolutely massive, making it painfully obvious that she’s carrying more than one child. The staff have given her an anti-gravity harness for her swollen middle, and a few pillows to support her growing breasts for extra comfort.");
 
 	output("\n\nThe earthy, feminine smell of her arousal is overwhelming. Even while still constrained in her prison uniform, her desperately horny pussy has managed to fill the room with a dense cloud of fuck-me pheromones that instantly ");
 	if(pc.hasCock()) output("hardens your [pc.cocks]");
@@ -277,19 +277,56 @@ public function samPrisonStuff(args:Array):void
 	addButton(0,"Next",mainGameMenu);
 }
 
-public function tryKnockUpSam():Boolean
+//return 0-6 for number of babies she's impregnated with
+public function tryKnockUpSam():int
 {
 	if(!sam.isPregnant())
 	{
-		if(gastigothKnockupChance(sam))
+		var score:Number = gastigothKnockupChance(sam);
+		
+		//roll for pregnancy
+		if(rand(10000) <= score)
 		{
-			flags["SAM_PREGNANCY_TIMER"] = 0;
+			flags["SAM_GAST_PREG_TIMER"] = 0;
 			flags["SAM_PREG_PAID"] = undefined;
 			pc.clearRut();
-			return true;
+			processTime(1);
+			
+			var x:Number = ((pc.virility() + sam.fertility())/2 + 0.25)/2;
+			
+			//6 Babies!
+			if(rand(10000) <= ((Math.atan(x - 5) + Math.PI/2)/Math.PI)*10000)
+			{
+				return flags["SAM_NUM_BABIES"] = 6;
+			}
+			//5 Babies!
+			else if(rand(10000) <= ((Math.atan(x - 4) + Math.PI/2)/Math.PI)*10000)
+			{
+				return flags["SAM_NUM_BABIES"] = 5;
+			}
+			//4 Babies!
+			else if(rand(10000) <= ((Math.atan(x - 3) + Math.PI/2)/Math.PI)*10000)
+			{
+				return flags["SAM_NUM_BABIES"] = 4;
+			}
+			//3 Babies!
+			else if(rand(10000) <= ((Math.atan(x - 2) + Math.PI/2)/Math.PI)*10000)
+			{
+				return flags["SAM_NUM_BABIES"] = 3;
+			}
+			//2 Babies!
+			else if(rand(10000) <= ((Math.atan(x - 1) + Math.PI/2)/Math.PI)*10000)
+			{
+				return flags["SAM_NUM_BABIES"] = 2;
+			}
+			//1 Baby!
+			else
+			{
+				return flags["SAM_NUM_BABIES"] = 1;
+			}
 		}
 	}
-	return false;
+	return 0;
 }
 
 public function samHaveBabies():void

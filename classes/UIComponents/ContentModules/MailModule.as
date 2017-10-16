@@ -109,6 +109,34 @@ package classes.UIComponents.ContentModules
 			
 			clearGhostMenu();
 			if(kGAMECLASS.SpamEmailKeys.indexOf(key) != -1) addGhostButton(0, "Delete", deleteFor, key);
+			
+			//IDK Savin wants a menu inside the email system for this stuff
+			if(key == "sam_preg2" && kGAMECLASS.flags["SAM_PREG_EMAIL_CUSTOM"] == undefined)
+			{
+				kGAMECLASS.flags["SAM_PREG_EMAIL_CUSTOM"] = 1;
+				addGhostButton(0, "Natural", gastigothPregEmail2Natural, "Sam", "Natural", "Keep your child" + (kGAMECLASS.flags["SAM_NUM_BABIES"] > 1 ? "ren" : "") + " natural.");
+				addGhostButton(1, "Safe Edits", gastigothPregEmail2Safe, "Sam", "Safe Edits", "Make the minimum edits necessary to help the criminal-born child" + (kGAMECLASS.flags["SAM_NUM_BABIES"] > 1 ? "ren be productive members" : " be a productive member") + " of society.");
+				addGhostButton(2, "Custom Job", gastigothPregEmail2Custom, "Sam", "Custom Job", "Go all in with the editing, making " + (kGAMECLASS.flags["SAM_NUM_BABIES"] > 1 ? "perfect children" : "a perect child") + ".");
+				return;
+			} 
+			else if(key == "khorgan_preg2" && kGAMECLASS.flags["KHORGAN_PREG_EMAIL_CUSTOM"] == undefined)
+			{
+				kGAMECLASS.flags["KHORGAN_PREG_EMAIL_CUSTOM"] = 1;
+				addGhostButton(0, "Natural", gastigothPregEmail2Natural, "Khorgan", "Natural", "Keep your child" + (kGAMECLASS.flags["KHORGAN_NUM_BABIES"] > 1 ? "ren" : "") + " natural.");
+				addGhostButton(1, "Safe Edits", gastigothPregEmail2Safe, "Khorgan", "Safe Edits", "Make the minimum edits necessary to help the criminal-born child" + (kGAMECLASS.flags["KHORGAN_NUM_BABIES"] > 1 ? "ren be productive members" : " be a productive member") + " of society.");
+				addGhostButton(2, "Custom Job", gastigothPregEmail2Custom, "Khorgan", "Custom Job", "Go all in with the editing, making " + (kGAMECLASS.flags["KHORGAN_NUM_BABIES"] > 1 ? "perfect children" : "a perect child") + ".");
+				return;
+			} 
+			else if(key == "tamtam_preg2" && kGAMECLASS.flags["TAMTAM_PREG_EMAIL_CUSTOM"] == undefined)
+			{
+				kGAMECLASS.flags["TAMTAM_PREG_EMAIL_CUSTOM"] = 1;
+				addGhostButton(0, "Natural", gastigothPregEmail2Natural, "Tam-Tam", "Natural", "Keep your child" + (kGAMECLASS.flags["TAMTAM_NUM_BABIES"] > 1 ? "ren" : "") + " natural.");
+				addGhostButton(1, "Safe Edits", gastigothPregEmail2Safe, "Tam-Tam", "Safe Edits", "Make the minimum edits necessary to help the criminal-born child" + (kGAMECLASS.flags["TAMTAM_NUM_BABIES"] > 1 ? "ren be productive members" : " be a productive member") + " of society.");
+				addGhostButton(2, "Custom Job", gastigothPregEmail2Custom, "Tam-Tam", "Custom Job", "Go all in with the editing, making " + (kGAMECLASS.flags["TAMTAM_NUM_BABIES"] > 1 ? "perfect children" : "a perect child") + ".");
+				return;
+			}
+			
+			
 			addGhostButton(4, "Back", kGAMECLASS.showMails);
 		}
 		
@@ -128,5 +156,48 @@ package classes.UIComponents.ContentModules
 			clearGhostMenu();
 			addGhostButton(0, "Next", kGAMECLASS.showMails);
 		}
+		
+		public function gastigothPregEmail2Natural(prisonerName:String):void
+		{
+			_mailText.htmlText += "\n\n";
+			_mailText.htmlText += "\n\n";
+			_mailText.htmlText += "\n\n";
+			_mailText.htmlText += "\n\n";
+			_mailText.htmlText += "\n\n";
+			_mailText.htmlText += "\n\n";
+			_mailText.htmlText += "\n\n";
+			_mailText.htmlText += "\n\n";
+			
+			kGAMECLASS.updateMailStatus();
+			clearGhostMenu();
+			addGhostButton(0, "Next", kGAMECLASS.showMails);
+		}
+
+		public function gastigothPregEmail2Safe(prisonerName:String):void
+		{
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		}
+
+		public function gastigothPregEmail2Custom(prisonerName:String):void
+		{
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		}
+		
 	}
 }

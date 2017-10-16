@@ -280,7 +280,7 @@
 		
 		override public function isPregnant(vIdx:int = 0):Boolean
 		{
-			return (kGAMECLASS.flags["KHORGAN_PREGNANCY_TIMER"] != undefined);
+			return (kGAMECLASS.flags["KHORGAN_GAST_PREG_TIMER"] != undefined);
 		}
 	}
 }

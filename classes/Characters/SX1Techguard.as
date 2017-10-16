@@ -308,7 +308,7 @@ package classes.Characters
 		
 		override public function isPregnant(vIdx:int = 0):Boolean
 		{
-			return (kGAMECLASS.flags["SAM_PREGNANCY_TIMER"] != undefined);
+			return (kGAMECLASS.flags["SAM_GAST_PREG_TIMER"] != undefined);
 		}
 	}
 }

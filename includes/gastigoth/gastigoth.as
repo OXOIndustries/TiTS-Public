@@ -1285,10 +1285,10 @@ public function tamtamStuffGo(impregnate:Boolean = false):void
 	author("Savin");
 	output("Strapped face-down and ass-up to the examination table is the familiar feline form of Tam-Tam. Her two pink tails are curled defensively around her legs, but she’s breathing huskily, and you can see that the crotch of her prison jumpsuit is practically soaked-through with arousal. Those huge, plump tits of hers are spread out on the cold metal of the table, practically spilling out of her zipped-down suit.");
 	//Lightly Pregnant: 
-	if(flags["TAMTAM_PREGNANCY_TIMER"] <= 60) output(" You can see the slightest bit of weight hanging down from her belly, stretching her jumpsuit taut and confirming your virility.");
+	if(flags["TAMTAM_GAST_PREG_TIMER"] <= 60) output(" You can see the slightest bit of weight hanging down from her belly, stretching her jumpsuit taut and confirming your virility.");
 	//else mid pregnancy:
-	else if(flags["TAMTAM_PREGNANCY_TIMER"] <= 180) output(" She’s <i>definitely</i> pregnant; there’s no mistaking that hefty bulge in her stomach, making her bent-over position awkward and clearly uncomfortable.");
-	else if(flags["TAMTAM_PREGNANCY_TIMER"] != undefined) output(" The staff has put an antigrav harness and several cushions around the cat-girl’s midriff, helping to support the gravid belly bump she’s sporting.");
+	else if(flags["TAMTAM_GAST_PREG_TIMER"] <= 180) output(" She’s <i>definitely</i> pregnant; there’s no mistaking that hefty bulge in her stomach, making her bent-over position awkward and clearly uncomfortable.");
+	else if(flags["TAMTAM_GAST_PREG_TIMER"] != undefined) output(" The staff has put an antigrav harness and several cushions around the cat-girl’s midriff, helping to support the gravid belly bump she’s sporting.");
 	output("\n\nHearing the airlock hiss open, she squirms around until she’s able to look at the door from between her spread legs.");
 
 	//First Time & Took Tamwolf:
@@ -1403,10 +1403,10 @@ public function capnKhorganPrisonVisit(impregnate:Boolean = false):void
 	author("Savin");
 	output("Inside the holding cell sits a tall, dark-green amazon of a woman: her body is chiseled muscles and jagged scars, giving way to large, firm breasts that heave with heavy breaths underneath the too-tight prison jumpsuit she’s wearing, zipped down to the navel to show off all that sculpted green muscle. ");
 	//lightly pregnant:
-	if(flags["KHORGAN_PREGNANCY_TIMER"] <= 40) output("And, you notice, a very slight belly the captain’s started to sport. She’s resting a hand on it, running a thumb up and down the taut emerald skin of her stomach.");
-	else if(flags["KHORGAN_PREGNANCY_TIMER"] <= 115) output("There’s no mistaking the swell of her stomach, poking through the mammoth cleavage of her jumpsuit. She’s pregnant: no doubt about it, and looking radiant in her matronhood. The thraggen rests a hand proudly on her belly, grinning at you beneath her bestial tusks.");
+	if(flags["KHORGAN_GAST_PREG_TIMER"] <= 40) output("And, you notice, a very slight belly the captain’s started to sport. She’s resting a hand on it, running a thumb up and down the taut emerald skin of her stomach.");
+	else if(flags["KHORGAN_GAST_PREG_TIMER"] <= 115) output("There’s no mistaking the swell of her stomach, poking through the mammoth cleavage of her jumpsuit. She’s pregnant: no doubt about it, and looking radiant in her matronhood. The thraggen rests a hand proudly on her belly, grinning at you beneath her bestial tusks.");
 	//else gravid: 
-	else if(flags["TAMTAM_PREGNANCY_TIMER"] != undefined) output("Khorgan’s gravidly pregnant; there’s no other way to describe it. Her belly bump is a massive ball of life protruding from her once-flat stomach, taut emerald skin stretched around your bastard offspring. The thraggen pirate smiles radiantly around her bestial tusks, proudly running her hand along the swell of her belly.");
+	else if(flags["TAMTAM_GAST_PREG_TIMER"] != undefined) output("Khorgan’s gravidly pregnant; there’s no other way to describe it. Her belly bump is a massive ball of life protruding from her once-flat stomach, taut emerald skin stretched around your bastard offspring. The thraggen pirate smiles radiantly around her bestial tusks, proudly running her hand along the swell of her belly.");
 	output(" Sometime between you selecting her and her arrival in the holding cell, Khorgan’s broken free of the grav-chains that are supposed to be holding her; she’s sitting on the edge of the table, one leg crossed over the other, her red hair spilling down around her shoulders like a lion’s mane.");
 
 	output("\n\n<i>“Captain Steele,”</i> Khorgan says, somewhere between a sultry purr and the growl of a barbaric rival. ");
