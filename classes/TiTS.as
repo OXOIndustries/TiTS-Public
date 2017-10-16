@@ -362,6 +362,7 @@
 		include "../includes/gastigoth/gastigoth.as";
 		include "../includes/gastigoth/rooms.as";
 		include "../includes/gastigoth/sam.as";
+		include "../includes/gastigoth/pregStuff.as";
 		
 		// Karaquest 2- Karaharder.
 		include "../includes/events/karaquest2/content.as";

@@ -2483,6 +2483,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processZheniyaEvents(deltaT, doOut, totalDays);
 	processHLPantyShit();
 	processHardlightAGThongBlurbs(deltaT, doOut);
+	processGastigothPregEvents(deltaT, doOut, totalDays);
 	
 	// Per-day events
 	if (totalDays >= 1)

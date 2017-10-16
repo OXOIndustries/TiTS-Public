@@ -158,7 +158,7 @@ package classes.Characters
 			//Goo is hyper friendly!
 			this.elasticity = 1;
 			//Fertility is a % out of 100. 
-			this.fertilityRaw = 1.05;
+			this.fertilityRaw = 10;
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 			
@@ -304,6 +304,11 @@ package classes.Characters
 		override public function getCombatDescriptionExtension():void
 		{
 			output("\n\nA small ball-shaped hover drone floats around her, spraying laser fire everywhere."); 
+		}
+		
+		override public function isPregnant(vIdx:int = 0):Boolean
+		{
+			return (kGAMECLASS.flags["SAM_PREGNANCY_TIMER"] != undefined);
 		}
 	}
 }
