@@ -31,7 +31,7 @@
 			this.description = "a Ashei venom pistol";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "The Ashei venom pistol is a living weapon strain designed to replicate a poison-spewing sidearm. It offers a respectable amount of firepower in an unconventional damage type for those who like to fight unconventionally. Of course it does extra small quantities of the user's blood for fuel, but power comes at a cost, does it not?";
+			this.tooltip = "The Ashei venom pistol is a living weapon strain designed to replicate a poison-spewing sidearm. It offers a respectable amount of firepower in an unconventional damage type for those who like to fight unconventionally. Of course it does extra small quantities of the user’s blood for fuel, but power comes at a cost, does it not?";
 			this.attackVerb = "shoot";
 			attackNoun = "poison spike";
 			

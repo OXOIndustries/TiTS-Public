@@ -31,7 +31,7 @@
 			this.description = "a myr venom thrower";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A modified flamethrower converted to expell a gaseous form of the red Myr's venom. It appears to be based upon a repurposed gold myr design.";
+			this.tooltip = "A modified flamethrower converted to expell a gaseous form of the red Myr’s venom. It appears to be based upon a repurposed gold myr design.";
 			this.attackVerb = "gas";
 			attackNoun = "red venom gas";
 			

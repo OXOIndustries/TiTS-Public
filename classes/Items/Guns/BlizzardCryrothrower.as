@@ -31,7 +31,7 @@
 			this.description = "a Blizzard cryrothrower";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "The “Blizzard” is a retrofitted device originally designed to cool down starship reactors and modified to be used as a weapon. It's a devastating piece of technology; the mere thought of using this on a living being just gives you the chills.";
+			this.tooltip = "The “Blizzard” is a retrofitted device originally designed to cool down starship reactors and modified to be used as a weapon. It’s a devastating piece of technology; the mere thought of using this on a living being just gives you the chills.";
 			this.attackVerb = "spray";
 			attackNoun = "blast";
 			

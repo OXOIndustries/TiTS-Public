@@ -31,9 +31,9 @@
 			this.description = "a flamethrower";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Most of the galaxy has moved on from the primitive flamethrower to favor of less volatile weapons. Nevertheless, more barbaric worlds still employ these weapons of fire-belching death as an essential part of warfare. This particular specimen has any manufacturer's insignia skillfully lasered off. There's probably a crooked quartermaster pocketing a pile of credits somewhere.";
-			this.attackVerb = "shoot";
-			attackNoun = "cryro-capsule";
+			this.tooltip = "Most of the galaxy has moved on from the primitive flamethrower to favor of less volatile weapons. Nevertheless, more barbaric worlds still employ these weapons of fire-belching death as an essential part of warfare. This particular specimen has any manufacturer’s insignia skillfully lasered off. There’s probably a crooked quartermaster pocketing a pile of credits somewhere.";
+			this.attackVerb = "spray";
+			attackNoun = "stream of flames";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

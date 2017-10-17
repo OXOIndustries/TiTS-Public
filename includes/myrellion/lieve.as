@@ -133,11 +133,11 @@ public function lieveInitialEncounter():void
 	}
 	
 	output("\n\nWith her warning delivered, the soldier seems");
-	if (pc.mf("m", "f") == "m") output(" ready to dismiss you");
+	if (pc.isMasculine(true)) output(" ready to dismiss you");
 	else output(" to run out of things to say");
 	output(" until the other gold myr girl with her, a raven-haired warrioress in her own right, slips up behind the red-plated soldier, pressing herself into her companion’s back and murmuring, <i>“Aren’t you going to introduce yourself?”</i>");
 	
-	if (pc.mf("m", "f") == "m")
+	if (pc.isMasculine(true))
 	{
 		output("\n\n<i>“Oh, right,”</i> the red soldier laughs. <i>“I’m Scout Thyrsa. You can call me Lieve if you’d like - most of you offworlders go by given names, right? That’s what the pamphlet said, anyway. I’m in charge of Kressia’s scout company, plus forward observation and reconnaissance. If you need any information about the region, feel free to come by and ask. Not much to do with the cease-fire on, so I’m pretty much sat here all day.”</i>");
 	}
@@ -162,7 +162,7 @@ public function lieveInitialEncounter():void
 	output("\n\nLieve chuckles and says, <i>“Don’t mind them, they just got themselves a nice helping of my venom. Makes them nice and affectionate, doesn’t it girls?”</i> The two gold myr coo and moan, nuzzling against Lieve.");
 	
 	output("\n\nTheir mistress grins and turns her attention back to you. <i>“So, since you’re here, anything I can help you with?");
-	if (pc.mf("m", "f") == "f" && pc.lust() >= 33) output(" Or maybe you’re getting some other ideas...?");
+	if (!pc.isMasculine(true) && pc.lust() >= 33) output(" Or maybe you’re getting some other ideas...?");
 	output("”</i>");
 
 	processTime(30);
@@ -173,19 +173,19 @@ public function lieveRepeatEncounter():void
 {
 	clearOutput();
 	lieveHeader();
-	if (!hasFuckedLieve() && pc.mf("m", "f") == "m")
+	if (!hasFuckedLieve() && pc.isMasculine(true))
 	{
 		output("<i>“Hey again, Steele,”</i> Lieve says, giving you a friendly smile. Her harem girls look up excitedly when you enter, and they quickly go from lounging on the carpet and chairs to curling up around their mistress, getting very friendly with Lieve’s thighs.");
 	
 		output("\n\nShe smiles and runs a hand through her blonde slave’s hair. <i>“Anything I can help you with, Steele? Or did you just come for the eye candy here?”</i>");
 	}
-	else if (hasFuckedLieve() && pc.mf("m", "f") == "m")
+	else if (hasFuckedLieve() && pc.isMasculine(true))
 	{
 		output("<i>“Hey again, Steele,”</i> Lieve says, turning to you and resting her shoulder against the side of the bunker. She gives you a friendly smile, and her harem girls make a show of crawling towards you, both with lust-filled and inviting looks writ plain across their faces.");
 	
 		output("\n\nTheir mistress chuckles, shaking her head at their wanton display. <i>“So, since you’re here, anything I can help you with? If not, it looks like my girls here would certainly like to make the trip worthwhile for you...”</i>");
 	}
-	else if (!hasFuckedLieve() && pc.mf("m", "f") == "f")
+	else if (!hasFuckedLieve() && !pc.isMasculine(true))
 	{
 		output("<i>“Hey, [pc.name],”</i> Lieve says, perking up as you approach. She gives you a big, friendly smile and motions you closer. Her harem girls look up and smile at you; there’s little subtlety in the way they shift to make themselves look more appealing and inviting for you, sitting with chests out and legs spread.");
 		
@@ -225,7 +225,7 @@ public function lieveMenu():void
 
 	if (!lieveVenomUsed())
 	{
-		if (pc.mf("m", "f") == "f") addButton(3, "TryVenom", lieveVenomToggle, undefined, "Try Venom", (flags["HAS_BEEN_MYR_VENOMED"] == undefined ? "You’ve heard amazing things about red myr venom. How about Lieve give you a taste of hers?" : "You’ve only dabbled with red myr venom. How about Lieve give you a taste of hers?"));
+		if (!pc.isMasculine(true)) addButton(3, "TryVenom", lieveVenomToggle, undefined, "Try Venom", (flags["HAS_BEEN_MYR_VENOMED"] == undefined ? "You’ve heard amazing things about red myr venom. How about Lieve give you a taste of hers?" : "You’ve only dabbled with red myr venom. How about Lieve give you a taste of hers?"));
 		else addDisabledButton(3, "TryVenom", "Try Venom", "Lieve is only really interested in feminine partners...");
 	}
 	else
@@ -475,7 +475,7 @@ public function lieveTalkNoMansLand():void
 	output("\n\n<i>“Ever since the cease-fire, we’ve gotten plenty of deep dwelling creatures coming back to the surface caves. Most are interested in looting the equipment and supplies left in No Myr’s, others in capturing our patrols or offworlder explorers for... breeding.”</i> Her brow twitches ever so slightly. <i>“The most common threat you’ll face out there are the nyrea. Like us red myr, they’re a warrior race, and damn good at it.”</i>");
 	
 	output("\n\nShe gives a wry chuckle at that. <i>“We’ve been fighting the nyrea for years up north. They’re more common there, more organized. Here in the heartlands, though, you’ll mostly be fighting lone huntresses");
-	if (pc.mf("m", "f") == "m") output(" keen on stealing your sperm");
+	if (pc.isMasculine(true)) output(" keen on stealing your sperm");
 	else output(" that want to borrow your ass or womb to lay their eggs in");
 	output(".”</i>");
 	
@@ -2585,7 +2585,7 @@ public function tellSiervaTheBadNews():void
 	clearOutput();
 	showName("\nSIERVA");
 	output("<i>“I’ve got some bad news for you, Sierva,”</i> you whisper, subtly pawning the ID tag back to her while Lieve isn’t looking. <i>“Iaya’s unit got wiped out. I’m sorry.”</i>");
-	output("\n\nSierva’s black eyes go wide, and her lips tremble as her fingers close around her myr dog tags. <i>“Oh,”</i> she manages to say, voice cracking. You give her shoulder a squeeze and tell her to stay strong.”</i>");
+	output("\n\nSierva’s black eyes go wide, and her lips tremble as her fingers close around her myr dog tags. <i>“Oh,”</i> she manages to say, voice cracking. You give her shoulder a squeeze and tell her to stay strong.");
 	output("\n\nYou excuse yourself, letting Sierva take the time she needs to process what you’ve told her.");
 	processTime(2);
 	

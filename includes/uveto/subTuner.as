@@ -2975,7 +2975,9 @@ public function peerReviewParty3():void
 		output("and something about her being on top feels so good");
 		output(". Each time her hips connect against yours drives a whimper or a groan from your lungs. All this pressure on your pucker and all that feral grunting coming from the demoness are pulling you closer to climax, and you don’t think Sera’s feeling too different either.");
 	}
-	output("\n\nIt quickly gets to the point where you can no longer hold back the wave of endorphins battering your mind’s shore, and you do the only thing you can do: <i>cum</i>. You moan onto Belle’s twin dongs as your [pc.asshole] spasms around Sera’s shaft. Orgasmic bliss makes your quake in your place, ");
+	output("\n\nIt quickly gets to the point where you can no longer hold back the wave of endorphins battering your mind’s shore, and you do the only thing you can do: <i>cum</i>. You moan onto Belle’s twin dongs");
+	if(seraIsCrew()) output(" as your [pc.asshole] spasms around Sera’s shaft");
+	output(". Orgasmic bliss makes you quake in your place, ");
 	if(pc.hasCock()) output("your [pc.cocks] emptying onto the ground below you, coating the floor with slick [pc.cumNoun]");
 	else output("your [pc.vaginas] clamp down around a shaft that isn’t there, spraying the floor down with [pc.girlcum].");
 	

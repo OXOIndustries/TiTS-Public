@@ -3633,13 +3633,13 @@
 				if(personality < 50) personality = 50;
 			}
 		}
-		public function isMasculine():Boolean
+		public function isMasculine(ignorePref:Boolean = false):Boolean
 		{
-			return (mf("m", "f") == "m");
+			return (mf("m", "f", ignorePref) == "m");
 		}
-		public function isFeminine():Boolean
+		public function isFeminine(ignorePref:Boolean = false):Boolean
 		{
-			return (mf("m", "f") == "f");
+			return (mf("m", "f", ignorePref) == "f");
 		}
 		public function isBimbo():Boolean
 		{
@@ -10920,6 +10920,7 @@
 				else race = "huskar";
 			}
 			if (demonScore() >= 5) race = "demon-morph";
+			if (dragonScore() >= 5) race = "dragon-morph";
 			if (gabilaniScore() >= 5) race = "gabilani";
 			if (frogScore() >= 5) race = "kerokoras";
 			if (kaithritScore() >= 6) race = "kaithrit";
@@ -19813,16 +19814,18 @@
 		}
 		public function isSSTDImmune():Boolean
 		{
-			return hasPerk("STD Immune");
+			return (hasPerk("STD Immune") || hasStatusEffect("STD Immunity"));
 		}
 		public function sstdChecks(cumFrom:Creature = null, location:String = "ass"):void
 		{
+			if(this.isSSTDImmune() || cumFrom == null || cumFrom.isSSTDImmune()) return;
+			
 			var catchSSTD:String = "";
-			if(!(cumFrom is PlayerCharacter) && cumFrom.hasSSTD() && !this.isSSTDImmune())
+			if(!(cumFrom is PlayerCharacter) && cumFrom.hasSSTD())
 			{
 				sstdCatch(cumFrom, this, location);
 			}
-			if((cumFrom is PlayerCharacter) && this.hasSSTD() && !cumFrom.isSSTDImmune())
+			if((cumFrom is PlayerCharacter) && this.hasSSTD())
 			{
 				sstdCatch(this, cumFrom, location);
 			}

@@ -1567,13 +1567,13 @@ public function normalZilgirlCockfuck():void
 		output("\n\nJust as you think you’ve reached your peak, ");
 		if (pc.isSquirter())
 		{
-			output("[pc.EachVagina] clenches, and you let out a spray of [pc.girlCum] that thouroughly soaks your [pc.thighs]")
-			if(pc.balls > 0) output(" and [pc.balls]")
+			output("[pc.EachVagina] clenches, and you let out a spray of [pc.girlCum] that thouroughly soaks your [pc.thighs]");
+			if(pc.balls > 0) output(" and [pc.balls]");
 		}
 		else
 		{
 			output("[pc.girlCum] begins to leak from [pc.eachVagina]. The feminine lust runs along your [pc.thighs]");
-			if(pc.balls > 0) output("and drips down your [pc.balls]")
+			if(pc.balls > 0) output(" and drips down your [pc.balls]");
 		}
 		output(", eliciting a gasp and a shiver as your feminine half spasms and twitches.");
 		output(" You grind your [pc.hips] against your partner, eyes clamped shut from the sheer strength of your twin orgasms.");
