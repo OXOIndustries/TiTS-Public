@@ -12,7 +12,7 @@ public function showSam(nude:Boolean = false):void
 	var nudeS:String = "";
 	if(nude) nudeS = "_NUDE";
 	//Pregnant
-	if(sam.isPregnant()) showBust("TECHGUARD_JAIL_PREG");
+	if(flags["SAM_GAST_PREG_TIMER"] >= 80) showBust("TECHGUARD_JAIL_PREG");
 	else showBust("TECHGUARD_JAIL" + nudeS);
 }
 public function samCapacity():Number
@@ -297,39 +297,85 @@ public function tryKnockUpSam():int
 			//6 Babies!
 			if(rand(10000) <= ((Math.atan(x - 5) + Math.PI/2)/Math.PI)*10000)
 			{
-				return flags["SAM_NUM_BABIES"] = 6;
+				flags["SAM_NUM_BABIES"] = 6;
 			}
 			//5 Babies!
 			else if(rand(10000) <= ((Math.atan(x - 4) + Math.PI/2)/Math.PI)*10000)
 			{
-				return flags["SAM_NUM_BABIES"] = 5;
+				flags["SAM_NUM_BABIES"] = 5;
 			}
 			//4 Babies!
 			else if(rand(10000) <= ((Math.atan(x - 3) + Math.PI/2)/Math.PI)*10000)
 			{
-				return flags["SAM_NUM_BABIES"] = 4;
+				flags["SAM_NUM_BABIES"] = 4;
 			}
 			//3 Babies!
 			else if(rand(10000) <= ((Math.atan(x - 2) + Math.PI/2)/Math.PI)*10000)
 			{
-				return flags["SAM_NUM_BABIES"] = 3;
+				flags["SAM_NUM_BABIES"] = 3;
 			}
 			//2 Babies!
 			else if(rand(10000) <= ((Math.atan(x - 1) + Math.PI/2)/Math.PI)*10000)
 			{
-				return flags["SAM_NUM_BABIES"] = 2;
+				flags["SAM_NUM_BABIES"] = 2;
 			}
 			//1 Baby!
 			else
 			{
-				return flags["SAM_NUM_BABIES"] = 1;
+				flags["SAM_NUM_BABIES"] = 1;
 			}
+			
+			//Lets roll for genders 50/50
+			flags["SAM_BABY_GENDERS"] = new Array();
+			for(var i:int = 0; i < flags["SAM_NUM_BABIES"]; i++)
+			{
+				if(rand(2) == 0) flags["SAM_BABY_GENDERS"].push("M");
+				else flags["SAM_BABY_GENDERS"].push("F");
+			}
+			
+			return flags["SAM_NUM_BABIES"];
 		}
 	}
 	return 0;
 }
 
-public function samHaveBabies():void
+public function samGastBirth():void
 {
+	var traitChar:Creature = chars["PC_BABY"];
 	
+	for(var i:int = 0; i < flags["SAM_NUM_BABIES"]; i++)
+	{
+		var c:UniqueChild = new SamUniqueChild();
+		
+		c.RaceType = GLOBAL.TYPE_HUMAN;
+		// 50% Male or Female
+		if(flags["SAM_BABY_GENDERS"][i] == "M") { c.NumMale = 1; c.NumFemale = 0; c.NumIntersex = 0; c.NumNeuter = 0; }
+		else { c.NumMale = 0; c.NumFemale = 1; c.NumIntersex = 0; c.NumNeuter = 0; }
+		
+		// Race modifier (if different races)
+		c.originalRace = c.hybridizeRace(c.originalRace, pc.originalRace, true);
+		
+		// Adopt father's colors at random (if applicable):
+		if(rand(2) == 0) c.skinTone = traitChar.skinTone;
+		if(rand(2) == 0) c.lipColor = traitChar.lipColor;
+		if(rand(2) == 0) c.nippleColor = traitChar.nippleColor;
+		if(rand(2) == 0) c.eyeColor = traitChar.eyeColor;
+		if(traitChar.hairColor != "NOT SET" && rand(2) == 0) c.hairColor = traitChar.hairColor;
+		if(traitChar.furColor != "NOT SET" && rand(2) == 0) c.furColor = traitChar.furColor;
+		
+		c.MaturationRate = 1.0;
+		c.BornTimestamp = GetGameTimestamp() - rand(10*60);
+		ChildManager.addChild(c)
+	}
+	
+	if(flags["SAM_TOTAL_KIDS"] == undefined) flags["SAM_TOTAL_KIDS"] = 0;
+	flags["SAM_TOTAL_KIDS"] += flags["SAM_NUM_BABIES"];
+	flags["SAM_GAST_PREG_TIMER"] = undefined;
+	flags["SAM_NUM_BABIES"] = undefined;
+	flags["SAM_BABY_GENES"] = undefined;
+	flags["SAM_BABY_GENDERS"] = undefined;
+	flags["SAM_PREG_EMAIL1"] = undefined;
+	flags["SAM_PREG_EMAIL2"] = undefined;
+	flags["SAM_PREG_EMAIL3"] = undefined;
+	flags["SAM_PREG_EMAIL4"] = undefined;
 }

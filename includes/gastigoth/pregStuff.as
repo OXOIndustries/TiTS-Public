@@ -116,18 +116,30 @@ public function tryKnockUpTam():int
 			//3 Babies!
 			if(rand(10000) <= ((Math.atan(x - 2) + Math.PI/2)/Math.PI)*10000)
 			{
-				return flags["TAMTAM_NUM_BABIES"] = 3;
+				flags["TAMTAM_NUM_BABIES"] = 3;
 			}
 			//2 Babies!
 			else if(rand(10000) <= ((Math.atan(x - 1) + Math.PI/2)/Math.PI)*10000)
 			{
-				return flags["TAMTAM_NUM_BABIES"] = 2;
+				flags["TAMTAM_NUM_BABIES"] = 2;
 			}
 			//1 Baby!
 			else
 			{
-				return flags["TAMTAM_NUM_BABIES"] = 1;
+				flags["TAMTAM_NUM_BABIES"] = 1;
 			}
+			
+			//Lets roll for genders 45/45/10
+			flags["TAMTAM_BABY_GENDERS"] = new Array();
+			for(var i:int = 0; i < flags["TAMTAM_NUM_BABIES"]; i++)
+			{
+				var genderSeed:int = rand(20);
+				if(genderSeed < 2) flags["TAMTAM_BABY_GENDERS"].push("H");
+				else if(genderSeed < 11) flags["TAMTAM_BABY_GENDERS"].push("F");
+				else flags["TAMTAM_BABY_GENDERS"].push("M");
+			}
+			
+			return flags["SAM_NUM_BABIES"];
 		}
 	}
 	return 0;
@@ -151,12 +163,22 @@ public function tryKnockUpKhorgan():int
 			//roll for twins - chance% = (arctan((pc.vir+khorg.fert)/2+.25-5)+Pi/2)/Pi * 100
 			if(rand(10000) <= ((Math.atan((pc.virility() + khorgan.fertility())/2 + 0.25 - 5) + Math.PI/2)/Math.PI)*10000)
 			{
-				return flags["KHORGAN_NUM_BABIES"] = 2;
+				flags["KHORGAN_NUM_BABIES"] = 2;
 			}
 			else
 			{
-				return flags["KHORGAN_NUM_BABIES"] = 1;
+				flags["KHORGAN_NUM_BABIES"] = 1;
 			}
+			
+			//Lets roll for genders 50/50
+			flags["KHORGAN_BABY_GENDERS"] = new Array();
+			for(var i:int = 0; i < flags["KHORGAN_NUM_BABIES"]; i++)
+			{
+				if(rand(2) == 0) flags["KHORGAN_BABY_GENDERS"].push("M");
+				else flags["KHORGAN_BABY_GENDERS"].push("F");
+			}
+			
+			return flags["KHORGAN_NUM_BABIES"];
 		}
 	}
 	return 0;
@@ -207,7 +229,7 @@ public function processGastigothPregEvents(deltaT:uint, doOut:Boolean, totalDays
 			if (MailManager.hasEntry("tamtam_preg5")) MailManager.deleteMailEntry("tamtam_preg5");
 			MailManager.addMailEntry("tamtam_preg5", preg5EmailText("Tam-Tam"), "Gastigoth Inmate Tam-Tam - Child Delivery Report", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
 			goMailGet("tamtam_preg5");
-			//tamtamGastBirth();
+			tamtamGastBirth();
 		}
 	}
 	
@@ -248,7 +270,7 @@ public function processGastigothPregEvents(deltaT:uint, doOut:Boolean, totalDays
 			if (MailManager.hasEntry("khorgan_preg5")) MailManager.deleteMailEntry("khorgan_preg5");
 			MailManager.addMailEntry("khorgan_preg5", preg5EmailText("Khorgan"), "Gastigoth Inmate Khorgan - Child Delivery Report", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
 			goMailGet("khorgan_preg5");
-			//khorganGastBirth();
+			khorganGastBirth();
 		}
 	}
 	
@@ -289,7 +311,7 @@ public function processGastigothPregEvents(deltaT:uint, doOut:Boolean, totalDays
 			if (MailManager.hasEntry("sam_preg5")) MailManager.deleteMailEntry("sam_preg5");
 			MailManager.addMailEntry("sam_preg5", preg5EmailText("Sam"), "Gastigoth Inmate Sam - Child Delivery Report", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
 			goMailGet("sam_preg5");
-			//samGastBirth();
+			samGastBirth();
 		}
 	}
 }
@@ -297,9 +319,9 @@ public function processGastigothPregEvents(deltaT:uint, doOut:Boolean, totalDays
 public function preg1EmailText(prisonerName:String):String
 {
 	var eText:String = "";
-	var plural:Boolean = ((prisonerName == "Tam-Tam" && flags["TAMTAM_NUM_BABIES"] > 1)
-							||(prisonerName == "Khorgan" && flags["KHORGA_NUM_BABIES"] > 1)
-							||(prisonerName == "Sam" && flags["SAM_NUM_BABIES"] > 1));
+	var plural:Boolean = ((prisonerName == "Tam-Tam" && flags["TAMTAM_NUM_BABIES"] > 1) 
+							|| (prisonerName == "Khorgan" && flags["KHORGAN_NUM_BABIES"] > 1) 
+							|| (prisonerName == "Sam" && flags["SAM_NUM_BABIES"] > 1));
 	
 	eText+="Greetings, Captain Steele,";
 	if(flags["GAST_PREG_EMAIL1_RECV"] == undefined)
@@ -330,11 +352,11 @@ public function preg2EmailText(prisonerName:String):String
 {
 	var eText:String = "";
 	var plural:Boolean = ((prisonerName == "Tam-Tam" && flags["TAMTAM_NUM_BABIES"] > 1)
-							||(prisonerName == "Khorgan" && flags["KHORGA_NUM_BABIES"] > 1)
+							||(prisonerName == "Khorgan" && flags["KHORGAN_NUM_BABIES"] > 1)
 							||(prisonerName == "Sam" && flags["SAM_NUM_BABIES"] > 1));
 	
 	eText+="Greetings, Captain Steele,";
-	eText+="I am writing this email in regards to prisoner "+prisonerName+"'s current pregnancy. She is nearing the end of her first trimester, which is when my department usually recommends making any gene therapy and cosmetic modifications to the child";
+	eText+="\n\nI am writing this email in regards to prisoner "+prisonerName+"'s current pregnancy. She is nearing the end of her first trimester, which is when my department usually recommends making any gene therapy and cosmetic modifications to the child";
 	if(plural) eText+="ren";
 	eText+=" you wish to have done. I've taken the liberty of mapping the child" + (plural ? "ren's genomes" : "'s genome") + " and predicting mental and physical features based upon that.";
 	eText+="\n\nPlease consult the predictive mockup attached and, if you desire any alterations, fill out the attached questionnaire. If you would prefer your child" + (plural ? "ren's genomes" : "'s genome") + " remain all-natural, you may write and say so, or simply decline to respond to this email.";
@@ -352,21 +374,50 @@ public function preg2EmailText(prisonerName:String):String
 public function preg3EmailText(prisonerName:String):String
 {
 	var eText:String = "";
+	var plural:Boolean = ((prisonerName == "Tam-Tam" && flags["TAMTAM_NUM_BABIES"] > 1)
+							||(prisonerName == "Khorgan" && flags["KHORGAN_NUM_BABIES"] > 1)
+							||(prisonerName == "Sam" && flags["SAM_NUM_BABIES"] > 1));
 	
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
+	eText+="Greetings, Captain Steele,";
+	eText+="\n\nInmate "+prisonerName+" is healthy and her pregnancy is progressing smoothly. As her second trimester is drawing to a close, I'd like to take the opportunity to congratulate you on " + (plural ? "some" : "a") + " ";
+	if(prisonerName == "Tam-Tam")
+	{
+		if(flags["TAMTAM_BABY_GENES"] < 3) eText+= "perfectly healthy";
+		else eText+= "genetically superior";
+		if(flags["TAMTAM_NUM_BABIES"] > 1) eText+= " children"
+		else if(flags["TAMTAM_BABY_GENDERS"][0] == "H") eText+= " hermaphrodite child";
+		else if(flags["TAMTAM_BABY_GENDERS"][0] == "F") eText+= " daughter";
+		else eText+= " son";
+	}
+	else if(prisonerName == "Khorgan")
+	{
+		if(flags["KHORGAN_BABY_GENES"] < 3) eText+= "perfectly healthy";
+		else eText+= "genetically superior";
+		if(flags["KHORGAN_NUM_BABIES"] > 1) eText+= " children"
+		else if(flags["KHORGAN_BABY_GENDERS"][0] == "F") eText+= " daughter";
+		else eText+= " son";
+	}
+	else if(prisonerName == "Sam")
+	{
+		if(flags["SAM_BABY_GENES"] < 3) eText+= "perfectly healthy";
+		else eText+= "genetically superior";
+		if(flags["SAM_NUM_BABIES"] > 1) eText+= " children"
+		else if(flags["SAM_BABY_GENDERS"][0] == "F") eText+= " daughter";
+		else eText+= " son";
+	}
+	eText+=" soon to join your family.";
+	eText+="\n\nWith regards,";
+	eText+="\n\nDr. Arno Kramer";
+	eText+="\nMaternity Ward Director,";
+	eText+="\nPenal Station <i>Gastigoth</i>";
+
+	if(prisonerName == "Khorgan")
+	{
+		eText+="\n\nP.S.: Inmate Khorgan has requested that the maternity ward forward a video message to you, Captain. You may find it attached to this email.";
+		eText+="\n\n<i>Indeed, there is a .holo attached to the mail.</i>";
+		eText+="\n\n(The video has been downloaded to your ship’s console!)";
+		flags["KHORGAN_PREGSTURBATE"] = 1;
+	}
 	
 	return doParse(eText);
 }
@@ -374,21 +425,67 @@ public function preg3EmailText(prisonerName:String):String
 public function preg4EmailText(prisonerName:String):String
 {
 	var eText:String = "";
+	var plural:Boolean = ((prisonerName == "Tam-Tam" && flags["TAMTAM_NUM_BABIES"] > 1)
+							||(prisonerName == "Khorgan" && flags["KHORGAN_NUM_BABIES"] > 1)
+							||(prisonerName == "Sam" && flags["SAM_NUM_BABIES"] > 1));
 	
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
+	eText+="Greetings, Captain Steele,";
+	eText+="\n\nInmate "+prisonerName+"'s pregnancy is nearly at its end! We estimate only about a week until you welcome ";
+	if(plural) eText+="some new children";
+	else if(prisonerName == "Tam-Tam")
+	{
+		if(flags["TAMTAM_BABY_GENDERS"][0] == "M") eText+="a new son";
+		else eText+="a new daughter";
+	}
+	else if(prisonerName == "Khorgan")
+	{
+		if(flags["KHORGAN_BABY_GENDERS"][0] == "M") eText+="a new son";
+		else eText+="a new daughter";
+	}
+	else if(prisonerName == "Sam")
+	{
+		if(flags["SAM_BABY_GENDERS"][0] == "M") eText+="a new son";
+		else eText+="a new daughter";
+	}
+	eText+=" to the family! Per the instructions you filled out before conception, once ";
+	if(plural) eText+="they are";
+	else if(prisonerName == "Tam-Tam")
+	{
+		if(flags["TAMTAM_BABY_GENDERS"][0] == "M") eText+="he is";
+		else eText+="she is";
+	}
+	else if(prisonerName == "Khorgan")
+	{
+		if(flags["KHORGAN_BABY_GENDERS"][0] == "M") eText+="he is";
+		else eText+="she is";
+	}
+	else if(prisonerName == "Sam")
+	{
+		if(flags["SAM_BABY_GENDERS"][0] == "M") eText+="he is";
+		else eText+="she is";
+	}
+	eText+=" born, your child" + (plural ? "ren" : "") + " will be sent to the Steele family nursery on Tavros Station. You will receive a final alert immediately after birth to confirm the health and safety of the newborn" + (plural ? "s" : "") + " before ";
+	if(plural) eText+="they are";
+	else if(prisonerName == "Tam-Tam")
+	{
+		if(flags["TAMTAM_BABY_GENDERS"][0] == "M") eText+="he is";
+		else eText+="she is";
+	}
+	else if(prisonerName == "Khorgan")
+	{
+		if(flags["KHORGAN_BABY_GENDERS"][0] == "M") eText+="he is";
+		else eText+="she is";
+	}
+	else if(prisonerName == "Sam")
+	{
+		if(flags["SAM_BABY_GENDERS"][0] == "M") eText+="he is";
+		else eText+="she is";
+	}
+	eText+=" transported to Tavros.";
+	eText+="\n\nWith regards,";
+	eText+="\n\nDr. Arno Kramer";
+	eText+="\nMaternity Ward Director,";
+	eText+="\nPenal Station <i>Gastigoth</i>";
 	
 	return doParse(eText);
 }
@@ -396,21 +493,140 @@ public function preg4EmailText(prisonerName:String):String
 public function preg5EmailText(prisonerName:String):String
 {
 	var eText:String = "";
+	var plural:Boolean = ((prisonerName == "Tam-Tam" && flags["TAMTAM_NUM_BABIES"] > 1)
+							||(prisonerName == "Khorgan" && flags["KHORGAN_NUM_BABIES"] > 1)
+							||(prisonerName == "Sam" && flags["SAM_NUM_BABIES"] > 1));
 	
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
-	eText+="\n\n";
+	eText+="Greetings, Captain Steele,";
+	eText+="\n\nInmate "+prisonerName+" has just successfully given birth to " + (plural ? "some healthy, happy new children" : "a healthy, happy new child") + ". We're currently performing a final medical checkup on the bab" + (plural ? "ies" : "y") + " before transporting ";
+	if(plural) eText+="them";
+	else if(prisonerName == "Tam-Tam")
+	{
+		if(flags["TAMTAM_BABY_GENDERS"][0] == "M") eText+="him";
+		else eText+="her";
+	}
+	else if(prisonerName == "Khorgan")
+	{
+		if(flags["KHORGAN_BABY_GENDERS"][0] == "M") eText+="him";
+		else eText+="her";
+	}
+	else if(prisonerName == "Sam")
+	{
+		if(flags["SAM_BABY_GENDERS"][0] == "M") eText+="him";
+		else eText+="her";
+	}
+	eText+=" to Tavros, per your instructions.";
+	eText+="\n\nCongratulations, captain!";
+	eText+="\n\nDr. Arno Kramer";
+	eText+="\nMaternity Ward Director,";
+	eText+="\nPenal Station <i>Gastigoth</i>";
 	
 	return doParse(eText);
+}
+
+public function khorganPregsturbate():void
+{
+	clearOutput();
+	showName("\nKHORGAN");
+	showBust("CAPTAIN_KHORGAN_JAIL_PREG");
+	author("Savin");
+	
+	output("You watch as a small grey room materializes around the statuesque figure of Captain Khorgan. She's wearing her prison uniform, zipped down all the way to show off her now quite noticeable baby bump, underneath her milk-laden breasts. Stiff, dark green nipples peak out from either side of her uniform, and the thraggen sensually runs a hand over one, tweaking it hard enough to draw a little bead of pale milk from her teat.");
+	output("\n\n<i>“Hey, stud,”</i> she growls, licking one of her little tusks. <i>“Look at what you've done to me. Fuck! It's hot, isn't it? Maybe I'm just a cocktail of hormones right now, but I can't keep my hands off myself thinking about you. Then again... I had that problem before you knocked me up.”</i>");
+	output("\n\nKhorgan grins toothily, running her hand down over her child-swollen belly... and down further, pulling down her orange jumper to slip her fingers into the jade gash between her thick legs. <i>“If I'm not fantasizing about you breeding me like your bitch, then I'm fantasizing about our fight. Getting beat down by you was the best fight of my life, and what we did afterwards...”</i> she laughs, and her fingers disappear into her flushed quim. <i>“Just thinking about it all gets my juices <b>flowing</b>.”</i>");
+	output("\n\nApparently she's being damn literal: her free hand angles the camera down, letting you get a good look at what's going on down there. You can see a delta of moisture leaking down her thighs, glistening in the sterile prison light. Her labia lips are spread open around two fingers, which are vigorously pumping in and out. Khorgan groans, pushing in deep, and you could almost swear you hear your name growled out amongst her moans.");
+	output("\n\n<i>“You're gonna come see me again soon, aren't ya?”</i> she says, almost a predatory growl. <i>“Fuck! I wish they'd let me loose with you for a few minutes so I could show you how thraggen make love. Until then, I guess I'll have to settle for my hands, and feeling our child growing big and strong inside me.”</i>");
+	output("\n\nShe moves her wrist a little faster, spearing her sex open and letting her juices pitter-patter onto the ground. Her thumb swirls around her clit, absolutely molesting the jade nub until her chest is hammering, tits spilling out of her jumpsuit. Her rigid teats tremble, starting to leak their own liquid load down her chest. Grunting her approval, Khorgan hefts up one of her overburdened breasts and brings the nipple up to her mouth, licking her milk clean.");
+	output("\n\n<i>“Gonna be plenty left for you,”</i> Khorgan moans. <i>“Strong milk for strong children... and mates. Oh!”</i>");
+	output("\n\nHer breath catches, and you watch her heavy belly quiver over the hand thrust up into her cunt. The flow of liquids from her body doubles for a moment, making an absolute mess of herself as she cums. The wet <i>schlicking</i> sound her hands make is only drowned out by her feral roar of pleasure -- one that swiftly draws the prison guard to her, grabbing the pregnant greenskin's arms.");
+	output("\n\n<i>“Soon, Steele!”</i> she howls, making a biting gesture at the camera as the guards manhandle her off screen. The holovid ends soon after.");
+	
+	processTime(10 + rand(3));
+	pc.lust(60);
+	
+	clearMenu();
+	addButton(0, "Next", smutFapMenu, true);
+}
+
+public function tamtamGastBirth():void
+{
+	var traitChar:Creature = chars["PC_BABY"];
+	
+	for(var i:int = 0; i < flags["TAMTAM_NUM_BABIES"]; i++)
+	{
+		var c:UniqueChild = new TamTamUniqueChild();
+		
+		c.RaceType = GLOBAL.TYPE_HUMAN;
+		// 50% Male or Female
+		if(flags["TAMTAM_BABY_GENDERS"][i] == "M") { c.NumMale = 1; c.NumFemale = 0; c.NumIntersex = 0; c.NumNeuter = 0; }
+		else if(flags["TAMTAM_BABY_GENDERS"][i] == "F") { c.NumMale = 0; c.NumFemale = 1; c.NumIntersex = 0; c.NumNeuter = 0; }
+		else { c.NumMale = 0; c.NumFemale = 0; c.NumIntersex = 1; c.NumNeuter = 0; }
+		
+		// Race modifier (if different races)
+		c.originalRace = c.hybridizeRace(c.originalRace, pc.originalRace, true);
+		
+		// Adopt father's colors at random (if applicable):
+		if(rand(2) == 0) c.skinTone = traitChar.skinTone;
+		if(rand(2) == 0) c.lipColor = traitChar.lipColor;
+		if(rand(2) == 0) c.nippleColor = traitChar.nippleColor;
+		if(rand(2) == 0) c.eyeColor = traitChar.eyeColor;
+		if(traitChar.hairColor != "NOT SET" && rand(2) == 0) c.hairColor = traitChar.hairColor;
+		if(traitChar.furColor != "NOT SET" && rand(2) == 0) c.furColor = traitChar.furColor;
+		
+		c.MaturationRate = 1.0;
+		c.BornTimestamp = GetGameTimestamp() - rand(10*60);
+		ChildManager.addChild(c)
+	}
+	
+	if(flags["TAMTAM_TOTAL_KIDS"] == undefined) flags["TAMTAM_TOTAL_KIDS"] = 0;
+	flags["TAMTAM_TOTAL_KIDS"] += flags["TAMTAM_NUM_BABIES"];
+	flags["TAMTAM_GAST_PREG_TIMER"] = undefined;
+	flags["TAMTAM_NUM_BABIES"] = undefined;
+	flags["TAMTAM_BABY_GENES"] = undefined;
+	flags["TAMTAM_BABY_GENDERS"] = undefined;
+	flags["TAMTAM_PREG_EMAIL1"] = undefined;
+	flags["TAMTAM_PREG_EMAIL2"] = undefined;
+	flags["TAMTAM_PREG_EMAIL3"] = undefined;
+	flags["TAMTAM_PREG_EMAIL4"] = undefined;
+}
+
+public function khorganGastBirth():void
+{
+	var traitChar:Creature = chars["PC_BABY"];
+	
+	for(var i:int = 0; i < flags["KHORGAN_NUM_BABIES"]; i++)
+	{
+		var c:UniqueChild = new KhorganUniqueChild();
+		
+		c.RaceType = GLOBAL.TYPE_HUMAN;
+		// 50% Male or Female
+		if(flags["KHORGAN_BABY_GENDERS"][i] == "M") { c.NumMale = 1; c.NumFemale = 0; c.NumIntersex = 0; c.NumNeuter = 0; }
+		else { c.NumMale = 0; c.NumFemale = 1; c.NumIntersex = 0; c.NumNeuter = 0; }
+		
+		// Race modifier (if different races)
+		c.originalRace = c.hybridizeRace(c.originalRace, pc.originalRace, true);
+		
+		// Adopt father's colors at random (if applicable):
+		if(rand(2) == 0) c.skinTone = traitChar.skinTone;
+		if(rand(2) == 0) c.lipColor = traitChar.lipColor;
+		if(rand(2) == 0) c.nippleColor = traitChar.nippleColor;
+		if(rand(2) == 0) c.eyeColor = traitChar.eyeColor;
+		if(traitChar.hairColor != "NOT SET" && rand(2) == 0) c.hairColor = traitChar.hairColor;
+		if(traitChar.furColor != "NOT SET" && rand(2) == 0) c.furColor = traitChar.furColor;
+		
+		c.MaturationRate = 1.0;
+		c.BornTimestamp = GetGameTimestamp() - rand(10*60);
+		ChildManager.addChild(c)
+	}
+	
+	if(flags["KHORGAN_TOTAL_KIDS"] == undefined) flags["KHORGAN_TOTAL_KIDS"] = 0;
+	flags["KHORGAN_TOTAL_KIDS"] += flags["KHORGAN_NUM_BABIES"];
+	flags["KHORGAN_GAST_PREG_TIMER"] = undefined;
+	flags["KHORGAN_NUM_BABIES"] = undefined;
+	flags["KHORGAN_BABY_GENES"] = undefined;
+	flags["KHORGAN_BABY_GENDERS"] = undefined;
+	flags["KHORGAN_PREG_EMAIL1"] = undefined;
+	flags["KHORGAN_PREG_EMAIL2"] = undefined;
+	flags["KHORGAN_PREG_EMAIL3"] = undefined;
+	flags["KHORGAN_PREG_EMAIL4"] = undefined;
 }

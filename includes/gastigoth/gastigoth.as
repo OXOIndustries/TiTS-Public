@@ -75,14 +75,14 @@ public function showTamtamPrison(preg:Boolean = false):void
 {
 	showName("\nTAM-TAM");
 	var pregS:String = "";
-	if(tamtam.isPregnant()) pregS = "_PREG";
+	if(flags["TAMTAM_GAST_PREG_TIMER"] >= 100) pregS = "_PREG";
 	showBust("TAMTAM_JAIL" + pregS);
 }
 public function showKhorganPrison(preg:Boolean = false):void
 {
 	showName("\nKHORGAN");
 	var pregS:String = "";
-	if(khorgan.isPregnant()) pregS = "_PREG";
+	if(flags["KHORGAN_GAST_PREG_TIMER"] >= 60) pregS = "_PREG";
 	showBust("CAPTAIN_KHORGAN_JAIL" + pregS);
 }
 public function showKaska(cum:Boolean = false):void
