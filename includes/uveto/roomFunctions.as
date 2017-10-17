@@ -316,6 +316,8 @@ public function uvetoUnlocked():Boolean
 
 public function flyToUveto():void
 {
+	showBust("UVETO");
+	showName("\nUVETO");
 	if (annoIsCrew() && flags["ANNO_MAID_OUTFIT"] == undefined) flags["ANNO_MAID_OUTFIT"] = 2;
 	
 	if (flags["DO UVETO ICEQUEEN ENTRY"] != undefined) clearOutput();
@@ -377,7 +379,8 @@ public function actuallyArriveAtUvetoStation():void
 {
 	clearOutput();
 	author("Savin");
-
+	showName("\nUVETO");
+	showBust("UVETO");
 	output("<b>An hour passes...</b>");
 	
 	processTime(50 + rand(16));

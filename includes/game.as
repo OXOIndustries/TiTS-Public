@@ -1582,63 +1582,75 @@ public function flyTo(arg:String):void
 		case "Tavros":
 			shipLocation = "TAVROS HANGAR";
 			currentLocation = "TAVROS HANGAR";
+			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
 			flyToTavros();
 			break;
 		case "Mhen'ga":
 			shipLocation = "SHIP HANGAR";
 			currentLocation = "SHIP HANGAR";
+			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
 			flyToMhenga();
 			break;
 		case "Tarkus":
 			shipLocation = "201";
 			currentLocation = "201";
+			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
 			landOnTarkus();
 			break;
 		case "New Texas":
 			shipLocation = "500";
 			currentLocation = "500";
+			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
 			landOnNewTexas();
 			break;
 		case "Myrellion":
 			shipLocation = "600";
 			currentLocation = "600";
+			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
 			flyToMyrellion();
 			break;
 		case "MyrellionDeepCaves":
 			shipLocation = "2I7";
 			currentLocation = "2I7";
+			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
 			flyToMyrellionDeepCaves();
 			break;
 		case "Poe A":
 			shipLocation = "POESPACE";
 			currentLocation = "POESPACE";
+			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
 			flyToPoeA();
 			break;
 		case "karaQuest2":
 			shortTravel = (shipLocation == "600");
 			interruptMenu = true;
 			kq2TravelToKara(shortTravel);
+			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
 			break;
 		case "Uveto":
 			shipLocation = "UVS F15";
 			currentLocation = "UVS F15";
+			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
 			interruptMenu = true;
 			flyToUveto();
 			break;
 		case "Canadia":
 			shipLocation = "CANADA1";
 			currentLocation = "CANADA1";
+			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
 			flyToCanadia();
 			break;
 		case "Gastigoth":
 			if(shipLocation == "GASTIGOTH_SPACE") shortTravel = true;
 			shipLocation = "K16_DOCK";
 			currentLocation = "K16_DOCK";
+			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
 			arrivalAtGastibooty();
 			break;
 		case "Breedwell":
 			shipLocation = "BREEDWELL_HANGAR";
 			currentLocation = "BREEDWELL_HANGAR";
+			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
 			interruptMenu = flyToBreedwell();
 			break;
 	}
@@ -1646,7 +1658,6 @@ public function flyTo(arg:String):void
 	if(paigeIsCrew()) timeFlown = Math.floor(timeFlown * 0.75);
 	StatTracking.track("movement/time flown", timeFlown);
 	processTime(timeFlown);
-	setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
 	
 	if (!interruptMenu)
 	{

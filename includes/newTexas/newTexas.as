@@ -11,6 +11,8 @@ public function newTexasEmail():void
 //Landing on New Texas (First Time)
 public function landOnNewTexas():void
 {
+	showBust("NEW_TEXAS");
+	showName("NEW\nTEXAS");
 	if(flags["LANDED_ON_TEXAS"] == undefined)
 	{
 		flags["LANDED_ON_TEXAS"] = 1;

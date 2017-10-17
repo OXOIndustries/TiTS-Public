@@ -14,6 +14,8 @@ public function flyToMhenga():void
 {
 	output("You fly to Mhen’ga");
 	if(leaveShipOK()) output(" and step out of your ship.");
+	showBust("MHENGA");
+	showName("\nMHENGA");
 }
 
 public function mhengaShipHangarFunc():Boolean

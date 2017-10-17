@@ -3,6 +3,8 @@
 //Landing on Tarkus (First Time)
 public function landOnTarkus():void
 {
+	showBust("TARKUS");
+	showName("\nTARKUS");
 	if(flags["UNLOCKED_JUNKYARD_PLANET"] == undefined) return;
 	if(flags["UNLOCKED_JUNKYARD_PLANET"] <= 1)
 	{

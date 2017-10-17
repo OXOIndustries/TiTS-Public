@@ -6,6 +6,8 @@ public function flyToTavros():void
 	
 	output("You fly to Tavros");
 	if(leaveShipOK()) output(" and step out of your ship.");
+	showBust("TAVROS");
+	showName("\nTAVROS");
 }
 public function puntToShip():Boolean
 {
