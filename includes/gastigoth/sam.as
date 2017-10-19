@@ -4,7 +4,9 @@
 //Name: Samurenth “Sam” Tyraso
 //Age: 24
 //Crimes: 2 counts of Piracy, 7 counts of Grand Hacking, 17 counts of Cyber Theft, 3 counts of Cyber Assault, 4,478 counts of Identity Theft, Kidnapping, Assault With a Deadly Weapon, 2 counts of Attempted Homicide{Sillly mode:, Cyber Bullying, Hand Holding, Being a Girl on the Extranet}.
-
+import classes.GameData.Pregnancy.Child;
+import classes.GameData.Pregnancy.UniqueChild;
+import classes.GameData.Pregnancy.Containers.Genders;
 
 public function showSam(nude:Boolean = false):void
 {
@@ -290,7 +292,6 @@ public function tryKnockUpSam():int
 			flags["SAM_GAST_PREG_TIMER"] = 0;
 			flags["SAM_PREG_PAID"] = undefined;
 			pc.clearRut();
-			processTime(1);
 			
 			var x:Number = ((pc.virility() + sam.fertility())/2 + 0.25)/2;
 			
@@ -333,6 +334,7 @@ public function tryKnockUpSam():int
 				else flags["SAM_BABY_GENDERS"].push("F");
 			}
 			
+			processTime(1);
 			return flags["SAM_NUM_BABIES"];
 		}
 	}
@@ -343,31 +345,30 @@ public function samGastBirth():void
 {
 	var traitChar:Creature = chars["PC_BABY"];
 	
+	var c:UniqueChild = new SamUniqueChild();
+		
+	c.RaceType = GLOBAL.TYPE_CANINE;
 	for(var i:int = 0; i < flags["SAM_NUM_BABIES"]; i++)
 	{
-		var c:UniqueChild = new SamUniqueChild();
-		
-		c.RaceType = GLOBAL.TYPE_HUMAN;
-		// 50% Male or Female
-		if(flags["SAM_BABY_GENDERS"][i] == "M") { c.NumMale = 1; c.NumFemale = 0; c.NumIntersex = 0; c.NumNeuter = 0; }
-		else { c.NumMale = 0; c.NumFemale = 1; c.NumIntersex = 0; c.NumNeuter = 0; }
-		
-		// Race modifier (if different races)
-		c.originalRace = c.hybridizeRace(c.originalRace, pc.originalRace, true);
-		
-		// Adopt father's colors at random (if applicable):
-		if(rand(2) == 0) c.skinTone = traitChar.skinTone;
-		if(rand(2) == 0) c.lipColor = traitChar.lipColor;
-		if(rand(2) == 0) c.nippleColor = traitChar.nippleColor;
-		if(rand(2) == 0) c.eyeColor = traitChar.eyeColor;
-		if(traitChar.hairColor != "NOT SET" && rand(2) == 0) c.hairColor = traitChar.hairColor;
-		if(traitChar.furColor != "NOT SET" && rand(2) == 0) c.furColor = traitChar.furColor;
-		
-		c.MaturationRate = 1.0;
-		c.BornTimestamp = GetGameTimestamp() - rand(10*60);
-		ChildManager.addChild(c)
+		if(flags["SAM_BABY_GENDERS"][i] == "M") c.NumMale += 1;
+		else c.NumFemale += 1;
 	}
 	
+	// Race modifier (if different races)
+	c.originalRace = c.hybridizeRace(c.originalRace, pc.originalRace, true);
+	
+	// Adopt father's colors at random (if applicable):
+	if(rand(2) == 0) c.skinTone = traitChar.skinTone;
+	if(rand(2) == 0) c.lipColor = traitChar.lipColor;
+	if(rand(2) == 0) c.nippleColor = traitChar.nippleColor;
+	if(rand(2) == 0) c.eyeColor = traitChar.eyeColor;
+	if(traitChar.hairColor != "NOT SET" && rand(2) == 0) c.hairColor = traitChar.hairColor;
+	if(traitChar.furColor != "NOT SET" && rand(2) == 0) c.furColor = traitChar.furColor;
+	
+	c.MaturationRate = 1.0;
+	c.BornTimestamp = GetGameTimestamp() - rand(10*60);
+	ChildManager.addChild(c)
+
 	if(flags["SAM_TOTAL_KIDS"] == undefined) flags["SAM_TOTAL_KIDS"] = 0;
 	flags["SAM_TOTAL_KIDS"] += flags["SAM_NUM_BABIES"];
 	flags["SAM_GAST_PREG_TIMER"] = undefined;
@@ -378,4 +379,85 @@ public function samGastBirth():void
 	flags["SAM_PREG_EMAIL2"] = undefined;
 	flags["SAM_PREG_EMAIL3"] = undefined;
 	flags["SAM_PREG_EMAIL4"] = undefined;
+}
+
+public function samBabiesVisitOptions(button:Number):Number
+{
+	if(ChildManager.numOfUniqueTypeInRange(SamUniqueChild, 0, 4*12) > 0)
+	{
+		addButton(button,"Sam's Kids",visitSamBabies, "Sam's Kids", "It only takes a moment to make a moment.");
+		button++;
+	}
+	else if(ChildManager.numOfUniqueTypeInRange(SamUniqueChild, 4*12, 9001) > 0)
+	{
+		addDisabledButton(button,"Sam's Kids","Sam's Kids","You don’t have any pups young enough to play with. Maybe when you finish the quest, you’ll have time to be a real parent.");
+		button++;
+	}
+	//else output("\n\nDafuq is dis shit?");
+	return button;
+}
+
+public function visitSamBabies(choice:Number = -1):void
+{
+	clearOutput();
+	author("Night Trap");
+	showName("VISIT\nPUPS!");
+	
+	var boy:Boolean;
+	
+	//Build menu for playing
+	if(choice == -1)
+	{
+		output("Which age group will you check on?");
+		clearMenu();
+		if(ChildManager.numOfUniqueTypeInRange(SamUniqueChild, 0, 1) > 0) addButton(0,"0-1 Month",visitSamBabies,0);
+		else addDisabledButton(0,"0-1 Month","0-1 Month","You have no pups in that age range.");
+		if(ChildManager.numOfUniqueTypeInRange(SamUniqueChild, 2, 4) > 0) addButton(1,"2-4 Months",visitSamBabies,1);
+		else addDisabledButton(1,"2-4 Months","2-4 Months","You have no pups in that age range.");
+		if(ChildManager.numOfUniqueTypeInRange(SamUniqueChild, 5, 48) > 0) addButton(2,"5+ Months",visitSamBabies,2);
+		else addDisabledButton(2,"5+ Months","5+ Months","You have no pups in that age range.");
+		if(ChildManager.numOfUniqueTypeInRange(SamUniqueChild, 49, 9001) > 0) addDisabledButton(3,"4+ Years","4+ Years","These pups are too old to visit.");
+		return;
+	}
+	else if(choice == 0)
+	{
+		
+		if(ChildManager.numOfUniqueTypeInRange(SamUniqueChild, 0, 1) == 1)
+		{
+			boy = ChildManager.ofUniqueTypeAndGenderInRange(SamUniqueChild, ChildManager.GENDER_MALE, 0, 1);
+			output("The pup you "+pc.mf("fathered", "sired")+" with Sam is still a tiny little thing. " + (boy ? "He" : "She") + " hasn't opened " + (boy ? "his" : "her") + " eyes yet, but " + (boy ? "he" : "she") + " still sniffs the air inquisitively and whines plaintively whenever " + (boy ? "he" : "she") + " detects your scent until you pick up and hold " + (boy ? "him" : "her") + ".");
+		}
+		else
+		{
+			output("The pups you "+pc.mf("fathered", "sired")+" with Sam are still tiny little things. They haven't opened their eyes yet, but they still sniff the air inquisitively and whine plaintively whenever they detect your scent until you pick up and hold them.");
+		}
+	}
+	else if(choice == 1)
+	{
+		if(ChildManager.numOfUniqueTypeInRange(SamUniqueChild, 2, 4) == 1)
+		{
+			boy = ChildManager.ofUniqueTypeAndGenderInRange(SamUniqueChild, ChildManager.GENDER_MALE, 2, 4);
+			output("Your ausar " + (boy ? "son" : "daughter") + " is amazingly energetic for " + (boy ? "his" : "her") + " age. " + (boy ? "He" : "She") + " spends most waking hours wiggling around in " + (boy ? "his" : "her") + " cradle, instinctively training the muscles needed for crawling. Whenever the little pup finally runs out of energy, " + (boy ? "he curls his" : "she curls her") + " fluffy canine tail inwards and hugs it tightly as " + (boy ? "he" : "she") + " falls asleep again.");
+		}
+		else
+		{
+			output("Your little pups crawl all over each other and their surroundings, constantly sniffing and staring at everyone and everything around them. They wag their fluffy little tails whenever they're happy, which Briget says is primarily when you're around. Whenever they see something flashy on a computer or codex screen though, they all crawl over to it, wagging their tails and staring curiously until they fall asleep curled up against each other.");
+		}
+	}
+	else if(choice == 2)
+	{
+		if(ChildManager.numOfUniqueTypeInRange(SamUniqueChild, 5, 48) == 1)
+		{
+			boy = ChildManager.ofUniqueTypeAndGenderInRange(SamUniqueChild, ChildManager.GENDER_MALE, 5, 4*12);
+			output("Your ausar " + (boy ? "son" : "daughter") + " crawls around sniffing and staring at everything. The little pup is insatiably curious, and " + (boy ? "he" : "she") + " seems especially interested in computers. Whenever you hold " + (boy ? "him, he" : "her, she") + " reaches for your codex, making a sound almost like a happy little bark when you pull the device out for " + (boy ? "him" : "her") + " to stare at.");
+			output("\n\nYou hope Sam's proclivity for hacking hasn't been passed down to her child...");
+		}
+		else
+		{
+			output("Your little pups crawl all over each other and their surroundings, constantly sniffing and staring at everyone and everything around them. They wag their fluffy little tails whenever they're happy, which Briget says is primarily when you're around. Whenever they see something flashy on a computer or codex screen though, they all crawl over to it, wagging their tails and staring curiously until they fall asleep curled up against each other.");
+			output("\n\nYou hope they don't have the same proclivity for hacking as their mother...");
+		}
+	}
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }

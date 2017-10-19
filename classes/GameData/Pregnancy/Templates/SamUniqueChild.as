@@ -12,7 +12,7 @@ package classes.GameData.Pregnancy.Templates
 		public function SamUniqueChild()
 		{
 			Name = "";
-			UniqueParent = "SX1TECHGUARD";
+			UniqueParent = "SAM";
 			
 			originalRace = "ausar";
 			skinTone = "brown";

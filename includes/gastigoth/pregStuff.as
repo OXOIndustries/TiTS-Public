@@ -3,14 +3,17 @@
  * https://docs.google.com/document/d/1Xs6hjnIZfgTwSQYnwOlrfadgr3pSyPao3rCnRIsQ1iQ/edit
  * 
  */
-
-const GAST_PREG_COST:int = 15000;
+import classes.GameData.Pregnancy.Child;
+import classes.GameData.Pregnancy.UniqueChild;
+import classes.GameData.Pregnancy.Containers.Genders;
 
 public function impregAPrisoner(prisonerName:String):void
 {
 	clearOutput();
 	clearBust();
 	author("Savin");
+	
+	const GAST_PREG_COST:int = 15000;
 	
 	output("You tap the sub-menu labelled “Breeding Program: Eligibility.” Gastigoth's standard U.I. radiates several new statistics and options around, exploding close-up digital dissections of the prisoner's DNA and reading off tab after tab of psych evaluations. Woah, that's a lot to process.");
 	output("\n\nAt the bottom of the huge stack of readouts is a contract, explaining in more detail what exactly is going to happen if you choose to take advantage of this service:");
@@ -48,6 +51,8 @@ public function impregAPrisonerYes(prisonerName:String):void
 	clearOutput();
 	author("Savin");
 	clearMenu();
+	
+	const GAST_PREG_COST:int = 15000;
 	
 	if(flags[prisonerName.toUpperCase() + "_PREG_PAID"] == undefined) pc.credits -= GAST_PREG_COST;
 	else pc.credits -= 1000;
@@ -109,7 +114,6 @@ public function tryKnockUpTam():int
 			flags["TAMTAM_GAST_PREG_TIMER"] = 0;
 			flags["TAMTAM_PREG_PAID"] = undefined;
 			pc.clearRut();
-			processTime(1);
 			
 			var x:Number = ((pc.virility() + tamtam.fertility())/2 + 0.25)/2;
 			
@@ -139,6 +143,7 @@ public function tryKnockUpTam():int
 				else flags["TAMTAM_BABY_GENDERS"].push("M");
 			}
 			
+			processTime(1);
 			return flags["SAM_NUM_BABIES"];
 		}
 	}
@@ -158,7 +163,6 @@ public function tryKnockUpKhorgan():int
 			flags["KHORGAN_GAST_PREG_TIMER"] = 0;
 			flags["KHORGAN_PREG_PAID"] = undefined;
 			pc.clearRut();
-			processTime(1);
 			
 			//roll for twins - chance% = (arctan((pc.vir+khorg.fert)/2+.25-5)+Pi/2)/Pi * 100
 			if(rand(10000) <= ((Math.atan((pc.virility() + khorgan.fertility())/2 + 0.25 - 5) + Math.PI/2)/Math.PI)*10000)
@@ -178,6 +182,7 @@ public function tryKnockUpKhorgan():int
 				else flags["KHORGAN_BABY_GENDERS"].push("F");
 			}
 			
+			processTime(1);
 			return flags["KHORGAN_NUM_BABIES"];
 		}
 	}
@@ -319,9 +324,9 @@ public function processGastigothPregEvents(deltaT:uint, doOut:Boolean, totalDays
 public function preg1EmailText(prisonerName:String):String
 {
 	var eText:String = "";
-	var plural:Boolean = ((prisonerName == "Tam-Tam" && flags["TAMTAM_NUM_BABIES"] > 1) 
-							|| (prisonerName == "Khorgan" && flags["KHORGAN_NUM_BABIES"] > 1) 
-							|| (prisonerName == "Sam" && flags["SAM_NUM_BABIES"] > 1));
+	var plural:Boolean = ((prisonerName == "Tam-Tam" && flags["TAMTAM_NUM_BABIES"] > 1)
+							||(prisonerName == "Khorgan" && flags["KHORGAN_NUM_BABIES"] > 1)
+							||(prisonerName == "Sam" && flags["SAM_NUM_BABIES"] > 1));
 	
 	eText+="Greetings, Captain Steele,";
 	if(flags["GAST_PREG_EMAIL1_RECV"] == undefined)
@@ -551,33 +556,31 @@ public function khorganPregsturbate():void
 public function tamtamGastBirth():void
 {
 	var traitChar:Creature = chars["PC_BABY"];
+	var c:UniqueChild = new TamTamUniqueChild();
 	
+	c.RaceType = GLOBAL.TYPE_FELINE;
+	// 50% Male or Female
 	for(var i:int = 0; i < flags["TAMTAM_NUM_BABIES"]; i++)
 	{
-		var c:UniqueChild = new TamTamUniqueChild();
-		
-		c.RaceType = GLOBAL.TYPE_HUMAN;
-		// 50% Male or Female
-		if(flags["TAMTAM_BABY_GENDERS"][i] == "M") { c.NumMale = 1; c.NumFemale = 0; c.NumIntersex = 0; c.NumNeuter = 0; }
-		else if(flags["TAMTAM_BABY_GENDERS"][i] == "F") { c.NumMale = 0; c.NumFemale = 1; c.NumIntersex = 0; c.NumNeuter = 0; }
-		else { c.NumMale = 0; c.NumFemale = 0; c.NumIntersex = 1; c.NumNeuter = 0; }
-		
-		// Race modifier (if different races)
-		c.originalRace = c.hybridizeRace(c.originalRace, pc.originalRace, true);
-		
-		// Adopt father's colors at random (if applicable):
-		if(rand(2) == 0) c.skinTone = traitChar.skinTone;
-		if(rand(2) == 0) c.lipColor = traitChar.lipColor;
-		if(rand(2) == 0) c.nippleColor = traitChar.nippleColor;
-		if(rand(2) == 0) c.eyeColor = traitChar.eyeColor;
-		if(traitChar.hairColor != "NOT SET" && rand(2) == 0) c.hairColor = traitChar.hairColor;
-		if(traitChar.furColor != "NOT SET" && rand(2) == 0) c.furColor = traitChar.furColor;
-		
-		c.MaturationRate = 1.0;
-		c.BornTimestamp = GetGameTimestamp() - rand(10*60);
-		ChildManager.addChild(c)
+		if(flags["TAMTAM_BABY_GENDERS"][i] == "M") c.NumMale += 1;
+		else if(flags["TAMTAM_BABY_GENDERS"][i] == "F") c.NumFemale += 1;
+		else c.NumIntersex += 1;
 	}
+	// Race modifier (if different races)
+	c.originalRace = c.hybridizeRace(c.originalRace, pc.originalRace, true);
 	
+	// Adopt father's colors at random (if applicable):
+	if(rand(2) == 0) c.skinTone = traitChar.skinTone;
+	if(rand(2) == 0) c.lipColor = traitChar.lipColor;
+	if(rand(2) == 0) c.nippleColor = traitChar.nippleColor;
+	if(rand(2) == 0) c.eyeColor = traitChar.eyeColor;
+	if(traitChar.hairColor != "NOT SET" && rand(2) == 0) c.hairColor = traitChar.hairColor;
+	if(traitChar.furColor != "NOT SET" && rand(2) == 0) c.furColor = traitChar.furColor;
+	
+	c.MaturationRate = 1.0;
+	c.BornTimestamp = GetGameTimestamp() - rand(10*60);
+	ChildManager.addChild(c)
+
 	if(flags["TAMTAM_TOTAL_KIDS"] == undefined) flags["TAMTAM_TOTAL_KIDS"] = 0;
 	flags["TAMTAM_TOTAL_KIDS"] += flags["TAMTAM_NUM_BABIES"];
 	flags["TAMTAM_GAST_PREG_TIMER"] = undefined;
@@ -593,32 +596,31 @@ public function tamtamGastBirth():void
 public function khorganGastBirth():void
 {
 	var traitChar:Creature = chars["PC_BABY"];
+	var c:UniqueChild = new KhorganUniqueChild();
 	
+	c.RaceType = GLOBAL.TYPE_THRAGGEN;
+	// 50% Male or Female
 	for(var i:int = 0; i < flags["KHORGAN_NUM_BABIES"]; i++)
 	{
-		var c:UniqueChild = new KhorganUniqueChild();
-		
-		c.RaceType = GLOBAL.TYPE_HUMAN;
-		// 50% Male or Female
-		if(flags["KHORGAN_BABY_GENDERS"][i] == "M") { c.NumMale = 1; c.NumFemale = 0; c.NumIntersex = 0; c.NumNeuter = 0; }
-		else { c.NumMale = 0; c.NumFemale = 1; c.NumIntersex = 0; c.NumNeuter = 0; }
-		
-		// Race modifier (if different races)
-		c.originalRace = c.hybridizeRace(c.originalRace, pc.originalRace, true);
-		
-		// Adopt father's colors at random (if applicable):
-		if(rand(2) == 0) c.skinTone = traitChar.skinTone;
-		if(rand(2) == 0) c.lipColor = traitChar.lipColor;
-		if(rand(2) == 0) c.nippleColor = traitChar.nippleColor;
-		if(rand(2) == 0) c.eyeColor = traitChar.eyeColor;
-		if(traitChar.hairColor != "NOT SET" && rand(2) == 0) c.hairColor = traitChar.hairColor;
-		if(traitChar.furColor != "NOT SET" && rand(2) == 0) c.furColor = traitChar.furColor;
-		
-		c.MaturationRate = 1.0;
-		c.BornTimestamp = GetGameTimestamp() - rand(10*60);
-		ChildManager.addChild(c)
+		if(flags["KHORGAN_BABY_GENDERS"][i] == "M") c.NumMale += 1;
+		else c.NumFemale += 1;
 	}
 	
+	// Race modifier (if different races)
+	c.originalRace = c.hybridizeRace(c.originalRace, pc.originalRace, true);
+	
+	// Adopt father's colors at random (if applicable):
+	if(rand(2) == 0) c.skinTone = traitChar.skinTone;
+	if(rand(2) == 0) c.lipColor = traitChar.lipColor;
+	if(rand(2) == 0) c.nippleColor = traitChar.nippleColor;
+	if(rand(2) == 0) c.eyeColor = traitChar.eyeColor;
+	if(traitChar.hairColor != "NOT SET" && rand(2) == 0) c.hairColor = traitChar.hairColor;
+	if(traitChar.furColor != "NOT SET" && rand(2) == 0) c.furColor = traitChar.furColor;
+	
+	c.MaturationRate = 1.0;
+	c.BornTimestamp = GetGameTimestamp() - rand(10*60);
+	ChildManager.addChild(c)
+
 	if(flags["KHORGAN_TOTAL_KIDS"] == undefined) flags["KHORGAN_TOTAL_KIDS"] = 0;
 	flags["KHORGAN_TOTAL_KIDS"] += flags["KHORGAN_NUM_BABIES"];
 	flags["KHORGAN_GAST_PREG_TIMER"] = undefined;
@@ -629,4 +631,38 @@ public function khorganGastBirth():void
 	flags["KHORGAN_PREG_EMAIL2"] = undefined;
 	flags["KHORGAN_PREG_EMAIL3"] = undefined;
 	flags["KHORGAN_PREG_EMAIL4"] = undefined;
+}
+
+public function tamtamBabyBlurbs():void
+{
+	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_FELINE, 0, 4*12) == 1)
+	{
+		var boy:Boolean = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_FELINE, ChildManager.GENDER_MALE, 0, 4*12);
+		output("\n\nYour kaithrit kitten is sprawled out on the floor, playing with a collection of fluffy toys. " + (boy ? "He" : "She") + " is clearly teething, chewing on toys as much as " + (boy ? "he" : "she") + "'s actually playing with them. " + (boy ? "His" : "Her") + " tails sway in the air, curling in on themselves happily.");
+	}
+	else if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_FELINE, 0, 4*12) == 2)
+	{
+		output("\n\nYour pair of kaithrit-born kittens are sprawled out over each other, play-brawling between quick cat naps with their tails wrapped around each other.");
+	}
+	else if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_FELINE, 0, 4*12) >= 3)
+	{
+		output("\n\nYou see a bushel of kaithrit kittens crawling all over each other, bapping noses and tugging on tails and ears. They constantly wrap their tails around their siblings', a form of familiar communication unique to them.");
+	}
+}
+
+public function khorganBabyBlurbs():void
+{
+	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_FELINE, 0, 4*12) == 1)
+	{
+		var boy:Boolean = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_THRAGGEN, ChildManager.GENDER_MALE, 0, 4*12);
+		output("\n\nYour thraggen " + (boy ? "son" : "daughter") + " is crawling around " + (boy ? "his" : "her") + " room, causing havoc whenever a staff member isn't paying attention. " + (boy ? "He" : "She") + "'s a little hellion already, playing with toys before hurling them against a wall or out the door. Gonna be big and strong, this one.");
+	}
+	else if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_THRAGGEN, 0, 4*12) == 2)
+	{
+		output("\n\nYour two " + (silly ? "spork" : "thraggen") + " kids are playing in their room, alternating between play-wrestling and falling asleep in each other's arms. More often than not, one of them's chewing on the other.");
+	}
+	else if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_THRAGGEN, 0, 4*12) >= 3)
+	{
+		output("\n\nThere's a big mess of thraggen squabbling in one of the rooms, slugging it out... about as good as babies do. They're really just in a pile, grabbing and chewing on each other before being broken up by the nursery staff. Every hour or so, Briget herself is forced to come in and take one of them away from the others for a little comfort when things get just a little too real.");
+	}
 }
