@@ -112,6 +112,8 @@ public function tryKnockUpTam():int
 		if(rand(10000) <= score)
 		{
 			flags["TAMTAM_GAST_PREG_TIMER"] = 0;
+			//Default is natural kids, can be changed via 2nd preg email
+			flags["TAMTAM_BABY_GENES"] = 1;
 			flags["TAMTAM_PREG_PAID"] = undefined;
 			pc.clearRut();
 			
@@ -161,6 +163,8 @@ public function tryKnockUpKhorgan():int
 		if(rand(10000) <= score)
 		{
 			flags["KHORGAN_GAST_PREG_TIMER"] = 0;
+			//Default is natural kids, can be changed via 2nd preg email
+			flags["KHORGAN_BABY_GENES"] = 1;
 			flags["KHORGAN_PREG_PAID"] = undefined;
 			pc.clearRut();
 			
@@ -591,6 +595,7 @@ public function tamtamGastBirth():void
 	flags["TAMTAM_PREG_EMAIL2"] = undefined;
 	flags["TAMTAM_PREG_EMAIL3"] = undefined;
 	flags["TAMTAM_PREG_EMAIL4"] = undefined;
+	flags["TAMTAM_PREG_EMAIL_CUSTOM"] = undefined;
 }
 
 public function khorganGastBirth():void
@@ -631,6 +636,7 @@ public function khorganGastBirth():void
 	flags["KHORGAN_PREG_EMAIL2"] = undefined;
 	flags["KHORGAN_PREG_EMAIL3"] = undefined;
 	flags["KHORGAN_PREG_EMAIL4"] = undefined;
+	flags["KHORGAN_PREG_EMAIL_CUSTOM"] = undefined;
 }
 
 public function tamtamBabyBlurbs():void

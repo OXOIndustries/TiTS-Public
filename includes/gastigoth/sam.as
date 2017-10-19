@@ -290,6 +290,8 @@ public function tryKnockUpSam():int
 		if(rand(10000) <= score)
 		{
 			flags["SAM_GAST_PREG_TIMER"] = 0;
+			//Default is natural kids, can be changed via 2nd preg email
+			flags["SAM_BABY_GENES"] = 1;
 			flags["SAM_PREG_PAID"] = undefined;
 			pc.clearRut();
 			
@@ -379,6 +381,7 @@ public function samGastBirth():void
 	flags["SAM_PREG_EMAIL2"] = undefined;
 	flags["SAM_PREG_EMAIL3"] = undefined;
 	flags["SAM_PREG_EMAIL4"] = undefined;
+	flags["SAM_PREG_EMAIL_CUSTOM"] = undefined;
 }
 
 public function samBabiesVisitOptions(button:Number):Number

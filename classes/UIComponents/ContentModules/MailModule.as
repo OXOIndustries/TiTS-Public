@@ -111,7 +111,7 @@ package classes.UIComponents.ContentModules
 			if(kGAMECLASS.SpamEmailKeys.indexOf(key) != -1) addGhostButton(0, "Delete", deleteFor, key);
 			
 			//IDK Savin wants a menu inside the email for this stuff
-			if(key == "sam_preg2" && kGAMECLASS.flags["SAM_BABY_GENES"] == undefined)
+			if(key == "sam_preg2" && kGAMECLASS.flags["SAM_PREG_EMAIL_CUSTOM"] == undefined)
 			{
 				kGAMECLASS.flags["SAM_PREG_EMAIL_CUSTOM"] = 1;
 				addGhostButton(0, "Natural", gastigothPregEmail2Natural, "Sam", "Natural", "Keep your child" + (kGAMECLASS.flags["SAM_NUM_BABIES"] > 1 ? "ren" : "") + " natural.");
@@ -119,7 +119,7 @@ package classes.UIComponents.ContentModules
 				addGhostButton(2, "Custom Job", gastigothPregEmail2Custom, "Sam", "Custom Job", "Go all in with the editing, making " + (kGAMECLASS.flags["SAM_NUM_BABIES"] > 1 ? "perfect children" : "a perect child") + ".");
 				return;
 			} 
-			else if(key == "khorgan_preg2" && kGAMECLASS.flags["KHORGAN_BABY_GENES"] == undefined)
+			else if(key == "khorgan_preg2" && kGAMECLASS.flags["KHORGAN_PREG_EMAIL_CUSTOM"] == undefined)
 			{
 				kGAMECLASS.flags["KHORGAN_PREG_EMAIL_CUSTOM"] = 1;
 				addGhostButton(0, "Natural", gastigothPregEmail2Natural, "Khorgan", "Natural", "Keep your child" + (kGAMECLASS.flags["KHORGAN_NUM_BABIES"] > 1 ? "ren" : "") + " natural.");
@@ -127,7 +127,7 @@ package classes.UIComponents.ContentModules
 				addGhostButton(2, "Custom Job", gastigothPregEmail2Custom, "Khorgan", "Custom Job", "Go all in with the editing, making " + (kGAMECLASS.flags["KHORGAN_NUM_BABIES"] > 1 ? "perfect children" : "a perect child") + ".");
 				return;
 			} 
-			else if(key == "tamtam_preg2" && kGAMECLASS.flags["TAMTAM_BABY_GENES"] == undefined)
+			else if(key == "tamtam_preg2" && kGAMECLASS.flags["TAMTAM_PREG_EMAIL_CUSTOM"] == undefined)
 			{
 				kGAMECLASS.flags["TAMTAM_PREG_EMAIL_CUSTOM"] = 1;
 				addGhostButton(0, "Natural", gastigothPregEmail2Natural, "Tam-Tam", "Natural", "Keep your child" + (kGAMECLASS.flags["TAMTAM_NUM_BABIES"] > 1 ? "ren" : "") + " natural.");
