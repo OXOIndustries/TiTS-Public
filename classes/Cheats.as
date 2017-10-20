@@ -352,10 +352,11 @@
 				kGAMECLASS.output("\n\n\n\nBAD! You can't skip more than 50 years at a time.");
 				return;
 			}
-			//Breaking it up into 5 processTime calls should make stuff proc more consistently
+			//Breaking it up into 1 processTime/day calls should make stuff proc more consistently
 			else if(sTime >= 60*24)
-				for(var i:int = 0; i < 5; i++)
-					kGAMECLASS.processTime(sTime/5);
+				for(var i:int = 0; i < sTime/(60*24); i++)
+					kGAMECLASS.processTime(60*24);
+			else kGAMECLASS.processTime(sTime);
 			
 			Cheats.TimeSkip();
 		}

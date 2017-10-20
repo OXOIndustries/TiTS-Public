@@ -2484,6 +2484,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processHLPantyShit();
 	processHardlightAGThongBlurbs(deltaT, doOut);
 	
+	
 	// Per-day events
 	if (totalDays >= 1)
 	{
@@ -2502,6 +2503,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		seraOnTavrosObedience(totalDays);
 		processGastigothEvents();
 		breedwellTryUnlock();
+		processIlariaPregEvents(deltaT, doOut, totalDays);
 		//9999 processQuaellePregEvents(deltaT, doOut, totalDays);
 	}
 	

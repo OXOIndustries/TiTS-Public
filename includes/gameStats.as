@@ -3721,6 +3721,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Ilaria:</b> Met her");
 				if(flags["ILERIA_GLAZED"] != undefined) output2("\n<b>* Ilaria, Times Glazed Order:</b> " + flags["ILERIA_GLAZED"]);
 				if(flags["FUCKED_ILARIA"] != undefined) output2("\n<b>* Ilaria, Times Sexed:</b> " + flags["FUCKED_ILARIA"]);
+				if(flags["ILARIA_TOTAL_KIDS"] > 0) output2("\n<b>* Ilaria, Total Kids:</b> " + flags["ILARIA_TOTAL_KIDS"]);
 				variousCount++;
 			}
 			// Nursery!

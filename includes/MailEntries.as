@@ -217,6 +217,9 @@ public function configureMails():void
 	MailManager.addMailEntry("gastigoth_unlock",gastigothEmailText, "Exclusive Offer","Regina Kasmiran","DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("syri_video", syriVideoEmailText, "New_Video.holo", "Syri Dorna", "BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("breedwell_unlock", breedwellEmailText, "The Breedwell Incubation Centre Needs YOU.", "TamaniCorp", "Marketing@TamaniCorp.corp", quickPCTo, quickPCToAddress);
+	//Stubs so that the mail entries show up on a load
+	MailManager.addMailEntry("ilaria_preg1", undefined, "Surprise, Surprise!", "Ilaria Ilgade", "Ilaria@BunBunBakery.com", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("ilaria_preg2", undefined, "Ilaria Ilgade", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String
