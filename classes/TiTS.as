@@ -362,6 +362,7 @@
 		include "../includes/gastigoth/gastigoth.as";
 		include "../includes/gastigoth/rooms.as";
 		include "../includes/gastigoth/sam.as";
+		include "../includes/gastigoth/pregStuff.as";
 		
 		// Karaquest 2- Karaharder.
 		include "../includes/events/karaquest2/content.as";
@@ -1444,6 +1445,21 @@
 		public function get ciaran():Ciaran
 		{
 			return chars["CIARAN"];
+		}
+		
+		public function get sam():SX1Techguard
+		{
+			return chars["SX1TECHGUARD"];
+		}
+		
+		public function get khorgan():CaptainKhorgan
+		{
+			return chars["CAPTAINKHORGAN"];
+		}
+		
+		public function get tamtam():TamTam
+		{
+			return chars["TAMTAM"];
 		}
 
 		public function testShipCombat():void
