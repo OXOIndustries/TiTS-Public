@@ -1,7 +1,7 @@
 // Erika the shemale kaithrit
 // https://docs.google.com/document/d/1hyrYOSlZGf6ROCvbXlak7LI3a8OFT2QArRqPYcOzOO8/edit#heading=h.q5mjn84i7rif
 	
-// ERIKA_DEGRADE_HER			PC has choosen the DegradeHer option at least once
+// ERIKA_DEGRADED_HER			PC has choosen the DegradeHer option at least once
 // ERIKA_GIVEN_ANUSOFT			Gave her a dose of anusoft
 // ERIKA_MET					Met her before
 // ERIKA_SEEN_LUBE				PC has seen the lube
@@ -31,9 +31,9 @@ public function erikaBarAddendum(btnSlot:int = 0):void
 	
 	if (flags["ERIKA_MET"] == undefined) output("A slender kaithrit girl is sitting alone at the bar, tails wrapped around her waist. She is nursing a drink and looking around the bar. She notices that you're looking back at her and quickly turns away to look at her drink, ears flat against her head. After a while she takes another peek at you, with the same result.");
 	else output("Erika is sitting at the bar again, nursing a drink. She notices you and gives you a little wave and a hopeful smile before turning back to her drink.");
-	
-	//Stygs ToDo Add desciptions to button
-	addButton(btnSlot, (flags["ERIKA_MET"] != undefined ? "Erika1" : "Erika2"), erikaMainMenu);
+
+	if (flags["ERIKA_MET"] != undefined) addButton(btnSlot,"Erika",erikaMainMenu,undefined,"Erika","You could go to say hi to Erika, she definitely could use the company.");
+	else addButton(btnSlot,"Kaithrit Girl",erikaMainMenu,undefined,"Kaithrit Girl","Maybe you could go over and say hi since she can't seem to keep her eyes away from you.");
 }
 
 public function erikaMainMenu():void
@@ -109,8 +109,13 @@ public function erikaMainMenu():void
 	clearMenu();
 	addButton(0,"Talk",erikaTalkMenu);
 	addButton(1, "Buy Drink", erikaBuyDrinkMenu);
-	if (flags["ERIKA_SEEN_NAKED"] != undefined) addButton(2,"Sex", erikaSexIntro);
-	else addDisabledButton(2,"Locked","Locked","You don’t know enough about her for this.");
+	if (pc.lust() >= 33 && pc.hasGenitals())
+	{
+		if (flags["ERIKA_SEEN_NAKED"] != undefined) addButton(2,"Sex", erikaSexMenu);
+		else addButton(2,"Sex", erikaSexIntro);
+	}
+	else if(pc.lust() >= 33) addDisabledButton(2,"Sex","Sex","You need genitalia to do this!");
+	else addDisabledButton(2,"Sex","Sex","You’re not up for sex right now.");
 	addButton(5,"Appearance",erikaAppearance);
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -193,7 +198,6 @@ public function erikaTalkDrinking():void
 	addDisabledButton(1, "Drinking");
 }
 
-// [Body] (need to take her to your ship once. Sex not required)
 public function erikaTalkBody():void
 {
 	clearOutput();
@@ -253,7 +257,6 @@ public function erikaTalkBody():void
 	addDisabledButton(2, "Body");
 }
 
-// [Mother] (requires talk about her. Can be done only once)
 public function erikaTalkMother():void
 {
 	clearOutput();
@@ -287,7 +290,6 @@ public function erikaTalkMother():void
 	addDisabledButton(3, "Mother");
 }
 
-// [Sister] (requires talking about [Body] and [Her] and talked to Lerris)
 public function erikaTalkSister():void
 {
 	clearOutput();
@@ -392,32 +394,44 @@ public function erikaBuyDrinkXilErAte():void
 
 	pc.credits -= 50;
 	processTime(15 + rand(5));
-	// Stygs: Instead of overwriting all menu buttons just add them here
-	//erikaBuyDrinkMenu(false);
 	clearMenu();
 	addDisabledButton(0,"Crabbst");
 	addDisabledButton(1,"Mead");
 	addDisabledButton(2, "X-Zil-rate");
-	if (pc.hasGenitals()) addButton(5, "Public Sex", erikaPublicSex);
-	else addDisabledButton(5, "Public Sex", "Public Sex", "You need genitals to do this!");
-	if (pc.hasGenitals()) addButton(6, "To The Ship", erikaTakeHerToShip);
-	else addDisabledButton(6, "To The Ship", "To The Ship", "You need genitals to do this!");
+	if (pc.lust() >= 33 && pc.hasGenitals()) addButton(5, "Public Sex", erikaPublicSex);
+	else if(pc.lust() >= 33) addDisabledButton(5,"Public Sex","Public Sex","You need genitalia to do this!");
+	else addDisabledButton(5,"Public Sex","Public Sex","You’re not up for sex right now.");
+	if (pc.lust() >= 33 && pc.hasGenitals()) addButton(6, "To The Ship", erikaTakeHerToShip);
+	else if(pc.lust() >= 33) addDisabledButton(6,"To The Ship","To The Ship","You need genitalia to do this!");
+	else addDisabledButton(6,"To The Ship","To The Ship","You’re not up for sex right now.");
 	addButton(14,"Back",erikaMainMenu);
 }
 
-public function erikaPublicSex():void
+public function erikaPublicSex(Threesome:Boolean = true):void
 {
 	clearOutput();
 	showErika();
 	author("Doots");
 
-	output("You decide that it's a good time to get some oral service from her. ");
-	if (pc.tallness >= 84) output("You pick the small kaithrit up and hoist her over your shoulder.");
-	else output("You grab her arm and pull her along.");
-	output("\n\nSome of the other patrons give you a curious look as you make your way to a more secluded part of the bar with the kaithrit, arriving at one of the more remote tables. You take a seat and point her towards the underside of the table. She blushes when she realizes what you're implying, but she crawls under the table without any word edgewise.");
-	if (pc.isCrotchGarbed()) output("\n\nShe crawls between your legs and looks up at you. You reach down ");
-	else output(", getting any offending garments out of the way");
-	output(", getting any offending garments out of the way");
+	if (Threesome)
+	{
+		
+		output("You decide that it's a good time to get some oral service from her. ");
+		if (pc.tallness >= 84) output("You pick the small kaithrit up and hoist her over your shoulder.");
+		else output("You grab her arm and pull her along.");
+		output("\n\nSome of the other patrons give you a curious look as you make your way to a more secluded part of the bar with the kaithrit, arriving at one of the more remote tables. You take a seat and point her towards the underside of the table. She blushes when she realizes what you're implying, but she crawls under the table without any word edgewise.");
+		if (pc.isCrotchGarbed()) output("\n\nShe crawls between your legs and looks up at you. You reach down");
+		else output(", getting any offending garments out of the way");
+		output(", give her ears a little scratch and pull her head against your [pc.crotch]. Now would be a good time to decide what kind of oral service you want.");
+	}
+	else
+	{
+		output("Unfortunately, your plans are spoiled when you don’t find anyone who doesn't have a partner already, or isn't three sheets to the wind.");
+		output("\n\nYou spot someone who might be just what you're looking for, but before you can even open your mouth some smug looking kui-tan starts chatting him up. Disheartened, you return to the table, sitting down next to her.");
+		output("\n\n“<i>Change of plans. I couldn't find anyone available. We're just going back to the original idea.</i>”");
+		output("\n\nErika gives you a questioning look but scuttles down under the table without a word.");
+		output("\n\nNow that your plan has been foiled, it's back to the start. What kind of oral service do you want?");
+	}
 
 	clearMenu();
 	// Stygs ToDo Add reqiurements
@@ -426,7 +440,9 @@ public function erikaPublicSex():void
 	else addDisabledButton(0, "Dick", "Dick", "You need a penis to do this!");
 	if (pc.hasVagina()) addButton(1, "Pussy", erikaPublicSexPussy);
 	else addDisabledButton(1, "Pussy", "Pussy", "You need a vagina to do this!");
-	addButton(2,"Threesome",erikaPublicSexThreesome1);
+	if (Threesome) addButton(2, "Threesome", erikaPublicSexThreesome1);
+	else addDisabledButton(2, "Threesome", "Threesome", "You couldn't find another partner.");
+	addButton(14,"Leave",erikaPublicSexThreesomeLeave);
 }
 
 public function erikaPublicSexDick():void
@@ -470,7 +486,6 @@ public function erikaPublicSexDick():void
 	if (pc.isBimbo()) output("\n\n“<i>I'm so close babe, just a bit more.</i>” ");
 	else output("\n\n“<i>Ah, almost there, just a bit more.</i>” ");
 	output("you groan under your breath, urging her to go faster. Without a warning her throat starts convulsing around your length. The sudden tightness around your [pc.cock] makes you instinctively pull her head down your length");
-	// Stygs ToDo Check if the knot belongs to the right cock
 	if (pc.hasKnot()) output(", bumping the swelling bulb of your [pc.knot] against her lips");
 	output(".");
 	if (pc.cumQ() <= 500)
@@ -514,6 +529,8 @@ public function erikaPublicSexDick():void
 		output("\n\nShe blows you a raspberry before walking off, albeit slowly since she is still exhausted and bloated.");
 	}
 
+	IncrementFlag("ERIKA_SEXED");
+
 	processTime(20+rand(5));
 	erika.loadInMouth(pc);
 	pc.orgasm();
@@ -550,7 +567,10 @@ public function erikaPublicSexPussy():void
 	else output("“<i>Quite the makeover I gave you, but you'd better go wash up unless you want to smell like pussy for rest of the day.</i>”");
 	output("\n\nShe's beet red when you let her go. Without a word, the blushing kaithrit sets off to the bathroom. You wait for her to come back, idly toying with your [pc.pussy]. After a while, she comes back, her face clean and clear of your [pc.girlCum]. She sits next to you. “<i>I had fun, thanks. I wouldn't ever have realized how fun this is without your help, to be seen by someone... anyone,</i>” she starts to mutter dreamingly. You shake her awake from her fantasies, kissing her on the nose and sending her on her way.");
 
+	IncrementFlag("ERIKA_SEXED");
+
 	processTime(20+rand(5));
+	erika.girlCumInMouth(pc);
 	pc.orgasm();
 
 	clearMenu();
@@ -566,28 +586,17 @@ public function erikaPublicSexThreesome1():void
 	output("You get a better idea. “<i>Come out from under there,</i>” you tell her as you pull her onto the seat next to you and stand up. Wandering to the bar proper you search out a partner for your plan to stuff the silly little kaithrit.");
 
 	clearMenu();
-	addButton(0,"Next",erikaPublicSexThreesome2);
-}
-
-public function erikaPublicSexThreesome2():void
-{
-	clearOutput();
-	showErika();
-	author("Doots");
-
-	output("");
-
-	clearMenu();
-	addButton(0,"Gryvain",erikaPublicSexThreesomeGryvain);
-	addButton(1,"Ausar",erikaPublicSexThreesomeAusar);
-	addButton(2,"No Takers",erikaPublicSexThreesomeNoTakers);
-	addButton(14,"Back",mainGameMenu);
+	// [Gryvain] (50% chance of occurring instead of the ausar one also requires PC dick smaller than max
+	if (rand(2) == 0 && pc.cockThatFits(erika.analCapacity()) >= 0) addButton(0, "Next", erikaPublicSexThreesomeGryvain);
+	// [Ausar] (50% chance of occurring instead of the gryvain. requires able to fit into her ass or mouth)
+	else if (rand(2) == 1 && pc.cockThatFits(erika.analCapacity()*1.5) >= 0) addButton(0, "Next", erikaPublicSexThreesomeAusar);
+	else addButton(0, "Next", erikaPublicSex, false);
 }
 
 public function erikaPublicSexThreesomeGryvain():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	output("You spot a bored looking gryvain lounging at the bar. ");
@@ -622,14 +631,14 @@ public function erikaPublicSexThreesomeGryvain():void
 	output("\n\nGritting your teeth, you hold back the tide of your orgasm. You can't let this smug fucker beat you. She smirks once more when she realizes that you're trying to holding out.");
 
 	clearMenu();
-	if (pc.libido() < 75) addButton(0, "Next", erikaPublicSexThreesomeGryvainVictory);
+	if (pc.libido() < 66) addButton(0, "Next", erikaPublicSexThreesomeGryvainVictory);
 	else addButton(0,"Next",erikaPublicSexThreesomeGryvainLoss);
 }
 
 public function erikaPublicSexThreesomeGryvainVictory():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	output("By the time Erika's cock starts to dribble its remaining cum down her shaft during her second orgasm, you're starting to have a hard time holding back your climax. Erika's rhythmical clenching around you, and the reptilian shaft throbbing against your [pc.cock] definitely doesn't make the job any easier. Sweat gathers on your brow and you grit your teeth, hard. ");
@@ -663,8 +672,13 @@ public function erikaPublicSexThreesomeGryvainVictory():void
 	else output("\n\nYou smile back at her, fully well knowing that you beat her.");
 	output("\n\nYou tap on Erika's cheek to see if she's ok, but the only response you get is a small murmur and faint snoring. It seems you've fucked Erika into exhaustion. “<i>What should we do?</i>” the gryvain asks you. “<i>We can't just leave her here like this.</i>”");
 
+	flags["ERIKA_SEEN_NAKED"] = 1;
+	IncrementFlag("ERIKA_SEXED");
+
 	processTime(30+rand(15));
 	pc.orgasm();
+	erika.loadInAss(pc);
+	erika.orgasm();
 
 	clearMenu();
 
@@ -684,7 +698,7 @@ public function erikaPublicSexThreesomeGryvainVictory():void
 public function erikaPublicSexThreesomeGryvainLoss():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	output("It's no use, you can't pull yourself back from the edge anymore. Biting your lip, you give in, letting your [pc.cum] flow through your [pc.cock] and into Erika's ass. ");
@@ -702,8 +716,6 @@ public function erikaPublicSexThreesomeGryvainLoss():void
 	else output(", swelling Erika's stomach with the amount of liquid lust she's still able to produce.");
 	output("\n\nAfter she's done cumming into Erika, she plops herself down on a bench with Erika in her lap, slowly stroking and caressing the kaithrit's cum-swollen belly. “<i>Too bad you couldn't have held out a little longer. It would've been a lot more fun.</i>” She grins and, when her knot deflates, pulls Erika off of her dick, drenching everything below her waist in mixed jizz as it pours out of the abused hole. She sets Erika down beside her and stands up, walking over to you. She claps you on the shoulder and sighs. “<i>Better luck next time?</i>” She bursts out laughing and begins walking away, her cock leaving a trail of cum behind her.");
 
-	processTime(30+rand(15));
-	pc.orgasm();
 
 	clearMenu();
 	addButton(0,"Next",erikaPublicSexThreesomeGryvainEnd);
@@ -721,6 +733,14 @@ public function erikaPublicSexThreesomeGryvainEnd():void
 	output(", you're still at Burt's, or did you already forget what happened?</i>” You stroke her inflated belly. “<i>I couldn't just leave you here. Are you gonna be fine now?</i>”");
 	output("\n\n“<i>Yeah, I'll just rest for a bit, then I'll be fine.</i>”");
 	output("\n\n“<i>Here, you can have what's left of this,</i>” you say handing the mug to her. “<i>I'm going now, but you rest here.</i>” You offer her a parting smile before leaving her to recuperate.");
+	
+	flags["ERIKA_SEEN_NAKED"] = 1;
+	IncrementFlag("ERIKA_SEXED");
+
+	processTime(60+rand(15));
+	pc.orgasm();
+	erika.loadInAss();
+	erika.orgasm();
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -729,7 +749,7 @@ public function erikaPublicSexThreesomeGryvainEnd():void
 public function erikaPublicSexThreesomeAusar():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	output("You spot a buff ausar at the bar, knocking back drinks. Hoping he's not three sheets to the wind, you sit next to him, asking if he would be willing to help you with something. ");
@@ -748,8 +768,11 @@ public function erikaPublicSexThreesomeAusar():void
 public function erikaPublicSexThreesomeAusarAss():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
+
+	var x:int = pc.cockThatFits(erika.analCapacity()*1.5);
+	if(x < 0) x = pc.smallestCockIndex();
 
 	output("“<i>That's fine, I prefer the mouth, anyways.</i>” He unbuckles his jeans before climbing onto the table. “<i>You like this kind of treatment, don't you?</i>” he chuckles, pushing one of his thick digits into her mouth. He pulls the finger out of her mouth once it's slathered with her saliva and replaces it with his dick. It's about 8 or 9 inches long and bright red, covered in thick veins. His knot is surprisingly large compared to rest of his shaft. ");
 	output("\n\n“<i>Better open up girl, this is a bit thicker than my finger,</i>” he says as he rubs his tapered tip against her lips.");
@@ -771,8 +794,8 @@ public function erikaPublicSexThreesomeAusarAss():void
 	else if(pc.isMischievous()) output("\n\n“<i>Well now we know you have great stamina and willpower.</i>” You grin at him and pat Erika's ass. ");
 	else output("\n\n“<i>That's your problem, not mine. I never told you to do anything.</i>” Ignoring his grumbling you turn your attention back to Erika. ");
 	output("Since he's so far ahead, you'd better catch up with him. You start to pump your [pc.hips] against Erika's butt in a steady pace, building towards your own orgasm. ");
-	// Stygs ToDo
-	//if PC cock huge: The size of your [pc.cock] bulges her belly, an imprint of your [pc.cockHead] forming in her abdomen with every thrust.}
+	// If PC has large cock
+	if (pc.cocks[x].cLength >= 20) output("The size of your [pc.cock] bulges her belly, an imprint of your [pc.cockHead] forming in her abdomen with every thrust.");
 	output("\n\nErika's moans and whimpers are muffled by the cock in her mouth, and with every thrust you send her back onto said dick, effectively sawing her between the two dicks impaling her.");
 	output("\n\nWith your [pc.cockNounSimple] rubbing against her prostate, she is starting to get hard despite just cumming. In short order her puppy pecker is rock hard again. “ < i > What kind of lover would I be if I didn't even give you a reach around while drilling your ass?</i>” you chuckle, earning another muffled whimper from her, along a gush of pre. “<i>Tell me, ");
 	if (pc.isBimbo()) output("dear, ");
@@ -805,8 +828,13 @@ public function erikaPublicSexThreesomeAusarAss():void
 	output("\n\nAfter a while of fighting for breath, she nods, snuggling next to you and murmuring something about letting go and doing this again.");
 	output("\n\nAfter a while, you pick up your [pc.gear] and offer her a small wave before heading back to the bar proper.");
 
+	flags["ERIKA_SEEN_NAKED"] = 1;
+	IncrementFlag("ERIKA_SEXED");
+
 	processTime(30+rand(15));
 	pc.orgasm();
+	erika.loadInAss(pc);
+	erika.orgasm();
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -815,12 +843,15 @@ public function erikaPublicSexThreesomeAusarAss():void
 public function erikaPublicSexThreesomeAusarMouth():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
+	var x:int = pc.cockThatFits(erika.analCapacity()*1.5);
+	if(x < 0) x = pc.smallestCockIndex();
+
 	output("“<i>I would have preferred the mouth, but I can live with the ass,</i>” he says as he tosses his jeans over his shoulder, making you dodge the incoming clothing. Climbing onto the table he starts to hotdog his shaft between her cheeks, rubbing his pre between them and, consequently, all over Erika’s [erika.asshole]. You climb onto the table yourself after getting rid of your [pc.gear]. Taking your [pc.cock] into your hands it quickly springs to full mast at the prospect of stuffing her mouth. Primed and ready to go, you place your [pc.cockHead] to her lips. Using both hands on her head you pull her onto your [pc.cock], pushing into her throat. ");
-	//Stygs ToDo
-	//If PC cock large: Her neck bulges with the vague outline of your [pc.cockNounSimple], and You are so deep that her nose is pressed against your [pc.sheath].
+	// If PC has large cock
+	if (pc.cocks[x].cLength >= 20) output("Her neck bulges with the vague outline of your [pc.cockNounSimple], and You are so deep that her nose is pressed against your [pc.sheath]");
 	output("\n\nShe lifts one hand to ");
 	if (pc.balls > 0) output("rub your [pc.balls], kneading them, trying to coax an early load out of them. ");
 	else if (pc.hasVagina()) output("softly tease your [pc.clit] urging you closer to your orgasm. ");
@@ -877,31 +908,31 @@ public function erikaPublicSexThreesomeAusarMouth():void
 	output("\n\nThe hunky ausar leans back in his seat, caressing Erikas hips and cum filled belly. “<i>You sure you want to hang around? The knot ain't going down anytime soon.</i>” He bucks his hips, demonstrating that Erika is stuck fast to his knot.");
 	output("\n\nShrugging you pick up your [pc.gear] and walk back to the bar proper. Burt chuckles about the show you three put up.");
 
+	flags["ERIKA_SEEN_NAKED"] = 1;
+	IncrementFlag("ERIKA_SEXED");
+
 	processTime(30+rand(15));
 	pc.orgasm();
+	erika.loadInMouth(pc);
+	erika.orgasm();
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
-public function erikaPublicSexThreesomeNoTakers():void
+public function erikaPublicSexThreesomeLeave():void
 {
 	clearOutput();
 	showErika();
 	author("Doots");
 
-	output("Unfortunately, your plans are spoiled when you don’t find anyone who doesn't have a partner already, or isn't three sheets to the wind.");
-	output("\n\nYou spot someone who might be just what you're looking for, but before you can even open your mouth some smug looking kui-tan starts chatting him up. Disheartened, you return to the table, sitting down next to her.");
-	output("\n\n“<i>Change of plans. I couldn't find anyone available. We're just going back to the original idea.</i>”");
-	output("\n\nErika gives you a questioning look but scuttles down under the table without a word.");
-	output("\n\nNow that your plan has been foiled, it's back to the start. What kind of oral service do you want?");
+	output("You decide you changed your mind. “<i>Come out from under there.</i>” you tell her as you pull her onto the seat next to you. ");
+	if (pc.isAss()) output("“<i>Hands off, slut. I have places to be and other sluts to fuck.</i>”");
+	else output("You give her a tap on the nose. “<i>I'm not really interested at the moment, but we'll see if I'm more inclined some other time.</i>”");
+	output("\n\nShe seems a little disappointed by your reaction, but she starts to smile when you pull her into a hug and kiss her.");
 
 	clearMenu();
-	if (pc.hasCock()) addButton(0, "Dick", erikaPublicSexDick);
-	else addDisabledButton(0, "Dick", "Dick", "You need a penis to do this!");
-	if (pc.hasVagina()) addButton(1, "Pussy", erikaPublicSexPussy);
-	else addDisabledButton(1, "Pussy", "Pussy", "You need a vagina to do this!");
-	addDisabledButton(2,"Threesome", "Threesome", "You couldn't find another partner.");
+	addButton(0,"Next",mainGameMenu);
 }
 
 public function erikaTakeHerToShip():void
@@ -918,7 +949,8 @@ public function erikaTakeHerToShip():void
 	output("\n\nWhen you arrive at your ship Erika stops and pants “<i>I want to pick up something from my place,</i>” you tell her to hurry, she turns and bolts off, obviously just as impatient as you are. Now you are left to play the waiting game.");
 
 	clearMenu();
-	addButton(0,"Next",erikaToyBox);
+	if (flags["ERIKA_SEEN_NAKED"] != undefined) addButton(0,"Next", erikaSexMenu);
+	else addButton(0,"Next", erikaToyBox);
 }
 
 public function erikaSexIntro():void
@@ -943,7 +975,7 @@ public function erikaSexIntro():void
 public function erikaToyBox():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	output("The consoles light up, informing you that Erika was able to find your ship. Opening the airlock, you see Erika standing there with a rather large box under her arm. You wonder what's important enough to go out of her way to get. Moving aside you let her in. You're sure she will tell you what's in the box eventually.");
@@ -953,83 +985,111 @@ public function erikaToyBox():void
 	output("\n\n“<i>Yes, toys. Sex toys, to be exact.</i>”");
 	output("\n\nSex toys, huh. Yeah, in hindsight you should have known.");
 	output("\n\n“<i>Open it,</i>” she urges you while she starts to strip down, throwing the bundle of clothes to a corner of the room.");
-	if (flags["ERIKA_SEEN_NAKED"] == undefined)
+	output("\n\nYou open the box... except it's locked, so you don't open it. ");
+	if (pc.characterClass == GLOBAL.CLASS_SMUGGLER)
 	{
-		output("\n\nYou open the box... except it's locked, so you don't open it. ");
-		if (pc.characterClass == GLOBAL.CLASS_SMUGGLER)
-		{
-			output("Well, a simple lock like this won't keep you from the insides of this box. After a while of fiddling with the lock, it pops open.");
-			output("\n\n“<i>You know, I could just have opened it.</i>”");
-			output("\n\n“<i>Where's the fun in that,</i>” you smirk at her before popping open the box.");
-		}
-		else
-		{
-			output("“<i>It's locked you know. I can't really open it if it's locked.</i>”");
-			output("\n\n“<i>Oh, sorry. Completely forgot about that.</i>” She fiddles with the box for a short time with her ass in the air. “<i>There we go.</i>” You reach over and pop open the lid of the box.");
-		}
+		output("Well, a simple lock like this won't keep you from the insides of this box. After a while of fiddling with the lock, it pops open.");
+		output("\n\n“<i>You know, I could just have opened it.</i>”");
+		output("\n\n“<i>Where's the fun in that,</i>” you smirk at her before popping open the box.");
+	}
+	else
+	{
+		output("“<i>It's locked you know. I can't really open it if it's locked.</i>”");
+		output("\n\n“<i>Oh, sorry. Completely forgot about that.</i>” She fiddles with the box for a short time with her ass in the air. “<i>There we go.</i>” You reach over and pop open the lid of the box.");
 	}
 	output("\n\nTaking a look inside, you see what is basically a dragon's hoard of sex toys: anal beads, butt plugs of varying sizes, bullet vibrators, cock rings, black electrical tape, ring gags, ball gags, bondage rope, fuzzy handcuffs, a riding crop, floggers, a paddle with small cut out hearts along its length, nipple clamps, a jar of EasyFit cream, a bottle of pink glittery lube, and a rather girthy dildo shaped like a horse cock.");
-	if (flags["ERIKA_SEEN_NAKED"] == undefined)
-	{
-		output("Something in the corner of your eye seizes your attention. It's Erika, but she's blushing again. You think that, since you’re both ass naked, it would be a little too late for being shy. Turning your attention to her, you break the short-lived silence, asking is something is wrong.");
-		output("\n\n“<i>Wrong? Well, it’s just that I forgot to tell you something. Something that might be a big deal for you, or completely trivial. It's just easier if I show you.</i>” Turning around she bends over, pointing her rear at you.");
-		output("\n\nYou don't notice anything from the usual, a tail hole and a canine dick that is just shy of five inches beneath a pair of small, tightly compressed balls. The realization slowly dawns on you. It's not what's there, it's what's <i>not</i> there. It appears you mistook your shemale kaithrit for a herm.");
-		output("\n\n“<i>I hope it's not a problem for you. I'd understand if you're not ok with it,</i>” she whispers, ears folded against her hair as she chews on her lower lip waiting for your response.");
-		output("\n\nWell, if you had intended to fuck her pussy, that idea is out of the airlock, now. You could always just tell her that you’re not interested.");
-	}
+	output("Something in the corner of your eye seizes your attention. It's Erika, but she's blushing again. You think that, since you’re both ass naked, it would be a little too late for being shy. Turning your attention to her, you break the short-lived silence, asking is something is wrong.");
+	output("\n\n“<i>Wrong? Well, it’s just that I forgot to tell you something. Something that might be a big deal for you, or completely trivial. It's just easier if I show you.</i>” Turning around she bends over, pointing her rear at you.");
+	output("\n\nYou don't notice anything from the usual, a tail hole and a canine dick that is just shy of five inches beneath a pair of small, tightly compressed balls. The realization slowly dawns on you. It's not what's there, it's what's <i>not</i> there. It appears you mistook your shemale kaithrit for a herm.");
+	output("\n\n“<i>I hope it's not a problem for you. I'd understand if you're not ok with it,</i>” she whispers, ears folded against her hair as she chews on her lower lip waiting for your response.");
+	output("\n\nWell, if you had intended to fuck her pussy, that idea is out of the airlock, now. You could always just tell her that you’re not interested.");
 
 	flags["ERIKA_SEEN_NAKED"] = 1;
 
 	clearMenu();
-	addButton(0,"Next",erikaSexMenu);
+	addButton(0,"Next",erikaSexMenu, false);
 }
 
-// Stygs ToDO Add scenes
-public function erikaSexMenu():void
+public function erikaSexMenu(Repeat:Boolean = true):void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
+	// basicly compressed versions of erikaSexIntro & erikaToyBox
+	if (Repeat)
+	{
+		output("Chatting and drinking are fun and all, but a "+ pc.mf("man", "woman") +"can't live on that alone.");
+		if (pc.isNice()) output("\n\n“<i>I think we both would have more fun if we went somewhere more private, where I could treat you right.</i>”");
+		else if(pc.isMischievous()) output("\n\nYou sigh, drawing Erika's attention to you. “<i>This place is really boring. What do you say we get somewhere more interesting?</i>” Burt shoots you a dirty look at the mention of his bar being boring, but you ignore him and pinch Erika's buttock, giving her a solid message what you have on your mind.");
+		else output("\n\n“<i>I can't screw you in the middle of the bar in the way I want to, so how about we head back to my place, and I'll screw your brains right out of that silly little head of yours.</i>” ");
+		output("\n\n“<i>I want to pick up something from my place,</i>” she says.");
+		output("\n\nSuspecting that she's going to go pick up her little box of toys you leave her to it and return back to your own ship.");
+		output("\n\nYou lounge around for awhile in your ship, waiting for her. You start to wonder how far away she lives, mhen'ga isn't a large settlement after all.");
+		if (pc.isAss()) output(" Maybe you could find some porn on the extranet to deal with the boredom.");
+		output("\n\The consoles light up, informing you that Erika was able to find your ship. Opening the airlock, you see Erika standing there with the large sex toy filled box. You wonder what's important enough to go out of her way to get. Moving aside you let her in.");
+		output("\n\n")
+	}
 	output("If you wanted to play around with the box full of lewdness, she'd most likely be down for it.");
 	output("\n\nOr you could just ");
 	if (pc.hasCock() && pc.hasVagina()) output("stick your dick into her [erika.asshole], or stick her dick into your pussy, or ");
 	else if (pc.hasCock()) output("stick your dick in her [erika.asshole], or ");
 	else output("get her dick into your pussy, or ");
 	output("stick her dick into your ass.");
-	
+
 	clearMenu();
 
-	// [Lap Ride] (requires a penis and girth under 4)
-	addButton(0,"Lap Ride",erikaSexLapRide);
+	// [Lap Ride]
+	if(pc.cockThatFits(erika.analCapacity()*1.5) >= 0 && pc.hasCock()) addButton(0, "Lap Ride", erikaSexLapRide);
+	else if(pc.hasCock()) addDisabledButton(0,"Lap Ride","Lap Ride","Your penis is to big for Erika.");
+	else addDisabledButton(0, "Lap Ride", "Lap Ride", "You need a penis to do this!");
+	// Ride Her
 	addButton(1,"Ride Her",erikaSexRideHer);
 	// [Degrade Her] (requires vagoo and PC to be hard)
-	addButton(2,"Degrade Her",erikaSexDegradeHer);
-	//[Butt fuck] (requires PC to be in a rut and fit inside her)
-	addButton(3,"Butt Fuck",erikaSexButtFuck);
-	addButton(4,"Toys",erikaSexToys);
-	// [Let her hate fuck] (requires PC to be hard and had done [Sex] > [Degrade Her] and genitals of some sort)
-	addButton(5,"Hate Fuck",erikaSexHateFuck);
-	if (flags["ERIKA_GIVEN_ANUSOFT"] == undefined && pc.hasItemByClass(Anusoft)) addButton(6, "Give Anusoft", erikaSexGiveAnusoft);
-	else if (flags["ERIKA_GIVEN_ANUSOFT"] != undefined) addDisabledButton(6, "Give Anusoft", "Give Anusoft", "Erika has already taken anusoft.");
-	else if (!pc.hasItemByClass(Anusoft)) addDisabledButton(6, "GiveAnusoft", "Give Anusoft", "You don't have any anusoft to give Erika.");
+	if (pc.isAss() && pc.hasVagina()) (2,"Degrade Her",erikaSexDegradeHer);
+	else if (!pc.isAss()) addDisabledButton(2, "Degrade Her", "Degrade Her", "You are to friendly to do this!!");
+	else addDisabledButton(2, "Degrade Her", "Degrade Her", "You need a vagina to do this!");
+	// [Butt fuck] (requires PC to be in a rut and fit inside her)
+	if(pc.cockThatFits(erika.analCapacity()*1.5) >= 0 && pc.hasCock() && pc.inRut()) addButton(3, "Butt Fuck", erikaSexButtFuck);
+	else if(!pc.inRut()) addDisabledButton(3,"Butt Fuck","Butt Fuck","You need to be in rut for this.");
+	else if(pc.hasCock()) addDisabledButton(3,"Butt Fuck","Butt Fuck","Your penis is to big for Erika.");
+	else addDisabledButton(3, "Butt Fuck", "Butt Fuck", "You need a penis to do this!");
+	// Play with her toys
+	addButton(4, "Toys", erikaSexToys);
+	// [Let her hate fuck] (requires PC to be hard and had done [Sex] > [Degrade Her] and genitalia of some sort)
+	if (pc.isAss() && pc.hasGenitals() && flags["ERIKA_DEGRADED_HER"] != undefined) addButton(7,"Hate Fuck",erikaSexHateFuck);
+	else if (flags["ERIKA_DEGRADED_HER"] == undefined) addDisabledButton(7, "Hate Fuck", "Hate Fuck", "You need to degrade her first!");
+	else if (!pc.hasGenitals()) addDisabledButton(7, "Hate Fuck", "Hate Fuck", "You need genitalia to do this!");
+	else addDisabledButton(7, "Hate Fuck", "Hate Fuck", "You are to friendly to do this!!");
+	// Give her some anusoft
+	if (flags["ERIKA_GIVEN_ANUSOFT"] == undefined && pc.hasItemByClass(Anusoft)) addButton(10, "Give Anusoft", erikaSexGiveAnusoft);
+	else if (flags["ERIKA_GIVEN_ANUSOFT"] != undefined) addDisabledButton(10, "Give Anusoft", "Give Anusoft", "Erika has already taken anusoft.");
+	else if (!pc.hasItemByClass(Anusoft)) addDisabledButton(10, "Give Anusoft", "Give Anusoft", "You don't have any anusoft to give Erika.");
 	addButton(14,"Leave",erikaSexMenuLeave);
 }
 
 public function erikaSexLapRide():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
+	var x:int = pc.cockThatFits(erika.analCapacity()*1.5);
+	if(x < 0) x = pc.smallestCockIndex();
+
 	output("Erika snatches the bottle of pink lube from the box while you drop your [pc.gear] onto a pile on the floor. Sitting down on the edge of the bed, Erika starts to apply the lube along your [pc.cock] and you shiver at the tingling sensation of the lube being slathered along your length. Taking a dollop of lube on her fingers, she starts to apply it to her pucker. You start to stroke your lubed up length, gasping at the sensitivity of your [pc.cock]. It's far more sensitive than it was when you started.");
-	output("\n\nSeeing your reaction, Erika chuckles. “<i>The lube kicks your sensitivity up a notch or two.</i>” After a while she adds, “<i>Don't worry, the effect isn't permanent.</i>”");
-	output("\n\nShe bends down and blows air at your [pc.cockHead]. The feeling of cold air against your sensitive flesh sends shivers down your spine.");
+	if (flags["ERIKA_SEEN_LUBE"] == undefined)
+	{
+		output("\n\nSeeing your reaction, Erika chuckles. “<i>The lube kicks your sensitivity up a notch or two.</i>” After a while she adds, “<i>Don't worry, the effect isn't permanent.</i>”");
+		output("\n\nShe ");
+	}
+	else output("\n\nErika ");
+	output("bends down and blows air at your [pc.cockHead]. The feeling of cold air against your sensitive flesh sends shivers down your spine.");
 	output("\n\nYou find a moan escaping your lips as Erika kisses your cum slit. You might not last very long with how sensitive the lube made you.");
 	output("\n\nErika climbs into your lap and locks her lips with your [pc.lips], using her tongue to draw your [pc.tongue] into her mouth. Taking this pretty clear invitation, you wrestle her tongue into submission.");
 	output("\n\nGrabbing a handful of her ass, you lift her up and nuzzle your [pc.cockHead] against her pucker. With all the lube and pre, her ass is in no condition to keep your [pc.cock] out.");
 	output("\n\nYou release your two handed grip on her butt, letting gravity do all the work. Her ass takes your whole length without an issue");
-	//If PC huge cock:, an outline of your [pc.cock] forming in her stomach}
+	if (pc.cocks[x].cLength >= 20) output(", an outline of your [pc.cock] forming in her stomach");
 	output(".");
 	output("\n\nTaking her by the butt, you lift her back up, shivering at the cold air against your sensitive flesh. Letting go for the second time, you let her fall again, this time meeting her descent with a thrust of your hips, sending a thunderous clap across your bedroom.");
 	output("\n\nErika's eyes cross from your rapid dicking, and a small amount of precum leaks from her tip when you slap against her descent for the second time.");
@@ -1058,9 +1118,12 @@ public function erikaSexLapRide():void
 	output("\n\n“<i>You're not going anywhere.</i>” You smile at her before kissing and pulling a blanket over the both of you, settling down to sleep with Erika in your arms and your [pc.cock] in her ass. Both of you drift to sleep quickly in the comfortable warmth of your combined body heat.");
 
 	flags["ERIKA_SEEN_LUBE"] = 1;
+	IncrementFlag("ERIKA_SEXED");
 
-// Stygs ToDo Add orgams and time stuff
-//Pass time to 7:00 of next day
+	processTime(60+rand(15));
+	pc.orgasm();
+	erika.loadInAss(pc);
+	erika.orgasm();
 
 	clearMenu();
 	addButton(0,"Next",erikaSexLapRideEnd);
@@ -1069,7 +1132,7 @@ public function erikaSexLapRide():void
 public function erikaSexLapRideEnd():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	output("Starting to rouse from your slumber, you feel around to find your kaithrit bed-warmer. After a while of blindly groping, you start to open your eyes, only to be greeted by your bedroom completely devoid of redheaded shemale kaithrit bed-warmers.");
@@ -1084,7 +1147,7 @@ public function erikaSexLapRideEnd():void
 public function erikaSexRideHer():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	output("“<i>I could go for some hot canine meat inside me right now. And I'm sure you can provide.</i>” Smiling at her, you gently push her back to the bed, before kneeling down between her legs.");
@@ -1106,7 +1169,7 @@ public function erikaSexRideHer():void
 public function erikaSexRideHerPussy():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	output("Pushing her back onto the bed, you straddle her hips. Taking her knotted shaft in your hand, you align the tip with your [pc.pussy]. You take your time sinking down on her dick, taking it slowly at first. You don't want to ride her to dust, at least not just yet.");
@@ -1139,8 +1202,13 @@ public function erikaSexRideHerPussy():void
 	else output("\n\n“<i>And who told you that you could cum into my mouth?</i>” you scold her, slapping her half hard dick and reveluing in seeing her entire body flinch. “<i>Your lucky that I'm in a forgiving mood.</i>”");
 	output("\n\nIt takes a while for Erika to collect herself, and when she does she gives you a meek thank you before staggering off.");
 
-// Stygs ToDo Add orgams and time stuff
-//Pass time to 7:00 of next day
+	IncrementFlag("ERIKA_SEXED");
+
+	processTime(60+rand(15));
+	pc.loadInCunt(erika);
+	pc.orgasm();
+	erika.orgasm();
+
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1148,7 +1216,7 @@ public function erikaSexRideHerPussy():void
 public function erikaSexRideHerButt():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Vio");
 
 	output("You bring a finger to your mouth and chew on it, thinking. A thought suddenly strikes you and you grin, looking Erika straight in the eyes. “<i>I have an idea,</i>” you say seductively. You reach into her treasure chest of sex toys and pull out the bottle of pink, glittery lube, the roll of electrical tape, and two bullet vibrators along with their remote. ");
@@ -1172,6 +1240,8 @@ public function erikaSexRideHerButt():void
 	else output("Erika rubs your behind and grinds her cock into your ass. ");
 	output("She pulls out and thrusts in, over and over again, moaning and panting like a bitch in heat. You meet her thrusts, hips slapping together and knot popping in and out of your hole. ");
 
+	flags["ERIKA_SEEN_LUBE"] = 1;
+
 	clearMenu();
 	addButton(0,"Next",erikaSexRideHerButt2);
 }
@@ -1179,7 +1249,7 @@ public function erikaSexRideHerButt():void
 public function erikaSexRideHerButt2():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Vio");
 
 	output("Erika begins to hump your [pc.asshole] feverishly, squeezing and slapping your [pc.ass]. She's about to cum, you can just tell, especially from the way she throbs inside of you. Before she orgasms, you reach under the covers, pull out the cockring, open it and snap it onto her pulsing dick. She cries out as waves of pleasure flow through her, enticing her to cum more but the cockring prevents her from doing so. She looks at you with pleading eyes.");
@@ -1205,8 +1275,13 @@ public function erikaSexRideHerButt2():void
 	output("\n\nHer eyes roll completely into her head and a crazed grin creeps onto her face. She gives one last powerful thrust into your hand, hilting herself, her knot swelling and making your hand open a little. You quickly move your head near her vibrating sack. You bring her balls into your mouth, fondling them with your [pc.tongue], enjoying the hairless, soft texture of her skin and the feeling of the bullet vibes buzzing away in your mouth. You suck on her sack hard, trying to coax out their creamy treasure. You unwrap your hand from her cock and bring both of them down under her cock, forming a basket with them. She lets out a shrill scream and her balls tense in your mouth. The first jet of cum shoots from her dog dick in one thick stream like water from a hose. It splashes in your hands, spraying you, her, and your sheets. The second jet comes out equally as powerful, and she raises her hips and thrusts them back down, another stream of cum erupting from her cock. She cums countless times after, filling your hands with spunk and adequately drenching your sheets, most likely actually staining them with the scent of her cum. Her balls shrink in your mouth as she ejaculates, draining her swollen cum-factories.");
 	output("\n\nOnce she's done cumming like a garden hose, she collapses onto the bed, face in the pillows and ass up in the air. You shoulder her, causing her to flop on her side, gaining access to her face. You bring your hands to her nose and she inhales, drinking in the masculine aroma of her spunk. Her lidded eyes slowly open, first looking at you and then at the puddle of cum in your hands. You bring the cum to her mouth and she sticks her tongue out and begins lapping at her own cum, making cute gulping sounds when she swallows. You don't even have to tell her to, she just does it. What a good, slutty little kitty. When she's done drinking down her cum, you bring your hands to your face and drag your [pc.tongue] along them, attempting to collect any remnants of her cum that she didn't get, though she didn't leave very much. You lay down next to her, wrapping your arms around her and joining mouths, lazily making out as the both of you drift off to sleep.");
 
-// Stygs ToDo Add orgams and time stuff
-//Pass time to 7:00 of next day
+	IncrementFlag("ERIKA_SEXED");
+
+	processTime(120+rand(30));
+	pc.loadInAss(erika);
+	pc.orgasm();
+	erika.orgasm();
+
 	clearMenu();
 	addButton(0,"Next",erikaSexRideHerButt3);
 }
@@ -1214,7 +1289,7 @@ public function erikaSexRideHerButt2():void
 public function erikaSexRideHerButt3():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	output("When you wake, Erika is still resting in your embrace, faintly snoring. You gently jostle her awake, her eyes slowly opening and ears twitching. She looks at you with her beautiful green eyes and smiles. ");
@@ -1227,7 +1302,7 @@ public function erikaSexRideHerButt3():void
 public function erikaSexDegradeHer():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	output("You're feeling rather cruel today, and who better to take it out on than your feline chew toy? You shove her onto the bed before picking a few choice items from the box.");
@@ -1258,6 +1333,13 @@ public function erikaSexDegradeHer():void
 	output("\n\n“<i>Yeah, I know. And you didn't just like it, you loved it. With the way you came, you can't lie and say you didn't.</i>”");
 	output("\n\nYou smack her ass and push her towards the entrance of your ship. “<i>Now get out of here. If I want to put you back into your place, I'll know where to find you.</i>”");
 
+	flags["ERIKA_DEGRADED_HER"] = 1;
+	IncrementFlag("ERIKA_SEXED");
+
+	processTime(30+rand(15));
+	pc.orgasm();
+	erika.orgasm();
+
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1265,7 +1347,7 @@ public function erikaSexDegradeHer():void
 public function erikaSexButtFuck():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	output("You crook your finger, inviting her to come closer and pull her into your lap. “<i>I'm going to fuck you all night. You don't have a problem with that, right?</i>” You growl into her ear while groping her butt with one hand and pressing one finger into her [erika.asshole] with the other.");
@@ -1288,7 +1370,7 @@ public function erikaSexButtFuck():void
 public function erikaSexButtFuck2():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	if (pc.hasKnot()) output("With how close you are to the edge, your mind is occupied by a single thought: tying with her. You grab her hips with both hands, pulling her against you while thrusting your [pc.hips] forward. With the combined effort, you manage to push the bulb of throbbing flesh inside her before it swells. She squeezes tightly against the bitch-breaking girth. ");
@@ -1308,7 +1390,7 @@ public function erikaSexButtFuck2():void
 public function erikaSexButtFuck3():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	output("When the animalistic cloud of lust finally rises from your mind, you survey your surroundings. Erika is still on the bed, wrapped in your arms, and you're still inside her, plugging all of your cum inside. She's laying down on her side, assumedly so she isn't lying on top of her stomach, with said stomach bloated with all the seed you have been pumping into her. Propping yourself on your elbow, you notice that both of you are lying in a puddle of cum. Even with both of you contributing to said pool, it is likely that you have made most of the mess.");
@@ -1322,6 +1404,12 @@ public function erikaSexButtFuck3():void
 	output("\n\nAfter the relatively quick shower, you get to cleaning the bed. Thankfully, Erika stays to help you, so I doesn't take that long to change the sheets and mop up the mess you made.");
 	output("\n\n“<i>You know where to find me if you want to treat me as your breeding bitch again, you big beast.</i>” She steals a quick grope of your [pc.cock] before heading off, leaving you standing next to your bed in the smell of the clean sheets. You definitely could go for this again... just not right now. Right now you feel still tired. Grabbing a quick drink, you head back to your bed, sinking into the freshly changed sheets. Sleep takes you quickly after so much exertion.");
 
+	IncrementFlag("ERIKA_SEXED");
+
+	processTime(120+rand(30));
+	pc.loadInAss(erika);
+	pc.orgasm();
+	erika.orgasm();
 	pc.shower();
 
 	clearMenu();
@@ -1331,7 +1419,7 @@ public function erikaSexButtFuck3():void
 public function erikaSexToys():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	output("“<i>Hmm, I'm not really in the mood right now,</i>” you muse.");
@@ -1351,7 +1439,7 @@ public function erikaSexToys():void
 public function erikaSexToys2():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	output("You take your time boring yourself with the extranet and watching a bit of porn to keep yourself aroused. You accidentally make the mistake of getting involved in a discussion about politics, well, if it can even be called a discussion rather than a whine fest. Quickly cutting your losses, you remember that you have better uses for your time, like playing with your kitty toy.");
@@ -1371,6 +1459,12 @@ public function erikaSexToys2():void
 	output("\n\nYou remove the gag before presenting the cum covered side to her. “<i>Now be a good girl and clean up.</i>” She starts to spit shine the gag, and when you're satisfied with her you wipe some of the cum from her face and make her lick your finger clean. You repeat this until her face is mostly clean.");
 	output("\n\nYou release her from her bondage, letting her stretch her tied up limbs. She takes a quick trip to the bathroom to clean up the rest of her face. When she comes back, you pull her into a kiss and send her on her way with a slap on the ass.");
 
+	IncrementFlag("ERIKA_SEXED");
+
+	processTime(60+rand(15));
+	pc.lust(25);
+	erika.orgasm();
+
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1378,7 +1472,7 @@ public function erikaSexToys2():void
 public function erikaSexHateFuck():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	output("You want her to call the shots this time, and you tell her as much. The moment the words escape your lips a burning desire lights in her eyes.");
@@ -1403,7 +1497,7 @@ public function erikaSexHateFuck():void
 public function erikaSexHateFuck2():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	output("The kaithrit railing away at your ass has you teetering on the edge of orgasm, but before you hurtle over the edge she pulls out. Slapping your ass again, she flips you over to your back, quickly mounting your face, shoving her cock into your mouth. You gag at the sudden oral intrusion, not that it stops her.");
@@ -1432,7 +1526,7 @@ public function erikaSexHateFuck2():void
 public function erikaSexHateFuck3():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	output("You stir from your sleep, rolling over to your back. You hear a yelp and a thud, from the kaithrit crashing down to the floor. Before you can even open your mouth to ask if she is alright, she bolts upright, fussing all over you.");
@@ -1441,6 +1535,13 @@ public function erikaSexHateFuck3():void
 	output("\n\nBut you can't spend all day with a kaithrit in your lap, so you push her softly off your lap. She seems to be a bit fidgety still. “<i>I'm not angry with you, but don't count on me letting you do this again. I <i>might</i> let you, but no promises,</i>” you calm her.");
 	output("\n\nShe sighs in relief. “<i>I guess I was worried that you would stop talking to me since I hurt you. I don't want to be alone again...</i>” You assure her again that you're fine and send her on her way with a pat on the ass.");
 
+	IncrementFlag("ERIKA_SEXED");
+
+	processTime(120+rand(30));
+	pc.loadInAss(erika);
+	pc.orgasm();
+	erika.orgasm();
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1448,7 +1549,7 @@ public function erikaSexHateFuck3():void
 public function erikaSexGiveAnusoft():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	output("Well since you happen to have a wonderful asshole enhancing cream with you, why not use it on Erika.");
@@ -1472,7 +1573,7 @@ public function erikaSexGiveAnusoft():void
 public function erikaSexGiveAnusoft2():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	output("You pull your fist out of her ass and marvel how little her pucker has changed, it's still the same fat doughnut with small gape that it was before it swallowed your entire fist.");
@@ -1493,7 +1594,7 @@ public function erikaSexGiveAnusoft2():void
 public function erikaSexMenuLeave():void
 {
 	clearOutput();
-	showErika();
+	showErika(true);
 	author("Doots");
 
 	output("Whether it's the dick or you just changed your mind, you tell her that you actually don't want to have sex with her.");

@@ -4256,6 +4256,14 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["TIMES_BUTTFUCKED_BY_SYRI"] != undefined) output2("\n<b>* Syri, Times She Fucked Your Ass:</b> " + flags["TIMES_BUTTFUCKED_BY_SYRI"]);
 					if(flags["SyriTailcocked"] != undefined) output2("\n<b>* Syri, Times You Used Your Tailcock on Her:</b> " + flags["SyriTailcocked"]);
 				}
+				// Erika
+				if(flags["ERIKA_MET"] != undefined)
+				{
+					output2("\n<b>* Erika:</b>");
+					if(flags["ERIKA_SEEN_NAKED"] != undefined) output2("\n<b>* Erika: You have seen her naked");
+					if(flags["ERIKA_GIVEN_ANUSOFT"] != undefined) output2("\n<b>* Erika: You have given her some anusoft");
+					if(flags["ERIKA_SEXED"] != undefined) output2("\n<b>* Erika, Times Sexed:</b> " + flags["ERIKA_SEXED"]);
+				}
 				variousCount++;
 			}
 			// Crazy Carl!
