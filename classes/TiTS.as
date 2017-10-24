@@ -1445,6 +1445,11 @@
 		{
 			return chars["CIARAN"];
 		}
+		
+		public function get ellie():Ellie
+		{
+			return chars["ELLIE"];
+		}
 
 		public function testShipCombat():void
 		{

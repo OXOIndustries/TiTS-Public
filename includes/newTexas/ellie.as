@@ -2,6 +2,8 @@ import classes.Characters.PregnancyPlaceholder;
 //Notes to the Coder
 //Nephelee has the following stat:
 //NephAffect: Ranges from 0-100. Translates 2:1 as a bonus to her store discount -- at 100%, she grants the PC a 50% discount. 
+//flag ELLIE_OPERATION tracks pregnancy content proccing:	1 = had the operation
+//															2 = announced her pregnancy
 
 public function nephAffection(arg:Number = 0):Number
 {
@@ -31,7 +33,7 @@ public function publicUseCount(addVal:int = 0):int
 }
 
 public function ellieApproachButtonSetup():void
-{
+{	
 	if(flags["MET_ELLIE"] != undefined) addButton(0,"Ellie",ellieMenu,undefined,"Ellie","Approach Ellie, the leithan running the gift shop.");
 	else addButton(0,"Shopkeep",meetingEllie,undefined,"Shopkeep","Approach the shopkeeper and see what she’s selling.");
 	vendingMachineButton(1, "J'ejune");
@@ -315,6 +317,12 @@ public function buildEllieTalkMenu():void
 	else addDisabledButton(1,"Locked","Locked","You might need to talk to her about her race before this unlocks.");
 	addButton(2,"Treatment",talkToEllieAboutTreatment,undefined,"The Treatment","Ask her about the Treatment thing that everyone here is on about.");
 	addButton(3,"New Texas",talkToEllieAboutNewTexas,undefined,"New Texas","Ask her what she thinks about the planet.");
+	if(flags["ELLIE_OPERATION"] == 1) addDisabledButton(4, "Operation", "Operation", "Ellie's already had the fertility operation.");
+	else if(flags["ELLIE_OPERATION"] == 2) addButton(4, "Pregnancy", talkToEllieAboutPregnancyButShesActuallyPregnantThisTime, undefined, "Pregnancy", "See how Ellie is fairing with her pregnancy.");
+	else if(flags["ELLIE_OPERATION_TALK_UNLOCKED"] != undefined) addButton(4, "Operation", talkToEllieAboutOperation);
+	else if(flags["ELLIE_PREG_TALK_UNLOCKED"] != undefined && nephAffection() > 66) addButton(4, "Pregnancy", talkToEllieAboutPregnancy);
+	else addDisabledButton(4, "Locked", "Locked", "You need to be really close with Ellie to discuss this.");
+	 
 	addButton(14,"Back",ellieMenu);
 }
 
@@ -381,6 +389,7 @@ public function talkToEllieAboutPheromones():void
 	output("\n\nEllie shrugs. <i>“At least there’s a nice, steady stream of bulls still wanting to try - at least the once! Lucky me, my pheromones pretty much guarantee I’ll always have someone to play with.”</i> She grins, chewing on her lower lip and squeezing her shoulder together to emphasize her impressive rack, all but jiggling it in your face now. <i>“Speaking of which... what do you say, [pc.name]?");
 	if(pc.hasCock()) output(" <i>“Care to test your lil’ swimmer’s luck?”</i>");
 	else output(" <i>“I’m feeling all down now. You wanna step out back and help a girl get her spirits up?”</i>");
+	flags["ELLIE_PREG_TALK_UNLOCKED"] = 1;
 	nephAffection(5);
 	clearMenu();
 	if(pc.lust() >= pc.lustMax())
@@ -1375,4 +1384,390 @@ public function getTailPeggedByTaurBitches():void
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function talkToEllieAboutPregnancy():void
+{
+	clearOutput();
+	clearMenu();
+	author("Wsan");
+	showBust("ELLIE");
+	showName("\nELLIE");
+	
+	output("<i>“So you mentioned not being able to breed with other races, right?”</i> you ask Ellie.");
+	output("\n\n<i>“Uh huh. It's a bit of a bummer, but whatcha gonna do?”</i> she shrugs, then winks. <i>“Besides, it's fun to try. Right, [pc.name]?”</i>");
+	if(flags["MET_DR_LESSAU"] != undefined)
+	{
+		if(pc.isBimbo()) output("\n\n<i>“Weeeellll,”</i> you begin, wiggling with excitement. <i>“I can totally change that if you want! Just for us, I mean. I found a Steele doc that does biology things!”</i>");
+		else output("\n\n<i>“You know, I met a doc on Uveto that could help,”</i> you say, winking at her. <i>“It'd only work for the two of us, but if you wanna be bred I'm your " + pc.mf("man", "gal") + ".”</i>");
+		output("\n\n<i>“Gosh, really?”</i> Ellie says, wide-eyed with a hand on her bosom. <i>“You'd do that for me? I'd thought it was pretty expensive...”</i>");
+		if(pc.isBimbo()) output("\n\n<i>“'Course I would, silly girl! You're the sweetest, sexiest girl I know!”</i> you exclaim. <i>“Plus you fuck like a champion. I'll " + (pc.credits >= 100000 ? "handle" : "get") + "the money, don't you worry.”</i>");
+		else output("\n\n<i>“Guess I just can't get enough of the nicest girl this side of the galaxy,”</i> you smile affectionately. <i>“Don't worry about the money, " + (pc.credits >= 100000 ? "I've got it handled" : "I'll get it together") + ".”</i>");
+		output("\n\n<i>“Wow! You've really put some thought into breeding lil' ol' me, huh [pc.name]?”</i> Ellie says, flirtatiously fluttering her eyelashes. <i>“'Course I'm not gonna turn </i>that<i> offer down, babe.”</i>");
+		output("\n\n<i>“Didn't think you would,”</i> you say with a grin.");
+		output("\n\n<i>“So what happens to the kids?”</i> Ellie asks, looking uncharacteristically serious. <i>“Leithan mommies tend to be </i>very<i> protective, you know. I can raise them here on New Texas if you haven't got a place for them.”</i>");
+		output("\n\n<i>“I've got a place,”</i> you assure her. <i>“Steele Tech has a nursery on Tavros exactly for this - our children will be fed, clothed, cared for, schooled, and all the rest. You can come check it out with me if you'd like.”</i>");
+		output("\n\n<i>“Hmmm,”</i> she hums, looking at you intensely. <i>“Would I be able to hang out there without you? Play with the kids and all that?”</i>");
+		output("\n\n<i>“Yeah, of course,”</i> you nod. <i>“Just don't knock all the stuff over with your jiggly 'taur butt when you're there.”</i>");
+		output("\n\nShe giggles, fluttering her eyelashes a bit again. <i>“Well, you've gotta explain the operation stuff first before we really figure it out. Let me know when you wanna talk about it, 'kay?”</i>");
+		flags["ELLIE_OPERATION_TALK_UNLOCKED"] = 1;
+	}
+	else
+	{
+		if(pc.isBimbo()) output("\n\n<i>“Maybe I can find like, some kind of doctor at my company who could help,”</i> you think out loud. <i>“I'll look for one, 'kay?”</i>");
+		else output("\n\n<i>“Wonder if there's anyone at Steele Tech who could do something about that,”</i> you muse. <i>“I'll look into it for you.”</i>");
+		output("\n\n<i>“I'm tickled that you want to breed me that much, [pc.name],”</i> Ellie says with a wink. <i>“Won't be holding my breath, but I'm looking forward to it.”</i>");
+	}
+	processTime(5+rand(3));
+	nephAffection(5);
+	buildEllieTalkMenu();
+	if(flags["ELLIE_OPERATION_TALK_UNLOCKED"] == undefined) addDisabledButton(4,"Pregnancy", "Pregnancy", "You just finished talking about that.");
+}
+
+public function talkToEllieAboutOperation():void
+{
+	clearOutput();
+	clearMenu();
+	author("Wsan");
+	showBust("ELLIE");
+	showName("\nELLIE");
+	
+	if(flags["ELLIE_TALKED_OPERATION"] == undefined)
+	{
+		output("You ask if Ellie wants to talk about the operation you mentioned to enable her impregnation.");
+		output("\n\n<i>“Uh huh. Is it scary?”</i> she asks, a gray finger tapping at a pouty lip.");
+		if(pc.isBimbo()) output("\n\n<i>“Naw! I think it's just like one injection thinger and then we can get to fucking you full of tiny 'taurs,”</i> you reply, taking her hand.");
+		else output("\n\n<i>“No, it's literally one injection and then back to breeding from what I'm told,”</i> you explain, taking her hand.");
+		output("\n\n<i>“You know me too well,”</i> Ellie teases, entwining her plated fingers with yours. <i>“I trust you, [pc.name]. I know you must be busy out there in space, but I'll be the best mom I can be. I've always wanted kids of my own, my sister's are so much fun,”</i> she says with a dreamy sigh.");
+		output("\n\n<i>“I didn't know you had a sister,”</i> you say. <i>“Does she not live around here?”</i>");
+		output("\n\n<i>“Oh, most of us leithans don't live out here,”</i> Ellie explains. <i>“This is the tourist-y part of the planet, after all! There's a few, um, breeding enclaves set up. My sis and her family are at the closest one! I stay there sometimes when I'm not minding the shop... or fucking a bull,”</i> she winks. <i>“I got recruited for the gift shop job due to my feminine w- uhh... being a pretty face!”</i>");
+		if(pc.isBimbo()) output("\n\n <i>“You </i>are<i> a total hottie, Ellie,”</i> you agree, squeezing her hand. <i>“I can see why T put your fine butt out here.”</i>");
+		else output("\n\n <i>“Can't say I disagree with </i>that<i> decision,”</i> you say, squeezing her hand. <i>“Universe'd be a nicer place if every shopkeep was like you.”</i>");
+		output("\n\nShe giggles, pleased at your response. <i>“Plus, if I wasn't put here, I'd never have met yooouu!”</i>");
+		output("\n\nShe bends over the counter and gives you a kiss, pulling back with a smile. <i>“So. Were you gonna whisk me away on your spaceship to this doctor?”</i>");
+		flags["ELLIE_TALKED_OPERATION"] = 1;
+		processTime(8);
+	}
+	else
+	{
+		output("You ask if Ellie wants to talk about the operation you mentioned to enable her impregnation.");
+		output("\n\nShe bends over the counter and gives you a kiss, pulling back with a smile. <i>“Sure. You gonna take me to that doctor you talked about?”</i>");
+	}
+	processTime(2);
+	nephAffection(5);
+	
+	if(pc.credits < 100000) addDisabledButton(0, "Yes", "Yes", "You don't have the 100,000 required credits for the operation.");
+	else if(!pc.hasCock()) addDisabledButton(0, "Yes", "Yes", "You can't ever get Ellie pregant if you don't have a penis.");
+	else addButton(0, "Yes", ellieDoOperation);
+	addButton(1, "No", ellieDontDoOperation);
+}
+
+public function ellieDontDoOperation():void
+{
+	clearOutput();
+	clearMenu();
+	author("Wsan");
+	showBust("ELLIE");
+	showName("\nELLIE");
+	
+	output("<i>“Not right now, babe,”</i> you tell her.");
+	output("\n\n<i>“Well, you just let me know when you wanna make the trip,”</i> she says with a wink and a wiggle. <i>“For you, I'm free any time.”</i>");
+	output("\n\nThe way she pushes her arms together to emphasize her tantalizing cleavage leaves no doubt about the intention of her reply.");
+	
+	processTime(2);
+	buildEllieTalkMenu();
+	addDisabledButton(4, "Operation", "Operation", "You just finished talking about that.");
+}
+
+public function ellieDoOperation(part:int = 0):void
+{
+	clearOutput();
+	clearMenu();
+	author("Wsan");
+	showBust("ELLIE");
+	showName("\nELLIE");
+	
+	switch(part)
+	{
+		case 0:	output("<i>“Sure. You got your things?”</i>");
+				output("\n\n<i>“Just my little ol' self, sugar,”</i> Ellie says with a smile, producing her little placard and plopping it down on the counter before coming around to link her arm with yours.");
+				processTime(2);
+				break;
+		
+		case 1:	moveTo("TEXAS CUSTOMS");
+				showBust("OGRAM", "AMMA");
+				showName("CUSTOMS\nOFFICE");
+				output("The two of you set off, walking across the idyllic landscape of New Texas back to your ship. Exiting through customs, you run into Ogram and Amma.");
+				output("\n\n<i>“Heya, Steele,”</i> Ogram nods at you. <i>“Not stealing our favorite cowgirl away from us, I hope?”</i>");
+				output("\n\n<i>“Just a quick jaunt into space and I'll bring her right back,”</i> you say with a wink.");
+				output("\n\n<i>“Oh, you two look so cute together!”</i> Amma titters, clapping her hands together. <i>“Have fun in space!”</i>");
+				output("\n\n<i>“It's what we'll be doing </i>after<i> that'll be fun,”</i> you reply, setting Ellie giggling.");
+				output("\n\n<i>“Y'all have a good time out there,”</i> Ogram says as he waves you off. <i>“Bring her back in one piece!”</i>");
+				processTime(4);
+				break;
+				
+		case 2:	moveTo("SHIP INTERIOR");
+				showLocationName();
+				output("\n\nGetting Ellie on board takes a little bit of effort, the bubbly leithan being a bit too... well-proportioned for your ship to properly accommodate her, but she's a good sport about it, not at all minding your hands on her jiggly butt to push her through doors. You opt to keep her in your room while you set a course for Uveto, because there's no way the two of you are fitting in the cockpit together. Once you've plotted a route, you stand up and stretch with a sigh. Walking back to your room, you find your busty cargo experimentally putting her forelegs up on your bed.");	
+				output("\n\n<i>“[pc.name], being on your ship has me all excited!”</i> Ellie exclaims, bouncing her feet off your bed. <i>“Being out here among the stars reminds me a little of when I was a kid...”</i>");
+				output("\n\nShe trails off, peering out a window at the stars whizzing by. Her little gift shop temporarily forgotten, she gazes with wonderment at the universe around her. Putting a hand on her shapely flank, you let her silently enjoy the vastness of space as her tail unconsciously wraps around your arm. A few minutes pass.");
+				output("\n\n<i>“How long is the trip gonna take?”</i> she asks suddenly, not taking her eyes from the viewport.");
+				output("\n\n<i>“Probably a couple hours,”</i> you say, waving a hand vaguely. <i>“Ish.”</i>");
+				output("\n\n<i>“Well,”</i> she says, turning and gently pushing you onto the bed. <i>“I can think of something to do for a couple hours.”</i>");
+				pc.lust(33);
+				processTime(30);
+				break;
+				
+		case 3:	moveTo("UVS F15");
+				showLocationName();
+				output("The soft beep of your instrumentation alerts you to the fact you're arriving on Uveto. Ellie pays it no mind, ears only for the quiet groans of her lover. Her soft, pouty lips slowly slide down your [pc.biggestCock], setting your legs trembling when you feel the head push her tongue flat and enter her pliant throat. She bobs her head, straightening her neck to provide easier penetration down her warm, wet gullet. ");
+				if(pc.balls > 1) output("Gently cupping your [pc.balls], she lovingly strokes them between her fingers, taking care to pay attention to their entire surface before giving them an encouraging squeeze.");
+				else output("Between the sight of the beautiful leithan's face in your lap and the feeling of her tongue wrapping around you, you can feel the telltale signs of orgasm approaching.");
+				output("\n\n<i>“Ellie, I'm gonna cum soon,”</i> you pant urgently, chest heaving even as your stomach tightens.");
+				output("\n\nHer response is to moan happily around her faceful of throbbing cock, dragging her slickened passage up and down your bloated prick until you can resist no longer. You can see her eyes roll back in pleasure as the first spray of cum coats the insides of her cheeks, right before she takes your cock as deep as she can get it. Her throat squeezes at your length every time she swallows, milking you of your seed as she cums her brains out in Treatment-induced sympathy. When you've got nothing left to give, she slowly slides off your length, giving your [pc.cockHeadBiggest] one last sensitive lick before swallowing and looking up at you with a dazed, unfocused smile.");
+				output("\n\n<i>“Your cock feels good in </i>all<i> my holes,”</i> she murmurs sultrily, basking in the afterglow.");
+				output("\n\nYou run a hand through her messy hair, standing as she nuzzles at your fingers, idly taking one of them between her lips and suckling at it.");
+				output("\n\n<i>“C'mon, Ellie,”</i> you chide her, <i>“we've got to get off the ship, at least.”</i>");
+				output("\n\n<i>“Awww,”</i> she moans, releasing your fingers.");
+				processTime(10*60 + rand(30));
+				pc.orgasm();
+				break;
+				
+		case 4: moveTo("UVI H38");
+				showLocationName();
+				output("You huff, pushing the docile, dopey leithan through the doors of your ship from behind. Her footfalls clink off the ramp, clawed feet rapping on the surface as you escort her to the ground. Once you're actually on the planet, the entire process takes only a couple of hours. You stop off to buy Ellie some snugglier clothes so the poor girl doesn't ice over, although trying to fit a sweatshirt over her giant breasts proves to be a struggle. The end result of pulling the sweater down her upraised arms looks like a couple of squished-together watermelons in a fluffy crop top, but you figure that's as good as it's going to get for the bubbly bimbo. If nothing else, she seems to be happy with the result.");
+				output("\n\n<i>“It's so toasty!”</i> she thrills, hopping about in the snow outside, tail waving to and fro. You pay the clerk and walk out to join her, only to be hit in the face with a soft <i>paff</i> of snow. Shaking yourself off, you look up to see Ellie bowed low to the ground with a playful grin, scooping up another handful.");
+				output("\n\nA brief but intense snowball fight later, the two of you make your way through the crunchy snow underfoot to the medical facility. The meeting with the doctor is less than five minutes, and you're out in even less.");
+				output("\n\n<i>“Feel any different?”</i> you ask Ellie, walking alongside you with her arm in yours.");
+				output("\n\n<i>“Naw... well, maybe,”</i> she admits. <i>“Just knowing I'll be having kids of my own is nice, y'know.”</i> She turns to look at you with a genuine smile. <i>“Thanks so much, [pc.name].”</i>");
+				output("\n\n<i>“You wanna talk about it?”</i> you ask.");
+				output("\n\n<i>“Well, it's always been something I've wanted,”</i> Ellie says, pulling you closer. <i>“I think I've told you before that the boys tend to give up trying after a while. It's just nice to have lovers who care about me so much!”</i>");
+				output("\n\n<i>“Everyone on New Texas is in love with you, Ellie,”</i> you remind her.");
+				output("\n\n<i>“True,”</i> she giggles. <i>“It's a friendly place. Not everyone's gonna pay for gene stuff just to breed me, though! That's a special kinda bond, I reckon!”</i>");
+				output("\n\n<i>“Hell, if anyone could breed you I doubt you'd ever </i>not<i> be pregnant,”</i> you tell her.");
+				output("\n\n<i>“Ooh, that's sexy,”</i> she murmurs, lost in thought for a moment. <i>“Just being a big ol' broodmare getting fucked full of babies.”</i> She turns to you, her cheeks darker than they were a moment ago, and grins cheekily. <i>“You know, Haley has been talking about breeding me lately. She might beat you to the punch if you're not careful!”</i>");
+				output("\n\n<i>“The hell with that, I'm gonna get a headstart the moment you get in there,”</i> you huff, slapping her jiggly butt as the two of you walk up the ramp.");
+				output("\n\n<i>“Ooh! I can hardly wait,”</i> she says, wiggling her voluptuous ass in your face as she disappears into your ship, her tail swishing aside briefly to reveal her dripping-wet nethers.");
+				pc.credits-=100000;
+				flags["ELLIE_OPERATION"] = 1;
+				ellie.fertilityRaw += 1;
+				processTime(50+rand(20));
+				break;
+				
+		case 5: moveTo("TEXAS CUSTOMS");
+				showLocationName();
+				output("When you arrive back on New Texas suitably tired out, the two of you hop off the ship and proceed to customs. You spot Ogram at his desk looking distracted, and Amma's nowhere to be seen. He gives you a short wave when he sees you.");
+				output("\n\n<i>“Heya, Steele,”</i> he grunts. <i>“Y'all can just go on through, I have something to finish up here.”</i>");
+				output("\n\n<i>“Uh huh,”</i> you nod, patting Ellie on the flank. <i>“You'd better get back to your shop, girl. I'll swing by to see you soon.”</i>");
+				output("\n\n<i>“You'd better! The space trip was fun, though,”</i> she admits. <i>“Wouldn't mind doing that again.”</i> She leans in to tenderly kiss you on the mouth and gives you an excited, jiggly wave before setting off towards her shop. You stand at the entrance to New Texas and consider your options.");
+				processTime(10*60 + rand(30));
+				addButton(0, "Next", mainGameMenu);
+				return;
+	}
+
+	addButton(0, "Next", ellieDoOperation, ++part);
+}
+
+public function tryKnockUpEllie():void
+{
+	if(!ellie.isPregnant())
+	{
+		//Can't have babies if either of you are sterile, also it's a 1-time pregnancy, NO REPEATS!
+		if(pc.virility() == 0 || ellie.fertility() == 0 || flags["ELLIE_TOTAL_KIDS"] > 0) return;
+		
+		var score:Number;
+		//If pc is originally half-leithan and hasnt done fertility treatment, 0-5% chance to knockup based on virility
+		if(pc.originalRace == "half-leithan" && flags["ELLIE_OPERATION"] == undefined)
+		{
+			score = pc.virility()*100;
+			if(score > 500) score = 500;
+		}
+		//If pc has done fertility treatment they can knock her up, bonus to originally half-leithans
+		else if(flags["ELLIE_OPERATION"] != undefined)
+		{
+			var x:Number = (pc.virility() + ellie.fertility())/2;
+			if(pc.originalRace == "half-leithan") x+= 1.5;
+			score = (1 - Math.exp(-0.38*x))*10000;
+		}
+		
+		//roll for pregnancy
+		if(rand(10000) <= score)
+		{
+			flags["ELLIE_PREG_TIMER"] = 0;
+			pc.clearRut();
+			processTime(1);
+		}
+	}
+}
+	
+public function talkToEllieAboutPregnancyButShesActuallyPregnantThisTime():void
+{
+	clearOutput();
+	clearMenu();
+	author("Wsan");
+	showBust("ELLIE");
+	showName("\nELLIE");
+	
+	output("<i>“How are you feeling?”</i> you ask, concerned. <i>“Anything that needs doing, or you want help with?”</i>");
+	if(flags["ELLIE_PREG_TIMER"] < 20) 
+	{
+		output("\n\n<i>“I'm starting to feel a lot more hungry than I usually am,”</i> she says, unwrapping a nutrition bar and biting into it absentmindedly. You can see a few wrappers littered across the counter. Maybe you could bring her some food from your ship - she probably doesn't get many opportunities to leave the counter.");
+		addButton(0, "Get Food", elliePreggerGetFood);
+	}
+	else 
+	{
+		output("\n\n<i>“It's getting a little harder to move around,”</i> she says, wincing as she stretches her hindlegs. <i>“I'm all stiff in the back!”</i>");
+		output("\n\nMaybe you could give her a massage to take her mind off things for a little while. It must be difficult to get around with her tummy so swollen.");
+		addButton(0, "Massage", elliePreggerMassage);
+	}
+	
+	processTime(5+rand(5));
+	addButton(1, "Back", buildEllieTalkMenu);
+}
+
+public function elliePreggerGetFood():void
+{
+	clearOutput();
+	clearMenu();
+	author("Wsan");
+	showBust("ELLIE");
+	showName("\nELLIE");
+	
+	output("You tell her you'll be right back, Ellie nodding emphatically as you head back to your ship to get her some real food. " + (pc.race() == "half-leithan" || pc.race() == "leithan" || pc.originalRace == "half-leithan" ? "" : "What do leithans like to eat, anyway? Meat? ") + "You put together a warm meal with the help of extranet dining menus and place it in a container, bringing it back to the hungry bimbo. She claps her hands and bounces excitedly when she sees you.");
+	output("\n\n<i>“Omigosh, thanks so much, [pc.name]!”</i> Ellie says, putting the container on her desk. <i>“I feel a little guilty leaving the counter empty whenever I'm hungry, so I usually just eat the thingies nearby,”</i> she continues, eyeing the food eagerly. <i>“You mind if I eat this right now?”</i>");
+	output("\n\n<i>“Go for it,”</i> you tell her.");
+	output("\n\nThe leithan woman scarfs down the food so fast you'd scarcely believe it existed at all had you not just brought it to her.");
+	output("\n\n<i>“Ooh, that's better,”</i> she moans, rubbing her tummy a bit. <i>“Thanks, [pc.name]!”</i>");
+	output("\n\n<i>“Any time, Ellie. Tell me if you need anything else, okay?”</i>");
+	processTime(20+rand(10));
+	addButton(0, "Next", mainGameMenu, undefined, "", "");
+}
+
+public function elliePreggerMassage():void
+{
+	clearOutput();
+	clearMenu();
+	author("Wsan");
+	showBust("ELLIE");
+	showName("\nELLIE");
+	
+	output("<i>“I could give you a massage if you'd like,”</i> you offer, coming around the counter.");
+	output("\n\n<i>“Oh, would you? That'd be soooo nice,”</i> Ellie sighs gratefully.");
+	output("\n\nYou crouch behind Ellie, feeling her jump a little when you place a hand on her inner thigh. Squeezing her lightly, you softly rub the muscle there while she moans lightly");
+	output("\n\n<i>“Oh, that's really good,”</i> she says from above, almost puzzled. <i>“Don't stop...”</i>");
+	output("\n\nYou continue down her leg, working the stiffness out from the shivering limb when you notice a droplet hitting your hand. Ellie's tail momentarily swishes aside, and you're treated to the sight of rivulets of moisture trickling from between her thick, black pussylips. You continue massaging her, hand getting ever closer to her enticing nethers but never directly touching them, until it becomes too much for the busty bimbo to bear.");
+	output("\n\n<i>“Oh-! [pc.name],”</i> Ellie croons, her legs shaking harder. Looking up, you can see her pussy flexing and contracting, practically winking at you, as clear girlcum runs down her thighs. You reach up to gently rub her clit, her knees knocking together while her legs squeeze your hand tight to keep it there. By the time she's ridden out her orgasm, your fingers are absolutely drenched in her musk. Standing, you pet her affectionately on the flank and walk to the front of the panting leithan, popping your fingers between her lips. She eagerly sucks them clean, licking her juices off your hand with a second thought.");
+	output("\n\n<i>“Good girl,”</i> you say, Ellie sighing happily in response. <i>“Feeling a little less taut now?”</i>");
+	output("\n\n<i>“Uh huh,”</i> she nods, still lying across the counter. <i>“Thanks, babe...”</i>");
+	output("\n\n<i>“Any time, Ellie. Tell me if you need anything else, okay?”</i>");
+	pc.createStatusEffect("Mare Musk",0,0,0,0,false,"Icon_Smelly","You smell like a horny mare! The potent female scent is sure to drive others wild - though it gets you a little worked up as well.",false,0);
+	processTime(10+rand(5));
+	addButton(0, "Next", mainGameMenu, undefined, "", "");
+}
+
+public function processElliePregEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
+{
+	if(ellie.isPregnant())
+	{
+		flags["ELLIE_PREG_TIMER"] += totalDays;
+		//PC has to see the pregnacy announcement and be there for the egg laying or timer pauses
+		if(flags["ELLIE_OPERATION"] < 2 && flags["ELLIE_PREG_TIMER"] > 1) flags["ELLIE_PREG_TIMER"] = 1;
+		else if(flags["ELLIE_OPERATION"] < 3 && flags["ELLIE_PREG_TIMER"] > 40) flags["ELLIE_PREG_TIMER"] = 40;
+		
+		//Time to lay eggs
+		if(flags["ELLIE_PREG_TIMER"] >= 40 && flags["ELLIE_OPERATION"] < 3)
+		{
+			//These first 2 can hijack what the PC is doing
+			if(currentLocation == "527") eventQueue.push(ellieLayAtGiftShop);
+			else if(rooms[currentLocation].planet == "PLANET: NEW TEXAS") eventQueue.push(ellieLayOnNT);
+			//This one can't so we'll set a flag so shit procs when the PC enters their ship
+			else flags["ELLIE_LAYING_PC_MIA"] = 1;
+		}
+		
+		//Set Ellie away or at the Gift Shop every 2 weeks after she's laid
+		if(flags["ELLIE_OPERATION"] >= 3 && flags["ELLIE_PREG_TIMER"] % 2*7 == 0) toggleEllieLocation();
+		
+		//Do birth eventually
+	}
+}
+
+public function ellieLayAtGiftShop():void
+{
+	clearOutput();
+	clearMenu();
+	author("Wsan");
+	showBust("ELLIE");
+	showName("\nELLIE");
+	
+	output("<i>“Ooh,”</i> Ellie groans, wincing as she bends over the counter. <i>“Time for the Nursery, [pc.name]!”</i>");
+	output("\n\n<i>“I'll fly you there, c'mon,”</i> you say, beckoning her to you.");
+	output("\n\nSupporting her on your shoulder, you get the taurgirl onto your ship and jet to Tavros. The lift seems to take forever when you have a heavily pregnant leithan with you, but you're there soon enough. You get her into a birthing room and wait with her, holding her hand.");
+	processTime(10*60+rand(30));
+	addButton(0, "Next", ellieDelivery, undefined, "", "");
+}
+
+public function ellieLayOnNT(part:int = 0):void
+{
+	clearMenu();
+	author("Wsan");
+	
+	switch(part)
+	{
+		case 1:	output("Your codex bleeps with the arrival of a message marked urgent. Tapping at the display, you read off the screen.");
+				output("\n\n<i>“[pc.name], come pick me up at the store! We need to go to the nursery.");
+				output("\n-Nephalee”</i>");
+				output("\n\nYou puzzle over the name for a bit before realizing it's Ellie, and what the message means. Time to get to the gift shop!");
+				addButton(0, "Next", ellieLayOnNT, 1, "", "");
+				return;
+		
+		case 2: moveTo(527);
+				output("<i>“Heya, [pc.name],”</i> Ellie says with a wince, <i>“Reckon we should get to the Nursery pretty quick.”</i>");
+				output("\n\n<i>“Got it. C'mon, I'll take you there,”</i> you say, beckoning her to you.");
+				output("\n\nSupporting her on your shoulder, you get the taurgirl onto your ship and jet to Tavros. The lift seems to take forever when you have a heavily pregnant leithan with you, but you're there soon enough. You get her into a birthing room and wait with her, holding her hand.");
+				processTime(10);
+				addButton(0, "Next", ellieDelivery, undefined, "", "");
+				return;
+	}
+}
+
+public function ellieLayPlayerOffNT():void
+{
+	clearMenu();
+	author("Wsan");
+	
+	output("Your codex bleeps with the arrival of a message marked urgent.");
+	output("\n\n<i>“Hi [pc.name]! By the time you get this message I'll probably be at the Nursery. Come see me!");
+	output("\n-Nephalee”</i>");
+	output("\n\nYou puzzle over the name for a bit before realizing it's Ellie, and what the message means. Time to get to the Nursery!");
+	if(rooms[currentLocation].planet == "TAVROS STATION") 
+	{
+		output("\n\nYou hustle back out of your ship and head to the lift.");
+		processTime(5);
+	}
+	else 
+	{
+		output("\n\nYou hop into your captain's seat and jet to Tavros.");
+		processTime(10*60+rand(30));
+	}
+	
+	addButton(0, "Next", ellieDelivery, undefined, "", "");
+}
+
+public function ellieDelivery():void
+{
+	moveTo();
+	showLocationName();
+	
+	clearOutput();
+	clearMenu();
+	author("Wsan");
+	showBust("ELLIE");
+	showName("\nELLIE");
+	
+	
+	
+	
+	
+	
+	
 }

@@ -99,6 +99,44 @@ public function manMilkerRoomBonusFunc():Boolean
 
 public function NTGiftShopBonusFunc():Boolean
 {
+	//Ellie Pregnancy Announcement
+	if(flags["ELLIE_PREG_TIMER"] >= 1 && flags["ELLIE_OPERATION"] == 1)
+	{
+		clearOutput();
+		clearMenu();
+		author("Wsan");
+		showBust("ELLIE");
+		showName("\nELLIE");
+		
+		output("Upon walking into Ellie's store, you can immediately tell something is different. There are fewer bulls milling around restlessly, and the air is somehow... clearer. Ellie, however, looks exactly the same. She stands at her till animatedly chatting to a cowgirl, and when she spots you she utters a little squeal and comes bounding around the counter, eyes wide with excitement.");
+		output("\n\n<i>“[pc.name]!”</i> she squeals, ");
+		if(!pc.isTaur() && pc.tallness < 8*12) output("sweeping you off your feet into a big, squishy hug between her huge breasts.");
+		else output("throwing her arms around you and nuzzling her face into your neck, along with her massive rack into your [pc.chest].");
+		if(pc.isBimbo()) output("\n\n<i>“Oof! Jeez, Ellie, did your tits get even bigger?”</i>");
+		else output("\n\n<i>“Oof! Hello to you too, Ellie.”</i>");
+		output("\n\nShe pulls back, ");
+		if(!pc.isTaur() && pc.tallness < 8*12) output("lifting you into the air until you're level with her face, beaming at you proudly.");
+		else output("looking you square in the eye and beaming proudly.");
+		output("\n\n<i>“I'm pregnant!”</i> she brazenly announces to you in front of the entire store before pulling you in for another hug. <i>“We're gonna have kids!”</i>");
+		if(pc.isBimbo()) output("\n\n<i>“Hooray! Tinytaurs!”</i> you squee.");
+		else output("\n\nOvercome with emotion, you wrap your arms around Ellie in celebration. <i>“Ellie!”</i>");
+		output("\n\nThe two of you rock side to side in each other's gleeful hugs, laughing and smiling in celebration.");
+		output("\n\n<i>“It's gonna be so much fun,”</i> Ellie gushes. <i>“Our kids'll be so cute! I'm still trying to think of names! And I gotta get toys for them!”</i>");
+		output("\n\n<i>“Whoa, slow down, Ellie,”</i> you say, suddenly comprehending something. <i>“Exactly how many kids are we having?”</i>");
+		output("\n\n<i>“Three!”</i> she says, smiling happily without a care in the world. <i>“Two girls and a boy. I need a place to lay the eggs, too...”</i>");
+		output("\n\n<i>“You can lay them at the Nursery, no problem,”</i> you reply, thinking about logistics for a second. <i>Three kids!</i> If they're anything like Ellie, this is going to be a real handful...");
+		output("\n\n<i>“Thanks, [pc.name],”</i> Ellie says, squishing her chest against you. <i>“You're a real sweetheart, y'know that?”</i>");
+		output("\n\n<i>“Hey, no problem,”</i> you reply, tightening your grip on her before letting go. <i>“Are you doing okay? Is there anything you need?”</i>");
+		output("\n\n<i>“Hmm,”</i> she hums thoughtfully, tapping a plated finger against her pouty lips before fixing you with a cheerful smile. <i>“I could do with a kiss.”</i>");
+		output("\n\nYou unhesitantly " + (pc.tallness < 8*12 ? "reach up and " : "") + "bring her pretty face closer to yours, planting a kiss right on her welcoming lips and leave her beaming radiantly.");
+		output("\n\n<i>“Okay! I've been given leave for the next few months that I can use whenever I want, so let me know when you wanna check out the nursery 'n stuff!”</i> Ellie says, hopping back behind the counter.");
+		flags["ELLIE_OPERATION"] = 2;
+		//Might as well max this shit
+		nephAffection(100);
+		processTime(10+rand(5));
+		addButton(0, "Next", mainGameMenu, undefined, "", "");
+		return;
+	}
 	//First Time Entering the Shop
 	if(flags["SEEN_ELLIES_SHOP"] == undefined)
 	{
