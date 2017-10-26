@@ -154,12 +154,11 @@ public function erikaTalkHer():void
 	author("Doots");
 
 	output("You ask her to tell you something about herself.");
-	output("\n\nNow, to decide why you came up to her in the first place: Did you want to talk her ear off, or just say hi to her?");
-	output("\n\nShe pauses for a moment to think, then continues. “<i>Let's see. Well, I was born on Ausaril.</i>”");
+	output("\n\n“<i>You want to know about me? There isn't much to tell, really.</i>” She pauses for a moment to think, then continues. “<i>Let's see. Well, I was born on Ausaril.</i>”");
 	output("\n\nWhat were two kaithrit doing on Ausaril, or are her parents actually not kaithrit?");
 	output("\n\n“<i>No, both of my parents are full-blooded kaithrit as far as I know. And regarding why they were on Ausaril, I really don't know. Maybe my mom had a thing for knotted cocks.</i>” Taking another drink, she pauses again, thinking about what to say next.");
 	output("\n\nYou push her onwards by asking how she ended up on Mhen'ga if she was born on Ausaril.");
-	output("\n\n“<i>Well, I wanted to leave home as quickly as possible. It's not like I had a bad childhood, but my other mom was a bit too nosy for my liking. You wouldn't know how... unpleasant it is for your other mom to burst into your room when you're taking some time for yourself.</i>” She blushes at that point, but soldiers onwards. She thinks for a while before looking down at her glass. ?");
+	output("\n\n“<i>Well, I wanted to leave home as quickly as possible. It's not like I had a bad childhood, but my other mom was a bit too nosy for my liking. You wouldn't know how... unpleasant it is for your other mom to burst into your room when you're taking some time for yourself.</i>” She blushes at that point, but soldiers onwards. She thinks for a while before looking down at her glass.");
 	output("\n\n “<i>And my mother being the biggest whore on Ausaril.</i>” Her voice drips with venom when she mentions her mother. Her fist clenches and her knuckles turn white while she looks down at the table. Before you can ask her what's wrong she is back to her cheery self. “<i>Besides that, I wanted to move out, live on my own. I didn't want to live with my parents for the rest of my life.</i>”");
 	output("\n\nSo why is she on Mhen'ga instead of some other planet?");
 	output("\n\n“<i>Well, a shithole planet like this isn't too expensive to live on, and since I stay with the civilized folk I won't get buggered by the zil lurking around in the jungle. And it isn't too different from home. Besides, I usually don't leave my house, and working over the extranet means that I don't have to worry about local employment.</i>”");
@@ -208,28 +207,20 @@ public function erikaTalkBody():void
 	{
 		output("“<i>So were you born with your dick, or did you decide to trade in your puss for the chance of dicking someone?</i>”");
 		output("\n\nShe chokes on her drink in surprise. After waiting a few moments for her to finish coughing up her drink and take a few deep breaths, she is able to reply, “<i>Geez, did you have to ask it so bluntly?</i>”");
-		output("\n\nNo point in beating around the bush, you chuckle. Now, is she actually going to answer?");
-		output("\n\nShe pouts at you for few moments, and with a sigh she opens up.");
+		output("\n\nNo point in beating around the bush, you chuckle. Now, is she actually going to answer? She pouts at you for few moments, and with a sigh she opens up.");
 	}
 	else
 	{
-		output("“<i>I hope you don't mind me asking, but were you born with... with what you've got? You know, the boobs and a dick?</i>”");
-		output("\n\nShe doesn't show a voluntary outward reaction to your question, instead taking another sip of her drink, but she is turning bright red and almost hiding behind her glass.");
-		output("\n\nYou wait patiently for her to start talking, if she is willing to talk at all.");
-		output("\n\nSetting her glass down, she lets out a sigh.");
-		output("\n\n“<i>I'm not really a fan of talking about that, but if you really want to know...</i>” she says, looking at you questioningly.");
+		output("“<i>I hope you don't mind me asking, but were you born with... with what you've got? You know, the boobs and a dick?</i>” She doesn't show a voluntary outward reaction to your question, instead taking another sip of her drink, but she is turning bright red and almost hiding behind her glass. You wait patiently for her to start talking, if she is willing to talk at all.");
+		output("\n\nSetting her glass down, she lets out a sigh. “<i>I'm not really a fan of talking about that, but if you really want to know...</i>” she says, looking at you questioningly.");
 	}
-	output("\n\n“<i>I was born male, and I grew up effeminate like all kaithrit. I always thought girls were really pretty, but instead of being like one of the other guys who wanted to fuck them, I wanted to be one.</i>”");
-	output("\n\n“<i>At nineteen, when I had enough courage, I started to try on women's clothing. Small things at first, a bra here, panties there. Eventually I started wearing full-on women's clothing, skirts, dresses, and tops.</i>”");
-	output("\n\n“<i>Eventually my sis, Lerris, found out what I was doing. She teased me at first, but she helped me embrace what I loved and eventually even set up a date with one of her friends: a gorgeous gryvain. She showed me what it was like to be loved like a woman.</i>”");
-	output("\n\nShe blushes a bit before continuing. “<i>She showed me few other things as well, like how it felt to be fucked like a bitch and love it.</i>”");
-	output("\n\n“<i>So, in the end, I owe my sister for a lot of things. If she hadn't seen me in those panties my life would probably suck a lot more now.</i>”");
+	output("\n\n“<i>I was born male, and I grew up effeminate like all kaithrit. I always thought girls were really pretty, but instead of being like one of the other guys who wanted to fuck them, I wanted to be one. At nineteen, when I had enough courage, I started to try on women's clothing. Small things at first, a bra here, panties there. Eventually I started wearing full-on women's clothing, skirts, dresses, and tops. One day my sis, Lerris, found out what I was doing. She teased me at first, but she helped me embrace what I loved and eventually even set up a date with one of her friends: a gorgeous gryvain. She showed me what it was like to be loved like a woman.</i>”");
+	output("\n\nShe blushes a bit before continuing. “<i>She showed me few other things as well, like how it felt to be fucked like a bitch and love it. So, in the end, I owe my sister for a lot of things. If she hadn't seen me in those panties my life would probably suck a lot more now.</i>”");
 	output("\n\nSo if she loves feeling like a woman, why hasn't she gotten the whole deal instead of just getting breasts?");
 	output("\n\n“<i>Do you know the cost of something like that? I can't afford that! Besides, I really don't find herms that appealing.</i>”");
 	if (pc.isHerm())
 	{
-		output("\n\nYou give her the kind of look that conveys that she fucked up.");
-		output("\n\n<i>Well, you're an exception. I think that you're really hot. I meant that I don't find the idea of being a herm myself that appealing,</i>” she hastily fusses in apology.");
+		output("\n\nYou give her the kind of look that conveys that she fucked up. “<i>Well, you're an exception. I think that you're really hot. I meant that I don't find the idea of being a herm myself that appealing,</i>” she hastily fusses in apology.");
 	}
 	output("\n\nShe doesn't need to keep her dick if she gets a pussy. There are ways to get rid of it");
 	if (flags["MET_DR_LASH"] != undefined) output(", and you have heard of a certain doctor who could take care of that");
@@ -477,9 +468,7 @@ public function erikaPublicSexDick():void
 	else output("\n\n“<i>First, lick the head.</i>” ");
 	output("You groan almost audibly as her tongue starts to swirl around your [pc.cockHead], licking at the most sensitive part of your member before focusing more on your cum slit.");
 	if (pc.isBimbo()) output("\n\n“<i>Your doing great babe. Now take it deeper, but don't forget about the yummy head.</i>”");
-	else output("\n\n“<i>You're doing well. Now take it deeper, but don't ignore the head,</i>” you murmur to her while scratching away at her ears.");
-	output("\n\nShe does as you tell her, taking you into her throat again and periodically pulling back to lap at your [pc.cockHead]. You move your hand from her ears to grab the back of her head. You don't push her down, only controlling the pace, urging her to go quicker.");
-	output("\n\nWith her other hand occupied in her pants, ");
+	else output("\n\n“<i>You're doing well. Now take it deeper, but don't ignore the head,</i>” you murmur to her while scratching away at her ears. She does as you tell her, taking you into her throat again and periodically pulling back to lap at your [pc.cockHead]. You move your hand from her ears to grab the back of her head. You don't push her down, only controlling the pace, urging her to go quicker. With her other hand occupied in her pants, ");
 	if (pc.balls > 0) output("she brings up her free hand to knead your [pc.balls], feeling and fondling them in anticipation of a serving of your [pc.cum] down her throat.");
 	else if (pc.hasVagina()) output("she brings up her free hand to stroke the lips of your [pc.pussy], slowly pressing two of her fingers inside you while thumbing at your [pc.clit].");
 	else output("she brings up her free hand to stroke your thigh and [pc.hip], seeking out any other sensitive spots to pleasure.");
@@ -707,10 +696,8 @@ public function erikaPublicSexThreesomeGryvainLoss():void
 	else output("pumping her full of your [pc.cumVisc] cum, swelling her belly.");
 	output("\n\nYou're panting by the time you run dry. The gryvain chuckles and ");
 	if (pc.tallness >= 84) output("rubs your head. ");
-	else output("rubs your shoulder. ");
-	output("“<i>Aww, that's too bad.</i>” She smirks as you pull your rapidly softening [pc.cock] from Erika, your cum spilling onto the floor..");
-	output("\n\n“<i>You looked so cute when you were trying to hold out. You really thought you could beat me, huh?</i>” You stumble back and into a chair, your breaths coming out heavy.");
-	output("\n\n“<i>Feels good to have such a pretty girl </i>all<i> to myself,</i>” she coos while pumping her dragon dick in and out of her, groping Erika's breasts and cock, putting up a taunting show for you. “<i>I wonder what she sees in you?</i>”");
+	else output("rubs your shoulder. “<i>Aww, that's too bad.</i>” She smirks as you pull your rapidly softening [pc.cock] from Erika, your cum spilling onto the floor..");
+	output("\n\n“<i>You looked so cute when you were trying to hold out. You really thought you could beat me, huh?</i>” You stumble back and into a chair, your breaths coming out heavy. “<i>Feels good to have such a pretty girl </i>all<i> to myself,</i>” she coos while pumping her dragon dick in and out of her, groping Erika's breasts and cock, putting up a taunting show for you. “<i>I wonder what she sees in you?</i>”");
 	output("\n\nShe continues goading you as she pounds Erika, even going as far as to bend Erika over the table and fuck her mercilessly while staring you straight in the eye. She seems to be getting off on taunting you. She finally slams Erika down on her dick with a roar");
 	if (pc.cumQ() <= 500) output(", swelling Erika's belly even further with liquid lust as she cums powerfully for the second time.");
 	else output(", swelling Erika's stomach with the amount of liquid lust she's still able to produce.");
@@ -754,8 +741,7 @@ public function erikaPublicSexThreesomeAusar():void
 
 	output("You spot a buff ausar at the bar, knocking back drinks. Hoping he's not three sheets to the wind, you sit next to him, asking if he would be willing to help you with something. ");
 	if (pc.isHerm()) output("“<i>For a pretty girl like you? Of course,</i>”");
-	else output("“<i>Let's hear it first,</i>”} he responds.");
-	output("\n\nYou explain to him what you have on your mind.");
+	else output("“<i>Let's hear it first,</i>”} he responds. You explain to him what you have on your mind.");
 	output("\n\n“<i>Well, how could I turn down an offer like that?</i>” Finishing his last drink, he stands up and follows you to where Erika is sitting. He drops down next to her and starts to grope her small breasts, quickly slipping one hand under her shirt. “<i>Your "+ pc.mf("boyfriend", "girlfriend") +" told me that we could have something between the three of us.</i>” ");
 	output("\n\nErika shudders from both the groping of the buzzed ausar and from the thought of getting drilled by both of you at the same time. Taking that as her sign of agreement, he yanks her shirt off, brings a nipple to his mouth and starts to suckle on it. He slides his hand into her pants, then pauses. “<i>Huh, thought she was a girl,</i>” he mutters to himself. He doesn't seem to mind, though, since he grabs her jeans and panties with both hands and pulls them down to her ankles.");
 	output("\n\nHe hoists her up on the table, placing her on her hands and knees, before looking at you. “<i>Which end do you want? Figured it would only be fair for you to choose, since she's your girl and all.</i>”");
@@ -787,8 +773,7 @@ public function erikaPublicSexThreesomeAusarAss():void
 	output("\n\nYou hear a sharp inhale from your doggy friend for the night. “<i>Damn, that's tight.</i>”");
 	output("\n\n“<i>You ok over there?</i>” you ask him.");
 	output("\n\n“<i>I wasn't quite prepared for that. Almost popped too early,</i>” he growls softly.");
-	output("\n\nTurning your attention back to Erika, you grab her tail again and bend down to whisper into her ear. “<i>Did you think we're done? The fun is just starting.</i>” Slapping your [pc.dick] between her butt cheeks, you start to hotdog her fat ass, leaking pre onto her tail, lower back, and pucker. “<i>Now for the best part.</i>”");
-	output("\n\nYou angle your [pc.cock] against her pucker and, with a single steady thrust, you embed yourself in Erika up to your [pc.sheath].");
+	output("\n\nTurning your attention back to Erika, you grab her tail again and bend down to whisper into her ear. “<i>Did you think we're done? The fun is just starting.</i>” Slapping your [pc.dick] between her butt cheeks, you start to hotdog her fat ass, leaking pre onto her tail, lower back, and pucker. “<i>Now for the best part.</i>” You angle your [pc.cock] against her pucker and, with a single steady thrust, you embed yourself in Erika up to your [pc.sheath].");
 	output("\n\n“<i>Finally getting down to business, I see. About time, I've been edging for the whole time,</i>” your nameless friend grumbles from in front of Erika.");
 	if (pc.isNice()) output("\n\n“<i>Oh, sorry about that. I got a bit carried away.</i>” You scratch the back of your head, embarrassed that you forgot about him. ");
 	else if(pc.isMischievous()) output("\n\n“<i>Well now we know you have great stamina and willpower.</i>” You grin at him and pat Erika's ass. ");
@@ -825,8 +810,7 @@ public function erikaPublicSexThreesomeAusarAss():void
 	if (pc.cumQ() > 1000) output(" “<i>Hey, don't get the table dirty. Burt'll be pissed if you do.</i>”");
 	output("\n\nThe ausar pulls out her mouth and sighs. “<i>That was nice. Thanks for sharing a piece of this ass... or mouth. But, yeah, thanks.</i>”");
 	output("\n\n“<i>No problem. If I'm in the mood for another threesome and you're around, I'll be sure to pick you up for another round.</i>” You wave him a goodbye as he picks up his pants and heads back to the bar. “<i>So, Erika, would you be willing for another round some time?</i>”");
-	output("\n\nAfter a while of fighting for breath, she nods, snuggling next to you and murmuring something about letting go and doing this again.");
-	output("\n\nAfter a while, you pick up your [pc.gear] and offer her a small wave before heading back to the bar proper.");
+	output("\n\nFighting for breath, she nods, snuggling next to you and murmuring something about letting go and doing this again. After a while, you pick up your [pc.gear] and offer her a small wave before heading back to the bar proper.");
 
 	flags["ERIKA_SEEN_NAKED"] = 1;
 	IncrementFlag("ERIKA_SEXED");
@@ -1084,26 +1068,20 @@ public function erikaSexLapRide():void
 		output("\n\nShe ");
 	}
 	else output("\n\nErika ");
-	output("bends down and blows air at your [pc.cockHead]. The feeling of cold air against your sensitive flesh sends shivers down your spine.");
-	output("\n\nYou find a moan escaping your lips as Erika kisses your cum slit. You might not last very long with how sensitive the lube made you.");
+	output("bends down and blows air at your [pc.cockHead]. The feeling of cold air against your sensitive flesh sends shivers down your spine. You find a moan escaping your lips as Erika kisses your cum slit. You might not last very long with how sensitive the lube made you.");
 	output("\n\nErika climbs into your lap and locks her lips with your [pc.lips], using her tongue to draw your [pc.tongue] into her mouth. Taking this pretty clear invitation, you wrestle her tongue into submission.");
-	output("\n\nGrabbing a handful of her ass, you lift her up and nuzzle your [pc.cockHead] against her pucker. With all the lube and pre, her ass is in no condition to keep your [pc.cock] out.");
-	output("\n\nYou release your two handed grip on her butt, letting gravity do all the work. Her ass takes your whole length without an issue");
+	output("\n\nGrabbing a handful of her ass, you lift her up and nuzzle your [pc.cockHead] against her pucker. With all the lube and pre, her ass is in no condition to keep your [pc.cock] out. You release your two handed grip on her butt, letting gravity do all the work. Her ass takes your whole length without an issue");
 	if (pc.cocks[x].cLength >= 20) output(", an outline of your [pc.cock] forming in her stomach");
 	output(".");
-	output("\n\nTaking her by the butt, you lift her back up, shivering at the cold air against your sensitive flesh. Letting go for the second time, you let her fall again, this time meeting her descent with a thrust of your hips, sending a thunderous clap across your bedroom.");
-	output("\n\nErika's eyes cross from your rapid dicking, and a small amount of precum leaks from her tip when you slap against her descent for the second time.");
+	output("\n\nTaking her by the butt, you lift her back up, shivering at the cold air against your sensitive flesh. Letting go for the second time, you let her fall again, this time meeting her descent with a thrust of your hips, sending a thunderous clap across your bedroom. Erika's eyes cross from your rapid dicking, and a small amount of precum leaks from her tip when you slap against her descent for the second time.");
 	output("\n\nBuckling down, you start to bounce her up and down in your lap, quickly regretting your decision as you silence a throaty moan, biting your [pc.lip]. With how sensitive you are, holding on is going to be a bitch.");
-	output("\n\nAs you bounce her in your lap, you start to approach your peak already. Not wanting this to end so soon, you stop bouncing her, letting her settle into your lap. You start to make out with her again while thrusting into her slowly.");
-	output("\n\nErika wraps her arms around your neck, clinging to you tightly while you grope at her ass, enjoying the feeling of the soft flesh under your fingers.");
+	output("\n\nAs you bounce her in your lap, you start to approach your peak already. Not wanting this to end so soon, you stop bouncing her, letting her settle into your lap. You start to make out with her again while thrusting into her slowly. Erika wraps her arms around your neck, clinging to you tightly while you grope at her ass, enjoying the feeling of the soft flesh under your fingers.");
 	output("\n\nErika brings her other hand down, gently brushing over your [pc.breasts] and [pc.belly], finally trailing down to her crotch, wrapping her fingers around her canine dick. She starts to languidly stroke along her length.");
 	output("\n\nBreaking your lip lock, she starts to bounce on your cock, slamming her ass down on your lap in rapid succession. She starts to maul her breast with her free hand, putting up a show for you, lewdly sucking one of her pre-glazed fingers.	");
 	output("\n\nYou're both panting with lust by now, as well as steadily leaking pre. ");
 	if (pc.hasKnot()) output("Your knot starts to swell in preparation for tying with her. ");
-	output("As if sensing your orgasm approaching, or maybe she is getting close, she starts to squeeze her anal muscles, clenching your [pc.cock] in her silky passage.");
-	output("\n\nHugging her against your [pc.breasts], you fall backward on the bed and start to really pound into her, working most of your length in and out of her.");
-	output("\n\nYou feel something warm and slick spreading on your [pc.belly], and her tail hole clamps around you, non-subtly encouraging you to cum inside of her.");
-	output("\n\nGiving her what she wants, you make two more thrusts into her before pushing your member all the way inside her");
+	output("As if sensing your orgasm approaching, or maybe she is getting close, she starts to squeeze her anal muscles, clenching your [pc.cock] in her silky passage. Hugging her against your [pc.breasts], you fall backward on the bed and start to really pound into her, working most of your length in and out of her.");
+	output("\n\nYou feel something warm and slick spreading on your [pc.belly], and her tail hole clamps around you, non-subtly encouraging you to cum inside of her. Giving her what she wants, you make two more thrusts into her before pushing your member all the way inside her");
 	if (pc.hasKnot()) output(", your knot slipping in and swelling inside her, tying her ass to your crotch and making sure none of your [pc.cum] escapes");
 	output(".");
 	if (pc.balls > 0) output("\n\nYour [pc.balls] tighten, preparing to release a load just for Erika. ");
@@ -1152,9 +1130,9 @@ public function erikaSexRideHer():void
 
 	output("“<i>I could go for some hot canine meat inside me right now. And I'm sure you can provide.</i>” Smiling at her, you gently push her back to the bed, before kneeling down between her legs.");
 	output("\n\n“<i>Gotta make sure I'm nice and hard for you, huh?</i>” she chuckles before gasping as you take her canine member into your mouth.");
-	output("\n\nCircling your [pc.tongue] around her head, you start to bob up and down on her length, sliding her hot piece of meat between your [pc.lips], making sure she's nice and wet for your ride.");
-	if (pc.wetness() >= 3) output("Not that you really need it considering how wet your [pc.pussy] gets, but sucking dick is fun on its own.");
-	output("\n\nJudging that she's as wet and as hard as she'll get, you let her length from your mouth with a wet pop.");
+	output("\n\nCircling your [pc.tongue] around her head, you start to bob up and down on her length, sliding her hot piece of meat between your [pc.lips], making sure she's nice and wet for your ride. ");
+	if (pc.wetness() >= 3) output("Not that you really need it considering how wet your [pc.pussy] gets, but sucking dick is fun on its own. ");
+	output("Judging that she's as wet and as hard as she'll get, you let her length from your mouth with a wet pop.");
 	output("\n\n“<i>Well, I'm ready as I'll ever be.</i>” She's smiling down at you, lust burning in her eyes. Her hand reaches down and strokes your ");
 	if (pc.hairLength > 0) output("[pc.hair].");
 	else output("scalp.");
@@ -1175,13 +1153,10 @@ public function erikaSexRideHerPussy():void
 	output("Pushing her back onto the bed, you straddle her hips. Taking her knotted shaft in your hand, you align the tip with your [pc.pussy]. You take your time sinking down on her dick, taking it slowly at first. You don't want to ride her to dust, at least not just yet.");
 	output("\n\nPlacing your hand on her breasts for balance, you start to buck your hips, savoring the feeling of spreading yourself on her dick and the fleshy bulb of her knot rubbing against your lower lips. Your [pc.cunt] easily accepts her small, uninflated knot.");
 	output("\n\n“<i>What a nice fit,</i>” you purr. She pulls out and you savor the popping sound of her knot leaving your pussy. You can't wait to feel the full sized knot inside you, but the build up is part of the fun.");
-	output("\n\nSpeaking of build up you start to work her knotted flesh in and out of your [pc.pussy]. Her hands find your [pc.hips], grasping them tightly, and she strokes your sides.");
-	output("\n\nSitting up she brings your [pc.nipple] to her mouth, kissing and nibbling it, seeking to bring you more pleasure.");
+	output("\n\nSpeaking of build up you start to work her knotted flesh in and out of your [pc.pussy]. Her hands find your [pc.hips], grasping them tightly, and she strokes your sides. Sitting up she brings your [pc.nipple] to her mouth, kissing and nibbling it, seeking to bring you more pleasure.");
 	output("\n\n“<i>That's a good girl. Ah, right there.</i>” You scratch her behind her ear, rewarding her efforts to please you.");
-	output("\n\nFeeling her knot swelling against your nether lips you start to slow down. “<i>Not yet, just wait a little longer, dear.</i>”");
-	output("\n\nShe whines but her knot stops swelling. Kissing her you push her so that she's on her back again. Now you're ready to really start fucking.");
-	output("\n\nPulling back until only her tip remains inside you, you slam back down with your full weight. A loud gasp breaks from her lips, only to repeat the same motion again.");
-	output("\n\nYour rough riding has her gasping and bucking under you. “<i>You really like it this way, don't you? You like it rough, you dirty girl,</i>” you tease, pushing two fingers in between her lips. She starts to lick your fingers steadily.");
+	output("\n\nFeeling her knot swelling against your nether lips you start to slow down. “<i>Not yet, just wait a little longer, dear.</i>” She whines but her knot stops swelling. Kissing her you push her so that she's on her back again. Now you're ready to really start fucking.");
+	output("\n\nPulling back until only her tip remains inside you, you slam back down with your full weight. A loud gasp breaks from her lips, only to repeat the same motion again. Your rough riding has her gasping and bucking under you. “<i>You really like it this way, don't you? You like it rough, you dirty girl,</i>” you tease, pushing two fingers in between her lips. She starts to lick your fingers steadily.");
 	output("\n\nYour [pc.pussy] is leaking your juices down your thighs by now. Slamming down for the last time, you spread yourself on her knot, your [pc.pussy] clenching around her and your [pc.girlCum] spurting from your nether lips ");
 	if (pc.hasCock()) output(", your [pc.cock] enjoying a sympathetic orgasm, shooting ropes of your [pc.cum] onto her stomach, tits, and face");
 	output(".");
@@ -1195,8 +1170,7 @@ public function erikaSexRideHerPussy():void
 	output("\n\nHer whining and begging are turning louder and more impatient now. You think that you might actually break her heart if you keep teasing her like this.");
 	output("\n\nIt is a good enough of a reward by now. You take her all the way into your mouth up to her knot, then remove the cock ring. The moment the ring isn't preventing her orgasm, she wraps her legs and arms around your head, forcing more of her dick into your mouth, almost slipping her knot in as well. But with its fully inflated girth it won't get past your lips. That doesn't stop her from hammering against your [pc.lips], though.");
 	output("\n\nThe amount of cum she forces down your throat is quite impressive for someone with such small balls. It seems all the teasing had an effect on her.");
-	output("\n\nWhen she has emptied her balls completely, her entire body turns limp. Her legs fall to your sides.");
-	output("\n\nRising back to your [pc.legs] you look down at her. She's completely out of breath and her dick hangs down at half mast.");
+	output("\n\nWhen she has emptied her balls completely, her entire body turns limp. Her legs fall to your sides. Rising back to your [pc.legs] you look down at her. She's completely out of breath and her dick hangs down at half mast.");
 	if (pc.isNice()) output("\n\n“<i>I went too hard on you, didn't I? Sorry about that.</i>”");
 	else if(pc.isMischievous()) output("\n\n“<i>I guess it wasn't as well trained as I thought?</i>”");
 	else output("\n\n“<i>And who told you that you could cum into my mouth?</i>” you scold her, slapping her half hard dick and reveluing in seeing her entire body flinch. “<i>Your lucky that I'm in a forgiving mood.</i>”");
@@ -1307,16 +1281,13 @@ public function erikaSexDegradeHer():void
 
 	output("You're feeling rather cruel today, and who better to take it out on than your feline chew toy? You shove her onto the bed before picking a few choice items from the box.");
 	output("\n\nClimbing on top of her, you tie her wrists together. “<i>I'm going to give your pathetic little bitch clit some attention. You should be thankful.</i>” You cover her nipples with some tape. “<i>Of course, if you don't want me to you could say otherwise.</i>” You continue, finally putting the ball gag into her mouth “<i>So, do you want me to stop? Now is your last chance to tell me,</i>” you ask before tying the gag behind her head.");
-	output("\n\nShe shakes her head, meek and unsure, but nonetheless shaking her head. “<i>Thought so. Can't afford to say no when someone is finally willing to touch that thing you call a dick,</i>” you say, trailing your middle finger up the underside of her doggy dick.");
-	output("\n\nWithout a warning, you clamp the cock ring around her base. “<i>There we go, can't trust a worthless bitch like you to last.</i>” Her cock gives a throb and her hips make a tiny thrust upwards.");
+	output("\n\nShe shakes her head, meek and unsure, but nonetheless shaking her head. “<i>Thought so. Can't afford to say no when someone is finally willing to touch that thing you call a dick,</i>” you say, trailing your middle finger up the underside of her doggy dick. Without a warning, you clamp the cock ring around her base. “<i>There we go, can't trust a worthless bitch like you to last.</i>” Her cock gives a throb and her hips make a tiny thrust upwards.");
 	output("\n\nStraddling her hips, you align her dick with your [pc.pussy], then slam your own [pc.hips] down, roughly impaling yourself on its tapered length.");
 	if (pc.looseness() > 3) output("\n\n“<i>Oh my, it's worse than I thought. I can barely feel a thing.</i>” You sigh in mock disappointment. “<i>I've had more fun with just my fingers, but I might be able to make this work.</i>” ");
 	else output("\n\n“<i>Hm, better than I thought. Don't get me wrong, it's not good, but it's acceptable.</i>”}");
 	output("\n\nYou start to lazily ride the unimpressive dick inside you. At least feeling her knot spreading your [pc.pussy] brings you some pleasure. Taking advantage of this, you repeatedly pop the knot in and out of you.");
-	output("\n\nFeeling another dark streak running through you, you cease your hip bucking and lift yourself up so that only her pointy tip remains inside you. “<i>Since I'm so considerate as to allow you inside my pussy, you should do the work.</i>” You slap her tit, waiting for her to get to it.");
-	output("\n\nShe starts to buck upwards, trying to fuck your pussy from an uncomfortable angle, but still managing to nudge against a sensitive spot every now and then. And she has vigor, there is no denying that.");
-	output("\n\nBut you tire of her fumbling attempts, “<i>If you want something done right, do it yourself. Now hold that slutty cock of yours still.</i>” You slam down onto the cock once again. With the intimate knowledge of your pussy that you have, you're able to seek all those very sensitive spots, blissfully ignorant of her pleasure.");
-	output("\n\nGripping her ankles for balance you speed up your thrusting, sliding that slick piece of cock flesh between your pussy lips, pausing to rub against her knot in between thrusts.");
+	output("\n\nFeeling another dark streak running through you, you cease your hip bucking and lift yourself up so that only her pointy tip remains inside you. “<i>Since I'm so considerate as to allow you inside my pussy, you should do the work.</i>” You slap her tit, waiting for her to get to it. She starts to buck upwards, trying to fuck your pussy from an uncomfortable angle, but still managing to nudge against a sensitive spot every now and then. And she has vigor, there is no denying that.");
+	output("\n\nBut you tire of her fumbling attempts, “<i>If you want something done right, do it yourself. Now hold that slutty cock of yours still.</i>” You slam down onto the cock once again. With the intimate knowledge of your pussy that you have, you're able to seek all those very sensitive spots, blissfully ignorant of her pleasure. Gripping her ankles for balance you speed up your thrusting, sliding that slick piece of cock flesh between your pussy lips, pausing to rub against her knot in between thrusts.");
 	output("\n\nUntying her hands, you bring her hand to your [pc.clit] telling her to rub it. Following your orders, she uses her fingers to rub and tweak your sensitive button, her other hand trailing along your body in an attempt to bring you more pleasure.");
 	output("\n\nWith her thumping away at your clit and her dick sliding into you, you're starting to actually get into the sex instead of only degrading her. “<i>Keep that up, you worthless piece of fuckmeat. At this rate, I might actually cum.</i>”");
 	output("\n\nThe prospect of getting you to cum makes her double her efforts, even humping upwards and meeting your downward thrusts. ");
@@ -1352,14 +1323,12 @@ public function erikaSexButtFuck():void
 
 	output("You crook your finger, inviting her to come closer and pull her into your lap. “<i>I'm going to fuck you all night. You don't have a problem with that, right?</i>” You growl into her ear while groping her butt with one hand and pressing one finger into her [erika.asshole] with the other.");
 	output("\n\nShe's breathing huskily under your ministrations. “<i>Well, the deadlines aren't that close,</i>” you murmur in her ear. She flips over onto the bed, ass in the air and tail raised high. Her puckered hole is in full view for you, she even spreads her buttocks. She seems to need a good fucking pretty badly.");
-	output("\n\nWho are you to say no to a needy kaithrit bitch? Grasping her hips, you pull her against your crotch, hot dogging between her cheeks and using your pre to lube her up, rubbing your [pc.cock] against her pucker until its wet.");
-	output("\n\nAligning yourself with her, you start to thrust inside, slowly but steadily pushing inside until your [pc.sheath] grinds against her ass. “<i>Good girl,</i>” you compliment her, patting her ass.");
+	output("\n\nWho are you to say no to a needy kaithrit bitch? Grasping her hips, you pull her against your crotch, hot dogging between her cheeks and using your pre to lube her up, rubbing your [pc.cock] against her pucker until its wet. Aligning yourself with her, you start to thrust inside, slowly but steadily pushing inside until your [pc.sheath] grinds against her ass. “<i>Good girl,</i>” you compliment her, patting her ass.");
 	output("\n\nPopping your [pc.cockHead] out of her, you test her with a few fingers, pulling her open. You find her nice and tight, but accommodating. You give her prostate a quick poke before pulling your fingers back. Satisfied that she will last, you replace your fingers with your [pc.cock]. Knowing that she can take your length, you bury yourself all the way inside before pulling out and slamming back in.");
 	output("\n\nYour hands explore her body while you work your [pc.cockNounSimple] in and out of her ass, groping her breasts and dick, squeezing her uninflated knot before sliding your hand down her dick, pinching the tapered tip softly between your finger and pushing out a bead of pre.");
 	output("\n\nYour other hand, not lying dormant, is circling her areola, making her small nubs engorge with blood before giving it a soft flick and twisting it between your fingers, and generally kneading her tit flesh.");
 	output("\n\nSomething snaps in your head. Everything that makes you the well behaved individual that you are, forgotten. More bestial desires begin to wake, forgetting everything about being a normal, sane person. Your mind is completely focused on rutting the bitch beneath you, filling her with your [pc.cum], marking her with your virility.");
-	output("\n\nHammering into her with butt-breaking force, you focus on your own desires. Part of you remembers that she can take it, but that part is forgotten as you slam back into her tunnel, made hot and slick from your pre.");
-	output("\n\nShe's clenching around your length while slamming her hips back into you. All the while she is face down on the bed, her hands drunkenly groping over her body, mindlessly pleasuring herself while you take your pleasure from her.");
+	output("\n\nHammering into her with butt-breaking force, you focus on your own desires. Part of you remembers that she can take it, but that part is forgotten as you slam back into her tunnel, made hot and slick from your pre. nShe's clenching around your length while slamming her hips back into you. All the while she is face down on the bed, her hands drunkenly groping over her body, mindlessly pleasuring herself while you take your pleasure from her.");
 	output("\n\nYou're getting closer to your edge, leaking pre more heavily now. And feeling her soft flesh tracing over the veins along your length isn't helping one bit.");
 	output("\n\n“<i>Please...</i>” A small and weak whimper comes from below you. Not slowing down your breeding efforts, you look down at her. She's looking up at you with puppy dog eyes. “<i>Please fill me, please, breed your bitch,</i>” she begs at you.");
 
@@ -1375,11 +1344,9 @@ public function erikaSexButtFuck2():void
 
 	if (pc.hasKnot()) output("With how close you are to the edge, your mind is occupied by a single thought: tying with her. You grab her hips with both hands, pulling her against you while thrusting your [pc.hips] forward. With the combined effort, you manage to push the bulb of throbbing flesh inside her before it swells. She squeezes tightly against the bitch-breaking girth. ");
 	output("That is all it takes to push you past the edge, your [pc.cock] giving a throb before starting to pump your [pc.cum] into her, flooding her inner tunnel with your seed. You keep fucking her through your orgasm, making sure to get as much of your seed as deep inside of her as possible.");
-	output("\n\nOnce you're done cumming into her, you slump down over her, pushing her down to the bed with you. Her exhausted arms are unable to keep both of you up. You're exhausted but your body wants more, no, needs more.");
-	output("\n\nYou wrap your hands around her body tightly, making sure she's held snugly against you. A few pumps of your [pc.hips] are enough to get you to stiffen again, receiving a tired gasp in return.");
+	output("\n\nOnce you're done cumming into her, you slump down over her, pushing her down to the bed with you. Her exhausted arms are unable to keep both of you up. You're exhausted but your body wants more, no, needs more. You wrap your hands around her body tightly, making sure she's held snugly against you. A few pumps of your [pc.hips] are enough to get you to stiffen again, receiving a tired gasp in return.");
 	output("\n\nAfter having claimed her tail hole with your [pc.cock], you get into it again, hot and heavy from the start. You pull back fully before putting your whole weight into the thrust. Your [pc.cum] leaks down and over her tight sack. With how slick your [pc.cockNounSimple] is with your cum, you have no problem keeping up the pace.");
-	output("\n\nWith your recent orgasm you're still sensitive and it doesn't take much for you to reach a second orgasm. Pushing in deep again, you clench your teeth surpassing a thunderous roar of beastial triumph. Your [pc.balls] draw tight as you make another futile attempt at breeding her, more of your [pc.cum] filling her stomach.");
-	output("\n\nTrailing your hand once more on her body, touching her breasts and belly, your mind fills with images of her knocked up with your kids, breasts swollen and filled with milk. The thought is ambrosia to your mind in this state, and you're rock hard again in a heartbeat.");
+	output("\n\nWith your recent orgasm you're still sensitive and it doesn't take much for you to reach a second orgasm. Pushing in deep again, you clench your teeth surpassing a thunderous roar of beastial triumph. Your [pc.balls] draw tight as you make another futile attempt at breeding her, more of your [pc.cum] filling her stomach. Trailing your hand once more on her body, touching her breasts and belly, your mind fills with images of her knocked up with your kids, breasts swollen and filled with milk. The thought is ambrosia to your mind in this state, and you're rock hard again in a heartbeat.");
 	output("\n\n“<i>You said you were going to fuck me all night, didn't you? Then do so, you beast. Knock up your breeding bitch. Fill me with children and make me yours!</i>” She teases you, pushing her hips back.");
 	output("\n\nWithout a second thought, you start fucking her again, still trying to breed her. She moans and clenches around you, urging you to fill her again and again.");
 
@@ -1396,12 +1363,10 @@ public function erikaSexButtFuck3():void
 	output("When the animalistic cloud of lust finally rises from your mind, you survey your surroundings. Erika is still on the bed, wrapped in your arms, and you're still inside her, plugging all of your cum inside. She's laying down on her side, assumedly so she isn't lying on top of her stomach, with said stomach bloated with all the seed you have been pumping into her. Propping yourself on your elbow, you notice that both of you are lying in a puddle of cum. Even with both of you contributing to said pool, it is likely that you have made most of the mess.");
 	if (kiroSexed()) output(" You briefly wonder how Kiro keeps dealing with this sort of thing.");
 	output("\n\n“<i>Morning, you </i>savage<i>. You really did fuck me all night long. You were even fucking me while you were asleep.</i>” She offers you an exhausted smile. No wonder your cock is so sore and your [pc.balls] couldn't give even a single drop of [pc.cum] if your life depended on it.");
-	output("\n\n“<i>So how about we take a shower? I really don't like telling people their business, but I'm not walking home like this, and I'd rather not make a bigger mess right now.</i>”");
-	output("\n\nConsidering that you're almost as cum covered as she is, you agree. The two of you make your way over to the shower while trying to keep her from leaking too much of your cum.");
+	output("\n\n“<i>So how about we take a shower? I really don't like telling people their business, but I'm not walking home like this, and I'd rather not make a bigger mess right now.</i>” Considering that you're almost as cum covered as she is, you agree. The two of you make your way over to the shower while trying to keep her from leaking too much of your cum.");
 	output("\n\n");
 	if (pc.libido() >= 75) output("The shower is surprisingly chaste for a horndog like you, but considering how sore the both of you are it's understandable.");
-	output("You take your time cleaning, helping each other wash up. Erika hugs you tightly and shudders when you spread her butt cheeks to let out all of your stored up [pc.cum]. It drools slowly down her legs and into the drain. She was right when she said that she didn't want to make a bigger mess.");
-	output("\n\nAfter the relatively quick shower, you get to cleaning the bed. Thankfully, Erika stays to help you, so I doesn't take that long to change the sheets and mop up the mess you made.");
+	output("You take your time cleaning, helping each other wash up. Erika hugs you tightly and shudders when you spread her butt cheeks to let out all of your stored up [pc.cum]. It drools slowly down her legs and into the drain. She was right when she said that she didn't want to make a bigger mess. After the relatively quick shower, you get to cleaning the bed. Thankfully, Erika stays to help you, so I doesn't take that long to change the sheets and mop up the mess you made.");
 	output("\n\n“<i>You know where to find me if you want to treat me as your breeding bitch again, you big beast.</i>” She steals a quick grope of your [pc.cock] before heading off, leaving you standing next to your bed in the smell of the clean sheets. You definitely could go for this again... just not right now. Right now you feel still tired. Grabbing a quick drink, you head back to your bed, sinking into the freshly changed sheets. Sleep takes you quickly after so much exertion.");
 
 	IncrementFlag("ERIKA_SEXED");
@@ -1424,12 +1389,9 @@ public function erikaSexToys():void
 
 	output("“<i>Hmm, I'm not really in the mood right now,</i>” you muse.");
 	output("\n\nShe mistakes what you mean, her ears flattening against her head, shoulders slumping in defeat.");
-	output("\n\n“<i>Oh, that's not what I meant. I just mean that I have something else on my mind.</i>” You smile while groping at her puppy pecker and ample ass.");
-	output("\n\nHer ears perk back up and she practically leaps to the bed. She's halfway between being on her hands and knees and laying on her back, and she looks back at you expectantly. You consider for a while how to play this out. “<i>Get on your back for now.</i>” She quickly obeys, rolling over onto her back while you pick out a bunch stuff from the box.");
-	output("\n\nStarting with the rope, you gently guide her limbs so that they are against themselves. She gives you few pointers and guides you when your movements are uncertain. In short order, she is effectively next to immobilized, at your mercy.");
-	output("\n\nIn preparation for the next step you grab the girthy horse dildo and frot it against her leaky puppy pecker before slowly pushing it into her [erika.asshole]. You keep pushing until the entire dildo is lodged inside her, where you give it a twist and nudge it from side to side. Pulling it out completely, you rub it against her some more before plugging her with it again.");
-	output("\n\nNext, you pick up some vibes, spreading some all natural lube that, incidentally, is spilling out from her pecker onto them. You push them into her slutty hole one by one and turn them on.");
-	output("\n\nAfter the fourth one has disappeared into her ass, she moans shakily “<i>No more, I can't take anymore.</i>” Deciding to not put all of your eggs into one basket, or in this case all of your vibes into one [erika.asshole], you start to put the fifth one away before you get an idea. You pull the tape from the box and you tape vibes to both of her nipples.");
+	output("\n\n“<i>Oh, that's not what I meant. I just mean that I have something else on my mind.</i>” You smile while groping at her puppy pecker and ample ass. Her ears perk back up and she practically leaps to the bed. She's halfway between being on her hands and knees and laying on her back, and she looks back at you expectantly. You consider for a while how to play this out. “<i>Get on your back for now.</i>” She quickly obeys, rolling over onto her back while you pick out a bunch stuff from the box.");
+	output("\n\nStarting with the rope, you gently guide her limbs so that they are against themselves. She gives you few pointers and guides you when your movements are uncertain. In short order, she is effectively next to immobilized, at your mercy. In preparation for the next step you grab the girthy horse dildo and frot it against her leaky puppy pecker before slowly pushing it into her [erika.asshole]. You keep pushing until the entire dildo is lodged inside her, where you give it a twist and nudge it from side to side. Pulling it out completely, you rub it against her some more before plugging her with it again.");
+	output("\n\nNext, you pick up some vibes, spreading some all natural lube that, incidentally, is spilling out from her pecker onto them. You push them into her slutty hole one by one and turn them on. After the fourth one has disappeared into her ass, she moans shakily “<i>No more, I can't take anymore.</i>” Deciding to not put all of your eggs into one basket, or in this case all of your vibes into one [erika.asshole], you start to put the fifth one away before you get an idea. You pull the tape from the box and you tape vibes to both of her nipples.");
 	output("\n\nYou turn the vibes to low before kissing her on the nose. “<i>I think I'm going to leave you like this for a while. Don't cum while I'm away,</i>” you call behind you, leaving her tied up on the bed.");
 
 	clearMenu();
@@ -1452,10 +1414,8 @@ public function erikaSexToys2():void
 		else output("[pc.cock], coating it in your pre to help it slip inside her ass.");
 	}
 	output("\n\nYou remember something and tie her tails against her legs so she can't cheat. “<i>Now let's see how big of a slut you are.</i>” You press the lubricated cock against her trained pucker, and it doesn't take her any effort to accept the flat head of the latex member. It seems to take very little effort pushing the rest of the length inside her.");
-	output("\n\nAs her previously flaccid dick rises to life again, you affectionately pat the bulge of faux flesh in her abdomen. “<i>You're a well trained buttslut, aren't you? Let's find out if you're a dedicated one, too.</i>”");
-	output("\n\nYou grab the fake cock and twist and turn it around her insides, keenly watching her shaft. When it jumps and shoots a bit of clear pre, you know you hit the sweet spot. Pulling it back out, you tease her rim with the flare before plunging it back in, railing over her prostate.");
-	output("\n\nIt doesn't take long to have her moaning and whimpering again under this sort of treatment. Before the dam of her lust breaks, you lift her butt in the air, above her head. This position allows you to rail into her ass with all that you got.");
-	output("\n\nGiving her one more full-length thrust against her prostate, her whole body flinches. Her petite canine shaft quivers before letting out the prized content of her balls. It lands wetly on her face, covering it in her own cum. “<i>Good girl.</i>” You smile at her while fondling her balls.");
+	output("\n\nAs her previously flaccid dick rises to life again, you affectionately pat the bulge of faux flesh in her abdomen. “<i>You're a well trained buttslut, aren't you? Let's find out if you're a dedicated one, too.</i>” You grab the fake cock and twist and turn it around her insides, keenly watching her shaft. When it jumps and shoots a bit of clear pre, you know you hit the sweet spot. Pulling it back out, you tease her rim with the flare before plunging it back in, railing over her prostate.");
+	output("\n\nIt doesn't take long to have her moaning and whimpering again under this sort of treatment. Before the dam of her lust breaks, you lift her butt in the air, above her head. This position allows you to rail into her ass with all that you got. Giving her one more full-length thrust against her prostate, her whole body flinches. Her petite canine shaft quivers before letting out the prized content of her balls. It lands wetly on her face, covering it in her own cum. “<i>Good girl.</i>” You smile at her while fondling her balls.");
 	output("\n\nYou remove the gag before presenting the cum covered side to her. “<i>Now be a good girl and clean up.</i>” She starts to spit shine the gag, and when you're satisfied with her you wipe some of the cum from her face and make her lick your finger clean. You repeat this until her face is mostly clean.");
 	output("\n\nYou release her from her bondage, letting her stretch her tied up limbs. She takes a quick trip to the bathroom to clean up the rest of her face. When she comes back, you pull her into a kiss and send her on her way with a slap on the ass.");
 
@@ -1586,6 +1546,7 @@ public function erikaSexGiveAnusoft2():void
 	pc.destroyItemByClass(Anusoft);
 	erika.ass.addFlag(GLOBAL.FLAG_PUMPED);
 	erika.ass.delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
+	erika.ass.bonusCapacity += 50;
 
 	clearMenu();
 	addButton(0,"Next",erikaSexMenu);
