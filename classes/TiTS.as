@@ -230,6 +230,7 @@
 		include "../includes/mhenga/crazyCarl.as";
 		include "../includes/mhenga/cuntSnakes.as";
 		include "../includes/mhenga/dryad.as";
+		include "../includes/mhenga/erika.as";
 		include "../includes/mhenga/flahne.as";
 		include "../includes/mhenga/frogGirls.as";
 		include "../includes/mhenga/julianSHaswell.as";
@@ -1444,6 +1445,11 @@
 		public function get ciaran():Ciaran
 		{
 			return chars["CIARAN"];
+		}
+		
+		public function get erika():Erika
+		{
+			return chars["ERIKA"];
 		}
 
 		public function testShipCombat():void
