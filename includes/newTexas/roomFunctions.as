@@ -1,4 +1,4 @@
-﻿
+
 
 public function newTexasRoadFirstTime():Boolean
 {
@@ -135,10 +135,26 @@ public function NTGiftShopBonusFunc():Boolean
 		nephAffection(100);
 		processTime(10+rand(5));
 		addButton(0, "Next", mainGameMenu, undefined, "", "");
-		return;
+		return true;
+	}
+	//Ellie is at the Nursery visiting kiddos
+	if(flags["ELLIE_AT_NURSERY"] != undefined)
+	{
+		output("Ellie doesn't seem to be around right now. She's probably at the Nursery visiting her kids.");
+		addDisabledButton(0, "Ellie", "Ellie", "Ellie isn't around right now.");
+		vendingMachineButton(1, "J'ejune");
+		return false;
+	}
+	//Kids are about to be hatched why are you here
+	else if(flags["ELLIE_OPERATION"] == 3 && flags["ELLIE_PREG_TIMER"] == 70)
+	{
+		output("Ellie isn't here right now, she's at the Nursery waiting for you! You're gunna be a dad any minute now!");
+		addDisabledButton(0, "Ellie", "Ellie", "Go to the Nursery! ASAP!");
+		vendingMachineButton(1, "J'ejune");
+		return false;
 	}
 	//First Time Entering the Shop
-	if(flags["SEEN_ELLIES_SHOP"] == undefined)
+	else if(flags["SEEN_ELLIES_SHOP"] == undefined)
 	{
 		flags["SEEN_ELLIES_SHOP"] = 1;
 		output("You step into the gift shop, pushing the glass door open ahead of you. You all but recoil when the door slides open, and an almost overpowering aroma assails your senses. It feels like you’ve just been hit by a brick, right in the chest; catching your breath is almost impossible for a long moment. Your mind swims as the potent musk in the shop washes over you, and you suddenly manage to identify the odor: sex. Raw, untamed sexuality and need. Your skin flushes as the musky odor clings to you, feeling like a haze around you as you force yourself to walk, not run, into the gift shop.\n\n");

@@ -4,6 +4,8 @@ import classes.Characters.PregnancyPlaceholder;
 //NephAffect: Ranges from 0-100. Translates 2:1 as a bonus to her store discount -- at 100%, she grants the PC a 50% discount. 
 //flag ELLIE_OPERATION tracks pregnancy content proccing:	1 = had the operation
 //															2 = announced her pregnancy
+//															3 = laid the eggs
+//															4 = eggs hatched
 
 public function nephAffection(arg:Number = 0):Number
 {
@@ -319,6 +321,7 @@ public function buildEllieTalkMenu():void
 	addButton(3,"New Texas",talkToEllieAboutNewTexas,undefined,"New Texas","Ask her what she thinks about the planet.");
 	if(flags["ELLIE_OPERATION"] == 1) addDisabledButton(4, "Operation", "Operation", "Ellie's already had the fertility operation.");
 	else if(flags["ELLIE_OPERATION"] == 2) addButton(4, "Pregnancy", talkToEllieAboutPregnancyButShesActuallyPregnantThisTime, undefined, "Pregnancy", "See how Ellie is fairing with her pregnancy.");
+	else if(flags["ELLIE_OPERATION"] == 3) addButton(4, "VisitNursery", ellieTakeOnTripToNursery, undefined, "", "");
 	else if(flags["ELLIE_OPERATION_TALK_UNLOCKED"] != undefined) addButton(4, "Operation", talkToEllieAboutOperation);
 	else if(flags["ELLIE_PREG_TALK_UNLOCKED"] != undefined && nephAffection() > 66) addButton(4, "Pregnancy", talkToEllieAboutPregnancy);
 	else addDisabledButton(4, "Locked", "Locked", "You need to be really close with Ellie to discuss this.");
@@ -1236,6 +1239,7 @@ public function ellieBigDickVaginalScenesForBigDickBoysWithBigDicksAndNowImJustT
 	if(pc.isTaur() || pc.isNaga()) output(", bestial body and all");
 	output(" - the impact of which has the delightful effect of making her spooge-packed hole squirt a little of your seed back onto the floor. <i>“C’mon, sweetheart, let’s get you back to the shop.”</i>");
 	processTime(25);
+	tryKnockUpEllie();
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1261,6 +1265,7 @@ public function littleDicksGetToPlayForTheFirstTime():void
 	output("\n\n<i>“Aww, I’m sorry, sweetheart... I didn’t mean...”</i> she stops herself, chewing on her lower lip. <i>“Hey, look, it’s alright, [pc.name]. I don’t mind, honest. Come on, what do you say we go back to the shop and see about getting you the Treatment, huh? It’ll definitely give you a boost. Or maybe some gene mods? There’s plenty of things out there that’d give you a dick so big, even a leithan male would be jealous!”</i>");
 	output("\n\nEllie gives you a reassuring pat on the shoulder as she leads you back to the storefront, drooling your cum back onto the concrete floor as she walks.");
 	processTime(20);
+	tryKnockUpEllie();
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1331,6 +1336,7 @@ public function centaursOnCentaursOnCentaursOnCentaursThisShitIsLikeInception():
 	output("womb as full of your spunk as you can. She’s more than happy to take it, making pleasured little moans and sighs as you fill her, still squeezing the milk out of her tits into a growing pool on the floor between her forelegs. Finally, after a few minutes of catching your breaths and enjoying the feeling of simply being inside your leithan lover, you scramble off of her back, forelegs clattering to the floor. The moment your [pc.cockBiggest] slides from Ellie’s gaping cunt, a little flood of leithan-cum mixed with just a tad of your own excess spooge drools out of her parted lips.");
 	output("\n\n<i>“Mmm, that was awesome, big " + pc.mf("boy","girl") + ",”</i> Ellie murmurs, patting her flank. <i>“Not a lot of bulls... heck, none... can do that to me. After that... you better do it to me again and again, ya hear? Oh, I’m still shaking from it,”</i> she adds with a giggle, hugging her arms around herself. You give Ellie’s big, cum-splattered hind an affectionate pat and offer her your arm. She takes it with a toothy smile, her bunny-like ears rubbing up against you as she snuggles close. Together, the two of you make your way back to the storefront.");
 	processTime(31);
+	tryKnockUpEllie();
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1670,9 +1676,10 @@ public function processElliePregEvents(deltaT:uint, doOut:Boolean, totalDays:uin
 	if(ellie.isPregnant())
 	{
 		flags["ELLIE_PREG_TIMER"] += totalDays;
-		//PC has to see the pregnacy announcement and be there for the egg laying or timer pauses
+		//PC has to see the pregnacy announcement and be there for the egg laying and hatching or timer pauses
 		if(flags["ELLIE_OPERATION"] < 2 && flags["ELLIE_PREG_TIMER"] > 1) flags["ELLIE_PREG_TIMER"] = 1;
 		else if(flags["ELLIE_OPERATION"] < 3 && flags["ELLIE_PREG_TIMER"] > 40) flags["ELLIE_PREG_TIMER"] = 40;
+		else if(flags["ELLIE_OPERATION"] < 4 && flags["ELLIE_PREG_TIMER"] > 70) flags["ELLIE_PREG_TIMER"] = 70;
 		
 		//Time to lay eggs
 		if(flags["ELLIE_PREG_TIMER"] >= 40 && flags["ELLIE_OPERATION"] < 3)
@@ -1684,10 +1691,11 @@ public function processElliePregEvents(deltaT:uint, doOut:Boolean, totalDays:uin
 			else flags["ELLIE_LAYING_PC_MIA"] = 1;
 		}
 		
-		//Set Ellie away or at the Gift Shop every 2 weeks after she's laid
-		if(flags["ELLIE_OPERATION"] >= 3 && flags["ELLIE_PREG_TIMER"] % 2*7 == 0) toggleEllieLocation();
+		//Set Ellie away or at the Gift Shop every 3 days after she's laid
+		if(flags["ELLIE_OPERATION"] >= 3 && flags["ELLIE_PREG_TIMER"] % 3 == 0) toggleEllieLocation();
 		
-		//Do birth eventually
+		//Give hatching notification
+		if(flags["ELLIE_OPERATION"] ==3 && flags["ELLIE_PREG_TIMER"] == 70) AddLogEvent("Your codex bleeps softly, indicating you've received a message. You flip it open to see it's addressed from Steele Tech, so it must be at least somewhat important. The message is short and succinct.\n\n<i>“The leithan eggs you fathered are ready to hatch. Please visit the Nursery at your soonest convenience.”</i>\n\nOh! You should probably do that sooner, rather than later...", "good");
 	}
 }
 
@@ -1708,19 +1716,22 @@ public function ellieLayAtGiftShop():void
 
 public function ellieLayOnNT(part:int = 0):void
 {
+	clearOutput();
 	clearMenu();
 	author("Wsan");
 	
 	switch(part)
 	{
-		case 1:	output("Your codex bleeps with the arrival of a message marked urgent. Tapping at the display, you read off the screen.");
+		case 0:	output("Your codex bleeps with the arrival of a message marked urgent. Tapping at the display, you read off the screen.");
 				output("\n\n<i>“[pc.name], come pick me up at the store! We need to go to the nursery.");
 				output("\n-Nephalee”</i>");
 				output("\n\nYou puzzle over the name for a bit before realizing it's Ellie, and what the message means. Time to get to the gift shop!");
 				addButton(0, "Next", ellieLayOnNT, 1, "", "");
 				return;
 		
-		case 2: moveTo(527);
+		case 1: moveTo("527");
+				showLocationName();
+				showBust("ELLIE");
 				output("<i>“Heya, [pc.name],”</i> Ellie says with a wince, <i>“Reckon we should get to the Nursery pretty quick.”</i>");
 				output("\n\n<i>“Got it. C'mon, I'll take you there,”</i> you say, beckoning her to you.");
 				output("\n\nSupporting her on your shoulder, you get the taurgirl onto your ship and jet to Tavros. The lift seems to take forever when you have a heavily pregnant leithan with you, but you're there soon enough. You get her into a birthing room and wait with her, holding her hand.");
@@ -1735,7 +1746,7 @@ public function ellieLayPlayerOffNT():void
 	clearMenu();
 	author("Wsan");
 	
-	output("Your codex bleeps with the arrival of a message marked urgent.");
+	output("\n\nYour codex bleeps with the arrival of a message marked urgent.");
 	output("\n\n<i>“Hi [pc.name]! By the time you get this message I'll probably be at the Nursery. Come see me!");
 	output("\n-Nephalee”</i>");
 	output("\n\nYou puzzle over the name for a bit before realizing it's Ellie, and what the message means. Time to get to the Nursery!");
@@ -1762,7 +1773,7 @@ public function ellieDelivery():void
 	clearMenu();
 	author("Wsan");
 	showBust("ELLIE");
-	showName("\nELLIE");
+	//showName("\nELLIE");
 	
 	output("The process is long and arduous, but by the end of it, Ellie's successfully delivered three giant eggs. The nursebots clean her up while she lies on a little bunch of pillows, sweaty and huffing, still clutching your hand. She watches her eggs be carried off to a temperature-regulated room to ensure their growth, then sighs and flops on her side.");
 	output("\n\n<i>“Sleepy now,”</i> Ellie mumbles, pulling you close. You lie against the tired leithan as she cuddles you like an oversized teddy bear, enjoying your warmth and closeness. She's asleep in seconds, her chest rising and falling with every breath. Settling in, you prepare to keep the tired mom company for the night. You stroke her back, pondering the fact you and Ellie now have three children together. It's been a hell of a day, but at least nothing went wrong. As the ambient lighting in the room dims to simulate sunset, you find yourself thinking of names for the kids...");
@@ -1781,7 +1792,7 @@ public function ellieDelivery():void
 	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 0, 16) > 0)
 	{
 		output("\n\nShe cocks her head. <i>“And what's a Milodan?”</i>");
-		output("\n\n<i>“The fluffy puppies... right, you wouldn't have seen them. Here, I'll show you.”</i>output("\n\n");");
+		output("\n\n<i>“The fluffy puppies... right, you wouldn't have seen them. Here, I'll show you.”");
 		output("\n\n<i>“Omigosh! They're so cute!”</i> Ellie squeals, gently picking up one of the pups. It squeaks and promptly bats her on the nose with a padded paw. <i>“Don't you hit your mommy,”</i> Ellie chides the pup, who looks suitably admonished before burping in her face and giggling.");
 		output("\n\n<i>“Aww,”</i> Ellie coos, tickling the pup before laying it back on the ground. <i>“So fluffy...”</i>");
 	}
@@ -1789,6 +1800,7 @@ public function ellieDelivery():void
 	
 	processTime(3*60+rand(30));
 	flags["ELLIE_OPERATION"] = 3;
+	flags["ELLIE_LAYING_PC_MIA"] = undefined;
 	
 	addButton(0, "Next", ellieJustLayedMassiveEggsHowIsHerPussyEvenGunnaGripYou, undefined, "", "");
 }
@@ -1801,7 +1813,7 @@ public function ellieJustLayedMassiveEggsHowIsHerPussyEvenGunnaGripYou():void
 	showBust("ELLIE" + (pc.hasCock() ? "_NUDE" : ""));
 	showName("\nELLIE");
 	
-	processTime(90+rand(30);
+	processTime(90+rand(30));
 		
 	output("When she does awaken, you're still in the room, idly tapping at your codex.");
 	output("\n\n<i>“Morning, sleepyhead,”</i> you joke.");
@@ -1853,6 +1865,9 @@ public function ellieReturnToNewTexas():void
 {
 	moveTo("527");
 	showLocationName();
+	shipLocation = "500";
+	if(!pc.hasStatusEffect("Disarmed")) pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You’ve checked all forms of weaponry at New Texas’ customs.",false,0,0xFF0000);
+
 	
 	clearOutput();
 	clearMenu();
@@ -1896,6 +1911,337 @@ public function ellieReturnToNewTexas():void
 	output("\n\nWhen you finish chatting, Ellie leans over for you to give her a kiss and gives you a happy wave. You jokingly tip your imaginary space-cowboy hat to her as you exit, setting her giggling. Breathing in the fresh air of the New Texan outdoors, you ponder your options.");
 	
 	processTime(10*60+rand(30));
+	
+	addButton(0, "Next", mainGameMenu, undefined, "", "");
+}
+
+public function toggleEllieLocation():void
+{
+	if(flags["ELLIE_AT_NURSERY"] == undefined) flags["ELLIE_AT_NURSERY"] = 1;
+	else flags["ELLIE_AT_NURSERY"] = undefined;
+	
+	//If the hatching notification has been sent but player hasn't witnessed it yet Ellie is at the nursery waiting
+	if(flags["ELLIE_OPERATION"] == 3 && flags["ELLIE_PREG_TIMER"] == 70) flags["ELLIE_AT_NURSERY"] = 1;
+}
+
+public function ellieAtNurseryPreHatch():void
+{
+	clearOutput();
+	clearMenu();
+	author("Wsan");
+	showBust("ELLIE");
+	showName("\nELLIE");
+	
+	if(ChildManager.numChildrenAtNursery() > 0)
+	{
+		output("You find Ellie, happily playing with your other kids, singing to them in a lilting tone and waving her hands from side to side. She looks so adorable like that you don't want to disturb them, so you stay hidden for a while and watch. She's the picture of motherhood, effortlessly entertaining the children and mesmerizing them with her song. Soon enough, the kids are asleep and she gently scoops them up, getting ready to put them back in their cribs. She starts when she sees you, then smiles genially.");
+		output("\n\n<i>“Let me just put them to bed,”</i> she whispers. You nod, and she goes to deposit her tiny, snoring cargo in their cots before returning. <i>“Looks like you caught me, [pc.name],”</i> Ellie says with a smile. <i>“I was just going to check on the eggs before I found the kids, and then I got distracted.”</i>");
+		output("\n\n<i>“You look good with the kids,”</i> you say, smiling. <i>“Like you were meant to be a mom.”</i>");
+		output("\n\n<i>“Aw, thanks, [pc.name],”</i> she says, a rare hint of shyness showing itself in her manner. <i>“I hope our kids think so too.”</i>");
+		output("\n\n<i>“They will. I know it,”</i> you assure her, reaching out to hold her hand. <i>“Did you wanna go check on the eggs?”</i>");
+		output("\n\n<i>“Right!”</i>");
+	}
+	else
+	{
+		output("You find Ellie milling about in the reception area, clearly deep in thought as she mumbles to herself.");
+		output("\n\n<i>“Hey babe,”</i> you call out, walking over. <i>“Everything okay?”</i>");
+		output("\n\n<i>“Oh, [pc.name]!”</i> Ellie says, surprised. <i>“I was just wondering whether I should call you over!”</i>");
+		output("\n\n<i>“You know it's fine for you to be here without me,”</i> you remind her.");
+		output("\n\n<i>“I know, but it feels nicer to have you around,”</i> she says.");
+		output("\n\n<i>“C'mon then,”</i> you say, reaching out to hold her hand. <i>“Let's go check on the eggs.”</i>");
+	}
+	output("\n\nThe two of you stand and watch the eggs for a while. To races that don't lay eggs, standing around and watching them might seem odd, but you suspect that most parents would understand. After a while, you turn to Ellie.");
+	output("\n\n<i>“Thought of any good names yet?”</i>");
+	output("\n\n<i>“I'm still thinking,”</i> she says, sighing. <i>“I know I'll know them when I know them! I mean... I'll figure it out.”</i>");
+	output("\n\n<i>“Fair enough,”</i> you say, nodding.");
+	output("\n\nAfter a few minutes, you and Ellie exit the room still holding hands. You spend a few minutes just chatting, then give her a kiss goodbye as she departs to get back to New Texas. She leaves you with a fuzzy feeling in your stomach and a smile on your face.");
+	
+	processTime(20+rand(10));
+	flags["ELLIE_AT_NURSERY"] = undefined;
+	addButton(0, "Next", mainGameMenu, undefined, "", "");
+}
+
+public function ellieTakeOnTripToNursery(part:int = 0):void
+{
+	clearOutput();
+	clearMenu();
+	author("Wsan");
+	showBust("ELLIE");
+	showName("\nELLIE");
+	
+	switch(part)
+	{
+		case 0:	output("<i>“Wanna go check on the kids?”</i>");
+				output("\n\n<i>“Sure! Gosh, I can't wait until they're born,”</i> Ellie says, coming around the counter. <i>“It's gonna be so much fun.”</i>");
+				addButton(0, "Next", ellieTakeOnTripToNursery, ++part, "", "");
+				break;
+		
+		case 1:	moveTo("NURSERYE14");
+				showLocationName();
+				shipLocation = "TAVROS HANGAR";
+				output("The two of you arrive at the Nursery shortly, walking into the reception area ");
+				if(ChildManager.numChildrenAtNursery() > 0)
+				{
+					output("where you're waylaid by some of your other kids. As small as they are, they don't really get around much, but they're adorable enough that you're effectively their captives. You and Ellie sit to play with them, lifting the giggling children above your head and swaying them from side to side as Ellie sings. Before too long, they've fallen asleep in your hands, and you give them to the staff that carries them back to their cots.");
+					output("\n\n<i>“Your kids are so cute,”</i> Ellie says, watching them go. <i>“They're like little angels!”</i>");
+					output("\n\n<i>“They are,”</i> you agree. <i>“Want to go see ours?”</i>");
+					output("\n\n<i>“Uh huh!”</i> Ellie nods, and you walk her to the incubation room.");
+				}
+				else
+				{
+					output("where you say hi to Briget. You spend a few minutes chatting with Ellie and her, giving Ellie the rundown on how stuff works around the Nursery.");
+					output("\n\n<i>“Your father must have really loved you to have left you all this,”</i> Ellie marvels, looking down one of the hallways.");
+					output("\n\n<i>“Victor was a good man,”</i> says Briget, smiling. <i>“He would have liked you a lot, Ellie. He loved people with a fondness for life.”</i>");
+				}
+				output("\n\nThe two of you stand and watch the eggs for a while. To races that don't lay eggs, standing around and watching them might seem odd, but you suspect that most parents would understand. After a while, you turn to Ellie.");
+				output("\n\n<i>“Thought of any good names yet?”</i>");
+				output("\n\n<i>“I'm still thinking,”</i> she says, sighing. <i>“I know I'll know them when I know them! I mean... I'll figure it out.”</i>");
+				output("\n\n<i>“Fair enough,”</i> you say, nodding.");
+				output("\n\nAfter a few minutes, you and Ellie exit the room still holding hands. You spend a few minutes just chatting, then give her a kiss goodbye as she departs to get back to New Texas. She leaves you with a fuzzy feeling in your stomach and a smile on your face.");
+				pc.removeStatusEffect("Disarmed");
+				processTime(10*60+rand(30));
+				addButton(0, "Next", mainGameMenu, undefined, "", "");
+				break;
+	}
+}
+
+public function ellieEggsHatching():Boolean
+{
+	clearOutput();
+	clearMenu();
+	author("Wsan");
+	showBust("ELLIE");
+	showName("\nELLIE");
+	
+	output("You walk into the lobby to find Ellie, pacing about and looking anxious. She looks up when she hears the door slide open and bounds towards you, bouncing across the tiled floor.");
+	output("\n\n<i>“[pc.name]! They're gonna hatch!”</i>");
+	output("\n\n<i>“I know, I got here as fast as I could,”</i> you say, giving her a hug. <i>“Let's go see them, okay?”</i>");
+	output("\n\nThe cover on the incubation chamber slides back and the tray protrudes outward, revealing the large eggs as they begin to shake. You find yourself holding your breath with Ellie as cracks begin to appear on their surface, little tapping noises and squeaks coming from within. You briefly consider helping them out of their eggs, but a look at Ellie's expression stops you. Her eyes are hopeful, but her jaw is set; they should break out of them on their own.");
+	output("\n\nThe first reveals itself by way of slipping its tail through a crack and backing out, falling over onto its haunches and squawking in distress. Ellie scoops it up and deposits the foal back on its shaky feet, giving the two of you a good look at it.");
+	output("\n\nYour first child is a boy, ");
+	if(pc.hasScales()) output("with a little layer of [pc.skinFurScales] - just like yours - in a tiny diamond underneath his left eye.");
+	else if(pc.hasFur()) output("with a tiny tuft of [pc.skinFurScales] - just like yours - sprouting from his chest.");
+	else if(pc.skinTone == "gray") output("with a small splotch of differently-colored skin across his stomach that's identical to yours.");
+	else output("the gray of his leithan skin fading in a gradient to the [pc.skinColor] of yours across his lower half.");
+	output(" He has beautiful blue eyes, just like Ellie, and he uses them to look between you and her, his curiosity palpable.");
+	output("\n\n<i>“Mommy,”</i> Ellie says, smiling and pointing at herself. <i>“Can you say mommy?”</i>");
+	output("\n\n<i>“Mu-mu,”</i> the child chants, waving his arms up and down excitedly and setting Ellie giggling.");
+	output("\n\nShe sits and pulls him forward in a gentle hug, your son's head perched on her shoulder as he looks up at you inquisitively.");
+	output("\n\n<i>“Mu-mu?”</i> he asks.");
+	output("\n\n<i>“No,”</i> you laugh, shaking your head. <i>“I'm daddy" + (pc.isHerm() ? ", I guess" : "") + ". Can you say daddy?”</i>");
+	output("\n\nThe boy casts his eyes downwards, thinking hard, before looking back up. <i>“Da-du?”</i>");
+	output("\n\n<i>“Close enough, buddy,”</i> you grin. He grins back.");
+	output("\n\nWith your new child in tow, the three of you watch the other two eggs. Two little heads pop out of the tops simultaneously, chirping and looking around their new surroundings. They box the rest of the eggs away and emerge into the world, already holding each other's hands. It looks like you have two wonderful little girls, practically attached at the hip. The one on the left has eyes exactly like Ellie's, while the one on the right has heterochromia - her right eye has a faint coloration reminiscent of yours. Both of them have ");
+	if(pc.hasScales()) output("a little spot of [pc.skinFurScales] on their foreheads");
+	else if(pc.hasFur()) output("a tuft of [pc.skinFurScales] on their chest");
+	else output("skin closer to the color of yours instead of Ellie's gray, too");
+	output(".");
+	output("\n\nThe girls make their way over to you and Ellie for hugs, and you sweep your kids into your arms. United with your little family, you can't help but wonder if perhaps this was what your father should have been looking for all along. The girls giggle while the boy struggles out of your grip, already curious about the rest of the world around him.");
+	output("\n\n<i>“So,”</i> you say to Ellie. <i>“Decided on names?”</i>");
+	
+	processTime(10);
+	
+	addButton(0, "Next", ellieNameYourKiddos, undefined, "", "");
+	
+	return true;
+}
+
+public function ellieBirth():void
+{
+	//Ellie's kids are much more pre-defined than others
+	var traitChar:Creature = chars["PC_BABY"];
+	var a:UniqueChild = new EllieUniqueChild();
+	var b:UniqueChild = new EllieUniqueChild();
+	var c:UniqueChild = new EllieUniqueChild();
+	
+	a.RaceType = b.RaceType = c.RaceType = GLOBAL.TYPE_LEITHAN;
+	a.NumMale = 1;
+	b.NumFemale = 1;
+	c.NumFemale = 1;
+	a.originalRace = b.originalRace = c.originalRace = c.hybridizeRace(c.originalRace, pc.originalRace, true);
+	
+	a.Name = flags["ELLIE_KID1"];
+	b.Name = flags["ELLIE_KID2"];
+	c.Name = flags["ELLIE_KID3"];
+	
+	// I'm too lazy to even make a for loop to do this shit
+	if(rand(2) == 0) a.skinTone = b.skinTone = c.skinTone = traitChar.skinTone;
+	if(rand(2) == 0) a.lipColor = b.lipColor = c.lipColor = traitChar.lipColor;
+	if(rand(2) == 0) a.nippleColor = b.nippleColor = c.nippleColor = traitChar.nippleColor;
+	if(rand(2) == 0) a.eyeColor = b.eyeColor = c.eyeColor = traitChar.eyeColor;
+	if(traitChar.hairColor != "NOT SET" && rand(2) == 0) a.hairColor = b.hairColor = c.hairColor = traitChar.hairColor;
+	if(traitChar.furColor != "NOT SET" && rand(2) == 0) a.furColor = b.furColor = c.furColor = traitChar.furColor;
+	
+	a.MaturationRate = b.MaturationRate = c.MaturationRate = 1.0;
+	a.BornTimestamp = GetGameTimestamp();
+	//the girls are born a little after idk
+	c.BornTimestamp = c.BornTimestamp = GetGameTimestamp() + 2;
+	ChildManager.addChild(a);
+	ChildManager.addChild(b);
+	ChildManager.addChild(c);
+
+	flags["ELLIE_TOTAL_KIDS"] = 3;
+	flags["ELLIE_OPERATION"] = 4;
+}
+
+public function ellieNameYourKiddos(kiddo:int = 0):void
+{
+	clearOutput();
+	clearMenu();
+	author("Wsan");
+	showBust("ELLIE");
+	showName("\nELLIE");
+	
+	switch(kiddo)
+	{
+		case 0:	output("What should your first kid with Ellie, the male one, be named?\n\n(No bracket or escape characters" + (!silly ? ", and max of 16 charcters" : "") + ")");
+				displayInput();
+				addButton(0, "Next", ellieNameYourKiddos, ++kiddo, "", "");
+				break;
+				
+		case 1:	if(hasIllegalInput(userInterface.textInput.text))
+				{
+					ellieNameYourKiddos(0);
+					break;
+				}
+				if(!silly &&userInterface.textInput.text.length > 20)
+				{
+					ellieNameYourKiddos(0);
+					break;
+				}
+				flags["ELLIE_KID1"] = userInterface.textInput.text;
+				output("What should your second kid with Ellie, the female one with Ellie's eyes, be named?\n\n(No bracket or escape characters" + (!silly ? ", and max of 16 charcters" : "") + ")");
+				displayInput();
+				addButton(0, "Next", ellieNameYourKiddos, ++kiddo, "", "");
+				break;
+				
+		case 2:	if(hasIllegalInput(userInterface.textInput.text))
+				{
+					ellieNameYourKiddos(1);
+					break;
+				}
+				if(!silly && userInterface.textInput.length > 20) 
+				{
+					ellieNameYourKiddos(1); 
+					break;
+				}
+				flags["ELLIE_KID2"] = userInterface.textInput.text;
+				output("What should your third kid with Ellie, the female one with heterochromia, be named\n\n(No bracket or escape characters" + (!silly ? ", and max of 16 charcters" : "") + ")");
+				displayInput();
+				addButton(0, "Next", ellieNameYourKiddos, ++kiddo, "", "");
+				break;
+				
+		case 3:	if(hasIllegalInput(userInterface.textInput.text)) 
+				{
+					ellieNameYourKiddos(2); 
+					break;
+				}
+				if(!silly && userInterface.textInput.length > 20) 
+				{
+					ellieNameYourKiddos(2); 
+					break;
+				}
+				flags["ELLIE_KID3"] = userInterface.textInput.text;
+				ellieTheseKidNamesSuckAss();
+				break;
+				
+		default:output("<b>YOU SHOULD'NT BE HERE MORTAL.</b>");
+	}
+}
+
+public function ellieTheseKidNamesSuckAss():void
+{
+	ellieBirth();
+	
+	removeInput();
+	clearOutput();
+	clearMenu();
+	author("Wsan");
+	showBust("ELLIE");
+	showName("\nELLIE");
+	
+	output("<i>“Uh huh!”</i> she declares. <i>“The boy is " + flags["ELLIE_KID1"] + ", this one is " + flags["ELLIE_KID2"] + ",”</i> she says, indicating each child by rubbing their head, <i>“and she's " + flags["ELLIE_KID3"] + "!”</i>");
+	output("\n\nHaving partaken in the little formalities of being born like receiving a name, it looks like all your kids want to do for now is go back to sleep. You can understand the sentiment; sometimes exploring new worlds has to take a backseat. Curling up on their pillows, they lie together in a cute little mess of limbs and tails, all tangled together. You put a fluffy blanket over them and pull back, letting them rest. Being born is probably pretty exhausting, you imagine.");
+	output("\n\n<i>“They're cute, aren't they?”</i> you murmur to Ellie, who's watching them intently.");
+	output("\n\n<i>“They are! I just wanna pick them up and pet them,”</i> she whispers back, squeezing your shoulder.");
+	output("\n\n<i>“You'd better not,”</i> you warn jokingly, smiling down at your kids. <i>“They'll never get back to sleep. Although you could probably fit at least two of them between these,”</i> you continue, looping an arm around her shoulders to softly lift one of her giant breasts.");
+	output("\n\n<i>“Oooh,”</i> moans Ellie, leaning into your grip. <i>“What do you say we go celebrate..?”</i>");
+	
+	pc.lust(20);
+	processTime(5);
+	
+	addButton(0, "Next", ellieReallyYoureAlreadyHorny, undefined, "", "");
+}
+
+public function ellieReallyYoureAlreadyHorny():void
+{
+	clearOutput();
+	clearMenu();
+	author("Wsan");
+	showBust("ELLIE");
+	showName("\nELLIE");
+	
+	output("You emerge flushed and still breathing hard from the private quarters a few hours later, having indulged Ellie's celebration request thoroughly enough to leave her almost comatose in post-orgasmic bliss. She might be missing the pheromones, but she's still the sexiest - and horniest - woman you know. And the mother of your kids, whom you note are still sleeping. You take some time to just watch their little chests rise and fall, soft breaths syncing up like they really are joined at the hip, and your mind drifts as your eyes glaze over.");
+	output("\n\nThe reality of having intelligent children is... well, difficult. They'll be well taken care of, no doubt of that. But how often can you be there for them? How many of their special moments are you going to miss, flying through space to lay claim to an inheritance? Well, at least they were born able to speak. You didn't miss that. You can only hope your journey is a matter of weeks or months, rather than years or... decades.");
+	output("\n\nYou shake your head. No point thinking about this - what's done is done, and besides, your father wouldn't do that to you. This was intended to be an adventure of self-discovery, courtesy of dad, not a mythical trial. He <i>knew</i> you could do it. And you will. Watching your kids, you silently clench a fist and vow to be there for them, the way your dad made time for you even as a CEO. It's the right thing to do.");
+	output("\n\nAssured that your children are sleeping well, you return to your room to rest beside Ellie. She'll be a great help, too. You already know she'll be an amazing mother, as ditzy as she is. Her heart is in the right place, that's for sure. You curl an arm around her on the bed and relax, her sleepy mumble putting a smile on your face.");
+	
+	pc.orgasm();
+	processTime(60+rand(20));
+	
+	addButton(0, "Next", ellieWhereDoWeGoFromHere, undefined, "", "");
+}
+
+public function ellieWhereDoWeGoFromHere():void
+{
+	clearOutput();
+	clearMenu();
+	author("Wsan");
+	showBust("ELLIE");
+	showName("\nELLIE");
+	
+	output("The next day, you're making preparations to leave, having talked with Ellie. She's decided to stay here just for a little while, to take care of the kids and make sure they're doing okay. They'll be taken care of by the staff, you know that for sure, but it makes you glad to see just how much she cares. Not a minute goes by that she isn't using her boisterous energy to fuss over them, keeping them entertained. " + (ChildManager.numChildrenAtNursery() > 3 ? "Your other kids aren't exempt from the Ellie experience, either, treated as just one of the pack." : "") + "");
+	output("\n\nWhen it's time to go, you call out to Ellie and she puts " + flags["ELLIE_KID3"] + " down, who watches the two of you with curiosity, her heterochromic eyes wide. You give her a reassuring smile before turning to Ellie.");
+	output("\n\n<i>“I should get back out there.”</i>");
+	output("\n\n<i>“I know,”</i> Ellie nods, looking at you with a smile. <i>“You'll be back, right?”</i>");
+	output("\n\n<i>“I will. I love you, okay? I'll visit as often as I can.”</i>");
+	output("\n\n<i>“Oh,”</i> she says, a hitch in her voice as she turns away. <i>“Sorry, hearing you say that just- there's something in my eye...”</i>");
+	output("\n\n<i>“Ellie,”</i> you say softly, and she turns back to look at you. Her beautiful blue eyes are welling with tears, and you give her a gentle smile. <i>“I won't desert you. The kids are a lifelong commitment, and it's a path we'll walk together. The two of us. That's what I mean when I say I love you, Ellie.”</i>");
+	output("\n\nHer jaw quivers momentarily before she throws herself into your chest, weeping silently. You smile and embrace her, running your hands through her hair to comfort her. For all the love she gets on New Texas, it's a bit different coming from the father of her children, and always will be. You look down to see the kids clustered around your feet, looking up at you accusingly.");
+	output("\n\n<i>“I didn't make her cry,”</i> you protest, trying to explain, drawing a giggle from Ellie.");
+	output("\n\nShe unearths her head from your chest and smiles down at the kids through drying tears. <i>“I'm fine, your father just made me a very happy girl is all. Sometimes we cry when we're happy too!”</i>");
+	output("\n\nYou crouch down and swiftly scoop the kids into a hug, planting a kiss on each of their foreheads and smiling. <i>“Daddy has to leave now. Can you be good for mommy?”</i>");
+	output("\n\nThey nod one by one, and you tighten your grip before letting them go. They scamper back to the play area, woes already forgotten, leaving you with Ellie.");
+	output("\n\n<i>“Okay,”</i> you say, getting back up. <i>“I'm off.”</i>");
+	output("\n\n<i>“Bye, [pc.name],”</i> Ellie murmurs, planting a soft kiss on your cheek. <i>“I'll see you soon. Be safe out there.”</i>");
+	output("\n\nYou muss her hair a bit and lean in as she pulls back, kissing her on the lips before you leave. She smiles at your back until you disappear from view, turning a corner towards the elevators.");
+	output("\n\nAlone for the first time in a while, you sigh and turn your mind back to-");
+	output("\n\n<i>“Oh, [pc.name]! Wait!”</i> you hear from behind you, and turn as the elevator dings, the doors opening.");
+	output("\n\n<i>“Ellie?”</i> you ask, as she skitters to a stop at the other end of the corridor.");
+	output("\n\n<i>“I forgot to tell you,”</i> she says, hand clenched beneath her bosom as she fixes you with a gentle smile you will never forget. <i>“I love you too.”</i>");
+	output("\n\n<i>“I know,”</i> you call back with a smile. <i>“I'll see you soon, Ellie.”</i>");
+	output("\n\nEllie watches the elevator doors close and carry her love away, back to " + pc.mf("his","her") + " adventure and the smile that was on her face fades slightly, but remains in place. Yes, it will be lonely without [pc.name] around. But they'll be back, she knows in her heart. [pc.name] never lies. She turns back to the nursery and walks into the play area, finding the kids littered about in various lazy positions.");
+	output("\n\n<i>“Who wants to play?”</i> she coos.");
+	output("\n\nA chorus of squees rings out, and her children surround her as she giggles.");
+	
+	processTime(12*60+rand(60));
+	
+	addButton(0, "Next", ellieTakeGoodCareOfTheKiddosWhenImGone, undefined, "", "");
+}
+
+public function ellieTakeGoodCareOfTheKiddosWhenImGone():void
+{
+	clearOutput();
+	clearMenu();
+	clearBust();
+	author("Wsan");
+	
+	moveTo("LIFT: MERCHANT DECK");
+	showLocationName();
+	
+	output("Back on the merchant floor, you glance back up at the building you came out of. Truth be told, you feel a little lonely already. But she'll still be there when you return, and so will the kids. You made a vow for them, too. Turning away, you set your mind back on business.");
+	
+	processTime(15);
 	
 	addButton(0, "Next", mainGameMenu, undefined, "", "");
 }

@@ -88,6 +88,8 @@ public function zilCallgirlAtNursery():Boolean
 
 public function nurseryFoyerFunc():Boolean
 {
+	if(flags["ELLIE_PREG_TIMER"] == 70 && flags["ELLIE_OPERATION"] == 3) return ellieEggsHatching();
+	
 	output(" The Steele Tech logo is emblazoned across the wall opposite the elevator, surrounded by pastel-colored images of flowers and small animals.");
 	if (silly) output(" There’s even a cute little cartoonish cow!");
 	output(" A holo-terminal dominates the western wall, slowly scrolling through reams of digital text - the status of");
@@ -109,6 +111,12 @@ public function nurseryFoyerFunc():Boolean
 	}
 
 	addButton(1, "NurseryComp.", nurseryComputer, undefined, "Nursery Status Computer", "The holoterminal in the nursery is set up to monitor and summarize the status "+ (numChildren == 0 ? "of your potential children" : (numChildren == 1 ? "of your child" : "of all your children")) +", letting you stay up-to-date with a push of a button.");
+
+	if(ChildManager.numChildrenAtNursery() < 1 && flags["ELLIE_PREG_TIMER"] < 70 && flags["ELLIE_AT_NURSERY"] != undefined)
+	{
+		output("\n\nYou find Ellie milling about in the reception area, clearly deep in thought as she mumbles to herself.");
+		addButton(2, "Ellie", ellieAtNurseryPreHatch, undefined, "", "");
+	}
 
 	return false;
 }
@@ -376,12 +384,20 @@ public function nurseryZilCallgirlRandomEvents():Boolean
 public function nurseryI14Func():Boolean
 {
 	nurseryZilCallgirlRandomEvents();
+	
 
 	return false;
 }
 
 public function nurseryCommonAreaFunc():Boolean
 {
+	if(ChildManager.numChildrenAtNursery() > 0 && flags["ELLIE_PREG_TIMER"] < 70 && flags["ELLIE_AT_NURSERY"] != undefined)
+	{
+		output("You find Ellie, happily playing with your other kids, singing to them in a lilting tone and waving her hands from side to side.\n\n");
+		addButton(0, "Ellie", ellieAtNurseryPreHatch, undefined, "", "");
+		return true;
+	}
+	
 	nurseryZilCallgirlRandomEvents();
 
 	return false;
