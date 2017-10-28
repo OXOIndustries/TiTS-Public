@@ -4607,7 +4607,7 @@ public function seraBitcheningPunishWalkiesWitnessRival():void
 	}
 	output("\n\n<i>“No! God no.”</i> [rival.name] is still staring at Sera, expression frozen, foot tapping impulsively; [rival.hisHer] usual snap and sting are completely absent. <i>“Well! I suppose I should get back out to the frontier. Seems you’ve basically thrown in the towel, if this is how you’re wasting your time.”</i>");
 	output("\n\n<i>“What are <i>you</i> doing here?”</i> you inquire.");
-	output("\n\n<i>“Nothing! None of your business!”</i> [rival.heShe] strides away without another word. [rival.HeShe] can’t stop himself shooting a couple of glances back over [rival.hisHer] shoulder at the pair of you, though.");
+	output("\n\n<i>“Nothing! None of your business!”</i> [rival.heShe] strides away without another word. [rival.HeShe] can’t stop [rival.himHer]self from shooting a couple of glances back over [rival.hisHer] shoulder at the pair of you, though.");
 	
 	processTime(5);
 	
