@@ -2021,9 +2021,14 @@ public function multiBalljobRaskTraps():void
 
 	if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.hasPerk("Peace of Mind"))
 	{
-		output("Ever since you caught sight of the raskvel’s big, achingly packed balls your attention has been drifting back to them, and how much you’d like to relieve the cute little snack-boy of all that gloopy, delicious pressure. So what if you’ve kinda messed things up. Maybe you wanted to mess up. Messes are fun.");
+		output("Ever since you caught sight of the raskvel’s big, achingly packed balls your attention has been drifting back to them, and how much you’d like to relieve the cute little snack-boy of all that gloopy, delicious pressure.");
+		if(flags["SYDIAN_QUEEN_RESULT"] == 3) output(" So what if you’ve kinda messed things up. Maybe you wanted to mess up. Messes are fun.");
 	}
-	else output("How did you mess up negotiating with these savages so badly you’re being forced to do this? You’d love to know off whom the raskvel got those extremely powerful guns they’re packing. Whoever they are have got a lot to answer for.");
+	else
+	{
+		if(flags["SYDIAN_QUEEN_RESULT"] == 3) output("How did you mess up negotiating with these savages so badly you’re being forced to do this? ");
+		output("You’d love to know off whom the raskvel got those extremely powerful guns they’re packing. Whoever they are have got a lot to answer for.");
+	}
 
 	// {merge}
 	output("\n\n<i>“I will have the supplicants service me on my own to begin with,”</i> says Azaphel, beaming as he steps forward into his red letter day. <i>“Just to make sure it’s worth the rest of you fellers’ time, you know.”</i>");
@@ -2605,7 +2610,7 @@ public function backSafeAndSoundAfterTarkusBooty():void
 
 	output("\n\n<i>“Right?”</i> Azra shakes her head. <i>“And that Raskvel. If that’s a side effect of excess motherhusk exposure, I’ll need to be careful with how we contain them. The last thing I want to do is turn this whole ship into a pile of immobile baby factories.”</i>");
 	output("\n\nYou nod");
-	if(pc.isTreated()) output(", though the ideal has more than a little appeal to you");
+	if(pc.isTreated()) output(", though the idea has more than a little appeal to you");
 	output(".");
 
 	//Azra serviced raskvel

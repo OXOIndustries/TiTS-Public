@@ -3348,7 +3348,7 @@ public function gooballOption(arg:Array):void
 		case GooBallRed: gooColor = "red"; break;
 		case GooBallOrange: gooColor = "orange"; break;
 		case GooBallYellow: gooColor = "yellow"; break;
-		case GooBallGreen: gooColor = "grean"; break;
+		case GooBallGreen: gooColor = "green"; break;
 		case GooBallBlue: gooColor = "blue"; break;
 		case GooBallPurple: gooColor = "purple"; break;
 		case GooBallPink: gooColor = "pink"; break;

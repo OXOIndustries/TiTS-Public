@@ -973,7 +973,7 @@ public function annoKaedeTiddyDrama():void
 	if(silly) output("\n\nWait! This is not your beautiful house! These are not Anno’s massive milk-leaking breasts!");
 	else output("\n\nYou’re quick to realize none of what you just dreamt actually happened, looking around to see not a single pair of breasts above a D-cup, nor any ginger half-breeds attached to your cock, leaving you with a slight pang of disappointment.");
 	output("\n\n<i>“Oh...”</i> she moans, <i>“You’re finally awake, you’ve been, uh... doing </i>that<i> for a while now.”</i> With that last word she nods her head to get you to look down, and you do so, only to see you’ve covered this pup’s tummy in your [pc.cum], your [pc.cockHead] still gently leaking onto her smooth stomach.");
-	output("\n\nYou look back up to the girl’s nipples, still stiff and a bit reddened from your sleepy suckling... and all to succulent for you to resist.");
+	output("\n\nYou look back up to the girl’s nipples, still stiff and a bit reddened from your sleepy suckling... and all too succulent for you to resist.");
 
 	if(pc.isNice()) 
 	{

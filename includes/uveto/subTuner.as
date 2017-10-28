@@ -2922,7 +2922,8 @@ public function peerReviewParty3():void
 	output("\n\nThough, the woman’s other tool seems quite neglected, rubbing against your cheek with its heat pouring off onto your [pc.skinFurScales]. So, you do the only thing a good pet could do and take the poor, needy shaft into the warm embrace of your hand, gently stroking it until its owner is on the verge of moaning.");
 
 	//seraIsCrew:
-	if(seraIsCrew())
+	var seraJoin:Boolean = (seraIsCrew() && chars["SERA"].hasCock());
+	if(seraJoin)
 	{
 		output("\n\nAs you’re getting into your blowjob, a familiar voice fills your ears, ");
 		//firstTime:
@@ -2958,7 +2959,7 @@ public function peerReviewParty3():void
 		output(" cock into your ass, rubbing it against your inner walls fast enough to make you moan. It isn’t long before she bottoms out inside you and sets to thrusting, not even giving you a moment to adjust to her length.");
 		pc.buttChange(chars["SERA"].cockVolume(0));
 	}
-	if(seraIsCrew())
+	if(seraJoin)
 	{
 		output("\n\nEven with Sera pounding your ass, you ");
 	}
@@ -2966,7 +2967,7 @@ public function peerReviewParty3():void
 	output(" quickly redouble your efforts on pleasuring Belle; you vigorously jerk the woman’s upper-cock off while you lovingly lavish her second dong, treating it with love and you lick at it and bob your head up and down. Before too long your master loses a bit of her composure and starts to thrust into your mouth and against your hand. Her wide hips pump wildly against your maw, and all that girth of hers hurts your jaw a little, <i>but you take it all happily, because it feels so good to please your master like this</i>. Eventually, you begin to pull yourself off her shaft to lick and kiss at her knot, catching your breath for a moment before continuing your blowjob.");
 
 	//seraIsCrew:
-	if(seraIsCrew()) 
+	if(seraJoin) 
 	{
 		output("\n\nSera’s still thrusting away at your [pc.asshole], ");
 		//hasSubmittedToSera: Fen note9999: Sera's content is fucknormous and I'd rather just not bother:
@@ -2981,7 +2982,7 @@ public function peerReviewParty3():void
 	if(pc.hasCock()) output("your [pc.cocks] emptying onto the ground below you, coating the floor with slick [pc.cumNoun]");
 	else output("your [pc.vaginas] clamp down around a shaft that isn’t there, spraying the floor down with [pc.girlcum].");
 	
-	if(seraIsCrew())
+	if(seraJoin)
 	{
 		output("\n\nYou clenching pucker seems to coax the demoness behind you into orgasm, because you feel her hips ram forward, burying her thick cock in your [pc.ass], spasming inside you. Her hips buck jerkily against your own as a sudden gush of hot alabaster seed fills your ass, leaving you to whimper.");
 
@@ -2992,7 +2993,7 @@ public function peerReviewParty3():void
 	
 
 	//SubSeraCrew:
-	if(seraIsCrew())
+	if(seraJoin)
 	{
 		output("\n\nWith everyone coming down from their peaks, moaning and pleasured tones give way to panting and deep breaths. Sera, not seeming to be in the mood for a cuddle, pulls her cock from your ass, leaving you to shudder and your [pc.asshole] with quite the spunk-filled gape. The demon-morph stands straight up after that like nothing even happened.");
 		
@@ -3008,7 +3009,7 @@ public function peerReviewParty3():void
 	var ppBelle:PregnancyPlaceholder = getBellePregContainer();
 	pc.loadInMouth(ppBelle)
 	pc.loadInMouth(ppBelle)
-	if(seraIsCrew()) pc.loadInAss(chars["SERA"]);
+	if(seraJoin) pc.loadInAss(chars["SERA"]);
 	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",peerReviewParty4);

@@ -140,7 +140,7 @@ package classes.Items.Transformatives
 			}
 			if(!pc.hasVagina() && pc.hasCock() && pc.balls == 0) choices.push(3);
 			//(Balls and Penor) BallRating gain of 1. Max 5" diameter. (Higher if bulgy?)
-			if(pc.hasCock() && pc.balls > 1 && (pc.ballDiameter() < 5 || (pc.ballDiameter() < 7 && pc.hasPerk("Bulgy")))) choices.push(4);
+			if(pc.hasCock() && pc.balls > 1 && ((pc.ballDiameter() < 7 && pc.hasPerk("Bulgy")) || pc.ballDiameter() < 5)) choices.push(4);
 			//Refractory to 4x human
 			if(pc.refractoryRate < 4 && pc.hasCock() && !pc.hasStatusEffect("Blue Balls")) choices.push(5);
 			if(pc.hasCock() && pc.balls > 1 && pc.ballDiameter() >= 5 && pc.maxCum() < 30000) choices.push(6);
@@ -956,7 +956,7 @@ package classes.Items.Transformatives
 					else textBuff += ParseText(pc.vaginaTypeLockedMessage());
 				}
 			}
-			if(textBuff == "")  textBuff += "<b>Fenoxo fucked up.</b> Select state: " + select + " and Choices state: " + choices.length;
+			if(textBuff == "") textBuff += "<b>Fenoxo fucked up.</b> Select state: " + select + " and Choices state: " + choices.length;
 			AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 			return;
 		}

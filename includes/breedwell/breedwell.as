@@ -238,7 +238,7 @@ public function breedwellDonationBonus():Boolean
 	else if(flags["BREEDWELL_DONATION_USED"] == days)
 	{
 		output("\n\nThe cubicles refuse to open when you approach them. They’re evidently programmed not to for those who have already given their donation for the day.");
-		addDisabledButton(0, "Cubicle", "Cockmilker", "You can't use this at the moment. Maybe later?");
+		addDisabledButton(0, "Cubicle", "Cockmilker", "You can’t use this at the moment. Maybe later?");
 	}
 	else addButton(0, "Cubicle", breedwellApproachCockmilker, undefined, "Cockmilker", "Donate some sperm.");
 	
@@ -1644,11 +1644,15 @@ public function breedwellCockmilkerOutput(arg:Array):void
 		output("\n\nYou would have been hurled back by the force of it had the base of the milker not automatically tightened around you, but even that gives up a moment later when the next load of [pc.cum] rockets out of your [pc.cock " + cIdx + "], and you yourself have to take firm hold of the milker’s handles to remain in place. Your eyes cross and your [pc.tongue] lolls out as you ejaculate again, and again, and again, a gallon of seed thrown out with every ecstatic flex, and at no point does it feel like you’re even close to getting it all out there.");
 		output("\n\nThe tubes in front of you flail as they bulge up with [pc.cum], and it geysers into the glass container like a stream in spate. Your [pc.hips] are on auto-pilot, thrusting automatically into the strained machinery as you keep giving it more, and more and more, groaning with overwhelming pleasure as [pc.cumColor] fluid sloshes heavily against the walls of the container until it’s filled to a point high above you.");
 		
+		pc.orgasm();
+		
 		clearMenu();
 		// Willpower > 50%
 		if(pc.WQ() > 50)
 		{
 			output("\n\nYour seed churns higher and higher, up to the top... a dim voice is telling you maybe you should stop... but you’re lost in the throes of intense ecstasy, there’s so much more cum left to launch up your red-hot shaft, and a deeper, more savage voice is telling you to keep going...");
+			
+			pc.orgasm();
 			
 			// [Keep Going] [Stop]
 			addButton(0, "Keep Going", breedwellCockmilkerOverLimit, [cIdx, cumQ, true]);
@@ -1807,6 +1811,10 @@ public function breedwellCockmilkerOverLimit(arg:Array):void
 		output("\n\n<i>“Hey,”</i> says the cartoon Tamani, lounging by the figure and grinning at you. <i>“I don’t care what anyone says, super stud: You’re MY kind of " + pc.mf("guy", "girl") + ". Let’s meet up sometime, k?”</i> She produces <b>a sack of cash with the number " + cumPrice + " written on it</b> and deposits it in front of you, departing with a blown kiss.");
 		
 		processTime(35 + rand(9));
+		
+		pc.orgasm();
+		pc.orgasm();
+		pc.orgasm();
 		
 		// PC barred from reentering Donation Wing
 		flags["BREEDWELL_DONATION_LOCKED"] = 1;

@@ -876,7 +876,7 @@
 			
 			kGAMECLASS.clearBust();
 			
-			if (tarButton.arg == undefined) 
+			if (tarButton.arg === undefined) 
 			{
 				tarButton.func();
 			}

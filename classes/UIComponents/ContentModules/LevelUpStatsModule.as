@@ -160,7 +160,7 @@ package classes.UIComponents.ContentModules
 				
 				//_statBars[i].barValue = _targetCreature[_barLabels[i]]() + _pointDistribution[i];
 				//_statBars[i].barValue = _targetCreature[_barLabels[i] + "Raw"] + _pointDistribution[i];
-				_statBars[i].barValue = String(barVal);
+				_statBars[i].barValue = String(Math.round(barVal));
 				
 				// General bar settings
 				//if ((_targetCreature[_barLabels[i]]() + _pointDistribution[i]) < _targetCreature[_barLabels[i] + "Max"]())
