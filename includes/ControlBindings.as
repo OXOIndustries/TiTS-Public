@@ -284,6 +284,14 @@
 			pc.credits += 100000;
 		},
 		true);
+	
+	inputManager.AddBindableControl(
+		"Time Skip",
+		"Skips the entered amount of time.",
+		function():void {
+			Cheats.TimeSkip();
+		},
+		true);
 		
 	inputManager.BindCheatSequence("Give ZilRations", 38, 40, 37, 39);
 	inputManager.BindCheatSequence("Room Transport", "idclev");
@@ -298,6 +306,7 @@
 	inputManager.BindCheatSequence("Force Cow-Girl Treatment", "bimbo");
 	inputManager.BindCheatSequence("Destinations Unlocked", "marcopolo");
 	inputManager.BindCheatSequence("Runamode Bess", "insaneinthemembrane");
+	inputManager.BindCheatSequence("Time Skip", 56, 56, 77, 80, 72);
 	
 	// Insert the default bindings
 	inputManager.BindKeyToControl(49, "Button 1");             // case 49: pressButton(0);

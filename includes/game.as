@@ -1357,6 +1357,12 @@ public function shipMenu():Boolean
 		firstTimePaigeCrewHiHi();
 		return true;
 	}
+	//Ellie Preg laying
+	if(flags["ELLIE_LAYING_PC_MIA"] != undefined)
+	{
+		ellieLayPlayerOffNT();
+		return true;
+	}
 	
 	// Location Exceptions
 	if(shipLocation == "600") myrellionLeaveShip();
@@ -2502,6 +2508,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		seraOnTavrosObedience(totalDays);
 		processGastigothEvents();
 		breedwellTryUnlock();
+		processElliePregEvents(deltaT, doOut, totalDays);
 		//9999 processQuaellePregEvents(deltaT, doOut, totalDays);
 	}
 	
