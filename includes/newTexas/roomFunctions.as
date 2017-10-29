@@ -140,7 +140,7 @@ public function NTGiftShopBonusFunc():Boolean
 	//Ellie is at the Nursery visiting kiddos
 	if(flags["ELLIE_AT_NURSERY"] != undefined)
 	{
-		output("Ellie doesn't seem to be around right now. She's probably at the Nursery visiting her kids.");
+		output("Ellie doesn't seem to be around, and there's a little placard on her counter that reads 'out on break'. Maybe she's at the Nursery on Tavros?");
 		addDisabledButton(0, "Ellie", "Ellie", "Ellie isn't around right now.");
 		vendingMachineButton(1, "J'ejune");
 		return false;

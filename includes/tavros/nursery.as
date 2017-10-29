@@ -457,6 +457,7 @@ public function nurseryKidsDormsFunc():Boolean
 	nurseryZilCallgirlRandomEvents();
 	var button:Number = 0;
 	button = milodanPlayOptions(button);
+	button = ellieKidVisits(button);
 
 	return false;
 }

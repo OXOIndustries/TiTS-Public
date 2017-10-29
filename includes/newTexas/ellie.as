@@ -156,6 +156,11 @@ public function ellieMenu(display:Boolean = true):void
 		}
 		if(flags["MET_ELLIE"] == undefined) flags["MET_ELLIE"] = 1;
 		//Repeat Greetings
+		else if(flags["ELLIE_OPERATION"] == 4)
+		{
+			clearOutput();
+			output("<i>“Heya, lover!”</i> Ellie says, smiling wide as you approach. <i>“You here to shop, or...”</i> she trails off as a tiny movement of her shoulder sends half of her bra slipping down, exposing a luscious areola. <i>“Want to sample the goods?”</i>");
+		}
 		else
 		{
 			clearOutput();
@@ -294,16 +299,25 @@ public function talkToEllieYaFuckingSkank():void
 	showBust("ELLIE");
 	showName("\nELLIE");
 	output("You ask Ellie if she has a few minutes to just talk.");
-	output("\n\nShe purses her lips. <i>“Do I have time? Sure, I guess... but wouldn’t you rather do something more fun?”</i> Looking you up and down, she adds, <i>“I could think of a few things.”</i>");
-	output("\n\n");
-	if(pc.libido() < 70 || pc.lust() < 70) output("You’re sorely tempted to take the eager taur up on that offer, but for the moment, no. She pouts, but nods. <i>“Fine, I guess I’m not doing anything too important... but I’m warning you, the first bull to walk through with a hard-on might sweep me away, if you aren’t careful!”</i> With that, Ellie sits herself down on her reptilian hind end and looks at you expectantly.");
+	if(flags["ELLIE_OPERATION"] == 4)
+	{
+		output("\n\nShe smiles at you. <i>“I've always got a few minutes for you, [pc.name].”</i> Looking you up and down, she adds, <i>“It doesn't </i>just<i> have to be talking, though.”</i>");
+		output("\n\nYou battle the urge to clamber over the counter right now, and after a hard-fought few seconds reason wins out. She sits on her reptilian hind end and eyes you with curiosity - and a bit of naked lust. <i>“I'm not doing anything important right now anyway. What's up?”</i>");
+		pc.lust(20);
+	}
 	else
 	{
-		output("<i>“Yeah, so can I,”</i> you say, eyeing those beautiful breasts of hers, undressing her with your mind even as the sexy taur gets ready to do it for real.");
-		// {to sex menu}
-		clearMenu();
-		addButton(0,"Next",ellieSexScene);
-		return;
+		output("\n\nShe purses her lips. <i>“Do I have time? Sure, I guess... but wouldn’t you rather do something more fun?”</i> Looking you up and down, she adds, <i>“I could think of a few things.”</i>");
+		output("\n\n");
+		if(pc.libido() < 70 || pc.lust() < 70) output("You’re sorely tempted to take the eager taur up on that offer, but for the moment, no. She pouts, but nods. <i>“Fine, I guess I’m not doing anything too important... but I’m warning you, the first bull to walk through with a hard-on might sweep me away, if you aren’t careful!”</i> With that, Ellie sits herself down on her reptilian hind end and looks at you expectantly.");
+		else
+		{
+			output("<i>“Yeah, so can I,”</i> you say, eyeing those beautiful breasts of hers, undressing her with your mind even as the sexy taur gets ready to do it for real.");
+			// {to sex menu}
+			clearMenu();
+			addButton(0,"Next",ellieSexScene);
+			return;
+		}
 	}
 	buildEllieTalkMenu();
 }
@@ -315,15 +329,19 @@ public function buildEllieTalkMenu():void
 	showBust("ELLIE");
 	showName("\nELLIE");
 	addButton(0,"Her Race",talkToEllieAboutHerRace,undefined,"Her Race","See if she wouldn’t mind talking about her race a little bit.");
-	if(flags["ELLIE_PHEROMONE_TALK_UNLOCKED"] != undefined) addButton(1,"Pheromones",talkToEllieAboutPheromones,undefined,"Pheromones","Ask her about the cloud of pheromones following her around everywhere.");
+	if(flags["ELLIE_OPERATION"] == 4) addButton(1, "Pheromones", ellieDoesntHavePheromonesAnymore, undefined, "Pheromones", "Ask her about her missing cloud of pheromones.");
+	else if(flags["ELLIE_PHEROMONE_TALK_UNLOCKED"] != undefined) addButton(1,"Pheromones",talkToEllieAboutPheromones,undefined,"Pheromones","Ask her about the cloud of pheromones following her around everywhere.");
 	else addDisabledButton(1,"Locked","Locked","You might need to talk to her about her race before this unlocks.");
 	addButton(2,"Treatment",talkToEllieAboutTreatment,undefined,"The Treatment","Ask her about the Treatment thing that everyone here is on about.");
 	addButton(3,"New Texas",talkToEllieAboutNewTexas,undefined,"New Texas","Ask her what she thinks about the planet.");
+	
+	//Lots of shit for this button for preg stuff
 	if(flags["ELLIE_OPERATION"] == 1) addDisabledButton(4, "Operation", "Operation", "Ellie's already had the fertility operation.");
 	else if(flags["ELLIE_OPERATION"] == 2) addButton(4, "Pregnancy", talkToEllieAboutPregnancyButShesActuallyPregnantThisTime, undefined, "Pregnancy", "See how Ellie is fairing with her pregnancy.");
-	else if(flags["ELLIE_OPERATION"] == 3) addButton(4, "VisitNursery", ellieTakeOnTripToNursery, undefined, "", "");
-	else if(flags["ELLIE_OPERATION_TALK_UNLOCKED"] != undefined) addButton(4, "Operation", talkToEllieAboutOperation);
-	else if(flags["ELLIE_PREG_TALK_UNLOCKED"] != undefined && nephAffection() > 66) addButton(4, "Pregnancy", talkToEllieAboutPregnancy);
+	else if(flags["ELLIE_OPERATION"] == 3) addButton(4, "VisitNursery", ellieTakeOnTripToNursery, undefined, "Visit Nursery", "See if Ellie wants to go visit the eggs.");
+	else if(flags["ELLIE_OPERATION"] == 4) addButton(4, "Kids", askEllieAboutTheKiddos, undefined, "Kids", "Ask Ellie how she and the kids are fairing.");
+	else if(flags["ELLIE_OPERATION_TALK_UNLOCKED"] != undefined) addButton(4, "Operation", talkToEllieAboutOperation, undefined, "Operation", "Discuss the fertility operation with Ellie.");
+	else if(flags["ELLIE_PREG_TALK_UNLOCKED"] != undefined && nephAffection() > 66) addButton(4, "Pregnancy", talkToEllieAboutPregnancy, undefined, "Pregnancy", "Discuss pregnancy with Ellie.");
 	else addDisabledButton(4, "Locked", "Locked", "You need to be really close with Ellie to discuss this.");
 	 
 	addButton(14,"Back",ellieMenu);
@@ -337,9 +355,19 @@ public function talkToEllieAboutHerRace():void
 	author("Savin");
 	showBust("ELLIE");
 	showName("\nELLIE");
-	output("Your codex might have figured out what she is, but you’d like to hear a little about Ellie’s race from her.");
-	output("\n\n<i>“I guess that’s reasonable,”</i> Ellie grins, adding proudly, <i>“I’m a leithan. Sometimes folk call us Centaurins, both on account of us being from Alpha Centauri and lookin’ a little like centaurs from earth mythology.”</i>");
-	output("\n\nShe looks behind herself at her six-legged reptilian body, plated with scales and shields of naturally grown armor. <i>“I don’t really see the resemblance, but I don’t guess I mind much. Just so long as nobody calls me a pony, anyway. Though I wouldn’t mind so much if they wanted a ride after,”</i> Ellie giggles, her huge bust bouncing giddily. She brings one of her plated hands up to her lip, chewing on a knuckle as her laughter subsides.");
+	if(flags["ELLIE_OPERATION"] == 4)
+	{
+		output("Well, you're intimately familiar with her leithan biology by now, but a little reminder about regular leithans wouldn't hurt.");
+		output("\n\n<i>“Heh,”</i> Ellie grins, winking. <i>“You can reach back here and remind yourself of what makes me tick any time you like, sugar. But you wanna know stuff about the leithan race, right? Sometimes folk call us Centaurins, both on account of us being from Alpha Centauri and lookin’ a little like centaurs from earth mythology.”</i>");
+		output("\n\nShe looks behind herself at her six-legged reptilian body, plated with scales and shields of naturally grown armor. <i>“I don’t really see the resemblance, but I don’t guess I mind much. Just so long as nobody calls me a pony, anyway. You can ride me like one if you want, though!”</i> Ellie giggles, her huge bust bouncing giddily. She brings one of her plated hands up to her lip, chewing on a knuckle as her laughter subsides.");
+		
+	}
+	else
+	{
+		output("Your codex might have figured out what she is, but you’d like to hear a little about Ellie’s race from her.");
+		output("\n\n<i>“I guess that’s reasonable,”</i> Ellie grins, adding proudly, <i>“I’m a leithan. Sometimes folk call us Centaurins, both on account of us being from Alpha Centauri and lookin’ a little like centaurs from earth mythology.”</i>");
+		output("\n\nShe looks behind herself at her six-legged reptilian body, plated with scales and shields of naturally grown armor. <i>“I don’t really see the resemblance, but I don’t guess I mind much. Just so long as nobody calls me a pony, anyway. Though I wouldn’t mind so much if they wanted a ride after,”</i> Ellie giggles, her huge bust bouncing giddily. She brings one of her plated hands up to her lip, chewing on a knuckle as her laughter subsides.");
+	}
 	output("\n\n<i>“Anyway, you wanted to know about us leithans, not my equine proc.. procli- uh, fantasies! We come from one of the smaller worlds off of Alpha Centauri, the second planet from the sun. I’ve never seen it - my grandparents hopped ship just as soon as they could - but the vids I’ve seen make it look like a hot, desert planet. Not much water, ‘cept in the atmosphere. That’s what my great-grandfolks did: harvesting water from moisture vaporators. Dangerous job, since you have to work outside the city walls.”</i>");
 	output("\n\n<i>“Why’s that more dangerous?”</i> you ask.");
 	output("\n\n<i>“Cuz of the monsters, silly!”</i> Ellie says, a little more serious than before. <i>“I guess you’d call them predators, really. Titans, giants, dragons, all sorts of nasty things come from Centauri II. Well, not REALLY dragons, but they’re close enough: huge flying reptiles, kinda like us leithans, but way bigger and scarier - not cute and cuddly like we are. They may not breathe fire, but a Centauri dragon’ll rip you to shreds all the same. Them and the other huge, flesh-eating monsters on the homeworld’s why we leithans ended up growing all this armor.”</i> She flexes one of her arms for emphasis, showing off the black plates and scales on it. The motion does remarkable things to the straining scales and plates under her bust, too... <i>“Having a little armor makes us something to chew on, at least. That and the glowy lights all over us keep us from getting eaten </i>too<i> often, especially these days when leithans pack laser cannons and rocket launchers.”</i>");
@@ -349,8 +377,9 @@ public function talkToEllieAboutHerRace():void
 	else if(pc.isMischievous()) output("\n\n<i>“Yeesh. I can see why you leithans have legs made for running,”</i> you chuckle, ");
 	else output("\n\n<i>“That had to have sucked,”</i> you grunt, ");
 	output("your mind flooding with images of alien dragons and titanic, flesh-eating monstrosities. You saw a couple holo-vids of Centauri monsters growing up, but actually hearing it from a leithan is a different story.");
-
-	output("\n\n<i>“I guess,”</i> Ellie says with a shrug. <i>“Like I said, my grandparents left the homeworld. I’ve never seen it -- and why would I want to? It sounds pretty awful, and I’ve got my own little paradise right here!”</i> Her cheerful demeanor returns as she takes a look around the shop. Her eyes settle on a particularly broad-chested bull strutting in, and you’re immediately granted another whiff of the pheromone aura around her that just about makes your eyes water... and your flesh redden perceptibly. Maybe you could ask her about that heady scent sometime... that can’t be a racial trait, can it?");
+	
+	if(flags["ELLIE_OPERATION"] == 4) output("\n\n<i>“I guess,”</i> Ellie says with a shrug. <i>“Like I said, my grandparents left the homeworld. I’ve never seen it — and why would I want to? It sounds pretty awful, and I’ve got my own little paradise right here!”</i> Her cheerful demeanor returns as she returns to the present and her eyes alight upon your face. The heady scent of her pheromones is gone, but it's plain to see her desires did not part with them.");
+	else output("\n\n<i>“I guess,”</i> Ellie says with a shrug. <i>“Like I said, my grandparents left the homeworld. I’ve never seen it -- and why would I want to? It sounds pretty awful, and I’ve got my own little paradise right here!”</i> Her cheerful demeanor returns as she takes a look around the shop. Her eyes settle on a particularly broad-chested bull strutting in, and you’re immediately granted another whiff of the pheromone aura around her that just about makes your eyes water... and your flesh redden perceptibly. Maybe you could ask her about that heady scent sometime... that can’t be a racial trait, can it?");
 	//[Unlock <i>“Pheromones”</i> Talk]
 	if(flags["ELLIE_PHEROMONE_TALK_UNLOCKED"] == undefined) flags["ELLIE_PHEROMONE_TALK_UNLOCKED"] = 1;
 	processTime(8);
@@ -457,7 +486,8 @@ public function talkToEllieAboutTreatment():void
 		if(pc.longestCockLength() > 12) output(" And your dick’s going to get HUGE. Like, waaaay bigger than before.”</i> Her eyes flutter. <i>“Nothing better than a huge, Treated dick pounding my pussy... promise me you’ll let me be your first test run when you get treated, okay? I love being first in line to sample all the brand new, massive beast-cocks. Perks of being the shop-keep!");
 		output("”</i>");
 	}
-	output("\n\nAfter a moment, Ellie adds, <i>“I guess I ought to mention that the Treatment’s permanent. Like, totally permanent. I think the Treatment’s the best thing that ever happened to me - and so does just about everyone who takes it. But, you know, you better be absolutely sure about it before you take it.");
+	if(flags["ELLIE_OPERATION"] == 4) output("\n\nAfter a moment, Ellie adds, <i>“I guess I ought to mention that the Treatment’s permanent. Like, totally permanent. I think the Treatment’s the second best thing that ever happened to me - the first being you, of course! But, y'know, you better be absolutely sure about it before you take it. I don't want my lover having regrets.");
+	else output("\n\nAfter a moment, Ellie adds, <i>“I guess I ought to mention that the Treatment’s permanent. Like, totally permanent. I think the Treatment’s the best thing that ever happened to me - and so does just about everyone who takes it. But, you know, you better be absolutely sure about it before you take it.");
 	if(silly) output(" Or you could save scum I guess. Whatever!");
 	output("”</i>");
 	pc.lust(3);
@@ -474,8 +504,16 @@ public function talkToEllieAboutNewTexas():void
 	author("Savin");
 	showBust("ELLIE");
 	showName("\nELLIE");
-	output("You ask Ellie to tell you a little bit about New Texas.");
-	output("\n\n<i>“Other than that it’s a paradise?”</i> she teases, giving you a playful wink. Her whole body shifts as she chuckles, her breasts bouncing gaily under their inadequate restraints. <i>“It really is, though. Back on Centauri II, there was a whole religion that said that somewhere out there was a world of green fields and plentiful water - and milk. Turns out they were actually right, and here we are!”</i>");
+	if(flags["ELLIE_OPERATION"] == 4)
+	{
+		output("You ask Ellie how she's doing on New Texas now that she's back again.");
+		output("\n\n<i>“It's still the paradise I know and love!”</i> she says with a grin, giving you a playful wink. Her whole body shifts as she chuckles, her breasts bouncing gaily under their inadequate restraints. <i>“It really is, though. Back on Centauri II, there was a whole religion that said that somewhere out there was a world of green fields and plentiful water - and milk. Turns out they were actually right, and here we are!”</i>");
+	}
+	else
+	{
+		output("You ask Ellie to tell you a little bit about New Texas.");
+		output("\n\n<i>“Other than that it’s a paradise?”</i> she teases, giving you a playful wink. Her whole body shifts as she chuckles, her breasts bouncing gaily under their inadequate restraints. <i>“It really is, though. Back on Centauri II, there was a whole religion that said that somewhere out there was a world of green fields and plentiful water - and milk. Turns out they were actually right, and here we are!”</i>");
+	}
 	output("\n\nShe smiles dreamily, leaning down over the counter. <i>“New Texas is... I couldn’t imagine living anywhere else. It’s as peaceful as you want it to be, and the planet’s clean and full of trees and crops and life! Not like the real core worlds, just big cities that stretch over whole worlds until you can’t breathe for all the people and smog. Speaking of people: we have the friendliest, most beautiful people in the whole galaxy: where else are you gonna find a whole planet where every girl’s got a huge rack swollen with milk, big child-bearing hips, and a smile that makes you wanna just pick her up and kiss her?”</i> Ellie turns her own smile to you, and you can’t deny the urge is there... until you realize you’re stewing in a much thicker cloud of pheromones than was there before. She blushes, and continues. <i>“And the men? Every one of them is big and strong as an ox - or a bull, as the case may be. They might be gruff sometimes, but there’s barely a bull on the world that won’t drop trou and give you a good long fucking if you ask for it! Isn’t that right, boys?”</i>");
 	output("\n\nSeveral bulls in the shop murmur their agreement. Most are already sporting bulges in their work clothes.");
 	output("\n\nShe gives them a winning smile and a wiggle of her hips, full of promise. <i>“See? Friendliest planet in the whole galaxy! Especially if you’re Treated: there’s a reason most New Texans never want to leave, after all: why would they, when there’s everything we need right here? Good, honest work for all who need it, and good, hard fuckings when you’re done. That’s the New Texan way!”</i>");
@@ -487,7 +525,8 @@ public function talkToEllieAboutNewTexas():void
 	else if(pc.hasVagina()) output("pussy-fingering");
 	else output("ass-teasing");
 	output(" like a " + pc.mf("handsome stud","cute girl") + " suckling on one of my tits!”</i>");
-	output("\n\nAnd you thought you were swimming in leithan-musk before... your mouth is absolutely <i>watering</i> now. And you have an incredible urge for ");
+	if(flags["ELLIE_OPERATION"] == 4) output("\n\nYour mouth waters after her sexy speech. And you can't help but notice you have an incredible urge for ");
+	else output("\n\nAnd you thought you were swimming in leithan-musk before... your mouth is absolutely <i>watering</i> now. And you have an incredible urge for ");
 	//if Treated or Bimbo’d:
 	if(pc.isTreated() || pc.isBimbo()) output("a mouthful of tit to suckle from");
 	else output("a tall glass of milk");
@@ -1145,7 +1184,8 @@ public function ellieSexScene():void
 	output(" if she’d be up for a roll in the proverbial hay.");
 
 	output("\n\nEllie gives you a toothy smile as you voice your request, her bunny-like upper ears twitching. ");
-	if(flags["ELLIE_SEXED"] == undefined) output("<i>“I thought you’d never ask, sugar!”</i> she says with a giggle that does the most amazing things to her jiggly rack.");
+	if(flags["ELLIE_OPERATION"] == 4) output("<i>“I knew you hadn't had enough of me,”</i> Ellie grins, and even without her pheromones on overdrive you can smell her arousal. <i>“C’mon then, let’s get out of here!”</i>");
+	else if(flags["ELLIE_SEXED"] == undefined) output("<i>“I thought you’d never ask, sugar!”</i> she says with a giggle that does the most amazing things to her jiggly rack.");
 	else if(flags["ELLIE_SEXED"] < 4) output("<i>“You wanna go again, sugar?”</i> Ellie says, barely hiding the surprise - or the delight - in her voice. <i>“I’d be delighted to.”</i>");
 	else output("<i>“You just can’t get enough of me, can you sugar?”</i> Ellie teases, though you can already smell the tell-tale increase of her arousal. <i>“C’mon then, let’s get out of here!”</i>");
 
@@ -1156,8 +1196,9 @@ public function ellieSexScene():void
 	else output("C");
 	output("ome on over, lover. Don’t be shy.”</i>");
 
-	output("\n\nYou eagerly pull your [pc.gear] off and hurry towards your leithan lover, sidling up behind her and planting a hand on the hot, soft material of her blanket. Seeing where your attentions are directed, Ellie’s all too happy to unbuckle the straps around her humanoid waist, making it easy for you to yank it over one of her flanks... and be immediately assaulted by an overwhelming wave of her pheromones, so concentrated that you nearly orgasm from the mind-melting, mouth-watering scent alone.");
-	output("\n\nEllie giggles, chewing on a finger. <i>“Sorry, babe. Guess I got a little pent up under there... but you don’t look like you mind much!”</i>");
+	output("\n\nYou eagerly pull your [pc.gear] off and hurry towards your leithan lover, sidling up behind her and planting a hand on the hot, soft material of her blanket. Seeing where your attentions are directed, Ellie’s all too happy to unbuckle the straps around her humanoid waist, making it easy for you to yank it over one of her flanks... and be " + (flags["ELLIE_OPERATION"] == 4 ? "treated to the sight of her slavering pussy, shining with wetness and exuding a musk that speaks volumes of how she wants to be taken." : "immediately assaulted by an overwhelming wave of her pheromones, so concentrated that you nearly orgasm from the mind-melting, mouth-watering scent alone."));
+	if(flags["ELLIE_OPERATION"] == 4) output("\n\nEllie giggles. <i>“You like? Why don't you get a bit closer?”</i>");
+	else output("\n\nEllie giggles, chewing on a finger. <i>“Sorry, babe. Guess I got a little pent up under there... but you don’t look like you mind much!”</i>");
 	output("\n\nCompletely on auto-pilot, your body moves in toward the source of that wonderful musk, nestled between her powerful back legs and hidden beneath the base of her curling reptilian tail. She takes a little step forward, several of her clawed feet scraping at the floor in anticipation as you eagerly brush her tail aside and reveal the soaking slit of her pussy. It’s huge, sodden, and smells so sweet you want to just eat it up. Which is exactly what you do, when Ellie’s tail curls around your shoulders and mashes your face right into her aromatic honeypot.");
 	output("\n\n<i>“Why don’t we start with you getting me off a couple times, sweet thing?”</i> she grins, her lower body shivering a little as you press into her back-facing crotch. You don’t find yourself struggling one bit against either her command or her soft, strong tail. Instead, you open your mouth wide, your tongue slipping out to caress the lips of her intoxicating sex. Her folds don’t need to part for you: you doubt they could actually pull together if she tried. Indeed, you doubt it would be too much of a feat to stick your whole head into that wide channel. For now, though, you content yourself to munch on her lips, giving them little bites and nibbles, letting your tongue savor their sweet, slightly bitter taste. Her juices come a moment after you start, smearing across your cheeks, chin, even drooling down to splatter across your [pc.chest].");
 	output("\n\nYou move faster the more excited Ellie gets, your tongue darting in to tease at her inner walls, fingers even getting in on the action to caress her outer folds. Your tauric lover coos with delight when your wandering mouth finds a particularly tough, almost bulging nub just inside her pussy, just at the end of your tongue’s reach. <i>“Oooh, that’s the spot,”</i> she purrs, cupping one of her huge tits. Her saucer-sized teat responds to the stimulation immediately, squirting a thick trickle of milk into her bra. She flashes you a grin, twisting on her hips so that you can see her lactating tits soak straight through the sheer material of her bra, never spilling a drop but still making sure that her tits are plainly visible through it.");
@@ -1177,16 +1218,16 @@ public function ellieSexScene():void
 	if(pc.hasCock())
 	{
 		//Mount Her (Centaurs, any dick size)
-		if (pc.isTaur()) scenes.push(centaursOnCentaursOnCentaursOnCentaursThisShitIsLikeInception);
+		if (pc.isTaur()) scenes.push((flags["ELLIE_OPERATION"] == 4 ? specialNewMountSceneIfYouGaveEllieKiddos : centaursOnCentaursOnCentaursOnCentaursThisShitIsLikeInception));
 		else if(pc.biggestCockLength() < 12)
 		{
 			//Little Dick, First Time
 			if (flags["ELLIE_EMBARASSED_LIL_DICK_FUCK"] == undefined) scenes.push(littleDicksGetToPlayForTheFirstTime);
 			//Anal (Little Dick Repeat)
-			else scenes.push(littleDicksGetToGoRoundTwo);
+			else scenes.push((flags["ELLIE_OPERATION"] == 4 ? specialNewLittleDickSceneIfYouGaveEllieKiddos : littleDicksGetToGoRoundTwo));
 		}
 		//Vaginal (Big Dick)
-		else scenes.push(ellieBigDickVaginalScenesForBigDickBoysWithBigDicksAndNowImJustTypingBigDicksAsManyTimesAsPossibleInThisBigDickFunctionName);
+		else scenes.push((flags["ELLIE_OPERATION"] == 4 ? specialNewBigDickSceneIfYouGaveEllieKiddos : ellieBigDickVaginalScenesForBigDickBoysWithBigDicksAndNowImJustTypingBigDicksAsManyTimesAsPossibleInThisBigDickFunctionName));
 	}
 	
 	//Get Tailpegged (F/ForN)
@@ -2075,7 +2116,7 @@ public function ellieBirth():void
 	a.MaturationRate = b.MaturationRate = c.MaturationRate = 1.0;
 	a.BornTimestamp = GetGameTimestamp();
 	//the girls are born a little after idk
-	c.BornTimestamp = c.BornTimestamp = GetGameTimestamp() + 2;
+	b.BornTimestamp = c.BornTimestamp = GetGameTimestamp() + 2;
 	ChildManager.addChild(a);
 	ChildManager.addChild(b);
 	ChildManager.addChild(c);
@@ -2244,4 +2285,314 @@ public function ellieTakeGoodCareOfTheKiddosWhenImGone():void
 	processTime(15);
 	
 	addButton(0, "Next", mainGameMenu, undefined, "", "");
+}
+
+public function ellieKidVisits(button:int):int
+{
+	if(flags["ELLIE_OPERATION"] == 4)
+	{
+		addButton(button,"Ellie Kids",ellieTinytaurPlaytime, undefined, "Ellie Kids", "Spend some time with your tiny-taurs!");
+		button++;
+	}
+	return button;
+}
+
+public function ellieTinytaurPlaytime():void
+{
+	clearOutput();
+	clearMenu();
+	author("Wsan");
+	showName("\nELLIE'S KIDS");
+	
+	switch(rand(3))
+	{
+		case 0:	output("You walk through the nursery to look for the leithan children, approaching their room and stepping through the door. It quietly hisses open, and you're somewhat surprised to be greeted with complete silence. The door closes behind you, leaving you to silently pad over to where the cots are set up. The first two you check are suspiciously devoid of any leithan children, but before alarm can take hold of you, you check the third cot.");
+				output("\n\nThe two sisters are wrapped around their brother in a gangly little mess of limbs, snoozing lightly. He seems to be doing okay, even with the legs splayed across his face. You think about gently prying them apart, but decide to leave them be. You spend some idle time watching their tiny chests gently rise and fall.");
+				output("\n\nAt one point, " + flags["ELLIE_KID1"] + " awakens, blearily looking up at you. You smile down at him, his eyes fluttering until they lightly fall closed once more, and he drifts back to sleep. You decide to let them get their rest, and step outside.");
+				processTime(15+rand(7));
+				addButton(0, "Next", mainGameMenu, undefined, "", "");
+				break;
+				
+		case 1:	if(flags["ELLIE_AT_NURSERY"] != undefined)
+				{
+					showName("ELLIE\n& KIDS");
+					showBust("ELLIE");
+					output("You walk through the door to be greeted by raucous noise and a flying leithan baby. " + flags["ELLIE_KID2"] + " squeals happily as Ellie catches her, clinging to her mom's hands with her tiny fingers.");
+					output("\n\n<i>“Hello ladies,”</i> you call, the door hissing shut behind you. " + flags["ELLIE_KID1"] + " peeks at you from behind one of Ellie's legs. <i>“And gentleman.”</i>");
+					output("\n\n<i>“[pc.name]! Hey, babe!”</i> Ellie waves energetically. <i>“Sorry, I'd come over and give you a hug but " + flags["ELLIE_KID3"] + " is wrapped around my legs.”</i>");
+					output("\n\nShe holds out her left mid and hindlegs, and you see that that is indeed the case. " + flags["ELLIE_KID3"] + " giggles as Ellie wiggles her legs around in midair, wobbling from side to side. <i>“Whatcha doin', girl? Oof!”</i>");
+					output("\n\nYou sweep Ellie into a loving hug along with " + flags["ELLIE_KID2"] + ", squeezing them tight. Ellie nuzzles against your neck, sighing in contentment and inhaling.");
+					output("\n\n<i>“You smell nice,”</i> she murmurs dreamily.");
+					output("\n\n<i>“Eau de Spaceship,”</i> you quip, kissing her cheek as she giggles. She sounds just like your kids. <i>“Having fun?”</i>");
+					output("\n\n<i>“Uh huh,”</i> she nods, slowly pulling back with her hand still on your arm. <i>“They were just waking up when I got here, so now I'm tiring them out again.”</i>");
+					output("\n\n<i>“Sounds like a plan!”</i>");
+					output("\n\nThe two of you spend some time frolicking with your kids, rolling around and tickling them into fits of laughter. Eventually, all three of them are tired enough for a nap, so you put them back in their cots and kiss them good night. You and Ellie head to the break room for food and chitchat.");
+					processTime(30+rand(10));
+					addButton(0, "Next", ellieASeparateFunctionToCreateABarrierBetweenKidsAndLewds, undefined, "", "");
+					break;
+				}
+				else
+				{
+					output("You walk through the door to be greeted by three little leithan heads turning to peer at you curiously, then a chorus of happy squeals. " + flags["ELLIE_KID1"] + ", " + flags["ELLIE_KID2"] + " and " + flags["ELLIE_KID3"] + " scamper across the floor to meet you with little leaps and bounds.");
+					output("\n\n<i>“Haha, hello! What are you three up to, huh?”</i>");
+					output("\n\nYou sweep the kids off the floor into a bear hug, rubbing their giggling forms with your face. Spotting their toys where they were congregated, you break into a grin. <i>“Looks like I got here just in time to play!”</i>");
+					output("\n\nAt their insistence at going back 'up' when you put them down, you toss them into the air and catch them one after the other until their attention is redirected elsewhere. You spend some time playing with them and their toys until eventually, all three of them are tired enough for a nap. You softly deposit the sleepy leithans into their cots and pull the blankets up, giving them good night kisses and stepping outside for food. Playing with kids is hard work.");
+					processTime(60+rand(25));
+					addButton(0, "Next", mainGameMenu, undefined, "", "");
+					break;
+				}
+				
+		case 2:	if(flags["ELLIE_AT_NURSERY"] != undefined)
+				{
+					showName("ELLIE\n& KIDS");
+					showBust("ELLIE");
+					output("Stepping into the leithan nursery room, you immediately note the silence. Checking the cots just to make sure, you confirm your suspicions - the kids aren't here. They're probably with the staff. You step back outside and hear a small commotion down the hall. You turn your head to look and see " + flags["ELLIE_KID1"] + " scampering around the corner. You raise an eyebrow.");
+					output("\n\n<i>“" + flags["ELLIE_KID1"] + " Steele, what are you running around for?”</i>");
+					output("\n\nAt the sound of his full name he skids to a stop, but before anything else happens a familiar face peeks around the corner.");
+					output("\n\n<i>“" + flags["ELLIE_KID1"] + "! Where are y- oh, [pc.name]! Hiya babe! Oh, you found him!”</i>");
+					output("\n\n<i>“Ah, so you were making a getaway huh?”</i> you ask, scooping your son off the ground and into your arms. <i>“Nice try, kiddo. Hi babe.”</i>");
+					output("\n\nYou give Ellie a kiss and hand her " + flags["ELLIE_KID1"] + ", whereupon " + flags["ELLIE_KID"] + " and " + flags["ELLIE_KID3"] + " pop up on her shoulders.");
+					output("\n\n<i>“Oh, hello! Hiding in mommy's lovely hair, were we?”</i> you ask. <i>“Taking the kids exploring?”</i>");
+					output("\n\n<i>“Wasn't my idea so much as theirs,”</i> Ellie replies, giggling. <i>“They want to roam around, and " + flags["ELLIE_KID1"] + " seems to want to adventure on his own, even though he's not allowed.”</i>");
+					output("\n\n<i>“Oh well, the staff won't mind, probably. Let's go and take a look around, shall we?”</i>");
+					output("\n\nYou and Ellie walk hand in hand through the nursery with your three kids hanging off your shoulders, checking out the rooms and waving at the inhabitants.");
+					if(ChildManager.numChildrenAtNursery() > 3)
+					{
+						if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 0, 16) > 0) output("\n\nYou make a brief stop in what's come to be known as the 'Puproom' around the nursery, and introduce your children. The milodan pupp" + (ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 0, 16) > 1 ? "ies are a source of great interest to the leithans, nuzzling at their" : "y is a source of great interest to the leithans, nuzzling at its") + " fluffy fur and receiving little bops on the nose for their efforts. You give " + (ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 0, 16) > 1 ? "them kisses" : "your furry child a kiss") + " before you tug the curious leithans away and head back to their room.");
+						output("\n\n<i>“I'm glad you treat them the same way you treat ours, [pc.name],”</i> Ellie murmurs, rubbing against your shoulder. <i>“For some of them, you're the only parent they'll ever have.”</i>");
+						output("\n\n<i>“Gotta share the love, right?”</i> you say with a smile. <i>“They're all good kids.”</i>");
+						output("\n\nEllie stops you in the middle of the hall and turns towards you, but before you can say anything she's caught you in a deep, passionate kiss. She pulls back with a beautiful smile and shining eyes, and you find yourself smiling back at her. " + flags["ELLIE_KID1"] + " sticks his tongue out over your shoulder with a 'blehhh' and the two of you laugh.");
+					}
+					else
+					{
+						output("\n\nYou make some stops in various rooms as you show the kids around, getting them acquainted with the Nursery. The various staff are all very helpful and friendly, and handle the kids with practiced deftness. When the exploration comes to an end, you and Ellie are walking back to their rooms with sleepy kids in tow.");
+						output("\n\n<i>“Do you think you'll have other kids, [pc.name]?”</i> she asks, peering at your expression.");
+						output("\n\n<i>“I don't know myself, really,”</i> you shrug. <i>“Would you prefer it if I didn't?”</i>");
+						output("\n\n<i>“No!”</i> she gasps, squeezing your arm. <i>“[pc.name], you can't just let love pass you by, even if it's not only for me. Don't feel like you gotta keep yourself cel- celebr- um, I'm okay with you having more kids. I think it would be fun to have more of them in the Nursery, and maybe I'll even get to make friends with their mommies.”</i>");
+						output("\n\nShe gives you a kiss on the cheek.");
+						output("\n\n<i>“Or daddies,”</i> she adds after a pause, looking at you. <i>“I never know with you.”</i>");
+					}
+					processTime(30+rand(10));
+					addButton(0, "Next", ellieASeparateFunctionToCreateABarrierBetweenKidsAndLewds2, undefined, "", "");
+					break;
+				}
+				else
+				{
+					output("Stepping into the leithan nursery room, you immediately note the silence. Checking the cots just to make sure, you confirm your suspicions - the kids aren't here. They're probably with the staff. You step back outside and hear a small commotion down the hall. Following the noise around the corner, you happen upon a couple of staff members and your less-than-cooperative kids.");
+					output("\n\n<i>“Hello! What're you little monsters doing, hm?”</i>");
+					output("\n\nAt the sound of your voice they turn and squeal in excitement, bounding over to you in eager joy. Upon chatting with the staff while picking them up, you find they were out exploring the Nursery just for fun. You decide to help them out, and soon enough you're traveling from room to room with three leithan children draped over your shoulders and head, saying hi to staff and checking out the facilities.");
+					if(ChildManager.numChildrenAtNursery() > 3)
+					{
+						if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 0, 16) > 0) output("\n\nYou make a brief stop in what's come to be known as the 'Puproom' around the nursery, and introduce your children. The milodan pupp" + (ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 0, 16) > 1 ? "ies are a source of great interest to the leithans, nuzzling at their" : "y is a source of great interest to the leithans, nuzzling at its") + " fluffy fur and receiving little bops on the nose for their efforts. You give " + (ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 0, 16) > 1 ? "them kisses" : "your furry child a kiss") + " before you tug the curious leithans away and head back to their room.");
+						output("\n\nYou stop in the hallway and reach back to pet them, just to make sure they're still awake.");
+						output("\n\n<i>“Make sure you treat the other kids well, you three,”</i> you tell them. <i>“Not all of them have the advantage of having both parents, but they still belong to our family, okay? Be nice.”</i>");
+						output("\n\nYou're not sure they'll remember given their sleepy responses, or that they really understand what you're telling them, but you'd like to think they'll take the message to heart. A warm and accepting home is part of any proper childhood, as you yourself know well.");
+						output("\n\nYou plop the snoozing leithans into their cots and pull their blankets up, tucking them in tight before kissing them good night.");
+					}
+					else
+					{
+						output("\n\nAfter the tour, you're taking your sleepy kids back to their room to nap when you stop in the hallway and reach back to pet them, checking if they're still awake.");
+						output("\n\n<i>“If other kids show up in the Nursery, make sure to welcome them to the family, okay? They might not be lucky enough to have both parents around. Some of them might be from worlds where...”</i> you trail off as you realize your kids won't be able to grasp the concept of being born into a hostile environment. <i>“Well, just be nice. You'll be fine.”</i>");
+						output("\n\nYou're not sure they'll remember given their sleepy responses, or that they really understand what you're telling them, but you'd like to think they'll take the message to heart. A warm and accepting home is part of any proper childhood, as you yourself know well.");
+						output("\n\nYou plop the snoozing leithans into their cots and pull their blankets up, tucking them in tight before kissing them good night.");
+					}
+					processTime(60+rand(25));
+					addButton(0, "Next", mainGameMenu, undefined, "", "");
+					break;
+				}
+	}
+}
+
+public function ellieASeparateFunctionToCreateABarrierBetweenKidsAndLewds():void
+{
+	clearOutput();
+	clearMenu();
+	author("Wsan");
+	showBust("ELLIE_NUDE");
+	showName("\nELLIE");
+
+	output("<i>“You know...”</i> Ellie begins, her eyes sweeping up your body in a decidedly unsubtle fashion, <i>“it makes me weak in the knees when I see you being so good with the kids, [pc.name].”</i> She draws closer, pressing her massive breasts up against your chest as she whispers. <i>“Why don't mommy and daddy go have some fun of their own?”</i>");
+	output("\n\n<i>“Sounds good,”</i> you murmur in agreement, giving the appreciative 'taurgirl a squeeze, and head to a spare room.");
+	output("\n\nWhen you're finally finished giving Ellie the hard, sweaty fucking she's looking for, she collapses onto the bed, sated. You give her a kiss and step out, leaving her to nap.");
+	
+	processTime(30+rand(15));
+	pc.orgasm();
+	addButton(0, "Next", mainGameMenu, undefined, "", "");
+}
+
+public function ellieASeparateFunctionToCreateABarrierBetweenKidsAndLewds2():void
+{
+	clearOutput();
+	clearMenu();
+	author("Wsan");
+	showBust("ELLIE_NUDE");
+	showName("\nELLIE");
+	
+	output("After you put the kids to bed, you're hanging out with Ellie and chatting.");
+	output("\n\n<i>“You know, speaking of having more kids...”</i> you begin, slipping an arm around her waist.");
+	output("\n\n<i>“Oh?”</i> she says, giving you a smile.");
+	if(pc.hasCock())
+	{
+		output("\n\n<i>“I think I know where to start.”</i>");
+		output("\n\nWith a few well-placed squeezes and some giggling, you maneuver Ellie into one of the spare rooms and get her laid out on the bed.");
+		output("\n\n<i>“Is this what you wanted?”</i> you ask her, slowly sliding your [pc.cock] between her wettened, shining pussylips.");
+		output("\n\n<i>“Oh, fuck yes,”</i> she gasps, flexing her massive hindquarters to squeeze down on you. <i>“Give it to me, [pc.name]!”</i>");
+		output("\n\nShe cries out when you thrust inside, gripping the headboard for her life as you pound her sopping wet pussy hard enough to make her cry out your name. Her walls grip at you with desperate need, and it's not long before you're both cumming as hard as you can. Her pussy clenches down on you over and over, milking you for all you're worth. Thoroughly satisfied with the way she's been dicked down, Ellie collapses onto the bed and sinks into the sheets.");
+		output("\n\n<i>“Mmm. I'm going to take a nap, 'kay [pc.name]?”</i>");
+		output("\n\n<i>“Uh huh. You take it easy, I'll see you soon, alright?”</i>");
+		output("\n\nShe beckons you into a good night hug, and you give her a heartfelt kiss and sit on the edge of the bed. Her breathing slows, and she falls asleep holding your hand in hers. You carefully extricate your fingers and kiss her on the cheek, leaving her to rest.");
+		processTime(30+rand(15));
+		pc.orgasm();
+	}
+	else
+	{
+		output("\n\n<i>“We can take a pass on making more, but how about I show you a good time anyway?”</i>");
+		output("\n\nWith a few well-placed squeezes and some giggling, you maneuver Ellie into one of the spare rooms and get her laid out on the bed. With her on her knees, you slide yourself under her ass and grip her cheeks, pulling them apart to expose her luscious sex. You commandingly pull her down onto you, licking her right down the centre of her pussy, making sure to lovingly stroke the pulsing nub contained within.");
+		output("\n\n<i>“Ohhhhhh, goood!”</i> Ellie cries out, gripping the headboard for dear life. <i>“Don't stop!”</i>");
+		output("\n\nIn her unconscious desire she pushes down with her massive hips, driving your face into the warmth of her pussy as her femcum is running down your chest. She cums over and over, shaking and groaning in ecstasy until she can finally take no more and has to weakly lift her hips from your face.");
+		output("\n\n<i>“Oh, my god,”</i> she pants, hand on her heaving breasts. <i>“I haven't cum, that hard, for a while...”</i>");
+		output("\n\n<i>“Always happy to help my favorite girl,”</i> you say, rubbing her flank as she rolls onto her side. <i>“You gonna take a nap?”</i>");
+		output("\n\n<i>“Uh huh,”</i> Ellie says sleepily, beckoning you into a tight hug. You give her a kiss and tug the blankets over her, heading out to let her rest.");
+		processTime(30+rand(15));
+		pc.lust(25);
+	}
+	
+	addButton(0, "Next", mainGameMenu, undefined, "", "");
+}
+
+public function ellieDoesntHavePheromonesAnymore():void
+{
+	clearOutput();
+	author("Wsan");
+	showBust("ELLIE");
+	showName("\nELLIE");	
+	
+	output("<i>“So the pheromones are gone, huh?”</i> you ask, noting you're considerably more sane in her presence, even on New Texas.");
+	output("\n\n<i>“Uh huh!”</i> Ellie nods, her bountiful bust jiggling tantalizingly. <i>“I guess since I got preggers I don't need them so bad right now. They come back, though. It's usually a few months after the kids hatch, but probably sooner for me 'cuz of all the bulls walking 'round.”</i> She winks conspiratorially. <i>“So you can look forward to that.”</i>");
+	output("\n\n<i>“The bulls can't get you pregnant though, right?”</i> you ask.");
+	output("\n\nShe shakes her head. <i>“Nope, the doctor was pretty clear that it'd only work for you, not everyone else. Not that that'll stop 'em from trying, y'know. Jeez, sometimes I wonder how we ever got off our planet with our pregnancies being so difficult!”</i>");
+	output("\n\nYou laugh. <i>“Good thing this all worked out then, huh?”</i>");
+	output("\n\n<i>“You know it!”</i> Ellie agrees, nodding vigorously. <i>“I kinda miss it, too - being pregnant. Sometimes thinking about it gets me kinda hot,”</i> she admits, tail flicking from side to side. <i>“Like I just can't wait for you to take me out back and breed your mare with that stud cock until I'm full of spunk... ooh,”</i> she sighs, eyeing you needily and biting her lip. <i>“Whattya say, [pc.name]? Fancy helping your poor little girl in heat?”</i>");
+	
+	processTime(5+rand(4));
+	pc.lust(33);
+	
+	clearMenu();
+	if(pc.lust() >= 33) addButton(0,"Yes",ellieSexScene,undefined,"Yes","Take the taur-girl for a roll in the proverbial hay.");
+	else addDisabledButton(0,"Yes","Yes","Somehow, despite the pervasive musk, you aren’t aroused enough for sex.");
+	addButton(1,"No",ellieMenu,undefined,"Turn her down for now.");	
+}
+
+public function askEllieAboutTheKiddos():void
+{
+	clearOutput();
+	author("Wsan");
+	showBust("ELLIE");
+	showName("\nELLIE");
+	
+	output("You ask about the kids.");
+	output("\n\n<i>“The kids are great! Well, you already know that,”</i> Ellie giggles, smiling happily. <i>“I usually see them a couple times a week - T has been really, really good about maternity leave and all that stuff! After all, a place like New Texas wouldn't even run properly if we didn't have rules in place for that stuff. Though I'm bending them a little,”</i> she admits, <i>“by going off-planet for my visits. Still! The kids are happy to see me, and that's what counts.”</i>");
+	output("\n\n<i>“I wish I could see them more often,”</i> you muse, thinking about your son and daughters.");
+	output("\n\nEllie reaches over the counter and grasps your hands in her giant plated mitts, her big blue eyes looking at you imploringly. <i>“Please don't beat yourself up over it, [pc.name]. I knew going into this you wouldn't be able to be around much, and that's fine. I'm okay with it. The kids are strong too, you know? Just make sure you visit them whenever you can!”</i>");
+	output("\n\n<i>“Yeah,”</i> you say, smiling back at her. <i>“Thanks, Ellie. I dunno what I'd do without you.”</i>");
+	output("\n\n<i>“Oh, you,”</i> she giggles, squeezing your hands softly. <i>“They're a lot of fun to play with. They can't talk very well yet, but I think they understand you're out there doing your best for their sake. Heck, " + flags["ELLIE_KID1"] + " will probably end up following in your footsteps. He's quieter than the girls, but he's really interested in your adventures. Won't that be a treat?”</i> she asks, smiling wide. <i>“Another generation of Steeles out there travelling the stars. I'm getting a little misty-eyed just thinking about it.”</i>");
+	output("\n\nShe pulls back a hand to wipe her eyes while you're lost in thought. You hadn't even thought about that yet. Will your kids follow in your footsteps? Will they put themselves in danger? Your instinctive need to keep them safe wars with the idea of letting them have control over their own lives. It would be great if you could just keep them safe forever. You sigh. No, that way lies madness. Whatever happens, it's best to let them decide for themselves. Besides - you'll still be around to guide them.");
+	output("\n\n<i>“Thinking about their adventures?”</i> Ellie asks, interrupting your train of thought. <i>“They'll be fine, [pc.name]. They were just born! Let's focus on getting them to put their toys away neatly before we think about space travel.”</i>");
+	output("\n\n<i>“You're right,”</i> you laugh, dismissing the worries of the future. It's hard to stay worried with Ellie in front of you. <i>“Gotta take it one step at a time.”</i>");
+	output("\n\n<i>“Right,”</i> Ellie says with a smile, her breasts resting on the countertop. <i>“So, anything going on with you?”</i>");
+	output("\n\nYou pass a bit of time just chatting comfortably to Ellie.");
+	
+	processTime(15+rand(10));
+	buildEllieTalkMenu();
+	addDisabledButton(4, "Kids");
+}
+
+public function specialNewMountSceneIfYouGaveEllieKiddos():void
+{
+	clearOutput();
+	author("Wsan");
+	showBust("ELLIE_NUDE");
+	showName("\nELLIE");
+	
+	output("<i>“Let's skip the small talk, [pc.name]. You know how I like it,”</i> Ellie moans, wiggling her hips invitingly while she steadies herself with the bolted bar on the wall. <i>“Fuck me like I'm your little breeding mare bitch. Fill my womb up with your spunk!”</i> Her black-lipped cunt winks at you, still webbed with strands of sticky girl-spunk and beading anew with moisture, looking so inviting that you just can’t help yourself.");
+	output("\n\nHow could you resist such an eloquent invitation? Your [pc.cockBiggest] inflates to its full size immediately, rock hard under your tauric bulk. Instinct hammers at your brain, telling you to take your needy slut and fuck her until she can't stand. With a primal roar of desire, you lunge forward onto your waiting lover, thrusting the full weight of your animalistic body onto her, scrambling up her back until your humanoid waist is flush against her own. Ellie shrieks in effort and shock, her six legs buckling under the massive added weight of your inhuman form, but she follows that up with a low, feral moan as you reach down and grab her huge, milk-swollen tits. She gasps happily as you squeeze and knead her udders, working out a thick gout of milk that utterly soaks her bra - right up until she strips it off, letting the two fleshy gray orbs bounce free into your grip.");
+	output("\n\nYou use Ellie’s humanoid torso, and especially her meaty rack, to steady yourself as your hind legs scoot up and align your wang with the sultry snatch between your lover’s haunches. She gasps and shudders as your [pc.cockHeadBiggest] brushes her twat’s lips. You don’t go gently, but let the full weight of your bestial nethers come down in one mighty thrust the moment you’re aligned. Ellie’s pussylips part like a veil of silks for you, making way for your tool to plunge into her sultry depths. She’s hotter than a human, boiling hot no matter how cold her blood may run! Her muscles move hungrily out of your way as you penetrate her, the slick slabs of flesh in her pussy almost kissing you, sucking your rod further and further in until you’re totally buried inside your leithan lover. No matter how hard you slam your rod in, she takes you without resistance, though her legs claw at the ground and her whole body shifts with the forward motion of your dick, moving with you until Ellie’s chest is mashed against the wall, breasts squishing on cold concrete, spilling out around your groping fingers. She shivers at the sensation - both of the cold on her huge nipples and the bulbous dick spreading her pussy wide.");
+	output("\n\n<i>“Fuck!”</i> Ellie cries, shivering with delight as you finally settle atop her. <i>“Oh, fuck </i>yes<i>. I can't get you doing this to me out of my head. It feels </i>so good<i> to have your big, fat cock back inside me...”</i>");
+	output("\n\nYou give your lover an affectionate titty-squeeze, grinning as a trickle of her milk pours out down your fingers. In return, Ellie wiggles her hips back, carrying both of you a step away from the wall to give you some room to maneuver without cracking skulls against the concrete. Now that you have some space, you dig your forelegs into Ellie’s shoulders and start to move. She gives a strange, throaty nickering sound as you anchor yourself overtop her and start to really fuck her. Your [pc.hips] hammer into her, carrying monumental weight behind every thrust - enough to make her whole body shake and start every time you ram yourself home into that wonderfully wet, boiling-hot pussy. You revel in the wetness of her passage, the way her pussylips kiss at your cock every time you push into her. Grinning to yourself with mindless lust, you busy your humanoid half by savaging Ellie’s breasts, squeezing her big nipples and cupping the massive mounds, loving every moment that the too-huge swells of her rack spill out around your clutching fingers. She squeals in delight, milk squirting from her abundant stores, and her bestial cunt starts to contract around your thrusting snake-phallus in the perfect way to drive you wild.");
+	output("\n\nYour tauric lover gasps and moans as you molest her ample chest, leaning her humanoid half back against you and joining you in groping at her breasts, desperate to draw even more pleasure from her lusty body.");
+	output("\n\nEllie’s cries and screams of pleasure only get louder as you continue, until you’re sure everyone in the shop - hell, probably everyone in the ranch house - can hear the two of you going at it. In the cloud of leithan sex-scent you’re wallowing in, however, that knowledge only makes you hornier. Let ‘em hear! Let them all be jealous: this is your pussy to fuck, to fill with seed, to breed. You're more than happy to make her a mother twice over. The thought of getting Ellie pregnant again drives you forward, your body going completely on automatic as you jackhammer your hips against her haunches, fucking her as hard as you possibly can.");
+	output("\n\nBetween your [pc.legs], Ellie’s tail starts to squirm and shiver, the muscles making it writhe around your hind legs. You try and ignore her wiggling tail, but its movements only become more and more urgent; familiar with her mannerisms by now, you can tell she's right on the verge of cumming her brains out. The tauric beauty’s voice climbs a register higher over several low, lusty moans and cries of pleasure, her whole body shifting with your tiny hip’s impact against her, grinding and thrusting herself back against you. You can feel the lips of her gaping pussy contract hard, kissing at your cock and smearing you with an ever-increasing veneer of sticky tauric girl-cum, painting your groin in a web of leithan spunk until you’re drenched in it. She’s never been one to outright squirt, but hell if she doesn't leak!");
+	output("\n\nEllie doesn’t let you lag far behind her: her muscles wring and squirm all along the length of your [pc.cockBiggest], so tight and so hot, massaging every inch of your desperate prick. Her velvety pussy milks you, hard and long as Ellie rides out her own explosive orgasm, body working to make sure you come with her into bliss. As turned on as you are, it doesn’t take long.");
+	output("\n\n<i>“Fuck me! Flood my cunt with your seed, [pc.name]! Make me fucking pregnant all over again!”</i> Ellie whinnies, her tail coiling tightly around your hindlegs and pulling you tight against her, urging you to fuck her harder and deeper as your own climax nears.");
+	output("\n\nA few more deep thrusts, and you begin to feel the familiar rush of orgasmic need rising in your [pc.balls]. Your [pc.hips] pound into Ellie’s backside until you’re afraid she'll collapse under the weight and force of you fucking her - but she holds on, screaming and crying and spraying milk and fem-cum all over her pillows as she does. Her pleasured sounds and leaking fluids only making you ever more desperate to cum, her mounting musk rending asunder any lingering ability to hold back. With a final grunt of pleasure, you slap your hips into hers, relishing the squelching feeling of her overly-wet crotch mashing against your own. Buried to the hilt inside your tauric lover, you find yourself cumming, unleashing a thick spray of cum into the hot, sultry passage of Ellie’s bestial pussy. Her muscles go into overdrive at the feeling of your cum flooding into her, working hard to drain out every drop from you, to draw you deeper into her as you bust your nut into her welcoming womb.");
+	output("\n\nYou keep hammering, your bestial hips thrusting deep into Ellie, using her squirming, cum-soaked channel as a milker to work out every drop of seed. You won’t stop until you’ve fucked her fertile womb as full of your spunk as you can. She’s more than happy to take it, making pleasured little moans and sighs as you fill her, still squeezing the milk out of her tits into a growing pool on the floor between her forelegs. Finally, after a few minutes of catching your breaths and enjoying the feeling of simply being inside your leithan lover, you scramble off of her back, forelegs clattering to the floor. The moment your inhuman phallus slides from Ellie’s gaping cunt, a little flood of leithan-cum mixed with just a tad of your own excess spooge drools out of her parted lips.");
+	output("\n\n<i>“Oh, [pc.name],”</i> Ellie sighs dreamily, hearts in her eyes. <i>“I love how you never hold back on me. You give it to me just how I want it every time. You'd better make sure we do this again and again, okay? I'm </i>always<i> up for you mounting me, you big stud,”</i> she adds with a giggle, hugging her voluptuous breasts. You give Ellie’s big, cum-splattered hind an affectionate pat and offer her your arm. She takes it with a toothy smile, her bunny-like ears rubbing up against you as she snuggles close. Together, the two of you make your way back to the storefront.");
+	
+	processTime(31);
+	//tryKnockUpEllie();
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function specialNewBigDickSceneIfYouGaveEllieKiddos():void
+{
+	clearOutput();
+	author("Wsan");
+	showBust("ELLIE_NUDE");
+	showName("\nELLIE");
+	
+	output("<i>“Come and get it, lover " + pc.mf("boy","girl") + ",”</i> Ellie purrs, withdrawing her arm-thick tail from her pussy, leaving her lips wide agape and drooling a web of excitement and anticipation. You all but leap at the opportunity, aligning yourself behind the leithan slut’s spread hind legs. She flashes you a sultry grin and wiggles her hips, smearing a little of her fem-spunk across your member and balls and thighs, and especially over the diamond-stiff length of your seam-straining member. Ellie’s pheromones had you hot and ready to fuck the moment you walked into her shop; finally you can act on your primal urges to breed that leithan cunt until it’s dripping with your seed.");
+	output("\n\nYou grab your hefty cock and bring the full weight of it down on Ellie’s butt, slowly dragging your monstrous shaft down her bestial thigh. She makes a throaty, whinnying sound of delight as you start to line yourself up with her sex. <i>“Mmmm, I can feel that, lover...”</i> Ellie coos, cupping one of her oversized udders and pinching the nipple until it squirts.");
+	if(pc.biggestCockLength() < 24) output("\n\n<i>“That’s a nice, thick cock... why don't you use it to make me your breeder bitch?”</i>");
+	else output("\n\n<i>“Ooh, you're bigger than the leithan boys! Not that I'm complaining. Easier on my back when you can just hammer me from behind. My poor little pussy's just drooling in anticipation... go ahead and slide it in, lover!”</i>");
+	output("\n\nTaking a breath to steady yourself, you angle your rod towards Ellie’s gaping cunt and start to push forward. Ellie’s pussylips part like a veil of silks for you, making way for your throbbing, pink cock to plunge into her sultry depths. She’s hotter than a human, boiling hot no matter how cold her blood may run! Her muscles move gingerly around you as you penetrate her, the slick slabs of flesh in her pussy almost kissing you, sucking your rod further and further in until you’re totally buried inside your leithan lover. Even as hugely endowed as you are, she takes you without resistance, though her legs claw at the ground and her whole body shifts with the forward motion of your dick, moving with you until Ellie’s chest is mashed against the wall, breasts squishing on cold concrete. She shivers at the sensation — both of the cold on her huge nipples and the gargantuan cock spreading her pussy wide.");
+	output("\n\n<i>“Ooh, fuck,”</i> Ellie coos, looking over her shoulder and patting her flank, just hard enough to let you feel it all the way inside her. <i>“I can't get you doing this to me out of my head. It feels </i>so good<i> to have your big, fat cock back inside me... I love it!”</i>");
+	output("\n\nYou give Ellie an appreciative swat on the haunch, and even though your palm landed on one of her armored plates, you still feel her drooling gash squirm around you, muscles working along the many, many inches of cockflesh rammed into her. Her long, leathery tail coils around your boyish hips, gently guiding you as you withdraw, helping to steady you as you lean out and out before hammering home. She lets out a high, ecstatic scream when you slam your distended cock back in, squirting trickles of fem-cum out around your pussy-stretching girth, smearing your crotch and legs in musky leithan girl-spunk... which only drives you even madder with lust.");
+	output("\n\nYou grip Ellie’s haunches, letting your fingers dig into the supple skin between her armored plates. Thanks to those plates, it’s easy to find a good grip on the tauric slut. She gives a strange, throaty nickering sound as you grasp her wide, bestial hips and start to really fuck her. With her tail’s help, you’re able to leap into a thunderously fast pace. Your [pc.hips] hammer into her, pounding away at the gaping hole of Ellie’s pussy, reveling in the wetness of her passage, the way her pussylips kiss at your cock every time you push into her. Grinning to yourself with mindless lust, you rear back and give Ellie’s butt a hard swat, feeling her scaly plates shudder under the impact and her bestial cunt contract around your thrusting massive, pre-gushing cock in the perfect way to drive you wild. Your tauric lover gasps and moans as you spank her plated behind, leaning her humanoid half against the wall and groping at her breasts to draw even more pleasure from her lusty body.");
+	output("\n\nEllie’s cries and screams of pleasure only get louder as you continue, until you’re sure everyone in the shop — hell, probably everyone in the ranch house - can hear the two of you going at it. In the cloud of leithan sex pheromones you’re wallowing in, however, that knowledge only makes you hornier. Let ‘em hear! Let them all be jealous: this is your pussy to fuck, to fill with seed, to breed. You're more than happy to make her a mother twice over. The thought of getting Ellie pregnant again drives you forward, your body going completely on automatic as you jackhammer your hips against her haunches, fucking her as hard as you possibly can.");
+	output("\n\nBetween your legs, Ellie’s tail starts to squirm and shiver, the muscles writhing around you. You try and ignore her wiggling tail, but its movements only become more and more urgent; you slowly realize it’s just the first sign of Ellie’s climax. The tauric beauty’s voice climbs a register higher over several low, lusty moans and cries of pleasure, her whole body shifting with your [pc.hip]’s impact against her, grinding and thrusting herself back against you. You can feel the lips of her gaping pussy contract hard, kissing at your cock and smearing you with an ever-increasing veneer of sticky tauric girl-cum, painting your groin in a web of leithan spunk until you’re drenched in it. She’s never been one to outright squirt, but hell if she doesn't leak!");
+	output("\n\nEllie doesn’t let you lag far behind her: her muscles wring and squirm all along the length of your [pc.cockBiggest], so tight and so hot, massaging every inch of your desperate prick. Her velvety pussy milks you, hard and long as Ellie rides out her own explosive orgasm, her body working to make sure you come with her into bliss. As turned on as you are, it doesn’t take long.");
+	output("\n\n<i>“Fuck me! Flood my cunt with your seed, [pc.name]! Make me fucking pregnant all over again!”</i> Ellie whinnies, her tail coiling tightly around your waist and pulling you tight against her, urging you to fuck her harder and deeper as your own climax nears.");
+	output("\n\nA few more deep thrusts, and you begin to feel the familiar rush of orgasmic need rising in your [pc.balls]. Your [pc.hips] can’t move much with Ellie holding you like that, but they hammer what few inches your lover’s death-grip permits you, her chemical cloud rending asunder any lingering ability to hold back. With a final grunt of pleasure, you slap your hips into hers, relishing the squelching feeling of her overly-wet crotch mashing against your own. Buried to the hilt inside your tauric lover, you find yourself cumming, unleashing a thick spray of jizz into the hot, sultry passage of Ellie’s bestial pussy. Her muscles go into overdrive at the feeling of your cum flooding into her, working hard to milk out every drop from you, to draw you deeper into her as you bust your nut into her welcoming womb.");
+	output("\n\nWhen you’re done, you give a sated sigh and lean against the leithan’s armored backside, trying to catch your breath. Ellie’s hips wiggle eagerly against your crotch, her cum-soaked vaginal muscles contentedly massaging your still-twitching fat, cum-dribbling member. Her tail holds you steady for a long, long time, making sure you squirt every drop deep into her hungry cunt, keeping you trapped against her until you go soft enough to fall out of her on your own. When you do, you’re treated to a little waterfall of backed-up leithan spunk, mixed with a healthy dose of your own, which drools down between your legs to splatter between her hind claws.");
+	output("\n\n<i>“Oh, I needed that,”</i> Ellie moans, still massaging her huge tits. <i>“Nothing beats a big, thick cock and a belly full of your spunk...”</i> At that, her reptilian tail loosens its grip, driving you to realize you can barely stand. You carefully deposit yourself on the mass of pillows behind her, watching with a smile as the leithan’s tail twitches, and a trickle of your spooge drools out of her thoroughly-fucked twat. Smiling at you over her shoulder, Ellie adds, <i>“You sure know how to fuck a big ol' taur like me, huh? Reminds me of when you got me pregnant. Ooh, I think of it every time I get fucked...”</i>");
+	output("\n\nYou give Ellie a cocky, albeit tired, grin, prompting a giggle. She picks you up and puts you on her back - the impact of which has the delightful effect of making her spooge-packed hole squirt a little of your seed back onto the floor. <i>“C’mon, lover, let’s get you back to the shop.”</i>");
+	
+	processTime(25);
+	//tryKnockUpEllie();
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function specialNewLittleDickSceneIfYouGaveEllieKiddos():void
+{
+	clearOutput();
+	author("Wsan");
+	showBust("ELLIE_NUDE");
+	showName("\nELLIE");
+	
+	output("<i>“Mmm, not quite as big as you used to be, huh?”</i> Ellie adds a moment later, still thrusting her thick tail into herself, punctuating her words with little gasps of pleasure. <i>“Those space adventures leaving you a bit deprived? That's okay. I've got another little hole that I'm sure you'll love, [pc.name].”</i>");
+	output("\n\nAs she speaks, her tail pops out from her now-gaping sex and drags itself up her haunch, the tapered tip coming to rest against the dark little star of her asshole. She’s not kidding: her butt’s about as big as a pornstar’s cooch, but it’s a hell of a lot more... well, you-sized than her animalistic pussy. She gives a little gasp as her tail pushes in, just a few inches, but covered in her sweltering girl-cum as it is, the going’s not too rough for maybe six inches of her rapidly-widening thickness. <i>“What do you say, sweet thing? Wanna feel my hot, tight little pucker around that gorgeous little cock of yours?”</i>");
+	output("\n\nYou all but leap at the opportunity, grabbing a smallish box to stand on and aligning yourself behind the leithan slut’s spread hind legs. She flashes you a sultry grin and wiggles her hips, smearing a little of her fem-spunk across your [pc.crotch], and especially over the diamond-stiff length of your [pc.cockBiggest]. Just being around Ellie now is enough to have you ready to fuck; while you can’t act on your mind’s primal urges to breed that sultry leithan pussy, you can at least sate your desires on a hole built for someone your size.");
+	output("\n\n<i>“Grab the lube, baby,”</i> Ellie murmurs as your [pc.cockBiggest] brushes against the X-shaped hole of her butt. <i>“Better safe than sorry, right?”</i>");
+	output("\n\nYou grunt in frustration and pent-up horniness, but yield to your lover’s request. However, you won’t settle for something that came out of a bottle when there’s a hot, wet well of juicy lube rubbing up against you already. You redirect your soft-barbed cock to the wide-open lips of Ellie’s black cunt, pushing yourself easily into its sultry depths. You move yourself in a circle around her wet, hot muscles, gathering up as much of Ellie’s natural lubricants onto your shaft as you possibly can. She looks over her shoulder, watching you with eager eyes while you prepare. Once you’ve got enough slippery taur-spunk slathered onto your rod to make sure that you’ll have an easy time with even the tightest of holes, you slide your hips back from the leithan’s bestial pussy and angle yourself back up toward your target. X marks the spot...");
+	output("\n\nSeeing that you’re about the take the plunge, Ellie lifts her tail up and out of the way, curling the leathery appendage along her back to make herself nice and open for you. She flashes you a little smile as you grab her hips, and she starts to cup and squeeze her breasts again, milking herself ever so slightly in anticipation. The sight of her maternity bra filling up with lactic excess is enough to drive you onwards, and you start to press your [pc.hips] forward.");
+	output("\n\nThe four folds of muscle that make up Ellie’s X-shaped asshole part easily, folding back against themselves as you enter her. The difference between her ass and pussy is like night and day: you can feel Ellie’s muscles worming and squirming around you, the beat of her powerful, head-sized heart thrumming through the tightly clenched passage. It feels like a hot, silken glove around your [pc.cockBiggest], a little warmer and drier than a normal girl’s pussy, but just as pleasant to sheathe your wang in.");
+	output("\n\nYou easily sink in to the hilt, eliciting a long, low groan of pleasure for your enormous lover. <i>“Oh, now that’s the stuff...”</i> Ellie coos, her tail wiggling around your noticeable sides, pulling you in until your crotch squeezes tight against hers. You give a slight shiver as you feel your lover’s freely-flowing juices smear across your legs and thighs, basting you in warm, sweet-smelling sex-musk that quickly makes it was up to your nose.");
+	output("\n\nYou grip Ellie’s haunches, letting your fingers dig into the supple skin between her armored plates. Thanks to those plates, it’s easy to find a good grip on the tauric slut. She gives a strange, throaty nickering sound as you grasp her wide, bestial hips and start to really fuck her. Your [pc.hips] hammer into her, pounding away at the tight, wringing ring of Ellie’s asshole, reveling in the tightness of her passage. Her muscular folds kiss and suckle on your cock with every powerful thrust, as if trying to pull you deeper and deeper into her. Grinning to yourself with mindless lust, you rear back and give Ellie’s butt a hard swat, feeling her scaly plates shudder under the impact and her bestial asshole contract around your thrusting pink, feline tool in the perfect way to drive you wild. Ellie gasps and moans as you spank her plated behind, leaning her humanoid half against the wall and groping at her breasts to draw even more pleasure from her lusty body.");
+	output("\n\nBetween your legs, Ellie’s tail starts to squirm and shiver, the muscles writhing around you. You try and ignore her wiggling tail, but its movements only become more and more urgent; you slowly realize it’s just the first sign of Ellie’s climax. The tauric beauty’s voice climbs a register higher over several low, lusty moans and cries of pleasure, her whole body shifting with your noticeable hip’s impact against her, grinding and thrusting herself back against you. You can feel the lips of her gaping pussy contract hard, rubbing against your own crotch and smearing you with an ever-increasing veneer of sticky tauric girl-cum, painting your groin in a web of leithan spunk until you’re drenched in it. She’s never been one to outright squirt, but hell if she doesn't leak!");
+	output("\n\nHer ass joins in the fun a moment later, squeezing down on your shaft hard enough to trap you, completely halting your thrusts into her save for tiny, shallow jerks of your noticeable hips, barely able to clear an inch from your lover’s powerful grip. Still, Ellie doesn’t let you lag far behind her: her muscles wring and squirm all along the breadth of your [pc.cockBiggest], so tight and so hot, massaging every inch of your desperate prick. Her ass milks you, hard and long as Ellie rides out her own anal orgasm, her body working to make sure you come with her into bliss. As turned on as you are, it doesn’t take long.");
+	output("\n\n<i>“Come on, [pc.name], give it to me! I wanna feel your cum inside me!”</i> Ellie whinnies, her tail coiling around your waist and pulling you tight against her, hugging you close as your own climax nears.");
+	output("\n\nA few more restrained thrusts, and you begin to feel the familiar rush of orgasmic need rising in your testes. Your ample hips can’t move much, but they hammer what few inches your lover’s death-grip permits you, Ellie’s musk rending asunder any lingering ability to hold back. With a final grunt of pleasure, you slap your hips into hers, relishing the squelching feeling of her overly-wet crotch mashing against your own. Buried to the hilt inside your tauric lover, you find yourself cumming, unleashing a thick spray of cum into the vice-tight passage of Ellie’s well-fucked asshole. Ellie’s muscles go into overdrive, working hard to milk out every drop, to draw you deeper into her as you bust your nut into her welcoming backside.");
+	output("\n\nWhen you’re done, you give a sated sigh and lean against the leithan’s armored backside, trying to catch your breath. Ellie’s hips wiggle eagerly against your crotch, her cum-soaked anal muscles contentedly massaging your still-twitching dick.");
+	output("\n\n<i>“Ooh, that was a nice change of pace,”</i> Ellie sighs in satisfaction, lowering you to the pillows with her tail. You watch with a smile as the leithan’s tail twitches when it withdraws, and a trickle of your spooge drools out of her thoroughly-fucked ass. Smiling at you over her shoulder, the taur adds, <i>“You feel so good in my ass, [pc.name]. Almost good enough to make me forget how good it was to have you breeding my pussy!”</i>");
+	output("\n\nYou give Ellie a cocky, albeit tired, grin, prompting a giggle. She picks you up and puts you on her back - the impact of which has the delightful effect of making her spooge-packed hole squirt a little of your seed back onto the floor. <i>“C’mon, lover, let’s get you back to the shop.”</i>");
+	
+	processTime(25);
+	//tryKnockUpEllie();
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
