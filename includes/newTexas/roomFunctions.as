@@ -100,7 +100,7 @@ public function manMilkerRoomBonusFunc():Boolean
 public function NTGiftShopBonusFunc():Boolean
 {
 	//Ellie Pregnancy Announcement
-	if(flags["ELLIE_PREG_TIMER"] >= 1 && flags["ELLIE_OPERATION"] == 1)
+	if(flags["ELLIE_PREG_TIMER"] >= 1 && (flags["ELLIE_OPERATION"] == 1 || flags["ELLIE_OPERATION"] == undefined))
 	{
 		clearOutput();
 		clearMenu();

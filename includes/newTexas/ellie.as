@@ -1622,7 +1622,7 @@ public function tryKnockUpEllie():void
 		//Can't have babies if either of you are sterile, also it's a 1-time pregnancy, NO REPEATS!
 		if(pc.virility() == 0 || ellie.fertility() == 0 || flags["ELLIE_TOTAL_KIDS"] > 0) return;
 		
-		var score:Number;
+		var score:Number = -1;
 		//If pc is originally half-leithan and hasnt done fertility treatment, 0-5% chance to knockup based on virility
 		if(pc.originalRace == "half-leithan" && flags["ELLIE_OPERATION"] == undefined)
 		{
@@ -1638,7 +1638,9 @@ public function tryKnockUpEllie():void
 		}
 		
 		//roll for pregnancy
-		if(rand(10000) <= score)
+		var roll:int = rand(10000);
+		trace("score: " + score + ", roll: " + roll);
+		if(roll <= score)
 		{
 			flags["ELLIE_PREG_TIMER"] = 0;
 			pc.clearRut();
@@ -1718,7 +1720,7 @@ public function processElliePregEvents(deltaT:uint, doOut:Boolean, totalDays:uin
 	{
 		flags["ELLIE_PREG_TIMER"] += totalDays;
 		//PC has to see the pregnacy announcement and be there for the egg laying and hatching or timer pauses
-		if(flags["ELLIE_OPERATION"] < 2 && flags["ELLIE_PREG_TIMER"] > 1) flags["ELLIE_PREG_TIMER"] = 1;
+		if((flags["ELLIE_OPERATION"] < 2 || flags["ELLIE_OPERATION"] == undefined)  && flags["ELLIE_PREG_TIMER"] > 1) flags["ELLIE_PREG_TIMER"] = 1;
 		else if(flags["ELLIE_OPERATION"] < 3 && flags["ELLIE_PREG_TIMER"] > 40) flags["ELLIE_PREG_TIMER"] = 40;
 		else if(flags["ELLIE_OPERATION"] < 4 && flags["ELLIE_PREG_TIMER"] > 70) flags["ELLIE_PREG_TIMER"] = 70;
 		
