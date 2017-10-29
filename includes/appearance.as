@@ -122,6 +122,7 @@ public function appearance(forTarget:Creature):void
 	
 	switch(target.faceType)
 	{
+		case GLOBAL.TYPE_ARACHNID:
 		case GLOBAL.TYPE_HUMAN:
 		case GLOBAL.TYPE_NALEEN_FACE:
 		case GLOBAL.TYPE_SIREN:
@@ -134,6 +135,7 @@ public function appearance(forTarget:Creature):void
 			// Special addons
 			if(target.faceType == GLOBAL.TYPE_SIREN) output2(" A set of razor-sharp, retractable shark-teeth fill your mouth and gives your visage a slightly angular appearance.");
 			else if(target.faceType == GLOBAL.TYPE_NALEEN_FACE) output2(" A set of retractable, needle-like fangs sit in place of your canines, just like a naleen.");
+			else if(target.faceType == GLOBAL.TYPE_ARACHNID) output2(" A set of spider-like fangs protrude over your bottom lip.");
 			break;
 		case GLOBAL.TYPE_LAPINE:
 			if(!target.hasMuzzle())
@@ -3170,7 +3172,7 @@ public function crotchStuff(forTarget:Creature = null):void
 	}
 	//VAGOOZ
 	if(target.vaginas.length > 0) {
-		if(target.hasCock()) output2("\n\n");
+		if(target.hasCock() || target.balls > 0) output2("\n\n");
 		if(!target.hasCock() && target.isTaur()) output2("As a tauric creature, your womanly parts lie between your rear legs in a rather equine fashion. ");
 		
 		var vagSwellBonus:int = target.vaginalPuffiness(0);
