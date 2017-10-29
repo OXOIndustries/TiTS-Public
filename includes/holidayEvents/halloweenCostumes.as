@@ -107,6 +107,11 @@ public function holidayMenu():void
 		else if(pc.isPregnant()) addDisabledButton(4,"HorseSuit","HorseSuit","It looks like the bottom half of a centaur. To avoid complications, you probably shouldn’t wear this while pregnant.");
 		else if(pc.hasGenitals() && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined) addButton(4,"HorseSuit",centaurBunsBunsBuns,undefined,"Horse Suit","It looks like the bottom half of a centaur. Must be robotic.\n\nPrice: 1000 credits");
 		else addDisabledButton(4,"HorseSuit","HorseSuit","You need to have made it to the second planet (and have genitals) for this choice.");
+
+		//A forgotten pile of black armor attached to a gray body suit sits crumpled in the corner of the room. You're not really sure what it is. 
+		//Spider Suit
+		if(pc.isPregnant()) addDisabledButton(5,"Spider Suit","Spider Suit","A warning label mentions that this costume contains substances harmful to pregnant individuals. Damn!");
+		else addButton(5,"Spider Suit",spiderSuitApproach);
 	}
 	else
 	{
@@ -114,6 +119,7 @@ public function holidayMenu():void
 		addDisabledButton(2,"Helmet","Helmet","You can’t afford this junk. Crap.");
 		addDisabledButton(3,"Armor","Armor","You can’t afford this junk. Crap.");
 		addDisabledButton(4,"HorseSuit","Horse Suit","You can’t afford this junk. Crap.");
+		addDisabledButton(5,"Spider Suit","Spider Suit","You can’t afford this junk. Crap.");
 	}
 	addButton(14,"Leave",leaveLikeABitch);
 }
@@ -1644,6 +1650,234 @@ public function maleTaurSubCostumeFinale():void
 	output(" centaur now.</b>");
 	pc.lust(50);
 	halloweenShipMove();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//New Poe A Costume
+
+//A forgotten pile of black armor attached to a gray body suit sits crumpled in the corner of the room. You're not really sure what it is. 
+
+//Spider Suit
+public function spiderSuitApproach():void
+{
+	clearOutput();
+	showHoliday();
+	author("Magikarpfever");
+	output("Shunted in the corner of the room is some sort of gray body suit. It's obviously meant for a woman, judging by the flattering lines and padded, hyper-detailed breasts." + pc.mf(" You could probably pull it off, for a laugh if nothing else, so long as you don't mind dressing up like a girl...","") + " There are strange black protrusions covering most of the surface of the fabric, looking a bit like armor. Hanging from the backside is a large oval like object. Upon closer inspection it resembles a shiny spider’s abdomen. The entire ensemble is a sexy take on terran arachnids. Surprisingly, the fabric itself is slippery and feels inhumanly smooth, not at all like the cheap polyster you were expecting. On the other hand the armor is also smooth but hard and durable.");
+	output("\n\nHoliday, who was idly checking on her sharp, pointed nails, looks puzzled at your interest in the garb.");
+	output("\n\n<i>“Huh, didn’t know I even had that,”</i> she comments.");
+	output("\n\nYou try to ask her exactly what that is but she isn’t able to give you a good answer. <i>“It’s a uh...spider? Yeah spider costume. I think. Pretty sure it can conform to all body types too.”</i>");
+	output("\n\nYou’re slightly perturbed that she doesn’t even know what it is, especially given the shady atmosphere of her store. Though you can’t deny the obvious quality of the costume.");
+
+	output("\n\nWould you like to buy the spider suit, or look at another costume? (1000 credits)");
+
+	processTime(5);
+	clearMenu();
+	if(pc.credits >= 1000) addButton(0,"Buy It",buyDatSpoidahCostume,undefined,"Buy It","This will cost 1,000 credits...");
+	else addDisabledButton(0,"Buy It","Buy It","You can't afford it!");
+	addButton(14,"Back",holidayMenu);
+}
+
+public function buyDatSpoidahCostume():void
+{
+	clearOutput();
+	showHoliday();
+	author("Magikarpfever");
+	pc.credits -= 1000;
+	output("You put on the chitinous plates first, sliding your legs into the stretchy fabric and pulling it into place. The elastic nature of it is astounding, conforming to every crevice with relative ease. It covers your legs within an onyx coating of shiny chitin. The plates slide all the way down to your [pc.feet] where it tapers off into a tall black heel, akin to sexy high heeled boots. In between the segmented plates is delightfully smooth gray skin. Pleased with the results, you shrug on the sleeves. You marvel at how you the glittery arachnid exoskeleton swathes your arms in beautiful plates. While you stroke the chitin you immediately notice that you can still feel touch, as if touching the skin beneath the suit. Laughing at the absurdity of it all, you accidentally knock a trinket off Holiday’s counter with your big spherical spider abdomen. Whoops, guess you forgot about that.");
+	output("\n\n<i>“Hey you better watch it or else you’ll be paying for more than just the suit,”</i> Holiday grumbles. Whatever you pushed off must not be that important as she doesn’t even make a move to pick it up.");
+
+	output("\n\nYou would have made a move to clean it up but the sight of your abdomen has you mesmerized. It’s pretty big, easily about the size of a beachball. However it doesn’t impede your movement, in fact you feel like you were born to have it. Now you can more efficiently tie up your prey. Wait where did that thought come from? Chalking it up to getting into character, you start to scuttle out the door until Holiday stops you with a shout.");
+	output("\n\n<i>“Don’t you want the top?”</i> she asks, holding up a skimpy black bra.");
+	//come back to this forced boobages
+	output("\n\nYou shake your head, wanting everyone to see the bountiful breasts of your costume, capped with two puffy dusky nipples. The chitin, in contrast to the exposed flesh, makes it all the more noticeable. Holiday shrugs and tosses the bra under the counter. You swear you see two fangs, glistening in the overhead lighting as she grins at you.");
+
+	output("\n\n<i>“Well have fun, don’t do anything I wouldn’t do!”</i> she tells you.");
+
+	output("\n\nNot even gracing Holiday with a glance back you strut your way through the masses of sweaty bodies. Wave after wave of sultry smells fill every olfactory gland you have. <i>All of these delicious bodies just begging to be tied up</i>. That sudden odd desire has your head spinning; questioning why that intrusive thought arose does nothing to quell a dizzying headache. In fact the migraine turns nauseating, and you stumble into a nearby alleyway so you don’t fall over anyone. Luckily it starts to fade rather quickly, pain washing away as quickly as it came.\n\nYou blink in surprise as you find that the tunnel vision vanished as well. Wait has your vision always been this good? Scanning over the writhing bodies, you can practically count the beads of sweat that trail down exposed skin. A small part of your mind tries raise an alarm, but you suddenly don’t really care.\n\nOnlookers that notice you part like the red sea so you can get through. They seem gobsmacked by your domineering form, and why shouldn’t they be? Compared to you, they’re like little flies, begging to be caught in your web. An innate urge begins to rise, an incomprehensible need for a ripe little pet. Though they can’t just be anyone, only the best will suffice. You aren’t very impressed with the selection you see. There’s so much variety but still, none of them will do.");
+
+	output("\n\nGrowing impatient, you spot a club near the end of the street. It seems like a good place to start so you begin the trek towards it. Luckily you don’t have much trouble getting to it due to your agile nature. The smell of sex bombards you as soon as you enter the booming club. Electric music produces a dance-worthy beat as the lights on the floor shifts in an array of colors. It isn’t much different than outside, albeit more condensed. Still, you trust your instincts so you gracefully sit down on one of the stools and hail the bartender for a drink.\n\nThe Ausar working the counter breaks out in a cold sweat when he sees you, eyes locked onto your form. It takes an impatient quip from you to knock him out of his stupor. He quickly makes your drink and slides it to you, obviously wanting to please you. When you thank him he visibly sags in relief and his tail begins to whip back and forth. As you pull out a credit chip he shakes his head, cementing the fact that you will not have to pay for any drinks. You pat him on the head and coo at him for being such a good puppy, so eager to please. For a few moments you sit and savor the sweet drink, scoping out the crowded club with your four eyes.");
+	output("\n\nJust than, as you’re sipping your drink, you spot her. Dancing amongst the crowd is a blue skinned Saeri. Her long pink ponytail sways while she dances in sync to the beat. She’s wearing something akin to a fairy outfit, a short puffy dress that has multicolored flowers blooming from the light green fabric. Small high heels click and spin as those gorgeous legs take your breath away. Red eyes meet intense violet ones when she spots you. She freezes for a second, the dance floor forgotten in favor of the dominating spider she sees before her. Nervously she walks over to you until she takes a seat beside you. A tuck of her hair between her ear and the bashful fluttering of her long eyelashes is all you really need.");
+	output("\n\n<i>“What would you like from me, little one?”</i> you ask artfully.");
+
+	output("\n\nThe Saeri squirms in her seat, the quartet of iridescent wings fluttering in response to the sudden movement. You don’t give her a chance to respond as you take her by the chin and press a deep kiss into those plump lips of hers. Chitinous arms wrap around her slender waist, pulling the butterfly girl closer into the embrace. Tongues clash in a heated battle, each nip you take of her lower lip has it grow more heated. Starry pink eyes, now glazed with desire, burn for more. Knowing what you have to do, you guide your lover out a back door, lips still locked together as you fumble with her dress.");
+
+	output("\n\nThe air compared to the inside is cooler, your nipples now erect from a combination of arousal and new found sensitivity. You press her against the brick wall of the club, her body relatively light and easy to play with. The tantalizing sapphire nipples that dot her pert breasts grow even harder between your graceful fingers. Blue skin flushes into a deep indigo color and her tender nubs protrude out thanks to your treatment. The poofy dress she was wearing now sits on the alleyway ground, forgotten in the midst of unbridled lust. Thoughts of your abdomen, still heavy with silk, bring a wicked smile to your face. You make quick work of binding your prey, shooting silky strands of web to bind her arms above her head and leave her legs strapped wide apart, revealing her gleaming cunt. Her wet muff feels warm to the touch, puffy and already leaking. You start to tease it, rubbing at it until her clit is exposed. Small squeaks start to tumble out of the Saeri’s mouth as you gently roll your fingers around her clit.");
+
+	output("\n\nA startled cry pierces the air as your fingers suddenly plunge into her sodden sex. The soft walls around it pulse around your skilled hand, delightfully hot and tight from your sudden intrusion. With your other hand, you continue to rub at the clit so you can coerce her vagina to loosen up. The Saeri is now panting wildly, streaks of sweat rolling across her body.  Your tongue slithers out of your mouth, taking a few seconds to fully extend out of your mouth, and starts to coat her crotch in a thick layer of saliva. She shudders at the wetness and cries out again as you keep  going further, and further, and further inside her cavernous vagina. Your efforts are followed by her unprompted yell, resulting in a sharp slap on her ripe derriere.");
+	output("\n\n<i>“Do not utter a sound unless I command it,”</i> you warn her.");
+	output("\n\nHanging her head in shame she apologizes, whispering a soft, <i>“Forgive me, Mistress.”</i>");
+
+	output("\n\nThe slap seems to have increased her lust faster than stimulating her clit. Her pulsating hole sucks your fingers in, begging for you to stimulate its G spot. You have no trouble finding it, evident by the Saeri starting to buck her hips against your fingers. There’s an unspoken plea for you to go faster, so you do just that. Every gentle caress is abandoned, your fingers sliding in and out at a rapid pace. Frantic huffs cue your prey’s oncoming climax. By the way her legs begins to press against her silky bindings you doubt she’ll be able to hold out for long.\n\nFinally the waves of euphoric pleasure reaches its peak. With watery eyes, she begs you to let her cum. Since she’s been a good little butterfly, you give her permission with a slight nod. In a burst of girl-cum her eyes roll back and she convulses in ecstasy. She’s seemingly lost to a indescribable array of pleasure. Finally she winds down, breathing hard and looking at you like your a Goddess. You embrace your prey, rewarding her with small whispers of approval.\n\nShe did a good job after all, waiting for permission to climax. She sinks into your arms, resting her head on your ample bosom.");
+	output("\n\nJust than, a figure runs up to you, a familiar full-figured demon who is somehow managing a remarkable pace considering she’s wearing high heels. Her heaving breasts threaten to spill out of her tight nurse top, bouncing up and down with each step. When she makes it up to you she regards the scene curiously, a mix of mischievousness and arousal gracing her feminine features.");
+	output("\n\n<i>“I was wondering where you’ve been. Listen we gotta-”</i> You don’t allow her to finish. Setting your Saeri back into her silky confines you prowl toward her, your fangs glittering dangerously despite the low light. Holiday backs away a few steps but the prominent bulge in her skirt is enough to show her burgeoning arousal.");
+
+	output("\n\n<i>“How about you listen to me pet,”</i> you purr, getting closer and closer with each step. <i>“Why don’t you let me wrap you up in my beautiful silk. I promise it’ll be worth your while...”</i>");
+
+	processTime(55);
+	pc.libido(1);
+	pc.lust(100);
+	clearMenu();
+	addButton(0,"Next",spiderCostumePart2);
+}
+
+public function spiderCostumePart2():void
+{
+	clearOutput();
+	showHoliday("equine");
+	author("Magikarpfever");
+	output("Before she can even react you shoot a stream of web to swathe her legs in your silk. With her long legs now indisposed, she falls to the ground, barely being able to catch herself with her hands. She pushes her luxurious hair out of her hair to reveal a look of complete disbelief. Any attempt to push back against the ground is met with another shot of web until her arms are also cocooned. Holiday struggles against the bonds, but it’s a half-hearted attempt at best. You walk toward her at a brutally slow pace, each step emphasized by the click of your natural high-heels. Soon you’re looming over her, watching her squirming cease as you lean down. In a surprisingly soft gesture, you stroke the smooth skin of her cheeks. Gradually your hands trail down, all the way to her sizable breasts. Both are moving up and down more rapidly than normal, Holiday’s breathing amped up a notch, whether it’s from running to the alley or the sudden position she found herself in.");
+
+	output("\n\nOnly needing a flick of a finger to undo her top pillowy cushions burst from their confines. The milky skin surrounding bright pink aerolae are just begging to be licked. However you’re not the one who’s going to do the licking. You stride back to your Saeri, who is watching wide eyed at the scene before her. With relative ease, you cut her down from the wall and embrace her again. She gladly accepts it, almost purring as you stroke her head. Not above a whisper, you explain to her what you want to do. When you let go of her she tentatively walks over to the tied up Holiday and hunkers down so you can see her cute little behind. Following your orders she begins lapping at the demon-nurse’s breasts, sliding her tongue down and around her nipples. Holiday groans at the treatment, sticking up her chest so the Saeri has better access. Your pet expertly swirls her tongue around her tender nubs, giving them each a tiny nip. By this point Holiday is visibly panting, the tent in her skirt now almost vertical.");
+	output("\n\n<i>“Yo-you know, I thought, I... I-d be tied up by peacekeepers, th-though this...this is loads better,”</i> she stammers.");
+
+	output("\n\nYou grin at her state, relishing at the fact that she is barely able to speak. In a low whisper you give another order to your pet, urging her to pick up the pace. She goes through with the order with flying colors. The Saeri plants a kiss on Holiday’s shapely lips, gradually deepening it until you can basically hear their greedy sucking and the exchange of spit. When she stops, she wipes a stray strand of saliva from her lips and begins to remove Holiday’s skirt. The flimsy piece of cloth is quickly torn away, revealing a throbbing horse-cock. Veins bulge from within its pink exterior, and its large size makes you wonder how she managed to hide it. You gently move your pet aside, giving her a quick pat on the head for doing such a good job. Aligning your crotch to her dick, you show her a gleaming new spider cunt, hidden in an encasing of chitin until now.");
+	output("\n\nThrough gritted teeth Holiday lets out a groan. <i>“Just fuck me already!”</i>");
+
+	output("\n\nYou tut at her vulgar display, crossing your arms to readily show your displeasure. The demon picks up on it and through bared teeth she begs for release. <i>“Please, please fuck me... Mistress.”</i>");
+	output("\n\nAlthough it’s not a perfect display of submissiveness you decide to look past it. She did say please after all. Since your spider-cunt is already soaking wet from earlier, you have no trouble sliding her tip in, followed by the rest of it’s girthy length. It’s only halfway through when you already feel a heavy warmth permeate your vagina. You groan in satisfaction, its veiny ribs massaging your walls in all the right places. Resisting the urge to rut against it like a wild animal, you slowly start to move, rocking yourself up and down at a steady pace. Holiday is clearly enjoying herself, eyes wide and jaw slack. Her hips jerk with need, trying to make you go faster. Stars begin to permeate your vision and soon you feel yourself speeding up the process despite yourself. Since it’s so long, it finds your G-spot with relative ease. You barely manage to stop a cry of pleasure ripping from your throat as it hits it just right. At last the oncoming eruption of bliss hits you in full force. Your eyes stare blankly at the sky as you experience an indescribable euphoria. Holiday, who reached her climax as well, blasts your cunt with thick streams of horse-cum. It goes on and on for what feels like an eternity until you both finally wind down from the intense orgasm. You are left panting, grinning madly, until you suddenly black out.");
+	processTime(30);
+	pc.libido(2);
+	pc.orgasm();
+
+	clearMenu();
+	addButton(0,"Next",spiderCostumeOutro);
+}
+
+public function spiderCostumeOutro():void
+{
+	clearOutput();
+	halloweenShipMove();
+	author("Magikarpfever");
+	showName("THE\nHANGOVER...");
+	output("You wake up in your ship with a splitting headache");
+
+	if(pc.eyeType != GLOBAL.TYPE_ARACHNID && pc.eyeColor != "red") 
+	{
+		output(", the lights burning your four eyes-wait four? Scrambling to find a reflective surface you manage to spot a small mirror sitting on your side table. Seems like you’ve undergone a drastic metamorphosis, four red eyes stare back at you eerily from within the mirror");
+		pc.eyeType = GLOBAL.TYPE_ARACHNID;
+		pc.eyeColor = "red";
+	}
+	output(".");
+	if(!pc.hasChitin() || pc.scaleColor != "gray")
+	{
+		output(" It looks like your entire body is bathed in a pool of liquid gray ink. Even,");
+		pc.skinType = GLOBAL.SKIN_TYPE_CHITIN;
+		pc.clearSkinFlags();
+		pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
+		pc.scaleColor = "gray";
+	}
+	else output(" Your chitin seems unchanged by the costume. No surprise, given that it was a perfect match. Still,");
+	if(pc.hairColor != "black")
+	{
+		output(" your hair is now an elegant shiny black, cascading down your back and ending right at your spider-like abdomen.");
+		pc.hairColor = "black";
+		pc.hairLength = pc.tallness/2;
+		pc.hairType = GLOBAL.HAIR_TYPE_REGULAR;
+	}
+	else if(pc.hairLength < pc.tallness/2)
+	{
+		pc.hairLength = pc.tallness/2;
+		output(" your hair has lengthened, cascading down your back and ending right at your spider-like abdomen.");
+	}
+	else if(pc.tailType != GLOBAL.TYPE_ARACHNID && pc.tailCount != 1)
+	{
+		output(" that spider-like abdomen remains, hanging off your butt, heavy with webbing.");
+	}
+	else
+	{
+		output(" it was kind of nice to feel more spider-like than you already are.");
+	}
+	pc.tailType = GLOBAL.TYPE_ARACHNID;
+	pc.tailCount = 1;
+	pc.clearTailFlags();
+	pc.addTailFlag(GLOBAL.FLAG_CHITINOUS);
+	pc.addTailFlag(GLOBAL.FLAG_SMOOTH);
+	if(pc.faceType != GLOBAL.TYPE_ARACHNID)
+	{
+		output(" Examining your teeth you see that you now have shiny white fangs protruding from your pearly whites.");
+		if(pc.hasMuzzle()) output(" <b>Where'd your muzzle go?</b>");
+		pc.clearFaceFlags();
+		pc.faceType = GLOBAL.TYPE_ARACHNID;
+	}
+	output(" What in the void happened last night?");
+	
+	if(pc.hasCock())
+	{
+		output("\n\nOh shit, your [pc.cocks]!</b>");
+		if(pc.cockTotal() == 1) output(" It's gone!");
+		else output(" They're gone!");
+		output("</b> In their place is that <b>single, slippery spider-slit!</b>");
+		pc.removeCocks();
+		pc.removeVaginas();
+	}
+	else if(pc.totalVaginas() > 1)
+	{
+		output("\n\nOh shit! <b>You only have one vagina now</b>... that strange spidery slit remains as evidence of your costumed indiscretions.")
+		pc.removeVaginas();
+	}
+	else if(!pc.hasGenitals())
+	{
+		output("\n\n<b>More interesting still is the<b> spider-like vagina that you've gained!</b>");
+	}
+	else if(pc.hasVagina(GLOBAL.TYPE_ARACHNID))
+	{
+		output("\n\nAt least your spidery vagina is unchanged. You suppose that's one of the perks of matching your costume to your pre-existing mods.");
+	}
+	else
+	{
+		pc.removeVaginas();
+	}
+
+	output("\n\nLuckily your codex begins blinking, signaling you have an unread video message. When you open it up you see a familiar looking Saeri regarding you fondly.");
+
+	output("\n\n<i>“Hi! I had a great time at the club...you’re a perfect dom. Not sure if you remember, but the threesome we had with the demon chick was amazing! It got pretty crazy when those peacekeepers stormed into the alleyway and knocked you out.  Somehow the demon lady managed to get us to safety, looks like she’s some sort of illegal mod dealer or something. Though given how amazing she is in bed I think I can look past that.”</i> She giggles cutely at that before continuing. <i>“Anyways I hope I’ll see you again someday... goodbye Mistress.”</i>");
+
+	output("\n\nOnce the video ends you’re left alone with your thoughts. From what you gathered Holiday’s ‘costumes’ are actually illegal mods. You should be mad, but honestly your new spider body feels like something you should have been born with. Maybe you should find Holiday and thank her for the new body. You’re sure she’d appreciate being bound up and subjected to your sexy ministrations again.");
+	processTime(8*40);
+	if(pc.femininity < 75) pc.femininity = 75;
+	pc.earType = GLOBAL.TYPE_SYLVAN;
+	pc.earLength = 3;
+	pc.reflexes(2);
+	pc.intelligence(2);
+	pc.physique(-2);
+	pc.willpower(-1);
+	//Remove extra boobers
+	if(pc.bRows() > 1)
+	{
+		while(pc.bRows() > 1)
+		{
+			pc.removeBreastRow(1,1);
+		}
+	}
+	//Set limb types:
+	pc.armType = GLOBAL.TYPE_ARACHNID;
+	pc.clearArmFlags();
+	pc.addArmFlag(GLOBAL.FLAG_CHITINOUS);
+	pc.legType = GLOBAL.TYPE_ARACHNID;
+	pc.legCount = 2;
+	pc.clearLegFlags();
+	pc.addLegFlag(GLOBAL.FLAG_CHITINOUS);
+	pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+	pc.addLegFlag(GLOBAL.FLAG_HEELS);
+	//DD boobers
+	if(pc.breastRows[0].breastRatingRaw < 5) pc.breastRows[0].breastRatingRaw = 5;
+	//Tongue
+	pc.tongueType = GLOBAL.TYPE_ARACHNID;
+	pc.addTongueFlag(GLOBAL.FLAG_LONG);
+	pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
+	//Set up new spidergina.
+	if(!pc.hasVagina()) pc.createVagina();
+	pc.vaginas[0].type = GLOBAL.TYPE_ARACHNID;
+	pc.vaginas[0].wetnessRaw = 2;
+	pc.vaginas[0].hymen = false;
+	pc.vaginalVirgin = false;
+	pc.libido(2);
+	//Load 'er up!
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	pp.createPerk("Fixed CumQ",2500,0,0,0);
+	pc.loadInCunt(pp, 0);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
