@@ -3866,6 +3866,11 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 		if(!eachOne) output2(" The lips and insides are covered in numerous nub-like protrusions.");
 		else output2(" Their lips and insides are covered in numerous nub-like protrusions.");
 	}
+	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_RIBBED))
+	{
+		if(!eachOne) output2(" The insides are lined with rib-like protrusions, soft and rounded enough to massage any insertion.");
+		else output2(" Their insides are lined with rib-like protrusions, soft and rounded enough to massage any insertion.");
+	}
 	//Pumped
 	var wasPumped:Boolean = target.hasStatusEffect("Pussy Pumped");
 	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && target.vaginas[x].type != GLOBAL.TYPE_MOUTHGINA)

@@ -10944,6 +10944,7 @@
 			if (sheepScore() >= 5) race = sheepRace();
 			if (plantScore() >= 5) race = plantRace();
 			if (laquineScore() >= 5) race = "laquine";
+			if (saurmorianScore() >= 6) race = "saurmorian";
 			// Human-morphs
 			if (race == "human" && cowScore() >= 4) race = mfn("cow-boy", "cow-girl", "hucow");
 			if (race == "human" && hradScore() >= 4) race = "hrad";
@@ -11780,6 +11781,54 @@
 			}
 			if (counter > 0 && !hasFur()) counter--;
 			return counter;
+		}
+		public function saurmorianScore():Number
+		{
+			var score:Number = 0;
+			//Has smooth or thick scale skin type
+			//Has silver scale color
+			if(hasScales() && (hasSkinFlag(GLOBAL.FLAG_SMOOTH) || hasSkinFlag(GLOBAL.FLAG_THICK)) && scaleColor == "silver") score += 2;
+
+			//Has scaled leithan arms
+			if(armType == GLOBAL.TYPE_LEITHAN && hasPartScales("arm")) 
+			{
+				//Has plantigrade, scaled gryvain legs
+				if(legCount > 1 && legType == GLOBAL.TYPE_GRYVAIN && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) score++;
+			}
+			//Has lizan ears
+			if(earType == GLOBAL.TYPE_LIZAN) score++;
+
+			//Has muzzled lizan face
+			if(faceType == GLOBAL.TYPE_LIZAN && hasMuzzle())
+			{
+				//Has long, scaled lizan tail
+				if(tailType == GLOBAL.TYPE_LIZAN && hasTailFlag(GLOBAL.FLAG_LONG) && hasTailFlag(GLOBAL.FLAG_SCALED)) score++;
+			}
+			//has naga eyes
+			if(eyeType == GLOBAL.TYPE_NAGA) score++;
+			//Has long, squishy canine tongue
+			if(hasTongueFlag(GLOBAL.FLAG_LONG) && tongueType == GLOBAL.TYPE_CANINE) score++;
+
+			//Saurmorian score at least 6
+			//sheathed saurian penis
+			if(score >= 6 && hasCock(GLOBAL.TYPE_SAURIAN) && hasSheath()) score++;
+
+			//Saurmorian score at least 6
+			//Vagina count is 1
+			//Has slightly or fully plump, ribbed vagina
+			if(score >= 6 && hasVagina())
+			{
+				if(vaginas[0].hasFlag(GLOBAL.FLAG_RIBBED) && (vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[0].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))) score++;
+			}
+			//Has non muzzled/lizan face
+			if(!hasMuzzle()) score--;
+			if(!faceType == GLOBAL.TYPE_LIZAN) score--;
+			//Has hair length greater than 0"
+			if(hasHair()) score--;
+			if(antennae > 0) score--;
+			if(hasFur()) score-= 2;
+			if(hasKnot()) score--;
+			return score;
 		}
 		public function sharkScore(): int
 		{
@@ -13918,7 +13967,7 @@
 			//BIMBO SPECIALS NEXT
 			//More common the more aroused the PC is.
 			//Note that I explicitly mean the PC - this way if the PC sees a part description for say, a customizable Anno's pussy, she'll add fun bimbo speak to the desc.
-			bonus = 8 + kGAMECLASS.pc.lust()/5;
+			bonus = 4 + kGAMECLASS.pc.lust()/5;
 			if(kGAMECLASS.pc.isBimbo() && adjectives && rand(100) <= bonus && adjectiveCount < adjectiveLimit)
 			{
 				if (adjectiveCount > 0) desc+= ", ";
@@ -13956,6 +14005,12 @@
 				}
 				else desc += RandomInCollection(["virginal","virginal","near-virgin"]);
 				adjectiveCount++;
+			}
+			bonus = 4;
+			if(adjectives && !forceAdjectives && adjectiveCount < adjectiveLimit && vag.hasFlag(GLOBAL.FLAG_RIBBED) && rand(100) <= bonus)
+			{
+				if(adjectiveCount > 0) desc += ", ";
+				desc += RandomInCollection(["ribbed","ridged"]);
 			}
 			//NOUN TIME
 			if(adjectiveCount > 0)
