@@ -254,6 +254,7 @@ public function configureMails():void
 	//Stubs so that the mail entries show up on a load
 	MailManager.addMailEntry("ilaria_preg1", undefined, "Surprise, Surprise!", "Ilaria Ilgade", "Ilaria@BunBunBakery.com", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("ilaria_preg2", undefined, "Ilaria Ilgade", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("prai_email", undefined, undefined, "Prai Ellit", "Prai@Xenotech.net", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String

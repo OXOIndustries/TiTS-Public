@@ -231,7 +231,8 @@ public function itWasOnlyJustADream(win:Boolean):void
 	output("\n\n<i>“Thanks for that last night, by the way,”</i> she shakes her head, <i>“I know he's not real, but it's nice knowing no rapey Chupacabro would get past you.”</i>");
 	output("\n\nYou briefly consider telling her about that dream you had, but decide against " + (win ? "boasting about something your brain made up" : "recounting getting your butt handed to you by a ten-foot-tall goat man") + ". Instead, you simply hold her close, enjoying the warmth of her naked flesh against your own for just a bit longer before you have to start another long day of fortune hunting, that terrible nightmare already fading from your thoughts...");
 	
-	if(win) pc.createPerk("Chupacabro Slayer", 1, 50, 0, 0, "You defeated the legendary Chupacabro, and now do +10% damage against treated individuals.");
+	/* Fen cut this because it's dumb and it should feel dumb. A commemorative key item would've been fine.
+	if(win) pc.createPerk("Chupacabro Slayer", 1, 50, 0, 0, "You defeated the legendary Chupacabro, and now do +10% damage against treated individuals.");*/
 	
 	addButton(0, "Next", mainGameMenu, undefined, "", "");
 }
