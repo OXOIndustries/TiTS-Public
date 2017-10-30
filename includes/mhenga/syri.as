@@ -785,6 +785,7 @@ public function syriTalkThree():void {
 	output("\n\n<i>“Yeah, that’s why I stopped reading it. Every time someone would put out a new idea, it was reality a couple years later. Takes the imagination out of everything when I figure, ‘hey, my sister could make that.’ I can just imagine what the guy who wrote </i>Dark Space Revelation<i> thought when the warp gates opened. Those were the books that inspired them, and the first gates were built in the author’s lifetime. There’s a statue of him in the square of Capital Bay back home.”</i>");
 
 	output("\n\nYou ask Syri to tell you a little bit about the gates - her race’s crowning achievement. She shrugs lightly sipping at her drink. <i>“Hey, I’m not exactly an expert: you want to know the deep quantum physics shit, talk to my sister. She’s a genius about warp gates and wormholes and stuff. I’m just a dumb grunt. But hey, thank all the gods for the gates. Without them, I’d never have met you,”</i> she grins, giving you an affectionate wink.");
+	flags["SYRI_FANTASY_TALKED"] = 1;
 
 	output("\n\n<i>“But back to reading... so, what’re you into these days, Steele? Any good reads lately?”</i>");
 	processTime(4);
