@@ -1042,6 +1042,14 @@ public function sleep(outputs:Boolean = true):void {
 	{
 		if(outputs)
 		{
+			// BOO!! CHUPACABRO!!
+			if(isHalloweenish() && reahaIsCrew() && reahaIsCured() && flags["CHUPACABRO'D"] == undefined)
+			{
+				reahaIsScaredOfTheChupacabro();
+				return;
+			}
+			else if(!isHalloweenish()) flags["CHUPACABRO'D"] = undefined;
+			
 			// Anno interjection
 			if (flags["ANNO_SLEEPWITH_INTRODUCED"] == undefined && annoIsCrew() && annoSexed() > 0)
 			{
