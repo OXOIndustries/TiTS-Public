@@ -36,6 +36,22 @@ public function azraTarkusQuestSetup():void
 	azra.lustRaw = 25;
 	azra.energy(100);
 }
+
+public function azraExpeditionAvailable():Boolean
+{
+	//"new texas", "tarkus", "phaedra", 
+	if(getPlanetName().toLowerCase() == "mhen'ga")
+	{
+		if(flags["AZRA_MHENGAED"] == undefined || flags["AZRA_MHENGAED"] == 0) return true;
+	}
+	if(getPlanetName().toLowerCase() == "tarkus")
+	{
+		if(flags["TARKUS_DESTROYED"] == 1) return false;
+		if((flags["AZRA_MHENGAED"] == 1 || azraProfessional()) && flags["AZRA_TARKUSED"] == undefined) return true;
+	}
+	return false;
+}
+
 public function beginTarkusQuest():void
 {
 	clearOutput();
@@ -3355,20 +3371,6 @@ public function suulaBFChoiceOutro():void
 	if(pc.tallness < 5*12) output(" You suddenly feel very small, and very vulnerable.");
 	processTime(2);
 	azraMenu();
-}
-
-public function azraExpeditionAvailable():Boolean
-{
-	//"new texas", "tarkus", "phaedra", 
-	if(getPlanetName().toLowerCase() == "mhen'ga")
-	{
-		if(flags["AZRA_MHENGAED"] == undefined || flags["AZRA_MHENGAED"] == 0) return true;
-	}
-	if(getPlanetName().toLowerCase() == "tarkus")
-	{
-		if((flags["AZRA_MHENGAED"] == 1 || azraProfessional()) && flags["AZRA_TARKUSED"] == undefined) return true;
-	}
-	return false;
 }
 
 //Rush Expedition Introduction
