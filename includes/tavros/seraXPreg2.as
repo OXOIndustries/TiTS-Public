@@ -829,7 +829,7 @@ public function seraPregTalk():void
 public function brigetSeraPregCheck():void
 {
 	clearOutput();
-	showSera();
+	showBriget();
 	author("Nonesuch");
 	clearMenu();
 	
