@@ -2549,6 +2549,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processHardlightAGThongBlurbs(deltaT, doOut);
 	processGastigothPregEvents(deltaT, doOut, totalDays);
 	
+	
 	// Per-day events
 	if (totalDays >= 1)
 	{
@@ -2568,6 +2569,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		processGastigothEvents();
 		breedwellTryUnlock();
 		processElliePregEvents(deltaT, doOut, totalDays);
+		processIlariaPregEvents(deltaT, doOut, totalDays);
 		//9999 processQuaellePregEvents(deltaT, doOut, totalDays);
 	}
 	

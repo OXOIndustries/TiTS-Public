@@ -251,6 +251,9 @@ public function configureMails():void
 	MailManager.addMailEntry("sam_preg3", undefined, "Gastigoth Inmate Tam-Tam - Pregnancy Update", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("sam_preg4", undefined, "Gastigoth Inmate Tam-Tam - It's Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("sam_preg5", undefined, "Gastigoth Inmate Tam-Tam - Child Delivery Report", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	//Stubs so that the mail entries show up on a load
+	MailManager.addMailEntry("ilaria_preg1", undefined, "Surprise, Surprise!", "Ilaria Ilgade", "Ilaria@BunBunBakery.com", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("ilaria_preg2", undefined, "Ilaria Ilgade", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String
