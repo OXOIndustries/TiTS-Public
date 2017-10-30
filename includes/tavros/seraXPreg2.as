@@ -46,6 +46,19 @@ public function seraPregnancyIsDue(totalDays:int = 0):Boolean
 	if(chars["SERA"].isPregnant())
 	{
 		if(totalDays != 0) flags["SERA_PREGNANCY_TIMER"] += totalDays;
+		
+		// Automatic birth 3 weeks after past-due.
+		if(flags["SERA_PREGNANCY_TIMER"] > 293)
+		{
+			// Create child!
+			var nBabies:int = 1;
+			var deltaT:int = (Math.min(totalDays, 293) * 24 * 60);
+			seraNurseryEndPregnancy((pc as PlayerCharacter), nBabies, deltaT);
+			
+			if(flags["SERA_PREGNANCY_CHECK"] != undefined) flags["SERA_PREGNANCY_CHECK"] = undefined;
+			return false;
+		}
+		
 		if(flags["SERA_PREGNANCY_TIMER"] > 272) return true;
 	}
 	return false;
@@ -93,13 +106,13 @@ private function seraPregSpawnChildren(father:Creature, numKids:int = 0):Array
 	
 	return babyList;
 }
-public function seraNurseryEndPregnancy(father:Creature, nBabies:int = 1):void
+public function seraNurseryEndPregnancy(father:Creature, nBabies:int = 1, deltaT:int = 0):void
 {
 	var babyList:Array = seraPregSpawnChildren(father, nBabies);
 	
 	var i:int = 0;
 	// Born in the past day maybe
-	var timestamp:int = (GetGameTimestamp() - (720 + rand(721)));
+	var timestamp:int = (GetGameTimestamp() + deltaT - (720 + rand(721)));
 	for(i = 0; i < babyList.length; i++)
 	{
 		babyList[i].BornTimestamp = timestamp;

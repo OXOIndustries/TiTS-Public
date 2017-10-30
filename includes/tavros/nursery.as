@@ -557,7 +557,7 @@ public function nurserySpareApptBonus():Boolean
 	var btnSlot:int = 0;
 	
 	// For followers or grown kids and stuff.
-	seraOnTavrosBonus(btnSlot++);
+	if(flags["SERA_CREWMEMBER"] == 0) output(seraOnTavrosBonus(btnSlot++));
 
 	return false;
 }
