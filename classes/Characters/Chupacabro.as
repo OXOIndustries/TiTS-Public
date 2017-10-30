@@ -24,9 +24,9 @@ package classes.Characters
 			
 			this.short = "Chupacabro";
 			this.originalRace = "human";
-			this.a = "the ";
-			this.capitalA = "The ";
-			this.long = "A monster of myth straight from New Texas, the Chupacabro's a brute of a bull with glowing eyes and curling horns, standing at least ten feet tall and capable of pounding you into the nearest bulkhead. He's got Reaha hostage in a corner nearby and his fists ready to inflict some pain. He's not wearing a lick of clothing, letting a long, two-foot horsecock dangle free and menacingly between his bowed, fur-covered legs, ending in hooves that stomp and reverberate against the metal floors of your ship.\n\nAll around you and this monster is the darkness of your ship, with Reaha curled up in a nearby corner.";
+			this.a = (kGAMECLASS.silly ? "el " : "the ");
+			this.capitalA = (kGAMECLASS.silly ? "El " : "The ");
+			this.long = "A monster of myth straight from New Texas, " + (kGAMECLASS.silly ? "el Chupacabro" : "the Chupacabro") + "'s a brute of a bull with glowing eyes and curling horns, standing at least ten feet tall and capable of pounding you into the nearest bulkhead. He's got Reaha hostage in a corner nearby and his fists ready to inflict some pain. He's not wearing a lick of clothing, letting a long, two-foot horsecock dangle free and menacingly between his bowed, fur-covered legs, ending in hooves that stomp and reverberate against the metal floors of your ship.\n\nAll around you and this monster is the darkness of your ship, with Reaha curled up in a nearby corner.";
 			this.customDodge = "";
 			this.customBlock = "Bluh.";
 			this.isPlural = false;
@@ -206,7 +206,7 @@ package classes.Characters
 		public function chupacabroLustAttack(target:Creature):void
 		{
 			if(rand(2) == 0) output("The goat-bull reaches down to stroke at his half-hard and monstrous cock, curling a finger in an attempt to get you to stop fighting and hop on his cock, his musk wafting toward you.");
-			else output("Flexing his chest, the Chupacabro places his hands behind his head and swings his hips around, setting his bestial tool wobbling back and forth like a big, meaty pendulum, wafting his scent towards you.");
+			else output("Flexing his chest, " + (kGAMECLASS.silly ? "el Chupacabro" : "the Chupacabro") + " places his hands behind his head and swings his hips around, setting his bestial tool wobbling back and forth like a big, meaty pendulum, wafting his scent towards you.");
 			//25-75% chance to hit based on libido
 			if(rand(100) < target.libido()/2 + 25)
 			{
@@ -221,12 +221,12 @@ package classes.Characters
 					target.lust(10);
 				}
 			}
-			else output("\n\nThe Chupacabro's display is tempting, but you resist it all the same, strengthening your resolve and leading you to take up a fighting stance again.");
+			else output("\n\n" + (kGAMECLASS.silly ? "El Chupacabro" : "The Chupacabro") + "'s display is tempting, but you resist it all the same, strengthening your resolve and leading you to take up a fighting stance again.");
 		}
 		
 		public function chupacabroChargeAttack(target:Creature):void
 		{
-			output("The Chupacabro, grinds his hooves against your ship's hull before charging forward with surprising speed for someone of his size. ");
+			output("" + (kGAMECLASS.silly ? "El Chupacabro" : "The Chupacabro") + ", grinds his hooves against your ship's hull before charging forward with surprising speed for someone of his size. ");
 			if(target.reflexes()/2 + rand(20) + 1 < this.aim()/2 + 13)
 			{
 				output("\n<b>He catches you off-guard and slams into your with the force of a freight train, knocking the wind out of you and leaving you flat on your back.</b>\n\n");
@@ -241,7 +241,7 @@ package classes.Characters
 
 		public function chupacabroHaymakerAttack(target:Creature):void
 		{
-			output("The Chupacabro winds up a punch and quickly lets it loose, ");
+			output("" + (kGAMECLASS.silly ? "El Chupacabro" : "The Chupacabro") + " winds up a punch and quickly lets it loose, ");
 			if(!combatMiss(this, target))
 			{
 				output("knocking you square in the jaw. You're left reeling with pain as you stumble back from the force of the blow. ");
@@ -260,7 +260,7 @@ package classes.Characters
 		
 		public function chupacabroMeleeAttack(target:Creature):void
 		{
-			if(rand(2) == 0) output("The Chupacabro swings at your with a flurry of fists! ");
+			if(rand(2) == 0) output("" + (kGAMECLASS.silly ? "El Chupacabro" : "The Chupacabro") + " swings at your with a flurry of fists! ");
 			else output("The goat-bull comes at you swinging, punching at you with a series of blows! ");
 			CombatAttacks.SingleMeleeAttackImpl(this, target, true);
 		}
