@@ -4834,8 +4834,6 @@ public function seraOnTavrosObedience(totalDays:int):void
 // Put her room on second floor of Nursery
 public function seraOnTavrosBonus(btnSlot:int = 0):String
 {
-	if(flags["SERA_CREWMEMBER"] != 0) return "";
-	
 	var bonusText:String = "";
 	
 	bonusText += "\n\nA door with a digital sign is marked ‘Sera’s Apartment’.";
@@ -4848,14 +4846,26 @@ public function seraOnTavrosBonus(btnSlot:int = 0):String
 	{
 		pc.removeStatusEffect("Sera at Nursery");
 		
-		if(pc.hasStatusEffect("Sera Mommy Time"))
+		if(flags["SERA_PREGNANCY_CHECK"] != undefined)
+		{
+			bonusText += " The door is closed. You recall that Sera is in the natal unit, so it is probably best to";
+			if((flags["SERA_PREGNANCY_CHECK"] + 1) >= days)
+			{
+				bonusText += " wait a day";
+				if(flags["SERA_PREGNANCY_CHECK"] == days) bonusText += " or two";
+			}
+			else bonusText += " check with Briget";
+			bonusText += " before visiting her again.";
+			addDisabledButton(btnSlot, "Sera", "Sera", "Sera is currently away giving birth.");
+		}
+		else if(pc.hasStatusEffect("Sera Mommy Time"))
 		{
 			bonusText += " The door is closed, leaving Sera some private time to recover and bond with her newborn.";
-			addDisabledButton(btnSlot, "Sera", "Sera", "Sera is still ");
+			addDisabledButton(btnSlot, "Sera", "Sera", "Sera is still recovering from giving birth. Best to meet with her a bit later.");
 		}
 		else if(pc.hasStatusEffect("Sera Morning Sickness") || (flags["SERA_PREGNANCY_TIMER"] >= 30 && flags["SERA_PREGNANCY_TIMER"] < 90 && hours >= 6 && hours < 10 && rand(3) == 0))
 		{
-			bonusText += " You hear the distinct sound of someone throwing up, followed by a moaned <i>“Fuck thiiiiiiis”</i> from Sera’s room. Probably best to leave her alone for a while.";
+			bonusText += " You hear the distinct sound of someone throwing up, followed by a moaned <i>“Fuck thiiiiiiis...”</i> from Sera’s room. Probably best to leave her alone for a while.";
 			pc.createStatusEffect("Sera Morning Sickness", 0, 0, 0, 0, true, "", "", false, 120);
 			addDisabledButton(btnSlot, "Sera", "Sera", "She seems to be sick or something...");
 		}
@@ -4888,6 +4898,7 @@ public function approachServantSeraOnTavros(introText:Boolean = false):void
 	{
 		output("Sera’s room is empty. It looks slightly more dishevelled than usual, although that’s a difficult thing to judge.");
 		output("\n\n...How long has she been pregnant for, again?");
+		if(flags["SERA_PREGNANCY_CHECK"] == undefined) output("\n\n<b>Perhaps you should check in with " + (flags["BRIGET_MET"] == undefined ? "the head nurse" : "Briget") + " about that.</b>");
 		// [Sera] option added to Briget’s menu
 		addButton(14, "Leave", mainGameMenu);
 		return;

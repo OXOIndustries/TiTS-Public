@@ -236,6 +236,25 @@ public function configureMails():void
 	MailManager.addMailEntry("gastigoth_unlock",gastigothEmailText, "Exclusive Offer","Regina Kasmiran","DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("syri_video", syriVideoEmailText, "New_Video.holo", "Syri Dorna", "BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("breedwell_unlock", breedwellEmailText, "The Breedwell Incubation Centre Needs YOU.", "TamaniCorp", "Marketing@TamaniCorp.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("tamtam_preg1", undefined, "Gastigoth Inmate Tam-Tam - Pregnancy Detected", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("tamtam_preg2", undefined, "Gastigoth Inmate Tam-Tam - Pregnancy Options", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("tamtam_preg3", undefined, "Gastigoth Inmate Tam-Tam - Pregnancy Update", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("tamtam_preg4", undefined, "Gastigoth Inmate Tam-Tam - It's Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("tamtam_preg5", undefined, "Gastigoth Inmate Tam-Tam - Child Delivery Report", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("khorgan_preg1", undefined, "Gastigoth Inmate Tam-Tam - Pregnancy Detected", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("khorgan_preg2", undefined, "Gastigoth Inmate Tam-Tam - Pregnancy Options", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("khorgan_preg3", undefined, "Gastigoth Inmate Tam-Tam - Pregnancy Update", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("khorgan_preg4", undefined, "Gastigoth Inmate Tam-Tam - It's Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("khorgan_preg5", undefined, "Gastigoth Inmate Tam-Tam - Child Delivery Report", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("sam_preg1", undefined, "Gastigoth Inmate Tam-Tam - Pregnancy Detected", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("sam_preg2", undefined, "Gastigoth Inmate Tam-Tam - Pregnancy Options", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("sam_preg3", undefined, "Gastigoth Inmate Tam-Tam - Pregnancy Update", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("sam_preg4", undefined, "Gastigoth Inmate Tam-Tam - It's Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("sam_preg5", undefined, "Gastigoth Inmate Tam-Tam - Child Delivery Report", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	//Stubs so that the mail entries show up on a load
+	MailManager.addMailEntry("ilaria_preg1", undefined, "Surprise, Surprise!", "Ilaria Ilgade", "Ilaria@BunBunBakery.com", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("ilaria_preg2", undefined, "Ilaria Ilgade", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("prai_email", undefined, undefined, "Prai Ellit", "Prai@Xenotech.net", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String

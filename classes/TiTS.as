@@ -124,6 +124,7 @@
 		include "../includes/holidayEvents/halloweenCostumes.as";
 		include "../includes/holidayEvents/freedomBeef.as";
 		include "../includes/holidayEvents/puppyslutmas.as";
+		include "../includes/holidayEvents/chupacabro.as";
 
 		//Followers
 		include "../includes/follower/anno.as";
@@ -365,6 +366,7 @@
 		include "../includes/gastigoth/gastigoth.as";
 		include "../includes/gastigoth/rooms.as";
 		include "../includes/gastigoth/sam.as";
+		include "../includes/gastigoth/pregStuff.as";
 		
 		// Karaquest 2- Karaharder.
 		include "../includes/events/karaquest2/content.as";
@@ -515,7 +517,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.105";
+			version = "0.7.106";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1456,6 +1458,26 @@
 		public function get ciaran():Ciaran
 		{
 			return chars["CIARAN"];
+		}
+		
+		public function get ellie():Ellie
+		{
+			return chars["ELLIE"];
+		}
+		
+		public function get sam():SX1Techguard
+		{
+			return chars["SX1TECHGUARD"];
+		}
+		
+		public function get khorgan():CaptainKhorgan
+		{
+			return chars["CAPTAINKHORGAN"];
+		}
+		
+		public function get tamtam():TamTam
+		{
+			return chars["TAMTAM"];
 		}
 
 		public function testShipCombat():void

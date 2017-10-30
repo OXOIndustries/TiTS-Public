@@ -1051,6 +1051,14 @@ public function sleep(outputs:Boolean = true):void {
 	{
 		if(outputs)
 		{
+			// BOO!! CHUPACABRO!!
+			if(isHalloweenish() && reahaIsCrew() && reahaIsCured() && flags["CHUPACABRO'D"] == undefined)
+			{
+				reahaIsScaredOfTheChupacabro();
+				return;
+			}
+			else if(!isHalloweenish()) flags["CHUPACABRO'D"] = undefined;
+			
 			// Anno interjection
 			if (flags["ANNO_SLEEPWITH_INTRODUCED"] == undefined && annoIsCrew() && annoSexed() > 0)
 			{
@@ -1382,6 +1390,13 @@ public function shipMenu():Boolean
 	if(kaseIsCrew() && flags["KASE_CREW"] == 1)
 	{
 		kaseCrewGreeting();
+		return true;
+	}
+
+	//Ellie Preg laying
+	if(flags["ELLIE_LAYING_PC_MIA"] != undefined)
+	{
+		ellieLayPlayerOffNT();
 		return true;
 	}
 	
@@ -2532,6 +2547,8 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processHLPantyShit();
 	processSubTunerShit();
 	processHardlightAGThongBlurbs(deltaT, doOut);
+	processGastigothPregEvents(deltaT, doOut, totalDays);
+	
 	
 	// Per-day events
 	if (totalDays >= 1)
@@ -2551,6 +2568,8 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		seraOnTavrosObedience(totalDays);
 		processGastigothEvents();
 		breedwellTryUnlock();
+		processElliePregEvents(deltaT, doOut, totalDays);
+		processIlariaPregEvents(deltaT, doOut, totalDays);
 		//9999 processQuaellePregEvents(deltaT, doOut, totalDays);
 	}
 	
