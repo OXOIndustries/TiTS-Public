@@ -974,6 +974,59 @@ package classes.GameData.Pregnancy
 			return num;
 		}
 		
+		public function numOfUniqueTypeInRange(childClassT:Class, minAge:int, maxAge:int):int
+		{
+			updateUniqueTypes();
+			
+			var cFQN:String = getQualifiedClassName(childClassT);
+			var num:int = 0;
+			
+			if (maxAge != -1 && maxAge < minAge) maxAge = -1;
+			
+			if (_uniqueTypes.hasOwnProperty(cFQN))
+			{
+				var typeArray:Array = _uniqueTypes[cFQN] as Array;
+				for (var i:int = 0; i < typeArray.length; i++)
+				{
+					var c:UniqueChild = typeArray[i] as UniqueChild;
+					var m:int = c.Months;
+					
+					if ((maxAge == -1 || m <= maxAge) && m >= minAge)
+					{
+						num += c.Quantity;
+					}
+				}
+			}
+			
+			return num;
+		}
+		
+		public function ofUniqueTypeAndGenderInRange(childClassT:Class, genderTypes:uint, minAge:int, maxAge:int):Boolean
+		{
+			updateUniqueTypes();
+			
+			var cFQN:String = getQualifiedClassName(childClassT);
+			
+			if (maxAge != -1 && maxAge < minAge) maxAge = -1;
+			
+			if (_uniqueTypes.hasOwnProperty(cFQN))
+			{
+				var typeArray:Array = _uniqueTypes[cFQN] as Array;
+				for (var i:int = 0; i < typeArray.length; i++)
+				{
+					var c:UniqueChild = typeArray[i] as UniqueChild;
+					var m:int = c.Months;
+					
+					if ((maxAge == -1 || m <= maxAge) && m >= minAge)
+					{
+						return HasRequiredGender(c, genderTypes);
+					}
+				}
+			}
+			
+			return false;
+		}
+		
 		public function gendersOfUniqueTypeInRange(childClassT:Class, minAge:int, maxAge:int = -1):Genders
 		{
 			updateUniqueTypes();

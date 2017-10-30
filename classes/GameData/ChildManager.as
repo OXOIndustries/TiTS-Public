@@ -451,6 +451,18 @@ package classes.GameData
 			return CACHE.numOfUniqueType(childClassT);
 		}
 		
+		static public function numOfUniqueTypeInRange(childClassT:Class, minAge:int, maxAge:int):int
+		{
+			if (CACHE == null) CACHE = new ChildCache();
+			return CACHE.numOfUniqueTypeInRange(childClassT, minAge, maxAge);
+		}
+		
+		static public function ofUniqueTypeAndGenderInRange(childClassT:Class, genderTypes:uint, minAge:int, maxAge:int):Boolean
+		{
+			if (CACHE == null) CACHE = new ChildCache();
+			return CACHE.ofUniqueTypeAndGenderInRange(childClassT, genderTypes, minAge, maxAge);
+		}
+		
 		/**
 		 * Get the number of children of a specific descendent of UniqueChild types in the
 		 * target age range, specified in months.

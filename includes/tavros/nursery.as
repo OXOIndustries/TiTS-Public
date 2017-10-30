@@ -455,9 +455,12 @@ public function nurseryKidsDormsFunc():Boolean
 	output(" would be many, many offspring. A central hub provides access to over a dozen small halls, branching off like tunnels in an anthill off in every direction. There must be hundreds of individual rooms available here, not to mention bathrooms, showers, laundry facilities... everything your heirs and the station’s support staff could ever need.");
 
 	nurseryZilCallgirlRandomEvents();
+	khorganBabyBlurbs();
+	tamtamBabyBlurbs();
 	var button:Number = 0;
 	button = milodanPlayOptions(button);
 	button = ellieKidVisits(button);
+	button = samBabiesVisitOptions(button);
 
 	return false;
 }
