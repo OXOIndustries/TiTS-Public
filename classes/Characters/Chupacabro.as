@@ -26,7 +26,7 @@ package classes.Characters
 			this.originalRace = "human";
 			this.a = (kGAMECLASS.silly ? "el " : "the ");
 			this.capitalA = (kGAMECLASS.silly ? "El " : "The ");
-			this.long = "A monster of myth straight from New Texas, " + (kGAMECLASS.silly ? "el Chupacabro" : "the Chupacabro") + "'s a brute of a bull with glowing eyes and curling horns, standing at least ten feet tall and capable of pounding you into the nearest bulkhead. He's got Reaha hostage in a corner nearby and his fists ready to inflict some pain. He's not wearing a lick of clothing, letting a long, two-foot horsecock dangle free and menacingly between his bowed, fur-covered legs, ending in hooves that stomp and reverberate against the metal floors of your ship.\n\nAll around you and this monster is the darkness of your ship, with Reaha curled up in a nearby corner.";
+			this.long = "A monster of myth straight from New Texas, " + (kGAMECLASS.silly ? "el Chupacabro" : "the Chupacabro") + "’s a brute of a bull with glowing eyes and curling horns, standing at least ten feet tall and capable of pounding you into the nearest bulkhead. He’s got Reaha hostage in a corner nearby and his fists ready to inflict some pain. He’s not wearing a lick of clothing, letting a long, two-foot horsecock dangle free and menacingly between his bowed, fur-covered legs, ending in hooves that stomp and reverberate against the metal floors of your ship.\n\nAll around you and this monster is the darkness of your ship, with Reaha curled up in a nearby corner.";
 			this.customDodge = "";
 			this.customBlock = "Bluh.";
 			this.isPlural = false;
@@ -212,21 +212,21 @@ package classes.Characters
 			{
 				if(target.hasAirtightSuit())
 				{
-					output("\n\nYour tongue lolls at the display. You're quick to shake devious thoughts from your head and focus on the matter at hand again.");
+					output("\n\nYour tongue lolls at the display. You’re quick to shake devious thoughts from your head and focus on the matter at hand again.");
 					target.lust(5);
 				}
 				else
 				{
-					output("\n\nYour tongue lolls at the display, the goat-bull's pheromones clouding your senses and deepening your lust. You're quick to shake devious thoughts from your head and focus on the matter at hand again.");
+					output("\n\nYour tongue lolls at the display, the goat-bull’s pheromones clouding your senses and deepening your lust. You’re quick to shake devious thoughts from your head and focus on the matter at hand again.");
 					target.lust(10);
 				}
 			}
-			else output("\n\n" + (kGAMECLASS.silly ? "El Chupacabro" : "The Chupacabro") + "'s display is tempting, but you resist it all the same, strengthening your resolve and leading you to take up a fighting stance again.");
+			else output("\n\n" + (kGAMECLASS.silly ? "El Chupacabro" : "The Chupacabro") + "’s display is tempting, but you resist it all the same, strengthening your resolve and leading you to take up a fighting stance again.");
 		}
 		
 		public function chupacabroChargeAttack(target:Creature):void
 		{
-			output("" + (kGAMECLASS.silly ? "El Chupacabro" : "The Chupacabro") + ", grinds his hooves against your ship's hull before charging forward with surprising speed for someone of his size. ");
+			output("" + (kGAMECLASS.silly ? "El Chupacabro" : "The Chupacabro") + ", grinds his hooves against your ship’s hull before charging forward with surprising speed for someone of his size. ");
 			if(target.reflexes()/2 + rand(20) + 1 < this.aim()/2 + 13)
 			{
 				output("\n<b>He catches you off-guard and slams into your with the force of a freight train, knocking the wind out of you and leaving you flat on your back.</b>\n\n");
@@ -244,7 +244,7 @@ package classes.Characters
 			output("" + (kGAMECLASS.silly ? "El Chupacabro" : "The Chupacabro") + " winds up a punch and quickly lets it loose, ");
 			if(!combatMiss(this, target))
 			{
-				output("knocking you square in the jaw. You're left reeling with pain as you stumble back from the force of the blow. ");
+				output("knocking you square in the jaw. You’re left reeling with pain as you stumble back from the force of the blow. ");
 				var damage:TypeCollection = meleeDamage();
 				damage.multiply(1.5);
 				applyDamage(damage, this, target);
