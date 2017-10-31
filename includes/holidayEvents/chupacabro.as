@@ -5,7 +5,7 @@ public function reahaIsScaredOfTheChupacabro():void
 	clearOutput();
 	clearMenu();
 	author("HugsAlright");
-	showName("\nReaha");
+	showName("\nREAHA");
 	showBust("REAHA");
 	
 	output("As you’re " + (!pc.isNude() ? "undressing and " : "") + "getting ready for bed, your door hisses open, grabbing your attention and revealing a curvy, stout body standing in the frame. You can just barely make out the strawberry-blonde hue of the figure’s hair with almost all the lights out. It’s Reaha, no doubt.");
@@ -30,7 +30,7 @@ public function dontBringYourTexanMonstersInMyBed():void
 	clearOutput();
 	clearMenu();
 	author("HugsAlright");
-	showName("\nReaha");
+	showName("\nREAHA");
 	showBust("REAHA");
 	
 	output("You shake your head and tell Reaha she’s on her own tonight. Her smile immediately fades in place of a scared look, but you " + (!pc.isAss() ? "place a reassuring hand on her shoulder and " : "") + "explain to her that she’ll be better off facing her fears on her own.");
@@ -48,10 +48,10 @@ public function dontWorryReahaIllGetRapedWithYou():void
 	clearOutput();
 	clearMenu();
 	author("HugsAlright");
-	showName("\nReaha");
+	showName("\nREAHA");
 	showBust("REAHA");
 	
-	output("Smiling, you slide yourself over to Reaha, throwing your arms around her waist and pulling her close. You tell your little bovine friend she’s always welcome in your bed, gently fondling her " + (silly ? "biggy milky" : "big, milky tits") + " as you start to pull her down to the mattress.");
+	output("Smiling, you slide yourself over to Reaha, throwing your arms around her waist and pulling her close. You tell your little bovine friend she’s always welcome in your bed, gently fondling her " + (silly ? "biggy milky" : "big, milky") + " tits as you start to pull her down to the mattress.");
 	output("\n\n<i>“Thanks, [pc.name],”</i> she coos happily, falling into your embrace, <i>“You’re the best...”</i>");
 	output("\n\nSo, you both fall back onto the bed, squirming a bit as you settle in for what promises to be a nice, warm sleep. Your cowgirl nuzzles against your [pc.chest] and presses herself into you, a faint smile visible on her face while you both drift off to a peaceful slumber.");
 	
@@ -64,7 +64,7 @@ public function reahaYouBetterBeDyingOrBeingRapedToWakeMeFromMySlumber():void
 	clearMenu();
 	clearBust();
 	author("HugsAlright");
-	showName("\nYour Bed");
+	showName("\nYOUR BED");
 	
 	output("Something wakes you from your sleep.");
 	output("\n\nYou jolt up from the covers, a feeling of worry suddenly set upon you. Hastily looking around, you see that Reaha is nowhere to be found.");
@@ -79,7 +79,7 @@ public function ohYouAreBeingRapedIGuessThatsReasonableThen():void
 	clearOutput();
 	clearMenu();
 	author("HugsAlright");
-	showName("Reaha &\n" + (silly ? "El Chupacabro" : "The Chupacabro") + "");
+	showName("REAHA &\n" + (silly ? "EL" : "THE") + " CHUPACABRO");
 	//Maybe there will be a Chupacabro bust eventually idk
 	showBust("REAHA", "CHUPACABRO");
 	
@@ -112,10 +112,8 @@ public function iWillStopTheRapingDontWorry():void
 
 public function chupacabroMoreLikeChupacablowsdick():void
 {
-	clearOutput();
-	clearMenu();
 	author("HugsAlright");
-	showName("Reaha &\n" + (silly ? "El Chupacabro" : "The Chupacabro") + "");
+	showName("REAHA &\n" + (silly ? "EL" : "THE") + " CHUPACABRO");
 	//Maybe there will be a Chupacabro bust eventually idk
 	showBust("REAHA", "CHUPACABRO");
 	
@@ -126,16 +124,15 @@ public function chupacabroMoreLikeChupacablowsdick():void
 	output("\n\nShe blushes and grins, happily returning your hug and going to whisper in your [pc.ear]. <i>“Thanks, [pc.name],”</i> she says, nuzzling against you, <i>“I don’t know what would’ve happened without you... you’re the best.”</i>");
 	output("\n\nPride swells in your chest as you hold Reaha close, yeah... you are pretty great, aren’t you?\n\n");
 	
+	eventQueue.push(itWasOnlyJustADreamWin);
+	
 	CombatManager.genericVictory();
-	addButton(0, "Next", itWasOnlyJustADream, true, "", "");
 }
 
 public function iDidntStopTheRapingSorryReaha():void
 {
-	clearOutput();
-	clearMenu();
 	author("HugsAlright");
-	showName("Reaha &\n" + (silly ? "El Chupacabro" : "The Chupacabro") + "");
+	showName("REAHA &\n" + (silly ? "EL" : "THE") + " CHUPACABRO");
 	//Maybe there will be a Chupacabro bust eventually idk
 	showBust("CHUPACABRO", "REAHA");
 	
@@ -198,21 +195,19 @@ public function iDidntStopTheRapingSorryReaha():void
 	else output("your knees");
 	output(", you start to make your into the darkness of your ship again, [pc.walking] through the next corridor only to see the most terrible sight-\n\n");
 	
+	eventQueue.push(itWasOnlyJustADreamLose);
+	
 	CombatManager.genericLoss();
-	addButton(0, "Next", itWasOnlyJustADream, false, "", "");
 }
 
+public function itWasOnlyJustADreamWin():void { itWasOnlyJustADream(true); }
+public function itWasOnlyJustADreamLose():void { itWasOnlyJustADream(false); }
 public function itWasOnlyJustADream(win:Boolean):void
 {
-	//do some sleep shit idk
-	sleepHeal();
-	processTime(420 + rand(80) + 1);
-	
 	clearOutput();
 	clearMenu();
 	author("HugsAlright");
-	showName("\nYour Bed");
-	//Maybe there will be a Chupacabro bust eventually idk
+	showName("\nYOUR BED");
 	clearBust();
 	
 	if(!win)
@@ -233,6 +228,9 @@ public function itWasOnlyJustADream(win:Boolean):void
 	
 	/* Fen cut this because it's dumb and it should feel dumb. A commemorative key item would've been fine.
 	if(win) pc.createPerk("Chupacabro Slayer", 1, 50, 0, 0, "You defeated the legendary Chupacabro, and now do +10% damage against treated individuals.");*/
+	
+	//do some sleep shit idk
+	genericSleep(420 + rand(80) + 1);
 	
 	addButton(0, "Next", mainGameMenu, undefined, "", "");
 }
