@@ -27,6 +27,17 @@ public function kaseCapacity():Number
 {
 	return 450;
 }
+public function getKasePregContainer():PregnancyPlaceholder
+{
+	var ppKase:PregnancyPlaceholder = new PregnancyPlaceholder();
+	// Kase's cock is roughly the size of Syri's
+	if(!ppKase.hasCock()) ppKase.createCock();
+	ppKase.shiftCock(0, GLOBAL.TYPE_FELINE);
+	ppKase.cocks[0].cThicknessRatioRaw = 1.5;
+	ppKase.cocks[0].cLengthRaw = 8;
+	return ppKase;
+}
+
 public function kaseIsCrew():Boolean
 {
 	return (flags["KASE_CREW"] > 0);
@@ -231,7 +242,7 @@ public function kaseCrewTalkMenu():void
 	else addDisabledButton(bNum++, "Preferences", "Preferences", "It’d be odd to ask his sexual preferences without having a more intimate relationship.");
 	
 	if (!CodexManager.entryViewed("Kaithrit")) addDisabledButton(bNum++, "TailTouching", "TailTouching", "It’d help to know what Kaithrit tail touching actually is.");
-	else if (!(pc.race() == "kaithrit" || pc.race() == "half-kaithrit")) addDisabledButton(bNum++, "TailTouching", "TailTouching", "Tail touching is usually a kaithrit to kaithrit thing"+(silly?" YOU FUCKING RACIST":"")+".");
+	else if (pc.raceShort() != "kaithrit") addDisabledButton(bNum++, "TailTouching", "TailTouching", "Tail touching is usually a kaithrit to kaithrit thing"+(silly?" YOU FUCKING RACIST":"")+".");
 	else if (!pc.hasTailFlag(GLOBAL.FLAG_PREHENSILE) || pc.tailCount < 2) addDisabledButton(bNum++, "TailTouching", "TailTouching", "You don’t have the tails for this tango.");
 	else addButton(bNum, "TailTouching", kaseTailTouch, bNum++, "Tail Touching", "Maybe Kase can teach you a little about Kaithrit tail touching?");
 	
@@ -531,12 +542,22 @@ public function kaseSexGetFuck():void
 	output("\n\nYou do just that, your need for release overtaking your willpower until a wave of endorphins slams into your mind’s shore. A cry of bliss permeates the once steady moaning of the room. Your [pc.vagOrAss] clenches down around Kase’s engorged shaft, convulsing around it as your climax ensues. " + (pc.hasVagina() ? "[pc.Girlcum] pools out around your lover’s cock, spraying down his svelte midsection and wetting his pale flesh with your feminine nectar" : "Your inner walls spasm against your lover’s cock, making the feline femboy groan as your [pc.asshole] clenches around him") + ". " + (pc.hasCock() ? "You grit your teeth as your [pc.cocks] empty themselves all over your [pc.chest], coating you with [pc.cum]. " : "") + "All the while, Kase fills you with his cum, letting his heavy sack empty into your " + (pc.hasVagina() ? "womb" : "depths") + " until you’re feeling bloated and full of warm, thick seed.");
 	output("\n\nKitty-spooge leaks from your well-used " + (pc.hasVagina() ? "pussy" : "pucker") + " as your orgasm finally begins to decline, still twitching with aftershocks of pleasure. A pleasant afterglow replaces the haze of bliss once clouding your sight, leaving you looking up at Kase, his chest heaving, panting heavily.");
 	output("\n\n<i>“Captain...”</i> the well-spent kaithrit breathes, keeping himself buried inside you.");
-	output("\n\nIt seems that’s all he has to say, or all he can muster. All the same, you smile up at the femboy, reaching a hand up to cup his cheek. You pull him down into a kiss as you unwind your [pc.legs] and wrap an arm around his girly shoulders. He breathes a contented sigh as he happily lowers himself onto you, returning your embrace, and your kiss. Already being able to feel Kase’s cock going soft, you roll the both of you over on your sides, getting comfortable as you press yourself against your lover’s body. Not more than a moment later you feel his fuzzy pine tails wrap around your waist, holding you like an extra set of furry arm. ");
+	output("\n\nIt seems that’s all he has to say, or all he can muster. All the same, you smile up at the femboy, reaching a hand up to cup his cheek. You pull him down into a kiss as you unwind your [pc.legs] and wrap an arm around his girly shoulders. He breathes a contented sigh as he happily lowers himself onto you, returning your embrace, and your kiss. Already being able to feel Kase’s cock going soft, you roll the both of you over on your sides, getting comfortable as you press yourself against your lover’s body. Not more than a moment later you feel his fuzzy pine tails wrap around your waist, holding you like an extra set of furry arm.");
 	output("\n\nThen, at some point amidst your gentle kissing and cuddling, you and your subordinate drift off into a warm, peaceful sleep.");
 	
-	//Syri's cock is roughly the size of Kase's
 	output("\n\n");
-	pc.holeChange((pc.hasVagina() ? 0 : -1), syri.cockVolume(0), (pc.hasVagina() ? pc.vaginalVirgin : pc.analVirgin), false, false);
+	var ppKase:PregnancyPlaceholder = getKasePregContainer();
+	if(pc.hasVagina())
+	{
+		pc.cuntChange(0, ppKase.cockVolume(0), pc.vaginalVirgin, false, false);
+		pc.loadInCunt(ppKase, 0);
+	}
+	else
+	{
+		pc.buttChange(ppKase.cockVolume(0), pc.analVirgin, false, false);
+		pc.loadInAss(ppKase);
+	}
+	
 	processTime(45+rand(10));
 	pc.orgasm();
 	
@@ -655,8 +676,19 @@ public function kaseSexThreesomeAnno():void
 	output("\n\n<i>“What’d ya say, cap?”</i> Anno chimes, lying down on the bed besides Kase, <i>“Ship-wide naptime?”</i>");
 	output("\n\n[pc.Chest] still heaving, you tell the sleepy puppy " + (pc.isAss() ? "that’s now an official order" : "that sounds like a plan") + ", and promptly collapse on the bed next to Kase along side her. You both smile at each other and wrap your arms around your mutual lover, encasing the well-used femboy in an embrace of warm skin, fur, and wagging tails, whispering sweet nothings into each other’s ears until you all fall asleep in one big pile of inter-office love.");
 	
-	//Syri's cock is roughly the size of Kase's
-	pc.holeChange((pc.hasVagina() ? 0 : -1), syri.cockVolume(0), (pc.hasVagina() ? pc.vaginalVirgin : pc.analVirgin), false, false);
+	output("\n\n");
+	var ppKase:PregnancyPlaceholder = getKasePregContainer();
+	if(pc.hasVagina())
+	{
+		pc.cuntChange(0, ppKase.cockVolume(0), pc.vaginalVirgin, false, false);
+		pc.loadInCunt(ppKase, 0);
+	}
+	else
+	{
+		pc.buttChange(ppKase.cockVolume(0), pc.analVirgin, false, false);
+		pc.loadInAss(ppKase);
+	}
+	
 	processTime(60+rand(15));
 	pc.orgasm();
 	

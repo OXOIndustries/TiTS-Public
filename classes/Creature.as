@@ -4108,9 +4108,9 @@
 			else if (arg != 0) 
 			{
 				physiqueRaw += arg;
-				if (physiqueRaw > physiqueMax()) 
+				if (physiqueRaw > physiqueMax(true)) 
 				{
-					physiqueRaw = physiqueMax();
+					physiqueRaw = physiqueMax(true);
 				}
 			}
 
@@ -4145,9 +4145,9 @@
 			else if (arg != 0) 
 			{
 				reflexesRaw += arg;
-				if (reflexesRaw > reflexesMax())
+				if (reflexesRaw > reflexesMax(true))
 				{
-					reflexesRaw = reflexesMax();
+					reflexesRaw = reflexesMax(true);
 				}
 			}
 
@@ -4188,9 +4188,9 @@
 			else if (arg != 0)
 			{
 				aimRaw += arg;
-				if (aimRaw > aimMax())
+				if (aimRaw > aimMax(true))
 				{
-					aimRaw = aimMax();
+					aimRaw = aimMax(true);
 				}
 			}
 			
@@ -4264,9 +4264,9 @@
 				if(hasPerk("Drug Fucked") && arg > 0) arg /= 2;
 				if (hasPerk("Weak Mind") && arg < 0) arg *= 2;
 				intelligenceRaw += arg;
-				if (intelligenceRaw > intelligenceMax())
+				if (intelligenceRaw > intelligenceMax(true))
 				{
-					intelligenceRaw = intelligenceMax();
+					intelligenceRaw = intelligenceMax(true);
 				}
 			}
 			var bonus:Number = 0;
@@ -4316,9 +4316,9 @@
 				if(arg < 0 && hasStatusEffect("Weak Will")) arg *= 2;
 				if(hasPerk("Weak Mind") && arg < 0) arg *= 2;
 				willpowerRaw += arg;
-				if (willpowerRaw > willpowerMax())
+				if (willpowerRaw > willpowerMax(true))
 				{
-					willpowerRaw = willpowerMax();
+					willpowerRaw = willpowerMax(true);
 				}
 			}
 
@@ -4361,9 +4361,9 @@
 				//Certain bimbo TFs double gains
 				if(hasPerk("Drug Fucked") && arg > 0) arg *= 2;
 				libidoRaw += arg;
-				if (libidoRaw > libidoMax())
+				if (libidoRaw > libidoMax(true))
 				{
-					libidoRaw = libidoMax();
+					libidoRaw = libidoMax(true);
 				}
 				if (libidoRaw < libidoMin())
 				{
