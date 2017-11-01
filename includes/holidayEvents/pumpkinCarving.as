@@ -41,7 +41,7 @@ public function doPumpkinCarving():Boolean
 {
 	clearOutput();
 	clearMenu();
-	showName("Pumpkin\nCarving");
+	showName("PUMPKIN\nCARVING");
 	author("Bumbling Bee");
 	
 	var plural:Boolean = ChildManager.numChildrenAtNursery() > 1;
@@ -62,7 +62,7 @@ public function sorryKidsIHateYou():void
 {
 	clearOutput();
 	clearMenu();
-	showName("Pumpkin\nCarving");
+	showName("PUMPKIN\nCARVING");
 	author("Bumbling Bee");
 	
 	output("<i>“Oh. Well then, I suppose I will see you later, [pc.name].”</i> Briget turns away from you, and begins the process of gutting the pumpkins.");
@@ -76,7 +76,7 @@ public function yesImDyingForMoreKiddoInteractions():void
 {
 	clearOutput();
 	clearMenu();
-	showName("Pumpkin\nCarving");
+	showName("PUMPKIN\nCARVING");
 	author("Bumbling Bee");
 	
 	var plural:Boolean = ChildManager.numChildrenAtNursery() > 1;
@@ -105,7 +105,7 @@ public function yesImDyingForMoreKiddoInteractions():void
 public function pumpkinZheniya(btnSlot:int):void
 {
 	clearOutput();
-	showName("Pumpkin\nCarving");
+	showName("PUMPKIN\nCARVING");
 	author("Bumbling Bee");
 	
 	var plural:Boolean = ChildManager.numOfUniqueType(ZilCallgirlUniqueChild) > 0;
@@ -120,7 +120,7 @@ public function pumpkinZheniya(btnSlot:int):void
 public function pumpkinZheniya2(btnSlot:int):void
 {
 	clearOutput();
-	showName("Pumpkin\nCarving");
+	showName("PUMPKIN\nCARVING");
 	author("Bumbling Bee");
 	
 	var plural:Boolean = ChildManager.numOfType(GLOBAL.TYPE_MILODAN) > 1;
@@ -137,7 +137,7 @@ public function pumpkinZheniya2(btnSlot:int):void
 public function pumpkinMilodan(btnSlot:int):void
 {
 	clearOutput();
-	showName("Pumpkin\nCarving");
+	showName("PUMPKIN\nCARVING");
 	author("Bumbling Bee");
 	
 	output("One of your little milodan kittens runs over to you crying. You scoop them up into your arms, cuddling them and peppering their little face with kisses, until their wailing sobs turn into tiny giggles. You ask the now calm fuzzball what had made them so upset. Immediately their eyes begin watering, as they point their lil paw at their pumpkin. It seems they accidently made a cut too large, resulting in the cat they had been carving turning into an undefined angular shape. You boop their nose.");
@@ -151,7 +151,7 @@ public function pumpkinMilodan(btnSlot:int):void
 public function pumpkinCSnake(btnSlot:int):void
 {
 	clearOutput();
-	showName("Pumpkin\nCarving");
+	showName("PUMPKIN\nCARVING");
 	author("Bumbling Bee");
 	
 	var plural:Boolean = ChildManager.numOfType(GLOBAL.TYPE_CUNTSNAKE) > 1;
@@ -165,7 +165,7 @@ public function pumpkinCSnake(btnSlot:int):void
 public function pumpkinSera(btnSlot:int):void
 {
 	clearOutput();
-	showName("Pumpkin\nCarving");
+	showName("PUMPKIN\nCARVING");
 	author("Bumbling Bee");
 	
 	var plural:Boolean = ChildManager.numOfUniqueType(SeraUniqueChild) > 1;
@@ -184,7 +184,7 @@ public function pumpkinSera(btnSlot:int):void
 public function pumpkinRahn(btnSlot:int):void
 {
 	clearOutput();
-	showName("Pumpkin\nCarving");
+	showName("PUMPKIN\nCARVING");
 	author("Bumbling Bee");
 	
 	output("Your gooey lil rahn kids had gotten hungry while carving and abandoned the half carved witches and owls in favor of munching on some roasted pumpkin seeds provided by Briget and the earlier pumpkin gutting session.");
@@ -197,7 +197,7 @@ public function pumpkinRahn(btnSlot:int):void
 public function pumpkinBothrioc(btnSlot:int):void
 {
 	clearOutput();
-	showName("Pumpkin\nCarving");
+	showName("PUMPKIN\nCARVING");
 	author("Bumbling Bee");
 	
 	var plural:Boolean = ChildManager.numOfType(GLOBAL.TYPE_BOTHRIOC) > 1;
@@ -211,7 +211,7 @@ public function pumpkinBothrioc(btnSlot:int):void
 public function pumpkinWPrincess(btnSlot:int):void
 {
 	clearOutput();
-	showName("Pumpkin\nCarving");
+	showName("PUMPKIN\nCARVING");
 	author("Bumbling Bee");
 	
 	var plural:Boolean = ChildManager.numOfType(GLOBAL.TYPE_WATERQUEEN) > 1;
@@ -225,7 +225,7 @@ public function pumpkinWPrincess(btnSlot:int):void
 public function pumpkinSpiderlings(btnSlot:int):void
 {
 	clearOutput();
-	showName("Pumpkin\nCarving");
+	showName("PUMPKIN\nCARVING");
 	author("Bumbling Bee");
 	
 	output("It seems your princesses and spiders are in the middle of a heated debate. Your bothrioc children claim that the murderous purple and green dino-morph was truly the most horrific of spooky stories, while the princesses advocate for the disappearance of the scaredy cat dog with the blue collar. It’s getting rather heated. You decide you value your life and don't want to get between them.");
@@ -237,7 +237,7 @@ public function pumpkinSpiderlings(btnSlot:int):void
 public function pumpkinYammi(btnSlot:int):void
 {
 	clearOutput();
-	showName("Pumpkin\nCarving");
+	showName("PUMPKIN\nCARVING");
 	author("Bumbling Bee");
 	
 	if(ChildManager.ofType(GLOBAL.TYPE_MILODAN) && ChildManager.ofType(GLOBAL.TYPE_KORGONNE) && ChildManager.numChildrenAtNursery() > 2)
@@ -267,7 +267,7 @@ public function pumpkinYammi(btnSlot:int):void
 public function pumpkinBriha(btnSlot:int):void
 {
 	clearOutput();
-	showName("Pumpkin\nCarving");
+	showName("PUMPKIN\nCARVING");
 	author("Bumbling Bee");
 	
 	if(ChildManager.numOfUniqueType(BrihaUniqueChild) > 1) output("Out of nowhere, Aya runs over to you, pulling you over to Briget. She's wearing a red and white cap with a small bag design on the front of it. <i>“Daddy, Briget's helping me make my costume!”</i> she bounces around in joy, her hat nearly slipping off her head. <i>“I'm gonna dress up as a bag devil trainer.”</i> She runs to her brother, pulling him away from his pumpkin carving and bringing him over to you. <i>“Brahn, Brahn, Brahn, Brahn, tell Dad what your costume is!”</i> Your son rubs the back of his head, giving you a sheepish smile. <i>“Uhm I'm gonna... Be a...”</i> his words turn into an indecipherable mumble. His older sister rolls her eyes and punches his shoulder. <i>“What he means to say is that he's going as Ivy-cat! The best bag devil ever!”</i> Having made her point Aya kisses your cheek before running off to watch Briget finish her costume.");
