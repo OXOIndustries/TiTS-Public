@@ -89,6 +89,8 @@ public function zilCallgirlAtNursery():Boolean
 public function nurseryFoyerFunc():Boolean
 {
 	if(flags["ELLIE_PREG_TIMER"] == 70 && flags["ELLIE_OPERATION"] == 3) return ellieEggsHatching();
+	else if(isHalloweenish() && havePumpkinCarvingScenes() && flags["CARVED_W_KIDDOS"] == undefined) return doPumpkinCarving();
+	else flags["CARVED_W_KIDDOS"] = undefined;
 	
 	output(" The Steele Tech logo is emblazoned across the wall opposite the elevator, surrounded by pastel-colored images of flowers and small animals.");
 	if (silly) output(" There’s even a cute little cartoonish cow!");
