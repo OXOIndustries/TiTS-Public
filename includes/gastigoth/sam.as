@@ -388,7 +388,7 @@ public function samBabiesVisitOptions(button:Number):Number
 {
 	if(ChildManager.numOfUniqueTypeInRange(SamUniqueChild, 0, 4*12) > 0)
 	{
-		addButton(button,"Sam's Kids",visitSamBabies, "Sam's Kids", "It only takes a moment to make a moment.");
+		addButton(button,"Sam's Kids",visitSamBabies, undefined, "Sam's Kids", "It only takes a moment to make a moment.");
 		button++;
 	}
 	else if(ChildManager.numOfUniqueTypeInRange(SamUniqueChild, 4*12, 9001) > 0)
