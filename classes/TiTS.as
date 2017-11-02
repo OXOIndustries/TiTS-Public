@@ -121,11 +121,12 @@
 		include "../includes/StubbedFunctions.as";
 
 		//Holiday shit
-		include "../includes/holidayEvents/halloweenCostumes.as";
-		include "../includes/holidayEvents/freedomBeef.as";
-		include "../includes/holidayEvents/puppyslutmas.as";
 		include "../includes/holidayEvents/chupacabro.as";
+		include "../includes/holidayEvents/freedomBeef.as";
+		include "../includes/holidayEvents/ghostSexDream.as";
+		include "../includes/holidayEvents/halloweenCostumes.as";
 		include "../includes/holidayEvents/pumpkinCarving.as";
+		include "../includes/holidayEvents/puppyslutmas.as";
 		include "../includes/holidayEvents/succucow.as";
 
 		//Followers

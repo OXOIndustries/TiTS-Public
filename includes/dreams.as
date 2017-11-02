@@ -48,6 +48,7 @@ public function dreamChances():Boolean
 			if(reahaIsCrew() && pc.hasCock() && flags["CREWMEMBER_SLEEP_WITH"] == "REAHA") dreams.push(reahaDreamSequenceForNerdsByNerdsDesignedByNerdsToArouseNerdsForNerdpletion);
 		}
 		if(seraIsMistress()) dreams.push(demonDream);
+		if(isHalloweenish()) dreams.push(superGhostioDream);
 	}
 	if(dreams.length > 0) 
 	{
