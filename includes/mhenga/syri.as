@@ -2483,7 +2483,8 @@ public function syriPetPlayPCLostPart3():void
 	output(" Sitting yourself up, Syri suggest that the two of you get cleaned up; you oblige and follow your former-owner to your ship’s shower, hardly able to believe it’s been a day already. There you wash a good day’s worth of cum off Syri and yourself while she comments on your performance, <i>“So, how’d you like being my little pet for the day? You seemed... pretty into it.”</i>");
 	pc.shower();
 	if(flags["SYRI_PETPLAY_LOST"] != undefined) output("\n\nYou briefly consider telling her about how much you enjoyed it for a moment, reaching your hand up to where your collar once was and rubbing your neck. Of course, you quickly remember who you’re talking to.");
-	else output("\n\nTaking a moment to consider every act of sexual deviancy you’ve been through with Syri today, you almost lose yourself to your thoughts and memories before you have a chance to answer.} You smirk as you give the lusty ausar a slap on the ass and ask her how <i>“into it”</i> she’ll be when it’s her ass on that leash. Syri chuckles in response.");
+	else output("\n\nTaking a moment to consider every act of sexual deviancy you’ve been through with Syri today, you almost lose yourself to your thoughts and memories before you have a chance to answer.");
+	output(" You smirk as you give the lusty ausar a slap on the ass and ask her how <i>“into it”</i> she’ll be when it’s her ass on that leash. Syri chuckles in response.");
 
 	if(flags["SYRI_PETPLAY_LOST"] != undefined) output("\n\nThen again, do you really want to win if this is what you get for losing?");
 

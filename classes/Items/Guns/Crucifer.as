@@ -31,7 +31,7 @@
 			this.description = "a Crucifer spitter";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "The Crucifer is an organism vagely resembling a gun. This little fella only needs a bit of your delicious internal fluids and it will happily fuction as a living, breathing acid-spitting gun.";
+			this.tooltip = "The Crucifer is an organism vaguely resembling a gun. This little fella only needs a bit of your delicious internal fluids and it will happily fuction as a living, breathing acid-spitting gun.";
 			this.attackVerb = "shoot";
 			attackNoun = "acid";
 			

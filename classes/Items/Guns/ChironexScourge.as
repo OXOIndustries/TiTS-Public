@@ -31,7 +31,8 @@
 			this.description = "a Chironex scourge";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Scourges are family of living weapons. Rifle-like in appearance, they fire large organic spikes filled with powerful toxins. The Chironex is the standardized strain of the scourge family and sees extensive use by the Ashei military. Like ";
+			this.tooltip = "Scourges are a family of living weapons. Rifle-like in appearance, they fire large organic spikes filled with powerful toxins. The Chironex is the standardized strain of the scourge family and sees extensive use by the Ashei military.";
+			//this.tooltip += " Like ";
 			this.attackVerb = "shoot";
 			attackNoun = "venomous spike";
 			

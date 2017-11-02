@@ -210,7 +210,7 @@ public function frostwyrmBadEnd():void
 	output(" It will be pleasurable for you, if you let it.</i>");
 	
 	output("\n\n<i>“I... will,”</i> you answer, ");
-	if(pc.legCount > 1) output("and you find your [pc.legorLegs] spreading invitingly, ");
+	if(pc.legCount > 1) output("and you find your [pc.legs] spreading invitingly, ");
 	output("as if begging the wyrm to proceed with its inevitable plans for you.");
 
 	processTime(90)

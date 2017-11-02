@@ -34,7 +34,7 @@ package classes.Items.Guns
 			this.description = "a chaingun";
 			
 			//Displayed on tooltips during mouseovers
-			tooltip = "A set of five rotating barrels allows this weapon to fire obscene amounts of projectiles without overheating. Though the design is ancient, moderm advancements have further improved the fire rate while virtually eliminating mechanical failure. The only drawback is the size and weight.";
+			tooltip = "A set of five rotating barrels allows this weapon to fire obscene amounts of projectiles without overheating. Though the design is ancient, modern advancements have further improved the fire rate while virtually eliminating mechanical failure. The only drawback is the size and weight.";
 			this.attackVerb = "shoot";
 			attackNoun = "shot"
 			

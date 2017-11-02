@@ -295,8 +295,8 @@ public function azraCrewBlurbs(button:Number):String
 	}
 	else if(pc.hasStatusEffect("Azra CD"))
 	{
-		buffer += "\n\nAzra isn't available at the moment. You'll have to come back later.";
-		addDisabledButton(button,"Azra","Azra","Azra isn't available. Come back later.");
+		buffer += "\n\nAzra isn’t available at the moment. You’ll have to come back later.";
+		addDisabledButton(button,"Azra","Azra","Azra isn’t available. Come back later.");
 		return buffer;
 	}
 	//Post Coital Relationship Talk
@@ -365,9 +365,9 @@ public function azraMenu():void
 	if(!azraProfessional() && flags["AZRA_SEXED"] != undefined)
 	{
 		if(pc.lust() >= 33) addButton(4,"Sex",azraSexApproach);
-		else addDisabledButton(4,"Sex","Sex","You aren't really interested in sex right now.");
+		else addDisabledButton(4,"Sex","Sex","You aren’t really interested in sex right now.");
 	}
-	else addDisabledButton(4,"Sex","Sex","Azra isn't interested in sex with you right now.");
+	else addDisabledButton(4,"Sex","Sex","Azra isn’t interested in sex with you right now.");
 	addButton(13,"Leave Crew",talkToAzraAboutLeavingTheCrew);
 	addButton(14,"Leave",crew);
 }
@@ -661,7 +661,7 @@ public function talkToAzraAboutHer():void
 	//Merge
 	output("\n\n<i>“Me?”</i> Azra leans back and gestures at her chest in disbelief. <i>“You want to know more about little ol’ me?”</i> Her sable lips take on a small smile, her cheeks flushing a richer gold than before. <i>“Very well. I’m an open book, so long as you restrain yourself to </i>proper<i> queries. ");
 	if(azraProfessional() || flags["AZRA_SEXED"] == undefined) output("I have heard of the sorts of hijinks you rushers get into out here, after all.");
-	else output("I can't have you disrupting my work, no matter how talented you may be beneath the sheets.")
+	else output("I can’t have you disrupting my work, no matter how talented you may be beneath the sheets.")
 	output("”</i>");
 
 	processTime(2);
@@ -680,7 +680,7 @@ public function talkToAzraAboutHerRace():void
 	clearOutput();
 	showAzra();
 	//Read Codex
-	if(CodexManager.entryViewed("Suula") || flags["AZRA_RACE_TALK"] != undefined) 
+	if(CodexManager.entryViewed("Suulas") || flags["AZRA_RACE_TALK"] != undefined) 
 	{
 		output("<i>“You’re a suula, right? What’s that like?”</i>");
 		//-conjoins into [Suula] talk.
@@ -732,6 +732,13 @@ public function talkToAzraAboutSuula(skippy:Boolean = false):void
 	output("\n\nAzra chuckles dryly, dragging her fingers through her hair while she gathers her thoughts. <i>“Tough to say? What’s it feel like to be " + indefiniteArticle(pc.race()) + "? Normal, I guess.”</i> She taps her chin with a finger. <i>“I get some strange looks from the odd sheltered ausar, even the occasional insult from a backwards terran.”</i> Ticking off her fingers, the suula begins to make a list of gripes. <i>“Then you have the idiots who think that my race’s reputation for polyamory means I’ll spread my legs at the first sight of dick. I won’t, and I don’t. If I do ever take another stud, it’ll be because he’s a man of worth and substance.”</i> Azra shakes her head. <i>“I doubt that’ll ever happen.”</i>");
 	output("\n\nYou prod her for more information on her species. Surely she has something to share besides gripes!");
 	output("\n\n<i>“Oh, well we’re amazing swimmers and half-decent fliers if I do say so myself. I’m a bit out of practice in the air, but I’m told I look more at home in the water than on the land. The wings are actually great for maneuverability - additional control surfaces, even if the extra drag will keep me from winning a race with any other aquatic species.”</i> Azra wraps her wings around herself and happily strokes them. <i>“They get in the way sometimes, but you can’t beat the freedom they offer - or the aesthetics. More than once I’ve seen a nun equate me with an angel.”</i> She shakes her head disbelievingly. <i>“It’s hard to let them down once they get so excited.”</i>");
+	
+	if(!CodexManager.entryUnlocked("Suulas"))
+	{
+		output("\n\nIn the background, your Codex quietly announces that it has compiled an article on the race for your later perusal.");
+		CodexManager.unlockEntry("Suulas");
+	}
+	
 	processTime(4);
 	clearMenu();
 	//[Daughters] [Stud] [Religion] [Polyamory] [Her Sex]
@@ -868,7 +875,7 @@ public function askAzraOutOnADate():void
 		output("\n\n<i>“I would adore the chance to share a meal with you, [pc.name], I assure you, but the frontier will not wait for us to spend all our time tied up in interpersonal dalliances,”</i> she says. <i>“Trust me when I say that what we have is beautiful. Instead of lounging in front of a adventure holo, we’re living one. Every time we go out into the wilds, we get to be the first UGC citizens to lay eyes on new species and curiosities.”</i> Her tail swings up to wrap around your back, fins curling over your side affectionately. <i>“When this is all over, you have my permission to take me wherever your heart fancies - within reason.”</i> Her eyes twinkle knowingly. <i>“No whorehouses.”</i>");
 		if(pc.isBimbo()) output("\n\n<i>“Awww man, but those are fuuuuun!”</i>");
 		else if(pc.isBro()) output("\n\n<i>“A real shame, that.”</i>");
-		else if(pc.isNice()) output("\n\n<i>“I'd take you somewhere so much better than that.”</i>");
+		else if(pc.isNice()) output("\n\n<i>“I’d take you somewhere so much better than that.”</i>");
 		else if(pc.isMischievous()) output("\n\n<i>“No whorehouses. Gotcha. But just for the record, you didn’t say anything about sex arcades.”</i>");
 		else output("\n\n<i>“Like I’d take you anywhere that dumpy.”</i>");
 		output("\n\nA gentle ruffle fills the air as Azra laughs, wings shaking. <i>“The whores would probably offer to pay you for sex, you know. Famous galaxy-explorers with statuesque suula maidens on their arm tend to cut a pretty dashing figure, if I do say so myself.”</i> Azra leers at you for a moment before reining herself in. <i>“I certainly think it’s a good look on you.”</i>");
@@ -893,7 +900,7 @@ public function talkToAzraAboutPolyamory():void
 	clearOutput();
 	showAzra();
 	output("You probe for a little more information on polyamory and her race’s apparent take on it.");
-	output("Azra grins wide at this, flashing a forest of dagger-sharp ivory. <i>“This is probably the first question most non-suulas ask about. I’ll give you credit for taking this long to get to it.”</i>");
+	output("\n\nAzra grins wide at this, flashing a forest of dagger-sharp ivory. <i>“This is probably the first question most non-suulas ask about. I’ll give you credit for taking this long to get to it.”</i>");
 	output("\n\n");
 	if(silly) output("You decide not to point out that the game wouldn’t let you select it any earlier.");
 	else output("You shrug and explain that you just followed the conversation.");
@@ -903,7 +910,7 @@ public function talkToAzraAboutPolyamory():void
 	output("\n\n<i>“That’s a lot of love.”</i>");
 	output("\n\nThe winged shark-girl sighs dreamily. <i>“It was... ");
 	if(azraProfessional() || flags["AZRA_SEXED"] == undefined) output("Someday I’m going to let myself feel like that again.");
-	else output("and I'm starting to feel that way again.");
+	else output("and I’m starting to feel that way again.");
 	output("”</i>");
 	output("\n\nYou ask her how they keep from getting jealous.");
 	output("\n\n<i>“We’re just wired differently than terrans and ausar I guess. Culture may play into it as well. To a suula, love and intimacy are these amazing, wonderful things that are meant to be shared. Why wouldn’t you want someone you love to feel even more of it? Terrans can be so greedy, wanting to keep the love all to themselves.”</i> Azra sighs. <i>“If your boyfriend or girlfriend has true affection for you, another lover isn’t going to stop them from caring about you. It isn’t a finite resource to be hoarded. It’s as limitless as the light from a star.”</i> She pauses, then looks you dead in the eye. <i>“And don’t even get into the mathematical energy output of the sun. I was being metaphorical.”</i>");
@@ -1226,7 +1233,7 @@ public function azraSexApproach():void
 		pc.lust(-5);
 		azraMenu();
 		//gray out sex button :3
-		addDisabledButton(4,"Sex","Sex","Azra won't be ready for sex again for another day.");
+		addDisabledButton(4,"Sex","Sex","Azra won’t be ready for sex again for another day.");
 	}
 	//Not on CD
 	else
@@ -1243,7 +1250,7 @@ public function azraSexApproach():void
 		processTime(3);
 		pc.lust(5);
 		//add call out option
-		addButton(5,"Call Out",callOutAzraPanties,undefined,"Call Out","How can she ruin panties if she isn't wearing any?! The universe needs to know.");
+		addButton(5,"Call Out",callOutAzraPanties,undefined,"Call Out","How can she ruin panties if she isn’t wearing any?! The universe needs to know.");
 	}
 }
 
@@ -1345,7 +1352,7 @@ public function azraHyperDocking(x:int):void
 		else if(pc.cocks[x].cType == GLOBAL.TYPE_VULPINE) output("foxy");
 		else if(pc.cocks[x].cType == GLOBAL.TYPE_FELINE) output("kitty");
 		else if(pc.cocks[x].cType == GLOBAL.TYPE_EQUINE) output("horsie");
-		else if(pc.cocks[x].cType == GLOBAL.TYPE_KUITAN) output("'nuki");
+		else if(pc.cocks[x].cType == GLOBAL.TYPE_KUITAN) output("‘nuki");
 		else output("big guy");
 		output(". Steady.”</i> She gathers some of the excessive lubricant in her palm and smears it loving over your [pc.cockHead " + x + "], her fingers pausing briefly to finger the tip.");
 		output("\n\nThe shark-woman’s digits are better at this than they have any right to be. Didn’t you introduce her to urethral play? A low, blissful ");
@@ -1357,7 +1364,7 @@ public function azraHyperDocking(x:int):void
 		else if(pc.cocks[x].cType == GLOBAL.TYPE_VULPINE) output("foxy");
 		else if(pc.cocks[x].cType == GLOBAL.TYPE_FELINE) output("kitty");
 		else if(pc.cocks[x].cType == GLOBAL.TYPE_EQUINE) output("horsie");
-		else if(pc.cocks[x].cType == GLOBAL.TYPE_KUITAN) output("'nuki");
+		else if(pc.cocks[x].cType == GLOBAL.TYPE_KUITAN) output("‘nuki");
 		else output("boy");
 
 		output(",”</i> Azra coos as your member’s errant motions still. You’re not trying to do anything, but your body knows what it wants: it wants to hold still so Azra can fuck you full of suula cum. It throbs mightily in her grasp, so engorged that your heartbeat makes the inner walls rhythmicly squeeze around her fingers.");
@@ -1484,7 +1491,7 @@ public function azraRepeatShowerSexStuff():void
 	clearOutput();
 	showAzra(true);
 	output("<i>“In the shower, just like the first time.”</i>");
-	output("\n\nAzra's tail sways behind her. <i>“Then I'd better hurry off to get the water running, hadn't I?”</i> She prances toward the bathroom, stopping to lean on the doorframe as she looks back, all smiles. <i>“Ooooh, it'll be like roleplay!”</i>");
+	output("\n\nAzra’s tail sways behind her. <i>“Then I’d better hurry off to get the water running, hadn’t I?”</i> She prances toward the bathroom, stopping to lean on the doorframe as she looks back, all smiles. <i>“Ooooh, it’ll be like roleplay!”</i>");
 	output("\n\nYou nod to the turned-on shark, and she vanishes into the bathroom. Idly toying with yourself, you wait a minute for her to get the water going, just like the first time. This is going to be fun...");
 	clearMenu();
 	addButton(0,"Next",followAzraForFirstTimeBango);

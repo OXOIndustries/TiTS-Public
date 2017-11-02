@@ -31,7 +31,7 @@
 			this.description = "an acid rifle";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Designed to take down targets impervious to traditional weaponry, the this gas-operated weapon dispenses small, polymer-wrapped spheres of a proprietary substance designed to disrupt the target a molecular level. It comes complete with an inertia-compensating grip and scope to assist in landing shots on target.";
+			this.tooltip = "Designed to take down targets impervious to traditional weaponry, the this gas-operated weapon dispenses small, polymer-wrapped spheres of a proprietary substance designed to disrupt the target at a molecular level. It comes complete with an inertia-compensating grip and scope to assist in landing shots on target.";
 			this.attackVerb = "shoot";
 			attackNoun = "acid capsule";
 			

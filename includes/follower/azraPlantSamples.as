@@ -39,15 +39,15 @@ public function azraPlantSamples(back:Boolean = false):void
 				if(pc.hasStatusEffect("Azra Sex CD") == 0)
 				{
 					if(rand(2) == 0) output("You know, if you spend all your time fucking around on the ship, you’ll never become the famous rusher I know you’re destined to be.");
-					else output("The fuck lillies are good, but they'll never be as good as me.”</i> She checks her watch, then sighs. <i>But I guess they'll have to do for now...");
+					else output("The fuck lillies are good, but they’ll never be as good as me.”</i> She checks her watch, then sighs. <i>But I guess they’ll have to do for now...");
 				}
-				else if(pc.hasCock(GLOBAL.TYPE_EQUINE) && rand(7) == 0) output("You know, I can smell that horse-dick of yours from over here. If you're going to whip it out in here, turn on the fan afterward. The last thing I need to do is feel like I'm penned up in your breeding barn.");
-				else if(pc.hasCock(GLOBAL.TYPE_CANINE) && rand(6) == 0) output("You know, that doggie-dick of yours leaks pheromones like a busted faucet. You better turn up the life support filtration after this, or I'm going to be hornier in here than a bitch in heat.");
-				else if(rand(5) == 0) output("Would you?”</i> Azra leans close. <i>“When you're through in here, I have a special sample for you in my bedroom, if you have the time.");
-				else if(rand(4) == 0) output("Remember, the mutagenic samples aren't refined, tested products. There's no telling what havoc abusing them could wreak on your system.”</i> She looks at you mischievously. <i>“But a brave [pc.boyGirl] like you is going to play with fire, aren't you?");
-				else if(rand(3) == 0) output("Just don't use the leftmost Fuck Lilly. She just had a very thorough session, and I don't want any of our prize plants to die from overfeeding.");
-				else if(rand(2) == 0) output("I'm glad I'm not the only one who enjoys these little beauties. Be good to them, and they'll be good to you.");
-				else output("Aww, you're such a sweet " + azraBoyfriend() + ", checking up on me and my work. Maybe one of these times you'll catch me feeding the Fuck Lilies.");
+				else if(pc.hasCock(GLOBAL.TYPE_EQUINE) && rand(7) == 0) output("You know, I can smell that horse-dick of yours from over here. If you’re going to whip it out in here, turn on the fan afterward. The last thing I need to do is feel like I’m penned up in your breeding barn.");
+				else if(pc.hasCock(GLOBAL.TYPE_CANINE) && rand(6) == 0) output("You know, that doggie-dick of yours leaks pheromones like a busted faucet. You better turn up the life support filtration after this, or I’m going to be hornier in here than a bitch in heat.");
+				else if(rand(5) == 0) output("Would you?”</i> Azra leans close. <i>“When you’re through in here, I have a special sample for you in my bedroom, if you have the time.");
+				else if(rand(4) == 0) output("Remember, the mutagenic samples aren’t refined, tested products. There’s no telling what havoc abusing them could wreak on your system.”</i> She looks at you mischievously. <i>“But a brave [pc.boyGirl] like you is going to play with fire, aren’t you?");
+				else if(rand(3) == 0) output("Just don’t use the leftmost Fuck Lilly. She just had a very thorough session, and I don’t want any of our prize plants to die from overfeeding.");
+				else if(rand(2) == 0) output("I’m glad I’m not the only one who enjoys these little beauties. Be good to them, and they’ll be good to you.");
+				else output("Aww, you’re such a sweet " + azraBoyfriend() + ", checking up on me and my work. Maybe one of these times you’ll catch me feeding the Fuck Lilies.");
 				output("”</i> She glances at her Codex. <i>“Thirty minutes ought to be more than long enough for whatever you have planned. I barely last ten in those botanical succubi, but I know my " + azraBoyfriend() + " is made of tougher stuff.”</i>");
 				output("\n\nAzra kisses you on the forehead on her way out the door, tail swishing happily behind her.");
 			}

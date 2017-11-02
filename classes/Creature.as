@@ -11421,12 +11421,12 @@
 		{
 			var counter:int = 0;
 			if (faceType == GLOBAL.TYPE_DRACONIC) counter++;
-			if (earType == GLOBAL.TYPE_DRACONIC || earType == GLOBAL.TYPE_GRYVAIN) counter++;
+			if (earType == GLOBAL.TYPE_DRACONIC) counter++;
 			if (hasTail(GLOBAL.TYPE_DRACONIC) || hasTail(GLOBAL.TYPE_GRYVAIN)) counter++;
 			if (tongueType == GLOBAL.TYPE_DRACONIC) counter++;
-			if (cockTotal(GLOBAL.TYPE_DRACONIC) > 0 || cockTotal(GLOBAL.TYPE_GRYVAIN) > 0) counter++;
+			if (cockTotal(GLOBAL.TYPE_DRACONIC) > 0) counter++;
 			if (hasWings() && InCollection(wingType, [GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_GRYVAIN])) counter++;
-			if (legType == GLOBAL.TYPE_DRACONIC || legType == GLOBAL.TYPE_GRYVAIN) counter++;
+			if (legType == GLOBAL.TYPE_DRACONIC) counter++;
 			if (hasHorns(GLOBAL.TYPE_DRACONIC) || hasHorns(GLOBAL.TYPE_LIZAN) || hasHorns(GLOBAL.TYPE_GRYVAIN)) counter++;
 			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_SCALES) counter++;
 			if (hasPerk("Dragonfire")) counter++;
@@ -11489,10 +11489,10 @@
 			
 			if (faceType != GLOBAL.TYPE_HUMAN || hasMuzzle()) s--;
 			if (armType != GLOBAL.TYPE_HUMAN || hasArmFlag(GLOBAL.FLAG_SCALED) || hasArmFlag(GLOBAL.FLAG_FURRED)) s--;
-			if (skinType == GLOBAL.SKIN_TYPE_SKIN && InCollection(skinTone, "pale", "tanned", "pink", "dark red", "dark green")) s++;
+			if (skinType == GLOBAL.SKIN_TYPE_SKIN /*&& InCollection(skinTone, "pale", "tanned", "pink", "dark red", "dark green")*/) s++;
 			if (legType == GLOBAL.TYPE_GRYVAIN && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE) && hasLegFlag(GLOBAL.FLAG_SCALED)) s++;
 			if (tailType == GLOBAL.TYPE_GRYVAIN && hasTailFlag(GLOBAL.FLAG_SCALED)) s++;
-			if (eyeType == GLOBAL.TYPE_GRYVAIN && eyeColor == "dark yellow") s++;
+			if (eyeType == GLOBAL.TYPE_GRYVAIN /*&& eyeColor == "dark yellow"*/) s++;
 			if (earType == GLOBAL.TYPE_GRYVAIN && earLength >= 3) s++;
 			if (wingType == GLOBAL.TYPE_GRYVAIN)
 			{
@@ -11500,19 +11500,28 @@
 				if (wingCount == 4) s++;
 			}
 			
+			var i:int = 0;
+			var gv:Boolean = false;
+			var gp:Boolean = false;
+			
 			// All gryvain have vaginas afaik
 			if (!hasVagina()) s--;
 			else
 			{
-				if (vaginas.length == 1)
+				for (i = 0; i < vaginas.length; i++)
 				{
-					if (vaginas[0].hasFlag(GLOBAL.FLAG_NUBBY)) s++;
+					if (vaginas[i].type == GLOBAL.TYPE_GRYVAIN && vaginas[i].hasFlag(GLOBAL.FLAG_NUBBY)) gv = true;
 				}
+				if (gv) s++;
 			}
 			
-			if (cocks.length == 1)
+			if (hasCock())
 			{
-				if (cocks[0].cType == GLOBAL.TYPE_GRYVAIN && cocks[0].hasFlag(GLOBAL.FLAG_KNOTTED)) s++;
+				for (i = 0; i < cocks.length; i++)
+				{
+					if (cocks[i].cType == GLOBAL.TYPE_GRYVAIN && cocks[i].hasFlag(GLOBAL.FLAG_KNOTTED)) gp = true;
+				}
+				if (gp) s++;
 				else s--;
 			}
 			
@@ -11523,7 +11532,7 @@
 			var ck:Boolean = true;
 			var cv:Boolean = true;
 			
-			for (var i:int = 0; i < cocks.length; i++)
+			for (i = 0; i < cocks.length; i++)
 			{
 				if ((cocks[i] as CockClass).cockColor != mc) ck = false;
 			}
@@ -11534,7 +11543,7 @@
 			
 			if (ch && cn && ck && cv) s++;
 			
-			if (horns == 2 && hornType == GLOBAL.TYPE_GRYVAIN && hornLength >= 3 && hornLength <= 6) s++;
+			if (horns >= 2 && hornType == GLOBAL.TYPE_GRYVAIN /*&& hornLength >= 3 && hornLength <= 6*/) s++;
 			else s--;
 			
 			return s;

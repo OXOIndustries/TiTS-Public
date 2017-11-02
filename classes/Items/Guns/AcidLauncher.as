@@ -31,7 +31,7 @@
 			this.description = "an acid launcher";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This simple dumbfire rocket launcher is loaded with special projectiles: rockets full of a extremely corrosive synthetic fluid, designed to break down molecules more rapidly than traditional chemistry could possibly explain.";
+			this.tooltip = "This simple dumbfire rocket launcher is loaded with special projectiles: rockets full of an extremely corrosive synthetic fluid, designed to break down molecules more rapidly than traditional chemistry could possibly explain.";
 			this.attackVerb = "fire";
 			attackNoun = "rocket";
 			

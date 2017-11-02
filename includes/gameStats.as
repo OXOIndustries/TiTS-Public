@@ -4259,7 +4259,10 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["SYRI_WINBET_VAG"] != undefined) output2(", Insisted she fuck your vagina");
 					}
 					if(flags["TIMES_BET_YOURSELF_AGAINST_SYRI"] != undefined) output2("\n<b>* Syri, Gaming, Times Betting Yourself:</b> " + flags["TIMES_BET_YOURSELF_AGAINST_SYRI"]);
-					if(flags["TIMES_WON_AGAINST_SYRI"] != undefined || flags["TIMES_LOST_TO_SYRI"] != undefined) output2("\n<b>* Syri, Gaming, Win/Loss Ratio:</b> " + flags["TIMES_WON_AGAINST_SYRI"] + "/" + flags["TIMES_LOST_TO_SYRI"] + ", of " + (flags["TIMES_WON_AGAINST_SYRI"] + flags["TIMES_LOST_TO_SYRI"]) + " games");
+					var syriShootsWin:int = (flags["TIMES_WON_AGAINST_SYRI"] > 0 ? flags["TIMES_WON_AGAINST_SYRI"] : 0);
+					var syriShootsLoss:int = (flags["TIMES_LOST_TO_SYRI"] > 0 ? flags["TIMES_LOST_TO_SYRI"] : 0);
+					var syriShootsTotal:int = (syriShootsWin + syriShootsLoss);
+					if(syriShootsTotal > 0) output2("\n<b>* Syri, Gaming, Win/Loss Ratio:</b> " + syriShootsWin + "/" + syriShootsLoss + ", of " + syriShootsTotal + " games");
 					if(flags["FUCKED_SYRI_COUNT"] != undefined) output2("\n<b>* Syri, Times Sexed:</b> " + flags["FUCKED_SYRI_COUNT"]);
 					if(flags["TIMES_BUTTFUCKED_BY_SYRI"] != undefined) output2("\n<b>* Syri, Times She Fucked Your Ass:</b> " + flags["TIMES_BUTTFUCKED_BY_SYRI"]);
 					if(flags["SyriTailcocked"] != undefined) output2("\n<b>* Syri, Times You Used Your Tailcock on Her:</b> " + flags["SyriTailcocked"]);

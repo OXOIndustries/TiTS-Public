@@ -33,7 +33,7 @@
 			this.description = "a CTL-3 electric launcher";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "The CTL-3 is a standad rocket launcher loaded with a modified payload: powerful electron charges, capable of creating damaging electirc arcs in a wide area.";
+			this.tooltip = "The CTL-3 is a standad rocket launcher loaded with a modified payload: powerful electron charges, capable of creating damaging electric arcs in a wide area.";
 			this.attackVerb = "shock";
 			attackNoun = "lightning charge";
 			

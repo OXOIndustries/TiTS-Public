@@ -32,7 +32,7 @@
 			this.description = "an Apollo plasma rifle";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "The Apollo plasma rifle is a mainstay of Terran military forces. Originally produced by Reaper Armaments, it now has variants in use from over a dozen different manufacturors. The one in your hands, however, is definitely one of the originals. It lacks the heat vents added in later revisions to support full-auto fire.";
+			this.tooltip = "The Apollo plasma rifle is a mainstay of Terran military forces. Originally produced by Reaper Armaments, it now has variants in use from over a dozen different manufacturers. The one in your hands, however, is definitely one of the originals. It lacks the heat vents added in later revisions to support full-auto fire.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

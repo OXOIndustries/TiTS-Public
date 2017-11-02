@@ -31,7 +31,7 @@
 			this.description = "a cryropistol";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A seldom-made weapon capable of delivering pellets of near zero kelvin fluid to a target. A curious weapon for sure; it could prove useful against cold-blooded creatures.";
+			this.tooltip = "A seldom-made weapon capable of delivering pellets of near zero Kelvin fluid to a target. A curious weapon for sure; it could prove useful against cold-blooded creatures.";
 			this.attackVerb = "shoot";
 			attackNoun = "cryro-capsule";
 			

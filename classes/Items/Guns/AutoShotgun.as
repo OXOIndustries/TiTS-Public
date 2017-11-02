@@ -31,7 +31,7 @@
 			this.description = "an auto shotgun";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "One of the best civilian shotguns available in the market. The CF22 offers outstanding firepower combined with an impressive rate of fire and a large drum magazine. It’s high modularity and adaptability has made this shotgun a very popular piece of equipment, as it can be quickly converted from a roomsweeper to a shot-mid range assault weapon by simple exchanging barrels, muzzles and ammunition.";
+			this.tooltip = "One of the best civilian shotguns available in the market. The CF22 offers outstanding firepower combined with an impressive rate of fire and a large drum magazine. It’s high modularity and adaptability has made this shotgun a very popular piece of equipment, as it can be quickly converted from a roomsweeper to a mid-range assault weapon by simply exchanging barrels, muzzles and ammunition.";
 			this.attackVerb = "shoot";
 			attackNoun = "shot";
 			

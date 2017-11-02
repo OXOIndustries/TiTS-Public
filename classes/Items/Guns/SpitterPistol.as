@@ -31,7 +31,7 @@
 			this.description = "an Ashei acid spitter";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "The Ashei acid spitter is a small living weapon, about the size of a pistol, capable of firing acid streams at short range. The spitter is a simple weapon, farmed in mass quantities from Ashei Hives, yet cheap and effective, although it does not offer much firepower. Of course it does extra small quantities of the user’s blood for fuel, but power comes at a cost, does it not?";
+			this.tooltip = "The Ashei acid spitter is a small living weapon, about the size of a pistol, capable of firing acid streams at short range. The spitter is a simple weapon, farmed in mass quantities from Ashei Hives, yet cheap and effective, although it does not offer much firepower. Of course it does consume extra small quantities of the user’s blood for fuel, but power comes at a cost, does it not?";
 			this.attackVerb = "shoot";
 			attackNoun = "acid";
 			

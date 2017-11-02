@@ -2186,7 +2186,7 @@ public function raskyRooOrgipoo():void
 	//[Lay Her] [Spit Roast]
 	if(pc.hasCock() && pc.cockThatFits(550) >= 0) addButton(0,"Lay Her",penisRouter,[fuckTheSydianQueen,550,false,0],"Lay Her","Dick the sydian. You may require some femboy fucking to get to her.");
 	else if(pc.hasCock()) addDisabledButton(0,"Lay Her","Lay Her","Your dick is way to big to for her to willingly accept.");
-	else addDisabledButton(0,"Lay Her","Lay Her","You can't put your dick inside her if you don't have one.");
+	else addDisabledButton(0,"Lay Her","Lay Her","You can’t put your dick inside her if you don’t have one.");
 	addButton(1,"Spit Roasted",spitRoastRaskvelTimes,undefined,"Spit Roasted","Get fucked by the raskvel.");
 }
 
@@ -2950,7 +2950,7 @@ public function fuckAzrasCuntPussy1stTimeEverytime(xx:int):void
 
 	output("\n\n<i>“Seriously.”</i> Azra’s tail lashes back and forth excitedly behind her, thumping powerfully into the narrow walls. <i>“You’re not my stud yet, Captain.”</i> ");
 	if(flags["AZRA_SEXED"] != undefined) output("She winks playfully at you, then s");
-	else  output("S");
+	else output("S");
 	output("he kisses you hard. <i>“But if you fuck half as well as you kiss, you might convince me yet.”</i> Another soul-searing kiss is thrust upon you. All the while, Azra’s hips wiggle in small circles against your questing digits, drenching your fingertips in a much slicker liquid than shower water. A condom is pressed into your other hand as the kiss breaks. <i>“Suit up.”</i>");
 	processTime(2);
 	pc.lust(10);
@@ -4274,7 +4274,7 @@ public function welcomeToAzraSmoochesBuddy():void
 	else if(pc.hasVagina()) output(", grinding your well-moistened loins against her armor");
 	output(", then step back, face flushed red enough to match her own.");
 	output("\n\n<i>“Wow.”</i> Azra smoothes her tousled hair. <i>“I liked that. I liked that a lot, but... ummm...”</i> She giggles. <i>“Wow. You must have a lot of practice at that.”</i> The suula coughs and tries to master her surging hormones long enough to properly express her feelings. <i>“But we can’t just start fucking like animals in here");
-	if(pc.hasFur()) output(", even if you’ve got enough fur to be counted as a part of the animal kingdom");
+	if(pc.hasFur() || pc.hasFeathers()) output(", even if you’ve got enough fur to be counted as a part of the animal kingdom");
 	output(". For one, I’m not that kind of girl. Secondly, these samples need proper care and nutrition to keep them from dying. I won’t risk extinction for a fling, no matter how pleasant.”</i>");
 	output("\n\nThat sounds perfectly reasonable no matter how your base impulses disagree.");
 	output("\n\n<i>“Finally, neither of us will accomplish anything if our faces are glued together for the entire rush, so I propose a more measured solution,”</i> Azra calms, back on familiar ground. Sadly, the cute blush she was wearing for so long has faded like a passing sunset. <i>“We continue to work together for the duration of the rush. Celebratory kisses are fine, but idle salaciousness is straight out.”</i>");

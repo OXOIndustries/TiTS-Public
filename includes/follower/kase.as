@@ -88,7 +88,7 @@ public function kaseCrewGreeting():void
 		else output("\n\nYou smile at his enthusiasm and thank him");
 		output(", right before Anno returns, clutching a SteeleTech suit in her fluffy hands.");
 		output("\n\n<i>“Here,”</i> she says, handing the latex suit to Kase, <i>“If you’re gonna be part of the SteeleTech family, you’re gonna need one of these.”</i>");
-		output("\n\nThe kaithrit happily accepts the suit, examining its colours and materials while Anno returns to your side. <i>“Do you have a place where I could try this on?”</i>");
+		output("\n\nThe kaithrit happily accepts the suit, examining its colors and materials while Anno returns to your side. <i>“Do you have a place where I could try this on?”</i>");
 		output("\n\nThe ausar beauty is quick to lean in next to your [pc.ear] and whisper, <i>“He could try it on heeeeerrreee.”</i>");
 		output("\n\nThe suggestion makes you smirk, and seems like a good one to you, but you could always let him change in privacy. ");
 		
@@ -503,7 +503,7 @@ public function kaseSexPitchAnal(x:int):void
 	output("\n\nWith all that going on, and not being able to hear a silent moment between his pleasured cries, it’s no surprise Kase has reached his edge. His whole body tenses under yours, fists clenching and his back arching as a loud, blissful cry is ripped from his lips. You can feel his pucker clench around your [pc.cock " + x + "], convulsing like he’s trying to milk your dick for all it’s worth, while at the same time his own nubby cat-cock spasms and empties all over the bed. Kase grunts and grits his teeth as he coats his sheets with sticky alabaster, and with your own prick surrounded by the sudden tightness of his asshole, you can no longer hold back your own orgasm. ");
 	if(pc.hasKnot(x)) output("\n\nYou slam your [pc.hips] forward, pressing your [pc.knot " + x + "] against Kase’s tender tailhole, stretching it as wide as it will go, setting the kaithrit crying out all over again. Finally, your breeder’s knob pops into the femboys ass, leaving him babbling at the sheer girth of your knot. Deep and knotted inside your lover, you can give into your lust and let your climax begin. ");
 	else output("\n\nYou slam your [pc.hips] forward, burying your cock as deep inside Kase’s ass as it will go, setting the kaithrit crying out all over again. Well positioned inside your lover as you are, you can give into your lust and let your climax begin. ");
-	output("\n\nEcstasy dulls your other senses to the point where you’re all but operating on autopilot, hips bucking forward in jerky, mindless movement as [pc.cumNoun] floods your urethra. Your [pc.cock " + x + "] spasms inside Kase, hot seed pouring out and painting his inner walls [pc.cumColour]. ");
+	output("\n\nEcstasy dulls your other senses to the point where you’re all but operating on autopilot, hips bucking forward in jerky, mindless movement as [pc.cumNoun] floods your urethra. Your [pc.cock " + x + "] spasms inside Kase, hot seed pouring out and painting his inner walls [pc.cumColor]. ");
 	if(pc.cumQ() >= 5000) output("Even as he’s lying on his stomach, your tremendous load is still enough to swell the catboy’s svelte tummy full of your cum, leaving him panting with the sensation of fullness.");
 	else output("The catboy can only whimper as he’s held in place by your " + (pc.hasKnot(pc.biggestCockIndex()) ? "knot" : "turgid shaft") + " and filled with hot cum.");
 	output("\n\nThen, it’s just a few last sloppy thrusts before you come down from your orgasm, a warm afterglow hazing your vision and senses yet. Your [pc.chest] heaves and you breath heavily, muscles sore from constant movement and the force of your peak. You muster the strength to look down at Kase, only to see him giving you a well-fulfilled smile over his shoulder, looking like he’s barely able to keep his eyes open. ");
@@ -888,7 +888,7 @@ public function kaseJoinSteele():void
 	output("\n\nKase gulps, <i>“Well, I just wanted to thank you again for giving me this opportunity, and I will do all that is in my power to make your journey run smoothly.”</i>");
 	output("\n\n" + (pc.isAss() ? "You give him a nod in response" : "You smile at his enthusiasm and thank him") + ", right before Anno returns, clutching a SteeleTech suit in her fluffy hands.");
 	output("\n\n<i>“Here,”</i> she says, handing the latex suit to Kase, <i>“If you’re gonna be part of the SteeleTech family, you’re gonna need one of these.”</i>");
-	output("\n\nThe kaithrit happily accepts the suit, examining its colours and materials while Anno returns to your side. <i>“Do you have a place where I could try this on?”</i>");
+	output("\n\nThe kaithrit happily accepts the suit, examining its colors and materials while Anno returns to your side. <i>“Do you have a place where I could try this on?”</i>");
 	output("\n\nThe ausar beauty is quick to lean in next to your [pc.ear] and whisper, <i>“He could try it on heeeeerrreee.”</i>");
 	output("\n\nThe suggestion makes you smirk, and seems like a good one to you, but you could always let him change in privacy. ");
 	
