@@ -125,7 +125,8 @@
 		include "../includes/holidayEvents/freedomBeef.as";
 		include "../includes/holidayEvents/puppyslutmas.as";
 		include "../includes/holidayEvents/chupacabro.as";
-		include "../includes/holidayEvents/pumpkinCarving.as"
+		include "../includes/holidayEvents/pumpkinCarving.as";
+		include "../includes/holidayEvents/succucow.as";
 
 		//Followers
 		include "../includes/follower/anno.as";

@@ -2676,6 +2676,22 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			flags["PRAI_EMAIL_NUMBER"] = undefined;
 			flags["PRAI_EMAIL_STAMP"] = undefined;
 		}
+		//Sucuccow email
+		if(pc.hasCock() && flags["SUCCUCOW_EMAIL_THIS_YEAR"] == undefined && flags["CIARAN_MET"] != undefined && isHalloweenish())
+		{
+			if (MailManager.isEntryUnlocked("succucow_email"))
+			{
+				MailManager.deleteMailEntry("succucow_email");
+				MailManager.addMailEntry("succucow_email", succucowEmailText, "Check out this weird cabin? Cash reward.", "Ciaran Eildean", "Warden_Eildean@NewTexas.gov", quickPCTo, quickPCToAddress);
+			}
+			goMailGet("succucow_email");
+			flags["SUCCUCOW_EMAIL_THIS_YEAR"] = 1;
+		}
+		else if (!isHalloweenish())
+		{
+			flags["SUCCUCOW_EMAIL_THIS_YEAR"] = undefined;
+			flags["SUCCUCOW'D"] = undefined;
+		}
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette();
 	}

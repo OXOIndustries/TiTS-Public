@@ -206,9 +206,14 @@ public function ciaranTalkMenu():void
 	else if (pc.inHeat()) addButton(7, "Sex", ciaranHeat, true, "", "Ciaran looks restless. Maybe he’d be willing to make an exception for you as long as you’re in heat?");
 	else addDisabledButton(7, "Sex", "Sex", "Ciaran already turned you down once, and judging from how he looks at you, you’re still not girly enough for his tastes. Don’t make it awkward for both of you.");
 
+	if(pc.hasCock() && MailManager.isEntryViewed("succucow_email") && isHalloweenish() && flags["SUCCUCOW'D"] == undefined)
+	{
+		if(hours >= 17 && hours < 20) addButton(10, "Cabin", succucowHook, undefined, "Cabin", "Ask Ciaran about that job offer.");
+		else addDisabledButton(10, "Cabin", "Cabin", "You should wait until the evening. Come back between 17:00-20:00.");
+	}
 	/* 99999 assuming Annebelle's meet flag will be ANNEBELLE_MET - Implement if/when Annebelle is
-	if (flags["ANNEBELLE_MET"] != undefined || flags["CIARAN_ANNE_MET"]) addButton(8, "Annebelle", ciaranTalkAnnebelle, undefined, "Annebelle", "That silver-haired waitress is adorable, and Ciaran seems to know her pretty well, and regularly. Ask the DILF what he knows about Annebelle.");
-	else addDisabledButton(8, "Locked", "Locked", "You can’t ask about someone you haven’t met!");
+	if (flags["ANNEBELLE_MET"] != undefined || flags["CIARAN_ANNE_MET"]) addButton(9, "Annebelle", ciaranTalkAnnebelle, undefined, "Annebelle", "That silver-haired waitress is adorable, and Ciaran seems to know her pretty well, and regularly. Ask the DILF what he knows about Annebelle.");
+	else addDisabledButton(9, "Locked", "Locked", "You can’t ask about someone you haven’t met!");
 	*/
 
 	addButton(14, "Back", ciaranMainMenu, undefined, "", "");
