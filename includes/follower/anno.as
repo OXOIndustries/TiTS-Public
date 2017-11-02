@@ -1817,6 +1817,7 @@ public function annoFollowerShowerSex():void
 	pc.shower();
 
 	annoSexed(1);
+	IncrementFlag("ANNO_SHOWER_SEX");
 
 	clearMenu();
 	addButton(0, "Next", showerExit);

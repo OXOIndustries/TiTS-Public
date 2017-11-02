@@ -3341,6 +3341,9 @@ public function annoPostQuestSexytimes():void
 	pc.orgasm();
 	pc.girlCumInMouth(chars["ANNO"]);
 	anno.orgasm();
+	
+	annoSexed(1);
+	IncrementFlag("ANNO_SHOWER_SEX");
 
 	processTime(20+rand(5));
 	if(!inCombat())
