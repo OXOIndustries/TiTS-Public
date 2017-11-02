@@ -18,6 +18,7 @@ public function paigeHalloweenerIntro():void
 {
 	clearOutput();
 	showPaige();
+	author("B");
 	output("You enter Paige’s unit, looking for your favourite Ausar yoga instructor for some company. She’s always a good way to end a night, even if it doesn’t endven sexily.");
 
 	output("\n\nAlthough Iddi is quick to show you in and holler for his owner, Paige isn’t with you as quickly as she normally is. <i>“Over here,”</i> she yells back, from the opposite end of her unit. She’s huddled into a ball, one ear tightly pressed against the wall. She’s got a tense look of concentration on her face: one eye closed, her nose scrunched as her breath is held. Her ears are straight up and attentive, flicking at any sound she hears.");
@@ -56,6 +57,7 @@ public function rejectTheHalloweeners():void
 {
 	clearOutput();
 	showPaige();
+	author("B");
 	output("You flinch indecisively. When you came to Paige’s unit, you weren’t expecting to deal with burglars. You just wanted to spend some time with her. Going over there sounds like it could be dangerous.");
 	output("\n\n<i>“That’s what makes it exciting, though!”</i> she laughs, and then straightens herself. <i>“I suppose this</i> is <i>kind of an abrupt development in our relationship. I won’t make you go over there if you don’t want, and I’m not going to go without you backing me up. It’s not like they ever steal anything, anyway.”</i>");
 	output("\n\nShe pulls herself to her feet and makes her way to the loveseat deeper into her unit, where she normally likes to sit. <i>“Let me know if you ever change your mind and want to go punch some burglars, alright sweet thing?”</i>");
@@ -76,6 +78,7 @@ public function paigeHalloweenIntroRedux():void
 {
 	clearOutput();
 	showPaige();
+	author("B");
 	output("When you enter Paige’s unit again, she’s at her now-familiar corner, her body pulled into a tight ball and her ear against the wall. She waves you over when Iddi invites you in, motioning for you to sit next to her.");
 	output("\n\n<i>“I’m still on the lookout,”</i> she tells you matter-of-factly. <i>“Once the noises start, they go for about seven solar days, and I’m going to be keeping an ear out for them every single night until then.”</i>");
 	output("\n\nJust as she says that, the eerie noises begin to sound through the thick walls of her unit. Like before, they started with a rough shuffling, followed by a crash, and followed by a cacophony of other noises, particularly whistles, but no voices. You both listen to the noises for a moment, listening for anything that could pin the intrusion to a person, but you hear nothing of the sort.");
@@ -97,6 +100,7 @@ public function okayHalloweenBoners():void
 {
 	clearOutput();
 	showPaige();
+	author("B");
 	output("Hell yes you want to go over there! ");
 	//if {PC’s personality is Hard}
 	if(pc.isAss()) output("Nobody’s going to fuck with your Ausar’s studio as long as you’re here!");
@@ -131,6 +135,7 @@ public function PaigesHalloween2():void
 {
 	clearOutput();
 	showPaige();
+	author("B");
 	output("The lights flicker, then short-circuit with a loud ‘CLANG!’ The light of the room begins to strobe irregularly, subjecting you to the darkness more often than not.");
 	output("\n\nSuddenly, the noises return, and in much greater frequency and high decibels. The scraping comes back in full force, and the whistling has become something just short of a wail, making it difficult to hear anything else. A rhythmic thumping reverberates throughout the studio, slowly growing louder over time.");
 	output("\n\nThe yoga mat you happened to be standing on is yanked from underneath you, knocking you off your feet and sending you tumbling; before you lose your balance, something hits you on the back of the head, rattling what little vision you have in the darkness.");
@@ -158,6 +163,7 @@ public function paigesHalloween3():void
 {
 	clearOutput();
 	showPaige();
+	author("B");
 	output("You fall to the floor, the clasp keeping you against the wall bouncing off the floor with metallic tumbles. You fall to your knees and rub at your wrist to ease the pain there, your eyes ahead of you for anything, but you can’t see in the total darkness. You say Paige’s name once more, and once more, she doesn’t respond.");
 
 	output("\n\nThe lights come on suddenly, brighter than before. They blind you, and you flinch your eyes closed, squinting through splayed fingers to try and see what happened to your Ausar. You see the silhouette of a figure in the room with you, and then footsteps once again. Paige doesn’t respond to anything.");
@@ -190,6 +196,7 @@ public function paigesHalloween4():void
 {
 	clearOutput();
 	showPaige();
+	author("B");
 	output("<i>“Oh my,”</i> the figure says sultrily as she eyes your kneeling form, taking in your every detail from her angle. She licks her lips, her eyes narrowing at you; the bulge in her pants jerks upward, a damp spot seeping through the fabric of her sweatpants. <i>“Do you know this body?”</i>");
 	output("\n\nYou don’t answer, too confused to form a sentence at the moment – and the question itself is a little more macabre than you were prepared for. The woman approaches you, swaying her powerful hips and wagging her ass, and the pole between her legs, before you, using her every asset to entice you. <i>“It’s okay, hun,”</i> she says reassuringly, which, it being Paige’s voice, you actually find unnerving. <i>“You’re acting like this is the first time you’ve ever seen someone get possessed before.”</i>");
 
@@ -240,6 +247,7 @@ public function paigeHalloweenPossessionTalk():void
 {
 	clearOutput();
 	showPaige();
+	author("B");
 	output("You’re still a little dumbstruck by the whole thing, so you’re not exactly thinking as clearly as you’d like – but you could swear that this person just said that they had ‘possessed’ Paige. <i>“What’s to be confused about?”</i> she asks between languid kisses against you. <i>“I’m a spooky ghost, and I possessed... what is she, your girlfriend? Your wife? Whatever, doesn’t matter. I’m in the driver’s seat for now.”</i>");
 	output("\n\nShe’s a... ghost? <i>“Gods,”</i> she sighs exasperatingly, <i>“you’re cute as hell. Please don’t tell me you’re dumb.”</i> You hurry the conversation along, then: was she the one making all the racket in the studio earlier? <i>“Not unless it was some other poltergeist, yeah. ‘s me, every year, on the dot. I materialize – I guess? I guess that’s what you’d call it? Yeah, anyway, I materialize, horny as all hell, and I make a big ol’ ruckus to try and get someone to poke their nose in so I can take over. Funny thing, though, a shitload of noise with nobody to blame tends to push people away, not bring them in.”</i> She pulls away from you to admire her bulging muscles and defined abs once more. <i>“Patience really</i> is <i>a virtue! Thirty years, and I couldn’t have pictured a better body to take over!”</i>");
 	output("\n\nWhy did she choose Paige? <i>“Couldn’t tell the difference between you and her, actually,”</i> she says, the hand at your back sliding downward to get a handful of your [pc.ass]. <i>“Let’s just say... you see things differently when you’re a spirit. You can’t see bodies or places or anything; what you see is... I can’t really describe it. They didn’t invent words for it. Best I could call it is your ‘life.’ I saw two healthy people walk into my unit, and I just picked one.”</i> She kisses your cheek sensually. <i>“Lucky for me, whichever one I picked, I’d have been a winner.”</i>");
@@ -284,6 +292,7 @@ public function ghostlyOldLifeTalk():void
 {
 	clearOutput();
 	showPaige();
+	author("B");
 	output("You ask to whom you have the pleasure of speaking to.");
 	output("\n\nShe immediately stops everything and goes stock-still against you, processing the question. She stutters slightly, unable or unsure of how to answer you; her exasperation feels unfamiliar, coming from sure, confident Paige. <i>“Thing is,”</i> she says quietly, her earlier, horny attitude replaced with something much more somber – upset, even. <i>“Death... it... it removes your sense of self. The name you die with is for your body; your spirit doesn’t take that with you when you leave. I still have my memories: I could tell you everything about my past life when I kicked it thirty years ago, but my name isn’t one of them. I don’t remember it. When you asked for my name, my first impulse was to say my name is Paige.”</i>");
 	output("\n\nYou ask, then, who she was in her previous life. <i>“I was a Kui-Tan. Lived in this unit for most of my life.”</i> Her fingers dip lower, scratching lightly at your waist and daring themselves to go further south. <i>“Whoever got it after me probably got it for a bargain. Cadavers tend to tank the resale value of real-estate.”</i> You ask her how old she was. <i>“I see it’s no longer rude to ask a lady her age,”</i> she answers mirthfully. <i>“Old enough to have seen it all; young enough for it to have been ‘before my time.’ Let’s leave it at that.”</i>");
@@ -329,6 +338,7 @@ public function whereIsPaige():void
 {
 	clearOutput();
 	showPaige();
+	author("B");
 	output("Whoever this person is, it’s clearly not Paige, despite the resemblance. You ask them what’s happened to her.");
 	output("\n\n<i>“Paige is the name of this sexy number, is it?”</i> she asks, pulling away from you to grope at herself some more. <i>“And you two are an item? I want you to tell her</i> every day <i>how fucking sexy she is. Godsdamn, a body like this deserves to be worshipped. I never had my abs this tight when I was still kicking.”</i> She squeezes at her boobs, pressing them together, deepening their cleavage in front of you. <i>“The titties aren’t the biggest, but shit, they’re so firm I feel like I could punch a man out with them.”</i>");
 	output("\n\nYou’re aware of how tight Paige’s body is, but that’s not what you asked. Losing your patience a bit, you grit your teeth and ask again where she is. <i>“She’s fine,”</i> she answers, knocking on her own skull with her knuckles playfully. <i>“She’s taking a backseat for now. She’s just as confused as you are, but, and I know this is going to be difficult to believe, I just want to borrow her for a night. One night! Then I’ll be out of your hair... until next year, anyway. You think you two can put up with me for one night?”</i>");
@@ -374,6 +384,7 @@ public function tooSpoopyFourMe():void
 {
 	clearOutput();
 	showPaige();
+	author("B");
 	output("This is just too much information for you to take in. You had come into this studio to catch a burglar and maybe start a fight; you hadn’t counted on poltergeists, body-snatching, and whatever other paranormal bullshit is going on here. You need to get out!");
 	output("\n\nYou push ‘Paige’ away from you as you frantically scramble for the far door. She grunts in surprise and falls backward, hitting the floor with a harsh thud. You have to get across the whole studio to get there, but you’re confident you can outrun Paige. You’re not sure what your plan is after that – Tavros is a large, diverse station. Maybe someone on it can perform an exorcism.");
 
@@ -400,6 +411,7 @@ public function noThankYouGhost():void
 {
 	clearOutput();
 	showPaige();
+	author("B");
 	output("Without thinking about it, you clench your right hand into a fist, and you crack Paige across the face as hard as you can. Your swing is a little stunted by the fact she’s holding you by the shoulders, but the result is exactly what you were hoping for.");
 	output("\n\nShe falls into a slump next to you, face down on the mat, out cold. When you blink, her body transforms instantaneously: the fur on her tail goes back to its straighter, smoothlined texture; her ears go back to their pointed, triangular forms; her muzzle elongates, back to its earlier length. You hazard a guess that her other addition has vanished as well.");
 	output("\n\nHer breathing is steady, but she’s unresponsive to your words or prodding. At least you didn’t break her neck by accident or something. You pull yourself to your [pc.feet], rubbing your knuckles. Uh... now what?");
@@ -418,6 +430,7 @@ public function HSIFT(twospoop:Boolean = false):void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	paigeGhostFutaGo();
 	if(!twospoop)
 	{
@@ -468,6 +481,7 @@ public function HSS1():void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	output("You grip onto the waistband of her pants, tugging at it a bit, teasing that you’ll pull them down and release the demon they contain. Instead, you lean forward and press your nose against the hard, damp spire, breathing deeply through your nose, taking in her thick musk the same way she did to you.");
 	output("\n\nPaige hums in approval, and the neurological response you both get is immediate and intense. Your back goes slack and your neck cranes upward; your face sinks into Paige’s crotch, her cock drawing a thick line down your face as you go, submersing yourself in a scent that is undeniably, <i>powerfully</i> masculine, and yet is simultaneously, unmistakably Paige. And Paige, in turn, feeling in control of the situation in a way she’s never experienced before, grips your head lightly, her erection straining, the fibers of her pants audibly creaking as they stretch to contain her.");
 	output("\n\nYou lose your composure and pull back, giving the tip of her spire another long draw against your nose, before you open your mouth and stick it in, bathing her thick meat through the thin material of her pants. The taste of her Ausar pre melts onto your tongue; it touches your tip, then spreads, like a virus, across your buds and along your cheeks. You crave more: you moan as you lean forward, swallowing more of her concealed cock, using your tongue to rub it against the roof of your mouth.");
@@ -501,6 +515,7 @@ public function HSLP():void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	output("You’re excited to see what sort of package Paige is carrying, and you’re already fantasizing about the new, exciting ways you both can explore her new body. You don’t waste any time – she’s hornier than you are, but you’re well on your way to meeting her there. You wrap your fingers around the waistband of Paige’s pants, and yank them down.");
 	output("\n\nYou underestimate the length of her newest addition, and it gets caught in the elastic as you pull down; when her pants get to her knees, it springs back upward, striking you in the chin, its precum splashing against your neck. When you recoil, you get a great look at the challenge before you: as thick around as a wrist and as long as your forearm, Paige’s Ausar cock bobs before your eyes; as invigorated as it is, it’s too heavy to support itself, and it sags down, its tip knocking against her kneecaps. At its base is a knot as thick as your fist, and beneath them are two grapefruit-sized testicles, snug beneath a thin layer of fine fur, churning with load after load for your willing body.");
 	output("\n\n<i>“On all fours,”</i> Paige commands you, and you comply, but not before gingerly lifting the monolith to your [pc.lips] and giving it a long, languid kiss, sucking out some precum as an appetizer. You spin around, presenting yourself again to Paige, your ");
@@ -523,6 +538,7 @@ public function HSO():void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	output("Once the sweet ambrosia that is Paige’s precum hit your [pc.tongue], a hunger developed in not just your belly, but the whole of your being; you <i>need</i> to have her cum, and the only way you’ll be satisfied is if you feel the hot, smooth ichor slide across your maw and down your throat.");
 	output("\n\nHer Ausar dick is the girth of a wrist, and it’s so long, its tip slaps against her kneecaps. Its base is bloated with a knot the size of your fist, and shadowed underneath that are two grapefruit-sized testicles, each snug underneath a layer of fine, brown fur. Her cock is too heavy to support its own weight, so you do it a favor and hoist it with your hands, leveling it, before bathing it with your tongue.");
 	output("\n\nPaige’s hands run lovingly through over your head");
@@ -546,6 +562,7 @@ public function HSVA():void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	output("Riding on a high off Paige’s musk and flavors, you’re barely conscious of yourself lying flat on your back and lifting your [pc.legs] up and over your shoulders, presenting your [pc.vagOrAss] to her. You don’t need to say anything and Paige needs no further invitation; you feel a harsh clap of her hand against your right buttcheek, followed by a rough grope, her powerful fingers flexing at your flesh, as she moves into position, her body towering over you.");
 	output("\n\nHer other hand comes down on your other cheek, lifting you up as she settles into position above you. She flops her doggy dong ");
 	if(pc.legCount > 1) output("between your [pc.legs]");
@@ -601,6 +618,7 @@ public function HSLD():void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	output("You lay flat on your [pc.belly], folding your arms to rest your head against as you let Paige do what she wants to you. You surrender yourself as little more than a hole for her and her new equipment; you rest and relax, making the coming intrusion as difficulty-free as you can.");
 	output("\n\nPaige crawls forward, laying her own body across yours: you feel her fur tickle against your lower back and her boobs rest on your shoulders, the hardened, pointed nipples digging into your skin. She licks at your ear, nibbling at it gently, as gravity slides her thick length into your [pc.vagOrAss]. You count the millimeters she penetrates you, and you welcome each one, in body and in mind.");
 
@@ -645,6 +663,7 @@ public function HSBB():void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	output("Horny and impatient, you ball your hands into fists as you push back against you, swallowing more of her with your [pc.vagOrAss]. Your senses alight; your [pc.tongue] lolls out and you unconsciously drool just a little as your body adjusts to the sudden, intense heat inside your body. You’re split open; Paige wears you like a sock for her cock, and you haven’t even touched down on her knot yet.");
 	if(pc.hasVagina()) pc.cuntChange(0,paige.cockVolume(0));
 	else pc.buttChange(paige.cockVolume(0));
@@ -666,6 +685,7 @@ public function HSYM():void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	output("You give her shivering cock a quick kiss, before gently yet eagerly sliding it back in. You twist your head to one side, allowing the spade to slide along the inside of your cheek. You compress, applying light, warm pressure to the entirety of her shaft, your [pc.tongue] washing over it from every angle it can twist and writhe to. You lean in, dipping further, until it hits the edge of your throat – but there’s still more of her to take, and you won’t be satisfied until you’ve taken all of her.");
 	output("\n\nTaking your actions as a sign that this is where you want to be for the big climax, Paige grips onto your head and lightly rocks her toned hips back and forth, sawing herself in and out of you. Your vision is clouded by her incredible six-pack; the incline of her pelvis against her abdominals; and her knot, constantly bumping you in the nose on every inward push.");
 	output("\n\nYou feel her flex in her mouth as pre fountains from her, coating your tastebuds before sliding into your gullet. You reach forward, one hand cupping her balls to usher the real prize forward, and the other wrapping and gliding around the ball of her knot, simulating it being locked in a bitch. Your efforts don’t go unappreciated: Paige starts humping harder, pushing you past your limit, until your [pc.lips] finally kiss against her knot.");
@@ -686,6 +706,7 @@ public function HSYF():void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	output("You pucker your [pc.lips] and give the spade of her cock a kiss, slipping it in for good measure, but you don’t take her much deeper than that. You suckle and slurp at her, compressing to stimulate her tip and drinking every delicious drop of her Ausar pre that she gives you. Your hands glide along her slick-with-spit cock, masturbating her to her finish.");
 	output("\n\nPaige gets what it is you want, and she stands steadily, letting you work her with your hands. <i>“Want it all over your face?”</i> she asks you. You don’t answer, absorbed in your work as you are. <i>“Want to wear my Ausar cum like mascara? Keep it up.”</i>");
 	output("\n\nYour left hand travels down her shaft, rubbing at her knot like a glass ball while your right continues to jerk her. You feel its thickness and marvel at its heat; your hand travels upward, scratching between the valleys of her abdominals and admiring how each one pokes back at you; you go low, to her balls, each hefty nut large enough to fill your hand and each one dense enough to promise a facial unlike anything you’ve experienced");
@@ -711,6 +732,7 @@ public function HSPO():void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	output("Maybe not this time. You ask Paige to not knot you.");
 
 	output("\n\nShe growls in frustration, but nonetheless acquiesces. <i>“You’re lucky you’re cute,”</i> she says. She does not stop or even slow her thrusting, but the sound of your body slapping against her knot is as deep as it ever gets. You thank her between her body-shaking thrusts; she’s large enough that your [pc.vagOrAss] feels stuffed beyond compare even without it.");
@@ -735,6 +757,7 @@ public function HSTHK():void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	output("You decide to say nothing: Paige needs no further encouragement to shove herself deep into you and lock you in place as her cumdump. You lift your [pc.legs] and wrap them around her waist, flexing them whenever Paige pushes in you help her along, ushering her into the temple that is your [pc.vagOrAss].");
 	output("\n\nSensing your submission and eagerness to take her into you, Paige reaches beneath you, grapping you by the [pc.ass] and lifting you, giving her more leverage to fuck you. The pummeling your body is taking by the chunk of flesh at the base of her already-formidable cock is starting to hurt a bit, but, in equal parts mind-drunk pleasure, adoration for Paige, and pure curiosity, you... you just want to feel it inside you. You want to know what it’s like.");
 	output("\n\n<i>“This’ll probably hurt,”</i> Paige warns you. You grunt your acknowledgement but you make no attempt to stop her, and she continues on: her thrusts grow stronger and more determined, until your tortured body begins to relent: your [pc.vagOrAss] yawns slightly wider with every other push inside, until you feel yourself stretch to accommodate the top of her wide knot. She instinctually knows that she’s past the point of no return and stops thrusting in favor of simply pushing herself until she’s in.");
@@ -757,6 +780,7 @@ public function HSS2():void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	output("You part your lips – at first, you don’t have the breath or the strength to say anything, lodged onto Paige’s engorged cock as you are. You collect yourself and try again. <i>“I love it,”</i> you say, perhaps a little quieter than Paige would have liked to hear.");
 	output("\n\n<i>“Louder,”</i> she says, although, based on the sudden jerk in your [pc.vagOrAss] and the way Paige’s body has started fucking you – slowly for now. <i>“");
 	if(flags["PAIGE_GHOSTED"] == undefined) output("She");
@@ -802,6 +826,7 @@ public function HSSN():void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	output("<i>“Nope,”</i> you say defiantly, lifting your [pc.ass] and rocking it back and forth, dragging her thick dick with it. <i>“I’m not going to say it, and you can’t make me.”</i>");
 
 	output("\n\nPaige hums to herself as she lowers her body, planting both hands on either side of your head, flat on the mat. <i>“Bold words, for a [pc.boyGirl] filled with some dick,”</i> she whispers. You feel her nipples drag along your back, her breasts weighing down on your shoulder blades. <i>“We’ll see how long that attitude lasts.”</i>");
@@ -851,6 +876,7 @@ public function HSR():void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	output("Thinking better of actively trying to shove something <i>that</i> huge into your [pc.vagOrAss]. you lower your shoulders and sigh, trying your best to release the tension in your body so that Paige will have an easier time ‘introducing’ herself to you. You don’t stop your bouncing on her tool, but you slow it quite a bit, to the point where Paige has to grip onto your [pc.hips] and take control of the pace.");
 	output("\n\n<i>“That’s it,”</i> she says adoringly; one hand travels up your back, against your neck, and she gently, lovingly brushes your cheek with her fingers. <i>“It’s going to be a hell of a journey, [pc.name],”</i> she warns – not that you need to be told that: it already feels like she’s pushing a baseball up there. <i>“Just relax, and you’ll have all of me in you in just a moment.”</i>");
 	output("\n\nAfter a few more thrusts, battering your body open enough for her liking, she gives one, final push. <i>“It’s coming now, [pc.name],”</i> she says soothingly, but through gritted teeth, focused as much as you are on getting it inside you. <i>“You’re such a good lover, wanting to take a cock as big as mine");
@@ -882,6 +908,7 @@ public function HSTI():void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	output("The thought of having this <i>beast</i> split you apart is all too enticing for you to ignore, and you buck back harder against Paige, excited at the prospect of taking her knot inside you");
 	if(pc.hasVagina()) output(". Your [pc.vagina] spreads wider and wider with each thrust, spreading apart, lubed and ready to cement you as Paige’s bottom bitch for the night");
 	else
@@ -917,6 +944,7 @@ public function HSE1():void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	output("Paige huffs once, the air leaving her lungs in a hurry, as cum rockets from her happy dick, pumping straight into your mouth. You feel her flesh expand against your tongue until it fills your mouth as her ambrosia floods your cheeks; it washes against your tongue and cakes your gums and your teeth, until there’s no room left, so, taking a deep breath through your nose (and loving the huge whiff of Paige’s musk that comes with it), you swallow – and yet, she doesn’t stop.");
 	output("\n\nIt tastes exactly as you had hoped: salty, hot, but with a tangy undercurrent that distinctly reminds you of Paige. The load in your mouth is quickly replaced with another, and then a third, and you usher it all into your mouth with your still-washing tongue. You wonder if this is all because of the spirit possessing Paige, or if it’s some combination of the spirit and Paige working through their years-long abstinences together, but her load is certainly larger than you had anticipated. But that’s okay with you: you’re a proper cumdump, and you’ll take every precious load Paige has to give you.");
 	output("\n\nThe hand on her balls massages them through the whole ordeal, as they bunch and squeeze against Paige’s tight body with every load that passes through her dick. Paige’s body shakes and quivers through it all, finding it difficult to remain upright as she cums and cums into your thirsty mouth");
@@ -948,6 +976,7 @@ public function HSE2():void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	output("You open your mouth and stick out your [pc.tongue], more for show than because you want her cum in your mouth – if you did, you probably would have just taken her in the mouth. Still, you get what you want, and Paige wants to give it to you: after another few hurried pumps of her hands, she’s erupting, her cum rushing from her cock in huge waves.");
 	output("\n\nThe first load splashes along your face, painting a trail that goes from your [pc.belly] all the way up to your scalp. You hum in delight as you feel the heat of her cum seep into your [pc.skinFurScales]; your hands go to your chest and stomach, and you rub Paige’s cum into your body");
 	if(pc.biggestTitSize() >= 4) output(" and into the depths of your cleavage");
@@ -974,6 +1003,7 @@ public function HSE3():void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	output("You’re both tense and clenched, Paige’s strong body laid over yours as her cock flexes inside your [pc.vagOrAss]. It takes a moment for you to register what’s happening inside you: between the heat of her body; the panting of her breath; and the myriad of feelings erupting in your lower body, you don’t recognize the sensation of Paige’s cum flooding your tunnel, not until the second wave.");
 	output("\n\nPaige is breathing hard atop you, through clenched teeth. She groans your name with each pulse of her heavy balls and another surge of her warm jizz into your body. You don’t have the awareness to respond: you’re too blitzed out, your senses overloaded, to the point where you’ve lost count of how many loads Paige has given you after the second.");
 	output("\n\nYou wiggle your [pc.hips] involuntarily, rubbing against her knot, enticing out every last drop. ");
@@ -1010,6 +1040,7 @@ public function SSE4():void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	output("You feel warmth blossom from inside your body, starting just below your [pc.belly] and spreading to the rest of your torso, and then it transforms, similar but different, when it goes towards your head and your limbs. Paige breathes hard, in through her nose and out through her mouth, humping against your [pc.vagOrAss] as she deposits her first load inside you.");
 	output("\n\nYou hum in lust as she uses you, as she <i>fills</i> you; you push your butt back against her, rubbing your [pc.thighs] against her furry balls, feeling them clench and coil into her body with every wave of cum. She sprays like a hose inside your body, her cum reaching deeper into you than you thought possible; with every flex of her rock-hard cock inside you, she puts in just that much more, and not a drop of it slips out from the watertight seal that is her knot lodged into your hole.");
 
@@ -1045,6 +1076,7 @@ public function SSE5():void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	output("You begin babbling insensately as you feel Paige’s cum flood your body. As soon as the first wave hits your tunnels, you thrust backward against her, greedily pleading for more, even though, some part of you realizes, that she’s only starting. You feel her balls against the back of your [pc.legs], scrunching up tightly against your body, before loosening, then scrunching again, accompanying another thick wave of delicious, life-giving Ausar semen for your thirsty form.");
 	output("\n\nPaige barely has to say or do anything with how insistent you are for more of herself inside you. Still, she humors you by thrusting the few centimeters between her knot and her body that’s left to fuck you with. The motions make every batch of cum feel just a little bit bigger than the last; with every thrust, it all seeps just a little deeper into you. You <i>need</i> as much of Paige inside you, as a <i>part</i> of you, as you can, and every little thing you both do helps.");
 	output("\n\nWhen the third wave of her cum hits you, y");
@@ -1071,6 +1103,7 @@ public function HSA(comeFrom:String):void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	IncrementFlag("PAIGE_GHOSTED")
 	output("You and Paige lie on the mat, panting in exhaustion");
 	//if {HSE1}
@@ -1166,6 +1199,7 @@ public function HSA2(comeFrom:String):void
 {
 	clearOutput();
 	showPaige(true);
+	author("B");
 	output("Not that you can see it, with Paige lying behind you, but you feel her very physiology change in rapid succession: mostly, her fur gets coarser and shorter, and her grip around your torso gets a little lighter, but, most obviously, you feel her dick shrink at a rapid pace");
 	//if {HSE1 or 2}
 	if(comeFrom == "HSE1" || comeFrom == "HSE2") output(". Where she was previously hotdogging it between your [pc.ass], keeping it warm and snug, now there’s simply nothing at all down there");
@@ -1224,6 +1258,7 @@ public function paigeGhostGhost():void
 	clearOutput();
 	showPaige(true);
 	paigeGhostFutaGo();
+	author("B");
 	output("You ask Paige if it’s alright if she lets the ghost riding shotgun with her out to play. Your mouth is already watering at the idea of Paige fucking you with that massive rod of hers.");
 	output("\n\n<i>“Fiending for some of my hot sauce, are you, sweet thing?”</i> she says playfully, disengaging from your prone form. She’s soaked through her sweatpants, but the idea of getting a little extra to play with turns her on as much as you. <i>“I’m sure she’s just as eager to get some attention, too. Give us a second.”</i>");
 	output("\n\nShe stands before you, her eyes shut lightly as she focuses on calling forth her spectral second-half. When she opens her eyes again, they’re glowing the same, ethereal green as before, illuminating the room like a nightlight. Then, a light, airy ‘whoosh’ passes through the room, and, just like that, Paige’s body transforms to take on the form of her poltergeist.");
