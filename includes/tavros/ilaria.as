@@ -826,7 +826,7 @@ public function ilariaPreg2EmailText():String
 {
 	var eText:String = "";
 	
-	eText+="Hello, [pc.mr]. Steele, I'm writing on behalf of Ms. Ilaria Ilgade, who gave me this address and asked me to inform you that she arrived here at the medical center a few minutes ago, going into labor. Our staff is already tending to her, and according to our scans, you are about to be the father of " + flags["ILARIA_NUM_BABIES"] + " " + (pc.race() == "half-ausar" || pc.isAusar() ? "" : "half-") + "ausar pups. Per her request, they will be sent to the Steele Tech nursery after they and Ilaria have recovered. The mother should be able to leave later today.";
+	eText+="Hello, [pc.Mr]. Steele, I'm writing on behalf of Ms. Ilaria Ilgade, who gave me this address and asked me to inform you that she arrived here at the medical center a few minutes ago, going into labor. Our staff is already tending to her, and according to our scans, you are about to be the father of " + flags["ILARIA_NUM_BABIES"] + " " + (pc.race() == "half-ausar" || pc.isAusar() ? "" : "half-") + "ausar pups. Per her request, they will be sent to the Steele Tech nursery after they and Ilaria have recovered. The mother should be able to leave later today.";
 	eText+="\n\nCongratulations!";
 	eText+="\n\nNurse Carter";
 	eText+="\nTavros Residential Clinic, Deck 45";
