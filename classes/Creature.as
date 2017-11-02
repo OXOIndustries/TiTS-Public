@@ -2463,8 +2463,8 @@
 				case "miss":
 					buffer = mf("mister", "miss");
 					break;
-				case "Mr":
-				case "Ms":
+				case "mr":
+				case "ms":
 					buffer = mf("Mr", "Ms");
 					break;
 				case "man":
