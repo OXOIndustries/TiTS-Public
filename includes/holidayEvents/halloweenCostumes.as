@@ -1,7 +1,7 @@
 ﻿public function isHalloweenish():Boolean
 {
 	//checkDate(day:int, month:int, dayRange:int)
-	return checkDate(29, 10, 3);
+	return checkDate(29, 10, 10);
 }
 
 public function showHoliday(arg:String = "normal"):void
