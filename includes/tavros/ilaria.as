@@ -57,9 +57,9 @@ public function approachIlaria():void
 	//Repeat
 	else if(flags["ILARIA_PREG_EMAIL1"] == 1)
 	{
-		output("<i>“[pc.name]!”</i> the bunny-babe yips, bounding over and hopping into your arms. She gives you a kiss and grabs your hand, directing it down to her [ilaria.belly]. <i>“I'm glad you came by. Really glad... my virile stud.”</i>");
-		output("\n\nShe giggles, and nuzzles herself under your arm. <i>“Sorry, I'm terrible about the whole 'romance' thing, but I'm definitely excited! Super duper extra excited! I've " + (flags["ILARIA_TOTAL_KIDS"] > 0 ? "been waiting for the next happy accident you left in my  pussy to take root -- the last time was awesome" : "never been pregnant before") + "!”</i>");
-		output("\n\nIlaria squeals excitedly, bouncing on her bunny-like heels. Her excitement is infectious, and soon you're allowing her to guide you into a barstool and enticing whatever your favorite order from the menu is -- her treat. Between her giddy ejaculations, you manage to " + (flags["ILARIA_TOTAL_KIDS"] > 0 ? "remind" : "inform") + " her of the nursery dedicated to you upstairs -- she's free to make use of its facilities during and after her pregnancy. That, she says, takes what little weight she'd been feeling off her shoulders: a place that'll take care of her children while she works will make this all the sweeter for her.");
+		output("<i>“[pc.name]!”</i> the bunny-babe yips, bounding over and hopping into your arms. She gives you a kiss and grabs your hand, directing it down to her [ilaria.belly]. <i>“I’m glad you came by. Really glad... my virile stud.”</i>");
+		output("\n\nShe giggles, and nuzzles herself under your arm. <i>“Sorry, I’m terrible about the whole ‘romance’ thing, but I’m definitely excited! Super duper extra excited! I’ve " + (flags["ILARIA_TOTAL_KIDS"] > 0 ? "been waiting for the next happy accident you left in my  pussy to take root -- the last time was awesome" : "never been pregnant before") + "!”</i>");
+		output("\n\nIlaria squeals excitedly, bouncing on her bunny-like heels. Her excitement is infectious, and soon you’re allowing her to guide you into a barstool and enticing whatever your favorite order from the menu is -- her treat. Between her giddy ejaculations, you manage to " + (flags["ILARIA_TOTAL_KIDS"] > 0 ? "remind" : "inform") + " her of the nursery dedicated to you upstairs -- she’s free to make use of its facilities during and after her pregnancy. That, she says, takes what little weight she’d been feeling off her shoulders: a place that’ll take care of her children while she works will make this all the sweeter for her.");
 		
 		flags["ILARIA_PREG_EMAIL1"] = 2;
 	}
@@ -813,9 +813,9 @@ public function ilariaPreg1EmailText():String
 {
 	var eText:String = "";
 	
-	eText+=(!(flags["ILARIA_TOTAL_KIDS"] > 0) ? "Hope this is the right address, otherwise I'm gonna be real embarrassed!" : "Well, I'm emailing you, so I guess you know what that means by now~");
-	eText+="\n\nI just got back from the station clinic. Missed a certain regular ausar-girl function, and... well... somebody's going to be a daddy! I'd say “whoops” or something, but I'm just too excited! Yay! " + (!(flags["ILARIA_TOTAL_KIDS"] > 0) ? "I've always wanted to be a mom, even if it's a happy lil' accident with my favorite cock-milking assistant. I hope you're not freaked out, but I've heard about that nursery upstairs... so we've got that taken care of, right? It's all gonna be okay! " : "You keep breeding me, and I'll keep pumping 'em out, babe! ") + "Just thinking about swelling up all gravid and full of our litter is making me rock hard with anticipation!!!";
-	eText+="\n\nCome on by the bakery and we'll have some sweets to celebrate!";
+	eText+=(!(flags["ILARIA_TOTAL_KIDS"] > 0) ? "Hope this is the right address, otherwise I’m gonna be real embarrassed!" : "Well, I’m emailing you, so I guess you know what that means by now~");
+	eText+="\n\nI just got back from the station clinic. Missed a certain regular ausar-girl function, and... well... somebody’s going to be a daddy! I’d say “whoops” or something, but I’m just too excited! Yay! " + (!(flags["ILARIA_TOTAL_KIDS"] > 0) ? "I’ve always wanted to be a mom, even if it’s a happy lil’ accident with my favorite cock-milking assistant. I hope you’re not freaked out, but I’ve heard about that nursery upstairs... so we’ve got that taken care of, right? It’s all gonna be okay! " : "You keep breeding me, and I’ll keep pumping ‘em out, babe! ") + "Just thinking about swelling up all gravid and full of our litter is making me rock hard with anticipation!!!";
+	eText+="\n\nCome on by the bakery and we’ll have some sweets to celebrate!";
 	eText+="\n\n<3 <3 <3 <3 <3";
 	eText+="\n-Ily";
 	
@@ -826,7 +826,7 @@ public function ilariaPreg2EmailText():String
 {
 	var eText:String = "";
 	
-	eText+="Hello, [pc.Mr]. Steele, I'm writing on behalf of Ms. Ilaria Ilgade, who gave me this address and asked me to inform you that she arrived here at the medical center a few minutes ago, going into labor. Our staff is already tending to her, and according to our scans, you are about to be the father of " + flags["ILARIA_NUM_BABIES"] + " " + (pc.race() == "half-ausar" || pc.isAusar() ? "" : "half-") + "ausar pups. Per her request, they will be sent to the Steele Tech nursery after they and Ilaria have recovered. The mother should be able to leave later today.";
+	eText+="Hello, [pc.Mr]. Steele, I’m writing on behalf of Ms. Ilaria Ilgade, who gave me this address and asked me to inform you that she arrived here at the medical center a few minutes ago, going into labor. Our staff is already tending to her, and according to our scans, you are about to be the father of " + flags["ILARIA_NUM_BABIES"] + " " + (pc.race() == "half-ausar" || pc.isAusar() ? "" : "half-") + "ausar pups. Per her request, they will be sent to the Steele Tech nursery after they and Ilaria have recovered. The mother should be able to leave later today.";
 	eText+="\n\nCongratulations!";
 	eText+="\n\nNurse Carter";
 	eText+="\nTavros Residential Clinic, Deck 45";

@@ -3698,7 +3698,7 @@ public function SSDYHH(args:Array):void
 	showPaige(true);
 	args.push("SSDYHH");
 	output("You run your fingers through Paige’s shoulder-length brown hair, playing with the strands there are she works on you. You massage her scalp as if you were moisturizing it for a shower. Now <i>that</i> gives you an idea for later.");
-	if(silly) output(" You’ve never had sex with a dog-lady in a shower before. What a unique idea!");
+	if(silly && flags["ANNO_SHOWER_SEX"] == undefined) output(" You’ve never had sex with a dog-lady in a shower before. What a unique idea!");
 
 	// Continue here if Paige is focusing on the PC’s penis
 	if(args[0] == 1)

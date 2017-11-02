@@ -19878,7 +19878,8 @@
 		}
 		public function isSSTDImmune():Boolean
 		{
-			return (hasPerk("STD Immune") || hasStatusEffect("STD Immunity"));
+			if(hasPerk("STD Immune") || hasStatusEffect("STD Immunity")) return true;
+			return false;
 		}
 		public function sstdChecks(cumFrom:Creature = null, location:String = "ass"):void
 		{
