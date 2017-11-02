@@ -286,7 +286,7 @@ private function bodyPartUpdates(partName:String = "none", deltaT:uint = 0):void
 			if(nCurBellyDebuff != nNewBellyDebuff) {
 				if(msg != "") AddLogEvent(msg, "passive", deltaT);
 				pc.setStatusValue("Bulky Belly", 1, nNewBellyDebuff);
-				pc.setStatusTooltip("Bulky Belly", "The size of your belly weighs you down, dropping your reflexes and evasion chances by " + ((1.0 - nNewBellyDebuff) * 100) + "%.");
+				pc.setStatusTooltip("Bulky Belly", "The size of your belly weighs you down, dropping your reflexes and evasion chances by " + (Math.round((1.0 - nNewBellyDebuff) * 1000) / 10) + "%.");
 			}
 		}
 		else if(partName == "butt")

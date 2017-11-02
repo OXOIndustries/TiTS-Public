@@ -582,7 +582,7 @@ public function kaseSexFrott(x:int):void
 		output("Grinning back at the kaithrit, you use your free hand to ");
 		if(pc.hasArmor()) output("unbuckle your [pc.armor]");
 		if(pc.hasArmor() && pc.hasLowerGarment()) output(" and ");
-		if(pc.hasLowerGarment()) output("drop your [pc.lowerundergarment]");
+		if(pc.hasLowerGarment()) output("drop your [pc.lowerUndergarment]");
 		output(", letting your [pc.cock " + x + "] fall free of its confines and drop right onto Kase’s barb-covered shaft.");
 	}	
 	else output("Grinning back at the kaithrit, you use your free hand take hold of your [pc.cock " + x + "] and drop it right onto Kase’s barb-covered shaft.");

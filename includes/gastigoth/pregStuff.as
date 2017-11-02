@@ -15,11 +15,11 @@ public function impregAPrisoner(prisonerName:String):void
 	
 	const GAST_PREG_COST:int = 15000;
 	
-	output("You tap the sub-menu labelled “Breeding Program: Eligibility.” Gastigoth's standard U.I. radiates several new statistics and options around, exploding close-up digital dissections of the prisoner's DNA and reading off tab after tab of psych evaluations. Woah, that's a lot to process.");
+	output("You tap the sub-menu labelled “Breeding Program: Eligibility.” Gastigoth’s standard U.I. radiates several new statistics and options around, exploding close-up digital dissections of the prisoner’s DNA and reading off tab after tab of psych evaluations. Woah, that’s a lot to process.");
 	output("\n\nAt the bottom of the huge stack of readouts is a contract, explaining in more detail what exactly is going to happen if you choose to take advantage of this service:");
-	output("\n\nYou're going to visit the prisoner in a conjugal cube. Before arrival, the prisoner will be dosed with a cocktail of aphrodisiacs and fertility enhancers ensured to keep her docile, and increase your chances of a successful impregnation. If you're successful, you'll be charged an additional " + GAST_PREG_COST/1000 + "," + ("000".substr(0, 3 - String(GAST_PREG_COST%1000).length) + String(GAST_PREG_COST%1000)) + " credits once the inmate delivers her child. In addition to maternal care, this will cover in-utero gene modification to your specifications, including “treatment” of any defects such as psychosis that might be passed on by the inmate parent. After birth, the infant will be sent to a location of your choosing -- in this case, you fill out the Tavros nursery details. Better almost anywhere than the prison, you suppose.");
-	output("\n\nThat's a lot of money, though, and the contract doesn't say what happens if you can't pay it. Nothing good, you suspect. ");
-	if(flags[prisonerName.toUpperCase() + "_PREG_PAID"] != undefined) output("<b>You've already paid to knockup this prisoner, but must still pay the regular 1,000 CR fee.</b>");
+	output("\n\nYou’re going to visit the prisoner in a conjugal cube. Before arrival, the prisoner will be dosed with a cocktail of aphrodisiacs and fertility enhancers ensured to keep her docile, and increase your chances of a successful impregnation. If you’re successful, you’ll be charged an additional " + GAST_PREG_COST/1000 + "," + ("000".substr(0, 3 - String(GAST_PREG_COST%1000).length) + String(GAST_PREG_COST%1000)) + " credits once the inmate delivers her child. In addition to maternal care, this will cover in-utero gene modification to your specifications, including “treatment” of any defects such as psychosis that might be passed on by the inmate parent. After birth, the infant will be sent to a location of your choosing -- in this case, you fill out the Tavros nursery details. Better almost anywhere than the prison, you suppose.");
+	output("\n\nThat’s a lot of money, though, and the contract doesn’t say what happens if you can’t pay it. Nothing good, you suspect. ");
+	if(flags[prisonerName.toUpperCase() + "_PREG_PAID"] != undefined) output("<b>You’ve already paid to knockup this prisoner, but must still pay the regular 1,000 CR fee.</b>");
 	else output("<b>Just in case, you decide to pay now rather than risk it.</b>");
 	output("\n\nDo you want to go through with this?");
 	
@@ -30,8 +30,8 @@ public function impregAPrisoner(prisonerName:String):void
 	//SAM_PREG_PAID
 	//KHORGAN_PREG_PAID
 	//etc.
-	if(pc.credits >= GAST_PREG_COST || (flags[prisonerName.toUpperCase() + "_PREG_PAID"] != undefined && pc.credits >= 1000)) addButton(0, "Yes", impregAPrisonerYes, prisonerName, "Yes", "Let's knock this bitch up.");
-	else addDisabledButton(0, "Yes", "Yes", "You don't have the required funds.");
+	if(pc.credits >= GAST_PREG_COST || (flags[prisonerName.toUpperCase() + "_PREG_PAID"] != undefined && pc.credits >= 1000)) addButton(0, "Yes", impregAPrisonerYes, prisonerName, "Yes", "Let’s knock this bitch up.");
+	else addDisabledButton(0, "Yes", "Yes", "You don’t have the required funds.");
 	addButton(1, "No", impregAPrisonerNo, undefined, "No", "Maybe not.");
 }
 
@@ -41,7 +41,7 @@ public function impregAPrisonerNo():void
 	author("Savin");
 	clearMenu();
 	
-	output("Deciding you're not interested in fathering a prison baby just now, you cycle back to the terminal's main menu.");
+	output("Deciding you’re not interested in fathering a prison baby just now, you cycle back to the terminal’s main menu.");
 	
 	addButton(0, "Next", sexHaverTerminalTime, true, "", "");
 }
@@ -58,7 +58,7 @@ public function impregAPrisonerYes(prisonerName:String):void
 	else pc.credits -= 1000;
 	flags[prisonerName.toUpperCase() + "_PREG_PAID"] = 1;
 	
-	output("You fill out the requisite details, wire the payment details across, and confirm your contact details for when the child's delivered. Assuming your seed does its part, anyway. Once everything's squared away, you confirm that you're ready with a final tap of the screen.");
+	output("You fill out the requisite details, wire the payment details across, and confirm your contact details for when the child’s delivered. Assuming your seed does its part, anyway. Once everything’s squared away, you confirm that you’re ready with a final tap of the screen.");
 	output("\n\nA gruff male voice answers back, <i>“Affirmative. Inmate ");
 	switch(prisonerName)
 	{
@@ -67,10 +67,10 @@ public function impregAPrisonerYes(prisonerName:String):void
 		case "Sam": output("Sam");break;
 	}
 	output(" will be processed shortly. Please follow the running lights to the holding area. Please ensure that you have no sharp or heavy objects on your person when entering the holding area.”</i>");
-	output("\n\nAn array of tiny red lights flicker on under your [pc.feet], guiding you back down the hallway you came in the first time. As directed, you following the floor lights to an airlock that opens automatically as you approach, pass through it, and down another set of corridors. Armed guards and automated turrets seem to greet you at every turn, watching you as warily as they might any inmate. You doubt you're ever more than twenty feet from a loaded gun... and you're starting to feel awful naked without your kit.");
+	output("\n\nAn array of tiny red lights flicker on under your [pc.feet], guiding you back down the hallway you came in the first time. As directed, you following the floor lights to an airlock that opens automatically as you approach, pass through it, and down another set of corridors. Armed guards and automated turrets seem to greet you at every turn, watching you as warily as they might any inmate. You doubt you’re ever more than twenty feet from a loaded gun... and you’re starting to feel awful naked without your kit.");
 	output("\n\nYou do your best to shrug off the feeling. You should feel <i>safe</i> around all the security, but...");
-	output("\n\nThe running lights eventually take you to another lobby, adorned much like the first, with a large sealed bulkhead dominating the far wall. A solid red light is displayed over the door, and the terminal nearby has a >PROCESSING>>> bar ticking upwards. There's nothing to do but wait, and psych yourself up for what's to come.");
-	output("\n\nEventually, the bar fills up, and the light shifts over to green. The V.I.'s voice comes over the room's speakers, telling you <i>“The inmate requested has been processed. Please proceed into the holding unit.”</i>");
+	output("\n\nThe running lights eventually take you to another lobby, adorned much like the first, with a large sealed bulkhead dominating the far wall. A solid red light is displayed over the door, and the terminal nearby has a >PROCESSING>>> bar ticking upwards. There’s nothing to do but wait, and psych yourself up for what’s to come.");
+	output("\n\nEventually, the bar fills up, and the light shifts over to green. The V.I.’s voice comes over the room’s speakers, telling you <i>“The inmate requested has been processed. Please proceed into the holding unit.”</i>");
 	
 	processTime(20+rand(10));
 	
@@ -228,7 +228,7 @@ public function processGastigothPregEvents(deltaT:uint, doOut:Boolean, totalDays
 		if(flags["TAMTAM_PREG_EMAIL4"] == undefined && flags["TAMTAM_GAST_PREG_TIMER"] >= 230)
 		{
 			if (MailManager.hasEntry("tamtam_preg4")) MailManager.deleteMailEntry("tamtam_preg4");
-			MailManager.addMailEntry("tamtam_preg4", preg4EmailText("Tam-Tam"), "Gastigoth Inmate Tam-Tam - It's Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+			MailManager.addMailEntry("tamtam_preg4", preg4EmailText("Tam-Tam"), "Gastigoth Inmate Tam-Tam - It’s Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
 			goMailGet("tamtam_preg4");
 			flags["TAMTAM_PREG_EMAIL4"] = 1;
 		}
@@ -269,7 +269,7 @@ public function processGastigothPregEvents(deltaT:uint, doOut:Boolean, totalDays
 		if(flags["KHORGAN_PREG_EMAIL4"] == undefined && flags["KHORGAN_GAST_PREG_TIMER"] >= 140)
 		{
 			if (MailManager.hasEntry("khorgan_preg4")) MailManager.deleteMailEntry("khorgan_preg4");
-			MailManager.addMailEntry("khorgan_preg4", preg4EmailText("Khorgan"), "Gastigoth Inmate Khorgan - It's Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+			MailManager.addMailEntry("khorgan_preg4", preg4EmailText("Khorgan"), "Gastigoth Inmate Khorgan - It’s Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
 			goMailGet("khorgan_preg4");
 			flags["KHORGAN_PREG_EMAIL4"] = 1;
 		}
@@ -310,7 +310,7 @@ public function processGastigothPregEvents(deltaT:uint, doOut:Boolean, totalDays
 		if(flags["SAM_PREG_EMAIL4"] == undefined && flags["SAM_GAST_PREG_TIMER"] >= 170)
 		{
 			if (MailManager.hasEntry("sam_preg4")) MailManager.deleteMailEntry("sam_preg4");
-			MailManager.addMailEntry("sam_preg4", preg4EmailText("Sam"), "Gastigoth Inmate Sam - It's Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+			MailManager.addMailEntry("sam_preg4", preg4EmailText("Sam"), "Gastigoth Inmate Sam - It’s Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
 			goMailGet("sam_preg4");
 			flags["SAM_PREG_EMAIL4"] = 1;
 		}
@@ -338,7 +338,7 @@ public function preg1EmailText(prisonerName:String):String
 		eText+="\n\nMy name is Dr. Arno Kramer. I am the director of the child-bearing services here at Gastigoth station, including health services, maternity, and genetic modification.";
 		flags["GAST_PREG_EMAIL1_RECV"] = 1;
 	}
-	eText+="\n\nI'd like to offer my congratulations. Prisoner "+prisonerName+" has just returned a positive pregnancy test, and our genetic analysis confirms you to the be father. My staff and I will take the best of care of her ";
+	eText+="\n\nI’d like to offer my congratulations. Prisoner "+prisonerName+" has just returned a positive pregnancy test, and our genetic analysis confirms you to be the father. My staff and I will take the best of care of her ";
 	if(plural)
 	{
 		eText+="and the ";
@@ -365,16 +365,16 @@ public function preg2EmailText(prisonerName:String):String
 							||(prisonerName == "Sam" && flags["SAM_NUM_BABIES"] > 1));
 	
 	eText+="Greetings, Captain Steele,";
-	eText+="\n\nI am writing this email in regards to prisoner "+prisonerName+"'s current pregnancy. She is nearing the end of her first trimester, which is when my department usually recommends making any gene therapy and cosmetic modifications to the child";
+	eText+="\n\nI am writing this email in regards to prisoner "+prisonerName+"’s current pregnancy. She is nearing the end of her first trimester, which is when my department usually recommends making any gene therapy and cosmetic modifications to the child";
 	if(plural) eText+="ren";
-	eText+=" you wish to have done. I've taken the liberty of mapping the child" + (plural ? "ren's genomes" : "'s genome") + " and predicting mental and physical features based upon that.";
-	eText+="\n\nPlease consult the predictive mockup attached and, if you desire any alterations, fill out the attached questionnaire. If you would prefer your child" + (plural ? "ren's genomes" : "'s genome") + " remain all-natural, you may write and say so, or simply decline to respond to this email.";
+	eText+=" you wish to have done. I’ve taken the liberty of mapping the child" + (plural ? "ren’s genomes" : "’s genome") + " and predicting mental and physical features based upon that.";
+	eText+="\n\nPlease consult the predictive mockup attached and, if you desire any alterations, fill out the attached questionnaire. If you would prefer your child" + (plural ? "ren’s genomes" : "’s genome") + " remain all-natural, you may write and say so, or simply decline to respond to this email.";
 	eText+="\n\nWith regards,";
 	eText+="\n\nDr. Arno Kramer";
 	eText+="\nMaternity Ward Director,";
 	eText+="\nPenal Station <i>Gastigoth</i>";
-	eText+="\n\n<i>Attached to the email is an incredibly comprehensive survey of the unborn child" + (plural ? "ren" : "") + "'s genetics, with predictions on gender, physical attributes, mental faculties, criminal or anti-social tendencies, and much, much more.";
-	eText+="\n\nThis must be the sort of thing your father looked through before you were born, sitting with the doctor and deciding the kind of person you would be. Or at least, laying the foundation for who you'd become. Will you do the same thing to your child" + (plural ? "ren" : "") + "? Some might say it's the responsible thing to do, given the mother, to reduce the chances of your child" + (plural ? "ren" : "") + " following in her criminal footsteps. Then again, this form gives you the power to edit everything about your child" + (plural ? "ren" : "") + " like a spreadsheet, from sex to eye color to mental acuity. You could create an ubermensch worthy of the Steele legacy!";
+	eText+="\n\n<i>Attached to the email is an incredibly comprehensive survey of the unborn child" + (plural ? "ren" : "") + "’s genetics, with predictions on gender, physical attributes, mental faculties, criminal or anti-social tendencies, and much, much more.";
+	eText+="\n\nThis must be the sort of thing your father looked through before you were born, sitting with the doctor and deciding the kind of person you would be. Or at least, laying the foundation for who you’d become. Will you do the same thing to your child" + (plural ? "ren" : "") + "? Some might say it’s the responsible thing to do, given the mother, to reduce the chances of your child" + (plural ? "ren" : "") + " following in her criminal footsteps. Then again, this form gives you the power to edit everything about your child" + (plural ? "ren" : "") + " like a spreadsheet, from sex to eye color to mental acuity. You could create an ubermensch worthy of the Steele legacy!";
 	eText+="\n\nWhat do you do?</i>";
 	
 	return doParse(eText);
@@ -388,7 +388,7 @@ public function preg3EmailText(prisonerName:String):String
 							||(prisonerName == "Sam" && flags["SAM_NUM_BABIES"] > 1));
 	
 	eText+="Greetings, Captain Steele,";
-	eText+="\n\nInmate "+prisonerName+" is healthy and her pregnancy is progressing smoothly. As her second trimester is drawing to a close, I'd like to take the opportunity to congratulate you on " + (plural ? "some" : "a") + " ";
+	eText+="\n\nInmate "+prisonerName+" is healthy and her pregnancy is progressing smoothly. As her second trimester is drawing to a close, I’d like to take the opportunity to congratulate you on " + (plural ? "some" : "a") + " ";
 	if(prisonerName == "Tam-Tam")
 	{
 		if(flags["TAMTAM_BABY_GENES"] < 3) eText+= "perfectly healthy";
@@ -439,7 +439,7 @@ public function preg4EmailText(prisonerName:String):String
 							||(prisonerName == "Sam" && flags["SAM_NUM_BABIES"] > 1));
 	
 	eText+="Greetings, Captain Steele,";
-	eText+="\n\nInmate "+prisonerName+"'s pregnancy is nearly at its end! We estimate only about a week until you welcome ";
+	eText+="\n\nInmate "+prisonerName+"’s pregnancy is nearly at its end! We estimate only about a week until you welcome ";
 	if(plural) eText+="some new children";
 	else if(prisonerName == "Tam-Tam")
 	{
@@ -507,7 +507,7 @@ public function preg5EmailText(prisonerName:String):String
 							||(prisonerName == "Sam" && flags["SAM_NUM_BABIES"] > 1));
 	
 	eText+="Greetings, Captain Steele,";
-	eText+="\n\nInmate "+prisonerName+" has just successfully given birth to " + (plural ? "some healthy, happy new children" : "a healthy, happy new child") + ". We're currently performing a final medical checkup on the bab" + (plural ? "ies" : "y") + " before transporting ";
+	eText+="\n\nInmate "+prisonerName+" has just successfully given birth to " + (plural ? "some healthy, happy new children" : "a healthy, happy new child") + ". We’re currently performing a final medical checkup on the bab" + (plural ? "ies" : "y") + " before transporting ";
 	if(plural) eText+="them";
 	else if(prisonerName == "Tam-Tam")
 	{
@@ -540,14 +540,14 @@ public function khorganPregsturbate():void
 	showBust("CAPTAIN_KHORGAN_JAIL_PREG");
 	author("Savin");
 	
-	output("You watch as a small grey room materializes around the statuesque figure of Captain Khorgan. She's wearing her prison uniform, zipped down all the way to show off her now quite noticeable baby bump, underneath her milk-laden breasts. Stiff, dark green nipples peak out from either side of her uniform, and the thraggen sensually runs a hand over one, tweaking it hard enough to draw a little bead of pale milk from her teat.");
-	output("\n\n<i>“Hey, stud,”</i> she growls, licking one of her little tusks. <i>“Look at what you've done to me. Fuck! It's hot, isn't it? Maybe I'm just a cocktail of hormones right now, but I can't keep my hands off myself thinking about you. Then again... I had that problem before you knocked me up.”</i>");
-	output("\n\nKhorgan grins toothily, running her hand down over her child-swollen belly... and down further, pulling down her orange jumper to slip her fingers into the jade gash between her thick legs. <i>“If I'm not fantasizing about you breeding me like your bitch, then I'm fantasizing about our fight. Getting beat down by you was the best fight of my life, and what we did afterwards...”</i> she laughs, and her fingers disappear into her flushed quim. <i>“Just thinking about it all gets my juices <b>flowing</b>.”</i>");
-	output("\n\nApparently she's being damn literal: her free hand angles the camera down, letting you get a good look at what's going on down there. You can see a delta of moisture leaking down her thighs, glistening in the sterile prison light. Her labia lips are spread open around two fingers, which are vigorously pumping in and out. Khorgan groans, pushing in deep, and you could almost swear you hear your name growled out amongst her moans.");
-	output("\n\n<i>“You're gonna come see me again soon, aren't ya?”</i> she says, almost a predatory growl. <i>“Fuck! I wish they'd let me loose with you for a few minutes so I could show you how thraggen make love. Until then, I guess I'll have to settle for my hands, and feeling our child growing big and strong inside me.”</i>");
+	output("You watch as a small grey room materializes around the statuesque figure of Captain Khorgan. She’s wearing her prison uniform, zipped down all the way to show off her now quite noticeable baby bump, underneath her milk-laden breasts. Stiff, dark green nipples peak out from either side of her uniform, and the thraggen sensually runs a hand over one, tweaking it hard enough to draw a little bead of pale milk from her teat.");
+	output("\n\n<i>“Hey, stud,”</i> she growls, licking one of her little tusks. <i>“Look at what you’ve done to me. Fuck! It’s hot, isn’t it? Maybe I’m just a cocktail of hormones right now, but I can’t keep my hands off myself thinking about you. Then again... I had that problem before you knocked me up.”</i>");
+	output("\n\nKhorgan grins toothily, running her hand down over her child-swollen belly... and down further, pulling down her orange jumper to slip her fingers into the jade gash between her thick legs. <i>“If I’m not fantasizing about you breeding me like your bitch, then I’m fantasizing about our fight. Getting beat down by you was the best fight of my life, and what we did afterwards...”</i> she laughs, and her fingers disappear into her flushed quim. <i>“Just thinking about it all gets my juices <b>flowing</b>.”</i>");
+	output("\n\nApparently she’s being damn literal: her free hand angles the camera down, letting you get a good look at what’s going on down there. You can see a delta of moisture leaking down her thighs, glistening in the sterile prison light. Her labia lips are spread open around two fingers, which are vigorously pumping in and out. Khorgan groans, pushing in deep, and you could almost swear you hear your name growled out amongst her moans.");
+	output("\n\n<i>“You’re gonna come see me again soon, aren’t ya?”</i> she says, almost a predatory growl. <i>“Fuck! I wish they’d let me loose with you for a few minutes so I could show you how thraggen make love. Until then, I guess I’ll have to settle for my hands, and feeling our child growing big and strong inside me.”</i>");
 	output("\n\nShe moves her wrist a little faster, spearing her sex open and letting her juices pitter-patter onto the ground. Her thumb swirls around her clit, absolutely molesting the jade nub until her chest is hammering, tits spilling out of her jumpsuit. Her rigid teats tremble, starting to leak their own liquid load down her chest. Grunting her approval, Khorgan hefts up one of her overburdened breasts and brings the nipple up to her mouth, licking her milk clean.");
 	output("\n\n<i>“Gonna be plenty left for you,”</i> Khorgan moans. <i>“Strong milk for strong children... and mates. Oh!”</i>");
-	output("\n\nHer breath catches, and you watch her heavy belly quiver over the hand thrust up into her cunt. The flow of liquids from her body doubles for a moment, making an absolute mess of herself as she cums. The wet <i>schlicking</i> sound her hands make is only drowned out by her feral roar of pleasure -- one that swiftly draws the prison guard to her, grabbing the pregnant greenskin's arms.");
+	output("\n\nHer breath catches, and you watch her heavy belly quiver over the hand thrust up into her cunt. The flow of liquids from her body doubles for a moment, making an absolute mess of herself as she cums. The wet <i>schlicking</i> sound her hands make is only drowned out by her feral roar of pleasure -- one that swiftly draws the prison guard to her, grabbing the pregnant greenskin’s arms.");
 	output("\n\n<i>“Soon, Steele!”</i> she howls, making a biting gesture at the camera as the guards manhandle her off screen. The holovid ends soon after.");
 	
 	processTime(10 + rand(3));
@@ -644,7 +644,7 @@ public function tamtamBabyBlurbs():void
 	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_FELINE, 0, 4*12) == 1)
 	{
 		var boy:Boolean = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_FELINE, ChildManager.GENDER_MALE, 0, 4*12);
-		output("\n\nYour kaithrit kitten is sprawled out on the floor, playing with a collection of fluffy toys. " + (boy ? "He" : "She") + " is clearly teething, chewing on toys as much as " + (boy ? "he" : "she") + "'s actually playing with them. " + (boy ? "His" : "Her") + " tails sway in the air, curling in on themselves happily.");
+		output("\n\nYour kaithrit kitten is sprawled out on the floor, playing with a collection of fluffy toys. " + (boy ? "He" : "She") + " is clearly teething, chewing on toys as much as " + (boy ? "he" : "she") + "’s actually playing with them. " + (boy ? "His" : "Her") + " tails sway in the air, curling in on themselves happily.");
 	}
 	else if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_FELINE, 0, 4*12) == 2)
 	{
@@ -652,7 +652,7 @@ public function tamtamBabyBlurbs():void
 	}
 	else if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_FELINE, 0, 4*12) >= 3)
 	{
-		output("\n\nYou see a bushel of kaithrit kittens crawling all over each other, bapping noses and tugging on tails and ears. They constantly wrap their tails around their siblings', a form of familiar communication unique to them.");
+		output("\n\nYou see a bushel of kaithrit kittens crawling all over each other, bapping noses and tugging on tails and ears. They constantly wrap their tails around their siblings’, a form of familiar communication unique to them.");
 	}
 }
 
@@ -661,14 +661,14 @@ public function khorganBabyBlurbs():void
 	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_FELINE, 0, 4*12) == 1)
 	{
 		var boy:Boolean = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_THRAGGEN, ChildManager.GENDER_MALE, 0, 4*12);
-		output("\n\nYour thraggen " + (boy ? "son" : "daughter") + " is crawling around " + (boy ? "his" : "her") + " room, causing havoc whenever a staff member isn't paying attention. " + (boy ? "He" : "She") + "'s a little hellion already, playing with toys before hurling them against a wall or out the door. Gonna be big and strong, this one.");
+		output("\n\nYour thraggen " + (boy ? "son" : "daughter") + " is crawling around " + (boy ? "his" : "her") + " room, causing havoc whenever a staff member isn’t paying attention. " + (boy ? "He" : "She") + "’s a little hellion already, playing with toys before hurling them against a wall or out the door. Gonna be big and strong, this one.");
 	}
 	else if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_THRAGGEN, 0, 4*12) == 2)
 	{
-		output("\n\nYour two " + (silly ? "spork" : "thraggen") + " kids are playing in their room, alternating between play-wrestling and falling asleep in each other's arms. More often than not, one of them's chewing on the other.");
+		output("\n\nYour two " + (silly ? "spork" : "thraggen") + " kids are playing in their room, alternating between play-wrestling and falling asleep in each other’s arms. More often than not, one of them’s chewing on the other.");
 	}
 	else if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_THRAGGEN, 0, 4*12) >= 3)
 	{
-		output("\n\nThere's a big mess of thraggen squabbling in one of the rooms, slugging it out... about as good as babies do. They're really just in a pile, grabbing and chewing on each other before being broken up by the nursery staff. Every hour or so, Briget herself is forced to come in and take one of them away from the others for a little comfort when things get just a little too real.");
+		output("\n\nThere’s a big mess of thraggen squabbling in one of the rooms, slugging it out... about as good as babies do. They’re really just in a pile, grabbing and chewing on each other before being broken up by the nursery staff. Every hour or so, Briget herself is forced to come in and take one of them away from the others for a little comfort when things get just a little too real.");
 	}
 }

@@ -2353,7 +2353,7 @@ public function ellieTinytaurPlaytime():void
 					output("\n\nAt the sound of his full name he skids to a stop, but before anything else happens a familiar face peeks around the corner.");
 					output("\n\n<i>“" + flags["ELLIE_KID1"] + "! Where are y- oh, [pc.name]! Hiya babe! Oh, you found him!”</i>");
 					output("\n\n<i>“Ah, so you were making a getaway huh?”</i> you ask, scooping your son off the ground and into your arms. <i>“Nice try, kiddo. Hi babe.”</i>");
-					output("\n\nYou give Ellie a kiss and hand her " + flags["ELLIE_KID1"] + ", whereupon " + flags["ELLIE_KID"] + " and " + flags["ELLIE_KID3"] + " pop up on her shoulders.");
+					output("\n\nYou give Ellie a kiss and hand her " + flags["ELLIE_KID1"] + ", whereupon " + flags["ELLIE_KID2"] + " and " + flags["ELLIE_KID3"] + " pop up on her shoulders.");
 					output("\n\n<i>“Oh, hello! Hiding in mommy’s lovely hair, were we?”</i> you ask. <i>“Taking the kids exploring?”</i>");
 					output("\n\n<i>“Wasn’t my idea so much as theirs,”</i> Ellie replies, giggling. <i>“They want to roam around, and " + flags["ELLIE_KID1"] + " seems to want to adventure on his own, even though he’s not allowed.”</i>");
 					output("\n\n<i>“Oh well, the staff won’t mind, probably. Let’s go and take a look around, shall we?”</i>");
