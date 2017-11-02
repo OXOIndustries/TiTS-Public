@@ -123,7 +123,7 @@ public function kaseTryHere(beenCrew:Boolean = false):void
 	output("\n\nA slow nod is all the answer you give him, your canine-companion licking her lips beside you.");
 	output("\n\nHe raises his hand to his head in a salute. <i>“Aye-Aye, captain,”</i> he says, compliant to your orders.");
 	output("\n\nThen the show begins: he reaches up to his Pyrite Industries armored-suit and begins to pull down, parting his clothing to reveal his smooth, pale chest before it continues its trip south. Finally, the zipper reaches his groin, and the femboy has no choice but to pull his suit over his shoulders and push it downwards until his bristly kaithrit cock is set free alongside his plump balls.");
-	output("\n\nThat only serves to make the kitty blush all the harder and set Anno bouncing excitingly in her place.");
+	output("\n\nThat only serves to make the kitty blush all the harder and set Anno bouncing excitedly in place.");
 	output("\n\nKase easily pulls his prehensile tails through his clothes and continues to shimmy out of them, revealing his wide, girly hips and plush thighs, completely naked as he steps out of his suit.");
 	output("\n\nHe’s only nude for a few glorious moments as he fumbles around with his new SteeleTech suit, and despite all his blushing and apparent embarrassment, Kase seems fine stripping for you. Maybe he gets off on the orders.");
 	output("\n\nThen, he starts to redress himself, pale skin disappearing behind a layer of tight-fitting latex. His Pyrite-issue suit may have also been frame-hugging, but not like these SteeleTech suits, easily showing off all his curves and that bulge between his legs.");
@@ -636,7 +636,7 @@ public function kaseSexThreesomeAnno():void
 	output("\n\nKase blushes hard beside you as you answer the pup, telling her that you and your junior subordinate were hoping to spend some time with her" + (pc.isMischievous() ? ", and that it was his idea. Before the kaithrit can even try to respond, Anno speaks up again" : "") + ".");
 	output("\n\n");
 	if(flags["KASE_3SUM_ANNO"] == undefined) output("<i>“Awww, Kase,”</i> the ausar coos happily" + (!pc.isMischievous() ? " in response" : "") + ", <i>“I knew you’d warm up to me eventually.”</i> ");
-	output("She turns to you with a lusty grin, <i>“So, boss, any Idea what we should do with this cute kitty we got here?”</i>");
+	output("She turns to you with a lusty grin, <i>“So, boss, any idea what we should do with this cute kitty we got here?”</i>");
 	output("\n\nYou tell her you thought you could share him, even take turns if you need to, which has the catboy in question smiling nervously and hiding his hands behind his back.");
 	output("\n\nAnno grins all that wider at your proposition, <i>“Sounds like a plan to me... but I think I got something that’ll make it better!”</i> With that, the ausar is out of her seat and rummaging through her things, tossing aside clothes and knick-knacks until she finds what she’s after: her very special, <i>very big</i> ausar vibrator. ");
 	output("\n\nKase’s eyes go wide, sucking down another gulp as he eyes up the knotty plastic tool Anno’s holding before him.");
