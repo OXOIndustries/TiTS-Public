@@ -236,6 +236,7 @@ public function roughFunsWithSeras(furScore:Number):void
 	pc.loadInMouth(sera);
 	pc.loadInAss(sera);
 	pc.applyCumSoaked();
+	pc.exhibitionism(2);
 
 	applyCandyFun();
 
