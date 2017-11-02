@@ -706,6 +706,23 @@ public function paigesUnitDurhurrrrrrrrrrFenWroteUNIT():Boolean
 	}
 	else if(paigeIsCrew())
 	{
+		//Halloween stuff
+		if(isHalloweenish() && flags["PAIGE_GHOSTED"] == undefined)
+		{
+			flags["PAIGE_VISIT_DAY"] = days;
+			//Halloween event intro!
+			if(flags["HALLOWEEN_REJECTED_1"] == undefined)
+			{
+				paigeHalloweenerIntro();
+				return true;
+			}
+			//If not yet completed, repeat variant!
+			if(flags["HALLOWEEN_REJECTED_1"] + 60*24*7 >= GetGameTimestamp())
+			{
+				paigeHalloweenIntroRedux();
+				return true
+			}
+		}
 		paigeUnitAsCrewmate();
 		return true;
 	}
@@ -719,6 +736,23 @@ public function paigesUnitDurhurrrrrrrrrrFenWroteUNIT():Boolean
 		//[=About Paige=][=About Iddi=][=Her Eyes=][=Appearance=][=Leave=]
 		processTime(4);
 		paigeMenu();
+	}
+	//Halloween stuff
+	if(isHalloweenish() && flags["PAIGE_GHOSTED"] == undefined)
+	{
+		flags["PAIGE_VISIT_DAY"] = days;
+		//Halloween event intro!
+		if(flags["HALLOWEEN_REJECTED_1"] == undefined)
+		{
+			paigeHalloweenerIntro();
+			return true;
+		}
+		//If not yet completed, repeat variant!
+		if(flags["HALLOWEEN_REJECTED_1"] + 60*24*7 >= GetGameTimestamp())
+		{
+			paigeHalloweenIntroRedux();
+			return true
+		}
 	}
 	// PC enters Paige’s Unit any time between 17:00 and 08:59 after PC has had sex with Paige once (scene: Paige Select 2)
 	else
@@ -782,6 +816,7 @@ public function paigeMenu():void
 		}
 		else addDisabledButton(7,"Locked","Locked","You don’t know her well enough for this.");
 	}
+	if(flags["PAIGE_GHOSTED"] != -1 && flags["PAIGE_GHOSTED"] != undefined) addButton(8,"Ghost",paigeGhostGhost,undefined,"Ghost","Ask Paige if she’s willing to let her dickgirl passenger take over this time.");
 	addButton(14,"Leave",leavePaige);
 }
 

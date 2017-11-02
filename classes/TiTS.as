@@ -138,6 +138,7 @@
 		include "../includes/follower/kase.as";
 		include "../includes/follower/multi_interactions.as";
 		include "../includes/follower/paige.as";
+		include "../includes/follower/paigeHalloweener.as";
 		include "../includes/follower/paigeSex.as";
 		include "../includes/follower/paigeSpar.as";
 		include "../includes/follower/pippa.as";
