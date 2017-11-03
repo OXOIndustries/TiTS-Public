@@ -146,7 +146,7 @@ public function tryKnockUpTam():int
 			}
 			
 			processTime(1);
-			return flags["SAM_NUM_BABIES"];
+			return flags["TAMTAM_NUM_BABIES"];
 		}
 	}
 	return 0;
