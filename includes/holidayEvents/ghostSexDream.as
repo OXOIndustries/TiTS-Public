@@ -18,7 +18,10 @@ public function superGhostioDream():void
 
 	output("\n\nYou look around. ");
 	//If Steele was sleeping with someone:
-	if(flags["CREWMEMBER_SLEEP_WITH"] != undefined) output("There’s no sign of " + chars[flags["CREWMEMBER_SLEEP_WITH"]].nameDisplay() + ", though you know they were here when you went to sleep. ");
+	if(flags["CREWMEMBER_SLEEP_WITH"] != undefined) 
+	{
+		if(chars[flags["CREWMEMBER_SLEEP_WITH"]] != null) output("There’s no sign of " + chars[flags["CREWMEMBER_SLEEP_WITH"]].nameDisplay() + ", though you know they were here when you went to sleep. ");
+	}
 	output("Aside from you, the ship’s cabin is empty. Yet you can’t shake the feeling that you’re not alone.");
 
 	output("\n\nThe faint light in the air shifts, and seems to move, gathering itself at the foot of your bed and leaving the room darker in its wake. Slowly, the light comes together, shimmering all along its edges, until a pillar of gleaming mist stands by your bed.");
@@ -46,7 +49,10 @@ public function noGhostRapeplz():void
 	output("\n\nThe ghost starts to fade from her feet up, her legs swiftly turning into glowing mist. Before she disappears completely, she leans in once more and kisses you gently on the cheek, right where she touched you with her glow. The oddly warm feeling of her lips remains as she fades into mist, then light, then disappears.");
 	output("\n\nYou blink a few times, then realize you’re awake. The light in your ship’s cabin is normal again, and you hear all the usual ship sounds you’ve gotten used to hearing.");
 	//If Steele was sleeping with someone:
-	if(flags["CREWMEMBER_SLEEP_WITH"] != undefined) output(" " + chars[flags["CREWMEMBER_SLEEP_WITH"]].nameDisplay() + " sleeps quietly next to you.");
+	if(flags["CREWMEMBER_SLEEP_WITH"] != undefined) 
+	{
+		if(chars[flags["CREWMEMBER_SLEEP_WITH"]] != null) output(" " + chars[flags["CREWMEMBER_SLEEP_WITH"]].nameDisplay() + " sleeps quietly next to you.");
+	}
 	output(" One of your cheeks feels weird, and you reach up to touch it.");
 
 	output("\n\nThere’s a strangely sticky feeling on your [pc.skin] where the ghost touched you. Was that really a dream? Or were you just drooling in your sleep?");
@@ -218,7 +224,10 @@ public function ohnoGhostSexOverload():void
 
 	output("\n\nYou blink a few times, and realize you’re awake in your ship’s cabin. The light is normal again, and you hear all the usual ship sounds you’ve gotten used to hearing.");
 	//If Steele was sleeping with someone:
-	if(flags["CREWMEMBER_SLEEP_WITH"] != undefined) output(" " + chars[flags["CREWMEMBER_SLEEP_WITH"]].nameDisplay() + " sleeps quietly next to you.");
+	if(flags["CREWMEMBER_SLEEP_WITH"] != undefined) 
+	{
+		if(chars[flags["CREWMEMBER_SLEEP_WITH"]] != null) output(" " + chars[flags["CREWMEMBER_SLEEP_WITH"]].nameDisplay() + " sleeps quietly next to you.");
+	}
 	output(" And you feel . . . sticky.");
 
 	if(pc.cockTotal() > 1) 
