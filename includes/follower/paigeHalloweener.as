@@ -108,7 +108,7 @@ public function okayHalloweenBoners():void
 
 	output("\n\n<i>“My hero, that’s the spirit!”</i> she cheers, hoisting herself to her feet. <i>“");
 	if(paigeBlind()) output("If things get hairy, you’ll have to take the front line, but I’ll do my best to back you up. I may be blind, but I’m still no slouch!”</i>");
-	else output("Gods, I’d love nothing more than to crack a skull or two now that I have my eyesight back. Don’t try to hold me back, [pc.name]!]”</i>");
+	else output("Gods, I’d love nothing more than to crack a skull or two now that I have my eyesight back. Don’t try to hold me back, [pc.name]!”</i>");
 
 	output("\n\nYou leave Paige’s unit and make the few steps towards her yoga studio. The noises are a little less prevalent from the hallway, but if you strain, you can still hear them. The door has no sign of tampering: it’s still locked when you arrive, and there is no evidence of a break-in. The door has a large, opaque glass window on it, obfuscating the details of the studio – but you can at least tell that the lights are not on. The knob is also cold, telling you that nobody’s gripped it lately.");
 	output("\n\nIt’s difficult to tell if Paige is paying any attention to all this information, as giddy as she is to get in there and punch someone. Still, you know that <i>some</i> of the information is getting through to her: when she realizes how un-tampered the door is, she hesitates, trying to process how exactly the culprit could have gotten in.");
