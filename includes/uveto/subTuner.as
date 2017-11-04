@@ -771,10 +771,10 @@ public function subTunerOvah():void
 	if(!pc.hasPerk("Barcoded"))
 	{
 		output("\n\n<i>“Before I let you go,”</i> Belle begins, reaching over to a nearby lab bench and grabbing a small, black, rectangular box, <i>“There’s just one last thing I need to give you.”</i>");
-		output("\n\nWith that said, the Lady scientist walk around behind you, taking up a position just behind your [pc.butt]. <i>You’re unable to control your excitement, expecting another treat from your master");
+		output("\n\nWith that said, the Lady scientist walk around behind you, taking up a position just behind your [pc.butt]. You’re unable to control your excitement, expecting another treat from your master");
 		//pcAusar/Kaithrit/Half:
 		if(pc.isPuppyorKitten() && pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output(", [pc.tails] wagging uncontrollably");
-		output(".</i>");
+		output(".");
 
 		output("\n\nThen you feel plastic press against your [pc.skinFurScales] followed by a light tingling sensation from what you can only assume to be the strange device only moments before Belle pulls herself back with a quiet <i>“There we go.”</i>");
 		output("\n\nTurning your head to try and get a look at what just happened, you’re able to make out what seems to be a barcode on your rump; it’s black, sleek, and more than a bit demeaning.");
@@ -2407,7 +2407,7 @@ public function saecDate2():void
 
 	output("\n\n<i>“Hello,”</i> the leithan girl says, <i>“Table for two today or picking an order up?”</i>");
 
-	output("\n\nAs you’re telling the girl you’d like a booth for two, she turns towards your date and smile a bit more genuinely, <i>“Oh, hey there Saec! Is doctor Baslocvicz not with you today?”</i>");
+	output("\n\nAs you’re telling the girl you’d like a booth for two, she turns towards your date and smile a bit more genuinely, <i>“Oh, hey there Saec! Is Doctor Baslocvicz not with you today?”</i>");
 
 	output("\n\nYour ausar companion shakes her head in response, but still keeps a happy look on her face, from ear to big, fluffy ear.");
 	if(flags["SAEC_DATES"] == undefined) output(" So Saec has been here before, which would explain why the hostess isn’t too intrigued by the collar and leash around the canine girl’s neck.");

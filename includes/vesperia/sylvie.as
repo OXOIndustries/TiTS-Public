@@ -2232,7 +2232,7 @@ public function cuffnFuckSylviePartDues():void
 
 	if(InCollection(pc.girlCumType,[GLOBAL.FLUID_TYPE_CHOCOLATE_MILK,GLOBAL.FLUID_TYPE_HONEY,GLOBAL.FLUID_TYPE_STRAWBERRY_MILK,,GLOBAL.FLUID_TYPE_NECTAR,GLOBAL.FLUID_TYPE_VANILLA,GLOBAL.FLUID_TYPE_CHOCOLATE_CUM,GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT,GLOBAL.FLUID_TYPE_FRUIT_CUM,GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM,GLOBAL.FLUID_TYPE_EGGNOG])) 
 	{
-		output("\n\n<i>“You’re so sweet!”</i> she exclaims with giddy excitement, when she finally pulls her [pc.girlcumColor]-smeared mouth away from your tenderized sex. <i>“Like a ");
+		output("\n\n<i>“You’re so sweet!”</i> she exclaims with giddy excitement, when she finally pulls her [pc.girlCumColor]-smeared mouth away from your tenderized sex. <i>“Like a ");
 		if(pc.girlCumType == GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM || pc.girlCumType == GLOBAL.FLUID_TYPE_FRUIT_CUM) output("glass of fruit juice");
 		else if(pc.girlCumType == GLOBAL.FLUID_TYPE_HONEY) output("pot of honey");
 		else if(pc.girlCumType == GLOBAL.FLUID_TYPE_CHOCOLATE_CUM || pc.girlCumType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) output("hot chocolate");
@@ -2241,7 +2241,7 @@ public function cuffnFuckSylviePartDues():void
 	}
 	else
 	{
-		output("\n\n<i>“Mmm,”</i> she grins, [pc.girlcumColor] fluid smeared across her chin. <i>“Nothing like some refreshing girl juice after tying one on, am I right?");
+		output("\n\n<i>“Mmm,”</i> she grins, [pc.girlCumColor] fluid smeared across her chin. <i>“Nothing like some refreshing girl juice after tying one on, am I right?");
 		if(pc.wettestVaginalWetness() >= 4) output(" And you are soooo juicy, wow! You’re pretty much everything I want in a cunt toy, you know that?");
 		output("”</i> Without pausing for an answer she greedily shoves her head back between your thighs, nose buried in your mons as she attacks your [pc.clits] with insistent flicks of her tongue and smooches of her lips.");
 	}

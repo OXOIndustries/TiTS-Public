@@ -3736,7 +3736,11 @@ public function talkToBessAboutEars():void
 
 	for (var i:int = 0; i < opts.length; i++)
 	{
-		if (opts[i].bType == uint.MAX_VALUE || bessHasAccessorySet(opts[i].bType))
+		if (bess.earType == opts[i].v)
+		{
+			addDisabledButton(i, opts[i].l);
+		}
+		else if (opts[i].bType == uint.MAX_VALUE || bessHasAccessorySet(opts[i].bType))
 		{
 			addButton(i, opts[i].l, setBessAccessory, [BESS_ACS_EAR, opts[i].v, opts[i].bType]);
 		}
@@ -3763,7 +3767,11 @@ public function talkToBessAboutHorns():void
 
 	for (var i:int = 0; i < opts.length; i++)
 	{
-		if (opts[i].bType == uint.MAX_VALUE || bessHasAccessorySet(opts[i].bType))
+		if (bess.hornType == opts[i].v)
+		{
+			addDisabledButton(i, opts[i].l);
+		}
+		else if (opts[i].bType == uint.MAX_VALUE || bessHasAccessorySet(opts[i].bType))
 		{
 			addButton(i, opts[i].l, setBessAccessory, [BESS_ACS_HORNS, opts[i].v, opts[i].bType]);
 		}
@@ -3800,7 +3808,11 @@ public function talkToBessAboutTails():void
 
 	for (var i:int = 0; i < opts.length; i++)
 	{
-		if (opts[i].bType == uint.MAX_VALUE || bessHasAccessorySet(opts[i].bType))
+		if (bess.tailType == opts[i].v)
+		{
+			addDisabledButton(i, opts[i].l);
+		}
+		else if (opts[i].bType == uint.MAX_VALUE || bessHasAccessorySet(opts[i].bType))
 		{
 			addButton(i, opts[i].l, setBessAccessory, [BESS_ACS_TAIL, opts[i].v, opts[i].bType]);
 		}
@@ -3827,7 +3839,11 @@ public function talkToBessAboutWings():void
 
 	for (var i:int = 0; i < opts.length; i++)
 	{
-		if (opts[i].bType == uint.MAX_VALUE || bessHasAccessorySet(opts[i].bType))
+		if (bess.wingType == opts[i].v)
+		{
+			addDisabledButton(i, opts[i].l);
+		}
+		else if (opts[i].bType == uint.MAX_VALUE || bessHasAccessorySet(opts[i].bType))
 		{
 			addButton(i, opts[i].l, setBessAccessory, [BESS_ACS_WINGS, opts[i].v, opts[i].bType]);
 		}
@@ -4200,7 +4216,7 @@ public function bessBuyAccessory(opts:Array):void
 	bessAddAccessorySet(accSet);
 
 	clearMenu();
-	addButton(0, "Next", talkToBessAboutAccessories)
+	addButton(0, "Next", bessBuyShitAccessories)
 }
 
 public function bessBuyShitItems():void
@@ -4310,7 +4326,7 @@ public function bessBuyCockType(opts:Array):void
 	pc.credits -= cost;
 
 	clearMenu();
-	addButton(0, "Next", talkToBessAboutAccessories);
+	addButton(0, "Next", bessBuyShitCocks);
 }
 
 public function talkToBessAboutThings():void
@@ -5222,12 +5238,15 @@ public function aboutBess8():void
 	
 	output("\n\n<i>“It’s actually a pretty complicated process trying to make an organic stand-in. Some companies that shall not be named just use silicone and just expect consumers to endure a sub-par product.”</i> [bess.name] " + bess.mf("huffs","pouts"));
 	// 9999
-	if (flags["MET_GIANNA"] != undefined || 9999 == 0)
+	if (flags["MET_GIANNA"] != undefined)
 	{
 		output(", clearly referring to");
-		if (flags["MET_GIANNA"] != undefined) output(" Gianna");
-		//if (flags["MET_GIANNA"] != undefined && 9999 == 0) output(" and");
-		//if (9999 == 0) output(" KihaCorp");
+		//if (GiannaFollowerYes)
+		if (flags["GIANNAFOLLOWER"] == 9999)
+		{
+			output(" Gianna and");
+		}
+		output(" KihaCorp");
 	}
 	output(".");
 	
@@ -6607,7 +6626,7 @@ public function bessEvent3JustSex():void
 
 	output("You tell [bess.name] that [bess.heShe] should just stick to [bess.hisHer] initial purpose, which is administering sexual relief. [bess.HeShe]’s clearly been thinking about this stuff way too much.");
 	
-	output("\n\nAfter receiving a direct order you, the owner [bess.heShe]’s sworn to obey, [bess.heShe] shuts down [bess.hisHer] mental processes’ ability to deliberate on it. <i>“Okay then, "+ bessPCName() +", I’ll stop thinking about it so much.”</i>");
+	output("\n\nAfter receiving a direct order from you, the owner [bess.heShe]’s sworn to obey, [bess.heShe] shuts down [bess.hisHer] mental processes’ ability to deliberate on it. <i>“Okay then, "+ bessPCName() +", I’ll stop thinking about it so much.”</i>");
 	if (bess.earType != GLOBAL.TYPE_HUMAN) output(" Her [bess.ears] visibly droop.");
 
 	flags["BESS_JUST_A_SEXBOT"] = 1;
