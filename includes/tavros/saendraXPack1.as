@@ -2499,9 +2499,10 @@ public function zilCallgirlPregnantAgain():void
 
 	output("<i>“Oh, [pc.name],”</i> you hear a sing-song voice call from inside before you’re halfway through the door. Zheniya is in your arms a moment later, hopping up into a hug that all but spins you around and into her waiting bed. You gasp, reeling as zil girl settles on her knees overtop you, both hands planted on her "+zilCallGirlBellyFragment()+".");
 
-	output("\n\n");
+	output("\n\n<i>“");
 	if (zilCallGirlPregTime(true) <= 33) output("I’ve just come back from the clinic, sweetie. It seems like no matter how carefully I prepare, your seed is simply too virile for my poor herbs and teas to contend with. I’m pregnant again!");
-	else output("See what you’ve done, [pc.name]?”</i> she coos, running her dark fingers along the stretched-taut flesh of her belly. <i>“Nothing I do seems able to stop you, you awful... sexy... wonderful beast! We’re going to be parents once more, as you can see.”</i>");
+	else output("See what you’ve done, [pc.name]?”</i> she coos, running her dark fingers along the stretched-taut flesh of her belly. <i>“Nothing I do seems able to stop you, you awful... sexy... wonderful beast! We’re going to be parents once more, as you can see.");
+	output("”</i>");
 
 	output("\n\nYou blink in surprise, but soon find your hands playing across hers, and onto her "+zilCallGirlBellyFragment()+". She moans huskily, leaning down and planting kisses along your neck and jaw, finally working her way up to one long, tongue-filled, lip-sucking; she lets you pull her flush against yourself");
 	if (zilCallGirlPregTime(true) >= 50) output(" - or at least as much as her gravid belly will allow - ");
