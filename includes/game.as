@@ -1511,7 +1511,7 @@ public function flyMenu():void
 	if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
 	{
 		if(flags["POE_A_DISABLED"] == 1) addDisabledButton(6, "Poe A", "Poe A", "You probably shouldn’t go back there after your last trip to ‘The Masque.’")
-		else if(shipLocation != "POESPACE") addButton(6, "Poe A", flyTo, "Poe A");
+		else if(shipLocation != "POESPACE") addButton(6, "Poe A", flyToPoeAConfirm);
 		else addDisabledButton(6, "Poe A", "Poe A", "You’re already here.");
 	}
 	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");

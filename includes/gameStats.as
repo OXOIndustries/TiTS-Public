@@ -2922,7 +2922,12 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["POE_A_DISABLED"] != undefined)
 				{
 					if(flags["HOLIDAY_OWEEN_LEFT"] != undefined) output2(" Obtained a sabotaged mask from Holiday, Left the party,");
-					if(flags["HOLIDAY_OWEEN_PURCHASE"] != undefined) output2(" Purchased " + indefiniteArticle(flags["HOLIDAY_OWEEN_PURCHASE"]) + " from Holiday, Celebrated at the party,");
+					if(flags["HOLIDAY_OWEEN_PURCHASE"] != undefined)
+					{
+						if(flags["HOLIDAY_OWEEN_PURCHASE"] == "black cat costume") output2(" Purloined");
+						else output2(" Purchased");
+						output2(" " + indefiniteArticle(flags["HOLIDAY_OWEEN_PURCHASE"]) + " from Holiday, Celebrated at the party,");
+					}
 					output2(" Completed");
 				}
 				else

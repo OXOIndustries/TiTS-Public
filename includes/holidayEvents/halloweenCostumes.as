@@ -47,6 +47,18 @@ public function hollidayOweenAlert():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+public function flyToPoeAConfirm():void
+{
+	clearOutput();
+	showName("POE A\nCONFIRM?");
+	
+	output("Recalling what you’ve read in the invitation letter, the parties held at this location may have a tendency to get way out of hand, <b>resulting in permanent consequences.</b>");
+	output("\n\nYou should only proceed if you are definitely sure you want to travel here.");
+	
+	clearMenu();
+	addButton(0, "Continue", flyTo, "Poe A", "Fly to Poe A", "I can handle the consequences!");
+	addButton(14, "Nevermind", flyMenu);
+}
 public function flyToPoeA():void
 {
 	author("Adjatha");
@@ -97,43 +109,55 @@ public function holidayMenu():void
 {
 	clearMenu();
 	addButton(0,"Talk",talkToHoliday);
+	addButton(1,"Costumes",holidayCostumeMenu);
+	addButton(14,"Leave",leaveLikeABitch);
+}
+public function holidayCostumeMenu():void
+{
+	clearMenu();
+	
+	var btnSlot:int = 0;
 	if(pc.credits >= 1000)
 	{
-		addButton(1,"GoblinSuit",goblinCostume,undefined,"Goblin","You could dress up as some kind of fantasy goblin.\n\nPrice: 1000 credits");
-		addButton(2,"Helmet",metroidMaskParody,undefined,"Helmet","This helmet looks pretty spacy! Rad!\n\nPrice: 1000 credits");
-		if(!pc.hasGenitals()) addDisabledButton(3,"Armor","Armor","Looks like that outfit is for people with genitalia.");
-		else addButton(3,"Armor",greenArmor,undefined,"Armor",("There’s a suit of dark green armor on the rack, with a black bodysuit underneath holding the skimpy green plates together. You’re pretty sure it’s modeled after some video game character." + (flags["MET_SYRI"] == undefined ? "" : ".. didn’t you see Syri playing as this chick once?") + " The armor’s probably not real, but it’ll make a decent enough cosplay for a night on the town!\n\nPrice: 1000 credits"));
-		if(pc.isTaur()) addDisabledButton(4,"HorseSuit","HorseSuit","It looks like the bottom half of a centaur... though you have a tauric lower half already.");
-		else if(pc.isPregnant()) addDisabledButton(4,"HorseSuit","HorseSuit","It looks like the bottom half of a centaur. To avoid complications, you probably shouldn’t wear this while pregnant.");
-		else if(pc.hasGenitals() && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined) addButton(4,"HorseSuit",centaurBunsBunsBuns,undefined,"Horse Suit","It looks like the bottom half of a centaur. Must be robotic.\n\nPrice: 1000 credits");
-		else addDisabledButton(4,"HorseSuit","HorseSuit","You need to have made it to the second planet (and have genitals) for this choice.");
+		addButton(btnSlot++,"GoblinSuit",goblinCostume,undefined,"Goblin","You could dress up as some kind of fantasy goblin.\n\nPrice: 1000 credits");
+		
+		addButton(btnSlot++,"Helmet",metroidMaskParody,undefined,"Helmet","This helmet looks pretty spacy! Rad!\n\nPrice: 1000 credits");
+		
+		if(!pc.hasGenitals()) addDisabledButton(btnSlot++,"Armor","Armor","Looks like that outfit is for people with genitalia.");
+		else addButton(btnSlot++,"Armor",greenArmor,undefined,"Armor",("There’s a suit of dark green armor on the rack, with a black bodysuit underneath holding the skimpy green plates together. You’re pretty sure it’s modeled after some video game character." + (flags["MET_SYRI"] == undefined ? "" : ".. didn’t you see Syri playing as this chick once?") + " The armor’s probably not real, but it’ll make a decent enough cosplay for a night on the town!\n\nPrice: 1000 credits"));
+		
+		if(pc.isTaur()) addDisabledButton(btnSlot++,"HorseSuit","HorseSuit","It looks like the bottom half of a centaur... though you have a tauric lower half already.");
+		else if(pc.isPregnant()) addDisabledButton(btnSlot++,"HorseSuit","HorseSuit","It looks like the bottom half of a centaur. To avoid complications, you probably shouldn’t wear this while pregnant.");
+		else if(pc.hasGenitals() && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined) addButton(btnSlot++,"HorseSuit",centaurBunsBunsBuns,undefined,"Horse Suit","It looks like the bottom half of a centaur. Must be robotic.\n\nPrice: 1000 credits");
+		else addDisabledButton(btnSlot++,"HorseSuit","HorseSuit","You need to have made it to the second planet (and have genitals) for this choice.");
 
 		//Spider Suit
-		if(pc.isPregnant()) addDisabledButton(5,"Spider Suit","Spider Suit","A warning label mentions that this costume contains substances harmful to pregnant individuals. Damn!");
-		else addButton(5,"Spider Suit",spiderSuitApproach,undefined,"Spider Suit","A forgotten pile of black armor attached to a gray body suit sits crumpled in the corner of the room. You’re not really sure what it is.\n\nPrice: 1000 credits");
+		if(pc.isPregnant()) addDisabledButton(btnSlot++,"Spider Suit","Spider Suit","A warning label mentions that this costume contains substances harmful to pregnant individuals. Damn!");
+		else addButton(btnSlot++,"Spider Suit",spiderSuitApproach,undefined,"Spider Suit","A forgotten pile of black armor attached to a gray body suit sits crumpled in the corner of the room. You’re not really sure what it is.\n\nPrice: 1000 credits");
 
-		if(pc.isPregnant()) addDisabledButton(6,"MetalReptile","Metal Reptile","A warning label mentions that this costume contains substances harmful to pregnant individuals. Damn!");
-		else addButton(6,"MetalReptile",metalReptileCostume,undefined,"Metal Reptile","There’s some kind of bodysuit - covered in metallic scales - laying atop one of the boxes. Looks like it could be pretty badass...\n\nPrice: 1000 credits");
+		if(pc.isPregnant()) addDisabledButton(btnSlot++,"MetalReptile","Metal Reptile","A warning label mentions that this costume contains substances harmful to pregnant individuals. Damn!");
+		else addButton(btnSlot++,"MetalReptile",metalReptileCostume,undefined,"Metal Reptile","There’s some kind of bodysuit - covered in metallic scales - laying atop one of the boxes. Looks like it could be pretty badass...\n\nPrice: 1000 credits");
 
-		if(pc.hasVagina()) addDisabledButton(7,"Hero Garb","Hero Garb","This clothing features a very male cut. It even includes a warning label suggesting that females and hermaphrodites should not wear it. Weird.");
-		else if(pc.isTaur()) addDisabledButton(7,"Hero Garb","Hero Garb","Your unconventional body type would never fit into the costume.");
-		else if(!pc.hasCock()) addDisabledButton(7,"Hero Garb","Hero Garb","This clothing features a very male cut. You’ll need a phallus to properly fill it out.");
-		else addButton(7,"Hero Garb",heroGarbCostume,undefined,"Hero Garb","A forest green pointed hat droops over the head of a mannequin, with a matching green tunic and white tights. A pair of brown leather boots and gauntlets lay strewn across the floor.\n\nPrice: 1000 credits");
+		if(pc.hasVagina()) addDisabledButton(btnSlot++,"Hero Garb","Hero Garb","This clothing features a very male cut. It even includes a warning label suggesting that females and hermaphrodites should not wear it. Weird.");
+		else if(pc.isTaur()) addDisabledButton(btnSlot++,"Hero Garb","Hero Garb","Your unconventional body type would never fit into the costume.");
+		else if(!pc.hasCock()) addDisabledButton(btnSlot++,"Hero Garb","Hero Garb","This clothing features a very male cut. You’ll need a phallus to properly fill it out.");
+		else addButton(btnSlot++,"Hero Garb",heroGarbCostume,undefined,"Hero Garb","A forest green pointed hat droops over the head of a mannequin, with a matching green tunic and white tights. A pair of brown leather boots and gauntlets lay strewn across the floor.\n\nPrice: 1000 credits");
 	}
 	else
 	{
-		addDisabledButton(1,"GoblinSuit","GoblinSuit","You can’t afford this junk. Crap.");
-		addDisabledButton(2,"Helmet","Helmet","You can’t afford this junk. Crap.");
-		addDisabledButton(3,"Armor","Armor","You can’t afford this junk. Crap.");
-		addDisabledButton(4,"HorseSuit","Horse Suit","You can’t afford this junk. Crap.");
-		addDisabledButton(5,"Spider Suit","Spider Suit","You can’t afford this junk. Crap.");
-		addDisabledButton(6,"MetalReptile","Metal Reptile","You can’t afford this junk. Crap.");
-		addDisabledButton(7,"Hero Garb","Hero Garb","You can’t afford this junk. Crap.");
+		addDisabledButton(btnSlot++,"GoblinSuit","GoblinSuit","You can’t afford this junk. Crap.");
+		addDisabledButton(btnSlot++,"Helmet","Helmet","You can’t afford this junk. Crap.");
+		addDisabledButton(btnSlot++,"Armor","Armor","You can’t afford this junk. Crap.");
+		addDisabledButton(btnSlot++,"HorseSuit","Horse Suit","You can’t afford this junk. Crap.");
+		addDisabledButton(btnSlot++,"Spider Suit","Spider Suit","You can’t afford this junk. Crap.");
+		addDisabledButton(btnSlot++,"MetalReptile","Metal Reptile","You can’t afford this junk. Crap.");
+		addDisabledButton(btnSlot++,"Hero Garb","Hero Garb","You can’t afford this junk. Crap.");
 	}
 	//Poe A - Bondage Kitty
-	if(pc.isTaur()) addDisabledButton(8,"Black Cat","Black Cat","This wouldn’t fit your body type.");
-	else addButton(8,"Black Cat",selectTheBlackCatCostume,undefined,"Black Cat","A whole crate full of brushed steel briefcases with the picture of a black cat on them. Could be a pretty cute outfit!");
-	addButton(14,"Leave",leaveLikeABitch);
+	if(pc.isTaur()) addDisabledButton(btnSlot++,"Black Cat","Black Cat","This wouldn’t fit your body type.");
+	else addButton(btnSlot++,"Black Cat",selectTheBlackCatCostume,undefined,"Black Cat","A whole crate full of brushed steel briefcases with the picture of a black cat on them. Could be a pretty cute outfit!");
+	
+	addButton(14,"Back",holidayMenu);
 }
 
 //Talk
@@ -240,7 +264,7 @@ public function goblinCostume():void
 	clearMenu();
 	//[Goblin] [Costume] [Mask] [Leave]
 	addButton(0,"Buy It",chooseDatGobboCostume,undefined,"Buy It","Costs 1000 credits.");
-	addButton(14,"Back",holidayMenu);
+	addButton(14,"Back",holidayCostumeMenu);
 }
 
 public function chooseDatGobboCostume():void
@@ -357,7 +381,7 @@ public function metroidMaskParody():void
 	processTime(4);
 	clearMenu();
 	addButton(0,"Buy It",samusCostumeGo,undefined,"Buy It","Costs 1000 credits.");
-	addButton(14,"Back",holidayMenu);
+	addButton(14,"Back",holidayCostumeMenu);
 }
 
 public function samusCostumeGo():void
@@ -631,7 +655,7 @@ public function greenArmor():void
 	processTime(4);
 	clearMenu();
 	addButton(0,"Buy It",chooseToBeMissChief,undefined,"Buy It","Costs 1000 credits.");
-	addButton(14,"Back",holidayMenu);
+	addButton(14,"Back",holidayCostumeMenu);
 }
 
 public function chooseToBeMissChief():void
@@ -1053,7 +1077,7 @@ public function centaurBunsBunsBuns():void
 	processTime(2);
 	clearMenu();
 	addButton(0,"Buy It",buyTaurSuit,undefined,"Buy It","Costs 1000 credits.");
-	addButton(14,"Back",holidayMenu);
+	addButton(14,"Back",holidayCostumeMenu);
 }
 
 public function buyTaurSuit():void
@@ -1686,7 +1710,7 @@ public function spiderSuitApproach():void
 	processTime(5);
 	clearMenu();
 	addButton(0,"Buy It",buyDatSpoidahCostume,undefined,"Buy It","Costs 1000 credits.");
-	addButton(14,"Back",holidayMenu);
+	addButton(14,"Back",holidayCostumeMenu);
 }
 
 public function buyDatSpoidahCostume():void
@@ -1930,7 +1954,7 @@ public function metalReptileCostume():void
 	clearMenu();
 	//[Buy]
 	addButton(0,"Buy It",saurmorianSuitBuy,undefined,"Buy It","Costs 1000 credits.");
-	addButton(14,"Back",holidayMenu);
+	addButton(14,"Back",holidayCostumeMenu);
 }
 
 //[Buy]
@@ -2331,7 +2355,7 @@ public function heroGarbCostume():void
 	processTime(3);
 	clearMenu();
 	addButton(0,"Buy It",buyDatHeroCostumeYo,undefined,"Buy It","Costs 1000 credits.");
-	addButton(14,"Back",holidayMenu);
+	addButton(14,"Back",holidayCostumeMenu);
 }
 
 //Buy it
@@ -2720,8 +2744,8 @@ public function selectTheBlackCatCostume():void
 	processTime(4);
 	clearMenu();
 	//[Steal It] [Back]
-	addButton(0,"Steal It",stealTheBlackCatCostume);
-	addButton(14,"Back",holidayMenu);
+	addButton(0,"Steal It",stealTheBlackCatCostume,undefined,"Steal It","Would you dare to?");
+	addButton(14,"Back",holidayCostumeMenu);
 }
 
 public function stealTheBlackCatCostume():void
@@ -2742,7 +2766,8 @@ public function stealTheBlackCatCostume():void
 	//Mean
 	else output("\n\nIt’s just as well she left. This way you won’t have to get more forceful. To be honest, you’ve had just about enough of this crazy chick’s attitude. You’re not some rube, fresh from Terra, to be intimidated by thinly veiled threats. <i>“Lucky that I’ve got places to be and people to do,”</i> you chuckle as you grab one of the briefcases and push your way out of the dark little costume shop.");
 
-	///Merge
+	//Merge
+	flags["HOLIDAY_OWEEN_PURCHASE"] = "black cat costume";
 	processTime(6);
 	clearMenu();
 	addButton(0,"Next",yoinkDatCatCostume);
@@ -2968,7 +2993,7 @@ public function wakeUpAfterKittySlavePackup():void
 	output("\n\nThe devil girl sighs, going about her work while responding. <i>“I can count, you know? I saw one of these things was missing, so I went looking for you. It wasn’t very hard to follow the trail of people still talking about a nudist with a cat fetish walking across the city.”</i>");
 	output("\n\n<i>“As for the rest,”</i> Holiday gestures to the other crates in the warehouse, <i>“don’t worry about them. The fuzz will be here sooner than I’d like. I’ll be on my way once you, you know, pay me for that costume.”</i>");
 	output("\n\n<i>“Pay you? I was almost a sex doll! I don’t even have my money on me! Where did all the cats go? Where’s the... red... head...”</i> Your eyes might be deceiving you, but a pile of discarded clothes in the corner looks awfully like Ginger’s torn suit. Lying on top of it are a pair of cybernetic kathrit ears and tails, exactly the color of Ginger’s hair.");
-	output("\n\n<i>“Hey,”</i> holiday asks, shoving you to get your attention. <i>“You’re lookin’ pretty woozy there... hey are you all right?”</i> Your vision swims as your body gives out. <i>“I’m not getting paid, am I?”</i> Holiday asks as you go limp.");
+	output("\n\n<i>“Hey,”</i> Holiday shoves you to get your attention. <i>“You’re lookin’ pretty woozy there... hey are you all right?”</i> Your vision swims as your body gives out. <i>“I’m not getting paid, am I?”</i> Holiday asks as you go limp.");
 	output("\n\nWhen you come to, you’re back on your own ship. Vague memories of the costume vendor and sex slaver kaithrit bubble up, but it feels distant and hazy. It’s as if the whole night had been nothing but a bad dream. Stretching, you notice your reflection in one of the reflective surfaces of your vessel. A black, latex cat stares back at you, ears, tail, and all.");
 
 	output("\n\nIt seems you’re stuck with this stroke of bad luck after all.");
