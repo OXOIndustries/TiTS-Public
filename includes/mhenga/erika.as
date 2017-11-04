@@ -456,7 +456,7 @@ public function erikaPublicSexDick():void
 	output("\n\nYou lay your hand on her head, urging her to go deeper, scratching her ears every time she does so. You gasp as her lips suddenly press against your [pc.sheath].");
 	if (pc.isBimbo()) output("\n\n<i>“You really like this don't you? Like you're in the middle of the bar, sucking on my lovely cock, ohh it must taste wonderful.”</i> ");
 	else output("\n\n<i>“Ohh, someone is eager to please, I see. I really didn't expect you to be willing to deepthroat me in a public place, and in full view of anyone whose eyes wander downwards.”</i>");
-	output("\n\nDespite your words, she doesn't slow down. In fact, she does the opposite. After a while her hand trails down between her legs, disappearing into her pants. It seems that she is getting excited by the idea that someone could see her sucking your [pc.dick].");
+	output("\n\nDespite your words, she doesn't slow down. In fact, she does the opposite. After a while her hand trails down between her legs, disappearing into her pants. It seems that she is getting excited by the idea that someone could see her sucking your [pc.cock].");
 	output("\n\nHer increasing arousal makes her bob her head along your length faster. Her lack of skill shows, she’s clearly trying very hard but you're not going to cum from her just bobbing up and down on your cock.");
 	output("\n\nAfter a while you push Erika back, leaving only your [pc.cockHead] in her mouth. ");
 	if (pc.isBimbo()) output("<i>“Babe I like the teasing. But can we get to the good stuff?”</i> ");
@@ -505,7 +505,7 @@ public function erikaPublicSexDick():void
 		output("\n\nYou're going to blow your load down her throat and you don't want to spill a single drop. ");
 		if (pc.isAss()) output("Grabbing her by those feline ears ");
 		else output("Grabbing the back of her head ");
-		output("you slam her head down all the way. With a breathless moan, you start pumping your [pc.cum] down her throat. She shudders as she is filled with more and more of your liquid love-juice. The seconds tick by as you keep filling her stomach. She starts to push against you, trying to get your [pc.dick] free from her throat.");
+		output("you slam her head down all the way. With a breathless moan, you start pumping your [pc.cum] down her throat. She shudders as she is filled with more and more of your liquid love-juice. The seconds tick by as you keep filling her stomach. She starts to push against you, trying to get your [pc.cock] free from her throat.");
 		if (pc.isAss()) output("You ignore her and keep a tight grip on her ears. She punches you in the gut in a desperate attempt to get you to let go. You flinch and decide to release her head before she gets any more desperate.");
 		else output("You decide to let go of her head before she is suffocated by your [pc.cock].");
 		output("\n\nShe pulls free with a loud gasp, <i>“Fuck!”</i> You continue to hose her down head to toe with more of your [pc.cum] until the flow finally starts to die down. She pulls herself next to you with great effort, takes a look at herself and starts to curse at the condition of her clothes. <i>“Shit, I'm... I need to get cleaned up... fuck.”</i> ");
@@ -772,7 +772,7 @@ public function erikaPublicSexThreesomeAusarAss():void
 	output("\n\nYou hear a sharp inhale from your doggy friend for the night. <i>“Damn, that's tight.”</i>");
 	output("\n\n<i>“You ok over there?”</i> you ask him.");
 	output("\n\n<i>“I wasn't quite prepared for that. Almost popped too early,”</i> he growls softly.");
-	output("\n\nTurning your attention back to Erika, you grab her tail again and bend down to whisper into her ear. <i>“Did you think we're done? The fun is just starting.”</i> Slapping your [pc.dick] between her butt cheeks, you start to hotdog her fat ass, leaking pre onto her tail, lower back, and pucker. <i>“Now for the best part.”</i> You angle your [pc.cock] against her pucker and, with a single steady thrust, you embed yourself in Erika up to your [pc.sheath].");
+	output("\n\nTurning your attention back to Erika, you grab her tail again and bend down to whisper into her ear. <i>“Did you think we're done? The fun is just starting.”</i> Slapping your [pc.cock] between her butt cheeks, you start to hotdog her fat ass, leaking pre onto her tail, lower back, and pucker. <i>“Now for the best part.”</i> You angle your [pc.cock] against her pucker and, with a single steady thrust, you embed yourself in Erika up to your [pc.sheath].");
 	output("\n\n<i>“Finally getting down to business, I see. About time, I've been edging for the whole time,”</i> your nameless friend grumbles from in front of Erika.");
 	if (pc.isNice()) output("\n\n<i>“Oh, sorry about that. I got a bit carried away.”</i> You scratch the back of your head, embarrassed that you forgot about him. ");
 	else if(pc.isMischievous()) output("\n\n<i>“Well now we know you have great stamina and willpower.”</i> You grin at him and pat Erika's ass. ");
