@@ -704,7 +704,7 @@ public function paigesUnitDurhurrrrrrrrrrFenWroteUNIT():Boolean
 		paigeSexPrologue();
 		return true;
 	}
-	else if(paigeIsCrew())
+	if(paigeIsCrew())
 	{
 		//Halloween stuff
 		if(isHalloweenish() && flags["PAIGE_GHOSTED"] == undefined)
@@ -727,7 +727,7 @@ public function paigesUnitDurhurrrrrrrrrrFenWroteUNIT():Boolean
 		return true;
 	}
 	// PC enters Paige’s Unit any time between 17:00 and 00:00 after scene: Paige 1 (scene: Paige Select 1)
-	else if(flags["SEXED_PAIGE"] == undefined)
+	if(flags["SEXED_PAIGE"] == undefined)
 	{
 		output("You knock on Paige’s glass door. Iddi answers it before turning back into the apartment to holler for its momma; very soon, Paige is there, opening the door and showing you into her home.");
 		output("\n\n<i>“It’s good to see you again, sweet thing.”</i> She laughs. <i>“Well, you know, figure of speech with me. Go ahead and make yourself at home! I’ll be with you in just a moment.”</i>");
@@ -736,23 +736,6 @@ public function paigesUnitDurhurrrrrrrrrrFenWroteUNIT():Boolean
 		//[=About Paige=][=About Iddi=][=Her Eyes=][=Appearance=][=Leave=]
 		processTime(4);
 		paigeMenu();
-	}
-	//Halloween stuff
-	if(isHalloweenish() && flags["PAIGE_GHOSTED"] == undefined)
-	{
-		flags["PAIGE_VISIT_DAY"] = days;
-		//Halloween event intro!
-		if(flags["HALLOWEEN_REJECTED_1"] == undefined)
-		{
-			paigeHalloweenerIntro();
-			return true;
-		}
-		//If not yet completed, repeat variant!
-		if(flags["HALLOWEEN_REJECTED_1"] + 60*24*7 >= GetGameTimestamp())
-		{
-			paigeHalloweenIntroRedux();
-			return true
-		}
 	}
 	// PC enters Paige’s Unit any time between 17:00 and 08:59 after PC has had sex with Paige once (scene: Paige Select 2)
 	else
@@ -804,7 +787,7 @@ public function paigeMenu():void
 			else addDisabledButton(6,"Rest","Rest","Who goes to bed in the middle of the day? Come on.");
 		}
 
-		if(flags["PAIGE_TALK_SELF"] == 5)
+		if(flags["PAIGE_TALK_SELF"] >= 5)
 		{
 			if(hours >= 17 || paigeIsCrew()) 
 			{
@@ -1186,8 +1169,8 @@ public function paigeSexPrologue2():void
 	clearOutput();
 	showPaige();
 	output("<i>“Now, what we’re about to do, [pc.name]?”</i> she says, taking a more aggressive tone with her words. <i>“Let’s not call this ‘love.’ That’s a strong word to be throwing around</i> just <i>yet. But the truth is that I haven’t had sex since my injury because I was afraid I might not be able to keep my mouth shut if I screw just any ole’ body. Coming up on however many years without some lovin’, now. I trust you as a friend, and I need to get laid</i> pretty <i>fucking badly.”</i>");
-	output("\n\nShe stands up, your hand still in hers, and she pulls you up with her. <i>“I appreciate the compliment on my lingerie, but let’s be honest,”</i> she says, <i>“we’re both more concerned with how I’ll look </i> out <i>of it.”</i>");
-	output("\n\nPaige eagerly shows you into her room. You can smell vanilla in the air and you see faint streams of smoke wafting from some scented candles placed on her dresser – it’s clear that she considers this to be more than just sex. She throws you onto the bed, your [pc.legs] still draped over the side");
+	output("\n\nShe stands up, your hand still in hers, and she pulls you up with her. <i>“I appreciate the compliment on my lingerie, but let’s be honest,”</i> she says, <i>“we’re both more concerned with how I’ll look </i>out<i> of it.”</i>");
+	output("\n\nPaige eagerly shows you into her room. You can smell vanilla in the air and you see faint streams of smoke wafting from some scented candles placed on her dresser – it’s clear that she considers this to be more than just sex. She throws you onto the bed, your [pc.legOrLegs] still draped over the side");
 	if(pc.isNude() || (pc.isChestExposed() && pc.isCrotchExposed() && pc.isAssExposed()))
 	{
 		if(pc.isChestExposed()) output(",");
@@ -1410,13 +1393,14 @@ public function askPaigeAboutHerEyes():void
 	//[=Offer=][=Back=]
 	if(pc.credits >= paigeCost()) 
 	{
-		addButton(0,"Offer",confirmThePayment,undefined,"Offer","Offer to pay for Paige’s synthetic eyes and for the surgery.");
-		addButton(1,"Back",backToPaigeMenu,undefined,"Back","Five hundred thousand credits is no small number. You’ll need some time to think about it.");
+		if(flags["PAIGE_TALK_SELF"] >= 4 && flags["SEXED_PAIGE"] != undefined) addButton(0,"Offer",confirmThePayment,undefined,"Offer","Offer to pay for Paige’s synthetic eyes and for the surgery.");
+		else addDisabledButton(0,"Offer","Offer","Maybe you should get to know her a little more intimately before you offer to pay for her synthetic eye surgery.");
+		addButton(14,"Back",backToPaigeMenu,undefined,"Back","Five hundred thousand credits is no small number. You’ll need some time to think about it.");
 	}
 	else
 	{
 		addDisabledButton(0,"Offer","Offer","You don’t have enough credits to pay for Paige’s synthetic eyes. Not yet, anyway.");
-		addButton(1,"Back",backToPaigeMenu,undefined,"Back","There’s nothing you can do for her yet. But maybe, if you’re a little more frugal...");
+		addButton(14,"Back",backToPaigeMenu,undefined,"Back","There’s nothing you can do for her yet. But maybe, if you’re a little more frugal...");
 	}
 }
 

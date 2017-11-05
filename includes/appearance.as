@@ -1803,12 +1803,12 @@ public function appearance(forTarget:Creature):void
 			if(target.tailCount == 1)
 			{
 				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" A swishing fox tail extends from your " + target.buttDescript() + ", curling around your body, all slick and shiny.");
-				else output2(" A swishing, colorful fox’s brush extends from your " + target.buttDescript() + ", curling around your body - the soft fur feels lovely.");
+				else output2(" A swishing, " + target.furColor + " fox tail extends from your " + target.buttDescript() + ", curling around your body - the soft fur feels lovely.");
 			}
 			else
 			{
 				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " swishing fox tails extend from your " + target.buttDescript() + ", curling around your body, all slick and shiny.");
-				else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " swishing, colorful fox’s tails extend from your " + target.buttDescript() + ", curling around your body - the soft fur feels lovely.");
+				else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " swishing, " + target.furColor + " fox tails extend from your " + target.buttDescript() + ", curling around your body - the soft fur feels lovely.");
 			}
 			break;
 		case GLOBAL.TYPE_DRACONIC:

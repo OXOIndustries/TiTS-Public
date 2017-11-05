@@ -3710,6 +3710,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(paigeIsCrew()) output2(" (Onboard Ship)");
 					}
 					if(flags["SEXED_PAIGE"] != undefined) output2("\n<b>* Paige, Times Sexed:</b> " + flags["SEXED_PAIGE"]);
+					if(flags["MET_IDDI"] != undefined) output2("\n<b>* Iddi:</b> Met her");
 				}
 				// Semith
 				if(flags["MET_SEMITH"] == true)

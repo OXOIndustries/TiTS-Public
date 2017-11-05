@@ -4,7 +4,7 @@
 
 //This expansion pack is non-canon to Paige’s content. I have no intentions of making her a dickgirl as part of her main, story-related content, and it would go against her character if she wanted to be one too. But, if I throw around the words ‘non’ and ‘canon,’ then fuck it, I can make her do whatever.
 
-//Since I’m a boss, I managed to pump out an entire flowchart-based sex tree for Paige and her newfound appendage within the time limit.  I know they’re a bit of a meme within the community, but hell, it’s quantity.
+//Since I’m a boss, I managed to pump out an entire flowchart-based sex tree for Paige and her newfound appendage within the time limit. I know they’re a bit of a meme within the community, but hell, it’s quantity.
 
 
 // Continue here if: the PC enters Paige’s Unit; the system clock is between October 22nd and November 1st; the time is between 17:00 and 08:59; and the PC has had sex with Paige at least once.
@@ -12,14 +12,14 @@
 
 
 //flags["PAIGE_GHOSTED"]			# of times ghost scene done
-//flags["HALLOWEEN_REJECTED_1"]     Timestamp of when event was passed up the first time.
+//flags["HALLOWEEN_REJECTED_1"]		Timestamp of when event was passed up the first time.
 
 public function paigeHalloweenerIntro():void
 {
 	clearOutput();
 	showPaige();
 	author("B");
-	output("You enter Paige’s unit, looking for your favourite Ausar yoga instructor for some company. She’s always a good way to end a night, even if it doesn’t endven sexily.");
+	output("You enter Paige’s unit, looking for your favorite Ausar yoga instructor for some company. She’s always a good way to end a night, even if it doesn’t end sexily.");
 
 	output("\n\nAlthough Iddi is quick to show you in and holler for his owner, Paige isn’t with you as quickly as she normally is. <i>“Over here,”</i> she yells back, from the opposite end of her unit. She’s huddled into a ball, one ear tightly pressed against the wall. She’s got a tense look of concentration on her face: one eye closed, her nose scrunched as her breath is held. Her ears are straight up and attentive, flicking at any sound she hears.");
 
@@ -143,7 +143,7 @@ public function PaigesHalloween2():void
 	if(paigeBlind()) output("Paige calls for your name, her arms up and against her body protectively, listening for <i>anything</i> that makes sense around her, but, blind as she is, the noises all confuse and shut out the one sense she does have.");
 	else output("Paige keeps her arms tight against her chest protectively, but she keeps still, afraid to approach any part of the tornado around her. She was looking to punch a burglar – what is she up against now?");
 
-	output("\n\nYou scramble to your [pc.feet] and rush to Paige, forgetting about your own safety for now; all you want is to get to her and then leave the studio if you can. But when you reach your hand out, you feel a tight, painful snap around it: something hard and round has latched around your wrist, and it yanks you backward, throwing you against the far wall and latching to the surface. It’s too small to wriggle your hand through – you pull and you pull, but try as you might, you can wrest yourself free from the thing pinning your arm down.");
+	output("\n\nYou scramble to your [pc.feet] and rush to Paige, forgetting about your own safety for now; all you want is to get to her and then leave the studio if you can. But when you reach your hand out, you feel a tight, painful snap around it: something hard and round has latched around your wrist, and it yanks you backward, throwing you against the far wall and latching to the surface. It’s too small to wriggle your hand through – you pull and you pull, but try as you might, you can’t wrest yourself free from the thing pinning your arm down.");
 
 	output("\n\nDust kicks up in the windy circle around Paige, adding to the chaos around her. For her part, she does not panic: she focuses intently on her surroundings, flexing her ears");
 	if(!paigeBlind()) output(" and keeping her eyes peeled");
