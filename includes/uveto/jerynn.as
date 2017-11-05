@@ -2544,7 +2544,9 @@ public function jerynnPetstuffBadEndII(isOptIn:Boolean):void
 	{
 		output("\n\n<i>“Just some tweaks to your joints. Best you not be struggling against them whilst they adapt,”</i> she says idly whilst rummaging through the container. She fishes out a thick bundle of black latex, a shake quickly unraveling it in the air to reveal five extrusions with obvious implications; arm and leg sheaths, along with a partial mask for the head. Mistress can barely contain her own excitement as she straightens it all out, yanking a heavy zip down the back of the suit.");
 		
-		output("\n\nShe juggles you and the suit around, slipping your limbs into the proper places with a bit of a struggle before tackling the head. It takes some tugging {and more than a few pulled hairs} but it finally settles into place, wrapped tightly around your [pc.face], leaving nothing but your eyes and mouth exposed. The zip rumbles closed down your spine to pull every last inch of the latex tight; a perfect fit, leaving only an area around your crotch exposed to the air.");
+		output("\n\nShe juggles you and the suit around, slipping your limbs into the proper places with a bit of a struggle before tackling the head. It takes some tugging");
+		if(pc.hasHair()) output(" and more than a few pulled hairs");
+		output(" but it finally settles into place, wrapped tightly around your [pc.face], leaving nothing but your eyes and mouth exposed. The zip rumbles closed down your spine to pull every last inch of the latex tight; a perfect fit, leaving only an area around your crotch exposed to the air.");
 	}
 
 	output("\n\nStrong claws under your arms remove you from the seat of");

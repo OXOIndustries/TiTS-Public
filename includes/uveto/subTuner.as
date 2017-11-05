@@ -3218,7 +3218,7 @@ public function taurStadiumCashier():void
 	clearMenu();
 	addButton(0,"WatchRace",actuallyWatchTaurRace,undefined,"WatchRace","Spend some time watching a race for free.");
 	addButton(1,"BetRace",betRaceOnUveto,undefined,"BetRace","Bet on and watch a race here at U7.");
-	addButton(2,"EnterRace?",enterTheRace,undefined,"Enter Race?","Ask her if you can enter the races here.");
+	if(pc.isTaur()) addButton(2,"EnterRace?",enterTheRace,undefined,"Enter Race?","Ask her if you can enter the races here.");
 	addButton(14,"Leave",mainGameMenu);
 }
 	
