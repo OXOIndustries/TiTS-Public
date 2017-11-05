@@ -876,4 +876,246 @@ public function bellySizeUpdates(deltaT:uint = 0):void
 	bodyPartUpdates("belly", deltaT);
 }
 
+/* Wiener stuff! */
+
+// Append randomly to move events if possible (with small exhib gains):
+public function priapismBlurbs():void
+{
+	if(!pc.hasCock() || !pc.hasStatusEffect("Priapism") || rand(10) != 0) return;
+	
+	var msgList:Array = [];
+	var msg:String = "";
+	var pcLocation:String = getPlanetName();
+	var cLength:Number = pc.biggestCockLength();
+	var cumQ:Number = pc.cumQ();
+	
+	if(InShipInterior(pc))
+	{
+		// Ship - lowish exhib
+		if(pc.exhibitionism() < 33)
+		{
+			msg += "Whew. At least your ship affords your priapic state some privacy";
+			if(annoIsCrew()) msg += ", for the most part. You doubt Anno will mind";
+			msg += ".";
+			msgList.push(msg);
+			msg = "";
+		}
+		// Ship high exhib
+		if(pc.exhibitionism() >= 66)
+		{
+			msg += "Part of you is saddened that nobody can check out your priapic cock" + (pc.cocks.length == 1 ? "" : "s") + ", so proudly displayed.";
+			if(crew(true) > 0) msg += " Then you remember you’re not the only one on your ship, and a wicked smile graces your features.";
+			msgList.push(msg);
+			msg = "";
+		}
+	}
+	// Public:
+	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
+	{
+		// Low exhib & libido
+		if(pc.exhibitionism() < 33 && pc.libido() < 33) msgList.push("You try to keep out of the way, your hips turned away from prying eyes. It doesn’t work very well.");
+		// Any room/exhib
+		msgList.push("You feel tremendously exposed.");
+		// public
+		msg += "Everyone you pass can see your [pc.crotch] on full display.";
+		if(pc.isBimbo() || pc.isBro()) msg += " Hot.";
+		msgList.push(msg);
+		msg = "";
+		// public
+		msg += "A passerby strokes [pc.oneCock] on the way by, leaving you ";
+		if(pc.isBimbo() || pc.isBro()) msg += "horny and disappointed. They never stick around!";
+		else if(pc.exhibitionism() < 33) msg += "panting and confused.";
+		else if(pc.exhibitionism() < 66) msg += "even more turned on and ready to go.";
+		else msg += "disappointed that you won’t get to put on a show.";
+		msgList.push(msg);
+		msg = "";
+		// Public, low exhibs
+		if(pc.exhibitionism() < 33) msgList.push("You’re not sure if you can get used to the leering eyes and blushing faces.");
+		// Public
+		msgList.push("A passerby openly ogles you, winking when you catch them staring.");
+		msgList.push("");
+		// Public
+		msgList.push("The synthetic ‘click’ of an unmuted Codex snapping a holo rouses your attention, but the pervert wisely hides before you can pinpoint their location. Sighing, you adjust your still-hard cock" + (pc.cocks.length == 1 ? "" : "s") + ".");
+		// Mhenga
+		if(pcLocation == "Mhen'ga")
+		{
+			msgList.push("Settlers give you odd looks in passing, eyes flicking over your exposed groin in curiosity and occasional delight.");
+			msgList.push("The faint scent of honey thickens in the air when a zil passes by, eyeing you.");
+			// Mhenga - sexed Flahne - not in her office
+			if(flags["FLAHNE_SEXED"] != undefined)
+			{
+				if(flags["SEEN_BIMBO_PENNY"] == undefined || (hours >= 8 && hours < 17)) { /* In office */ }
+				else msgList.push("Flahne whistles at you and waves on her way by. <i>“Looking good, sugar!”</i>");
+			}
+			// Mhenga Penny Cumslut Public
+			if(flags["PENNY_IS_A_CUMSLUT"] != undefined && flags["PENNY_HIDING_CUMSLUTTERY"] == undefined) msgList.push("Less people spend time checking out your ever-present than you would expect. Then again, ever since you taught Penny how to be a cum-slut, the settlement has gotten used to seeing a lot more dick.");
+		}
+		// Tarkus
+		if(pcLocation == "Tarkus")
+		{
+			msg += "Raskvel girls (and even a few males) keep “accidentally” bumping into you and grabbing onto [pc.oneCock] for support before moving on.";
+			if(pc.isBimbo() || pc.isBro()) msg += " How anyone comes to this planet and doesn’t waste a week banging slutty shortstacks into oblivion, you’ll never know.";
+			msgList.push(msg);
+			msg = "";
+			msg += "A grinning raskvel maiden sneakily plants a smooch on the underside of [pc.oneCock] on her way by, fading into the crowd before you can identify her.";
+			if(cumQ < 500) msg += "With how easily your pre drools, she likely got a taste as well.";
+			else if(cumQ < 3000) msg += "With the heavy flows of pre you leak, she likely got a new coat of lipgloss for her effort.";
+			else msg += "With the gobs of pre that keep spilling from you, she likely got a mouthful of liquid excitement for her trouble.";
+			msgList.push(msg);
+			msg = "";
+			// Public - tarkus, 2+ legs
+			if(pc.hasLegs()) msgList.push("A raskvel skims right between your [pc.legs], ears flapping along the delicate underside" + (pc.cocks.length == 1 ? "" : "s") + " of your [pc.cocks].");
+		}
+		// Myrellion
+		if(pcLocation == "Myrellion")
+		{
+			msgList.push("The natives of Myrellion act like they’ve never seen " + (pc.cocks.length == 1 ? "a " : "") + "[pc.cocks] before. Inky onyx eyes follow you wherever you go.");
+			msgList.push("Giggling myr women sneak peaks at your crotch whenever they think you aren’t looking.");
+			msgList.push("Another visitor flashes you a thumbs up in response to your brazenly displayed package.");
+			msg += "Myr cluster around wherever you go, murmuring among themselves. Pushing through the throng without getting groped is a challenge";
+			if(pc.isBimbo() || pc.isBro() || pc.exhibitionism() >= 66) msg += " you’re happy to fail";
+			msg += ".";
+			msgList.push(msg);
+			msg = "";
+		}
+		// New Canadia
+		if(pcLocation == "Canadia Station")
+		{
+			msgList.push("Whispering voices follow you wherever you go: <i>“Look at that one, eh?”</i> <i>“Pervert...”</i> <i>“I bet it’s fake.”</i>");
+			msgList.push("A deertaur canters by you, then stops to look back over her shoulder. Her tail flutters playfully. After a second, she winks at you and trots off, haunches upraised to display a moistening slit. Tease.");
+			// New Canadia - lil dicks
+			if(cLength <= 12) msgList.push("A moose-taur in the bright red uniform of New Canadia’s peacekeeper force smirks casually as he checks out your [pc.cockBiggest]. <i>“Poor lil [pc.guyGirl].”</i>");
+			// New Canadia - in the middle
+			else if(cLength <= 24) msgList.push("A moose-taur in the bright red uniform of New Canadia’s peacekeeper force chuckles as he stomps by. <i>“Foreigners...”</i>");
+			// New Canadia - big dicks only
+			else if(cLength <= 48) msgList.push("A moose-taur in the bright red uniform of New Canadia’s peacekeepers nods approvingly as he gazes at your [pc.cockBiggest]. <i>“Not bad.”</i>");
+			//New Canadia - hyper
+			else msgList.push("A moose-taur in the bright red uniform of New Canadia’s peacekeeper force recoils at the sight of your [pc.cockBiggest]. <i>“Pretty sure you need a permit for artillery like that.”</i> The quiet slap of his own dick smacking into his belly chases him as he trots off. More than once, he looks back longing.");
+		}
+		// NT
+		if(pcLocation == "New Texas")
+		{
+			msgList.push("The poor cow-girls keep trailing off mid-conversation when they see you and your priapic shaft" + (pc.cocks.length == 1 ? "" : "s") + " passing by.");
+			msgList.push("Leaky nipples stiffen in the wake of your crotch-exposing priapism. To those cow-girls, you must be quite the tease.");
+		}
+		// Public high exhib
+		if(pc.exhibitionism() >= 66) msgList.push("You spot someone looking at your crotch and thrust it suggestively at them, all the harder for every set of eyes that fixes on your permanently engorged erection.");
+		// bimbo
+		if(pc.isBimbo()) msgList.push("It kind of looks like your awesomely erect cock" + (pc.cocks.length == 1 ? " is" : "s are") + " leading you around wherever you go, which is kind of how you like it, honestly.");
+	}
+	// Hazard
+	if(rooms[currentLocation].hasFlag(GLOBAL.HAZARD))
+	{
+		// Hazard
+		msgList.push("Was it really a good idea to go exploring with your [pc.cocks] hanging out, advertising your need for all to see?");
+		// Hazard
+		msgList.push("You’ll have to be on guard with how exposed you are.");
+		// Hazard bro
+		if(pc.isBro()) msgList.push("You know, maybe walking around with a rager is a great idea. Nothing to intimidate the locals like knowing some Grade A beef is on patrol and ready to claim the first ass to get in its way.");
+		// Hazard bimbo
+		msgList.push("Someone should like, make a pill you can take to have a boner all the time. And then dose the universe with it. Interspecies diplomacy is just a fancy phrase for finding your way into cute aliens’ pants anyhow. It’s wayyyy easier without the pants.");
+		// Hazard
+		msgList.push("You really hope an alien doesn’t take a cheap shot at your exposed genitalia.");
+		// Mhenga
+		if(pcLocation == "Mhen'ga")
+		{
+			msgList.push("You sweat so much from the humid jungle that your exposed, priapic member" + (pc.cocks.length == 1 ? "" : "s") + " gleam" + (pc.cocks.length == 1 ? "s" : "") + ".");
+			msgList.push("You tread carefully, lest you slip on a vine and fall dick-first into a pit.");
+		}
+		// Tarkus
+		if(pcLocation == "Tarkus")
+		{
+			msgList.push("You make damned sure to watch how you move around in this twisted landscape. The last thing you need is to scrape your rigid dick" + (pc.cocks.length == 1 ? "" : "s") + " against a rusty chunk of metal.");
+			msgList.push("Your [pc.skin] feels almost greasy from traveling such a polluted area, visibly reflected in the oily shine of your [pc.cocks].");
+		}
+		// NT
+		if(pcLocation == "New Texas")
+		{
+			msgList.push("Those varmints had best not view your still-hard cock as bait.");
+			msgList.push("Maybe you should do this when you can wear something more substantial.");
+		}
+	}
+	
+	// Cuntsnake
+	if(pc.hasTailCunt()) msgList.push("You bat your [pc.cuntTails] away from your exposed dick" + (pc.cocks.length == 1 ? "" : "s") + ".");
+	// Cocktial
+	if(pc.hasTailCock()) msgList.push((pc.tailCount == 1 ? "Your [pc.cockTail]" : "One of your [pc.cockTails]") + " arches up in sympathetic engorgement. Fortunately it isn’t as afflicted as the rest of you.");
+	
+	// Special
+	var spList:Array = [];
+	var select:int = -1;
+	
+	// public, high lust, high libido or bimbo, and high fullness
+	if(((pc.lust() >= 66 && pc.libido() >= 66) || pc.isBimbo()) && pc.ballFullness >= 66) spList.push(1);
+	// Bimbo
+	if(pc.isBimbo()) spList.push(2);
+	// Bro
+	if(pc.isBro()) spList.push(3);
+	
+	if(spList.length > 0 && rand(10) == 0)
+	{
+		select = spList[rand(spList.length)];
+		eventQueue.push( function():void {
+		
+		clearOutput();
+		clearMenu();
+		author("Fenoxo");
+		
+		msg = "";
+		switch(select)
+		{
+			case 1:
+				msg += "A giggling galotian grabs [pc.oneCock] before you can react, enshrouding it in slippery tightness. You’re too turned on and too backed up to do anything but groan and thrust into her velvety-soft goo, pleasure mounting into an explosive blast of backed-up [pc.cumNoun]. Again and again, you cum for the mystery slut, creating a ";
+				if(cumQ < 200) msg += "small";
+				else if(cumQ < 500) msg += "big";
+				else if(cumQ < 800) msg += "huge";
+				else if(cumQ < 1000) msg += "baseball-sized";
+				else if(cumQ < 3000) msg += "melon-sized";
+				else msg += "mammoth";
+				msg += " [pc.cumColor] bubble inside her arm.";
+				msg += "\n\nShe pops off and giggles, revealing the condom she slipped over your dick. <i>“Thanks! I needed a snack for the road.”</i> She winks and expertly extracts the stuffed prophylactic from your still-hard member, tying it off into a sealed balloon before pushing it into her belly.";
+				msg += " She looks instantly, terrifically pregnant.";
+				msg += " <i>“Here’s a credit for the trouble!”</i>";
+				msg += "\n\nYou’re left staring at a single credit chit, still hard and a little leaky from the sudden sexual encounter.";
+				msg += " Celise would be so jealous.";
+				pc.exhibitionism(1);
+				pc.credits += 1;
+				addButton(0, "Next", mainGameMenu);
+				break;
+			case 2:
+				msg += "You snap a quick selfie of just you and your dick to save for later. It’s fucking hot, looking so turned on and <i>ready</i> all the time. Maybe you can jack off to it later.";
+				pc.lust(5);
+				addButton(0, "Next", mainGameMenu);
+				addButton(1, "Look", pcAppearance);
+				break;
+			case 3:
+				msg += "You snap a quick picture of your dick. Might as well while it’s nice and hard.";
+				var dickpics:Array = [];
+				if(flags["KIRO_BAR_MET"] != undefined) dickpics.push("Kiro");
+				if(flags["MET_SHEKKA"] != undefined) dickpics.push("Shekka");
+				if(flags["MET_PENNY"] != undefined) dickpics.push("Penny");
+				if(flags["MET_EMMY"] != undefined) dickpics.push("Emmy");
+				if(flags["MET_ANNO"] != undefined) dickpics.push("Anno");
+				if(flags["MET_SYRI"] != undefined) dickpics.push("Syri");
+				if(flags["SAEN MET AT THE BAR"] != undefined && flags["SAENDRA_DISABLED"] != 1) dickpics.push("Saendra");
+				if(flags["RECRUITED_CELISE"] > 0) dickpics.push("Celise");
+				if(dickpics.length > 0) msg += " As an afterthought, you send it to " + dickpics[rand(dickpics.length)] + ".";
+				// CHECK APPEARANCE SCREEEN?
+				addButton(0, "Next", mainGameMenu);
+				addButton(1, "Look", pcAppearance);
+				pc.lust(5);
+				break;
+		}
+		output(msg);
+		
+		} );
+	}
+	// Generic
+	else if(msgList.length > 0)
+	{
+		output("\n\n" + msgList[rand(msgList.length)]);
+		if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) pc.exhibitionism(1);
+	}
+}
+
 

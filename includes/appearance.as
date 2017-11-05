@@ -97,6 +97,13 @@ public function appearance(forTarget:Creature):void
 		if(showAss) output2(" ass");
 		output2(" to the world.");
 	}
+	if(target.isCoveredUp())
+	{
+		output2(" Though to play it safe - at least in public - you have managed to cover yourself up");
+		if(target.accessory.hasFlag(GLOBAL.ITEM_FLAG_COVER_BODY)) output2(" with " + target.accessory.description);
+		output2(".");
+		allExposed = false;
+	}
 	if(allExposed && !target.canUseTailsOrFurAsClothes())
 	{
 		var exhibitionism:Number = target.exhibitionism();

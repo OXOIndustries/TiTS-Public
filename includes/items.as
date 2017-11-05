@@ -1418,7 +1418,7 @@ public function itemDisabledMessage(slot:Number, clearScreen:Boolean = true):voi
 		addButton(0, "Next", itemScreen);
 	}
 }
-public function unequip(item:ItemSlotClass, next:Boolean = true):void 
+public function unequip(item:ItemSlotClass, override:Boolean = false):void 
 {
 	clearOutput();
 	
@@ -1436,7 +1436,7 @@ public function unequip(item:ItemSlotClass, next:Boolean = true):void
 		}
 	}
 	
-	if(!pc.itemSlotUnlocked(item.type))
+	if(!override && !pc.itemSlotUnlocked(item.type))
 	{
 		itemDisabledMessage(item.type);
 		return;
@@ -1507,14 +1507,24 @@ public function equipItem(arg:ItemSlotClass):void {
 	
 	clearOutput();
 	
-	if(arg is Omnisuit || arg is OmnisuitCollar || arg is StrangeCollar)
+	if(pc.hasCock() && pc.hasStatusEffect("Priapism") && InCollection(arg.type, [GLOBAL.ARMOR, GLOBAL.CLOTHING, GLOBAL.LOWER_UNDERGARMENT]) && (!arg.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !arg.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)))
+	{
+		//Try to put on crotch cover
+		output("No matter how you try, you can’t get a good fit.");
+		if(pc.biggestCockLength() < 12) output(" It doesn’t matter how small your phall" + (pc.cocks.length == 1 ? "us is" : "i are") + ", contact with anything but another warm body is torture.");
+		else output(" Not that you normally could with how you’re hung, but at least your phall" + (pc.cocks.length == 1 ? "us" : "i") + " would pack away with only mild discomfort instead of full-on agony.");
+		output(" So long as you have " + (pc.cocks.length == 1 ? "a priapic erection" : "priapic erections") + ", you won’t be able to wear anything concealing.\n\n");
+		removedItem = arg;
+	}
+	else if(arg is Omnisuit || arg is OmnisuitCollar || arg is StrangeCollar)
 	{
 		if(flags["OMNISUITED"] == undefined)
 		{
 			output("Putting strange objects around your neck probably isn’t the best idea you’ve had, but then again, neither is running around the most dangerous parts of the galaxy trying to claim a fortune. Pressing a button on the shining band, you pop it open and line it up around your neck. It’s a little tight, but it should fit without crushing your throat. Sucking in a nervous breath, you snap the ends together, feeling a hidden mechanism make a satisfying ‘click’. It warms against your [pc.skinFurScales], pulling tighter and tighter until you fear it might start to choke you. It never does. Just when you’re starting to panic, it stops shrinking.");
 			output("\n\nProbing around the edge with a fingertip, you realize that it wasn’t just getting tighter - it was changing shape, molding itself to the exact shape of your neck. There isn’t a single gap where your flesh isn’t kissed by the warm, flexible metal. It hugs your [pc.skinFurScales] tightly, firm and constricting and yet forgiving enough not to pinch as you move around.");
 			if(pc.isBro()) output(" You bet you look fuckin’ awesome - butch as hell.");
-			else if(pc.isBimbo()) output(" You bet you look sexy as fuck. You wonder if there’s a ring to attach a leash to. The boys would love it.\n\n");
+			else if(pc.isBimbo()) output(" You bet you look sexy as fuck. You wonder if there’s a ring to attach a leash to. The boys would love it.");
+			output("\n\n");
 			if(eventQueue.indexOf(firstTimeOmniSuitOn) == -1) eventQueue.push(firstTimeOmniSuitOn);
 			pc.lockItemSlot(GLOBAL.ARMOR, "You try to replace your new collar but it refuses to unlock. Something is preventing you from removing it...");
 		}

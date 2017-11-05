@@ -407,7 +407,7 @@ package classes.Items.Transformatives
 				// #11 add a breast row
 				else if (select == 11)
 				{
-					if (target.createBreastRowUnlocked())
+					if (target.createBreastRowUnlocked(target.bRows() + 1))
 					{
 						msg += "\n\nYou feel a sharp prickling down your body just before <b>another row of tentacle nipples grows below your existing ones, starting a new row of breasts</b>.";
 						

@@ -1126,6 +1126,7 @@
 		public static const ITEM_FLAG_TRANSPARENT:int					= 18; // Used specifically for clothing/armor that is see-through.
 		public static const ITEM_FLAG_ANTIGRAV:int						= 19; // Used for items that can levitate heavy parts.
 		public static const ITEM_FLAG_BLIND_IGNORE:int 					= 20; // Used for items with no penalties for blind-fire.
+		public static const ITEM_FLAG_COVER_BODY:int					= 21; // Used specifically for accessories that cover the body (like duster jackets).
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
 			"Energy Weapon",
@@ -1148,6 +1149,7 @@
 			"Transparent",
 			"Anti-Gravity",
 			"Ignores Blindness",
+			"Covers Body",
 		];
 		
 		/**

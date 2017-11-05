@@ -334,10 +334,13 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		else addDisabledButton(5, "Enter Ship", rooms[currentLocation].inText, "You can’t enter your ship here!");
 	}
 	if (rooms[currentLocation].runAfterEnter != null) rooms[currentLocation].runAfterEnter();
-
+	
 	flags["NAV_DISABLED"] = undefined; // Clear disabled directions.
-
+	
 	//if (kGAMECLASS.debug) this.addButton(13, "RESET NPCs", initializeNPCs);
+	
+	// Append any extra messages:
+	priapismBlurbs();
 	
 	// Show the minimap too!
 	userInterface.showMinimap();
@@ -1879,9 +1882,13 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	if(rooms[arg].hasFlag(GLOBAL.NUDITY_ILLEGAL))
 	{
 		var nudistPrevention:Boolean = false;
-		if((!pc.isChestGarbed() || pc.isChestVisible()) && pc.biggestTitSize() > 1) nudistPrevention = true;
-		if(!pc.isCrotchGarbed() || ((pc.hasGenitals() || pc.balls > 0) && pc.isCrotchVisible()) || pc.isAssVisible()) nudistPrevention = true;
-		if(pc.canCoverSelf(true)) nudistPrevention = false;
+		if(!pc.isCoveredUp())
+		{
+			if((!pc.isChestGarbed() || pc.isChestVisible()) && pc.biggestTitSize() > 1) nudistPrevention = true;
+			if(!pc.isCrotchGarbed() || ((pc.hasGenitals() || pc.balls > 0) && pc.isCrotchVisible()) || pc.isAssVisible()) nudistPrevention = true;
+		}
+		if(pc.hasStatusEffect("Priapism")) nudistPrevention = false;
+		else if(pc.canCoverSelf(true)) nudistPrevention = false;
 		if(nudistPrevention)
 		{
 			clearOutput();

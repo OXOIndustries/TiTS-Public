@@ -3175,7 +3175,7 @@
 				{
 					//Mimbrane feeding
 					kGAMECLASS.mimbraneFeed("cock");
-					if(hasStatusEffect("Blue Balls") && balls >= 1)
+					if(hasStatusEffect("Blue Balls") && balls > 0)
 					{
 						AddLogEvent(ParseText("With a satisfied sigh, your [pc.balls] " + (balls <= 1 ? "is" : "are") + " finally relieved of all the pent-up " + (rand(2) == 0 ? "seed" : "[pc.cumNoun]") + "."), "passive");
 						removeStatusEffect("Blue Balls");
@@ -3201,6 +3201,12 @@
 						ExtendLogEvent(" from your orgasm!");
 						addStatusValue("Nyrea Eggs", 1, -1 * (nyreaEggs));
 						if(statusEffectv1("Nyrea Eggs") < 0) setPerkValue("Nyrea Eggs",1,0);
+					}
+					// Priapism timer down
+					if(hasStatusEffect("Priapism"))
+					{
+						addStatusMinutes("Priapism", (-15 * 60));
+						if(getStatusMinutes("Priapism") < 1) setStatusMinutes("Priapism", 1);
 					}
 				}
 			}
@@ -3274,6 +3280,10 @@
 			if(hasStatusEffect("Temporary Nudity Cheat")) return true;
 			//return (armor.shortName == "" && lowerUndergarment.shortName == "" && upperUndergarment.shortName == "");
 			return (!isCrotchGarbed() && !isChestCovered());
+		}
+		public function isCoveredUp(): Boolean {
+			if(accessory.hasFlag(GLOBAL.ITEM_FLAG_COVER_BODY)) return true;
+			return false;
 		}
 		public function canCoverSelf(checkGenitals:Boolean = false, part:String = "all"): Boolean {
 			// Part-specific checks
@@ -3799,6 +3809,7 @@
 			var muskLevel:Number = 0;
 			
 			if(hasPerk("Pheromone Cloud")) muskLevel += 4;
+			if(hasPerk("Musky Pheromones")) muskLevel += 4;
 			if(hasPerk("Alpha Scent")) muskLevel += 4;
 			if(hasPerk("Jungle Queen Scent")) muskLevel += 4;
 			if(hasPerk("Pheromone Sweat"))
@@ -4423,6 +4434,7 @@
 			if (perkv1("Ultra-Exhibitionist") > 0 && isFullyExposed(true)) bonus += (bonus < 23 ? 33 : 10);
 
 			//Temporary Stuff
+			if (hasStatusEffect("Priapism") && bonus < 33) bonus = 33;
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
 			if (hasStatusEffect("Aphrodisiac Milk")) bonus += 33;
 			if (perkv1("Dumb4Cum") > 24) bonus += (perkv1("Dumb4Cum") - 24);
@@ -8311,6 +8323,7 @@
 			if (dynamicLength)
 			{
 				var lustRatio: Number = (lust()/100);
+				if (hasStatusEffect("Priapism")) lustRatio = 1;
 				if (lustRatio > 1) lustRatio = 1; // To avoid over erect length
 				return (cocks[arg].cLengthFlaccid() + ((cocks[arg].cLength() - cocks[arg].cLengthFlaccid()) * lustRatio));
 			}
@@ -10786,8 +10799,9 @@
 			removeJunk(cocks, arraySpot, totalRemoved);
 			if(!hasCock())
 			{
-				removeStatusEffect("Blue Balls");
 				removePerk("Firing Blanks");
+				removeStatusEffect("Blue Balls");
+				removeStatusEffect("Priapism");
 			}
 		}
 		public function removeCockUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
@@ -19230,6 +19244,12 @@
 						{
 							if(this is PlayerCharacter) AddLogEvent("The paint on your phallus flakes away, leaving you bare and unadorned once more.","passive");
 							libidoMod -= statusEffectv4("Painted Penis");
+						}
+						break;
+					case "Priapism":
+						if(requiresRemoval)
+						{
+							if(this is PlayerCharacter && hasCock()) AddLogEvent("The constant pressure on [pc.eachCock] subsides... You sigh in relief as you feel your maleness able to soften once more. <b>It looks like your case of priapism has finally passed!</b>","passive");
 						}
 						break;
 					case "IQBGoneTimer":
