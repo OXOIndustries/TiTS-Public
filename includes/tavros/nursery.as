@@ -395,7 +395,7 @@ public function nurseryCommonAreaFunc():Boolean
 {
 	if(ChildManager.numChildrenAtNursery() > 0 && flags["ELLIE_PREG_TIMER"] < 70 && flags["ELLIE_AT_NURSERY"] != undefined)
 	{
-		output("You find Ellie, happily playing with your other kids, singing to them in a lilting tone and waving her hands from side to side.\n\n");
+		output("\n\nYou find Ellie, happily playing with your other kids, singing to them in a lilting tone and waving her hands from side to side.");
 		addButton(0, "Ellie", ellieAtNurseryPreHatch, undefined, "", "");
 		return true;
 	}

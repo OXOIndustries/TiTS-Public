@@ -1720,7 +1720,7 @@ public function processElliePregEvents(deltaT:uint, doOut:Boolean, totalDays:uin
 	{
 		flags["ELLIE_PREG_TIMER"] += totalDays;
 		//PC has to see the pregnacy announcement and be there for the egg laying and hatching or timer pauses
-		if((flags["ELLIE_OPERATION"] < 2 || flags["ELLIE_OPERATION"] == undefined)  && flags["ELLIE_PREG_TIMER"] > 1) flags["ELLIE_PREG_TIMER"] = 1;
+		if((flags["ELLIE_OPERATION"] < 2 || flags["ELLIE_OPERATION"] == undefined) && flags["ELLIE_PREG_TIMER"] > 1) flags["ELLIE_PREG_TIMER"] = 1;
 		else if(flags["ELLIE_OPERATION"] < 3 && flags["ELLIE_PREG_TIMER"] > 40) flags["ELLIE_PREG_TIMER"] = 40;
 		else if(flags["ELLIE_OPERATION"] < 4 && flags["ELLIE_PREG_TIMER"] > 70) flags["ELLIE_PREG_TIMER"] = 70;
 		
@@ -1738,7 +1738,7 @@ public function processElliePregEvents(deltaT:uint, doOut:Boolean, totalDays:uin
 		if(flags["ELLIE_OPERATION"] >= 3 && flags["ELLIE_PREG_TIMER"] % 3 == 0) toggleEllieLocation();
 		
 		//Give hatching notification
-		if(flags["ELLIE_OPERATION"] ==3 && flags["ELLIE_PREG_TIMER"] == 70) AddLogEvent("Your codex bleeps softly, indicating you’ve received a message. You flip it open to see it’s addressed from Steele Tech, so it must be at least somewhat important. The message is short and succinct.\n\n<i>“The leithan eggs you fathered are ready to hatch. Please visit the Nursery at your soonest convenience.”</i>\n\nOh! You should probably do that sooner, rather than later...", "good");
+		if(flags["ELLIE_OPERATION"] == 3 && flags["ELLIE_PREG_TIMER"] == 70) AddLogEvent("Your codex bleeps softly, indicating you’ve received a message. You flip it open to see it’s addressed from Steele Tech, so it must be at least somewhat important. The message is short and succinct.\n\n<i>“The leithan eggs you fathered are ready to hatch. Please visit the Nursery at your soonest convenience.”</i>\n\nOh! You should probably do that sooner, rather than later...", "good");
 	}
 }
 

@@ -1168,7 +1168,7 @@ public function prisonerStatline(prisonerName:String):void
 			addButton(0,"Visit",visitAPrisoner,"Sam","Sam","Visit the ausar with a rap sheet a mile long. She’s anything but a “Good Girl.”\n\n<b>Cost:</b> 1,000 credits");
 			if(!pc.hasCock()) addDisabledButton(1, "Impregnate", "Impregnate", "You need a cock to knock someone up.");
 			else if(sam.isPregnant()) addDisabledButton(1, "Impregnate", "Impregnate", "Sam is already pregnant.");
-			else addButton(1, "Impregnate", impregAPrisoner, "Sam", "Impregnate", "Let's talk about breeding this particular inmate...");
+			else addButton(1, "Impregnate", impregAPrisoner, "Sam", "Impregnate", "Let’s talk about breeding this particular inmate...");
 			break;
 		case "Tamtam":
 			showTamtamPrison();
@@ -1180,7 +1180,7 @@ public function prisonerStatline(prisonerName:String):void
 			addButton(0,"Visit",visitAPrisoner,"Tamtam","Tam-Tam","Visit the spunky cat-girl mechanic you helped bust on Tarkus.\n\n<b>Cost:</b> 1,000 credits");
 			if(!pc.hasCock()) addDisabledButton(1, "Impregnate", "Impregnate", "You need a cock to knock someone up.");
 			else if(tamtam.isPregnant()) addDisabledButton(1, "Impregnate", "Impregnate", "Tam-Tam is already pregnant.");
-			else addButton(1, "Impregnate", impregAPrisoner, "Tamtam", "Impregnate", "Let's talk about breeding this particular inmate...");
+			else addButton(1, "Impregnate", impregAPrisoner, "Tamtam", "Impregnate", "Let’s talk about breeding this particular inmate...");
 			break;
 		case "Kaska":
 			showKaska();
@@ -1201,7 +1201,7 @@ public function prisonerStatline(prisonerName:String):void
 			addButton(0,"Visit",visitAPrisoner,"Khorgan","Captain Khorgan","Visit the bad-ass space-pirate you defeated on Tarkus.\n\n<b>Cost:</b> 1,000 credits");
 			if(!pc.hasCock()) addDisabledButton(1, "Impregnate", "Impregnate", "You need a cock to knock someone up.");
 			else if(khorgan.isPregnant()) addDisabledButton(1, "Impregnate", "Impregnate", "Khorgan is already pregnant.");
-			else addButton(1, "Impregnate", impregAPrisoner, "Khorgan", "Impregnate", "Let's talk about breeding this particular inmate...");
+			else addButton(1, "Impregnate", impregAPrisoner, "Khorgan", "Impregnate", "Let’s talk about breeding this particular inmate...");
 			break;
 		case "Badger":
 			showDrBadger();

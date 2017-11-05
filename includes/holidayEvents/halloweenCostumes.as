@@ -132,8 +132,8 @@ public function holidayCostumeMenu():void
 		else addDisabledButton(btnSlot++,"HorseSuit","HorseSuit","You need to have made it to the second planet (and have genitals) for this choice.");
 
 		//Spider Suit
-		if(pc.isPregnant()) addDisabledButton(btnSlot++,"Spider Suit","Spider Suit","A warning label mentions that this costume contains substances harmful to pregnant individuals. Damn!");
-		else addButton(btnSlot++,"Spider Suit",spiderSuitApproach,undefined,"Spider Suit","A forgotten pile of black armor attached to a gray body suit sits crumpled in the corner of the room. You’re not really sure what it is.\n\nPrice: 1000 credits");
+		if(pc.isPregnant()) addDisabledButton(btnSlot++,"SpiderSuit","Spider Suit","A warning label mentions that this costume contains substances harmful to pregnant individuals. Damn!");
+		else addButton(btnSlot++,"SpiderSuit",spiderSuitApproach,undefined,"Spider Suit","A forgotten pile of black armor attached to a gray body suit sits crumpled in the corner of the room. You’re not really sure what it is.\n\nPrice: 1000 credits");
 
 		if(pc.isPregnant()) addDisabledButton(btnSlot++,"MetalReptile","Metal Reptile","A warning label mentions that this costume contains substances harmful to pregnant individuals. Damn!");
 		else addButton(btnSlot++,"MetalReptile",metalReptileCostume,undefined,"Metal Reptile","There’s some kind of bodysuit - covered in metallic scales - laying atop one of the boxes. Looks like it could be pretty badass...\n\nPrice: 1000 credits");
@@ -155,7 +155,7 @@ public function holidayCostumeMenu():void
 	}
 	//Poe A - Bondage Kitty
 	if(pc.isTaur()) addDisabledButton(btnSlot++,"Black Cat","Black Cat","This wouldn’t fit your body type.");
-	else addButton(btnSlot++,"Black Cat",selectTheBlackCatCostume,undefined,"Black Cat","A whole crate full of brushed steel briefcases with the picture of a black cat on them. Could be a pretty cute outfit!");
+	else addButton(btnSlot++,"Black Cat",selectTheBlackCatCostume,undefined,"Black Cat","A whole crate full of brushed steel briefcases with the picture of a black cat on them. Could be a pretty cute outfit!\n\nPrice: ???");
 	
 	addButton(14,"Back",holidayMenu);
 }
@@ -176,7 +176,7 @@ public function talkToHoliday():void
 	output("\n\n<i>“Not late to the Policeman’s Ball,”</i> she corrects. <i>“Late as in ‘the Late Detective Jack-off.’ So, tourist huh?”</i> She plucks the pipe from her mouth and upends its smoking contents into the palm of one of her hands. Casually, she flicks the ashen lump into her mouth and swallows it, tucking the pipe behind her back. <i>“How mind-numbingly exciting that must be.”</i>");
 	output("\n\nYou’re not going to comment about the pipe-thing. You explain a little bit about your family and your job, but she seems more preoccupied in watching the erratic swaying of her own tail than in your backstory.");
 	output("\n\n<i>“Yeah, being genetically engineered to do stuff for old fuckers is a pain. Hey, you should leave all that behind and come with me. Ditch these tame-ass parties, find some cool shit elsewhere in the galaxy, and then take it.”</i> She looks up, her yellow eyes studying your reaction. Before you can even speak, she sighs and makes a dismissive motion with her hand. <i>“Eh, forget about it. It’d never work. You’d get bored of living on the run and I’d get bored with not stabbing you in new and exciting places.”</i> Stretching like a cat, she turns in just such a way to show off her thin, curving frame.");
-	output("\n\nShaking her head so vigorously that it proves her horns aren’t part of a costume, she sits down on one of the unpacked crates. Crossing one leg over the other, she places a finger to her lips, idly flicking at one of her piercings. <i>“So, deal with the devil time. You need a costume, I need some money, and this crap ain’t gonna sell itself. What’re ya buyin?”</i>");
+	output("\n\nShaking her head so vigorously that it proves her horns aren’t part of a costume, she sits down on one of the unpacked crates. Crossing one leg over the other, she places a finger to her lips, idly flicking at one of her piercings. <i>“So, deal with the devil time. You need a costume, I need some money, and this crap ain’t gonna sell itself. What’re ya buyin’?”</i>");
 	processTime(7);
 	//[Bodysuit] [Costume] [Mask] [Leave]
 	holidayMenu();

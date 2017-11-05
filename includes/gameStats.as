@@ -3780,6 +3780,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SUCKED_ELLIES_TITS"] != undefined) output2(", Sucked her tits");
 					if(flags["ELLIE_EMBARASSED_LIL_DICK_FUCK"] != undefined) output2(", Fucked her with an embarrassingly small dick for her size");
 					if(flags["NEPH_AFFECTION"] != undefined) output2("\n<b>* Ellie, Affection:</b> " + flags["NEPH_AFFECTION"] + " %");
+					if(flags["ELLIE_PREG_TIMER"] != undefined && flags["ELLIE_TOTAL_KIDS"] == undefined) output2("\n<b>* Ellie, Days Pregnant:</b> " + flags["ELLIE_PREG_TIMER"]);
 					if(flags["ELLIE_SEXED"] != undefined) output2("\n<b>* Ellie, Times Sexed:</b> " + flags["ELLIE_SEXED"]);
 					if(flags["PUBLIC_USE_COUNT"] > 0) output2("\n<b>* Ellie, Times You Were Used Publicly:</b> " + flags["PUBLIC_USE_COUNT"]);
 				}
@@ -6109,11 +6110,14 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Inmate Visitations</u></b>");
 				if(flags["TAMTAM_PRISONED"] != undefined) output2("\n<b>* Tam, Times Sexed:</b> " + flags["TAMTAM_PRISONED"]);
+				if(flags["TAMTAM_GAST_PREG_TIMER"] != undefined) output2("\n<b>* Tam, Days Pregnant:</b> " + flags["TAMTAM_GAST_PREG_TIMER"]);
 				if(flags["TAMTAM_TOTAL_KIDS"] > 0)  output2("\n<b>* Tam, Total Kids:</b> " + flags["TAMTAM_TOTAL_KIDS"]);
 				if(flags["KASKA_PRISONED"] != undefined) output2("\n<b>* Kaska, Times Sexed:</b> " + flags["KASKA_PRISONED"]);
 				if(flags["KHORGAN_PRISONED"] != undefined) output2("\n<b>* Khorgan, Times Sexed:</b> " + flags["KHORGAN_PRISONED"]);
+				if(flags["KHORGAN_GAST_PREG_TIMER"] != undefined) output2("\n<b>* Khorgan, Days Pregnant:</b> " + flags["KHORGAN_GAST_PREG_TIMER"]);
 				if(flags["KHORGAN_TOTAL_KIDS"] > 0)  output2("\n<b>* Khorgan, Total Kids:</b> " + flags["KHORGAN_TOTAL_KIDS"]);
 				if(flags["SAM_PRISONED"] != undefined) output2("\n<b>* Sam, Times Sexed:</b> " + flags["SAM_PRISONED"]);
+				if(flags["SAM_GAST_PREG_TIMER"] != undefined) output2("\n<b>* Sam, Days Pregnant:</b> " + flags["SAM_GAST_PREG_TIMER"]);
 				if(flags["SAM_TOTAL_KIDS"] > 0)  output2("\n<b>* Sam, Total Kids:</b> " + flags["SAM_TOTAL_KIDS"]);
 				variousCount++;
 			}
