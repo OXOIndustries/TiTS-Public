@@ -2636,7 +2636,7 @@ public function jerynnPetstuffBadEndIII(isOptIn:Boolean):void
 	else if (pc.skinType != GLOBAL.SKIN_TYPE_SCALES && flags["JERYNN_RESPONSE_SKIN"] >= 2)
 	{
 		if (pc.skinType == GLOBAL.SKIN_TYPE_SKIN) output("\n\nYour skin breaks out in odd patches as the days pass, your sense of touch becoming dull on the eve of the appearance of each new off-colored spot. Gradually, a tough layer of scales begins to form, spreading out in an interlocking mesh of lustrous red.");
-		else if (pc.skinType == GLOBAL.SKIN_TYPE_FUR) output("\n\nYour fur things out gradually as the days pass, shedding in increasing amounts. In the wake of each missing patch remains a tough layer of lustrous red scales.");
+		else if (pc.skinType == GLOBAL.SKIN_TYPE_FUR) output("\n\nYour fur thins out gradually as the days pass, shedding in increasing amounts. In the wake of each missing patch remains a tough layer of lustrous red scales.");
 		else if (pc.isGoo()) output("\n\nYour amorphous body turns milky as the days pass, a peppering of tough, colorless scales solidifying into a complete layer. Pigment slowly bleeds into each one in turn, leaving you with a layer of lustrous red scales.");
 		else output("\n\nYour [pc.skin] breaks out in odd patches as the days pass, your sense of touch becoming dull on the eve of the appearance of each new off-colored spot. Gradually, a tough layer of scales begins to form, spreading out in an interlocking mesh of lustrous red.");
 	}
