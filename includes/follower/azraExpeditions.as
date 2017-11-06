@@ -1734,7 +1734,7 @@ public function meetTrapQueensSubject():void
 public function trapQueenMeeting():void
 {
 	clearOutput();
-	showBust("TRAPQUEEN","RASK_TRAP","RASK_TRAP");
+	showBust("SYDIAN_QUEEN","RASK_TRAP","RASK_TRAP");
 	showName("SYDIAN\nQUEEN");
 	output("A tall, statuesque ");
 	if(!CodexManager.hasUnlockedEntry("Sydians")) output("alien");
@@ -1777,7 +1777,7 @@ public function hasAWeapon():Boolean
 public function letAzraTrapQueenTalk():void
 {
 	clearOutput();
-	showBust("TRAPQUEEN",azraBustString());
+	showBust("SYDIAN_QUEEN",azraBustString());
 	showName("AZRA’S\nSPEECH");
 	output("You nod to Azra. <i>“");
 	if(pc.isBimbo() || pc.isMischievous()) output("You go, girl.");
@@ -1886,7 +1886,7 @@ public function noVoluntaryRaskOrgy():void
 public function berateTheQueen():void
 {
 	clearOutput();
-	showBust("TRAPQUEEN","RASK_TRAP","RASK_TRAP");
+	showBust("SYDIAN_QUEEN","RASK_TRAP","RASK_TRAP");
 	showName("SYDIAN\nQUEEN");
 	pc.addHard(2);
 	output("<i>“What have I to say for myself? I say you have about as much authority as you have sense.”</i> ");
@@ -1914,7 +1914,7 @@ public function berateTheQueen():void
 public function begForMercy():void
 {
 	clearOutput();
-	showBust("TRAPQUEEN","RASK_TRAP","RASK_TRAP");
+	showBust("SYDIAN_QUEEN","RASK_TRAP","RASK_TRAP");
 	showName("SYDIAN\nQUEEN");
 	output("You drop to your knees. <i>“My apologies, Dear Queen! We are but strangers to your lands, journeyed from a far-away world in search of adventure and friendship.”</i> You gesture grandly to your winged companion. <i>“My friend is a scientist who studies all manner of plants. We merely sought these mushrooms that they might be preserved for all the galaxy to enjoy. Theft was never our intent or our goal. If we have taken the belongings of another, then you have our deepest, most sincerest apologies.”</i>");
 	output("\n\n<i>“Is this true?”</i> The Queen looks to Azra.");
@@ -2602,7 +2602,7 @@ public function fuckTheSydianQueen3():void
 public function rejectTheQueen():void
 {
 	clearOutput();
-	showBust("TRAPQUEEN","RASK_TRAP","RASK_TRAP");
+	showBust("SYDIAN_QUEEN","RASK_TRAP","RASK_TRAP");
 	showName("SYDIAN\nQUEEN");
 	author("Nonesuch");
 	output("<i>“No.”</i> You stand up proudly. <i>“I don’t think so.”</i>");

@@ -22,6 +22,9 @@ package classes.Resources.Busts
 		public var Bust_AINA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/aina_nude.png", mimeType = "image/png")]
 		public var Bust_AINA_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/angel.png", mimeType = "image/png")]
+		public var Bust_ANGEL:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/anyxine.png", mimeType = "image/png")]
 		public var Bust_ANYXINE:Class;
@@ -174,6 +177,11 @@ package classes.Resources.Busts
 		public var Bust_CHRISSY:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/chrissy_nude.png", mimeType = "image/png")]
 		public var Bust_CHRISSY_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/ciaran.png", mimeType = "image/png")]
+		public var Bust_CIARAN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/ciaran_nude.png", mimeType = "image/png")]
+		public var Bust_CIARAN_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/cockvine_single.png", mimeType = "image/png")]
 		public var Bust_COCKVINE_SEEDLING:Class;
@@ -590,6 +598,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/steph_6_nude.png", mimeType = "image/png")]
 		public var Bust_STEPH_6_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/sydian_queen.png", mimeType = "image/png")]
+		public var Bust_SYDIAN_QUEEN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/sydian_queen_nude.png", mimeType = "image/png")]
+		public var Bust_SYDIAN_QUEEN_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/syri_coat.png", mimeType = "image/png")]
 		public var Bust_SYRI:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/syri_nude.png", mimeType = "image/png")]
@@ -705,6 +718,9 @@ package classes.Resources.Busts
 			public var Full_AINA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/aina_nude.png", mimeType = "image/png")]
 			public var Full_AINA_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/angel.png", mimeType = "image/png")]
+			public var Full_ANGEL:Class;
 		
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/anyxine.png", mimeType = "image/png")]
 			public var Full_ANYXINE:Class;
@@ -842,6 +858,11 @@ package classes.Resources.Busts
 			public var Full_CHRISSY:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/chrissy_nude.png", mimeType = "image/png")]
 			public var Full_CHRISSY_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ciaran.png", mimeType = "image/png")]
+			public var Full_CIARAN:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ciaran_nude.png", mimeType = "image/png")]
+			public var Full_CIARAN_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cockvine_single.png", mimeType = "image/png")]
 			public var Full_COCKVINE_SEEDLING:Class;
@@ -1213,6 +1234,11 @@ package classes.Resources.Busts
 			public var Full_STEPH_6:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_6_nude.png", mimeType = "image/png")]
 			public var Full_STEPH_6_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/sydian_queen.png", mimeType = "image/png")]
+			public var Full_SYDIAN_QUEEN:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/sydian_queen_nude.png", mimeType = "image/png")]
+			public var Full_SYDIAN_QUEEN_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/syri_coat.png", mimeType = "image/png")]
 			public var Full_SYRI:Class;
