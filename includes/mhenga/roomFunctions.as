@@ -242,7 +242,7 @@ public function jungleEncounterChances():Boolean {
 				choices.push(dryadMeeting);
 			}
 		}
-		if(!pc.hasStatusEffect("Prai Cooldown") && rand(3) == 0) choices.push(praiFirstEncounter);
+		if(!pc.hasStatusEffect("Prai Cooldown") && rand(2) == 0) choices.push(praiFirstEncounter);
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
@@ -297,7 +297,7 @@ public function jungleMiddleEncounters():Boolean {
 		if(flags["TIMES_MET_VENUS_PITCHER"] != undefined 
 			&& flags["PRAI_FIRST"] != undefined
 			&& !pc.hasStatusEffect("Prai Cooldown") 
-			&& rand(3) == 0) 
+			&& rand(2) == 0) 
 				choices.push(praiSecondEncounter);
 		//Run the event
 		choices[rand(choices.length)]();
@@ -391,7 +391,7 @@ public function jungleDeepEncounters():Boolean {
 		if(flags["TIMES_MET_VENUS_PITCHER"] != undefined 
 			&& flags["PRAI_FIRST"] != undefined
 			&& !pc.hasStatusEffect("Prai Cooldown") 
-			&& rand(3) == 0) 
+			&& rand(2) == 0) 
 				choices.push(praiSecondEncounter);
 		//choices[choices.length] = encounterRegularTentaclePitcherYouGay;
 		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
