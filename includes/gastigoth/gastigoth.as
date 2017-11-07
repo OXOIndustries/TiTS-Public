@@ -729,7 +729,7 @@ public function brandMissionarySex(x:int):void
 	output("\n\n<i>“That... that felt...”</i> Hélla gasps, trying to catch her breath. You slow your movements to a gentle gyration, rocking your [pc.hips] slowly against her cum-stained groin.");
 	output("\n\n<i>“Amazing?”</i> you finish for her.");
 	output("\n\nShe nods, eagerly. <i>“That’s a good word for it. But you haven’t, um... cum yet. Here.”</i>");
-	output("\n\nHélla reaches down, drawing you out of her with one hand and bracing herself against the chair with the other. With a grunt and a gasp, she rolls herself over, planting her hands on the back of the chair and wiggling her booty at you. Her tail curls up over her back, and a hand slips down to spread her pusslylips, showing off the slick, still-open hole between them.");
+	output("\n\nHélla reaches down, drawing you out of her with one hand and bracing herself against the chair with the other. With a grunt and a gasp, she rolls herself over, planting her hands on the back of the chair and wiggling her booty at you. Her tail curls up over her back, and a hand slips down to spread her pussy lips, showing off the slick, still-open hole between them.");
 	output("\n\n<i>“Please keep going. Let me help you get off, too.”</i>");
 	output("\n\nWell, if she insists...");
 	processTime(30);

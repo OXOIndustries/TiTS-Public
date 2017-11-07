@@ -755,8 +755,8 @@ public function ciaranSpanks():void
 	if (pc.hasGenitals())
 	{
 		output("\n\nYour eyes water a bit from the pain, but your ");
-		if (pc.hasCock() && pc.hasVagina()) output("[pc.cunt] leaks [pc.girlcum] all over your thighs, and your [pc.cockLargest] throbs and dribbles precum to join the [pc.girlcum] you’re already puddling on the floor. ");
-		else if (pc.hasCock()) output("[pc.cockLargest] throbs and leaks precum onto the floor. ");
+		if (pc.hasCock() && pc.hasVagina()) output("[pc.cunt] leaks [pc.girlcum] all over your thighs, and your [pc.cockBiggest] throbs and dribbles precum to join the [pc.girlcum] you’re already puddling on the floor. ");
+		else if (pc.hasCock()) output("[pc.cockBiggest] throbs and leaks precum onto the floor. ");
 		else output("[pc.cunt] leaks [pc.girlcum] all over your thighs, some of it even dripping to the floor. ");
 	}
 	else output("\n\nYour eyes water a bit from the pain. ");

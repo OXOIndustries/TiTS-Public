@@ -708,7 +708,7 @@ public function actualKorgAnalPitch(target:Number):void
 	if(!pc.isAss()) output("You wait with him for a bit, then gently urge him off when the cold becomes too irritating.");
 	else output("You push him off roughly, sending him toppling into a faceful of snow and his own cum.");
 	//(not dildo)
-	if(target != -1) output(" Seed trickles from his asshole, running down his wet, matted fur and drawing a crooked line of sharp contrast against his black dick.");
+	if(target != -2) output(" Seed trickles from his asshole, running down his wet, matted fur and drawing a crooked line of sharp contrast against his black dick.");
 	output(" He grudgingly pulls on his pants, ");
 	if(!pc.isCrotchExposed()) output("and you do the same. Then you part");
 	else output("then parts");
