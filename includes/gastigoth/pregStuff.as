@@ -584,6 +584,9 @@ public function tamtamGastBirth():void
 	c.MaturationRate = 1.0;
 	c.BornTimestamp = GetGameTimestamp() - rand(10*60);
 	ChildManager.addChild(c)
+	
+	StatTracking.track("pregnancy/tam sired", flags["TAMTAM_NUM_BABIES"]);
+	StatTracking.track("pregnancy/total day care", flags["TAMTAM_NUM_BABIES"]);
 
 	if(flags["TAMTAM_TOTAL_KIDS"] == undefined) flags["TAMTAM_TOTAL_KIDS"] = 0;
 	flags["TAMTAM_TOTAL_KIDS"] += flags["TAMTAM_NUM_BABIES"];
@@ -625,6 +628,9 @@ public function khorganGastBirth():void
 	c.MaturationRate = 1.0;
 	c.BornTimestamp = GetGameTimestamp() - rand(10*60);
 	ChildManager.addChild(c)
+	
+	StatTracking.track("pregnancy/khorgan sired", flags["KHORGAN_NUM_BABIES"]);
+	StatTracking.track("pregnancy/total day care", flags["KHORGAN_NUM_BABIES"]);
 
 	if(flags["KHORGAN_TOTAL_KIDS"] == undefined) flags["KHORGAN_TOTAL_KIDS"] = 0;
 	flags["KHORGAN_TOTAL_KIDS"] += flags["KHORGAN_NUM_BABIES"];

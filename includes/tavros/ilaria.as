@@ -772,7 +772,10 @@ public function ilariaBirth():void
 	c.MaturationRate = 1.0;
 	c.BornTimestamp = GetGameTimestamp() - rand(10*60);
 	ChildManager.addChild(c)
-
+	
+	StatTracking.track("pregnancy/ilaria sired", flags["ILARIA_NUM_BABIES"]);
+	StatTracking.track("pregnancy/total day care", flags["ILARIA_NUM_BABIES"]);
+	
 	if(flags["ILARIA_TOTAL_KIDS"] == undefined) flags["ILARIA_TOTAL_KIDS"] = 0;
 	flags["ILARIA_TOTAL_KIDS"] += flags["ILARIA_NUM_BABIES"];
 	flags["ILARIA_PREG_TIMER"] = undefined;

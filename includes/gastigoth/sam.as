@@ -370,6 +370,9 @@ public function samGastBirth():void
 	c.MaturationRate = 1.0;
 	c.BornTimestamp = GetGameTimestamp() - rand(10*60);
 	ChildManager.addChild(c)
+	
+	StatTracking.track("pregnancy/sam sired", flags["SAM_NUM_BABIES"]);
+	StatTracking.track("pregnancy/total day care", flags["SAM_NUM_BABIES"]);
 
 	if(flags["SAM_TOTAL_KIDS"] == undefined) flags["SAM_TOTAL_KIDS"] = 0;
 	flags["SAM_TOTAL_KIDS"] += flags["SAM_NUM_BABIES"];

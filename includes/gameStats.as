@@ -970,12 +970,22 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Fathered, Briha’s Sons:</b> " + StatTracking.getStat("pregnancy/briha sons"));
 				if(StatTracking.getStat("pregnancy/briha daughters") > 0)
 					output2("\n<b>* Fathered, Briha’s Daughters:</b> " + StatTracking.getStat("pregnancy/briha daughters"));
+				if(StatTracking.getStat("pregnancy/ellie sired") > 0)
+					output2("\n<b>* Fathered, Ellie’s Children:</b> " + StatTracking.getStat("pregnancy/ellie sired"));
+				if(StatTracking.getStat("pregnancy/ilaria sired") > 0)
+					output2("\n<b>* Fathered, Ilaria’s Children:</b> " + StatTracking.getStat("pregnancy/ilaria sired"));
+				if(StatTracking.getStat("pregnancy/khorgan sired") > 0)
+					output2("\n<b>* Fathered, Khorgan’s Children:</b> " + StatTracking.getStat("pregnancy/khorgan sired"));
 				if(StatTracking.getStat("pregnancy/raskvel sired/total") > 0)
 					output2("\n<b>* Fathered, Raskvel Eggs:</b> " + StatTracking.getStat("pregnancy/raskvel sired/total"));
 				if(StatTracking.getStat("pregnancy/raskvel sired/day care") > 0)
 					output2("\n<b>* Fathered, Raskvel @ Daycare:</b> " + StatTracking.getStat("pregnancy/raskvel sired/day care"));
+				if(StatTracking.getStat("pregnancy/sam sired") > 0)
+					output2("\n<b>* Fathered, Sam’s Children:</b> " + StatTracking.getStat("pregnancy/sam sired"));
 				if(StatTracking.getStat("pregnancy/sera sired") > 0)
 					output2("\n<b>* Fathered, Sera’s Children:</b> " + StatTracking.getStat("pregnancy/sera sired"));
+				if(StatTracking.getStat("pregnancy/tam sired") > 0)
+					output2("\n<b>* Fathered, Tam’s Children:</b> " + StatTracking.getStat("pregnancy/tam sired"));
 				if(StatTracking.getStat("pregnancy/zil call girl kids") > 0)
 					output2("\n<b>* Fathered, " + (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "Zil Call Girl" : "Zheniya") + " Children:</b> " + StatTracking.getStat("pregnancy/zil call girl kids"));
 			}

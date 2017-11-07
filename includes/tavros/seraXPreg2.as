@@ -120,7 +120,6 @@ public function seraNurseryEndPregnancy(father:Creature, nBabies:int = 1, deltaT
 	}
 	
 	StatTracking.track("pregnancy/sera sired", nBabies);
-	StatTracking.track("pregnancy/total births", nBabies);
 	StatTracking.track("pregnancy/total day care", nBabies);
 	
 	seraPregnancyClear();
