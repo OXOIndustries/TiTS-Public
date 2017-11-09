@@ -370,8 +370,8 @@ public function tailFuck():void
 			if(pc.cockTotal() == 1) output("its");
 			else output("their");
 			output(" tiresome confinement, jutting proudly into the air");
-			output(".");
 		}
+		output(".");
 	}
 	//Naked
 	else

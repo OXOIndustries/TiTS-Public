@@ -4592,7 +4592,7 @@ public function seraBitcheningPunishWalkiesWitnessRival():void
 	showLocationName();
 	
 	output("<i>“You! - what are you doing?”</i>");
-	output("\n\nYour cousin, slim and sharply dressed, is stood in the middle of the Residential thoroughfare, staring at you - or more specifically slightly beyond you, at the individual on the end of your leash. It’s a slight shock to see [rival.himHer] in a setting where you don’t want to kill [rival.himHer], but you immediately decide to style it out.");
+	output("\n\nYour cousin, slim and sharply dressed, is standing in the middle of the Residential thoroughfare, staring at you - or more specifically slightly beyond you, at the individual on the end of your leash. It’s a slight shock to see [rival.himHer] in a setting where you don’t want to kill [rival.himHer], but you immediately decide to style it out.");
 	if(!pc.isBimbo())
 	{
 		output("\n\n<i>“Taking one of my bitches for a walk. Say hello to my cousin, Sera.”</i>");
