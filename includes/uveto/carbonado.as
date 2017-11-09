@@ -871,9 +871,7 @@ public function cfsGoSleepover():void
 		output("\n\nAs your moans increase in volume you notice something strange. Each time your voice reaches its peak the chubby puazi’s legs clench together, toes spreading as her thighs rub fruitlessly together. The sight brings a cruel thought to your mind, one you can’t help but entertain. You lean forward, wrenching the amorous alien’s legs apart and holding them open. Your interference does nothing to stop her torrent of licks, but you hear a questioning grunt the next time she grabs a breath.");
 
 		output("\n\nYou focus the pleasure running in your veins, controlling the volume of your moaning. Gwen’s thighs begin to clench as you grow louder, and you hear a pained groan as her phosphorescent pussy twitches needfully. Her legs strain to close as your voices intensity rises, but you arent about to let her off the hook so easily. A long tongue dives into your [pc.pussy], Finding just the right spot to break your regulated vocalizations into a carnal concert. Expressions of symphonic delight burst from your mouth, and your whole body quivers wonderfully with each note.");
-		if (pc.hasCock()) output(" [pc.eachCock] spurts [pc.cumColor] jizz to mix with the hot femcum already splattered onto the multicolored maiden’s chest, smeared in by an impromptu");
-		if (!silly) output(" boobjob.");
-		else output(" Puazuri.");
+		if (pc.hasCock()) output(" [pc.eachCock] spurts [pc.cumColor] jizz to mix with the hot femcum already splattered onto the multicolored maiden’s chest, smeared in by an impromptu " + (!silly ? "boobjob" : "Puazuri") + ".");
 
 		output("\n\nBeneath you, the punished puazi tenses, love juices squirting like a leaky faucet. Coming off of your own high, you jump on this opportunity, quickly plugging her hole with two fingers. Her legs slap shut around your hand, but it’s too late to block your driving digits. The slippery sex syrup dripping from her cunt makes any pressure her thighs apply near to meaningless. You simply glide through the improvised blockade to continue your relentless fingering.");
 
