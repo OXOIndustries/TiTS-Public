@@ -1291,8 +1291,8 @@ public function beatriceLeaves2():void
 	output("decline her offer, saying that you still have an inheritance to claim.");
 
 	output("\n\n<i>“I see.”</i> " + flags["BEA_TITLE"] + "’s expression softens. <i>“When we first met, I could tell you were the type of person who’s independent");
-	if(!pc.isBimbo() && pc.WQ() >= 50) output(", strong willed, ");
-	output("and in control of your fate - the ultimate agent of your destiny. In this way we are the same, you and I.”</i>");
+	if(!pc.isBimbo() && pc.WQ() >= 50) output(", strong willed,");
+	output(" and in control of your fate - the ultimate agent of your destiny. In this way we are the same, you and I.”</i>");
 	output("\n\nThe kui-tan stands a respectful distance behind his captain, observing.");
 	output("\n\n<i>“To give up your adventure in order to serve aboard my vessel would be a demotion for you. Even knowing that you wouldn’t accept, I still wanted to at least present the opportunity before we part ways.”</i> She ");
 	if(flags["BEA_RELATIONSHIP"] == 2)
