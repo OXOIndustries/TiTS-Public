@@ -436,7 +436,7 @@ public function kaseSexRecOral(x:int):void
 	output("\n\nYou smile down at the kaithrit, and gently rub a finger along the edge of his feline ears, making them twitch and their owner’s breath quiver. ");
 	if (pc.isNude()) output("Kase is blushing red at your naked form, eyes locked on your ");
 	else output("While your digits work at his aural organs, you order your subordinate to get your clothes off for you. Kase is quick to obey and start pulling away your clothes, being careful not to stretch or rip any of your garments until you’re finally bare. He’s blushing red at your now-naked form, eyes locked on your ");
-	if(pc.hasCock()) output("stiffening [pc.cockNoun " + x + "]");
+	if(pc.hasCock()) output("stiffening " + (vaged ? "[pc.cocksNoun]" : "[pc.cockNoun " + x + "]"));
 	if(pc.isHerm()) output(" and ");
 	if(pc.hasVagina()) output("glistening sex");
 	output(", and you’re sure all he needs is to be told what to. You tell him to ");
