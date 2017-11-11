@@ -75,7 +75,7 @@ public function canIHelpYouSeraImDumb():void
 		output("\n\nMaybe you should not have said that.");
 		output("\n\n<i>“I have this idea but I don’t know if it works out as I think it will.");
 		//if PC has a Badger, Bovine, Bunny, Canine, Deer, Feline, Horse, Huskar, Laquine, Lupine, Nuki, Panda, Sheep or Vulpine score of 0:
-		if(furScore == 0) output(" I mean, you look <i>nothing</i> like them, but it could work.");
+		if(furScore == 0) output(" I mean, you look </i>nothing<i> like them, but it could work.");
 		//if PC has a Badger, Bovine, Bunny, Canine, Deer, Feline, Horse, Huskar, Laquine, Lupine, Nuki, Panda, Sheep or Vulpine score of 1:
 		else if(furScore < 2) output(" Could work though. You kinda look like them.");
 		else output(" But it will probably work out fine. You look just like those guys.");
@@ -115,7 +115,7 @@ public function canIHelpYouSeraImDumb():void
 		output("\n\nShe holds it out to you.");
 		output("\n\n<i>“I run a business here. My reputation is my life. What would my potential customers think of my shop if they saw how dusty my showcase is? Hm? That my shop is boring? And dirty? How do you plan on taking responsibility for this?”</i>");
 		output("\n\n<i>“I don’t see any-”</i>");
-		output("\n\n<i>“I <i>said</i>, slut, how do you plan to take responsibility?”</i>");
+		output("\n\n<i>“I </i>said<i>, slut, how do you plan to take responsibility?”</i>");
 		output("\n\nAny form of protest is immediately suffocated by the glare of your mistress, a look both demanding and hard. Something else has seemingly also gotten hard, judging from how her dick feels against your [pc.belly]. She clearly has something in mind.");
 		output("\n\n<i>“Mistress, I-”</i>");
 		output("\n\nYou gasp in surprise as she roughly grabs your [pc.breast].");
@@ -136,7 +136,7 @@ public function canIHelpYouSeraImDumb():void
 		else output("lowers you to her crotch");
 		output(" and onto her dick in your moment of confusion.");
 		output("\n\nSheer physical force shoves the caramel-flavored candy down your throat only for bulging demon-dick to follow.");
-		output("\n\n<i>“Trick or treat.”</i>, she husks in enjoyment.");
+		output("\n\n<i>“Trick or treat,”</i> she husks in enjoyment.");
 	}
 	//[continue with “merge Halloween opening or standard opening here”]
 	processTime(10);
@@ -191,7 +191,7 @@ public function roughFunsWithSeras(furScore:Number):void
 
 	output("\n\nAs you think that thought, you feel a claw-tipped hand on your [pc.hip], another on your back and one shove later have your upper body pressed against the glass, smearing milk and cum all over it.");
 
-	output("\n\n<i>“Don’t make them wait all day, furry slut.”</i>, Sera husks as she presses her own breasts into your back.");
+	output("\n\n<i>“Don’t make them wait all day, furry slut.”</i> Sera husks as she presses her own breasts into your back.");
 
 	output("\n\nPeople are openly watching you now. Some make no excuses of their suddenly tenting pants or even skirts, a few even touching themselves with no regard for decency. Several passersby seem to look up above the shop window for some reason. Is that a reflection of The Dark Chrysalis’ neon signage you see across the street?");
 
