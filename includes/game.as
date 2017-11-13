@@ -1027,7 +1027,7 @@ public function restHeal():void
 	if(pc.hasStatusEffect("Sore Counter")) soreChange(-1);
 }
 
-public function sleep(outputs:Boolean = true):void {
+public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 	
 	//Turn encounters back on.
 	flags["ENCOUNTERS_DISABLED"] = undefined;
@@ -1038,7 +1038,7 @@ public function sleep(outputs:Boolean = true):void {
 	if(outputs)
 	{
 		clearOutput();
-		eventBufferXP();
+		if(bufferXP) eventBufferXP();
 	}
 	
 	// Before sleep events
@@ -1231,16 +1231,16 @@ public function sleepHeal():void
 	if (pc.energyRaw < pc.energyMax()) pc.energyRaw = pc.energyMax();
 }
 
-public function genericSleep(baseTime:int = 480):void
+public function genericSleep(baseTime:int = 480, bufferXP:Boolean = true):void
 {
 	var totalTime:int = baseTime + (rand(baseTime / 3) - (baseTime / 6));
 	
-	eventBufferXP();
+	if(bufferXP) eventBufferXP();
 	sleepHeal();
 	processTime(totalTime);
 }
 
-public function dailyAutoSleep(nMin:int = 0):void
+public function dailyAutoSleep(nMin:int = 0, bufferXP:Boolean = true):void
 {
 	var nHour:int = Math.floor(nMin / 60);
 	var numSleeps:int = Math.floor(nHour / 24);
@@ -1250,12 +1250,12 @@ public function dailyAutoSleep(nMin:int = 0):void
 		{
 			sleepHeal();
 		}
-		eventBufferXP();
+		if(bufferXP) eventBufferXP();
 	}
 	else if(nHour >= 8)
 	{
 		sleepHeal();
-		eventBufferXP();
+		if(bufferXP) eventBufferXP();
 	}
 }
 

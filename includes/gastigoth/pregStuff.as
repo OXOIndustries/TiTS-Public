@@ -664,7 +664,7 @@ public function tamtamBabyBlurbs():void
 
 public function khorganBabyBlurbs():void
 {
-	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_FELINE, 0, 4*12) == 1)
+	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_THRAGGEN, 0, 4*12) == 1)
 	{
 		var boy:Boolean = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_THRAGGEN, ChildManager.GENDER_MALE, 0, 4*12);
 		output("\n\nYour thraggen " + (boy ? "son" : "daughter") + " is crawling around " + (boy ? "his" : "her") + " room, causing havoc whenever a staff member isn’t paying attention. " + (boy ? "He" : "She") + "’s a little hellion already, playing with toys before hurling them against a wall or out the door. Gonna be big and strong, this one.");

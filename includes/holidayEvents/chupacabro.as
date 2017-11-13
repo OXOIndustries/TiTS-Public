@@ -22,7 +22,7 @@ public function reahaIsScaredOfTheChupacabro():void
 	processTime(5);
 	
 	addButton(0, "SleepWith", dontWorryReahaIllGetRapedWithYou, undefined, "", "");
-	addButton(1, "NoSleepW/", dontBringYourTexanMonstersInMyBed, undefined, "", "");
+	addButton(1, "NoSleepWith", dontBringYourTexanMonstersInMyBed, undefined, "", "");
 }
 
 public function dontBringYourTexanMonstersInMyBed():void

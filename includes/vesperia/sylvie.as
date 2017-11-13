@@ -2505,24 +2505,28 @@ public function sylvieRutFunPart3():void
 	output("\n\n<i>“Ahhh~!”</i> Sylvie cries. Her pussy gushes and grabs hold of you squeezing. It’s too much for you to endure, and the release you’ve been chasing since you smelled her so long ago finally claws its way out of your belly with wild spasms of pleasure. Your whole body shakes, every muscle taut, every nerve afire with bliss");
 	if(pc.balls > 1) output(", your [pc.balls] audibly sloshing as they disgorge their virile payload");
 	output(". Your [pc.cock " + x + "] feels like an erupting volcano, so soaked in red-hot liquid that you can scarcely tell your own ejaculate from the sea of Sylvie’s slutty secretions.");
+	
+	processTime(44);
+	var cumQ:Number = pc.cumQ();
+	
 	output("\n\nThe titanic moose-taur grabs your hands off her ass and squeezes your palms in hers, looking you in the eye as you orgasm. She’s smiling wide, watching your face with rapt attention as you release jet after jet inside her");
-	if((pc.cumQ() >= 500 && !pc.hasKnot(x)) || (pc.cumQ() >= 5000 && pc.hasKnot(x))) output(", more than enough to backflow into the pool");
+	if((cumQ >= 500 && !pc.hasKnot(x)) || (cumQ >= 5000 && pc.hasKnot(x))) output(", more than enough to backflow into the pool");
 	output(". <i>“Keep at it, stud,”</i> she whispers encouragingly. <i>“A little more cum and you’ll get me soooo pregnant.”</i> Her cunt rhythmically contracts and relaxes, milking you for more. <i>“Oooh, you’re doing it, you’re knocking me up!”</i> Sylvie squeezes your hands even tighter, and somehow you feel it echoed deep inside you, squeezing out the last few dregs of seed that your body can offer.");
 	output("\n\nYou sigh heavily, then slump weakly over Sylvie’s ass. Cum trickles down your legs, and for once since going into rut, you feel completely sated.");
-	processTime(44);
+	
 	pc.orgasm();
 	pc.ballFullness = 0;
 	clearMenu();
-	addButton(0,"Next",sylvieRutFunPart4);
+	addButton(0,"Next",sylvieRutFunPart4, cumQ);
 }
 
-public function sylvieRutFunPart4():void
+public function sylvieRutFunPart4(cumQ:Number = 0):void
 {
 	clearOutput();
 	showSylvie();
 	output("Sylvie pushes you off her into the pool");
 	applyPussyDrenched(pc);
-	if(pc.cumQ() >= 3000) 
+	if(cumQ >= 3000) 
 	{
 		output(", and a tide of [pc.cumGem] sex-juice pours out over you, soaking you further");
 		applyCumSoaked(pc);

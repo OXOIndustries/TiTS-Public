@@ -1851,10 +1851,12 @@ public function spiderCostumeOutro():void
 	
 	if(pc.hasCock())
 	{
-		output("\n\nOh shit, your [pc.cocks]!</b>");
-		if(pc.cockTotal() == 1) output(" It’s gone!");
-		else output(" They’re gone!");
-		output("</b> In their place is that <b>single, slippery spider-slit!</b>");
+		output("\n\nOh shit, your [pc.cocks]! <b>");
+		if(pc.cockTotal() == 1) output("It’s gone");
+		else output("They’re gone");
+		if(pc.balls > 0) output("... along with your [pc.balls]");
+		output("!");
+		output("</b> In " + (pc.cockTotal() == 1 && pc.balls <= 0 ? "its" : "their") + " place is that <b>single, slippery spider-slit!</b>");
 		pc.removeCocks();
 		pc.removeVaginas();
 	}
@@ -1865,7 +1867,7 @@ public function spiderCostumeOutro():void
 	}
 	else if(!pc.hasGenitals())
 	{
-		output("\n\n<b>More interesting still is the<b> spider-like vagina that you’ve gained!</b>");
+		output("\n\nMore interesting still is the <b>spider-like vagina that you’ve gained!</b>");
 	}
 	else if(pc.hasVagina(GLOBAL.TYPE_ARACHNID))
 	{
@@ -1912,6 +1914,8 @@ public function spiderCostumeOutro():void
 	pc.tongueType = GLOBAL.TYPE_ARACHNID;
 	pc.addTongueFlag(GLOBAL.FLAG_LONG);
 	pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
+	//No testes
+	pc.balls = 0;
 	//Set up new spidergina.
 	if(!pc.hasVagina()) pc.createVagina();
 	pc.vaginas[0].type = GLOBAL.TYPE_ARACHNID;

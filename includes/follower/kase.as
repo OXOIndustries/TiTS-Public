@@ -436,7 +436,7 @@ public function kaseSexRecOral(x:int):void
 	output("\n\nYou smile down at the kaithrit, and gently rub a finger along the edge of his feline ears, making them twitch and their owner’s breath quiver. ");
 	if (pc.isNude()) output("Kase is blushing red at your naked form, eyes locked on your ");
 	else output("While your digits work at his aural organs, you order your subordinate to get your clothes off for you. Kase is quick to obey and start pulling away your clothes, being careful not to stretch or rip any of your garments until you’re finally bare. He’s blushing red at your now-naked form, eyes locked on your ");
-	if(pc.hasCock()) output("stiffening [pc.cockNoun " + x + "]");
+	if(pc.hasCock()) output("stiffening " + (vaged ? "[pc.cocksNoun]" : "[pc.cockNoun " + x + "]"));
 	if(pc.isHerm()) output(" and ");
 	if(pc.hasVagina()) output("glistening sex");
 	output(", and you’re sure all he needs is to be told what to. You tell him to ");
@@ -626,7 +626,7 @@ public function kaseSexThreesomeAnno():void
 	clearOutput();
 	author("HugsAlright");
 	showName("KASE\nAND ANNO");
-	showBust("KASE_NUDE", "ANNO_NUDE");
+	showBust(kaseBustDisplay(true), "ANNO_NUDE");
 	clearMenu();
 	
 	output("<i>“Miss Dorna?”</i> he asks, gulping audibly, <i>“I-I find it’s best not to encourage her... but if that’s what you want captain, then I’d be happy to join you for a little excursion with her.”</i> He smiles as best he can at you, but you can’t help but notice the hint of nervousness in his mien.");
@@ -807,7 +807,7 @@ public function kaseCrewSleep():void
 	else
 	{
 		output("As you’re climbing into bed, Kase appears in the doorframe, dressed in nothing but a t-shirt and boy shorts. ");
-		output("\n\nYou sit yourself up on an elbow as face the kaithrit as he enters your room, just like he was instructed to. He gives you a smile when his dichotomous eyes meet yours, then climbs into bed behind you.");
+		output("\n\nYou sit yourself up on an elbow and face the kaithrit as he enters your room, just like he was instructed to. He gives you a smile when his dichotomous eyes meet yours, then climbs into bed behind you.");
 		output("\n\nHeat radiates from his body as it presses against yours, arms wrapping around your shoulders and his head nuzzling against your back, pine-green locks caressing the sensitive flesh between your shoulders. <i>“Good night, Captain,”</i> he coos sleepily, slipping his tails around you, the prehensile appendages holding you as tightly as his arms.");
 		output("\n\nYou smile to yourself, enjoying the embrace of your subordinate, getting ready to drift off into a warm, peaceful sleep...");
 	}
@@ -904,7 +904,7 @@ public function kaseVoyeurAnno():void
 	clearOutput();
 	author("HugsAlright");
 	showName("KASE\nAND ANNO");
-	showBust((flags["KASE_HEALED"] == 1 ? "KASE_HEALED" : "KASE"), "ANNO");
+	showBust(kaseBustDisplay(), "ANNO");
 	clearMenu();
 	
 	output("[pc.Walk]ing around your ship, you notice Kase standing alone. He seems deep in thought, tapping away at his datapad, looking quite determined and not taking notice of you in the slightest. Before you can make your way to him and see what he’s up to, Anno appears from the other side of the room, right behind your kaithrit employee. Holding a finger to her mouth, she makes a shushing motion then reaches up to her catsuit’s zipper, and pulls it down just enough so her uniform parts around her sizable breasts, showing just the slightest hint of pink nipple. ");

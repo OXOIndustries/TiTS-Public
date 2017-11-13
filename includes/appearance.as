@@ -2543,6 +2543,9 @@ public function appearance(forTarget:Creature):void
 		else addDisabledGhostButton(btnIndex++, "Laquine Ears", "Remove Laquine Ears", "You cannot do this at this time.");
 	}
 	
+	// Immobilization help
+	if (immobilizationList().length > 0) addGhostButton(btnIndex++, "ImmobileHelp", immobilizationHelp, undefined, "Immobilization Help", "You can’t move--Call for help to fix your immobilized state!");
+	
 	setTarget(null);
 }
 

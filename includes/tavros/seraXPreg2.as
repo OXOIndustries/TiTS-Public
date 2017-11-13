@@ -502,7 +502,7 @@ public function seraBitchImpregnateBedResumeSleep(bSet:Boolean = false):void
 {
 	if(!bSet) flags["SERA_NO_SLEEP"] = -1;
 	else flags["SERA_NO_SLEEP"] = days;
-	sleep();
+	sleep(true, false);
 	if(!bSet) flags["SERA_NO_SLEEP"] = undefined;
 }
 // Morning Sex

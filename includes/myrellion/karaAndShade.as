@@ -427,7 +427,7 @@ public function shadeSexMenu(intro:Boolean = false):void
 	
 	//[Rim & Wank] (if PC has no cunt; else) [Lick & Wank]
 	//PC must have taken Shade’s hardlight strapon at least once. Must be effeminate enough to use female pronouns and possess a cock. Is a [vagOrAss] scene.
-	if (pc.hasCock() && pc.mf("he","She") == "She" && flags["TAKEN_SHADES_HARDLIGHT"] != undefined)
+	if (pc.hasCock() && pc.mf("he","she", true) == "she" && flags["TAKEN_SHADES_HARDLIGHT"] != undefined)
 	{
 		if (pc.hasVagina()) addButton(2,"Lick & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Lick & Wank","Get licked and wanked.");
 		else addButton(2,"Rim & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Rim & Wank","Get rimmed and wanked off.");
@@ -878,10 +878,8 @@ public function rimAndWankOrLickAndWankWhoKnowsSloot():void
 	if(pc.legCount > 1) output(" between");
 	else output(" against");
 	output(" your [pc.legOrLegs]. Her fingers brush across your length, a simple touch that has you from half mast to diamond hard by the time she’s reached your [pc.cockHead " + x + "].");
-
-
-
-	output("\n\n<i>“I love a woman with a nice, hard cock between her legs.");
+	
+	output("\n\n<i>“I love a [pc.manWoman] with a nice, hard cock between [pc.hisHer] legs.");
 	if(pc.isGoo() || pc.isNaga()) output(" Or [pc.legOrLegs], in your case.");
 	output("”</i> Shade says, leaning in and planting a kiss ");
 	if(pc.balls > 0) output("on your [pc.balls], sending an electric wave of pleasure tingling through your body");

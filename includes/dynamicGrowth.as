@@ -374,6 +374,30 @@ private function bodyPartCleanup(partName:String = "none", deltaT:uint = 0):void
 }
 
 
+public function immobilizationList():Array
+{
+	var funcList:Array = [];
+	
+	if(pc.hasStatusEffect("Endowment Immobilized"))
+	{
+		if(pc.balls > 0 && pc.weightQ("testicle") >= percentBalls[3] && pc.heightRatio("testicle") >= lvlRatioBalls[3]) funcList.push(bigBallNoBadEnd);
+	}
+	return funcList;
+}
+public function immobilizationHelp():void
+{
+	clearOutput();
+	
+	output("Due to your immobilized state, you take out your codex and call for help...");
+	
+	var funcList:Array = immobilizationList();
+	
+	clearMenu();
+	if(funcList.length > 0) addButton(0, "Next", funcList[rand(funcList.length)]);
+	else addButton(0, "Next", mainGameMenu);
+}
+
+
 /* Nuts stuff! */
 
 public function nutSwellUpdates(deltaT:uint = 0):void
@@ -417,12 +441,13 @@ public function canShrinkNuts():Boolean
 	return false;
 }
 
-public function bigBallBadEnd():void
+public function bigBallNoBadEnd():void { bigBallBadEnd(false); }
+public function bigBallBadEnd(bBadEnd:Boolean = true):void
 {
 	clearOutput();
 	author("Fenoxo");
 	//Dangerous area, can’t unswell:
-	if(rooms[currentLocation].hasFlag(GLOBAL.HAZARD))
+	if(bBadEnd && rooms[currentLocation].hasFlag(GLOBAL.HAZARD))
 	{
 		output("It isn’t long before the natives of this place take you as an amusement - a live-in toy whose virility is the show-piece of an alien exhibit. You never do manage to get your dad’s fortune, but hey, at least you get to live in relative comfort and have all the orgasms your body can handle.");
 		
@@ -463,9 +488,26 @@ public function bigBallBadEnd():void
 				pc.balls = 3;
 			}
 		}
-		pc.ballSizeRaw = 30;
-		moveTo("SHIP INTERIOR");
+		
+		pc.createStatusEffect("Milk Paused");
+		pc.createStatusEffect("Cum Paused");
 		processTime(1382);
+		pc.removeStatusEffect("Milk Paused");
+		pc.removeStatusEffect("Cum Paused");
+		
+		if(pc.hasStatusEffect("Blue Balls")) pc.removeStatusEffect("Blue Balls");
+		if(pc.perkv1("'Nuki Nuts") > 0)
+		{
+			pc.ballSizeMod -= pc.perkv1("'Nuki Nuts");
+			pc.setPerkValue("'Nuki Nuts", 1, 0);
+		}
+		if(pc.ballSizeRaw > 30) pc.ballSizeRaw = 30;
+		
+		pc.ballFullness = 0;
+		nutStatusCleanup();
+		
+		moveTo("SHIP INTERIOR");
+		
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 	}

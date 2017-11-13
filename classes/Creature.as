@@ -1906,6 +1906,10 @@
 				case "cockNounBiggest":
 					buffer = simpleCockNoun(biggestCockIndex());
 					break;
+				case "cockSkin":
+				case "dickSkin":
+					buffer = cockSkin(arg2);
+					break;
 				case "cockColor":
 				case "dickColor":
 					buffer = cockColor(arg2);
@@ -1936,7 +1940,10 @@
 				case "cockHeadBiggest":
 					buffer = cockHead(biggestCockIndex());
 					break;
-				case "smellestCockDescript":
+				case "cockHeadSmallest":
+					buffer = cockHead(smallestCockIndex());
+					break;
+				case "smallestCockDescript":
 				case "smallestCock":
 				case "cockSmallest":
 					buffer = cockDescript(smallestCockIndex());
@@ -16133,6 +16140,33 @@
 		}
 		public function nippleCocksDescript(appearance: Boolean = false): String {
 			return plural(nippleCockDescript(appearance));
+		}
+		public function cockSkin(arg2:int = 0):String
+		{
+			if(!hasCock() || arg2 < 0 || arg2 >= cockTotal()) return "ERROR";
+			
+			var sDesc:String = "";
+			var aNoun:Array = ["dickskin", "dickskin", "cockskin"];
+			var aAdjective:Array = [];
+			
+			if(cocks[arg2].hasFlag(GLOBAL.FLAG_SMOOTH)) aAdjective.push("smooth");
+			if(cocks[arg2].hasFlag(GLOBAL.FLAG_LUBRICATED)) aAdjective.push("lubricated", "slick", "slimy");
+			if(cocks[arg2].hasFlag(GLOBAL.FLAG_GOOEY)) aAdjective.push("gooey", "slimy", "slick");
+			if(cocks[arg2].hasFlag(GLOBAL.FLAG_STICKY)) aAdjective.push("sticky");
+			if(cocks[arg2].hasFlag(GLOBAL.FLAG_SQUISHY)) aAdjective.push("squishy");
+			if(cocks[arg2].hasFlag(GLOBAL.FLAG_FURRED)) aAdjective.push("furred", "furry");
+			if(cocks[arg2].hasFlag(GLOBAL.FLAG_SCALED)) aAdjective.push("scaled", "scaly");
+			if(cocks[arg2].hasFlag(GLOBAL.FLAG_CHITINOUS)) aAdjective.push("chitinous", "armored");
+			if(cocks[arg2].hasFlag(GLOBAL.FLAG_FEATHERED)) aAdjective.push("feathered", "furry");
+			if(cocks[arg2].hasFlag(GLOBAL.FLAG_NUBBY)) aAdjective.push("nubby", "nodule-covered");
+			if(cocks[arg2].hasFlag(GLOBAL.FLAG_RIBBED)) aAdjective.push("ribbed");
+			if(cocks[arg2].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) aAdjective.push("aphrodisiac-laced");
+			
+			if(aAdjective.length > 0 && rand(2) == 0) sDesc += aAdjective[rand(aAdjective.length)] + " ";
+			
+			sDesc += aNoun[rand(aNoun.length)];
+			
+			return sDesc;
 		}
 		public function cockColor(arg2:int = 0):String
 		{

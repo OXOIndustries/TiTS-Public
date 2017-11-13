@@ -721,7 +721,7 @@ public function brothelTurnTrixLady():void
 		{
 			output("\n\n<i>“Hah! Are you fucking with me? Did ya trade your tits for a tallywacker?”</i> she comments.");
 			output("\n\nOh, you did change your sex since last time.");
-			output("\n\n<i>“The many faces of Steele: Whoring out more than just [pc.her] genitals, but [pc.her] image as well!”</i>");
+			output("\n\n<i>“The many faces of Steele: Whoring out more than just [pc.hisHer] genitals, but [pc.hisHer] image as well!”</i>");
 			output("\n\nYou furrow your brow at her remark but continue, <i>“I can still work, right?”</i>");
 			flags["BETHS_ASKED_TO_WHORE"] = 0;
 		}

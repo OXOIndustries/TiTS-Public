@@ -844,7 +844,7 @@ public function HSSN():void
 		if(flags["PAIGE_ANAL"] != undefined && !pc.hasVagina()) output(".”</i> She leans down, her lips nibbling on your ear before continuing. <i>“Paige tells me she loves it up the ass, too. You’d really be making her night if you told her you liked it");
 		output(".”</i>");
 	}
-	//[if {not first time}
+	//if {not first time}
 	else
 	{
 		output("<i>“I feel like you understand me on a more primordial level, since you keep asking me to grow a dick,”</i> she says matter-of-factly; her body flexes above you at the sound of her own words, proud that she’s pleasuring her [pc.manWoman] the way she is. <i>“How it feels to have a nice, thick cock inside you every once in a while");
@@ -1058,7 +1058,9 @@ public function SSE4():void
 	}
 	output("\n\nPaige never stops her fucking, despite the connection between you two being so tight that you might as well be a single person – or, more likely, you’re an accessory, something Paige puts on to feel good about herself. Her movements become more exaggerated over time, though; her orgasm eventually has to end, and by the time she’s tapped out, she finally comes to a rest on top of you.");
 
-	output("\n\nYou’re both exhausted and panting in exertion, Paige moreso than you. She collapses on top of you, squishing you to the mat[if (pc.hasCock = true) and soaking you in your own mess]. Her titanic dick is lodged tight and sure inside you; Paige twists to one side, and you’re both lying on your left with your Ausar lover spooning you. She idly kisses at your neck as she comes down from the high of her orgasm – and she occasionally teases you with the idea of a second round by humping against you some more, keeping herself nice and hard inside you, ensuring that you’re locked together for a while yet.");
+	output("\n\nYou’re both exhausted and panting in exertion, Paige moreso than you. She collapses on top of you, squishing you to the mat");
+	if(pc.hasCock()) output(" and soaking you in your own mess");
+	output(". Her titanic dick is lodged tight and sure inside you; Paige twists to one side, and you’re both lying on your left with your Ausar lover spooning you. She idly kisses at your neck as she comes down from the high of her orgasm – and she occasionally teases you with the idea of a second round by humping against you some more, keeping herself nice and hard inside you, ensuring that you’re locked together for a while yet.");
 
 	processTime(20);
 	if(pc.hasVagina()) pc.loadInCunt(paige,0);
