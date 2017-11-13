@@ -3378,7 +3378,7 @@ public function knottyNurseHellhoundII():void
 	showName("KNOTTY\nCURE-ALL");
 	output("<i>“Wait!”</i> you beg, throwing up your arms.");
 	output("\n\nThe amazonian ausar grimaces. <i>“What now? How many times are you going to waste my time tonight?”</i> She drags her hips back and forth, hard, bodily grinding you against the pavement with nothing but her cunt. <i>“Why couldn’t you have just been a decent dildo?”</i>");
-	output("\n\nYou grab two of the medipens from the holster around your thigh. <i>“It’ll be worth it. I promise!”</i> Or so you hope. Jabbing them against your thighs, you hear the faint his them unloading their tainted payload into your bloodstream.");
+	output("\n\nYou grab two of the medipens from the holster around your thigh. <i>“It’ll be worth it. I promise!”</i> Or so you hope. Jabbing them against your thighs, you hear the faint hiss of them unloading their tainted payload into your bloodstream.");
 	output("\n\nThe buxom bitch riding high on your dick watches impassively, lips halfway pulled into a snarl. <i>“I’m waiting.”</i>");
 	output("\n\n<i>“One...se-s-s-s-sss...”</i> you stutter, trailing off as your thoughts and plans splinter off into a dozen whirling pools of indifferent, half-thought fantasies, each lewder and rauncher than the last. You try to focus on the ausar’s heaving, perfect breasts, but they split into a quartet of milky mammaries, their nipples stirring swirls in the fabric of space with her every breath. Looking higher, you see two perfect faces scowling down at you, fangs bared.");
 	output("\n\n<i>“A fucking junkie. I should’ve known.”</i>");
@@ -3480,6 +3480,7 @@ public function knuttyNurseRodenianIII(choice:String):void
 	//Pick her name - misch
 	if(choice == "mischievous")
 	{
+		pc.addMischievous(10);
 		flags["RODENIAN_MINDFUCK"] = 1;
 		output("<i>“I’m going to call you Suzy,”</i> you proclaim. <i>“Sounds good?”</i>");
 		output("\n\n<i>“Soooo good,”</i> the rodenian echos, wiggling happily. Her tunnel squeezes down, milking a fresh rope from your canid prong.");
@@ -3519,6 +3520,7 @@ public function knuttyNurseRodenianIII(choice:String):void
 	//Toy - asshole choice
 	else if(choice == "hard")
 	{
+		pc.addHard(10);
 		output("<i>“Your name is Toy,”</i> you insist. <i>“You might have been called something else before, but your name is Toy. Not slut. Not whore. Not breeder-bitch.”</i>");
 		output("\n\n<i>“Tooooyyyyy,”</i> the rodenian echoes. Her tunnel squeezes down, milking a fresh rope from your canid prong.");
 		output("\n\nYou shiver. <i>“Yes, Toy. Because you after tonight, a part of you will always want to be a cock-hungry bedroom toy... but only a part of you, Toy.”</i> You stroke her hair while your cock drools more seed into her fertile passage. <i>“Because the best Toys are ones that can take care of themselves. The best toys don’t act like toys all the time. They seem like normal people. They hold down jobs or take care of houses, or even raise children! They have thoughts and opinions about things when they aren’t embedded on their owner’s cock, and you are that kind of toy, Toy.”</i>");
@@ -3548,6 +3550,7 @@ public function knuttyNurseRodenianIII(choice:String):void
 	//Old name - nice choice
 	else
 	{
+		pc.addNice(10);
 		flags["RODENIAN_MINDFUCK"] = 0;
 		output("<i>“You do have a name,”</i> you instruct. <i>“A lovely name.”</i>");
 		output("\n\n<i>“Lovely name,”</i> the rodenian echoes. Her tunnel squeezes down, milking a fresh rope from your canid prong.");
