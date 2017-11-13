@@ -358,6 +358,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kirila_nude.png", mimeType = "image/png")]
 		public var Bust_KIRILA_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/korgonne_female.png", mimeType = "image/png")]
+		public var Bust_KORGONNE_FEMALE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/korgonne_female_nude.png", mimeType = "image/png")]
+		public var Bust_KORGONNE_FEMALE_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/black_void_engineer.png", mimeType = "image/png")]
 		public var Bust_KQ2ENGINEER:Class;
 		public var Bounds_KQ2ENGINEER:Rectangle = new Rectangle(33, 11, 54, 64);
@@ -970,6 +975,11 @@
 			public var Full_KIRILA:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kirila_nude.png", mimeType = "image/png")]
 			public var Full_KIRILA_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_female.png", mimeType = "image/png")]
+			public var Full_KORGONNE_FEMALE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_female_nude.png", mimeType = "image/png")]
+			public var Full_KORGONNE_FEMALE_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/black_void_engineer.png", mimeType = "image/png")]
 			public var Full_KQ2ENGINEER:Class;
