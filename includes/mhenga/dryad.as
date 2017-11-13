@@ -1,8 +1,5 @@
 /*
 Dryad on Mhen'ga, written/coded by Wsan.
-
-To do :
-Maybe more action in repeat encounters. Can't get carried away though...
 */
 
 public function dryadHeader():void
@@ -50,6 +47,10 @@ public function dryadMeeting():void
 		output("\n\nYou can hear a high-pitched, frantic voice coming from up ahead. Sounds like someone is in trouble, and as you approach you see there’s a trail of hooved footprints that look to have trampled out an impromptu clearing. Scooping some foliage out of your face, you can see there’s a creature facing away from you off to the side. It looks to be tauric in nature, with four hooved legs, furred, and a bare humanoid upper half at the front of its body. You look down and are unsurprised to see a large, pink and fully erect horsecock swinging from its undercarriage – seems like everything out here wants to fuck. It turns towards you and you’re taken aback – you’re faced with a beautiful woman with flowing red hair down to her chest. She trots in your direction and you can see her hair was partially masking her breasts, which look to be about a C-cup and capped with pink nipples. As she gets closer, you note her face is red and that she’s breathing heavily, her hair strewn wildly and breasts rapidly moving up and down with her inhalations. She greets you first.");
 		output("\n\n<i>“Um, hi! Listen, maybe you’ve heard this before but I really, <i>really</i> need to fuck someone before I go mad! These gene mods are great, but the ones I’ve used kinda clashed and now I go into heat multiple times a day and - look, can we just fuck?”</i>");
 	}
+	else if (flags["DRYAD_DRAINED"] != undefined)
+	{	output("\n\nYou can hear a high-pitched, frantic voice coming from up ahead. Sounds like someone is in trouble, and as you approach you see there’s a trail of hooved footprints that look to have trampled out an impromptu clearing. Scooping some foliage out of your face, you can see there’s a creature facing away from you off to the side. It looks to be tauric in nature, with four hooved legs, furred, and a bare humanoid upper half at the front of its body. You look down and are unsurprised to see a large, pink and fully erect horsecock swinging from its undercarriage – seems like everything out here wants to fuck. It turns towards you and you’re taken aback – you’re faced with a beautiful woman with flowing red hair down to her chest. She trots in your direction and you can see her hair was partially masking her breasts, which look to be about a C-cup and capped with pink nipples. As she gets closer, you note her face is red and that she’s breathing heavily, her hair strewn wildly and breasts rapidly moving up and down with her inhalations. She greets you first.");
+		output("\n\n<i>“Oh hey, lover! Can we fuck some more? Please!”</i>"
+	}
 	else
 	{
 		output("\n\nYou can hear a high-pitched, frantic voice coming from up ahead. Sounds like someone is in trouble, and as you approach you see there’s a trail of hooved footprints that look to have trampled out an impromptu clearing. Scooping some foliage out of your face, you can see there’s a creature facing away from you off to the side. It looks to be tauric in nature, with four hooved legs, furred, and a bare humanoid upper half at the front of its body. You look down and are unsurprised to see a large, pink and fully erect horsecock swinging from its undercarriage – seems like everything out here wants to fuck. It turns towards you and you’re taken aback – you’re faced with a beautiful woman with flowing red hair down to her chest. She trots in your direction and you can see her hair was partially masking her breasts, which look to be about a C-cup and capped with pink nipples. As she gets closer, you note her face is red and that she’s breathing heavily, her hair strewn wildly and breasts rapidly moving up and down with her inhalations. She greets you first.");
@@ -92,6 +93,9 @@ public function dryadMeeting():void
 			else addButton(6,"FuckHerAss",dryadAnalFunsies,undefined,"Fuck Her Ass","Put it in her butt and go to town.");
 		}
 		else addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You need a penis in order to fuck her ass.");
+		//Drain the Dryad
+		if (flags["DRYAD_BANGED_PC"] != undefined) addButton(7, "Drain Her", dryadDrain, undefined, "Drain Her", "Let the dryad pump you full.");
+		else addDisabledButton(7,"Drain Her","Drain Her","You have to let her fuck you to do this.");
 		
 	}
 	else
@@ -107,6 +111,7 @@ public function dryadMeeting():void
 		else addDisabledButton(4,"Tail Milk","Tail Milk","You need a tail-mounted vagina to do this.");
 		addDisabledButton(5,"Suck Me","Suck Me","You aren't aroused enough for this.");
 		addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You aren't aroused enough for this.");
+		addDisabledButton(7,"Drain Her","Drain Her","You have to let her fuck you at least once to do this.");
 	}
 	addButton(14, "Leave", dryadNo, undefined, "Leave", "You don't wanna bang right now.");
 }
@@ -141,6 +146,7 @@ public function dryadBlowjob():void
 	output("\n\n<i>“Oh! <i>Oh, fuck!</i>”</i>");
 	output("\n\nHer orgasm arrives on the heels of her wild screams, the first real stream of seemingly never-ending spunk swelling your belly directly when she hilts herself balls-deep in your throat. The moment the stream begins to slow she pulls back out, only to ram it back home with a low, wordless groan of pleasure as she drains her plump balls into you, each thrust bringing with it a renewed spray of jism straight down your willing throat, your neck bulging while you submissively suck load after hot load down its length. By the time she’s done you’re a mess, although to your credit the vast majority of her cum is settling safely in your stomach instead of splattered across your visage. She slowly withdraws her length from your well-used fuckhole with a light moan, her flare pulling past your [pc.lips] with a wet pop as she sighs in satisfaction.");
 	
+	IncrementFlag("DRYAD_BANGED_PC");
 	pc.loadInMouth(pp);
 	pc.lust(30);
 	processTime(10);
@@ -184,6 +190,7 @@ public function dryadPussy():void
 	if (pc.isTaur()) output ("hind ");
 	output("legs and onto the ground beneath you.");
 	
+	IncrementFlag("DRYAD_BANGED_PC");
 	pc.loadInCunt(pp,x);
 	processTime(10);
 	pc.orgasm();
@@ -221,6 +228,7 @@ public function dryadAss():void
 	if (pc.isTaur()) output ("back ");
 	output("legs and onto the ground beneath you.");
 	
+	IncrementFlag("DRYAD_BANGED_PC");
 	pc.loadInAss(pp);
 	pc.lust(30)
 	processTime(10);
@@ -263,7 +271,7 @@ public function dryadDick():void
 	{
 		output("\n\nYour instincts take over at such willing presentation and seize her flank, [pc.oneCock] springing");
 		if (!pc.isCrotchExposed()) output(" free of your [pc.lowerGarments]");
-		else output(" to full erction");
+		else output(" to full erection");
 		output(" while you seek to align it with her wet and ready hole. The tip of your dick slips in and you immediately ram your full length into her with a grunt, making her scream lustily as her cock sprays the ground with seed. Her pussy is wrapped tightly around your dick, overwhelmingly warm and rapidly contracting as she shakes in your grip.");
 		pc.cockChange();
 		output("\n\n<i>“Did you just cum the moment I put it in?”</i> You ask, knowing the answer but wanting to hear it anyway.");
@@ -431,6 +439,8 @@ public function tailCuntDryadFun():void
 	output("\n\nBefore you can burble a response, she lets go of you and you stumble back, your tail cunt coming loose from her dick, and falling limply to the forest floor. Full and heavy, it sloshes with impact, a spatter of dryad cum spurting out from it.");
 	output("\n\nShe bends down and gives you a gentle kiss before gracefully loping away, her tail flitting hypnotically from side to side as she disappears into the foliage.");
 	output("\n\nYou take a single, dizzy step forward, your swollen tail dragging on the ground behind you, then decide that you need to rest a bit before continuing. You rest on a fallen trunk, gathering your thoughts as the world spins around you. You feel bloated, stuffed, and sleepy, and think that a nap might not be so bad.");
+	
+	IncrementFlag("DRYAD_BANGED_PC");
 	processTime(25);
 	pc.orgasm();
 	//Use a suitably voluminous stand-in :D
@@ -772,6 +782,294 @@ public function dryadAnalFunsies():void
 	IncrementFlag("DRYAD_ANALED");
 	processTime(16);
 	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	
+}
+
+public function dryadDrain():void
+{
+	clearOutput();
+	dryadHeader();
+	author("Wsan");
+
+	var pp:PregnancyPlaceholder = getDryadPregContainer();
+	var x:int = pc.findEmptyPregnancySlot(1);
+	if(x < 0) x = rand(pc.totalVaginas());
+	
+	output("<i>“I think you’ve proven you need some help to </i>really<i> drain those fat balls of yours, don’t you?”</i> you ask the excited dryad, ");
+	if(!pc.isCrotchExposed()) output(" stripping off your [pc.clothes] and ");
+	output("kneeling before her. <i>“How about you empty them inside me a few times?”</i>");
+	output("\n\n<i>“Oh fuck, now I </i>really<i> need to cum!”</i> she cries, her need evident in the way the head of her cock is flaring widely. Clearly intent on taking you up on your offer, she pushes her cockhead against your lips so fiercely it pushes you back, before you part your lips slightly to take her in. She instantly takes advantage, deftly thrusting her hips to get her pre-drooling cock into your cheek, bulging it out with her flare.");
+	output("\n\n<i>“Oh, yessss,”</i> she groans, relishing the difference between the temperature in Mhen’ga’s outdoors and your mouth. <i>“Gonna - nng - cum! Take it deeper!”</i>");
+	output("\n\nPawing insistently at the ground, she presses forward until your neck is craned upwards beneath her, and she’s free to fuck downwards. You can feel the urgency in her movements, her first desperate thrust good enough to get it halfway down your overtaxed throat, pinning you beneath her. Her second and third stretch your lips wide around the thick, bestial base of her cock, and then she grunts in blessed release.");
+	output("\n\nFeeling a little like a sex toy stretched around its owner, you can’t help but notice the tantalizingly huge, pulsing balls hanging behind her throbbing cock. If you just shakily reach out a bit while she’s fucking your throat...");
+	output("\n\n<i>“Oh!”</i> she cries out at your touch, half in surprise and half in lust. <i>“Oh, god! Mmmmn! Nnnnn!”</i>");
+	output("\n\nWith one hand on either giant ball - each one is easily as big as your head - you softly massage them, slowly rubbing them in a circular motion, gently coaxing her as best you can into cumming her fucking brains out right into your stomach. It works. You can feel her entire body shaking like a leaf in a storm, and the flow of heavy, warm liquid splattering into your tummy redoubles. Her voice comes out only in low, bestial grunts and groans of animal lust, representative of the euphoria of blissful release.");
+	output("\n\nYour throat is wrapped so tightly around her swollen cock that you can actually feel the rapid, almost desperate pumping of her cum flow down her shaft, each enormous load punctuated by her cockhead flaring wide. By some miracle, she manages to summon enough willpower to pull herself from your face before you drown or pass out. A veritable torrent of seed follows her sloppy exit, packed too tightly with nowhere else to go.");
+	output("\n\n<i>“Oohhh, wow,”</i> she giggles nervously, pawing at the ground and eyeing your fucked-full stomach needily while her sperm splatters down your [pc.chest]. <i>“It looks like I made you pregnant! You, um, you can go again right? Please, I don’t think I can hold myself back!”</i>");
+	output("\n\nWhere should you tell her to drain herself?");
+	
+	processTime(10);
+	pc.loadInMouth(pp);
+	pc.lust(100);
+	clearMenu();
+	
+	//disable for taurs
+	if(!pc.isTaur()) addButton(0,"Throat",dryadDrainThroat);
+	else addDisabledButton(0,"Throat","Throat","Taurs can't do this yet!");
+	if(!pc.isTaur()) addButton(1,"Ass",dryadDrainAss);
+	else addDisabledButton(1,"Ass","Ass","Taurs can't do this yet!");
+	addButton(2,"Pussy",dryadDrainPussy);
+}
+
+public function dryadDrainThroat():void
+{
+	clearOutput();
+	dryadHeader();
+	author("Wsan");
+
+	var pp:PregnancyPlaceholder = getDryadPregContainer();
+	var x:int = pc.findEmptyPregnancySlot(1);
+	if(x < 0) x = rand(pc.totalVaginas());
+	
+	output("With the dryad’s jizz still dripping from between your [pc.lips], it’s all you can do to just point at your mouth. She looks truly ecstatic with your choice.");
+	output("\n\n<i>“Okay! It might be a little hard to get in when I’m already flared, but I’m sure you can do it! I </i>really<i> need this...”</i>");
+	output("\n\nShe’s barely gotten the words out before she’s up in your face, pushing insistently into your lips and forcing them into a pursed shape with the fat head of her cock. She’s right - this <i>is</i> a lot harder. It takes a few seconds of strained, desperate grunting and pushing on her part before she finally makes it into your mouth with a gasp of relief, then unceremoniously fucks it down your gullet.");
+	output("\n\nWithin seconds, she’s pumping your throat like you’re a two-chit whore. The cum from her earlier effort lubricates her passage, enabling her to glide in with such ease that her fat, hanging balls are soon loudly slapping against your chin. Sweat droplets fly from her furred underside as her moans increase in volume, her desperate need inspiring such eagerness in her that you soon find yourself getting pushed back from the strength of her thrusting. It’s easy to forget how forceful such a pretty girl can be when she has her cock almost in your stomach and needs to cum <i>right now</i>.");
+	output("\n\nSensing your inability to keep yourself steady, the dryad grunts in frustration and angles herself deeper, beginning to fuck you downwards into the ground, slowly bringing her hips down on top of you. Before you know it, you’re pinned on the forest floor of Mhen’ga, the dryad using the power of her hindlegs and hips to repeatedly cosy the base of her shaft right up against your pretty, cum-stained lips.");
+	output("\n\n<i>“Oohhh, fuck, yes,”</i> she pants furiously, though you can hardly hear her from beneath her shaking flank. <i>“Yes. Yes. Yes. Yes! Yes! Ffffffuck! YES! YES! YESSS!”</i>");
+	output("\n\nWith a triumphant, primal scream she <i>slams</i> her swollen cock to the hilt and cums so fucking hard you can actually hear the gout of jizz splatter into the pooling seed she left in your stomach not even a few minutes ago. Helpless to do anything about the deertaur’s shaking body lying atop you and with the pleasure of her own orgasm immobilizing her, you’re forced to take every last drop of equine semen she has to give you.");
+	output("\n\nYou can make out animal noises of pleasure issuing from the dryad’s lips with every thick, forceful ejaculation into your overtaxed stomach, but soon you’re noticing something else: her smell. How did you never notice this before? The musk down here, buried under her groin, is so intense it’s making your head spin. It’s somehow the most attractive thing to ever grace your nostrils, and you find yourself bringing your hands up to press down on her flank, pushing her against your own face in pursuit of getting closer to the source.");
+	output("\n\n<i>“Oh, good [pc.boyGirl],”</i> the dryad croons, wetly humping your face just once more and letting some seed coat your throat. <i>“If you stay riiight there I think I can give you another one!”</i>");
+	output("\n\nYou’re not even really paying attention to the words she’s saying, but you hear the object of your desire talking and obediently nod as best you can with her cock buried in your throat. Pupils dilated, all you can think of is this delightful scent. You lightly run your hands through the plush fur of her flanks, stroking and rubbing her haunches with adoration.");
+	output("\n\n<i>“Oh my gosh, that actually feels really nice,”</i> the dryad says, looking back at you. <i>“You can keep doing that!”</i>");
+	output("\n\nYou’re only too happy to lose yourself in her soft, brushy fur while she hums in contentment, regaining her erection’s stiffness all the while. It probably hasn’t even been a minute by the time she’s ready and raring to go all over again, but she lets you continue scratching a particularly sweet spot until she sighs in satisfaction and draws her hips upwards.");
+	output("\n\n<i>“Mmmh okay babe, I love the stroking but I just can’t get enough of this throat,”</i> she purrs, slowly sinking back into your depths. <i>“Oooohhh... going slower every once in a while might not be too bad...”</i>");
+	output("\n\nHer most immediate needs already addressed, she’s clearly content to draw this one out. That’s fine by you, perfectly willing to lie there and let her softly plant her bulging balls on your chin while you rub her legs up and down. Something about her smell just makes you want to rub and cuddle this delightful creature all day, and you pay no heed to her merciless abuse of your throat. She slides in as deep as she can, luxuriating in facefucking you with the final few inches of her incredibly fat base. With arms crossed and eyes closed, she sighs with pleasure every time she humps your face into the ground with a fierce buck of her hips.");
+	output("\n\nYou can feel her flare deep inside you, stretching the recesses of your throat and drizzling droplets of seed into the veritable pool of spunk that’s accumulated in your swollen tummy.");
+	if (pc.biggestTitSize() > 3) output(" It protrudes so far that your [pc.breasts] splay to the side, pushed apart by your massively cum-filled stomach.");
+	output(" Your body jiggles every time she presses inside you, hooves spread on either side of your torso and angling herself deeply downwards.");
+	output("\n\n<i>“This is... heaven...”</i> she sighs dreamily, and you feel yet another rope of heavy seed join her deposit inside you. <i>“Maybe just one more after this...”</i>");
+	output("\n\nShe continues her slow, rhythmic pace of fucking your throat, leaking and drooling into every bit of your recesses until you feel her begin to pick up the pace again. You desperately hang onto her sweaty fur as she begins pounding your face and grunting, and she blessedly slows down when she begins to cum. She’s a lot quieter about it now, moaning and sighing in bliss instead of screaming in needy release. You’re ecstatic that she’s really, truly getting her rocks off, something she probably rarely - if ever - gets to do in the wilderness.");
+	output("\n\n<i>“Oh, I can’t stoooop,”</i> she groans, and once more you find her nuts slapping against your chin...");
+	output("\n\n<b>Two hours later</b>");
+	output("\n\nYou’re a mess. After continually promising it would just be <i>“one more time”</i>, the dryad ended up busting something like nine or ten nuts right into your stomach. At some point you got so overfull that your tortured tummy couldn’t take it any more, and the rest of her jizz either spurted from around her cock and all over her pulsing balls, or sprayed from your nose down your face. You’re not even particularly sure which - maybe both.");
+	output("\n\nEither way, you’re a fucking mess. Your top half is absolutely coated in her seed and your stomach bulges outward to the point it looks like you were on the receiving end of a hyperpornstar which, you suppose, isn’t that far from the truth. You’re not really in the mind to think about it right now. The dryad, on the other hand, looks beautifully refreshed and sprightly. She stretches her hindlegs and smiles down at your insensate self.");
+	output("\n\n<i>“My gosh, my hips are a little sore!”</i> she says with a slightly embarrassed giggle, sweat-covered cheeks reddening a little. <i>“I might have gotten a little carried away there. But you’re so nice! Thank you!”</i>");
+	output("\n\nShe leans all the way down with her front half once more just to give you a gentle kiss on your cum-smeared cheek, then stands.");
+	output("\n\n<i>“Oh, this is the best I’ve ever felt!”</i> she thrills, arms outstretched to the forest before her. <i>“Wow! This is great! I’ll come see you again soon, okay babe? Stay safe!”</i>");
+	output("\n\nShe prances off into the overgrowth, humming happily all the while. Well, at least she’s happy. You guess anyone who got to cum what feels like a barrelful right into your stomach probably would be. You gingerly raise a hand from the ground and place it on your growling tummy, inspecting the evidence. Maybe you’ll take a little time to rest this off before you move on.");
+
+	processTime(125);
+	if (pc.isTreated() && pc.hasVagina() && pc.isBimbo()) pc.orgasm();
+	else pc.lust(200);
+	pc.loadInMouth(pp);
+	pc.loadInMouth(pp);
+	pc.loadInMouth(pp);
+	pc.loadInMouth(pp);
+	IncrementFlag("DRYAD_DRAINED");
+	clearMenu();
+	addButton(0,"Next",dryadDrainThroatEpilogue);
+}
+
+public function dryadDrainThroatEpilogue():void
+{
+	clearOutput();
+	dryadHeader();
+	author("Wsan");
+	
+	output("You stand and dust yourself off. You can still [i]feel[/i] her inside you, marked inside and outside by her touch and her scent, but at least you can walk. Turning away from the site of your tryst, you set back on the path.");
+	if (pc.isTreated() && pc.hasVagina() && pc.isBimbo()) output("\n\nThanks to the Treatment increasing oral sensitivity, you came your fucking brains out with the way she used her big, fat, veiny, <i>throbbing</i>... you shake your head a little bit, trying not to grin. At least you’ve got a pretty clear head for now!");
+	else output("\n\nYou try to ignore the fact you are now <i>extremely</i> pent up. Well, there’s no-one around...");
+	
+	processTime(15);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+	
+public function dryadDrainAss():void
+{
+	clearOutput();
+	dryadHeader();
+	author("Wsan");
+
+	var pp:PregnancyPlaceholder = getDryadPregContainer();
+	var x:int = pc.findEmptyPregnancySlot(1);
+	if(x < 0) x = rand(pc.totalVaginas());
+	
+	output("Through somewhat watering eyes, you can see she really can’t. If anything, her fully erect cock is even bigger than it was before she gave you the facefuck of your life, throbbing angrily and spurting seed over your [pc.chest] and the ground alike. You give her a nod and gingerly lie back, raising your hips off the ground. It’s not very subtle, but neither is the dryad.");
+	output("\n\nShe instantly repositions herself, her fat unwieldy cock slapping your");
+	if (pc.hasCock() && pc.hasVagina()) output(" own and sliding down your lubricated lips to find its real target");
+	if (pc.hasCock() && (!pc.hasVagina())) output(" own and sliding down your half-hard shaft to find its real target");
+	if ((!pc.hasCock()) && pc.hasVagina()) output(" lubricated pussylips and sliding down to find its real target");
+	output(". Your [pc.asshole] is ");
+	if (pc.analCapacity() < 300) output("suddenly assaulted by overwhelming pressure, and with a groan of effort the dryad forces it to cave inwards, gaining access to your innards with a fierce buck of her hips");
+	else output("ready and accepting, the practiced hole latching on to the dryad’s cock and drawing her inside as she bucks her hips.");
+	pc.buttChange(1000);
+	output("\n\n<i>“Uhh, god,”</i> she grunts forcefully, looking down at you lying between her legs. <i>“Oh, that feels so good...”</i>");
+	output("\n\nYou reply by way of a breathless moan of pleasure. <i>Fuck</i>, she’s a big girl. It feels like her swollen horsecock is stretching you apart. Your asshole just wasn’t built to take this kind of punishment, and that only makes it all the sweeter to indulge in. You moan like a whore as she fucks herself deeper with cute little grunts of effort, the imprint of her flare eventually appearing against your [pc.stomach].");
+	output("\n\n<i>“Ooooh, yes,”</i> she pants, taking a moment to close her eyes and just enjoy being fully sheathed inside you. You can see her shuddering in pleasure above you, her cock flexing inside your insides. <i>“Oh, I’m going to fill you up until you pop...”</i>");
+	output("\n\nYou can believe it. ");
+	if(pc.balls > 0) output("With your [pc.balls] resting atop the massive surface of her shaft, they get a nice rubbing from below as she slowly withdraws before pushing back in.");
+	output("Void, it’s like having an iron rod in your spine straightening you out. If she took off running right now, you’d probably be carried along underneath her like nothing more than a portable fuckhole. The thought makes you grasp at her sweaty fur and push yourself into the ground, giving you some meagre ability to resist her ever-increasing pace of thrusting.");
+	output("\n\nIt’s hard to ignore how she’s making you feel as you cry out beneath her in time to the bucks of her hips, and you realize you’re going to cum before she does. ");
+	if (pc.hasCock() && pc.hasVagina()) 
+	{
+		output(" Your [pc.pussy] contracts <i>hard</i>, squeezing at nothing, wetness running down your [pc.thighs]. Your [pc.cocks], though, flex");
+		if(pc.cockTotal() == 1) output("es"); 
+		output(" and strain");
+		if(pc.cockTotal() == 1) output("s");
+		output(" only to go through all the motions without actual ejaculation. With her fat cock so deep inside you and pressing down on parts it shouldn’t, no cum actually escapes you");
+	}
+	if (pc.hasCock() && (!pc.hasVagina())) 
+	{
+		output("Your [pc.cocks], though, flex");
+		if(pc.cockTotal() == 1) output("es"); 
+		output(" and strain");
+		if(pc.cockTotal() == 1) output("s");
+		output(" only to go through all the motions without actual ejaculation. With her fat cock so deep inside you and pressing down on parts it shouldn’t, no cum actually escapes you");
+	}
+	if ((!pc.hasCock()) && pc.hasVagina()) output(" Your [pc.pussy] contracts <i>hard</i>, squeezing at nothing, wetness running down your [pc.thighs]");
+	output(". You pant, gasp, and moan as your hips lift off the ground in an attempt to find more leverage, but the dryad’s cock brings you back down to earth on her next thrust.");
+	output("\n\n<i>“Did you cum?”</i> she squeals cheerfully, fucking you downwards without a care in the world. <i>“You tightened up so much around me! That makes me so happy!”</i>");
+	output("\n\nShe’s not far from following suit, you think. It doesn’t take much of a detective to intuit that the way she’s fucking slamming her balls off your ass with increasingly loud moans of horniness means she’s on the edge of release. Right when she seems to be about to let go, her legs buckle in a moment of laxity. She catches herself before colliding with you and manages to slow her descent, but the end result is the same: you now have a dryad lying atop you, pinning you down while she cums inside your asshole.");
+	output("\n\n<i>“I’m cumming,”</i> she announces, dazed. <i>“So fucking haaaahhhnnnnn-uhhh!”</i>");
+	output("\n\nYou buck once underneath her, a massive load of spunk jetting right into your innermost recesses. With her on top of you, it’s all you can do to not get a mouthful of the sweaty, shaking fur of her underside while she empties her balls inside you with gusto.");
+	output("\n\n<i>“Nnnnngh!”</i> she groans, hips jerking wildly. You can feel her fat testes slapping against your butt while she works her hind muscles, instinctively getting as deep as she possibly can inside her immobile cumdump.");
+	output("\n\n<i>“Fuh-huuuck,”</i> she groans, falling forward onto her hands to support herself. <i>“Ugh! Unnh! Grrh!”</i>");
+	output("\n\nWith each exclamation you can feel her entire body tightening as she releases her pent-up pressure, wet splurts of jizz filling your guts. You can hear a dull ripping sound, and realize she’s pulling grass out by its roots with clenched fists, driven on by the sensation of release. When her outgoing flow eventually begins to taper off, you find yourself affectionately running your hands through the brushy fur of her body, stroking and rubbing her in acknowledgement of her performance.");
+	output("\n\n<i>“Ohhh, jeez...”</i> she finally sighs at length. <i>“That was intense... mmn. Sorry about lying on you, babe, but you just felt so good.”</i>");
+	output("\n\nShe makes no move to get off you, though, and after a few seconds you realize you can feel her getting hard inside you all over again, still balls-deep in your asshole.");
+	output("\n\n<i>“I promise I’ll go slower this time,”</i> she says sweetly, beginning to rock backwards.");
+	output("\n\nShe doesn’t.");
+	output("\n\n<b>2 hours later</b>");
+	output("\n\nYour numbed legs fall to the ground as the dryad finally lifts herself off your prone body, sighing in satisfaction. Her cock messily slips from your plundered asshole, jizz splurging onto the ground upon no longer being trapped inside by her flare. Her hanging prick twitches once or twice and spurts sticky cum all over your stomach and chest while she stretches, kicking her hindlegs once or twice.");
+	output("\n\n<i>“Mmm, thanks babe,”</i> she says with a smile, leaning down to give you a warm kiss on the cheek. <i>“You helped me out a lot today. I wish I could start every day like that! Come see me again really soon, okay? Bye!”</i>");
+	output("\n\nShe prances off into the overgrowth, humming happily all the while. Well, at least she’s happy. The moment you open your mouth to take a deep breath, a gout of creamy spunk spouts forth from your lips onto the ground. You spend a couple of seconds with mouth wide, emptying yourself of jizz fucked just a bit too far into you, before lying back down on your side with a moan. You gingerly raise a hand from the ground and place it on your growling tummy. Maybe you’ll take a little time to rest this off before you move on.");
+
+	processTime(130);
+	pc.orgasm();
+	pc.loadInAss(pp);
+	pc.loadInAss(pp);
+	pc.loadInAss(pp);
+	pc.loadInAss(pp);
+	pc.loadInMouth(pp);
+	IncrementFlag("DRYAD_DRAINED");
+	clearMenu();
+	addButton(0,"Next",dryadDrainAssEpilogue);
+}
+
+public function dryadDrainAssEpilogue():void
+{
+	clearOutput();
+	dryadHeader();
+	author("Wsan");
+	
+	output("You stand and dust yourself off. You can still <i>feel</i> her inside you, marked inside and outside by her touch and her scent, but at least you can walk. Turning away from the site of your tryst, you set back on the path.");
+	
+	processTime(15);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function dryadDrainPussy():void
+{
+	clearOutput();
+	dryadHeader();
+	author("Wsan");
+
+	var pp:PregnancyPlaceholder = getDryadPregContainer();
+	var x:int = pc.findEmptyPregnancySlot(1);
+	if(x < 0) x = rand(pc.totalVaginas());
+	
+	if(!pc.isTaur())
+	{
+		output("Your suspicions are confirmed when not even a moment later her massive flare is pushing at your entrance, ");
+		if (pc.smallestVaginalCapacity() < 300) output("your lips being pulled inwards by the sheer force as she forces herself balls-deep with a pleasured grunt");
+		else("your wetness allowing her to comfortably sheathe her giant cock balls-deep in the warmth of your stretchy cunt.");
+		output("\n\n<i>“Oh fuck, your pussy is sooo good,”</i> she moans, beginning to roll her hips into you. <i>“Hnnnh, fuck...”</i>");
+		output("\n\nShe pulls back and rams back into you, the thickness of her rock-hard shaft clearly visible between your hips as she thrusts. Your back instinctively arches when you feel the flesh of her cockhead pressing up against your womb, only to disappear then reappear again to reacquaint itself not even a second later. You can feel her cock flaring inside you, spreading your walls wide as she teeters on the edge of a massive orgasm.");
+		output("\n\n<i>“Hhhh-nnngh! Hnnh!”</i> she haltingly groans, her thrusts becoming slower and deeper until you feel a massive spurt of dryad spunk right into your womb. <i>“Ooohhhh, </i>fuck<i>. Fuuuck...”</i>");
+		output("\n\nShe barely moves at all during her huge, body-shaking orgasm, just using little bucks of her hips every time a new rope of seed spews between your stretched pussy walls. Finally, the sensation of release gets to be too much for the centaur girl, and she falls to her knees on top of you. From there, she slowly sits down, forcing you to lie face-down on the ground while she pumps you full of warm cum.");
+		output("\n\n<i>“Ohh, yes,”</i> the dryad moans, eyes closed in bliss. <i>“Oh, you’re so good...”</i>");
+		output("\n\nYou lie on the soft grass and take it, load after load of jizz filling you to capacity and more. The excess begins to spurt from your tightly-wrapped pussy around the dryad’s cock, staining your legs and the earth under you. You can’t help but suffer a quiet, muffled orgasm underneath her while she fills you up, moaning in satisfaction all the while. Your [pc.legs] would be shaking if you could move them.");
+		output("\n\nWhen she finally finishes her long, drawn-out orgasm inside the depths of your cunt, she moans at length but makes no sign of moving. She repositions herself slightly atop you, and you can feel her thick flare smooching your cervix.");
+		output("\n\n<i>“Oh, that was amaaazing,”</i> she sighs, evidently pleased with your efforts of being an immobile spunk receptacle. <i>“I bet it feels even better the next time around!”</i>");
+		output("\n\nYou realize with muted surprise that you can feel her twitching and hardening while stuffed deep in your pussy, and soon she withdraws herself from your gaped cunt. Her seed surges from your abused fuckhole, pouring outwards onto the fertile ground below.");
+		output("\n\n<i>“Awww, I’m gonna fill that tight little pussy [/i]right[i] back up,”</i> the dryad declares smugly, holding her hips above you, poised to fuck you full. <i>“Don’t you worry!”</i>");
+		output("\n\nTrue to her word, she displays remarkable restraint in waiting for the flow of her expended spunk to roll from your cunt before slowly negotiating her entrance back in. The two of you moan in a sweet, lurid duet as her flare gradually stretches your walls apart again, sliding all the way up to your womb to nuzzle it.");
+		output("\n\n<i>“I think your pussy and my cock make a great match,”</i> the dryad pants, losing more of her composure by the second. <i>“Gh- gonna fuck it ‘til you c-cum your brains out! Nnnn!”</i>");
+		output("\n\nYou can feel the precum leaking from the tip of her swollen shaft as her balls slap off your [pc.ass], and quickly discover she’s right. It feels like her fat, veiny cock is about to pop out of your mouth at any second, your teeth grit and eyes rolling back in pleasure while she bucks her hips like a wild animal. She forcefully brings you to a rough, shuddering full-body orgasm that has you panting loudly beneath her, ");
+		if (pc.hasCock()) output("[pc.cock] spurting up your stomach and ");
+		output("pussy desperately clenching down down on the dryad’s pistoning member to no avail.");
+		output("\n\nYour body’s instinctive attempt to keep her inside you while you cum only results in increasing the sensitivity for both of you, your contracting walls wrapping the pulsating shaft as tightly as they can. With all the ridges, veins and bumps along her cock it’s all you can do to put up a token resistance against her words coming true, but it’s no use. The dryad effortlessly brings you from orgasmic peak to peak, pleasure radiating outwards from your pussy until your entire body is tensing and relaxing with every thrust.");
+		output("\n\nYou don’t even hear the dryad announcing her impending orgasm, but you feel it when it hits. With the way your pussy is lovingly gripping and squeezing at her gigantic cock, you can tell her cumvein is swelling over and over, loads of equine seed travelling down her shaft to be deposited in your womb. You can feel yourself finally relax when it happens, letting her warmth buoy you away into a calming pink haze of release, your orgasm only ending when hers does.");
+		output("\n\n<i>“Ohhh, shit,”</i> the dryad pants, falling forward onto her palms. <i>“That was the best sex I’ve ever had in my life!”</i>");
+		output("\n\nA dopey smile on your face in the wake of your extremely lengthy and fulfilling orgasm, you’re inclined to agree. She gently extricates her mammoth length from your overfilled pussy, standing and bending down to give you a kiss before putting her hands on your sweaty shoulders.");
+		output("\n\n<i>“Now turn over! I wanna go again but with you on your back this time.”</i>");
+		output("\n\n<b>2 hours later</b>");
+		output("\n\nYour numbed legs fall to the ground as the dryad finally lifts herself off your prone body, sighing in satisfaction. Her cock messily slips from your stretched-out pussy, jizz splurging onto the ground upon no longer being trapped inside by her flare. Her hanging prick twitches once or twice and spurts sticky cum all over your stomach and chest while she stretches, kicking her hindlegs once or twice.");
+		output("\n\n<i>“Mmm, thanks babe,”</i> she says with a smile. <i>“You helped me out a lot today. We should spend more time together! Come see me again really soon, okay? Bye!”</i>");
+		output("\n\nShe prances off into the overgrowth, humming happily all the while. Well, at least she’s happy. You lie still for a while, feeling a little dirty as the dryad’s cunt-stuffing slowly drools from between your thighs. She was right, though, that was some of the best sex of your life. Maybe you’ll take a little time to rest before you move on.");
+	}
+	else
+	{
+		output("<i>“I think we both know where you really wanna put that big, fat horsecock of yours,”</i> you say, smiling as you get to your feet and turn away from her. <i>“Why don’t you just ram it- oh! Ooh!”</i>");
+		output("\n\nYour sensual recommendation is interrupted by a bolt of pleasure emanating outwards from your pussy, and you twist yourself back to see the dryad down on her forelegs, licking you between your legs.");
+		output("\n\n<i>“Oh, fuck, you taste like sex feels,”</i> she mutters, lifting your tail before diving back into your hindquarters, pressing her face into your pussy and sucking hard on your [pc.clit]. You squeal in bliss as her tongue rolls across your clit and travels deeper to get a taste at your sweet juices before returning to massage your plump button. Helpless to resist her advances, you find your own front legs collapsing as you cum your brains out with a scream of lust, your hindlegs held stiff both by the muscular contractions of your orgasm and the arms of the dryad.");
+		output("\n\nShe receives a spurt of femcum across her face and a noseful of sex pheromones for her efforts, rising from your juicy, dripping cunt with a wordless groan of arousal. She rears up and mounts your hindquarters as you deftly scramble back to your feet, and you hear her grunt as the flare of her incredibly stiff cock catches between your lips. Between the two of you, there’s no need to go slow and she knows it. She unceremoniously <i>rams</i> herself into your [pc.pussy] balls-deep, her heavy balls slapping off your underside before she pulls back and drives back in.");
+		output("\n\nShe doesn’t hold back in the slightest, subjecting you to her full bestial urges, and it’s all you can do to stay standing as her iron-hard rod plunges wetly into your pussy, your juices spraying down your shaking hindlegs while she pummels you into submission. You can hardly help but marvel at how stiff and swollen her cock is; she must have gotten more than she bargained for when she was lapping at your pussy. She fucks you with an animal desperation, panting hard as she focuses singlemindedly on cumming inside you.");
+		output("\n\nYou can feel her approaching orgasm in the way her fat head begins to flare and stretch you taut, in the way the bucking of her hips only gets ever faster, and in the way she desperately wraps her arms around your humanoid midriff. With her chin planted on your shoulder and her face in your [pc.hair], you have a front row seat to the dryad’s erotic moaning as she begins to find her peak, your own orgasm right on her heels.");
+		output("\n\nA shuddering moan in your ear is all the warning you get before a veritable river of warm spunk begins to pump into you, bathing your womb in equine seed. You bite your lower lip as you try to retain control of your limbs, but it’s no use. Your sopping wet cunt spasms and spurts all over the dryad’s monstrous cock, and your legs buckle once more. This time, she follows you down, lying on top of you like so much insensate deadweight while her balls work overtime to glaze your insides.");
+		output("\n\n<i>“Oohhh, you’re fucking amazing,”</i> the dryad pants when she finally gets her words back, hindlegs still squeezing your flanks while she works every heavy rope of jizz out of her cock. <i>“You’re such a sexy bitch I’m still hard - feel it?”</i>");
+		output("\n\nShe wiggles her hips, and you do. She must be <i>really</i> turned on to cum once and still be rock hard - you wonder if you’re really draining her at all, but that thought flies away when the dryad presses her dick against your womb and licks your ear. Distracting you with little kisses and nibbles down your neck, she slowly begins fucking your pussy all over again.");
+		output("\n\n<i>“Nnnh, ohhh fuck,”</i> she breathes in your ear, hindlegs scrabbling to squeeze your flanks and keep you sat in place. <i>“Your pheromones are- nngh - it’s like you have </i>these<i>,”</i> she says, sliding a sweaty finger across your [pc.lips], <i>“wrapped around my balls, enticing me to keep going!”</i>");
+		output("\n\nYou purse your lips and gently suckle her finger, eliciting a moan from your lover. It tastes of salt, but more importantly it tastes of her. Like passion and need. Reaching back, you caress her soft, flushed cheek even as she caves your pussy inwards with long, deep strokes. Pushed over the edge, she responds by shifting her grip upwards and turning you towards her, kissing you with the savage desire you’ve come to know from her.");
+		output("\n\nShe cums like that, moaning into your mouth even as her tongue desperately entwines with your own, eyes squeezed tightly shut while her hot spunk surges into you load by load. She grabs at your [pc.breasts], squeezing your [pc.nipples] as if she just can’t get enough of your body. When she finally finishes emptying herself into you what feels like a century later, she parts her lips from yours with a gasp and a thread of drool, chest heaving hard.");
+		output("\n\nShe stares into your eyes until her breathing is under control, then slowly, haltingly brings her hands up to your face. Eyeing your lips, she brings herself closer and seals them with a soft, deep kiss, the kind you think would leave her freckled face blushing were her cock not buried a foot deep inside your pussy.");
+		output("\n\n<i>“You’re amazing,”</i> she whispers, breath hot on your neck. <i>“I just want to watch you cum over, and over.”</i>");
+		output("\n\n<i>“Well, we can go as many times as you like,”</i> you murmur back, running a hand through her pretty red hair.");
+		output("\n\nShe responds only by beginning to rut you once more, and you can tell right away she wasn’t kidding about wanting to watch you cum. Her strokes are slow and methodical, by far the most restrained she’s ever been, while her hands idly play with your nipples and stroke you all over. Barely even a few minutes have passed before you feel your hindquarters tensing up, a low groan escaping your lips as your pussy begins clamping down on her veiny cock.");
+		output("\n\n<i>“Cum for me,”</i> she whispers, squeezing your diamond-stiff nipples. You do as you’re told, your entire body shaking while pure pleasure radiates through your entire body, tightening up your muscles before leaving you a shuddering, breathless wreck. Then she does it again.");
+		output("\n\nAnd again.");
+		output("\n\nAnd again.");
+		output("\n\n<b>4 hours later</b>");
+		output("\n\nThe two of you both groan as the dryad slowly withdraws her sodden, mercifully limp cock from your abused snatch, a river of packed-tight spunk following its exit. Shakily dismounting, she helps you to your feet then catches you in a sweet embrace, pushing her full, perky breasts into ");
+		if (pc.biggestTitSize() > 1) output ("yours, your nipples pressing against hers");
+		else output("your chest, her nipples pressing against you.");
+		output("\n\n<i>“Mmmm, thank you so much,”</i> she murmurs, right before planting a wet kiss on your lips, clasping your face and snaking her tongue inside. This one is shorter than the others, but no less heartfelt. She pulls away with a smile and red cheeks.");
+		output("\n\n<i>“I’m gonna leave before I fall in love. Come back real soon, okay cutie? Stay safe! Byeeee!”</i> she calls, prancing away into the overgrowth, fluffy tail flitting from side to side.");
+		output("\n\n<i>“Bye!”</i> you call, waving after her as she departs. She’s very nice, you think. Also she fucks like a champion. Speaking of which... you wince as you stretch a hindleg. Maybe you’ll just lie down a bit before you move on. Not <i>right</i> here, though - you and the dryad have created a little impromptu clearing by fucking like wild beasts, then filled it with your juices. Mostly hers, but you were gushing like a waterfall too by the end of it. The way she can use that fat cock of hers... you shake your head in an attempt to clear it. The lingering sex pheromones are another reason to go elsewhere.");
+	
+		processTime(100);
+	}
+	
+	processTime(140);
+	pc.orgasm();
+	pc.loadInCunt(pp,x);
+	pc.loadInCunt(pp,x);
+	pc.loadInCunt(pp,x);
+	pc.loadInCunt(pp,x);
+	pc.loadInCunt(pp,x);
+	pc.loadInCunt(pp,x);
+	pc.loadInCunt(pp,x);
+	pc.loadInCunt(pp,x);
+	IncrementFlag("DRYAD_DRAINED");
+	clearMenu();
+	addButton(0,"Next",dryadDrainPussyEpilogue);
+}
+
+public function dryadDrainPussyEpilogue():void
+{
+	clearOutput();
+	dryadHeader();
+	author("Wsan");
+	
+	if(!pc.isTaur()) output("You stand and dust yourself off. You can still <i>feel</i> her inside you, marked inside and outside by her touch and her scent, but at least you can walk. Turning away from the site of your tryst, you set back on the path.");
+	else output("You stand and dust yourself off. You can still <i>feel</i> her inside you, marked inside and outside by her touch and her scent, but at least you can walk without soreness or dripping. Better get back to it!");
+	
+	processTime(15);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
