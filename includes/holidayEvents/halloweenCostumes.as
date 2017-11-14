@@ -3152,7 +3152,9 @@ public function dressedInKnotSuccess():void
 	clearOutput();
 	showHoliday();
 	author("Fenoxo Fenbro");
-	output("<i>“Looking good,”</i> Holiday quips with a wicked smile. <i>“Give me a twirl. Let me have a look at my goods.”</i> Her eyes flick down to your {partially }exposed loins. <i>“Your goods too, I guess. Let’s see the rumpus.”</i> She gestures impatiently.");
+	output("<i>“Looking good,”</i> Holiday quips with a wicked smile. <i>“Give me a twirl. Let me have a look at my goods.”</i> Her eyes flick down to your");
+	if(pc.balls > 0 || pc.hasVagina()) output(" partially");
+	output(" exposed loins. <i>“Your goods too, I guess. Let’s see the rumpus.”</i> She gestures impatiently.");
 	output("\n\nWith a small laugh, you spin about, the hem of your skirt fluttering highlight how the panties cling to your almost-bared loins, the cheeks of your ass exposed");
 	if(pc.tailCount > 0) output(", your [pc.tails] bouncing through a gap in the behind");
 	output(". The motion tugs on your little hat, and you feel that pinch");
@@ -3254,7 +3256,6 @@ public function knottyPartyI():void
 		}
 		if(!pc.hasCock() || cType != GLOBAL.TYPE_CANINE) 
 		{
-			
 			output(" What you see shocks you to your core: <b>");
 			if(cType == -1 || (cType != GLOBAL.TYPE_CANINE && cColor != "bright red")) output("a bright red, tapered dick");
 			else if(cColor != "bright red") output("a bright red dick");
