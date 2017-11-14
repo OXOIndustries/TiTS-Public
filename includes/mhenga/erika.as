@@ -1029,7 +1029,7 @@ public function erikaSexMenu(Repeat:Boolean = true):void
 	// Ride Her
 	addButton(1,"Ride Her",erikaSexRideHer);
 	// [Degrade Her] (requires vagoo and PC to be hard)
-	if (pc.isAss() && pc.hasVagina()) (2,"Degrade Her",erikaSexDegradeHer);
+	if (pc.isAss() && pc.hasVagina()) addButton(2,"Degrade Her",erikaSexDegradeHer);
 	else if (!pc.isAss()) addDisabledButton(2, "Degrade Her", "Degrade Her", "You are too friendly to do this!!");
 	else addDisabledButton(2, "Degrade Her", "Degrade Her", "You need a vagina to do this!");
 	// [Butt fuck] (requires PC to be in a rut and fit inside her)
