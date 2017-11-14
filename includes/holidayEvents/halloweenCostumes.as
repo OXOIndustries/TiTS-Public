@@ -3064,7 +3064,7 @@ public function buyDatNaughtyNurse():void
 {
 	clearOutput();
 	showHoliday();
-	showName("Fenoxo Fenbro");
+	author("Fenoxo Fenbro");
 	flags["HOLIDAY_OWEEN_PURCHASE"] = "Knotty Nurse outfit";
 	pc.credits -= 1000;
 	output("<i>“I’ll take it!”</i> You wire the credits over, excited to match the theme established by the sexy demonic shopkeeper.");
@@ -3151,7 +3151,7 @@ public function dressedInKnotSuccess():void
 {
 	clearOutput();
 	showHoliday();
-	showName("Fenoxo Fenbro");
+	author("Fenoxo Fenbro");
 	output("<i>“Looking good,”</i> Holiday quips with a wicked smile. <i>“Give me a twirl. Let me have a look at my goods.”</i> Her eyes flick down to your {partially }exposed loins. <i>“Your goods too, I guess. Let’s see the rumpus.”</i> She gestures impatiently.");
 	output("\n\nWith a small laugh, you spin about, the hem of your skirt fluttering highlight how the panties cling to your almost-bared loins, the cheeks of your ass exposed");
 	if(pc.tailCount > 0) output(", your [pc.tails] bouncing through a gap in the behind");
