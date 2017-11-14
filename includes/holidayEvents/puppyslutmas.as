@@ -1410,6 +1410,9 @@ public function puppyslutmasMeetTheDornasHue():void
 
 public function puppyslutmasMeetTheDornasHueSyri():void
 {
+	moveTo("SHIP INTERIOR");
+	showLocationName();
+
 	clearOutput();
 
 	showBust("SYRI");
@@ -1431,9 +1434,6 @@ public function puppyslutmasMeetTheDornasHueSyri():void
 	
 	output("\n\nWhen you’re done, you send Syri off to her job, and roll out of bed. Time to decide what’s next on your adventure!");
 
-	moveTo("SHIP INTERIOR");
-	showLocationName();
-
 	processTime(360);
 
 	clearMenu();
@@ -1442,6 +1442,9 @@ public function puppyslutmasMeetTheDornasHueSyri():void
 
 public function puppyslutmasMeetTheDornasHueAnno():void
 {
+	moveTo("SHIP INTERIOR");
+	showLocationName();
+
 	clearOutput();
 
 	showBust("ANNO");
@@ -1458,9 +1461,6 @@ public function puppyslutmasMeetTheDornasHueAnno():void
 	output("\n\nShe giggles, and puts a kiss on your lips. <i>“Sounds like a plan. Thanks again for a fun night, babe... I had a blast.”</i>");
 	
 	output("\n\nYou give her a wink, and a spank on the behind to get her moving. The pair of you scramble out of bed and get your gear together. Time to decide what’s next on your adventure!");
-
-	moveTo("SHIP INTERIOR");
-	showLocationName();
 	
 	processTime(360);
 	sleepHeal();
