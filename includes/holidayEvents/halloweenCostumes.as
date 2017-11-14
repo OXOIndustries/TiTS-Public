@@ -3187,7 +3187,7 @@ public function knottyPartyI():void
 	//Low IQ
 	else output("\n\nThat sounds like a pretty great idea to you. You came here to party right? Yeah, and what kind of nurse would you be if you didn’t treat <i>somebody</i> with these cool looking medical supplies?");
 	//merge IQs. Still in no-dick variant.
-	output("\n\n<i>‘Pfffshilt.’</i> You don’t feel a thing, well aside from a slight rush of warmth twisting its way up your arm, into your neck... all over really. You blink a few times, slipping the spent pen back into its holster. That warmth concentrates on your scrapes, which you note are surprisingly starting heal. Or at least you think they are. The drugs are really kicking in, making your eyes cross and your nose itch. Sneezing violently, you giggle and try to keep from tipping back over. It’s harder than expected, especially when your head is all muzzy, and you’re so... so... <i>warm.</i>");
+	output("\n\n<i>‘Pfffshilt.’</i> You don’t feel a thing, well aside from a slight rush of warmth twisting its way up your arm, into your neck... all over really. You blink a few times, slipping the spent pen back into its holster. That warmth concentrates on your scrapes, which you note are surprisingly starting to heal. Or at least you think they are. The drugs are really kicking in, making your eyes cross and your nose itch. Sneezing violently, you giggle and try to keep from tipping back over. It’s harder than expected, especially when your head is all muzzy, and you’re so... so... <i>warm.</i>");
 
 	//Primary dick not dog
 	if(pc.hasCock())
@@ -3266,18 +3266,18 @@ public function knottyPartyI():void
 		{
 			if(!pc.hasCock() || cType != GLOBAL.TYPE_CANINE) output(" It’s");
 			else output(" Your shaft is");
-			if(pc.cocks[0].cLength() < 12) output("longer");
-			else if(pc.cocks[0].cLength() >= 20) output("shorter");
+			if(pc.cocks[0].cLength() < 12) output(" longer");
+			else if(pc.cocks[0].cLength() >= 20) output(" shorter");
 			if(!pc.hasCock() || cType != GLOBAL.TYPE_CANINE) output(" too");
 			output("!");
 		}
 		if(pc.hasCock() && (pc.cocks[0].cLength() >= 12 && pc.cocks[0].cLength() < 20) && cType == GLOBAL.TYPE_CANINE) 
 		{
-			output("It’s beautiful. " + num2Text(pc.cocks[0].cLength()) + " inches of glossy crimson cock quivering in the moment before orgasm. You really do have the perfect cock.");
+			output(" It’s beautiful. " + num2Text(pc.cocks[0].cLength()) + " inches of glossy crimson cock quivering in the moment before orgasm. You really do have the perfect cock.");
 		}
 		else
 		{
-			output("The bestial-looking member looks to be");
+			output(" The bestial-looking member looks to be");
 			if(!pc.hasCock() || pc.cocks[0].cLength() < 12) output(" a little over a foot long - maybe fourteen inches");
 			else output(" shorter, but well over a foot long - maybe eighteen inches worth");
 			output("? It’s beautiful, all that glossy cock quivering in the moment before orgasm.");
@@ -3588,7 +3588,7 @@ public function knuttyNurseRodenianIII(choice:String):void
 		output("\n\nLura’s petite mouse-tits swell with the sheer volume of seed you’re dumping inside. Canine orgasms last so long!");
 		output("\n\n<i>“But when you find someone who treats you well, who you know you can trust... then you can be the sluttiest little nympho. They might not have an enormous knot like mine.”</i> You flex your abdominal muscles, forcing your dick to throb hard. <i>“But that’s fine. The more you like someone, the more you’ll like their cock. And you can ignore cocks if you need to. I’m fucking that sluttiness deep down into a gutter where it won’t bother you unless you want it to... unless you’re comfortable with it, and you have a wonderful partner that you can trust.”</i>");
 		output("\n\n<i>“Yeeeaaaaahhh...”</i> Lura nods, wringing a few more squirts of seed from your overworked shaft.");
-		output("\n\nYou shudder from head to toe. Helping out feels almost as good as the climax. <i>“But you’ll always have a thing for dog-dicks.”</i> You can’t help but be a little <i>naughty</i> <i>“Those big glistening knots drive you wild. If you masturbate, it’ll be with an ausar toy, the fatter the better.”</i>");
+		output("\n\nYou shudder from head to toe. Helping out feels almost as good as the climax. <i>“But you’ll always have a thing for dog-dicks.”</i> You can’t help but be a little <i>naughty</i>. <i>“Those big glistening knots drive you wild. If you masturbate, it’ll be with an ausar toy, the fatter the better.”</i>");
 		output("\n\n<i>“Knooooots...”</i> the mouse-slut squirms wildly, clearly cumming. Bliss seems her only emotion.");
 		output("\n\n<i>“Yes, you love the knots... but only when you’re horned up and turned on. You’re pretty, and talented, and self-actuated. You’re so picky about who you bed. You’re only horny when you’re comfortable with a partner... when you trust them.”</i>");
 		output("\n\nLura nods vigorously, and you nearly collapse from the twistling friction assaulting your cock.");
