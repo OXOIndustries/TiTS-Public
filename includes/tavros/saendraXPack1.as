@@ -68,6 +68,8 @@ public function unlockSaendraXPackMail():void
 
 public function updateSaendraXPackTimer(deltaT:Number = 0):void
 {
+	if (flags["SAENDRA_DISABLED"] != undefined || flags["SAENDRA GONNA GO GET A COCK"] == 1 || flags["SAENDRA GONNA GO GET A COCK"] == 2) return;
+	
 	if (flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 5)
 	{
 		flags["SAENDRA_XPACK1_TIMER"] += deltaT;
