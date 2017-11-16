@@ -959,12 +959,12 @@ public function statisticsScreen(showID:String = "All"):void
 						unnamedBrihaKids--;
 						if(unnamedBrihaKids > 0) output2(",");
 					}
-					if(unnamedBrihaKids < StatTracking.getStat("pregnancy/briha kids"))
+					if((unnamedBrihaKids + 2) < StatTracking.getStat("pregnancy/briha kids"))
 					{
 						output2(" and " + num2Text(unnamedBrihaKids) + " other");
 						if(unnamedBrihaKids != 1) output2("s");
 					}
-					else output2(" " + unnamedBrihaKids);
+					else if(flags["BRIHA_OLDEST_SPAWN_AGE"] == undefined && flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] == undefined) output2(" " + unnamedBrihaKids);
 				}
 				if(StatTracking.getStat("pregnancy/briha sons") > 0)
 					output2("\n<b>* Fathered, Briha’s Sons:</b> " + StatTracking.getStat("pregnancy/briha sons"));
