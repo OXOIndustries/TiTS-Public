@@ -32,11 +32,11 @@ public function erikaBarAddendum(btnSlot:int = 0):void
 	if (flags["ERIKA_MET"] == undefined) output("A slender kaithrit girl is sitting alone at the bar, tails wrapped around her waist. She is nursing a drink and looking around the bar. She notices that you’re looking back at her and quickly turns away to look at her drink, ears flat against her head. After a while she takes another peek at you, with the same result.");
 	else output("Erika is sitting at the bar again, nursing a drink. She notices you and gives you a little wave and a hopeful smile before turning back to her drink.");
 
-	if (flags["ERIKA_MET"] != undefined) addButton(btnSlot,"Erika",erikaMainMenu,undefined,"Erika","You could go to say hi to Erika, she definitely could use the company.");
-	else addButton(btnSlot,"Kaithrit Girl",erikaMainMenu,undefined,"Kaithrit Girl","Maybe you could go over and say hi since she can’t seem to keep her eyes away from you.");
+	if (flags["ERIKA_MET"] != undefined) addButton(btnSlot,"Erika",erikaApproach,undefined,"Erika","You could go to say hi to Erika, she definitely could use the company.");
+	else addButton(btnSlot,"Kaithrit Girl",erikaApproach,undefined,"Kaithrit Girl","Maybe you could go over and say hi since she can’t seem to keep her eyes away from you.");
 }
 
-public function erikaMainMenu():void
+public function erikaApproach():void
 {
 	clearOutput();
 	showErika();
@@ -48,7 +48,7 @@ public function erikaMainMenu():void
 		if (pc.isNice()) output("\n\n<i>“I noticed that you seem to be interested in me, or am I wrong?”</i> She mutters in the affirmative. Placing a hand on her thigh, you continue, <i>“I would still like to know your name.”</i>");
 		else if(pc.isMischievous()) output("\n\n<i>“So are you going to tell me your name, or are you going to try to take </i>subtle<i> looks at me all night?”</i>");
 		else output("\n\n<i>“You have a staring problem, or do you have a good reason why you can’t get your eyes off me?”</i> Before she can say anything, you cut her off. <i>“If you’re going to stare at me all night you could at least tell me your name...”</i>");
-		output("\n\n<i>“Umm… E-Erika,”</i> she stammers, tails wrapped in her lap and ears folded against her head.");
+		output("\n\n<i>“Umm... E-Erika,”</i> she stammers, tails wrapped in her lap and ears folded against her head.");
 		output("\n\n<i>“[pc.name],”</i> you tell her. <i>“[pc.name] Steele. ");
 		if (pc.isNice()) output("Now, were you trying to get my attention, or were you just staring at me when you thought that I wasn’t looking?”</i>");
 		else
@@ -105,7 +105,11 @@ public function erikaMainMenu():void
 			}
 		}
 	}
-
+	
+	erikaMainMenu();
+}
+public function erikaMainMenu():void
+{
 	clearMenu();
 	addButton(1,"Talk",erikaTalkMenu);
 	addButton(2, "Buy Drink", erikaBuyDrinkMenu);
@@ -960,7 +964,9 @@ public function erikaToyBox():void
 	clearOutput();
 	showErika(true);
 	author("Doots");
-
+	
+	moveTo("SHIP INTERIOR");
+	
 	output("The consoles light up, informing you that Erika was able to find your ship. Opening the airlock, you see Erika standing there with a rather large box under her arm. You wonder what’s important enough to go out of her way to get. Moving aside you let her in. You’re sure she will tell you what’s in the box eventually.");
 	output("\n\nYou lead Erika to your room and, when you get there, sit down on the bed. <i>“So, what’s in the box?”</i>");
 	output("\n\n<i>“Toys.”</i> She sets the box down next to you.");
@@ -1002,6 +1008,8 @@ public function erikaSexMenu(Repeat:Boolean = true):void
 	// basicly compressed versions of erikaSexIntro & erikaToyBox
 	if (Repeat)
 	{
+		moveTo("SHIP INTERIOR");
+		
 		output("Chatting and drinking are fun and all, but a "+ pc.mf("man", "woman") +"can’t live on that alone.");
 		if (pc.isNice()) output("\n\n<i>“I think we both would have more fun if we went somewhere more private, where I could treat you right.”</i>");
 		else if(pc.isMischievous()) output("\n\nYou sigh, drawing Erika’s attention to you. <i>“This place is really boring. What do you say we get somewhere more interesting?”</i> Burt shoots you a dirty look at the mention of his bar being boring, but you ignore him and pinch Erika’s buttock, giving her a solid message what you have on your mind.");
@@ -1024,7 +1032,7 @@ public function erikaSexMenu(Repeat:Boolean = true):void
 
 	// [Lap Ride]
 	if(pc.cockThatFits(erika.analCapacity()*1.5) >= 0 && pc.hasCock()) addButton(0, "Lap Ride", erikaSexLapRide);
-	else if(pc.hasCock()) addDisabledButton(0,"Lap Ride","Lap Ride","Your penis is to big for Erika.");
+	else if(pc.hasCock()) addDisabledButton(0,"Lap Ride","Lap Ride","Your penis is too big for Erika.");
 	else addDisabledButton(0, "Lap Ride", "Lap Ride", "You need a penis to do this!");
 	// Ride Her
 	addButton(1,"Ride Her",erikaSexRideHer);
@@ -1035,7 +1043,7 @@ public function erikaSexMenu(Repeat:Boolean = true):void
 	// [Butt fuck] (requires PC to be in a rut and fit inside her)
 	if(pc.cockThatFits(erika.analCapacity()*1.5) >= 0 && pc.hasCock() && pc.inRut()) addButton(3, "Butt Fuck", erikaSexButtFuck);
 	else if(!pc.inRut()) addDisabledButton(3,"Butt Fuck","Butt Fuck","You need to be in rut for this.");
-	else if(pc.hasCock()) addDisabledButton(3,"Butt Fuck","Butt Fuck","Your penis is to big for Erika.");
+	else if(pc.hasCock()) addDisabledButton(3,"Butt Fuck","Butt Fuck","Your penis is too big for Erika.");
 	else addDisabledButton(3, "Butt Fuck", "Butt Fuck", "You need a penis to do this!");
 	// Play with her toys
 	addButton(4, "Toys", erikaSexToys);
@@ -1195,7 +1203,7 @@ public function erikaSexRideHerButt():void
 	output("You bring a finger to your mouth and chew on it, thinking. A thought suddenly strikes you and you grin, looking Erika straight in the eyes. <i>“I have an idea,”</i> you say seductively. You reach into her treasure chest of sex toys and pull out the bottle of pink, glittery lube, the roll of electrical tape, and two bullet vibrators along with their remote. ");
 	if (flags["ERIKA_SEEN_LUBE"] == undefined) output("You sit back on your knees and turn the bottle of lube around to read its label. It says something about it being able to increase one’s’ sensitivity level. You grin and think of a couple fun things you could do with this stuff. ");
 	output("You also attempt to discreetly pull out a vibrating cock ring when you’re pretty sure she isn’t looking, and you quickly place it under your covers for later.");
-	output("\n\nYou gently push Erika back on the bed, and she gives you a quizzical, somewhat worried look. You crawl towards her, rubbing yourself against her smooth body all along the way. You place your [pc.legs] on either side of her and lean down until the two of you are bumping noses. You lick her lips and begin making out vigorously with her. As you mash faces with her, you squirt some of the pink lube on your hand. You reach down and begin groping and squeezing her supple tits, making sure to massage it into her the best you can. She gasps into your mouth in pleasure, her already - stiff nipples getting even harder. You tweak one of the buds, making her moan even more, and rub the excess lube on the rest of her unslicked torso.");
+	output("\n\nYou gently push Erika back on the bed, and she gives you a quizzical, somewhat worried look. You crawl towards her, rubbing yourself against her smooth body all along the way. You place your [pc.legs] on either side of her and lean down until the two of you are bumping noses. You lick her lips and begin making out vigorously with her. As you mash faces with her, you squirt some of the pink lube on your hand. You reach down and begin groping and squeezing her supple tits, making sure to massage it into her the best you can. She gasps into your mouth in pleasure, her already-stiff nipples getting even harder. You tweak one of the buds, making her moan even more, and rub the excess lube on the rest of her unslicked torso.");
 	if (silly) output(" You can already tell it’s going to be a goddamn hassle to clean this up.");
 	output("\n\nYou pull your face back from hers and stare into her eyes. <i>“Close your eyes and hold out your tongue. I have a surprise for you.”</i> She does as you say, shutting her eyes and sticking her tongue out. You bring the bottle of sensitizing lube above her tongue and squeeze out a drop of it. She flinches a bit at the sudden feeling of cold liquid on her tongue, and crosses her eyes to look at what you’ve put on her it. Before she can get a peek, you push her tongue back into her mouth. She furrows her brow and begins to move her tongue around in her mouth. Her eyes slowly widen as she realizes what you’ve made her do. You squeeze out a dollop of the pink stuff on your [pc.tongue], retract it back into your mouth and move it around, spreading the lube all in your mouth. It tastes very similar to lingonberry, sour and somewhat sweet. You begin to feel the effects of the lube almost immediately, your mouth and tongue becoming almost achingly sensitive. You resist the urge to sit there and play with your tongue and look down at Erika. She’s breathing much heavier now, her oral organ pushing against the inside of her cheeks as she attempts to derive pleasure from her sensitive mouth. You stroke her cheek and lean down to make out with her again.");
 	output("\n\nYour tongues don’t even fight for dominance, they just squirm and wriggle around in each other’s mouth, trying to give as much thrill to the other as they’re getting. ");
@@ -1206,7 +1214,7 @@ public function erikaSexRideHerButt():void
 	if (pc.isAss()) output("grin");
 	else output("smile sheepishly");
 	output(" and grope her tit. ");
-	output("\n\n<i>“Geez, that was… intense.”</i> She shudders and begins squeezing her unattended boob. <i>“We gonna get to the main course now?”</i>");
+	output("\n\n<i>“Geez, that was... intense.”</i> She shudders and begins squeezing her unattended boob. <i>“We gonna get to the main course now?”</i>");
 	output("\n\nYou nod and crawl off of her, making sure to rub her body from chest to groin. You grab the roll of electrical tape and the vibrator bullets. You tear off some tape and attach the vibes to her balls. You squeeze out a small amount of lube onto your hand and smear on her trap sack, kneading it into her. You use the remaining lube on your hand to wet your [pc.ass] and [pc.asshole]. You climb back onto Erika and start hotdogging her erect shaft with your [pc.ass], coating her twitching cock in pink and glitter. Once you’re both suitably lubed up, you begin to press your pucker down on her tapered tip, but not before grabbing the vibrator bullets’ remote and turning them on, setting the dial to 1. A faint buzzing emanates from her groin and she jerks her hips upwards at the feeling of her balls - and dick - vibrating, easily slipping her slick cocktip into your [pc.asshole]. You hum in pleasure and sink deeper onto her dick, enjoying the feeling of the bullet vibes on her small testicles making her equally small puppy pecker vibrate.");
 	output("\n\n<i>“Liking those vibrators?”</i> you ask her, slowly bouncing on her quivering cock. She only mewls in response, her ears twitching. She places her hands on your [pc.hips] and shoves her entire length into your [pc.asshole], rubbing her vibrating balls against your [pc.ass]. You crank the dial up to 3 to further the sensation on your wet, sensitized ass and her balls. ");
 	if (pc.buttRatingRaw >= 10) output("Your [pc.ass] jiggles profusely and Erika grinds her cock into your large ass. ");
@@ -1226,7 +1234,7 @@ public function erikaSexRideHerButt2():void
 	author("Vio");
 
 	output("Erika begins to hump your [pc.asshole] feverishly, squeezing and slapping your [pc.ass]. She’s about to cum, you can just tell, especially from the way she throbs inside of you. Before she orgasms, you reach under the covers, pull out the cockring, open it and snap it onto her pulsing dick. She cries out as waves of pleasure flow through her, enticing her to cum more but the cockring prevents her from doing so. She looks at you with pleading eyes.");
-	output("\n\n<i>“W - what’d you do that for? I about to cu-uh-um!”</i> She stutters and throws her head back in lust when you turn the cockring on. It vibrates furiously, sounding like an angry ");
+	output("\n\n<i>“W-what’d you do that for? I about to cu-uh-um!”</i> She stutters and throws her head back in lust when you turn the cockring on. It vibrates furiously, sounding like an angry ");
 	if (flags["ENCOUNTERED_ZIL"] != undefined) output("zil");
 	else output("bee");
 	output(". You grind your [pc.ass] into her lap, rubbing her shaking dick in your backdoor. ");
@@ -1266,7 +1274,7 @@ public function erikaSexRideHerButt3():void
 	author("Doots");
 
 	output("When you wake, Erika is still resting in your embrace, faintly snoring. You gently jostle her awake, her eyes slowly opening and ears twitching. She looks at you with her beautiful green eyes and smiles. ");
-	output("\n\n<i>“That was... amazing, yesterday. You’re amazing, [pc.name]. I love you,”</i> she says, letting out a shuddering sigh. <i>“I came so hard…”</i> Her eyes widen and she sits up with a soft grunt. She surveys your cum-stained sheets and blankets and blushes. <i>“Uh, s-sorry about the mess. It’s just, you know, you teased me a </i>lot<i> and for so long, made me build up a lot of cum.</i>“ You assure her that it’s fine, kissing her on the cheek. She smiles and hugs you. She then lets out a sigh and gets out of bed. She looks down at her groin and remembers the bullet vibrators you taped to her balls, and carefully removes them. She pulls on her clothes and turns to you. <i>“I’ll just show myself out.”</i> She leans over and gives you one last kiss before leaving. You lay in bed for a little longer before getting up and getting ready for the day.");
+	output("\n\n<i>“That was... amazing, yesterday. You’re amazing, [pc.name]. I love you,”</i> she says, letting out a shuddering sigh. <i>“I came so hard...”</i> Her eyes widen and she sits up with a soft grunt. She surveys your cum-stained sheets and blankets and blushes. <i>“Uh, s-sorry about the mess. It’s just, you know, you teased me a </i>lot<i> and for so long, made me build up a lot of cum.</i>“ You assure her that it’s fine, kissing her on the cheek. She smiles and hugs you. She then lets out a sigh and gets out of bed. She looks down at her groin and remembers the bullet vibrators you taped to her balls, and carefully removes them. She pulls on her clothes and turns to you. <i>“I’ll just show myself out.”</i> She leans over and gives you one last kiss before leaving. You lay in bed for a little longer before getting up and getting ready for the day.");
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1520,10 +1528,10 @@ public function erikaSexGiveAnusoft():void
 	output("\n\n<i>“A-again? I’m not sure, I’ve already done it once and I hear the it goes... kind of all the way.”</i> You assure that she will love it once she gets used to it, <i>“A-alright, i-if you’re sure,”</i> she stammers, still hesitant but none the less she spreads her cheeks bearing her still normal pucker to you.");
 	output("\n\nTaking a hold of the tube you unscrew it and start squeezing the cream on her rim. She gasps as the cool transformative substance soaks into her pucker.");
 	output("\n\nYou blink your eyes as suddenly the tube is empty ");
-	if (pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || pc.ass.hasFlag(GLOBAL.FLAG_PUMPED)) output("- it always seems to disappear suddenly - ");
+	if (pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || pc.ass.hasFlag(GLOBAL.FLAG_PUMPED)) output("- it always disappears so suddenly - ");
 	output("and a feminine gasp from Erika draws your attention back to her. You stare at her rim in perverted fascination. Her thighs quake as her pucker starts to puff up, blowing up like a balloon, slowly turning into a soft puffy doughnut. It seems to lose some of its tightness becoming much more accommodating for huge dicks, it almost gapes slightly.");
-	output("\n\nTransfixed on her pillowy pucker you bring one finger to her soft rim, when you brush your finger on her doughnut she gasps loudly before it turns into a moan as you keep touching her fat rim. With a smile on your [pc.lips] you pierce her pucker with a finger breaking another moan from her before it turns into a whimper. Her doggy dick flexes, one, twice, and starts to dribble her salty milk onto the bed.");
-	output("\n\nIf she came from one finger you wonder how would she react to more than one finger… and you decide to find out. You pull your finger out only to replace it with three when the trio of digits touch her newly flowered pucker her tails shoot straight like iron bars. You ignore her panicked tails and begin pushing your fingers inside her bum. Her plump rim swallows up your fingers without an issue so you decide to add another and another.");
+	output("\n\nTransfixed on her pillowy pucker, you bring one finger to her soft rim. When you brush your finger on her doughnut, she gasps loudly before giving a moan as you keep touching her fat rim. With a smile on your [pc.lips] you pierce her pucker with a finger, breaking another moan from her before it turns into a whimper. Her doggy dick flexes, once, twice, and starts to dribble her salty milk onto the bed.");
+	output("\n\nIf she came from one finger you wonder how she would react to more than one finger... and you decide to find out. You pull your finger out only to replace it with three when the trio of digits touch her newly flowered pucker her tails shoot straight like iron bars. You ignore her panicked tails and begin pushing your fingers inside her bum. Her plump rim swallows up your fingers without an issue so you decide to add another and another.");
 
 	clearMenu();
 	addButton(0,"Next",erikaSexGiveAnusoft2);
@@ -1576,10 +1584,10 @@ public function erikaAppearance():void
 	output("\n\nLong purple hair with lime green highlights hangs in front of her green feline eyes, adorning her pale face. Erika’s full lips are a positively eye-catching feature of her face, with the lower one adorned by a single gleaming silver stud.");
 	output("\n\nShe is wearing a rather banal outfit: a plain white strapless blouse and a pair of jeans. You notice that her nipples are visible through her shirt; it looks like this little kitty likes going commando. Her jeans cling to her fertile hips and plump butt, while two dark purple feline tails curl and sway behind her. The tips of her tails are highlighted with the same green color as her hair.");
 	output("\n\nA small but undeniably unfeminine bulge lies between her legs.");
-	if (flags["ERIKA_SEEN_NAKED"] == undefined) output("You are no boobspert but if you would have to guess you would say that her cup size is B, maybe C, judging the size of her bulge you’re fairly certain that she isn’t packing a monster between her legs. ");
-	else output("Having seen below her clothes, you know that her boobs are definitely a C - cup. She has roughly five inches worth of canine meat between her legs, located just below a heart - shaped thatch of pubic hair. Below that is a pair of tightly drawn balls. Despite what you thought earlier, she doesn’t have a pussy to go with her [erika.cock]. ");
-	output("As you gaze between her legs, her face turns bright red, but nonetheless her nipples harden, jeans tent, and her tails start to sway behind her faster. It seems this little kitty is starved for attention; or more likely- judging by her tent- she is starved for sex.");
+	if (flags["ERIKA_SEEN_NAKED"] == undefined) output(" You are no boobspert but if you would have to guess you would say that her cup size is B, maybe C, judging the size of her bulge you’re fairly certain that she isn’t packing a monster between her legs.");
+	else output(" Having seen below her clothes, you know that her boobs are definitely a C-cup. She has roughly five inches worth of canine meat between her legs, located just below a heart-shaped thatch of pubic hair. Below that is a pair of tightly drawn balls. Despite what you thought earlier, she doesn’t have a pussy to go with her [erika.cock].");
+	output(" As you gaze between her legs, her face turns bright red, but nonetheless her nipples harden, jeans tent, and her tails start to sway behind her faster. It seems this little kitty is starved for attention; or more likely - judging by her tent - she is starved for sex.");
 
-	clearMenu();
-	addButton(0,"Next",erikaMainMenu);
+	erikaMainMenu();
+	addDisabledButton(0,"Appearance");
 }

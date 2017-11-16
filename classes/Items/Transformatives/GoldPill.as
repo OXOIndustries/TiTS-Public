@@ -212,7 +212,7 @@ package classes.Items.Transformatives
 						{
 							output("\n\nYou feel a tingling in your scalp. Running a hand ");
 							if(pc.hasHair()) output("through your [pc.hair], you realize it’s changed color - <b>you’re now sporting a head of brilliant gold hair!</b>");
-							else output("\n\nacross your bald head across your head, you don’t feel any differences. A quick look in your Codex’s reflective backplate, though, shows that <b>your eyebrows and lashes have changed to a rich, dark gold - your hair color’s different!</b>");
+							else output("across your head, you don’t feel any differences. A quick look in your Codex’s reflective backplate, though, shows that <b>your eyebrows and lashes have changed to a rich, dark gold - your hair color’s different!</b>");
 							pc.hairColor = "gold";
 							changes++;
 						}
@@ -224,7 +224,7 @@ package classes.Items.Transformatives
 						{
 							output("\n\nYou feel a tingling in your scalp. Running a hand ");
 							if(pc.hasHair()) output("through your [pc.hair], you realize it’s changed color - <b>you’re now sporting a head of hair that’s black as night!</b>");
-							else output("across your bald head across your head, you don’t feel any differences. A quick look in your Codex’s reflective backplate, though, shows that <b>your eyebrows and lashes have changed to pitch black - your hair color’s different!</b>");
+							else output("across your head, you don’t feel any differences. A quick look in your Codex’s reflective backplate, though, shows that <b>your eyebrows and lashes have changed to pitch black - your hair color’s different!</b>");
 							pc.hairColor = "black";
 							changes++;
 						}
@@ -494,7 +494,7 @@ package classes.Items.Transformatives
 					// Perk Swapped!
 					if(pc.hasPerk("Myr Venom"))
 					{
-						output("\n\nWith your new genes attained, your jaw begins to shiver all over and you feel your canines tingle. You rub your [pc.tongueNoun] along the roof of your mouth and across the back of your front teeth. As you do this, a pool of pink myr venom rapidly collects and a stream of the stuff dribbles down your [pc.lip]. Surprised, you reflexively swollow it before any more can come out. You almost instantly regret the action as an overwhelming feeling of desire and anticipation skyrockets in your [pc.groin], giving way to the lust-laden effects of the venom!");
+						output("\n\nWith your new genes attained, your jaw begins to shiver all over and you feel your canines tingle. You rub your [pc.tongueNoun] along the roof of your mouth and across the back of your front teeth. As you do this, a pool of pink myr venom rapidly collects and a stream of the stuff dribbles down your [pc.lip]. Surprised, you reflexively swallow it before any more can come out. You almost instantly regret the action as an overwhelming feeling of desire and anticipation skyrockets in your [pc.groin], giving way to the lust-laden effects of the venom!");
 						output("\n\nComposing yourself, you expect the venom to replenish itself after discharging so much at once, but instead it’s just regular, watery spit. After noticing the change in your saliva, you double check your Codex and confirm that <b>you have lost your lust-inducing venom from your previous transformation</b>. It seems the ability is not compatible with this drug...");
 						// Lusty!
 						pc.lust(9000);
@@ -506,7 +506,7 @@ package classes.Items.Transformatives
 				// Alternately remove My Venom
 				if(changes < changeLimit && pc.hasPerk("Myr Venom") && rand(4) == 0)
 				{
-					output("\n\nSuddenly, your jaw begins to shiver all over and you feel your canines tingle. You rub your [pc.tongueNoun] along the roof of your mouth and across the back of your front teeth. As you do this, a pool of pink myr venom rapidly collects and a stream of the stuff dribbles down your [pc.lip]. Surprised, you reflexively swollow it before any more can come out. You almost instantly regret the action as an overwhelming feeling of desire and anticipation skyrockets in your [pc.groin], giving way to the lust-laden effects of the venom!");
+					output("\n\nSuddenly, your jaw begins to shiver all over and you feel your canines tingle. You rub your [pc.tongueNoun] along the roof of your mouth and across the back of your front teeth. As you do this, a pool of pink myr venom rapidly collects and a stream of the stuff dribbles down your [pc.lip]. Surprised, you reflexively swallow it before any more can come out. You almost instantly regret the action as an overwhelming feeling of desire and anticipation skyrockets in your [pc.groin], giving way to the lust-laden effects of the venom!");
 					output("\n\nComposing yourself, you expect the venom to replenish itself after discharging so much at once, but instead it’s just regular, watery spit. After noticing the change in your saliva, you double check your Codex and confirm that <b>you have lost your lust-inducing venom from your previous transformation</b>. It seems the ability is not compatible with this drug...");
 					// Lusty!
 					pc.lust(9000);
@@ -528,7 +528,7 @@ package classes.Items.Transformatives
 							else
 							{
 								output("\n\nSomething feels... strange in your [pc.tails], like ");
-								if(pc.tailCount == 1) output("its trying to curl up into itself.");
+								if(pc.tailCount == 1) output("it’s trying to curl up into itself.");
 								else output("they’re trying to curl into one another.");
 								output(" Pain hits you, making you stagger down onto the ground as ");
 								if(pc.tailCount == 1) output("your [pc.tail] becomes something else");

@@ -210,7 +210,7 @@ package classes.Items.Transformatives
 						{
 							output("\n\nYou feel a tingling in your scalp. Running a hand ");
 							if(pc.hasHair()) output("through your [pc.hair], you realize it’s changed color - you’re now sporting a head of dark red hair!");
-							else output("\n\nacross your bald head across your head, you don’t feel any differences. A quick look in your Codex’s reflective backplate, though, shows that your eyebrows and lashes have changed to a dark red - your hair color’s different!");
+							else output("across your head, you don’t feel any differences. A quick look in your Codex’s reflective backplate, though, shows that your eyebrows and lashes have changed to a dark red - your hair color’s different!");
 							pc.hairColor = "red";
 							changes++;
 						}
@@ -222,7 +222,7 @@ package classes.Items.Transformatives
 						{
 							output("\n\nYou feel a tingling in your scalp. Running a hand ");
 							if(pc.hasHair()) output("through your [pc.hair], you realize it’s changed color - you’re now sporting a head of hair that’s black as night!");
-							else output("across your bald head across your head, you don’t feel any differences. A quick look in your Codex’s reflective backplate, though, shows that your eyebrows and lashes have changed to pitch black - your hair color’s different!");
+							else output("across your head, you don’t feel any differences. A quick look in your Codex’s reflective backplate, though, shows that your eyebrows and lashes have changed to pitch black - your hair color’s different!");
 							pc.hairColor = "black";
 							changes++;
 						}
