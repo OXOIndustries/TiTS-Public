@@ -90,6 +90,7 @@
 					}
 					output("\n\nA minute after inhaling, you’re feeling very pleasant but also pretty horny. On top of that, your vision is a little blurred... perhaps a nap will fix it? You discard the glass bottle and carry on with what you wanted to.");
 					target.createStatusEffect("Woozy",0,0,0,0,false,"Icon_DizzyDrunk","You’re especially horny, sleepy, and above all woozy!\n\nLust maxxed!\n+10 Intelligence\n-10 Aim\n-10 Reflexes",false,60*4,0xB793C4);
+					kGAMECLASS.flags["USED_WISP"] = 1;
 					pc.intelligenceMod += 10;
 					pc.aimMod += -10;
 					pc.reflexesMod += -10;
