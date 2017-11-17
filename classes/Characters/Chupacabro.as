@@ -177,6 +177,7 @@ package classes.Characters
 			
 			this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Treated");
+			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			
 			isUniqueInFight = true;
 			btnTargetText = "Chupacabro";
