@@ -89,6 +89,7 @@ public function approachUshameeCorridor2():void
 	clearMenu();
 	chiefNeykkarHeader();
 	
+	rooms[currentLocation].removeFlag(GLOBAL.NPC);
 	moveTo("CANADA5");
 	
 	output("The leithan woman guides you over to ");

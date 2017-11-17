@@ -101,7 +101,7 @@ public function canIHelpYouSeraImDumb():void
 		output("\n\nAs you try to say it, Sera crams a fistful of candy into your mouth, smiling all the while.");
 
 		output("\n\nStill shocked, a strong hand easily ");
-		if(pc.hasKnees()) output("brings you down onto your your knees");
+		if(pc.hasKnees()) output("brings you down onto your knees");
 		else output("lowers you to her crotch");
 		output(" and your mouth onto your mistress’ dick. Sheer physical force shoves the caramel-flavored candy down your throat only for bulging demon-dick to follow.");
 		output("\n\n<i>“Trick or treat that, you pricks. Should have done that right away when you asked.”</i>");
@@ -132,7 +132,7 @@ public function canIHelpYouSeraImDumb():void
 		output("\n\nAnd that’s what your mistress was waiting for.");
 		output("\n\nShe crams a fistful of caramel-flavoured candy into your mouth and ");
 
-		if(pc.hasKnees()) output("brings you down onto your your knees");
+		if(pc.hasKnees()) output("brings you down onto your knees");
 		else output("lowers you to her crotch");
 		output(" and onto her dick in your moment of confusion.");
 		output("\n\nSheer physical force shoves the caramel-flavored candy down your throat only for bulging demon-dick to follow.");
