@@ -2163,8 +2163,6 @@ package classes.GameData
 				else
 				{
 					output(", stunning your enemy!");
-					
-					var rounds:int = 1 + rand(2);
 					bStun = true;
 				}
 				
@@ -2173,7 +2171,11 @@ package classes.GameData
 				damage.add(new TypeCollection( { burning: 10 } ));
 				damage = damageRand(damage,15);
 				applyDamage(damage, attacker, target, "ranged");
-				if(bStun) applyStun(target, rounds, false, "Cannot act for " + rounds + " turn" + (rounds == 1 ? "" : "s") + ".");
+				if(bStun)
+				{
+					var rounds:int = 1 + rand(2);
+					applyStun(target, rounds, false, "Cannot act for " + rounds + " turn" + (rounds == 1 ? "" : "s") + ".");
+				}
 			}
 		}
 		
