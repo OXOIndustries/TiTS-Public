@@ -142,6 +142,8 @@ public function holidayCostumeMenu():void
 		else if(pc.isTaur()) addDisabledButton(btnSlot++,"Hero Garb","Hero Garb","Your unconventional body type would never fit into the costume.");
 		else if(!pc.hasCock()) addDisabledButton(btnSlot++,"Hero Garb","Hero Garb","This clothing features a very male cut. You’ll need a phallus to properly fill it out.");
 		else addButton(btnSlot++,"Hero Garb",heroGarbCostume,undefined,"Hero Garb","A forest green pointed hat droops over the head of a mannequin, with a matching green tunic and white tights. A pair of brown leather boots and gauntlets lay strewn across the floor.\n\nPrice: 1000 credits");
+
+		addButton(btnSlot++,"KnottyNurse",becomeANaughtyNurse,undefined,"Knotty Nurse",knottyNurseTooltip());
 	}
 	else
 	{
@@ -152,6 +154,7 @@ public function holidayCostumeMenu():void
 		addDisabledButton(btnSlot++,"Spider Suit","Spider Suit","You can’t afford this junk. Crap.");
 		addDisabledButton(btnSlot++,"MetalReptile","Metal Reptile","You can’t afford this junk. Crap.");
 		addDisabledButton(btnSlot++,"Hero Garb","Hero Garb","You can’t afford this junk. Crap.");
+		addDisabledButton(btnSlot++,"KnottyNurse","Knotty Nurse","You can’t afford this junk. Crap.");
 	}
 	//Poe A - Bondage Kitty
 	if(pc.isTaur()) addDisabledButton(btnSlot++,"Black Cat","Black Cat","This wouldn’t fit your body type.");
@@ -968,7 +971,7 @@ public function hotelPartyPartyParty():void
 
 	output("\n\nYou grin and push your way into the lobby, feeling a rush of warmth as you step inside. The lobby’s full of revelers coming and going, presenting their colorful costumes to each other like plumage. They’re not who you’re here for, though, and as alluring as some of the skimpy, skin-hugging outfits on display might be, you’ve got a pending appointment that demands your full attention.");
 
-	output("\n\nSashaying past the front desk, you punch the elevator and check the room number you got. Room 2505, near the top of the towering mega-structure. It’s a long ride up, giving you plenty of time to strip off the excess armor plates in your costume, leaving nothing but the squeezing cups of the boob plate hefting up your tits, and the bikini-bottom hugging your breeder’s hips and decidedly not covering your crotch. The walls of the elevator are reflective enough for you to get a good look at yourself again, sexy beast that you are. You lick your lips and cup a tit under your costume armor, shivering with delight at the sensation. Even through the suit, you can feel pretty much everything, the sweat and oil on your skin, the heat your your body, the beat of your heart. It’s so lifelike, you can easily forget you’re wearing it.");
+	output("\n\nSashaying past the front desk, you punch the elevator and check the room number you got. Room 2505, near the top of the towering mega-structure. It’s a long ride up, giving you plenty of time to strip off the excess armor plates in your costume, leaving nothing but the squeezing cups of the boob plate hefting up your tits, and the bikini-bottom hugging your breeder’s hips and decidedly not covering your crotch. The walls of the elevator are reflective enough for you to get a good look at yourself again, sexy beast that you are. You lick your lips and cup a tit under your costume armor, shivering with delight at the sensation. Even through the suit, you can feel pretty much everything, the sweat and oil on your skin, the heat from your body, the beat of your heart. It’s so lifelike, you can easily forget you’re wearing it.");
 
 	output("\n\nMaybe you can keep the suit on while you fuck? Hell, why couldn’t you - nobody’s taking this off you without a fight until you’ve enjoyed it to the fullest. You smile wide, letting your arousal build until you’re so flushed you can’t stop yourself from reaching down to touch yourself, ");
 	if(!pc.hasCock()) output("slipping a few fingers into your twat");
@@ -3031,5 +3034,650 @@ public function extraCatTFForCatCostume():void
 	}
 	//Increase Exhibitionism by 25%
 	for(var i:int = 0; i < 15; i++) { pc.exhibitionism(2); }
+}
+
+//Req's genitals
+
+//Tooltip
+public function knottyNurseTooltip():String
+{
+	return "The “Knotty Nurse” outfit seems ordinary in everything but name: a white, rubber dress that barely reaches the hips, latex thigh-high boots, and a scandalously revealing crotchless thong, complete with tiny white and red crosses. You presume the typo a result of a botched translation, but could it be indicative of something more? None of the other accessories help you explain. You’ll just have to pony up the 1,000 credits to find out.\n\nPretty steep for a typical costume.";
+}
+
+//Take it
+public function becomeANaughtyNurse():void
+{
+	clearOutput();
+	showHoliday();
+	author("Fenoxo Fenbro");
+	output("<i>“This one,”</i> you announce, grabbing the combination medical outfit-slash-slutwear out of a box.");
+	output("\n\nHoliday smiles wickedly, fangs flashing. <i>“That’s a real winner, if I do say so myself.”</i> She plays with the hem of the skirt, slipping a thumb through the thong’s crotch-hole, wiggling it around mischievously. <i>“A little sluttier than mine, even. You’ll be beating boys off with a stick.... Or just beating boys off. I’m 95% sure that’s what the latex gloves are for.”</i> The demonic shopkeep takes a step back and gestures at a nook between a few crates. <i>“Same deal as everything else. 1000 credits and it’s yours for the night.”</i>");
+	processTime(2);
+
+	//Buy or not
+	clearMenu();
+	addButton(0,"Buy It",buyDatNaughtyNurse);
+	addButton(14,"Back",holidayCostumeMenu);
+}
+
+public function buyDatNaughtyNurse():void
+{
+	clearOutput();
+	showHoliday();
+	author("Fenoxo Fenbro");
+	flags["HOLIDAY_OWEEN_PURCHASE"] = "Knotty Nurse outfit";
+	pc.credits -= 1000;
+	output("<i>“I’ll take it!”</i> You wire the credits over, excited to match the theme established by the sexy demonic shopkeeper.");
+	output("\n\nHoliday flicks her eyes down to a projected display and nods curtly. <i>“That’ll do it.”</i> She jerks her thumb over her shoulder toward a pile of enormous crates. <i>“You can change over there. Just stash your stuff, and I’ll keep any bums from running off with it. Nobody wants to party with the [pc.boyGirl] carrying around a backpack full of heavy ordnance.”</i> She tilts her head to the side, pink hair cascading cat-like, yellow eyes. <i>“You trust me, right... buddy?”</i> The crate she’s sitting on lets out a deep, rumbling growl, which she silences with a crunching blow from her knuckles on the container’s reinforced lid.");
+	output("\n\nHoliday seems about as trustworthy as a starving dog at a butcher’s shop, but you don’t really have any alternative if you plan to enjoy the party. Grabbing the costume, you admire the way it shimmers in the dim light and duck behind the crates.");
+	if(!pc.isNude()) output(" You’ll have to strip to squeeze into the slinky number, but that’s par for the course with these kinds of things. You shuck your gear and turn to examine the slutwear in detail.");
+	output("\n\nThe short sleeved, hip-length dress-slash-coat turns out to be made from some next-generation material that combines the glossy sheen of latex with the oh-so-comfortable smoothness of silk. A generous cut ensures the wearer’s breasts won’t just be on display - they’ll be presented for inspection. The fit is so clingy and tight that it can’t possibly be worn with a bra");
+	if(pc.biggestTitSize() < 3) output(", not that you need one");
+	else if(pc.isChestExposed()) output(". Good thing you already stripped");
+	output(".");
+
+	output("\n\nYou slip it on as carefully as possible. Its slinky nature demands you to pull harder to stretch it over every inch of your body like a second skin, yet no matter how hard you work to get it on, it doesn’t strain in the slightest. Stranger still is the complete lack of wrinkles. Stuck on your shoulders, it compresses into a smooth, if ill-fitting, band. Once you grunt and tug it down over your [pc.chest], a flawless expanse of medical-grade white reveals itself, framing a deep");
+	if(pc.biggestTitSize() < 3) output(", cleavage-enhancing");
+	output(" cut. The space-age garment tingles against your [pc.nipples] until they’re fully erect, exposed in stark relief by the glossy veneer.");
+	output("\n\nYou flush. Maybe it’s the revealing clothing or the debauched nature of the world-wide party, but you’re definitely feeling a bit randy. Ignoring the swelling emotion for now, you tug the dressy top’s edge across the crest of your [pc.hips] - low enough to stretch across the curves of your [pc.butts] but high enough to leave your crotch completely unguarded. That, you suppose, is the job of the panties, still on the hangar.");
+	output("\n\nThis thong could hardly qualify as panties. The back covers less than nothing, maybe your asshole on a good day. It’s more anal floss than actual underwear. The front is even worse: a sheer, cross-embossed triangle with a slit down the middle for casual entry.");
+	if(pc.hasCock()) output(" For you, it’s more of an escape hatch for cock.");
+	output(" The costume doesn’t come with pants. It wouldn’t look right with them anyway. The included thigh-highs and panties are as much modesty as you’re going to get, and here on Poe A, that’s probably ");
+	if(pc.exhibitionism() >= 66 || pc.isBimbo()) output("fantastic");
+	else output("fine");
+	output(".");
+	if(pc.exhibitionism() >= 50 && pc.hasGenitals())
+	{
+		output(" You fan yourself at the thought of how much you’ll have on display, how everyone you see is going to see your ");
+		if(pc.hasCock()) output("[pc.cocks]");
+		else output("[pc.vaginas]");
+		output(" hanging out there, ready to be touched and grabbed.");
+	}
+	output("\n\nPulling the panties up reveals them to made of the same material as the top, only in with cross-shaped patterns that never seem to distort no matter how they curve around your [pc.hips]. The thong slips across your [pc.skinFurScales] with ease, gentle tingles of delight radiating up your nerves from contact with the exotic fabric. As it snugs up into your crotch, you whimper softly, ");
+	if(pc.exhibitionism() < 33) output("hoping Holiday doesn’t notice");
+	else if(pc.exhibitionism() < 66) output("wondering if Holiday will notice");
+	else output("disappointed Holiday is missing the show");
+	output(". It feels better than they have any right to. A thong should be a little uncomfortable. A strip of fabric wedged into your crack should at least take some getting used to. Instead, it’s like wearing a tongue across your [pc.asshole], one that gently slides back and forth with your every movement.");
+	output("\n\nThe front is better, somehow.");
+
+	//Cock
+	if(pc.hasCock())
+	{
+		output("\n\nAdjusting your [pc.cocks] so that ");
+		if(pc.cockTotal() == 1) output("it spills");
+		else output("they spill");
+		output(" out the opening instead of being compacted into a phallic singularity reminds you of slipping into a sex-toy. The gap in the fabric shouldn’t give you an erotic thrill. It shouldn’t be like donning a silk cock-ring, but it does. It does all that and so much more");
+		if(pc.balls > 0) output(", cupping your [pc.balls], the gusset easily expanding to create an attractive looking pouch for your pouch, made to cradle weighty sacks beneath a gloss of feminine appeal.");
+		else if(pc.hasVagina())
+		{
+			output(", the gusset clinging tightly to your folds, shrink-wrapping your feminine genitalia so tightly that even the [pc.clits] ");
+			if(pc.totalClits() == 1) output("is");
+			else output("are");
+			output(" visible through the thin, reflective slut-wear.");
+		}
+		else output("tickling your taint like a lover’s curious fingers.");
+	}
+	//No cock-but-pussy
+	else if(pc.hasVagina())
+	{
+		output("\n\nGranted, well-fit undies ought to be nice against your [pc.vaginas], but these panties take it to a whole ‘nother level. It’s like shrink-wrapping your lips, the shimmering rubber-fabric molding to display every detail of your labia and [pc.clits], tantalizing your nerves with the exotic texture so delightfully that you don’t even care that the crotch-opening is sitting up a little too high to expose anything. You tug the hem up, but it slides right back down into place: your pussy ensconced and a patch of bare [pc.skinFurScalesNoun] visible. Weird.");
+		output("\n\nYou’ll complain to Holiday about it later.");
+	}
+	//Merge
+	//Single leg/Goo
+	if(pc.legCount == 1) output("\n\nNext up are the thigh-high stockings. After laughing a bit, you toss them aside. They’d never fit you.");
+	//Else
+	else
+	{
+		output("\n\nNext up are the thigh-high stockings. Just like everything else, they’re made of that same not-latex and feel like oiled silk as they slide up your [pc.legs]. A shiver of pleasure tickles up your spine once they’re snug.");
+		if(pc.isTaur())
+		{
+			output(" It looks a little weird with the ");
+			if(pc.legCount < 4) output("shape of your lower body");
+			else output("number of legs you’re packing");
+			output(", but better than if you didn’t wear them at all.");
+		}
+		output(" Every curve and feature is painted in glossy, flawless black, artificial and sterile as a V-Ko’s lips.");
+	}
+	output("\n\nA white hat in an ancient-looking style completes the ensemble. It pinches your scalp as you get it situated, but a few accents remain, begging for your attention. The first is a stylish belt with a comically undersized first-aid kit, intended to be worn on your hip. It has no latch or opening. The only notable feature is a button that causes a condom to slide out of a slot in the side when pressed - evidence of the kind of medical help you’ll be giving tonight. <i>Protection is an important at these kind of events.</i>");
+	output("\n\nThe last accent is a pair of garters ringed with holsters for medipens of blue-tinted fluid. Block lettering declares them to be “Knotty Boosters.” At least the typos are consistent. You suspect you’ll be a real hit with the ausars in the crowd tonight....");
+	processTime(25);
+	pc.lust(35);
+	clearMenu();
+	addButton(0,"Next",dressedInKnotSuccess);
+}
+
+public function dressedInKnotSuccess():void
+{
+	clearOutput();
+	showHoliday();
+	author("Fenoxo Fenbro");
+	output("<i>“Looking good,”</i> Holiday quips with a wicked smile. <i>“Give me a twirl. Let me have a look at my goods.”</i> Her eyes flick down to your");
+	if(pc.balls > 0 || pc.hasVagina()) output(" partially");
+	output(" exposed loins. <i>“Your goods too, I guess. Let’s see the rumpus.”</i> She gestures impatiently.");
+	output("\n\nWith a small laugh, you spin about, the hem of your skirt fluttering highlight how the panties cling to your almost-bared loins, the cheeks of your ass exposed");
+	if(pc.tailCount > 0) output(", your [pc.tails] bouncing through a gap in the behind");
+	output(". The motion tugs on your little hat, and you feel that pinch");
+	if(pc.hasHair()) output(" in your [pc.hair]");
+	else output(" on your head");
+	output(" again. Then, vertigo. Bouncing off a crate, you catch yourself at the last second, wobbling unsteadily before regaining your balance.");
+	output("\n\n<i>“Looks like you’re ready to party!”</i> Holiday decides, nodding in confirmation of her own declaration. She guides you out the door and sends you on the way with a smack on your bared ass. <i>“Don’t do anything I wouldn’t do!”</i> she offers as her parting advice. The door slams shut, then clicks as a bolt slams into place. Another lock follows. And another after that. Then the lights go out.");
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",knottyPartyI);
+}
+
+public function knottyPartyI():void
+{
+	clearOutput();
+	clearBust();
+	showName("\nOUCH!");
+	author("Fenoxo Fenbroxo");
+	output("Delighting in the lingering sting of Holiday’s palm on your ass, you totter out into the streets");
+	if(pc.legCount > 1 && !pc.hasHooves()) output(", for the first time noticing the heels at the bottom of the latex-like stockings");
+	output(".");
+
+	output("\n\nIt isn’t long before you trip over a pothole and fall, hard. This time, there’s no crate to stop your tumble. Just hard pavement. You crash hard, elbow-first. The asphalt scrapes long streams of fire up your arm. Crying out in pain, you roll on the side, cradling your bloody injury and cursing whoever decided a condom dispenser would be more practical than a proper first-aid kit.");
+	output("\n\nYou sit up and examine the damage. It’s not that bad, as scrapes go. The bleeding is already slowing. The pain, on the other hand, seems even worse than before. In a moment of weakness, you consider the <i>“Knotty Boosters”</i> strapped to your [pc.leg]. They look like real medipens - painless injectors capable of delivering microsurgeons, drugs - you name it. You doubt whoever made this put any actual healing items in the costume... but party drugs? One of those might take the edge off.");
+
+	//high IQ
+	if(pc.IQ() >= 66) output("\n\nYou know better. It’s more than obvious that dosing yourself with a mystery fluid is a terrible idea. Nevertheless, entirely unjustified confidence in this plan wells up in your breast, a certainty in heretofore unseen medical instincts.");
+	//Med IQ
+	else if(pc.IQ() >= 33) output("\n\nBizarrely you don’t think twice about your actions. An innate trust in the contents of the medipens swells in your heart, giving you the confidence to trust your heretofore unseen medical instincts.");
+	//Low IQ
+	else output("\n\nThat sounds like a pretty great idea to you. You came here to party right? Yeah, and what kind of nurse would you be if you didn’t treat <i>somebody</i> with these cool looking medical supplies?");
+	//merge IQs. Still in no-dick variant.
+	output("\n\n<i>‘Pfffshilt.’</i> You don’t feel a thing, well aside from a slight rush of warmth twisting its way up your arm, into your neck... all over really. You blink a few times, slipping the spent pen back into its holster. That warmth concentrates on your scrapes, which you note are surprisingly starting to heal. Or at least you think they are. The drugs are really kicking in, making your eyes cross and your nose itch. Sneezing violently, you giggle and try to keep from tipping back over. It’s harder than expected, especially when your head is all muzzy, and you’re so... so... <i>warm.</i>");
+
+	//Primary dick not dog
+	if(pc.hasCock())
+	{
+		output("\n\nHead lolling, you sneeze again, hard enough to jerk you all the way down in your [pc.hips]. <i>Fuuuck, you’re hard down there.</i> You pump your hips experimentally, every small thrust making your [pc.cocks] a little more rigid, a little more excited and ready to go. You reach down, not even bothering to look");
+		if(pc.cockTotal() > 1) output(", grabbing the topmost and wrapping your fingers tight");
+		else output(", fingers wrapping tight");
+		output(" about the ");
+		if(pc.cocks[0].thickness() >= 3) output("colossal girth");
+		else if(pc.cocks[0].thickness() >= 1) output("girth");
+		else output("narrow shaft");
+		output(". The ");
+		if(pc.hasArmFlag(GLOBAL.FLAG_PAWS)) output("paw-pads-");
+		else output("skin-");
+		output("to-skin contact is electric. It’s exactly what you need. You’re horny, and you <i>deserve to ");
+		if(pc.hasArmFlag(GLOBAL.FLAG_PAWS)) output("paw");
+		else output("get");
+		output(" off.</i>");
+
+		output("\n\nHow convenient that your panties came with an opening for your cock");
+		if(pc.balls > 0) output(" and a lovely pouch to cradle your [pc.balls] in slippery latex");
+		output("! You don’t even have to undress!");
+
+		output("\n\nDizzy with pleasure, you set to work jacking yourself off. No more than four or five pumps into it, and you’re already dribbling pre. The slick river trickles into and over your fingers in such volume that you’re smearing it over your entire cock, shining it until it rivals your synthetic slut-wear. It bubbles and froths from the frenetic tempo of your jacking. The flesh of your " + pc.cockDescript(0) + " is strangely tight. It’s certainly harder than any time in recent memory, skin taut and quivering like a pulled bowstring. You can’t think of the last time you were this horny.");
+		output("\n\n<i>What was in that pen?</i>");
+
+		//Blunt
+		if(pc.cocks[0].hasFlag(GLOBAL.FLAG_BLUNT)) 
+		{
+			output("\n\nMarvellously, your frantic strokes never seem to catch on the rim of your ");
+			if(pc.cocks[0].hasFlag(GLOBAL.FLAG_FLARED)) output("flare");
+			else output("blunted head");
+			output(". It’s a smooth back-and-forth glide, eliciting gasps of delight with every sordid caress.");
+		}
+		//Pointed
+		else if(pc.cocks[0].hasFlag(GLOBAL.FLAG_TAPERED)) output("\n\nMarvellously, your pointed tip allows your frantic strokes to glide from [pc.knot] to pointed tip without pause. It’s such a perfect shape - easy to fondle and easy to slip inside a willing entrance. Your smooth back-and-forth glide has you gasping with delight at every sordid caress.");
+		//else
+		else output("\n\nMarvellously, your frantic strokes never seem to catch on the rim of your [pc.cockHead]. It’s a smooth back-and-forth glide, like you’re tapered to more easily slip inside the first willing partner you can find. Gasping in delight with every sordid caress, you don’t long reflect on the strangeness of the situation.");
+		//Merge dicktip variants
+		//Sub 12" grow to 14"
+		if(pc.cocks[0].cLength() < 12)
+		{
+			output("\n\nThe pleasure continues to mount; each stroke offers a slightly longer buzz of erotic pleasure than what came before. As a matter of fact, even your hazy cognition notices that the tempo of your unsubtle, crotch-slapping strokes sounds like it’s slowing, not because you’re tiring of the act - anything but! There’s just <i>too much dick</i> to traverse in a timely manner.");
+			if(pc.cocks[0].cLength() < 7) output(" You adore the feeling of finally having a decent amount of cock to fondle.");
+			else output(" You adore the feeling of having even more cock to fondle.");
+			output(" This is how masturbation should feel.");
+		}
+		//Sub 20" fun
+		else if(pc.cocks[0].cLength() < 20)
+		{
+			output("\n\nThe pleasure continues to mount as you luxuriate in the rapid, crotch-slapping strokes. You’re thankful to be so blessedly, perfectly endowed. You’re big enough to truly revel in the act of masturbation, but not so big that you can’t fit inside a partner, should the need arise. Of course, you might ruin your partners for lesser beings, but that’s the point, isn’t it?");
+		}
+		//Hyper
+		else
+		{
+			output("\n\nThe pleasure continues to mount as you luxuriate in long strokes that only the hyper-endowed can truly enjoy. You notice through your drug-fuzzed perception that the thrilling sensations are getting sharper, hotter on the heels of the previous strokes. There’s less surface to cover but just as many nerves.");
+		}
+		//Merge - new PG
+		output("\n\nBlinking confusedly, you yank your head up for a look, intending to watch your orgasm.");
+		var cColor:String = "none";
+		var cType:Number = -1;
+		if(pc.hasCock())
+		{
+			cColor = pc.cocks[0].cockColor;
+			cType = pc.cocks[0].cType;
+		}
+		if(!pc.hasCock() || cType != GLOBAL.TYPE_CANINE) 
+		{
+			output(" What you see shocks you to your core: <b>");
+			if(cType == -1 || (cType != GLOBAL.TYPE_CANINE && cColor != "bright red")) output("a bright red, tapered dick");
+			else if(cColor != "bright red") output("a bright red dick");
+			else output("a canine-style tapered tip");
+			output("!</b>");
+		}
+		if(pc.hasCock() && (pc.cocks[0].cLength() < 12 || pc.cocks[0].cLength() >= 20))
+		{
+			if(!pc.hasCock() || cType != GLOBAL.TYPE_CANINE) output(" It’s");
+			else output(" Your shaft is");
+			if(pc.cocks[0].cLength() < 12) output(" longer");
+			else if(pc.cocks[0].cLength() >= 20) output(" shorter");
+			if(!pc.hasCock() || cType != GLOBAL.TYPE_CANINE) output(" too");
+			output("!");
+		}
+		if(pc.hasCock() && (pc.cocks[0].cLength() >= 12 && pc.cocks[0].cLength() < 20) && cType == GLOBAL.TYPE_CANINE) 
+		{
+			output(" It’s beautiful. " + num2Text(pc.cocks[0].cLength()) + " inches of glossy crimson cock quivering in the moment before orgasm. You really do have the perfect cock.");
+		}
+		else
+		{
+			output(" The bestial-looking member looks to be");
+			if(!pc.hasCock() || pc.cocks[0].cLength() < 12) output(" a little over a foot long - maybe fourteen inches");
+			else output(" shorter, but well over a foot long - maybe eighteen inches worth");
+			output("? It’s beautiful, all that glossy cock quivering in the moment before orgasm.");
+		}
+
+		// no knot
+		if(!pc.hasKnot(0)) output("\n\nTwisting spasms rocket through your prong as you pass over the edge, distorting the flesh near the base, bulging the crimson length out in a cruelly oversized parody of a dog’s knot, rounding it wider and wider. You can feel your [pc.cum] pumping and surging, but it doesn’t emerge just yet, not while your animalistic endowment is still growing. You grab the bulb with both hands and squeeze, nearly whiting out from the pleasure. Long arcs of canine-tainted seed spray through the air as you soak yourself in newly-christened doggie cum.");
+		// knot
+		else output("\n\nSpasms of bliss rocket through you as you finally pass over the edge, your [pc.knot] inflating, then inflating some more... then again. No [pc.cum] emerges, not while your canid anatomy is swelling. You whimper like a lost puppy as your knot attains whole new levels of engorgement, and when you can take it no more, you grab hold with both hands and nearly white out from the pleasure. Long arcs of canine-style seed boil out of your body in high-pressure shots, raining down to soak you in voluminous strings of doggie cum.");
+
+		//Merge
+		output("\n\nWringing your newborn dog-dick in both hands, you milk it for every drop of relief it will offer");
+		if(pc.balls == 0) output(", not even noticing the way a fresh pair of balls fills out a stretchy patch of thong just below");
+		output(". You’re too focused on your cock to care about the mess, or being seen, or anything but pumping every droplet of spunk from your transformed bitch-breeder. <i>‘It’s important to release any pent-up fluids,’</i> you realize. <i>‘A well-milked cock is a healthy cock... and a cum-stuffed cunt is more than a cure for depression. It’s practically a cure-all... one you should be sharing, not wasting all over yourself!’</i>");
+		output("\n\nYou lick your hand clean and regard your thick, canine cock. It glistens with a sheen of dribbling cum, still hard and ready to go. You can already feel yourself filling back up with tension, but you’re a nurse, aren’t you? Surely you can find a patient or two in need of a little vitamin D. Or three. You feel like you could solve the whole planet’s problems; you just need to talk the right people into letting you give them an ‘injection’.");
+		output("\n\nThe costume’s name finally makes sense; <b>you truly are a knotty nurse!</b>");
+	}
+	//No dick
+	else
+	{
+		output("\n\nHead lolling, you sneeze again, hard enough for your body to jerk the whole way down to your [pc.hips]. <i>Fuuuck, you’re warm down there.</i> You pump your hips experimentally, every small thrust turning up the heat suffusing your loins. Reaching down, you don’t bother to look, rubbing yourself through the gap in the panties, fingers slipping deep into the frictionless fabric to press on the tenderest, tightest parts of you.");
+		output("\n\nYour body presses back. A mound of [pc.skin] gives your fingers something to rub or stroke. Dizziness finally overwhelms you as blood shifts south, your heart beating hard. You collapse onto your back and hump your hand. It’s the only thing that seems to make sense. Groaning, you swivel your pelvis rapidly, grinding <i>something</i> into your palm. It’s firm and hard, and it feels <i>so good</i> to touch that you’re compelled to squeeze and tug on it, helping it grow longer and heavier.");
+		output("\n\nIt’s like... jacking off, like you’re a horny teen tugging [pc.himHer]self off for the very first time. Like you don’t even know what you’re doing, but your body is compelling you to do <i>something</i>. Powerful urges grab you by the wrist and bide you to stroke faster and harder. You moan in ecstatic delight as the pleasure mounts alongside your inflating flesh, whimpering as you look down and catch sight of exactly what you’re playing with.");
+		output("\n\nIt’s a cock. <b>You have a cock.</b> Not just any cock. A <i>big</i>, knotty one - undeniably canine.");
+		if(pc.isAusar()) output(" You aren’t even an ausar, but it’s there all the same.");
+		output(" It’s tall enough for you to admire every detail of its angular tip, fire-engine red and visibly pulsating, every heartbeat carrying it a millimeter higher. At its base, a soft-furred sheath has formed, neatly hidden beneath the opening in your panties. You can scarcely believe the bloated knot would ever slip back inside it, and it’s <i>still swelling</i>.");
+
+		output("\n\nTongue lolling, you arch your back. Powerful, animalistic instincts grab hold of your fingers and drag them down to the knot, squeezing it. Lightning bolts of canine bliss erupt from the tender orb, washing over your body in convulsions of ecstasy. A second later, molten spurts of relief well out of your tumescent bitch-breaker, cascading across your vinyl-wrapped ");
+		if(pc.biggestTitSize() >= 1) output("tits");
+		else output("chest");
+		output(". Dribbles of aromatic cum wash down the sides of the bizarre costume like drops of rain on a windshield, leaving nothing behind but the fabric’s own gloss and the lingering scent of orgasmic passion.");
+
+		output("\n\nWringing your newborn dog-dick in both hands, you milk it for every drop of relief it will offer");
+		if(pc.balls == 0) output(", not even noticing the way a fresh pair of balls fills out a stretchy patch of thong just below");
+		output(". You’re too focused on your cock to care about the mess, or being seen, or anything but pumping every droplet of spunk from your foot-long bitch-breeder. <i>‘It’s important to release any pent-up fluids,’</i> you realize. <i>‘A well-milked cock is a healthy cock... and a cum-stuffed cunt is more than a cure for depression. It’s practically a cure-all... one you’re now equipped to dispense with all the ardor of a rutting laquine!’</i>");
+		output("\n\nYou lick your hand clean and regard your thick, canine cock. It glistens with a sheen of dribbling cum, still hard and ready to go. You can already feel yourself filling back up with tension, but you’re a nurse, aren’t you? Maybe you can find a lonely girl with a vitamin ‘D’ deficiency...");
+		output("\n\nThe costume’s name finally makes sense; <b>you truly are a knotty nurse!</b>");
+	}
+	//TO ZE NEXT PART
+	processTime(25);
+	pc.orgasm();
+	pc.lust(40);
+	clearMenu();
+	addButton(0,"Next",knottyPartyII);
+}
+
+public function knottyPartyII():void
+{
+	clearOutput();
+	showName("\nPARTY!");
+	author("Fenoxo Fenbruxumis");
+	output("You’re a bit wobbly post-orgasm, but your gait steadies as you make your way back to the festivities. Your costume is flawless, showing no signs of the recent semen-shower, though you suppose you still smell faintly of sex. Crinkling your nose, you giggle when you realize the scent will help you fit in that much better.");
+	output("\n\nBreezing through the crowds seems second nature. When hands fall on your brazenly exposed cock, you playfully offer a full-body check-up. When girls blush and turn away, you lean on their shoulders and inform them that you’re a professional and know how to keep things confidential. More than once, you think you’ve found a patient, but the party-folk appear more interested in flirting than being <i>medically serviced</i> for the time being.");
+	output("\n\nWearing your friendliest smile, you try to ignore the increasingly heavy-feeling weight between your [pc.thighs] as you ensure that everyone is healthy, happy, and not at all in need of being fucked into unconsciousness. Being a nurse at parties like this is a challenging job, but someone has to do it. Looking down at your drooling dog-dick, you nod to yourself. You’re the best [pc.manWoman] for the job.");
+	output("\n\n<i>“Heyyyyyy,”</i> a too-relaxed voice purrs from below. <i>“Thaaaats... a biiiig... dick.”</i>");
+	output("\n\nA naked ");
+	if(!CodexManager.entryUnlocked("Rodenians")) 
+	{
+		output("mouse-girl that your Codex identifies as a rodenian");
+		CodexManager.unlockEntry("Rodenians");
+	}
+	else output("rodenian");
+	output(" is staring at your still-erect length from below, licking her lips. She’s a petite thing with wide eyes, huge ears, and lipstick that looks to have been smudged by far too many blowjobs. Neon-glowing beads drape her neck and wrists, proudly displaying the absolutely whorish numbers of party favors she’s indulged in. More concerning are the dozens of cum-stains dotting her fur and the vacant look in her eyes, like she’s not seeing anything else but your dick.");
+
+	//Read codex
+	if(!CodexManager.entryViewed("Rodenians")) output("\n\nYou know from the Codex article about how suggestible rodenians can be after a good fuck.");
+	//Not read
+	else output("\n\nA quick skim of your Codex informs you that rodenian anatomy actually locates their vaginas in their ears or all places, and that sex leaves them in a hyper-suggestible state.");
+	//Merge no new pg
+	output(" Someone must have done a number on this one. The poor girl can’t even seem to remember how to get what she wants. She’s just staring at your rosey shaft and babbling, <i>“I... waaaant it. Waaaant that cock.”</i> She points at it, head nodding like a dashboard toy. <i>“Mmmm... suck caaaaawwwwk all niiight... beads... beads-r-goooood.”</i>");
+	output("\n\nIn your professional opinion, she’s still out of it from her last lay, but not nearly enough for you to reverse the damage from a night’s worth of debauchery and sluttifying commands. If you don’t intercede, she’s going to wind up someone’s personal toy. Fortunately your fat knot could open her psyche up for easy repair. You just have to fuck her juicy ear-cunts a bit first.");
+	output("\n\nYou’re just about to give her the treatment she so desperately needs, which is also sort of what she’s asking for you anyway, when you hear a cry of distress from across the street. A group of revelers struggles to drag their unconscious friend away from feverishly masturbating ausar woman, modded to stand over eight feet tall. Her small horns and enormous, milk-seeping breasts hint at bovine modifications");
+	if(pc.isTreated()) output(", Treated by the smell of it");
+	output(". <i>“I swear to God, if one of you limp-dick party-bitches can’t step up to the plate, I’m going to murder someone!”</i>");
+
+	output("\n\nTypical hellhound breeding hysteria. A rare but potentially difficult side effect of New Texas’s “Treatment”. As a knotty nurse, you won’t even need any medical impliments to calm her down. Just a little time between her thighs, and perhaps another “Knotty Booster.”");
+	output("\n\nTwo women, both in dire need of medical attention. Do you try to help the abused rodenian try to find her way back to normalcy, or stop the rampaging hell-hound before she kills someone?");
+
+	processTime(55);
+	pc.lust(40);
+	clearMenu();
+	//[Rodenian] [Hellhound]
+	addButton(0,"Hellhound",knottyNurseHellhound);
+	addButton(1,"Rodenian",knuttyNurseRodenian);
+}
+
+public function knottyNurseHellhound():void
+{
+	clearOutput();
+	showBust("HELLHOUND");
+	showName("\nHELLHOUND!");
+	author("Fenoxo Fenbutt");
+	output("You step closer to the hellhound, your drooling dog-dick waggling in anticipation while you anonymously report the rodenian’s location to the local peacekeepers. That handled, you raise your voice. <i>“Over here!”</i>");
+	output("\n\nThe dark-furred ausar growls, but at the sight of your exposed, bright-red tool, her expression softens - slightly. <i>“You expect me to fuck that toothpick?”</i> Bodies go flying as she thrusts her way through the crowd, muscled abs and oiled-up tits glistening. <i>“You couldn’t satisfy a virgin kaithrit, let alone a real woman.”</i> She grabs her crotch, scooping up a handful of the fragrant, gooey girl-cum. A sudden slap impacts your cheek, staggering you. Pain and pussy-musk dizzy your senses as the horny beast bears down on you, pinning you to the hard asphalt.");
+	output("\n\n<i>“Oof!”</i> you cry, immense thighs on either side of your [pc.chest], that sodden pussy heavier than a bag of bricks. Your dick threads through her muscled, bubbly butt-cheeks, savagely squeezed by the muscles’ errant flexings.");
+	output("\n\n<i>“That’s what I thought. You’re about to bust a nut all over my back.”</i> Her tail swishes back and forth across your taut, bound balls. <i>“How are you supposed to keep it up long enough to satisfy me.”</i> She bends low, almost double, to look you in the eye. <i>“How the fuck are you going to take care of </i>me<i>, little nurse?”</i>");
+	output("\n\n<i>“Try me.”</i> The wheezing declaration sounded better in your head than it came out. Nevertheless, the violent woman seems appeased.");
+	output("\n\n<i>“Better not be pulling my tail, bitch.”</i> The ausar vaults up... and down, straight onto your dick with an audible squelch. Her capacious cunny swallows you whole, double-wide knot and all. Pussy-juices and leftover cum splatter across your legs from the brutal impact. Her well-used passage squeezes down hard, swaddling you in cummy folds that vacillate unbelievably between vice-tight and sloppy whorishness.");
+	pc.cockChange();
+	output("\n\n<i>“Hrmmph!”</i> the hellhound growls, springing up into the air only to slam back down a moment later, cunt fluttering beautifully. <i>“You call this a dick?”</i> She slaps you across the face, hard, mid-thrust. <i>“I can barely notice it.”</i> Reaching behind her, she grabs a fistful of your balls and gives a threatening squeeze. <i>“You think these little nuggets are going to please me?”</i> The pressure rises until the ausar grows bored of seeing you squirm and turns to your [pc.nipples], barely concealed by the slutty uniform. <i>“You’re more fun to torment than fuck.”</i> Hundreds of pound of well-muscled fuck-beast settle on top of you. <i>“Let’s see how long it takes you to bruise...”</i>");
+	//[Next]
+	processTime(10);
+	pc.lust(20);
+	clearMenu();
+	addButton(0,"Next",knottyNurseHellhoundII);
+}
+
+public function knottyNurseHellhoundII():void
+{
+	clearOutput();
+	showBust("HELLHOUND");
+	showName("KNOTTY\nCURE-ALL");
+	author("Fenoxo Fenbutt");
+	output("<i>“Wait!”</i> you beg, throwing up your arms.");
+	output("\n\nThe amazonian ausar grimaces. <i>“What now? How many times are you going to waste my time tonight?”</i> She drags her hips back and forth, hard, bodily grinding you against the pavement with nothing but her cunt. <i>“Why couldn’t you have just been a decent dildo?”</i>");
+	output("\n\nYou grab two of the medipens from the holster around your thigh. <i>“It’ll be worth it. I promise!”</i> Or so you hope. Jabbing them against your thighs, you hear the faint hiss of them unloading their tainted payload into your bloodstream.");
+	output("\n\nThe buxom bitch riding high on your dick watches impassively, lips halfway pulled into a snarl. <i>“I’m waiting.”</i>");
+	output("\n\n<i>“One...se-s-s-s-sss...”</i> you stutter, trailing off as your thoughts and plans splinter off into a dozen whirling pools of indifferent, half-thought fantasies, each lewder and rauncher than the last. You try to focus on the ausar’s heaving, perfect breasts, but they split into a quartet of milky mammaries, their nipples stirring swirls in the fabric of space with her every breath. Looking higher, you see two perfect faces scowling down at you, fangs bared.");
+	output("\n\n<i>“A fucking junkie. I should’ve known.”</i>");
+	output("\n\nA bonfire of pleasure chooses that moment to light in your loins, bringing with it a profusion of flesh-altering growth. Your bitch-embedded boner quakes inside the angry mynx’s channel, culminating in a single, potent, cunt-straining flex. This time, it isn’t the hellhound’s well-used twat muscling down on you, but you muscling it open, stretching those filthy folds wide enough that there’s no doubt she can feel it. Panting, you lip your chops and howl and pleasure, cock still growing.");
+	output("\n\n<i>“Wha-wha....”</i> The dark-furred dog-girl whimpers in confusion and mounting satisfaction. As your cock-tip threads deeper into her channel, pressing up to kiss her cervix, she pauses, tail wagging happily. <i>“H-how?”</i>");
+	output("\n\nYou’re in no position to answer, not with every thought warring over which way you should fuck her and your body unable to do anything but lie there and make your dick even bigger. Your sack joins in on the fun. Weight floods your balls as the expanding nuts fill with more seed than they can comfortably hold. Rounder and rounder they grow. Your poor thong balloons, then snaps back, shimmery fabric compressing into a ball-flossing strip. The ausar’s wagging tail tickles the raw, sensitive skin with maddening brush strokes.");
+	output("\n\n<i>“G-g-god, it’s still getting bigger!”</i> Squirming madly, the giant of a woman tips forward, catching herself on her palms at the last second. Her cushiony breasts slap together around your head, blocking your vision of anything but creamy smooth skin and the dark crevasse of her cleavage. Whiffs of milk tickle your nose as the amazon’s pleasured squirming causes her to lactate uncontrollably.");
+	output("\n\nYou gasp, weak everywhere except where it counts, feeling your red, turgid mast continue to burrow deeper into her, stretching the mutated ausar’s cervix deep. It bulges through the skin of her otherwise taut belly, letting you feel your length climb higher, the knot inflating wider by the second. It’s fat enough to ruin a lesser woman, and you’re not even cumming yet. The idea of you finally achieving release and feeling your knot grab hold solidifies as the high fades. <i>You have to break in this rebellious bitch.</i>");
+	output("\n\n<i>“Oh yeah!”</i> the hellhound growls, gingerly moving her hips. <i>“That’s a dick!”</i> She pulls your head into her cleavage her crotch begins to rock once more, dragging the knot through the lust-slicked tunnel. <i>“Guess those drugs were good for something after all.”</i> Leaning back, she lets her dripping milk splatter your face. <i>“You’re gonna make me cum, hot stuff.”</i> She laps the milk from your face like a kaithrit slut. <i>“You’re gonna make me cum, and this monster dick-”</i> She gives it a squeeze through the taut skin of her abdomen. <i>“-is going to fall in love with my cunt.”</i>");
+	output("\n\nMaybe it’s the residual chemicals in your bloodstream, but you can understand the sentiment. Now that your cock is bigger, it can more clearly register the hellhound’s affections, its veiny surface giving her a proper rod to grip. Those lush cuntlips may as well be stroking your brain for how clearly you feel the electric lust coursing through you. Your vision seems tinged pink, filled with lovely breasts and the brunette’s all-too appealing smile, everything painted beneath a layer of cock-massaging pussy-pleasure.");
+	output("\n\n<i>“Now you’re acting like a proper dildo,”</i> the oversized bitch coos, really starting to get into it. Her hips lift up and slap down again and again, ravishing herself on your bright red rod. She pounds away at your crotch like it owes her money. It’d hurt if you won’t so well-endowed now, your plumped up dog-cock robbing her of momentum with unceasing friction every step of the way. <i>“Just fucking cum already!”</i> Her cunt squeezes you tight, begging you to dump your hot load directly into her womb. <i>“You know you can’t help yourself with a real bitch like me.”</i>");
+	output("\n\nIt’s true. You swoon when her tits swing low once more, cock throbbing needfully, your balls taut and heavy. As you begin to suckle, drinking deeply of her milk, ardor rising apace with the size of your knot, you feel lightheaded and euphoric.");
+	output("\n\n<i>“Oh! It’s coming, isn’t it?”</i> The hellhound arches her back, yanking a milk-squirting nipple from your mouth, hips pressing powerfully downward to take you to the hilt. She grabs you by the shoulders for more leverage, wanting you deeper. Growls of ecstasy well up from her enormous, jiggling chest as her cervix ever-so-slightly parts for your tip. Her eyes roll back from the pleasure of finally having her itch scratched. <i>“F-f-fuck I’m cumming?”</i> She seems confused by the answering passion.");
+	output("\n\nThe first eruption of seed into her waiting womb is exactly what you both needed. Muscles quivering and straining, you feel the next jet rushing through you, liters of fluids racing through chemically-enhanced biological piping in seconds. It bursts into the ausar’s overdeveloped womb unrestrained, thick enough to cling to her walls and copious enough to plump her middle.");
+	output("\n\nThe hellhound falls slack, dribbling milk, her pussy still milking you. Sublime groans pour out of her in an unceasing display of feminine satisfaction. Every rope of cum you drizzle into her womb is demarcated in squeaks of delight. It’s exactly what she needs, and now that you can feel your overworked balls draining, exactly what you needed as well. You lie in the middle of the cheering crowd, shooting lance after lance of canine-flavored seed into that fertile bitch’s cunt.");
+	output("\n\n<i>“Ohhhhhhh yeaaahhhhh,”</i> the ausar purrs, stroking your head. She plants kiss after kiss on your [pc.lipsChaste], pussy still powerfully milking your cock. <i>“Breed me, you big, walking dick.”</i> She ravishes you in gentle, confused attention, thick thighs quivering against yours. She wiggles, trapped by your bowling ball of a knot, reproductive system pried wide open. The gurgles of gushing fluids bring smiles to both your faces as your eyes drift closed, heedless to the growing orgy around you...");
+
+	processTime(40);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",knottyNurseEpilogue);
+}
+
+//[Rodenian]
+public function knuttyNurseRodenian():void
+{
+	clearOutput();
+	showBust("RODENIAN");
+	showName("\nRODENIAN");
+	author("Fenoxo Fenbutt");
+	output("You step closer to the rodenian, your drooling dog-dick waggling an inch away from her face to hold her attention while you log an anonymous tip to the local peacekeeping unit.");
+	output("\n\n<i>“Suck-and-fuck orrrr.... Fuck-then-suck?”</i> The vulnerable mouse-girl glances up you questioningly, then back down at your dick. She licks her lips, fingers fidgeting with her beads.");
+	output("\n\n<i>“Fuck then fuck some more,”</i> you answer, scanning the area. There! An empty holobooth. It’s covered in graffiti, but once the privacy shroud and noise dampeners kick in, you’ll have some alone time.");
+	output("\n\nNodding happily, your short-statured slut bounces eagerly. Her beads clack noisily. <i>“I loooove cock.”</i> She nuzzles up to your length, whiskers tickling the turgid prick. <i>“Cock makes me happy. I’m a happy girl.”</i> The words fall out of her seemingly by rote. <i>“Will you bang me into your stupid, pregnant cock-holster?”</i>");
+	output("\n\nFinding the woman under all the suggestions won’t be easy. <i>“Sure thing, sweetheart.”</i> You grab her by the hair and press her well-used muzzle harder into your crotch, her nose digging into the fabric of your medical-grade thong. <i>“Atta girl. Let’s go in the holobooth for a little privacy, ya?”</i>");
+	output("\n\n<i>“Okay,”</i> the rodenian murmurs, sniffing your crotch like it’s candy. <i>“But get some in my fur so everyone can see what a good little rat-slut I am.”</i>");
+	output("\n\n<i>“Of course,”</i> you promise. <i>“I’ll cake your face in it.”</i>");
+	processTime(10);
+	clearMenu();
+	addButton(0,"Next",knuttyNurseRodenianIPt5);
+}
+
+public function knuttyNurseRodenianIPt5():void
+{
+	clearOutput();
+	showBust("RODENIAN");
+	showName("\nRODENIAN");
+	author("Fenoxo Fenbutt");
+	output("The inside of the holobooth is trashed. Keys are ripped from the console. The cushions are ripped and stained from hard use and the casual cruelty of inebriated strangers. A diagonal crack splits the screen into three pieces that flicker dully, straining to show a centuries old user interface. You’re surprised it works at all.");
+	output("\n\n<i>“Mmmm, gonna get me some cock,”</i> the mouse-girl says as she grabs your bright-red boner in both hands. She’s a little more lucid now, away from the crowd, more intent satisfying her endless thirst for phallus. <i>“So convenient.”</i> She fondles your knot, circling a finger around the edge of your cock-exposing thong. <i>“Amazing. Why so many people hide their dicks away, I’ll never understand. I used to, I guess, but cocks... wow.”</i> Her voice is rich with wonder as she crosses her eyes to take in the sight of your leaky dick-head. <i>“They’re the most beautiful things in the universe... and the juices that come out of them.”</i> She shudders, tail curling around her torso. <i>“Wow. I’m addicted to it.”</i>");
+	output("\n\nYou try hard to maintain an air of professionalism, but it’s hard when you’ve got such an eager tramp pawing at your insatiable doggie-dick. <i>“I can see that. How long have you... loved penises like this?”</i>");
+	output("\n\n<i>“Umm...”</i> The rodenian’s nose scrunches up as she racks her brain. You can almost see the forgotten connections firing in her head. <i>“A few hours I guess? This nice galotian helped me understand how nice it is to cum.”</i> She cups your ");
+	if(pc.balls > 0 && pc.ballDiameter() >= 5) output("tightly ");
+	output("compressed balls, a mischievous look on her face. <i>“I get it now, though. Cocks </i>are<i> amazing. They deserve to be sucked and fucked at every opportunity.”</i> She licks a dollop of pre-cum your tip, pupils visibly dilating. <i>“And cum is </i>soooo<i> good. After the party, I’m going to move to a kui-tan colony so I can have it for every meal... I’ll be the best cum-dump on the whole planet. So good I’ll get enough to bathe in it.”</i>");
+	output("\n\nYour balls squeeze tight at the suggestion, much to the delight of the petite rodenian.");
+	output("\n\n<i>“Oooh, you liked that, didn’cha? You like it when the rat slut talks about gargling semen?”</i> She sucks another squirt of pre from the tip of your dick, shivering in delight. <i>“Or would you rather put it in my ears, where it belongs? Fuck me until my ears are just cups full of jizz and your every word becomes my gospel truth? I bet you’d like that, wouldn’t you?”</i>");
+	output("\n\nYou moan. It’s not a conscious choice, simply a reaction to finally get your rabidly erect cock in the hands of someone who is finally going to use it. And that someone is slurping on your tip like a milky teat.");
+	output("\n\n<i>“Mmhmmm,”</i> the slutty mouse purrs, diving deeper. Strokes of her tiny tongue ravish your underside. She tilts her head to the side, rotating around to lick whole new swathes of cock, showing off every skill her dick-sucking crash-course has lent.");
+	output("\n\nA name. You should really ask her name. You grab her by the ears and thrust forward, burying your length up to the knot in her sinfully sweet lips. <i>“W-what’s your name?”</i>");
+	output("\n\nThe rodenian looks up at you from around your bestial tool in blank-eyed confusion, still licking. She makes a chittering, purring sound deep in your throat that vibrates through your flesh.");
+	output("\n\nYou grab hold of her by the ears, struggling with the desire to bury your bone to the hilt, but your better sense asserts itself; you’ll get to ravage her soon enough. Yanking back, you drag her off your cock. It isn’t easy, not with how she sucks. Her cheeks hollow and her lips stretch out, fighting for every inch of dick, battling to hang on with every ounce of sensuality in her phallus-obsessed form. The ‘pop’ of her mouth’s vacuum-seal finally breaking carries more disappointment than you thought possible. <i>“Awww...”</i>");
+	output("\n\nYou stare down at your eager cock-slut. She licks her lips and turns her head slightly, ear flaring back to let you look inside at the fattened folds of her strangely-positioned cunt. It’s smeared with juice. Holding yourself back takes every ounce of your ");
+	if(pc.WQ() <= 25) output("exceedingly weak ");
+	else if(pc.WQ() >= 75) output("impressive ");
+	output("willpower. <i>“Your name.”</i>");
+
+	output("\n\nThe mouse grabs the edge of her ear and yanks it hard, spreading the entrance further open, a web of translucent arousal the only thing in your way. <i>“Slut.”</i>");
+	output("\n\n<i>“What?”</i> you rock back, but her dick hand grabs your dick to keep you from slipping away.");
+	output("\n\n<i>“Slut. Bitch,”</i> the rodenian rattles them off with casual carnality, every word making her blush harder and smile broader. <i>“Whore. Toy.”</i> She jacks you, smearing her spit over every inch. <i>“My name’s whatever you want to call me. Just put your dick in already. Pleeeeeeaaase?”</i>");
+	processTime(25);
+	clearMenu();
+	addButton(0,"Next",knuttyNurseRodenianII);
+}
+
+public function knuttyNurseRodenianII():void
+{
+	clearOutput();
+	showBust("RODENIAN");
+	showName("\nRODENIAN");
+	author("Fenoxo Fenbutt");
+	output("You can’t ignore a voice in need, not when you’re this hard, this anxious to let off another load. Howling in concern and arousal, you grab the rodenian in your hands and press your canine cunt-destroyer to her sodden slit, staggering as it all but pulls you in. She’s seen more than enough action tonight to loosen her up, and the first eight inches go in without issue.");
+	output("\n\n<i>“Cooooooock,”</i> the horny fuck-toy moans. <i>“Mmmmmm~!”</i>");
+	output("\n\nLooking down, you see her mouth hanging open, tongue flopping around. As you mount her, you realize that she’s almost completely limp, letting you manhandle her however you like. The knot presses to her perverse pussy before you know it, and the whorishly groaning mouse shows no signs of discomfort. She’s staring up at you, sidelong, adoringly. A bit of drool leaks from her maw as her stare gradually loses focus, eyes distant and far away.");
+	output("\n\n<i>“Are you okay?”</i> You can’t keep the concern out of your voice.");
+	output("\n\n<i>“Yeaaaaaahhh...”</i> The rodenian makes an attempt to swallow, then resumes vacantly drooling. <i>“Okayyyyy...”</i>");
+	output("\n\nThat was... fast. Looking down, you realize you’re still sort of idly fucking her, then shrug. She doesn’t seem to mind. In fact, judging by the quivering of her passage and the spreading flush on her cheeks, she quite likes it. You pound away for a minute or two, getting used to the unusual position, the way her hair bounces against your [pc.thighs], making sure you angle yourself properly to really press on her hedonary gland.");
+	output("\n\nTreatment will require her to be as impressionable as possible. <i>“Fuck, your ear-cunts feel nice.”</i> You can hardly hold the compliment in.");
+	output("\n\n<i>“Ear-cunts... feel niiiiiice...”</i> the rodenian echoes, nodding floppily, twisting her tugging passage around your boner.");
+	output("\n\nNot a very difficult suggestion for her to internalize, but it gives you some clue to her mental state. Still, you can do more. If you’re going to cure her, you’ll need your knot properly squeezing her hedonary gland. <i>“Relax. This is going to feel very, very good.”</i> You stroke the back of her head, then yank out, bracing yourself. <i>“Trust me. I’m a professional.”</i> Thrusting back in, you bury your bone to hilt, your knot slipping inside with a lewd-sounding squelch. Neck bulging from how deep you’ve taken her, the rodenian squeaks, tail lashing behind her.");
+	output("\n\nHer expression goes completely vacant in the exact moment that you start to cum. Seed sprays into her vaginal ducts, wicking away to her alien wombs as you try to remember what you were going to do.... Oh! Her name. You rock back and forth, really grinding your knot in there, as you consider your options.");
+	output("\n\nYou could try to re-establish her old name, re-name her yourself, or let her live the rest of her life as ‘Toy,’ now and forever.");
+
+	processTime(10);
+	pc.lust(50);
+	clearMenu();
+	addButton(0,"Old Name",knuttyNurseRodenianIII,"nice");
+	addButton(1,"Suzy",knuttyNurseRodenianIII,"mischievous");
+	addButton(2,"Toy",knuttyNurseRodenianIII,"hard");
+}
+
+public function knuttyNurseRodenianIII(choice:String):void
+{
+	clearOutput();
+	showBust("RODENIAN");
+	showName("\nRODENIAN");
+	author("Fenoxo Fenbutt");
+	//Pick her name - misch
+	if(choice == "mischievous")
+	{
+		pc.addMischievous(10);
+		flags["RODENIAN_MINDFUCK"] = 1;
+		output("<i>“I’m going to call you Suzy,”</i> you proclaim. <i>“Sounds good?”</i>");
+		output("\n\n<i>“Soooo good,”</i> the rodenian echos, wiggling happily. Her tunnel squeezes down, milking a fresh rope from your canid prong.");
+		output("\n\nSmirking in self-satisfaction, you set to work impregnating her wombs and mind with equal ease. <i>“It’s such a pretty name.”</i> You wiggle your hips, hammering at her trance-inducing gland. <i>“The prettiest name you’ve ever heard, and it’s all yours.”</i> You grab her skull in both hands and jackhammer for the inch or so that your bulge-locked boner will allow you to move, cumming harder and hotter. <i>“It’s a sexy name. Just like you, Suzy.”</i>");
+		output("\n\nSuzy wobbles bonelessly. If you didn’t have your hands and knot to immobilize her, she’d already be on the floor. <i>“Sexy-suzy!”</i>");
+		output("\n\n<i>“Yeah, feel all that cum I’m pumping into you?”</i> Canine orgasms are so long. You feel like it’s never going to end! <i>“It’s not just cum. It’s a whole identity.”</i> You stroke a finger along the thin edge of her mousey ear, reveling in your mind-fucking metaphor. <i>“The more I shoot into you, the more you become Suzy.”</i> You feel a bit guilty, but your cock doesn’t mind. The next ejaculation feels longer and harder than the one that preceded it. <i>“Such a sexy, sweet Rodenian girl.”</i>");
+		output("\n\nThe mind-fucked mouse whispers, <i>“Sexy.”</i>");
+		output("\n\n<i>“Yes you are, Suzy. You’re desirable.”</i> More orgasmic throbs deposit thick loads into her, slowly draining down to fill up the wombs in her tits. They already look bigger, swollen with jizz. <i>“You’re confident.”</i> Her ear-pussy, slick and wet, wrings your cock hard. <i>“Flirty!”</i> It feels almost like she’s squeezing the words out of you. <i>“Saucy and... Ah! S-smart! Too smart to fuck anybody but the best!”</i>");
+		output("\n\nNodding, Suzy inadvertently wrings your bestial phallus, twisting her pliant flesh back and forth, back and forth. <i>“Toooo smart!”</i>");
+		output("\n\n<i>“But you </i>love<i> cum, don’t you, Suzy?”</i>");
+		output("\n\nSuzy quivers at that, making a half-hearted effort to reach for your balls. She almost makes it.");
+		output("\n\n<i>“Yeah you do. You told me all about it.”</i> You bounce her head against your crotch, squirting and cumming in ecstasy. <i>“And now it’s cum that’s fixing you - that’s turning you from a worthless cum-rag into a lovely girl: a Suzy.”</i>");
+		output("\n\n<i>“Ahm... I’m Suzy.”</i> Her shoulders slump, a great deal of tension vanishing with that confession. <i>“Suzy slooty Suzy Suzy!”</i>");
+		output("\n\nResting your balls against her cheek, you quietly shush her sing-song nonsense. <i>“That’s right, Suzy. You’re not just any old slut. You’re Suzy. You love cum, but you know if you let any old schmuck pump it into your head, they’ll fuck you up. So you guard your ears carefully. It’s better to taste the cum on your tongue anyway. Because you do so love the taste of cum, don’t you?”</i>");
+		output("\n\nSuzy licks her lips, savoring the trace amounts of sperm caked into her fur. <i>“...love it.”</i>");
+		output("\n\n<i>“You love it so much that the taste drives you wild. It makes you so wet, so deliriously horny that a few swallows can make you orgasm. With a big enough load, you’ll be in danger of blacking out from mouthgasms.”</i> You tug the edge of her ear hard, grinding your ");
+		if(pc.hasFur()) output("furry ");
+		output("crotch against her sensitive membrane. <i>“You </i>prefer<i> it in your mouth, actually. The orgasms feel so much better when they’re purely based on cum-swallowing.”</i>");
+		output("\n\nSuzy whimpers, <i>“Ah! C-can you p-put it in my mooouth? Pleaaaase?”</i> Her mouth opens wide, tongue extended whorishly.");
+		output("\n\n<i>“Not yet,”</i> you explain, <i>“not till the knot lets go.”</i> You grind it harder into her, breaking down any remaining inhibitions in order to help you reshape her. <i>“Feeling that sticky goo lingering in your maw, clinging to your teeth is so satisfying.”</i> You shove a finger in her mouth to pacify her, and she sucks it hard. <i>“And a layer of spunk in your throat is absolutely sublime. You love it so much that you don’t even have a gag reflex anymore, do you?”</i> With a rough thrust, you press two digits against the back of her throat, creating a muffled ‘glulk’ sound.");
+		output("\n\nThe poor, mind-fucked rodenian shakes in shock from the unexpected insertion, but calms after a second, hollowing her cheeks to keep sucking. Just like that, a powerful neurological instinct is shut down.");
+		output("\n\n<i>“That’s right. You love deepthroating, Suzy. It’s your favorite sex-act. You love cock-sucking so much that your ardor will be clear to any future lovers. And Suzy, you’ll be so good at displaying that ardor, at draining the balls of any boy you decide to bang solely with your lips, tongue, and hungry, milking throat.”</i> She sucks your knuckles into her mouth while you talk, earning another thick flow of jism from your approving knot. Through the ecstatic haze, you realize you might need to walk it back a bit before you fuck her up worse...");
+		output("\n\nSuzy doesn’t seem to mind...");
+		output("\n\nNo! You’re a nurse, and it’s your job to help people out. You gave her a name, and this whole oral-focused thing can work! <i>“Now I know you might be tempted by how great oral feels, Suzy. You might feel the temptation to end every night chugging some stranger’s jizz, but you want more than that.”</i> Sighing happily as the last of your orgasm wicks into her ear, you add, <i>“You want love. You want someone to trust and to cherish, someone you can let dump a hot load into your ears every now and then, in between blowjobs.”</i>");
+		output("\n\nSuzy’s eyes roll back in what you assume is orgasmic bliss.");
+		output("\n\n<i>“So you’re going to go home, doing everything you can to keep all these party sluts out of your ears, and you’re going to sleep the night off.”</i> You tug back once, but your dick is far too swollen to slip free just yet. <i>“And when you wake up, you’re going to be Suzy through and through. Everything else that got put in your head tonight will have been pushed out by all this cum.”</i> You gently squeeze her sloshing, cum-filled breasts. <i>“And you’ll be flirty, maybe a little slutty, but you’ll also be smart.”</i> You try again, straining your hips until Suzy whimpers. <i>“You’ll know how to be prim and proper - maybe even want to sometimes.”</i>");
+		output("\n\nSuzy gasps, letting your fingers out of her mouth at last.");
+		output("\n\nWith both hands, you finally manage to extract your cunt-stretching bone from the Rodenian’s creampied ear-pussy. You’re still hard and ready to go serve your next patient. Better wrap this one up. <i>“You might find out that there’s another name for you, on your ID or something. That’s fine. You can use that one, but you know you’ll always be Suzy. You’ll be the girl with an orgasmic tongue and the brains to get what she wants out of life. Now get going, girl.”</i>");
+		output("\n\nSuzy blinks her eyes slowly, still quite relaxed and suggestible. <i>“But you said I could taste your cock?”</i> She stretches, heavy tits jiggling as she purses her lips with the all allure of a professional escort. <i>“Please?”</i>");
+		output("\n\nYour cum-stained dick vanishes into her maw in that instant, wreathed in the voracious mouse-girl’s thirsty licks and eager sucking. If she minds the residual taste of her pussy, it doesn’t show. In fact, you can see the puffy slits in her ears trembling as her throat bobs, quivering in sympathetic orgasm. Minutes pass with nothing but the lovely caress of her maw and the quiet slurps of her attentions. It feels like it’s never going to end.");
+		output("\n\n<i>“S-suzy?”</i> You breathlessly prod. <i>“We need to go.”</i>");
+		output("\n\nSliding back with exquisite slowness, her cheeks hollowed whorishly, the rodenian puckers her lips until they pop free of your pointed tip. <i>“Yeah, that’s fine.”</i> She shivers. <i>“I got what I needed. See you around, you horny bitch you!”</i> She kisses your dick and darts out of the booth, tail wiggling into the distance.");
+		output("\n\nNow, that you’re properly warmed up, it’s time for your next patient...");
+		processTime(30);
+		pc.orgasm();
+	}
+	//Toy - asshole choice
+	else if(choice == "hard")
+	{
+		pc.addHard(10);
+		output("<i>“Your name is Toy,”</i> you insist. <i>“You might have been called something else before, but your name is Toy. Not slut. Not whore. Not breeder-bitch.”</i>");
+		output("\n\n<i>“Tooooyyyyy,”</i> the rodenian echoes. Her tunnel squeezes down, milking a fresh rope from your canid prong.");
+		output("\n\nYou shiver. <i>“Yes, Toy. Because you after tonight, a part of you will always want to be a cock-hungry bedroom toy... but only a part of you, Toy.”</i> You stroke her hair while your cock drools more seed into her fertile passage. <i>“Because the best Toys are ones that can take care of themselves. The best toys don’t act like toys all the time. They seem like normal people. They hold down jobs or take care of houses, or even raise children! They have thoughts and opinions about things when they aren’t embedded on their owner’s cock, and you are that kind of toy, Toy.”</i>");
+		output("\n\nToy giggles. <i>“I’m the best?”</i>");
+		output("\n\n<i>“You’re the best.”</i> You work your knot back and forth, rubbing it on her sensitive walls, squeezing her until she’s even more suggestible. <i>“You’re the best toy, the kind that wakes up in the morning and takes good care of herself so she can find a loving owner.”</i> Humping her head, you pour suggestions and [pc.cumNoun] into her in equal measure. <i>“You don’t need to throw yourself at every dick on the planet because to you, serving one or two dicks perfectly is a far better rush.”</i> You grind your knot in hard for emphasis. <i>“Like right now.”</i>");
+		output("\n\n<i>“Yesss,”</i> Toy hisses pawing at her slowly expanding breasts. <i>“Gooood toy.”</i> Her tail lashes behind her in orgiastic glory.");
+		output("\n\n<i>“You’re going to find yourself one or two amazing people that you can trust, and then you’re going to be their Toy. Not a cheap, public set of holes. You’ll be a top of the line dick-pleaser, but only that special someone - or someones.”</i> You shove your thumb in her other ear and squeeze down against her hedonary gland to ensure she’s at the absolute apex of suggestibility. <i>“Once we’re done, you’re going to get your shit together, and you’re going to make sure the only cocks that go near your ears are ones that belong to people you love and trust.”</i>");
+		output("\n\nThe submissive rodenian whimpers, drool puddling in her tits.");
+		output("\n\n<i>“And all the love of cum and cocks that you’ve felt tonight - it’ll come out for that special person.”</i> You pull your thumb out and stuff it in her mouth, making her savor the taste of her own pussy. <i>“You’ll be a whore for them, a slut for them, or a pregnancy obsessed broodmother - whatever they want. You’ll cum from the taste of their cum. You’ll be intoxicated by their scent. And your pussies will soak themselves at the possibility of sex.”</i>");
+		output("\n\nNodding stupidly, Toy twists her aural passage about your fat, jizz-drooling cock, distracting the both of you with hellish pleasure.");
+		output("\n\n<i>“Because you’re Toy.”</i>");
+		output("\n\n<i>“’Cause I’m... Toy.”</i>");
+		output("\n\nYou resume fingering her, shaking with how good it feels to dump ounce after ounce of canine cum into her so-fuckable ears. <i>“And because you’re a toy, you can turn that off. You’re only a slut when the situation calls for it. When the dick in your face belongs to someone you like and trust. If some asshole in a bar whips out his cock, you won’t even notice it. To you, his crotch will be a barren, humiliating wasteland.”</i> You rock your hips, feeling her lips strain about your bulb for a moment before you relent. <i>“Of course, if you love and trust someone... what will you be?”</i>");
+		output("\n\n<i>“A fucktoy.”</i> Toy sounds confident now.");
+		output("\n\nYou pet her affectionately, letting the last few ribbons of spunk drain into her fertile passage. <i>“Exactly. And in public or with someone else, what will you be?”</i>");
+		output("\n\n<i>“Normal,”</i> Toy groans, shuddering as she climaxes. <i>“I’ll be so normal. Not a slut! Respectable and desired!”</i>");
+		output("\n\n<i>“That’s right.”</i> You shudder and yank back harder this time, your knot popping free. A trickle of [pc.cumGem] dangles from the tip, connected to her creampied ear-cunt. <i>“Now you’re going to cover up your ears and go right back to wherever you’re staying, and go to bed.”</i> You wipe your cock on her nose. She barely seems to notice. <i>“Good toy.”</i>");
+		output("\n\nThe mouse shivers. <i>“Yahhh... I’m tired. I should cover my ears and go home.”</i>");
+		output("\n\n<i>“And Toy?”</i>");
+		output("\n\n<i>“Yeeaaah?”</i>");
+		output("\n\n<i>“Knots are the sexiest feature a cock can have and your favorite thing to masturbate to.”</i> You felt strangely compelled to say it, but you don’t really regret it. More knot-lovers is a positive for the galaxy.");
+		output("\n\n<i>“You know it. Alright... thanks for uh... helping me figure that stuff out, nurse!”</i> The newly renamed mouse disappears into the night. Hopefully she’ll find someone to take care of her.");
+		processTime(30);
+		flags["RODENIAN_MINDFUCK"] = 2;
+		pc.orgasm();
+	}
+	//Old name - nice choice
+	else
+	{
+		pc.addNice(10);
+		flags["RODENIAN_MINDFUCK"] = 0;
+		output("<i>“You do have a name,”</i> you instruct. <i>“A lovely name.”</i>");
+		output("\n\n<i>“Lovely name,”</i> the rodenian echoes. Her tunnel squeezes down, milking a fresh rope from your canid prong.");
+		output("\n\nYou shiver. <i>“It is lovely. It’s the one you had before tonight. The one you used before this party. It’s the most important name you’ve ever been called.”</i>");
+		if(pc.tailCount > 0) output(" [pc.Tails] lashing behind, y");
+		else output("Y");
+		output("ou grind your crotch against her head, fingers scrabbling through her slick fur. <i>“Stars, it’s lovely. Just like your cunt.”</i> Whoops! You shudder, still squirting. <i>“They’re both lovely. Your name and your cunts.”</i> Fuck it - you’re trying! <i>“You have a beautiful name, and no matter what anybody calls you, it will always be your name.”</i> You grind your knot in hard for emphasis. <i>“What’s your name?!”</i>");
+		output("\n\n<i>“Luraaaa!”</i> the mouse-girl screams, quivering in mind-breaking (or repairing?) climax. <i>“Lura. I’m Lura.”</i>");
+		output("\n\n<i>“That’s right,”</i> you coo, calming. Rushes of orgasmic pleasure surge through you as your [pc.cum] continues to slide into her pussy. <i>“You’re Lura. Not slut. Not toy. Not whore.”</i> You pant. If you had known medical care could be so satisfying, you would’ve went to medical school. <i>“You can BE a whore in the bedroom if you want.”</i> It’s so hard not to give in to the raw sensuality of the situation, to make her a horny, dripping cum-puppet. <i>“And you love big, knotty dicks more than any other kind of dick.”</i> Your bulging bitch-breaker swells in approval. <i>“But you’re more than a cock-holster. You’re a... a...”</i> you whimper, spurting and quivering, taut as a bowstring.");
+		output("\n\nLura supplies, <i>“...reaaaallyyyy goooood cock-holster?”</i>");
+		output("\n\n<i>“NO!”</i> You scream it, pounding your dick as deep as you can. <i>“You’re a PERSON. You have thoughts and wants and dreams and desires. You might love cock. You might even get off to tasting sperm, but that’s just one part of you.”</i> You stuff your thumb into her other ear, pressing around inside her passage till you find the sweet spot that makes her eyes cross. <i>“You’re only a slutty little cock-mop for guys and herms that have </i>earned<i> it. You won’t throw yourself on dick you see. You won’t even like every dick you see.”</i>");
+		output("\n\nLura’s petite mouse-tits swell with the sheer volume of seed you’re dumping inside. Canine orgasms last so long!");
+		output("\n\n<i>“But when you find someone who treats you well, who you know you can trust... then you can be the sluttiest little nympho. They might not have an enormous knot like mine.”</i> You flex your abdominal muscles, forcing your dick to throb hard. <i>“But that’s fine. The more you like someone, the more you’ll like their cock. And you can ignore cocks if you need to. I’m fucking that sluttiness deep down into a gutter where it won’t bother you unless you want it to... unless you’re comfortable with it, and you have a wonderful partner that you can trust.”</i>");
+		output("\n\n<i>“Yeeeaaaaahhh...”</i> Lura nods, wringing a few more squirts of seed from your overworked shaft.");
+		output("\n\nYou shudder from head to toe. Helping out feels almost as good as the climax. <i>“But you’ll always have a thing for dog-dicks.”</i> You can’t help but be a little <i>naughty</i>. <i>“Those big glistening knots drive you wild. If you masturbate, it’ll be with an ausar toy, the fatter the better.”</i>");
+		output("\n\n<i>“Knooooots...”</i> the mouse-slut squirms wildly, clearly cumming. Bliss seems her only emotion.");
+		output("\n\n<i>“Yes, you love the knots... but only when you’re horned up and turned on. You’re pretty, and talented, and self-actuated. You’re so picky about who you bed. You’re only horny when you’re comfortable with a partner... when you trust them.”</i>");
+		output("\n\nLura nods vigorously, and you nearly collapse from the twistling friction assaulting your cock.");
+		output("\n\n<i>“You trust me completely.”</i> You can’t help yourself. At least it’s getting a little easier to think now that your balls are mostly drained. <i>“You are driven. And confident.”</i> You press harder with both your cock and your thumb. You want these suggestions to last. <i>“After tonight, you’re going to think long and hard at what you want out of life - besides cock. And you’re going to figure out how to get it. You’ll make sure nobody takes advantage of your ears again until you find someone you can love. Someone you can love besides me.”</i>");
+		output("\n\n<i>“...love you?”</i> Lura looks up, eyes glistening.");
+		output("\n\nYour dick slips out of her ear at long last, oozing seed and cuntjuice down its shapely, animalistic length. <i>“Falling in love with your medical professional is perfectly normal, but you should find someone better for you.”</i>");
+		output("\n\nLura shivers and nods. After a second, she sucks your rigid, feral dick into her mouth, cleaning it.");
+		output("\n\nYou let her, for a time, instructing her to go back to where ever she’s staying, get a shower, and have the best night’s sleep.");
+		output("\n\n<i>“Kayyyy,”</i> Lura giggles wobbling around as more of your seed drains into her tits. <i>“You’re a super good doctor-nurse-lady-person. I’m gonna go sleep... and then...”</i> She pauses, struggling to think after such a potent fucking. <i>“Then I’m going to figure out what I want out of life and go get it. Yeaaaahh... Byes!”</i> She wobbles out with her hands over her ears.");
+		output("\n\nGood girl.");
+		output("\n\nJudging by how hard you still are, you can still help someone else...");
+		processTime(30);
+		pc.orgasm();
+	}
+	clearMenu();
+	addButton(0,"Next",knottyNurseEpilogue,true);
+}
+
+public function knottyNurseEpilogue(rodenian:Boolean = false):void
+{
+	clearOutput();
+	clearBust();
+	showName("\nHUNGOVER");
+	author("Fenoxo Fenho");
+	output("<b>Some time later...</b>");
+	output("\n\nYou wake up to the feeling of your spunk-stained sheets clinging irritatingly to your crotch. Peeling back the musky bedding, you rub the sleep from your eyes and look around.");
+	output("\n\nYou’re back in your bedroom, but you don’t really recall how you got here. You remember the ");
+	if(rodenian)
+	{
+		output("rodenian - and your attempts to help pull her out of a life of sexual servitude");
+		if(flags["RODENIAN_MINDFUCK"] == 2) output(", for better or worse");
+	}
+	else output("hellhound - and your bruising attempts to bring an end to her hysteria. Turns out the bitch really did just need a hard dicking..");
+	output(". After... the night is a blur of bodies and sex, occasionally interspersed with vaguely medical-sounding advice. Just trying to remember it gives you a massive headache.");
+	output("\n\nFortunately, the buzzing of a message on your Codex distracts you from further reflection. You pop it open to see a cute, white-furred kaithrit, her small mouth turned down in a worried frown. Her green eyes shift back and forth, checking to see if anybody’s around while she records her message. <i>“Hi,”</i> she starts, her voice low and conspiratorial. <i>“You might not remember me from the party - you were pretty out of it. That’d actually be for the best. Partying with you was awesome, but things got pretty heavy by the end.”</i>");
+	output("\n\nThe girl on the recording pauses, a shadow passing by rapidly, indistinct voices muttering from a short distance away. <i>“Look, I don’t know where you got that costume, but it turns out that was some pretty serious tech. They’re saying it’s for ‘experimental sex therapy,’ but if how you were acting is any indication, prostitution seems more likely. Somebody must’ve recognized it, because a bunch of fuckers in dark suits started swarming just ahead of the GPD.”</i>");
+	output("\n\n<i>“I work for Customs, so I snuck you out of there before either side could grab you.”</i> She blushes, glancing away from the screen. <i>“It’s the least I could do, after you... Well, anyway. Some pink-haired chick helped too. Said she’d hide the costume and had a bunch of clothes in your size. Even handed off the claim ticket for that ship I put you on. I don’t know who you really are, but you’ve got some good friends. You probably want to stay off-world for a while, at least till all that shit we did blows over.”</i> She gnaws at her lips, chest rising in a regretful sigh. <i>“Well, if I don’t see you again, I just wanted to say I, uh... bye,”</i> she finishes, lamely, looking embarrassed. The video cuts out after that, leaving you with more questions than before.");
+	output("\n\nWell, at least Holiday gave you your stuff and your ship back. Even if her costume was more than you were expecting. Shaking your head, you go to dress");
+	if(!pc.hasFur() && !pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) output(" and realize that your nose sticks pretty far into view. <b>You have a canine muzzle in addition to your fur!</b>");
+	else
+	{
+		if(pc.hasFur()) output(" and realize you’re completely naked.");
+		else output(" and realize <b>your covered from head to toe in fur");
+		if(!pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) output(" with a canine muzzle to boot");
+		if(!pc.hasFur()) output("!</b>");
+	}
+	if(pc.femininity < 75 || pc.breastRows[0].breastRatingRaw < 4)
+	{
+		output("\n\nYou rush to the mirror to check for other changes.");
+		if(pc.femininity < 75) output(" <b>Your face is different! Softer, more feminine,</b> with nicely plump lips that promise gentle kisses to sooth your hurts... You shake your head, fighting off the residual thoughts. That costume really did a number on your head, but at least it’s fading.");
+		if(pc.breastRows[0].breastRatingRaw < 4) output(" Extra weight hangs from your chest, the better to fill a skimpy nurse’s top. You wager <b>that you have D-cups</b> now.");
+	}
+	output(" The costume itself is gone, along with its “Knotty Boosters”. Probably Holiday reclaiming her apparently illegal merchandise.");
+	output("\n\nYou look down at <b>your bitch-breaking dick and its enormous knot.</b> Damn, that was one hell of a costume.");
+	processTime(6*60);
+	for(var x:int = 0; x < 10; x++) { pc.orgasm(); }
+
+	applyKnottyNurseTF();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function applyKnottyNurseTF():void
+{
+	if(!pc.hasCock())
+	{
+		pc.createCock();
+	}
+	pc.shiftCock(0,GLOBAL.TYPE_CANINE);
+	pc.cocks[0].cockColor = "bright red";
+	if(pc.cocks[0].cLength() < 12) pc.cocks[0].cLengthRaw = 14;
+	if(pc.cocks[0].cLength() >= 20) pc.cocks[0].cLengthRaw = 18;
+	if(pc.cocks[0].knotMultiplier < 2) pc.cocks[0].knotMultiplier = 2;
+	if(!pc.hasFur()) 
+	{
+		pc.clearSkinFlags();
+		pc.skinType = GLOBAL.SKIN_TYPE_FUR;
+		pc.addSkinFlag(GLOBAL.FLAG_FURRED);
+		pc.furColor = "black";
+	}
+	if(pc.femininity < 75) pc.femininity = 75;
+	if(pc.breastRows[0].breastRatingRaw < 4) pc.breastRows[0].breastRatingRaw = 4;
+	if(!pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED))
+	{
+		pc.clearFaceFlags();
+		pc.faceType = GLOBAL.TYPE_CANINE;
+		pc.addFaceFlag(GLOBAL.FLAG_MUZZLED);
+		pc.addFaceFlag(GLOBAL.FLAG_FURRED);
+	}
+	pc.tongueType = GLOBAL.TYPE_CANINE;
 }
 

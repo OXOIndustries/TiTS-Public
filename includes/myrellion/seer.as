@@ -712,7 +712,7 @@ public function wispedSeer2():void
 	clearMenu();
 	
 	//Bad End due to already being under the effects of the wispy and overdosing - May need to change name of status effect once it’s implemented
-	if (pc.hasStatusEffect("WiffOWisp"))
+	if (pc.hasStatusEffect("Woozy"))
 	{
 		output("Ooo, these are some fancy colors. Your eyes start being able to see the past interactions you’ve had with every living thing in the past 24 hours. Not that you can actually tell who or what those things are as they take the form of amorphous grey blobs.");
 		output("\n\nThe imagery becomes more and more distorted, noise and static tearing away at the edges of your minds projected vision. Each new scene becomes darker, blurrier and more disorienting but at the same time you can feel yourself becoming a part of each scene as observer, director and participant!");
@@ -847,6 +847,7 @@ public function wispedSeer4():void
 	output("\n\nThinking nothing of it, you dust yourself down and get back to your business.");
 	
 	processTime(3);
+	flags["USED_WISP"] = 1;
 	
 	moveTo("720");
 	addButton(0, "Next", mainGameMenu);

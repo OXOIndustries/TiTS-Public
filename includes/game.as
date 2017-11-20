@@ -2919,9 +2919,10 @@ public function processSaendraEvents(deltaT:uint, doOut:Boolean, totalDays:uint)
 		updateSaendraXPackTimer(deltaT);
 	}
 	
-	if (totalDays >= 1 && flags["SAENDRA_XPACK1_STATUS"] == undefined && shipLocation == "TAVROS HANGAR" && saendraAffection() >= 60 && !MailManager.isEntryUnlocked("saendraxpack1") && eventQueue.indexOf(unlockSaendraXPackMail) == -1)
+	if (totalDays >= 1 && flags["SAENDRA_XPACK1_STATUS"] == undefined && shipLocation == "TAVROS HANGAR" && saendraAffection() >= 60 && !MailManager.isEntryUnlocked("saendraxpack1"))
 	{
-		eventQueue.push(unlockSaendraXPackMail);
+		if(flags["SAENDRA_DISABLED"] != undefined || flags["SAENDRA GONNA GO GET A COCK"] == 1 || flags["SAENDRA GONNA GO GET A COCK"] == 2) { /* Don't trigger. */ }
+		else if(eventQueue.indexOf(unlockSaendraXPackMail) == -1) eventQueue.push(unlockSaendraXPackMail);
 	}
 }
 

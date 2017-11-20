@@ -4283,7 +4283,7 @@ public function SSDHIHC(args:Array):void
 	showPaige(true);
 	args.push("SSDHIHC");
 	//if {SSDHT}
-	if(InCollection("SSDHT", args)) output("You promised that this time would be about her – it’s disappointed and a little painful, but you put your own needs aside for now. You have a pussy to please!\n\n");
+	if(InCollection("SSDHT", args)) output("You promised that this time would be about her – it’s disappointing and a little painful, but you put your own needs aside for now. You have a pussy to please!\n\n");
 	output("You back up a little bit");
 	//if {SSDHDI}
 	if(InCollection("SSDHDI", args)) output(", much to Paige’s confusion, so you can replace your tongue with");

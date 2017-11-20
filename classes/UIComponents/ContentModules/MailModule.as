@@ -116,7 +116,7 @@ package classes.UIComponents.ContentModules
 				kGAMECLASS.flags["SAM_PREG_EMAIL_CUSTOM"] = 1;
 				addGhostButton(0, "Natural", gastigothPregEmail2Natural, "Sam", "Natural", "Keep your child" + (kGAMECLASS.flags["SAM_NUM_BABIES"] > 1 ? "ren" : "") + " natural.");
 				addGhostButton(1, "Safe Edits", gastigothPregEmail2Safe, "Sam", "Safe Edits", "Make the minimum edits necessary to help the criminal-born child" + (kGAMECLASS.flags["SAM_NUM_BABIES"] > 1 ? "ren be productive members" : " be a productive member") + " of society.");
-				addGhostButton(2, "Custom Job", gastigothPregEmail2Custom, "Sam", "Custom Job", "Go all in with the editing, making " + (kGAMECLASS.flags["SAM_NUM_BABIES"] > 1 ? "perfect children" : "a perect child") + ".");
+				addGhostButton(2, "Custom Job", gastigothPregEmail2Custom, "Sam", "Custom Job", "Go all in with the editing, making " + (kGAMECLASS.flags["SAM_NUM_BABIES"] > 1 ? "perfect children" : "a perfect child") + ".");
 				return;
 			} 
 			else if(key == "khorgan_preg2" && kGAMECLASS.flags["KHORGAN_PREG_EMAIL_CUSTOM"] == undefined && kGAMECLASS.flags["KHORGAN_GAST_PREG_TIMER"] >= 50)
@@ -124,7 +124,7 @@ package classes.UIComponents.ContentModules
 				kGAMECLASS.flags["KHORGAN_PREG_EMAIL_CUSTOM"] = 1;
 				addGhostButton(0, "Natural", gastigothPregEmail2Natural, "Khorgan", "Natural", "Keep your child" + (kGAMECLASS.flags["KHORGAN_NUM_BABIES"] > 1 ? "ren" : "") + " natural.");
 				addGhostButton(1, "Safe Edits", gastigothPregEmail2Safe, "Khorgan", "Safe Edits", "Make the minimum edits necessary to help the criminal-born child" + (kGAMECLASS.flags["KHORGAN_NUM_BABIES"] > 1 ? "ren be productive members" : " be a productive member") + " of society.");
-				addGhostButton(2, "Custom Job", gastigothPregEmail2Custom, "Khorgan", "Custom Job", "Go all in with the editing, making " + (kGAMECLASS.flags["KHORGAN_NUM_BABIES"] > 1 ? "perfect children" : "a perect child") + ".");
+				addGhostButton(2, "Custom Job", gastigothPregEmail2Custom, "Khorgan", "Custom Job", "Go all in with the editing, making " + (kGAMECLASS.flags["KHORGAN_NUM_BABIES"] > 1 ? "perfect children" : "a perfect child") + ".");
 				return;
 			} 
 			else if(key == "tamtam_preg2" && kGAMECLASS.flags["TAMTAM_PREG_EMAIL_CUSTOM"] == undefined && kGAMECLASS.flags["TAMTAM_GAST_PREG_TIMER"] >= 80)
@@ -132,7 +132,7 @@ package classes.UIComponents.ContentModules
 				kGAMECLASS.flags["TAMTAM_PREG_EMAIL_CUSTOM"] = 1;
 				addGhostButton(0, "Natural", gastigothPregEmail2Natural, "Tam-Tam", "Natural", "Keep your child" + (kGAMECLASS.flags["TAMTAM_NUM_BABIES"] > 1 ? "ren" : "") + " natural.");
 				addGhostButton(1, "Safe Edits", gastigothPregEmail2Safe, "Tam-Tam", "Safe Edits", "Make the minimum edits necessary to help the criminal-born child" + (kGAMECLASS.flags["TAMTAM_NUM_BABIES"] > 1 ? "ren be productive members" : " be a productive member") + " of society.");
-				addGhostButton(2, "Custom Job", gastigothPregEmail2Custom, "Tam-Tam", "Custom Job", "Go all in with the editing, making " + (kGAMECLASS.flags["TAMTAM_NUM_BABIES"] > 1 ? "perfect children" : "a perect child") + ".");
+				addGhostButton(2, "Custom Job", gastigothPregEmail2Custom, "Tam-Tam", "Custom Job", "Go all in with the editing, making " + (kGAMECLASS.flags["TAMTAM_NUM_BABIES"] > 1 ? "perfect children" : "a perfect child") + ".");
 				return;
 			}
 			
@@ -165,8 +165,8 @@ package classes.UIComponents.ContentModules
 							||(prisonerName == "Sam" && kGAMECLASS.flags["SAM_NUM_BABIES"] > 1));
 			
 			_mailText.htmlText = "";
-			if(kGAMECLASS.pc.isAss() || kGAMECLASS.pc.isBro()) _mailText.htmlText += "Yeah fuck that. You toss the email into your junk folder, determined to let your kid" + (plural ? "s" : "") + " grow up to be whoever they're gonna be. If there's something wrong, you'll be there to fix it like a man.";
-			else _mailText.htmlText += "You mull the question over for a while before writing Dr. Kramer back, expressing your desire to let your child" + (plural ? "ren" : "") + " be born naturally, without any genetic manipulation. You'll give your child" + (plural ? "ren" : "") + " a chance to become whoever they <i>want</i> to be, without some the scientific pre-destination planned out for them.";
+			if(kGAMECLASS.pc.isAss() || kGAMECLASS.pc.isBro()) _mailText.htmlText += "Yeah fuck that. You toss the email into your junk folder, determined to let your kid" + (plural ? "s" : "") + " grow up to be whoever they’re gonna be. If there’s something wrong, you’ll be there to fix it like a man.";
+			else _mailText.htmlText += "You mull the question over for a while before writing Dr. Kramer back, expressing your desire to let your child" + (plural ? "ren" : "") + " be born naturally, without any genetic manipulation. You’ll give your child" + (plural ? "ren" : "") + " a chance to become whoever they <i>want</i> to be, without some the scientific pre-destination planned out for them.";
 			
 			if(prisonerName == "Tam-Tam") kGAMECLASS.flags["TAMTAM_BABY_GENES"] = 1;
 			else if(prisonerName == "Khorgan") kGAMECLASS.flags["KHORGAN_BABY_GENES"] = 1;
@@ -202,8 +202,8 @@ package classes.UIComponents.ContentModules
 							||(prisonerName == "Sam" && kGAMECLASS.flags["SAM_NUM_BABIES"] > 1));
 			
 			_mailText.htmlText = "";
-			_mailText.htmlText += "What's good enough for you is good enough for your spawn... and almost certainly better, with you at the helm. You spend the better part of an hour rigorously going through the report and filling out the forms attached with it, identifying every little potential deficiency and outlining improvements in every facet of your child" + (plural ? "ren" : "") + "'s physiology. Your spawn will be the perfect heir, the ideal Steele.";
-			_mailText.htmlText += "\n\nOnce you've painstakingly redesigned your child" + (plural ? "ren" : "") + ", you reply to Dr. Kramer's email with all the attached forms, commenting on any point you think might be unclear. Satisfied, you send off your reply and sit back, smiling to yourself. It's going to be hard waiting until your child" + (plural ? "ren are" : " is") + " born!";
+			_mailText.htmlText += "What’s good enough for you is good enough for your spawn... and almost certainly better, with you at the helm. You spend the better part of an hour rigorously going through the report and filling out the forms attached with it, identifying every little potential deficiency and outlining improvements in every facet of your child" + (plural ? "ren" : "") + "’s physiology. Your spawn will be the perfect heir, the ideal Steele.";
+			_mailText.htmlText += "\n\nOnce you’ve painstakingly redesigned your child" + (plural ? "ren" : "") + ", you reply to Dr. Kramer’s email with all the attached forms, commenting on any point you think might be unclear. Satisfied, you send off your reply and sit back, smiling to yourself. It’s going to be hard waiting until your child" + (plural ? "ren are" : " is") + " born!";
 			
 			if(prisonerName == "Tam-Tam") kGAMECLASS.flags["TAMTAM_BABY_GENES"] = 3;
 			else if(prisonerName == "Khorgan") kGAMECLASS.flags["KHORGAN_BABY_GENES"] = 3;

@@ -54,7 +54,7 @@ package classes.Items.Transformatives
 			this.description = "a blister pack of “Amber Seed”";
 			//Displayed on tooltips during mouseovers
 			// Note: it not "may" cause, it "will". It contained some ramblings about how nut could be nanomachine doped, but it was droped.
-			this.tooltip = "Conventional avian transformative in the form of a large... nut? You can only guess at whether it was grown naturally, or through synthetic process. A big, flashy label says “Brand new FluidShift technology! Quick and painless!” You spot a line of fine print at the back stating: “May cancel lactation in mammalian species.”";
+			this.tooltip = "Conventional avian transformative in the form of a large... nut? You can only guess at whether it was grown naturally, or through a synthetic process. A big, flashy label says “Brand new FluidShift technology! Quick and painless!” You spot a line of fine print at the back stating: “May cancel lactation in mammalian species.”";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -78,7 +78,7 @@ package classes.Items.Transformatives
 				if (kGAMECLASS.flags["AMBER_SEED_USED"] == undefined) kGAMECLASS.flags["AMBER_SEED_USED"] = 0;
 				kGAMECLASS.flags["AMBER_SEED_USED"] |= FLAG_USED;
 				
-				output("It is not difficult to figure out what to do with it. Strangely enough, it dissolves inside your mouth almost immediately. Is it a pill after all?");
+				output("It is not difficult to figure out what to do with the amber seed. Strangely enough, it dissolves inside your mouth almost immediately. Is it a pill after all?");
 				
 				var changes:int = 0;
 				var changeLimit:int = 1;
@@ -141,7 +141,7 @@ package classes.Items.Transformatives
 					if (!target.hasStatusEffect("Foxfire") || !InCollection(target.furColor, Foxfire.fireColorNormal, Foxfire.fireColorArctic))
 						target.furColor = target.skinTone;
 					target.skinTone = RandomInCollection(avianSkinTones);
-					output("\n\nWhen you think it is all over, a second wave of changes washes over your newly-regrown skin. Its texture change to become thick, almost scale-like, [pc.skinTone] avian hide. Soon after a soft layer of feathers begins to sprout, covering your body in a coat of [pc.furColor] feathers! You pause for a moment to admire your new plumage. <b>You have " + target.skinFurScales(true, true) + " and " + target.skinFurScales(true, true, true) + ".</b>");
+					output("\n\nWhen you think it is all over, a second wave of changes washes over your newly-regrown skin. Its texture changes to become thick, almost scale-like, [pc.skinTone] avian hide. Soon after a soft layer of feathers begins to sprout, covering your body in a coat of [pc.furColor] feathers! You pause for a moment to admire your new plumage. <b>You have " + target.skinFurScales(true, true) + " and " + target.skinFurScales(true, true, true) + ".</b>");
 				});
 			}
 			
@@ -174,12 +174,12 @@ package classes.Items.Transformatives
 						return;
 					}
 					
-					output("\n\nYou feel a peculiar pressure growing from your tailbone. Before are able to check it out, it becomes all too evident: you are growing a brand new tail! It comes out quite short, but a foldable ");
+					output("\n\nYou feel a peculiar pressure growing from your tailbone. Before you are able to check it out, it becomes all too evident: you are growing a brand new tail! It comes out quite short, but a foldable ");
 					if (GelBody != null) output("gooey");
 					else output("feathery");
 					output(" fan quickly grows out to compensate for the lack of length.");
 					if (target.canFly()) output(" You feel like flying would be much easier with such convenient empennage!");
-					output(" <b>You now have avian tail!</b>");
+					output(" <b>You now have an avian tail!</b>");
 					target.tailType = GLOBAL.TYPE_AVIAN;
 					target.tailCount = 1;
 					target.tailFlags = GelBody != null ? [GLOBAL.FLAG_FEATHERED, GLOBAL.FLAG_GOOEY] : [GLOBAL.FLAG_FEATHERED];
@@ -339,7 +339,7 @@ package classes.Items.Transformatives
 					output("\n\nA strange sensation overtakes you as something pulls at your [pc.face].");
 					if (target.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) output(" It feels like the outer parts of your muzzle are being polished smooth.");
 					else output(" Your whole face flows forward like molten wax, forming a single, smooth structure from your nose and mouth.");
-					output(" After all has settled down, you’re left with a... beak? Except it doesn’t feel like one at all. Checking it out, you discover that what at first glance appears to be sharp, menacing edges, are in fact thin, yet soft lips and you still have teeth, even if they are hidden from view. Convenient - while looking like a proper beak, it won’t impede your ability to do things with your mouth! <b>You now have beak-like muzzle!</b>");
+					output(" After all has settled down, you’re left with a... beak? Except it doesn’t feel like one at all. Checking it out, you discover that what at first glance appear to be sharp, menacing edges, are in fact thin, yet soft lips and you still have teeth, even if they are hidden from view. Convenient - while looking like a proper beak, it won’t impede your ability to do things with your mouth! <b>You now have a beak-like muzzle!</b>");
 					target.faceType = GLOBAL.TYPE_AVIAN;
 					target.faceFlags = [GLOBAL.FLAG_MUZZLED, GLOBAL.FLAG_BEAK];
 					if (!Foxfire.colorsMatching(target)) target.lipColor = "ivory";
@@ -357,7 +357,7 @@ package classes.Items.Transformatives
 						return;
 					}
 					
-					output("\n\nYour vision grows dark for a moment, but before you can reach up to rub your eyes, your sight returns to normal. After some closer inspection you discover that your eyes have changed!");
+					output("\n\nYour vision grows dark for a moment, but before you can reach up to rub your eyes, your sight returns to normal. After a closer inspection, you discover that your eyes have changed!");
 					target.eyeType = GLOBAL.TYPE_AVIAN;
 					if (!(InCollection(target.furColor, Foxfire.fireColorNormal, Foxfire.fireColorArctic) && InCollection(target.eyeColor, "blue", "luminous cerulean", "luminous azure", "luminous celeste")))
 						target.eyeColor = RandomInCollection("yellow", "yellow", "yellow", "yellow", "hazel", "hazel", "brown", "brown", "brown", "dark yellow", "pale yellow", "amber", "red", "black");
@@ -389,7 +389,7 @@ package classes.Items.Transformatives
 				options.push(function():*{
 					if (target.hasFullSheaths()) output("\n\nIn a single sucking movement, your sheath" + (target.cockTotal() == 1?" is":"s are") + " retracted fully into your body, taking your dick" + (target.cockTotal() == 1?" with it":"s with them") + "!");
 					else output("\n\nIn a single sucking movement, your cock" + (target.cockTotal() == 1?" is":"s are") + " pulled into your body!");
-					output(" Upon closer inspection and a bit of poking around, you discover that your dick" + (target.cockTotal() == 1?"":"s") + " now reside" + (target.cockTotal() == 1?"s":"") + " inside a shallow slit, only poking " + (target.cockTotal() == 1?"itself":"themselves") + " out when you are aroused. Neat. <b>You now have genital slit!</b>");
+					output(" Upon closer inspection and a bit of poking around, you discover that your dick" + (target.cockTotal() == 1?"":"s") + " now reside" + (target.cockTotal() == 1?"s":"") + " inside a shallow slit, only poking " + (target.cockTotal() == 1?"itself":"themselves") + " out when you are aroused. Neat. <b>You now have a genital slit!</b>");
 					target.createStatusEffect("Genital Slit");
 				});
 			}
@@ -432,7 +432,7 @@ package classes.Items.Transformatives
 						output("\n\n" + target.cockTypeLockedMessage());
 						return;
 					}
-					output("\n\nYour [pc.cocks] throb" + (toChange == 1?"s":"") + ", streams of pre-cum erupt in waves from your cock-slit" + (toChange == 1?"":"s") + " as your " + (toChange == 1?"malehood":"dicks") + " begin to twist and morph in front of your eyes! The sensation nearly makes you explode in a gush of jizz as your ");
+					output("\n\nYour [pc.cocks] throb" + (toChange == 1?"s":"") + ", streams of pre-cum erupt in waves from your cock-slit" + (toChange == 1?"":"s") + " as your " + (toChange == 1?"malehood begins":"dicks begin") + " to twist and morph in front of your eyes! The sensation nearly makes you explode in a gush of jizz as your ");
 					output("cock" + (toChange == 1?"":"s") + " shift" + (toChange == 1?"s":"") + ", becoming long and thin, ending in a smooth tapered tip" + (toChange == 1?"":"s") + ", much like that of an avian. Able to slip into, and reach even the depths of the tightest of holes. <b>You now have" + (toChange == 1?" an":"") + " avian cock" + (toChange == 1?"":"s") + "!</b>");
 					for (slot = 0; slot < target.cockTotal(); slot++)
 						if (target.cocks[slot].cType != GLOBAL.TYPE_AVIAN && target.cockTypeUnlocked(slot, GLOBAL.TYPE_AVIAN)) {
@@ -457,8 +457,8 @@ package classes.Items.Transformatives
 						output("\n\n" + target.cockTypeLockedMessage());
 						return;
 					}
-					output("\n\nYour [pc.cocks] throb" + (toChange == 1?"s":"") + ", streams of pre-cum erupt in waves from your cock-slit" + (toChange == 1?"":"s") + " as your " + (toChange == 1?"malehood":"dicks") + " begin to twist and morph in front of your eyes! The sensation nearly makes you explode in a gush of jizz as your ");
-					output("dick" + (toChange == 1?"":"s") + " shift" + (toChange == 1?"s":"") + " to become slightly undulating with a tapered tip" + (toChange == 1?"":"s") + ", soft feline barbs forming to cover " + (toChange == 1?"its":"their") + " length" + (toChange == 1?"":"s") + ". Finally a thick canine-like knot" + (toChange == 1?"":"s") + " balloon" + (toChange == 1?"s":"") + " out at the base" + (toChange == 1?"":"s") + " of your " + (toChange == 1?"shaft":"multiple shafts") + ", completing the look. <b>You now have " + (toChange == 1?"a":"") + " chimerical griffin cock" + (toChange == 1?"":"s") + "!</b>");
+					output("\n\nYour [pc.cocks] throb" + (toChange == 1?"s":"") + ", streams of pre-cum erupt in waves from your cock-slit" + (toChange == 1?"":"s") + " as your " + (toChange == 1?"malehood begins":"dicks begin") + " to twist and morph in front of your eyes! The sensation nearly makes you explode in a gush of jizz as your ");
+					output("dick" + (toChange == 1?"":"s") + " shift" + (toChange == 1?"s":"") + " to become slightly undulating with a tapered tip" + (toChange == 1?"":"s") + ", soft feline barbs forming to cover " + (toChange == 1?"its":"their") + " length" + (toChange == 1?"":"s") + ". Finally a thick canine-like knot" + (toChange == 1?"":"s") + " balloon" + (toChange == 1?"s":"") + " out at the base" + (toChange == 1?"":"s") + " of your " + (toChange == 1?"shaft":"multiple shafts") + ", completing the look. <b>You now have" + (toChange == 1?" a":"") + " chimerical griffin cock" + (toChange == 1?"":"s") + "!</b>");
 					for (slot = 0; slot < target.cockTotal(); slot++)
 						if (target.cocks[slot].cType != GLOBAL.TYPE_AVIAN && target.cockTypeUnlocked(slot, GLOBAL.TYPE_AVIAN) || !target.hasKnot(slot) && target.cockFlagsUnlocked(slot, GLOBAL.FLAG_KNOTTED) || target.cocks[slot].knotMultiplier <= 1 && target.knotMultiplierUnlocked(slot, 1.5)) {
 							target.shiftCock(slot, GLOBAL.TYPE_AVIAN); // not actually sure... maybe canine would be better for griffin
@@ -489,8 +489,8 @@ package classes.Items.Transformatives
 						output("\n\n" + target.cockTypeLockedMessage());
 						return;
 					}
-					output("\n\nYour [pc.cocks] throb" + (toChange == 1?"s":"") + ", streams of pre-cum erupt in waves from your cock-slit" + (toChange == 1?"":"s") + " as your " + (toChange == 1?"malehood":"dicks") + " begin to twist and morph in front of your eyes! The sensation nearly makes you explode in a gush of jizz as your ");
-					output("dick" + (toChange == 1?"":"s") + " grow" + (toChange == 1?"s":"") + " and swell" + (toChange == 1?"s":"") + " obscenely, becoming thick and veiny with" + (toChange == 1?" a":"") + " large flared head" + (toChange == 1?"":"s") + " that would look just at home on your standard issue stallion. <b>You now have " + (toChange == 1?"an":"") + " equine cock" + (toChange == 1?"":"s") + "!</b>");
+					output("\n\nYour [pc.cocks] throb" + (toChange == 1?"s":"") + ", streams of pre-cum erupt in waves from your cock-slit" + (toChange == 1?"":"s") + " as your " + (toChange == 1?"malehood begins":"dicks begin") + " to twist and morph in front of your eyes! The sensation nearly makes you explode in a gush of jizz as your ");
+					output("dick" + (toChange == 1?"":"s") + " grow" + (toChange == 1?"s":"") + " and swell" + (toChange == 1?"s":"") + " obscenely, becoming thick and veiny with" + (toChange == 1?" a":"") + " large flared head" + (toChange == 1?"":"s") + " that would look just at home on your standard issue stallion. <b>You now have" + (toChange == 1?" an":"") + " equine cock" + (toChange == 1?"":"s") + "!</b>");
 					for (slot = 0; slot < target.cockTotal(); slot++)
 						if (target.cocks[slot].cType != GLOBAL.TYPE_EQUINE && target.cockTypeUnlocked(slot, GLOBAL.TYPE_EQUINE)) {
 							target.shiftCock(slot, GLOBAL.TYPE_EQUINE);
@@ -513,10 +513,10 @@ package classes.Items.Transformatives
 						output("\n\n" + target.cockTypeLockedMessage());
 						return;
 					}
-					output("\n\nYour [pc.cocks] throb" + (toChange == 1?"s":"") + ", streams of pre-cum erupt in waves from your cock-slit" + (toChange == 1?"":"s") + " as your " + (toChange == 1?"malehood":"dicks") + " begin to twist and morph in front of your eyes! The sensation nearly makes you explode in a gush of jizz as your ");
+					output("\n\nYour [pc.cocks] throb" + (toChange == 1?"s":"") + ", streams of pre-cum erupt in waves from your cock-slit" + (toChange == 1?"":"s") + " as your " + (toChange == 1?"malehood begins":"dicks begin") + " to twist and morph in front of your eyes! The sensation nearly makes you explode in a gush of jizz as your ");
 					output("dick" + (toChange == 1?"":"s") + " shift" + (toChange == 1?"s":""));
 					if (newCockColor == null) output(" into a purple tone,");
-					output(" becoming" + (toChange == 1?" a":"") + " bulbous reptilian shaft" + (toChange == 1?"":"s") + " complete with" + (toChange == 1?" a":"") + " smooth tapered tip" + (toChange == 1?"":"s") + ". <b>You now have " + (toChange == 1?"a":"") + " naga cock" + (toChange == 1?"":"s") + "!</b>");
+					output(" becoming" + (toChange == 1?" a":"") + " bulbous reptilian shaft" + (toChange == 1?"":"s") + " complete with" + (toChange == 1?" a":"") + " smooth tapered tip" + (toChange == 1?"":"s") + ". <b>You now have" + (toChange == 1?" a":"") + " naga cock" + (toChange == 1?"":"s") + "!</b>");
 					for (slot = 0; slot < target.cockTotal(); slot++)
 						if (target.cocks[slot].cType != GLOBAL.TYPE_SNAKE && target.cockTypeUnlocked(slot, GLOBAL.TYPE_SNAKE)) {
 							target.shiftCock(slot, GLOBAL.TYPE_SNAKE);
@@ -546,7 +546,7 @@ package classes.Items.Transformatives
 						if (target.hasFeathers() && target.hasPartFur("leg")) output(", that is barely visible under your fur"); // for chimerical birds
 						else output(", that is barely visible under your " + target.skinFurScales(false,false,false,true));
 					}
-					output(". <b>You now have " + (toChange == 1?"an":"") + " avian vagina" + (toChange == 1?"":"s") + "!</b>");
+					output(". <b>You now have" + (toChange == 1?" an":"") + " avian vagina" + (toChange == 1?"":"s") + "!</b>");
 					for (slot = 0; slot < target.vaginaTotal(); slot++)
 						if (target.vaginas[slot].type != GLOBAL.TYPE_AVIAN && target.vaginaTypeUnlocked(slot, GLOBAL.TYPE_AVIAN)) {
 							target.shiftVagina(slot, GLOBAL.TYPE_AVIAN);
@@ -580,7 +580,7 @@ package classes.Items.Transformatives
 						if (target.hasFeathers() && target.hasPartFur("leg")) output(" that can be easily hidden under your fur");
 						else output(" that can be easily hidden under your " + target.skinFurScales(false,false,false,true));
 					}
-					output(". <b>You now have " + (toChange == 1?"a":"") + " feline vagina" + (toChange == 1?"":"s") + "!</b>");
+					output(". <b>You now have" + (toChange == 1?" a":"") + " feline vagina" + (toChange == 1?"":"s") + "!</b>");
 					for (slot = 0; slot < target.vaginaTotal(); slot++)
 						if (target.vaginas[slot].type != GLOBAL.TYPE_FELINE && target.vaginaTypeUnlocked(slot, GLOBAL.TYPE_FELINE)) {
 							target.shiftVagina(slot, GLOBAL.TYPE_FELINE);
@@ -608,7 +608,7 @@ package classes.Items.Transformatives
 					}
 					if (newVagColor == null) newVagColor = "black";
 					output("\n\nYou feel a hot sensation washing over your nether region, causing you to clench your thighs tightly together and moan out in pleasure, as your [pc.vaginas] erupt" + (toChange == 1?"s":"") + " in a sudden gush of [pc.girlCumNoun]! ... Wait. Did you just have a orgasm? You reach down to cup [pc.oneVagina] with a hand, only to realize it has changed! Upon closer inspection you discover ");
-					output("that your puss" + (toChange == 1?"y is":"ies are") + " now fat and swollen, with thick, " + newVagColor + " rubbery lips that feel leathery to the touch and a triangular clit. Giving a distinct equine bent to it. <b>You now have " + (toChange == 1?"an":"") + " equine vagina" + (toChange == 1?"":"s") + "!</b>");
+					output("that your puss" + (toChange == 1?"y is":"ies are") + " now fat and swollen, with thick, " + newVagColor + " rubbery lips that feel leathery to the touch and a triangular clit. Giving a distinct equine bent to it. <b>You now have" + (toChange == 1?" an":"") + " equine vagina" + (toChange == 1?"":"s") + "!</b>");
 					for (slot = 0; slot < target.vaginaTotal(); slot++)
 						if (target.vaginas[slot].type != GLOBAL.TYPE_EQUINE && target.vaginaTypeUnlocked(slot, GLOBAL.TYPE_EQUINE)) {
 							target.shiftVagina(slot, GLOBAL.TYPE_EQUINE);
@@ -637,7 +637,7 @@ package classes.Items.Transformatives
 					output("\n\nYou feel a hot sensation washing over your nether region, causing you to clench your thighs tightly together and moan out in pleasure, as your [pc.vaginas] erupt" + (toChange == 1?"s":"") + " in a sudden gush of [pc.girlCumNoun]! ... Wait. Did you just have a orgasm? You reach down to cup [pc.oneVagina] with a hand, only to realize it has changed! Upon closer inspection you discover ");
 					output("that you now possess " + (toChange == 1?"a":num2Text(toChange)) + " modest reptilian slit" + (toChange == 1?"s":"") + ", with narrow lips around a mostly featureless opening");
 					if (target.hasLegFlag(GLOBAL.FLAG_SCALED)) output(", surrounded by soft scales");
-					output(". <b>You now have " + (toChange == 1?"a":"") + " reptilian vagina" + (toChange == 1?"":"s") + "!</b>");
+					output(". <b>You now have" + (toChange == 1?" a":"") + " reptilian vagina" + (toChange == 1?"":"s") + "!</b>");
 					for (slot = 0; slot < target.vaginaTotal(); slot++)
 						if (target.vaginas[slot].type != GLOBAL.TYPE_SNAKE && target.vaginaTypeUnlocked(slot, GLOBAL.TYPE_SNAKE)) {
 							target.shiftVagina(slot, GLOBAL.TYPE_SNAKE);
@@ -715,7 +715,7 @@ package classes.Items.Transformatives
 						output("\n\nYou feel like your ");
 						if (target.tone <= 40) output("fat deposits");
 						else output("muscles");
-						output(" has all of sudden been turned into snakes, or something of that nature. Your flesh begins to flow awkwardly under your [pc.skinNoun]. The sensation fades almost as soon as it begins, leaving you somehow with an extremely light body, much better suited for flight. You can only begin to wonder where all your mass has gone.");
+						output(" have all of sudden been turned into snakes, or something of that nature. Your flesh begins to flow awkwardly under your [pc.skinNoun]. The sensation fades almost as soon as it begins, leaving you somehow with an extremely light body, much better suited for flight. You can only begin to wonder where all your mass has gone.");
 					} else output("\n\nAfter some brief shifting underneath your [pc.skinNoun], you are left with a considerably more lithe build.");
 					target.thickness = thickness;
 				};
@@ -794,7 +794,7 @@ package classes.Items.Transformatives
 			if (!target.hasPerk("Hollow Bones") && target.thickness <= 20 && target.tone >= 60 && GelBody == null && (target.hasWings(GLOBAL.TYPE_AVIAN) || target.hasWings(GLOBAL.TYPE_DOVE)) && InCollection(target.legType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_EQUINE) && target.armType == GLOBAL.TYPE_AVIAN && target.avianScore() >= 4)
 			{
 				options.push(function():*{
-					output("\n\nYou feel somehow... Weightless. You were already very light, but this is something on a whole different level. After scanning yourself with your codex, you discover that your bones are now almost hollow, with a honeycomb structure keeping them strong yet light. Flying will be much easier with a body like this!");
+					output("\n\nYou feel somehow... weightless. You were already very light, but this is something on a whole different level. After scanning yourself with your codex, you discover that your bones are now almost hollow, with a honeycomb structure keeping them strong yet light. Flying will be much easier with a body like this!");
 					output("\n\n(<b>Perk Gained: Hollow Bones</b> - Your body weighs less than it should.)");
 					// oviposition perk: v1 - value to substract from nBMI, which is 20-30 normally.
 					target.createPerk("Hollow Bones", 10, 0, 0, 0, "Your body weighs less than it should.");

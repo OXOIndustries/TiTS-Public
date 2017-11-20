@@ -1406,7 +1406,7 @@ public function sylvieSexMenu():void
 		}
 		else addDisabledButton(0,"Mount Pussy","Mount Pussy","You need to be some kind of centaur-like creature for this.");
 
-		if(pc.biggestCockLength() >= 12) addButton(1,"TittyBlow",tittyBlow,undefined,"Titty Blow","Your your dick wet in Sylvie’s drizzling pussy, then stuff it between her tits until you’re blowing a load down her throat.");
+		if(pc.biggestCockLength() >= 12) addButton(1,"TittyBlow",tittyBlow,undefined,"Titty Blow","Get your dick wet in Sylvie’s drizzling pussy, then stuff it between her tits until you’re blowing a load down her throat.");
 		else addDisabledButton(1,"TittyBlow","TittyBlow","Your penis is too short to truly enjoy the expanse of cleavage that Sylvie offers. Come back when your largest member is 12 inches or longer.");
 	}
 	else

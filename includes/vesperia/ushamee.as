@@ -42,7 +42,8 @@ public function ushameeCanadiaCorridorBonus(btnSlot:int = 0):void
 	
 	output("\n\nYou see the familiar, burly figure of an amazonian space-centauress at the end of the corridor, currently locked in an argument with a slender local deer-taur boy. Chief Neykkar is shouting and gesticulating wildly, bellowing into the young man’s face. He shrinks back from the towering ‘taur, clutching a datapad to his uniform’s chest.");
 	
-	addButton(btnSlot, "Ushamee", approachUshameeCorridor, undefined, "Ushamee", "Go talk to the Chief and see what’s going on.");
+	if(flags["KIRO_MET_KALLY"] != undefined && flags["KIRO_MET_KALLY"] < 4) addDisabledButton(btnSlot, "Ushamee", "Ushamee", "You need to finish Kiro’s visit first!");
+	else addButton(btnSlot, "Ushamee", approachUshameeCorridor, undefined, "Ushamee", "Go talk to the Chief and see what’s going on.");
 }
 
 public function ushameeAtBar():Boolean
@@ -89,6 +90,7 @@ public function approachUshameeCorridor2():void
 	clearMenu();
 	chiefNeykkarHeader();
 	
+	rooms[currentLocation].removeFlag(GLOBAL.NPC);
 	moveTo("CANADA5");
 	
 	output("The leithan woman guides you over to ");

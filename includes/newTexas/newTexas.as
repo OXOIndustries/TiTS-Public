@@ -1105,6 +1105,8 @@ public function sureSellMyCumBabiesFarAndWide(amount:Number = 0):void
 	
 	// Insert modular function for cum value:
 	var x:int = cumCreditValue(amount);
+	// Cap the value to prevent odd output
+	if(x > 250000000) x = 250000000;
 	
 	clearOutput();
 	author("Savin");
@@ -1741,6 +1743,11 @@ public function ohNoSillyCumFloods():void
 	output("\n\nYou close your eyes and your vision hazes...");
 	
 	processTime(5);
+	applyCumSoaked(pc);
+	applyCumSoaked(pc);
+	applyCumSoaked(pc);
+	applyCumSoaked(pc);
+	applyCumSoaked(pc);
 	
 	clearMenu();
 	addButton(0,"Next",ohNoSillyCumFloodsPtII);

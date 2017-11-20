@@ -183,6 +183,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/ciaran_nude.png", mimeType = "image/png")]
 		public var Bust_CIARAN_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/chupy.png", mimeType = "image/png")]
+		public var Bust_CHUPACABRO:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/cockvine_single.png", mimeType = "image/png")]
 		public var Bust_COCKVINE_SEEDLING:Class;
 		
@@ -863,6 +866,9 @@ package classes.Resources.Busts
 			public var Full_CIARAN:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ciaran_nude.png", mimeType = "image/png")]
 			public var Full_CIARAN_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/chupy.png", mimeType = "image/png")]
+			public var Full_CHUPACABRO:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cockvine_single.png", mimeType = "image/png")]
 			public var Full_COCKVINE_SEEDLING:Class;

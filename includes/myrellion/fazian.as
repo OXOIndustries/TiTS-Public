@@ -2023,7 +2023,7 @@ public function fazianQuestChamberMerge():void
 	
 	output("\n\n<i>“Dance! You know what happens if you do not.”</i> The anat heaves outwards - and then begins to tap out a steady rhythm on the boards with his hind talons. Slowly the gold myr’s attention turns back to him.");
 	
-	output("\n\n<i>“So...”</i> you say slowly to the major. <i>“You’re forcing a civilian to perform for the PoWs in your care to keep them sedate? Whilst you’re selling them off to alien slave traders.”</i> The group of purple-armored, pale-skinned androgynes are stood quite still, watching you inscrutably with their black, pupil-less eyes, ruffs fluttering.");
+	output("\n\n<i>“So...”</i> you say slowly to the major. <i>“You’re forcing a civilian to perform for the PoWs in your care to keep them sedated? Whilst you’re selling them off to alien slave traders.”</i> The group of purple-armored, pale-skinned androgynes are stood quite still, watching you inscrutably with their black, pupil-less eyes, ruffs fluttering.");
 	
 	output("\n\n<i>“You think this is easy?”</i> replies Ehstraffe slowly, staring at you with her one good eye. <i>“You think looking after tens of thousands of prisoners who despise you, with the lowest amount of food and personnel allotted in the entire Federation because </i>fuck<i> looking after gold soldiers before anyone else, is easy? To a starwalker who decided to edotto in here in order to be a fucking hero, I suppose it would. You didn’t have to preside over a prison riot every week for two months. You didn’t have to start making decisions in order to stop anyone else dying.”</i> She snaps a chitin-gloved hand at the crowded pit.");
 	

@@ -692,7 +692,7 @@ public function semithSexDoggieStyle():void {
 	output(" steadily, shifting his narrow hips around in the down-spells until he finds an angle which makes you clench up with delight, before fucking you right there, quickly driving you up to a pulsing orgasm. You buck your [pc.butt] into him eagerly as electric contractions seize up [pc.eachVagina] and");
 	
 	output(" your whole body");
-	if(pc.hasCuntTail()) output(" alongside your your [pc.cuntTail]");
+	if(pc.hasCuntTail()) output(", alongside your [pc.cuntTail],");
 	
 	if(pc.girlCumQ() > 25) output(" dribbles");
 	else output(" gushes");

@@ -780,6 +780,7 @@ public function heliaButtjob(x:int):void
 	}
 	IncrementFlag("SEXED_BRANDT");
 	processTime(20);
+	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",move,rooms[currentLocation].southExit);
 }
