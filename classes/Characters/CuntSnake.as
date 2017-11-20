@@ -289,6 +289,7 @@
 				var damage:TypeCollection = new TypeCollection( { kinetic: 5 } );
 				damageRand(damage, 15);
 				var damageResult:DamageResult = calculateDamage(damage, this, target);
+				var bStun:Boolean = false;
 				
 				if (damageResult.shieldDamage > 0)
 				{
@@ -303,12 +304,13 @@
 					
 					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 15)
 					{
-						output("<b> The hit was hard enough to stun you!</b>");
-						CombatAttacks.applyStun(target, 1);
+						output(" <b>The hit was hard enough to stun you!</b>");
+						bStun = true;
 					}
 				}
 				
 				outputDamage(damageResult);
+				if(bStun) CombatAttacks.applyStun(target, 1);
 			}
 		}
 		

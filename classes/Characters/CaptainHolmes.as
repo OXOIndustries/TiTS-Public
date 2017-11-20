@@ -288,14 +288,15 @@ package classes.Characters
 			if (!rangedCombatMiss(this, target))
 			{
 				output(" Worse, it lands right in [target.combatHisHer] eyes.");
-				
+				var bBlind:Boolean = false;
 				if (!target.hasBlindImmunity())
 				{
 					output(" <b>" + (target is PlayerCharacter ? "You" : "The Chief is") + " blinded!</b>");
-					CombatAttacks.applyBlind(target, 3);
+					bBlind = true;
 				}
 				
 				applyDamage(damageRand(new TypeCollection( { drug: 15 } ), 15), this, target, "minimal");
+				if(bBlind) CombatAttacks.applyBlind(target, 3);
 			}
 		}
 		
