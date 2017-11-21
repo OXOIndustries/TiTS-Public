@@ -11459,7 +11459,7 @@ public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
 	{
 		output("\n\n<i>“Um, my insides should be nice and moist, and you seem pretty hard. Did you want to stick your cock");
 		if (pc.cocks.length > 1) output("s");
-		output(" inside me now, "+ bessPCSexName() +"?”</i> [bess.name] sweetly asks, at the same time pointedly rubbing your your cock-tip with [bess.hisHer] "+ (bTargetVag ? "[bess.pussy]" : "[bess.ass]") +" - as if [bess.heShe] needed to tempt you!");
+		output(" inside me now, "+ bessPCSexName() +"?”</i> [bess.name] sweetly asks, at the same time pointedly rubbing your cock-tip with [bess.hisHer] "+ (bTargetVag ? "[bess.pussy]" : "[bess.ass]") +" - as if [bess.heShe] needed to tempt you!");
 	}
 
 	output("\n\nWith the simplest press forward, your [pc.cockHead "+ cockIdx +"] parts [bess.hisHer] "+ (bTargetVag ? "silky lower lips" : "star-shaped pucker") +". You groan as you sink your engorged length deep inside [bess.hisHer] synthetic hole - it’s so tight and slick! Even a virgin "+ (bTargetVag ? "pussy" : "ass") +" wouldn’t be this wonderously tight- it’s a good thing");

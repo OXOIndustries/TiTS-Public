@@ -823,9 +823,9 @@ public function dryadDrain():void
 	
 	//disable for taurs
 	if(!pc.isTaur()) addButton(0,"Throat",dryadDrainThroat);
-	else addDisabledButton(0,"Throat","Throat","Taurs can't do this yet!");
+	else addDisabledButton(0,"Throat","Throat","Taurs can’t do this yet!");
 	if(!pc.isTaur()) addButton(1,"Ass",dryadDrainAss);
-	else addDisabledButton(1,"Ass","Ass","Taurs can't do this yet!");
+	else addDisabledButton(1,"Ass","Ass","Taurs can’t do this yet!");
 	if(pc.hasVagina()) addButton(2,"Pussy",dryadDrainPussy);
 	else addDisabledButton(2,"Pussy","Pussy","You need a vagina for this.");
 }
@@ -886,7 +886,7 @@ public function dryadDrainThroatEpilogue():void
 	dryadHeader();
 	author("Wsan");
 	
-	output("You stand and dust yourself off. You can still [i]feel[/i] her inside you, marked inside and outside by her touch and her scent, but at least you can walk. Turning away from the site of your tryst, you set back on the path.");
+	output("You stand and dust yourself off. You can still <i>feel</i> her inside you, marked inside and outside by her touch and her scent, but at least you can walk. Turning away from the site of your tryst, you set back on the path.");
 	if (pc.isTreated() && pc.hasVagina() && pc.isBimbo()) output("\n\nThanks to the Treatment increasing oral sensitivity, you came your fucking brains out with the way she used her big, fat, veiny, <i>throbbing</i>... you shake your head a little bit, trying not to grin. At least you’ve got a pretty clear head for now!");
 	else output("\n\nYou try to ignore the fact you are now <i>extremely</i> pent up. Well, there’s no-one around...");
 	
@@ -1004,7 +1004,7 @@ public function dryadDrainPussy():void
 		output("\n\nWhen she finally finishes her long, drawn-out orgasm inside the depths of your cunt, she moans at length but makes no sign of moving. She repositions herself slightly atop you, and you can feel her thick flare smooching your cervix.");
 		output("\n\n<i>“Oh, that was amaaazing,”</i> she sighs, evidently pleased with your efforts of being an immobile spunk receptacle. <i>“I bet it feels even better the next time around!”</i>");
 		output("\n\nYou realize with muted surprise that you can feel her twitching and hardening while stuffed deep in your pussy, and soon she withdraws herself from your gaped cunt. Her seed surges from your abused fuckhole, pouring outwards onto the fertile ground below.");
-		output("\n\n<i>“Awww, I’m gonna fill that tight little pussy [/i]right[i] back up,”</i> the dryad declares smugly, holding her hips above you, poised to fuck you full. <i>“Don’t you worry!”</i>");
+		output("\n\n<i>“Awww, I’m gonna fill that tight little pussy </i>right<i> back up,”</i> the dryad declares smugly, holding her hips above you, poised to fuck you full. <i>“Don’t you worry!”</i>");
 		output("\n\nTrue to her word, she displays remarkable restraint in waiting for the flow of her expended spunk to roll from your cunt before slowly negotiating her entrance back in. The two of you moan in a sweet, lurid duet as her flare gradually stretches your walls apart again, sliding all the way up to your womb to nuzzle it.");
 		output("\n\n<i>“I think your pussy and my cock make a great match,”</i> the dryad pants, losing more of her composure by the second. <i>“Gh- gonna fuck it ‘til you c-cum your brains out! Nnnn!”</i>");
 		output("\n\nYou can feel the precum leaking from the tip of her swollen shaft as her balls slap off your [pc.ass], and quickly discover she’s right. It feels like her fat, veiny cock is about to pop out of your mouth at any second, your teeth grit and eyes rolling back in pleasure while she bucks her hips like a wild animal. She forcefully brings you to a rough, shuddering full-body orgasm that has you panting loudly beneath her, ");

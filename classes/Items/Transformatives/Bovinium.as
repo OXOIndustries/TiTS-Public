@@ -608,7 +608,7 @@ package classes.Items.Transformatives
 			
 			if (!(target is PlayerCharacter))
 			{
-				output(target.capitalA + target.short + " swollows the candy but to no effect.");
+				output(target.capitalA + target.short + " swallows the candy but to no effect.");
 				return false;
 			}
 			

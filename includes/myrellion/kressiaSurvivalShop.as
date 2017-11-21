@@ -483,11 +483,10 @@ public function anarrieAmbush():void
 	}
 	else
 	{
-		if(pc.hasVagina()) output("Your insides clamp down tightly as she continues to stir them up, and you join Anarrie in a duet of climactic choruses.");
+		if(pc.hasVagina()) output(" Your insides clamp down tightly as she continues to stir them up, and you join Anarrie in a duet of climactic choruses.");
 		if(pc.hasCock()) 
 		{
-			if(pc.hasVagina()) output(" ");
-			output("Lust flows through the conduit of your [pc.cocks], splattering her hands");
+			output(" Lust flows through the conduit of your [pc.cocks], splattering her hands");
 			if(pc.cumQ() >= 150) output(", and Anarrie’s back,");
 			output(" with [pc.cumNoun].");
 		}

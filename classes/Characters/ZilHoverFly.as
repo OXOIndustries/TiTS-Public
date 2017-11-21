@@ -271,12 +271,16 @@ package classes.Characters
 		public function zweetBreeze(target:Creature):void
 		{
 			output("The Hoverfly buzzes backwards, out of range of your [pc.meleeWeapon], before sliding his groin plating back, revealing his fat, black six inch cock, erect and gently leaking with golden anticipation. The thrum of his wings kicks up to a deafening vibration as he directs a flattening wash of air at you, laden with the warm and cloyingly sweet smell of his swollen sex. You can’t help but breathe some of it in, the scent teasing and twisting down your throat, sugary impulse and heat pulsing down into your [pc.groin].");
+			
+			var bBlind:Boolean = false;
+			
 			if(target.intelligence()/2+rand(20)+1 < this.reflexes()/2+10)
 			{
 				output(" You make the mistake of trying to track his movements, and dust is blown into your [pc.eyes]. <b>You are blinded!</b>");
-				CombatAttacks.applyBlind(target, 2 + rand(2));
+				bBlind = true;
 			}
 			applyDamage(new TypeCollection( { tease: 7+rand(4) } ), this, target, "minimal");
+			if(bBlind) CombatAttacks.applyBlind(target, 2 + rand(2));
 		}
 		//Shield Up
 		//Increases armor by 40 for next two turns.

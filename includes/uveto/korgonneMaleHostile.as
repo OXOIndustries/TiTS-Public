@@ -426,7 +426,7 @@ public function korgCowgirlWin(tailForce:Boolean = false):void
 	if(tailForce) output("tail");
 	else output("[pc.vagOrAss " + vIdx + "]");
 	output(", pressing outward, pinning your nerves. His alien cock is growing! The base inflates slowly, insistently, as if filling with pressurized fluid, balling up into a hard knot.");
-	//{stretch check here}
+	// stretch check here
 	if(!tailForce)
 	{
 		if(vIdx >= 0) pc.cuntChange(0,enemy.cockVolume(0));
@@ -1348,7 +1348,7 @@ public function getKorgedInTheButtOrPussy():void
 	output("it, his strokes are so eager and quick that they almost cut through the lubrication. You must have teased the puppy to the brink of madness. His knot begins to grow, heralding a shift in his focus....");
 	output("\n\nAs his girth gets thicker and thicker, his thrusts grow shallow. The korgonne’s knot is picking up inches; he whimpers and whines with pleasure at each one. Already the sound of it popping in and out of your [pc.vagOrAss " + x + "] is audible over the constant wind; he still pauses outside sometimes to rub his shaft against your labia, but his attention is moving downward. The next time he forces the knot in, it doesn’t come out again. The korgonne tugs gently at it, then a smile spreads gradually over his stubby face.");
 	output("\n\n<i>“Joy come soon,”</i> he promises. Scooting closer to you, he changes his thrusts - he focuses on sliding the girthy bitch-breaker back and forth in you, stroking you with it. You find yourself drawing closer to climax, so completely touched on every nerve by the voluminous canine prick. The korgonne, too, is intensifying his efforts. He chokes up on your ass, pulling you into his crotch on the in-stroke with such force that you would expect him to bounce off if he weren’t anchored. Inside you, the knot swells again, rounding out to touch every inch and growing still.");
-	//{2nd stretch check, if not loose enough to pop out (see below)}
+	// 2nd stretch check, if not loose enough to pop out (see below)
 	if(x >= 0) pc.cuntChange(x,enemy.cockVolume(0));
 	else pc.buttChange(enemy.cockVolume(0));
 

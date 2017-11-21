@@ -282,7 +282,7 @@
 		public function consecutiveNormalPunches(target:Creature):void
 		{
 			output("<i>“Stay back!”</i> Azra cries, lashing out with her fists in rapid succession.");
-			//{3x flurry paunch}
+			// 3x flurry paunch
 			for (var i:int = 0; i < 3; i++)
 			{
 				output("\n");

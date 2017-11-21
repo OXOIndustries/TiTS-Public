@@ -474,7 +474,8 @@ public function repeatableMirrinTraining():void
 		output("\n\nShe pretty much forces the slate into your face and you see a highly stylized and filtered picture of you, cowed by the weights on your back and Mirrin looking exceptionally photogenic... even though only half of her face is in the shot. You just about have enough time to read a sentence.");
 		output("\n\n<i>“Working on a new one, could be a keeper x.x.x Special thanks to FoxFit for these awesome garbs!”</i>");
 		output("\n\nAside the name drop, you’re not quite sure what to make of it all. During this time, the refreshed Mirrin is fidgeting with the panel on the bar weight. <i>“Hmm, good work, Steele,”</i> she says, betraying a hint of approval. <i>“Now do five more sets of eight.”</i>");
-		if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_ATHLETIC) output("\n\nNice, a challenge!");
+		output("\n\n");
+		if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_ATHLETIC) output("Nice, a challenge!");
 		else output("<i>Groan</i>.");
 
 		output("\n\nOnce you’ve pretty much exhausted your strength, the bar near-instantly becomes light again. It’s enough that you can lift it over your head despite your very tired out arm muscles. <i>“I’d say that calls for food,”</i> she says.");
@@ -647,7 +648,7 @@ public function repeatableMirrinTraining():void
 		output("\n\n<i>“Kind of everything... I guess?”</i> states the unconvincing she-dragon. <i>“So like, you stand on the pads there and you push down with your legs but push up with your arms. Full body workout, fits to your shape, fits to your strength and it goes up to weights of seven Terran tons.”</i>");
 		output("\n\nWhat. The. Balls.");
 		output("\n\n<i>“So, you. Steele. Heir to Steele Tech and general galactic busybody with </i>moi<i>, Mirrin Arkosduttir, galactic model and freaky dragon thing, get to test this badass... whatever it is,”</i> she exclaims, having a smile so wide that this is the happiest you’ve seen her.");
-		output("\n\nInterested in the prospect, you clamber onto the all-purpose foot pads that hover a foot in the air. They’re not actually attached to anything - at all - and yet they feel very stable. With caution, you put your hands onto two handles the float close to your shoulders. You end up in a squatting position. At that moment, you feel an invisible pressure round your [pc.hips] and midriff.");
+		output("\n\nInterested in the prospect, you clamber onto the all-purpose foot pads that hover a foot in the air. They’re not actually attached to anything - at all - and yet they feel very stable. With caution, you put your hands onto two handles that float close to your shoulders. You end up in a squatting position. At that moment, you feel an invisible pressure round your [pc.hips] and midriff.");
 		output("\n\n<i>“Don’t worry about that, it’s just a failsafe sort of thing,”</i> calls out Mirrin.");
 		//PC is kind:
 		if(pc.isNice())
@@ -1122,7 +1123,7 @@ public function askMirrinAboutHer():void
 	else output("you immediately blank at the deluge of unfamiliar sounds coming out. <i>“Wha...?”</i> You say with an open mouth.");
 	output("\n\nShe grins, stifling a laugh through her nose. <i>“Yah, yah I know. So like, my father’s name was Arkos Arkossonne and where I grew up, you take the uhh, paternal name first and change it for gender. So, I’m Arkosduttir,”</i> she explains, taking a second to find the right word.");
 	output("\n\n<i>“Anyway,”</i> she continues, resting her elbows on her knees, <i>“so technically I’m... Terran, I suppose. Born there, raised there, schooled there and also very happily left there.”</i> She flares her nostrils and takes a swig of water from a closeby bottle.");
-	output("\n\n<i>“Not quite all of it. My mother, father? Other father... no, mother,”</i> is what she finally gets to, punctuating each title with a finger gesture. <i>“She’s gryvain. Hence uhhh, most of this,”</i> she grins, pointing from top her top to her bottom. You follow those movements with your eyes, another opportunity to get a good look at her imposing structure up close.");
+	output("\n\n<i>“Not quite all of it. My mother, father? Other father... no, mother,”</i> is what she finally gets to, punctuating each title with a finger gesture. <i>“She’s gryvain. Hence uhhh, most of this,”</i> she grins, pointing from her top to her bottom. You follow those movements with your eyes, another opportunity to get a good look at her imposing structure up close.");
 	output("\n\n<i>“Childhood didn’t suck, although father was usually... not there. He was rich as hell come to think of it but apparently industrial building supplies ‘make the bread’,”</i> she explains, that last butchered phrase making you raise an eyebrow.");
 	output("\n\n<i>“He was alright, I guess. My mother... kind of the same. Money does things, you know?”</i> She looks at you for affirmation. ");
 	//PC is Pampered:
