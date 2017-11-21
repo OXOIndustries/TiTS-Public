@@ -28,7 +28,7 @@ Very susceptible to pheromones (including her own - which are quite strong), so 
 Snuck out to go alien hunting... and didn’t bring clothing for the cold.
 */
 
-public function showCaveUla(nude:Boolean = flase):void
+public function showCaveUla(nude:Boolean = false):void
 {
 	var nudeS:String = "";
 	if(nude) nudeS = "_NUDE";
@@ -75,10 +75,10 @@ public function caveMeetUla():void
 	output("You cautiously approach the mysterious stranger, hand on your [pc.weapon].");
 	output("\n\n<i>“H-help?”</i> an almost inaudible voice squeaks. Watery green eyes peek at you from over a bangle-clad wrist. Ice shards trace trails of misery down the girl’s soft-furred cheeks where she was crying. Icy blue lips, plump with feminine appeal, quiver in misery. <i>“C-c-cold.”</i> She points");
 
-	if(pc.hasItemByClass(HeatBelt) || pc.hasItemByClass(AWBelt) || pc.hasItemByClass(KorgCoat))
+	if(pc.hasItemByClass(HeatBelt) || pc.hasItemByClass(ArcticWarfareBelt) || pc.hasItemByClass(InsulatedCoat))
 	{
 		output(" to your ");
-		if(pc.hasItemByClass(HeatBelt) || pc.hasItemByClass(AWBelt)) output("belt");
+		if(pc.hasItemByClass(HeatBelt) || pc.hasItemByClass(ArcticWarfareBelt)) output("belt");
 		else output("cloak");
 	}
 	output(". <i>“Share w-w-arm?”</i>");
@@ -172,8 +172,8 @@ public function giveUlaBelt():void
 	}
 	else
 	{
-		if(pc.shield is AWBelt) pc.shield = new EmptySlot();
-		else pc.destroyItemByClass(AWBelt);
+		if(pc.shield is ArcticWarfareBelt) pc.shield = new EmptySlot();
+		else pc.destroyItemByClass(ArcticWarfareBelt);
 	}
 	output("<i>“Here,”</i> you toss her your heat-belt before you think better of it. The trip back will be cold, but by the look of her, she’s going to need it more.");
 	output("\n\nThe sniffling canine snatches it from your hands in desperation, fastening it around her underbust instead of her waist, lifting and squeezing stiff-tipped breasts into an almost fetishistic display of jiggling titflesh. <i>“Nice,”</i> she giggles, her shivers slowing. She wipes the crusted tears from her cheeks and stretches, twisting this way and that. Her tail wags. <i>“Am having many thanks.”</i> Smiling shyly, the dog-girl crawls closer, still on her knees. A gentle pat to the cave floor invites you to sit with her. <i>“Tell of stars?”</i>");
@@ -353,8 +353,8 @@ public function ulaCaveLesbo():void
 		else output("drench her");
 		output(" fingers with [pc.girlCum]. <i>“You smell so good. I want...”</i> You gulp down a mouthful of saliva. <i>“...I want to taste your cunt.”</i> Quivering, you change your mind. <i>“I need to eat your cunt.”</i>");
 	}
-	//HasSnout
-	else if(pc.hasSnout())
+	//HasMuzzle
+	else if(pc.hasMuzzle())
 	{
 		output(" Vaguely-minty fuck-scent fills your sinuses, and still you sniff the air. There’s something strange about it the way it reaches into your brain and flips switches you didn’t even know existed. You drench yourself, slipping into a strange kind of heat... only, you don’t want to be bred. You just want pussy. Your own pussy, her pussy, whatever. You want to stuff your snout into a quim and lick until she’s forced to do the same, creating an endless cycle of cunt-obsessed oral. <i>“You smell soooo good!”</i>");
 	}
@@ -396,7 +396,7 @@ public function korgiCavePussPart2():void
 	output(". <i>“I love thish tashte!”</i> you cry, muffled by cunt and ambrosial juices.");
 
 	output("\n\nSo enmeshed are you in the act cunnilingus that you only notice the korgonne moving around by the shifting of her clit. Instead of being high on your face, it rotates down near your chin. A second later, you feel fat, squishy tits pressing down on your [pc.belly] and a shock of virulent pleasure that makes your hungry mouth seize in ecstasy. <i>“Ahhh!”</i>");
-	if(pc.hasSnout()) output(" Your ecstatic scream stretches her out around your snout, making the korgonne whimper back into your twat in sympathetic lust.");
+	if(pc.hasMuzzle()) output(" Your ecstatic scream stretches her out around your snout, making the korgonne whimper back into your twat in sympathetic lust.");
 
 	output("\n\nWas that an orgasm? It felt so good... so blissfully pleasant... but you still want her cunt. You can’t get enough of it. Right now it’s your favorite thing in the whole universe, a simmering delta of sinfully minty delights. Kissing it, you feel like its quivers are kissing you back, the shaking, climaxing korgonne expressing her shared affection through the sloppy, oozing girl-jizz that floods your maw.");
 
@@ -464,8 +464,8 @@ public function korgiCockFuck():void
 		else output("trigger an artificial");
 		output(" rut. You dribble pre over her gently exploring paws while your chest heaves. <i>“Your pussy smells divine. Such pheromones...”</i> A full-body quake ripples through you, culminating in a throb hard enough to make the dog-girl nearly lose her grip. <i>“I need more than a paw.”</i>");
 	}
-	//HasSnout
-	else if(pc.hasSnout())
+	//HasMuzzle
+	else if(pc.hasMuzzle())
 	{
 		output(" Vaguely-minty fuck-scent fills your sinuses, and still you sniff the air. There’s something primal about it that compels you to continue, every breath instinctively guiding your nose toward the korgonne’s crotch until you’re fighting to keep yourself from burrowing into her lap. <i>“Your scent...”</i> She couldn’t miss the sound of your bestial snuffling if her ears were packed full of snow. The dog-girl’s cunt has your full attention, mind and cock");
 		if(pc.cockTotal() > 1) output("s");
@@ -499,7 +499,9 @@ public function korgiCockFuck():void
 	output(". You know how she feels, come to think of. Just looking at her, you can feel the urge rising inside you, begging you to take her. Your nostrils flare as you try to think of what to say. <i>“It’s... not safe to go out like that. Who knows what kind of monster you’d run into?”</i>");
 	output("\n\nThe puppy-girl sighs, in resignation, dropping to her knees. One hand goes to her chest, roughly squeezing the fattened orb. The other dibs between her legs, crudely rubbing at a blue-lipped entrance. <i>“R-right. But... can’t... want...”</i> She licks her lips, eyes fixated on your cock. <i>“Want pups.”</i> Falling on all fours, she crawls closer, tail curled up and wiggling with her juicy haunches. <i>“Want alien pups. Nice alien’s pups.”</i>");
 	output("\n\nYou attempt to hold yourself back. She’s probably a virgin, and she obviously doesn’t know any better. The way she smells right now, she’d get pregnant just from looking at a dick... and she’s staring at yours right now. You subconsciously shift to better present it, body operating on instinct and raw desire without much input at all from your brain. <i>“Wait... uh.”</i>");
-	output("\n\nThe furry vixen bends low to drag her tits across the ice, sensuously drawing closer{, hard nipples all but digging furrows into the freeze}. Her eyes are liquid pools of lust, so earnestly wanton that you can see your dick reflected in the moist curve of her corneas.");
+	output("\n\nThe furry vixen bends low to drag her tits across the ice, sensuously drawing closer");
+	if(flags["ULA_SAVED"] != 2) output(", hard nipples all but digging furrows into the freeze");
+	output(". Her eyes are liquid pools of lust, so earnestly wanton that you can see your dick reflected in the moist curve of her corneas.");
 	output("\n\n<i>“You should...”</i>");
 	output("\n\nA tongue rolls out, long and slick. Drool spatters your thighs.");
 	output("\n\n<i>“Should... uh... wa-”</i>");

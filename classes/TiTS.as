@@ -413,7 +413,7 @@
 		include "../includes/uveto/shade.as";
 		include "../includes/uveto/subTuner.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
-		//include "../includes/uveto/ula.as";
+		include "../includes/uveto/ula.as";
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
 		
@@ -524,7 +524,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.111";
+			version = "0.7.112";
 
 			//temporary nonsense variables.
 			temp = 0;
