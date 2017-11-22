@@ -2466,6 +2466,15 @@ public function variableRoomUpdateCheck():void
 	{
 		rooms["PIPPA HOUSE"].addFlag(GLOBAL.NPC);
 	}
+	if(flags["ULA_CAVE"] != undefined)
+	{
+		if(flags["ULA_SAVED"] == undefined)
+		{
+			if(flags["ULA_LEAVE_TIMER"] == undefined || flags["ULA_LEAVE_TIMER"] + 60*24*2 > GetGameTimestamp()) rooms[flags["ULA_CAVE"]].addFlag(GLOBAL.NPC);
+			else rooms[flags["ULA_CAVE"]].removeFlag(GLOBAL.NPC);
+		}
+		else rooms[flags["ULA_CAVE"]].removeFlag(GLOBAL.NPC);
+	}
 	
 	/* VESPERIA / CANADIA STATION */
 	/*
@@ -2475,7 +2484,6 @@ public function variableRoomUpdateCheck():void
 	}
 	else rooms["CANADA7"].eastExit = "";
 	*/
-
 	//Ushamee Corridor
 	if (MailManager.isEntryViewed("ushamee_meet") && flags["USHA_MET3"] == undefined)
 	{

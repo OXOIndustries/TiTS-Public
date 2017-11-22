@@ -9,7 +9,7 @@
 // ULA_SEXED 		- Counter for number of times banged
 
 /*PHYSICAL ATTRIBUTES:
-4’9”</i> - on the edge of being a midget :3
+4' 9" - on the edge of being a midget :3
 125 lbs. Chubby thighs and a tiny bit of squish
 Plush E cuparoonis. Light blue nips
 Light blue cunt/butt
@@ -50,6 +50,8 @@ public function ulaBonus():void
 		if(rand(5) == 0)
 		{
 			flags["ULA_CAVE"] = currentLocation;
+			rooms[flags["ULA_CAVE"]].addFlag(GLOBAL.NPC);
+			generateMap();
 		}
 	}
 	if(flags["ULA_CAVE"] == currentLocation && flags["ULA_SAVED"] == undefined)
@@ -61,7 +63,7 @@ public function ulaBonus():void
 		}
 		else
 		{
-			output("\n\nThe korgonne you met here is long gone. You'll probably never see her again.");
+			output("\n\nThe korgonne you met here is long gone. You’ll probably never see her again.");
 		}
 	}
 }
@@ -103,9 +105,9 @@ public function caveMeetUla():void
 	addButton(0,"Fuck",shareHeatWithKorgi);
 	if(pc.hasItemByClass(ArcticWarfareBelt) || pc.shield is ArcticWarfareBelt) addButton(1,"Give AWBelt",giveUlaBelt);
 	else if(pc.hasItemByClass(HeatBelt) || pc.shield is HeatBelt) addButton(1,"GiveHeatBelt",giveUlaBelt);
-	else addDisabledButton(1,"Give Belt","Give Belt","You don't have a belt to give her.");
+	else addDisabledButton(1,"Give Belt","Give Belt","You don’t have a belt to give her.");
 	if(pc.hasItemByClass(InsulatedCoat) || pc.armor is InsulatedCoat) addButton(2,"Give Coat",giveUlaCoat);
-	else addDisabledButton(2,"Give Coat","Give Coat","You don't have a suitable coat.");
+	else addDisabledButton(2,"Give Coat","Give Coat","You don’t have a suitable coat.");
 	//[Share Heat] [Give Belt] [Give Coat] [Nope]
 }
 
@@ -196,7 +198,7 @@ public function leaveAfterBelt():void
 	output("\n\n<i>“Understand.”</i> The Korgonne drops back on her ass, sprawling, hypothermia seemingly forgotten. <i>“You save, though. Maybe...”</i> The faint sound of her tail slapping into the wall drums excitedly. <i>“Maybe come Korg’ii Hold? Talk visit!”</i> She bounds up onto her hindlegs, eyes the size of dinner plates shining in excitement. <i>“Secret code! <b>One awoo in top sparklehole! Third from right.</b>”</i> She takes your hand in her chilly paws and squeezes, pulling it up to kiss the back of it.");
 	output("\n\nThe cave suddenly feels a bit warmer...");
 	output("\n\n<i>“Remember! Sparklehole! Three from right, topdeck!”</i> Bouncing about, the dog-girl lets you go to pump her fist in the air. <i>“Such kiss! Wow!”</i> She spins and totters out into the snow, suddenly unfazed by the cold.");
-	output("\n\nYou’re left alone, secure in the knowledge that you should <i>“awoo”</i> into a specific <i>“sparklehole,”</i> should you encounter one.");
+	output("\n\nYou’re left alone, secure in the knowledge that you should “awoo” into a specific “sparklehole,” should you encounter one.");
 	processTime(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -440,7 +442,7 @@ public function korgiCavePussPart4():void
 	output("\n\n<i>“Maybe... you come visit Korg’ii hold? Teach more. Help see nice?”</i> She sniffs her fingers, then shudders. <i>“Share more warms?”</i>");
 	output("\n\n<i>“Sure,”</i> you answer, too fucked out to care. Sounds like fun.");
 	output("\n\n<i>“Yays!”</i> Bouncing back, the Korgonne hops in the air. <i>“Secret code telling! <b>One awoo in top sparklehole! Third from right.</b>”</i> She takes your hand in her slippery paws and squeezes. <i>“Remember! Sparklehole! Three from right, topdeck!”</i> Still bouncing about, the dog-girl turns away and totters out into the snow, seemingly unfazed by the cold. <i>“Tell all! Alien joy!”</i>");
-	output("\n\nYou’re left alone, secure in the knowledge that you should <i>“awoo”</i> into a specific <i>“sparklehole”</i> if you wish to see the friendly korgonne once more. Perhaps her whole tribe is friendly?");
+	output("\n\nYou’re left alone, secure in the knowledge that you should “awoo” into a specific “sparklehole” if you wish to see the friendly korgonne once more. Perhaps her whole tribe is friendly?");
 	processTime(35);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -547,12 +549,12 @@ public function korgiCockFuck2():void
 	else if(pc.ballFullness >= 90) output("backed-up ");
 	else if(pc.cumQ() >= 9000) output("womb-flooding ");
 	output("nut this bitch. <i>“Yeaaahhh...”</i>");
-	output("\n\nNo sooner is the word out of your mouth than the korgonne is shifting on top of you, hips rolling feverishly in an attempt to slide your [pc.cock " + x +  "] inside.");
+	output("\n\nNo sooner is the word out of your mouth than the korgonne is shifting on top of you, hips rolling feverishly in an attempt to slide your [pc.cock " + x + "] inside.");
 
 	//2Big
 	if(pc.cockVolume(x) > ulaCapacity())
 	{
-		output("\n\nShe’s definitely a virgin. The first attempt does little more than smash her puffy puss into your [pc.cockHead " + x +  "], futilely dragging the lust-engorged lump of her clit past your pre-weeping urethra. The second attempt fares no better. Growling in disatisfaction, she rocks back and forth, straining her tight cunny against your impossibly large cockhead, trying to wedge herself open far enough to take <i>any</i> part of you, even if it’s only the first inch of pole.");
+		output("\n\nShe’s definitely a virgin. The first attempt does little more than smash her puffy puss into your [pc.cockHead " + x + "], futilely dragging the lust-engorged lump of her clit past your pre-weeping urethra. The second attempt fares no better. Growling in disatisfaction, she rocks back and forth, straining her tight cunny against your impossibly large cockhead, trying to wedge herself open far enough to take <i>any</i> part of you, even if it’s only the first inch of pole.");
 		output("\n\n<i>“Ahp!”</i> the dog-girl gasps as she succeeds in ripping her hymen wide open, sinking a few millimeters in. She’s so tight. It feels like her clenches are going to pinch off your [pc.cockHead " + x + "]. Streamers of korgonne girl-cum stream down your length, but no amount of effusive ejaculate will allow her virginal tunnel to take your obscene tool any further. <i>“Big!”</i>");
 		output("\n\nPleasure forces deflowered dog-girl to arch her back, leaning so far that her hair touches her tail, thrusting her breasts at your face. They bounce and clap against each other. Drops of fuck-warmed snowmelt rain over your [pc.chest] as the korgonne cums herself silly, hindpaws reaching back to grip you, smearing pussyjuices all the way down to your ");
 		if(pc.balls > 0) output("[pc.sack]");
@@ -602,7 +604,7 @@ public function korgiCockFuck2():void
 		output("\n\nShe’s definitely a virgin. The first two attempts do little more than cause your hypersensitized cock to slide through her folds and slip to the side. The third time’s the charm. Her devilishly tight cunny strains around your [pc.cockHead " + x + "], hymen flexing. She seems like she’s going to take it slow, right up until she grabs your face and stuffs her tongue into your mouth. Plush cyan lips hold you captive while her tongue savors your exotic taste, intermingled with the ripe flavor of her own heated puss. In that moment, her hips scissor downward, splitting her hymen on the altar of your virile masculinity.");
 		output("\n\n<i>“Ah!”</i> the deflowered dog-woman gasps, drooling webs of spit and vaginal lube. She shudders, her hard nipples begging to be tugged. Further down, her tunnel ripples in mixed agony and ecstasy. The fertile folds feel like they’re milking you for how they clench and flutter, and you realize that you’ve already slipped past the point of no return. Even if you pulled out now, you’d cum from the pheromones clogging your nostrils. If she kissed you, you’d give her every sperm in your body and then some.");
 		output("\n\n<i>“I’m cumming!”</i> you warn.");
-		output("\n\n<i>“Good. Give puppies.”</i> She grabs your ears and kisses you again, hips rolling. <i>“Warm... Good...”</i> Eyes closing, her tongue goes still in your mouth as her body seizes everywhere except the cum-hungry tunnel still clenching down around your ecstatically spurting [pc.cockNounSimple " + x  + "].");
+		output("\n\n<i>“Good. Give puppies.”</i> She grabs your ears and kisses you again, hips rolling. <i>“Warm... Good...”</i> Eyes closing, her tongue goes still in your mouth as her body seizes everywhere except the cum-hungry tunnel still clenching down around your ecstatically spurting [pc.cockNounSimple " + x + "].");
 		if(pc.cumQ() < 10) output(" Nothing more than dribbles slips out, but she doesn’t seem to mind. She grinds the feeble [pc.cumNoun]-drops throughout her passage, giving your deposit ample opportunity to swim upstream to her aching eggs.");
 		else if(pc.cumQ() < 250) output(" The [pc.cumNoun]-shots fire in deep. Every lance makes her feel warmer and wetter, squelching and hot. You have no doubt that some is slipping upward into her womb, journeying to those aching eggs.");
 		else if(pc.cumQ() < 10000) 
@@ -613,7 +615,7 @@ public function korgiCockFuck2():void
 		}
 		else
 		{
-			output(" Nothing could prepare her for the near-biblical flood of [pc.cumNoun] pouring into her womb, filling every crack and crevice. Rivers spray out around your [pc.knot " + x  + "] as her belly bulges obscenely. She already looks like a mother");
+			output(" Nothing could prepare her for the near-biblical flood of [pc.cumNoun] pouring into her womb, filling every crack and crevice. Rivers spray out around your [pc.knot " + x + "] as her belly bulges obscenely. She already looks like a mother");
 			if(pc.cumQ() >= 25000) 
 			{
 				output(", and you’ve barely begun to breed.");
@@ -653,7 +655,7 @@ public function korgiCockFuck3():void
 	output("\n\n<i>“Yays!”</i> Trotting in a circle");
 	if(pc.cumQ() >= 25000) output(", her taut tummy wobbling");
 	output(", the Korgonne pumps her fist in the air. <i>“Visit Korg’ii Hold. Secret code telling! <b>One awoo in top sparklehole! Third from right.</b>”</i> She takes your hand in her slippery paws and squeezes. <i>“Remember! Sparklehole! Three from right, topdeck!”</i> Bouncing about, the dog-girl spins away and totters out into the snow, seemingly unfazed by the cold. <i>“Tell stories, and give pups!”</i>");
-	output("\n\nYou’re left alone, secure in the knowledge that you should <i>“awoo”</i> into a specific <i>“sparklehole”</i> if you wish to see the friendly korgonne once more. Perhaps her whole tribe is friendly?");
+	output("\n\nYou’re left alone, secure in the knowledge that you should “awoo” into a specific “sparklehole” if you wish to see the friendly korgonne once more. Perhaps her whole tribe is friendly?");
 	flags["ULA_DEFLOWERED"] = 1;
 	IncrementFlag("ULA_SEXED");
 	processTime(15);

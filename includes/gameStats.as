@@ -856,6 +856,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(flags["SERA_VIRGINITY_TAKEN"] != undefined) totalVirginitiesTaken++;
 		if(flags["GIL_PUSS_FUCKED"] != undefined) totalVirginitiesTaken++;
 		if(flags["CHRISSY_ANAL"] != undefined) totalVirginitiesTaken++;
+		if(flags["ULA_DEFLOWERED"] != undefined) totalVirginitiesTaken++;
 		if(!ainaIsVirgin()) totalVirginitiesTaken++;
 		if(sleepingPartner != "" || totalVirginitiesTaken > 0 || pantyFapCount() > 0)
 		{
@@ -3569,9 +3570,9 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["INESSA_BJED"] != undefined || flags["INESSA_TITTYSQUIRT"] != undefined || flags["INESSA_HJ"] != undefined || flags["INESSA_FACE_STRAPPED"] != undefined || flags["INESSA_TAILED"] != undefined)
 				{
 					output2("\n<b>* Inessa, Sexual History:</b> Sexed her");
-					if(flags["INESSA_BJED"] != undefined) output2(", Gave you a blowjob");
+					if(flags["INESSA_BJED"] != undefined) output2(", She gave you a blowjob");
 					if(flags["INESSA_TITTYSQUIRT"] != undefined) output2(", She squirted you");
-					if(flags["INESSA_VIRGINITY"] != undefined) output2(", You took her virginity");
+					if(flags["INESSA_VIRGINITY"] != undefined) output2(", Took her virginity");
 					if(flags["INESSA_HJ"] != undefined) output2("\n<b>* Inessa, Times She’s Given You a Handjob:</b> " + flags["INESSA_HJ"]);
 					if(flags["INESSA_FACE_STRAPPED"] != undefined) output2("\n<b>* Inessa, Times She’s Used Her Face Strap-On:</b> " + flags["INESSA_FACE_STRAPPED"]);
 					if(flags["INESSA_TAILED"] != undefined) output2("\n<b>* Inessa, Times You Fucked Her with a Parasitic Tail Cock:</b> " + flags["INESSA_TAILED"]);
@@ -5938,6 +5939,45 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["FROSTWYRMWARNING"] != undefined) output2(" You were defeated by the Frostwyrm and warned never to return.");
 					if(flags["FROSTWYRMSLAIN"] != undefined) output2(" You have slain the Frostwyrm!");
 				}
+				variousCount++;
+			}
+			// Princess Ula
+			if(flags["ULA_LEAVE_TIMER"] != undefined) 
+			{
+				output2("\n<b><u>");
+				if(flags["ULA_CAVE"] != undefined)
+				{
+					switch(flags["ULA_CAVE"])
+					{
+						case "UVIP R36": output2("Hidden Cave"); break;
+						case "UVIP D22": output2("Snowbank Cave"); break;
+						case "UVIP J18": output2("Ice-Hewn Cavern"); break;
+						case "UVGR K20": output2("Small Hollow"); break;
+					}
+				}
+				else output2("Cave");
+				output2("</u></b>");
+				var coldKorgiName:String = (flags["ULA_9999"] != undefined ? "Ula" : "Cold Korgonne");
+				output2("\n<b>* " + coldKorgiName + ":</b> Met her");
+				if(flags["ULA_SAVED"] != undefined)
+				{
+					switch(flags["ULA_SAVED"])
+					{
+						case 1: output2(", Gave her heat belt"); break;
+						case 2: output2(", Gave her insulated coat"); break;
+					}
+					if(flags["ULA_STARTALK"] != undefined) output2(", Talked to her");
+					if(flags["ULA_DEFLOWERED"] != undefined) output2(", Took her virginity");
+					if(flags["ULA_SEXED"] != undefined) output2("\n<b>* " + coldKorgiName + ", Times Sexed:</b> " + flags["ULA_SEXED"]);
+				}
+				else if((flags["ULA_LEAVE_TIMER"] + 60*24*2) <= GetGameTimestamp()) output2(", <i>Whereabouts unknown</i>");
+				variousCount++;
+			}
+			// Korg’ii Hold
+			if(flags["ULA_SAVED"] != undefined)
+			{
+				output2("\n<b><u>Korg’ii Hold</u></b>");
+				output2("\n<b>* Secret Code:</b> <i>One “awoo” in top “sparklehole”, third from right.</i>");
 				variousCount++;
 			}
 			// Krym
