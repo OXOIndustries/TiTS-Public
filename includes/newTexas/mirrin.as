@@ -1644,6 +1644,7 @@ public function mirrinFirstTimev2Part2():void
 	//PC gains ‘Vaginally filled’ (ALREADY DUN) and ‘Sore’ and status effects.
 	processTime(10);
 	soreDebuff(3);
+	applyCumSoaked(pc);
 	clearMenu();
 	addButton(0,"Next",goToFrontOfGym);
 }
