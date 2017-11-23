@@ -893,7 +893,7 @@ public function lerrisTalkMods():void
 
 	output("<i>“You said you’ve got some experience with the products?”</i> you ask, glancing around at everything from biotic sex-toys to ultra-strong fertility pills. Wonder what a cute cat like her has been getting into.");
 	
-	output("\n\n<i>“More than some, sweetie,”</i> she giggles playfully, flipping a locke of green hair behind a purple-hued cat-ear. As she does so, you can’t help but notice the way her bouncy C-cups push against the front of her jumpsuit. They’re as soft and shapely as a pair of tits can be, perfectly sculpted beneath the fabric. They look like they belong on a statue more than a girl working at a shop. Lerris sees you looking and smiles, shifting her shoulders a little. <i>“Yeah, I used to be kind of a mod fiend. I’ve had one of almost everything TamaniCorp sells here. At <b>least</b>!”</i>");
+	output("\n\n<i>“More than some, sweetie,”</i> she giggles playfully, flipping a lock of green hair behind a purple-hued cat-ear. As she does so, you can’t help but notice the way her bouncy C-cups push against the front of her jumpsuit. They’re as soft and shapely as a pair of tits can be, perfectly sculpted beneath the fabric. They look like they belong on a statue more than a girl working at a shop. Lerris sees you looking and smiles, shifting her shoulders a little. <i>“Yeah, I used to be kind of a mod fiend. I’ve had one of almost everything TamaniCorp sells here. At <b>least</b>!”</i>");
 	
 	output("\n\nLerris laughs gaily, her violet tails swishing behind her. Taking that as an invitation, you ask if she’s got any particular favorites. Maybe something she’s taken more than once...");
 	

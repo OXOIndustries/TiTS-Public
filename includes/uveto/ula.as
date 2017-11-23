@@ -377,7 +377,9 @@ public function ulaCaveLesbo():void
 	output("\n\nThe puppy-girl stares down, eyes flicking back in forth in a panic. You note that she doesn’t back away. She doesn’t dare move, not with your [pc.lipsChaste] hovering next to her slit.");
 	output("\n\n<i>“Please,”</i> you exhort, digging your fingertips into her thighs to hold her in place. <i>“Please?”</i>");
 	output("\n\nThe dog-girl shudders. Strings of clear juices drool from her cyan slit. They smell like heaven. <i>“I... need... too,”</i> she whimpers, stepping forward, pressing her puss against your face, clit bumping your nose. Thick-lipped folds slide over your mouth, spread by pressure to exposed a dripping-wet tunnel. <i>“Want... tongue?”</i> The korgonne looks confused. <i>“Pups normal... but alien tongue. Inside!”</i> Her nose wrinkles. <i>“Pussy too! Pussies good-smell together!”</i>");
-	output("\n\n<i>“Yeah,”</i> you mumble into her cunt. <i>Pussies smell real nice.</i> Reaching behind her, you grab her by the ass, delighted to discover that it’s as plush and squishable as her tits. Kneading her cheeks, you shove her into your face so hard{ that your muzzle slips inside, stretching her hymen but not quite breaking it}. A thrust of your tongue makes her whimper and quiver.");
+	output("\n\n<i>“Yeah,”</i> you mumble into her cunt. <i>Pussies smell real nice.</i> Reaching behind her, you grab her by the ass, delighted to discover that it’s as plush and squishable as her tits. Kneading her cheeks, you shove her into your face so hard");
+	if(pc.hasMuzzle()) output(" that your muzzle slips inside, stretching her hymen but not quite breaking it");
+	output(". A thrust of your tongue makes her whimper and quiver.");
 	processTime(20);
 	pc.lust(100);
 	clearMenu();
@@ -548,7 +550,7 @@ public function korgiCockFuck2():void
 	if(pc.perkv1("'Nuki Nuts") > 0) output("swollen ");
 	else if(pc.ballFullness >= 90) output("backed-up ");
 	else if(pc.cumQ() >= 9000) output("womb-flooding ");
-	output("nut this bitch. <i>“Yeaaahhh...”</i>");
+	output("nut in this bitch. <i>“Yeaaahhh...”</i>");
 	output("\n\nNo sooner is the word out of your mouth than the korgonne is shifting on top of you, hips rolling feverishly in an attempt to slide your [pc.cock " + x + "] inside.");
 
 	//2Big
@@ -626,7 +628,9 @@ public function korgiCockFuck2():void
 			}
 			output(".");
 		}
-		output("\n\nPlush lips press against yours, softly this time. The fire has gone out of the fluffy bitch, quenched by{ a lake of} your cum. She nuzzles into you, tired arms on your shoulders");
+		output("\n\nPlush lips press against yours, softly this time. The fire has gone out of the fluffy bitch, quenched by");
+		if(pc.cumQ() >= 10000) output(" a lake of");
+		output(" your cum. She nuzzles into you, tired arms on your shoulders");
 		if(!pc.hasKnot(x))
 		{
 			output(" as she slowly drags herself off your dick.");

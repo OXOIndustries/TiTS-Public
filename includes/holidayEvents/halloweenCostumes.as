@@ -2355,7 +2355,7 @@ public function heroGarbCostume():void
 	clearOutput();
 	showHoliday();
 	author("Fenrirskoll");
-	output("Next to the raque of costumes, you see a mannequin sporting a green and white outfit. The costume seems sort of childish, but also heroic. ");
+	output("Next to the rack of costumes, you see a mannequin sporting a green and white outfit. The costume seems sort of childish, but also heroic. ");
 	//If PC has read Syri’s book about fantasy
 	if(flags["SYRI_FANTASY_TALKED"] != undefined) output("You remember Syri spending hours talking about the character, and the sort of fantasy adventures he went on (not to mention all the girls fawning over him). ");
 	output("The material feels much softer than it looks, but at the same time it’s a bit thicker and heavier. You guess the costume is more for LARPing than a going to a party. The leather is also unblemished and high quality. Whoever made this had good tastes!");
@@ -2486,7 +2486,7 @@ public function yesTakeTheLongswordNext():void
 
 	output("\n\nHer eyes meet yours and she smiles alluringly. Pulling her fingers out of her quim she instead uses them to spread her lips invitingly. <i>“Come get your reward, hero.”</i>");
 
-	output("\n\nYou crawl forward, casting aside your remaining clothes aside from your hat. Seeing a warm waiting hole drives you,the effects of the venom still coursing through your veins. Your body moves on its own and soon you are on top of her, lining up your cum coated dick and sliding in. Her pussy is hot, but is like a candle compared to Yzza’s furnace. She grabs you by the back of your head and mashes her mouth together with yours. When you pull back, another surge of warmth begins to spread in your body, and you realize she must have still had in mouth a significant amount of the lewd venom.");
+	output("\n\nYou crawl forward, casting aside your remaining clothes aside from your hat. Seeing a warm waiting hole drives you, the effects of the venom still coursing through your veins. Your body moves on its own and soon you are on top of her, lining up your cum coated dick and sliding in. Her pussy is hot, but is like a candle compared to Yzza’s furnace. She grabs you by the back of your head and mashes her mouth together with yours. When you pull back, another surge of warmth begins to spread in your body, and you realize she must have still had in mouth a significant amount of the lewd venom.");
 
 	output("\n\nYou hips begin to move on their own, finding renewed vigor from this second dose. Hiking her dress up higher, you lift her legs up over your shoulders, allowing you to plunge deeper into her depths. Her nails claw at your back, urging you on. Still sensitive from your previous encounter, you slam your hips in and cum inside. A small part of your mind is glad and wants you to lie back and rest. You <i>“slayed”</i> the dragon and <i>“saved”</i> the princess. It’s time to rest.");
 
