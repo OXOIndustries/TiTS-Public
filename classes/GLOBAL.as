@@ -363,6 +363,7 @@
 			TYPE_NYREA,
 			TYPE_GRYVAIN,
 			TYPE_SHEEP,
+			TYPE_COCKVINE,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [

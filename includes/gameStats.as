@@ -857,6 +857,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(flags["GIL_PUSS_FUCKED"] != undefined) totalVirginitiesTaken++;
 		if(flags["CHRISSY_ANAL"] != undefined) totalVirginitiesTaken++;
 		if(flags["ULA_DEFLOWERED"] != undefined) totalVirginitiesTaken++;
+		if(flags["LILA_VIRGINITY_TAKEN"] != undefined) totalVirginitiesTaken++;
 		if(!ainaIsVirgin()) totalVirginitiesTaken++;
 		if(sleepingPartner != "" || totalVirginitiesTaken > 0 || pantyFapCount() > 0)
 		{
