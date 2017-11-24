@@ -168,8 +168,8 @@ public function gilAppearance():void
 	if(gilWorgEyes()) output("casts a shadow over his minty green eyes, but fails to hide his");
 	else output(", but can’t hide the glow of his minty green eyes or his");
 	//Gil has worg face:
-	if(gilWorgFace()) output("powerful worg snout with teeth poking out from between his lips.");
-	else output("elongated doberman snout.");
+	if(gilWorgFace()) output(" powerful worg snout with teeth poking out from between his lips.");
+	else output(" elongated doberman snout.");
 	//upper body revealed:
 	if(flags["GIL_UPPER_BODY_REVEAL"] != undefined) output("\n\nHis frame is exceedingly thin, without an ounce of fat or muscle visible on his belly and chest. This is especially noticeable in his hips and waist, which are as thin as they can possibly be, making his shoulders look broad in comparison and giving him a distinctly masculine frame. Most of his body is covered in black fur, with the exception of a large patch of light brown that extends from his chin down to his inner thighs, with his forearms also covered in fur of the same shade of brown. His thin chest sports a pair of midnight black nipples, barely visible beneath the dark fur around them.");
 	else output("\n\nHis frame is exceedingly thin, and even though his baggy clothes obscures his waist, it shows. Both his hips and his shoulders are just the right size to give him a distinctly masculine shape.");

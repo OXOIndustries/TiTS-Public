@@ -203,7 +203,11 @@ package classes.Items.Transformatives
 
 			target.tailCount = 1;
 			target.tailType = GLOBAL.TYPE_FELINE;
-			target.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_FURRED];
+			target.clearTailFlags();
+			target.addTailFlag(GLOBAL.FLAG_LONG);
+			target.addTailFlag(GLOBAL.FLAG_FURRED);
+			if(target.hasSkinFlag(GLOBAL.FLAG_FLUFFY)) target.addTailFlag(GLOBAL.FLAG_FLUFFY);
+			target.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 		}
 		
 		private function changeTail(target:Creature):void
@@ -259,7 +263,11 @@ package classes.Items.Transformatives
 			else output(" <b>Your tails are just like a cat’s now!</b>");
 
 			target.tailType = GLOBAL.TYPE_FELINE;
-			target.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_FURRED];
+			target.clearTailFlags();
+			target.addTailFlag(GLOBAL.FLAG_LONG);
+			target.addTailFlag(GLOBAL.FLAG_FURRED);
+			if(target.hasSkinFlag(GLOBAL.FLAG_FLUFFY)) target.addTailFlag(GLOBAL.FLAG_FLUFFY);
+			target.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 		}
 		
 		private function grow2ndTail(target:Creature):void

@@ -236,6 +236,7 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.tailCount = 2;
 			pc.addTailFlag(GLOBAL.FLAG_LONG);
 			pc.addTailFlag(GLOBAL.FLAG_FURRED);
+			pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 			addButton(0,"Male",setStartingSex,1);
 			addButton(1,"Female",setStartingSex,3);

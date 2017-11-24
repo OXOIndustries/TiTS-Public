@@ -839,6 +839,7 @@ package classes.Items.Transformatives
 					target.addTailFlag(GLOBAL.FLAG_LONG);
 					target.addTailFlag(GLOBAL.FLAG_FURRED);
 					if (target.hasSkinFlag(GLOBAL.FLAG_FLUFFY)) target.addTailFlag(GLOBAL.FLAG_FLUFFY);
+					target.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 					changes++;
 				}
 				else output(target.tailTypeLockedMessage());
