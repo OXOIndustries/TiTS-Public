@@ -3162,6 +3162,8 @@
 		}
 		public function orgasm(): void
 		{
+			var msg:String = "";
+			
 			// NaN production was down to maxCum
 			// if the player didn't have a cock, maxCum returns 0.
 			// anything / 0 = NaN
@@ -3187,25 +3189,30 @@
 						AddLogEvent(ParseText("With a satisfied sigh, your [pc.balls] " + (balls <= 1 ? "is" : "are") + " finally relieved of all the pent-up " + (rand(2) == 0 ? "seed" : "[pc.cumNoun]") + "."), "passive");
 						removeStatusEffect("Blue Balls");
 					}
-					//'Nuki Ball Reduction
-					if(perkv1("'Nuki Nuts") > 0 && balls > 0)
+					if(balls > 0)
 					{
-						AddLogEvent("Your", "passive");
-						if(balls == 1) ExtendLogEvent(" testicle is back to its");
-						else ExtendLogEvent(" balls are back to their");
-						ExtendLogEvent(" normal size once more. What an incredible relief!");
-						ballSizeMod -= perkv1("'Nuki Nuts");
-						setPerkValue("'Nuki Nuts",1,0);
+						//'Nuki Ball Reduction
+						if(perkv1("'Nuki Nuts") > 0)
+						{
+							msg = "Your";
+							if(balls == 1) msg += " testicle is back to its";
+							else msg += " balls are back to their";
+							msg += " normal size once more. What an incredible relief!";
+							AddLogEvent(msg, "passive");
+							ballSizeMod -= perkv1("'Nuki Nuts");
+							setPerkValue("'Nuki Nuts",1,0);
+						}
 						kGAMECLASS.nutStatusCleanup();
 					}
 					if(statusEffectv1("Nyrea Eggs") > 0 && hasOvipositor())
 					{
 						var nyreaEggs:Number = (6 + rand(5));
 						if ((statusEffectv1("Nyrea Eggs") - nyreaEggs) < 0) nyreaEggs = statusEffectv1("Nyrea Eggs");
-						AddLogEvent("You’ve manage to expel", "passive");
-						if(nyreaEggs == 1) ExtendLogEvent(" one faux nyrea egg");
-						else ExtendLogEvent(" " + num2Text(nyreaEggs) + " faux nyrea eggs");
-						ExtendLogEvent(" from your orgasm!");
+						msg = "You’ve manage to expel";
+						if(nyreaEggs == 1) msg += " one faux nyrea egg";
+						else msg += " " + num2Text(nyreaEggs) + " faux nyrea eggs";
+						msg += " from your orgasm!";
+						AddLogEvent(msg, "passive");
 						addStatusValue("Nyrea Eggs", 1, -1 * (nyreaEggs));
 						if(statusEffectv1("Nyrea Eggs") < 0) setPerkValue("Nyrea Eggs",1,0);
 					}
