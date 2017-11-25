@@ -1434,7 +1434,7 @@ public function reahaMilkTalkHoneydew():void
 
 	pc.destroyItemByClass(Honeydew);
 
-	output("You take a golden yellow vial of Honeydew out of your pack and show it to the busty cow. She takes it, looking over the label. <i>“Honey? Isn’t that a little thick for boobs? Well... it’s XenoGen, so I guess it must be safe. I guess you’ll be wanting something sweet for your tea, huh? Alright, let’s see...”</i>");
+	output("You take a golden yellow vial of Honeydew out of your pack and show it to the busty cow. She takes it, looking over the label. <i>“Honey? Isn’t that a little thick for boobs? Well... it’s Xenogen, so I guess it must be safe. I guess you’ll be wanting something sweet for your tea, huh? Alright, let’s see...”</i>");
 	
 	output("\n\nWith practiced skill, Reaha twists the top of the jar off and dumps the viscous yellow goop out right onto the top of one of her tips. She shudders at the sudden chill, but quickly starts to spread the thick gel across her breasts, rubbing it into the soft skin with slow, circular motions until both her tits are colored yellow, completely coated. ");
 	

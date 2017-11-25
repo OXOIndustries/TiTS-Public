@@ -131,10 +131,24 @@ public function bonusTubeSteak():Boolean
 	if(flags["SYNTHSHEATH_ACQUIRED"] == undefined)
 	{
 		output("\n\nAs you walk along the jagged, rusted metal of Tarkus’ surface, you spy something incongruous with the rest of the landscape. A small rubber tube sticks out from underneath the rubble.");
-		addButton(0,"Rubber Tube",grabARubbahTube);
 		
+		addButton(0,"Rubber Tube",grabARubbahTube);
 	}
 	return rustPlainsEncounters();
+}
+public function bonusTubeSteakSecond():Boolean
+{
+	if(CodexManager.entryUnlocked("SynthSheath") && rand(90) == 0 && flags["SYNTHSHEATH_TWO_FOUND"] == undefined)
+	{
+		output("\n\nAs you walk along the jagged, rusted metal of Tarkus’ surface, you spy another Xenogen SynthSheath. As you gently run a hand along your crotch, you remember the last time you used one of these. Do you pick it up?");
+		
+		clearMenu();
+		addButton(0, "Take It", grabARubbahTube);
+		addButton(1, "Leave It", mainGameMenu);
+		
+		return true;
+	}
+	return false;
 }
 
 public function tryEncounterBess():Boolean
@@ -182,11 +196,7 @@ public function rustPlainsEncounters():Boolean {
 		choices[rand(choices.length)]();
 		return true;
 	}
-	if(CodexManager.entryUnlocked("SynthSheath") && rand(90) == 0 && flags["SYNTHSHEATH_TWO_FOUND"] == undefined)
-	{
-		output("\n\nAs you walk along the jagged, rusted metal of Tarkus’ surface, you spy another XenoGen SynthSheath. As you gently run a hand along your crotch, you remember the last time you used one of these. Do you pick it up?");
-		addButton(0,"Synthsheath",grabARubbahTube);
-	}
+	if(bonusTubeSteakSecond()) return true;
 	return false;
 }
 
@@ -219,11 +229,7 @@ public function rustCoastEncounters():Boolean {
 		weightedRand(e)();
 		return true;
 	}
-	if(CodexManager.entryUnlocked("SynthSheath") && rand(90) == 0 && flags["SYNTHSHEATH_TWO_FOUND"] == undefined)
-	{
-		output("\n\nAs you walk along the jagged, rusted metal of Tarkus’ surface, you spy another XenoGen SynthSheath. As you gently run a hand along your crotch, you remember the last time you used one of these. Do you pick it up?");
-		addButton(0,"Synthsheath",grabARubbahTube);
-	}
+	if(bonusTubeSteakSecond()) return true;
 	return false;
 }
 
@@ -259,11 +265,7 @@ public function rustRidgesEncounters():Boolean {
 		weightedRand(e)();
 		return true;
 	}
-	if(CodexManager.entryUnlocked("SynthSheath") && rand(90) == 0 && flags["SYNTHSHEATH_TWO_FOUND"] == undefined)
-	{
-		output("\n\nAs you walk along the jagged, rusted metal of Tarkus’ surface, you spy another XenoGen SynthSheath. As you gently run a hand along your crotch, you remember the last time you used one of these. Do you pick it up?");
-		addButton(0,"Synthsheath",grabARubbahTube);
-	}
+	if(bonusTubeSteakSecond()) return true;
 	return false;
 }
 //Goos and Saxbots
@@ -306,7 +308,7 @@ public function grabARubbahTube():void
 		output("\n\n<i>“Xe...en .io...h Sy...hS...th.Mk1”</i> You slowly sound out as you discern the remaining letters.");
 		output("\n\nYou turn the object over in your hands, the rubbery tube flopping this way and that before you stow the strange object in your pack.");
 	}
-	else
+	else if(flags["SYNTHSHEATH_TWO_FOUND"] == undefined)
 	{
 		flags["SYNTHSHEATH_TWO_FOUND"] = 1;
 		output("You walk over and gingerly pull it out and hold it up in the air. Sure enough, it’s another SynthSheath; you spy the distinct lettering, faded though it may be, spelling out the label “Xenogen Biotech SynthSheath Mk1”. You waggle the fleshy tube around in the air for a moment for your amusement before stowing it safely in your pack.");
