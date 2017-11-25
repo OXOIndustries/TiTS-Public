@@ -705,7 +705,7 @@ public function paigesUnitDurhurrrrrrrrrrFenWroteUNIT():Boolean
 		return true;
 	}
 	//Halloween stuff
-	if(isHalloweenish() && flags["PAIGE_GHOSTED"] == undefined && flags["SEXED_PAIGE"] == undefined)
+	if(isHalloweenish() && flags["PAIGE_GHOSTED"] == undefined && flags["SEXED_PAIGE"] != undefined)
 	{
 		flags["PAIGE_VISIT_DAY"] = days;
 		//Halloween event intro!

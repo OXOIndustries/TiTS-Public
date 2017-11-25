@@ -663,7 +663,7 @@ public function chillWithSylvie():void
 	//3 - Tech
 	else if(select == 3)
 	{	
-		if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined) options.push(1);
+		if(flags["UNLOCKED_JUNKYARD_PLANET"] >= 2) options.push(1);
 		if(flags["SEXBOT_QUEST_STATUS"] == 3) options.push(2);
 		if(pexigaRecruited()) options.push(3);
 		if(CodexManager.entryUnlocked("Gold Myr")) options.push(4);
@@ -674,7 +674,7 @@ public function chillWithSylvie():void
 		{
 			output("Tarkus itself fits the bill - two half planetoids bound together by a sophisticated gravity tether.");
 			if(completedStellarTetherGood()) output(" Those pirates could’ve wiped all the inhabitants if you hadn’t stopped them!");
-			else output("It’s a shame the pirate’s bomb wiped it off the map. There’s nothing more than a metal rich asteroid field to mark where it used to be.");
+			else output(" It’s a shame the pirate’s bomb wiped it off the map. There’s nothing more than a metal rich asteroid field to mark where it used to be.");
 		}
 		else if(subSelect == 2) output("A rogue AI-D on Tarkus was going to overrun the planet, maybe even the galaxy, with deranged sex-bots. You’d read about similar things in the history books in school but never expected to encounter such a thing in real life.");
 		else if(subSelect == 3) output("How a mad scientist set up a shop on Tarkus as a front for all kinds of perverted technology. The bizarre and depraved machinery you saw on your quest to <i>“fix”</i> the Pexiga was unlike anything else out there.");
