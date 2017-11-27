@@ -2705,7 +2705,7 @@ public function bodyBloatingButtObliteratingBowelBasting():void
 	else if(pc.hasVagina()) output("All the while, ");
 	if(pc.hasVagina()) output("[pc.eachVagina] hungers so powerfully that your hands find their way inside, stroking every twitching fold as ecstasy consumes your worldview.");
 	output(" The kui-tan starts rocking back and forth as the heavy pulses of cum fill until you feel about to burst, your belly as round and gravid as any long-impregnated woman’s");
-	if(pc.isPregnant(x)) output(" - and then some");
+	if(pc.isPregnant()) output(" - and then some");
 	output(". Rivers of the stuff squeeze out around her cum-dilated dick, barely escaping between her veins and your abused asshole to stain her sheets.");
 	output("\n\nAnd that’s just the opening salvo of her cumshot. By the time she finishes, her bedsheets are as white as her cum, and the mattress is completely soaked with the stuff. At some point, she slipped out of you, likely after you reached your limit and the pressure forced her out, chased by a geyser of slick, white love-juice. You both lie there, panting. Kiro has fallen into bed with you and snuggles against you, rubbing her nose affectionately against yours.");
 	output("\n\nThe spent herm sighs, <i>“Thanks again, angel. You always know just when to show up, ya know?”</i> She blows a sticky lock of hair out of her eyes. <i>“I get a little bit crazy when my balls get that big, I know.... Thanks for putting up with me anyway.”</i> Kiro hugs you briefly, and surprisingly tenderly before realizing what she’s doing. She jolts and rolls out of bed, tender demeanor concealed under her confident exterior once more.");

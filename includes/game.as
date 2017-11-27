@@ -1166,7 +1166,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 	// Waking up events
 	if(inShip && !dreamed)
 	{
-		if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined)
+		if (flags["ANNO_SLEEPWITH_DOMORNING"] == 1)
 		{
 			addButton(0, "Next", annoMorningRouter);
 			return;
@@ -1174,6 +1174,11 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 		if (flags["BESS_SLEEPWITH_DOMORNING"] == 1)
 		{
 			addButton(0, "Next", bessMorningEvents);
+			return;
+		}
+		if (flags["KASE_SLEEPWITH_DOMORNING"] == 1)
+		{
+			addButton(0, "Next", kaseCrewWake);
 			return;
 		}
 		if (seraBitchImpregnateBedWakeCheck())
@@ -1184,11 +1189,6 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 		if (tryProcDommyReahaTime(minPass - rand(301)))
 		{
 			addButton(0, "Next", reahaDommyFuxTime);
-			return;
-		}
-		if (flags["KASE_SLEEPWITH_DOMORNNING"] == 1)
-		{
-			addButton(0, "Next", kaseCrewWake, undefined, "", "");
 			return;
 		}
 	}

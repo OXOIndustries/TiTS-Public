@@ -412,6 +412,8 @@ public function kaseSexGiveOral():void
 	
 	pc.lust(25);
 	processTime(15+rand(10));
+	var ppKase:PregnancyPlaceholder = getKasePregContainer();
+	pc.loadInMouth(ppKase);
 	
 	IncrementFlag("KASE_SEXED");
 	

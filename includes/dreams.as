@@ -6,6 +6,10 @@
 
 public function dreamChances():Boolean
 {
+	if (flags["ANNO_SLEEPWITH_DOMORNING"] == 1) return false;
+	if (flags["BESS_SLEEPWITH_DOMORNING"] == 1) return false;
+	if (flags["KASE_SLEEPWITH_DOMORNING"] == 1) return false;
+	
 	var dreamed:Boolean = false;
 	var dreams:Array = new Array();
 	if(flags["DREAM_CD"] == undefined) flags["DREAM_CD"] = 0;

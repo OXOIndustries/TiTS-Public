@@ -1775,8 +1775,8 @@ public function redDildoScrew():void
 			if(pc.totalVaginas() == 1) output("is");
 			else output("are");
 			output(" glistening wet");
-			if(pc.isCrotchGarbed()) output(" under your [pc.lowerGarments]");
 		}
+		if(!pc.isCrotchExposed()) output(" under your " + (!pc.isCrotchExposedByLowerUndergarment() ? "[pc.lowerUndergarment]" : "[pc.armor]"));
 		output(".");
 	}
 	var x:int = -1;
