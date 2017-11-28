@@ -36,6 +36,13 @@ public function showCaveUla(nude:Boolean = false):void
 	showBust("ULA" + nudeS);
 }
 
+public function showUla(nude:Boolean = false):void
+{
+	showName("\nULA");
+	var nudeS:String = "";
+	if(nude) nudeS = "_NUDE";
+	showBust("ULA" + nudeS);
+}
 public function ulaCapacity():Number 
 {
 	return 500;
@@ -512,6 +519,7 @@ public function korgiCockFuck():void
 	addButton(0,"Next",korgiCockFuck2);
 }
 
+
 public function korgiCockFuck2():void
 {
 	clearOutput();
@@ -661,22 +669,326 @@ public function korgiCockFuck3():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-/*
+//First Time Dad/Chief Meeting
+public function firstTimeKorgHoldMeeting():void
+{
+	clearOutput();
+	showName("KORG\nMEETING");
+	currentLocation = "KORGII R10";
+	generateMap();
+	output("The guards hustle you through winding tunnels and up a spiral staircase hewn from solid stone. In stark contrast to the frigid exterior, it’s nearly as warm as a sauna inside Korg’ii Hold. By the time you climb to the next level, you’re ");
+	if(pc.faceType == GLOBAL.TYPE_CANINE) output("panting and ");
+	output("sweating. No wonder the korgs you pass are naked, tongues hanging loose from their canine maws to assist their attempts to vent heat. You wipe moisture from your brow as your escort comes to a stop.");
+	output("\n\nIntricately worked script and pictographs crawl across a stone door nearly two korgs tall, its surface polished to a mirror finish. For all the tribal banter and savage behavior, it would seem their clan is home to dedicated craftspeople with skill to rival coreward artisans, however primitive their tools.");
+	output("\n\nThe bigger of your two guards raps the butt of his spear against the door, then leans to a hole, identical to the hundreds hiding the Hold’s entrance. <i>“Ula’s alien-friend arriving!”</i>");
+	output("\n\n<i>“Come. Waiting such times!”</i> a gruff voice answers.");
+	output("\n\nThe big one nods to his shorter compatriot, who twists a handle and pushes, swinging the huge monolithic portal back with surprising ease. From the corner of your eye you can spy a set of heavy hinges, polished to the same sheen as the door’s surface. Light from the chamber beyond dazzles your eyes.");
+	output("\n\nOnce you adjust to the change in luminosity and uncover your eyes, you’re dazzled by the sheer display of opulence within. Every wall is hewn from whitish stone, the surface worked into carved murals of korgonne heroism. Glowing crystals held aloft by chains of gold cast amber luminance over rocky tapestries, flickering slightly. In one corner, you can see a single armored korg fighting off three frostwyrms single-handedly. In another, a horde of fluffy barbarians riding six-legged bears trample milodans underpaw.");
+	output("\n\nFurniture of bone and rock decorates the interior. Fuzzy blankets and plush-looking pillows offer comfort to the otherwise unforgiving furniture. In the center of it all is an enormous throne. It dominates the view, and in its center is the undoubted leader of this tribe of korgonne. The heavyset elder regards you with milky blue eyes and strokes the wispy curls of a beard every bit as white as the rest of his fur. You could sit him down in front of a snow-drift and he’d disappear.");
+	output("\n\n<i>“Huh. Thought bigger.”</i> He squints and leans closer. <i>“You alien? You save Ula?”</i>");
+	output("\n\nYou nod");
+	if(pc.isNice()) output(" and bow. <i>“It was my pleasure.”</i>");
+	else if(pc.isMischievous()) output(", puffing up your chest boastfully.");
+	else output(". <i>“Indeed.”</i>");
 
+	output("\n\nThe chieftain regards you cautiously. <i>“You thanks having. Many aliens greedy. Cruel.”</i> He gestures to a place on the murals where a small group of Korgonne appear to be fighting with a much larger, better-armed battlegroup. <i>“Kill. Steal. Shatter holds for wall-shines.”</i> He waggles fingers decorated with green gemstones, likely emerald or savicite. <i>“You earn chance.”</i> He nods grimly. <i>“Prove not like others. Show friending, and we friending back.”</i>");
+	output("\n\n");
+	if(pc.isBimbo()) output("You rush forward to give the big, fluffy dog-guy a hug when the guards grab you by the collar. Well, you’re gonna hug somebody! You round on him and wrap your arms around his straining, muscular back, petting the his head and neck until you hear his tail wagging. <i>“Yay! Friends!”</i>");
+	else if(pc.isBro()) output("You extend your hand for a handshake. He stares it. After a minute solid of waiting, you drop your hand and clear your throat. <i>“Uhh... yeah. Friends.”</i> Why can’t they just get with the program and pick up on normal galactic social cues? Ugh. You snort in irritation.");
+	else if(pc.isNice()) output("You nod gravely. <i>“I shall.”</i>");
+	else if(pc.isMischievous()) output("You nod, trying to hide a smirk at his crude use of language. <i>“Much friending! Very like! Wow!”</i>");
+	else output("You nod severely. <i>“Of course.”</i>");
+	output("\n\n<i>“Good.”</i> The white-furred elder staggers up to his feet, back cracking innumerable times. <i>“Sleepings times soon.”</i> He waddles past the chairs and tables toward a curtained-off doorway. <i>“Too old for leading. Go cold soon, am reckoning.”</i> Pausing halfway through the curtain, the old dog turns back to fix a keen eye on you. <i>“Behave self. Treat Ula - any korg - badly, you be wishinged for long cold.”</i> The fabric swishes closed.");
+	output("\n\nBehind you, the guards shrug and pad off, quietly discussing your anatomy amongst themselves. It would seem <b>you’re now welcome in Korg’ii Hold!</b>");
+	//[Next] -> Normal room descript
+	processTime(25);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-output("\n\nFirst Time Dad/Chief Meeting");
-output("\n\nThe guards hustle you through winding tunnels and up a spiral staircase hewn from solid stone. In stark contrast to the frigid exterior, it’s nearly as warm as a sauna inside Korg’ii Hold. By the time you climb to the next level, you’re {panting and }sweating. No wonder the korgs you pass are naked, tongues hanging loose from their canine maws to assist their attempts to vent heat. You wipe moisture from your brow as your escort comes to a stop.");
-output("\n\nIntricately worked script and pictographs crawl across a stone door nearly two korgs tall, its surface polished to a mirror finish. For all the tribal banter and savage behavior, it would seem their clan is home to dedicated craftspeople with skill to rival coreward artisans, however primitive their tools.");
-output("\n\nThe bigger of your two guards raps the butt of his spear against the door, then leans to a hole, identical to the hundreds hiding the Hold’s entrance. <i>“Ula’s alien-friend arriving!”</i>");
-output("\n\n<i>“Come. Waiting such times!”</i> a gruff voice answers.");
-output("\n\nThe big one nods to his shorter compatriot, who twists a handle and pushes, swinging the huge monolithic portal back with surprising ease. From the corner of your eye you can spy a set of heavy hinges, polished to the same sheen as the door’s surface. Light from the chamber beyond dazzles your eyes.");
-output("\n\nOnce you adjust to the change in luminosity and uncover your eyes, you’re dazzled by the sheer display of opulence within. Every wall is hewn from whitish stone, the surface worked into carved murals of korgonne heroism. Glowing crystals held aloft by chains of gold cast amber luminance over rocky tapestries, flickering slightly. In one corner, you can see a single armored korg fighting off three frostwyrms single-handedly. In another, a horde of fluffy barbarians riding six-legged bears trample milodans underpaw.");
-output("\n\nFurniture of bone and rock decorates the interior. Fuzzy blankets and plush-looking pillows offer comfort to the otherwise unforgiving furniture. In the center of it all is an enormous throne. It dominates the view, and in its center is the undoubted leader of this tribe of korgonne. The heavyset elder regards you with milky blue eyes and strokes the wispy curls of a beard every bit as white as the rest of his fur. You could sit him down in front of a snow-drift and he’d disappear.");
-output("\n\n<i>“Huh. Thought bigger.”</i> He squints and leans closer. <i>“You alien? You save Ula?”</i>");
-output("\n\nYou nod{ and bow. <i>“It was my pleasure.”</i>/, puffing up your chest boastfully./. <i>“Indeed.”</i>}");
-output("\n\nThe chieftain regards you cautiously. <i>“You thanks having. Many aliens greedy. Cruel.”</i> He gestures to a place on the murals where a small group of Korgonne appear to be fighting with a much larger, better-armed battlegroup. <i>“Kill. Steal. Shatter holds for wall-shines.”</i> He waggles fingers decorated with green gemstones, likely emerald or savicite. <i>“You earn chance.”</i> He nods grimly. <i>“Prove not like others. Show friending, and we friending back.”</i>");
-output("\n\n{You rush forward to give the big, fluffy dog-guy a hug when the guards grab you by the collar. Well, you’re gonna hug somebody! You round on him and wrap your arms around his straining, muscular back, petting the his head and neck until you hear his tail wagging. <i>“Yay! Friends!”</i>/You extend your hand for a handshake. He stares it. After a minute solid of waiting, you drop your hand and clear your throat. <i>“Uhh... yeah. Friends.”</i> Why can’t they just get with the program and pick up on normal galactic social cues? Ugh. You snort in irritation./You nod gravely. <i>“I shall.”</i>/You nod, trying to hide a smirk at his crude use of language. <i>“Much friending! Very like! Wow!”</i>/You nod severely. <i>“Of course.”</i>}");
-output("\n\n<i>“Good.”</i> The white-furred elder staggers up to his feet, back cracking innumerable times. <i>“Sleepings times soon.”</i> He waddles past the chairs and tables toward a curtained-off doorway. <i>“Too old for leading. Go cold soon, am reckoning.”</i> Pausing halfway through the curtain, the old dog turns back to fix a keen eye on you. <i>“Behave self. Treat Ula - any korg - badly, you be wishinged for long cold.”</i> The fabric swishes closed.");
-output("\n\nBehind you, the guards shrug and pad off, quietly discussing your anatomy amongst themselves. It would seem <b>you’re now welcome in Korg’ii Hold!</b>");
-output("\n\n[Next] -> Normal room descript");
-*/
+public function ulaRoomBonusFunc():Boolean
+{
+	if(flags["MET_ULA"] == undefined)
+	{
+		ulaFirstTimeRemeet();
+		return true;
+	}
+	else 
+	{
+		output("\n\nUla is here, smiling in satisfaction. She doesn't seem ready to talk just yet.");
+		addDisabledButton(0,"Ula","Ula","Ula's content is not yet finished.");
+	}
+	return false;
+}
+public function ulaFirstTimeRemeet():void
+{
+	showUla(true);
+	output("\n\nThe familiar form of the korgonne you saved is sprawled out on a cushy-looking bed, naked save for oodles of jangling jewelry and a fat, glossy dildo rammed between her legs. Lips parted mid-moan, she squeaks at your sudden intrusion and rolls ass-over-head over the bed to fall heavily on the floor. <i>“You!”</i> Her tail wiggles happily in the air as she climb back up onto her mattress.");
+	output("\n\nYou note the dildo is still firmly clutched in her paw, dripping wet.");
+	output("\n\n<i>“You come visit!”</i> Springing off her mattress, the excited ball of fluff and fuck tumbles into you");
+	if(pc.tallness < 70) output(", tackling you to the ground");
+	else output(", smacking into you. You hold her there for a moment before letting her weight carry you to the ground.");
+	output(" Kisses pepper your nose. <i>“Savinged me!”</i> A slick, wet tongue smears across your cheek. <i>“You liking me!”</i>");
+
+	//Fucked
+	if(flags["ULA_SEXED"] != undefined)
+	{
+		output("\n\nKissing her back, you laugh. <i>“Of course I like you.”</i> You hug her, pressing your lips to her cupped ear for a whisper, <i>“It’s why I fucked you.”</i>");
+		output("\n\nThe giggling girl gasps audibly. <i>“Again?”</i> Her voice is plaintive, whining. You can smell the arousal clinging to her fur, a rich aroma laced with hints of minty desire. The dildo she wiggles in front of you doesn’t help, soaked as it is in her pheromonal secretions.");
+	}
+	//Didnt fuck
+	else
+	{
+		output("\n\nLooking at her eager eyes, it seems impossible to disagree. <i>“Of course.”</i>");
+		output("\n\n<i>“Then ");
+		if(pc.hasCock()) output("breed");
+		else output("heat");
+		output("-share?”</i> She bats her eyelashes playfully, and you’re abruptly reminded that she was masturbating when you walked in. Her scent is thick in the air, rich and feminine with a hint of minty desire. The dildo clutched in her paw is soaked in it, filling the air with her pheromonal secretions.");
+	}
+	//Merge
+	output("\n\nA little dizzily, you mull over your options. There doesn’t seem to be enough blood for your brain and everything else that’s waking up. You could say no, you guess. If you really wanted to.");
+
+	//CHOICES
+	processTime(5);
+	pc.lust(33);
+	clearMenu();
+	if(pc.hasCock()) addButton(0,"Breed Her",breedWithUla);
+	else addDisabledButton(0,"Breed Her","Breed Her","You need a penis for this.");
+	addDisabledButton(1,"Trib Her","Trib Her","This hasn't been written yet. Sorry!");
+	addButton(2,"Watch",watchUlaFapturbate);
+}
+
+public function watchUlaFapturbate():void
+{
+	clearOutput();
+	showUla(true);
+	//Watch
+	output("<i>“Why don’t I watch?”</i> you offer, pushing the eager korgonne back.");
+	output("\n\nA neon-blue lip quivers in a plaintive pout. <i>“Give show at least?”</i>");
+	output("\n\n<i>“");
+	if(pc.isBimbo()) output("Oooh, sure!");
+	else if(pc.isBro()) output("I ‘spose.");
+	else if(pc.isNice()) output("I think I can manage that.");
+	else if(pc.isMischievous()) output("I could. Hope you’re ready to jill off in record time.");
+	else output("I guess.");
+	output("”</i> ");
+	if(!pc.isChestExposed() && !pc.isCrotchExposed()) output("You strip naked. ");
+	if(!pc.isChestExposed()) output("You tug your [pc.chestCovers] over your head. ");
+	else if(!pc.isCrotchExposed()) output("You tug your [pc.crotchCovers] down and out of the way. ");
+	else output("You run your hands across your exposed body. ");
+	output("Bits and pieces of equipment fall to the floor. You won’t be needing any of it here.");
+
+	output("\n\nAcross the room, the korgonne princess bounces back onto her bed, legs splaying outlandishly to reveal the sodden gash of her puffy, cyan cunt. She smiles shyly at you, then places one paw over her netherlips, rubbing herself off with slow, sensuous presses of her padded palm. Her other hand slides the dildo against her inner thigh. Residual pussy-juice mats her fur down and thickens the scent of feminine need in the air.");
+
+	output("\n\nNose twitching, you watch in rapt attention. The plush-bodied slut is right there, jilling herself off to your naked body, and its all you can do not to jump on top of her and take her right then and there. Instead, you settle for letting your hands roam across your body, your fingertips teasing across your [pc.chest] to find your [pc.nipples]");
+	if(pc.hasFuckableNipples()) output(", thumbs slipping inside");
+	else if(pc.hasDickNipples()) output(", thumbs coaxing out the [pc.dickNipples] until they jut forward, massively lewd and erect");
+	output(". You swivel your hips sensuously");
+	if(pc.hasGenitals()) output(", blood rushing to your crotch");
+	output(".");
+	if(pc.hasCock())
+	{
+		output(" Your [pc.cocks] ");
+		if(pc.cockTotal() > 1) output("thrust achingly forward, as if they");
+		else output("thrusts achingly forward, as if it");
+		output(" could slip inside the busty dog-girl if only you got a little more erect.");
+	}
+	if(pc.hasVagina())
+	{
+		if(pc.wettestVaginalWetness() < 2) output(" Moisture graces your thighs.");
+		else if(pc.wettestVaginalWetness() < 3) output(" Moisture soaks your thighs.");
+		else if(pc.wettestVaginalWetness() < 4) output(" Wetness trickles down your thighs.");
+		else if(pc.wettestVaginalWetness() < 5) output(" Wetness spills down your thighs.");
+		else output(" Wetness soaks your thighs.");
+		output(" Breathing in the scent of her puss has you basting in reciprocal sapphic desire.");
+	}
+	output("\n\n<i>“Naughty alien. Eyes no lie.”</i> Smearing her slippery palm up her cushy-looking middle, the playful puppy exposes herself to you just long enough to press the dildo to her entrance. The arousal-plumped folds part with ease as she feeds it in, mouth widening in mounting pleasure. Her hand reaches for her breasts in that moment and grabs hold of one, fingers sinking deep. A fuzzy thumb stretches for a nipple, and upon finding it, circles it with quick, jerky strokes. The dildo bottoms out at the same time, prompting the lust-drunk korgonne to commence fucking herself with it, pumping it in and out with such forceful strokes that you can hear her cunt squelching from the self-administered pussy-pounding.");
+	output("\n\nYou join her, not in lovemaking but in masturbation. Between the sight of that glossy dildo rocking her world and the earnest ardor in her eyes, staring back at you, the moment feels almost as tender as proper intercourse. Yes, your fingers supply the stimulation, but it’s her plaintive moans and absolute wantonness on display that has your motor so revved up. And on top of it all, the air is filled with the cloying, needful scent of her juicing cunt, triggering ");
+	if(!pc.isTreated() && !pc.isBimbo()) output("long-dormant");
+	else output("gene-augmented");
+	output(" receptors in your nose that make it hard to think of anything but orgasming with the mint-flavored trollop again and again");
+	if(pc.hasCock()) output(", spilling load after load until you pass out from pleasure or exhaustion.");
+	else if(pc.hasVagina()) output(", cumming again and again until your overheated folds climax you into unconsciousness.");
+	else output(".");
+
+	output("\n\nThe korgonne shivers, full-body, sending her proportionally enormous tits bouncing and jiggling against one another. Her eyes roll back, and the dildo’s thrusts become distinctly wetter. Flecks of pussy-juice slobber over her thighs. The sheets are a soaked mess. Arching her back, the short, stacked puppy-girl keens high in the back of her throat, fingers scrabbling against a tit, and she cums. She cums so hard that her legs flail, toes reflexively clenching and unclenching.");
+
+	output("\n\nA few droplets of her freely-spilled fluids");
+	if(pc.hasCock())
+	{
+		output(" spatter your aching dick");
+		if(pc.cockTotal() > 1) output("s");
+		output(" spatter");
+		if(pc.cockTotal() == 1) output("s");
+		output(" your well-lubed folds");
+	}
+	else output(" spatter your [pc.chest]");
+	output(", and you cum with her");
+	if(pc.hasCock() || pc.isSquirter()) output(", heedless of the mess you’re making");
+	output(". It’s better than it ought to be, more compelling, anyhow. Your orgasm drags on for seemingly ever, long undulations of ecstasy that ebb and flow like gentle ocean waves. When your body can take no more, it stops as suddenly as started, and you collapse to the floor like a marionette with its strings cut, one hand idly toying with a ");
+	if(!pc.hasDickNipples()) output("[pc.nipple]");
+	else output("[pc.nippleCock]");
+	output(".");
+	output("\n\n<i>“Mmm... very funs,”</i> the princess giggles from her bed, licking her fingers. <i>“More honest being, next time.”</i> She sucks the dildo so hard you worry she’s going to swallow it, then pops the cleaned toy into a primitive bin. <i>“Know you wanting heat-sharing.”</i> She gently pries open the lips of her satiated snatch. <i>“Want you here.”</i> A trickle of clear girl-cum spills onto her slick, ruined sheets. <i>“Want alien touch.”</i>");
+	output("\n\nTruth be told, you want that too, but this close after an orgasm, the effects of her pheromones are dulled enough for you to act with some degree of normalcy. <i>“Yeah...”</i>");
+	output("\n\nSmiling gleefully, the dog-girl springs up out of bed and bops a rusty-looking sanitation bot in the corner. It powers up with a clack and a whir, then sets to vaporizing the contaminants from her fur. The sheets");
+	if(pc.hasCock() || pc.isSquirter()) output(" and floor");
+	output(" come next.");
+	processTime(20);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",ulaMutualMastEpi);
+}
+public function ulaMutualMastEpi():void
+{
+	//First time epilogue
+	if(flags["MET_ULA"] == undefined)
+	{
+		clearOutput();
+		showUla(true);
+		output("<i>“What is alien call-word?”</i> the korgonne princess looks almost prim and proper with her dildo hidden away and her legs crossed, concealing the blue-tinged treasure between from view.");
+		output("\n\nYou pull your mind out of her crotch and back to the matter at hand. <i>“My what?”</i>");
+		output("\n\n<i>“Call-word.”</i> She points at her chest. <i>“Ula.”</i> Then she points at you and tilts her head.");
+		output("\n\nOhhh! <i>“[pc.name],”</i> you answer, <i>“of the, uh... Steele clan.");
+		if(pc.isNice()) output(" Nice to meet you, Ula.");
+		output("”</i>");
+
+		output("\n\n<i>“[pc.name],”</i> the curvy korgonne mouths, handling each phoneme like an exotic treasure. <i>“[pc.name].”</i> It comes easier the second time. She beams");
+		if(pc.tallness < 66) output(" up");
+		output(" at you. <i>“Nice call-word. Is proper, us knowing other.”</i> She hugs you tight. <i>“First save, now know. Visiting again soon?”</i>");
+
+		output("\n\nYou doubt step aside until you agree... <i>“");
+		if(pc.isNice()) output("Of course!");
+		else if(pc.isMischievous()) output("As if I could stay away!");
+		else output("Sure.");
+		output("”</i>");
+		output("\n\n<i>“Happiness!”</i> Ula kisses you on the nose. <i>“Return and tell star-stories.");
+		if(pc.hasCock()) output(" Maybe breed? Lots of breed. Make Ula big-tummy mommy.");
+		else if(pc.hasVagina()) output(" Maybe share heat-water?");
+		output("”</i>");
+		flags["MET_ULA"] = 1;
+	}
+	else mainGameMenu();
+}
+
+//Breed	
+public function breedWithUla():void
+{
+	clearOutput();
+	showUla(true);
+	var x:int = pc.cockThatFits(ulaCapacity());
+	if(x < 0) x = pc.biggestCockIndex();
+	output("<i>“God yes,”</i> you pant, stumbling forward into her bed.");
+	if(!pc.isCrotchExposed()) output(" Your [pc.crotchCovers] can’t come off fast enough. How fortunate that a second set of hands are there, easing you into nudity.");
+	output(" Blood thrums in your ears, your heart hammering, sending volley after volley of cock-expanding blood into your loins, pumping your [pc.cocks " + x + "] into full, proud tumescence. The korgonne princess’s belly fur tickles against your [pc.cockHead " + x + "].");
+
+	output("\n\nWide-eyes set in cute, canine face stare up at you. <i>“Good. Want you. Thinkings of you.”</i> She holds up the sloppy dildo almost guiltily. <i>“Alien-thoughts make.”</i> It is absolutely drenched. A cloud of pussy-scent radiates from it, tinging every breath with potent whiffs of fuckable, pheromonal cunt. <i>“Strong heat-scent.”</i> She sniffs at it, nipples firming up. One of her thighs quivers against your [pc.leg]. <i>“Always wanting, since met you.”</i> The korgonne waves her dildo back and forth in front of your nose, watching your nostrils twitch, then tosses it aside. <i>“Dildo no good.”</i> She scooches closer. <i>“You good.”</i>");
+
+	//Dick too big for proper fuck
+	if(pc.cockVolume(x) > ulaCapacity())
+	{
+		output("\n\nEvery once of your body is screaming at you to throw her on her back and thrust yourself in to the hilt. Your instincts don’t care that you’ll split her in half. They just want to feel her tight channel stretching around your girth. You mash your mouth to hers, kissing her feverishly. Her plump, blue lips are soft but press back just as hard. She wants it, and she wants it bad. It feels like torture, not being inside her yet, but you manage to pull back and gesture at the elephant-cock in the room. <i>“It won’t fit.”</i>");
+		output("\n\n<i>“Fit. Magic fuck-butter!”</i> the horny bitch promises, stretching out to retrieve a bottle of something from a primitive bin. It’s <i>“Peggy’s Elasticizing Oil,”</i> a well-known lubricant-slash-elasticizer favored by mismatched couples in the core. She wastes no time in unscrewing the cap and stuffing the top into her needy quim, squeezing huge dollops of slimy, pussy-loosening lube into her deepest recesses. <i>“Make stretchy girl!”</i> The empty bottle is tossed away, and her slickened paws grab hold of your dick. <i>“Breed now. You like. Can’t help seeding!”</i>");
+	}
+	//Dick fits
+	else
+	{
+		output("\n\nEvery ounce of your body is screaming at you to throw her onto her back and take her. Gentleness and care aren’t in the equation, just bestial rutting. You wrinkle your nose, trying to control yourself, to keep yourself from breaking this korgonne princess’s twat in half with the force of your thrusts. It mostly works, right up until you mash your mouth to hers, kissing her feverishly. Her plump, blue lips are soft but press back just as hard. She wants it every bit as badly as you. It feels like torture, not being inside her yet, so you break the kiss to ask, <i>“Ready?”</i>");
+		output("\n\nBiting her lip, the horny bitch nods vigorously, tail wagging behind her. <i>“Put in. Fuck hard. Give pups!”</i>");
+	}
+	//Merge
+	output("\n\nYou aren’t going to get a better invitation than that. Grabbing her by the hips, your fingers sinking deep, you tug her crotch closer. She flops back onto her elbows with her mouth hanging open in delight, long blue tongue lolling. Your [pc.cockHead " + x + "] is right there, all but kissing her cunt. A trickle of clear, alien girl-cum dribbles out like a crystalline welcome mat. You thrust ");
+	if(pc.cockVolume(x) > ulaCapacity()) output("against her lips. Their unsubtle tightness strains against you, then gives an inch at a time, slowly widening, yielding with unnatural flexibility to accept everything that you have to offer. Her pubic mound visibly lifts, distorting in the shape of your [pc.cockHead " + x + "] as you slide inside. It gives the impression that the korgonne is more stretchy sex-doll than consenting sapient.");
+	else output("into her lips, and try not to swoon. The luscious alien folds quiver at your touch, begging you to drive deeper. You do. Pushing onward, you bury yourself to the [pc.knot " + x + "], delighting in the muscular ripples and contractions that beg you to bust a nut here and now.");
+	pc.cockChange();
+
+	output("\n\nA sharp exhalation of alarm shifts into a sigh of delight");
+	if(flags["ULA_DEFLOWERED"] == undefined)
+	{
+		output(" as the korgonne’s hymen breaks, <b>robbing her of her virginity</b>");
+		flags["ULA_DEFLOWERED"] = 1;
+	}
+	else output(" as her passage is spread into the shape of your [pc.cock " + x + "] once more");
+	output(". <i>“More!”</i> She loops her arms around your ");
+	if(pc.tallness < 60) output("neck");
+	else output("back");
+	output(". <i>“Give warm! Pups-filling-warm!”</i>");
+
+	output("\n\nYou grind your crotch against princess’s soaking-wet loins and bear her down to the bed, smashing her clit down between your bodies until her impassioned requests transform into confused, ecstatic whimpers. You kiss her again, more forcefully, unable to help yourself. Your tongue thrusts into her lips");
+	if(pc.cockVolume(x) > ulaCapacity()) output(" as you feed more inches into her snatch, distending her belly further. She’s like a big fuzzy condom, just waiting to be stretched over your dick");
+	output(". She tries to kiss you back, but it’s weak and unfocused. Her jaw is slack, the tongue flopping around confusedly as the pressure on her clit overwhelms her nervous system. You guide it with your own, tasting every inch of her drooling maw in the process. From both ends, you spread her open and <i>thrust</i>.");
+
+	output("\n\nPlush softness fills your fingers as your hand settles on a tit, and you squeeze it hard, fingers digging deep into the soft, furred mound. The tip of the dog-girl’s nipple feels as hard as diamond against your [pc.skinNoun]. You briefly consider sucking it, then resume frenching her, availing yourself of her kissable blue lips, letting your hands and loins enjoy her from the neck down.");
+
+	output("\n\nA spasm drags your [pc.hips] back, and primitive instincts command you to thrust in, burying your boner with a girlcum-splattering squelch. Her pussy is everywhere: in every breath, soaking your [pc.legs], staining the sheets, so large in your mind that if you close your eyes you can see its rubbery folds, inviting you to fuck them raw. Now that you’ve started, you can’t stop. Your [pc.hips] bounce back, then slide back in, addicted to the friction shooting up your spine, shocking you with bolts of bliss that seem to make the smell of cunt that much stronger.");
+
+	output("\n\nPadded paws scrabble over your back as the petite dog-woman cums. You can feel it in the fluttering motions of her cunt and the quivering of her thighs more than anything else. The warm dribbles sliding down your [pc.thighs] are a giveaway as well. You break the kiss to watch, fucking her with long, even strokes");
+	if(pc.cockVolume(x) > ulaCapacity()) output(", dick obscenely visible every through layers of skin and fur");
+	output(", watching her eyelashes flutter and her jaw work open and closed, only stopping when she bites down on a lip hard enough to draw a trickle of blood.");
+
+	output("\n\n<i>Slap-slap-slap</i>. The clap of your hips banging away at her rings through the room, gradually rising in tempo to your ever-growing ardor. The korg-girl shivers and sighs, rag-dolling from the pounding and orgasmic aftershocks alike. That hardly seems to matter. The fucked-stupid glaze in her eyes may as well be an advertisement to your [pc.balls] to brew up an extra-virile load for how you feel. Burying your nose into her neck, you hump her powerfully, bestially, the way you know she wants to be taken.");
+
+	output("\n\nWhen you cry out in ecstasy, the clan princess’s voice joins you. Her pussy clamps down in answer to your climactic throbbing, and when your [pc.cumNoun] cum boils out of you, it’s met by a torrent of syrupy, feminine orgasm.");
+	if(pc.cumQ() >= 50) 
+	{
+		output(" You flood her quim with pulse after pulse of seed.");
+		if(pc.cumQ() >= 300)
+		{
+			output(" Eruptions of it flood through her ");
+			if(pc.cockVolume(x) > ulaCapacity()) output("stretchy ");
+			output("cervix to pack her womb.");
+			if(pc.cumQ() >= 2000)
+			{
+				output(" Rivers of jism spill out onto the sheets");
+				if(pc.cumQ() >= 10000) 
+				{
+					output(", but still, you cum");
+					if(pc.cumQ() >= 25000) output(". Her belly bloats obscenely from the volume, transforming her from chubby waif into gravid-looking broodmother, a look she is all too happy to have from how she gurgles and strokes her distended tummy");
+				}
+				output(".");
+			}
+		}
+	}
+	output("\n\n<i>“Ahhh...”</i> the korgonne sighs, body going completely limp.");
+	output("\n\nThe scent of her pussy is everywhere, surrounding you, enveloping you, urging you to continue. You do.");
+	output("\n\nShe doesn’t react when fuck your way through your own sloppy seconds aside from making murmurs of delight and leaking enough mixed sexual fluids to keep your mind hazy and filled with the absolute <i>need</i> to <i>flood her with cum</i>.");
+	output("\n\nFriction, sweat, scent, and the compulsive need to move your hips drags you through orgasm after orgasm. You spill a sea of loads in the korgonne’s velvety snatch. She’s <i>yours</i> now, after all, and you can’t get that beautiful, gorgeous blue pussy out of your head...");
+	processTime(45);
+	IncrementFlag("ULA_SEXED");
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",ulaBreedingEpi);
+}
+public function ulaBreedingEpi():void
+{
+	clearOutput();
+	showUla(true);
+	output("Licks tickle your nose. You grumble, and try to brush them aside, but they return, wetter and sloppier. When you can bear it no longer, you open your eyes to find the korgonne princess beaming down at you. <i>“Good fuck.”</i> A hand pats your tender junk. <i>“Father many pups.”</i>");
+	output("\n\nMemories of your activities come back to you, the way you took her, how you couldn’t help yourself... the simmering pleasure of her overheated slit. An almost painful surge of blood races into your crotch. <i>“Thanks?”</i>");
+	if(flags["MET_ULA"] == undefined)
+	{
+		output("\n\nThe korgonne princess scampers back and takes your hand, pulling you up to a sitting position. <i>“What is call-word?”</i> She looks almost proper with her legs crossed, not at all like a factory for fuck-compelling pheromones.");
+		output("\n\nYou pull your mind out of your nose and back to the matter at hand. <i>“My what?”</i>");
+		output("\n\n<i>“Call-word.”</i> She points at her chest. <i>“Ula.”</i> Then she points at you and tilts her head.");
+		output("\n\nOhhh! <i>“[pc.name],”</i> you answer, <i>“of the, uh... Steele clan.");
+		if(pc.isNice()) output(" Nice to meet you, Ula");
+		output("”</i>");
+		output("\n\n<i>“[pc.name],”</i> the curvy korgonne mouths, handling each phoneme like an exotic treasure. <i>“[pc.name].”</i> It comes easier the second time. She beams");
+		if(pc.tallness >= 66) output(" up");
+		output(" at you. <i>“Nice call-word. Is proper, us knowing other.”</i> She hugs you tight. <i>“Pups know father name. Visiting soon? Want give all pups. Whole clan.”</i>");
+		output("\n\nYou doubt she’ll step aside until you agree... <i>“");
+		if(pc.isNice()) output("Of course!");
+		else if(pc.isMischievous()) output("As if I could stay away!");
+		else output("Sure.");
+		output("”</i>");
+		flags["MET_ULA"] = 1;
+	}
+	output("\n\n<i>“Happiness!”</i> Ula kisses you on the nose. <i>“Return and tell star-stories. Then breeding, maybe? Make Ula big-tummy mommy. Have strongest pups.”</i>");
+	processTime(60);
+	for(var i:int = 0; i < 6; i++)
+	{
+		pc.orgasm();
+	}
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}

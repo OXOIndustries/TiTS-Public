@@ -1483,4 +1483,134 @@ public function encounterSavicite(choice:String = "encounter"):void
 	}
 }
 
+public function korgiiHoldExteriorBonus():Boolean
+{
+	output("\n\nThe holes appear to have been drilled through the valuable ore ");
+	if(flags["ENTERED_KORGI_HOLD"] != undefined) output("as a mechanism of hiding Korg'ii Hold.");
+	else output("for an unknown purpose by an unknown entity. You poke a few to little effect. They run too deep to plumb without specialized tools, and it'd be more profitable to just mine out the thing to the bottom.");
+	output(" Snow walls in every other side but the path back to the south.");
+	if(flags["ULA_SAVED"] != undefined) addButton(0,"Awoo",awooAtDatHole);
+	return false;
+}
 
+//Awoo - Requires Korg’ii Princess event
+public function awooAtDatHole():void
+{
+	clearOutput();
+	showName("AWOOOOO-\nOOOOOO");
+	output("You recall the Korgonne’s words and count out the holes: the third hole from the right along the top. It’s easy to find, but you feel a bit self-conscious about leaning close and howling into it. Sucking in a lungful of air, you give your best imitation of a korgonne howl, though not a long one.");
+	if(pc.faceType == GLOBAL.TYPE_CANINE || pc.ausarScore() >= 3) output(" It sounded almost like the real thing and, honestly, felt pretty good.");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",enterKorgHold);
+}
+public function korgiiHoldInteriorExitBonus():void
+{
+	output(" <i>“");
+	if(!korgiTranslate()) output("You want leave?");
+	else output("Heading back out? Safe travels, korg-friend.");
+	output("”</i>");
+	addButton(0,"Leave",leaveAwoo);
+}
+
+public function enterKorgHold():void
+{
+	clearOutput();
+
+	showName("OPEN\nDOGGIE-DOOR");
+	output("<i>“Welcoming, friend!”</i> comes an answering voice.");
+	output("\n\nA sharp-sounding crack echoes through the snow-covered countryside as the glittering rock shifts inward. Rotating slowly, it rolls behind the wall, revealing the ");
+	currentLocation = "KORGII B12";
+	generateMap();
+	//FIRST TIME NO NEW PG
+	if(flags["ENTERED_KORGI_HOLD"] == undefined)
+	{
+		flags["ENTERED_KORGI_HOLD"] = 1;
+		output("confused faces of the two korgonne guards. <i>“Who you?”</i>");
+		output("\n\nThe second elbows the first. <i>“Ula saver. Mustening be.”</i>");
+		output("\n\nNodding in agreement, both turn to face you, hands still tight on their weapons. <i>“Honor-guest of Korg’ii Clan, inside. Meeting Clan Chief.”</i>");
+		output("\n\nNo sense in backing out now. You step inside the darkened tunnel");
+		if(pc.tallness >= 72) output(", bending low to fit into a hall designed for shorter creatures");
+		output(".");
+		//[Next] -> First Time Chief meeting.
+		processTime(2);
+		clearMenu();
+		addButton(0,"Next",firstTimeKorgHoldMeeting);
+	}
+	//REPEAT NO NEW PG
+	else
+	{
+		output("familiar faces of the two korgonne guards. <i>“");
+		if(!korgiTranslate()) output("Alien returnening?");
+		else output("Ahh, the alien is back.");
+		output("”</i> One hastily waves you inside. <i>“");
+		if(!korgiTranslate()) output("Come. Safe-warm here.");
+		else output("Hurry inside. You’ll be safe and warm, korg-friend.");
+		output("”</i>");
+		output("\n\nNodding gratefully, you step back into Korg’ii Hold as the glittering door slides closed on metallic tracks.");
+		//[Next]
+		processTime(2);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+}
+
+//Leave Awoo
+public function leaveAwoo():void
+{
+	clearOutput();
+	showName("\nLEAVING...");
+	currentLocation = "KORGII B14";
+	generateMap();
+	output("<i>“");
+	if(!korgiTranslate()) output("Leaving,");
+	else output("Yeah, I’ve gotta go,");
+	output("”</i> you tell the guards, pointing at the door.");
+	output("\n\n<i>“Ugh,");
+	if(korgiTranslate()) output(" I can’t wait for this shift to end,");
+	output("”</i> one grumbles, grabbing hold of the lever to loosen Korg’ii Hold’s hidden hatch. It pops loose with a satisfying ‘crack.’ The second guard pulls on embedded handles, setting the whole thing rolling along metallic tracks into the wall. <i>“Safe travels, korg-friend.”</i>");
+	output("\n\n");
+	if(pc.isNice()) output("Nodding respectfully");
+	else if(pc.isMischievous()) output("Smirking self-assuredly");
+	else output("Stone-faced");
+	output(", you step out into the snow.");
+	output("\n\nThe door seals shut behind you, leaving you in the driven snow.");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function korgiD12Bonus():void
+{
+	if(rand(3) == 0) output("A naked dog-person is trotting by right now, clad in little more than wispy fabric and jingling stone jewelry. He spares you a friendly wave and bounces along on his way.");
+	else if(rand(2) == 0) output("A naked dog-girl is trotting by right now, openly ogling you on the way by. You can see her nipples visibly plump around her jeweled nipple-piercings.");
+	else output("A group of korg fisherman trundle by with nothing but a few pouches of bait and metallic fishing poles.");
+
+	output("\n\nTo the west is a door carved with pictures of spears and fallen beasts.");
+	if(!korgiTranslate()) output(" Your translator can't make out the foreign script that accompanies it.");
+	else output(" Rough script declares it to be \"Hunter's Hole,\" obviously some kind of shop.");
+}
+
+public function korgiH14Bonus():void
+{
+	if(korgiTranslate()) output(" A translation of the nearby script reads, \"Herb Mother's.\"");
+	else output(" You wish you could translate the accompanying script, however clear the art might seem.");
+}
+
+public function korgiF14Bonus():void
+{
+	if(korgiTranslate()) output("scribbles indecipherably beneath. The best approximation your translator can manage is \"Warm Crusts.\"");
+	else output("scrawls beneath, declaring this to be a clothing shop. The literal translation is \"Warm Crusts.\"");
+}
+
+public function chiefBedroomBonus():Boolean
+{
+	//Temporary? Maybe someday in the future actually allow into chief's bedroom.
+	clearOutput();
+	output("You stop yourself before you do something terribly stupid. It would be best to let sleeping dogs lie.");
+	currentLocation = rooms[currentLocation].westExit;
+	generateMap();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	return true;
+}
