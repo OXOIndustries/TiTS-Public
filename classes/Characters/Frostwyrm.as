@@ -189,23 +189,26 @@ package classes.Characters
 		{
 			output("The frostwyrm throws its head back and lets out a bellowing roar that echoes across the glacial rift, sending out shockwaves of energy that hammer against the very walls of your mind. You grab the sides of your head and groan in agony as the creature’s roar wracks your brain.");
 			
+			var bStun:Boolean = false;
+			
 			//PC fails willpower save and is stunned
 			if (target.willpower() + rand(20) + 1 < willpower())
-				{
-					output("\n\nThe psychic onslaught leaves you staggered, reeling from the mental blow. <b>You’re Stunned</b>");
-					CombatAttacks.applyStun(target, 2);
-				}
+			{
+				output("\n\nThe psychic onslaught leaves you staggered, reeling from the mental blow. <b>You’re Stunned</b>");
+				bStun = true;
+			}
 			//PC passes willpower save
 			else
-				{
-					output("\n\nThough you’re reeling, and suffering from an intense headache, you manage to pull yourself together in a hurry.");
-				}
-				
-				var damMulti:Number = willpower() / target.willpower();
-				if (damMulti > 2) damMulti = 2;
-				if (damMulti < 1) damMulti = 1;
-				
-				applyDamage(new TypeCollection( { psionic: 5 * damMulti } ), this, target, "minimal");
+			{
+				output("\n\nThough you’re reeling, and suffering from an intense headache, you manage to pull yourself together in a hurry.");
+			}
+			
+			var damMulti:Number = willpower() / target.willpower();
+			if (damMulti > 2) damMulti = 2;
+			if (damMulti < 1) damMulti = 1;
+			
+			applyDamage(new TypeCollection( { psionic: 5 * damMulti } ), this, target, "minimal");
+			if(bStun) CombatAttacks.applyStun(target, 2);
 		}
 		
 		//My Wings, a hurricane!

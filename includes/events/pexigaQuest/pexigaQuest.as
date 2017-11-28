@@ -2449,7 +2449,7 @@ public function dolledBadEnd():void
 	{
 		if(pc.breastRows[i].breastRatingRaw < 45) pc.breastRows[i].breastRatingRaw = 45;
 		else pc.breastRows[i].breastRatingRaw += 5;
-		//if(!pc.breastRows[i].nippleType == GLOBAL.NIPPLE_TYPE_NORMAL) pc.breastRows[i].nippleType == GLOBAL.NIPPLE_TYPE_NORMAL;
+		//if(pc.breastRows[i].nippleType != GLOBAL.NIPPLE_TYPE_NORMAL) pc.breastRows[i].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
 	}
 	if(pc.hipRatingRaw < 12) pc.hipRatingRaw = 12;
 	else pc.hipRatingRaw += 3;
@@ -2504,7 +2504,7 @@ public function dolledBadEnd2():void
 	output("\n\nOne by one, the sprayguns fire, warm blobs of scarlet splattering across your body like gooey, melted wax, clumping together and dripping in thin trickles all over your exposed [pc.skinFurScales]. The pressure of your tantalizingly close orgasm overflows and your body jerks in its padded restraints, climaxing with every glistening squirt. You pant and gasp at first, but before long, you’re screaming your orgasms for all your lungs are worth as, inch by inch, your lower body is coated in the shiny, crimson shell.");
 	if(pc.hasLegs() && !pc.hasLegFlag(GLOBAL.FLAG_HEELS)) output(" A pair of 8-inch high heels are fitted onto your [pc.feet] as the goo cools across you, sealing you in fuck-me pumps that hobble you even further.");
 
-	output("\n\nAs your body is covered in latex, a pair of heat lamps descend to help out. Somewhere, lost in the daze of your endlessly repeating orgasm, you notice these lamps have been marked <i>“Brain Melt,”</i> but you can’t think about that very closely. All that matters is the encasing fluid, the glorious euphoria, and the weird heat building in your chest. A limb pops a cork in your mouth so the latex doesn’t flow into your drooling gob and the next moment, your vision is cut off by the dripping, hardening slime.");
+	output("\n\nAs your body is covered in latex, a pair of heat lamps descend to help out. Somewhere, lost in the daze of your endlessly repeating orgasm, you notice these lamps have been marked “Brain Melt,” but you can’t think about that very closely. All that matters is the encasing fluid, the glorious euphoria, and the weird heat building in your chest. A limb pops a cork in your mouth so the latex doesn’t flow into your drooling gob and the next moment, your vision is cut off by the dripping, hardening slime.");
 
 	processTime(70);
 	pc.lust(10000);

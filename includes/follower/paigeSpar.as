@@ -358,7 +358,7 @@ public function FFLO():void
 	output("\n\nYou’re dazed, beaten, exhausted, and horny as you could possibly be. If you went to Paige right now and asked her to fuck you, you know damn well she’d reciprocate for another round. But until you make that decision to swallow your pride, all you can do is put your effects back on and leave after her.");
 
 	// end scene (scene: FFLO); place PC one square outside of Paige’s Yoga Class or back to the ship’s main menu; increase Lust by 50; add Cum Soaked status
-	applyCumSoaked(pc);
+	applyPussyDrenched(pc);
 	pc.girlCumInMouth(paige);
 	processTime(20);
 	pc.lust(50);

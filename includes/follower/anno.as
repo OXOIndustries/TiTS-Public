@@ -3220,6 +3220,9 @@ public function annoUvetoHuskarFoursomeMountUpIII():void
 	
 	output("\n\n<i>“No promises,”</i> you manage to squeak out as the first embers of ecstasy buzz through your [pc.vagOrAss]. Your muscles clench outright, spasming in wild contractions around the first inch of green cock-rock sliding inside you. Both huskar use their fingers and mouths to ease its entry, teasing you just that much more until the second inch is inside, then a third, and then you’re cumming and bucking your hips and trying not to scream to the heavens.");
 	
+	if(pc.hasVagina()) pc.cuntChange(0, 100);
+	else pc.buttChange(100);
+	
 	output("\n\nThe pleasure is mind-blowing - almost literally, wiping away every conscious thought but that of gasping climax and searing arousal. The girls giggle as your");
 	if (!pc.hasVagina()) output(" ass clenches wildly");
 	else output(" pussy squirts all over them");

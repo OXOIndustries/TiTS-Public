@@ -144,6 +144,9 @@ public function holidayCostumeMenu():void
 		else addButton(btnSlot++,"Hero Garb",heroGarbCostume,undefined,"Hero Garb","A forest green pointed hat droops over the head of a mannequin, with a matching green tunic and white tights. A pair of brown leather boots and gauntlets lay strewn across the floor.\n\nPrice: 1000 credits");
 
 		addButton(btnSlot++,"KnottyNurse",becomeANaughtyNurse,undefined,"Knotty Nurse",knottyNurseTooltip());
+		
+		if(CodexManager.entryUnlocked("Cockvines")) addButton(btnSlot++,"GreenBikini",chooseCockvineBikini,undefined,"Green Bikini","What seems to be a green-colored bikini stuffed between the other outfits.\n\nPrice: 1000 credits");
+		else addDisabledButton(btnSlot++,"Locked","Locked","You are not familiar with this yet.");
 	}
 	else
 	{
@@ -155,6 +158,8 @@ public function holidayCostumeMenu():void
 		addDisabledButton(btnSlot++,"MetalReptile","Metal Reptile","You can’t afford this junk. Crap.");
 		addDisabledButton(btnSlot++,"Hero Garb","Hero Garb","You can’t afford this junk. Crap.");
 		addDisabledButton(btnSlot++,"KnottyNurse","Knotty Nurse","You can’t afford this junk. Crap.");
+		if(CodexManager.entryUnlocked("Cockvines")) addDisabledButton(btnSlot++,"GreenBikini","Green Bikini","You can’t afford this junk. Crap.");
+		else addDisabledButton(btnSlot++,"Locked","Locked","You are not familiar with this yet.");
 	}
 	//Poe A - Bondage Kitty
 	if(pc.isTaur()) addDisabledButton(btnSlot++,"Black Cat","Black Cat","This wouldn’t fit your body type.");
@@ -1740,7 +1745,7 @@ public function buyDatSpoidahCostume():void
 public function buyDatSpoidahCostumeNext():void
 {
 	clearOutput();
-	clearBust();
+	showBust("SAERI_FAIRY");
 	showName("OUT ON\nTHE TOWN");
 	author("Magikarpfever");
 	
@@ -1774,7 +1779,7 @@ public function buyDatSpoidahCostumeNext():void
 public function spiderCostumePart2():void
 {
 	clearOutput();
-	showHoliday("equine");
+	showBust("SAERI_FAIRY", "HOLIDAY_HORSE");
 	author("Magikarpfever");
 	output("Before she can even react you shoot a stream of web to swathe her legs in your silk. With her long legs now indisposed, she falls to the ground, barely being able to catch herself with her hands. She pushes her luxurious hair out of her hair to reveal a look of complete disbelief. Any attempt to push back against the ground is met with another shot of web until her arms are also cocooned. Holiday struggles against the bonds, but it’s a half-hearted attempt at best. You walk toward her at a brutally slow pace, each step emphasized by the click of your natural high-heels. Soon you’re looming over her, watching her squirming cease as you lean down. In a surprisingly soft gesture, you stroke the smooth skin of her cheeks. Gradually your hands trail down, all the way to her sizable breasts. Both are moving up and down more rapidly than normal, Holiday’s breathing amped up a notch, whether it’s from running to the alley or the sudden position she found herself in.");
 
@@ -2195,7 +2200,7 @@ public function saurmorianHermBoi():void
 public function saurmorianHalloweenAfterStuff():void
 {
 	clearOutput();
-	clearBust();
+	showBust("SAURMORIAN_WOMAN");
 	showName("\nPARTY!");
 	author("Aullama");
 	output("A shiver runs down your spine as you feel the wind’s caress through the bodysuit, causing your scales to rattle against each other. Right, you’re still effectively naked... You cast a glance back towards Holiday’s store, but quickly turn away with a dismissive huff; oh well, let prying eyes look upon your regal form, then, ");
@@ -2216,7 +2221,7 @@ public function saurmorianHalloweenAfterStuff():void
 	{
 		output("\n\nYou flush furiously as you try to move among the crowd, every careful step accompanied by juicy schlicks and sparks of pleasure as those plump lips between your thighs grind, slip, and slide against each other. All too soon, [pc.girlCum] begins trickling down your thighs and dripping onto the ground. With the scent of more feminine excitement in the air, you quickly have the attention of many sharp noses and snouts.");
 	}
-	output("\n\nAnd just like that, those curious glances turn to devilish gropes, tender caresses, more than a few probes and slaps and- it’s too much! But you resist the urge to jump after every grabby reveler - an alien sense of pride keeps you from settling with the easiest lay - and instead continue following the crowd. Your eyes scan the masses, but you just can’t find someone that can match your inner fire... Or something. It completely escapes you that what you’re looking for is another saurmorian");
+	output("\n\nAnd just like that, those curious glances turn to devilish gropes, tender caresses, more than a few probes and slaps and - it’s too much! But you resist the urge to jump after every grabby reveler - an alien sense of pride keeps you from settling with the easiest lay - and instead continue following the crowd. Your eyes scan the masses, but you just can’t find someone that can match your inner fire... Or something. It completely escapes you that what you’re looking for is another saurmorian");
 	output("\n\n<i>Fuck</i>, your blood feels hot enough to boil!");
 	output("\n\nAnd then you see it; a flash of silver, and a feminine figure enters a dark, almost derelict building. <i>Who the fuck was that, and why were they so alluring</i>?");
 	output("\n\nAfter ducking and dodging through the crowds, edged and tormented by libidonous hands, you finally find yourself in front of that ominous structure. This building stands out to you, seeming different from any you’ve seen so far, but you can’t pinpoint why... Curious at this sight - every other building you can see is either closed, or filled with party goers - and figuring you might as well try to meet the enchanting figure you saw before, you’re drawn inside. The moment your tail-tip is in, the automatic doors close shut behind you, muffling and then silencing any outside noise.");
@@ -2350,7 +2355,7 @@ public function heroGarbCostume():void
 	clearOutput();
 	showHoliday();
 	author("Fenrirskoll");
-	output("Next to the raque of costumes, you see a mannequin sporting a green and white outfit. The costume seems sort of childish, but also heroic. ");
+	output("Next to the rack of costumes, you see a mannequin sporting a green and white outfit. The costume seems sort of childish, but also heroic. ");
 	//If PC has read Syri’s book about fantasy
 	if(flags["SYRI_FANTASY_TALKED"] != undefined) output("You remember Syri spending hours talking about the character, and the sort of fantasy adventures he went on (not to mention all the girls fawning over him). ");
 	output("The material feels much softer than it looks, but at the same time it’s a bit thicker and heavier. You guess the costume is more for LARPing than a going to a party. The leather is also unblemished and high quality. Whoever made this had good tastes!");
@@ -2425,7 +2430,7 @@ public function yesTakeTheLongsword():void
 public function yesTakeTheLongswordNext():void
 {
 	clearOutput();
-	clearBust();
+	showBust("YZZA");
 	showName("\nPARTY!");
 	author("Fenrirskoll");
 
@@ -2481,7 +2486,7 @@ public function yesTakeTheLongswordNext():void
 
 	output("\n\nHer eyes meet yours and she smiles alluringly. Pulling her fingers out of her quim she instead uses them to spread her lips invitingly. <i>“Come get your reward, hero.”</i>");
 
-	output("\n\nYou crawl forward, casting aside your remaining clothes aside from your hat. Seeing a warm waiting hole drives you,the effects of the venom still coursing through your veins. Your body moves on its own and soon you are on top of her, lining up your cum coated dick and sliding in. Her pussy is hot, but is like a candle compared to Yzza’s furnace. She grabs you by the back of your head and mashes her mouth together with yours. When you pull back, another surge of warmth begins to spread in your body, and you realize she must have still had in mouth a significant amount of the lewd venom.");
+	output("\n\nYou crawl forward, casting aside your remaining clothes aside from your hat. Seeing a warm waiting hole drives you, the effects of the venom still coursing through your veins. Your body moves on its own and soon you are on top of her, lining up your cum coated dick and sliding in. Her pussy is hot, but is like a candle compared to Yzza’s furnace. She grabs you by the back of your head and mashes her mouth together with yours. When you pull back, another surge of warmth begins to spread in your body, and you realize she must have still had in mouth a significant amount of the lewd venom.");
 
 	output("\n\nYou hips begin to move on their own, finding renewed vigor from this second dose. Hiking her dress up higher, you lift her legs up over your shoulders, allowing you to plunge deeper into her depths. Her nails claw at your back, urging you on. Still sensitive from your previous encounter, you slam your hips in and cum inside. A small part of your mind is glad and wants you to lie back and rest. You <i>“slayed”</i> the dragon and <i>“saved”</i> the princess. It’s time to rest.");
 
@@ -2554,7 +2559,7 @@ public function shortSwordTakingTime():void
 public function shortSwordTakingTimeNext():void
 {
 	clearOutput();
-	clearBust();
+	showBust("ASYS");
 	showName("\nYOINK!");
 	author("Fenrirskoll");
 
@@ -2648,7 +2653,7 @@ public function trappyHeroAftermath():void
 	showName("\nAFTERMATH");
 	output("You wake up the next morning, tucked gently in bed, nursing a small hangover and a sore ass, although you find the sensation strangely pleasant. You are surprised to see it’s your own bed on your ship and not the one in Asys’ room. You pull yourself up and stumble to your cockpit. You check your nav data and find that you are no longer even in orbit of Poe A. Looking around confused, you see a blinking message notification. Pulling it up, you see it’s a video file, and you decide to play it.");
 
-	output("\n\nAsys is on screen, sitting next to your sleeping form in your bed. She winks at the camera. <i>“Hello little boy. I’d love to chat it up, but your pink haired friend tells me this has to be quick. We were having so much fun when she somehow managed to break into our room. By that time in the night, your entire skin was covered in cum, so much so that she almost didn’t recognise you. She grabbed your costume, said she was a friend of yours and some bad men were out for you. We ran out the fire escape and from the looks of it, those bad men were armed to the teeth. Just who did you piss off?”</i>");
+	output("\n\nAsys is on screen, sitting next to your sleeping form in your bed. She winks at the camera. <i>“Hello little boy. I’d love to chat it up, but your pink haired friend tells me this has to be quick. We were having so much fun when she somehow managed to break into our room. By that time in the night, your entire skin was covered in cum, so much so that she almost didn’t recognize you. She grabbed your costume, said she was a friend of yours and some bad men were out for you. We ran out the fire escape and from the looks of it, those bad men were armed to the teeth. Just who did you piss off?”</i>");
 
 	output("\n\nShe pets your sleeping head. <i>“Carrying you was a pain! You were slippery and hard to keep a grip on. Your friend.... What was her name? Holly? Hallow...? Anyway, she led the way to your ship. She put in some nav data while I cleaned you off, said your stuff was under your bunk, and told me I had just a few minutes to leave a message so I made this and left you a small gift in your ass. That was a wonderful night. I definitely won’t forget it”</i> she says, holding a up a pic of her over you, her cock deep inside and you coated in cum passed out. <i>“Don’t forget you belong to me my honey. Here’s hoping we meet again someday!”</i> The video cuts out there. You reach your ass to find it’s still leaking the Saeri’s cum....");
 
@@ -3610,7 +3615,7 @@ public function knuttyNurseRodenianIII(choice:String):void
 public function knottyNurseEpilogue(rodenian:Boolean = false):void
 {
 	clearOutput();
-	clearBust();
+	halloweenShipMove();
 	showName("\nHUNGOVER");
 	author("Fenoxo Fenho");
 	output("<b>Some time later...</b>");
@@ -3679,5 +3684,745 @@ public function applyKnottyNurseTF():void
 		pc.addFaceFlag(GLOBAL.FLAG_FURRED);
 	}
 	pc.tongueType = GLOBAL.TYPE_CANINE;
+}
+
+
+// Cockvine Bikini
+public function chooseCockvineBikini():void
+{
+	clearOutput();
+	showHoliday();
+	author("TosakunoKishi");
+	
+	output("You sift through a row of outfits, ranging from standing costumes to the more exotic, before finding what looks like a simple green bikini. Upon closer inspection, you find that it’s made of an odd material. The top is connected to the bottom, by what looks to be a series of intertwining strings, and are comprised of what looks to be a vine. You turn it around and see the distinct tip of a cockvine folding at the back of the top. Your gaze is drawn down and widens as you see a plethora of cockvines bundled up and tied to the bottom, which is also a vine curving around the groin and rear.");
+	output("\n\nThe vines masquerading as coverings would only just keep your unmentionables hidden from public view. If you wore this, nearly every inch of your body would be on display for all to look at. But that wouldn’t too bad, you suppose, at least for one night. It’s a party after all.");
+	output("\n\nA small tug pulls apart the top, but the second you put the ends close to each other, it locks together instantly. You assume it must be magnets or a proximity chip of some kind. A quick experiment reveals the same to be true for the bottom. Making it easy to put on and remove. Pretty useful for bedroom shenanigans.");
+	output("\n\nHoliday files her nails noisily, impatiently waiting for you to make your selection. Noticing you’ve picked something out, she leans forward to see what you’ve got. <i>“Oh, yeah, that’s a cockvine bikini. Don’t worry, they’re not real,”</i> she states, seeing your deepening frown, <i>“It’s a great conversation starter and feels real good on the skin, I assure you. Now are you gonna buy it or not? Kinda wanna join the party before it ends.”</i>");
+	if(pc.isMan()) output("\n\n<i>“Oh, yeah, that’s a genuine faux cockvine bikini. Though it’s usually meant for someone with curves, if you catch my drift?”</i> She sighs at your lack of reaction, <i>“Well, I suppose it’d make a great conversation starter. Now are you gonna buy it or not? I kinda wanna join the party before it ends.”</i>");
+	output("\n\nDo you buy the cockvine bikini, or select another?");
+	
+	processTime(2);
+	// [Buy]
+	clearMenu();
+	addButton(0, "Buy It", buyCockvineBikini);
+	addButton(14, "Back", holidayCostumeMenu);
+}
+public function buyCockvineBikini():void
+{
+	clearOutput();
+	showHoliday();
+	author("TosakunoKishi");
+	
+	flags["HOLIDAY_OWEEN_PURCHASE"] = "cockvine bikini";
+	pc.credits -= 1000;
+	
+	output("You suppose you could act like the victim of a cockvine orgy. That’d freak people out and get you through those creepy stares from before, right? If nothing else, you’ll be a conversation piece. <i>“I’ll take it.”</i>");
+	output("\n\nHoliday smirks and has you transfer the credits to a dubious-looking holdings account. Has she never even heard of the bank? <i>“Great. You can change here since I bet you want to enjoy the Masque just as much as me. And if you go back to your ship to change, I doubt you’ll be back in time for the festivities.”</i>");
+	output("\n\nYou protest. What are you supposed to do with your");
+	if(pc.hasArmor() || pc.hasUpperGarment() || pc.hasLowerGarment() || pc.hasWeapon())
+	{
+		if(pc.hasArmor() || pc.hasUpperGarment())
+		{
+			output(" [pc.upperGarments]");
+			if(pc.hasLowerGarment() && !pc.hasWeapon()) output(" and");
+		}
+		if(pc.hasLowerGarment())
+		{
+			if((pc.hasArmor() || pc.hasUpperGarment()) && pc.hasWeapon()) output(",");
+			output(" [pc.lowerGarment]");
+		}
+		if(pc.hasWeapon())
+		{
+			if(pc.hasArmor() || pc.hasUpperGarment() || pc.hasLowerGarment()) output(" and especially your");
+			output(" [pc.weapon]");
+		}
+	}
+	else output(" gear");
+	output("? This costume doesn’t exactly include a rucksack to carry your stuff.");
+	output("\n\nHoliday rolls her eyes, <i>“Nobody goes to the Masque with a bunch of explorer gear. Unless that’s what you’re going as.”</i> She sits herself upon a crate and runs a critical eye up and down your body, <i>“That won’t work with that costume though,");
+	if(pc.hasArmor() || pc.hasUpperGarment()) output(" [pc.upperGarments]");
+	else output(" gear");
+	output(" over a bikini? Give me a break.”</i>");
+	output("\n\nYou suppose she has a point.");
+	output("\n\n<i>“I’ll watch your shit for you. Just stick it in a corner, come back after you’re done partying, and then you’ll be on your merry way,”</i> Holiday tilts her head and pouts at you, fluttering her cat-like yellow eyes, <i>“Can’t you trust little ole me?”</i> A nearby crate gives a well-timed rumble that almost sounds like a laugh, before Holiday sharply kicks its reinforced side, quieting whatever is within.");
+	output("\n\nYou’ve met pirates who are more trustworthy than she is, yet you have little in the way of options. Walking back to your ship, with those stares lingering on you again, is far from desirable. Not to mention the time it’d take. At least if you take up Holiday’s offer, your stuff should be safe and you can head out and have a bit of fun before everything’s over. You really should enjoy yourself while you can.");
+	
+	processTime(3);
+	
+	clearMenu();
+	addButton(0, "Next", wearCockvineBikini);
+}
+public function wearCockvineBikini():void
+{
+	clearOutput();
+	showHoliday();
+	author("TosakunoKishi");
+	
+	output("Stripping becomes an awkward affair with the demonic nurse’s bright, lecherous eyes following your every move. You swear you can feel her eyes devouring your body, but each glance in her direction shows her to be diligently checking her nails. Those stares outside must’ve gotten to you. With a shake of your head, you push your paranoia aside and begin putting on your costume.");
+	output("\n\nYou pull open the top and bottom and step into them. Almost immediately, they snap into place around you. For a moment, you feel them squirm, as if they were living things trying to find the best way to conform to your body. You hold in a moan as they incidentally move over your sensitive areas. They settle before long and you’re wearing a cockvine bikini.");
+	output("\n\nWow, that feels weirdly nice. You expected a bikini made from cockvine to feel bulky and unpleasant, but the vines around your [pc.breasts] and your [pc.crotch] are surprisingly pleasant. They’re strangely warm, like they’re alive, however you ignore that in favor of making sure everything fits all right. You untie the cockvine bundle to make sure it looks good.");
+	if(pc.isMan()) output("\n\nYou laugh at how absurd you probably look, wearing this outfit clearly meant for a girl. Yet you can’t deny how nice it is on your masculine form. Even your cock" + (pc.cocks.length == 1 ? "" : "s") + (pc.balls > 1 ? " and balls" : "") + " feel" + ((pc.cocks.length == 1 && pc.balls <= 1) ? "s" : "") + " almost at home in the poor excuse for underwear. Though you’re not sure how you feel about having so much of your ass on display in the Masque. Who knows who might get the wrong idea? But it would make a good way of luring people away. You frown; where’d that thought come from?");
+	else if(pc.isWoman()) output("\n\nYou sigh at how the lower vine seems to hug your curves, somehow accentuating them as if it were coercing your fat into doing so. An inspection of your back shows that your ass cheeks are on full display, sending a wave of concern and excitement through you at who might sneak a grope here and there, or entice others to follow them. Especially since the makeshift underwear seems to push your cheeks out. It’d probably be a good way to lure people away. You frown; where’d that thought come from?");
+	else if(pc.isHerm()) output("\n\nYou giggle at how poorly the lower garment conceals your [pc.crotch]. You’d look more at home on a stripper’s stage with how much of your figure you’re showing off, but this is the Masque after all. People were probably showing off much worse. Though that raises a problem with your ass, of which only your anus is concealed. Some might get the wrong idea about that. Maybe even try and take advantage. But that’s fine, just means you can lure them away easier. You frown; where’d that thought come from?");
+	else output("\n\nWow, this bikini hugs you in all the right places. To some extent, it almost feels like it was grafted onto your skin. Even your smooth groin feels almost sexy like this, as does your ass. Someone might even be tempted to cop a feel tonight. You blush at the thought, but nod to yourself, thinking that it would be the perfect way to get people to a more secluded spot where you can have some fun. You frown; where’d that thought come from?");
+	output("\n\nWhen you’re finished getting it on, the bikini honestly looks great on you. It hugs you in all the right ways, accentuating every aspect of your body without going overboard. The strings connecting the top and bottom together practically seem to be a part of you, so tight against your body that you can’t even pinch them without getting your skin. You suppose that’s to be expected for something made to highlight a girl’s figure.");
+	output("\n\nYou look around yourself just to make absolutely certain that nothing is amiss, then notice what looks like a necklace nearby. You pick it up and discover that it also resembles a cockvine. It must be a part of the costume. You shrug and unclasp it in exactly the same way as the bikini, then put it around your neck. Almost instantly, it snaps shut and pulls taut around your throat, like a choker. You feel a little discomfort, but it soon passes, and you pin the uneasiness down to the perverted nurse’s lingering gaze.");
+	output("\n\nYou attempt to adjust your outfit a little more just to make sure it’s perfect, but Holiday interrupts you, <i>“Sweetie, you look fine. Now can you get out and have some fun, so I can do the same?”</i> She cocks an expectant eye at you and you sigh in return. Holiday isn’t exactly the most courteous shopkeeper you’ve met. Maybe a dick in her mouth would make her a little nicer? Your frown returns at the thought and how suddenly it surged. You must be getting horny.");
+	output("\n\n<i>“Yeah, yeah, I’m going.”</i> You say and strut pass Holiday, then immediately yelp as her hand comes cracking down upon your ass. You crane your neck about to see a distinct handprint on your left butt cheek, then glare up at Holiday. She smirks lustfully back at you.");
+	output("\n\n<i>“Sorry, but I like to inspect my customers before they leave. Makes my job all the more satisfying,”</i> she explains, though it doesn’t sound all that convincing. Regardless, you sigh and let her have her fun. Holiday’s inspection is more invasive than any medical professionals, as her eyes seem to consume every detail and her hands refuse to leave your skin for more than a few seconds. But you can’t deny that her hands feel pretty good, especially when she gropes your ass and [pc.groin].");
+	output("\n\nHer ‘inspection’, though you suspect it’s just an excuse for her to feel you up, carries on for another minute or so, <i>“I thought you wanted to get to the Masque?”</i> You inquire. Holiday waves a hand at you, as if swatting away your query. She takes another audacious grope of your groin and ass, then steps back.");
+	output("\n\n<i>“Sorry, couldn’t resist. Now get out and get fucked, cockvine whore,”</i> she insults with a, you assume, good-natured grin. You roll your eyes at her and head out, but not before teasing her with a shimmy of your hips, <i>“Such a tease. Don’t do anything I wouldn’t do!”</i>");
+	
+	processTime(16);
+	pc.lust(15);
+	
+	clearMenu();
+	addButton(0, "Next", cockvineBikiniNext);
+}
+public function cockvineBikiniNext():void
+{
+	clearOutput();
+	clearBust();
+	showName("\nOUCH!");
+	author("TosakunoKishi");
+	
+	output("The streets are packed tight with people dressed in all manner of costumes. Some of them are dressed as goblins, though you can tell it’s just a paintjob, and others are floating around as fairies, using what must be temporary wing grafts. There are even some who have completely abandoned the idea of modesty and are walking around with only stockings and maybe a thong to cover their skin. You notice that no one is dressed like you, bringing a smile to your lips at how unique a choice you’ve made.");
+	output("\n\nThe others also seem to have taken notice of your unique get-up, as many pause and turn to stare at you. You notice that some lean in to whisper to one another, eyes still locked to you. There’s no way to know what they’re murmuring about, but you’d like to think they’re jealous of your outfit and body.");
+	output("\n\nIt’s a little embarrassing to have so many sets of eyes watching your every move, and yet it feels no more intrusive than Holiday’s stares had, though it’s also a vast improvement over the dodgy looks you received beforehand. You return the looks with a self-assured smile, glad that the evening seems to be on the right track.");
+	output("\n\nBut that quickly changes when you feel a strange prick above your rear. You look back, but find nothing there, then it happens again. Yet you’re certain that nothing’s there. Another prick startles you and worry begins to set in. It’s not painful, but certainly uncomfortable and unnerving, especially when you swear you can feel something moving under your skin. You start to lose sensation in your lower back, as if someone had applied anaesthetic. What the hell is going on?");
+	output("\n\nYou reach down and grasp at the makeshift underwear, hoping that it’s the cause of the prickly, numbing sensation. You try to remove it, but find yourself incapable of doing so as it tightens around you, earning a gasp as it grips your [pc.crotch]. Another prick is followed by another, though you barely feel them now and simply stumble along. You look around in the hopes that someone will help, but they’ve all moved on from you and are heading away to enjoy the festivities. Those that do meet your gaze, look away quickly so as not to get involved.");
+	output("\n\nEventually, you find an unobstructed wall to lean against and do so. Maybe you caught something? With all the viruses in the universe, there’s bound to be something that causes prickly sensations, followed by numbed nerve endings. You go to pull out your codex, hoping it would have the answers, but find nothing. Oh yeah, you left it at Holiday’s shop. You look back, but you can’t see it from how far you’ve walked.");
+	output("\n\nFinally, after what felt like ten pricks in total, you start to regain sensation in your back. Immediately afterwards, you start to twitch wildly and can’t help but giggle and groan, almost as if your nerves were being played with by tiny, inquisitive hands. Tingles run up your spine before long, then across the rest of your body. Then nothing. The numbness and tingling are both gone.");
+	output("\n\nYou turn and look down at your rear once again, hoping to find something you missed last time. Instead, you’re astounded to see that the once green cockvines have taken on your [pc.skinColor] skin color, except those that form the bikini itself. The cockvines then unfold themselves to your surprise, flaring out to make sure you keep your balance. Their skin looks exactly like yours, though it has an almost leathery quality to it. The vines end in a purple tip, from which you can see a clear fluid bubbling over.");
+	output("\n\nYou should probably head back to Holiday and get her to sort this mess out. Although, this might just be a temporary mod like those girls with wings you saw before. In that case, wouldn’t it be more fun to mingle? What do you do?");
+	
+	processTime(45);
+	pc.lust(25);
+	
+	// Tails
+	pc.removeTails();
+	pc.tailType = GLOBAL.TYPE_COCKVINE;
+	pc.tailCount = 10;
+	pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+	pc.addTailFlag(GLOBAL.FLAG_LONG);
+	pc.tailGenital = GLOBAL.TAIL_GENITAL_NONE;
+	pc.tailGenitalArg = GLOBAL.TYPE_COCKVINE;
+	pc.tailGenitalColor = "green";
+	if(rand(5) == 0) pc.addTailFlag(GLOBAL.FLAG_RIBBED);
+	
+	clearMenu();
+	addButton(0, "Holiday", cockvineBikiniEvent, "go holiday", "Holiday’s Store", "Return to Holiday’s store and ask Holiday what is going on.");
+	addButton(1, "Mingle", cockvineBikiniEvent, "go mingle", "Go Mingle", "Continue with the festivities.");
+}
+public function cockvineBikiniEvent(response:String = ""):void
+{
+	clearOutput();
+	author("TosakunoKishi");
+	clearMenu();
+	
+	var i:int = 0;
+	var cumQ:Number = 0;
+	
+	switch(response)
+	{
+		case "go holiday":
+			clearBust();
+			showName("HOLIDAY’S\nSTORE...");
+			
+			output("The surprises keep coming as you tense muscles you never knew you had and the vines respond. Holiday did say the bikini was made from cockvines, but never said if they were dead. Were they just dormant, waiting for a poor schmuck like yourself to put them on? Experimentally, you try to tense different muscles, discovering which ones affect which cockvine or cock-tails as they are now. A couple of them rub against each other of their own accord and you feel a burst of pleasure dart up your spine.");
+			output("\n\nThat was intense! And there’s ten of them! You could probably really have some fun with these things. But you steel yourself against the sensations and resolve to get to Holiday’s store. You could get into serious trouble if you don’t do anything fast.");
+			
+			processTime(2);
+			flags["COCKVINE_BIKINI_EVENT"] = 1;
+			
+			addButton(0, "Next", cockvineBikiniEvent, "holiday store");
+			break;
+		case "go mingle":
+			clearBust();
+			showName("\nGO MINGLE...");
+			
+			output("However, that’s the least of your worries as you tense muscles you never knew you had and the vines respond. Holiday did say the bikini was made from cockvines, but never said if they were dead. Were they just dormant, waiting for a poor schmuck like yourself to put them on? Experimentally, you try to tense different muscles, discovering which ones affect which cockvine - or cock-tails as they are now. A couple of them rub against each other of their own accord and you feel a burst of pleasure dart up your spine.");
+			output("\n\nThat was intense! And there’s ten of them! You could probably really have some fun with these things. And where better to do that, than at a party? With that in mind, and lust boiling in your bloodstream, you head to the loudest place you can find.");
+			
+			processTime(2);
+			flags["COCKVINE_BIKINI_EVENT"] = 2;
+			
+			addButton(0, "Next", cockvineBikiniEvent, "mingle scene");
+			break;
+		case "holiday store":
+			showBust("HOLIDAY");
+			showName("\nHOLIDAY...");
+			
+			output("You backtrack through the streets; however, they seem so different to you now. Whereas before, you were met by creepy glares and then by awe and lust, now you are met by next to nothing. What few people are outside, quickly head in the opposite direction, toward a building where you can practically smell the debauchery taking place. A pang of want strikes you at the thought of what you could be doing there.");
+			output("\n\nBut you persevere over your desires, though you’re not sure if you can do that for much longer. These new tails of yours seem to have minds of their own, as they constantly rub against each other or your sensitive areas, but they never put you over the edge. You’d like to think it’s because you’re managing to assert your will over them, but part of you feels that they’re just teasing you. Waiting for that moment you lose control to go completely wild.");
+			output("\n\nHoliday’s shop comes into view and relief swarms through you. Maybe you’re not too late and she can take care of this? You unconsciously grin out of hope and feel a tingle at the back of your neck, leading to your arm moving to touch it out of instinct. Yet there’s nothing there, nothing except that choker... Oh no.");
+			output("\n\nYou start running to the shop, however the sudden panic causes you to lose your balance. Or was it the cockvines? You can’t say for certain, but you trip nonetheless and fall");
+			if(pc.biggestTitSize() >= 20) output(" right onto your [pc.chest]");
+			else output(" flat on your face");
+			output(". Thankfully you don’t injure yourself, but you’re losing time. You charge back to your feet and adopt a full-on sprint, though you do pay closer attention to your plethora of tails. Which would explain why you slow down suddenly and are forced to bite back a lewd moan.");
+			output("\n\nThey really do have minds of their own, you realize, as they start twining around one another. You feel pleasure as they brush their tips against each other, nuzzling affectionally with their neighbors, while those left out seek the rest of your body. They massage your skin, dripping tips pressing against you while the long bodies work their fluid into your flesh. You hate to admit it, but it feels good.");
+			output("\n\nMaybe you can just wait here for a little bit? These cockvines don’t seem to be hurting you in any way, quite the opposite really. What’s a few more minutes?");
+			if(pc.willpower() > 15)
+			{
+				output("\n\nYou shake your head and continue onward, gritting your teeth and asserting your will over the parasites. Each step is another tax on your resolve, the collection of tails constantly sending twinges of desire and pleasure throughout your very being. Holiday had better fix this before you do something you’ll regret. At worst you’d end seducing some poor lass or get plastered all over the extranet.");
+				output("\n\nIt wouldn’t be all bad you suppose, maybe you could make a living as an Ultraporn star?");
+				output("\n\nThankfully, you don’t have to linger on the thought for long as you see Holiday leaving her store. You rush over, hope briefly pushing your arousal away from your mind, and get her attention with a small shout.");
+				output("\n\n<i>“Oh, hello, sweetie. Enjoying the costume?”</i>");
+				output("\n\nYou glare at her. It’s clear as a neutron star in the void that she knows full well what’s happened.");
+				output("\n\n<i>“Fine, fine. I should’ve told you about the temporary side effects.”</i> That gives you pause.");
+				output("\n\n<i>“Temporary?”</i>");
+				output("\n\n<i>“Yes, temporary. Just kick back and relax, okay, honey?”</i> Holiday reaches forward and gives a cockvine a gentle pat, sending tremors of lust through you, <i>“Now, if you’ll excuse, I’ve got some fun to have.”</i> Holiday walks away, leaving you to watch her go. Your eyes are inevitably drawn to her ass as it sways side to side almost hypnotically, and you lick your lips.");
+				output("\n\nYou feel your muscles move, yet again of their own accord, and a cockvine turned tail slithers into your view. They’re just temporary, so why not indulge a little? There should be time to join the party. You turn to head back and join the depravity no doubt taking place, but pause when you see someone approaching. They’re clearly feminine and very obviously stacked just from the look of their silhouette. You squint and see that she is dressed as a laquine. Were it not for her human face, you’d think she is one.");
+				output("\n\nYou decide to approach her and see if the rumors you’ve heard about laquines are true.");
+				
+				pc.lust(5);
+			}
+			else
+			{
+				output("\n\nYou nod your head leisurely and find a wall to relax against, letting them rub your body while the others work your arousal higher and higher. The sensations are intoxicating to say the least, burgeoning subtly and piling more pleasure upon you. Your hands start to roam towards your [pc.groin].");
+				output("\n\nYou’re interrupted when you hear a door slam shut and look up to see Holiday hastily leaving her store, heels clicking on the hard floor below. Shit! You missed her. What now? Before you can make your mind up, you hear worried chattering nearby and look around. Your eyes quickly fix themselves on the source; a young girl dressed as a laquine.");
+				output("\n\nShe could practically pass for one, if her face was less human. Though she still has a fine coat of violet fur with a thicker mass adorning her head, which is the color of moss. You eye her up and down and notice that she seems to be in a similar predicament as you, for her legs are clenched together and she looks uneasy. Did she get her costume from Holiday too?");
+				output("\n\nYou decide to investigate and approach her. Maybe even see if everything you’ve heard about laquines is true.");
+				
+				pc.lust(25);
+			}
+			
+			processTime(12);
+			
+			addButton(0, "Next", cockvineBikiniEvent, "lila sex");
+			break;
+		case "lila sex":
+			showBust("LILA");
+			showName("HORNY\nGIRL");
+			
+			output("You saunter up to the girl, sashaying your hips unconsciously and causing your cacophony of tails to sway with your sides.");
+			if(pc.biggestTitSize() < 4) output(" The bikini top feels snug against your petite chest, accentuating your slight mounds.");
+			else if(pc.biggestTitSize() < 41) output(" The bikini top feels great as it bounces with your abundant breasts, rubbing and enticing your nipples to an " + (pc.hasErectNipples() ? "erect" : "aroused") + " state.");
+			else output(" You’re amazed that the bikini top can contain your tits as well as it does, without feeling too tight and even rubbing your nipples delightfully as your boobs bounce heavily with every step.");
+			// Female Variation:
+			if(!pc.hasCock())
+			{
+				output("\n\nThe girl takes notice of you when she glances in your direction and her eyes widen when she sees your [pc.cockTails]. You can’t help but grin at her reaction.");
+				output("\n\nIt’s to be expected of course, what with your gorgeous figure and the promise of one hell of a night. You eventually come to a stop in front of her, neither of you two saying a word as you size the other up. She’s even hotter up close, and not just because she’s only wearing a skimpy halter top and a pair of short shorts.");
+				output("\n\nHer breasts are large and well-rounded, sitting proudly on her chest. Her waist is neither too thin, nor too large, resting perfectly on the realm between them, and leads wonderfully into her wide, motherly hips - though she looks no older than you are - and you can only assume her ass is equally as glorious. The human-laquine girl doesn’t appear to have any discernible bulge in her shorts either and, after a quick inhale, you’re pretty certain she’s in heat.");
+				output("\n\nOh this could be a lot of fun, you think as your " + (pc.hasVagina() ? "[pc.pussy]" : "fresh vagina") + " flush" + (pc.vaginas.length <= 1 ? "es" : "") + " with desire and your tails leak more than usual. But you ignore that in favor of continuing to study your soon-to-be acquaintance. You bring your eyes up to her face and note the flush to her cheeks, coming through despite her rosy fur, while also enjoying her cute features and notably pouting lips. Her eyes are large, also, helping to accentuate her cuteness.");
+				output("\n\n<i>“Hi,”</i> she breaks the silence first, eyes flitting around nervously. It’s obvious that she’s trying to focus on anything but your tails.");
+				output("\n\n<i>“Hi. What’s the matter?”</i> You ask, despite being quite sure of the issue. Her pheromones are practically dripping from her, despite not being a full laquine. She must’ve gotten a temporary mod for the evening.");
+				output("\n\n<i>“Well, I uh, was going to go talk to a costume seller. She, um, sold me this costume and I... it’s having some weird side e...”</i> she trails off and you soon see why; one of your cock-tails decided to sneak up on the poor thing, pressing its drooling tip against her ass and confirming that it is, indeed, as large as her hips suggest.");
+				output("\n\n<i>“Her name wouldn’t happen to be ‘Holiday’ would it?”</i> You ask, acting like nothing happened. She responds in kind, especially when she swats at her rear but hits only thin air. Your new tails are amazingly quick.");
+				output("\n\n<i>“Y-yes, how’d you know?”</i>");
+				output("\n\n<i>“I got my costume from her too. Don’t worry, the effects just temporary,”</i> you assure her, voice practically gushing with comfort and warmth and inextinguishable desire.");
+				output("\n\n<i>“Really? That’s a relief. I don’t know how laquines do it. This heat is unbearable,”</i> the girl says, visibly relaxing now. You inwardly smirk in assured victory and lean in closer to her.");
+				output("\n\n<i>“From what I hear, they fuck. A lot.”</i> You make no effort at hiding your intentions now and the girl picks up on them, looking into your eyes with her own, showing her desire is still tainted by worry. You glance down briefly and notice that her face looks slightly more protrusive than before, as if she were turning into a full laquine. Before you can focus on that aspect however, you decide to be a little more aggressive.");
+				output("\n\nThe girl yelps as you step forward and reach around her to grasp a luscious cheek in your hand. She doesn’t pull away, however. In fact, she leans into your hand and takes a long, deep breath through her nose.");
+				output("\n\n<i>“My name’s Lila.”</i> She whispers to you and you answer in kind, before you both forego any further speech in favor passionately kissing the other. You soon have your tongue in her mouth, fencing with her own as your hands rove across her curvaceous figure, while hers find a pair of your cock-tails. The contact feels heavenly, stronger now than when they were rubbing against each other. Because you’ve accepted them?");
+				output("\n\nYou decide that it doesn’t matter and focus on the feeling of the Lila’s lips and tongue and the way her hands grip your myriad of cocks. She doesn’t seem to know which pair to settle on, moving from one set to another, stroking them to elicit a moan from you. It isn’t long before you’re both short of breath, heads touching and panting lustfully.");
+				output("\n\nOne of you suggests taking this to somewhere more private, but that idea quickly loses steam when your cock-tails hook around her shorts and tear them off. Lila doesn’t seem to mind and resumes making out with you, only hungrier than before. Probably because one of your tails is rubbing against her sopping wet snatch.");
+				output("\n\nIt isn’t long before your cock-tails grow impatient. You can’t blame them, if your pussy wasn’t concealed you’d probably be fingering it right now. As if in response, you gasp into her mouth as the vines acting as your clothing seem to come alive and rub against your sensitive nipples and drooling cunt. This bikini might just have been the best purchase of your life. You might have to put it on again some time.");
+				output("\n\nLila moans against your lips, pressing closer against you. You sink your fingers into her ass, relishing the expansive softness. A cock-tail presses its tip against her opening, covering itself in her juices. Your breath hitches in your throat as you await the penetration, eager to indulge in more of what this costume has to offer. But the vine never goes in. What’s it waiting for?");
+				output("\n\nThen you realize that its waiting for you. Maybe you’ve got more control over these things than you thought? Or maybe they’re toying with you? In the end, it makes no difference and you send it ramming up into the laquine’s waiting pussy. She cries out against your lips in the way only a virgin can, however it only takes another thrust for her to moan hungrily.");
+				output("\n\nThis feels amazing! Her wet folds ripple around your invading cock-tail, milking it for the constantly leaking pre-cum, even as you sink almost a foot of your parasitic member into her. You soon come to a stop against her cervix, but it’s merely a pause in your journey. Without a word, you pull back and she raises her hips, then you both work in unison to send your bulbous tip into her deepest depths. Now you’ve just got to claim her womb properly. And you have just the idea.");
+				output("\n\nYou step away from the laquine and see that her human features are gone, replaced entirely by the race she was pantomiming as. But you pay it only a sparing glance, before you send the remainder of your cocks into action. Four tendrils coil around her limbs and pull her into the air, holding her in taut bondage, while a pair encircle her heaving tits. That leaves three more and you know exactly where you’re putting them.");
+				output("\n\nShe seems to know as well, as she opens her mouth wide. Strings of saliva connects her lips and her tongue lips out lewdly, while she angles her hips just so that her ass is slightly more presented. Her eyes, blazing hotly with her rampant lust, zero in on you for a brief moment to plead for more. You’re no longer interested in restraining your temporary cock-tails and so you acquiesce to her desire.");
+				output("\n\nYou plug her mouth with a single tendril, sending it straight down her throat and ripping a ragged gag from the restrained laquine, who humps against the lower cockvine. A dazed grin spreads across your face at the sensations coursing through your new limbs and dancing across your nerves, straight to your brain. Your many cock tendrils pull her closer to you, presenting her bound tits to you, and your mouth goes into action before you can think. You latch onto Lila’s nipple.");
+				output("\n\nSatisfaction radiates from both of you as her pleasure rises like an ancient rocket. Your cockvines thrust in and out of her orifices, piling yet more delicious ecstasy upon your already taxed mind. You can feel it building within you, clenching in your gut, an orgasm like you’ve never heard of. Just a little further and you’ll cum. Of that you’re certain.");
+				output("\n\nLila starts squirming, drawing your attention back to her. Your eye immediately falls to her lower body, where her pussy squelches with every thrust of your parasitic prick and drools like a waterfall of fem-cum, and where her untouched ass resides. You smirk knowingly and send a cock charging forth, its sloppy tip immediately penetrating her willing asshole. Her anal walls spread wide around your lustful tendril.");
+				output("\n\nA little further... You send your myriad of members into a frenzy, trying your hardest to achieve that elusive orgasm. The sloppy sounds of your dick plundering her pussy, thrusting so deep that you’re fucking her womb and filling it with your pre-seed - combined with her lurid moans and gags and the sheer decadence of fucking her tight ass - should be enough to send you spiralling into an abyss of ecstasy.");
+				output("\n\nBut none. What gives? You go so far as to reach grab a hold of your own tails, jerking them off in hopes of pushing yourself over the edge. Nothing.");
+				output("\n\nBefore frustration can set in, you spot a lone cock-tail out of the corner of your eye. The little bastard is keeping you from cumming, <i>“Fine,”</i> you sigh and the tentacle immediately slips beneath you. You feel the vine masquerading as underwear moves to the side, giving free access to your own sopping cunt" + (pc.vaginas.length <= 1 ? "" : "s") + ".");
+			}
+			// Herm Variation:
+			else
+			{
+				output("\n\nThe girl takes notice of you when she glances in your direction and her eyes widen when she sees your [pc.cockTails]. Her eyebrows raise when she also spies the bulge in your crotch. You can’t help but grin at her reaction.");
+				output("\n\nIt’s to be expected of course, what with your gorgeous figure and the promise of one hell of a night. You eventually come to a stop in front of her, neither of you two saying a word as you size the other up. She’s even hotter up close, and not just because she’s only wearing a skimpy halter top and a pair of short shorts.");
+				output("\n\nHer breasts are large and well-rounded, sitting proudly on her chest. Her waist is neither too thin, nor too large, resting perfectly on the realm between, and leads wonderfully into her wide, motherly hips - though she looks no older than you are - and you can only assume her ass is equally as glorious. The human-laquine girl doesn’t appear to have any discernible bulge in her shorts either and, after a quick inhale, you’re pretty certain she’s in heat.");
+				output("\n\nOh this could be a lot of fun, you think as your [pc.cocks] swell" + (pc.cocks.length == 1 ? "s" : "") + " with desire and your tails leak more than usual. But you ignore that in favor of continuing to study your soon-to-be acquaintance. You bring your eyes up to her face and note the flush to her cheeks, coming through despite her rosy fur, while also enjoying her cute features and notably pouting lips. Her eyes are large, also, helping to accentuate her cuteness.");
+				output("\n\n<i>“Hi,”</i> she breaks the silence first, eyes flitting around nervously. It’s obvious that she’s trying to focus on anything but your tails, but ends up lingering on your bulbous crotch.");
+				output("\n\n<i>“Hi. What’s the matter?”</i> You ask, despite being quite sure of the issue. Her pheromones are practically dripping from her, despite not being a full laquine. She must’ve gotten a temporary mod for the evening, not that it matters. You can feel your dick hardening with every breath.");
+				output("\n\n<i>“Well, I uh, was going to go talk to a costume seller. She, um, sold me this costume and I... it’s having some weird side e...”</i> she trails off and you soon see why; one of your cock-tails decided to sneak up on the poor thing, pressing its drooling tip against her ass and confirming that it is, indeed, as large as her hips suggest.");
+				output("\n\n<i>“Her name wouldn’t happen to be ‘Holiday’ would it?”</i> You ask, acting like nothing happened. She responds in kind, especially when she swats at her rear but hits only thin air. Your new tails are amazingly quick.");
+				output("\n\n<i>“Y-yes, how’d you know?”</i>");
+				output("\n\n<i>“I got my costume from her too. Don’t worry, the effects just temporary,”</i> you assure her, voice practically gushing with comfort and warmth and inextinguishable desire.");
+				output("\n\n<i>“Really? That’s a relief. I don’t know how laquines do it. This heat is unbearable,”</i> the girl admits, visibly relaxing now. You inwardly smirk in assured victory and lean in closer to her, pressing your lower body closer. She glances down at you, the blush on her cheeks deepening slightly.");
+				output("\n\n<i>“From what I hear, they fuck. A lot.”</i> You make no effort at hiding your intentions now and the girl picks up on them, looking into your eyes with her own and showing that her desire is still tainted by worry. You glance down briefly and notice that her face looks slightly more protrusive than before, as if she were turning into a full laquine. Muzzle and all. Before you can focus on that aspect however, your body demands you to be more aggressive.");
+				output("\n\nThe girl yelps as you press closer and reach around her to grasp a luscious cheek in your hand. She doesn’t pull away, however. In fact, she leans into your hand and takes a long, deep breath through her nose. You feel an almost indefinable wiggle against your scarcely protected member" + (pc.cocks.length == 1 ? "" : "s") + ".");
+				output("\n\n<i>“My name’s Lila.”</i> She whispers to you and you answer in kind, before you both forego any further speech in favor passionately kissing the other. You soon have your tongue in her mouth, fencing with her own as your hands rove across her curvaceous figure, while one of hers finds one of your cock-tails. The contact feels heavenly, stronger now than when they were rubbing against each other.");
+				output("\n\nHer other hand slips your dick" + (pc.cocks.length == 1 ? "’s" : "s’") + " meagre protection aside and grips" + (pc.cocks.length == 1 ? "" : " one of") + " your hardening shaft" + (pc.cocks.length == 1 ? "" : "s") + ". The tiny furs on her fingers offer the softest caress amidst her tight hold, and brush gently over you as she masturbates your length. She moans into your mouth as you reach full erection, clearly pleased by what you’re packing.");
+				output("\n\nYou groan at the touch, but focus on the feeling of the Lila’s lips and tongue and the way her hands grip your myriad of cocks. She doesn’t seem to know where to settle, sometimes grasping your main cock and a tail, then wrapping both hands around your front, and occasionally curling her fingers around a pair of cock-tails. It isn’t long before you’re both short of breath, heads touching and panting lustfully.");
+				output("\n\nOne of you suggests taking this to somewhere more private, but that idea quickly loses steam when your cock-tails hook around her shorts and tears them clean off. Lila doesn’t seem to mind and resumes making out with you, only hungrier than before. Probably because one of your tails is rubbing against her sopping wet snatch, while she grinds back against it.");
+				output("\n\nIt isn’t long before your cock-tails grow impatient. You can’t blame them, if you weren’t preoccupied with her face, you’d be fucking her at this very moment. As if in response, you gasp into her mouth as your top seemingly comes alive and, expertly, rubs against your stiff nipples. This bikini might just have been the best purchase of your life. You might have to put it on again some time.");
+				output("\n\nLila moans against your lips, pressing closer against you. You sink your fingers into her ass, relishing the expansive softness. A cock-tail presses its tip against her opening, covering itself in her juices. Your breath hitches in your throat as you await the penetration, eager to indulge in more of what this costume has to offer. But the vine never goes in. What’s it waiting for?");
+				output("\n\nThen you realize that its waiting for you. Maybe you’ve got more control over these things than you thought? Or maybe they’re toying with you? In the end, it makes no difference and you adjust your hips, then spear into her with your primary prick. She cries out against your lips in the way only a virgin can, however it only takes another thrust for her to moan hungrily.");
+				
+				pc.cockChange();
+				
+				output("\n\nThis feels amazing! Her wet folds ripple around your invading cock, milking it for the constantly leaking pre-cum, even as you sink");
+				if(pc.cocks[0].cLength() > 12) output(" almost a foot of");
+				output(" your member into her. You soon come to a stop against her cervix, but it’s merely a pause in your journey. Without a word, you pull back and she raises her hips, then you both work in unison to send your [pc.cockHead] into her deepest depths. Now you’ve just got to claim her womb properly. And you have just the idea.");
+				output("\n\nYou step away from the laquine and see that her human features are gone, replaced entirely by the race she was pantomiming as. But you pay it only a sparing glance, before you send the remainder of your cocks into action. Four tendrils coil around her limbs and pull her into the air, holding her in taut bondage, while a pair encircle her heaving tits. That leaves four more and you know exactly where you’re putting them.");
+				output("\n\nShe seems to know as well, as she opens her mouth wide. Strings of saliva connects her lips and her tongue lolls out lewdly, while she angles her hips just so that her ass is slightly more presented. Her eyes, blazing hotly with her rampant lust, zero in on you for a brief moment to plead for more. You’re no longer interested in restraining your temporary cock-tails and so you acquiesce to her desire.");
+				output("\n\nYou plug her mouth with a single tendril, sending it straight down her throat and ripping a ragged gag from the restrained laquine, who bucks against you in obvious need. A dazed grin spreads across your face at the sensations coursing through you and dancing across your nerves, straight to your brain. Your many cock tendrils pull her closer to you, presenting her bound tits to you, and your mouth goes into action before you can think. You latch onto Lila’s nipple.");
+				output("\n\nSatisfaction radiates from both of you as her pleasure rises like an ancient rocket. Your cockvine and [pc.cock] thrust in and out of her orifices, piling yet more delicious ecstasy upon your already taxed mind. You can feel it building within you, clenching in your gut, an orgasm like you’ve never heard of. Just a little further and you’ll cum. Of that you’re certain.");
+				output("\n\nLila starts squirming, drawing your attention back to her. Your eye immediately falls to her lower body, where her pussy squelches with every thrust of your parasitic prick and drools like a waterfall of fem-cum, and where her untouched ass resides. You smirk knowingly and send a cock charging forth, its sloppy tip immediately penetrating her willing asshole. Her anal walls spread wide around your lustful tendril.");
+				output("\n\nTwo to go... Well, there’s one hole that seems all too eager for extra attention. Without so much as slowing your thrusts, you place one of your few remaining tendrils at her already full pussy. Her juices squirt from her with every thrust of your hips, while her walls clench tight around you, dousing your cocks in her fem-cum. You barely think of it before the cockvine stretches her hole wider than should be possible and rams up alongside your main prick. The added friction only makes it better.");
+				output("\n\nA little further... You send your myriad of members into a frenzy, trying your hardest to achieve that elusive orgasm. The sloppy sounds of your dicks plundering her pussy, thrusting so deep that you’re fucking her womb and filling it with your pre-seed - combined with her lurid moans and gags and the sheer decadence of fucking her tight ass - should be enough to send you spiralling into an abyss of ecstasy.");
+				output("\n\nWithin her pussy, your cockvine begins to spiral. It twists around inside of her, wetly rubbing against your member as Lila’s snatch continues dousing both of your phalli. Pleasure burgeons with every thrust, both from your rhythmic fucking and the erratic pace of your cock-tail. You practically slide in and out of her as her juices all but gush with each move you make. Your stomach tenses whenever you hilt inside of her, the wet slap of flesh on flesh adding to the experience, and you know your climax is upon you.");
+				output("\n\nBut then nothing happens. You can feel it building rapidly, about to explode, but still nothing. So, you go so far as to grab a hold of your own tails, jerking them off in hopes of pushing yourself over the edge. Nothing.");
+				output("\n\nBefore frustration can set in, you spot a lone cockvine out of the corner of your eye. The little bastard must be keeping you from cumming. For what? Then you notice that it’s poised at your feminine sex. <i>“Fine,”</i> you sigh and the tentacle immediately slips beneath you. You feel the vine masquerading as underwear moves to the side, giving free access to your own sopping cunt" + (pc.vaginas.length <= 1 ? "" : "s") + ".");
+			}
+			// If experienced:
+			if(pc.hasVagina() && !pc.vaginalVirgin) output(" You yelp and moan as " + (pc.vaginas.length <= 1 ? "your orifice" : " one of your orifices") + " is penetrated deeply with one swift thrust.");
+			// If Virgin/was male:
+			else output(" You yelp and moan as <b>your virginity is taken in one forceful thrust</b>.");
+			output("\n\nNow this is what you’ve been craving!");
+			output("\n\nCockvine-tails binding and stuffing a laquine is fine and all, but having your pussy fucked by your own appendage is an experience in and of itself. Your hips start bucking against the invader, mimicking Lila’s moves with eerie precision. You can practically feel your juices running down your thigh, but it’s nothing compared to your lover as her fem-cum all but gushes around your cock.");
+			output("\n\n<i>“Cum, cum, cum!”</i> The words are almost completely muffled, but her moans more than convey them to you. They’re not necessary, of course, you fully intended to cum inside of her from the second you gave into your new desires. It doesn’t matter that you’re acting like an animal, or rather like a nest of cockvines, trapping your prey and fucking her without concern for her own pleasure. Only that it feels amazing and it’ll only get better.");
+			output("\n\nAnd if Lila or yourself gets pregnant from this... better still.");
+			
+			processTime(24);
+			pc.lust(1000);
+			flags["LILA_VIRGINITY_TAKEN"] = 1;
+			
+			addButton(0, "Next", cockvineBikiniEvent, "lila cum");
+			break;
+		case "lila cum":
+			showBust("LILA");
+			showName("\nLILA");
+			
+			output("On that thought, you feel something snap inside of you. Your cock-tails go rigid after one final, uterus filling, bowel stretching, throat taxing thrust each. Lila gives a muffled scream as she gets the last push she needed, cumming hard enough that her eyes roll back in her head and her entire body goes slack in");
+			// Female Variation:
+			if(!pc.hasCock())
+			{
+				output(" the cockvines. You’re too caught up in your own climax to pay her any mind.");
+				output("\n\nYou feel a rush course through your many cocks, each of them bulging slightly with what you know to be a serious amount of cum. Every inch that the liquid travels only sends more trills of unyielding pleasure straight to your mind. Your tongue lolls out in mindless bliss. Then you finally cum.");
+				output("\n\nEach spurt comes with enough force to make an audible, wet noise even through your and the laquine’s flesh. Both of your snatches clamp down around the spraying tendrils, locking them inside and refusing to allow even a drop of cum to escape. And there’s a lot of cum. Even Lila’s instinctive swallows aren’t able to keep up, as thick streams of white bubble out from her stuffed maw. Her ass similarly leaks jizz even as it undulates around you.");
+				output("\n\nYou both feel it as the sheer amount begins to expand your wombs. Before long, there’s a noticeable paunch to each of your bellies, one that visibly expands with each spurt. The pressure is too much for your weakened cervixes and begins to flow back out, leaking down the still cumming cockvine. There’s no doubt that you’re both pregnant from this. Even Sterilex might not work with this much seed.");
+				output("\n\nThe other cockvines aren’t left out, far from it. It seems that they’ve made it their mission to paint the two of you with semen, as half train their gushing tips at you and the other half aims at Lila. You can’t hate it. Or love it for that matter. Cumming with ten different cocks and your pussy simultaneously is overwhelming to say the least. It’s a miracle you can stand.");
+				output("\n\nWithout any concern for your mental state or Lila’s the vines decide that one orgasm simply isn’t enough. You jolt back to reality as you feel the cock inside of you start moving once more, all the while still cumming like a high-pressured hose. Lila doesn’t seem to care. Her moans merely resume where they had dwindled once, resurging with greater fervor. You would appreciate how voracious laquines are, but quickly lose all cognitive ability as your cocks work to another climax.");
+				output("\n\nIt’s just as powerful as the last one, gushing seed in and onto you and Lila. Before long, both of your features are completely plastered in cum. No one would recognize you as anything more than humanoid blobs of jizz with what looks like heavily pregnant bellies, despite being filled with nothing more than semen.");
+			}
+			// Herm Variation:
+			else
+			{
+				output(" your cock-tails’ grip. You’re too caught up in your own climax to pay her any further attention.");
+				output("\n\nYou feel a rush course through your many cocks, each of them bulging slightly with what you know to be a serious amount of cum. Every inch that the liquid travels only sends more trills of unyielding pleasure straight to your mind. Your tongue lolls out in mindless bliss. Then you finally cum.");
+				output("\n\nEach spurt comes with enough force to make an audible squelch even through your and the laquine’s flesh. Both yours and Lila’s snatches clamp down around the spraying endowments, locking them inside and refusing to allow even a drop of cum to escape. And there’s a lot of cum. Even Lila’s instinctive swallows aren’t able to keep up, as thick streams of white bubble out from her stuffed maw. Her ass similarly leaks jizz even as her anus undulates around you.");
+				output("\n\nYou both feel it as the sheer amount begins to expand your wombs. Before long, there’s a noticeable paunch to each of your bellies, which visibly expand with each spurt. The pressure is too much for your weakened pelvic muscles and begins to flow back out, leaking down the still cumming cockvine. Lila’s remains strong, however, and refuses to give up on even a single drop. Even her vaginal canal keeps hungrily milking your dicks.");
+				output("\n\nThere’s no doubt that you’re both pregnant from this. Even Sterilex might not work with this much seed.");
+				output("\n\nThe other cockvines aren’t left out, far from it. It seems that they’ve made it their mission to paint the two of you with semen, as half train their gushing tips at you and the other half aims at Lila. You can’t hate it. Or love it for that matter. Cumming with ten different cocks and your pussy simultaneously is overwhelming to say the least. It’s a miracle you can stand.");
+				output("\n\nWithout any concern for your mental state or Lila’s the vines decide that one orgasm simply isn’t enough. You jolt back to reality as you feel the cock inside of you start moving once more, all the while still cumming like a high-pressured hose. Lila doesn’t seem to care. Her moans merely resume where they had once dwindled, resurging with greater fervor. You would appreciate how voracious a laquine’s sex drive is, but you quickly lose all cognitive ability as your plethora of phalli work to another climax.");
+				output("\n\nEven your own member" + (pc.cocks.length == 1 ? " is" : "s are") + " made to cum, as the cockvine inside Lila’s snatch frots against you. After cumming so recently, you’re unable to hold back for long. Your head falls back and your hangs open in a soundless cry, as a second orgasm crushes every facet of your mind.");
+				output("\n\nIt’s just as powerful as the last one, gushing seed in and onto you and Lila. Before long, both of your features are completely plastered in cum. No one would recognize you as anything more than humanoid blobs of jizz with what looks like heavily pregnant bellies, despite being filled with nothing more than semen.");
+			}
+			output("\n\nThis is too much... the world dims around you and your thoughts begin to slow to a crawl... there’s nothing... just cum... and cum... and more cum...");
+			
+			processTime(32);
+			pc.applyCumSoaked();
+			pc.applyPussyDrenched();
+			if(pc.hasCock()) {
+				cumQ = pc.cumQ();
+				if(cumQ >= 1000) pc.applyCumSoaked();
+				if(cumQ >= 5000) pc.applyCumSoaked();
+				if(cumQ >= 10000) pc.applyCumSoaked();
+			}
+			if(pc.hasVagina()) {
+				cumQ = pc.girlCumQ();
+				if(cumQ >= 1000) pc.applyPussyDrenched();
+				if(cumQ >= 5000) pc.applyPussyDrenched();
+				if(cumQ >= 10000) pc.applyPussyDrenched();
+			}
+			for(i = 0; i < 10; i++) {
+				pc.orgasm();
+				pc.exhibitionism(2);
+			}
+			
+			addButton(0, "Next", cockvineBikiniEvent, "aftermath");
+			break;
+		case "mingle scene":
+			showBust("SELINA");
+			showName("\nPARTY!");
+			
+			output("The nearest party location is just what you expected and more. It’s loud, music pumping through its walls and seeming to pulsate in the ground beneath you. You can see lights flashing through the windows and hear, under the throbbing beat, the unmistakable sounds of ignited passions. The building itself is large and otherwise bland, but that no doubt made it perfect for such a party.");
+			output("\n\nOutside, you see people in dozens of costumes milling about, some making out and others already doing the dirty deed in plain view. A perfect stage for your new army of leaking, bulbous-tipped tails you wield. You feel your new muscles being pulled in nearly every direction, as if the cock-tails you’ve acquired can’t decide where to go. You smirk and decide that you shouldn’t prolong this any more than you already have.");
+			output("\n\nA couple of girls stop groping one another to turn and watch you. With a smouldering grin, you pass them and somehow know that their eyes are following your every step. You pause and look back to find them trailing a few feet behind you. Your grin widens, then tenses slightly as your nostrils flare at a peculiar scent in the air.");
+			output("\n\nYou look around in curiosity. You’ve ended up in a warehouse, though you see no sign of lifting equipment or storage, only an endless ocean of people. It’s almost daunting to see so many different costumes and species. Maybe the smell’s due to all the chemicals in the air? Or the sheer amount of copulation around you? Surely so many different races in one room would have such an effect?");
+			output("\n\nYou feel your puss" + (pc.vaginas.length <= 1 ? "y" : "ies") + " grow moist as you breathe it in. Your cock-tails react as well, growing even more antsy and brushing against random passers-by, not that they seem to mind after giving a gentle pat of affection. Then you realize that, while you’ve been standing there trying to discern this odour, you’ve gathered something of a crowd. They’re all looking at you intently, and said intent is hardly difficult to read in their gaze.");
+			// Female Variation:
+			if(!pc.hasCock())
+			{
+				output("\n\nIt’s not a combined effort, you realize as their attention seems squarely placed upon you. You glance around just in time to see an ausar girl take a long breath through her nose. Immediately, her face flushes and her eyes grow slightly cloudy, but are focused on you.");
+				output("\n\nSo that’s what it is; a pheromone. You aren’t sure how the bikini is suddenly giving off such an effective aroma, but you’re certainly not about to waste such an opportunity to be the heart of an orgy, especially since you’ve got nearly a dozen phalli for the moment. They’re all connected to you, transmitting the touch of curious onlookers - and the pleasure of the brazen few that lick your swaying cockheads - to your brain. Even without your new pheromones or augmented lust, you doubt you would be able to resist for very long.");
+				output("\n\nThen why bother holding back? You saunter through the crowd, parting them like a sea of burgeoning decadence that will only rise when you join in. Men and herms have their cocks out, hard as stone, stroking themselves or having their partners do so, while the women are eagerly groping their tits or teasing their pussies. If your pheromones are this potent in such a huge room, then you shudder to think what’ll happen in a confined space.");
+				output("\n\nAbove you, lights flash with smouldering reds and pinks, inspiring passion in those who have yet to have their attention captured by you. With so many people suddenly losing interest in their prior debauchery, the DJ notices the lack of enthusiasm and lowers the music out of his own curiosity, which, in turn, invites the other party-goers to investigate.");
+				output("\n\nYou look around with a lavish grin and run your tongue over your lips, eying groups and individuals with a predatory hunger. Your tails sway idly, restrained only by the promise of what is to come. There’re so many options before you. So many, in fact, that you doubt you could feasibly choose. Your instincts haven’t led you astray yet.");
+				output("\n\nWhy choose one or two or three or four? When you could take the entire party.");
+				output("\n\nYou reach back and unclasp your makeshift underwear, freeing your tits and puss" + (pc.vaginas.length <= 1 ? "y" : "ies") + " to the onlookers. The vines slither around the back and adhere to the curve of your spine and waist, making sure you can’t lose them. Several onlookers lick their lips and concentrate on your assets with an almost eerie focus. Not that you particularly mind, it’s only natural what with your pheromones.");
+				output("\n\nWith every inch of your body on display, you strut through the masses. They part before you, as if you were a goddess and they unworthy to be in your presence. It’s invigorating, and to say nothing of how many of those around seem on the verge of cumming. But not by your own hand.");
+				output("\n\nAnd that’s simply unacceptable.");
+				output("\n\nYou spot a girl almost obscured by a pair of horse-morphs and point to her. She is one of the few that hasn’t touched themselves, though you can read that she wants to; it’s blatant in the way her eyes devour your visage. The horse-morphs turn to her and push her forward, chuckling good-naturedly. The girl, you notice, is a kaithrit. Her ears twitch and her tails sway nervously, but her cheeks are a deep red. How adorable, especially with her heterochromia eyes; one blue and the other green.");
+				output("\n\nShe’s wearing a loose, summery shirt over her prodigious chest and shorts that barely cover her, equally shapely, ass. Your eye wonders over the rest of her figure, drinking every detail just to hype yourself for what’s to come. She has a svelte frame, typical of her species, but her breasts are enormous things, dominating her chest and even her tiny abdomen. But her hips aren’t to be overlooked as they flare out provocatively. Her hands move to cover herself when she notices you looking, making you grin widely.");
+				output("\n\nYour cock-tails become fixated upon her as well. You sashay toward her until you stand directly before the kaithrit, who stares at you with a mixture of lust, fear and reverence. Just as she should, but you wish to enjoy yourself and that means stripping away her hesitance in the one way you know how.");
+				output("\n\nShe opens her mouth - perhaps to introduce or excuse herself - however you silence her with a single fluid motion; a cockvine shoots out, slithers down her shirt, and tears it away. The crowd around you finally makes a sound, one of excitement mixed with pleasure from several others. You look at the kaithrit, beaming with unmistakable intent.");
+				output("\n\n<i>“What’s your name?”</i> You inquire, even as you reach down and hook your thumbs in her shorts. Your tails coil around her wrists to keep her from interrupting. She struggles against them, but a mixture of their natural strength and your pheromones keep her from breaking free. In the meanwhile, you marvel at how soft her skin feels and how squishy her sides are. She must have used some high-level mods to get her fat to distribute like this.");
+				output("\n\nShe’s a perfect cuddle partner, you realize and almost laugh. Perhaps you should abscond with this girl and use her as your personal body pillow on your adventures? You decide against doing so, for now at least. There’re far more interesting things to do. For instance, a member of the crowd breaks free and takes hold of one of your cocks. They then start kissing and licking it, effectively making out of with the tendril. You shrug and offer half of your tails to the masses.");
+				output("\n\nThey are immediately beset upon and you can’t help but moan at the delicious symphony of sensations. You can feel a pair of large breasts wrap around a tip, while another person shyly jerks and licks another vine as two others greedily take your cocks down their throats. Someone can’t handle any foreplay and simply slides your phallus into their ass. You return your focus to the kaithrit, who’s looking behind you at the five cock-tails you still have free.");
+				output("\n\n<i>“I’m going to use them on you, kitty,”</i> you tease and lean forward until her ears tickle your nose, <i>“I’m going to fuck your cunt, your ass, your mouth, your tits, and maybe your navel if I feel like it,”</i> with every aspect of her body named, you slide your hands across it, lingering to grope her ass and tits. She grows tense, yet you can tell it’s not out of fear.");
+				output("\n\n<i>“Selina,”</i> the kaithrit finally mewls.");
+				output("\n\n<i>“Pretty name, too bad I’m going to make you forget it,”</i> you pull back and see her eyes go wide at your statement, before a moan slips from her lips. While talking, you had stripped her of her final piece of clothing, putting her delightfully bald crotch on display. With such a tempting sight, a cock-tail quickly takes advantage and penetrates her. You hold the others back, wanting something else first.");
+				output("\n\nYou gently push Selina onto her back, cockvine leisurely thrusting in and out of her soaked snatch. Her hips roll with every slight movement, humping against your parasitic cock to drive it deeper. An unnecessary action, as you always intended to take her as deeply as possible. However, before that, you move to stand over her face with your own drooling cunt on display, and gracefully fall to your knees. She gets the idea immediately and you gasp and moan when her feline-like tongue runs across your folds.");
+				output("\n\nYou sink down fully onto her face and dig your clit against her nose. If she minds having her sinuses full of your snatch, then it doesn’t show, as Selina devours your cunny like a traveller dying of thirst. That deserves a reward, you think and move another tail to just below your fist. She feels its leaking, bulbous tip against her voluptuous ass cheeks and raises her hips high up for you. It’s always the quiet ones, you chuckle in amusement and spear her ass on your sinuous member.");
+				output("\n\nThe party goes into full swing now, as entire groups of people form off and start their own orgies. The cock-tails you leant the others are all fucking them now, taking the anal sluts so deeply that you wonder why your dicks haven’t come out of their mouths yet. Those with more traditional tastes buck their hips against your tendrils as their wombs are fucked, stuffing the organ with your cock and pre-cum.");
+				output("\n\nAnd you’re the center of it all. Even as you ride Selina’s face and fuck her two lower holes, several people are on you constantly. You can feel their hands caressing your skin, groping your tits, lightly fingering your ass, and on your unused tails. Time to change that, you decide and stand up. Selina mewls helplessly and tries to reach up, but quickly falters when an orgasm tears through her.");
+				output("\n\nYou turn to the people who were worshipping you and smirk. You sit down and go to lean back. On cue, one of them finds a bundle of clothes and uses them to make a pillow for you. Is this how it feels to be a queen? You can’t imagine it’s very different.");
+				output("\n\nBefore making any further decisions, you put your remaining three tails in action. One spears Selina’s mouth, causing a sound between a gag and a moan, while another lays itself between her tits. Selina quickly pushes her basketball sized mounds together for you, while your final cock hovers over Selina’s navel.");
+				output("\n\nMaybe that’s a bit too kinky, though? Perhaps you should just double-stuff her ass or pussy, give one of them an extra huge load of cum?");
+			}
+			// Herm Variation:
+			else
+			{
+				output("\n\nTheir attention seems squarely placed upon you. You glance around just in time to see an ausar girl take a long breath through her nose. Immediately, her face flushes and her eyes grow slightly cloudy, but are focused on you.");
+				output("\n\nSo that’s what it is; a pheromone. You aren’t sure how the bikini is suddenly giving off such an effective aroma, but you’re certainly not about to waste an opportunity to be the heart of an orgy, especially since you’ve got nearly a dozen phalli for the moment. They’re all connected to you, transmitting the touch of curious onlookers - and the pleasure of the brazen few that lick your swaying cockheads - to your brain. Even without your new pheromones or augmented lust, you doubt you would be able to resist for very long.");
+				output("\n\nThen why bother holding back? You saunter through the crowd, parting them like a sea of burgeoning decadence that will only rise when you join in. Men and herms have their cocks out, hard as stone, stroking themselves or having their partners do so, while the women are eagerly groping their tits or teasing their pussies. If your pheromones are this potent in such a huge room, then you shudder to think what’ll happen in a confined space.");
+				output("\n\nAbove you, lights flash with smouldering reds and pinks, inspiring passion in those who have yet to have their attention captured by you. With so many people suddenly losing interest in their prior debauchery, the DJ notices the lack of enthusiasm and lowers the music out of his own curiosity, which, in turn, invites the other party-goers to investigate.");
+				output("\n\nYou look around with a lavish grin and run your tongue over your lips, eying groups and individuals with a predatory hunger. Your tails sway idly, restrained only by the promise of what is to come. There’re so many options before you. So many, in fact, that you doubt you could feasibly choose.");
+				output("\n\nBut why choose one or two or three or four? When you could take the entire party. Your instincts haven’t led you astray yet.");
+				output("\n\nYou reach back and unclasp your makeshift underwear, freeing your tits and " + (pc.isErect() ? "fully-" : "half-") + "erect prick" + (pc.cocks.length == 1 ? "" : "s") + " to the onlookers. The vines slither around the back and adhere to the curve of your spine and waist, making sure you can’t lose them. Several onlookers lick their lips and concentrate on your assets with an almost eerie focus. Not that you particularly mind, it’s only natural what with your pheromones.");
+				output("\n\nWith every inch of your body on display, you strut through the masses. They part before you, as if you were a goddess and they were unworthy to be in your presence. It’s invigorating, and to say nothing of how many of those around seem on the verge of cumming. But not by your own hand.");
+				output("\n\nAnd that’s simply unacceptable.");
+				output("\n\nYou spot a girl almost obscured by a pair of horse-morphs and point to her. She is one of the few that hasn’t touched themselves, though you can read that she wants to; it’s blatant in the way her eyes devour your visage. The horse-morphs turn to her and push her forward, chuckling good-naturedly. The girl, you notice, is a kaithrit. Her ears twitch and her tails sway nervously, but her cheeks are a deep red. How adorable, especially with her heterochromia eyes; one blue and the other green.");
+				output("\n\nShe’s wearing a loose, summery shirt over her prodigious chest and shorts that barely cover her, equally shapely, ass. Your eye wonders over the rest of her figure, drinking every detail just to hype yourself for what’s to come. She has a svelte frame, typical of her species, but her breasts are enormous things, dominating her chest and even her tiny abdomen. But her hips aren’t to be overlooked as they flare out provocatively. Her hands move to cover herself when she notices you looking, making you grin widely.");
+				output("\n\nYour cock-tails become fixated upon her as well. You sashay toward her until you stand directly before the kaithrit, who stares at you with a mixture of lust, fear and reverence. Just as she should, but you wish to enjoy yourself and that means stripping away her hesitance in the one way you know is guaranteed to work.");
+				output("\n\nShe opens her mouth - perhaps to introduce or excuse herself - however you silence her with a single fluid motion; a cockvine shoots out, slithers down her shirt, and tears it away. The crowd around you finally makes a sound, one of excitement mixed with pleasure from several others. You look at the kaithrit, beaming with unmistakable intent.");
+				output("\n\n<i>“What’s your name?”</i> You inquire, even as you reach down and hook your thumbs in her shorts. Your tails coil around her wrists to keep her from interrupting. She struggles against them, but a mixture of their natural strength and your pheromones keep her from breaking free. In the meanwhile, you marvel at how soft her skin feels and how squishy her sides are. She must have used some high-level mods to get her fat to distribute like this.");
+				output("\n\nShe’s a perfect cuddle partner, you realize and almost laugh. Perhaps you should abscond with this girl and use her as your personal body pillow on your adventures? You decide against doing so, for now at least. There’re far more interesting things to do. For instance, a member of the crowd breaks free and takes hold of one of your cocks. They then start kissing and licking it, effectively making out with the tendril. You shrug and offer half of your tails to the masses.");
+				output("\n\nThey are immediately beset upon and you can’t help but moan at the delicious symphony of sensations. You feel a pair of large breasts wrap around a tip, while another person shyly jerks and licks another vine as two others greedily take your cocks down their throats. Someone can’t handle any foreplay and simply slides a phallus into their ass. You return your focus to the kaithrit, who’s looking behind you at the five cock-tails you still have free.");
+				output("\n\nWhen she notices you looking, she quickly brings her gaze down. It’s no better, however, as she spots your [pc.cockBiggest].");
+				output("\n\n<i>“I’m going to use everything on you, kitty,”</i> you tease and lean forward until her ears tickle your nose, <i>“I’m going to fuck your cunt, your ass, your mouth, your tits, and maybe your navel if I feel like it,”</i> with every aspect of her body named, you slide your hands across it, lingering to grope her ass and tits. She grows tense, yet you can tell it’s not out of fear.");
+				output("\n\n<i>“Selina,”</i> the kaithrit finally mewls.");
+				output("\n\n<i>“Pretty name, too bad I’m going to make you forget it,”</i> you pull back and see her eyes go wide at your statement, before a moan slips from her lips. While talking, you had stripped her of her final piece of clothing, putting her delightfully bald crotch on display. With such a tempting sight, a cock-tail quickly takes advantage and penetrates her. You hold the others back, wanting something else first.");
+				output("\n\nYou gently push Selina onto her back, cockvine leisurely thrusting in and out of her soaked snatch. Her hips roll with every slight movement, humping against your parasitic cock to drive it deeper. An unnecessary action, as you always intended to take her as deeply as possible. However, before that, you move to stand over her face with your rock-hard prick at the ready, then lower yourself until your member is poised at her mouth. She gets the idea immediately and you gasp and moan when her feline-like tongue runs across your urethra.");
+				output("\n\nYou lean forward and impale her maw. She doesn’t seem to care as her cheeks hollow, sucking on you and gulping down your pre-cum. That deserves a reward, you decide and move another tail to just below your first. She feels its leaking, [pc.cockHead] against her voluptuous ass cheeks and raises her hips high up for you. It’s always the quiet ones, you chuckle in amusement and spear her ass on your sinuous member.");
+				output("\n\nThe party goes into full swing now, as entire groups of people form off and start their own orgies. The cock-tails you leant the others are all fucking them now, taking the anal sluts so deeply that you wonder why your dicks haven’t come out of their mouths yet. Those with more traditional tastes buck their hips against your tendrils as their wombs are fucked, stuffing the organ with your cock and pre-cum.");
+				output("\n\nAnd you’re the center of it all. Even as you fuck Selina’s face and ram into her two lower holes, several people are on you constantly. You can feel their hands caressing your skin, groping your tits, lightly fingering your ass, and on your unused tails. Time to change that, you resolve and stand up. Your cock slides out of the kaithrit’s mouth with strings of saliva and pre connecting you to her lips. Selina mewls helplessly and tries to reach up, but quickly falters when an orgasm tears through her.");
+				output("\n\nYou turn to the people who were worshipping you and smirk. You sit down and go to lean back. On cue, one of them finds a bundle of clothes and uses them to make a pillow for you. Is this how it feels to be a queen? You can’t imagine it’s very different.");
+				output("\n\nBefore making any further decisions, you put your remaining three tails in action. One spears Selina’s mouth, causing a sound between a gag and a moan, while another lays itself between her tits. Selina quickly pushes her basketball sized mounds together for you, while your final cock hovers over Selina’s navel.");
+				output("\n\nMaybe that’s a bit too kinky, though? Perhaps you should just double-stuff her ass or pussy, give one of them an extra huge load of cum?");
+			}
+			
+			processTime(24);
+			
+			addButton(0, "DP Pussy", cockvineBikiniEvent, "mingle pussy");
+			addButton(1, "DP Ass", cockvineBikiniEvent, "mingle ass");
+			addButton(2, "Fuck Navel", cockvineBikiniEvent, "mingle navel");
+			break;
+		case "mingle pussy":
+		case "mingle ass":
+		case "mingle navel":
+			showBust("SELINA", "VIOLA");
+			showName("\nPARTY!");
+			
+			switch(response)
+			{
+				case "mingle pussy": output("You decide to leave her belly button alone and, instead, force your tendril up her already stuffed snatch. Selina doesn’t mind in the slightest, as her walls clamp down around the twin invaders in another blissful climax. You drive the new addition deep into her, until her womb is forced to accommodate two of your leaking dicks. They coil about inside of her, stretching the organ more than should be possible. But this is a place of utter debauchery, you wouldn’t be surprised if everyone here is modded."); break;
+				case "mingle ass": output("You decide to leave her belly button alone and, instead, force your tendril up her already stuffed asshole. Selina cries out at the sudden extra penetration; her juices continue flowing without end, however, leaving no mystery as to whether she enjoys this. You probe her anus deeper and deeper until your new cock has caught up to the first, then you force them further. They curl about her insides, writhing ecstatically at the warm, velvety innards constricting around them."); break;
+				case "mingle navel": output("You’re sure she’s open to new experiences, so you decide to send your tendril surging into her navel. Were it not for ultraporn, you wouldn’t even know about such a thing, but you’re glad you did. It feels so similar to her ass and yet so different. Tight as a vice, but shallow enough to only just encapsulate the tip of your cock-tail. Selina gives cry of shock at the strange penetration, then quickly adjusts and even cums again from how insane this all is."); break;
+			}
+			output("\n\nYou place your full attention, or as close as you can get while fucking six different people all at once, on the group gawking at you. They look disappointed, but you have an easy solution to that. For all this action, your main body is still left wanting for attention, and they’re going to help with that. You beckon to a girl, who eagerly bounds over to you, looking like a puppy ready to get a treat. The analogy works, since she looks to be half-ausar.");
+				output("\n\nWithout a word, you spread your legs and gesture to " + (pc.vaginas.length <= 1 ? "your pussy" : "one of your pussies") + ". She understands immediately and, tongue lolling out, she mashes her face into your crotch. You moan at her fervor, feeling her nose dig into your lustful clit and her long, slobbery tongue hungrily lap at your folds. It isn’t long before your thighs are damp with a mixture of your juices and her saliva.");
+			// Female Variation:
+			if(!pc.hasCock())
+			{
+				output("\n\nA snap of your fingers later and a couple of kui-tans, who look so similar you assume they’re sisters, come over and kneel on either side of you. The only difference you see between them is that one is a herm and the other is pure female, though both are clearly beside themselves with lust. The herm in particular is visibly pent-up, judging by how large and swollen her scrotum is. You grin at them both and lean back further, then you point to the female kui-tan.");
+				output("\n\n<i>“You, on my face. And you,”</i> you point to her sister, <i>“Between my tits, now.”</i>");
+				output("\n\nThey could have been prisoners of war for how quickly they acted upon your commands. In less than a second, your vision is consumed by fur and a rapidly descending heart-shaped cunt, while your abdomen is straddled and a hard, knotty prick is laid between your breasts. You almost giggle at the feeling of their fuzzy thighs against your skin.");
+				output("\n\nYour mouth is soon preoccupied tasting the kui-tans juices. A delightfully copious surge of tangy sweetness floods your taste buds when she spontaneously cums, causing you to swallow rapidly even as your tongue and lips work her sensitive snatch. Her sibling is already hard at work fucking your tits, rubbing her large furry balls on you with each thrust of her hips. Pre-cum gushes from her tip to create a river of semen running down your torso.");
+				output("\n\nSelina is not to be outdone, however. She uses her elbows to keep her tits together, while her hands wrap around the cock in her mouth, twisting up and down its length to earn as much of your sweet, sticky pre as possible. You hear her gulping it down over the slick sounds of the kui-tan on your face, no doubt hoping to turn you on as much as possible.");
+				output("\n\nIt works and you eventually push the ausar girl away from your pussy. Despite all the stimulation bombarding your senses, you’ve yet to cum yourself, but you have a good idea of what might solve that. You look around and spot exactly what you need. There, amidst the writhing orgies and flying cumshots, is just the thing you needed; someone with a massive cock.");
+				output("\n\nThe amalgamation of races is a stunner in every way. Even ignoring her unique aspects, her hair is a fiery red and runs down to her tailbone, her lips are full, pouty and luscious, while her waist accentuates her already huge tits, all four of them, and her hips promise either an easy birth or a serious dicking. There’s no doubt that her ass is equally spectacular.");
+				output("\n\nWhen the jumbled mixture of species sees your gaze, she immediately breaks away and heads over, hooved feet clicking loudly on the floor. The closer she gets, you more clearly you see that she really is an amalgamation of alien races. You glimpse a vagina beyond her turgid cock and taut scrotum, one that looks distinctly like a raskvel’s with its dual clits. Not that it makes a difference, all you’re interested in is the dick. It, like the rest of this perplexing person, is a cacophony of races.");
+				output("\n\nThe tip is flared and flat like a common terran equine, but only slightly further down you see little spines spread out like a kaithrit’s. Then there’s the trio of knots lining its impressive shaft, leading to the sheath. Its size doesn’t suit a biped such as her, as it looks like it could shame any kind of taur with ease.");
+				output("\n\nYou pat the kui-tan on your face and she gets up with a sigh of regret, <i>“So, tell me, how big is that thing?”</i>");
+				output("\n\nThe multi-racial herm flushes and looks away in embarrassment, <i>“Just shy of thirty inches.”</i>");
+				output("\n\n<i>“And the balls?”</i>");
+				output("\n\n<i>“Depends...”</i>");
+				output("\n\n<i>“You,”</i> your attention turns to the herm sister, who, fortunately, has yet to cum. She snaps to attention with a yelp, <i>“Cum in their mouth,”</i> you gesture to your lover-to-be. You notice that their eyes light up your command, then turn wide when the kui-tan follows your order, <i>“What’s your name?”</i> You ask the new arrival.");
+				output("\n\n<i>“Uh, Viola,”</i> she answers just as her knew kui-tan friend manages to bend them down and hilt her cock in Viola’s throat. The kui-tan must have been on edge, since she cums almost immediately afterwards. You idly watch as Viola swallows with what looks like practised ease, then turn your attention back to the kui-tan above you. She lowers herself back onto your face and you resume your feast.");
+			}
+			// Herm Variation:
+			else
+			{
+				output("\n\nYou spy a tiny raskvel female masturbating with abandon just a few feet away. She notices you looking at her and promptly hops over, hands never leaving her cunt. When she comes to a stop in front of you, all it takes is a gesture to " + (pc.cocks.length == 1 ? "your cock" : "one of your cocks") + " and she understands. The raskvel stands over your erection and moves her hands to rest them on your [pc.belly], then sinks down so that your dick slips into her needful snatch.");
+				
+				pc.cockChange();
+				
+				output("\n\nA glance and snap of your fingers later and a couple of kui-tans, who look so similar you can only assume they’re sisters, come over and kneel on either side of you. The only difference you see between them is that one is a herm and the other is pure female, though both are clearly beside themselves with lust. The herm, in particular, is visibly pent-up, judging by how large and swollen her scrotum is. You grin at them both and lean back further, then you point to the female kui-tan.");
+				output("\n\n<i>“You, on my face. And you,”</i> you point to her sister, <i>“Between my tits, now.”</i>");
+				output("\n\nThey could have been prisoners of war for how quickly they acted upon your commands. In less than a second, your vision is consumed by fur and a rapidly descending heart-shaped cunt, while your abdomen is straddled and a hard, knotty prick is laid between your breasts. You almost giggle at the feeling of their fuzzy thighs against your skin.");
+				output("\n\nYour mouth is soon preoccupied tasting the kui-tans juices. A delightfully copious surge of tangy sweetness floods your taste buds when she spontaneously cums, causing you to swallow rapidly even as your tongue and lips work her sensitive snatch. Her sibling is already hard at work fucking your tits, rubbing her large furry balls on you with each thrust of her hips. Pre-cum gushes from her tip to create a river of semen running down your torso.");
+				output("\n\nThe raskvel notices this and decides to up her game. She adjusts so that she is crouching over you, shifts about to get her center of gravity just right, then begin to drive her hips up and down your dick like a jackhammer. With every descent, she grinds her dual clits against your groin. Wet slaps fill the air around you, a near match for the hordes of party-goers fucking and cumming and screaming throughout it all. The tiny alien’s grunts rise in fervor, then crest in a throat scarring screech of bliss. And yet, throughout it all, she never stops moving.");
+				output("\n\nSelina is not to be outdone, however. She uses her elbows to keep her tits together, while her hands wrap around the cock in her mouth, twisting up and down its length to earn as much of your sweet, sticky pre as possible. You hear her gulping it down over the slick sounds of the kui-tan on your face, no doubt hoping to turn you on as much as possible.");
+				output("\n\nIt works and you eventually push the ausar girl away from your pussy, but leave the bouncing raskvel. Despite all the stimulation bombarding your senses, you’ve yet to cum yourself, but you have a good idea of what might solve that. You look around and spot exactly what you need. There, amidst the writhing orgies and flying cumshots, is just the thing you needed; someone with a massive cock.");
+				output("\n\nYou’ve no idea if they just couldn’t decide on a costume or if they went a little crazy with the mods, as they have triangular ears like a fox-morph’s, the mask-like marking of a kui-tan around their feline eyes, and a dual set of wolfish tails above their digitigrade horse legs. Their chest is dominated by two rows of breasts, each as big as your head and capped by what look to be dick-nipples.");
+				output("\n\nNone of that matters though, what does is getting this specimen away from the group of whores desperately pining for their cock. You can’t blame them, of course.");
+				output("\n\nThe amalgamation of races is a stunner in every way. Even ignoring her unique aspects, her hair is a fiery red and runs down to her tailbone, her lips are full, pouty and luscious, while her waist accentuates her already huge tits, all four of them, and her hips promise either an easy birth or a serious dicking. There’s no doubt that her ass is equally spectacular.");
+				output("\n\nWhen the jumbled mixture of species sees your gaze, she immediately breaks away and heads over, hooved feet clicking loudly on the floor. The closer she gets, you more clearly you see that she really is an amalgamation of alien races. You glimpse a vagina beyond her turgid cock and taut scrotum, one that looks distinctly like a raskvel’s with its dual clits. Not that it makes a difference, all you’re interested in is the dick. It, like the rest of this perplexing person, is a cacophony of races.");
+				output("\n\nThe tip is flared and flat like a common terran equine, but only slightly further down you see little spines spread out like a kaithrit’s. Then there’s the trio of knots lining its impressive shaft, leading to the sheath. Its size doesn’t suit a biped such as her, as it looks like it could shame any kind of taur with ease.");
+				output("\n\nYou pat the kui-tan on your face and she gets up with a sigh of regret, <i>“So, tell me, how big is that thing?”</i>");
+				output("\n\nThe multi-racial herm flushes and looks away in embarrassment, <i>“Just shy of thirty inches.”</i>");
+				output("\n\n<i>“And the balls?”</i>");
+				output("\n\n<i>“Depends...”</i>");
+				output("\n\n<i>“You,”</i> your attention turns to the herm sister, who, fortunately, has yet to cum. She snaps to attention with a yelp, <i>“Cum in her mouth,”</i> you gesture to your lover-to-be. You notice that her eyes light up your command, then turn wide when the kui-tan follows your order, <i>“What’s your name?”</i> You ask the new arrival.");
+				output("\n\n<i>“Uh, Viola,”</i> she answers just as her knew kui-tan friend manages to bend them down and hilt her cock in Viola’s throat. The kui-tan must have been on edge, since she cums almost immediately afterwards. You idly watch as Viola swallows with what looks like practised ease, then turn your attention back to the kui-tan above you. She lowers herself back onto your face and you resume your feast.");
+			}
+			
+			processTime(36);
+			pc.lust(1000);
+			
+			addButton(0, "Next", cockvineBikiniEvent, "mingle cum");
+			break;
+		case "mingle cum":
+			showBust("VIOLA", "SELINA");
+			showName("\nPARTY!");
+			
+			output("Viola interrupts after her own feast ends, knocking the kui-tan over and presenting her incredible hybrid cock to you. Your eyes immediately dart to her far more conspicuous aspect; her balls. The kui-tan DNA in her system did its job marvellously.");
+			// Female Variation:
+			if(!pc.hasCock())
+			{
+				output("\n\nYou widen your legs until you’re practically doing the splits and you all hear it as " + (pc.vaginas.length <= 1 ? "your drenched pussy" : "one of your drenched pussies") + " opens wide. The strength of your pheromones increases massively, causing both you and Viola to inhale sharply. Her face flushes a deep red and her breaths deepen. You nod towards your spread thighs and Viola smirks cockily. Apparently the kui-tan’s cum and your heady musk drown out nervousness.");
+				output("\n\nViola quickly kneels between your thighs and you gasp as her monumental cock brushes against your opening. A flicker of nervousness flashes through your mind at the sheer scale of her member, but it quickly passes as Viola pushes against you. You don’t know if she could read the anxiety on your face or if she was simply impatient, but it’s welcome nonetheless. You force yourself up and wrap your arms around her neck.");
+				output("\n\nViola leans down until her lips are nearly against your ear, <i>“Tell me you want it. Tell me you want my huge dick up your flower pussy.”</i> You frown at that remark; you push it aside, however, and focus on what you want at that moment; a hard fucking.");
+				output("\n\n<i>“You know I do. Now fuck me until I’m satisfied or we’re in a coma,”</i> you growl. Viola chuckles in return. Your inhale catches in your throat and your eyes go wide as you’re suddenly speared on her immense shaft. Her flared head spreads your inner walls wider than you thought possible, ceaselessly pushing into you until she comes to a barrier.");
+				if(!pc.hasVagina()) output("\n\nViola doesn’t hesitate and <b>rams past your hymen</b>. You squeak at the sharp stab of pain, but quickly recover as she pushes deeper into you. She inevitably penetrates your furthest depths, bulging out from your stomach as if about to leap from your chest like an ancient alien monster. The difference here is that you’re left without agony and instead bathed in burgeoning ecstasy. This is exactly the fucking that you needed.");
+				else output("\n\nViola doesn’t hesitate and <b>rams through the lone wall</b>. It barely seemed to register to her that she just pushed into your womb, shoving her meat deeper and deeper, until she comes to the back of your uterus. She only keeps shoving herself deeper into you so that her oversized dick bulges from your belly, as if it’s an ancient alien monster about to leap from your chest. The difference is that you’re not in agony, but rather bathed in your burgeoning ecstasy. This fucking is exactly what you needed.");
+				output("\n\nYou moan throatily when your clit mashes into Viola’s crotch. You could swear that you’ve never felt this full before. Certainly, you’ve never been so turned on or in such a state of prolonged bliss. Having ten separate cocks being pleasured apparently does that sort of thing. Piling a hyper-dicked alien hybrid fucking you on top of that would seem like overkill, except you couldn’t care less. Overkill, normal kill, so long as you keep Viola’s dick inside of you, it doesn’t matter.");
+				output("\n\nViola takes the fact that she hilted inside of you as a signal to really move. Your grip around her neck tightens to a death throttle, for her movements put all her powerful lower body into action. Every muscle those horse legs possess works to saw her giant spire of cock in and out of you, the spines giving just enough resistance to tug on your cervix and dripping canal. Sparks of pleasure blast through you with every thrust as her slowly inflating knots open your pussy wide.");
+				output("\n\nAs you’re bouncing atop her with every rise of her hips, you gasp when your nipples are suddenly engulfed in a pair of hot mouths. You glance down and see the kui-tan sisters are back and suckling on you, while their hands jerk the base of your cock-tails. It’s a small pleasure compared to everything else, but welcome all the same.");
+				output("\n\nThe world begins to fade around you. None of it’s important compared to the ten pussies you’re fucking and the hyper-sized member plunging your depths. You vaguely register that you’re moaning and shouting, driving Viola to fuck you harder, yet it seems so far away. Like a dream.");
+				output("\n\nYour mind hazes over and you lose yourself in the pleasure. There’s nothing else but the rapid thrusts of yours and Viola’s cocks, the sloppy sounds of pussies being pounded voraciously, and the sensations they all bring. You don’t know if you even exist right now. For all you know or care, you could be a simple stream of consciousness, a person, an animal, or all three.");
+				output("\n\nThen everything implodes on itself and it’s all silent. You’re aware that nothing has ceased, but it’s like you’re separate from everything. Only then for the silence to explode into a supernova, one which enveloped you in a roaring inferno that should have burned you alive. Instead, it sent you spiralling into a bottomless abyss where nothing except bliss exists.");
+				output("\n\nThe orgy comes back into focus as you experience possibly the ultimate orgasm. You see and hear people of all races achieve a lesser climax, their ejaculate flying high into the air, onto or into partners, and pouring out on the floor. Then there’s you. All ten of your cocks swell massively and you feel it as your semen pours through them. A new viscous warmth surrounds your members as your many pricks flood your lovers’ orifices.");
+				output("\n\nViola cums mere seconds after your climax starts. Even as your pussy collapses around her, she keeps thrusting until it’s too much for her. The hybrid roars as she mashes her crotch against yours, sinking every inch of her monstrous cock inside. Her knots jump in size, locking you two together, as the first of many spurts blast into you like cannon-fire. Your orgasm reignites at that moment, brighter than even before, as your womb inflates to a round orb in mere seconds.");
+				output("\n\nIt keeps swelling bigger and bigger. You quickly lose track of it as your mind fades to a blissful darkness. The last thing you remember seeing is your stomach forcing Viola to lay down, and the last feeling is that of her seed spilling out past her enormous knots. You have no idea how you didn’t burst from all that jizz being packed into you.");
+			}
+			// Herm Variation:
+			else
+			{
+				output(" You smirk up at her and glance to your lower body, then pull the kui-tan back onto your face.");
+				output("\n\nYou widen your legs until you’re practically doing the splits and you all hear it as your drenched pussy opens wide. The strength of your pheromones increases massively, causing both you and Viola to inhale sharply. Her face flushes a deep red and her breaths deepen. You nod towards your spread thighs and Viola smirks cockily. Apparently the kui-tan’s cum and your heady musk drown out nervousness.");
+				output("\n\nThe raskvel on your dick slows considerably as she cums powerfully. Every breath she takes seems to make her pussy clench tighter around your cock, milking it and squirting juices all over your thighs and belly. She lazily glances back and sees Viola, or, more specifically, Viola’s member. The tiny alien sighs when she realizes that it’s not to be used on her. She then resumes her bouncing, though she’s slower than before. Exhaustion must be setting in.");
+				output("\n\nFortunately, the situation is remedied by a horny Samaritan. You don’t see who it is, but appreciate it when they remove the tired raskvel and take her place. Whoever it is, their pussy is tighter than the last. This stranger then picks up with the former alien left off and starts squatting on your prick, rising and fall rapidly.");
+				output("\n\nViola kneels between your thighs and you gasp as her monumental cock brushes against your opening. A flicker of nervousness flashes through your mind at the sheer scale of her member, but it quickly passes as Viola pushes against you. You don’t know if she could read the anxiety on your face or if she was simply impatient, but it’s welcome nonetheless.");
+				output("\n\nViola leans around the girl on your dick, though you can’t see her with your vision consumed in kui-tan pussy, <i>“Tell me you want it. Tell me you want my huge dick up your flower pussy.”</i> You frown at that remark; you push it aside, however, and focus on what you want at that moment; a hard fucking. You lift the kui-tan to respond.");
+				output("\n\n<i>“You know I do. Now fuck me until I’m satisfied or we’re in a coma,”</i> you growl. Viola chuckles in return. Your inhale catches in your throat and your eyes go wide as you’re suddenly speared on her immense shaft. Her flared head spreads your inner walls wider than you thought possible, ceaselessly pushing into you until she comes to a barrier.");
+				if(!pc.hasVagina()) output("\n\nViola doesn’t hesitate and <b>rams past your hymen</b>. You squeak at the sharp stab of pain, but quickly recover as she pushes deeper into you. She inevitably penetrates your furthest depths, bulging out from your stomach as if about to leap from your chest like an ancient alien monster. The difference here is that you’re left without agony and instead bathed in burgeoning ecstasy. This is exactly the fucking that you needed.");
+				else output("\n\nViola doesn’t hesitate and <b>rams through the lone wall</b>. It barely seemed to register to her that she just pushed into your womb, shoving her meat deeper and deeper, until she comes to the back of your uterus. She only keeps shoving herself deeper into you so that her oversized dick bulges from your belly, as if it’s an ancient alien monster about to leap from your chest. The difference is that you’re not in agony, but rather bathed in your burgeoning ecstasy. This fucking is exactly what you needed.");
+				output("\n\nYou moan throatily when your clit mashes into Viola’s sheath. You could swear that you’ve never felt this full before. Certainly, you’ve never been so turned on or in such a state of prolonged bliss. Having ten separate cocks being pleasured apparently does that sort of thing. Piling a hyper-dicked alien hybrid fucking you on top of that would seem like overkill, except you couldn’t care less. Overkill, normal kill, so long as you keep Viola’s dick inside of you, it doesn’t matter.");
+				output("\n\nViola takes the fact that she hilted inside of you as a signal to really move. You grip the kui-tan’s thighs until she yelps in pain, for Viola’s movements put all her powerful lower body into action. Every muscle those horse legs possess works to saw her giant spire of cock in and out of you, the spines giving just enough resistance to tug on your cervix and dripping canal. Sparks of pleasure blast through you with every thrust as her slowly inflating knots open your pussy wide.");
+				output("\n\nAs you’re forcibly rocked back and forth by the ferocity of her onslaught, you gasp when your nipples are suddenly engulfed in a single, wet maw. You glance down and see the kui-tan’s herm sibling is back and suckling on you, while her hands jerk the base of your cock-tails. It’s a small pleasure compared to everything else, but welcome all the same.");
+				output("\n\nThe world begins to fade around you. None of it’s important compared to the near dozen pussies you’re fucking and the hyper-sized member plunging your depths. You vaguely register that you’re moaning and shouting, driving Viola to fuck you harder, yet it seems so far away. Like a dream.");
+				output("\n\nYour mind hazes over and you lose yourself in the pleasure. There’s nothing else but the rapid thrusts of yours and Viola’s cocks, the sloppy sounds of pussies being pounded voraciously, and the sensations they all bring. You don’t know if you even exist right now. For all you know or care, you could be a simple stream of consciousness, a person, an animal, or all three.");
+				output("\n\nThen everything implodes on itself and it’s all silent. You’re aware that nothing has ceased, but it’s like you’re separate from everything. Only then for the silence to explode into a supernova, one which enveloped you in a roaring inferno that should have burned you alive. Instead, it sent you spiralling into a bottomless abyss where nothing except bliss exists.");
+				output("\n\nThe orgy comes back into focus as you experience possibly the ultimate orgasm. You see and hear people of all races achieve a lesser climax, their ejaculate flying high into the air, onto or into partners, and pouring out on the floor. Then there’s you. All ten of your cocks swell massively and you feel it as your semen pours through them. A new viscous warmth surrounds your members as your many pricks flood your lovers’ orifices.");
+				output("\n\nViola cums mere seconds after your climax starts. Even as your pussy collapses around her, she keeps thrusting until it’s too much for her. The hybrid roars as she mashes her crotch against yours, sinking every inch of her monstrous cock inside. Her knots jump in size, locking you two together, as the first of many spurts blast into you like cannon-fire. Your orgasm reignites at that moment, brighter than even before, as your womb inflates to a round orb in mere seconds.");
+				output("\n\nIt keeps swelling bigger and bigger. You quickly lose track of it as your mind fades to a blissful darkness. The last thing you remember seeing is your stomach forcing Viola to lay down, and the last feeling is that of her seed spilling out past her enormous knots. You have no idea how you didn’t burst from all that jizz being packed into you.");
+			}
+			
+			processTime(64);
+			pc.applyCumSoaked();
+			pc.applyPussyDrenched();
+			if(pc.hasCock()) {
+				cumQ = pc.cumQ();
+				if(cumQ >= 1000) pc.applyCumSoaked();
+				if(cumQ >= 5000) pc.applyCumSoaked();
+				if(cumQ >= 10000) pc.applyCumSoaked();
+			}
+			if(pc.hasVagina()) {
+				cumQ = pc.girlCumQ();
+				if(cumQ >= 1000) pc.applyPussyDrenched();
+				if(cumQ >= 5000) pc.applyPussyDrenched();
+				if(cumQ >= 10000) pc.applyPussyDrenched();
+			}
+			for(i = 0; i < 10; i++) {
+				pc.orgasm();
+				pc.exhibitionism(2);
+			}
+			
+			addButton(0, "Next", cockvineBikiniEvent, "aftermath");
+			break;
+		case "aftermath":
+			halloweenShipMove();
+			showName("\nAFTERMATH");
+			
+			output("You awake in your bed and groggily look around.");
+			output("\n\n<i>“What happened?”</i> You ask the air around you and sit up, then you notice your codex beside you and grab it, seeing that you’ve got a new message. You open it and a hologram erupts before you, showing a girl that you vaguely recognize.");
+			// [If you chose to go to Holiday’s Shop rather than Mingle]
+			if(flags["COCKVINE_BIKINI_EVENT"] == 1)
+			{
+				output("\n\nIt takes a few seconds, but you do recall her name is Lila and what you did to her. The good news is that she doesn’t seem mad at you.");
+				output("\n\n<i>“Hey there beautiful,”</i> she begins, fluttering her eyelashes at you, <i>“That was one hell of a fucking night. Damn, I can’t even remember how many times I came. Or how many times you did,”</i> she leans away from the camera, then, and shows you her stomach. It’s huge! Massive, even, dominating her frame. But how? She couldn’t be pregnant already?");
+				output("\n\n<i>“This is all cum! And I’ve been draining since last night. Guess whatever it is that turned me into a laquine did something extra. And I don’t think it’ll wear off,”</i> you grimace at that, recalling that you told her the changes she experienced were only temporary, <i>“But don’t worry,”</i> she says, predicting your reaction, <i>“I love it! I’m horny all the time, but that’s fine. Maybe it’s my new biology or something, but I’m even looking forward to being pregnant! And I bet I am after that.”</i>");
+				output("\n\n<i>“Anyway,”</i> she continues with a calming pat of her tumescent middle, <i>“I’m sending this because I found this,”</i> she lifts a circle of green, which you recognize as the choker from last night, <i>“I don’t remember all the details, but I got this off you and tried it on. Well, now I also have these,”</i> Lila turns around and shows that she has a series of slits down her back. She tenses and several cock-tipped tentacles slither out.");
+				output("\n\n<i>“Turns out, this ‘choker’ administers something called ‘Cerespirin’ into the bloodstream. It’s not sold anywhere, not legally anyway. Long story short is that it basically turns people who use it into a mixture of plant and their DNA. Like a dryad. But...”</i> Lila hesitates and glances at the choker, then back to the camera, <i>“It reacted to something messing with your DNA at the time. Which would probably be those cockvines... by the way give them a kiss for me would you?”</i>");
+				output("\n\nJust get on with it, you silently growl in worry.");
+				output("\n\n<i>“So, uh, you’re a mutant dryad. You should probably get yourself checked out more thoroughly. Oh and one more thing,”</i> Lila blushes under her fur, <i>“If you’re ever planet-side again, hit me up, alright? Bye.”</i>");
+			}
+			// [If PC chose Mingle rather than go to Holiday’s store]
+			else if(flags["COCKVINE_BIKINI_EVENT"] == 2)
+			{
+				output("\n\nIt takes a few seconds, you eventually remember her name is Viola and some of the events surrounding your meeting. You’re not surprised that she’s beaming at you.");
+				output("\n\n<i>“Hey there, [pc.name]. Sorry I couldn’t be there, but things started getting out of hand after some feds showed up. We snuck you out in case anything was wrong. And turns out it was,”</i> Viola’s face fell at that and she turns to someone off camera. They slide into frame beside Viola and you recognize them as the kaithrit, Selina.");
+				output("\n\n<i>“Right, so while we were getting you away. I accidentally pulled this off you,”</i> Selina explains and holds up a green circle, which you recognize as the choker you were wearing last night, <i>“I’ve got a few friends who know a few things - let’s leave it at that - and they taught me some stuff. Basically, this thing administers an illegal mod called ‘Cerespirin’, which effectively turns users into dryads.”</i>");
+				output("\n\nYou go to look away, but pause when she continues, <i>“The only problem is that there was something messing with your DNA at the same time. I.E. those glorious cocks of yours. I don’t think it necessarily did anything harmful, but you’re not an average dryad that’s for sure. Not that I minded at all,”</i> Selina stands and shows the camera that her stomach is noticeably swollen.");
+				output("\n\n<i>“That’s all spunk, by the way,”</i> Viola adds, <i>“Speaking of which, you might be in the same predicament. My cum is pretty thick after all. But don’t worry, I’m fully sterile. Otherwise I’d have a hundred kids by now.”</i>");
+				output("\n\n<i>“Anyway, you might want to get yourself checked on properly. Just in case something’s up, though I don’t think you’re in any danger,”</i> Selina advises with a warm grin, which changes to a joking grimace. You quickly see why when you spot Viola’s unforgettable member pop up.");
+				output("\n\n<i>“Thanks for introducing us,”</i> Viola says quickly and the hologram dies just as she lifts Selina high.");
+			}
+			processTime(315);
+			
+			addButton(0, "Next", cockvineBikiniEvent, "finish");
+			break;
+		case "finish":
+			clearBust();
+			showName("\nAFTERMATH");
+			
+			output("You immediately check yourself over, reaching back to grab at the bikini vines. They unclasp easily enough, but won’t be removed from your back. A twist of your head and you see that they’ve merged with your flesh, blending perfectly into your green skin. Green?!");
+			output("\n\nYou look everywhere on your body and see that your skin has turned a dark shade of green, with what looks like ivy winding its way up your arms, though you spot what looks like cockvine seedlings sprouting. Your codex acts as a mirror as you inspect your face, finding that your eyes are a solid emerald, no pupils, and the whites are yellow now. Your hair has turned purple and you spot what looks like a red orchid, with tiny cockvines at its center, blooming from the side of your head.");
+			output("\n\nWhat else has changed? You frantically inspect your groin.");
+			if(pc.isMale()) {
+				output("\n\nYou sigh in relief, finding that your [pc.cocks] " + (pc.cocks.length == 1 ? "is" : "are") + " still there, despite it being a deep shade of green. You then reach past " + (pc.cocks.length == 1 ? "it" : "them") + " and gasp");
+				if(pc.femininity < 65) output(", only now registering how feminine your voice has become,");
+				output(" at the sensation of touching your new, orchid vagina. You are relieved that you haven’t sprouted something like a dozen tentacles down there at least");
+				if(pc.breastRows[pc.biggestTitRow()].breastRatingRaw < 5) {
+					output(", and feel a new weight on your chest. Of course, you grew boobs as well. Bright side, they’re large and buoyant");
+					if(pc.buttRatingRaw < 5) output(". As is your ass");
+				}
+				else if(pc.buttRatingRaw < 5) output("... although your ass is a bit heftier now");
+				output(".");
+			}
+			else if(pc.isSexless()) {
+				output("\n\nYou gasp in shock");
+				if(pc.femininity < 65) output(", now registering how feminine your voice has become,");
+				output(" at the sensation of touching your new, orchid vagina. You sigh in relief that you haven’t sprouted something like a dozen tentacles down there");
+				if(pc.breastRows[pc.biggestTitRow()].breastRatingRaw < 5) {
+					output(", and notice an odd weight on your chest. Of course, you grew boobs as well. Bright side, they’re large and buoyant");
+					if(pc.buttRatingRaw < 5) output(". As is your ass");
+				}
+				else if(pc.buttRatingRaw < 5) output("... although your ass is a bit heftier now");
+				output(".");
+			}
+			else if(pc.isFemale())
+			{
+				output("\n\nYou sigh in relief that you haven’t grown a cock or something. You’ve heard plenty of stories about transformative items doing that, even when they’re not meant to.");
+				if(pc.vaginas.length == 1) output(" Your pussy, however, has changed a great deal. It now resembles an orchid, with petals framing your opening and has cute freckles dotting your clit. At least it looks pretty.");
+				else output(" Your pussies, however, have changed a great deal. They now resemble orchids, with petals framing each opening and have cute freckles dotting their clits. At least they look pretty.");
+			}
+			else {
+				output("\n\nYou sigh in relief that everything if still there, though your [pc.cocks] " + (pc.cocks.length == 1 ? "is" : "are") + " turned a deep shade of green. Hopefully your pussy hasn’t changed much. You move your member" + (pc.cocks.length == 1 ? "" : "s") + " aside and see that your " + (pc.vaginas.length == 1 ? "snatch has turned into a flower of sorts" : "vaginas have each turned into flowers of sorts") + ", gorgeous petals frame " + (pc.vaginas.length == 1 ? "your" : "each") + " pussy. They’re almost like a target for horny cocks. Speaking of which...");
+			}
+			output("\n\nHaving inspected your equipment, you then turn your attention to the most memorable aspect of last night; the cockvines. They’re still there. And now that your attention is on them, you can feel twinges of desire teasing at the back of your mind. You make them move separately, then all together, and find that you have a fair amount of control over them. For now, at least.");
+			output("\n\n<b>You’ve become a mutant dryad!</b>");
+			
+			applyMutantDryadTF();
+			processTime(5);
+			pc.lust(15);
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		default:
+			output("ERROR: No scene!");
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+}
+public function applyMutantDryadTF():void
+{
+	var i:int = 0;
+	// Changes after the Masque:
+	// Becomes a Mutant Dryad (or just dryad if mutant part is unnecessary or too strenuous).
+	// Remain the same height.
+	if(pc.femininity < 65) pc.femininity = 65;
+	// Irises become a solid, oak green, no pupils. Sclera turns amber.
+	pc.eyeType = GLOBAL.TYPE_COCKVINE;
+	pc.eyeColor = "oak green";
+	// Hair color turns purple with a red orchid blooming from one side.
+	if(pc.hairLength < 6) pc.hairLength = (6 + rand(3));
+	pc.hairColor = "purple";
+	pc.removeStatusEffect("Hair Flower");
+	pc.createStatusEffect("Hair Flower", 1, 0, 0, 0, true, "", "red", false);
+	// Skin turns to green.
+	pc.skinType = GLOBAL.SKIN_TYPE_PLANT;
+	pc.skinTone = "dark green";
+	pc.clearSkinFlags();
+	pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
+	// Arms
+	pc.armType = GLOBAL.TYPE_FLOWER;
+	pc.clearArmFlags();
+	// If breasts are <DD grow to DD
+	for(i = 0; i < pc.bRows(); i++)
+	{
+		if(pc.breastRows[i].breastRatingRaw < 5) pc.breastRows[i].breastRatingRaw = 5;
+	}
+	// If ass rating is <5 goes to 5.
+	if(pc.buttRatingRaw < 5) pc.buttRatingRaw = 5;
+	// If hip rating is <10 make it 10.
+	if(pc.hipRatingRaw < 10) pc.hipRatingRaw = 10;
+	// If virility is <200% increase to 200%
+	if(pc.cumQualityRaw < 2) pc.cumQualityRaw = 2;
+	// If cum production is <1000% increase to 1000%
+	if(pc.refractoryRate < 10) pc.refractoryRate = 10;
+	// No external changes to any cocks or balls. Except size.
+	if(pc.hasCock())
+	{
+		// If cock is <10 inches – grow 4 inches
+		for(i = 0; i < pc.cockTotal(); i++)
+		{
+			if(pc.cocks[i].cLengthRaw < 10) pc.cocks[i].cLengthRaw += 4;
+			else pc.cocks[i].cLengthRaw += 2;
+			if(pc.hasPerk("Mini")) pc.cocks[i].cLengthRaw -= 2;
+			if(pc.hasPerk("Hung")) pc.cocks[i].cLengthRaw += 2;
+			pc.cocks[i].cockColor = "green";
+		}
+	}
+	// If balls diameter is <5 inches – grow 2 inches
+	if(pc.ballDiameter() < 5)
+	{
+		pc.ballSizeRaw += (2 * Math.PI);
+		if(pc.balls > 0 && pc.hasPerk("Bulgy")) pc.ballSizeRaw += (1 * Math.PI);
+	}
+	// If PC doesn’t have a vagina, grow an orchid vagina with hymen.
+	var flowerColor:String = RandomInCollection(["purple", "pink", "white"]);
+	if(!pc.hasVagina()) pc.createVagina();
+	
+	var ppCockvine:Cockvine = new Cockvine();
+	var ppViola:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!ppViola.hasCock()) ppViola.createCock();
+	ppViola.shiftCock(0, GLOBAL.TYPE_EQUINE);
+	ppViola.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
+	ppViola.cocks[0].addFlag(GLOBAL.FLAG_NUBBY);
+	ppViola.cocks[0].cLengthRaw = 30;
+	ppViola.cocks[0].knotMultiplier = 1.5;
+	ppViola.createPerk("Fixed CumQ", 50000, 0, 0, 0);
+	ppViola.createPerk("Fixed GirlCumQ", 1000, 0, 0, 0);
+	
+	for(i = 0; i < pc.totalVaginas(); i++)
+	{
+		if(pc.vaginas[i].type != GLOBAL.TYPE_FLOWER) pc.shiftVagina(i, GLOBAL.TYPE_FLOWER);
+		pc.vaginas[i].vaginaColor = flowerColor;
+		
+		if(flags["COCKVINE_BIKINI_EVENT"] == 1)
+		{
+			pc.cuntChange(i, pc.tailCockVolume(), false);
+			pc.loadInCunt(pc, i);
+			pc.loadInCunt(ppCockvine, i);
+		}
+		if(flags["COCKVINE_BIKINI_EVENT"] == 2 && i == 0)
+		{
+			pc.cuntChange(i, ppViola.cockVolume(0), false);
+			pc.loadInCunt(ppViola, i);
+			pc.girlCumInMouth(ppViola);
+		}
+	}
+	// Reason: The choker was administering a constant supply of Cerespirin into the PC, which had a reaction to the cockvines merging with the PC.
 }
 

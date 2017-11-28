@@ -103,6 +103,8 @@ package classes.Items.Transformatives
 			if(target.hasTail() && target.legType == GLOBAL.TYPE_HUMAN && target.isBiped())
 				TFList[TFList.length] = 10;
 			
+			if(TFList.length <= 0) TFList[TFList.length] = select;
+			
 			//Loop through doing TFs until we run out, pulling out whichever we use.
 			while(TFList.length > 0 && totalTFs > 0)
 			{	
@@ -413,6 +415,8 @@ package classes.Items.Transformatives
 			//#10 If fully morphed: Some sort of cybernetics bonus if/when that ever happens
 			if(((target.race() == "gabilani" && target.isCyborg()) || (target.isCyborg(2) && rand(4) == 0)) && !target.hasPerk("Cybernetic Synchronization"))
 				TFList[TFList.length] = 10;
+			
+			if(TFList.length <= 0) TFList[TFList.length] = select;
 			
 			//Loop through doing TFs until we run out, pulling out whichever we use.
 			while(TFList.length > 0 && totalTFs > 0)

@@ -267,18 +267,22 @@
 		{
 			output("<i>“I </i>will<i> understand what I’m feeling, with </i>your<i> help [pc.name],”</i> he thunders, <i>“Even if I have to force it.”</i>");
 			output("\n\nChaurmine moves his weapons out of the way as he lowers his head, a growl slipping through clenched teeth with a steamy burst before charging.");
+			
+			var bStun:Boolean = false;
+			
 			if(!combatMiss(this,target)) 
 			{
 				output("\n\nYou grunt as his metal skull rams into you, ");
 				if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 15)
 				{
-					CombatAttacks.applyStun(target, 2);
+					bStun = true;
 					output("knocking the air from your lungs and sending you sliding on the icy floor, your mind reeling.");
 				}
 				else output("though you manage to avoid being dazed.");
 				var damage:TypeCollection = meleeDamage();
 				damage = damageRand(damage, 15);
 				applyDamage(damage, this, target, "minimal");
+				if(bStun) CombatAttacks.applyStun(target, 2);
 			}
 			else
 			{

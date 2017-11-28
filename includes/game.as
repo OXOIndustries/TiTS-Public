@@ -1166,7 +1166,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 	// Waking up events
 	if(inShip && !dreamed)
 	{
-		if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined)
+		if (flags["ANNO_SLEEPWITH_DOMORNING"] == 1)
 		{
 			addButton(0, "Next", annoMorningRouter);
 			return;
@@ -1174,6 +1174,11 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 		if (flags["BESS_SLEEPWITH_DOMORNING"] == 1)
 		{
 			addButton(0, "Next", bessMorningEvents);
+			return;
+		}
+		if (flags["KASE_SLEEPWITH_DOMORNING"] == 1)
+		{
+			addButton(0, "Next", kaseCrewWake);
 			return;
 		}
 		if (seraBitchImpregnateBedWakeCheck())
@@ -1184,11 +1189,6 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 		if (tryProcDommyReahaTime(minPass - rand(301)))
 		{
 			addButton(0, "Next", reahaDommyFuxTime);
-			return;
-		}
-		if (flags["KASE_SLEEPWITH_DOMORNNING"] == 1)
-		{
-			addButton(0, "Next", kaseCrewWake, undefined, "", "");
 			return;
 		}
 	}
@@ -2466,6 +2466,15 @@ public function variableRoomUpdateCheck():void
 	{
 		rooms["PIPPA HOUSE"].addFlag(GLOBAL.NPC);
 	}
+	if(flags["ULA_CAVE"] != undefined)
+	{
+		if(flags["ULA_SAVED"] == undefined)
+		{
+			if(flags["ULA_LEAVE_TIMER"] == undefined || flags["ULA_LEAVE_TIMER"] + 60*24*2 > GetGameTimestamp()) rooms[flags["ULA_CAVE"]].addFlag(GLOBAL.NPC);
+			else rooms[flags["ULA_CAVE"]].removeFlag(GLOBAL.NPC);
+		}
+		else rooms[flags["ULA_CAVE"]].removeFlag(GLOBAL.NPC);
+	}
 	
 	/* VESPERIA / CANADIA STATION */
 	/*
@@ -2475,7 +2484,6 @@ public function variableRoomUpdateCheck():void
 	}
 	else rooms["CANADA7"].eastExit = "";
 	*/
-
 	//Ushamee Corridor
 	if (MailManager.isEntryViewed("ushamee_meet") && flags["USHA_MET3"] == undefined)
 	{

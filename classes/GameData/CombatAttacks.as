@@ -2114,6 +2114,7 @@ package classes.GameData
 			//Attack connected!
 			else
 			{
+				var bStun:Boolean = false;
 				output("They connect with an audible ‘<i>zap</i>’");
 				if (attacker.reflexes() / 2 + rand(20) + 1 >= target.reflexes() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) 
 				{
@@ -2123,7 +2124,7 @@ package classes.GameData
 						if (target.isPlural) output(" and wrap up <b>[target.CombatName], stunning them.</b>");
 						else output(" and snap into place. <b>[target.CombatName] is stunned!</b>");
 					}
-					applyStun(target, 2 + rand(3));
+					bStun = true;
 				}
 				else
 				{
@@ -2132,6 +2133,7 @@ package classes.GameData
 					else output(", but [target.combatName] struggle" + (target.isPlural ? "" : "s") + " out before they can snap into place.");
 				}
 				applyDamage(damageRand(new TypeCollection( { electric: attacker.reflexes() + attacker.level * 2 } ), 15), attacker, target, "minimal");
+				if(bStun) applyStun(target, 2 + rand(3));
 			}
 		}
 		
@@ -2151,6 +2153,7 @@ package classes.GameData
 			}
 			else
 			{
+				var bStun:Boolean = false;
 				output(" You let fly, and a moment later, the arrow explodes in a shockwave of force");
 				
 				if (target.physique()/2 + rand(20) + 1 >= attacker.aim()/2 + 10 || target.hasStatusEffect("Stun Immune"))
@@ -2160,9 +2163,7 @@ package classes.GameData
 				else
 				{
 					output(", stunning your enemy!");
-					
-					var rounds:int = 1 + rand(2);
-					applyStun(target, rounds, false, "Cannot act for " + rounds + " turn" + (rounds == 1 ? "" : "s") + ".");
+					bStun = true;
 				}
 				
 				// Add some burning damage for the explosion
@@ -2170,6 +2171,11 @@ package classes.GameData
 				damage.add(new TypeCollection( { burning: 10 } ));
 				damage = damageRand(damage,15);
 				applyDamage(damage, attacker, target, "ranged");
+				if(bStun)
+				{
+					var rounds:int = 1 + rand(2);
+					applyStun(target, rounds, false, "Cannot act for " + rounds + " turn" + (rounds == 1 ? "" : "s") + ".");
+				}
 			}
 		}
 		
@@ -2351,18 +2357,20 @@ package classes.GameData
 				//Hit
 				else
 				{
+					var bStun:Boolean = false;
 					//[enemy.short][capital]
 					output(StringUtil.capitalize(attacker.getCombatName(), false) + " slams down her wrench in a heavy blow. It connects solidly, and your head is ringing from the brutal hit.");
 					// Stun chance
 					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 40)
 					{
 						output(" <b>The hit was hard enough to stun you!</b>");
-						applyStun(target, 1);
+						bStun = true;
 					}
 					var damage:TypeCollection = attacker.meleeDamage();
 					damage.multiply(2);
 					damageRand(damage, 15);
 					applyDamage(damage, attacker, target);
+					if(bStun) applyStun(target, 1);
 				}
 				attacker.removeStatusEffect("Wrench Charge");
 			}

@@ -1086,6 +1086,7 @@ public function initUvetoRooms():void
 	rooms["UVIP R36"].eastExit = "UVIP T36";
 	rooms["UVIP R36"].moveMinutes = 1;
 	rooms["UVIP R36"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP R36"].runOnEnter = ulaBonus;
 
 	rooms["UVIP X34"] = new RoomClass(this);
 	rooms["UVIP X34"].roomName = "RIFT\nAPPROACH";
@@ -1321,6 +1322,7 @@ public function initUvetoRooms():void
 	rooms["UVIP D22"].eastExit = "UVIP F22";
 	rooms["UVIP D22"].moveMinutes = 1;
 	rooms["UVIP D22"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP D22"].runOnEnter = ulaBonus;
 
 	rooms["UVIP F20"] = new RoomClass(this);
 	rooms["UVIP F20"].roomName = "SNOWBANK\nWEST";
@@ -1367,6 +1369,8 @@ public function initUvetoRooms():void
 	rooms["UVIP J18"].southExit = "UVIP J20";
 	rooms["UVIP J18"].moveMinutes = 1;
 	rooms["UVIP J18"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP J18"].runOnEnter = ulaBonus;
+
 	//rooms["UVIP J18"].addFlag(GLOBAL.HAZARD);
 	//rooms["UVIP J18"].runOnEnter = TundraEncounterBonus;
 
@@ -2137,7 +2141,7 @@ public function initUvetoRooms():void
 	rooms["UVGR K20"].northExit = "UVGR K18";
 	rooms["UVGR K20"].moveMinutes = 1;
 	rooms["UVGR K20"].addFlag(GLOBAL.CAVE);
-	rooms["UVGR K20"].runOnEnter = GlacialRiftEncounterBonus;
+	rooms["UVGR K20"].runOnEnter = ulaBonus;
 
 	rooms["UVGR G16"] = new RoomClass(this);
 	rooms["UVGR G16"].roomName = "WINDING\nPATHS";

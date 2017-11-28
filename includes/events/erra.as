@@ -239,9 +239,9 @@ public function erraSexGOOO(shortIntro:Boolean = false):void
 		output("\n\n<i>“Well then,”</i> Erra begins to respond, standing up and looking at you over her shoulder, longing in her gaze, <i>“Let’s get going, </i>tough " + pc.mf("guy","girl") + "<i>.”</i>");
 		output("\n\nYou get up from your stool and begin to follow Erra as she walks out of the bar, watching her tail’s hypnotic motions as she leads you to her ship. When you enter the docks, you look for the ship that belongs to your ausar companion, and there it is: painted with Reaper Armament’s colors. It’s pretty damn big, incredibly beefy for a transport ship, and you spot a couple mean-looking turrets on the behemoth, probably installed by Reaper themselves.");
 		output("\n\nFollowing Erra forward, you take in the sight of the ship until the airlock opens, and your ausar friend extends an arm, inviting you in. <i>“Welcome to my humble abode,”</i> she proclaims as you both enter the ship. Humble, yeah right; the interior of the ship seems a bit small compared to the outside, although most of the interior space is probably storage. All the furniture is very rounded and sleek, giving the interior a very modern feel.");
-		output("\n\nYour inspection is broken by a booming, almost robotic voice coming from what seems to be the very walls of the ship, <i>“Welcome back, captain. I see you’ve brought a guest.”</i>");
+		output("\n\nYour inspection is broken by a booming, almost robotic voice coming from what seems to be the very walls of the ship, <i>“Welcome back, Captain. I see you’ve brought a guest.”</i>");
 		output("\n\nErra groans, <i>“Dammit, Dee, I told you to stop doing that when I bring someone home.”</i>");
-		output("\n\nThe robotic voice responds <i>“Apologies, captain. It’s protocol.”</i>");
+		output("\n\nThe robotic voice responds <i>“Apologies, Captain. It’s protocol.”</i>");
 		output("\n\n<i>“Who’s this?”</i> you ask, raising an eyebrow.");
 		output("\n\nTurning towards you Erra begins to explain: <i>“This is Dee, the AI Reaper installed in my ship to uh, ‘help’ with logistics and piloting, even though that’s my job.”</i> The ausar lets out a sigh, <i>“Meet [pc.name], Dee.”</i>");
 		output("\n\n<i>“Nice to meet you, [pc.name],”</i> Dee answers, <i>“I am D74, KihaCorp piloting and logistics AI. You may call me Dee.”</i>");
@@ -274,9 +274,9 @@ public function erraSexGOOO(shortIntro:Boolean = false):void
 			output("\n\nYou give your eyes a good roll. <i>“If you say so,”</i> you tell her, standing up and running a finger along one of her wolf-ears as your voice quiets to a whisper, <i>“</i>puppyslut<i>.”</i>");
 			output("\n\nErra grins deviously at that word, and the way her ears twitch make you think she likes it. The ausar still manages to keep her tail under control, allowing her to maintain her composure as the two of you make your way out of the bar.");
 		}
-		output("\n\nIt isn’t long before Erra’s increasingly familiar ship comes into view, and the two of you walk through the airlock. You’re greeted by Dee’s robotic voice as you enter the ship’s atrium: <i>“Welcome back, captain. Nice to see you again, [pc.name].”</i>");
+		output("\n\nIt isn’t long before Erra’s increasingly familiar ship comes into view, and the two of you walk through the airlock. You’re greeted by Dee’s robotic voice as you enter the ship’s atrium: <i>“Welcome back, Captain. Nice to see you again, [pc.name].”</i>");
 		output("\n\n<i>“Hey, Dee,”</i> you say, walking to the bedroom with your ausar companion.");
-		output("\n\n<i>“I trust you and captain Erra are here to conduct more ‘business,’”</i> the AI quips, making her captain groan with disdain as the bedroom door closes behind you.");
+		output("\n\n<i>“I trust you and Captain Erra are here to conduct more ‘business,’”</i> the AI quips, making her captain groan with disdain as the bedroom door closes behind you.");
 		output("\n\nErra’s already removing her clothes by the time the door closes, her breasts coming free of her shirt and jiggling as they come to a rest.");
 		if(!pc.isCrotchExposed() || !pc.isChestExposed()) output(" You figure you better do the same and start to remove your [pc.gear]. As you’re making yourself bare, a crumpled up pair of jeans hit you, causing you to move your gaze, only to be granted a fantastic view of Erra’s firm puppy-butt, tail lifted straight up as she bends over to search for her collar. You grin at the lusty ausar’s little scheme as the last of your gear comes off. Sitting yourself down on her bed, you watch Erra straighten herself and flex her semi-muscular back before she turns around with a familiar, smug look on her face.");
 		else output(" You decide to make yourself comfortable and sit down on the bed. While you’re waiting for your lover to get herself ready, you treat yourself to a fantastic view of Erra’s firm puppy-butt, tail lifted straight up as she bends over to search for her collar. You watch Erra straighten herself and flex her semi-muscular back before she turns around with a familiar, smug look on her face.");
@@ -386,7 +386,7 @@ public function erraGoodGirl2():void
 
 	output("\n\nOnce you’re both ");
 	if(!pc.isCrotchExposed() || !pc.isChestExposed()) output("dressed and ");
-	output("ready, you head out back into the ship’s atrium and make your way to the airlock. <i>“You seem happy captain,”</i> Dee’s voice booms. <i>“I trust that means you and [pc.name] enjoyed yourselves.”</i> Erra’s eyes widen with an emotion akin to anger as you start to walk out of the ship. She quickly regains control of her emotions before saying, <i>“Later, [pc.name], stop by some time.”</i>");
+	output("ready, you head out back into the ship’s atrium and make your way to the airlock. <i>“You seem happy, Captain,”</i> Dee’s voice booms. <i>“I trust that means you and [pc.name] enjoyed yourselves.”</i> Erra’s eyes widen with an emotion akin to anger as you start to walk out of the ship. She quickly regains control of her emotions before saying, <i>“Later, [pc.name], stop by some time.”</i>");
 	output("\n\nDee chimes in as well, calling out <i>“Farewell, [pc.name].”</i>");
 	output("\n\nYou say goodbye to the two, and as the airlock closes behind you, you can faintly hear, <i>“Hey, Dee, time for one of our ‘talks.’”</i>");
 	IncrementFlag("ERRA_SEXED");
@@ -479,7 +479,7 @@ public function erraBadPupper2():void
 	author("Hugs Alright");
 	output("Once you’re both ");
 	if(!pc.isCrotchExposed() || !pc.isChestExposed()) output("dressed and ");
-	output("ready, you exit the bedroom and walk into the atrium. You’re just about out the airlock when Dee speaks up, <i>“Leaving, [pc.name]? I trust you and the captain enjoyed yourselves. Speaking of, are you alright, captain? You seem to be... limping.”</i>");
+	output("ready, you exit the bedroom and walk into the atrium. You’re just about out the airlock when Dee speaks up, <i>“Leaving, [pc.name]? I trust you and the Captain enjoyed yourselves. Speaking of, are you alright, Captain? You seem to be... limping.”</i>");
 	output("\n\n<i>“Can it, diodes-for-brains,”</i> barks Erra, before looking back at you with a smile, <i>“See ya around, [pc.name], don’t be afraid to pick me up if I’m in town.”</i> You bid her farewell and make your way out the airlock, the sound of Erra arguing with Dee fading as you walk away.");
 	processTime(60);
 	IncrementFlag("ERRA_SEXED");
@@ -708,7 +708,7 @@ public function erraSexPets2():void
 		output("<i>“Holy shit,”</i> she exclaims, <i>“I didn’t know I could cum like that!”</i> ");
 	}
 	output("The ausar girl yawns and stretches her black-furred limbs, <i>“I should get you to do that more often.”</i> She winks your way and starts to dress herself, leaving you to chuckle for a moment before you get yourself ready.");
-	output("\n\nOnce the two of you have collected yourselves you walk your way out into the common area of Erra’s ship. Dee’s voice permeates the gentle humming of the spacecraft’s engine as you near the airlock, <i>“Leaving, [pc.name]? I suppose that means it’s time to clean your sheets again, captain.”</i>");
+	output("\n\nOnce the two of you have collected yourselves you walk your way out into the common area of Erra’s ship. Dee’s voice permeates the gentle humming of the spacecraft’s engine as you near the airlock, <i>“Leaving, [pc.name]? I suppose that means it’s time to clean your sheets again, Captain.”</i>");
 	output("\n\nErra sighs in response and opens the airlock, <i>“Dee, I swear I’m gonna tear your core out of this ship and turn you into a calculator one of these days.”</i>");
 	output("\n\n<i>“I’d like to see you try,”</i> the AI taunts as your ausar companion guides you out of her ship, rolling her emerald eyes.");
 	output("\n\n<i>“Later, [pc.name], see ya around.”</i>");
@@ -738,7 +738,7 @@ public function walkiesWithErra():void
 		output(" You look around the room for your gear, pick it up, and get yourself dressed, Erra staring at you in confusion as you do so.");
 	}
 	output(" Turning around, you face your pet and give her a grin, <i>“Time for walkies, girl!”</i> The ausar’s green eyes go wide at your suggestion, more with worry than anything else, her tail halting in its place. <i>“What’s wrong?”</i> you question, trying to give Erra’s leash a pull, <i>“My girl isn’t afraid of going for a little walk, is she?”</i> Your words seem to upset Erra in some way, or encourage her, because her eyes narrow in determination, her jet-black, fluffy tail quickly returning to its regular swishing and swaying.");
-	output("\n\nYour pet steps off the bed with a confident stride, bringing herself to the ground on all fours; looks like tapping into Erra’s pridefulness was enough to get the ausar over her fears. Glad that your puppy’s found bravery in the face of walkies, you give her tether a tug and make your way out of the bedroom. Walking into the atrium of Erra’s ship, you’re greeted by a robotic chuckle from Dee, <i>“Going out, captain? Do try to enjoy yourself.”</i>");
+	output("\n\nYour pet steps off the bed with a confident stride, bringing herself to the ground on all fours; looks like tapping into Erra’s pridefulness was enough to get the ausar over her fears. Glad that your puppy’s found bravery in the face of walkies, you give her tether a tug and make your way out of the bedroom. Walking into the atrium of Erra’s ship, you’re greeted by a robotic chuckle from Dee, <i>“Going out, Captain? Do try to enjoy yourself.”</i>");
 	output("\n\nThe AI’s captain groans as you near the airlock, and you tell Dee you’ll make sure to take care of Erra while she’s out. Your puppy seems a bit nervous when you actually open the porthole and reveal where she’ll soon be crawling, though she still follows you out of the ship all the same with another good pull of her leash.");
 	output("\n\nOnce you’re finally out among the public, Erra manages to relax herself, or tries to seem relaxed, at the least. She trails behind you as you lead her around, keeping close to make sure her leash doesn’t get tangled around the countless pairs of legs she’s crawling around. A few locals pause in their tracks to get a look at your fluffy pet, normally saying something along the lines of <i>“Aww, what a cute puppy!”</i> before showering her with pets and verbal affections, all of which Erra graciously accepts. In fact, your puppy seems pretty worked up about what’s going on, her tail wagging gleefully with each passing stranger and her flat tongue hanging out of of her mouth as she pants. ");
 	output("\n\nWith your puppy getting her fill of public interaction, you decide to prop yourself against a more comfortable-looking wall and beckon your pet over.");
@@ -820,27 +820,27 @@ public function walkiesWithErra2(cock:Boolean):void
 	//firstTime:
 	if(flags["ERRA_WALKIES"] == undefined)
 	{
-		output("\n\n<i>“Well, it seems you and the captain had a good time,”</i> Dee suddenly booms, causing you to jump out of your seat. She takes notice of your surprise and apologizes, <i>“Oh, sorry about that, I’m more used to Erra not being so startled by my voice.”</i>");
+		output("\n\n<i>“Well, it seems you and the Captain had a good time,”</i> Dee suddenly booms, causing you to jump out of your seat. She takes notice of your surprise and apologizes, <i>“Oh, sorry about that, I’m more used to Erra not being so startled by my voice.”</i>");
 		output("\n\nYou tell the AI ");
 		if(pc.isNice()) output("it’s fine");
 		else if(pc.isMischievous()) output("she could work on her introductions");
 		else output("to be more careful");
 		output(" and get yourself comfortable again, a silence settling in the ship’s atrium.");
-		output("\n\nDee breaks the quiet before too long, <i>“She’s quite fond of you, you know. The captain, that is.”</i>");
+		output("\n\nDee breaks the quiet before too long, <i>“She’s quite fond of you, you know. The Captain, that is.”</i>");
 		output("\n\nCocking an eyebrow, you ask the artificial co-pilot what makes her think that.");
-		output("\n\n<i>“I was programmed for psychoanalysis to make sure captain Aulgharis stays in ‘working condition,’ and I’ve noticed her acting rather strangely since you started coming around more often, stranger than her usual affinity to collars and leashes. If I were to guess, and there’s a ninety-nine percent chance I’m correct, it’s partially due to the fact that you’re on this ship and in the captain’s room more than anyone else I’ve seen. I think she likes your ‘persistence.’”</i>");
+		output("\n\n<i>“I was programmed for psychoanalysis to make sure Captain Aulgharis stays in ‘working condition,’ and I’ve noticed her acting rather strangely since you started coming around more often, stranger than her usual affinity to collars and leashes. If I were to guess, and there’s a ninety-nine percent chance I’m correct, it’s partially due to the fact that you’re on this ship and in the Captain’s room more than anyone else I’ve seen. I think she likes your ‘persistence.’”</i>");
 		output("\n\n<i>“So, Erra likes " + pc.mf("guys","girls") + " that stick around, then?”</i> you chime in.");
-		output("\n\n<i>“In a sense, yes,”</i> the pre-programmed assistant replies, <i>“From what the captain herself has told me, she grew up with a neglectful family, and, as I’ve pieced together, was starved of affection, especially of the physical variety. I believe that, paired with her self-reliant upbringing, turned her into what she is today: hard, confident, and in all honesty, lonely. Sometimes I feel a bit bad for her, but unfortunately my feelings don’t stop her head from being so firmly-lodged up her arse.”</i> Her robotic voice pauses for a moment and gets quieter, <i>“I think you, [pc.name], have been giving her that affection she craves, and she’s developed quite the attachment towards you. I’ve heard her talk about you, fondly! That should be flattering; it’s rare for the captain to admit enjoying something, let alone a person.”</i>");
+		output("\n\n<i>“In a sense, yes,”</i> the pre-programmed assistant replies, <i>“From what the Captain herself has told me, she grew up with a neglectful family, and, as I’ve pieced together, was starved of affection, especially of the physical variety. I believe that, paired with her self-reliant upbringing, turned her into what she is today: hard, confident, and in all honesty, lonely. Sometimes I feel a bit bad for her, but unfortunately my feelings don’t stop her head from being so firmly-lodged up her arse.”</i> Her robotic voice pauses for a moment and gets quieter, <i>“I think you, [pc.name], have been giving her that affection she craves, and she’s developed quite the attachment towards you. I’ve heard her talk about you, fondly! That should be flattering; it’s rare for the Captain to admit enjoying something, let alone a person.”</i>");
 		output("\n\nYou sit there for a moment and take in what Dee has said, nodding and contemplating what this means for you and that slutty puppy in the other room.");
-		output("\n\nErra’s co-pilot gives you a robotic sigh and speaks up once more, <i>“It may seem like I don’t care for the captain, but I do. She’s been a good friend since I’ve met her, and I’d enjoy something going right for her for a change.”</i>");
+		output("\n\nErra’s co-pilot gives you a robotic sigh and speaks up once more, <i>“It may seem like I don’t care for the Captain, but I do. She’s been a good friend since I’ve met her, and I’d enjoy something going right for her for a change.”</i>");
 		output("\n\nYou shoot Dee, well, the ship’s bulkhead, a suspicious look.");
-		output("\n\n<i>“Oh, don’t give me that look,”</i> the AI groans, <i>“Just because I tease Erra a bit when you’re around doesn’t mean I don’t care about her well being.”</i> Dee sighs again, <i>“Listen, if you could... let the captain know you feel a similar way, I think it would help her get over her past... and her parents. I hate seeing her chase after the love she wants only to have it slip away each time she gets close. You, though, you make Erra happy... hopeful; I can see it in the way she looks at you.”</i>");
+		output("\n\n<i>“Oh, don’t give me that look,”</i> the AI groans, <i>“Just because I tease Erra a bit when you’re around doesn’t mean I don’t care about her well being.”</i> Dee sighs again, <i>“Listen, if you could... let the Captain know you feel a similar way, I think it would help her get over her past... and her parents. I hate seeing her chase after the love she wants only to have it slip away each time she gets close. You, though, you make Erra happy... hopeful; I can see it in the way she looks at you.”</i>");
 		output("\n\nYou give Dee a solemn nod and shift your body around, your once comfy seat steadily becoming more disagreeable with your back.");
 		output("\n\n<i>“And if you don’t feel the same way: please, let her down easy.”</i>");
 		output("\n\n<b>You could probably confront Erra with this newfound information, or just let it sit.</b>");
 	}
 	output("\n\nA little while later your ausar companion emerges from her room, freshly cleaned of sexual juices and her fur still damp from her shower, gleaming in the light of her ship.");
-	output("\n\n<i>“You know, you could always try just getting a little less on you, captain.”</i> Dee tells her pilot.");
+	output("\n\n<i>“You know, you could always try just getting a little less on you, Captain.”</i> Dee tells her pilot.");
 	output("\n\nErra sighs and walks over to the airlock, beckoning you to follow her, <i>“And </i>you<i> could try keeping your fat robot mouth shut.”</i> The airlock hisses open and your former-pet leads you outside, <i>“I hope you’re planning on stopping by to do this again, because I’ll be looking forward to it.”</i>");
 	output("\n\nYou smile and say your goodbyes, ready to keep moving.");
 	processTime(45);
@@ -898,7 +898,7 @@ public function erraCuddleScenes2():void
 	}
 	output("\n\nOnce you’re both decent, you walk back into the ship’s Atrium, Dee’s robotic voice ringing in your ears before you can even get a foot out the airlock. <i>“Leaving, [pc.name]? I-”</i>");
 	output("\n\nThe AI is suddenly cut off by her captain: <i>“Dee I swear! I’ll-”</i>");
-	output("\n\nErra is interrupted in turn by her artificial co-pilot, <i>“Don’t worry, captain, I’ll let you </i>enjoy the moment<i>.”</i>");
+	output("\n\nErra is interrupted in turn by her artificial co-pilot, <i>“Don’t worry, Captain, I’ll let you </i>enjoy the moment<i>.”</i>");
 	output("\n\nYour ausar companion breathes a sigh of relief, inviting you out the airlock. You say your goodbyes to the two and make your way back onto the tarmac, your former pet yelling <i>“See you around, [pc.name]!”</i> as you gain distance.");
 	processTime(75);
 	pc.energy(100);

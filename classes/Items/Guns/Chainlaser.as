@@ -45,9 +45,11 @@ package classes.Items.Guns
 			this.attack = 15;
 			
 			baseDamage.burning.damageValue = 32;
-			baseDamage.addFlag(DamageFlag.BULLET);
+			//baseDamage.addFlag(DamageFlag.BULLET);
 			baseDamage.addFlag(DamageFlag.NO_CRIT);
 			baseDamage.addFlag(DamageFlag.LASER);
+			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
+			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			addFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR);
 			addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
 			

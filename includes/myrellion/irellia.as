@@ -1375,6 +1375,10 @@ public function partThreeOfAntOnPCOnAntAction(partner:String = ""):void
 	clearOutput();
 	showIrellia();
 	author("JimT");
+	
+	var x:int = -1;
+	if(pc.hasVagina()) x = rand(pc.totalVaginas());
+	
 	output("<i>“As much as you’re both enjoying yourselves, I hope you haven’t forgotten about me?”</i> Irellia playfully interjects. You turn your head. Her large, thick legs are parted wide and her fingers are teasing her human-like front pussy. Despite her complaint, you notice her honey-colored lips are already glistening and wet, and her fingers are slowly stroking her erect clit. Your mouth wettens with anticipation - what a delicious sight!");
 	//Muscular Myr:
 	if(partner == "Iloden") output("\n\nIloden turns you around by your hips and marches you up to the expectant queen. His forceful hands bend you forward");
@@ -1398,20 +1402,18 @@ public function partThreeOfAntOnPCOnAntAction(partner:String = ""):void
 	else output("Your [pc.asshole] is yearning for something, <i>anything</i> inside of it - hopefully he’ll do the honors?");
 
 	output("\n\nHis pulsing tip teases your ");
-	if(pc.hasVagina()) output("dripping wet snatch");
+	if(x >= 0) output("dripping wet snatch");
 	else output("sensitive anus");
 	output(". With a muffled whine, you push your hips back, unwilling to wait... but he pulls back.");
 	if(partner == "Etheln") output(" What cheek!");
 	else output(" So mean!");
 	output(" Just when you think he’s going to tease you until you cum, he presses forward, and eases himself just barely inside of you. You let out a muffled curse - he’s so HUGE! Your poor ");
-	if(pc.hasVagina()) output("pussy");
+	if(x >= 0) output("pussy");
 	else output("pucker");
 	output(" stretches and gapes around his apple-sized cockhead. A few inches more and you’re quite literally over the hump.");
 
-	var x:int = rand(pc.totalVaginas());
-	if(!pc.hasVagina()) x = -1;
 	output("\n\n<i>“How do you like his cock, dear?”</i> Irellia huskily inquires. She’s raising her hips insistently, and you realize the moment he thrust into your [pc.vagOrAss " + x + "] you rudely stopped licking. You bury yourself in her golden royal muff once more, making sure you give just as much as you receive. Wrapping your [pc.lips] around her sizable clit, you suckle and lick on it as he eases his hot flesh deep inside of your");
-	if(pc.hasVagina()) output(" sopping wet cunny");
+	if(x >= 0) output(" sopping wet cunny");
 	else output(" [pc.asshole]");
 	output(". His massive glans bottoms out inside of your ");
 	if(x >= 0) output("well lubed passage and kisses your cervix");
@@ -1442,7 +1444,7 @@ public function partThreeOfAntOnPCOnAntAction(partner:String = ""):void
 	else if(partner == "Aurin") output("hunky");
 	else output("cute");
 	output(" lover behind you, who groans and tightly grabs your [pc.hips].");
-	if(pc.hasVagina()) 
+	if(x >= 0) 
 	{
 		output(" With a final, glorious thrust, he presses his prodigious length deep inside you until his tip is kissing your");
 		if(pc.isPregnant(x)) output(" currently occupied");
@@ -1466,7 +1468,7 @@ public function partThreeOfAntOnPCOnAntAction(partner:String = ""):void
 		else output("gallons of");
 		output(" [pc.cum] all over your [pc.belly] and all over the floor.");
 	}
-	else if(pc.hasVagina())
+	else if(x >= 0)
 	{
 		output("clench and spasm around him, your [pc.girlCum] mixing with his potent alien spunk. A mixture of liquids liberally runs down your [pc.legOrLegs] - myr and [pc.girlCumNoun].");
 	}
@@ -1499,20 +1501,21 @@ public function partThreeOfAntOnPCOnAntAction(partner:String = ""):void
 	else if(pc.hasVagina()) output(" [pc.EachPussy] is sticky with your [pc.girlCum] and exposed to her like a lewd prize for the taking.");
 	else output(" The point in which you are joined, his dripping member and your clenching ring, are lewdly exposed to her.");
 
-	flags["X_STORAGE"] = x;
 	processTime(16);
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",irelliaDoubleTeamFinale,partner);
+	addButton(0,"Next",irelliaDoubleTeamFinale,[partner, x]);
 }
 
-public function irelliaDoubleTeamFinale(partner:String):void
+public function irelliaDoubleTeamFinale(arg:Array):void
 {
 	clearOutput();
 	showIrellia();
 	author("JimT");
-	var x:int = flags["X_STORAGE"];
-	flags["X_STORAGE"] = undefined;
+	
+	var partner:String = arg[0];
+	var x:int = arg[1];
+	
 	if(pc.hasCock())
 	{
 		output("Dropping down to her knees, the buxom myr queen’s breasts jiggle under her, and she crawls up between your parted thighs. She wraps her blue painted lips around [pc.oneCock] and begins sucking it and your [pc.cum] off.");
@@ -1525,7 +1528,7 @@ public function irelliaDoubleTeamFinale(partner:String):void
 		output("\n\nA rumbling geyser rises up within you and shakes your whole body in shuddering, glorious waves. With a shrill cry, you clench his cock and utterly cream yourself; this time shooting your [pc.cum] directly into the myr queen’s mouth. You shamelessly unload every little dribble your [pc.balls] have left to give on her royal tongue, while at the same time " + partner + " unloads his balls inside of your [pc.vagOrAss " + x + "].");
 	}
 	//else if PcGotPussyTrue
-	else if(pc.hasVagina())
+	else if(x >= 0)
 	{
 		output("Dropping down to her knees, the buxom myr queen’s breasts jiggle under her, and she crawls up between your parted thighs. She brushes her blue painted lips against [pc.onePussy] and begins licking it and your [pc.girlCumNoun] off. You blush in the knowledge that a queen is lapping up <i>your</i> [pc.girlCumFlavor] nectar and you feel yourself getting hot and bothered all over again.");
 		output("\n\nYou tremble and moan while she masterfully cleans your silky [pc.pussyColor " + x + "] lips. When your other lover begins pistoning your [pc.vagOrAss " + x + "] once more, your loins are seized with riveting waves of pleasure, and you feverishly wiggle your hips. You’re being stirred up by them both - a queen’s mouth on your [pc.vagina " + x + "] and " + partner + "’s dick in your cunt - and you feel like your mind is about to break! When the myr cums yet again, shooting ropes of his wonderfully warm cream inside of your inner walls, you’re pushed <i>way</i> over the edge...");
@@ -1561,7 +1564,7 @@ public function irelliaDoubleTeamFinale(partner:String):void
 	var ppMyrMale:PregnancyPlaceholder = new PregnancyPlaceholder();
 	ppMyrMale.cumType = GLOBAL.FLUID_TYPE_HONEY;
 	ppMyrMale.createPerk("Fixed CumQ", 8000, 0, 0, 0);
-	if(x >= 0) pc.loadInCunt(ppMyrMale);
+	if(x >= 0) pc.loadInCunt(ppMyrMale, x);
 	else pc.loadInAss(ppMyrMale);
 	pc.orgasm();
 	irelliaSexBreak(4);

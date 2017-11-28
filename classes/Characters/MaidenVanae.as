@@ -406,15 +406,17 @@ package classes.Characters
 					}
 					
 					var damage:TypeCollection = meleeDamage();
+					var bStun:Boolean = false;
 					damageRand(damage, 10);
 					
 					if (isCrit)
 					{
 						damage.multiply(2);
-						CombatAttacks.applyStun(target, 1);
+						bStun = true;
 					}
 					
 					applyDamage(damage, this, target);
+					if(bStun) CombatAttacks.applyStun(target, 1);
 				}
 			}
 		}
