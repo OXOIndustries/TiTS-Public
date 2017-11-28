@@ -1685,13 +1685,19 @@
 					buffer = crotchCover();
 					break;
 				case "crotchCovers":
-					buffer = crotchCover();
+					buffer = crotchCovers();
 					break;
 				case "assCover":
 					buffer = assCover();
 					break;
 				case "assCovers":
-					buffer = assCover();
+					buffer = assCovers();
+					break;
+				case "chestCover":
+					buffer = chestCover();
+					break;
+				case "chestCovers":
+					buffer = chestCover();
 					break;
 				case "skinNoun":
 					buffer = skinNoun(true);
@@ -14485,6 +14491,23 @@
 			{
 				if(desc != "") desc += " and ";
 				desc += lowerUndergarment.longName;
+			}
+			return "nothing";
+		}
+		public function chestCover(): String
+		{
+			if(!isChestExposedByArmor()) return armor.longName;
+			else if(!isChestExposedByUpperUndergarment()) return upperUndergarment.longName;
+			return "nothing";
+		}
+		public function chestCovers(): String
+		{
+			var desc:String = "";
+			if(!isChestExposedByArmor()) desc += armor.longName;
+			if(!isChestExposedByUpperUndergarment()) 
+			{
+				if(desc != "") desc += " and ";
+				desc += upperUndergarment.longName;
 			}
 			return "nothing";
 		}
