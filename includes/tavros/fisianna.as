@@ -1729,6 +1729,7 @@ public function sixthDateMerge():void
 	output("\n\n<i>“Alright, [pc.name]. I had the most wonderful day with you, but you got me all wet, so I need to wash this off and get to work on another project. I-I would be... up to doing something like this again next time, if you want to, of course. I bet you would though.”</i> Fisianna gives you a wink before separating herself from you and heading towards her bedroom door. Satisfied with opening her up a little sexually, you give a goodbye wave to Fisianna at her bedroom, to which she blows a kiss at you before disappearing behind the door. You help yourself out of her apartment and head back to the plaza with a big smile on your face.");
 
 	pc.lust(30);
+	fisianna.orgasm();
 	setFisiAway();
 	processTime(60 + rand(15));
 	currentLocation = "LIFT: RESIDENTIAL DECK";
@@ -1946,6 +1947,7 @@ public function eatOutFisi():void
 	
 	currentLocation = "RESIDENTIAL DECK 13";
 	processTime(30 + rand(25));
+	fisianna.orgasm();
 	pc.lust(33);
 	addButton(0,"Next",mainGameMenu);
 }
@@ -2026,8 +2028,10 @@ public function sixtyNineFisi():void
 	
 	if (flags["FISI_SEX_NUMBER"] == 2) flags["FISI_SEX_NUMBER"] = 3;
 	
-	pc.orgasm();
 	processTime(30 + rand(25));
+	fisianna.orgasm();
+	pc.orgasm();
+	pc.girlCumInMouth(fisianna);
 	addButton(0, "Next", sixtyNineFisi2);
 }
 
@@ -2221,8 +2225,9 @@ public function vaginalFisi():void
 		output("Your feline lover utters a long, <i>“Mmmnnn...”</i> as her insides continue to spasm around you. One quick glance at her face and you can tell she is totally gone. Her tongue is lazily lolling out of her mouth and she has the biggest grin on her face. You chuckle and nuzzle into her neck as you both ride out the rest of your climaxes.");
 	}
 	
-	pc.orgasm();
 	processTime(30 + rand(25));
+	fisianna.orgasm();
+	pc.orgasm();
 	addButton(0, "Next", vaginalFisi2);
 }
 
@@ -2255,6 +2260,7 @@ public function vaginalFisi2():void
 	
 	currentLocation = "RESIDENTIAL DECK 13";
 	processTime(60 + rand(25));
+	pc.shower();
 	addButton(0,"Next",mainGameMenu);
 }
 

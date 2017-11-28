@@ -457,6 +457,11 @@ public function appearance(forTarget:Creature):void
 		case GLOBAL.TYPE_NYREA:
 			output2(" Your eyes are solid " + target.eyeColor + " in color. They are well adapted to low light environments, befitting a cave-dwelling species like the nyrea.");
 			break;
+		case GLOBAL.TYPE_COCKVINE:
+			if(InCollection(target.eyeColor, ["amber", "yellow", "gold"])) output2(" Glistening in the light like rich sap, your eyes are solid golden amber with hidden pupils.");
+			else output2(" Like rich sap, your eyes are glistening amber, each with a solid, hexagonal-shaped " + target.eyeColor + " iris and an invisible pupil.");
+			output2(" Strangely, they seem like a very natural part of you, despite their alien-like appearance.");
+			break;
 		case GLOBAL.TYPE_GABILANI:
 			if(target.eyeColor == "black") output2(" Your alien eyes are dark as the void, with irises that are completely black and indistinguishible from the pupils themselves, making you appear disconcerting from afar.");
 			else output2(" Your eyes are completely " + target.eyeColor + ", with irises of the same color and indistinguishible from the pupils themselves, making you appear quite alien.");
@@ -1945,7 +1950,7 @@ public function appearance(forTarget:Creature):void
 			else cockvineTexture += target.skinTone + " skin";
 			
 			if(target.tailCount == 1) output2(" A writhing, sinuous appendage flows after you, bobbing and undulating with the slightest movement of your hips.");
-			else output2(StringUtil.upperCase(num2Text(target.tailCount)) + " writhing, sinuous appendages flow after you, all similar in appearance. Studying one of them, you see that it appears vine-like though very much alive and moving.");
+			else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " writhing, sinuous appendages flow after you, all similar in appearance. Studying one of them, you see that it appears vine-like though very much alive and moving.");
 			
 			// Cockvine
 			if(target.tailGenitalArg == GLOBAL.TYPE_COCKVINE && !target.hasTailFlag(GLOBAL.FLAG_RIBBED))

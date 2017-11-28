@@ -65,7 +65,7 @@ public function configureMails():void
 	// Check this quick hack -- Coded the body like a function, realised it has nothing dynamic -- just execute it in place to pass a string into addMailEntry!
 	MailManager.addMailEntry("messageFromDad", messageFromDad(), "See you around, kid.", "Victor Steele", "Victor_Steele@SteeleTech.corp", quickPCTo, quickPCToAddress);
 
-	MailManager.addMailEntry("privateFlahnePics", privateFlahneSceneMessage(), "No Subject","Flahne","Flahne_Rahn@UGC.gov",quickPCTo,quickPCToAddress);
+	MailManager.addMailEntry("privateFlahnePics", privateFlahneSceneMessage(), "[No Subject]","Flahne","Flahne_Rahn@UGC.gov",quickPCTo,quickPCToAddress);
 	MailManager.addMailEntry("galLinkFlahnePics", gallinkFlahneBubbleEmail(), "New comment on your picture(s)","GalLink Fuckmeet","support@GalLink.org",quickPCTo,quickPCToAddress);
 	MailManager.addMailEntry("extranetFlahnePics", extranetShareEmail(), "Thank You For Your Submission","TamaniCorp","Marketing@TamaniCorp.corp",quickPCTo,quickPCToAddress);
 

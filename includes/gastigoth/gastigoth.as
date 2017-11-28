@@ -982,6 +982,7 @@ public function kasmiransOffer():void
 	output("\n\nTurning back to you as the ausar man huffs and knots himself, the warden adds, <i>“I believe that explains our position quite thoroughly, but if you have any questions, I’d be happy to answer them. Otherwise, you’re free to peruse our catalogue of miscreants and malcontents for one that suits your desires. It’s that easy.”</i>");
 
 	processTime(10);
+	pc.lust(15);
 	clearMenu();
 	//[Services] [Gastigoth] [Warden] [Prisoners]
 	//[Done]

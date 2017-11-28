@@ -217,7 +217,7 @@ public function kaedeMyrellionTalkRenWorld():void
 	flags["HEARD_ASHINARI"] = 1;
 	output("\n\n<i>“Must be worth it. They’ve made a pretty big deal with the, uh, something or other Federation here. The ones that control pretty much the whole planet, anyway. From what Ashinari told me, the ant-folk here are working hard to get off-worlders invested here. They’re giving away mining rights away like candy. They’ve got no use for Oxonium, Thorolium, a bunch of other rare elements. Not to mention there’s gold and silver and all that to be had. It’s a rich planet, and a lot of the hard work’s already done. After all, the myr live underground to begin with. Plenty of caverns and tunnels to get RhenWorld and the other mega-corps started.”</i>");
 	
-	output("\n\nInteresting. <i>“I knew XenoGen was interested in the golds,”</i> you say, thinking back to your initial meeting with Juro, and the hordes of XenoGen employees you’ve seen wandering around. <i>“So the Federation’s courting mining companies, now?”</i>");
+	output("\n\nInteresting. <i>“I knew Xenogen was interested in the golds,”</i> you say, thinking back to your initial meeting with Juro, and the hordes of Xenogen employees you’ve seen wandering around. <i>“So the Federation’s courting mining companies, now?”</i>");
 	
 	output("\n\nKaede nods, taking a big swig of whiskey to mask the lingering traces of her bashful blush. <i>“I guess so? Sorry, I’m not really up to date on xeno-politics. I know things are pretty tense around here, though, especially with the Confederate fleet up in orbit. Everyone looks like they’re sweating bullets here.”</i>");
 	

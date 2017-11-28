@@ -56,7 +56,7 @@ public function erikaApproach():void
 			if(pc.isMischievous()) output("So why did you have your eyes glued to me? Were you trying to get a peek at my [pc.butt]?”</i>");
 			else output("So were you hoping that I would come here and make you scream my name all night, or were you just looking to waste my time?”</i>");
 			output("\n\n<i>“No, it was an accident,”</i> she mutters.");
-			if (pc.characterClass == GLOBAL.CLASS_SMUGGLER) output("\n\n<i>“That’s what I told the officer, but she didn’t believe me.” You sneak your hand down her pants and squeeze her expansive ass flesh. <i>“That was an accident too,”</i> you smirk at her.");
+			if (pc.characterClass == GLOBAL.CLASS_SMUGGLER) output("\n\n<i>“That’s what I told the officer, but she didn’t believe me.”</i> You sneak your hand down her pants and squeeze her expansive ass flesh. <i>“That was an accident too,”</i> you smirk at her.");
 		}
 		output("\n\nYou look the slender kaithrit up and down while wondering what you’ll do with her. You could probably get this kitty to your bed quite easily.");
 		flags["ERIKA_MET"] = 1;

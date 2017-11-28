@@ -1403,9 +1403,11 @@ public function cuntTailFapScene():void {
 	var cum:Number = pc.cumQ();
 	
 	if(cum >= 500) output(" Your prehensile protuberance bloats from your large deposits, eventually giving up on milking you and pulling off to lamely drool [pc.cum] from its gaped orifice on the ground.");
-	if(cum >= 1000) output(" You keep squirting even after all that, painting your [pc.belly] and [pc.fullChest] with the leftovers");
-	if(cum >= 2000) output(", even though there’s so much that it puddles and runs off of you, collecting into a small lake around your [pc.butt]");
-	if(cum >= 1000) output(".");
+	if(cum >= 1000) {
+		output(" You keep squirting even after all that, painting your [pc.belly] and [pc.fullChest] with the leftovers");
+		if(cum >= 2000) output(", even though there’s so much that it puddles and runs off of you, collecting into a small lake around your [pc.butt]");
+		output(".");
+	}
 	output("\n\nSatisfaction radiates from your entire body in response, but the amount coming from your tail is disproportionately large, enough that you lie there panting while your [pc.tail] digests its load, dreamily toying with [pc.eachCock] until you settle down.");
 	processTime(20+rand(10));
 	pc.loadInCuntTail(pc);
