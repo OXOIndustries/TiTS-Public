@@ -2466,6 +2466,7 @@ public function variableRoomUpdateCheck():void
 	{
 		rooms["PIPPA HOUSE"].addFlag(GLOBAL.NPC);
 	}
+	// Princess Ula Location
 	if(flags["ULA_CAVE"] != undefined)
 	{
 		if(flags["ULA_SAVED"] == undefined)
@@ -2474,6 +2475,13 @@ public function variableRoomUpdateCheck():void
 			else rooms[flags["ULA_CAVE"]].removeFlag(GLOBAL.NPC);
 		}
 		else rooms[flags["ULA_CAVE"]].removeFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		rooms["UVIP R36"].removeFlag(GLOBAL.NPC);
+		rooms["UVIP D22"].removeFlag(GLOBAL.NPC);
+		rooms["UVIP J18"].removeFlag(GLOBAL.NPC);
+		rooms["UVGR K20"].removeFlag(GLOBAL.NPC);
 	}
 	
 	/* VESPERIA / CANADIA STATION */

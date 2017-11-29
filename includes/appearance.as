@@ -286,14 +286,20 @@ public function appearance(forTarget:Creature):void
 		//Minotaaaauuuur-face
 		case GLOBAL.TYPE_BOVINE:
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2("You have a face resembling that of an anthropomorphic bovine, with cow-like features, particularly a squared off wet nose. Your " + faceFurScales + " thickens noticably on your head, looking shaggy and more than a little monstrous once laid over your visage.");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("Your face resembles an anthropomorphic bovine’s, though strangely, it is covered in shimmering scales, right up to the flat, cow-like nose that protrudes from your face.");
-			else output2("You have a face resembling that of an anthropomorphic bovine, with cow-like features, particularly a squared off wet nose. Despite your lack of fur elsewhere, your visage does have a short layer of " + target.furColor + " fuzz.");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2("Your face resembles an anthropomorphic bovine’s, though strangely, it is covered in shimmering scales, right up to the flat, cow-like nose that protrudes from your face.");
+			else {
+				output2("You have a face resembling that of an anthropomorphic bovine, with cow-like features, particularly a squared off wet nose.");
+				if(target.skinType != GLOBAL.SKIN_TYPE_GOO && !target.hasFaceFlag(GLOBAL.FLAG_GOOEY)) output2(" Despite your lack of fur elsewhere, your visage does have a short layer of " + target.furColor + " fuzz.");
+			}
 			break;
 		//Panda-face
 		case GLOBAL.TYPE_PANDA:
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2("You have a face resembling that of an anthropomorphic panda, with a short muzzle and black nose. Your " + faceFurScales + " hides " + target.skin(true,true,true) + " underneath.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2("Your face resembles an anthropomorphic panda’s, though strangely, it is covered in shimmering scales, right up to your black nose.");
-			else output2("You have a face resembling that of an anthropomorphic panda, with a short muzzle and black nose. Despite your lack of fur elsewhere, your visage does have a short layer of " + target.furColor + " fuzz.");
+			else {
+				output2("You have a face resembling that of an anthropomorphic panda, with a short muzzle and black nose.");
+				if(target.skinType != GLOBAL.SKIN_TYPE_GOO && !target.hasFaceFlag(GLOBAL.FLAG_GOOEY)) output2(" Despite your lack of fur elsewhere, your visage does have a short layer of " + target.furColor + " fuzz.");
+			}
 			break;
 		case GLOBAL.TYPE_REDPANDA:
 			output2(RandomInCollection([

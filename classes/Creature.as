@@ -13217,7 +13217,7 @@
 				else 
 				{
 					if(hairStyle == "ponytail") descript += "ponytail";
-					else if(hairStyle == "pigtails") descript += "pigtailed hair";
+					else if(hairStyle.indexOf("pigtail") != -1) descript += "pigtailed hair";
 					else if(hairStyle == "curls") descript += "curled hair";
 					else if(hairStyle == "braided") descript += "braid";
 					else if(hairStyle.indexOf(" braid") != -1) descript += "braided hair";
@@ -13373,7 +13373,7 @@
 			else 
 			{
 				if(hairStyle == "ponytail") descript += "ponytail-bound locks";
-				else if(hairStyle == "pigtails") descript += "pigtails";
+				else if(hairStyle.indexOf("pigtail") != -1) descript += "pigtails";
 				else if(hairStyle == "curls") descript += "curls";
 				else if(hairStyle == "braided" || hairStyle.indexOf(" braid") != -1) descript += "braid-bound locks";
 				else if(hairStyle == "afro") descript += "afro-puffed locks";
