@@ -121,7 +121,7 @@ public function disableExploreEvents():Boolean
 	// KaraQuest2 Duration
 	if (flags["KQ2_QUEST_BEGIN"] == 1 && flags["KQ2_QUEST_FINISHED"] == undefined) return true;
 	// Pirate Base (Bomb Timer)
-	if (flags["KQ2_NUKE_STARTED"] != undefined && flags["KQ2_NUKE_EXPLODED"] == undefined) return true;
+	if (flags["KQ2_NUKE_STARTED"] >= 0 && flags["KQ2_NUKE_EXPLODED"] == undefined) return true;
 	// Kashima Duration
 	if (flags["KASHIMA_STATE"] > 0 && flags["KASHIMA_STATE"] < 2) return true;
 	//Federation Quest
@@ -2870,7 +2870,7 @@ public function processTaivrasPregnancyState(deltaT:uint, doOut:Boolean):void
 
 public function processKQ2NukeEvents(deltaT:uint, doOut:Boolean):void
 {
-	if (flags["KQ2_NUKE_STARTED"] != undefined && flags["KQ2_NUKE_EXPLODED"] == undefined)
+	if (flags["KQ2_NUKE_STARTED"] >= 0 && flags["KQ2_NUKE_EXPLODED"] == undefined)
 	{
 		// Still there!
 		if (flags["KQ2_QUEST_FINISHED"] == undefined)
