@@ -623,7 +623,7 @@
  		output("\n\nAfter a moment, she shakes her head, hissing at you, <i>“This again? You should be setting me free, not... not playing with my dick!”</i>");
  		output("\n\nYou both glance at the pitcher plant as it snorts in its sleep. You point at it with an expression of <i>“I told you so.”</i>");
  	}
- 	else if (flags["PRAI_MOOD"] == 1) output("\n\nPrai shivers softly, her body swinging gently from the vines. <i>“That... that feels really, really good... <i>“ she moans. She takes a shuddering breath and seems to regain some control over herself.");
+ 	else if (flags["PRAI_MOOD"] == 1) output("\n\nPrai shivers softly, her body swinging gently from the vines. <i>“That... that feels really, really good...”</i> she moans. She takes a shuddering breath and seems to regain some control over herself.");
  	output("\n\n<i>“I’m not... I’m not saying I don’t like it,”</i> she whispers. <i>“But, goodness grape juice! Being restrained and played with is a really nice kink, but do you really think that now is the time for it?”</i>");
  	output("\n\nYou grin and slide your hands to her plump cheeks, squeezing them through the polka-dot fabric of her panties. Her legs quiver against their springy restraints, and her tail curls up into a perfect question mark. Her lipsticked lips part slightly and she lets out a quavering moan.");
  	output("\n\nThe pitcher plant stirs and you scold Prai for being so loud.");
@@ -915,7 +915,7 @@
  	showPrai(2);
  	clearMenu();
  	
- 	output("You brush your lips against Prai’s black, fuzzy ear and whisper that if she wants to finish, she’ll have to satisfy </i>you<i> first.");
+ 	output("You brush your lips against Prai’s black, fuzzy ear and whisper that if she wants to finish, she’ll have to satisfy <i>you</i> first.");
  	if (flags["PRAI_MOOD"] == 2)
  	{
  		output("\n\nShe stiffens against you, and you tug the gag from her mouth. <i>“Sneezes and snakes!”</i> she gasps. <i>“I... I...”</i> she huffs, building up a head of steam. ");
