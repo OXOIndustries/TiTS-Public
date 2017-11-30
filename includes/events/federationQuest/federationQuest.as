@@ -1326,10 +1326,12 @@ public function fedQuestOfficerVictory():void
 	output("With a gasp, the myrish officer pitches forward onto her hands and knees. Her handgun clatters to the ground, sliding across the floor until you catch it under a [pc.foot]. Breathing hard, the ant-woman looks up at you with dark, wide eyes " + (CombatManager.getHostileActors()[0].HP() <= 0 ? "filled with hatred" : "brimming with desire") + ".");
 	output("\n\n<i>“M-mother won’t fall so easily,”</i> she groans. <i>“And even if you defeat us, the spirit of freedom will live on!”</i>");
 	output("\n\nWhatever. You throw her primitive weapons out the window, and think of what to do with her...");
+	output("\n\n<b>You found the Queen’s keys</b>");
 	output("\n\n");
 	
 	CombatManager.genericVictory();
 	flags["FEDERATION_QUEST_RADIO"] = 1;
+	flags["FEDERATION_QUEST_KEYS"] = 1;
 	if(pc.hasCock() || pc.hasHardLightStrapOn()) addButton(0, "Titfuck", fedQuestOfficerTitfuck, undefined, "Titfuck", "This ant’s got massive tits just overflowing with nectar. Take advantage of those big honeypots.");
 	else addDisabledButton(0, "Titfuck", "Titfuck", "You need a cock or strapon for this.")
 	addButton(1, "Queen", fedQuestOfficerQueen, undefined, "Queen", "Sit on the ant-slut’s face and make her tongue you out.");

@@ -93,8 +93,11 @@ public function fedQuestRadioBonus():Boolean
 		output("One of the folders has TOP SECRET and CONFIDENTIAL written all over it. Must be important...");
 		addButton(btn++, "Investigate", fedQuestRadioFolder, undefined, "Investigate", "Take a look at that folder...");
 	}
-	if(flags["FEDERATION_QUEST"] == 1) addButton(btn++, "Radio Set", fedQuestRadioSet, undefined, "RadioSet", "The radio the officer was talking through seems to have survived the fight. Wonder who she was on the horn with...?");
-	
+	if(flags["FEDERATION_QUEST"] == 1)
+	{
+		addButton(btn++, "Radio Set", fedQuestRadioSet, undefined, "RadioSet", "The radio the officer was talking through seems to have survived the fight. Considering you just took out the officer, if you get on the horn, <b>there’s a good chance you’re going to end up bringing the enemy down on you -- including the queen.</b>");
+		output("\n\nConsidering you just took out the officer, if you get on the horn, <b>there’s a good chance you’re going to end up bringing the enemy down on you -- including the queen.</b>");
+	}
 	return false;
 }
 

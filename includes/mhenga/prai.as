@@ -623,7 +623,7 @@
  		output("\n\nAfter a moment, she shakes her head, hissing at you, <i>“This again? You should be setting me free, not... not playing with my dick!”</i>");
  		output("\n\nYou both glance at the pitcher plant as it snorts in its sleep. You point at it with an expression of <i>“I told you so.”</i>");
  	}
- 	else if (flags["PRAI_MOOD"] == 1) output("\n\nPrai shivers softly, her body swinging gently from the vines. <i>“That... that feels really, really good... <i>“ she moans. She takes a shuddering breath and seems to regain some control over herself.");
+ 	else if (flags["PRAI_MOOD"] == 1) output("\n\nPrai shivers softly, her body swinging gently from the vines. <i>“That... that feels really, really good...”</i> she moans. She takes a shuddering breath and seems to regain some control over herself.");
  	output("\n\n<i>“I’m not... I’m not saying I don’t like it,”</i> she whispers. <i>“But, goodness grape juice! Being restrained and played with is a really nice kink, but do you really think that now is the time for it?”</i>");
  	output("\n\nYou grin and slide your hands to her plump cheeks, squeezing them through the polka-dot fabric of her panties. Her legs quiver against their springy restraints, and her tail curls up into a perfect question mark. Her lipsticked lips part slightly and she lets out a quavering moan.");
  	output("\n\nThe pitcher plant stirs and you scold Prai for being so loud.");
@@ -731,7 +731,7 @@
  	output("\n\nAs the curtain of her skirt rises, her rump emerges, veiled in her panties, a bulge tucked between her thighs, already dripping with precum. You reach forward, lightly running your fingertips across her bottom, coaxing a soft gasp from between her lips. You feel her rump tremble beneath your fingers as she moans helplessly.");
  	output("\n\n");
  	if (flags["PRAI_MOOD"] == 2) output("<i>“[pc.name], this--this doesn’t f-feel like untying me,”</i> she protests weakly. ");
- 	else output("<i>“Oh, yes, [pc.name], more, mmmmmorrrre... <i>“ she moans. ");
+ 	else output("<i>“Oh, yes, [pc.name], more, mmmmmorrrre...”</i> she moans. ");
  	output("You stroke her tail, running your hand up its length and listening to the minute gasps and mewls Prai makes. She sways her hips, begging for more than light touches.");
  	output("\n\nYou oblige, and grasp the base of her tail firmly, tugging down her panties with your other hand. Her three inch cock springs free, trailing a line of pre down to her panties, her small sack tucked tight against the base of it, already smeared with her fluids. She squeals happily, and you grind your [pc.cock] against her exposed booty, sliding it between the cheeks of her generous ass.");
  	output("\n\nPrai lets out a ragged moan, her skirt rising up as she wriggles helplessly in the air. <i>“" + (flags["PRAI_MOOD"] == 2 ? "Oh crackers! I don’t even care anymore. " : "") + "Please! Please put it in me! I need it!”</i> she groans.");
@@ -822,7 +822,7 @@
  	else if (pc.cocks[0].cLength < 13) output("large");
  	else output("massive");
  	output(" cock. She’s panting heavily, almost in synch with you. " + (!pc.isGoo() ? "You feel an ache in your [pc.legs] as the odd position of fucking the trussed-up kui-tan begins to catch up with you." : "") + "");
- 	output("\n\n<i>“Ummma... <i>“ she groans, slumped against the vines holding her up, her knees trembling.");
+ 	output("\n\n<i>“Ummma...”</i> she groans, slumped against the vines holding her up, her knees trembling.");
  	output("\n\nIt looks like the little kui-tan is spent. Do you want to release Prai and make sure she’s alright, or leave her here for to fend for herself?");
  	
  	processTime(20+rand(8));
@@ -915,7 +915,7 @@
  	showPrai(2);
  	clearMenu();
  	
- 	output("You brush your lips against Prai’s black, fuzzy ear and whisper that if she wants to finish, she’ll have to satisfy </i>you<i> first.");
+ 	output("You brush your lips against Prai’s black, fuzzy ear and whisper that if she wants to finish, she’ll have to satisfy <i>you</i> first.");
  	if (flags["PRAI_MOOD"] == 2)
  	{
  		output("\n\nShe stiffens against you, and you tug the gag from her mouth. <i>“Sneezes and snakes!”</i> she gasps. <i>“I... I...”</i> she huffs, building up a head of steam. ");
