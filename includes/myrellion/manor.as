@@ -299,9 +299,10 @@ public function selleraMenu(prevFunc:Function = null):void
 	if (flags["MET_NEHZARA"] != undefined) gatedButton( { id: 3, lbl: "Nehzara", f: selleraNehzara, arg: undefined, ttH: "Colonel Nehzara", ttB: "Since she's the main commander of the offensive force, Sellera might know Colonel Nehzara. You could see what she thinks of the other officer.", prevF: prevFunc } );
 
 	if (flags["SELLERA_OCCUPATION"] != undefined) gatedButton( { id: 4, lbl: "Rebels", f: selleraRebels, arg: undefined, ttH: "Rebels", ttB: "Ask a little more about the rebel problem the occupation forces are having.", prevF: prevFunc } );
-
-	// 9999 MARSHALQUESTUUUUUU
-	// if (flags["SELLERA_REBELS"] != undefined) gatedButton(5, "Aid Her", selleraAidHer, undefined, "", "", prevFunc);
+	
+	//Federation Quest Hook
+	if(flags["FEDERATION_QUEST"] == 0) addDisabledButton(5, "Help", "Help", "You already discussed this and backed out.");
+	else if (flags["SELLERA_REBELS"] != undefined && flags["FEDERATION_QUEST"] == undefined) addButton(5, "Help", selleraHelp, undefined, "Help", "Offer to help the Field Marshal out with her rebel problem.");
 
 
 	gatedButton( { id: 10, lbl: "Appearance", f: selleraAppearance, arg: undefined, ttH: "Sellera's Appearance", ttB: "The general appearance of Field Marshal Sellera.", prevF: prevFunc } );

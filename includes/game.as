@@ -1556,6 +1556,11 @@ public function flyMenu():void
 	{
 		addButton(11, "Kara", flyTo, "karaQuest2", "Kara", "Go see what Kara has up her sleeve.");
 	}
+	//Federation Quest - Taking myr to Mhega yourself - PC must have capital ship
+	if (flags["FEDERATION_QUEST"] == 8 && flags["FEDERATION_QUEST_EVAC_TIMER"] + 24*60 < GetGameTimestamp() && hasCapitalShip())
+	{
+		addButton(11, "Remnants", fedQuestEvacuate, undefined, "Evacuate Gold Remnants", "You’re getting a beacon signal from the planet. Looks like the Gold Myr remnants, ready to be retrieved...");	
+	}
 	
 	addButton(14, "Back", mainGameMenu);
 }
@@ -2050,7 +2055,7 @@ public function variableRoomUpdateCheck():void
 		rooms["RESIDENTIAL DECK 5"].addFlag(GLOBAL.NPC);
 	}
 	else rooms["RESIDENTIAL DECK 5"].removeFlag(GLOBAL.NPC);
-
+	
 	if(flags["MET_RIYA"] != undefined && riyaAtNursery())
 	{
 		rooms["CANADA4"].removeFlag(GLOBAL.NPC);
@@ -2168,7 +2173,29 @@ public function variableRoomUpdateCheck():void
 		rooms["METAL POD 1"].removeFlag(GLOBAL.QUEST);
 		rooms["METAL POD 1"].removeFlag(GLOBAL.OBJECTIVE);
 	}
-	
+	//FedQuest Myr Colony on Mhenga - exclude 8 as this means PC still needs to drop them off
+	if(flags["FEDERATION_QUEST"] >= 7 && flags["FEDERATION_QUEST"] != 8)
+	{
+		//PC dropped them off themself
+		if(flags["FEDERATION_QUEST"] == 10)
+		{
+			//It's been 2 days
+			if(flags["FEDERATION_QUEST_EVAC_TIMER"]+2*24*60 < GetGameTimestamp())
+			{
+				myrOnMhenga(true);
+				rooms["WEST ESBETH 1"].westExit = "GOLD MYR EMBASSY";
+			}
+			else rooms["WEST ESBETH 1"].westExit = "";
+		}
+		//Someone else dropped them off and it's been 3 days
+		else if(flags["FEDERATION_QUEST_EVAC_TIMER"]+3*24*60 < GetGameTimestamp())
+		{
+			myrOnMhenga(true);
+			rooms["WEST ESBETH 1"].westExit = "GOLD MYR EMBASSY";
+		}
+		else rooms["WEST ESBETH 1"].westExit = "";
+	}
+	else rooms["WEST ESBETH 1"].westExit = "";
 	
 	/* TARKUS */
 	
@@ -2425,6 +2452,26 @@ public function variableRoomUpdateCheck():void
 		rooms["2I7"].addFlag(GLOBAL.TAXI);
 	}
 	
+	//Federation Quest
+	if(flags["SELLERA_DENIED"] != undefined && (GetGameTimestamp() < flags["SELLERA_DENIED"] + 60*48))
+	{
+		rooms["LIEVE BUNKER"].removeFlag(GLOBAL.NPC);
+	}
+	else if(flags["FEDERATION_QUEST"] == 1)
+	{
+		rooms["LIEVE BUNKER"].removeFlag(GLOBAL.NPC);
+		rooms["803"].addFlag(GLOBAL.OBJECTIVE);
+	}
+	else if(pc.hasStatusEffect("Lieve Disabled"))
+	{
+		rooms["LIEVE BUNKER"].removeFlag(GLOBAL.NPC);
+		rooms["803"].removeFlag(GLOBAL.OBJECTIVE);
+	}
+	else
+	{
+		rooms["LIEVE BUNKER"].addFlag(GLOBAL.NPC);
+		rooms["803"].removeFlag(GLOBAL.OBJECTIVE);
+	}
 	
 	/* UVETO */
 	

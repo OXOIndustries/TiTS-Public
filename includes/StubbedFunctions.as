@@ -32,3 +32,8 @@ public function PCShipModel():String
 	// 9999 return ActivePlayerShip.Model;
 	return "Z14";
 }
+
+public function hasCapitalShip():Boolean
+{
+	return false;
+}

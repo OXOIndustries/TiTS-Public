@@ -2581,6 +2581,29 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" <i>In progress...</i>");
 				sideCount++;
 			}
+			//Federation Quest
+			if(flags["FEDERATION_QUEST"] != undefined)
+			{
+				output2("\n<b><u>FederationQuest</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(flags["FEDERATION_QUEST"] == 0) output2(" Refused");
+				else if(flags["FEDERATION_QUEST"] == 1) output2(" Accepted, <i>Rendevous outside bunker</i>");
+				else if(flags["FEDERATION_QUEST"] == 2) output2(" Radio’d Queen, <i>Prepare for confrontation</i>");
+				else if(flags["FEDERATION_QUEST"] >= 3)
+				{
+					output2(" Completed");
+					if(flags["FEDERATION_QUEST"] == 3) output2(", Defeated Estallia, Captured Estallia");
+					if(flags["FEDERATION_QUEST"] == 4) output2(", Defeated Estallia, Released Estallia");
+					if(flags["FEDERATION_QUEST"] == 5) output2(", Estallia agreed to stop attacks");
+					if(flags["FEDERATION_QUEST"] == 6) output2(", Remnants plan to assimilate with Kui-tan");
+					if(flags["FEDERATION_QUEST"] == 7) output2(", Kara transporting Remnants to Mhen’ga");
+					if(flags["FEDERATION_QUEST"] == 8) output2(", Agreed to transport Remnants to Mhen’ga");
+					if(flags["FEDERATION_QUEST"] == 9) output2(", Paid to transport Remnants to Mhen’ga");
+					if(flags["FEDERATION_QUEST"] == 10) output2(", Transported Remnants to Mhen’ga");
+				}
+
+				sideCount++;
+			}
 			// Kara's Big Adventure! - Pt.1
 			if(flags["BEEN_TO_MYRELLION_BAR"] != undefined && flags["MET_KARA"] != undefined)
 			{

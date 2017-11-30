@@ -176,6 +176,9 @@
 		include "../includes/events/pyriteSatelliteRecovery.as";
 		include "../includes/events/steph_on_demand.as";
 		include "../includes/events/tentacle_psychic_hatchling.as";
+		include "../includes/events/federationQuest/federationQuest.as";
+		include "../includes/events/federationQuest/rooms.as";
+		include "../includes/events/federationQuest/roomFunctions.as";
 		
 		// Travel Events
 		include "../includes/travelEvents.as";
@@ -577,6 +580,7 @@
 			kiInitRooms();
 			initVesperiaRoom();
 			initBreedwellRooms();
+			fqInitRooms();
 			
 			mapper = new Mapper(this.rooms)
 
@@ -1490,6 +1494,11 @@
 		public function get erika():Erika
 		{
 			return chars["ERIKA"];
+		}
+		
+		public function get lieve():Lieve
+		{
+			return chars["LIEVE"];
 		}
 
 		public function testShipCombat():void

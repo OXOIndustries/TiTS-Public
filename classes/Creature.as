@@ -4148,6 +4148,7 @@
 			var currPhys:int = physiqueRaw + physiqueMod;
 
 			if (hasStatusEffect("Tripped")) currPhys -= 4;
+			if (hasStatusEffect("Crunched")) currPhys -= 8;
 			if (hasStatusEffect("Psychic Leech")) currPhys *= 0.85;
 
 			if (currPhys > physiqueMax()) 
@@ -4757,6 +4758,8 @@
 			//Bonus to hit with Rage and Calm Aim perks
 			if (hasPerk("Rage Aim") && (HP() < (HPMax() / 2))) temp += 1;
 			else if (hasPerk("Calm Aim") && (HP() > (HPMax() / 2))) temp += 1;
+			//Lieve Buff
+			if(hasStatusEffect("Lieve Buff")) temp += 2;
 			temp += armor.attack + upperUndergarment.attack + lowerUndergarment.attack + accessory.attack + shield.attack;
 			return temp;
 		}
@@ -4948,6 +4951,7 @@
 			else temp += rangedWeapon.critBonus;
 			if (hasPerk("Critical Blows")) temp += 10;
 			if (hasStatusEffect("Quaramarta!")) temp += 15;
+			if (hasStatusEffect("Lieve Buff")) temp += 10;
 			//7% when below 50% for smugglebro perks!
 			if (hasPerk("Desperation") && HP()/HPMax() < 0.5) temp += 7;
 			temp += armor.critBonus + upperUndergarment.critBonus + lowerUndergarment.critBonus + accessory.critBonus + shield.critBonus;
@@ -4979,6 +4983,7 @@
 			if (hasStatusEffect("Spear Wall")) temp += 50;
 			if (hasStatusEffect("Leech Empowerment")) temp += 50;
 			if (hasStatusEffect("Roehm Slimed")) temp += statusEffectv2("Roehm Slimed");
+			if (hasStatusEffect("Brute Wall")) temp += 20;
 			temp += statusEffectv2("Water Veil");
 			temp += statusEffectv2("Deep Freeze");
 			temp += statusEffectv1("Evasion Boost");

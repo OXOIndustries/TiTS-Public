@@ -377,6 +377,10 @@ public function kressiaGatesBonus():Boolean
 		return true;
 	}
 	
+	if(tryProcFederationQuest()) return false;
+	if(GetGameTimestamp() < (flags["SELLERA_DENIED"] + 60*48)) return false;
+	
+	output("A door stands open near you,");
 	if(flags["MET_LIEVE"] == undefined) output(" from which can be heard a series of very soft moans and giggles");
 	else output(" and you can hear Lieve having a bit of fun inside");
 	output(".");
