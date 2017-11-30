@@ -124,6 +124,8 @@ public function disableExploreEvents():Boolean
 	if (flags["KQ2_NUKE_STARTED"] != undefined && flags["KQ2_NUKE_EXPLODED"] == undefined) return true;
 	// Kashima Duration
 	if (flags["KASHIMA_STATE"] > 0 && flags["KASHIMA_STATE"] < 2) return true;
+	//Federation Quest
+	if (flags["FEDERATION_QUEST"] > 0 && flags["FEDERATION_QUEST"] < 3) return true;
 	
 	return false;
 }

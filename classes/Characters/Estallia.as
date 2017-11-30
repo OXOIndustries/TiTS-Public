@@ -268,7 +268,7 @@ package classes.Characters
 				{
 					hits++;
 					output("\nShe lands a hit on you with one of her massive blades! ");
-					applyDamage(damageRand(meleeDamage().multiply(1.3), 10), this, target, "minimal");
+					applyDamage(damageRand(meleeDamage(), 10), this, target, "minimal");
 					if(hits == 2 && target.physique()/2 + rand(20) + 1 <= this.physique()/2 + 3)
 					{
 						output("\nThe force of getting slammed twice leaves you reeling! ");

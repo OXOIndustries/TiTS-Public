@@ -3977,7 +3977,7 @@ package classes.GameData
 					if (target.lust() >= 50) output("\nYou can see her breath quickening, her massive chest heaving with nipples as hard as diamonds. She looks almost ready to cum just from your confrontation...");
 				}
 				
-				if (encounterText != null && !(target is QueenOfTheDeep) && !(target is Cockvine))
+				if (encounterText != null && !(target is QueenOfTheDeep) && !(target is Cockvine) && !(target is MyrGoldRemnant) && !(target is MyrGoldBrute))
 				{
 					if (_hostiles.length == 1)
 					{
