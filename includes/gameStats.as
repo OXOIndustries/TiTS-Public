@@ -2661,7 +2661,8 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["KQ2_NUKE_STARTED"] != undefined)
 					{
 						output2("\n<b>* Pirate Base, Nuke:</b>");
-						if(flags["KQ2_NUKE_EXPLODED"] != undefined) output2(" Activated, Detonated, Destroyed Myrellion");
+						if(flags["KQ2_NUKE_STARTED"] < 0) output2(" Activated but cancelled");
+						else if(flags["KQ2_NUKE_EXPLODED"] != undefined) output2(" Activated, Detonated, Destroyed Myrellion");
 						else output2(" Activated " + prettifyMinutes(GetGameTimestamp() - flags["KQ2_NUKE_STARTED"]) + " ago");
 					}
 					if(flags["KQ2_FIGHT_STEPS"] != undefined)
