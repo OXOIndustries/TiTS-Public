@@ -224,6 +224,7 @@ public function fedQuestRendevous():void
 	output("\n\nLieve chuckles, <i>“As much as I’d like to see that, I also don’t want to watch a four-meter mountain of muscle rip you in half. So no. We’ve got nets and chains in the half-track, along with a case of tranquilizers -- the big ones they use to knock out riding flordas. The brief says it might take three to five shots with them to bring down a queen-sized target, so don’t waste ‘em. The real problem is going to be getting something that fat out of her base: even if we do sneak in without alerting her guards, I wouldn’t put my coin on us being able to drag her out under her daughters’ noses. Getting the War Queen back to the half-tracks is going to be a fight and a half.”</i>");
 	output("\n\nGlancing between the troops, Lieve adds <i>“Yeah, I know. It’s gonna be rough, but we’ll manage. Always do. Any questions?”</i>");
 	
+	flags["MET_LIEVE"] = 1;
 	processTime(15+rand(5));
 	
 	addButton(0, "Your Role", fedQuestYourRole, undefined, "Your Role", "So what does Lieve want you to do exactly?");
