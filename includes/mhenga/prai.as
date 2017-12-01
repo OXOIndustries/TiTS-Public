@@ -439,10 +439,10 @@
  	showPrai();
  	
  	output("You ask her if she’d like to help you relieve some tension.");
- 	if (variation == 3) output("\n\n<i>“Stars and snakes, is this how you start every conversation with a new acquaintance?”</i> she asks in surprise. <i>“I mean... I’m not going to lie, something about being bound up did pique my interest a bit, but...”</i> She frowns, considering your offer.");
+ 	if (variation == 3) output("\n\n" + (flags["PRAI_SEX"] == undefined ? "<i>“Stars and snakes, is this how you start every conversation with a new acquaintance?”</i> she asks in surprise. " : "") + "<i>“I mean... I’m not going to lie, something about being bound up did pique my interest a bit, but...”</i> She frowns, considering your offer.");
  	
  	//She doesn’t wana fuck you 
- 	if (!pc.hasCock() || (variation == 1 && !pc.isMasculine())) 
+ 	if (!pc.hasCock() || (variation == 1 && !pc.isMasculine(true))) 
  	{
  		output("\n\n<i>“Well I mean, I really appreciate the offer, but you’re not really my type,”</i> she says, looking off to the side. She glances back to you, looking worried. <i>“I mean. I’m really sorry, but I’ve got preferences, and I’m very flattered, and more than a little grateful, but I’m just not feeling it. Sorry about that!”</i> ");
  		
@@ -453,7 +453,7 @@
  		return;
  	}
  	
- 	if (!pc.isMasculine())
+ 	if (!pc.isMasculine(true))
  	{
  		if (variation == 2) output("\n\n<i>“You’re not really my type, but...”</i> she squirms, running her fingers up against the outline of a short, stubby cock straining against her leggings. <i>“I guess some physical gratitude might not hurt.”</i>");
  		else if (variation == 3) output("\n\n<i>“You’re not really my type, but...”</i> she squirms, glancing down at the front of her dress, <i>“I </i>am<i> pretty wound up, though.”</i>");
