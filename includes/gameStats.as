@@ -4078,15 +4078,16 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 					else output2(" Normal");
 					// Personality
-					if(flags["GIANNA_ABOUT_HER_TALK_RESULT"] == 1)
+					if(flags["GIANNA_ABOUT_HER_TALK_RESULT"] != undefined)
 					{
-						output2("\n<b>* Gianna, Personality:</b> " + giannaPersonality());
-						if(giannaPersonality() >= 100) output2(", Hyper Positive");
-						else if(giannaPersonality() > 80) output2(", Positive");
-						else if(giannaPersonality() > 60) output2(", Slightly Positive");
-						else if(giannaPersonality() >= 40) output2(", Generic");
-						else if(giannaPersonality() >= 20) output2(", Slightly Negative");
-						else if(giannaPersonality() > 0) output2(", Negative");
+						var giannaPersonality:int = giannaPersonality();
+						output2("\n<b>* Gianna, Personality:</b> " + giannaPersonality);
+						if(giannaPersonality >= 100) output2(", Hyper Positive");
+						else if(giannaPersonality > 80) output2(", Positive");
+						else if(giannaPersonality > 60) output2(", Slightly Positive");
+						else if(giannaPersonality >= 40) output2(", Generic");
+						else if(giannaPersonality >= 20) output2(", Slightly Negative");
+						else if(giannaPersonality > 0) output2(", Negative");
 						else output2(", Very Negative");
 					}
 					// Attachments
