@@ -93,6 +93,7 @@ public function lieveBunkerFunc():Boolean
 	if (flags["MET_LIEVE"] == undefined)
 	{
 		lieveInitialEncounter();
+		if(flags["SELLERA_DENIED"] != undefined) flags["SELLERA_DENIED"] = undefined;
 		return true;
 	}
 	//FederationQuest Denying stuff

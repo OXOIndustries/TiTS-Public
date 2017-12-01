@@ -289,8 +289,8 @@ package classes.Characters
 				for(i = 0; i < hits; i++)
 				{
 					output("\nOne of the machinegun bursts peppers you with lead! ");
-					var damage:TypeCollection = rangedDamage();
-					damageRand(damage, 10);
+					var damage:TypeCollection = rangedDamage().multiply(.3);
+					damageRand(damage, 5);
 					
 					//Leftover damage is what doesn't get eaten by cover.
 					var leftOverDamage:Number = damage.getTotal() - Math.round(damage.getTotal() * coverPercent());					
@@ -394,7 +394,7 @@ package classes.Characters
 		{
 			var coverNuked:Boolean = false;
 			var coverRemaining:Number = -1;
-			damage*=2.5;
+			//damage*=2.5;
 			if(kGAMECLASS.currentLocation == "KHORGAN_LEFT_COVER")
 			{
 				flags["KHORGAN_LEFT_COVER"] -= damage/2;

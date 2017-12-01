@@ -224,6 +224,7 @@ public function fedQuestRendevous():void
 	output("\n\nLieve chuckles, <i>“As much as I’d like to see that, I also don’t want to watch a four-meter mountain of muscle rip you in half. So no. We’ve got nets and chains in the half-track, along with a case of tranquilizers -- the big ones they use to knock out riding flordas. The brief says it might take three to five shots with them to bring down a queen-sized target, so don’t waste ‘em. The real problem is going to be getting something that fat out of her base: even if we do sneak in without alerting her guards, I wouldn’t put my coin on us being able to drag her out under her daughters’ noses. Getting the War Queen back to the half-tracks is going to be a fight and a half.”</i>");
 	output("\n\nGlancing between the troops, Lieve adds <i>“Yeah, I know. It’s gonna be rough, but we’ll manage. Always do. Any questions?”</i>");
 	
+	flags["MET_LIEVE"] = 1;
 	processTime(15+rand(5));
 	
 	addButton(0, "Your Role", fedQuestYourRole, undefined, "Your Role", "So what does Lieve want you to do exactly?");
@@ -481,7 +482,7 @@ public function fedQuestArrive2():void
 public function fedQuestAmbushFight():void
 {
 	var enemies:Array = [];
-	for (var i:int = 0; i < 5; i++)
+	for (var i:int = 0; i < 4; i++)
 	{
 		enemies.push(new MyrGoldRemnant());
 		if(rand(2) == 0) enemies[i].rangedWeapon = new RudimentaryRevolver();
@@ -515,7 +516,7 @@ public function fedQuestAmbushText():String
 	//We'll also handle the Gold Brute spawning here
 	var eText:String = "";
 	eText+="You're fighting a squad of Gold Myr remnants!";
-	if(CombatManager.enemiesAlive() <= 4 && !CombatManager.hasEnemyOfClass(MyrGoldBrute))
+	if(CombatManager.enemiesAlive() <= 3 && !CombatManager.hasEnemyOfClass(MyrGoldBrute))
 	{
 		var ded:Creature = null;
 		var enemies:Array = CombatManager.getHostileActors();
@@ -663,13 +664,14 @@ public function fedQuestAmbushVictory():void
 	output("\n\nGunshots echo for a moment more, but die off quickly once Lieve starts shouting. The gold myr withdraw out of sight in the reprieve, leaving you and the remaining reds in silence. Eventually, Marik clambers down from the turret, slinging her automatic rifle over her shoulder. <i>“What now, top?”</i>");
 	output("\n\nLieve sighs, shoving shells into her shotgun. <i>“Well, we’re down half the squad and the enemy knows we’re here. We need to move or they’ll start gassing us. Okay, there’s a lower level of the garage, should connect us to the factory. Move out.”</i>");
 	output("\n\nYou get to your [pc.feet] and follow Lieve towards a door behind the truck, opening onto a stairwell that’s all but shredded by bullet holes and bloodstains. The surviving troops seem to have carried off their casualties when they retreated, at least. Lieve leads the squad down the stairs at a quick jog, taking you several floors under the cityscape until you come to a metal door. The commandos usher you in and close the door behind you, dropping a bar over it to keep any wandering golds out.");
+	output("\n\n");
 	
 	processTime(5+rand(3));
 	flags["FEDERATION_QUEST_AMBUSH"] = 1;
 	
 	eventQueue.push(fedQuestAmbushVictory2);
 	
-	CombatManager.genericLoss();
+	CombatManager.genericVictory();
 }
 
 public function fedQuestAmbushVictory2():void
@@ -874,6 +876,7 @@ public function fedQuestGasTheGoldsRaceWarNow():void
 	author("Savin");
 	
 	flags["FEDERATION_QUEST_GOLD"] = 3;
+	pc.destroyItemByClass(Lustoxin, 1);
 	output("Alright, time to do this. You rear back and hurl the vial into the vents, recovering it as quick as you can. You hear the glass shatter, and the sound of pressurized gas erupting into the air.");
 	output("\n\nSomeone shouts in the room to the north, followed by the sounds of furniture being knocked over and panicked footsteps running around. The door slams open a second later, and amid a roiling pink gas cloud, a single gold soldier stumbles out with one arm over her mouth and three clutching at her breasts and crotch. She sees you, starts to shout something, but then two pairs of fingers find her nipples. She collapses to her knees with a sensual whimper, pawing at your [pc.leg] and feverishly groping herself. The sounds inside the room turn from panic to lustful whines and tearing clothes.");
 	output("\n\nAnd then the gas starts seeping out the open door.");
@@ -1007,10 +1010,9 @@ public function fedQuestSquadVictory():void
 		output("You watch with a self-satisfied smirk as the last of the gold myr give in to their desires, joining the growing orgy on the floor. Over-stimulated myr are groping and kissing and fingering with lust-addled abandon. That they’re all sisters doesn’t seem to even phase them anymore: whatever discipline and reserve these soldiers had has been completely eroded by your sensual assault. The familiar scents of honey and sex start filling the air, corresponding to the moans of the defeated golds.");
 		output("\n\nThe way they’re looking at you, dark eyes full of need and desire, it would be so easy to just lose yourself in that orgiastic scene for a while...\n\n");
 		
-		CombatManager.genericVictory();
 		pc.lust(33);
 		addButton(0, "Join In", fedQuestOrgyJoin, undefined, "Join In", "Help yourself to a place in the gold myr orgy sprawling out around you. ");
-		addButton(1, "Leave", mainGameMenu, undefined, "", "");
+		addButton(1, "Leave", CombatManager.genericVictory, undefined, "", "");
 	}
 }
 
@@ -1042,6 +1044,7 @@ public function fedQuestSquadLoss():void
 	if(pc.hasCock()) output("Eventually, inevitably, one of them discovers you’re packing a " + (pc.totalCocks() > 1 ? "multitude of cocks" : "cock") + ". Pretty soon, you’ve got another abdominal-cunt bouncing on " + (pc.totalCocks() > 1 ? "each of your cocks" : "your [pc.cock]") + ". ");
 	output("\n\nOther myr find themselves drawn to your body, tongues flicking out to caress your [pc.skinFurScales]. Chitinous fingers pinch your [pc.nipples] and sinuous tongues probe your [pc.vagOrAss], all working to pleasure <i>you</i> for once...");
 	output("\n\nFor every orgasm you’re given, though, a dozen myrish girls ride your face through their own climaxes. You writhe in your bonds, bucking your [pc.hips] as the girls engulf you in sex...");
+	output("\n\n");
 	
 	eventQueue.push(pc.hasCock() ? fedQuestSquadLossCock : fedQuestSquadLossCooter);
 	
@@ -1135,10 +1138,12 @@ public function fedQuestOrgyCock2():void
 	
 	output("Girl after girl takes her time on your [pc.cock], bouncing on your shaft or letting you bend them over and thrust away. By the time you finally cum, there’s a moaning pile of sated honey-sluts sprawled out around you, leaking ropes of fem-slime from their well-fucked pussies. The smells of honey and sex permeate the air, intermixed with a nice, thick musk of your own as the last golden girl slumps forward on hands and knees, her honeypot filled to the brim with your [pc.cum]. A pair of her sisters eagerly grab her abdomen and spread her lips. Their tongues vanish into her seeded twat, lapping up what you left cooling inside -- and drawing out a whole new chorus of moans from their sister.");
 	output("\n\nYou stumble back, satisfied with your tryst with the lust-addled myr, and grab your equipment. Other myrmedions fill the gap in the orgy you leave, squabbling over who gets to drink the cum out of the girl’s pussy next. Something tells you this orgy’s going to be going on for a good long while... " + (silly ? "Looks like you’ve started the first self-perpetuating fuck machine." : "") + "");
+	if(inCombat()) output("\n\n");
 	
 	processTime(25+rand(11));
 	pc.orgasm();
-	addButton(0, "Next", mainGameMenu, undefined, "", "");
+	if(inCombat()) CombatManager.genericVictory();
+	else addButton(0, "Next", mainGameMenu, undefined, "", "");
 }
 
 public function fedQuestOrgyCooter():void
@@ -1153,10 +1158,12 @@ public function fedQuestOrgyCooter():void
 	output("\n\nThe girl whose tit you’re suckling from, meanwhile, moans " + (pc.isLactating() ? "around your [pc.nipple] " : "") + "and arches her back, gushing sweet nectar across your [pc.tongue]. Somewhere behind her, another myr girl’s getting a faceful of fem-cum -- as is a yet another who’s wormed her way behind the girl eating you out. There’s a practical train forming around you now, woman after woman eating muff or sucking tits in a chorus of moaning, writhing bodies, all consumed by pleasure.");
 	output("\n\nAll you need to do now is to lay back and suck on a nectar-laden boob, reaping the rewards of your " + (flags["FEDERATION_QUEST_GOLD"] == 3 ? "cleverness" : "victory") + ". Soldier after soldier cries out in orgasm around you, surrendering into each other’s arms, and before long the barracks is suffused in the smells of sex and honey. There’s no frantic race to climax for you this time, no hot-and-heavy humping: now when you have these sluts to do everything for you: your orgasm comes at the end of a slow, steady rise, erupting into shivering pleasure that washes through your body. You gasp and moan around your mouthful of amber nipple, arching your back to the beat of oral satisfaction. The ant worshipping your [pc.vagOrAss] " + (pc.hasVagina() ? "gets a faceful of your liquid approval, gasping with glee as fem-cum spurts across her cheeks." : "murmurs happily as your ass squeezes around her tongue, binding her to you until your body finally calms itself down.") + "");
 	output("\n\nYou’ve barely caught your breath after cumming before the myr who were working on either end of you crawl over your prostrate body, wrapping each other in their myriad arms and sharing a long, tongue-filled kiss. They’ve lost all interest in you, moving on to other, needier desires. Well, that suits you just fine -- you’ve still got a queen to catch, after all. Squirming out from under the sea of lusty bodies, you gather your gear and slip away.");
+	if(inCombat()) output("\n\n");
 	
 	processTime(25+rand(11));
 	pc.orgasm();
-	addButton(0, "Next", mainGameMenu, undefined, "", "");
+	if(inCombat()) CombatManager.genericVictory();
+	else addButton(0, "Next", mainGameMenu, undefined, "", "");
 }
 
 public function fedQuestLootChemicals():void
@@ -1329,9 +1336,9 @@ public function fedQuestOfficerVictory():void
 	output("\n\n<b>You found the Queen’s keys</b>");
 	output("\n\n");
 	
-	CombatManager.genericVictory();
 	flags["FEDERATION_QUEST_RADIO"] = 1;
 	flags["FEDERATION_QUEST_KEYS"] = 1;
+	
 	if(pc.hasCock() || pc.hasHardLightStrapOn()) addButton(0, "Titfuck", fedQuestOfficerTitfuck, undefined, "Titfuck", "This ant’s got massive tits just overflowing with nectar. Take advantage of those big honeypots.");
 	else addDisabledButton(0, "Titfuck", "Titfuck", "You need a cock or strapon for this.")
 	addButton(1, "Queen", fedQuestOfficerQueen, undefined, "Queen", "Sit on the ant-slut’s face and make her tongue you out.");
@@ -1367,11 +1374,12 @@ public function fedQuestOfficerTitfuck():void
 	}
 	output("\n\n<i>“You’re cruel!”</i> she huffs, squirming in her restraints. <i>“Typical red sympathizer! My mother will-”</i>");
 	output("\n\nOh, hush. You tear off a piece of her blouse and stuff it into her mouth, silencing her while you decide what your next move is. Your eyes wander over the comms relay she was using...");
+	output("\n\n");
 	
 	processTime(15+rand(6));
 	pc.orgasm();
 	
-	addButton(0, "Next", mainGameMenu, undefined, "", "");
+	CombatManager.genericVictory();
 }
 
 public function fedQuestOfficerQueen():void
@@ -1400,11 +1408,12 @@ public function fedQuestOfficerQueen():void
 	if(pc.hasVagina()) output("Your pussy leaks around the myr’s tongue, trickling your orgasmic juices down her cheeks as you cum. ");
 	output("The submissive ant sputters, finally extricating herself when you relax your thighs, and her chest heaves as she gasps for breath.");
 	output("\n\nWhile she’s preoccupied, you grab her wrists and tie them to the shelves nearby, making sure she isn’t going to be a threat going forward. Your eyes wander over the comms relay she was using...");
+	output("\n\n");
 	
 	processTime(15+rand(6));
 	pc.orgasm();
 	
-	addButton(0, "Next", mainGameMenu, undefined, "", "");
+	CombatManager.genericVictory();
 }
 
 public function fedQuestOfficerLeave():void
@@ -1416,9 +1425,10 @@ public function fedQuestOfficerLeave():void
 	
 	output("You just walk over and deliver a quick backhand to the rebel officer, knocking her lights right out. Just in case, you tie her up, leaving her four wrists tied up on the shelves nearby.");
 	output("\n\nAnd now to figure out your next move. Your eyes wander over the comms relay she was using...");
+	output("\n\n");
 	
 	processTime(5+rand(3));	
-	addButton(0, "Next", mainGameMenu, undefined, "", "");
+	CombatManager.genericVictory();
 }
 
 public function fedQuestRadioFolder():void
@@ -2012,7 +2022,7 @@ public function fedQuestQueenFight2():void
 	var queen:Creature = new Estallia();
 	enemies.push(queen);
 	enemies.push(new MyrGoldBrute());
-	for (var i:int = 0; i < 3; i++)
+	for (var i:int = 0; i < 2; i++)
 	{
 		enemies.push(new MyrGoldRemnant());
 	}
@@ -2047,7 +2057,7 @@ public function fedQuestQueenText2():String
 	
 	//Handle spawning new Golds
 	var i:int = 0;
-	if(CombatManager.enemiesAlive() < 5)
+	if(CombatManager.enemiesAlive() < 4)
 	{
 		var enemies:Array = CombatManager.getHostileActors().slice(1);
 		for(i = 0; i < enemies.length; i++) if(enemies[i].HP() <= 0 || enemies[i].lust() >= enemies[i].lustMax())
@@ -2271,6 +2281,7 @@ public function fedQuestQueenLetGo():void
 	output("\n\nSlowly, you explain what happened: the queen is gone, but she’s vowed to cease her attacks on the Federation. An even trade for the lives of Lieve and all her remaining soldiers, you think.");
 	output("\n\nShe grunts and picks up her shotgun, using it like a crutch to get back on her feet. <i>“Damn it all. Well, you did the best you could, [pc.name]. We expected a lot of you... taking down a queen all by yourself was a hell of an ask. But you got us through this suicide mission in one piece. So thank you.”</i>");
 	output("\n\nThe two of you get the remaining commandos up and at ‘em, scouring the factory for anything else of value to the Federation before falling back to the half-track.");
+	output("\n\n");
 	
 	flags["FEDERATION_QUEST"] = 4;
 	processTime(10+rand(5));

@@ -13227,11 +13227,17 @@
 					if(hairStyle == "ponytail") descript += "ponytail";
 					else if(hairStyle.indexOf("pigtail") != -1) descript += "pigtailed hair";
 					else if(hairStyle == "curls") descript += "curled hair";
+					else if(hairStyle.indexOf("curls") != -1) descript += "curly hair";
 					else if(hairStyle == "braided") descript += "braid";
-					else if(hairStyle.indexOf(" braid") != -1) descript += "braided hair";
+					else if(hairStyle.indexOf(" braid") != -1 || hairStyle.indexOf("plait") != -1) descript += "braided hair";
 					else if(hairStyle == "afro") descript += "afro";
 					else if(hairStyle == "mohawk") descript += "mohawk";
 					else if(hairStyle == "spikes") descript += "spiked hair";
+					else if(hairStyle.indexOf("slick") != -1 || hairStyle.indexOf("wave") != -1) descript += "smooth hair";
+					else if(hairStyle.indexOf("layer") != -1) descript += "layered hair";
+					else if(hairStyle == "side part") descript += "side-parted hair";
+					else if(hairStyle.indexOf(" part") != -1) descript += "parted hair";
+					else if(hairStyle.indexOf("chignon") != -1) descript += "pinned-up hair";
 					else if(hairStyle == "twintails") descript += "twintailed hair";
 					else descript += "hair";
 				}
@@ -13364,7 +13370,6 @@
 				descript += "latex";
 				descripted++;
 			}
-			//Not manes
 			//Oddball shit
 			if (rand(2) == 0 && descripted < 2) {
 				if (hairType == GLOBAL.HAIR_TYPE_TRANSPARENT) {
@@ -13382,11 +13387,16 @@
 			{
 				if(hairStyle == "ponytail") descript += "ponytail-bound locks";
 				else if(hairStyle.indexOf("pigtail") != -1) descript += "pigtails";
-				else if(hairStyle == "curls") descript += "curls";
-				else if(hairStyle == "braided" || hairStyle.indexOf(" braid") != -1) descript += "braid-bound locks";
+				else if(hairStyle.indexOf("curls") != -1) descript += "curls";
+				else if(hairStyle == "braided" || hairStyle.indexOf(" braid") != -1 || hairStyle.indexOf("plait") != -1) descript += "braid-bound locks";
 				else if(hairStyle == "afro") descript += "afro-puffed locks";
 				else if(hairStyle == "mohawk") descript += "mohawk-shaped locks";
 				else if(hairStyle == "spikes") descript += "spiky locks";
+				else if(hairStyle.indexOf("slick") != -1 || hairStyle.indexOf("wave") != -1) descript += "smooth locks";
+				else if(hairStyle.indexOf("layer") != -1) descript += "layered locks";
+				else if(hairStyle == "side part") descript += "side-parted locks";
+				else if(hairStyle.indexOf(" part") != -1) descript += "parted locks";
+				else if(hairStyle.indexOf("chignon") != -1) descript += "pinned-up locks";
 				else if(hairStyle == "twintails") descript += "twintails";
 				else descript += "locks";
 			}
