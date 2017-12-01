@@ -1489,7 +1489,11 @@ public function korgiiHoldExteriorBonus():Boolean
 	if(flags["ENTERED_KORGI_HOLD"] != undefined) output("as a mechanism of hiding Korg'ii Hold.");
 	else output("for an unknown purpose by an unknown entity. You poke a few to little effect. They run too deep to plumb without specialized tools, and it'd be more profitable to just mine out the thing to the bottom.");
 	output(" Snow walls in every other side but the path back to the south.");
-	if(flags["ULA_SAVED"] != undefined) addButton(0,"Awoo",awooAtDatHole);
+	if(flags["ULA_SAVED"] != undefined) 
+	{
+		output("\n\n<b>Is this the location that the Korgonne you rescued spoke of?</b>");
+		addButton(0,"Awoo",awooAtDatHole);
+	}
 	return false;
 }
 

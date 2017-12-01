@@ -9238,6 +9238,9 @@
 			desc += RandomInCollection(actions);
 			return desc;
 		}
+		//Lazyfen:
+		public function hasTits():Boolean { return hasBreasts(); }
+		public function hasTiTS():Boolean { return hasBreasts(); }
 		public function hasBreasts(): Boolean {
 			if (breastRows.length > 0) {
 				if (biggestTitSize() >= 1) return true;
