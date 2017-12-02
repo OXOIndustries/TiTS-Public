@@ -26,16 +26,16 @@ public function selleraHelp():void
 	selleraHeader();
 	author("Savin");
 	
-	output("Stepping a little closer to the stoic red myr marshal, you suggest that you've done all the thinking you need to about what side of Myrellion's history you want to be on. How can you help the Federation?");
-	output("\n\nSellera allows herself the barest hint of a smile. <i>“I thought you might see things our way. The Federation could use someone with your talents and connections, Steele. And I'm not above saying that your technology... your weapons... could be the tipping point if and when the war gets hot again.”</i>");
-	output("\n\nUnfortunately, you're not sure you've got the resources to start passing out plasma rifles and shield belts to every Federation soldier.");
-	output("\n\nSellera shrugs, seating herself on the edge of her desk. <i>“I don't expect you to. But you can arm yourself. And perhaps... as an offworlder, you might be able to accomplish something even my most elite seem incapable of.”</i>");
+	output("Stepping a little closer to the stoic red myr marshal, you suggest that you’ve done all the thinking you need to about what side of Myrellion’s history you want to be on. How can you help the Federation?");
+	output("\n\nSellera allows herself the barest hint of a smile. <i>“I thought you might see things our way. The Federation could use someone with your talents and connections, Steele. And I’m not above saying that your technology... your weapons... could be the tipping point if and when the war gets hot again.”</i>");
+	output("\n\nUnfortunately, you’re not sure you’ve got the resources to start passing out plasma rifles and shield belts to every Federation soldier.");
+	output("\n\nSellera shrugs, seating herself on the edge of her desk. <i>“I don’t expect you to. But you can arm yourself. And perhaps... as an offworlder, you might be able to accomplish something even my most elite seem incapable of.”</i>");
 	output("\n\nThat sounds like she has a job for you already.");
-	output("\n\n<i>“Yes indeed. You picked an auspicious day to join the Federation's war effort, Steele. As we discussed earlier, the rebels in this city -- and others -- have proved to be rather vexing. They're being armed, and gaining intelligence, from outside the city. The damned queen still in Kressia is bad enough without an external supply line bringing arms and explosives in under our noses. We've eliminated several smugglers, but more keep popping up. We need to hit the source if we're to have peace in the city.”</i>");
-	output("\n\nYou nod. Reasonable enough, but... wouldn't these supplies be coming from Gildenmere? You're not sure what you can do against an entire city.");
-	output("\n\n<i>“That's what I suspected at first,”</i> Sellera answers coolly, <i>“but it appears that the Republic isn't behind this. Not officially, anyway. I'm not even sure they have the means even if they wanted to. No, my scouts have traced back one of the most recent arms shipments -- several dozen bolt-action rifles, hand grenades, shaped charges -- to a city on the surface: Renneke. It was a Republic industrial center, and so became the target of a weeks-long artillery barrage until the city was almost completely flattened. It's been abandoned for over a year now.”</i>");
+	output("\n\n<i>“Yes indeed. You picked an auspicious day to join the Federation’s war effort, Steele. As we discussed earlier, the rebels in this city -- and others -- have proved to be rather vexing. They’re being armed, and gaining intelligence, from outside the city. The damned queen still in Kressia is bad enough without an external supply line bringing arms and explosives in under our noses. We’ve eliminated several smugglers, but more keep popping up. We need to hit the source if we’re to have peace in the city.”</i>");
+	output("\n\nYou nod. Reasonable enough, but... wouldn’t these supplies be coming from Gildenmere? You’re not sure what you can do against an entire city.");
+	output("\n\n<i>“That’s what I suspected at first,”</i> Sellera answers coolly, <i>“but it appears that the Republic isn’t behind this. Not officially, anyway. I’m not even sure they have the means even if they wanted to. No, my scouts have traced back one of the most recent arms shipments -- several dozen bolt-action rifles, hand grenades, shaped charges -- to a city on the surface: Renneke. It was a Republic industrial center, and so became the target of a weeks-long artillery barrage until the city was almost completely flattened. It’s been abandoned for over a year now.”</i>");
 	output("\n\nSo the rebels are being supplied from Renneke -- a ruin?");
-	output("\n\n<i>“Yes. We now believe at least one major factory must have survived the barrage; perhaps partially shielded underground. Normally, I would have already sent commandos to assault the facility, ceasefire be damned... except the scouts also believe that there is a damn Queen personally running the operation. One who's been disavowed by the Republic, no less.”</i>");
+	output("\n\n<i>“Yes. We now believe at least one major factory must have survived the barrage; perhaps partially shielded underground. Normally, I would have already sent commandos to assault the facility, ceasefire be damned... except the scouts also believe that there is a damn Queen personally running the operation. One who’s been disavowed by the Republic, no less.”</i>");
 	
 	processTime(8+rand(4));
 	selleraFedQuestMenu();
@@ -44,9 +44,9 @@ public function selleraHelp():void
 public function selleraFedQuestMenu():void
 {
 	addButton(0, "The Queen", selleraQueen, undefined, "The Queen", "Find out more about this mysterious Gold Queen.");
-	addButton(1, "Renneke", selleraRenneke, undefined, "Renneke", "Ask the Marshal about the city you'll be travelling to.");
-	addButton(2, "Commandos", selleraCommandos, undefined, "Commandos", "What can she tell you about the troops you'll be working with.");
-	addButton(3, "Mission", selleraMission, undefined, "Mission", "So what's the plan?");
+	addButton(1, "Renneke", selleraRenneke, undefined, "Renneke", "Ask the Marshal about the city you’ll be travelling to.");
+	addButton(2, "Commandos", selleraCommandos, undefined, "Commandos", "What can she tell you about the troops you’ll be working with.");
+	addButton(3, "Mission", selleraMission, undefined, "Mission", "So what’s the plan?");
 	addButton(14, "Back", selleraMenu, undefined, "", "");
 }
 
@@ -231,7 +231,7 @@ public function fedQuestRendevous():void
 	addButton(1, "The Queen", fedQuestTheQueen, undefined, "The Queen", "What can Lieve tell you about the War Queen?");
 	addButton(2, "Resistance", fedQuestResistance, undefined, "Resistance", "How much resistance are you actually expecting.");
 	addButton(3, "Support", fedQuestSupport, undefined, "Support", "So there’s not going to be any support from the Federation?");
-	addButton(5, "Ready2Go", fedQuestReady2Go, undefined, "Ready2Go", "Tell the commandos you're ready to depart.");
+	addButton(5, "Ready2Go", fedQuestReady2Go, undefined, "Ready2Go", "Tell the commandos you’re ready to depart.");
 }
 
 public function fedQuestSupport():void
@@ -515,7 +515,7 @@ public function fedQuestAmbushText():String
 	else if (pc.hasStatusEffect("Lieve Buff")) pc.addStatusValue("Lieve Buff", 1, -1);
 	//We'll also handle the Gold Brute spawning here
 	var eText:String = "";
-	eText+="You're fighting a squad of Gold Myr remnants!";
+	eText+="You’re fighting a squad of Gold Myr remnants!";
 	if(CombatManager.enemiesAlive() <= 3 && !CombatManager.hasEnemyOfClass(MyrGoldBrute))
 	{
 		var ded:Creature = null;
@@ -525,7 +525,7 @@ public function fedQuestAmbushText():String
 		{
 			CombatManager.removeHostileActor(ded);
 			CombatManager.addHostileActor(new MyrGoldBrute());
-			eText+="\n\n<b>Among the golds rushing to join the fight comes a much bigger, more heavily armored myr.</b> A burly bruiser of a gold, with a heavy flak jacket and gas mask combining to leave virtually no flesh exposed. Unlike her sisters, she's carrying a solid metal shield and a shotgun, and walks fearlessly into the heart of the gunfight. The commandos' shots just bounce off her like they're nothing!";
+			eText+="\n\n<b>Among the golds rushing to join the fight comes a much bigger, more heavily armored myr.</b> A burly bruiser of a gold, with a heavy flak jacket and gas mask combining to leave virtually no flesh exposed. Unlike her sisters, she’s carrying a solid metal shield and a shotgun, and walks fearlessly into the heart of the gunfight. The commandos’ shots just bounce off her like they’re nothing!";
 		}
 	}
 	else eText+="\n\nA dozen gold myr are spread out across the parking garage, armed with a mismatched array of handguns and rifles and decked out in scraps of uniforms and armor that look like they were salvaged from the battlefields of yesteryear. Your Red Myr compatriots, what few are left, are ducking behind burnt-out husks of cars or the sides of their armored truck, snapping off shots as quick as they can. Sergeant Marik is manning the heavy machine gun, firing nonstop at the other entrance behind you.";
@@ -768,7 +768,7 @@ public function fedQuestInvestigateToxin():void
 	
 	output("You " + (pc.tallness < 5*12 ? "haul yourself up the side and " : "") + "peer over the rim, looking down into a mess of some kind of soft moss that’s been packed down at the bottom of the crate. Must be the local equivalent of hay for packaging, you guess. Well, the inside looks pretty much empty, unfortunately... wait, no, you catch just the barest hint of something shiny at the bottom! You reach inside and nab it, bringing it into the light. It’s a canister, stark metal labelled with several warnings. Between the alien language being translated in your head and the complex chemicals you’ve got no experience with, you have exactly no clue what this stuff is <i>exactly</i>, but the biggest label on the cap, marked on either side by that same symbol as you’ve seen everywhere, says in big bold letters: “<b>LUSTOXIN</b>.” ");
 	output("\n\nSomebody must have forgotten their chemical weapons. What a world.");
-	output("\n\nYou don't know how much use you could get out of military grade chemical weapons in the long run, but for right now... tossing a shot of it into the vents might clear things out for you somewhere. Who knows.");
+	output("\n\nYou don’t know how much use you could get out of military grade chemical weapons in the long run, but for right now... tossing a shot of it into the vents might clear things out for you somewhere. Who knows.");
 	
 	addButton(0, "Take it", function():void{IncrementFlag("FEDERATION_QUEST_LUSTOXIN"); clearOutput(); quickLoot(new Lustoxin());}, undefined, "", "");
 	addButton(1, "Leave it", mainGameMenu, undefined, "", "");
@@ -1178,7 +1178,7 @@ public function fedQuestLootChemicals():void
 
 	processTime(3);
 	if(flags["FEDERATION_QUEST_LUSTOXIN"] < 5 || flags["FEDERATION_QUEST_LUSTOXIN"] == undefined) addButton(0, "Take", function():void{IncrementFlag("FEDERATION_QUEST_LUSTOXIN"); lootScreen = fedQuestLootChemicals; itemCollect([new Lustoxin()], true);}, undefined, "", "");
-	else addDisabledButton(0, "Take", "Take", "You've already looted the remaining Lustoxin.");
+	else addDisabledButton(0, "Take", "Take", "You’ve already looted the remaining Lustoxin.");
 	addButton(1, "Leave", mainGameMenu, undefined, "", "");
 }
 
@@ -1240,7 +1240,7 @@ public function fedQuestOfficerFight():void
 	author("Savin");
 	
 	output("You test the latch on the rusty iron door at the end of the bridge, and to your surprise, find that the door pushes open with a little bit of effort. A rush of cold air blasts out of the crack at you, and you wince as the hinges squeal like nails on a chalkboard. Fuck it -- you shoulder the door the rest of the way in and draw your [pc.weapon], charging into the little cabin.");
-	output("\n\nThe room inside is small, just a few feet on either side, and stuffed full of shelves full of binders and strange  machines you can’t figure at a glance -- probably part of that radio dish on the roof. A single gold myr in a long, dark coat and a brimmed cap was sitting on a chair at the machines, listening through a headset clasped awkwardly over her cap and flowing black ponytail. She’s speaking into a microphone in front of her, but the moment you storm in, she twirls around with preternatural grace and speed, drawing a handgun from a holster on her skirt’s belt and levelling the primitive slug-thrower at you. ");
+	output("\n\nThe room inside is small, just a few feet on either side, and stuffed full of shelves full of binders and strange machines you can’t figure at a glance -- probably part of that radio dish on the roof. A single gold myr in a long, dark coat and a brimmed cap was sitting on a chair at the machines, listening through a headset clasped awkwardly over her cap and flowing black ponytail. She’s speaking into a microphone in front of her, but the moment you storm in, she twirls around with preternatural grace and speed, drawing a handgun from a holster on her skirt’s belt and levelling the primitive slug-thrower at you. ");
 	output("\n\n<i>“Sorry, mother,”</i> she says into the mic, setting it back down on the machines. <i>“Something’s come up...”</i>");
 	output("\n\nHer black eyes narrow at you, and she thumbs back the hammer of her pistol. <i>“The " + (InCollection(pc.race(), "myr", "gold myr", "red myr") ? "false myr" : "offworlder") + "!”</i> the woman snarls. <i>“As if luring the Federation’s best into our little trap wasn’t reward enough.");
 	if(flags["KILLED_TAIVRA"] != undefined) output(" Though perhaps we should thank you for slaying that warlord under the caves before the red bitches could recruit her.");	
@@ -1370,7 +1370,7 @@ public function fedQuestOfficerTitfuck():void
 	else
 	{
 		output("feeding back through your nerves in waves of pleasure. Too bad there’s no cum for her, no matter how much your body tries to squirt it all over her!");
-		output("\n\nOnce you've caught your breath, you pull yourself off of the golden officer and tie her wrists to the nearby shelves.");
+		output("\n\nOnce you’ve caught your breath, you pull yourself off of the golden officer and tie her wrists to the nearby shelves.");
 	}
 	output("\n\n<i>“You’re cruel!”</i> she huffs, squirming in her restraints. <i>“Typical red sympathizer! My mother will-”</i>");
 	output("\n\nOh, hush. You tear off a piece of her blouse and stuff it into her mouth, silencing her while you decide what your next move is. Your eyes wander over the comms relay she was using...");
@@ -1535,9 +1535,9 @@ public function fedQuestQueen():void
 	
 	processTime(5+rand(2));
 	
-	addButton(0, "Attack", fedQuestQueenAttack, undefined, "Attack", "Let's get this over with.");
-	addButton(1, "Go Home", fedQuestQueenHome, undefined, "Talk: Go Home", "Tell the myrish queen to go home. There's no need to fight here.");
-	addButton(2, "Surrender", fedQuestQueenSurrender, undefined, "Talk: Surrender", "Try and get the queen to surrender. The fight's already lost, and she's got a better chance with you than with the Federation commandos.");
+	addButton(0, "Attack", fedQuestQueenAttack, undefined, "Attack", "Let’s get this over with.");
+	addButton(1, "Go Home", fedQuestQueenHome, undefined, "Talk: Go Home", "Tell the myrish queen to go home. There’s no need to fight here.");
+	addButton(2, "Surrender", fedQuestQueenSurrender, undefined, "Talk: Surrender", "Try and get the queen to surrender. The fight’s already lost, and she’s got a better chance with you than with the Federation commandos.");
 	addButton(3, "Why Fight?", fedQuestQueenWhy, undefined, "Talk: Why Fight?", "Try and figure out why the myrish War Queen is fighting this hopeless battle!");
 	addButton(4, "Leave World", fedQuestQueenLeave, undefined, "Talk: Leave World", "Rather than fight a losing battle against the Federation, what if she simply left for greener pastures?");
 }
@@ -1669,7 +1669,7 @@ public function fedQuestQueenWhy():void
 	output("<i>“" + (pc.isBimbo() ? "Could I, like, ask you some stuff?" : "Before this goes any further, I have a question.") + "”</i>");
 	output("\n\nThe War Queen cocks an eyebrow. <i>“Very well. I’ll not deny a condemned "+pc.mf("man","woman")+" [pc.hisHer] last questions.”</i>");
 	output("\n\nThat’s a start, at least. <i>“Why are you still fighting? Can’t you see that this fight is already lost? A group your size can’t possibly overthrow the Federation!”</i>");
-	output("\n\nThe queen laughs. Uproariously, throwing her head back and guffawing at you. <i>“Of course it can’t. We’ve long since passed the point of being able to win this war. Now, we want to make these red whores bleed for every inch of Republic soil they defile. I want them  to suffer for what they’ve done, to my people... my daughters... my country! We will make them pay!”</i>");
+	output("\n\nThe queen laughs. Uproariously, throwing her head back and guffawing at you. <i>“Of course it can’t. We’ve long since passed the point of being able to win this war. Now, we want to make these red whores bleed for every inch of Republic soil they defile. I want them to suffer for what they’ve done, to my people... my daughters... my country! We will make them pay!”</i>");
 	output("\n\n<i>“Is this vengeance worth your life; your <b>daughters</b> lives?”</i>");
 	output("\n\nThe haughty grin slides off her amber lips. <i>“I have witnessed the ‘mercy’ of the victorious reds, and I will not see more of my children live as slaves!”</i>");
 	output("\n\n<i>“For years we fought against the red aggressor, forced to defend our borders from their expansionist desires. But my sisters were always weak-willed. Unwilling to do what needed to be done. They lost us this war. Now they seek to appease our red overlords... or come crawling to you aliens to protection, hoping you’ll save them from their own pathetic weakness! Unlike those simpering cowards, I refuse to go down without one last fight. And my daughters... I raised no cowards, alien. My children are of stronger stock.”</i>");
@@ -1792,7 +1792,7 @@ public function fedQuestQueenMhenga():void
 	
 	processTime(15+rand(6));
 	if(pc.credits >= 30000) addButton(11, "Donate", fedQuestQueenDonate, undefined, "Talk: Donate", (silly?"Less money, less problems.":"Give the myri rebels enough credits to buy their way off planet. With so many of them, and one as large as the War Queen... you doubt you could find them passage for less than 30,000 credits."));
-	else addDisabledButton(11, "Donate", "Talk: Donate", "You don't have the required 30,000 credits to afford passage for all the rebels.");
+	else addDisabledButton(11, "Donate", "Talk: Donate", "You don’t have the required 30,000 credits to afford passage for all the rebels.");
 	//PC must have a capital ship, or a ship with a shit ton of cargo space. Else, grayed out.
 	if(9999 == 0) addButton(12, "Take Them", fedQuestQueenTake, undefined, "Talk: Take Them", "You have a big-ass ship. Big enough to take all these gold myr, anyway. Tell the queen to meet you somewhere safe, and you’ll evacuate them yourself.");
 	else addDisabledButton(12, "Take Them", "Talk: Take Them", "There is absolutely no way you could ferry all these gold myr with your current ship.");
@@ -2080,7 +2080,7 @@ public function fedQuestQueenText2():String
 	}
 	
 	var eText:String = "";
-	eText += "You’re fighting the War Queen and her daughters, a gaggle of heavily armed gold myr rebels that are bent on going down fighting. They shout  <i>“Death before dishonor”</i> and other such slogans as they fight, struggling tooth and nail against you and your red myr allies.";
+	eText += "You’re fighting the War Queen and her daughters, a gaggle of heavily armed gold myr rebels that are bent on going down fighting. They shout <i>“Death before dishonor”</i> and other such slogans as they fight, struggling tooth and nail against you and your red myr allies.";
 	eText += "\n\nQueen Estallia is still standing, and as long as she is, so too will her daughters. There’s a seemingly endless tide of gold myr bodies flooding into the factory behind the queen, ready to take the place of their fallen sisters. " + (flags["FEDERATION_QUEST_TRANQD"] == 1 ? "The queen is wobbling on her feet, though, clearly starting to lose her focus due to the drugs coursing through her veins." : "") + "";
 	if(lieveAlive) eText += "\n\nLieve and her red myr commandos are supporting you, making their superior gear and training count against overwhelming numbers.";
 	else if(redsAlive) eText += "\n\nThe remaining red myr commandos are supporting you, making their superior gear and training count against overwhelming numbers.";
@@ -2231,7 +2231,7 @@ public function fedQuestQueenVictory():void
 public function fedQuestQueenLone():void
 {
 	output("Estallia crumbles, collapsing onto her knees and leaning back on her abdomen. Her girder-beam-like swords slam into the ground at either side of her, kicking up thick clouds of dust all around. Seeing their mother fall, the few remaining myr circle defensively around her, but the War Queen puts up a hand. Slowly, deliberately, they lower their weapons. They don’t pose much of a threat to you anymore, and honestly, they look like they’re barely standing.");
-	output("\n\nThe queen curses, groaning in pain" + (CombatManager.getHostileActors()[0].hasStatusEffect("Tranq'd")() ? " and confusion, reeling from the drugs in her veins" : "") + ". <i>“And here we are, off-worlder, you and I; my daughters broken and your companions fallen. You are the first truly worthy foe I have faced in many years... so tell me, what is it you want? What would you have of me?”</i>");
+	output("\n\nThe queen curses, groaning in pain" + (CombatManager.getHostileActors()[0].hasStatusEffect("Tranq'd") ? " and confusion, reeling from the drugs in her veins" : "") + ". <i>“And here we are, off-worlder, you and I; my daughters broken and your companions fallen. You are the first truly worthy foe I have faced in many years... so tell me, what is it you want? What would you have of me?”</i>");
 	
 	addButton(0, "Capture", fedQuestQueenCapture, undefined, "Capture Her", "You came here to capture the queen, so that’s what you’re gonna do.");
 	addButton(1, "Let Go", fedQuestQueenLetGo, undefined, "Let Her Go", "You didn’t want to fight the queen anyway. Let her and her daughters go: as long as they promise to stop their attacks against the Federation.");
