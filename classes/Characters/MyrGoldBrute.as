@@ -287,8 +287,8 @@ package classes.Characters
 		private function myrBruteWall(alliedCreatures:Array):void
 		{
 			output(this.getCombatName() + " slams her shield into the ground, using the towering metal bulwark to shield not only herself, but her allies as well!");
-			output("\n<b>The enemy party's evasion has been boosted!</b>");
-			for (var x:int = 0; x < alliedCreatures.length; x++) alliedCreatures[x].createStatusEffect("Brute Wall", 3, 0, 0, 0, false, "DefenseUp", "The Remnant Brute's shield is providing cover!\nEvasion increased 20%.", true, 0, 0xFFFFFF);
+			output("\n<b>The enemy party’s evasion has been boosted!</b>");
+			for (var x:int = 0; x < alliedCreatures.length; x++) alliedCreatures[x].createStatusEffect("Brute Wall", 3, 0, 0, 0, false, "DefenseUp", "The Remnant Brute’s shield is providing cover!\nEvasion increased 20%.", true, 0, 0xFFFFFF);
 		}
 		
 		private function myrBruteBash(target:Creature):void
