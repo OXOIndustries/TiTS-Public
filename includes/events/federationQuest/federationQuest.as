@@ -1739,6 +1739,7 @@ public function fedQuestQueenKuitan():void
 	output("\n\nYou breathe a sigh of relief and tell her that’s all you can ask for.");
 	
 	processTime(7);
+	clearMenu();
 	addButton(0, "Next", fedQuestQueenKuitan2, undefined, "", "");
 }
 
@@ -1768,6 +1769,7 @@ public function fedQuestQueenKuitan2():void
 		
 	processTime(15+rand(6));
 	flags["FEDERATION_QUEST"] = 6;
+	clearMenu();
 	addButton(0, "Next", fedQuestResolution, undefined, "", "");
 }
 
