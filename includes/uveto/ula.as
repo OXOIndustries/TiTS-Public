@@ -38,7 +38,8 @@ public function showCaveUla(nude:Boolean = false):void
 
 public function showUla(nude:Boolean = false):void
 {
-	showName("\nULA");
+	if(flags["MET_ULA"] == undefined) showName("KORGONNE\nPRINCESS");
+	else showName("\nULA");
 	var nudeS:String = "";
 	if(nude) nudeS = "_NUDE";
 	showBust("ULA" + nudeS);

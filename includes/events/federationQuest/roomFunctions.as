@@ -58,7 +58,11 @@ public function fedQuestTankBonus():Boolean
 		else if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) output("You don’t know much about this sort of thing, but you don’t see much reason somebody couldn’t climb in and drive the beast right now. ");
 		addButton(0, "Tank", fedQuestCheckTank, undefined, "Tank", "Check out the tank.");
 	}
-	else if(flags["FEDERATION_QUEST_TANK"] == 1) output("The tank’s been rendered useless thanks to your machinations. It’s unlikely anybody will notice what you’ve done until it’s too late...");
+	else if(flags["FEDERATION_QUEST_TANK"] == 1)
+	{
+		output("The tank’s been rendered useless thanks to your machinations. It’s unlikely anybody will notice what you’ve done until it’s too late...");
+		addDisabledButton(0, "Tank");
+	}
 	else output("The tank’s in pristine condition... or at least, as much as it’s ever been. You’ve got no idea how to mess with it further, and you aren’t packing the ordinance required to just blow it up.");
 	output("\n\nIt wouldn’t last a second on a modern battlefield, but considering the weapons the myr are armed with, this thing would be an unstoppable behemoth in the tunnels. Unlike most of the gear lying around, the tank isn’t covered in dust: somebody’s been working on this beast, and recently.");
 	output("\n\nYou can make out a heavy cargo elevator to the north, and hallways leading out to the west, the northeast, and of course, back south. ");

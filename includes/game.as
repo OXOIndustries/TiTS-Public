@@ -2522,8 +2522,13 @@ public function variableRoomUpdateCheck():void
 		{
 			if(flags["ULA_LEAVE_TIMER"] == undefined || flags["ULA_LEAVE_TIMER"] + 60*24*2 > GetGameTimestamp()) rooms[flags["ULA_CAVE"]].addFlag(GLOBAL.NPC);
 			else rooms[flags["ULA_CAVE"]].removeFlag(GLOBAL.NPC);
+			rooms["KORGII B14"].removeFlag(GLOBAL.OBJECTIVE);
 		}
-		else rooms[flags["ULA_CAVE"]].removeFlag(GLOBAL.NPC);
+		else
+		{
+			rooms[flags["ULA_CAVE"]].removeFlag(GLOBAL.NPC);
+			rooms["KORGII B14"].addFlag(GLOBAL.OBJECTIVE);
+		}
 	}
 	else
 	{
@@ -2531,6 +2536,7 @@ public function variableRoomUpdateCheck():void
 		rooms["UVIP D22"].removeFlag(GLOBAL.NPC);
 		rooms["UVIP J18"].removeFlag(GLOBAL.NPC);
 		rooms["UVGR K20"].removeFlag(GLOBAL.NPC);
+		rooms["KORGII B14"].removeFlag(GLOBAL.OBJECTIVE);
 	}
 	
 	/* VESPERIA / CANADIA STATION */

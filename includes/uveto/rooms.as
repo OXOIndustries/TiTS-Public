@@ -2722,6 +2722,7 @@ public function initUvetoRoomsII():void
 	rooms["KORGII B12"].westExit = "KORGII D12";
 	rooms["KORGII B12"].addFlag(GLOBAL.INDOOR);
 	rooms["KORGII B12"].addFlag(GLOBAL.PUBLIC);
+	rooms["KORGII B12"].addFlag(GLOBAL.OBJECTIVE);
 	rooms["KORGII B12"].runOnEnter = korgiiHoldInteriorExitBonus;
 
 	rooms["KORGII D12"] = new RoomClass(this);
