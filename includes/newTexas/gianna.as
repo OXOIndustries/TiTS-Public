@@ -746,7 +746,7 @@ public function talkToGianna(display:Boolean = true):void
 			//Hyper positive
 			else if(giannaPersonality() >= 100)
 			{
-				output("\n\nGianna puts an arm around you and spins you into place against the wall, sliding her palm down your cheek with sensuous grace as her [gianna.buttAdjectives]ass comes to rest against you");
+				output("\n\nGianna puts an arm around you and spins you into place against the wall, sliding her palm down your cheek with sensuous grace as her [gianna.buttDescript] comes to rest against you");
 				if(gianna.buttRating() >= 15) output(", pinning you in place with enormous butt");
 				output(". <i>“Are you sure you want to talk,”</i> she coos, rocking her [gianna.hips] just enough to drag her butt up and down against your crotch. <i>“Wouldn’t you rather rather go lie down on a hay bale and let me tend to your tension.”</i> Giggling, the android runs her fingers ");
 				if(pc.hasHair()) output("through your [pc.hair]");

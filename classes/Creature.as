@@ -14449,7 +14449,7 @@
 			if (armor.shortName != "") addToList(armor.longName);
 			if (upperUndergarment.shortName != "") addToList(upperUndergarment.longName);
 			if (lowerUndergarment.shortName != "") addToList(lowerUndergarment.longName);
-			if (isNude()) addToList("gear");
+			if (isNude() || getListLength() <= 0) addToList("gear");
 			return formatList();
 		}
 		public function clothesDescript():String

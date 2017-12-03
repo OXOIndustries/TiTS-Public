@@ -41,7 +41,7 @@ public function myrellionManorEnterWarroom():Boolean
 
 		// [Go Inside] (Other option is to leave the "room," and meet with the following scene each time until you choose Go Inside)
 		clearMenu();
-		addButton(0, "Go Inside", myrellionManorGoInside, undefined, "Enter the room", "This looks to be the busiest room in the manor, and the head officer of the occupation is apparently inside. If you wanted to discuss anything with her, here's the best place to do it.");
+		addButton(0, "Go Inside", myrellionManorGoInside, undefined, "Enter the room", "This looks to be the busiest room in the manor, and the head officer of the occupation is apparently inside. If you wanted to discuss anything with her, here’s the best place to do it.");
 		addButton(14, "Back", move, "834");
 
 		return true;
@@ -148,9 +148,9 @@ public function myrellionManorAdminRoom():Boolean
 		processTime(5);
 		
 		clearMenu();
-		addButton(0, "Mission", selleraYourMission, undefined, "Your Mission", "Tell Sellera you're here searching for a way to get your father's fortune and prove your worth.");
-		addButton(1, "Sightseeing", selleraSightseeing, undefined, "Sightseeing", "Tell Sellera you're just the first fruit of Myrellion's new tourist industry, taking in the sights and experiences of the whole planet.");
-		addButton(2, "Exploration", selleraExploration, undefined, "Exploration", "Tell Sellera you're interested in going where no man, or woman, or herm, or whatever has gone before, meeting new species and exploring new frontiers.");
+		addButton(0, "Mission", selleraYourMission, undefined, "Your Mission", "Tell Sellera you’re here searching for a way to get your father’s fortune and prove your worth.");
+		addButton(1, "Sightseeing", selleraSightseeing, undefined, "Sightseeing", "Tell Sellera you’re just the first fruit of Myrellion’s new tourist industry, taking in the sights and experiences of the whole planet.");
+		addButton(2, "Exploration", selleraExploration, undefined, "Exploration", "Tell Sellera you’re interested in going where no man, or woman, or herm, or whatever has gone before, meeting new species and exploring new frontiers.");
 		return true;
 	}
 	else
@@ -159,7 +159,7 @@ public function myrellionManorAdminRoom():Boolean
 		output("\n\nDo you need enter and speak to her about anything?");
 		flags["NAV_DISABLED"] = NAV_IN_DISABLE;
 		clearMenu();
-		addButton(0, "Sellera", approachSellera, undefined, "Approach Sellera", "May as well visit the marshal while you're here.");
+		addButton(0, "Sellera", approachSellera, undefined, "Approach Sellera", "May as well visit the marshal while you’re here.");
 		addButton(14, "Leave", move, "834");
 		return true;
 	}
@@ -293,10 +293,10 @@ public function selleraMenu(prevFunc:Function = null):void
 
 	gatedButton( { id: 1, lbl: "Occupation", f: selleraOccupation, arg: undefined, ttH: "Occupation", ttB: "Ask about the state of the occupation, and how the Reds have managed to adapt to living in Kressia.", prevF: prevFunc } );
 
-	gatedButton( { id: 2, lbl: "Sellera", f: selleraHerself, arg: undefined, ttH: "Sellera", ttB: "Inquire as to Sellera's own history and get to know her a bit better.", prevF: prevFunc } );
+	gatedButton( { id: 2, lbl: "Sellera", f: selleraHerself, arg: undefined, ttH: "Sellera", ttB: "Inquire as to Sellera’s own history and get to know her a bit better.", prevF: prevFunc } );
 
 	// Has met Nehz
-	if (flags["MET_NEHZARA"] != undefined) gatedButton( { id: 3, lbl: "Nehzara", f: selleraNehzara, arg: undefined, ttH: "Colonel Nehzara", ttB: "Since she's the main commander of the offensive force, Sellera might know Colonel Nehzara. You could see what she thinks of the other officer.", prevF: prevFunc } );
+	if (flags["MET_NEHZARA"] != undefined) gatedButton( { id: 3, lbl: "Nehzara", f: selleraNehzara, arg: undefined, ttH: "Colonel Nehzara", ttB: "Since she’s the main commander of the offensive force, Sellera might know Colonel Nehzara. You could see what she thinks of the other officer.", prevF: prevFunc } );
 
 	if (flags["SELLERA_OCCUPATION"] != undefined) gatedButton( { id: 4, lbl: "Rebels", f: selleraRebels, arg: undefined, ttH: "Rebels", ttB: "Ask a little more about the rebel problem the occupation forces are having.", prevF: prevFunc } );
 	
@@ -305,7 +305,7 @@ public function selleraMenu(prevFunc:Function = null):void
 	else if (flags["SELLERA_REBELS"] != undefined && flags["FEDERATION_QUEST"] == undefined) addButton(5, "Help", selleraHelp, undefined, "Help", "Offer to help the Field Marshal out with her rebel problem.");
 
 
-	gatedButton( { id: 10, lbl: "Appearance", f: selleraAppearance, arg: undefined, ttH: "Sellera's Appearance", ttB: "The general appearance of Field Marshal Sellera.", prevF: prevFunc } );
+	gatedButton( { id: 10, lbl: "Appearance", f: selleraAppearance, arg: undefined, ttH: "Sellera’s Appearance", ttB: "The general appearance of Field Marshal Sellera.", prevF: prevFunc } );
 	addButton(14, "Leave", selleraLeave, undefined, "Leave", "Bid Sellera farewell and go back upstairs.");
 }
 
@@ -323,7 +323,7 @@ public function selleraTheWar():void
 	// [Point It Out] [Something Else]
 	clearMenu();
 	addButton(0, "Point Out", selleraPointItOut, undefined, "Point it Out", "You may as well tell her how reckless and foolhardy it is for someone of her rank to lead from the front where she could be easily slain.");
-	addButton(1, "Otherstuff", selleraSomethingElse, false, "Something Else", "Pointing it out might just be unwise, and besides, you'd rather hear more about that juicy tidbit she dropped earlier.");
+	addButton(1, "Otherstuff", selleraSomethingElse, false, "Something Else", "Pointing it out might just be unwise, and besides, you’d rather hear more about that juicy tidbit she dropped earlier.");
 }
 
 public function selleraPointItOut():void

@@ -5983,7 +5983,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				else output2("Cave");
 				output2("</u></b>");
-				var coldKorgiName:String = (flags["ULA_9999"] != undefined ? "Ula" : "Cold Korgonne");
+				var coldKorgiName:String = (flags["MET_ULA"] != undefined ? "Ula" : "Cold Korgonne");
 				output2("\n<b>* " + coldKorgiName + ":</b> Met her");
 				if(flags["ULA_SAVED"] != undefined)
 				{

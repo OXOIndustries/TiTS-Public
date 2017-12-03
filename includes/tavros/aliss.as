@@ -1660,7 +1660,7 @@ public function lustOvahTimeEvent():void
 	pc.lust(40);
 	output("A strange feeling brings your movements up short... something is tickling the ");
 	if(pc.hasVagina()) output("tip of your [pc.clit]");
-	else if(pc.hasCock()) output("[pc.cockHeadSimple] of your [pc.cockNounSimple]");
+	else if(pc.hasCock()) output("[pc.cockHead] of your [pc.cockNounSimple]");
 	else output("ring of your [pc.asshole]");
 	output(". A warmth spreads through your crotch, far away and irregular, like your groin is falling asleep just as you slip into a bath.");
 	if(pc.isCrotchExposedByArmor()) output(" You look down, trying to find any cause,");

@@ -39,7 +39,7 @@ package classes.Items.Miscellaneous
 			
 			this.description = "a vial of lustoxin";
 			
-			this.tooltip = "A gold myr chemical weapon that explodes into a cloud of lusty toxins when shattered. ";
+			this.tooltip = "A gold myr chemical weapon that explodes into a cloud of lusty toxins when shattered.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -126,8 +126,8 @@ package classes.Items.Miscellaneous
 					var d:int = 18 + attacker.level * 2;
 					var damage:TypeCollection = damageRand(new TypeCollection( { drug: d } ), 15);
 					
-					if (cTarget is PlayerCharacter) output("\nYou’re stricken with chemical-induced lust. ");
-					else output("\n" + StringUtil.capitalize(cTarget.getCombatName(), false) + " is stricken with chemical-induced lust. ");
+					if (cTarget is PlayerCharacter) output("\nYou’re stricken with chemical-induced lust.");
+					else output("\n" + StringUtil.capitalize(cTarget.getCombatName(), false) + " is stricken with chemical-induced lust.");
 					
 					applyDamage(damage, attacker, cTarget, "minimal");
 				}

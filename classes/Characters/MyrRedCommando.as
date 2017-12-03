@@ -255,7 +255,7 @@ package classes.Characters
 		
 		private function myrCommandoReload(target:Creature):void
 		{
-			output("You hear a meaty <b>click!</b> from [attacker.combatName]'s rifle. She curses and ducks behind cover, pulling a stripper clip out of her belt and ramming bullets into the side of her rifle.");
+			output("You hear a meaty <b>click!</b> from [attacker.combatName]’s rifle. She curses and ducks behind cover, pulling a stripper clip out of her belt and ramming bullets into the side of her rifle.");
 			createStatusEffect("Riposting");
 		}
 		

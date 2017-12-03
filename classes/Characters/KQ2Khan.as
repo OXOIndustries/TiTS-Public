@@ -198,7 +198,7 @@ package classes.Characters
 			
 			// enemy AI
 			var enemyAttacks:Array = [];
-			if (!target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Disarmed")) enemyAttacks.push( { v: arcCaster, w: 40 } );
+			if (!hasStatusEffect("Stunned") && !hasStatusEffect("Disarmed")) enemyAttacks.push( { v: arcCaster, w: 40 } );
 			enemyAttacks.push( { v: labGirlsStriptease, w: 10 } );
 			if (!target.hasStatusEffect("Stunned")) enemyAttacks.push( { v: lustbang, w: 30 } );
 			if (lust() >= 110 && !hasStatusEffect("Worship Cooldown")) enemyAttacks.push( { v: ballWorship, w: lust() } );

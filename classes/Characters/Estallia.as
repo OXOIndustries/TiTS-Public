@@ -333,10 +333,10 @@ package classes.Characters
 		{
 			output("Seeing one of her shield-wielding daughters go down, Estallia pushes the unconscious body back behind the lines and takes up her fallen daughter’s shield in one of her four arms. <i>“Damn you all! Damn you all to hell!”</i>");
 			if(!hasStatusEffect("Enraged")) physiqueMod += 15;
-			createStatusEffect("Enraged",1, 0, 0, 0, false, "OffenseUp", "The Queen's anger is making her stronger!\nPhysique increased.", true, 0, 0xFFFFFF);
+			createStatusEffect("Enraged",1, 0, 0, 0, false, "OffenseUp", "The Queen’s anger is making her stronger!\nPhysique increased.", true, 0, 0xFFFFFF);
 			if(!hasStatusEffect("Shielded"))
 			{
-				createStatusEffect("Shielded",1, 0, 0, 0, false, "DefenseUp", "The Queen's salvaged shield is providing additional protection!\nArmor increased.", true, 0, 0xFFFFFF);
+				createStatusEffect("Shielded",1, 0, 0, 0, false, "DefenseUp", "The Queen’s salvaged shield is providing additional protection!\nArmor increased.", true, 0, 0xFFFFFF);
 				armor.defense += 3;
 			} 
 			else if(statusEffectv1("Shielded") < 2)

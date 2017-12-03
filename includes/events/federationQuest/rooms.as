@@ -87,7 +87,7 @@ public function fqInitRooms():void
 	rooms["M15"].runOnEnter = function():void{
 		author("Savin");
 		if(flags["FEDERATION_QUEST_LEVER"] != undefined) addButton(5, "Down", function():void{moveTo("M11");clearMenu();mainGameMenu();}, undefined, "", "");
-		else output("Something seems to be missing from the controls, though: a lever, maybe?");
+		else { output("Something seems to be missing from the controls, though: a lever, maybe?"); addDisabledButton(5, "Down"); }
 	};
 	rooms["M15"].moveMinutes = 1;
 	rooms["M15"].addFlag(GLOBAL.INDOOR);

@@ -364,7 +364,7 @@ package classes.Characters
 		{
 			output("<i>“Come on, girls. Focus!”</i> the War Queen yells into the tank’s top hatch. <i>“Show this venom-sucker what the pride of the Republic can do!”</i>");
 			if(!hasStatusEffect("Encourage")) aimMod += 15;
-			createStatusEffect("Encourage",2, 0, 0, 0, false, "OffenseUp", "The Queen's orders are boosting morale!\nAccuracy increased.", true, 0, 0xFFFFFF);
+			createStatusEffect("Encourage",2, 0, 0, 0, false, "OffenseUp", "The Queen’s orders are boosting morale!\nAccuracy increased.", true, 0, 0xFFFFFF);
 		}
 		
 		public function plateUp(target:Creature):void
