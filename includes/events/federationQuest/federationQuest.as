@@ -2093,6 +2093,8 @@ public function fedQuestQueenText2():String
 
 public function fedQuestQueenDefeat():void
 {
+	if (pc.hasStatusEffect("Lieve Buff")) pc.removeStatusEffect("Lieve Buff");
+	
 	clearOutput();
 	clearMenu();
 	showBust("ESTALLIA");
@@ -2198,6 +2200,8 @@ public function fedQuestQueenDefeatCooter2():void
 
 public function fedQuestQueenVictory():void
 {
+	if (pc.hasStatusEffect("Lieve Buff")) pc.removeStatusEffect("Lieve Buff");
+	
 	clearOutput();
 	clearMenu();
 	showBust("ESTALLIA");
