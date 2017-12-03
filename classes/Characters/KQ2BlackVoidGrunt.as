@@ -200,16 +200,16 @@ package classes.Characters
 			
 			// enemy AI
 			var enemyAttacks:Array = [];
-			if (!target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Disarmed"))
+			if (!hasStatusEffect("Stunned") && !hasStatusEffect("Disarmed"))
 			{
 				enemyAttacks.push({ v: rangedAttack, 				w: 40 });
 				enemyAttacks.push({ v: machinePistols, 				w: 40 });
-			}
-			if (nadesAvail)
-			{
-				enemyAttacks.push({ v: groupFlashbang, 			w: 15 });
-				enemyAttacks.push({ v: sx1GroupSmokeGrenade,	w: 15 });
-				enemyAttacks.push({ v: concGrenade, 			w: 15 });
+				if (nadesAvail)
+				{
+					enemyAttacks.push({ v: groupFlashbang, 			w: 15 });
+					enemyAttacks.push({ v: sx1GroupSmokeGrenade,	w: 15 });
+					enemyAttacks.push({ v: concGrenade, 			w: 15 });
+				}
 			}
 			if (enemyAttacks.length <= 0)
 			{

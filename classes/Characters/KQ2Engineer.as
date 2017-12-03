@@ -240,7 +240,7 @@ package classes.Characters
 			
 			var attacks:Array = [];
 			
-			if (!target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Disarmed")) attacks.push( { v: pistolShot, w: 50 } );
+			if (!hasStatusEffect("Stunned") && !hasStatusEffect("Disarmed")) attacks.push( { v: pistolShot, w: 50 } );
 			if (CombatAttacks.Overcharge.IsAvailable(this) && !target.hasStatusEffect("Stunned")) attacks.push( { v: CombatAttacks.Overcharge, w: 20 } );
 			if (CombatAttacks.WeaponHack.IsAvailable(this) && !target.hasStatusEffect("Disarmed")) attacks.push( { v: CombatAttacks.WeaponHack, w: 10 } );
 			if (attacks.length <= 0)
