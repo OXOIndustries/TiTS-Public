@@ -192,6 +192,11 @@ package classes.Items.Transformatives
 			var hasGlossy:Boolean = false;
 			var goBlack:Boolean = false;
 			
+			if(select == 0)
+			{
+				laquineEarsModerateTFsGo(pc, deltaShift);
+				return;
+			}
 			// (Penor 12"+) Priapism - Yank crotch coverings out of the way. PC cannot wear anything that covers crotch!
 			if(select == 1)
 			{
@@ -417,7 +422,7 @@ package classes.Items.Transformatives
 				pc.addLegFlag(GLOBAL.FLAG_FURRED);
 				pc.addLegFlag(GLOBAL.FLAG_PAWS);
 			}
-			if(textBuff == "") textBuff += "<b>Fenoxo fucked up.</b> Select state: " + select + " and Choices state: " + choices.length;
+			if(textBuff == "") textBuff += "ERROR. <b>Fenoxo fucked up.</b> Major Laquine Proc, Select state: " + select + " and Choices state: " + choices.length;
 			AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 			return;
 		}
@@ -522,6 +527,11 @@ package classes.Items.Transformatives
 			var select:int = 0;
 			if (choices.length > 0) select = choices[rand(choices.length)];
 
+			if(select == 0)
+			{
+				laquineEarsMinorTFsGO(pc, deltaShift);
+				return;
+			}
 			//(Penis) Random cock becomes horsecock.
 			if(select == 1)
 			{
@@ -1226,7 +1236,7 @@ package classes.Items.Transformatives
 				}
 				else textBuff += ParseText(pc.faceTypeLockedMessage());
 			}
-			if(textBuff == "") textBuff += "<b>Fenoxo fucked up.</b> Select state: " + select + " and Choices state: " + choices.length;
+			if(textBuff == "") textBuff += "ERROR. <b>Fenoxo fucked up.</b> Moderate Laquine Proc, Select state: " + select + " and Choices state: " + choices.length;
 			AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 			return;
 		}
@@ -1306,15 +1316,16 @@ package classes.Items.Transformatives
 
 			var select:Number = 0;
 			if(choices.length > 0) select = choices[rand(choices.length)];
-			else 
+			else if(pc.earType != GLOBAL.TYPE_LAPINE && pc.earType != GLOBAL.TYPE_QUAD_LAPINE) select = 12;
 
-			if(kGAMECLASS.debug) textBuff += "SELECT: " + select + "\n";
-			//(Penis) Awkward, persistent boner. Large exhibitionism gains.
-			//Hypercommon if criteria met to account for otherwise low chance.
+			//if(kGAMECLASS.debug) textBuff += "SELECT: " + select + "\n";
 			if(select == 0)
 			{
-				textBuff += "Totes an error. No event successfully procced.";
+				//textBuff += "Totes an error. No event successfully procced.";
+				textBuff += "A tingling sets atop your head and you feel a minor change incoming from the Laquine Ears... however, the feeling quickly fades away as soon as it arrives. Perhaps you are as laquine as you are going to get?";
 			}
+			//(Penis) Awkward, persistent boner. Large exhibitionism gains.
+			//Hypercommon if criteria met to account for otherwise low chance.
 			if(select == 1)
 			{
 				x = pc.biggestCockIndex();
@@ -1717,7 +1728,7 @@ package classes.Items.Transformatives
 			{
 				textBuff += "The Laquine Ears don’t seem to be doing a damned thing. Damnit!";
 			}
-			if(textBuff == "") textBuff += "ERROR. Fenoxo fucked up. Minor Laquine Proc, select: " + select + " and choices state: " + choices.length;
+			if(textBuff == "") textBuff += "ERROR. Fenoxo fucked up. Minor Laquine Proc, Select state: " + select + " and Choices state: " + choices.length;
 			AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 			return;
 		}
