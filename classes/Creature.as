@@ -1807,10 +1807,10 @@
 					buffer = mouthDescript(false, true);
 					break;
 				case "lips":
-					buffer = plural(lipDescript());
+					buffer = lipsDescript();
 					break;
 				case "lipsChaste":
-					buffer = plural(lipDescript(false,true));
+					buffer = lipsDescript(false,true);
 					break;
 				case "lip":
 					buffer = lipDescript();
@@ -3220,7 +3220,7 @@
 						msg += " from your orgasm!";
 						AddLogEvent(msg, "passive");
 						addStatusValue("Nyrea Eggs", 1, -1 * (nyreaEggs));
-						if(statusEffectv1("Nyrea Eggs") < 0) setPerkValue("Nyrea Eggs",1,0);
+						if(statusEffectv1("Nyrea Eggs") < 0) setStatusValue("Nyrea Eggs",1,0);
 					}
 					// Priapism timer down
 					if(hasStatusEffect("Priapism"))
@@ -5145,7 +5145,7 @@
 			return lipMod + femininity / 25;
 		}
 		public function lipsDescript(forcedAdjectives:Boolean = false, chaste:Boolean = false): String {
-			return lipDescript(forcedAdjectives);
+			return plural(lipDescript(forcedAdjectives, chaste));
 		}
 		public function lipDescript(forcedAdjectives:Boolean = false, chaste:Boolean = false): String {
 			//lipMod + some femininity divided by something to get result.
