@@ -988,7 +988,7 @@ package classes.Characters
 			}
 			if(hasStatusEffect("Nyrea Eggs"))
 			{
-				if(nyreaScore() < 3)
+				if(statusEffectv4("Nyrea Eggs") != 1 && nyreaScore() < 3)
 				{
 					AddLogEvent("You are interrupted by a shifting in your insides as a bubbling sensation fills your loins, and then... nothing.", "passive", deltaT);
 					if(statusEffectv1("Nyrea Eggs") > 0)
@@ -1001,11 +1001,17 @@ package classes.Characters
 						else ExtendLogEvent(" like a huge weight has been lifted from you.");
 					}
 					ExtendLogEvent(" Double-checking your codex, you find that");
-					if(statusEffectv1("Nyrea Eggs") > 0) ExtendLogEvent(ParseText(" the nyrean eggs you’ve been carrying in your [pc.cumNoun] have dissolved and absobed into your body"));
+					if(statusEffectv1("Nyrea Eggs") > 0) ExtendLogEvent(ParseText(" the nyrean eggs you’ve been carrying in your [pc.cumNoun] have dissolved and absorbed into your body"));
 					else ExtendLogEvent(ParseText(" your [pc.cumNoun] is no longer capable of producing eggs anymore"));
 					ExtendLogEvent(". It must be due to the lack of nyrean genes in your system....");
 					removeStatusEffect("Nyrea Eggs");
 				}
+			}
+			else if(hasPerk("Nyrea Eggs"))
+			{
+				// Regain permanent effect if has perk.
+				AddLogEvent(ParseText("You feel a familiar bloating in your body and discover that your [pc.cumNoun] has started producing nyrean eggs again!"), "passive", deltaT);
+				createStatusEffect("Nyrea Eggs", 80 + rand(21), 1, 0, 1, true, "", "", false, 0);
 			}
 			if(hasPerk("Slut Stamp"))
 			{

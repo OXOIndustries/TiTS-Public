@@ -3212,7 +3212,7 @@
 					}
 					if(statusEffectv1("Nyrea Eggs") > 0 && hasOvipositor())
 					{
-						var nyreaEggs:Number = (6 + rand(5));
+						var nyreaEggs:Number = Math.round((6 + rand(5)) * statusEffectv2("Nyrea Eggs"));
 						if ((statusEffectv1("Nyrea Eggs") - nyreaEggs) < 0) nyreaEggs = statusEffectv1("Nyrea Eggs");
 						msg = "You’ve manage to expel";
 						if(nyreaEggs == 1) msg += " one faux nyrea egg";
@@ -3220,7 +3220,7 @@
 						msg += " from your orgasm!";
 						AddLogEvent(msg, "passive");
 						addStatusValue("Nyrea Eggs", 1, -1 * (nyreaEggs));
-						if(statusEffectv1("Nyrea Eggs") < 0) setStatusValue("Nyrea Eggs",1,0);
+						if(statusEffectv1("Nyrea Eggs") < 0) setStatusValue("Nyrea Eggs", 1, 0);
 					}
 					// Priapism timer down
 					if(hasStatusEffect("Priapism"))
