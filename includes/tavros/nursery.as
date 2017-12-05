@@ -1270,7 +1270,11 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 				if(baby.originalRace != "human" && baby.originalRace.indexOf("half") != -1 && baby.originalRace.indexOf("human") != -1) baby.originalRace = "human";
 				
 				// Print stats
-				if(baby.Quantity == 1) output("\n<b>* " + (baby.Name == "" ? "<i>(Unnamed)</i>" : baby.Name) + ":</b> ");
+				if(baby.Quantity == 1) 
+				{
+					if(baby.Name == "") output("\n<b>* One Child:</b> ");
+					else output("\n<b>* " + (baby.Name == "" ? "<i>(Unnamed)</i>" : baby.Name) + ":</b> ");
+				}
 				else output("\n<b>* " + StringUtil.toDisplayCase(num2Text(baby.Quantity)) + " Children:</b> ");
 				if(baby.Days >= 6570) output("18+ years");
 				else if(baby.Days >= 365) output(baby.Years + " year" + (baby.Years == 1 ? "" : "s"));
