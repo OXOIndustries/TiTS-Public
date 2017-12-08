@@ -576,13 +576,45 @@
 		public function hasAccentMarkings():Boolean
 		{
 			if(skinAccent == "") return false;
-			return (hasStatusEffect("Vanae Markings") || hasStatusEffect("Shark Markings"));
+			return (hasStatusEffect("Vanae Markings") || hasStatusEffect("Shark Markings") || hasStatusEffect("Body Markings"));
 		}
 		public function clearAccentMarkings():void
 		{
 			removeStatusEffect("Vanae Markings");
 			removeStatusEffect("Shark Markings");
+			removeStatusEffect("Body Markings");
 			skinAccent = "";
+		}
+		public function accentMarkings():int
+		{
+			if(!hasAccentMarkings()) return -1;
+			var accentType:int = -1;
+			if(hasStatusEffect("Vanae Markings")) accentType = 0;
+			if(hasStatusEffect("Shark Markings")) accentType = statusEffectv1("Shark Markings");
+			if(hasStatusEffect("Body Markings")) accentType = statusEffectv1("Body Markings");
+			return accentType;
+		}
+		public function getAccentMarking(accentType:int = -1, asNoun:Boolean = true):String
+		{
+			switch(accentType)
+			{
+				case 0: return (asNoun ? "markings" : "marked"); break;
+				case 1: return (asNoun ? "stripes" : "striped"); break;
+				case 2: return (asNoun ? "spots" : "spotted"); break;
+				case 3: return (asNoun ? "blotch" : "blotched"); break;
+				case 4: return (asNoun ? "speckles" : "speckled"); break;
+				case 5: return (asNoun ? "dapples" : "dappled"); break;
+				case 6: return (asNoun ? "piebald" : "piebald"); break;
+			}
+			return "NO MARKING PATTERN FOUND!";
+		}
+		public function accentMarkingsDescript(asNoun:Boolean = true, simple:Boolean = false):String
+		{
+			var desc:String = "";
+			if(skinAccent != "" && !simple) desc += skinAccent;
+			if(desc != "") desc += " ";
+			desc += getAccentMarking(accentMarkings(), asNoun);
+			return desc;
 		}
 		public function skinToneUnlocked(newSkinTone:String):Boolean
 		{
@@ -1724,6 +1756,22 @@
 				case "skinColor":
 				case "skinTone":
 					buffer = skinTone;
+					break;
+				case "accentColor":
+				case "skinAccent":
+					buffer = skinAccent;
+					break;
+				case "accentMarkings":
+					buffer = accentMarkingsDescript();
+					break;
+				case "accentMarked":
+					buffer = accentMarkingsDescript(false);
+					break;
+				case "accentMarkingsNoun":
+					buffer = accentMarkingsDescript(true, true);
+					break;
+				case "accentMarkedSimple":
+					buffer = accentMarkingsDescript(false, true);
 					break;
 				case "furColor":
 					buffer = furColor;
@@ -11200,8 +11248,8 @@
 		}
 		public function sharkRace():String
 		{
-			if(statusEffectv1("Shark Markings") == 1) return "tiger shark-morph";
-			if(statusEffectv1("Shark Markings") == 2) return "leopard shark-morph";
+			if(accentMarkings() == 1) return "tiger shark-morph";
+			if(accentMarkings() == 2) return "leopard shark-morph";
 			if(gabilaniScore() >= 2) return "goblin shark-morph";
 			if(bovineScore () >= 2) return "bull shark-morph"
 			if(wingCount > 1 && (wingType == GLOBAL.TYPE_AVIAN || wingType == GLOBAL.TYPE_DOVE)) return "angel-shark";
