@@ -3415,10 +3415,11 @@ public function seraBitcheningStoreRandomize():void
 	// Group A
 	// ManUp, Estrobloom, Junk in the Trunk, Tittyblossom, Condensol, Virection
 	var groupA:Array = [];
-	groupA.push(new ManUp());
 	groupA.push(new Estrobloom());
 	groupA.push(new Tittyblossom());
 	groupA.push(new JunkTrunk());
+	groupA.push(new ManDown());
+	groupA.push(new ManUp());
 	groupA.push(new Condensol());
 	groupA.push(new Virection());
 	// Group B

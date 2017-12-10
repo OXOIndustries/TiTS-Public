@@ -5678,10 +5678,20 @@
 			}
 			return description;
 		}
+		public function hasSmallNose(): Boolean {
+			return InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_HUMANMASKED, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_MOUSEMAN, GLOBAL.TYPE_MOUSE);
+		}
 		public function faceDesc(): String {
 			var faceo: String = "";
-			var hasSmallNose: Boolean = InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_HUMANMASKED, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_MOUSEMAN, GLOBAL.TYPE_MOUSE);
-			if (hasPerk("Androgyny")) {
+			var bSmallNose: Boolean = hasSmallNose();
+			if(hasPerk("Perma-cute")) {
+				faceo = "a boyish " + face();
+				if (hasBeard()) faceo += " and " + beard();
+				faceo += " with " + plural(lipDescript(true)) + faceLipMimbraneDescript();
+				if (bSmallNose) faceo += ", an adorable nose";
+				faceo += " and noticeable eyelashes";
+			}
+			else if (hasPerk("Androgyny")) {
 				faceo = "an androgynous " + face();
 				if (mfn("m", "f", "n") == "n") faceo += " that would work on either a male or a female"
 				else faceo += " which leaves a subtle " + mf("boyish", "girly") + " impression";
@@ -5755,7 +5765,7 @@
 			else if (femininity <= 90)
 			{
 				faceo = "a gorgeous profile with " + plural(lipDescript(true)) + faceLipMimbraneDescript();
-				if (hasSmallNose) faceo += ", a button nose,";
+				if (bSmallNose) faceo += ", a button nose";
 				faceo += " and noticeable eyelashes";
 				if (hasBeard()) faceo += "--though contrasted by your " + beard();
 			}
@@ -5763,7 +5773,7 @@
 			else
 			{
 				faceo = "a jaw-droppingly feminine shape with " + plural(lipDescript(true)) + faceLipMimbraneDescript();
-				if (hasSmallNose) faceo += ", an adorable nose,";
+				if (bSmallNose) faceo += ", an adorable nose";
 				faceo += " and long, beautiful eyelashes";
 				if (hasBeard()) faceo += "--in striking contrast to your " + beard();
 			}
@@ -5820,10 +5830,11 @@
 		public function femininityMax(): Number
 		{
 			// Perk override
+			if (hasPerk("Perma-cute")) return perkv2("Perma-cute");
 			if (hasPerk("Androgyny")) return 100;
 			// Race override
 			var sRace:String = race();
-			if (sRace.indexOf("nyrea")) return 100;
+			if (sRace.indexOf("nyrea") != -1) return 100;
 			if (sRace.indexOf("ovir") != -1)
 			{
 				if (hasCock()) return 100;
@@ -5837,6 +5848,7 @@
 		public function femininityMin(): Number
 		{
 			// Perk override
+			if (hasPerk("Perma-cute")) return perkv1("Perma-cute");
 			if (hasPerk("Androgyny")) return 0;
 			// Race override
 			var sRace:String = race();
@@ -5851,6 +5863,10 @@
 			return 000;
 		}
 		//Run this every hour to 'fix' femininity.
+		public function canFixFemininity(): Boolean {
+			if(hasPerk("Perma-cute")) return true;
+			return false;
+		}
 		public function fixFemininity(): String {
 			var output: String = "";
 			//BELOW MINIMUM! GET MORE GIRLY!
@@ -5870,8 +5886,8 @@
 			}
 			//LOSE DICK OR HAVE VAGINA? NO BEARD 4 U!
 			if (!hasPerk("Androgyny") && (!hasCock() || hasVagina()) && hasBeard()) {
-				output += "\n\n<b>Your beard falls out, leaving you with " + faceDesc() + ".</b>";
 				removeBeard();
+				output += "\n\n<b>Your beard falls out, leaving you with " + faceDesc() + ".</b>";
 			}
 			return output;
 		}
@@ -12577,14 +12593,14 @@
 			{
 				var adjectives: Array = [];
 				
-			if (butt <= 1) {
+				if (butt <= 1) {
 					if (tone >= 60 && !softbutt) adjectives.push("incredibly tight, perky ");
-				else {
-					//Soft PC's buns!
+					else {
+						//Soft PC's buns!
 						if ((tone <= 30 || softbutt) && rand(3) == 0) adjectives.push("tiny yet soft ", "tiny yet soft ", "very small yet soft ", "dainty yet soft ");
 						else adjectives.push("tiny ", "tiny ", "very small ", "dainty ");
-				}
-			} else if (butt < 4) {
+					}
+				} else if (butt < 4) {
 					if (tone >= 65 && !softbutt) {
 						adjectives.push("perky, muscular ");
 						adjectives.push("tight, toned ");
@@ -12592,16 +12608,16 @@
 						adjectives.push("compact, muscular ");
 						adjectives.push("tight ");
 						adjectives.push("muscular, toned ");
-				}
-				//Nondescript
+					}
+					//Nondescript
 					else if (tone >= 30 && !softbutt) {
 						adjectives.push("tight ");
 						adjectives.push("firm ");
 						adjectives.push("compact ");
 						adjectives.push("petite ");
-				}
-				//FLABBAH
-				else {
+					}
+					//FLABBAH
+					else {
 						adjectives.push("small, heart-shaped ");
 						adjectives.push("soft, compact ");
 						adjectives.push("soft, heart-shaped ");
@@ -12609,9 +12625,9 @@
 						adjectives.push("small ");
 						adjectives.push("petite ");
 						adjectives.push("snug ");
-				}
-			} else if (butt < 6) {
-				//TOIGHT LIKE A TIGER
+					}
+				} else if (butt < 6) {
+					//TOIGHT LIKE A TIGER
 					if (tone >= 65 && !softbutt) {
 						adjectives.push("nicely muscled ");
 						adjectives.push("nice, toned ");
@@ -12619,27 +12635,27 @@
 						adjectives.push("nice toned ");
 						adjectives.push("toned ");
 						adjectives.push("fair ");
-				}
-				//Nondescript
+					}
+					//Nondescript
 					else if (tone >= 30 && !softbutt) {
 						adjectives.push("nice ");
 						adjectives.push("fair ");
-				}
-				//FLABBAH
-				else {
+					}
+					//FLABBAH
+					else {
 						adjectives.push("nice, cushiony ");
 						adjectives.push("soft ");
 						adjectives.push("nicely-rounded, heart-shaped ");
 						adjectives.push("cushy ");
 						adjectives.push("soft, squeezable ");
-				}
-			} else if (butt < 8) {
-				//TOIGHT LIKE A TIGER
+					}
+				} else if (butt < 8) {
+					//TOIGHT LIKE A TIGER
 					if (tone >= 65 && !softbutt) {
 						if (rand(7) == 0) {
-						if (asPlural) return "muscular, hand-filling ass cheeks";
-						return "muscly handful of ass";
-				}
+							if (asPlural) return "muscular, hand-filling ass cheeks";
+							return "muscly handful of ass";
+						}
 						adjectives.push("full, toned ");
 						adjectives.push("shapely, toned ");
 						adjectives.push("muscular, hand-filling ");
@@ -12647,22 +12663,22 @@
 						adjectives.push("full ");
 						adjectives.push("chiseled ");
 					}
-				//Nondescript
+					//Nondescript
 					else if (tone >= 30 && !softbutt) {
 						if (rand(4) == 0) {
-						if (asPlural) return "hand-filling ass cheeks";
-						return "handful of ass";
-				}
+							if (asPlural) return "hand-filling ass cheeks";
+							return "handful of ass";
+						}
 						adjectives.push("full ");
 						adjectives.push("shapely ");
 						adjectives.push("hand-filling ");
 					}
-				//FLABBAH
-				else {
+					//FLABBAH
+					else {
 						if (rand(8) == 0) {
-						if (asPlural) return "supple, hand-filling ass cheeks";
-						return "supple, handful of ass";
-				}
+							if (asPlural) return "supple, hand-filling ass cheeks";
+							return "supple, handful of ass";
+						}
 						adjectives.push("somewhat jiggly ");
 						adjectives.push("soft, hand-filling ");
 						adjectives.push("cushiony, full ");
@@ -12671,8 +12687,8 @@
 						adjectives.push("soft, shapely ");
 						adjectives.push("rounded, spongy ");
 					}
-			} else if (butt < 10) {
-				//TOIGHT LIKE A TIGER
+				} else if (butt < 10) {
+					//TOIGHT LIKE A TIGER
 					if (tone >= 65 && !softbutt) {
 						adjectives.push("large, muscular ");
 						adjectives.push("substantial, toned ");
@@ -12683,16 +12699,16 @@
 						adjectives.push("powerful, squeezable ");
 						adjectives.push("large ");
 						adjectives.push("callipygian ");
-				}
-				//Nondescript
+					}
+					//Nondescript
 					else if (tone >= 30 && !softbutt) {
 						adjectives.push("squeezable ");
 						adjectives.push("large ");
 						adjectives.push("substantial ");
 						adjectives.push("callipygian ");
-				}
-				//FLABBAH
-				else {
+					}
+					//FLABBAH
+					else {
 						adjectives.push("large, bouncy ");
 						adjectives.push("soft, eye-catching ");
 						adjectives.push("big, slappable ");
@@ -12703,9 +12719,9 @@
 						adjectives.push("plush ");
 						adjectives.push("pleasantly plump ");
 						adjectives.push("callipygian ");
-				}
-			} else if (butt < 13) {
-				//TOIGHT LIKE A TIGER
+					}
+				} else if (butt < 13) {
+					//TOIGHT LIKE A TIGER
 					if (tone >= 65 && !softbutt) {
 						adjectives.push("thick, muscular ");
 						adjectives.push("big, burly ");
@@ -12714,16 +12730,16 @@
 						adjectives.push("toned, cloth-straining ");
 						adjectives.push("thick ");
 						adjectives.push("thick, strong ");
-				}
-				//Nondescript
+					}
+					//Nondescript
 					else if (tone >= 30 && !softbutt) {
 						adjectives.push("jiggling ");
 						adjectives.push("spacious ");
 						adjectives.push("heavy ");
 						adjectives.push("cloth-straining ");
-				}
-				//FLABBAH
-				else {
+					}
+					//FLABBAH
+					else {
 						adjectives.push("super-soft, jiggling ");
 						adjectives.push("spacious, cushy ");
 						adjectives.push("plush, cloth-straining ");
@@ -12734,9 +12750,9 @@
 						adjectives.push("jiggling ");
 						adjectives.push("spacious ");
 						adjectives.push("soft, plump ");
-				}
-			} else if (butt < 16) {
-				//TOIGHT LIKE A TIGER
+					}
+				} else if (butt < 16) {
+					//TOIGHT LIKE A TIGER
 					if (tone >= 65 && !softbutt) {
 						adjectives.push("expansive, muscled ");
 						adjectives.push("voluminous, rippling ");
@@ -12746,16 +12762,16 @@
 						adjectives.push("powerful ");
 						adjectives.push("muscular ");
 						adjectives.push("powerful, expansive ");
-				}
-				//Nondescript
+					}
+					//Nondescript
 					else if (tone >= 30 && !softbutt) {
 						adjectives.push("expansive ");
 						adjectives.push("generous ");
 						adjectives.push("voluminous ");
 						adjectives.push("wide ");
-				}
-				//FLABBAH
-				else {
+					}
+					//FLABBAH
+					else {
 						adjectives.push("pillow-like ");
 						adjectives.push("generous, cushiony ");
 						adjectives.push("wide, plush ");
@@ -12767,8 +12783,8 @@
 						adjectives.push("wide ");
 						adjectives.push("voluminous ");
 						adjectives.push("soft, padded ");
-				}
-			} else if (butt < 20) {
+					}
+				} else if (butt < 20) {
 					if (tone >= 65 && !softbutt) {
 						adjectives.push("huge, toned ");
 						adjectives.push("vast, muscular ");
@@ -12776,19 +12792,19 @@
 						adjectives.push("huge, muscular ");
 						adjectives.push("strong, immense ");
 						adjectives.push("muscle-bound ");
-				}
-				//Nondescript
+					}
+					//Nondescript
 					else if (tone >= 30 && !softbutt) {
 						if (rand(5) <= 1) {
 							if (asPlural) return RandomInCollection(["expansive, jiggling ass cheeks", "copious, fleshy ass cheeks"]);
 							return RandomInCollection(["jiggling expanse of ass", "copious ass-flesh"]);
-					}
+						}
 						adjectives.push("huge ");
 						adjectives.push("vast ");
 						adjectives.push("giant ");
-				}
-				//FLABBAH
-				else {
+					}
+					//FLABBAH
+					else {
 						adjectives.push("vast, cushiony ");
 						adjectives.push("huge, plump ");
 						adjectives.push("expansive, jiggling ");
@@ -12800,30 +12816,30 @@
 						adjectives.push("giant ");
 						adjectives.push("huge ");
 						adjectives.push("swollen, pillow-like ");
-				}
-			} else {
+					}
+				} else {
 					if (tone >= 65 && !softbutt) {
 						if (rand(7) == 0) {
-						if (asPlural) return "colossal, muscly ass cheeks";
-						return "colossal, muscly ass";
-					}
+							if (asPlural) return "colossal, muscly ass cheeks";
+							return "colossal, muscly ass";
+						}
 						adjectives.push("ginormous, muscle-bound ");
 						adjectives.push("colossal yet toned ");
 						adjectives.push("strong, tremdously large ");
 						adjectives.push("tremendous, muscled ");
 						adjectives.push("ginormous, toned ");
 						adjectives.push("colossal, well-defined ");
-				}
-				//Nondescript
+					}
+					//Nondescript
 					else if (tone >= 30 && !softbutt) {
 						adjectives.push("ginormous ");
 						adjectives.push("colossal ");
 						adjectives.push("tremendous ");
 						adjectives.push("gigantic ");
-				}
-				//FLABBAH
-				else 
-				{
+					}
+					//FLABBAH
+					else 
+					{
 						adjectives.push("ginormous, jiggly ");
 						adjectives.push("plush, ginormous ");
 						adjectives.push("seam-destroying ");
@@ -12837,8 +12853,8 @@
 						adjectives.push("ginormous ");
 						adjectives.push("colossal ");
 						adjectives.push("tremendous ");
+					}
 				}
-			}
 				if(adjectives.length > 0) desc += adjectives[rand(adjectives.length)];
 			}
 			rando = rand(21);

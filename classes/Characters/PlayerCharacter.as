@@ -466,6 +466,7 @@ package classes.Characters
 		
 		override public function processTime(deltaT:uint, doOut:Boolean):void
 		{	
+			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
 			var totalDays:int = ((GetGameTimestamp() + deltaT) / 1440) - kGAMECLASS.days;
 			
 			if (!hasCock() && balls == 0 && hasStatusEffect("Blue Balls"))
@@ -473,6 +474,7 @@ package classes.Characters
 				removeStatusEffect("Blue Balls");
 			}
 			
+			// Daily changes
 			if (totalDays >= 1)
 			{
 				if (hasCuntTail())
@@ -525,10 +527,15 @@ package classes.Characters
 				//updateHeatPerk(totalDays);
 				//updateRutPerk(totalDays);
 			}
-			
+			// Hourly changes
+			if(totalHours >= 1)
+			{
+				updateFemininity(deltaT, doOut);
+				updateGooState(deltaT, doOut);
+			}
+			// Minutely changes
 			updateVaginaStretch(deltaT, doOut);
 			updateButtStretch(deltaT, doOut);
-			updateGooState(deltaT, doOut);
 			
 			super.processTime(deltaT, doOut);
 			
@@ -585,10 +592,7 @@ package classes.Characters
 		{
 			if (!hasStatusEffect("Goo Crotch")) return;
 			
-			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
 			var m:String = "";
-			
-			if (totalHours < 1) return;
 			
 			var unflaggedGenital:Array = [];
 			for (var i:int = 0; i < cocks.length; i++)
@@ -654,6 +658,15 @@ package classes.Characters
 				{
 					AddLogEvent("Unsurprisingly, the slime that surrounds your multiple mounds trickles in, remaking the more solid flesh into an even wetter, slicker parody of itself. <b>All of your vaginas are made of goo.</b>", "passive", deltaT);
 				}
+			}
+		}
+		
+		private function updateFemininity(deltaT:uint, doOut:Boolean):void
+		{
+			if(canFixFemininity())
+			{
+				var msg:String = fixFemininity();
+				if(msg != "") AddLogEvent(msg, "passive", deltaT);
 			}
 		}
 		
