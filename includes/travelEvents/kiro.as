@@ -3307,7 +3307,7 @@ public function kiroFuckOrgyFuntimes3():void
 	if(pc.tallness >= 72) output("chest");
 	else output("shoulders");
 	output(" from behind, covered in Mai’s telltale silver fur, and her average-sized member presses between your buttcheeks. <i>“Look at the fucking slut, [pc.name],”</i> she coos, gesturing down at her sister. <i>“");
-	if(flags["KIRO_ORGIED"] != undefined) output("Five seconds around you and she’s already on her knees and begging for more. I mightof exaggerated about her when we first met, but she must see something special in you, else she wouldn’t be panting like such a wanton bitch in heat. I doubt she’ll calm down until she’s as full of cum as she is covered in it.");
+	if(flags["KIRO_ORGIED"] != undefined) output("Five seconds around you and she’s already on her knees and begging for more. I might’ve exaggerated about her when we first met, but she must see something special in you, else she wouldn’t be panting like such a wanton bitch in heat. I doubt she’ll calm down until she’s as full of cum as she is covered in it.");
 	else output("She’s a literal cum-addict. If she doesn’t suck someone off every few hours, she damn-near loses her mind. She’s not truly happy unless her belly is full and she’s soaked in cum. You know the look: damned near painted white.");
 	output("”</i> Running a clawed finger down your cheek, Mai purrs, <i>“And lucky for you, you get to be the one to do it. All you have to do is relax.”</i>");
 	output("\n\nThe domineering prick-vixen grinds herself harder into your [pc.butt], letting you feel her studded cock-wrap grinding against the edge of your [pc.asshole] as it slides by. You instinctively lurch forward, in the process feeding your [pc.cockBiggest] into Miko’s mouth.");
