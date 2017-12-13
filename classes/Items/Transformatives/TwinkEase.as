@@ -1,16 +1,16 @@
 ﻿/*
 
-ManDown, for all your femboy TF needs.
+Twink-Ease, for all your femboy TF needs.
 The exact opposite of ManUp, giving your player all they need to be a femboy!
 Scratch that. Estrobloom is the opposite. Whoopsies. Doesn’t focus at all on facial feminization like estrobloom, notably just more along the lines of de-masculinization. In any event, it makes your player as boy a boy can be without being a manly man or a girly girl boy. Not trap-stuff, femboy stuff. There’s a difference!
 
 [warning: incessant rambling]
 “But wait!”, you tell me. “Lenerator, you can already become a trap with that tf event at Beth’s! Why even write up an item?!” Hey! I just said this is a femboy TF item, not a trappy thing! And, well, for starters, the transformation when you agree to become a whore is... Well, you have to agree to become a whore. Some people might want a more dignified Steele-boy than that! It’s also a little forced. Sure, you agree to it, it isn’t unexpected, but it all happens in one go. Boop, you’re a boy and spend 3 weeks in the hole, while some random dicks spend a few hours in your hole at a time. heh. I have a pretty big list of reasons, but ultimately, it makes you more of a trap than a femboy, which makes a pain of having to go back and forth trying to fix the trappier stuff into boy-ier stuff. I’ve rambled enough, and god, I am sorry for that. There was just enough differences that I felt it warranted a whole other way to become a cute, non threatening boy. This also refrains from changing the color of any parts of you, or altering your hair at all. Lotsa other stuff, read and find out. Also, no forty fuckin libido forced on your pc.
 
-“Wait, still, Lenerator, you! Estrobloom does this stuff too!” Not at all; estrobloom promises facial feminization with every use. ManDown is more specific in that your masculinity will be kept, if by a thread; it won’t push you at all towards a wholly androgynous or lightly (or heavily) feminine face. It also makes a point of not pushing your pecker to 1-inch sissiness. Makes you a smaller boy in general by reducing tone, thickness (reasonably, if you wanna be small but still a lil bigger!) and height. No savescumming required to get what you want out of it. unless what you want is a little more specific in which case im sorry
+“Wait, still, Lenerator, you! Estrobloom does this stuff too!” Not at all; estrobloom promises facial feminization with every use. Twink-Ease is more specific in that your masculinity will be kept, if by a thread; it won’t push you at all towards a wholly androgynous or lightly (or heavily) feminine face. It also makes a point of not pushing your pecker to 1-inch sissiness. Makes you a smaller boy in general by reducing tone, thickness (reasonably, if you wanna be small but still a lil bigger!) and height. No savescumming required to get what you want out of it. unless what you want is a little more specific in which case im sorry
 [rambling end]
 
-ManDown, JoyCo’s product guaranteed to “take some of the man out of you”. Keeps your face recognizable as a boy’s face, but still a cute one at that. As in, makes your face “have the barest hint of masculinity in its structure”. Does a bunch of other boyish transformations to go with that. It’s generally intended to be along the lines of one-use-you’re-good tfs, but fixed in a way so that 3 uses is all you’d need due to the overdosing effect.
+Twink-Ease, JoyCo’s product guaranteed to “take some of the man out of you”. Keeps your face recognizable as a boy’s face, but still a cute one at that. As in, makes your face “have the barest hint of masculinity in its structure”. Does a bunch of other boyish transformations to go with that. It’s generally intended to be along the lines of one-use-you’re-good tfs, but fixed in a way so that 3 uses is all you’d need due to the overdosing effect.
 
 */
 
@@ -31,9 +31,9 @@ package classes.Items.Transformatives
 	import classes.Util.InCollection;
 	import classes.Util.RandomInCollection;
 	
-	public class ManDown extends ItemSlotClass
+	public class TwinkEase extends ItemSlotClass
 	{
-		public function ManDown()
+		public function TwinkEase()
 		{
 			_latestVersion = 1;
 			
@@ -41,12 +41,12 @@ package classes.Items.Transformatives
 			stackSize = 10;
 			type = GLOBAL.PILL;
 			
-			shortName = "ManDown";
-			longName = "injector labeled ‘ManDown’";
+			shortName = "TwinkEase";
+			longName = "spongecake labeled ‘Twink-Ease’";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "an injector labeled ‘ManDown’";
+			description = "a spongecake package labeled ‘Twink-Ease’";
 			
 			tooltip = "With the success of JoyCo’s ‘Futazona’ transformative, they decided to further expand on gender-bending transformation products. This one is an injector that could be easily mistaken as ManUp in its appearance, save for the blue fluid visible within being a lighter tone. The box containing the syringe, thankfully, is very different from its more masculine twin. A picture of a soft, twinkish boy is shown, giving a thumbs up with a speech bubble claiming ‘it really works!’. It guarantees that the user will retain or be pushed towards more boyish features while also accentuating their feminine ones. It’s pricier than ManUp, however, due to the difficulty of balancing male and female hormones and gene-coding in such a way that wouldn’t be erroneous. There’s a disclaimer that says its facial altering effects could be permanent with extended, abnormal usage.";
 			
@@ -63,18 +63,18 @@ package classes.Items.Transformatives
 			
 			kGAMECLASS.clearOutput();
 			author("Lenerator");
-			kGAMECLASS.showName("\nMANDOWN");
+			kGAMECLASS.showName("TWINK-\nEASE");
 			
 			if(target is PlayerCharacter)
 			{
-				output("Unwrapping the syringe from its packaging, you click the safety on your ManDown injector off, exposing the needle. Now that it’s prepared, you bring it to your neck, as instructed, and sense a slight sting as its payload flows into your bloodstream. You begin to feel the drug’s effects as the needle is promptly pulled out and thrown away, the nanomachines getting to work on your body in effort to make you a cute, effeminate boy.");
+				output("Unwrapping the syringe from its packaging, you click the safety on your Twink-Ease injector off, exposing the needle. Now that it’s prepared, you bring it to your neck, as instructed, and sense a slight sting as its payload flows into your bloodstream. You begin to feel the drug’s effects as the needle is promptly pulled out and thrown away, the nanomachines getting to work on your body in effort to make you a cute, effeminate boy.");
 				
 				var i:int = 0;
 				
-				target.createStatusEffect("ManDown Doses", 0, 0, 0, 0, true, "", "", false, 720);
-				target.addStatusValue("ManDown Doses", 1, 1);
-				target.setStatusMinutes("ManDown Doses", 720);
-				var doses:int = target.statusEffectv1("ManDown Doses");
+				target.createStatusEffect("Twink-Ease Doses", 0, 0, 0, 0, true, "", "", false, 720);
+				target.addStatusValue("Twink-Ease Doses", 1, 1);
+				target.setStatusMinutes("Twink-Ease Doses", 720);
+				var doses:int = target.statusEffectv1("Twink-Ease Doses");
 				
 				// Up to 4 may occur at a time, with the rare dick/balls combo not counting against that.
 				var changes:int = 0;
@@ -87,7 +87,7 @@ package classes.Items.Transformatives
 				
 				“Perma-cute” Perk -
 				(think “Androgynous” but weighted more on the boy side and well... not androgynous)
-				Description: As a side effect of too much ManDown, your face is now permanently fixed at being absolutely adorable, yet still showing enough boyish features that it’d be pretty easy to guess your gender. Or, to be confused for a really cute boy, if you go back from it. [also changes the face line in player description]
+				Description: As a side effect of too much Twink-Ease, your face is now permanently fixed at being absolutely adorable, yet still showing enough boyish features that it’d be pretty easy to guess your gender. Or, to be confused for a really cute boy, if you go back from it. [also changes the face line in player description]
 				Appearance blurb: 
 				•Your face has the barest touch of masculinity to it, evident by a few little features in your bone structure. That aside, it’s got eyelashes long enough to bat cutely without looking like overdone fakes, on top of kissable lips and an upturned, smallish nose. 
 				•Your face would appear androgynous, but a few small masculine traits it carries would make it unlikely for anyone to have any real trouble with your gender. Its also has soft, pleasing lips and a cute unthreatening nose, to boot.
@@ -112,9 +112,9 @@ package classes.Items.Transformatives
 					}
 				}
 				
-				// ManDown is overdosed:
+				// Twink-Ease is overdosed:
 				// also! if you use the stuff two times in one hour, the next use is overdosing, changing the tf scenes to a new one entirely, not including boy-parts-growing (which has its chance jacked up a ton, too.) when od’d, it has a new effect and all other effects get turbo’d: 
-				// All stats affected by ManDown are not fixed as shown >>>>
+				// All stats affected by Twink-Ease are not fixed as shown >>>>
 				// Butt rating becomes 9, hips become 8, height becomes 70, tone becomes 40, skin is smoothed, etc.
 				if(changes < changeLimit && doses >= 3
 					&&	(target.hasCock() || target.createCockUnlocked())
@@ -132,8 +132,8 @@ package classes.Items.Transformatives
 					)
 				)
 				{
-					output("\n\nThis has got to be your " + num2Ordinal(doses) + " time in a short span of using ManDown... But hey, anything to get at being the cute boy you’ve wanted to be. The effects must be working, because you feel--");
-					output("\n\nYou crash to the ground before you can manage to mentally describe what you’re feeling. Uh oh. What’s going on?! You are totally paralyzed, helpless at whatever may happen to you! Everything’s tingly, bones move on their own, skin moves to work with your changing flesh... You can barely tell what’s happening in the haze of it all. You drift into a light nap before being awaken to the realization that you probably shouldn’t try to sleep after overdosing such a drug... But after a moment, you feel control return to your body, though now... It’s much different from your body, as it was before. <b>Every aspect that ManDown can change has been done to the best of the drug’s ability.</b> You’re probably not going to experience a drastic difference if you decide to use it again.");
+					output("\n\nThis has got to be your " + num2Ordinal(doses) + " time in a short span of eating Twink-Ease... But hey, anything to get at being the cute boy you’ve wanted to be. The effects must be working, because you feel--");
+					output("\n\nYou crash to the ground before you can manage to mentally describe what you’re feeling. Uh oh. What’s going on?! You are totally paralyzed, helpless at whatever may happen to you! Everything’s tingly, bones move on their own, skin moves to work with your changing flesh... You can barely tell what’s happening in the haze of it all. You drift into a light nap before being awaken to the realization that you probably shouldn’t try to sleep after overdosing such a drug... But after a moment, you feel control return to your body, though now... It’s much different from your body, as it was before. <b>Every aspect that Twink-Ease can change has been done to the best of the cake’s ability.</b> You’re probably not going to experience a drastic difference if you decide to use it again.");
 					
 					if(!target.hasCock()) target.createCock(cLength, 1);
 					for(i = 0; i < target.cocks.length; i++)
@@ -242,7 +242,7 @@ package classes.Items.Transformatives
 					
 					if(target.thicknessUnlocked(target.thickness - minThicc))
 					{
-						output("\n\nFeeling against your [pc.belly] in response to a tingling in the area, you notice as " + (isTight ? "the extra mass" : "layers of fat") + " on your body begin to seemingly melt away and retreat into you, " + (isTight ? "width" : "flabbiness") + " reducing as part of the ManDown. <b>Your thickness level has dropped, less body " + (isTight ? "mass" : "fat") + " encompassing your composition.</b>");
+						output("\n\nFeeling against your [pc.belly] in response to a tingling in the area, you notice as " + (isTight ? "the extra mass" : "layers of fat") + " on your body begin to seemingly melt away and retreat into you, " + (isTight ? "width" : "flabbiness") + " reducing as part of the Twink-Ease cake takes effect. <b>Your thickness level has dropped, less body " + (isTight ? "mass" : "fat") + " encompassing your composition.</b>");
 						
 						target.thickness -= minThicc;
 					}
@@ -403,7 +403,7 @@ package classes.Items.Transformatives
 				// Remove beard
 				if(changes < changeLimit && target.hasBeard() && rand(3) == 0)
 				{
-					output("\n\nYour [pc.eyes] gaze lower down, against your [pc.face], and you notice what must be the work of ManDown. Your facial hair growth has");
+					output("\n\nYour [pc.eyes] gaze lower down, against your [pc.face], and you notice what must be the work of Twink-Ease. Your facial hair growth has");
 					output(" either back into your skin");
 					output(" has fallen out, drifting unto the ground");
 					output(". <b>Your face is now smooth and beardless.</b>");
@@ -492,7 +492,7 @@ package classes.Items.Transformatives
 					&&	(target.buttRatingRaw >= 9 && target.buttRatingRaw <= 12)
 					)
 					{
-						output(" You reckon there’s nothing more that using ManDown could do for you. Maybe, if you wanted a trappier sort of look, you could use Estrobloom...");
+						output(" You reckon there’s nothing more that eating Twink-Ease could do for you. Maybe, if you wanted a trappier sort of look, you could use Estrobloom...");
 						if(target.hasPerk("Perma-cute")) output(" But you’re going to need a lot to change your supposedly-permanent face.");
 					}
 					else output(" Perhaps it was a dud or you’re just very unlucky...");
@@ -502,7 +502,7 @@ package classes.Items.Transformatives
 			}
 			else
 			{
-				output(target.capitalA + target.short + " injects the drug to no effect.");
+				output(target.capitalA + target.short + " eats the Twink-Ease cakes to no effect.");
 			}
 			return false;
 		}

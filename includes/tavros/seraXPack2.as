@@ -3418,8 +3418,8 @@ public function seraBitcheningStoreRandomize():void
 	groupA.push(new Estrobloom());
 	groupA.push(new Tittyblossom());
 	groupA.push(new JunkTrunk());
-	groupA.push(new ManDown());
 	groupA.push(new ManUp());
+	//groupA.push(new TwinkEase());
 	groupA.push(new Condensol());
 	groupA.push(new Virection());
 	// Group B

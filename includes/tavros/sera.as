@@ -281,8 +281,8 @@ public function chrysalisInventory():Array
 	inventory.push(new Tittyblossom());
 	inventory.push(new Pussybloom());
 	inventory.push(new Pussyblossom());
-	inventory.push(new ManDown());
 	inventory.push(new ManUp());
+	//inventory.push(new TwinkEase());
 	inventory.push(new Condensol());
 	inventory.push(new DendroGro());
 	inventory.push(new Rainbotox());
