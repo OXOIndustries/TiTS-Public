@@ -1183,7 +1183,7 @@ public function breedWithUla():void
 
 	output("\n\n<i>Slap-slap-slap</i>. The clap of your hips banging away at her rings through the room, gradually rising in tempo to your ever-growing ardor. The korg-girl shivers and sighs, rag-dolling from the pounding and orgasmic aftershocks alike. That hardly seems to matter. The fucked-stupid glaze in her eyes may as well be an advertisement to your [pc.balls] to brew up an extra-virile load for how you feel. Burying your nose into her neck, you hump her powerfully, bestially, the way you know she wants to be taken.");
 
-	output("\n\nWhen you cry out in ecstasy, the clan princess’s voice joins you. Her pussy clamps down in answer to your climactic throbbing, and when your [pc.cumNoun] cum boils out of you, it’s met by a torrent of syrupy, feminine orgasm.");
+	output("\n\nWhen you cry out in ecstasy, the clan princess’s voice joins you. Her pussy clamps down in answer to your climactic throbbing, and when your " + (silly ? "cum cum" : "[pc.cumVisc] [pc.cumNoun]") + " boils out of you, it’s met by a torrent of syrupy, feminine orgasm.");
 	if(pc.cumQ() >= 50) 
 	{
 		output(" You flood her quim with pulse after pulse of seed.");
