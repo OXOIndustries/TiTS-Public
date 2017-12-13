@@ -2320,6 +2320,7 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			{
 				var oldHips:Number = pc.hipRatingRaw;
 				var oldFace:Number = pc.femininity;
+				var sOldHips:String = pc.hipsDescript();
 				msg += ParseText("Seemingly at random, as if you didn’t look girly enough, you feel a slight boost to your feminine features. They gradually exaggerate further , making you appear more lady-like as");
 				var weightLimit:Number = 45;
 				while(pc.genderWeight() < weightLimit)
@@ -2329,11 +2330,11 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 				}
 				if(pc.femininity != oldFace) msg += " your shoulders become narrow";
 				if(pc.hipRatingRaw != oldHips && pc.femininity != oldFace) msg += " and";
-				if(pc.hipRatingRaw != oldHips) msg += " your [pc.hips] widen";
+				if(pc.hipRatingRaw != oldHips) msg += " your " + sOldHips + " widen";
 				msg += ". This leaves you with";
 				if(pc.hipRatingRaw != oldHips) msg += " " + pc.hipsDescript();
 				if(pc.hipRatingRaw != oldHips && pc.femininity != oldFace) msg += " and";
-				if(pc.femininity != oldFace) msg += " a face that has " + pc.faceDesc();
+				if(pc.femininity != oldFace) msg += pc.faceDesc();
 				msg += ". ";
 				minPass += 1;
 			}

@@ -172,8 +172,8 @@ public function approachDCLMenu():void
 	if(peacekeeperTalkAvailable()) addButton(5,"Peacekeepers",dclPeacekeeperTalk);
 
 	if(flags["MET_CARVER"] == undefined && delilahSubmissiveness() >= 1) addButton(6,"Carver",delCarverTalkForWorstDel,undefined,"Carver","Have Del let you behind the bar so you can have a chat with her owner.");
-	else if(flags["MET_CARVER"] == undefined) addDisabledButton(6,"Carver","Carver","Del doesn't quite know you well enough to let you meet her boss yet.");
-	else addDisabledButton(6,"Carver","Carver","You've already been behind the bar. You can go straight to her if you want, just step away from Del and walk in.");
+	else if(flags["MET_CARVER"] == undefined) addDisabledButton(6,"Carver","Carver","Del doesn’t quite know you well enough to let you meet her boss yet.");
+	else addDisabledButton(6,"Carver","Carver","You’ve already been behind the bar. You can go straight to her if you want, just step away from Del and walk in.");
 	
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -986,7 +986,7 @@ public function disarmDelsTrap():void
 		output("\n\nDel’s ");
 		//(sexed >=5)
 		if(delSexed >= 5) output("crowdsourced ");
-		output("asshole spasms and sucks as he comes, rippling and rubbing your [pc.cockHeadSimple " + x + "] against his slick walls. The image of the girlie under you, straining and humping at the counter, matches up with the splatters of cum in your alien tailcunt for a perfect visual, tipping you over the edge of your own orgasm.");
+		output("asshole spasms and sucks as he comes, rippling and rubbing your [pc.cockHead " + x + "] against his slick walls. The image of the girlie under you, straining and humping at the counter, matches up with the splatters of cum in your alien tailcunt for a perfect visual, tipping you over the edge of your own orgasm.");
 		//(small or med cum)
 		if(pc.cumQ() < 400)
 		{

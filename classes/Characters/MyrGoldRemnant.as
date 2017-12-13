@@ -339,7 +339,7 @@ package classes.Characters
 		
 		private function myrRemnantReload(target:Creature):void
 		{
-			output(this.getCombatName() + " finds her weapon's out of ammo, and has to duck down to reload!");
+			output(this.getCombatName() + " finds her weapon’s out of ammo, and has to duck down to reload!");
 			createStatusEffect("Riposting");
 		}
 		

@@ -66,6 +66,11 @@
 				var popFlavor:String = flavors[flavorIndex][0];
 				var popColor:String = flavors[flavorIndex][1];
 				
+				target.createStatusEffect("Estrobloom Doses", 0, 0, 0, 0, true, "", "", false, 720);
+				target.addStatusValue("Estrobloom Doses", 1, 1);
+				target.setStatusMinutes("Estrobloom Doses", 720);
+				var doses:int = target.statusEffectv1("Estrobloom Doses");
+				
 				//Consume:
 				if(target.hasStatusEffect("Taken Estrobloom")) 
 				{
@@ -224,6 +229,19 @@
 					if (target.femininity >= 75) choices[choices.length] = 10;
 					if (target.femininity >= 90) choices[choices.length] = 10;
 				}
+				if(doses >= 5 && target.hasPerk("Perma-cute"))
+				{
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+				}
 
 				//Default to no changes, then roll on the array for a change if some are available.
 				var select:int = 9;
@@ -357,6 +375,15 @@
 					else kGAMECLASS.output("Y");
 					kGAMECLASS.output("ou no longer have a beard!</b>");
 					target.removeBeard();
+				}
+				// Remove "Perma-cute" perk
+				else if(select == 13)
+				{
+					kGAMECLASS.output("\n\nYour face... <i>tingles</i>. Weird, because you thought that was supposed to stop. Unless... Oh, right. <b>You have lost the “Perma-cute” perk, removing your protection from masculinity-altering transformatives.</b> You’re also noticing a slight pain... Wow, you didn’t miss the feeling of face bones and cartilage contorting like this. Looking at your face (this time with your codex’s camera to make sure you get a better look than at a black screen), you see that it has also become <b>significantly more feminine</b>, so it would appear that you won’t have boyish looks forever, anymore.");
+					
+					kGAMECLASS.output("\n\n(<b>Perk Lost: Perma-cute</b>)");
+					target.removePerk("Perma-cute");
+					target.modFem(10);
 				}
 				else if(select == 9)
 				{

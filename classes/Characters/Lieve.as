@@ -241,8 +241,8 @@ package classes.Characters
 		private function lieveFocus(alliedCreatures:Array):void
 		{
 			output("<i>“Everyone, focus fire! Keep it together, girls,”</i> Lieve shouts, marshalling her remaining troops to fight harder.");
-			output("\n<b>Your party's accuracy and crit chance have been boosted!</b>");
-			for (var x:int = 0; x < alliedCreatures.length; x++) alliedCreatures[x].createStatusEffect("Lieve Buff", 3, 0, 0, 0, false, "OffenseUp", "Lieve's orders have boosted morale!\nCritical chance and accuracy increased.", true, 0, 0xFFFFFF);
+			output("\n<b>Your party’s accuracy and crit chance have been boosted!</b>");
+			for (var x:int = 0; x < alliedCreatures.length; x++) alliedCreatures[x].createStatusEffect("Lieve Buff", 3, 0, 0, 0, false, "OffenseUp", "Lieve’s orders have boosted morale!\nCritical chance and accuracy increased.", true, 0, 0xFFFFFF);
 			addStatusValue("Lieve Buff", 1, -1);
 		}
 		
@@ -255,7 +255,7 @@ package classes.Characters
 					target = alliedCreatures[x];
 			
 			output("<i>“Come on, keep your head in the game!”</i> Lieve shouts, grabbing [target.combatName] by the shoulder. <i>“All of you! Fight for you lives. For your country. For the Federation!”</i>");
-			output("\n\n<i>“FOR THE FEDERATION!”</i> the reply comes, from every red myr's mouth.");
+			output("\n\n<i>“FOR THE FEDERATION!”</i> the reply comes, from every red myr’s mouth.");
 			output("\n<b>Your party has been healed</b>");
 			for (x = 0; x < alliedCreatures.length; x++) if(alliedCreatures[x].HP() > 0) alliedCreatures[x].HP(target == alliedCreatures[x] ? 75 : 40);
 			
@@ -263,7 +263,7 @@ package classes.Characters
 		
 		private function lieveCover(target:Creature):void
 		{
-			output("Lieve ducks down, finding herself some better cover -- she's no use to you dead, after all!");
+			output("Lieve ducks down, finding herself some better cover -- she’s no use to you dead, after all!");
 			this.createStatusEffect("Riposting", 3, 0, 0, 0, false, "EvasionUp", "Lieve is taking cover!\n Evasion increased.", true, 0, 0xFFFFFF);
 			
 			specialCD = 1;

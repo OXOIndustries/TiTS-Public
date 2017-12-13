@@ -1055,7 +1055,7 @@ public function uvetoMaglevStation():Boolean
 	
 	if (flags["UVIP_R10_PROBE_ACTIVE"] == undefined) addDisabledButton(0, "Probe");
 	else addButton(0, "Probe", move, "UVIP R10");
-	if(krymRespectsYou()) addButton(1,"Krym's Camp",move,"UVGR M4");
+	if(krymRespectsYou()) addButton(1,"Krym’s Camp",move,"UVGR M4");
 
 	return false;
 }
@@ -1486,8 +1486,8 @@ public function encounterSavicite(choice:String = "encounter"):void
 public function korgiiHoldExteriorBonus():Boolean
 {
 	output("\n\nThe holes appear to have been drilled through the valuable ore ");
-	if(flags["ENTERED_KORGI_HOLD"] != undefined) output("as a mechanism of hiding Korg'ii Hold.");
-	else output("for an unknown purpose by an unknown entity. You poke a few to little effect. They run too deep to plumb without specialized tools, and it'd be more profitable to just mine out the thing to the bottom.");
+	if(flags["ENTERED_KORGI_HOLD"] != undefined) output("as a mechanism of hiding Korg’ii Hold.");
+	else output("for an unknown purpose by an unknown entity. You poke a few to little effect. They run too deep to plumb without specialized tools, and it’d be more profitable to just mine out the thing to the bottom.");
 	output(" Snow walls in every other side but the path back to the south.");
 	if(flags["ULA_SAVED"] != undefined) 
 	{
@@ -1591,20 +1591,20 @@ public function korgiD12Bonus():void
 	else output("A group of korg fisherman trundle by with nothing but a few pouches of bait and metallic fishing poles.");
 
 	output("\n\nTo the west is a door carved with pictures of spears and fallen beasts.");
-	if(!korgiTranslate()) output(" Your translator can't make out the foreign script that accompanies it.");
-	else output(" Rough script declares it to be \"Hunter's Hole,\" obviously some kind of shop.");
+	if(!korgiTranslate()) output(" Your translator can’t make out the foreign script that accompanies it.");
+	else output(" Rough script declares it to be “Hunter’s Hole,” obviously some kind of shop.");
 }
 
 public function korgiH14Bonus():void
 {
-	if(korgiTranslate()) output(" A translation of the nearby script reads, \"Herb Mother's.\"");
+	if(korgiTranslate()) output(" A translation of the nearby script reads, “Herb Mother’s.”");
 	else output(" You wish you could translate the accompanying script, however clear the art might seem.");
 }
 
 public function korgiF14Bonus():void
 {
-	if(korgiTranslate()) output("scribbles indecipherably beneath. The best approximation your translator can manage is \"Warm Crusts.\"");
-	else output("scrawls beneath, declaring this to be a clothing shop. The literal translation is \"Warm Crusts.\"");
+	if(korgiTranslate()) output("scribbles indecipherably beneath. The best approximation your translator can manage is “Warm Crusts.”");
+	else output("scrawls beneath, declaring this to be a clothing shop. The literal translation is “Warm Crusts.”");
 }
 
 public function chiefBedroomBonus():Boolean

@@ -1471,7 +1471,7 @@ public function ohJeezRickMirranIsGonnaFuckYa():void
 	//V2: [pc has vagina, H or F, Kind, PC tone >70 and Physique >25, overrides V1] = Tender Struggle
 	if(pc.hasVagina() && pc.tone > 70 && pc.physique() >= 25) addButton(0,"Next",firstTimeMirrinSexActual,2);
 	//V3: [pc has dick 18< inches, H, M or T, Hard, PC tone >70 and Physique >25, overrides V1 and V2] = Dom Ride/SNU SNU
-	if(pc.hasCock() && pc.biggestCockLength() >= 18 && pc.tone > 70 && pc.physique() >= 25) addButton(0,"Next",firstTimeMirrinSexActual,3);
+	if(pc.hasCock() && mirrinSelectADick() >= 0 && pc.tone > 70 && pc.physique() >= 25) addButton(0,"Next",firstTimeMirrinSexActual,3);
 }
 
 public function firstTimeMirrinSexActual(arg:int = 1):void
@@ -1593,16 +1593,19 @@ public function firstTimeMirrinSexActual(arg:int = 1):void
 	else
 	{
 		flags["MIRRIN_FIRST_SEX"] = "V3";
+		
+		var cIdx:int = mirrinSelectADick();
+		
 		//PC lust doesn’t change i.e. still at maximum, no orgasm event.
 		output("You’re about to roll your body over but she raises her hand. <i>“On second thoughts... no,”</i> she says slowly, her turgid horsemembers seeming to stiffen on top of your [pc.chest] as she thinks of <i>something</i>.");
-		output("\n\nShe shuffles backwards somewhat, her muscled ass grazing delightfully against your semi-hard, [pc.cockNounComplex]. It slots in between her crevice and then she proceeds to <i>squeeze</i>. It feels like an expert grip is sliding your [pc.sheath] up and down with dextrous force. Mirrin’s gaze never turns from yours, hot red eyes locking with your own [pc.eyes]. She then takes one of her rough palms and reaches around behind her, grasping your [pc.cock]. Slowly, she pumps.");
+		output("\n\nShe shuffles backwards somewhat, her muscled ass grazing delightfully against your semi-hard, [pc.cockNounComplex " + cIdx + "]. It slots in between her crevice and then she proceeds to <i>squeeze</i>. It feels like an expert grip is sliding your [pc.sheath " + cIdx + "] up and down with dextrous force. Mirrin’s gaze never turns from yours, hot red eyes locking with your own [pc.eyes]. She then takes one of her rough palms and reaches around behind her, grasping your [pc.cock " + cIdx + "]. Slowly, she pumps.");
 		output("\n\nHaving two different forces pump together feels instantly overwhelming but you endure, holding back your internal pleasure through sheer force of will. Your [pc.face] scrunches up in concentration and restraint, getting a giggle out of your dominant qilin lover. <i>“Well, Steele... if you’re going to be useless, better open up again,”</i> she chides, pushing her biggest dicks pulsing head onto your [pc.lips].");
-		output("\n\nBegrudgingly, you let her inside, your jaw opening wider and wider to accept her. Your compliance brings a soft <i>“Ooh...”</i> from the draconid’s lips. Slowly at first, she rolls her hips up and around, both simultaneously grinding your now-solid [pc.cock] and using your mouth as a cock pleaser! The thought draws out a low groan from you, peaks and valleys of sensation tingling all throughout your body as you’re pinned down and used by this predator.");
-		output("\n\nFrom nowhere, you feel a strong pressure on your ribcage. Mirrin’s sculpted, muscled thighs squeeze tightly against you, either out of purpose or from reflex... well, you’re too pre-occupied to think on it. However, it does make breathing a little harder: air going out is fine but coming in is a struggle. It’s already making your [pc.skin] tingle with numbness but your [pc.cock] remains rock hard.");
+		output("\n\nBegrudgingly, you let her inside, your jaw opening wider and wider to accept her. Your compliance brings a soft <i>“Ooh...”</i> from the draconid’s lips. Slowly at first, she rolls her hips up and around, both simultaneously grinding your now-solid [pc.cock " + cIdx + "] and using your mouth as a cock pleaser! The thought draws out a low groan from you, peaks and valleys of sensation tingling all throughout your body as you’re pinned down and used by this predator.");
+		output("\n\nFrom nowhere, you feel a strong pressure on your ribcage. Mirrin’s sculpted, muscled thighs squeeze tightly against you, either out of purpose or from reflex... well, you’re too pre-occupied to think on it. However, it does make breathing a little harder: air going out is fine but coming in is a struggle. It’s already making your [pc.skin] tingle with numbness but your [pc.cock " + cIdx + "] remains rock hard.");
 		output("\n\n<i>“That’s it, Steele... *<i>unff</i>* surrender...”</i> she breathlessly calls out, grinding her weighty testes and mammoth members across the front of your body. You can even feel a hot, wet sensation gliding against your lower belly... <i>ohhh</i>. Must be her under-appreciated pussy.");
 		output("\n\nA spurt of smoky, hot pre-cum hits the roof of your mouth. Mirrin stifles a girlish moan as it happens, her lower body tensing up to hold it all back. She squeezes your ribs even harder, to the point where your arms lose some sensation. It’s getting... harder to... focus!");
-		output("\n\nMirrin’s grip on your [pc.cock] gets tighter and tighter in her calloused palm, rough skin uncomfortably constricting on your sensitive shaft. If she’s this tight-gripped, you might not even be able to climax at all...");
-		output("\n\nWith her strongest pump yet, she releases your tortured [pc.cock]. It still fits snuggly in between her cheeks but the smoother, soothing skin of her ass is a welcome reprieve. She stares you down from above, her foot long tongue seeping out of her mouth and her wide eyes full of lust. With both hands free, she grabs you by the top of your [pc.hair], pulling your head forward so her thick horsecock goes even further down your throat!");
+		output("\n\nMirrin’s grip on your [pc.cock " + cIdx + "] gets tighter and tighter in her calloused palm, rough skin uncomfortably constricting on your sensitive shaft. If she’s this tight-gripped, you might not even be able to climax at all...");
+		output("\n\nWith her strongest pump yet, she releases your tortured [pc.cock " + cIdx + "]. It still fits snuggly in between her cheeks but the smoother, soothing skin of her ass is a welcome reprieve. She stares you down from above, her foot long tongue seeping out of her mouth and her wide eyes full of lust. With both hands free, she grabs you by the top of your [pc.hair], pulling your head forward so her thick horsecock goes even further down your throat!");
 		output("\n\nYou try to splutter and protest but between the forced blowjob, squished ribcage, and edging you’ve received, it’s physically impossible to resist her dominion over you. Reluctantly, you let her use your throat as her personal cocksleeve. At this angle, she can’t get more than ten inches down there but it’s enough. Between her thrusting and grinding, you can hear her wails and cries of bliss build and build, while your vision dims and dims...");
 		output("\n\n<i>“fffuh..!”</i> With that, the tips of her two cocks erupt, a veritable flood of white hot seed filling your mouth, throat, and nose while your neck and face receive the same basting! You can feel it make its way all the way to your stomach, bloating your innards.");
 		output("\n\nBut then your vision... dims and... it’s dificult to...");
@@ -1776,6 +1779,19 @@ public function visitMirrinsPlace():void
 	mirrinSexMenu();
 }
 
+public function mirrinSelectADick():int
+{
+	if(pc.hasCock())
+	{
+		var aCocks:Array = [];
+		for(var i:int = 0; i < pc.cocks.length; i++)
+		{
+			if(pc.cLength(i) < 18) aCocks.push(i);
+		}
+		if(aCocks.length > 0) return aCocks[rand(aCocks.length)];
+	}
+	return -1;
+}
 public function mirrinSexMenu():void
 {
 	clearMenu();
@@ -1783,7 +1799,7 @@ public function mirrinSexMenu():void
 	if(pc.hasVagina()) addButton(1,"Deep DP",deepMirrinDP,undefined,"Deep DP","Embrace the dragon’s power. Requires a vagina.");
 	else addDisabledButton(1,"Deep DP","Deep DP","You need a vagina for this.");
 	//Sparr Fight into Oral for the winner: PC has cock at 18’’< and/or vagina. High PC stats = wins.
-	if(pc.biggestCockLength() < 18 || pc.hasVagina()) addButton(2,"Train..?",trainFightyFlighty,undefined,"Train..?","Spar to see who cums out on top!");
+	if(mirrinSelectADick() >= 0 || pc.hasVagina()) addButton(2,"Train..?",trainFightyFlighty,undefined,"Train..?","Spar to see who cums out on top!");
 	else addDisabledButton(2,"Train..?","Train..?","You need a penis of 18\" or less or a vagina for this.");
 	addButton(3,"Humiliation",humiliationAnalWithMirrin,undefined,"Humiliation","Try something a bit different and a bit rougher.");
 }
@@ -2031,53 +2047,74 @@ public function winAgainstMirrin():void
 		output("\n\nShe breathes in deeply through her nose. <i>“That’s it, Steele. Now you’re on my level...”</i> she says while meeting your gaze, gently pushing you onto the bed behind you.");
 	}
 	output("\n\nFeeling well-deserved in your victory, you let her do so: The poor thing’s ego can only get so bruised. You lie back on your elbows, a smug grin on your face. She sets herself next to you, hands all over your [pc.belly] and pelvis.");
+	
+	var cIdx:int = mirrinSelectADick();
+	var cIdxB:int = -1;
+	if(cIdx >= 0 && pc.cockTotal() > 1)
+	{
+		var aCocks:Array = [];
+		var i:int = 0;
+		for(i = 0; i < pc.cocks.length; i++)
+		{
+			if(i != cIdx) aCocks.push(i);
+		}
+		if(aCocks.length > 0)
+		{
+			cIdxB = 0;
+			for(i = 0; i < aCocks.length; i++)
+			{
+				if(pc.cLength(aCocks[i]) < pc.cLength(cIdxB)) cIdxB = aCocks[i];
+			}
+		}
+	}
+	
 	//PC has cock + vagina:
-	if(pc.hasCock() && pc.hasVagina())
+	if(cIdx >= 0 && pc.hasVagina())
 	{
 		output("\n\nMirrin visibly licks her lips at the sight of your [pc.cocks]");
 		if(pc.balls > 0)
 		{
 			output(", [pc.balls],");
 		}
-		output(" and [pc.pussy]. Her tongue is already hanging out and slathered up, aiming downwards. She shifts herself down the bed somewhat, looking for the right angle of attack. Pressing her face down to your [pc.pussy], both of her calloused, clawed hands gripping comfortably on your [pc.cockBiggest]. Already she’s pumping at your shaft, the double grip of her hands impossible to resist through will alone.");
+		output(" and [pc.pussy]. Her tongue is already hanging out and slathered up, aiming downwards. She shifts herself down the bed somewhat, looking for the right angle of attack. Pressing her face down to your [pc.pussy], both of her calloused, clawed hands gripping comfortably on your [pc.cock " + cIdx + "]. Already she’s pumping at your shaft, the double grip of her hands impossible to resist through will alone.");
 		output("\n\nSimultaneously, her thick, lively tongue trails itself across your labia, already teasing out your wetness.");
 		if(pc.wetness(0) >= 4) output(" It doesn’t take long for your [pc.cunt] to get particularly juicy.");
 		output(" Without warning, it slithers right roughly into your [pc.pussy], recieving a hot, wet welcome.");
 		if(pc.looseness(0) >= 4) output(" Your [pc.vagina] is already used to such an invasion and gives her no resistance at all!");
 		output(" A throaty groan escapes from your [pc.lips] as both shaft and snatch get worked over at the same time.");
-		if(pc.cockTotal() > 1) output(" You’re not even concerned with your untouched [pc.cockSmallest] while getting such special treatment.");
+		if(pc.cockTotal() > 1) output(" You’re not even concerned with your untouched [pc.cock " + cIdxB + "] while getting such special treatment.");
 
-		output("\n\nYou find your hands are reflexively gripping the bedspread. Sure pays to have double sets of sexes! The lusty qilin reaffirms this by tightening her grip on your [pc.sheathBiggest] and <i>then</i> by pushing her mouth right up to your [pc.pussy] as if to fully engorge on it. Her monster tongue fills out your [pc.cunt] with ease, writhing and sliding inside against your hyper-sensitive walls. Having a glance down, you swear you can almost see it bulge through your [pc.skin]...");
+		output("\n\nYou find your hands are reflexively gripping the bedspread. Sure pays to have double sets of sexes! The lusty qilin reaffirms this by tightening her grip on your [pc.sheath " + cIdx + "] and <i>then</i> by pushing her mouth right up to your [pc.pussy] as if to fully engorge on it. Her monster tongue fills out your [pc.cunt] with ease, writhing and sliding inside against your hyper-sensitive walls. Having a glance down, you swear you can almost see it bulge through your [pc.skin]...");
 		output("\n\nThe deeper it gets, the more agitated and active it becomes, finding places within that you’d never thought would be felt. Her mouth-snake constantly brushes, rubs and slides against your G-spot. Every slurp and sway of her tongue brings you closer and closer to climaxing, your pleasured cries getting louder and louder!");
 		output("\n\n<i>“Cuh... fuh! Myeruh-”</i> you stammer, followed by a throat burning orgasm!");
 		output("\n\nOverwhelming surges of sensation and heat that rise from your pelvis. With only a throaty cry, [pc.cumVisc], [pc.cumFlavor] [pc.cumNoun] shoots out over your [pc.belly] while a splash of [pc.girlCumVisc] [pc.girlCum] covers the eye-closed face of your qilin lover, leaving splotches of [pc.girlCumColor] [pc.girlCumNoun] all over her mouth and chin.");
 		if(pc.cumQ() >= 500) output(" The sheer volume of your [pc.cum] output is shown on the bedsheets: a splatterzone of [pc.cumColor]!");
-		output(" She keeps squeezing on your softening [pc.cock], trying to get as much love juice from you as possible while her tongue goes into overdrive, writhing wildly within your sensation-saturated walls.");
+		output(" She keeps squeezing on your softening [pc.cock " + cIdx + "], trying to get as much love juice from you as possible while her tongue goes into overdrive, writhing wildly within your sensation-saturated walls.");
 		output("\n\nFeeling light-headed, you lay onto your back, breath squeaky and fast from that intense double orgasm. Mirrin clambers up to you, her mouth liberally sprayed with your [pc.girlCum] and [pc.cumNoun]. Without hesitation, she draws your [pc.lips] to hers, giving you a long, impassioned and flavored taste of yourself.");
 	}
 	//PC has cock:
-	else if(pc.hasCock())
+	else if(cIdx >= 0)
 	{
-		output("\n\nShe spies your freely swinging [pc.cockBiggest] and moves to put her roughly marbled palm over it. Mirrin proves to be gentle with her grip but still, the roughness of her palms is a strange sensation. Using her index finger, she very lightly taps on your [pc.cockHeadBiggest] with a claw. It nicks and pulls on a cellular level against those ultra-sensitive nerves, making your [pc.cockBiggest] tense and pulse reflexively in discomfort, something that brings an even wider smile out of the she-dragon.");
+		output("\n\nShe spies your freely swinging [pc.cock " + cIdx + "] and moves to put her roughly marbled palm over it. Mirrin proves to be gentle with her grip but still, the roughness of her palms is a strange sensation. Using her index finger, she very lightly taps on your [pc.cockHead " + cIdx + "] with a claw. It nicks and pulls on a cellular level against those ultra-sensitive nerves, making your [pc.cock " + cIdx + "] tense and pulse reflexively in discomfort, something that brings an even wider smile out of the she-dragon.");
 		output("\n\nYour face screws up as she plays with your tip, hands gripping at the fabric of the bed.");
 		if(pc.isNice()) output(" <i>“T-that’s a little... weird,”</i>");
 		else if(pc.isMischievous()) output(" <i>“J-jeez, that feels like torture,”</i>");
 		else output(" <i>“I w-will end you if you don’t stop that”</i>,");
 		output(" you stammer, tensed up all over.");
 
-		output("\n\n<i>“Aw, is little Steeley-boo uncomfortable?”</i> She fires back, her attention focused on teasing your [pc.cockHeadBiggest]. <i>“Just relax.”</i>");
+		output("\n\n<i>“Aw, is little Steeley-boo uncomfortable?”</i> She fires back, her attention focused on teasing your [pc.cockHead " + cIdx + "]. <i>“Just relax.”</i>");
 
 		output("\n\nShe bends her neck forward to engorge herself on your meat.");
-		if(pc.biggestCockLength() >= 10 && pc.biggestCockLength() <= 18) output(" She has no problem eyeing up and going down on your sizable tool.");
+		if(pc.biggestCockLength() >= 10 && mirrinSelectADick() >= 0) output(" She has no problem eyeing up and going down on your sizable tool.");
 		output(" Her mouth is warm and welcoming, her monstrous tongue making itself scarce while she clamps her limps round your shaft. It’s a complete change from the teasing she was pulling earlier: A hot, wet clamp to satisfy you in victory. Then she begins pumping.");
 		output("\n\nFinally at full mast, her ministrations quickly fill you with pleasurable sensations. Although she appears somewhat bored, most of the work is done by the sheer sizes of her respective grips. That’s when you feel the tongue. It begins slowly, teasing the very edge of your urethra. Tickling such a sensitive spot draws out a whine from your lips to which you qilin lover reciprocates with an approving <i>“hmmm...”</i>.");
-		output("\n\nThen her tongue wraps itself around your meat in her mouth like a coiled snake, stopping halfway. It writhes and twists around your [pc.cockBiggest], slathering it in saliva. She slowly bobs her head up and down... <i>shit</i>, it’s like being wrapped in three different feeling planes of existence!");
-		if(pc.totalCocks() > 1) output(" You’re not even concerned with your untouched [pc.cockSmallest] while getting such special treatment.");
-		output(" The tight grip of her hand, the sloppier, faster movement of her tongue and the smooth, gentle sensation of her mouth on your [pc.cockHeadBiggest] are almost unbearable. She hasn’t even been going that long and already you can feel yourself close to cumming.");
+		output("\n\nThen her tongue wraps itself around your meat in her mouth like a coiled snake, stopping halfway. It writhes and twists around your [pc.cock " + cIdx + "], slathering it in saliva. She slowly bobs her head up and down... <i>shit</i>, it’s like being wrapped in three different feeling planes of existence!");
+		if(pc.totalCocks() > 1) output(" You’re not even concerned with your untouched [pc.cock " + cIdxB + "] while getting such special treatment.");
+		output(" The tight grip of her hand, the sloppier, faster movement of her tongue and the smooth, gentle sensation of her mouth on your [pc.cockHead " + cIdx + "] are almost unbearable. She hasn’t even been going that long and already you can feel yourself close to cumming.");
 
 		output("\n\nThen you feel it, that surge of sensation and heat that rises from your pelvis. With only a throaty cry, your [pc.cumVisc], [pc.cumFlavor] [pc.cumNoun] shoots out into your lover’s awaiting maw!");
-		if(pc.cumQ() < 2000) output(" She’s prepared, holding her stance so that it goes right down her throat without stopping, her tongue frantically twisting around your orgasming [pc.cockBiggest].");
-		else output(" She’s prepared for your output, her throat and stance ready to take in as much as possible. It quickly seems that that’s not enough, so she pulls her head back and aims your spurting [pc.cockBiggest] away from the bed. <i>“</i>Shit<i>, look at it go!”</i> She calls out, [pc.cumColor] trailing from her delighted face.");
+		if(pc.cumQ() < 2000) output(" She’s prepared, holding her stance so that it goes right down her throat without stopping, her tongue frantically twisting around your orgasming [pc.cock " + cIdx + "].");
+		else output(" She’s prepared for your output, her throat and stance ready to take in as much as possible. It quickly seems that that’s not enough, so she pulls her head back and aims your spurting [pc.cock " + cIdx + "] away from the bed. <i>“</i>Shit<i>, look at it go!”</i> She calls out, [pc.cumColor] trailing from her delighted face.");
 		output("\n\nYou lay back off of your elbows, fully spent. Your cum-covered lover clambers on the bed to meet you eye to eye, drawing your mouth to her’s for a deep, [pc.cumFlavor] tasting kiss.");
 	}
 	//PC has vagina:

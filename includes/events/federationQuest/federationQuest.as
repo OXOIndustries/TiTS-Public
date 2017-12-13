@@ -1739,6 +1739,7 @@ public function fedQuestQueenKuitan():void
 	output("\n\nYou breathe a sigh of relief and tell her that’s all you can ask for.");
 	
 	processTime(7);
+	clearMenu();
 	addButton(0, "Next", fedQuestQueenKuitan2, undefined, "", "");
 }
 
@@ -1768,6 +1769,7 @@ public function fedQuestQueenKuitan2():void
 		
 	processTime(15+rand(6));
 	flags["FEDERATION_QUEST"] = 6;
+	clearMenu();
 	addButton(0, "Next", fedQuestResolution, undefined, "", "");
 }
 
@@ -1791,7 +1793,7 @@ public function fedQuestQueenMhenga():void
 	output("\n\nThat’s alright... there’s plenty of ways to get to the stars these days. If that’s all that’s keeping the War Queen and her daughters trapped on Myrellion, maybe you could help.");
 	
 	processTime(15+rand(6));
-	if(pc.credits >= 30000) addButton(11, "Donate", fedQuestQueenDonate, undefined, "Talk: Donate", (silly?"Less money, less problems.":"Give the myri rebels enough credits to buy their way off planet. With so many of them, and one as large as the War Queen... you doubt you could find them passage for less than 30,000 credits."));
+	if(pc.credits >= 30000) addButton(11, "Donate", fedQuestQueenDonate, undefined, "Talk: Donate", (silly?"Less money, less problems.":"Give the myr rebels enough credits to buy their way off planet. With so many of them, and one as large as the War Queen... you doubt you could find them passage for less than 30,000 credits."));
 	else addDisabledButton(11, "Donate", "Talk: Donate", "You don’t have the required 30,000 credits to afford passage for all the rebels.");
 	//PC must have a capital ship, or a ship with a shit ton of cargo space. Else, grayed out.
 	if(9999 == 0) addButton(12, "Take Them", fedQuestQueenTake, undefined, "Talk: Take Them", "You have a big-ass ship. Big enough to take all these gold myr, anyway. Tell the queen to meet you somewhere safe, and you’ll evacuate them yourself.");
@@ -2091,6 +2093,8 @@ public function fedQuestQueenText2():String
 
 public function fedQuestQueenDefeat():void
 {
+	if (pc.hasStatusEffect("Lieve Buff")) pc.removeStatusEffect("Lieve Buff");
+	
 	clearOutput();
 	clearMenu();
 	showBust("ESTALLIA");
@@ -2145,7 +2149,7 @@ public function fedQuestQueenDefeatCock():void
 	output("\n\n<i>“That’s it. You’re no drone... but you’ll do,”</i> Estallia smirks, settling her abdomen against your [pc.legs]. She braces two arms on the ceiling, steadying her titanic frame, while the other pair cup and squeeze her ripe honeypots. Fragrant amber drips to the floor in thick, quivering piles, leaning across her breasts and black-chitin fingers in little rivers that beg to be licked clean.");
 	output("\n\nBut you’re going <i>nowhere</i> with her abdomen crushing down on you, burying you beneath what feels like a solid ton of fuckmeat.Your arms wrap around her plump backside, sinking into the flesh stretched out between her many armored plates. Your whole world is dominated by the steady rise and fall of the queen’s body, faster and faster until you’re squirming and moaning, pumping [pc.cum] into her waiting wombs.");
 	output("\n\nEstallia moans softly, squeezing a particularly thick stream of honey from her teats. <i>“Ah, that feels like a clutch being fertilized... a good first start, [pc.name]. But you have a lot more golden lives to replace tonight.”</i>");
-	output("\n\nYou shudder beneath the queen’s plush abdomen, feeling her vaginal muscles slowly wring every last drop of seed out of your cock" + (pc.totalCocks() > 1 ? "s" : "") + " . And she doesn’t stop there -- she never lets you catch your breath on the best of days, and now... now she’s relentless, starting to move again before you’ve even passed the shivering pleasures of your first orgasm, hungry for your seed.");
+	output("\n\nYou shudder beneath the queen’s plush abdomen, feeling her vaginal muscles slowly wring every last drop of seed out of your cock" + (pc.totalCocks() > 1 ? "s" : "") + ". And she doesn’t stop there -- she never lets you catch your breath on the best of days, and now... now she’s relentless, starting to move again before you’ve even passed the shivering pleasures of your first orgasm, hungry for your seed.");
 	output("\n\nAnd she’ll harvest it. Again and again and again, until you’ve fathered a whole generation of the War Queen’s spawn. Her abdomen is swollen with pregnant weight by the time she’s done breeding you that night, but that doesn’t stop her coming the next night, and the night after that...");
 	output("\n\nYou’re reduced to little more than another drone, and when the war finally ends years later, you join a legion of male myr in servicing the most powerful queen on Myrellion, ensuring her wombs are never empty, and her brood is the largest of them all.");
 	pc.orgasm();
@@ -2196,6 +2200,8 @@ public function fedQuestQueenDefeatCooter2():void
 
 public function fedQuestQueenVictory():void
 {
+	if (pc.hasStatusEffect("Lieve Buff")) pc.removeStatusEffect("Lieve Buff");
+	
 	clearOutput();
 	clearMenu();
 	showBust("ESTALLIA");

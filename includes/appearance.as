@@ -1166,21 +1166,31 @@ public function appearance(forTarget:Creature):void
 		output2(" Your chest and back are covered in a thick, bushy layer of wool.");
 	}
 	
-	//Vanaebutt Skin
-	if(target.hasStatusEffect("Vanae Markings")) output2(" Swirls of " + target.skinAccent + " trace brighter accents across much of your form.");
-	//Body Markings
-	if(target.hasStatusEffect("Shark Markings"))
+	// Body Markings
+	if(target.hasAccentMarkings())
 	{
 		var bodyPts:Array = ["back", "arms", (target.legCount == 1 ? target.legNoun() : target.legsNoun())];
 		if(target.hasTail()) bodyPts.push(target.tailsDescript(true));
 		
-		output2(" You have");
-		switch(target.statusEffectv1("Shark Markings"))
+		switch(target.accentMarkings())
 		{
-			case 1: output2(" " + target.skinAccent + " stripes running all across your body; your " + CompressToList(bodyPts) + "."); break;
-			case 2: output2(" " + target.skinAccent + " spots dotting every part of your body; your " + CompressToList(bodyPts) + "."); break;
-			default: output2(" an off-color blotch on the frontal part of your body, covering your chin, " + target.chestDesc() + ", belly and inner thighs in " + target.skinAccent + "."); break;
+			// Vanaebutt Skin
+			case 0: output2(" Swirls of " + target.skinAccent + " trace brighter accents across much of your form."); break;
+			// Others
+			case 1: output2(" You have " + target.skinAccent + " stripes running all across your body; your " + CompressToList(bodyPts) + "."); break;
+			case 2: output2(" You have " + target.skinAccent + " spots dotting every part of your body; your " + CompressToList(bodyPts) + "."); break;
+			case 3: output2(" You have an off-color blotch on the frontal part of your body, covering your chin, " + target.chestDesc() + ", belly and inner thighs in " + target.skinAccent + "."); break;
+			case 4: output2(" You have speckles of " + target.skinAccent + " covering your body."); break;
+			case 5: output2(" You have dapples of " + target.skinAccent + " covering your body."); break;
+			case 6: output2(" You have " + target.skinAccent + " piebald markings covering your body."); break;
 		}
+	}
+	// Freckles
+	if(target.hasSkinFlag(GLOBAL.FLAG_FRECKLED))
+	{
+		if(target.hasFur() || target.hasFeathers()) output2(" Beneath your body fur, f");
+		else output2(" F");
+		output2("reckles dot various parts of your skin.");
 	}
 	
 	// Cum Splattered!

@@ -611,9 +611,9 @@ public function getASloppyGrillBLowjorb(fromTrade:Boolean):void
 		if(pheromones) output("the smell of your potent pheromones");
 		else if(pc.hasStatusEffect("Sweaty")) output("the smell of your sweat-covered body");
 		else output(pc.mf("the smell of your masculine musk","your scent"));
-		output(". He lets loose on your slit and slobbers all around it, using his doggy tongue to thoroughly polish its [pc.skinFurScaleColor] surface. Your erection");
+		output(". He lets loose on your slit and slobbers all around it, using his doggy tongue to thoroughly polish its [pc.skinFurScalesColor] surface. Your erection");
 		if(pc.totalCocks() == 1) output(" begins");
-		else output(" begins");
+		else output("s begin");
 		output(" to grow, ");
 		if(pc.cockTotal() == 1) output("the tip");
 		else output("their tips");
@@ -627,7 +627,7 @@ public function getASloppyGrillBLowjorb(fromTrade:Boolean):void
 		if(pheromones) output("the smell of your potent pheromones");
 		else if(pc.hasStatusEffect("Sweaty")) output("the smell of your sweat-covered body");
 		else output(pc.mf("the smell of your masculine musk","your scent"));
-		output(". Then, he lets his tongue loose on the [pc.sheath " + x + "], slobbering all over its [pc.skinFurScaleColor] surface. Your erection begins to grow, expanding the sheath with the increasing volume of your cock, but the tip has yet to poke out of it. Only when it’s entirely covered in a warm, glistening glaze does Gil prod its insides, using his tongue to masterfully unwrap your [pc.cock " + x + "] from its now tight container. The more he licks, the larger your erection grows, and the more of your [pc.cockColor " + x + "] dick is exposed to the open air. When your cock is as big as it’s gonna get, the dog-morph gives your sheath one final lick and begins to pull away. He drags his large, floppy tongue along the underside of your dick as he moves back, trailing from base to tip.");
+		output(". Then, he lets his tongue loose on the [pc.sheath " + x + "], slobbering all over its [pc.skinFurScalesColor] surface. Your erection begins to grow, expanding the sheath with the increasing volume of your cock, but the tip has yet to poke out of it. Only when it’s entirely covered in a warm, glistening glaze does Gil prod its insides, using his tongue to masterfully unwrap your [pc.cock " + x + "] from its now tight container. The more he licks, the larger your erection grows, and the more of your [pc.cockColor " + x + "] dick is exposed to the open air. When your cock is as big as it’s gonna get, the dog-morph gives your sheath one final lick and begins to pull away. He drags his large, floppy tongue along the underside of your dick as he moves back, trailing from base to tip.");
 	}
 	//else:
 	else

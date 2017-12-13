@@ -238,7 +238,7 @@ package classes.Characters
 				output("One of her attacks strikes true!");
 				applyDamage(damageRand(meleeDamage(), 5), this, target, "minimal");
 			}
-			else output("She doesn't manage to connect!");
+			else output("She doesn’t manage to connect!");
 		}
 		
 		private function marikHit(target:Creature):void

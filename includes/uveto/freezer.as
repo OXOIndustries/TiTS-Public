@@ -428,7 +428,7 @@ public function hanaSexBackroomII():void
 		if (pc.hasCock() && pc.isMasculine())
 		{
 			output("\n\nHana practically chirps when you got down to business and even now, with you grinding your [pc.thigh] against her she has her palm squeezing into the [pc.cockhead], teasing it with her fuzz-gloved fingers and getting a curious feel for it all");
-			if (pc.cocks.length > 1) output(" while dutifully ignoring the rest of your [pc.multicock]");
+			if (pc.cocks.length > 1) output(" while dutifully ignoring the rest of your [pc.multiCocks]");
 			output(".");
 		}
 		else if (pc.hasCock() && pc.isFeminine())

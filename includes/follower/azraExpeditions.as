@@ -2774,7 +2774,7 @@ public function followAzraForFirstTimeBango():void
 	else if(pc.tallness < 8*12)
 	{
 		output("\n\nAzra’s cock is big enough that it nearly stabs you in the chest. The bulbous, shiny crown is ringed by a tiny tentacles that stroke and slither across the water-moistened flesh.");
-		if(pc.biggestTitSize() >= 1) output(" One curls out to caress your [pc.breastDescript], leaving you inexplicably flushed in its wake.");
+		if(pc.biggestTitSize() >= 1) output(" One curls out to caress your [pc.biggestBreastDescript], leaving you inexplicably flushed in its wake.");
 		output(" Just beneath is a smooth, hairless ballsack, stretched taut by the two softball-sized testes inside. She’s got a pussy somewhere back there too. You can smell a hint of it lingering under the scent of soap and suula. It’s a musky, sweetened with a vaguely peachy aroma that has you licking your lips.");
 		if(pc.isTreated()) output(" By pheromones alone, you know she’s a very fertile girl, and absolutely dripping with consent. She wants you. She wants you bad.");
 		output("\n\nYou are so distracted by the sexual cornucopia in front of you that you don’t even have time to look at the pillowy mountains above, capped by the golden points of her nipples, not until their incessant jiggling draws your eyes upward. The journey across her belly is delightful, revealing a middle gently padded by years of well-lived yet unmarred by blemish. Then there’s Azra’s underboob; a titanic shelf with waterfalls of pure water spilling through the cleavage. It’s gorgeous.");

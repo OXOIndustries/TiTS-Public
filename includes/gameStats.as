@@ -196,7 +196,7 @@ public function statisticsScreen(showID:String = "All"):void
 		}
 		output2(" " + GLOBAL.SKIN_TYPE_NAMES[pc.skinType]);
 		output2("\n<b>* Skin Tone:</b> " + StringUtil.toDisplayCase(pc.skinTone));
-		if(pc.hasAccentMarkings()) output2(", " + StringUtil.toDisplayCase(pc.skinAccent) + " Markings");
+		if(pc.hasAccentMarkings()) output2("\n<b>* Accent Color:</b> " + StringUtil.toDisplayCase(pc.skinAccent) + " " + StringUtil.toDisplayCase(pc.getAccentMarking(pc.accentMarkings())));
 		if(pc.hasPartFur() || pc.hasPartFeathers()) output2("\n<b>* Fur Color:</b> " + StringUtil.toDisplayCase(pc.furColor));
 		if(pc.hasPartScales()) output2("\n<b>* Scale Color:</b> " + StringUtil.toDisplayCase(pc.scaleColor));
 		if(pc.hasPartChitin()) output2("\n<b>* Chitin Color:</b> " + StringUtil.toDisplayCase(pc.chitinColor()));
@@ -3070,13 +3070,6 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["SAENDRA_XPACK1_CREDITOFFER"] == 2) output2(", Paid for the <i>Phoenix</i>, Completed");
 			}
 			
-			if(flags["SAENDRA_XPACK1_CALLGIRLSTATE"] != undefined)
-			{
-				output2("\n<b>* " + (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "Call Girl" : "Zheniya") + ":</b> Met her");
-				if(flags["SAENDRA_XPACK1_CALLGIRLSTATE"] >= 2) output2(", Paid her for sex");
-				if(flags["ZIL_CALLGIRL_PREG"] != undefined && flags["ZIL_CALLGIRL_GESTATION"] != undefined) output2("\n<b>* " + (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "Call Girl" : "Zheniya") + ", Days Pregnant:</b> " + Math.floor(zilCallGirlPregTime() / 60 / 24));
-				if(flags["ZIL_CALLGIRL_SEXED"] != undefined && flags["ZIL_CALLGIRL_SEXED"] > 0) output2("\n<b>* " + (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "Call Girl" : "Zheniya") + ", Times Sexed:</b> " + zilCallGirlSexed());
-			}
 			if(flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] != undefined)
 			{
 				output2("\n<b>* Pirate, Merc Guard:</b>");
@@ -3404,6 +3397,16 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["KNOWS_ABOUT_SHELLY_CUM_REACTION"] != undefined) output2(", Semen makes her eggs multiply!");
 					if(flags["ASSISTED_SHELLY_WITH_LAYING"] != undefined) output2("\n<b>* Shelly, Times Assisted Her Egg Laying:</b> " + flags["ASSISTED_SHELLY_WITH_LAYING"]);
 					if(flags["ASSISTED_SHELLY_WITH_INTENSE_LAYING"] != undefined) output2("\n<b>* Shelly, Intense Egg Laying Sessions, Total:</b> " + flags["ASSISTED_SHELLY_WITH_INTENSE_LAYING"]);
+				}
+				// Zheniya
+				if(flags["SAENDRA_XPACK1_CALLGIRLSTATE"] != undefined)
+				{
+					var zheniyaName:String = (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "Call Girl" : "Zheniya");
+					
+					output2("\n<b>* " + zheniyaName + ":</b> Met her");
+					if(flags["SAENDRA_XPACK1_CALLGIRLSTATE"] >= 2) output2(", Paid her for sex");
+					if(flags["ZIL_CALLGIRL_PREG"] != undefined && flags["ZIL_CALLGIRL_GESTATION"] != undefined) output2("\n<b>* " + zheniyaName + ", Days Pregnant:</b> " + Math.floor(zilCallGirlPregTime() / 60 / 24));
+					if(flags["ZIL_CALLGIRL_SEXED"] != undefined && flags["ZIL_CALLGIRL_SEXED"] > 0) output2("\n<b>* " + zheniyaName + ", Times Sexed:</b> " + zilCallGirlSexed());
 				}
 				variousCount++;
 			}
@@ -5983,7 +5986,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				else output2("Cave");
 				output2("</u></b>");
-				var coldKorgiName:String = (flags["ULA_9999"] != undefined ? "Ula" : "Cold Korgonne");
+				var coldKorgiName:String = (flags["MET_ULA"] != undefined ? "Ula" : "Cold Korgonne");
 				output2("\n<b>* " + coldKorgiName + ":</b> Met her");
 				if(flags["ULA_SAVED"] != undefined)
 				{
@@ -6188,14 +6191,14 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b><u>Inmate Visitations</u></b>");
 				if(flags["TAMTAM_PRISONED"] != undefined) output2("\n<b>* Tam, Times Sexed:</b> " + flags["TAMTAM_PRISONED"]);
 				if(flags["TAMTAM_GAST_PREG_TIMER"] != undefined) output2("\n<b>* Tam, Days Pregnant:</b> " + flags["TAMTAM_GAST_PREG_TIMER"]);
-				if(flags["TAMTAM_TOTAL_KIDS"] > 0)  output2("\n<b>* Tam, Total Kids:</b> " + flags["TAMTAM_TOTAL_KIDS"]);
+				if(flags["TAMTAM_TOTAL_KIDS"] > 0) output2("\n<b>* Tam, Total Kids:</b> " + flags["TAMTAM_TOTAL_KIDS"]);
 				if(flags["KASKA_PRISONED"] != undefined) output2("\n<b>* Kaska, Times Sexed:</b> " + flags["KASKA_PRISONED"]);
 				if(flags["KHORGAN_PRISONED"] != undefined) output2("\n<b>* Khorgan, Times Sexed:</b> " + flags["KHORGAN_PRISONED"]);
 				if(flags["KHORGAN_GAST_PREG_TIMER"] != undefined) output2("\n<b>* Khorgan, Days Pregnant:</b> " + flags["KHORGAN_GAST_PREG_TIMER"]);
-				if(flags["KHORGAN_TOTAL_KIDS"] > 0)  output2("\n<b>* Khorgan, Total Kids:</b> " + flags["KHORGAN_TOTAL_KIDS"]);
+				if(flags["KHORGAN_TOTAL_KIDS"] > 0) output2("\n<b>* Khorgan, Total Kids:</b> " + flags["KHORGAN_TOTAL_KIDS"]);
 				if(flags["SAM_PRISONED"] != undefined) output2("\n<b>* Sam, Times Sexed:</b> " + flags["SAM_PRISONED"]);
 				if(flags["SAM_GAST_PREG_TIMER"] != undefined) output2("\n<b>* Sam, Days Pregnant:</b> " + flags["SAM_GAST_PREG_TIMER"]);
-				if(flags["SAM_TOTAL_KIDS"] > 0)  output2("\n<b>* Sam, Total Kids:</b> " + flags["SAM_TOTAL_KIDS"]);
+				if(flags["SAM_TOTAL_KIDS"] > 0) output2("\n<b>* Sam, Total Kids:</b> " + flags["SAM_TOTAL_KIDS"]);
 				variousCount++;
 			}
 		}
@@ -6391,6 +6394,14 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["KQ2_KARA_SACRIFICE"] != undefined) output2(", Inactive");
 			if(flags["KQ2_BETRAYED_KARA"] != undefined) output2(", <i>Whereabouts unknown</i>");
 			roamCount++;
+		}
+		// Kattom
+		if(flags["KATTOM_MOVE_CD"] != undefined)
+		{
+			var kattomName:String = (flags["MET_KATTOM"] == undefined ? "Short Kaithrit" : "Kattom Osgood");
+			
+			output2("\n<b>* " + kattomName + ":</b> " + (flags["MET_KATTOM"] == undefined ? "Seen" : "Met") + " him");
+			if(flags["KATTOM_LOCATION"] != undefined && rooms[flags["KATTOM_LOCATION"]].hasFlag(GLOBAL.HAZARD)) output2("\n<b>* " + kattomName + ", Last Known Location:</b> " + getPlanetName(flags["KATTOM_LOCATION"]) + " for " + prettifyMinutes(GetGameTimestamp() - flags["KATTOM_MOVE_CD"]));
 		}
 		// Kirobutts!
 		if(flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && flags["KIRO_BAR_MET"] != undefined)

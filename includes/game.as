@@ -124,7 +124,7 @@ public function disableExploreEvents():Boolean
 	if (flags["KQ2_NUKE_STARTED"] >= 0 && flags["KQ2_NUKE_EXPLODED"] == undefined) return true;
 	// Kashima Duration
 	if (flags["KASHIMA_STATE"] > 0 && flags["KASHIMA_STATE"] < 2) return true;
-	//Federation Quest
+	// Federation Quest
 	if (flags["FEDERATION_QUEST"] > 0 && flags["FEDERATION_QUEST"] < 3) return true;
 	
 	return false;
@@ -211,7 +211,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		output("\n\n<b>You’re still in combat, you ninny!</b>");
 	if(pc.hasStatusEffect("Temporary Nudity Cheat"))
 		output("\n\n<b>BUG REPORT: TEMP NUDITY STUCK ON.</b>");
-	//Standard buttons:
+	
 	clearMenu(false);
 	clearBust();
 	inSceneBlockSaving = false;
@@ -219,9 +219,20 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	//Inventory shit
 	itemScreen = mainGameMenu;
 	lootScreen = inventory;
+	
+	// Dynamic room functions on enter
+	if(rooms[currentLocation].runOnEnter != undefined) {
+		if(rooms[currentLocation].runOnEnter()) return;
+		//If in a hazard area
+		if(rooms[currentLocation].hasFlag(GLOBAL.HAZARD) && !disableExploreEvents())
+		{
+			if(pattonIsHere()) pattonAppearance();
+		}
+	}
+	
+	//Standard buttons:
 	addButton(13, "Inventory", inventory);
 	//Other standard buttons
-	
 	if(pc.lust() < 33)
 	{
 		if(canArouseSelf()) addButton(8, "Arousal", arousalMenu);
@@ -248,19 +259,9 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		else if(canSleep()) addButton(9, "Sleep", sleep);
 		else addDisabledButton(9, "Sleep", "Sleep", "You can’t seem to sleep here at the moment....");
 	}
-		
 	addButton(14, "Codex", showCodex);
 	
 	//Display movement shits - after clear menu for extra options!
-	if(rooms[currentLocation].runOnEnter != undefined) {
-		//If in a hazard area
-		if(rooms[currentLocation].hasFlag(GLOBAL.HAZARD) && !disableExploreEvents())
-		{
-			if(pattonIsHere()) pattonAppearance();
-		}
-		if(rooms[currentLocation].runOnEnter()) return;
-	}
-	
 	//Turn off encounters since you're already here. Moving clears this.
 	flags["ENCOUNTERS_DISABLED"] = 1;
 
@@ -335,6 +336,8 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		if (!isNavDisabled(NAV_IN_DISABLE)) addButton(5, "Enter Ship", move, "SHIP INTERIOR");
 		else addDisabledButton(5, "Enter Ship", rooms[currentLocation].inText, "You can’t enter your ship here!");
 	}
+	
+	// Dynamic room functions after enter
 	if (rooms[currentLocation].runAfterEnter != null) rooms[currentLocation].runAfterEnter();
 	
 	flags["NAV_DISABLED"] = undefined; // Clear disabled directions.
@@ -2522,8 +2525,13 @@ public function variableRoomUpdateCheck():void
 		{
 			if(flags["ULA_LEAVE_TIMER"] == undefined || flags["ULA_LEAVE_TIMER"] + 60*24*2 > GetGameTimestamp()) rooms[flags["ULA_CAVE"]].addFlag(GLOBAL.NPC);
 			else rooms[flags["ULA_CAVE"]].removeFlag(GLOBAL.NPC);
+			rooms["KORGII B14"].removeFlag(GLOBAL.OBJECTIVE);
 		}
-		else rooms[flags["ULA_CAVE"]].removeFlag(GLOBAL.NPC);
+		else
+		{
+			rooms[flags["ULA_CAVE"]].removeFlag(GLOBAL.NPC);
+			rooms["KORGII B14"].addFlag(GLOBAL.OBJECTIVE);
+		}
 	}
 	else
 	{
@@ -2531,6 +2539,7 @@ public function variableRoomUpdateCheck():void
 		rooms["UVIP D22"].removeFlag(GLOBAL.NPC);
 		rooms["UVIP J18"].removeFlag(GLOBAL.NPC);
 		rooms["UVGR K20"].removeFlag(GLOBAL.NPC);
+		rooms["KORGII B14"].removeFlag(GLOBAL.OBJECTIVE);
 	}
 	
 	/* VESPERIA / CANADIA STATION */
