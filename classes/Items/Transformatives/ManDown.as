@@ -31,9 +31,9 @@ package classes.Items.Transformatives
 	import classes.Util.InCollection;
 	import classes.Util.RandomInCollection;
 	
-	public class TwinkEase extends ItemSlotClass
+	public class ManDown extends ItemSlotClass
 	{
-		public function TwinkEase()
+		public function ManDown()
 		{
 			_latestVersion = 1;
 			
