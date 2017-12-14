@@ -23,6 +23,7 @@ package classes.Characters
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.*; 
 	import classes.Engine.Interfaces.output;
+	import classes.StringUtil;
 	
 	/**
 	 * ...
@@ -224,7 +225,7 @@ package classes.Characters
 		
 		private function marikShoot(target:Creature):void
 		{
-			output("Marik braces her machine gun against her shoulder and squeezes the trigger in the direction of [target.combatName], letting loose a volley of fire. ");
+			output("Marik braces her machine gun against her shoulder and squeezes the trigger in the direction of " + target.getCombatName() + ", letting loose a volley of fire. ");
 			var hits:int = 2;
 			for(var i:int = 0; i < 2; i++) if(rangedCombatMiss(this, target)) hits--;
 			if(hits == 2)
@@ -243,7 +244,7 @@ package classes.Characters
 		
 		private function marikHit(target:Creature):void
 		{
-			output("Marik leaps forward, swinging her massive hammer over her head and down on [target.combatName] with crushing force");
+			output("Marik leaps forward, swinging her massive hammer over her head and down on " + target.getCombatName() + " with crushing force");
 			
 			if (combatMiss(this, target))
 			{

@@ -23,6 +23,7 @@ package classes.Characters
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.*; 
 	import classes.Engine.Interfaces.output;
+	import classes.StringUtil;
 	
 	/**
 	 * ...
@@ -226,14 +227,14 @@ package classes.Characters
 		
 		private function lieveShoot(target:Creature):void
 		{
-			output("Lieve shoulders her shotgun and pops off a shot at [target.combatName] with both barrels! ");
+			output("Lieve shoulders her shotgun and pops off a shot at " + target.getCombatName() + " with both barrels! ");
 			var hits:int = 2;
 			for(var i:int = 0; i < 2; i++) if(rangedCombatMiss(this, target)) hits-=1;
 			
-			if(hits == 0) output("[target.CombatName] manages to evade the blasts!");
+			if(hits == 0) output(StringUtil.capitalize(target.getCombatName(), false) + " manages to evade the blasts!");
 			else
 			{
-				output("She lands "+hits+" hit" + (hits > 1 ? "s" : "") + " on [target.combatName]!");
+				output("She lands "+hits+" hit" + (hits > 1 ? "s" : "") + " on " + target.getCombatName() + "!");
 				for(i = 0; i < hits; i++) applyDamage(rangedDamage().multiply((rand(26)+90)*.01), this, target, "minimal");
 			}
 		}
@@ -254,7 +255,7 @@ package classes.Characters
 				if(alliedCreatures[x].HP() > 0 && alliedCreatures[x].HPQ() < target.HPQ() && alliedCreatures[x] != this)
 					target = alliedCreatures[x];
 			
-			output("<i>“Come on, keep your head in the game!”</i> Lieve shouts, grabbing [target.combatName] by the shoulder. <i>“All of you! Fight for you lives. For your country. For the Federation!”</i>");
+			output("<i>“Come on, keep your head in the game!”</i> Lieve shouts, grabbing " + target.getCombatName() + " by the shoulder. <i>“All of you! Fight for you lives. For your country. For the Federation!”</i>");
 			output("\n\n<i>“FOR THE FEDERATION!”</i> the reply comes, from every red myr’s mouth.");
 			output("\n<b>Your party has been healed</b>");
 			for (x = 0; x < alliedCreatures.length; x++) if(alliedCreatures[x].HP() > 0) alliedCreatures[x].HP(target == alliedCreatures[x] ? 75 : 40);

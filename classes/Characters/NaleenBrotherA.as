@@ -301,7 +301,7 @@
 		//Zilmusk - used 2x as often as other moves.
 		public function zilmuskPowersActivate(target:Creature):void
 		{
-			output("Pulling a bottle from his bandolier, the smiling naleen brother throws it at [target.combatName]! It shatters to release a cloud of");
+			output("Pulling a bottle from his bandolier, the smiling naleen brother throws it at " + target.getCombatName() + "! It shatters to release a cloud of");
 			if(target is Azra) output(" amber-tinted honey scent, by the faint whiff you catch. Azra seems rather enamored by it, her nostrils flaring excitedly.");
 			else output("... sweet... sweet... whatever it is, it smells like honey and sex mixed together in a pot. Your blood burns from the delightful scent.");
 			applyDamage(new TypeCollection( { tease: 10 + rand(6) } ), this, target, "minimal");

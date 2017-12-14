@@ -23,6 +23,7 @@ package classes.Characters
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.*; 
 	import classes.Engine.Interfaces.output;
+	import classes.StringUtil;
 	
 	/**
 	 * ...
@@ -266,7 +267,7 @@ package classes.Characters
 			
 			if(rangedWeapon is MyrRifle)
 			{
-				output(this.getCombatName() + " takes aim with her bolt rifle, popping off a shot at [target.combatName]. The bullet ");
+				output(StringUtil.capitalize(this.getCombatName(), false) + " takes aim with her bolt rifle, popping off a shot at " + target.getCombatName() + ". The bullet ");
 			
 				if (rangedCombatMiss(this, target)) 
 				{
@@ -292,7 +293,7 @@ package classes.Characters
 			}
 			else
 			{
-				output(this.getCombatName() + " thrusts out her big-bore revolver and snaps off a pair of quick shots at [target.combatName]. ");
+				output(StringUtil.capitalize(this.getCombatName(), false) + " thrusts out her big-bore revolver and snaps off a pair of quick shots at " + target.getCombatName() + ". ");
 			
 				if (rangedCombatMiss(this, target)) 
 				{
@@ -339,17 +340,17 @@ package classes.Characters
 		
 		private function myrRemnantReload(target:Creature):void
 		{
-			output(this.getCombatName() + " finds her weapon’s out of ammo, and has to duck down to reload!");
+			output(StringUtil.capitalize(this.getCombatName(), false) + " finds her weapon’s out of ammo, and has to duck down to reload!");
 			createStatusEffect("Riposting");
 		}
 		
 		private function myrRemnantTrunch(target:Creature):void
 		{
-			output(this.getCombatName() + " charges [target.combatName], swinging wildly with a crude club! ");
+			output(StringUtil.capitalize(this.getCombatName(), false) + " charges " + target.getCombatName() + ", swinging wildly with a crude club! ");
 			
 			if (combatMiss(this, target))
 			{
-				output("[target.CombatName] manage" + (target is PlayerCharacter ? "" : "s") + " to dodge.");
+				output(StringUtil.capitalize(target.getCombatName(), false) + " manage" + (target is PlayerCharacter || target.isPlural ? "" : "s") + " to dodge.");
 			}
 			else
 			{
@@ -366,7 +367,7 @@ package classes.Characters
 		{
 			aimMod += 20;
 			
-			output(this.getCombatName() + " shoulders her rifle and takes careful aim, lining up a shot on [target.combatName]. When she finally squeezes the trigger, ");
+			output(StringUtil.capitalize(this.getCombatName(), false) + " shoulders her rifle and takes careful aim, lining up a shot on " + target.getCombatName() + ". When she finally squeezes the trigger, ");
 			
 			if (rangedCombatMiss(this, target)) 
 			{
@@ -375,7 +376,7 @@ package classes.Characters
 			}
 			else
 			{
-				output("[target.combatName] get" + (target is PlayerCharacter ? "" : "s") + " hit by a deadly shot!");
+				output(StringUtil.capitalize(target.getCombatName(), false) + " get" + (target is PlayerCharacter || target.isPlural ? "" : "s") + " hit by a deadly shot!");
 				
 				createStatusEffect("Quaramarta!");
 				var damage:TypeCollection = rangedDamage();
@@ -397,7 +398,7 @@ package classes.Characters
 		
 		private function myrRemnantGrenade(hostileCreatures:Array):void
 		{
-			output(this.getCombatName() + " takes something off her belt and affixes it to her rifle's barrel. She aims it your way and shoots it off, sending something big and black hurling your way! It impacts the ground behind you and explodes, sending a hail of shrapnel over your squad!");
+			output(StringUtil.capitalize(this.getCombatName(), false) + " takes something off her belt and affixes it to her rifle's barrel. She aims it your way and shoots it off, sending something big and black hurling your way! It impacts the ground behind you and explodes, sending a hail of shrapnel over your squad!");
 			
 			for (var x:int = 0; x < hostileCreatures.length; x++) if(hostileCreatures[x].HP() > 0)
 			{

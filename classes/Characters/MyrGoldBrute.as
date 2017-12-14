@@ -24,6 +24,7 @@ package classes.Characters
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.*; 
 	import classes.Engine.Interfaces.output;
+	import classes.StringUtil;
 	
 	/**
 	 * ...
@@ -262,10 +263,10 @@ package classes.Characters
 		
 		private function myrBruteShoot(target:Creature):void
 		{
-			output(this.getCombatName() + " fires her shotgun from around her shield, blasting [target.combatName] with a hail of buckshot! ");
+			output(StringUtil.capitalize(this.getCombatName(), false) + " fires her shotgun from around her shield, blasting " + target.getCombatName() + " with a hail of buckshot! ");
 			if (rangedCombatMiss(this, target)) 
 				{
-					output("[target.CombatName] manage" + (target is PlayerCharacter ? "" : "s") + " to dodge.");
+					output(StringUtil.capitalize(target.getCombatName(), false) + " manage" + (target is PlayerCharacter || target.isPlural ? "" : "s") + " to dodge.");
 					kGAMECLASS.fedQuestCoverDamage(15);
 				}
 				else
@@ -286,22 +287,22 @@ package classes.Characters
 		
 		private function myrBruteWall(alliedCreatures:Array):void
 		{
-			output(this.getCombatName() + " slams her shield into the ground, using the towering metal bulwark to shield not only herself, but her allies as well!");
+			output(StringUtil.capitalize(this.getCombatName(), false) + " slams her shield into the ground, using the towering metal bulwark to shield not only herself, but her allies as well!");
 			output("\n<b>The enemy party’s evasion has been boosted!</b>");
 			for (var x:int = 0; x < alliedCreatures.length; x++) alliedCreatures[x].createStatusEffect("Brute Wall", 3, 0, 0, 0, false, "DefenseUp", "The Remnant Brute’s shield is providing cover!\nEvasion increased 20%.", true, 0, 0xFFFFFF);
 		}
 		
 		private function myrBruteBash(target:Creature):void
 		{
-			output(this.getCombatName() + " steps forward, shield facing front, and lashes out with the blunt end. ");
+			output(StringUtil.capitalize(this.getCombatName(), false) + " steps forward, shield facing front, and lashes out with the blunt end. ");
 			
 			if (combatMiss(this, target))
 			{
-				output("[target.CombatName] dodge" + (target is PlayerCharacter ? "" : "s") + " back, just in time!");
+				output(StringUtil.capitalize(target.getCombatName(), false) + " dodge" + (target is PlayerCharacter || target.isPlural ? "" : "s") + " back, just in time!");
 			}
 			else
 			{
-				output("The shield slams [target.combatName] right in the face, sending " + (target is PlayerCharacter ? "you" : "her") + " stumbling back.");
+				output("The shield slams " + target.getCombatName() + " right in the face, sending " + (target is PlayerCharacter ? "you" : "her") + " stumbling back.");
 				
 				var damage:TypeCollection = meleeDamage();
 				damage.multiply(1.1);
@@ -316,7 +317,7 @@ package classes.Characters
 		
 		private function myrBruteGrenade(hostileCreatures:Array):void
 		{
-			output(this.getCombatName() + " pulls a grenade off her belt and hurls it your way. Rather than exploding like a frag grenade, it starts smelting, hurling burning embers at everyone around you!");
+			output(StringUtil.capitalize(this.getCombatName(), false) + " pulls a grenade off her belt and hurls it your way. Rather than exploding like a frag grenade, it starts smelting, hurling burning embers at everyone around you!");
 			
 			for (var x:int = 0; x < hostileCreatures.length; x++) if(hostileCreatures[x].HP() > 0)
 			{

@@ -23,6 +23,7 @@ package classes.Characters
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.*; 
 	import classes.Engine.Interfaces.output;
+	import classes.StringUtil;
 	
 	/**
 	 * ...
@@ -230,20 +231,20 @@ package classes.Characters
 		{
 			if(rand(3) == 0)
 			{
-				output("[attacker.CombatName] braces her rifle against her shoulder and starts squeezing the trigger as fast as she can, laying down a volley of shots at [target.combatName]. ");
+				output(StringUtil.capitalize(this.getCombatName(), false) + " braces her rifle against her shoulder and starts squeezing the trigger as fast as she can, laying down a volley of shots at " + target.getCombatName() + ". ");
 				var hits:int = 3;
 				for(var i:int = 0; i < 3; i++) if(rangedCombatMiss(this, target)) hits-=1;
 				
 				if(hits == 0) output("Her entire barrage goes wide!");
 				else
 				{
-					output("She drives [target.combatName] back with the assault!");
+					output("She drives " + target.getCombatName() + " back with the assault!");
 					for(i = 0; i < hits; i++) applyDamage(rangedDamage().multiply((rand(16)+65)*.01), this, target, "minimal");
 				}
 			}
 			else
 			{
-				output("[attacker.CombatName] takes aim with her rifle and squeezes off a few shots at [target.combatName], ");
+				output(StringUtil.capitalize(this.getCombatName(), false) + " takes aim with her rifle and squeezes off a few shots at " + target.getCombatName() + ", ");
 				if(rangedCombatMiss(this, target)) output("but her shots go wide.");
 				else
 				{
@@ -255,17 +256,17 @@ package classes.Characters
 		
 		private function myrCommandoReload(target:Creature):void
 		{
-			output("You hear a meaty <b>click!</b> from [attacker.combatName]’s rifle. She curses and ducks behind cover, pulling a stripper clip out of her belt and ramming bullets into the side of her rifle.");
+			output("You hear a meaty <b>click!</b> from " + this.getCombatName() + "’s rifle. She curses and ducks behind cover, pulling a stripper clip out of her belt and ramming bullets into the side of her rifle.");
 			createStatusEffect("Riposting");
 		}
 		
 		private function myrCommandoAxe(target:Creature):void
 		{
-			output("[attacker.CombatName] lunges out of cover when [target.combatName] gets too close, swinging her handaxe in a brutal overhead blow! ");
+			output(StringUtil.capitalize(this.getCombatName(), false) + " lunges out of cover when " + target.getCombatName() + " gets too close, swinging her handaxe in a brutal overhead blow! ");
 			
 			if (combatMiss(this, target))
 			{
-				output("[target.CombatName] manages to block the strike!");
+				output(StringUtil.capitalize(target.getCombatName(), false) + " manages to block the strike!");
 			}
 			else
 			{
