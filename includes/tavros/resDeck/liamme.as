@@ -403,6 +403,9 @@ public function liammeSexMenu():void
 	if(!pc.isTaur() && !pc.isNaga()) addButton(2,"Ride Cock",rideLiammesSuperGayCock,undefined,"Ride Cock","Suck </b>and<b> ride Liamme’s puppy cock!");
 	else addDisabledButton(2,"Ride Cock","Ride Cock","This scene does not support nagas or tauric creatures.");
 
+	if(pc.hasHardLightEquipped()) addButton(3,"PitchStrapon",straponLiammipoo,undefined,"PitchStrapon","Give Liamme a good ol' fashioned pegging with your hardlight strapon!");
+	else addDisabledButton(3,"PitchStrapon","PitchStrapon","Requires hardlight strapon.");
+
 	addButton(14,"Back",backToLiammeMain);
 }
 
@@ -712,6 +715,122 @@ public function getLiammePoundedEpilogue():void
 	processTime(80+rand(20));
 	applyLiamDisable();
 	IncrementFlag("SEXED_LIAMME");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function straponLiammipoo():void
+{
+	clearOutput();
+	showLiamme(true);
+	author("HugsAlright");	
+	output("You grin amidst the flurry of Liamme’s eager lips when you feel his fuzzy hands work their way over your body.");
+	//moreThanPanties: 
+	if(!pc.isCrotchExposedByArmor()) 
+	{
+		output(" He grabs at all your clothes, gradually pulling them away until all that’s left is your [pc.lowerundergarment], greedy, fluffy fingers ");
+		if(pc.hasCock()) output("grasping at your package");
+		else if(pc.hasVagina()) 
+		{
+			output("digging into your still-clothed cunt");
+			if(pc.hasVagina()) output("s");
+		}
+		else output("grabbing at your crotch");
+		output(".");
+	}
+	else
+	{
+		if(pc.biggestTitSize() >= 1) 
+		{
+			output(" He grabs at your [pc.breast], groping your tits to his heart’s content until his greedy, fluffy fingers travel downwards to ");
+			if(pc.hasCock()) output("grasp at your package");
+			else if(pc.hasVagina()) 
+			{
+				output("dig into your still-clothed cunt");
+				if(pc.hasVagina()) output("s");
+			}
+			else output("grab at your crotch");
+			output(". Whimpering at his touch, you decide you better get this femboy undressed too.");
+		}
+	}
+	output("\n\nYou let your hands reach down to the hem of his sweatshirt and pull up, interrupting your kiss for a single, painful moment as the garment pops over his big, twitching ears. With his bare, boyish chest revealed, you can move on to his ");
+	if(!liammeSkirted()) output("pants");
+	else output("skirt");
+
+	output(", pulling down while Liamme wiggles his wide hips to assist you. His ");
+	if(!liammeSkirted()) output("jeans");
+	else output("garment");
+	output(" and the frilly blue panties beneath ");
+	if(!liammeSkirted()) output("them");
+	else output("it");
+	output(" come down easily, allowing his stiffening red doggy-dong to pop free with a relieved sigh from its owner.");
+
+	output("\n\nWith both of you good and bare, and with your special undergarments ready to go, you fall back onto the mattress, landing on your ass with Liamme in your lap. The trappy ausar pulls back from the kiss, leaving you both fairly red-faced. He grins wide and reaches down to your [pc.lowerUndergarment]. <i>“So when are these coming off?”</i> he ask lustfully, tugging at your underwear.");
+
+	output("\n\n");
+	if(pc.isAss()) output("You smirk and tell him they don’t need to");
+	else output("You chuckle and tell him they don’t need to");
+	output(", then quickly reach down to your hip and hit a single button. Almost immediately, a big, glowing hardlight cock materializes between you and Lia, a blue glow shining across his smooth skin. The femboy smiles and blushes all the harder at the sight.");
+
+	//firstTime:
+	if(flags["STRAPONED_LIAMME"] == undefined)
+	{
+		output("\n\n<i>“Oh hey,”</i> he says, reaching down and wrapping his fur-covered digits around your holographic shaft, <i>“They sell these at Aliss’, right? Supposed to have some mental feedback or something?”</i>");
+		output("\n\nYou shudder at his touch and nod, though you guess your pleasurable response was more than enough to let him know.");
+		output("\n\n<i>“Cooool,”</i> he breathes, his eyes wide and locked on your glowing dick, <i>“So this my free trial before I go and buy one?”</i>");
+		output("\n\nBarely containing a few moans as he continues to jerk you off, you tell the trappy ausar ");
+		if(pc.isAss()) output("you’ll let him try it out");
+		else output("he’s welcome to try it out if he wants");
+		output(".");
+		output("\n\nLiamme smiles all the wider at that.");
+	}
+	else
+	{
+		output("\n\nAlmost instinctively at the sight of the familiar, holographic toy, Liamme wraps his fluffy digits around your light-dick and starts to stroke it.");
+	}
+	output(" He keeps a good grip on your simulated shaft and lifts himself from your lap, positioning himself above your holographic tip. You smirk up at the golden-furred buttslut and place your hands on his girly sides to keep him steady. Blushing down at that little gesture, Lia starts to lower himself onto your hardlight cockhead. He whimpers slightly when his pucker finally presses against your tip, fluffy blonde tail wagging erratically in every-which way. You help the ausar on his way and begin to push down on his hips until his tight tailhole starts to spread around your holo-dong.");
+
+	output("\n\nWhines filled with pleasure and pain fill the air as Liamme continues his trip down, stretching around your synthetic shaft until he starts to moan. The buttslut takes it all in one long, pleasurable descent, leaving himself panting and his asshole spasming around your strapon. You give him some time to adjust to your girth, letting him whimper and groan into your ears while you squeeze and grope at his ass.");
+
+	output("\n\nEventually, he manages to look up at you, his face looking as needy as ever. <i>“I-I think you can start moving now,”</i> he stutters, getting a tight grip on your shoulders and wiggling his hips.");
+
+	output("\n\nYou’re happy to oblige Liamme’s request and start to move your [pc.hips], gently thrusting into your lover and drawing a quiet series of moans from his lips. He leans into you, holding on tight as you gently bounce him in your lap, letting loose his pleasured tones right into your [pc.ear]. Before too long you start to speed up, thrusting deeper into Liamme’s ass, rubbing your holo-dong against his prostate until he’s leaking precum onto your bare stomach. He moans all the louder as you fuck him harder and harder, eventually pulling himself off your body and arching his back with pleasure.");
+
+	output("\n\nHis doggy-dong twitches with the need for release, and you want to give him some. You speed up the grinding of your hips, fucking your girly-boy lover’s ass until his tongue start to loll with lust. Every now and then you pause, thrusting into him to the hilt of your glowing tool and leaving your [pc.hips] there to slide against his, teasing his depths with your lengthy, hardlight shaft.");
+
+	output("\n\nIt’s all enough to make the cute blonde ausar cum. His climax beings with a high cry of pleasure, his tailhole clenching down around your holo-cock. At the same time, his own knotty prick spasms in the open, at just the perfect angle so that he cums up into your face, covering your cheeks, chin, and lips with his warm spooge. Girly hips buck forward against yours as Liamme’s orgasm ensues, his inner walls convulsing against your strapon sending a wave of blissful feedback to your brain. The sudden tightness you find yourself surrounded by finally leads you to your simulated peak, endorphins rushing to your mind and leaving you in a haze of pleasure while your [pc.hips] start to move on their own volition, thrusting hard up into Liamme.");
+
+	output("\n\nIt takes some time, but you both come down from your rapidly plateauing peaks, your chests left heaving and Liamme gazing tiredly into your eyes.");
+
+	output("\n\n<i>“So...”</i> he breathes between each rise and fall of his flat chest, <i>“That thing’s... pretty awesome... kinda tingly...”</i> He takes a deep breath and looks at your cum-covered face and smiles, <i>“Oh, hey, let me clean that up.”</i>");
+
+	output("\n\nWith that, he leans into your again, letting his hands run along your sweat-laden, chest and his flat ausar tongue loll from his mouth. He drags his oral organ across your cheeks and chin, licking up his own seed and cleaning you off until it all culminates into a tongue-filled, cum-flavoured kiss. You’re only able to enjoy that embrace for a short before you both collapse back onto the mattress into a pile of cuddly femboy. Reaching down to your side, you switch off your strapon, emptying Liamme with a single button, leaving him gaping and whimpering, but warm within your arms.");
+
+	output("\n\nThen, all there is to do is sleep away your afterglow with your lover.");
+
+	processTime(20);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",afterLiammeAnalStraponPoundage);
+}
+
+public function afterLiammeAnalStraponPoundage():void
+{
+	clearOutput();
+	showLiamme();
+	if(silly) author("HugsMostlyAlright");
+	else author("HugsAlright");
+	output("When you wake, you’re sprawled out across Liamme’s bed, a fuzzy feeling of pleasure still tingling in your loins. Turning your stiff neck in a few different directions, you see a familiar, happy blonde ausar pulling on his panties. You groan and stretch, and the commotion you make gets Lia’s attention, the femboy quickly turning towards you as he reaches for the rest of his clothes.");
+	output("\n\n<i>“Oh, you’re awake!”</i> He exclaims before leaning down and planting his lips right on your cheek. You smile at the little display of affection and sit yourself upright, yawning as you do so. <i>“Hey, uh, I gotta start getting ready for work soon,”</i> Liamme tells you, a look of disappointment on his face, <i>“But this was really fun, we should do it again sometime.”</i>");
+	output("\n\nLiamme’s face quickly returns to a grin, though less lascivious this time and more pleased, <i>“Mind walking me back to the plaza?”</i>");
+	if(pc.isMischievous()) output("\n\nYou tell him you think you have the time, your voice thick with sarcasm.");
+	else if(pc.isAss()) output("\n\nYou groan at the prospect of having to get up already, but oblige.");
+	else output("\n\nYou happily accept his proposition.");
+
+	//[Next] //Should return the PC to wherever the hell Liamme is.
+	processTime(80+rand(30));
+	IncrementFlag("SEXED_LIAMME");
+	applyLiamDisable();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
