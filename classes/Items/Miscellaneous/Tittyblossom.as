@@ -500,6 +500,8 @@
 					kGAMECLASS.output("\n\n(<b>Perk Lost: Perma-cute</b>)");
 					target.removePerk("Perma-cute");
 					target.modFem(10);
+					
+					kGAMECLASS.output("\n\n<i>It’s over!</i>");
 				}
 				//Cunt TF (requires no cunt)
 				// If PC uses 5+ times in 24 hours, and doesn't already have a vagina. Procs last in scene

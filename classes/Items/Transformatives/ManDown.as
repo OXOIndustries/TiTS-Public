@@ -44,13 +44,13 @@ package classes.Items.Transformatives
 			type = GLOBAL.PILL;
 			
 			shortName = "TwinkEase";
-			longName = "bundle of ‘Twink-ease’ spongecakes";
+			longName = "pack of ‘Twink-ease’";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
 			description = "a bundle of spongecakes called ‘Twink-ease’";
 			
-			tooltip = "With the success of JoyCo’s ‘Futazona’ transformative, they decided to further expand on edible gender-bending transformation products. This one is a pack of spongy junk-food cakes with nice, creamy filling, which happens to be full of body-altering nanomachines. A picture of a soft, twinkish boy is shown on the wrapper, giving a thumbs up with a speech bubble claiming ‘it really works!’. It guarantees that the user will retain or be pushed towards more boyish features while also accentuating their feminine ones. It’s pricier than ManUp or Estrobloom, however, due to the difficulty of balancing male and female hormones and gene-coding in such a way that wouldn’t be erroneous.\n\n<i>There’s a disclaimer that says its facial altering effects <b>could</b> be permanent with extended, abnormal usage.</i>";
+			tooltip = "With the success of JoyCo’s ‘Futazona’ transformative, JoyCo decided to further expand on edible gender-bending transformation products. This is a pack of spongy junk-food cakes with nice, creamy filling--which happens to be full of body-altering nanomachines. A picture of a soft, twinkish boy is shown on the wrapper, giving a thumbs up with a speech bubble claiming <i>‘it really works!’</i>. The package guarantees that the user will retain or be pushed towards more boyish features while also accentuating their feminine ones. It’s pricier than ManUp or Estrobloom, however, due to the difficulty of balancing male and female hormones and gene-coding in such a way that wouldn’t be erroneous.\n\n<i>There’s a disclaimer that says its facial altering effects <b>could</b> be permanent with extended, abnormal usage.</i>";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -65,7 +65,7 @@ package classes.Items.Transformatives
 			
 			kGAMECLASS.clearOutput();
 			author("Lenerator");
-			kGAMECLASS.showName("TWINK-\nEASE");
+			kGAMECLASS.showName("\nTWINK-EASE");
 			
 			if(target is PlayerCharacter)
 			{
@@ -170,8 +170,8 @@ package classes.Items.Transformatives
 				// there’s a way detailed at the end to counteract the lock on your face’s masculinity, and in doing so a new transformation is added to Estrobloom as an addition:
 				if(changes < changeLimit && doses >= 3 && target.femininity == nFem && !target.hasPerk("Perma-cute") && rand(3) == 0)
 				{
-					output("\n\nYou feel a tingle in your face after using the mod... And considering it already changed your face to how the box advertised, you’re a little worried it could turn the wrong direction into being too masculine or too feminine... But then, the tingling stops, and you check your codex’s black screen to look at yourself. Still seems the same? Wait... Wasn’t there a disclaimer? You pick up the box that previously housed the injector, reading it thoroughly, and much more closely.");
-					output("\n\n<i>“<b>Warning:</b> Do not use multiple doses in a short span. May cause permanent changes to bone structure and cartilage of face. In the event instructions are misread or disregarded, a mega dose of Estrobloom may be necessary to counteract the effect.”</i>");
+					output("\n\nYou feel a tingle in your face after the snack settles... And considering it already changed your face to how the package advertised, you’re a little worried it could turn the wrong direction into being too masculine or too feminine... But then, the tingling stops, and you check your codex’s black screen to look at yourself. Still seems the same? Wait... Wasn’t there a disclaimer? You pick up the wrapper that previously housed the cakes, reading it thoroughly, and much more closely.");
+					output("\n\n<i>“<b>Warning:</b> Do not eat multiple servings in a short span. May cause permanent changes to bone structure and cartilage of face. In the event instructions are misread or disregarded, a mega dose of Estrobloom may be necessary to counteract the effect.”</i>");
 					output("\n\nOh, there was a disclaimer. Whoops. Oh well, your face is actually pretty nice this way, come to think of it. Now, you could take almost any mod without having to worry about getting too girly or boyish. Then again, it did say it’s somewhat reversible... Hm, you’d probably need <b>five doses of Estrobloom</b> in a short time to count as a mega dose. For now, though, you relish in your new, cute boy aesthetic.");
 					
 					output("\n\n(<b>Perk Gained: Perma-cute</b> - Your masculinity will stay in place unless you take enough Estrobloom to forcibly counteract it.)");
@@ -365,7 +365,7 @@ package classes.Items.Transformatives
 				{
 					if(target.lipModUnlocked(nLip))
 					{
-						output("\n\nYour lips begin to tingle like water was flowing off of their surfaces, feeling as if you had just been stung by a very particular and rude bee. Touching against the soft surface of them, you note that <b>your lips are now shaped like a succulent, pouty cupid’s bow</b>. They’re not overbearing, either; the perfect size, as the mod advertised.");
+						output("\n\nYour lips begin to tingle like water was flowing off of their surfaces, feeling as if you had just been stung by a very particular and rude bee. Touching against the soft surface of them, you note that <b>your lips are now shaped like a succulent, pouty cupid’s bow</b>. They’re not overbearing, either; the perfect size, as the package advertised.");
 						
 						target.lipMod = nLip;
 					}
@@ -395,7 +395,7 @@ package classes.Items.Transformatives
 				// Skin gains “smooth” flag
 				if(changes < changeLimit && target.skinType == GLOBAL.SKIN_TYPE_SKIN && !target.hasSkinFlag(GLOBAL.FLAG_SMOOTH) && rand(3) == 0)
 				{
-					output("\n\nAs the mod does its work on your body, you feel it dancing up and down your skin; in which you eagerly touch and marvel at the sensation of your body hairs falling out, any lumps, creases, or folds <b>now made into youthfully smooth skin</b>.");
+					output("\n\nAs the mod-laced cream does its work on your body, you feel goosebumps dancing up and down your skin; in which you eagerly touch and marvel at the sensation of your body hairs falling out with any lumps, creases, or folds <b>now made into youthfully smooth skin</b>.");
 					
 					target.addSkinFlag(GLOBAL.FLAG_SMOOTH);
 					

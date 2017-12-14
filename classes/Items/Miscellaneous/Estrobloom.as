@@ -384,6 +384,8 @@
 					kGAMECLASS.output("\n\n(<b>Perk Lost: Perma-cute</b>)");
 					target.removePerk("Perma-cute");
 					target.modFem(10);
+					
+					kGAMECLASS.output("\n\n<i>It’s over!</i>");
 				}
 				else if(select == 9)
 				{
