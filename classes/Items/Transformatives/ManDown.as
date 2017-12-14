@@ -1,16 +1,18 @@
 ﻿/*
 
-Twink-Ease, for all your femboy TF needs.
+Twink-ease, for all your femboy TF needs.
+(shoutout to Dorkulon for the improved name!)
+
 The exact opposite of ManUp, giving your player all they need to be a femboy!
 Scratch that. Estrobloom is the opposite. Whoopsies. Doesn’t focus at all on facial feminization like estrobloom, notably just more along the lines of de-masculinization. In any event, it makes your player as boy a boy can be without being a manly man or a girly girl boy. Not trap-stuff, femboy stuff. There’s a difference!
 
 [warning: incessant rambling]
 “But wait!”, you tell me. “Lenerator, you can already become a trap with that tf event at Beth’s! Why even write up an item?!” Hey! I just said this is a femboy TF item, not a trappy thing! And, well, for starters, the transformation when you agree to become a whore is... Well, you have to agree to become a whore. Some people might want a more dignified Steele-boy than that! It’s also a little forced. Sure, you agree to it, it isn’t unexpected, but it all happens in one go. Boop, you’re a boy and spend 3 weeks in the hole, while some random dicks spend a few hours in your hole at a time. heh. I have a pretty big list of reasons, but ultimately, it makes you more of a trap than a femboy, which makes a pain of having to go back and forth trying to fix the trappier stuff into boy-ier stuff. I’ve rambled enough, and god, I am sorry for that. There was just enough differences that I felt it warranted a whole other way to become a cute, non threatening boy. This also refrains from changing the color of any parts of you, or altering your hair at all. Lotsa other stuff, read and find out. Also, no forty fuckin libido forced on your pc.
 
-“Wait, still, Lenerator, you! Estrobloom does this stuff too!” Not at all; estrobloom promises facial feminization with every use. Twink-Ease is more specific in that your masculinity will be kept, if by a thread; it won’t push you at all towards a wholly androgynous or lightly (or heavily) feminine face. It also makes a point of not pushing your pecker to 1-inch sissiness. Makes you a smaller boy in general by reducing tone, thickness (reasonably, if you wanna be small but still a lil bigger!) and height. No savescumming required to get what you want out of it. unless what you want is a little more specific in which case im sorry
+“Wait, still, Lenerator, you! Estrobloom does this stuff too!” Not at all; estrobloom promises facial feminization with every use. Twink-ease is more specific in that your masculinity will be kept, if by a thread; it won’t push you at all towards a wholly androgynous or lightly (or heavily) feminine face. It also makes a point of not pushing your pecker to 1-inch sissiness. Makes you a smaller boy in general by reducing tone, thickness (reasonably, if you wanna be small but still a lil bigger!) and height. No savescumming required to get what you want out of it. unless what you want is a little more specific in which case im sorry
 [rambling end]
 
-Twink-Ease, JoyCo’s product guaranteed to “take some of the man out of you”. Keeps your face recognizable as a boy’s face, but still a cute one at that. As in, makes your face “have the barest hint of masculinity in its structure”. Does a bunch of other boyish transformations to go with that. It’s generally intended to be along the lines of one-use-you’re-good tfs, but fixed in a way so that 3 uses is all you’d need due to the overdosing effect.
+Twink-ease, JoyCo’s product guaranteed to “take some of the man out of you”. Keeps your face recognizable as a boy’s face, but still a cute one at that. As in, makes your face “have the barest hint of masculinity in its structure”. Does a bunch of other boyish transformations to go with that. It’s generally intended to be along the lines of one-use-you’re-good tfs, but fixed in a way so that 3 uses is all you’d need due to the overdosing effect.
 
 */
 
@@ -42,13 +44,13 @@ package classes.Items.Transformatives
 			type = GLOBAL.PILL;
 			
 			shortName = "TwinkEase";
-			longName = "spongecake labeled ‘Twink-Ease’";
+			longName = "bundle of ‘Twink-ease’ spongecakes";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "a spongecake package labeled ‘Twink-Ease’";
+			description = "a bundle of spongecakes called ‘Twink-ease’";
 			
-			tooltip = "With the success of JoyCo’s ‘Futazona’ transformative, they decided to further expand on gender-bending transformation products. This one is an injector that could be easily mistaken as ManUp in its appearance, save for the blue fluid visible within being a lighter tone. The box containing the syringe, thankfully, is very different from its more masculine twin. A picture of a soft, twinkish boy is shown, giving a thumbs up with a speech bubble claiming ‘it really works!’. It guarantees that the user will retain or be pushed towards more boyish features while also accentuating their feminine ones. It’s pricier than ManUp, however, due to the difficulty of balancing male and female hormones and gene-coding in such a way that wouldn’t be erroneous. There’s a disclaimer that says its facial altering effects could be permanent with extended, abnormal usage.";
+			tooltip = "With the success of JoyCo’s ‘Futazona’ transformative, they decided to further expand on edible gender-bending transformation products. This one is a pack of spongy junk-food cakes with nice, creamy filling, which happens to be full of body-altering nanomachines. A picture of a soft, twinkish boy is shown on the wrapper, giving a thumbs up with a speech bubble claiming ‘it really works!’. It guarantees that the user will retain or be pushed towards more boyish features while also accentuating their feminine ones. It’s pricier than ManUp or Estrobloom, however, due to the difficulty of balancing male and female hormones and gene-coding in such a way that wouldn’t be erroneous.\n\n<i>There’s a disclaimer that says its facial altering effects <b>could</b> be permanent with extended, abnormal usage.</i>";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -59,7 +61,7 @@ package classes.Items.Transformatives
 		
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
-			// Available at: Sera, wherever JoyCo products are sold
+			// Available at: Sera, wherever JoyCo products are sold (maybe vending machines too now that it’s a junk food kinda thing??)
 			
 			kGAMECLASS.clearOutput();
 			author("Lenerator");
@@ -67,16 +69,16 @@ package classes.Items.Transformatives
 			
 			if(target is PlayerCharacter)
 			{
-				output("Unwrapping the syringe from its packaging, you click the safety on your Twink-Ease injector off, exposing the needle. Now that it’s prepared, you bring it to your neck, as instructed, and sense a slight sting as its payload flows into your bloodstream. You begin to feel the drug’s effects as the needle is promptly pulled out and thrown away, the nanomachines getting to work on your body in effort to make you a cute, effeminate boy.");
+				output("Unwrapping the snack from its packaging, you scarf the tasty treats down, enjoying the cakes’ mixture of sweet moistness and savory creaminess. As the contents travel towards your tummy, you feel a longing for another and a sense of something changing... the nanomachines must be getting to work on your body in an effort to make you a cute, effeminate boy.");
 				
 				var i:int = 0;
 				
-				target.createStatusEffect("Twink-Ease Doses", 0, 0, 0, 0, true, "", "", false, 720);
-				target.addStatusValue("Twink-Ease Doses", 1, 1);
-				target.setStatusMinutes("Twink-Ease Doses", 720);
-				var doses:int = target.statusEffectv1("Twink-Ease Doses");
+				target.createStatusEffect("Twink-ease Doses", 0, 0, 0, 0, true, "", "", false, 720);
+				target.addStatusValue("Twink-ease Doses", 1, 1);
+				target.setStatusMinutes("Twink-ease Doses", 720);
+				var doses:int = target.statusEffectv1("Twink-ease Doses");
 				
-				// Up to 4 may occur at a time, with the rare dick/balls combo not counting against that.
+				// Up to 4 may occur at a time, rare dick/balls combo not counting against that.
 				var changes:int = 0;
 				var changeLimit:int = Math.min(doses, 4);
 				
@@ -87,7 +89,7 @@ package classes.Items.Transformatives
 				
 				“Perma-cute” Perk -
 				(think “Androgynous” but weighted more on the boy side and well... not androgynous)
-				Description: As a side effect of too much Twink-Ease, your face is now permanently fixed at being absolutely adorable, yet still showing enough boyish features that it’d be pretty easy to guess your gender. Or, to be confused for a really cute boy, if you go back from it. [also changes the face line in player description]
+				Description: As a side effect of eating too many Twink-ease, your face is now permanently fixed at being absolutely adorable, yet still showing enough boyish features that it’d be pretty easy to guess your gender. Or, to be confused for a really cute boy, if you go back from it. [also changes the face line in player description]
 				Appearance blurb: 
 				•Your face has the barest touch of masculinity to it, evident by a few little features in your bone structure. That aside, it’s got eyelashes long enough to bat cutely without looking like overdone fakes, on top of kissable lips and an upturned, smallish nose. 
 				•Your face would appear androgynous, but a few small masculine traits it carries would make it unlikely for anyone to have any real trouble with your gender. Its also has soft, pleasing lips and a cute unthreatening nose, to boot.
@@ -112,9 +114,9 @@ package classes.Items.Transformatives
 					}
 				}
 				
-				// Twink-Ease is overdosed:
+				// Twink-ease are overdosed:
 				// also! if you use the stuff two times in one hour, the next use is overdosing, changing the tf scenes to a new one entirely, not including boy-parts-growing (which has its chance jacked up a ton, too.) when od’d, it has a new effect and all other effects get turbo’d: 
-				// All stats affected by Twink-Ease are not fixed as shown >>>>
+				// All stats affected by Twink-ease are not fixed as shown >>>>
 				// Butt rating becomes 9, hips become 8, height becomes 70, tone becomes 40, skin is smoothed, etc.
 				if(changes < changeLimit && doses >= 3
 					&&	(target.hasCock() || target.createCockUnlocked())
@@ -132,8 +134,8 @@ package classes.Items.Transformatives
 					)
 				)
 				{
-					output("\n\nThis has got to be your " + num2Ordinal(doses) + " time in a short span of eating Twink-Ease... But hey, anything to get at being the cute boy you’ve wanted to be. The effects must be working, because you feel--");
-					output("\n\nYou crash to the ground before you can manage to mentally describe what you’re feeling. Uh oh. What’s going on?! You are totally paralyzed, helpless at whatever may happen to you! Everything’s tingly, bones move on their own, skin moves to work with your changing flesh... You can barely tell what’s happening in the haze of it all. You drift into a light nap before being awaken to the realization that you probably shouldn’t try to sleep after overdosing such a drug... But after a moment, you feel control return to your body, though now... It’s much different from your body, as it was before. <b>Every aspect that Twink-Ease can change has been done to the best of the cake’s ability.</b> You’re probably not going to experience a drastic difference if you decide to use it again.");
+					output("\n\nThis has got to be your " + num2Ordinal(doses) + " time in a short span of eating Twink-ease... But hey, anything to get at being the cute boy you’ve wanted to be. Those damn things are addictingly good, too! The effects must be working, because you feel--");
+					output("\n\nYou crash to the ground before you can manage to mentally describe what you’re feeling. Uh oh. What’s going on?! You are totally paralyzed, helpless at whatever may happen to you! Everything’s tingly, bones move on their own, skin moves to work with your changing flesh... You can barely tell what’s happening in the haze of it all. You drift into a light nap before being awaken to the realization that you probably shouldn’t try to sleep after overdosing such a drug... But after a moment, you feel control return to your body, though now... your body is much different than what it was before. <b>Every aspect that Twink-ease can change has been done to the best of the cakes’ ability.</b> You’re probably not going to experience a drastic difference if you decide to eat them again.");
 					
 					if(!target.hasCock()) target.createCock(cLength, 1);
 					for(i = 0; i < target.cocks.length; i++)
@@ -209,7 +211,7 @@ package classes.Items.Transformatives
 					
 					if(target.tallnessUnlocked(target.tallness - minTall))
 					{
-						output("\n\nYou ponder on all that you’ll do as a cute ‘lil femboy, the hearts you’ll break, the love you’ll chase... But you were apparently so deep in those thoughts that you didn’t pay mind to the shrinking world! By the time you’ve come to reality, it would look like <b>you’re " + num2Text(minTall) + " inches closer to the ground</b>.");
+						output("\n\nYou ponder on all that you’ll do as a cute ‘lil femboy, the hearts you’ll break, the love you’ll chase... But you were apparently so deep in those thoughts that you didn’t pay mind to the growing world! By the time you’ve come to reality, it would look like <b>you’re " + num2Text(minTall) + " inches closer to the ground</b>.");
 						
 						target.tallness -= minTall;
 					}
@@ -225,7 +227,7 @@ package classes.Items.Transformatives
 					
 					if(target.toneUnlocked(target.tone - minTone))
 					{
-						output("\n\nYour flesh feels different, you think, as you place your hand against your [pc.belly]. It loses some of its hardness, becoming softer and more pliable, overlying muscle shrinking away. <b>It seems you’ve lost some of your body’s toned physique.</b>");
+						output("\n\nYour flesh seems a little different, you think, as you place your hand against your [pc.belly]. It loses some of its hardness, becoming softer and more pliable, overlying muscle shrinking away. <b>It seems you’ve lost some of your body’s toned physique.</b>");
 						
 						target.tone -= minTone;
 					}
@@ -242,7 +244,7 @@ package classes.Items.Transformatives
 					
 					if(target.thicknessUnlocked(target.thickness - minThicc))
 					{
-						output("\n\nFeeling against your [pc.belly] in response to a tingling in the area, you notice as " + (isTight ? "the extra mass" : "layers of fat") + " on your body begin to seemingly melt away and retreat into you, " + (isTight ? "width" : "flabbiness") + " reducing as part of the Twink-Ease cake takes effect. <b>Your thickness level has dropped, less body " + (isTight ? "mass" : "fat") + " encompassing your composition.</b>");
+						output("\n\nProdding against your [pc.belly] in response to an itch, you notice as " + (isTight ? "the extra mass" : "layers of fat") + " on your body begin to seemingly melt away and retreat into you, " + (isTight ? "width" : "flabbiness") + " reducing as part of the Twink-ease cake takes effect. <b>Your thickness level has dropped, less body " + (isTight ? "mass" : "fat") + " encompassing your composition.</b>");
 						
 						target.thickness -= minThicc;
 					}
@@ -256,7 +258,7 @@ package classes.Items.Transformatives
 				{
 					if(target.femininityUnlocked(nFem))
 					{
-						output("\n\nYour face tingles, flesh becoming sensitive as you feel the strange, slightly painful sensation of what must be the bones of your skull changing, your face’s shape and features redefined before your eyes. Well, the only thing before your eyes is really a slight bit of " + (target.femininity < nFem ? "growth" : "reduction") + " in your visible eyelashes");
+						output("\n\nYour face tingles, flesh becoming more and more sensitive as you feel the strange, slightly painful sensation of what must be the bones of your skull changing, your face’s shape and features redefined before your eyes. Well, the only thing before your eyes is really a slight bit of " + (target.femininity < nFem ? "growth" : "reduction") + " in your visible eyelashes");
 						if(target.hasSmallNose()) output(", and your nose taking a more upturned, button-y shape, but nothing overly drawn-out");
 						output(". <b>Glancing at your codex’s reflection, it would appear your face now has enough masculinity to identify you as a boy, but lacking enough to appear as a cute and dainty twink.</b>");
 						
@@ -289,7 +291,7 @@ package classes.Items.Transformatives
 						if(target.cocks[cIdx].cLengthRaw > 36) minLength += 12;
 						if(target.cocks[cIdx].cLengthRaw > 48) minLength += 12;
 						
-						output("\n\nYep, this mod definitely works to make you more feminine while retaining masculinity, you think, as you watch your [pc.cock " + cIdx + "] shrink to a more manageable, cuter size, burning benignly with blissful sensation as it does. <b>Your cock has shrunk by " + num2Text(minLength) + " inches</b>");
+						output("\n\nYep, these cakes are <i>definitely</i> working to make you more feminine, you think, as you watch your [pc.cock " + cIdx + "] shrink to a more manageable, cuter size, burning benignly with blissful sensation as it does. <b>Your cock has shrunk by " + num2Text(minLength) + " inches</b>");
 						
 						target.cocks[cIdx].cLengthRaw -= minLength;
 						
@@ -403,7 +405,7 @@ package classes.Items.Transformatives
 				// Remove beard
 				if(changes < changeLimit && target.hasBeard() && rand(3) == 0)
 				{
-					output("\n\nYour [pc.eyes] gaze lower down, against your [pc.face], and you notice what must be the work of Twink-Ease. Your facial hair growth has");
+					output("\n\nYour [pc.eyes] gaze lower down, against your [pc.face], and you notice what must be the work of those creamy cakes. Your facial hair growth has");
 					output(" either back into your skin");
 					output(" has fallen out, drifting unto the ground");
 					output(". <b>Your face is now smooth and beardless.</b>");
@@ -492,17 +494,18 @@ package classes.Items.Transformatives
 					&&	(target.buttRatingRaw >= 9 && target.buttRatingRaw <= 12)
 					)
 					{
-						output(" You reckon there’s nothing more that eating Twink-Ease could do for you. Maybe, if you wanted a trappier sort of look, you could use Estrobloom...");
+						output(" You reckon there’s nothing more that eating Twink-ease could do for you. Maybe, if you wanted a trappier sort of look, you could use Estrobloom...");
 						if(target.hasPerk("Perma-cute")) output(" But you’re going to need a lot to change your supposedly-permanent face.");
 					}
 					else output(" Perhaps it was a dud or you’re just very unlucky...");
+					output("\n\nBut hey, these taste pretty good, so it wasn’t a total loss.");
 				}
 				
 				output("\n\n");
 			}
 			else
 			{
-				output(target.capitalA + target.short + " eats the Twink-Ease cakes to no effect.");
+				output(target.capitalA + target.short + " eats the Twink-ease to no effect.");
 			}
 			return false;
 		}
