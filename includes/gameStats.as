@@ -582,6 +582,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "RahnPregnancyBreedwell": output2(" Breedwell Rahn, Eggs"); break;
 						case "KorgonnePregnancy": output2(" Korgonne"); break;
 						case "RiyaPregnancy": output2(" Riya"); break;
+						case "ZaaltPregnancy": output2(" Zaalt"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -943,6 +944,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Venus Pitcher Seeds @ Daycare:</b> " + StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care"));
 				if(StatTracking.getStat("pregnancy/queen of the deep eggs") > 0)
 					output2("\n<b>* Births, Water Queen Young:</b> " + StatTracking.getStat("pregnancy/queen of the deep eggs"));
+				if(StatTracking.getStat("pregnancy/zaalt kids") > 0)
+					output2("\n<b>* Births, Zaalt’s Children:</b> " + StatTracking.getStat("pregnancy/zaalt kids"));
 				// Father
 				if(StatTracking.getStat("pregnancy/briha kids") > 0)
 				{
