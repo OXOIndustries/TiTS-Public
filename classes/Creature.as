@@ -14570,6 +14570,7 @@
 				if(desc != "") desc += " and ";
 				desc += lowerUndergarment.longName;
 			}
+			if(desc != "") return desc;
 			return "nothing";
 		}
 		public function assCover(): String

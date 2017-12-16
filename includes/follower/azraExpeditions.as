@@ -2213,10 +2213,10 @@ public function spitRoastRaskvelTimes():void
 		if(!pc.isSquirter()) output("beading");
 		else output("gushing");
 		output(" heady [pc.girlCum] down his digits. He licks them clean with obvious delight and then ");
-		if(pc.totalVaginas() > 1) output("moves on to your [pc.anus], working it loose with insistent loops and then sinking them in to your sensitive back tunnel, another hole he very evidently intends to plunder.");
+		if(pc.totalVaginas() == 1) output("moves on to your [pc.anus], working it loose with insistent loops and then sinking them in to your sensitive back tunnel, another hole he very evidently intends to plunder.");
 		else output("sticks them into your [pc.vagina 1], eager to feel the texture of every one of your breeding holes.");
 	}
-	output("quite loose, and he’s stroking your sensitive back tunnel deep. You tense up with delight at the thought of having one of these scaly love bunnies rammed up there. AT LEAST one.");
+	else output("quite loose, and he’s stroking your sensitive back tunnel deep. You tense up with delight at the thought of having one of these scaly love bunnies rammed up there. AT LEAST one.");
 	output("\n\nAll three have their gleaming purple cocks craning out of their pouches, their stuffed, oversized balls rising and falling in barely contained anticipation, and they rub their hot, smooth hardness against you from all sides with energetic bops, happy enough to feel your [pc.skinFurScales] against their erections. Their musk and eagerness is heady in the still air of the hollow, elevating your own arousal, and you lie back into them, grasping two pricks and giving them both teasing yanks, " + pc.mf("giggling","laughing") + " at the twin, girly groans this induces.");
 	output("\n\n<i>“Ohh, are all aliens like you?”</i> one croons, long ears shuddering with delight. <i>“We need to build a rocket...”</i>");
 
