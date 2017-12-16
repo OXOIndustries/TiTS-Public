@@ -1410,6 +1410,7 @@ public function gooArmorCrewOption(arg:Array):void
 			flags["GOO_ARMOR_ON_SHIP"] = true;
 			
 			gooArmorAddButton(fromCrew, 0, "Next", approachGooArmorCrew, [false, fromCrew]);
+			if(!(pc.armor is GooArmor)) gooArmorAddButton(fromCrew, 1, "Customize", gooArmorCrewOption, ["customize", fromCrew]);
 			break;
 		case "take":
 			// Get the goo armor.
