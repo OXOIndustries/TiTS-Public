@@ -28,8 +28,6 @@ package classes.Items.Armor.Unique
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
-			attackVerb = "";
-			
 			basePrice = 700;
 			attack = 0;
 			defense = 3;
@@ -47,6 +45,7 @@ package classes.Items.Armor.Unique
 			// Note: Since the suit creates a stable environment any gaseous based damage wouldn't work against it.
 			//itemFlags = [GLOBAL.ITEM_FLAG_EXPOSE_FULL];
 			//itemFlags.push(GLOBAL.ITEM_FLAG_AIRTIGHT);
+			itemFlags.push(GLOBAL.ITEM_FLAG_SKIN_TIGHT);
 			
 			version = _latestVersion;
 		}

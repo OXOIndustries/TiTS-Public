@@ -1428,6 +1428,7 @@ public function gooArmorCrewOption(arg:Array):void
 			
 			gooArmorClearMenu(fromCrew);
 			gooArmorAddButton(fromCrew, 0, "Next", approachGooArmorCrew, [false, fromCrew]);
+			if(pc.armor is GooArmor) gooArmorAddButton(fromCrew, 1, "Customize", gooArmorCrewOption, ["customize", fromCrew]);
 			break;
 	}
 }
@@ -1868,6 +1869,9 @@ public function gooArmorChangeArmorMenu(fromCrew:Boolean = true):void
 public function gooArmorCheck(repair:Boolean = false):Boolean
 {
 	if(!(pc.armor is GooArmor) || !pc.armor.hasRandomProperties) return true;
+	
+	// Ghost fixes
+	if(!pc.armor.hasFlag(GLOBAL.ITEM_FLAG_SKIN_TIGHT)) pc.armor.addFlag(GLOBAL.ITEM_FLAG_SKIN_TIGHT);
 	
 	// Make sure suit is in normal form first.
 	if

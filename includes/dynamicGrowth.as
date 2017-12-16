@@ -923,7 +923,23 @@ public function bellySizeUpdates(deltaT:uint = 0):void
 // Append randomly to move events if possible (with small exhib gains):
 public function priapismBlurbs():void
 {
-	if(!pc.hasCock() || !pc.hasStatusEffect("Priapism") || rand(10) != 0) return;
+	if(!pc.hasStatusEffect("Priapism")) return;
+	if(!pc.hasCock()) { pc.removeStatusEffect("Priapism"); return; }
+	
+	// Covers check
+	if(!pc.isCrotchExposed(true))
+	{
+		AddLogEvent(ParseText("Your [pc.cockHeads] painfully push" + (pc.cocks.length == 1 ? "es" : "") + " against your [pc.crotchCover], with feral determination. <i>Ouch, that hurts!</i> You quickly yank off your [pc.crotchCovers] and sigh with relief as your hot maleness" + (pc.cocks.length == 1 ? " surges" : "es surge") + " outward, hard and bouncing in the breeze, unflappably erect with no signs of fading. <b>It looks like your case of priapism will prevent you from wearing almost anything there for the moment...</b>"), "passive");
+		//Queue event to remove bits
+		if(!pc.isCrotchExposedByArmor(true) || (pc.hasArmor() && !pc.isCrotchExposedByLowerUndergarment(true)))
+			eventQueue.push( function():void { unequip(pc.armor, true); } );
+		if(!pc.isCrotchExposedByLowerUndergarment(true))
+			eventQueue.push( function():void { unequip(pc.lowerUndergarment, true); } );
+		
+		return;
+	}
+	
+	if(rand(10) != 0) return;
 	
 	var msgList:Array = [];
 	var msg:String = "";
@@ -1088,7 +1104,7 @@ public function priapismBlurbs():void
 	var select:int = -1;
 	
 	// public, high lust, high libido or bimbo, and high fullness
-	if(((pc.lust() >= 66 && pc.libido() >= 66) || pc.isBimbo()) && pc.ballFullness >= 66) spList.push(1);
+	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && ((pc.lust() >= 66 && pc.libido() >= 66) || pc.isBimbo()) && pc.ballFullness >= 66) spList.push(1);
 	// Bimbo
 	if(pc.isBimbo()) spList.push(2);
 	// Bro
@@ -1107,30 +1123,40 @@ public function priapismBlurbs():void
 		switch(select)
 		{
 			case 1:
-				msg += "A giggling galotian grabs [pc.oneCock] before you can react, enshrouding it in slippery tightness. You’re too turned on and too backed up to do anything but groan and thrust into her velvety-soft goo, pleasure mounting into an explosive blast of backed-up [pc.cumNoun]. Again and again, you cum for the mystery slut, creating a ";
+				showBust("GALOTIAN");
+				showName("SURPRISE\nBLOWJOB!");
+				msg += ParseText("A giggling galotian grabs [pc.oneCock] before you can react, enshrouding it in slippery tightness. You’re too turned on and too backed up to do anything but groan and thrust into her velvety-soft goo, pleasure mounting into an explosive blast of backed-up [pc.cumNoun]. Again and again, you cum for the mystery slut, creating a ");
+				for(var i:int = 0; i < 5; i++) { pc.orgasm(); cumQ += pc.cumQ(); }
 				if(cumQ < 200) msg += "small";
 				else if(cumQ < 500) msg += "big";
 				else if(cumQ < 800) msg += "huge";
 				else if(cumQ < 1000) msg += "baseball-sized";
 				else if(cumQ < 3000) msg += "melon-sized";
 				else msg += "mammoth";
-				msg += " [pc.cumColor] bubble inside her arm.";
+				msg += ParseText(" [pc.cumColor] bubble inside her arm.");
 				msg += "\n\nShe pops off and giggles, revealing the condom she slipped over your dick. <i>“Thanks! I needed a snack for the road.”</i> She winks and expertly extracts the stuffed prophylactic from your still-hard member, tying it off into a sealed balloon before pushing it into her belly.";
-				msg += " She looks instantly, terrifically pregnant.";
+				if(cumQ >= 1000) msg += " She looks instantly, terrifically pregnant.";
 				msg += " <i>“Here’s a credit for the trouble!”</i>";
 				msg += "\n\nYou’re left staring at a single credit chit, still hard and a little leaky from the sudden sexual encounter.";
-				msg += " Celise would be so jealous.";
+				if(flags["RECRUITED_CELISE"] != undefined) msg += " Celise would be so jealous.";
+				processTime(5);
 				pc.exhibitionism(1);
 				pc.credits += 1;
+				pc.lust(5);
 				addButton(0, "Next", mainGameMenu);
 				break;
 			case 2:
+				clearBust();
+				showName("COCK\nSELFIE!");
 				msg += "You snap a quick selfie of just you and your dick to save for later. It’s fucking hot, looking so turned on and <i>ready</i> all the time. Maybe you can jack off to it later.";
+				processTime(1);
 				pc.lust(5);
 				addButton(0, "Next", mainGameMenu);
 				addButton(1, "Look", pcAppearance);
 				break;
 			case 3:
+				clearBust();
+				showName("DICK\nPIC!");
 				msg += "You snap a quick picture of your dick. Might as well while it’s nice and hard.";
 				var dickpics:Array = [];
 				if(flags["KIRO_BAR_MET"] != undefined) dickpics.push("Kiro");
@@ -1142,10 +1168,11 @@ public function priapismBlurbs():void
 				if(flags["SAEN MET AT THE BAR"] != undefined && flags["SAENDRA_DISABLED"] != 1) dickpics.push("Saendra");
 				if(flags["RECRUITED_CELISE"] > 0) dickpics.push("Celise");
 				if(dickpics.length > 0) msg += " As an afterthought, you send it to " + dickpics[rand(dickpics.length)] + ".";
+				processTime(1);
+				pc.lust(5);
 				// CHECK APPEARANCE SCREEEN?
 				addButton(0, "Next", mainGameMenu);
 				addButton(1, "Look", pcAppearance);
-				pc.lust(5);
 				break;
 		}
 		output(msg);
@@ -1158,6 +1185,195 @@ public function priapismBlurbs():void
 		output("\n\n" + msgList[rand(msgList.length)]);
 		if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) pc.exhibitionism(1);
 	}
+}
+
+// Priapism stuff
+public function applyPriapism(target:Creature = null):void
+{
+	if(target == null) target = pc;
+	target.applyPriapism();
+}
+public function getCaughtWithPriapism():Boolean
+{
+	if(disableExploreEvents()) return false;
+	if(!pc.hasCock()) { pc.removeStatusEffect("Priapism"); return false; }
+	if(pc.isCrotchExposed(true) && !pc.isCrotchExposed()) return false;
+	if(currentLocation == "SHIP INTERIOR") return false;
+	if(InCollection(shipLocation, [currentLocation, rooms[currentLocation].northExit, rooms[currentLocation].eastExit, rooms[currentLocation].southExit, rooms[currentLocation].westExit])) return false;
+	
+	var cLength:Number = pc.biggestCockLength();
+	var chances:int = 1;
+	if(cLength <= 12) chances = 10;
+	else if(cLength <= 18) chances = 8;
+	else if(cLength <= 24) chances = 6;
+	else if(cLength <= 36) chances = 4;
+	else chances = 2;
+	
+	if(rand(chances) != 0) return false;
+	
+	clearOutput();
+	clearBust();
+	showName("PRIAPISM\nPROBLEMS...");
+	author("Jacques00");
+	
+	var bMale:Boolean = (rand(2) == 0);
+	
+	output("Traversing around with your fully erect dick" + (pc.cocks.length == 1 ? "" : "s") + " out is quite daring for you, especially in a place where nudity is prohibited. Unexpectedly, from of the corner of your eye, you see a patrolling U.G.C. officer crossing your path... and just as you have your back turned to hide your exposed manhood" + (pc.cocks.length == 1 ? "" : "s") + ", " + (bMale ? "he" : "she") + " spots you!");
+	output("\n\n<i>“You! Halt!”</i>");
+	if(pc.isBimbo()) output("\n\nYou blush, a bit flustered and giggly inside while trying to skip your way in the opposite direction.");
+	else if(pc.isBro()) output("\n\nYou act casual and straighten out your back to stride away in the opposite direction.");
+	else if(pc.isNice()) output("\n\nYou sigh that your luck was so bad but try to nervously walk away in the opposite direction.");
+	else if(pc.isMischievous()) output("\n\nYou curse under your breath. Despite your bad luck, you try to inconspicuously stride away in the opposite direction.");
+	else if(pc.isAss()) output("\n\nYou audibly let out a curse and rapidly stomp your way in the opposite direction, hoping that the cop didn’t catch you.");
+	else output("\n\nYou pretend not to see the police officer and proceed on your way in the opposite direction.");
+	
+	clearMenu();
+	addButton(0, "Next", getFinedForPriapism, bMale);
+	
+	return true;
+}
+public function getFinedForPriapism(bMale:Boolean = false):void
+{
+	clearOutput();
+	author("Jacques00");
+	
+	var isBimbro:Boolean = (rand(3) == 0);
+	var cIdx:int = pc.biggestCockIndex();
+	var cLength:Number = pc.cLength(cIdx);
+	var cumQ:Number = pc.cumQ();
+	
+	showBust("UCG_" + (bMale ? "MALE" : "FEMALE") + "_" + (!isBimbro ? "1" : "2"));
+	showName("PAY THE\nFINE...");
+	
+	output("<i>“I said, Stop right there!”</i>");
+	if(hasGooArmorOnSelf()) output("\n\n<i>“Uh, oh... busted!”</i> [goo.name] cries.");
+	output("\n\nNot wanting to cause a disturbance in public, or potentially get arrested, you stop in place.");
+	output("\n\n<i>“Good. " + (!bMale && isBimbro ? "Like" : "Now") + ", hands up and turn around slowly...”</i>");
+	output("\n\nYou do as the officer says by lifting your [pc.hands] and turning to face " + (bMale ? "him" : "her") + "... Your [pc.cocks] front and center.");
+	
+	if(!isBimbro)
+	{
+		output("\n\nThe officer has " + (bMale ? "his" : "her") + " palm on the hilt of " + (bMale ? "his" : "her") + " belt, ready to draw a weapon, but stops seeing as you are no immediate threat--despite the heat you are packing in your groin area...");
+		output("\n\n<i>“Is there a problem, officer?”</i> you ask.");
+		output("\n\n" + (bMale ? "He" : "She") + " pulls out a data slate. <i>“Indecent exposure in a public area. That’s a fineable offense, kid.”</i> The police" + (bMale ? "man" : "woman") + " replies, tapping a few buttons and signing a statement.");
+		output("\n\n<i>“How--”</i>");
+		output("\n\n<i>“Five thousand creds,”</i> " + (bMale ? "he" : "she") + " interrupts before you can even start. <i>“You can pay the fine or I can fill out an arrest form, understand?”</i>");
+		if(pc.credits > 10000)
+		{
+			output("\n\nSeeing as you can foot the cost, you decide to pay the fine. Here’s to a dent in your funds...");
+			output("\n\nThe officer smiles and waves " + (bMale ? "his" : "her") + " scanning device over your codex, taking the required funds. <i>“Thank you very much for your cooperation, uh, [pc.Mister] Steele. Just for that, I’ll keep this out of your permanent record.”</i>");
+			
+			pc.credits -= 5000;
+		}
+		else if(pc.credits > 5200)
+		{
+			output("\n\nYou can afford the cost, but it would set you back quite a lot. You decide to pay it anyway.");
+			output("\n\nThe officer smiles and waves " + (bMale ? "his" : "her") + " scanning device over your codex, taking the required funds. <i>“Thank you for your cooperation, [pc.Mr] Steele. You seem like a responsible " + pc.mf("fellow", "lady") + " so I’ll keep this out of your permanent record, how’s that?”</i>");
+			
+			pc.credits -= 5000;
+		}
+		else if(pc.credits > 200)
+		{
+			output("\n\nYou tell the officer that you don’t have enough to pay the fine, hoping to get out of it cost-free.");
+			output("\n\nThe officer furrows " + (bMale ? "his" : "her") + " brows, then continues, <i>“Ah, that’s too bad. Well, I’ll take what you have but leave you 200 creds behind and a very stern warning, how’s that?”</i>");
+			output("\n\nSurprised by the sudden kindness, you agree to the deal. Even though the cost is high, you won’t be completely broke at least.");
+			output("\n\n<i>“Alright, then it’s a deal.”</i> The officer waves " + (bMale ? "his" : "her") + " scanning device over your codex, taking all but 200 credits from your funds. <i>“Thank you for your cooperation, um, [pc.Mr] Steele. I’ve kept this off your permanent record but I highly advise that you do not repeat this offense in the future or the law may not be as forgiving.”</i>");
+			
+			pc.credits = 200;
+		}
+		else
+		{
+			output("\n\nWith a slanted frown, you tell the officer that you have " + (pc.credits > 0 ? "barely any" : "no") + " money left in your account to pay.");
+			output("\n\nThe officer furrows " + (bMale ? "his" : "her") + " brows, then continues, <i>“A rusher without money, how does that work out? Listen, I’m not in the mood to play tough cop today, so I’m just going to let you off with a warning.”</i> Then after a few taps to cancel " + (bMale ? "his" : "her") + " report, " + (bMale ? "he" : "she") + " adds, <i>“No bookkeeping necessary, but I do require a scan for transport.”</i>");
+			output("\n\nSurprised by the sudden act of kindness, you thank the officer for letting the offense slide and allow " + (bMale ? "him" : "her") + " to scan your codex for extra information.");
+			output("\n\n<i>“It’s alright, [pc.Mister] Steele, U.G.C. doesn’t pay low-ranking cops like me much, so I know what it’s like to penny pinch for my family.”</i> " + (bMale ? "he" : "she") + " says. <i>“Just be sure to get a job or something out there. The Rush should be full of opportunities.”</i>");
+		}
+		output("\n\nAfter finishing the transaction, a hovering transport drone pulls up alongside the police officer. " + (bMale ? "He" : "She") + " pairs the scanned data to the drone and instructs you to step aboard. You do so, as exposed as you are, and your limbs are immediately fastened in place with restraints--as a matter of protocol, of course. The officer sits " + (bMale ? "him" : "her") + "self in front of you, pulls down the top and starts the engines. Soon, the both of you are traveling towards your parked ship.");
+		output("\n\nThe drone slows and grounds itself once it reaches your ship. The top opens up and the officer slides out of the vehicle. The restraints are undone and you are escorted to your ship’s airlock while wrapped in a modesty blanket.");
+		output("\n\nNow that you are in a more isolated location, the officer gives you a final parting. <i>“You’re lucky I was in a good mood--just don’t let it happen again, you hear?”</i> " + (bMale ? "He" : "She") + " then turns to leave as the airlock opens and you enter your ship. " + (bMale ? "He" : "She") + " sure handled your situtation with great professionalism.");
+		output("\n\nOnce inside, your [pc.cock " + cIdx + "] pulses with mix of rebellion and embarrassment");
+		if(cumQ > 500) output(" as it drools a line of pre-cum down your shaft");
+		output(". How troublesome!");
+	}
+	else
+	{
+		if(bMale)
+		{
+			output("\n\nThe officer has his thick, burly arms crossed around his muscular, barrel chest. His casual expression shows that he obviously doesn’t perceive you as a threat at all. When he sees your [pc.cock " + cIdx + "], he gives an approving <i>“Hmph.”</i>");
+			output("\n\n<i>“Is there a problem, officer?”</i> you ask.");
+			output("\n\n<i>“Obviously,”</i> he answers. Pointing at your erection" + (pc.cocks.length == 1 ? "" : "s") + ", he continues, <i>“That--Some kinda S.T.D., or are you always in raging-boner mode?”</i>");
+			output("\n\n<i>“Uh...”</i>");
+			output("\n\n<i>“Hey, don’t play dumb with me,”</i> he says aloud as he closes in on you, your face meeting him eye-to-eye. After a moment, he glances side to side, then tilts his head in to whisper to you <i>“Now argue back.”</i> His brows raise. <i>“Don’t sweat it, just play along.”</i>");
+			output("\n\nYou are struck with confusion but decide to go with it if it’ll get you out of trouble.");
+			if(pc.isNice()) output(" <i>“Uh, oh... Oh no, a cop. What will you do--arrest me...?”</i> His face signals for you to be more offensive. <i>“Um, dumb pigs, am I right?”</i>");
+			else if(pc.isMischievous()) output(" <i>“H-hey, a copper. What, you think you’re someone tough?”</i> He grins, urging you to keep it up. <i>“Pigs don’t scare me--go ahead, arrest me!”</i>");
+			else output(" <i>“Get the fuck off me, damn pig!”</i> He grins in approval. You’re right on target. <i>“I’m not afraid to fight a cop, so keep it up, asshole!”</i>");
+			output(" you shout audibly to no one you are aware of listening.");
+			output("\n\n<i>“Damn right! Indecent exposure is a fineable offense, but for your smack-talk, I’m gonna have to send you off! How about that, huh?”</i>");
+			output("\n\nThe two of you continue faux-arguing while he cuffs your hands behind your back and a hovering transport drone pulls up alongside the brutish police officer. He forecfully, yet carefully, shoves you into the vehicle with one hand, jumps in and slams the top down with the other. While inside, he continues shouting profanities and loudly revs the engine. The drone then sends the both of you towards the direction of your parked ship.");
+			output("\n\nYou shake your head and look at him wide-eyed. <i>“What was that about?”</i>");
+			output("\n\n<i>“Like I said, kid, don’t sweat it. You did great. Probably gonna impress the captain too.”</i> He seems very proud of himself. <i>“In my rank, I have to be extra tough to climb higher. Small tickets don’t matter--it’s all about the raw attitude in this business.”</i>");
+			output("\n\n<i>“So you’re not going to fine me?”</i> you ask, starting to get the picture.");
+			output("\n\n<i>“If you actually threw a punch, I would’ve had to, heh,”</i> he chuckles. <i>“I’ll let you slide... for now.”</i>");
+			output("\n\nYour [pc.cock " + cIdx + "] throbs while your restrained limbs are helpless to do anything about it. Precum leaks from your [pc.cockhead " + cIdx + "], running down to the [pc.base " + cIdx + "].");
+			output("\n\nThe officer turns to you and nods in understanding. <i>“Ah, been there. Just gotta keep fucking and jacking. It’ll pass,”</i> he advises. <i>“And " + (pc.cocks.length == 1 ? "put a cocksock on it" : "wear cocksocks") + " or something if you don’t want to get caught again--I might not be around to let you off the hook next time.”</i>");
+			output("\n\nThe drone finally arrives near your ship and lands. The top opens and the officer athletically leaps out. He releases your locks, messily wraps you in a modesty blanket, and escorts you to your ship’s airlock.");
+			output("\n\nAs you enter your ship, the officer turns to leave, giving you a thumbs up and shouting <i>“Good luck with the boner!”</i> then jumping back into the transport and speeding off. Though he manhandled you into a false play of power, he at least let you off free of charge.");
+			if(pc.lust() < pc.lustMax()) output("\n\nWell, speaking of, all that physical contact must have done some work on your arousal since you do feel a little more turned on now...");
+		}
+		else
+		{
+			var bFits:Boolean = (pc.cThickness(cIdx) <= 24);
+			
+			output("\n\nThe officer has her hands placed on her very wide hips, tilting her body to one side, making her big bubble butt protrude outwards. Her overly inflated breasts cover her entire chest and strain the parted top of her uniform, creating a tight line of boob cleavage for all to see. Framing her head and draping over her shoulders is a mane of long, wavy hair, neatly tied into a pair of pig tails. On her rouge-blushed face, she is wearing a pair of tinted shades that cover her eyes, her glossy lips are equally as bloated as her tits, and her smooth jaw moves rhythmically to undeniably masticate some chewing gum.");
+			output("\n\n<i>“Is there a problem, officer?”</i> you ask.");
+			output("\n\nYou can’t tell where her eyes are directed, but she seemingly looks you up and down. Pursing her lips, she inflates her gum outwards and bites down on it, popping the bubble in her mouth. Her lips reverberate from the sudden burst of air and she resumes chewing. Removing her hands from her hips, she begins twirling her locks with one hand. Long-nailed fingers reach up and pull her shades off, revealing gem-colored eyes with extremely long, fluttering lashes. She blinks a couple times, then continues to examine you, eyes visibly fixated on your [pc.cock " + cIdx + "]. <i>“You got a license to carry that?”</i> She finally blurts, pointing at your obvious, raging erection" + (pc.cocks.length == 1 ? "" : "s") + ".");
+			output("\n\nYour cock" + (pc.cocks.length == 1 ? " produces" : "s produce") + " a dollop of precum in response, throbbing just a little more in desire. <i>“Uh... no?”</i>");
+			output("\n\nThe officer grins under her plump lips, pulls out her data slate, and proceeds to tap a few buttons on the display. <i>“That’s, like, totally a fine.”</i> She concludes, then waves her fingers toward your codex. <i>“Now gimme.”</i>");
+			output("\n\nBefore you can ask how much you are being fined for, she quickly scans your device and yet no money is withdrawn from your account. Odd. Did she even charge you?");
+			output("\n\n<i>“Now come with me to take your punishment, okay? You’ve been a bad, bad [pc.boy]!”</i> As she announces this, a hovering transport drone pulls up alongside the bimboish police officer. You follow her to the vehicle and she proceeds to restrain you to it in such a way, straddling herself this way and that in an erotic display, until you’re positioned with your back leaning against the seat, limbs fastened, and cock" + (pc.cocks.length == 1 ? "" : "s") + " jutting forwards. This does not seem like the standard restraining protocol...");
+			output("\n\nThe officer hops on board in front of you, her round ass in your face as she seductively closes the top. Once the hatch is latched, she taps a few buttons on the console to get the engines revving and the drone lifts and hovers off towards your ship, cruising in auto-pilot mode.");
+			output("\n\nResuming her flirtations with you, the officer lifts her legs to turn in your direction and they swiftly straddle your [pc.hips] like some kind of hungry hug monster. <i>“Like, where were we?”</i> She purses her lips. <i>“Oh yea, you’ve been naughty, haven’t you? Or at least...”</i> she gently runs her finger across the shaft of your [pc.cock " + cIdx + "], <i>“this one has...”</i> She licks her lips, adding more shine to her puckers and affectionately kisses your [pc.cockhead " + cIdx + "].");
+			
+			pc.lust(200);
+			
+			output("\n\nA tingle shoots through your shaft like lightning and your arousal spikes--what was that?! Your mind is clouded in a lusty haze as the law enforcer removes her top and cushions your shaft between her pillowy light yet rubbery tight breasts. Several points of contact are alight when she continues to");
+			if(bFits) output(" swallow your dick in her mouth");
+			else output(" make out with your extremely thick dick");
+			if(pc.cocks.length > 1) output(", " + (pc.cocks.length == 2 ? "the other" : "your others") + " missing out on the fun");
+			if(bFits) output(", slurping your length up and down with a perfect frequency");
+			else output(", applying kiss marks all along your shaft");
+			output(". She is such a cock slut!");
+			output("\n\nYour arousal can only go so far and you are on the edge of tipping. You quickly reach climax but before you can cum, the cop clamps down on your [pc.base " + cIdx + "] and expertly swipes her tongue over your cumslit, wrapping your [pc.cockhead " + cIdx + "] in her chewing gum! When she finally releases her grip and gives you a final wet kiss on your shaft, you explode. [pc.CumColor] [pc.cumNoun] shoots into the makeshift condom, filling it");
+			if(cumQ <= 200) output(" only slightly.");
+			else if(cumQ <= 500) output(" up quite a bit.");
+			else if(cumQ <= 1000) output(" up to almost full capacity.");
+			else if(cumQ <= 3000) output(" to maximum capacity with seed.");
+			else output(" up and inflating it well beyond its normal proportions...");
+			if(pc.cocks.length == 2) output(" The same can’t be said about your other cock however, as it sprays its load all over the slut’s chest.");
+			else if(pc.cocks.length > 1) output(" The same can’t be said about your other cocks however, as they spray their load all over the slut’s chest and thighs.");
+			output("\n\nShe pops the condom off your shaft and the sensation triggers another mini orgasm, making you spurt a line of [pc.cumVisc] [pc.cumNoun] across her face. She licks off what she can with a lusty smile while holding the bubble over her head like an ornament. <i>“I think you’ve learned your lesson.”</i> She mashes a button on the console and the vehicle’s top flips open, showing that you’ve finally reached your destination after completing the blowjob session. She unlocks your restraints and your are free to exit. She forgets to hand you a modesty blanket, but you’re too flushed to consider asking.");
+			output("\n\nAs you open your airlock, the policewoman wiggles her curvy bottom in her seat and blows you a fat kiss.");
+			output("\n\n<i>“Catch you again sometime, babe?”</i> Her long-lashed eye winks at you.");
+			output("\n\nYou " + (pc.isBimbo() ? "giggle" : "chuckle") + " to yourself, stepping inside your ship and wave back to her.");
+			output("\n\nShe smiles and her drone’s top closes and she hovers off.");
+			output("\n\nWhat a strange encounter");
+			if(pc.exhibitionism() >= 66) output("... maybe you should go around with an exposed hard-on more often");
+			output("!");
+		}
+	}
+	output("\n\n");
+	
+	processTime((30 + rand(15)));
+	if(isBimbro)
+	{
+		if(bMale) pc.lust(15);
+		else pc.orgasm();
+	}
+	currentLocation = "SHIP INTERIOR";
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 

@@ -45,7 +45,7 @@ package classes.Items.Armor.Unique
 			resistances.pheromone.resistanceValue = 0.0;
 			
 			// Note: Since the suit creates a stable environment any gaseous based damage wouldn't work against it.
-			itemFlags = [];
+			itemFlags = [GLOBAL.ITEM_FLAG_EXPOSE_FULL];
 			//itemFlags.push(GLOBAL.ITEM_FLAG_AIRTIGHT);
 			
 			version = _latestVersion;

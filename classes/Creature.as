@@ -3496,69 +3496,75 @@
 		}
 		
 		//Used to see if boobs are hanging out instead of isChestGarbed/Covered.
-		public function isChestExposed(): Boolean
+		public function isChestExposed(tight:Boolean = false): Boolean
 		{
-			return (isChestExposedByArmor() && isChestExposedByUpperUndergarment());
+			return (isChestExposedByArmor(tight) && isChestExposedByUpperUndergarment(tight));
 		}
 		//Used to see if wing-wang-doodles and hatchet-wounds are accessible. Should probably replace most isCrotchGarbed() calls.
-		public function isCrotchExposed(): Boolean
+		public function isCrotchExposed(tight:Boolean = false): Boolean
 		{
-			return (isCrotchExposedByArmor() && isCrotchExposedByLowerUndergarment());
+			return (isCrotchExposedByArmor(tight) && isCrotchExposedByLowerUndergarment(tight));
 		}
 		//Badonkadonk check
-		public function isAssExposed():Boolean
+		public function isAssExposed(tight:Boolean = false):Boolean
 		{
-			return (isAssExposedByArmor() && isAssExposedByLowerUndergarment());
+			return (isAssExposedByArmor(tight) && isAssExposedByLowerUndergarment(tight));
 		}
 		
-		public function isAssExposedByArmor():Boolean
+		public function isAssExposedByArmor(tight:Boolean = false):Boolean
 		{
+			if(tight && armor.hasFlag(GLOBAL.ITEM_FLAG_SKIN_TIGHT)) return true;
 			return (armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS));
 		}
-		public function isCrotchExposedByArmor():Boolean
+		public function isCrotchExposedByArmor(tight:Boolean = false):Boolean
 		{
+			if(tight && armor.hasFlag(GLOBAL.ITEM_FLAG_SKIN_TIGHT)) return true;
 			return (armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN));
 		}
-		public function isChestExposedByArmor():Boolean
+		public function isChestExposedByArmor(tight:Boolean = false):Boolean
 		{
+			if(tight && armor.hasFlag(GLOBAL.ITEM_FLAG_SKIN_TIGHT)) return true;
 			return (armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST));
 		}
-		public function isAssExposedByLowerUndergarment():Boolean
+		public function isAssExposedByLowerUndergarment(tight:Boolean = false):Boolean
 		{
+			if(tight && lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_SKIN_TIGHT)) return true;
 			return (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS));
 		}
-		public function isCrotchExposedByLowerUndergarment():Boolean
+		public function isCrotchExposedByLowerUndergarment(tight:Boolean = false):Boolean
 		{
+			if(tight && lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_SKIN_TIGHT)) return true;
 			return (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN));
 		}
-		public function isChestExposedByUpperUndergarment():Boolean
+		public function isChestExposedByUpperUndergarment(tight:Boolean = false):Boolean
 		{
+			if(tight && upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_SKIN_TIGHT)) return true;
 			return (upperUndergarment is EmptySlot || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST));
 		}
 		
-		public function isChestVisible(): Boolean
+		public function isChestVisible(tight:Boolean = false): Boolean
 		{
 			if(armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
 			{
 				return (upperUndergarment is EmptySlot || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST));
 			}
-			return isChestExposed();
+			return isChestExposed(tight);
 		}
-		public function isCrotchVisible(): Boolean
+		public function isCrotchVisible(tight:Boolean = false): Boolean
 		{
 			if(armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN))
 			{
 				return (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN));
 			}
-			return isCrotchExposed();
+			return isCrotchExposed(tight);
 		}
-		public function isAssVisible():Boolean
+		public function isAssVisible(tight:Boolean = false):Boolean
 		{
 			if(armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
 			{
 				return (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS));
 			}
-			return isAssExposed();
+			return isAssExposed(tight);
 		}
 		public function exposureLevel(alsoVisible:Boolean = false):Number
 		{
@@ -20120,6 +20126,19 @@
 			else this.addStatusValue("Pussy Drenched",1,1);
 			
 			if(this is PlayerCharacter) kGAMECLASS.mimbraneFeed("all");
+		}
+		public function applyPriapism():void
+		{
+			var desc:String = "";
+			
+			if(this is PlayerCharacter) desc = "You are unnaturally hard and erect regardless of your arousal level. The added discomfort prevents you from covering up!";
+			else desc = this.capitalA + this.short + " is unnaturally erect regardless of arousal level!";
+			
+			// Priapism
+			// Minimum lust raised to 33 if below :3
+			// Lasts 7 days, but every orgasm reduces it by 15 hours.
+			createStatusEffect("Priapism", 0, 0, 0, 0, false, "OffenseUp", desc, false, 0, 0xB793C4);
+			setStatusMinutes("Priapism", (7*24*60));
 		}
 	}
 }
