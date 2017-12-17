@@ -9,8 +9,17 @@ public function korgiTranslate():Boolean
 public function showKorgiMaleHostile(nude:Boolean = false):void
 {
 	showName("MALE\nKORGONNE");
-	if(nude) showBust("KORGONNE_MALE_NUDE");
-	else showBust("KORGONNE_MALE");
+
+	if (enemy != null)
+	{
+		if (nude) showBust(enemy.bustDisplay + "_NUDE");
+		else showBust(enemy.bustDisplay);
+	}
+	else
+	{
+		if(nude) showBust("KORGONNE_MALE_NUDE");
+		else showBust("KORGONNE_MALE");
+	}
 }
 
 /*references (for me)
@@ -75,7 +84,6 @@ observes racial cues, but poorly
 
 public function korgMaleEncounter():void
 {
-	showKorgiMaleHostile();
 	author("Zeikfried");
 
 	var tEnemy:KorgonneMale = new KorgonneMale();
@@ -85,6 +93,8 @@ public function korgMaleEncounter():void
 	CombatManager.victoryScene(winVsKorgonneMale);
 	CombatManager.lossScene(maleKorgonneLossRouter);
 	CombatManager.displayLocation("KORGONNE (M)");
+	
+	showBust(tEnemy.bustDisplay);
 
 	if(flags["MET_KORG_MALE"] == undefined)
 	{

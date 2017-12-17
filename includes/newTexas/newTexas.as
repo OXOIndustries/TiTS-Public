@@ -624,7 +624,7 @@ public function spitRoastAmmoOnYerDicks():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("AMMA","OGRAM");
+	showBust("AMMA_NUDE","OGRAM_NUDE");
 	author("Savin");
 	showName("AMMA &\nOGGY");
 	var x:int = pc.cockThatFits(chars["AMMA"].vaginalCapacity(0));
@@ -681,7 +681,7 @@ public function spitRoastAmmoOnYerDicks():void
 public function worshipZeBullCawk():void
 {
 	clearOutput();
-	showBust("OGRAM","AMMA");
+	showBust("AMMA_NUDE","OGRAM_NUDE");
 	author("Savin");
 	showName("OGGY &\nAMMA");
 	output("<i>“What do you two " + pc.mf("","girls ") + "say about giving this bad boy a little love, huh?”</i> Ogram says, his fingers eagerly working his belt off. He pulls it, and Amma almost instantly has her hands around his pants, tugging them down with aplomb to reveal the huge swell of her lover’s growing bovine erection, the long, slender pole of cow-meat rapidly rising to its full, intimidating height. Amma takes a long, full whiff of him, her overburdened chest swelling as she drinks in the potent, masculine scent of her lover’s animalistic erection.");
