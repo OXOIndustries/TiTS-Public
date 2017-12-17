@@ -135,6 +135,13 @@ public function ulaTalkMenu():void
 {
 	clearMenu();
 	addButton(0,"Stars/Space",stayAndStarsTell,true);
+	addButton(1,"Mining",ulaMiningTalk,undefined,"Mining","Ask Ula about the korgonne's own mining.");
+	addButton(2,"Ula's Role",ulasRoleInTheClan,undefined,"Ula's Role","Ask Ula about her role in her clan.");
+	addButton(3,"Other Tribes",otherTribesTalkarydooda,undefined,"Other Tribes","Ask Ula about other korgonne tribes.");
+	addButton(4,"Explain:Guns",talkAboutGunsWithUla,undefined,"Explain: Guns","Explain guns too Ula.");
+	addButton(5,"Exp:Electricity",explainElectricityToUla,undefined,"Explain: Electricity","Explain electricity to Ula.");
+	addButton(6,"Exp:Savicite",talkAboutSavicite,undefined,"Explain: Savicite","Explain Savicite to Ula.");
+	addButton(7,"Exp:Credits",ulaCreditsTalk,undefined,"Explain: Credits","Explain the universal galactic currency to Ula.");
 	addButton(14,"Back",ulaApproach,true);
 }
 
@@ -1419,4 +1426,206 @@ public function pussThirstEpilogue():void
 	processTime(35);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+//Mining
+public function ulaMiningTalk():void
+{
+	clearOutput();
+	showUla();
+	//Bimb
+	if(pc.isBimbo()) output("<i>“I know it’s like, supes boring, but what do you guys mine? Anything sparkly?”</i>");
+	//Bro
+	else if(pc.isBro()) 
+	{
+		output("<i>“Mining.”</i> You stare");
+		if(pc.tallness >= 66) output(" down");
+		output(" at her. <i>“Gotta be some nice stuff here.”</i>");
+	}
+	//Else
+	else output("<i>“Could you tell me about your clan’s mining?”</i>");
+	//Merge
+	output("\n\nUla gives you a pained expression. <i>“Think we having cool Alien-stuff talk, but nope! Korg stupidness!”</i> She punches the bed. <i>“Whole universe, but want talk dirt-dig like gem-heart rock-pup.”</i>");
+	output("\n\nYou tilt your head. <i>“Gem-heart?”</i>");
+	output("\n\nUla nods. <i>“Digger. Sparkle-thirsty korg who prefer tunnel to clan. Rather hold pick than mate. Gem-heart.”</i> She shrugs. <i>“Not understanding them. Live in hold too long, maybe. Nothing but rock, rock, and more rock. Maybe sparkle. Elders say gem-heart not from that. Say they just are. Just loving the finding. Alien word for it... thrill? Seek thrill. Want long dig boring just so can find moment of pretty sparkle!”</i>");
+	output("\n\n<i>“Like gambling?”</i> you suggest.");
+	output("\n\nRecoiling, the curvy korgonne’s ears flop. <i>“What gam-bull-ing?”</i> Her nose wrinkles. <i>“Sound like gross.”</i>");
+	output("\n\n<i>“No, no,”</i> you protest. You spend a few minutes explaining the concept of gambling before the little creature abruptly catches on.");
+	output("\n\n<i>“Ohhhh! Like hormnolde! Male-korg game. Spin crystal and throw goal cubes. Such complex, but lots fun.”</i> Ula grabs your hand and squeezes. <i>“Ula not permitted join. Clan Chief daughter no get fun. No get go outside. No get court mate. Just stuck room. Always stuck room.”</i> She stamps her foot. <i>“Gem-heart better. Can do what want, even if just poke rocks all day.”</i>");
+	output("\n\nRather than upset her further, you decide to find out more about the gem-hearts. <i>“Did they create the entire hold?”</i>");
+	output("\n\nUla laughs. <i>“Gem-hearts? Craft?”</i> She pats your ");
+	if(pc.hasKnees()) output("knee");
+	else output("[pc.leg]");
+	output(". <i>“Poor, alien. So much star-light scramble brain. Gem-hearts only dig and like dig. Not think for hold, only sparkle. Elders plan hold. Tell gem-hearts where dig, how dig. Gem-hearts listen or exile.”</i> She shivers. <i>“Exile only cold. Saber-fang killers or alien-stolen.”</i> Ula’s ears fold back apologetically. <i>“Not all aliens good.”</i> Soft fur tickles your forearm as she gently strokes your bicep. <i>“You nice though.”</i>");
+	output("\n\nYou smile winningly, glad to have her endorsement. <i>“But they dug out the entire hold?”</i>");
+	output("\n\nTail wagging, Ula leans herself completely into your side. She’s warm. <i>“Whole hold. Gem-hearts think fun, digging. Think pick-sound music. Think sparkle-rocks give joy.”</i> The grinning fluffball jangles a bracelet in front of you. <i>“Is nice, but not that nice. Not </i>fucking<i> nice.”</i> She paws gently at your [pc.chest], clawed fingers tracing down to your [pc.belly]. Her eyelashes flutter bashfully as she looks ");
+	if(pc.tallness >= 66) output("up ");
+	output("at you with undisguised ardor.");
+
+	output("\n\n<i>“What do you do with it? All the sparkle-rocks?”</i> You scratch the top of her head, right between the ears.");
+
+	output("\n\nUla’s eyes drift closed, and her tongue slips out unthinkingly. <i>“Sparkle-crusts. Tools. Crafty-korg trade for rocks, then make use. Rest dropped under ice. Under ocean. No signs for alien or fang-kitties to tracking.”</i> She purrs against you. <i>“Korg smart. Live in Uveto’s bones. Invisibiling to fang-cats. Unbreakable. No attacking... till aliens come.”</i> She pulls away, brushing her hair into place. <i>“Harder living now. Less places for korg settling. Digging deeper now. Bigger clans, in case need fight aliens. Bang tubes very kill, but korg many more.”</i>");
+	output("\n\nYou hadn’t put much thought into what would happen if the korgonne got pushed too far by the mining on planet. Hopefully any violence can be avoided.");
+	output("\n\n<i>“Want other talk?”</i> Ula seems discomforted by the recent turns the conversation.");
+	processTime(15);
+	addDisabledButton(1,"Mining","Mining","You just spoke about this.");
+}
+
+//Ula’s Role
+public function ulasRoleInTheClan():void
+{
+	clearOutput();
+	showUla();
+	output("<i>“So what are you, to your clan?”</i> You gesture around her spacious quarters, clearly decorated to her tastes. <i>“Chieftan’s daughter?”</i>");
+	output("\n\nUla nods bashfully. Her tail hangs flat on the bed. <i>“Very correct. Clan Chieftan fathering. Many elders uncle or aunt. All expecting much.”</i> She shrugs emphatically. <i>“Too much. They saying too headstrong but also saying not leader! They saying need find mate, then no let visit males. All knowing Ula is pussy-dumb. Get horny-dumb like males.”</i> She pats at her mostly-bared crotch. <i>“After runninged away, they change minds, but now I change mind. No want korg visiting. Rather [pc.name] visit.”</i> The korgonne princess smiles sidelong at you.");
+
+	//Bimb
+	if(pc.isBimbo()) output("\n\n<i>“Awww, thanks so much!”</i> You squeeze her tight. <i>“I love visiting you, little cuddle-pup!”</i>");
+	//Bro
+	else if(pc.isBro()) output("\n\n<i>“Thanks, toots.”</i> You squeeze her shoulder affectionately.");
+	//Nice
+	else if(pc.isNice()) output("\n\n<i>“Awww, thanks!”</i> You squeeze her affectionately. <i>“I enjoy these visits too.”</i>");
+	//Misch
+	else if(pc.isMischievous()) output("\n\n<i>“Oh really?”</i> You ask, smiling broadly. <i>“Then I’ll have to visit twice as much.”</i>");
+	//Hard
+	output("\n\n<i>“Good thing I’m here then,”</i> you quip.");
+	//Merge
+	output("\n\nUla blushes. <i>“Good.”</i>");
+	output("\n\nYou ask her if that means she’ll be the chief someday.");
+	output("\n\nSnorting, the canine woman laughs. <i>“Am doubting! Elders choosing next Chieftan. Usually old-Chief offspring. Not this time. Think me too crazy. Reckless. Weak.”</i> She snorts. <i>“We do better if learn from aliens. Learn alien science-magic so can make boom-tubes of own. Milodans not stand chance against korg with core-magic. Aliens no gloat in sky above if korg have fly-ships of own. No take holds from small tribes for steal sparkles! No take! Only respect!”</i> Ula punches one fist into the other. <i>“That what I do if got be chief.”</i>");
+	output("\n\nYou rock back in surprise. She’s quite the little progressive firecracker!");
+	output("\n\n<i>“Want talk something else?”</i> Ula strokes your knee affectionately.");
+	processTime(10);
+	addDisabledButton(2,"Ula's Role","Ula's Role","You already spoke of this.");
+}
+
+//Other Tribes
+public function otherTribesTalkarydooda():void
+{
+	clearOutput();
+	showUla();
+	output("<i>“How many other tribes does Uveto have?”</i>");
+	output("\n\nUla shrugs. <i>“How many stars in sky? Too many for one to know. Many. Uveto bigger than pregnant korg appetite, though less now than was.”</i> She taps her palm. <i>“Some milodan-killed. Some driven to snow by sparkle-mining.”</i> She punches her fist into her hand. <i>“Small clans join together. Make bigger, stronger clan. This new. Korgonne no like much many snouts in one burrow, but do anyway. Better than lose war or starve.”</i>");
+	output("\n\nYou ask if her clan is such a conglomerate.");
+	output("\n\n<i>“Nope! Korg’ii clan much success. Chief smart. Hide. Steal from dumb aliens.”</i> The princess pats your knee apologetically. <i>“No offense. We not take so much as other clans. Not draw alien ire. Better hidden too. Right under nose. Secret entrance make tough find.”</i> She smiles proudly.");
+	output("\n\n<i>“But other clans steal more?");
+	output("\n\nUla chitters with mirth. <i>“Many more! Sparkle-Claws pride selves on taking from aliens. Roam far from hold. Use magic belt, stay warm. Have flash-shooters, bang-sticks, and other core-magic. Strong fighters.”</i> She flexes a pudgy bicep. <i>“Scare aliens. No try mine territory. Tech make strong. Stronger than Korg’ii.”</i> The dog-girl’s expression becomes pensive. <i>“But not know core-magics. Not keep tech strong. Rust-breaking or worse. Always needing more stealings.”</i>");
+	output("\n\nYou nod thoughtfully. Without knowledge of how to maintain a weapon, especially in these harsh climes, it wouldn’t last long.");
+	output("\n\n<i>“Some clans no use core-magic. Only korgonne-craft. Those clans dumb. Do worst of all, unless very far from sky-spire,”</i> the fluffy princess explains. <i>“Wyrm-Murder clan only exception. Strong people. Hunt frostwyrms. All hunters wear full suit of scales. Even stops some core-bangs.”</i> ");
+	if(9999) output(" She runs her fingers over your armor. <i>“You know, yes?”</i>");
+	else output("She sighs heavily. <i>“Korg’ii only have few, but know how make, if scales getted.”</i>");
+	output("\n\n<i>“Impressive.”</i>");
+	output("\n\nUla grins. <i>“Good see korgonne wow alien.”</i> She ");
+	if(pc.tallness >= 66) output("reaches up to ");
+	output("boop");
+	if(pc.tallness < 66) output("s");
+	output(" you on the nose. <i>“Have magic of own. Now, you want talk something else? Or want snuggle?”</i>");
+
+	processTime(10);
+	addDisabledButton(3,"Other Tribes","Other Tribes","You've already had this conversation.");
+}
+
+//Explain: Guns
+public function talkAboutGunsWithUla():void
+{
+	clearOutput();
+	showUla();
+	output("<i>“Why don’t I tell you about guns?”</i>");
+	output("\n\n<i>“Boomers?”</i> Ula’s ears perk up, and her eyes brighten. <i>“Want know.”</i> Her tail wags hard, slapping your back as she leans in, locking her arm with yours.");
+	output("\n\nYou start off by giving a basic explanation of gunpowder weapons: what gunpowder is and how it propels the bullet, the different kinds of actions and shells that exist.");
+	output("\n\nUla often interrupts you with specific questions. She asks why so many different techniques of measuring bullets and competing specifications exist, why some shells contain single bullets and others explosive, and why it’s called gunpowder when modern formulations are more of a paste.");
+	output("\n\nYou answer them all to the best of your ability, then go over basic maintenance. Should she get her hands on an old-style weapon, you’d like her to keep in good shape after all.");
+	output("\n\nPulling cloths and furs from a nearby container, Ula assembles herself a primitive cleaning kit. She meticulously arranges them, then sets them aside after making a note to acquire some oil. <i>“Know so much.”</i>");
+	//Bimbo
+	if(pc.isBimbo()) output("\n\nYou giggle at that. <i>“Just like sex, you gotta like, have proper lubrication!”</i>");
+	//Bro
+	else if(pc.isBro()) output("\n\nYou let out a pleased grunt.");
+	//Else not hard
+	else if(!pc.isAss()) output("\n\nYou wave your hand dismissively. <i>“It only seems that way because I’ve been exposed to it my entire life. I am sure there are many techniques your tribe knows that would stump me at first blush.");
+	//Hard
+	else output("\n\nYou snort. <i>“I know what I’ve been around my whole life. Same as you.");
+	//Merge hard/non-hard
+	if(!pc.isBimbo() && !pc.isBro()) output(" Keep an open mind, and you’ll be surprised what you can learn.”</i>");
+	//Merge all
+	output("\n\nThe barbarian princess beams ");
+	if(pc.tallness >= 66) output("up ");
+	output("at you. <i>“Ula good stupid. Much learnings. Talk more? Tell of more core-magic?”</i>");
+	processTime(10);
+	addDisabledButton(4,"Explain Guns","Explain Guns","You already spoke of this.");
+}
+
+//Explain: Electricity
+public function explainElectricityToUla():void
+{
+	clearOutput();
+	showUla();
+	output("<i>“I’d like to explain electricity to you.”</i>");
+	output("\n\nUla seems confused. <i>“Elec...tit-city?”</i>");
+	output("\n\n<i>“Sparks? Lightning?”</i> You jerk your hand down toward the ground and mimic the sound of thunder.");
+	output("\n\n<i>“Oooooh,”</i> the curvaceous cutie mouths. <i>“You mean zaps!”</i>");
+	output("\n\n<i>“Suuure.”</i> You avoid getting into the theory of it.");
+	if(pc.isBimbo()) output(" Not like you care to remember. Booooring!");
+	output(" Instead you focus on the practical: conductors and insulators, explaining how it can travel through certain metals with ease but can be stopped by a thin layer of rubber or certain hides.");
+	output("\n\nUla’s face is a studious mask, but she interrupts you before your lecture can get too far. <i>“How get? How pocket zaps?”</i>");
+	output("\n\nOnce more, you try to keep it simple. Rather than get into the theory of how various generators work, you tell her about solar panels and how they capture light - sunpower - and turn it into electrical power, carrying it via rubber-wrapped wires to charge a chemical power cell. You compare the battery to a jar and the wires to a pipe, slowly filling it so that it can be carried around and used elsewhere.");
+	output("\n\nThis seems to placate the ever-curious Ula for now, though you have no doubt that she’d love a chance to understand it in more detail.");
+	output("\n\n<i>“Thanks-having!”</i> The fluffy dog-girl hugs you tight. <i>“Learn much. Maybe hunters let Ula have zap-gun that no zap no more. Then just need find charge-battery or so-lar paneling for own use. And warm-belt! Warm-belt can work again with elec-tric-it-y-filled battery?”</i>");
+	output("\n\n<i>“Yes.”</i>");
+	output("\n\n<i>“Oooooh.”</i> Mischief dances in the korgonne’s eyes. <i>“Much learn. Many thanks. Other talks now?”</i>");
+	processTime(10);
+	addDisabledButton(5,"Exp:Electricity","Explain: Electricity","You already discussed this.");
+}
+
+//Explain: Savicite
+public function talkAboutSavicite():void
+{
+	clearOutput();
+	showUla();
+	output("<i>“Do you know about Savicite?”</i>");
+	output("\n\n<i>“Savicite...”</i> Ula mouths. <i>“Alien word for green sparkles?”</i>");
+	output("\n\nYou nod.");
+	output("\n\nUla looks at you cautiously. <i>“Know aliens want. Knowing cretids offered for. Kedrits? Core silliness. [pc.name] not here here to steal?”</i>");
+	output("\n\nYou assure her that you aren’t here to steal from her tribe");
+	if(pc.isAss()) output(", however tempting the idea may be");
+	output(".");
+
+	output("\n\n<i>“Good.”</i> Ula takes your hand and squeezes it gently, kneading your palm in her padded fingers. <i>“Savicite pretty rock. Make good jewelry after refine. Crafty-korg make me these.”</i> She jingles several green-tinged bracelets in front of you, then lifts a necklace with a brighter piece in the center. <i>“Male korg thinking jewelry silly, but females knowing better. Make pretty! And can tell secret?”</i>");
+	output("\n\n<i>“Sure.”</i>");
+	output("\n\nShe ");
+	if(pc.tallness < 66) output("leans close");
+	else output("all but crawls up your shoulder");
+	output(" to whisper in your ear. <i>“Ula thinking Savicite help give breed-urges.”</i> She rubs herself against you, fluffy fur warm and soft. You’re very conscious of the weight of her luscious breasts on your side. <i>“Make want share warm much.”</i> A paw lands in your lap. <i>“Maybe Korg not make puppies if no Savicite.”</i> Her tongue lolls out. <i>“Males no wear and not want much sex till girl-korg rubs nose in it. Maybe girls not want much sex either without green-sparkles?”</i>");
+	output("\n\nIt sounds like she knows about some of its more... recreational properties.");
+	output("\n\n<i>“Why aliens wanting so bad?”</i> Her nipples are firm but not too firm. Ula’s thirst for knowledge remains greater than her lust, for now. <i>“Knowing aliens have own magic breeding potions and pink-cloud stuff. Hear of stuff call Throbb! Even korg boy want sex with Throbb. Not need Savicite!”</i>");
+	output("\n\nYou explain its usage in a myriad of industries, everything from helping to make those aphrodisiacs to starship fuel and light drives. Without Savicite, the universe as a whole would be butt-fucked.");
+	output("\n\nUla pulls her hands back and sighs. <i>“Aliens not stop wanting then?”</i>");
+	output("\n\n<i>“No.”</i> You shake your head sadly. <i>“I don’t think so.”</i>");
+	output("\n\n<i>“Feces!”</i> The chieftain’s daughter slouches, any erotic energy in the room dissipating with her exclamation.");
+	output("\n\nYou stroke her back and offer, <i>“Maybe someday... not too far from now, a new alien will be in charge of the mining. One who won’t be a threat to your people.”</i>");
+	output("\n\nUla smirks. <i>“Maybe. While wishing, me wanting ship-of-stars. See universe for self. Also smarter tribe.”</i> She nods sharply. <i>“Second one better wish. Maybe other-talk now?”</i>");
+	processTime(10);
+	addDisabledButton(6,"Exp:Savicite","Explain: Savicite","You already spoke of this.");
+}
+
+//Explain: Credits
+//Unlocked via Savicite convo
+public function ulaCreditsTalk():void
+{
+	clearOutput();
+	showUla();
+	output("<i>“So credits...”</i>");
+	output("\n\n<i>“Cred-its,”</i> Ula replies haltingly. <i>“Am hearing of. Why core-folk care so much?”</i>");
+	output("\n\nYou explain their convenience for trade and usefulness over the bartering systems most peoples use. Credits are merely a placeholder for valuable goods that any other coreward merchant would accept. Their ubiquitous acceptance is the source of their value. Anyone that wishes to trade with aliens would want to use them.");
+	output("\n\nUla taps her chin. <i>“So all alien take credits for trade-good?”</i>");
+	output("\n\nYou nod. <i>“Pretty much. Except for people like the korgonne who don’t really talk to the rest of the galaxy.”</i>");
+	output("\n\nBrows knitting in thought, the nude princess asks, <i>“And how muching credits for bang-sticks?”</i>");
+	output("\n\nYou explain that there are many types, some basic ones for five or six hundred credits, but decent ones run well into the six or seven thousands.");
+	output("\n\n<i>“Mmmhmmm...”</i> Ula taps her chin, running the numbers in her head. <i>“Thinking can convince merchants of tribe use credits, so long as chits, not numbers on tech-screen.”</i>");
+	output("\n\n<i>“Really?”</i>");
+	output("\n\nUla nods. <i>“Not be good deal. Will want big profit for trouble, and need convince elders send brave korg for trade credits with aliens. Chieftain too.”</i> She all but bounces in excitement. <i>“Give day. Then can trading, me thinking.”</i>");
+	output("\n\n<i>“Wow... thanks, Ula.”</i> You rub her shoulder fondly.");
+	output("\n\nThe stacked woman snorts. <i>“Be thanking if succeeding. Talk merchants tomorrow. But talk me now. Unless no want talk now? Maybe want share warm?”</i> She snuggles closer, looking up at you with big, luminous eyes.");
+	if(flags["ULA_CREDIT_TALK"] == undefined) flags["ULA_CREDIT_TALK"] = GetGameTimestamp();
+	processTime(8);
+	addDisabledButton(7,"Exp:Credits","Explain: Credits","You already discussed this!");
 }
