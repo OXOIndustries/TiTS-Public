@@ -170,7 +170,9 @@
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 1;
-
+			
+			impregnationType = "ZaaltPregnancy";
+			
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			this.createPerk("Sneak Attack", 0, 0, 0, 0, "");
 			

@@ -1449,6 +1449,7 @@ public function unequip(item:ItemSlotClass, override:Boolean = false):void
 	{
 		case GLOBAL.CLOTHING:
 		case GLOBAL.ARMOR:
+			if(pc.armor is GooArmor) gooArmorCheck();
 			if(pc.armor is Omnisuit) 
 			{
 				output("Touching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you’re completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn’t be better to just put it back on.\n\n");
@@ -1507,7 +1508,7 @@ public function equipItem(arg:ItemSlotClass):void {
 	
 	clearOutput();
 	
-	if(pc.hasCock() && pc.hasStatusEffect("Priapism") && InCollection(arg.type, [GLOBAL.ARMOR, GLOBAL.CLOTHING, GLOBAL.LOWER_UNDERGARMENT]) && (!arg.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !arg.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)))
+	if(pc.hasCock() && pc.hasStatusEffect("Priapism") && InCollection(arg.type, [GLOBAL.ARMOR, GLOBAL.CLOTHING, GLOBAL.LOWER_UNDERGARMENT]) && (!arg.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !arg.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && !arg.hasFlag(GLOBAL.ITEM_FLAG_SKIN_TIGHT)))
 	{
 		//Try to put on crotch cover
 		output("No matter how you try, you can’t get a good fit.");

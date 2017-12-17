@@ -19,7 +19,7 @@ public function statOutOmniCollar():void
 	if(pc.armor is Omnisuit)
 	{
 		pc.armor.hasRandomProperties = true;
-		pc.armor.itemFlags = [GLOBAL.ITEM_FLAG_EXPOSE_FULL];
+		pc.armor.addFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL);
 		pc.armor.evasion = 5;
 		if(pc.libido() < 33)
 		{

@@ -1887,8 +1887,29 @@ public function showerOptions(option:int = 0):void
 public function sneakBackYouNudist():void
 {
 	clearOutput();
-	output("You meticulously make your way back to the ship using every ounce of subtlety you possess. It takes way longer than you would have thought thanks to a couple of near-misses, but you make it safe and sound to the interior of your craft.");
-	processTime(180+rand(30));
+	
+	var nTime:int = 0;
+	
+	output("You meticulously make your way back to the ship using every ounce of subtlety you possess.");
+	if(currentLocation == shipLocation)
+	{
+		output(" Climbing back up the airlock, you");
+		nTime = 5;
+	}
+	else if(InCollection(shipLocation, [rooms[currentLocation].northExit, rooms[currentLocation].eastExit, rooms[currentLocation].southExit, rooms[currentLocation].westExit]))
+	{
+		output(" Having to take your time and almost getting caught sneaking around, you finally");
+		nTime = 15;
+	}
+	else
+	{
+		output(" It takes way longer than you would have thought thanks to a couple of near-misses, but you");
+		nTime = (180 + rand(30));
+	}
+	output(" make it safe and sound to the interior of your craft.");
+	
+	processTime(nTime);
+	
 	moveTo("SHIP INTERIOR");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1905,7 +1926,13 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 			if((!pc.isChestGarbed() || pc.isChestVisible()) && pc.biggestTitSize() > 1) nudistPrevention = true;
 			if(!pc.isCrotchGarbed() || ((pc.hasGenitals() || pc.balls > 0) && pc.isCrotchVisible()) || pc.isAssVisible()) nudistPrevention = true;
 		}
-		if(pc.hasStatusEffect("Priapism")) nudistPrevention = false;
+		if(pc.hasStatusEffect("Priapism"))
+		{
+			// Note to self: taxi event to ship if moving in illegal area + fine.
+			if(getCaughtWithPriapism()) return;
+			// Note to self: disable public move restrictions.
+			nudistPrevention = false;
+		}
 		else if(pc.canCoverSelf(true)) nudistPrevention = false;
 		if(nudistPrevention)
 		{
