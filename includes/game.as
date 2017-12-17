@@ -1400,7 +1400,15 @@ public function shipMenu():Boolean
 		kaseCrewGreeting();
 		return true;
 	}
-
+	//Kase/Anno Fun
+	if(kaseIsCrew() && annoIsCrew() && (flags["KASE_MATHED"] == undefined || ((flags["KASE_MATHED"] != undefined && flags["KASE_MATHED"] + 7*24*60 < GetGameTimestamp()))))
+	{
+		if(rand(10) == 0)
+		{
+			annoAndKaseDoMath();
+			return true;
+		}
+	}
 	//Ellie Preg laying
 	if(flags["ELLIE_LAYING_PC_MIA"] != undefined)
 	{

@@ -1033,3 +1033,29 @@ public function kaseApartmentJoin():void
 	
 	addButton(0, "Next", mainGameMenu, undefined, "", "");
 }
+
+//Anno and Kase do Math
+//Can occur when both Anno and Kase are onboard.
+public function annoAndKaseDoMath():void
+{
+	clearOutput();
+	showBust(kaseBustDisplay(),"ANNO");
+	author("HugsAlright");
+	if(silly) author("HugsNotright");
+	output("[pc.Walk]ing about your ship, you notice your hard-working kaithrit crewmate, Kase, sitting at a small table, surrounded by some amount of papers and hard at work on his holopad. He seems a bit perturbed, though, tapping away at his datapad and stopping to stroke his chin, his mien growing more and more upset each time he does.");
+	output("\n\nYou’re about to go over and see what’s wrong when your loyal ausar employee, Anno, appears in the room, taking notice of her catboy compatriot and walking over to him.");
+	output("\n\n<i>“Heya, Kase!”</i> she cheerily calls out as she takes a seat next to the distressed kaithrit, <i>“What’s up?”</i>");
+	output("\n\n<i>“Oh, h-hello, Miss Dorna,”</i> the feline femboy responds, growing visibly nervous at her approach, but beyond that, he continues his work, shaking his head with each tap of his holopad.");
+	output("\n\nAnno sees the agitation clear in Kase’s face and places a hand on his shoulder, <i>“Something wrong, buddy?”</i>");
+	output("\n\nThe kaithrit peels himself from the glowing screen of his datapad and looks towards his fellow crewmate, his face turning a little red, <i>“I... it’s just this equation I’m having trouble with... I must have some variables mixed up somewhere because these results I’m getting aren’t rational.”</i>");
+	output("\n\n<i>“Hmm,”</i> Anno ponders, taking hold of his holopad and turning it towards her. The ausar’s brow furrows with concentration as she bites at her lower lip, blue eyes running all over the screen while Kase does the same. It only take a few moments for Anno to come to some sort of conclusion, happily exclaiming <i>“Oh!”</i> and lifting a fluffy finger to point a the screen. <i>“Here, and here,”</i> she says, tapping at the holographic display, <i>“See you should’ve flipped the signs since the variable being used for division is negative. If you do that, everything should come out right.”</i> After, pressing her fur-covered digits to the screen a few more times, she pulls back, and Kase’s eyes go wide with disbelief.");
+	output("\n\n<i>“I can’t believe I’d forgotten that!”</i> he says, shaking his head and placing the dataslate down before turning to his scientific savior with a warm smile, <i>“Thank you, Miss Dorna, I’ve been at this for a while... I don’t think I would’ve figured that if you hadn’t come along.”</i>");
+	output("\n\nA happy, proud grin appears on Anno’s face as she reaches a hand up to ruffle Kase’s already messy green mane, <i>“Don’t mention it, cutie.”</i> With that, she goes to stand up, leaving a blushing, happy kaithrit boy beneath her, <i>“Catch ya later, Kase.”</i>");
+	output("\n\n<i>“Y-yes,”</i> the kitty boy stammers, <i>“Until next time, Miss Dorna.”</i>");
+	output("\n\nThen, just as sudden as she appeared, your fluffy white ausar slut is gone again, leaving Kase working alone again, seeming a lot less upset than he was before his canine friend decided to visit.");
+	output("\n\nWhat a merry little band you run here.");
+	flags["KASE_MATHED"] = GetGameTimestamp();
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
