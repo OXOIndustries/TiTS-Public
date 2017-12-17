@@ -23,6 +23,7 @@
 	import classes.Engine.Combat.*; 
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Utility.weightedRand;
+	import classes.StringUtil;
 	
 	/**
 	 * ...
@@ -267,11 +268,11 @@
 			if (CombatManager.enemiesAlive() > 1) output("A");
 			else output("The");
 			*/
-			output("[attacker.CombatName] surges towards [target.combatName], flailing its tentacles wildly in front of itself.");
+			output(StringUtil.capitalize(this.getCombatName(), false) + " surges towards " + target.getCombatName() + ", flailing its tentacles wildly in front of itself.");
 			
 			if (!combatMiss(this, target))
 			{
-				output(" One the largest tendrils hits home, slamming into [target.combatHimHer] with crushing force, sending [target.combatHimHer] staggering back.");
+				output(" One the largest tendrils hits home, slamming into " + target.getCombatPronoun("himher") + " with crushing force, sending " + target.getCombatPronoun("himher") + " staggering back.");
 				applyDamage(damageRand(this.meleeDamage(), 15), this, target, "minimal");
 			}
 			else
@@ -284,29 +285,29 @@
 		public function faceHug(target:Creature):void
 		{
 			//Moderate lust attack, high success chance. Basic lust attack.
-			output("[attacker.CombatName] leaps forward, lunging towards [target.combatName] with an inhuman banshee’s wail. It slams into [target.combatHimHer], barreling [target.combatHimHer] to the deck and pinning [target.combatHimHer] down with its knees. The several tentacles growing from the mutant’s crotch lash out, groping and thrusting at");
+			output(StringUtil.capitalize(this.getCombatName(), false) + " leaps forward, lunging towards " + target.getCombatName() + " with an inhuman banshee’s wail. It slams into " + target.getCombatPronoun("himher") + ", barreling " + target.getCombatPronoun("himher") + " to the deck and pinning " + target.getCombatPronoun("himher") + " down with its knees. The several tentacles growing from the mutant’s crotch lash out, groping and thrusting at");
 			if (target is PlayerCharacter) output(" your");
-			else output(" [target.combatName]’s");
+			else output(" " + target.getCombatName() + "’s");
 			output(" face, trying to penetrate.");
 			
 			if(target.hasAirtightSuit())
 			{
-				output(" Fortunately, [target.combatHisHer] airtight suit makes it difficult for the attack to be effective.");
+				output(" Fortunately, " + target.getCombatPronoun("hisher") + " airtight suit makes it difficult for the attack to be effective.");
 			}
 			else if (combatMiss(this, target))
 			{
-				output(" [target.CombatHeShe] manage");
-				if (!(target is PlayerCharacter)) output("s");
+				output(" " + StringUtil.capitalize(target.getCombatPronoun("heshe"), false) + " manage");
+				if (!(target is PlayerCharacter) && !target.isPlural) output("s");
 				output(" to keep");
 				if (target is PlayerCharacter) output(" your");
-				else output(" [target.combatHisHer]");
-				output(" mouth shut, resisting the creature until [target.combatHeShe] can push it off.");
+				else output(" " + target.getCombatPronoun("hisher"));
+				output(" mouth shut, resisting the creature until " + target.getCombatPronoun("heshe") + " can push it off.");
 			}
 			else
 			{
-				output(" The mutant manages to force [target.combatHisHer] mouth open, thrusting a tentacle in and squirting out a thick, red, viscous liquid into [target.combatHisHer] mouth! [target.combatName] struggle");
-				if (!(target is PlayerCharacter)) output("s");
-				output(" to throw the creature off, though [target.combatHisHer] skin reddens in response to the mouthful of mutant jizz...");
+				output(" The mutant manages to force " + target.getCombatPronoun("hisher") + " mouth open, thrusting a tentacle in and squirting out a thick, red, viscous liquid into " + target.getCombatPronoun("hisher") + " mouth! " + StringUtil.capitalize(target.getCombatName(), false) + " struggle");
+				if (!(target is PlayerCharacter) && !target.isPlural) output("s");
+				output(" to throw the creature off, though " + target.getCombatPronoun("hisher") + " skin reddens in response to the mouthful of mutant jizz...");
 				
 				applyDamage(new TypeCollection( { drug: 7 } ), this, target, "minimal");
 			}
@@ -328,7 +329,7 @@
 			CombatManager.addCombatEffect(new StorageClass("Lust Spores Used"));
 			
 			//Rare action. Creates a light Lust DOT on all PC-aligned creatures for 2-4 turns.
-			output("[attacker.CombatName] rears its reddened head back and vomits forth a rush of dark red... mist!? Gas seeps out of the creature’s mouth, billowing out around you. You flail your hands out at the growing cloud, trying to wave it away from you... but to no avail. A heavy cloud of red mutant-gunk settles over you");
+			output(StringUtil.capitalize(this.getCombatName(), false) + " rears its reddened head back and vomits forth a rush of dark red... mist!? Gas seeps out of the creature’s mouth, billowing out around you. You flail your hands out at the growing cloud, trying to wave it away from you... but to no avail. A heavy cloud of red mutant-gunk settles over you");
 			
 			var bothUp:Boolean = (kGAMECLASS.flags["CHIEF_NEYKKAR_WITH_PC"] == 1);
 			var airtight:Boolean = false;

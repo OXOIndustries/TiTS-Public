@@ -286,14 +286,20 @@ public function appearance(forTarget:Creature):void
 		//Minotaaaauuuur-face
 		case GLOBAL.TYPE_BOVINE:
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2("You have a face resembling that of an anthropomorphic bovine, with cow-like features, particularly a squared off wet nose. Your " + faceFurScales + " thickens noticably on your head, looking shaggy and more than a little monstrous once laid over your visage.");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("Your face resembles an anthropomorphic bovine’s, though strangely, it is covered in shimmering scales, right up to the flat, cow-like nose that protrudes from your face.");
-			else output2("You have a face resembling that of an anthropomorphic bovine, with cow-like features, particularly a squared off wet nose. Despite your lack of fur elsewhere, your visage does have a short layer of " + target.furColor + " fuzz.");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2("Your face resembles an anthropomorphic bovine’s, though strangely, it is covered in shimmering scales, right up to the flat, cow-like nose that protrudes from your face.");
+			else {
+				output2("You have a face resembling that of an anthropomorphic bovine, with cow-like features, particularly a squared off wet nose.");
+				if(target.skinType != GLOBAL.SKIN_TYPE_GOO && !target.hasFaceFlag(GLOBAL.FLAG_GOOEY)) output2(" Despite your lack of fur elsewhere, your visage does have a short layer of " + target.furColor + " fuzz.");
+			}
 			break;
 		//Panda-face
 		case GLOBAL.TYPE_PANDA:
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2("You have a face resembling that of an anthropomorphic panda, with a short muzzle and black nose. Your " + faceFurScales + " hides " + target.skin(true,true,true) + " underneath.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2("Your face resembles an anthropomorphic panda’s, though strangely, it is covered in shimmering scales, right up to your black nose.");
-			else output2("You have a face resembling that of an anthropomorphic panda, with a short muzzle and black nose. Despite your lack of fur elsewhere, your visage does have a short layer of " + target.furColor + " fuzz.");
+			else {
+				output2("You have a face resembling that of an anthropomorphic panda, with a short muzzle and black nose.");
+				if(target.skinType != GLOBAL.SKIN_TYPE_GOO && !target.hasFaceFlag(GLOBAL.FLAG_GOOEY)) output2(" Despite your lack of fur elsewhere, your visage does have a short layer of " + target.furColor + " fuzz.");
+			}
 			break;
 		case GLOBAL.TYPE_REDPANDA:
 			output2(RandomInCollection([
@@ -1160,21 +1166,31 @@ public function appearance(forTarget:Creature):void
 		output2(" Your chest and back are covered in a thick, bushy layer of wool.");
 	}
 	
-	//Vanaebutt Skin
-	if(target.hasStatusEffect("Vanae Markings")) output2(" Swirls of " + target.skinAccent + " trace brighter accents across much of your form.");
-	//Body Markings
-	if(target.hasStatusEffect("Shark Markings"))
+	// Body Markings
+	if(target.hasAccentMarkings())
 	{
 		var bodyPts:Array = ["back", "arms", (target.legCount == 1 ? target.legNoun() : target.legsNoun())];
 		if(target.hasTail()) bodyPts.push(target.tailsDescript(true));
 		
-		output2(" You have");
-		switch(target.statusEffectv1("Shark Markings"))
+		switch(target.accentMarkings())
 		{
-			case 1: output2(" " + target.skinAccent + " stripes running all across your body; your " + CompressToList(bodyPts) + "."); break;
-			case 2: output2(" " + target.skinAccent + " spots dotting every part of your body; your " + CompressToList(bodyPts) + "."); break;
-			default: output2(" an off-color blotch on the frontal part of your body, covering your chin, " + target.chestDesc() + ", belly and inner thighs in " + target.skinAccent + "."); break;
+			// Vanaebutt Skin
+			case 0: output2(" Swirls of " + target.skinAccent + " trace brighter accents across much of your form."); break;
+			// Others
+			case 1: output2(" You have " + target.skinAccent + " stripes running all across your body; your " + CompressToList(bodyPts) + "."); break;
+			case 2: output2(" You have " + target.skinAccent + " spots dotting every part of your body; your " + CompressToList(bodyPts) + "."); break;
+			case 3: output2(" You have an off-color blotch on the frontal part of your body, covering your chin, " + target.chestDesc() + ", belly and inner thighs in " + target.skinAccent + "."); break;
+			case 4: output2(" You have speckles of " + target.skinAccent + " covering your body."); break;
+			case 5: output2(" You have dapples of " + target.skinAccent + " covering your body."); break;
+			case 6: output2(" You have " + target.skinAccent + " piebald markings covering your body."); break;
 		}
+	}
+	// Freckles
+	if(target.hasSkinFlag(GLOBAL.FLAG_FRECKLED))
+	{
+		if(target.hasFur() || target.hasFeathers()) output2(" Beneath your body fur, f");
+		else output2(" F");
+		output2("reckles dot various parts of your skin.");
 	}
 	
 	// Cum Splattered!

@@ -2213,10 +2213,10 @@ public function spitRoastRaskvelTimes():void
 		if(!pc.isSquirter()) output("beading");
 		else output("gushing");
 		output(" heady [pc.girlCum] down his digits. He licks them clean with obvious delight and then ");
-		if(pc.totalVaginas() > 1) output("moves on to your [pc.anus], working it loose with insistent loops and then sinking them in to your sensitive back tunnel, another hole he very evidently intends to plunder.");
+		if(pc.totalVaginas() == 1) output("moves on to your [pc.anus], working it loose with insistent loops and then sinking them in to your sensitive back tunnel, another hole he very evidently intends to plunder.");
 		else output("sticks them into your [pc.vagina 1], eager to feel the texture of every one of your breeding holes.");
 	}
-	output("quite loose, and he’s stroking your sensitive back tunnel deep. You tense up with delight at the thought of having one of these scaly love bunnies rammed up there. AT LEAST one.");
+	else output("quite loose, and he’s stroking your sensitive back tunnel deep. You tense up with delight at the thought of having one of these scaly love bunnies rammed up there. AT LEAST one.");
 	output("\n\nAll three have their gleaming purple cocks craning out of their pouches, their stuffed, oversized balls rising and falling in barely contained anticipation, and they rub their hot, smooth hardness against you from all sides with energetic bops, happy enough to feel your [pc.skinFurScales] against their erections. Their musk and eagerness is heady in the still air of the hollow, elevating your own arousal, and you lie back into them, grasping two pricks and giving them both teasing yanks, " + pc.mf("giggling","laughing") + " at the twin, girly groans this induces.");
 	output("\n\n<i>“Ohh, are all aliens like you?”</i> one croons, long ears shuddering with delight. <i>“We need to build a rocket...”</i>");
 
@@ -2774,7 +2774,7 @@ public function followAzraForFirstTimeBango():void
 	else if(pc.tallness < 8*12)
 	{
 		output("\n\nAzra’s cock is big enough that it nearly stabs you in the chest. The bulbous, shiny crown is ringed by a tiny tentacles that stroke and slither across the water-moistened flesh.");
-		if(pc.biggestTitSize() >= 1) output(" One curls out to caress your [pc.breastDescript], leaving you inexplicably flushed in its wake.");
+		if(pc.biggestTitSize() >= 1) output(" One curls out to caress your [pc.biggestBreastDescript], leaving you inexplicably flushed in its wake.");
 		output(" Just beneath is a smooth, hairless ballsack, stretched taut by the two softball-sized testes inside. She’s got a pussy somewhere back there too. You can smell a hint of it lingering under the scent of soap and suula. It’s a musky, sweetened with a vaguely peachy aroma that has you licking your lips.");
 		if(pc.isTreated()) output(" By pheromones alone, you know she’s a very fertile girl, and absolutely dripping with consent. She wants you. She wants you bad.");
 		output("\n\nYou are so distracted by the sexual cornucopia in front of you that you don’t even have time to look at the pillowy mountains above, capped by the golden points of her nipples, not until their incessant jiggling draws your eyes upward. The journey across her belly is delightful, revealing a middle gently padded by years of well-lived yet unmarred by blemish. Then there’s Azra’s underboob; a titanic shelf with waterfalls of pure water spilling through the cleavage. It’s gorgeous.");

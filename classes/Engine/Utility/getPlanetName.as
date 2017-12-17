@@ -8,9 +8,11 @@
 	 * ...
 	 * @author Gedan
 	 */
-	public function getPlanetName():String
+	public function getPlanetName(sID:String = ""):String
 	{
-		var pName:String = kGAMECLASS.rooms[(InShipInterior() ? kGAMECLASS.shipLocation : kGAMECLASS.currentLocation)].planet;
+		var pName:String = "NONE";
+		if (sID != "") pName = kGAMECLASS.rooms[sID].planet;
+		else pName = kGAMECLASS.rooms[(InShipInterior() ? kGAMECLASS.shipLocation : kGAMECLASS.currentLocation)].planet;
 		
 		if (pName.indexOf(":") != -1) pName = pName.split(": ")[1];
 		
@@ -19,6 +21,8 @@
 		{
 			case "POE A": return "Poe A"; break;
 			case "UVETO VII": return "Uveto VII"; break;
+			case "REDACTED":
+			case "UNKNOWN":
 			case "NONE": return "<i>Unknown</i>"; break;
 		}
 		

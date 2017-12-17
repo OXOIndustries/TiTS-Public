@@ -321,7 +321,7 @@
 			else
 			{
 				output("The savage launches herself at you, attempting to drag you to the ground once more!");
-				if(kGAMECLASS.korgiTranslate())
+				if(kGAMECLASS.korgiSillyTranslate())
 				{
 					if(kGAMECLASS.silly) output(" <i>“Very brr! Such frolic!”</i>");
 				}
@@ -348,7 +348,7 @@
 		{
 			//(three uses) - statusEffectv1("Heavy Gun") < 3
 			output("Fishing one of the guns from her pocket, the barbarian struggles with the device for a minute before gripping it properly, pointing the armament in your direction. She jerks the trigger and to her shock, loses control of the gun as it discharges its magazine in rapid succession. Before she can adjust her aim, she’s emptied it entirely.");
-			if(kGAMECLASS.korgiTranslate())
+			if(kGAMECLASS.korgiSillyTranslate())
 			{
 				if(!kGAMECLASS.silly) output(" <i>“Dumb, tiny darts! You too fast!”</i>");
 				else output(" <i>“So zip! Very recoil. Wow! Much junk!”</i>");

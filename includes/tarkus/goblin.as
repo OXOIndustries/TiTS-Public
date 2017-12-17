@@ -482,7 +482,7 @@ Who're you to deny such a request? Down goes your [pc.vagina(0)] once more, engu
 
 if (pc has at least one cock)
 {
-	You lean back, moaning in ecstasy. One of your hands wanders down and grips your [pc.cock(1)]. While he continues to cry and dig into your pussy, your fingers tighten about your shaft and run up and down its length while the occasional buzz reverberates through it. Both hands fly to your [pc.multiCockLight] as you cress the peak of your pleasure, and a {spurt/spray/flood} of [pc.cumType] flies out of your engorged cock{s}. Simultaneously a final quiver flows through your lower body as [pc.girlCum] rushes out in a {small squirt/spray/flood} into the waiting goblin's enraptured visage.
+	You lean back, moaning in ecstasy. One of your hands wanders down and grips your [pc.cock(1)]. While he continues to cry and dig into your pussy, your fingers tighten about your shaft and run up and down its length while the occasional buzz reverberates through it. Both hands fly to your [pc.multiCocks] as you cress the peak of your pleasure, and a {spurt/spray/flood} of [pc.cumType] flies out of your engorged cock{s}. Simultaneously a final quiver flows through your lower body as [pc.girlCum] rushes out in a {small squirt/spray/flood} into the waiting goblin's enraptured visage.
 } else # (pc only has vaginas)
 {
 	You lean back, moaning in ecstasy. One of your hands plays down the front of your body, and finds its way to your waiting clitoris, engorged and buzzing with each cry that reverberates through your body. While he continues to devore and wail into your eager pussy, you push into your upper hood and rub around on it. It feels like your lower half is burning up in the flames of passion, and finally you cress the peak of your pleasure. A final quiver flows through your lower body in time with a rush of [pc.girlCum] that {squirts/sprays/floods} out of your womanhood into the waiting goblin's enraptured face.
@@ -646,7 +646,7 @@ Descriptors: goblin, alien, double-crowned, gremlin, goblinoid, two-headed,
 Goblin cum:
 Requires non-green goop cum, and at least one goblin cock. Cum turns into green goop cum. The PC cums in the scene, resetting lust and time since last orgasm.
 Transformation text (PC has balls): There is a low rumbling in your nethers, followed by a curious sensation in your [pc.balls]. All of a sudden you feel an overwhelming need to cum, and furiously start to masturbate on the spot. When you reach your peak, you're surprised to find that you cum an unusual greenish goop that's even more slimy than normal human cum. [b]You now cum goblin cum![/b]
-Transformation text (PC has no balls): There is a low rumbling in your nethers, followed by a curious sensation at the root of your [pc.multiCockDescriptLight]. All of a sudden you feel an overwhelming need to cum, and start furiously masturbating on the spot. When you reach your peak, you're surprised to find that you cum an unusual greenish goop that's even more slimy than normal human cum. [b]You now cum goblin cum![/b]
+Transformation text (PC has no balls): There is a low rumbling in your nethers, followed by a curious sensation at the root of your [pc.multiCocks]. All of a sudden you feel an overwhelming need to cum, and start furiously masturbating on the spot. When you reach your peak, you're surprised to find that you cum an unusual greenish goop that's even more slimy than normal human cum. [b]You now cum goblin cum![/b]
 Descriptors: green, goopy goblin, goo, alien.
 
 Goblin vagina:

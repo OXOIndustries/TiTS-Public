@@ -10,7 +10,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
-	import classes.Util.RandomInCollection;
+	import classes.Util.InCollection;
 	
 	public class Pickmentation extends ItemSlotClass
 	{
@@ -70,14 +70,68 @@
 		private function rbgMenu(target:Creature):void
 		{
 			clearMenu();
-			addButton(0, "“Terran”", rbgSelColor, [target, "terran"]);
-			addButton(1, "Unusual", rbgSelColor, [target, "unusual"]);
-			addButton(2, "Metallic", rbgSelColor, [target, "metallic"]);
-			addButton(3, "Glowing", rbgSelColor, [target, "glowing"]);
-			addButton(4, "Freckles", getFreckles, target);
+			addButton(0, "“Terran”", rbgSelColor, [target, "terran"], "“Terran” Colors", "Choose from the human terran color scheme.");
+			addButton(1, "Unusual", rbgSelColor, [target, "unusual"], "Unusual Colors", "Choose from the unusual color library.");
+			addButton(2, "Metallic", rbgSelColor, [target, "metallic"], "Metallic Colors", "Choose from the metallic color library.");
+			addButton(3, "Glowing", rbgSelColor, [target, "glowing"], "Glowing Colors", "Choose from the glowing color library.");
+			addButton(5, "Freckles", getFreckles, target, "Freckles", "Add or remove freckles from your face or body.");
+			addButton(6, "Markings", getMarkings, target, "Markings", "Add or remove markings on your body.");
 			addButton(14, "Back", rbgCancel, target);
 		}
 		private function getFreckles(target:Creature):void
+		{
+			clearOutput();
+			kGAMECLASS.showName("SELECT\nPART");
+			author("Night Trap");
+			
+			output("Which part do you want to apply the device?\n\n");
+			
+			clearMenu();
+			addButton(0, "Face", getFrecklesFace, target, "Face", ((target.hasFaceFlag(GLOBAL.FLAG_FRECKLED) ? "Remove freckles from" : "Add freckles to") + " your face."));
+			addButton(1, "Skin", getFrecklesSkin, target, "Skin", ((target.hasSkinFlag(GLOBAL.FLAG_FRECKLED) ? "Remove freckles from" : "Add freckles to") + " your skin."));
+			addButton(14, "Back", introMenu, target);
+		}
+		private function getMarkings(target:Creature):void
+		{
+			clearOutput();
+			kGAMECLASS.showName("SELECT\nPATTERN");
+			author("Night Trap");
+			
+			var hasAccents:Boolean = target.hasAccentMarkings();
+			output("What body pattern would you like?\n\n");
+			
+			clearMenu();
+			addButton(0, "Stripes", getMarkingColor, [target, 1], "Stripes", ((hasAccents ? "Change your markings to" : "Give yourself") + " stripes."));
+			addButton(1, "Spots", getMarkingColor, [target, 2], "Spots", ((hasAccents ? "Change your markings to" : "Give yourself") + " spots."));
+			addButton(2, "Speckles", getMarkingColor, [target, 4], "Speckles", ((hasAccents ? "Change your markings to" : "Give yourself") + " speckles."));
+			addButton(3, "Dapples", getMarkingColor, [target, 5], "Dapples", ((hasAccents ? "Change your markings to" : "Give yourself") + " dapples."));
+			addButton(4, "Piebald", getMarkingColor, [target, 6], "Piebald", ((hasAccents ? "Change your markings to" : "Give yourself") + " a piebald pattern."));
+			if(hasAccents) addButton(12, "Recolor", getMarkingColor, [target, -2], "Recolor", ("Recolor your " + target.accentMarkingsDescript() + "."));
+			else addDisabledButton(12, "Recolor", "Recolor", "You don’t have any body markings to recolor.");
+			if(hasAccents) addButton(13, "Remove", markingColor, [target, "", "", -1], "Remove", ("Remove your " + target.accentMarkingsDescript() + "."));
+			else addDisabledButton(13, "Remove", "Remove", "You don’t have any body markings to remove.");
+			addButton(14, "Back", introMenu, target);
+		}
+		private function getMarkingColor(arg:Array):void
+		{
+			var target:Creature = arg[0];
+			var colorPattern:int = arg[1];
+			
+			clearOutput();
+			if(colorPattern == -2) kGAMECLASS.showName("RECOLOR\nPATTERN");
+			else kGAMECLASS.showName("\n" + (target.getAccentMarking(colorPattern)).toUpperCase());
+			author("Night Trap");
+			
+			output("Select a color type.\n\n");
+			
+			clearMenu();
+			addButton(0, "“Terran”", rbgSelColor, [target, "terran", colorPattern, markingColor, getMarkings], "“Terran” Colors", "Choose from the human terran color scheme.");
+			addButton(1, "Unusual", rbgSelColor, [target, "unusual", colorPattern, markingColor, getMarkings], "Unusual Colors", "Choose from the unusual color library.");
+			addButton(2, "Metallic", rbgSelColor, [target, "metallic", colorPattern, markingColor, getMarkings], "Metallic Colors", "Choose from the metallic color library.");
+			addButton(3, "Glowing", rbgSelColor, [target, "glowing", colorPattern, markingColor, getMarkings], "Glowing Colors", "Choose from the glowing color library.");
+			addButton(14, "Back", getMarkings, target);
+		}
+		private function getFrecklesFace(target:Creature):void
 		{
 			clearOutput();
 			kGAMECLASS.showName("\nFRECKLES!");
@@ -96,6 +150,30 @@
 				if(pc.hasFaceFlag(GLOBAL.FLAG_FURRED) || pc.hasFur()) output("that you can’t tell the difference through your [pc.skinFurScales], but you’re sure ")
 				output("that <b>your freckles are gone!</b>");
 				pc.removeFaceFlag(GLOBAL.FLAG_FRECKLED);
+			}
+			tfDone();
+		}
+		private function getFrecklesSkin(target:Creature):void
+		{
+			clearOutput();
+			kGAMECLASS.showName("\nFRECKLES!");
+			author("Night Trap");
+			var pc:Creature = target;
+			
+			output("You adjust the selector to freckled and press the medipen to your sternum. There’s a quiet hiss from the device");
+			
+			if(!pc.hasSkinFlag(GLOBAL.FLAG_FRECKLED))
+			{
+				if(pc.hasSkinFlag(GLOBAL.FLAG_FURRED) || pc.hasFur()) output(", but you don’t feel anything happen. You pull out your codex to check your skin but are disappointed to find nothing has changed. It looks like freckles won’t show up on a furred body.");
+				else output(" followed by a tingling sensation that spreads from the injection site over your whole body. Freckles are appearing all over you from the neck down. <b>Your body is now freckled.</b>");
+				pc.addSkinFlag(GLOBAL.FLAG_FRECKLED);
+			}
+			else
+			{
+				output(" followed by a tingling sensation that spreads from the injection site over your whole body. When the tingling finally ends you pull out your codex and use it to check your reflection, finding ");
+				if(pc.hasFur()) output("that you can’t tell the difference through your [pc.skinFurScales], but you’re sure ")
+				output("that <b>your body freckles are gone!</b>");
+				pc.removeSkinFlag(GLOBAL.FLAG_FRECKLED);
 			}
 			tfDone();
 		}
@@ -119,6 +197,9 @@
 			var target:Creature = arg[0];
 			var colorType:String = arg[1];
 			var colorList:Array = [];
+			var colorPattern:int = (arg[2] == undefined ? -1 : arg[2]);
+			var colorFunc:Function = (arg[3] == undefined ? skinColor : arg[3]);
+			var backFunc:Function = (arg[4] == undefined ? introMenu : arg[4]);
 			var i:int = 0;
 			var btnSlot:int = 0;
 			
@@ -196,29 +277,29 @@
 			{
 				if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
 				{
-					addButton(btnSlot, "Back", introMenu, target);
+					addButton(btnSlot, "Back", backFunc, target);
 					btnSlot++;
 				}
 				
-				addButton(btnSlot, colorList[i][1], partMenu, [target, colorType, colorList[i][0]], StringUtil.toDisplayCase(colorList[i][0]), ("Select " + colorList[i][0] + "."));
+				addButton(btnSlot, colorList[i][1], colorFunc, [target, colorType, colorList[i][0], colorPattern], StringUtil.toDisplayCase(colorList[i][0]), ("Select " + colorList[i][0] + "."));
 				btnSlot++;
 				
 				if(colorList.length > 14 && (i + 1) == colorList.length)
 				{
 					while((btnSlot + 1) % 15 != 0) { btnSlot++; }
-					addButton(btnSlot, "Back", introMenu, target);
+					addButton(btnSlot, "Back", backFunc, target);
 				}
 			}
-			addButton(14, "Back", introMenu, target);
-		}		
-		private function partMenu(arg:Array):void
+			addButton(14, "Back", backFunc, target);
+		}
+		private function skinColor(arg:Array):void
 		{
 			var target:Creature = arg[0];
 			var colorType:String = arg[1];
 			var newColor:String = arg[2];
 			
 			clearOutput();
-			kGAMECLASS.showName("SELECT\nPART");
+			kGAMECLASS.showName("NEW SKIN\nCOLOR");
 			author("Night Trap");
 			
 			target.skinTone = newColor;
@@ -227,6 +308,39 @@
 			if(target.hasFur() || target.hasScales() || target.hasFeathers()) output("but nothing else seems to happen. It seems changing your skin color doesn’t do much when its covered by fur or scales.");
 			else output("followed by a tingling sensation that spreads from the injection site over your whole body. " + StringUtil.upperCase(newColor) + " is spreading outwards from your sternum, replacing your previous skin color. <b>You now have [pc.skinTone] [pc.skinNoun].</b>");
 
+			tfDone();
+		}
+		private function markingColor(arg:Array):void
+		{
+			var target:Creature = arg[0];
+			var colorType:String = arg[1];
+			var newColor:String = arg[2];
+			var patternType:int = arg[3];
+			
+			clearOutput();
+			author("Night Trap");
+			
+			if(patternType >= 0)
+			{
+				kGAMECLASS.showName("BODY\nMARKINGS");
+				output("You adjust the selector to " + target.getAccentMarking(patternType) + " and press the medipen to your sternum. There’s a quiet hiss from the device, followed by a tingling sensation that spreads from the injection site over your whole body. " + StringUtil.capitalize(target.getAccentMarking(patternType)) + (InCollection(patternType, [3, 6]) ? " patterns" : "") + " of " + newColor + " are appearing all over you from the neck down. <b>Your body is now " + target.getAccentMarking(patternType, false) + ".</b>");
+				target.clearAccentMarkings();
+				target.createStatusEffect("Body Markings", patternType, 0, 0, 0);
+				target.skinAccent = newColor;
+			}
+			else if(patternType == -2)
+			{
+				kGAMECLASS.showName("RECOLOR\nMARKINGS");
+				output("You adjust the selector to recolor your body markings to " + newColor + " and press the medipen to your sternum. There’s a quiet hiss from the device, followed by a tingling sensation that spreads from the injection site over your whole body. When the tingling finally ends you pull out your codex to check your reflection, finding that <b>the [pc.skinAccent] of your [pc.accentMarkingsNoun] has changed to " + newColor + ".</b>");
+				target.skinAccent = newColor;
+			}
+			else
+			{
+				kGAMECLASS.showName("REMOVE\nMARKINGS");
+				output("You adjust the selector to remove your body markings and press the medipen to your sternum. There’s a quiet hiss from the device, followed by a tingling sensation that spreads from the injection site over your whole body. When the tingling finally ends you pull out your codex to check your reflection, finding that <b>your body no longer has [pc.accentMarkings].</b>");
+				target.clearAccentMarkings();
+			}
+			
 			tfDone();
 		}
 		private function tfDone():void

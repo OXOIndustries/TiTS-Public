@@ -291,4 +291,5 @@ public function initializeRooms():void
 	rooms["FLAG EDIT"].northExit = "DEBUG3";
 	rooms["FLAG EDIT"].addFlag(GLOBAL.INDOOR);
 	rooms["FLAG EDIT"].runOnEnter = flagEditing;
+	
 }

@@ -121,9 +121,11 @@ public function disableExploreEvents():Boolean
 	// KaraQuest2 Duration
 	if (flags["KQ2_QUEST_BEGIN"] == 1 && flags["KQ2_QUEST_FINISHED"] == undefined) return true;
 	// Pirate Base (Bomb Timer)
-	if (flags["KQ2_NUKE_STARTED"] != undefined && flags["KQ2_NUKE_EXPLODED"] == undefined) return true;
+	if (flags["KQ2_NUKE_STARTED"] >= 0 && flags["KQ2_NUKE_EXPLODED"] == undefined) return true;
 	// Kashima Duration
 	if (flags["KASHIMA_STATE"] > 0 && flags["KASHIMA_STATE"] < 2) return true;
+	// Federation Quest
+	if (flags["FEDERATION_QUEST"] > 0 && flags["FEDERATION_QUEST"] < 3) return true;
 	
 	return false;
 }
@@ -209,7 +211,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		output("\n\n<b>You’re still in combat, you ninny!</b>");
 	if(pc.hasStatusEffect("Temporary Nudity Cheat"))
 		output("\n\n<b>BUG REPORT: TEMP NUDITY STUCK ON.</b>");
-	//Standard buttons:
+	
 	clearMenu(false);
 	clearBust();
 	inSceneBlockSaving = false;
@@ -217,9 +219,20 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	//Inventory shit
 	itemScreen = mainGameMenu;
 	lootScreen = inventory;
+	
+	// Dynamic room functions on enter
+	if(rooms[currentLocation].runOnEnter != undefined) {
+		if(rooms[currentLocation].runOnEnter()) return;
+		//If in a hazard area
+		if(rooms[currentLocation].hasFlag(GLOBAL.HAZARD) && !disableExploreEvents())
+		{
+			if(pattonIsHere()) pattonAppearance();
+		}
+	}
+	
+	//Standard buttons:
 	addButton(13, "Inventory", inventory);
 	//Other standard buttons
-	
 	if(pc.lust() < 33)
 	{
 		if(canArouseSelf()) addButton(8, "Arousal", arousalMenu);
@@ -246,19 +259,9 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		else if(canSleep()) addButton(9, "Sleep", sleep);
 		else addDisabledButton(9, "Sleep", "Sleep", "You can’t seem to sleep here at the moment....");
 	}
-		
 	addButton(14, "Codex", showCodex);
 	
 	//Display movement shits - after clear menu for extra options!
-	if(rooms[currentLocation].runOnEnter != undefined) {
-		//If in a hazard area
-		if(rooms[currentLocation].hasFlag(GLOBAL.HAZARD) && !disableExploreEvents())
-		{
-			if(pattonIsHere()) pattonAppearance();
-		}
-		if(rooms[currentLocation].runOnEnter()) return;
-	}
-	
 	//Turn off encounters since you're already here. Moving clears this.
 	flags["ENCOUNTERS_DISABLED"] = 1;
 
@@ -333,6 +336,8 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		if (!isNavDisabled(NAV_IN_DISABLE)) addButton(5, "Enter Ship", move, "SHIP INTERIOR");
 		else addDisabledButton(5, "Enter Ship", rooms[currentLocation].inText, "You can’t enter your ship here!");
 	}
+	
+	// Dynamic room functions after enter
 	if (rooms[currentLocation].runAfterEnter != null) rooms[currentLocation].runAfterEnter();
 	
 	flags["NAV_DISABLED"] = undefined; // Clear disabled directions.
@@ -1395,7 +1400,15 @@ public function shipMenu():Boolean
 		kaseCrewGreeting();
 		return true;
 	}
-
+	//Kase/Anno Fun
+	if(kaseIsCrew() && annoIsCrew() && (flags["KASE_MATHED"] == undefined || ((flags["KASE_MATHED"] != undefined && flags["KASE_MATHED"] + 7*24*60 < GetGameTimestamp()))))
+	{
+		if(rand(10) == 0)
+		{
+			annoAndKaseDoMath();
+			return true;
+		}
+	}
 	//Ellie Preg laying
 	if(flags["ELLIE_LAYING_PC_MIA"] != undefined)
 	{
@@ -1555,6 +1568,11 @@ public function flyMenu():void
 	if (flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_DETAILED"] == undefined)
 	{
 		addButton(11, "Kara", flyTo, "karaQuest2", "Kara", "Go see what Kara has up her sleeve.");
+	}
+	//Federation Quest - Taking myr to Mhega yourself - PC must have capital ship
+	if (flags["FEDERATION_QUEST"] == 8 && flags["FEDERATION_QUEST_EVAC_TIMER"] + 24*60 < GetGameTimestamp() && hasCapitalShip())
+	{
+		addButton(11, "Remnants", fedQuestEvacuate, undefined, "Evacuate Gold Remnants", "You’re getting a beacon signal from the planet. Looks like the Gold Myr remnants, ready to be retrieved...");	
 	}
 	
 	addButton(14, "Back", mainGameMenu);
@@ -1869,8 +1887,29 @@ public function showerOptions(option:int = 0):void
 public function sneakBackYouNudist():void
 {
 	clearOutput();
-	output("You meticulously make your way back to the ship using every ounce of subtlety you possess. It takes way longer than you would have thought thanks to a couple of near-misses, but you make it safe and sound to the interior of your craft.");
-	processTime(180+rand(30));
+	
+	var nTime:int = 0;
+	
+	output("You meticulously make your way back to the ship using every ounce of subtlety you possess.");
+	if(currentLocation == shipLocation)
+	{
+		output(" Climbing back up the airlock, you");
+		nTime = 5;
+	}
+	else if(InCollection(shipLocation, [rooms[currentLocation].northExit, rooms[currentLocation].eastExit, rooms[currentLocation].southExit, rooms[currentLocation].westExit]))
+	{
+		output(" Having to take your time and almost getting caught sneaking around, you finally");
+		nTime = 15;
+	}
+	else
+	{
+		output(" It takes way longer than you would have thought thanks to a couple of near-misses, but you");
+		nTime = (180 + rand(30));
+	}
+	output(" make it safe and sound to the interior of your craft.");
+	
+	processTime(nTime);
+	
 	moveTo("SHIP INTERIOR");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1887,7 +1926,13 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 			if((!pc.isChestGarbed() || pc.isChestVisible()) && pc.biggestTitSize() > 1) nudistPrevention = true;
 			if(!pc.isCrotchGarbed() || ((pc.hasGenitals() || pc.balls > 0) && pc.isCrotchVisible()) || pc.isAssVisible()) nudistPrevention = true;
 		}
-		if(pc.hasStatusEffect("Priapism")) nudistPrevention = false;
+		if(pc.hasStatusEffect("Priapism"))
+		{
+			// Note to self: taxi event to ship if moving in illegal area + fine.
+			if(getCaughtWithPriapism()) return;
+			// Note to self: disable public move restrictions.
+			nudistPrevention = false;
+		}
 		else if(pc.canCoverSelf(true)) nudistPrevention = false;
 		if(nudistPrevention)
 		{
@@ -2050,7 +2095,7 @@ public function variableRoomUpdateCheck():void
 		rooms["RESIDENTIAL DECK 5"].addFlag(GLOBAL.NPC);
 	}
 	else rooms["RESIDENTIAL DECK 5"].removeFlag(GLOBAL.NPC);
-
+	
 	if(flags["MET_RIYA"] != undefined && riyaAtNursery())
 	{
 		rooms["CANADA4"].removeFlag(GLOBAL.NPC);
@@ -2168,7 +2213,29 @@ public function variableRoomUpdateCheck():void
 		rooms["METAL POD 1"].removeFlag(GLOBAL.QUEST);
 		rooms["METAL POD 1"].removeFlag(GLOBAL.OBJECTIVE);
 	}
-	
+	//FedQuest Myr Colony on Mhenga - exclude 8 as this means PC still needs to drop them off
+	if(flags["FEDERATION_QUEST"] >= 7 && flags["FEDERATION_QUEST"] != 8)
+	{
+		//PC dropped them off themself
+		if(flags["FEDERATION_QUEST"] == 10)
+		{
+			//It's been 2 days
+			if(flags["FEDERATION_QUEST_EVAC_TIMER"]+2*24*60 < GetGameTimestamp())
+			{
+				myrOnMhenga(true);
+				rooms["WEST ESBETH 1"].westExit = "GOLD MYR EMBASSY";
+			}
+			else rooms["WEST ESBETH 1"].westExit = "";
+		}
+		//Someone else dropped them off and it's been 3 days
+		else if(flags["FEDERATION_QUEST_EVAC_TIMER"]+3*24*60 < GetGameTimestamp())
+		{
+			myrOnMhenga(true);
+			rooms["WEST ESBETH 1"].westExit = "GOLD MYR EMBASSY";
+		}
+		else rooms["WEST ESBETH 1"].westExit = "";
+	}
+	else rooms["WEST ESBETH 1"].westExit = "";
 	
 	/* TARKUS */
 	
@@ -2425,6 +2492,26 @@ public function variableRoomUpdateCheck():void
 		rooms["2I7"].addFlag(GLOBAL.TAXI);
 	}
 	
+	//Federation Quest
+	if(flags["SELLERA_DENIED"] != undefined && (GetGameTimestamp() < flags["SELLERA_DENIED"] + 60*48))
+	{
+		rooms["LIEVE BUNKER"].removeFlag(GLOBAL.NPC);
+	}
+	else if(flags["FEDERATION_QUEST"] == 1)
+	{
+		rooms["LIEVE BUNKER"].removeFlag(GLOBAL.NPC);
+		rooms["803"].addFlag(GLOBAL.OBJECTIVE);
+	}
+	else if(pc.hasStatusEffect("Lieve Disabled"))
+	{
+		rooms["LIEVE BUNKER"].removeFlag(GLOBAL.NPC);
+		rooms["803"].removeFlag(GLOBAL.OBJECTIVE);
+	}
+	else
+	{
+		rooms["LIEVE BUNKER"].addFlag(GLOBAL.NPC);
+		rooms["803"].removeFlag(GLOBAL.OBJECTIVE);
+	}
 	
 	/* UVETO */
 	
@@ -2466,14 +2553,28 @@ public function variableRoomUpdateCheck():void
 	{
 		rooms["PIPPA HOUSE"].addFlag(GLOBAL.NPC);
 	}
+	// Princess Ula Location
 	if(flags["ULA_CAVE"] != undefined)
 	{
 		if(flags["ULA_SAVED"] == undefined)
 		{
 			if(flags["ULA_LEAVE_TIMER"] == undefined || flags["ULA_LEAVE_TIMER"] + 60*24*2 > GetGameTimestamp()) rooms[flags["ULA_CAVE"]].addFlag(GLOBAL.NPC);
 			else rooms[flags["ULA_CAVE"]].removeFlag(GLOBAL.NPC);
+			rooms["KORGII B14"].removeFlag(GLOBAL.OBJECTIVE);
 		}
-		else rooms[flags["ULA_CAVE"]].removeFlag(GLOBAL.NPC);
+		else
+		{
+			rooms[flags["ULA_CAVE"]].removeFlag(GLOBAL.NPC);
+			rooms["KORGII B14"].addFlag(GLOBAL.OBJECTIVE);
+		}
+	}
+	else
+	{
+		rooms["UVIP R36"].removeFlag(GLOBAL.NPC);
+		rooms["UVIP D22"].removeFlag(GLOBAL.NPC);
+		rooms["UVIP J18"].removeFlag(GLOBAL.NPC);
+		rooms["UVGR K20"].removeFlag(GLOBAL.NPC);
+		rooms["KORGII B14"].removeFlag(GLOBAL.OBJECTIVE);
 	}
 	
 	/* VESPERIA / CANADIA STATION */
@@ -2813,7 +2914,7 @@ public function processTaivrasPregnancyState(deltaT:uint, doOut:Boolean):void
 
 public function processKQ2NukeEvents(deltaT:uint, doOut:Boolean):void
 {
-	if (flags["KQ2_NUKE_STARTED"] != undefined && flags["KQ2_NUKE_EXPLODED"] == undefined)
+	if (flags["KQ2_NUKE_STARTED"] >= 0 && flags["KQ2_NUKE_EXPLODED"] == undefined)
 	{
 		// Still there!
 		if (flags["KQ2_QUEST_FINISHED"] == undefined)

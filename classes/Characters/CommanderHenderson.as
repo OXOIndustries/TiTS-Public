@@ -240,17 +240,17 @@ package classes.Characters
 		
 		public function tentacleWhip(target:Creature, hostiles:Array):void
 		{
-			output("The tentacle abomination sweeps his arm towards [target.combatName], extending the squirming mass of red vines far beyond a human’s reach to smash its targets.");
+			output("The tentacle abomination sweeps his arm towards " + target.getCombatName() + ", extending the squirming mass of red vines far beyond a human’s reach to smash its targets.");
 			if (combatMiss(this, target))
 			{
 				output(" Luckily, it’s attack is slow, and easily dodged!");
 			}
 			else
 			{
-				output(" The tentacles slam into [target.combatName] like a Pyrite freighter");
+				output(" The tentacles slam into " + target.getCombatName() + " like a Pyrite freighter");
 				if (rand(4) == 0)
 				{
-					output(", throwing [target.combatHimHer] to the ground");
+					output(", throwing " + target.getCombatPronoun("himher") + " to the ground");
 					createStaggeredEffect(target);
 				}
 				output("!");
@@ -263,7 +263,7 @@ package classes.Characters
 		{
 			createStatusEffect("Grapple Cooldown", 4);
 			
-			output("Henderson lunges for [target.combatName], tentacle-arms outstretched in a writhing mass of squirming sub-creatures.");
+			output("Henderson lunges for " + target.getCombatName() + ", tentacle-arms outstretched in a writhing mass of squirming sub-creatures.");
 			if (combatMiss(this, target))
 			{
 				output(" Luckily, you manage to dodge the grab!");
@@ -430,7 +430,7 @@ package classes.Characters
 			output("Henderson slowly extends one of his mutated, writhing limbs in");
 			if (target is PlayerCharacter) output(" your");
 			else output(" the Chief’s");
-			output(" direction. With a gurgling roar, several of the blood-red tendrils detatch from his arm, flopping down onto the ground and squirming like fish out of water. They’d almost be comical looking, if they didn’t quickly right themselves and start bee-lining for [target.combatHimHer]. Several of the things leap for [target.combatName], grasping and wrapping around [target.combatHisHer] arms and legs like a dozen tiny snakes. They start squeezing and hammering, doing everything they can to drag [target.combatHimHer] down with them!");
+			output(" direction. With a gurgling roar, several of the blood-red tendrils detatch from his arm, flopping down onto the ground and squirming like fish out of water. They’d almost be comical looking, if they didn’t quickly right themselves and start bee-lining for " + target.getCombatPronoun("himher") + ". Several of the things leap for " + target.getCombatName() + ", grasping and wrapping around " + target.getCombatPronoun("hisher") + " arms and legs like a dozen tiny snakes. They start squeezing and hammering, doing everything they can to drag " + target.getCombatPronoun("himher") + " down with them!");
 			
 			applyDamage(damageRand(new TypeCollection( { kinetic: 5 }, DamageFlag.BYPASS_SHIELD), 15), this, target, "minimal");
 			if (target.hasStatusEffect("Crushing Worms"))

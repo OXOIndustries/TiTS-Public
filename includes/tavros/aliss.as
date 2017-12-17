@@ -42,6 +42,25 @@ public function miAmoreBonusShit():Boolean
 		output("\n\nYou take a glance around the shop. They have a wide selection of items for sale. Various bras, corsets, and negligees to cover your upper body, and panties, garters and all manner of stockings to cover your lower body. There is even a display labeled “Handmade Cocksocks by Aliss”.");
 		output("\n\nAliss sees you checking the place out and approaches you, saying, <i>“Welcome back, </i>mi amour<i>. See anything you like?”</i>");
 	}
+	if(flags["LIAMME_EXHIB"] != undefined)
+	{
+		//If not procced or expired:
+		if(flags["LIAMME_ALISS_PROC"] == undefined || flags["LIAMME_ALISS_PROC"] + 60 < GetGameTimestamp())
+		{
+			//20% chance he shows up
+			if(rand(5) == 0)
+			{
+				flags["LIAMME_ALISS_PROC"] = GetGameTimestamp();
+			}
+		}
+		//If Liamme has already procced: stick around an hour
+		if(flags["LIAMME_ALISS_PROC"] + 60 > GetGameTimestamp())
+		{
+			showBust(alissBustDisplay(),liammeBustString());
+			output("\n\nYou see a blonde ausar femboy walking around the shop with a bag full of naughty goodies. By your guess, it’s <b>Liamme doing a little bit of shopping</b>. Maybe you could pay him a visit.");
+			addButton(3,"Liamme",liammeShoppingAtAlissApproach,undefined,"Liamme","See what the trappy ausar is up to.");
+		}
+	}
 	//[Upper Body] [Lower Body] [Cocksocks] [Aliss] [Leave]
 	addButton(0,"Upper Body",upperBodyAlice,undefined,"Upper Body","See what tops Aliss has for sale.");
 	addButton(1,"Lower Body",lowerBodyAlice,undefined,"Lower Body","See what bottoms Aliss has for sale.");
@@ -1660,7 +1679,7 @@ public function lustOvahTimeEvent():void
 	pc.lust(40);
 	output("A strange feeling brings your movements up short... something is tickling the ");
 	if(pc.hasVagina()) output("tip of your [pc.clit]");
-	else if(pc.hasCock()) output("[pc.cockHeadSimple] of your [pc.cockNounSimple]");
+	else if(pc.hasCock()) output("[pc.cockHead] of your [pc.cockNounSimple]");
 	else output("ring of your [pc.asshole]");
 	output(". A warmth spreads through your crotch, far away and irregular, like your groin is falling asleep just as you slip into a bath.");
 	if(pc.isCrotchExposedByArmor()) output(" You look down, trying to find any cause,");

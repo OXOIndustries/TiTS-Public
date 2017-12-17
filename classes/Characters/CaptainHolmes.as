@@ -269,14 +269,14 @@ package classes.Characters
 		
 		public function cumSpray(target:Creature, hostiles:Array):void
 		{
-			output("The captain stumbles back, rearing his tentacle-laden head back and convulsing violently. You blink in surprise as his head snaps forward, and every tentacle he’s got goes completely rigid, pointed right at [target.combatName] with all of their tapered tips. They swell, and then erupt in a geyser of pink-hued liquid, spraying it all over [target.combatHimHer].");
+			output("The captain stumbles back, rearing his tentacle-laden head back and convulsing violently. You blink in surprise as his head snaps forward, and every tentacle he’s got goes completely rigid, pointed right at " + target.getCombatName() + " with all of their tapered tips. They swell, and then erupt in a geyser of pink-hued liquid, spraying it all over " + target.getCombatPronoun("himher") + ".");
 			if (combatMiss(this, target))
 			{
-				output(" [target.CombatHeShe] shake" + (target is PlayerCharacter ? "" : "s") +" it off, drooling pink spunk everywhere.");
+				output(" " + StringUtil.capitalize(target.getCombatPronoun("heshe"), false) + " shake" + (target is PlayerCharacter || target.isPlural ? "" : "s") + " it off, drooling pink spunk everywhere.");
 			}
 			else
 			{
-				output(" Heat burns through [target.combatName], [target.combatHisHer] body reacting to the intense musk of the mutant jizz. The smell is incredible, intoxicating... alluring...");
+				output(" Heat burns through " + target.getCombatName() + ", " + target.getCombatPronoun("hisher") + " body reacting to the intense musk of the mutant jizz. The smell is incredible, intoxicating... alluring...");
 				
 				applyDamage(damageRand(new TypeCollection( { drug: 15 } ), 15), this, target, "minimal");
 			}
@@ -284,10 +284,10 @@ package classes.Characters
 		
 		public function cumFacial(target:Creature, hostiles:Array):void
 		{
-			output("One of Holmes’s tentacles snaps forward, flinging a huge gout of pink cum at [target.combatName]" + (target is PlayerCharacter ? "" : "’s") + " face! The mutant spunk splatters on [target.combatHimHer] face, tainting the air with its musk.");
+			output("One of Holmes’s tentacles snaps forward, flinging a huge gout of pink cum at " + target.getCombatName() + (target is PlayerCharacter ? "" : "’s") + " face! The mutant spunk splatters on " + target.getCombatPronoun("himher") + " face, tainting the air with its musk.");
 			if (!rangedCombatMiss(this, target))
 			{
-				output(" Worse, it lands right in [target.combatHisHer] eyes.");
+				output(" Worse, it lands right in " + target.getCombatPronoun("hisher") + " eyes.");
 				var bBlind:Boolean = false;
 				if (!target.hasBlindImmunity())
 				{

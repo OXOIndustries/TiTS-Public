@@ -192,6 +192,11 @@ package classes.Items.Transformatives
 			var hasGlossy:Boolean = false;
 			var goBlack:Boolean = false;
 			
+			if(select == 0)
+			{
+				laquineEarsModerateTFsGo(pc, deltaShift);
+				return;
+			}
 			// (Penor 12"+) Priapism - Yank crotch coverings out of the way. PC cannot wear anything that covers crotch!
 			if(select == 1)
 			{
@@ -209,14 +214,16 @@ package classes.Items.Transformatives
 				else textBuff += " increasingly sensitive tool" + (pc.cocks.length == 1 ? "" : "s");
 				textBuff += " while seconds tick by, phallic flesh spilling out and up to the beat of your heart.";
 				// Covered
-				if(!pc.isCrotchExposed())
+				if(!pc.isCrotchExposed(true))
 				{
-					textBuff += ParseText("\n\nYou groan as the [pc.cockHeads] press against your [pc.crotchCover], thrusting into the unforgiving obstruction with feral determination. <i>It hurts!</i> Never before has your tumescence been so resolute in the quest to be erect, nor so sensitive. It feels like you’ve been edging for hours, every nerve bright red and raw from overstimulation to the point where even simple contact with your equipment is like the grittiest sandpaper.");
+					textBuff += ParseText("\n\nYou groan as the [pc.cockHeads] press" + (pc.cocks.length == 1 ? "es" : "") + " against your [pc.crotchCover], thrusting into the unforgiving obstruction with feral determination. <i>It hurts!</i> Never before has your tumescence been so resolute in the quest to be erect, nor so sensitive. It feels like you’ve been edging for hours, every nerve bright red and raw from overstimulation to the point where even simple contact with your equipment is like the grittiest sandpaper.");
 					textBuff += ParseText("\n\nYou yank down your [pc.crotchCovers] and sigh with relief. Hot maleness surges out, inches upon inches swelling with the kind of immediacy you’d associate with a pneumatic piston. <b>You are hard.</b> It’s almost ludicrous how hard you are, considering the complete lack of anything to arouse you. You’re just standing there, rock-hard prick" + (pc.cocks.length == 1 ? "" : "s") + " bouncing in the breeze, unflappably erect with no signs of fading.");
 					textBuff += ParseText("\n\nOnce, you try to cram your rebellious genitalia into your [pc.crotchCover], but there’s no way to get it inside without hurting yourself. Usually your boners would have a little give, would allow themselves to be compacted and stored if the situation required it. Now though? You’re going to have to get used to walking around without any pants. <b>The laquine ears have given you a bad case of priapism.</b> According to the Codex, it’s a common laquine affliction and mostly harmless for their species. A significant amount of orgasms or the passage of time should assuage your inflamed nethers.");
 					//Queue event to remove bits
-					if(!pc.isCrotchExposedByArmor()) kGAMECLASS.eventQueue.push( function():void { kGAMECLASS.unequip(pc.armor, true); } );
-					if(!pc.isCrotchExposedByLowerUndergarment()) kGAMECLASS.eventQueue.push( function():void { kGAMECLASS.unequip(pc.lowerUndergarment, true); } );
+					if(!pc.isCrotchExposedByArmor(true) || (pc.hasArmor() && !pc.isCrotchExposedByLowerUndergarment(true)))
+						kGAMECLASS.eventQueue.push( function():void { kGAMECLASS.unequip(pc.armor, true); } );
+					if(!pc.isCrotchExposedByLowerUndergarment(true))
+						kGAMECLASS.eventQueue.push( function():void { kGAMECLASS.unequip(pc.lowerUndergarment, true); } );
 				}
 				// Exposed - no new PG
 				else
@@ -225,12 +232,7 @@ package classes.Items.Transformatives
 					textBuff += "\n\nWere you foolish enough to wear any clothing that attempted to cover your rampaging length" + (pc.cocks.length == 1 ? "" : "s") + ", you’d have to remove it. The flesh is too firm and too sensitive. Crushing yourself into pants would be agony. You bite your palm, expecting that pain will help you battle the troublesome boner" + (pc.cocks.length == 1 ? "" : "s") + ", but not even physical agony can chase away the pernicious tumescence. <b>The laquine ears have left you temporarily engorged and sensitive! Wearing any crotch-covering clothing item would be agony like this, but at least you’ll be ready for sex at the drop of a hat.</b>";
 				}
 				
-				// Priapism
-				// Minimum lust raised to 33 if below :3
-				// Note to self: taxi event to ship if moving in illegal area + fine.
-				// Note to self: disable public move restrictions.
-				// Lasts 7 days, but every orgasm reduces it by 15 hours.
-				pc.createStatusEffect("Priapism", 0, 0, 0, 0, false, "OffenseUp", "You are unnaturally hard and erect regardless of your arousal level. The added discomfort prevents you from covering up!", false, (7*24*60), 0xB793C4);
+				pc.applyPriapism();
 			}
 			// (Penor) Grow five to ten inches, dependant on perks. Low chance cock becomes glossy black if not. Immensely pleasurable but no cum. (Mini: 3/4-7/Hung:7-11} inches. (20"mini/28" norm/36" hung)
 			else if(select == 2)
@@ -417,7 +419,7 @@ package classes.Items.Transformatives
 				pc.addLegFlag(GLOBAL.FLAG_FURRED);
 				pc.addLegFlag(GLOBAL.FLAG_PAWS);
 			}
-			if(textBuff == "") textBuff += "<b>Fenoxo fucked up.</b> Select state: " + select + " and Choices state: " + choices.length;
+			if(textBuff == "") textBuff += "ERROR. <b>Fenoxo fucked up.</b> Major Laquine Proc, Select state: " + select + " and Choices state: " + choices.length;
 			AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 			return;
 		}
@@ -522,6 +524,11 @@ package classes.Items.Transformatives
 			var select:int = 0;
 			if (choices.length > 0) select = choices[rand(choices.length)];
 
+			if(select == 0)
+			{
+				laquineEarsMinorTFsGO(pc, deltaShift);
+				return;
+			}
 			//(Penis) Random cock becomes horsecock.
 			if(select == 1)
 			{
@@ -1226,7 +1233,7 @@ package classes.Items.Transformatives
 				}
 				else textBuff += ParseText(pc.faceTypeLockedMessage());
 			}
-			if(textBuff == "") textBuff += "<b>Fenoxo fucked up.</b> Select state: " + select + " and Choices state: " + choices.length;
+			if(textBuff == "") textBuff += "ERROR. <b>Fenoxo fucked up.</b> Moderate Laquine Proc, Select state: " + select + " and Choices state: " + choices.length;
 			AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 			return;
 		}
@@ -1306,15 +1313,16 @@ package classes.Items.Transformatives
 
 			var select:Number = 0;
 			if(choices.length > 0) select = choices[rand(choices.length)];
-			else 
+			else if(pc.earType != GLOBAL.TYPE_LAPINE && pc.earType != GLOBAL.TYPE_QUAD_LAPINE) select = 12;
 
-			if(kGAMECLASS.debug) textBuff += "SELECT: " + select + "\n";
-			//(Penis) Awkward, persistent boner. Large exhibitionism gains.
-			//Hypercommon if criteria met to account for otherwise low chance.
+			//if(kGAMECLASS.debug) textBuff += "SELECT: " + select + "\n";
 			if(select == 0)
 			{
-				textBuff += "Totes an error. No event successfully procced.";
+				//textBuff += "Totes an error. No event successfully procced.";
+				textBuff += "A tingling sets atop your head and you feel a minor change incoming from the Laquine Ears... however, the feeling quickly fades away as soon as it arrives. Perhaps you are as laquine as you are going to get?";
 			}
+			//(Penis) Awkward, persistent boner. Large exhibitionism gains.
+			//Hypercommon if criteria met to account for otherwise low chance.
 			if(select == 1)
 			{
 				x = pc.biggestCockIndex();
@@ -1717,7 +1725,7 @@ package classes.Items.Transformatives
 			{
 				textBuff += "The Laquine Ears don’t seem to be doing a damned thing. Damnit!";
 			}
-			if(textBuff == "") textBuff += "ERROR. Fenoxo fucked up. Minor Laquine Proc, select: " + select + " and choices state: " + choices.length;
+			if(textBuff == "") textBuff += "ERROR. Fenoxo fucked up. Minor Laquine Proc, Select state: " + select + " and Choices state: " + choices.length;
 			AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 			return;
 		}

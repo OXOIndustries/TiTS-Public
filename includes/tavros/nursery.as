@@ -169,39 +169,9 @@ public function playWithMilodan(choice:Number = -1):void
 		girl = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_MILODAN, ChildManager.GENDER_FEMALE, 0, 2);
 		if(boy && girl) boy = (rand(2) == 0);
 
-		if(boy) output("He’s");
-		else output("She’s");
-		output(" too young to play yet, but you reach into the cot where a kit is swaddled in cloth and gently boop ");
-		if(boy) output("him");
-		else output("her");
-		output(" on the nose. Milodan kits are blind for several weeks, so the kit can’t see you, but ");
-		if(boy) output("he");
-		else output("she");
-		output(" can smell you. ");
-		if(boy) output("He");
-		else output("She");
-		output(" sniffles when you remove your finger from ");
-		if(boy) output("his");
-		else output("her");
-		output(" snout and waves at you with outstretched arms, grabbing onto your fingertip with ");
-		if(boy) output("his");
-		else output("her");
-		output(" tiny hands. You can feel ");
-		if(boy) output("him");
-		else output("her");
-		output(" pulling your hand down, and when you acquiesce ");
-		if(boy) output("he");
-		else output("she");
-		output(" wraps ");
-		if(boy) output("his");
-		else output("her");
-		output(" arms around your fingers and falls asleep. You stroke ");
-		if(boy) output("his");
-		else output("her");
-		output(" hair with a smile, stealthily extricating your hand from the tiny kit’s grip and watching ");
-		if(boy) output("him");
-		else output("her");
-		output(" snoozing in the cot.");
+		output((boy ? "He" : "She") + "’s too young to play yet, but you reach into the cot where a kit is swaddled in cloth and gently boop " + (boy ? "him" : "her") + " on the nose. Milodan kits are blind for several weeks, so the kit can’t see you, but " + (boy ? "he" : "she") + " can smell you. " + (boy ? "He" : "She") + " sniffles when you remove your finger from " + (boy ? "his" : "her") + " snout and waves at you with outstretched arms, grabbing onto your fingertip with " + (boy ? "his" : "her") + " tiny hands. You can feel " + (boy ? "him" : "her") + " pulling your hand down, and when you acquiesce " + (boy ? "he" : "she") + " wraps " + (boy ? "his" : "her") + " arms around your fingers and falls asleep. You stroke " + (boy ? "his" : "her") + " hair with a smile, stealthily extricating your hand from the tiny kit’s grip and watching " + (boy ? "him" : "her") + " snoozing in the cot.");
+		
+		processTime(5);
 	}
 	//Play with baby (9-24 weeks)
 	else if(choice == 1)
@@ -210,41 +180,10 @@ public function playWithMilodan(choice:Number = -1):void
 		girl = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_MILODAN, ChildManager.GENDER_FEMALE, 3, 6);
 		if(boy && girl) boy = (rand(2) == 0);
 
-		output("You notice a kit sitting upright in ");
-		if(boy) output("his");
-		else output("her");
-		output(" cot as you tiptoe by. ");
-		if(boy) output("He");
-		else output("She");
-		output(" lifts ");
-		if(boy) output("his");
-		else output("her");
-		output(" arms up, pointing upwards and clearly wanting to be picked up.");
-		output("\n\nYou lift ");
-		if(boy) output("him");
-		else output("her");
-		output(" out of ");
-		if(boy) output("his");
-		else output("her");
-		output(" little bed. Woof! ");
-		if(boy) output("He’s");
-		else output("She’s");
-		output(" a lot heavier than ");
-		if(boy) output("he");
-		else output("she");
-		output(" was a few weeks ago. ");
-		if(boy) output("He");
-		else output("She");
-		output(" solemnly inspects you with wide eyes, reaching out to paw at your chin. You give ");
-		if(boy) output("his");
-		else output("her");
-		output(" little tufts of cheek fur a scruff, and ");
-		if(boy) output("he");
-		else output("she");
-		output(" responds by making a little noise that sounds like a bark. What a little cutie. You place the kit back in ");
-		if(boy) output("his");
-		else output("her");
-		output(" cot after a couple of minutes of idle play.");
+		output("You notice a kit sitting upright in " + (boy ? "his" : "her") + " cot as you tiptoe by. " + (boy ? "He" : "She") + " lifts " + (boy ? "his" : "her") + " arms up, pointing upwards and clearly wanting to be picked up.");
+		output("\n\nYou lift " + (boy ? "him" : "her") + " out of " + (boy ? "his" : "her") + " little bed. Woof! " + (boy ? "He" : "She") + "’s a lot heavier than " + (boy ? "he" : "she") + " was a few weeks ago. " + (boy ? "He" : "She") + " solemnly inspects you with wide eyes, reaching out to paw at your chin. You give " + (boy ? "his" : "her") + " little tufts of cheek fur a scruff, and " + (boy ? "he" : "she") + " responds by making a little noise that sounds like a bark. What a little cutie. You place the kit back in " + (boy ? "his" : "her") + " cot after a couple of minutes of idle play.");
+		
+		processTime(7);
 	}
 	//Play with baby (25-52 weeks)
 	else if(choice == 2)
@@ -255,81 +194,29 @@ public function playWithMilodan(choice:Number = -1):void
 		//One kit
 		if(youngMilos == 1)
 		{
-			output("You see your kit sitting down in ");
-			if(boy) output("his");
-			else output("her");
-			output(" nappies in the play area, waving a rattle around with a pacifier in ");
-			if(boy) output("his");
-			else output("her");
-			output(" mouth. Upon spotting you, ");
-			if(boy) output("he");
-			else output("she");
-			output(" shakily gets to ");
-			if(boy) output("his");
-			else output("her");
-			output(" feet and takes a few wobbling steps towards you before toppling over. Not to be deterred, though, ");
-			if(boy) output("he");
-			else output("she");
-			output(" crawls over to your [pc.leg] and uses it to brace ");
-			if(boy) output("himself");
-			else output("herself");
-			output(", raising ");
-			if(boy) output("him");
-			else output("her");
-			output(" to a standing position.");
-			output("\n\n<i>“Mu mu,”</i> ");
-			if(boy) output("he");
-			else output("she");
-			output(" says, looking up at you very seriously. <i>“Mu mu.”</i>");
-			output("\n\n<i>“Hey kiddo,”</i> you say with a grin, leaning down to muss ");
-			if(boy) output("his");
-			else output("her");
-			output(" hair a bit, your gaze softening. <i>“You’re growing up fast, huh?”</i>");
-			output("\n\n<i>“Buh,”</i> the kit responds, shaking ");
-			if(boy) output("his");
-			else output("her");
-			output(" rattle.");
-			output("\n\nYou spend some time with your fluffy kit, playing with ");
-			if(boy) output("him");
-			else output("her");
-			output(" and ");
-			if(boy) output("his");
-			else output("her");
-			output(" little set of blocks.");
+			output("You see your kit sitting down in " + (boy ? "his" : "her") + " nappies in the play area, waving a rattle around with a pacifier in " + (boy ? "his" : "her") + " mouth. Upon spotting you, " + (boy ? "he" : "she") + " shakily gets to " + (boy ? "his" : "her") + " feet and takes a few wobbling steps towards you before toppling over. Not to be deterred, though, " + (boy ? "he" : "she") + " crawls over to your [pc.leg] and uses it to brace " + (boy ? "him" : "her") + "self, raising " + (boy ? "him" : "her") + " to a standing position.");
+			output("\n\n<i>“Mu mu,”</i> " + (boy ? "he" : "she") + " says, looking up at you very seriously. <i>“Mu mu.”</i>");
+			output("\n\n<i>“Hey kiddo,”</i> you say with a grin, leaning down to muss " + (boy ? "his" : "her") + " hair a bit, your gaze softening. <i>“You’re growing up fast, huh?”</i>");
+			output("\n\n<i>“Buh,”</i> the kit responds, shaking " + (boy ? "his" : "her") + " rattle.");
+			output("\n\nYou spend some time with your fluffy kit, playing with " + (boy ? "him" : "her") + " and " + (boy ? "his" : "her") + " little set of blocks.");
+		
+			processTime(12);
 		}
 		//Multiple kits
 		else
 		{
-			output("You see your kits sitting in their nappies in the play area, waving rattles around emphatically. One of them spots you, nudging ");
-			if(boy) output("his");
-			else output(" littermate over and clambering atop ");
-			if(boy) output("him");
-			else output("her");
-			output(" to get to you. Standing and taking a few wobbly steps, ");
-			if(boy) output("he");
-			else output("she");
-			output(" falls back down when the kit ");
-			if(boy) output("he");
-			else output("she");
-			output(" climbed over bops ");
-			if(boy) output("him");
-			else output("her");
-			output(" with a rattle. Rather than crying, though, both of them crawl over to you to hug your [pc.leg].");
+			output("You see your kits sitting in their nappies in the play area, waving rattles around emphatically. One of them spots you, nudging " + (boy ? "his" : "her") + " littermate over and clambering atop " + (boy ? "him" : "her") + " to get to you. Standing and taking a few wobbly steps, " + (boy ? "he" : "she") + " falls back down when the kit " + (boy ? "he" : "she") + " climbed over bops " + (boy ? "him" : "her") + " with a rattle. Rather than crying, though, both of them crawl over to you to hug your [pc.leg].");
 			output("\n\n<i>“Muh,”</i> one of them says, looking up at you intently. <i>“Mu mu.”</i>");
-			output("\n\n<i>“Hey kiddo,”</i> you say with a grin, leaning down to muss ");
-			if(boy) output("his");
-			else output("her");
-			output(" hair a bit, your gaze softening. <i>“You’re growing up fast, huh?”</i>");
-			output("\n\n<i>“Buh,”</i> the kit responds, shaking ");
-			if(boy) output("his");
-			else output("her");
-			output(" rattle.");
+			output("\n\n<i>“Hey kiddo,”</i> you say with a grin, leaning down to muss " + (boy ? "his" : "her") + " hair a bit, your gaze softening. <i>“You’re growing up fast, huh?”</i>");
+			output("\n\n<i>“Buh,”</i> the kit responds, shaking " + (boy ? "his" : "her") + " rattle.");
 
 			//2 kits: 
 			if(youngMilos <= 2) output("\n\nYou spend some time with the two fluffy kits, playing with them and their little set of blocks.");
 			//3-9 kits:
 			else if(youngMilos < 10) output("\n\nYou’re quickly joined by the rest of your fluffy kits. You spend some time playing with them and their little set of blocks, making sure they play nice.");
 			else output("\n\nYou’re soon surrounded by a fluffy horde of kits, crawling all around (and over) you. You spend some time playing with them and their little set of blocks, making sure they play nice.");
+		
+			processTime(21);
 		}
 	}
 	clearMenu();
@@ -1270,7 +1157,11 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 				if(baby.originalRace != "human" && baby.originalRace.indexOf("half") != -1 && baby.originalRace.indexOf("human") != -1) baby.originalRace = "human";
 				
 				// Print stats
-				if(baby.Quantity == 1) output("\n<b>* " + (baby.Name == "" ? "<i>(Unnamed)</i>" : baby.Name) + ":</b> ");
+				if(baby.Quantity == 1) 
+				{
+					if(baby.Name == "") output("\n<b>* One Child:</b> ");
+					else output("\n<b>* " + (baby.Name == "" ? "<i>(Unnamed)</i>" : baby.Name) + ":</b> ");
+				}
 				else output("\n<b>* " + StringUtil.toDisplayCase(num2Text(baby.Quantity)) + " Children:</b> ");
 				if(baby.Days >= 6570) output("18+ years");
 				else if(baby.Days >= 365) output(baby.Years + " year" + (baby.Years == 1 ? "" : "s"));

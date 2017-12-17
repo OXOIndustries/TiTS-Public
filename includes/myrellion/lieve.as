@@ -93,8 +93,21 @@ public function lieveBunkerFunc():Boolean
 	if (flags["MET_LIEVE"] == undefined)
 	{
 		lieveInitialEncounter();
+		if(flags["SELLERA_DENIED"] != undefined) flags["SELLERA_DENIED"] = undefined;
 		return true;
 	}
+	//FederationQuest Denying stuff
+	else if(flags["SELLERA_DENIED"] != undefined)
+	{
+		if(GetGameTimestamp() < (flags["SELLERA_DENIED"] + 60*48)) return false;
+		else return lieveReturn();
+	}
+	else if(flags["FEDERATION_QUEST"] > 3 && flags["FEDERATION_QUEST_COAT"] == undefined)
+	{
+		lieveGiveCoat();
+		return true;
+	}
+	else if(pc.hasStatusEffect("Lieve Disabled")) return false;
 	else
 	{
 		output("\n\nLieve’s here, idly watching the approach through the viewslit. Her harem lounges around behind her, looking bored and horny but unwilling to disturb their mistress at present.");
@@ -244,6 +257,8 @@ public function lieveMenu():void
 	if (hasFuckedLieve()) addButton(5, "Appearance", lieveAppearance);
 	else addDisabledButton(5, "Appearance");
 	
+	if (flags["FEDERATION_QUEST_CYPHER"] == 1) addButton(6, "Documents", lieveGiveDocs, undefined, "Documents", "Hand over those documents you found in the remnant’s radio tower.");
+	
 	if (lieveVenomEnabled()) addButton(10, "StopVenom", lieveDisableVenom, undefined, "Stop Venom", "Lieve assumes you are okay with her using her venom on you. You can ask her to stop using it so freely.");
 
 	addButton(14, "Leave", mainGameMenu);
@@ -269,7 +284,7 @@ public function lieveDisableVenom():void
 	flags["LIEVE_VENOM_ENABLED"] = undefined;
 
 	processTime(2);
-	lieveMenu()
+	lieveMenu();
 }
 
 public function lieveAppearance():void

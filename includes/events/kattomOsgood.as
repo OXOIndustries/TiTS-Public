@@ -1,5 +1,8 @@
 public function pattonIsHere():Boolean
 {
+	// Exclusions
+	if(rooms[currentLocation].runAfterEnter != null) return false;
+	
 	//Set CD so you don't run into him immediately.
 	if(flags["KATTOM_MOVE_CD"] == undefined) 
 	{
@@ -107,16 +110,26 @@ public function showKattom():void
 //First time appearance blurb.
 public function pattonAppearance():void
 {
+	// Button check (reset if row is full)
+	var btnSlot:int = Math.max(0, (userInterface.lastButton() + 1));
+	if(btnSlot >= 5)
+	{
+		flags["KATTOM_MOVE_CD"] = (GetGameTimestamp() - 2100);
+		flags["KATTOM_LOCATION"] = "SHIP INTERIOR";
+		generateMap();
+		return;
+	}
+	
 	if(flags["MET_KATTOM"] == undefined)
 	{
 		output("\n\nA short-statured kaithrit has set up shop all alone in the untamed wilderness. If the roly poly cat-man is bothered by the dangerous surroundings, he makes no show of it. You wager the dozen heavily armed sentry drones buzzing around him have something to do with that.");
-		addButton(0,"Kaithrit",approachKattom);
+		addButton(btnSlot,"Kaithrit",approachKattom);
 	}
 	//Repeat Inroom :3
 	else
 	{
 		output("\n\nKattom Osgood, the kaithrit weapon vendor is here with his cadre of defensive guns, peddling implements of violence to locals and rushers alike.");
-		addButton(0,"Kattom",approachKattom);
+		addButton(btnSlot,"Kattom",approachKattom);
 	}
 }
 

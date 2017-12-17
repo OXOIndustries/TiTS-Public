@@ -409,6 +409,7 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/lieve.png", mimeType = "image/png")]
 		public var Bust_LIEVE:Class;
+		public var Bounds_LIEVE:Rectangle = new Rectangle(17, 0, 60, 60);
 		[Embed(source = "../../../assets/images/npcs/adjatha/lieve_nude.png", mimeType = "image/png")]
 		public var Bust_LIEVE_NUDE:Class;
 		

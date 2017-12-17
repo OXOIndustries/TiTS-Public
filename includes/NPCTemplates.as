@@ -150,7 +150,7 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "KATTON", KattomOsgood);
 	prepChar(justUpdate, "TAMTAM", TamTam);
 	prepChar(justUpdate, "ERIKA", Erika);
-	
+	prepChar(justUpdate, "LIEVE", Lieve);
 	
 	
 	// Check all characters have version information set

@@ -335,7 +335,7 @@ package classes.Characters
 			}
 			else if(target.hasAirtightSuit())
 			{
-				output(" The parasite’s cloud envelops and consumes you, but it does so in vain. Your [pc.armor] prevents the stuff from contacting your skin, sparring your lust of wanton desires.");
+				output(" The parasite’s cloud envelops and consumes you, but it does so in vain. Your [pc.armor] prevents the stuff from contacting your skin, sparing your lust of wanton desires.");
 			}
 			else
 			{
