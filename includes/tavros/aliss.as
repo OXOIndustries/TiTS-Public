@@ -56,7 +56,8 @@ public function miAmoreBonusShit():Boolean
 		//If Liamme has already procced: stick around an hour
 		if(flags["LIAMME_ALISS_PROC"] + 60 > GetGameTimestamp())
 		{
-			showBust(alissBustDisplay(),liammeBustString());
+
+			addBust(liammeBustString());
 			output("\n\nYou see a blonde ausar femboy walking around the shop with a bag full of naughty goodies. By your guess, it’s <b>Liamme doing a little bit of shopping</b>. Maybe you could pay him a visit.");
 			addButton(3,"Liamme",liammeShoppingAtAlissApproach,undefined,"Liamme","See what the trappy ausar is up to.");
 		}

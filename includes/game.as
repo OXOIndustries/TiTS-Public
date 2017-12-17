@@ -379,6 +379,18 @@ public function clearBust(forceNone:Boolean = false):void
 {
 	if(forceNone || !inCombat()) showBust("none");
 }
+public function addBust(arg:String):void
+{
+	var b:Array = GetCurrentBusts();
+	b.push(arg);
+	showBust(b);
+}
+public function addTopBust(arg:String):void
+{
+	var b:Array = GetCurrentBusts();
+	b.insertAt(0,arg);
+	showBust(b);
+}
 public function showCodex():void
 {
 	userInterface.showCodex();
