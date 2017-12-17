@@ -49,6 +49,7 @@ import classes.Items.Transformatives.Bovinium;
 import classes.Items.Transformatives.OvirAce;
 import classes.Util.RandomInCollection;
 import classes.VaginaClass;
+import classes.Engine.Interfaces.GetCurrentBusts;
 
 public function debugMenus():void
 {
@@ -146,8 +147,10 @@ public function debugMenusTwo():void
 		quickLoot(new SalamanderRifle());
 	});
 	
-	addItemButton(7, new VampBlade(), function():void {
-		quickLoot(new VampBlade());
+	addButton(7, "Add Bust", function():void {
+		var b:Array = GetCurrentBusts();
+		b.push(RandomInCollection("LYS_NUDE", "ANNO", "SYRI"));
+		showBust(b);
 	});
 	
 	addButton(8, "Exhit", function():void {
