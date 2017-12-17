@@ -527,6 +527,12 @@ package classes.UIComponents.SideBarComponents
 		}
 		
 		private var bustList:Array = new Array();
+		public function get CurrentBusts():Array
+		{
+			var r:Array = new Array();
+			r = bustList.concat();
+			return r;
+		}
 		private var lastBustList:Array = new Array();
 		
 		private var _lastSetBust:String;

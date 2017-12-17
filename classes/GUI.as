@@ -17,6 +17,7 @@
 	import classes.UIComponents.MainButton;
 	import classes.UIComponents.RightSideBar;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
+	import classes.UIComponents.SideBarComponents.LocationHeader;
 	import classes.UIComponents.SquareButton;
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
@@ -1441,6 +1442,11 @@
 			var busts:Array = args.length && args[0] is Array ? args[0] : args;
 			
 			_leftSideBar.locationBlock.showBust(busts);
+		}
+		
+		public function getCurrentBusts():Array
+		{
+			return _leftSideBar.locationBlock.CurrentBusts;
 		}
 		
 		public function bringLastBustToTop():void
