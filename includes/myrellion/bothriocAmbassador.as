@@ -1290,7 +1290,7 @@ public function approachCharles():void
 	if (flags["MET_CHARLES"] == undefined)
 	{
 		flags["MET_CHARLES"] = 1;
-		output("<i>“Hey pal,”</i> says the human with a wry grin when you amble across to him. He’s a fairly young, bluff-looking man who sounds like he comes from Ur Caledon. <i>“Hope Ara didn’t talk your ear off, ey?”</i>");
+		output("<i>“Hey pal,”</i> says the human with a wry grin when you amble across to him. He’s a fairly young, buff-looking man who sounds like he comes from Ur Caledon. <i>“Hope Ara didn’t talk your ear off, ey?”</i>");
 
 		if (bothriocAddiction() <= 10)
 		{
