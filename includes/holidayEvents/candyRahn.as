@@ -134,7 +134,10 @@ public function naughtyStuffWithCandy():void
 
 	output("\n\nWHACK!");
 
-	output("\n\nYou yelp as pain blossoms over your [pc.ass]. Again the paddle falls, your ass rapidly reddening under the raining blows. But soon pain turns to something else, and in moments you’re moaning as your bum is abused by the monster’s paddling. You buck forward on his hairy knees with each impact, your ass aching with a blooming need. You never thought of yourself as an ass slut, but the sensation is driving you wild!");
+	output("\n\nYou yelp as pain blossoms over your [pc.ass]. Again the paddle falls, your ass rapidly reddening under the raining blows. But soon pain turns to something else, and in moments you’re moaning as your bum is abused by the monster’s paddling. You buck forward on his hairy knees with each impact, your ass aching with a blooming need.");
+	if(flags["BUTTSLUTINATOR"] == undefined && pc.ass.looseness() < 3 && pc.libido() < 70 && !pc.isBimbo()) output(" You never thought of yourself as an ass slut, but the sensation is driving you wild!");
+	else if(pc.isBimbo()) output(" The sensation is driving you wild, like every other kind of sensation, really. You feel like a big, sensitive toy, every inch of your body just waiting to light up with sexual pleasure. Right now, it's your masochistic heiny, somehow wired up to the part of your brain that screams 'YES'!");
+	else output(" The sensation is driving you wild, exactly what an ass slut like you needs! God, you love having your heiny toyed with!");
 	if(pc.hasVagina()) output(" Juices dribble from your cunt, staining the Krampus’s hair.");
 	if(pc.hasCock()) output(" Pre beads your cock, rubbing into the Krampus’s leg.");
 

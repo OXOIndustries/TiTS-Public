@@ -14588,7 +14588,7 @@
 				if(desc != "") desc += " and ";
 				desc += lowerUndergarment.longName;
 			}
-			return "nothing";
+			return desc;
 		}
 		public function chestCover(): String
 		{
