@@ -9,6 +9,9 @@ package classes.Engine.Map
 	public function InRoomWithFlag(... tFlags):Boolean
 	{
 		var tLoc:String = kGAMECLASS.currentLocation;
+		
+		if(tLoc == "") return false;
+		
 		var tRoom:RoomClass = kGAMECLASS.rooms[tLoc];
 			
 		for (var i:int = 0; i < tFlags.length; i++)
