@@ -203,7 +203,7 @@ public function niceCandyVariant():void
 	processTime(4);
 	pc.lust(5);
 	clearMenu();
-	if(pc.hasVagina()) addButton(0,"Vaginal Catch",takeCandysCandyCane,undefined,"Take Her Candy Cane","Let her bring the season's greetings to your most intimate locale.");
+	if(pc.hasVagina()) addButton(0,"Vaginal Catch",takeCandysCandyCane,undefined,"Take Her Candy Cane","Let her bring the season’s greetings to your most intimate locale.");
 	if(pc.hasCock()) addButton(1,"Titfuck",fuckCandysMarshmallows,undefined,"Fuck Her Marshmallows","Fuck her big, pillowy, marshmallowy boobs.");
 	addButton(14,"Leave",leaveCandyRahn);
 }
