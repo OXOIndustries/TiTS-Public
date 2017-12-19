@@ -14588,7 +14588,8 @@
 				if(desc != "") desc += " and ";
 				desc += lowerUndergarment.longName;
 			}
-			return desc;
+			if(desc != "") return desc;
+			return "nothing";
 		}
 		public function chestCover(): String
 		{
@@ -14605,6 +14606,7 @@
 				if(desc != "") desc += " and ";
 				desc += upperUndergarment.longName;
 			}
+			if(desc != "") return desc;
 			return "nothing";
 		}
 		public function lowerGarmentOuterDescript(): String {
