@@ -121,6 +121,7 @@
 		include "../includes/StubbedFunctions.as";
 
 		//Holiday shit
+		include "../includes/holidayEvents/candyRahn.as";
 		include "../includes/holidayEvents/chupacabro.as";
 		include "../includes/holidayEvents/freedomBeef.as";
 		include "../includes/holidayEvents/furryTreatsAndTricks.as";
@@ -527,7 +528,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.115";
+			version = "0.7.116";
 
 			//temporary nonsense variables.
 			temp = 0;
