@@ -358,7 +358,7 @@ public function stayAndStarsTell(inVillage:Boolean = false):void
 	output(".");
 
 	output("\n\nYou’re tempted to luxuriate in the silent attention, but you suppose a little talking wouldn’t hurt. ");
-	if(!korgiTranslate()) output("Maybe your the extra translation work will improve the algorithms a bit. Right now she sounds a bit like a cave-dweller from an old holo.");
+	if(!korgiTranslate()) output("Maybe you’re the extra translation work that will improve the algorithms a bit. Right now she sounds a bit like a cave-dweller from an old holo.");
 	else output("Since upgrading the translator, it’s much easier to understand her. No more cave-man conversations for you two!");
 	output(" Clearing your throat, you lead off with a basic explanation of space travel - ships, and how you need one to escape the planet.");
 	if(!pc.isBimbo()) output(" Here and there, you stop yourself to clarify points, knowing your listener won’t be familiar with even the most basic terminology.");

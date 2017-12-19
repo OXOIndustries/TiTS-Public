@@ -124,6 +124,7 @@ public function naughtyStuffWithCandy():void
 	showCandyRahn();
 	addTopBust("CHUPACABRO");
 	showName("\nKRAMPUS!");
+	
 	output("Oh you’ve been very naughty, you inform her. She smiles those lovely, plump, dick sucking lips of hers and slides the candy cane back into her mouth. <i>“Well,”</i> she says, twirling her finger in your hair, <i>“I’m afraid I’m only for good boys and girls. Naughty children get the... Krampus.”</i>");
 	output("\n\nKrampus?");
 	output("\n\n<i>“Krampus!”</i>");
@@ -180,7 +181,6 @@ public function naughtyStuffWithCandy():void
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	if(!pp.hasCock()) pp.createCock();
 	pp.createPerk("Fixed CumQ",30000,0,0,0);
-	pc.loadInCunt(pp,x);
 	pc.loadInAss(pp);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -226,6 +226,7 @@ public function takeCandysCandyCane():void
 	output("\n\nShe better believe it!");
 
 	output("\n\nShe smiles again, and you feel the pressure of her rounded tip press against your folds. You moan, gasping as she pushes inside of you, filling your eager cunt with inch after inch of candy striped pseudo-dick. Her sizeable hips aren’t just for show. You’re practically lifted up the wall as she stuffs you further.");
+	
 	var x:int = pc.cuntThatFits(200);
 	if(x < 0) x = rand(pc.totalVaginas());
 	pc.cuntChange(x,200);
