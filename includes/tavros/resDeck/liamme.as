@@ -372,7 +372,7 @@ public function fuckLiamme():void
 	if(!pc.isTaur()) output("standing up and ");
 	output("taking hold of his faux paw. His grip is gentle: firm enough to lead you to his place, but fair enough to make sure his claws don’t touch your [pc.skinFurScales].");
 	output("\n\nAll the way to Lia’s apartment you’re given quite the view of his cushy ass, watching it jiggle with every step he takes, even as his tail sways behind it. Sometimes his fluffy blonde tail brushes against ");
-	if(pc.isTaur()) output("you");
+	if(pc.isTaur()) output("you.");
 	else 
 	{
 		output("your ");
