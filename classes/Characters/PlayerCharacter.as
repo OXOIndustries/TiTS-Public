@@ -516,7 +516,7 @@ package classes.Characters
 					fecundFigure(totalDays);
 				}
 				
-				if (hasStatusEffect("Nyrea Eggs") && fertility() > 0)
+				if (hasStatusEffect("Nyrea Eggs") && fertility() > 0 && hasOvipositor())
 				{
 					nyreaEggStuff(totalDays);
 				}
@@ -1020,7 +1020,7 @@ package classes.Characters
 					removeStatusEffect("Nyrea Eggs");
 				}
 			}
-			else if(hasPerk("Nyrea Eggs"))
+			else if(hasPerk("Nyrea Eggs") && pc.hasOvipositor())
 			{
 				// Regain permanent effect if has perk.
 				AddLogEvent(ParseText("You feel a familiar bloating in your body and discover that your [pc.cumNoun] has started producing nyrean eggs again!"), "passive", deltaT);
