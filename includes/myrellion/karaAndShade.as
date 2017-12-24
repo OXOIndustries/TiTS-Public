@@ -790,7 +790,7 @@ public function cuntTailShadeFux():void
 
 //[Take Hardlight]
 //vagOrAss. PC gives tailcunt oral. 
-public function takeShadesHardlightPenisInYerBoot():void
+public function takeShadesHardlightPenisInYerBoot(xmasVers:Boolean = false):void
 {
 	clearOutput();
 	showShade(true);
@@ -840,7 +840,12 @@ public function takeShadesHardlightPenisInYerBoot():void
 	IncrementFlag("SEXED_SHADE");
 	IncrementFlag("TAKEN_SHADES_HARDLIGHT");
 	clearMenu();
-	addButton(0,"Next",shadePostCoitusHangouts);
+	if(xmasVers)
+	{
+		processTime(8*60);
+		addButton(0,"Next",shadeCleanupEpilogue);
+	}
+	else addButton(0,"Next",shadePostCoitusHangouts);
 }
 
 //[Rim & Wank] (if PC has no cunt; else) [Lick & Wank]

@@ -2795,6 +2795,15 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			if(flags["SYRI_VIDEO_DELAY_TIMER"] == undefined) flags["SYRI_VIDEO_DELAY_TIMER"] = GetGameTimestamp();
 			else if(GetGameTimestamp() >= (flags["SYRI_VIDEO_DELAY_TIMER"] + 60*24*3)) goMailGet("syri_video");
 		}
+		//Shade Holiday shit
+		if(isChristmas())
+		{
+			if (!MailManager.isEntryUnlocked("shade_xmas_invite"))
+			{
+				if(shadeIsHome() && (shadeIsLover() || shadeIsSiblings()) && (flags["SHADE_ON_UVETO"] == 2 || flags["SHADE_ON_UVETO"] == 3))
+				goMailGet("shade_xmas_invite");
+			}
+		}
 		//Prai email stuff
 		if (flags["PRAI_EMAIL_NUMBER"] != undefined && GetGameTimestamp() >= (flags["PRAI_EMAIL_STAMP"] + 60*10))
 		{
@@ -2819,7 +2828,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		{
 			flags["SUCCUCOW_EMAIL_THIS_YEAR"] = undefined;
 			flags["SUCCUCOW'D"] = undefined;
-		}
+		}	
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette();
 	}

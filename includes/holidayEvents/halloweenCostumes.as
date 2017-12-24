@@ -3046,7 +3046,7 @@ public function extraCatTFForCatCostume():void
 //Tooltip
 public function knottyNurseTooltip():String
 {
-	return "The “Knotty Nurse” outfit seems ordinary in everything but name: a white, rubber dress that barely reaches the hips, latex thigh-high boots, and a scandalously revealing crotchless thong, complete with tiny white and red crosses. You presume the typo a result of a botched translation, but could it be indicative of something more? None of the other accessories help you explain. You’ll just have to pony up the 1,000 credits to find out.\n\nPretty steep for a typical costume.";
+	return "The “Knotty Nurse” outfit seems ordinary in everything but name: a white, rubber dress that barely reaches the hips, latex thigh-high boots, and a scandalously revealing crotchless thong, complete with tiny white and green crosses. You presume the typo a result of a botched translation, but could it be indicative of something more? None of the other accessories help you explain. You’ll just have to pony up the 1,000 credits to find out.\n\nPretty steep for a typical costume.";
 }
 
 //Take it
