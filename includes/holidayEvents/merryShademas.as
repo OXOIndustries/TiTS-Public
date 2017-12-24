@@ -13,7 +13,7 @@ public function shademasEmailString():String
 	if(!shadeIsSiblings()) buff += "special friend";
 	else buff += "sister";
 	buff += "’s home cooking.\n\nLet me know~\n\nHugs and kisses,\n\t-Shade";
-	return buff;
+	return ParseText(buff);
 }
 
 //Show Up at Shade’s Place
