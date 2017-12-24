@@ -1098,7 +1098,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 			switch(flags["CREWMEMBER_SLEEP_WITH"])
 			{
 				case "ANNO":
-					if (annoIsCrew() && rand(3) == 0)
+					if (annoIsCrew() && (rand(3) == 0 || (isChristmas() && flags["ANNO_GIFT_WRAPPED"] == undefined)))
 					{
 						annoSleepSexyTimes();
 						interrupt = true;
@@ -3122,6 +3122,7 @@ public function processFlahneEvents(deltaT:uint, doOut:Boolean):void
 public function processAnnoEvents(deltaT:uint, doOut:Boolean):void
 {	
 	var totalHours:int = ((minutes + deltaT) / 60);
+	if(!isChristmas()) flags["ANNO_GIFT_WRAPPED"] = undefined;
 	if(flags["ANNO_ASLEEP"] != undefined && totalHours >= 1)
 	{
 		flags["ANNO_ASLEEP"] -= totalHours;
