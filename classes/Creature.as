@@ -2484,6 +2484,7 @@
 					break;
 				case "belly":
 				case "stomach":
+				case "tummy":
 					buffer = bellyDescript();
 					break;
 				case "bellySize":
