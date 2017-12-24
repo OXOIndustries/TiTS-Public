@@ -642,7 +642,7 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 	flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
 	
 	if(flags["SHADE_ON_UVETO"] == undefined) return;
-	if(!MailManager.isEntryViewed("letter_from_shade")) return;
+	if(!MailManager.isEntryViewed("letter_from_shade") && !MailManager.isEntryUnlocked("shade_xmas_invite")) return;
 	// Have to be invited to her house first!
 	if(!shadeIsActive() || flags["SHADE_ON_UVETO"] < 2) return;
 	// Add [Buzzer] to the outside of Shade's house, starting at 16:00 each night.
@@ -652,7 +652,12 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 	var response:String = "";
 	var tooltip:String = "";
 	
-	if(flags["SHADE_ON_UVETO"] >= 3)
+	if(MailManager.isEntryUnlocked("shade_xmas_invite") && isChristmas() && (flags["SHADE_XMAS"] == undefined || (flags["SHADE_XMAS"] < new Date().fullYear && flags["SHADE_XMAS"] != undefined))) { 
+			/* EXCEPTION FOR HOLIDAYS! */
+			response = "ho ho ho";
+			tooltip = "This is Shade’s house. Time for some holiday cheer!";
+	}
+	else if(flags["SHADE_ON_UVETO"] >= 3)
 	{
 		/* 9999 - Repeat events. Nothing planned yet? */
 		
@@ -685,6 +690,16 @@ public function approachShadeAtHouse(response:String = "intro"):void
 	clearOutput();
 	author("Savin");
 	
+	if(isChristmas())
+	{
+		var currDate:Date = new Date();
+		//Never done before or first time this year!
+		if(flags["SHADE_XMAS"] == undefined || (flags["SHADE_XMAS"] != undefined && flags["SHADE_XMAS"] < currDate.fullYear))
+		{
+			shadeHolidayKnock();
+			return;
+		}
+	}
 	switch(response)
 	{
 		case "lover friend intro":
