@@ -190,7 +190,7 @@ package classes.GameData
 			}
 			//Shield regen stuff here!
 			if(pc.hasStatusEffect("Shields Damaged")) pc.removeStatusEffect("Shields Damaged");
-			else if(pc.hasPerk("Rapid Recharge"))
+			else if(pc.hasShields() && pc.hasPerk("Rapid Recharge"))
 			{
 				pc.shields(pc.bimboIntelligence()/3+3);
 			}

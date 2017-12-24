@@ -1126,7 +1126,7 @@ public function gooArmorCrewOption(arg:Array):void
 				
 				msg = " some comments about Yammi’s cooking--namely her desserts.";
 				msg += "\n\n<i>“...Oh, yesssssss! She makes the yummiest milkshakes and sundaes, too!”</i> she exclaims.";
-				msg += "\n\n" + (pc.isBimbo() ? "You lick your [pc.lips] in response, mentally drooling at the thought. Sounds like a good reason to throw an at-home ice cream party!" : "All this talk is giving you quite a craving for some homemade meals, that’s for sure!.");
+				msg += "\n\n" + (pc.isBimbo() ? "You lick your [pc.lips] in response, mentally drooling at the thought. Sounds like a good reason to throw an at-home ice cream party!" : "All this talk is giving you quite a craving for some homemade meals, that’s for sure!");
 				if(yammiIsCrew() && flags["YAMMI_TALK"] >= 2) chats.push(msg);
 				
 				msg = " some factoids about ancient, New Texan creatures.";

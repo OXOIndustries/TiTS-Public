@@ -1340,14 +1340,14 @@ public function tamtamStuffGo(impregnate:Boolean = false):void
 	output(". The chorus of moans Tam’s been serenading you with breaks at that moment, her cute little groans turning into a long cry of pleasure as you finally fuck her.");
 
 	//If PC has a dick bigger than Kaska’s:
-	if(x >= 0 && pc.cockVolume(x) > chars["KASKA"].cockVolume(0)+50)
+	if(x >= 0 && pc.cockVolume(x) > (chars["KASKA"].cockVolume(0) * 1.5))
 	{
 		output("\n\n<i>“Oh, god... so big...”</i> she moans, bracing against the table as you put more and more cock into her. <i>“Mmmm, how did you get so THICK? Nevermind, just keep doing it. Oh, that’s it... just like that...”</i>");
 		output("\n\nShe purrs contentedly as you slowly fuck yourself into her, stretching her pussy out until she’s begging for respite. Tam’s belly is bulging with the sheer size of it, but that doesn’t deter her for a second. Man, kaithrit are built to take ‘em!");
 		output("\n\n<i>“Mmm, somebody’s been getting into the Throbb, huh? I looooove it,”</i> she moans, back arching as you start to slide the shaft out of her. <i>“You’re being so gentle though... oh, when’re you gonna get to the rough stuff, huh? I wanna see what you can do!”</i>");
 	}
 	//elseif PC’s dick is ~the same size as Kaska’s:
-	else if(x >= 0 && pc.cockVolume(x) > chars["KASKA"].cockVolume(0) - 100)
+	else if(x >= 0 && pc.cockVolume(x) > (chars["KASKA"].cockVolume(0) * .75))
 	{
 		output("\n\n<i>“Ahhh, yeah, just like that,”</i> she moans, back arching as you slide into her cunt. Her wet, writhing walls meld perfectly to your shape and size, apparently quite accustomed to somebody of your girth. You give Tam another appreciative slap on the ass, grinning as her flesh quakes, reddening at your touch.");
 		output("\n\n<i>“It’s been too long... I’ve been missing my daily dose of dick,”</i> Tam purrs, starting to move back against you. <i>“You’re being so gentle today... oh, when’re you gonna get to the rough stuff, huh?”</i>");

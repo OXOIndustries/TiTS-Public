@@ -147,6 +147,7 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			if(planet != "tavros station" && flags["PLANET_3_UNLOCKED"] != undefined) chars["VENDINGMACHINE"].inventory.push(new FrontRackCream());
 			chars["VENDINGMACHINE"].inventory.push(new LemonLoftcake());
 			chars["VENDINGMACHINE"].inventory.push(new StrawberryShortcake());
+			chars["VENDINGMACHINE"].inventory.push(new ManDown());
 			
 			chars["VENDINGMACHINE"].sellMarkup = 1.00;
 			chars["VENDINGMACHINE"].buyMarkdown = 0.1;

@@ -3162,7 +3162,7 @@ public function megaMilkCameron():void
 	showName("CARRIE\n& CAMERON");
 	showBust("CAMERON_NUDE", "CARRIE_NUDE");
 	
-	output("You take her up on the invitation, locking the stall door behind you and sauntering on over to the milker station. Cameron looks at you over his shoulder, eyes wide in surprise, until Carrie reaches down and grabs his cock, wrapping her slender, gloved fingers around her thick equine shaft. ");
+	output("You take her up on the invitation, locking the stall door behind you and sauntering on over to the milker station. Cameron looks at you over his shoulder, eyes wide in surprise, until Carrie reaches down and grabs his cock, wrapping her slender, gloved fingers around his thick equine shaft. ");
 	output("\n\n<i>“Stop squirmin', Cam,”</i> she chides, her voice taking on a much more authoritative, matronly tone than you're familiar with. <i>“Or that trappy little pony cock of yours is gonna end up shootin' all over.”</i>");
 	output("\n\nCameron whines, but eventually Carrie's able to guide his semi-hard shaft into the proper receptacle. Once she's fastened the suction cup to his flared crown, Carrie squirts a healthy glob of lube onto the palm of her glove and starts spreading it around Cam's ass, swirling two fingers around his tailhole to make sure it's nice and coated. When it is, Carrie handily slides her digits right into Cameron's pucker, making the cow-boi squeal and buck his hips against the harness. ");
 	output("\n\n<i>“Good boy,”</i> Carrie whispers, starting to move her hand. <i>“Just relax that little cock-hole for me, 'kay?”</i>");

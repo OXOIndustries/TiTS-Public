@@ -4915,6 +4915,9 @@
 			return shieldsRaw;
 		}
 		public function shieldsMax(): Number {
+			//No proper shield generator? NO SHIELD!
+			if(shield.shields == 0) return 0;
+			
 			var temp: int = 0;
 			temp += meleeWeapon.shields;
 			temp += rangedWeapon.shields;
@@ -4925,8 +4928,7 @@
 
 			//Debuffs!
 			if(hasStatusEffect("Rusted Emitters")) temp = Math.round(temp * 0.75);
-			//No proper shield generator? NO SHIELD!
-			if(shield.shields == 0) temp = 0;
+			
 			return temp;
 		}
 		public function sexiness(): Number {
@@ -14589,7 +14591,8 @@
 				if(desc != "") desc += " and ";
 				desc += lowerUndergarment.longName;
 			}
-			return desc;
+			if(desc != "") return desc;
+			return "nothing";
 		}
 		public function chestCover(): String
 		{
@@ -14606,6 +14609,7 @@
 				if(desc != "") desc += " and ";
 				desc += upperUndergarment.longName;
 			}
+			if(desc != "") return desc;
 			return "nothing";
 		}
 		public function lowerGarmentOuterDescript(): String {
