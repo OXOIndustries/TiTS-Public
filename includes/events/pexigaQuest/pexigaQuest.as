@@ -1665,7 +1665,7 @@ public function loseToNymFoeViaHPBimboStep5():void
 		output(" Your [pc.vaginas] clench");
 		if(pc.totalVaginas() == 1) output("es and trembles");
 		else output(" and tremble");
-		output(" with bimbo-bloated bliss, [pc.girCumNoun] gushing from your body in hot waves.");
+		output(" with bimbo-bloated bliss, [pc.girlCumNoun] gushing from your body in hot waves.");
 	}
 	if(pc.hasCock())
 	{
