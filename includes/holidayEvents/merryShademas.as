@@ -50,7 +50,7 @@ public function shadeHolidayKnock():void
 	output("\n\nFair enough. You squeeze past your ");
 	if(!shadeIsSiblings()) output("lover");
 	else output("sister");
-	output("’s stacked daughter and into the warm seclusion of Shade’s subterranean abode. Behind you, Astra busies bolting the door closed with a noisy turbodrill; the noises follows you as you descend into the brightly-lit home beneath the snows, suffused with the familiar smells of fresh bread and cooked meats ripe with Roshan spices. You’re stomach’s growling by the time you’re brushing through the colorful cloth curtain into Shade’s cozy little living room.");
+	output("’s stacked daughter and into the warm seclusion of Shade’s subterranean abode. Behind you, Astra busies bolting the door closed with a noisy turbodrill; the noises follows you as you descend into the brightly-lit home beneath the snows, suffused with the familiar smells of fresh bread and cooked meats ripe with Roshan spices. Your stomach’s growling by the time you’re brushing through the colorful cloth curtain into Shade’s cozy little living room.");
 
 	output("\n\nYour hostess is standing on the far side of the curved leather sofa that dominates the sitting room, wearing a flour-stained white apron over a jaunty red-and-white sweater adorned with little evergreen trees and reindeer. She leans against the kitchen door and gives you a motherly smile that makes you feel more like a kid coming home for the holidays than... whatever you are now.");
 
@@ -117,7 +117,7 @@ public function regaleAstra():void
 
 	output("\n\nShade snickers and pushes you towards one of the free chairs. <i>“I’m sure we’ll manage, right [pc.name]?”</i>");
 
-	output("\n\nSomehow, you think you’ll make do. You end up sitting across from Shade, with a big pile of juicy roast between you. You’ve barely sat down before Astra’s jabbing her fork into a slice of meat, piling it into her plate with a greedy smile. Shade pats her daughter between the ears, letting the youngest of you dig in first.");
+	output("\n\nSomehow, you think you’ll make do. You end up sitting across from Shade, with a big pile of juicy roast between you. You’ve barely sat down before Astra’s jabbing her fork into a slice of meat, piling it into her plate with a greedy smile. Shade pats her daughter between the ears, letting the youngest of the group dig in first.");
 
 	output("\n\n<i>“I guess you’re still not one for the whole prayer-before-meal thing, huh?”</i> the motherly kaithrit smirks. <i>“C’mon, [pc.name], dig in while there’s still time.”</i>");
 
