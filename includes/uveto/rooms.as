@@ -978,7 +978,7 @@ public function initUvetoRooms():void
 	rooms["UVIP T44"].moveMinutes = 6;
 	rooms["UVIP T44"].addFlag(GLOBAL.ICYTUNDRA);
 	rooms["UVIP T44"].addFlag(GLOBAL.HAZARD);
-	rooms["UVIP T44"].runOnEnter = TundraEncounterBonus;
+	rooms["UVIP T44"].runOnEnter = myrnaEncounterBonus;
 
 	rooms["UVIP T42"] = new RoomClass(this);
 	rooms["UVIP T42"].roomName = "WINDING\nPATHS";
@@ -3192,4 +3192,21 @@ public function initUvetoRoomsII():void
 	//rooms["KORGII PLACEHOLDIE"].runOnEnter = korgiD12Bonus;
 
 
+	//One-off encounter
+	rooms["MYRNAS CAVE"] = new RoomClass(this);
+	rooms["MYRNAS CAVE"].roomName = "MYRNA'S\nCAVE";
+	rooms["MYRNAS CAVE"].description = "If you see this, Fen fucked up.";
+	rooms["MYRNAS CAVE"].planet = "PLANET: UVETO VII";
+	rooms["MYRNAS CAVE"].system = "SYSTEM: SIRETTA";
+	rooms["MYRNAS CAVE"].moveMinutes = 1;
+	rooms["MYRNAS CAVE"].northExit = "";
+	rooms["MYRNAS CAVE"].eastExit = "";
+	rooms["MYRNAS CAVE"].southExit = "";
+	rooms["MYRNAS CAVE"].westExit = "";
+	rooms["MYRNAS CAVE"].outExit = "";
+	rooms["MYRNAS CAVE"].outText = "Down";
+	rooms["MYRNAS CAVE"].inExit = "";
+	rooms["MYRNAS CAVE"].inText = "Up";
+	rooms["MYRNAS CAVE"].addFlag(GLOBAL.INDOOR);
+	//rooms["MYRNAS CAVE"].addFlag(GLOBAL.PUBLIC);
 }

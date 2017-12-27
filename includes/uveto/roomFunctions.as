@@ -30,6 +30,12 @@ public function TundraEncounterBonus():Boolean
 		choices[rand(choices.length)]();
 		return true;
 	}
+	//Myrna the holiday Korg~!
+	if(flags["MET_MYRNA"] == undefined && rand(100) <= 50 && isChristmas())
+	{
+		myrnaMeeting();
+		return true;
+	}
 	if (tryUvetoWeatherEvent(flags["TUNDRA_STEP"])) return true;
 	if (tryEncounterSavicite(flags["TUNDRA_STEP"])) return true;
 	return false;
@@ -70,6 +76,12 @@ public function GlacialRiftEncounterBonus():Boolean
 		
 		//Run the event
 		choices[rand(choices.length)]();
+		return true;
+	}
+	//Myrna the holiday Korg~!
+	if(flags["MET_MYRNA"] == undefined && rand(100) <= 50 && isChristmas())
+	{
+		myrnaMeeting();
 		return true;
 	}
 	if (tryUvetoWeatherEvent(flags["TUNDRA_STEP"])) return true;

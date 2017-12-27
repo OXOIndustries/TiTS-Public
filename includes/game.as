@@ -2588,6 +2588,13 @@ public function variableRoomUpdateCheck():void
 		rooms["UVGR K20"].removeFlag(GLOBAL.NPC);
 		rooms["KORGII B14"].removeFlag(GLOBAL.OBJECTIVE);
 	}
+	//Myrna
+	if(isChristmas())
+	{
+		if(flags["MET_MYRNA"] != undefined && !rooms["UVIP T44"].hasFlag(GLOBAL.OBJECTIVE)) rooms["UVIP T44"].addFlag(GLOBAL.OBJECTIVE);
+	}
+	//Remove marker after xmas
+	else if(rooms["UVIP T44"].hasFlag(GLOBAL.OBJECTIVE)) rooms["UVIP T44"].removeFlag(GLOBAL.OBJECTIVE);
 	
 	/* VESPERIA / CANADIA STATION */
 	/*
