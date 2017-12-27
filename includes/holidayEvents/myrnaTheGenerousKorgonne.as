@@ -256,7 +256,7 @@ public function myrnaMyrnaTalk():void
 	showMyrna();
 	output("<i>“What about you? You’re different from most other korgonne ");
 	//If PC encountered a korgonne in battle:
-	if(flags["MET_FEMKORGONNE"] != undefined || flags["MET_KORG_MALE"] == undefined == undefined) output("I’ve encountered here.");
+	if(flags["MET_FEMKORGONNE"] != undefined || flags["MET_KORG_MALE"] != undefined) output("I’ve encountered here.");
 	else output("I’ve heard about.");
 	output("”</i> You question. Myrna looks past you towards the ceiling in thought.");
 

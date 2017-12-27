@@ -1071,6 +1071,12 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 	{
 		if(outputs)
 		{
+			// Randy Claws
+			if(isChristmas() && MailManager.isEntryViewed("randy_claws_email") && flags["RANDY_CLAWS"] == undefined)
+			{
+				randyClawsHook();
+				return;
+			}
 			// BOO!! CHUPACABRO!!
 			if(isHalloweenish() && reahaIsCrew() && reahaIsCured() && flags["CHUPACABRO'D"] == undefined)
 			{
@@ -2835,7 +2841,24 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		{
 			flags["SUCCUCOW_EMAIL_THIS_YEAR"] = undefined;
 			flags["SUCCUCOW'D"] = undefined;
-		}	
+		}
+		//RandyClaws email
+		if(flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] == undefined && flags["CIARAN_MET"] != undefined && isChristmas())
+		{
+			if (MailManager.isEntryUnlocked("randy_claws_email"))
+			{
+				MailManager.deleteMailEntry("randy_claws_email");
+				MailManager.addMailEntry("randy_claws_email", clawsEmailText, "Merry Christmas!", "New Texas Department of Wildlife", "NT_DoW@NewTexas.gov", quickPCTo, quickPCToAddress);
+			}
+			goMailGet("randy_claws_email");
+			flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] = 1;
+		}
+		else if(!isChristmas())
+		{
+			flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] = undefined;
+			flags["RANDY_CLAWS"] = undefined;
+		}
+		
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette();
 	}
