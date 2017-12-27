@@ -372,7 +372,7 @@ public function fuckLiamme():void
 	if(!pc.isTaur()) output("standing up and ");
 	output("taking hold of his faux paw. His grip is gentle: firm enough to lead you to his place, but fair enough to make sure his claws don’t touch your [pc.skinFurScales].");
 	output("\n\nAll the way to Lia’s apartment you’re given quite the view of his cushy ass, watching it jiggle with every step he takes, even as his tail sways behind it. Sometimes his fluffy blonde tail brushes against ");
-	if(pc.isTaur()) output("you");
+	if(pc.isTaur()) output("you.");
 	else 
 	{
 		output("your ");
@@ -553,29 +553,56 @@ public function getLiammeBlown():void
 	else output(" Already as naked as the canine femboy before you is, Liamme grasps at all your curves and mounds.");
 	output(" You move your arms to wrap around the small of his back, pulling him just a bit closer.");
 
-	output("\n\nSuddenly, the trappy little ausar leaps up in your arms, wrapping his legs around your back, depressing the supple flesh of his pillowy thighs against your [pc.hips]. You find yourself falling onto the edge of the nearby bed as you lose your balance, and end up with Liamme straddling your lap, his arms wrapped around your nape once more. Your rapidly stiffening [pc.cocks] rub");
-	if(pc.cockTotal() == 1) output("s");
-	output(" against the ausar’s in an accidental act of frottage, heat blossoming between your bodies.");
-	if(silly) output(" It crosses your mind that this might be less gay if your dicks weren’t touching.");
+	output("\n\nSuddenly, the trappy little ausar leaps up in your arms, wrapping his legs around your back, depressing the supple flesh of his pillowy thighs against your [pc.hips]. ");
+	if(!pc.isTaur())
+	{
+		output("You find yourself falling onto the edge of the nearby bed as you lose your balance, and end up with Liamme straddling your lap, his arms wrapped around your nape once more. Your rapidly stiffening [pc.cocks] rub");
+		if(pc.cockTotal() == 1) output("s");
+		output(" against the ausar’s in an accidental act of frottage, heat blossoming between your bodies.");
+		if(silly) output(" It crosses your mind that this might be less gay if your dicks weren’t touching.");
+	}
+	else output("With your larger frame, it's easy for you to hold Liamme against your body where you stand.");
 	output(" He’s kissing you more forcefully now, working his tongue all around your mouth while your lips smack together, again and again. You slide your [pc.hands] downward until they’re resting on Liamme’s soft, gropable butt. Time to get to work: you knead and squeeze ausar assflesh in your hands, occasionally giving it a double-pronged slap, making its owner mewl into your mouth and his ass jiggle.");
 
 	output("\n\nFeeling Liamme’s tongue make its way through your mouth, feeling his plush lips pressed against yours only makes you wonder how good this little puppy’s mouth would feel around your [pc.cockNounBiggest]. Well, only one way to find out: you break the kiss, revealing Lia’s lust-filled and hungry gaze. You smile at the femboy and give his ass an affectionate squeeze.");
-	output("\n\n<i>“How does putting that pretty mouth of yours to use somewhere else sound?”</i> you ask, rocking your [pc.hips] to get your [pc.cocks] rubbing against his deep-red doggy-dong.");
-	output("\n\nLiamme’s breath shudders at the sensation of your cockflesh on his before he licks his perfect, dick-sucking lips and answers, <i>“Sounds like a lot of fun.”</i>");
-	output("\n\nThe eager ausar slips from your grasp, pulling himself from your lap to kneel on the floor. He waits there for a moment, staring up at you with a smile as his tail swishes back and forth behind him. The puppy-like display manages to draw a smirk from you. You spread your legs for Liamme, and he’s quite eager to crawl in between them and take hold of you half-hard member. Your [pc.thighs] hug at the trappy boy’s shoulders as he strokes your cock with the oh-so soft fur on his hands, licking his lips while he eyes your [pc.cockNounBiggest]. He delivers a long kiss to the base of you dick, letting his tongue loll out to wet your ");
+	output("\n\n<i>“How does putting that pretty mouth of yours to use somewhere else sound?”</i> you ask");
+	if(!pc.isTaur()) output(", rocking your [pc.hips] to get your [pc.cocks] rubbing against his deep-red doggy-dong");
+	output(".");
+
+	output("\n\nLiamme’s breath shudders ");
+	if(!pc.isTaur()) output("at the sensation of your cockflesh on his before he licks his perfect, dick-sucking lips");
+	else output("as you knead his ass");
+	output(" and answers, <i>“Sounds like a lot of fun.”</i>");
+	output("\n\nThe eager ausar slips from your grasp, pulling himself from your lap to kneel on the floor");
+	if(pc.isTaur()) output(" under your tauric half");
+	output(". He waits there for a moment, staring up at you with a smile as his tail swishes back and forth behind him. The puppy-like display manages to draw a smirk from you. ");
+	if(!pc.isTaur()) output("You spread your legs for Liamme, and he’s");
+	else output("Liamme's");
+	output(" quite eager to crawl in between them and take hold of you half-hard member. Your [pc.thighs] hug at the trappy boy’s shoulders as he strokes your cock with the oh-so soft fur on his hands, licking his lips while he eyes your [pc.cockNounBiggest]. He delivers a long kiss to the base of you dick, letting his tongue loll out to wet your ");
 	var x:int = pc.biggestCockIndex();
 	if(pc.hasKnot(x)) output("[pc.knot " + x + "]");
 	else if(pc.hasSheath(x)) output("[pc.sheath " + x + "]");
 	else output("[pc.cockNounSimple " + x + "]’s plinth");
 	output(". You shudder as Liamme starts to work his tongue on your shaft, getting you hard as diamonds as he trails kisses and loving little licks all the way up to your [pc.cockHeadBiggest].");
-	output("\n\nSay what you will about the trappy blonde ausar; he’s damn good with his mouth, and soon has you sinking backwards in bliss. He looks up at you with his big, blue, puppy-dog eyes and gives your cockhead a few more licks before wrapping his pillowy lips around it, resting his hands in his lap. Still lavishing your [pc.cock " + x + "] with his tongue, Liamme slides his way down your shaft, eliciting a few quiet moans from you. His plump lips caress your twitching [pc.cockNounSimple " + x + "] all the way down, right until your [pc.cockhead] reaches the back of his throat. Looks like Liamme’s trained his gag-reflex well enough. He waits there for a moment, swirling his tongue around the length of your cock, continuously coating it with a new layer of ausar spit. You’re able to smile down at the ardorous ausar between whimpers and extend your arm, placing your hand right between his fluffy ears.");
-	output("\n\nHis manes is so soft to the touch, to the point where your hand can just sink into it... and start scritching and scratching at Liamme’s perky ears. The poor puppy whimpers and whines girlishly under the weight of your touch, moaning softly onto your [pc.cock " + x + "], sending a shiver of pleasure rippling up your spine. Liamme starts to bob his head up and down your succulent shaft before he loses himself in his own pleasure, trailing his tongue along the bottom of your cock,");
+	output("\n\nSay what you will about the trappy blonde ausar; he’s damn good with his mouth, and soon has you sinking backwards in bliss. He looks up at you with his big, blue, puppy-dog eyes and gives your cockhead a few more licks before wrapping his pillowy lips around it, resting his hands in his lap. Still lavishing your [pc.cock " + x + "] with his tongue, Liamme slides his way down your shaft, eliciting a few quiet moans from you. His plump lips caress your twitching [pc.cockNounSimple " + x + "] all the way down, right until your [pc.cockhead] reaches the back of his throat. Looks like Liamme’s trained his gag-reflex well enough. He waits there for a moment, swirling his tongue around the length of your cock, continuously coating it with a new layer of ausar spit.");
+	if(!pc.isTaur()) output(" You’re able to smile down at the ardorous ausar between whimpers and extend your arm, placing your hand right between his fluffy ears.");
+	output("\n\nHis manes is so soft to the touch, to the point where your hand can just sink into it... and start scritching and scratching at Liamme’s perky ears. The poor puppy whimpers and whines girlishly ");
+	if(!pc.isTaur()) output("under the weight of your touch");
+	else output("with your tool down his throat");
+	output(", moaning softly onto your [pc.cock " + x + "], sending a shiver of pleasure rippling up your spine. Liamme starts to bob his head up and down your succulent shaft before he loses himself in his own pleasure, trailing his tongue along the bottom of your cock,");
 	if(pc.hasKnot(x)) output(" teasing your knot with each trip down,");
-	output(" tearing more than a few lewd groans from your [pc.lips] in the process. Your [pc.hips] roll subconsciously, dragging your dick in and out of Liamme’s maw; at the same time you move the cock-sucking ausar’s head, forcing him on and off your [pc.cockNoun " + x + "] until he begins to whine and his cheeks bulge full of dong.");
+	output(" tearing more than a few lewd groans from your [pc.lips] in the process. Your [pc.hips] roll subconsciously, dragging your dick in and out of Liamme’s maw");
+	if(!pc.isTaur()) output("; at the same time you move the cock-sucking ausar’s head, forcing him on and off your [pc.cockNoun " + x + "] until he begins to whine and his cheeks bulge full of dong");
+	output(".");
 
-	output("\n\nBefore too long your once gentle hip-rocking is speeding up to a vigorous face-fucking. Liamme doesn’t seem to mind, letting you grab at his head and use his mouth like the perfect, wet, warm onahole it is as your [pc.belly] slaps against his face. The ausar boy whines and groans as you fuck his pretty face, every one of your own pleasured tones making his ears twitch excitedly. At this rate, you won’t be able to hold on much longer, but what’s the point holding on? You try to announce your impending orgasm to your lover, but all that comes out is senseless babbling that trails into a long moan. The bliss of climax overtakes your body in an instant, ecstasy flooding your mind like a dam holding back a wave of endorphins had broken. Grabbing Liamme’s head with both hands, you pull him down on your cock as far as his gag-reflex will allow, your [pc.cock " + x + "] spasming. Your ausar lover’s eyes flutter shut as your [pc.cum] starts to flow down his throat, eagerly accepting your bounty as your hips buck into his mouth, moaning and grunting.");
+	output("\n\nBefore too long your once gentle hip-rocking is speeding up to a vigorous face-fucking. Liamme doesn’t seem to mind, letting you grab at his head and use his mouth like the perfect, wet, warm onahole it is as your [pc.belly] slaps against his face. The ausar boy whines and groans as you fuck his pretty face, every one of your own pleasured tones making his ears twitch excitedly. At this rate, you won’t be able to hold on much longer, but what’s the point holding on? You try to announce your impending orgasm to your lover, but all that comes out is senseless babbling that trails into a long moan. The bliss of climax overtakes your body in an instant, ecstasy flooding your mind like a dam holding back a wave of endorphins had broken. ");
+	if(!pc.isTaur()) output("Grabbing Liamme’s head with both hands, you pull him down on your cock as far as his gag-reflex will allow, your [pc.cock " + x + "] spasming. ");
+	output("Your ausar lover’s eyes flutter shut as your [pc.cum] starts to flow down his throat, eagerly accepting your bounty as your hips buck into his mouth, moaning and grunting.");
 	output("\n\nYou ride out your orgasm for quite some time, Liamme’s gentle suckling seeming to extend your climax as he greedily swallows as much [pc.cum] as you’ll give him.");
-	output("\n\nOnce you do finally come down, the femboy between your legs removes himself from your [pc.cock " + x + "] and opens his maw, showing you his mouth, filled to the brim with [pc.cumNoun], his tongue painted [pc.cumColor]. You smile at his display, [pc.chest] heaving as you bring a hand down to give Liamme an appreciative pet between his big blonde ears. He grins as your fingers run through his mane, and quickly gulps down your cum before returning his lips to your softening [pc.cockNoun] to lick up the rest of your seed.");
+	output("\n\nOnce you do finally come down, the femboy between your legs removes himself from your [pc.cock " + x + "] and ");
+	if(!pc.isTaur()) output("opens his maw, showing you his mouth, filled to the brim with [pc.cumNoun], his tongue painted [pc.cumColor]");
+	else output("crawls out from under you, opening his maw to show you his mouth, filled to the brim with [pc.cumNoun], his tongue painted [pc.cumColor]");
+	output(". You smile at his display, [pc.chest] heaving as you bring a hand down to give Liamme an appreciative pet between his big blonde ears. He grins as your fingers run through his mane, and quickly gulps down your cum before returning his lips to your softening [pc.cockNoun] to lick up the rest of your seed.");
 	output("\n\nYou’re content to let the puppy finish cleaning up, and let yourself fall backwards onto the bed. Liamme joins you on the mattress soon after, climbing atop your body and bringing his effeminate face close to yours.");
 	output("\n\n<i>“Your cum tastes really good,”</i> he states plainly, blonde locks drooping down around your [pc.face], his voice barely more than a whisper, <i>“You should try some.”</i>");
 	output("\n\nWith that, he’s pressing his cushy lips against your [pc.lips] again, that taste of [pc.cockNoun " + x + "] still potent on his tongue. You graciously accept the kiss and let your [pc.tongue] probe his mouth as his does the same to yours. [pc.CumFlavor] does your palate well, and you’re soon craving more. Alas, your flavorful tongue-tying ends when Liamme pulls back, smiling dreamily as he shimmies down to rest his head on your [pc.chest], fluffy mane caressing your [pc.skinFurScales].");

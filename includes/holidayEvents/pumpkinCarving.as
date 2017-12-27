@@ -99,7 +99,7 @@ public function yesImDyingForMoreKiddoInteractions():void
 	if(rdBitFlag(7)) addButton(button, "Yammi", pumpkinYammi, button++, "", "");
 	if(rdBitFlag(8)) addButton(button, "Briha Kids", pumpkinBriha, button++, "", "");
 	
-	addButton(14, "Leave", mainGameMenu, undefined, "Leave", "You’ve had enough hanging with the kiddos for this Halloween.")
+	addButton(14, "Leave", mainGameMenu, undefined, "Leave", "You’ve had enough hanging with the kiddos for this Halloween.");
 }
 
 public function pumpkinZheniya(btnSlot:int):void

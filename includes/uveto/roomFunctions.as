@@ -810,7 +810,8 @@ public function uvetoBarBonus():Boolean
 	if(NPCs.length > 0 && (!jeromePresent || !jerynnPresent)) NPCs[rand(NPCs.length)](4);
 	
 	// Randoms
-	roamingBarEncounter(5);
+	if(isChristmas()) candyRahnBonus(5);
+	else roamingBarEncounter(5);
 	
 	// More random Freezer encounters
 	NPCs.length = 0;

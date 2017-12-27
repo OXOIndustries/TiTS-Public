@@ -379,6 +379,18 @@ public function clearBust(forceNone:Boolean = false):void
 {
 	if(forceNone || !inCombat()) showBust("none");
 }
+public function addBust(arg:String):void
+{
+	var b:Array = GetCurrentBusts();
+	b.push(arg);
+	showBust(b);
+}
+public function addTopBust(arg:String):void
+{
+	var b:Array = GetCurrentBusts();
+	b.insertAt(0,arg);
+	showBust(b);
+}
 public function showCodex():void
 {
 	userInterface.showCodex();
@@ -1086,7 +1098,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 			switch(flags["CREWMEMBER_SLEEP_WITH"])
 			{
 				case "ANNO":
-					if (annoIsCrew() && rand(3) == 0)
+					if (annoIsCrew() && (rand(3) == 0 || (isChristmas() && flags["ANNO_GIFT_WRAPPED"] == undefined)))
 					{
 						annoSleepSexyTimes();
 						interrupt = true;
@@ -2783,6 +2795,15 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			if(flags["SYRI_VIDEO_DELAY_TIMER"] == undefined) flags["SYRI_VIDEO_DELAY_TIMER"] = GetGameTimestamp();
 			else if(GetGameTimestamp() >= (flags["SYRI_VIDEO_DELAY_TIMER"] + 60*24*3)) goMailGet("syri_video");
 		}
+		//Shade Holiday shit
+		if(isChristmas())
+		{
+			if (!MailManager.isEntryUnlocked("shade_xmas_invite"))
+			{
+				if(shadeIsHome() && (shadeIsLover() || shadeIsSiblings()) && (flags["SHADE_ON_UVETO"] == 2 || flags["SHADE_ON_UVETO"] == 3))
+				goMailGet("shade_xmas_invite");
+			}
+		}
 		//Prai email stuff
 		if (flags["PRAI_EMAIL_NUMBER"] != undefined && GetGameTimestamp() >= (flags["PRAI_EMAIL_STAMP"] + 60*10))
 		{
@@ -2807,7 +2828,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		{
 			flags["SUCCUCOW_EMAIL_THIS_YEAR"] = undefined;
 			flags["SUCCUCOW'D"] = undefined;
-		}
+		}	
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette();
 	}
@@ -3110,6 +3131,7 @@ public function processFlahneEvents(deltaT:uint, doOut:Boolean):void
 public function processAnnoEvents(deltaT:uint, doOut:Boolean):void
 {	
 	var totalHours:int = ((minutes + deltaT) / 60);
+	if(!isChristmas()) flags["ANNO_GIFT_WRAPPED"] = undefined;
 	if(flags["ANNO_ASLEEP"] != undefined && totalHours >= 1)
 	{
 		flags["ANNO_ASLEEP"] -= totalHours;

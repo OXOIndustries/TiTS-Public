@@ -14,7 +14,7 @@ public function showAnzhela(nude:Boolean = false):void
 public function hospitalShit():Boolean
 {
 	output("You’re standing in a busy looking hospital filled with white cotton beds and draw curtains. Busy medical staff bustle back and forth, taking patients charts, checking supplies, and administering pain relief. Even though the architecture is scarred by conflict like everywhere else, the smell of disinfectant lingers here, and everyone’s wearing sterile gloves.");
-	output("\n\nThere are both red and gold myr patients here, being treated equally. A large banner hangs from the wall – white with a red lotus-looking flower. If you had to hazard a guess, it looks like the Scarlet Federation’s version of a Red Cross.");
+	output("\n\nThere are both red and gold myr patients here, being treated equally. A large banner hangs from the wall – white with a red lotus-looking flower. If you had to hazard a guess, it looks like the Scarlet Federation’s version of a green cross.");
 	//Met Anzhela:
 	if(flags["MET_ANZHELA"] != undefined) 
 	{

@@ -351,8 +351,9 @@ public function annoSleepSexyTimes():void
 public function annoMorningRouter():void
 {
 	flags["ANNO_SLEEPWITH_DOMORNING"] = undefined;
-
-	if (pc.hasCock() && rand(2) == 0) annoMorningHandy();
+	
+	if (isChristmas() && flags["ANNO_GIFT_WRAPPED"] == undefined) annoChristmasSpecial();
+	else if (pc.hasCock() && rand(2) == 0) annoMorningHandy();
 	else annoMorningShower();
 }
 

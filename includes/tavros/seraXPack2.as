@@ -3419,7 +3419,7 @@ public function seraBitcheningStoreRandomize():void
 	groupA.push(new Tittyblossom());
 	groupA.push(new JunkTrunk());
 	groupA.push(new ManUp());
-	//groupA.push(new ManDown());
+	groupA.push(new ManDown());
 	groupA.push(new Condensol());
 	groupA.push(new Virection());
 	// Group B

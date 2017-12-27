@@ -317,7 +317,7 @@ package classes.Characters
 				output("try to roll out of the way, but there’s just no time! You avoid getting crushed to death by the treads, but still take a nasty blow from the front of the tank anyway.");
 				target.createStatusEffect("Crunched", 0, 0, 0, 0, false, "DefenseDown", "Getting hit in the head by a tank has lowered your physique!", true, 0);
 				
-				var damage:TypeCollection = new TypeCollection( { crushing: 70 } );
+				var damage:TypeCollection = new TypeCollection( { kinetic: 70 }, DamageFlag.CRUSHING );
 				damageRand(damage, 15);
 				applyDamage(damage, this, target, "minimal");
 			}

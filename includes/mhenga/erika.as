@@ -171,7 +171,7 @@ public function erikaTalkHer():void
 	output("\n\nWould she rather talk about ");
 	if (pc.characterClass == GLOBAL.CLASS_SMUGGLER) output("what it’s like spending six hours getting your ship searched from top to bottom when you’ve done nothing illegal?");
 	else if (pc.characterClass == GLOBAL.CLASS_MERCENARY) output("how to operate a tank?");
-	else output("how the body of a KihaCorp class six companion droid works?”");
+	else output("how the body of a KihaCorp class six companion droid works?");
 	output("\n\n<i>“Ok, fair enough, but I still don’t want to talk about my work. It’s irrelevant.”</i>");
 
 	flags["ERIKA_TALKED_ABOUT_HER"] = 1;
@@ -190,7 +190,7 @@ public function erikaTalkDrinking():void
 	output("You decide to ask her why she is drinking this early in the day.");
 	output("\n\n<i>“Well, it’s not like I’m getting hammered. Have you tried getting drunk on this stuff? Besides, going out to drink is an excuse to leave home, hoping to meet someone nice, but I lack the confidence to chat up strangers since I’m generally not comfortable in public.”</i>");
 	output("\n\nIf she doesn’t like the cheap beer then why does she drink it?”</i>");
-	output("\n\nAll of the other drinks that they offer here are ridiculously expensive. The mead tastes wonderful, but I’m not going to pour my credits down my throat. And the X-Zil-rate is even more expensive; plus apparently it makes you horny and I don’t want to start popping boners in public.");
+	output("\n\n<i>“All of the other drinks that they offer here are ridiculously expensive. The mead tastes wonderful, but I’m not going to pour my credits down my throat. And the X-Zil-rate is even more expensive; plus apparently it makes you horny and I don’t want to start popping boners in public.”</i>");
 	output("\n\nBut still, why is she drinking this early in the day?");
 	output("\n\n<i>“Later in the evening there are more people here, and I really don’t like it when there are lots of people hanging around getting drunk, being obnoxious and loud.”</i>");
 	output("\n\nSo she doesn’t like hanging around other people?");
@@ -928,7 +928,7 @@ public function erikaTakeHerToShip():void
 	showErika();
 	author("Doots");
 
-	output("You can definitely think of few things to do with Erika, but none of the involve any of the patreons getting an eyeful of what you are planning");
+	output("You can definitely think of few things to do with Erika, but none of the involve any of the patrons getting an eyeful of what you are planning");
 	if(syriFriendsWithBenefits()) output(", well maybe Syri");
 	output(".");
 	output("\n\nYou reach to grab a handful of Erika’s ass while whispering into her feline ear what exactly you have in mind. She gives a quick nod before nuzzling into your neck.");
@@ -946,7 +946,7 @@ public function erikaSexIntro():void
 	showErika();
 	author("Doots");
 
-	output("Chatting and drinking are fun and all, but a "+ pc.mf("man", "woman") +"can’t live on that alone.");
+	output("Chatting and drinking are fun and all, but a "+ pc.mf("man", "woman") +" can’t live on that alone.");
 	if (pc.isNice()) output("\n\n<i>“I think we both would have more fun if we went somewhere more private, where I could treat you right.”</i>");
 	else if(pc.isMischievous()) output("\n\nYou sigh, drawing Erika’s attention to you. <i>“This place is really boring. What do you say we get somewhere more interesting?”</i> Burt shoots you a dirty look at the mention of his bar being boring, but you ignore him and pinch Erika’s buttock, giving her a solid message what you have on your mind.");
 	else output("\n\n<i>“I can’t screw you in the middle of the bar in the way I want to, so how about we head back to my place, and I’ll screw your brains right out of that silly little head of yours.”</i> ");
@@ -1010,7 +1010,7 @@ public function erikaSexMenu(Repeat:Boolean = true):void
 	{
 		moveTo("SHIP INTERIOR");
 		
-		output("Chatting and drinking are fun and all, but a "+ pc.mf("man", "woman") +"can’t live on that alone.");
+		output("Chatting and drinking are fun and all, but a "+ pc.mf("man", "woman") +" can’t live on that alone.");
 		if (pc.isNice()) output("\n\n<i>“I think we both would have more fun if we went somewhere more private, where I could treat you right.”</i>");
 		else if(pc.isMischievous()) output("\n\nYou sigh, drawing Erika’s attention to you. <i>“This place is really boring. What do you say we get somewhere more interesting?”</i> Burt shoots you a dirty look at the mention of his bar being boring, but you ignore him and pinch Erika’s buttock, giving her a solid message what you have on your mind.");
 		else output("\n\n<i>“I can’t screw you in the middle of the bar in the way I want to, so how about we head back to my place, and I’ll screw your brains right out of that silly little head of yours.”</i> ");
@@ -1120,8 +1120,8 @@ public function erikaSexLapRideEnd():void
 	showErika(true);
 	author("Doots");
 
-	output("Starting to rouse from your slumber, you feel around to find your kaithrit bed-warmer. After a while of blindly groping, you start to open your eyes, only to be greeted by your bedroom completely devoid of redheaded shemale kaithrit bed-warmers.");
-	output("\n\nYou that your [pc.gear] is neatly laid out with a small note on top of the stack. Dragging yourself out of the bed, you pick up the small note:");
+	output("Starting to rouse from your slumber, you feel around to find your kaithrit bed-warmer. After a while of blindly groping, you start to open your eyes, only to be greeted by your bedroom completely devoid of purple-haired shemale kaithrit bed-warmers.");
+	output("\n\nYou notice that your [pc.gear] is neatly laid out with a small note on top of the stack. Dragging yourself out of the bed, you pick up the small note:");
 	output("\n\n<i>“[pc.name], I’m sorry that I left without a word, but I have some things I need to do and I didn’t want to wake you up. If you decide to drop by the bar later, I’ll be there if I’m not busy.”</i>\nThere is a kiss mark at the bottom of the note.");
 	output("\n\nShrugging, you don your [pc.gear] before heading back out to another day.");
 

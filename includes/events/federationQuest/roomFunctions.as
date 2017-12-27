@@ -18,7 +18,7 @@ public function fedQuestBarracksBonus():Boolean
 	
 	showBust("GOLD_REMNANT_FIGHTER", "GOLD_REMNANT_FIGHTER", "GOLD_REMNANT_FIGHTER");
 	var button:int = 0;
-	output("A makeshift barracks has been set up here: several dozen bunks, footlockers, and racks of uniforms occupy nearly every inch of space on the walls. The middle of the room has a broad, circular card table set up along with about a dozen chairs.");
+	//output("A makeshift barracks has been set up here: several dozen bunks, footlockers, and racks of uniforms occupy nearly every inch of space on the walls. The middle of the room has a broad, circular card table set up along with about a dozen chairs.");
 	if(flags["FEDERATION_QUEST_GOLD"] == 1) output("\n\nSeveral gold myr are slumped over the table or collapsed on the floor, breathing shallowly but steadily. They’re completely out of it, and probably will be for hours. No need to worry about them.");
 	else if(flags["FEDERATION_QUEST_GOLD"] >= 2)
 	{

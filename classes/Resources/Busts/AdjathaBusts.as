@@ -460,6 +460,11 @@ package classes.Resources.Busts
 		public var Bust_MIRIAN:Class;
 		public var Bounds_MIRIAN:Rectangle = new Rectangle(92, 0, 70, 70);
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/myrra.png", mimeType = "image/png")]
+		public var Bust_MYRRA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/myrra_nude.png", mimeType = "image/png")]
+		public var Bust_MYRRA_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/naleen_bros.png", mimeType = "image/png")]
 		public var Bust_NALEEN_BROS:Class;
 		public function get Bust_NALEEN_BROTHER_A():Class { return Bust_NALEEN_BROS; }
@@ -1117,6 +1122,11 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mirian.png", mimeType = "image/png")]
 			public var Full_MIRIAN:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/myrra.png", mimeType = "image/png")]
+			public var Full_MYRRA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/myrra_nude.png", mimeType = "image/png")]
+			public var Full_MYRRA_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/naleen_bros.png", mimeType = "image/png")]
 			public var Full_NALEEN_BROS:Class;
