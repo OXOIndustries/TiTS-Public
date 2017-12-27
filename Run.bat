@@ -5,8 +5,8 @@ call bat\SetupApplication.bat
 
 :target
 set MYDEVICE=-d
-::goto desktop
-goto android-debug
+goto desktop-run
+::goto android-debug
 ::goto android-test
 set INTERPRETER=-interpreter
 ::goto ios-debug

@@ -6,6 +6,7 @@
 	import classes.Items.Miscellaneous.TestGrenade;
 	import classes.Items.Miscellaneous.TestHPBooster;
 	import classes.Items.Protection.DBGShield;
+	import classes.Preloader.Remote.RemotePreloader;
 	import classes.kGAMECLASS;
 	import flash.display.Shader;
 	import flash.events.Event;
@@ -30,6 +31,7 @@
 	import classes.GameData.CombatManager;
 	import classes.GameData.ChildManager;
 	import classes.Engine.Interfaces.*;
+	import flash.system.Capabilities;
 	
 	/**
 	 * Data Manager to handle the processing of player data files.
@@ -226,10 +228,17 @@
 			if (kGAMECLASS.canSaveAtCurrentLocation) kGAMECLASS.addGhostButton(6, "Save File", this.saveToFile, undefined, "Save to File", "Save game data to a specific file.");
 			else kGAMECLASS.addDisabledGhostButton(6, "Save File", "Save to File", "You can’t save in your current location.");
 			
-			// This is only really required for Android because shenanigans.
+			// "Advanced" file handling methods ultimately require us to be using the AIR api
 			CONFIG::AIR
 			{
 				kGAMECLASS.addGhostButton(7, "Delete File", this.deleteFileMenu, undefined, "Delete File", "Delete a save file.");
+				
+				// Hide the "import saves" and "save sets" option for operating systems we don't support
+				if ((Capabilities.os.indexOf("Windows") >= 0) && Capabilities.cpuArchitecture == "x86")
+				{
+					kGAMECLASS.addGhostButton(10, "Import Saves", this.importSavesMenu, undefined, "Import Saves", "Attempt to import saves from other game sources.");
+					if (hasAnyImportedSaves()) kGAMECLASS.addGhostButton(11, "Save Set", this.saveSetMenu, undefined, "Save Set", "Switch between available imported save slot sets.");
+				}
 			}
 			
 			kGAMECLASS.addGhostButton(14, "Back", dataRouter);
@@ -298,6 +307,354 @@
 
 		CONFIG::AIR
 		{
+
+			private function hasAnyImportedSaves():Boolean
+			{
+				var b:File = File.applicationStorageDirectory.resolvePath("#SharedObjects");
+				var cr:File = b.resolvePath("chrome_remote");
+				var cl:File = b.resolvePath("chrome_local");
+				var p:File = b.resolvePath("projector");
+				var n:File = b.resolvePath("native");
+				
+				return cr.exists || cl.exists || p.exists || n.exists;
+			}
+			
+			private static const SSET_NATIVE:uint = 0;
+			private static const SSET_PROJECTOR:uint = 1;
+			private static const SSET_CHROMEREMOTE:uint = 2;
+			private static const SSET_CHROMELOCAL:uint = 3;
+			
+			private function populateChromeFilePaths(baseUserFile:File, paths:ExternalPathsContainer):void
+			{
+				var chromePath:File = baseUserFile.resolvePath("Local/Google/Chrome/User Data/Default/Pepper Data/Shockwave Flash/WritableRoot/#SharedObjects");
+				if (chromePath.isDirectory)
+				{	
+					var chromeSubfolders:Array = chromePath.getDirectoryListing();
+					if (chromeSubfolders.length >= 1)
+					{
+						for (var i:int = 0; i < chromeSubfolders.length; i++)
+						{
+							var cs:File = chromeSubfolders[i] as File;
+							var chromeRandomFolderPath:File = chromePath.resolvePath(cs.name);
+							
+							var webPath:File = chromeRandomFolderPath.resolvePath("www.fenoxo.com");
+							if (webPath.isDirectory)
+							{
+								var webFiles:Array = webPath.getDirectoryListing();
+								for (var wf:int = 0; wf < webFiles.length; wf++)
+								{
+									var wff:File = webFiles[wf] as File;
+									if (wff.name.indexOf("TiTs_") >= 0)
+									{
+										if (paths.ChromeRemotePaths == null) paths.ChromeRemotePaths = [wff];
+										else paths.ChromeRemotePaths.push(wff);
+									}
+								}
+							}
+							
+							var localPath:File = chromeRandomFolderPath.resolvePath("#localWithNet");
+							if (localPath.isDirectory)
+							{
+								var localFiles:Array = localPath.getDirectoryListing();
+								for (var lf:int = 0; lf < localFiles.length; lf++)
+								{
+									var lff:File = localFiles[lf] as File;
+									if (lff.name.indexOf("TiTs_") >= 0)
+									{
+										if (paths.ChromeLocalPaths == null) paths.ChromeLocalPaths = [lff];
+										else paths.ChromeLocalPaths.push(lff);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			private function populateProjectorPaths(baseUserFile:File, paths:ExternalPathsContainer):void
+			{
+				var macroPath:File = baseUserFile.resolvePath("Roaming/Macromedia/Flash Player/#SharedObjects");
+				if (macroPath.isDirectory)
+				{
+					var macroSubfolders:Array = macroPath.getDirectoryListing();
+					if (macroSubfolders.length >= 1)
+					{
+						for (var i:int = 0; i < macroSubfolders.length; i++)
+						{
+							var path:File = macroPath.resolvePath(macroSubfolders[i].name);
+							var optPath:File;
+							var files:Array;
+							
+							optPath = path.resolvePath("localhost");
+							if (optPath.isDirectory)
+							{
+								files = optPath.getDirectoryListing();
+								for (var ff:int = 0; ff < files.length; ff++)
+								{
+									var fff:File = files[ff] as File;
+									if (fff.name.indexOf("TiTs_") >= 0)
+									{
+										if (paths.ProjectorPaths == null) paths.ProjectorPaths = [fff];
+										else paths.ProjectorPaths.push(fff);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			private function saveSetMenu():void
+			{
+				clearOutput2();
+				
+				output2("You are currently using the ");
+				var sset:uint = kGAMECLASS.sharedData.SaveSetID;
+				switch (sset)
+				{
+					case SSET_NATIVE: output2("native"); break;
+					case SSET_PROJECTOR: output2("projector"); break;
+					case SSET_CHROMEREMOTE: output2("remote chrome"); break;
+					case SSET_CHROMELOCAL: output2("local chrome"); break;
+					default: output2("UNKNOWN"); break;
+				}
+				output2(" save set.");
+				
+				clearGhostMenu();
+				
+				if (sset == SSET_NATIVE) addDisabledGhostButton(0, "Native", "Native", "Native is currently active.");
+				else addGhostButton(0, "Native", activateSaveSet, SSET_NATIVE, "Native", "Switch to the Native save set.");
+				
+				if (File.applicationStorageDirectory.resolvePath("#SharedObjects/chrome_remote").exists)
+				{
+					if (sset == SSET_CHROMEREMOTE) addDisabledGhostButton(1, "Chr.Remote", "Chrome Remote", "Chrome Remote is currently active.");
+					else addGhostButton(1, "Chrome Remote", activateSaveSet, SSET_CHROMEREMOTE, "Chr.Remote", "Switch to the Chrome Remote save set.");
+				}
+				
+				if (File.applicationStorageDirectory.resolvePath("#SharedObjects/chrome_local").exists)
+				{
+					if (sset == SSET_CHROMELOCAL) addDisabledGhostButton(2, "Chrome Local", "Chr.Local", "Chrome Local is currently active.");
+					else addGhostButton(2, "Chrome Local", activateSaveSet, SSET_CHROMELOCAL, "Chr.Local", "Switch to the Chrome Local save set.");
+				}
+				
+				if (File.applicationStorageDirectory.resolvePath("#SharedObjects/projector").exists)
+				{
+					if (sset == SSET_PROJECTOR) addDisabledGhostButton(3, "Projector", "Projector", "Projector is currently active.");
+					else addGhostButton(3, "Projector", activateSaveSet, SSET_PROJECTOR, "Projector", "Switch to the Projector save set.");
+				}
+				
+				addGhostButton(14, "Back", showDataMenu);
+			}
+			
+			private function activateSaveSet(sset:uint):void
+			{
+				// Copy the current saves to the appropriate folder based on the current SaveSetID
+				var tarFolder:File = File.applicationStorageDirectory.resolvePath("#SharedObjects");
+				var files:Array = tarFolder.getDirectoryListing();
+				
+				if (kGAMECLASS.sharedData.SaveSetID == SSET_NATIVE) tarFolder = tarFolder.resolvePath("native");
+				else if (kGAMECLASS.sharedData.SaveSetID == SSET_PROJECTOR) tarFolder = tarFolder.resolvePath("projector");
+				else if (kGAMECLASS.sharedData.SaveSetID == SSET_CHROMELOCAL) tarFolder = tarFolder.resolvePath("chrome_local");
+				else if (kGAMECLASS.sharedData.SaveSetID == SSET_CHROMEREMOTE) tarFolder = tarFolder.resolvePath("chrome_remote");
+				else throw new Error("Unrecognized save set id.");
+				
+				for (var i:int = 0; i < files.length; i++)
+				{
+					var f:File = files[i] as File;
+					if (f.name.indexOf("TiTs_") >= 0)
+					{
+						f.moveTo(tarFolder.resolvePath(f.name), true);
+					}
+				}
+				
+				// Now copy the contents of the requested folder back to the root
+				var sourceFolder:File = File.applicationStorageDirectory.resolvePath("#SharedObjects");
+				if (sset == SSET_NATIVE) sourceFolder = sourceFolder.resolvePath("native");
+				else if (sset == SSET_PROJECTOR) sourceFolder = sourceFolder.resolvePath("projector");
+				else if (sset == SSET_CHROMELOCAL) sourceFolder = sourceFolder.resolvePath("chrome_local");
+				else if (sset == SSET_CHROMEREMOTE) sourceFolder = sourceFolder.resolvePath("chrome_remote");
+				else throw new Error("Unrecognized save set id.");
+				
+				files = sourceFolder.getDirectoryListing();
+				for (i = 0; i < files.length; i++)
+				{
+					f = files[i] as File;
+					if (f.name.indexOf("TiTs_") >= 0)
+					{
+						f.moveTo(File.applicationStorageDirectory.resolvePath("#SharedObjects/" + f.name), true);
+					}
+				}
+				
+				clearOutput2();
+				output2("Activated the");
+				switch (sset)
+				{
+					case SSET_PROJECTOR: output2(" Projector"); break;
+					case SSET_CHROMELOCAL: output2(" Chrome Local"); break;
+					case SSET_CHROMEREMOTE: output2(" Chrome Remote"); break;
+					case SSET_NATIVE: output2(" Native"); break;
+					default: output2(" UNKNOWN"); break;
+				}
+				output2(" save set.");
+				
+				kGAMECLASS.sharedData.SaveSetID = sset;
+				
+				clearGhostMenu();
+				addGhostButton(0, "Next", showDataMenu);
+			}
+			
+			private function importSavesMenu():void
+			{
+				clearOutput2();
+				
+				var basePath:String = File.applicationStorageDirectory.nativePath;
+				var elems:Array = basePath.split("\\");
+				
+				var baseUserPath:String = "";
+				for (var i:int = 0; i < 4; i++)
+				{
+					baseUserPath += elems[i] + "/";
+				}
+				var baseUserFile:File = new File();
+				baseUserFile.nativePath = baseUserPath;
+				
+				var availablePaths:ExternalPathsContainer = new ExternalPathsContainer();
+				populateChromeFilePaths(baseUserFile, availablePaths);
+				populateProjectorPaths(baseUserFile, availablePaths);
+				
+				output2("This page will attempt to detect TiTS save files that have been made in a variety of browsers or other flash projectors, and offer to move the save files to a location that this version of the game can load.\n\n<b>WARNING: This will <b>overwrite</b> any previously imported saves with whatever files the import process finds.</b>");
+				
+				if (availablePaths.ChromeRemotePaths == null)
+				{
+					output2("\n\nChrome, Remotely loaded: No files detected");
+				}
+				else
+				{
+					output2("\n\nChrome, Remotely loaded: " + availablePaths.ChromeRemotePaths.length + " files found.");
+				}
+				
+				if (availablePaths.ChromeLocalPaths == null)
+				{
+					output2("\n\nChrome, Locally loaded: No files detected");
+				}
+				else
+				{
+					output2("\n\nChrome, Locally loaded: " + availablePaths.ChromeLocalPaths.length + " files found.");
+				}
+				
+				if (availablePaths.ProjectorPaths == null)
+				{
+					output2("\n\nFlash Projector Application: No files detected");
+				}
+				else
+				{
+					output2("\n\nFlash Projector Application: " + availablePaths.ProjectorPaths.length + " files found.");
+				}
+				
+				clearGhostMenu();
+				addGhostButton(0, "Import", doImportConfirm, availablePaths);
+				addGhostButton(14, "Back", showDataMenu);
+			}
+			
+			private function doImportConfirm(paths:ExternalPathsContainer):void
+			{
+				clearGhostMenu();
+				addGhostButton(5, "Confirm", doImport, paths);
+				addGhostButton(14, "Back", showDataMenu);
+			}
+			
+			private function doImport(paths:ExternalPathsContainer):void
+			{
+				deleteFolders();
+				
+				// If we're currently using a fileset that isn't default, also delete those sol files
+				if (kGAMECLASS.sharedData.SaveSetID != 0)
+				{
+					var baseFiles:Array = File.applicationStorageDirectory.resolvePath("#SharedObjects").getDirectoryListing();
+					for (var i:int = 0; i < baseFiles.length; i++)
+					{
+						var f:File = baseFiles[i] as File;
+						if (f.name.indexOf("TiTs_") >= 0)
+						{
+							f.deleteFile();
+						}
+					}
+				}
+				
+				if (paths.ChromeRemotePaths != null)
+				{
+					File.applicationStorageDirectory.resolvePath("#SharedObjects/chrome_remote").createDirectory();
+					for (i = 0; i < paths.ChromeRemotePaths.length; i++)
+					{
+						f = paths.ChromeRemotePaths[i] as File;
+						var d:File = File.applicationStorageDirectory.resolvePath("#SharedObjects/chrome_remote/" + f.name);
+						f.copyTo(d);
+					}
+				}
+				
+				if (paths.ChromeLocalPaths != null)
+				{
+					File.applicationStorageDirectory.resolvePath("#SharedObjects/chrome_local").createDirectory();
+					for (i = 0; i < paths.ChromeLocalPaths.length; i++)
+					{
+						f = paths.ChromeLocalPaths[i] as File;
+						d = File.applicationStorageDirectory.resolvePath("#SharedObjects/chrome_local/" + f.name);
+						f.copyTo(d);
+					}
+				}
+				
+				if (paths.ProjectorPaths != null)
+				{
+					File.applicationStorageDirectory.resolvePath("#SharedObjects/projector").createDirectory();
+					for (i = 0; i < paths.ProjectorPaths.length; i++)
+					{
+						f = paths.ProjectorPaths[i] as File;
+						d = File.applicationStorageDirectory.resolvePath("#SharedObjects/projector/" + f.name);
+						f.copyTo(d);
+					}
+				}
+				
+				// Now ensure we have the same set in the root as we did earlier.
+				switch(kGAMECLASS.sharedData.SaveSetID)
+				{
+					default: break;
+					case SSET_NATIVE: break; // do nothing
+					case SSET_CHROMEREMOTE: copyFolderContents(File.applicationStorageDirectory.resolvePath("#SharedObjects/chrome_remote"), File.applicationStorageDirectory.resolvePath("#SharedObjects")); break;
+					case SSET_CHROMELOCAL:  copyFolderContents(File.applicationStorageDirectory.resolvePath("#SharedObjects/chrome_local"), File.applicationStorageDirectory.resolvePath("#SharedObjects")); break;
+					case SSET_PROJECTOR: copyFolderContents(File.applicationStorageDirectory.resolvePath("#SharedObjects/projector"), File.applicationStorageDirectory.resolvePath("#SharedObjects")); break;
+				}
+				
+				clearOutput2();
+				output2("Files copied.\n\nYou can now switch between different save sets using the import menu. This should let you pick and choose which save slots to export to files and consolidate everything into a single set.");
+				clearGhostMenu();
+				addGhostButton(0, "Next", showDataMenu);
+			}
+			
+			private function copyFolderContents(from:File, to:File):void
+			{
+				var files:Array = from.getDirectoryListing();
+				for (var i:int = 0; i < files.length; i++)
+				{
+					var f:File = files[i] as File;
+					var d:File = to.resolvePath(f.name);
+					f.moveTo(d);
+				}
+			}
+			
+			private function deleteFolders():void
+			{
+				var baseFolder:File = File.applicationStorageDirectory.resolvePath("#SharedObjects");
+				
+				var chromeRemote:File = baseFolder.resolvePath("chrome_remote");
+				if (chromeRemote.exists && chromeRemote.isDirectory) chromeRemote.deleteDirectory(true);
+				
+				var chromeLocal:File = baseFolder.resolvePath("chrome_local");
+				if (chromeLocal.exists && chromeLocal.isDirectory) chromeLocal.deleteDirectory(true);
+				
+				var projector:File = baseFolder.resolvePath("projector");
+				if (projector.exists && projector.isDirectory) projector.deleteDirectory(true);
+			}
+			
 			private function deleteFileMenu():void
 			{
 				if (kGAMECLASS.userInterface.systemText != "BY FENOXO") kGAMECLASS.showName("DELETE\nFILE");

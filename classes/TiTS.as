@@ -1,5 +1,6 @@
 ﻿package classes
 {
+	import classes.Engine.SharedData;
 	import classes.GameData.CombatManager;
 	import classes.GameData.Perks;
 	import classes.GameData.ShipManager;
@@ -456,7 +457,8 @@
 		public var items:Object;
 		
 		//Toggles
-		public var gameOptions:GameOptions;
+		public var gameOptions:GameOptions; // Options is tied to a single save file
+		public var sharedData:SharedData; // SharedData is used across ALL save files
 		
 		public function get silly():Boolean { return gameOptions.sillyMode; }
 		public function get easy():Boolean { return gameOptions.easyMode; }
@@ -520,6 +522,7 @@
 			kGAMECLASS = this;
 			dataManager = new DataManager();
 			gameOptions = new GameOptions();
+			sharedData = SharedData.Load();
 			
 			hours = 0;
 			minutes = 0;
