@@ -31,7 +31,7 @@ public function TundraEncounterBonus():Boolean
 		return true;
 	}
 	//Myrna the holiday Korg~!
-	if(flags["MET_MYRNA"] == undefined && rand(100) <= 50 && isChristmas())
+	if(flags["MET_MYRNA"] == undefined && rand(100) <= 1 && isChristmas())
 	{
 		myrnaMeeting();
 		return true;
@@ -79,7 +79,7 @@ public function GlacialRiftEncounterBonus():Boolean
 		return true;
 	}
 	//Myrna the holiday Korg~!
-	if(flags["MET_MYRNA"] == undefined && rand(100) <= 50 && isChristmas())
+	if(flags["MET_MYRNA"] == undefined && rand(100) <= 1 && isChristmas())
 	{
 		myrnaMeeting();
 		return true;
