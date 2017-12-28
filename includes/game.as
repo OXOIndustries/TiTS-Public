@@ -2809,7 +2809,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			else if(GetGameTimestamp() >= (flags["SYRI_VIDEO_DELAY_TIMER"] + 60*24*3)) goMailGet("syri_video");
 		}
 		//Shade Holiday shit
-		if(isChristmas())
+		if(isChristmas() && flags["SHADE_ON_UVETO"] >= 3)
 		{
 			if (!MailManager.isEntryUnlocked("shade_xmas_invite"))
 			{

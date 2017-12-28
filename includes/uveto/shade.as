@@ -652,7 +652,7 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 	var response:String = "";
 	var tooltip:String = "";
 	
-	if(MailManager.isEntryUnlocked("shade_xmas_invite") && isChristmas() && (flags["SHADE_XMAS"] == undefined || (flags["SHADE_XMAS"] < new Date().fullYear && flags["SHADE_XMAS"] != undefined))) { 
+	if(MailManager.isEntryViewed("shade_xmas_invite") && isChristmas() && (flags["SHADE_XMAS"] == undefined || (flags["SHADE_XMAS"] < new Date().fullYear && flags["SHADE_XMAS"] != undefined))) { 
 			/* EXCEPTION FOR HOLIDAYS! */
 			response = "ho ho ho";
 			tooltip = "This is Shade’s house. Time for some holiday cheer!";
@@ -690,18 +690,17 @@ public function approachShadeAtHouse(response:String = "intro"):void
 	clearOutput();
 	author("Savin");
 	
-	if(isChristmas())
-	{
-		var currDate:Date = new Date();
-		//Never done before or first time this year!
-		if(flags["SHADE_XMAS"] == undefined || (flags["SHADE_XMAS"] != undefined && flags["SHADE_XMAS"] < currDate.fullYear))
-		{
-			shadeHolidayKnock();
-			return;
-		}
-	}
 	switch(response)
 	{
+		case "ho ho ho":
+			var currDate:Date = new Date();
+			//Never done before or first time this year!
+			if(flags["SHADE_XMAS"] == undefined || (flags["SHADE_XMAS"] != undefined && flags["SHADE_XMAS"] < currDate.fullYear))
+			{
+				shadeHolidayKnock();
+				return;
+			}
+			//No "break;" in case something is somehow fubar.
 		case "lover friend intro":
 			showBust(shadeBustDisplay());
 			showName("\nSHADE");
