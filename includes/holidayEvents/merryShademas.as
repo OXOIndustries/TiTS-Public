@@ -15,6 +15,7 @@ public function shademasEmailString():String
 	buff += "’s home cooking.\n\nLet me know~\n\nHugs and kisses,\n\t-Shade";
 	return ParseText(buff);
 }
+public function shadeIsIncestLover():Boolean { return (flags["SHADE_IS_YER_SIS"] == 2); }
 
 //Show Up at Shade’s Place
 //Play when the PC knocks on Shade’s door after receiving the email, any time in December.
@@ -32,7 +33,7 @@ public function shadeHolidayKnock():void
 	{
 		output("you’re faced by a very tall ashen-haired woman with a pair of ginger ausar-ears poking out between her snowy braids. A confident smile is on her blue-hued lips, and a thick, fluffy ginger tail wags behind her.");
 		output("\n\n<i>“Hey mom! ");
-		if(!shadeIsSiblings()) output("Your [pc.boyGirl]friend");
+		if(!shadeIsSiblings() || shadeIsIncestLover()) output("Your [pc.boyGirl]friend");
 		else output("[pc.name]");
 		output(" is here!”</i> she calls over her shoulder. She takes a step back, making way for you to enter. <i>“Hey, I’m Astra. C’mon inside, [pc.name]. There’s a winter storm a-comin’ and I gotta seal the doors good or we’ll end up flooded.”</i>");
 	}
@@ -48,7 +49,7 @@ public function shadeHolidayKnock():void
 		output("\n\nSmiling ear to ear, Astra pulls you inside and pushes the door closed behind you. <i>“Glad you’re here. There’s a bad winter’s storm coming, and I gotta seal us up or we’re gonna drown like rats down here. Speaking of which, mom’s got this weird cheese thing down there called fond-you or something. Better hurry down and get it before I eat the rest of it.”</i>");
 	}
 	output("\n\nFair enough. You squeeze past your ");
-	if(!shadeIsSiblings()) output("lover");
+	if(!shadeIsSiblings() || shadeIsIncestLover()) output("lover");
 	else output("sister");
 	output("’s stacked daughter and into the warm seclusion of Shade’s subterranean abode. Behind you, Astra busies bolting the door closed with a noisy turbodrill; the noises follows you as you descend into the brightly-lit home beneath the snows, suffused with the familiar smells of fresh bread and cooked meats ripe with Roshan spices. Your stomach’s growling by the time you’re brushing through the colorful cloth curtain into Shade’s cozy little living room.");
 
@@ -59,15 +60,15 @@ public function shadeHolidayKnock():void
 	output("\n\nSo you heard. <i>“Hopefully the weather won’t ruin our fun.”</i>");
 
 	output("\n\nShade snickers. <i>“");
-	if(shadeIsSiblings()) output("Don’t worry little " + pc.mf("brother","sister") + ", I’ll keep ya safe.");
+	if(shadeIsSiblings() && !shadeIsIncestLover()) output("Don’t worry little " + pc.mf("brother","sister") + ", I’ll keep ya safe.");
 	else output("It’s alright if you’re scared of storms, love. I’ll hold ya close and keep you safe tonight.");
 	output("”</i>");
 
 	output("\n\nYou roll your eyes");
-	if(!shadeIsSiblings()) output(", though that does sound nice...");
+	if(!shadeIsSiblings() || shadeIsIncestLover()) output(", though that does sound nice...");
 	output(". With some difficulty, Shade wipes the grin off her face and seduces you deeper into her home by pulling off her messy apron and opening her arms, gesturing for you to come get a hug. Of course you do so, crossing the room and burying yourself in the sinfully soft embrace of the milfy kaithrit. You sink into the squishy warmth of Shade’s embrace, feeling her strong arms wrap around you.");
 	//Lover:
-	if(!shadeIsSiblings()) output(" Shade plants a quick kiss on your forehead before releasing you.");
+	if(!shadeIsSiblings() || shadeIsIncestLover()) output(" Shade plants a quick kiss on your forehead before releasing you.");
 
 	output("\n\n<i>“Alright, enough giving you a hard time. Make yourself at home; I’m gonna go finish up our holiday feast!”</i>");
 
@@ -138,7 +139,7 @@ public function eatWithShadeAndAstra():void
 
 	output("\n\nYou get the feeling she’s watching you, studying you. ");
 	//Siblings: 
-	if(shadeIsSiblings()) output("Maybe she’s trying to make up for lost time, getting to know you as best she can.");
+	if(shadeIsSiblings() && !shadeIsIncestLover()) output("Maybe she’s trying to make up for lost time, getting to know you as best she can.");
 	else 
 	{
 		output("You can’t tell for sure, but you get the feeling she’s just undressing you with her eyes through the whole conversation... or maybe she’s just enoughing having her partner around for the holidays. You notice a distinct lack of Astra’s sire, now that you think of it.");
@@ -160,7 +161,7 @@ public function eatWithShadeAndAstra():void
 	else 
 	{
 		output("You smirk and tell her that you at least know a thing or two about helping your ");
-		if(!shadeIsSiblings()) output("lovers");
+		if(!shadeIsSiblings() || shadeIsIncestLover()) output("lovers");
 		else output("sisters");
 		output(".");
 	}
@@ -180,7 +181,7 @@ public function cleanUpWithShade():void
 	showName("SHADE &\nASTRA");
 	author("Savin");
 	//Clean Up [Siblings Version]
-	if(shadeIsSiblings())
+	if(shadeIsSiblings() && !shadeIsIncestLover())
 	{
 		output("<b>Some scrubbing later...</b>");
 		output("\n\nYou slump down into the welcoming softness of the couch’s embrace with a sigh. Shade’s hands rest on your shoulders, rubbing the stress out of them. The storm-noises outside have only gotten more intense, making it difficult to hear your sister’s words, but the intent comes through all the same: she’s happy to have you around. When Astra comes back out of her room, a towel wrapped over her sweat-slicked shoulders, she flashes you both a smile and swings into a seat beside you.");
@@ -299,7 +300,7 @@ public function shadeCleanupEpilogue():void
 	showBust(shadeBustDisplay(), astraBustDisplay());
 	showName("SHADE &\nASTRA");
 	author("Savin");
-	if(shadeIsSiblings())
+	if(shadeIsSiblings() && !shadeIsIncestLover())
 	{
 		output("When you wake up the next morning, many movies into the holiday marathon, your eyes flutter open to see Shade and Astra leaning against you. The screen’s still going, playing a scene of some human men dressed in Stormguard attire handing out presents - mostly wrapped polearms - to small children clustered around some kind of alien tree.");
 
@@ -347,4 +348,3 @@ public function shadeCleanupEpilogue():void
 	var currDate:Date = new Date();
 	flags["SHADE_XMAS"] = currDate.fullYear;
 }
-
