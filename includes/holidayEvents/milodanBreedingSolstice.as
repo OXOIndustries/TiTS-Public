@@ -15,7 +15,7 @@ public function milodanBreedingProc():Boolean
 	{
 		if(isChristmas() && (pc.hasCock() || (pc.hasVaginas() && !pc.isFullyWombPregnant())))
 		{
-			if(rand(100) <= 50)
+			if(rand(100) <= 3)
 			{
 				flags["BREEDING_SOLSTICED"] = 1;
 				showBust("MILODANMALE","MILODANFEM","MILODANMALE","MILODANFEM");
