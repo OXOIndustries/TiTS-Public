@@ -13,7 +13,7 @@ public function milodanBreedingProc():Boolean
 {
 	if(flags["BREEDING_SOLSTICED"] == undefined)
 	{
-		if(isChristmas() && (pc.hasCock() || (pc.hasVaginas() && !pc.isFullyWombPregnant())))
+		if(isChristmas() && (pc.hasCock() || (pc.hasVagina() && !pc.isFullyWombPregnant())))
 		{
 			if(rand(100) <= 3)
 			{
