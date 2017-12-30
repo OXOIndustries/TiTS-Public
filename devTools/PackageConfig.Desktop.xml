@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<application xmlns="http://ns.adobe.com/air/application/27.0"> 
+<application xmlns="http://ns.adobe.com/air/application/28.0"> 
     <id>com.taintedspace.tits</id> 
     <versionNumber>{GAMEVERSION}</versionNumber> 
     <filename>Trials in Tainted Space</filename> 
     <versionLabel>Public Alpha {GAMEVERSION}</versionLabel>
     <allowBrowserInvocation>false</allowBrowserInvocation>
-        <initialWindow> 
+    <initialWindow> 
         <content>TiTS.AirDesktop.swf</content>
         <systemChrome>standard</systemChrome>
         <transparent>false</transparent>
@@ -16,8 +16,7 @@
         <title>TITS AIR</title>
     </initialWindow>
     <customUpdateUI>false</customUpdateUI>
-    <allowBrowserInvocation>false</allowBrowserInvocation>
-    <supportedProfiles>desktop</supportedProfiles>
+    <supportedProfiles>desktop extendedDesktop</supportedProfiles>
     <icon>
         <image29x29>icons/icon_29.png</image29x29>
         <image36x36>icons/icon_36.png</image36x36>
