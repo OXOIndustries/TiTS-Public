@@ -6,7 +6,7 @@
     <versionLabel>Public Alpha {GAMEVERSION}</versionLabel>
     <allowBrowserInvocation>false</allowBrowserInvocation>
         <initialWindow> 
-        <content>TiTS_AIR.swf</content>
+        <content>TiTS.AirDesktop.swf</content>
         <systemChrome>standard</systemChrome>
         <transparent>false</transparent>
         <visible>true</visible>
