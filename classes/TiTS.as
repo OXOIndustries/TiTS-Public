@@ -129,8 +129,11 @@
 		include "../includes/holidayEvents/ghostSexDream.as";
 		include "../includes/holidayEvents/halloweenCostumes.as";
 		include "../includes/holidayEvents/merryShademas.as";
+		include "../includes/holidayEvents/milodanBreedingSolstice.as";
+		include "../includes/holidayEvents/myrnaTheGenerousKorgonne.as";
 		include "../includes/holidayEvents/pumpkinCarving.as";
 		include "../includes/holidayEvents/puppyslutmas.as";
+		include "../includes/holidayEvents/randyClaws.as";
 		include "../includes/holidayEvents/succucow.as";
 
 		//Followers
@@ -532,7 +535,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.118";
+			version = "0.7.123";
 
 			//temporary nonsense variables.
 			temp = 0;

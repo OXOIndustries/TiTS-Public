@@ -238,7 +238,8 @@ public function configureMails():void
 	MailManager.addMailEntry("syri_video", syriVideoEmailText, "New_Video.holo", "Syri Dorna", "BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("breedwell_unlock", breedwellEmailText, "The Breedwell Incubation Centre Needs YOU.", "TamaniCorp", "Marketing@TamaniCorp.corp", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("succucow_email", succucowEmailText, "Check out this weird cabin? Cash reward.", "Ciaran Eildean", "Warden_Eildean@NewTexas.gov", quickPCTo, quickPCToAddress);
-
+	MailManager.addMailEntry("randy_claws_email", clawsEmailText, "Merry Christmas!", "New Texas Department of Wildlife", "NT_DoW@NewTexas.gov", quickPCTo, quickPCToAddress);
+	
 	//Stubs so that the mail entries show up on a load
 	MailManager.addMailEntry("tamtam_preg1", undefined, "Gastigoth Inmate Tam-Tam - Pregnancy Detected", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("tamtam_preg2", undefined, "Gastigoth Inmate Tam-Tam - Pregnancy Options", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);

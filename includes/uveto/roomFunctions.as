@@ -30,6 +30,15 @@ public function TundraEncounterBonus():Boolean
 		choices[rand(choices.length)]();
 		return true;
 	}
+	//Myrna the holiday Korg~!
+	if(flags["MET_MYRNA"] == undefined && rand(100) <= 1 && isChristmas())
+	{
+		myrnaMeeting();
+		return true;
+	}
+	//Christmas event jumps in front of everything else!
+	if(milodanBreedingProc()) return true;
+	
 	if (tryUvetoWeatherEvent(flags["TUNDRA_STEP"])) return true;
 	if (tryEncounterSavicite(flags["TUNDRA_STEP"])) return true;
 	return false;
@@ -41,7 +50,7 @@ public function GlacialRiftEncounterBonus():Boolean
 	IncrementFlag("TUNDRA_STEP");
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
-	if(flags["TUNDRA_STEP"] >= 5 && rand(4) == 0) {
+	if(flags["TUNDRA_STEP"] >= 5 && rand(7) == 0) {
 		//Reset step counter
 		flags["TUNDRA_STEP"] = 0;
 		
@@ -72,6 +81,15 @@ public function GlacialRiftEncounterBonus():Boolean
 		choices[rand(choices.length)]();
 		return true;
 	}
+	//Myrna the holiday Korg~!
+	if(flags["MET_MYRNA"] == undefined && rand(100) <= 1 && isChristmas())
+	{
+		myrnaMeeting();
+		return true;
+	}
+	//Christmas event jumps in front of everything else!
+	if(milodanBreedingProc()) return true;
+
 	if (tryUvetoWeatherEvent(flags["TUNDRA_STEP"])) return true;
 	if (tryEncounterSavicite(flags["TUNDRA_STEP"])) return true;
 	return false;

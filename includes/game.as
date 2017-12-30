@@ -1071,6 +1071,12 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 	{
 		if(outputs)
 		{
+			// Randy Claws
+			if(isChristmas() && MailManager.isEntryViewed("randy_claws_email") && flags["RANDY_CLAWS"] == undefined)
+			{
+				randyClawsHook();
+				return;
+			}
 			// BOO!! CHUPACABRO!!
 			if(isHalloweenish() && reahaIsCrew() && reahaIsCured() && flags["CHUPACABRO'D"] == undefined)
 			{
@@ -2588,6 +2594,13 @@ public function variableRoomUpdateCheck():void
 		rooms["UVGR K20"].removeFlag(GLOBAL.NPC);
 		rooms["KORGII B14"].removeFlag(GLOBAL.OBJECTIVE);
 	}
+	//Myrna
+	if(isChristmas())
+	{
+		if(flags["MET_MYRNA"] != undefined && !rooms["UVIP T44"].hasFlag(GLOBAL.OBJECTIVE)) rooms["UVIP T44"].addFlag(GLOBAL.OBJECTIVE);
+	}
+	//Remove marker after xmas
+	else if(rooms["UVIP T44"].hasFlag(GLOBAL.OBJECTIVE)) rooms["UVIP T44"].removeFlag(GLOBAL.OBJECTIVE);
 	
 	/* VESPERIA / CANADIA STATION */
 	/*
@@ -2796,7 +2809,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			else if(GetGameTimestamp() >= (flags["SYRI_VIDEO_DELAY_TIMER"] + 60*24*3)) goMailGet("syri_video");
 		}
 		//Shade Holiday shit
-		if(isChristmas())
+		if(isChristmas() && flags["SHADE_ON_UVETO"] >= 3)
 		{
 			if (!MailManager.isEntryUnlocked("shade_xmas_invite"))
 			{
@@ -2828,7 +2841,24 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		{
 			flags["SUCCUCOW_EMAIL_THIS_YEAR"] = undefined;
 			flags["SUCCUCOW'D"] = undefined;
-		}	
+		}
+		//RandyClaws email
+		if(flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] == undefined && flags["CIARAN_MET"] != undefined && isChristmas())
+		{
+			if (MailManager.isEntryUnlocked("randy_claws_email"))
+			{
+				MailManager.deleteMailEntry("randy_claws_email");
+				MailManager.addMailEntry("randy_claws_email", clawsEmailText, "Merry Christmas!", "New Texas Department of Wildlife", "NT_DoW@NewTexas.gov", quickPCTo, quickPCToAddress);
+			}
+			goMailGet("randy_claws_email");
+			flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] = 1;
+		}
+		else if(!isChristmas())
+		{
+			flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] = undefined;
+			flags["RANDY_CLAWS"] = undefined;
+		}
+		
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette();
 	}
