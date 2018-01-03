@@ -260,6 +260,7 @@ public function rideSpaceElevatorUp():void
 	currentLocation = "UVS LIFT";
 	generateMap();
 	showLocationName();
+	showBust("UVETO");
 	rooms[currentLocation].outExit = "UVS D7";
 	
 	output("Once again, you board the Irestead space elevator - this time, going up. Unlike your trip down, the elevator’s barely occupied: only a couple of other spacers join you aboard, though the ever-present cargo remains aboard. Raw minerals from the Uvetan mines, you’d guess. A few moments after you embark, the station controller seals the doors, and you feel a sudden heft of gravity under your [pc.feet].");
@@ -299,6 +300,7 @@ public function rideSpaceElevatorDown():void
 	generateMap();
 	showLocationName();
 	rooms[currentLocation].outExit = "UVI F34";
+	showBust("UVETO_MOUNTAINS");
 	
 	//First Time
 	if(flags["UVETO_ELEVATORED"] == undefined) 

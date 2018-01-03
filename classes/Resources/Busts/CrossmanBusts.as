@@ -20,6 +20,8 @@ package classes.Resources.Busts
 		public var Bust_MYRELLION:Class;
 		[Embed(source = "../../../assets/images/npcs/crossman/uveto.png", mimeType = "image/png")]
 		public var Bust_UVETO:Class;
+		[Embed(source = "../../../assets/images/npcs/crossman/uveto_mountains.png", mimeType = "image/png")]
+		public var Bust_UVETO_MOUNTAINS:Class;
 		
 		CONFIG::IMAGEPACK
 		{
@@ -35,6 +37,8 @@ package classes.Resources.Busts
 			public var Full_MYRELLION:Class;
 			[Embed(source = "../../../assets/images/npcs/crossman/hr/uveto.png", mimeType = "image/png")]
 			public var Full_UVETO:Class;
+			[Embed(source = "../../../assets/images/npcs/crossman/hr/uveto_mountains.png", mimeType = "image/png")]
+			public var Full_UVETO_MOUNTAINS:Class;
 		}
 	}
 }
