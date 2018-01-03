@@ -2711,6 +2711,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		breedwellTryUnlock();
 		processElliePregEvents(deltaT, doOut, totalDays);
 		processIlariaPregEvents(deltaT, doOut, totalDays);
+		processFZilPregEvents(deltaT, doOut, totalDays);
 		//9999 processQuaellePregEvents(deltaT, doOut, totalDays);
 	}
 	

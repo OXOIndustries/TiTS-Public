@@ -218,6 +218,13 @@ public function jungleEncounterChances():Boolean {
 	
 	// APPARANTLY I AM NOT ALLOWED DEBUG FUNCTIONS. FML
 	
+	//Pregnant Zil Birth check
+	if(flags["FZIL_PREG_TIMER"] >= 235 && flags["FZIL_THIS_PREG_MET"] != undefined)
+	{
+		fZilBirthHook();
+		return true;
+	}
+	
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
 	if((pc.accessory is JungleRepel && flags["JUNGLE_STEP"] >= 10 && rand(4) == 0) || (!(pc.accessory is JungleRepel) && flags["JUNGLE_STEP"] >= 5 && rand(4) == 0)) {
@@ -243,6 +250,16 @@ public function jungleEncounterChances():Boolean {
 			}
 		}
 		if(!pc.hasStatusEffect("Prai Cooldown") && rand(2) == 0) choices.push(praiFirstEncounter);
+		if(flags["FZIL_PREG_TIMER"] >= 80 && pc.hasCock())
+		{
+			choices.push(fZilPregEncounter);
+			choices.push(fZilPregEncounter);
+			if(pc.hasPerk("Virile") || pc.hasPerk("Breed Hungry"))
+			{
+				choices.push(fZilPregEncounter);
+				choices.push(fZilPregEncounter);
+			}
+		}
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
