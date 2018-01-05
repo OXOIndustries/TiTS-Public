@@ -25,8 +25,11 @@ public function TundraEncounterBonus():Boolean
 		choices[choices.length] = encounterAKorgonneFemaleHostile;
 		choices[choices.length] = korgMaleEncounter;
 		choices[choices.length] = korgMaleEncounter;
-		choices[choices.length] = stormguardIntro;
-		choices[choices.length] = stormguardIntro;
+		if(pc.hasGenitals()) 
+		{
+			choices[choices.length] = stormguardIntro;
+			choices[choices.length] = stormguardIntro;
+		}
 		
 		//Run the event
 		choices[rand(choices.length)]();
@@ -63,8 +66,11 @@ public function GlacialRiftEncounterBonus():Boolean
 		//POSSIBLE ENCOUNTERS! KORGI!
 		choices[choices.length] = encounterAKorgonneFemaleHostile;
 		choices[choices.length] = korgMaleEncounter;
-		choices[choices.length] = stormguardIntro;
-		choices[choices.length] = stormguardIntro;
+		if(pc.hasGenitals()) 
+		{
+			choices[choices.length] = stormguardIntro;
+			choices[choices.length] = stormguardIntro;
+		}
 
 		if(flags["MET_CHAURMINE"] < 2 && chaurmineOnUveto()) 
 		{
