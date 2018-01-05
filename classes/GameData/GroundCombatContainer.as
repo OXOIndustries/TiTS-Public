@@ -260,6 +260,11 @@ package classes.GameData
 					return;
 				}
 			}
+			if (hasEnemyOfClass(StormguardMale))
+			{
+				var stormy:StormguardMale = _hostiles[0];
+				if(stormy.hasStatusEffect("Flying")) addButton(2,"ShootJetpack",stormy.jetpackShot,pc,"Shoot Jetpack","It’s possible you could shoot his jetpack from here. It’s a small target, he’s weaving around and the conditions are wretched, though...");
+			}
 			
 			if (hasEnemyOfClass(CommanderHenderson))
 			{
@@ -453,7 +458,7 @@ package classes.GameData
 				else
 				{
 					if (target is PlayerCharacter) output("\n\n<b>You desperately slap at your body, trying to extinguish the flames that have taken to your " + target.armor.longName + " but it stubbornly clings to you, blackening and bubbling everything it touches. It burns!</b>");
-					else output("\n\n<b>" + target.getCombatName() + " desperately slaps at their body, trying to extingquish the flames licking at their " + target.armor.longName + " to no avail!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " desperately slaps at their body, trying to extingquish the flames licking at their " + target.armor.longName + " to no avail!</b>");
 					applyDamage(new TypeCollection( { burning: target.statusEffectv2("Burning") } ), null, target);
 				}
 			}

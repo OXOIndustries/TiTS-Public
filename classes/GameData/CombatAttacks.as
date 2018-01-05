@@ -10,6 +10,7 @@ package classes.GameData
 	import classes.Characters.ZilFemale;
 	import classes.Characters.NymFoe;
 	import classes.Characters.Kane;
+	import classes.Characters.StormguardMale;
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.GameData.Pregnancy.Handlers.CockvinePregnancy;
@@ -739,6 +740,11 @@ package classes.GameData
 			}
 			
 			applyDamage(d, attacker, target, special);
+			//Stormguard fly awayyyy
+			if(target is StormguardMale)
+			{
+				if(!target.hasStatusEffect("Flyaway") && !target.hasStatusEffect("Flying")) target.createStatusEffect("Flyaway");
+			}
 			if(attacker.hasPerk("Lunge") && !target.hasStatusEffect("Staggered") && rand(10) == 0 && attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 			{
 				applyStagger(target, 4 + rand(2));

@@ -420,6 +420,7 @@
 		include "../includes/uveto/rooms.as";
 		include "../includes/uveto/roomFunctions.as";
 		include "../includes/uveto/shade.as";
+		include "../includes/uveto/stormguardMale.as";
 		include "../includes/uveto/subTuner.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/uveto/ula.as";
