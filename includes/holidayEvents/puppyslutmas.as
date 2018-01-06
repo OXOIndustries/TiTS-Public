@@ -1008,7 +1008,9 @@ public function puppyslutmasDanceWithAnno():void
 public function puppyslutmasDanceWithKaede():void
 {
 	clearOutput();
-
+	
+	kaedeIncreaseExhibitionism(5);
+	
 	showBust("KAEDE");
 	author("Savin");
 

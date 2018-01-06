@@ -6,6 +6,7 @@ STATUS: "Kaede Canada Cooldown" 	- Kaede is on cooldown after meeting.
 flags["KAEDE_CS_COUNTDOWN"]			- Set as game timestamp to track 14 time on station visit.
 									- Set to -1 when Kaede's Canadia Station vacation is over.
 flags["GLORYHOLED_KAEDE"]			- Counts time gloryholed Kaede... capped at 1 for now.
+flags["KAEDE_EXHIBITIONISM"]		- tracks the exhibitionism score of kaede. Range 0-100
 
 */
 public function kaedeCouldBeOnNewCanadaRepeats():Boolean
@@ -301,6 +302,7 @@ public function yesThatsEnoughKaede():void
 public function keepTailScritching():void
 {
 	clearOutput();
+	kaedeIncreaseExhibitionism(10);
 	showKaede();
 	author("Savin");
 	//Oh no. You’re not satisfied just yet...
@@ -341,6 +343,7 @@ public function keepTailScritching():void
 //This seems more like an asshole move. - FEN
 public function maximumTeaseTheSloot():void
 {
+	kaedeIncreaseExhibitionism(10);
 	clearOutput();
 	showKaede();
 	author("Savin");
@@ -351,13 +354,40 @@ public function maximumTeaseTheSloot():void
 	output("\n\nYou grin and tell her not to lie: she enjoyed herself.");
 	output("\n\n<i>“That’s not the point!”</i> she growls. Oh wow, she is beet red now! <i>“You can’t do that in public! I... people are staring!”</i>");
 	output("\n\nOnly because she’s not using her indoors voice. Nobody was looking until she started fussing, you tell her. She somehow flushes a little redder and rucks her big ol’ ausar ears against her head. <i>“Now I gotta go change. And take a cold shower.”</i>");
-	output("\n\nShe gives you a look, stands up, and wraps her tail around her sullied crotch before hurrying out towards her ship. You just laugh to yourself and enjoy the rest of your drink.");
+	
 	IncrementFlag("KAEDE_PUBLIC_SHAME");
 	processTime(4);
 	pc.lust(10);
 	pc.addHard(1);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	if (flags["KAEDE_EXHIBITIONISM"] != undefined && flags["KAEDE_EXHIBITIONISM"] >= 30) {
+		addButton(0, "ULTRAMAX TEASE", ultraMaximumDeluxeTeaseTheSloot,undefined, "ULTRAMAX TEASE","Make Kaede clean herself up for the enjoyment of the other patrons.");
+		addButton(1, "Let Her Go", justMaximumTeaseTheSloot);
+	} else {
+		output("\n\nShe gives you a look, stands up, and wraps her tail around her sullied crotch before hurrying out towards her ship. You just laugh to yourself and enjoy the rest of your drink.");
+		addButton(0, "Next", mainGameMenu);
+	}
+}
+
+//would be nicer as a lambda expression, if AS3 supports such wichcraft
+public function justMaximumTeaseTheSloot():void
+{
+	output("\n\nShe gives you a look, stands up, and wraps her tail around her sullied crotch before hurrying out towards her ship. You just laugh to yourself and enjoy the rest of your drink.");
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+//[ULTRAMAX TEASE]
+public function ultraMaximumDeluxeTeaseTheSloot():void 
+{
+	clearOutput();
+	showKaede();
+	author("Savin");
+	
+	output("“Oh, no,“ you say, taking Kaede by the wrist when she tries to scurry off. “I've got a better idea.“");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 //Get a Room
@@ -711,6 +741,8 @@ public function kaedeAndAnnoServiceKaedeFromCanadia():void
 //Watch Them
 public function watchAnnoAndKaedeYaSloot():void
 {
+	kaedeIncreaseExhibitionism(3);
+	
 	clearOutput();
 	showName("ANNO &\nKAEDE");
 	showBust(annoBustDisplay(true), "KAEDE_NUDE");
@@ -770,6 +802,8 @@ public function timeRunsOutForKaede():void
 //Possible option when the player opts to man the gloryhole.
 public function kaedePopsIntoZeGloryHole():void
 {
+	kaedeIncreaseExhibitionism(5);
+	
 	clearOutput();
 	showKaede(true);
 	author("Savin");
@@ -800,4 +834,13 @@ public function kaedePopsIntoZeGloryHole():void
 	pc.lust(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+//add to kaede's exhibitionism score. 
+//There is no smart way to put it, but here is the main payoff for high kaede exhibitionism
+//percentage from 0 to 100
+public function kaedeIncreaseExhibitionism(arg:int):void 
+{
+	if (flags["KAEDE_EXHIBITIONISM"] != undefined) flags["KAEDE_EXHIBITIONISM"] = 0;
+	flags["KAEDE_EXHIBITIONISM"] = Math.max(Math.min(flags["KAEDE_EXHIBITIONISM"] + arg, 100), 0);
 }
