@@ -873,6 +873,6 @@ public function kaedePopsIntoZeGloryHole():void
 //percentage from 0 to 100
 public function kaedeIncreaseExhibitionism(arg:int):void 
 {
-	if (flags["KAEDE_EXHIBITIONISM"] != undefined) flags["KAEDE_EXHIBITIONISM"] = 0;
+	if (flags["KAEDE_EXHIBITIONISM"] == undefined) flags["KAEDE_EXHIBITIONISM"] = 0;
 	flags["KAEDE_EXHIBITIONISM"] = Math.max(Math.min(flags["KAEDE_EXHIBITIONISM"] + arg, 100), 0);
 }
