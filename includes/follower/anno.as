@@ -195,40 +195,52 @@ public function annoFollowerApproach():void
 
 public function annoFollowerMenu():void
 {
-	annoFollowerHeader();
-	
-	clearMenu();
-	addButton(0, "Buy", annoFollowerBuyMenu, undefined, "Buy", "See what Anno has for sale.");
-	addButton(1, "Sell", annoFollowerSellMenu, undefined, "Sell", "See if you can sell any of your carried items to Anno.");
-	addButton(2, "Talk", annoFollowerTalkMenu, undefined, "Talk", "Talk to Anno about a variety of topics.");
-	addButton(3, "EarScritch", annoFollowerEarScritches, undefined, "Ear Scritches", "Give Anno an affectionate little pet.");
-	
-	addButton(5, "Appearance", annoFollowerAppearance, undefined, "Appearance", "Review what Anno’s entire body looks like.");
-	if (pcHasJunkPrize() && flags["ANNO_SCRAP_DISABLED"] == undefined) addButton(6, "Sell Prize", tryToSellAnnoSomeRaskScrapGuv, undefined, "Sell Prize", "Try to sell off the sweet loot you bought from the gang of raskvel males.");
-	else addDisabledButton(6, "Sell Prize", "Sell Prize", "This merchant isn’t interested in whatever you’re considering to be a prize.");
-	
-	if (pc.lust() >= 33) addButton(8, "Sex", annoFollowerSexMenu, undefined, "Sex","Have some sexy fun with Anno.");
-	else addDisabledButton(8, "Sex", "Sex", "Gotta get fired up before you can approach the snowy ausar for some ‘entertainment’.")
-	
-	if (flags["ANNO_SLEEPWITH_INTRODUCED"] != undefined)
-	{
-		if (haveFuckedAnno())
-		{
-			if (flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") addButton(7, "No Sleep W.", annoSleepToggleOff, undefined, "Don’t Sleep With", "Tell Anno you’d like to sleep without her for now.");
-			else addButton(7, "Sleep With", annoSleepToggleOn, undefined, "Sleep With", "Tell Anno you’d like her to sleep with you in the evenings.");
-		}
-		else
-		{
-			addDisabledButton(7, "Sleep With", "Sleep With", "You could probably get a cuddly ausar bed-buddy if you had sex with her.");
-		}
+	//chance of walking in on ANNO and Kaede doing petplay
+	if ((hasMetKaede() && haveFuckedAnno() && flags["ANNOxKAEDE_LAST_DAY"] < days - 7 && shipLocation == "TAVROS HANGAR") ||
+		(kaedeCouldBeOnNewCanadaRepeats() && shipLocation == "CANADA1")) {
+		//random something
+		//annoXKaedeWalkinPetPlayIntro();
 	}
-	else addDisabledButton(7, "Sleep With", "Sleep With", "A nice rest sounds good... maybe Anno might pay you a vist of her own accord in the process.");
 	
+	if (haveFuckedAnno()) {
+		
+	} else {
+		annoFollowerHeader();
 	
-	if (InCollection(shipLocation, "TAVROS HANGAR", "SHIP HANGAR", "201", "500")) addButton(13, "Evict", annoFollowerBootOff, undefined, "Evict from Ship", "Tell Anno to get off the ship. You might break her heart a little, but you’ll probably be able to pick her up again later.");
-	else addDisabledButton(13, "Evict", "Evict from Ship", "You can’t bring yourself to kick Anno off your ship here. Head back to a mainline planet or station first.");
+		clearMenu();
+		addButton(0, "Buy", annoFollowerBuyMenu, undefined, "Buy", "See what Anno has for sale.");
+		addButton(1, "Sell", annoFollowerSellMenu, undefined, "Sell", "See if you can sell any of your carried items to Anno.");
+		addButton(2, "Talk", annoFollowerTalkMenu, undefined, "Talk", "Talk to Anno about a variety of topics.");
+		addButton(3, "EarScritch", annoFollowerEarScritches, undefined, "Ear Scritches", "Give Anno an affectionate little pet.");
+		
+		addButton(5, "Appearance", annoFollowerAppearance, undefined, "Appearance", "Review what Anno’s entire body looks like.");
+		if (pcHasJunkPrize() && flags["ANNO_SCRAP_DISABLED"] == undefined) addButton(6, "Sell Prize", tryToSellAnnoSomeRaskScrapGuv, undefined, "Sell Prize", "Try to sell off the sweet loot you bought from the gang of raskvel males.");
+		else addDisabledButton(6, "Sell Prize", "Sell Prize", "This merchant isn’t interested in whatever you’re considering to be a prize.");
+		
+		if (pc.lust() >= 33) addButton(8, "Sex", annoFollowerSexMenu, undefined, "Sex","Have some sexy fun with Anno.");
+		else addDisabledButton(8, "Sex", "Sex", "Gotta get fired up before you can approach the snowy ausar for some ‘entertainment’.")
+		
+		if (flags["ANNO_SLEEPWITH_INTRODUCED"] != undefined)
+		{
+			if (haveFuckedAnno())
+			{
+				if (flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") addButton(7, "No Sleep W.", annoSleepToggleOff, undefined, "Don’t Sleep With", "Tell Anno you’d like to sleep without her for now.");
+				else addButton(7, "Sleep With", annoSleepToggleOn, undefined, "Sleep With", "Tell Anno you’d like her to sleep with you in the evenings.");
+			}
+			else
+			{
+				addDisabledButton(7, "Sleep With", "Sleep With", "You could probably get a cuddly ausar bed-buddy if you had sex with her.");
+			}
+		}
+		else addDisabledButton(7, "Sleep With", "Sleep With", "A nice rest sounds good... maybe Anno might pay you a vist of her own accord in the process.");
+		
+		
+		if (InCollection(shipLocation, "TAVROS HANGAR", "SHIP HANGAR", "201", "500")) addButton(13, "Evict", annoFollowerBootOff, undefined, "Evict from Ship", "Tell Anno to get off the ship. You might break her heart a little, but you’ll probably be able to pick her up again later.");
+		else addDisabledButton(13, "Evict", "Evict from Ship", "You can’t bring yourself to kick Anno off your ship here. Head back to a mainline planet or station first.");
 
-	addButton(14, "Back", crew);
+		addButton(14, "Back", crew);
+	}
+	
 }
 
 public function annoSleepWithIntroduce():void
@@ -652,6 +664,7 @@ public function annoFollowerSellMenu():void
 
 public function annoFollowerTalkMenu(doOut:Boolean = true):void
 {
+	
 	if (doOut)
 	{
 		clearOutput();
@@ -4197,4 +4210,38 @@ public function annoFrenchMaidGimmeMoreMore(x:int):void
 	pc.orgasm();
 	
 	addButton(0, "Next", mainGameMenu);
+}
+
+public function annoXKaedeWalkinPetPlayIntro():void 
+{
+	clearOutput();
+	//
+	author("Savin");
+	
+	output("walking in");
+	clearMenu();
+	addButton(0, "Watch Them", watchAnnoXKaedeAccidentPetPlay, undefined, "Watch Them", "Let Kaede keep Anno on a short, sexy leash...");
+	//addButton(0, "Watch Them", watchAnnoXKaedeAccidentPetPlay, undefined, "Watch Them","Let Kaede keep Anno on a short, sexy leash...");
+	//addButton(1, "Collar Kaede", collarKaedeInAnnoXKaedeAccidentPetPlay, undefined, "Collar Kaede","Kaede's not really cut out for the whole "dominant" thing. Put her in a collar, too, and spend some quality time with the puppy pair." );
+}
+
+public function watchAnnoXKaedeAccidentPetPlay():void {
+	
+}
+
+public function collarKaedeInAnnoXKaedeAccidentPetPlay():void {
+	clearOutput();
+	showKaede();
+	author("Savin");
+	
+	output("walking in");
+	clearMenu();
+	
+	//no reaha
+	addButton(0, "Next", reahaJoinsAnnoXKaedeAccidentPetPlay, undefined, "Watch Them","Let Kaede keep Anno on a short, sexy leash...");
+}
+
+public function reahaJoinsAnnoXKaedeAccidentPetPlay():void 
+{
+	
 }
