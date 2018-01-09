@@ -3197,6 +3197,16 @@
 			removeStatusEffect("Oil Numbed");
 			removeStatusEffect("Oil Aroused");
 			removeStatusEffect("Oil Slicked");
+			if(pluggedVaginas() > 0 || isPlugged(-1))
+			{
+				if(isPlugged(-1)) ass.delFlag(GLOBAL.FLAG_PLUGGED);
+				for(var i:int = 0; i < totalVaginas(); i++)
+				{
+					if(isPlugged(i)) vaginas[i].delFlag(GLOBAL.FLAG_PLUGGED);
+				}
+				AddLogEvent(ParseText("<b>After the cleaning, you're delighted to find that the hardened substance plugging you up has dissolved away!</b>"));
+				flags["SHOWERED_OUT_PLUG"] = 1;
+			}
 		}
 		public function flushCumflation():void
 		{
@@ -4476,7 +4486,7 @@
 			currLib += statusEffectv1("Undetected Locofever");
 			currLib += statusEffectv1("Locofever");
 			if (hasStatusEffect("Priapin")) currLib *= statusEffectv3("Priapin");
-			
+			if (pluggedVaginas() > 0 || isPlugged(-1)) currLib *= 2;
 			if (currLib > libidoMax())
 			{
 				return libidoMax();
@@ -16135,6 +16145,7 @@
 					collection.push("milk", "cream");
 					break;
 				case GLOBAL.FLUID_TYPE_CUM:
+				case GLOBAL.FLUID_TYPE_CUNDARIAN_SEED:
 				case GLOBAL.FLUID_TYPE_SYDIAN_CUM:
 				case GLOBAL.FLUID_TYPE_GABILANI_CUM:
 				case GLOBAL.FLUID_TYPE_CHOCOLATE_CUM:
@@ -17263,7 +17274,55 @@
 			return false;
 		}
 		*/
-		
+
+		//Fuck you, Nonesuch
+		public function isBlocked(arg:Number):Boolean
+		{
+			if(isPlugged(arg)) return true;
+			//Blocked via other method?
+			if(isChastityBlocked(arg)) return true;
+			//No pluggo, boyo
+			return false;
+		}
+		//No but seriously, come on man.
+		public function isPlugged(arg:Number):Boolean
+		{
+			var hole:VaginaClass = ass;
+			var holed:Boolean = false;
+			if (arg == -1) 
+			{
+				holed = true;
+				hole = ass;
+			}
+			else if(arg >= 0 && arg < totalVaginas())
+			{
+				holed = true;
+				hole = vaginas[arg];
+			}
+			//Oh no - plugged with goo or some shit!
+			if(holed) { 
+				if(hole.hasFlag(GLOBAL.FLAG_PLUGGED)) return true; 
+			}
+			return false;
+		}
+		public function pluggedVaginas():Number
+		{
+			if(vaginas.length == 0) return 0;
+			var count:Number = 0;
+			for(var i:int = 0; i < totalVaginas(); i++)
+			{
+				if(vaginas[i].hasFlag(GLOBAL.FLAG_PLUGGED)) count++;
+			}
+			return count;
+		}
+		//Why you gotta do me like this?
+		public function isChastityBlocked(arg:Number):Boolean
+		{
+			if(arg >= 0 && lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_VAGINAL_CHASTITY)) return true;
+			if(arg == -1 && lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANAL_CHASTITY)) return true;
+			return false;
+		}
+
 		public function canOviposit(slot:String = "any"): Boolean 
 		{
 			//if (canOvipositSpider() || canOvipositBee()) return true;

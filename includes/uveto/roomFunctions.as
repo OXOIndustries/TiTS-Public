@@ -25,7 +25,7 @@ public function TundraEncounterBonus():Boolean
 		choices[choices.length] = encounterAKorgonneFemaleHostile;
 		choices[choices.length] = korgMaleEncounter;
 		choices[choices.length] = korgMaleEncounter;
-		if(pc.hasGenitals()) 
+		if(stormguardMaleEncounterAvailabale()) 
 		{
 			choices[choices.length] = stormguardIntro;
 			choices[choices.length] = stormguardIntro;
@@ -66,7 +66,7 @@ public function GlacialRiftEncounterBonus():Boolean
 		//POSSIBLE ENCOUNTERS! KORGI!
 		choices[choices.length] = encounterAKorgonneFemaleHostile;
 		choices[choices.length] = korgMaleEncounter;
-		if(pc.hasGenitals()) 
+		if(stormguardMaleEncounterAvailabale())
 		{
 			choices[choices.length] = stormguardIntro;
 			choices[choices.length] = stormguardIntro;

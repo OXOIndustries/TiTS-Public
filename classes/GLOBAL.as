@@ -79,6 +79,7 @@
 		public static const FLAG_CORKSCREWED:int							= 44;
 		public static const FLAG_TONGUE:int									= 45;
 		public static const FLAG_FRECKLED:int                               = 46;
+		public static const FLAG_PLUGGED:int                   	            = 47;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -128,6 +129,7 @@
 			"Corkscrewed",
 			"Tongued",
 			"Freckled",
+			"Plugged"
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -755,6 +757,7 @@
 		public static const FLUID_TYPE_EGGNOG:int								= 27;
 		public static const FLUID_TYPE_PEPPERMINT:int							= 28;
 		public static const FLUID_TYPE_SUGAR:int								= 29;
+		public static const FLUID_TYPE_CUNDARIAN_SEED:int						= 30;
 		
 		public static const FLUID_TYPE_NAMES:Array = [
 			"Milk",
@@ -1001,6 +1004,7 @@
 			FLAG_PUMPED,
 			FLAG_CORKSCREWED,
 			FLAG_TONGUE,
+			FLAG_PLUGGED
 		];
 		
 		//ROOM FLAGS
@@ -1129,6 +1133,8 @@
 		public static const ITEM_FLAG_BLIND_IGNORE:int 					= 20; // Used for items with no penalties for blind-fire.
 		public static const ITEM_FLAG_COVER_BODY:int					= 21; // Used specifically for accessories that cover the body (like duster jackets).
 		public static const ITEM_FLAG_SKIN_TIGHT:int					= 22; // Used specifically for items that are body conforming (like goo armor and omnisuit).
+		public static const ITEM_FLAG_VAGINAL_CHASTITY:int 				= 23; //Used for undies that prevent penetration. Y u do dis, Nonesuch?
+		public static const ITEM_FLAG_ANAL_CHASTITY:int 				= 24; //Used for undies that prevent penetration. Y u do dis, Nonesuch?
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",

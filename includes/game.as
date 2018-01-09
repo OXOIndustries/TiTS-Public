@@ -1713,6 +1713,24 @@ public function flyTo(arg:String):void
 	StatTracking.track("movement/time flown", timeFlown);
 	processTime(timeFlown);
 	
+	if(pc.pluggedVaginas() > 0 || pc.isPlugged(-1))
+	{
+		if(pc.isPlugged(-1)) 
+		{
+			pc.ass.delFlag(GLOBAL.FLAG_PLUGGED);
+		}
+		for(var i:int = 0; i < pc.totalVaginas(); i++)
+		{
+			if(pc.isPlugged(i)) 
+			{
+				pc.vaginas[i].delFlag(GLOBAL.FLAG_PLUGGED);
+			}
+		}
+		AddLogEvent(ParseText("While you have time in travel, you grab a quick shower and <b>the hardened substance plugging you up dissolves away!</b>"));
+		flags["SHOWERED_OUT_PLUG"] = 1;
+		pc.shower();
+	}
+
 	if (!interruptMenu)
 	{
 		if(landingEventCheck(arg)) return;
@@ -1804,9 +1822,61 @@ public function showerOptions(option:int = 0):void
 	clearOutput();
 	clearMenu();
 	var showerSex:int = 0;
+
 	// Regular showers
 	if (option == 0)
 	{
+		if(pc.pluggedVaginas() > 0 || pc.isPlugged(-1))
+		{
+			author("Nonesuch");
+			flags["SHOWERED_OUT_PLUG"] = 1;
+			if(pc.pluggedVaginas() > 0)
+			{
+				output("You step underneath the jet of hot water, letting it flow ");
+				if(pc.hasHair()) output("through your [pc.hair]");
+				else output("over your head");
+				output(". Even here, it’s difficult to relax with your pussy plugged up like it is, the obstruction keeping you constantly aroused and frustrated. Perhaps the hot water...? You pluck the shower head from out of its fixture and angle it at your [pc.vagina]. For a moment you think nothing is going to happen - then, in a wave of relief and hollowing out, <b>the plug begins to lose its solidity, melting into fluffy blue foam</b> which easily washes away down your [pc.legs] and into the drain. You sigh with relief. At last!");
+				for(var i:int = 0; i < pc.totalVaginas(); i++)
+				{
+					var removed:Number = 0;
+					if(pc.isPlugged(i)) 
+					{
+						pc.vaginas[i].delFlag(GLOBAL.FLAG_PLUGGED);
+						removed++;
+					}
+					if(removed == 2) output(" <b>You tend to the other plug while you're at it.</b>")
+					if(removed > 2) output(" <b>You tend to the other plugs while you're at it.</b>")
+				}
+				if(pc.isPlugged(-1))
+				{
+					output(" <b>The plug in your ass vanishes as well.</b>");
+					pc.ass.delFlag(GLOBAL.FLAG_PLUGGED);
+				}
+			}
+			else
+			{
+				output("You step underneath the jet of hot water, letting it flow ");
+				if(pc.hasHair()) output("through your [pc.hair]");
+				else output("over your head");
+				output(". Even here, it’s difficult to relax with your ass plugged up like it is, the obstruction keeping you constantly aroused and frustrated. Perhaps the hot water...? You pluck the shower head from out of its fixture and angle it at your [pc.ass]. For a moment you think nothing is going to happen - then, in a wave of relief and hollowing out, <b>the plug begins to lose its solidity, melting into fluffy blue foam</b> which easily washes away down your [pc.legs] and into the drain. You sigh with relief. At last!");
+				pc.ass.delFlag(GLOBAL.FLAG_PLUGGED);
+			}
+			if(pc.lust() >= 33) 
+			{
+				//[Masturbate] [Finish]
+				output(" With the shower head where it is, perhaps you could take care of that aggravating lust now as well?");
+				clearMenu();
+				if (pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(0, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
+				else if (!pc.canMasturbate()) addDisabledButton(0, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
+				else
+				{
+					showerSex = shipShowerFaps(true);
+				}
+				addButton(showerSex, "Nevermind", shipShowerFappening, "Nevermind", "On second thought...");
+			}
+			else addButton(0, "Next", showerExit);
+			return;
+		}
 		author("Couch");
 		if(showerInShip)
 		{

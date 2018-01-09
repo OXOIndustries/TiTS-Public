@@ -82,8 +82,16 @@ package classes.Characters
 				{
 					kGAMECLASS.oviliumEggBump(cumFrom, vagIndex);
 				}
-				if(cumflationEnabled()) cumflationHappens(cumFrom,vagIndex);
+				if(cumflationEnabled() && cumFrom.cumType != GLOBAL.FLUID_TYPE_CUNDARIAN_SEED) cumflationHappens(cumFrom,vagIndex);
 				sstdChecks(cumFrom,"vagina");
+				//PLUGGING TIME!
+				if(cumFrom.cumType == GLOBAL.FLUID_TYPE_CUNDARIAN_SEED)
+				{
+					if(vagIndex >= 0 && vagIndex < totalVaginas())
+					{
+						if(!vaginas[vagIndex].hasFlag(GLOBAL.FLAG_PLUGGED)) vaginas[vagIndex].addFlag(GLOBAL.FLAG_PLUGGED);
+					}
+				}
 				return this.tryKnockUp(cumFrom, vagIndex);
 			}
 			return false;
@@ -112,10 +120,14 @@ package classes.Characters
 			if (cumFrom != null)
 			{
 				sstdChecks(cumFrom,"ass");
-				if(cumflationEnabled()) cumflationHappens(cumFrom,3);
+				if(cumflationEnabled() && cumFrom.cumType != GLOBAL.FLUID_TYPE_CUNDARIAN_SEED) cumflationHappens(cumFrom,3);
+				//PLUGGING TIME!
+				if(cumFrom.cumType == GLOBAL.FLUID_TYPE_CUNDARIAN_SEED)
+				{
+					if(!ass.hasFlag(GLOBAL.FLAG_PLUGGED)) ass.addFlag(GLOBAL.FLAG_PLUGGED);
+				}
 				return this.tryKnockUp(cumFrom, 3);
 			}
-			
 			return false;
 		}
 		

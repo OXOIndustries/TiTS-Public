@@ -3393,6 +3393,10 @@ public function crotchStuff(forTarget:Creature = null):void
 			}
 		}
 	}
+	if(target.hasVagina() && target.pluggedVaginas() > 0)
+	{
+		output2("\n\n<b>The smooth plug of set cundarian cum rubs against the lips of your [pc.vaginas] and [pc.eachClit] as you move, a constant source of aggravating arousal that you can do nothing about.</b>");
+	}
 	//Genderless lovun'
 	if(!target.hasGenitals()) {
 		output2("\n\nYou have a curious lack of any sexual endowments.");

@@ -41,11 +41,17 @@ PC loses to him: -1 Honorcount (added at end of current interaction)
 		SG_LAST_ENC		- 1 for sparred
 						- 2 for spanked
 		SPANKED_SG_COUNT- Times spanked him
-		SG_BUTTFUCKED	- Times buttfucked him
+		SG_LANCE_SEEN	- Times seen the lance do its thing
 		SG_DEFEATED_PC	- Times lost to him (and therefore been plugged!)
 		SEXED_SG_MALE	- Times had any kind of intercourse with him
 
 */
+
+public function stormguardMaleEncounterAvailabale():Boolean
+{
+	if(pc.hasCock() || (pc.hasVagina() && !pc.isChastityBlocked(0))) return true;
+	return false;
+}
 
 public function showStormguard(nude:Boolean = false):void
 {
@@ -67,6 +73,7 @@ public function stormguardHonor(arg:Number = 0):Number
 public function stormguardIntro():void 
 {
 	showStormguard();
+	author("Nonesuch");
 	if(!CodexManager.entryUnlocked("Cundarians")) CodexManager.unlockEntry("Cundarians");
 	//First
 	if(flags["MET_STORMGUARD"] == undefined)
@@ -154,6 +161,7 @@ public function noSnowRapeForMeThanks():void
 {
 	clearOutput();
 	showStormguard();
+	author("Nonesuch");
 	output("<i>“You do not know of honor, then,”</i> the storm lancer sighs in a long plume of condensation. He stares fixedly out over the hills. <i>“Disappointing. The wait for a true test continues.”</i>");
 	output("\n\nSnow and frost has begun to settle on him again by the time you’ve turned your attention back to the path ahead.");
 	clearMenu();
@@ -166,6 +174,7 @@ public function fightSnowRapeMan():void
 {
 	clearOutput();
 	showStormguard();
+	author("Nonesuch");
 	if(pc.isBimbo()) output("<i>“So you’re saying there’ll definitely be some snugglings afterward?”</i> you query. <i>“Alright! Heck yeah, I’m honorable!”</i> You put your hands in the air and bounce up and down. <i>“Honor! Woo! Hurray for that thing!”</i>");
 	else if(pc.isBro()) output("<i>“Shucks bro, it won’t even be a contest,”</i> you chuckle. <i>“But sure, I’m up for wrastlin’ a bit.”</i>");
 	else if(pc.isNice()) output("<i>“Honor?”</i> You brandish your [pc.weapon] with a challenging, confident smile. <i>“I shall show you honor and then some!”</i>");
@@ -185,6 +194,7 @@ public function honor1Fight():void
 {
 	clearOutput();
 	showStormguard();
+	author("Nonesuch");
 	output("You answer his question by silently drawing your [pc.weapon].");
 	output("\n\nThe smile on the storm lancer’s broad lips deepens - but he says nothing as he ponderously rises, powdery snow raining down from his frame. He clicks his tongue, and from out of the drift rises sleek, white armor, which moves into him from behind before clicking sleekly into place. Off its back he takes off a brass plated spear-like device, and a heavy-looking pistol. You can’t help but notice that between where those two weapons were housed is a cylindrical jet pack module.");
 	output("\n\n<i>“So then, honorable challenger,”</i> rumbles the cundarian, chest heaving with battle lust beneath the armor that clads him everywhere except his head, <i>“defend yourself!”</i>");
@@ -197,6 +207,7 @@ public function refuseMoreHonor1():void
 {
 	clearOutput();
 	showStormguard();
+	author("Nonesuch");
 	output("<i>“Disappointing,”</i> the storm lancer sighs in a long plume of condensation. He stares fixedly out over the hills. <i>“The wait for a true test continues.”</i>");
 	output("\n\nSnow and frost have begun to settle on him again by the time you’ve turned your attention back to the path ahead.");
 	clearMenu();
@@ -209,6 +220,7 @@ public function honor0LeaveSG():void
 {
 	clearOutput();
 	showStormguard();
+	author("Nonesuch");
 	output("Snow and frost have already settled on his face by the time you’ve picked out the path ahead.");
 	flags["SG_LAST_ENC"] = 0;
 	processTime(1);
@@ -222,7 +234,7 @@ public function challengeHonor0SG():void
 {
 	clearOutput();
 	showStormguard();
-
+	author("Nonesuch");
 	if(flags["SG_LAST_ENC"] == 1 || pc.intelligence()/2 + rand(20) + 1 > 35)
 	{	
 		//Spared
@@ -259,6 +271,7 @@ public function sparSGBro0Honor():void
 {
 	clearOutput();
 	showStormguard();
+	author("Nonesuch");
 	flags["SG_LAST_ENC"] = 1;
 	output("<i>“Very well,”</i> rumbles ");
 	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
@@ -316,6 +329,7 @@ public function honor2Refuse():void
 {
 	clearOutput();
 	showStormguard();
+	author("Nonesuch");
 	output("The cundarian’s fists curl up and his face hardens when you turn him down - but he nods curtly.");
 	output("\n\n<i>“It is your right to turn down a lesser challenge,”</i> he says, sitting himself down again with a heavy crunch. <i>“I only hope one day, you will let me prove myself to you.”</i>");
 	output("\n\nSnow and frost have already settled on his face by the time you leave him behind.");
@@ -329,6 +343,7 @@ public function honor2FightoRighto():void
 {
 	clearOutput();
 	showStormguard();
+	author("Nonesuch");
 	if(pc.isNice()) output("<i>“Let’s see what you got then, champ!”</i> you laugh, drawing your [pc.weapon] with a flourish.");
 	else if(pc.isMischievous()) output("<i>“It’s always pretty funny watching you embarrass yourself,”</i> you smirk teasingly, twirling your [pc.weapon] artfully.");
 	else output("<i>“If you insist,”</i> you say without a flicker of emotion, snapping out your [pc.weapon].");
@@ -344,6 +359,7 @@ public function spankedSGFightIntro():void
 {
 	clearOutput();
 	showStormguard();
+	author("Nonesuch");
 	output("Holding your gaze, he clicks his tongue, and from out of the drift rises sleek, white armor, which moves into him from behind before clicking sleekly into place. Off its back he takes off his lance and heavy pistol; As ever, you can see the rise of his cylindrical jet pack module on his back.");
 	output("\n\n<i>“So then, sadistic " + pc.mf("hellion","brute") + ",”</i> rumbles the cundarian, chest heaving with battle lust beneath the armor that clads him everywhere except his head, <i>“defend yourself!”</i>");
 	stormguardFightPrep();
@@ -354,6 +370,7 @@ public function refuseSpankedSGFight():void
 {
 	clearOutput();
 	showStormguard();
+	author("Nonesuch");
 	output("The cundarian’s fists curl up and his face hardens. You can see it takes every inch of his willpower to not simply fly at you anyway - but he does accept it.");
 	output("\n\n<i>“Even sadists retain the right to turn down battle,”</i> he growls. <i>“But mark my words, [pc.race] - I will take back my pride from out of your hide one of these days.”</i>");
 	output("\n\nSnow and frost have already settled on his scowling features by the time you leave him behind.");
@@ -381,6 +398,7 @@ public function pcWinsVsSG():void
 {
 	clearOutput();
 	showStormguard();
+	author("Nonesuch");
 	if(!enemy.hasStatusEffect("Flying")) 
 	{
 		if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
@@ -412,6 +430,8 @@ public function pcWinsVsSG():void
 	else if(pc.hasCock()) addDisabledButton(0,"Buttfuck","Buttfuck","You need a not gigantically sized dick to do this.");
 	else addDisabledButton(0,"Buttfuck","Buttfuck","You need a penis for this.");
 	addButton(1,"Spank",spankDatTank,undefined,"Spank","Dole out the standard punishment for being a bad boy.");
+	if(pc.hasVagina()) addButton(2,"Cunnilingus",NTWinSceneForStormLancah,undefined,"Cunnilingus","Force him to eat you out.");
+	else addDisabledButton(2,"Cunnilingus","Cunnilingus","You need a vagina for this.");
 	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
@@ -420,6 +440,7 @@ public function losesToSG():void
 {
 	clearOutput();
 	showStormguard();
+	author("Nonesuch");
 	output("Overwhelmed, you fall to the cold ground, putting your hands up to signal an end to the battle. There’s a click of weapons being holstered and armor retracting, followed by the heavy crunch of hooves in snow stalking towards you. ");
 	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
 	else output("The storm lancer");
@@ -454,6 +475,7 @@ public function spankDatTank():void
 {
 	clearOutput();
 	showStormguard(true);
+	author("Nonesuch");
 	output("Without letting a flicker of emotion pass across your face, you settle your [pc.legs] down on the snow");
 	if(!pc.isGoo() && !pc.isNaga()) output(", splaying out your lap");
 	else
@@ -549,7 +571,8 @@ public function fuckTheStormguardsButt():void
 
 	clearOutput();
 	showStormguard(true);
-	if(flags["SG_BUTTFUCKED"] == undefined)
+	author("Nonesuch");
+	if(flags["SG_LANCE_SEEN"] == undefined)
 	{
 		output("<i>“Can you do anything about...”</i> you gesture at the blizzard, the bleak landscape and all the other elements of Uveto that do not really lend themselves to al fresco sex. After a moment, ");
 		if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
@@ -656,7 +679,7 @@ public function fuckTheStormguardsButt():void
 		addButton(0,"Let Him",letSGCum);
 		addButton(1,"Deny",denySGOrgasm);
 	}
-	IncrementFlag("SG_BUTTFUCKED");
+	IncrementFlag("SG_LANCE_SEEN");
 	IncrementFlag("SEXED_SG_MALE");
 	//Honor changes in sub-scenes for bigdicks
 }
@@ -665,6 +688,7 @@ public function denySGOrgasm():void
 {
 	clearOutput();
 	showStormguard(true);
+	author("Nonesuch");
 	var x:int = pc.cockThatFits(enemy.analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	output("You jerk his hard meat, fingers brushing over his bulbous head, tantalizing him with ecstatic release... and then you pull back and concentrate on reaching your own high, groan as orgasm sweeps over you, tightening your ");
@@ -691,6 +715,7 @@ public function letSGCum():void
 {
 	clearOutput();
 	showStormguard(true);
+	author("Nonesuch");
 	var x:int = pc.cockThatFits(enemy.analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	output("You steadily jerk his hard meat, fingers brushing over his bulbous head... and when your own orgasm overtakes you, you furiously coil him, intent on making him relish the feeling of you cumming deep inside him. The cundarian’s big dick flexes powerfully in your hand, brilliant blue cum pluming over the canvas of wet, white snow, and his rough, ecstatic cries combine with your own groans as ");
@@ -724,8 +749,14 @@ public function letSGCum():void
 //Loss Scenes
 public function lossScenesForStormguard():void
 {
+	if(pc.hasVagina() && pc.inHeat()) 
+	{
+		lossToSGWithHeatPussy();
+		return;
+	}
 	clearOutput();
 	showStormguard(true);
+	author("Nonesuch");
 	if(flags["MET_GEL_ZON"] == undefined) output("The mountainous hoofed creature");
 	else output("Gel Zon");
 	output(" straightens, heaves the lance from off his back and thrusts it deep into the frozen ground. With an electric hum, the device beams out a bubble of golden energy from its rounded pommel, expanding smoothly until it easily encompasses both of you. Inside the hemisphere of light it feels like a warm summer day; the snow on the ground remains, but is now a strange, chilly contrast to the dry heat of the air. Cold water beads around your hands.");
@@ -741,9 +772,9 @@ public function lossScenesForStormguard():void
 	output("\n\n<i>“Part of the Stormguard discipline...”</i> he breathes, eyes half-lidded. <i>“Keeping your lust locked away, until you have </i>earned<i> the right for release. No prize is truly satisfying if it were any different.”</i> He bites his broad, weathered lips as he lets his gaze wander down your body.");
 
 	//PC has pussy
-	//PC is Masculine
-	if(pc.hasVagina())
+	if(pc.totalVaginas() > 0 && pc.totalVaginas() > pc.pluggedVaginas())
 	{
+		//PC is Masculine
 		if(pc.mf("m","") == "m")
 		{
 			output("\n\n<i>“A conquest with the aspect of a man, but the sex of a woman? How unusual!”</i> The storm lancer suddenly bends downwards, roughly moulding his cracked lips against yours as he presses his bulging, muscular chest against your [pc.chest], the ridges of his hot, club-like penis rubbing against your [pc.belly].");
@@ -788,20 +819,23 @@ public function lossScenesForStormguard():void
 			output(" The sensation borders on pain, he’s so Void-damned big and there just seems to be more and more of him...");
 			output("\n\n<i>“I am one of the first, aren’t I?”</i> he grunts, elation lighting up his blunt, handsome face. <i>“You have fought and guarded it for so long, and it is I that gets to claim it...”</i> Despite his intense excitement it’s obviously just as important to him that you enjoy it as much as he does; he pushes into you with disciplined slowness, mere tremors of his stallion-like hips, waiting for you to get used to his hot, ridged intrusion before sliding more home until the feeling of housing a dick like this has resolved itself into intense pleasure.");
 		}
-		else if(stormguardHonor() == 2) 
-		{
-			output(" Despite his size though you’re more than capable of taking the cundarian, and your pussy seizes up gladly around his knob, urging him in on.");
-			output("\n\n<i>“You’ve bred before, haven’t you?”</i> he grunts, elation lighting up his broad, rugged face. <i>“Of course... one of the battle-mothers I’ve often heard of, harnessing the fierceness of protecting and providing to become a truly fearsome warrior.”</i> His intense excitement translates into the movements of his powerful hips, bucking his hot, ridged dick into you roughly, able to mount you in truly barbarian fashion safe in the knowledge you can take every second of it.");
-		}
-		else if(stormguardHonor() == 1)
-		{
-			output(" Despite his size though you’re more than capable of taking the cundarian, and your pussy seizes up gladly around his knob, urging him in on.");
-			output("\n\n<i>“Hmm. Been around the block a few times, haven’t we?”</i> he growls softly. He thrust his hips suddenly, jerking his erection deep within you, making you gasp and him laugh. <i>“Like so many girls who come out here fancying themselves, before learning a thing or two.”</i> Certain of your ability to take it, he bucks his powerful hips into you with careless roughness, mounting you in truly barbarian fashion. The artless bestiality of it makes it filthily good, the jerking and pounding of his hot meat against your slick wall sending intense pleasure trembling through you.");
-		}
 		else
 		{
-			output(" Despite his size though you’re more than capable of taking the cundarian, and your pussy seizes up gladly around his knob, urging him to fill you up more.");
-			output("\n\n<i>“As easy as the clueless whore you clearly are,”</i> he sighs, easily drawing his erection outwards and then ramming almost every last bit of it into your wet hole, making you gasp. <i>“At least you’re good for one thing.”</i> He bucks his powerful hips into you with careless roughness, mounting you in truly barbarian fashion. The artless bestiality of it makes it filthily good, the jerking and pounding of his hot meat against your slick wall sending intense pleasure trembling through you.");
+			if(stormguardHonor() == 2) 
+			{
+				output(" Despite his size though you’re more than capable of taking the cundarian, and your pussy seizes up gladly around his knob, urging him in on.");
+				output("\n\n<i>“You’ve bred before, haven’t you?”</i> he grunts, elation lighting up his broad, rugged face. <i>“Of course... one of the battle-mothers I’ve often heard of, harnessing the fierceness of protecting and providing to become a truly fearsome warrior.”</i> His intense excitement translates into the movements of his powerful hips, bucking his hot, ridged dick into you roughly, able to mount you in truly barbarian fashion safe in the knowledge you can take every second of it.");
+			}
+			else if(stormguardHonor() == 1)
+			{
+				output(" Despite his size though you’re more than capable of taking the cundarian, and your pussy seizes up gladly around his knob, urging him in on.");
+				output("\n\n<i>“Hmm. Been around the block a few times, haven’t we?”</i> he growls softly. He thrust his hips suddenly, jerking his erection deep within you, making you gasp and him laugh. <i>“Like so many girls who come out here fancying themselves, before learning a thing or two.”</i> Certain of your ability to take it, he bucks his powerful hips into you with careless roughness, mounting you in truly barbarian fashion. The artless bestiality of it makes it filthily good, the jerking and pounding of his hot meat against your slick wall sending intense pleasure trembling through you.");
+			}
+			else
+			{
+				output(" Despite his size though you’re more than capable of taking the cundarian, and your pussy seizes up gladly around his knob, urging him to fill you up more.");
+				output("\n\n<i>“As easy as the clueless whore you clearly are,”</i> he sighs, easily drawing his erection outwards and then ramming almost every last bit of it into your wet hole, making you gasp. <i>“At least you’re good for one thing.”</i> He bucks his powerful hips into you with careless roughness, mounting you in truly barbarian fashion. The artless bestiality of it makes it filthily good, the jerking and pounding of his hot meat against your slick wall sending intense pleasure trembling through you.");
+			}
 		}
 		pc.cuntChange(0,enemy.cockVolume(0));
 		output("\n\nYour back and [pc.butt] grow numb against the snow as you are pressed down into it by the heavy, animalistic thrusting of an alien warrior intent on curing a serious case of slate-blue balls. The pebble-like texture of his hard chest rubs over your tender [pc.nipples], making them stand out ");
@@ -843,7 +877,7 @@ public function lossScenesForStormguard():void
 		else output(" To sharpen your resolve, to make you come back and throw me down for my nerve.”</i> He sighs with pleasure at the thought. <i>“Maybe eventually I will prove myself fully to you, and then... then I shall have you bear the strongest, fiercest children the galaxy has ever known!”</i> With that, he rolls off you.");
 
 		output("\n\nBy the time you get your hands down to it, the cloudy foam has hardened and formed a perfect, blue-colored plug. It stretches your pussy lips, seems to be bigger outside than in, and no matter how you attack it with your fingers, you - can’t - get - it - out. The sensation of being swollen with hot air has dissipated a bit at least, but until you ");
-		if(9999) output("have a shower");
+		if(flags["SHOWERED_OUT_PLUG"] != undefined) output("have a shower");
 		else output("work out a way to get this thing out of you");
 		output(", nothing is getting in or out of your [pc.vagina]. The problem this is going to cause becomes evident as you’re putting your things back on - the solid, smooth cum block rubs your lips and [pc.eachClit] as you move, constantly arousing you and reminding you of your utterly stuffed pussy.");
 		output("\n\nThe storm lancer has left his spear stuck in the ground for you, the energy shield it generates still holding. It winks off as you step back into the howling gale. ");
@@ -856,10 +890,15 @@ public function lossScenesForStormguard():void
 	}
 	else 
 	{
-		//Pussy plugged
-		if(tempPussyPlugCheck())
+		var x:int = 0;
+		for(var i:int = 0; i < pc.totalVaginas(); i++)
 		{
-			output("\n\nThe looming hill of a warrior booms with delighted laughter when his golden eyes land on your [pc.vagina], still stoutly plugged with his cork of smooth, solidified cum.");
+			if(pc.isPlugged(i)) x = i;
+		}
+		//Pussy plugged
+		if(pc.isPlugged(x))
+		{
+			output("\n\nThe looming hill of a warrior booms with delighted laughter when his golden eyes land on your [pc.vagina " + x + "], still stoutly plugged with his cork of smooth, solidified cum.");
 			output("\n\n<i>“You’re still carrying that around?”</i> he says, casually opening your [pc.thighs] and relishing the sight of your stuffed, stretched pussy. A blush clambers onto your cheeks as he reaches out and gently traces the lines of your opened labia. <i>“I don’t know whether to be flattered or unsurprised. Should I take it out?”</i> he growls, malevolent mischievousness honeying his tones, as he squeezes your engorged lips around the obstruction, sending pleasure rippling up your tunnel. <i>“Let it have a single moment to breathe, then stuff it even harder and fuller?”</i> He looks for a moment like he’s considering it; then he sits back with a haughty snort, erection rising up as he does. <i>“I think not. Better to keep it in whilst I put you to use in other ways, so all of your slatternly holes may know my touch.”</i>");
 		}
 		//If masculine male
@@ -935,19 +974,19 @@ public function lossScenesForStormguard():void
 		else if(pc.isHerm())
 		{
 			output(" Every rude shove inwards puts intense pressure on your prostate and the inner walls of your [pc.vaginas] - [pc.eachCock] hardens and bulges gleefully whilst unrequited, frustrated pleasure pulses through your female sex.");
-			if(tempPussyPlugCheck()) output(" It’s made even worse by the plug this beast has shoved up you, rubbing endlessly against your increasingly wet lips and pussy flesh.");
+			if(pc.pluggedVaginas() > 0) output(" It’s made even worse by the plug this beast has shoved up you, rubbing endlessly against your increasingly wet lips and pussy flesh.");
 		}
 		else 
 		{
 			output(" Every rude shove inwards puts intense pressure on the inner walls of [pc.eachVagina], frustrated pleasure, pulsing through your female sex.");
-			if(tempPussyPlugCheck()) output(" It’s made even worse by the plug this beast has shoved up you, rubbing endlessly against your increasingly wet lips and pussy flesh.");
+			if(pc.pluggedVaginas() > 0) output(" It’s made even worse by the plug this beast has shoved up you, rubbing endlessly against your increasingly wet lips and pussy flesh.");
 		}
 		output("\n\nThe storm lancer has had his brilliant serpentine eyes fixed gloatingly on your face this entire time, and as he bucks his bulging thighs into you with escalating passion, heavy balls flapping against your [pc.hips], it’s impossible for you not to display the pleasure he’s forcing on you. Your gasping moan fades into his pleased, knowing growl, and he pushes his thumb into your open mouth as he reams your [pc.ass] with hard, heavy pumps, bumping roughshod over your most tender spots. You are forced to cling to the clenching muscle of his forearms and let him claim your poor, stretched asshole with all his might.");
 
 		output("\n\n<i>“Should I plug up this hole of yours");
-		if(tempPussyPlugCheck()) output(" as well");
+		if(pc.pluggedVaginas() > 0) output(" as well");
 		output("?”</i> he barks, wide chest heaving. <i>“");
-		if(tempPussyPlugCheck()) output("Another");
+		if(pc.pluggedVaginas() > 0) output("Another");
 		else output("A");
 		output(" little memento of being ploughed silly by your better...");
 		output(" Ungh! No... I am not that cruel.");
@@ -983,11 +1022,11 @@ public function lossScenesForStormguard():void
 		else output("Gel Zon");
 		output(" has returned to his lying position, hardened back up against the freeze - except now he has a big, pleased grin on his blunt features.");
 		output("\n\nPerhaps you could look into bringing a sledgehammer with you next time.");
-		pc.loadInAss(enemy);
+		//pc.loadInAss(enemy);
 		processTime(30);
 		pc.orgasm();
 	}
-	output("\n\n(<b>Coder's Note:</b> Orifice plugging is not yet supported. This is going to take a lot of work and probably not work well for several months worth of patches. RIP, Fenoxo.)\n\n");
+	//output("\n\n(<b>Coder's Note:</b> Orifice plugging is not yet fully supported. This is going to take a lot of work and probably not work well for several months worth of patches. RIP, Fenoxo.)\n\n");
 	IncrementFlag("SEXED_SG_MALE");
 	IncrementFlag("SG_DEFEATED_PC");
 	//NO HONOR!
@@ -995,33 +1034,464 @@ public function lossScenesForStormguard():void
 	CombatManager.genericVictory();
 }
 
-public function tempPussyPlugCheck(arg:int = 0):Boolean
-{
-	if(pc.hasVagina() && arg >= 0)
-	{
-		if(arg < pc.totalVaginas())
-		{
-			if(9999 == 0) return true;
-		}
-	}
-	else if(arg < 0 && 9999 == 0) return true;
-	return false;
-}
-
 //Pussy Plug
 //Doubles Libido. Functionally removes vagina from PC until they have a shower.
 //Tooltip: Your pussy has been bunged with cundarian cum. Neither you nor anyone else will be able to use it until you get rid of it - but the constant rubbing and stretching it causes will arouse you until you do.
-
 //Continuing effect text (every eight squares moved?)
 
-/*9999 pussy plug shit
-output("\n\nThe smooth plug of set cundarian cum rubs against the lips of your [pc.vagina] and [pc.eachClit] as you move, a constant source of aggravating arousal that you can do nothing about.");
+/*Stormlancer bounty board bits
+Night Trap
+Win scene*/
+public function NTWinSceneForStormLancah():void 
+{
+	clearOutput();
+	showStormguard(true);
+	author("Night Trap");
+	//PC must have vagana
 
-output("\n\nPC has shower");
+	//reuse the bit from the buttfuck about activating his atmospheric generator
+	if(flags["SG_LANCE_SEEN"] == undefined)
+	{
+		output("<i>“Can you do anything about...”</i> you gesture at the blizzard, the bleak landscape and all the other elements of Uveto that do not really lend themselves to al fresco sex. After a moment, ");
+		if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+		else output("the storm lancer");
+		output(" silently plucks the spear from his armor and rams it into the perma-frost. From the pommel it emanates an energy bubble, a thin golden wall which encompasses him and you, filled with the pleasant warmth of a spring day.");
+		output("\n\n<i>“Nice!”</i> you remark, admiring the snowflakes melting against the membrane inches away from your [pc.face]. <i>“Now take your pants off, there’s a good boy.”</i>");
+	}
+	else output("<i>“Do the thing with your lance,”</i> you grin. <i>“And then take your pants off, there’s a good boy.”</i>");
 
-output("\n\nYou step underneath the jet of hot water, letting it flow through your [pc.hair]. Even here, it’s difficult to relax with your pussy plugged up like it is, the obstruction keeping you constantly aroused and frustrated. Perhaps the hot water... ? You pluck the shower head from out of its fixture and angle it at your [pc.vagina]. For a moment you think nothing is going to happen - then, in a wave of relief and hollowing out, the plug begins to lose its solidity, melting into fluffy blue foam which easily washes away down your [pc.legs] and into the drain. You sigh with relief. At last! {PC lust > 30: With the shower head where it is, perhaps you could take care of that aggravating lust now as well?");
+	//{merge}
 
-output("\n\n[Masturbate] [Finish]}");
+	output("\n\nYour eyes fall upon the quasi-beard of tentacles ringing ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("the storm lancer");
+	output("’s face. Your [pc.cunts] moisten");
+	if(pc.totalVaginas() == 1) output("s");
+	output(" at the thought of how those appendages would feel inside your womanhood, especially alongside that boastful tongue of his.");
 
-output("\n\nPC does not have pussy");
-*/
+	output("\n\n<i>“Lie on your back for me.”</i>");
+
+	if(stormguardHonor() == 2) 
+	{
+		output("\n\nThe defeated cundarian sports a wide grin as he falls back into the snow. " + pc.mf("<i>“And the great warrior bares his womanhood! This will never cease to be astounding. Perhaps that is the key to your prowess? What is it you plan to do with me?”</i>","<i>“So, the valkyrie has chosen me as her perch? How do you plan on satiating yourself on my body?”</i>") + " His monolithic, ridged cock throbs upwards as you approach, but you have no plans on making use of it today");
+		if(flags["SEXED_SG_MALE"] != undefined) output(", especially knowing the properties of cundarian semen");
+		output(". As you ");
+		if(!pc.isGoo() && !pc.isNaga() && !pc.isTaur()) output("plant your [pc.legs] to either side of his head");
+		else if(pc.isNaga()) output("pile your coils on his beefy chest");
+		else if(pc.isGoo()) output("pool your goo-puddle around his head");
+		else output("park your tauric hind-end over him");
+		output(", he sighs wistfully. <i>“Ah, yes of course: I have not earned the right to breed you. Still, I have no objection to tasting the womanhood I shall one day conquer!”</i>");
+	}
+	//Honor 0-1:
+	else
+	{
+		output("\n\n");
+		if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+		else output("The storm lancer");
+		output(" grins slightly as he follows your command. " + pc.mf("<i>“I would not have suspected one so masculine to bear the sex of a woman. How unusual you are. What is it you plan to do with me?”</i>","<i>“It is not every day that a woman bests me! I am excited to see how you plan to sate yourself!”</i>") + " His monolithic, ridged cock throbs upwards as you approach, but you have no plans on making use of it today");
+		if(flags["SEXED_SG_MALE"] != undefined) output(", especially knowing the properties of cundarian semen");
+		output(". As you ");
+		if(!pc.isGoo() && !pc.isNaga() && !pc.isTaur()) output("plant your [pc.legs] to either side of his head");
+		else if(pc.isNaga()) output("pile your coils on his beefy chest");
+		else if(pc.isGoo()) output("pool your goo-puddle around his head");
+		else output("park your tauric hind-end over him");
+		output(", he nods his head knowingly. <i>“As I expected. A warrior would not wish to weigh to be weighed down with child! Even so, I will savor your taste and remember it as the taste of defeat.”</i>");
+	}
+
+	output("\n\nYou roll your eyes and drop your mound onto the noisome warrior’s mouth, shivering not from the cold, but from the deliciously rough feeling of his wind-cracked lips on your soft, feminine ones.");
+	if(pc.hasCock()) 
+	{
+		output(" Your [pc.cocks] rest");
+		if(pc.cockTotal() == 1) output("s");
+		output(" atop his forehead, quite uncomfortably for him.");
+	}
+	var x:int = 0;
+	if(pc.pluggedVaginas() == 0) output(" <i>“I want to see what those tentacles can do. Eat up,”</i> you command, emphasizing your order with a slow roll of your [pc.hips].");
+	else 
+	{
+		for(var i:int = 0; i < pc.totalVaginas(); i++)
+		{
+			if(pc.isPlugged(i)) x = i;
+		}
+		output("\n\n<i>“I think you forgot something last time. I’m here to give it back to you.”</i> You emphasize your statement with a rough grind of your [pc.hips], still feeling <i>very</i> pent up from having his strange semen stretching your tunnel all this time.");
+
+		output("\n\n");
+		if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+		else output("The storm lancer");
+		output(" hesitates initially, but he understands better than anyone the consequences of defeat. With great reluctance, he gathers saliva on his tongue before beginning to lick at your sealed entrance. You gasp at the pleasurable contact, already primed for action from the torturous pleasure of being stimulated with every step you’ve been enduring since your last battle. You grab his head with both hands, baring your muff down into his mouth to speed up the process. A hollow groan escapes your [pc.lips] as your channel relaxes for the first time in a while as the cundarian’s semen rapidly dissolves. Some small measure of relief washes over you when your pussy finally begins to relax. When the last vestige of that damnable plug drains out of you, you moan desperately. You’re even hornier now than you were a moment ago, [pc.girlCum] dripping freely from your now-painfully empty [pc.cunts]. You flash a predatory grin down at ");
+		if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+		else output("the storm lancer");
+		output(". <i>“I hope you enjoyed the appetizer. Now it’s time for the main course. Eat up,”</i> you tease, grinding your [pc.clit] into the blue brute’s nose.");
+		//remove cummy pluggy.
+		pc.vaginas[x].delFlag(GLOBAL.FLAG_PLUGGED);
+	}
+	if(pc.totalVaginas() > 1)
+	{
+		output("\n\nA muffled sound of surprise issues from beneath your crotch a moment before the blue brute pushes you up enough to speak. <i>“");
+		if(pc.totalVaginas() == 2) output("Two");
+		else output("Three");
+		output(" womanhoods?!? You have brought me a feast only a core-worlder could provide!”</i> He chuckles to himself before lowering you again, his rumbling mirth flooding your muff with vibrations that make your eyes roll back momentarily.");
+	}
+
+	if(flags["MET_GEL_ZON"] != undefined) output("\n\nGel Zon");
+	else output("\n\nThe storm lancer");
+	output(" does as commanded, eagerly lapping up your ");
+	if(pc.wetness(x) >= 3) output("copious ");
+	output("feminine moisture with a pleased sound. He licks up and down the length of your [pc.pussy " + x + "], flicking your [pc.clits] with his tongue to coax more [pc.girlCumFlavor] juices out of you. You allow him to carry on like this for a minute before you clear your throat and shift your [pc.hips] a bit lower to rub against his tentacled chin, smearing the warm protrusions with your [pc.girlCum] and causing them to writhe gently against you.");
+
+	output("\n\nThere’s a small grunt of effort from ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("the storm lancer");
+	output(" before you feel his tentacles truly go into motion. You gasp in delight as multiple fleshy protrusions begin wriggling across your muff, stroking your labia with surprising strength as they seek out your entrance");
+	if(pc.totalVaginas() > 1) output("s");
+	output(". With a little more concentration, the cundarian cunnilingist manages to penetrate you with his facial appendages. <i>“Haha!”</i> you think you hear him shout triumphantly. It’s a little hard to tell with your [pc.cunts] in his face, but you definitely feel the vibration through his lips.");
+
+	output("\n\nThe extra stimulation on top of the alien feeling of his tentacles beginning to stuff your [pc.cunts] prompts a pleased cry from you loud enough to make a whore blush. Your reaction causes ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("the storm lancer");
+	output(" to laugh, which in turn draws another slutty cry from between your [pc.lips]. This in turn prompts more teasing laughter, resulting in a feedback loop of stimulation so slit-moistening that you’re hard pressed to care that his laughter is at your expense.");
+	if(pc.isSquirter()) 
+	{
+		output(" The cyan alien’s laughter soon transforms into spluttering as your juicy box");
+		if(pc.totalVaginas() > 1) output("es kick");
+		else output("kick");
+		output(" into high gear, leaking ");
+		if(pc.totalVaginas() == 1) output("a torrent");
+		else output("torrents");
+		output(" of [pc.girlCum] all over his face. It pours down his face in [pc.girlCumVisc] streams, covering his chin and neck in your lubricants and puddling momentarily in the snow beneath his head before freezing solid.");
+	}
+	output("\n\nAs your pleasure mounts, you instinctively begin bucking your [pc.hips], reveling in the exotic sensations centered on your [pc.cunts]. You no longer restrain yourself, crying out freely now and outright fucking your opponent’s face as you climb towards what you can already tell is going to be a toe-curling orgasm. You just can’t get enough of the way those little tentacles wriggle and writhe inside you, rubbing and poking along your folds and stretching your opening");
+	if(pc.totalVaginas() > 1) output("s");
+	output(" with the sheer number of them filling you. It’s such a bizarre feeling, softer than fingers, more flexible than a penis, drier and more phallic than a tongue. Your [pc.cunts] flutter");
+	if(pc.totalVaginas() == 1) output("s and clenches");
+	else output(" and clench");
+	output(" around the intruding tendrils, pulling them in deeper still.");
+
+	if(pc.biggestTitSize() >= 1)
+	{
+		output("\n\nYour hands find your [pc.chest] unconsciously, groping at your [pc.breasts] greedily to maximize your pleasure, teasing more feminine cries of joy out of yourself.");
+		if(pc.isLactating()) 
+		{
+			output(" Shortly after you begin fondling your breasts, you feel the telltale prickling sensation of your [pc.milk] letting down. You let out a throaty moan as you tug on your [pc.nipples], coaxing out more and more of your motherly essence. You rub your [pc.milk] into your [pc.skinFurScales], relishing the fleeting warmth the liquid brings your tender boobflesh. When some of your lactic bounty drips down onto ");
+			if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+			else output("the storm lancer");
+			output(", he hums in approval, flooding your snatch with more delicious vibrations.");
+		}
+	}
+	output("\n\nLost in these exotic new feelings, you allow your [pc.eyes] to roll closed, shutting out the icy wasteland around you and focusing entirely on the heat that’s fast building in your belly. It’s surprisingly cozy inside the climate controlled bubble. You’re kept off of the snow by ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("the storm lancer");
+	output("’s face, and the air has begun to warm up with your respective body heat. You relish this rare bit of warmth in Uveto’s chilly environs, baring your weight down to press more of your [pc.skinFurScales] into contact with what little warmth your partner gives off.");
+
+	output("\n\nBy now you had nearly forgotten your original order to ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("the storm lancer");
+	output(", but you’re given a potent reminder when you feel his brawny hands suddenly grasp your [pc.hips] to still you a moment before his mouth makes contact with your pussy. Even as his tentacles are hard at work exploring your ");
+	if(pc.totalVaginas() > 1)
+	{
+		output("other ");
+		if(pc.totalVaginas() > 2) output("two ");
+	}
+	output("puss");
+	if(pc.totalVaginas() == 1) output("y");
+	else output("ies");
+	output(", his cracked lips seal themselves around your [pc.clits], sucking at the fleshy bud");
+	if(pc.totalClits() > 1) output("s");
+	output(" with delightful force. His tongue, warm and wet, soon joins the fray, so like the tentacles already filling you, yet so different. His oral muscle teases your folds with soft, tender licks before homing in on your [pc.clits] momentarily, poking under your hood");
+	if(pc.totalClits() > 1) output("s");
+	output(" to batter the sensitive bundle");
+	if(pc.totalClits() > 1) output("s");
+	output(" of nerves directly.");
+
+	output("\n\nA slutty cry is forced from you instantly, your eyes opening wide in shock from the overwhelming feeling of pleasure. You try to buck your [pc.hips] in response, but the cundarian brute holds you still with his powerful arms, pressing his face even harder into your sopping wet cunny. He slips his tongue into your pussy, sliding it around amidst his tentacles and along the silken folds of your channel. ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("The storm lancer");
+	output(" prods his tongue as far into you as he can, scoring streaks of carnal delight along the walls of your pussy until you’re gasping on the very edge of cumming.");
+	output("\n\nYou ride the edge of orgasm for what feels like an eternity, holding yourself back in order to savor your victory for as long as possible. Your [pc.cunts] spasm");
+	if(pc.totalVaginas() == 1) output("s");
+	output(" fitfully at the appendages writhing around inside you, clenching them tighter by the second in a bid to keep them where you want them, even as you drip still more [pc.girlCum] to allow them to move freely. Finally, ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("the storm lancer");
+	output(" grunts in effort once more, and you scream in wanton bliss as his tentacles go wild. The little tendrils thrash about inside you, lashing every inch of your [pc.cunts] with power and speed belying their size while his tongue begins punishing your [pc.clits].");
+
+	output("\n\nYou throw your head back and moan, loud and low, utterly overwhelmed by more stimulation than your nervous system can process. You cream the cundarian’s beard with everything you have, ");
+	if(pc.isSquirter()) output("squirting a deluge");
+	else output("leaking a healthy trickle");
+	output(" of cunny honey as you buck your [pc.hips] helplessly.");
+	if(pc.hasCock()) output(" Your [pc.cocks] join your female anatomy in orgasm, plastering your partner’s forehead and scalp with your [pc.cum].");
+	if(flags["MET_GEL_ZON"] != undefined) output(" Gel Zon");
+	else output(" The storm lancer");
+	output(" dutifully weathers the storm of your orgasm, continuing his ministrations throughout your climax to maximize your enjoyment.");
+
+	output("\n\nAll good things must end, and your orgasm is no different. As you come down from your orgiastic high, you pant heavily, your [pc.skinFurScales] slick with sweat and your [pc.hips] and [pc.cunts] still twitching at random with the aftershocks of pleasure. When you’re confident your [pc.legs] will support you, you shakily climb to your [pc.feet] again. The [pc.girlCumFlavor] scent of your arousal fills the high-tech bubble completely, and as you look down at the defeated cundarian you get a perverse little thrill out of the thought of how hard [pc.girlCum] must be to wash out of a tentacle beard.");
+	output("\n\nIt’s impossible to miss the way ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("the storm lancer");
+	output("’s entire body is tense with unfulfilled need, especially with the 14 inches of alien dickflesh throbbing between his pillar-like legs. Amazingly though, he makes no effort to relieve his obvious arousal. He closes his eyes and takes a deep breath to calm himself before responding to the quirked eyebrow you regard him with. <i>“I have lost, and therefore have not earned release. I shall take this fire and use it to temper me, improving myself, so that when next we meet, I will overcome you.”</i> He opens his eyes again. <i>“THEN I will find release.”</i>");
+	output("\n\nHe lets you keep the storm lance and its bubble, putting his pants back on before settling himself back down into the snow as you fetch your [pc.gear] - it winks out and the howling gale pushes into your face as soon as you click your heat belt back on. Frost has begun to settle back on the storm lancer’s features as you take your leave.");
+	processTime(15);
+	IncrementFlag("SG_LANCE_SEEN");
+	IncrementFlag("SEXED_SG_MALE");
+	stormguardHonor(1);
+	enemy.girlCumInMouth(pc);
+	pc.orgasm();
+	output("\n\n");
+	CombatManager.genericVictory();
+}
+
+//Loss Scene
+//Must have vagogo and be in heat
+public function lossToSGWithHeatPussy():void
+{
+	clearOutput();
+	showStormguard(true);
+	var x:int = 0;
+	for(var i:int = 0; i < pc.totalVaginas(); i++)
+	{
+		if(pc.isPlugged(i)) x = i;
+	}
+	//Pussy plugged
+	if(pc.isPlugged(x))
+	{	
+		output("Even sealed up with inhuman cum as it is, your [pc.cunt " + x + "] still exudes an enticing, fertile scent. The intoxicatingly masculine alien draws in a deep breath of your pheromonal odor, his breeding rod giving an eager throb and his yellow eyes rolling closed as he savors your odor. You stare with undisguised hunger at his twitching maleness, something which provokes a thunderous laugh from ");
+		if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+		else output("the storm lancer");
+		output(" when he looks down at you again.");
+
+		if(stormguardHonor() == 2)
+		{
+			output("\n\n<i>“Truly, you are a " + pc.mf("warrior","valkyrie") + " fit for poem! Filled with such a burning need for a man’s touch, and yet you have honorably kept my seal since our last combat. Even in defeat you impress me!");
+		}
+		//Honor 1-0: 
+		else
+		{
+			output("\n\n<i>“Little surprise you once again failed to best me! I take it from my seal that you did not even wish to. Are you a warrior, or a brood sow? If my seed still hasn’t taken, then I suppose you are a failure as both!");
+		}
+		output(" Now, what shall I do with you?”</i>");
+
+		output("\n\nA powerful, blue hand reaches down to trace the edges of your [pc.cunt " + x + "]’s jammed-open entrance. You let out a hollow groan, your tunnel feeling anything but as you rock your [pc.hips] into ");
+		if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+		else output("the storm lancer");
+		output("’s torturous prodding. Your movements only serve to torment your cunny further, the stimulation of your walls by the cumplug serving as a stark reminder that you aren’t being stuffed with jizz-spurting cocks like your body needs.");
+
+		output("\n\nYour inner muscles clench hungrily at the pussyplug, forcing a ");
+		if(!pc.isSquirter()) output("trickle");
+		else output("flood");
+		output(" of pheromone-rich [pc.girlCum] out around the intrusion to slather ");
+		if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+		else output("the storm lancer");
+		output("’s digits in your strong-smelling cunny honey. The conquering alien gathers the [pc.girlCumFlavor], slippery stuff on his fingertips before bringing it to his mouth to sample your flavor. He rumbles out his enjoyment of your taste in a bassy growl, club-like cock throbbing even harder now.");
+
+		output("\n\n<i>“You really do need more, don’t you?”</i>");
+		output("\n\nYou let out a submissive whimper and nod your head emphatically, [pc.eyes] still locked on the pillar of raw virility before you, the only thing around capable of scratching your primal itch.");
+		output("\n\nHe sports a triumphant smirk at your response, clearly feeling his oats, growing even more turned on at having quite literally blue-walled you up to this point. The tentacled adonis pops his thick fingers into his mouth and begins licking them sloppily with vulgar, wet lashes of his alien tongue. It’s a bestial, crude display, but in the throes of your heat, you find yourself growing even wetter in response. Your head is filled with fantasies of that tongue polishing your [pc.clits] while those rough digits plunder your feminine softness. You practically faint in delight when your lurid wishes suddenly come to life: ");
+		if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+		else output("the storm lancer");
+		output(" reaches his spit-slicked hand down between your [pc.thighs] and begins pressing against his own cumplug.");
+
+		output("\n\nIt seems at first as if he’s merely tormenting you further, but after what feels like an eternity to your lust-addled mind, the hardened jizz sealing your entrance yields before the fingers of the stud who left it there. Almost all at once, the plug loses its integrity, dissolving and crumbling like a meringue. The feeling of relief borders on overwhelming, and you groan loud and low as the cundarian’s fingers scrape out the last pieces of the damnable mating plug that has stretched and stimulated your [pc.cunt " + x + "] since your last tryst.");
+
+		output("\n\nSealed until now in hellish chastity at the time you most needed real cock, your freed and desperate slit reflexively tugs ");
+		if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+		else output("the storm lancer");
+		output("’s fingers further in with powerful contractions, seizing immediately upon the phallic intrusions with uncontrollable need. ");
+		//PC Treated Pussy: 
+		if(pc.isTreated() && pc.isTreatedCow()) 
+		{
+			output("Even this hulking male has trouble denying your tunnel’s crushing spasms. Your genetically-engineered miracle pussy milks hungrily at anything that penetrates it under most circumstances, but as your are now, in heat and edged for hours, your ");
+			if(silly) output("squish mitten");
+			else output("velvety softness");
+			output(" is practically an organic finger trap. ");
+			if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+			else output("The storm lancer");
+			output(" grunts in surprise and effort as he briefly struggles to liberate his phalanges from their carnal prison. When he begins wiggling his digits to try to yank them free, your eyes cross, and you moo frantically as you buck your [pc.hips] into his masculine hand. It finally escapes you with a wet pop that’s immediately drowned out by your mournful moo.");
+		}
+		//Lame, regular pusspuss: 
+		else
+		{
+			output("The hulking male has no trouble extracting his digits from your [pc.cunt " + x + "] however. You whimper with need at the sudden departure. The only thing left in your tunnel now is an unbearable feeling of emptiness.");
+		}
+		output("\n\n");
+		if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+		else output("The storm lancer");
+		output(" flicks his hand a few times to clean it, splattering the snow with the remnants of his old cumplug and ");
+		if(!pc.isSquirter()) output("copious droplets");
+		else output("thick strands");
+		output(" of your [pc.girlCum]. Like a bottle of sexual perfume being uncorked, a dense, undiluted cloud of your fertile pheromones immediately wafts up from between your [pc.thighs]. It blasts into the cundarian, whose nostrils flare just before his vertical pupils narrow and his cock thickens even further. He licks his lips in unconscious hunger, all of his usual boasting and taunting subsumed by his basest of urges: to breed you.");
+		}
+	//Not Pussy plugged
+	else
+	{
+		if(pc.mf("boy","") == "boy")
+		{
+			if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+			else output("The storm lancer");
+			output(" takes a particularly deep breath just before knitting his brow in confusion. <i>“Just what </i>are<i> you? Your body looks like that of a man ready to fight, but you have the sex and scent of a woman ready to breed. Can you not decide what it is you wish to be?");
+			if(stormguardHonor() == 2) output(" It is remarkable you have done as well as you have with such a handicap.");
+			else output(" Your nethers betray you, core-worlder. They scream that you are not made for battle. They shout that you are made for birthing true warriors. Perhaps you should listen to them and exchange the battlefield for the bedchamber!");
+			output("”</i>");
+		}
+		//PC fem/andro:
+		else
+		{
+			if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+			else output("The storm lancer");
+			output(" inhales deeply before sighing in satisfaction. His enjoyment of your fertile scent is obvious enough from that alone, but the powerful throbbing of his ridged cock helps drive the point home. That pillar of raw virility stands at eager attention as your pheromones waft up to the cyan barbarian, the lusty chemicals no longer being diverted by the harsh winds outside the high-tech bubble.");
+			if(stormguardHonor() == 2)
+			{
+				output("\n\nThe cundarian beams down at you with a self-congratulatory grin, his inhuman eyes glowing like magma. <i>“By the Elements, I can scarce imagine a sweeter victory than this. I know a valkyrie such as yourself understands how to harness the fire in her loins to fight even harder than usual. Now I have beaten you not only at your best, but your most fertile, and a warrior woman storm lancers dream of is mine to breed!”</i>");
+			}
+			else if(stormguardHonor() == 1) output("\n\nThe cundarian stares down at you briefly with a mirthful twinkle in his inhuman eyes. <i>“I had not realized during our battle what condition you were in. Now I can’t help but wonder in light of this: were you too distracted to fight properly, or did you focus your desires and surpass yourself?”</i> He strokes his tentacle-beard in thought for a moment before chuckling to himself. <i>“It matters little. I have beaten you, and your ripe womb is now mine to seed.”</i>");
+			else output("\n\nThe cundarian frowns down at you with disdain in his serpentine eyes. <i>“How utterly unsurprising. You cannot even challenge me at your best, much less in this wanton state. There is no honor in defeating you at the best of times, but as you are now it is downright dishonorable.”</i> His voice is dripping with condescension, but as you whimper and spread your [pc.thighs] in a show of readiness, his cock betrays his desire for you.");
+			output("\n\nThe cyan barbarian snorts like a bull, but his disgusted tone sounds increasingly forced as he stews in the growing pheromone cloud polluting the atmosphere inside the high-tech bubble. <i>“A pretty little thing who cannot even control her body dishonors her opponents. You could easily find a man to seed you whenever you pleased. I take little joy in claiming your slatternly hole, but...”</i> the hulking warrior pauses briefly to stare at your lust-slicked ");
+			if(pc.totalVaginas() == 1) output("cunt");
+			else output("cunts");
+			output(". He unconsciously licks his lips before continuing, <i>“I am not so cruel as to leave your womb unfilled when you are clearly in great need.”</i>");
+		}
+	}
+	output("\n\nStrong, blue hands suddenly seize your [pc.hips] and flip you onto your front at the same moment that ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("the storm lancer");
+	output(" drops to his knees. You reflexively try to get your [pc.legs] under you, but you quickly realize that your weight is being entirely supported by ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("the storm lancer");
+	output("’s powerful grip on your [pc.hips]. Under normal circumstances this might seem painful to you, but on the primitive level you’re operating on now, the rough treatment just sends flutters of excitement through your belly. When you feel the course ridges of a huge cundarian cock land meatily on your [pc.ass], those flutters become outright trembles.");
+
+	output("\n\nYou can feel ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("the storm lancer");
+	output("’s balls pressing into your [pc.cunt " + x + "] as he hotdogs you, and you immediately begin fantasizing about all the virile jizz those orbs will soon be pumping into your womb, filling you to the brim until you’re gravid with an entire litter of this brutish male’s spawn. Your [pc.cunts] leak");
+	if(pc.totalVaginas() == 1) output("s");
+	output(" even more [pc.girlCum] at the thought, ");
+	if(!pc.isSquirter()) output("wetting his sack until it shines");
+	else output("drenching his sack with a [pc.girlCumFlavor] waterfall that drips off of him in [pc.girlCumVisc] ropes thick enough to melt the snow under him");
+	output(", instinctively preparing for the rough mating to come. The enticing smell of your pussy grows even stronger as your soon-to-be stud grinds his cock between the cheeks of your [pc.ass], causing him in turn to thrust more roughly against your backside, arousing you even further in a feedback loop that only ends when ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("the storm lancer");
+	output(" finally slips the head of his cock down your taint and splits your [pc.cunt " + x + "] wide open with one bestial thrust.");
+
+	if(pc.isTreated() && pc.isTreatedCow()) output("\n\nThankfully, your Treated pussy was made for this sort of violent coupling. It accepts the sudden and massive penetration with no difficulty while still wrapping around it like a mould, working it from head to base with muscular contractions that demand as rapid an insemination as possible.");
+	else if(pc.vaginas[x].looseness() < 3) output("\n\nThough it would normally be an agonizingly slow process to take such a massive insertion, your heat has made your pussy more receptive than a dozen hours of foreplay could. You tremble and open your mouth in a mute shriek, already nearly creaming the cundarian’s club-like member as it deforms your tight walls into a reverse mirror of itself, complete with sinfully-stimulating ridges.");
+	//Loose: 
+	else output("\n\nFew cocks are ever a snug fit for your experienced pussy, but your heat has made your slutty hole not only yielding, but accommodating. It accepts the massive insertion easily while still giving it a little resistance, just enough for the both of you to enjoy the way the cundarian’s ridges stretch and scrape the loose walls of your slit.");
+	output(" Once he hilts himself in you, the alien warrior tightens his grip on your [pc.hips] and holds you still, savoring the feeling of your hot, wet cunt, using your desperate womanhood as little more than his personal dick sauna. You ");
+	if(pc.isTreated()) output("moo");
+	else output("moan");
+	output(" in frustration, and, unable move your hips as instinct drives you to, you clench your inner muscles around his club-like cock.");
+
+	pc.cuntChange(x,enemy.cockVolume(0));
+	
+	if(flags["MET_GEL_ZON"] != undefined) output("\n\nGel Zon");
+	else output("\n\nThe storm lancer");
+	output(" grunts with the effort of restraining himself. He breaks your concentration with a sharp spank to your buttock, glaring at you reproachfully when you look back at him in shock. He doesn’t have to say anything: you know he won the fight, and that means he decides the pace of this. You resolve yourself to total passivity with a whimper, lowering your head and torso below your [pc.hips]");
+	if(pc.tailCount > 0) output(" and raising your [pc.tails]");
+	output(", presenting your fertile [pc.cunt " + x + "] like ");
+	if(pc.ausarScore() > 2 || pc.canineScore() >= 2) output("the bitch in heat you are.");
+	else output("a bitch in heat.");
+	output(". It’s an instinctive display of submissiveness that simultaneously places your womb lower than your entrance, positioning yourself to allow gravity to carry your stud’s sperm to your eggs as quickly as possible.");
+
+	output("\n\nOnce he sees you’ve fully accepted your place, ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("the storm lancer");
+	output(" takes a deep breath to regain his composure. This backfires immediately as the cyan conqueror heaves a deep breath of your pheromones. He empties his lungs in a feral sound somewhere between a growl and a roar and begins grinding his thick shaft deep into your cunt. His exotic ridges rub and stroke your folds, violently scraping across every sweet spot in your pussy until you’re arching your back and screaming in overstimulated bliss.");
+
+	output("\n\nYour cunny spasms fitfully in response to the alien phallus grating against all the nerves of your vaginal walls. ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("The storm lancer");
+	output(" slaps your raised [pc.ass] again to still your clenching motions, but the blow only makes your slit milk his cock even harder for a moment. When another, harder spank only yields even more frantic clenching and a pleasured yelp from you, the cyan brute snarls and resigns himself to your coupling being quick and dirty. To that end, he withdraws his pillar-like member all the way to the very tip, dripping ");
+	if(!pc.isSquirter()) output("strands");
+	else output("ropes");
+	output(" of your [pc.girlCum] into the snow. You groan at the painful emptiness in your gaped cunt, but your groan transforms into an ecstatic scream when ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("the storm lancer");
+	output(" slams back into your hole at full force, his hips slapping into your [pc.ass] with a wet clap as his bloated sack hits your [pc.clits] like two flesh wrecking balls.");
+
+	output("\n\nMind-numbing tension coils in your middle and between your pussy-drenched [pc.thighs] as the virile barbarian repeats his motion, his thrusts building in both speed and force until each hilting slam splatters more of your pheromonal [pc.girlCum] onto his crotch");
+	if(pc.wetness(x) >= 3) output(" and even up to his chest");
+	output(". The smell of your raw fertility drives the normally-measured warrior into an animalistic rut. ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("The storm lancer");
+	output(" has almost utterly surrendered to his urges to breed you, and though you’re too focused on the hard maleness filling your [pc.cunt " + x + "] to verbally beg him to cum, he’s obviously pleased with the bestial moans and whimpers you manage to slur out between his balls-deep thrusts.");
+
+	output("\n\nIn what feels like mere moments, your [pc.hips] begin to tremble violently in ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("the storm lancer");
+	output("’s iron grip. Your shameless grunts and pleas crescendo into an ear-splitting ");
+	if(pc.felineScore() >= 3) output("yowl");
+	else if(pc.isTreated()) output("moo");
+	else output("howl");
+	output(" of ecstasy, and the tension in your body finally snaps. Overwhelming pleasure seizes your nerves, and you thrash like a trout on a line as your cunt throws itself fully into its true evolutionary purpose. The huge stud behind you hisses through his teeth as his breeding rod is assaulted by your love tunnel’s ");
+	if(pc.isTreated() && pc.isTreatedCow()) output("scientifically-engineered ");
+	output("dick-draining ");
+	if(silly) output("cunt-traction");
+	else output("contractions");
+	output(". Fragrant girlcum");
+	if(!pc.isSquirter()) output(" streams down your inner thighs to puddle under your [pc.knees]");
+	else output(", pressurized by the thick cock filling you, squirts out in a flood of fine droplets that coats everything in the vicinity");
+	output(". The [pc.girlCumFlavor] odor of your [pc.pussy " + x + "] creaming his cock deepens the cundarian’s rut. You’re clamping down hard enough that ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("the storm lancer");
+	output("’s thrusts should be stopped, but he barely even slows. If anything, his masculine hips slam into you even faster.");
+
+	output("\n\nThe wonderful sensation of his cock’s ridges plowing into your spasming slit is almost unbearable. One after another, your [pc.eyes] roll back into your head, your limbs fail you, and your orgiastic cries crack into hoarse whines. Your face lands in the snow, your brutal mate’s thrusts dragging it through the powder. Only his hands on your [pc.hips] keeps your lower half aloft, and you’re silently grateful that the cyan alien is strong to keep your womb positioned where it belongs.");
+
+	output("\n\nThe overstimulation frays your sanity, and you instinctively try to close your nervelessly-twitching [pc.thighs] in an effort to slow the rutting male atop you. When your attempt to impede ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("the storm lancer");
+	output("’s thrusts fails miserably, you focus the last shred of your willpower on working your disobedient pelvic muscles in a last, desperate battle with the cundarian’s manhood. Though it’s a long fight, you lose it as soundly as you lost your conventional battle. Your orgasm eventually flags in the face of ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("the storm lancer");
+	output("’s endless stamina, and he roars victoriously as he feels you finally go limp beneath him. He stills his hips for a moment, taking the chance to come back from his edge.");
+
+	output("\n\nAs unforgettable as your climax was, it brings you no relief. The heat in your womb");
+	if(pc.totalVaginas() > 1) output("s are");
+	else output(" is");
+	output(" as powerful as when you started. You don’t need to be fucked, you need to be <i>bred</i>, but ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("the storm lancer");
+	output(" seems to have every intention of selfishly enjoying himself for as long as possible before inseminating you. His monastic discipline shines through even his rut, allowing him to power through the urge to just let you milk him dry. You whimper as the hulking brute resumes rutting you, knowing even the orgasm building anew in your lower half is little more than a temporary distraction from your true desire. Unfortunately, you are powerless to do anything but cream your stud’s rod as hard as you can.");
+
+	output("\n\n");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("The storm lancer");
+	output(" fucks you thrice more to the same mind-shattering height of ecstasy. By now, the only muscles in your body that do more than spasm at random are the ones in your [pc.cunt " + x + "], which feels sore and exhausted. Even your used and abused box would’ve gone slack if not for your all-consuming drive to be seeded by the strongest mate you can find. This cundarian stud has undoubtedly proven his strength to you in every way, including by holding back on blowing his load in you for as long as possible. Just as you begin to considering praying to whatever god ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("the storm lancer");
+	output(" is obviously blessed by, your benediction is preemptively answered. The barbarian’s stamina finally runs out, and you let out a happy croak from your raw throat as his sweat-drenched body crashes into you one last time, burying his rod as deep inside you as possible just before his virile balls begin to clench against your [pc.clits].");
+
+	output("\n\nEndorphins swamp your lust-hazed brain, a reward from its deepest depths for giving in to the most primal of all instincts. A final, more peaceful orgasm comes with the first lance of alien seed from ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("the storm lancer");
+	output(". You tremble with relief and press yourself even harder against him as you cream his cock one last time. Throughout your orgasm, your puffy labia serve gloss your mate’s clenching nuts with one last [pc.girlCumVisc] coat of feminine ejaculate.");
+
+	output("\n\nSo relaxed and fulfilled are you that you initially don’t sense the bizarre sensations in your tender pussy. What finally makes you take notice is the bizarre way in which the cundarian is cumming. Each wondrous pulsation of his potent seed is accompanied by another carnal bellow and another tug of your [pc.hips] towards him, exactly the same as when he first started pumping his load into you. His cum feels light, almost foamy, but it still manages to bloat your hungry womb, distracting you with fantasies of his sperm floating towards your eggs.");
+
+	output("\n\n");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("The storm lancer");
+	output(" pulls his hips back until just his crown is inside you. There, with a final roar of effort and pleasure, he spurts one last lance of seed, filling the aching gape he hammered into your pussy. Without warning, he releases your hips and grabs your hands instead, holding your arms over your back with a sweaty grip.");
+
+	output("\n\nHe explains himself to you between heaving breaths. <i>“A bit of insurance,”</i> he says in a hoarse mutter. ");
+	if(stormguardHonor() == 1) output("<i>“A reminder as well. If my seed somehow does not take, then you’ll remember who kept you from seeking out another man and finding relief. Let that motivate you to find the strength to take revenge. Or let it remind you how pointless the effort was.”</i> He slaps your bruised-feeling [pc.butt] and then, with a satiated, rumbling sigh,releases your arms.");
+	else if(stormguardHonor() == 0) output("<i>“I’m sure it will be needed. A harlot as wanton as you would otherwise fall before the very next man and beg him to seed her.”</i> He smacks both your buttocks at once before laughing mockingly. <i>“If you want cundarian children, you’ll have them on cundarian terms.”</i> Then, with a satiated, rumbling sigh, he releases your arms.");
+	else output("<i>“Though I doubt it is needed. You are honorable enough I am sure to contain your lusts. Then, if my seed does not take, you may seek me out again, to punish me for my hubris, perhaps slake your need on me.”</i> He sighs with pleasure at the thought. <i>“I pray my seed will take. If it does... then you will bear the strongest, fiercest children the galaxy has ever known!”</i> With that, he releases your arms.");
+
+	//just put the rest of the regular vaginal loss scene's ending here because I'm lazy and way over my word budget already
+	output("\n\nBy the time you get your hands down to his hardening seed, the cloudy foam has hardened and formed a perfect, blue-colored plug. It stretches your pussy lips, seems to be bigger outside than in, and no matter how you attack it with your fingers, you - can’t - get - it - out. The sensation of being swollen with hot air has dissipated a bit at least, but until you ");
+	if(flags["SHOWERED_OUT_PLUG"] != undefined) output("have a shower");
+	else output("work out a way to get this thing out of you");
+	output(", nothing is getting in or out of your [pc.vagina " + x + "]. The problem this is going to cause becomes evident as you’re putting your things back on - the solid, smooth cum block rubs your lips and [pc.eachClit] as you move, constantly arousing you and reminding you of your utterly stuffed pussy.");
+	output("\n\nThe storm lancer has left his spear stuck in the ground for you, the energy shield it generates still holding. It winks off as you step back into the howling gale. ");
+	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+	else output("The cundarian");
+	output(" has returned to his lying position, hardened back up against the freeze - except now he has a big, pleased grin on his blunt features.");
+	output("\n\nPerhaps you could bring a sledgehammer next time.");
+	processTime(45);
+	for(var y:int; y < 5; y++) {pc.orgasm();}
+	IncrementFlag("SEXED_SG_MALE");
+	IncrementFlag("SG_DEFEATED_PC");
+	pc.loadInCunt(enemy,x);
+	stormguardHonor(1);
+	output("\n\n");
+	CombatManager.genericLoss();
+}

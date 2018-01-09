@@ -877,7 +877,7 @@ public function kaseJoinSteele():void
 	output("\n\nSo, you lead him out of his quarters and to the room of your ausar employee, getting her attention with Kase by your side.");
 	output("\n\n<i>“Oh, hey guys,”</i> she says, stepping back from her work, taking a moment to lean back and thrust out her impressive chest, <i>“You " + pc.mf("boys","two") + " need anything?”</i>");
 	output("\n\nNoticing Kase blush a bit, you tell Anno you’d like to get your feline companion signed on as a employee of SteeleTech.");
-	output("\n\nShe smiles in response, <i>“No problem; with a merchant already on board, it should be easy to get him hired as a logistics offer.”</i> The ausar reaches for her datapad and flicks it on, <i>“I’ll just go over all the forms with you real quick...”</i>");
+	output("\n\nShe smiles in response, <i>“No problem; with a merchant already on board, it should be easy to get him hired as a logistics officer.”</i> The ausar reaches for her datapad and flicks it on, <i>“I’ll just go over all the forms with you real quick...”</i>");
 	output("\n\n<b>Some amount of paperwork later...</b>");
 	output("\n\nAnno steps over to you after awhile of looking over Kase’s shoulder, and you ask her how much longer he’ll be. ");
 	output("\n\n<i>“Not too long,”</i> she answers, shaking her head, <i>“Just having him fill out some employment forms before corporate gobbles up his contract" + (silly ? ", you know, I-9000’s and W-2600’s, standard stuff" : "") + ". He’s a speedy guy, though, so he should be done soon.”</i>");
