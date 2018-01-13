@@ -171,35 +171,38 @@ public function annoFollowerApproach():void
 
 	//chance of walking in on ANNO and Kaede doing petplay
 	//Kaede must have 10+ Exhibitionism
-	if (flags["KAEDE_EXHIBITIONISM"] >= 10 && 
-		((hasMetKaede() && haveFuckedAnno() && flags["ANNOxKAEDE_LAST_DAY"] < days - 7 && shipLocation == "TAVROS HANGAR") || (kaedeCouldBeOnNewCanadaRepeats() && shipLocation == "CANADA1"))) {
+	if (flags["KAEDE_EXHIBITIONISM"] >= 10 && rand(10) == 0 && flags["ANNOxKAEDE_LAST_DAY"] != undefined && flags["ANNOxKAEDE_LAST_DAY"] < days - 7 && ((hasMetKaede() && haveFuckedAnno()  && shipLocation == "TAVROS HANGAR") || (kaedeCouldBeOnNewCanadaRepeats() && shipLocation == "CANADA1"))) 
+	{
 		annoXKaedeWalkinPetPlayIntro();
 	} 
-	else if (hours >= 6 && hours <= 11 || hours >= 14 && hours <= 20) 
+	else 
 	{
-		output("You give a light rap on Anno’s door, and are quickly let in. <i>“Hey, boss!”</i> she says with a smile, ushering you in. ")
-	} 
-	else if (hours >= 12 || hours <= 13)
-	{
-		output("<i>“[pc.name]!”</i> she shouts over the din of a loud pop jam blaring from her computer, <i>“I didn’t see you there. I hope you didn’t mind my singing. It’s a new one from " + RandomInCollection("Touch Fluffy Tail", "The Beagles", "Playing Poker", "Buried Treasure") + " that I haven’t been able to get out of my head.”</i>");
-		output("\n\nShe gives you an apologetic grin as she flips the music off.");
+		if (hours >= 6 && hours <= 11 || hours >= 14 && hours <= 20) 
+		{
+			output("You give a light rap on Anno’s door, and are quickly let in. <i>“Hey, boss!”</i> she says with a smile, ushering you in. ")
+		} 
+		else if (hours >= 12 || hours <= 13)
+		{
+			output("<i>“[pc.name]!”</i> she shouts over the din of a loud pop jam blaring from her computer, <i>“I didn’t see you there. I hope you didn’t mind my singing. It’s a new one from " + RandomInCollection("Touch Fluffy Tail", "The Beagles", "Playing Poker", "Buried Treasure") + " that I haven’t been able to get out of my head.”</i>");
+			output("\n\nShe gives you an apologetic grin as she flips the music off.");
+		}
+		else output("You give a light rap on Anno’s door, which rocks back on its hinges, unlocked. Anno’s sleeping face-down on her desk. You give her a little poke, which quickly has her jerking her head up and rubbing the sleep from her eyes. <i>“Oh, shit. What time is it?”</i>");
+
+		if (!haveFuckedAnno()) output("\n\n<i>“So what’s up? You need anything?”</i>");
+		else
+		{
+			output("\n\nAnno plops down on the side of her bed, arms spread back to support her... which has the added bonus of thrusting her chest out against");
+			if (anno.armor is AnnosCatsuit) output(" the half-zipped front of her catsuit");
+			else output(" the low-cut neck of her blouse");
+			output(". <i>“Did you need something, babe?");
+			if (pc.lust() >= pc.lustMax() * 0.8) output(" Maybe a little stress relief?");
+			output("”</i>");
+		}
+
+		processTime(2);
+
+		annoFollowerMenu();
 	}
-	else output("You give a light rap on Anno’s door, which rocks back on its hinges, unlocked. Anno’s sleeping face-down on her desk. You give her a little poke, which quickly has her jerking her head up and rubbing the sleep from her eyes. <i>“Oh, shit. What time is it?”</i>");
-
-	if (!haveFuckedAnno()) output("\n\n<i>“So what’s up? You need anything?”</i>");
-	else
-	{
-		output("\n\nAnno plops down on the side of her bed, arms spread back to support her... which has the added bonus of thrusting her chest out against");
-		if (anno.armor is AnnosCatsuit) output(" the half-zipped front of her catsuit");
-		else output(" the low-cut neck of her blouse");
-		output(". <i>“Did you need something, babe?");
-		if (pc.lust() >= pc.lustMax() * 0.8) output(" Maybe a little stress relief?");
-		output("”</i>");
-	}
-
-	processTime(2);
-
-	annoFollowerMenu();
 }
 
 public function annoFollowerMenu():void
@@ -4213,10 +4216,11 @@ public function annoFrenchMaidGimmeMoreMore(x:int):void
 
 public function annoXKaedeWalkinPetPlayIntro():void 
 {
+	flags["ANNOxKAEDE_LAST_DAY"] = days;
 	clearOutput();
-	showKaede();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
+	showBust(annoBustDisplay(true), "KAEDE_NUDE");
 	kaedeIncreaseExhibitionism(3);
 	
 	output("There's normally nothing special about heading over to Anno's cabin. She's pretty much had an open-door policy with you since coming aboard; it's not surprising when you find her door's actually jammed open. The automatic slide is stuck on what is most certainly a bright pink bra, trying and failing to seal closed around one of the cups. A cup that looks a little too small to be one of Anno's.");
@@ -4241,9 +4245,10 @@ public function annoXKaedeWalkinPetPlayIntro():void
 	
 	clearMenu();
 	addButton(0, "Watch Them", watchAnnoXKaedeAccidentPetPlay, undefined, "Watch Them", "Let Kaede keep Anno on a short, sexy leash...");
-	addButton(1, "Collar Kaede", collarKaedeInAnnoXKaedeAccidentPetPlay, "Collar Kaede", "Kaede's not really cut out for the whole “dominant” thing. Put her in a collar, too, and spend some quality time with the puppy pair.");
+	addButton(1, "Collar Kaede", collarKaedeInAnnoXKaedeAccidentPetPlay, undefined, "Collar Kaede", "Kaede's not really cut out for the whole “dominant” thing. Put her in a collar, too, and spend some quality time with the puppy pair.");
 }
 
+//[Watch Them]
 public function watchAnnoXKaedeAccidentPetPlay():void 
 {
 	clearOutput();
@@ -4271,10 +4276,18 @@ public function watchAnnoXKaedeAccidentPetPlay():void
 	output("\n\n“Or maybe next time it'll be you in a collar.”");
 	output("\n\nYou leave Kaede with that thought to stew on.");
 
+	pc.orgasm();
+	anno.orgasm();
+	
+	annoSexed(1);
+	flags["KAEDE_FUCKED"]++;	//has to exist because kaede has at least 10 exhibitionism
+	IncrementFlag("ANNO_X_KAEDE_THREESOMED");
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
 
+//[Collar Kaede]
 public function collarKaedeInAnnoXKaedeAccidentPetPlay():void 
 {
 	clearOutput();
@@ -4295,12 +4308,13 @@ public function collarKaedeInAnnoXKaedeAccidentPetPlay():void
 
 	clearMenu();
 	if (reahaIsCrew())
-		addButton(0, "Next", combineAndHaveAFinishAnnoXKaedeAccidentPetPlay);
-	else 
 		addButton(0, "Next", reahaJoinsAnnoXKaedeAccidentPetPlay);
+	else 
+		addButton(0, "Next", combineAndHaveAFinishAnnoXKaedeAccidentPetPlay);
 	
 }
 
+//[Next] if reaha is crew
 public function reahaJoinsAnnoXKaedeAccidentPetPlay():void 
 {
 	clearOutput();
@@ -4324,11 +4338,12 @@ public function reahaJoinsAnnoXKaedeAccidentPetPlay():void
 	output("\n\nIt would be so easy to just bend the poor cow over and fuck her... or better yet, let Kaede mount her.");
 
 	clearMenu()
-	addButton(0, "Keep Walking", keepWalkingAnnoXKaedeAccidentPetPlay, undefined, "Keep Walking", "No time for Reaha. These doggies need their exercise...");
+	addButton(0, "Keep Walking", combineAndHaveAFinishAnnoXKaedeAccidentPetPlay, undefined, "Keep Walking", "No time for Reaha. These doggies need their exercise...");
 	addButton(1, "Mount the Cow", mountCowAnnoXKaedeAccidentPetPlay, undefined, "Mount the Cow", "Let Kaede thrust that bone of hers into the cow-girl's cunny. This'll probably end your walk, in the best way possible.");
 }
 
-public function keepWalkingAnnoXKaedeAccidentPetPlay():void {
+//[Mount the Cow]
+public function mountCowAnnoXKaedeAccidentPetPlay():void {
 	clearOutput();
 	author("Savin");
 	showName("ANNO & KAEDE &\nREAHA");
@@ -4336,40 +4351,119 @@ public function keepWalkingAnnoXKaedeAccidentPetPlay():void {
 	
 	output("“Come here, girl,” you say, taking Kaede's leash and urging her around to the backside of the cow-girl. The boob she was attached to bounces and leaks in the wake of Kaede's mouth, dripping milk all over Anno's shoulders and belly until the wanna-be dog nuzzles into the boob and starts milking with her hands.");
 	output("\n\nReaha makes a confused sound, but her mooing only grows lewder when you ");
-	if (!reaha.isCrotchExposed()) {
-		
-	} else {
-		
-	}
-	//{Reaha has pants: yank her [reaha.lowerGarment] down //else: give her big bovine booty a rough slap, right on her anchor tattoo}
-	
-	//combine
-	
-	
-	clearMenu();
-	addButton(0, "Next", combineAndHaveAFinishAnnoXKaedeAccidentPetPlay);
-}
+	if (!reaha.isCrotchExposed())
+		output("yank her [reaha.lowerGarment] down");
+	else
+		output("give her big bovine booty a rough slap, right on her anchor tattoo");
+	output(". Kaede barks excitedly, and needs little encouragement once you push Reaha down, bending her over on top of the milk-drunk Anno. Reaha's tits swing, her tail lifts, and pretty soon there's a big ginger puppy leaping onto her back, red rocket prodding at the slit of her sex. You reach down and guide the tapered crown to its target, earning a cry of pleasure from Reaha and a husky grown from the bottom of Kaede's throat as she scrambles up onto the shortstack cow's back, thrusting deep into her silken slit.");
+	output("\n\n“Oooh! Good doggy!” Reaha giggles, putting a hand on your thigh to steady herself. “Unf, ah, yeah! [pc.name], I like your pets!”");
+	output("\n\nYou do too. Running a hand through Reaha's strawberry hair, you saunter back to her front and shuck off your gear. The cow-girls eyes wander hungrily up your body, and her hand slips from your [pc.leg] to your ");
+	if (pc.hasCock())
+		output("[pc.cock]");
+	else if (pc.hasVagina())
+		output("[pc.cunt]");
+	else
+		output("tender groin");
+	output(". A word of encouragement is all your lover needs to start ");
+	if (pc.hasCock())
+		output("running her tongue up the length of your [pc.cock], before taking the meaty shaft into her mouth and starting to suck.");
+	else 
+		output(" thrusting her tongue into your [pc.vagOrAss], exploring your body with that big, flat tongue of hers.");
+	output("\n\nNever one to be left out, Anno scoots around and ducks between Reaha's thick thighs, flicking her tongue at the cow-girls thick clit while her girlfriend pounds away at the pussy below it. All you need to do is murmur encouragements at them until you hear a gasp from around your sexual flesh, and a trickle of orgasmic feminine slime drools down Reaha's thigh. Her climax comes with a sutge of milk, so much that poor Anno can't possibly keep up -- she's bathed in [reaha.milk], rivers flowing down her own heaving breasts and forming pools in her ample curves, with a puddle of it quickly forming between her legs. Reaha's tongue moves faster, almost frantically trying to milk you as hard as she must be taking it.");
+	output("\n\nSpread out over Reaha's back, Kaede makes a soft little moan and bucks her hips one last time... and apparently wedges something nice and knotty deep in Reaha's fuckhole. The cow-girl's eyes go wide, and the rain of [reaha.milk] onto Anno's back becomes a cataclysmic flood that threatens to wash her away. Kaede, meanwhile, has clenched her eyes closed and is panting hard, shuddering as Reaha's quim milks her bone dry, and Kaede's knot traps every drop inside. ");
+	output("\n\n“S-sorry down there!” Reaha murmurs, switching to using her hand on you for a moment. “I guess it really was milking time.”");
+	output("\n\nAnno barks happily, reaching up and planting a long, wet lick on Reaha's cheek, before turning her oral attention to you. ");
+	output("\n\nBetween pup and bovine, it doesn't take long for you to get your happy ending too, ");
+	if (pc.hasCock())
+		output("showering the girls' faces with [pc.cum]. A few shots even manage to make it Kaede's way, smearing across her cheeks.");
+	else
+		output(" You're soon gasping and moaning, running your hands through the girls' hair and bucking your [pc.hips] as their tongues and lips do their way, bringing you to a swift, hard climax.");
+	output("\n\nIt's going to be a while before Kaede's knot deflates, so once you've come down from your orgasmic high, you help scoot the pair over to the couch in the main room, leaving Reaha holding Kaede's leash while you take Anno back to her room too cool off in each other's arms.");
 
-public function mountCowAnnoXKaedeAccidentPetPlay():void {
-	clearOutput();
-	author("Savin");
-	showName("ANNO & KAEDE &\nREAHA");
-	showBust(annoBustDisplay(true), "KAEDE_NUDE", reahaBustDisplay(true));
-	
-	
 	processTime(15 + rand(10));
 	pc.orgasm();
+	anno.orgasm();
+	
+	annoSexed(1);
+	flags["KAEDE_FUCKED"]++;	//has to exist because kaede has at least 10 exhibitionism
+	IncrementFlag("ANNO_X_KAEDE_THREESOMED");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
 
-//[Next] from No Reaha crew leads here.
-//[Next] from KeepWalking also leads here
-public function combineAndHaveAFinishAnnoXKaedeAccidentPetPlay() {
+//[Next]
+//[KeepWalking]
+public function combineAndHaveAFinishAnnoXKaedeAccidentPetPlay():void {
+	clearOutput();
+	output(String(flags["ANNOxKAEDE_LAST_DAY"]));
+	output(" days ");
+	//flags["ANNOxKAEDE_LAST_DAY"] < days - 7
+	output(String(days));
+	author("Savin");
+	if (reahaIsCrew())
+	{
+		//[KeepWalking] from reahaJoinsAnnoXKaedeAccidentPetPlay
+		showName("ANNO & KAEDE &\nREAHA");
+		showBust(annoBustDisplay(true), "KAEDE_NUDE", reahaBustDisplay(true));
+		
+		output("“Come on, girls! Leave Reaha alone,” you command, holding their leashes taut. Eventually, the puppy pair relent, popping off Reaha's boobs and leaving the milk-jugs leaking onto the floor. You give Reaha's butt a slap in passing and leave her to recover while you take your faithful hounds out towards the airlock.");
+		output("\n\n");
+	} 
+	else 
+	{
+		//[Next] from No Reaha crew leads here.
+		showName("ANNO &\nKAEDE");
+		showBust(annoBustDisplay(true), "KAEDE_NUDE");
+	}
 	
-	processTime(15 + rand(10));
+	output("The closer you get to the outside world, the more eagerly Anno's tail wags ");
+	if (flags["KAEDE_EXHIBITIONISM"] < 50) 
+		output("and the more resistant Kaede becomes. She pulls and tugs on her leash, digging her “paws” into the deck to try and keep you from dragging her out into public. But you've got plans for this puppy, and she isn't breaking character to ask you to stop!");
+	else 
+		output("and the harder Kaede's cock looks, bobbing between her legs with every four-legged steps. She's really getting into this!");
+	output("\n\nThe airlock cycles through, letting you lead Anno and Kaede out into the bustling docks. The snowy ausar lets out a cheery bark as she pads along beside you, drawing the attention of some of the spacers and dock-workers surrounding you. A mix of pride and arousal swells within you, feeling all their eyes on you... and the two naked ausar trotting along at your heels.");
+	output("\n\nThere's no sense getting yourself in actual trouble, so you keep it brief: one loop around the deck, enough to get the girls' hearts beating, and show them off in all their submissive beauty to the accumulated spacers. By the time you're back at the airlock, there's barely a set of trousers in the docks not tented by a boner, or a blouse not made lurid by diamond-stiff nipples poking through. A few of the onlookers throw catcalls at you, or reach down and pet the girls when you pass by -- or grab their asses, in some cases. Kaede's throbbing red rocket even gets a stroke from a particularly stacked dzaan.");
+	output("\n\nBy the time you get back to the airlock, Kaede's painfully hard, beading up with pre, and Anno's thighs are slick with her shameless excitement. The way they're eyeing each other, it's gonna be hard to keep them off each other... but you don't mind letting them paw and grope at each other, nuzzling into their tails and licking at what's underneath until the airlock cycles back, and the pair of them go tumbling in, already wrestling to see what of them's going to be top dog.");
+	output("\n\nThe airlock's barely closed before Anno's face is pushed onto the deck, ass raised and tail waving. You just release Kaede's leash and let her loose to lunge up onto her lover's back, slamming her dick into Anno's waiting quim. The snowy ausar howls with pleasure, squirming underneath the suddenly-feral Kaede while she's pounded into the deck. Kaede's tail thrashes eagerly behind the tangle of naked, sweaty bodies, thumping against the bulkheads with every thrust of her slender hips.");
+	output("\n\nLooks like you got yourself a breeding pair of bitches! At the rate they're going, you might just end up with a litter of puppies. Wouldn't that be something?");
+	output("\n\nWell, these doggies have been so good, you decide they deserve a ");
+	
+	if (pc.hasCock() || pc.lowerUndergarment.hardLightEquipped) 
+	{
+		output("bone.");
+		output("\n\nYou toss your gear aside and slide down onto your [pc.knees], presenting your [pc.cockOrStrapon] to Anno. The snowy slut pants, leaving her mouth open for you to exploit. Your dick slides forward, sliding over her oh-so-wet tongue and down her throat. She's as dutiful as ever, lavishing your length with loving licks and squeezing your crown with her throat, milking you as surely as her pussy must be working Kaede behind her. Your hands find their way to Anno's jackal-like ears, scratching that sweet spot between them until she's moaning -- and dripping between her legs, though that's just as much her stud's doing as it is yours");
+	}
+	else
+	{
+		output("juicy treat.")
+		output("\n\nYou toss your gear aside and turn around, bracing yourself against the bulkhead and presenting your [pc.vagOrAss]. Anno knows just what to do with a needy hole like yours, and pretty soon there's a long, wet ausar tongue flicking across your outer flesh, probing into your hungry depths when you reach back and start scratching between those big, perky ears of hers.");
+	}
+
+	output("\n\nWhile you're enjoying your sloppy oral, Kaede's starting to grunt and huff on her girlfriend's back, digging her fingers into Anno's ribs as she maintains the awkward, bestial position. Classic doggystyle, retro by several million years of evolution, but still good enough to leave the bitch on bottom moaning like a whore, begging with her body for more hard dick. A request that Kaede's lizard-brain is more than happy to indulge, slamming her throbbing red rocket home again and again until you feel Anno tense, and Kaede's hips stop abruptly while pushed up against her ass. ");
+	output("\n\nKnotty girl! You reach back and tousle Kaede's hair, enjoying the lust-addled expression she's sporting, tongue lolled out of her mouth. You can almost smell the cum leaking out of her puppy pecker, filling Anno's cunt with all that precious shemale cream.");
+	
+	output("\n\nAnd it's about time Anno earned herself another orgasm");
+	if (pc.hasCock()) 
+		output(" to splatter her face! ");
+	else
+		output(". ");
+	output("You plant your hand on Anno's head, pulling her flush against your [pc.skinFurScales] when you start to feel that familiar, wonderful need boiling up in your loins. There's been more than enough foreplay; you don't try to hold it back, letting Anno's wandering tongue drive you to orgasm. ");
+	if (pc.hasCock() || pc.hasVagina()) 
+		output("Cum splatters her face, smearing across her lush lips before dripping down onto the deck.");
+	output("You slump against the nearest bulkhead, letting pleasure roll through you until your moans echo throughout the ship.");
+	
+	output("\n\nWhen your climax finally passes, you let the girls' leashes go and slide down to a sitting position on the bulkhead, trying to catch your breath. A moment later, though, Anno's scooted herself up next to you, rolling onto her side so that her head rests in your lap, and Kaede -- still bound by the knot to her pussy -- nuzzles into your thigh behind her.");
+	output("\n\nGood girls...");
+
+	processTime(5 + rand(10));
 	pc.orgasm();
+	anno.orgasm();
+	
+	annoSexed(1);
+	flags["KAEDE_FUCKED"]++;	//has to exist because kaede has at least 10 exhibitionism
+	IncrementFlag("ANNO_X_KAEDE_THREESOMED");
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
