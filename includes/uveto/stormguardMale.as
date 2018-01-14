@@ -1245,6 +1245,7 @@ public function lossToSGWithHeatPussy():void
 {
 	clearOutput();
 	showStormguard(true);
+	author("Night Trap");
 	var x:int = 0;
 	for(var i:int = 0; i < pc.totalVaginas(); i++)
 	{
