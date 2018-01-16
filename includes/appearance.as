@@ -1,6 +1,7 @@
 ﻿import classes.Characters.PlayerCharacter;
 import classes.Creature;
 import classes.StorageClass;
+import classes.GameData.Pregnancy.PregnancyManager;
 public function pcAppearance(e:MouseEvent = null):void 
 {
 	if (pc.short.length == 0) return;
@@ -3292,6 +3293,7 @@ public function crotchStuff(forTarget:Creature = null):void
 			else output2("the massive hole that is your " + target.vaginaDescript(0) + ".");
 			//Flavor
 			vaginaBonusForAppearance(null, 0, false);
+			wombBonusForAppearance(null, 0);
 		}
 		//MULTICOOCH!
 		else if(target.vaginaTotal() > 1) 
@@ -3385,6 +3387,7 @@ public function crotchStuff(forTarget:Creature = null):void
 						output2(".");
 					}
 				}
+				wombBonusForAppearance(null, temp);
 				temp++;
 			}
 			if(target.matchedVaginas())
@@ -3442,6 +3445,8 @@ public function crotchStuff(forTarget:Creature = null):void
 		else if(assSwellBonus >= 3) output2(" Your soft and puffy " + (target.hasPlumpAsshole() ? "donut of a pucker protrudes obscenely, like a pubic mound that rubs against your buns with every movement you make" : "pucker protrudes obscenely between your buns") + ".");
 		else if(assSwellBonus >= 2) output2(" Your soft " + (target.hasPlumpAsshole() ? "donut of a pucker protrudes obscenely, almost like a miniature pubic mound that rubs against your buns with every step you take" : "pucker protrudes obscenely between your buns") + ".");
 		else if(assSwellBonus >= 1) output2(" Your pucker is inhumanly soft and puffy, a " + (target.hasPlumpAsshole() ? "beckoning donut with a perfect little hole in the middle" : "little swollen between your buttcheeks") + ".");
+		
+		wombBonusForAppearance(null, 3);
 	}
 	
 	if(forTarget != null) setTarget(null);
@@ -3924,6 +3929,31 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 	{
 		if(!eachOne) output2(" Moving its internal muscles, you know it has the ability to lay eggs into another orifice.");
 		else output2(" Moving their internal muscles, you know they have the ability to lay eggs into another orifice.");
+	}
+	
+	if(forTarget != null) setTarget(null);
+}
+
+public function wombBonusForAppearance(forTarget:Creature = null, x:int = 0):void
+{
+	if(forTarget != null) setTarget(forTarget);
+	
+	// Womb contents
+	if(target.isPregnant(x))
+	{
+		var pData:PregnancyData = target.pregnancyData[x];
+		if(pData.pregnancyBellyRatingContribution >= 10 && pData.pregnancyIncubation > -1)
+		{
+			output2(" Its " + (x < 3 ? "womb" : "inside") + " is currently gestating ");
+			switch(PregnancyManager.getPregnancyChildType(target, x))
+			{
+				case GLOBAL.CHILD_TYPE_LIVE: output2(pData.pregnancyQuantity == 1 ? "a child" : "children"); break;
+				case GLOBAL.CHILD_TYPE_EGGS: output2(pData.pregnancyQuantity == 1 ? "an egg" : "eggs"); break;
+				case GLOBAL.CHILD_TYPE_SEED: output2(pData.pregnancyQuantity == 1 ? "a seedling" : "seedlings"); break;
+				default: output2("an unknown mass"); break;
+			}
+			output2(".");
+		}
 	}
 	
 	if(forTarget != null) setTarget(null);
