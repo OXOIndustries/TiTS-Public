@@ -412,7 +412,7 @@ public function jerynnAllowFucked():void
 	{
 		output(" move between your [pc.thighs]");
 	}
-	if (pc.hasVagina())
+	if (pc.totalVaginas() > 0 && pc.blockedVaginas() == 0)
 	{
 		output(", the tips of her claws tickling the lips of your [pc.pussy]");
 	}
@@ -436,7 +436,7 @@ public function jerynnAllowFucked():void
 	output("\n\nShade casts itself over you as she looms over you, the heat of the taurs underbelly radiating against your back shortly before the glassy-smooth scales make contact with your [pc.skinFurScales]. The knees of her forelegs drop against the floor to either side of your head as Jerynn settles her weight atop you, smothering you under her much larger frame. A thick, throbbing mass of heat finds itself wedged between your [pc.buttcheeks] in the process. It tugs at your [pc.asshole] whenever the taur moves, sliding over your [pc.skinFurScales] and leaving a trail of wetness.");
 
 	output("\n\nWith a heave Jerynn finds enough space to slide her cock out from between your bodies. It doesn’t go without the touch of your flesh for long though, its spade-like tip soon wedged against your [pc.vagOrAss]. She keeps it there, almost taunting you with the inevitable thrust that will eventually burrow it into your body. Carefully measured pressure tricks you into thinking she’s going to <i>finally</i> push forward... only for the penetration to never come. Instead, all you have is the slowly pooling heat of the taurs precum dribbling into your");
-	if (!pc.hasVagina()) output(" ass");
+	if (pc.totalVaginas() == 0 || pc.blockedVaginas() > 0) output(" ass");
 	else output(" cunt");
 	output(" and the incessant throbbing of her cock as it sits on the very precipice of fucking you.");
 
@@ -466,32 +466,40 @@ public function jerynnAllowFucked():void
 	output("\n\n<i>“Well, seeing as you asked so </i>nicely<i>,”</i> she half-laughs.");
 
 	output("\n\nFinally, blissfully, she starts to push forward, the angled head of her cock popping into you with little fuss, especially with the aid of the liberal pool of pre already coating your insides.");
-	if (pc.hasVagina()) pc.cuntChange(pc.gapestVaginaIndex(), jerynn.biggestCockVolume());
+	if (pc.totalVaginas() > 0 && pc.blockedVaginas() == 0) pc.cuntChange(pc.gapestVaginaIndex(), jerynn.biggestCockVolume());
 	else pc.buttChange(jerynn.biggestCockVolume());
 	//Not super gapey:
-	if ((pc.hasVagina() && pc.gapestVaginaLooseness() < 5) || (!pc.hasVagina() && pc.ass.looseness() < 5))
+	var gapeness:Number = pc.ass.looseness();
+	if (pc.totalVaginas() > 0 && pc.blockedVaginas() == 0) gapeness = pc.gapestVaginaLooseness();
+	if (gapeness < 5)
 	{
 		output(" It’s slow going, but the taur maintains an even pace as she gradually reams you out with her cock. Its shape makes for the perfect tool to burrow into a tight");
-		if (!pc.hasVagina()) output(" ass");
-		else output(" pussy");
+		if (pc.totalVaginas() > 0 && pc.blockedVaginas() == 0) output(" pussy");
+		else output(" ass");
 		output(" like yours, an increasingly large mass of dick being forced into you with the minimum of trouble.");
 	}
 	else
 	{
 		output(" Your");
-		if (!pc.hasVagina()) output(" ass");
-		else output(" pussy");
+		if (pc.totalVaginas() > 0 && pc.blockedVaginas() == 0) output(" pussy");
+		else output(" ass");
 		output(" seems insatiable, even in the face of such a monstrously large cock. The taur just slides right in, inch after inch swallowed by your body like your");
-		if (!pc.hasVagina()) output(" ass");
-		else output(" cunt");
+		if (pc.totalVaginas() > 0 && pc.blockedVaginas() == 0) output(" cunt");
+		else output(" ass");
 		output(" had been purpose-built to sheathe her cock.");
 	}
+
+	//Fen rejiggered this in. Any blocked vaginas forces bootyhole usage.
+	var hasVagina:Boolean = false;
+	if (pc.totalVaginas() > 0 && pc.blockedVaginas() == 0) hasVagina = true;
+
+
 	output(" Her rear legs shuffle forward as she feeds dick into you");
 	if (pc.isBiped()) output(", nudging between your already splayed-wide thighs to keep you as spread and open as possible");
 	output(".");
 
 	output("\n\nJerynn coos deeply when her sheath kisses your");
-	if (!pc.hasVagina())
+	if (!hasVagina)
 	{
 		output(" puckered");
 		if (!pc.hasPlumpAsshole()) output(" ring");
@@ -502,19 +510,19 @@ public function jerynnAllowFucked():void
 		output(" stretched-taut labia");
 	}
 	output(". Her hips grind from side to side, almost as if testing the true pliability of your [pc.vagOrAss] to handle her draconic cock. The motion teases your");
-	if (pc.hasCock() && !pc.hasVagina()) output(" prostate");
-	else if (pc.hasVagina()) output(" g-spot");
+	if (pc.hasCock() && !hasVagina) output(" prostate");
+	else if (hasVagina) output(" g-spot");
 	else output(" flesh in the most sensitive places");
 	output(" and drags her silky-smooth scales across your");
 	if (pc.hasScales()) output(" own");
 	else output(" [pc.skinFurScales]");
 	output(", serving to illustrate your current position; her body has you smothered securely against the floor, her legs pinning you to the edge of the pillow-lined pit and you have two feet of cock buried in your");
-	if (!pc.hasVagina()) output(" ass");
+	if (!hasVagina) output(" ass");
 	else output(" pussy");
 	output(".");
 
 	output("\n\nWhen she starts to pull back you almost feel yourself get dragged along with her cock. On instinct your hands wrap around the taurs sculpted forelegs for support, anchoring yourself in position whilst she draws the throbbing mass from your body. The support proves comforting when she reverses direction, forcing herself back into you far, far faster than during her initial reaming of your");
-	if (!pc.hasVagina()) output(" ass");
+	if (!hasVagina) output(" ass");
 	else output(" cunt");
 	output(". Her next thrust is faster still, enough momentum for her heavy balls to");
 	if (pc.balls > 0)
@@ -544,30 +552,30 @@ public function jerynnAllowFucked():void
 	output(" adding a little extra touch just as the coursing pleasure of her cock grinding through you fades at the end of her strokes.");
 
 	output("\n\nThe constantly increasing pace of the taurs savage fucking skips a beat when a bulb at the base of her cock begins to inflate. If only for a moment at least, a little extra force squeezing the taurs rapidly engorging knot into you. Your grip on her forelegs proves fruitful when she tries to pull back out though, your");
-	if (!pc.hasVagina()) output(" ass");
+	if (!hasVagina) output(" ass");
 	else output(" pussy");
 	output(" trying in vain to hold on to Jerynn’s knot. It slips free with a lewd <i>‘pop’</i> with a little struggle on both your parts... only to slam back into your [pc.vagOrAss] even harder with her next thrust.");
 
 	output("\n\nYou’re close, oh so close. Torn between Jerynn literally breaking you before she orgasms and her burgeoning knot grinding your");
 	if (pc.hasClit()) output(" clit");
-	else if (pc.hasVagina()) output(" g-spot");
+	else if (hasVagina) output(" g-spot");
 	else if (pc.hasCock()) output(" prostate");
 	else output(" sensetive walls");
 	output(" to dust, one final thrust is all it takes to set the taur off. Cum barrels up her draconic cock and into you, the first splash of liquid heat thundering into your");
-	if (!pc.hasVagina()) output(" guts");
+	if (!hasVagina) output(" guts");
 	else output(" womb");
 	output(" the last little touch needed to push you over the edge too. More pulses jet into your");
-	if (!pc.hasVagina()) output(" ass");
+	if (!hasVagina) output(" ass");
 	else output(" cunt");
 	output(" as your body does its utmost to milk every last drop it can from the taur, gurgles soon building deep in your [pc.belly].");
 
 	output("\n\nTrapped between the taur and the floor so securely, there isn’t a lot of space for her prodigious load to fill and it soon starts to spurt out of the tight seal between her engorged knot and your taut");
-	if (!pc.hasVagina()) output(" asshole");
+	if (!hasVagina) output(" asshole");
 	else output(" pussy");
 	output(". The pulses of taur-spunk flowing into your body to displace the cloying load already contained offers just enough sensation to drag your orgasm on longer, stars filling your vision as you ride out the incredible high.");
 
 	output("\n\nAfter a moment’s breath-catching - on both your parts - she");
-	if (!pc.hasVagina()) output(" gingerly");
+	if (!hasVagina) output(" gingerly");
 	output(" pulls away, her cock slowly sliding free over the course of a few stuttering steps. She collapses with a thud into the pit behind you, thoroughly satisfied. You though, feel fit to have a little nap right where you lie. Maybe when you wake up you’ll actually be able to feel your legs again....");
 
 	output("\n\nA bright flash, bright enough to hurt your eyes even through closed eyelids, startles you.");
@@ -962,9 +970,9 @@ public function jerynnUnderslungChanceIt():void
 	output("\n\nThe winds set into you quickly and you find it a struggle to keep your eyes open. Even inside the blanket, you can feel the bitter cold forming icicles on your face again, robbing what little sense of touch you had managed to regain in short order.");
 	
 	output("\n\nWith little to really protect you from the cold, it’s only minutes before you’re out again, surrendering to the frozen tundra. At least your frozen body won’t be left out here under");
-	// 9999
-	output(" a crystal clear sky");
-	//output(" an angry, vengeful sky");
+	// Fen note: KILLED THE 9's MUTHA HUMPAHS
+	if(!uvetoCloudy() && !uvetoBlizzard()) output(" a crystal clear sky");
+	else output(" an angry, vengeful sky");
 	output(" you muse morbidly....");
 
 	processTime(1200 + rand(240));
@@ -1086,13 +1094,16 @@ public function jerynnUnderslungShareII():void
 	showJerynn(false, true);
 
 	var vIdx:int = pc.gapestVaginaIndex();
+	//Fen rejiggered this in. Any blocked vaginas forces bootyhole usage.
+	var hasVagina:Boolean = false;
+	if (pc.totalVaginas() > 0 && pc.blockedVaginas() == 0) hasVagina = true;
 
 	output("You’re not sure how long you were asleep for, but something bouncing against your");
-	if (!pc.hasVagina()) output(" [pc.ass]");
+	if (!hasVagina) output(" [pc.ass]");
 	else output(" [pc.pussy "+vIdx+"]");
 	output(" drags you back to the land of the living. Every step your tauric-taxi takes comes with another jounce against your");
 	if (pc.hasCock()) output(" unmentionables");
-	else if (!pc.hasVagina()) output(" ass");
+	else if (!hasVagina) output(" ass");
 	else output(" pussy");
 	output(", as a distinctly masculine-tinged musk seeps into your nose to tickle at the back of your throat.");
 
@@ -1101,7 +1112,7 @@ public function jerynnUnderslungShareII():void
 	output("\n\nThe radiant heat from the tip of it offers a tantalizing touch, especially when you rock back-and-forth just right for");
 	if (pc.vaginas.length > 1 || pc.totalClits() > 1) output(" one of");
 	output(" your still icy-cold");
-	if (!pc.hasVagina()) output(" [pc.asshole]");
+	if (!hasVagina) output(" [pc.asshole]");
 	else if (pc.totalClits() >= 1)
 	{
 		output(" [pc.clit]");
@@ -1117,20 +1128,20 @@ public function jerynnUnderslungShareII():void
 	else output(" but it’s too late. Not like you can do anything about it either, trussed up under her body like you are.");
 
 	output("\n\nHer steps suddenly come to a halt, jouncing you around harder than you’ve become accustomed to. Your weight shifts backward as she bends her rear legs, positioning your");
-	if (!pc.hasVagina()) output(" [pc.asshole]");
+	if (!hasVagina) output(" [pc.asshole]");
 	else output(" [pc.vagina "+vIdx+"]");
 	output(" for a near perfect seal against her scaly sheath. The now constant exchange of heat into your slightly flushed flesh mirrors a teasing cold on Jerynn’s end. A cold touch serves as impromptu foreplay as the slow encroachment of a firm, pointed tip working its way into your body solidifies the reality of your current position. A living, breathing, portable onahole.");
 
 	output("\n\nA few inches sink into you, almost unbearably slowly, the steep angle of the tip quickly shrinking into a manageable thickness along the length following behind. It isn’t long before the first of many powerful humps up into you arrives, launching you up and off the hot flesh an inch or so before you settle back into place against the sheath, slightly more of the length disappearing into your");
-	if (!pc.hasVagina()) output(" ass");
+	if (!hasVagina) output(" ass");
 	else output(" pussy");
 	output(" in the process.");
 
 	output("\n\nJerynn’s angular cock just keeps going, on and on, deeper and deeper into your core, bringing a heat deep into the center of your body. The draconic taur’s powerful heartbeat pulses through it,");
-	if ((!pc.hasVagina() && pc.ass.looseness() < 5) || (pc.hasVagina() && pc.gapestVaginaLooseness() < 5)) output(" forcing your body to accept an increasingly large pillar of cockflesh");
+	if ((!hasVagina && pc.ass.looseness() < 5) || (hasVagina && pc.gapestVaginaLooseness() < 5)) output(" forcing your body to accept an increasingly large pillar of cockflesh");
 	else output(" a flush of fresh warmth coursing along the pillar of cockflesh");
 	output(", heating you from the inside out. There’s no telling really just how much dick is inside you, or even how much more there is to go; it’s all you can do to moan inside your warm, wooly prison, unsure even to yourself if it’s the additional heat staving off the cold that you’re enjoying so much, or the simple fact that you’re slowly, inescapably becoming a living cocksock.");
-	if (pc.hasVagina())
+	if (hasVagina)
 	{
 		pc.cuntChange(vIdx, jerynn.biggestCockVolume());
 	}
@@ -1140,10 +1151,10 @@ public function jerynnUnderslungShareII():void
 	}
 
 	output("\n\n<i>“");
-	if ((!pc.hasVagina() && pc.ass.looseness() < 5) || (pc.hasVagina() && pc.gapestVaginaLooseness() < 5)) output("Tight but deep");
+	if ((!hasVagina && pc.ass.looseness() < 5) || (hasVagina && pc.gapestVaginaLooseness() < 5)) output("Tight but deep");
 	else output("Perfect fit");
 	output(", just how I like it,”</i> she hisses, the sound of her voice partially muffled through the coat. Your ride grunts and raises her rear back up from the floor, once again beginning to make progress through the icy tundra. Every step bouncing you around, fucking your");
-	if (!pc.hasVagina()) output(" [pc.ass]");
+	if (!hasVagina) output(" [pc.ass]");
 	else output(" [pc.vagina "+vIdx+"]");
 	output(" in the process....");
 
@@ -1158,13 +1169,16 @@ public function jerynnUnderslungShareIII(vIdx:int):void
 	clearOutput();
 	showJerynn(false, true);
 
+	var hasVagina:Boolean = false;
+	if (pc.totalVaginas() > 0 && pc.blockedVaginas() == 0) hasVagina = true;
+
 	output("Without the ability to see outside of the coat, all you have to focus on is the seemingly never ending quantity of cock burrowing into you. It feels like it’s wormed its way all the way");
-	if (!pc.hasVagina()) output(" up to your stomach");
+	if (!hasVagina) output(" up to your stomach");
 	else output(" into your womb");
 	output(", allowing the taur to slowly drip hot precum deep into you. The cold still settled into your bones seems to recede on two fronts because of it; between the coat and Jerynn’s body heat, your outer body already feels so much more <i>alive</i>, but the expanding volume of trapped cock-milk works on you from the inside out.");
 
 	output("\n\nEven with how restricted the ‘thrusts’ are, you’re gradually building up to what promises to be a pleasant orgasm thanks to her cock slowly thickening inside you. Molding you around it, forcing your body to conform to its exacting demands. Additional girth grants it extra purchase against your");
-	if (!pc.hasVagina()) output(" [pc.asshole]");
+	if (!hasVagina) output(" [pc.asshole]");
 	else output(" [pc.vagina "+vIdx+"]");
 	output(", the mass it needs to grind into every bundle of sensitive nerves it can find.");
 	if (pc.hasCock()) output(" Your [pc.cock] likewise rubs into the soft interior of the coat, trapped between your body and the garment, frotting itself between the tickly touch of the wool and your [pc.skinFurScales].");
@@ -1173,30 +1187,30 @@ public function jerynnUnderslungShareIII(vIdx:int):void
 	if (!pc.isSubby() && jerynnPetstuffLevel() < jerynnPetstuffMax() / 2)
 	{
 		output(" Accepting of the fact you’re slowly being turned into a mockery of a hot water bottle as the thick mast of cock delivers a constant drizzle of pre-spunk into your");
-		if (!pc.hasVagina()) output(" guts");
+		if (!hasVagina) output(" guts");
 		else output(" womb");
 		output(".");
 	}
 	else
 	{
 		output(" Excited by the prospect of your");
-		if (!pc.hasVagina()) output(" guts");
+		if (!hasVagina) output(" guts");
 		else output(" womb");
 		output(" being basted with searing hot dragon spunk, of being turned into little more than a cum-filled hot water bottle.");
 	}
 
 	output("\n\nEventually your backwards-motion becomes more restricted, the full length of Jerynn’s cock no longer capable of sliding so effortlessly into your");
-	if (!pc.hasVagina()) output(" ass");
+	if (!hasVagina) output(" ass");
 	else output(" pussy");
 	output(". A handful more steps reveals the reason why; a rapidly burgeoning bulb of flesh at the base of her cock, grown too large to slip back inside of you, instead lightly ");
-	if (!pc.hasVagina()) output("pounding against the fleshy donut of your asshole");
+	if (!hasVagina) output("pounding against the fleshy donut of your asshole");
 	else if (pc.totalClits() > 1) output(" grinding into each and every one of the clits surrounding your cock-stuffed cunt");
 	else if (pc.totalClits() == 1) output(" grinding into the clit of your cock-stuffed cunt");
 	else output(" pounding against the lips of your cock-stuffed cunt")
 	output(". Each wet slap it makes against your [pc.skinFurScales] leaves a larger, firmer impression than the last as it continues to grow.");
 
 	output("\n\nYour world moves upright again as the taxi-taur sits back on her haunches. The angle leaves you sat precariously against the ever fattening knot. With all of your weight resting against the bulb, your flesh slowly stretches wider, gradually allowing the cock-lock to worm its way deeper into your body. Your progress is slow, evidently too slow for Jerynn, her hand coming to rest atop your head through the coat, an extra little push hastening your acceptance of her knot. It’s only a few seconds with the help of the extra force before you jerk down, your cock-crammed");
-	if (!pc.hasVagina()) output(" ass");
+	if (!hasVagina) output(" ass");
 	else output(" cunt");
 	output(" swallowing the bulb.");
 
@@ -1219,12 +1233,12 @@ public function jerynnUnderslungShareIII(vIdx:int):void
 	}
 
 	output("\n\nA swell of pride wells up in your chest and you squeeze down around her knot involuntarily. Her hips jerk upward, shifting you around, but you’re locked firmly in place now, no longer sawing back and forth on her dick. You can better feel the heat oozing out of it though, especially at the tip, where it continues to deposit a slowly enlarging bubble of pre-spunk right into your");
-	if (!pc.hasVagina()) output(" guts");
+	if (!hasVagina) output(" guts");
 	else output(" womb");
 	output(".");
 
 	output("\n\nShe stands and takes off again, the knot wedged into your hole dragging you around with the motions of her body now. It’s still getting larger, and the jerky movement tweaks your insides in just the right way to make you clamp down around it. Her stride becomes commensurately uneven as her steps feed into your clenches around her knot, your body automatically milking her shaft thanks her knot grinding into your");
-	if (pc.hasVagina()) output(" g-spot.");
+	if (hasVagina) output(" g-spot.");
 	else if (pc.hasCock()) output(" prostate.");
 	else output(" hole.");
 
@@ -1241,10 +1255,10 @@ public function jerynnUnderslungShareIII(vIdx:int):void
 	}
 
 	output("\n\nAll you can do is hang there impaled on her cock as her stride resumes, your belly slightly swollen with the weight of her cum. Her dick never manages to fully soften, staying safely wrapped up in your");
-	if (!pc.hasVagina()) output(" guts");
+	if (!hasVagina) output(" guts");
 	else output(" pussy");
 	output("; the feedback loop of her knot hitting all the right places has your tunnel milking her like a pro, in turn keeping her knot inflated enough to remain tied in your");
-	if (!pc.hasVagina()) output(" [pc.asshole].");
+	if (!hasVagina) output(" [pc.asshole].");
 	else output(" [pc.vagina "+vIdx+"].");
 
 	processTime(40+rand(20));
@@ -1259,6 +1273,9 @@ public function jerynnUnderslungShareIV():void
 {
 	clearOutput();
 	showJerynn(false, true);
+
+	var hasVagina:Boolean = false;
+	if (pc.totalVaginas() > 0 && pc.blockedVaginas() == 0) hasVagina = true;
 
 	output("You lose track of how many loads Jerynn has pumped into you; for all you know, you’ve been hanging under her for weeks, slowly bloated with more and more spunk. At some point her tireless balls pumped your [pc.belly] full enough for you to rub against the inside of her coat");
 	if (pc.hasCock()) output(", trapping your [pc.cocks] between your [pc.skinFurScales] and the soft wool");
@@ -1280,7 +1297,7 @@ public function jerynnUnderslungShareIV():void
 	flags["UVETO_JERYNN_RESCUE_LAST"] = days;
 	
 	pc.lust(10);
-	if (pc.hasVagina())
+	if (hasVagina)
 	{
 		pc.cuntChange(pc.gapestVaginaIndex(), jerynn.biggestCockVolume(), false);
 		pc.loadInCunt(jerynn, pc.gapestVaginaIndex());
@@ -1348,6 +1365,8 @@ public function jerynnPetstuffHerPlace(isLemmeOut:Boolean = false):void
 	clearOutput();
 	showJerynn(false, true);
 
+	var hasVagina:Boolean = false;
+	if (pc.totalVaginas() > 0 && pc.blockedVaginas() == 0) hasVagina = true;
 	trace("Her Place");
 	
 	if (jerynnPetstuffLevel() == 0)
@@ -1369,7 +1388,7 @@ public function jerynnPetstuffHerPlace(isLemmeOut:Boolean = false):void
 	output(" moving with purpose, but there’s no way to tell where, really. After all, you’re just along for the ride. Voices distantly surround you, the faint hint of music playing in the background. Eventually a door slams closed behind you, cutting off the ever-present gusting wind and silencing most of the hustle and bustle of the outpost, leaving only the gentle hum of electronics.");
 
 	output("\n\nA few steps later and Jerynn comes to a stop, another door closing behind. You lurch somewhat, moving vertically, the many, many loads of spunk bubbling around in your");
-	if (!pc.hasVagina()) output(" gut");
+	if (!hasVagina) output(" gut");
 	else output(" womb");
 	output(" swilling to-and-fro in the process; an elevator would be a safe bet. A similar lurch jostles you around as the movement stops and she takes off walking again. Another pause, another door, but this time she sighs heavily as she comes to a stop, finally.");
 
@@ -1398,12 +1417,12 @@ public function jerynnPetstuffHerPlace(isLemmeOut:Boolean = false):void
 	if (pc.hasFur()) output(" strong enough to show through your fur");
 	else output(" strong enough to tinge your scales");
 	output(" is all you can respond with as she bends her knees, finally lowering you to the floor. Your elbows take some of your weight, but your gut is just too full for your knees to reach the floor. A barely audible click and the taur starts to stand back up, her knot tugging at your");
-	if (!pc.hasVagina()) output(" [pc.ass]");
+	if (!hasVagina) output(" [pc.ass]");
 	else output(" [pc.vagina]");
 	output(". It doesn’t come easy and it takes her a few strong jerks before it starts to move, setting you wobbling on your self-made waterbed.");
 
 	output("\n\nRough, cold pads softly press against your [pc.skinFurScales] as the taur brings one of her hind legs to bear against your back; one final tug with a little extra pressure squeezing you into the floor with her foot and her huge knot <i>finally</i> rushes out of your tender");
-	if (!pc.hasVagina()) output(" ass");
+	if (!hasVagina) output(" ass");
 	else output(" pussy");
 	output(", a gush of still hot spunk jetting out of you after it. Inch after inch of half-rigid cock follows the knot, leaving an odd hollow in its wake, more jizz oozing from your well-fucked passage.");
 
@@ -1988,18 +2007,21 @@ public function jerynnPetstuffWakeUp(responses:Object = null):void
 		
 		output("\n\nHer tail urges you to move up her body, a somewhat troublesome task without the proper use of your limbs or ground to seek purchase against. Instead you take to worming your way along her body, squeezing around the dragon dick stuffed under you in the process- a body-sized handjob jumps out as the most appropriate way to describe the process as every inch wriggled along its length leaves a similarly sized trail of wetness on your [pc.skinFurScales] in kind.");
 		
+		var hasVagina:Boolean = false;
+		if (pc.totalVaginas() > 0 && pc.blockedVaginas() == 0) hasVagina = true;
+		
 		output("\n\nThe tip slides down your body as you make progress until reaching the tipping point; springing free of the body-on-body fuck-socket, the angled glans");
-		if (pc.hasVagina()) output(" grazing through your labia");
+		if (hasVagina) output(" grazing through your labia");
 		else output(" escapes the touch of your flesh and bounces back, tapping you right on the butthole");
 		output(". Memories of the whole thing buried in your flesh come crashing back, doubly so when her cock finally settles into place with the tip tickling your");
-		if (pc.hasVagina()) output(" [pc.cunt].");
+		if (hasVagina) output(" [pc.cunt].");
 		else output(" [pc.asshole].");
 		
 		output("\n\nEven after a night of sleep, your fuckhole still hasn’t recovered fully from the brutal stretching at the hands of Jerynn... making it all the easier to slide the tip of her bestial dick back into it and greedily gobbling down almost a foot of it under your own power. The back-half though, that takes some effort, having to work yourself back and forth- fucking yourself on her cock- to gather enough momentum with your restrained limbs to slip another inch past the gates of your");
-		if (!pc.hasVagina()) output(" ass.");
+		if (!hasVagina) output(" ass.");
 		else output(" pussy.");
 		
-		if (pc.hasVagina())
+		if (hasVagina)
 		{
 			pc.cuntChange(pc.gapestVaginaIndex(), jerynn.biggestCockVolume());
 			pc.loadInCunt(jerynn, pc.gapestVaginaIndex());
@@ -2011,12 +2033,12 @@ public function jerynnPetstuffWakeUp(responses:Object = null):void
 		}
 		
 		output("\n\nYou build up into a good rhythm and slowly work yourself toward the hilt between moans, progress slowing considerably the closer you get to your target. Mistress Jerynn offers you no help on the way, leaving the job of coring");
-		if (!pc.hasVagina()) output(" your body almost to your stomach");
+		if (!hasVagina) output(" your body almost to your stomach");
 		else output(" your womb");
 		output(" on her cock entirely down to you. You’re so close! Just a few more inches!");
 		
 		output("\n\nAnd then you bump into the already half-inflated knot. Again and again you push back against it, and over and over your");
-		if (!pc.hasVagina()) output(" [pc.ass]");
+		if (!hasVagina) output(" [pc.ass]");
 		else output(" [pc.cunt]");
 		output(" refuses to yield enough to permit it entrance. You try and try and try but just can’t find the leverage required to stuff the throbbing thing inside. <i>You</i> won’t be satisfied until you’ve taken the whole thing because you know <i>Mistress</i> won’t be satisfied until every inch of her dick is buried inside her pet.");
 		
@@ -2045,10 +2067,13 @@ public function jerynnPetstuffOptIn():void
 	clearOutput();
 	showJerynn(true, true);
 
+	var hasVagina:Boolean = false;
+	if (pc.totalVaginas() > 0 && pc.blockedVaginas() == 0) hasVagina = true;
+
 	output("[pc.BarkMeow]!");
 	
 	output("\n\nHer tail <i>immediately</i> throws all of its power behind a firm tug, your limbs scrabbling about against her scales in cooperation. It’s a tight fit, but with a lot of squeezing her knot <i>finally</i> thunders into your");
-	if (!pc.hasVagina()) output(" ass");
+	if (!hasVagina) output(" ass");
 	else output(" cunt");
 	output(" with a lewd pop, satisfying fullness instantly blooming from your stretched-taut flesh. Job done, her tail slithers its way up your back and curves around your neck; a firm squeeze around it sending shivers down your spine.");
 	
@@ -2083,6 +2108,9 @@ public function jerynnPetstuffNoOptIn():void
 	clearOutput();
 	showJerynn(true, true);
 
+	var hasVagina:Boolean = false;
+	if (pc.totalVaginas() > 0 && pc.blockedVaginas() == 0) hasVagina = true;
+
 	output("<i>“No,”</i> you say with some measure of reservation.");
 	
 	output("\n\nHer tail unclasps its hold on the harness and slithers up your back to carefully wrap around your neck. She uses the grip to manhandle your body into doing as she pleases, pulling you forward to free a few inches of her cock before reversing course, stuffing it back into you with abandon.");
@@ -2090,14 +2118,14 @@ public function jerynnPetstuffNoOptIn():void
 	output("\n\n<i>“Then keep last night in mind, </i>pet<i>,”</i> she says between ragged breaths, nearing her tipping point. <i>“Sooner or later- hnnf- I’m going to have to take - fuck - take matters into my own hands for - hnng - </i>your<i> benefit, if not my own,”</i> she continues between grit fangs. <b>A stern tone underlines the true meaning of her words; a threat that, if she has to keep saving you as she is, then eventually she’s going to make sure you can’t put yourself in danger any longer.</b>");
 	
 	output("\n\nThe taur’s pace redoubles, your");
-	if (!pc.hasVagina()) output(" [pc.ass]");
+	if (!hasVagina) output(" [pc.ass]");
 	else output(" [pc.pussy]");
 	output(" bouncing against her huge knot with every thrust. She tugs you against it firmly as the tell-tale pulses of a thick load navigating the length of dickflesh thunder through you, a pool of hot, thick heat building deep in your");
-	if (!pc.hasVagina()) output(" guts");
+	if (!hasVagina) output(" guts");
 	else output(" womb");
 	output(" as she dumps another load into you. The weight building, bloating you up slightly is the final touch needed to throw you off the precipice of your own orgasm, your body clenching around her cock to milk it dry.");
 	
-	if (pc.hasVagina())
+	if (hasVagina)
 	{
 		pc.cuntChange(pc.gapestVaginaIndex(), jerynn.biggestCockVolume());
 		pc.loadInCunt(jerynn, pc.gapestVaginaIndex());
@@ -2109,7 +2137,7 @@ public function jerynnPetstuffNoOptIn():void
 	}
 	
 	output("\n\nWhen your sense returns, you’re upside down and still under the taur, her tail cradling you to keep you in position- to keep your cum-filled");
-	if (!pc.hasVagina()) output(" ass");
+	if (!hasVagina) output(" ass");
 	else output(" pussy");
 	output(" plugged with cock as she drags you to the bathroom. With some care she lowers you to the floor, her cock sliding out of you and followed by a lewd burp of spunk when the angled tip finally slips free.");
 	
@@ -2142,10 +2170,13 @@ public function jerynnPetstuffLongWalk():void
 	clearOutput();
 	showJerynn(false, true);
 
+	var hasVagina:Boolean = false;
+	if (pc.totalVaginas() > 0 && pc.blockedVaginas() == 0) hasVagina = true;
+
 	output("Jerynn saunters around, far more casually than the trip back to Irestead. Now that you’re back, she seems content to take her time. Your world is the inky blackness of the coat, the throbbing length of cock speared into your depths and the heavy musk of many, many orgasms. An occasional voice slips through, muffled somewhat by your wooly prison. The odd rumbling of some type of vehicle moving past.");
 
 	output("\n\nThe chattering of idle talk seems to get louder growing into a constant din, and at some point the constant noise of gusty winds seems to have died off. Constant footsteps echo around you, obviously not caused by the taur as they fall out of sync with the tooing-and-froing of her body, and her knot still grinding your");
-	if (!pc.hasVagina()) output(" [pc.ass]");
+	if (!hasVagina) output(" [pc.ass]");
 	else output(" [pc.pussy]");
 	output(" into submission. Something bumps into you through the coat and you suddenly feel... exposed");
 	if (pc.exhibitionism() >= 65) output(", a thrill running through your mind");
@@ -2153,13 +2184,13 @@ public function jerynnPetstuffLongWalk():void
 	if (pc.exhibitionism() >= 65)
 	{
 		output(" The realization somehow manages to turn you on even more; the thrill of being fucked in public with the people around you none-the-wiser courses through you. Your");
-		if (!pc.hasVagina()) output(" ass");
+		if (!hasVagina) output(" ass");
 		else output(" pussy");
 		output(" milks the fat knot plugging it and Jerynn almost stumbles in response. She wasn’t expecting you to enjoy this as much as you are!");
 	}
 
 	output("\n\nKnocks and prods jiggle you around near constantly, the hustle and bustle around you remaining constant throughout. You have to stifle a moan as best you can as the extra touches send you into overdrive, cumming in public, dangling beneath your tauric saviour. The undulations of your tunnel wrings her cock with fresh vigor and she comes to a stop briefly, another heavy load of spunk depositing itself deep in your");
-	if (!pc.hasVagina()) output(" bowels");
+	if (!hasVagina) output(" bowels");
 	else output(" cunt");
 	output(". A "+ (pc.mf("moan", "groan")) +" escapes your throat despite your best efforts and it only serves to double down on your orgasm, the chance that somebody might have heard you adding an extra kick to your pleasured, writhing body.");
 
@@ -2319,11 +2350,14 @@ public function jerynnPetstuffNightWithJerome():void
 	clearOutput();
 	showJerynn(true, true);
 
+	var hasVagina:Boolean = false;
+	if (pc.totalVaginas() > 0 && pc.blockedVaginas() == 0) hasVagina = true;
+
 	output("The trip back to");
 	if (jerynnIsMistress()) output(" Mistress’s");
 	else output(" Jerynn’s");
 	output(" apartment is a little more nerve wracking than usual, with the addition of another body being along for the trip. You can’t help but squeeze down around the draconic dick knotting your");
-	if (!pc.hasVagina()) output(" ass");
+	if (!hasVagina) output(" ass");
 	else output(" pussy");
 	output(" so securely. The taur certainly doesn’t seem shy about enjoying your actions to the fullest, moaning her appreciation for your ‘work’ between the odd stutter-step.");
 
@@ -2360,8 +2394,8 @@ public function jerynnPetstuffNightWithJerome():void
 	output("\n\nYou jolt forward in your bindings a moment later, momentarily stuffed full of slightly more taur-cock before your body swings forward with her momentum. And again, the extra mass of cock receding before you reach the apex of your swing. Another jostle and you’re set to jouncing around under the taur, the three intertwined bodies starting to fall into the rhythm set by your pendulous swings.");
 
 	output("\n\nThe taurs knot battering your");
-	if (pc.hasCock() && !pc.hasVagina()) output(" prostate");
-	else if (pc.hasVagina()) output(" g-spot");
+	if (pc.hasCock() && !hasVagina) output(" prostate");
+	else if (hasVagina) output(" g-spot");
 	else
 	{
 		if (pc.hasPlumpAsshole()) output(" puffy donut");
@@ -2369,7 +2403,7 @@ public function jerynnPetstuffNightWithJerome():void
 	}
 	output(" with its girth quickly sends you over the edge, convulsing around her draconic cock in orgasm, milking another load from her prodigious balls in the process. She moans deeply above you... and then starts to throw her own weight back against the bears thrusting hips, wet slaps of ass-meeting-hips playing in your [pc.ears].");
 	
-	if (pc.hasVagina())
+	if (hasVagina)
 	{
 		pc.cuntChange(pc.gapestVaginaIndex(), jerynn.biggestCockVolume());
 		pc.loadInCunt(jerynn, pc.gapestVaginaIndex());
@@ -2412,6 +2446,9 @@ public function jerynnPetstuffNightWithJeromeII():void
 	clearOutput();
 	showJerynn();
 
+	var hasVagina:Boolean = false;
+	if (pc.totalVaginas() > 0 && pc.blockedVaginas() == 0) hasVagina = true;
+
 	output("All too soon, the taur pulls away again, this time hopping up behind the bear and quickly ushering him out of her apartment. He scarcely has time to get his pants back on, let alone the rest of his gear before the apartment door is slamming shut behind him.");
 
 	output("\n\nNow just you and");
@@ -2421,12 +2458,12 @@ public function jerynnPetstuffNightWithJeromeII():void
 	if (pc.hasFur()) output(" strong enough to show through your fur");
 	else if (pc.hasScales()) output(" strong enough to tinge your scales");
 	output(" is all you can respond with as she bends her knees, finally lowering you to the floor. Your elbows take some of your weight, but your gut is just too full for your knees to reach the floor. A barely audible click and the taur starts to stand back up, her knot tugging at your");
-	if (!pc.hasVagina()) output(" [pc.ass]");
+	if (!hasVagina) output(" [pc.ass]");
 	else output(" [pc.vagina]");
 	output(". It doesn’t come easy and it takes her a few strong jerks before it starts to move, setting you wobbling on your self-made waterbed.");
 	
 	output("\n\nRough, cold pads softly press against your [pc.skinFurScales] as the taur brings one of her hind legs to bear against your back; one final tug with a little extra pressure squeezing you into the floor with her foot and her huge knot <i>finally</i> rushes out of your tender");
-	if (!pc.hasVagina()) output(" ass");
+	if (!hasVagina) output(" ass");
 	else output(" pussy");
 	output(", a gush of still hot spunk jetting out of you after it. Inch after inch of half-rigid cock follows the knot, leaving an odd hollow in its wake, more jizz oozing from your well-fucked passage.");
 	
@@ -2470,13 +2507,16 @@ public function jerynnPetstuffBadEnd():void
 	clearOutput();
 	showJerynn(false, true);
 
+	var hasVagina:Boolean = false;
+	if (pc.totalVaginas() > 0 && pc.blockedVaginas() == 0) hasVagina = true;
+
 	output("Your");
-	if (!pc.hasVagina()) output(" [pc.ass]");
+	if (!hasVagina) output(" [pc.ass]");
 	else output(" [pc.pussy]");
 	output(" convulses around her spire of dragonic cock in response to the question. Even aware of exactly what her ‘improvements’ might entail, exactly what it means for <i>you</i>, there’s just something deep in your mind, some seed Jerynn has planted that refuses to turn her offer down.");
 	
 	output("\n\nShe takes your lack of refusal as tacit acceptance of the way things will be between the two of you from here on out; she, the Mistress and Owner, you, the slutty fuckpuppet kept for another’s entertainment. With no negative forthcoming Jerynn breaks into a much faster jog than the trip back, heading deep into the bowels of Irestead with you no longer in a position to steer her from the path she’s now set upon. The familiar sounds of intermingling into the background din of the outpost are soon lost behind a closed door. The queasy shifting of your");
-	if (!pc.hasVagina()) output(" gut");
+	if (!hasVagina) output(" gut");
 	else output(" belly");
 	output(" full of spunk roiling oddly in the elevator soon repeats as it has many times in the past.");
 	

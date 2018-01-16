@@ -327,11 +327,13 @@ public function korgWinSexMenu():void
 		else if(pc.hasCock()) addDisabledButton(2,"Pitch Anal","Pitch Anal","You won’t fit him with your mountainous meat.");
 		else addDisabledButton(2,"Pitch Anal","Pitch Anal","You don’t have anything to fuck the raider’s ass with!");
 
-		if(pc.hasVagina()) addButton(3,"Pussy-Worship",korgPussWorship,undefined,"Pussy-Worship","Entice the korg-boy to serve with a snoot full of pussy.");
+		if(pc.hasVagina() && pc.blockedVaginas() == 0) addButton(3,"Pussy-Worship",korgPussWorship,undefined,"Pussy-Worship","Entice the korg-boy to serve with a snoot full of pussy.");
+		else if(pc.blockedVaginas() > 0 && pc.hasVagina()) addDisabledButton(3,"Pussy-Worship","Pussy-Worship","You should get rid of whatever is blocking your [pc.vaginas] first.");
 		else if(pc.hasCuntSnake()) addDisabledButton(3,"Pussy-Worship","Pussy-Worship","You need to have a pussy to make the korgonne worship - your parasitic tail-cunt isn’t interested in reverence, only sperm.");
 		else addDisabledButton(3,"Pussy-Worship","Pussy-Worship","You need to have a pussy to make the korgonne worship.");
 
 		if(!pc.hasGenitals()) addDisabledButton(4,"Mutual Mast.","Mutual Mast.","Before the korgonne can masturbate your genitals to orgasm, you need to get some genitals!");
+		else if(pc.hasVagina() && !pc.hasCock() && pc.blockedVaginas() > 0) addDisabledButton(4,"Mutual Mast.","Mutual Masturbation","You should get rid of whatever you have blocking your pussy up first.");
 		else if(pc.isTaur() && !pc.hasCock()) addDisabledButton(4,"Mutual Mast.","Mutual Mast.","The korgonne can’t reach your pussy all the way at the end of your body!");
 		else addButton(4,"Mutual Mast.",mutualMasturbkorg,undefined,"Mutual Masturbation","Have the korgonne use his hand to bring you to orgasm while you stroke him off.");
 	}
@@ -359,7 +361,7 @@ public function korgCowgirlWin(tailForce:Boolean = false):void
 	author("Zeikfried");
 	
 	var vIdx:int = -1;
-	if(pc.hasVagina()) {
+	if(pc.hasVagina() && pc.blockedVaginas() == 0) {
 		vIdx = pc.findEmptyPregnancySlot(1);
 		if(vIdx < 0) vIdx = pc.smallestVaginaIndex();
 	}
@@ -940,6 +942,7 @@ public function mutualMasturbkorg():void
 	var cockSelect:Boolean = false;
 	if(pc.isHerm()) cockSelect = (rand(2) == 0);
 	else if(pc.hasCock()) cockSelect = true;
+	if(pc.hasCock() && pc.blockedVaginas() > 0) cockSelect = true;
 
 	var x:int = -1;
 
@@ -1259,7 +1262,7 @@ public function getKorgedInTheButtOrPussy():void
 	output("The korgonne falls upon you, ");
 	var x:int = -1;
 
-	if(pc.hasVagina())
+	if(pc.hasVagina() && pc.blockedVaginas() == 0)
 	{
 		x = pc.findEmptyPregnancySlot(1);
 		if(x < 0) x = pc.smallestVaginaIndex();
@@ -1280,7 +1283,7 @@ public function getKorgedInTheButtOrPussy():void
 		else output("groping in search of your sex. His leathery fingertips push through the heat field of your gear, smuggling in just a wisp of cold air before the micro-computer compensates.");
 	}
 	output("\n\nWhat he finds must please him... a wolfish grin curls his lip as his leathery finger slips inside your ");
-	if(pc.hasVagina())
+	if(x >= 0)
 	{
 		if(pc.vaginas[x].wetness() < 3 && pc.lust() <= 50) output("labia");
 		else output("wet labia");
@@ -1300,13 +1303,13 @@ public function getKorgedInTheButtOrPussy():void
 	else output("Alien");
 
 	output(" ");
-	if(pc.hasVagina() && (pc.lust() >= 50 || pc.vaginas[x].wetness() >= 3)) output("wet");
-	else if((pc.hasVagina() && pc.vaginas[x].looseness() < 3) || (!pc.hasVagina() && pc.ass.looseness() < 3)) output("tight");
+	if(x >= 0 && (pc.lust() >= 50 || pc.vaginas[x].wetness() >= 3)) output("wet");
+	else if((x >= 0 && pc.vaginas[x].looseness() < 3) || (!x < 0 && pc.ass.looseness() < 3)) output("tight");
 	else output("loose");
 	output(",”</i> he rumbles. <i>“Perfect for mate.”</i>");
 
 	//only if pussy
-	if(pc.hasVagina())
+	if(x >= 0)
 	{
 		output("\n\nHe pulls his fingers back out, examining the wetness on their tips. His smile breaks into a goofy, lurid grin, and he raises them to his nose, taking a deep scent.");
 		output("\n\n");
@@ -1324,16 +1327,16 @@ public function getKorgedInTheButtOrPussy():void
 	output(" - must be gratifying, because he gets a little harder still.");
 
 	output("\n\nYou can see in his caprine eyes the moment when he decides he wants you: they harden, and his smile curls into a snarl as he takes charge of your body once more. He pushes you down, into the snow, until you’re on your knees. His hands slide up your [pc.ass], and you feel a hot, wet point press against your ");
-	if(pc.hasVagina()) output("labia");
+	if(x >= 0) output("labia");
 	else output("asshole");
 	output(", promising to slide in if he lets gravity take over just for a second.");
 
 	output("\n\nThe raider pauses, and your heart flutters. You stare at him... it’s not intentional, he’s savoring the moment. His grip tightens, and he pushes forward. The tapered glans easily slides inside you, parting and pushing its way through, and the korgonne shivers as the bulbous shape passes through your ring for the first time. A bump hits your ass as his tip touches deep inside; his knot is knocking at the entrance to your [pc.vagOrAss " + x + "], demanding admission as well. ");
 
-	if((pc.hasVagina() && pc.vaginas[x].looseness() < 3) || (!pc.hasVagina() && pc.ass.looseness() < 3)) 
+	if((x >= 0 && pc.vaginas[x].looseness() < 3) || (x < 0 && pc.ass.looseness() < 3)) 
 	{
 		output("Your tight hole keeps it out as long as it can, but the korgonne holds all the power in this position... after two abortive thrusts, he finally pushes it in, filling your ");
-		if(pc.hasVagina()) output("pussy");
+		if(x >= 0) output("pussy");
 		else output("asshole");
 		output(" with black dog knot.");
 	}
@@ -1354,7 +1357,7 @@ public function getKorgedInTheButtOrPussy():void
 	output(". <i>“Have many pups.”</i>");
 
 	output("\n\nThe dog-man begins to pump, testing your hole with his pointed prick; he starts with normal strokes, rubbing his cock against you and ploughing the point into your [pc.vagOrAss " + x + "], scraping the walls and leaving behind smears of alien pre. His ardor is burning hot... even with ");
-	if(pc.hasVagina() && (pc.lust() >= 50 || pc.vaginas[x].wetness() >= 3)) output("your wetness added to ");
+	if(x >= 0 && (pc.lust() >= 50 || pc.vaginas[x].wetness() >= 3)) output("your wetness added to ");
 	output("it, his strokes are so eager and quick that they almost cut through the lubrication. You must have teased the puppy to the brink of madness. His knot begins to grow, heralding a shift in his focus....");
 	output("\n\nAs his girth gets thicker and thicker, his thrusts grow shallow. The korgonne’s knot is picking up inches; he whimpers and whines with pleasure at each one. Already the sound of it popping in and out of your [pc.vagOrAss " + x + "] is audible over the constant wind; he still pauses outside sometimes to rub his shaft against your labia, but his attention is moving downward. The next time he forces the knot in, it doesn’t come out again. The korgonne tugs gently at it, then a smile spreads gradually over his stubby face.");
 	output("\n\n<i>“Joy come soon,”</i> he promises. Scooting closer to you, he changes his thrusts - he focuses on sliding the girthy bitch-breaker back and forth in you, stroking you with it. You find yourself drawing closer to climax, so completely touched on every nerve by the voluminous canine prick. The korgonne, too, is intensifying his efforts. He chokes up on your ass, pulling you into his crotch on the in-stroke with such force that you would expect him to bounce off if he weren’t anchored. Inside you, the knot swells again, rounding out to touch every inch and growing still.");
@@ -1363,10 +1366,10 @@ public function getKorgedInTheButtOrPussy():void
 	else pc.buttChange(enemy.cockVolume(0));
 
 	//very loose/wet hole ending (as it stands now, all taurs will also receive this ending)
-	if((pc.hasVagina() && (pc.vaginas[x].looseness() >= 4 || pc.vaginas[x].wetness() >= 4)) || (!pc.hasVagina() && pc.ass.looseness() >= 4))
+	if((x >= 0 && (pc.vaginas[x].looseness() >= 4 || pc.vaginas[x].wetness() >= 4)) || (!x < 0 && pc.ass.looseness() >= 4))
 	{
 		output("\n\nOr so it would be. Though it’s probably <i>supposed</i> to hold him in place, the korgonne’s knot is merely the equal of your ");
-		if((pc.hasVagina() && pc.vaginas[x].looseness() >= 4) || (!pc.hasVagina() && pc.ass.looseness() >= 4)) output("stretched-out");
+		if((x >= 0 && pc.vaginas[x].looseness() >= 4) || (x < 0 && pc.ass.looseness() >= 4)) output("stretched-out");
 		else output("wet");
 		output(" hole... but he may have overestimated its worth as an anchor. You can still feel it sliding through your [pc.vagOrAss " + x + "], a fact that has escaped the horny dog-man.");
 
@@ -1444,7 +1447,7 @@ public function korgForcedOral():void
 
 	output("\n\n");
 	//(if masturbation-capable)
-	if(pc.canMasturbate() && pc.hasGenitals() && (!pc.isTaur() || pc.biggestCockLength() >= 48)) 
+	if(pc.canMasturbate() && pc.hasGenitals() && (pc.blockedVaginas() == 0 || pc.hasCock()) && (!pc.isTaur() || pc.biggestCockLength() >= 48)) 
 	{
 		output("It seems clear, at this point, that he won’t be needing your assistance to get off... you slip your fingers ");
 		if(!pc.isCrotchExposed()) output("into your [pc.crotchCover]");
@@ -1460,6 +1463,7 @@ public function korgForcedOral():void
 
 	output("\n\nHis excitement is dangerous - not only is the knot stuck behind your teeth, but now it’s so swollen that it can’t even move. The korgonne jerks and thrusts at your face, but all he manages to do is bob your head. Your throat spasms, trying to swallow his bulbous cock; every time your muscles move, the korgonne rumbles in pleasure. The knot bulges a bit more, stretching your jaw to the limit. You can feel the pulsing veins in his skin against your palate, pumping blood furiously in time with his racing heart. Your air has been cut off too long, now - you’re starting to feel euphoric and groggy");
 	if(pc.isTaur()) output(", and the urgency makes your neck work harder. The korgonne’s knees buckle, and his eyes begin to roll wildly.");
+	else if(!pc.hasCock() && pc.blockedVaginas() > 0) output(", and the urgency makes your neck work harder. The korgonne’s knees buckle, and his eyes begin to roll wildly.");
 	else 
 	{
 		output(", and your ");
@@ -1474,13 +1478,11 @@ public function korgForcedOral():void
 
 	output("\n\nThe load blowing from the korgonne only stirs your desperate need for relief higher. Your hand is moving like a blur ");
 	if(pc.hasCock()) output("on your [pc.cockNounSimple]");
+	else if(pc.blockedVaginas() > 0) output("twisting uselessly against your blocked hole");
 	else output("in your [pc.vaginaSimple]");
 	output(", nearly out of conscious control as your awareness retreats from lack of oxygen. Your overzealous alien mate tugs again at your teeth, squeezing an even bigger load free; it boils down your throat like oil, coating your esophagus with pungent, salty spunk. Again and again he pulls, sending cumshots straight to your belly, but your tired mouth is closing as the knot shrinks. You just can’t concentrate enough to hold it as wide open as he forced it.");
-	//(not masturbating)
-	if(pc.canMasturbate() && pc.hasGenitals() && (!pc.isTaur() || pc.biggestCockLength() >= 48)) output(" You can’t really concentrate at all, in fact....");
-
 	//only if masturbating
-	else
+	if(pc.canMasturbate() && pc.hasGenitals() && (pc.blockedVaginas() == 0 || pc.hasCock()) && (!pc.isTaur() || pc.biggestCockLength() >= 48))
 	{
 		output("\n\nAs your consciousness teeters on the balance, your orgasm escapes from you, like life fleeing your body. ");
 		if(pc.hasCock()) 
@@ -1502,11 +1504,16 @@ public function korgForcedOral():void
 		}
 		output(" The pleasure pushes you over into darkness - you pass out into oxygen-deprived unconsciousness, slumping against the raider’s furry belly. The last thing you feel before you’re out is another shot of cum hitting your throat....");
 	}
+	//(not masturbating)
+	else
+	{
+		output(" You can’t really concentrate at all, in fact....");
+	}
 	//rejoin
 	//do a ‘Next’ or a ‘Time Passes’ or a ‘X hours later....’ here if you like
 	processTime(30);
 	pc.lust(11);
-	if(pc.canMasturbate() && pc.hasGenitals() && (!pc.isTaur() || pc.biggestCockLength() >= 48)) pc.orgasm();
+	if(pc.canMasturbate() && pc.hasGenitals() && (pc.blockedVaginas() == 0 || pc.hasCock()) && (!pc.isTaur() || pc.biggestCockLength() >= 48)) pc.orgasm();
 	pc.loadInMouth(enemy);
 	clearMenu();
 	addButton(0,"Next",korgMouthFilling2);
@@ -1737,7 +1744,7 @@ public function worstKorgLoss():void
 		output("\n\nThe korgonne’s head rolls back as his bulbous, tapered dick parts your [pc.thighs] like a fleshy spear, turning them aside and powering through until the tip bumps into your [pc.sack]. His hands shiver on your hips as the hot pre stains your sack... or perhaps it’s your own hips that tremble enough to make his hands shake.");
 	}
 	//(elseif pussy present)
-	else if(pc.hasVagina()) 
+	else if(pc.hasVagina() && pc.blockedVaginas() == 0) 
 	{
 		output("\n\nThe korgonne’s tapered dick parts your [pc.thighs] and forces itself inside your personal space, like a spear. The tip glides ahead, but as the bulbous body follows, it begins to drag against your [pc.vaginas], stimulating the labia and tickling your [pc.clits].");
 		if(pc.wettestVaginalWetness() >= 3) 
@@ -1787,7 +1794,7 @@ public function worstKorgLoss():void
 	{
 		output("\n\nAs the korgonne’s intensity grows, so too does his frustration - even with help from his hands, your soft, gooey [pc.thighs] can’t stay firm enough to put pressure on his straining, inflated knot. <i>“Useless fish paste,”</i> he mumbles, trying to mold you into a usable shape.");
 		output("\n\nSoon his frustration takes form. Heaving a great sigh-cum-moan, he releases you, allowing your goopy piles to assume their usual slump... then reaches right into your ass! His leathery, smooth fingers push your malleable membrane ahead of them as they sink into you, burrowing down toward his knot. The greedy dog actually grabs his fat dick through your body, wrapping both hands around it through a thin cushion of you! Massive shudders rock his hips as he begins to squeeze down at last, squirting his painful-looking buildup of puppy spunk; as his tongue lolls from his mouth absently, his cock angles up from its new grip until it sinks completely into your lower body again. The hot loads are absorbed into your body, permeating your " + pc.skinTone + " with cum-off-white that spreads and infiltrates everywhere");
-		if(!pc.hasPregnancy() && pc.hasVagina())
+		if(!pc.hasPregnancy() && pc.hasVagina() && pc.blockedVaginas() == 0)
 		{
 			output(", including your tingling, neglected womb");
 			if(pc.totalVaginas() > 1) output("s");

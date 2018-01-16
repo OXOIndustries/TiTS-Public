@@ -403,7 +403,7 @@ public function loseToThatIcyBimbo():void
 	krymCombatTrack(false);
 	//[Next]//to relevant version. If the PC is a herm or a shemale, 50/50 odds between which scene they get.
 	clearMenu();
-	if(pc.hasCock() && (!pc.hasVagina() || rand(2) == 0)) addButton(0,"Next",hasACockLoseToKrym);
+	if(pc.hasCock() && (!pc.hasVagina() || rand(2) == 0 || pc.blockedVaginas() > 0)) addButton(0,"Next",hasACockLoseToKrym);
 	else addButton(0,"Next",pcGonnaGetFucked);
 }
 
@@ -489,7 +489,7 @@ public function pcGonnaGetFucked():void
 	
 	var krymHardlight:Number = 500;
 	var vIdx:int = -1;
-	if(pc.hasVagina()) vIdx = rand(pc.vaginas.length);
+	if(pc.hasVagina() && pc.blockedVaginas() == 0) vIdx = rand(pc.vaginas.length);
 	
 	output("<i>“Fuck, that’s the stuff,”</i> Krym growls, grinding her hips into your face, taking your tongue as deep as it’ll go into her pussy. <i>“Keep going, and I’ll get you nice and ready.”</i>");
 	output("\n\nWhat, you’re not already doing the deed? You can’t exactly see anything, with your face full of lush, pale ass, but you can feel Krym reach off the bed and start rustling around, grabbing something off her nightstand.");
@@ -620,7 +620,8 @@ public function fuckKrym():void
 	if(pc.hasHardLightEquipped() || pc.hasCock()) addButton(1,"Pitch Vaginal",pitchVagimalKrym,undefined,"Pitch Vaginal","Take Krym to pound town.");
 	else if(pc.hasCock()) addDisabledButton(1,"Pitch Vaginal","Pitch Vaginal","Your dick is way too fat to fit in there.");
 	else addDisabledButton(1,"Pitch Vaginal","Pitch Vaginal","You need a penis or hardlight strap-on to give her pussy the pounding it so righteously deserves.");
-	if(pc.hasVagina()) addButton(2,"Tribbing",consensualTribbingWithKrym,undefined,"Tribbing","Get down and dirty with Krym and rub pussies.");
+	if(pc.hasVagina() && pc.blockedVaginas() == 0) addButton(2,"Tribbing",consensualTribbingWithKrym,undefined,"Tribbing","Get down and dirty with Krym and rub pussies.");
+	else if(pc.blockedVaginas() > 0) addDisabledButton(2,"Tribbing","Tribbing","You might want to get rid of whatever is blocking up your vagina before you do this.");
 	else addDisabledButton(2,"Tribbing","Tribbing","You need a vagina for this.");
 }
 

@@ -224,7 +224,7 @@ public function frostwyrmBadEndII():void
 	frostWyrmHeader();
 	
 	//vagwielder
-	if (pc.hasVagina())
+	if (pc.hasVagina() && !pc.isBlocked(0))
 	{
 		output("<i>I am glad</i>, the wyrm coos, taking a single stride forward, wrapping its foremost four legs around the shelf of ice so that it is completely overtop you. You can’t see its face anymore, nor the cavern around you: nothing but the armored underbelly of the great white wyrm. Something long, hard, and unbearably thick presses against your thigh, starting to move towards your [pc.cunt]. Your whole body seizes up as the behemoth wyrm moves himself overtop you, and his equally huge member towards your pussy.");
 		

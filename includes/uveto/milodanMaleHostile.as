@@ -137,11 +137,12 @@ public function winVsMilodanMale():void
 		}
 		else addDisabledButton(0,"Doggystyle","Doggystyle","You don’t have a penis to stuff in his poor boy-pussy.");
 
-		if(pc.hasVagina())
+		if(pc.hasVagina() && pc.blockedVaginas() == 0)
 		{
 			if(!pc.isTaur()) addButton(1,"Vaginal Ride",rideVaginalMilodanMaleBecauseTHEYIFFENING,undefined,"Vaginal Ride","Take care of your lusts by riding him into the snow, though you aren’t sure if you’ll let him nut inside just yet...");
 			else addDisabledButton(1,"Vaginal Ride","Vaginal Ride","Your tauric anatomy is ill-suited for this act.");
 		}
+		else if(pc.hasVagina()) addDisabledButton(1,"Vaginal Ride","Vaginal Ride","You'll want an unobstructed vagina to do this.");
 		else addDisabledButton(1,"Vaginal Ride","Vaginal Ride","You need a vagina to take him in your vagina.");
 
 		addButton(2,"Ride Anal",takeMaleMilodanForAnAnalRide,undefined,"Ride Anal","Take the barbarian in your ass for a little anal fun.");
@@ -550,7 +551,7 @@ public function taurssionaryWithFloofyBoyslut():void
 	output("\n\nThe milodan shoves himself to the hilt in your sweltering [pc.vagOrAss], sending a shiver up your spine that has nothing to do with the cold. Deigning to let this brute fuck you after beating him only turns you on all the more, and he certainly seems grateful for the chance. He’s fucking your [pc.vagOrAss] with a determination that suggests he wants to reclaim his honor - or maybe he just wants to breed your unfamiliar form. The mostly-silent barbarian is somewhat of an enigma, but if nothing else, he’s a fantastic fucktoy.");
 	
 	var vIdx:int = -1;
-	if(pc.hasVagina()){
+	if(pc.hasVagina() && pc.blockedVaginas() == 0){
 		vIdx = pc.findEmptyPregnancySlot(1);
 		if(vIdx < 0) vIdx = rand(pc.totalVaginas());
 	}
@@ -706,6 +707,14 @@ public function lossSceneToMaleMilodan():void
 	IncrementFlag("MILO_MALE_CON_LOSSES");
 	
 	output("You collapse onto the ice, the savage beating of the milodan too much to bear. He saunters over to you casually, the confident hunter having secured his quarry. ");
+	if(!pc.hasCock() && pc.blockedVaginas() > 0)
+	{
+		output("He sniffs you once, then prods your body. Finding your groin securely blocked, he snorts in disappointment and kicks you square in the gut.\n\nSeemingly satisfied, he leaves.");
+		output("\n\n");
+		CombatManager.genericLoss();
+		return;
+	}
+
 	if(enemy.meleeWeapon.longName != "claw") output("Dropping his weapon");
 	else output("Sheathing his claws");
 	output(", the musclebound barbarian easily picks you up and hefts you ");

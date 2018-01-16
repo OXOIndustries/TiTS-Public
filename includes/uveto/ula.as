@@ -160,7 +160,8 @@ public function ulaSexApproach():void
 	addButton(14,"Back",ulaApproach,true);
 	if(pc.hasCock()) addButton(0,"Breed Her",breedWithUla);
 	else addDisabledButton(0,"Breed Her","Breed Her","You need a penis for this.");
-	if(pc.hasVagina()) addButton(1,"Lez Out",ulaPussyFuck,undefined,"Lez Out","You both have pussies. Use ‘em!");
+	if(pc.hasVagina() && pc.blockedVaginas() == 0) addButton(1,"Lez Out",ulaPussyFuck,undefined,"Lez Out","You both have pussies. Use ‘em!");
+	else if(pc.blockedVaginas() > 0) addDisabledButton(1,"Lez Out","Lez Out","Maybe you should take care of your vaginal obstruction first?");
 	else addDisabledButton(1,"Lez Out","Lez Out","You’ll need a vagina for this!");
 	addButton(2,"Watch",watchUlaFapturbate);
 }
@@ -433,7 +434,7 @@ public function stayAndStarsTell(inVillage:Boolean = false):void
 	if(!inVillage)
 	{
 		//Crotchless.
-		if(!pc.hasGenitals())
+		if(!pc.hasGenitals() || pc.totalVaginas() <= pc.blockedVaginas())
 		{
 			output("\n\nThose thick fingers wriggle around but find nothing. A few awkward seconds of groping stretch on before the Korgonne girl pulls back, confused. <i>“No funhaving parts?”</i>");
 			output("\n\n<i>“Yeah...”</i> you admit.");
@@ -519,6 +520,7 @@ public function ulaCaveLesbo():void
 	showCaveUla(true);
 	output("<i>“More,”</i> you pant, [pc.vaginas] wet enough to melt a cave of your own into the ice.");
 
+	var p:int = pc.pickUnblocked();
 	//Treated no new pg:
 	if(pc.isTreated()) 
 	{
@@ -563,6 +565,7 @@ public function korgiCavePussPart2():void
 {
 	clearOutput();
 	showCaveUla();
+	var p:int = pc.pickUnblocked();
 	output("<i>“Warmed licks!”</i> the korgonne cries.");
 	output("\n\nStrength vanishes from the leaky bitch’s legs, dumping her pussy-first onto your face. Her weight bowls you over onto your back. You barely avoid cracking your head on the floor, but any complaints are swallowed whole by the electric taste of korgo-girl cunt. It makes your head swim and your snatch");
 	if(pc.totalVaginas() > 1) output("es");
@@ -578,11 +581,11 @@ public function korgiCavePussPart2():void
 	output("\n\nWas that an orgasm? It felt so good... so blissfully pleasant... but you still want her cunt. You can’t get enough of it. Right now it’s your favorite thing in the whole universe, a simmering delta of sinfully minty delights. Kissing it, you feel like its quivers are kissing you back, the shaking, climaxing korgonne expressing her shared affection through the sloppy, oozing girl-jizz that floods your maw.");
 
 	//2cunts'
-	if(pc.totalVaginas() == 2) output("\n\nA soaked finger slips into your second slit while the fuzzy alien’s mouth burrows deeper into the first, forcing you to new heights of pleasure. Another finger slips in a second later. Her digits may be short, but they’re delightfully thick, spreading you wide open as they skillfully find [pc.clits] to tease.");
+	if(pc.totalVaginas() == 2 && pc.blockedVaginas() == 0) output("\n\nA soaked finger slips into your second slit while the fuzzy alien’s mouth burrows deeper into the first, forcing you to new heights of pleasure. Another finger slips in a second later. Her digits may be short, but they’re delightfully thick, spreading you wide open as they skillfully find [pc.clits] to tease.");
 	//3Cunts
-	else if(pc.totalVaginas() > 2) output("\n\nSoaked fingers slip into your other slits while the fuzzy alien’s mouth burrows deeper into the first, forcing you to whole new heights of pleasure. Two more fingers join them a second later. Her digits may be short, but they’re delightfully, thick, spreading you wide open as they skillfully find [pc.clits] to tease.");
+	else if(pc.totalVaginas() > 2 && pc.blockedVaginas() == 0) output("\n\nSoaked fingers slip into your other slits while the fuzzy alien’s mouth burrows deeper into the first, forcing you to whole new heights of pleasure. Two more fingers join them a second later. Her digits may be short, but they’re delightfully, thick, spreading you wide open as they skillfully find [pc.clits] to tease.");
 	//1cunt only
-	else output("\n\nThe fuzzy alien’s mouth burrows deeper into your [pc.vagina], forcing you to new heights of pleasure. Seconds later, a finger joins it. Her digits may be short, but this one is delightfully thick, spreading you wide open as it pumps in and out alongside her cunt-drunk, canine tongue.");
+	else output("\n\nThe fuzzy alien’s mouth burrows deeper into your [pc.vagina " + p + "], forcing you to new heights of pleasure. Seconds later, a finger joins it. Her digits may be short, but this one is delightfully thick, spreading you wide open as it pumps in and out alongside her cunt-drunk, canine tongue.");
 	//Merge no new PG!
 	output(" You can scarcely believe how <i>good</i> it feels, how impossible it makes it to think about anything but keeping your tongue moving, sliding in a feedback loop of endless pleasure...");
 	processTime(15);

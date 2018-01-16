@@ -351,9 +351,17 @@ public function approachingPippasHouse(btnSlot:int = 1):void
 public function meetPippa(arg:Array = null):void
 {
 	clearMenu();
-	
+
 	var itemGiven:String = (arg != null ? arg[0] : "");
 	
+	// Blocked for blocked ginas
+	if (pc.hasVagina() && pc.blockedVaginas() > 0)
+	{
+		output("You hit the buzzer, but nobody answers. Maybe try back some other time.");
+		if(pc.pluggedVaginas() > 0) output(" Maybe you could get rid of the obstruction in your feminine genitalia in the meantime. A shower would do you some good.");
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 	// Function initially called
 	if (itemGiven == "")
 	{

@@ -13600,12 +13600,12 @@
 			return descript;
 		}
 		public function vagOrAss(arg: int = 0): String {
-			if (hasVagina() && arg >= 0) return vaginaDescript(arg);
+			if (hasVagina() && arg >= 0 && !isBlocked(arg)) return vaginaDescript(arg);
 			return assholeDescript();
 		}
 		public function vagOrAssNoun(arg:int = 0):String
 		{
-			if (hasVagina() && arg >= 0) return vaginaNounDescript(arg);
+			if (hasVagina() && arg >= 0 && !isBlocked(arg)) return vaginaNounDescript(arg);
 			return assholeDescript(true);
 		}
 		//Vaginas + Descript
@@ -17314,6 +17314,27 @@
 				if(vaginas[i].hasFlag(GLOBAL.FLAG_PLUGGED)) count++;
 			}
 			return count;
+		}
+		public function blockedVaginas():Number
+		{
+			if(vaginas.length == 0) return 0;
+			var count:Number = 0;
+			for(var i:int = 0; i < totalVaginas(); i++)
+			{
+				if(vaginas[i].hasFlag(GLOBAL.FLAG_PLUGGED) || isChastityBlocked(i)) count++;
+
+			}
+			return count;
+		}
+		public function pickUnblocked():Number
+		{
+			var options:Array = [];
+			for(var i:int = 0; i < totalVaginas(); i++)
+			{
+				if(!isBlocked(i)) options.push(i);
+			}
+			if(options.length == 0) return -1;
+			else return options[rand(options.length)];
 		}
 		//Why you gotta do me like this?
 		public function isChastityBlocked(arg:Number):Boolean

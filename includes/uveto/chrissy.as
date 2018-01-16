@@ -461,7 +461,7 @@ public function rideChrissy():void
 	
 	var ppChrissy:PregnancyPlaceholder = getChrissyPregContainer();
 	var vagIdx:int = -1;
-	if(pc.hasVagina()) vagIdx = rand(pc.vaginas.length);
+	if(pc.hasVagina()) vagIdx = pc.pickUnblocked();
 	
 	output("With a smirk, you step closer to your soon-to-be lover, reach down for the hem of her too-big sweater, and start to pull up, resulting in a stuttering breath from the tiny half-breed. Chrissy’s face turns a deep shade of red as the garment is pulled over her head and her pert B-cups are revealed, making her chestnut locks fall down around her face. Similarly, after tossing Chrissy’s sweater aside, you grab at the tanuki girl’s pants and start to work them downwards. She’s happy to assist, wiggling her hips and blushing redder than a zel’rahn at a stripclub, seeming to enjoy the experience of being stripped like this. As her pants pop over her round, full, fuzzy balls, you can already see her thrice-knotted cock appearing from its sheath, swiftly stiffening as you eye its owner’s bare body.");
 	output("\n\nGazing at the veritable smorgasbord of sexual delights your lover has on offer, you find your [pc.eyes] drifting towards her alien cock. It’s not very big, only about six inches by your guess, but oh-so girthy, and all those knots lining it along with that heart-shaped, tapered tip make it look quite exotic. You can just picture it spreading your [pc.vagOrAss " + vagIdx + "] and feeling that knot take you as you ride this tiny half-breed.");
@@ -510,7 +510,7 @@ public function getFuckedChrissy():void
 	
 	var ppChrissy:PregnancyPlaceholder = getChrissyPregContainer();
 	var vagIdx:int = -1;
-	if(pc.hasVagina()) vagIdx = rand(pc.vaginas.length);
+	if(pc.hasVagina()) vagIdx = pc.pickUnblocked();
 	
 	output("With a smirk, you step closer to your soon-to-be lover, reach down for the hem of her too-big sweater, and start to pull up, resulting in a stuttering breath from the tiny half-breed. Chrissy’s face turns a deep shade of red as the garment is pulled over her head and her pert B-cups are revealed, making her chestnut locks fall down around her face. Similarly, after tossing Chrissy’s sweater aside, you grab at the tanuki girl’s pants and start to work them downwards. She’s happy to assist, wiggling her hips and blushing redder than a zel’rahn at a stripclub, seeming to enjoy the experience of being stripped like this. As her pants pop over her round, full, fuzzy balls, you can already see her thrice-knotted cock appearing from its sheath, swiftly stiffening as you eye its owner’s bare body.");
 	output("\n\nOnce again, you find your gaze inexplicably drawn to that girthy, knotty, alien cock between Chrissy’s legs. Those big, fuzzy balls of hers look like they need an outlet for all that spooge they’re holding. ");

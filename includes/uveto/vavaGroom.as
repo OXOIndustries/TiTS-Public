@@ -129,6 +129,7 @@ public function vavaGroomMenu():void
 				if(pc.credits >= 1000) addButton(2, "E. Training", vavaGroomServiceEroticTraining, undefined, "Erotic Training", "Receive some submissive tutelage.");
 				else addDisabledButton(2, "E. Training", "Erotic Training", "You don’t have enough credits to do this!\n\nCosts 1000 credits.");
 			}
+			if(pc.hasVagina() && pc.blockedVaginas() > 0) addDisabledButton(2,"E. Training","Erotic Training","You should come back after unburdening your femininity of any blockage.");
 		}
 	}
 	addButton(5, "Talk", vavaGroomTalk, undefined);

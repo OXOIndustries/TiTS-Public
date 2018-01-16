@@ -757,7 +757,11 @@ public function makeLoveToBeatrice():void
 	//Suckle
 	addButton(1,"Suckle",suckleBeatriceTitttttaaaaaays,undefined,"Suckle","Drink from her bosom.");
 	//Reach-Around
-	if(pc.hasGenitals()) addButton(2,"Reach Around",reachAroooooooooogalaBeatrice,undefined,"Reach Around","Let " + flags["BEA_TITLE"] + " pleasure you with her hands.");
+	if(pc.hasGenitals()) 
+	{
+		if(!pc.hasCock() && pc.blockedVaginas() > 0) addDisabledButton(2,"Reach Around","Reach Around","With something obstructing your feminine sex, this would be a poor activity.");
+		else addButton(2,"Reach Around",reachAroooooooooogalaBeatrice,undefined,"Reach Around","Let " + flags["BEA_TITLE"] + " pleasure you with her hands.");
+	}
 	else addDisabledButton(2,"Reach Around","Reach Around","You need a penis or a vagina for this.");
 	addButton(14,"Nevermind",nevermindLetsNotFuckBecauseImTerrible);
 }

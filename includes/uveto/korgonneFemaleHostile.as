@@ -267,7 +267,7 @@ public function loseToFemKorgonneNoDick():void
 	output(" She leans forward, her paws seizing your [pc.chest].");
 	output(" Startled, you become aware that you’ve been stripped to your bare [pc.skinFurScales]. You’d hardly noticed, your captor’s fervid body heating the cave as well as any thermal coat. She must’ve taken you into one of the tunnels pocking the surface of the icy plains.");
 
-	if(pc.hasVagina())
+	if(!pc.isBlocked(0))
 	{
 		output("\n\nThe padded paw on your slit begins to slide up and down, stroking your folds with an uncertain, almost experimental curiosity. You gulp as heat floods into your hips, squirming under the savage’s inexpert motions. One of her soft, leathery fingertips grazes [pc.oneClit], and you roll your shoulders with a slight moan as the girl’s soft leather strokes your sensitive nub. Her wide eyes open a bit wider at your reaction, and her thumb bears down with an intensity that leaves you shuddering and gasping for air.");
 		if(korgiSillyTranslate()) output(" <i>“Alien wears joy on outside of body?”</i> she discovers with a shock. <i>“So weak! Anyone breed you with touch,”</i> she sneers, adding a tweak to prove her point.");
@@ -348,7 +348,8 @@ public function defeatDaKorgiShit():void
 	else addDisabledButton(2,"DickWorship","Dick Worship","You need a dick at least 42 inches long for her to please you with her whole body.");
 
 	//[Ride Her Tongue]
-	if(pc.hasVagina()) addButton(3,"Ride Tongue",rideTheKorgiTongue,undefined,"Ride Tongue","That long tongue of hers would probably feel great if you had a pussy!");
+	if(pc.hasVagina() && !pc.isBlocked(0)) addButton(3,"Ride Tongue",rideTheKorgiTongue,undefined,"Ride Tongue","That long tongue of hers would probably feel great if you had a pussy!");
+	else if(pc.isBlocked(0)) addDisabledButton(3,"Ride Tongue","Ride Tongue","You ought to get rid of that plug in your puss first.");
 	else addDisabledButton(3,"Ride Tongue","Ride Tongue","You need a vagina in order to ride her tongue.");
 
 	//[Let Her Lead]
@@ -357,7 +358,7 @@ public function defeatDaKorgiShit():void
 	else addDisabledButton(4,"Let Her Lead","Let Her Lead","You need a dick that will fit in her ass for this.");
 
 	//Requires taur + dick/balls or vagina.
-	if(pc.isTaur() && (pc.hasVagina() || (pc.hasCock() && pc.balls > 0))) addButton(5,"Sit On Her",sitOnKorgiForTaurs,undefined,"Sit On Her","Only centaurs are going to be able to do this.");
+	if(pc.isTaur() && ((pc.hasVagina() && !pc.isBlocked(0)) || (pc.hasCock() && pc.balls > 0))) addButton(5,"Sit On Her",sitOnKorgiForTaurs,undefined,"Sit On Her","Only centaurs are going to be able to do this.");
 	else addDisabledButton(5,"Sit On Her","Sit On Her","You need to be a centaur with a vagina or a centaur with balls and a penis for this.");
 	
 	if(pc.hasHardLightEquipped() && pc.hasKeyItem("Hardlight Strap-on Upgrades") && (!pc.hasCock() || eligibleForKorgiHumiliation())) addButton(6,"HardlightFuck",korgonneHardlightPussyStuffsStuffStuffings,undefined,"HardlightFuck","See if your hardlight sextoy can satisfy this insatiable puppy slut.");
@@ -413,7 +414,7 @@ public function sitOnKorgiForTaurs():void
 		if(pc.hasCock()) output(" The length and hunger of her fondling tongue is so satisfying that you can feel your [pc.cocks] stiffening and swelling between the two of you. The girl under you moans at the burgeoning stiffness, unable to tend to your swelling lust with anything but her mouth.");
 		output(" As tempting as it is to let her suckle at your balls all day, you wiggle forward just a bit, to move the girl on to her next task.");
 	}
-	if(pc.hasVagina())
+	if(pc.hasVagina() && !pc.isBlocked(0))
 	{
 		output("\n\nThe restrained girl draws her seven inch tongue up to the summit of [pc.oneVagina]. Boldly pushing against the plump surface of your labia with brash vigor, she hones in on your [pc.vagina], thrusting her organ inside without delay. You shudder from the intrusion, your muscles clamping down on the barbarian’s tongue with a vulnerable tightness. Despite her immobilized body, the korgonne pushes her thick inches into your quivering slit with osculating sweeps. Though she pays little attention to [pc.eachClit], the questing touches of her slurping tongue is enough to send a ripple of bliss through your body. She laps up the [pc.girlCum] dripping from [pc.eachPussy] with loud, wet delight, polishing the plumpness of your lower lips to gather up every drop of your [pc.girlCumFlavor] moisture. Panting and eager for the final course, you scoot up just a bit more, leaving no room for doubt where the girl must send her tongue next.");
 	}
@@ -446,7 +447,7 @@ public function taurSitOnKorgi2():void
 		if(pc.cockTotal() == 1) output("s");
 		output(" orgasmic release, cum flooding the slim space between your underbelly and her pliant pudge. [pc.CumVisc] [pc.cumNoun] washes over her dense fur and your [pc.skinFurScales] with a heat that bridges your bodies in a way no words possibly could.");
 	}
-	if(pc.hasVagina())
+	if(pc.hasVagina() && !pc.isBlocked(0))
 	{
 		cums++;
 		output("\n\nAnother wave of ecstasy prickles within your [pc.pussy], your backside quivering with delight at the savage’s eagerness to please. As she grinds her short muzzle against your [pc.ass], the bulge of her jutting lower lip begins to stroke against your [pc.clit]. The sweet, tickling brush of her heated lips renews the tender tingles that leave your pussy pulsing with inner contractions that rob your muscles of their strength. Gasping moans rise from your [pc.chest] at each stroke and in no time, fresh blobs of [pc.girlCum] dribble down across your captive’s face.");

@@ -8,7 +8,7 @@ public function subTunerBonusButts():void
 		rooms["SUBSHIT"].removeFlag(GLOBAL.NPC);
 		generateMap();
 	}
-	if(((pc.hasCock() && pc.smallestCockVolume() < saecVaginaCapacity()) || pc.hasVagina()) && !pc.isTaur() && !pc.isNaga())
+	if(((pc.hasCock() && pc.smallestCockVolume() < saecVaginaCapacity()) || (pc.hasVagina() && pc.blockedVaginas() == 0)) && !pc.isTaur() && !pc.isNaga())
 	{
 		if(flags["SUB_TUNERED"] == undefined)
 		{
