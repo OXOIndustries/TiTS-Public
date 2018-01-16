@@ -1024,7 +1024,8 @@ public function delSlootybuttTrainingSrTheDoombringer():void
 	{
 		showName("DEL, KALLY,\n& KAEDE");
 		showBust(showDelString(true),"KAEDE_NUDE","KALLY_NUDE");
-
+		kaedeIncreaseExhibitionism(10);
+		
 		if(flags["KAEDE_DEL_TRAINING"] == undefined) output("\n\n<i>“Oh my god!”</i>");
 		else output("\n\n<i>“Again!?”</i>");
 		output("\n\nYou cast a glance to the door, and see Kaede standing just inside wrapped in nothing by a towel that leaves her alabaster cleavage and long, slender legs bare. Her ginger tail thumps wetly on the slicked floor, unintentionally dipping into the puddles of spunk spreading out from you and Del.");

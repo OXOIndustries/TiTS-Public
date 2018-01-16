@@ -6,6 +6,7 @@ STATUS: "Kaede Canada Cooldown" 	- Kaede is on cooldown after meeting.
 flags["KAEDE_CS_COUNTDOWN"]			- Set as game timestamp to track 14 time on station visit.
 									- Set to -1 when Kaede's Canadia Station vacation is over.
 flags["GLORYHOLED_KAEDE"]			- Counts time gloryholed Kaede... capped at 1 for now.
+flags["KAEDE_EXHIBITIONISM"]		- tracks the exhibitionism score of kaede. Range 0-100
 
 */
 public function kaedeCouldBeOnNewCanadaRepeats():Boolean
@@ -301,6 +302,7 @@ public function yesThatsEnoughKaede():void
 public function keepTailScritching():void
 {
 	clearOutput();
+	kaedeIncreaseExhibitionism(10);
 	showKaede();
 	author("Savin");
 	//Oh no. You’re not satisfied just yet...
@@ -341,6 +343,7 @@ public function keepTailScritching():void
 //This seems more like an asshole move. - FEN
 public function maximumTeaseTheSloot():void
 {
+	kaedeIncreaseExhibitionism(10);
 	clearOutput();
 	showKaede();
 	author("Savin");
@@ -351,13 +354,72 @@ public function maximumTeaseTheSloot():void
 	output("\n\nYou grin and tell her not to lie: she enjoyed herself.");
 	output("\n\n<i>“That’s not the point!”</i> she growls. Oh wow, she is beet red now! <i>“You can’t do that in public! I... people are staring!”</i>");
 	output("\n\nOnly because she’s not using her indoors voice. Nobody was looking until she started fussing, you tell her. She somehow flushes a little redder and rucks her big ol’ ausar ears against her head. <i>“Now I gotta go change. And take a cold shower.”</i>");
-	output("\n\nShe gives you a look, stands up, and wraps her tail around her sullied crotch before hurrying out towards her ship. You just laugh to yourself and enjoy the rest of your drink.");
+	
 	IncrementFlag("KAEDE_PUBLIC_SHAME");
 	processTime(4);
 	pc.lust(10);
 	pc.addHard(1);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	if (flags["KAEDE_EXHIBITIONISM"] != undefined && flags["KAEDE_EXHIBITIONISM"] >= 30) {
+		addButton(0, "ULTRAMAX TEASE", ultraMaximumDeluxeTeaseTheSloot,undefined, "ULTRAMAX TEASE","Make Kaede clean herself up for the enjoyment of the other patrons.");
+		addButton(1, "Let Her Go", justMaximumTeaseTheSloot);
+	} else {
+		output("\n\nShe gives you a look, stands up, and wraps her tail around her sullied crotch before hurrying out towards her ship. You just laugh to yourself and enjoy the rest of your drink.");
+		addButton(0, "Next", mainGameMenu);
+	}
+}
+
+//would be nicer as a lambda expression, if AS3 supports such wichcraft
+public function justMaximumTeaseTheSloot():void
+{
+	clearOutput();
+	showKaede();
+	author("Savin");
+	output("She gives you a look, stands up, and wraps her tail around her sullied crotch before hurrying out towards her ship. You just laugh to yourself and enjoy the rest of your drink.");
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+//[ULTRAMAX TEASE]
+public function ultraMaximumDeluxeTeaseTheSloot():void 
+{
+	clearOutput();
+	showKaede();
+	author("Savin");
+	output("“Oh, no,” you say, taking Kaede by the wrist when she tries to scurry off. “I've got a better idea.”");
+	output("\n\nYou give her a tug, just enough to plant Kaede back in her seat. With your other hand, you reach down and yank down her fly, giving you access to the cum-soiled panties hiding underneath. Kaede yips and squirms, feeling your fingers crawling all over her cock; despite her murmured protestations, she manages to start stiffening before you've got your hands fully around her soiled underpants.");
+	output("\n\nWith one rough yank, you rip her panties right off, pulling them out through her fly in a bunched-up ball of cum-soaked linens. Kaede yelps in surprise, only just managing to cover her mouth. You flash her a mischievous grin and roll her panties around in your hand, squeezing just hard enough to make them <i>squick</i> lewdly, bubbling up a little of her still-warm jizz between your fingers.");
+	output("\n\n“Wow, you really made a mess!” you tease, tracing your other hand up Kaede's arm until you're running your fingers through the back of her ginger hair. No escape, now. “You'd better clean it up!”");
+	output("\n\nKaede looks at you wide-eyed, blushing like a rose. “You... you... I can't...”");
+	output("\n\n“You can,” you urge, putting her panties right in front of her face, so close that she can't breathe without getting a deep whiff of her own cum. You urge her with a gentle push from behind, mixed with encouraging words about what a dirty girl she is, and how hot it would be to see her eating her own cum in public. Considering how much of Kaede's inhibitions you've already worn down since you met, it doesn't take long before she gives you a little whimper and leans in, flicking her tongue out and into the mess of cloth between your fingers.");
+	output("\n\n“That's it. Good girl,” you murmur into her ear, scratching through her hair as you shift her panties around, exposing more and more lurid cumrag for her to clean. While she works, you gently turn her around on the barstool, facing her out into the bar. After all her whimpering and moaning, there's more than a few pairs of eyes on the both of you now... and at least a few of them figure out what's going on, between the massive bulge threatening to poke out of Kaede's pants and the smears of white all over your fingers.");
+	output("\n\nHopefully Kally won't notice what you're getting up to. But then, that's half the fun, isn't it -- the thrill of all these eyes on you and your blushing lover, getting hot under the collar at the sheer <i>taboo</i> of it... ");
+	if (pc.hasCock()) {
+		output("Now <i>you</i>'re starting to get hard!");
+	} else {
+		output("Pretty soon, Kaede's not the only one who's getting hot-and-bothered by the display you're putting on. You're real tempted to just grab the shameless little shemale and take her back to your ship... but that's a reward for after she debases herself.");
+	}
+	output("\n\nEventually, the ginger pupper's panties are pristine -- giant rip in them aside -- though now they're soaked with warm spittle rather than sperm. You can smell the musk of sex on Kaede's breath, moreso when you pull her into your lap and into a long, deep kiss. She's practically trembling, and her breath comes in ragged gasps around your [pc.lips]... and then catches in her throat when your hand traces down her chest to her crotch, delving into her still-undone fly and wrapping around the throbbing doggy-dick sheathed within. Now nobody in the bar could mistake what's going on, but you don't care anymore: let 'em look! It only makes you ");
+	if(pc.hasCock()) {
+		output("harder and ");
+	}
+	if (pc.hasVagina()) {
+		output("wetter.");
+	} else {
+		output("more turned on.");
+	}
+	output("\n\n“[pc.name]!” Kaede whines, tensing in your arms. “I c- I can't!”");
+	output("\n\n“Of course you can,” you reassure her, moving your wrist a little faster. “There's so many people watching now. You wouldn't want to let 'em down?”");
+	output("\n\nShe makes a little noise that's somewhere between a whimper and a growl, and her fluffy red tail starts moving a little at your incessant, sweet urgings. All eyes are on that bulging package now, watching as your hand runs up and down Kaede's veiny length, from knot to tapered tip, faster and faster until her feet are scrabbling against your [pc.legs] and her ears are tucked against her scalp. Every breath is a husky moan, barely stifled into her hands, until Kaede gasps, and you feel a heat building up in her rock-hard cock.");
+	output("\n\nCareful not to fully expose her rod, you shift your hand from her shaft to her crown, cupping it just in time for the first shot of hot lady-jizz to splash into your palm. The rest soon follows, ejaculating into your waiting hand amidst a chorus of whimpers and groans. Though a little of her orgasm manages to slip past, squirting out of her open fly or drooling down her thigh, you manage to catch most of the precious liquid load before you withdraw your hand.");
+	output("\n\n“Eat up, pup,” you say, lifting your hand out of her crotch and up to her lips, feeling the steamy cream sloshing in your grasp. Kaede doesn't even feign resistance to your commands by this point: she opens wide and flicks her tongue out, slurping up the fresh load of cum like the hungry she-wolf she is. You nuzzle into the slutty puppy's neck while she cleans you off, kissing at her bare skin and whispering soothing words of love and lust into those big, drooped ears of hers. By the time she's got you nice and clean, with only the faintest stickiness in your digits to remind you of what was once overflowing in your hand, Kaede's breath has calmed to a slower tempo, and though you can feel her heart still hammering in her chest, it feels like she's finally accustomed to her role as an exhibitionistic ouroboros of her own jizz.");
+	output("\n\n“You're the worst,” she murmurs when you pull your hand back, letting her slump heavily against you. “I swear, hanging out with you and Anno's gonna turn me into some kinda turbo-slut.”");
+	output("\n\nAs if she's not already. You give Kaede a swat on the ass, pushing her up and out of your lap. “Better go get cleaned up,” you tell her. “And Kaede?”");
+	output("\n\n“Yeah,” she says, already halfway out the door.");
+	output("\n\n“Your fly's undone.”");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 //Get a Room
@@ -711,6 +773,8 @@ public function kaedeAndAnnoServiceKaedeFromCanadia():void
 //Watch Them
 public function watchAnnoAndKaedeYaSloot():void
 {
+	kaedeIncreaseExhibitionism(3);
+	
 	clearOutput();
 	showName("ANNO &\nKAEDE");
 	showBust(annoBustDisplay(true), "KAEDE_NUDE");
@@ -770,6 +834,8 @@ public function timeRunsOutForKaede():void
 //Possible option when the player opts to man the gloryhole.
 public function kaedePopsIntoZeGloryHole():void
 {
+	kaedeIncreaseExhibitionism(5);
+	
 	clearOutput();
 	showKaede(true);
 	author("Savin");
@@ -800,4 +866,13 @@ public function kaedePopsIntoZeGloryHole():void
 	pc.lust(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+//add to kaede's exhibitionism score. 
+//There is no smart way to put it, but here is the main payoff for high kaede exhibitionism
+//percentage from 0 to 100
+public function kaedeIncreaseExhibitionism(arg:int):void 
+{
+	if (flags["KAEDE_EXHIBITIONISM"] == undefined) flags["KAEDE_EXHIBITIONISM"] = 0;
+	flags["KAEDE_EXHIBITIONISM"] = Math.max(Math.min(flags["KAEDE_EXHIBITIONISM"] + arg, 100), 0);
 }

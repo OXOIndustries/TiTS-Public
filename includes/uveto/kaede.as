@@ -354,8 +354,9 @@ public function uvetoKaedeTease():void
 	kaedeHeader();
 
 	//+Exhibitionism. If you track NPC stats like that, give +KaedeExhibitionism, too! She probably starts off really low.
+	kaedeIncreaseExhibitionism(10);
+	
 	//+Mischievous
-
 	pc.addMischievous(3);
 	pc.exhibitionism(5);
 

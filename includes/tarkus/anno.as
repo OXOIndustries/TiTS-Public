@@ -3750,6 +3750,8 @@ public function continueServicingKaedeWithAnno():void
 
 public function annoxKaedeWatch(inShop:Boolean = true):void
 {
+	kaedeIncreaseExhibitionism(3)
+	
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
