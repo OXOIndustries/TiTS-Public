@@ -5359,7 +5359,7 @@
 		public function hasEmoteEars(): Boolean
 		{
 			// For ear types that move emotively, like cute animal ears.
-			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
+			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_SIMII) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
 			return false;
 		}
 		public function earDescript(): String
@@ -5483,6 +5483,10 @@
 				case GLOBAL.TYPE_SHEEP:
 					adjectives = ["sheep", "lamb-like", "floppy"];
 					if(!nonFurrySkin) adjectives.push("softly furred");
+					break;
+				case GLOBAL.TYPE_SIMII:
+					adjectives = ["simii", "simian", "monkey", "monkey-like", "oddly-shaped"];
+					if(hasFaceFlag(GLOBAL.FLAG_FURRED)) adjectives.push("furry", "softly furred");
 					break;
 			}
 			if (hasLongEars()) adjectives.push(num2Text(Math.round(earLength)) + "-inch long");
@@ -5698,7 +5702,7 @@
 			return description;
 		}
 		public function hasSmallNose(): Boolean {
-			return InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_HUMANMASKED, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_MOUSEMAN, GLOBAL.TYPE_MOUSE);
+			return InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_HUMANMASKED, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_MOUSEMAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_SIMII);
 		}
 		public function faceDesc(): String {
 			var faceo: String = "";
@@ -6427,6 +6431,7 @@
 					case GLOBAL.TYPE_AVIAN: adjectives.push("avian", "bird-like"); break;
 					case GLOBAL.TYPE_SHARK: adjectives.push("shark-like","shark-like","shark-like","piscine"); break;
 					case GLOBAL.TYPE_SWINE: adjectives.push("pig-nosed"); break;
+					case GLOBAL.TYPE_SIMII: adjectives.push("simian", "monkey-like"); break;
 				}
 				if (hasFaceFlag(GLOBAL.FLAG_ANGULAR)) adjectives.push("angular");
 				if (hasFaceFlag(GLOBAL.FLAG_LONG)) adjectives.push("long");
@@ -6610,6 +6615,9 @@
 					break;
 				case GLOBAL.TYPE_SHEEP:
 					adjectives = ["sheep", "sheep-like"];
+					break;
+				case GLOBAL.TYPE_SIMII:
+					adjectives = ["simii", "simian", "monkey", "monkey-like"];
 					break;
 			}
 			// Flags
@@ -6917,6 +6925,7 @@
 						case GLOBAL.TYPE_SWINE: adjectives = ["swine", "swine", "pig-like"]; break;
 						case GLOBAL.TYPE_TENTACLE: adjectives = ["tentacle-toed", "tentacled", "tentacle imitation", "tentacle formed"]; break;
 						case GLOBAL.TYPE_SHEEP: adjectives = ["sheep", "sheep", "sheep-like", "lamb-like"]; break;
+						case GLOBAL.TYPE_SIMII: adjectives = ["simii", "simian", "simiiforme", "monkey-like"]; break;
 					}
 				}
 				//ADJECTIVE!
@@ -6992,6 +7001,7 @@
 					case GLOBAL.TYPE_NYREA: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
 					case GLOBAL.TYPE_SHARK: adjectives = ["shark-like","clawed","webbed"]; break;
 					case GLOBAL.TYPE_SHEEP: adjectives = ["sheep", "sheep-like", "lamb-like", "bestial"]; break;
+					case GLOBAL.TYPE_SIMII: adjectives = ["simian", "ape-like", "dexterous"]; break;
 				}
 			}
 			//ADJECTIVE!
@@ -11046,6 +11056,7 @@
 			if (redPandaScore() >= 4) race = redPandaRace();
 			if (pigScore() >= 4) race = "pig-morph";
 			if (bunnyScore() >= 4) race = "bunny-morph";
+			if (simiiScore() >= 4) race = "simii";
 			if (ausarScore() >= 4)
 			{
 				if (huskarScore() < 3) race = "ausar";
@@ -12003,6 +12014,15 @@
 			if (hasPerk("Wooly")) counter++;
 			if (hasFur() && perkv1("Wooly") >= 1) counter++;
 			if (counter > 0 && !hasFur()) counter--;
+			return counter;
+		}
+		public function simiiScore(): int {
+			var counter: int = 0;
+			if (faceType == GLOBAL.TYPE_SIMII) counter++;
+			if (earType == GLOBAL.TYPE_SIMII) counter++;
+			if (hasTail(GLOBAL.TYPE_SIMII)) counter++;
+			if (armType == GLOBAL.TYPE_SIMII) counter++;
+			if (legType == GLOBAL.TYPE_SIMII && legCount == 2 && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter++;
 			return counter;
 		}
 		public function suulaScore(): int
@@ -15629,7 +15649,7 @@
 					}
 					//A little drippy
 					else if (cumQ() < 200) {
-						if (rand(10) <= 3) descript +=  RandomInCollection(["fluid-beading", "slowly-oozing"]);
+						if (rand(10) <= 3) descript += RandomInCollection(["fluid-beading", "slowly-oozing"]);
 						else descript += RandomInCollection(["turgid", "blood-engorged", "rock-hard", "stiff", "eager"]);
 					}
 					//uber drippy

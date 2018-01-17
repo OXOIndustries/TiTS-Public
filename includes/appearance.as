@@ -134,6 +134,7 @@ public function appearance(forTarget:Creature):void
 		case GLOBAL.TYPE_HUMAN:
 		case GLOBAL.TYPE_NALEEN_FACE:
 		case GLOBAL.TYPE_SIREN:
+		case GLOBAL.TYPE_SIMII:
 			if(target.hasFaceFlag(GLOBAL.FLAG_SMOOTH) || target.faceType == GLOBAL.TYPE_NALEEN_FACE || InCollection(target.skinType, GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX)) output2("Your face is human in shape and structure, with " + target.skin(true,true,true) + ".");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2("Under your " + faceFurScales + " you have a human-shaped head with " + target.skin(true,true,true) + ".");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2("Your face is fairly human in shape, but is covered in " + faceFurScales + " over " + target.skin(true,true,true) + ".");
@@ -671,6 +672,9 @@ public function appearance(forTarget:Creature):void
 			case GLOBAL.TYPE_SWINE:
 				output2(" A pair of pointed, floppy pig ears protrude from your " + headNoun + ".");
 				break;
+			case GLOBAL.TYPE_SIMII:
+				output2(" A pair of large, strangely-shaped ears protrude from your " + headNoun + ".");
+				break;
 		}
 	}
 	//not bald
@@ -805,6 +809,9 @@ public function appearance(forTarget:Creature):void
 				break;
 			case GLOBAL.TYPE_SWINE:
 				output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of pointed, floppy pig ears.");
+				break;
+			case GLOBAL.TYPE_SIMII:
+				output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of large, strangely-shaped ears.");
 				break;
 		}
 	}
@@ -1383,6 +1390,15 @@ public function appearance(forTarget:Creature):void
 			else if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of thick " + target.furColor + " fur covers your arms while claws tip your fingers.");
 			else output2(" Claws tip your fingers.");
 			output2(" These claws aren’t very long or sharp, and you get the feeling that the only thing they’re truly useful for is digging into someone’s skin emphatically while you’re fucking them roughly.");
+			break;
+		case GLOBAL.TYPE_SIMII:
+			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Your gooey arms end with large hands.");
+			else if(!target.hasFur() && !target.hasArmFlag(GLOBAL.FLAG_FURRED))
+			{
+				if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2(" A visible patch of hair covers your arms and over the top of your large hands.");
+				else output2(" Your arms end with large hands.");
+			}
+			else output2(" A coat of " + target.furColor + " fur covers your arms and over the top of your large hands.");
 			break;
 		case GLOBAL.TYPE_FROG:
 			if(!target.hasFur() || !target.hasFeathers()) output2(" Your arms are incredibly smooth with a tendency to glisten in the light.");
@@ -2022,6 +2038,12 @@ public function appearance(forTarget:Creature):void
 		case GLOBAL.TYPE_SWINE:
 			output2(" A curly, little pig tail sticks out above your " + target.buttDescript() + ", twirling when you’re happy.");
 			break;
+		case GLOBAL.TYPE_SIMII:
+			output2(" Peeking out from behind, you have");
+			if(target.tailCount == 1) output2(" a long, prehensile monkey tail that sways");
+			else output2(" " + num2Text(target.tailCount) + " long, prehensile monkey tails that sway");
+			output2(" to and fro with curiosity.");
+			break;
 		case GLOBAL.TYPE_TENTACLE:
 			if(target.tailCount == 1) output2(" A long, writhing, tentacle-like tail flows after you, bobbing and undulating with the slightest movement of your hips.");
 			else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " long, writhing, tentacle tails flow after you, all similar in appearance. Studying one of them, you find that you have excellent control over their movements."); 
@@ -2275,6 +2297,13 @@ public function appearance(forTarget:Creature):void
 			if(target.hasLegFlag(GLOBAL.FLAG_FLUFFY)) output2(" Your fluffy, " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda-like legs end with soft and cute bear-like paws.");
 			else if(target.hasLegFlag(GLOBAL.FLAG_FURRED)) output2(" Your furry, " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda-like legs end with broad and powerful-looking paws.");
 			else output2(" Your solid " + target.furColor + " " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gummi-like" : "furred") + " legs end with plush, bear-like paws.");
+			break;
+		case GLOBAL.TYPE_SIMII:
+			output2(" Your legs");
+			if(target.hasLegFlag(GLOBAL.FLAG_GOOEY)) output2(", though covered in goo,");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SKIN && !target.hasLegFlag(GLOBAL.FLAG_FURRED)) output2(", though covered in hair,");
+			else if(target.hasFur() || target.hasLegFlag(GLOBAL.FLAG_FURRED)) output2(", though covered in fur,");
+			output2(" are humanlike in shape with long, dexterous toes that somewhat resemble fingers on a hand.");
 			break;
 		case GLOBAL.TYPE_FROG:
 			if(target.legCount < 4)
