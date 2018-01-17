@@ -402,6 +402,7 @@
 		include "../includes/uveto/drlessau.as";
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/frostwyrm.as";
+		include "../includes/uveto/heidrun.as";
 		include "../includes/uveto/jerome.as";
 		include "../includes/uveto/jerynn.as";
 		include "../includes/uveto/kaede.as";

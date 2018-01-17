@@ -90,6 +90,7 @@ package classes.Characters
 					if(vagIndex >= 0 && vagIndex < totalVaginas())
 					{
 						if(!vaginas[vagIndex].hasFlag(GLOBAL.FLAG_PLUGGED)) vaginas[vagIndex].addFlag(GLOBAL.FLAG_PLUGGED);
+						if(!hasStatusEffect("Pussy Plugged")) createStatusEffect("Pussy Plugged",vagIndex,0,0,0,false,"Icon_Blocked","A plug is currently obstructing your pussy, the constant pressure on your tender areas constantly arousing your libido.\n\n<b>+100% Libido.</b>",false,0,0xB793C4);
 					}
 				}
 				return this.tryKnockUp(cumFrom, vagIndex);

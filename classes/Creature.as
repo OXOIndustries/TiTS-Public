@@ -3204,6 +3204,7 @@
 				{
 					if(isPlugged(i)) vaginas[i].delFlag(GLOBAL.FLAG_PLUGGED);
 				}
+				removeStatusEffect("Pussy Plugged");
 				AddLogEvent(ParseText("<b>After the cleaning, you're delighted to find that the hardened substance plugging you up has dissolved away!</b>"));
 				flags["SHOWERED_OUT_PLUG"] = 1;
 			}
@@ -18967,7 +18968,7 @@
 		protected var OnTakeDamageOutput:String;
 		public function OnTakeDamage(incomingDamage:TypeCollection):void
 		{
-			
+
 		}
 		
 		// Uveto Specials

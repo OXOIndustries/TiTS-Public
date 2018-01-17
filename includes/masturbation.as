@@ -3493,7 +3493,7 @@ public function shipShowerFappening(scene:String = ""):void
 		
 		output("You grab the bottle of body wash again, squeezing out a second dose into your palms. Rather than letting your hands roam over your body, though, this time you have a much more targeted place to apply it. You reach down and start to work the slippery lotion over [pc.oneCock], letting your hands slowly slide up and down");
 		if(pc.cocks[n].cLength() == 1) output(" the full inch");
-		else output(" all " + num2Text(pc.cocks[n].cLength()) + " inches");
+		else output(" all " + num2Text(Math.round(pc.cocks[n].cLength())) + " inches");
 		output(" of [pc.cockColor " + n + "] meat. Each pass makes you more and more slippery, making your [pc.hand] feel better and better each time it brushes your [pc.sheath " + n + "]. Your other hand tends to your [pc.cockHead " + n + "], working it up with an extra dose of lather for the extra-sensitive flesh.");
 		output("\n\nSoon you’re lathered up and stroking away, [pc.chest] rising and falling in a steady rhythm as you bask in the lotion-slicked sensation of [pc.skinFurScalesNoun]-on-skin. Your free hand ");
 		if (!pc.hasBreasts()) output(" rests comfortably on your hip, letting all the focus stay on your eager, throbbing dick.");

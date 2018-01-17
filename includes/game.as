@@ -1726,6 +1726,7 @@ public function flyTo(arg:String):void
 				pc.vaginas[i].delFlag(GLOBAL.FLAG_PLUGGED);
 			}
 		}
+		pc.removeStatusEffect("Pussy Plugged");
 		AddLogEvent(ParseText("While you have time in travel, you grab a quick shower and <b>the hardened substance plugging you up dissolves away!</b>"));
 		flags["SHOWERED_OUT_PLUG"] = 1;
 		pc.shower();
@@ -1852,6 +1853,7 @@ public function showerOptions(option:int = 0):void
 					output(" <b>The plug in your ass vanishes as well.</b>");
 					pc.ass.delFlag(GLOBAL.FLAG_PLUGGED);
 				}
+				pc.removeStatusEffect("Pussy Plugged");
 			}
 			else
 			{

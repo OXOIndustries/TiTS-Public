@@ -1817,3 +1817,8 @@ public function ulaCreditsTalk():void
 	processTime(8);
 	addDisabledButton(7,"Exp:Credits","Explain: Credits","You already discussed this!");
 }
+
+public function korgiiCredits():Boolean
+{
+	return (flags["ULA_CREDIT_TALK"] != undefined && flags["ULA_CREDIT_TALK"] + 60 * 24 < GetGameTimestamp());
+}
