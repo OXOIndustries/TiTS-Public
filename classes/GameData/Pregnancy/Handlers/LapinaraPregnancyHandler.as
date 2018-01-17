@@ -516,7 +516,7 @@ package classes.GameData.Pregnancy.Handlers
 		}		
 		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBirthTimestamp:uint):Child
 		{
-			kGAMECLASS.lapiPregEndCheck(mother, (useBirthTimestamp - kGAMECLASS.GetGameTimestamp()), true);
+			kGAMECLASS.lapiPregEndCheck(mother, pregSlot, (useBirthTimestamp - kGAMECLASS.GetGameTimestamp()), true);
 			
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			kGAMECLASS.lapinaraTrainingUpdate(pData.pregnancyQuantity);

@@ -1041,18 +1041,26 @@ public function lapinaraBirthinBuhbies2(pregSlot:int):void
 	output("\n\nYou know that you don’t have time to take care of a litter of babies once they’re born. You still can’t stop from wanting it though, wanting to return to that blissful feeling that seems so far away now. You also know that you have a choice, that you don’t have to give into the desires. You also know just how good it would feel, and that you have a whole nursery wing on Tavros to allow you to indulge yourself. You don’t know what you’ll decide yet, but you realize that you’d better be very careful to stay away from anything that could impregnate you unless you want your mind made up for you.");
 	processTime(150+rand(30));
 	
-	lapiPregEndCheck(pc);
+	lapiPregEndCheck(pc, pregSlot);
 	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
-public function lapiPregEndCheck(mother:Creature, deltaTime:int = 0, fromNursery:Boolean = false):void
+public function lapiPregEndCheck(mother:Creature, pregSlot:int, deltaTime:int = 0, fromNursery:Boolean = false):void
 {
 	if(!(mother is PlayerCharacter)) return;
 	
 	// Post Effects
-	if(fromNursery) AddLogEvent("With your lack of babies, you can already feel your subconscious beginning to scream for replacements. It’s as if your body has decided that because it can’t retain all it’s babies, it’ll have to make more right away. The shock of handing your young to the nursery so soon has put you into a <b>Deep Lapinara Heat.</b> You know that if you give in to these desires, the process is going to repeat again.", "passive", deltaTime);
+	if(fromNursery)
+	{
+		var vIdx:int = pregSlot;
+		if(pregSlot == 3) vIdx == -1;
+		if(vIdx >= 0) mother.cuntChange(vIdx, 1500, false);
+		else mother.buttChange(1500, false);
+		
+		AddLogEvent("With your lack of babies, you can already feel your subconscious beginning to scream for replacements. It’s as if your body has decided that because it can’t retain all it’s babies, it’ll have to make more right away. The shock of handing your young to the nursery so soon has put you into a <b>Deep Lapinara Heat.</b> You know that if you give in to these desires, the process is going to repeat again.", "passive", deltaTime);
+	}
 	
 	if(mother.fertilityRaw < 10) mother.fertilityRaw++;
 	if(mother.pregnancyIncubationBonusMotherRaw < lapiTrain()) mother.pregnancyIncubationBonusMotherRaw++;
