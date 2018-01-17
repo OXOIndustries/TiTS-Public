@@ -304,7 +304,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.balls = 2;
 			if(pc.ballSizeRaw < 8) pc.ballSizeRaw = 8;
 			if(pc.breastRows[0].breastRatingRaw > 0) pc.breastRows[0].breastRatingRaw = 0;
-			/*
+			
 			pc.faceType = GLOBAL.TYPE_SIMII;
 			pc.clearFaceFlags();
 			pc.earType = GLOBAL.TYPE_SIMII;
@@ -324,7 +324,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
 			pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 			pc.shiftCock(0,GLOBAL.TYPE_SIMII);
-			*/
+			
 			bonusTexts += "You’ve always been a bit of a monkey. Nothing wrong with that.";
 			bonusTexts += " (Note: Monkey parts aren’t properly supported at the time of coding this character. If this changes down the road, please feel free to log a bug report, and we’ll get this PC updated.)";
 			break;
