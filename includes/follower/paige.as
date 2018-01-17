@@ -122,6 +122,12 @@ public function yogaIntro():Boolean
 		output("You approach Paige’s Yoga Class & Seminar, but with the door locked and the closed sign, you remember that Paige is currently undergoing her operation. It might be best to return after she has recovered from the procedure.");
 		return false;
 	}
+	if(paigeIsCrew())
+	{
+		output("You approach Paige’s Yoga Class & Seminar, but with the door locked and the closed sign, you recall that Paige is unable to hold her seminars while she is employed as a crewmember of your ship!");
+		if(hours >= 17 || (hours < 17 && flags["SEXED_PAIGE"] != undefined && hours < 9)) output(" You may be able to find her taking a break at her house, however.");
+		return false;
+	}
 	// PC finds Paige’s Yoga Class in the Residential Deck for the first time, between the hours of 17:01 and 08:59 (scene: Pre-Intro)
 	if((hours >= 17 || hours < 9))
 	{
@@ -225,7 +231,7 @@ public function yogaIntro():Boolean
 				addButton(0,"Next",moveSouth);
 				return true;
 			}
-			else if(paigeIsCrew())
+			else if(paigeRecruited())
 			{
 				output("You show yourself into Paige’s yoga classroom and are greeted by the all-too-familiar sight of Paige personally instructing a student on how to hold their form properly. It’s a little nostalgic for you – it seemed like just yesterday when you first walked into her class and introduced yourself. You two have come an awfully long way.");
 				output("\n\nPaige looks up from her student, her eyes locking onto yours, and she smiles brightly. <i>“Hey there, [pc.name],”</i> she calls, snickering a little bit at the fact that she doesn’t have to call you ‘captain’ while she’s on shore-leave. <i>“It’s good to see you here! Are you interested in joining my class today? You know what to do if you are.”</i>");
@@ -800,7 +806,42 @@ public function paigeMenu():void
 		else addDisabledButton(7,"Locked","Locked","You don’t know her well enough for this.");
 	}
 	if(flags["PAIGE_GHOSTED"] != -1 && flags["PAIGE_GHOSTED"] != undefined) addButton(8,"Ghost",paigeGhostGhost,undefined,"Ghost","Ask Paige if she’s willing to let her dickgirl passenger take over this time.");
+	
+	if(paigeRecruited())
+	{
+		if(!paigeIsCrew()) addButton(13, "Recruit", paigeCrewToggle, true, "Recruit", "Recruit Paige to your ship.");
+		else addButton(13, "Dismiss", paigeCrewToggle, false, "Dismiss", "Dismiss Paige from your ship.");
+	}
+	
 	addButton(14,"Leave",leavePaige);
+}
+public function paigeCrewToggle(recruit:Boolean = true):void
+{
+	clearOutput();
+	showPaige();
+	author("Jacques00");
+	
+	if(recruit)
+	{
+		output("You ask Paige if she is able to join your crew. With a smile, she " + (currentLocation == "PAIGE_HOUSE" ? "quickly" : "wraps up her session, closes her classroom,") + " gathers her things and heads toward your ship.");
+		
+		flags["PAIGE_CREW"] = 1;
+		
+		output("\n\n(<b>Paige has rejoined your crew!</b>)");
+	}
+	else
+	{
+		output("You ask Paige if she is willing to move out to make room on your ship. With a quick salute, she compiles some of her belongings and " + (shipLocation == "TAVROS HANGAR" ? "quickly heads" : "calls for a transport shuttle") + " home.");
+		
+		flags["PAIGE_CREW"] = 0;
+		
+		output("\n\n(<b>Paige is no longer on your crew. You can find her again on Tavros Station.</b>)");
+	}
+	
+	processTime(2);
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function firstPaigeHousemeet():void
@@ -2221,10 +2262,10 @@ public function firstTimePaigeCrewHiHi():void
 	{
 		output("The first thing to greet you when you step onto your ship is Paige, walking casually up to you with a bit of a sashay in her hips. It’s good to see that she found the place just fine");
 		if(silly) output(", although you wonder how she got here before you. Eh, fuck it");
-		output(". <i>“");
+		output(".");
 		//if {PC chose to [=Stay Silent=]}
-		if(flags["PAIGE_POLYAMORY"] == -1) output("You didn’t tell me you had any other crew on this ship,”</i> she starts. You were dreading this conversation, although Paige seems to have a fairly casual tone to her voice.");
-		else if(flags["PAIGE_POLYAMORY"] == 1) output("I had the chance to meet some of your other crew,”</i> she starts. You’re curious to hear what she thinks about the rest of your merry bunch. <i>“You’ve sure got a... unique taste in company. Present company included, I suppose.”</i>");
+		if(flags["PAIGE_POLYAMORY"] == -1) output(" <i>“You didn’t tell me you had any other crew on this ship,”</i> she starts. You were dreading this conversation, although Paige seems to have a fairly casual tone to her voice.");
+		else if(flags["PAIGE_POLYAMORY"] == 1) output(" <i>“I had the chance to meet some of your other crew,”</i> she starts. You’re curious to hear what she thinks about the rest of your merry bunch. <i>“You’ve sure got a... unique taste in company. Present company included, I suppose.”</i>");
 
 		if(annoIsCrew()) output("\n\n<i>“I see I’m not the first Ausar to catch your fancy. I mean, damn, I can see why: the first thing I see when I step foot on this ship is a bombshell like Anno? You sure know how to pick them, stud! I wonder if she’d be down for a little bit of extra fun on the side.”</i>");
 		if(bessIsCrew()) 

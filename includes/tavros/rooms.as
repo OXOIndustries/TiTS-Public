@@ -760,7 +760,7 @@ public function initTavrosRooms():void
 
 	//Yoga palace!
 	rooms["YOGA_HOUSE"] = new RoomClass(this);
-	rooms["YOGA_HOUSE"].roomName = "PAIGE'S\nYOGA";
+	rooms["YOGA_HOUSE"].roomName = "PAIGE’S\nYOGA";
 	rooms["YOGA_HOUSE"].description = "";
 	rooms["YOGA_HOUSE"].planet = "TAVROS STATION";
 	rooms["YOGA_HOUSE"].system = "SYSTEM: KALAS";
@@ -774,7 +774,7 @@ public function initTavrosRooms():void
 
 	//Paige's Place
 	rooms["PAIGE_HOUSE"] = new RoomClass(this);
-	rooms["PAIGE_HOUSE"].roomName = "PAIGE'S\nPLACE";
+	rooms["PAIGE_HOUSE"].roomName = "PAIGE’S\nPLACE";
 	rooms["PAIGE_HOUSE"].description = "";
 	rooms["PAIGE_HOUSE"].planet = "TAVROS STATION";
 	rooms["PAIGE_HOUSE"].system = "SYSTEM: KALAS";
