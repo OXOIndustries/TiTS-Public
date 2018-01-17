@@ -107,15 +107,21 @@ package classes.GameData.Pregnancy.Handlers
 			
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			
+			// Define limits
+			var quantityMin:int = thisPtr.pregnancyQuantityMinimum;
+			var quantityMax:int = thisPtr.pregnancyQuantityMaximum;
+			if(mother.perkv2("Broodmother") > 0) quantityMax = Math.max(quantityMax, Math.round(quantityMax * mother.perkv2("Broodmother")));
+			
 			// Always start with the minimum amount of children.
-			var quantity:int = thisPtr.pregnancyQuantityMinimum;
+			var quantity:int = quantityMin;
 			
 			// Unnaturally fertile mothers may get multiple children.
 			for(var i:Number = mother.fertility(); i >= 1.5; i -= 0.5)
 			{
-				quantity += rand(thisPtr.pregnancyQuantityMaximum + 1);
+				quantity += rand((quantityMax - quantityMin) + 1);
 			}
-			if (quantity > thisPtr.pregnancyQuantityMaximum) quantity = thisPtr.pregnancyQuantityMaximum;
+			if (quantity < quantityMin) quantity = quantityMin;
+			if (quantity > quantityMax) quantity = quantityMax;
 			
 			// Add extra bonuses.
 			var fatherBonus:int = Math.round((father.cumQ() * 2) / thisPtr.definedAverageLoadSize);
@@ -123,7 +129,7 @@ package classes.GameData.Pregnancy.Handlers
 			quantity += fatherBonus + motherBonus;
 			
 			// Cap at 3x the maximum!
-			var quantityMax:int = Math.round(thisPtr.pregnancyQuantityMaximum * 3.0);
+			quantityMax = Math.round(quantityMax * 3.0);
 			if (quantity > quantityMax) quantity = quantityMax;
 			
 			pData.pregnancyQuantity = quantity;

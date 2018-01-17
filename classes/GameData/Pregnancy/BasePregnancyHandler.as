@@ -393,16 +393,21 @@ package classes.GameData.Pregnancy
 			pData.pregnancyIncubation = thisPtr.basePregnancyIncubationTime;
 			if (thisPtr.debugTrace) trace("Total incubation time as " + pData.pregnancyIncubation);
 			
+			// Define limits
+			var quantityMin:int = thisPtr.pregnancyQuantityMinimum;
+			var quantityMax:int = thisPtr.pregnancyQuantityMaximum;
+			if(mother.perkv2("Broodmother") > 0) quantityMax = Math.max(quantityMax, Math.round(quantityMax * mother.perkv2("Broodmother")));
+			
 			// Calculate the *number* of "children", if applicable
-			var quantity:int = rand(thisPtr.pregnancyQuantityMaximum + 1);
-			if (quantity < thisPtr.pregnancyQuantityMinimum) quantity = thisPtr.pregnancyQuantityMinimum;
+			var quantity:int = rand(quantityMax + 1);
+			if (quantity < quantityMin) quantity = quantityMin;
 			
 			var fatherBonus:int = Math.round((father.cumQ() * 2) / thisPtr.definedAverageLoadSize);
 			var motherBonus:int = Math.round((quantity * mother.pregnancyMultiplier()) - quantity);
 			
 			quantity += fatherBonus + motherBonus;
 			
-			if (quantity > thisPtr.pregnancyQuantityMaximum) quantity = thisPtr.pregnancyQuantityMaximum;
+			if (quantity > quantityMax) quantity = quantityMax;
 			
 			pData.pregnancyQuantity = quantity;
 		}

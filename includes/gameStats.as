@@ -475,7 +475,7 @@ public function statisticsScreen(showID:String = "All"):void
 			{
 				output2("\n<b>* Fertility:</b> " + Math.round(pc.fertility()*1000)/10 + " %");
 				output2("\n<b>* Fertility, Speed Modifier:</b> " + Math.round(pc.pregnancyIncubationBonusMother()*1000)/10 + " %");
-				output2("\n<b>* Fertility, Quantity Bonus:</b> " + Math.round(pc.pregnancyMultiplier()));
+				output2("\n<b>* Fertility, Quantity Modifier:</b> " + Math.round(pc.pregnancyMultiplier()*1000)/10 + " %");
 				if(pc.hasStatusEffect("Venus Pitcher Seed Residue")) output2("\n<b>* Fertility, Venus Pitcher Seed Residue, Time Left:</b> " + prettifyMinutes(pc.getStatusMinutes("Venus Pitcher Seed Residue")));
 				if(pc.statusEffectv2("Ovilium") > 0) output2("\n<b>* Fertility, Ovilium:</b> Boosted");
 			}
@@ -537,6 +537,11 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.statusEffectv1("Orally-Filled") > 0) output2("\n<b>* Cumflation, Oral:</b> " + GLOBAL.FLUID_TYPE_NAMES[pc.statusEffectv3("Orally-Filled")] + ", " + Math.round(pc.statusEffectv1("Orally-Filled")) + " mLs");
 		if(pc.statusEffectv1("Anally-Filled") > 0) output2("\n<b>* Cumflation, Anal:</b> " + GLOBAL.FLUID_TYPE_NAMES[pc.statusEffectv3("Anally-Filled")] + ", " + Math.round(pc.statusEffectv1("Anally-Filled")) + " mLs");
 		if(pc.statusEffectv1("Vaginally-Filled") > 0) output2("\n<b>* Cumflation, Vaginal:</b> " + GLOBAL.FLUID_TYPE_NAMES[pc.statusEffectv3("Vaginally-Filled")] + ", " + Math.round(pc.statusEffectv1("Vaginally-Filled")) + " mLs");
+		if(!pc.hasVagina() || pc.fertility() <= 0)
+		{
+			output2("\n<b>* Incubation, Speed Modifier:</b> " + Math.round(pc.pregnancyIncubationBonusMother()*1000)/10 + " %");
+			output2("\n<b>* Incubation, Quantity Modifier:</b> " + Math.round(pc.pregnancyMultiplier()*1000)/10 + " %");
+		}
 		if(pc.isPregnant())
 		{
 			output2("\n<b>* Active Pregnancies, Total:</b> " + pc.totalPregnancies());

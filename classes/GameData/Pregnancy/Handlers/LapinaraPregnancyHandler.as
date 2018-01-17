@@ -453,7 +453,7 @@ package classes.GameData.Pregnancy.Handlers
 			pData.pregnancyQuantity = 2;
 			mother.addPregnancyBellyMod(pregSlot, 5, true);
 		}
-						
+		
 		public static function lapinaraOnSuccessfulImpregnationOutput(father:Creature, mother:Creature, thisPtr:BasePregnancyHandler):void
 		{
 			AddLogEvent("<b>Your belly is swollen with lapinara eggs, distending your gut as if you were truly pregnant.</b>", "passive");
@@ -516,8 +516,9 @@ package classes.GameData.Pregnancy.Handlers
 		}		
 		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBirthTimestamp:uint):Child
 		{
-			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
+			kGAMECLASS.lapiPregEndCheck(mother, (useBirthTimestamp - kGAMECLASS.GetGameTimestamp()), true);
 			
+			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			kGAMECLASS.lapinaraTrainingUpdate(pData.pregnancyQuantity);
 
 			var c:Child = Child.NewChildWeights(

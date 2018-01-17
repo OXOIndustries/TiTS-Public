@@ -17064,6 +17064,7 @@
 		public function pregnancyMultiplier():Number
 		{
 			var bonus:Number = 0;
+			bonus += perkv1("Broodmother");
 			return (pregnancyMultiplierRaw + pregnancyMultiplierMod + bonus);
 		}
 		
