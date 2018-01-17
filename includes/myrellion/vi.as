@@ -52,7 +52,7 @@ public function approachVi():void
 	if(flags["MET_VI"] == undefined)
 	{
 		output("As you approach the V-Ko unit, you’re struck by how, well, <i>risque</i> she looks. The tail of her violet side-plait tumbles over one of her shoulders and rests atop her hefty, well-formed tits, the tip threatening to disappear between their ampleness. They’re even more exaggerated by her tight-fitting corset. Besides a garter belt and stockings, there’s simply no coverage below her waist, leaving her smooth feminine mound on display.");
-		output("\n\nAlmost as an afterthought – and perhaps so people didn’t think she was a sex-bot – the violet-haired VI wears a white cap with a red cross on it and a pair of medical gloves. What little clothing she wears looks attached to her snowy skin. She has an equally pale tail protruding from above her hand-crafted rump, long and visibly prehensile.");
+		output("\n\nAlmost as an afterthought – and perhaps so people didn’t think she was a sex-bot – the violet-haired VI wears a white cap with a cross on it and a pair of medical gloves. What little clothing she wears looks attached to her snowy skin. She has an equally pale tail protruding from above her hand-crafted rump, long and visibly prehensile.");
 		output("\n\nHer eyes lock onto you – midnight black except for two pale cross-shaped irises. <i>“Hello, prospective patient!”</i> she exclaims, crossing her arms underneath those voluptuous breasts. <i>“My designated name is ‘Vi’. I have been placed here to dispense medical procedures for a reasonable, profit ensuring price.”</i>");
 		processTime(3);
 		flags["MET_VI"] = 1;
@@ -131,7 +131,7 @@ public function viAppearance():void
 	output("\n\nBelow the hem of this, however, she’s wearing nothing but a garter belt and stockings, leaving her smooth feminine mound brazenly on display.");
 	//Borrowed Her Pussy:
 	if(pc.hasKeyItem("Vi's Vagina")) output("Right now it’s utterly featureless, since you’ve purloined her actual pussy.");
-	output(" She’s so scantily-clad that it would be hard to tell she was a medical bot at all, if it wasn’t for her white nurse’s cap with a red cross on it, and a pair of medical gloves. A closer examination shows every piece of clothing is actually attached to her snowy skin.");
+	output(" She’s so scantily-clad that it would be hard to tell she was a medical bot at all, if it wasn’t for her white nurse’s cap with a cross on it, and a pair of medical gloves. A closer examination shows every piece of clothing is actually attached to her snowy skin.");
 	output("\n\nTwo other features really stand out; her midnight black eyes with pale, cross-shaped irises, and her snowy white tail. The latter is very long and visibly prehensile – you’ve seen her use it to pick up all sorts of things with little effort.");
 	output("\n\nThere’s a small inscription on her upper right arm: <i>“V-Ko Model IV”</i>.");
 	processTime(3);

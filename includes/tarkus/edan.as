@@ -333,7 +333,7 @@ public function edanSex():void
 	clearMenu();
 	edanHeader();
 	
-	if ((flags["EDAN_FUCKED"] == undefined) && pc.hasVagina())
+	if ((flags["EDAN_FUCKED"] == undefined) && pc.hasVagina() && !pc.isMasculine(true))
 	{
 		output("You mention sating your sexual curiosity and he laughs.");
 		output("\n\n<i>“In the middle of the mess hall? I’d heard rumors, but I thought they were just fantasies. Sure, Steele. I doubt you could handle being fucked over a bench in the middle of the mess hall, but I give you permission to suck my dick under the table.”</i>");
@@ -341,7 +341,7 @@ public function edanSex():void
 		addButton(0, "Yes", edanSexFirst, undefined, "Yes", "Get under that table.");
 		addButton(1, "No", edanSexRefusal, undefined, "No", "You’re not about to suck his dick like a floozy!");
 	}
-	else if (!pc.hasVagina())
+	else if (!pc.hasVagina() || pc.isMasculine(true))
 	{
 		output("You mention sating your sexual curiosity and he shakes his head.");
 		output("\n\n<i>“Sorry, Steele. Guys and shemales just aren’t my thing,”</i> he explains. <i>“Nothing personal, it’s just that there’s so many people open to sex that there’s really no reason to sleep with anyone except the ones you really prefer. I like a regular woman, even with extra bits.”</i>");

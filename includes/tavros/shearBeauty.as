@@ -580,8 +580,8 @@ public function ceriaHairColorMenu(colorType:String = "none"):void
 			btnSlot++;
 		}
 		
-		if(pc.hairColor != colorList[i][0]) addButton(btnSlot, colorList[i][1], hairColorizing, colorList[i][0], StringUtil.toDisplayCase(colorList[i][0]), String((colorList[i].length > 2 ? colorList[i][2] : "Dye your hair " + colorList[i][0] + ".")));
-		else addDisabledButton(btnSlot, colorList[i][1], StringUtil.toDisplayCase(colorList[i][0]), String("Your hair is already " + colorList[i][0] + "."));
+		if(pc.hairColor != colorList[i][0]) addButton(btnSlot, colorList[i][1], hairColorizing, colorList[i][0], StringUtil.toDisplayCase(colorList[i][0]), (colorList[i].length > 2 ? colorList[i][2] : "Dye your hair " + colorList[i][0] + "."));
+		else addDisabledButton(btnSlot, colorList[i][1], StringUtil.toDisplayCase(colorList[i][0]), ("Your hair is already " + colorList[i][0] + "."));
 		btnSlot++;
 		
 		if(colorList.length > 14 && (i + 1) == colorList.length)
@@ -857,8 +857,8 @@ public function ceriaFurColorMenu(colorType:String = "none"):void
 			btnSlot++;
 		}
 		
-		if(pc.furColor != colorList[i][0]) addButton(btnSlot, colorList[i][1], furColorApplication, colorList[i][0], StringUtil.toDisplayCase(colorList[i][0]), String((colorList[i].length > 2 ? colorList[i][2] : "Dye your fur " + colorList[i][0] + ".")));
-		else addDisabledButton(btnSlot, colorList[i][1], StringUtil.toDisplayCase(colorList[i][0]), String("Your fur is already " + colorList[i][0] + "."));
+		if(pc.furColor != colorList[i][0]) addButton(btnSlot, colorList[i][1], furColorApplication, colorList[i][0], StringUtil.toDisplayCase(colorList[i][0]), ((colorList[i].length > 2 ? colorList[i][2] : "Dye your fur " + colorList[i][0] + ".")));
+		else addDisabledButton(btnSlot, colorList[i][1], StringUtil.toDisplayCase(colorList[i][0]), ("Your fur is already " + colorList[i][0] + "."));
 		btnSlot++;
 		
 		if(colorList.length > 14 && (i + 1) == colorList.length)

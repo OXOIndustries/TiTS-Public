@@ -178,7 +178,7 @@ package classes.Engine.Combat.DamageTypes
 			return uint.MAX_VALUE;
 		}
 		
-		public function multiply(m:*):void
+		public function multiply(m:*):TypeCollection
 		{
 			if (m is Number || m is int || m is uint)
 			{
@@ -195,6 +195,8 @@ package classes.Engine.Combat.DamageTypes
 					if (typeCollection[i].damageValue > 0) typeCollection[i].damageValue *= tc.getType(i).damageValue;
 				}
 			}
+			
+			return this;
 		}
 		
 		public function add(a:*):void

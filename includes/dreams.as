@@ -6,6 +6,10 @@
 
 public function dreamChances():Boolean
 {
+	if (flags["ANNO_SLEEPWITH_DOMORNING"] == 1) return false;
+	if (flags["BESS_SLEEPWITH_DOMORNING"] == 1) return false;
+	if (flags["KASE_SLEEPWITH_DOMORNING"] == 1) return false;
+	
 	var dreamed:Boolean = false;
 	var dreams:Array = new Array();
 	if(flags["DREAM_CD"] == undefined) flags["DREAM_CD"] = 0;
@@ -27,6 +31,7 @@ public function dreamChances():Boolean
 		{
 			dreams.push(angelDreamGo);
 		}
+		if(wearingSubTuner() && flags["MET_SAEC"] != undefined) dreams.push(subTunahDream);
 		if(venusSubmission() >= 65)
 		{
 			if(pc.hasVagina()) dreams.push(everyLittleInchDream);
@@ -47,6 +52,7 @@ public function dreamChances():Boolean
 			if(reahaIsCrew() && pc.hasCock() && flags["CREWMEMBER_SLEEP_WITH"] == "REAHA") dreams.push(reahaDreamSequenceForNerdsByNerdsDesignedByNerdsToArouseNerdsForNerdpletion);
 		}
 		if(seraIsMistress()) dreams.push(demonDream);
+		if(isHalloweenish()) dreams.push(superGhostioDream);
 	}
 	if(dreams.length > 0) 
 	{
@@ -972,7 +978,7 @@ public function annoKaedeTiddyDrama():void
 	if(silly) output("\n\nWait! This is not your beautiful house! These are not Anno’s massive milk-leaking breasts!");
 	else output("\n\nYou’re quick to realize none of what you just dreamt actually happened, looking around to see not a single pair of breasts above a D-cup, nor any ginger half-breeds attached to your cock, leaving you with a slight pang of disappointment.");
 	output("\n\n<i>“Oh...”</i> she moans, <i>“You’re finally awake, you’ve been, uh... doing </i>that<i> for a while now.”</i> With that last word she nods her head to get you to look down, and you do so, only to see you’ve covered this pup’s tummy in your [pc.cum], your [pc.cockHead] still gently leaking onto her smooth stomach.");
-	output("\n\nYou look back up to the girl’s nipples, still stiff and a bit reddened from your sleepy suckling... and all to succulent for you to resist.");
+	output("\n\nYou look back up to the girl’s nipples, still stiff and a bit reddened from your sleepy suckling... and all too succulent for you to resist.");
 
 	if(pc.isNice()) 
 	{

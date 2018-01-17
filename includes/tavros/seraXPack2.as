@@ -3415,10 +3415,11 @@ public function seraBitcheningStoreRandomize():void
 	// Group A
 	// ManUp, Estrobloom, Junk in the Trunk, Tittyblossom, Condensol, Virection
 	var groupA:Array = [];
-	groupA.push(new ManUp());
 	groupA.push(new Estrobloom());
 	groupA.push(new Tittyblossom());
 	groupA.push(new JunkTrunk());
+	groupA.push(new ManUp());
+	groupA.push(new ManDown());
 	groupA.push(new Condensol());
 	groupA.push(new Virection());
 	// Group B
@@ -4592,7 +4593,7 @@ public function seraBitcheningPunishWalkiesWitnessRival():void
 	showLocationName();
 	
 	output("<i>“You! - what are you doing?”</i>");
-	output("\n\nYour cousin, slim and sharply dressed, is stood in the middle of the Residential thoroughfare, staring at you - or more specifically slightly beyond you, at the individual on the end of your leash. It’s a slight shock to see [rival.himHer] in a setting where you don’t want to kill [rival.himHer], but you immediately decide to style it out.");
+	output("\n\nYour cousin, slim and sharply dressed, is standing in the middle of the Residential thoroughfare, staring at you - or more specifically slightly beyond you, at the individual on the end of your leash. It’s a slight shock to see [rival.himHer] in a setting where you don’t want to kill [rival.himHer], but you immediately decide to style it out.");
 	if(!pc.isBimbo())
 	{
 		output("\n\n<i>“Taking one of my bitches for a walk. Say hello to my cousin, Sera.”</i>");
@@ -4607,7 +4608,7 @@ public function seraBitcheningPunishWalkiesWitnessRival():void
 	}
 	output("\n\n<i>“No! God no.”</i> [rival.name] is still staring at Sera, expression frozen, foot tapping impulsively; [rival.hisHer] usual snap and sting are completely absent. <i>“Well! I suppose I should get back out to the frontier. Seems you’ve basically thrown in the towel, if this is how you’re wasting your time.”</i>");
 	output("\n\n<i>“What are <i>you</i> doing here?”</i> you inquire.");
-	output("\n\n<i>“Nothing! None of your business!”</i> [rival.heShe] strides away without another word. [rival.HeShe] can’t stop himself shooting a couple of glances back over [rival.hisHer] shoulder at the pair of you, though.");
+	output("\n\n<i>“Nothing! None of your business!”</i> [rival.heShe] strides away without another word. [rival.HeShe] can’t stop [rival.himHer]self from shooting a couple of glances back over [rival.hisHer] shoulder at the pair of you, though.");
 	
 	processTime(5);
 	
@@ -4834,8 +4835,6 @@ public function seraOnTavrosObedience(totalDays:int):void
 // Put her room on second floor of Nursery
 public function seraOnTavrosBonus(btnSlot:int = 0):String
 {
-	if(flags["SERA_CREWMEMBER"] != 0) return "";
-	
 	var bonusText:String = "";
 	
 	bonusText += "\n\nA door with a digital sign is marked ‘Sera’s Apartment’.";
@@ -4848,14 +4847,26 @@ public function seraOnTavrosBonus(btnSlot:int = 0):String
 	{
 		pc.removeStatusEffect("Sera at Nursery");
 		
-		if(pc.hasStatusEffect("Sera Mommy Time"))
+		if(flags["SERA_PREGNANCY_CHECK"] != undefined)
+		{
+			bonusText += " The door is closed. You recall that Sera is in the natal unit, so it is probably best to";
+			if((flags["SERA_PREGNANCY_CHECK"] + 1) >= days)
+			{
+				bonusText += " wait a day";
+				if(flags["SERA_PREGNANCY_CHECK"] == days) bonusText += " or two";
+			}
+			else bonusText += " check with Briget";
+			bonusText += " before visiting her again.";
+			addDisabledButton(btnSlot, "Sera", "Sera", "Sera is currently away giving birth.");
+		}
+		else if(pc.hasStatusEffect("Sera Mommy Time"))
 		{
 			bonusText += " The door is closed, leaving Sera some private time to recover and bond with her newborn.";
-			addDisabledButton(btnSlot, "Sera", "Sera", "Sera is still ");
+			addDisabledButton(btnSlot, "Sera", "Sera", "Sera is still recovering from giving birth. Best to meet with her a bit later.");
 		}
 		else if(pc.hasStatusEffect("Sera Morning Sickness") || (flags["SERA_PREGNANCY_TIMER"] >= 30 && flags["SERA_PREGNANCY_TIMER"] < 90 && hours >= 6 && hours < 10 && rand(3) == 0))
 		{
-			bonusText += " You hear the distinct sound of someone throwing up, followed by a moaned <i>“Fuck thiiiiiiis”</i> from Sera’s room. Probably best to leave her alone for a while.";
+			bonusText += " You hear the distinct sound of someone throwing up, followed by a moaned <i>“Fuck thiiiiiiis...”</i> from Sera’s room. Probably best to leave her alone for a while.";
 			pc.createStatusEffect("Sera Morning Sickness", 0, 0, 0, 0, true, "", "", false, 120);
 			addDisabledButton(btnSlot, "Sera", "Sera", "She seems to be sick or something...");
 		}
@@ -4880,10 +4891,15 @@ public function approachServantSeraOnTavros(introText:Boolean = false):void
 	// Sera Salary hotfix check
 	if(seraSalaryCheck()) return;
 	
+	clearOutput();
+	author("Nonesuch");
+	clearMenu();
+	
 	if(seraPregnancyIsDue())
 	{
 		output("Sera’s room is empty. It looks slightly more dishevelled than usual, although that’s a difficult thing to judge.");
 		output("\n\n...How long has she been pregnant for, again?");
+		if(flags["SERA_PREGNANCY_CHECK"] == undefined) output("\n\n<b>Perhaps you should check in with " + (flags["BRIGET_MET"] == undefined ? "the head nurse" : "Briget") + " about that.</b>");
 		// [Sera] option added to Briget’s menu
 		addButton(14, "Leave", mainGameMenu);
 		return;
@@ -4891,10 +4907,7 @@ public function approachServantSeraOnTavros(introText:Boolean = false):void
 	
 	generateMapForLocation("NURSERYSERA");
 	
-	clearOutput();
 	showSera();
-	author("Nonesuch");
-	clearMenu();
 	
 	if(introText)
 	{

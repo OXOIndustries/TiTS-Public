@@ -190,7 +190,7 @@ package classes.GameData
 			}
 			//Shield regen stuff here!
 			if(pc.hasStatusEffect("Shields Damaged")) pc.removeStatusEffect("Shields Damaged");
-			else if(pc.hasPerk("Rapid Recharge"))
+			else if(pc.hasShields() && pc.hasPerk("Rapid Recharge"))
 			{
 				pc.shields(pc.bimboIntelligence()/3+3);
 			}
@@ -217,6 +217,12 @@ package classes.GameData
 			if (hasEnemyOfClass(CaptainKhorganMech))
 			{
 				kGAMECLASS.khorganMechBonusMenu();
+				return;
+			}
+			
+			if(hasEnemyOfClass(EstalliaTank))
+			{
+				kGAMECLASS.fedQuestQueenBonusMenu();
 				return;
 			}
 			
@@ -254,6 +260,11 @@ package classes.GameData
 					return;
 				}
 			}
+			if (hasEnemyOfClass(StormguardMale))
+			{
+				var stormy:StormguardMale = _hostiles[0];
+				if(stormy.hasStatusEffect("Flying")) addButton(2,"ShootJetpack",stormy.jetpackShot,pc,"Shoot Jetpack","It’s possible you could shoot his jetpack from here. It’s a small target, he’s weaving around and the conditions are wretched, though...");
+			}
 			
 			if (hasEnemyOfClass(CommanderHenderson))
 			{
@@ -282,6 +293,13 @@ package classes.GameData
 				{
 					addButton(11, "Fire Alarm", h.triggerAlarm, false, "Trigger Fire Alarm", "Hit the alarm to release the cure!");
 				}
+			}
+			
+			if (hasEnemyOfClass(Estallia))
+			{
+				var e:Estallia = _hostiles[0];
+				
+				if(!e.hasStatusEffect("Tranq'd") && pc.hasKeyItem("Myr Heavy Tranquilizer Dart")) addButton(10, "UseTranq", e.attemptTranq, undefined, "Use Tranquilizer", "See if the tranquilizer Lieve gave you will have any effect on the War Queen.");
 			}
 		}
 		
@@ -440,7 +458,7 @@ package classes.GameData
 				else
 				{
 					if (target is PlayerCharacter) output("\n\n<b>You desperately slap at your body, trying to extinguish the flames that have taken to your " + target.armor.longName + " but it stubbornly clings to you, blackening and bubbling everything it touches. It burns!</b>");
-					else output("\n\n<b>" + target.getCombatName() + " desperately slaps at their body, trying to extingquish the flames licking at their " + target.armor.longName + " to no avail!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " desperately slaps at their body, trying to extingquish the flames licking at their " + target.armor.longName + " to no avail!</b>");
 					applyDamage(new TypeCollection( { burning: target.statusEffectv2("Burning") } ), null, target);
 				}
 			}
@@ -1125,6 +1143,7 @@ package classes.GameData
 			{
 				// do anything that only happens once per round here.
 				if (hasEnemyOfClass(CaptainKhorganMech)) kGAMECLASS.updateKhorganMechCover();
+				if (hasEnemyOfClass(EstalliaTank)) kGAMECLASS.fedQuestQueenUpdateCover();
 				if (hasEnemyOfClass(GardeBot))
 				{
 					kGAMECLASS.setEnemy(_hostiles[0]);
@@ -1228,11 +1247,17 @@ package classes.GameData
 				
 				if (hasEnemyOfClass(Kaska))
 				{
+					output("\n\n<b>Your vision is obstructed by smoke, making you effectively blind!</b>");
 					addButton(10, "Nip-Pinch", kGAMECLASS.pinchKaskaNipple, undefined, "Nip-Pinch", "Maybe pinching Kaska’s nipple will get her to release you.");
 				}
 				
 				addButton(4, "Do Nothing", waitRound);
 				return;
+			}
+			
+			if (hasEnemyOfClass(MyrGoldOfficer) && flags["FEDERATION_QUEST_WINDOW"] == 1)
+			{
+				addButton(10, "BreakWindow", kGAMECLASS.fedQuestOfficerBreakWindow, undefined, "Break Window", "Maybe this’ll get rid of the smoke?");
 			}
 			
 			//Combat Notes :
@@ -3828,11 +3853,11 @@ package classes.GameData
 			if(kGAMECLASS.uvetoBlizzardCombat()) {
 				for (i = 0; i < _hostiles.length; i++)
 				{
-					CombatAttacks.applyBlind(_hostiles[i], 3, true, "The blizzard running through the environment makes it difficult to see!\n\nAccuracy is reduced, and ranged attacks are far more likely to miss.");
+					if(!_hostiles[i].hasBlindImmunity()) CombatAttacks.applyBlind(_hostiles[i], 3, true, "The blizzard running through the environment makes it difficult to see!\n\nAccuracy is reduced, and ranged attacks are far more likely to miss.");
 				}
 				for (i = 0; i < _friendlies.length; i++)
 				{
-					CombatAttacks.applyBlind(_friendlies[i], 3, true, "The blizzard running through the environment makes it difficult to see!\n\nAccuracy is reduced, and ranged attacks are far more likely to miss.");
+					if(!_friendlies[i].hasBlindImmunity()) CombatAttacks.applyBlind(_friendlies[i], 3, true, "The blizzard running through the environment makes it difficult to see!\n\nAccuracy is reduced, and ranged attacks are far more likely to miss.");
 				}
 			}
 			var totalBlinded:int = 0;
@@ -3957,7 +3982,7 @@ package classes.GameData
 					if (target.lust() >= 50) output("\nYou can see her breath quickening, her massive chest heaving with nipples as hard as diamonds. She looks almost ready to cum just from your confrontation...");
 				}
 				
-				if (encounterText != null && !(target is QueenOfTheDeep) && !(target is Cockvine))
+				if (encounterText != null && !(target is QueenOfTheDeep) && !(target is Cockvine) && !(target is MyrGoldRemnant) && !(target is MyrGoldBrute))
 				{
 					if (_hostiles.length == 1)
 					{

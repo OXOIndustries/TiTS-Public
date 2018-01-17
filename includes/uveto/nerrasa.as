@@ -1,3 +1,5 @@
+import classes.Items.Upgrades.ExpandedBackpackII;
+
 public function uvetoApproachNerrasaFirstTime():void
 {
 	clearOutput();
@@ -86,6 +88,9 @@ public function uvetoNerrasaBuy():void
 	}
 	else chars["NERRASA"].destroyItemByClass(SiegwulfeItem);
 	
+	if(pc.statusEffectv1("Backpack Upgrade") < 10) chars["NERRASA"].inventory.push(new ExpandedBackpackII());
+	else chars["NERRASA"].destroyItemByClass(ExpandedBackpackII);
+
 	shopkeep = nerrasa;
 	buyItem();
 }

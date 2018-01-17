@@ -1,5 +1,6 @@
 ﻿package classes
 {
+	import classes.Engine.SharedData;
 	import classes.GameData.CombatManager;
 	import classes.GameData.Perks;
 	import classes.GameData.ShipManager;
@@ -121,9 +122,19 @@
 		include "../includes/StubbedFunctions.as";
 
 		//Holiday shit
-		include "../includes/holidayEvents/halloweenCostumes.as";
+		include "../includes/holidayEvents/candyRahn.as";
+		include "../includes/holidayEvents/chupacabro.as";
 		include "../includes/holidayEvents/freedomBeef.as";
+		include "../includes/holidayEvents/furryTreatsAndTricks.as";
+		include "../includes/holidayEvents/ghostSexDream.as";
+		include "../includes/holidayEvents/halloweenCostumes.as";
+		include "../includes/holidayEvents/merryShademas.as";
+		include "../includes/holidayEvents/milodanBreedingSolstice.as";
+		include "../includes/holidayEvents/myrnaTheGenerousKorgonne.as";
+		include "../includes/holidayEvents/pumpkinCarving.as";
 		include "../includes/holidayEvents/puppyslutmas.as";
+		include "../includes/holidayEvents/randyClaws.as";
+		include "../includes/holidayEvents/succucow.as";
 
 		//Followers
 		include "../includes/follower/anno.as";
@@ -132,8 +143,10 @@
 		include "../includes/follower/azraPlantSamples.as";
 		include "../includes/follower/celise.as";
 		include "../includes/follower/celiseGiga.as";
+		include "../includes/follower/kase.as";
 		include "../includes/follower/multi_interactions.as";
 		include "../includes/follower/paige.as";
+		include "../includes/follower/paigeHalloweener.as";
 		include "../includes/follower/paigeSex.as";
 		include "../includes/follower/paigeSpar.as";
 		include "../includes/follower/pippa.as";
@@ -162,12 +175,16 @@
 		include "../includes/events/atha_lets_fapper.as";
 		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
 		include "../includes/events/erra.as";
+		include "../includes/events/kattomOsgood.as";
 		include "../includes/events/kiroCrewQuest/buttslutinator.as";
 		include "../includes/events/kiroCrewQuest/omnisuitExtras.as";
 		include "../includes/events/kiroCrewQuest/orgasmender.as";
 		include "../includes/events/pyriteSatelliteRecovery.as";
 		include "../includes/events/steph_on_demand.as";
 		include "../includes/events/tentacle_psychic_hatchling.as";
+		include "../includes/events/federationQuest/federationQuest.as";
+		include "../includes/events/federationQuest/rooms.as";
+		include "../includes/events/federationQuest/roomFunctions.as";
 		
 		// Travel Events
 		include "../includes/travelEvents.as";
@@ -234,6 +251,7 @@
 		include "../includes/mhenga/flahne.as";
 		include "../includes/mhenga/frogGirls.as";
 		include "../includes/mhenga/julianSHaswell.as";
+		include "../includes/mhenga/kase.as";
 		include "../includes/mhenga/kelly.as";
 		include "../includes/mhenga/mimbranes.as";
 		include "../includes/mhenga/naleen.as";
@@ -363,6 +381,7 @@
 		include "../includes/gastigoth/gastigoth.as";
 		include "../includes/gastigoth/rooms.as";
 		include "../includes/gastigoth/sam.as";
+		include "../includes/gastigoth/pregStuff.as";
 		
 		// Karaquest 2- Karaharder.
 		include "../includes/events/karaquest2/content.as";
@@ -401,8 +420,10 @@
 		include "../includes/uveto/rooms.as";
 		include "../includes/uveto/roomFunctions.as";
 		include "../includes/uveto/shade.as";
+		include "../includes/uveto/stormguardMale.as";
 		include "../includes/uveto/subTuner.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
+		include "../includes/uveto/ula.as";
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
 		
@@ -442,7 +463,8 @@
 		public var items:Object;
 		
 		//Toggles
-		public var gameOptions:GameOptions;
+		public var gameOptions:GameOptions; // Options is tied to a single save file
+		public var sharedData:SharedData; // SharedData is used across ALL save files
 		
 		public function get silly():Boolean { return gameOptions.sillyMode; }
 		public function get easy():Boolean { return gameOptions.easyMode; }
@@ -498,7 +520,7 @@
 		}
 		
 		private function init(e:Event):void
-		{				
+		{
 			loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, uncaughtErrorHandler);
 			
 			stage.quality = StageQuality.BEST;
@@ -506,6 +528,7 @@
 			kGAMECLASS = this;
 			dataManager = new DataManager();
 			gameOptions = new GameOptions();
+			sharedData = SharedData.Load();
 			
 			hours = 0;
 			minutes = 0;
@@ -513,7 +536,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.95";
+			version = "0.7.127";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -534,7 +557,7 @@
 			itemUser = undefined;
 			itemTarget = undefined;
 
-			this.inSceneBlockSaving = false;
+			inSceneBlockSaving = false;
 			gameOverEvent = false;
 			
 			eventQueue = [];
@@ -566,6 +589,7 @@
 			kiInitRooms();
 			initVesperiaRoom();
 			initBreedwellRooms();
+			fqInitRooms();
 			
 			mapper = new Mapper(this.rooms)
 
@@ -590,11 +614,14 @@
 		
 		private function uncaughtErrorHandler(e:UncaughtErrorEvent):void
 		{
+			if(stage.contains(userInterface.textInput)) removeInput();
+			
 			output("<b>[Uncaught " + getQualifiedClassName(e.error) + "]</b>", false, false);
 			
 			if (e.error is Error)
 			{
 				var ee:Error = e.error as Error;
+				var bGameOver:Boolean = true;
 				
 				output("\n\n<b>Something bad happened!</b>\n\n<b>Please report this message, and include any prior scene text or a description of what you did before seeing this message:</b>\n\n");
 				//output("Version: " + version + "\n\n");
@@ -605,7 +632,13 @@
 				output("Error Mesg: " + ee.message + "\n", false, false);
 				output(ee.getStackTrace(), false, false);
 				clearMenu();
-				addButton(14, "Next", mainGameMenu);
+				if(bGameOver)
+				{
+					gameOverEvent = true;
+					backToPrimaryOutput();
+					output("\n\n(Access the main menu to start a new game or use the data menu to load a previously saved game. The buttons are located in the lower left of the game screen.)");
+				}
+				else addButton(14, "Next", mainGameMenu);
 			}
 		}
 		
@@ -1447,9 +1480,34 @@
 			return chars["CIARAN"];
 		}
 		
+		public function get ellie():Ellie
+		{
+			return chars["ELLIE"];
+		}
+		
+		public function get sam():SX1Techguard
+		{
+			return chars["SX1TECHGUARD"];
+		}
+		
+		public function get khorgan():CaptainKhorgan
+		{
+			return chars["CAPTAINKHORGAN"];
+		}
+		
+		public function get tamtam():TamTam
+		{
+			return chars["TAMTAM"];
+		}
+
 		public function get erika():Erika
 		{
 			return chars["ERIKA"];
+		}
+		
+		public function get lieve():Lieve
+		{
+			return chars["LIEVE"];
 		}
 
 		public function testShipCombat():void

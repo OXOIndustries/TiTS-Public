@@ -210,7 +210,7 @@ public function frostwyrmBadEnd():void
 	output(" It will be pleasurable for you, if you let it.</i>");
 	
 	output("\n\n<i>“I... will,”</i> you answer, ");
-	if(pc.legCount > 1) output("and you find your [pc.legorLegs] spreading invitingly, ");
+	if(pc.legCount > 1) output("and you find your [pc.legs] spreading invitingly, ");
 	output("as if begging the wyrm to proceed with its inevitable plans for you.");
 
 	processTime(90)
@@ -243,7 +243,7 @@ public function frostwyrmBadEndII():void
 		output("\n\nThe wyrm’s insertion stops quickly, bottoming out at the end of your channel: it’s barely crowned you, and there’s no more room for its monstrous erection. You scream again, begging for more: you don’t care if it breaks you, ruins you forever -- you need <i>more</i> of the wyrm’s dick inside you.");
 		
 		output("\n\nInstead of tearing you apart, the frostwyrm begins to move its hindquarters, drawing itself almost out of you, and grinding back in again. It’s not everything you wanted, but the thunderous pleasure that crashes through you erases any sense of deprivation. Conscious thought gives way to cries of animalistic pleasure, followed by orgasm as the wyrm hammers you, filling you utterly and completely. Your head lolls back, insensate as you climax around the beastial member, spraying it with [pc.girlCumNoun]");
-		if (pc.hasCock()) output(" and hosing your belly with your own spunk as your [pc.multiCock] erupts.");
+		if (pc.hasCock()) output(" and hosing your belly with your own spunk as your [pc.multiCocks] erupts.");
 		else output(".");
 		
 		output("\n\nThe wyrm follows you a mere moment later, bellowing a triumphant roar as its cock swells with impending need. You have but a moment to brace yourself before the flood of cold, sticky wetness floods into your womb, bloating your gut as a monstrous load of wyrm-spunk takes root.");

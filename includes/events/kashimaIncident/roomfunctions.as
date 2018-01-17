@@ -1473,12 +1473,12 @@ public function kiDiscoverVanderbiltsSecret():void
 
 	output("\n\nSlowly, you find yourself asking, <i>“How long can you hold out?”</i>");
 	
-	output("\n\n<i>“Not long,”</i> Elenora sighs. <i>“I don’t know. I’m starting to hear things, and it’s getting hard t-to control myself,”</i> she adds, glancing down at her soaked thighs. If I go too long... without... I start to lose control. And the tentacles start growing e-even faster. Spreading.”</i>");
+	output("\n\n<i>“Not long,”</i> Elenora sighs. <i>“I don’t know. I’m starting to hear things, and it’s getting hard t-to control myself,”</i> she adds, glancing down at her soaked thighs. <i>“If I go too long... without... I start to lose control. And the tentacles start growing e-even faster. Spreading.”</i>");
 
-	output("\n\n<i>“");
-	if (pc.isNice()) output("Is there anything I can... do for you?”</i> you ask uncertainly.");
-	else if (pc.isMisc()) output("Think there’s anything I can do to keep you from turning into a mutant?”</i> you say with a forced grin.");
-	else output("You better have a way to keep yourself from turning, doctor,”</i> you grunt, putting a hand on your [pc.weapon].");
+	output("\n\n");
+	if (pc.isNice()) output("<i>“Is there anything I can... do for you?”</i> you ask uncertainly.");
+	else if (pc.isMisc()) output("<i>“Think there’s anything I can do to keep you from turning into a mutant?”</i> you say with a forced grin.");
+	else output("<i>“You better have a way to keep yourself from turning, doctor,”</i> you grunt, putting a hand on your [pc.weapon].");
 
 	output("\n\nYour companion fidgets nervously, glancing from you to");
 	if (pc.isAss()) output(" your weapon");

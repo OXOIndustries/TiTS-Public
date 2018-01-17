@@ -9,14 +9,14 @@ public function doParse(script:String, markdown:Boolean = false):String
 // HTML tag formatting wrappers, because lazy as fuck
 public function header(words:String, newLine:Boolean = true):String
 {
-	if(!newLine) return String("<span class='header'>" + words + "</span>");
-	return String("<span class='header'>" + words + "</span>\n");
+	if(!newLine) return ("<span class='header'>" + words + "</span>");
+	return ("<span class='header'>" + words + "</span>\n");
 }
 
 public function blockHeader(words:String, newLine:Boolean = true):String
 {
-	if(!newLine) return String("<span class='blockHeader'>" + words + "</span>");
-	return String("<span class='blockHeader'>" + words + "</span>\n");
+	if(!newLine) return ("<span class='blockHeader'>" + words + "</span>");
+	return ("<span class='blockHeader'>" + words + "</span>\n");
 }
 
 //1: TEXT FUNCTIONS

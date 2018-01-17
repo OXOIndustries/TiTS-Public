@@ -6,6 +6,8 @@ public function flyToTavros():void
 	
 	output("You fly to Tavros");
 	if(leaveShipOK()) output(" and step out of your ship.");
+	showBust("TAVROS");
+	showName("\nTAVROS");
 }
 public function puntToShip():Boolean
 {
@@ -277,4 +279,10 @@ public function displayNoticeBoardRD():void {
 public function northEastPlazaBonus():void
 {
 	fisiAtResDeckAddendum(0);
+}
+
+public function northWalkwayBonus():void
+{
+	fisiannaApartmentHandler(0);
+	kaseApartmentHandler(1);
 }

@@ -2098,13 +2098,14 @@ public function talkToBessAboutHairStyle():void
 		
 		// bessSetHairStyle() adds an article to some of the styles, so lets check both possibilities
 		var bhStyle:String = bessHairStyle();
-		if (InCollection(bhStyle, options[optSlot], indefiniteArticle(options[optSlot])))
+		var isPlural:Boolean = InCollection(options[optSlot][1], ["spikes", "pigtail buns", "ruffled layers"]);
+		if (InCollection(bhStyle, [options[optSlot][1], indefiniteArticle(options[optSlot][1])]))
 		{
-			addDisabledButton(i, StringUtil.toTitleCase(options[optSlot]));
+			addDisabledButton(i, options[optSlot][0], StringUtil.toTitleCase(options[optSlot][1]), "[bess.name]’s hair is already styled in" + (isPlural ? "to " + options[optSlot][1] : " " + indefiniteArticle(options[optSlot][1])) + ".");
 		}
 		else
 		{
-			addButton(i, StringUtil.toTitleCase(options[optSlot]), bessSetHairStyle, options[optSlot]);
+			addButton(i, options[optSlot][0], bessSetHairStyle, options[optSlot][1], StringUtil.toTitleCase(options[optSlot][1]), "Style [bess.name]’s hair into " + (isPlural ? options[optSlot][1] : indefiniteArticle(options[optSlot][1])) + ".");
 		}
 	}
 }
@@ -5058,7 +5059,7 @@ public function aboutBess1():void
 
 	output("You question [bess.name] about [bess.hisHer] past before you discovered her, though your query seems to confuse [bess.himHer].");
 	
-	output("\n\n<i>“Before you activated me I was built at a JoyCo factory on Panara, "+bessPCName()+". Unplugging the power coupling and seeing you are the the first memories I have.”</i>");
+	output("\n\n<i>“Before you activated me I was built at a JoyCo factory on Panara, "+bessPCName()+". Unplugging the power coupling and seeing you are the first memories I have.”</i>");
 	
 	output("\n\nIt seems when [bess.heShe] rebooted, [bess.hisHer] entire memory was wiped, including how [bess.heShe] ended up on the planet in the first place. You decide to ask [bess.himHer] when [bess.heShe] was issued from the JoyCo factory.");
 	
@@ -8023,7 +8024,7 @@ public function bessEvent15():void
 	clearOutput();
 	bessHeader();
 
-	output("You find [bess.name] in [bess.hisHer] little nook curled up reading a book as per usual, [bess.hisHer] [bess.eyeColor] eyes fixated on the pages before [bess.himHer]. [bess.HeShe] seems to be reading The Lord of the Rings trilogy by J. R. R. Tolkien. You can see [bess.heShe]’s up to The Return of the King, the final book in the series; the The Hobbit and The Silmarillion are lying finished nearby.");
+	output("You find [bess.name] in [bess.hisHer] little nook curled up reading a book as per usual, [bess.hisHer] [bess.eyeColor] eyes fixated on the pages before [bess.himHer]. [bess.HeShe] seems to be reading The Lord of the Rings trilogy by J. R. R. Tolkien. You can see [bess.heShe]’s up to The Return of the King, the final book in the series; The Hobbit and The Silmarillion are lying finished nearby.");
 	
 	output("\n\n[bess.HeShe] must be really enjoying the book because [bess.heShe] still hasn’t noticed you standing there. If you wanted, you could easily turn the tables on [bess.himHer], since [bess.heShe]’s always trying to wind you up...");
 
@@ -11458,7 +11459,7 @@ public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
 	{
 		output("\n\n<i>“Um, my insides should be nice and moist, and you seem pretty hard. Did you want to stick your cock");
 		if (pc.cocks.length > 1) output("s");
-		output(" inside me now, "+ bessPCSexName() +"?”</i> [bess.name] sweetly asks, at the same time pointedly rubbing your your cock-tip with [bess.hisHer] "+ (bTargetVag ? "[bess.pussy]" : "[bess.ass]") +" - as if [bess.heShe] needed to tempt you!");
+		output(" inside me now, "+ bessPCSexName() +"?”</i> [bess.name] sweetly asks, at the same time pointedly rubbing your cock-tip with [bess.hisHer] "+ (bTargetVag ? "[bess.pussy]" : "[bess.ass]") +" - as if [bess.heShe] needed to tempt you!");
 	}
 
 	output("\n\nWith the simplest press forward, your [pc.cockHead "+ cockIdx +"] parts [bess.hisHer] "+ (bTargetVag ? "silky lower lips" : "star-shaped pucker") +". You groan as you sink your engorged length deep inside [bess.hisHer] synthetic hole - it’s so tight and slick! Even a virgin "+ (bTargetVag ? "pussy" : "ass") +" wouldn’t be this wonderously tight- it’s a good thing");

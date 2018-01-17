@@ -54,6 +54,9 @@
 			resistances = new TypeCollection();
 			resistances.burning.resistanceValue = 50.0;
 			
+			itemFlags = [];
+			itemFlags.push(GLOBAL.ITEM_FLAG_COVER_BODY);
+			
 			this.version = _latestVersion;
 		}	
 	}

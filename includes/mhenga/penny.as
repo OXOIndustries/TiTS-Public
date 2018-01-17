@@ -54,7 +54,7 @@ public function pennyAffection(arg:int = 0):Number {
 	if(arg != 0) flags["PENNY_AFFECTION"] += arg;
 	if(flags["PENNY_AFFECTION"] > 100) flags["PENNY_AFFECTION"] = 100;
 	else if(flags["PENNY_AFFECTION"] < 0) flags["PENNY_AFFECTION"] = 0;
-	return arg;
+	return flags["PENNY_AFFECTION"];
 }
 
 public function pennysOffice():void {
@@ -2999,6 +2999,10 @@ public function teasePenny():void
 	output("\n\nShe raises a good point. She works in a public position after all - if she spends almost all of her time with her cock in her mouth people are going to notice. What do you tell her to do when someone walks in on her?");
 
 	pc.lust(20+rand(10));
+	
+	//[Add some a-hole points]
+	pc.addHard(20);
+	
 	//[Let them join in] [Let them watch] [Hide her actions]
 	clearMenu();
 	addButton(0,"Join In",letThemJoinInPennyYouSlut,undefined,"Join In","Instruct Penny to fuck and suck just about everyone she meets. She’d probably enjoy it, the slut.");
@@ -3021,12 +3025,11 @@ public function hideYourCumslutteryPennyYouSlut():void {
 	output("\n\n\She looks up at you with a grin, but that playfulness freezes on her face as you move in close to her again. Reaching out with one finger you draw it slowly across the underside of her chin, gathering up a morsel of the cum she’d sprayed herself with earlier. Bringing it up level with her face you say simply, <i>“Yes. You will.”</i>");
 	output("\n\nPenny fights it for just a moment, her eyes flicking between yours and her cum in front of herself, unsure about still being so submissive now that the heat of the moment is passed. In seconds though her resolve melts, and she leans forward to clean her cum off you eagerly with her tongue.");
 	output("\n\n<i>“Mine,”</i> you say firmly, and Penny nods in response, happily accepting her role as your cumslut pet. She whimpers softly as you turn and leave, but soon loses focus as her attention shifts to her rapidly re-hardening cock. Just as you disappear around the corner you knock sharply on her door, smirking at the sudden gasp from Penny as she jumps to hide her urgent erection.");
-	//[Add some a-hole points]
+	
 	flags["PENNY_HIDING_CUMSLUTTERY"] = 1;
 	flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] = undefined;
 	flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] = undefined;
 	flags["PENNY_IS_A_CUMSLUT"] = 1;
-	pc.addHard(20);
 	pc.lust(10);
 	processTime(10);
 	clearMenu();
@@ -3054,8 +3057,7 @@ public function pennyLetThemWatchYouCumSlut():void {
 	output("\n\nYou grin in response. <i>“Of course you do. So much better than letting your silly little shyness get in the way of enjoying your wonderful cock you went </i>so<i> out of your way to get. But remember...”</i> Without warning you slide three fingers inside her dripping slit, the sudden shock of which causes her cock to bulge with a startlingly intense orgasm, almost forcing it out of her mouth with the sheer volume of cum she produces in that one instant. <i>“Everyone can watch, but only </i>I<i> get to enjoy you.”</i>");
 	output("\n\nThat last emphatic orgasm seems to have wrung most of it out of her, and within moments Penny is left leaning exhausted back in her chair, while her [penny.cock] slides slowly out of her mouth to rest between her breasts. After spending a moment appraising the impressive amount of mess she left on your fingers you casually place them next to her mouth, and reflexively she leans forward and begins to eagerly lick them clean.");
 	output("\n\n<i>“What a good girl,”</i> you coo, before turning and walking out of the room, leaving the near-incoherent Penny to recover behind you. As you step outside you see a citizen of the town wandering by, and with a smirk you tell them that Penny has something to show them in her office, and they should let the rest of the town know. After all, it wouldn’t do to let her talents go to waste by letting her shows go unseen.");
-	//[Add a decent amount of a-hole points]
-	pc.addHard(20);
+	
 	flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] = 1;
 	flags["PENNY_HIDING_CUMSLUTTERY"] = undefined;
 	flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] = undefined;
@@ -3086,10 +3088,7 @@ public function letThemJoinInPennyYouSlut():void {
 	output("\n\nMoving back in front of her, you grip her head in both hands. <i>“That’s what you want, isn’t it? Just admit it, and embrace it, and then you can be the happy little cumslut you deserve to be.”</i>");
 	output("\n\nIt’s as though something inside her breaks. She looks up at you suddenly; her eyes snapping open wide and locking with yours. <i>“Please!”</i> she gasps. <i>“Please, I need cum on me! Please, I have to be marked as a cumslut! I need to be coated so people can see and know and coat me more and I can have enough to cover myself with and lick off and be dripping and please please please uhUHHhhhhh I need cum on me, [pc.name]!”</i>");
 	output("\n\nWell, you can hardly turn down an invitation like that. How do you respond?");
-
 	
-	//[Add a decent amount of a-hole points]
-	pc.addHard(20);
 	flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] = 1;
 	flags["PENNY_HIDING_CUMSLUTTERY"] = undefined;
 	flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] = undefined;

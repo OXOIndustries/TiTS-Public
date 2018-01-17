@@ -193,15 +193,6 @@ package classes.Characters
 					options.push(vanaeSpearStrike);
 					options.push(vanaeSpearStrike);
 					options.push(vanaeMilkSquirtBreasts);
-					
-					/*
-					else if (monster is HuntressVanae)
-					{
-						options.push(vanaeTailSwipe);
-						options.push(vanaeSpearStrike);
-						options.push(vanaeMilkSquirtBreasts);
-					}
-					*/
 				}
 				
 				options[rand(options.length)](target);
@@ -226,7 +217,7 @@ package classes.Characters
 					
 					output("\n\nIt seems she’s changed her skin to match her surroundings like instant camouflage. You can still see her, but while she’s camouflaged it is going to be harder to hit her and dodge her attacks.");
 					
-					createStatusEffect("Camouflage", 3, 0, 0, 0);
+					createStatusEffect("Camouflage", 3, 0, 0, 0, false, "Icon_Blind", "Active camouflage makes it harder for opponents to target.");
 					reflexesMod += 8;
 					aimMod += 8;
 				}
@@ -415,15 +406,17 @@ package classes.Characters
 					}
 					
 					var damage:TypeCollection = meleeDamage();
+					var bStun:Boolean = false;
 					damageRand(damage, 10);
 					
 					if (isCrit)
 					{
 						damage.multiply(2);
-						CombatAttacks.applyStun(target, 1);
+						bStun = true;
 					}
 					
 					applyDamage(damage, this, target);
+					if(bStun) CombatAttacks.applyStun(target, 1);
 				}
 			}
 		}

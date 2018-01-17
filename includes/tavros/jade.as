@@ -1031,7 +1031,7 @@ public function boobToBoobSexathon():void {
 	if(x < 0 && pc.hasCock())
 	{
 		output("\n\nJade simply grins at you as her tentacles tickle your fingertips, her own fingers trailing up and down your mammoth [pc.cockNounSimple " + pc.smallestCockIndex() + "]. <i>“Mmm... too bad this bad boy is too big for me, or we could have some real fun. I’ll make do, but maybe you should shrink that down before you come back next time?”</i> she suggests, winking at you.");
-		output("\n\nNot giving you time to answer, the panda shifts in closer, pressing her pillowy boobs against your face when she slides her legs in to straddle you. As she slides down into your lap, you can feel the warm, soft fur of her thighs trailing ticklishly over your mighty " + pc.mf("man-meat","girl-cock") + " as she lowers herself. The softness of her pussy scrapes along the underside of your oversized shaft, polishing you with the the vulva that is far too dainty to fit you.");
+		output("\n\nNot giving you time to answer, the panda shifts in closer, pressing her pillowy boobs against your face when she slides her legs in to straddle you. As she slides down into your lap, you can feel the warm, soft fur of her thighs trailing ticklishly over your mighty " + pc.mf("man-meat","girl-cock") + " as she lowers herself. The softness of her pussy scrapes along the underside of your oversized shaft, polishing you with a vulva that is far too dainty to fit you.");
 	}
 	//else if PC.Cock=Else:
 	else if(pc.hasCock())

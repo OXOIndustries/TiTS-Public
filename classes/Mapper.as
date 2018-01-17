@@ -1,5 +1,6 @@
 ﻿package classes
 {
+	import classes.kGAMECLASS;
 	public class Mapper
 	{
 
@@ -172,6 +173,10 @@
 			}
 			// Special flags applied to the rooms
 			if (roomsObj[targetRoom].hasFlag(GLOBAL.COMMERCE))
+			{
+				map[x][y][z] |= room_commerce_mask;
+			}
+			else if(kGAMECLASS.flags["KATTOM_LOCATION"] == targetRoom)
 			{
 				map[x][y][z] |= room_commerce_mask;
 			}

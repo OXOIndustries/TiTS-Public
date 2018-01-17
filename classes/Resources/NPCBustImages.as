@@ -21,7 +21,9 @@
 		public static var AKI:Object = new AkiBusts();
 		public static var ALDER:Object = new AlderBusts();
 		public static var BNG:Object = new BNGBusts();
+		public static var BUSTEDRADIO:Object = new BustedRadioBusts();
 		public static var CHESHIRE:Object = new CheshireBusts();
+		public static var CROSSMAN:Object = new CrossmanBusts();
 		public static var CYANCAPSULE:Object = new CyanCapsuleBusts();
 		public static var DAMNIT:Object = new DamnitBusts();
 		public static var DOCBADGER:Object = new DocBadgerBusts();

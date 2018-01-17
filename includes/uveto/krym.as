@@ -358,8 +358,11 @@ public function noSexForKrym():void
 //Combat Loss
 public function loseToThatIcyBimbo():void
 {
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	
 	clearOutput();
-	showKrym(true);
+	showBust("KRYM_NUDE");
 	author("Savin");
 	output("<i>“");
 	if(pc.isBimbo()) output("I, like, give up already!");
@@ -566,6 +569,13 @@ public function pcGonnaGetFucked():void
 //I coulda sworn I wrote this but oh well I guess not.
 public function combatVictoryWithKrymm():void
 {
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	
+	clearOutput();
+	showBust("KRYM");
+	author("Savin");
+	
 	output("The valkyrie staggers back, ");
 	if(enemy.HP() <= 1) output("groaning in pain");
 	else output("panting with lust");
@@ -781,12 +791,20 @@ public function pitchVagimalKrym():void
 	
 	if(pc.hasCock()) output("\n\nClimax comes with a jolt of anal shock. A finger thrusts into your [pc.asshole], pressing against your prostate with amazonian strength.");
 	else output("\n\nHer sucking skills are as practiced as her fighting, and she’s got you on the edge in seconds.");
-	output(" Your dick grows tight in her lips, turgid with liquid seed, and erupts into her throat.");
-	if(pc.cumQ() >= 2000) output(" Cum immediately spurts back around your shaft, and even out of her nose, as the unsuspecting valkyrie is exposed to the monstrous volume of your load.");
-	else output(" Krym grins up at you around her mouthful of dick, or at least as much as she can, while your throbbing dick deposits its load in her stomach.");
-	output("\n\n<i>“Oh, fuck!”</i> Krym laughs, coughing up a glob of cum onto her tits and pushing herself up onto her elbows. <i>“That was good. Real good! Gods, my heart is pounding still.”</i>");
-	output("\n\nShe plants a kiss on your cockhead and flops back, wrapping her arms under her head. You grab a towel and start to clean up while Krym lounges, licking her lips clean of your seed.");
-	output("\n\n<i>“Hope you’re planning on staying on Uveto for a long time, [pc.name],”</i> she murmurs. Wearily, the valkyrie pulls herself up and takes the towel from your hands. She starts to clean you, slowly and gently wiping clean your loins, until nothing’s left but the faint outline of her lips on your crown. That, she leaves alone. <i>“It isn’t everyday a fuck like you comes along...”</i>");
+	if(x != -1) output(" Your dick grows tight in her lips, turgid with liquid seed, and erupts into her throat.");
+	if(x != -1 && pc.cumQ() >= 2000) output(" Cum immediately spurts back around your shaft, and even out of her nose, as the unsuspecting valkyrie is exposed to the monstrous volume of your load.");
+	else output(" Krym grins up at you around her mouthful of dick, or at least as much as she can");
+	if(x != -1) output(", while your throbbing dick deposits its load in her stomach");
+	output(".");
+	output("\n\n<i>“Oh, fuck!”</i> Krym laughs");
+	if(x != -1) output(", coughing up a glob of cum onto her tits and");
+	output(" pushing herself up onto her elbows. <i>“That was good. Real good! Gods, my heart is pounding still.”</i>");
+	output("\n\nShe plants a kiss on your cockhead and flops back, wrapping her arms under her head. You grab a towel and start to clean up while Krym lounges");
+	if(x != -1) output(", licking her lips clean of your seed");
+	output(".");
+	output("\n\n<i>“Hope you’re planning on staying on Uveto for a long time, [pc.name],”</i> she murmurs. Wearily, the valkyrie pulls herself up and takes the towel from your hands. She starts to clean you, slowly and gently wiping clean your loins");
+	if(x != -1) output(", until nothing’s left but the faint outline of her lips on your crown. That, she leaves alone");
+	output(". <i>“It isn’t everyday a fuck like you comes along...”</i>");
 	output("\n\nIs that the only reason, you wonder.");
 
 	if(x >= 0) krymhilde.loadInMouth(pc);

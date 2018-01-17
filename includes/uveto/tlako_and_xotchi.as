@@ -25,7 +25,7 @@ public function officeOfTheCamarillaButtsBonus():Boolean
 	output("A massive billboard arches over the entryway to this office, bearing a sign that slowly scrolls from one side to the other, displaying its message in aggressively cheerful fonts.");
 	output("\n\n<i>“The Camarilla welcomes you to Uveto VII Station! Please enjoy your stay!”</i>");
 	output("\n<i>“Looking for the latest in Uveto VII fashion? Try Eimear's Clothes Shop! Eimear's Clothes Shop - servicing Uveto VII for 20 solar cycles!”</i>");
-	output("\n<i>“You can barely spell \"style\" without Spinnaran Silk and Steel! Spinnaran Silk and Steel - It's what separates a Rusher from a drifter colony bum!”</i>");
+	output("\n<i>“You can barely spell \"style\" without Spinarran Silk and Steel! Spinarran Silk and Steel - It's what separates a Rusher from a drifter colony bum!”</i>");
 	output("\n<i>“It's warm here on Uveto Station, but you'll need thermal regulation to make planetfall. Try The Last Chance for all of your sub-zero preparations!”</i>");
 	output("\n\nUnder the advertisements, in small, quickly scrolling letters, is a wordy message: <i>“The Camarilla is not responsible for death, cryogenic suspension, pregnancy, biological manipulation, sexual assault, or atomic disintegration via protonic drills encountered on the surface of Uveto VII. By entering this station you are agreeing to abide by Camarilla regulations. A full copy of Camarilla regulations may be obtained by contacting your local Camarilla representative.”</i>");
 	output("\n\nAs you pass under the billboard, you feel a buzz from your Codex, but a glance at it shows nothing on the display.");

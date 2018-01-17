@@ -4,6 +4,7 @@ public function hasSmutOptions():Boolean
 	if(MailManager.isEntryViewed("lets_fap_unlock")) return true;
 	if(MailManager.isEntryViewed("steph_on_demand")) return true;
 	if(MailManager.isEntryViewed("syri_video")) return true;
+	if(flags["KHORGAN_PREGSTURBATE"] != undefined) return true;
 	return false;
 }
 
@@ -40,6 +41,7 @@ public function smutFapMenu(fromPrevious:Boolean = false):void
 	if (MailManager.isEntryViewed("lets_fap_unlock")) possibleFuncs.push( { t: "LetsFap", th: "Let’s Fap", tb: "Watch Atha’s Let’s Fap episodes.", f: letsFapSelectionMain, ar: undefined } );
 	if (MailManager.isEntryViewed("steph_on_demand")) possibleFuncs.push( { t: "Steph OD", th: "Steph Irson: On Demand", tb: "Watch on-demand episodes of Steph Irson: Galactic Huntress.", f: stephOnDemandVODs, ar: undefined } );
 	if (MailManager.isEntryViewed("syri_video")) possibleFuncs.push( { t: "Syri", th: "Syri", tb: "Take a good look at that very private video Syri sent you.", f: syriJackVid, ar: undefined } );
+	if(flags["KHORGAN_PREGSTURBATE"] != undefined) possibleFuncs.push({ t: "Khorgan", th: "Khorgan", tb: "Witness an incredibly pregnant and horny Thraggen woman masturbate to the thought of you.", f: khorganPregsturbate, ar: undefined } );
 	
 	clearMenu();
 	

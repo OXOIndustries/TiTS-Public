@@ -265,9 +265,9 @@
 			choices.push(getStabbedBiyatch);
 			choices.push(arrowAttack);
 			//1x limit
-			if(!isBlocked(clobberAttack,blocked)) choices.push(clobberAttack);
+			if(!isZilBlocked(clobberAttack,blocked)) choices.push(clobberAttack);
 			choices.push(lustDartFoLyfe);
-			if(!isBlocked(grabWoundedPCs,blocked))
+			if(!isZilBlocked(grabWoundedPCs,blocked))
 			{
 				if(this.HP() < 180 && !target.hasStatusEffect("Tripped") && !this.hasStatusEffect("Trip CD")) choices.push(grabWoundedPCs);
 			}
@@ -282,7 +282,7 @@
 
 			return choices;
 		}
-		public function isBlocked(target:Function,blocked:Array):Boolean
+		public function isZilBlocked(target:Function,blocked:Array):Boolean
 		{
 			for(var x:int = 0; x < blocked.length; x++)
 			{

@@ -3436,7 +3436,7 @@ public function SSTAG(args:Array):void
 	output("”</i>");
 
 	output("\n\nYou laugh with Paige, then, with extreme reluctance, you pull away from her. Your body is stiff and sore all over, and you’re dry, sore, and sticky around your [pc.crotch] and a little bit up your stomach. You absolutely stink of horny Ausar, too. You have some other things you need doing today – not the least of which is to find a shower.");
-	output("\n\n<i>“I could be convinced to go for round two...”</i> Paige croons. As much as you probably could too, you tell her that you both have responsibilities as adults. <i>“Yeah, I know, it sucks.”</i> She hooks a hand around your [pc.waist] and pulls you in for a lingering kiss. <i>“You know where to find me when you change your mind.”</i>");
+	output("\n\n<i>“I could be convinced to go for round two...”</i> Paige croons. As much as you probably could too, you tell her that you both have responsibilities as adults. <i>“Yeah, I know, it sucks.”</i> She hooks a hand around your [pc.hips] and pulls you in for a lingering kiss. <i>“You know where to find me when you change your mind.”</i>");
 	output("\n\nJust a few minutes later, you have your effects back on you and you’re ready to leave Paige’s unit.");
 
 	// end scene (scene: SSVAG); reduce Lust to 0; advance clock by two hours; place PC one square outside Paige’s Unit
@@ -3698,7 +3698,7 @@ public function SSDYHH(args:Array):void
 	showPaige(true);
 	args.push("SSDYHH");
 	output("You run your fingers through Paige’s shoulder-length brown hair, playing with the strands there are she works on you. You massage her scalp as if you were moisturizing it for a shower. Now <i>that</i> gives you an idea for later.");
-	if(silly) output(" You’ve never had sex with a dog-lady in a shower before. What a unique idea!");
+	if(silly && flags["ANNO_SHOWER_SEX"] == undefined) output(" You’ve never had sex with a dog-lady in a shower before. What a unique idea!");
 
 	// Continue here if Paige is focusing on the PC’s penis
 	if(args[0] == 1)
@@ -4283,7 +4283,7 @@ public function SSDHIHC(args:Array):void
 	showPaige(true);
 	args.push("SSDHIHC");
 	//if {SSDHT}
-	if(InCollection("SSDHT", args)) output("You promised that this time would be about her – it’s disappointed and a little painful, but you put your own needs aside for now. You have a pussy to please!\n\n");
+	if(InCollection("SSDHT", args)) output("You promised that this time would be about her – it’s disappointing and a little painful, but you put your own needs aside for now. You have a pussy to please!\n\n");
 	output("You back up a little bit");
 	//if {SSDHDI}
 	if(InCollection("SSDHDI", args)) output(", much to Paige’s confusion, so you can replace your tongue with");

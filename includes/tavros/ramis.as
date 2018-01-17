@@ -170,7 +170,7 @@ public function approachRamis(special:String = "none"):void
 		if(pc.hasCock() && flags["RAMIS_SEXED_MAN"] != undefined)
 		{
 			output("<i>“Oh, hey you.”</i> Ramis’s eyes focus and take on a pleased, predatory slant when they land on you. <i>“I was beginnin’ to think you wouldn’t show.");
-			if(StatTracking.getStat("contests/ramis arm wrestle wins") > 0) output("Fancy a drink? Or maybe you’re lookin’ for a rematch?”</i> her voice drops to a provocative growl. <i>“I might even let you win again...");
+			if(StatTracking.getStat("contests/ramis arm wrestle wins") > 0) output(" Fancy a drink? Or maybe you’re lookin’ for a rematch?”</i> her voice drops to a provocative growl. <i>“I might even let you win again...");
 			output("”</i>");
 			
 			// [Arm Wrestle] [Drink] [Back Off]

@@ -16,7 +16,7 @@ public function showKirila(nude:Boolean = false):void
 public function spinarranSilkAndSteelBonusFunc():Boolean
 {
 	author("Kinathis");
-	output("The shop is large with oddly wide spaces between displays. The interior looks to be divided neatly in two. One side is devoted to clothing, silkwear, suits and dresses and the other to all manner of spinnaran weapons and armor.");
+	output("The shop is large with oddly wide spaces between displays. The interior looks to be divided neatly in two. One side is devoted to clothing, silkwear, suits and dresses and the other to all manner of spinarran weapons and armor.");
 	output("\n\nYou walk over to the shop keeper: a tall, well built, feminine figure with long, finger-thick cords of copper carapace for hair and a silky dress. A name tag stands out against her dress, spelling “Kirila”. The humanoid alien looks over at you from under a set of dark, six-eyed goggles. One of her hands is playing with a small bowl of what looks like decorative bluish gravel, though even as you watch, she plucks one of the small rocks out of the pile and pops it into her mouth. You can hear a small pop, then several crunching sounds before she swallows.");
 	
 	removeUvetoCold(true);
@@ -41,6 +41,11 @@ public function approachKirila(back:Boolean = false):void
 		output("Kirila gives you a little wave. <i>“Hey there, welcome to Spinarran Silk & Steel. Are you here for silk or for steel?”</i> she asks with a smile on her copper-skinned lips.");
 		
 		if(flags["MET_KIRILA"] == undefined) flags["MET_KIRILA"] = 1;
+	}
+	if(!CodexManager.entryUnlocked("Spinarrans"))
+	{
+		output("\n\nYour Codex gives a little beep to indicate that it has prepared an article on Kirila's race. <b>New Codex entry unlocked: Spinarrans.</b>");
+		CodexManager.unlockEntry("Spinarrans");
 	}
 	silkAndSteelMenu();
 }

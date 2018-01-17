@@ -69,13 +69,14 @@ public function initMhengaRooms():void
 	//5. Esbeth’s Western Path
 	rooms["WEST ESBETH 1"] = new RoomClass(this);
 	rooms["WEST ESBETH 1"].roomName = "WEST\nESBETH";
-	rooms["WEST ESBETH 1"].description = "The western side of Esbeth is barely more than the tamped down path you now tread. Self-assembling, pre-fabricated houses have been set up here and there by the settlers brave enough to try their luck on a new, untested planet. Thus far, Mhen’ga has not sent its jungles in to claim the small town, but that doesn’t mean it won’t. The path bends farther to the north and continues straight on to the south. The western building is closed and locked, for now.\n\nTo the east you see one of the many pre-fabricated buildings in the colony, somewhat out of place among the shacks and more nondescript buildings. A pair of industrial stacks spewing out harmless wafts of steam denotes use, while the colorful and somewhat stretched sign up front states their purpose: “Crazy Carl’s Crude Cylinder Collection Cache”. The crude neon outline of a handgun helps you fill in the blanks.";
+	rooms["WEST ESBETH 1"].description = "";
 	rooms["WEST ESBETH 1"].planet = "PLANET: MHEN'GA";
 	rooms["WEST ESBETH 1"].system = "SYSTEM: ARA ARA";
 	rooms["WEST ESBETH 1"].southExit = "WEST ESBETH 2";
 	rooms["WEST ESBETH 1"].northExit = "NORTHWEST ESBETH";
 	rooms["WEST ESBETH 1"].eastExit = "CRAZY CARLS";
 	rooms["WEST ESBETH 1"].moveMinutes = 2;
+	rooms["WEST ESBETH 1"].runOnEnter = function():void{output("The western side of Esbeth is barely more than the tamped down path you now tread. Self-assembling, pre-fabricated houses have been set up here and there by the settlers brave enough to try their luck on a new, untested planet. Thus far, Mhen’ga has not sent its jungles in to claim the small town, but that doesn’t mean it won’t. The path bends farther to the north and continues straight on to the south. " + (myrOnMhenga() ? "\n\nThe western building has been opened up, and a pair of gold myr women are standing outside with rifles slung over their shoulders. A sign above the door in clear, crisp English says “Embassy of the Gilden Republics, Mhen’ga.”" : "The western building is closed and locked, for now.") + "\n\nTo the east you see one of the many pre-fabricated buildings in the colony, somewhat out of place among the shacks and more nondescript buildings. A pair of industrial stacks spewing out harmless wafts of steam denotes use, while the colorful and somewhat stretched sign up front states their purpose: “Crazy Carl’s Crude Cylinder Collection Cache”. The crude neon outline of a handgun helps you fill in the blanks.");};
 	rooms["WEST ESBETH 1"].addFlag(GLOBAL.OUTDOOR);
 	rooms["WEST ESBETH 1"].addFlag(GLOBAL.PUBLIC);
 
@@ -1717,4 +1718,52 @@ public function initMhengaRooms():void
 	rooms["ABANDONED CAMP"].addFlag(GLOBAL.OUTDOOR);
 	rooms["ABANDONED CAMP"].addFlag(GLOBAL.OBJECTIVE);
 	rooms["ABANDONED CAMP"].addFlag(GLOBAL.JUNGLE);
+	
+	//Gold Myr embassy as possible Federation Quest Resolution - related functions in FedQuest files
+	rooms["GOLD MYR EMBASSY"] = new RoomClass(this);
+	rooms["GOLD MYR EMBASSY"].roomName = "GOLD MYR\nEMBASSY";
+	rooms["GOLD MYR EMBASSY"].description = "The interior of the Gold Myr building is lavishly decorated, its walls covered in tapestries and portraits of the Queen and her daughters, while the floors are bedecked in lush carpets with pillows placed around for guests to sit on.\n\nSeveral colonists are in here, enjoying honey wine or reclining on the pillows, chatting quietly with the resident ant-girls. While not <i>packed</i> per se, the interior of the “embassy” is certainly more lively than you might expect from the spartan exterior.\n\nA large double door atop a short flight of marble stairs leads to another chamber, guarded by a pair of myr soldiers with hammers and handguns close at hand. They seem relaxed, though, and both give you a friendly nod when you enter.";
+	//rooms["GOLD MYR EMBASSY"].runOnEnter = ;
+	rooms["GOLD MYR EMBASSY"].planet = "PLANET: MHEN'GA";
+	rooms["GOLD MYR EMBASSY"].system = "SYSTEM: ARA ARA";
+	rooms["GOLD MYR EMBASSY"].westExit = "GOLD MYR CHAMBER";
+	rooms["GOLD MYR EMBASSY"].eastExit = "WEST ESBETH 1";
+	rooms["GOLD MYR EMBASSY"].addFlag(GLOBAL.INDOOR);
+	//rooms["GOLD MYR EMBASSY"].addFlag(GLOBAL.COMMERCE);
+	
+	rooms["GOLD MYR CHAMBER"] = new RoomClass(this);
+	rooms["GOLD MYR CHAMBER"].roomName = "AUDIENCE\nCHAMBER";
+	rooms["GOLD MYR CHAMBER"].description = "";
+	rooms["GOLD MYR CHAMBER"].runOnEnter = myrMhengaChamber;
+	rooms["GOLD MYR CHAMBER"].planet = "PLANET: MHEN'GA";
+	rooms["GOLD MYR CHAMBER"].system = "SYSTEM: ARA ARA";
+	rooms["GOLD MYR CHAMBER"].eastExit = "GOLD MYR EMBASSY";
+	rooms["GOLD MYR CHAMBER"].addFlag(GLOBAL.INDOOR);
+	rooms["GOLD MYR CHAMBER"].addFlag(GLOBAL.NPC);
+	
+	//I should be banned for this but I'm not combing through all these rooms 1 by 1 and 
+	//ammending their runOnEnter functions and/or adding new ones
+	//Iterates through all the rooms, if the key contains "ESBETH" and it has no runOnEnter and it's outdoor/public
+	//sets the runOnEnter to add little myr blurbs if they're on-planet
+	for(var key:String in rooms)
+	{
+		if(key.indexOf("ESBETH") >= 0 
+			&& rooms[key].runOnEnter == undefined 
+			&& rooms[key].hasFlag(GLOBAL.OUTDOOR) 
+			&& rooms[key].hasFlag(GLOBAL.PUBLIC))
+		{
+			rooms[key].runOnEnter = 
+				function():void{
+					if(myrOnMhenga() && rand(2) == 0)
+					{
+						switch(rand(3))
+						{
+							case 0:	output("\n\nA pair of human colonists are standing in an alleyway nearby, haggling with a busty gold myr woman who’s got a box of wine bottles tucked under one arm. A sign in crude English indicates she’s selling Honey Wine... or honey, straight from the tap. " + (pennyIsCumSlut() ? "A service which a third colonist is currently enjoying, nestled into her tits with a pair of her arms wrapped around him." : "") + ""); break;
+							case 1:	output("\n\nSeveral gold myr with toolbelts around their supple waists are going about some minor repairs to the electrical wire connecting the various buildings of Esbeth, chatting and giggling gaily amongst themselves while their four arms busily make adjustments and repairs to the grid."); break;
+							case 2:	output("\n\nA gold myr with the bottom half of a naleen is slithering around, burdened by bags of shopping from one of the Esbeth stores. Looks like somebody’s gotten in the naleen nip... but she’s making the most of it, and the other colonists sure seem to like the view of plump, naked myr butt protruding behind her."); break;
+						}
+					}
+				};
+		}
+	}
 }

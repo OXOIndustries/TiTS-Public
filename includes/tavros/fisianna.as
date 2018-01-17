@@ -1512,7 +1512,7 @@ public function thirdDateFisi():void
 	output("Afterwhich they immediately fall to the intruder. The alien bears down on the now lone captain and lunges at him. The captain barely escapes out of the cockpit in time. The invader chases after the captain relentlessly as he makes his way to the airlocks. Fisianna looks on with bated breath while the captain runs and gasps at every close call he has. Eventually he makes it to the airlocks, but to his dismay, all the escape pods have already been jettisoned; likely by crew members that were too terrified to stay aboard. Even you are starting to feel tense and wondering what he will do next as the alien threat closes in on the unfortunate captain.");
 	output("\n\nThe invader slowly and menacingly lumbers over to the trapped captain, ready to strike the final blow. In an instant, he holds onto a nearby bar on the wall and slams his hand on the airlock release button, opening the door next to them. Everything not nailed down in the room goes flying out of the airlock and into the empty void of space. The intruder struggles to keep its traction on the ship floor and falls victim to the suction of air being forced rapidly out of the room, but not before grabbing onto the doorframe in desperation. The captain beats at the alien’s limbs that are closest to him while holding his breath. ");
 	output("\n\nYou can feel Fisianna rocking and fidgeting next to you while the alien’s grip loosens bit by bit. When you look towards her, she bites her lower lip in anxiousness. Her twinned tails suddenly stretch out while her knees and paws clench together. Dismissing the gestures as mere expressions of terror, you look towards the screen after hugging her reassuringly, not wanting to miss the resolution of the scene. ");
-	output("\n\nAfter a few more hits, the alien intruder finally lets go and is vacuumed into the the cold recesses of space. The captain slams the airlock button down again to close the door as he, Fisianna, and the rest of the moviegoers breathe a collective sigh of relief. The captain makes their way back to the cockpit of the starship and plots a course for home.");
+	output("\n\nAfter a few more hits, the alien intruder finally lets go and is vacuumed into the cold recesses of space. The captain slams the airlock button down again to close the door as he, Fisianna, and the rest of the moviegoers breathe a collective sigh of relief. The captain makes their way back to the cockpit of the starship and plots a course for home.");
 	output("\n\nWhen the credits start to roll, Fisianna releases her rather tight hold on you. She looks into your eyes with a weary, but relieved look on her face. You can faintly smell a musky, ");
 	if (pc.cockVirgin && !pc.hasVagina()) output("but somewhat tangy aroma wafting from her. ");
 	else output("and somewhat familiar tangy aroma wafting from her. ");
@@ -1729,6 +1729,7 @@ public function sixthDateMerge():void
 	output("\n\n<i>“Alright, [pc.name]. I had the most wonderful day with you, but you got me all wet, so I need to wash this off and get to work on another project. I-I would be... up to doing something like this again next time, if you want to, of course. I bet you would though.”</i> Fisianna gives you a wink before separating herself from you and heading towards her bedroom door. Satisfied with opening her up a little sexually, you give a goodbye wave to Fisianna at her bedroom, to which she blows a kiss at you before disappearing behind the door. You help yourself out of her apartment and head back to the plaza with a big smile on your face.");
 
 	pc.lust(30);
+	fisianna.orgasm();
 	setFisiAway();
 	processTime(60 + rand(15));
 	currentLocation = "LIFT: RESIDENTIAL DECK";
@@ -1791,7 +1792,7 @@ public function tailjobFisi():void
 		output("\n\nThe tail wrapped around your [pc.cockNounBiggest] begins to move. It rubs up and down in a slow, but very sensual manner as you begin to feel your first pangs of pleasure. ");
 		if (pc.hasVagina())
 		{
-			output("The other tail that is nearing your [pc.vagina] moves down and makes contact with your [pc.clits]. Fisianna uses the the tip of her tail to start to stimulate your pleasure button");
+			output("The other tail that is nearing your [pc.vagina] moves down and makes contact with your [pc.clits]. Fisianna uses the tip of her tail to start to stimulate your pleasure button");
 			if (pc.vaginaTotal() > 1) output("s");
 			output(" as her coiled tail sensually rubs against your member. ");
 		}
@@ -1946,6 +1947,7 @@ public function eatOutFisi():void
 	
 	currentLocation = "RESIDENTIAL DECK 13";
 	processTime(30 + rand(25));
+	fisianna.orgasm();
 	pc.lust(33);
 	addButton(0,"Next",mainGameMenu);
 }
@@ -2026,8 +2028,10 @@ public function sixtyNineFisi():void
 	
 	if (flags["FISI_SEX_NUMBER"] == 2) flags["FISI_SEX_NUMBER"] = 3;
 	
-	pc.orgasm();
 	processTime(30 + rand(25));
+	fisianna.orgasm();
+	pc.orgasm();
+	pc.girlCumInMouth(fisianna);
 	addButton(0, "Next", sixtyNineFisi2);
 }
 
@@ -2221,8 +2225,9 @@ public function vaginalFisi():void
 		output("Your feline lover utters a long, <i>“Mmmnnn...”</i> as her insides continue to spasm around you. One quick glance at her face and you can tell she is totally gone. Her tongue is lazily lolling out of her mouth and she has the biggest grin on her face. You chuckle and nuzzle into her neck as you both ride out the rest of your climaxes.");
 	}
 	
-	pc.orgasm();
 	processTime(30 + rand(25));
+	fisianna.orgasm();
+	pc.orgasm();
 	addButton(0, "Next", vaginalFisi2);
 }
 
@@ -2255,6 +2260,7 @@ public function vaginalFisi2():void
 	
 	currentLocation = "RESIDENTIAL DECK 13";
 	processTime(60 + rand(25));
+	pc.shower();
 	addButton(0,"Next",mainGameMenu);
 }
 
@@ -2414,28 +2420,28 @@ public function leaveFisi():void
 
 public function fisiannaApartmentHandler(btnSlot:int = 0):void
 {
-	flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
+	flags["NAV_DISABLED"] |= NAV_WEST_DISABLE;
 	
 	output("\n\nTo the west, there is a lightly decorated, quaint-looking apartment. The number displayed on a plaque next to the entrance reads 124. ");
 	if (flags["FISI_SLEPT_WITH"] == undefined) 
 	{
 		output("It probably wouldn’t be a good idea to disturb the inhabitant of this home without any reason to do so.");
-		addDisabledButton(btnSlot, "Knock", "Knock", "It wouldn’t be a good idea to knock here at this time.");
+		addDisabledButton(btnSlot, "KnockWest", "Knock West", "It wouldn’t be a good idea to knock here at this time.");
 	}
 	else if (fisiAtResDeck())
 	{
 		output("Fisianna is likely hanging around the North-East plaza around this time. It wouldn’t do any good knocking at her door right now.");
-		addDisabledButton(btnSlot, "Knock", "Knock", "It wouldn’t be a good idea to knock here at this time.");
+		addDisabledButton(btnSlot, "KnockWest", "Knock West", "It wouldn’t be a good idea to knock here at this time.");
 	}
 	else if (flags["FISI_REJECTED"] != undefined)
 	{
 		output("After breaking things off with Fisianna the way you did, the last thing you want to do is to show up at her doorstep. You shrug off any temptation to knock at her door.");
-		addDisabledButton(btnSlot, "Knock", "Knock", "It wouldn’t be a good idea to knock here at this time.");
+		addDisabledButton(btnSlot, "KnockWest", "Knock West", "It wouldn’t be a good idea to knock here at this time.");
 	}
 	else
 	{
 		output("Fisianna looks to be home at the moment, but she is likely either sleeping or working, knowing her schedule. You could try knocking to see if she will answer.");
-		addButton(btnSlot, "Knock", knockKnockKnockinOnFisisDoor, undefined, "Knock", "Knock and see if Fisianna will answer.");
+		addButton(btnSlot, "KnockWest", knockKnockKnockinOnFisisDoor, undefined, "Knock West", "Knock and see if Fisianna will answer.");
 	}
 }
 

@@ -1878,7 +1878,7 @@ public function reahaClothingGiftConfirm(x:int):void
 {
 	clearOutput();
 	reahaHeader();
-	output("You cannot get clothing back from Reaha once you give it to her.\n\n<b>Are you sure you want to give Reaha " + pc.inventory[x].description + "?</b>");
+	output("Are you sure you want to give Reaha " + pc.inventory[x].description + "?");
 	//Inventory options here. Pick 1. Confirm:
 	//Are you sure you want to give {item} to Reaha?
 	//Yes // No (Back to Inventory)
@@ -2128,7 +2128,7 @@ public function whatOutfitWillCuredReahaDestroy():void
 	reahaHeader();
 	author("Jacques00");
 	
-	output("What will you have Reaha toss out?\n\n");
+	output("You cannot get clothing back from Reaha once you allow her to get rid of it.\n\nWhat will you have Reaha toss out?\n\n");
 	displayReahaInventory();
 	
 	var buttons:Number = 0;

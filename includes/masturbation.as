@@ -567,6 +567,12 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		output("Public masturbation is illegal here. Trying to masturbate would almost certainly land you in jail.");
 		aborted = true;
 	}
+	//Subtuner hypnoproc.
+	else if(pc.hasStatusEffect("Belle Hypno") && pc.hasGenitals()) 
+	{
+		belleMasturbationProc();
+		return;
+	}
 	//Exhibitionism masturbation
 	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
 	{
@@ -968,7 +974,7 @@ public function singleDickFap():void {
 	}
 	//Prehensile
 	else if(temp == GLOBAL.FLAG_PREHENSILE) {
-		output("\n\nSoon, you’re panting with excitement and handling the [pc.cockTip], twitching excitedly as it squirms against your hand, wrapping around your wrist and tugging it to make it move faster. Your own cock is encouraging you to jack off, driving your arm with pistol-like speed, forcing you to drive your need even hire, until it becomes a palpable, almost tangible thing. You cry out and jack harder, faster, and your cock straightens out under the assault, letting you pleasure its entire length unimpeded.");
+		output("\n\nSoon, you’re panting with excitement and handling the [pc.cockHead], twitching excitedly as it squirms against your hand, wrapping around your wrist and tugging it to make it move faster. Your own cock is encouraging you to jack off, driving your arm with pistol-like speed, forcing you to drive your need even hire, until it becomes a palpable, almost tangible thing. You cry out and jack harder, faster, and your cock straightens out under the assault, letting you pleasure its entire length unimpeded.");
 	}
 	//Nothing special
 	else output("\n\nSoon, you are panting with excitement, your hips giving little upward lurches when you fondle your [pc.cockHead], letting your fingers play over it while you imagine it’s actually some cute alien doing the touching.");
@@ -1397,9 +1403,11 @@ public function cuntTailFapScene():void {
 	var cum:Number = pc.cumQ();
 	
 	if(cum >= 500) output(" Your prehensile protuberance bloats from your large deposits, eventually giving up on milking you and pulling off to lamely drool [pc.cum] from its gaped orifice on the ground.");
-	if(cum >= 1000) output(" You keep squirting even after all that, painting your [pc.belly] and [pc.fullChest] with the leftovers");
-	if(cum >= 2000) output(", even though there’s so much that it puddles and runs off of you, collecting into a small lake around your [pc.butt]");
-	if(cum >= 1000) output(".");
+	if(cum >= 1000) {
+		output(" You keep squirting even after all that, painting your [pc.belly] and [pc.fullChest] with the leftovers");
+		if(cum >= 2000) output(", even though there’s so much that it puddles and runs off of you, collecting into a small lake around your [pc.butt]");
+		output(".");
+	}
 	output("\n\nSatisfaction radiates from your entire body in response, but the amount coming from your tail is disproportionately large, enough that you lie there panting while your [pc.tail] digests its load, dreamily toying with [pc.eachCock] until you settle down.");
 	processTime(20+rand(10));
 	pc.loadInCuntTail(pc);
@@ -2204,6 +2212,7 @@ public function futaBabePantyfapsRouter():void
 		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) jackOffWithLadyPantiesYouSicko("Lys");
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) jackOffWithLadyPantiesYouSicko(flags["BEA_TITLE"]);
 		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) jackOffWithLadyPantiesYouSicko("Erra");
+		if(pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent.")) jackOffWithLadyPantiesYouSicko("Myrna");
 	}
 	//More than one pair? Build a menu.
 	else
@@ -2252,6 +2261,11 @@ public function futaBabePantyfapsRouter():void
 			addButton(button,"Lys’s",jackOffWithLadyPantiesYouSicko,"Lys","Lys’s Panties","Use Lys’s sheer black panties for a little self-pleasure.");
 			button++;
 		}
+		if(pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent."))
+		{
+			addButton(button,"Myrna's",jackOffWithLadyPantiesYouSicko,"Myrna","Myrna's Panties","Use Myrna's fur-lined, silky green panties for a little self-pleasure.");
+			button++;
+		}
 		if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) 
 		{
 			addButton(button,"Penny’s",futaBabePantyfaps,"Penny","Penny’s Panties","Use Penny’s blue (but crotchless) panties for a quick fap.");
@@ -2293,6 +2307,7 @@ public function futaBabePantySchlicksRouter():void
 		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) pureLadyWaifuPussyRubFap("Lys");
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) pureLadyWaifuPussyRubFap(flags["BEA_TITLE"]);
 		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) pureLadyWaifuPussyRubFap("Erra");
+		if(pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent.")) pureLadyWaifuPussyRubFap("Myrna");
 	}
 	//More than one pair? Build a menu.
 	else
@@ -2341,6 +2356,11 @@ public function futaBabePantySchlicksRouter():void
 			addButton(button,"Lys’s",pureLadyWaifuPussyRubFap,"Lys","Lys’s Panties","Use Lys’s sheer black panties for a little self-pleasure.");
 			button++;
 		}
+		if(pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent."))
+		{
+			addButton(button,"Myrna's",pureLadyWaifuPussyRubFap,"Myrna","Myrna's Panties","Use Myrna's fur-lined, silky green panties for a little self-pleasure.");
+			button++;
+		}
 		if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) 
 		{
 			addButton(button,"Penny’s",futaPantiesFapInPussy,"Penny","Penny’s Panties","Use Penny’s blue (but crotchless) panties for a quick bit of self-pleasure.");
@@ -2380,6 +2400,7 @@ public function pantyCollectionList(total:Boolean = false):Array
 	if(total || pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) panties.push("Lys");
 	if(total || pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) panties.push(flags["BEA_TITLE"]);
 	if(total || pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) panties.push("Erra");
+	if(total || pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent.")) panties.push("Myrna");
 	return panties;
 }
 public function pantyFapCount(total:Boolean = false):Number
@@ -2440,6 +2461,7 @@ public function pantyFapRandom(genitalSelect:int = -1, waifu:String = ""):void
 			case "Mrs. Reasner":
 			case "Beatrice": jackOffWithLadyPantiesYouSicko(flags["BEA_TITLE"]); break;
 			case "Erra": jackOffWithLadyPantiesYouSicko("Erra"); break;
+			case "Myrna": jackOffWithLadyPantiesYouSicko("Myrna"); break;
 		}
 	}
 	else
@@ -2459,6 +2481,7 @@ public function pantyFapRandom(genitalSelect:int = -1, waifu:String = ""):void
 			case "Mrs. Reasner":
 			case "Beatrice": pureLadyWaifuPussyRubFap(flags["BEA_TITLE"]); break;
 			case "Erra": pureLadyWaifuPussyRubFap("Erra"); break;
+			case "Myrna": pureLadyWaifuPussyRubFap("Myrna"); break;
 		}
 	}
 }
@@ -2481,6 +2504,7 @@ public function getPantyColor(waifu:String = ""):String
 		case "Mrs. Reasner":
 		case "Beatrice": pantyColor = "black"; break;
 		case "Erra": pantyColor = "purple"; break;
+		case "Myrna": pantyColor = "green"; break;
 	}
 	return pantyColor;
 }
@@ -2504,6 +2528,7 @@ public function getPantyTexture(waifu:String = ""):String
 		case "Lys": pantyTexture = "sheer"; break;
 		case "Mrs. Reasner":
 		case "Beatrice": pantyTexture = "silky lace"; break;
+		case "Myrna": pantyTexture = "silky"; break;
 	}
 	return pantyTexture;
 }

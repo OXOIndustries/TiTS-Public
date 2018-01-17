@@ -14,6 +14,8 @@ public function flyToMhenga():void
 {
 	output("You fly to Mhen’ga");
 	if(leaveShipOK()) output(" and step out of your ship.");
+	showBust("MHENGA");
+	showName("\nMHENGA");
 }
 
 public function mhengaShipHangarFunc():Boolean
@@ -216,6 +218,13 @@ public function jungleEncounterChances():Boolean {
 	
 	// APPARANTLY I AM NOT ALLOWED DEBUG FUNCTIONS. FML
 	
+	//Pregnant Zil Birth check
+	if(flags["FZIL_PREG_TIMER"] >= 235 && flags["FZIL_THIS_PREG_MET"] != undefined)
+	{
+		fZilBirthHook();
+		return true;
+	}
+	
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
 	if((pc.accessory is JungleRepel && flags["JUNGLE_STEP"] >= 10 && rand(4) == 0) || (!(pc.accessory is JungleRepel) && flags["JUNGLE_STEP"] >= 5 && rand(4) == 0)) {
@@ -240,7 +249,17 @@ public function jungleEncounterChances():Boolean {
 				choices.push(dryadMeeting);
 			}
 		}
-		if(!pc.hasStatusEffect("Prai Cooldown") && rand(3) == 0) choices.push(praiFirstEncounter);
+		if(!pc.hasStatusEffect("Prai Cooldown") && rand(2) == 0) choices.push(praiFirstEncounter);
+		if(flags["FZIL_PREG_TIMER"] >= 80 && pc.hasCock())
+		{
+			choices.push(fZilPregEncounter);
+			choices.push(fZilPregEncounter);
+			if(pc.hasPerk("Virile") || pc.hasPerk("Breed Hungry"))
+			{
+				choices.push(fZilPregEncounter);
+				choices.push(fZilPregEncounter);
+			}
+		}
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
@@ -295,7 +314,7 @@ public function jungleMiddleEncounters():Boolean {
 		if(flags["TIMES_MET_VENUS_PITCHER"] != undefined 
 			&& flags["PRAI_FIRST"] != undefined
 			&& !pc.hasStatusEffect("Prai Cooldown") 
-			&& rand(3) == 0) 
+			&& rand(2) == 0) 
 				choices.push(praiSecondEncounter);
 		//Run the event
 		choices[rand(choices.length)]();
@@ -303,7 +322,7 @@ public function jungleMiddleEncounters():Boolean {
 	}
 	
 	if (tryEncounterMango()) return true;
-	
+
 	return false;
 }
 
@@ -389,7 +408,7 @@ public function jungleDeepEncounters():Boolean {
 		if(flags["TIMES_MET_VENUS_PITCHER"] != undefined 
 			&& flags["PRAI_FIRST"] != undefined
 			&& !pc.hasStatusEffect("Prai Cooldown") 
-			&& rand(3) == 0) 
+			&& rand(2) == 0) 
 				choices.push(praiSecondEncounter);
 		//choices[choices.length] = encounterRegularTentaclePitcherYouGay;
 		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
@@ -401,7 +420,7 @@ public function jungleDeepEncounters():Boolean {
 	if(pc.level < 2) output("\n\n<b>You can’t help but feel that this part of the jungle would chew you up and spit you out. Maybe you should come back after leveling up a little bit.</b>");
 	
 	if (tryEncounterMango()) return true;
-	
+
 	return false;
 }
 

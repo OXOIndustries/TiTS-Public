@@ -22,7 +22,12 @@ public function darkChrysalisStorefront():void
 	}
 	else
 	{
-		output("\n\nThe Dark Chrysalis, a shop that specializes in targeted, cosmetic transformatives is doing business to the east.");
+		if(isHalloweenish() && pc.breastRows[0].breastRating() >= 1 && seraIsMistress() && flags["SERA_HALLOWEEN_LOCKED"] == undefined)
+		{
+			output("\n\n<i>As fitting for the time of the year many shops have outfitted their storefronts with spooky decorations. From rather-cute-than-spooky to cases where you can’t be sure whether a person actually died there or not, all kinds of decorations can be found. Similarly, most store clerks and passersby present themselves in costumes fitting for the occasion.</i>");
+			output("\n\nThe Dark Chrysalis, a shop that specializes in targeted, cosmetic transformatives is doing business to the east. <i>You notice a small group of costumed people quickly hurrying away from the shop for whatever reason.</i>");
+		}
+		else output("\n\nThe Dark Chrysalis, a shop that specializes in targeted, cosmetic transformatives is doing business to the east.");
 		flags["NAV_DISABLED"] = undefined;
 	}
 	
@@ -114,6 +119,18 @@ public function seraBonusFunction():Boolean
 		else if(seraSpawnPregnancyBlurbs(pcSeraPregDays()))
 		{
 			showBust("SERA");
+			return true;
+		}
+		//Halloween sub fun!
+		else if(isHalloweenish() && pc.breastRows[0].breastRating() >= 1 && seraIsMistress() && flags["SERA_HALLOWEEN_HELPED"] == undefined && flags["SERA_HALLOWEEN_LOCKED"] == undefined)
+		{
+			seraTrickOrTreatEventIntro();
+			return true;
+		}
+		//Repeat the halloween fun afterward :3
+		else if(pc.breastRows[0].breastRating() >= 1 && seraIsMistress() && flags["SERA_HALLOWEEN_HELPED"] != undefined && rand(20) == 0)
+		{
+			seraTrickOrTreatEventIntro();
 			return true;
 		}
 		else if(flags["SERA_TRIPLE_X_RATED"] != undefined && flags["SERA_TRIPLE_X_RATED"] > 0)
@@ -265,6 +282,7 @@ public function chrysalisInventory():Array
 	inventory.push(new Pussybloom());
 	inventory.push(new Pussyblossom());
 	inventory.push(new ManUp());
+	inventory.push(new ManDown());
 	inventory.push(new Condensol());
 	inventory.push(new DendroGro());
 	inventory.push(new Rainbotox());

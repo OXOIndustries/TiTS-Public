@@ -13,7 +13,7 @@ package classes.Items.Transformatives {
 		public function SlutShroom() {
 			this._latestVersion = 1;
 			this.quantity = 1;
-			this.stackSize = 10;
+			this.stackSize = 9;
 			this.type = GLOBAL.PILL;
 			
 			this.shortName = "Slutshroom";
@@ -46,7 +46,7 @@ package classes.Items.Transformatives {
 				output("You pop the mushroom into your mouth. It has an unpleasant, metallic taste that makes you want to spit it out - so you do the sensible thing and gulp it down before you have to endure its offensive flavor any longer.");
 				if (!target.hasVagina())
 				{
-					output(" <b>It's a real shame it does absolutely nothing.</b>");
+					output(" <b>It’s a real shame it does absolutely nothing.</b>");
 					return false;
 				}
 				var pc:Creature = target;
@@ -165,7 +165,7 @@ package classes.Items.Transformatives {
 								if(kGAMECLASS.flags["AZRA_SEXED"] != undefined) output("a kaithrit’s nose, and he’d be pinning you to the wall. Kitties love cream...");
 								else output("Azra’s nose, and she’d be pinning you to the wall...");
 							}
-							else if(rand(2) == 0) 
+							else
 							{
 								output("\n\nHow amazing! One second, you’re eating a little mushroom, the next you’re trying not to soak yourself in sex-juice. Will ausar be able to smell it?");
 								if(kGAMECLASS.flags["MET_SYRI"] != undefined) output(" What if the next time you see Syri she can smell how wet you’re getting? She’d probably fuck you over an arcade machine until you got pregnant.");
@@ -214,7 +214,7 @@ package classes.Items.Transformatives {
 							}
 							else
 							{
-								output("\n\n2 Strange, tingling heat spreads from your stomach and into your limbs. It leaves you feeling light as a feather, almost like you’re floating as you move around. It also makes you feel hot... and aroused, sweaty and ready to fuck. Your pussy isn’t getting wetter, the rest of your body is! You briefly consider grabbing the nearest fuckable partner and pulling them into bed, just to feel another body slipping and sliding against your own. It’d feel so good to grind yourself against another warm body.");
+								output("\n\nStrange, tingling heat spreads from your stomach and into your limbs. It leaves you feeling light as a feather, almost like you’re floating as you move around. It also makes you feel hot... and aroused, sweaty and ready to fuck. Your pussy isn’t getting wetter, the rest of your body is! You briefly consider grabbing the nearest fuckable partner and pulling them into bed, just to feel another body slipping and sliding against your own. It’d feel so good to grind yourself against another warm body.");
 								output("\n\nThe exotic high leaves you winded and residually lusty. That mushroom definitely did something to your head. Maybe finding a one night stand would make you feel better about it?");
 							}
 						}
@@ -337,7 +337,9 @@ package classes.Items.Transformatives {
 					//100k+
 					else
 					{
-						output("\n\nOrgasm comes knocking like a power-armored SWAT team breaking through a plywood door. [pc.GirlCum] explodes out of you in pulsating, gushing waterfalls. You tumble backward{, [pc.legs] spread wide and quivering}, unloading a steaming torrent of feminine pleasure ");
+						output("\n\nOrgasm comes knocking like a power-armored SWAT team breaking through a plywood door. [pc.GirlCum] explodes out of you in pulsating, gushing waterfalls. You tumble backward");
+						if(pc.hasLegs()) output(", [pc.legs] spread wide and quivering");
+						output(", unloading a steaming torrent of feminine pleasure ");
 						if(!pc.isCrotchExposed()) output("all over the inside of your [pc.crotchCovers]");
 						else output("all over everything in a ten-foot arc");
 						output(". Your body, once ");
@@ -356,7 +358,7 @@ package classes.Items.Transformatives {
 						if(pc.isBimbo()) output("calm down");
 						else output("wake up");
 						output(" and blink the girlspunk out of your eyes, you’re laying in a puddle of your own slutty creation and absolutely loving it. The scent is ripe and thick in the air, pheromonal and needy, letting every male in a ten mile radius know that there’s a horny female around with a cunt wet enough to accept a dozen dicks at once.");
-						output("\n\nWas that more than usual? There’s too much to tell. You’ll just have to assume you’re getting wetter. <b>You've reached the point where you produce so much that further improvements in wetness are almost imperceptible.</b>");
+						output("\n\nWas that more than usual? There’s too much to tell. You’ll just have to assume you’re getting wetter. <b>You’ve reached the point where you produce so much that further improvements in wetness are almost imperceptible.</b>");
 						pc.orgasm();
 						pc.applyPussyDrenched();
 					}

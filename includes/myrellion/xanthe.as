@@ -1736,7 +1736,7 @@ public function shePaysAttentionToYouSlut():void
 	if(pc.biggestTitSize() >= 1 || pc.hasCock())
 	{
 		output(" - tugging at your tied up ");
-		if(pc.biggestTitSize() >= 1 && !pc.hasCock()) output("[pc.breastsLight]");
+		if(pc.biggestTitSize() >= 1 && !pc.hasCock()) output("[pc.breasts]");
 		else if(pc.biggestTitSize() < 1 && pc.hasCock()) output("[pc.cocksLight]");
 		else if(pc.biggestTitSize() >= 1 && pc.hasCock()) output("[pc.breastsNoun] and [pc.cocksNounSimple]");
 	}

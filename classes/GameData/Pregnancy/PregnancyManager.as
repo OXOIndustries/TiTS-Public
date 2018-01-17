@@ -5,16 +5,17 @@
 	import classes.GameData.ChildManager;
 	import classes.GameData.Pregnancy.Handlers.BothriocPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.BreedwellRahnPregnancyHandler;
-	import classes.GameData.Pregnancy.Handlers.PsychicTentacles;
+	import classes.GameData.Pregnancy.Handlers.CockvinePregnancy;
 	import classes.GameData.Pregnancy.Handlers.EggTrainerCarryTraining;
 	import classes.GameData.Pregnancy.Handlers.EggTrainerFauxPreg;
-	import classes.GameData.Pregnancy.Handlers.CockvinePregnancy;
-	import classes.GameData.Pregnancy.Handlers.LapinaraPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.KorgonnePregnancyHandler;
+	import classes.GameData.Pregnancy.Handlers.LapinaraPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.MilodanPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.NyreaHuntressPregnancy;
 	import classes.GameData.Pregnancy.Handlers.OvalastingEggPregnancy;
 	import classes.GameData.Pregnancy.Handlers.OviliumEggPregnancy;
+	import classes.GameData.Pregnancy.Handlers.PsychicTentacles;
+	import classes.GameData.Pregnancy.Handlers.QueenOfTheDeepPregnancy;
 	import classes.GameData.Pregnancy.Handlers.RenvraEggPregnancy;
 	import classes.GameData.Pregnancy.Handlers.RenvraFullPregnancy;
 	import classes.GameData.Pregnancy.Handlers.RiyaPregnancyHandler;
@@ -23,7 +24,7 @@
 	import classes.GameData.Pregnancy.Handlers.SeraSpawnPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.VenusPitcherFertilizedSeedCarrierHandler;
 	import classes.GameData.Pregnancy.Handlers.VenusPitcherSeedCarrierPregnancyHandler;
-	import classes.GameData.Pregnancy.Handlers.QueenOfTheDeepPregnancy;
+	import classes.GameData.Pregnancy.Handlers.ZaaltPregnancyHandler;
 	import classes.Items.Transformatives.AmberSeed;
 	/**
 	 * ...
@@ -55,6 +56,7 @@
 			PregnancyManager.insertNewHandler(new BothriocPregnancyHandler());
 			PregnancyManager.insertNewHandler(new BreedwellRahnPregnancyHandler());
 			PregnancyManager.insertNewHandler(new RiyaPregnancyHandler());
+			PregnancyManager.insertNewHandler(new ZaaltPregnancyHandler());
 		}
 		
 		// Would use a vector, but vectors can't store derived types. WORST VECTOR CLASS EVER.

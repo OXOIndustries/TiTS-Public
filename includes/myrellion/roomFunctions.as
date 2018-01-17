@@ -1,6 +1,7 @@
 ﻿//Landing on Myrellion, First Time
 public function flyToMyrellion():void
 {
+	showBust("MYRELLION");
 	if(flags["VISITED_MYRELLION"] == undefined)
 	{
 		author("Savin");
@@ -75,6 +76,7 @@ public function myrellionLeaveShip():Boolean
 
 public function myrellionHangarBonus():Boolean
 {
+	showBust("MYRELLION");
 	if(flags["MYRELLION_PROBE_CASH_GOT"] == undefined && (flags["BEAT_TAIVRA_TIMESTAMP"] != undefined || flags["TAIVRA_NEW_THRONE"] == 0)) 
 	{
 		probeReclamationShit();
@@ -375,6 +377,10 @@ public function kressiaGatesBonus():Boolean
 		return true;
 	}
 	
+	if(tryProcFederationQuest()) return false;
+	if(GetGameTimestamp() < (flags["SELLERA_DENIED"] + 60*48)) return false;
+	
+	output("A door stands open near you,");
 	if(flags["MET_LIEVE"] == undefined) output(" from which can be heard a series of very soft moans and giggles");
 	else output(" and you can hear Lieve having a bit of fun inside");
 	output(".");
@@ -606,7 +612,6 @@ public function noManzLandBonus():Boolean
 	{
 		return true;
 	}
-	
 	return false;
 }
 

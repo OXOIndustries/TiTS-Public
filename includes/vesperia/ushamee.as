@@ -42,7 +42,8 @@ public function ushameeCanadiaCorridorBonus(btnSlot:int = 0):void
 	
 	output("\n\nYou see the familiar, burly figure of an amazonian space-centauress at the end of the corridor, currently locked in an argument with a slender local deer-taur boy. Chief Neykkar is shouting and gesticulating wildly, bellowing into the young man’s face. He shrinks back from the towering ‘taur, clutching a datapad to his uniform’s chest.");
 	
-	addButton(btnSlot, "Ushamee", approachUshameeCorridor, undefined, "Ushamee", "Go talk to the Chief and see what’s going on.");
+	if(flags["KIRO_MET_KALLY"] != undefined && flags["KIRO_MET_KALLY"] < 4) addDisabledButton(btnSlot, "Ushamee", "Ushamee", "You need to finish Kiro’s visit first!");
+	else addButton(btnSlot, "Ushamee", approachUshameeCorridor, undefined, "Ushamee", "Go talk to the Chief and see what’s going on.");
 }
 
 public function ushameeAtBar():Boolean
@@ -89,6 +90,7 @@ public function approachUshameeCorridor2():void
 	clearMenu();
 	chiefNeykkarHeader();
 	
+	rooms[currentLocation].removeFlag(GLOBAL.NPC);
 	moveTo("CANADA5");
 	
 	output("The leithan woman guides you over to ");
@@ -384,7 +386,7 @@ public function sexUsha():void
 	output("\n\nUsha taps her Codex against a little display on the table, gives you a little nod, and stands, rising to her full amazonian height to " + (pc.tallness < 68 ? "tower over you" : "reach even your lofty stature") + ". Grinning, she " + (pc.isTaur() ? "offers you a hand, hooking her arm around yours." : "pats her flank and kneels her rearmost legs down, making a clear invitation. You saunter over and swing your [pc.leg] over her plated rear, pulling yourself up onto Usha’s back and wrapping your arms around her upper half’s slender waist.") + " The two of you trot on back towards the [PCShipName], punctuating every twist and turn of the docking arms with gropes and teases, planting kisses all along the chief’s neck and cheeks as you hold her close.");
 	output("\n\nUshamee’s cheeks are flushed a sultry dark purple by the time you arrive back at your ship. Home sweet home. Her upper ears are flush with her scalp, and her long, sinuous tail swishes along the deck and entwining between her legs. Even from where you are, you can smell the slowly swelling lust emanating from the chief’s backside, hanging more heavily in the air with every step. You’re starting to love the smell of leithan-bitch arousal, and no matter how much Usha tries to hide it, her womanly musk starts suffusing the atmosphere until you, too, are as flush as your tauric companion, almost ready to tear your gear off and ravish that lush pussy of hers.");
 	output("\n\nYou can’t get through the airlock quickly enough.");
-	output("\n\nWhen you’re finally stumbling into your ship, you slip away from Usha, disentangling yourself from her strong arms and leading her back to your bedroom with a coy crook of your finger.Over your shoulder, you hear her husky breathing and the sound of clothes hitting the deck. Her claws clitter-clack over the deck, and you can hear her tail slapping against damn near everything that gets in range. It’s a miracle she doesn’t knock something over before you’ve finally led her into into your cabin, and the door seals closed behind you.");
+	output("\n\nWhen you’re finally stumbling into your ship, you slip away from Usha, disentangling yourself from her strong arms and leading her back to your bedroom with a coy crook of your finger. Over your shoulder, you hear her husky breathing and the sound of clothes hitting the deck. Her claws clitter-clack over the deck, and you can hear her tail slapping against damn near everything that gets in range. It’s a miracle she doesn’t knock something over before you’ve finally led her into into your cabin, and the door seals closed behind you.");
 	output("\n\nYou turn, and are greeted by the succulent sight of the chief standing naked before you, her dusky breasts rising and falling with steady, heavy breaths. They’re wonderfully full and heavy, and unrestrained as they are, every step the chief takes make them jiggle and bounce enticingly. You can’t help yourself but to saunter up to the big, beautiful woman and sink your hands into those melons, rolling her sin-black nipple between your fingers and cupping up the meaty mounds they capstone. Usha grins, wrapping her strong arms around your shoulders and neck, holding you close while you molest her chest.");
 	output("\n\nAfter a good, long minute of you teasing her teats, Usha finally works up the willpower to put her hands on yours, guiding them off her breasts and down to her hips. <i>“Why don’t you put those hands to better use?”</i> she purrs, using her tail to fan those sweet, sweet pheromones from her drooling mare-slit. Already, you can see puddles of her excitement forming on the deck between her hind legs, adding to the musky aura of needy leithan that hangs heavily in your room.");
 	output("\n\nLooks like she’s ready for you to make the first move...");

@@ -266,7 +266,7 @@ public function askYammiToLeave():void
 	output("<i>“Hey Yammi, do you have somewhere to stay if I need to free up your bunk on the ship for a while?”</i>");
 	output("\n\nYammi cocks her head to the side, looking at you sidelong. <i>“What’s the matter Boss? You don’t like my cooking?”</i>");
 	output("\n\n<i>“It’s not that,”</i> you explain, <i>“I’m just thinking of doing some reorganizing on the ship.”</i>");
-	output("\n\n<i>“Oh.”</i> Yammi taps her chin. <i>“I think I could hang around on New Texas, if you want. Between Iced Teats and the the grill in Big T’s place, there’s bound to be some place that’ll let me pick up some extra scratch doing food prep. Those big bulls have huge appetites, especially after they spend all afternoon plowing some ditzy cow.”</i> She looks around. <i>“You need me to make tracks now, Boss?”</i>");
+	output("\n\n<i>“Oh.”</i> Yammi taps her chin. <i>“I think I could hang around on New Texas, if you want. Between Iced Teats and the grill in Big T’s place, there’s bound to be some place that’ll let me pick up some extra scratch doing food prep. Those big bulls have huge appetites, especially after they spend all afternoon plowing some ditzy cow.”</i> She looks around. <i>“You need me to make tracks now, Boss?”</i>");
 	output("\n\nAre you sure you want to get rid of Yammi?");
 	processTime(1);
 	clearMenu();

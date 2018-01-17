@@ -2183,7 +2183,7 @@ public function badEndWithTaivraShit():void
 
 	output("\n\nHer plated hands guide you towards the bed and roughly pushes you onto your back, sending you tumbling onto the feather-soft silks. She’s on you in a moment, pinning you down with her knees - and her lips, as well. Amethyst lips press firmly to yours, and your lover moans throatily as you submit to her sensual domination. You should enjoy your reward, you decide: the queen has offered to give you a place of honor, but a place you will be for the rest of your life. You’ll never see your gear again");
 	if(pc.hasEquippedWeapon()) output(", or your weapons");
-	output(". No way to contact home, no way to fight your way out that wouldn’t have you a doomed as Dane and your cousin were.");
+	output(". No way to contact home, no way to fight your way out that wouldn’t have you as doomed as Dane and your cousin were.");
 
 	output("\n\nThis is the end of your quest. Might as well make the most of it.");
 

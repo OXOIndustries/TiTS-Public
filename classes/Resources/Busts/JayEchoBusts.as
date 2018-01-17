@@ -37,6 +37,8 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/jay_echo/dane.png", mimeType = "image/png")]
 		public var Bust_DANE:Class;
+		[Embed(source = "../../../assets/images/npcs/jay_echo/dane_nude.png", mimeType = "image/png")]
+		public var Bust_DANE_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/jay_echo/ehstraffe.png", mimeType = "image/png")]
 		public var Bust_EHSTRAFFE:Class;
@@ -78,6 +80,8 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/jay_echo/mirrin.png", mimeType = "image/png")]
 		public var Bust_MIRRIN:Class;
+		[Embed(source = "../../../assets/images/npcs/jay_echo/mirrin_nude.png", mimeType = "image/png")]
+		public var Bust_MIRRIN_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/jay_echo/nayna.png", mimeType = "image/png")]
 		public var Bust_NAYNA:Class;
@@ -137,6 +141,8 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/dane.png", mimeType = "image/png")]
 			public var Full_DANE:Class;
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/dane_nude.png", mimeType = "image/png")]
+			public var Full_DANE_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/ehstraffe.png", mimeType = "image/png")]
 			public var Full_EHSTRAFFE:Class;
@@ -176,6 +182,8 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/mirrin.png", mimeType = "image/png")]
 			public var Full_MIRRIN:Class;
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/mirrin_nude.png", mimeType = "image/png")]
+			public var Full_MIRRIN_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/nayna.png", mimeType = "image/png")]
 			public var Full_NAYNA:Class;

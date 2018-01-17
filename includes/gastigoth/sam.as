@@ -4,7 +4,9 @@
 //Name: Samurenth “Sam” Tyraso
 //Age: 24
 //Crimes: 2 counts of Piracy, 7 counts of Grand Hacking, 17 counts of Cyber Theft, 3 counts of Cyber Assault, 4,478 counts of Identity Theft, Kidnapping, Assault With a Deadly Weapon, 2 counts of Attempted Homicide{Sillly mode:, Cyber Bullying, Hand Holding, Being a Girl on the Extranet}.
-
+import classes.GameData.Pregnancy.Child;
+import classes.GameData.Pregnancy.UniqueChild;
+import classes.GameData.Pregnancy.Containers.Genders;
 
 public function showSam(nude:Boolean = false):void
 {
@@ -12,7 +14,7 @@ public function showSam(nude:Boolean = false):void
 	var nudeS:String = "";
 	if(nude) nudeS = "_NUDE";
 	//Pregnant
-	if(9999 == 0) showBust("TECHGUARD_JAIL_PREG");
+	if(flags["SAM_GAST_PREG_TIMER"] >= 80) showBust("TECHGUARD_JAIL_PREG");
 	else showBust("TECHGUARD_JAIL" + nudeS);
 }
 public function samCapacity():Number
@@ -26,7 +28,7 @@ public function samImprisoned():Boolean
 }
 
 //The Fun Part
-public function samsPrisonRoom():void
+public function samsPrisonRoom(impregnate:Boolean = false):void
 {
 	clearOutput();
 	showSam();
@@ -36,9 +38,9 @@ public function samsPrisonRoom():void
 	else output("familiar sight of Sam the ausar.");
 	output(" The curves of her petite frame are almost totally obscured by her orange suit, but her top has been unzipped enough for you to enjoy the cleavage of her extremely modest A-cup breasts, which are slightly emphasized by gravity. ");
 	//Lightly pregnant:
-	if(9999 == 0) output("You can see a subtle swell to her belly. They’ve probably just been giving her extra rations as a reward, right?");
-	else if(9999 == 0) output("She’s <i>unmistakably</i> pregnant: her formerly washboard abdomen is straining against her suit’s top and her tiny tits are beginning to swell.");
-	else if(9999 == 0) output("Her pregnant belly is absolutely massive, making it painfully obvious that she’s carrying more than one child. The staff have given her an anti-gravity harness for her swollen middle, and a few pillows to support her growing breasts for extra comfort.");
+	if(flags["SAM_GAST_PREG_TIMER"] <= 45) output("You can see a subtle swell to her belly. It looks like the email you received was true.");
+	else if(flags["SAM_GAST_PREG_TIMER"] <= 135) output("She’s <i>unmistakably</i> pregnant: her formerly washboard abdomen is straining against her suit’s top and her tiny tits are beginning to swell.");
+	else if(flags["SAM_GAST_PREG_TIMER"] != undefined) output("Her pregnant belly is absolutely massive, making it painfully obvious that she’s carrying more than one child. The staff have given her an anti-gravity harness for her swollen middle, and a few pillows to support her growing breasts for extra comfort.");
 
 	output("\n\nThe earthy, feminine smell of her arousal is overwhelming. Even while still constrained in her prison uniform, her desperately horny pussy has managed to fill the room with a dense cloud of fuck-me pheromones that instantly ");
 	if(pc.hasCock()) output("hardens your [pc.cocks]");
@@ -48,30 +50,39 @@ public function samsPrisonRoom():void
 
 	output("\n\n<i>“Are you here to finally fuck me? Oh gods, just ");
 	//already pregnant:
-	if(9999 == 0) output("fill me up with cum");
+	if(sam.isPregnant()) output("fill me up with cum");
 	else output("knock me up");
 	output(" already! I knew they’d give me aphrodisiacs, but I had no idea a person could </i>be<i> this fucking horny! This is worse than the worst heat I’ve ever had! I’ve never wanted to get pregnant so badly in my life");
-	if(9999 == 0) output(", and I’m already fucking pregnant");
+	if(sam.isPregnant()) output(", and I’m already fucking pregnant");
 	output("! Just fucking ");
-	if(9999 == 0) output("cum as deep in my pussy as you can");
+	if(sam.isPregnant()) output("cum as deep in my pussy as you can");
 	else output("put some pups in me");
 	output(", PLEASE!”</i> Sam writhes against her restraints as she begs you in a babbling, whining voice, only managing to move an inch or so before she eventually tires and goes limp in her bonds, her ears flat and her tail hanging low.");
 
 	output("\n\n");
 	if(flags["MET_SAM"] != undefined) output("It doesn’t seem like she recognizes you, or if she does, she doesn’t care.");
-
-	if(pc.hasCock() && pc.cockThatFits(samCapacity()) >= 0) addButton(0,"Use Dick",samPrisonStuff,true,"Use Dick","Take her with your dick.");
+	
+	if(impregnate)
+	{
+		addButton(0, "Next", samPrisonStuff, [true, true]);
+		return;
+	}
+	
+	if(pc.hasCock() && pc.cockThatFits(samCapacity()) >= 0) addButton(0,"Use Dick",samPrisonStuff,[true, false],"Use Dick","Take her with your dick.");
 	else if(pc.hasCock()) addDisabledButton(0,"Use Dick","Use Dick","Much as you might want to give her exactly what she wants, there’s no way you could fit inside her.");
 	else addDisabledButton(0,"Use Dick","Use Dick","You’d need a penis in order to use it.");
 
-	if(pc.hasHardLightEquipped()) addButton(1,"Use Strap-on",samPrisonStuff,false,"Use Strap-on","Give her an approximation of what she wants. A hardlight dick is still a dick, right?");
+	if(pc.hasHardLightEquipped()) addButton(1,"Use Strap-on",samPrisonStuff,[false, false],"Use Strap-on","Give her an approximation of what she wants. A hardlight dick is still a dick, right?");
 	else addDisabledButton(1,"Use Strap-on","Use Strap-on","You don’t have a strap-on to use!");
 
 	addButton(14,"Nevermind",backOuttaKaska);
 }
 
-public function samPrisonStuff(cocked:Boolean = false):void
+public function samPrisonStuff(args:Array):void
 {
+	var cocked:Boolean = args[0];
+	var impregnate:Boolean = args[1];
+	
 	clearOutput();
 	showSam(true);
 	author("Night Trap");
@@ -130,16 +141,16 @@ public function samPrisonStuff(cocked:Boolean = false):void
 		if(pc.isTreated() || pc.isAusar()) 
 		{
 			output("Sam’s fertile pheromones have fogged your mind to the point that you’re a beast in rut, thinking only of driving your cock as deeply into a wet hole as possible, of impregnating the fertile female below you. You clutch her hips in a deathgrip instinctively, ensuring your bitch can’t leave before you seed her womb, heedless of the high-tech restraints already keeping her captive");
-			if(9999 == 0) output(" or that she’s pregnant already");
+			if(sam.isPregnant()) output(" or that she’s pregnant already");
 			output(". ");
 		}
-		output("You recognize from the the tight feeling in your [pc.balls] that you’re on the verge of cumming, and you resolve to make the most of it. You grunt with effort as you hump Sam as fast as possible, slapping your ");
+		output("You recognize from the tight feeling in your [pc.balls] that you’re on the verge of cumming, and you resolve to make the most of it. You grunt with effort as you hump Sam as fast as possible, slapping your ");
 		if(pc.balls > 1) output("balls into her clit and your ");
 		output("hips into her ass hard enough to bruise the both of you.");
 
 		output("\n\nInstinctively sensing what’s happening, Sam stirs from her fucked-apart stupor and looks back at you. The ausar raises her tail again and humps back into you as hard as she can while struggling to form words between animalistic grunts and whines. <i>“Cum! Cu-UUHH-m in me! Knot me! Please fuUUUCK me ");
 		//pregnant:
-		if(9999 == 0) output("even more ");
+		if(sam.isPregnant()) output("even more ");
 		output("pregnant! I can’t - GODS PLEASE - I can’t calm down until you FUCKING CUM IN ME!!!”</i>");
 
 		output("\n\nSam’s words and behavior are more than enough to push you past the tipping point. With a feral roar, you grab her by the scruff of the neck and force her face down on the table, using your other hand to pull her narrow hips into you as hard as possible with each thrust of your hips. Your show of dominance thrills the submissive female to her core, and her whole body trembles with the mother of all orgasms as her cunt drenches your cock. ");
@@ -149,7 +160,7 @@ public function samPrisonStuff(cocked:Boolean = false):void
 		output(" You groan loudly and double over her sweat-slicked back as your breed her orgasmically-contracting pussy.");
 
 		//Pregnant:
-		if(9999 == 0)
+		if(sam.isPregnant())
 		{
 			output("\n\nWith a litter of pups already occupying her womb, Sam’s cervix remains steadfastly closed. You’re too overwhelmed with your orgasm to care, and your biological imperative keeps you stubbornly cumming in the ausar’s already-pregnant pussy, as if she could carry more of your children if you just tried hard enough.");
 			//anything more than big cummies:
@@ -191,7 +202,7 @@ public function samPrisonStuff(cocked:Boolean = false):void
 		if(pc.hasKnot(x) || pc.isTreated())
 		{
 			output("\n\nOnce you’ve finished breeding her, you take some time to simply stroke Sam’s canine ears");
-			if(9999 == 0) output(" and her pregnant belly");
+			if(sam.isPregnant()) output(" and her pregnant belly");
 			output(". Her tail wags beneath you as she nuzzles back into your hand, both her mating instincts and yours causing the pair of you to feel at least some temporary closeness with each other. Once your ");
 			if(pc.hasKnot(x)) output("knot has deflated");
 			else output("cock has softened");
@@ -205,7 +216,7 @@ public function samPrisonStuff(cocked:Boolean = false):void
 		output(" gushes out of her to splatter wetly into her ruined pants before she reflexively squeezes her internal muscles to hold in your cum. You admire your handiwork: Sam’s pretty, pink ausar pussy is clenched tight to hold in your cum after being thoroughly creampied, and you, she, and everything around you are splattered in your mixed sexual fluids. The jailbird herself is barely conscious, but her tail is swishing gaily, and her face looks totally content, as if this is the first time in a while she has been able to truly relax.");
 
 		output("\n\n<i>“That... was awesome.”</i> Sam pants slowly as she gives you a tired thumbs up, the blonde fur of her hand slick with sweat. <i>“I’ve never been so fucking wet and horny in my life! You should come back again some time. Don’t worry, I’ll be all drippy and slutty again ");
-		if(9999 == 0) output("for your next visit");
+		if(sam.isPregnant()) output("for your next visit");
 		else output("if this doesn’t take");
 		output(".”</i>\n\nYou ");
 		if(!pc.isCrotchExposed()) output("quickly don your [pc.crotchCovers] again and ");
@@ -214,6 +225,7 @@ public function samPrisonStuff(cocked:Boolean = false):void
 		//PUSSY-SOAKED CONDITION, pass an hour or whatever I don’t care, PC should cum once, Sam should have a high chance to get knocked the fuck up if/when that’s ever a thing.
 		processTime(30);
 		pc.applyPussySoaked();
+		if(impregnate) tryKnockUpSam();
 		pc.orgasm();
 	}
 	//Hardlight:
@@ -241,10 +253,10 @@ public function samPrisonStuff(cocked:Boolean = false):void
 		output("\n\nIn short order you’ve fucked the dark-skinned beauty into another squirting orgasm, and another soon after that. By now the both of you are covered in sweat and girly fluids. Sam is simply lying slack on the table, whining softly and panting heavily with her tongue out and drool puddling under her the way her cunny honey is puddling under your feet. ");
 		//ausar/huskar/half or any Treated AND has penis: 
 		if(pc.isTreated() || pc.isAusar()) output("Sam’s fertile pheromones have fogged your mind to the point that you’re a beast in rut, thinking only of driving your cock as deeply into a wet hole as possible, of impregnating the fertile female below you. You clutch her hips in a deathgrip instinctively, ensuring your bitch can’t leave before you seed her womb, heedless of the high-tech restraints already keeping her captive, or that you can’t impregnate her with a hardlight cock. ");
-		output("You recognize from the the tight feeling in your lower half that you’re on the verge of cumming, and you resolve to make the most of it. You grunt with effort as you hump Sam as fast as possible, slapping your [pc.hips] into her ass hard enough to bruise the both of you.");
+		output("You recognize from the tight feeling in your lower half that you’re on the verge of cumming, and you resolve to make the most of it. You grunt with effort as you hump Sam as fast as possible, slapping your [pc.hips] into her ass hard enough to bruise the both of you.");
 
 		output("\n\nInstinctively sensing what’s happening, Sam stirs from her fucked-apart stupor and looks back at you. The ausar raises her tail again and humps back into you as hard as she can while struggling to form words between animalistic grunts and whines. <i>“Cum! Cu-UUHH-m in me! Knot me! Please fuUUUCK me ");
-		if(9999 == 0) output("even more ");
+		if(sam.isPregnant()) output("even more ");
 		output("pregnant! I can’t - GODS PLEASE - I can’t calm down until you FUCKING CUM IN ME!!!”</i>");
 
 		output("\n\nSam’s words and behavior are more than enough to push you past the tipping point. With a feral roar, you grab her by the scruff of the neck and force her face down on the table, using your other hand to pull her narrow hips into you as hard as possible with each thrust of your hips. Your show of dominance thrills the submissive female to her core, and her whole body trembles with the mother of all orgasms as her cunt drenches your hardlight. Unfortunately for Sam, you don’t have the knot she’s begging you to plug her with, or the virile seed she so desperately needs to quench the raging fires of her lust. As your strapon twitches and throbs powerfully in orgasm, you stuff her box in time with your ecstatic pulses, almost blacking out at the feeling of her swampy cunny feverishly pulling your member back in each time. You groan loudly and double over her sweat-slicked back as your mock-breed her orgasmically-contracting pussy.");
@@ -263,6 +275,195 @@ public function samPrisonStuff(cocked:Boolean = false):void
 	}
 	flags["MET_SAM"] = 1;
 	IncrementFlag("SAM_PRISONED");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//return 0-6 for number of babies she's impregnated with
+public function tryKnockUpSam():int
+{
+	if(!sam.isPregnant())
+	{
+		var score:Number = gastigothKnockupChance(sam);
+		
+		//roll for pregnancy
+		if(rand(10000) <= score)
+		{
+			flags["SAM_GAST_PREG_TIMER"] = 0;
+			//Default is natural kids, can be changed via 2nd preg email
+			flags["SAM_BABY_GENES"] = 1;
+			flags["SAM_PREG_PAID"] = undefined;
+			pc.clearRut();
+			
+			var x:Number = ((pc.virility() + sam.fertility())/2 + 0.25)/2;
+			
+			//6 Babies!
+			if(rand(10000) <= ((Math.atan(x - 5) + Math.PI/2)/Math.PI)*10000)
+			{
+				flags["SAM_NUM_BABIES"] = 6;
+			}
+			//5 Babies!
+			else if(rand(10000) <= ((Math.atan(x - 4) + Math.PI/2)/Math.PI)*10000)
+			{
+				flags["SAM_NUM_BABIES"] = 5;
+			}
+			//4 Babies!
+			else if(rand(10000) <= ((Math.atan(x - 3) + Math.PI/2)/Math.PI)*10000)
+			{
+				flags["SAM_NUM_BABIES"] = 4;
+			}
+			//3 Babies!
+			else if(rand(10000) <= ((Math.atan(x - 2) + Math.PI/2)/Math.PI)*10000)
+			{
+				flags["SAM_NUM_BABIES"] = 3;
+			}
+			//2 Babies!
+			else if(rand(10000) <= ((Math.atan(x - 1) + Math.PI/2)/Math.PI)*10000)
+			{
+				flags["SAM_NUM_BABIES"] = 2;
+			}
+			//1 Baby!
+			else
+			{
+				flags["SAM_NUM_BABIES"] = 1;
+			}
+			
+			//Lets roll for genders 50/50
+			flags["SAM_BABY_GENDERS"] = new Array();
+			for(var i:int = 0; i < flags["SAM_NUM_BABIES"]; i++)
+			{
+				if(rand(2) == 0) flags["SAM_BABY_GENDERS"].push("M");
+				else flags["SAM_BABY_GENDERS"].push("F");
+			}
+			
+			processTime(1);
+			return flags["SAM_NUM_BABIES"];
+		}
+	}
+	return 0;
+}
+
+public function samGastBirth():void
+{
+	var traitChar:Creature = chars["PC_BABY"];
+	
+	var c:UniqueChild = new SamUniqueChild();
+		
+	c.RaceType = GLOBAL.TYPE_CANINE;
+	for(var i:int = 0; i < flags["SAM_NUM_BABIES"]; i++)
+	{
+		if(flags["SAM_BABY_GENDERS"][i] == "M") c.NumMale += 1;
+		else c.NumFemale += 1;
+	}
+	
+	// Race modifier (if different races)
+	c.originalRace = c.hybridizeRace(c.originalRace, pc.originalRace, true);
+	
+	// Adopt father's colors at random (if applicable):
+	if(rand(2) == 0) c.skinTone = traitChar.skinTone;
+	if(rand(2) == 0) c.lipColor = traitChar.lipColor;
+	if(rand(2) == 0) c.nippleColor = traitChar.nippleColor;
+	if(rand(2) == 0) c.eyeColor = traitChar.eyeColor;
+	if(traitChar.hairColor != "NOT SET" && rand(2) == 0) c.hairColor = traitChar.hairColor;
+	if(traitChar.furColor != "NOT SET" && rand(2) == 0) c.furColor = traitChar.furColor;
+	
+	c.MaturationRate = 1.0;
+	c.BornTimestamp = GetGameTimestamp() - rand(10*60);
+	ChildManager.addChild(c)
+	
+	StatTracking.track("pregnancy/sam sired", flags["SAM_NUM_BABIES"]);
+	StatTracking.track("pregnancy/total day care", flags["SAM_NUM_BABIES"]);
+
+	if(flags["SAM_TOTAL_KIDS"] == undefined) flags["SAM_TOTAL_KIDS"] = 0;
+	flags["SAM_TOTAL_KIDS"] += flags["SAM_NUM_BABIES"];
+	flags["SAM_GAST_PREG_TIMER"] = undefined;
+	flags["SAM_NUM_BABIES"] = undefined;
+	flags["SAM_BABY_GENES"] = undefined;
+	flags["SAM_BABY_GENDERS"] = undefined;
+	flags["SAM_PREG_EMAIL1"] = undefined;
+	flags["SAM_PREG_EMAIL2"] = undefined;
+	flags["SAM_PREG_EMAIL3"] = undefined;
+	flags["SAM_PREG_EMAIL4"] = undefined;
+	flags["SAM_PREG_EMAIL_CUSTOM"] = undefined;
+}
+
+public function samBabiesVisitOptions(button:Number):Number
+{
+	if(ChildManager.numOfUniqueTypeInRange(SamUniqueChild, 0, 4*12) > 0)
+	{
+		addButton(button,"Sam's Kids",visitSamBabies, undefined, "Sam's Kids", "It only takes a moment to make a moment.");
+		button++;
+	}
+	else if(ChildManager.numOfUniqueTypeInRange(SamUniqueChild, 4*12, 9001) > 0)
+	{
+		addDisabledButton(button,"Sam's Kids","Sam's Kids","You don’t have any pups young enough to play with. Maybe when you finish the quest, you’ll have time to be a real parent.");
+		button++;
+	}
+	//else output("\n\nDafuq is dis shit?");
+	return button;
+}
+
+public function visitSamBabies(choice:Number = -1):void
+{
+	clearOutput();
+	author("Night Trap");
+	showName("VISIT\nPUPS!");
+	
+	var boy:Boolean;
+	
+	//Build menu for playing
+	if(choice == -1)
+	{
+		output("Which age group will you check on?");
+		clearMenu();
+		if(ChildManager.numOfUniqueTypeInRange(SamUniqueChild, 0, 1) > 0) addButton(0,"0-1 Month",visitSamBabies,0);
+		else addDisabledButton(0,"0-1 Month","0-1 Month","You have no pups in that age range.");
+		if(ChildManager.numOfUniqueTypeInRange(SamUniqueChild, 2, 4) > 0) addButton(1,"2-4 Months",visitSamBabies,1);
+		else addDisabledButton(1,"2-4 Months","2-4 Months","You have no pups in that age range.");
+		if(ChildManager.numOfUniqueTypeInRange(SamUniqueChild, 5, 48) > 0) addButton(2,"5+ Months",visitSamBabies,2);
+		else addDisabledButton(2,"5+ Months","5+ Months","You have no pups in that age range.");
+		if(ChildManager.numOfUniqueTypeInRange(SamUniqueChild, 49, 9001) > 0) addDisabledButton(3,"4+ Years","4+ Years","These pups are too old to visit.");
+		return;
+	}
+	else if(choice == 0)
+	{
+		
+		if(ChildManager.numOfUniqueTypeInRange(SamUniqueChild, 0, 1) == 1)
+		{
+			boy = ChildManager.ofUniqueTypeAndGenderInRange(SamUniqueChild, ChildManager.GENDER_MALE, 0, 1);
+			output("The pup you "+pc.mf("fathered", "sired")+" with Sam is still a tiny little thing. " + (boy ? "He" : "She") + " hasn't opened " + (boy ? "his" : "her") + " eyes yet, but " + (boy ? "he" : "she") + " still sniffs the air inquisitively and whines plaintively whenever " + (boy ? "he" : "she") + " detects your scent until you pick up and hold " + (boy ? "him" : "her") + ".");
+		}
+		else
+		{
+			output("The pups you "+pc.mf("fathered", "sired")+" with Sam are still tiny little things. They haven't opened their eyes yet, but they still sniff the air inquisitively and whine plaintively whenever they detect your scent until you pick up and hold them.");
+		}
+	}
+	else if(choice == 1)
+	{
+		if(ChildManager.numOfUniqueTypeInRange(SamUniqueChild, 2, 4) == 1)
+		{
+			boy = ChildManager.ofUniqueTypeAndGenderInRange(SamUniqueChild, ChildManager.GENDER_MALE, 2, 4);
+			output("Your ausar " + (boy ? "son" : "daughter") + " is amazingly energetic for " + (boy ? "his" : "her") + " age. " + (boy ? "He" : "She") + " spends most waking hours wiggling around in " + (boy ? "his" : "her") + " cradle, instinctively training the muscles needed for crawling. Whenever the little pup finally runs out of energy, " + (boy ? "he curls his" : "she curls her") + " fluffy canine tail inwards and hugs it tightly as " + (boy ? "he" : "she") + " falls asleep again.");
+		}
+		else
+		{
+			output("Your little pups crawl all over each other and their surroundings, constantly sniffing and staring at everyone and everything around them. They wag their fluffy little tails whenever they're happy, which Briget says is primarily when you're around. Whenever they see something flashy on a computer or codex screen though, they all crawl over to it, wagging their tails and staring curiously until they fall asleep curled up against each other.");
+		}
+	}
+	else if(choice == 2)
+	{
+		if(ChildManager.numOfUniqueTypeInRange(SamUniqueChild, 5, 48) == 1)
+		{
+			boy = ChildManager.ofUniqueTypeAndGenderInRange(SamUniqueChild, ChildManager.GENDER_MALE, 5, 4*12);
+			output("Your ausar " + (boy ? "son" : "daughter") + " crawls around sniffing and staring at everything. The little pup is insatiably curious, and " + (boy ? "he" : "she") + " seems especially interested in computers. Whenever you hold " + (boy ? "him, he" : "her, she") + " reaches for your codex, making a sound almost like a happy little bark when you pull the device out for " + (boy ? "him" : "her") + " to stare at.");
+			output("\n\nYou hope Sam's proclivity for hacking hasn't been passed down to her child...");
+		}
+		else
+		{
+			output("Your little pups crawl all over each other and their surroundings, constantly sniffing and staring at everyone and everything around them. They wag their fluffy little tails whenever they're happy, which Briget says is primarily when you're around. Whenever they see something flashy on a computer or codex screen though, they all crawl over to it, wagging their tails and staring curiously until they fall asleep curled up against each other.");
+			output("\n\nYou hope they don't have the same proclivity for hacking as their mother...");
+		}
+	}
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

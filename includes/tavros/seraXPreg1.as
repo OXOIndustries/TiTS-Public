@@ -581,7 +581,7 @@ public function seraSpawnPregnancyEnds():void
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;
-	var babym:Boolean = (se.value4 == 1 ? false : true);
+	var babym:Boolean = (se.value4 == 1 ? true : false);
 	
 	output("Pain in your gut bends you over and fluid spills");
 	if(!pc.isCrotchExposed()) output(" into your [pc.lowerGarment]");
@@ -883,9 +883,19 @@ public function seraNurseryCafeteriaApproach():void
 		babym = (seraNoNameBabies[babyIdx].NumMale > 0 ? true : false);
 		babyName = seraNoNameBabies[babyIdx].Name;
 		
-		output("<i>“I still can’t believe you put yourself through");
-		if(flags["SERA_NAMED_KID"] != undefined) output(" another");
-		output(" nine months of morning sickness and looking like a tank,”</i> Sera says when you sit yourself down opposite her. <i>“Did your dad mod you so that you’d have the breeding bug bad? Would make sense of this place.”</i> She concentrates on swallowing her current mouthful of cauli-nubbs before going on in an overly casual tone. <i>“What are we calling this little " + (babym ? "bastard" : "moppet") + ", then?”</i>");
+		if(!seraRecruited())
+		{
+			output("<i>“I still can’t believe you put yourself through");
+			if(flags["SERA_NAMED_KID"] != undefined) output(" another");
+			output(" nine months of morning sickness and looking like a tank,”</i> Sera says when you sit yourself down opposite her. <i>“Did your dad mod you so that you’d have the breeding bug bad? Would make sense of this place.”</i>");
+		}
+		else
+		{
+			output("<i>“So, we have a");
+			if(flags["SERA_NAMED_KID"] != undefined) output("nother");
+			output(" kid to add to our family now... Guess you get to name it,”</i> Sera says when you sit yourself down opposite her. <i>“I remember the contract saying slaves get jack in this situation.”</i>");
+		}
+		output(" She concentrates on swallowing her current mouthful of cauli-nubbs before going on in an overly casual tone. <i>“What are we calling this little " + (babym ? "bastard" : "moppet") + ", then?”</i>");
 		
 		// [Enter Name]
 		addButton(0, "Next", nameSeraSpawn, [babyIdx, babym, babyName, 0]);

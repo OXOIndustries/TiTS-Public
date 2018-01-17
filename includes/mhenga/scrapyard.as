@@ -639,7 +639,7 @@ public function dudesTopGeoffRepeat():void
 	}
 	else if (tLength < 8)
 	{
-		output("\n\nYou hold yourself against the the soft warm cleft of his ass, tightening your grip on your [pc.cock " + tCock + "] as you increase the pressure until your [pc.cockHead " + tCock + "] sinks into his tight hole. Geoff grunts when you fully hilt him in one fluid motion. His insides are a hot tight sleeve that massages your dick.");
+		output("\n\nYou hold yourself against the soft warm cleft of his ass, tightening your grip on your [pc.cock " + tCock + "] as you increase the pressure until your [pc.cockHead " + tCock + "] sinks into his tight hole. Geoff grunts when you fully hilt him in one fluid motion. His insides are a hot tight sleeve that massages your dick.");
 		pc.cockChange();
 		geoff.buttChange(pc.cockVolume(tCock));
 		output("\n\n<i>“Fuck.”</i> he gasps as you hit his little ass with another sharp thrust. He claws at the wall as you begin to really pound his quivering hole inward. Each of your full length thrusts bring another curse from his lips. Soon your ass-slapping thrusts have fucked Geoff flat against the wall where he howls and groans, each sound dripping with a pleasure so intense it causes your [pc.chest] to swell with pride. Geoff even presses back against your thrusts, giving you deeper access as you fuck him with everything you’ve got.");

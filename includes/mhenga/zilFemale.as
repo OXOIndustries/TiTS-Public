@@ -1,4 +1,4 @@
-﻿import classes.Characters.ZilFemale;
+import classes.Characters.ZilFemale;
 import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
@@ -406,6 +406,7 @@ public function missionaryWithAZilGirl():void {
 	
 	output("\n\nThe zil girl sighs and leans back, patting her belly full of seed as you collect your [pc.gear]. <i>“Don’t be a stranger, stranger,”</i> she laughs, blowing you a kiss as you leave.");
 	
+	tryKnockUpFZil();
 	pc.orgasm();
 	pc.milkInMouth(chars["ZILFEMALE"]);
 	clearMenu();
@@ -996,6 +997,7 @@ public function dudesGetStangRoad():void {
 		pc.orgasm();
 		if(i < 6 && rand(3) == 0) pc.orgasm();
 	}
+	tryKnockUpFZil();
 	processTime(200+rand(60));
 	pc.orgasm();
 	//Raise libido .5 to 5 points depending on libido.
@@ -1065,7 +1067,7 @@ public function forceyFaceSittingFromFemzil():void {
 	output("\n\nThe zil cocks her head to the side and says, <i>“Hmmm, not quite good enough, I think.”</i> She idly plunges a finger inside herself, stirring the air with the scent of fresh love and delivering a whole new symphony of pheromonal desire to your rapt olfactory sense. <i>“That won’t do at ALL. You need to beg me properly. When you’re willing to risk your life for a taste of my nectar, then I’ll consider letting you lick me.”</i> A trickle of amber goodness falls onto your [pc.chest], tingling hotly, and you know what you have to do.");
 	output("\n\nYour voice is ragged with desperation as you beg again, <i>“Please, give me your cunt, Mistress! Feed me your pussy. Smother me in it until I learn how to breathe your juices and nothing else. Just give me a taste! I’ll follow you around and lick you for hours every day, just for one taste!”</i>");
 	output("\n\nSmiling, she pats you condescendingly on the head. <i>“That’s more like it. I hope you’re ready.”</i>");
-	output("\n\nA hint of awareness nags at you for what you’ve just promised, but you bury it under mountains of lust as the the zil starts to move.");
+	output("\n\nA hint of awareness nags at you for what you’ve just promised, but you bury it under mountains of lust as the zil starts to move.");
 	
 	output("\n\nGrabbing you by the " + (pc.hasHair() ? "[pc.hair]" : "head") + " in a double-handed grip, the aphrodisiac-perfumed woman pulls you up at the same moment that her hips slam forward. A lurid squelch echoes through the jungle as the zil’s musky quim smashes against your face, smearing over your nose, leaving trickles of fragrant wetness over your cheeks and chin. Your neck strains to press you back into her sodden box, finding a perverse balance with the two of you grinding upon one another, lips to lips and spit to cum. You thrust your [pc.tongue] with unrepressed eagerness, diving straight into the honeyed slit in order to bathe your tastebuds with its ambrosial flavor.");
 	
@@ -1393,7 +1395,11 @@ public function numbPussyFuck(dick:Boolean = true):void {
 	pc.personality++;
 	if(pc.personality > 100) pc.personality = 100;
 	processTime(15+rand(10));
-	if(x >= 0) enemy.loadInCunt(pc, 0);
+	if(x >= 0) 
+	{
+		enemy.loadInCunt(pc, 0);
+		tryKnockUpFZil();
+	}
 	pc.orgasm();
 	CombatManager.genericVictory();
 }
@@ -1498,121 +1504,634 @@ public function normalZilgirlCockfuck():void
 	var x:int = pc.cockThatFits(enemy.vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	
-	//Physicalwin Intro
-	if(enemy.HP() <= 0)
-	{
-		output("The battered bee girl pants as she works to catch her breath, and you decide to take her up on her offer. Even as exhausted as she is, she can’t hide the glimmer of excitement that crosses her face ");
-		if(pc.isNude()) output("as she recognizes your intent. Crouching down");
-		else output("when your clothing falls to the ground. Stripping fully and crouching down");
-		output(", you crawl towards her. A gentle nudge is all it takes for her to present herself, her expression one of silent understanding.")
-	}
-	//Lustwin Intro
-	else
-	{
-		output("The sight of the lust-maddened bee girl’s lewd desperation is all the encouragement you need. ");
-		if(pc.isNude()) output("Crouching down, ");
-		else output("Stripping fully and crouching down, ");
-		output("you crawl towards her. A gentle nudge is all it takes for her to present herself, her expression one of gleeful anticipation.");
-	}
-	
-	//Cockvirgin Sub-Scene here
+	if(enemy.HP() <= 0) output("The battered bee girl pants as she works to catch her breath, and you decide to take her up on her offer. Even as exhausted as she is, she can't hide the glimmer of excitement that crosses her face " + (pc.isNude() ? "as she recognizes your intent" : "when your clothing falls to the ground") + ". Instantly, the natural armor covering her breasts and crotch retracts, and the zil bares her most intimate parts to you with no hesitation. A gentle nudge is all it takes for her to lie down and present herself. Her expression is a mixture of acceptance and excitement, and you almost feel as if she <i>wanted</i> to be beaten into submission by you...");
+	else output("The sight of the lust-maddened bee girl's lewd desperation is all the encouragement you need. " + (pc.isNude() ? "Crouching down" : "Stripping naked and crouching down") + ", you crawl towards her, locking eyes as you do. Instantly, the natural armor covering her breasts and crotch retracts, and the zil willingly bares her most intimate parts to you. A gentle nudge is all it takes for her to lie down on the ground and open her legs wide, her expression one of gleeful anticipation.");
 	if(pc.cockVirgin)
 	{
-		output("\n\nYou stroke yourself a few times, [pc.eachCock] hardening. With only the slightest hesitation, you align your [pc.cockHead] with the zil’s honeypot, but your own excitement gets the better of you as you thrust <i>against</i> her as opposed to into her. There’s a flash of awkwardness, one that your waiting lover picks up on.");
-		
-		output("\n\nShe smiles and sets a hand on your cheek. <i>“Ooh, you’re adorable. So eager, but so uncertain. Come here.”</i>");
-		
-		output("\n\n<i>“Hold on,”</i> you say, blushing, <i>“I’m just-”</i>");
-		
-		output("\n\nThe zil puts a finger to your lips, silencing you, while her free hand drifts down to [pc.oneCock]. She slides her hand back and forth across its shaft, dipping her fingertips into her vagina and smearing her delectable lubricant all along your length.");
-		
-		output("\n\nThe entire dynamic has shifted, but you can’t complain, and your experienced partner only teases your cock for a few seconds before guiding you to her entrance and leaning in. <i>“Try it now,”</i> she whispers, <i>“Slowly. Let me show you a whole new world.”</i>");
-		
-		output("\n\nYou don’t notice how unsteady you are or how heavily you’re breathing, your arousal barely contained and continually stimulated by the zil’s lust-sparking pheromones. You slide forward and let out a shuddering gasp. Warmth surrounds your [pc.cock " + x + "], a heavenly feeling of comfort that feels nothing but right, nothing but necessary.");
-		
-		output("\n\nYou give a few rapid blinks, and the zil wraps her arms around your waist to bring you all the way in. She wiggles around your cock, but you don’t need any more encouragement. Instinct is stirring within you, a primal compulsion to claim your mate, and an excited smile spreads across your face.");
+		output("\n\nYou stroke yourself a few times, [pc.eachCock] jumping to attention. Eagerly, you align your [pc.cockhead "+ x +"] with the zil's honeypot, but your own excitement gets the better of you as you thrust <i>against</i> her rather than <i>into</i> her. There's a flash of awkwardness, one that your waiting lover picks up on.");
+		output("\n\nShe smiles and sets a hand on your cheek. <i>“Ooh, you're adorable. So willing, but so uncertain. Come here.”</i>");
+		output("\n\n<i>“Hold on,”</i> you say, blushing, <i>“I'm just--”</i>");
+		output("\n\nThe zil puts a chitin-covered finger to your lips, silencing you, while her free hand drifts down to your [pc.cock "+ x +"]. She dips her fingers into her vagina for a moment, then slides her hand along your throbbing erection, coating your length in her delectable lubricant as she goes. You grimace, barely suppressing a moan as your dick is toyed with by the beautiful alien. The zil laughs, though not in a mocking way. She seems innocently amused by your sexual inexperience, and, if the noticeable increase in the strength of her pheromones is any indication, more than a little aroused at the thought of taking your virginity.");
+		output("\n\nThe entire dynamic between the two of you has shifted, with your once-submissive partner now taking the lead, but you can't complain. The zil only teases your cock for a few seconds before guiding you to her entrance and leaning in. <i>“Try it now,”</i> she whispers, her breath hot against the side of your face, <i>“Slowly. Let me show you a whole new world.”</i>");
+		output("\n\nYou don’t even notice how unsteady you are or how heavily you're breathing, your arousal barely contained and continually stimulated by the zil's lust-sparking pheromones. You manage to slide your hips forward and gradually sink into the bee girl's honey-slicked sex, but you don't get far before letting out a gasp and seizing up. Warmth surrounds your [pc.cock "+ x +"], and the gentle pulsing of your partner's vagina is a sensation beyond compare. In an instant, your inexperience is torn away, and you lose yourself in a heavenly feeling of comfort and pleasure that feels nothing but right, nothing but <i>necessary</i>.");
+		output("\n\nYou blink rapidly as your brain catches up with your body, while the zil wraps her arms around your waist to bring you all the way in. Clearly eager, she wiggles around your cock, but you don't need any more encouragement. Instinct is stirring within you, a primal compulsion to claim your mate, and an excited smile spreads across your face.");
 	}
 	else
 	{
-		output("\n\nShe hisses as [pc.oneCockHead] brushes against her honeyed sex, the dusky folds already saturated with nectar. <i>“Don’t worry,”</i> you whisper, <i>“I’ll take it slow.”</i> True to your word, you slide your [pc.cock " + x + "] against her, moving back and forth to coat it with her juices.");
-		
-		output("\n\nYou drag your shaft across her crotch, angling your [pc.hips] as you pull back to send your cock across her tiny black button. The alien woman shudders and clenches her jaw, her reactions serving as nonverbal praise of your splendid technique. You continue to grind against her aromatic nethers, but find it increasingly difficult to concentrate, mind clouded by the zil’s lust-sparking pheromones.");
-		
-		output("\n\nA pair of chitinous arms wrap around your shoulders, and the moans of your sweet-smelling lover fill the air. You look down at your companion’s body, taking in every inch of her glistening figure until you see her abdomen, and more importantly its venomous stinger, bobbing precariously close to your exposed [pc.skinFurScales].");
-		
-		output("\n\nShaking your head to clear your thoughts, you return your attentions to the zil’s blushing face and meet a mischievous smirk, then tense as you feel a point of pressure against your [pc.thigh]. <i>“Worried?”</i> she coos.");
-		
-		if(pc.isAss()) output("\n\nScoffing");
-		else output("\n\nSighing");
-		output(", you shift yourself forward to stare directly into her eyes, then plunge into her depths with a single, powerful thrust. She spasms, letting out a yelp as her muscles disobey her and her abdomen flops onto the ground. <i>“No,”</i> you reply.");
+		output("\n\nShe hisses as your [pc.cockhead "+ x +"] brushes against her honeyed sex, the dusky folds already saturated with nectar. <i>“Don’t worry,”</i> you whisper, <i>“I’ll take it slow.”</i> True to your word, you gently slide your dick against her entrance, moving back and forth to coat it with her juices.");
+		output("\n\nYou drag your shaft across her crotch, angling your hips as you pull back to send your cock across her tiny black button. The alien woman shudders and clenches her jaw, her reactions serving as nonverbal praise of your splendid technique. You continue to grind against her aromatic nethers, but find it increasingly difficult to concentrate, mind clouded by the zil's lust-sparking pheromones.");
+		output("\n\nTwo chitinous arms wrap around your shoulders, and the moans of your sweet-smelling lover fill the air. You look down at your companion’s body, taking in every inch of her glistening figure until you see her wasp-like tail, and more importantly its venomous stinger, bobbing precariously close to your exposed [pc.skinFurScales].");
+		output("\n\nShaking your head to clear your thoughts, you return your attention to the zil's blushing face and meet a mischievous smirk, then tense up as you feel a point of pressure against your thigh. <i>“Worried?”</i> she coos.");
+		output("\n\n" + (pc.isAss() ? "Scoffing" : "Sighing") + ", you shift yourself forward to stare directly into her eyes, then plunge into her depths with a single, powerful thrust. She spasms, letting out a yelp as her muscles disobey her and her stinger flops onto the ground.");
+		output("\n\n<i>“No,”</i> you reply" + (!pc.isAss() ? " with a smile" : "") + ".");
 	}
 	//End Cockvirgin Vars.
 	pc.cockChange();
-	
-	output("\n\nYou pump your hips, the insectile woman’s voice rising in response to your movements. She pulls you down to pant into your ear, pressing her breasts against your [pc.chest]");
-	if (pc.isLactating()) output(", and teasing out a few droplets of [pc.milk]");
-	output(".")
-	
-	output("\n\nShe tries to say something, but her voice becomes a mess of gasps and broken whines as you drive your [pc.cock " + x + "] deeper and deeper into her womanhood, until you can go no farther. You slam into her, reaching a fever pitch as the zil’s scent pushes you beyond all sense.");
-	
-	output("\n\nHer vagina draws you in, suffocating your dick with its sweet warmth. Honey spills out of her slit and collects on the ground beneath, creating a sticky puddle with an overpowering aroma. Louder and less-controlled vocalizations come from the zil as you stretch her insides with your [pc.cock " + x + "]. Before long, she’s practically screaming, and you can’t suppress a few needy groans of your own.");
-	
-	output("\n\nA heat rises in your [pc.balls], an aching need to fill the enraptured bee with everything you have. The zil’s legs wrap themselves around you as her grip tightens, and you plant a passionate, messy kiss against her sable lips.");
-	
-	if (pc.hasKnot()) output("\n\nYour [pc.knot] swells, letting you know your [pc.cock " + x + "] is at its limit. You force yourself as deep as you can, delighting in the zil’s squeals of surprise as your sexes are locked together. Eruptions of [pc.cum] coat her insides and flood her waiting womb, and orgasmic euphoria seizes your body from top to bottom.");
-	else output("\n\nWith one final surge, your [pc.cock " + x + "] erupts inside her, sending a rush of [pc.cum] into her eager womb. She tears herself away from your kiss, crying out and arching her back. Her vagina clamps around your gushing cock, its velvety walls pulsing along your length.");
-	
-	if (pc.hasVagina())
+	output("\n\nYou pump your hips, the insectile woman’s voice rising in response to your movements. She pulls you down to pant into your ear, pressing her breasts against ");
+	if(pc.hasBreasts()) output("your own" + (pc.isLactating() ? " and teasing out a few droplets of [pc.milk]" : "") + "");
+	else output("your " + (pc.tone >= 50 && pc.thickness >= 25 ? "muscular " : "") + "chest");
+	output(". Bodies pressed together, you lose yourself in the throes of passionate lovemaking, ignorant to everything but the feeling of your exotic alien partner.");
+	output("\n\nThe zil tries to say something, but only manages a mess of gasps and broken whines as you drive your cock deeper and deeper into her womanhood, until you can go no farther. You slam into her, reaching a fever pitch as the zil’s scent pushes you over the edge of sense.");
+	output("\n\nHer vagina draws you in, suffocating your dick with its sweet warmth. Honey spills out of her slit and collects on the ground beneath, creating a sticky puddle with an overpowering aroma. Louder and less-controlled vocalizations come from the zil as you stretch her insides with your [pc.cock "+ x +"]. Before long, she's practically screaming, and you can't suppress a few needy groans of your own.");
+	output("\n\nA heat rises in your " + (pc.balls > 1 ? "balls" : "groin") + ", an aching need to fill the enraptured bee with everything you have. You barely have any time to consider whether you should finish inside or outside, but the zil's legs wrap themselves around you as her grip tightens, and that's answer enough for you. With your climax nearing, you plant a passionate, messy kiss against the alien woman's sable lips.");
+	if(pc.hasKnot(x)) output("\n\nYour [pc.knot] begins to swell, letting you know your dick is at its limit. You force yourself as deep as you can, delighting in the zil’s squeals of surprise as your sexes are locked together. Eruptions of [pc.cum] coat her insides, and orgasmic euphoria seizes your body from top to bottom.");
+	else output("\n\nWith one final surge, your dick erupts inside her, flooding her vagina with a rush of [pc.cum]. She tears herself away from your kiss, crying out and arching her back. Her vagina clenches around your gushing cock, its velvety walls gripping your length in a frantic effort to squeeze out every last drop of of your seed.");
+	if(pc.hasVagina()) output("\n\nJust as you think you’ve reached your peak, " + (pc.isSquirter() ? "[pc.eachVagina] clenches, and you let out a spray of [pc.girlCum] that thouroughly soaks your thighs" + (pc.balls > 0 ? " and [pc.balls]" : "") + "." : "streams of [pc.girlCum] begin to leak from your overstimulated vagina" + (pc.totalVaginas() > 1 ? "s" : "") + ". The girlish lust runs along your thighs" + (pc.balls > 1 ? " and drips down your balls" : "") + ", forcing out a gasp and a shiver as your feminine half spasms and twitches.") + " You grind against your partner, eyes clamped shut from the sheer strength of your twin orgasms.");
+	if(pc.cumQ() >= 5000)
 	{
-		output("\n\nJust as you think you’ve reached your peak, ");
-		if (pc.isSquirter())
-		{
-			output("[pc.EachVagina] clenches, and you let out a spray of [pc.girlCum] that thouroughly soaks your [pc.thighs]")
-			if(pc.balls > 0) output(" and [pc.balls]")
-		}
-		else
-		{
-			output("[pc.girlCum] begins to leak from [pc.eachVagina]. The feminine lust runs along your [pc.thighs]");
-			if(pc.balls > 0) output("and drips down your [pc.balls]")
-		}
-		output(", eliciting a gasp and a shiver as your feminine half spasms and twitches.");
-		output(" You grind your [pc.hips] against your partner, eyes clamped shut from the sheer strength of your twin orgasms.");
+		output("\n\nThe slender bee girl takes the first few spurts of [pc.cum] without issue, but your titanic load will not be contained. Your pulsing cock shows no signs of stopping, filling the zil beyond her limit. A trembling moan passes over her lips as her stomach begins to swell, " + (pc.hasKnot(x) ? "the entirety of your ejaculation trapped inside her by the seal created by your knot" : "and blasts of [pc.cumVisc] seed are forced out of her overloaded hole") + ".");
+		output("\n\nEventually the torrent of [pc.cum] subsides, " + (pc.hasKnot(x) ? "but your swollen [pc.knot "+x+"] keeps you locked in place. You look down at the exhausted zil, leaning in for another kiss. Savoring the gentle intimacy as your knot slowly shrinks, you kiss and nuzzle the zil, until you can finally extract yourself and stand up." : "and you pull away from your breathless lover with a wet pop. You lean in for another kiss, just for good measure, then stand up and step away.") + "");
+		output("\n\nThe [pc.cum]-stuffed woman giggles as you brush yourself off, hands caressing her bloated stomach. <i>“Amazing,”</i> she says breathlessly, gazing up at you through half-lidded eyes, <i>“You offworlders… are…”</i>");
+		output("\n\nYou look down to see her fast asleep, a smile on her face. With an amused shrug, you clean yourself up, gather your equipment, and set out, feeling a deep sense of satisfaction.");
+	}
+	else if(pc.hasKnot(x)) output("\n\nYou grow still as the pleasure fades, your waspish partner coming down alongside you. But the [pc.knot "+x+"] at the base of your [pc.cockNoun "+ x +"] keeps the two of you locked together, and the zil’s hand moves to her crotch. You nuzzle against her neck as she massages her sticky folds, helping to work your slowly-shrinking member free. You eventually withdraw with a slick squish, standing up to get ready to leave.");
+	else output("\n\nYou grow still as the pleasure fades, your waspish partner coming down alongside you. " + (pc.isAss() ? "Satisfied, you pull away and " : "While you'd like to simply lie beside her and savor the blissful intimacy, you manage to ") + "force yourself upright to begin gathering your gear. The beaming zil stays on the ground, idly playing with her [pc.cum]-leaking sex as you get ready to leave.");
+	output("\n\n<i>“You don't have to go,”</i> she murmurs, caressing herself enticingly. ");
+	if(pc.isAss()) output("\n\n<i>“Actually, I do.”</i> You secure your equipment with one final tug and give a farewell salute as you walk off. The zil looks disappointed, but shrugs and returns her attention to her vagina. You doubt she'll be upset for long.");
+	output("\n\nYou smile. <i>“As much as I wish that were true, I do.”</i> You secure the last of your belongings and kneel down, giving the bee girl a final kiss goodbye before walking off, filled with warmth and satisfaction.");
+	output("\n\n");
+	
+	processTime(20+rand(10));
+	enemy.loadInCunt(pc, 0);
+	tryKnockUpFZil();
+	pc.orgasm();
+	CombatManager.genericVictory();
+}
+
+//Time for Bee Babies
+//https://docs.google.com/document/d/1kaI8RC1qOd8y1mwIpkgdDoSdDjZfWFq6W8TDYMWnaDw/edit#
+public function tryKnockUpFZil():Boolean
+{
+	var x:Number;
+	
+	if(pc.virility() == 0 || flags["FZIL_PREG_TIMER"] != undefined) return false;
+	
+	x = pc.virility()/2 + 0.5;
+	
+	//succesful impregnation
+	if(rand(10000) <= (1 - 1.15*Math.exp(-0.38*x))*10000)
+	{
+		flags["FZIL_PREG_TIMER"] = 0;
+		pc.clearRut();
+		
+		return true;
+	}
+	else return false;
+}
+
+public function processFZilPregEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
+{
+	if(flags["FZIL_PREG_TIMER"] != undefined)
+	{
+		flags["FZIL_PREG_TIMER"] += totalDays;
+	
+		//Ideally birth will be triggered by the PC proccing the birth scene, otherwise she's gotta blow sometime
+		if(flags["FZIL_PREG_TIMER"] > 245) fZilBirth(false);
+	}
+}
+
+//The purely game-state centric parts of birth
+public function fZilBirth(witnessed:Boolean):Number
+{
+	var numMale:Number = 0;
+	
+	if(witnessed)
+	{
+		var c:Child = Child.NewChild(GLOBAL.TYPE_BEE, 1.0, 2);
+		numMale = c.NumMale;
+		ChildManager.addChild(c);
 	}
 	
-	if (pc.cumQ() >= 15000)
+	StatTracking.track("pregnancy/zil sired", 2);
+	if(witnessed) StatTracking.track("pregnancy/total day care", 2);
+
+	if(flags["FZIL_TOTAL_KIDS"] == undefined) flags["FZIL_TOTAL_KIDS"] = 0;
+	flags["FZIL_TOTAL_KIDS"] += 2;
+	flags["FZIL_PREG_TIMER"] = undefined;
+	flags["FZIL_THIS_PREG_MET"] = undefined;
+	
+	return numMale;
+}
+
+public function fZilPregStage():int
+{
+	if(flags["FZIL_PREG_TIMER"] < 80 || flags["FZIL_PREG_TIMER"] == undefined) return 0;
+	else if(flags["FZIL_PREG_TIMER"] < 160) return 1;
+	else if(flags["FZIL_PREG_TIMER"] < 220) return 2;
+	else return 3
+}
+
+public function fZilPregEncounter():void
+{
+	clearOutput();
+	clearBust();
+	clearMenu();
+	author("MistyBirb");
+	
+	if(flags["FZIL_EVER_PREG_MET"] == undefined)
 	{
-		output("\n\nThe slender bee girl takes the first few spurts of [pc.cum] without issue, but your titanic load will not be contained. Your [pc.cock " + x + "] shows no signs of stopping, filling the zil beyond her limit. A trembling moan passes over her lips as her stomach begins to swell, and blasts of [pc.cumVisc] seed are forced out of her overloaded hole."); 
-		output("\n\nEventually the torrent of [pc.cum] subsides, ");
-		if(pc.hasKnot()) output("but your swollen [pc.knot] keeps you locked in place. You look down at the exhausted zil, leaning in for another kiss. You savor the intimacy as your [pc.knot] slowly shrinks, until you can finally extract yourself and stand up.");
-		
-		output("\n\nThe [pc.cum]-stuffed woman giggles as you brush yourself off, hands caressing her bloated stomach. <i>“Amazing,”</i> she sighs, gazing up at you through half-lidded eyes, <i>“You off-worlders... are...”</i>");
-		output("\n\nYou look down to see her fast asleep, a smile on her face. With an amused shrug, you clean yourself up, gather your equipment, and set out, feeling a deep sense of satisfaction.");
-		//end cumbloat var. 
+		output("You pick up a strange scent as you walk, strong enough to make you blink and look around. It smells a bit like zil pheromones, you've got enough experience by now to recognize them, but there's something different about it. Something more noteworthy. The smell seems to be coming from a specific direction, and you could probably follow it...");
+		output("\n\nDo you investigate the mysterious aroma?");
 	}
 	else
 	{
-		if (pc.hasKnot())
-		{
-			output("\n\nYou grow still as the pleasure fades, your waspish partner coming down alongside you. But the bulbous [pc.knot] at the base of your [pc.cock " + x + "] keeps the two of you locked together, and the zil’s hand moves to her crotch. You nuzzle against her neck as she massages her sticky folds, helping to work your slowly-shrinking member free. You eventually withdraw with a slick squish, standing up to get ready to leave.");
-		}
-		//Other Outtro
-		else
-		{
-			output("\n\nYou grow still as the pleasure fades, your waspish partner coming down alongside you. ");
-			if(pc.isAss()) output("Satisfied, you pull away and ");
-			else output("While you’d like to simply lie beside her and savor the blissful intimacy, you manage to ");
-			output("force yourself upright to begin gathering your gear. The beaming zil stays on the ground, playing with her [pc.cum]-leaking sex as you get ready to leave.");
-		}
+		output("You're hit with a powerful scent, one that's unmistakably pleasant and arousing. Somewhere nearby, there's a zil you've left your mark on. She's giving off enough pheromones that you could probably track her down pretty easily.");
+		output("\n\nDo you go looking for the pregnant zil?");
 	}
 	
-	output("\n\n<i>“You don’t have to go,”</i> she murmurs, caressing herself enticingly.");
+	processTime(5);
+	if(!pc.hasAirtightSuit()) pc.lust(15);
+	
+	addButton(0, "Yes", fZilInvestigate, undefined, "", "");
+	addButton(1, "No", fZilIgnore, undefined, "", "");
+}
 
-	if(pc.isAss()) output("\n\n<i>“Actually, I do.”</i> You secure your equipment with one final tug and give a farewell salute as you walk off. The zil looks disappointed, but shrugs and returns her attention to her vagina. You doubt she’ll be upset for long.");
-	else output("\n\nYou smile. <i>“As much as I wish that were true, I do.”</i> You secure the last of your belongings and kneel down, giving the bee girl a final kiss goodbye before walking off, filled with warmth and satisfaction.");
+public function fZilInvestigate():void
+{
+	clearOutput();
+	clearMenu();
+	showBust("ZILFEMALE");
+	showName("PREGNANT\nFEMALE ZIL");
+	author("MistyBirb");
+	
+	if(flags["FZIL_EVER_PREG_MET"] == undefined)
+	{
+		output("You follow the scent, keeping your wits about you as you traverse the uneven chaos of the jungle brush. The smell gets even stronger, which is a sign you're on the right track, but as you near the source you also find yourself growing more and more aroused.");
+		if(pc.isCrotchExposed()) output("\n\nYou have to stop and adjust yourself several times as your rapidly hardening cock" + (pc.totalCocks() > 1 ? "s test" : " tests") + " the confines of your clothing. ");
+		else output("\n\nYour rapidly hardening cock" + (pc.totalCocks() > 1 ? "s" : "") + " are plain evidence of this fact, standing firm and proud in the humid jungle air. ");
+		if(pc.hasVagina()) output("There's beads of [pc.girlCum] " + (pc.isCrotchExposed() ? "staining your crotch" : "slipping down your thighs") + " too, and by ");
+		else output("By ");
+		output("the time your search comes to an end and you stumble into a clearing, you feel like you could cum from nothing but the wonderful aroma you're chasing...");
+		output("\n\n<i>“Who's there?!”</i> cries a female zil standing roughly a dozen feet ahead of you. Her body is turned away, but she's looking over her shoulder to stare right into your eyes, stinger at the ready. You collect yourself and muster as defensive a stance as you can manage, but it quickly becomes evident the zil is not interested in fighting you.");
+		output("\n\nShe turns to face you properly, one chitinous hand draped across a swollen stomach. She's pregnant! " + (fZilPregStage() == 3 ? "Exceptionally pregnant, at that, looking like she might go into labor at any moment. " : "") + "You do your best not to stare, but between her noticeably rounded tummy and " + (fZilPregStage() == 1 ? "the ever-present allure of her aroma" : "her big, honey-leaking breasts left shamelessly exposed") + ", it's quite the challenge. The pregnant alien sighs and smiles, seeming almost <i>happy</i> to see you.");
+		output("\n\n<i>“It's you,”</i> she says, <i>“I didn't think we'd meet again!”</i>");
+		output("\n\nAgain? You've met this zil before? You manage to clear your lust-addled mind enough to properly take in her face, and there's definitely an air of familiarity there. You look back at her pregnant belly. Does that mean...?");
+		output("\n\n<i>“They're yours,”</i> she says, answering your question before you even ask, <i>“You look surprised. Are you not pleased?”</i>");
+		
+		flags["FZIL_EVER_PREG_MET"] = 1;
+		flags["FZIL_THIS_PREG_MET"] = 1;
+		
+		addButton(0, "Happy", fZilHappy, undefined, "Happy", "You're pleased to see the zil is pregnant with your children.");
+		addButton(1, "Unhappy", fZilUnhappy, undefined, "Unhappy", "You weren't expecting this, and you're not pleased.");
+	}
+	else
+	{
+		output("You work to track the zil down, steeling yourself and doing your best to keep a clear head amid the potent pheromones lingering in the air. Despite your best efforts, you still wind up shamelessly aroused, but not to the extent that your faculties are affected beyond a stiff dick" + (pc.hasVagina() ? " and a [pc.girlCum]-dampened crotch" : "") + ".");
+		if(flags["FZIL_THIS_PREG_MET"] == undefined)
+		{
+			output("\n\nYou emerge into a clearing to find the zil cradling her rounded stomach and foraging among the jungle brush. She senses your presence with a twitch of her antennae and turns in surprise, but you raise your hands to reassure her that you're not a threat.");
+			output("\n\n<i>“Oh! It's you!”</i> she says, <i>“I didn't think we'd meet again!”</i>");
+			output("\n\nYou forgo a traditional greeting in favor of a more direct approach, stepping forward and drawing her into a passionate kiss. A bit of paternal instinct overcomes you, and you lovingly stroke her pregnant belly. She gazes into your eyes as you break the kiss, face flushed with a mixture of base arousal and genuine emotion.");
+			output("\n\n<i>“Well, that was a pleasant surprise,”</i> she whispers before lewdly stroking your groin, <i>“But I hope that's not all you had in mind...”</i>");
+			output("\n\nYou smirk. What do you want to do with her?");
+			flags["FZIL_THIS_PREG_MET"] = 1;
+		}
+		else
+		{
+			output("You emerge into a clearing to find the zil cradling her swollen stomach and foraging among the jungle brush. She senses your presence with a twitch of her antennae and turns, already well aware of who you are.");
+			output("\n\n<i>“Hello again,”</i> she says with a smirk, <i>“If I didn't know better, I'd say you were following me. Have you come to check on me?”</i>");
+			output("\n\n<i>“Something like that,”</i> you say.");
+			output("\n\nThe zil giggles, dragging her fingertips across her taut, rounded belly. <i>“Well, get on with it.”</i>");
+		}
+		fZilPregMenu();
+	}
+	
+	pc.lust(20);
+	processTime(15+rand(10));
+}
 
-	output("\n\n");
-	processTime(20+rand(10));
-	enemy.loadInCunt(pc, 0);
+public function fZilIgnore():void
+{
+	clearOutput();
+	clearBust();
+	clearMenu();
+	author("MistyBirb");
+	
+	if(flags["FZIL_EVER_PREG_MET"] == undefined) output("You frown and continue on your way. It's probably not worth the risk. Knowing Mhen'ga's propensity for sweet-smelling danger, almost definitely not...");
+	else output("You shrug and keep moving forward. She's more than likely fine, and you have more important things to do at the moment.");
+	
+	processTime(3);
+	addButton(0, "Next", mainGameMenu, undefined, "", "");
+}
+
+public function fZilHappy():void
+{
+	clearOutput();
+	clearMenu();
+	showBust("ZILFEMALE");
+	showName("PREGNANT\nFEMALE ZIL");
+	author("MistyBirb");
+	
+	output("The zil smiles, looking rather touched. <i>“I'm glad. Even if you're an off-worlder, you're quite strong.”</i> She caresses her stomach gently, face flushing as she remembers your last encounter. <i>“And strong mates make strong children...”</i>");
+	output("\n\nYou chuckle and wrap an arm around her, pulling her close. Her rounded belly presses against you, and your free hand roams across it, prompting a warm sigh from the zil. She " + (pc.isTaur() ? "presses herself against you sensually" : "slides her thigh against your groin") + ", testing the limits of your already strained self-control.");
+	output("\n\n<i>“Hmm... You came prepared, didn't you?”</i> she murmurs, <i>“So, where do we go from here?”</i>");
+	output("\n\nYou set your hands on the zil's shoulders and push her away, but only enough to let you take in the entirety of her pregnant form. What do you want to do to her?");
+	
+	pc.addNice(3);
+	pc.lust(20);
+	processTime(5);
+	
+	fZilPregMenu();
+}
+
+public function fZilUnhappy():void
+{
+	clearOutput();
+	clearMenu();
+	showBust("ZILFEMALE");
+	showName("PREGNANT\nFEMALE ZIL");
+	author("MistyBirb");
+	
+	output("The zil frowns and narrows her eyes. <i>“Hmph. Well then, I'm not going to pretend to understand the backwards nature of an off-worlder. I didn't expect you to return, and I certainly didn't </i>need<i> you to, but still... I misjudged you.”</i> She turns away and stomps off, disappearing into the jungle.");
+	output("\n\nSomehow you doubt you'll ever see her again.");
+	
+	pc.addHard(5);
+	processTime(5);
+	fZilBirth(false);
+	
+	addButton(0, "Next", mainGameMenu, undefined, "", "");
+}
+
+public function fZilPregMenu():void
+{
+	addButton(0, "Appearance", fZilPregAppearance, undefined, "", "");
+	addButton(1, "Talk", fZilPregTalk, undefined, "", "");
+	addButton(2, "Relax", fZilPregRelax, undefined, "", "");
+	if(!pc.isTaur())
+	{
+		addButton(3, "Breastfeed", fZilPregFeed, undefined, "", "");
+		if(pc.cockThatFits(zilFemale.vaginalCapacity() * 1.25) >= 0)  addButton(4, "Fuck", fZilPregFuck, undefined, "", "");
+		else addDisabledButton(4, "Fuck", "Fuck", "You don't have a penis that could fit the pregnant zil.");
+	}
+	else
+	{
+		addDisabledButton(3, "Breastfeed", "Breastfeed", "You need to not be a taur for this.");
+		addDisabledButton(4, "Fuck", "Fuck", "Considering your anatomy, having sex with a pregnant Zil is out of the question.");
+	}
+}
+
+public function fZilPregAppearance():void
+{
+	clearOutput();
+	clearMenu();
+	showBust("ZILFEMALE");
+	showName("PREGNANT\nFEMALE ZIL");
+	author("MistyBirb");
+	
+	switch(fZilPregStage())
+	{
+		case 1:	output("You spend a moment just looking at the zil, taking in her pregnant form. She's got a modest baby bump at the moment, definitely noticeable, but she can't be too far along. Her breasts seem to strain against the chitin plates covering them, looking a bit cramped. While the zil seems able to comfortably keep her breasts covered for now, you have to wonder if that will hold true as her breasts continue to grow...");
+				break;
+				
+		case 2:	output("You spend a moment just looking at the zil, taking in her pregnant form. Her stomach is looking quite gravid, and the smooth chitin plates around her abs and waist that normally fit snugly together are separated by large patches of bare yellow skin, having been forced apart to make room for her growing young. She seems instinctively defensive of her pregnant belly, rarely allowing one of her hands to not be in constant contact with it.");
+				output("\n\nHer breasts, too, are noticeably bigger, with the most obvious indication being that the zil seems unable to cover them with her natural armor. They have grown to the point where she is forced to expose them constantly, but you're hardly complaining about the view. Drops of golden honey regularly slip from her puffy black nipples, a clear sign that she's lactating heavily.");
+				break;
+				
+		case 3:	output("You spend a moment just looking at the zil, taking in her pregnant form. She has reached the point in her pregnancy where her belly has grown so large that it's truly impressive she manages walk around and function relatively normally. The zil is very, <i>very</i> pregnant, and her hands almost seem glued to the sides of her enormously gravid stomach, rubbing it gently, if not a bit anxiously. She is surely bound to give birth very soon.");
+				output("\n\nLike her stomach, her breasts have grown significantly as well, clearly much larger than they were before. The zil has no hope of covering them with her chitinous armor in their current state, and has obviously given up trying. They leak honey incessantly, and large drops of sweet golden nectar fall to the ground even when the expectant mother does little more than shift her weight from one foot to the other.");
+				break;
+	}
+	output("\n\nThe zil tilts her head in confusion at your perceived inaction, then notices how intently you're checking her out. She smiles and cocks her hips seductively, playfully running her hands along her body like some kind of pregnant alien pin-up model. You have to admit, it's pretty hot.");
+	output("\n\nThe zil smiles. <i>“So, did you have anything else in mind?”</i>");
+	
+	pc.lust(15);
+	processTime(3);
+	
+	fZilPregMenu();
+	addDisabledButton(0, "Appearance");
+}
+
+public function fZilPregTalk():void
+{
+	clearOutput();
+	clearMenu();
+	showBust("ZILFEMALE");
+	showName("PREGNANT\nFEMALE ZIL");
+	author("MistyBirb");
+	
+	output("You take a moment to pull yourself together, saying that you just want to talk to her for now.");
+	output("\n\n<i>“You want to... talk?”</i> she asks, <i>“Just talk? Not what I expected, but intriguing all the same. What do you want to talk about?”</i>");
+	
+	fZilPregTalkMenu();
+}
+
+public function fZilPregTalkMenu():void
+{
+	addButton(0, "Safety", fZilPregTalkSafety, undefined, "Safety", "Ask the zil about her personal safety and the dangers of Mhen'ga for a pregnant female.");
+	addButton(1, "Scent", fZilPregTalkScent, undefined, "Scent", "Ask if the zil can explain her extra-appealing aroma.");
+	addButton(2, "Birth", fZilPregTalkBirth, undefined, "Birth", "Inquire about the state of the zil's pregnancy, and when she thinks she might give birth.");
+	addButton(14, "Back", function():void{clearOutput(); clearMenu(); author("MistyBirb"); output("The zil smiles. <i>“So, did you have anything else in mind?”</i>"); fZilPregMenu();}, undefined, "", "");
+}
+
+public function fZilPregTalkSafety():void
+{
+	clearOutput();
+	clearMenu();
+	showBust("ZILFEMALE");
+	showName("PREGNANT\nFEMALE ZIL");
+	author("MistyBirb");
+	
+	output("You cross your arms and purse your lips, asking the zil why she's wandering around the jungle while pregnant.");
+	output("\n\nShe looks a bit indignant at your question, and narrows her eyes. <i>“I am still capable of supporting my village and my fellow zil. Just because I'm pregnant doesn't mean there are fewer mouths to feed. Quite the opposite, really. Foraging is not a strenuous task, and this is zil territory. I am as safe here as I am in my village.”</i>");
+	output("\n\nYou don't answer her directly, but the skeptical look on your face is apparently more than enough to prompt the zil to keep going.");
+	output("\n\n<i>“You don't understand, you're an offworlder. I was born and raised here. This is my home, and I know how to avoid danger. A zil does not live long enough to have children in the first place if they do not learn such things.”</i>");
+	output("\n\nThe alien speaks with a prideful ferocity, and you raise a hand to calm her down. You apologize, telling her that you did not intend to upset her, only to make sure she was alright.");
+	output("\n\nThe zil relaxes her stance, then smiles sheepishly. <i>“Your concern, while unnecessary, is still touching. Thank you. You offworlders are more compassionate than I expected.”</i>");
+	
+	processTime(7+rand(5));
+	
+	fZilPregTalkMenu();
+	addDisabledButton(0, "Safety", "Safety", "You just finished talking about this.");
+}
+
+public function fZilPregTalkScent():void
+{
+	clearOutput();
+	clearMenu();
+	showBust("ZILFEMALE");
+	showName("PREGNANT\nFEMALE ZIL");
+	author("MistyBirb");
+	
+	output("You inhale deeply through your nose, getting such a concentrated hit of pheromones that you actually feel a bit dizzy. Shaking your head, you ask the zil about her powerful scent, and why it seems so much stronger and more attractive than before.");
+	output("\n\nThe alien woman chuckles. <i>“Because you are my mate. My scent has taken on some of your traits, tuned itself to your senses, because it is your children that grow inside me. You have marked me in a way that only a virile mate can, and what you're experiencing is an extension of that.”</i>");
+	output("\n\n<i>“To be perfectly honest,”</i> she adds, <i>“I am affected by your scent as well, though yours is not nearly as strong as the pheromones of a pure-blooded zil. Still, I know you are my mate from scent alone, and it is...”</i> She pauses and shuts her eyes for a moment, her antennae twitching. <i>“Arousing, to say the least.”</i> The zil slides her hands along her hips, eyeing you seductively. <i>“Perhaps we could explore these sensations together, hmm?”</i>");
+	output("\n\nYou grin. That doesn't sound like a bad idea.");
+	
+	pc.lust(15);
+	processTime(7+rand(5));
+	
+	fZilPregTalkMenu();
+	addDisabledButton(1, "Scent", "Scent", "You just finished talking about this.");
+}
+
+public function fZilPregTalkBirth():void
+{
+	clearOutput();
+	clearMenu();
+	showBust("ZILFEMALE");
+	showName("PREGNANT\nFEMALE ZIL");
+	author("MistyBirb");
+	
+	output("You ask her how far along she is, and if she expects the children to arrive anytime soon.");
+	
+	switch(fZilPregStage())
+	{
+		case 1:	output("\n\n<i>“No, not for quite some time,”</i> she replies, idly rubbing her belly, <i>“Several months more, at least, but there is a chance that the union of our two species may result in a pregnancy that progresses differently than I expect. I feel all is going well, though. My instincts say that everything will be just fine.”</i> She says that last sentence with a warm smile on her face, looking down at her baby bump with motherly pride.");
+				break;
+				
+		case 2:	output("\n\nThe zil smirks. <i>“Well, as you can see, they're growing fast, but I believe there is still a fair amount of time before they arrive. Weeks, if not months. Zil are never born alone, you see, so we females grow to accommodate not just one child, but two, or sometimes even three. I believe it will be quite apparent when they are ready to greet the world.”</i> The alien woman looks positively joyful as she speaks, rubbing both hands along her pregnant belly and smiling broadly.");
+				break;
+				
+		case 3:	output("\n\nThe zil takes a deep breath, then lets out a chuckle. <i>“Soon, I hope. Very soon. They're beginning to make life rather difficult for their mother, what with their constant kicking and shifting around, not to mention how heavy they've become. But it is a burden all mothers bear, for the sake of their children. I shall manage, but I eagerly await their arrival. Not only to ease my aching body, but to finally hold them in my arms...”</i>");
+				output("\n\nThe zil suddenly seems very emotional, averting her eyes and nervously fiddling with her hair. <i>“If you... wanted to be there for their birth,”</i> she says quietly, <i>“I would recommend staying nearby for the next several days. It's up to you, of course...”</i>");
+				break;
+	}
+	
+	processTime(7+rand(5));
+	
+	fZilPregTalkMenu();	
+	addDisabledButton(2, "Birth", "Birth", "You just finished talking about this.");
+}
+
+public function fZilPregFuck():void
+{
+	clearOutput();
+	clearMenu();
+	showBust("ZILFEMALE");
+	showName("PREGNANT\nFEMALE ZIL");
+	author("MistyBirb");
+	
+	var x:int = pc.cockThatFits(zilFemale.vaginalCapacity() * 1.25);
+	
+	output("You smile as you " + (pc.isNude() ? "set your things aside" : "begin to undress") + ", and the zil practically reads your mind. <i>“You want to fuck me, even though I'm already pregnant, don't you?”</i> she asks coyly, tracing a fingertip across her tummy.");
+	output("\n\nYou give a hasty nod, struggling to reign in your arousal. Between the brain-fogging pheromones and the zil's natural allure, you don't just <i>want</i> to fuck her, you <i>need</i> to. She giggles and cradles her belly as she lowers herself to the ground, watching you with lusty, half-lidded eyes. Your alien partner sprawls across the jungle floor, letting you situate yourself between her open legs.");
+	output("\n\n<i>“You have to promise to be gentle...”</i> she says. There's an air of seriousness in her otherwise seductive tone, and you realize that your animalistic lust will have to be sated more carefully than you might like.");
+	output("\n\nWith a reassuring caress of her rounded stomach, you press [pc.cock "+x+"] against her sex and tease her with a few half-thrusts. She shivers with delight as you grunt and bite your lip, doing your best to control yourself.");
+	output("\n\nTaking a deep breath, you slide forward, spreading her honeyed lips to bury your [pc.cock "+x+"] deep inside her. The zil lets out a demure whine, and as she does, the true extent of her arousal becomes clear. It seems like she hasn't gotten off in some time, although she had been hiding it rather well. But now she's reached the limit of her self-control, and you've reduced her to a red-faced puddle of lust with nothing but a paltry amount of foreplay and a single thrust.");
+	output("\n\nYou start to move, pumping in and out of your alien lover at a steady pace. The zil tosses her head back and forth, then suddenly seizes up with a loud yell, cumming hard. You're caught totally off-guard as her vagina clamps around you, a surprising tightness that forces you to stop for a moment. She pants and brings a hand to her mouth, obviously embarrassed at having cum so quickly. Once she's collected herself, she urges you on with a desperate nod and watery eyes. <i>“I need... more...”</i> she pants.");
+	output("\n\nThat does nothing but fan the flames of your barely-controlled lust, and you begin to thrust with enough force to make her heavy, honey-leaking breasts wobble and bounce. The zil cries out, babbling incoherently as she nearly cums a second time. You manage to slow down a bit after a few seconds, still mindful of her pregnancy. Her belly prevents you from pressing your bodies together, but the zil reaches for your hand and squeezes it tightly. She stares into your eyes, her expression radiating a genuine happiness even when she's lost in the throes of lovemaking.");
+	if(flags["FZIL_PREG_FUCKED"] == undefined) output("\n\nYou finally find a comfortable rhythm and pace, but it's obvious the zil is doing everything she can to hold off another orgasm. All the movement and activity has strengthened her pheromones, though the effect is different than what you're used to. You feel... possessive of her, and you're not only getting pleasure from fucking her senseless, but a real sense of pride. You keep a firm grip on her hand as you continue to thrust, fueled by an instinctual desire to hear and feel her orgasms.");
+	else output("\n\nYou finally find a comfortable rhythm and pace, but it's obvious the zil is doing everything she can to hold off another orgasm. All the movement and activity has strengthened her pheromones, and that familiar surge of dominant pride overcomes you. She is <i>your</i> mate, carrying <i>your</i> children, and has been driven to the edge of sense by <i>your</i> sexual prowess. In that moment, you have complete control of her, and the feeling is nothing less than divine. You keep a firm grip on her hand as you continue to thrust, fueled by an instinctual desire to hear and feel her orgasms.");
+	output("\n\nEventually, the inevitable comes to pass, and the zil cums again with a high-pitched yelp. Her vagina tightens and clenches around your dick, but you are prepared this time, and you barely lose any momentum. Once she's calmed down, you pick up exactly where you left off, intent on giving her every climax her body can take. Her pregnancy has made her absurdly sensitive, and the steady pumping of your cock is sending her into what could only be called an orgasmic fit. Copious amounts of honey leak from her breasts, and her long, hollow tongue hangs from her mouth.");
+	output("\n\nThe sex feels like some of the most intense you've ever experienced, even though nothing the two of you are doing is all that exotic. But there's something unique about burying yourself inside the pregnant zil, knowing it was you that made her that way. Knowing that her gravid belly is a direct result of your virility...");
+	output("\n\nYou pause the movement of your hips for a moment, leaning forward over your alien partner. Thrusting isn't possible in this position, not without you being forced to press your body against her belly, but you can bring your face very close to hers. She pants and looks into your eyes, then your lips meet. The two of you kiss for a long while, but the zil eventually pushes you away.");
+	output("\n\nShe scoots back and brings her legs together, rolling onto her side and pulling her stinger away to present her magnificent ass. Her sweet, golden girl-cum drips down her chitinous thigh, and she props herself up on her elbows with a pleading look in her eyes.");
+	output("\n\n<i>“Like this,”</i> she says, barely above a whisper.");
+	output("\n\nYou're happy to oblige, pressing your [pc.cockHead "+x+"] against her pussy and sliding inside once more. From this new vantage, you are much closer to your zil partner, able to press your bare [pc.skinFurScales] against her. She has to twist her head and shoulders to properly face you, but with her belly out of the way, you're able to fuck her much harder than before. She is again reduced to a nearly insensate state over the course of a few moments, cumming a third time. Overwhelmed by her orgasms, the zil girl flops against the jungle floor, losing all semblance of composure, and the sight of her absolute pleasure is your limit.");
+	if(pc.hasKnot(x))
+	{
+		output("\n\nYour [pc.knot "+x+"] swells and seals your cock inside the zil as you begin to pump her full of [pc.cum], but it has nowhere to go, forcing itself back out even with your knot doing its best to keep everything inside her. " + (pc.cumQ() >= 5000 ? "Your incredible load causes a bit of a spectacle, being shot out at random angles in high-pressure spurts that fly quite a distance before slapping against the ground." : "") + "");
+		output("\n\nThe ordeal leaves you panting heavily, and your head begins to spin a little. You blink rapidly and try to steady yourself, lying down beside the zil with your [pc.cock "+x+"] still lodged firmly inside her vagina. Instinctively, you wrap an arm around her before slipping into unconsciousness.");
+	}
+	else output("\n\nYou shudder as you begin to pump the zil full of [pc.cum], but almost all of it comes spilling out of her pregnant hole. " + (pc.cumQ() >= 5000 ? "Your incredible load has nowhere to go, and it puddles on the ground as it gushes out around your cock. " : "") + "Physically exhausted and intoxicated on pheromones, you feel a bit light headed. As your orgasm winds down, you naturally settle beside your pregnant lover, embracing her tenderly. You feel her smooth, chitin-covered fingers caressing your arm, and then you slip into the bliss of sleep...");
+	
+	flags["FZIL_PREG_FUCKED"] = 1;
+	processTime(25+rand(10));
 	pc.orgasm();
-	CombatManager.genericVictory();
+	
+	addButton(0, "Next", fZilPregFuckII, undefined, "", "");
+}
+
+public function fZilPregFuckII():void
+{
+	clearOutput();
+	clearMenu();
+	showBust("ZILFEMALE");
+	showName("PREGNANT\nFEMALE ZIL");
+	author("MistyBirb");
+	
+	output("You wake gently, and the first thing you see is the back of your zil lover's head. Your hand is resting on her stomach lovingly, and she's sound asleep beside you. You try to disentangle yourself without waking her, but it proves impossible. The alien woman doesn't seem upset to be woken up, though, looking over her shoulder and smiling warmly as she sits up.");
+	output("\n\n<i>“That was... very nice,”</i> she says.");
+	output("\n\nYou agree, taking in another deep breath of pheromones and mentioning how much better the sex seemed to be because of them.");
+	output("\n\nThe zil smirks and brushes her hair out of her face. <i>“Perhaps the scent of a pregnant zil is especially potent for you off-worlders. Mating with a partner that's already pregnant doesn't serve any purpose other than pleasure, and our scents change to enhance that pleasure even more than usual. Enjoy it while it lasts. Or... perhaps you could ensure that mating always feels this good?”</i> She grins at you with obvious sexual hunger, despite the thorough fucking you just gave her.");
+	output("\n\nThe prospect of keeping the bee girl eternally pregnant is an enticing one, but for the moment you know you have to continue on. You stand up and help the zil to her feet, then gather your things. The expectant mother looks disappointed that you're leaving, but not overly so. Behind her slight frown is an understanding and acceptance, and she seems to be happy enough just getting to see you again. Before you go, though, she grabs your arm, spins you around, and gives you a final kiss goodbye.");
+	output("\n\n<i>“Be safe,”</i> she says.");
+	output("\n\nYou nod. <i>“You too.”</i>");
+	
+	processTime(45+rand(30));
+	addButton(0, "Next", mainGameMenu, undefined, "", "");
+}
+
+public function fZilPregFeed():void
+{
+	clearOutput();
+	clearMenu();
+	showBust("ZILFEMALE");
+	showName("PREGNANT\nFEMALE ZIL");
+	author("MistyBirb");
+	
+	if(fZilPregStage() == 1)
+	{
+		output("You look at the armored plates covering the zil's chest, noticing that her breasts seem to be straining against the glossy black chitin. It's as if she's wearing a bra that's a few sizes too small, and it doesn't look comfortable in the slightest...");
+		output("\n\n<i>“What?”</i> she asks, <i>“Why are you staring at me?”</i>");
+		output("\n\nWanting to get straight to the point, you move in and set one hand on each of her breasts, applying a bit of pressure. The zil winces in response.");
+		output("\n\n<i>“Just as I thought,”</i> you say, <i>“You're all full up, aren't you?”</i>");
+		output("\n\nThe zil looks a bit flustered at your blunt nature. <i>“The pregnancy...”</i>");
+		output("\n\n<i>“I can help, if you'll let me.”</i>");
+		output("\n\nShe looks you in the eye for a moment, then smiles. You feel her smooth chitin armor slide across your fingertips as it retracts, and the bee girl's breasts are exposed to the open air, falling right into your waiting palms. The zil's honey-stuffed mammaries have a noticeable heft to them, and you begin to coax out their motherly bounty with a gentle massage. Moving your hands in careful circles, you put your thumbs right on her nipples, tracing them around her jet-black areolae.");
+		output("\n\nYour alien partner sighs in relief, shutting her eyes as sweet golden nectar begins to flow freely from her breasts. You steal a quick taste, leaning in and dragging your tongue along the zil's honey-dampened skin before wrapping your lips around one of her nipples.");
+		output("\n\n<i>“Wait,”</i> she says, prompting you to pull away, <i>“Over here.”</i>");
+		output("\n\nShe walks over to a mossy boulder, lowering herself to the ground and resting against it. You drop to your knees and straddle the zil's legs, a position that gives you unrestricted access to her breasts. The pregnant alien rubs her stomach and " + (pc.hasHair() ? "runs her fingers through your [pc.hair]" : "caresses the side of your face") + " as you tease her nipple with your tongue, overwhelmed by a feeling of motherly bliss.");
+	}
+	else
+	{
+		output("You stare at the zil's big, rounded breasts and grin lasciviously. While the average zil woman is hardly lacking an enticing pair of boobs, the pregnancy has made your partner's all the more noticeable, to the point where she is forced to leave them exposed to the open air at all times as opposed to hiding them behind her natural chitin armor. Her jet black nipples are already fully erect, and drops of honey slip down the front of her breasts at regular intervals.");
+		output("\n\nShe catches you ogling her and smiles. <i>“Hungry?”</i> she asks, bringing a hand to each luscious mound and squeezing gently. The pressure releases a trickle of bountiful golden nectar, and you can't resist the invitation. You lean in to wrap your [pc.lips] around the zil's nipple, and your mouth is filled with a divine sweetness. The zil's honey is pure, smooth, and sweet like nothing else you've ever tasted. A delicacy in every sense of the word.");
+		output("\n\n<i>“Wait,”</i> she says, prompting you to pull away, <i>“Over here.”</i>");
+		output("\n\nShe walks over to a mossy boulder, lowering herself to the ground and resting against it. You drop to your knees and straddle the zil's legs, a position that gives you unrestricted access to her breasts. The pregnant alien rubs her stomach and " + (pc.hasHair() ? "runs her fingers through your [pc.hair]" : "caresses the side of your face") + " as you tease her nipple with your tongue, overwhelmed by a feeling of motherly bliss.");
+	}
+	output("\n\n<i>“This is nice,”</i> she says quietly, <i>“It feels so good, having someone to nurse. It just goes to waste otherwise...”</i>");
+	output("\n\nYou pause for a moment to glance up at the zil, surprised at the compassionate, loving expression on her face. Her pregnancy has certainly mellowed her personality a bit. She's a far cry from the feisty sexual challenger you first met...");
+	output("\n\nOr so you think. With a sudden grin, the zil reaches around her gravid stomach and presses her hand against your groin. You grunt in surprise as she chuckles and ");
+	if(pc.isNude()) output("takes your [pc.biggestCock] in her hand");
+	else output("frees your dick" + (pc.totalCocks() > 1 ? "s" : "") + " from the confines of your clothing");
+	output(", obviously intent on doing more than just feeding you some honey.");
+	if(pc.hasVagina()) output("\n\nShe strokes you lackadaisically, and you do your best to relax as her handjob picks up, burying your face in her beasts and continuing to drink from her delicious bounty. Her fingers explore your cock" + (pc.totalCocks() > 1 ? "s" : "") + " from tip to base " + (pc.balls > 0 ? "and dance across your [pc.balls], " : "") + "masterfully teasing your manhood until she discovers something altogether different, just a little bit lower. The zil smirks, but doesn't miss a beat, slipping two fingers into [pc.oneVagina] and flicking her thumb across [pc.eachClit]. The sudden stimulation catches you off-guard, and the zil's honey-leaking nipple pops from your mouth as you let out a surprised squeak.");
+	else output("\n\nShe strokes you lackadaisically, and you do your best to relax as her handjob picks up, burying your face in her beasts and continuing to drink from her delicious bounty. Her fingers explore your cock" + (pc.totalCocks() > 1 ? "s" : "") + " from tip to base " + (pc.balls > 0 ? "and dance across your [pc.balls], " : "") + "masterfully teasing your manhood and making you shudder with arousal.");
+	output("\n\nShe laughs. <i>“Goodness. Was it my scent that got you like this? " + (pc.isSquirter() ? "You're absolutely soaking. " : "") + "You know, for zil, the more powerful the father's attraction to the mother's pheromones, the more compatible the two are as mates." + (pc.isSquirter() ? " If this mess between your legs is any indication, I'd say we're quite compatible indeed..." : "") + "”</i>");
+	output("\n\nYou pause your suckling again, sharing another surprisingly tender moment with the zil, but it's interrupted as she pushes you backwards playfully. The shove was hardly strong enough to actually tip you over, but you go along with it regardless, pulling yourself away and sitting in the dirt with your erection" + (pc.totalCocks() > 1 ? "s" : "") + " sticking straight up into the air. The beautiful bee girl scoots over to you with a wink, then she begins to vigorously jerk you off. In this new position, the zil is able to squeeze and tease everything below your waist, and her long, flexible tongue wraps itself around the tip of your [pc.biggestCock], prompting you to let out a shuddering moan.");
+	output("\n\nYou grab fistfuls of dirt and grass, thrusting your hips into the air and gritting your teeth. <i>“Cumming!”</i> you grunt, giving the zil just enough warning that she's able to pull her tongue away and open her mouth wide.");
+	if(pc.cumQ() >= 5000)
+	{
+		output("\n\nYou give the mother of your children the facial to end all facials, drenching not only her face, but her entire upper body in a ridiculous amount of [pc.cum]. Your dick" + (pc.totalCocks() > 1 ? "s are like fountains" : " is like a fountain") + ", and drops of [pc.cumColor] rain from the sky and pool on the ground around you.");
+		output("\n\nEventually, your orgasm ends, and you can hear the zil giggling between your exhausted pants. You roll over to see her wiping [pc.cumNoun] off her tits and face, grinning in amusement. She has no hope of cleaning herself completely without a proper bath, but she manages to do a decent enough job with just her hands.");
+		output("\n\nWhen she's done all she can, she pulls herself close and lays down beside you, her head resting on your shoulder and her belly on your thigh.");
+	}
+	else
+	{
+		output("\n\nYour dick" + (pc.totalCocks() > 1 ? "s give" : " gives") + " her exactly what she wants, covering her face in [pc.cum]. She manages to catch a fair deal of your load in her mouth, swallowing it without a second thought. She uses a combination of her hands and tongue to clean herself up, then laughs.");
+		output("\n\n<i>“I thought it was only fair,”</i> she says, <i>“I feed you, and you feed me.”</i> You chuckle, and the pregnant zil pulls herself close to lay down beside you, her head resting on your shoulder and her belly on your thigh.");
+	}
+	output("\n\nYou instinctively wrap an arm around her, basking in the afterglow of your orgasm. She cuddles up to you, close enough that you can feel her heartbeat. Near your waist you feel a tiny thump, and you glance up to see what it was. There's nothing you can see other than your partner's pregnant tummy, and a realization hits you. You put your free hand on the zil's stomach, gently sliding across it until you feel the sensation again.");
+	output("\n\n<i>“I think all this fun might have excited them,”</i> the zil whispers, <i>“They're kicking up a storm in there.”</i> You smile and look her in the eyes, giving her a gentle kiss on the forehead and squeezing her a little tighter. There's an indescribable warmth welling up in you, a mixture of pride, happiness, and maybe a little bit of anxiety, but it's a great feeling.");
+	output("\n\nYou lay with the zil for a long while, but unfortunately the moment can't last forever. You carefully sit up and nudge her, but the zil doesn't resist. She pulls away and nods, understanding that you have to go. She doesn't look happy, but she doesn't exactly look sad, either. You stand up to give her a final hug and kiss, and she helps you gather your things.");
+	output("\n\n<i>“Take care,”</i> she calls after you, waving.");
+	output("\n\n<i>“You too,”</i> you reply.");
+	
+	processTime(45+rand(30));
+	pc.orgasm();
+	
+	addButton(0, "Next", mainGameMenu, undefined, "", "");
+}
+
+public function fZilPregRelax():void
+{
+	clearOutput();
+	clearMenu();
+	showBust("ZILFEMALE");
+	showName("PREGNANT\nFEMALE ZIL");
+	author("MistyBirb");
+	
+	output("You look at the pregnant alien for a moment, then sigh and take a step back. Even with your pheromone-induced arousal, you're not in the mood for sex. For whatever reason, you desire something much simpler.");
+	output("\n\n<i>“Is something wrong?”</i> she asks.");
+	output("\n\nWith a smile, you tell her that nothing is wrong, but that you'd like to simply pass some time, maybe just sit down and relax for a while.");
+	output("\n\nThe zil looks skeptical. <i>“You want to... sit here?”</i>");
+	output("\n\nYou laugh and grab her hand, leading her over to a nearby tree. Lowering yourself to the ground and sitting against it, you invite her to do the same. The zil gives you a curious smile before carefully easing herself down and sitting beside you. She's clearly a bit awkward about it, at least until you wrap an arm around her shoulder and bring her in close. ");
+	output("\n\n<i>“Is this some kind of mating ritual among your people?”</i> she asks.");
+	output("\n\nYou're caught off-guard by her question and laugh. <i>“Sometimes, maybe? Mostly it's just a nice way to spend time together.”</i>");
+	output("\n\n<i>“And this is all it is? We just sit here?”</i>");
+	output("\n\n<i>“Yeah.”</i>");
+	output("\n\n<i>“Oh.”</i>");
+	output("\n\nYour companion seems confused for the first few moments, but is eventually lulled into a relaxed and peaceful state. Her head comes to rest on your shoulder, and her hands on her pregnant belly, as you lean back against the tree and simply enjoy the moment. You shut your eyes to bask in the warmth of the jungle air, listening to the ambiance and taking a few deep breaths.");
+	output("\n\nInevitably, those deep breaths fill your nostrils with more of the zil's potent pheromones, but you don't seem to be too distracted by them. You know your mate is safe and sound beside you, and that is more than enough. The zil lets out a quiet sigh and shifts herself slightly, leaning more of her weight against you, and the two of you sink into a blissful silence.");
+	output("\n\nMinutes pass without interruption, until the zil yawns and snuggles up against you even more. <i>“This is nice,”</i> she whispers.");
+	output("\n\nHer statement is followed by a gentle twitch of her antennae, the slight movement just enough to tickle the side of your face and make you smile. You feel as if you could stay like this forever, resting peacefully with your partner in your arms without a care in the world.");
+	output("\n\nUnfortunately, such an idyllic fantasy is just that, a fantasy. While your time spent with the zil is wonderfully relaxing, you know it must come to an end eventually. You open your eyes and lean forward carefully, stirring her from her daydreams.");
+	output("\n\n<i>“Hm?”</i> she asks sleepily, <i>“What is it?”</i>");
+	output("\n\nYou stroke her hair and give a wistful half-smile. <i>“I should probably get going,”</i> you say, though not without an obvious note of regret in your tone.");
+	output("\n\nThe zil looks disappointed, but she nods her head and pulls away, allowing you to stand up. She stays on the ground, legs folded to the side and one arm propping her up, her hand lingering on the spot you had just occupied. You offer your own hand to help her up, but she declines.");
+	output("\n\n<i>“I think I might keep doing this,”</i> she says, <i>“For a little while.”</i>");
+	output("\n\nYou chuckle. <i>“Okay then. Stay safe.”</i>");
+	output("\n\nTurning away and walking off into the jungle, you hear the zil sigh longingly at your departure, which makes you smile. You make a mental note to try and find her again sometime, as spending time with her has left you feeling relaxed and invigorated like few things can. ");
+	
+	pc.energy(45);
+	processTime(30+rand(15));
+	addButton(0, "Next", mainGameMenu, undefined, "", "");
+}
+
+public function fZilBirthHook():void
+{
+	clearOutput();
+	clearMenu();
+	author("MistyBirb");
+	
+	output("A male zil drops out of the sky to land in front of you. You recoil and instinctively take up a defensive stance, but the alien doesn't seem like he's interested in conflict. Rather, he almost looks concerned.");
+	output("\n\n<i>“You certainly smell like her,”</i> he mutters.");
+	output("\n\nYou ask the zil what he wants from you, still on guard.");
+	output("\n\n<i>“Your mate requested that we look for you. She wants you to be there for the birth of your children. Follow me, I will take you to her.”</i>");
+	
+	processTime(3);
+	
+	addButton(0, "Follow", fZilBirthFollow, undefined, "", "");
+	addButton(1, "Refuse", fZilBirthRefuse, undefined, "", "");
+}
+
+public function fZilBirthRefuse():void
+{
+	clearOutput();
+	clearMenu();
+	author("MistyBirb");
+	
+	output("The zil frowns. <i>“What? Why not? This is not some kind of trick, offworlder, and we don't have the luxury of time. Are you refusing to stand by your mate?”</i>");
+	
+	addButton(0, "Yes", fZilBirthRefuseConfirmed, undefined, "Yes", "You're not interested in watching a zil give birth. You have other things to do.");
+	addButton(1, "No", fZilBirthFollow, undefined, "No", "You feel obligated to be there for her, even if you're a bit uncertain about all of this.");
+}
+
+public function fZilBirthRefuseConfirmed():void
+{
+	clearOutput();
+	clearMenu();
+	author("MistyBirb");
+	
+	output("The male zil crosses his arms and gives you a look of utter disdain. <i>“Tsk. I expected no less from an alien stranger, honestly, but she was insistent. Fine, go about your business. I don't care.”</i> He takes off and disappears, leaving you to continue on your way.");
+	
+	pc.addHard(5);
+	processTime(5);
+	
+	addButton(0, "Next", mainGameMenu, undefined, "", "");
+}
+
+public function fZilBirthFollow():void
+{
+	clearOutput();
+	clearMenu();
+	showBust("ZILFEMALE");
+	showName("PREGNANT\nFEMALE ZIL");
+	author("MistyBirb");
+	
+	var numMale:Number = fZilBirth(true);
+	
+	output("He takes off into the jungle without another word, moving with an obvious sense of urgency. You struggle to keep pace with him, but never lose him entirely, and you eventually emerge from the jungle brush to find a quaint collection of primitive huts and several dozen zil. Almost the entire population of the village turns to look at you, their antennae collectively twitching, but most look more confused than hostile.");
+	output("\n\nYour zil guide continues on without hesitation, and you're forced to shrug off your apprehension and follow him before he disappears among his kin. He takes you through the center of the village and towards the opposite edge without stopping or even looking back to see if you're still following him. As you walk, you can hear some strained cries, and notice a particularly thick gathering of zil around a lone hut up ahead. You're lead directly towards them, the male zil pushing his way through the crowd and making some space for you.");
+	output("\n\n<i>“She's inside,”</i> he says, motioning towards the hut. His statement is immediately followed by a loud yell from within, and you give a " + (pc.isAss() ? "cautious" : "nervous") + " nod before thanking him and entering the primitive structure.");
+	output("\n\nYou see the zil you impregnated lying on a simple bed of leaves surrounded by several other female zil, one of whom is clutching your mate's hand. The mother-to-be brightens as she sees you, even managing a brief smile through the strain of labor. It doesn't last long, though, as she grits her teeth and cries out. You " + (pc.isTaur() ? "settle in" : "crouch down") + " beside her, offering her the comfort of your presence, if little else.");
+	output("\n\nThere's not much you can do other than stay by her side, but that seems to be all that's expected of you. The other zil in the hut seem quite calm and focused, and all indications are that everything is going well. After a long, tense period of shouting and herculean effort on the part of your mate, one of the observing zil suddenly moves forward and holds her hands at the ready, welcoming an infant into the world just moments later. She cradles the newborn child and scoots to the side, making room for another zil to assume a similar role.");
+	output("\n\nBefore long, both of your children have been born, and their healthy cries replace those of their mother, who is quickly surrounded by the remaining zil attendants. You stand up and [pc.move] away, letting the zil perform what appears to be a highly-coordinated and practiced procedure of tending to the new mother. She's helped upright and given the first of her children, whom she quickly brings to her breast with a sigh of overwhelming relief.");
+	output("\n\nYou finally feel comfortable approaching her again, and you lower yourself to her eye level. She turns and smiles gently, obviously exhausted, but also blissful. <i>“I didn't think they'd find you,”</i> she murmurs.");
+	output("\n\n<i>“It was quite the surprise.”</i>");
+	output("\n\n<i>“Well, I'm glad you were able to be here. The birth of children is a joyous thing for zil. I hope it is for your kind as well.”</i>");
+	output("\n\nYou smile. <i>“Yes, very much so.”</i>");
+	output("\n\nAnother zil interrupts the two of you for just a moment, kneeling down and handing you your other child with a friendly expression and an encouraging nod. It's the first real opportunity you've had to get a look at both of your children side by side, and you're pleased to see that each of them seems perfectly happy and healthy. You're the father of two " + (ChildManager.numOfType(GLOBAL.TYPE_BEE) > 2 ? "more " : "") + "adorable zil hybrids, ");
+	if(numMale == 0) output("both girls");
+	else if(numMale == 1) output("one boy and one girl");
+	else output("both boys");
+	output(". If it weren't for the tufts of [baby.hairColor] hair and [baby.skinColor], human-like skin, they'd be almost indistinguishable from pure zil, with their tiny antennae and cute patches of barely-developed chitin.");
+	output("\n\nYou bask in a warm combination of pride and happiness, settling against the wall of the hut beside the happy new mother. Every other zil nearby seems quite happy themselves, and you look outside to see a similar joy shared by the slowly-dispersing crowd.");
+	output("\n\nSeveral minutes of peaceful silence pass, before your mate clears her throat to get your attention. You turn to face her, noticing that she's wearing a conflicted expression. Instinctively, you ask her if something is wrong.");
+	output("\n\n<i>“I have been anticipating this moment for many months,”</i> she says, giving a rueful smile, <i>“But now, I am paralyzed with uncertainty.”</i>");
+	output("\n\nYou tilt your head and ask her to elaborate.");
+	output("\n\nShe is quiet for several seconds, before speaking in a hushed tone. <i>“Can you take our children away from here? Is there a way you could raise them to be like you and the other offworlders?”</i>");
+	output("\n\nYou look down at the infant in your arms, a proud smile spreading across your face. <i>“Yes,”</i> you answer.");
+	output("\n\nThe zil sighs with immense relief. <i>“Thank you. Our world was dangerous enough in the past, but the arrival of so many offworlders makes me even more uncertain about the future of the zil. I do not want to worry about my children's future. I want them to live safe, happy lives, and I believe that you are better suited to giving them that than I. And... If it is you that raises them, maybe they will one day be able to return to Mhen'ga, to see their mother...”</i> She looks down at her newborn child with tears in her eyes and a bittersweet expression, but quickly reigns in her emotions and collects herself. <i>“Where will you take them?”</i> she asks.");
+	output("\n\nYou tell her of the nursery your father created for you, going into detail about the cutting-edge caretaking technologies it contains. There are many terms you use that she obviously does not understand, and you do your best to explain how the children will be cared for and educated in ways she is able to comprehend. When you finish, her eyes are wide with wonder, and any doubts she had long gone.");
+	output("\n\n<i>“Normally I would not believe such fantastical claims,”</i> she says, <i>“But I have seen what you and others like you are capable of. To think that such things were possible...”</i> Her face once again takes on a look of concern, but only for a moment. She shakes it off, and then suddenly pulls herself to her feet, still cradling her baby. <i>“So, how are we to get them to this nursery you speak of?”</i>");
+	output("\n\nYou chuckle and pull out your Codex, inputting a few commands and telling her that she won't have to do anything. The wait for the Nursery probe's arrival passes quickly enough, though it causes a bit of a commotion when it lands just outside the hut.");
+	output("\n\nThe two of you step out into the open air, and you deal with the probe while your mate tells her kin to not be alarmed. The probe's hatch lets out a hiss as it pops open, and you place your infant child inside it, making sure they are safe and snug. You turn to take the other baby, and your zil mate freezes for a moment. She takes a deep breath, stepping past you and placing the child inside the probe herself. You nod your head and back away, more than happy to give her as much time as she needs.");
+	output("\n\nShe looks at her children for a while, smiling, as a crowd of curious onlookers gathers around the probe. Eventually, the heavy-hearted mother steps away from the probe and lets you send it on its way, the other zil gasping in awe as it shoots into the sky and disappears.");
+	output("\n\nFrom there, it's just a matter of saying goodbye. You spend a little more time among the zil, rather enamored with their surprising hospitality, before eventually bidding them farewell. You begin your trek back, looking over your shoulder one last time as you near the edge of the village. You see your mate watching you depart, and she gives you a wave, which you reciprocate before heading back out into the jungle.");
+	
+	processTime(360+rand(60));
+	
+	addButton(0, "Next", mainGameMenu, undefined, "", "");
 }

@@ -21,7 +21,7 @@
 			this.type = GLOBAL.ARMOR;
 			
 			//Used on inventory buttons
-			this.shortName = "Smartclothes";
+			this.shortName = "S.Clothes";
 			
 			//Regular name
 			this.longName = "smart jacket and pants";

@@ -100,7 +100,7 @@ package classes.Characters
 			this.genitalSpot = 0;
 			this.tailType = GLOBAL.TYPE_FELINE;
 			this.tailCount = 2;
-			this.tailFlags = [GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_LONG];
+			this.tailFlags = [GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_LONG, GLOBAL.FLAG_PREHENSILE];
 			this.tailGenitalArg = 0;
 			this.tailGenital = 0;
 			

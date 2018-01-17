@@ -1276,7 +1276,7 @@ public function acceptPrivateBathHJs(dick:Boolean = false):void
 		else output("takes as much of your length as she can handle, grazing your cockflesh with her teeth as gently as she can manage");
 		output(". The venom in her saliva gushes through your bloodstream, leaking between failsafes already weakened by the heat of the bath. The aphrodisiac moves like a living thing, starting in your loins before fanning out to your limbs. Finally it settles in your chest like the warmth of a midsummer fire before creeping into your mind with bubbly promises of release.");
 		output("\n\nYou find yourself unable to judge the ant-girl’s efforts, as her venom renders you unable to remember if she dove minutes or seconds ago. Time slips out of your comprehension, and all you can think of is the heat and the feeling of her lips on your [pc.cockBiggest]. Jets of pre-cum serve to further wetten her throat, preparing it for your load.");
-		output("\n\nAll at once the the heat in your body collects into your crotch, and you feel your ");
+		output("\n\nAll at once, the heat in your body collects into your crotch, and you feel your ");
 		if(pc.balls > 0) output("[pc.balls]");
 		else output("prostate");
 		if(pc.balls <= 1) output(" tightens");
@@ -1517,7 +1517,8 @@ public function oserreDildoDisplayScene():void
 		if(pc.cockTotal() == 1) output("s");
 		output(" to drool precum, trapped under the fabric of your [pc.lowerUndergarment] and the myr’s booty.");
 	}
-	else output(" Your [pc.vagOrAss] inflames with lust, twitching and protesting its emptiness to your spinal nerves. }Understanding comes quickly: the oil must be an aphrodisiac.");
+	else output(" Your [pc.vagOrAss] inflames with lust, twitching and protesting its emptiness to your spinal nerves.");
+	output(" Understanding comes quickly: the oil must be an aphrodisiac.");
 
 	output("\n\nOserre slides down the slut-slicked strap-on stanchion again, and the change wrought by the aphrodisiac oil is immediate and intense. Her whole chest colors a brilliant orange as heated blood rushes to her golden skin and she pumps her pussy on you, grinding the oil into a froth and releasing even more fragrance into the air. Your whole body aches for release as you watch and feel the randy myr ride your toy; she begins to pump her hips so violently that her gorgeous, unrestrained breasts fly freely in the air as she sinks down, bobbing and swinging like globose pendulums. They slap against her ribs so loudly when they fall that they begin to gush and drool honey all over the both of you, turning your lovemaking into a soupy, syrupy mess of slick flesh.");
 	output("\n\nThe oils and enthusiasm bring Oserre to her ‘spiritual relief’ within minutes. The myr woman groans and shudders, pressing her sopping bust to your chest and going limp in your arms as her abdomen ripples around its huge invader. You can literally see the bands of chitin on it rise and fall as contractions pass through the muscle, desperately milking the photo-prick for cum but collecting only more aphrodisiacs. Close as you are to your own climax, the pressure of her orgasm on your toy is maddening. Sweet-scented fem-cum pours from her, running down your lap and into the pool, adulterating the clean water with oily, sticky love. The myr’s skin glows with burning blood, and her pelvis jerks back and forth, cutely flexing her stomach as she works out her enormous orgasm onto you. After a minute of twitching, she seems to regain some muscle control.");

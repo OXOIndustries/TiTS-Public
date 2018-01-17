@@ -223,7 +223,7 @@ public function approachJerynn():void
 				if (pc.buttRating() <= 15) output(" at");
 				else output(" a handful of");
 			}
-			output(" your [pc.ass] possessively, the the glassy-smooth scales on her fingers gliding effortlessly over your [pc.skinFurScales].");
+			output(" your [pc.ass] possessively, the glassy-smooth scales on her fingers gliding effortlessly over your [pc.skinFurScales].");
 		}
 
 		output("\n\n<i>“No. Oh no no no. I have something far </i>far<i> better in mind,”</i> she whispers in your [pc.ear], a firm <i>bite</i> punctuating the implied offer. <i>“Jerynn. Remember the name. You’ll be </i>screaming<i> it later.”</i>");
@@ -293,7 +293,7 @@ public function approachJerynn():void
 				if (pc.buttRating() <= 15) output(" at");
 				else output(" a handful of");
 			}
-			output(" your [pc.ass] possessively, the the glassy-smooth scales on her fingers gliding effortlessly over your [pc.skinFurScales].");
+			output(" your [pc.ass] possessively, the glassy-smooth scales on her fingers gliding effortlessly over your [pc.skinFurScales].");
 		}
 
 		output("\n\n<i>“Here to pay off your tab, </i>friend<i>?”</i> she lustily drawls directly into your [pc.ear].");
@@ -2066,7 +2066,7 @@ public function jerynnPetstuffOptIn():void
 	
 	output("\n\n<i>“Well, I didn’t expect that. Come on, the sooner we get you started the sooner you’ll be the perfect little cock-socket,”</i> she says happily.");
 	
-	output("\n\nStill wearing her half of the harness contraption, she fiddles with the tablet for a couple of moments before the the magnetic interlocks click on. You shift slightly as they center and then lock together, once more attached to the underside of the taur, once more full-to-bursting with her throbbing cock. Her coat is back over the two of you in short order, and all you can do is hang there. At least this time you have the pleasure of hugging her flanks with your stumpy limbs, a much more personal orientation.");
+	output("\n\nStill wearing her half of the harness contraption, she fiddles with the tablet for a couple of moments before the magnetic interlocks click on. You shift slightly as they center and then lock together, once more attached to the underside of the taur, once more full-to-bursting with her throbbing cock. Her coat is back over the two of you in short order, and all you can do is hang there. At least this time you have the pleasure of hugging her flanks with your stumpy limbs, a much more personal orientation.");
 	
 	output("\n\nTime becomes irrelevant in the cocoon of the woolen coat, the taur soon making her way out of the apartment and back onto the streets of Uveto. You simply lose yourself to the impromptu fucking motion, no longer caring much of the possibility that you might be discovered, simply content to fuck, to be used as little more than a living onahole.");
 	
@@ -2544,7 +2544,9 @@ public function jerynnPetstuffBadEndII(isOptIn:Boolean):void
 	{
 		output("\n\n<i>“Just some tweaks to your joints. Best you not be struggling against them whilst they adapt,”</i> she says idly whilst rummaging through the container. She fishes out a thick bundle of black latex, a shake quickly unraveling it in the air to reveal five extrusions with obvious implications; arm and leg sheaths, along with a partial mask for the head. Mistress can barely contain her own excitement as she straightens it all out, yanking a heavy zip down the back of the suit.");
 		
-		output("\n\nShe juggles you and the suit around, slipping your limbs into the proper places with a bit of a struggle before tackling the head. It takes some tugging {and more than a few pulled hairs} but it finally settles into place, wrapped tightly around your [pc.face], leaving nothing but your eyes and mouth exposed. The zip rumbles closed down your spine to pull every last inch of the latex tight; a perfect fit, leaving only an area around your crotch exposed to the air.");
+		output("\n\nShe juggles you and the suit around, slipping your limbs into the proper places with a bit of a struggle before tackling the head. It takes some tugging");
+		if(pc.hasHair()) output(" and more than a few pulled hairs");
+		output(" but it finally settles into place, wrapped tightly around your [pc.face], leaving nothing but your eyes and mouth exposed. The zip rumbles closed down your spine to pull every last inch of the latex tight; a perfect fit, leaving only an area around your crotch exposed to the air.");
 	}
 
 	output("\n\nStrong claws under your arms remove you from the seat of");
@@ -2634,7 +2636,7 @@ public function jerynnPetstuffBadEndIII(isOptIn:Boolean):void
 	else if (pc.skinType != GLOBAL.SKIN_TYPE_SCALES && flags["JERYNN_RESPONSE_SKIN"] >= 2)
 	{
 		if (pc.skinType == GLOBAL.SKIN_TYPE_SKIN) output("\n\nYour skin breaks out in odd patches as the days pass, your sense of touch becoming dull on the eve of the appearance of each new off-colored spot. Gradually, a tough layer of scales begins to form, spreading out in an interlocking mesh of lustrous red.");
-		else if (pc.skinType == GLOBAL.SKIN_TYPE_FUR) output("\n\nYour fur things out gradually as the days pass, shedding in increasing amounts. In the wake of each missing patch remains a tough layer of lustrous red scales.");
+		else if (pc.skinType == GLOBAL.SKIN_TYPE_FUR) output("\n\nYour fur thins out gradually as the days pass, shedding in increasing amounts. In the wake of each missing patch remains a tough layer of lustrous red scales.");
 		else if (pc.isGoo()) output("\n\nYour amorphous body turns milky as the days pass, a peppering of tough, colorless scales solidifying into a complete layer. Pigment slowly bleeds into each one in turn, leaving you with a layer of lustrous red scales.");
 		else output("\n\nYour [pc.skin] breaks out in odd patches as the days pass, your sense of touch becoming dull on the eve of the appearance of each new off-colored spot. Gradually, a tough layer of scales begins to form, spreading out in an interlocking mesh of lustrous red.");
 	}

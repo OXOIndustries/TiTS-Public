@@ -704,13 +704,30 @@ public function paigesUnitDurhurrrrrrrrrrFenWroteUNIT():Boolean
 		paigeSexPrologue();
 		return true;
 	}
-	else if(paigeIsCrew())
+	//Halloween stuff
+	if(isHalloweenish() && flags["PAIGE_GHOSTED"] == undefined && flags["SEXED_PAIGE"] != undefined)
+	{
+		flags["PAIGE_VISIT_DAY"] = days;
+		//Halloween event intro!
+		if(flags["HALLOWEEN_REJECTED_1"] == undefined)
+		{
+			paigeHalloweenerIntro();
+			return true;
+		}
+		//If not yet completed, repeat variant!
+		if(flags["HALLOWEEN_REJECTED_1"] + 60*24*7 >= GetGameTimestamp())
+		{
+			paigeHalloweenIntroRedux();
+			return true
+		}
+	}
+	if(paigeIsCrew())
 	{
 		paigeUnitAsCrewmate();
 		return true;
 	}
 	// PC enters Paige’s Unit any time between 17:00 and 00:00 after scene: Paige 1 (scene: Paige Select 1)
-	else if(flags["SEXED_PAIGE"] == undefined)
+	if(flags["SEXED_PAIGE"] == undefined)
 	{
 		output("You knock on Paige’s glass door. Iddi answers it before turning back into the apartment to holler for its momma; very soon, Paige is there, opening the door and showing you into her home.");
 		output("\n\n<i>“It’s good to see you again, sweet thing.”</i> She laughs. <i>“Well, you know, figure of speech with me. Go ahead and make yourself at home! I’ll be with you in just a moment.”</i>");
@@ -766,11 +783,11 @@ public function paigeMenu():void
 
 		if(currentLocation == "PAIGE_HOUSE")
 		{
-			if(hours >= 20) addButton(6,"Rest",restOnSomeSchtuff,undefined,"Rest","No yoga and no sex – just some cuddling with Paige for a good night’s rest.");
+			if(hours >= 20 || hours < 6) addButton(6,"Rest",restOnSomeSchtuff,undefined,"Rest","No yoga and no sex – just some cuddling with Paige for a good night’s rest.");
 			else addDisabledButton(6,"Rest","Rest","Who goes to bed in the middle of the day? Come on.");
 		}
 
-		if(flags["PAIGE_TALK_SELF"] == 5)
+		if(flags["PAIGE_TALK_SELF"] >= 5)
 		{
 			if(hours >= 17 || paigeIsCrew()) 
 			{
@@ -782,6 +799,7 @@ public function paigeMenu():void
 		}
 		else addDisabledButton(7,"Locked","Locked","You don’t know her well enough for this.");
 	}
+	if(flags["PAIGE_GHOSTED"] != -1 && flags["PAIGE_GHOSTED"] != undefined) addButton(8,"Ghost",paigeGhostGhost,undefined,"Ghost","Ask Paige if she’s willing to let her dickgirl passenger take over this time.");
 	addButton(14,"Leave",leavePaige);
 }
 
@@ -795,7 +813,7 @@ public function firstPaigeHousemeet():void
 	output("\n\n<i>“Introduce yourself to our guest,”</i> she instructs.");
 	output("\n\nIddi floats up to you, the eyes on its screen shrinking into crescent lines as a mouth forms on its pixels, spreading into a wide, open-mouthed, toothless grin. <i>“My name is Iddi!”</i> it says. <i>“What is your name?”</i>");
 	output("\n\nYou introduce yourself to the monitor. <i>“Hello, [pc.name]! Have a good day!”</i> Iddi then makes its way back to Paige’s side, the mouth disappearing to make way for the eyes again. Iddi apparently isn’t much for conversation.");
-	output("\n\n<i>“Iddi is a personal droid for elderly and disabled people. Technically, Iddi is designated as a ‘Personal Accessibility Assistant,”</i> but I think ‘PAA’ was a lame name for him, so I named him Iddi.”</i>");
+	output("\n\n<i>“Iddi is a personal droid for elderly and disabled people. Technically, Iddi is designated as a ‘Personal Accessibility Assistant,’ but I think ‘PAA’ was a lame name for him, so I named him Iddi.”</i>");
 	output("\n\nYou look Paige over and mention that she appears neither elderly nor disabled. She chuckles nervously. <i>“I like to tell people that I got Iddi just because I’m really lazy. Iddi does a lot of shopping for me down in the Merchant Deck. But, the truth is...”</i>");
 	output("\n\nShe clenches her left fist and takes a deep breath. She reaches for her earpiece and then clicks an unseen button somewhere closer to the canal of her ear. Then, suddenly, the area around her eyes seems to flicker.");
 	output("\n\nA green light going across both eyes and over the bridge of her nose flashes twice, and then the battery light in her earpiece shuts off. Where before Paige had stunningly beautiful blue eyes and a perfect complexion (as perfect a complexion a furry face can get, anyway), her eyes become nearly egg-white shells with barely any hint of a colored iris, and the pitch-black pupils are replaced with light-grey dots.");
@@ -816,7 +834,7 @@ public function firstPaigeHousemeet2():void
 	output("\n\n<i>“You got it,”</i> she smiles. <i>“You’re actually not the first person to complain to me about my hands-on approach, and I doubt you’ll be the last. Most people are fine with me just telling them that it’s because of the subject. Sometimes people don’t buy it and they get flustered and walk out after a class or two. But not only do you keep coming back, but you’ve been very patient about the whole thing. So, I figure, I could probably trust you with a secret.”</i>");
 	output("\n\nYou ask her how she got such a bad wound, and why she needs to keep it a secret so badly. Is she just too proud to admit that she needs help? <i>“That</i> is <i>one part of it, for sure,”</i> she nods. <i>“I was always raised to not be co-dependent on anyone. Honestly, even admitting that I need Iddi around is a bit of a blow.”</i>");
 	output("\n\n<i>“Momma?”</i> Iddi asks, apparently wounded by her words.");
-	output("\n\n<i>“Hey, I don’t mean anything by that, baby,”</i> she says soothingly, rubbing her hand across the top of Iddi’s chrome frame. <i>“You’re definitely the best thing that’s happened to me after the fact. I’d be totally lost without out you.”</i> She plants a soft kiss on Iddi’s screen; its pixels turn bright pink, and then back to baby blue, taking its place beside her again.");
+	output("\n\n<i>“Hey, I don’t mean anything by that, baby,”</i> she says soothingly, rubbing her hand across the top of Iddi’s chrome frame. <i>“You’re definitely the best thing that’s happened to me after the fact. I’d be totally lost without you.”</i> She plants a soft kiss on Iddi’s screen; its pixels turn bright pink, and then back to baby blue, taking its place beside her again.");
 	output("\n\n<i>“As for the whole story, like how I got this sucker,”</i> she says, drawing a line all the way from one side of the wound to the other with her finger, <i>“that’s a story you’ll have to work for.”</i> She places a finger on your chest playfully, just underneath your collarbone. <i>“My favorite drink in the galaxy is Honey Wine, found only on the planet of Myrellion. Or you can keep coming to my classes. Come back to my unit after we’ve done a class, or if you have a bottle of wine, and I’ll yak your ears off.”</i>");
 	output("\n\nShe seems to be in good spirits. You talk a bit more, about her yoga class and about the Honey Wine drink, but ultimately it’s just chatter. You’ve got what you wanted from her, so after an hour passes, you show yourself out of her unit, promising her that you’ll be back soon, either for another lesson, or for some of that sweet honey she wants.");
 	// end scene (scene: Paige 1); advance clock by one hour; place PC one square outside of Paige’s Unit
@@ -1123,9 +1141,26 @@ public function paigeSexPrologue():void
 {
 	clearOutput();
 	showPaige();
-	output("You knock on the door to Paige’s unit. Iddi is normally there within moments to greet you – but today, he isn’t. There’s no response at all for some time. You knock again, in case they just didn’t hear you the first time. After a moment, Iddi finally arrive to answer the door.");
-	output("\n\n<i>“" + pc.mf("Mister","Missus") + " [pc.name]!”</i> Iddi exclaims, allowing you in. <i>“I’m sorry for the wait. Momma is expecting you in the living room. She told me that once you got here, I should go to my dock and shut off for the day.”</i> Iddi is its usual, helpful self. You wonder what Paige has in mind for giving Iddi such specific instructions. <i>“Enjoy your stay!”</i> And then Iddi is off, going down a hallway towards its charging station.");
-	output("\n\nYou walk to the living room, and contrary to Iddi, Paige isn’t there. Her bedroom door is open just slightly, and you can hear her busying herself with her dresser. <i>“[pc.name]?”</i> she asks, and you confirm. You hear her take a deep breath, and she opens the door.");
+	output("You knock on the door to Paige’s ");
+	if(InShipInterior(pc)) output("quarters");
+	else output("unit. Iddi is normally there within moments to greet you – but today, he isn’t");
+	output(". There’s no response at all for some time. You knock again, in case ");
+	if(InShipInterior(pc)) output("she");
+	else output("they");
+	output(" just didn’t hear you the first time. After a moment, ");
+	if(InShipInterior(pc)) output("Paige");
+	else output("Iddi");
+	output(" finally arrives to answer the door.");
+
+	if(InShipInterior(pc))
+	{
+		output("\n\n<i>“[pc.name]?”</i> Paige asks, and you confirm. You hear her take a deep breath, and she opens the door.");
+	}
+	else
+	{
+		output("\n\n<i>“" + pc.mf("Mister","Missus") + " [pc.name]!”</i> Iddi exclaims, allowing you in. <i>“I’m sorry for the wait. Momma is expecting you in the living room. She told me that once you got here, I should go to my dock and shut off for the day.”</i> Iddi is its usual, helpful self. You wonder what Paige has in mind for giving Iddi such specific instructions. <i>“Enjoy your stay!”</i> And then Iddi is off, going down a hallway towards its charging station.");
+		output("\n\nYou walk to the living room, and contrary to Iddi, Paige isn’t there. Her bedroom door is open just slightly, and you can hear her busying herself with her dresser. <i>“[pc.name]?”</i> she asks, and you confirm. You hear her take a deep breath, and she opens the door.");
+	}
 	output("\n\nShe’s wearing a black one-piece of sheer lingerie, with a loose camisole going from her neck to just below her stomach. It has a gridded pattern that dots across her body. The camisole sags enough to allow for a bra, but she’s not wearing one. The piece’s panties cover her whole waistline, but, with the rest of the fabric, do nothing to hide anything. She may as well be naked with how little the piece is concealing: you can see everything from her pink nipples to her privates. She isn’t wearing her projector, and her scar is in full view.");
 	output("\n\nPaige waits for your reaction and laughs nervously when you don’t audibly give one. You’re too surprised to remember that Paige is blind and she can’t see the way your eyes are drinking every contour of her body. ");
 	if(pc.tone <= 79) output("You can’t help but feel a bit inadequate, seeing such a toned, impressive body wearing such sexy clothes in front of you.");
@@ -1151,8 +1186,8 @@ public function paigeSexPrologue2():void
 	clearOutput();
 	showPaige();
 	output("<i>“Now, what we’re about to do, [pc.name]?”</i> she says, taking a more aggressive tone with her words. <i>“Let’s not call this ‘love.’ That’s a strong word to be throwing around</i> just <i>yet. But the truth is that I haven’t had sex since my injury because I was afraid I might not be able to keep my mouth shut if I screw just any ole’ body. Coming up on however many years without some lovin’, now. I trust you as a friend, and I need to get laid</i> pretty <i>fucking badly.”</i>");
-	output("\n\nShe stands up, your hand still in hers, and she pulls you up with her. <i>“I appreciate the compliment on my lingerie, but let’s be honest,”</i> she says, <i>“we’re both more concerned with how I’ll look </i> out <i>of it.”</i>");
-	output("\n\nPaige eagerly shows you into her room. You can smell vanilla in the air and you see faint streams of smoke wafting from some scented candles placed on her dresser – it’s clear that she considers this to be more than just sex. She throws you onto the bed, your [pc.legs] still draped over the side");
+	output("\n\nShe stands up, your hand still in hers, and she pulls you up with her. <i>“I appreciate the compliment on my lingerie, but let’s be honest,”</i> she says, <i>“we’re both more concerned with how I’ll look </i>out<i> of it.”</i>");
+	output("\n\nPaige eagerly shows you into her room. You can smell vanilla in the air and you see faint streams of smoke wafting from some scented candles placed on her dresser – it’s clear that she considers this to be more than just sex. She throws you onto the bed, your [pc.legOrLegs] still draped over the side");
 	if(pc.isNude() || (pc.isChestExposed() && pc.isCrotchExposed() && pc.isAssExposed()))
 	{
 		if(pc.isChestExposed()) output(",");
@@ -1375,13 +1410,14 @@ public function askPaigeAboutHerEyes():void
 	//[=Offer=][=Back=]
 	if(pc.credits >= paigeCost()) 
 	{
-		addButton(0,"Offer",confirmThePayment,undefined,"Offer","Offer to pay for Paige’s synthetic eyes and for the surgery.");
-		addButton(1,"Back",backToPaigeMenu,undefined,"Back","Five hundred thousand credits is no small number. You’ll need some time to think about it.");
+		if(flags["PAIGE_TALK_SELF"] >= 4 && flags["SEXED_PAIGE"] != undefined) addButton(0,"Offer",confirmThePayment,undefined,"Offer","Offer to pay for Paige’s synthetic eyes and for the surgery.");
+		else addDisabledButton(0,"Offer","Offer","Maybe you should get to know her a little more intimately before you offer to pay for her synthetic eye surgery.");
+		addButton(14,"Back",backToPaigeMenu,undefined,"Back","Five hundred thousand credits is no small number. You’ll need some time to think about it.");
 	}
 	else
 	{
 		addDisabledButton(0,"Offer","Offer","You don’t have enough credits to pay for Paige’s synthetic eyes. Not yet, anyway.");
-		addButton(1,"Back",backToPaigeMenu,undefined,"Back","There’s nothing you can do for her yet. But maybe, if you’re a little more frugal...");
+		addButton(14,"Back",backToPaigeMenu,undefined,"Back","There’s nothing you can do for her yet. But maybe, if you’re a little more frugal...");
 	}
 }
 
@@ -2275,6 +2311,12 @@ public function paigeCrewApproach():void
 	showPaige();
 	if(hours >= 9 && hours < 17)
 	{
+		//sex hook!
+		if(flags["PAIGE_TALK_SELF"] != undefined && flags["PAIGE_TALK_SELF"] >= 4 && flags["SEXED_PAIGE"] == undefined) 
+		{
+			paigeSexPrologue();
+			return;
+		}
 		output("You approach Paige’s quarters and knock on her door. You can hear her talking softly to someone through the metal of her walls. With a hiss, the door slides open, showing you into her personal quarters.");
 		output("\n\n<i>“Raise your leg a little higher, and keep it straight,”</i> Paige says to a video feed on a small, free-standing monitor she set up against a wall. She looks over her shoulder, and when she sees it’s you, goes back to the screen. <i>“Iddi, I’ve got some company. Keep watch over the class for me, would you?”</i>");
 		output("\n\n<i>“Yes, momma!”</i> you hear Iddi’s voice, garbled slightly through the speakers of her monitor.");

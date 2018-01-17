@@ -673,7 +673,7 @@ public function giannaAppearance():void
 	else if(tempBelly <= 80) output(" Her [gianna.belly] is obscene testament to what her body can endure. You wonder if she can even see her [gianna.feet].");
 	else if(tempBelly <= 90) output(" Her [gianna.belly] is so big that it makes her [gianna.skin] tight and shiny. Her movement must be a bit impractical with the extra bulk.");
 	else output(" Her [gianna.belly] protrudes obscenely from her form, hanging heavily. Getting around should be a struggle with so much extra mass on her.");
-	if(tempBelly >= 10 && gianna.isCumflated()) output(".. all this thanks the the spunk that’s stuffed in her!");
+	if(tempBelly >= 10 && gianna.isCumflated()) output(".. all this thanks to the spunk that’s stuffed in her!");
 	
 	//Butt & Hips Variant
 	var tempButt:Number = gianna.buttRating();
@@ -746,7 +746,7 @@ public function talkToGianna(display:Boolean = true):void
 			//Hyper positive
 			else if(giannaPersonality() >= 100)
 			{
-				output("\n\nGianna puts an arm around you and spins you into place against the wall, sliding her palm down your cheek with sensuous grace as her [gianna.buttAdjectives]ass comes to rest against you");
+				output("\n\nGianna puts an arm around you and spins you into place against the wall, sliding her palm down your cheek with sensuous grace as her [gianna.buttDescript] comes to rest against you");
 				if(gianna.buttRating() >= 15) output(", pinning you in place with enormous butt");
 				output(". <i>“Are you sure you want to talk,”</i> she coos, rocking her [gianna.hips] just enough to drag her butt up and down against your crotch. <i>“Wouldn’t you rather rather go lie down on a hay bale and let me tend to your tension.”</i> Giggling, the android runs her fingers ");
 				if(pc.hasHair()) output("through your [pc.hair]");

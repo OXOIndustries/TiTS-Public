@@ -75,14 +75,14 @@ public function showTamtamPrison(preg:Boolean = false):void
 {
 	showName("\nTAM-TAM");
 	var pregS:String = "";
-	if(preg) pregS = "_PREG";
+	if(flags["TAMTAM_GAST_PREG_TIMER"] >= 100) pregS = "_PREG";
 	showBust("TAMTAM_JAIL" + pregS);
 }
 public function showKhorganPrison(preg:Boolean = false):void
 {
 	showName("\nKHORGAN");
 	var pregS:String = "";
-	if(preg) pregS = "_PREG";
+	if(flags["KHORGAN_GAST_PREG_TIMER"] >= 60) pregS = "_PREG";
 	showBust("CAPTAIN_KHORGAN_JAIL" + pregS);
 }
 public function showKaska(cum:Boolean = false):void
@@ -434,7 +434,7 @@ public function talkToBrandtAboutHerSweetBooty():void
 		output("\n\nBrandt considers you for a long moment. <i>“If I told you that, by removing a hemisphere of your brain, I could make you happier... would you do it?”</i>");
 		if(pc.isBro() && pc.isTreated()) output("\n\nDude, totally.");
 		else if(pc.isTreated() && pc.isBimbo()) output("\n\nLike, been there, done that!");
-		else output("Uhhhh...");
+		else output("\n\nUhhhh...");
 
 		output("\n\n<i>“As I said, it is not my intention to be unfriendly or cold. But the idea of having a full third of my mental faculties stripped is difficult to countenance. Not to mention the lingering possibility of mishap in surgery, or mental defect. Having grey-matter implants removed completely is rare and dangerous, even today. I am... content to be difficult to talk to. My job requires little more than terse call and response, after all.”</i>");
 
@@ -708,7 +708,7 @@ public function brandMissionarySex(x:int):void
 	output("\n\n<i>“Come on,”</i> Hélla murmurs, nibbling at your [pc.ear]. <i>“Take me.”</i>");
 	if(pc.isMischievous()) output("\n\n<i>“Yes ma’am.”</i> You grin.");
 	else output("\n\nLike you needed more of an invitation!");
-	output(" Her thick, scaly tail brushes up against your back, pushing you in until your [pc.chest] is pressed against her perky little tits, and your [pc.cockOrStrapon " + x + "] grinds against the thick lips of her sex, picking up lubrication from her free-flowing excitement. The halfbreed shivers and gasps, feeling your prick rub against her cherry bulb, faster and faster until a motion of your [pc.hips] pulls it back and presses the crown against her hungry slit.");
+	output(" Her thick, scaly tail brushes up against your back, pushing you in until your [pc.chest] " + (pc.biggestTitSize() >= 1 ? "are" : "is") + " pressed against her perky little tits, and your [pc.cockOrStrapon " + x + "] grinds against the thick lips of her sex, picking up lubrication from her free-flowing excitement. The halfbreed shivers and gasps, feeling your prick rub against her cherry bulb, faster and faster until a motion of your [pc.hips] pulls it back and presses the crown against her hungry slit.");
 	output("\n\nYou push forward, and her body yields, opening like a flower to accept the stiff mast of your [pc.cockOrStrapon " + x + "]. Wet heat envelops you, caressing you and drawing you deeper into the halfbreed girl’s sensual embrace.");
 	if(x >= 0) pc.cockChange();
 	output("\n\n<i>“A-ah! I feel it!”</i> Hélla gasps, arching her back from the chair, thrashing her tail against your [pc.leg]. She moans, softly at first, then higher as you press forward.");
@@ -729,7 +729,7 @@ public function brandMissionarySex(x:int):void
 	output("\n\n<i>“That... that felt...”</i> Hélla gasps, trying to catch her breath. You slow your movements to a gentle gyration, rocking your [pc.hips] slowly against her cum-stained groin.");
 	output("\n\n<i>“Amazing?”</i> you finish for her.");
 	output("\n\nShe nods, eagerly. <i>“That’s a good word for it. But you haven’t, um... cum yet. Here.”</i>");
-	output("\n\nHélla reaches down, drawing you out of her with one hand and bracing herself against the chair with the other. With a grunt and a gasp, she rolls herself over, planting her hands on the back of the chair and wiggling her booty at you. Her tail curls up over her back, and a hand slips down to spread her pusslylips, showing off the slick, still-open hole between them.");
+	output("\n\nHélla reaches down, drawing you out of her with one hand and bracing herself against the chair with the other. With a grunt and a gasp, she rolls herself over, planting her hands on the back of the chair and wiggling her booty at you. Her tail curls up over her back, and a hand slips down to spread her pussy lips, showing off the slick, still-open hole between them.");
 	output("\n\n<i>“Please keep going. Let me help you get off, too.”</i>");
 	output("\n\nWell, if she insists...");
 	processTime(30);
@@ -780,6 +780,7 @@ public function heliaButtjob(x:int):void
 	}
 	IncrementFlag("SEXED_BRANDT");
 	processTime(20);
+	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",move,rooms[currentLocation].southExit);
 }
@@ -981,6 +982,7 @@ public function kasmiransOffer():void
 	output("\n\nTurning back to you as the ausar man huffs and knots himself, the warden adds, <i>“I believe that explains our position quite thoroughly, but if you have any questions, I’d be happy to answer them. Otherwise, you’re free to peruse our catalogue of miscreants and malcontents for one that suits your desires. It’s that easy.”</i>");
 
 	processTime(10);
+	pc.lust(15);
 	clearMenu();
 	//[Services] [Gastigoth] [Warden] [Prisoners]
 	//[Done]
@@ -1166,6 +1168,9 @@ public function prisonerStatline(prisonerName:String):void
 			if(silly) output(", Cyber Bullying, and Hand Holding");
 			output(".");
 			addButton(0,"Visit",visitAPrisoner,"Sam","Sam","Visit the ausar with a rap sheet a mile long. She’s anything but a “Good Girl.”\n\n<b>Cost:</b> 1,000 credits");
+			if(!pc.hasCock()) addDisabledButton(1, "Impregnate", "Impregnate", "You need a cock to knock someone up.");
+			else if(sam.isPregnant()) addDisabledButton(1, "Impregnate", "Impregnate", "Sam is already pregnant.");
+			else addButton(1, "Impregnate", impregAPrisoner, "Sam", "Impregnate", "Let’s talk about breeding this particular inmate...");
 			break;
 		case "Tamtam":
 			showTamtamPrison();
@@ -1175,6 +1180,9 @@ public function prisonerStatline(prisonerName:String):void
 			output("\n<b>Race:</b> Kaithrit");
 			output("\n\nConvicted of: Attempted Destruction of a Planet, Unlicensed Software Editing, 12 Counts of Piracy, 3 Counts of Grand Piracy, Piracy in the Third Degree, Attempted Rape, Rape, and Jaywalking.");
 			addButton(0,"Visit",visitAPrisoner,"Tamtam","Tam-Tam","Visit the spunky cat-girl mechanic you helped bust on Tarkus.\n\n<b>Cost:</b> 1,000 credits");
+			if(!pc.hasCock()) addDisabledButton(1, "Impregnate", "Impregnate", "You need a cock to knock someone up.");
+			else if(tamtam.isPregnant()) addDisabledButton(1, "Impregnate", "Impregnate", "Tam-Tam is already pregnant.");
+			else addButton(1, "Impregnate", impregAPrisoner, "Tamtam", "Impregnate", "Let’s talk about breeding this particular inmate...");
 			break;
 		case "Kaska":
 			showKaska();
@@ -1193,6 +1201,9 @@ public function prisonerStatline(prisonerName:String):void
 			output("\n<b>Race:</b> Thraggen");
 			output("\n\nConvicted of: Attempted Destruction of a Planet, Murder, 8 Counts of Grand Piracy, Piracy in the First Degree, Rape, Unlicensed Use of Power Armor, and Grand Theft Spacecraft.");
 			addButton(0,"Visit",visitAPrisoner,"Khorgan","Captain Khorgan","Visit the bad-ass space-pirate you defeated on Tarkus.\n\n<b>Cost:</b> 1,000 credits");
+			if(!pc.hasCock()) addDisabledButton(1, "Impregnate", "Impregnate", "You need a cock to knock someone up.");
+			else if(khorgan.isPregnant()) addDisabledButton(1, "Impregnate", "Impregnate", "Khorgan is already pregnant.");
+			else addButton(1, "Impregnate", impregAPrisoner, "Khorgan", "Impregnate", "Let’s talk about breeding this particular inmate...");
 			break;
 		case "Badger":
 			showDrBadger();
@@ -1236,6 +1247,7 @@ public function visitAPrisoner(prisonerName:String):void
 {
 	clearOutput();
 	clearBust();
+	clearMenu();
 	author("Savin");
 	pc.credits -= 1000;
 	output("You slide your Codex’s payscreen and tap confirm. A gruff male voice answers back, <i>“Affirmative. Inmate " + prisonerName + " will be processed shortly. Please follow the running lights to the holding area. Please ensure that you have no sharp or heavy objects on your person when entering the holding area.”</i>");
@@ -1268,17 +1280,17 @@ public function prisonerTimes(prisonerName:String):void
 }
 
 //Tam Tam
-public function tamtamStuffGo():void
+public function tamtamStuffGo(impregnate:Boolean = false):void
 {
 	clearOutput();
 	showTamtamPrison();
 	author("Savin");
 	output("Strapped face-down and ass-up to the examination table is the familiar feline form of Tam-Tam. Her two pink tails are curled defensively around her legs, but she’s breathing huskily, and you can see that the crotch of her prison jumpsuit is practically soaked-through with arousal. Those huge, plump tits of hers are spread out on the cold metal of the table, practically spilling out of her zipped-down suit.");
 	//Lightly Pregnant: 
-	if(9999 == 0) output(" You can see the slightest bit of weight hanging down from her belly, stretching her jumpsuit taut. Either they’re feeding her real well here, or...");
+	if(flags["TAMTAM_GAST_PREG_TIMER"] <= 60) output(" You can see the slightest bit of weight hanging down from her belly, stretching her jumpsuit taut and confirming your virility.");
 	//else mid pregnancy:
-	else if(9999 == 0) output(" She’s <i>definitely</i> pregnant; there’s no mistaking that hefty bulge in her stomach, making her bent-over position awkward and clearly uncomfortable.");
-	else if(9999 == 0) output(" The staff has put an antigrav harness and several cushions around the cat-girl’s midriff, helping to support the gravid belly bump she’s sporting.");
+	else if(flags["TAMTAM_GAST_PREG_TIMER"] <= 180) output(" She’s <i>definitely</i> pregnant; there’s no mistaking that hefty bulge in her stomach, making her bent-over position awkward and clearly uncomfortable.");
+	else if(flags["TAMTAM_GAST_PREG_TIMER"] != undefined) output(" The staff has put an antigrav harness and several cushions around the cat-girl’s midriff, helping to support the gravid belly bump she’s sporting.");
 	output("\n\nHearing the airlock hiss open, she squirms around until she’s able to look at the door from between her spread legs.");
 
 	//First Time & Took Tamwolf:
@@ -1328,14 +1340,14 @@ public function tamtamStuffGo():void
 	output(". The chorus of moans Tam’s been serenading you with breaks at that moment, her cute little groans turning into a long cry of pleasure as you finally fuck her.");
 
 	//If PC has a dick bigger than Kaska’s:
-	if(x >= 0 && pc.cockVolume(x) > chars["KASKA"].cockVolume(0)+50)
+	if(x >= 0 && pc.cockVolume(x) > (chars["KASKA"].cockVolume(0) * 1.5))
 	{
 		output("\n\n<i>“Oh, god... so big...”</i> she moans, bracing against the table as you put more and more cock into her. <i>“Mmmm, how did you get so THICK? Nevermind, just keep doing it. Oh, that’s it... just like that...”</i>");
 		output("\n\nShe purrs contentedly as you slowly fuck yourself into her, stretching her pussy out until she’s begging for respite. Tam’s belly is bulging with the sheer size of it, but that doesn’t deter her for a second. Man, kaithrit are built to take ‘em!");
 		output("\n\n<i>“Mmm, somebody’s been getting into the Throbb, huh? I looooove it,”</i> she moans, back arching as you start to slide the shaft out of her. <i>“You’re being so gentle though... oh, when’re you gonna get to the rough stuff, huh? I wanna see what you can do!”</i>");
 	}
 	//elseif PC’s dick is ~the same size as Kaska’s:
-	else if(x >= 0 && pc.cockVolume(x) > chars["KASKA"].cockVolume(0) - 100)
+	else if(x >= 0 && pc.cockVolume(x) > (chars["KASKA"].cockVolume(0) * .75))
 	{
 		output("\n\n<i>“Ahhh, yeah, just like that,”</i> she moans, back arching as you slide into her cunt. Her wet, writhing walls meld perfectly to your shape and size, apparently quite accustomed to somebody of your girth. You give Tam another appreciative slap on the ass, grinning as her flesh quakes, reddening at your touch.");
 		output("\n\n<i>“It’s been too long... I’ve been missing my daily dose of dick,”</i> Tam purrs, starting to move back against you. <i>“You’re being so gentle today... oh, when’re you gonna get to the rough stuff, huh?”</i>");
@@ -1350,14 +1362,18 @@ public function tamtamStuffGo():void
 	processTime(20);
 	pc.lust(100);
 	clearMenu();
-	addButton(0,"Next",tamtamPrisonFinisher,x);
+	addButton(0,"Next",tamtamPrisonFinisher,[x, impregnate]);
 }
 
-public function tamtamPrisonFinisher(x:int):void
+public function tamtamPrisonFinisher(args:Array):void
 {
 	clearOutput();
 	showTamtamPrison();
 	author("Savin");
+	
+	var x:int = args[0];
+	var impregnate:Boolean = args[1];
+	
 	output("You start to thrust, pumping your hips into Tam’s backside until her assflesh is quaking with the force of impacts, her lusty moans filling your ears with every movement as you spread her pussy wide on your [pc.cockOrStrapon " + x + "]. She’s leaking like a faucet around you, cunny-juices running faster every time your [pc.hips] slam into hers, spattering the both of you with her excitement. Tam’s twin pink tails slip around your waist, trying to pull you in every time you pull out, coaxing you back with purrs and moans and the jiggle of her luscious ass and bouncing tits. Oh, those look tempting.... Between thrusts, you shift your grip on your feline lover, reaching up and squeezing her sinfully soft tits; they’re like water in your hands, flowing right around your fingers as her body is pushed up with the force of another pumping of your crotch.");
 	output("\n\n<i>“Oh, yes!”</i> she yelps as your [pc.hips] slap into her ass again, <i>“Harder! Harder! Fuck me harder!”</i>");
 	output("\n\nWell, she did say she liked it rough!");
@@ -1376,29 +1392,30 @@ public function tamtamPrisonFinisher(x:int):void
 	IncrementFlag("TAMTAM_PRISONED");
 	processTime(25);
 	pc.orgasm();
+	if(impregnate) tryKnockUpTam();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
 //Captain Khorgan
-public function capnKhorganPrisonVisit():void
+public function capnKhorganPrisonVisit(impregnate:Boolean = false):void
 {
 	clearOutput();
 	showKhorganPrison();
 	author("Savin");
 	output("Inside the holding cell sits a tall, dark-green amazon of a woman: her body is chiseled muscles and jagged scars, giving way to large, firm breasts that heave with heavy breaths underneath the too-tight prison jumpsuit she’s wearing, zipped down to the navel to show off all that sculpted green muscle. ");
 	//lightly pregnant:
-	if(9999 == 0) output("And, you notice, a very slight belly the captain’s started to sport. She’s resting a hand on it, running a thumb up and down the taut emerald skin of her stomach.");
-	else if(9999 == 0) output("There’s no mistaking the swell of her stomach, poking through the mammoth cleavage of her jumpsuit. She’s pregnant: no doubt about it, and looking radiant in her matronhood. The thraggen rests a hand proudly on her belly, grinning at you beneath her bestial tusks.");
+	if(flags["KHORGAN_GAST_PREG_TIMER"] <= 40) output("And, you notice, a very slight belly the captain’s started to sport. She’s resting a hand on it, running a thumb up and down the taut emerald skin of her stomach.");
+	else if(flags["KHORGAN_GAST_PREG_TIMER"] <= 115) output("There’s no mistaking the swell of her stomach, poking through the mammoth cleavage of her jumpsuit. She’s pregnant: no doubt about it, and looking radiant in her matronhood. The thraggen rests a hand proudly on her belly, grinning at you beneath her bestial tusks.");
 	//else gravid: 
-	else if(9999 == 0) output("Khorgan’s gravidly pregnant; there’s no other way to describe it. Her belly bump is a massive ball of life protruding from her once-flat stomach, taut emerald skin stretched around your bastard offspring. The thraggen pirate smiles radiantly around her bestial tusks, proudly running her hand along the swell of her belly.");
+	else if(flags["KHORGAN_GAST_PREG_TIMER"] != undefined) output("Khorgan’s gravidly pregnant; there’s no other way to describe it. Her belly bump is a massive ball of life protruding from her once-flat stomach, taut emerald skin stretched around your bastard offspring. The thraggen pirate smiles radiantly around her bestial tusks, proudly running her hand along the swell of her belly.");
 	output(" Sometime between you selecting her and her arrival in the holding cell, Khorgan’s broken free of the grav-chains that are supposed to be holding her; she’s sitting on the edge of the table, one leg crossed over the other, her red hair spilling down around her shoulders like a lion’s mane.");
 
 	output("\n\n<i>“Captain Steele,”</i> Khorgan says, somewhere between a sultry purr and the growl of a barbaric rival. ");
 	//not pregnant OR first time:
-	if(9999 == 9999 || flags["KHORGAN_PRISONED"] == undefined) output("<i>“Finally ready to claim your prize, are you? We should be tearing this galaxy a new one, side by side, showing everyone our combined strength! You’ve won my loyalty in battle, so why keep me here, huh?”</i>");
+	if(flags["KHORGAN_PRISONED"] == undefined) output("<i>“Finally ready to claim your prize, are you? We should be tearing this galaxy a new one, side by side, showing everyone our combined strength! You’ve won my loyalty in battle, so why keep me here, huh?”</i>");
 	//else is pregnant:
-	else if(9999 == 0) output("<i>“Come to check in on the mother of your child? As if anything could happen to me in here! There’re so many doctors and science-mongers scrutinizing my belly that I can’t get morning sick without setting off an alarm. Your child will be healthy and strong, Steele. No doubt about it.”</i>");
+	else if(khorgan.isPregnant()) output("<i>“Come to check in on the mother of your child? As if anything could happen to me in here! There’re so many doctors and science-mongers scrutinizing my belly that I can’t get morning sick without setting off an alarm. Your child will be healthy and strong, Steele. No doubt about it.”</i>");
 	//repeat not preggo:
 	else output("<i>“Back again? Good. I’m tired of beating on these pathetic guards - at least you’re worth my attention!”</i>");
 
@@ -1418,6 +1435,14 @@ public function capnKhorganPrisonVisit():void
 	pc.lust(100);
 
 	clearMenu();
+	
+	//Quick and Dirty way to do impregnation
+	if(impregnate)
+	{
+		addButton(0, "Next", khorganDickyWickyTrickyDo, true, "", "");
+		return;
+	}
+	
 	addButton(1,"Girly Fun",khorganLesboPrisonSex,undefined,"Girly Fun","Make sure every pussy on the deck gets licked, regardless of owner.");
 	if(pc.hasCock()) 
 	{
@@ -1428,7 +1453,7 @@ public function capnKhorganPrisonVisit():void
 }
 
 //Dick Fuck
-public function khorganDickyWickyTrickyDo():void
+public function khorganDickyWickyTrickyDo(impregnate:Boolean = false):void
 {
 	clearOutput();
 	showKhorganPrison();
@@ -1441,7 +1466,7 @@ public function khorganDickyWickyTrickyDo():void
 	pc.cockChange();
 	output("\n\n<i>“Do you like it, Steele?”</i> the captain teases at the apex of another pelvis-crushing bounce, <i>“Cum for me. ");
 	//not preggers: 
-	if(9999 == 9999) output("Breed me.... Give me one of your powerful offspring.... Imagine what we could do together....”</i>");
+	if(!khorgan.isPregnant()) output("Breed me.... Give me one of your powerful offspring.... Imagine what we could do together....”</i>");
 	else output("Give me more of that virile seed. Let our child grow stronger in my belly!”</i>");
 
 	output("\n\nOh no she doesn’t! Marshalling what’s left of your strength, you issue a primal roar of outrage as you flip the both of you over, slamming the captain’s back into the deck and leaving you on your knees between her splayed legs. Khorgan looks up at you in shock, just as you hike her legs up over your shoulders and slam your [pc.hips] in, hilting your [pc.cock " + x + "] in her. Rather than resisting as you might have expected, the captain gives you an approving nod and hooks her hands under her powerful legs, holding them nice and wide, giving you unobstructed access to her cunt.");
@@ -1457,6 +1482,7 @@ public function khorganDickyWickyTrickyDo():void
 	IncrementFlag("KHORGAN_PRISONED");
 	processTime(20+rand(10));
 	chars["CAPTAINKHORGAN"].loadInCunt(pc,0);
+	if(impregnate) tryKnockUpKhorgan();
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1470,7 +1496,7 @@ public function khorganLesboPrisonSex():void
 	author("Gardeford & Savin");
 	output("Khorgan grins down at you from her suddenly-dominant position");
 	//if preggers:
-	if(9999 == 0) output(", having to lean well over her hefty baby-bump");
+	if(khorgan.isPregnant()) output(", having to lean well over her hefty baby-bump");
 	output(". <i>“Nice view,”</i> she sneers, reaching down to spread the dusky lips of her twat, showing you the hungry hole in all its sodden glory. She’s so wet from just the foreplay that droplets of her excitement pitter-patter onto your cheeks, slathering you in her scent. It’s almost instinct to lean your head up, running your [pc.tongue] through the cleft of her sex. Khorgan growls softly, groping her breasts and rocking her hips, urging your tongue deeper and deeper.");
 	output("\n\nEating pussy’s nice and all, but you’re the one who’s supposed to be on top. Taking advantage of Khorgan’s lust-drunk state, you drive your tongue as far into her twat as you can, stunning the thraggen amazon with pleasure. She throws her head back with a roar, grinding her hips into your [pc.face]. The distraction is more than enough: you grab Khorgan by the hips and flip her, putting the big green beauty on her back with her legs splayed around your [pc.hips] and her arms pinned at her side.");
 	output("\n\n<i>“About time!”</i> your thraggen lover growls happily.");

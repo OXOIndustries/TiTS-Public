@@ -245,6 +245,7 @@ package classes.Characters
 		{
 			var pc:Creature;
 			var anno:Creature;
+			var bStun:Boolean = false;
 			
 			for (var i:int = 0; i < hostiles.length; i++)
 			{
@@ -256,12 +257,13 @@ package classes.Characters
 	
 			if (rand(4) == 0)
 			{
-				CombatAttacks.applyStun(pc, 3);
+				bStun = true;
 				output(" <b>You’re stunned by the overwhelming force of the blow!</b>");
 			}
 			
 			applyDamage(damageRand(meleeDamage(), 15), this, pc);
 			applyDamage(damageRand(meleeDamage(), 15), this, anno);
+			if(bStun) CombatAttacks.applyStun(pc, 3);
 		}
 		
 		private function swordThrust(hostiles:Array):void

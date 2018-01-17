@@ -354,7 +354,7 @@ public function kq2KaraThePlan():void
 
 	output("\n\n<i>“Really!”</i> Kara says, a little defensive. <i>“They’re not expecting trouble - they don’t think anybody knows they’re there.");
 	if (kara.isMischievous()) output(" P-probably!");
-	output(" It’s a backwater research base, after all. A couple dozen foot-soldiers at worst, plus some automated security. But leave that to me - punching through security systems is my specialty. If I can get access to their communications systems or a computer, I’ll be able to shut down the alarms and make sure no reinforcements show up. Once done, we push into the the subterranean research complex, and shut it down. Permanently.”</i>");
+	output(" It’s a backwater research base, after all. A couple dozen foot-soldiers at worst, plus some automated security. But leave that to me - punching through security systems is my specialty. If I can get access to their communications systems or a computer, I’ll be able to shut down the alarms and make sure no reinforcements show up. Once done, we push into the subterranean research complex, and shut it down. Permanently.”</i>");
 
 	output("\n\n<i>“Any idea what they’re researching, exactly?”</i>");
 
@@ -1951,7 +1951,11 @@ public function kq2CapturedByPiratesBadEndII():void
 	output("\n\nThe armored woman reaches down, grabbing Kara’s chin in her gauntleted fingers and forcing the defeated cat-girl to look up at her. Your companion moans, blinking through a black eye and a bloodied nose - looks like she’s suffered a much more thorough beating than you already.");
 	
 	output("\n\n<i>“I don’t know what’s worse:”</i> the pirate lord growls, <i>“That you were stupid enough to come knocking on my door... or that you were stupid enough to pick the wrong group of pirates.");
-	if (flags["KQ2_NUKE_STARTED"] != undefined) output(" And don’t worry about the self destruct. It’s been deactivated.");
+	if (flags["KQ2_NUKE_STARTED"] >= 0)
+	{
+		output(" And don’t worry about the self destruct. It’s been deactivated.");
+		flags["KQ2_NUKE_STARTED"] = -1;
+	}
 	output(" Either way, Lord Bragga has a bounty the size of a small moon out on your head.");
 	if (flags["KQ2_SHADE_DEAD"] == undefined)
 	{
@@ -2187,7 +2191,11 @@ public function kq2AmaraBetrayKara():void
 	output("\n\nYou pocket your Codex and admit, you’re surprised they’re letting this go so easily.");
 
 	output("\n\nAmara shrugs");
-	if (flags["KQ2_NUKE_STARTED"] != undefined) output(", as she sends some of her goons down to deactivate the self-destruct");
+	if (flags["KQ2_NUKE_STARTED"] >= 0)
+	{
+		output(", as she sends some of her goons down to deactivate the self-destruct");
+		flags["KQ2_NUKE_STARTED"] = -1;
+	}
 	output(". <i>“Like I said, you seem like a badass, and I didn’t come back dirt-side for a fight. Just to catch the kitten there for Lord Bragga. No reward for fighting you, except personal satisfaction. And Watson says you gave Khan a swift kick in the nuts, so what the hell. That earns you enough credit with me to get out of here. So go on. Just keep your mouth shut, or you’re dead. Though that goes without saying.”</i>");
 
 	output("\n\nYou guess you can’t argue with that. You give the gunship one last look before hopping into one of the smaller shuttles and letting it take you back the D.M.Z., much richer for your efforts. From there’s it’s one short hitchhike back to the smuggler’s base and your own ship.");
@@ -2323,7 +2331,7 @@ public function kq2AmaraPCVictory():void
 
 	output("\n\nLooks like you’re home free.");
 	// Nuke due to explode within 30 minutes
-	if (flags["KQ2_NUKE_STARTED"] != undefined)
+	if (flags["KQ2_NUKE_STARTED"] >= 0)
 	{
 		output(" And just in time: you cover your eyes as a nuke goes off in the caldera, a flash of light followed by a shockwave that makes your teeth ache. Luckily, the re-activated shields protect you from harm.");
 		flags["KQ2_NUKE_EXPLODED"] = 1;
@@ -2451,7 +2459,7 @@ public function kq2AmaraSpecialEnd():void
 	
 	output("\n\nYou manage to get the engine started and punch it back towards... something. The DMZ! Civilization! Nothing follows you, nothing tries to stop you. You’re not sure there’s anything, or any<i>one</i> left to.");
 	// Nuke due to explode within 30 minutes
-	if (flags["KQ2_NUKE_STARTED"] != undefined)
+	if (flags["KQ2_NUKE_STARTED"] >= 0)
 	{
 		output(" Especially after the nuke goes off, flashing in the distance in your rear mirror.");
 		flags["KQ2_NUKE_EXPLODED"] = 1;

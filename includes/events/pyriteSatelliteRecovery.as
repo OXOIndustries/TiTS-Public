@@ -37,7 +37,7 @@ public function showGryvainShit(nude:Boolean = false):void
 public function showKaithritBoyslut():void
 {
 	showName("KAITHRIT\nBUSINESSGUY");
-	showBust("KAITHRIT_SATELLITE_GUY");
+	showBust("KASE");
 }
 
 public function kaithritSatelliteShit():void

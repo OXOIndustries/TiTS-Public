@@ -7,6 +7,7 @@
 	import classes.Items.Miscellaneous.Cargobot;
 	import classes.Items.Miscellaneous.Hoverboard;
 	import classes.Items.Apparel.Smartclothes;
+	import classes.Items.Upgrades.ExpandedBackpackI;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -26,6 +27,7 @@
 			this.inventory.push(new Hoverboard());
 			this.inventory.push(new Smartclothes());
 			this.inventory.push(new StrangeCollar());
+			this.inventory.push(new ExpandedBackpackI());
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.GADGET;
 			this.typesBought[this.typesBought.length] = GLOBAL.ACCESSORY;

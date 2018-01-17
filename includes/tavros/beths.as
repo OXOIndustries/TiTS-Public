@@ -721,7 +721,7 @@ public function brothelTurnTrixLady():void
 		{
 			output("\n\n<i>“Hah! Are you fucking with me? Did ya trade your tits for a tallywacker?”</i> she comments.");
 			output("\n\nOh, you did change your sex since last time.");
-			output("\n\n<i>“The many faces of Steele: Whoring out more than just [pc.her] genitals, but [pc.her] image as well!”</i>");
+			output("\n\n<i>“The many faces of Steele: Whoring out more than just [pc.hisHer] genitals, but [pc.hisHer] image as well!”</i>");
 			output("\n\nYou furrow your brow at her remark but continue, <i>“I can still work, right?”</i>");
 			flags["BETHS_ASKED_TO_WHORE"] = 0;
 		}
@@ -2320,6 +2320,7 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			{
 				var oldHips:Number = pc.hipRatingRaw;
 				var oldFace:Number = pc.femininity;
+				var sOldHips:String = pc.hipsDescript();
 				msg += ParseText("Seemingly at random, as if you didn’t look girly enough, you feel a slight boost to your feminine features. They gradually exaggerate further , making you appear more lady-like as");
 				var weightLimit:Number = 45;
 				while(pc.genderWeight() < weightLimit)
@@ -2329,11 +2330,11 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 				}
 				if(pc.femininity != oldFace) msg += " your shoulders become narrow";
 				if(pc.hipRatingRaw != oldHips && pc.femininity != oldFace) msg += " and";
-				if(pc.hipRatingRaw != oldHips) msg += " your [pc.hips] widen";
+				if(pc.hipRatingRaw != oldHips) msg += " your " + sOldHips + " widen";
 				msg += ". This leaves you with";
 				if(pc.hipRatingRaw != oldHips) msg += " " + pc.hipsDescript();
 				if(pc.hipRatingRaw != oldHips && pc.femininity != oldFace) msg += " and";
-				if(pc.femininity != oldFace) msg += " a face that has " + pc.faceDesc();
+				if(pc.femininity != oldFace) msg += pc.faceDesc();
 				msg += ". ";
 				minPass += 1;
 			}

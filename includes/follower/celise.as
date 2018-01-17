@@ -229,7 +229,7 @@ public function dudesFeedCelise():void {
 	if(pc.isGoo()) output(", your own goo mixing with hers until you can barely tell which of you is which, only that it feels wonderful");
 	output(". Celise lustily wonders, <i>“Like, how do I feed this time, [pc.name]? Should I pull out all that yummy [pc.cumNoun] with suction alone?");
 	if(pc.cumQ() <= 1000) output(" I bet if I did that enough, you’d start making enough to properly feed me in no time!");
-	output("”</i> A rhythmic tugging starts on [pc.oneCock]. <i>“I could squeeze it out from behind....”</i> A tongue of liquid warmth circles your asshole, causing your hips to lurch forward hard enough to make [pc.eachCockHead] crest her surface, dripping with emerald slime. <i>“Hehehe... maybe I should just climb inside the the tip and drink it straight from your [pc.balls]");
+	output("”</i> A rhythmic tugging starts on [pc.oneCock]. <i>“I could squeeze it out from behind....”</i> A tongue of liquid warmth circles your asshole, causing your hips to lurch forward hard enough to make [pc.eachCockHead] crest her surface, dripping with emerald slime. <i>“Hehehe... maybe I should just climb inside the tip and drink it straight from your [pc.balls]");
 	if(pc.cumQ() >= 5000) output(". I bet I could drink so much that way that your poor [pc.balls] wouldn’t be able to make as much afterward. That’s not a big deal, right? You’re too messy anyway. I get tired of mopping it up");
 	output("....”</i>");
 	
@@ -1499,9 +1499,9 @@ public function zeiksCeliseSubmersionTechnique():void
 			//(non-taur)
 			else
 			{
-				output("Celise gasps and forces your arm forward, holding your free hand over the head of your penis while the other rubs out your orgasm. Warm, [pc.cumVisc] semen covers your palm, over and over, falling back to ooze down your spasming [pc.cockNoun] and into the gel below each time. She moans happily as your crotch turns into a ");
+				output(" Celise gasps and forces your arm forward, holding your free hand over the head of your penis while the other rubs out your orgasm. Warm, [pc.cumVisc] semen covers your palm, over and over, falling back to ooze down your spasming [pc.cockNoun] and into the gel below each time. She moans happily as your crotch turns into a ");
 				if(pc.cumColor() == "green") output("deep green");
-				else output("sickly, greenish-[pc.cumColor]] swamp.");
+				else output("sickly, greenish-[pc.cumColor] swamp.");
 			}
 		}
 	}

@@ -11,6 +11,8 @@ public function newTexasEmail():void
 //Landing on New Texas (First Time)
 public function landOnNewTexas():void
 {
+	showBust("NEW_TEXAS");
+	showName("NEW\nTEXAS");
 	if(flags["LANDED_ON_TEXAS"] == undefined)
 	{
 		flags["LANDED_ON_TEXAS"] = 1;
@@ -622,7 +624,7 @@ public function spitRoastAmmoOnYerDicks():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("AMMA","OGRAM");
+	showBust("AMMA_NUDE","OGRAM_NUDE");
 	author("Savin");
 	showName("AMMA &\nOGGY");
 	var x:int = pc.cockThatFits(chars["AMMA"].vaginalCapacity(0));
@@ -679,7 +681,7 @@ public function spitRoastAmmoOnYerDicks():void
 public function worshipZeBullCawk():void
 {
 	clearOutput();
-	showBust("OGRAM","AMMA");
+	showBust("AMMA_NUDE","OGRAM_NUDE");
 	author("Savin");
 	showName("OGGY &\nAMMA");
 	output("<i>“What do you two " + pc.mf("","girls ") + "say about giving this bad boy a little love, huh?”</i> Ogram says, his fingers eagerly working his belt off. He pulls it, and Amma almost instantly has her hands around his pants, tugging them down with aplomb to reveal the huge swell of her lover’s growing bovine erection, the long, slender pole of cow-meat rapidly rising to its full, intimidating height. Amma takes a long, full whiff of him, her overburdened chest swelling as she drinks in the potent, masculine scent of her lover’s animalistic erection.");
@@ -1103,6 +1105,8 @@ public function sureSellMyCumBabiesFarAndWide(amount:Number = 0):void
 	
 	// Insert modular function for cum value:
 	var x:int = cumCreditValue(amount);
+	// Cap the value to prevent odd output
+	if(x > 250000000) x = 250000000;
 	
 	clearOutput();
 	author("Savin");
@@ -1739,6 +1743,11 @@ public function ohNoSillyCumFloods():void
 	output("\n\nYou close your eyes and your vision hazes...");
 	
 	processTime(5);
+	applyCumSoaked(pc);
+	applyCumSoaked(pc);
+	applyCumSoaked(pc);
+	applyCumSoaked(pc);
+	applyCumSoaked(pc);
 	
 	clearMenu();
 	addButton(0,"Next",ohNoSillyCumFloodsPtII);
@@ -2705,7 +2714,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			}
 			output(" with a loaded hamper basket after... how long has it been? Sweat is pouring down your back, but when you stand back from the building site you see you’ve barely even begun. You just want to keep going.");
 			output("\n\n<i>“Steady now, big " + pc.mf("guy","girl") + ",”</i> Carrie laughs, sitting herself down on the grass. <i>“Have a bite to eat.”</i> As it transpires, almost all of the cold picnic lunch she’s brought is for you. <i>“Course! I’ll be getting my vitamins a different way.”</i>");
-			output("\n\nYou lean back upon a half-constructed wall a little bit later, gazing beatifically up at the giant sky as Carrie hollows her cheeks around your [pc.cockBiggest], pulling and kneading at it in her warm, saliva-coated embrace with ardent bobs of her auburn head. Her slurps and lusty hums meld with you approving groans the further she manages to get her lips down your throbbing length, and you scritch her behind a flat ear every time her rough, wet tongue slides over a particularly good spot, a tactic that makes her flop at the grass with her tail happily. You glove your [pc.cockHeadBiggest] in her unresisting throat with firm, gentle pushes time and again, glorying in the tightness there");
+			output("\n\nYou lean back upon a half-constructed wall a little bit later, gazing beatifically up at the giant sky as Carrie hollows her cheeks around your [pc.cockBiggest], pulling and kneading at it in her warm, saliva-coated embrace with ardent bobs of her auburn head. Her slurps and lusty hums meld with your approving groans the further she manages to get her lips down your throbbing length, and you scritch her behind a flat ear every time her rough, wet tongue slides over a particularly good spot, a tactic that makes her flop at the grass with her tail happily. You glove your [pc.cockHeadBiggest] in her unresisting throat with firm, gentle pushes time and again, glorying in the tightness there");
 			if(pc.balls > 0) output(" whilst her tongue flicks over your [pc.balls]");
 			output(" until it eventually becomes too much, and you unload gloriously, fluming [pc.cum] directly into her gut with heavy, juicy pulses.");
 			output("\n\nYou plump the cowgirl’s belly out, withdraw to fill her mouth with [pc.cumVisc] approval, and when she can’t swallow anymore she milks the rest out with firm kneads of her smooth hands.");
@@ -3071,7 +3080,7 @@ public function fantasyOutput(fantasies:Array,x:int):void
 		else output("woman");
 		output(" would insist on keeping her infestation secret, of course, embarrassed but unwilling to give up the pleasure.");
 
-		output("\n\nOf course, a secret is no fun unless shared... Penny wouldn’t be able to endure it if she couldn’t use her new cock with Flahne, fucking whenever she can get time off, dumping load after load into the the slutty rahn. And most of the seed would be digested harmlessly, yes, but... you imagine a few hardy mutations among the billions and billions of Penny’s spores managing to take root after months of lovemaking, growing like bacteria in agar, combining with the gooey woman. You picture her translucent body discolored by verdant growth deep inside that slowly forces out the orange, blossoming and spreading until her goopy locks turn leafy and green. And then, one day, a cute female rusher blunders into the office while cockvine-Flahne is playing with herself, and the shameless rahn coaxes the blithe girl into a one-night stand. As the two climax together, Flahne’s ovipositor unloads the first of a new generation of hybrids into her lover....");
+		output("\n\nOf course, a secret is no fun unless shared... Penny wouldn’t be able to endure it if she couldn’t use her new cock with Flahne, fucking whenever she can get time off, dumping load after load into the slutty rahn. And most of the seed would be digested harmlessly, yes, but... you imagine a few hardy mutations among the billions and billions of Penny’s spores managing to take root after months of lovemaking, growing like bacteria in agar, combining with the gooey woman. You picture her translucent body discolored by verdant growth deep inside that slowly forces out the orange, blossoming and spreading until her goopy locks turn leafy and green. And then, one day, a cute female rusher blunders into the office while cockvine-Flahne is playing with herself, and the shameless rahn coaxes the blithe girl into a one-night stand. As the two climax together, Flahne’s ovipositor unloads the first of a new generation of hybrids into her lover....");
 	}
 	//Myrelli fantasy requires PC has toured the Gildenmere thollum
 	else if(fantasies[x] == 1)
@@ -3153,7 +3162,7 @@ public function megaMilkCameron():void
 	showName("CARRIE\n& CAMERON");
 	showBust("CAMERON_NUDE", "CARRIE_NUDE");
 	
-	output("You take her up on the invitation, locking the stall door behind you and sauntering on over to the milker station. Cameron looks at you over his shoulder, eyes wide in surprise, until Carrie reaches down and grabs his cock, wrapping her slender, gloved fingers around her thick equine shaft. ");
+	output("You take her up on the invitation, locking the stall door behind you and sauntering on over to the milker station. Cameron looks at you over his shoulder, eyes wide in surprise, until Carrie reaches down and grabs his cock, wrapping her slender, gloved fingers around his thick equine shaft. ");
 	output("\n\n<i>“Stop squirmin', Cam,”</i> she chides, her voice taking on a much more authoritative, matronly tone than you're familiar with. <i>“Or that trappy little pony cock of yours is gonna end up shootin' all over.”</i>");
 	output("\n\nCameron whines, but eventually Carrie's able to guide his semi-hard shaft into the proper receptacle. Once she's fastened the suction cup to his flared crown, Carrie squirts a healthy glob of lube onto the palm of her glove and starts spreading it around Cam's ass, swirling two fingers around his tailhole to make sure it's nice and coated. When it is, Carrie handily slides her digits right into Cameron's pucker, making the cow-boi squeal and buck his hips against the harness. ");
 	output("\n\n<i>“Good boy,”</i> Carrie whispers, starting to move her hand. <i>“Just relax that little cock-hole for me, 'kay?”</i>");

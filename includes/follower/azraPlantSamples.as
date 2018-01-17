@@ -39,15 +39,15 @@ public function azraPlantSamples(back:Boolean = false):void
 				if(pc.hasStatusEffect("Azra Sex CD") == 0)
 				{
 					if(rand(2) == 0) output("You know, if you spend all your time fucking around on the ship, you’ll never become the famous rusher I know you’re destined to be.");
-					else output("The fuck lillies are good, but they'll never be as good as me.”</i> She checks her watch, then sighs. <i>But I guess they'll have to do for now...");
+					else output("The fuck lillies are good, but they’ll never be as good as me.”</i> She checks her watch, then sighs. <i>But I guess they’ll have to do for now...");
 				}
-				else if(pc.hasCock(GLOBAL.TYPE_EQUINE) && rand(7) == 0) output("You know, I can smell that horse-dick of yours from over here. If you're going to whip it out in here, turn on the fan afterward. The last thing I need to do is feel like I'm penned up in your breeding barn.");
-				else if(pc.hasCock(GLOBAL.TYPE_CANINE) && rand(6) == 0) output("You know, that doggie-dick of yours leaks pheromones like a busted faucet. You better turn up the life support filtration after this, or I'm going to be hornier in here than a bitch in heat.");
-				else if(rand(5) == 0) output("Would you?”</i> Azra leans close. <i>“When you're through in here, I have a special sample for you in my bedroom, if you have the time.");
-				else if(rand(4) == 0) output("Remember, the mutagenic samples aren't refined, tested products. There's no telling what havoc abusing them could wreak on your system.”</i> She looks at you mischievously. <i>“But a brave [pc.boyGirl] like you is going to play with fire, aren't you?");
-				else if(rand(3) == 0) output("Just don't use the leftmost Fuck Lilly. She just had a very thorough session, and I don't want any of our prize plants to die from overfeeding.");
-				else if(rand(2) == 0) output("I'm glad I'm not the only one who enjoys these little beauties. Be good to them, and they'll be good to you.");
-				else output("Aww, you're such a sweet " + azraBoyfriend() + ", checking up on me and my work. Maybe one of these times you'll catch me feeding the Fuck Lilies.");
+				else if(pc.hasCock(GLOBAL.TYPE_EQUINE) && rand(7) == 0) output("You know, I can smell that horse-dick of yours from over here. If you’re going to whip it out in here, turn on the fan afterward. The last thing I need to do is feel like I’m penned up in your breeding barn.");
+				else if(pc.hasCock(GLOBAL.TYPE_CANINE) && rand(6) == 0) output("You know, that doggie-dick of yours leaks pheromones like a busted faucet. You better turn up the life support filtration after this, or I’m going to be hornier in here than a bitch in heat.");
+				else if(rand(5) == 0) output("Would you?”</i> Azra leans close. <i>“When you’re through in here, I have a special sample for you in my bedroom, if you have the time.");
+				else if(rand(4) == 0) output("Remember, the mutagenic samples aren’t refined, tested products. There’s no telling what havoc abusing them could wreak on your system.”</i> She looks at you mischievously. <i>“But a brave [pc.boyGirl] like you is going to play with fire, aren’t you?");
+				else if(rand(3) == 0) output("Just don’t use the leftmost Fuck Lilly. She just had a very thorough session, and I don’t want any of our prize plants to die from overfeeding.");
+				else if(rand(2) == 0) output("I’m glad I’m not the only one who enjoys these little beauties. Be good to them, and they’ll be good to you.");
+				else output("Aww, you’re such a sweet " + azraBoyfriend() + ", checking up on me and my work. Maybe one of these times you’ll catch me feeding the Fuck Lilies.");
 				output("”</i> She glances at her Codex. <i>“Thirty minutes ought to be more than long enough for whatever you have planned. I barely last ten in those botanical succubi, but I know my " + azraBoyfriend() + " is made of tougher stuff.”</i>");
 				output("\n\nAzra kisses you on the forehead on her way out the door, tail swishing happily behind her.");
 			}
@@ -58,6 +58,10 @@ public function azraPlantSamples(back:Boolean = false):void
 	addButton(0,"Fuck Lillies",approachFuckLillies);
 	if(flags["AZRA_TARKUSED"] == 1) addButton(1,"Slutshrooms",slutShroomApproach);
 	else addDisabledButton(1,"Undiscovered","Undiscovered","You have not yet saved this plant.");
+	if(flags["AZRA_TARKUSED"] == 1 && flags["AZRA_TARKUS_SKIP"] != 1) addButton(2,"Motherhusks",motherhuskApproach);
+	else addDisabledButton(2,"Undiscovered","Undiscovered","You have not yet saved this plant.");
+	if(flags["AZRA_TARKUSED"] == 1) addButton(3,"Spunkshroom",spunkshroomApproach);
+	else addDisabledButton(3,"Undiscovered","Undiscovered","You have not yet saved this plant.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -191,6 +195,37 @@ public function rideDatFuckLily():void
 	clearMenu();
 	addButton(0,"Next",fuckFlowerEpilogue);
 }
+public function spunkshroomApproach():void
+{
+	clearOutput();
+	showName("\nSHROOMS!");
+	output("Azra has placed the so-called ‘spunkshrooms’ in a bed of orange-hued soil ringed by evenly spaced posts designed to mimic the lighting conditions where you found them. At first, they look sort of sick, but you then you remember that they’re fat, droopy things. Their caps hang down all the way to the soil for a reason known only to the fungi themselves. A holographic display at the base of the planter reads, <i>“Ferrous Ejaculatus.”</i> Azra wastes no time in naming her discoveries. Further notes expound that preliminary tests reveal them to be mildly toxic and mutagenic.");
+
+	output("\n\nPotential effects on ingestion include unexpected leakages of sperm-supporting fluids, increased virility, unexplained breeding urges. ");
+	if(pc.statusEffectv1("Spunkshroom CD") >= 4) output("<b>Azra has left a note telling you to leave her samples alone for the time being. They need to recover from your previous harvests.</b>");
+	else if(!pc.hasCock()) output("No point in taking one without any sort of penis, you suppose.");
+	else output("You suppose you could pick one if you wanted to get a little masculine enhancement.");
+	
+	processTime(2);
+	clearMenu();
+	if(pc.statusEffectv1("Spunkshroom CD") >= 4) addDisabledButton(0,"Pick One","Pick One","You should give the plants a break before taking any more.");
+	else addButton(0,"Pick One",pickASpunkshroom);
+	addButton(14,"Back",azraPlantSamples,true);
+}
+
+public function pickASpunkshroom():void
+{
+	clearOutput();
+	showName("\nYOINK!");
+	output("You reach under the enormous cap to grab a mushroom by the stalk and nearly recoil when you make contact with the slimy fungus. The drape-like top may help them trap moisture for their root systems, but it makes tugging one out of the ground more work than it ought to be. The mushroom breaks off after a few both and forth tugs.\n\n");
+	//After taking four, needs a 4 day CD. CD resets on each pick.
+	if(!pc.hasStatusEffect("Spunkshroom CD")) pc.createStatusEffect("Spunkshroom CD",1);
+	else pc.addStatusValue("Spunkshroom CD",1,1);
+	pc.setStatusMinutes("Spunkshroom CD",60*24*4);
+	//Standard item collection here
+	eventQueue.push(spunkshroomApproach);
+	quickLoot(new SpunkShroom());
+}
 
 public function slutShroomApproach():void
 {
@@ -222,4 +257,37 @@ public function pickASlootShroom():void
 	//Standard item collection here
 	eventQueue.push(slutShroomApproach);
 	quickLoot(new SlutShroom());
+}
+
+public function motherhuskApproach():void
+{
+	clearOutput();
+	showName("MOTHER\nHUSKS");
+	output("The motherhusks have taken to captivity with gusto. Already, a two foot spire of segmented growth has emerged from a bed of rust-red soil intermixed with silvery aluminium filings. A hardlight terrarium keeps the floating spores safely contained, so as not to contaminate the lab - or Azra’s ovaries. The sharky scientist has placed a small display at the base that reads <i>“Matar Factorum.”</i> Further notes explain that you are free to harvest the smaller spires surrounding the main growth. Simply press a button on the right side to reduce the strength of the hardlight shield to a fist-permeable level.");
+	output("\n\nFor raw usage, it is suggested to crush a single husk to powder and inhale the airborne particles released. Side effects are largely unknown, but minor corruption of the user’s genome is likely. The benefits are expounded upon in far greater detail: increased nutrient delivery to the womb, more rapid zygote development, and optimizations to the imbiber’s genome to support more rapidly developing the womb’s pregnancy support structures. ");
+	if(!pc.hasVagina()) output("No point in grabbing one without any wombs, you suppose.");
+	else if(pc.statusEffectv1("Motherhusk CD") < 2) output("You could take one, if you wanted your pregnancies to progress at superhuman speed.");
+	else output("<b>Azra has left a note telling you to leave this sample alone for the time being. It needs time to recover after your previous harvest.</b>");
+	processTime(1);
+	clearMenu();
+	if(pc.statusEffectv1("Motherhusk CD") >= 2) addDisabledButton(0,"Pick One","Pick One","You should give the plants a break before taking any more.");
+	else addButton(0,"Pick One",pickAMotherHusk);
+	addButton(14,"Back",azraPlantSamples,true);
+}
+
+//Pick one
+public function pickAMotherHusk():void
+{
+	clearOutput();
+	showName("\nYOINK!");
+	output("You tap a button on the side of the projector, and the fizzing hardlight shield dims to a barely perceptible hum. You gingerly press your hand against it. To your surprise, it parts easily for your fist, allowing you to grab hold of a ridged piece and snap it off. A cloudy puff of spores vents into the containment area");
+	if(pc.isBimbo() || (pc.IQ() < 40) || pc.libido() >= 100) output(", and part of you wishes could just stuff your head in and huff the whole mess. Azra would get super mad, probably");
+	processTime(1);
+	output(".\n\n");
+	if(!pc.hasStatusEffect("Motherhusk CD")) pc.createStatusEffect("Motherhusk CD",1);
+	else pc.addStatusValue("Motherhusk CD",1,1);
+	pc.setStatusMinutes("Motherhusk CD",60*24*4);
+	//Standard item collection here
+	eventQueue.push(motherhuskApproach);
+	quickLoot(new Motherhusk());
 }

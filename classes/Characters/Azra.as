@@ -14,6 +14,7 @@
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Interfaces.output;
+	import classes.StringUtil;
 	
 	/**
 	 * ...
@@ -263,7 +264,7 @@
 			if(combatMiss(this, target)) output("<i>“Hiya!”</i> Azra cries, trying for an axe-kick but ultimately missing.");
 			else
 			{
-				output("<i>“Hiya!”</i> Azra snaps her leg nearly eight feet into the air and drops it on [target.possessiveCombatName] head.”</i>");
+				output("<i>“Hiya!”</i> Azra snaps her leg nearly eight feet into the air and drops it on " + target.getCombatName() + "’s head.”</i>");
 				var damage:TypeCollection = meleeDamage();
 				damage.add({ kinetic: 10 });
 				applyDamage(damageRand(damage, 15), this, target);
@@ -272,7 +273,7 @@
 					if(!target.hasStatusEffect("Stunned"))
 					{
 						CombatAttacks.applyStun(target,2);
-						output("<b>[target.CombatName] is stunned!</b>");
+						output("<b>" + target.getCombatName() + " " + (!target.isPlural ? "is" : "are") + " stunned!</b>");
 					}
 				}
 			}
@@ -281,7 +282,7 @@
 		public function consecutiveNormalPunches(target:Creature):void
 		{
 			output("<i>“Stay back!”</i> Azra cries, lashing out with her fists in rapid succession.");
-			//{3x flurry paunch}
+			// 3x flurry paunch
 			for (var i:int = 0; i < 3; i++)
 			{
 				output("\n");
@@ -291,12 +292,12 @@
 		//Uppercut (only on foes 6' or taller)
 		public function azraUppercut(target:Creature):void
 		{
-			output("Azra slides by you, springing up under [target.combatName] to bring her fist into [target.hisHer] chin. ");
+			output("Azra slides by you, springing up under " + target.getCombatName() + " to bring her fist into " + target.getCombatPronoun("pa") + " chin. ");
 			//Normal dodgetext
 			if (combatMiss(this, target))
 			{
 				if (target.customDodge.length > 0) output(target.customDodge);
-				else output("[target.CombatName] manages to avoid Azra’s uppercut.");
+				else output(target.getCombatName() + " manages to avoid Azra’s uppercut.");
 			}
 			//Hit for 1.5x damage and applies Sunder :3
 			else
@@ -308,14 +309,14 @@
 				if(!target.hasStatusEffect("Sundered")) 
 				{
 					CombatAttacks.applySunder(target, 4);
-					output("<b> [target.CombatName] is sundered!</b>");
+					output(" <b>" + target.getCombatName() + " " + (!target.isPlural ? "is" : "are") + " sundered!</b>");
 				}
 			}
 		}
 		//Normal Punch
 		public function azraNormalPunch(target:Creature):void
 		{
-			output("<i>“I hope that semester learning karate paid off!”</i> Azra hesitantly takes a swing at [target.name].");
+			output("<i>“I hope that semester learning karate paid off!”</i> Azra hesitantly takes a swing at " + target.getCombatName() + ".");
 			var damage:TypeCollection = meleeDamage();
 			applyDamage(damageRand(damage, 15), this, target);
 		}
@@ -324,9 +325,9 @@
 		{
 			output("Azra soars into the air on angelic wings. A moment later, you hear the sound of rushing wind as she barrels toward the ground, armored-heels first.");
 			//Miss
-			if(combatMiss(this,target)) output(" [target.combatName] slips aside, leaving Azra to slam into the ground hard enough to kick up a cloud of dust. She looks pissed.");
+			if(combatMiss(this,target)) output(" " + target.getCombatName() + " slip" + (!target.isPlural ? "s" : "") + " aside, leaving Azra to slam into the ground hard enough to kick up a cloud of dust. She looks pissed.");
 			//Hit
-			else output(" [target.CombatName] takes one foot square in the face and the other on the chest as [target.heShe] is crushed beneath Azra’s gravity-accelerated weight. Ouch!");
+			else output(" " + target.getCombatName() + " take" + (!target.isPlural ? "s" : "") + " one foot square in the face and the other on the chest as " + target.getCombatPronoun("s") + " " + (!target.isPlural ? "is" : "are") + " crushed beneath Azra’s gravity-accelerated weight. Ouch!");
 			//(4x damage)
 			var damage:TypeCollection = meleeDamage();
 			damage.multiply(4);
@@ -335,11 +336,11 @@
 		//Wingkick - Level 3+ Azra
 		public function wingkick(target:Creature):void
 		{
-			output("Azra hops into the air and flaps her wings hard, setting herself spinning like a top. She lashes out with her heel as she closes on [target.combatName]! ");
+			output("Azra hops into the air and flaps her wings hard, setting herself spinning like a top. She lashes out with her heel as she closes on " + target.getCombatName() + "! ");
 			if (combatMiss(this, target))
 			{
 				if (target.customDodge.length > 0) output(target.customDodge);
-				else output("[target.CombatName] manages to avoid Azra’s spinning kick!");
+				else output(target.getCombatName() + " manage" + (!target.isPlural ? "s" : "") + " to avoid Azra’s spinning kick!");
 			}
 			//Normal damage.
 			else
@@ -348,7 +349,7 @@
 				//Trip chance:
 				if(physique()/2 + rand(20) + 1 >= target.reflexes()/2 + 10)
 				{
-					output(" The impact sends [target.himHer] sprawling on the ground.");
+					output(" The impact sends " + target.getCombatPronoun("o") + " sprawling on the ground.");
 					CombatAttacks.applyTrip(target);
 				}
 				var damage:TypeCollection = meleeDamage();
@@ -358,11 +359,11 @@
 		//Dust storm
 		public function dustStormAzra(target:Creature):void
 		{
-			output("Azra beats her wings until a gusting gale-force wind is blowing through the battle, hurling bits of dust and detritus at [target.combatName]!");
-			if(target.reflexes()/2 + rand(20) + 1 >= this.physique()/2 + 10) output(" [target.CombatName] closes [target.hisHer] eyes in time to avoid being blinded!");
+			output("Azra beats her wings until a gusting gale-force wind is blowing through the battle, hurling bits of dust and detritus at " + target.getCombatName() + "!");
+			if(target.reflexes()/2 + rand(20) + 1 >= this.physique()/2 + 10) output(" " + target.getCombatName() + " close" + (!target.isPlural ? "s" : "") + " " + target.getCombatPronoun("pa") + " eyes in time to avoid being blinded!");
 			else
 			{
-				output(" <b>[target.CombatName] is blinded!</b>");
+				output(" <b>" + target.getCombatName() + " " + (!target.isPlural ? "is" : "are") + " blinded!</b>");
 				CombatAttacks.applyBlind(target);
 			}
 		}
@@ -370,16 +371,16 @@
 		public function tailWhipAttack(target:Creature):void
 		{
 			output("<i>“Back off!”</i> Azra shouts. She spins herself around, tail outstretched. Her posterior protuberance ");
-			if (combatMiss(this, target)) output("misses [target.combatName] by a mile, unfortunately. The siren wobbles, blushing at her failure. <i>“Sorry!”</i>");
+			if (combatMiss(this, target)) output("misses " + target.getCombatName() + " by a mile, unfortunately. The siren wobbles, blushing at her failure. <i>“Sorry!”</i>");
 			else
 			{
-				output("slams into [target.combatName]! <i>“Take that!”</i>");
+				output("slams into " + target.getCombatName() + "! <i>“Take that!”</i>");
 				var damage:TypeCollection = meleeDamage();
 				applyDamage(damageRand(damage, 15), this, target);
 				//Chance of staggered.
 				if(physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 				{
-					output(" <b>[target.HeShe] is staggered.</b>");
+					output(" <b>" + StringUtil.capitalize(target.getCombatPronoun("s")) + " " + (!target.isPlural ? "is" : "are") + " staggered.</b>");
 					CombatAttacks.applyStagger(target);
 				}
 			}
@@ -387,18 +388,18 @@
 		//Sharklust - At 60+ lust - 1x per combat
 		public function sharkLustAttack(target:Creature):void
 		{
-			output("<i>“Oh... oh snap!”</i> Azra cries, pawing at her crotch plate. Her face curls up in pain for a moment, then her scrabbling fingers release the groin-guard, allowing a tremendously erect siren-cock to spill free of the constricting garment. The air fills with her long-denied musky scent, though she fans most of it toward [target.combatName] with her wings. <i>“This is your fault! Is this what you wanted?”</i> The tendrils that wring her member squirm excitedly. <i>“Well how do you like it?!”</i>");
+			output("<i>“Oh... oh snap!”</i> Azra cries, pawing at her crotch plate. Her face curls up in pain for a moment, then her scrabbling fingers release the groin-guard, allowing a tremendously erect siren-cock to spill free of the constricting garment. The air fills with her long-denied musky scent, though she fans most of it toward " + target.getCombatName() + " with her wings. <i>“This is your fault! Is this what you wanted?”</i> The tendrils that wring her member squirm excitedly. <i>“Well how do you like it?!”</i>");
 			kGAMECLASS.flags["AZRA_SEX_KNOWN"] = 1;
 			createStatusEffect("cock out");
 		}
 		//Cock grapple
 		public function cockGrapple(target:Creature):void
 		{
-			output("Azra tries to grab [target.combatName]!");
-			if (combatMiss(this, target)) output(" [target.HeShe] squirms out of her impressive reach.");
+			output("Azra tries to grab " + target.getCombatName() + "!");
+			if (combatMiss(this, target)) output(" " + StringUtil.capitalize(target.getCombatPronoun("s")) + " squirm" + (!target.isPlural ? "s" : "") + " out of her impressive reach.");
 			else
 			{
-				output("[target.HeShe] can’t escape, not even as she presses [target.hisHer] face against her turgid, alien cock, smearing her potent musk over every inch of him.");
+				output(" " + StringUtil.capitalize(target.getCombatPronoun("s")) + " can’t escape, not even as she presses " + target.getCombatPronoun("pa") + " face against her turgid, alien cock, smearing her potent musk over every inch of " + target.getCombatPronoun("o") + ".");
 				var resisted:Boolean = (target.willpower() + rand(20) + 1 >= this.intelligence() + 10);
 				var damage:TypeCollection = new TypeCollection({ tease: 13 });
 				if(resisted) damage = new TypeCollection({ tease: 5});
@@ -406,19 +407,19 @@
 				
 				if(target.lust() < target.lustMax())
 				{
-					output(" [pc.HeShe] stumbles free, dazed");
+					output(" [pc.HeShe] stumble" + (!target.isPlural ? "s" : "") + " free, dazed");
 					if(!resisted) output(" and aroused");
 					else output(" though not very aroused");
 					output(".");
 				}
-				else output(" [target.HeShe] sags to the ground, overwhelmed by the weight of [pc.hisHer] own arousal.");
+				else output(" " + StringUtil.capitalize(target.getCombatPronoun("s")) + " sag" + (!target.isPlural ? "s" : "") + " to the ground, overwhelmed by the weight of " + target.getCombatPronoun("pa") + " own arousal.");
 				outputDamage(dr2);
 			}
 		}
 		//Cunny tease
 		public function azraCunnyTeasers(target:Creature):void
 		{
-			output("Azra bends over, presenting her unguarded cunt to [target.combatName]. <i>“Like what you see?”</i> She digs her fingers into it and spreads her lips wide, fanning sweet smelling pussy-musk directly at [target.himHer]. Under her breath she mumbles, <i>“Pervert.”</i>");
+			output("Azra bends over, presenting her unguarded cunt to " + target.getCombatName() + ". <i>“Like what you see?”</i> She digs her fingers into it and spreads her lips wide, fanning sweet smelling pussy-musk directly at " + target.getCombatPronoun("o") + ". Under her breath she mumbles, <i>“Pervert.”</i>");
 			applyDamage(new TypeCollection( { tease: 15 } ), this, target, "minimal");
 		}
 		//Embarassment
@@ -429,7 +430,7 @@
 		//Aphro!
 		public function azraAphroAttack(target:Creature):void
 		{
-			output("<i>“F-f-fuck you!”</i> Azra pulls a vial out of her collection kit and tosses it at [target.combatName]. It shatters into a million pieces, releasing a cloud of pink mist. <i>“Let’s see how you like being too fucking turned on to think!”</i> She jerks her other hand away from your crotch. <i>“Jerk.”</i>");
+			output("<i>“F-f-fuck you!”</i> Azra pulls a vial out of her collection kit and tosses it at " + target.getCombatName() + ". It shatters into a million pieces, releasing a cloud of pink mist. <i>“Let’s see how you like being too fucking turned on to think!”</i> She jerks her other hand away from your crotch. <i>“Jerk.”</i>");
 			//As the PC affecting Aphro Gas attack.
 			CombatAttacks.applyAphroGas(target, 5, 4, false);
 		}

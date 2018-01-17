@@ -856,7 +856,7 @@ public function acceptHorseplowDelPlayButtStuffCunnyPlowWhatAmIEvenWritingAnymor
 	output("\n\nOooh, somebody’s getting lippy, are they? You can’t have this one break in your routine undoing all the work you put into Delilah so far; she’s too perfect just the way she is. So, you ");
 	if(silly) output("grab her by the boypussy");
 	else output("thrust a pair of dry fingers into her well-used cock-holster");
-	output(", making her shriek. Her little dick goes rock hard and, a few seconds of finger-fucking later, you with with unrepentant glee as a little trickle of white pours out of her foreskin-wrapped crown onto the floor.");
+	output(", making her shriek. Her little dick goes rock hard and, a few seconds of finger-fucking later, you grin with unrepentant glee as a little trickle of white pours out of her foreskin-wrapped crown onto the floor.");
 	output("\n\n<i>“Fuckfuckfuckohfuck!”</i> Del cries, instinctively bouncing her big ol’ butt on your fingers. <i>“Okay! Okay! I’m still your little buttslut. I am!”</i>");
 	output("\n\n<i>“Promise?”</i> you whisper into her ear, pushing a third finger in and rubbing against her prostate. Cum just keeps pouring out of her cock, drooling down her thighs as her dick bobs and wiggles.");
 	output("\n\nShe nods emphatically, reaching back and wrapping her hands around your [pc.butt] - she knows better than to touch her dick when it’s her ass getting pleasured. You whisper that maybe she’s still a good girl after all, and slowly slide your fingers out of her ass. She shudders the moment your digits pop free, knees quaking at the sudden vacancy. Poor girl looks like what she really needs right now is a nice, hard dicking... but you relent, for now.");

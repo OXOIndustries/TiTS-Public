@@ -11,6 +11,7 @@
 
 public function burtsBarFunc():Boolean {
 	//Add to Jungle Planet Bar Descriptor, Afternoon -> Closing
+	if(myrOnMhenga()) output("\n\nYou notice several gold myr now count themselves amongst the mead hall’s patrons, and the smell of honey is thick and rich in the air.");
 	if(flags["MET_BURT"] == undefined) addButton(0,"Bar",burtapproach);
 	else addButton(0,"Burt",burtapproach);
 	if(syriAtBurts())
@@ -25,10 +26,11 @@ public function burtsBarFunc():Boolean {
 	roamingBarEncounter(3);
 	if(debug) addButton(4,"Oil Cheat",oilyButt);
 	else vendingMachineButton(4, "XXX");
-	
-	if(hours >= 8 && hours < 16) erikaBarAddendum(5);
 
 	addButton(1,"Watch Screen",stephIrsonBountHunterEpisodeOne,undefined,"Watch Screen","Watch an episode of Steph Irson: Galactic Hunter.");
+	if (kaseAtBurts()) kaseAtBurtsAddendum(5);
+	if(hours >= 8 && hours < 16) erikaBarAddendum(7);
+
 	return false;
 }
 

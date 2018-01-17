@@ -11,6 +11,8 @@
 		
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/amma.png", mimeType = "image/png")]
 		public var Bust_AMMA:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/amma_nude.png", mimeType = "image/png")]
+		public var Bust_AMMA_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/anarrie.png", mimeType = "image/png")]
 		public var Bust_ANARRIE:Class;
@@ -76,6 +78,11 @@
 		public var Bust_CERIA:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ceria_nude.png", mimeType = "image/png")]
 		public var Bust_CERIA_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/chaurmine.png", mimeType = "image/png")]
+		public var Bust_CHAURMINE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/chaurmine_nude.png", mimeType = "image/png")]
+		public var Bust_CHAURMINE_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/chrissy.png", mimeType = "image/png")]
 		public var Bust_CHRISSY:Class;
@@ -353,6 +360,26 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kirila_nude.png", mimeType = "image/png")]
 		public var Bust_KIRILA_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/korgonne_female.png", mimeType = "image/png")]
+		public var Bust_KORGONNE_FEMALE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/korgonne_female_nude.png", mimeType = "image/png")]
+		public var Bust_KORGONNE_FEMALE_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/korgonne_male_gray.png", mimeType = "image/png")]
+		public var Bust_KORGONNE_MALE_GRAY:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/korgonne_male_gray_nude.png", mimeType = "image/png")]
+		public var Bust_KORGONNE_MALE_GRAY_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/korgonne_male_tawny.png", mimeType = "image/png")]
+		public var Bust_KORGONNE_MALE_TAWNY:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/korgonne_male_tawny_nude.png", mimeType = "image/png")]
+		public var Bust_KORGONNE_MALE_TAWNY_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/korgonne_male_white.png", mimeType = "image/png")]
+		public var Bust_KORGONNE_MALE_WHITE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/korgonne_male_white_nude.png", mimeType = "image/png")]
+		public var Bust_KORGONNE_MALE_WHITE_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/black_void_engineer.png", mimeType = "image/png")]
 		public var Bust_KQ2ENGINEER:Class;
 		public var Bounds_KQ2ENGINEER:Rectangle = new Rectangle(33, 11, 54, 64);
@@ -472,6 +499,8 @@
 		
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ogram.png", mimeType = "image/png")]
 		public var Bust_OGRAM:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ogram_nude.png", mimeType = "image/png")]
+		public var Bust_OGRAM_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/pippa.png", mimeType = "image/png")]
 		public var Bust_PIPPA:Class;
@@ -627,6 +656,8 @@
 		{
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/amma.png", mimeType = "image/png")]
 			public var Full_AMMA:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/amma_nude.png", mimeType = "image/png")]
+			public var Full_AMMA_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/anarrie.png", mimeType = "image/png")]
 			public var Full_ANARRIE:Class;
@@ -691,6 +722,11 @@
 			public var Full_CERIA:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ceria_nude.png", mimeType = "image/png")]
 			public var Full_CERIA_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/chaurmine.png", mimeType = "image/png")]
+			public var Full_CHAURMINE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/chaurmine_nude.png", mimeType = "image/png")]
+			public var Full_CHAURMINE_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/chrissy.png", mimeType = "image/png")]
 			public var Full_CHRISSY:Class;
@@ -961,6 +997,24 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kirila_nude.png", mimeType = "image/png")]
 			public var Full_KIRILA_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_female.png", mimeType = "image/png")]
+			public var Full_KORGONNE_FEMALE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_female_nude.png", mimeType = "image/png")]
+			public var Full_KORGONNE_FEMALE_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_male_gray.png", mimeType = "image/png")]
+			public var Full_KORGONNE_MALE_GRAY:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_male_gray_nude.png", mimeType = "image/png")]
+			public var Full_KORGONNE_MALE_GRAY_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_male_tawny.png", mimeType = "image/png")]
+			public var Full_KORGONNE_MALE_TAWNY:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_male_tawny_nude.png", mimeType = "image/png")]
+			public var Full_KORGONNE_MALE_TAWNY_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_male_white.png", mimeType = "image/png")]
+			public var Full_KORGONNE_MALE_WHITE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_male_white_nude.png", mimeType = "image/png")]
+			public var Full_KORGONNE_MALE_WHITE_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/black_void_engineer.png", mimeType = "image/png")]
 			public var Full_KQ2ENGINEER:Class;
 
@@ -1072,6 +1126,8 @@
 			
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ogram.png", mimeType = "image/png")]
 			public var Full_OGRAM:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ogram_nude.png", mimeType = "image/png")]
+			public var Full_OGRAM_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/pippa.png", mimeType = "image/png")]
 			public var Full_PIPPA:Class;

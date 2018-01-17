@@ -663,7 +663,7 @@ public function chillWithSylvie():void
 	//3 - Tech
 	else if(select == 3)
 	{	
-		if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined) options.push(1);
+		if(flags["UNLOCKED_JUNKYARD_PLANET"] >= 2) options.push(1);
 		if(flags["SEXBOT_QUEST_STATUS"] == 3) options.push(2);
 		if(pexigaRecruited()) options.push(3);
 		if(CodexManager.entryUnlocked("Gold Myr")) options.push(4);
@@ -674,7 +674,7 @@ public function chillWithSylvie():void
 		{
 			output("Tarkus itself fits the bill - two half planetoids bound together by a sophisticated gravity tether.");
 			if(completedStellarTetherGood()) output(" Those pirates could’ve wiped all the inhabitants if you hadn’t stopped them!");
-			else output("It’s a shame the pirate’s bomb wiped it off the map. There’s nothing more than a metal rich asteroid field to mark where it used to be.");
+			else output(" It’s a shame the pirate’s bomb wiped it off the map. There’s nothing more than a metal rich asteroid field to mark where it used to be.");
 		}
 		else if(subSelect == 2) output("A rogue AI-D on Tarkus was going to overrun the planet, maybe even the galaxy, with deranged sex-bots. You’d read about similar things in the history books in school but never expected to encounter such a thing in real life.");
 		else if(subSelect == 3) output("How a mad scientist set up a shop on Tarkus as a front for all kinds of perverted technology. The bizarre and depraved machinery you saw on your quest to <i>“fix”</i> the Pexiga was unlike anything else out there.");
@@ -1406,7 +1406,7 @@ public function sylvieSexMenu():void
 		}
 		else addDisabledButton(0,"Mount Pussy","Mount Pussy","You need to be some kind of centaur-like creature for this.");
 
-		if(pc.biggestCockLength() >= 12) addButton(1,"TittyBlow",tittyBlow,undefined,"Titty Blow","Your your dick wet in Sylvie’s drizzling pussy, then stuff it between her tits until you’re blowing a load down her throat.");
+		if(pc.biggestCockLength() >= 12) addButton(1,"TittyBlow",tittyBlow,undefined,"Titty Blow","Get your dick wet in Sylvie’s drizzling pussy, then stuff it between her tits until you’re blowing a load down her throat.");
 		else addDisabledButton(1,"TittyBlow","TittyBlow","Your penis is too short to truly enjoy the expanse of cleavage that Sylvie offers. Come back when your largest member is 12 inches or longer.");
 	}
 	else
@@ -1819,7 +1819,7 @@ public function tittyBlow():void
 	//Dick 5" thick or more.
 	else
 	{
-		output("\n\n<i>“You asked for it.”</i> Hefting your enormous slab of cock, you awkwardly position the the tip of your gigantic boner against a cunt that suddenly seems far too small for it.");
+		output("\n\n<i>“You asked for it.”</i> Hefting your enormous slab of cock, you awkwardly position the tip of your gigantic boner against a cunt that suddenly seems far too small for it.");
 		output("\n\nSylvie shivers from the tip of her fluffy tail all the way to her luscious locks. <i>“I can take it.”</i>");
 		output("\n\nPutting her words to the test, you thrust ahead. There’s almost no give at first. Her pussy might as well be a brick wall. Then, Sylvie moans and, with a shudder, gives way to your [pc.cock " + x + "]. Her sodden entrance dilates once, not enough, but close. You shove again, grunting with the effort, and Sylvie’s purple pussy opens up for you like a blooming flower. It does so reluctantly, perhaps even if with a bit of pain, but it does so all the same. She’s wet enough that as soon as it does, you slip a whole foot inside in a single stroke, spearing her, stretching her bestial channel wider than it has ever been before.");
 		output("\n\n<i>“Fu-fuck, no I can’t!”</i> the moose-woman cries, tossing her hair. It catches on her jutting, pink nipples. <i>“Too much!”</i>");
@@ -2232,7 +2232,7 @@ public function cuffnFuckSylviePartDues():void
 
 	if(InCollection(pc.girlCumType,[GLOBAL.FLUID_TYPE_CHOCOLATE_MILK,GLOBAL.FLUID_TYPE_HONEY,GLOBAL.FLUID_TYPE_STRAWBERRY_MILK,,GLOBAL.FLUID_TYPE_NECTAR,GLOBAL.FLUID_TYPE_VANILLA,GLOBAL.FLUID_TYPE_CHOCOLATE_CUM,GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT,GLOBAL.FLUID_TYPE_FRUIT_CUM,GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM,GLOBAL.FLUID_TYPE_EGGNOG])) 
 	{
-		output("\n\n<i>“You’re so sweet!”</i> she exclaims with giddy excitement, when she finally pulls her [pc.girlcumColor]-smeared mouth away from your tenderized sex. <i>“Like a ");
+		output("\n\n<i>“You’re so sweet!”</i> she exclaims with giddy excitement, when she finally pulls her [pc.girlCumColor]-smeared mouth away from your tenderized sex. <i>“Like a ");
 		if(pc.girlCumType == GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM || pc.girlCumType == GLOBAL.FLUID_TYPE_FRUIT_CUM) output("glass of fruit juice");
 		else if(pc.girlCumType == GLOBAL.FLUID_TYPE_HONEY) output("pot of honey");
 		else if(pc.girlCumType == GLOBAL.FLUID_TYPE_CHOCOLATE_CUM || pc.girlCumType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) output("hot chocolate");
@@ -2241,7 +2241,7 @@ public function cuffnFuckSylviePartDues():void
 	}
 	else
 	{
-		output("\n\n<i>“Mmm,”</i> she grins, [pc.girlcumColor] fluid smeared across her chin. <i>“Nothing like some refreshing girl juice after tying one on, am I right?");
+		output("\n\n<i>“Mmm,”</i> she grins, [pc.girlCumColor] fluid smeared across her chin. <i>“Nothing like some refreshing girl juice after tying one on, am I right?");
 		if(pc.wettestVaginalWetness() >= 4) output(" And you are soooo juicy, wow! You’re pretty much everything I want in a cunt toy, you know that?");
 		output("”</i> Without pausing for an answer she greedily shoves her head back between your thighs, nose buried in your mons as she attacks your [pc.clits] with insistent flicks of her tongue and smooches of her lips.");
 	}
@@ -2505,24 +2505,28 @@ public function sylvieRutFunPart3():void
 	output("\n\n<i>“Ahhh~!”</i> Sylvie cries. Her pussy gushes and grabs hold of you squeezing. It’s too much for you to endure, and the release you’ve been chasing since you smelled her so long ago finally claws its way out of your belly with wild spasms of pleasure. Your whole body shakes, every muscle taut, every nerve afire with bliss");
 	if(pc.balls > 1) output(", your [pc.balls] audibly sloshing as they disgorge their virile payload");
 	output(". Your [pc.cock " + x + "] feels like an erupting volcano, so soaked in red-hot liquid that you can scarcely tell your own ejaculate from the sea of Sylvie’s slutty secretions.");
+	
+	processTime(44);
+	var cumQ:Number = pc.cumQ();
+	
 	output("\n\nThe titanic moose-taur grabs your hands off her ass and squeezes your palms in hers, looking you in the eye as you orgasm. She’s smiling wide, watching your face with rapt attention as you release jet after jet inside her");
-	if((pc.cumQ() >= 500 && !pc.hasKnot(x)) || (pc.cumQ() >= 5000 && pc.hasKnot(x))) output(", more than enough to backflow into the pool");
+	if((cumQ >= 500 && !pc.hasKnot(x)) || (cumQ >= 5000 && pc.hasKnot(x))) output(", more than enough to backflow into the pool");
 	output(". <i>“Keep at it, stud,”</i> she whispers encouragingly. <i>“A little more cum and you’ll get me soooo pregnant.”</i> Her cunt rhythmically contracts and relaxes, milking you for more. <i>“Oooh, you’re doing it, you’re knocking me up!”</i> Sylvie squeezes your hands even tighter, and somehow you feel it echoed deep inside you, squeezing out the last few dregs of seed that your body can offer.");
 	output("\n\nYou sigh heavily, then slump weakly over Sylvie’s ass. Cum trickles down your legs, and for once since going into rut, you feel completely sated.");
-	processTime(44);
+	
 	pc.orgasm();
 	pc.ballFullness = 0;
 	clearMenu();
-	addButton(0,"Next",sylvieRutFunPart4);
+	addButton(0,"Next",sylvieRutFunPart4, cumQ);
 }
 
-public function sylvieRutFunPart4():void
+public function sylvieRutFunPart4(cumQ:Number = 0):void
 {
 	clearOutput();
 	showSylvie();
 	output("Sylvie pushes you off her into the pool");
 	applyPussyDrenched(pc);
-	if(pc.cumQ() >= 3000) 
+	if(cumQ >= 3000) 
 	{
 		output(", and a tide of [pc.cumGem] sex-juice pours out over you, soaking you further");
 		applyCumSoaked(pc);

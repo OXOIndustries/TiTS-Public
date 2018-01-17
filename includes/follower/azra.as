@@ -295,8 +295,8 @@ public function azraCrewBlurbs(button:Number):String
 	}
 	else if(pc.hasStatusEffect("Azra CD"))
 	{
-		buffer += "\n\nAzra isn't available at the moment. You'll have to come back later.";
-		addDisabledButton(button,"Azra","Azra","Azra isn't available. Come back later.");
+		buffer += "\n\nAzra isn’t available at the moment. You’ll have to come back later.";
+		addDisabledButton(button,"Azra","Azra","Azra isn’t available. Come back later.");
 		return buffer;
 	}
 	//Post Coital Relationship Talk
@@ -365,9 +365,9 @@ public function azraMenu():void
 	if(!azraProfessional() && flags["AZRA_SEXED"] != undefined)
 	{
 		if(pc.lust() >= 33) addButton(4,"Sex",azraSexApproach);
-		else addDisabledButton(4,"Sex","Sex","You aren't really interested in sex right now.");
+		else addDisabledButton(4,"Sex","Sex","You aren’t really interested in sex right now.");
 	}
-	else addDisabledButton(4,"Sex","Sex","Azra isn't interested in sex with you right now.");
+	else addDisabledButton(4,"Sex","Sex","Azra isn’t interested in sex with you right now.");
 	addButton(13,"Leave Crew",talkToAzraAboutLeavingTheCrew);
 	addButton(14,"Leave",crew);
 }
@@ -467,23 +467,128 @@ public function talkToAzraAboutHerSex():void
 {
 	clearOutput();
 	showAzra();
-	output("<i>“So which sex are you? You don’t exactly strike me as a male, but that armor could be hiding quite a lot.”</i> ");
-	if(pc.isNice()) output("You shrug apologetically. <i>“Not that it matters, but it’s good to know.”</i>");
-	else if(pc.isMischievous()) output("You look at her crotch and waggle your eyebrows. <i>“Quite a lot.”</i>");
-	else output("You openly glance at her crotch plate. <i>“A captain needs to know his crew.”</i>");
-	output("\n\nAzra gives you a sly look. <i>“That’s a very personal question to ask, Captain Steele.”</i> She walks around you in a slow circle, a predatory glint in her eye. <i>“The sort of question you’d only ask if you were a bigot... or you meant to bed me.”</i> Her tail wraps around your leg. <i>“I doubt you’re a bigot. So the question is, does a little lady-cock put the kibosh on your romantic plans, or are you afraid to spend a night all alone with female genitalia?”</i>");
-	output("\n\nYou shrug. <i>“You answer first.”</i>");
-	output("\n\nAzra chuckles and steps back. <i>“I’m a hermaphrodite, if you must know, and my height isn’t the only thing rising above suula averages.”</i> She sits down in a chair, hands on her knees. <i>“But penis or not, I’ll have you know that I am a lady first and foremost. It’s the mind that makes a man or a woman, not what’s swinging between his or her legs. Now that I’ve answered your questions, why don’t you answer mine.”</i> She leans forward, chin on her knuckles, waiting.");
-	output("\n\nBeing a hermaphrodite - great, okay, or weird?");
-	flags["AZRA_SEX_KNOWN"] = 1;
-	processTime(5);
-	//[Great] [Okay] [Weird]
-	clearMenu();
-	addButton(0,"Great",talkToAzraAboutHerSexGreat);
-	addButton(1,"Okay",talkToAzraAboutHerSexOkay);
-	addButton(2,"Weird",talkToAzraAboutHerSexWeird);
+	if(flags["AZRA_SEX_KNOWN"] == undefined)
+	{
+		output("<i>“So which sex are you? You don’t exactly strike me as a male, but that armor could be hiding quite a lot.”</i> ");
+		if(pc.isNice()) output("You shrug apologetically. <i>“Not that it matters, but it’s good to know.”</i>");
+		else if(pc.isMischievous()) output("You look at her crotch and waggle your eyebrows. <i>“Quite a lot.”</i>");
+		else output("You openly glance at her crotch plate. <i>“A captain needs to know his crew.”</i>");
+		output("\n\nAzra gives you a sly look. <i>“That’s a very personal question to ask, Captain Steele.”</i> She walks around you in a slow circle, a predatory glint in her eye. <i>“The sort of question you’d only ask if you were a bigot... or you meant to bed me.”</i> Her tail wraps around your leg. <i>“I doubt you’re a bigot. So the question is, does a little lady-cock put the kibosh on your romantic plans, or are you afraid to spend a night all alone with female genitalia?”</i>");
+		output("\n\nYou shrug. <i>“You answer first.”</i>");
+		output("\n\nAzra chuckles and steps back. <i>“I’m a hermaphrodite, if you must know, and my height isn’t the only thing rising above suula averages.”</i> She sits down in a chair, hands on her knees. <i>“But penis or not, I’ll have you know that I am a lady first and foremost. It’s the mind that makes a man or a woman, not what’s swinging between his or her legs. Now that I’ve answered your questions, why don’t you answer mine.”</i> She leans forward, chin on her knuckles, waiting.");
+		output("\n\nBeing a hermaphrodite - great, okay, or weird?");
+		flags["AZRA_SEX_KNOWN"] = 1;
+		processTime(5);
+		//[Great] [Okay] [Weird]
+		clearMenu();
+		addButton(0,"Great",talkToAzraAboutHerSexGreat);
+		addButton(1,"Okay",talkToAzraAboutHerSexOkay);
+		addButton(2,"Weird",talkToAzraAboutHerSexWeird);
+	}
+	else if(azraProfessional() || flags["AZRA_SEXED"] == undefined)
+	{
+		output("<i>“Being a herm... what’s that like?”</i>");
+		output("\n\nYou know all too well, of course, but you’d like to hear about her experiences.");
+		output("\n\nJust because you aren’t looking to bed her doesn’t mean you aren’t curious about her life.");
+		output("\n\nAzra leans back, a slow smile spreading across her lips. <i>“You surprise me, [pc.name] Steele. I didn’t expect you’d tread into this topic, ");
+		if(azraProfessional()) output("considering the nature of our relationship");
+		else output("considering the immaturity of our working relationship");
+		output(". Very well.”</i> She crosses her legs demurely. <i>“It’s not that different from being a normal woman. Of course there are complications. One must be careful while crossing one’s legs, for example, especially when you’re one of the more well-endowed ladies in the sector.”</i> She taps her chin. <i>“Care with hygene is important");
+		if(pc.isHerm()) output(", as you should know.");
+		else output(", as any herm should know.");
+		output(" More parts down there mean more places to clean in the shower.”</i>");
+		output("\n\nYou nod. <i>“It hasn’t caused issue in any other aspects of your life?”</i>");
+		output("\n\n<i>“I don’t believe so. You haven’t thrown me off your ship yet, for example. It’s wide, weird universe out there. It’d be foolish to discount someone just because they were born with a little extra between the knees,”</i> Azra’s cheeks redden. <i>“Perhaps we could talk about something less personal now?”</i>");
+		processTime(5);
+		clearMenu();
+		addButton(0,"College",talkToAzraAboutCollege);
+		addButton(1,"Her Job",talkToAzraAboutHerJorb);
+		addButton(2,"Discoveries",talkToAzraAboutDiscoveries);
+		addButton(14,"Back",azraTalk,true);
+	}
+	else
+	{
+		output("<i>“Do you like being a herm?”</i>");
+		output("\n\nAzra’s eyes twinkle mischievously. <i>“I do.”</i> She shifts restlessly, crossing then recrossing her thighs. <i>“It can be troublesome, being burdened with the urges and desires of multiple sexes, but it can also be a blessing, allowing you to experience the best every partner has to offer.”</i> The suula fidgets further, tail wiggling behind her. <i>“You seemed to appreciate my attributes in the shower.”</i> A rose-hued blush creeps over her cheeks. <i>“And I most definitely appreciated being equipped to please.”</i> She gasps at her own lewdness. <i>“How salacious!”</i>");
+		//Bimbo
+		if(pc.isBimbo()) output("\n\nYou tilt your head and lick your lips, staring her in the eyes. <i>“You love it.”</i>");
+		//Bro
+		else if(pc.isBro()) output("\n\nYou adjust your crotch, staring her in the eyes. <i>“You love it.”</i>");
+		//Nice
+		else if(pc.isNice()) output("\n\nYou beam back at her. <i>“I’m not complaining.”</i>");
+		//Mischievous
+		else if(pc.isMischievous()) output("\n\nYou wink. <i>“I like it when you get dirty!”</i>");
+		//Hard
+		else output("\n\nYou chuckle. <i>“Not half as salacious as what I want to do to you.”</i>");
+		output("\n\nLooking away, the suula adjusts her hair, peeking back at you out from under an sunset orange lock. <i>“You’re so naughty! If I didn’t know any better, I’d say you were trying to coax me into sex again!”</i> She bites her lip and tugs at her heavy armor. <i>“You aren’t, are you?”</i>");
+		processTime(5);
+		clearMenu();
+		//Yes/No
+		addButton(0,"Yes",yesAzraLetsBang);
+		addButton(1,"No",noSexWithAzraTalk);
+	}	
 }
 
+//No sex
+public function noSexWithAzraTalk():void
+{
+	clearOutput();
+	showAzra();
+	output("<i>“Of course not!”</i> You feign indignation.");
+	output("\n\nThe gold-skinned scientist nods. <i>“Right. We’re both responsible adults. Just because we’re talking about having sex with each other doesn’t mean we’re going to right this minute.”</i> She looks at a nearby display to check the time. <i>“We can do it later. When you have the time, Captain.”</i>");
+	//On CD
+	if(pc.hasStatusEffect("Azra Sex CD"))
+	{
+		output("\n\n<i>“");
+		if(pc.isBimbo()) output("For sure! Once we wait long enough or whatever. I know you’re supes busy, guurrrrl!");
+		else if(pc.isBro()) output("Definitely. Mark your calender.");
+		else output("Indeed. I’d never waste your time with such carnal pursuits.");
+		output("”</i>");
+	}
+	//Not on CD
+	else
+	{
+		output("\n\nBy your estimation, she’s ready for another romp between the sheets right now, but you have more questions to ply her with. <i>“Of course.”</i>");
+		//Merge
+		output("\n\nFluttering her wings, Azra clears her throat. <i>“Perhaps another topic then? Something to fortify the mind over the libido?”</i>");
+	}
+	processTime(1);
+	clearMenu();
+	addButton(0,"College",talkToAzraAboutCollege);
+	addButton(1,"Her Job",talkToAzraAboutHerJorb);
+	addButton(2,"Discoveries",talkToAzraAboutDiscoveries);
+	addButton(14,"Back",azraTalk,true);
+}
+
+//Yes
+public function yesAzraLetsBang():void
+{
+	clearOutput();
+	showAzra();
+
+	output("<i>“What if I am?”</i>");
+	//CD
+	if(pc.hasStatusEffect("Azra Sex CD")) 
+	{
+		output("\n\nAzra glances at a nearby clock, then winces. <i>“We shouldn’t...”</i>");
+		output("\n\n<i>“But?”</i>");
+		output("\n\n<i>“No.”</i> Azra resolutely shakes her head. <i>“I want to, trust me, but I am not some silly, hormonal suula with nothing on her mind but her next lay.”</i> She straightens her back, wings fluttering pridefully. <i>“I didn’t spend years in college pursuing a dream job just so I could be the live-in concubine of the galaxy’s most " + pc.mf("wonderful","lovely") + " Rusher. I’m going to complete a day’s work, and then my dear...”</i> An army of razor sharp teeth appear between her grinning, ebon lips. <i>“...I’ll be ready to lose a night between your legs. Until then, perhaps we could discuss something less... exciting?”</i>");
+		processTime(1);
+		clearMenu();
+		addButton(0,"College",talkToAzraAboutCollege);
+		addButton(1,"Her Job",talkToAzraAboutHerJorb);
+		addButton(2,"Discoveries",talkToAzraAboutDiscoveries);
+		addButton(14,"Back",azraTalk,true);
+	}
+	//No CD
+	else
+	{
+		output("\n\nAzra glances at a nearby clock, then devilishly flashes her teeth. <i>“Then you’d better be ready to back up your boasting.”</i> She tugs a fastener on her armor, letting a heavy plate fall to the floor. <i>“Because I’ve been counting down the minutes until we could do this again.”</i> She shakes off another piece, revealing the perfect golden skin beneath. <i>“So what do you say, Captain?”</i> A lust-fattened suula-cock flops free, backed up by shining balls who look to have bathed in pussyjuice.");
+		processTime(1);
+		pc.lust(10);
+		azraSexMenu();
+	}
+}
 //Great
 public function talkToAzraAboutHerSexGreat():void
 {
@@ -554,7 +659,10 @@ public function talkToAzraAboutHer():void
 	//Else
 	else output("<i>“I have some questions about you, actually.”</i>");
 	//Merge
-	output("\n\n<i>“Me?”</i> Azra leans back and gestures at her chest in disbelief. <i>“You want to know more about little ol’ me?”</i> Her sable lips take on a small smile, her cheeks flushing a richer gold than before. <i>“Very well. I’m an open book, so long as you restrain yourself to </i>proper<i> queries. I have heard of the sorts of hijinks you rushers get into out here, after all.”</i>");
+	output("\n\n<i>“Me?”</i> Azra leans back and gestures at her chest in disbelief. <i>“You want to know more about little ol’ me?”</i> Her sable lips take on a small smile, her cheeks flushing a richer gold than before. <i>“Very well. I’m an open book, so long as you restrain yourself to </i>proper<i> queries. ");
+	if(azraProfessional() || flags["AZRA_SEXED"] == undefined) output("I have heard of the sorts of hijinks you rushers get into out here, after all.");
+	else output("I can’t have you disrupting my work, no matter how talented you may be beneath the sheets.")
+	output("”</i>");
 
 	processTime(2);
 	//[Her Race] [Her Job] [Her Age] [Her Sex]
@@ -572,7 +680,7 @@ public function talkToAzraAboutHerRace():void
 	clearOutput();
 	showAzra();
 	//Read Codex
-	if(CodexManager.entryViewed("Suula") || flags["AZRA_RACE_TALK"] != undefined) 
+	if(CodexManager.entryViewed("Suulas") || flags["AZRA_RACE_TALK"] != undefined) 
 	{
 		output("<i>“You’re a suula, right? What’s that like?”</i>");
 		//-conjoins into [Suula] talk.
@@ -624,6 +732,13 @@ public function talkToAzraAboutSuula(skippy:Boolean = false):void
 	output("\n\nAzra chuckles dryly, dragging her fingers through her hair while she gathers her thoughts. <i>“Tough to say? What’s it feel like to be " + indefiniteArticle(pc.race()) + "? Normal, I guess.”</i> She taps her chin with a finger. <i>“I get some strange looks from the odd sheltered ausar, even the occasional insult from a backwards terran.”</i> Ticking off her fingers, the suula begins to make a list of gripes. <i>“Then you have the idiots who think that my race’s reputation for polyamory means I’ll spread my legs at the first sight of dick. I won’t, and I don’t. If I do ever take another stud, it’ll be because he’s a man of worth and substance.”</i> Azra shakes her head. <i>“I doubt that’ll ever happen.”</i>");
 	output("\n\nYou prod her for more information on her species. Surely she has something to share besides gripes!");
 	output("\n\n<i>“Oh, well we’re amazing swimmers and half-decent fliers if I do say so myself. I’m a bit out of practice in the air, but I’m told I look more at home in the water than on the land. The wings are actually great for maneuverability - additional control surfaces, even if the extra drag will keep me from winning a race with any other aquatic species.”</i> Azra wraps her wings around herself and happily strokes them. <i>“They get in the way sometimes, but you can’t beat the freedom they offer - or the aesthetics. More than once I’ve seen a nun equate me with an angel.”</i> She shakes her head disbelievingly. <i>“It’s hard to let them down once they get so excited.”</i>");
+	
+	if(!CodexManager.entryUnlocked("Suulas"))
+	{
+		output("\n\nIn the background, your Codex quietly announces that it has compiled an article on the race for your later perusal.");
+		CodexManager.unlockEntry("Suulas");
+	}
+	
 	processTime(4);
 	clearMenu();
 	//[Daughters] [Stud] [Religion] [Polyamory] [Her Sex]
@@ -733,26 +848,42 @@ public function askAzraOutOnADate():void
 	showAzra();
 	output("<i>“Why not go on a date with me?”</i>");
 	output("\n\nIf you thought you had seen Azra blush before, the crimson hue suffusing her cheeks proves you haven’t, not really. She turns almost incandescent, her wings feathers visibly ruffling with shocked nervousness.");
-	output("\n\n<i>“My presence here already imposes on you so much. A date would be too much,”</i> she says. <i>“Besides, we are strapped for time, are we not? If we delay too long, others will claim the juiciest research, and you will miss your chance for glory");
-	if(9999 == 9999) output(" and fame");
-	else output(", inheritance, and fame");
-	output(". I will not let you miss a once in a lifetime opportunity, Captain [pc.name].”</i> Azra nods like someone who has worked tirelessly to convince herself of a difficult but necessary truth. <i>“But I’m open to dinner once we’ve both had time to settle down a bit, assuming you haven’t satisfied yourself on the fruits of the frontier.”</i> She waggles her eyebrows all too knowingly.");
-	output("\n\nYou sputter for a response, sending Azra into uproarious laughter.");
-	output("\n\n<i>“Just because I’ve had kids doesn’t mean I’ve forgotten how kids are made. A young adventurer like yourself is bound to get into more than a few trysts, especially one bold enough to date a woman twice [pc.hisHer] age.”</i>");
-	var crewFucks:Array = [];
-	if(annoIsCrew() && flags["ANNO_SEXED"] != undefined) crewFucks.push("Anno");
-	if(kiroIsCrew() && kiroSexed()) crewFucks.push("Kiro");
-	if(seraIsCrew()) crewFucks.push("Sera");
-	if(syriIsCrew() && flags["FUCKED_SYRI_COUNT"] != undefined) crewFucks.push("Syri");
-	if(reahaIsCrew()) crewFucks.push("Reaha");
-	if(yammiIsCrew() && flags["SEXED_YAMMI"] != undefined) crewFucks.push("Yammi");
-	if(pexigaIsCrew()) crewFucks.push("[pexiga.name]");
-	if(shekkaIsCrew() && flags["TIMES_SEXED_SHEKKA"] != undefined) crewFucks.push("Shekka");
-	if(crewFucks.length > 0)
+	if(azraProfessional() || flags["AZRA_SEXED"] == undefined)
 	{
-		output(" She gestures across the hall. <i>“And don’t think I don’t know what sorts of things you get up to with " + crewFucks[rand(crewFucks.length)] + ". The ability to please a partner is a very desirable trait in a mate.”</i> Her blush returns, though more muted on her confident smile. <i>“After the rush, [pc.name]...”</i>");
+		output("\n\n<i>“My presence here already imposes on you so much. A date would be too much,”</i> she says. <i>“Besides, we are strapped for time, are we not? If we delay too long, others will claim the juiciest research, and you will miss your chance for glory");
+		output(" and fame");
+		output(". I will not let you miss a once in a lifetime opportunity, Captain [pc.name].”</i> Azra nods like someone who has worked tirelessly to convince herself of a difficult but necessary truth. <i>“But I’m open to dinner once we’ve both had time to settle down a bit, assuming you haven’t satisfied yourself on the fruits of the frontier.”</i> She waggles her eyebrows all too knowingly.");
+		output("\n\nYou sputter for a response, sending Azra into uproarious laughter.");
+		output("\n\n<i>“Just because I’ve had kids doesn’t mean I’ve forgotten how kids are made. A young adventurer like yourself is bound to get into more than a few trysts, especially one bold enough to date a woman twice [pc.hisHer] age.”</i>");
+		var crewFucks:Array = [];
+		if(annoIsCrew() && flags["ANNO_SEXED"] != undefined) crewFucks.push("Anno");
+		if(kiroIsCrew() && kiroSexed()) crewFucks.push("Kiro");
+		if(seraIsCrew()) crewFucks.push("Sera");
+		if(syriIsCrew() && flags["FUCKED_SYRI_COUNT"] != undefined) crewFucks.push("Syri");
+		if(reahaIsCrew()) crewFucks.push("Reaha");
+		if(yammiIsCrew() && flags["SEXED_YAMMI"] != undefined) crewFucks.push("Yammi");
+		if(pexigaIsCrew()) crewFucks.push("[pexiga.name]");
+		if(shekkaIsCrew() && flags["TIMES_SEXED_SHEKKA"] != undefined) crewFucks.push("Shekka");
+		if(crewFucks.length > 0)
+		{
+			output(" She gestures across the hall. <i>“And don’t think I don’t know what sorts of things you get up to with " + crewFucks[rand(crewFucks.length)] + ". The ability to please a partner is a very desirable trait in a mate.”</i> Her blush returns, though more muted on her confident smile. <i>“After the rush, [pc.name]...”</i>");
+		}
+		else output(" She smiles confidently. <i>“Surely you have questions besides my relationship status?”</i>");
 	}
-	else output(" She smiles confidently. <i>“Surely you have questions besides my relationship status?”</i>");
+	else
+	{
+		output("\n\n<i>“I would adore the chance to share a meal with you, [pc.name], I assure you, but the frontier will not wait for us to spend all our time tied up in interpersonal dalliances,”</i> she says. <i>“Trust me when I say that what we have is beautiful. Instead of lounging in front of a adventure holo, we’re living one. Every time we go out into the wilds, we get to be the first UGC citizens to lay eyes on new species and curiosities.”</i> Her tail swings up to wrap around your back, fins curling over your side affectionately. <i>“When this is all over, you have my permission to take me wherever your heart fancies - within reason.”</i> Her eyes twinkle knowingly. <i>“No whorehouses.”</i>");
+		if(pc.isBimbo()) output("\n\n<i>“Awww man, but those are fuuuuun!”</i>");
+		else if(pc.isBro()) output("\n\n<i>“A real shame, that.”</i>");
+		else if(pc.isNice()) output("\n\n<i>“I’d take you somewhere so much better than that.”</i>");
+		else if(pc.isMischievous()) output("\n\n<i>“No whorehouses. Gotcha. But just for the record, you didn’t say anything about sex arcades.”</i>");
+		else output("\n\n<i>“Like I’d take you anywhere that dumpy.”</i>");
+		output("\n\nA gentle ruffle fills the air as Azra laughs, wings shaking. <i>“The whores would probably offer to pay you for sex, you know. Famous galaxy-explorers with statuesque suula maidens on their arm tend to cut a pretty dashing figure, if I do say so myself.”</i> Azra leers at you for a moment before reining herself in. <i>“I certainly think it’s a good look on you.”</i>");
+		output("\n\nStraightening up, you give Azra your smokiest look. If she thinks you’re eye-candy, you’re going to be the best damned eye-candy she’s seen on this side of the Milky Way.");
+		output("\n\n<i>“Ooh la la!”</i> Azra trills, fanning herself. <i>“You’re something else, but surely you’re interested in more than a date with your resident xenobiologist, however lovely she might be.”</i> She pauses, eyes far away in thought. <i>“You... don’t have to worry I’m going to dance out of your life with a random alien just because I’m a suula. I’m more of a one-person woman, and I’m more than old enough to know that isn’t likely to change. If that was what you were worried about.”</i>");
+		output("\n\nThat’s a relief at least.");
+		output("\n\n<i>“Anything else I can answer?”</i>");
+	}
 
 	processTime(8);
 	clearMenu();
@@ -769,15 +900,18 @@ public function talkToAzraAboutPolyamory():void
 	clearOutput();
 	showAzra();
 	output("You probe for a little more information on polyamory and her race’s apparent take on it.");
-	output("Azra grins wide at this, flashing a forest of dagger-sharp ivory. <i>“This is probably the first question most non-suulas ask about. I’ll give you credit for taking this long to get to it.”</i>");
+	output("\n\nAzra grins wide at this, flashing a forest of dagger-sharp ivory. <i>“This is probably the first question most non-suulas ask about. I’ll give you credit for taking this long to get to it.”</i>");
 	output("\n\n");
 	if(silly) output("You decide not to point out that the game wouldn’t let you select it any earlier.");
-	else output("\n\nYou shrug and explain that you just followed the conversation.");
+	else output("You shrug and explain that you just followed the conversation.");
 	output("\n\n<i>“Well, suulas are a race with three sexes: males, females, and hermaphrodites. As you might imagine, a mix like that can make the dating scene pretty volatile. Not only are there boys and girls, there’s girl-boys in there with a little bit for everybody.”</i> Azra speaks as if explaining a basic fact of life. You suppose, to her, it is. <i>“So most of us wind up being at least a little bit bisexual, if not a lot, which almost invariably leads to having partners who can appeal to our varied interests. Boy meets girl meets dickgirl, or sometimes just boy meets a pair of very close twins.”</i>");
 	output("\n\nYou point out that doesn’t really explain their penchant for polyamory, just bisexuality.");
 	output("\n\n<i>“Be patient. I’m explaining.”</i> Azra boops you on the nose before continuing on. <i>“The other part of it is that we’re quite good at sharing our feelings, especially romantic feelings. When we’re attracted to someone, we get </i>really <i>attracted to them. Most suula are so good at it that they’re capable of feeling that way about more than one person at a time. Don’t get your hopes up too high, though. I’m not nearly as good at it as my schoolmates were.”</i> She shrugs. <i>“When I found my stud, I didn’t do anything but bury him in love, 26 Valderean hours a day, 456 days a year. I think I would’ve been okay with him having someone else, but I only had eyes for him, while I had him.”</i>");
 	output("\n\n<i>“That’s a lot of love.”</i>");
-	output("\n\nThe winged shark-girl sighs dreamily. <i>“It was... Someday I’m going to let myself feel like that again.”</i>");
+	output("\n\nThe winged shark-girl sighs dreamily. <i>“It was... ");
+	if(azraProfessional() || flags["AZRA_SEXED"] == undefined) output("Someday I’m going to let myself feel like that again.");
+	else output("and I’m starting to feel that way again.");
+	output("”</i>");
 	output("\n\nYou ask her how they keep from getting jealous.");
 	output("\n\n<i>“We’re just wired differently than terrans and ausar I guess. Culture may play into it as well. To a suula, love and intimacy are these amazing, wonderful things that are meant to be shared. Why wouldn’t you want someone you love to feel even more of it? Terrans can be so greedy, wanting to keep the love all to themselves.”</i> Azra sighs. <i>“If your boyfriend or girlfriend has true affection for you, another lover isn’t going to stop them from caring about you. It isn’t a finite resource to be hoarded. It’s as limitless as the light from a star.”</i> She pauses, then looks you dead in the eye. <i>“And don’t even get into the mathematical energy output of the sun. I was being metaphorical.”</i>");
 	output("\n\n");
@@ -975,7 +1109,9 @@ public function talkToAzraAboutDiscoveries():void
 	if(pc.libido() < 33) output("\n\nYou give her a neutral nod back.");
 	else if(pc.libido() < 66) output("\n\nYou try not to show the thrill the idea gives you.");
 	else output("You answer with a lewd smile. You’re down for that kind of ‘research.’");
-	output("\n\n<i>“I doubt my college professors expected I would spent so much time investigating plants that fuck the ever-loving shit out of their victims so many years ago, but they’d damn sure give me an A+ for my quality of work.”</i> Azra flashes her teeth at you. <i>“Maybe you could lend me a hand. Sometimes it pays to have a research assistant. Speaking of which... when we’re on a rush planet, maybe you could escort me on an expedition. This armor is great, but I’d feel a lot safer with someone to have my back.”</i>");
+	output("\n\n<i>“I doubt my college professors expected I would spent so much time investigating plants that fuck the ever-loving shit out of their victims so many years ago, but they’d damn sure give me an A+ for my quality of work.”</i> Azra flashes her teeth at you. <i>“Maybe you could lend me a hand. Sometimes it pays to have a research assistant. Speaking of which... when we’re on a rush planet, maybe you could escort me on an");
+	if(flags["AZRA_MHENGAED"] != undefined) output("other");
+	output(" expedition. This armor is great, but I’d feel a lot safer with someone to have my back.”</i>");
 
 	processTime(10);
 	clearMenu();
@@ -1097,7 +1233,7 @@ public function azraSexApproach():void
 		pc.lust(-5);
 		azraMenu();
 		//gray out sex button :3
-		addDisabledButton(4,"Sex","Sex","Azra won't be ready for sex again for another day.");
+		addDisabledButton(4,"Sex","Sex","Azra won’t be ready for sex again for another day.");
 	}
 	//Not on CD
 	else
@@ -1114,7 +1250,7 @@ public function azraSexApproach():void
 		processTime(3);
 		pc.lust(5);
 		//add call out option
-		addButton(5,"Call Out",callOutAzraPanties,undefined,"Call Out","How can she ruin panties if she isn't wearing any?! The universe needs to know.");
+		addButton(5,"Call Out",callOutAzraPanties,undefined,"Call Out","How can she ruin panties if she isn’t wearing any?! The universe needs to know.");
 	}
 }
 
@@ -1216,7 +1352,7 @@ public function azraHyperDocking(x:int):void
 		else if(pc.cocks[x].cType == GLOBAL.TYPE_VULPINE) output("foxy");
 		else if(pc.cocks[x].cType == GLOBAL.TYPE_FELINE) output("kitty");
 		else if(pc.cocks[x].cType == GLOBAL.TYPE_EQUINE) output("horsie");
-		else if(pc.cocks[x].cType == GLOBAL.TYPE_KUITAN) output("'nuki");
+		else if(pc.cocks[x].cType == GLOBAL.TYPE_KUITAN) output("‘nuki");
 		else output("big guy");
 		output(". Steady.”</i> She gathers some of the excessive lubricant in her palm and smears it loving over your [pc.cockHead " + x + "], her fingers pausing briefly to finger the tip.");
 		output("\n\nThe shark-woman’s digits are better at this than they have any right to be. Didn’t you introduce her to urethral play? A low, blissful ");
@@ -1228,7 +1364,7 @@ public function azraHyperDocking(x:int):void
 		else if(pc.cocks[x].cType == GLOBAL.TYPE_VULPINE) output("foxy");
 		else if(pc.cocks[x].cType == GLOBAL.TYPE_FELINE) output("kitty");
 		else if(pc.cocks[x].cType == GLOBAL.TYPE_EQUINE) output("horsie");
-		else if(pc.cocks[x].cType == GLOBAL.TYPE_KUITAN) output("'nuki");
+		else if(pc.cocks[x].cType == GLOBAL.TYPE_KUITAN) output("‘nuki");
 		else output("boy");
 
 		output(",”</i> Azra coos as your member’s errant motions still. You’re not trying to do anything, but your body knows what it wants: it wants to hold still so Azra can fuck you full of suula cum. It throbs mightily in her grasp, so engorged that your heartbeat makes the inner walls rhythmicly squeeze around her fingers.");
@@ -1355,7 +1491,7 @@ public function azraRepeatShowerSexStuff():void
 	clearOutput();
 	showAzra(true);
 	output("<i>“In the shower, just like the first time.”</i>");
-	output("\n\nAzra's tail sways behind her. <i>“Then I'd better hurry off to get the water running, hadn't I?”</i> She prances toward the bathroom, stopping to lean on the doorframe as she looks back, all smiles. <i>“Ooooh, it'll be like roleplay!”</i>");
+	output("\n\nAzra’s tail sways behind her. <i>“Then I’d better hurry off to get the water running, hadn’t I?”</i> She prances toward the bathroom, stopping to lean on the doorframe as she looks back, all smiles. <i>“Ooooh, it’ll be like roleplay!”</i>");
 	output("\n\nYou nod to the turned-on shark, and she vanishes into the bathroom. Idly toying with yourself, you wait a minute for her to get the water going, just like the first time. This is going to be fun...");
 	clearMenu();
 	addButton(0,"Next",followAzraForFirstTimeBango);
@@ -1418,7 +1554,7 @@ public function azraMorningFucko():void
 	{
 		output("\n\n<i>“Still sleeping after all that?”</i> Azra quips, wrapping a hand around [pc.oneCock]");
 		if(pc.totalCocks() > 1) output(" while teasing another with her pinky finger");
-		output(". <i>“I must be time for your wakeup call...”</i> Warm lips seal your [pc.cockHead " + x + "] in delicious suction, joined by the back-and-forth journey of a slippery tongue across your urethra.");
+		output(". <i>“It must be time for your wakeup call...”</i> Warm lips seal your [pc.cockHead " + x + "] in delicious suction, joined by the back-and-forth journey of a slippery tongue across your urethra.");
 		output("\n\nYour body responds for you, stiffening with pleasurable anticipation, your budding tumescence forcing inch after inch into Azra’s suckling maw. Her eyes flick up at you, a bemused twinkle in her eye. She slurps whorishly");
 		if(pc.cocks[x].cLength() < 8)
 		{

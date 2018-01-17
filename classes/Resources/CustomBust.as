@@ -5,6 +5,8 @@ package classes.Resources
 	import flash.net.*;
 	import flash.utils.getQualifiedClassName;
 	import classes.kGAMECLASS;
+	import flash.system.Security;
+	import classes.Engine.Interfaces.output;
 	
 	/**
 	 * ...
@@ -53,10 +55,18 @@ package classes.Resources
 				bustObj.smoothing = true;
 				this.addChild(bustObj);
 				
-				if ( Enabled && info.flags == 0 ) // never tried to load before
-				{ tryLoad(); }
+				if (Enabled && !IsRemoteSandbox && info.flags == 0) // never tried to load before
+				{ 
+					tryLoad(); 
+				}
 			}
 		}
+		
+		private function get IsRemoteSandbox():Boolean
+		{
+			return Security.sandboxType == Security.REMOTE;
+		}
+		
 		private function tryLoad():void
 		{
 			var loader:Loader = new Loader();

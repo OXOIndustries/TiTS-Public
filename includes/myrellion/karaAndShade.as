@@ -427,7 +427,7 @@ public function shadeSexMenu(intro:Boolean = false):void
 	
 	//[Rim & Wank] (if PC has no cunt; else) [Lick & Wank]
 	//PC must have taken Shade’s hardlight strapon at least once. Must be effeminate enough to use female pronouns and possess a cock. Is a [vagOrAss] scene.
-	if (pc.hasCock() && pc.mf("he","She") == "She" && flags["TAKEN_SHADES_HARDLIGHT"] != undefined)
+	if (pc.hasCock() && pc.mf("he","she", true) == "she" && flags["TAKEN_SHADES_HARDLIGHT"] != undefined)
 	{
 		if (pc.hasVagina()) addButton(2,"Lick & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Lick & Wank","Get licked and wanked.");
 		else addButton(2,"Rim & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Rim & Wank","Get rimmed and wanked off.");
@@ -790,7 +790,7 @@ public function cuntTailShadeFux():void
 
 //[Take Hardlight]
 //vagOrAss. PC gives tailcunt oral. 
-public function takeShadesHardlightPenisInYerBoot():void
+public function takeShadesHardlightPenisInYerBoot(xmasVers:Boolean = false):void
 {
 	clearOutput();
 	showShade(true);
@@ -840,7 +840,12 @@ public function takeShadesHardlightPenisInYerBoot():void
 	IncrementFlag("SEXED_SHADE");
 	IncrementFlag("TAKEN_SHADES_HARDLIGHT");
 	clearMenu();
-	addButton(0,"Next",shadePostCoitusHangouts);
+	if(xmasVers)
+	{
+		processTime(8*60);
+		addButton(0,"Next",shadeCleanupEpilogue);
+	}
+	else addButton(0,"Next",shadePostCoitusHangouts);
 }
 
 //[Rim & Wank] (if PC has no cunt; else) [Lick & Wank]
@@ -878,10 +883,8 @@ public function rimAndWankOrLickAndWankWhoKnowsSloot():void
 	if(pc.legCount > 1) output(" between");
 	else output(" against");
 	output(" your [pc.legOrLegs]. Her fingers brush across your length, a simple touch that has you from half mast to diamond hard by the time she’s reached your [pc.cockHead " + x + "].");
-
-
-
-	output("\n\n<i>“I love a woman with a nice, hard cock between her legs.");
+	
+	output("\n\n<i>“I love a [pc.manWoman] with a nice, hard cock between [pc.hisHer] legs.");
 	if(pc.isGoo() || pc.isNaga()) output(" Or [pc.legOrLegs], in your case.");
 	output("”</i> Shade says, leaning in and planting a kiss ");
 	if(pc.balls > 0) output("on your [pc.balls], sending an electric wave of pleasure tingling through your body");
@@ -1461,7 +1464,7 @@ public function talkToShadeAboutTailCunt():void
 	output("\n\n<i>“Few too many of ‘em, though, and this clever girl managed to get in behind me. Jumped up and bit me right in the ass, started burning into my skin. I got my backup gun out and put a bullet through her head while she was melding - took out a hunk from my back, too, just about paralyzed myself; I’ll admit I was panicking pretty hard. Eating a six-millimeter right in the middle of it must have fouled up whatever fuses a cunt-snake to your nervous system, because this new tail of mine’s got a mind of her own still. Don’t you, girl?”</i>");
 	output("\n\nHer tail wriggles around her arm,");
 	if(flags["SHADE_ON_UVETO"] == undefined) output(" drooling lube onto her leg");
-	else output(" staining itd sock with lube");
+	else output(" staining its sock with lube");
 	output(". Shade chuckles and rubs it under what passes for a chin, just under its lips. <i>“Anyway, I managed to stop bleeding all over myself long enough to bust into the lab proper and pistol whip the doctor about five steps from his hover car door. Narrow catch, but the bounty set me up nice and cozy for the rest of the year.”</i>");
 	output("\n\n<i>“So you decided to keep the tail?”</i>");
 	output("\n\n<i>“Heh, ‘decided’ might be a little strong of a word. When she bit into me, my cat-tail burned off to make room. Hurt like a bitch. Didn’t feel right walking around without a tail, and while I had the doc tied down, my new one decided to feed on him. For a couple of hours. Good thing kui-tan are </i>productive<i>, because she has an insatiable appetite. After that, I figured I’d keep her around. She’s a pain sometimes, but I feel everything she does... and it’s pretty amazing.");

@@ -16,7 +16,7 @@
 	<text xml:lang="ja">Japanese App name goes here</text>
 	</name>
 -->
-<application xmlns="http://ns.adobe.com/air/application/19.0">
+<application xmlns="http://ns.adobe.com/air/application/27.0">
   <id>TiTSAIR</id>
   <versionNumber>1.0.0</versionNumber>
   <filename>TiTS_AIR</filename>

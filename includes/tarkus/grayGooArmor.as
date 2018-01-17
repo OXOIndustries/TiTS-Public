@@ -1126,7 +1126,7 @@ public function gooArmorCrewOption(arg:Array):void
 				
 				msg = " some comments about Yammi’s cooking--namely her desserts.";
 				msg += "\n\n<i>“...Oh, yesssssss! She makes the yummiest milkshakes and sundaes, too!”</i> she exclaims.";
-				msg += "\n\n" + (pc.isBimbo() ? "You lick your [pc.lips] in response, mentally drooling at the thought. Sounds like a good reason to throw an at-home ice cream party!" : "All this talk is giving you quite a craving for some homemade meals, that’s for sure!.");
+				msg += "\n\n" + (pc.isBimbo() ? "You lick your [pc.lips] in response, mentally drooling at the thought. Sounds like a good reason to throw an at-home ice cream party!" : "All this talk is giving you quite a craving for some homemade meals, that’s for sure!");
 				if(yammiIsCrew() && flags["YAMMI_TALK"] >= 2) chats.push(msg);
 				
 				msg = " some factoids about ancient, New Texan creatures.";
@@ -1410,6 +1410,7 @@ public function gooArmorCrewOption(arg:Array):void
 			flags["GOO_ARMOR_ON_SHIP"] = true;
 			
 			gooArmorAddButton(fromCrew, 0, "Next", approachGooArmorCrew, [false, fromCrew]);
+			if(!(pc.armor is GooArmor)) gooArmorAddButton(fromCrew, 1, "Customize", gooArmorCrewOption, ["customize", fromCrew]);
 			break;
 		case "take":
 			// Get the goo armor.
@@ -1428,6 +1429,7 @@ public function gooArmorCrewOption(arg:Array):void
 			
 			gooArmorClearMenu(fromCrew);
 			gooArmorAddButton(fromCrew, 0, "Next", approachGooArmorCrew, [false, fromCrew]);
+			if(pc.armor is GooArmor) gooArmorAddButton(fromCrew, 1, "Customize", gooArmorCrewOption, ["customize", fromCrew]);
 			break;
 	}
 }
@@ -1868,6 +1870,9 @@ public function gooArmorChangeArmorMenu(fromCrew:Boolean = true):void
 public function gooArmorCheck(repair:Boolean = false):Boolean
 {
 	if(!(pc.armor is GooArmor) || !pc.armor.hasRandomProperties) return true;
+	
+	// Ghost fixes
+	if(!pc.armor.hasFlag(GLOBAL.ITEM_FLAG_SKIN_TIGHT)) pc.armor.addFlag(GLOBAL.ITEM_FLAG_SKIN_TIGHT);
 	
 	// Make sure suit is in normal form first.
 	if

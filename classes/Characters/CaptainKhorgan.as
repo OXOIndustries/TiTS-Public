@@ -164,7 +164,7 @@
 
 			this.elasticity = 1.6;
 			//Fertility is a % out of 100. 
-			this.fertilityRaw = 1.05;
+			this.fertilityRaw = 5;
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 			//Savin wasn't around so I just threw a # in.
@@ -276,6 +276,11 @@
 				
 				applyDamage(new TypeCollection( { kinetic: 4 } ), this, target);
 			}
+		}
+		
+		override public function isPregnant(vIdx:int = 0):Boolean
+		{
+			return (kGAMECLASS.flags["KHORGAN_GAST_PREG_TIMER"] != undefined);
 		}
 	}
 }

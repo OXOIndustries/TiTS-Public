@@ -65,7 +65,7 @@ public function configureMails():void
 	// Check this quick hack -- Coded the body like a function, realised it has nothing dynamic -- just execute it in place to pass a string into addMailEntry!
 	MailManager.addMailEntry("messageFromDad", messageFromDad(), "See you around, kid.", "Victor Steele", "Victor_Steele@SteeleTech.corp", quickPCTo, quickPCToAddress);
 
-	MailManager.addMailEntry("privateFlahnePics", privateFlahneSceneMessage(), "No Subject","Flahne","Flahne_Rahn@UGC.gov",quickPCTo,quickPCToAddress);
+	MailManager.addMailEntry("privateFlahnePics", privateFlahneSceneMessage(), "[No Subject]","Flahne","Flahne_Rahn@UGC.gov",quickPCTo,quickPCToAddress);
 	MailManager.addMailEntry("galLinkFlahnePics", gallinkFlahneBubbleEmail(), "New comment on your picture(s)","GalLink Fuckmeet","support@GalLink.org",quickPCTo,quickPCToAddress);
 	MailManager.addMailEntry("extranetFlahnePics", extranetShareEmail(), "Thank You For Your Submission","TamaniCorp","Marketing@TamaniCorp.corp",quickPCTo,quickPCToAddress);
 
@@ -176,11 +176,30 @@ public function configureMails():void
 		}
 		msg += "\n\n<i>At the bottom of the message, you see several stellar coordinates: the next probe’s location! Well, looks like Benedict Ausar just saved your inheritance!</i>";
 
-		return msg;
+		return ParseText(msg);
 	},
 	"Your cousin’s a cocksucker.",
 	"Dane",
 	"doubledog27@ausal.ril",
+	quickPCTo,
+	quickPCToAddress);
+	
+	MailManager.addMailEntry("rivalSubtunerSucked",
+	function():String {
+		var msg:String = "";
+		msg += "Look at you, you incestuous mutt!\n\n<i>Attached to this single line of text is a high-definition, first-person video of you ";
+		if(rival.hasCock()) msg += "sucking your own cousin’s cock from Jack’s perspective";
+		else msg += "eating out your own cousin from Jill’s perspective";
+		msg += ". You seem pretty into it during the whole video... and so does [rival.name], with you thoroughly ";
+		if(rival.hasCock()) msg += "speared on Jack’s cock and his hand running over your head";
+		else msg += "buried in Jill’s muff and her hand running over your head";
+		msg += ", all those moans and groans filling your ears. You reminisce on that whole act of incest and sexual deviance for a moment, getting a little hot and bothered...</i>";
+		msg += "\n\n<i>You should probably delete that video... or you could keep it.</i>";
+		return ParseText(msg);
+	},
+	"Mutt.",
+	cuzName,
+	cuzMail,
 	quickPCTo,
 	quickPCToAddress);
 
@@ -194,6 +213,7 @@ public function configureMails():void
 	MailManager.addMailEntry("emmy_harness_here", harnessDeliveryMessageFromEmmy,"IT’S HERE!?!","Emmy Astarte","emmy_astarte@cmail.com",quickPCTo,quickPCToAddress);
 
 	MailManager.addMailEntry("letter_from_shade", createLetterFromShade, createSubjectFromShade, "Shade Irons", "Shade@Stormguard.net", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("shade_xmas_invite", shademasEmailString, "Happy Holidays", "Shade Irons", "Shade@Stormguard.net", quickPCTo, quickPCToAddress);
 
 	MailManager.addMailEntry("the_masque", "Hey, where are you? I thought we agreed to meet up for The Masque? I keep trying to call you, but you’re not answering, so this is my last try. Dude, this shit is wicked. I’m gonna be on the west side of Craven city, but you’ve only got a few days left, so get your ass over here!\n\nWet & Waiting", "The Masque", "Wet & Waiting", "Wet.N.Waiting@GalLink.org", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("syribooks", "Hey, Steele\n\nHere are some books to jump start your reading adventure:\n\n<i>Below is a link to a download archive with numerous books by various authors, most notably: Rondell Ramus, Capser van Beck and Imono Flaest.</i>\n\nEnjoy!\n-Syri", "Read More.", "Syri Dorna", "BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
@@ -217,6 +237,28 @@ public function configureMails():void
 	MailManager.addMailEntry("gastigoth_unlock",gastigothEmailText, "Exclusive Offer","Regina Kasmiran","DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("syri_video", syriVideoEmailText, "New_Video.holo", "Syri Dorna", "BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("breedwell_unlock", breedwellEmailText, "The Breedwell Incubation Centre Needs YOU.", "TamaniCorp", "Marketing@TamaniCorp.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("succucow_email", succucowEmailText, "Check out this weird cabin? Cash reward.", "Ciaran Eildean", "Warden_Eildean@NewTexas.gov", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("randy_claws_email", clawsEmailText, "Merry Christmas!", "New Texas Department of Wildlife", "NT_DoW@NewTexas.gov", quickPCTo, quickPCToAddress);
+	
+	//Stubs so that the mail entries show up on a load
+	MailManager.addMailEntry("tamtam_preg1", undefined, "Gastigoth Inmate Tam-Tam - Pregnancy Detected", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("tamtam_preg2", undefined, "Gastigoth Inmate Tam-Tam - Pregnancy Options", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("tamtam_preg3", undefined, "Gastigoth Inmate Tam-Tam - Pregnancy Update", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("tamtam_preg4", undefined, "Gastigoth Inmate Tam-Tam - It’s Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("tamtam_preg5", undefined, "Gastigoth Inmate Tam-Tam - Child Delivery Report", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("khorgan_preg1", undefined, "Gastigoth Inmate Khorgan - Pregnancy Detected", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("khorgan_preg2", undefined, "Gastigoth Inmate Khorgan - Pregnancy Options", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("khorgan_preg3", undefined, "Gastigoth Inmate Khorgan - Pregnancy Update", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("khorgan_preg4", undefined, "Gastigoth Inmate Khorgan - It’s Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("khorgan_preg5", undefined, "Gastigoth Inmate Khorgan - Child Delivery Report", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("sam_preg1", undefined, "Gastigoth Inmate Sam - Pregnancy Detected", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("sam_preg2", undefined, "Gastigoth Inmate Sam - Pregnancy Options", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("sam_preg3", undefined, "Gastigoth Inmate Sam - Pregnancy Update", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("sam_preg4", undefined, "Gastigoth Inmate Sam - It’s Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("sam_preg5", undefined, "Gastigoth Inmate Sam - Child Delivery Report", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("ilaria_preg1", undefined, "Surprise, Surprise!", "Ilaria Ilgade", "Ilaria@BunBunBakery.com", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("ilaria_preg2", undefined, "Ilaria Ilgade", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("prai_email", undefined, undefined, "Prai Ellit", "Prai@Xenotech.net", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String

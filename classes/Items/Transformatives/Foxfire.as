@@ -382,7 +382,7 @@ package classes.Items.Transformatives
 				}
 			}
 			
-			if (target.bRows() < 4 && target.hasFur() && (target.biggestTitSize(true) > 0 || target.hasVagina()) && target.createBreastRowUnlocked(1))
+			if (target.bRows() < 4 && target.hasFur() && (target.biggestTitSize(true) > 0 || target.hasVagina()) && target.createBreastRowUnlocked(target.bRows() + 1))
 			{ // if female or shemale, grow another row of nipples up to 4 total
 				options.push(function():*{
 					if (minSizeBreasts == 0)

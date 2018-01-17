@@ -159,6 +159,10 @@ package classes.Engine.Combat
 			}
 		}
 		
+		//10% damage boost vs Treated
+		//Fen note: No this is bad and it should feel bad.
+		//if(attacker.hasPerk("Chupacabro Slayer") && target.isTreated()) baseHPDamage.multiply(1.1);
+		
 
 		/****************************
 		 * Now apply the damage.

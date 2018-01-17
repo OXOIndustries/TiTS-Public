@@ -1461,7 +1461,7 @@ public function pippaHotDog():void
 	else if (pippaDominance() > 33) output(". Go ahead and fuck my ass like it’s your property. Get");
 	else output(" Use my ass like it’s no more than your fuck toy, [pc.name]! Get");
 	
-	output(" yourself off!”</i> Having said that, one of her hands snakes between her legs and begins playing with her [pippa.pussh]. From the squishing sound, you gather that she’s soaked. Spurred on, you fuck her [pippa.buttcheeks] with renewed vigor. You manhandle her [pippa.ass], wrapping it around your [pc.cock " + smallestCockIndex + "], roughly squeezing it, occasionally slapping it, and even pinching it. By now it’s more red than pink, both from your treatment, and from the aroused flush covering the pig-morph’s body. A light sheen of sweat covers her body, and you can only barely keep a grip on her [pippa.ass].");
+	output(" yourself off!”</i> Having said that, one of her hands snakes between her legs and begins playing with her [pippa.pussy]. From the squishing sound, you gather that she’s soaked. Spurred on, you fuck her [pippa.buttcheeks] with renewed vigor. You manhandle her [pippa.ass], wrapping it around your [pc.cock " + smallestCockIndex + "], roughly squeezing it, occasionally slapping it, and even pinching it. By now it’s more red than pink, both from your treatment, and from the aroused flush covering the pig-morph’s body. A light sheen of sweat covers her body, and you can only barely keep a grip on her [pippa.ass].");
 	
 	output("\n\nYou feel an all-too-familiar tightening in your loins, and right on queue, Pippa’s moaning and breathing devolves into animalistic squealing and snorting. You wrap her [pippa.buttcheeks] around your cock with all of your strength and climax, ");
 	
