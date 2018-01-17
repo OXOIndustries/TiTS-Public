@@ -10,6 +10,7 @@
 	import classes.Items.Protection.SalamanderShield;
 	import classes.Items.Protection.OzoneAegis;
 	import classes.Items.Accessories.SalamanderDuster;
+	import classes.Items.Accessories.SalamanderDefenseSystem;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	
@@ -18,7 +19,7 @@
 		//constructor
 		public function Emmy()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			fluidSimulate = true;
@@ -37,6 +38,7 @@
 			inventory.push(new LavaSaber());
 			inventory.push(new Jolthammer());
 			inventory.push(new OzoneAegis());
+			inventory.push(new SalamanderDefenseSystem());
 
 			
 			this.typesBought = [GLOBAL.MELEE_WEAPON,GLOBAL.RANGED_WEAPON,GLOBAL.SHIELD,GLOBAL.ACCESSORY];
@@ -91,6 +93,10 @@
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.backToEmmyMain();
+		}
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.inventory.push(new SalamanderDefenseSystem().getSaveObject());
 		}
 	}
 }

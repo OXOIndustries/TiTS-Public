@@ -4,6 +4,8 @@ package classes.GameData
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.Items.Accessories.SiegwulfeItem; 
+	import classes.Items.Accessories.BimboleumDefenseSystem;
+	import classes.Items.Accessories.SalamanderDefenseSystem;
 	import classes.Items.Apparel.Harness;
 	import classes.Items.Armor.GooArmor;
 	import classes.ItemSlotClass;
@@ -187,6 +189,26 @@ package classes.GameData
 						h.actuallyFreeChief();
 					}
 				}
+			}
+			//Shield pop here:
+			//v1 or 1 means queued, v2 means procced already this combat.
+			if(pc.statusEffectv1("Def Proc") == 1)
+			{
+				var shieldTarget:Creature = _hostiles[0];
+				//Default damage:
+				var damage:TypeCollection = new TypeCollection( { kinetic: Math.round(pc.shieldsMax() * 0.6) });
+				if(pc.accessory is SalamanderDefenseSystem)
+				{
+					output("\n\n<b>Your self-defense system releases a wave of extreme heat as your shields buckle!</b>");
+					damage = new TypeCollection( { burning: Math.round(pc.shieldsMax() * 0.7) });
+				}
+				else if(pc.accessory is BimboleumDefenseSystem)
+				{
+					output("\n\n<b>Your self-defense system releases a wave of concentrated, psychic slut-energy as your shields buckle!</b>");
+					damage = new TypeCollection( { psionic: Math.round(pc.shieldsMax() * 0.5) });
+				}
+				applyDamage(damage, pc, shieldTarget);
+				pc.addStatusValue("Def Proc",1,1);
 			}
 			//Shield regen stuff here!
 			if(pc.hasStatusEffect("Shields Damaged")) pc.removeStatusEffect("Shields Damaged");
