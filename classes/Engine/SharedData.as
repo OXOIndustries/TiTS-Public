@@ -19,6 +19,15 @@ package classes.Engine
 			SharedData.Save(this);
 		}
 		
+		[Serialize]
+		public var _lastUsedFolderPath:String = null;
+		public function get LastUsedFolderPath():String { return _lastUsedFolderPath; }
+		public function set LastUsedFolderPath(v:String):void
+		{
+			_lastUsedFolderPath = v;
+			SharedData.Save(this);
+		}
+		
 		public function SharedData() {}
 		
 		public static function Load():SharedData
