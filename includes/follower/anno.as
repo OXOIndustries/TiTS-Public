@@ -4461,7 +4461,6 @@ public function combineAndHaveAFinishAnnoXKaedeAccidentPetPlay():void {
 	anno.orgasm();
 	
 	annoSexed(1);
-	IncrementFlag();
 	flags["KAEDE_FUCKED"]++;	//has to exist because kaede has at least 10 exhibitionism
 	IncrementFlag("ANNO_X_KAEDE_THREESOMED");
 	
