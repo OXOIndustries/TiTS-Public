@@ -1789,7 +1789,7 @@ public function roughButtfuckFromKiroGo(threesomeTalkIntro:Boolean = false):void
 	//Else cock
 	else if(pc.hasCock())
 	{
-		output("\n\nYou really want this, don’t you?”</i> She flicks [pc.oneCock], making it twitch and ooze. <i>“Does getting your prostate milked by a ");
+		output("\n\n<i>“You really want this, don’t you?”</i> She flicks [pc.oneCock], making it twitch and ooze. <i>“Does getting your prostate milked by a ");
 		if(pc.hasCock() && 21 > pc.longestCockLength()) output("bigger, better dick");
 		else output("perfect penis");
 		output(" feel that good for you, that ");

@@ -1679,7 +1679,7 @@ public function restOnSomeSchtuff():void
 	output("while Paige undoes her bra, letting her puppies out to breathe. You don’t ogle for long, since that’s not what you came for – Paige throws the covers to her bed open, then pats the lower sheets, inviting you in as you crawl into the bed with her.");
 
 	output("\n\nOnce you’re snug in the bed, your warm body pressed against the smooth, fine fur of your Ausar lover, Paige pulls the covers over you both and snaps her fingers twice. Responding to her command, the lights in the room shut off.");
-	if(silly) output(" You ask her how she knows when the lights are on and when they’re off. <i>“Don’t worry about it,”</i> she responds.</i>");
+	if(paigeBlind() && silly) output(" You ask her how she knows when the lights are on and when they’re off. <i>“Don’t worry about it,”</i> she responds.</i>");
 	output("\n\nNow in total darkness and snuggled up tight against Paige, ");
 	if(pc.PQ() <= 69) output("your back against her front, her arms wrapped around you, her boobs against your back and her hips against your butt");
 	else if(pc.PQ() <= 94) output("both of you sleeping face-to-face, one arm over the other’s body and the other under the pillows");

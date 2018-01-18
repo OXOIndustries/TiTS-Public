@@ -1902,6 +1902,7 @@
 			
 			// *throws up in mouth a little*
 			kGAMECLASS.phoenixSetMapState();
+			kGAMECLASS.variableRoomUpdateCheck();
 			
 			// Trigger an attempt to update display font size
 			kGAMECLASS.refreshFontSize();

@@ -2594,9 +2594,9 @@ public function emmyCockSlobber():void
 
 	output("\n\nEmmy’s gaze is almost a physical force, full of desire and an almost astounding amount of need half-concealed behind her pride. Her smile sends a thrill of delight down your spine, and you run your palms up her thighs, feeling her heat against your hands, the subtle buck of hips against you. The catch of her form-fitting suit practically releases itself, but you keep it from sliding down too quickly once it reaches crotch level, freeing the soaked slab of girlmeat with deliberate slowness.");
 
-	output("\n\nThe jackaless’s thickness throbs under your fingertips, its veins pulsing and flexing in appreciation. ");
+	output("\n\nThe jackaless’s thickness throbs under your fingertips, its veins pulsing and flexing in appreciation.");
 	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output(" Having to remove the Herm Harness spoils a bit of the fun, but then it’s gone, and you have her cock right there, in your hands.");
-	output("Her sable shaft is slick and musky from bathing in its own pre-cum for so long, the latest addition a heady frosting on an already perverse feast. Just a whiff of it leaves you briefly dizzy and aroused.");
+	output(" Her sable shaft is slick and musky from bathing in its own pre-cum for so long, the latest addition a heady frosting on an already perverse feast. Just a whiff of it leaves you briefly dizzy and aroused.");
 	if(pc.hasCock() && pc.hasVagina())
 	{
 		output(" Your own [pc.cocks] and [pc.vaginas] respond by getting every bit as hard and wet as your horndog friend, but you can tend to them later.");

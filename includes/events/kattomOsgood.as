@@ -2,6 +2,11 @@ public function pattonIsHere():Boolean
 {
 	// Exclusions
 	if(rooms[currentLocation].runAfterEnter != null) return false;
+	if(rooms[currentLocation].hasFlag(GLOBAL.WATERFALL)) return false;
+	if(rooms[currentLocation].hasFlag(GLOBAL.LIFTUP)) return false;
+	if(rooms[currentLocation].hasFlag(GLOBAL.LIFTDOWN)) return false;
+	if(rooms[currentLocation].hasFlag(GLOBAL.PLANT_BULB)) return false;
+	if(rooms[currentLocation].hasFlag(GLOBAL.PRIVATE)) return false;
 	
 	//Set CD so you don't run into him immediately.
 	if(flags["KATTOM_MOVE_CD"] == undefined) 

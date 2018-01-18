@@ -3508,6 +3508,17 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["MET_SERA"] != undefined)
 			{
 				output2("\n<b><u>The Dark Chrysalis</u></b>");
+				if(flags["PURCHASED_SERAS_GALO"] != undefined || flags["SAENDRA GONNA GO GET A COCK"] >= 2)
+				{
+					output2("\n<b>* Unique Sale:</b>");
+					if(flags["PURCHASED_SERAS_GALO"] != undefined) output2(" GaloMax");
+					if(flags["SAENDRA GONNA GO GET A COCK"] >= 2)
+					{
+						if(flags["PURCHASED_SERAS_GALO"] != undefined) output2(",");
+						output2(" Saendra’s penis growth drug");
+						if(flags["SAEN_X_SERA_THREESOME"] > 0) output2(" (with threesome discount)");
+					}
+				}
 				if(flags["MET_CHRYSALIS_DRONE"] != undefined) output2("\n<b>* Mods4U Drone:</b> Met it");
 				output2("\n<b>* Sera:</b> Met her");
 				if(flags["SERA_NO_SEX"] == 1) output2(", Pissed off at you indefinitely");
@@ -3561,17 +3572,6 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SERA_INCH_STEALING_HELP"] > 0) output2("\n<b>* Sera, Times You Untangled Her Tail Cock:</b> " + flags["SERA_INCH_STEALING_HELP"]);
 				}
 				//if(pc.hasStatusEffect("Sera Credit Debt")) output2("\n<b>* Sera, Credit Debt:</b> " + pc.statusEffectv1("Sera Credit Debt") + " credits");
-				if(flags["PURCHASED_SERAS_GALO"] != undefined || flags["SAENDRA GONNA GO GET A COCK"] >= 2)
-				{
-					output2("\n<b>* Sera, Unique Sale:</b>");
-					if(flags["PURCHASED_SERAS_GALO"] != undefined) output2(" GaloMax");
-					if(flags["SAENDRA GONNA GO GET A COCK"] >= 2)
-					{
-						if(flags["PURCHASED_SERAS_GALO"] != undefined) output2(",");
-						output2(" Saendra’s penis growth drug");
-						if(flags["SAEN_X_SERA_THREESOME"] > 0) output2(" (with threesome discount)");
-					}
-				}
 				variousCount++;
 			}
 			// Panda, please
@@ -3619,14 +3619,14 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["MET_ALICE"] != undefined)
 			{
 				output2("\n<b><u>Mi Amour</u></b>");
+				if(flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined)
+				{
+					output2("\n<b>* Unique Sale:</b> Anno’s hardlight strap-on");
+				}
 				output2("\n<b>* Aliss:</b> Met her");
 				if(flags["TALKED_TO_ALIIS_ABOUT_LIBIDO"] != undefined) output2("\n<b>* Aliss, Lust:</b> " + chars["ALISS"].lust());
 				if(flags["ALISS_FIXED_HL_COUNT"] != undefined) output2("\n<b>* Aliss, Times Fixed Hardlight Strap-On Underwear:</b> " + flags["ALISS_FIXED_HL_COUNT"]);
 				if(flags["TIMES_SEXED_ALISS"] != undefined) output2("\n<b>* Aliss, Times Sexed:</b> " + flags["TIMES_SEXED_ALISS"]);
-				if(flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined)
-				{
-					output2("\n<b>* Aliss, Unique Sale:</b> Anno’s hardlight strap-on");
-				}
 				variousCount++;
 			}
 			// Sentient Acquisitions
@@ -5147,6 +5147,10 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["GENES_MODS_ENTERED"] != undefined)
 			{
 				output2("\n<b><u>Gene’s Mods</u></b>");
+				if(flags["PURCHASED_GENES_GALO"] != undefined)
+				{
+					output2("\n<b>* Unique Sale:</b> GaloMax");
+				}
 				if(flags["GENE_TALKED_TO"] == undefined) output2("\n<b>* Fanfir Man:</b>");
 				else output2("\n<b>* Gene:</b>");
 				output2(" Met him");
@@ -5159,10 +5163,6 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				if(flags["GENE_FUCKED"] != undefined) output2("\n<b>* Gene, Times Sexed:</b> " + flags["GENE_FUCKED"]);
 				if(flags["GENE_BLOWJOB"] != undefined) output2("\n<b>* Gene, Times Sucked His Cock:</b> " + flags["GENE_BLOWJOB"]);
-				if(flags["PURCHASED_GENES_GALO"] != undefined)
-				{
-					output2("\n<b>* Gene, Unique Sale:</b> GaloMax");
-				}
 				variousCount++;
 			}
 			// Vi-Ko

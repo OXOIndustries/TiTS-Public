@@ -441,7 +441,7 @@ public function pcWinsVsSG():void
 		}
 		if(canthroatfuck) addButton(3,"Throatfuck",penisRouter,[stormlancerThroatfuck,300,false,25],"Throatfuck","Tear his noisehole a new one!");
 		else if(pc.smallestCockVolume() > 300) addDisabledButton(3,"Throatfuck","Throatfuck","Easy there, wanna put him in his place, not tear his jaw off!");
-		else addDisabledButton(3,"Throatfuck","Throatfuck","You would, but you don't think you're quite large enough for it to really have the effect you want.");
+		else addDisabledButton(3,"Throatfuck","Throatfuck","You would, but you don’t think you’re quite large enough for it to really have the effect you want.");
 	}
 	else addDisabledButton(3,"Throatfuck","Throatfuck","You need a penis for this.");
 

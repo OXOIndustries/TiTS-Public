@@ -2673,7 +2673,6 @@ public function embryAnalSex():void
 		if(embry.analVirgin)
 		{
 			output("deflowered ass");
-			
 		}
 		else output("[embry.ass]");
 		output(". Your senses are burned white as you unleash your pulsing life inside of her. Your [pc.cock] convulses, and you gloriously spill your seed deep inside of her rump.");
@@ -2704,7 +2703,6 @@ public function embryAnalSex():void
 		if(embry.analVirgin)
 		{
 			output("deflowered anus");
-			embry.analVirgin = false;
 		}
 		else output("[embry.asshole]");
 		output(". A sense of delicious conquest swells within you, and your sticky [pc.cock] twitches with delight.");
@@ -2730,7 +2728,6 @@ public function embryAnalSex():void
 		if(embry.analVirgin)
 		{
 			output("totally deflowered");
-			embry.analVirgin = false;
 		}
 		else output("utterly used");
 		output(". A sense of delicious conquest swells within you.");
@@ -2755,11 +2752,16 @@ public function embryAnalSex():void
 		output("\n\nWhen you pull your artificial shaft out from her ass, there is a plopping noise from her [embry.asshole], and she lets out a blissful little sigh. You relish in the sight of [embry.name] laying spent over the table, her skirt flipped up, and her [embry.asshole] ");
 		if(embry.analVirgin)
 		{
-			embry.analVirgin = false;
 			output("totally deflowered");
 		}
 		else output("utterly used");
 		output(". A sense of delicious conquest swells within you.");
+	}
+	
+	if(embry.analVirgin)
+	{
+		embry.analVirgin = false;
+		output(" <b>You have claimed [embry.name]’s anal virginity!</b>");
 	}
 
 	output("\n\n<i>“T-that was amazing.”</i> [embry.name] dreamily sighs, then adds, <i>“Um, I’m not sure if I can walk---? My legs feel a bit shaky.”</i>");

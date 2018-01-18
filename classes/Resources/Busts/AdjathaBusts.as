@@ -402,6 +402,8 @@ package classes.Resources.Busts
 		public var Bust_KRYM:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/krym_nude.png", mimeType = "image/png")]
 		public var Bust_KRYM_NUDE:Class;
+		public var Bounds_KRYM:Rectangle = new Rectangle(80, 24, 63, 65);
+		public var Bounds_KRYM_NUDE:Rectangle = new Rectangle(43, 7, 63, 65);
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/lah.png", mimeType = "image/png")]
 		public var Bust_LAH:Class;
@@ -573,9 +575,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/double_goo.png", mimeType = "image/png")]
 		public var Bust_SLUTGOO:Class;
 		public function get Bust_SLUTGOO_L():Class { return Bust_SLUTGOO; }
-		public var Bounds_SLUTGOO_L:Rectangle = new Rectangle(107, 22, 31, 31);
+		public var Bounds_SLUTGOO_L:Rectangle = new Rectangle(92, 5, 62, 60);
 		public function get Bust_SLUTGOO_R():Class { return Bust_SLUTGOO; }
-		public var Bounds_SLUTGOO_R:Rectangle = new Rectangle(74, 28, 31, 31);
+		public var Bounds_SLUTGOO_R:Rectangle = new Rectangle(59, 8, 62, 60);
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/simone.png", mimeType = "image/png")]
 		public var Bust_SIMONE:Class;

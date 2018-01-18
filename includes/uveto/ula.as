@@ -135,8 +135,8 @@ public function ulaTalkMenu():void
 {
 	clearMenu();
 	addButton(0,"Stars/Space",stayAndStarsTell,true);
-	addButton(1,"Mining",ulaMiningTalk,undefined,"Mining","Ask Ula about the korgonne's own mining.");
-	addButton(2,"Ula's Role",ulasRoleInTheClan,undefined,"Ula's Role","Ask Ula about her role in her clan.");
+	addButton(1,"Mining",ulaMiningTalk,undefined,"Mining","Ask Ula about the korgonne’s own mining.");
+	addButton(2,"Ula’s Role",ulasRoleInTheClan,undefined,"Ula’s Role","Ask Ula about her role in her clan.");
 	addButton(3,"Other Tribes",otherTribesTalkarydooda,undefined,"Other Tribes","Ask Ula about other korgonne tribes.");
 	addButton(4,"Explain:Guns",talkAboutGunsWithUla,undefined,"Explain: Guns","Explain guns too Ula.");
 	addButton(5,"Exp:Electricity",explainElectricityToUla,undefined,"Explain: Electricity","Explain electricity to Ula.");
@@ -168,11 +168,11 @@ public function ulaSexApproach():void
 	if(pc.isTaur())
 	{
 		if(pc.tallness >= 5*12+6 && pc.hasCock() && pc.cockThatFits(30) >= 0) addButton(3,"TaurBreeding",penisRouter,[centaurServiceForUla,9999999999,false,30],"Taur Breeding","Show Ula how centaurs breed.");
-		else if(pc.isTaur()) addDisabledButton(3,"TaurBreeding","TaurBreeding","You need to be a decently large 'tauric creature in order to do this - at least five and a half feet tall.");
-		else if(pc.hasCock()) addDisabledButton(3,"TaurBreeding","TaurBreeding","You need to be a decently hung 'tauric creature in order to do this.");
-		else addDisabledButton(3,"TaurBreeding","TaurBreeding","You need to be a decently large 'tauric creature in order to do this - at least five and a half feet tall with a decent-sized dick.");
+		else if(pc.isTaur()) addDisabledButton(3,"TaurBreeding","TaurBreeding","You need to be a decently large ‘tauric creature in order to do this - at least five and a half feet tall.");
+		else if(pc.hasCock()) addDisabledButton(3,"TaurBreeding","TaurBreeding","You need to be a decently hung ‘tauric creature in order to do this.");
+		else addDisabledButton(3,"TaurBreeding","TaurBreeding","You need to be a decently large ‘tauric creature in order to do this - at least five and a half feet tall with a decent-sized dick.");
 	}
-	else addDisabledButton(3,"TaurBreeding","TaurBreeding","You need to be a decently large 'tauric creature in order to do this - at least five and a half feet tall with a decent-sized dick.");
+	else addDisabledButton(3,"TaurBreeding","TaurBreeding","You need to be a decently large ‘tauric creature in order to do this - at least five and a half feet tall with a decent-sized dick.");
 
 	if(flags["ULA_DEFLOWERED"] != undefined)
 	{
@@ -1468,7 +1468,7 @@ public function tentatailFuckUla():void
 	output("\n\nThe rigid flesh thrusts forward across her palm in excitement.");
 	output("\n\n<i>“Wow!”</i> The plush princess snaps back in surprise, bringing her other hand up to catch your vigorously lusty member. <i>“");
 	if(!korgiTranslate()) output("Such excite!");
-	else output("It's so excited!");
+	else output("It’s so excited!");
 	output("”</i> She purses her lips mischievously and bats her eyelashes. <i>“What if...”</i> The tiniest lean forward is all it takes for her lips to press against the meatus of your tail-bound member, but it’s enough - enough for too-tight muscles to impulsively thrust the alien length into her spit-slick maw.");
 	output("\n\nBlue tongue lolling, Ula grabs onto your coiling, mouth-humping tail, arresting its motions before its eager assaults slam it dick-first into her gag-reflex. That doesn’t slow your parasitic half’s ardor in the slightest; it merely reverses direction to begin thrusting anew, splitting the plush korgonne girl’s maw around powerfully pulsating prickflesh. At the apex of your tail’s motions, you can hear a syrupy-sounding ‘gluk’ from the back of Ula’s throat, and spit dribbles from either side of her mouth.");
 
@@ -1490,7 +1490,7 @@ public function tentatailFuckUla():void
 
 	output("\n\nUla yanks your cock-tail from her mouth, and laps the frothing mixture of spit and pre from her lips. <i>“");
 	if(!korgiTranslate()) output("Not want cumming in mouth!");
-	else output("Don't cum in my mouth!");
+	else output("Don’t cum in my mouth!");
 	output("”</i> She wiggles playfully, your tender parasite held still by one fluffy paw. Thick, soft-furred thighs slowly spread, revealing folds made glossy with desire. <i>“");
 	if(!korgiTranslate()) output("Cumming in cunt.");
 	else output("Cum in my cunt.");
@@ -1599,7 +1599,7 @@ public function centaurServiceForUla(x:int):void
 
 		output("\n\nWhimpering, Ula peers through your legs with no small measure of concern on her features. <i>“");
 		if(!korgiTranslate()) output("No fit. Too... big. Break Ula in half.");
-		else output("That won't fit! It's too... big. It'll break me in half!");
+		else output("That won’t fit! It’s too... big. It’ll break me in half!");
 		output("”</i>");
 		output("\n\n<i>“But...”</i> You gesture at the horny bitch splayed out in front of you. Everything from her juicing cunt to lush butt to widespread sideboob is begging you to take her on the spot. <i>“What about lube?”</i>");
 		output("\n\n<i>“Right!”</i> Ula perks up, but only from the waist. Much to your pleasure, she keeps her ass right where it is, even as your forelegs stamp into position on either side of her. <i>“");
@@ -1631,11 +1631,11 @@ public function centaurServiceForUla(x:int):void
 		output("You wish you could see her chubby belly distending into the shape of your cock. It must be, from how you can feel the wadded up sheets through her straining, silk slit.");
 		pc.cockChange();
 		output("\n\n<i>“Gods! ");
-		if(korgiTranslate()) output("You're breaking me!");
+		if(korgiTranslate()) output("You’re breaking me!");
 		else output("Cock break Ula!");
 		output("”</i> Her voice is shocked and laden so thickly with pleasure that she slightly slurs. <i>“");
 		if(!korgiTranslate()) output("Make one big pussy. Having stretch-pleasure everywhere!");
-		else output("I'm like one big pussy! Everything is all stretching and pleasure!");
+		else output("I’m like one big pussy! Everything is all stretching and pleasure!");
 		output("”</i>");
 		if(pc.cocks[x].cLength() >= 30) output(" The vague compression of her tits to either side of your shaft makes it clear just how deeply you’ve taken her.");
 		output(" Tiny paws stroke along the sides of your [pc.cock " + x + "] in awe, massaging the sensitive veins through the korgonne’s distended tummy.");
@@ -1657,12 +1657,12 @@ public function centaurServiceForUla(x:int):void
 		output("\n\nThe nerves in your cock dazzle at the feel of spreading open the dog-girl’s glistening folds beneath you. Your bestial hips twitch once, violently thrusting to ensure you’ve fully claimed the bitch. A second time, they repeat the motion, throwing Ula a few inches down the bed before she can scrabble back to properly re-embed herself. That’s a good bitch. You reward her twisting down between your forelegs to scratch behind her right ear.");
 		output("\n\n<i>“Gods! ");
 		if(!korgiTranslate()) output("Ula broken");
-		else output("I'm breaking");
+		else output("I’m breaking");
 		output("!”</i> she babbles, legs quivering so hard you can feel the muscular contractions through her cunt.");
 		if(pc.balls > 0) output(" She reaches down to paw at your [pc.balls] and worshipfully caress your [pc.sack].");
 		output(" <i>“");
 		if(!korgiTranslate()) output("One thrust and fillinged up! Alien so big and strong! Big body everywhere. Ula not even see eyes, just warm and cock!");
-		else output("One thrust, and I'm filled up! You're so big and strong! That huge body is everywhere. I can't even see your face, just you and your cock!");
+		else output("One thrust, and I’m filled up! You’re so big and strong! That huge body is everywhere. I can’t even see your face, just you and your cock!");
 		output("”</i> She bounces herself back and forth on your dick. <i>“");
 		if(!korgiTranslate()) output("Breed now! Give pups!");
 		else output("Breed me now! Give me pups!");
@@ -1677,7 +1677,7 @@ public function centaurServiceForUla(x:int):void
 	output("\n\nUla does her best to hold herself in position, but with all the dick occupying her pretty blue pussy, she’s not going to be much good for anything but getting knocked up. You thrust harder into her. Solid construction is no match for hundreds of pound of transformed Rusher. The frame creaks dangerously when you bottom out, and Ula squeaks right along with it. Grunting with the effort, you give yourself over to your animal instincts and let the fluffy princess truly have it. <i>“You want fucked like a horny bitch?”</i>");
 	output("\n\nThe impaled korgonne whimpers. <i>“");
 	if(!korgiTranslate()) output("Am! Am! Am such love! Pussy in-loving with cock! Want more!");
-	else output("I am! I'm a horny bitch in love! My pussy loves your cock, and I want moooore!");
+	else output("I am! I’m a horny bitch in love! My pussy loves your cock, and I want moooore!");
 	output("”</i> She yips plaintively, <i>“");
 	if(!korgiTranslate()) output("Cock! Give cock again and again! Fill with pups! Puppy-love!");
 	else output("More cock! Again and again! Fill me with your love... and pups!");
@@ -1742,33 +1742,33 @@ public function ulaMiningTalk():void
 	//Merge
 	output("\n\nUla gives you a pained expression. <i>“");
 	if(!korgiTranslate()) output("Think we having cool Alien-stuff talk, but nope! Korg stupidness!");
-	else output("I thought we'd talk about cool alien stuff, but nope! Korg stupidness.");
+	else output("I thought we’d talk about cool alien stuff, but nope! Korg stupidness.");
 	output("”</i> She punches the bed. <i>“");
 	if(!korgiTranslate()) output("Whole universe, but want talk dirt-dig like gem-heart rock-pup.");
-	else output("There's a whole universe, but you want to talk about digging in the dirt like some gem-heart rock-pup.");
+	else output("There’s a whole universe, but you want to talk about digging in the dirt like some gem-heart rock-pup.");
 	output("”</i>");
 	output("\n\nYou tilt your head. <i>“Gem-heart?”</i>");
 	output("\n\nUla nods. <i>“");
 	if(!korgiTranslate()) output("Digger. Sparkle-thirsty korg who prefer tunnel to clan. Rather hold pick than mate. Gem-heart.");
-	else output("A digger. Gem-thirsty korg who prefer to tunnel than live with the rest of the clan. They'd rather hold a pick than a mate, thus, Gem-heart.");
+	else output("A digger. Gem-thirsty korg who prefer to tunnel than live with the rest of the clan. They’d rather hold a pick than a mate, thus, Gem-heart.");
 	output("”</i> She shrugs. <i>“");
 	if(!korgiTranslate()) output("Not understanding them. Live in hold too long, maybe. Nothing but rock, rock, and more rock. Maybe sparkle. Elders say gem-heart not from that. Say they just are. Just loving the finding. Alien word for it... thrill? Seek thrill. Want long dig boring just so can find moment of pretty sparkle!");
-	output("I don't understand them. Maybe they've stayed in the hold too long? Their life is basically just rock, rock, and more rock. Maybe a gem here or there. The elders say gem-hearts just </i>are<i>. That they just love the act of finding new gems. There's a word in your language for it... thrill? They love the thrill. They love the long stretches of boredom just so they can have the jubilation of one rich find.");
+	output("I don’t understand them. Maybe they’ve stayed in the hold too long? Their life is basically just rock, rock, and more rock. Maybe a gem here or there. The elders say gem-hearts just </i>are<i>. That they just love the act of finding new gems. There’s a word in your language for it... thrill? They love the thrill. They love the long stretches of boredom just so they can have the jubilation of one rich find.");
 	output("”</i>");
 	output("\n\n<i>“Like gambling?”</i> you suggest.");
 	output("\n\nRecoiling, the curvy korgonne’s ears flop. <i>“");
 	if(!korgiTranslate()) output("What gam-bull-ing?”</i> Her nose wrinkles. <i>“Sound like gross.”</i>");
-	else output("What's gam-bull-ing?”</i> Her nose wrinkles. <i>“Sounds gross.”</i>");
+	else output("What’s gam-bull-ing?”</i> Her nose wrinkles. <i>“Sounds gross.”</i>");
 	output("\n\n<i>“No, no,”</i> you protest. You spend a few minutes explaining the concept of gambling before the little creature abruptly catches on.");
 	output("\n\n<i>“");
 	if(!korgiTranslate()) output("Ohhhh! Like hormnolde! Male-korg game. Spin crystal and throw goal cubes. Such complex, but lots fun.");
-	else output("Ohhhh! Like hormnolde! It's a male korg game. You spin a crystal and throw goal cubes. It's incredibly complex but lots of fun.");
+	else output("Ohhhh! Like hormnolde! It’s a male korg game. You spin a crystal and throw goal cubes. It’s incredibly complex but lots of fun.");
 	output("”</i> Ula grabs your hand and squeezes. <i>“");
 	if(!korgiTranslate()) output("Ula not permitted join. Clan Chief daughter no get fun. No get go outside. No get court mate. Just stuck room. Always stuck room.");
-	else output("I'm not permitted to join. The Clan Chief's daughter isn't allowed fun. No going outside. No courting mates. Just the inside of this room. Nothing but the inside of this room.");
+	else output("I’m not permitted to join. The Clan Chief’s daughter isn’t allowed fun. No going outside. No courting mates. Just the inside of this room. Nothing but the inside of this room.");
 	output("”</i> She stamps her foot. <i>“");
 	if(!korgiTranslate()) output("Gem-heart better. Can do what want, even if just poke rocks all day.");
-	else output("Gem-hearts have it better. They can do what they want, even if it's poking rocks all day.");
+	else output("Gem-hearts have it better. They can do what they want, even if it’s poking rocks all day.");
 	output("”</i>");
 	output("\n\nRather than upset her further, you decide to find out more about the gem-hearts. <i>“Did they create the entire hold?”</i>");
 	output("\n\nUla laughs. <i>“Gem-hearts? Craft?”</i> She pats your ");
@@ -1776,14 +1776,14 @@ public function ulaMiningTalk():void
 	else output("[pc.leg]");
 	output(". <i>“");
 	if(!korgiTranslate()) output("Poor alien. So much star-light scramble brain. Gem-hearts only dig and like dig. Not think for hold, only sparkle. Elders plan hold. Tell gem-hearts where dig, how dig. Gem-hearts listen or exile.");
-	else output("Poor alien. All that star-light must have scrambled your brain. Gem-hearts only like to dig. It's all they do. They don't think about the hold, just the gems they might find. The elders planned the hold. They tell the gem-hearts where to dig, and the gem-hearts have to listen if they don't want exiled to the snow.");
+	else output("Poor alien. All that star-light must have scrambled your brain. Gem-hearts only like to dig. It’s all they do. They don’t think about the hold, just the gems they might find. The elders planned the hold. They tell the gem-hearts where to dig, and the gem-hearts have to listen if they don’t want exiled to the snow.");
 	output("”</i> She shivers. <i>“");
 	if(!korgiTranslate()) output("Exile only cold. Saber-fang killers or alien-stolen.");
-	else output("There's nothing out there but cold, milodan murderers, and thieving aliens.");
+	else output("There’s nothing out there but cold, milodan murderers, and thieving aliens.");
 	output("”</i> Ula’s ears fold back apologetically. <i>“Not all aliens ");
 	if(korgiTranslate()) output("are ");
 	output("good.”</i> Soft fur tickles your forearm as she gently strokes your bicep. <i>“You");
-	if(korgiTranslate()) output("'re");
+	if(korgiTranslate()) output("’re");
 	output(" nice though.”</i>");
 	output("\n\nYou smile winningly, glad to have her endorsement. <i>“But they dug out the entire hold?”</i>");
 	output("\n\nTail wagging, Ula leans herself completely into your side. She’s warm. <i>“");
@@ -1791,7 +1791,7 @@ public function ulaMiningTalk():void
 	else output("The whole hold. Gem-hearts think digging is fun. To them, the sound of picks is like music and the sight of gems like pure joy.");
 	output("”</i> The grinning fluffball jangles a bracelet in front of you. <i>“");
 	if(!korgiTranslate()) output("Is nice, but not that nice. Not </i>fucking<i> nice.");
-	else output("They're nice, but not that nice. Not </i>fucking<i> nice.");
+	else output("They’re nice, but not that nice. Not </i>fucking<i> nice.");
 	output("”</i> She paws gently at your [pc.chest], clawed fingers tracing down to your [pc.belly]. Her eyelashes flutter bashfully as she looks ");
 	if(pc.tallness >= 66) output("up ");
 	output("at you with undisguised ardor.");
@@ -1803,13 +1803,13 @@ public function ulaMiningTalk():void
 
 	output("\n\nUla’s eyes drift closed, and her tongue slips out unthinkingly. <i>“");
 	if(!korgiTranslate()) output("Sparkle-crusts. Tools. Crafty-korg trade for rocks, then make use. Rest dropped under ice. Under ocean. No signs for alien or fang-kitties to tracking.");
-	else output("Jewelry. Tools. Craftskorg will trade for the useful gems. The rest get tossed under the ice, deep in the ocean. We don't leave any signs for alien miners of fang-kitties to track.");
+	else output("Jewelry. Tools. Craftskorg will trade for the useful gems. The rest get tossed under the ice, deep in the ocean. We don’t leave any signs for alien miners of fang-kitties to track.");
 	output("”</i> She purrs against you. <i>“");
 	if(!korgiTranslate()) output("Korg smart. Live in Uveto’s bones. Invisibiling to fang-cats. Unbreakable. No attacking... till aliens come.");
-	else output("We korg are smart. In Uveto's bones, we're invisible to the fang-cats. Our home was unbreakable. Impenetrable... until the aliens came.");
+	else output("We korg are smart. In Uveto’s bones, we’re invisible to the fang-cats. Our home was unbreakable. Impenetrable... until the aliens came.");
 	output("”</i> She pulls away, brushing her hair into place. <i>“");
 	if(!korgiTranslate()) output("Harder living now. Less places for korg settling. Digging deeper now. Bigger clans, in case need fight aliens. Bang tubes very kill, but korg many more.");
-	else output("Everything is harder now. There's less places for other korg tribes to settle. We have to dig deeper. Clans have to be as big as possible to stand up to alien weapons. Thundersticks can kill many korg, but if enough of us come together, no amount of shots can stop us.");
+	else output("Everything is harder now. There’s less places for other korg tribes to settle. We have to dig deeper. Clans have to be as big as possible to stand up to alien weapons. Thundersticks can kill many korg, but if enough of us come together, no amount of shots can stop us.");
 	output("”</i>");
 	output("\n\nYou hadn’t put much thought into what would happen if the korgonne got pushed too far by the mining on planet. Hopefully any violence can be avoided.");
 	output("\n\n<i>“");
@@ -1831,10 +1831,10 @@ public function ulasRoleInTheClan():void
 	else output("Correct. The Clan Chieftan is my father. Many elders are my uncles and aunts. They all expect much.");
 	output("”</i> She shrugs emphatically. <i>“");
 	if(!korgiTranslate()) output("Too much. They saying too headstrong but also saying not leader! They saying need find mate, then no let visit males. All knowing Ula is pussy-dumb. Get horny-dumb like males.");
-	else output("Too much. They say I'm too headstrong but also not a leader. They say I need to find a mate, then don't let any males visit me. They all know I'm pussy-dumb - that I get stupid-horny like a male.");
+	else output("Too much. They say I’m too headstrong but also not a leader. They say I need to find a mate, then don’t let any males visit me. They all know I’m pussy-dumb - that I get stupid-horny like a male.");
 	output("”</i> She pats at her mostly-bared crotch. <i>“");
 	if(!korgiTranslate()) output("After runninged away, they change minds, but now I change mine. No want korg visiting. Rather [pc.name] visit.");
-	else output("After I ran away, they changed their minds, but now I've changed mine. I don't want male korg visiting. I'd rather [pc.name], you, visit.");
+	else output("After I ran away, they changed their minds, but now I’ve changed mine. I don’t want male korg visiting. I’d rather [pc.name], you, visit.");
 	output("”</i> The korgonne princess smiles sidelong at you.");
 
 	//Bimb
@@ -1852,13 +1852,13 @@ public function ulasRoleInTheClan():void
 	output("\n\nYou ask her if that means she’ll be the chief someday.");
 	output("\n\nSnorting, the canine woman laughs. <i>“");
 	if(!korgiTranslate()) output("Am doubting! Elders choosing next Chieftan. Usually old-Chief offspring. Not this time. Think me too crazy. Reckless. Weak.");
-	else output("I'm doubting it! The elders choose the next Chieftan. Usually it is a child of the old Chief. Not this time. They think I'm too crazy, reckless, and weak.");
+	else output("I’m doubting it! The elders choose the next Chieftan. Usually it is a child of the old Chief. Not this time. They think I’m too crazy, reckless, and weak.");
 	output("”</i> She snorts. <i>“");
 	if(!korgiTranslate()) output("We do better if learn from aliens. Learn alien science-magic so can make boom-tubes of own. Milodans not stand chance against korg with core-magic. Aliens no gloat in sky above if korg have fly-ships of own. No take holds from small tribes for steal sparkles! No take! Only respect!");
-	else output("We would do better if we learned from the aliens. We could learn science-magic to make boom-tubes of our own. Milodans wouldn't stand a chance against korg with core-magic. Aliens couldn't gloat in the sky above if we had ships of our own. Nobody could take from the small tribes or steal our gems! No more thievery! Only respect!");
+	else output("We would do better if we learned from the aliens. We could learn science-magic to make boom-tubes of our own. Milodans wouldn’t stand a chance against korg with core-magic. Aliens couldn’t gloat in the sky above if we had ships of our own. Nobody could take from the small tribes or steal our gems! No more thievery! Only respect!");
 	output("”</i> Ula punches one fist into the other. <i>“");
 	if(!korgiTranslate()) output("That what I do if got be chief.");
-	else output("That's what I'd do if I got to be chief.");
+	else output("That’s what I’d do if I got to be chief.");
 	output("”</i>");
 	output("\n\nYou rock back in surprise. She’s quite the little progressive firecracker!");
 	output("\n\n<i>“");
@@ -1866,7 +1866,7 @@ public function ulasRoleInTheClan():void
 	else output("Want to talk about something else?");
 	output("”</i> Ula strokes your knee affectionately.");
 	processTime(10);
-	addDisabledButton(2,"Ula's Role","Ula's Role","You already spoke of this.");
+	addDisabledButton(2,"Ula’s Role","Ula’s Role","You already spoke of this.");
 }
 
 //Other Tribes
@@ -1877,21 +1877,21 @@ public function otherTribesTalkarydooda():void
 	output("<i>“How many other tribes does Uveto have?”</i>");
 	output("\n\nUla shrugs. <i>“");
 	if(!korgiTranslate()) output("How many stars in sky? Too many for one to know. Many. Uveto bigger than pregnant korg appetite, though less now than was.");
-	else output("How many stars are in the sky? Too many for any one person to know. Very many. Uveto's bigger than a pregnant korg's appetite, though there are less clans now than there was.");
+	else output("How many stars are in the sky? Too many for any one person to know. Very many. Uveto’s bigger than a pregnant korg’s appetite, though there are less clans now than there was.");
 	output("”</i> She taps her palm. <i>“");
 	if(!korgiTranslate()) output("Some milodan-killed. Some driven to snow by sparkle-mining.");
 	else output("Some were milodan-killed. Some were driven to the snows by mining.");
 	output("”</i> She punches her fist into her hand. <i>“");
 	if(!korgiTranslate()) output("Small clans join together. Make bigger, stronger clan. This new. Korgonne no like much many snouts in one burrow, but do anyway. Better than lose war or starve.");
-	else output("Smaller clans joined together to make bigger, stronger clans. This is a new thing. Korgonne don't like so many snouts in one burrow, but we do it anyway. Better than losing a war or starving.");
+	else output("Smaller clans joined together to make bigger, stronger clans. This is a new thing. Korgonne don’t like so many snouts in one burrow, but we do it anyway. Better than losing a war or starving.");
 	output("”</i>");
 	output("\n\nYou ask if her clan is such a conglomerate.");
 	output("\n\n<i>“");
 	if(!korgiTranslate()) output("Nope! Korg’ii clan much success. Chief smart. Hide. Steal from dumb aliens.");
-	else output("Nope! Korg'ii clan has had much success. Our Chief is smart. We hide and steal from the dumber aliens.");
+	else output("Nope! Korg’ii clan has had much success. Our Chief is smart. We hide and steal from the dumber aliens.");
 	output("”</i> The princess pats your knee apologetically. <i>“");
 	if(!korgiTranslate()) output("No offense. We not take so much as other clans. Not draw alien ire. Better hidden too. Right under nose. Secret entrance make tough find.");
-	else output("No offense. We don't take as much as many other clans. We don't want to draw the other aliens' ire. We're better hidden too. Right under your noses. The secret entrance makes us tough to find.");
+	else output("No offense. We don’t take as much as many other clans. We don’t want to draw the other aliens’ ire. We’re better hidden too. Right under your noses. The secret entrance makes us tough to find.");
 	output("”</i> She smiles proudly.");
 	output("\n\n<i>“But other clans steal more?");
 	output("\n\nUla chitters with mirth. <i>“");
@@ -1899,15 +1899,15 @@ public function otherTribesTalkarydooda():void
 	else output("Much more! Sparkle-Claws pride themselves on taking things from aliens. They roam far from their hold, using those magic belts to stay warm. They even have flash-shooters, bang-sticks, and all kinds of other core-magic. Formidable fighters!");
 	output("”</i> She flexes a pudgy bicep. <i>“");
 	if(!korgiTranslate()) output("Scare aliens. No try mine territory. Tech make strong. Stronger than Korg’ii.");
-	else output("They scared off the aliens. Nobody tries to mine their territory. Tech makes them strong. Stronger than the Korg'ii.");
+	else output("They scared off the aliens. Nobody tries to mine their territory. Tech makes them strong. Stronger than the Korg’ii.");
 	output("”</i> The dog-girl’s expression becomes pensive. <i>“");
 	if(!korgiTranslate()) output("But not know core-magics. Not keep tech strong. Rust-breaking or worse. Always needing more stealings.");
-	else output("But they don't know core-magics. They don't keep their tech strong. Rust damages it or worse. Always they need to steal more.");
+	else output("But they don’t know core-magics. They don’t keep their tech strong. Rust damages it or worse. Always they need to steal more.");
 	output("”</i>");
 	output("\n\nYou nod thoughtfully. Without knowledge of how to maintain a weapon, especially in these harsh climes, it wouldn’t last long.");
 	output("\n\n<i>“");
 	if(!korgiTranslate()) output("Some clans no use core-magic. Only korgonne-craft. Those clans dumb. Do worst of all, unless very far from sky-spire,");
-	else output("Some clans don't use any core-magic - only korgonne-craft. Those clans are dumb. They do the worst of all, unless very far from the sky-spire,");
+	else output("Some clans don’t use any core-magic - only korgonne-craft. Those clans are dumb. They do the worst of all, unless very far from the sky-spire,");
 	output("”</i> the fluffy princess explains. <i>“");
 	if(!korgiTranslate()) output("Wyrm-Murder clan only exception. Strong people. Hunt frostwyrms. All hunters wear full suit of scales. Even stops some core-bangs.");
 	else output("Wyrm-Murder clan are the only exception. A strong people. They hunt frostwyrms. All their hunters have full suites of frostwyrm scale. It even stops some core-bangs.");
@@ -1917,7 +1917,7 @@ public function otherTribesTalkarydooda():void
 	{
 		output("She sighs heavily. <i>“");
 		if(!korgiTranslate()) output("Korg’ii only have few, but know how make, if scales getted.");
-		else output("Korg'ii Clan only has a few, but we can make it, if someone has the scales.");
+		else output("Korg’ii Clan only has a few, but we can make it, if someone has the scales.");
 		output("”</i>");
 	}
 	output("\n\n<i>“Impressive.”</i>");
@@ -1933,7 +1933,7 @@ public function otherTribesTalkarydooda():void
 	else output("We have magic of our own. Now, do you want to talk about something, or snuggle in?");
 	output("”</i>");
 	processTime(10);
-	addDisabledButton(3,"Other Tribes","Other Tribes","You've already had this conversation.");
+	addDisabledButton(3,"Other Tribes","Other Tribes","You’ve already had this conversation.");
 }
 
 //Explain: Guns
@@ -1988,7 +1988,7 @@ public function explainElectricityToUla():void
 	output("\n\nThis seems to placate the ever-curious Ula for now, though you have no doubt that she’d love a chance to understand it in more detail.");
 	output("\n\n<i>“Thanks-having!”</i> The fluffy dog-girl hugs you tight. <i>“");
 	if(!korgiTranslate()) output("Learn much. Maybe hunters let Ula have zap-gun that no zap no more. Then just need find charge-battery or so-lar paneling for own use. And warm-belt! Warm-belt can work again with elec-tric-it-y-filled battery?");
-	else output("I learned so much. Maybe some hunters will let me have a zap-gun that doesn't zap any more. Then I just need to find a charged battery or so-lar paneling for me to use... And a warm-belt!”</i>");
+	else output("I learned so much. Maybe some hunters will let me have a zap-gun that doesn’t zap any more. Then I just need to find a charged battery or so-lar paneling for me to use... And a warm-belt!”</i>");
 	output("\n\n<i>“Yes.”</i>");
 	output("\n\n<i>“Oooooh.”</i> Mischief dances in the korgonne’s eyes. <i>“");
 	if(!korgiTranslate()) output("Much learn. Many thanks. Other talks now?");
@@ -2004,12 +2004,12 @@ public function talkAboutSavicite():void
 	showUla();
 	output("<i>“Do you know about Savicite?”</i>");
 	output("\n\n<i>“Savicite...”</i> Ula mouths. <i>“");
-	if(korgiTranslate()) output("That's your word for the green sparkly rocks?");
+	if(korgiTranslate()) output("That’s your word for the green sparkly rocks?");
 	else output("Alien word for green sparkles?");
 	output("”</i>");
 	output("\n\nYou nod.");
 	output("\n\nUla looks at you cautiously. <i>“");
-	if(korgiTranslate()) output("We know your people want it. We know they offered credits for them. Core silliness. [pc.name]. You're not hear to steal some, are you?")
+	if(korgiTranslate()) output("We know your people want it. We know they offered credits for them. Core silliness. [pc.name]. You’re not hear to steal some, are you?")
 	else output("Know aliens want. Knowing cretids offered for. Kedrits? Core silliness. [pc.name] not here here to steal?");
 	output("”</i>");
 	output("\n\nYou assure her that you aren’t here to steal from her tribe");
@@ -2035,10 +2035,10 @@ public function talkAboutSavicite():void
 	else output("Makes us want to share warmth, very much.");
 	output("”</i> A paw lands in your lap. <i>“");
 	if(!korgiTranslate()) output("Maybe korg not make puppies if no Savicite.");
-	else output("Maybe Korg wouldn't make puppies, if not for Savicite.");
+	else output("Maybe Korg wouldn’t make puppies, if not for Savicite.");
 	output("”</i> Her tongue lolls out. <i>“");
 	if(!korgiTranslate()) output("Males no wear and not want much sex till girl-korg rubs nose in it. Maybe girls not want much sex either without green-sparkles?");
-	else output("Males don't wear any, and they don't want sex much until a girl-korg rubs their noses in it. Maybe girls wouldn't want sex either without it?");
+	else output("Males don’t wear any, and they don’t want sex much until a girl-korg rubs their noses in it. Maybe girls wouldn’t want sex either without it?");
 	output("”</i>");
 	output("\n\nIt sounds like she knows about some of its more... recreational properties.");
 	output("\n\n<i>“");
@@ -2046,19 +2046,19 @@ public function talkAboutSavicite():void
 	else output("Why do you aliens want it so bad");
 	output("?”</i> Her nipples are firm but not too firm. Ula’s thirst for knowledge remains greater than her lust, for now. <i>“");
 	if(!korgiTranslate()) output("Knowing aliens have own magic breeding potions and pink-cloud stuff. Hear of stuff call Throbb! Even korg boy want sex with Throbb. Not need Savicite!");
-	else output("I know aliens have their own magic breeding potions and pink-cloud stuff. I've heard about Throbb! Even korg boys want sex after using Throbb. You don't need Savicite at all!");
+	else output("I know aliens have their own magic breeding potions and pink-cloud stuff. I’ve heard about Throbb! Even korg boys want sex after using Throbb. You don’t need Savicite at all!");
 	output("”</i>");
 	output("\n\nYou explain its usage in a myriad of industries, everything from helping to make those aphrodisiacs to starship fuel and light drives. Without Savicite, the universe as a whole would be butt-fucked.");
 	output("\n\nUla pulls her hands back and sighs. <i>“");
 	if(!korgiTranslate()) output("Aliens not stop wanting then");
-	else output("Aliens won't stop wanting it then");
+	else output("Aliens won’t stop wanting it then");
 	output("?”</i>");
 	output("\n\n<i>“No.”</i> You shake your head sadly. <i>“I don’t think so.”</i>");
 	output("\n\n<i>“Feces!”</i> The chieftain’s daughter slouches, any erotic energy in the room dissipating with her exclamation.");
 	output("\n\nYou stroke her back and offer, <i>“Maybe someday... not too far from now, a new alien will be in charge of the mining. One who won’t be a threat to your people.”</i>");
 	output("\n\nUla smirks. <i>“");
 	if(!korgiTranslate()) output("Maybe. While wishing, me wanting ship-of-stars. See universe for self. Also smarter tribe.");
-	else output("Maybe. While we're wishing, I want a starship to see the universe for myself. Also a smarter tribe.");
+	else output("Maybe. While we’re wishing, I want a starship to see the universe for myself. Also a smarter tribe.");
 	output("”</i> She nods sharply. <i>“");
 	if(!korgiTranslate()) output("Second one better wish. Maybe other-talk now?");
 	else output("The second one is a better wish. Maybe we could talk about something else now?");
@@ -2075,7 +2075,7 @@ public function ulaCreditsTalk():void
 	showUla();
 	output("<i>“So credits...”</i>");
 	output("\n\n<i>“Cred-its,”</i> Ula replies haltingly. <i>“");
-	if(korgiTranslate()) output("I've heard of those. Why do core-folk care about them so much?");
+	if(korgiTranslate()) output("I’ve heard of those. Why do core-folk care about them so much?");
 	else output("Am hearing of. Why core-folk care so much?");
 	output("”</i>");
 	output("\n\nYou explain their convenience for trade and usefulness over the bartering systems most peoples use. Credits are merely a placeholder for valuable goods that any other coreward merchant would accept. Their ubiquitous acceptance is the source of their value. Anyone that wishes to trade with aliens would want to use them.");
@@ -2090,17 +2090,17 @@ public function ulaCreditsTalk():void
 	output("”</i>");
 	output("\n\nYou explain that there are many types, some basic ones for five or six hundred credits, but decent ones run well into the six or seven thousands.");
 	output("\n\n<i>“Mmmhmmm...”</i> Ula taps her chin, running the numbers in her head. <i>“");
-	if(korgiTranslate()) output("I think I can convince the merchants of the tribe to use credits, so long as they're chits, not just numbers on a screen.");
+	if(korgiTranslate()) output("I think I can convince the merchants of the tribe to use credits, so long as they’re chits, not just numbers on a screen.");
 	else output("Thinking can convince merchants of tribe use credits, so long as chits, not numbers on tech-screen.");
 	output("”</i>");
 	output("\n\n<i>“Really?”</i>");
 	output("\n\nUla nods. <i>“");
-	if(korgiTranslate()) output("It won't be a good deal. They'll want big profits for the trouble, and I'll need to convince the elders to allow a brave korg to trade the credits back to your people.”</i> She all but bounces in excitement. <i>“Give me a day. Then you can trade, I'm thinking.");
+	if(korgiTranslate()) output("It won’t be a good deal. They’ll want big profits for the trouble, and I’ll need to convince the elders to allow a brave korg to trade the credits back to your people.”</i> She all but bounces in excitement. <i>“Give me a day. Then you can trade, I’m thinking.");
 	else output("Not be good deal. Will want big profit for trouble, and need convince elders send brave korg for trade credits with aliens. Chieftain too.”</i> She all but bounces in excitement. <i>“Give day. Then can trading, me thinking.");
 	output("”</i>");
 	output("\n\n<i>“Wow... thanks, Ula.”</i> You rub her shoulder fondly.");
 	output("\n\nThe stacked woman snorts. <i>“");
-	if(korgiTranslate()) output("Thank me if I succeed. Check with the merchants tomorrow, but in the meantime, keep talking to me. Unless you don't want to talk? Maybe you'd like to share some warmth?");
+	if(korgiTranslate()) output("Thank me if I succeed. Check with the merchants tomorrow, but in the meantime, keep talking to me. Unless you don’t want to talk? Maybe you’d like to share some warmth?");
 	else output("Be thanking if succeeding. Talk merchants tomorrow. But talk me now. Unless no want talk now? Maybe want share warm?");
 	output("”</i> She snuggles closer, looking up at you with big, luminous eyes.");
 	if(flags["ULA_CREDIT_TALK"] == undefined) flags["ULA_CREDIT_TALK"] = GetGameTimestamp();

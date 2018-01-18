@@ -4225,6 +4225,8 @@ package classes.GameData
 					// Legacy mode kinda- if we're in a single-enemy fight, don't output anything.
 					if (_hostiles.length > 1)
 					{
+						if(_hostiles[i].hasFlightEffects()) _hostiles[i].clearFlightEffects();
+						
 						output("\n\n" + StringUtil.capitalize(_hostiles[i].getCombatName(), false) + " falls to the ground,");
 						if (_hostiles[i].HP() <= 0) output(" defeated.");
 						else output(" stricken with lust.");
@@ -4232,7 +4234,14 @@ package classes.GameData
 				}
 				else if (_hostiles[i].isDefeated() && _hostiles[i].alreadyDefeated == true)
 				{
-					output("\n\n" + StringUtil.capitalize(_hostiles[i].getCombatName(), false) + " lies on the ground, defeated.");
+					output("\n\n" + StringUtil.capitalize(_hostiles[i].getCombatName(), false));
+					if(_hostiles[i].hasFlightEffects())
+					{
+						_hostiles[i].clearFlightEffects();
+						output(" falls to");
+					}
+					else output(" lies on");
+					output(" the ground, defeated.");
 				}
 			}
 			

@@ -485,6 +485,7 @@
 				{
 					output("When you continue to act, the korgonne grunts in disappointment. <i>“No " + target.mf("mister nice guy","miss nice girl") + "?”</i> he huffs. He pulls his hand from his pocket and resumes his attack!\n");
 					uluKnifing(target);
+					output("\n");
 				}
 				//if PC ‘Waits’, choose from results below (tweak percentages as needed):
 				//25% of dirty trick; korg lashes out with a high-accuracy, very-high-damage strike and the fight continues

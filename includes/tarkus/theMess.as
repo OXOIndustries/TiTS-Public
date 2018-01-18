@@ -81,7 +81,7 @@ public function stretchDelilahsButt():void
 	if(chars["DELILAH"].analCapacity() < 1000) chars["DELILAH"].ass.bonusCapacity += 10;
 	if(chars["DELILAH"].ass.loosenessRaw < 4) chars["DELILAH"].ass.loosenessRaw++;
 	if(chars["DELILAH"].analVirgin) chars["DELILAH"].analVirgin = false;
-	if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) flags["TOOK_DELILAHS_BUTTGINITY"] = 1;
+	if(flags["TOOK_DELILAHS_BUTTGINITY"] == undefined) flags["TOOK_DELILAHS_BUTTGINITY"] = 1;
 }
 //[Bartender; First Time]
 public function approachDCLTrap():void
@@ -326,7 +326,12 @@ public function buttStretchDelsAnus():void
 	else output("She obediently drops to her knees, one hand slipping back to spread her cheeks wide, already oh so eager for a taste of your cock back there as she opens wide, ready to receive your package");
 	output(". You step forward, tossing your [pc.gear] onto the bar and grabbing your [pc.cock " + x + "]. A few fast strokes have you at the ready, the turgid shaft of your prick looming over the trappy whore’s face, your crown practically pushing against her lips. She only manages to hold herself back for a few seconds before her tongue stretches out, caressing the crown of your cock. ");
 	if(delilahSubmissiveness() < 5) output("<i>“Ugh... you... you really want me to... to...”</i> she sputters indignantly, trying to hide the little tentpole between her slender legs.");
-	else output("<i>“I love the taste of your cock...”</i> she purrs, nuzzling the length of your [pc.cock " + x + "] affectionately as her tongue lavishes it with affection. <i>“The first... and the best...”</i> she adds happily, planting a kiss on the tip.");
+	else
+	{
+		output("<i>“I love the taste of your cock...”</i> she purrs, nuzzling the length of your [pc.cock " + x + "] affectionately as her tongue lavishes it with affection. <i>“The");
+		if(flags["TOOK_DELILAHS_BUTTGINITY"] == undefined) output(" first... and the");
+		output(" best...”</i> she adds happily, planting a kiss on the tip.");
+	}
 	output(" You shudder as the sensation of her tongue on your most sensitive flesh snakes through your body, and you’re forced to grip the bar to support yourself, [pc.legOrLegs] shaky under the startlingly skilled ministrations of the trappy slut.");
 	output("\n\n<i>“Juuust like that,”</i> you moan through clenched teeth, trying to control yourself. Your fingers snake through Deliliah’s blonde-dyed hair, coaxing her on as she licks and kisses at the underside of your member, slowly but surely working herself up to taking it wholesale.");
 	if(pc.balls > 0 && delilahSubmissiveness() >= 5) 

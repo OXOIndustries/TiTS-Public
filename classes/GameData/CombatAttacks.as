@@ -943,7 +943,7 @@ package classes.GameData
 				}
 				else output(StringUtil.capitalize(target.getCombatName(), false) + " " + target.mfn("growls", "squeals", "grunts") + " aloud as " + attacker.getCombatName() + " clamps " + (attacker.isPlural ? "their" : attacker.getCombatPronoun("himher")) + " jaws around a limb!");
 				
-				applyDamage(new TypeCollection( { tease: 3 + (fromMelee ? 0 : Math.floor(attacker.level / 3)) + rand(3) } ), attacker, target, "minimal");
+				applyDamage(new TypeCollection( { drug: 3 + (fromMelee ? 0 : Math.floor(attacker.level / 3)) + rand(3) } ), attacker, target, "minimal");
 			}
 		}
 		

@@ -175,7 +175,7 @@ public function getButtfuckedByDudeleen():void
 			output(" The upper shaft grinds against the base of your [pc.tails], hitting the deliciously sensitive spot right where ");
 			if(pc.tailCount > 1) output("they meet");
 			else output("it meets");
-			output("your spine.");
+			output(" your spine.");
 		}
 		output("\n\n<i>“More,”</i> you say, turning back to look him in the eye, <i>“");
 		if(!silly) output("Faster! Harder!");

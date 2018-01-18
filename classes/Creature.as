@@ -1910,6 +1910,7 @@
 					buffer = crotchDescript();
 					break;
 				case "base":
+				case "cockBase":
 				case "sheath":
 				case "sheathDescript":
 					buffer = sheathDescript(arg2);
@@ -1943,6 +1944,7 @@
 					buffer = cocksDescriptLight();
 					break;
 				case "cocksSimple":
+				case "cocksShort":
 				case "cocksNoun":
 				case "cocksNounSimple":
 					buffer = simpleCocksNoun();
@@ -1954,6 +1956,7 @@
 				case "cockLight":
 				case "cockSimple":
 				case "cockNounSimple":
+				case "cockShort":
 				case "cockNoun":
 					buffer = simpleCockNoun(arg2);
 					break;
@@ -2180,6 +2183,7 @@
 				case "biggestBreastDescript":
 					buffer = biggestBreastDescript();
 					break;
+				case "breastDescript":
 				case "breasts":
 				case "boobs":
 				case "tits":
@@ -10559,6 +10563,15 @@
 			if (hasStatusEffect("Flying")) return true;
 			if (InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_BEE, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DRAGONFLY, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_DARK_SYLVAN, GLOBAL.TYPE_DOVE, GLOBAL.TYPE_GRYVAIN])) return true;
 			return false;
+		}
+		public function hasFlightEffects(): Boolean
+		{
+			if (hasStatusEffect("Flying")) return true;
+			return false;
+		}
+		public function clearFlightEffects(): void
+		{
+			removeStatusEffect("Flying");
 		}
 		public function hasJetpack():Boolean {
 			return false;

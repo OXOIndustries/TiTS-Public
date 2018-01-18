@@ -243,10 +243,9 @@ public function kiroTalkInKallysBar():void
 public function kiroTalkMenuInCanadia(arg:Function):void
 {
 	clearMenu();
-	if(arg == kiroRepeatedBFTalk) addDisabledButton(0,"Boyfriend","Boyfriend","You just discussed that.");
-	else if(flags["KIRO_BF_TALK"] == 1) addDisabledButton(0,"Boyfriend","Boyfriend","You’ve already had this discussion. Your relationship has gone as far as words alone will take it.");
-	else if(pc.mf("","f") == "") addButton(0,"Boyfriend",kiroRepeatedBFTalk,undefined,"Boyfriend","Ask about the whole “boyfriend” thing. Maybe it could happen.");
-	else addButton(0,"Girlfriend",kiroRepeatedBFTalk,undefined,"Girlfriend","Ask about the whole “girlfriend” thing. Maybe it could happen.");
+	if(arg == kiroRepeatedBFTalk) addDisabledButton(0,(pc.mf("Boy","Girl") + "friend"),(pc.mf("Boy","Girl") + "friend"),"You just discussed that.");
+	else if(flags["KIRO_BF_TALK"] == 1) addDisabledButton(0,(pc.mf("Boy","Girl") + "friend"),(pc.mf("Boy","Girl") + "friend"),"You’ve already had this discussion. Your relationship has gone as far as words alone will take it.");
+	else addButton(0,(pc.mf("Boy","Girl") + "friend"),kiroRepeatedBFTalk,undefined,(pc.mf("Boy","Girl") + "friend"),("Ask about the whole “" + pc.mf("boy","girl") + "friend” thing. Maybe it could happen."));
 
 	if(arg == askKiroForRougherSex) addDisabledButton(1,"Rougher Sex","Rougher Sex","You just discussed that.");
 	else addButton(1,"Rougher Sex",askKiroForRougherSex,undefined,"Rougher Sex","Request some rough, passionate fucking.");

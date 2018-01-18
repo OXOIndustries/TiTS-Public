@@ -623,7 +623,7 @@ public function erikaPublicSexThreesomeGryvain():void
 	output("\n\nGritting your teeth, you hold back the tide of your orgasm. You can’t let this smug fucker beat you. She smirks once more when she realizes that you’re trying to holding out.");
 
 	clearMenu();
-	if (pc.libido() < 66) addButton(0, "Next", erikaPublicSexThreesomeGryvainVictory);
+	if (pc.libido()/2 + rand(20) + 1 < pc.willpower()/2 + rand(20) + 1) addButton(0, "Next", erikaPublicSexThreesomeGryvainVictory);
 	else addButton(0,"Next",erikaPublicSexThreesomeGryvainLoss);
 }
 

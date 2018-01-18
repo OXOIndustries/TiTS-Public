@@ -1776,7 +1776,7 @@ public function spiderCostumePart2():void
 	clearOutput();
 	showBust("SAERI_FAIRY", "HOLIDAY_HORSE");
 	author("Magikarpfever");
-	output("Before she can even react you shoot a stream of web to swathe her legs in your silk. With her long legs now indisposed, she falls to the ground, barely being able to catch herself with her hands. She pushes her luxurious hair out of her hair to reveal a look of complete disbelief. Any attempt to push back against the ground is met with another shot of web until her arms are also cocooned. Holiday struggles against the bonds, but it’s a half-hearted attempt at best. You walk toward her at a brutally slow pace, each step emphasized by the click of your natural high-heels. Soon you’re looming over her, watching her squirming cease as you lean down. In a surprisingly soft gesture, you stroke the smooth skin of her cheeks. Gradually your hands trail down, all the way to her sizable breasts. Both are moving up and down more rapidly than normal, Holiday’s breathing amped up a notch, whether it’s from running to the alley or the sudden position she found herself in.");
+	output("Before she can even react you shoot a stream of web to swathe her legs in your silk. With her long legs now indisposed, she falls to the ground, barely being able to catch herself with her hands. She pushes her luxurious hair out of her face to reveal a look of complete disbelief. Any attempt to push back against the ground is met with another shot of web until her arms are also cocooned. Holiday struggles against the bonds, but it’s a half-hearted attempt at best. You walk toward her at a brutally slow pace, each step emphasized by the click of your natural high-heels. Soon you’re looming over her, watching her squirming cease as you lean down. In a surprisingly soft gesture, you stroke the smooth skin of her cheeks. Gradually your hands trail down, all the way to her sizable breasts. Both are moving up and down more rapidly than normal, Holiday’s breathing amped up a notch, whether it’s from running to the alley or the sudden position she found herself in.");
 
 	output("\n\nOnly needing a flick of a finger to undo her top pillowy cushions burst from their confines. The milky skin surrounding bright pink aerolae are just begging to be licked. However you’re not the one who’s going to do the licking. You stride back to your Saeri, who is watching wide eyed at the scene before her. With relative ease, you cut her down from the wall and embrace her again. She gladly accepts it, almost purring as you stroke her head. Not above a whisper, you explain to her what you want to do. When you let go of her she tentatively walks over to the tied up Holiday and hunkers down so you can see her cute little behind. Following your orders she begins lapping at the demon-nurse’s breasts, sliding her tongue down and around her nipples. Holiday groans at the treatment, sticking up her chest so the Saeri has better access. Your pet expertly swirls her tongue around her tender nubs, giving them each a tiny nip. By this point Holiday is visibly panting, the tent in her skirt now almost vertical.");
 	output("\n\n<i>“Yo-you know, I thought, I... I-d be tied up by peacekeepers, th-though this...this is loads better,”</i> she stammers.");
@@ -2656,6 +2656,11 @@ public function trappyHeroAftermath():void
 
 	output("\n\nDonning your gear, you sit down at the controls of your ship, deciding that you had enough of a break. It’s high time to get back to adventuring, and see if you can’t beat your cousin to some pods.");
 	applyShortswordChanges();
+	
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	pp.createPerk("Fixed CumQ",2500,0,0,0);
+	pc.loadInAss(pp);
+	
 	processTime(8*60);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
