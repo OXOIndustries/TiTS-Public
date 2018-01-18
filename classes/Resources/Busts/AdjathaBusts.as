@@ -229,6 +229,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/eimear_nude.png", mimeType = "image/png")]
 		public var Bust_CFS_EIMEAR_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/erika.png", mimeType = "image/png")]
+		public var Bust_ERIKA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/erika_nude.png", mimeType = "image/png")]
+		public var Bust_ERIKA_NUDE:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/erra.png", mimeType = "image/png")]
 		public var Bust_ERRA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/erra_nude.png", mimeType = "image/png")]
@@ -909,6 +914,11 @@ package classes.Resources.Busts
 			public var Full_CFS_EIMEAR:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/eimear_nude.png", mimeType = "image/png")]
 			public var Full_CFS_EIMEAR_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/erika.png", mimeType = "image/png")]
+			public var Full_ERIKA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/erika_nude.png", mimeType = "image/png")]
+			public var Full_ERIKA_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/erra.png", mimeType = "image/png")]
 			public var Full_ERRA:Class;
