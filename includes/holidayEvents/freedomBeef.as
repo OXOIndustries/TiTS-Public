@@ -1,7 +1,3 @@
-public function isNearlyJulyFourth():Boolean
-{
-	return checkDate(4, 7, 7);
-}
 
 public function tryEncounterFreedomBeef():Boolean
 {

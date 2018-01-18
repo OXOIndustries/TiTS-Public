@@ -66,7 +66,7 @@ package classes.GameData.Pregnancy.Handlers
 					if(pData.pregnancyQuantity == 2) buffer += "twins";
 					else if(pData.pregnancyQuantity == 4) buffer += "quadruplets";
 					else buffer += "sextuplets";
-					buffer += ". It answers your lingering question about whether or not you were compatible with that lapinara from before, but also prompts a new one. Why doesn’t the number babies growing inside you match up with the number of eggs you remember?";
+					buffer += ". It answers your lingering question about whether or not you were compatible with that lapinara from before, but also prompts a new one. Why doesn’t the number of babies growing inside you match up with the number of eggs you remember?";
 				}
 				else
 				{

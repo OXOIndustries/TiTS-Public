@@ -12,7 +12,7 @@ public function subTunerBonusButts():void
 	{
 		if(flags["SUB_TUNERED"] == undefined)
 		{
-			output("\n\nThere’s a small parlour table nearby, all white and shiny with a pair of chairs to match, but more importantly, you can see the tell-tale glint of light on metal beneath one of the ivory seats.");
+			output("\n\nThere’s a small parlor table nearby, all white and shiny with a pair of chairs to match, but more importantly, you can see the tell-tale glint of light on metal beneath one of the ivory seats.");
 
 			//[Metal] Check out whatever is under that chair. //PC cannot be taur or naga, requires cock or vag. Probably shouldn’t appear for those that can’t use it in the first place.
 			addButton(0,"Metal",uvetoSubtunerCollectionBootyButtsSupremeEatDabootyLikeGroceries,undefined,"Metal","Check out whatever is under that chair.");
@@ -963,7 +963,7 @@ public function belleAppearance():void
 	if(flags["MET_SAEC"] != undefined) 
 	{
 		output("\n\nNearby Belle at almost anytime is Saec, the human woman’s loyal ausar pet, all blonde and pretty and ready to heed her master’s commands.");
-		output("\n\nAs you’ve seen before, Saec is a very beautiful bitch, with her womanly visage, curves, and those lovely golden locks flowing around her face, parted briefly by her big, fluffy puppy ears. She’s very well-endowed, even compared to Belle, her big E-cups dwarfing her master’s bust by comparison. With the ausar bent over on all fours almost all the time, it’s very easy to see her big, squishy butt and shapely thighs put on display, all topped with her swishing, fluffy blonde tail, coloured the same hue as the fur on her limbs. Though, even on her hands and knees, it’s easy to tell Saec is a <i>very</i> big girl, a foot taller than her master <i>at the least</i>.");
+		output("\n\nAs you’ve seen before, Saec is a very beautiful bitch, with her womanly visage, curves, and those lovely golden locks flowing around her face, parted briefly by her big, fluffy puppy ears. She’s very well-endowed, even compared to Belle, her big E-cups dwarfing her master’s bust by comparison. With the ausar bent over on all fours almost all the time, it’s very easy to see her big, squishy butt and shapely thighs put on display, all topped with her swishing, fluffy blonde tail, colored the same hue as the fur on her limbs. Though, even on her hands and knees, it’s easy to tell Saec is a <i>very</i> big girl, a foot taller than her master <i>at the least</i>.");
 		if(pregSaec()) output(" Her normally flat tummy is swollen and pregnant, most likely due to your escapades with her.");
 
 		output("\n\nHer skin is tanned and fair, but you can spot a few small scars on her near blemishless flesh, hard to see and very old from the looks of them, definitely from before Belle met the pup.");
@@ -2089,11 +2089,11 @@ public function sayYesToHypnoShit():void
 	output("\n\n<i>“I knew you’d be up for it, [pc.boyGirl],”</i> Belle coos before standing herself back up, <i>“Now, why don’t you have a seat over there and get yourself comfortable while I get this ready.”</i> The woman points out a nearby chair and holds up the device in her hand as she finishes her sentence.");
 	output("\n\nYou heed your command <i>like a good puppy</i> and crawl your way over to the nearby seat then plop your [pc.ass] right down in it. Once you’re nice and settled, you notice Belle tightening a few bolts on that visor, and It’s only a moment before she’s done with her work and making her way back towards you.");
 	output("\n\n<i>“Alright,”</i> she begins, lifting the device over your head and slowly lowering it, <i>“Now, once this is on, I’m going to turn it on, and its effects, along with your collar, should induce some sort of mentally vulnerable state. <b>Should</b>.”</i> With that the visor descends over your eyes, blocking your vision with what looks to be a turned-off holo-screen, the sound of velcro straps securing the piece of tech to your head loud in your ears. <i>“Now where did I wire the- ah! There it is,”</i> the lady scientist says, her hand tracing along her invention until she reaches a single small button, <i>“Let’s begin.”</i>");
-	output("\n\nWith that, Belle presses the button and closes a circuit, turning on the visor. Almost immediately the screen lights up, pulsing with gentle slowly changing colour. They’re... calming, making you sink back into your seat a bit.");
+	output("\n\nWith that, Belle presses the button and closes a circuit, turning on the visor. Almost immediately the screen lights up, pulsing with gentle slowly changing color. They’re... calming, making you sink back into your seat a bit.");
 	output("\n\nYour master seems to notice your relaxed posture. She chuckles, <i>“That’s nice, isn’t it? Doesn’t being here with your master just make you feel good... safe?”</i>");
-	output("\n\n<i>Yeah, it does. It’s like you can feel her arms around you, one hand tight on your leash, whispering praises in your ears. It’s so nice being a good pet and having a master like Belle to take all your worries away.</i> Just as those thoughts begins to fade the lights seems to change, patterns appearing in the colours, almost clearing your mind until it’s all you can focus on, Belle’s voice seeming to flow into the patterns.");
+	output("\n\n<i>Yeah, it does. It’s like you can feel her arms around you, one hand tight on your leash, whispering praises in your ears. It’s so nice being a good pet and having a master like Belle to take all your worries away.</i> Just as those thoughts begins to fade the lights seems to change, patterns appearing in the colors, almost clearing your mind until it’s all you can focus on, Belle’s voice seeming to flow into the patterns.");
 	output("\n\n<i>“I bet you’d like to reward your master, wouldn’t you? Make her feel nice, loved, happy. Such a good [pc.boyGirl] should want to make their master feel good.”</i>");
-	output("\n\n<i>Yes, you do want to make her feel good. Her arms seems to slide across your body, running over your crotch and chest, and though you know she isn’t there, it makes you gasp and moan all the same.</i> All these thoughts begin to feel heavy, weighing down on your eyelids and limbs like a hard day’s work. Belle’s voice and the changing colours before you gently fade until you can’t hear or see them... but you hear something, something saying <i>“Good [pc.boyGirl].”</i>");
+	output("\n\n<i>Yes, you do want to make her feel good. Her arms seems to slide across your body, running over your crotch and chest, and though you know she isn’t there, it makes you gasp and moan all the same.</i> All these thoughts begin to feel heavy, weighing down on your eyelids and limbs like a hard day’s work. Belle’s voice and the changing colors before you gently fade until you can’t hear or see them... but you hear something, something saying <i>“Good [pc.boyGirl].”</i>");
 
 	processTime(8);
 	clearMenu();
@@ -2398,7 +2398,7 @@ public function saecDate2():void
 	else output("Luckily, it seems Saec remembers where it is from when you last went there,");
 	output(" because when you meet a quaint, rustic looking building standing out amongst the sleek structures of Uveto station, she taps on your shoulder and points it out.");
 
-	output("\n\nYou turn to look at the building, standing out like a single coloured hair among a head of grey strands, complete with a wooden sign labeling it as <i>“Manni’s Too”</i>. Saec smiles wide next to you at the simple fact that she’s ");
+	output("\n\nYou turn to look at the building, standing out like a single colored hair among a head of grey strands, complete with a wooden sign labeling it as <i>“Manni’s Too”</i>. Saec smiles wide next to you at the simple fact that she’s ");
 	if(flags["SAEC_DATES"] == undefined) output("here with you");
 	else output("here with you again");
 	output(". Seeing that look on her face makes your heart flutter, and you’re eager to get on with this date, so you quickly lead your pet in through the entrance.");
@@ -2864,7 +2864,7 @@ public function peerReviewParty2():void
 	author("HugsAlright");
 	output("Sure enough, the guests come: a lot of well-dressed scientists and investors, as well as those friends with <i>“similar interests”</i> Belle was speaking of, people with their own pets on leashes moving around the party. There’s not many people, a small get-together if you’ve ever seen one, groups of three or four people talking over glasses of wine that you and your master drift between. Yes, you stay close to the lovely lady holding your leash the whole time as she leads you to different guests. The more scientifically-minded seem to simply inspect your appearance, analyzing the collar around your neck while Belle demonstrates some simple commands for you to follow with her colleagues. The more deviant minded, on the other hand, seem to be more interested in your simple ability to follow your master’s orders... and that tight, tight attire of yours. A few try to get a bit grabby with you, but Belle keeps them at bay.");
 	output("\n\nEventually, you come across another fellow scientist who seems to be of <i>both</i> minds. She gives your master a hearty greeting as she walks over to the both of you. <i>“Doctor Baslocvicz!”</i> she calls, out getting close enough that you can get a good look at her, <i>“I’m surprised I haven’t bumped into the heart of the party yet.”</i>");
-	output("\n\nThe woman appear to be a rahn, a bright blue one at that. She’s quite a bit shorter than Belle, her gel molded into cyan hair and looking at her with similarly coloured eyes.");
+	output("\n\nThe woman appear to be a rahn, a bright blue one at that. She’s quite a bit shorter than Belle, her gel molded into cyan hair and looking at her with similarly colored eyes.");
 	output("\n\n<i>“Doctor Lara, good to see you again,”</i> your master says, extending an arm for Lara to shake at.");
 	output("\n\nThe gel-woman takes hold of her hand and shakes it, turning her gaze to look at you, <i>“And this is the ‘Sub-Tuner’ I’m here about?”</i> Before getting an answer, the rahn takes a knee in front of you cocking her head and looking right into your eyes.");
 	output("\n\n<i>“It most certainly is,”</i> Belle responds, keeping a close eye on Doctor Lara lest she do anything shifty.");
@@ -3170,13 +3170,15 @@ public function subTunahDream2():void
 //Taur Race Stadium
 //This will be a new area on Uveto, pretty close to the town.
 //Tile Text
-public function taurStadiumInterior():void
+public function taurStadiumInterior():Boolean
 {
 	author("HugsAlright");
-	output("[pc.Moving] inside, you’re greeted by the warmth of artificial heating and the gentle rumbling of crowds moving in and out of the arena. Looking around, you can see stairwells leading to what must be the stands, snack stands, money-changers, floor-men, and cashiers, all ready to take your money. The whole arena is painted a deep-blue with highlights of white and icy mints; holo-signs and brightly-coloured advertisements line the walls. It seems a testament to the power of the galaxy’s corporations that a place like this can exist on a small, frozen moon in the middle of nowhere.");
-	output("\n\nThere’s a girl with brightly-coloured, scaled skin who appears to be a cashier with an empty line in front of her. Seems like she’d be your in if you want to get in on some of the races here.");
+	output("[pc.Moving] inside, you’re greeted by the warmth of artificial heating and the gentle rumbling of crowds moving in and out of the arena. Looking around, you can see stairwells leading to what must be the stands, snack stands, money-changers, floor-men, and cashiers, all ready to take your money. The whole arena is painted a deep-blue with highlights of white and icy mints; holo-signs and brightly-colored advertisements line the walls. It seems a testament to the power of the galaxy’s corporations that a place like this can exist on a small, frozen moon in the middle of nowhere.");
+	output("\n\nThere’s a girl with brightly-colored, scaled skin who appears to be a cashier with an empty line in front of her. Seems like she’d be your in if you want to get in on some of the races here.");
 
 	addButton(0,"Cashier",taurStadiumCashier);
+	
+	return false;
 }
 
 public function showTaurCashier():void

@@ -841,7 +841,7 @@ public function buskyShopInitialization():void {
 	else chars["BUSKY"].destroyItemByClass(SumaCream);
 	
 	//During christmas season sell extra stuff
-	if (checkDate(24, 12, 14)) {
+	if (isChristmas()) {
 		//make sure this is not added everytime you visit him
 		if(!chars["BUSKY"].hasItemByClass(Nutnog)) chars["BUSKY"].inventory.push(new Nutnog());
 		if(!chars["BUSKY"].hasItemByClass(Peckermint)) chars["BUSKY"].inventory.push(new Peckermint());

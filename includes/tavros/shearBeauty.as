@@ -209,7 +209,7 @@ public function hairworkFromCeria():void
 	if(pc.hairLength > 0) addButton(2,"Color",hairColorMainMenu,undefined,"Color Hair","Try out a new color!");
 	else addDisabledButton(2,"Color","Color Hair","You need something on your head to dye!");
 	if(pc.hairLength <= 0) addDisabledButton(3,"Style","Style Hair","You need some hair in order to style it!");
-	if(InCollection(pc.hairType, GLOBAL.HAIR_TYPE_REGULAR, GLOBAL.HAIR_TYPE_QUILLS)) addButton(3,"Style",ceriaHairStyleChoices,undefined,"Style Hair","Get your hair styled into something fashionable.");
+	else if(InCollection(pc.hairType, GLOBAL.HAIR_TYPE_REGULAR, GLOBAL.HAIR_TYPE_QUILLS)) addButton(3,"Style",ceriaHairStyleChoices,undefined,"Style Hair","Get your hair styled into something fashionable.");
 	else addDisabledButton(3,"Style","Style Hair","You can only get traditional hair styled here.");
 	if(pc.hasFur() && pc.perkv1("Wooly") >= 1) addButton(6,"Fur Shear",furShearMenu,undefined,"Shear Fur","Get your wooly fur sheared!");
 	else addDisabledButton(6,"Fur Shear","Shear Fur","You don’t have any wooly fur to shear!");

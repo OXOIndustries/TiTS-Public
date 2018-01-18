@@ -1835,7 +1835,7 @@ public function ellieDelivery():void
 	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 0, 16) > 0)
 	{
 		output("\n\nShe cocks her head. <i>“And what’s a Milodan?”</i>");
-		output("\n\n<i>“The fluffy puppies... right, you wouldn’t have seen them. Here, I’ll show you.”");
+		output("\n\n<i>“The fluffy puppies... right, you wouldn’t have seen them. Here, I’ll show you.”</i>");
 		output("\n\n<i>“Omigosh! They’re so cute!”</i> Ellie squeals, gently picking up one of the pups. It squeaks and promptly bats her on the nose with a padded paw. <i>“Don’t you hit your mommy,”</i> Ellie chides the pup, who looks suitably admonished before burping in her face and giggling.");
 		output("\n\n<i>“Aww,”</i> Ellie coos, tickling the pup before laying it back on the ground. <i>“So fluffy...”</i>");
 	}

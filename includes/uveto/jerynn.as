@@ -1567,12 +1567,15 @@ public function jerynnPetstuffCleanup(isLemmeOut:Boolean = false):void
 
 	output("\n\nEventually though she turns the steamy water off and directs you out of her shower.");
 
+	var lootHarness:Boolean = false;
+	
 	if (jerynnPetstuffLevel() == 4 && !pc.hasItemByClass(MagneticHarness) && !pc.upperUndergarment is MagneticHarness)
 	{
 		output("\n\nShe points you to her packs and you make with retrieving all of your gear. Tucked under your stuff is a little parcel intended for you, PET simply written across the top of it. Inside is a modified version of the harness you’ve become intimately familiar with whilst under the taur; each of the magnetic clasps has a tiny status light hidden on the corner, all of them dim. You slip it on automatically and you realize it’s sized perfectly for you, your suspicions about the clasps confirmed when you bend your arm double but the tell-tale smack of the clasps locking together is absent.");
 		
 		output("\n\nYou slip the garment back off for later and don the rest of your gear. ");
-		quickLoot(new MagneticHarness());
+		
+		lootHarness = true;
 	}
 	else
 	{
@@ -1595,15 +1598,23 @@ public function jerynnPetstuffCleanup(isLemmeOut:Boolean = false):void
 	else if (jerynnPetstuffLevel() <= 5) output(" safe if a little confused.");
 	else output(" and you make your way back to the icy cold streets of Irestead, still sore but glad to be safe.");
 
-	if (!isLemmeOut || jerynnPetstuffLevel() == 0) jerynnPetstuffLevel(true);
+	if (!isLemmeOut || jerynnPetstuffLevel() <= 0) jerynnPetstuffLevel(true);
 	processTime(15 + rand(15));
 
 	currentLocation = "UVI N30";
 	pc.HP(pc.HPMax());
 	pc.energy(pc.energyMax());
 	
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	if(lootHarness)
+	{
+		output("\n\n");
+		quickLoot(new MagneticHarness());
+	}
+	else
+	{
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
 }
 
 public function jerynnPetstuffSleepingOver():void

@@ -652,13 +652,14 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 	var response:String = "";
 	var tooltip:String = "";
 	
-	if(MailManager.isEntryViewed("shade_xmas_invite") && isChristmas() && (flags["SHADE_XMAS"] == undefined || (flags["SHADE_XMAS"] < new Date().fullYear && flags["SHADE_XMAS"] != undefined))) { 
+	if(flags["SHADE_ON_UVETO"] >= 3)
+	{
+		if(MailManager.isEntryViewed("shade_xmas_invite") && isChristmas() && (flags["SHADE_XMAS"] == undefined || (flags["SHADE_XMAS"] < new Date().fullYear && flags["SHADE_XMAS"] != undefined))) { 
 			/* EXCEPTION FOR HOLIDAYS! */
 			response = "ho ho ho";
 			tooltip = "This is Shade’s house. Time for some holiday cheer!";
-	}
-	else if(flags["SHADE_ON_UVETO"] >= 3)
-	{
+		}
+		
 		/* 9999 - Repeat events. Nothing planned yet? */
 		
 		//if(flags["SHADE_IS_YER_SIS"] != -1) flags["NAV_DISABLED"] = undefined;

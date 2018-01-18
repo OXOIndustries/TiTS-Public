@@ -1990,6 +1990,10 @@
 				case "cockBiggest":
 					buffer = cockDescript(biggestCockIndex());
 					break;
+				case "biggestCockNoun":
+				case "cockBiggestNoun":
+					buffer = simpleCockNoun(biggestCockIndex());
+					break;
 				case "biggestCockHead":
 				case "cockHeadBiggest":
 					buffer = cockHead(biggestCockIndex());
@@ -2002,8 +2006,18 @@
 				case "cockSmallest":
 					buffer = cockDescript(smallestCockIndex());
 					break;
+				case "smallestCockNoun":
+				case "cockSmallestNoun":
+					buffer = simpleCockNoun(smallestCockIndex());
+					break;
+				case "shortestCockDescript":
+				case "shortestCock":
 				case "cockShortest":
 					buffer = cockDescript(shortestCockIndex());
+					break;
+				case "shortestCockNoun":
+				case "cockShortestNoun":
+					buffer = simpleCockNoun(shortestCockIndex());
 					break;
 				case "eachCockHead":
 					buffer = eachCockHead();

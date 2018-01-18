@@ -2886,8 +2886,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		{
 			if (!MailManager.isEntryUnlocked("shade_xmas_invite"))
 			{
-				if(shadeIsHome() && (shadeIsLover() || shadeIsSiblings()) && (flags["SHADE_ON_UVETO"] == 2 || flags["SHADE_ON_UVETO"] == 3))
-				goMailGet("shade_xmas_invite");
+				if(shadeIsHome() && (shadeIsLover() || shadeIsSiblings())) goMailGet("shade_xmas_invite");
 			}
 		}
 		//Prai email stuff
@@ -3334,7 +3333,7 @@ public function processRiyaEvents(deltaT:uint, doOut:Boolean):void
 public function processReahaEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
 {
 	var totalHours:int = ((minutes + deltaT) / 60);
-	if (totalHours >= 1 && flags["REAHA_PAY_Q"] == 1 && currentLocation == "SHIP INTERIOR")
+	if (!disableExploreEvents() && totalHours >= 1 && flags["REAHA_PAY_Q"] == 1 && currentLocation == "SHIP INTERIOR")
 	{
 		flags["REAHA_PAY_Q"] = undefined;
 		if(eventQueue.indexOf(reahaPaybackEvent) == -1) eventQueue.push(reahaPaybackEvent);
@@ -3695,3 +3694,23 @@ public function emailRoulette():void
 		}
 	}
 }
+
+// Event Dates
+// checkDate(day:int, month:int, dayRange:int)
+public function isEaster():Boolean
+{
+	return checkDate(16, 4, 2);
+}
+public function isNearlyJulyFourth():Boolean
+{
+	return checkDate(4, 7, 7);
+}
+public function isHalloweenish():Boolean
+{
+	return checkDate(29, 10, 10);
+}
+public function isChristmas():Boolean
+{
+	return checkDate(25, 12, 8);
+}
+

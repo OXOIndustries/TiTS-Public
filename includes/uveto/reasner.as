@@ -1289,7 +1289,7 @@ public function beatriceLeaves2():void
 	if(pc.isNice()) output("You feel like you have a special connection, it’s");
 	else output("It’s");
 	output(" a shame you have to part ways.");
-	output("\n\n<i>“I may be late in saying this, but,</i> she pauses to get your attention, an unusually serious expression on her face, <i>“would you consider joining my crew?”</i>");
+	output("\n\n<i>“I may be late in saying this, but,”</i> she pauses to get your attention, an unusually serious expression on her face, <i>“would you consider joining my crew?”</i>");
 	output("\n\nFor a moment it tempts you, but you can’t. You ");
 	if(pc.isNice()) output("politely ");
 	output("decline her offer, saying that you still have an inheritance to claim.");
@@ -1304,6 +1304,7 @@ public function beatriceLeaves2():void
 		if(pc.tallness < 65) output("bends down");
 		else if(pc.tallness < 72) output("leans in");
 		else if(pc.tallness < 77) output("stands on her tiptoes");
+		else output("hops up");
 		output(" to put a chaste kiss on your cheek, leaving behind a red lipstick mark.");
 	}
 	else output("extends her hand and you shake it.");

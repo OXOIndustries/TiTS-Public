@@ -5945,9 +5945,14 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Ice Plains
-			if(flags["MET_FEMKORGONNE"] != undefined || flags["MET_KORG_MALE"] != undefined || flags["MET_MILODAN_MALE"] != undefined || flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined || flags["9999"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined)
+			if(flags["MET_MYRNA"] != undefined || flags["MET_FEMKORGONNE"] != undefined || flags["MET_KORG_MALE"] != undefined || flags["MET_MILODAN_MALE"] != undefined || flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined || flags["9999"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined)
 			{
 				output2("\n<b><u>Ice Plains</u></b>");
+				if(flags["MET_MYRNA"] != undefined)
+				{
+					output2("\n<b>* Myrna:</b> Met her");
+					if(flags["SEXED_MYRNA"] != undefined) output2("\n<b>* Myrna, Times Sexed:</b> " + flags["SEXED_MYRNA"]);
+				}
 				if(flags["MET_FEMKORGONNE"] != undefined) output2("\n<b>* Female Korgonne, Times Encountered:</b> " + flags["MET_FEMKORGONNE"]);
 				if(flags["MET_KORG_MALE"] != undefined) output2("\n<b>* Male Korgonne, Times Encountered:</b> " + flags["MET_KORG_MALE"]);
 				if(flags["MET_MILODAN_MALE"] != undefined)

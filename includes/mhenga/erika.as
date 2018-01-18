@@ -876,8 +876,8 @@ public function erikaPublicSexThreesomeAusarMouth():void
 	else if (pc.balls > 0 && !pc.hasVagina()) output("your [pc.balls] tightening in preparation to blow a load in Erika’s stomach.");
 	else if (pc.balls == 0 && pc.hasVagina()) output("your [pc.cunts] leaking [pc.girlCum] down your legs.");
 	else output("your [pc.thighs] quivering.");
-	output("\n\n“Thrusting balls deep ");
-	if (silly && pc.balls == 0 ) output("figuratively, that is) ");
+	output("\n\nThrusting balls deep ");
+	if (silly && pc.balls == 0) output("(figuratively, that is) ");
 	output("into her mouth, you start to fill her stomach with your [pc.cum]. Feeling your cum rushing down her throat makes you sigh in content. As your orgasm rushes through you, you try to force your [pc.cockNounSimple] further into her throat in order to feed her more of your jizz.");
 	output("\n\nThe ausar behind her apparently reached his edge as well, if the full weight of him thrusting and trying to push his knot into her ass is any indication. Finally succeeding in pushing his knot past Erika’s pucker, he leans forward and starts to thrust, hammering his whole body against her in an attempt to get his dick further into her ass.");
 	output("\n\nHis full body thrusts have the table tilting in your direction this time.");
