@@ -593,6 +593,8 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/taivra.png", mimeType = "image/png")]
 		public var Bust_TAIVRA:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/taivra_nude.png", mimeType = "image/png")]
+		public var Bust_TAIVRA_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/tanis.png", mimeType = "image/png")]
 		public var Bust_TANIS:Class;
@@ -1224,6 +1226,8 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/taivra.png", mimeType = "image/png")]
 			public var Full_TAIVRA:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/taivra_nude.png", mimeType = "image/png")]
+			public var Full_TAIVRA_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/tanis.png", mimeType = "image/png")]
 			public var Full_TANIS:Class;
