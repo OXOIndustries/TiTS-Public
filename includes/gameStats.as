@@ -5945,9 +5945,16 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Ice Plains
-			if(flags["MET_MYRNA"] != undefined || flags["MET_FEMKORGONNE"] != undefined || flags["MET_KORG_MALE"] != undefined || flags["MET_MILODAN_MALE"] != undefined || flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined || flags["9999"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined)
+			if(flags["MET_MYRNA"] != undefined || flags["MET_FEMKORGONNE"] != undefined || flags["MET_KORG_MALE"] != undefined || flags["MET_MILODAN_MALE"] != undefined || flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined || flags["MET_STORMGUARD"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined)
 			{
 				output2("\n<b><u>Ice Plains</u></b>");
+				if(flags["MET_STORMGUARD"] != undefined)
+				{
+					var lancerName:String = (flags["MET_GEL_ZON"] == undefined ? "Stormguard Lancer" : "Gel Zon");
+					output2("\n<b>* " + lancerName + ", Times Encountered:</b> " + flags["MET_STORMGUARD"]);
+					if(flags["SPANKED_SG_COUNT"] != undefined) output2("\n<b>* " + lancerName + ", Times Spanked:</b> " + flags["SPANKED_SG_COUNT"]);
+					if(flags["SEXED_SG_MALE"] != undefined) output2("\n<b>* " + lancerName + ", Times Sexed:</b> " + flags["SEXED_SG_MALE"]);
+				}
 				if(flags["MET_MYRNA"] != undefined)
 				{
 					output2("\n<b>* Myrna:</b> Met her");
@@ -5965,7 +5972,6 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Milodan Priestess, Times Encountered:</b> " + flags["FERTILITY_PRIESTESSES_FOUGHT"]);
 					if(flags["FERTILITY_PRIESTESSES_FUCKED"] != undefined) output2("\n<b>* Milodan Priestess, Times Fucked Her Vagina:</b> " + flags["FERTILITY_PRIESTESSES_FUCKED"]);
 				}
-				if(flags["9999"] != undefined) output2("\n<b>* Stormguard Lancer, Times Encountered:</b> " + flags["9999"]);
 				// Abandoned Outpost
 				if(flags["UVIP_J46_SEARCHED"] != undefined) output2("\n<b>* Abandoned Outpost:</b> Found, Looted camp");
 				variousCount++;

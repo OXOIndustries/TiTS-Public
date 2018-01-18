@@ -344,7 +344,7 @@ package classes.Items.Transformatives {
 						else output("all over everything in a ten-foot arc");
 						output(". Your body, once ");
 						if(pc.originalRace != "human") output("mostly ");
-						output("terran, seems more like a [pc.girlCumNoun] brewery than something befitting of a galactic adventurer, and it feels far to good to mind.");
+						output("terran, seems more like a [pc.girlCumNoun] brewery than something befitting of a galactic adventurer, and it feels far too good to mind.");
 						output("\n\nThe explosive pleasure intensifies from its own symptoms, the high-pressure flows stimulating the tingling nerves of your passage into making you cum even harder. [pc.EachClit] vibrates against the sputtering fluid jets, shooting bolts of soaking-wet ecstasy into your increasingly overwhelmed brain.");
 						if(pc.isBimbo()) 
 						{

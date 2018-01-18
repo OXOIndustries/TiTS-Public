@@ -57,7 +57,8 @@ public function showStormguard(nude:Boolean = false):void
 {
 	var nudeS:String = "";
 	if(nude) nudeS = "_NUDE";
-	showName("STORM\nLANCER");
+	if(flags["MET_GEL_ZON"] != undefined) showName("\nGEL ZON");
+	else showName("STORM\nLANCER");
 	showBust("STORMGUARD_MALE"+nudeS);
 }
 public function stormguardHonor(arg:Number = 0):Number
@@ -92,6 +93,7 @@ public function stormguardIntro():void
 	}
 	else
 	{
+		IncrementFlag("MET_STORMGUARD");
 		output("\n\nMounds and strange shapes huddle under the snow all around you, features removed by the white freeze. They could be anything, really... but you are prepared, at least a little, when one of them slowly turns its head and gazes at you with brilliant yellow eyes.");
 		//Spanked
 		if(flags["SG_LAST_ENC"] == 2)
@@ -348,7 +350,7 @@ public function honor2FightoRighto():void
 	else if(pc.isMischievous()) output("<i>“It’s always pretty funny watching you embarrass yourself,”</i> you smirk teasingly, twirling your [pc.weapon] artfully.");
 	else output("<i>“If you insist,”</i> you say without a flicker of emotion, snapping out your [pc.weapon].");
 
-	//{merge}
+	// {merge}
 	output("\n\nThe smile on the storm lancer’s broad lips deepens. He clicks his tongue, and from out of the drift rises sleek, white armor, which moves into him from behind before clicking sleekly into place. Off its back he takes off his lance and heavy pistol; as ever, you can see the rise of his cylindrical jet pack module on his back.");
 	output("\n\n<i>“So then, honored challenger,”</i> rumbles the cundarian, chest heaving with battle lust beneath the armor that clads him everywhere except his head, <i>“defend yourself!”</i>");
 	stormguardFightPrep();
@@ -773,7 +775,7 @@ public function lossScenesForStormguard():void
 	if(flags["MET_GEL_ZON"] == undefined) output("The mountainous hoofed creature");
 	else output("Gel Zon");
 	output(" straightens, heaves the lance from off his back and thrusts it deep into the frozen ground. With an electric hum, the device beams out a bubble of golden energy from its rounded pommel, expanding smoothly until it easily encompasses both of you. Inside the hemisphere of light it feels like a warm summer day; the snow on the ground remains, but is now a strange, chilly contrast to the dry heat of the air. Cold water beads around your hands.");
-	//{Sensing the change in temperature, your heat belt winks off with a beep.}
+	// {Sensing the change in temperature, your heat belt winks off with a beep.}
 
 	output("\n\n<i>“In the past, novice lancers who lost their way out here froze to death for their folly,”</i> growls the cundarian, unclasping his briefs and allowing his thick cock with its ridged underbelly to swing ponderously downwards. He stands over you, close enough that you can smell the salty tang of his sweat and earthy musk, pausing meaningfully. ");
 	if(!pc.isAssExposed()) output("Blushing slightly, you begin to take off your [pc.gear]. ");
@@ -807,7 +809,7 @@ public function lossScenesForStormguard():void
 			}
 			else output("\n\n<i>“Warrior women do exist, of course,”</i> he rumbles, lava-like eyes fixed on your [pc.chest], seeming mostly to be talking to himself. <i>“Pretty girls should be treated with the same amount of caution in battle as anyone else. As dishonorable as it feels to beat such a beautiful creature into submission.”</i> He bends downwards, roughly moulding his cracked lips against yours, pressing his bulging, muscular chest against your [pc.chest], the ridges of his hot, club-like penis rubbing against your [pc.belly].");
 		}
-		//{merge}
+		// {merge}
 		output("\n\nDazed and weakened from the battle, you feel utterly subsumed by the will of this dominant, vigorous beast and cannot summon up protests to his words. The hot, earthy smell of him - cool and rainy yet shot through with musky, sweat-soaked vigor - is high in your nose and throat, and it inarguably feels good to gingerly lie back on the melting snow and let him do as he may. ");
 		if(flags["MET_GEL_ZON"] == undefined) output("The cundarian");
 		else output("Gel Zon");
@@ -934,7 +936,7 @@ public function lossScenesForStormguard():void
 			output("”</i> He sits himself back cross-legged, his hefty erection rising up.");
 			output("\n\n<i>“One thing everyone knows about onnagre - they are exceptional at pleasuring cock,”</i> he growls, fierce lust in his slit eyes. <i>“Prove it.”</i>");
 		}
-		//{merge}
+		// {merge}
 		output("\n\nYou’re too dazed and beaten down to summon up a rejoinder. You’re ");
 		if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
 		else output("the storm lancer");
@@ -1029,7 +1031,7 @@ public function lossScenesForStormguard():void
 			else if(stormguardHonor() == 1) output("<i>“I hope this experience strengthens your resolve to sharpen your skills and defeat me. Or maybe not?”</i> he poses, narrowing his eyes at you, considering your expression with teasing intent. <i>“Perhaps you like it this way enough to lay down your arms each time.”</i>");
 			else output("<i>“I’ve wanted to do that for so long, honored " + pc.mf("warrior","valkyrie") + " - get just a little back for myself. May our battles long continue - you are such an inspiration!”</i>");
 		}
-		//{merge}
+		// {merge}
 		output("\n\nWhen you slide off his warm, tough flesh, wincing slightly, he does not stop you. You have to spend a short time peeling trailers of his cum off your back - the stuff sets like sticking plaster on your [pc.skinFurScale]. By the time you’ve put your gear back on, ");
 		if(flags["MET_GEL_ZON"] == undefined) output("the storm lancer");
 		else output("Gel Zon");
@@ -1073,7 +1075,7 @@ public function NTWinSceneForStormLancah():void
 	}
 	else output("<i>“Do the thing with your lance,”</i> you grin. <i>“And then take your pants off, there’s a good boy.”</i>");
 
-	//{merge}
+	// {merge}
 
 	output("\n\nYour eyes fall upon the quasi-beard of tentacles ringing ");
 	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");

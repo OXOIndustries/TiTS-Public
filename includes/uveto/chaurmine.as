@@ -894,6 +894,8 @@ public function battleWithChaurmineVoluntarily():void
 	processTime(30);
 	//move to riiift
 	moveTo("UVIP Z22");
+	// Add cold!
+	addUvetoCold();
 	
 	var chaur:Creature = new Chaurmine();
 	chaur.credits = 300 + rand(201);

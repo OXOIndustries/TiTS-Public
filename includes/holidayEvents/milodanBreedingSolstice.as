@@ -273,6 +273,8 @@ public function celebrateSeasonsBreedings():void
 	processTime(60);
 	for(var y:int = 0; y < 20;y++) { pc.orgasm(); }
 	pc.imbibeAlcohol(40);
+	pc.clearRut();
+	
 	clearMenu();
 	if(silly) addButton(0,"Next",sillyMilodanEpilogue,true);
 	else addButton(0,"Next",randomBullshitBreedingSolsticeEnd);
@@ -282,9 +284,11 @@ public function celebrateSeasonsBreedings():void
 //PC gets significant fertility boost
 public function guysBreedingSolstice():void
 {
+	clearOutput();
 	showName("HELLO\nBOYS...");
 	showBust("MILODANMALE","MILODANMALE","MILODANMALE");
 	author("QuestyRobo");
+	
 	output("The six-pack of milodaddies is surprisingly calm as you walk up to them. They form a tight circle around you, making sure their big, juicy cocks are just a hair from touching you. The implication is loud and clear, and you eagerly put your body to work.");
 	output("\n\nYou start by grabbing two cocks at random. Big, fat pieces of meat that you can barely even get your hands around! Before you can decide how to put your mouth to use, however, that trademark milodan roughness kicks in, and you feel yourself wrenched down, mouth impaled on another massive cock. You almost choke as you take over six inches of cock in one go. Thankfully he’s not intent of leaving you there, and you’re pulled off, left to gasp and sputter against his throbbing maleness.");
 	output("\n\n<i>“Nice mouth, I’ll be claiming it for a few rounds.”</i> It’s not like you’re in a position to debate that, so it looks like you’re going to get divvied up like food at a buffet. Speaking of that, you feel a pair of rough hands on your [pc.ass].");
@@ -396,7 +400,9 @@ public function sillyMilodanEpilogue(girls:Boolean = false):void
 {
 	clearOutput();
 	showName("MUCH\nLATER");
-	showBust("SAINT_DICK")
+	showBust("SAINT_DICK");
+	author("QuestyRobo");
+	
 	output("You wake up, who even knows how many hours later. It’s still dark out, but it’s the Solstice so that doesn’t tell you much. ");
 	if(girls) output("The women that piled up around you have scattered, either moving on to other men, or settling into one of the big piles of sleeping milodans. The dildo is gone, probably reclaimed by one of the priestesses. You still feel <i>loose</i> though, in a good way.");
 	else output("You still have plenty of thick cum rolling out of you, though you’ve drained out substantially; and it seems like one of the men or, more likely, one of the priestesses. The men have largely moved on; you can still see some of them fucking other women.");
@@ -470,6 +476,8 @@ public function milodanMassDickAchu(girls:Boolean = false):void
 
 	processTime(80);
 	pc.orgasm();
+	pc.clearRut();
+	
 	clearMenu();
 	addButton(0,"Next",randomBullshitBreedingSolsticeEnd);
 }
@@ -508,9 +516,9 @@ public function saintDickulousInYerPuss(girls:Boolean = false):void
 
 	output("\n\nYou reach behind yourself and grab her sack as you bounce. You can <i>feel</i> them swelling, throbbing, dredging up the biggest load they can for you. The thought of her impending climax, of your impending impregnation, drives you over the deep end. You slam down, taking every inch of her giant shaft as you cum uncontrollably.");
 
-	output("\n\n<i>“B-b-br-breed meeeeeeeeeee!”</i> You scream out as your eyes screw up into your head. At that moment, her knot inflates, trapping you on her. Her whole shaft throbs and thickens as it prepares to unload in you. Your [pc.belly] explodes out in seconds, spreading blissful warmth throughout your body. She keeps going long after that, a testiment to the mighty virility of the mythical figure.");
+	output("\n\n<i>“B-b-br-breed meeeeeeeeeee!”</i> You scream out as your eyes screw up into your head. At that moment, her knot inflates, trapping you on her. Her whole shaft throbs and thickens as it prepares to unload in you. Your [pc.belly] explodes out in seconds, spreading blissful warmth throughout your body. She keeps going long after that, a testament to the mighty virility of the mythical figure.");
 
-	output("\n\nThe ground becomes a soupy mess as your muscles start failing you. You fall forward onto her, resting your slack muscles in her warm embrace. Your womb throbs in excitement, and a crowd forms around you two. Despite being knotting, the Saint takes you off her dick, still pumping out thick cum into the cheering crowd. She gets up and brings you over to a pile of thick furs, setting you down and giving you a deep kiss.");
+	output("\n\nThe ground becomes a soupy mess as your muscles start failing you. You fall forward onto her, resting your slack muscles in her warm embrace. Your womb throbs in excitement, and a crowd forms around you two. Despite being knotted, the Saint takes you off her dick, still pumping out thick cum into the cheering crowd. She gets up and brings you over to a pile of thick furs, setting you down and giving you a deep kiss.");
 
 	output("\n\n<i>“You are worthy, space " + pc.mf("","wo") + "man, bear your children with strength.”</i> Your eyelids grow heavy, and you pass out as the Saint gets dogpiled and taken by the assembled crowd.");
 

@@ -273,7 +273,7 @@
 					if(!target.hasStatusEffect("Stunned"))
 					{
 						CombatAttacks.applyStun(target,2);
-						output("<b>" + target.getCombatName() + " " + (!target.isPlural ? "is" : "are") + " stunned!</b>");
+						output("\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (!target.isPlural ? "is" : "are") + " stunned!</b>");
 					}
 				}
 			}
@@ -297,7 +297,7 @@
 			if (combatMiss(this, target))
 			{
 				if (target.customDodge.length > 0) output(target.customDodge);
-				else output(target.getCombatName() + " manages to avoid Azra’s uppercut.");
+				else output("\n" + StringUtil.capitalize(target.getCombatName(), false) + " manages to avoid Azra’s uppercut.");
 			}
 			//Hit for 1.5x damage and applies Sunder :3
 			else
@@ -309,7 +309,7 @@
 				if(!target.hasStatusEffect("Sundered")) 
 				{
 					CombatAttacks.applySunder(target, 4);
-					output(" <b>" + target.getCombatName() + " " + (!target.isPlural ? "is" : "are") + " sundered!</b>");
+					output("\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (!target.isPlural ? "is" : "are") + " sundered!</b>");
 				}
 			}
 		}
@@ -325,9 +325,9 @@
 		{
 			output("Azra soars into the air on angelic wings. A moment later, you hear the sound of rushing wind as she barrels toward the ground, armored-heels first.");
 			//Miss
-			if(combatMiss(this,target)) output(" " + target.getCombatName() + " slip" + (!target.isPlural ? "s" : "") + " aside, leaving Azra to slam into the ground hard enough to kick up a cloud of dust. She looks pissed.");
+			if(combatMiss(this,target)) output(" " + StringUtil.capitalize(target.getCombatName(), false) + " slip" + (!target.isPlural ? "s" : "") + " aside, leaving Azra to slam into the ground hard enough to kick up a cloud of dust. She looks pissed.");
 			//Hit
-			else output(" " + target.getCombatName() + " take" + (!target.isPlural ? "s" : "") + " one foot square in the face and the other on the chest as " + target.getCombatPronoun("s") + " " + (!target.isPlural ? "is" : "are") + " crushed beneath Azra’s gravity-accelerated weight. Ouch!");
+			else output(" " + StringUtil.capitalize(target.getCombatName(), false) + " take" + (!target.isPlural ? "s" : "") + " one foot square in the face and the other on the chest as " + target.getCombatPronoun("s") + " " + (!target.isPlural ? "is" : "are") + " crushed beneath Azra’s gravity-accelerated weight. Ouch!");
 			//(4x damage)
 			var damage:TypeCollection = meleeDamage();
 			damage.multiply(4);
@@ -340,7 +340,7 @@
 			if (combatMiss(this, target))
 			{
 				if (target.customDodge.length > 0) output(target.customDodge);
-				else output(target.getCombatName() + " manage" + (!target.isPlural ? "s" : "") + " to avoid Azra’s spinning kick!");
+				else output(StringUtil.capitalize(target.getCombatName(), false) + " manage" + (!target.isPlural ? "s" : "") + " to avoid Azra’s spinning kick!");
 			}
 			//Normal damage.
 			else
@@ -360,10 +360,10 @@
 		public function dustStormAzra(target:Creature):void
 		{
 			output("Azra beats her wings until a gusting gale-force wind is blowing through the battle, hurling bits of dust and detritus at " + target.getCombatName() + "!");
-			if(target.reflexes()/2 + rand(20) + 1 >= this.physique()/2 + 10) output(" " + target.getCombatName() + " close" + (!target.isPlural ? "s" : "") + " " + target.getCombatPronoun("pa") + " eyes in time to avoid being blinded!");
+			if(target.reflexes()/2 + rand(20) + 1 >= this.physique()/2 + 10) output(" " + StringUtil.capitalize(target.getCombatName(), false) + " close" + (!target.isPlural ? "s" : "") + " " + target.getCombatPronoun("pa") + " eyes in time to avoid being blinded!");
 			else
 			{
-				output(" <b>" + target.getCombatName() + " " + (!target.isPlural ? "is" : "are") + " blinded!</b>");
+				output(" <b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (!target.isPlural ? "is" : "are") + " blinded!</b>");
 				CombatAttacks.applyBlind(target);
 			}
 		}
@@ -380,7 +380,7 @@
 				//Chance of staggered.
 				if(physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 				{
-					output(" <b>" + StringUtil.capitalize(target.getCombatPronoun("s")) + " " + (!target.isPlural ? "is" : "are") + " staggered.</b>");
+					output("\n<b>" + StringUtil.capitalize(target.getCombatPronoun("s")) + " " + (!target.isPlural ? "is" : "are") + " staggered.</b>");
 					CombatAttacks.applyStagger(target);
 				}
 			}
