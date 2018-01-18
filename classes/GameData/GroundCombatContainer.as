@@ -667,8 +667,20 @@ package classes.GameData
 				else
 				{
 					target.removeStatusEffect("Staggered");
-					if (target is PlayerCharacter) output("\n\n<b>You finally shake away the stars from your vision, your [pc.feet] planted on the floor firmly once again.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " finally shakes away the cobwebs, their " + target.feet() + " planted firmly on the floor once again.</b>");
+					if (target is PlayerCharacter)
+					{
+						output("\n\n<b>You finally shake away the stars from your vision");
+						if(target.hasFlightEffects()) output(" and reorient yourself in the air");
+						else output(", your [pc.feet] firmly planted on the floor once again");
+						output(".</b>");
+					}
+					else
+					{
+						output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " finally shake" + (!target.isPlural ? "s" : "") + " away the cobwebs");
+						if(target.hasFlightEffects()) output(" and return" + (!target.isPlural ? "s" : "") + " to the air");
+						else output(", " + target.getCombatPronoun("hisher") + " " + target.feet() + " planted firmly on the floor once again");
+						output(".</b>");
+					}
 				}
 			}
 	

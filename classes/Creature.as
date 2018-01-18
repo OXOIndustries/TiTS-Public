@@ -19437,6 +19437,13 @@
  						}
 						}
 						break;
+					case "Goblinola Bar":
+					case "Laquine Ears":
+						if(thisStatus.minutesLeft <= 0) thisStatus.minutesLeft = 1;
+						break;
+					case "Ovilium":
+						if(thisStatus.minutesLeft < deltaT) thisStatus.minutesLeft = (deltaT + 1);
+						break;
 					/*
 					case "Exhibitionism Reserve":
 						// Wearing exposed clothing should not prevent reset.
@@ -19873,10 +19880,6 @@
 						if (!hasPregnancyOfType("OviliumEggPregnancy"))
 						{
 							requiresRemoval = true;
-						}
-						else
-						{
-							if(thisStatus.minutesLeft < 1) thisStatus.minutesLeft = 1;
 						}
 						break;
 					case "Oil Warmed":

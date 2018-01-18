@@ -81,10 +81,10 @@ public function stormguardIntro():void
 	{
 		//9999 check with weather code?
 		output("\n\nThe snow that ceaselessly whips and flurries down from the repressive skies above removes all features from the land around you, turning it into one vast, glaring reminder of the merciless winter that will never leave this place. The mounds and promontories that you travel past could be anything, really - relics of korgonne civilization, forgotten tech - and you’d never know. Why, that hulking shape to your right looks exactly like a statue fallen on its back...");
-		output("\n\n<i>“Magnificent, isn’t it?”</i> says a deep, deliberate voice, and your heart almost jumps out of your mouth. Very slowly, the head of the <i>“statue”</i> turns to regard you with yellow slit eyes, dislodging some of the snow and frost settled on its features. <i>“A world of elemental savagery. Where every moment is a struggle to survive. Here, you find out what it truly means to live.”</i>");
+		output("\n\n<i>“Magnificent, isn’t it?”</i> says a deep, deliberate voice, and your heart almost jumps out of your mouth. Very slowly, the head of the “statue” turns to regard you with yellow slit eyes, dislodging some of the snow and frost settled on its features. <i>“A world of elemental savagery. Where every moment is a struggle to survive. Here, you find out what it truly means to live.”</i>");
 		output("\n\nThick, hard-bitten lips curve into a smile as animation slowly flows down his neck, seeming to bring the rest of this snow-coated form to life. He is a big, bulky, slate-blue creature, half-naked, lying back as if he were relaxing on some sun-kissed beach rather than half-buried in a snowdrift. Small tentacles frame his flat-nosed, high-cheekboned face. Below his armored hips his legs end in two cloven hooves.");
 		output("\n\n<i>“Out here, storm lancers battle,”</i> he says, gesturing heavily at the frozen hills. <i>“We struggle. We survive. We live. It is not the test; it is the reward. I would battle you, [pc.race]. If you have made it out this far, you must have worth.”</i> His eyes roam your body, the heat in them burning out from the whiteness they are mired in. <i>“No fleeing and the loser’s body the prize, as honor dictates.”</i> The lips curve into a challenging smirk. <i>“Do you know of honor, [pc.race]?”</i>");
-		output("\n\nYour codex beeps; the specifics of what it says are whipped away on the wind, however you think you hear the word <i>“Cundarian”</i>.");
+		output("\n\nYour codex beeps; the specifics of what it says are whipped away on the wind, however you think you hear the word “Cundarian”.");
 		flags["MET_STORMGUARD"] = 1;
 		//[Fight] [No]
 		clearMenu();
@@ -412,8 +412,10 @@ public function pcWinsVsSG():void
 		if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
 		else output("The storm lancer");
 		output(" recoils back into the air. Too dazed to properly pilot himself anymore, the blue flame dances around like a mosquito. Sagging in his harness, he brings himself down and collapses with a mighty thump into the muddy snow. You’ve won!");
+		
+		enemy.clearFlightEffects();
 	}
-	if(stormguardHonor() == 1)
+	if(flags["MET_STORMGUARD"] == 1 || stormguardHonor() == 1)
 	{
 		output("\n\n<i>“Very well fought, challenger,”</i> the cundarian says with a wry grimace, elbowing himself up. Heated yellow eyes roam across your body with grudging admiration. <i>“I shall take the humility earned here today and invest it into bettering myself.”</i> A long plume of condensation rises up from his head. His armor retracts and glides backward, leaving him bare from the waist up. <i>“Do as you will with me.”</i>");
 	}
@@ -461,7 +463,7 @@ public function losesToSG():void
 	else output("The storm lancer");
 	output(" looms over you, bare-chested.");
 
-	if(stormguardHonor() == 1) 
+	if(flags["MET_STORMGUARD"] == 1 || stormguardHonor() == 1) 
 	{
 		output("\n\n<i>“There’s no shame in agreeing to battle out here and then losing,”</i> he booms, grinning broadly. <i>“So long as you learn from it.”</i> He spends a long moment considering you with molten eyes, biting his upper lip. <i>“But defeat means nothing if there’s no consequence for it.");
 		//Clothed:
@@ -537,7 +539,7 @@ public function spankDatTank():void
 		output("\n\n<i>“And then getting your sorry ass whupped by said " + pc.mf("bigger boy","girl") + ".”</i>");
 		output("\n\n<i>“And then... getting my ass beaten by you.”</i>");
 		output("\n\nSmack.");
-		output("\n\nYou give him a round score of spanks, rhythmically making the brute admit to his <i>“crimes”</i>. You probably could stop sooner, but the process of changing the color of his big, muscular butt from grey to lavender via the flat of your hand is extremely satisfying. And this is your reward, after all!");
+		output("\n\nYou give him a round score of spanks, rhythmically making the brute admit to his “crimes”. You probably could stop sooner, but the process of changing the color of his big, muscular butt from grey to lavender via the flat of your hand is extremely satisfying. And this is your reward, after all!");
 		output("\n\nYou give the hot brawn a teasing tap when you’re done.");
 		output("\n\n<i>“I’m not going to have to do that again, am I?”</i> you inquire mildly, watching him quickly slither off your ");
 		if(pc.legCount <= 1) output("pseudo-");
@@ -554,7 +556,7 @@ public function spankDatTank():void
 		output("\n\nThe pause is too long for your liking, so you slap his other brawny butt-cheek harder, making him jerk.");
 		output("\n\n<i>“For getting your clothes all muddy. Say it!”</i>");
 		output("\n\n<i>“For getting my sacred armor all muddy.”</i>");
-		output("\n\nSmack. Slap. Spank. The inherently satisfying sound of a big, muscular butt getting its color changed from slate to lavender is muffled by the snow, but still rings surely around the wintery landscape as you carry on, making the brute admit to his <i>“crimes”</i> and then administering the punishment.");
+		output("\n\nSmack. Slap. Spank. The inherently satisfying sound of a big, muscular butt getting its color changed from slate to lavender is muffled by the snow, but still rings surely around the wintery landscape as you carry on, making the brute admit to his “crimes” and then administering the punishment.");
 		output("\n\n<i>“Who’s ass does this belong to?”</i> is your last question.");
 		output("\n\n<i>“You. It belongs to you,”</i> comes the woozy reply. You give his well-tanned brawn a teasing tap and let him withdraw.");
 		output("\n\n<i>“I’m not going to have to do that again, am I?”</i> you inquire mildly, watching him quickly slither off your ");
@@ -1046,7 +1048,8 @@ public function lossScenesForStormguard():void
 	IncrementFlag("SG_DEFEATED_PC");
 	//NO HONOR!
 	stormguardHonor(-1);
-	CombatManager.genericVictory();
+	output("\n\n");
+	CombatManager.genericLoss();
 }
 
 //Pussy Plug

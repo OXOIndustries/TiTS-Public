@@ -642,7 +642,7 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 	flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
 	
 	if(flags["SHADE_ON_UVETO"] == undefined) return;
-	if(!MailManager.isEntryViewed("letter_from_shade") && !MailManager.isEntryUnlocked("shade_xmas_invite")) return;
+	if(!MailManager.isEntryViewed("letter_from_shade") && !MailManager.isEntryViewed("shade_xmas_invite")) return;
 	// Have to be invited to her house first!
 	if(!shadeIsActive() || flags["SHADE_ON_UVETO"] < 2) return;
 	// Add [Buzzer] to the outside of Shade's house, starting at 16:00 each night.
@@ -654,7 +654,8 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 	
 	if(flags["SHADE_ON_UVETO"] >= 3)
 	{
-		if(MailManager.isEntryViewed("shade_xmas_invite") && isChristmas() && (flags["SHADE_XMAS"] == undefined || (flags["SHADE_XMAS"] < new Date().fullYear && flags["SHADE_XMAS"] != undefined))) { 
+		if(MailManager.isEntryViewed("shade_xmas_invite") && isChristmas() && (flags["SHADE_XMAS"] == undefined || (flags["SHADE_XMAS"] != undefined && flags["SHADE_XMAS"] < new Date().fullYear)))
+		{ 
 			/* EXCEPTION FOR HOLIDAYS! */
 			response = "ho ho ho";
 			tooltip = "This is Shade’s house. Time for some holiday cheer!";
@@ -668,7 +669,6 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 			response = "lover sibling decision";
 			tooltip = "This is Shade’s house. Time to make a decision about where you want the pair of you to go.";
 		}
-		else return;
 	}
 	// Lover Shade (Sibling Unrevealed)
 	else if(shadeIsLover() && !shadeIsSiblings())

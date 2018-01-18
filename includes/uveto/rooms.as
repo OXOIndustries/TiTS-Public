@@ -1086,6 +1086,7 @@ public function initUvetoRooms():void
 	rooms["UVIP R36"].eastExit = "UVIP T36";
 	rooms["UVIP R36"].moveMinutes = 1;
 	rooms["UVIP R36"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP R36"].addFlag(GLOBAL.BED);
 	rooms["UVIP R36"].runOnEnter = ulaBonus;
 
 	rooms["UVIP X34"] = new RoomClass(this);
@@ -1322,6 +1323,7 @@ public function initUvetoRooms():void
 	rooms["UVIP D22"].eastExit = "UVIP F22";
 	rooms["UVIP D22"].moveMinutes = 1;
 	rooms["UVIP D22"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP D22"].addFlag(GLOBAL.BED);
 	rooms["UVIP D22"].runOnEnter = ulaBonus;
 
 	rooms["UVIP F20"] = new RoomClass(this);
@@ -1358,6 +1360,7 @@ public function initUvetoRooms():void
 	rooms["UVIP J20"].westExit = "UVIP H20";
 	rooms["UVIP J20"].moveMinutes = 1;
 	rooms["UVIP J20"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP J20"].addFlag(GLOBAL.BED);
 	//rooms["UVIP J20"].addFlag(GLOBAL.HAZARD);
 	//rooms["UVIP J20"].runOnEnter = TundraEncounterBonus;
 
@@ -1369,6 +1372,7 @@ public function initUvetoRooms():void
 	rooms["UVIP J18"].southExit = "UVIP J20";
 	rooms["UVIP J18"].moveMinutes = 1;
 	rooms["UVIP J18"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP J18"].addFlag(GLOBAL.BED);
 	rooms["UVIP J18"].runOnEnter = ulaBonus;
 
 	//rooms["UVIP J18"].addFlag(GLOBAL.HAZARD);

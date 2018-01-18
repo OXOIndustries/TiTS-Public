@@ -3175,7 +3175,9 @@ public function taurStadiumInterior():Boolean
 	author("HugsAlright");
 	output("[pc.Moving] inside, you’re greeted by the warmth of artificial heating and the gentle rumbling of crowds moving in and out of the arena. Looking around, you can see stairwells leading to what must be the stands, snack stands, money-changers, floor-men, and cashiers, all ready to take your money. The whole arena is painted a deep-blue with highlights of white and icy mints; holo-signs and brightly-colored advertisements line the walls. It seems a testament to the power of the galaxy’s corporations that a place like this can exist on a small, frozen moon in the middle of nowhere.");
 	output("\n\nThere’s a girl with brightly-colored, scaled skin who appears to be a cashier with an empty line in front of her. Seems like she’d be your in if you want to get in on some of the races here.");
-
+	
+	removeUvetoCold();
+	
 	addButton(0,"Cashier",taurStadiumCashier);
 	
 	return false;
