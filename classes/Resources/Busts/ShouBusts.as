@@ -502,6 +502,16 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ogram_nude.png", mimeType = "image/png")]
 		public var Bust_OGRAM_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/paige_casual.png", mimeType = "image/png")]
+		public var Bust_PAIGE_CASUAL:Class;
+		/* Fen note: not used
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/paige_underwear.png", mimeType = "image/png")]
+		public var Bust_PAIGE_UNDERWEAR:Class;*/
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/paige_yoga.png", mimeType = "image/png")]
+		public var Bust_PAIGE_YOGA:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/paige_nude.png", mimeType = "image/png")]
+		public var Bust_PAIGE_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/pippa.png", mimeType = "image/png")]
 		public var Bust_PIPPA:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/pippa_oiled.png", mimeType = "image/png")]
@@ -1129,6 +1139,16 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ogram_nude.png", mimeType = "image/png")]
 			public var Full_OGRAM_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/paige_casual.png", mimeType = "image/png")]
+			public var Full_PAIGE_CASUAL:Class;
+			/*Fen note: not used:
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/paige_underwear.png", mimeType = "image/png")]
+			public var Full_PAIGE_UNDERWEAR:Class;*/
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/paige_yoga.png", mimeType = "image/png")]
+			public var Full_PAIGE_YOGA:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/paige_nude.png", mimeType = "image/png")]
+			public var Full_PAIGE_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/pippa.png", mimeType = "image/png")]
 			public var Full_PIPPA:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/pippa_oiled.png", mimeType = "image/png")]

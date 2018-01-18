@@ -660,6 +660,11 @@ package classes.Resources.Busts
 		public var Bust_TURRET:Class;
 		public var Bounds_TURRET:Rectangle = new Rectangle(70, 3, 80, 80);
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/ula.png", mimeType = "image/png")]
+		public var Bust_ULA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/ula_nude.png", mimeType = "image/png")]
+		public var Bust_ULA_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/vaande.png", mimeType = "image/png")]
 		public var Bust_VAANDE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/vaande_nude.png", mimeType = "image/png")]
@@ -1303,6 +1308,11 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/rocket_pods.png", mimeType = "image/png")]
 			public var Full_TURRET:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ula.png", mimeType = "image/png")]
+			public var Full_ULA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ula_nude.png", mimeType = "image/png")]
+			public var Full_ULA_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vaande.png", mimeType = "image/png")]
 			public var Full_VAANDE:Class;

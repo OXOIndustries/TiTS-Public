@@ -44,10 +44,9 @@ public function paigeBlind():Boolean
 
 public function showPaige(nude:Boolean = false):void
 {
-	var nudeS:String = "";
-	if(nude) nudeS = "_NUDE";
-	if(currentLocation == "PAIGE_HOUSE") showBust("PAIGE_HOME" + nudeS);
-	else showBust("PAIGE" + nudeS);
+	if(nude) showBust("PAIGE_NUDE");
+	if(currentLocation == "PAIGE_HOUSE") showBust("PAIGE_CASUAL");
+	else showBust("PAIGE_YOGA");
 	if(flags["MET_PAIGE"] != undefined) showName("\nPAIGE");
 	author("B");
 }
