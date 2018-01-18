@@ -164,9 +164,26 @@ public function ulaSexApproach():void
 	else if(pc.blockedVaginas() > 0) addDisabledButton(1,"Lez Out","Lez Out","Maybe you should take care of your vaginal obstruction first?");
 	else addDisabledButton(1,"Lez Out","Lez Out","You’ll need a vagina for this!");
 	addButton(2,"Watch",watchUlaFapturbate);
+
+	if(pc.isTaur())
+	{
+		if(pc.tallness >= 5*12+6 && pc.hasCock() && pc.cockThatFits(30) >= 0) addButton(3,"TaurBreeding",penisRouter,[centaurServiceForUla,9999999999,false,30],"Taur Breeding","Show Ula how centaurs breed.");
+		else if(pc.isTaur()) addDisabledButton(3,"TaurBreeding","TaurBreeding","You need to be a decently large 'tauric creature in order to do this - at least five and a half feet tall.");
+		else if(pc.hasCock()) addDisabledButton(3,"TaurBreeding","TaurBreeding","You need to be a decently hung 'tauric creature in order to do this.");
+		else addDisabledButton(3,"TaurBreeding","TaurBreeding","You need to be a decently large 'tauric creature in order to do this - at least five and a half feet tall with a decent-sized dick.");
+	}
+	else addDisabledButton(3,"TaurBreeding","TaurBreeding","You need to be a decently large 'tauric creature in order to do this - at least five and a half feet tall with a decent-sized dick.");
+
+	if(flags["ULA_DEFLOWERED"] != undefined)
+	{
+		if(pc.hasParasiteTail() && pc.hasCockTail()) addButton(4,"Tentatail",tentatailFuckUla,undefined,"Tentatail","Give Ula a ride on your tentacle tail.");
+		else addDisabledButton(4,"Tentatail","Tentatail","You need a tail-mounted, parasitic penis in order to do this.");
+	}
+	else
+	{
+		addDisabledButton(4,"Tentatail","Tentatail","Ula needs to lose her virginity before trying this.");
+	}
 }
-
-
 
 //[Figure]
 public function caveMeetUla():void
@@ -1429,6 +1446,279 @@ public function pussThirstEpilogue():void
 	else output("Return and tell star-stories. Then tongue-fun. Get pussy-dumb together!");
 	output("”</i>");
 	processTime(35);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Tentatail Fuck
+public function tentatailFuckUla():void
+{
+	clearOutput();
+	showUla(true);
+	output("The scent of the korgonne princess’s steaming snatch is fascinating. You [pc.move] closer, nostrils flaring, [pc.tails] waving. There, more than elsewhere, you can feel the effects of her pheromones, pooling in the bottom of your [pc.cockTail], making it stiff and inflexible. Desire leaks from the tip in slick dribbles to patter on the stone below.");
+	if(pc.hasKnees()) output(" Your [pc.knees] knock in eagerness.");
+	output(" Grinning foolishly, you revel in the feel of alien engorgement shivering up your spine. Foreign urges twist your hips, flinging your trunk-mounted tool to the fore, mere inches from Ula’s cunt.");
+	output("\n\n<i>“Ooh!”</i> Ula barks, innocent eyes wide at the sight of your parasitic endowment. <i>“");
+	if(!korgiTranslate()) output("Bone on tail?");
+	else output("A cock on a tail?");
+	output("”</i> She stretches out, padded fingertips gingerly exploring the underside. <i>“");
+	if(!korgiTranslate()) output("It feel good?");
+	else output("It feels good?");
+	output("”</i>");
+	output("\n\nThe rigid flesh thrusts forward across her palm in excitement.");
+	output("\n\n<i>“Wow!”</i> The plush princess snaps back in surprise, bringing her other hand up to catch your vigorously lusty member. <i>“");
+	if(!korgiTranslate()) output("Such excite!");
+	else output("It's so excited!");
+	output("”</i> She purses her lips mischievously and bats her eyelashes. <i>“What if...”</i> The tiniest lean forward is all it takes for her lips to press against the meatus of your tail-bound member, but it’s enough - enough for too-tight muscles to impulsively thrust the alien length into her spit-slick maw.");
+	output("\n\nBlue tongue lolling, Ula grabs onto your coiling, mouth-humping tail, arresting its motions before its eager assaults slam it dick-first into her gag-reflex. That doesn’t slow your parasitic half’s ardor in the slightest; it merely reverses direction to begin thrusting anew, splitting the plush korgonne girl’s maw around powerfully pulsating prickflesh. At the apex of your tail’s motions, you can hear a syrupy-sounding ‘gluk’ from the back of Ula’s throat, and spit dribbles from either side of her mouth.");
+
+	output("\n\nYou grab onto the chubby puppy-girl’s sandy hair for stability, suddenly feeling a little weak in the knees.");
+	if(pc.tailCount > 1)
+	{
+		output(" Your other tail");
+		if(pc.tailCount > 2) output("s undulate");
+		else output(" undulates");
+		output(" wildly against the side of her face, smearing pre up and down her cheek fur in frustration. Ula has neither the hands or the attention to deal with ");
+		if(pc.tailCount == 2) output("it");
+		else output("them");
+		output(", and lets ");
+		if(pc.tailCount == 2) output("it have its");
+		else output("them have their");
+		output(" fun for the time being.");
+	}
+	output(" A low moan signals your enjoyment to the slobbering korg. She switches grip, increasingly familiar with your alien anatomy. It only takes her one hand to wrangle your tentacle’s passionate plunges. The other is free to tease the shaft, exploring the saliva-slicked flesh with quick back-and-forth pump that make you want to blow your load on the spot.");
+
+	output("\n\nUla yanks your cock-tail from her mouth, and laps the frothing mixture of spit and pre from her lips. <i>“");
+	if(!korgiTranslate()) output("Not want cumming in mouth!");
+	else output("Don't cum in my mouth!");
+	output("”</i> She wiggles playfully, your tender parasite held still by one fluffy paw. Thick, soft-furred thighs slowly spread, revealing folds made glossy with desire. <i>“");
+	if(!korgiTranslate()) output("Cumming in cunt.");
+	else output("Cum in my cunt.");
+	output("”</i> She handles your tail-dick like a dildo, rubbing it back and forth through her slippery gates, tormenting you with a small taste of the heat and moisture her body can bring to bear. <i>“");
+	if(!korgiTranslate()) output("Alien-tentacle ready for breed?");
+	else output("Is your tentacle ready to breed?");
+	output("”</i> She holds it an inch away from her dripping slit, looking at you with eager, earnest eyes. <i>“");
+	if(!korgiTranslate()) output("Ready for fuck?");
+	else output("Ready to fuck?");
+	output("”</i>");
+
+	output("\n\nWhich part of you nods your head? Is it the rational sapient, or the coiled bundle of nerves and lust hanging off your [pc.ass]? Whoever is in control, they leave you nodding like a bobblehead.");
+
+	output("\n\n<i>“Good!”</i> Ula barks and lets go.");
+
+	output("\n\nHot, soaked folds swallow up an entire foot of your [pc.cockTail] in a second. Your body buries it in up to her cervix, and then pushes a little harder, coiling the flexible stalk around itself inside her. Meanwhile, grunting passionately, you grab two fistfuls of fluffy tit and bend over the petite princess’s bed, kissing her hard while your inhuman anatomy goes to work on her royal slit. Mint-flavored girl-cum drips from where your tentacle flexes, splattering off your [pc.thighs]");
+	if(pc.hasCock()) output(" and [pc.cocks]");
+	output(".");
+	//Have cocks.
+	if(pc.hasCock())
+	{
+		output("\n\nUla’s eyelashes flutter closed, but her canine snout grows a mischievous smile. You feel why a second later: her fluffy little feet have wound their way to your groin to wrap around [pc.oneCock]. Soft-furred toes lace up from either veiny side while plump, soft pads knead at your neglected penis’s [pc.cockColor] skin. She carelessly jacks you off with her feet, but the Korg’ii Princess’s form is so squishy and fuckable that she might as well be servicing you with the skill of a whore. She could rub any part of her up against your [pc.cocks], and you’d be swooning, begging for more - which you do.");
+		output("\n\n<i>“More!”</i> you pant.");
+	}
+	//No cocks
+	else
+	{
+		output("\n\nUla’s eyelashes flutter closed, but her canine snout radiates contentment. You feel it in the way her breasts bounce into your palm, every pussy-drilling stroke of your [pc.cockTail] has the soft-bodied puppy bouncing along to the rhythm, her whole body rippling and jiggling to the erotic tempo. She’s not much good for doing anything but squeaking, leaking, and soon, cumming. You can’t get enough of her pussy either. That alien slit grips your [pc.cockTail] just right, pleasing you so well that you feel like swooning and begging for more. You do.");
+		output("\n\n<i>“More!”</i>");
+	}
+	//Merge
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Such w-warm");
+	else output("Sooo w-warm");
+	output("!”</i> Ula whimpers");
+	if(pc.hasCock()) output(", paws flying faster");
+	output(".");
+
+	output("\n\nYour [pc.cockTail] does exactly what cocks are designed to do - fuck progressively faster until it overloads its nervous system with pleasure and releases an enormously creamy load. Ula holds onto her sheets for sheer life. If you weren’t hanging onto them, her tits would be slapping together with painful force.");
+	if(pc.hasCock()) output(" Her feet quiver and stroke, toe-claws occasionally pricking your skin in excitement. Pre-cum soaks the spaces between her toes and lubricates her efforts.");
+	output(" A long blue tongue rolls out, panting, as you kiss on the tribal maiden. She turns up her head to expose her neck to you, and in the moment of climbing pleasure, you nip at it.");
+	output("\n\nUla moans deliriously and clamps down around you");
+	if(pc.hasCock()) output(" with her feet as well as her pussy");
+	output(". <i>“");
+	if(!korgiTranslate()) output("Yessss! Give warm! Give such warms!");
+	else output("Yessss! Give me your warmth! Make me so fucking warm!");
+	output("”</i> Her folds flutter imploringly, begging you to seed her. <i>“Cumming!”</i>");
+
+	output("\n\nBiting harder, you feel the orgasm start at the base of your spine and race down the alien flesh attached to your [pc.ass], culminating in a flash of explosive bliss that has you seeing stars.");
+	if(pc.hasCock()) output(" An answering spasm from your middle reminds you of your other phallic flesh a half-second later and has you spooling long ropes of [pc.cum] into Ula’s wiggling toes, glazing her feet in layer after layer of [pc.cumGem].");
+	output(" Back arched, you savor the blissful relief that comes with draining the parasitic cum from your tail");
+	if(pc.tailCount > 1) output("s");
+	output(", watching the korgonne’s blue-lipped cunt grow progressively more soaked.");
+
+	output("\n\nWhen you pull out a moment later, her cupped pussy dribbles slightly, thoroughly creampied.");
+	if(pc.hasCock() && pc.cumQ() >= 1000) {
+		output(" Ula isn’t done with you, however. Not while [pc.eachCock] is still shooting ropes, not while she can stroke you with her feet and milk thicker flows of virile seed onto her fluffy chest. She purrs as you bury her in a layer of [pc.cumColor], even shovels some of the excess into the creamy alien deposit presently lingering between her thighs. She showers with your seed and seemingly revels in it. <i>“");
+		if(!korgiTranslate()) output("Such");
+		else output("Sooo");
+		output(" virile! Wow...”</i>");
+	}
+	else
+	{
+		output(" ");
+		if(!korgiTranslate()) output("<i>“Mmm... fun with strange butt-cock.”</i> She strokes your tail like a pet. <i>“Good boy. Give Ula good cummies.”</i>");
+		else output("<i>“Mmm... pretty good, for a tentacle-cock.”</i> She strokes your tail like a pet. <i>“Good boy. You gave me some good orgasms.”</i>");
+	}
+	output("\n\nYou won’t get a more glowing endorsement than that...");
+	if(pc.cumQ() >= 1000)
+	{
+		output("\n\nUla turns away from you to groom the... excessive amounts of semen from her coat... with her tongue.");
+		if(pc.isBimbo()) output(" You salivate in jealousy. Maybe you should collect a little for yourself next time!");
+		else output(" Hot.");
+	}
+	processTime(30);
+	pc.orgasm();
+	IncrementFlag("ULA_SEXED");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+
+}
+
+//Centaur Service
+//Centaur with at least 6”</i> dick. Must be at least 5’6”</i> tall.
+public function centaurServiceForUla(x:int):void
+{
+	clearOutput();
+	showUla(true);
+	output("The sudden diversion of blood from your skull to your crotch ought to leave you dizzy, maybe even drop you to your knees - if you were a lesser creature. Bracing your [pc.feet], you");
+	if(pc.tailCount > 0) output(" flick your tail and");
+	if(!pc.isErect()) output(" let your [pc.cocks] engorge as nature intended - swinging from between your upright hindlegs");
+	else output("let your [pc.cocks] swing as nature intended - dangling between your upright hindlegs");
+	output(". <i>“Get your ass up on the edge of the bed.”</i> You prance forward, proud flesh bouncing at what must be eye-level for the horny korgonne.");
+
+	output("\n\nThe scent of her need redoubles, and the thickness of your package surges along with it, heavy with potential pleasure.");
+
+	output("\n\n<i>“Like this?”</i> Ula asks, bent over the side of the bed, her thick thighs quivering excitedly. Pussyjuice beads from her cyan blue lips, drip-drip-dripping into a clear puddle below. The pose has her cunt popping open and closed with her breathing, all but begging you to canter forward and lay claim to it once and for all.");
+
+	//Too big
+	if(pc.cockVolume(x) > ulaCapacity())
+	{
+		output("\n\n<i>“Like that,”</i> you growl as you step into position. Your [pc.cock " + x + "] slaps against your bestial half’s belly");
+		if(pc.cumQ() >= 100) output(", flinging strands of wet, animalistic pre-cum over everything from the floor to your conquest’s upraised ass");
+		if(pc.cumQ() >= 1000) output(". Dollops of the stuff pump out by the time you’re lined up, individually thicker than the average man’s orgasm");
+		output(".");
+
+		output("\n\nWhimpering, Ula peers through your legs with no small measure of concern on her features. <i>“");
+		if(!korgiTranslate()) output("No fit. Too... big. Break Ula in half.");
+		else output("That won't fit! It's too... big. It'll break me in half!");
+		output("”</i>");
+		output("\n\n<i>“But...”</i> You gesture at the horny bitch splayed out in front of you. Everything from her juicing cunt to lush butt to widespread sideboob is begging you to take her on the spot. <i>“What about lube?”</i>");
+		output("\n\n<i>“Right!”</i> Ula perks up, but only from the waist. Much to your pleasure, she keeps her ass right where it is, even as your forelegs stamp into position on either side of her. <i>“");
+		if(!korgiTranslate()) output("Have core-magic for making fit. Nearly forgot!");
+		else output("I have some core-magic for making such things fit. I nearly forgot!");
+		output("”</i> She stretches and wiggles, tail tickling your underside, and at long last produces of a bottle of <i>“Peggy’s Elasticizing Oil.”</i> Rather than ask her where she found it, you’re happy to watch her stuff the tip up her snatch and squeeze it out into her body. <i>“");
+		if(!korgiTranslate()) output("Fit any dick with this.");
+		else output("I could fit any dick with this.");
+		output("”</i> She stretches one foot back to cup your ");
+		if(pc.balls > 0) output("[pc.balls]");
+		else output("[pc.knotOrSheath " + x + "]");
+		output(". <i>“");
+		if(!korgiTranslate()) output("Breed Ula good now, right?");
+		else output("Breed me good now, all right?");
+		output("”</i>");
+
+		output("\n\n<i>“Right,”</i> you agree, lining your [pc.cockHead " + x + "] with the diminuative slit. <i>“You sure you want me to breed you?”</i>");
+	
+		output("\n\nUla vigorously nods, humping back a bit so that you can feel her tiny cunt grinding on your fattened tip. <i>“");
+		if(!korgiTranslate()) output("Give pups. Strong alien-korg pups.");
+		else output("Give me pups - strong, alien-korg pups.");
+		output("”</i>");
+		output("\n\nYou won’t get a more clear invitation than that. You grab hold of her bed’s headboard and rear up, putting every ounce of your considerable weight into the act of penetrating the petite korgonne. At first, she squeals in discomfort, but your [pc.cockHead " + x + "] pries her cunt open by pressure alone. The moment it slips into her gates, the elasticized flesh behind opens up like a sex-toy built for taurs, swallowing you whole. ");
+		if(flags["ULA_DEFLOWERED"] == undefined)
+		{
+			output(" Something inside her snaps, <b>robbing her of her virginity in a moment of raw, animal carnality.</b>");
+			flags["ULA_DEFLOWERED"] = 1;
+		}
+		output("You wish you could see her chubby belly distending into the shape of your cock. It must be, from how you can feel the wadded up sheets through her straining, silk slit.");
+		pc.cockChange();
+		output("\n\n<i>“Gods! ");
+		if(korgiTranslate()) output("You're breaking me!");
+		else output("Cock break Ula!");
+		output("”</i> Her voice is shocked and laden so thickly with pleasure that she slightly slurs. <i>“");
+		if(!korgiTranslate()) output("Make one big pussy. Having stretch-pleasure everywhere!");
+		else output("I'm like one big pussy! Everything is all stretching and pleasure!");
+		output("”</i>");
+		if(pc.cocks[x].cLength() >= 30) output(" The vague compression of her tits to either side of your shaft makes it clear just how deeply you’ve taken her.");
+		output(" Tiny paws stroke along the sides of your [pc.cock " + x + "] in awe, massaging the sensitive veins through the korgonne’s distended tummy.");
+	}
+	//Fits
+	else
+	{
+		output("\n\n<i>“Like that,”</i> you growl as you step into position. Your [pc.cock " + x + "] slaps against your bestial half’s belly");
+		if(pc.cumQ() >= 100) output(", flinging strands of wet, animalistic pre-cum over everything from the floor to your conquest’s upraised ass");
+		if(pc.cumQ() >= 1000) output(". Dollops of the stuff pump out by the time you’re lined up, individually thicker than the average man’s orgasm");
+		output(".");
+		output("\n\nYou grab hold of the bed’s headboard and rear up, putting every ounce of your considerable weight into the act of penetrating the petite korgonne. She’s a fine fit for your [pc.cock " + x + "], judging by the way her body smoothly parts to accept your [pc.cockHead " + x + "], tight on the inside but not so tight as to slow your passage into her chubby cunny. She’s whimpering by the time you bury yourself up to the [pc.knotOrSheath " + x + "], but you’re on floating cloud nine. While it’s only been a few minutes, it felt like her scent had been tormenting you for years.");
+		if(flags["ULA_DEFLOWERED"] == undefined)
+		{
+			output(" Something inside her snaps, <b>robbing her of her virginity in a moment of raw, animal carnality.</b>");
+			flags["ULA_DEFLOWERED"] = 1;
+		}
+		pc.cockChange();
+		output("\n\nThe nerves in your cock dazzle at the feel of spreading open the dog-girl’s glistening folds beneath you. Your bestial hips twitch once, violently thrusting to ensure you’ve fully claimed the bitch. A second time, they repeat the motion, throwing Ula a few inches down the bed before she can scrabble back to properly re-embed herself. That’s a good bitch. You reward her twisting down between your forelegs to scratch behind her right ear.");
+		output("\n\n<i>“Gods! ");
+		if(!korgiTranslate()) output("Ula broken");
+		else output("I'm breaking");
+		output("!”</i> she babbles, legs quivering so hard you can feel the muscular contractions through her cunt.");
+		if(pc.balls > 0) output(" She reaches down to paw at your [pc.balls] and worshipfully caress your [pc.sack].");
+		output(" <i>“");
+		if(!korgiTranslate()) output("One thrust and fillinged up! Alien so big and strong! Big body everywhere. Ula not even see eyes, just warm and cock!");
+		else output("One thrust, and I'm filled up! You're so big and strong! That huge body is everywhere. I can't even see your face, just you and your cock!");
+		output("”</i> She bounces herself back and forth on your dick. <i>“");
+		if(!korgiTranslate()) output("Breed now! Give pups!");
+		else output("Breed me now! Give me pups!");
+		output("”</i>");
+	}
+	//Merge
+	output("\n\n<i>“So you want bred?”</i> You offer while yanking your hips backward, emptying the korgonne’s cunt just in time to fill it right back up. <i>“You want this?”</i> You pound her back and forth. The little thing is no match for your animalistic body’s attentions. Your thrusts drag her through the sheets like a ragdoll.");
+	output("\n\n<i>“Yes! ");
+	if(!korgiTranslate()) output("Ula want");
+	else output("I want it");
+	output("!”</i>");
+	output("\n\nUla does her best to hold herself in position, but with all the dick occupying her pretty blue pussy, she’s not going to be much good for anything but getting knocked up. You thrust harder into her. Solid construction is no match for hundreds of pound of transformed Rusher. The frame creaks dangerously when you bottom out, and Ula squeaks right along with it. Grunting with the effort, you give yourself over to your animal instincts and let the fluffy princess truly have it. <i>“You want fucked like a horny bitch?”</i>");
+	output("\n\nThe impaled korgonne whimpers. <i>“");
+	if(!korgiTranslate()) output("Am! Am! Am such love! Pussy in-loving with cock! Want more!");
+	else output("I am! I'm a horny bitch in love! My pussy loves your cock, and I want moooore!");
+	output("”</i> She yips plaintively, <i>“");
+	if(!korgiTranslate()) output("Cock! Give cock again and again! Fill with pups! Puppy-love!");
+	else output("More cock! Again and again! Fill me with your love... and pups!");
+	output("”</i>");
+	output("\n\nRestraint forgotten, you focus on giving her exactly what she wants: a load of hot, thick [pc.cumNoun] as deep inside her horny puss as possible. Your [pc.legs] power successively firmer assaults on her cervix");
+	if(pc.cockVolume(x) > ulaCapacity()) output(", an organ that long ago stretched out of the way and is now being compacted out of the way into her cuntwalls");
+	output(". Pussy-juice splatters the sheets as Ula cums under the assault. She goes limp, but that doesn’t stop you from fucking her.");
+
+	output("\n\nIt makes it easier. You hump Ula’s semi-conscious, blissed-out body faster and faster");
+	if(pc.balls > 0) output(" until your [pc.balls] are churning and ready to blow");
+	else output("until your [pc.cock " + x + "] is throbbing and ready to blow");
+	output(". <i>“I’ve got your pups right here,”</i> you promise, bottoming out inside her one last time. Surges of ecstasy radiate out from your abdomen in rhythmic");
+	if(pc.balls > 0) output(", ball-draining");
+	output(" pulses.");
+
+	output("\n\nThe proclamation rouses Ula enough for one last, impassioned, <i>“Yesssss!”</i> and another squirting climax. Breathing deeply of the pheromone-saturated air, you pour your [pc.cum] into Ula in ecstatic pump after ecstatic pump, flanks heaving, ");
+	if(pc.balls > 0) output("[pc.balls] quivering, ");
+	output("[pc.cocks] jerking, and eyes rolling back delightedly.");
+	var sheetsoak:Boolean = false;
+	if(pc.cumQ() >= 4000) output(" There’s so much that you can hear jism squelching into your petite lover’s middle, pumping her up with virile goo.");
+	if(pc.cumQ() >= 25000) 
+	{
+		sheetsoak = true;
+		pc.applyCumSoaked();
+		output(" High-pressure [pc.cumColor] cascades out around you before long. A creature Ula’s size simply isn’t made to contain the ludicrous amounts of semen a being like you can produce. Nevertheless, your body does its best to absolutely bathe her eggs in it, nevermind that most of it is left to impregnate her sheets.");
+	}
+	processTime(30);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",ulaTaurLovePart2,sheetsoak);
+}
+public function ulaTaurLovePart2(sheetsoak:Boolean):void
+{
+	clearOutput();
+	showUla();
+	output("Ula giggles when you withdraw, dragging her a good two feet through her ");
+	if(!sheetsoak) output("spunk-soaked ");
+	output("sheets. <i>“Ahh! Good alien-daddy, make pussy too happy. Will want breeding fucks every night!”</i>");
+	output("\n\nYou assure her that you’d be delighted to tend to that want as often as possible.");
+	processTime(5);
+	IncrementFlag("ULA_SEXED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
