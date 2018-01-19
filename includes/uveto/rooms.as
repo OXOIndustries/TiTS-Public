@@ -2148,6 +2148,7 @@ public function initUvetoRooms():void
 	rooms["UVGR K20"].northExit = "UVGR K18";
 	rooms["UVGR K20"].moveMinutes = 1;
 	rooms["UVGR K20"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR K20"].addFlag(GLOBAL.BED);
 	rooms["UVGR K20"].runOnEnter = ulaBonus;
 
 	rooms["UVGR G16"] = new RoomClass(this);

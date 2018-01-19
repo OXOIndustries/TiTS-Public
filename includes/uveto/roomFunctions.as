@@ -1171,7 +1171,7 @@ public function GlacialRiftLonesomeTent():Boolean
 
 	if (!CodexManager.entryUnlocked("Essyras"))
 	{
-		output("\nYour Codex beeps out that these are Essyra, natives of Uveto who are by and large friendly to off-worlders.");
+		output("\n\nYour Codex beeps out that these are Essyra, natives of Uveto who are by and large friendly to off-worlders.");
 		CodexManager.unlockEntry("Essyras");
 	}
 	

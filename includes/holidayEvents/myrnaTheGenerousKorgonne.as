@@ -306,7 +306,6 @@ public function getGiftFromMyrna():void
 {
 	clearOutput();
 	showMyrna();
-	currentLocation = "UVIP T44";
 	if(flags["MYRNA_GIFT_COUNT"] == undefined || (flags["MYRNA_GIFT_COUNT"] != undefined && flags["MYRNA_GIFT_COUNT"] < 11))
 	{
 		processTime(2);
@@ -448,6 +447,8 @@ public function getGiftFromMyrna():void
 	}
 	IncrementFlag("MYRNA_GIFT_COUNT");
 	flags["MYRNA_GIFT_CD"] = GetGameTimestamp();
+	currentLocation = "UVIP T44";
+	addUvetoCold();
 }
 
 
@@ -715,7 +716,7 @@ public function myrnaBlowjob(pepperminted:Boolean = false):void
 	pc.orgasm();
 	IncrementFlag("SEXED_MYRNA");
 	clearMenu();
-	addButton(0,"Next",move,"UVIP T44");
+	addButton(0,"Next",myrnaLeave);
 }
 
 //[Fuck Her]
@@ -952,5 +953,5 @@ public function fuckMyrnaContinuation(args:Array):void
 	pc.orgasm();
 	IncrementFlag("SEXED_MYRNA");
 	clearMenu();
-	addButton(0,"Next",move,"UVIP T44");
+	addButton(0,"Next",myrnaLeave);
 }

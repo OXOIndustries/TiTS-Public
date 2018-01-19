@@ -339,7 +339,7 @@
 				if(!target.hasStatusEffect("Tripped") && target.reflexes() + rand(20) + 1 < 35)
 				{
 					CombatAttacks.applyTrip(target);
-					output(" Worst of all, <b>You’re stuck in the snow for the moment, tripped up.</b>");
+					output("\nWorst of all, <b>You’re stuck in the snow for the moment, tripped up.</b>");
 				}
 			}
 		}
@@ -364,7 +364,7 @@
 					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < physique() + 4)
 					{
 						CombatAttacks.applyStun(target, 1);
-						output(" <b>The blow leaves you stunned and reeling.</b>");
+						output("\n<b>The blow leaves you stunned and reeling.</b>");
 					}
 				}
 			}
@@ -411,7 +411,7 @@
 					applyDamage(damage, this, target);
 					if(target.physique()/2 + rand(20) + 1 < 10 + this.physique()/2)
 					{
-						output(" <b>You are sent reeling by the blow, staggered.</b>");
+						output("\n<b>You are sent reeling by the blow, staggered.</b>");
 						CombatAttacks.applyStagger(target, 5, true);
 					}
 				}
