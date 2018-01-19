@@ -212,7 +212,7 @@
 			}
 			
 			createPerk("Can Crit",0,0,0,0);
-			kGAMECLASS.myrellionSSTDChance(this);
+			//kGAMECLASS.myrellionSSTDChance(this);
 			_isLoading = false;
 		}
 		

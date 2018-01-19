@@ -4337,6 +4337,7 @@ package classes.GameData
 			{
 				if ((_friendlies[i] as Creature).isDefeated() && _friendlies[i].alreadyDefeated == false)
 				{
+					if(_friendlies[i].hasFlightEffects()) _friendlies[i].clearFlightEffects();
 					_friendlies[i].alreadyDefeated = true;
 					if (_friendlies[i] is PlayerCharacter) output("\n\nYou fall to the ground,");
 					else output("\n\n" + StringUtil.capitalize(_friendlies[i].getCombatName(), false) + " falls to the ground,");

@@ -179,7 +179,7 @@ package classes.Characters
 			isUniqueInFight = true;
 			btnTargetText = "RK Lah";
 			setDefaultSexualPreferences();
-			kGAMECLASS.mhengaSSTDChance(this);
+			//kGAMECLASS.mhengaSSTDChance(this);
 			_isLoading = false;
 		}
 		
