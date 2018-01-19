@@ -237,7 +237,7 @@
 		{
 			this.long = "You are battling ";
 			if(kGAMECLASS.flags["MET_GEL_ZON"] != undefined) long += "Gel Zon ";
-			long += "the storm lancer. He is a 6’3” slate-blue cundarian armed with a heavy kinetic pistol and a storm lance, clad everywhere except his head, his blunt three-foot-long tail and the tips of his black hooves in sleek white armor, emblazoned with lightning bolts.";
+			long += "the storm lancer. He is a 6\' 3\" slate-blue cundarian armed with a heavy kinetic pistol and a storm lance, clad everywhere except his head, his blunt three-foot-long tail and the tips of his black hooves in sleek white armor, emblazoned with lightning bolts.";
 			if(!this.hasStatusEffect("Flying")) long += " Right now those hooves are firmly planted into the snow, his jetpack deactivated.";
 			else 
 			{
@@ -409,10 +409,12 @@
 				var oldShields:Number = target.shields();
 				var damage:TypeCollection = rangedDamage();
 				damageRand(damage, 15);
-				applyDamage(damage, this, target, "minimal");
+				//applyDamage(damage, this, target, "minimal");
+				var damageResult:DamageResult = calculateDamage(damage, this, target);
 				if(target.shields() > 0) output(" A shot blats off your shield!");
 				else if(oldShields > 0 && target.shields() <= 0) output(" A shot shatters your shield and smashes into you!");
 				else output(" A shot pelts into your frame with numbing, deadening force.");
+				outputDamage(damageResult);
 			}
 			output("\n\nOnce close enough, he throws his whole frame into stabbing at you with his spear, energy coruscating off of it. ");
 			if(combatMiss(this, target)) output("You deftly twist your body to avoid its seeking point.");
@@ -421,10 +423,12 @@
 				var oldShields2:Number = target.shields();
 				var damage2:TypeCollection = meleeDamage();
 				damageRand(damage2, 15);
-				applyDamage(damage2, this, target, "minimal");
+				var damageResult2:DamageResult = calculateDamage(damage2, this, target);
+				//applyDamage(damage2, this, target, "minimal");
 				if(target.shields() > 0) output(" Your shield thankfully pushes it wide.");
 				else if(oldShields2 > 0 && target.shields() <= 0) output(" The tip pierces your shield and thunks into you. Unnerving energy buzzes through your body.");
 				else output(" The tip thunks painfully into you. Unnerving energy buzzes through your body.");
+				outputDamage(damageResult2);
 			}
 		}
 		//Thunderbolt
@@ -438,7 +442,8 @@
 				var oldShields:Number = target.shields();
 				var damage:TypeCollection = meleeDamage();
 				damageRand(damage, 15);
-				applyDamage(damage, this, target, "minimal");
+				//applyDamage(damage, this, target, "minimal");
+				var damageResult:DamageResult = calculateDamage(damage, this, target);
 				if(target.shields() > 0) output(" You try and dodge it, but the jagged arc of lightning naturally seeks you out - it discharges itself off your shield.");
 				else 
 				{
@@ -449,6 +454,7 @@
 						output(" The blazing light and the unnerving power which just smacked into you is staggering, and for a few moments there’s nothing you can do but try and regain your shell-shocked wits.");
 					}
 				}
+				outputDamage(damageResult);
 			}
 		}
 		//Shoot Jetpack
@@ -505,10 +511,12 @@
 				var oldShields:Number = target.shields();
 				var damage:TypeCollection = rangedDamage();
 				damageRand(damage, 15);
-				applyDamage(damage, this, target, "minimal");
+				//applyDamage(damage, this, target, "minimal");
+				var damageResult:DamageResult = calculateDamage(damage, this, target);
 				if(target.shields() > 0) output(" A shot blats off your shield!");
 				else if(oldShields > 0 && target.shields() <= 0) output(" A shot shatters your shield and smashes into you!");
 				else output(" A shot pelts into your frame with numbing, deadening force.");
+				outputDamage(damageResult);
 			}
 			output("\n\nOnce close enough, he throws his momentum into stabbing at your solar plexus with his spear, energy coruscating off of it.");
 			//High accuracy requires DOUBLEMISS gum
@@ -518,14 +526,16 @@
 				var oldShields2:Number = target.shields();
 				var damage2:TypeCollection = meleeDamage();
 				damageRand(damage2, 15);
-				applyDamage(damage2, this, target, "minimal");
+				//applyDamage(damage2, this, target, "minimal");
+				var damageResult2:DamageResult = calculateDamage(damage2, this, target);
 				if(target.shields() > 0) output(" Your shield thankfully pushes it wide.");
 				else if(oldShields2 > 0 && target.shields() <= 0) output(" The tip pierces your shield and thunks into you. Unnerving energy buzzes through your body.");
 				else output(" The tip thunks painfully into you. Unnerving energy buzzes through your body.");
+				outputDamage(damageResult2);
 				if(target.physique()/2 + rand(20) + 1 < 22) 
 				{
 					CombatAttacks.applyStun(target, 1);
-					output(" <b>You are stunned!</b>");
+					output("\n<b>You are stunned!</b>");
 				}
 			}
 		}
@@ -582,7 +592,6 @@
 				{
 					output("His blows thud into you.");
 					applyDamage(damage, this, target, "minimal");
-
 				}
 				createStatusEffect("Enraged", 0, 0, 0, 0, false, "Icon_Bull", "Raging. Deals extra physical damage and 15% more resistant to kinetic attacks.", true, 0);
 			}

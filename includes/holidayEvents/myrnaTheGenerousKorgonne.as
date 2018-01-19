@@ -47,10 +47,10 @@ public function myrnaMeeting():void
 	{
 		output("\n\nYour codex chirps loudly, alerting you possible danger. Apparently this small creature is a female korgonne, an Uvetian native of this moon. They are known to be violent at times, and are wary at best of off-worlders. Stowing your codex away, you wonder why this one in particular doesn’t seem to mind boldly stepping up to you.");
 		CodexManager.unlockEntry("Korgonne");
-		output(" <b>New Codex entry unlocked: Korgonne.</b>");
+		output("\n\n<b>(New Codex entry unlocked: Korgonne.)</b>\n\n");
 	}
-	else output("\n\nYou assume that she is a korgonne by her stature. Usually the korgonne you’ve encountered have been largely hostile towards you, but this one in particular puzzles you to why they are boldly approaching you.");
-	output(" Even more curious is her attire. She wears a bright red jacket with white fur trimming, with a matching pointy hat that has a puffy white ball at the tip. Her coat is wide open, revealing her fur-covered emerald green undergarments around her expansive breasts and hips. Despite the biting wind blowing in your face, a powerfully sweet scent emanates from her, growing stronger as she walks closer to you.");
+	else output("\n\nYou assume that she is a korgonne by her stature. Usually the korgonne you’ve encountered have been largely hostile towards you, but this one in particular puzzles you to why they are boldly approaching you. ");
+	output("Even more curious is her attire. She wears a bright red jacket with white fur trimming, with a matching pointy hat that has a puffy white ball at the tip. Her coat is wide open, revealing her fur-covered emerald green undergarments around her expansive breasts and hips. Despite the biting wind blowing in your face, a powerfully sweet scent emanates from her, growing stronger as she walks closer to you.");
 
 	output("\n\n<i>“Alien!”</i> She barks, looking up to regard you with a wide smile. <i>“You in luck. Bring present for you.”</i> The roly-poly korgonne stretches out her arms, thrusting a phallic object into your hands. Before you can question it, the short-stacked canine turns around and climbs back into her sleigh.");
 
@@ -129,12 +129,10 @@ public function repeatMyrnaEncounter():void
 		else output("groin");
 		output(" before stepping back with a wide smile on her face, her long tail wagging a mile-a-minute the entire time.");
 
-		if(silly) 
-		{
-			output("\n\n<i>“No, not quite. I was only dragged here because somebody pressed the {9999Whichever direction PC had to enter cave} button to make me come in here.”</i>");
-		}
-		else output("\n\n<i>“No, not quite. I was just looking for some shelter from the cold and was curious about this cave.”</i>");
-		output(" You admit. The chubby korgonne quickly retreats towards the campfire and pats the space next to her.");
+		output("\n\n<i>“No, not quite. I was");
+		if(silly) output(" only dragged here because somebody pressed the ‘Enter’ button to make me come in here");
+		else output(" just looking for some shelter from the cold and was curious about this cave");
+		output(",”</i> you admit. The chubby korgonne quickly retreats towards the campfire and pats the space next to her.");
 		output("\n\n<i>“Come, come. Share heat.”</i> Myrna beckons to you. Not seeing any reason to refuse, you walk over and take a seat next to her, your body immediately warming up thanks to the inviting fires. No sooner after you settle in, the coy korgonne lays her head on your lap, playfully gazing into your eyes.");
 		output("\n\n<i>“Alien comfy. Want you be comfy too.”</i> You would think the sight adorably cute if it weren’t for a damp patch rapidly forming on the pup’s nethers, which is in plain sight due to her face-up position. Her natural pheromones grow more intense too, almost overpowering your urges to not just shove her head further into your crotch.");
 		output("\n\n<i>“So, what alien want?”</i> she asks innocently.");
@@ -198,7 +196,7 @@ public function myrnaAppearance():void
 	clearOutput();
 	showMyrna();
 	output("<i>“Like sight of me?”</i> Myrna croons while you stare her down perceptively. She fluffs her coat and squeezes her breasts enticingly towards you for added effect.");
-	output("\n\nMyrna is a lightly modded korgonne, standing at about 4’8 tall by your guess. She is a textbook definition of a short stack; well rounded F-cup jugs proportionate to her size, wide shapely hips, and plump bottom, ");
+	output("\n\nMyrna is a lightly modded korgonne, standing at about 4\' 8\" tall by your guess. She is a textbook definition of a short stack; well rounded F-cup jugs proportionate to her size, wide shapely hips, and plump bottom, ");
 	if (CodexManager.entryViewed("The Treatment") && flags["MYRNA_MYRNA_TALK"] != undefined) output("all further enhanced by the treatment pen that she consumed.");
 	else output("even more exaggeratedly so than any normal korgonne.");
 	output(" She has a small bit of pudginess to her, which compliments her nicely.");
@@ -424,7 +422,8 @@ public function getGiftFromMyrna():void
 		//If first time: 
 		output("panties");
 		/*else: 
-		else output(trinket + " away in your inventory for safe keeping.");*/
+		else output(trinket);*/
+		output(" away in your inventory for safe keeping.");
 
 		//Add Myrna’s Panties to pantie inventory.
 		//Note for generic panty scenes: Her panties have a sweet scent instead of musky, like peppermint.
@@ -456,7 +455,7 @@ public function myrnaSexMenu():void
 	if(pc.hasGenitals()) addButton(0,"Get Oral",myrnaOral,undefined,"Get Oral","Have her put her tongue to work.");
 	else addDisabledButton(0,"Get Oral","Get Oral","You need genitals to get oral.");
 	if(pc.cockThatFits(400) >= 0 || pc.hasHardLightEquipped()) addButton(1,"Fuck Her",penisRouter,[fuckMyrna,400,true,0],"Fuck Her","Take her in the usual way...");
-	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a penis that will fit inside of her or hardlight-equipped panties.");
+	else addDisabledButton(1,"Fuck Her","Fuck Her","You need a penis that will fit inside of her or hardlight-equipped panties.");
 	addButton(14,"Back",backToMyrnaMenu);
 }
 
@@ -547,7 +546,7 @@ public function myrnaBlowjob(pepperminted:Boolean = false):void
 			output("\n\nThe moment her mouth closes around your [pc.cockHeadBiggest], you feel an odd tingling sensation flow throughout it. Myrna’s trails her tongue along your massive phallus, leaving no inch uncovered while her potion works its magic into your pores. Soon, the slight prickling on your [pc.cockBiggestNoun] turns into a warm titillation as it travels down your length.");
 			if(pc.balls > 0)
 			{
-				output(" Once it reaches, the fuzzy feeling envelops your [pc.balls] cooling ");
+				output(" Once it reaches your base, the fuzzy feeling envelops your [pc.balls] cooling ");
 				if(pc.balls == 1) output("it");
 				else output("them");
 				output(", yet at the same time, warming ");
@@ -780,7 +779,7 @@ public function useMyrnasDildoOnYou(x:int):void
 	if(pc.hasHardLightEquipped()) output("moves your [pc.lowerUndergarment] aside and ");
 	output("slowly brings the crown of the phallus to your [pc.vagOrAss " + y + "]. You can merely feel the warmth emanating from it without it even touching you, leaving you only mere moments to wonder what it would feel like once inside of you.");
 	//If PC had foursome with Anno, Marina, and Galina: 
-	if(9999) output(" If the time you spent in that ‘scientific presentation’ with Anno and the huskar twins was any indication, you believe it will be truly wild.");
+	if(flags["UVETO_HUSKAR_FOURSOME_MOUNTUP"] != undefined) output(" If the time you spent in that ‘scientific presentation’ with Anno and the huskar twins was any indication, you believe it will be truly wild.");
 	output(" In the middle of your thoughts, you feel the dildo head make first contact against the entrance of your [pc.vagOrAss " + y + "], cause it to clench tightly from the intense sensation. It takes every ounce of your being not to cum right then and there.");
 
 	output("\n\n<i>“Alien, relax. Overwhelming at first, but clear mind. That trick I learn. Get use to it over time.”</i> Myrna suggests to you. Yeah... easier said than done. With a calm sigh to master yourself, you try to think of soothing things to get things moving forward again. Surprisingly, you find your grip loosening over time, which enables Myrna to slide the dildo further in. It takes a few baby steps for you to fully adjust, with her sliding it in little by little, but eventually you bottom out to the knot. Even with it fully lodged inside of you, you try your best not to concentrate on that feeling of being stuffed with the unusual toy, lest you blow too early.");

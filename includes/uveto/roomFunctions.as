@@ -605,6 +605,7 @@ public function uvetoSearchAbandonedCamp():void
 	output("This place has been abandoned for some time. Whoever was here before isn’t coming back, you decide. You spend a few minutes tossing the tents, looking for anything of value the previous occupants might have left behind. There’s nothing inside, save emptied containers and tattered scraps of cloth. Only when you glance into the fire pit do you catch a glimpse of something worthwhile: you lean over and pull a small, black amulet out of the dusty covering of snow.");
 
 	output("\n\nYou hold it up to the light, eyeing the horse-shaped talisman warily. Wonder who left this... and why? Either way, you’re fairly certain the creature it depicts is a leithan, and the amulet looks to be in good shape. With a shrug, you pocket it.");
+	output("\n\n");
 	
 	lootScreen = uvetoAbandonedCampLootCheck;
 	flags["UVIP_J46_SEARCHED"] = 1;

@@ -5839,7 +5839,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 			}
 			// The Freezer
-			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined || flags["MET_JERYNN"] != undefined || flags["NATALIE_MET"] != undefined || flags["BEA_TITLE"] != undefined || flags["CHRISSY_MET"] != undefined)
+			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined || flags["MET_JERYNN"] != undefined || flags["NATALIE_MET"] != undefined || flags["BEA_TITLE"] != undefined || flags["CHRISSY_MET"] != undefined || flags["MET_CANDY"] != undefined)
 			{
 				output2("\n<b><u>The Freezer</u></b>");
 				// Hanananana, hawt MILF
@@ -5896,6 +5896,11 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["BEA_SEXED"] != undefined) output2("\n<b>* Beatrice Reasner, Times Sexed:</b> " + flags["BEA_SEXED"]);
 					if(flags["MET_BEA_HUBBY"] != undefined) output2("\n<b>* Traven Reasner:</b> Met him");
 				}
+				// Candy Rahn
+				if(flags["MET_CANDY"] != undefined)
+				{
+					output2("\n<b>* Candy:</b> Met her");
+				}
 				// Chrissy
 				if(flags["CHRISSY_MET"] != undefined)
 				{
@@ -5937,6 +5942,14 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Kirila:</b> Met her");
 				variousCount++;
 			}
+			// U7 Stadium
+			if(flags["TAUR_STADIUMED"] != undefined)
+			{
+				output2("\n<b><u>U7 Stadium</u></b>");
+				if(flags["TAUR_STADIUM_WATCHED"] != undefined) output2("\n<b>* Races, Times Watched:</b> " + flags["TAUR_STADIUM_WATCHED"]);
+				output2("\n<b>* Cashier:</b> Met her");
+				variousCount++;
+			}
 			// Essyra Trading Post
 			if(flags["MET_KAZRA_AND_LORRE"] != undefined)
 			{
@@ -5958,6 +5971,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_MYRNA"] != undefined)
 				{
 					output2("\n<b>* Myrna:</b> Met her");
+					if(flags["MYRNA_GIFT_COUNT"] != undefined) output2("\n<b>* Myrna, Presents Gifted:</b> " + flags["MYRNA_GIFT_COUNT"]);
 					if(flags["SEXED_MYRNA"] != undefined) output2("\n<b>* Myrna, Times Sexed:</b> " + flags["SEXED_MYRNA"]);
 				}
 				if(flags["MET_FEMKORGONNE"] != undefined) output2("\n<b>* Female Korgonne, Times Encountered:</b> " + flags["MET_FEMKORGONNE"]);
