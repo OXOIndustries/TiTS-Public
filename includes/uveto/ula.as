@@ -221,7 +221,7 @@ public function caveMeetUla():void
 	output("\n\nThis close, you can see the poor puppy-girl is ill-dressed for the icy weather outside.");
 	if(flags["MET_FEMKORGONNE"] != undefined) output(" Other Korgonne you have encountered have come warmly dressed in furs, some with heat belts. She has neither.");
 	else output(" Venturing out in anything less than a dozen pieces of thickly-padded clothing seems like an idiot idea, unless you have a heat belt. She does not.");
-	output(" A diaphanous cloak is her only garment. Meant for little more than ornamentation, it does little more than highlight its wearer’s lack of modesty and awareness of Uveto’s dangers.");
+	output(" A diaphanous cloak is her only garment. Meant for ornamentation, it does little more than highlight its wearer’s lack of modesty and awareness of Uveto’s dangers.");
 	output("\n\nWill you help the foolish dog-girl?");
 
 	processTime(10);
@@ -699,7 +699,7 @@ public function korgiCockFuck():void
 	if(flags["ULA_SAVED"] == 2) output(", compressing the jacket you gave her");
 	output(". <i>“Stupid. Pussy-stupid. Belong alone, in home-room.”</i>");
 	output("\n\nYou look on ");
-	if(!pc.isAss()) output("in sympathy. No wonder she started putting the moves on you; as soon as she got a little excited, the pheromones started a feedback loop.");
+	if(!pc.isAss()) output("in sympathy. No wonder she started putting the moves on you; as soon as she got a little excited, the pheromones started a feedback loop");
 	else output("in fake sympathy. At least that explains why how this shy girl transformed into a simpering puddle of lust");
 	output(". You know how she feels, come to think of. Just looking at her, you can feel the urge rising inside you, begging you to take her. Your nostrils flare as you try to think of what to say. <i>“It’s... not safe to go out like that. Who knows what kind of monster you’d run into?”</i>");
 	output("\n\nThe puppy-girl sighs, in resignation, dropping to her knees. One hand goes to her chest, roughly squeezing the fattened orb. The other dibs between her legs, crudely rubbing at a blue-lipped entrance. <i>“R-right. But... can’t... want...”</i> She licks her lips, eyes fixated on your cock. <i>“Want pups.”</i> Falling on all fours, she crawls closer, tail curled up and wiggling with her juicy haunches. <i>“Want alien pups. Nice alien’s pups.”</i>");
@@ -725,7 +725,7 @@ public function korgiCockFuck2():void
 	var x:int = pc.cockThatFits(ulaCapacity());
 	if(x < 0) x = pc.biggestCockIndex();
 
-	output("You slide bonelessly onto your back as the tension is sucked from your body. Frenetic licks and slobbery kisses work their way along [pc.oneCock] unceasingly. Soft paws, wet from cunt, pre-cum, and melted snow join in explore the space around your [pc.knot " + x + "]. It all began so artlessly, but with each moment spent sealed around your dick, the proud puppy learns new ways to make you gasp. Her tongue curiously ventures over the musky skin, seeking out pockets of virile flavor, coaxing your pre to channel into the curved middle where she can hold and savor it.");
+	output("You slide bonelessly onto your back as the tension is sucked from your body. Frenetic licks and slobbery kisses work their way along [pc.oneCock] unceasingly. Soft paws, wet from cunt, pre-cum, and melted snow join in to explore the space around your [pc.knot " + x + "]. It all began so artlessly, but with each moment spent sealed around your dick, the proud puppy learns new ways to make you gasp. Her tongue curiously ventures over the musky skin, seeking out pockets of virile flavor, coaxing your pre to channel into the curved middle where she can hold and savor it.");
 	output("\n\nYou nearly cum to the sound of her lurid gulp.");
 	output("\n\nAnd then she swivels around, muzzle suddenly a vortex of pleasure. Furry thighs land to either side of your ");
 	if(pc.tallness < 60) output("head");
@@ -761,7 +761,7 @@ public function korgiCockFuck2():void
 		output("\n\nShe’s definitely a virgin. The first attempt does little more than smash her puffy puss into your [pc.cockHead " + x + "], futilely dragging the lust-engorged lump of her clit past your pre-weeping urethra. The second attempt fares no better. Growling in disatisfaction, she rocks back and forth, straining her tight cunny against your impossibly large cockhead, trying to wedge herself open far enough to take <i>any</i> part of you, even if it’s only the first inch of pole.");
 		output("\n\n<i>“Ahp!”</i> the dog-girl gasps as she succeeds in ripping her hymen wide open, sinking a few millimeters in. She’s so tight. It feels like her clenches are going to pinch off your [pc.cockHead " + x + "]. Streamers of korgonne girl-cum stream down your length, but no amount of effusive ejaculate will allow her virginal tunnel to take your obscene tool any further. <i>“Big!”</i>");
 		pc.cockChange();
-		output("\n\nPleasure forces deflowered dog-girl to arch her back, leaning so far that her hair touches her tail, thrusting her breasts at your face. They bounce and clap against each other. Drops of fuck-warmed snowmelt rain over your [pc.chest] as the korgonne cums herself silly, hindpaws reaching back to grip you, smearing pussyjuices all the way down to your ");
+		output("\n\nPleasure forces the deflowered dog-girl to arch her back, leaning so far that her hair touches her tail, thrusting her breasts at your face. They bounce and clap against each other. Drops of fuck-warmed snowmelt rain over your [pc.chest] as the korgonne cums herself silly, hindpaws reaching back to grip you, smearing pussyjuices all the way down to your ");
 		if(pc.balls > 0) output("[pc.sack]");
 		else output("[pc.sheath " + x + "]");
 		output(". <i>“Very stroooong! Many pups!”</i>");
@@ -1761,7 +1761,7 @@ public function ulaMiningTalk():void
 	else output("A digger. Gem-thirsty korg who prefer to tunnel than live with the rest of the clan. They’d rather hold a pick than a mate, thus, Gem-heart.");
 	output("”</i> She shrugs. <i>“");
 	if(!korgiTranslate()) output("Not understanding them. Live in hold too long, maybe. Nothing but rock, rock, and more rock. Maybe sparkle. Elders say gem-heart not from that. Say they just are. Just loving the finding. Alien word for it... thrill? Seek thrill. Want long dig boring just so can find moment of pretty sparkle!");
-	output("I don’t understand them. Maybe they’ve stayed in the hold too long? Their life is basically just rock, rock, and more rock. Maybe a gem here or there. The elders say gem-hearts just </i>are<i>. That they just love the act of finding new gems. There’s a word in your language for it... thrill? They love the thrill. They love the long stretches of boredom just so they can have the jubilation of one rich find.");
+	else output("I don’t understand them. Maybe they’ve stayed in the hold too long? Their life is basically just rock, rock, and more rock. Maybe a gem here or there. The elders say gem-hearts just </i>are<i>. That they just love the act of finding new gems. There’s a word in your language for it... thrill? They love the thrill. They love the long stretches of boredom just so they can have the jubilation of one rich find.");
 	output("”</i>");
 	output("\n\n<i>“Like gambling?”</i> you suggest.");
 	output("\n\nRecoiling, the curvy korgonne’s ears flop. <i>“");
@@ -1854,7 +1854,7 @@ public function ulasRoleInTheClan():void
 	//Misch
 	else if(pc.isMischievous()) output("\n\n<i>“Oh really?”</i> You ask, smiling broadly. <i>“Then I’ll have to visit twice as much.”</i>");
 	//Hard
-	output("\n\n<i>“Good thing I’m here then,”</i> you quip.");
+	else output("\n\n<i>“Good thing I’m here then,”</i> you quip.");
 	//Merge
 	output("\n\nUla blushes. <i>“Good.”</i>");
 	output("\n\nYou ask her if that means she’ll be the chief someday.");
@@ -1901,7 +1901,7 @@ public function otherTribesTalkarydooda():void
 	if(!korgiTranslate()) output("No offense. We not take so much as other clans. Not draw alien ire. Better hidden too. Right under nose. Secret entrance make tough find.");
 	else output("No offense. We don’t take as much as many other clans. We don’t want to draw the other aliens’ ire. We’re better hidden too. Right under your noses. The secret entrance makes us tough to find.");
 	output("”</i> She smiles proudly.");
-	output("\n\n<i>“But other clans steal more?");
+	output("\n\n<i>“But other clans steal more?”</i>");
 	output("\n\nUla chitters with mirth. <i>“");
 	if(!korgiTranslate()) output("Many more! Sparkle-Claws pride selves on taking from aliens. Roam far from hold. Use magic belt, stay warm. Have flash-shooters, bang-sticks, and other core-magic. Strong fighters.");
 	else output("Much more! Sparkle-Claws pride themselves on taking things from aliens. They roam far from their hold, using those magic belts to stay warm. They even have flash-shooters, bang-sticks, and all kinds of other core-magic. Formidable fighters!");
@@ -1918,12 +1918,12 @@ public function otherTribesTalkarydooda():void
 	else output("Some clans don’t use any core-magic - only korgonne-craft. Those clans are dumb. They do the worst of all, unless very far from the sky-spire,");
 	output("”</i> the fluffy princess explains. <i>“");
 	if(!korgiTranslate()) output("Wyrm-Murder clan only exception. Strong people. Hunt frostwyrms. All hunters wear full suit of scales. Even stops some core-bangs.");
-	else output("Wyrm-Murder clan are the only exception. A strong people. They hunt frostwyrms. All their hunters have full suites of frostwyrm scale. It even stops some core-bangs.");
-	output("”</i> ");
+	else output("Wyrm-Murder clan are the only exception. A strong people. They hunt frostwyrms. All their hunters have full suits of frostwyrm scale. It even stops some core-bangs.");
+	output("”</i>");
 	if(9999) output(" She runs her fingers over your armor. <i>“You know, yes?”</i>");
 	else 
 	{
-		output("She sighs heavily. <i>“");
+		output(" She sighs heavily. <i>“");
 		if(!korgiTranslate()) output("Korg’ii only have few, but know how make, if scales getted.");
 		else output("Korg’ii Clan only has a few, but we can make it, if someone has the scales.");
 		output("”</i>");
@@ -1996,7 +1996,8 @@ public function explainElectricityToUla():void
 	output("\n\nThis seems to placate the ever-curious Ula for now, though you have no doubt that she’d love a chance to understand it in more detail.");
 	output("\n\n<i>“Thanks-having!”</i> The fluffy dog-girl hugs you tight. <i>“");
 	if(!korgiTranslate()) output("Learn much. Maybe hunters let Ula have zap-gun that no zap no more. Then just need find charge-battery or so-lar paneling for own use. And warm-belt! Warm-belt can work again with elec-tric-it-y-filled battery?");
-	else output("I learned so much. Maybe some hunters will let me have a zap-gun that doesn’t zap any more. Then I just need to find a charged battery or so-lar paneling for me to use... And a warm-belt!”</i>");
+	else output("I learned so much. Maybe some hunters will let me have a zap-gun that doesn’t zap any more. Then I just need to find a charged battery or so-lar paneling for me to use... And a warm-belt!");
+	output("”</i>");
 	output("\n\n<i>“Yes.”</i>");
 	output("\n\n<i>“Oooooh.”</i> Mischief dances in the korgonne’s eyes. <i>“");
 	if(!korgiTranslate()) output("Much learn. Many thanks. Other talks now?");

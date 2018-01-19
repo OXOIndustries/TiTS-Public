@@ -225,10 +225,10 @@ public function duelKrym():void
 public function useUvetoBeacon():void
 {
 	clearOutput();
-	showKrym();
 	author("Savin");
 	if(hours >= 5 && hours < 19)
 	{
+		showKrym();
 		output("<i>“Sure thing, Steele,”</i> Krym says, jerking a thumb toward the beeping Q-COMM beacon in the middle of the pillar forest. <i>“Just hook your Codex in and she’ll get a signal anywhere on-planet.”</i>");
 		output("\n\nYou do as she says, syncing your Codex up with the Stormguard network, and a moment later, that of the Confederate Scout Authority and their rapid transit system. You can call in for pickup here, no problem.");
 		if(inCombat()) 
@@ -255,15 +255,17 @@ public function useUvetoBeaconMenu():void
 	addButton(0,"Irestead",uvetoTaxiShitGooo,"UVI P40");
 	if (flags["UVIP_R10_PROBE_ACTIVE"] == undefined) addDisabledButton(1, "Probe");
 	else addButton(1, "Probe", uvetoTaxiShitGooo, "UVIP R10");
-	if(hours >= 5 && hours < 19) addButton(4,"Nevermind",krymMenu);
-	else addButton(4,"Nevermind",mainGameMenu);
+	if(hours >= 5 && hours < 19) addButton(14,"Nevermind",krymMenu);
+	else addButton(14,"Nevermind",mainGameMenu);
 }
 
 //PC chooses destination:
 public function uvetoTaxiShitGooo(destination:String):void
 {
 	clearOutput();
-	showKrym();
+	if(hours >= 5 && hours < 19) showKrym();
+	else showBust("");
+	showName("\nTRANSIT!");
 	author("Savin");
 	output("You punch in your destination, and all there is left to do is wait. Given the cold, you decide to retreat into the awning of the bunker, getting shelter from the winds until, a few minutes later, you hear the roar of hovercraft engines and a beam of light lancing through the snow. Stepping back out and shielding your eyes, you watch the snow-patterned hover car slowly setting down amidst the black pillars looming up from the plateau.");
 	output("\n\nYou head over and pop the door, finding a shiny chrome robot in the driver’s seat waiting for you.");

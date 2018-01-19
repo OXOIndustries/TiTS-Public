@@ -435,8 +435,8 @@ package classes.GameData
 				}
 				if (target.hasStatusEffect("Stunned") && rand(4) == 0)
 				{
-					if (target is PlayerCharacter) output("\n\n<b>You shake off your stun! You’re unstoppable!</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " shakes off their stun!</b>");
+					if (target is PlayerCharacter) output("\n\n<b>You shake off the stun! You’re unstoppable!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " shakes off the stun!</b>");
 					target.removeStatusEffect("Stunned");
 				}
 				if (target.hasStatusEffect("Paralyzed") && rand(4) == 0)
@@ -473,14 +473,14 @@ package classes.GameData
 				if (target.statusEffectv1("Burning") <= 0)
 				{
 					target.removeStatusEffect("Burning");
-					if (target is PlayerCharacter) output("\n\n<b>At last you manage to stifle the life out of the fire on your " + target.armor.longName + ". The smell of pork hangs in your nose. You try not to think about it.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " manages to stifle the life out of the flames on their " + target.armor.longName + "!</b>");
+					if (target is PlayerCharacter) output("\n\n<b>At last you manage to stifle the life out of the fire on your " + (target.hasArmor() ? target.armor.longName : "body") + ". The smell of pork hangs in your nose. You try not to think about it.</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " manages to stifle the life out of the flames on " + target.getCombatPronoun("hisher") + " " + (target.hasArmor() ? target.armor.longName : "body") + "!</b>");
 				}
 				//Keep status!
 				else
 				{
-					if (target is PlayerCharacter) output("\n\n<b>You desperately slap at your body, trying to extinguish the flames that have taken to your " + target.armor.longName + " but it stubbornly clings to you, blackening and bubbling everything it touches. It burns!</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " desperately slaps at their body, trying to extingquish the flames licking at their " + target.armor.longName + " to no avail!</b>");
+					if (target is PlayerCharacter) output("\n\n<b>You desperately slap at your body, trying to extinguish the flames that have taken to your " + (target.hasArmor() ? target.armor.longName : "person") + " but it stubbornly clings to you, blackening and bubbling everything it touches. It burns!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " desperately slaps at " + target.getCombatPronoun("hisher") + " body, trying to extinguish the flames licking at " + target.getCombatPronoun("hisher") + " " + (target.hasArmor() ? target.armor.longName : "person") + " but to no avail!</b>");
 					applyDamage(new TypeCollection( { burning: target.statusEffectv2("Burning") } ), null, target);
 				}
 			}
@@ -629,7 +629,7 @@ package classes.GameData
 			if (target.hasStatusEffect("Poison"))
 			{
 				if (target is PlayerCharacter) output("\n\n<b>The poison continues to exhaust you" + (target.statusEffectv2("Poison") >= 1 ? ". You're ready for this fight to be over!" : ", though you feel a bit better after. It must be <i>wearing off</i>.") + "</b>");
-				else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " movements become more sluggish" + (target.statusEffectv2("Poison") ? "; poison flows through their wounds, weakening them further." : ", though the poison is fading, its damage done.") + "</b>");
+				else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " movements become more sluggish" + (target.statusEffectv2("Poison") ? "; poison flows through " + target.getCombatPronoun("hisher") + " wounds, weakening them further." : ", though the poison is fading, its damage done.") + "</b>");
 				if (target.statusEffectv2("Poison") >= 1)
 				{
 					target.addStatusValue("Poison", 2, -1);
@@ -644,7 +644,7 @@ package classes.GameData
 			if (target.hasStatusEffect("Bleeding"))
 			{
 				if (target is PlayerCharacter) output("\n\n<b>Your wounds continue to take their toll on your body; " + (target.statusEffectv2("Bleeding") >= 1 ? "your microsugeons working overtime to stem the ongoing damage" : "your microsurgeons have triaged the worst of it, but you’ll need proper rest to heal") + ".</b>");
-				else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " wounds continue to take a toll on their body; " + (target.statusEffectv2("Bleeding") ? "blood liberally flows from their wounds as they frantically attempt to stem the bleeding." : "the bleeding has finally stopped, but it’d take anybody some rest to properly recover from those kinds of wounds!") + "</b>");
+				else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " wounds continue to take a toll on " + target.getCombatPronoun("hisher") + " body; " + (target.statusEffectv2("Bleeding") ? "blood liberally flows from " + target.getCombatPronoun("hisher") + " wounds as " + target.getCombatPronoun("himher") + " frantically attempt to stem the bleeding." : "the bleeding has finally stopped, but it’d take anybody some rest to properly recover from those kinds of wounds!") + "</b>");
 				if (target.statusEffectv2("Bleeding") >= 1)
 				{
 					target.addStatusValue("Bleeding", 2, -1);
@@ -662,7 +662,7 @@ package classes.GameData
 				{
 					target.addStatusValue("Staggered", 1, -1);
 					if (target is PlayerCharacter) output("\n\n<b>You’re still reeling from the force of the blows to which you’ve been subjected.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is still reeling from the force of the blows to which they’ve been subjected!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is still reeling from the force of the blows to which " + (!target.isPlural ? (target.getCombatPronoun("heshe") + "’s") : "they’ve") + " been subjected!</b>");
 				}
 				else
 				{
@@ -702,7 +702,7 @@ package classes.GameData
 				if(target.hasPerk("Leap Up"))
 				{
 					if (target is PlayerCharacter) output("\n\n<b>You roll up onto your [pc.feet] immediately thanks to your quick reflexes.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " jumps back onto their " + target.feet() + " almost immediately!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " jumps back onto " + target.getCombatPronoun("hisher") + " " + target.feet() + " almost immediately!</b>");
 					target.removeStatusEffect("Tripped");
 				}
 			}
@@ -744,7 +744,7 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Smoke Grenade");
 					if (target is PlayerCharacter) output("\n\n<b>You can see again!</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " looks a little more confident in their aim!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " looks a little more confident in " + target.getCombatPronoun("hisher") + " aim!</b>");
 				}
 			}
 	
@@ -776,7 +776,7 @@ package classes.GameData
 				else 
 				{
 					if (target is PlayerCharacter) output("\n\n<b>You are practically invisible thanks to your stealth field generator.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is practically invisible thanks to their stealth field generator.</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is practically invisible thanks to " + target.getCombatPronoun("hisher") + " stealth field generator.</b>");
 				}
 			}
 	
@@ -792,7 +792,7 @@ package classes.GameData
 				else 
 				{
 					if (target is PlayerCharacter) output("\n\n<b>Your enemies will have a hard time hitting you behind your cover!</b>");
-					else output("\n\n<b>You’ll have a hard time hitting " + target.getCombatName() + " with them hiding behind cover!</b>");
+					else output("\n\n<b>You’ll have a hard time hitting " + target.getCombatName() + " with " + target.getCombatPronoun("himher") + " hiding behind cover!</b>");
 				}
 			}
 	
@@ -839,7 +839,7 @@ package classes.GameData
 					{
 						//Combat blurb:
 						if (target is PlayerCharacter) output("\n\n<b>Your hacked drone continues to fly into your line of sight and near your ear no matter how many times you slap it away, inundating your senses with garish, shifting and teasing smut.</b>");
-						else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " hacked drone continues to fly around them, projecting a series of ever lewder smutty visuals directly at " + target.getCombatPronoun("himher") + "!</b>");
+						else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " hacked drone continues to fly around " + target.getCombatPronoun("himher") + ", projecting a series of ever lewder smutty visuals directly at " + target.getCombatPronoun("himher") + "!</b>");
 						target.lust(4);
 					}
 				}
@@ -1221,7 +1221,7 @@ package classes.GameData
 		/**
 		 * Generate the actual button elements for the combat menu
 		 */
-		private function generateCombatMenu():void
+		private function generateCombatMenu(fromMenu:Boolean = false):void
 		{
 			clearMenu();
 			if (hasEnemyOfClass(Celise))
@@ -1298,7 +1298,7 @@ package classes.GameData
 			//PC has status Strangely Warm or Blood Fevered :
 			if((pc.hasStatusEffect("Fuck Fever") || pc.hasStatusEffect("Flushed")) && hasDickedEnemy())
 			{
-				if(pc.lust() < pc.lustMax())
+				if(!fromMenu && pc.lust() < pc.lustMax())
 				{
 					output("\n\nOh, something");
 					if(pc.hasAirtightSuit()) output(" looks <i>divine</i>... like pure sex in physical form");
@@ -2054,7 +2054,7 @@ package classes.GameData
 			}
 			
 			// TODO sort pages and shit
-			addButton(14, "Back", generateCombatMenu);
+			addButton(14, "Back", generateCombatMenu, true);
 		}
 		
 		private function selectDroneTarget():void
@@ -2173,7 +2173,7 @@ package classes.GameData
 				}
 			}
 			
-			addButton(14, "Back", generateCombatMenu);
+			addButton(14, "Back", generateCombatMenu, true);
 		}
 		
 		private function executeAttack(opts:Object):void
@@ -2248,7 +2248,7 @@ package classes.GameData
 				}
 			}
 			
-			addButton(14, "Back", generateCombatMenu);
+			addButton(14, "Back", generateCombatMenu, true);
 		}
 		
 		private function executeSimpleAttack(opts:Object):void
@@ -2296,7 +2296,7 @@ package classes.GameData
 				output("\n<b>Unfortunately, you can’t see the enemy clearly enough to do that!</b>");
 				
 				clearMenu();
-				addButton(14, "Back", generateCombatMenu);
+				addButton(14, "Back", showCombatMenu);
 				return;
 			}
 	
@@ -2357,7 +2357,7 @@ package classes.GameData
 			{
 				if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
 				{
-					addButton(btnSlot, "Back", generateCombatMenu, undefined, "Back", backTooltip);
+					addButton(btnSlot, "Back", showCombatMenu, undefined, "Back", backTooltip);
 					btnSlot++;
 				}
 				
@@ -2368,10 +2368,10 @@ package classes.GameData
 				if(teaseList.length > 14 && (i + 1) == teaseList.length)
 				{
 					while((btnSlot + 1) % 15 != 0) { btnSlot++; }
-					addButton(btnSlot, "Back", generateCombatMenu, undefined, "Back", backTooltip);
+					addButton(btnSlot, "Back", showCombatMenu, undefined, "Back", backTooltip);
 				}
 			}
-			addButton(14, "Back", generateCombatMenu, undefined, "Back", backTooltip);
+			addButton(14, "Back", showCombatMenu, undefined, "Back", backTooltip);
 		}
 		
 		private function teaseButt(target:Creature):void
@@ -2460,7 +2460,7 @@ package classes.GameData
 			{
 				output("You quickly");
 				if(pc.hasArmor() && !pc.isCrotchExposed()) output(" strip out of your [pc.armor] and");
-				output(" turn around, giving your [pc.butt] a hard slap and showing your enemy the real prize: your [pc.asshole]. With a smirk, you easily plunge your hand inside, burying yourself up to the wrist inside your anus. You give yourself a quick fisting, watching the enemy over your shoulder while you moan lustily, being sure to give them a good show. You withdraw your hand and give your ass another sexy spank before readying for combat again.");
+				output(" turn around, giving your [pc.butt] a hard slap and showing your enemy the real prize: your [pc.asshole]. With a smirk, you easily plunge your hand inside, burying yourself up to the wrist inside your anus. You give yourself a quick fisting, watching the enemy over your shoulder while you moan lustily, being sure to give " + target.getCombatName() + " a good show. You withdraw your hand and give your ass another sexy spank before readying for combat again.");
 			}
 			//Reqs: PC has at least one tail with the Fluffy tag
 			else if(select == 4)
@@ -2784,7 +2784,7 @@ package classes.GameData
 				msg += " You offer a smirk of superiority as you slither in a circle around your foe, your tail leaving a trail in the brush where it passes. <i>“This is </i>much<i> better, don’t you agree?";
 				if(!isNaleen) msg += " I may not be a naleen, but I can still appreciate a strong, </i>thick<i> snake tail like mine... or yours.";
 				else msg += " Becoming a naleen’s given me an appreciation for big, long tails like this one... or like yours.";
-				msg += "”</i> You let your tailtip brush over some of your foe’s length before you pull away, allowing them a brief view of your backside and your tail curling up to support you as you resume the fight.";
+				msg += "”</i> You let your tailtip brush over some of your foe’s length before you pull away, allowing " + target.getCombatPronoun("himher") + " a brief view of your backside and your tail curling up to support you as you resume the fight.";
 				output(msg);
 			}
 			//Reqs: Hips skill 75+
@@ -2970,7 +2970,7 @@ package classes.GameData
 			//2 - covered dick!
 			else if(select == 2) {
 				output("You lean back and pump your hips at your target in an incredibly vulgar display. The bulging, barely-contained outline of your package presses hard into your [pc.lowerUndergarment]. This feels so crude, but at the same time, you know it’ll likely be effective.");
-				output(" You go on like that, humping the air for your target’s benefit, trying to entice them with your nearly-exposed meat.");
+				output(" You go on like that, humping the air for your target’s benefit, trying to entice " + target.getCombatPronoun("himher") + " with your nearly-exposed meat.");
 			}	
 			//3 - cunt!
 			else if(select == 3) {
@@ -2996,11 +2996,11 @@ package classes.GameData
 			}
 			//4 Horsecock centaur tease
 			else if(select == 4) {
-				output("You let out a bestial whinny and stomp your [pc.feet] at your enemy. They prepare for an attack, but instead you kick your front [pc.feet] off the ground, revealing the hefty horsecock hanging beneath your belly. You let it flop around, quickly getting rigid and to its full erect length. You buck your hips as if you were fucking a mare in heat, letting your opponent know just what’s in store for them if they surrender to pleasure...");
+				output("You let out a bestial whinny and stomp your [pc.feet] at your enemy. They prepare for an attack, but instead you kick your front [pc.feet] off the ground, revealing the hefty horsecock hanging beneath your belly. You let it flop around, quickly getting rigid and to its full erect length. You buck your hips as if you were fucking a mare in heat, letting your opponent know just what’s in store for " + target.getCombatPronoun("himher") + " if " + target.getCombatPronoun("heshe") + " surrender" + (!target.isPlural ? "s" : "") + " to pleasure...");
 			}
 			//5 Cunt grind tease
 			else if(select == 5) {
-				output("You gallop toward your unsuspecting enemy, dodging their defenses and knocking them to the ground. Before they can recover, you slam your massive centaur ass down upon them, stopping just short of using crushing force to pin them underneath you. In this position, your opponent’s face is buried right in your girthy horsecunt. You grind your cunt into your target’s face for a moment before standing. When you do, you’re gratified to see your enemy covered in your lubricant and smelling powerfully of horsecunt.");
+				output("You gallop toward your unsuspecting enemy, dodging " + target.getCombatPronoun("hisher") + " defenses and knocking " + target.getCombatPronoun("himher") + " to the ground. Before " + target.getCombatPronoun("heshe") + " can recover, you slam your massive centaur ass down upon " + target.getCombatPronoun("himher") + ", stopping just short of using crushing force to pin " + target.getCombatPronoun("himher") + " underneath you. In this position, your opponent’s face is buried right in your girthy horsecunt. You grind your cunt into your target’s face for a moment before standing. When you do, you’re gratified to see your enemy covered in your lubricant and smelling powerfully of horsecunt.");
 			}
 			//Reqs: PC has at least 3 vaginal wetness
 			else if(select == 14)

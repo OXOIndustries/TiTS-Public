@@ -163,6 +163,7 @@ public function repeatMyrnaEncounter():void
 		//Update year!
 		flags["MYRNA_YEAR"] = new Date().fullYear;
 	}
+	removeUvetoCold();
 	processTime(20);
 	pc.lust(10);
 	myrnaMenu();
@@ -179,7 +180,7 @@ public function backToMyrnaMenu():void
 public function myrnaMenu():void
 {
 	clearMenu();
-	addButton(14,"Leave",move,"UVIP T44");
+	addButton(14,"Leave",myrnaLeave);
 	addButton(0,"Appearance",myrnaAppearance);
 	addButton(1,"Talk",myrnaTalk,undefined,"Talk","Talk to the little Santa impersonator.");
 	if((flags["MYRNA_GIFT_CD"] == undefined || (flags["MYRNA_GIFT_CD"] != undefined && flags["MYRNA_GIFT_CD"] + 60*24 < GetGameTimestamp()))
@@ -188,6 +189,11 @@ public function myrnaMenu():void
 	else addDisabledButton(2,"Gift","Gift","You’ve already received all your season’s greetings.");
 	if(pc.lust() >= 33) addButton(3,"Sex",myrnaSexMenu);
 	else addDisabledButton(3,"Sex","Sex","You aren’t aroused enough for this.");
+}
+public function myrnaLeave():void
+{
+	addUvetoCold();
+	move("UVIP T44");
 }
 
 //[Appearance]

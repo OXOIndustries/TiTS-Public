@@ -351,7 +351,7 @@
 					applyDamage(damage, this, target, "minimal");
 					if(target.physique()/2 + rand(20) + 1 < 10 + this.physique()/2)
 					{
-						output(" <b>You are sent reeling by the blow, staggered.</b>");
+						output("\n<b>You are sent reeling by the blow, staggered.</b>");
 						CombatAttacks.applyStagger(target, 5, true);
 					}
 				}
@@ -381,8 +381,8 @@
 				applyDamage(damage, this, target, "minimal");
 				if(target.shields() <= 0)
 				{
-					if (!target.hasStatusEffect("Bleeding")) output(" <b>You’re bleeding!</b>");
-					else output(" <b>Your bleeding is aggravated further!</b>");
+					if (!target.hasStatusEffect("Bleeding")) output("\n<b>You’re bleeding!</b>");
+					else output("\n<b>Your bleeding is aggravated further!</b>");
 					CombatAttacks.applyBleed(target, 1, 3, 5);
 				}
 			}
@@ -409,19 +409,19 @@
 				//(if hit, restore korg’s shield)
 				if(target.shields() > 0) 
 				{
-					applyDamage(damage, this, target, "minimal");
 					output(" The korgonne’s improvised shield is restored slightly at the expense of your own!");
+					applyDamage(damage, this, target, "minimal");
 					this.shields(Math.ceil(damage.getTotal()/2));
 				}
 				else applyDamage(damage, this, target, "minimal");
 				if(target.shields() <= 0)
 				{
-					if (!target.hasStatusEffect("Bleeding")) output(" <b>You’re bleeding!</b>");
-					else output(" <b>Your bleeding is aggravated further!</b>");
+					if (!target.hasStatusEffect("Bleeding")) output("\n<b>You’re bleeding!</b>");
+					else output("\n<b>Your bleeding is aggravated further!</b>");
 					CombatAttacks.applyBleed(target, 1, 3, 5);
 				}
 			}
-			output(" When the assault ends, he hurriedly pulls the battery and drops it in the snow. It begins to pop and leak.");
+			output("\nWhen the assault ends, he hurriedly pulls the battery and drops it in the snow. It begins to pop and leak.");
 		}
 		//pufferfish dart
 		//low energy-cost attack (~5-10); chucks fishbone darts coated in toxin
@@ -454,8 +454,8 @@
 					//(if poisoned by hit)
 					if(target.shields() <= 0 && target.physique()/2 + rand(20) + 1 < 28)
 					{
-						if (!target.hasStatusEffect("Poison")) output(" <b>You’re poisoned!</b>");
-						else output(" <b>More poison courses through you!</b>");
+						if (!target.hasStatusEffect("Poison")) output("\n<b>You’re poisoned!</b>");
+						else output("\n<b>More poison courses through you!</b>");
 						CombatAttacks.applyPoison(target, 1, 3, 5);
 					}
 				}

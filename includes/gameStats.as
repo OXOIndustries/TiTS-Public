@@ -5964,9 +5964,14 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_STORMGUARD"] != undefined)
 				{
 					var lancerName:String = (flags["MET_GEL_ZON"] == undefined ? "Stormguard Lancer" : "Gel Zon");
+					var lancerSexed:int = (flags["SEXED_SG_MALE"] == undefined ? 0 : flags["SEXED_SG_MALE"]);
 					output2("\n<b>* " + lancerName + ", Times Encountered:</b> " + flags["MET_STORMGUARD"]);
-					if(flags["SPANKED_SG_COUNT"] != undefined) output2("\n<b>* " + lancerName + ", Times Spanked:</b> " + flags["SPANKED_SG_COUNT"]);
-					if(flags["SEXED_SG_MALE"] != undefined) output2("\n<b>* " + lancerName + ", Times Sexed:</b> " + flags["SEXED_SG_MALE"]);
+					if(flags["SPANKED_SG_COUNT"] != undefined)
+					{
+						lancerSexed -= flags["SPANKED_SG_COUNT"];
+						output2("\n<b>* " + lancerName + ", Times Spanked:</b> " + flags["SPANKED_SG_COUNT"]);
+					}
+					if(lancerSexed > 0) output2("\n<b>* " + lancerName + ", Times Sexed:</b> " + lancerSexed);
 				}
 				if(flags["MET_MYRNA"] != undefined)
 				{
@@ -6004,10 +6009,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Princess Ula
-			if(flags["ULA_LEAVE_TIMER"] != undefined) 
+			// Korg’ii Hold
+			if(flags["ULA_SAVED"] != undefined || flags["ULA_LEAVE_TIMER"] != undefined) 
 			{
 				output2("\n<b><u>");
-				if(flags["ULA_CAVE"] != undefined)
+				if(flags["ULA_SAVED"] != undefined) output2("Korg’ii Hold");
+				else if(flags["ULA_CAVE"] != undefined)
 				{
 					switch(flags["ULA_CAVE"])
 					{
@@ -6019,6 +6026,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				else output2("Cave");
 				output2("</u></b>");
+				if(flags["ULA_SAVED"] != undefined) output2("\n<b>* Secret Code:</b> <i>One “awoo” in top “sparklehole”, third from right.</i>");
 				var coldKorgiName:String = (flags["MET_ULA"] != undefined ? "Ula" : "Cold Korgonne");
 				output2("\n<b>* " + coldKorgiName + ":</b> Met her");
 				if(flags["ULA_SAVED"] != undefined)
@@ -6033,13 +6041,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["ULA_SEXED"] != undefined) output2("\n<b>* " + coldKorgiName + ", Times Sexed:</b> " + flags["ULA_SEXED"]);
 				}
 				else if((flags["ULA_LEAVE_TIMER"] + 60*24*2) <= GetGameTimestamp()) output2(", <i>Whereabouts unknown</i>");
-				variousCount++;
-			}
-			// Korg’ii Hold
-			if(flags["ULA_SAVED"] != undefined)
-			{
-				output2("\n<b><u>Korg’ii Hold</u></b>");
-				output2("\n<b>* Secret Code:</b> <i>One “awoo” in top “sparklehole”, third from right.</i>");
+				else output2(", <i>Is freezing!</i>");
 				variousCount++;
 			}
 			// Krym

@@ -748,8 +748,8 @@ package classes.GameData
 			if(attacker.hasPerk("Lunge") && !target.hasStatusEffect("Staggered") && rand(10) == 0 && attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 			{
 				applyStagger(target, 4 + rand(2));
-				if(target is PlayerCharacter) output(" <b>You are staggered by the lunge!</b>");
-				else output(" <b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " staggered by " + (attacker is PlayerCharacter ? "your" : "the") + " lunge!</b>");
+				if(target is PlayerCharacter) output("\n<b>You are staggered by the lunge!</b>");
+				else output("\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " staggered by " + (attacker is PlayerCharacter ? "your" : "the") + " lunge!</b>");
 			}
 			if(attacker.hasPerk("Cloak and Dagger"))
 			{
@@ -1376,7 +1376,7 @@ package classes.GameData
 			applyDamage(d, attacker, target);
 			if(!target.hasStatusEffect("Sundered") && attacker.hasPerk("Rending Attacks"))
 			{
-				output(" <b>Sundered</b>!");
+				output("\n<b>Sundered</b>!");
 				applySunder(target, 4 + rand(2));
 			}
 		}
@@ -1645,8 +1645,8 @@ package classes.GameData
 			if(!target.hasStatusEffect("Burning"))
 			{
 				applyBurning(target, 2);
-				if (target is PlayerCharacter) output(" <b>You are on fire!</b>");
-				else output(" <b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " on fire!</b>");
+				if (target is PlayerCharacter) output("\n<b>You are on fire!</b>");
+				else output("\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " on fire!</b>");
 			}
 		}
 		
