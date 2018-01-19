@@ -1014,7 +1014,7 @@ public function talkToAzraAboutCollege():void
 	else output("\n\n<i>“Oh. I should’ve gone to suula school.”</i>");
 	//merge
 	output("\n\n<i>“...Right. Student orgies aside, ");
-	if(silly) output("Saint Bernard's");
+	if(silly) output("Saint Bernard’s");
 	else output("Saint Benrard’s");
 	output(" provided me with the best education one could ask for. The facilities were top notch, the professors highly intelligent individuals who were publishing groundbreaking work on a daily basis. The xenobiology department, where I spent most of my time, was particularly impressive. More than one commercial gene-mod exists solely because of my professors’ work.”</i> Azra’s chest puffs up, and her wings lift slightly with pride. <i>“I switched my major from biology to xenobiology by my second year, and the rest is history, I guess. I made some contacts at a few leading genetic modification companies by the time I graduated - near the top of my class, by the way.”</i> Azra grins. <i>“Since then I’ve worked on identifying and isolating useful genetic structures to sell to whichever company wants to pay best for them.”</i>");
 	output("\n\nYou congratulate her on her good choices.");

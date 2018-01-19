@@ -23,7 +23,7 @@ package classes.Items.Apparel
 			
 			description = "a leather panty";
 			
-			tooltip = "A pair of panties made from fine leather, decorated with tribal line-art. They don't cover much skin so they won't protect you from the cold, but at least you'll look sexy when you're freezing your ass off.";
+			tooltip = "A pair of panties made from fine leather, decorated with tribal line-art. They don’t cover much skin so they won’t protect you from the cold, but at least you’ll look sexy when you’re freezing your ass off.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			

@@ -201,7 +201,7 @@ package classes.Engine.Combat
 				if(displayBonusTexts)
 				{
 					if(attacker is PlayerCharacter) output(" Your weapon drains half of the energy into your own shield!");
-					else output(" Your foe's shields strengthen at your expense!");
+					else output(" Your foe’s shields strengthen at your expense!");
 				}
 				attacker.shields(Math.round(damageResult.shieldDamage * .5))
 			}
@@ -210,7 +210,7 @@ package classes.Engine.Combat
 				if(displayBonusTexts)
 				{
 					if(attacker is PlayerCharacter) output(" Your weapon drains most of the energy into your own shield!");
-					else output(" Your foe's shields strengthen at your expense!");
+					else output(" Your foe’s shields strengthen at your expense!");
 				}
 				attacker.shields(Math.round(damageResult.shieldDamage * .9))
 			}

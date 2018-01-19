@@ -540,7 +540,7 @@ package classes.GameData
 				//Effect gooo!
 				else
 				{
-					output("\n\n<b>You're still feeling warm and lethargic from her poison...</b>");
+					output("\n\n<b>You’re still feeling warm and lethargic from her poison...</b>");
 					applyDamage(new TypeCollection( { drug: 2+rand(3) } ), null, target);
 				}
 			}
@@ -628,7 +628,7 @@ package classes.GameData
 			}
 			if (target.hasStatusEffect("Poison"))
 			{
-				if (target is PlayerCharacter) output("\n\n<b>The poison continues to exhaust you" + (target.statusEffectv2("Poison") >= 1 ? ". You're ready for this fight to be over!" : ", though you feel a bit better after. It must be <i>wearing off</i>.") + "</b>");
+				if (target is PlayerCharacter) output("\n\n<b>The poison continues to exhaust you" + (target.statusEffectv2("Poison") >= 1 ? ". You’re ready for this fight to be over!" : ", though you feel a bit better after. It must be <i>wearing off</i>.") + "</b>");
 				else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " movements become more sluggish" + (target.statusEffectv2("Poison") ? "; poison flows through " + target.getCombatPronoun("hisher") + " wounds, weakening them further." : ", though the poison is fading, its damage done.") + "</b>");
 				if (target.statusEffectv2("Poison") >= 1)
 				{

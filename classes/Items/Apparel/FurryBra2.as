@@ -28,7 +28,7 @@
 			
 			this.description = "a furry bra";
 			
-			this.tooltip = "A bra made from fur and leather, it surprisingly looks quite like a sports bra. It's made to protect your upper body from the harsh, cold air. Unfortunately, thick leather and dense fur doesn't make for the most attractive garment.";
+			this.tooltip = "A bra made from fur and leather, it surprisingly looks quite like a sports bra. It’s made to protect your upper body from the harsh, cold air. Unfortunately, thick leather and dense fur doesn’t make for the most attractive garment.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

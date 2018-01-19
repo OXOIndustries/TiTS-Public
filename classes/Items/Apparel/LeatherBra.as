@@ -23,7 +23,7 @@ package classes.Items.Apparel
 			
 			description = "a leather bra";
 			
-			tooltip = "A skimpy bra made from leather. It’s decorated with primal looking curves and swirls along the leather. While it looks and feels nice, it won't protect you from the cold better than any other underwears.";
+			tooltip = "A skimpy bra made from leather. It’s decorated with primal looking curves and swirls along the leather. While it looks and feels nice, it won’t protect you from the cold better than any other underwears.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			

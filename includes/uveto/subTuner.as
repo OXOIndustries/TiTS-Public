@@ -940,7 +940,7 @@ public function newApproachBelle(back:Boolean = false):void
 	addButton(0,"Appearance",belleAppearance,undefined,"Appearance","Get a look at this lovely-looking lady.");
 	addButton(1,"Experiments",newExperimentsWithBelle,undefined,"Experiments","Ask to participate in more experiments for Belle.");
 	addButton(2,"Talk",talkToBelle,undefined,"Talk","See if you can have a chat with the woman.");
-	addButton(3,"Dates",datingBelle,undefined,"Dates","Maybe you can have some alone time with your favourite master?");
+	addButton(3,"Dates",datingBelle,undefined,"Dates","Maybe you can have some alone time with your favorite master?");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -951,7 +951,7 @@ public function belleAppearance():void
 	clearOutput();
 	showBelle();
 	author("HugsAlright");
-	output("Dr. Belle Baslocvicz is a 5’11”, slightly-modded human woman. Her hair is black, long, and kept in a ponytail to keep it out of the way of the lady scientist’s fair-skinned face and equipment. With her locks pulled away like curtains, Belle’s face is easily visible, from the soft, feminine curves of her face, to her pouty lips and green eyes; a lovely-looking woman if you ever saw one.");
+	output("Dr. Belle Baslocvicz is a 5\' 11\", slightly-modded human woman. Her hair is black, long, and kept in a ponytail to keep it out of the way of the lady scientist’s fair-skinned face and equipment. With her locks pulled away like curtains, Belle’s face is easily visible, from the soft, feminine curves of her face, to her pouty lips and green eyes; a lovely-looking woman if you ever saw one.");
 	output("\n\nPast the features of her visage, Dr. Baslocvicz’s body is truly something to behold. She’s got very large breasts that jiggle and quake with every step she takes, double-Ds at the least, though, you can’t help but wonder if they get in the way of her work. Past her chest rests Belle’s svelte midsection, along with a comparatively wide, impressive set of hips below that, and an even more impressive derriere behind that.");
 	output("\n\nThough, most of your interest lies in what’s inside Belle’s pants, mainly her twin Terran cocks. Each one easily measures a foot in length, with a big, bitch-breaking knot at the bottom of each of her shafts, just perfect for taking care of her pets. Her large balls swing heavily between her legs, oh-so full of cum. Opposite her dual-dongs rest a pink human pussy, rarely used by the lady scientist herself.");
 	output("\n\nAll of Belle’s body is covered by a labcoat, and scientist fatigues below that, hugging her massive bust well enough, and serving to display her massive bulge in a way that almost makes your tongue loll and your ");

@@ -32,7 +32,7 @@
 			this.description = "a Bimboleum Defense System";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Like all self-defense systems, it harvests energy from the attacks that impact a shield. However this one has been heavily modified to release a blinding flash of erogenously enticing radiation. The more damage the shield can resist the stronger the radiation will be. It'll trigger when the shield can't take more hits.";
+			this.tooltip = "Like all self-defense systems, it harvests energy from the attacks that impact a shield. However this one has been heavily modified to release a blinding flash of erogenously enticing radiation. The more damage the shield can resist the stronger the radiation will be. It’ll trigger when the shield can’t take more hits.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

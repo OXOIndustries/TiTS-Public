@@ -32,7 +32,7 @@
 			this.description = "a Salamander Defense System";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Designed by KihaCorp, the Salamander Self-defense System harvests energy from the heat generated when an attack impacts a shield to unleash a devastating burning attack later. The more damage the shield can resist the stronger the attack will be. It'll trigger when the shield can't take more hits.";
+			this.tooltip = "Designed by KihaCorp, the Salamander Self-defense System harvests energy from the heat generated when an attack impacts a shield to unleash a devastating burning attack later. The more damage the shield can resist the stronger the attack will be. It’ll trigger when the shield can’t take more hits.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
