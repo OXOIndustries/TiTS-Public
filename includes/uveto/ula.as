@@ -167,9 +167,17 @@ public function ulaSexApproach():void
 
 	if(pc.isTaur())
 	{
-		if(pc.tallness >= 5*12+6 && pc.hasCock() && pc.cockThatFits(30) >= 0) addButton(3,"TaurBreeding",penisRouter,[centaurServiceForUla,9999999999,false,30],"Taur Breeding","Show Ula how centaurs breed.");
-		else if(pc.isTaur()) addDisabledButton(3,"TaurBreeding","TaurBreeding","You need to be a decently large ‘tauric creature in order to do this - at least five and a half feet tall.");
-		else if(pc.hasCock()) addDisabledButton(3,"TaurBreeding","TaurBreeding","You need to be a decently hung ‘tauric creature in order to do this.");
+		if(pc.tallness < (5*12+6) && pc.hasCock()) addDisabledButton(3,"TaurBreeding","TaurBreeding","You need to be a decently large ‘tauric creature in order to do this - at least five and a half feet tall.");
+		else if(pc.hasCock())
+		{
+			var canFit:Boolean = false;
+			for(var i:int = 0; i < pc.cockTotal(); i++)
+			{
+				if(pc.cockVolume(i) >= 30) canFit = true;
+			}
+			if(canFit) addButton(3,"TaurBreeding",penisRouter,[centaurServiceForUla,9999999999,false,30],"Taur Breeding","Show Ula how centaurs breed.");
+			else addDisabledButton(3,"TaurBreeding","TaurBreeding","You need to be a decently hung ‘tauric creature in order to do this.");
+		}
 		else addDisabledButton(3,"TaurBreeding","TaurBreeding","You need to be a decently large ‘tauric creature in order to do this - at least five and a half feet tall with a decent-sized dick.");
 	}
 	else addDisabledButton(3,"TaurBreeding","TaurBreeding","You need to be a decently large ‘tauric creature in order to do this - at least five and a half feet tall with a decent-sized dick.");
