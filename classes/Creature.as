@@ -2061,7 +2061,7 @@
 					buffer = nippleNoun(arg2);
 					break;
 				case "nipplesNoun":
-					buffer = plural(nippleNoun(arg2));
+					buffer = nipplesNoun(arg2);
 					break;
 				case "nipple":
 				case "nippleDescript":
@@ -2460,6 +2460,7 @@
 				case "fingers":
 					buffer = fingers();
 					break;
+				case "lowerbody":
 				case "lowerBody":
 					buffer = lowerBody();
 					break;
@@ -13160,9 +13161,13 @@
 				nouns.push("nipple", "nipple");
 				if (isLactating() && nippleLength(rowNum) >= 1) nouns.push("nipple", "nipple", "teat", "teat");
 				nouns.push("bud");
-				}
+			}
 			return nouns[rand(nouns.length)];
-				}
+		}
+		public function nipplesNoun(rowNum:int = 0):String
+		{
+			return plural(nippleNoun(rowNum));
+		}
 		public function areolaSizeDescript(): String {
 			//Define areola size description by nippleWidth
 			var areolasize: String = "";

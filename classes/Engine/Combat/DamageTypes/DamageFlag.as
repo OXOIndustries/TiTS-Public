@@ -42,6 +42,7 @@ package classes.Engine.Combat.DamageTypes
 		public static const SYDIANARMOR:uint = 24;
 		public static const CHANCE_APPLY_STUN:uint = 25;
 		public static const NO_CRIT:uint		= 26;
+		public static const BOTHRIOCARMOR:uint = 27;
 		
 		public static const FlagNames:Array = [];
 		

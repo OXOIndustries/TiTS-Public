@@ -330,6 +330,7 @@
 		include "../includes/myrellion/bothriocAmbassador.as";
 		include "../includes/myrellion/bothriocSharedFunctions.as";
 		include "../includes/myrellion/bothriocCombatMobs.as";
+		include "../includes/myrellion/bothriocQuadomme.as";
 		include "../includes/myrellion/cockvines.as";
 		include "../includes/myrellion/cockvineseedling.as";
 		include "../includes/myrellion/crystalGoo.as";

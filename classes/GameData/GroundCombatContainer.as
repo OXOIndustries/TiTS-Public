@@ -294,6 +294,13 @@ package classes.GameData
 					return;
 				}
 			}
+			
+			if (pc.hasStatusEffect("Web") && hasEnemyOfClass(BothriocQuadomme))
+			{
+				var quadomme:BothriocQuadomme = _hostiles[0];
+				addButton(2, "Attack Web", quadomme.attackWeb, pc, "Attack Web", "Try and hack back the bothrioc’s webs so they don’t stick to you.");
+			}
+			
 			if (hasEnemyOfClass(StormguardMale))
 			{
 				var stormy:StormguardMale = _hostiles[0];
@@ -1930,7 +1937,7 @@ package classes.GameData
 					{
 						if (hasEnemyOfClass(SexBot)) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
 						else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) kGAMECLASS.vanaeEscapeGrapple("Escape Artist");
-						else if (hasEnemyOfClass(BothriocPidemme))
+						else if (hasEnemyOfClass(BothriocPidemme) || hasEnemyOfClass(BothriocQuadomme))
 						{
 							output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. Shooting the bothrioc atop you a winning smile, you wriggle your way out from under them back between their legs, squirming out of your bindings as you take to your feet.");
 						}
@@ -1967,6 +1974,10 @@ package classes.GameData
 						{
 							output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. You heave the bothrioc off of you, granting you the time needed to extricate yourself from the bolo.");
 						}
+						else if (hasEnemyOfClass(BothriocQuadomme))
+						{
+							output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. You heave the bothrioc off of you, granting you the time needed to extricate yourself from the tight web.");
+						}
 						else if (hasEnemyOfClass(RKLah)) output("You pull him to one side, before delivering a sucker punch hard and low from the other. Lah gasps in pain, and you manage to rip out of his grasp.");
 						else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
 						if(panicJack)
@@ -1989,6 +2000,10 @@ package classes.GameData
 					else if (hasEnemyOfClass(BothriocPidemme))
 					{
 						output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. The bindings loosen a little, but your freedom is still out of reach... for now.");
+					}
+					else if (hasEnemyOfClass(BothriocQuadomme))
+					{
+						output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. The webs loosen a little, but your freedom is still out of reach... for now.");
 					}
 					else if (hasEnemyOfClass(RKLah)) output("You claw blindly at his face and try and buck furiously, to no avail.\n\n<i>“Stuck pig,”</i> grits the ausar, tightening his hold. <i>“Give in already.”</i>");
 					//else if (enemy is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");

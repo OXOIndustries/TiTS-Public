@@ -929,6 +929,8 @@ public function DeepCavesBonus():Boolean
 		choices.push(encounterPidemmeBothrioc);
 		choices.push(encounterPidemmeBothrioc);
 		
+		choices.push(encounterBothriocQuadomme);
+		
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
