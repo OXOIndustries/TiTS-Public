@@ -28,6 +28,7 @@ public function hasIllegalInput(sText:String = ""):Boolean
 			case "idclev": eventQueue.push(Cheats.RoomTeleport); break;
 			case "marcopolo": eventQueue.push(Cheats.exploreUnlock); break;
 			case "motherlode": eventQueue.push(Cheats.XPToLevel); break;
+			case "88mph": eventQueue.push(Cheats.TimeSkip); break;
 			
 			// Treatment
 			case "bimbo": eventQueue.push(Cheats.TryTreatmentHaxCowGirl); break;
