@@ -215,7 +215,7 @@ package classes.GameData
 						shieldTarget = _hostiles[i];
 						if(!shieldTarget.isDefeated())
 						{
-							output("\n" + StringUtil.capitalize(shieldTarget.getCombatName(), false) + " " + (!shieldTarget.isPlural? "is" : "are") + " hit!");
+							output("\n" + StringUtil.capitalize(shieldTarget.getCombatName(), false) + " " + (!shieldTarget.isPlural ? "is" : "are") + " hit!");
 							applyDamage(damage, pc, shieldTarget);
 						}
 					}
