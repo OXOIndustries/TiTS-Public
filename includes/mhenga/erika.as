@@ -1379,7 +1379,7 @@ public function erikaSexButtFuck3():void
 	IncrementFlag("ERIKA_SEXED");
 
 	processTime(120+rand(30));
-	pc.loadInAss(erika);
+	erika.loadInAss(pc);
 	pc.orgasm();
 	erika.orgasm();
 	pc.shower();

@@ -207,7 +207,19 @@ package classes.GameData
 					output("\n\n<b>Your self-defense system releases a wave of concentrated, psychic slut-energy as your shields buckle!</b>");
 					damage = new TypeCollection( { psionic: Math.round(pc.shieldsMax() * 0.5) });
 				}
-				applyDamage(damage, pc, shieldTarget);
+				if(_hostiles.length == 1) applyDamage(damage, pc, shieldTarget);
+				else
+				{
+					for(var i:int = 0; i < _hostiles.length; i++)
+					{
+						shieldTarget = _hostiles[i];
+						if(!shieldTarget.isDefeated())
+						{
+							output("\n" + StringUtil.capitalize(shieldTarget.getCombatName(), false) + " " + (!shieldTarget.isPlural? "is" : "are") + " hit!");
+							applyDamage(damage, pc, shieldTarget);
+						}
+					}
+				}
 				pc.addStatusValue("Def Proc",1,1);
 			}
 			//Shield regen stuff here!
