@@ -2613,11 +2613,11 @@ public function displayQuestLog(showID:String = "All"):void
 				sideCount++;
 			}
 			// Kara's Big Adventure! - Pt.1
-			if(flags["BEEN_TO_MYRELLION_BAR"] != undefined && flags["MET_KARA"] != undefined)
+			if(flags["BEEN_TO_MYRELLION_BAR"] != undefined && (flags["MET_KARA"] != undefined || flags["LET_SHADE_AND_KARA_DUKE_IT_OUT"] != undefined))
 			{
 				output2("\n<b><u>KaraQuest: A Damsel in Distress</u></b>");
 				output2("\n<b>* Status:</b>");
-				if(flags["LET_SHADE_AND_KARA_DUKE_IT_OUT"] != undefined) output2(" Ignored Kara and Shade");
+				if(flags["LET_SHADE_AND_KARA_DUKE_IT_OUT"] != undefined) output2(" Ignored " + (flags["MET_KARA"] == undefined ? "cat-girl" : "Kara and Shade"));
 				else if(flags["DISTRACTED_SHADE"] != undefined) output2(" Distracted Shade");
 				else if(flags["TRIPPED_ON_SHADE"] != undefined) output2(" Tripped on Shade");
 				else if(flags["BETRAYED_KARA"] == 1) output2(" Betrayed Kara by telling Shade");
