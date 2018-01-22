@@ -5625,13 +5625,18 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Deep Caverns
-			if(flags["BOTHRIOC_PIDEMME_ENCOUNTERED"] != undefined || flags["MET_GOO_KNIGHT"] != undefined || flags["MET_INFECTED_MYR_FEMALE"] != undefined || flags["MET_INFECTED_MYR_MALE"] != undefined || flags["MET_NYREA_ALPHA"] != undefined || flags["MET_NYREA_BETA"] != undefined || flags["CRYSTALGOO_T1_ENCOUNTERS"] != undefined || flags["CRYSTALGOO_T2_ENCOUNTERS"] != undefined )
+			if(flags["BOTHRIOC_PIDEMME_ENCOUNTERED"] != undefined || flags["BOTHRIOC_QUADOMME_ENCOUNTERED"] != undefined || flags["MET_GOO_KNIGHT"] != undefined || flags["MET_INFECTED_MYR_FEMALE"] != undefined || flags["MET_INFECTED_MYR_MALE"] != undefined || flags["MET_NYREA_ALPHA"] != undefined || flags["MET_NYREA_BETA"] != undefined || flags["CRYSTALGOO_T1_ENCOUNTERS"] != undefined || flags["CRYSTALGOO_T2_ENCOUNTERS"] != undefined )
 			{
 				output2("\n<b><u>The Deep Caverns</u></b>");
 				if(flags["BOTHRIOC_PIDEMME_ENCOUNTERED"] != undefined)
 				{
 					output2("\n<b>* Bothrioc Pidemme, Times Encountered:</b> " + flags["BOTHRIOC_PIDEMME_ENCOUNTERED"]);
 					if(flags["BOTHRIOC_PIDEMME_FUCKED"] != undefined) output2("\n<b>* Bothrioc Pidemme, Times Sexed:</b> " + flags["BOTHRIOC_PIDEMME_FUCKED"]);
+				}
+				if(flags["BOTHRIOC_QUADOMME_ENCOUNTERED"] != undefined)
+				{
+					output2("\n<b>* Bothrioc Quadomme, Times Encountered:</b> " + flags["BOTHRIOC_QUADOMME_ENCOUNTERED"]);
+					if(flags["BOTHRIOC_QUADOMME_SEXED"] != undefined) output2("\n<b>* Bothrioc Quadomme, Times Sexed:</b> " + flags["BOTHRIOC_QUADOMME_SEXED"]);
 				}
 				if(flags["CRYSTALGOO_T1_ENCOUNTERS"] != undefined) output2("\n<b>* Ganrael Ambusher, Times Encountered:</b> " + flags["CRYSTALGOO_T1_ENCOUNTERS"]);
 				if(flags["CRYSTALGOO_T2_ENCOUNTERS"] != undefined) output2("\n<b>* Ganrael Deadeye, Times Encountered:</b> " + flags["CRYSTALGOO_T2_ENCOUNTERS"]);

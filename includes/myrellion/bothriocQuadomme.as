@@ -831,6 +831,7 @@ public function bothriocQuadommePCNeedFillLow(arg:Array):void
 			output("\n\nWeirdly though, you don’t feel upset or nervous about the prospect of having such a strange creature’s young growing inside you. Instead, a warm calm is infusing you. Whatever will be, will be. This is fine. Nodding and smiling peacefully, you go on your way, the extra weight taken in your stride.");
 			
 			processTime(50 + rand(11));
+			IncrementFlag("BOTHRIOC_QUADOMME_SEXED");
 			bothriocQuadommeToMainMenu(false);
 			break;
 	}
@@ -1088,6 +1089,7 @@ public function bothriocQuadommePCNeedFillHigh(arg:Array):void
 			output("\n\nYou sigh, baking in the wonderful feeling of peace billowing through you like a sweet, warm breeze. How wonderful it is to be an egg-slut - to know exactly where your place in life is. You happily go on your way, taking the extra weight in your stride.");
 			
 			processTime(50 + rand(11));
+			IncrementFlag("BOTHRIOC_QUADOMME_SEXED");
 			bothriocQuadommeToMainMenu(false);
 			break;
 	}
@@ -1217,6 +1219,7 @@ public function bothriocQuadommePCAllFull(arg:Array):void
 			pc.applyPussyDrenched();
 			// +20 Addiction
 			bothriocAddiction(20);
+			IncrementFlag("BOTHRIOC_QUADOMME_SEXED");
 			bothriocQuadommeToMainMenu(false);
 			break;
 	}
@@ -1361,6 +1364,7 @@ public function bothriocQuadommeSexScenes(arg:Array):void
 			output("\n\n");
 			
 			processTime(15);
+			IncrementFlag("BOTHRIOC_QUADOMME_SEXED");
 			pc.orgasm();
 			
 			bothriocQuadommeToMainMenu(true);
@@ -1389,6 +1393,7 @@ public function bothriocQuadommeSexScenes(arg:Array):void
 			output("\n\n");
 			
 			processTime(16);
+			IncrementFlag("BOTHRIOC_QUADOMME_SEXED");
 			pc.orgasm();
 			
 			bothriocQuadommeToMainMenu(true);
@@ -1446,6 +1451,7 @@ public function bothriocQuadommeSexScenes(arg:Array):void
 				output("\n\n");
 				
 				processTime(5);
+				IncrementFlag("BOTHRIOC_QUADOMME_SEXED");
 				
 				bothriocQuadommeToMainMenu(true);
 			}
@@ -1469,6 +1475,7 @@ public function bothriocQuadommeSexScenes(arg:Array):void
 			output("\n\n");
 			
 			processTime(5);
+			IncrementFlag("BOTHRIOC_QUADOMME_SEXED");
 			
 			bothriocQuadommeToMainMenu(true);
 			break;
@@ -1490,6 +1497,7 @@ public function bothriocQuadommeSexScenes(arg:Array):void
 			output("\n\n");
 			
 			processTime(8);
+			IncrementFlag("BOTHRIOC_QUADOMME_SEXED");
 			pc.loadInCunt(enemy, vIdx);
 			
 			bothriocQuadommeToMainMenu(true);
@@ -1595,6 +1603,7 @@ public function bothriocQuadommeSexScenes(arg:Array):void
 			
 			// +3 Hours, Lust reset, +1 Libido if < 50 Libido
 			processTime(3 * 56);
+			IncrementFlag("BOTHRIOC_QUADOMME_SEXED");
 			pc.orgasm();
 			if(pc.libido() < 50) pc.libido(1);
 			// +1 Nice points
@@ -1661,6 +1670,7 @@ public function bothriocQuadommeSexScenes(arg:Array):void
 			output("\n\n");
 			
 			processTime(11);
+			IncrementFlag("BOTHRIOC_QUADOMME_SEXED");
 			// Lust rest, -1 Nice Points
 			pc.orgasm();
 			pc.addHard(1);
