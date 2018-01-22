@@ -1049,6 +1049,9 @@ public function lapinaraBirthinBuhbies2(pregSlot:int):void
 
 public function lapiPregEndCheck(mother:Creature, pregSlot:int, deltaTime:int = 0, fromNursery:Boolean = false):void
 {
+	// 9999 - Disabled!
+	return;
+	
 	if(!(mother is PlayerCharacter)) return;
 	
 	// Post Effects
