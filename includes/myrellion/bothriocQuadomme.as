@@ -306,11 +306,9 @@ public function encounterBothriocQuadommeNext(response:String = ""):void
 			if(addiction <= 20) output("\n\n<i>“As you wish,”</i> it says. <i>“Peace and true contentment aren’t for everyone, after all. You scurry along then, energetic little morsel. When you grow tired of the endless strife of the surface world, I will always be here.”</i> With a wriggle of its four hips, it disappears back into its hole.");
 			else output("\n\n<i>“Hmm,”</i> it says. <i>“It pains me a bit to see a submissive denying themselves, making themselves unhappy in some mistaken pursuit of dignity. On the other hand – it’s quite delicious too. Denying yourself, frustrating yourself, without me having to raise a hand.”</i> It laughs, waving you away. <i>“You toddle along then farlander, flagellate yourself good – every crack of your own proverbial whip pleases me. When you need release, your instincts will tell you where to go. Who knows, I might even give it to you without making you beg...too much.”</i> With a wriggle of its four hips, it disappears back into its hole.");
 			output("\n\nAfter you’ve made sure it really has gone, you carefully work your way around the gossamer trap and continue on your way.");
+			output("\n\n");
 			
-			CombatAttacks.removeWeb(pc);
-			
-			clearMenu();
-			addButton(0, "Next", mainGameMenu);
+			bothriocQuadommeToMainMenu();
 			break;
 		case "yes":
 			if(addiction < 50)
@@ -346,11 +344,9 @@ public function encounterBothriocQuadommeNext(response:String = ""):void
 			if(addiction <= 20) output("\n\n<i>“As you wish,”</i> it says. <i>“Peace and true contentment aren’t for everyone, after all. You scurry along then, energetic little morsel. When you grow tired of the endless strife of the surface world, I will be waiting.”</i> With a wriggle of its four hips, it disappears back into its hole.");
 			else output("\n\n<i>“Hmm,”</i> it says. <i>“It pains me a bit to see a submissive denying themselves, making themselves unhappy in some mistaken pursuit of dignity. On the other hand – it’s quite delicious too. Denying yourself, frustrating yourself, without me having to raise a hand.”</i> It laughs, waving you away. <i>“You toddle along then farlander, flagellate yourself good – every crack of your own proverbial whip pleases me. When you need release, your instincts will tell you where to go. Who knows, I might even give it to you without making you beg... too much.”</i> With a wriggle of its four hips, it disappears back into its hole.");
 			output("\n\nAfter you’ve made sure it really has gone, you carefully work your way around the gossamer trap and continue on your way.");
+			output("\n\n");
 			
-			CombatAttacks.removeWeb(pc);
-			
-			clearMenu();
-			addButton(0, "Next", mainGameMenu);
+			bothriocQuadommeToMainMenu();
 			break;
 		case "fight":
 			output("With a glower, you draw your weapon and advance on the strange, arachnid-like alien purposefully.");
@@ -401,8 +397,13 @@ public function bothriocQuadommeToMainMenu(victory:Boolean = true):void
 		setEnemy(null);
 		
 		clearMenu();
-		addButton(0, "Next", mainGameMenu);
+		addButton(0, "Next", bothriocQuadommeToMainMenuNext);
 	}
+}
+public function bothriocQuadommeToMainMenuNext():void
+{
+	CombatAttacks.removeWeb(pc);
+	mainGameMenu();
 }
 
 // Voluntary Quadomme Maid Training
@@ -610,7 +611,6 @@ public function bothriocQuadommePCNeedFillLow(arg:Array):void
 				
 				processTime(4);
 				
-				CombatAttacks.removeWeb(pc);
 				pc.lust(15);
 				
 				bothriocQuadommeToMainMenu(false);
@@ -775,7 +775,7 @@ public function bothriocQuadommePCNeedFillLow(arg:Array):void
 			{
 				output("\n\nThe eggs push and bump into each other, little trembles that only become more intense the more the quadomme crams into you. When you’re forced to orgasm again, it’s like a small earthquake going off inside you.");
 				output("\n\n<i>“A shame");
-				if(butt && pc.vaginas.length == 1) output(" you don’t have more holes to fill");
+				if(butt && pc.vaginas.length <= 1) output(" you don’t have more holes to fill");
 				else output(" all your other holes are already filled");
 				output(",”</i> sighs the quadomme, drawing your head back so it’s as if your wet, muffled moans are directed to its unseen face. <i>“");
 				if((vIdx >= 0 && pc.vaginalCapacity(vIdx)) >= 5000 || (butt && pc.analCapacity() >= 5000)) output("Still - what an accommodating hole that is! My eggs feel so snug in there. You’ve trained yourself well, farlander.");
@@ -873,7 +873,6 @@ public function bothriocQuadommePCNeedFillHigh(arg:Array):void
 				
 				processTime(4);
 				
-				CombatAttacks.removeWeb(pc);
 				pc.lust(15);
 				
 				bothriocQuadommeToMainMenu(false);
@@ -1033,7 +1032,7 @@ public function bothriocQuadommePCNeedFillHigh(arg:Array):void
 			{
 				output("\n\nThe eggs push and bump into each other, little trembles that only become more intense the more the quadomme crams into you. When you’re forced to orgasm again, it’s like a small earthquake going off inside you.");
 				output("\n\n<i>“A shame");
-				if(butt && pc.vaginas.length == 1) output(" you don’t have more holes to fill");
+				if(butt && pc.vaginas.length <= 1) output(" you don’t have more holes to fill");
 				else output(" all your other holes are already filled");
 				output(",”</i> sighs the quadomme, drawing your head back so it’s as if your wet, muffled moans are directed to its unseen face. <i>“");
 				if((vIdx >= 0 && pc.vaginalCapacity(vIdx)) >= 5000 || (butt && pc.analCapacity() >= 5000)) output("Still - what an accommodating hole that is! My eggs feel so snug in there. You’ve trained yourself well, farlander.");
@@ -1155,10 +1154,10 @@ public function bothriocQuadommePCAllFull(arg:Array):void
 				if(addiction >= 66) output(" You kind of feel like you <i>did</i> deserve a harsher punishment for disappointing the egg-giver. Oh well. They always know best.");
 				else if(addiction >= 33) output(" You weirdly feel like you absolutely <i>did</i> deserve to get a good hard spanking there. And you’re definitely not coming down to the Deep Caves again, unless you’re ready to get bred. Wait, what? You shake the strange, alien thoughts away.");
 				else output(" The nerve of that thing! Spanking you just because it couldn’t shove a bunch of eggs up you! Humiliation burns on your cheeks as you pull your stuff back on. You resolve not to let such an entitled creature get the jump on you again.");
+				output("\n\n");
 				processTime(6);
 				// End
-				clearMenu();
-				addButton(0, "Next", mainGameMenu);
+				bothriocQuadommeToMainMenu(true);
 			}
 			// 50% maid training tiem
 			else

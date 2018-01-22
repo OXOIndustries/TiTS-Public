@@ -1822,10 +1822,17 @@ package classes.GameData
 				(target as Anno).grappleStruggle();
 			}
 			
-			if (hasEnemyOfClass(Cockvine))
+			if (hasEnemyOfClass(Cockvine) && target is PlayerCharacter)
 			{
 				// TODO pull this in!
 				kGAMECLASS.adultCockvineStruggleOverride();
+				return;
+			}
+			// Bothrioc Quadomme - PC struggles
+			else if (hasEnemyOfClass(BothriocQuadomme) && target is PlayerCharacter)
+			{
+				var quadomme:BothriocQuadomme = _hostiles[0];
+				quadomme.webStruggle(target);
 				return;
 			}
 			// Naleen coil grapple text

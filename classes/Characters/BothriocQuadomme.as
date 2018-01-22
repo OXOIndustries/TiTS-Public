@@ -247,7 +247,7 @@ package classes.Characters
 			var enemyAttacks:Array = [];
 			
 			if(!hasStatusEffect("Web CD") && !target.hasStatusEffect("Web") && lust() >= 30) enemyAttacks.push( { v: reapplyWeb, w: 20 } );
-			enemyAttacks.push( { v: energyDrain, w: 10 } );
+			if(target.energy() >= 30) enemyAttacks.push( { v: energyDrain, w: 10 } );
 			enemyAttacks.push( { v: loveBite, w: 10 } );
 			enemyAttacks.push( { v: stilettoSock, w: 10 } );
 			
@@ -258,10 +258,9 @@ package classes.Characters
 			}
 			else CombatAttacks.SingleMeleeAttackImpl(this, target);
 			
-			if(!hasStatusEffect("Grapple CD") && target.hasStatusEffect("Web") && !target.hasStatusEffect("Grapple") && rand(3) == 0)
+			if(!hasStatusEffect("Grapple CD") && target.hasStatusEffect("Web") && !target.hasStatusEffect("Grapple"))
 			{
-				output("\n\n");
-				webStruggle(target);
+				webStick(target);
 			}
 		}
 		
@@ -281,6 +280,7 @@ package classes.Characters
 				output("\n\n<i>“Get it all out of your system?”</i> says the dominatrix with an edge of irritation. <i>“It’s not the web’s fault you’re so clumsy and aggressive, you know.”</i>");
 				
 				attacker.removeStatusEffect("Web");
+				createStatusEffect("Web CD", 3, 0, 0, 0, true);
 			}
 			else
 			{
@@ -302,35 +302,34 @@ package classes.Characters
 			createStatusEffect("Web CD", 3, 0, 0, 0, true);
 			lust(-30);
 		}
-		private function webStruggle(target:Creature):void
+		private function webStick(target:Creature):void
 		{
 			// PC gets stuck
 			if (!rangedCombatMiss(this, target))
 			{
-				output("As you tackle the dominatrix you try your very best to keep yourself clear of the threads and thatches of its opaque, swaying silk, but in this cramped, dark space it’s almost impossible. Your arm gets stuck in a swathe of it, and as you are struggling with that first your other arm and then your " + target.lowerBody() + " gets pasted with gluey, devilishly strong gossamer too.");
+				output("\n\nAs you tackle the dominatrix you try your very best to keep yourself clear of the threads and thatches of its opaque, swaying silk, but in this cramped, dark space it’s almost impossible. Your arm gets stuck in a swathe of it, and as you are struggling with that first your other arm and then your " + target.lowerBody() + " gets pasted with gluey, devilishly strong gossamer too.");
 				output("\n\n<i>“Oh dear,”</i> coos your opponent with malicious glee. <i>“Who would’ve thought fighting a bothrioc in its own web would be a bad idea? Never mind, succulent morsel. Let’s make it into the best mistake you’ve ever made.”</i>");
 				
 				CombatAttacks.applyGrapple(target);
 				createStatusEffect("Grapple CD", 3, 0, 0, 0, true);
 			}
-			// PC struggles
+		}
+		// PC struggles
+		public function webStruggle(attacker:Creature):void
+		{
+			var success:Boolean = ((attacker.hasMeleeWeapon() && attacker.meleeWeapon.baseDamage.burning.damageValue > 0) || (attacker.physique() + (rand(60) - 39) > 30));
+			if (success)
+			{
+				output("With a wet ripping sound you manage to pull your arms clear. You fling off the torn gossamer, stagger back a couple of paces and meaningfully level your weapon at the dominatrix.");
+				output("\n\n<i>“I do wish you’d stop struggling against the inevitable,”</i> it grumbles. <i>“You’re only making sure I make your bonds extra thick when you do finally give in.”</i>");
+				attacker.removeStatusEffect("Grappled");
+			}
 			else
 			{
-				output("Desperately you writhe and pull against the sticky thread that binds you, desperately trying to work some slack into the elastic substance and wrench your way clear.");
-				
-				var success:Boolean = ((target.hasMeleeWeapon() && target.meleeWeapon.baseDamage.burning.damageValue > 0) || (target.physique() + (rand(60) - 39) > 30));
-				if(success)
-				{
-					output(" With a wet ripping sound you manage to pull your arms clear. You fling off the torn gossamer, stagger back a couple of paces and meaningfully level your weapon at the dominatrix.");
-					output("\n\n<i>“I do wish you’d stop struggling against the inevitable,”</i> it grumbles. <i>“You’re only making sure I make your bonds extra thick when you do finally give in.”</i>");
-				}
-				else
-				{
-					output(" But no matter how hard you struggle, you cannot extricate yourself; every wrench of your limbs only seems to get you even more tangled up. This stuff is meant to hold human-sized creatures, and it shows.");
-					CombatAttacks.applyGrapple(target);
-					createStatusEffect("Grapple CD", 3, 0, 0, 0, true);
-				}
+				output("Desperately you writhe and pull against the sticky thread that binds you, desperately trying to work some slack into the elastic substance and wrench your way clear. But no matter how hard you struggle, you cannot extricate yourself; every wrench of your limbs only seems to get you even more tangled up. This stuff is meant to hold human-sized creatures, and it shows.");
 			}
+			
+			CombatManager.processCombat();
 		}
 		
 		// Molest
@@ -382,7 +381,7 @@ package classes.Characters
 			if(_biteTurns > 0) output(" You’ve got to stop it from doing that, if only so you don’t wind up looking like you’re wearing a hickey necklace.");
 			
 			_biteTurns++;
-			applyDamage(new TypeCollection( { kinetic: 8, tease: 8 + (Math.floor(target.libido() / 8)) }, DamageFlag.PENETRATING ), this, target, "minimal");
+			applyDamage(new TypeCollection( { kinetic: 8, tease: 16 }, DamageFlag.PENETRATING ), this, target, "minimal");
 		}
 		
 		// Stiletto Sock
