@@ -920,7 +920,7 @@ public function finalLapinaraEggStuffScene(x:int):void
 		if(x >= 0) pc.loadInCunt(enemy,x);
 		else pc.loadInAss(enemy);
 		
-		if(!pc.hasPerk("Broodmother")) gainBroodmotherPerk();
+		//if(!pc.hasPerk("Broodmother")) gainBroodmotherPerk(); 9999 - Disabled!
 	}
 	// ELSE
 	else
@@ -1049,9 +1049,6 @@ public function lapinaraBirthinBuhbies2(pregSlot:int):void
 
 public function lapiPregEndCheck(mother:Creature, pregSlot:int, deltaTime:int = 0, fromNursery:Boolean = false):void
 {
-	// 9999 - Disabled!
-	return;
-	
 	if(!(mother is PlayerCharacter)) return;
 	
 	// Post Effects
