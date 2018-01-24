@@ -2774,7 +2774,7 @@ public function embryAnalSex():void
 		output("\n\n<i>“U-um, my butt feels kind of sore, but I feel really, REALLY happy.”</i> Your simii lover’s fingers trail across your naked [pc.chestSimple], drawing cute little circles. <i>“...I loved having you inside of me. And I’m glad you’re the one who took, you know, my virginity - at least of my butt,”</i> she blushes.");
 	}
 	// else
-	else output("\n\n<i>“I always love having you inside of my butt.”</i> Your simii lover’s fingers trail across your naked [pc.chestSimple], drawing cute little circles. <i>“Um, anytime you want to bend me over and have your way with me, I’m f-fine with that, okay?</i> she shyly offers.");
+	else output("\n\n<i>“I always love having you inside of my butt.”</i> Your simii lover’s fingers trail across your naked [pc.chestSimple], drawing cute little circles. <i>“Um, anytime you want to bend me over and have your way with me, I’m f-fine with that, okay?”</i> she shyly offers.");
 	output("\n\nYou return to the bar with a smile.");
 	flags["GOTTEN_TO_FUCK_EMBRYBUTT"] = 1;
 	if(!pc.hasCock()) flags["SEEN_MONKEY_STRAPON"] = 1;

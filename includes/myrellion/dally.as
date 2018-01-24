@@ -96,11 +96,13 @@ public function honeyNozzleClub():Boolean
 					output("\n\nFazian, the anat cabaret performer, is sat at the quieter end of one of the bars, craned over a glass of honey wine. You could go and talk to him if you wished.");
 					addButton(1, "Fazian", fazianApproach);
 				}
+				/*
 				else
 				{
 					output("\n\nThe entrance to the cabaret is currently closed. The signage in front says that it is open from 15:30 to 20:30.");
 					addDisabledButton(1, "Cabaret", "Cabaret", "It looks like the entrance is closed at the moment.");
 				}
+				*/
 			}
 		}
 	}
