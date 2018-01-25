@@ -47,10 +47,10 @@ public function myrnaMeeting():void
 	{
 		output("\n\nYour codex chirps loudly, alerting you possible danger. Apparently this small creature is a female korgonne, an Uvetian native of this moon. They are known to be violent at times, and are wary at best of off-worlders. Stowing your codex away, you wonder why this one in particular doesn’t seem to mind boldly stepping up to you.");
 		CodexManager.unlockEntry("Korgonne");
-		output(" <b>New Codex entry unlocked: Korgonne.</b>");
+		output("\n\n<b>(New Codex entry unlocked: Korgonne.)</b>\n\n");
 	}
-	else output("\n\nFrom her appearance, you assume that she is a korgonne by her stature. Usually the korgonne you’ve encountered have been largely hostile towards you, but this one in particular puzzles you to why they are boldly approaching you.");
-	output(" Even more curious is her attire. She wears a bright red jacket with white fur trimming, with a matching pointy hat that has a puffy white ball at the tip. Her coat is wide open, revealing her fur-covered emerald green undergarments around her expansive breasts and hips. Despite the biting wind blowing in your face, a powerfully sweet scent emanates from her, growing stronger as she walks closer to you.");
+	else output("\n\nYou assume that she is a korgonne by her stature. Usually the korgonne you’ve encountered have been largely hostile towards you, but this one in particular puzzles you to why they are boldly approaching you. ");
+	output("Even more curious is her attire. She wears a bright red jacket with white fur trimming, with a matching pointy hat that has a puffy white ball at the tip. Her coat is wide open, revealing her fur-covered emerald green undergarments around her expansive breasts and hips. Despite the biting wind blowing in your face, a powerfully sweet scent emanates from her, growing stronger as she walks closer to you.");
 
 	output("\n\n<i>“Alien!”</i> She barks, looking up to regard you with a wide smile. <i>“You in luck. Bring present for you.”</i> The roly-poly korgonne stretches out her arms, thrusting a phallic object into your hands. Before you can question it, the short-stacked canine turns around and climbs back into her sleigh.");
 
@@ -121,7 +121,7 @@ public function repeatMyrnaEncounter():void
 	if(flags["MYRNA_YEAR"] == new Date().fullYear && flags["MET_MYRNA"] == 1)
 	{
 		output("As soon as you enter the warm interior of the cave, your nose is assaulted by the sweet and familiar smell of peppermint. The walls of the grotto are lined with brightly lit electric candles that give off a pleasant heat. One thing you can surmise from your observations is that this cave is definitely being occupied by someone. Judging by the powerful bittersweet scent, you can only entertain one guess at who that may be. Curiosity takes you further into the cavern until you spot a familiar shapely figure kneeling by a crackling campfire. At the opposite side of the chamber rests a herd of mechanical deer, which look to be set to a standby mode. The sleigh is not far away from them, festive decorations glistening in the dancing lights of the fire.");
-		output("\n\nWhen you take another step towards the korgonne, she immediately stands up and looks towards you in alarm. Her expression softens once she recognises it’s you and tramps towards you, setting her bountiful assets in full motion.");
+		output("\n\nWhen you take another step towards the korgonne, she immediately stands up and looks towards you in alarm. Her expression softens once she recognizes it’s you and tramps towards you, setting her bountiful assets in full motion.");
 		output("\n\n<i>“Alien! It just you! You scare me. Thought you other aliens getting things back...”</i> She wraps her arms around you with a surprisingly crushing tightness for someone as small as her. You squirm in her grasp, not only because of the rapidly declining circulation of your blood, but the overwhelmingly powerful smell of peppermint wafting from her is starting to water your eyes. Before letting go, Myrna motorboats her wet nose into your ");
 		if(pc.tallness <= 5*12) output("neck");
 		else if (pc.tallness <= 7*12) output("[pc.chest]");
@@ -129,15 +129,13 @@ public function repeatMyrnaEncounter():void
 		else output("groin");
 		output(" before stepping back with a wide smile on her face, her long tail wagging a mile-a-minute the entire time.");
 
-		if(silly) 
-		{
-			output("\n\n<i>“No, not quite. I was only dragged here because somebody pressed the {9999Whichever direction PC had to enter cave} button to make me come in here.”</i>");
-		}
-		else output("\n\n<i>“No, not quite. I was just looking for some shelter from the cold and was curious about this cave.”</i>");
-		output(" You admit. The chubby korgonne quickly retreats towards the campfire and pats the space next to her.");
+		output("\n\n<i>“No, not quite. I was");
+		if(silly) output(" only dragged here because somebody pressed the ‘Enter’ button to make me come in here");
+		else output(" just looking for some shelter from the cold and was curious about this cave");
+		output(",”</i> you admit. The chubby korgonne quickly retreats towards the campfire and pats the space next to her.");
 		output("\n\n<i>“Come, come. Share heat.”</i> Myrna beckons to you. Not seeing any reason to refuse, you walk over and take a seat next to her, your body immediately warming up thanks to the inviting fires. No sooner after you settle in, the coy korgonne lays her head on your lap, playfully gazing into your eyes.");
-		output("\n\n<i>“Alien comfy. Want you be comfy too.”</i> You would think the sight adorably cute if it weren’t for a damp patch rapidly forming on the pup’s nethers, which is in plain sight due to her face-up position. Her natural pheromones grow more intense too, almost overpowering your urges to just shoving her head further into your crotch.");
-		output("\n\n<i>“So, what alien want?”</i> She asks innocently.");
+		output("\n\n<i>“Alien comfy. Want you be comfy too.”</i> You would think the sight adorably cute if it weren’t for a damp patch rapidly forming on the pup’s nethers, which is in plain sight due to her face-up position. Her natural pheromones grow more intense too, almost overpowering your urges to not just shove her head further into your crotch.");
+		output("\n\n<i>“So, what alien want?”</i> she asks innocently.");
 		flags["MET_MYRNA"] = 2;
 	}
 	//Repeat Encounters
@@ -153,7 +151,7 @@ public function repeatMyrnaEncounter():void
 		//If first visit after subsequent year:
 		else 
 		{
-			output("\n\n<i>“Myrna miss you lots! Come to cave thinking old times. Good old times. Hope make good new times! Lots of catchings up!”</i> Myrna literally bounces on her pawed feet, very evidently excited to see you again. <i>“Alien smell good like always... miss smell. Miss heat-shares. Want more heat-shares?”</i> She asks eagerly. You wouldn’t have come back here if you weren’t intending on doing that! You tell the diminutive korgonne as much, prompting her to yipp with joy and trot over to the campfire to take a seat.");
+			output("\n\n<i>“Myrna miss you lots! Come to cave thinking old times. Good old times. Hope make good new times! Lots of catchings up!”</i> Myrna literally bounces on her pawed feet, very evidently excited to see you again. <i>“Alien smell good like always... miss smell. Miss heat-shares. Want more heat-shares?”</i> she asks eagerly. You wouldn’t have come back here if you weren’t intending on doing that! You tell the diminutive korgonne as much, prompting her to yipp with joy and trot over to the campfire to take a seat.");
 			flags["MYRNA_GIFT_COUNT"] = undefined;
 		}
 		output("\n\n<i>“Sit, sit!”</i> Myrna calls over to you. You oblige, walking over to take your place next to the jolly korgonne. The very moment you sit down, she already places her head onto your lap, happily looking into your eyes with a laser-like focus.");
@@ -165,6 +163,7 @@ public function repeatMyrnaEncounter():void
 		//Update year!
 		flags["MYRNA_YEAR"] = new Date().fullYear;
 	}
+	removeUvetoCold();
 	processTime(20);
 	pc.lust(10);
 	myrnaMenu();
@@ -174,22 +173,27 @@ public function backToMyrnaMenu():void
 {
 	clearOutput();
 	showMyrna();
-	output("Is there something else you'd like to ask the roly-poly korgonne?");
+	output("Is there something else you’d like to ask the roly-poly korgonne?");
 	myrnaMenu();
 }
 
 public function myrnaMenu():void
 {
 	clearMenu();
-	addButton(14,"Leave",move,"UVIP T44");
+	addButton(14,"Leave",myrnaLeave);
 	addButton(0,"Appearance",myrnaAppearance);
 	addButton(1,"Talk",myrnaTalk,undefined,"Talk","Talk to the little Santa impersonator.");
 	if((flags["MYRNA_GIFT_CD"] == undefined || (flags["MYRNA_GIFT_CD"] != undefined && flags["MYRNA_GIFT_CD"] + 60*24 < GetGameTimestamp()))
 		&& (flags["MYRNA_GIFT_COUNT"] == undefined || (flags["MYRNA_GIFT_COUNT"] != undefined && flags["MYRNA_GIFT_COUNT"] < 12))) addButton(2,"Gift",getGiftFromMyrna,undefined,"Gift","Receive a present from the generous korgonne!");
 	else if(flags["MYRNA_GIFT_COUNT"] < 12) addDisabledButton(2,"Gift","Gift","Try coming back later for another present!");
-	else addDisabledButton(2,"Gift","Gift","You've already received all your season's greetings.");
+	else addDisabledButton(2,"Gift","Gift","You’ve already received all your season’s greetings.");
 	if(pc.lust() >= 33) addButton(3,"Sex",myrnaSexMenu);
-	else addDisabledButton(3,"Sex","Sex","You aren't aroused enough for this.");
+	else addDisabledButton(3,"Sex","Sex","You aren’t aroused enough for this.");
+}
+public function myrnaLeave():void
+{
+	addUvetoCold();
+	move("UVIP T44");
 }
 
 //[Appearance]
@@ -198,14 +202,14 @@ public function myrnaAppearance():void
 	clearOutput();
 	showMyrna();
 	output("<i>“Like sight of me?”</i> Myrna croons while you stare her down perceptively. She fluffs her coat and squeezes her breasts enticingly towards you for added effect.");
-	output("\n\nMyrna is a lightly modded korgonne, standing at about 4’8 tall by your guess. She is a textbook definition of a short stack; well rounded F-cup jugs proportionate to her size, wide shapely hips, and plump bottom, ");
+	output("\n\nMyrna is a lightly modded korgonne, standing at about 4\' 8\" tall by your guess. She is a textbook definition of a short stack; well rounded F-cup jugs proportionate to her size, wide shapely hips, and plump bottom, ");
 	if (CodexManager.entryViewed("The Treatment") && flags["MYRNA_MYRNA_TALK"] != undefined) output("all further enhanced by the treatment pen that she consumed.");
 	else output("even more exaggeratedly so than any normal korgonne.");
 	output(" She has a small bit of pudginess to her, which compliments her nicely.");
 
 	output("\n\nThe small korgonne has rich, snow-white fur that blends in with the outside world almost perfectly so. A thick, long coat of matching hair extends from the top of her head down to about her chest. The main thing that distinguishes her from other members of her species is that her flesh color is a vibrant red, likely an effect of one of the transformatives she took. She smells strongly of peppermint, so much so that being directly next to her waters your eyes a little.");
 	//If PC read treatment entry in codex:
-	if (CodexManager.entryViewed("The Treatment") && flags["MYRNA_MYRNA_TALK"] != undefined) output(" You surmise that this is her natural scent complicating with some of the Treatment's effects.");
+	if (CodexManager.entryViewed("The Treatment") && flags["MYRNA_MYRNA_TALK"] != undefined) output(" You surmise that this is her natural scent complicating with some of the Treatment’s effects.");
 	else output(" Normally korgonne have a bitter, regular minty scent to them, though it’s peculiar to you that she smells very sweet comparatively.");
 
 	output("\n\nHer bright green eyes bore into yours, looking at you with hungry and lustful curiosity. While she just-as-intently stares you down, she adjusts her fur-trimmed red coat on her shoulders. Atop her head, she wears a matching pointed cap that is also trimmed with the same white fluff as her jacket. Her open cloth leaves her emerald-clad goods on display. In front of her fur-covered undergarments she wears numerous jeweled necklaces made from natural minerals that can be found on Uveto, weaved together with mineral fibers. Other than her green panties, she is completely pants-less, fully showing off her somewhat thick, but powerful digitigrade legs.");
@@ -217,7 +221,7 @@ public function myrnaAppearance():void
 		output(" Her cooch shares the same trait, dribbling copious amounts of peppermint flavored pheromonal girl juices.");
 	}
 	myrnaMenu();
-	addDisabledButton(0,"Appearance","Appearance","You're looking at her right now, knucklehead!");
+	addDisabledButton(0,"Appearance","Appearance","You’re looking at her right now, knucklehead!");
 }
 
 //[Talk]
@@ -230,7 +234,7 @@ public function myrnaTalk():void
 	//[Belongings] [Myrna]
 	clearMenu();
 	addButton(1,"Myrna",myrnaMyrnaTalk,undefined,"Myrna","Ask her about herself. She seems different than a korgonne should be...");
-	addButton(0,"Belongings",myrnaBelongings,undefined,"Belongings","Talk to Myrna about all the stuff she has. Where'd she get it?");
+	addButton(0,"Belongings",myrnaBelongings,undefined,"Belongings","Talk to Myrna about all the stuff she has. Where’d she get it?");
 	addButton(14,"Back",backToMyrnaMenu);
 }
 
@@ -256,13 +260,13 @@ public function myrnaMyrnaTalk():void
 	showMyrna();
 	output("<i>“What about you? You’re different from most other korgonne ");
 	//If PC encountered a korgonne in battle:
-	if(flags["MET_FEMKORGONNE"] != undefined || flags["MET_KORG_MALE"] != undefined) output("I’ve encountered here.");
-	else output("I’ve heard about.");
-	output("”</i> You question. Myrna looks past you towards the ceiling in thought.");
+	if(flags["MET_FEMKORGONNE"] != undefined || flags["MET_KORG_MALE"] != undefined) output("I’ve encountered here");
+	else output("I’ve heard about");
+	output(",”</i> you question. Myrna looks past you towards the ceiling in thought.");
 
 	output("\n\n<i>“Mmm... Myrna really like alien sweets! Like, really really like!”</i> She yips, bouncing her head giddily on your lap while she nods vigorously. It takes a while before she winds herself down enough to talk again.");
 
-	output("\n\n<i>“Well... anything else you can tell me?”</i> You ask once she fully settles down.");
+	output("\n\n<i>“Well... anything else you can tell me?”</i> you ask once she fully settles down.");
 
 	output("\n\n<i>“Myrna loves to give! Making happy is more fun than taking for own happiness. Use to be selfish. Very selfish. Was banished from old clan was in for this. Steal something from elders... It was own fault.”</i> Myrna confesses, sadness briefly staining her usual jolly demeanor. She smiles brightly once more after a quick recovery, already shaking off the errant thought. <i>“No problem for me no more. Plan finding new clan soon when things run out, since I am giving lots! Since magic feel-good prick, Myrna only want to give! Make smell like favorite sweet too!”</i>");
 
@@ -302,7 +306,6 @@ public function getGiftFromMyrna():void
 {
 	clearOutput();
 	showMyrna();
-	currentLocation = "UVIP T44";
 	if(flags["MYRNA_GIFT_COUNT"] == undefined || (flags["MYRNA_GIFT_COUNT"] != undefined && flags["MYRNA_GIFT_COUNT"] < 11))
 	{
 		processTime(2);
@@ -341,7 +344,7 @@ public function getGiftFromMyrna():void
 		//Raw savicite ore variation (2.5% chance)
 		else if(rand(4) == 0)
 		{
-			output("\n\nYou carefully open the small box, unwrapping it until a lump of dark green ore falls out. You immediately recognise it as savicite when you unwittingly touch the gem. A warm, fuzzy feeling shoots straight into your arm, and into your groin.");
+			output("\n\nYou carefully open the small box, unwrapping it until a lump of dark green ore falls out. You immediately recognize it as savicite when you unwittingly touch the gem. A warm, fuzzy feeling shoots straight into your arm, and into your groin.");
 			if(pc.hasGenitals())
 			{
 				output(" Your ");
@@ -382,7 +385,7 @@ public function getGiftFromMyrna():void
 			else output("picardine");
 			output(" falls out. Your eyes light up wide when you realize the generous korgonne just gave you a rare and valuable gem!");
 
-			output("\n\n<i>“Are you sure about this?”</i> You ask Myrna in disbelief. Her smile grows even wider while you sit flabbergasted.");
+			output("\n\n<i>“Are you sure about this?”</i> you ask Myrna in disbelief. Her smile grows even wider while you sit flabbergasted.");
 
 			output("\n\n<i>“Is sure! You keep! Smile on face I ask in return. Only selfish request.”</i> You scoop the hapless korgonne in your arms in a grip to rival her hugs. Myrna welcomes your embrace, nuzzling into your chest and squeezing back just as hard. By the time you let go, the both of you are completely out of breath. With a wide, weary smile, you stow the ");
 			if(gem == 0) output("kirkite");
@@ -424,7 +427,8 @@ public function getGiftFromMyrna():void
 		//If first time: 
 		output("panties");
 		/*else: 
-		else output(trinket + " away in your inventory for safe keeping.");*/
+		else output(trinket);*/
+		output(" away in your inventory for safe keeping.");
 
 		//Add Myrna’s Panties to pantie inventory.
 		//Note for generic panty scenes: Her panties have a sweet scent instead of musky, like peppermint.
@@ -443,6 +447,8 @@ public function getGiftFromMyrna():void
 	}
 	IncrementFlag("MYRNA_GIFT_COUNT");
 	flags["MYRNA_GIFT_CD"] = GetGameTimestamp();
+	currentLocation = "UVIP T44";
+	addUvetoCold();
 }
 
 
@@ -456,7 +462,7 @@ public function myrnaSexMenu():void
 	if(pc.hasGenitals()) addButton(0,"Get Oral",myrnaOral,undefined,"Get Oral","Have her put her tongue to work.");
 	else addDisabledButton(0,"Get Oral","Get Oral","You need genitals to get oral.");
 	if(pc.cockThatFits(400) >= 0 || pc.hasHardLightEquipped()) addButton(1,"Fuck Her",penisRouter,[fuckMyrna,400,true,0],"Fuck Her","Take her in the usual way...");
-	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a penis that will fit inside of her or hardlight-equipped panties.");
+	else addDisabledButton(1,"Fuck Her","Fuck Her","You need a penis that will fit inside of her or hardlight-equipped panties.");
 	addButton(14,"Back",backToMyrnaMenu);
 }
 
@@ -474,10 +480,19 @@ public function myrnaOral():void
 	output(" With a ");
 	if(!pc.isCrotchExposed()) output("frustrated");
 	else output("longing");
-	output(" sigh, Myrna shoots you the most seductive bedroom eyes. The emerald half-moons bore into your mind while her tongue flashes across her chops. <i>“Myrna been wanting to give licking, if alien allow?”</i> She asks pleadingly. The need in her expression tells you that she really wants this, and who are you to deny the magnanimous korgonne? You nod your head, giving her permission to continue.");
+	output(" sigh, Myrna shoots you the most seductive bedroom eyes. The emerald half-moons bore into your mind while her tongue flashes across her chops. <i>“Myrna been wanting to give licking, if alien allow?”</i> she asks pleadingly. The need in her expression tells you that she really wants this, and who are you to deny the magnanimous korgonne? You nod your head, giving her permission to continue.");
 
 	//If PC’s cum/girlcum type is not peppermint:
 	if((pc.hasCock() && pc.cumType != GLOBAL.FLUID_TYPE_PEPPERMINT) || (!pc.hasCock() && pc.girlCumType != GLOBAL.FLUID_TYPE_PEPPERMINT))
+	{
+		output("\n\n<i>“Um... before start, I have small... teeny selfish request.”</i> Curiously, your eyes follow Myrna’s paw as she reaches into her coat pocket. She pulls out a small vial, filled with a red and white viscous liquid. <i>“It own brew. Turn water-heat to sweet candy. Only last short time, but Myrna’s favorite flavor. Can I use?”</i> she asks, sheepishly twiddling the bottle in her paws. From the sound of it, that stuff will only temporarily turn your sexual fluids into Myrna’s favorite peppermint flavor. Will you allow her request for a sweeter treat from you?");
+		processTime(10);
+		clearMenu();
+		addButton(0,"Sure",sureGetPupperminted);
+		addButton(1,"No Way",noWayPepperminted);
+	}
+	//If PC’s cum/girlcum type is already peppermint, replace choices with [Next] button and start at merge.
+	else
 	{
 		output("\n\nTo your surprise, Myrna doesn’t actually start ");
 		if(!pc.isCrotchExposed()) output("unclothing you");
@@ -487,15 +502,6 @@ public function myrnaOral():void
 		clearMenu();
 		addButton(0,"Next",skipPeppermintChoice);
 	}
-	else
-	{
-		output("\n\n<i>“Um... before start, I have small... teeny selfish request.”</i> Curiously, your eyes follow Myrna’s paw as she reaches into her coat pocket. She pulls out a small vial, filled with a red and white viscous liquid. <i>“It own brew. Turn water-heat to sweet candy. Only last short time, but Myrna’s favorite flavor. Can I use?”</i> She asks, sheepishly twiddling the bottle in her paws. From the sound of it, that stuff will only temporarily turn your sexual fluids into Myrna’s favorite peppermint flavor. Will you allow her request for a sweeter treat from you?");
-		processTime(10);
-		clearMenu();
-		addButton(0,"Sure",sureGetPupperminted);
-		addButton(1,"No Way",noWayPepperminted);
-	}
-	//If PC’s cum/girlcum type is already peppermint, replace choices with [Next] button and start at merge.
 }
 
 //[Sure]
@@ -517,7 +523,7 @@ public function noWayPepperminted():void
 	clearOutput();
 	showMyrna();
 	output("You shake your head in dissent, not wanting anything to do with the mysterious liquid in the korgonne’s hands. Her tail quickly stops wagging and droops pitifully behind her in response.");
-	output("\n\n<i>“O-okay... if that what alien want.”</i> She says dismissively, though you can hear the despondency in her tone of voice. Myrna quickly stuffs the vial back into her coat pocket and flashes you a giddy smile, already shrugging off the decision you made. <i>“Still bet alien taste good, by what Myrna smell already!”</i> Quickly afterwards, she kneels ");
+	output("\n\n<i>“O-okay... if that what alien want,”</i> she says dismissively, though you can hear the despondency in her tone of voice. Myrna quickly stuffs the vial back into her coat pocket and flashes you a giddy smile, already shrugging off the decision you made. <i>“Still bet alien taste good, by what Myrna smell already!”</i> Quickly afterwards, she kneels ");
 	if(pc.legCount >= 2) output("between your [pc.legs]");
 	else output("at the base of your [pc.legs]");
 	output(", smiling widely at you all the while.\n\n");
@@ -547,7 +553,7 @@ public function myrnaBlowjob(pepperminted:Boolean = false):void
 			output("\n\nThe moment her mouth closes around your [pc.cockHeadBiggest], you feel an odd tingling sensation flow throughout it. Myrna’s trails her tongue along your massive phallus, leaving no inch uncovered while her potion works its magic into your pores. Soon, the slight prickling on your [pc.cockBiggestNoun] turns into a warm titillation as it travels down your length.");
 			if(pc.balls > 0)
 			{
-				output(" Once it reaches, the fuzzy feeling envelops your [pc.balls] cooling ");
+				output(" Once it reaches your base, the fuzzy feeling envelops your [pc.balls] cooling ");
 				if(pc.balls == 1) output("it");
 				else output("them");
 				output(", yet at the same time, warming ");
@@ -624,11 +630,11 @@ public function myrnaBlowjob(pepperminted:Boolean = false):void
 		output("\n\nUnconsciously, you reach forward and softly grab the small korgonne by the base of her ears, wrapping the rest of your hands around her head. Myrna looks upwards to you for a brief moment, regarding you with her strange, green square pupiled eyes. She smiles briefly before giving you a wink and ramming her snout into your crotch as hard as she can. <b>Damn</b> that feels too good. If she can take an oral dicking <i>that</i> deeply, you don’t think she would mind if you went a little ");
 		if(silly) output("ruff.");
 		else output("rough.");
-		output("\n\nYou double your grip on the charitable korgonne’s ears and lift her head up slightly from your [pc.cockBiggest]. A soft murr resonates from her bountiful chest to her snout, likely in appreciation for you deciding to take charge. With shove of your hips, you once again pull her in as deep as you can, relishing the feeling of her maw enveloping all of your cockmeat. Myrna flattens her tongue and wraps her tongue around your phallus with as much surface area as it will allow, providing an almost secondary cocksheath inside of her mouth. Not without a groan of ecstasy escaping your lips, you lift once again before crashing her head back down, steadily building a rhythm of your own.");
+		output("\n\nYou double your grip on the charitable korgonne’s ears and lift her head up slightly from your [pc.cockBiggest]. A soft murr resonates from her bountiful chest to her snout, likely in appreciation for you deciding to take charge. With a shove of your hips, you once again pull her in as deep as you can, relishing the feeling of her maw enveloping all of your cockmeat. Myrna flattens her tongue and wraps it around your phallus with as much surface area as it will allow, providing an almost secondary cocksheath inside of her mouth. Not without a groan of ecstasy escaping your lips, you lift once again before crashing her head back down, steadily building a rhythm of your own.");
 		output("\n\nSoon, you work to a blistering pace, literally face-fucking her. Myrna never once balks or backs down, taking it all like a champ. Her emerald eyes barely leave your face and her smile never fades, delighting in the fact that she’s giving you this much pleasure. Looking past her pistoning head, you observe that her furred panties are pulled down to her knees. One of her hands works busily underneath of her, creating a small puddle of her sweet girl-juices. Not only does the sight alone of this spurns you on, but her natural pheromones are at the strongest that you’ve smelled yet. With newfound fervor, you quickly work yourself to orgasm before you realize it.");
-		output("\n\nWith a final thrust, you thrust your [pc.hips] into the canine’s mouth, making her take you as deep as her awaiting gullet allows");
+		output("\n\nWith a final thrust, you force your [pc.hips] into the canine’s mouth, making her take you as deep as her awaiting gullet allows");
 		if(pc.hasKnot(pc.biggestCockIndex())) output(", knot and all");
-		output(" before the first jet of cum escapes your [pc.cockHeadBiggest]. The moment your jism hits the back of her throat, her eyes widen for a split second before narrowing in focus. A second throb, rapidly followed by a third joins in. Her throat, having little time to adjust gulps down your ");
+		output(" before the first jet of cum escapes your [pc.cockHeadBiggest]. The moment your jism hits the back of her throat, her eyes widen for a split second before narrowing in focus. A second throb, rapidly followed by a third joins in. Her throat, having little time to adjust, gulps down your ");
 		output("[pc.cumFlavor] goodness, guzzling down the thick liquid as quickly as it can allow.");
 		//Normal cum:
 		if(pc.cumQ() < 2000) 
@@ -682,8 +688,8 @@ public function myrnaBlowjob(pepperminted:Boolean = false):void
 		if(silly) output("ruff.");
 		else output("rough.");
 
-		output("\n\nYou double your grip on the charitable korgonne’s ears and lift her head up slightly from your loins. A soft murr resonates from her bountiful chest to her snout, likely in appreciation for you deciding to take charge. With shove of your hips, you once again pull her in as deep as you can, relishing the feeling of her maw enveloping your pussy. Myrna rolls her tongue and spears your folds, using her wet appendage almost like a pseudo-phallus, but there is still enough of her tongue that the base curls upwards, simultaneously stimulating your [pc.clits]. Not without a groan of ecstasy escaping your lips, you lift your [pc.legs] up and wrap them around Myrna, trapping her for good inside of your delicious prison.");
-		output("\n\nSoon enough, Myrna bobs her head rhythmically, using her rolled-up oral muscle to literally tongue-fuck you. She never once stops to gasp for air, staying down on you for an extremely long period of time. Her emerald eyes barely leave your face and her smile never fades, delighting in the fact that she’s giving you this much pleasure. Looking past her pistoning head, you observe that her furred panties are pulled down to her knees. One of her hands works busily underneath of her, creating a small puddle of her sweet girl-juices. Not only the sight alone of this turn you on even more, but her natural pheromones are at the strongest that you’ve smelled yet. Before you become aware of it, she quickly works you to your peak.");
+		output("\n\nYou double your grip on the charitable korgonne’s ears and lift her head up slightly from your loins. A soft murr resonates from her bountiful chest to her snout, likely in appreciation for you deciding to take charge. With a shove of your hips, you once again pull her in as deep as you can, relishing the feeling of her maw enveloping your pussy. Myrna rolls her tongue and spears your folds, using her wet appendage almost like a pseudo-phallus, but there is still enough of her tongue that the base curls upwards, simultaneously stimulating your [pc.clits]. Not without a groan of ecstasy escaping your lips, you lift your [pc.legs] up and wrap them around Myrna, trapping her for good inside of your delicious prison.");
+		output("\n\nSoon enough, Myrna bobs her head rhythmically, using her rolled-up oral muscle to literally tongue-fuck you. She never once stops to gasp for air, staying down on you for an extremely long period of time. Her emerald eyes barely leave your face and her smile never fades, delighting in the fact that she’s giving you this much pleasure. Looking past her pistoning head, you observe that her furred panties are pulled down to her knees. One of her hands works busily underneath of her, creating a small puddle of her sweet girl-juices. Not only does the sight alone of this turn you on even more, but her natural pheromones are at the strongest that you’ve smelled yet. Before you become aware of it, she quickly works you to your peak.");
 		output("\n\nWith an especially hard thrust of her head, Myrna once again sinks her tongue in as deep as her snout will allow. This time however, she doesn’t withdraw, but instead continues to flick and unfurl her lengthy appendage, stimulating a lot more surface area than she was previously. The moment the tip of her tongue brushes against your cervix, you seize up, your inner walls clenching around the wet and flat muscle. ");
 		//If PC has <4 vaginal wetness: 
 		if(pc.vaginas[0].wetness() < 4) output("A small trickle of fresh [pc.girlCum] announces the arrival of your orgasm. Myrna lightly giggles into your muff, happily slurping up any girl juices that leak from your spasming slit.");
@@ -708,8 +714,9 @@ public function myrnaBlowjob(pepperminted:Boolean = false):void
 	output("head out of the cave into the snowy wasteland outside.");
 	processTime(25);
 	pc.orgasm();
+	IncrementFlag("SEXED_MYRNA");
 	clearMenu();
-	addButton(0,"Next",move,"UVIP T44");
+	addButton(0,"Next",myrnaLeave);
 }
 
 //[Fuck Her]
@@ -723,34 +730,35 @@ public function fuckMyrna(x:int):void
 	
 	output("The longer the two of you sit together in the considerably warm cave, the more aware you are of Myrna’s pepperminty pheromones. At first it wasn’t bad, but the scent seems to grow stronger and stronger with each passing moment. In the lustful haze, you temporarily become unaware of anything else but the sweet-smelling korgonne laying on your lap. You give into your errant thoughts, wondering what to do with the shortstack and how to best take her for yourself, which you believe is exactly what she wants. Before you realize it, you find your previously idle hands wandering over the rotund globes that are her breasts.");
 
-	output("\n\n<i>“Myrna don’t mind. Go ahead, use them.”</i> Myrna coos, smiling gleefully with her flat tongue wobbling slightly out of the side of her muzzle. She lifts herself from your lap, fumbling furiously with the fur-covered bra restricting her bountiful bosom. <i>“Rrgh. Still not use to alien garb. Hard to take off.”</i> She growls in frustration, desperately trying to shrug off the offending garment. You assist her in taking the cloth off of her, revealing two heavy F-cup breasts tipped with bright red nipples. With her bright, snow-white fur, her chest looks reminiscent of a twin-pair of whipped cream piles with cherries on top, and boy do they look delicious!");
+	output("\n\n<i>“Myrna don’t mind. Go ahead, use them,”</i> Myrna coos, smiling gleefully with her flat tongue wobbling slightly out of the side of her muzzle. She lifts herself from your lap, fumbling furiously with the fur-covered bra restricting her bountiful bosom. <i>“Rrgh. Still not use to alien garb. Hard to take off.”</i> She growls in frustration, desperately trying to shrug off the offending garment. You assist her in taking the cloth off of her, revealing two heavy F-cup breasts tipped with bright red nipples. With her bright, snow-white fur, her chest looks reminiscent of a twin-pair of whipped cream piles with cherries on top, and boy do they look delicious!");
 	output("\n\nYou don’t delay for a moment on sampling a taste for yourself. With an almost savage grunt, you pull the korgonne onto you again, having her straddle your lap. Myrna leans backwards, totally on the same wavelength as you and your intentions. Her hefty breasts bobble, rosy nipples waiting for your lips to encircle them. You lean forward, plastering your face onto her supple boobflesh, wrapping your mouth around her pebbly areolae.");
 	output("\n\nOnce you begin to flick the pert teat around in your mouth, Myrna moans aloud to the ceiling, throwing her long hair backwards in a white cascade. Satisfied with the reaction, you intensify your oral affections, waggling the smooth nipple around until you eventually pinch it with your teeth. To your great surprise and delight, a bead of sweet, milky liquid escapes, dribbling into your mouth. You smile, lightly grinding your teeth to coax a few more drops to come out. With enough stimulation, you find purchase, and are rewarded with a small, but steady stream of milk. Not letting any of it go to waste, you quickly close your mouth around her areola, successfully plugging the leak for now.");
 	output("\n\nWanting to draw even more of her sweet bounty from her sizeable mammaries, you gently suckle Myrna’s cherry colored nipple. Her pawed hand wraps around the back of your head, pulling you into the korgonne even further. A soft murr resonates through her boobflesh as she runs her hands ");
 	if(pc.hairLength < 2) output("over your scalp.");
 	else output("through your [pc.hair]");
-	output(". <i>“Mmmph... alien feel nice on chest. Give all sweet milk you want.”</i> She sighs, leaning into you. You cave under the weight of her bosom, letting gravity draw her saccharine nectar into your mouth.");
+	output(". <i>“Mmmph... alien feel nice on chest. Give all sweet milk you want,”</i> she sighs, leaning into you. You cave under the weight of her bosom, letting gravity draw her saccharine nectar into your mouth.");
 
 	output("\n\nFor the next few minutes you hungrily suckle Myrna’s soft mammaries, occassionally switching back and forth between the two whenever one runs low. When you take a moment to run your nose in the cleft between her sizeable jugs, she begins to roll her wide hips into your lap. She grinds hard, almost dry humping you after a certain point. You can feel her arousal seeping through her panties and onto your crotch. The bittersweet smell of peppermint joins the sugary scent of her breast milk, creating an aromatic haze the likes you’ve never experienced before. You can feel ");
 	if(pc.hasCock()) output("[pc.eachCock] harden to rigidity");
 	else if(pc.hasVagina()) output("your [pc.vagina] moisten");
 	output(" in response to her rough riding. When her pace rises to a fevered pitch, she abruptly separates from you, panting hard from her efforts. Even though her face is covered in fur, you can tell that she looks absolutely flushed from exertion.");
 
-	output("\n\n<i>“Want alien inside me... First, want favorite toy. ");
-	if(!pc.isCrotchExposed()) output(" Undress while I fetch!");
-	output("”</i> Myrna puffs, scampering away towards the herd of reindeer. ");
+	output("\n\n<i>“Want alien inside me... First, want favorite toy");
+	if(!pc.isCrotchExposed()) output(", Undress while I fetch!");
+	else output(",");
+	output("”</i> Myrna puffs, scampering away towards the herd of reindeer.");
 	if(!pc.isCrotchExposed()) 
 	{
 		output(" After shedding all of your gear");
 		if(x < 0) output(" except for your hardlight-equipped [pc.lowerUndergarment]");
-		output(", you ");
+		output(", you");
 	}
-	else output("You ");
-	output("watch on with curiosity while she affectionately pets the previously idle lead cervine. She then reaches up to its nose, which prompts a hidden compartment to open up, exposing the green gem inside. Gingerly, she slides the object out of the deer’s snout, causing it to power down into an inactive mode. Myrna holds up the glowing item proudly in your direction, smiling in wild excitedness. It is phallic in shape and size; it’s base perfectly round and knotted, while the head is tapered to a smooth point. After showing off the dildo to you, she bounds back towards you, nearly landing atop of you again.");
+	else output(" You");
+	output(" watch on with curiosity while she affectionately pets the previously idle lead cervine. She then reaches up to its nose, which prompts a hidden compartment to open up, exposing the green gem inside. Gingerly, she slides the object out of the deer’s snout, causing it to power down into an inactive mode. Myrna holds up the glowing item proudly in your direction, smiling in wild excitedness. It is phallic in shape and size; it’s base perfectly round and knotted, while the head is tapered to a smooth point. After showing off the dildo to you, she bounds back towards you, nearly landing atop of you again.");
 	if(x < 0) output(" With a coy smile, you turn on the dial to your own glowing member equipped to your underwear. Myrna’s eyes light up with surprise when she witnesses the dildo materialize and take shape in front of her.");
 
 	if(x < 0) output("\n\n<i>“Oooh, looks fancy! Glows like my toy. Wonder if it feel good too. Still, use mine in case?”</i>");
-	else output("\n\n<i>“Okay, am ready! Usually use toy on self, but thinking, do alien want? Maybe fun for both?”</i> The korgonne asks breathlessly, waving the glowing phallus in front of you enticingly. The closer she holds it to you, the warmer and tinglier you feel, especially to your already aroused loins. It looks like she’s giving you the choice on who gets to use her special toy.");
+	else output("\n\n<i>“Okay, am ready! Usually use toy on self, but thinking, do alien want? Maybe fun for both?”</i> the korgonne asks breathlessly, waving the glowing phallus in front of you enticingly. The closer she holds it to you, the warmer and tinglier you feel, especially to your already aroused loins. It looks like she’s giving you the choice on who gets to use her special toy.");
 	processTime(20);
 	pc.milkInMouth();
 	pc.lust(50);
@@ -778,7 +786,7 @@ public function useMyrnasDildoOnYou(x:int):void
 	if(pc.hasHardLightEquipped()) output("moves your [pc.lowerUndergarment] aside and ");
 	output("slowly brings the crown of the phallus to your [pc.vagOrAss " + y + "]. You can merely feel the warmth emanating from it without it even touching you, leaving you only mere moments to wonder what it would feel like once inside of you.");
 	//If PC had foursome with Anno, Marina, and Galina: 
-	if(9999) output(" If the time you spent in that ‘scientific presentation’ with Anno and the huskar twins was any indication, you believe it will be truly wild.");
+	if(flags["UVETO_HUSKAR_FOURSOME_MOUNTUP"] != undefined) output(" If the time you spent in that ‘scientific presentation’ with Anno and the huskar twins was any indication, you believe it will be truly wild.");
 	output(" In the middle of your thoughts, you feel the dildo head make first contact against the entrance of your [pc.vagOrAss " + y + "], cause it to clench tightly from the intense sensation. It takes every ounce of your being not to cum right then and there.");
 
 	output("\n\n<i>“Alien, relax. Overwhelming at first, but clear mind. That trick I learn. Get use to it over time.”</i> Myrna suggests to you. Yeah... easier said than done. With a calm sigh to master yourself, you try to think of soothing things to get things moving forward again. Surprisingly, you find your grip loosening over time, which enables Myrna to slide the dildo further in. It takes a few baby steps for you to fully adjust, with her sliding it in little by little, but eventually you bottom out to the knot. Even with it fully lodged inside of you, you try your best not to concentrate on that feeling of being stuffed with the unusual toy, lest you blow too early.");
@@ -786,7 +794,7 @@ public function useMyrnasDildoOnYou(x:int):void
 	if(y < 0) pc.buttChange(300);
 	else pc.cuntChange(y,300);
 
-	output("\n\n<i>“Good job! Can begin now!”</i> Myrna exclaims while turning around to shirk off her emerald panties. While she slides them off, you can help but be entranced by her shapely bottom. Her off-white buns jiggling freely once past their confines while her long tail swishes gailly, further enhancing the effect. Her plump pussy lips shine in the dancing lights of the nearby fire. A soft blush of pink covers them, and a thin string of femlube connects her vulva to her undergarment. Her mons themselves are a bright red, much like her nose and mouth. When she finally slips her panties to her ankles, she carelessly kicks them aside and pushes her posterior onto your lap.");
+	output("\n\n<i>“Good job! Can begin now!”</i> Myrna exclaims while turning around to shirk off her emerald panties. While she slides them off, you can’t help but be entranced by her shapely bottom. Her off-white buns jiggling freely once past their confines while her long tail swishes gailly, further enhancing the effect. Her plump pussy lips shine in the dancing lights of the nearby fire. A soft blush of pink covers them, and a thin string of femlube connects her vulva to her undergarment. Her mons themselves are a bright red, much like her nose and mouth. When she finally slips her panties to her ankles, she carelessly kicks them aside and pushes her posterior onto your lap.");
 
 	pc.lust(100);
 	clearMenu();
@@ -804,9 +812,9 @@ public function putDildoInMyrnasAss(x:int):void
 	if(pc.isNice()) output("politely ");
 	output("turn down the offer to use the dildo on yourself. Myrna’s smile fades a small amount when she hears this, and opens her mouth to question your decision. Reactively, you place a finger on her snout, silencing the diminutive canine before she can say anything.");
 
-	output("\n\n<i>“I thought it would be nice to show my gratitude for once and let you have some fun yourself. After all, seeing how much you would enjoy it would be a great gift in and of itself.”</i> You slyly persuade her. It takes a moment, but afterwards, Myrna’s smile widens once more, and her snow-white tail swishes in a blur behind her.");
+	output("\n\n<i>“I thought it would be nice to show my gratitude for once and let you have some fun yourself. After all, seeing how much you would enjoy it would be a great gift in and of itself,”</i> you slyly persuade her. It takes a moment, but afterwards, Myrna’s smile widens once more, and her snow-white tail swishes in a blur behind her.");
 
-	output("\n\n<i>“Okay, if that make alien happy, then Myrna happy too!”</i> She gushes. Myrna then stretches out her arm, offering you the dildo. As soon as your hand makes contact with it, you gasp aloud as a hot jolt of pleasure shoots up your arm, into your body, and straight to your crotch. ");
+	output("\n\n<i>“Okay, if that make alien happy, then Myrna happy too!”</i> she gushes. Myrna then stretches out her arm, offering you the dildo. As soon as your hand makes contact with it, you gasp aloud as a hot jolt of pleasure shoots up your arm, into your body, and straight to your crotch. ");
 	if(pc.hasCock()) output("[pc.EachCock] throbs madly from the sensation, drooling a copious amount of pre onto the stone floor. ");
 	output("Out of the corner of your eye, you can see Myrna watching your bobbing ");
 	if(pc.hasCock()) 
@@ -817,7 +825,7 @@ public function putDildoInMyrnasAss(x:int):void
 	else output("[pc.hardlightCockNoun]");
 	output(" almost as if hypnotised. After you get over the initial shock, her look of wonder turns into a smile once again.");
 
-	output("\n\n<i>“Strong feeling, huh? That why it my favorite toy! Put in me now?”</i> She pleads, turning around to shirk off her emerald panties. While she slides them off, you can help but be entranced by her shapely bottom; her off-white buns jiggling freely once past their confines, her long tail swishing gailly, further enhancing the effect. Her plump pussy lips shine in the dancing lights of the nearby fire. A soft blush of pink covers them, and a thin string of femlube connects her vulva to her undergarment. Her mons themselves are a bright red, much like her nose and mouth. When she finally slips her panties to her ankles, she carelessly kicks them aside and pushes her posterior closer to you.");
+	output("\n\n<i>“Strong feeling, huh? That why it my favorite toy! Put in me now?”</i> she pleads, turning around to shirk off her emerald panties. While she slides them off, you can’t help but be entranced by her shapely bottom; her off-white buns jiggling freely once past their confines, her long tail swishing gailly, further enhancing the effect. Her plump pussy lips shine in the dancing lights of the nearby fire. A soft blush of pink covers them, and a thin string of femlube connects her vulva to her undergarment. Her mons themselves are a bright red, much like her nose and mouth. When she finally slips her panties to her ankles, she carelessly kicks them aside and pushes her posterior closer to you.");
 
 	output("\n\n<i>“Please, give toy...”</i> Myrna pants, voice and pussy dripping full of need. Not wanting to keep her waiting too long, you gather a small amount of saliva in your mouth and spit on the dildo head, mostly in worry that any internal contact with the phallus will send you immediately to your orgasm. Vigorously, you spread as much of the spittle as you can around the toy, making sure your makeshift lube will make the insertion as comfortable as possible for her. Once satisfied, you align the dildo with her awaiting asshole, which relaxes before you are even able to touch it. Gingerly, you feed it into her, which proves a surprisingly easy task. Even more surprising is that on contact with the dildo, she never reacts or fidgets from the intense aphrodisiac qualities of it, though her vagina does secrete more of her girl juices than it did previously.");
 
@@ -843,7 +851,7 @@ public function fuckMyrnaContinuation(args:Array):void
 	output(". She lowers her sides further, spearing her folds with your ");
 	if(x >= 0) output("[pc.cock " + x + "]");
 	else output("[pc.hardlightCock]");
-	output(" Her inner walls feel velvety to the touch. They hug you with a loving tightness, yet there is just enough give to keep movement smooth. Given how wet she is already, it doesn’t take long before she bottoms out, her plump buttcheeks resting firmly on top of your waist.");
+	output(". Her inner walls feel velvety to the touch. They hug you with a loving tightness, yet there is just enough give to keep movement smooth. Given how wet she is already, it doesn’t take long before she bottoms out, her plump buttcheeks resting firmly on top of your waist.");
 	pc.cockChange();
 
 	output("\n\nBefore she begins to move, she turns her head, regarding you with her odd, but seductive bedroom eyes. A devious smile creeps across the corners of her snout before she lifts her hips once more. Once she is only halfway up your shaft, she abruptly sinks you back into her. You can’t help but grunt from the sudden weight shift being applied to your hips, but it feels great regardless. She repeats this motion a second time, and then a third, coming down hard on your ");
@@ -878,9 +886,10 @@ public function fuckMyrnaContinuation(args:Array):void
 		output("\n\nYou decide to be a bit more proactive in helping her get more pleasure out of this. Carefully, you plant your hands on Myrna’s bottom again, keeping up with her erratic gyrations. You slide a hand towards that green target that’s been enticing you ever since she bent over. The moment your hand makes contact with it, another wave of pleasure shoots up your arm and into your body. You manage to steel yourself from the sensation this time, though only just barely. Your korgonne lover stops her movements as well, looking over her shoulder through her matted hair in wonderment of what you are up to behind her. She doesn’t have to wait long to find out, however, once you cup the base of the dildo in your hand and slowly pull it out. Myrna’s back arches sharply as she lets out a literal howl of pleasure towards the cave ceiling. Just before it’s tapered head can escape, you shove the toy back inside, eliciting another body shaking moan from her. You repeat these motions slowly at first, building up to a blistering pace. Before long, her hips begin to move up and down your lap in rhythm to the dildo ramming her. Consequently, she works the base of your ");
 		if(x >= 0) output("[pc.cockNoun " + x + "]");
 		else output("[pc.hardlightCockNoun]");
-		output(" still squeezing you tightly and barely letting any of your length out of her.");
+		output(", still squeezing you tightly and barely letting any of your length out of her.");
 
-		output("\n\nFor the next few minutes, you keep this pace up, pumping the savicite toy in and out of her while enduring the wild ride that Myrna is giving you. Suddenly, the tightness on your cock intensifies exponentially as a tide of peppermint scented girl juice flows over your waist. You can feel Myrna strumming her clit as she climaxes, which simultaneously stimulates you as well. Despite her mid-orgasm state, she lifts her bottom and slaps it against you a few times, murmuring, <i>“Alien... share water heat at same time! No holdings back!”</i> She doesn’t have to tell you twice since you are already dangerously close to blowing your load inside of the generous korgonne’s spasming twat.");
+		output("\n\nFor the next few minutes, you keep this pace up, pumping the savicite toy in and out of her while enduring the wild ride that Myrna is giving you. Suddenly, the tightness on your cock intensifies exponentially as a tide of peppermint scented girl juice flows over your waist. You can feel Myrna strumming her clit as she climaxes, which simultaneously stimulates you as well. Despite her mid-orgasm state, she lifts her bottom and slaps it against you a few times, murmuring, <i>“Alien... share water heat at same time! No holdings back!”</i>");
+		if(x >= 0) output(" She doesn’t have to tell you twice since you are already dangerously close to blowing your load inside of the generous korgonne’s spasming twat.");
 
 		if(x >= 0) 
 		{
@@ -893,21 +902,21 @@ public function fuckMyrnaContinuation(args:Array):void
 				else output(" It only swells out to a certain point before the rest gushes back out of her quim, making a huge mess of your lap.");
 			}
 			else output(" You continue you pump spurt after spurt of your [pc.cumNoun] into her, thrusting upwards weakly with each throb until you are tapped.");
-			output(" Myrna sits upright once more, turning her head to look back at you with lazily drooping eyes; a look that silently tells you how satisfied she is. <i>“Ah... alien water-heat... warm like Great Forge in belly too... Thank you for gift.”</i> She coos, idly rubbing her belly full of your seed.");
+			output(" Myrna sits upright once more, turning her head to look back at you with lazily drooping eyes; a look that silently tells you how satisfied she is. <i>“Ah... alien water-heat... warm like Great Forge in belly too... Thank you for gift,”</i> she coos, idly rubbing her belly full of your seed.");
 		}
 		//If PC using hardlight:
 		else
 		{
-			output("\n\nIt only takes a few more strokes before you are tipped over the edge. Your hips lurch upward violently, prompting a small <i>“Oh!”</i> from the korgonne. With a tenuous groan, you release, utterly soaking your [pc.lowerUndergarment]. You jerk uncomfortably under her while her walls continue to milk your [pc.hardlightCockNoun] for an unobtainable purchase. Just as your orgasm begins to taper, Myrna lifts herself upright once more, turning her head to look back at you with concern in her eyes. <i>“Alien giving no water-heat? You okay? Still feel good?”</i> She asks, still grinding her bottom slowly into you. Despite the over-stimulation, you manage to nod your head vigorously. Her worried frown melts away to give you a soft smile. <i>“Good. Long as alien feel good, Myrna feel good!”</i>");
+			output("\n\nIt only takes a few more strokes before you are tipped over the edge. Your hips lurch upward violently, prompting a small <i>“Oh!”</i> from the korgonne. With a tenuous groan, you release, utterly soaking your [pc.lowerUndergarment]. You jerk uncomfortably under her while her walls continue to milk your [pc.hardlightCockNoun] for an unobtainable purchase. Just as your orgasm begins to taper, Myrna lifts herself upright once more, turning her head to look back at you with concern in her eyes. <i>“Alien giving no water-heat? You okay? Still feel good?”</i> she asks, still grinding her bottom slowly into you. Despite the over-stimulation, you manage to nod your head vigorously. Her worried frown melts away to give you a soft smile. <i>“Good. Long as alien feel good, Myrna feel good!”</i>");
 		}
 	}
 	//If branching from [Yourself]:
 	else
 	{
-		output("\n\nJust as you feel you are taking control of yourself again, you start to feel a pawed hand sliding down ");
-		if(pc.balls > 0) output("past your [pc.balls] ");
-		else output("your perineum ");
-		output("and to your stuffed [pc.vagOrAss " + y + "]. At the very next moment, what feels like an electrical shock reverberates through your spine and back to your loins as she makes contact her savicite dildo. Your back hitches upwards, though Myrna barely moves an inch on top of you. She is still intent on swirling her hips atop of you and stirring her insides like you are a living spoon. You take deep, hurried breaths as she slowly slides the dildo out of you a few inches. It takes everything and more not to climax immediately, and Myrna continues to make things harder for you not to do so. With a sudden push, she rams the toy back inside of you, sending another intense jolt of pleasure through your vertebrae. After a few more thrusts like this, Myrna sits upright, looking back towards you with a coy smile on her lips.");
+		output("\n\nJust as you feel you are taking control of yourself again, you start to feel a pawed hand sliding down");
+		if(pc.balls > 0) output(" past your [pc.balls] and to");
+		else if(pc.hasCock()) output(" your perineum to");
+		output(" your stuffed [pc.vagOrAss " + y + "]. At the very next moment, what feels like an electrical shock reverberates through your spine and back to your loins as she makes contact her savicite dildo. Your back hitches upwards, though Myrna barely moves an inch on top of you. She is still intent on swirling her hips atop of you and stirring her insides like you are a living spoon. You take deep, hurried breaths as she slowly slides the dildo out of you a few inches. It takes everything and more not to climax immediately, and Myrna continues to make things harder for you not to do so. With a sudden push, she rams the toy back inside of you, sending another intense jolt of pleasure through your vertebrae. After a few more thrusts like this, Myrna sits upright, looking back towards you with a coy smile on her lips.");
 		//If PC using penis:
 		if(x >= 0)
 		{
@@ -921,7 +930,7 @@ public function fuckMyrnaContinuation(args:Array):void
 				else output(" It only swells out to a certain point before the rest gushes back out of her quim, making a huge mess of your lap.");
 			}
 			else output(" You continue you pump spurt after spurt of your [pc.cumNoun] into her, thrusting upwards weakly with each throb until you are tapped.");
-			output(" Myrna sits upright once more, turning her head to look back at you with lazily drooping eyes; a look that silently tells you how sated she is. <i>“Ah... alien water-heat... warm like Great Forge in belly too... Thank you for gift. Hope alien like too.”</i> She coos, idly rubbing her belly full of your seed.");
+			output(" Myrna sits upright once more, turning her head to look back at you with lazily drooping eyes; a look that silently tells you how sated she is. <i>“Ah... alien water-heat... warm like Great Forge in belly too... Thank you for gift. Hope alien like too,”</i> she coos, idly rubbing her belly full of your seed.");
 		}
 		//If PC is using hardlight:
 		else
@@ -929,7 +938,7 @@ public function fuckMyrnaContinuation(args:Array):void
 			output("\n\n<i>“No holdings back. Give water-heat when want, how much alien want.”</i> Myrna coos, jamming her dildo inside of you with an especially hard push.");
 			if(pc.WQ() >= 50) output(" Even with your considerable amount of willpower, you find the grip on yourself rapidly slipping away from you.");
 			output(" As much as you want to tell her that your hardlight dildo can’t give her exactly what she wants, all that spills out of your mouth are unintelligible grunts and squeals.");
-			output("\n\nWith a final shake of her sizable butt, you moan as loudly as you think you have ever heard yourself and explode into your [pc.lowerUndergarment]. Your hips lurch upward violently, prompting a small <i>“Oh!”</i> from the korgonne. The moment your phallus head brushes against her cervix, her own orgasm is set off, triggering off a wild spasming around your [pc.hardlightFull]. You jerk uncomfortably under her while her walls milk your [pc.hardlightCockNoun] for an unobtainable purchase. Just as your orgasm begins to taper, Myrna lifts herself upright once more, turning her head to look back at you with concern in her eyes. <i>“Alien giving no water-heat? You okay? Still feel good?”</i> She asks, still grinding her bottom slowly into you. Despite the overstimulation, you manage to nod your head vigorously. Her worried frown melts away to give you a soft smile. <i>“Good. Long as alien feel good, Myrna feel good!”</i>");
+			output("\n\nWith a final shake of her sizable butt, you moan as loudly as you think you have ever heard yourself and explode into your [pc.lowerUndergarment]. Your hips lurch upward violently, prompting a small <i>“Oh!”</i> from the korgonne. The moment your phallus head brushes against her cervix, her own orgasm is set off, triggering off a wild spasming around your [pc.cockOrHardlightFull]. You jerk uncomfortably under her while her walls milk your [pc.hardlightCockNoun] for an unobtainable purchase. Just as your orgasm begins to taper, Myrna lifts herself upright once more, turning her head to look back at you with concern in her eyes. <i>“Alien giving no water-heat? You okay? Still feel good?”</i> she asks, still grinding her bottom slowly into you. Despite the overstimulation, you manage to nod your head vigorously. Her worried frown melts away to give you a soft smile. <i>“Good. Long as alien feel good, Myrna feel good!”</i>");
 		}
 	}
 	output("\n\n<i>“Mind if take nap together?”</i> Myrna asks, stifling a yawn. You find yourself mirroring her’s, exhaustion setting in from your supercharged orgasm. Savicite is some powerful stuff! With a lazy nod of your head, she leans backwards into you, settling against your [pc.breasts]. Despite Myrna being a somewhat plump gal, she is still comfortably light, mostly thanks to her diminutive height. With another yawn, you use the last of your remaining strength to roll the both of you over to your sides. You wrap your arms around the korgonne, gently rubbing her ");
@@ -938,10 +947,11 @@ public function fuckMyrnaContinuation(args:Array):void
 
 	output("\n\nWhen you open your eyes once again, you find that Myrna is no longer resting with you. You also notice that any evidence of your tryst is already cleaned up ");
 	if(y > -2) output(", including the dildo that was previously inside of you");
-	output(". A shuffling nearby leads you spot Myrna, who is stoking the campfire nearby where you rest. Once she sees you stir, she smiles widely and hugs you, though much more softly than she usually does.");
-	output("\n\n<i>“Oooh, alien awake! Myrna take good care while sleep. Have fun time! Hoping to do again! Happy to give body to alien when want again.”</i> She dotes happily, squeezing one of your arms. You thank the generous korgonne for the aftercare and the offer, hugging her back just as affectionately. When you fully recover your strength again, you rise up from the stone floor, bidding Myrna a merry farewell and walk out of the cave into the bitter Uvetan cold.");
+	output(". A shuffling nearby leads you to spot Myrna, who is stoking the campfire nearby where you rest. Once she sees you stir, she smiles widely and hugs you, though much more softly than she usually does.");
+	output("\n\n<i>“Oooh, alien awake! Myrna take good care while sleep. Have fun time! Hoping to do again! Happy to give body to alien when want again,”</i> she dotes happily, squeezing one of your arms. You thank the generous korgonne for the aftercare and the offer, hugging her back just as affectionately. When you fully recover your strength again, you rise up from the stone floor, bidding Myrna a merry farewell and walk out of the cave into the bitter Uvetan cold.");
 	processTime(120);
 	pc.orgasm();
+	IncrementFlag("SEXED_MYRNA");
 	clearMenu();
-	addButton(0,"Next",move,"UVIP T44");
+	addButton(0,"Next",myrnaLeave);
 }

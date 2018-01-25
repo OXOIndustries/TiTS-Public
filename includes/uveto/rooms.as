@@ -1086,6 +1086,7 @@ public function initUvetoRooms():void
 	rooms["UVIP R36"].eastExit = "UVIP T36";
 	rooms["UVIP R36"].moveMinutes = 1;
 	rooms["UVIP R36"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP R36"].addFlag(GLOBAL.BED);
 	rooms["UVIP R36"].runOnEnter = ulaBonus;
 
 	rooms["UVIP X34"] = new RoomClass(this);
@@ -1322,6 +1323,7 @@ public function initUvetoRooms():void
 	rooms["UVIP D22"].eastExit = "UVIP F22";
 	rooms["UVIP D22"].moveMinutes = 1;
 	rooms["UVIP D22"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP D22"].addFlag(GLOBAL.BED);
 	rooms["UVIP D22"].runOnEnter = ulaBonus;
 
 	rooms["UVIP F20"] = new RoomClass(this);
@@ -1358,6 +1360,7 @@ public function initUvetoRooms():void
 	rooms["UVIP J20"].westExit = "UVIP H20";
 	rooms["UVIP J20"].moveMinutes = 1;
 	rooms["UVIP J20"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP J20"].addFlag(GLOBAL.BED);
 	//rooms["UVIP J20"].addFlag(GLOBAL.HAZARD);
 	//rooms["UVIP J20"].runOnEnter = TundraEncounterBonus;
 
@@ -1369,6 +1372,7 @@ public function initUvetoRooms():void
 	rooms["UVIP J18"].southExit = "UVIP J20";
 	rooms["UVIP J18"].moveMinutes = 1;
 	rooms["UVIP J18"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP J18"].addFlag(GLOBAL.BED);
 	rooms["UVIP J18"].runOnEnter = ulaBonus;
 
 	//rooms["UVIP J18"].addFlag(GLOBAL.HAZARD);
@@ -1582,7 +1586,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP J10"] = new RoomClass(this);
 	rooms["UVIP J10"].roomName = "HUGE\nPILLAR";
-	rooms["UVIP J10"].description = "This close to the enormous pillar, you feel a hint of vertigo whenever you glance up. No naturally occurring rock formation should stand quite so straight and tall! Yet here it is, daring to reach for the sky, standing strong against Uveto's chill winds. The smooth, sparkling surface glitters with deposits of exotic ores. Drifts of snow obscure the east, but a path has been worn in the drifts to the north, alongside the rocky growth.";
+	rooms["UVIP J10"].description = "This close to the enormous pillar, you feel a hint of vertigo whenever you glance up. No naturally occurring rock formation should stand quite so straight and tall! Yet here it is, daring to reach for the sky, standing strong against Uveto’s chill winds. The smooth, sparkling surface glitters with deposits of exotic ores. Drifts of snow obscure the east, but a path has been worn in the drifts to the north, alongside the rocky growth.";
 	//rooms["UVIP J10"].description = "In front of you are a pair of towering, primitive gates stretched between two pillars of black mineral jutting from the ground. While transient-looking, the gate nevertheless blocks off the village approach. Looks like either nobody’s home, or they don’t want company.";
 	rooms["UVIP J10"].planet = "PLANET: UVETO VII";
 	rooms["UVIP J10"].system = "SYSTEM: SIRETTA";
@@ -2144,6 +2148,7 @@ public function initUvetoRooms():void
 	rooms["UVGR K20"].northExit = "UVGR K18";
 	rooms["UVGR K20"].moveMinutes = 1;
 	rooms["UVGR K20"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR K20"].addFlag(GLOBAL.BED);
 	rooms["UVGR K20"].runOnEnter = ulaBonus;
 
 	rooms["UVGR G16"] = new RoomClass(this);
@@ -2714,8 +2719,8 @@ public function initUvetoRoomsII():void
 	rooms["KORGII B14"].runOnEnter = korgiiHoldExteriorBonus;
 
 	rooms["KORGII B12"] = new RoomClass(this);
-	rooms["KORGII B12"].roomName = "KORG'II\nENTRANCE";
-	rooms["KORGII B12"].description = "The entrance to Korg'ii Hold is quite brisk thanks to the endless holes that the dog-folk drilled into the door. Warmer breezes waft in from the east, humid and comfortable. The door out lies just to the west, presently closed.\n\nTwo guards stand alongside the entranceway, manning the lever and handles necessary to open it wide.";
+	rooms["KORGII B12"].roomName = "KORG’II\nENTRANCE";
+	rooms["KORGII B12"].description = "The entrance to Korg’ii Hold is quite brisk thanks to the endless holes that the dog-folk drilled into the door. Warmer breezes waft in from the east, humid and comfortable. The door out lies just to the west, presently closed.\n\nTwo guards stand alongside the entranceway, manning the lever and handles necessary to open it wide.";
 	rooms["KORGII B12"].planet = "PLANET: UVETO VII";
 	rooms["KORGII B12"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII B12"].moveMinutes = 2;
@@ -2727,7 +2732,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII D12"] = new RoomClass(this);
 	rooms["KORGII D12"].roomName = "EAST\nTUNNEL";
-	rooms["KORGII D12"].description = "Korg'ii Hold's main thoroughfares look to have been carved from the rock by hand. You can only imagine how long it took, tunnelling through the hard stone, all to find a stable shelter from Uveto's biting cold. Their labors paid off, as warm drafts of humid air waft by continually. You could walk around naked inside here without feeling an ounce of chill. In fact, most of the korgonne do.";
+	rooms["KORGII D12"].description = "Korg’ii Hold’s main thoroughfares look to have been carved from the rock by hand. You can only imagine how long it took, tunnelling through the hard stone, all to find a stable shelter from Uveto’s biting cold. Their labors paid off, as warm drafts of humid air waft by continually. You could walk around naked inside here without feeling an ounce of chill. In fact, most of the korgonne do.";
 	rooms["KORGII D12"].planet = "PLANET: UVETO VII";
 	rooms["KORGII D12"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII D12"].moveMinutes = 2;
@@ -2768,7 +2773,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII F8"] = new RoomClass(this);
 	rooms["KORGII F8"].roomName = "NORTH\nTUNNEL";
-	rooms["KORGII F8"].description = "Delicious scents of well-cooked food impregnate the sauna-like air that fills the tunnel, grabbing you by the nose and begging you to head south to the source of the aroma. An open doorway is the only thing in your way, aside from throng of korgonne elbowing their way in. To the north, a closed door guards the entrance to somebody's home. The tunnel runs on east and west.";
+	rooms["KORGII F8"].description = "Delicious scents of well-cooked food impregnate the sauna-like air that fills the tunnel, grabbing you by the nose and begging you to head south to the source of the aroma. An open doorway is the only thing in your way, aside from throng of korgonne elbowing their way in. To the north, a closed door guards the entrance to somebody’s home. The tunnel runs on east and west.";
 	rooms["KORGII F8"].planet = "PLANET: UVETO VII";
 	rooms["KORGII F8"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII F8"].moveMinutes = 2;
@@ -2782,7 +2787,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII H8"] = new RoomClass(this);
 	rooms["KORGII H8"].roomName = "NORTH\nTUNNEL";
-	rooms["KORGII H8"].description = "Another doorway to the north marks the location of one of the many korgonne dwellings you've seen thus far. This one has silver hinges and a gilded knob, obviously crafted by hand. No other entrances present themselves, leaving only the paths to the east and west.";
+	rooms["KORGII H8"].description = "Another doorway to the north marks the location of one of the many korgonne dwellings you’ve seen thus far. This one has silver hinges and a gilded knob, obviously crafted by hand. No other entrances present themselves, leaving only the paths to the east and west.";
 	rooms["KORGII H8"].planet = "PLANET: UVETO VII";
 	rooms["KORGII H8"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII H8"].moveMinutes = 2;
@@ -2796,7 +2801,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII J8"] = new RoomClass(this);
 	rooms["KORGII J8"].roomName = "NORTHWEST\nTUNNEL";
-	rooms["KORGII J8"].description = "A sharp bend turns this tunnel to branch south and east as it loops around the first floor of Korg'ii Hold. Stairs lead away to the north, spiralling up and down into the farthest reaches of the hold. You can feel puffs of hot air steaming up from below, providing heat to the entire burrowed clan. Not many korgonne come by here. Foot traffic to the east is much denser.";
+	rooms["KORGII J8"].description = "A sharp bend turns this tunnel to branch south and east as it loops around the first floor of Korg’ii Hold. Stairs lead away to the north, spiralling up and down into the farthest reaches of the hold. You can feel puffs of hot air steaming up from below, providing heat to the entire burrowed clan. Not many korgonne come by here. Foot traffic to the east is much denser.";
 	rooms["KORGII J8"].planet = "PLANET: UVETO VII";
 	rooms["KORGII J8"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII J8"].moveMinutes = 2;
@@ -2810,7 +2815,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII J10"] = new RoomClass(this);
 	rooms["KORGII J10"].roomName = "WEST\nTUNNEL";
-	rooms["KORGII J10"].description = "You may have found the quietest place in Korg'ii Hold. While dwellings flank you to the east and west, there is little foot traffic. You can look up the tunnel to the north and down to the south without seeing a soul, aside from the occasional scampering korg exiting a distant staircase on his way on some errand.";
+	rooms["KORGII J10"].description = "You may have found the quietest place in Korg’ii Hold. While dwellings flank you to the east and west, there is little foot traffic. You can look up the tunnel to the north and down to the south without seeing a soul, aside from the occasional scampering korg exiting a distant staircase on his way on some errand.";
 	rooms["KORGII J10"].planet = "PLANET: UVETO VII";
 	rooms["KORGII J10"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII J10"].moveMinutes = 2;
@@ -2824,7 +2829,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII J12"] = new RoomClass(this);
 	rooms["KORGII J12"].roomName = "WEST\nTUNNEL";
-	rooms["KORGII J12"].description = "Scanning your locale, you spot a granite door to the east. By the look of it, it guards a single domicile. The tunnel leads on to the north and south through the resource-rich pillar. Just looking at the walls, you can tell that Korg'ii Hold is worth a fortune. The material they excavated to dig this tunnel could purchase a decent-sized starship, maybe more, depending on how pure the veins of Savicite run.";
+	rooms["KORGII J12"].description = "Scanning your locale, you spot a granite door to the east. By the look of it, it guards a single domicile. The tunnel leads on to the north and south through the resource-rich pillar. Just looking at the walls, you can tell that Korg’ii Hold is worth a fortune. The material they excavated to dig this tunnel could purchase a decent-sized starship, maybe more, depending on how pure the veins of Savicite run.";
 	rooms["KORGII J12"].planet = "PLANET: UVETO VII";
 	rooms["KORGII J12"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII J12"].moveMinutes = 2;
@@ -2838,7 +2843,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII J14"] = new RoomClass(this);
 	rooms["KORGII J14"].roomName = "SOUTHWEST\nCORNER";
-	rooms["KORGII J14"].description = "Wrapping around the circumference of Korg'ii Hold, this passage forms a sort of primitive beltway for the subterranean settlement. Carved by hand generations ago, hundreds of years of foot traffic have polished the stone floor to a mirror shine. A gap in the wall to the south exposes a curling staircase that provides access to the floors above and below. Toss in a couple of elevators, and this place would be as nice as a classy hotel.";
+	rooms["KORGII J14"].description = "Wrapping around the circumference of Korg’ii Hold, this passage forms a sort of primitive beltway for the subterranean settlement. Carved by hand generations ago, hundreds of years of foot traffic have polished the stone floor to a mirror shine. A gap in the wall to the south exposes a curling staircase that provides access to the floors above and below. Toss in a couple of elevators, and this place would be as nice as a classy hotel.";
 	rooms["KORGII J14"].planet = "PLANET: UVETO VII";
 	rooms["KORGII J14"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII J14"].moveMinutes = 2;
@@ -2852,7 +2857,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII H14"] = new RoomClass(this);
 	rooms["KORGII H14"].roomName = "SOUTH\nTUNNEL";
-	rooms["KORGII H14"].description = "Tails wagging, the citizens of Korg'ii Hold politely squeeze past you on their various errands. Jangly bracelets, necklaces, and piercings click and clack to the beat of their flouncing gaits, almost drowning out the hushed whispers that follow your path. An inscription alongside the northern door depicts a type of mortar and pestle.";
+	rooms["KORGII H14"].description = "Tails wagging, the citizens of Korg’ii Hold politely squeeze past you on their various errands. Jangly bracelets, necklaces, and piercings click and clack to the beat of their flouncing gaits, almost drowning out the hushed whispers that follow your path. An inscription alongside the northern door depicts a type of mortar and pestle.";
 	rooms["KORGII H14"].planet = "PLANET: UVETO VII";
 	rooms["KORGII H14"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII H14"].moveMinutes = 2;
@@ -2866,21 +2871,36 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII F14"] = new RoomClass(this);
 	rooms["KORGII F14"].roomName = "SOUTH\nTUNNEL";
-	rooms["KORGII F14"].description = "Balmy warmth carries you along through the tunnels of Korg'ii hold. This one stretches straight to the east and west, terminated by sharp turns to the north at each end. Directly north of you is a double door, the seam split across a carving of a gilded coat. Alien script ";
+	rooms["KORGII F14"].description = "Balmy warmth carries you along through the tunnels of Korg’ii hold. This one stretches straight to the east and west, terminated by sharp turns to the north at each end. Directly north of you is a double door, the seam split across a carving of a gilded coat. Alien script ";
 	rooms["KORGII F14"].planet = "PLANET: UVETO VII";
 	rooms["KORGII F14"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII F14"].moveMinutes = 2;
 	rooms["KORGII F14"].northExit = "";
 	rooms["KORGII F14"].eastExit = "KORGII D14";
-	rooms["KORGII F14"].southExit = "";
+	rooms["KORGII F14"].southExit = "KORGII F16";
 	rooms["KORGII F14"].westExit = "KORGII H14";
 	rooms["KORGII F14"].addFlag(GLOBAL.INDOOR);
 	rooms["KORGII F14"].addFlag(GLOBAL.PUBLIC);
 	rooms["KORGII F14"].runOnEnter = korgiF14Bonus;
 
+	rooms["KORGII F16"] = new RoomClass(this);
+	rooms["KORGII F16"].roomName = "WARM\nCRUSTS";
+	rooms["KORGII F16"].description = "";
+	rooms["KORGII F16"].planet = "PLANET: UVETO VII";
+	rooms["KORGII F16"].system = "SYSTEM: SIRETTA";
+	rooms["KORGII F16"].moveMinutes = 2;
+	rooms["KORGII F16"].northExit = "KORGII F14";
+	rooms["KORGII F16"].eastExit = "";
+	rooms["KORGII F16"].southExit = "";
+	rooms["KORGII F16"].westExit = "";
+	rooms["KORGII F16"].addFlag(GLOBAL.INDOOR);
+	rooms["KORGII F16"].addFlag(GLOBAL.PUBLIC);
+	rooms["KORGII F16"].addFlag(GLOBAL.COMMERCE);
+	rooms["KORGII F16"].runOnEnter = warmCrustsBonus;
+
 	rooms["KORGII D14"] = new RoomClass(this);
 	rooms["KORGII D14"].roomName = "SOUTHEAST\nTUNNEL";
-	rooms["KORGII D14"].description = "This sharp bend in the tunnel that encircles the ground floor of Korg'ii hold feels like standing in a sauna. The staircase to the south radiates heat from somewhere deep below ground. Naked korgonne squeeze by you, some with apologetic looks, others taking the opportunity to sneak in a grope.";
+	rooms["KORGII D14"].description = "This sharp bend in the tunnel that encircles the ground floor of Korg’ii hold feels like standing in a sauna. The staircase to the south radiates heat from somewhere deep below ground. Naked korgonne squeeze by you, some with apologetic looks, others taking the opportunity to sneak in a grope.";
 	rooms["KORGII D14"].planet = "PLANET: UVETO VII";
 	rooms["KORGII D14"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII D14"].moveMinutes = 2;
@@ -2894,7 +2914,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII J6"] = new RoomClass(this);
 	rooms["KORGII J6"].roomName = "NORTHWEST\nSTAIRS";
-	rooms["KORGII J6"].description = "The polished stone of the walls is speckled with so many bits of raw savicite that the entire chamber is bathed in reflected green light. The stairs themselves are narrow here in, pressed in by particularly solid stone on either side. You can journey up into the top layers of Korg'ii Hold, down into the warm depths, or south back to the main floor.";
+	rooms["KORGII J6"].description = "The polished stone of the walls is speckled with so many bits of raw savicite that the entire chamber is bathed in reflected green light. The stairs themselves are narrow here in, pressed in by particularly solid stone on either side. You can journey up into the top layers of Korg’ii Hold, down into the warm depths, or south back to the main floor.";
 	rooms["KORGII J6"].planet = "PLANET: UVETO VII";
 	rooms["KORGII J6"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII J6"].moveMinutes = 2;
@@ -2902,13 +2922,15 @@ public function initUvetoRoomsII():void
 	rooms["KORGII J6"].eastExit = "";
 	rooms["KORGII J6"].southExit = "KORGII J8";
 	rooms["KORGII J6"].westExit = "";
+	rooms["KORGII J6"].inExit = "KORGII P6";
+	rooms["KORGII J6"].inText = "Up";
 	rooms["KORGII J6"].addFlag(GLOBAL.INDOOR);
 	rooms["KORGII J6"].addFlag(GLOBAL.PUBLIC);
 	//rooms["KORGII J6"].runOnEnter = korgiD12Bonus;
 
 	rooms["KORGII D6"] = new RoomClass(this);
 	rooms["KORGII D6"].roomName = "NORTHEAST\nSTAIRWELL";
-	rooms["KORGII D6"].description = "Purplish striations race through the carefully carved stones in a twisting, zebra-striped pattern that follows the natural curvature of the staircase as it winds up and down. To the south, you can catch a faint hint of stewed meat and nose-tickling spicings. Alternatively, you can journey downward, toward the source of heat that warms Korg'ii Hold, or upward, where the temperature is not quite so balmy.";
+	rooms["KORGII D6"].description = "Purplish striations race through the carefully carved stones in a twisting, zebra-striped pattern that follows the natural curvature of the staircase as it winds up and down. To the south, you can catch a faint hint of stewed meat and nose-tickling spicings. Alternatively, you can journey downward, toward the source of heat that warms Korg’ii Hold, or upward, where the temperature is not quite so balmy.";
 	rooms["KORGII D6"].planet = "PLANET: UVETO VII";
 	rooms["KORGII D6"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII D6"].moveMinutes = 2;
@@ -2916,13 +2938,15 @@ public function initUvetoRoomsII():void
 	rooms["KORGII D6"].eastExit = "";
 	rooms["KORGII D6"].southExit = "KORGII D8";
 	rooms["KORGII D6"].westExit = "";
+	rooms["KORGII D6"].inExit = "KORGII V6";
+	rooms["KORGII D6"].inText = "Up";
 	rooms["KORGII D6"].addFlag(GLOBAL.INDOOR);
 	rooms["KORGII D6"].addFlag(GLOBAL.PUBLIC);
 	//rooms["KORGII D6"].runOnEnter = korgiD12Bonus;
 
 	rooms["KORGII J16"] = new RoomClass(this);
 	rooms["KORGII J16"].roomName = "SOUTHWEST\nSTAIRWELL";
-	rooms["KORGII J16"].description = "The ceiling of this stairwell is almost claustrophobically low compared to the coreward facilities you're used to, designed for tiny korgonne instead of varied galactic citizens. Someone carved railings into the walls, rather than bolting on something that might protrude out, the tool-toughened texture long ago worn into smooth comfort. Korgonne smile at you as they walk by. It would seem your presence is welcome.";
+	rooms["KORGII J16"].description = "The ceiling of this stairwell is almost claustrophobically low compared to the coreward facilities you’re used to, designed for tiny korgonne instead of varied galactic citizens. Someone carved railings into the walls, rather than bolting on something that might protrude out, the tool-toughened texture long ago worn into smooth comfort. Korgonne smile at you as they walk by. It would seem your presence is welcome.";
 	rooms["KORGII J16"].planet = "PLANET: UVETO VII";
 	rooms["KORGII J16"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII J16"].moveMinutes = 2;
@@ -2938,7 +2962,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII D16"] = new RoomClass(this);
 	rooms["KORGII D16"].roomName = "SOUTHEAST\nTUNNEL";
-	rooms["KORGII D16"].description = "Just as you've seen elsewhere within Korg'ii Hold, these stairs were carved with great attention to detail. Artfully patterned metal inlays glitter beneath the light of ceiling-suspended crystals. Comfortable handgrips provide something for the young, drunk, or weak to hold on to. Landings spaced every dozen or so steps provide you a place to rest. An opening to the north vents back to the main floor of the hold.";
+	rooms["KORGII D16"].description = "Just as you’ve seen elsewhere within Korg’ii Hold, these stairs were carved with great attention to detail. Artfully patterned metal inlays glitter beneath the light of ceiling-suspended crystals. Comfortable handgrips provide something for the young, drunk, or weak to hold on to. Landings spaced every dozen or so steps provide you a place to rest. An opening to the north vents back to the main floor of the hold.";
 	rooms["KORGII D16"].planet = "PLANET: UVETO VII";
 	rooms["KORGII D16"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII D16"].moveMinutes = 2;
@@ -2958,7 +2982,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII V16"] = new RoomClass(this);
 	rooms["KORGII V16"].roomName = "SOUTHEAST\nSTAIRWELL";
-	rooms["KORGII V16"].description = "Metallic inlays of fish swimming beneath silvered waves decorate the steps. The opulence seems to go all the way down. Warm air puffs up from below. You can smell the faint taint of many bodies living together in an enclosed space, mixed with hints of food or other odors completely foreign to your nose. The way up is closed. Perhaps the korgonne haven't expanded to fill the upper reaches of the spire just yet.";
+	rooms["KORGII V16"].description = "Metallic inlays of fish swimming beneath silvered waves decorate the steps. The opulence seems to go all the way down. Warm air puffs up from below. You can smell the faint taint of many bodies living together in an enclosed space, mixed with hints of food or other odors completely foreign to your nose. The way up is closed. Perhaps the korgonne haven’t expanded to fill the upper reaches of the spire just yet.";
 	rooms["KORGII V16"].planet = "PLANET: UVETO VII";
 	rooms["KORGII V16"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII V16"].moveMinutes = 2;
@@ -2974,7 +2998,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII V14"] = new RoomClass(this);
 	rooms["KORGII V14"].roomName = "EAST\nTUNNEL";
-	rooms["KORGII V14"].description = "The corridors of Korg'ii Hold's second level are narrow than the first, less suitable for large amounts of foot traffic and more easily defended. Slots in the walls provide places for sentries to lay in ambush while grooves in the floor offer traction and an easy drain for spilled blood. The tunnel continues in similar fashion north.\n\nA staircase to the south offers passage back to the first floor.";
+	rooms["KORGII V14"].description = "The corridors of Korg’ii Hold’s second level are narrow than the first, less suitable for large amounts of foot traffic and more easily defended. Slots in the walls provide places for sentries to lay in ambush while grooves in the floor offer traction and an easy drain for spilled blood. The tunnel continues in similar fashion north.\n\nA staircase to the south offers passage back to the first floor.";
 	rooms["KORGII V14"].planet = "PLANET: UVETO VII";
 	rooms["KORGII V14"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII V14"].moveMinutes = 2;
@@ -2992,11 +3016,11 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII V12"] = new RoomClass(this);
 	rooms["KORGII V12"].roomName = "T\nINTERSECTION";
-	rooms["KORGII V12"].description = "The narrow tunnels split into a T-shape here. You can walk north or south to your choice of stairwells, or west in a passage that splits the middle of the Korg'ii Hold's central mass. You encounter more warriors here than elsewhere. Guards and hunters alike frequently pass by you on their way to the west.";
+	rooms["KORGII V12"].description = "The narrow tunnels split into a T-shape here. You can walk north or south to your choice of stairwells, or west in a passage that splits the middle of the Korg’ii Hold’s central mass. You encounter more warriors here than elsewhere. Guards and hunters alike frequently pass by you on their way to the west.";
 	rooms["KORGII V12"].planet = "PLANET: UVETO VII";
 	rooms["KORGII V12"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII V12"].moveMinutes = 2;
-	rooms["KORGII V12"].northExit = "";
+	rooms["KORGII V12"].northExit = "KORGII V10";
 	rooms["KORGII V12"].eastExit = "";
 	rooms["KORGII V12"].southExit = "KORGII V14";
 	rooms["KORGII V12"].westExit = "KORGII T12";
@@ -3008,9 +3032,45 @@ public function initUvetoRoomsII():void
 	rooms["KORGII V12"].addFlag(GLOBAL.PUBLIC);
 	//rooms["KORGII V12"].runOnEnter = korgiD12Bonus;
 
+	rooms["KORGII V10"] = new RoomClass(this);
+	rooms["KORGII V10"].roomName = "EAST\nTUNNEL";
+	rooms["KORGII V10"].description = "Recesses in the walls provide numerous ambush points along the passage, while the tunnel’s natural narrowness prevents more than one or two people from squeezing through at a time. Small holes in the wall reveal the presence of hidden ambush chambers, though you have yet to spot a single entrance. A T-intersection to the south offers passage to the west. A short distance to the north is a staircase.";
+	rooms["KORGII V10"].planet = "PLANET: UVETO VII";
+	rooms["KORGII V10"].system = "SYSTEM: SIRETTA";
+	rooms["KORGII V10"].moveMinutes = 2;
+	rooms["KORGII V10"].northExit = "KORGII V8";
+	rooms["KORGII V10"].eastExit = "";
+	rooms["KORGII V10"].southExit = "KORGII V12";
+	rooms["KORGII V10"].westExit = "";
+	rooms["KORGII V10"].outExit = "";
+	rooms["KORGII V10"].outText = "Down";
+	rooms["KORGII V10"].inExit = "";
+	rooms["KORGII V10"].inText = "Up";
+	rooms["KORGII V10"].addFlag(GLOBAL.INDOOR);
+	rooms["KORGII V10"].addFlag(GLOBAL.PUBLIC);
+	//rooms["KORGII V10"].runOnEnter = korgiD12Bonus;
+
+	rooms["KORGII V8"] = new RoomClass(this);
+	rooms["KORGII V8"].roomName = "EAST\nTUNNEL";
+	rooms["KORGII V8"].description = "Squeezing past korgonne, shoulder to shoulder, you silently curse whoever dug this particular passage. It’s simple too narrow to comfortably traverse. The floor is grooved for traction, even when wet, and arrow slits in the walls make you uncomfortably aware that these seemingly simple dog-people could likely end your life in a hurry. Feeling a little outside chill in spite of the Korg’ii Hold’s inner warmth, you feel like you should be on your way.";
+	rooms["KORGII V8"].planet = "PLANET: UVETO VII";
+	rooms["KORGII V8"].system = "SYSTEM: SIRETTA";
+	rooms["KORGII V8"].moveMinutes = 2;
+	rooms["KORGII V8"].northExit = "KORGII V6";
+	rooms["KORGII V8"].eastExit = "";
+	rooms["KORGII V8"].southExit = "KORGII V10";
+	rooms["KORGII V8"].westExit = "";
+	rooms["KORGII V8"].outExit = "";
+	rooms["KORGII V8"].outText = "Down";
+	rooms["KORGII V8"].inExit = "";
+	rooms["KORGII V8"].inText = "Up";
+	rooms["KORGII V8"].addFlag(GLOBAL.INDOOR);
+	rooms["KORGII V8"].addFlag(GLOBAL.PUBLIC);
+	//rooms["KORGII V8"].runOnEnter = korgiD12Bonus;
+
 	rooms["KORGII T12"] = new RoomClass(this);
 	rooms["KORGII T12"].roomName = "NARROW\nTUNNEL";
-	rooms["KORGII T12"].description = "This narrow east-west passage bears more ornamentation than you're used to. Artfully carved bone sconces cradle faintly glowing crystals. Carpets woven from the course fibers of uvetan beasts line the floor, and hunting trophies of all descriptions proudly present themselves as proof of korgonne determination. One particularly impressive specimen appears to have originated from some kind of great lizard. Luminous crystals sit in the empty eyesockets, staring balefully out at you.\n\nA door of solid silver blocks passage to the south. A bit to the west, there's another door. This one faces north.";
+	rooms["KORGII T12"].description = "This narrow east-west passage bears more ornamentation than you’re used to. Artfully carved bone sconces cradle faintly glowing crystals. Carpets woven from the course fibers of uvetan beasts line the floor, and hunting trophies of all descriptions proudly present themselves as proof of korgonne determination. One particularly impressive specimen appears to have originated from some kind of great lizard. Luminous crystals sit in the empty eyesockets, staring balefully out at you.\n\nA door of solid silver blocks passage to the south. A bit to the west, there’s another door. This one faces north.";
 	rooms["KORGII T12"].planet = "PLANET: UVETO VII";
 	rooms["KORGII T12"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII T12"].moveMinutes = 2;
@@ -3044,13 +3104,85 @@ public function initUvetoRoomsII():void
 	rooms["KORGII R12"].addFlag(GLOBAL.PUBLIC);
 	//rooms["KORGII R12"].runOnEnter = korgiD12Bonus;
 
+	rooms["KORGII V6"] = new RoomClass(this);
+	rooms["KORGII V6"].roomName = "NORTHEAST\nSTAIRWELL";
+	rooms["KORGII V6"].description = "Curling, purple impurities in Korg’ii Hold’s stonework race along the stairs here, on the hold’s second level. Unfortunately, a burly body blocks further travel higher. You can step down the impeccably carved staircase or head out to the south into a well-defended passage. The vague scent of food wafts up from below.";
+	rooms["KORGII V6"].planet = "PLANET: UVETO VII";
+	rooms["KORGII V6"].system = "SYSTEM: SIRETTA";
+	rooms["KORGII V6"].moveMinutes = 2;
+	rooms["KORGII V6"].northExit = "";
+	rooms["KORGII V6"].eastExit = "";
+	rooms["KORGII V6"].southExit = "KORGII V8";
+	rooms["KORGII V6"].westExit = "";
+	rooms["KORGII V6"].outExit = "KORGII D6";
+	rooms["KORGII V6"].outText = "Down";
+	rooms["KORGII V6"].inExit = "";
+	rooms["KORGII V6"].inText = "Up";
+	rooms["KORGII V6"].addFlag(GLOBAL.INDOOR);
+	rooms["KORGII V6"].addFlag(GLOBAL.PUBLIC);
+	//rooms["KORGII V6"].runOnEnter = korgiD12Bonus;
+
+	rooms["KORGII P6"] = new RoomClass(this);
+	rooms["KORGII P6"].roomName = "NORTHWEST\nSTAIRWELL";
+	rooms["KORGII P6"].description = "Savicite deposits in the walls bathe the staircase in sickly green light, though the natives of Korg’ii Hold seem unbothered by its presence. One female korgonne stops to examine it, running her furry paws up and down the luminescent mineral in wonder. Other citizens pay more attention to the floor - and your own exotic presence. For instance, a guard above refuses to allow you higher into the hold, steadfastly blocking you with his spear. You’ll have to leave the staircase or climb back down from here.";
+	rooms["KORGII P6"].planet = "PLANET: UVETO VII";
+	rooms["KORGII P6"].system = "SYSTEM: SIRETTA";
+	rooms["KORGII P6"].moveMinutes = 2;
+	rooms["KORGII P6"].northExit = "";
+	rooms["KORGII P6"].eastExit = "";
+	rooms["KORGII P6"].southExit = "KORGII P8";
+	rooms["KORGII P6"].westExit = "";
+	rooms["KORGII P6"].outExit = "KORGII J6";
+	rooms["KORGII P6"].outText = "Down";
+	rooms["KORGII P6"].inExit = "";
+	rooms["KORGII P6"].inText = "Up";
+	rooms["KORGII P6"].addFlag(GLOBAL.INDOOR);
+	rooms["KORGII P6"].addFlag(GLOBAL.PUBLIC);
+	//rooms["KORGII P6"].runOnEnter = korgiD12Bonus;
+
+	rooms["KORGII P8"] = new RoomClass(this);
+	rooms["KORGII P8"].roomName = "DEFENSIVE\nPASSAGE";
+	rooms["KORGII P8"].description = "Defensive recesses line to passage to either side, providing convenient places for Korg’ii warriors to hold in the event of an invasion. The tunnel itself is quite narrow, especially with the presence of stout-bodied natives. Squeezing passed a pair of them requires the absence of any personal space whatsoever. A few paces north will place you in a stairwell.";
+	rooms["KORGII P8"].planet = "PLANET: UVETO VII";
+	rooms["KORGII P8"].system = "SYSTEM: SIRETTA";
+	rooms["KORGII P8"].moveMinutes = 2;
+	rooms["KORGII P8"].northExit = "KORGII P6";
+	rooms["KORGII P8"].eastExit = "";
+	rooms["KORGII P8"].southExit = "KORGII P10";
+	rooms["KORGII P8"].westExit = "";
+	rooms["KORGII P8"].outExit = "";
+	rooms["KORGII P8"].outText = "Down";
+	rooms["KORGII P8"].inExit = "";
+	rooms["KORGII P8"].inText = "Up";
+	rooms["KORGII P8"].addFlag(GLOBAL.INDOOR);
+	rooms["KORGII P8"].addFlag(GLOBAL.PUBLIC);
+	//rooms["KORGII P8"].runOnEnter = korgiD12Bonus;
+	
+	rooms["KORGII P10"] = new RoomClass(this);
+	rooms["KORGII P10"].roomName = "DEFENSIVE\nPASSAGE";
+	rooms["KORGII P10"].description = "Korgonne outfitted in the garb of warriors are frequently patrol this tunnel. To the south, you can spy a T-intersection that branches off to the east. A spiral staircase caps off the tunnel to the north. Likewise, a second staircase offers passage to the upper and lower reaches of Korg’ii Hold alike.";
+	rooms["KORGII P10"].planet = "PLANET: UVETO VII";
+	rooms["KORGII P10"].system = "SYSTEM: SIRETTA";
+	rooms["KORGII P10"].moveMinutes = 2;
+	rooms["KORGII P10"].northExit = "KORGII P8";
+	rooms["KORGII P10"].eastExit = "";
+	rooms["KORGII P10"].southExit = "KORGII P12";
+	rooms["KORGII P10"].westExit = "";
+	rooms["KORGII P10"].outExit = "";
+	rooms["KORGII P10"].outText = "Down";
+	rooms["KORGII P10"].inExit = "";
+	rooms["KORGII P10"].inText = "Up";
+	rooms["KORGII P10"].addFlag(GLOBAL.INDOOR);
+	rooms["KORGII P10"].addFlag(GLOBAL.PUBLIC);
+	//rooms["KORGII P10"].runOnEnter = korgiD12Bonus;
+
 	rooms["KORGII P12"] = new RoomClass(this);
 	rooms["KORGII P12"].roomName = "T\nINTERSECTION";
-	rooms["KORGII P12"].description = "A narrow tunnel splits off from the broader north-south passage to connect the east and west sides of Korg'ii Hold. You can see two doors that way, one silver and one stone. Further north and south there are naught but staircases, each offering passage to the ground floor. Weapon-toting warriors are a common sight. You'd best be on your best behavior.";
+	rooms["KORGII P12"].description = "A narrow tunnel splits off from the broader north-south passage to connect the east and west sides of Korg’ii Hold. You can see two doors that way, one silver and one stone. Further north and south there are naught but staircases, each offering passage to the ground floor. Weapon-toting warriors are a common sight. You’d best be on your best behavior.";
 	rooms["KORGII P12"].planet = "PLANET: UVETO VII";
 	rooms["KORGII P12"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII P12"].moveMinutes = 2;
-	rooms["KORGII P12"].northExit = "";
+	rooms["KORGII P12"].northExit = "KORGII P10";
 	rooms["KORGII P12"].eastExit = "KORGII R12";
 	rooms["KORGII P12"].southExit = "KORGII P14";
 	rooms["KORGII P12"].westExit = "";
@@ -3064,7 +3196,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII P14"] = new RoomClass(this);
 	rooms["KORGII P14"].roomName = "DEFENSIVE\nPASSAGE";
-	rooms["KORGII P14"].description = "The architecture in this part of the hold is similar to that of old Terran castles. Scattered nooks line the walls to provide cover.  Grooves in the floor provide better traction. Even soaked in the results of a bloody battle, you'd have no problem finding your footing. Darkened slits in some of the walls suggest the presence of hidden passages from which to lay an ambush.\n\nA staircase to the south offers passage to the other floors of Korg'ii Hold. In the distance to the north, you spy another.";
+	rooms["KORGII P14"].description = "The architecture in this part of the hold is similar to that of old Terran castles. Scattered nooks line the walls to provide cover.  Grooves in the floor provide better traction. Even soaked in the results of a bloody battle, you’d have no problem finding your footing. Darkened slits in some of the walls suggest the presence of hidden passages from which to lay an ambush.\n\nA staircase to the south offers passage to the other floors of Korg’ii Hold. In the distance to the north, you spy another.";
 	rooms["KORGII P14"].planet = "PLANET: UVETO VII";
 	rooms["KORGII P14"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII P14"].moveMinutes = 2;
@@ -3082,7 +3214,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII P16"] = new RoomClass(this);
 	rooms["KORGII P16"].roomName = "SOUTHWEST\nSTAIRWELL";
-	rooms["KORGII P16"].description = "Climbing the seemingly endless stairs seems the only way to move up or down in Korg'ii Hold. The dog-folk either don't have the know-how to make an elevator or don't care. You're almost grateful that they won't let you climb any higher. The fluffy folk seem intent on keeping you to the lower levels for now. You can climb down to the ground floor or step out into a narrow passage to the north.";
+	rooms["KORGII P16"].description = "Climbing the seemingly endless stairs seems the only way to move up or down in Korg’ii Hold. The dog-folk either don’t have the know-how to make an elevator or don’t care. You’re almost grateful that they won’t let you climb any higher. The fluffy folk seem intent on keeping you to the lower levels for now. You can climb down to the ground floor or step out into a narrow passage to the north.";
 	rooms["KORGII P16"].planet = "PLANET: UVETO VII";
 	rooms["KORGII P16"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII P16"].moveMinutes = 2;
@@ -3100,7 +3232,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII R10"] = new RoomClass(this);
 	rooms["KORGII R10"].roomName = "THRONE\nROOM";
-	rooms["KORGII R10"].description = "Walls of whitish stone, worked into murals of ancient korgonne heroism, display the might of Korg'ii clan on all sides. Gold chains hold glowing crystals from the ceiling to light it amber radiance. You can see a single, armored korg fighting off three frostwyrms single-handled. Elsewhere, a horde of fluffy barbarians riding six-legged bears does battle with a swarm of bestial milodans.\n\nCarefully hewn rock and skillfully carved bone decorate the rest of the interior. An enormous throne rises up in the center of it all, a throne  for the tribe's undisputed leader. Its cushion looks quite comfy.\n\nCurtains to the east provide entrance to the Chief's bedchamber. A passage northward provides access to what looks to be some kind of private armory.";
+	rooms["KORGII R10"].description = "Walls of whitish stone, worked into murals of ancient korgonne heroism, display the might of Korg’ii clan on all sides. Gold chains hold glowing crystals from the ceiling to light it amber radiance. You can see a single, armored korg fighting off three frostwyrms single-handled. Elsewhere, a horde of fluffy barbarians riding six-legged bears does battle with a swarm of bestial milodans.\n\nCarefully hewn rock and skillfully carved bone decorate the rest of the interior. An enormous throne rises up in the center of it all, a throne  for the tribe’s undisputed leader. Its cushion looks quite comfy.\n\nCurtains to the east provide entrance to the Chief’s bedchamber. A passage northward provides access to what looks to be some kind of private armory.";
 	rooms["KORGII R10"].planet = "PLANET: UVETO VII";
 	rooms["KORGII R10"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII R10"].moveMinutes = 2;
@@ -3117,8 +3249,8 @@ public function initUvetoRoomsII():void
 	//rooms["KORGII PLACEHOLDIE"].runOnEnter = korgiD12Bonus;
 
 	rooms["KORGII R8"] = new RoomClass(this);
-	rooms["KORGII R8"].roomName = "CHIEF'S\nARMORY";
-	rooms["KORGII R8"].description = "Weapons and armor of every shape, size, and origin are collected together here, meticulously arranged should the tribe have need of them. KihaCorp laser rifles occupy a shelf next some ancient-looking Reaper powder-bangers. A few inches away, korgonne-crafted crossbows hang alongside wickedly barbed savicite bolts. There's too much to list. You could outfit a small army in the finest gear Uveto's dog-folk have to offer and still have enough stolen kit leftover to outfit the next generation of hunters.\n\nTwo guards flank make sure your fingers stay off the merchandise. A narrow passage to the south returns to the Chieftan's throne room.";
+	rooms["KORGII R8"].roomName = "CHIEF’S\nARMORY";
+	rooms["KORGII R8"].description = "Weapons and armor of every shape, size, and origin are collected together here, meticulously arranged should the tribe have need of them. KihaCorp laser rifles occupy a shelf next some ancient-looking Reaper powder-bangers. A few inches away, korgonne-crafted crossbows hang alongside wickedly barbed savicite bolts. There’s too much to list. You could outfit a small army in the finest gear Uveto’s dog-folk have to offer and still have enough stolen kit leftover to outfit the next generation of hunters.\n\nTwo guards flank make sure your fingers stay off the merchandise. A narrow passage to the south returns to the Chieftan’s throne room.";
 	rooms["KORGII R8"].planet = "PLANET: UVETO VII";
 	rooms["KORGII R8"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII R8"].moveMinutes = 2;
@@ -3135,8 +3267,8 @@ public function initUvetoRoomsII():void
 	//rooms["KORGII R8"].runOnEnter = korgiD12Bonus;
 
 	rooms["KORGII T10"] = new RoomClass(this);
-	rooms["KORGII T10"].roomName = "CHIEF'S\nBEDROOM";
-	rooms["KORGII T10"].description = "The Chief's bedroom is surprisingly bare. Yes, he has a large, comfortable-looking bed with more fluffy hides and cushions than you care to count, but the rest of the chamber is quite simple. A bone crate holds a pile of knick-knacks and primitive jewelry. A stolen mining crate, still-bearing the SteeleTech logo, sits against the east wall. Judging by the chair next to it, it serves dual use as a wardrobe and desk.";
+	rooms["KORGII T10"].roomName = "CHIEF’S\nBEDROOM";
+	rooms["KORGII T10"].description = "The Chief’s bedroom is surprisingly bare. Yes, he has a large, comfortable-looking bed with more fluffy hides and cushions than you care to count, but the rest of the chamber is quite simple. A bone crate holds a pile of knick-knacks and primitive jewelry. A stolen mining crate, still-bearing the SteeleTech logo, sits against the east wall. Judging by the chair next to it, it serves dual use as a wardrobe and desk.";
 	rooms["KORGII T10"].planet = "PLANET: UVETO VII";
 	rooms["KORGII T10"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII T10"].moveMinutes = 2;
@@ -3155,8 +3287,8 @@ public function initUvetoRoomsII():void
 	rooms["KORGII T10"].runOnEnter = chiefBedroomBonus;
 
 	rooms["KORGII T14"] = new RoomClass(this);
-	rooms["KORGII T14"].roomName = "ULA'S\nCHAMBERS";
-	rooms["KORGII T14"].description = "Straight away, you can tell this room is vastly different from the others in Korg'ii Hold. It seems to exist in an entirely different time period. The walls are cut perfectly square with the kind of sharp, mechanically precise geometry you'd expect to find in a UGC warship. Angular grooves split and rejoin each other in an artist's impression of futuristic adornment. One wall even has a transparent aluminum window, looking out over the deadly-beautiful Uvetan countryside.";
+	rooms["KORGII T14"].roomName = "ULA’S\nCHAMBERS";
+	rooms["KORGII T14"].description = "Straight away, you can tell this room is vastly different from the others in Korg’ii Hold. It seems to exist in an entirely different time period. The walls are cut perfectly square with the kind of sharp, mechanically precise geometry you’d expect to find in a UGC warship. Angular grooves split and rejoin each other in an artist’s impression of futuristic adornment. One wall even has a transparent aluminum window, looking out over the deadly-beautiful Uvetan countryside.";
 	rooms["KORGII T14"].planet = "PLANET: UVETO VII";
 	rooms["KORGII T14"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII T14"].moveMinutes = 2;
@@ -3194,7 +3326,7 @@ public function initUvetoRoomsII():void
 
 	//One-off encounter
 	rooms["MYRNAS CAVE"] = new RoomClass(this);
-	rooms["MYRNAS CAVE"].roomName = "MYRNA'S\nCAVE";
+	rooms["MYRNAS CAVE"].roomName = "MYRNA’S\nCAVE";
 	rooms["MYRNAS CAVE"].description = "If you see this, Fen fucked up.";
 	rooms["MYRNAS CAVE"].planet = "PLANET: UVETO VII";
 	rooms["MYRNAS CAVE"].system = "SYSTEM: SIRETTA";

@@ -63,6 +63,7 @@ public function drBadgerBuyMenu():void
 	chars["DRBADGER"].inventory.push(new Gush());
 	chars["DRBADGER"].inventory.push(new SlutRay());
 	chars["DRBADGER"].inventory.push(new Tentacool());
+	chars["DRBADGER"].inventory.push(new BimboleumDefenseSystem());
 
 	// Shop unlocks
 	if(flags["BADGER_QUEST"] >= 3)

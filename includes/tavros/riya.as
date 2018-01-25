@@ -1607,12 +1607,6 @@ public function riyaAtNursery():Boolean
 // Common room blurb
 public function riyaNurseryCafeteriaBonus(btnSlot:int = 0):void
 {
-	if(!riyaAtNursery())
-	{
-		pc.removeStatusEffect("Riya at Nursery");
-		return;
-	}
-	
 	output("\n\nRiya is sitting at one of the tables, most of the way through a full-sized plate of " + RandomInCollection("lamb, curry and salad", "eggs, bacon and toast", "cereal and orange juice") + ". She looks up as you come in, chewing away happily.");
 	if(flags["MET_RIYA_IN_NURSERY"] == undefined) output(" It’s a bit strange to see her wearing something other than her instantly recognizable uniform, but here she is in a pair of baggy, comfy looking tan cargo pants, black boots and a white tee that shows a healthy amount of cleavage.");
 	else output(" You’ve more or less gotten used to the sight of Riya in street clothes, but it’s never going to not be strange seeing her without a watchful glare on her face and a mean glint in her eyes.");

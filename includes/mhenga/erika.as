@@ -623,7 +623,7 @@ public function erikaPublicSexThreesomeGryvain():void
 	output("\n\nGritting your teeth, you hold back the tide of your orgasm. You can’t let this smug fucker beat you. She smirks once more when she realizes that you’re trying to holding out.");
 
 	clearMenu();
-	if (pc.libido() < 66) addButton(0, "Next", erikaPublicSexThreesomeGryvainVictory);
+	if (pc.libido()/2 + rand(20) + 1 < pc.willpower()/2 + rand(20) + 1) addButton(0, "Next", erikaPublicSexThreesomeGryvainVictory);
 	else addButton(0,"Next",erikaPublicSexThreesomeGryvainLoss);
 }
 
@@ -876,8 +876,8 @@ public function erikaPublicSexThreesomeAusarMouth():void
 	else if (pc.balls > 0 && !pc.hasVagina()) output("your [pc.balls] tightening in preparation to blow a load in Erika’s stomach.");
 	else if (pc.balls == 0 && pc.hasVagina()) output("your [pc.cunts] leaking [pc.girlCum] down your legs.");
 	else output("your [pc.thighs] quivering.");
-	output("\n\n“Thrusting balls deep ");
-	if (silly && pc.balls == 0 ) output("figuratively, that is) ");
+	output("\n\nThrusting balls deep ");
+	if (silly && pc.balls == 0) output("(figuratively, that is) ");
 	output("into her mouth, you start to fill her stomach with your [pc.cum]. Feeling your cum rushing down her throat makes you sigh in content. As your orgasm rushes through you, you try to force your [pc.cockNounSimple] further into her throat in order to feed her more of your jizz.");
 	output("\n\nThe ausar behind her apparently reached his edge as well, if the full weight of him thrusting and trying to push his knot into her ass is any indication. Finally succeeding in pushing his knot past Erika’s pucker, he leans forward and starts to thrust, hammering his whole body against her in an attempt to get his dick further into her ass.");
 	output("\n\nHis full body thrusts have the table tilting in your direction this time.");
@@ -1038,7 +1038,7 @@ public function erikaSexMenu(Repeat:Boolean = true):void
 	addButton(1,"Ride Her",erikaSexRideHer);
 	// [Degrade Her] (requires vagoo and PC to be hard)
 	if (pc.isAss() && pc.hasVagina()) addButton(2,"Degrade Her",erikaSexDegradeHer);
-	else if (!pc.isAss()) addDisabledButton(2, "Degrade Her", "Degrade Her", "You are too friendly to do this!!");
+	else if (!pc.isAss()) addDisabledButton(2, "Degrade Her", "Degrade Her", "You are too friendly to do this!");
 	else addDisabledButton(2, "Degrade Her", "Degrade Her", "You need a vagina to do this!");
 	// [Butt fuck] (requires PC to be in a rut and fit inside her)
 	if(pc.cockThatFits(erika.analCapacity()*1.5) >= 0 && pc.hasCock() && pc.inRut()) addButton(3, "Butt Fuck", erikaSexButtFuck);
@@ -1051,7 +1051,7 @@ public function erikaSexMenu(Repeat:Boolean = true):void
 	if (pc.isAss() && pc.hasGenitals() && flags["ERIKA_DEGRADED_HER"] != undefined) addButton(5,"Hate Fuck",erikaSexHateFuck);
 	else if (flags["ERIKA_DEGRADED_HER"] == undefined) addDisabledButton(5, "Hate Fuck", "Hate Fuck", "You need to degrade her first!");
 	else if (!pc.hasGenitals()) addDisabledButton(5, "Hate Fuck", "Hate Fuck", "You need genitalia to do this!");
-	else addDisabledButton(5, "Hate Fuck", "Hate Fuck", "You are to friendly to do this!!");
+	else addDisabledButton(5, "Hate Fuck", "Hate Fuck", "You are to friendly to do this!");
 	// Give her some anusoft
 	if (flags["ERIKA_GIVEN_ANUSOFT"] == undefined && pc.hasItemByClass(Anusoft)) addButton(10, "Give Anusoft", erikaSexGiveAnusoft);
 	else if (flags["ERIKA_GIVEN_ANUSOFT"] != undefined) addDisabledButton(10, "Give Anusoft", "Give Anusoft", "Erika has already taken anusoft.");
@@ -1379,7 +1379,7 @@ public function erikaSexButtFuck3():void
 	IncrementFlag("ERIKA_SEXED");
 
 	processTime(120+rand(30));
-	pc.loadInAss(erika);
+	erika.loadInAss(pc);
 	pc.orgasm();
 	erika.orgasm();
 	pc.shower();
@@ -1529,8 +1529,8 @@ public function erikaSexGiveAnusoft():void
 	output("\n\nTaking a hold of the tube you unscrew it and start squeezing the cream on her rim. She gasps as the cool transformative substance soaks into her pucker.");
 	output("\n\nYou blink your eyes as suddenly the tube is empty ");
 	if (pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || pc.ass.hasFlag(GLOBAL.FLAG_PUMPED)) output("- it always disappears so suddenly - ");
-	output("and a feminine gasp from Erika draws your attention back to her. You stare at her rim in perverted fascination. Her thighs quake as her pucker starts to puff up, blowing up like a balloon, slowly turning into a soft puffy doughnut. It seems to lose some of its tightness becoming much more accommodating for huge dicks, it almost gapes slightly.");
-	output("\n\nTransfixed on her pillowy pucker, you bring one finger to her soft rim. When you brush your finger on her doughnut, she gasps loudly before giving a moan as you keep touching her fat rim. With a smile on your [pc.lips] you pierce her pucker with a finger, breaking another moan from her before it turns into a whimper. Her doggy dick flexes, once, twice, and starts to dribble her salty milk onto the bed.");
+	output("and a feminine gasp from Erika draws your attention back to her. You stare at her rim in perverted fascination. Her thighs quake as her pucker starts to puff up, blowing up like a balloon, slowly turning into a soft puffy donut. It seems to lose some of its tightness becoming much more accommodating for huge dicks, it almost gapes slightly.");
+	output("\n\nTransfixed on her pillowy pucker, you bring one finger to her soft rim. When you brush your finger on her donut, she gasps loudly before giving a moan as you keep touching her fat rim. With a smile on your [pc.lips] you pierce her pucker with a finger, breaking another moan from her before it turns into a whimper. Her doggy dick flexes, once, twice, and starts to dribble her salty milk onto the bed.");
 	output("\n\nIf she came from one finger you wonder how she would react to more than one finger... and you decide to find out. You pull your finger out only to replace it with three when the trio of digits touch her newly flowered pucker her tails shoot straight like iron bars. You ignore her panicked tails and begin pushing your fingers inside her bum. Her plump rim swallows up your fingers without an issue so you decide to add another and another.");
 
 	clearMenu();
@@ -1543,7 +1543,7 @@ public function erikaSexGiveAnusoft2():void
 	showErika(true);
 	author("Doots");
 
-	output("You pull your fist out of her ass and marvel how little her pucker has changed, it’s still the same fat doughnut with small gape that it was before it swallowed your entire fist.");
+	output("You pull your fist out of her ass and marvel how little her pucker has changed, it’s still the same fat donut with small gape that it was before it swallowed your entire fist.");
 	output("\n\nYou look at Erika and notice that she’s drooling on the pillow, you might have gone a bit overboard but the lake of cum that she’s kneeling in shows that she definitely enjoyed it. You pat her butt and leave her to regain her wits. You can’t wait to try out her new pucker.");
 	
 	flags["ERIKA_GIVEN_ANUSOFT"] = 1;

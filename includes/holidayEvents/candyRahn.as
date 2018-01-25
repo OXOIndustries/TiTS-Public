@@ -1,9 +1,4 @@
-﻿public function isChristmas():Boolean
-{
-	//checkDate(day:int, month:int, dayRange:int)
-	return checkDate(25, 12, 8);
-}
-
+﻿
 public function showCandyRahn():void
 {
 	showBust("CANDY");

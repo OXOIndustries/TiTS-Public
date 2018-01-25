@@ -826,12 +826,6 @@ public function seraAtNursery():Boolean
 // Common room blurb
 public function seraNurseryCafeteriaBonus(btnSlot:int = 0):void
 {
-	if(!seraAtNursery())
-	{
-		pc.removeStatusEffect("Sera at Nursery");
-		return;
-	}
-	
 	output("\n\nSera is parked behind a table on the older kid’s side, in the process of demolishing an evening meal.");
 	if(flags["MET_SERA_IN_NURSERY"] == undefined) output(" It takes you a moment to recognize her - she’s dressed in a shockingly mild jeans and blouse combo. Even her heels look fairly conservative today.");
 	else output(" It never stops being a bit weird to see the demon-morph in a fully lit environment with her business not all the way out there.");

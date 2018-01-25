@@ -51,6 +51,20 @@ package classes.Engine.Combat
 				damageToShields.poison.damageValue = 0;
 			}
 		}
+		if (tarResistances.hasFlag(DamageFlag.BOTHRIOCARMOR))
+		{
+			var bthrcArmorBypass:TypeCollection;
+			if (!damageToShields.hasFlag(DamageFlag.LASER))
+			{
+				bthrcArmorBypass = damageToShields.makeCopy();
+				bthrcArmorBypass.multiply(MathUtil.LinearInterpolate(1, 0.5, target.shields() / target.shieldsMax()));
+				damageToShields.kinetic.damageValue = 0;
+				damageToShields.electric.damageValue = 0;
+				damageToShields.burning.damageValue = 0;
+				damageToShields.freezing.damageValue = 0;
+				damageToShields.poison.damageValue = 0;
+			}
+		}
 		
 		// Store the total damage before and after resistances -- we'll use this to try and approximate how
 		// much damage we used to break through the shields if we get all the way through
@@ -96,6 +110,11 @@ package classes.Engine.Combat
 			if (tarResistances.hasFlag(DamageFlag.SYDIANARMOR) && sydArmorBypass && sydArmorBypass.getTotal() > 0)
 			{
 				damageResult.remainingDamage = sydArmorBypass;
+			}
+			
+			if (tarResistances.hasFlag(DamageFlag.BOTHRIOCARMOR) && bthrcArmorBypass && bthrcArmorBypass.getTotal() > 0)
+			{
+				damageResult.remainingDamage = bthrcArmorBypass;
 			}
 			
 			target.shieldsRaw -= damageAfterResistances;

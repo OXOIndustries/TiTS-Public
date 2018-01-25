@@ -351,9 +351,17 @@ public function approachingPippasHouse(btnSlot:int = 1):void
 public function meetPippa(arg:Array = null):void
 {
 	clearMenu();
-	
+
 	var itemGiven:String = (arg != null ? arg[0] : "");
 	
+	// Blocked for blocked ginas
+	if (pc.hasVagina() && pc.blockedVaginas() > 0)
+	{
+		output("You hit the buzzer, but nobody answers. Maybe try back some other time.");
+		if(pc.pluggedVaginas() > 0) output(" Maybe you could get rid of the obstruction in your feminine genitalia in the meantime. A shower would do you some good.");
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 	// Function initially called
 	if (itemGiven == "")
 	{
@@ -1448,18 +1456,18 @@ public function pippaHotDog():void
 	
 	if (pc.isAss())
 	{
-		output("You respond with a sharp smack on her ass, sending ripples across the surface. She inhales sharply and moans,");
+		output("You respond with a sharp smack on her ass, sending ripples across the surface. She inhales sharply and moans, <i>“");
 	}
 	else
 	{
-		output("You feel a twinge of guilt and your [pc.cock " + smallestCockIndex + "] starts to soften, until she makes a noise almost like whining and says, <i>“Don’t stop, please. ”</i>");
+		output("You feel a twinge of guilt and your [pc.cock " + smallestCockIndex + "] starts to soften, until she makes a noise almost like whining and says, <i>“Don’t stop, please. ");
 	}
 	
-	output(" <i>“To be honest, it turns me on");
+	output("To be honest, it turns me on");
 	
 	if (pippaDominance() > 66) output(", but either way, don’t you worry; I’ll get you back later. For now, go ahead and get");
 	else if (pippaDominance() > 33) output(". Go ahead and fuck my ass like it’s your property. Get");
-	else output(" Use my ass like it’s no more than your fuck toy, [pc.name]! Get");
+	else output(". Use my ass like it’s no more than your fuck toy, [pc.name]! Get");
 	
 	output(" yourself off!”</i> Having said that, one of her hands snakes between her legs and begins playing with her [pippa.pussy]. From the squishing sound, you gather that she’s soaked. Spurred on, you fuck her [pippa.buttcheeks] with renewed vigor. You manhandle her [pippa.ass], wrapping it around your [pc.cock " + smallestCockIndex + "], roughly squeezing it, occasionally slapping it, and even pinching it. By now it’s more red than pink, both from your treatment, and from the aroused flush covering the pig-morph’s body. A light sheen of sweat covers her body, and you can only barely keep a grip on her [pippa.ass].");
 	

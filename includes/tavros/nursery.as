@@ -301,7 +301,9 @@ public function nurseryCafeteriaFunc():Boolean
 	
 	var btnSlot:int = 0;
 	if(seraAtNursery()) seraNurseryCafeteriaBonus(btnSlot++);
+	else pc.removeStatusEffect("Sera at Nursery");
 	if(riyaAtNursery()) riyaNurseryCafeteriaBonus(btnSlot++);
+	else pc.removeStatusEffect("Riya at Nursery");
 	
 	return false;
 }

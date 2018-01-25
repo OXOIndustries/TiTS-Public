@@ -246,7 +246,7 @@ public function volunteerToGrayGooFeed():void
 		else
 		{
 			output("\n\nDid they get a little bigger?");
-			output("\n\nThe right head titters, <i>“Such a lovely snacky-snack, cum-and-pack!”</i> The left wobbles, hair lengthening thanks to the freshly deposited mass. <i>“Take some mush, then come back when you’re all yum-and-squirty.”</i> Both nod in unison, in perfect agreement that a squirtier you is a net positive for the universe as a whole.");
+			output("\n\nThe right head titters, <i>“Such a lovely snacky-snack, cum-and-pack!”</i> The left wobbles, hair lengthening thanks to the freshly deposited mass. <i>“Take some mush, then come back when you’re all yum-and-squirty.”</i> Both nod in unison, in perfect agreement that a squirtier like you is a net positive for the universe as a whole.");
 			if(hasGooArmorOnSelf()) output("\n\n<i>“Thanks a lot, babes! You two look so sexy now!”</i> [goo.name] waves as you and Azra continue.");
 			clearMenu();
 			//[Next] - continue to next encounter
@@ -322,7 +322,7 @@ public function weakAssSlutGooFeeding(totalCum:Number):void
 	{
 		output("\n\n<i>“So much better than mush.”</i> The gelatinous girls roll off of you.");
 		output("\n\nDid they get a little bigger?");
-		output("\n\nThe right head titters, <i>“Such a lovely snacky-snack, cum-and-pack!”</i> The left wobbles, hair lengthening thanks to the freshly deposited mass. <i>“Take some mush, then come back when you’re all yum-and-squirty.”</i> Both nod in unison, in perfect agreement that a squirtier you is a net positive for the universe as a whole.");
+		output("\n\nThe right head titters, <i>“Such a lovely snacky-snack, cum-and-pack!”</i> The left wobbles, hair lengthening thanks to the freshly deposited mass. <i>“Take some mush, then come back when you’re all yum-and-squirty.”</i> Both nod in unison, in perfect agreement that a squirtier like you is a net positive for the universe as a whole.");
 	}
 	processTime(20);
 	pc.orgasm();
@@ -1719,7 +1719,7 @@ public function meetTrapQueensSubject():void
 	else output("-");
 	output("?”</i>");
 
-	output("\n\nAzra throws the gloves aside and grabs a tissue from a compartment in her armor. <i>“I’m aware.”</i> She repeatedly wipes her nose to no visible effect. <i>“I doubt such brief exposure is cause for worry. Our little skittish little friend seemed no worse for the wear.”</i>");
+	output("\n\nAzra throws the gloves aside and grabs a tissue from a compartment in her armor. <i>“I’m aware.”</i> She repeatedly wipes her nose to no visible effect. <i>“I doubt such brief exposure is cause for worry. Our skittish little friend seemed no worse for the wear.”</i>");
 	output("\n\nYou think back to the sight of the girlish raskvel’s canteloup-sized sack, undeniably swollen with a tremendous load of jizz.");
 	if(pc.isBimbo()) output(" You should’ve sucked him off before he got away.");
 
@@ -2177,7 +2177,7 @@ public function raskyRooOrgipoo():void
 	if(pc.isBimbo() && flags["AZRA_RASK_PC_SUCKED"] != undefined) output("One blowie is absolutely not enough. You nod and grin your eager assent - triggering sharp intakes of breath and excited whispering amongst the raskvel bois - and follow the sydian’s swinging, feathery tail as she turns and sashays away into her territory.");
 	else output("You are pleased she made the overture - this was turning out to be a very dry encounter. Can you claim to have had successful negotiations if you didn’t all fuck at the end? You nod and grin your eager assent - trigger sharp intakes of breath and excited whispering amongst the raskvel bois - and follow the sydian’s swinging tail as she turns and sashays away into her territory.");
 	output("\n\n<i>“Are you wondering how I became a Queen, stranger?”</i> the tan creature asks. Even heavily clad in her armor it’s obvious she has a nice figure, slim and muscular but with hourglass swells that make the mouth water. She’s taken you to a steep hollow created by the bulwark of a half-buried spaceship, the heavily plated metal craning over a depression furnished with a large number of pillows and a spiky, welded together chair that obviously fancies itself as a throne. The sydian shoos her small charges down into it as she continues to speak.");
-	output("\n\n<i>“I knew I was destined for greatness, but my people do not recognise such things in females. So I had to find another way of building a realm. These raskvel are all outcasts too - effeminate males are the lowest ranking of their kind. But they obey me with total loyalty and fearlessness, thanks to my discovery of the spunkshroom, which makes them far more potent and lively than any male that used to be cruel to them.”</i>");
+	output("\n\n<i>“I knew I was destined for greatness, but my people do not recognize such things in females. So I had to find another way of building a realm. These raskvel are all outcasts too - effeminate males are the lowest ranking of their kind. But they obey me with total loyalty and fearlessness, thanks to my discovery of the spunkshroom, which makes them far more potent and lively than any male that used to be cruel to them.”</i>");
 	output("\n\nShe sinks back into her throne, and with a wriggle of her muscles and a grateful sigh she begins to peel her armor back, revealing the soft, smooth orange skin beneath. Tiny flakes of rust hang in the still air down here. You emit little puffs of bronze dust as her fine, firm breasts and protuberant nipples slide into view.");
 	output("\n\n<i>“Soon I shall have an army of them at my command,”</i> husks the sydian, feathers waving and prideful desire inflaming her face, compound eyes unfocused as she mauls her own boob, fingers sinking deep into the softness there as she pulls at the nipple. She recrosses her legs, and you catch a glimpse of her pussy, as soft, pale and plump as her armor is hard, tanned and severe. <i>“But - for now - I have them, and you. And it’s treat time. So what shall we do with you?”</i>");
 	processTime(4);
@@ -2253,7 +2253,7 @@ public function spitRoastRaskvelTimes():void
 		if(pc.hasVagina()) output("cunt");
 		else output("ass-pussy");
 		output(" beckons, a more generous hole than they have ever known, or ever will. <i>“Why are you fighting? There’s plenty of room for everyone.”</i>");
-		output("\n\n<i>“Yeah... <i>“ breathes one, his teeth loosening from the other’s shoulder, hypnotised. He grips your hips and easily inserts himself deep inside your [pc.vagOrAss] again; you shiver as you feel the other clamber on top of him, and then shrill with joy, eyes rolling, as with assertive thrusts, he fucks his way inside as well, stretching and packing your tunnel out with hot dick. Your open mouth is filled by the raskvel in front, unable to simply stand by and watch anymore, and in moments all three are sawing themselves into your tender, over-stimulated holes.");
+		output("\n\n<i>“Yeah...”</i> breathes one, his teeth loosening from the other’s shoulder, hypnotised. He grips your hips and easily inserts himself deep inside your [pc.vagOrAss] again; you shiver as you feel the other clamber on top of him, and then shrill with joy, eyes rolling, as with assertive thrusts, he fucks his way inside as well, stretching and packing your tunnel out with hot dick. Your open mouth is filled by the raskvel in front, unable to simply stand by and watch anymore, and in moments all three are sawing themselves into your tender, over-stimulated holes.");
 		if(pc.hasVagina()) pc.cuntChange(0,chars["RASKVEL_MALE"].cockVolume(0)*2);
 		else pc.buttChange(chars["RASKVEL_MALE"].cockVolume(0)*2);
 	}
@@ -2315,7 +2315,7 @@ public function raskOrgyPart2(route:String):void
 	output("-swelling load of hot cum into you. Void below, was that a single ejaculation?! The way your belly has been swollen out by that heavy liquid weight, it’s as if he’s made you three months pregnant in the space of three seconds. The reptilian femboy has barely slowed down; he’s still hammering himself athletically into your cum-stuffed ");
 	if(pc.hasVagina()) output("snatch");
 	else output("asshole");
-	output(", spattering it everywhere, digging into your tenderised walls in a way that makes you utter gasps around the erect cock you’re tending to with your mouth.");
+	output(", spattering it everywhere, digging into your tenderized walls in a way that makes you utter gasps around the erect cock you’re tending to with your mouth.");
 	//Supah loose or DP
 	if(route == "normal DP" || route == "pussies DP" || route == "doublestuff")
 	{
@@ -2460,7 +2460,7 @@ public function raskOrgyPart4():void
 	if(pc.legCount > 1) output("bow-leggedly");
 	else output("very tenderly");
 	output(" make your way over to her. <i>“I, uh... guess you did!”</i> She snaps her pad shut and gathers up her samples briskly. <i>“Can we go back to the ship now?”</i>");
-	output("That sounds like a great idea.");
+	output("\n\nThat sounds like a great idea.");
 	processTime(20);
 	clearMenu();
 	addButton(0,"Next",backSafeAndSoundAfterTarkusBooty);
@@ -2885,7 +2885,7 @@ public function thighsAndFrottageGogogo():void
 	output(", aching and trembling. White spills out from underneath it as Azra cums, spreading into a sticky web as it oozes down her thighs.");
 
 	output("\n\nYour [pc.cum] ");
-	if(len >= 66) output("fires into the wall, saving Azra from a direct facial by virtue of your raw length");
+	if(len >= 66) output("fires into the wall, saving Azra from a direct facial by virtue of your raw length.");
 	else if(len >= 53) output("fires directly into her wide-open mouth. Azra responds by trying to drink the offered goo, wrapping her arms around the [pc.cockHead " + x + "] and pinning it into her boobs.");
 	else output("fires into her silky cleavage. Azra responds by cupping her arms around her boobs to press them tighter, squeezing out dollops of [pc.cumColor] release.");
 	output(" The suula is almost too affectionate. Even when her ankles slip from your weakening hands, she holds her legs together.");

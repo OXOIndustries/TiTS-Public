@@ -1566,7 +1566,7 @@ public function oserreDildoDisplayScene():void
 	{
 		output("\n\n[pc.Cum] ");
 		if(pc.cumQ() < 20) output("dribbles from you, blending flawlessly with the rainbows of colored oil continuously forming and breaking on the water’s surface with nary a [pc.cumColor] speck to reveal your release.");
-		else if(pc.cumQ() < 250) output("spurts from your cock in thick, pent-up ropes that lance out with enough force to break the water’s surface.");
+		else output("spurts from your cock in thick, pent-up ropes that lance out with enough force to break the water’s surface.");
 		//big only
 		if(pc.cumQ() >= 500) output(" Your wanton body produces so much, spurt after shot after stroke, that the color and consistency of the pool begin to change, becoming tangibly [pc.cumVisc] and streaked with [pc.cumColor]. The spunk clings to Oserre’s hand as it glides up your prick, in and out of the water, churning your mess of cum in with her own like a surreal external fertilization.");
 	}

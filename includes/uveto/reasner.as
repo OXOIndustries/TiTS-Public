@@ -757,7 +757,11 @@ public function makeLoveToBeatrice():void
 	//Suckle
 	addButton(1,"Suckle",suckleBeatriceTitttttaaaaaays,undefined,"Suckle","Drink from her bosom.");
 	//Reach-Around
-	if(pc.hasGenitals()) addButton(2,"Reach Around",reachAroooooooooogalaBeatrice,undefined,"Reach Around","Let " + flags["BEA_TITLE"] + " pleasure you with her hands.");
+	if(pc.hasGenitals()) 
+	{
+		if(!pc.hasCock() && pc.blockedVaginas() > 0) addDisabledButton(2,"Reach Around","Reach Around","With something obstructing your feminine sex, this would be a poor activity.");
+		else addButton(2,"Reach Around",reachAroooooooooogalaBeatrice,undefined,"Reach Around","Let " + flags["BEA_TITLE"] + " pleasure you with her hands.");
+	}
 	else addDisabledButton(2,"Reach Around","Reach Around","You need a penis or a vagina for this.");
 	addButton(14,"Nevermind",nevermindLetsNotFuckBecauseImTerrible);
 }
@@ -1285,7 +1289,7 @@ public function beatriceLeaves2():void
 	if(pc.isNice()) output("You feel like you have a special connection, it’s");
 	else output("It’s");
 	output(" a shame you have to part ways.");
-	output("\n\n<i>“I may be late in saying this, but,</i> she pauses to get your attention, an unusually serious expression on her face, <i>“would you consider joining my crew?”</i>");
+	output("\n\n<i>“I may be late in saying this, but,”</i> she pauses to get your attention, an unusually serious expression on her face, <i>“would you consider joining my crew?”</i>");
 	output("\n\nFor a moment it tempts you, but you can’t. You ");
 	if(pc.isNice()) output("politely ");
 	output("decline her offer, saying that you still have an inheritance to claim.");
@@ -1300,6 +1304,7 @@ public function beatriceLeaves2():void
 		if(pc.tallness < 65) output("bends down");
 		else if(pc.tallness < 72) output("leans in");
 		else if(pc.tallness < 77) output("stands on her tiptoes");
+		else output("hops up");
 		output(" to put a chaste kiss on your cheek, leaving behind a red lipstick mark.");
 	}
 	else output("extends her hand and you shake it.");

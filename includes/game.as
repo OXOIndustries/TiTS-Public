@@ -256,7 +256,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		{
 			addDisabledButton(9, "Sleep", "Sleep", "You can’t afford to risk sleeping with Elenora around. Who knows if she’ll be able to hold it together... or if she’ll try something while you rest.");
 		}
-		else if(canSleep()) addButton(9, "Sleep", sleep);
+		else if(canSleep()) addButton(9, "Sleep", sleepMenu);
 		else addDisabledButton(9, "Sleep", "Sleep", "You can’t seem to sleep here at the moment....");
 	}
 	addButton(14, "Codex", showCodex);
@@ -908,6 +908,24 @@ public function passiveTimeEffects(minPass:int = 0):Boolean
 	return false;
 }
 
+// Times of the day
+public function isMorning():Boolean
+{
+	return (hours > 4 && hours <= 10);
+}
+public function isNoon():Boolean
+{
+	return (hours > 10 && hours <= 16);
+}
+public function isEvening():Boolean
+{
+	return (hours > 16 && hours <= 22);
+}
+public function isNight():Boolean
+{
+	return (hours > 22 || hours <= 4);
+}
+
 public function canRest():Boolean
 {
 	return true;
@@ -936,6 +954,33 @@ public function restMenu():void
 	
 	addButton(14, "Back", mainGameMenu);
 }
+public function sleepMenu():void
+{
+	if(!canRest())
+	{
+		sleep();
+		return;
+	}
+	
+	clearOutput();
+	output("Do you wait for some minutes, take a rest for a few hours, or go " + (isNight() && silly ? "<i>the fuck</i> to sleep" : "to sleep for some time") + "?");
+	
+	clearMenu();
+	
+	addButton(0, "Wait 5 min", wait, 5, "Wait 5 Minutes", "Wait for 5 minutes.");
+	addButton(1, "Wait 10 min", wait, 10, "Wait 10 Minutes", "Wait for 10 minutes.");
+	addButton(2, "Wait 30 min", wait, 30, "Wait 30 Minutes", "Wait for 30 minutes.");
+	
+	addButton(5, "Wait 1 hr", wait, 60, "Wait 1 Hour", "Wait for 1 hour.");
+	addButton(6, "Wait 2 hr", wait, 120, "Wait 2 Hours", "Wait for 2 hours.");
+	addButton(7, "Wait 3 hr", wait, 180, "Wait 3 Hours", "Wait for 3 hours.");
+	
+	addButton(8, "Rest", rest, undefined, "Rest", "Take a break and fully rest a while.");
+	addButton(9, "Sleep", sleep, undefined, "Sleep", "Go to sleep for some time.");
+	
+	addButton(14, "Back", mainGameMenu);
+}
+
 public function wait(minPass:int = 0):void
 {
 	//Turn encounters back on.
@@ -1726,6 +1771,7 @@ public function flyTo(arg:String):void
 				pc.vaginas[i].delFlag(GLOBAL.FLAG_PLUGGED);
 			}
 		}
+		pc.removeStatusEffect("Pussy Plugged");
 		AddLogEvent(ParseText("While you have time in travel, you grab a quick shower and <b>the hardened substance plugging you up dissolves away!</b>"));
 		flags["SHOWERED_OUT_PLUG"] = 1;
 		pc.shower();
@@ -1852,6 +1898,7 @@ public function showerOptions(option:int = 0):void
 					output(" <b>The plug in your ass vanishes as well.</b>");
 					pc.ass.delFlag(GLOBAL.FLAG_PLUGGED);
 				}
+				pc.removeStatusEffect("Pussy Plugged");
 			}
 			else
 			{
@@ -2782,6 +2829,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		processElliePregEvents(deltaT, doOut, totalDays);
 		processIlariaPregEvents(deltaT, doOut, totalDays);
 		processFZilPregEvents(deltaT, doOut, totalDays);
+		processUlaPregEvents(deltaT, doOut, totalDays);
 		//9999 processQuaellePregEvents(deltaT, doOut, totalDays);
 	}
 	
@@ -2884,8 +2932,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		{
 			if (!MailManager.isEntryUnlocked("shade_xmas_invite"))
 			{
-				if(shadeIsHome() && (shadeIsLover() || shadeIsSiblings()) && (flags["SHADE_ON_UVETO"] == 2 || flags["SHADE_ON_UVETO"] == 3))
-				goMailGet("shade_xmas_invite");
+				if(shadeIsHome() && (shadeIsLover() || shadeIsSiblings())) goMailGet("shade_xmas_invite");
 			}
 		}
 		//Prai email stuff
@@ -3332,7 +3379,7 @@ public function processRiyaEvents(deltaT:uint, doOut:Boolean):void
 public function processReahaEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
 {
 	var totalHours:int = ((minutes + deltaT) / 60);
-	if (totalHours >= 1 && flags["REAHA_PAY_Q"] == 1 && currentLocation == "SHIP INTERIOR")
+	if (!disableExploreEvents() && totalHours >= 1 && flags["REAHA_PAY_Q"] == 1 && currentLocation == "SHIP INTERIOR")
 	{
 		flags["REAHA_PAY_Q"] = undefined;
 		if(eventQueue.indexOf(reahaPaybackEvent) == -1) eventQueue.push(reahaPaybackEvent);
@@ -3693,3 +3740,23 @@ public function emailRoulette():void
 		}
 	}
 }
+
+// Event Dates
+// checkDate(day:int, month:int, dayRange:int)
+public function isEaster():Boolean
+{
+	return checkDate(16, 4, 2);
+}
+public function isNearlyJulyFourth():Boolean
+{
+	return checkDate(4, 7, 7);
+}
+public function isHalloweenish():Boolean
+{
+	return checkDate(29, 10, 10);
+}
+public function isChristmas():Boolean
+{
+	return checkDate(25, 12, 8);
+}
+

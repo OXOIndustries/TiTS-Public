@@ -171,7 +171,7 @@
 					changes++;
 				}
 				//Decrease Breast Size
-				if(pc.biggestTitSize() >= 2 && rand(4) == 0 && changes < changeLimit)
+				if(pc.breastRows[pc.biggestTitRow()].breastRatingRaw > 2 && rand(4) == 0 && changes < changeLimit)
 				{
 					if(pc.breastRatingUnlocked(0, 2))
 					{

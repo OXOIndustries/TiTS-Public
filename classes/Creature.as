@@ -1910,6 +1910,7 @@
 					buffer = crotchDescript();
 					break;
 				case "base":
+				case "cockBase":
 				case "sheath":
 				case "sheathDescript":
 					buffer = sheathDescript(arg2);
@@ -1943,6 +1944,7 @@
 					buffer = cocksDescriptLight();
 					break;
 				case "cocksSimple":
+				case "cocksShort":
 				case "cocksNoun":
 				case "cocksNounSimple":
 					buffer = simpleCocksNoun();
@@ -1954,6 +1956,7 @@
 				case "cockLight":
 				case "cockSimple":
 				case "cockNounSimple":
+				case "cockShort":
 				case "cockNoun":
 					buffer = simpleCockNoun(arg2);
 					break;
@@ -1990,6 +1993,10 @@
 				case "cockBiggest":
 					buffer = cockDescript(biggestCockIndex());
 					break;
+				case "biggestCockNoun":
+				case "cockBiggestNoun":
+					buffer = simpleCockNoun(biggestCockIndex());
+					break;
 				case "biggestCockHead":
 				case "cockHeadBiggest":
 					buffer = cockHead(biggestCockIndex());
@@ -2002,8 +2009,18 @@
 				case "cockSmallest":
 					buffer = cockDescript(smallestCockIndex());
 					break;
+				case "smallestCockNoun":
+				case "cockSmallestNoun":
+					buffer = simpleCockNoun(smallestCockIndex());
+					break;
+				case "shortestCockDescript":
+				case "shortestCock":
 				case "cockShortest":
 					buffer = cockDescript(shortestCockIndex());
+					break;
+				case "shortestCockNoun":
+				case "cockShortestNoun":
+					buffer = simpleCockNoun(shortestCockIndex());
 					break;
 				case "eachCockHead":
 					buffer = eachCockHead();
@@ -2044,7 +2061,7 @@
 					buffer = nippleNoun(arg2);
 					break;
 				case "nipplesNoun":
-					buffer = plural(nippleNoun(arg2));
+					buffer = nipplesNoun(arg2);
 					break;
 				case "nipple":
 				case "nippleDescript":
@@ -2166,6 +2183,7 @@
 				case "biggestBreastDescript":
 					buffer = biggestBreastDescript();
 					break;
+				case "breastDescript":
 				case "breasts":
 				case "boobs":
 				case "tits":
@@ -2442,6 +2460,7 @@
 				case "fingers":
 					buffer = fingers();
 					break;
+				case "lowerbody":
 				case "lowerBody":
 					buffer = lowerBody();
 					break;
@@ -3204,6 +3223,7 @@
 				{
 					if(isPlugged(i)) vaginas[i].delFlag(GLOBAL.FLAG_PLUGGED);
 				}
+				removeStatusEffect("Pussy Plugged");
 				AddLogEvent(ParseText("<b>After the cleaning, you're delighted to find that the hardened substance plugging you up has dissolved away!</b>"));
 				flags["SHOWERED_OUT_PLUG"] = 1;
 			}
@@ -5359,7 +5379,7 @@
 		public function hasEmoteEars(): Boolean
 		{
 			// For ear types that move emotively, like cute animal ears.
-			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
+			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_SIMII) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
 			return false;
 		}
 		public function earDescript(): String
@@ -5483,6 +5503,10 @@
 				case GLOBAL.TYPE_SHEEP:
 					adjectives = ["sheep", "lamb-like", "floppy"];
 					if(!nonFurrySkin) adjectives.push("softly furred");
+					break;
+				case GLOBAL.TYPE_SIMII:
+					adjectives = ["simii", "simian", "monkey", "monkey-like", "oddly-shaped"];
+					if(hasFaceFlag(GLOBAL.FLAG_FURRED)) adjectives.push("furry", "softly furred");
 					break;
 			}
 			if (hasLongEars()) adjectives.push(num2Text(Math.round(earLength)) + "-inch long");
@@ -5698,7 +5722,7 @@
 			return description;
 		}
 		public function hasSmallNose(): Boolean {
-			return InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_HUMANMASKED, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_MOUSEMAN, GLOBAL.TYPE_MOUSE);
+			return InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_HUMANMASKED, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_MOUSEMAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_SIMII);
 		}
 		public function faceDesc(): String {
 			var faceo: String = "";
@@ -6427,6 +6451,7 @@
 					case GLOBAL.TYPE_AVIAN: adjectives.push("avian", "bird-like"); break;
 					case GLOBAL.TYPE_SHARK: adjectives.push("shark-like","shark-like","shark-like","piscine"); break;
 					case GLOBAL.TYPE_SWINE: adjectives.push("pig-nosed"); break;
+					case GLOBAL.TYPE_SIMII: adjectives.push("simian", "monkey-like"); break;
 				}
 				if (hasFaceFlag(GLOBAL.FLAG_ANGULAR)) adjectives.push("angular");
 				if (hasFaceFlag(GLOBAL.FLAG_LONG)) adjectives.push("long");
@@ -6610,6 +6635,9 @@
 					break;
 				case GLOBAL.TYPE_SHEEP:
 					adjectives = ["sheep", "sheep-like"];
+					break;
+				case GLOBAL.TYPE_SIMII:
+					adjectives = ["simii", "simian", "monkey", "monkey-like"];
 					break;
 			}
 			// Flags
@@ -6917,6 +6945,7 @@
 						case GLOBAL.TYPE_SWINE: adjectives = ["swine", "swine", "pig-like"]; break;
 						case GLOBAL.TYPE_TENTACLE: adjectives = ["tentacle-toed", "tentacled", "tentacle imitation", "tentacle formed"]; break;
 						case GLOBAL.TYPE_SHEEP: adjectives = ["sheep", "sheep", "sheep-like", "lamb-like"]; break;
+						case GLOBAL.TYPE_SIMII: adjectives = ["simii", "simian", "simiiforme", "monkey-like"]; break;
 					}
 				}
 				//ADJECTIVE!
@@ -6992,6 +7021,7 @@
 					case GLOBAL.TYPE_NYREA: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
 					case GLOBAL.TYPE_SHARK: adjectives = ["shark-like","clawed","webbed"]; break;
 					case GLOBAL.TYPE_SHEEP: adjectives = ["sheep", "sheep-like", "lamb-like", "bestial"]; break;
+					case GLOBAL.TYPE_SIMII: adjectives = ["simian", "ape-like", "dexterous"]; break;
 				}
 			}
 			//ADJECTIVE!
@@ -10535,6 +10565,15 @@
 			if (InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_BEE, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DRAGONFLY, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_DARK_SYLVAN, GLOBAL.TYPE_DOVE, GLOBAL.TYPE_GRYVAIN])) return true;
 			return false;
 		}
+		public function hasFlightEffects(): Boolean
+		{
+			if (hasStatusEffect("Flying")) return true;
+			return false;
+		}
+		public function clearFlightEffects(): void
+		{
+			removeStatusEffect("Flying");
+		}
 		public function hasJetpack():Boolean {
 			return false;
 		}
@@ -11046,6 +11085,7 @@
 			if (redPandaScore() >= 4) race = redPandaRace();
 			if (pigScore() >= 4) race = "pig-morph";
 			if (bunnyScore() >= 4) race = "bunny-morph";
+			if (simiiScore() >= 4) race = "simii";
 			if (ausarScore() >= 4)
 			{
 				if (huskarScore() < 3) race = "ausar";
@@ -12003,6 +12043,15 @@
 			if (hasPerk("Wooly")) counter++;
 			if (hasFur() && perkv1("Wooly") >= 1) counter++;
 			if (counter > 0 && !hasFur()) counter--;
+			return counter;
+		}
+		public function simiiScore(): int {
+			var counter: int = 0;
+			if (faceType == GLOBAL.TYPE_SIMII) counter++;
+			if (earType == GLOBAL.TYPE_SIMII) counter++;
+			if (hasTail(GLOBAL.TYPE_SIMII)) counter++;
+			if (armType == GLOBAL.TYPE_SIMII) counter++;
+			if (legType == GLOBAL.TYPE_SIMII && legCount == 2 && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter++;
 			return counter;
 		}
 		public function suulaScore(): int
@@ -13112,9 +13161,13 @@
 				nouns.push("nipple", "nipple");
 				if (isLactating() && nippleLength(rowNum) >= 1) nouns.push("nipple", "nipple", "teat", "teat");
 				nouns.push("bud");
-				}
+			}
 			return nouns[rand(nouns.length)];
-				}
+		}
+		public function nipplesNoun(rowNum:int = 0):String
+		{
+			return plural(nippleNoun(rowNum));
+		}
 		public function areolaSizeDescript(): String {
 			//Define areola size description by nippleWidth
 			var areolasize: String = "";
@@ -13600,12 +13653,12 @@
 			return descript;
 		}
 		public function vagOrAss(arg: int = 0): String {
-			if (hasVagina() && arg >= 0) return vaginaDescript(arg);
+			if (hasVagina() && arg >= 0 && !isBlocked(arg)) return vaginaDescript(arg);
 			return assholeDescript();
 		}
 		public function vagOrAssNoun(arg:int = 0):String
 		{
-			if (hasVagina() && arg >= 0) return vaginaNounDescript(arg);
+			if (hasVagina() && arg >= 0 && !isBlocked(arg)) return vaginaNounDescript(arg);
 			return assholeDescript(true);
 		}
 		//Vaginas + Descript
@@ -15629,7 +15682,7 @@
 					}
 					//A little drippy
 					else if (cumQ() < 200) {
-						if (rand(10) <= 3) descript +=  RandomInCollection(["fluid-beading", "slowly-oozing"]);
+						if (rand(10) <= 3) descript += RandomInCollection(["fluid-beading", "slowly-oozing"]);
 						else descript += RandomInCollection(["turgid", "blood-engorged", "rock-hard", "stiff", "eager"]);
 					}
 					//uber drippy
@@ -17043,6 +17096,7 @@
 		public function pregnancyMultiplier():Number
 		{
 			var bonus:Number = 0;
+			bonus += perkv1("Broodmother");
 			return (pregnancyMultiplierRaw + pregnancyMultiplierMod + bonus);
 		}
 		
@@ -17314,6 +17368,27 @@
 				if(vaginas[i].hasFlag(GLOBAL.FLAG_PLUGGED)) count++;
 			}
 			return count;
+		}
+		public function blockedVaginas():Number
+		{
+			if(vaginas.length == 0) return 0;
+			var count:Number = 0;
+			for(var i:int = 0; i < totalVaginas(); i++)
+			{
+				if(vaginas[i].hasFlag(GLOBAL.FLAG_PLUGGED) || isChastityBlocked(i)) count++;
+
+			}
+			return count;
+		}
+		public function pickUnblocked():Number
+		{
+			var options:Array = [];
+			for(var i:int = 0; i < totalVaginas(); i++)
+			{
+				if(!isBlocked(i)) options.push(i);
+			}
+			if(options.length == 0) return -1;
+			else return options[rand(options.length)];
 		}
 		//Why you gotta do me like this?
 		public function isChastityBlocked(arg:Number):Boolean
@@ -18946,7 +19021,7 @@
 		protected var OnTakeDamageOutput:String;
 		public function OnTakeDamage(incomingDamage:TypeCollection):void
 		{
-			
+
 		}
 		
 		// Uveto Specials
@@ -19366,6 +19441,13 @@
 							thisStatus.value4 += ((3 * 60) + rand(2 * 60));
  						}
 						}
+						break;
+					case "Goblinola Bar":
+					case "Laquine Ears":
+						if(thisStatus.minutesLeft <= 0) thisStatus.minutesLeft = 1;
+						break;
+					case "Ovilium":
+						if(thisStatus.minutesLeft < deltaT) thisStatus.minutesLeft = (deltaT + 1);
 						break;
 					/*
 					case "Exhibitionism Reserve":
@@ -19803,10 +19885,6 @@
 						if (!hasPregnancyOfType("OviliumEggPregnancy"))
 						{
 							requiresRemoval = true;
-						}
-						else
-						{
-							if(thisStatus.minutesLeft < 1) thisStatus.minutesLeft = 1;
 						}
 						break;
 					case "Oil Warmed":

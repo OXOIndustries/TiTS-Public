@@ -330,6 +330,7 @@
 		include "../includes/myrellion/bothriocAmbassador.as";
 		include "../includes/myrellion/bothriocSharedFunctions.as";
 		include "../includes/myrellion/bothriocCombatMobs.as";
+		include "../includes/myrellion/bothriocQuadomme.as";
 		include "../includes/myrellion/cockvines.as";
 		include "../includes/myrellion/cockvineseedling.as";
 		include "../includes/myrellion/crystalGoo.as";
@@ -402,6 +403,7 @@
 		include "../includes/uveto/drlessau.as";
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/frostwyrm.as";
+		include "../includes/uveto/heidrun.as";
 		include "../includes/uveto/jerome.as";
 		include "../includes/uveto/jerynn.as";
 		include "../includes/uveto/kaede.as";
@@ -536,7 +538,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.127";
+			version = "0.7.131";
 
 			//temporary nonsense variables.
 			temp = 0;

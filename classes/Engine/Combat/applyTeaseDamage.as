@@ -12,6 +12,7 @@ package classes.Engine.Combat
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.teaseReactions;
 	import classes.Engine.Utility.possessive;
+	import classes.Util.InCollection;
 	/**
 	 * ...
 	 * @author Gedan
@@ -135,7 +136,7 @@ package classes.Engine.Combat
 			damage = (Math.min(damage, cap) * factor);
 			
 			//Tease % resistance.
-			if (teaseType == "SQUIRT") damage = (1 - (target.getLustResistances().drug.damageValue / 100)) * damage;
+			if (InCollection(teaseType, ["SQUIRT", "DICK SLAP", "MYR VENOM"])) damage = (1 - (target.getLustResistances().drug.damageValue / 100)) * damage;
 			else damage = (1 - (target.getLustResistances().tease.damageValue / 100)) * damage;
 			//Level % reduction
 			var levelDiff:Number = target.level - attacker.level;

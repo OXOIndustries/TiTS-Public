@@ -293,10 +293,13 @@ public function pcLossToNyrea():void
 		pData = pc.getPregnancyOfType("NyreaEggPregnancy");
 		
 		output("\n\n<i>“Take my eggs,”</i> the huntress growls as the hefty orb enters you, lodging in your ass amid the sticky swamp of sexual fluids she’s squirting. Another egg soon follows, discharged into your rapidly-growing belly.");
-		if (pData.pregnancyQuantity >= 4) output(" Another comes");
-		if (pData.pregnancyQuantity >= 5) output(", and another, until");
-		else if (pData.pregnancyQuantity == 4) output(" and");
-		if (pData.pregnancyQuantity >= 4) output(" you count "+ pData.pregnancyQuantity +" big, hard-shelled eggs now resting inside you.");
+		if(pData != null)
+		{
+			if (pData.pregnancyQuantity >= 4) output(" Another comes");
+			if (pData.pregnancyQuantity >= 5) output(", and another, until");
+			else if (pData.pregnancyQuantity == 4) output(" and");
+			if (pData.pregnancyQuantity >= 4) output(" you count "+ pData.pregnancyQuantity +" big, hard-shelled eggs now resting inside you.");
+		}
 		
 		output("\n\n<i>“Finally free,”</i> the nyrean woman sighs, resting a hand on her own belly. <i>“Goodbye, my young. Live well and flourish.”</i>");
 		
@@ -345,10 +348,13 @@ public function pcLossToNyrea():void
 			pData = pc.getPregnancyOfType("NyreaEggPregnancy");
 			
 			output("\n\n<i>“Take my eggs,”</i> the huntress growls as the hefty orb enters you, lodging in your womb amid the sticky swamp of sexual fluids she’s squirting. Another egg soon follows, discharged into your rapidly-growing belly.");
-			if (pData.pregnancyQuantity >= 4) output(" Another comes");
-			if (pData.pregnancyQuantity >= 5) output(", and another, until");
-			else if (pData.pregnancyQuantity == 4) output(" and");
-			if (pData.pregnancyQuantity >= 4) output(" you count "+ pData.pregnancyQuantity +" big, hard-shelled eggs now resting inside you.");
+			if(pData != null)
+			{
+				if (pData.pregnancyQuantity >= 4) output(" Another comes");
+				if (pData.pregnancyQuantity >= 5) output(", and another, until");
+				else if (pData.pregnancyQuantity == 4) output(" and");
+				if (pData.pregnancyQuantity >= 4) output(" you count "+ pData.pregnancyQuantity +" big, hard-shelled eggs now resting inside you.");
+			}
 			
 			output("\n\n<i>“Finally free,”</i> the nyrean woman sighs, resting a hand on her own belly. <i>“Goodbye, my young. Live well and flourish.”</i>");
 			
@@ -1031,7 +1037,8 @@ public function pcLossToNyreaAdditionalOne():void
 		output("\n\nShe redoubles her efforts, making you cry out every time she roughly thrusts into you, both with delight and the realization she’s forcing her knot into you. She fiercely pulls your hips down, stretching you out over the massive base of her cock as it begins to shift, hard lumps pressing into your [pc.ass]. Your first notice that she’s cumming is a spray of sexual fluid into your asshole, readying you for carrying her clutch. The next thing you feel is a mixture of intense pleasure and pressure, her eggs bulging out her already-huge length as they travel down it to be deposited into your fecund intestines.");
 		pc.loadInAss(enemy); //errors here
 		pData = pc.getPregnancyOfType("NyreaEggPregnancy");
-		output("\n\nShe holds you as tightly as she can on her gigantic cock, focused only on filling you with her eggs as deeply as possible. You shudder and shake on the end of her at each insertion, your ass kept sealed for her breeding efforts by the knot. You can feel yourself swelling with each deposit, your insides stretched tightly with their newfound purpose. By the time she’s finished with you, the huntress has gifted you "+ pData.pregnancyQuantity +" eggs to carry for her as her beta.");
+		output("\n\nShe holds you as tightly as she can on her gigantic cock, focused only on filling you with her eggs as deeply as possible. You shudder and shake on the end of her at each insertion, your ass kept sealed for her breeding efforts by the knot. You can feel yourself swelling with each deposit, your insides stretched tightly with their newfound purpose.");
+		if(pData != null) output(" By the time she’s finished with you, the huntress has gifted you "+ pData.pregnancyQuantity +" eggs to carry for her as her beta.");
 		output("\n\nShe releases you with a satisfied groan and you go limp, draped across the cavern floor like a puppet with its’ strings cut as her cock slides out of your abused [pc.asshole]. She stands and collects her chainmail bikini, talking as she dresses herself.");
 		output("\n\n<i>“It was worth saving up for you, outsider. I’ve half a mind to take you back to the palace with me, such is your talent for being bred. There’s really only one reason I’m not.”</i>");
 		output("\n\n She pauses to meet your eyes and gives you a predatory smile.");
@@ -1070,7 +1077,9 @@ public function pcLossToNyreaAdditionalOne():void
 			output("\n\n<i>“See? Isn’t it – wonderful – offworlder? To be fucked – full of my eggs?”</i> The huntress inquires between grunts of effort and pleasure, clearly not expecting a coherent answer out of your gritted teeth. <i>“You’ll never – go empty again – if you submit.”</i>");
 			pc.loadInCunt(enemy, tHole);
 			pData = pc.getPregnancyOfType("NyreaEggPregnancy");
-			output("\n\nAt last all " + pData.pregnancyQuantity +" of her eggs lie where they should and she slowly pulls out of you, savoring your reactions as you’re stretched around the knot again. She gets to her feet, rolling you onto your back to get a good look at your tummy. The alpha smiles triumphantly at your massively swollen form, limbs still trembling in the wake of your intense climax during breeding. She pads away silently, slipping into the darkness. It’s going to be a while before your numb lower half will even allow for getting up...");
+			output("\n\n");
+			if(pData != null) output("At last all " + pData.pregnancyQuantity +" of her eggs lie where they should and she slowly pulls out of you, savoring your reactions as you’re stretched around the knot again. ");
+			output("She gets to her feet, rolling you onto your back to get a good look at your tummy. The alpha smiles triumphantly at your massively swollen form, limbs still trembling in the wake of your intense climax during breeding. She pads away silently, slipping into the darkness. It’s going to be a while before your numb lower half will even allow for getting up...");
 			processTime(60);
 			pc.orgasm();
 			lostToAlpha(1);

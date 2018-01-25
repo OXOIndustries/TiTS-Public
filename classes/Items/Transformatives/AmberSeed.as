@@ -796,7 +796,7 @@ package classes.Items.Transformatives
 				options.push(function():*{
 					output("\n\nYou feel somehow... weightless. You were already very light, but this is something on a whole different level. After scanning yourself with your codex, you discover that your bones are now almost hollow, with a honeycomb structure keeping them strong yet light. Flying will be much easier with a body like this!");
 					output("\n\n(<b>Perk Gained: Hollow Bones</b> - Your body weighs less than it should.)");
-					// oviposition perk: v1 - value to substract from nBMI, which is 20-30 normally.
+					// hollow bones perk: v1 - value to substract from nBMI, which is 20-30 normally.
 					target.createPerk("Hollow Bones", 10, 0, 0, 0, "Your body weighs less than it should.");
 				});
 			}
@@ -854,8 +854,9 @@ package classes.Items.Transformatives
 					target.loadInCunt(ppOvilium, selWomb[rand(selWomb.length)]);
 					
 					//output("\n\nDebug2: " + target.perkv4("Oviposition") + " / " + kGAMECLASS.GetGameTimestamp() + " / " + (30 * 24 * 60 / target.fertility()));
-					if (target.hasPregnancyOfType("OviliumEggPregnancy") && target == kGAMECLASS.pc) {
-						AddLogEvent("<b>You get the feeling that eggs have begun to form inside you. You wonder how long it will be before they start to show?</b>", "passive");
+					if (target.hasPregnancyOfType("OviliumEggPregnancy")) {
+						if (target == kGAMECLASS.pc) AddLogEvent("<b>You get the feeling that eggs have begun to form inside you. You wonder how long it will be before they start to show?</b>", "passive");
+						target.setStatusValue("Ovilium", 4, 1); // Flag source from perk.
 						target.addPerkValue("Oviposition", 1, 1); //Count times eggpregged this way in perk.
 						target.setPerkValue("Oviposition", 4, time); // remember last preg time here
 					}

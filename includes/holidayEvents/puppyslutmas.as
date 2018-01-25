@@ -1,6 +1,6 @@
 ﻿public function annoPuppyslutmasEntry():Boolean
 {
-	if (flags["PUPPYSLUTMAS_2014"] == undefined && flags["PUPPYSLUTMAS_2014_ANNO_OFFER"] == undefined && checkDate(25, 12, 3))
+	if (flags["PUPPYSLUTMAS_2014"] == undefined && flags["PUPPYSLUTMAS_2014_ANNO_OFFER"] == undefined && isChristmas())
 	{
 		clearOutput();
 		showAnno();
@@ -120,7 +120,7 @@ public function annoPuppyslutmasArrive():void
 
 public function syriPuppyslutmasEntry():Boolean
 {
-	if (flags["PUPPYSLUTMAS_2014"] == undefined && flags["PUPPYSLUTMAS_2014_SYRI_OFFER"] == undefined && checkDate(25, 12, 3))
+	if (flags["PUPPYSLUTMAS_2014"] == undefined && flags["PUPPYSLUTMAS_2014_SYRI_OFFER"] == undefined && isChristmas())
 	{
 		clearOutput();
 		showSyri();

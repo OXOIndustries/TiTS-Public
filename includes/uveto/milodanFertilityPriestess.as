@@ -248,7 +248,8 @@ public function pcDefeatsFertilityPriestess(isRepeat:Boolean = false):void
 	//[Fuck her] [Get Licked] [Take Idol] [Leave]
 	clearMenu();
 	if (pc.hasCock() || pc.hasHardLightAvailable()) addButton(0, "Fuck Her", fertilityPriestessFuckHer, undefined, "Fuck Her", "This priestess seemed interested in one thing: rutting like an animal. Maybe you should give her what she wants.");
-	addButton(1, "Get Licked", fertilityPriestessGetLicked, undefined, "Get Licked", "Make the slutty priestess put that rough tongue of hers to use.");
+	if(pc.hasVagina() && pc.blockedVaginas() > 0) addDisabledButton(1,"Get Licked","Get Licked","This scene is not compatible with blocked vaginas.");
+	else addButton(1, "Get Licked", fertilityPriestessGetLicked, undefined, "Get Licked", "Make the slutty priestess put that rough tongue of hers to use.");
 	if(!isRepeat && flags["UVGR_SAVICITE_IDOL"] != 1) addButton(2, "Take Idol", fertilityPriestessTakeIdol, undefined, "Take the Idol", "First thing’s first: this savicite idol has to be worth a fortune.");
 	addButton(14, "Leave", CombatManager.genericVictory);
 }
@@ -638,7 +639,7 @@ public function pcDunkedByFertilityPriestess(isRepeat:Boolean = false):void
 		CombatManager.genericLoss();
 		return;
 	}
-	else if (!isRepeat && pc.hasVagina() && pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG) >= 0)
+	else if (!isRepeat && pc.hasVagina() && pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG) >= 0 && pc.blockedVaginas() == 0)
 	{
 		var vagIdx:int = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
 

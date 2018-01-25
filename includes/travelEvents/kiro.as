@@ -243,10 +243,9 @@ public function kiroTalkInKallysBar():void
 public function kiroTalkMenuInCanadia(arg:Function):void
 {
 	clearMenu();
-	if(arg == kiroRepeatedBFTalk) addDisabledButton(0,"Boyfriend","Boyfriend","You just discussed that.");
-	else if(flags["KIRO_BF_TALK"] == 1) addDisabledButton(0,"Boyfriend","Boyfriend","You’ve already had this discussion. Your relationship has gone as far as words alone will take it.");
-	else if(pc.mf("","f") == "") addButton(0,"Boyfriend",kiroRepeatedBFTalk,undefined,"Boyfriend","Ask about the whole “boyfriend” thing. Maybe it could happen.");
-	else addButton(0,"Girlfriend",kiroRepeatedBFTalk,undefined,"Girlfriend","Ask about the whole “girlfriend” thing. Maybe it could happen.");
+	if(arg == kiroRepeatedBFTalk) addDisabledButton(0,(pc.mf("Boy","Girl") + "friend"),(pc.mf("Boy","Girl") + "friend"),"You just discussed that.");
+	else if(flags["KIRO_BF_TALK"] == 1) addDisabledButton(0,(pc.mf("Boy","Girl") + "friend"),(pc.mf("Boy","Girl") + "friend"),"You’ve already had this discussion. Your relationship has gone as far as words alone will take it.");
+	else addButton(0,(pc.mf("Boy","Girl") + "friend"),kiroRepeatedBFTalk,undefined,(pc.mf("Boy","Girl") + "friend"),("Ask about the whole “" + pc.mf("boy","girl") + "friend” thing. Maybe it could happen."));
 
 	if(arg == askKiroForRougherSex) addDisabledButton(1,"Rougher Sex","Rougher Sex","You just discussed that.");
 	else addButton(1,"Rougher Sex",askKiroForRougherSex,undefined,"Rougher Sex","Request some rough, passionate fucking.");
@@ -3932,7 +3931,7 @@ public function kiroKallyDoubleMilkingThreesome4(x:int):void
 	output("\n\n<i>“Give her your biggest load, angel,”</i> Kiro coos. <i>“I want to see the look on her face when she realizes how much jizz she’s going to be carrying around in her gut the rest of the day.”</i>");
 	output("\n\nThe image of a big-bellied Kally stumbling around, blushing and dripping a trail of [pc.cumColor] sperm in her bar is enough to send you over the edge.");
 	if(pc.cumQ() < 50) output(" You spurt a much less impressive load into her sluttily stretched asshole, making sure every drop is deep enough to surface later as a surprise.");
-	else if(pc.cumQ() < 500) output(" You spurt a thick load deep into her sluttily stretched asshole, making sure the spunk-enema is deep enough to stay in there a good long while. You may not have given her a pregnant-looking middle, but you’ve certainly filled her with enough cream to make a half-dozen jelly-impregnated doughnuts jealous.");
+	else if(pc.cumQ() < 500) output(" You spurt a thick load deep into her sluttily stretched asshole, making sure the spunk-enema is deep enough to stay in there a good long while. You may not have given her a pregnant-looking middle, but you’ve certainly filled her with enough cream to make a half-dozen jelly-impregnated donuts jealous.");
 	else if(pc.cumQ() < 10000) output(" You flood her rectum with [pc.cumNoun]. There’s enough fluid filling to make her anus feel like your own private seed reservoir - and to give her a hint of an inflated paunch. The moment she stands up straight, strings of it will dribble out, assuming she even tries. Maybe you should have Kiro look into buying her a buttplug.");
 	else output(" You release a torrential outflow of jism - enough for the first burst to leave her belly thicker and sloshing. Your body seems intent on making your fantasy a reality, pumping gout after gout of [pc.cumGem] into her deepest recesses, so much so that rivers of it flood out from around you, soaking her luscious asscrack. Still, enough remains inside Kally to give her that <i>“just pregnant for seven or eight or nine months”</i> look that you desired. You rut against her bottom for a few minutes longer, cascading [pc.cum] everywhere, absolutely drenching the poor herm from the waist down.");
 	output("\n\nKiro is sitting down groaning by the time you finish up, her eyes half closed. She’s started to leak a steadier flow into her device.");

@@ -896,7 +896,19 @@ public function intimateCatchChaurmine():void
 	author("Aullama");
 	//Vaginas should have priority over asses if the PC has both
 	var x:int = -1;
-	if(pc.hasVagina()) x = rand(pc.totalVaginas());
+
+	var choices:Array = [-1];
+	for(x = 0; x < pc.totalVaginas(); x++)
+	{
+		if(!pc.isBlocked(x)) 
+		{
+			choices.push(x);
+			choices.push(x);
+			choices.push(x);
+		}
+	}
+	//3-1 odds for pussy is good enough for me!
+	x = choices[rand(choices.length)];
 
 	//pcDitz:
 	if(pc.isBimbo())
@@ -1315,7 +1327,7 @@ public function chaurmineTaurOral():void
 	output(".");
 
 	//pcHasCockNoCunt:
-	if(pc.hasCock() && !pc.hasVagina())
+	if(pc.hasCock() && (!pc.hasVagina() || pc.isBlocked(0)))
 	{
 		output("\n\nReaffirming his grip, the brute’s dark canine-like tongue slaps just below your [pc.asshole], dragging down to tease your perineum.");
 		output("\n\n<i>“A shame you don’t have a cunt back here,”</i> he murmurs against your taint, drawing his snout down to your ");

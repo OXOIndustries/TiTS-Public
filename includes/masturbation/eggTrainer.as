@@ -178,7 +178,7 @@ public function rawTentacleGogogo():void
 	if(x >= 0) output("pussy’s clenching walls");
 	else output("bowels");
 	output(" as it starts to worm its way into you.");
-	if(x >= 0) pc.cuntChange(x,pc.vaginalCapacity(x));
+	if(x >= 0) pc.cuntChange(x, pc.vaginalCapacity(x));
 	else pc.buttChange(pc.analCapacity());
 
 	output("\n\nThe tentacle doesn’t get an inch in before you feel something <i>else</i> coming with it. A ring of short, stubby nubs ring the tube, grinding into your [pc.vagOrAss " + x + "] on a bed of hot lube. You groan, eyes wide and knuckles going white on the handlebars. Instinctively, your body tries to fight back, to push the invading thing out of you, but it’s so slick and so strong that your defenses simply cave to the incessant pressure the machine puts on you. All that’s left to do is feel the thing squirming inside you, writhing about inside your ");
@@ -272,7 +272,7 @@ public function eggTrainingMachineTime():void
 	if(x >= 0) output("pussy’s clenching walls");
 	else output("bowels");
 	output(" as it starts to worm its way into you.");
-	if(x >= 0) pc.cuntChange(x,pc.vaginalCapacity(x));
+	if(x >= 0) pc.cuntChange(x, pc.vaginalCapacity(x));
 	else pc.buttChange(pc.analCapacity());
 
 	output("\n\nThe tentacle doesn’t get an inch in before you feel something <i>else</i> coming with it. A ring of short, stubby nubs ring the tube, grinding into your [pc.vagOrAss " + x + "] on a bed of hot lube. You groan, eyes wide and knuckles going white on the handlebars. Instinctively, your body tries to fight back, to push the invading thing out of you, but it’s so slick and so strong that your body simply gives in to the incessant pressure the machine puts on you. All that’s left to do is feel the thing squirming inside you, writhing about inside your ");
@@ -399,7 +399,7 @@ public function layingTrainingTwo():void
 	output("\n\nFinally");
 	if(flags["EGG_TRAINING"] >= 4 && flags["EGG_TRAINING"] != undefined) output(", after what seems like hours of orgasm after orgasm across dozens of eggs");
 	output(", the last egg crowns from your gaping, drooling hole. One final push, one last scream of ecstasy, and you squirt the last of your artificial progeny into the bath of warm lubricant. A ragged, gasping sigh escapes your lips, and you flop back onto the rumbling top of the Egg Trainer.");
-	if(x >= 0) pc.cuntChange(x,pc.vaginalCapacity(x));
+	if(x >= 0) pc.cuntChange(x, pc.vaginalCapacity(x));
 	else pc.buttChange(pc.analCapacity());
 
 	output("\n\nThe holo-screen bleeps at you: <i>“A good egg-slut makes sure their eggs are safe and secure after laying, then presents themselves to the egg’s layer for a second load... keep your belly nice and full!”</i>");
@@ -470,7 +470,7 @@ public function carryTrainingWithEggMachine():void
 	if(x >= 0) output("pussy’s clenching walls");
 	else output("bowels");
 	output(" as it starts to worm its way into you.");
-	if(x >= 0) pc.cuntChange(x,pc.vaginalCapacity(x));
+	if(x >= 0) pc.cuntChange(x, pc.vaginalCapacity(x));
 	else pc.buttChange(pc.analCapacity());
 
 	output("\n\nThe tentacle doesn’t get an inch in before you feel something <i>else</i> coming with it. A ring of short, stubby nubs ring the tube, grinding into your [pc.vagOrAss " + x + "] on a bed of hot lube. You groan, eyes wide and knuckles going white on the handlebars. Instinctively, your body tries to fight back, to push the invading thing out of you, but it’s so slick and so strong that your body simply gives in to the incessant pressure the machine puts on you. All that’s left to do is feel the thing squirming inside you, writhing about inside your ");
@@ -761,7 +761,7 @@ public function fauxPregImplantation():void
 	else output("pounds your pussy ");
 	output("to orgasm.");
 	if(pc.hasCock()) output(" Your [pc.cock] sprays its load all over the top of the box, throbbing and squirting in wondrous ways even without a single bit of direct stimulation.");
-	if(x >= 0) pc.cuntChange(x,pc.vaginalCapacity(x));
+	if(x >= 0) pc.cuntChange(x, pc.vaginalCapacity(x));
 	else pc.buttChange(pc.analCapacity());
 
 	output("\n\nWith a soft moan, you slump forward against the grip of the trainer box. You can feel the tentacle pumping lube into your [pc.vagOrAss " + x + "] like a cock blowing its load, making sure that your insides are completely soaked and ready for anything. After a moment, the holoscreen blinks the message, <i>“Egg implanted! Be sure to feed your baby with lots of cum!”</i>");
@@ -793,10 +793,11 @@ public function eggTrainerPreggoRemoval():void
 	author("Savin");
 	showName("EGG\nTRAINER");
 
-	var x:int = pc.findPregnancyOfType("EggTrainerFauxPreg");
-	var slot:int = x;
+	var slot:int = pc.findPregnancyOfType("EggTrainerFauxPreg");
+	var x:int = slot;
 	var pData:PregnancyData = pc.pregnancyData[slot] as PregnancyData;
 	if(x == 3) x = -1;
+	
 	output("As enjoyable as it’s been, you’ve decided it’s time to let go of your faux-preg egg. ");
 	if(x >= 0) output("If anything, having it has made you crave a real baby - or just a belly full of alien eggs - more than ever! ");
 	output("You run a hand over your [pc.belly], feeling an odd connection to the synthetic pregnancy that’s been growing inside you. It’s been fun.");
@@ -818,7 +819,7 @@ public function eggTrainerPreggoRemoval():void
 
 	output("\n\nWith a grunt of displeasure, you try and squirm off the tentacle, but it holds you firm for a long moment. During the still second, you realize that the tentacle isn’t entirely frozen: it’s swelling, ever so slightly, but definitely growing thicker inside you. You gulp, feeling the slow and steady sensation of being stretched out by the inflating pseudo-phallus. When it finishes, you’re almost painfully stretched, groaning constantly from the intense pressure in your loins - and the fire of arousal burning in you, desperate for more.");
 
-	if(x >= 0) pc.cuntChange(x,pc.vaginalCapacity(x));
+	if(x >= 0) pc.cuntChange(x, pc.vaginalCapacity(x));
 	else pc.buttChange(pc.analCapacity());
 
 	output("\n\nSomething ice-cold and sticky sprays from the tentacle’s tapered tip, blasting the bottom of the egg inside you. You yelp in surprise, almost orgasming from the shock... and finish as the tentacle decides it’s done, and slides right out of you. Gasping and crying out, you buck in the saddle and drench yourself and your trainer machine in ");
@@ -1021,7 +1022,7 @@ public function eggTrainerOvalastingGo(oIdx:int = -1):void
 	output("\n\nA faint heat starts rising from the metal, and you feel a shuddering vibration as the machine " + (!pc.hasLegs() ? "under you" : "between your [pc.legs]") + " hums to life. You squeeze your eyes shut and hold on tight as a thick, tapered tentacle wriggles up from the machine and presses its pointed crown against your [pc.vagOrAss " + oIdx + "]. It gives you a squirt of lube, painting your thighs and ass indiscriminately before forging ahead. There’s a moment of pressure as it aligns itself, and then the familiar, wonderful pleasure that presages the real treat; the tentacle slithers inside you, stretching your hole ever wider as it grows thicker, and inch after inch of smooth tube is fed into your [pc.vagOrAss " + oIdx + "].");
 	
 	if(oIdx < 0) pc.buttChange(200);
-	else pc.cuntChange(200, oIdx);
+	else pc.cuntChange(oIdx, 200);
 	
 	output("\n\nYou moan out your enjoyment, bucking your [pc.hips] back against the steadily thrusting artificial member. The familiar sensation still sends a thrill through you no matter how many times you get to enjoy it. Your knuckles turn white, squeezing down around the handle bars and letting the tentacle fuck you. It’s more vigorous and more thorough in its business than it strictly needs to be, you well know by now, but you can hardly complain as it " + (oIdx < 0 ? (pc.hasCock() ? "milks your prostate" : "rails your rectum") : "pounds your pussy") + " to orgasm.");
 	if(pc.hasCock()) output(" Your [pc.cocks] spray" + (pc.cocks.length == 1 ? "s its" : " their") + " load all over the top of the box, throbbing and squirting in wondrous ways even without a single bit of direct stimulation.");
@@ -1406,7 +1407,7 @@ public function eggTrainerOvalastingRemoval(oIdx:int = -2):void
 	output("\n\nWith a grunt of displeasure, you try and squirm off the tentacle, but it holds you firm for a long moment. During the still second, you realize that the tentacle isn’t entirely frozen: it’s swelling, ever so slightly, but definitely growing thicker inside you. You gulp, feeling the slow and steady sensation of being stretched out by the inflating pseudo-phallus. When it finishes, you’re almost painfully stretched, groaning constantly from the intense pressure in your loins -- and the fire of arousal burning in you, desperate for more.");
 	
 	if(oIdx < 0) pc.buttChange(200);
-	else pc.cuntChange(200, oIdx);
+	else pc.cuntChange(oIdx, 200);
 	
 	output("\n\nSomething ice-cold and sticky sprays from the tentacle’s tapered tip, blasting the bottom of the egg inside you. You yelp in surprise, almost orgasming from the shock... and finish as the tentacle decides it’s done, and slides right out of you. Gasping and crying out, you buck in the saddle and drench yourself and your trainer machine in ");
 	if(pc.hasGenitals())

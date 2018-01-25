@@ -127,7 +127,7 @@ public function uvetoCarbonadoMenu():void
 		//Intercept to go shopping
 		if(isChristmas())
 		{
-			if(flags["CFS_HOLIDAY_SHOPPING"] == undefined && (!pc.isTaur() || pc.hasItemByClass(HeatBelt)) && (pc.hasVagina() || pc.hasCock()))
+			if(flags["CFS_HOLIDAY_SHOPPING"] == undefined && (!pc.isTaur() || pc.hasItemByClass(HeatBelt)) && (pc.totalVaginas() > pc.blockedVaginas() || pc.hasCock()))
 			{
 				cfsHolidayShopping();
 				return;
@@ -137,7 +137,7 @@ public function uvetoCarbonadoMenu():void
 		
 		if (hours >= 20 && hours < 21 && flags["CFS_HANGOUT_EVENT_PENDING"] == 1) addButton(2, "Hangout", cfsGoHangoutTime);
 
-		if (pc.hasCock() || pc.hasVagina())
+		if (pc.hasCock() || pc.totalVaginas() > pc.blockedVaginas())
 		{
 			addButton(4, "Sleepover", cfsGoSleepover);
 			addButton(6, "Lewd Massage", cfsGoLewdMassage);
@@ -859,6 +859,7 @@ public function cfsGoSleepover():void
 	}
 	else
 	{
+		var p:int = pc.pickUnblocked();
 		output("\n\nInquiring fingers quickly reach your [pc.clit], rubbing around before");
 		if (pc.vaginas.length > 1)
 		{
@@ -881,7 +882,7 @@ public function cfsGoSleepover():void
 
 		output("\n\nAs your moans increase in volume you notice something strange. Each time your voice reaches its peak the chubby puazi’s legs clench together, toes spreading as her thighs rub fruitlessly together. The sight brings a cruel thought to your mind, one you can’t help but entertain. You lean forward, wrenching the amorous alien’s legs apart and holding them open. Your interference does nothing to stop her torrent of licks, but you hear a questioning grunt the next time she grabs a breath.");
 
-		output("\n\nYou focus the pleasure running in your veins, controlling the volume of your moaning. Gwen’s thighs begin to clench as you grow louder, and you hear a pained groan as her phosphorescent pussy twitches needfully. Her legs strain to close as your voices intensity rises, but you arent about to let her off the hook so easily. A long tongue dives into your [pc.pussy], Finding just the right spot to break your regulated vocalizations into a carnal concert. Expressions of symphonic delight burst from your mouth, and your whole body quivers wonderfully with each note.");
+		output("\n\nYou focus the pleasure running in your veins, controlling the volume of your moaning. Gwen’s thighs begin to clench as you grow louder, and you hear a pained groan as her phosphorescent pussy twitches needfully. Her legs strain to close as your voices intensity rises, but you arent about to let her off the hook so easily. A long tongue dives into your [pc.pussy " + p + "], Finding just the right spot to break your regulated vocalizations into a carnal concert. Expressions of symphonic delight burst from your mouth, and your whole body quivers wonderfully with each note.");
 		if (pc.hasCock()) output(" [pc.eachCock] spurts [pc.cumColor] jizz to mix with the hot femcum already splattered onto the multicolored maiden’s chest, smeared in by an impromptu " + (!silly ? "boobjob" : "Puazuri") + ".");
 
 		output("\n\nBeneath you, the punished puazi tenses, love juices squirting like a leaky faucet. Coming off of your own high, you jump on this opportunity, quickly plugging her hole with two fingers. Her legs slap shut around your hand, but it’s too late to block your driving digits. The slippery sex syrup dripping from her cunt makes any pressure her thighs apply near to meaningless. You simply glide through the improvised blockade to continue your relentless fingering.");
@@ -918,7 +919,7 @@ public function cfsGoVidja():void
 
 	output("\n\n<i>“Hey Gwen, we’re going to play games. The interns can lock up tonight. [pc.name] wants to come over,”</i> she explains. The heart-emblazoned puazi all but tosses her tablet onto the counter, rushing into the back room and emerging moments later with a hastily donned jacket. One of the neck tassels is caught on her horns, and she quickly bats it off.");
 
-	output("\n\n<i>“Well then? Let’s hurry down!”</i> she exclaims, hooking an arm under yours and pulling you out the door. Eimear walks just ahead of you, hitting the button to start the elevator and opening the door when you arrive at the couple’s apartment. She immediately heads for the entertainment center, setting a small tablet onto a Girderbeam Inc. Gaming Panel. A 3d screen pops up, showcasing the intro video to what looks like a fighting game. A bounty of fighters clash while shouting catchphrases and abilities that all but drown each other out.");
+	output("\n\n<i>“Well then? Let’s hurry down!”</i> she exclaims, hooking an arm under yours and pulling you out the door. Eimear walks just ahead of you, hitting the button to start the elevator and opening the door when you arrive at the couple’s apartment. She immediately heads for the entertainment center, setting a small tablet onto a Girderbeam Inc. Gaming Panel. A 3D screen pops up, showcasing the intro video to what looks like a fighting game. A bounty of fighters clash while shouting catchphrases and abilities that all but drown each other out.");
 
 	output("\n\n<i>“We can use my account, I have all the characters unlocked and everything. I spent a probably unhealthy amount of time and money on this game a couple years ago, and then a bunch more during the Flare collaboration to get him unlocked for Gwen. He’s the only character she’s good at,”</i> she whispers the last bit as she shoves a controller into your hands. It lacks buttons, instead having two simple touchpads for your thumbs and two more for your index fingers where triggers and bumpers would be placed.");
 	
@@ -1116,7 +1117,8 @@ public function cfsGoLewdMassage():void
 		output("\n\n<i>“Let’s have a little fun, shall we?”</i> she asks teasingly.");
 	}
 
-	var doMale:Boolean = !pc.hasVagina() || (pc.hasCock() && rand(2) == 0);
+	//var doMale:Boolean = !pc.hasVagina() || (pc.hasCock() && rand(2) == 0);
+	var doMale:Boolean = pc.hasCock() && (pc.totalVaginas() <= pc.blockedVaginas());
 
 	if (doMale)
 	{
@@ -1140,15 +1142,16 @@ public function cfsGoLewdMassage():void
 	}
 	else
 	{
+		var p:int = pc.pickUnblocked();
 		output("\n\n");
 		if (pc.hasCock()) output("<i>“You didn’t think I’d forget about this, did you?”</i> she teases");
 		else if (pc.vaginas.length == 1) output("<i>“There’s always stress to be worked out down here,”</i> she jokes");
 		else output("<i>“I’m always surprised by the variety of body types we get here,”</i> she marvels");
 		output(", methodically squeezing your inner thighs. She lets two fingers slip between your folds, slowly circling the hole. You gasp as she slips inside, the penetration made all too easy by her natural lubricant.");
 
-		output("\n\nShe wastes no time, plugging your [pc.cunt] with");
-		if (pc.gapestVaginaLooseness() <= 1) output(" a single digit");
-		else if (pc.gapestVaginaLooseness() <= 3) output(" a pair of digits");
+		output("\n\nShe wastes no time, plugging your [pc.cunt " + p + "] with");
+		if (pc.vaginas[p].looseness() <= 1) output(" a single digit");
+		else if (pc.vaginas[p].looseness() <= 3) output(" a pair of digits");
 		else output(" her whole hand");
 		output(". Her skin is slick and warm, caressing your insides with delicate devoir. At first her movements are broad, searching for <i>“stress points”</i> along your inner walls and focusing in when her touch brings a moan to your lips. Her free hand massages your [pc.chest] as she works, splaying as she draws it down your midsection to repeat the movements.");
 

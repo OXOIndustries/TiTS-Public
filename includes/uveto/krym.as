@@ -225,10 +225,10 @@ public function duelKrym():void
 public function useUvetoBeacon():void
 {
 	clearOutput();
-	showKrym();
 	author("Savin");
 	if(hours >= 5 && hours < 19)
 	{
+		showKrym();
 		output("<i>“Sure thing, Steele,”</i> Krym says, jerking a thumb toward the beeping Q-COMM beacon in the middle of the pillar forest. <i>“Just hook your Codex in and she’ll get a signal anywhere on-planet.”</i>");
 		output("\n\nYou do as she says, syncing your Codex up with the Stormguard network, and a moment later, that of the Confederate Scout Authority and their rapid transit system. You can call in for pickup here, no problem.");
 		if(inCombat()) 
@@ -255,15 +255,17 @@ public function useUvetoBeaconMenu():void
 	addButton(0,"Irestead",uvetoTaxiShitGooo,"UVI P40");
 	if (flags["UVIP_R10_PROBE_ACTIVE"] == undefined) addDisabledButton(1, "Probe");
 	else addButton(1, "Probe", uvetoTaxiShitGooo, "UVIP R10");
-	if(hours >= 5 && hours < 19) addButton(4,"Nevermind",krymMenu);
-	else addButton(4,"Nevermind",mainGameMenu);
+	if(hours >= 5 && hours < 19) addButton(14,"Nevermind",krymMenu);
+	else addButton(14,"Nevermind",mainGameMenu);
 }
 
 //PC chooses destination:
 public function uvetoTaxiShitGooo(destination:String):void
 {
 	clearOutput();
-	showKrym();
+	if(hours >= 5 && hours < 19) showKrym();
+	else showBust("");
+	showName("\nTRANSIT!");
 	author("Savin");
 	output("You punch in your destination, and all there is left to do is wait. Given the cold, you decide to retreat into the awning of the bunker, getting shelter from the winds until, a few minutes later, you hear the roar of hovercraft engines and a beam of light lancing through the snow. Stepping back out and shielding your eyes, you watch the snow-patterned hover car slowly setting down amidst the black pillars looming up from the plateau.");
 	output("\n\nYou head over and pop the door, finding a shiny chrome robot in the driver’s seat waiting for you.");
@@ -403,7 +405,7 @@ public function loseToThatIcyBimbo():void
 	krymCombatTrack(false);
 	//[Next]//to relevant version. If the PC is a herm or a shemale, 50/50 odds between which scene they get.
 	clearMenu();
-	if(pc.hasCock() && (!pc.hasVagina() || rand(2) == 0)) addButton(0,"Next",hasACockLoseToKrym);
+	if(pc.hasCock() && (!pc.hasVagina() || rand(2) == 0 || pc.blockedVaginas() > 0)) addButton(0,"Next",hasACockLoseToKrym);
 	else addButton(0,"Next",pcGonnaGetFucked);
 }
 
@@ -489,7 +491,7 @@ public function pcGonnaGetFucked():void
 	
 	var krymHardlight:Number = 500;
 	var vIdx:int = -1;
-	if(pc.hasVagina()) vIdx = rand(pc.vaginas.length);
+	if(pc.hasVagina() && pc.blockedVaginas() == 0) vIdx = rand(pc.vaginas.length);
 	
 	output("<i>“Fuck, that’s the stuff,”</i> Krym growls, grinding her hips into your face, taking your tongue as deep as it’ll go into her pussy. <i>“Keep going, and I’ll get you nice and ready.”</i>");
 	output("\n\nWhat, you’re not already doing the deed? You can’t exactly see anything, with your face full of lush, pale ass, but you can feel Krym reach off the bed and start rustling around, grabbing something off her nightstand.");
@@ -620,7 +622,8 @@ public function fuckKrym():void
 	if(pc.hasHardLightEquipped() || pc.hasCock()) addButton(1,"Pitch Vaginal",pitchVagimalKrym,undefined,"Pitch Vaginal","Take Krym to pound town.");
 	else if(pc.hasCock()) addDisabledButton(1,"Pitch Vaginal","Pitch Vaginal","Your dick is way too fat to fit in there.");
 	else addDisabledButton(1,"Pitch Vaginal","Pitch Vaginal","You need a penis or hardlight strap-on to give her pussy the pounding it so righteously deserves.");
-	if(pc.hasVagina()) addButton(2,"Tribbing",consensualTribbingWithKrym,undefined,"Tribbing","Get down and dirty with Krym and rub pussies.");
+	if(pc.hasVagina() && pc.blockedVaginas() == 0) addButton(2,"Tribbing",consensualTribbingWithKrym,undefined,"Tribbing","Get down and dirty with Krym and rub pussies.");
+	else if(pc.blockedVaginas() > 0) addDisabledButton(2,"Tribbing","Tribbing","You might want to get rid of whatever is blocking up your vagina before you do this.");
 	else addDisabledButton(2,"Tribbing","Tribbing","You need a vagina for this.");
 }
 

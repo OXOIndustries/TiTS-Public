@@ -79,8 +79,8 @@ public function shadeHolidayKnock():void
 
 	output("\n\n<i>“Hey!”</i> she says from above, out of sight. <i>“Mom’s been talking you up");
 	//met before: 
-	if(flags["MET_ASTRA"] != undefined) output("nonstop since the last time we met.");
-	else output("ever since you met!");
+	if(flags["MET_ASTRA"] != undefined) output(" nonstop since the last time we met.");
+	else output(" ever since you met!");
 	output(" So tell me about all your new space adventures, huh? I barely ever get off this icecube, and no matter how much I train and train and train, no spacer’s been willing to hire a greenhorn to keep them alive in the Rush. Oh, I wish I’d been born a couple years earlier!”</i>");
 
 	output("\n\n<i>“You were born just right!”</i> Shade chides from the other room. <i>“Besides, being underage and pregnant would have sucked way worse for both of us.”</i>");
@@ -105,9 +105,9 @@ public function regaleAstra():void
 
 	output("\n\n<i>“Thank the gods,”</i> Astra cheers, hopping up. <i>“I haven’t eaten all day!”</i>");
 
-	output("\n\nYou follow her wagging ginger tail towards the source of the intoxicating aromas. The bevy of delicious scents have been steadily growing in intensity as you tell your stories, but when you finally brush through the quilted curtain that divides the kitchen from the rest of the house, you’re almost overwhelmed by the blunt force impact of so many distinct smells impact your senses all at once.");
+	output("\n\nYou follow her wagging ginger tail towards the source of the intoxicating aromas. The bevy of delicious scents has been steadily growing in intensity as you tell your stories, but when you finally brush through the quilted curtain that divides the kitchen from the rest of the house, you’re almost overwhelmed by the blunt force impact of so many distinct smells impacting your senses all at once.");
 
-	output("\n\nThe little breakfast table the Irons family owns so laden with dishes that there’s barely room for the silverware. Smoking-hot meats ooze juices into their pans, thick slices of fresh bread pipe from a wicker basket, and cream-topped pies wait in the wings to be devoured.");
+	output("\n\nThe little breakfast table the Irons family owns is so laden with dishes that there’s barely room for the silverware. Smoking-hot meats ooze juices into their pans, thick slices of fresh bread pipe from a wicker basket, and cream-topped pies wait in the wings to be devoured.");
 
 	output("\n\nYou have to stop yourself from drooling.");
 
@@ -141,18 +141,18 @@ public function eatWithShadeAndAstra():void
 	if(shadeIsSiblings() && !shadeIsLover()) output("Maybe she’s trying to make up for lost time, getting to know you as best she can.");
 	else 
 	{
-		output("You can’t tell for sure, but you get the feeling she’s just undressing you with her eyes through the whole conversation... or maybe she’s just enoughing having her partner around for the holidays. You notice a distinct lack of Astra’s sire, now that you think of it.");
+		output("You can’t tell for sure, but you get the feeling she’s just undressing you with her eyes through the whole conversation... or maybe she’s just enjoying having her partner around for the holidays. You notice a distinct lack of Astra’s sire, now that you think of it.");
 		//Did KaraQuest:
 		if(flags["KQ2_QUEST_FINISHED"] == 1) output(" Good, because that’d be... awkward, to say the least.");
 	}
 
-	output("\n\nAside from Shade’s gaze, you’ve also started hear noises from outside. A faint rumbling out there grows louder and louder with each dish you finish off, and despite the heaters billowing inside, you can feel the temperature dropping a few degrees by the time Shade’s sliding a slice of berry pie onto your plate. When you’re finally finished with everything, the house feels like it’s rumbling every few minutes, shaking with the thunder outside - and the roar of rain and hail beating down on the little hovel above ground is almost deafening.");
+	output("\n\nAside from Shade’s gaze, you’ve also started hearing noises from outside. A faint rumbling out there grows louder and louder with each dish you finish off, and despite the heaters billowing inside, you can feel the temperature dropping a few degrees by the time Shade’s sliding a slice of berry pie onto your plate. When you’re finally finished with everything, the house feels like it’s rumbling every few minutes, shaking with the thunder outside - and the roar of rain and hail beating down on the little hovel above ground is almost deafening.");
 	output("\n\n<i>“Told ya it’d be a drowning storm,”</i> Astra says as she sets aside her freshly-finished plate. <i>“Did your home planet have storms like this, [pc.name]? Kind that’ll wash you away in an instant, if the hail and lightning doesn’t kill you first.”</i>");
 	output("\n\nWell, good old Earth has its storms, sure, but you get the feeling they’re the rule on Uveto; not the exception.");
 	output("\n\nAstra snorts a laugh. <i>“Yeah, I’ll say! I’m a snow-hound, born and raised, and I don’t think I’ve ever gone a week of my life without hearing the storm’s cry.”</i>");
 	output("\n\nShe gives you a self-satisfied smile, leaning back and twirling one of her braids around a finger. Yeah, she’s a real badass for living here, for sure. You try not to roll your eyes.");
 	output("\n\n<i>“Speaking of the storm, though,”</i> Shade says, glancing up at the kitchen clock. <i>“I do hope you didn’t have any plans for the rest of the evening. Uveto’s only got two kinds of storms: deadly, and long and deadly. If it’s not clearing out by now, then it probably won’t until morning. If we’re lucky.”</i>");
-	output("\n\nHer statement’s punctuated by a rumble from the heavens that shakes you to your bones, making the lights flicker and bits of drywall billow down from the ceiling. Oh well that’s reassuring. Shade curses and shields the juiciest of the leftovers from the raining debris. You watch her pussy-tipped tail get thumped by a piece about the size of your thumbnail, and it starts to go crazy thrashing about behind her, looking for the source of the impact. Astra covers her mouth and giggles, trying not to stare at her mother’s parasitic attachment flopping around.");
+	output("\n\nHer statement’s punctuated by a rumble from the heavens that shakes you to your bones, making the lights flicker and bits of drywall billow down from the ceiling. Oh well, that’s reassuring. Shade curses and shields the juiciest of the leftovers from the raining debris. You watch her pussy-tipped tail get thumped by a piece about the size of your thumbnail, and it starts to go crazy thrashing about behind her, looking for the source of the impact. Astra covers her mouth and giggles, trying not to stare at her mother’s parasitic attachment flopping around.");
 	output("\n\n<i>“Okay, well, I’m gonna go do my evening workout,”</i> the halfbreed pup proclaims, hopping to her feet and heading for the door. She’s gone by the time Shade looks up.");
 	output("\n\nHer mother just sighs and slumps back in her chair. <i>“Don’t worry about the dishes. I’ll take care of it! Kids! Uh, no offense. You’re captain of your own ship, you probably know something about responsibility!”</i>");
 	output("\n\n");
@@ -200,22 +200,21 @@ public function cleanUpWithShade():void
 		showName("\nSHADE");
 		//Clean Up [Lovers Version]
 		output("Before you can dig into the work at hand, another pair of hands grabs your [pc.butt], squeezing hard. Shade presses herself into your back, her plump rack squeezing against you. <i>“On second thought,”</i> Shade whispers into your [pc.ear], nipping at the edge, <i>“chores can wait. Astra’s in her room, and she works out with her headphones on...”</i>");
-		output("\n\nShe’s barely had time to finish the thought before you’ve turned around, thrusting your tongue into the kitty-MILF’s mouth. She moans softly, clutching at your hips and wrapping her tail around your [pc.leg]. Instinctively, you feel ");
-		if(pc.hasCock()) output("your dick stiffening, pressing against Shade’s thigh");
+		output("\n\nShe’s barely had time to finish the thought before you’ve turned around, thrusting your tongue into the kitty-MILF’s mouth. She moans softly, clutching at your hips and wrapping her tail around your [pc.leg]. Instinctively, you feel");
+		if(pc.hasCock()) output(" your dick stiffening, pressing against Shade’s thigh");
 		if(pc.hasVagina())
 		{
-			if(pc.hasCock()) output("while ");
-			output("your pussy starts to quiver with anticipation");
+			if(pc.hasCock()) output(" while");
+			output(" your pussy starts to quiver with anticipation");
 		}
-		if(!pc.hasGenitals()) output("your body flush with desire for your feline lover");
+		if(!pc.hasGenitals()) output(" your body flush with desire for your feline lover");
 		output(". <i>“Let’s ride this storm out together, huh?”</i>");
-
 
 		output("\n\nThere’s no place you’d rather be on a cold, stormy winter’s night. You take Shade’s hand and let the mature kaithrit lead you to her bedroom.");
 
-		output("\n\nThe moment the door closes behind you, you find yourself shoved up against it with Shade’s fingers tearing at your ");
-		if(!(pc.armor is EmptySlot)) output("[pc.armor]");
-		else output("gear");
+		output("\n\nThe moment the door closes behind you, you find yourself shoved up against it with Shade’s fingers tearing at your");
+		if(!(pc.armor is EmptySlot)) output(" [pc.armor]");
+		else output(" gear");
 		output(". Her lips press feverishly against your own, then move downwards, kissing at your neck, then chest, licking and biting as she goes. Between gropes and moans, you manage to grab Shade’s shirt and yank it up over her head - and stop there, covering the kitty’s eyes and leaving her tits bouncing free. You keep her blinded with one hand, and use the other to pull her close, letting you thrust your face into her cleavage and submerge yourself in the sinful softness of her breasts.");
 
 		//Shade is lactating:
@@ -323,7 +322,7 @@ public function shadeCleanupEpilogue():void
 	{
 		output("You fall asleep in Shade’s arms, using the kitty-MILF’s breasts as your pillow. You can’t remember the last time you slept so well...");
 		output("\n\nYou awaken to the feeling on Shade stroking your [pc.hair]. <i>“Oh, you’re awake. Too bad, I was enjoying petting you... you don’t mind when an older woman takes advantage of your body, do you?”</i>");
-		output("\n\nShe laughs before you can respond, planting a kiss on your cheek. <i>“I’m just teasing... though I do loving having you here with me. Could get used to this... when you’re done with your big, important quest anyway. You know I’d never ask you to give up on it.”</i>");
+		output("\n\nShe laughs before you can respond, planting a kiss on your cheek. <i>“I’m just teasing... though I do love having you here with me. Could get used to this... when you’re done with your big, important quest anyway. You know I’d never ask you to give up on it.”</i>");
 		output("\n\nYeah, you know.");
 		output("\n\n<i>“Well, sounds like the storm’s cleared up,”</i> your lover says, sitting up on her elbows. <i>“Too bad.”</i>");
 		output("\n\nYou give her a smile and tell her not to worry - you’ll be visiting her again, and again. Not to worry.");

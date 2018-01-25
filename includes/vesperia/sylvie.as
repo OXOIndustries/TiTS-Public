@@ -2304,7 +2304,7 @@ public function redMyrSylvieFunz():void
 	{
 		output("\n\nYou turn your eyes to the plump catgirl, and her twin tails begin swishing in earnest. She gulps down a breath of air as you advance, pressing close to her body and taking her chin in one hand.");
 		output("\n\n<i>“");
-		if(silly) output("So, how do you feel about doughnuts");
+		if(silly) output("So, how do you feel about donuts");
 		else output("What an adorable kitty. How would you like to join us");
 		output("?”</i> you ask, groping one of her E-cup breasts with your free hand. The plus-sized cutie quivers at your touch, nodding shyly in response.");
 
@@ -2317,7 +2317,7 @@ public function redMyrSylvieFunz():void
 	{
 		output("\n\nYou turn your eyes to the taller gryvain, and are pleased to see her draconic dick twitch responsively as you approach. She straightens as you close in, pressing tight enough to compress her cock between your stomachs.");
 		output("\n\n<i>“");
-		if(silly) output("So, how do you feel about doughnuts");
+		if(silly) output("So, how do you feel about donuts");
 		else output("You should do as a dildo for my lover. How would you like to join us");
 		output("?”</i> you ask, running a hand over her chiseled stomach. She gulps, struggling internally for a moment before she responds.");
 		output("\n\n<i>“I-");

@@ -93,7 +93,7 @@ public function FTGHA1(args:Array):void
 	showPaige(true);
 	args.push("FTGHA1");
 	output("You bring both your hands forward and swiftly clap them onto both cheeks of her tight ass. You’ve wanted it since the first time you’ve seen her in class, and she said herself, she loves the way she can flaunt it and call it yoga. It’s all yours now, and you won’t wait a second longer.");
-	output("\n\nPaige catapults from the kiss, yelping in surprise at the ferocity of your hands. Her fur stands on end, but when she feels your grip on her, she coos and smiles down at you. <i>“Should have seen this one coming,”</i> she laughs. <i>“But I don’t blame you for wanting to get right to the good stuff. It</i> is <i> a pretty fine ass, after all.”</i>");
+	output("\n\nPaige catapults from the kiss, yelping in surprise at the ferocity of your hands. Her fur stands on end, but when she feels your grip on her, she coos and smiles down at you. <i>“Should have seen this one coming,”</i> she laughs. <i>“But I don’t blame you for wanting to get right to the good stuff. It </i>is<i> a pretty fine ass, after all.”</i>");
 	output("\n\nYou grip her tightly and readjust your fingers several times in affirmation. She hums in delight and, from her higher position, grinds more forcefully onto you. ");
 	if(pc.hasCock())
 	{

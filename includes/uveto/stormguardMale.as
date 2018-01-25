@@ -57,7 +57,8 @@ public function showStormguard(nude:Boolean = false):void
 {
 	var nudeS:String = "";
 	if(nude) nudeS = "_NUDE";
-	showName("STORM\nLANCER");
+	if(flags["MET_GEL_ZON"] != undefined) showName("\nGEL ZON");
+	else showName("STORM\nLANCER");
 	showBust("STORMGUARD_MALE"+nudeS);
 }
 public function stormguardHonor(arg:Number = 0):Number
@@ -80,10 +81,10 @@ public function stormguardIntro():void
 	{
 		//9999 check with weather code?
 		output("\n\nThe snow that ceaselessly whips and flurries down from the repressive skies above removes all features from the land around you, turning it into one vast, glaring reminder of the merciless winter that will never leave this place. The mounds and promontories that you travel past could be anything, really - relics of korgonne civilization, forgotten tech - and you’d never know. Why, that hulking shape to your right looks exactly like a statue fallen on its back...");
-		output("\n\n<i>“Magnificent, isn’t it?”</i> says a deep, deliberate voice, and your heart almost jumps out of your mouth. Very slowly, the head of the <i>“statue”</i> turns to regard you with yellow slit eyes, dislodging some of the snow and frost settled on its features. <i>“A world of elemental savagery. Where every moment is a struggle to survive. Here, you find out what it truly means to live.”</i>");
+		output("\n\n<i>“Magnificent, isn’t it?”</i> says a deep, deliberate voice, and your heart almost jumps out of your mouth. Very slowly, the head of the “statue” turns to regard you with yellow slit eyes, dislodging some of the snow and frost settled on its features. <i>“A world of elemental savagery. Where every moment is a struggle to survive. Here, you find out what it truly means to live.”</i>");
 		output("\n\nThick, hard-bitten lips curve into a smile as animation slowly flows down his neck, seeming to bring the rest of this snow-coated form to life. He is a big, bulky, slate-blue creature, half-naked, lying back as if he were relaxing on some sun-kissed beach rather than half-buried in a snowdrift. Small tentacles frame his flat-nosed, high-cheekboned face. Below his armored hips his legs end in two cloven hooves.");
 		output("\n\n<i>“Out here, storm lancers battle,”</i> he says, gesturing heavily at the frozen hills. <i>“We struggle. We survive. We live. It is not the test; it is the reward. I would battle you, [pc.race]. If you have made it out this far, you must have worth.”</i> His eyes roam your body, the heat in them burning out from the whiteness they are mired in. <i>“No fleeing and the loser’s body the prize, as honor dictates.”</i> The lips curve into a challenging smirk. <i>“Do you know of honor, [pc.race]?”</i>");
-		output("\n\nYour codex beeps; the specifics of what it says are whipped away on the wind, however you think you hear the word <i>“Cundarian”</i>.");
+		output("\n\nYour codex beeps; the specifics of what it says are whipped away on the wind, however you think you hear the word “Cundarian”.");
 		flags["MET_STORMGUARD"] = 1;
 		//[Fight] [No]
 		clearMenu();
@@ -92,6 +93,7 @@ public function stormguardIntro():void
 	}
 	else
 	{
+		IncrementFlag("MET_STORMGUARD");
 		output("\n\nMounds and strange shapes huddle under the snow all around you, features removed by the white freeze. They could be anything, really... but you are prepared, at least a little, when one of them slowly turns its head and gazes at you with brilliant yellow eyes.");
 		//Spanked
 		if(flags["SG_LAST_ENC"] == 2)
@@ -348,7 +350,7 @@ public function honor2FightoRighto():void
 	else if(pc.isMischievous()) output("<i>“It’s always pretty funny watching you embarrass yourself,”</i> you smirk teasingly, twirling your [pc.weapon] artfully.");
 	else output("<i>“If you insist,”</i> you say without a flicker of emotion, snapping out your [pc.weapon].");
 
-	//{merge}
+	// {merge}
 	output("\n\nThe smile on the storm lancer’s broad lips deepens. He clicks his tongue, and from out of the drift rises sleek, white armor, which moves into him from behind before clicking sleekly into place. Off its back he takes off his lance and heavy pistol; as ever, you can see the rise of his cylindrical jet pack module on his back.");
 	output("\n\n<i>“So then, honored challenger,”</i> rumbles the cundarian, chest heaving with battle lust beneath the armor that clads him everywhere except his head, <i>“defend yourself!”</i>");
 	stormguardFightPrep();
@@ -410,8 +412,10 @@ public function pcWinsVsSG():void
 		if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
 		else output("The storm lancer");
 		output(" recoils back into the air. Too dazed to properly pilot himself anymore, the blue flame dances around like a mosquito. Sagging in his harness, he brings himself down and collapses with a mighty thump into the muddy snow. You’ve won!");
+		
+		enemy.clearFlightEffects();
 	}
-	if(stormguardHonor() == 1)
+	if(flags["MET_STORMGUARD"] == 1 || stormguardHonor() == 1)
 	{
 		output("\n\n<i>“Very well fought, challenger,”</i> the cundarian says with a wry grimace, elbowing himself up. Heated yellow eyes roam across your body with grudging admiration. <i>“I shall take the humility earned here today and invest it into bettering myself.”</i> A long plume of condensation rises up from his head. His armor retracts and glides backward, leaving him bare from the waist up. <i>“Do as you will with me.”</i>");
 	}
@@ -432,6 +436,19 @@ public function pcWinsVsSG():void
 	addButton(1,"Spank",spankDatTank,undefined,"Spank","Dole out the standard punishment for being a bad boy.");
 	if(pc.hasVagina()) addButton(2,"Cunnilingus",NTWinSceneForStormLancah,undefined,"Cunnilingus","Force him to eat you out.");
 	else addDisabledButton(2,"Cunnilingus","Cunnilingus","You need a vagina for this.");
+	if(pc.hasCock())
+	{
+		var canthroatfuck:Boolean = false;
+		for(var x:int = 0; x < pc.cockTotal(); x++)
+		{
+			if(pc.cockVolume(x) >= 25 && pc.cockVolume(x) <= 300) canthroatfuck = true;
+		}
+		if(canthroatfuck) addButton(3,"Throatfuck",penisRouter,[stormlancerThroatfuck,300,false,25],"Throatfuck","Tear his noisehole a new one!");
+		else if(pc.smallestCockVolume() > 300) addDisabledButton(3,"Throatfuck","Throatfuck","Easy there, wanna put him in his place, not tear his jaw off!");
+		else addDisabledButton(3,"Throatfuck","Throatfuck","You would, but you don’t think you’re quite large enough for it to really have the effect you want.");
+	}
+	else addDisabledButton(3,"Throatfuck","Throatfuck","You need a penis for this.");
+
 	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
@@ -446,7 +463,7 @@ public function losesToSG():void
 	else output("The storm lancer");
 	output(" looms over you, bare-chested.");
 
-	if(stormguardHonor() == 1) 
+	if(flags["MET_STORMGUARD"] == 1 || stormguardHonor() == 1) 
 	{
 		output("\n\n<i>“There’s no shame in agreeing to battle out here and then losing,”</i> he booms, grinning broadly. <i>“So long as you learn from it.”</i> He spends a long moment considering you with molten eyes, biting his upper lip. <i>“But defeat means nothing if there’s no consequence for it.");
 		//Clothed:
@@ -522,7 +539,7 @@ public function spankDatTank():void
 		output("\n\n<i>“And then getting your sorry ass whupped by said " + pc.mf("bigger boy","girl") + ".”</i>");
 		output("\n\n<i>“And then... getting my ass beaten by you.”</i>");
 		output("\n\nSmack.");
-		output("\n\nYou give him a round score of spanks, rhythmically making the brute admit to his <i>“crimes”</i>. You probably could stop sooner, but the process of changing the color of his big, muscular butt from grey to lavender via the flat of your hand is extremely satisfying. And this is your reward, after all!");
+		output("\n\nYou give him a round score of spanks, rhythmically making the brute admit to his “crimes”. You probably could stop sooner, but the process of changing the color of his big, muscular butt from grey to lavender via the flat of your hand is extremely satisfying. And this is your reward, after all!");
 		output("\n\nYou give the hot brawn a teasing tap when you’re done.");
 		output("\n\n<i>“I’m not going to have to do that again, am I?”</i> you inquire mildly, watching him quickly slither off your ");
 		if(pc.legCount <= 1) output("pseudo-");
@@ -539,7 +556,7 @@ public function spankDatTank():void
 		output("\n\nThe pause is too long for your liking, so you slap his other brawny butt-cheek harder, making him jerk.");
 		output("\n\n<i>“For getting your clothes all muddy. Say it!”</i>");
 		output("\n\n<i>“For getting my sacred armor all muddy.”</i>");
-		output("\n\nSmack. Slap. Spank. The inherently satisfying sound of a big, muscular butt getting its color changed from slate to lavender is muffled by the snow, but still rings surely around the wintery landscape as you carry on, making the brute admit to his <i>“crimes”</i> and then administering the punishment.");
+		output("\n\nSmack. Slap. Spank. The inherently satisfying sound of a big, muscular butt getting its color changed from slate to lavender is muffled by the snow, but still rings surely around the wintery landscape as you carry on, making the brute admit to his “crimes” and then administering the punishment.");
 		output("\n\n<i>“Who’s ass does this belong to?”</i> is your last question.");
 		output("\n\n<i>“You. It belongs to you,”</i> comes the woozy reply. You give his well-tanned brawn a teasing tap and let him withdraw.");
 		output("\n\n<i>“I’m not going to have to do that again, am I?”</i> you inquire mildly, watching him quickly slither off your ");
@@ -599,7 +616,7 @@ public function fuckTheStormguardsButt():void
 	if(stormguardHonor() != 2) 
 	{
 		output("\n\n<i>“You’ve done this before, haven’t you Mr. Noble Warrior?”</i> you laugh quietly. You stick your [pc.cock " + x + "] between his big cheeks, using the delicious, smooth texture to rub bulging lust into it, stroking his back and head-tentacles with mocking fondness. <i>“Go on, tell me - how many other " + pc.mf("guys","futa") + " have gotten to pack your fudge as a result of you biting off more than you could chew? I won’t tell.”</i>");
-		output("\n\n<i>“Storm lancers must be ready for... all forms of physical hardship,”</i> comes the grumbling reply. <i>“Get on with it.”</i>}");
+		output("\n\n<i>“Storm lancers must be ready for... all forms of physical hardship,”</i> comes the grumbling reply. <i>“Get on with it.”</i>");
 	}
 	else
 	{
@@ -760,7 +777,7 @@ public function lossScenesForStormguard():void
 	if(flags["MET_GEL_ZON"] == undefined) output("The mountainous hoofed creature");
 	else output("Gel Zon");
 	output(" straightens, heaves the lance from off his back and thrusts it deep into the frozen ground. With an electric hum, the device beams out a bubble of golden energy from its rounded pommel, expanding smoothly until it easily encompasses both of you. Inside the hemisphere of light it feels like a warm summer day; the snow on the ground remains, but is now a strange, chilly contrast to the dry heat of the air. Cold water beads around your hands.");
-	//{Sensing the change in temperature, your heat belt winks off with a beep.}
+	// {Sensing the change in temperature, your heat belt winks off with a beep.}
 
 	output("\n\n<i>“In the past, novice lancers who lost their way out here froze to death for their folly,”</i> growls the cundarian, unclasping his briefs and allowing his thick cock with its ridged underbelly to swing ponderously downwards. He stands over you, close enough that you can smell the salty tang of his sweat and earthy musk, pausing meaningfully. ");
 	if(!pc.isAssExposed()) output("Blushing slightly, you begin to take off your [pc.gear]. ");
@@ -794,7 +811,7 @@ public function lossScenesForStormguard():void
 			}
 			else output("\n\n<i>“Warrior women do exist, of course,”</i> he rumbles, lava-like eyes fixed on your [pc.chest], seeming mostly to be talking to himself. <i>“Pretty girls should be treated with the same amount of caution in battle as anyone else. As dishonorable as it feels to beat such a beautiful creature into submission.”</i> He bends downwards, roughly moulding his cracked lips against yours, pressing his bulging, muscular chest against your [pc.chest], the ridges of his hot, club-like penis rubbing against your [pc.belly].");
 		}
-		//{merge}
+		// {merge}
 		output("\n\nDazed and weakened from the battle, you feel utterly subsumed by the will of this dominant, vigorous beast and cannot summon up protests to his words. The hot, earthy smell of him - cool and rainy yet shot through with musky, sweat-soaked vigor - is high in your nose and throat, and it inarguably feels good to gingerly lie back on the melting snow and let him do as he may. ");
 		if(flags["MET_GEL_ZON"] == undefined) output("The cundarian");
 		else output("Gel Zon");
@@ -921,7 +938,7 @@ public function lossScenesForStormguard():void
 			output("”</i> He sits himself back cross-legged, his hefty erection rising up.");
 			output("\n\n<i>“One thing everyone knows about onnagre - they are exceptional at pleasuring cock,”</i> he growls, fierce lust in his slit eyes. <i>“Prove it.”</i>");
 		}
-		//{merge}
+		// {merge}
 		output("\n\nYou’re too dazed and beaten down to summon up a rejoinder. You’re ");
 		if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
 		else output("the storm lancer");
@@ -1016,7 +1033,7 @@ public function lossScenesForStormguard():void
 			else if(stormguardHonor() == 1) output("<i>“I hope this experience strengthens your resolve to sharpen your skills and defeat me. Or maybe not?”</i> he poses, narrowing his eyes at you, considering your expression with teasing intent. <i>“Perhaps you like it this way enough to lay down your arms each time.”</i>");
 			else output("<i>“I’ve wanted to do that for so long, honored " + pc.mf("warrior","valkyrie") + " - get just a little back for myself. May our battles long continue - you are such an inspiration!”</i>");
 		}
-		//{merge}
+		// {merge}
 		output("\n\nWhen you slide off his warm, tough flesh, wincing slightly, he does not stop you. You have to spend a short time peeling trailers of his cum off your back - the stuff sets like sticking plaster on your [pc.skinFurScale]. By the time you’ve put your gear back on, ");
 		if(flags["MET_GEL_ZON"] == undefined) output("the storm lancer");
 		else output("Gel Zon");
@@ -1031,7 +1048,8 @@ public function lossScenesForStormguard():void
 	IncrementFlag("SG_DEFEATED_PC");
 	//NO HONOR!
 	stormguardHonor(-1);
-	CombatManager.genericVictory();
+	output("\n\n");
+	CombatManager.genericLoss();
 }
 
 //Pussy Plug
@@ -1060,7 +1078,7 @@ public function NTWinSceneForStormLancah():void
 	}
 	else output("<i>“Do the thing with your lance,”</i> you grin. <i>“And then take your pants off, there’s a good boy.”</i>");
 
-	//{merge}
+	// {merge}
 
 	output("\n\nYour eyes fall upon the quasi-beard of tentacles ringing ");
 	if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
@@ -1124,6 +1142,7 @@ public function NTWinSceneForStormLancah():void
 		output(". <i>“I hope you enjoyed the appetizer. Now it’s time for the main course. Eat up,”</i> you tease, grinding your [pc.clit] into the blue brute’s nose.");
 		//remove cummy pluggy.
 		pc.vaginas[x].delFlag(GLOBAL.FLAG_PLUGGED);
+		if(pc.pluggedVaginas() == 0) pc.removeStatusEffect("Pussy Plugged");
 	}
 	if(pc.totalVaginas() > 1)
 	{
@@ -1495,4 +1514,147 @@ public function lossToSGWithHeatPussy():void
 	stormguardHonor(1);
 	output("\n\n");
 	CombatManager.genericLoss();
+}
+
+//Storm Lancer Throatfuck
+//By QuestyRobo
+//Requires a big, but not massive dick.
+//[Throatfuck] Tear his noisehole a new one! {Too small:You would, but you don't think you're quite large enough for it to really have the effect you want./Too big:Easy there, wanna put him in his place, not tear his jaw off!}
+public function stormlancerThroatfuck(x:int):void
+{
+	clearOutput();
+	showStormguard(true);
+	author("QuestyRobo");
+	//Honor 0-1
+	if(stormguardHonor() < 2)
+	{
+		output("This guy sure loves to talk shit doesn’t he? And yet, here he is, battered and beaten by your own hands");
+		//repeat:
+		if(flags["SG_BIG_BJ"] != undefined) output(" again");
+		output(". Speaking of talking, he does have a nice mouth on him, doesn’t he.");
+
+		output("\n\nHe grimaces at you, angered at the notion that he’s completely in your hands. ");
+		if(!pc.isCrotchExposed()) output("You rip off your [pc.crotchCovers], exposing your half-hard, and rapidly hardening [pc.cockNounSimple " + x + "]");
+		else output("You grab your [pc.cock " + x + "] and start stroking it to full hardness.");
+		output(" You rub your meat in his face, making him savor the size and texture of your " + pc.mf("","wo") + "manhood.");
+
+		output("\n\nHe almost seems like he’s going to bite it a few times; that’s rude! Seems like his mouth is ");
+		//repeat:
+		if(flags["SG_BIG_BJ"] != undefined) output("still ");
+		output("a bit naughty, you’ll have to sort that out! You grab the defeated lancer by the sides of his head and shove him down on your [pc.cockNounSimple " + x + "], impaling him almost halfway in a single stroke.");
+		if(pc.cockTotal() > 1)
+		{
+			output(" Your other dick");
+			if(pc.cockTotal() > 2) output("s find their");
+			else output(" finds its");
+			output(" home on the side");
+			if(pc.cockTotal() > 2) output("s");
+			output(" of his face.");
+		}
+
+		if(flags["SG_BIG_BJ"] == undefined)
+		{
+			output("\n\nHis throat is virgin tight, and you find you have some difficulty getting smooth strokes. You’re gonna need some time with this boy in order to get him ready for this!\n\nHe gurgles and meekly bangs against your [pc.hips], trying to get you to stop.");
+			output("\n\n<i>“Sorry bitch, there ain’t no brakes on this fuck train! Next stop, the back of your throat!”</i>");
+		}
+		else 
+		{
+			output("\n\nOoooh, this is much better than the first time! He’s still tight, but he knows good enough now how to make enough room for you.\n\nHe gags, but doesn’t physically protest you entering his mouth.");
+			output("\n\n<i>“Good, good, just sit back and let the big " + pc.mf("boy","girl") + " work!”</i>");
+		}
+		output(" You pull back for a split second before slamming in again. He gags again, and huge wads of spit go flying out of the tight seal between your cock and his lips. He looks up at you, wide-eyed, trying to stay, or at least appear defiant while you ravage his mouth.");
+
+		output("\n\nYou up your tempo, gripping him so tight that you’re sure it’s starting to hurt a bit. You don’t care though, you need the leverage so you can continue your phallic ramming assault on the keep of his esophagus.");
+
+		output("\n\nHis protests wind down, suspiciously so. You look down to make sure he hasn’t passed out and see something that brings an even bigger grin to your face. Both of his hands have wandered down to his crotch ");
+		//First:
+		if(flags["SG_BIG_BJ"] == undefined) output("and are rubbing a very pronounced bulge in his pants.");
+		else output("and have actually dug out his cock and begun to jerk it off. What a slut!");
+		output(" You laugh as you see that you’ve finally broken him in after all that bluster. Oh baby that gets you going!");
+
+		output("\n\n<i>“What’s wrong? I thought you were some kind of warrior, but here you are, drooling over getting your throat fucked like some kind of bimbo slut! Maybe you should just give up the ghost and start turning tricks in alleyways? I bet you’d love that.”</i>");
+
+		output("\n\nHe moans out weakly in response, barely even cogent from your brutal fucking.");
+
+		output("\n\n<i>“Don’t pass out now, I’m just about there.”</i> You call out as you feel your [pc.balls] start to clench, and the muscles in your lower half starting to work overtime as you rush toward orgasm.");
+		IncrementFlag("SG_H0-1_BIG_BJ");
+	}
+	//Honor 2
+	else
+	{
+		if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon");
+		else output("The Lancer");
+		output(" looks up at you expectantly. Unsurprising, considering how many times you’ve been through this little song and dance. Part of you wants to drag the boy away and make him your personal cock-holster, but you’re content to enjoy the more simple pleasures, for now.");
+
+		if(!pc.isCrotchExposed()) output("\n\nYou simply thrust your crotch out, wordlessly telling your bitch boy what he needs to do. He goes to it with gusto, almost tearing off your [pc.lowerGarments] to expose your [pc.cocks]");
+		else output("All you have to do is shake your [pc.hips], sending your [pc.cocks] swaying, and he comes running up like a dog after you shake its food bowl.");
+
+		output(" He gets to work, stroking you off, lapping at your [pc.cockHead " + x + "], ");
+		if(pc.balls > 0) output("massaging your [pc.balls], ");
+		output("all to push you to full hardness. It doesn’t take that long. The sight of the proud warrior so willingly submitting himself ");
+		//First:
+		if(flags["SG_BIG_BJ"] == undefined) output("is making");
+		else output("continues to make");
+		output(" you swell with dominating, prideful lust.");
+
+		if(flags["SG_BIG_BJ"] == undefined) output("\n\n<i>“You’re quite the cockslut, aren’t you?”</i>");
+		else output("\n\n<i>“You’re turning into quite the little cocksucker, aren’t you?”</i>");
+
+		output("\n\n<i>“The chance to properly service a worthy warrior is not something to be ashamed of,”</i> he says with the confidence you wouldn’t expect out of somebody working over a [pc.cockShape " + x + "], but that’s more than fine with you. You reach full hardness in seconds, showing the cundarian the full tumescence of your tool. He grunts softly in approval as he pulls back and looks up at you again.");
+
+		output("\n\nHe looks into your eyes with a restrained desire, that quickly becomes unrestrained as soon as you see his gaping mouth and lolling tongue. The warrior slut is practically begging you to take him, and you’ll be damned if you’re gonna leave him hanging!");
+
+		output("\n\nYou roughly grab him by the side of the head and shove [pc.oneCock] in");
+		if(pc.cockTotal() > 1) 
+		{
+			output(", leaving the other");
+			if(pc.cockTotal() > 2) output("s");
+			output(" to slap against his face");
+		}
+		output(". You take a second to line yourself up, savoring the quiet, meek moan of desire he lets out before you ram yourself in.");
+
+		output("\n\nWads of spit go flying as you nearly hilt yourself in a single stroke. ");
+		//Haven’t done Honor 0-1 variant:
+		if(flags["SG_H0-1_BIG_BJ"] == undefined) output("You take a second just to admire how accommodating his fuckhole is; properly serving indeed!");
+		else output("Now he can take you in one go? You knew he was holding back before.");
+		output(" You give him a second to adjust, but not a bit more. Almost immediately you’re building up your momentum, pulling out to the [pc.cockHead " + x + "] and then burying yourself right back in.");
+
+		output("\n\nHe takes it ");
+		//repeat:
+		if(flags["SG_BIG_BJ"] != undefined) output("unsurprisingly ");
+		output("well, clenching his throat in just the right ways to keep you going in and out smoothly. He coughs and gags a bit at first, but as you hammer him faster and faster, he quickly gets used to your pace. Soon there’s nothing but the blissful sounds of his throat molding around your [pc.cock " + x + "], and the copious amounts of drool leaking out the seams.");
+		output("\n\nAnother noise soon joins the chorus, the familiar sound of someone jerking it! You look down and see that he’s pulled his cock out from under his armor and begun to stroke it. You almost want to reach down and stop him, but a strong clench in your [pc.balls] stops you dead as you get ready to greet your orgasm.");
+	}
+	//Merge
+	//Low output:
+	if(pc.cumQ() < 1000) 
+	{
+		output("\n\nYou ram into his throat as deep as you can and unload. The way his throat muscles clench along with you helps prolong your orgasm. You leave him with a good helping of [pc.cum] in his gut to think about, as you pull out. He breathes in and out, heavily, but more than that, you notice that he’s stopped working himself over, seemingly just on the verge of orgasm.");
+		output("\n\n<i>“I-”</i> He gasps. <i>“-have not earned my release, yet. Next time, however, I will have <b>your</b> throat, and shall savor it greatly.”</i> He gets up, thoroughly blue-balled, and takes his leave, as you gather your gear back up.");
+	}
+	//High output:
+	else if(pc.cumQ() < 10000) 
+	{
+		output("\n\nYou bottom out in his throat and sigh in relief as you unload inside him. His throat clenches along with your pulses, at first. When he realizes you aren’t stopping, he becomes a bit more frantic. When his stomach starts swelling from the sheer tide of [pc.cum], you can tell that he’s struggling. He takes it like a trooper, though, and not a single drop leaves his lips. When you finally wind down, you pull out, making sure to give him one last taste on his tongue, which he quickly swallows. He breathes in and out, heavily, but more than that, you notice that he’s stopped working himself over, seemingly just on the verge of orgasm.");
+		output("\n\n<i>“...Don’t you find this a little excessive?”</i>");
+		output("\n\n<i>“Nope, looks fine from where I am!”</i>");
+		output("\n\n<i>“Fine, but don’t think I won’t remember this when I am victorious.”</i> He gets up, thoroughly blue-balled, and takes his leave, as you gather your gear back up.");
+	}
+	//Are those balls or is that a fuel tanker between your legs?
+	else
+	{
+		output("\n\nYou ram yourself to the hilt inside his throat as you explode inside him. His throat muscles spasm as he feels your first shot flood his gut to bursting. The second burst balloons him out to <i>“nine-months pregnant”</i> levels, making him gurgle in protest. Your third shot causes twin [pc.cumColor] streams to shoot out of his nostrils. You decide that that’s the point to pull out, and midway through your fourth shot, you exit his throat.");
+		output("\n\nHe coughs up wads of [pc.cum], only to be coated by rivers of the stuff as you grab onto your [pc.cock " + x + "] and jerk yourself through the last of your orgasm. By the time you’re done, ");
+		//normal or other white colored cum:
+		if(pc.fluidColorSimple(pc.cumType) == "white") output("it’s hard to distinguish him from the snow around him.");
+		else output("he’s turned solid [pc.cumColor], contrasting heavily against the white snow around him.");
+		output(" He falls over, meekly coughing and spasming as he lays in the snow.");
+		output("\n\nYou move up to see if he’s alright, but he raises a shaky palm and waves you away as he rises to his feet and stumbles away. You tell yourself he’ll be fine as you re-dress yourself and get ready to move back out.");
+	}
+	IncrementFlag("SG_BIG_BJ");
+	processTime(15);
+	pc.orgasm();
+	output("\n\n");
+	stormguardHonor(1);
+	CombatManager.genericVictory();
 }

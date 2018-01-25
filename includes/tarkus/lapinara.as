@@ -919,6 +919,8 @@ public function finalLapinaraEggStuffScene(x:int):void
 		output("blows away your ability to reason. All there is, everything, becomes ecstasy as the overdose of fem cum combines with the extreme stimulation to completely overload your brain. Your [pc.face] goes slack while your [pc.eyes] stare blankly into space. Your body slumps over, only held upright by the thick ovipositor that now makes up the core of your existence. When the first egg of the bunch finally lodges inside you, the burst of pleasure shoots you past the breaking point. You lose consciousness, your mind too tired for anything but dreamless sleep.");
 		if(x >= 0) pc.loadInCunt(enemy,x);
 		else pc.loadInAss(enemy);
+		
+		//if(!pc.hasPerk("Broodmother")) gainBroodmotherPerk(); 9999 - Disabled!
 	}
 	// ELSE
 	else
@@ -1038,11 +1040,55 @@ public function lapinaraBirthinBuhbies2(pregSlot:int):void
 	output("\n\nWhile your lack of babies isn’t as raggedly painful as before, you can already feel your subconscious beginning to scream for replacements. It’s almost as if your body has decided that because it can’t take care of it’s babies, it’ll have to make more right away. The shock of losing your young so soon has put you into a <b>Deep Lapinara Heat.</b> You know that if you give in to these desires, the same tragedy with the nursery drone is going to repeat again.");
 	output("\n\nYou know that you don’t have time to take care of a litter of babies once they’re born. You still can’t stop from wanting it though, wanting to return to that blissful feeling that seems so far away now. You also know that you have a choice, that you don’t have to give into the desires. You also know just how good it would feel, and that you have a whole nursery wing on Tavros to allow you to indulge yourself. You don’t know what you’ll decide yet, but you realize that you’d better be very careful to stay away from anything that could impregnate you unless you want your mind made up for you.");
 	processTime(150+rand(30));
-
-	if(pc.fertilityRaw < 10) pc.fertilityRaw++;
-	if(pc.pregnancyIncubationBonusMotherRaw < lapiTrain()) pc.pregnancyIncubationBonusMotherRaw++;
-	//Give Deep Lapinara Heat Status Effect
-	pc.createStatusEffect("Heat", 5, 25, 10, 3, false, "LustUp", "Now that you’re no longer gestating any eggs or nursing any bunnies you have an insatiable need to breed. Perhaps you should avoid people if you don’t want to succumb to your desires and get pregnant again.\n\n+500% Fertility\n+25 Minimum Lust\n+10 Libido\n+3 Tease Damage", false, 28800, 0xB793C4);
+	
+	lapiPregEndCheck(pc, pregSlot);
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+
+public function lapiPregEndCheck(mother:Creature, pregSlot:int, deltaTime:int = 0, fromNursery:Boolean = false):void
+{
+	if(!(mother is PlayerCharacter)) return;
+	
+	// Post Effects
+	if(fromNursery)
+	{
+		var vIdx:int = pregSlot;
+		if(pregSlot == 3) vIdx == -1;
+		if(vIdx >= 0) mother.cuntChange(vIdx, 1500, false);
+		else mother.buttChange(1500, false);
+		
+		AddLogEvent("With your lack of babies, you can already feel your subconscious beginning to scream for replacements. It’s as if your body has decided that because it can’t retain all it’s babies, it’ll have to make more right away. The shock of handing your young to the nursery so soon has put you into a <b>Deep Lapinara Heat.</b> You know that if you give in to these desires, the process is going to repeat again.", "passive", deltaTime);
+	}
+	
+	if(mother.fertilityRaw < 10) mother.fertilityRaw++;
+	if(mother.pregnancyIncubationBonusMotherRaw < lapiTrain()) mother.pregnancyIncubationBonusMotherRaw++;
+	
+	//Give Deep Lapinara Heat Status Effect
+	if(!mother.inHeat()) mother.createStatusEffect("Heat", 10, 35, 25, 5, false, "LustUp", "", false, 28800, 0xB793C4);
+	else if(!mother.inDeepHeat())
+	{
+		mother.setStatusValue("Heat", 1, 10);
+		mother.setStatusValue("Heat", 2, 35);
+		mother.setStatusValue("Heat", 3, 25);
+		mother.setStatusValue("Heat", 4, 5);
+		mother.extendHeat(7 * 24 * 60);
+	}
+	else if(mother.heatMinutes() < 22 * 24 * 60) mother.extendHeat(7 * 24 * 60);
+	mother.setStatusTooltip("Heat", "<b>You are in a deep heat!</b> Now that you’re no longer gestating any eggs or nursing any bunnies you have an insatiable need to breed. Perhaps you should avoid people if you don’t want to succumb to your desires and get pregnant again.\n\n+" + mother.statusEffectv1("Heat") * 100 + "% Fertility\n+" + mother.statusEffectv2("Heat") + " Minimum Lust\n+" + mother.statusEffectv3("Heat") + " Libido\n+" + mother.statusEffectv4("Heat") + " Tease Damage");
+}
+	
+public function gainBroodmotherPerk():void
+{
+	// Perk: Broodmother
+	// v1: Mother’s pregnancyMultiplier() bonus.
+	// v2: Pregnancy’s pregnancyQuantity multiplier.
+	// v3: 
+	// v4: 
+	pc.createPerk("Broodmother", 0.5, 2, 0, 0, "Increases the maximum gestation quantity of pregnancies, where possible.");
+	
+	// Unlock Broodmother perk
+	output("\n\n(<b>Perk Gained: Broodmother</b> - Adapting to a higher birth count, your body has the potential to gestate up to twice the maximum amount of offspring for a given pregnancy.)");
+}
+

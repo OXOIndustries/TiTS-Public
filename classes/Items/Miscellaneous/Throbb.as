@@ -1,5 +1,8 @@
 ﻿package classes.Items.Miscellaneous
 {
+	import classes.Engine.Interfaces.*;
+	import classes.Engine.Utility.formatFloat;
+	import classes.Engine.Utility.num2Ordinal;
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
@@ -73,12 +76,26 @@
 				//Multiple wangs: 
 				if(target.cockTotal() > 1) 
 				{
-					kGAMECLASS.output("You have more than one penis. Which one will you inject with Throbb?");
+					kGAMECLASS.output("You have more than one penis. Which one will you inject with Throbb?\n");
 					kGAMECLASS.clearMenu();
-					for(var x:int = 0; x < target.cockTotal(); x++)
+					var btnSlot:int = 0;
+					for(var i:int = 0; i < target.cocks.length; i++)
 					{
-						kGAMECLASS.output("\n" + (x+1) + ": [pc.cock " + x + "]");
-						kGAMECLASS.addButton(x,kGAMECLASS.num2Text(x+1),throbbPCEffects,x);
+						output("\n<b>" + StringUtil.capitalize(num2Ordinal(i + 1)) + " Cock:</b>");
+						if(target.cocks[i].cockFlags.length > 0)
+						{
+							for(var x:int = 0; x < target.cocks[i].cockFlags.length; x++)
+							{
+								output(" " + GLOBAL.FLAG_NAMES[target.cocks[i].cockFlags[x]] + ",");
+							}
+						}
+						if(target.cocks[i].cockColor != "") output(" " + StringUtil.toDisplayCase(target.cocks[i].cockColor) + ",");
+						output(" " + GLOBAL.TYPE_NAMES[target.cocks[i].cType]);
+						if(target.cocks[i].cLength() > 0) output(", " + formatFloat(target.cocks[i].cLength(), 3) + " in long");
+						if(target.cocks[i].thickness() > 0) output(", " + formatFloat(target.cocks[i].thickness(), 3) + " in thick");
+						
+						addButton(btnSlot, "Cock " + (i + 1), throbbPCEffects, i, StringUtil.capitalize(num2Ordinal(i + 1)) + " Cock", "Use this on your [pc.cock " + i + "].");
+						btnSlot++;
 					}
 					return true;
 				}

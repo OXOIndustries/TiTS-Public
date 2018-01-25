@@ -160,10 +160,10 @@ public function moreMilodanSolstice():void
 	//[Girls] Go over and bone some bitches.
 	//[Guys] Get breed like a bitch in heat.
 	if(pc.hasCock()) addButton(0,"Girls",celebrateSeasonsBreedings,undefined,"Girls","Go over and breed some bitches.");
-	else addDisabledButton(0,"Girls","Girls","You'd need a dick to breed those sabertooth kitty-bitches.");
+	else addDisabledButton(0,"Girls","Girls","You’d need a dick to breed those sabertooth kitty-bitches.");
 	if(pc.hasVagina() && !pc.isFullyWombPregnant()) addButton(1,"Guys",guysBreedingSolstice,undefined,"Guys","Get bred like a bitch in heat.");
-	else if(pc.isFullyWombPregnant()) addDisabledButton(1,"Guys","Guys","You're already completely pregnant. Maybe you should go knock up some other girls and share the holiday spirit?");
-	else addDisabledButton(1,"Guys","Guys","Something tells you that without a vagina, you aren't going to get much attention from them. They're out to share the season's breedings!");
+	else if(pc.isFullyWombPregnant()) addDisabledButton(1,"Guys","Guys","You’re already completely pregnant. Maybe you should go knock up some other girls and share the holiday spirit?");
+	else addDisabledButton(1,"Guys","Guys","Something tells you that without a vagina, you aren’t going to get much attention from them. They’re out to share the season’s breedings!");
 }
 
 //Girls
@@ -223,7 +223,7 @@ public function celebrateSeasonsBreedings():void
 		output("\n\nIt feels less like you’re orgasming, and more like someone just busted a dam inside you. Within seconds the poor girl’s belly is bloated beyond belief. In a few more seconds it starts to overflow, and then pool below you. It comes out in a single, continuous stream; if there are any breaks in your biblical flood, they’re far too small and far too weak to even notice.");
 		output("\n\nThe girls around you coo and awe as you pump out barrels of fertile cum, without any sign of slowing down.");
 		output("\n\n<i>“Sister, you gave [pc.himHer] far too much! Now there won’t be any for the rest of us.”</i> The woman whose breast you were sucking chides.");
-		output("\n\n<i>“Nonsense!  What we have here is obviously a <b>very</b> potent individual. With a little coaxing, I’m sure tonight will be very fruitful for all of us.”</i>");
+		output("\n\n<i>“Nonsense! What we have here is obviously a <b>very</b> potent individual. With a little coaxing, I’m sure tonight will be very fruitful for all of us.”</i>");
 		output("\n\nFruitful is quite the understatement! In the time it’s taken these two to talk, you’ve probably pumped out enough to fill both of them. When you finally stop you’re sitting in a pool of your own [pc.cumColor] fluids, a pool that’s spread quite a few feet around you. The girl has already passed out, understandably.");
 	}
 	if(pc.hasKnot(x)) output("\n\nYou <i>want</i> to knot this bitch, to plug her full so there’s absolutely no doubt that you knocked her up! But you’ve got a lot of pussy to get through, so you force yourself back.");
@@ -273,6 +273,8 @@ public function celebrateSeasonsBreedings():void
 	processTime(60);
 	for(var y:int = 0; y < 20;y++) { pc.orgasm(); }
 	pc.imbibeAlcohol(40);
+	pc.clearRut();
+	
 	clearMenu();
 	if(silly) addButton(0,"Next",sillyMilodanEpilogue,true);
 	else addButton(0,"Next",randomBullshitBreedingSolsticeEnd);
@@ -282,9 +284,11 @@ public function celebrateSeasonsBreedings():void
 //PC gets significant fertility boost
 public function guysBreedingSolstice():void
 {
+	clearOutput();
 	showName("HELLO\nBOYS...");
 	showBust("MILODANMALE","MILODANMALE","MILODANMALE");
 	author("QuestyRobo");
+	
 	output("The six-pack of milodaddies is surprisingly calm as you walk up to them. They form a tight circle around you, making sure their big, juicy cocks are just a hair from touching you. The implication is loud and clear, and you eagerly put your body to work.");
 	output("\n\nYou start by grabbing two cocks at random. Big, fat pieces of meat that you can barely even get your hands around! Before you can decide how to put your mouth to use, however, that trademark milodan roughness kicks in, and you feel yourself wrenched down, mouth impaled on another massive cock. You almost choke as you take over six inches of cock in one go. Thankfully he’s not intent of leaving you there, and you’re pulled off, left to gasp and sputter against his throbbing maleness.");
 	output("\n\n<i>“Nice mouth, I’ll be claiming it for a few rounds.”</i> It’s not like you’re in a position to debate that, so it looks like you’re going to get divvied up like food at a buffet. Speaking of that, you feel a pair of rough hands on your [pc.ass].");
@@ -331,12 +335,13 @@ public function guysBreedingSolstice():void
 	output("\n\n<i>“That should <b>really</b> help the swimmers take to you. Just a little reward for being so accommodating.”</i>");
 	output("\n\nThe other two take that as the signal to start. They ram into you at the same time, hilting themselves as deep as your body will allow. It should feel at least weird to have this much meat in you, but you’re in heaven! Whatever he gave you has turned you numb to just about every sensation other than raw pleasure. That doesn’t stop your hands from working two of the other men though, that’s just instinct. That still leaves one man out in the cold though.");
 	output("\n\nYou feel your insides stirring too. Your womb feels like it’s on fire, unnaturally hungry to be constantly full, and raring to go when it’s not. <b>Your fertility has been super-charged</b>");
-
+	
+	var numVag:int = pc.totalVaginas();
 	//multi-puss:
-	if(pc.totalVaginas() > 1)
+	if(numVag > 1)
 	{
-		output("\n\n<i>“Hey, [pc.heShe]’s got two of these you know.”</i> The venerated man in [pc.oneVagina] points out, pointing out your empty slot. His tail wags in glee as he jams himself alongside the other milodan, shoving himself into your vacant cunt, making sure each of your holes is getting breed.");
-		if(pc.totalVaginas() == 3) 
+		output("\n\n<i>“Hey, [pc.heShe]’s got " + (numVag == 2 ? "two" : "more") + " of these you know.”</i> The venerated man in [pc.oneVagina] points out, pointing out " + (numVag == 2 ? "your empty slot" : "one of your empty slots") + ". His tail wags in glee as he jams himself alongside the other milodan, shoving himself into your vacant cunt, making sure each of your holes is getting breed.");
+		if(numVag == 3) 
 		{
 			output(" That leaves one still empty though, and not much room for anyone else to squeeze in. Thankfully they seem to realize that too.");
 			output("\n\n<i>“Youngling!”</i> The older man yells, summoning a quite small looking milodan to his side. <i>“Squeeze in here, we’ve got a special offworlder here.”</i> The young man nods and squeezes between the two larger men, lining up his exceedingly impressive cock with your remaining cunt and ramming it in.");
@@ -346,10 +351,10 @@ public function guysBreedingSolstice():void
 	//cunt-tail:
 	if(pc.hasCuntTail())
 	{
-		output("\n\nHe notices your [pc.tail] wriggling around under you. He picks it up and inspects it for a bit, you doubt he’s ever seen one, after all. He digs into the slit with his fingers just to make sure it is what he thinks it is. After he confirms the nature of your strange appendage, he jams it on his cock without any hesitation.");
+		output("\n\nHe notices your [pc.tails] wriggling around under you. He picks " + (pc.tailCount == 1 ? "it" : "one of them") + " up and inspects it for a bit, you doubt he’s ever seen one, after all. He digs into the slit with his fingers just to make sure it is what he thinks it is. After he confirms the nature of your strange appendage, he jams it on his cock without any hesitation.");
 	}
 	//Boring dork:
-	if(pc.totalVaginas() == 1 && !pc.hasCuntTail()) 
+	if(numVag == 1 && !pc.hasCuntTail()) 
 	{
 		output("\n\nHe seems quite frustrated with his inability to get in on you. That frustration seems to boil over when he pushes in next to the man fucking your pussy.");
 		output("\n\n<i>“Move over, I ain’t sittin around and waiting for you to finish! The offworlder can take both of us, can’t you?”</i> He shoots you and the man next to him a huge grin. Despite his annoyed expression, he allows it. He pulls out and repositions, pressing his tip against the other man’s, in front of your entrance. He thrusts in to the hilt and quickly pulls out, only to be replaced by the other man. They quickly form a rhythm around this, creatively sharing your [pc.pussy].");
@@ -365,7 +370,7 @@ public function guysBreedingSolstice():void
 	//BOOST DAT FERT!
 	pc.fertility(1.5);
 	for(var y:int = 0; y < 20; y++) pc.orgasm();
-	for(var x:int = 0; x < pc.totalVaginas();x++)
+	for(var x:int = 0; x < numVag;x++)
 	{
 		//3 loads per puss!
 		pc.loadInCunt(chars["MILODAN_MALE"],x);
@@ -373,13 +378,13 @@ public function guysBreedingSolstice():void
 		pc.loadInCunt(chars["MILODAN_MALE"],x);
 	}
 	//Bonus loads for single pussies
-	if(pc.totalVaginas() == 1)
+	if(numVag == 1)
 	{
 		pc.loadInCunt(chars["MILODAN_MALE"],0);
 		pc.loadInCunt(chars["MILODAN_MALE"],0);
 	}
 	//Load in cunt tail
-	pc.loadInCuntTail(chars["MILODAN_MALE"]);
+	if(pc.hasCuntTail()) pc.loadInCuntTail(chars["MILODAN_MALE"]);
 	pc.loadInMouth(chars["MILODAN_MALE"]);
 	pc.loadInMouth(chars["MILODAN_MALE"]);
 	pc.applyCumSoaked();
@@ -395,7 +400,9 @@ public function sillyMilodanEpilogue(girls:Boolean = false):void
 {
 	clearOutput();
 	showName("MUCH\nLATER");
-	showBust("SAINT_DICK")
+	showBust("SAINT_DICK");
+	author("QuestyRobo");
+	
 	output("You wake up, who even knows how many hours later. It’s still dark out, but it’s the Solstice so that doesn’t tell you much. ");
 	if(girls) output("The women that piled up around you have scattered, either moving on to other men, or settling into one of the big piles of sleeping milodans. The dildo is gone, probably reclaimed by one of the priestesses. You still feel <i>loose</i> though, in a good way.");
 	else output("You still have plenty of thick cum rolling out of you, though you’ve drained out substantially; and it seems like one of the men or, more likely, one of the priestesses. The men have largely moved on; you can still see some of them fucking other women.");
@@ -469,6 +476,8 @@ public function milodanMassDickAchu(girls:Boolean = false):void
 
 	processTime(80);
 	pc.orgasm();
+	pc.clearRut();
+	
 	clearMenu();
 	addButton(0,"Next",randomBullshitBreedingSolsticeEnd);
 }
@@ -497,7 +506,7 @@ public function saintDickulousInYerPuss(girls:Boolean = false):void
 	output("\n\nShe looms over you with a cheery smirk as her hips become a blur, diving in and out of you with animalistic fury. Thankfully the numbing effect from all the alcohol is still well in effect, and all you get out of the constant bulging of your [pc.belly] is pure pleasure.");
 	output("\n\nShe doesn’t seem satisfied, though. Her smirk turns into a frown as the rutting continues. She leans into you, not even missing a beat as she shifts position. She plants one of her drooling nips in your mouth, squirting a big helping of it into you. Your eyes go wide when you swallow it, it’s like pure, concentrated energy shooting down your throat and into the rest of your body.");
 	pc.milkInMouth();
-	output("\n\nHer head is right next to your ear, and for the first time, you hear her speak. <i>“Prove yourself, spacer, you cannot our people’s children being this weak. Rise, and take what you want.”</i>");
+	output("\n\nHer head is right next to your ear, and for the first time, you hear her speak. <i>“Prove yourself, spacer, you cannot carry our people’s children being this weak. Rise, and take what you want.”</i>");
 	output("\n\nEnergy surges through your limbs as some unknown force compels you to take charge. You stop her thrusting, grab her hard, and shove her off you, onto her back. You spring up, quickly taking advantage of her prone state, and planting your [pc.pussy] on her tip. She beams up at you as you finally take charge.");
 
 	output("\n\nYou scream out in joy as you impale yourself on her cock. There’s an obscene bulge in your gut as you take her to the knot. It’s a struggle, but your body is demanding everything she can give. ");
@@ -507,9 +516,9 @@ public function saintDickulousInYerPuss(girls:Boolean = false):void
 
 	output("\n\nYou reach behind yourself and grab her sack as you bounce. You can <i>feel</i> them swelling, throbbing, dredging up the biggest load they can for you. The thought of her impending climax, of your impending impregnation, drives you over the deep end. You slam down, taking every inch of her giant shaft as you cum uncontrollably.");
 
-	output("\n\n<i>“B-b-br-breed meeeeeeeeeee!”</i> You scream out as your eyes screw up into your head. At that moment, her knot inflates, trapping you on her. Her whole shaft throbs and thickens as it prepares to unload in you. Your [pc.belly] explodes out in seconds, spreading blissful warmth throughout your body. She keeps going long after that, a testiment to the mighty virility of the mythical figure.");
+	output("\n\n<i>“B-b-br-breed meeeeeeeeeee!”</i> You scream out as your eyes screw up into your head. At that moment, her knot inflates, trapping you on her. Her whole shaft throbs and thickens as it prepares to unload in you. Your [pc.belly] explodes out in seconds, spreading blissful warmth throughout your body. She keeps going long after that, a testament to the mighty virility of the mythical figure.");
 
-	output("\n\nThe ground becomes a soupy mess as your muscles start failing you. You fall forward onto her, resting your slack muscles in her warm embrace. Your womb throbs in excitement, and a crowd forms around you two. Despite being knotting, the Saint takes you off her dick, still pumping out thick cum into the cheering crowd. She gets up and brings you over to a pile of thick furs, setting you down and giving you a deep kiss.");
+	output("\n\nThe ground becomes a soupy mess as your muscles start failing you. You fall forward onto her, resting your slack muscles in her warm embrace. Your womb throbs in excitement, and a crowd forms around you two. Despite being knotted, the Saint takes you off her dick, still pumping out thick cum into the cheering crowd. She gets up and brings you over to a pile of thick furs, setting you down and giving you a deep kiss.");
 
 	output("\n\n<i>“You are worthy, space " + pc.mf("","wo") + "man, bear your children with strength.”</i> Your eyelids grow heavy, and you pass out as the Saint gets dogpiled and taken by the assembled crowd.");
 
@@ -536,7 +545,7 @@ public function saintDickulousInYerPuss(girls:Boolean = false):void
 public function randomBullshitBreedingSolsticeEnd():void
 {
 	clearOutput();
-	showName("IT'S\nOVER");
+	showName("IT’S\nOVER");
 	moveTo("UVI R32");
 	author("QuestyRobo");
 	output("You wake up some time later. Instead of being in the tent, however, you’re resting in the back room of The Freezer. You’re very confused for a moment before ");

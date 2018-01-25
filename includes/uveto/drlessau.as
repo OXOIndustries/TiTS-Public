@@ -255,9 +255,10 @@ public function drLessauSex():void
 	output("\n\nThe chimera gives a broad smile at this, switching off the holoterminals to leave his desk bare. <i>“I think I can take a break, certainly. What did you have in mind? I must warn you, though, I can be rather rough.”</i>");
 	
 	clearMenu();
-	if (pc.hasVagina() || pc.hasCock()) addButton(0, "Get Oral", drLessauOral, undefined, "Get Oral", "He looks like he’s got a pretty impressive tongue. Put it to work.")
+	if (pc.blockedVaginas() < pc.totalVaginas() || pc.hasCock()) addButton(0, "Get Oral", drLessauOral, undefined, "Get Oral", "He looks like he’s got a pretty impressive tongue. Put it to work.")
 	else addDisabledButton(0, "Get Oral", "Get Oral", "You need a cock or vagina for this.");
-	if (pc.hasVagina() && pc.biggestVaginalCapacity() > chars["DRLESSAU"].cockVolume(0)) addButton(1, "Take Vaginal", drLessauVag, undefined, "Take Vaginal", "Have him fuck you. You get the feeling he might get a little riled up, though...");
+	if (pc.hasVagina() && pc.biggestVaginalCapacity() > chars["DRLESSAU"].cockVolume(0) && pc.blockedVaginas() == 0) addButton(1, "Take Vaginal", drLessauVag, undefined, "Take Vaginal", "Have him fuck you. You get the feeling he might get a little riled up, though...");
+	else if(pc.blockedVaginas() > 0) addDisabledButton(1,"Take Vaginal","Take Vaginal","Sex while you've got a blocked-up vagina might be a bad idea.");
 	else addDisabledButton(1, "Take Vaginal", "Take Vaginal", "You need a vagina of sufficient size for this.");
 	addButton(14, "Back", drLessauMainMenu);
 }
@@ -276,7 +277,7 @@ public function drLessauOral():void
 	
 	var i:int = -1;
 	
-	if (pc.hasCock() && (!pc.hasVagina() || rand(2) == 0))
+	if (pc.hasCock() && (pc.blockedVaginas() >= pc.totalVaginas() || rand(2) == 0))
 	{
 		i = pc.biggestCockIndex();
 		
@@ -306,7 +307,7 @@ public function drLessauOral():void
 	}
 	else
 	{
-		i = rand(pc.vaginas.length);
+		i = pc.pickUnblocked();
 		
 		output("\n\nLessau’s tongue starts at your delta, teasing the more sensitive [pc.skinFurScalesNoun] that sits just above [pc.oneVagina]. It’s just enough to tickle, leaving you off-guard for when he opens his mouth and blows a hot breath over your nether lips. Your " + (pc.totalClits() > 1 ? "clits pop" : "clit pops") + " out immediately, stiffening at the sudden warmth. That moment of vulnerability is all Lessau needs, and his tongue seizes [pc.oneClit] with a display of the oral dexterity that only a prehensile tongue can offer. His mouth envelops your clit, his fangs gently grazing your sensitive nub with an expertise that suggests more than a few of the female lab assistants outside have gotten to experience this before you.");
 		output("\n\nLost in the pleasure, you hardly notice what Lessau’s tongue is doing until it slips into your pussy, drawing forth a gasp as that long, thin tongue snakes its way deep into those [pc.vaginaColor " + i + "] depths. His lips stay right where they are, sucking away at your clit while his tongue coaxes your [pc.girlCum] to the surface.");
@@ -470,6 +471,7 @@ public function steeleBiomedBonus():Boolean
 		if(flags["MET_DR_LESSAU"] != undefined)
 		{
 			if(pc.hasStatusEffect("BioMed Gangbang Cooldown")) addDisabledButton(0, "Gangbang", undefined, "Maybe you should give your employees some time to cool off before trying this again.");
+			else if (pc.blockedVaginas() > 0) addDisabledButton(0,"Gangbang","Gangbang","A gangbang while you have part of your anatomy blocked is a bad idea.");
 			else if (pc.hasVagina() || pc.hasCock()) addButton(0, "Gangbang", steeleBiomedGangbang, undefined, undefined, "Get to know your employees more intimately. You will end up with at least one cock inside you.");
 			else addDisabledButton(0, "Gangbang", undefined, "You need a cock or vagina for this.");
 		}
@@ -491,7 +493,7 @@ public function steeleBiomedGangbang():void
 	clearMenu();
 	
 	output("You glance around the room, licking your lips at all the exotic beauties on display. Why not let them get to know their");
-	if(9999 == 9999) output(" future");
+	output(" future");
 	output(" boss? Besides, you’re feeling ");
 	if (pc.hasVagina() && pc.hasCock()) output("hard and wet");
 	else if (pc.hasVagina()) output("wet and eager to fuck");

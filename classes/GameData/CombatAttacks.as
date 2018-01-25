@@ -1,16 +1,17 @@
 package classes.GameData 
 {
+	import classes.Characters.BothriocQuadomme;
 	import classes.Characters.Celise;
 	import classes.Characters.Cockvine;
 	import classes.Characters.GrayGoo;
+	import classes.Characters.Kane;
 	import classes.Characters.Kaska;
+	import classes.Characters.NymFoe;
 	import classes.Characters.PlayerCharacter;
 	import classes.Characters.RaskvelFemale;
 	import classes.Characters.RaskvelMale;
-	import classes.Characters.ZilFemale;
-	import classes.Characters.NymFoe;
-	import classes.Characters.Kane;
 	import classes.Characters.StormguardMale;
+	import classes.Characters.ZilFemale;
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.GameData.Pregnancy.Handlers.CockvinePregnancy;
@@ -574,7 +575,9 @@ package classes.GameData
 				target.createStatusEffect("KANE_AI_SKIP");
 				return false;
 			}
-			if(target is Kane && target.hasStatusEffect("KANE_AI_SKIP")) 
+			if(	(target is Kane && target.hasStatusEffect("KANE_AI_SKIP"))
+			||	(target is BothriocQuadomme && target.statusEffectv2("Ranged Evade") > 0)
+			)
 			{
 				output("Further action is interrupted!");
 				return false;
@@ -624,6 +627,14 @@ package classes.GameData
 					}
 				}
 			}
+			// Dom subsequently evades:
+			if(target is BothriocQuadomme && target.hasStatusEffect("Ranged Evade"))
+			{
+				output("The bothrioc lithely swings to one side, crowing with delight as it easily avoids your shot.");
+				target.setStatusValue("Ranged Evade", 1, 0);
+				target.setStatusValue("Ranged Evade", 2, 1);
+				return false;
+			}
 			// We made it here, the attack landed
 			
 			if (attacker is PlayerCharacter) output("You land a hit on " + target.getCombatName() + " with your " + attacker.rangedWeapon.longName + "!");
@@ -646,6 +657,11 @@ package classes.GameData
 				target.removeStatusEffect("KANE MELEE PREP");
 				target.createStatusEffect("KANE RANGED PREP");
 			}
+			if(target is BothriocQuadomme && !target.hasStatusEffect("Ranged Evade")) 
+			{
+				kGAMECLASS.quadommeDoubleTeam(attacker, target, true);
+			}
+			
 			return true;
 		}
 		
@@ -660,10 +676,16 @@ package classes.GameData
 				target.createStatusEffect("KANE_AI_SKIP");
 				return false;
 			}
-			if(target is Kane && target.hasStatusEffect("KANE_AI_SKIP")) 
+			if(	(target is Kane && target.hasStatusEffect("KANE_AI_SKIP"))
+			||	(target is BothriocQuadomme && target.statusEffectv2("Melee Counter") > 0)
+			)
 			{
 				output("Further action is interrupted!");
 				return false;
+			}
+			if(target is BothriocQuadomme && !target.hasStatusEffect("Melee Hit")) 
+			{
+				if(kGAMECLASS.quadommeCounter(attacker, target)) return false;
 			}
 			if(target.hasStatusEffect("Flying") && !target.isImmobilized() && !attacker.hasPerk("Lunge"))
 			{
@@ -748,8 +770,8 @@ package classes.GameData
 			if(attacker.hasPerk("Lunge") && !target.hasStatusEffect("Staggered") && rand(10) == 0 && attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 			{
 				applyStagger(target, 4 + rand(2));
-				if(target is PlayerCharacter) output(" <b>You are staggered by the lunge!</b>");
-				else output(" <b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " staggered by " + (attacker is PlayerCharacter ? "your" : "the") + " lunge!</b>");
+				if(target is PlayerCharacter) output("\n<b>You are staggered by the lunge!</b>");
+				else output("\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " staggered by " + (attacker is PlayerCharacter ? "your" : "the") + " lunge!</b>");
 			}
 			if(attacker.hasPerk("Cloak and Dagger"))
 			{
@@ -943,7 +965,7 @@ package classes.GameData
 				}
 				else output(StringUtil.capitalize(target.getCombatName(), false) + " " + target.mfn("growls", "squeals", "grunts") + " aloud as " + attacker.getCombatName() + " clamps " + (attacker.isPlural ? "their" : attacker.getCombatPronoun("himher")) + " jaws around a limb!");
 				
-				applyDamage(new TypeCollection( { tease: 3 + (fromMelee ? 0 : Math.floor(attacker.level / 3)) + rand(3) } ), attacker, target, "minimal");
+				applyDamage(new TypeCollection( { drug: 3 + (fromMelee ? 0 : Math.floor(attacker.level / 3)) + rand(3) } ), attacker, target, "minimal");
 			}
 		}
 		
@@ -1200,14 +1222,14 @@ package classes.GameData
 			target.createStatusEffect("Gassed", 0, 0, 0, 0, false, "Icon_Blind", "The gas makes it hard to see and aim. Aim and reflex decreased!", true, 0);
 			target.aimMod -= 5;
 			target.reflexesMod -= 5;
-			if(tooltip != "Gassed") target.setStatusTooltip("Disarmed", tooltip);
+			if(tooltip != "") target.setStatusTooltip("Gassed", tooltip);
 		}
 		public static function applyGrapple(target:Creature, chance:int = 30, apply:Boolean = false, tooltip:String = ""):void
 		{
 			target.createStatusEffect("Grappled", 0, 0, 0, 0, false, "Constrict", (target is PlayerCharacter ? "You’re pinned in a grapple." : "Pinned in a grapple."), true, 0);
-			if(apply) target.setStatusValue("Disarmed", 2, chance);
-			else target.addStatusValue("Disarmed", 2, chance);
-			if(tooltip != "") target.setStatusTooltip("Disarmed", tooltip);
+			if(apply) target.setStatusValue("Grappled", 2, chance);
+			else target.addStatusValue("Grappled", 2, chance);
+			if(tooltip != "") target.setStatusTooltip("Grappled", tooltip);
 		}
 		public static function applyLustStun(target:Creature, turns:int = 2, apply:Boolean = false, tooltip:String = ""):void
 		{
@@ -1248,6 +1270,15 @@ package classes.GameData
 		{
 			target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", (target is PlayerCharacter ? "You’ve been tripped, reducing your effective physique and reflexes by 4. You’ll have to spend an action standing up." : "Until able to stand, physique and reflexes have been reduced by 4."), true, 0);
 			if(tooltip != "") target.setStatusTooltip("Tripped", tooltip);
+		}
+		public static function applyWeb(target:Creature, tooltip:String = ""):void
+		{
+			target.createStatusEffect("Web", 0, 0, 0, 0, false, "Icon_SpiderWeb", (target is PlayerCharacter ? "You’re trapped in a web, keeping you grounded." : "Trapped and grounded in a web."), true, 0);
+			if(tooltip != "") target.setStatusTooltip("Web", tooltip);
+		}
+		public static function removeWeb(target:Creature):void
+		{
+			target.removeStatusEffect("Web");
 		}
 		//Does v1 lust damage every turn. V2 is turn counter (negative = infinite)!
 		public static function applyAphroGas(target:Creature, damage:int = 5, turns:int = 4, apply:Boolean = false, tooltip:String = ""):void
@@ -1376,7 +1407,7 @@ package classes.GameData
 			applyDamage(d, attacker, target);
 			if(!target.hasStatusEffect("Sundered") && attacker.hasPerk("Rending Attacks"))
 			{
-				output(" <b>Sundered</b>!");
+				output("\n<b>Sundered</b>!");
 				applySunder(target, 4 + rand(2));
 			}
 		}
@@ -1645,8 +1676,8 @@ package classes.GameData
 			if(!target.hasStatusEffect("Burning"))
 			{
 				applyBurning(target, 2);
-				if (target is PlayerCharacter) output(" <b>You are on fire!</b>");
-				else output(" <b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " on fire!</b>");
+				if (target is PlayerCharacter) output("\n<b>You are on fire!</b>");
+				else output("\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " on fire!</b>");
 			}
 		}
 		

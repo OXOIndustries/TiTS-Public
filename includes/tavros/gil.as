@@ -116,7 +116,8 @@ public function repeatGilApproach():void
 	//pc is hard:
 	else output("\n\nYou simply stand there silently, not bothering to give him any answer. He knows why you’re here.");
 
-	if(flags["GIL_DOSES"] != undefined && flags["GIL_DOSES"] >= 9) output("\n\n<i>“Are y’here to collect?”</i> he asks with a lascivious smirk.");
+	output("\n\n");
+	if(flags["GIL_DOSES"] != undefined && flags["GIL_DOSES"] >= 9) output("<i>“Are y’here to collect?”</i> he asks with a lascivious smirk.");
 	else output("<i>“Do y’have any more pupper poppers I can buy?”</i>");
 
 	processTime(2);

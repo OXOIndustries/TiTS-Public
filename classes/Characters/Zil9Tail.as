@@ -180,7 +180,7 @@
 			
 			//createStatusEffect("Flying", 0, 0, 0, 0, false, "Icon_Wings", "Flying, cannot be struck by normal melee attacks!", true, 0);
 
-			kGAMECLASS.mhengaSSTDChance(this);
+			//kGAMECLASS.mhengaSSTDChance(this);
 		}
 		
 		override public function get bustDisplay():String

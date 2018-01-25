@@ -91,12 +91,6 @@ public function gimmeBooks():void
 	addButton(0, "Next", itemCollect, tempLoot);
 }
 
-public function isEaster():Boolean
-{
-	//checkDate(day:int, month:int, dayRange:int)
-	return checkDate(16, 4, 2);
-}
-
 public function eggSelect():ItemSlotClass
 {
 	var egg:int = rand(8);

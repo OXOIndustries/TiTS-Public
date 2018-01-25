@@ -761,7 +761,7 @@ public function straponLiammipoo():void
 	//moreThanPanties: 
 	if(!pc.isCrotchExposedByArmor()) 
 	{
-		output(" He grabs at all your clothes, gradually pulling them away until all that’s left is your [pc.lowerundergarment], greedy, fluffy fingers ");
+		output(" He grabs at all your clothes, gradually pulling them away until all that’s left is your [pc.lowerUndergarment], greedy, fluffy fingers ");
 		if(pc.hasCock()) output("grasping at your package");
 		else if(pc.hasVagina()) 
 		{

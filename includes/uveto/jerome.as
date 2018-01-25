@@ -502,7 +502,7 @@ public function jeromeHipbuster():void
 	{
 		if (pc.gapestVaginaLooseness() >= pc.ass.looseness())
 		{
-			s.vIdx = pc.gapestVaginaIndex();
+			if(!pc.isBlocked(pc.gapestVaginaIndex())) s.vIdx = pc.gapestVaginaIndex();
 		}
 	}
 

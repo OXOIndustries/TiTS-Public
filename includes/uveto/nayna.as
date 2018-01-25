@@ -1560,7 +1560,7 @@ public function naynaFucksYourButt():void
 		else output("flooding");
 		output(" your load out on the floor!");
 	}
-	if(pc.hasVagina()) 
+	if(pc.hasVagina() && pc.blockedVaginas() == 0) 
 	{
 		output(" Your body is far too overwhelmed with sensations to not finish with your [pc.vaginas]. You shove one hand to your mound");
 		if(pc.totalVaginas() > 1) output("s");
