@@ -90,10 +90,19 @@ public function ulaApproach(back:Boolean = false):void
 	}
 	else
 	{
-		output("<i>“Hey there,”</i> you call.");
-		output("\n\nUla’s ears perk right up, their piercings rattling. The rest of her follows a second later. <i>“[pc.name]! Happying feels!”</i> She rushes forward to hug you tightly. <i>“Knew sure-visit.”</i> Wide green eyes stare up at you. <i>“Have talks or share warm?”</i> The final word is underlined with a throaty purr.");
-		if(pc.tallness >= 7*12) output(" You’re keenly aware that her nose is inches away from your crotch.");
-		output("\n\nBy the sound of it, she’s up for anything.");
+		if(flags["ULA_BIRTH_TIMER"] > 7 && !pc.hasStatusEffect("Ula Kiddo Pets Cooldown"))
+		{
+			//Approach any time one week after birth. Can only happen once a day.
+			output("TODO: PET KORG PUPS WHILE ULA BREASTFEEDS");			
+			pc.createStatusEffect("Ula Kiddo Pets Cooldown", 0, 0, 0, 0, true, "", "", false, 21*60);
+		}
+		else
+		{
+			output("<i>“Hey there,”</i> you call.");
+			output("\n\nUla’s ears perk right up, their piercings rattling. The rest of her follows a second later. <i>“[pc.name]! Happying feels!”</i> She rushes forward to hug you tightly. <i>“Knew sure-visit.”</i> Wide green eyes stare up at you. <i>“Have talks or share warm?”</i> The final word is underlined with a throaty purr.");
+			if(pc.tallness >= 7*12) output(" You’re keenly aware that her nose is inches away from your crotch.");
+			output("\n\nBy the sound of it, she’s up for anything.");
+		}
 	}
 	ulaMenu();
 }
@@ -909,11 +918,40 @@ public function firstTimeKorgHoldMeeting():void
 }
 
 public function ulaRoomBonusFunc():Boolean
-{
+{	
+	//20% chance and Ula has kids older than 7 days
+	if(rand(5) == 0 && (flags["ULA_BIRTH_TIMER"] > 7 || flags["ULA_TOTAL_KIDS"] > 4))
+	{
+		var blurbs:Array = new Array();
+		blurbs.push("Two tiny korgonne run screaming out of the room as you open the door. One is chasing the other with a gun-shaped piece of rock and making a crude approximation of gun sounds.");
+		blurbs.push("A shy-looking korgonne scampers between your legs on the way out the door. Was that one of yours?");
+		blurbs.push("A toddler-sized korgonne wobbles out the door wearing a basket on its head like an oversized helmet.");
+		blurbs.push("Bits of soft stone with crudely carved milodans are piled up in the corner, the clear result of your children's attempts at art.");
+		output("\n\n" + blurbs[rand(blurbs.length)]);
+	}
+	
 	if(flags["MET_ULA"] == undefined)
 	{
 		ulaFirstTimeRemeet();
 		return true;
+	}
+	//IMMEDIATELY proc birth
+	else if(flags["ULA_PREG_TIMER"] >= 180)
+	{
+		ulaBirthHook();
+		return true;
+	}
+	//Ula breast-feeding blurb
+	else if(flags["ULA_BIRTH_TIMER"] <= 7)
+	{
+		output("\n\nUla is sitting on her bed with " + (flags["ULA_BABIES_NURSING"] > 2 ? "two of " : "") + "her pups in her arms, busily suckling at her nipples. She smiles radiantly in your direction.");
+		addButton(0,"Ula",ulaApproach);
+	}
+	//Reveal and post-reveal preggo stuff
+	else if(ulaPregBelly() >= 1)
+	{
+		output("\n\nUla is sitting on her bed as usual, though with one hand on her belly. She wears a strangely distant smile.");
+		addButton(0, "Ula", ulaPregApproach);
 	}
 	else 
 	{
@@ -1247,6 +1285,7 @@ public function breedWithUla():void
 	output("\n\nFriction, sweat, scent, and the compulsive need to move your hips drags you through orgasm after orgasm. You spill a sea of loads in the korgonne’s velvety snatch. She’s <i>yours</i> now, after all, and you can’t get that beautiful, gorgeous blue pussy out of your head...");
 	processTime(45);
 	IncrementFlag("ULA_SEXED");
+	tryKnockUpUla();
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",ulaBreedingEpi);
@@ -1712,6 +1751,7 @@ public function centaurServiceForUla(x:int):void
 		pc.applyCumSoaked();
 		output(" High-pressure [pc.cumColor] cascades out around you before long. A creature Ula’s size simply isn’t made to contain the ludicrous amounts of semen a being like you can produce. Nevertheless, your body does its best to absolutely bathe her eggs in it, nevermind that most of it is left to impregnate her sheets.");
 	}
+	tryKnockUpUla();
 	processTime(30);
 	pc.orgasm();
 	clearMenu();
@@ -2120,4 +2160,187 @@ public function ulaCreditsTalk():void
 public function korgiiCredits():Boolean
 {
 	return (flags["ULA_CREDIT_TALK"] != undefined && flags["ULA_CREDIT_TALK"] + 60 * 24 < GetGameTimestamp());
+}
+
+//ULA PREG AS DONE BY UPCASTDRAKE STARTS HERE
+
+//Return value is true if she gets impregnated, else false - not necessarily used for anything but :shrug:
+public function tryKnockUpUla():Boolean
+{
+	var x:Number;
+	
+	//If pc is infertile or Ula is already preggo return false
+	if(pc.virility() == 0 || flags["ULA_PREG_TIMER"] != undefined) return false;
+	
+	//Average of pc's virility and Ula's fertility which is hard-coded 3.00 for now
+	x = (pc.virility()+3.00)/2;
+	
+	//Fancy math function I made that gives a nice pregnancy chance curve
+	if(rand(10000) <= (1 - 1.15*Math.exp(-0.38*x))*10000)
+	{
+		//succesful impregnation
+		flags["ULA_PREG_TIMER"] = 0;
+		pc.clearRut();
+		
+		//Time to figure out baby state info i.e. how many
+		
+		//Different fancy math functions to figure out how many babby
+		//4 Babies!
+		if(rand(10000) <= ((Math.atan(x - 2) + Math.PI/2)/Math.PI)*10000)
+		{
+			flags["ULA_NUM_BABIES"] = 4;
+		}
+		//3 Babies!
+		else if(rand(10000) <= ((Math.atan(x - 1) + Math.PI/2)/Math.PI)*10000)
+		{
+			flags["ULA_NUM_BABIES"] = 3;
+		}
+		//2 Baby!
+		else
+		{
+			flags["ULA_NUM_BABIES"] = 2;
+		}
+		
+		return true;
+	}
+	else return false;
+}
+
+//true if she's pregnant, else false
+public function ulaIsPregnant():Boolean
+{
+	return flags["ULA_PREG_TIMER"] != undefined;
+}
+
+//This is where all the time-based procs are processed - processes on a per-day basis
+public function processUlaPregEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
+{
+	if(ulaIsPregnant())
+	{
+		//update the timer
+		flags["ULA_PREG_TIMER"] += totalDays;
+	
+		//Ideally birth will be triggered by the PC proccing the birth scene, otherwise she's gotta blow sometime
+		if(flags["ULA_PREG_TIMER"] > 185)
+		{
+			//EMAIL SHIIIIIIIIIIIIIIIIIIIIIT
+			if (MailManager.hasEntry("ula_birth")) MailManager.deleteMailEntry("ula_birth");
+			MailManager.addMailEntry("ula_birth", ulaPregEmailText(), "Ula message!", "Bill Billingston", "bill_billingston@steeletech.con", quickPCTo, quickPCToAddress);
+			goMailGet("ula_birth");
+			
+			ulaBirth();
+		}
+	}
+	
+	//if Ula's given birth increment the "time since last birth" timer
+	if(flags["ULA_BIRTH_TIMER"] != undefined) flags["ULA_BIRTH_TIMER"] += totalDays;
+}
+
+public function ulaPregEmailText():String
+{
+	var eText:String = "";
+	if(flags["ULA_TOTAL_KIDS"] == undefined)
+	{
+		//It's her first time shitting kids and you couldn't even be there, what's wrong with you
+		eText += "[pc.name]! Hope am using right. Hunter Korg get core-magic tablet so can writing to you. Old owner not missing it. Hunter make sure. She gived much warm, but not important. Important thing happen! Ula have " + flags["ULA_NUM_BABIES"] + " puppies! No worry, they perfect. Cute korg with floppy ears and good fang-smiles. Already strong. Take all Ula milk and more. Already can walking! Your pups all over Korg'ii Hold, chasing other Korg-moms for milk. Such energy!";
+		eText += "\n\nAm missing you. Come visit soon? Core stories the best. In meantime, here is picture of Ula now. You make good mommy.";
+		eText += "\n\n<i>Attached is a picture of the now-motherly korgonne with her tits hanging out, dripping milk.</i>";
+	}
+	else
+	{
+		//Alright at this point it's routine can't really blame you
+		eText += "[pc.name]! Ula have more puppies! Never just one. Always many. Core-seed such strong, make Ula's belly fattest in tribe. When return? Missing Steele-snuggles! Can give you more pups, if you wanting...";
+		eText += "\n\n<i>Attached is a picture of your MILFY korgonne breeding buddy with her tits hanging out and gushing milk. She's quite the productive mommy.</i>";
+	}
+	
+	return doParse(eText);
+}
+
+//The purely game-state centric parts of birth
+public function ulaBirth():void
+{	
+	StatTracking.track("pregnancy/ula sired", flags["ULA_NUM_BABIES"]);
+	
+	if(flags["ULA_TOTAL_KIDS"] == undefined) flags["ULA_TOTAL_KIDS"] = 0;
+	flags["ULA_TOTAL_KIDS"] += flags["ULA_NUM_BABIES"];
+	flags["ULA_PREG_TIMER"] = undefined;
+	flags["ULA_THIS_PREG_MET"] = undefined;
+	
+	//This tracks how long it's been since she last gave birth for the after birth scenes and such
+	flags["ULA_BIRTH_TIMER"] = 0;
+	//This tracks how many babies she had last pregnancy in order to know how many pups she's nursing and stuff
+	flags["ULA_BABIES_NURSING"] = flags["ULA_NUM_BABIES"];
+	
+	flags["ULA_NUM_BABIES"] = undefined;
+}
+
+//Tracks how big Ula's preggo belly is
+//0 - not pregnant or no belly/less than 30 days preg
+//1 - little belly/less than 75 days preg
+//2 - big belly/more than 75 days preg
+public function ulaPregBelly():int
+{
+	if(!ulaIsPregnant() || flags["ULA_PREG_TIMER"] <= 30) return 0;
+	else if(flags["ULA_PREG_TIMER"] <= 75) return 1;
+	else return 2;
+}
+
+public function ulaPregApproach():void
+{
+	clearOutput();
+	clearMenu();
+	
+	//Reveal
+	if(flags["ULA_THIS_PREG_MET"] == undefined)
+	{
+		//You can use flags["ULA_TOTAL_KIDS"] to determine if she's been pregnant before, if it's undefined she's got a virgin womb, else she's shot some out
+		switch(ulaPregBelly())
+		{
+			case 1:	
+				//insert little-belly reveals here
+				if(flags["ULA_TOTAL_KIDS"] == undefined)
+				{
+					output("\n\nTODO: LITTLE-BELLY FIRST-TIME REVEAL");
+				}
+				else
+				{
+					output("\n\nTODO: LITTLE-BELLY REPEAT REVEAL");
+				}
+				break;
+			case 2:	
+				//insert big-belly reveals here
+				if(flags["ULA_TOTAL_KIDS"] == undefined)
+				{
+					output("\n\nTODO: BIG-BELLY FIRST-TIME REVEAL");
+				}
+				else
+				{
+					output("\n\nTODO: BIG-BELLY REPEAT REVEAL");
+				}
+				break;
+		}
+		flags["ULA_THIS_PREG_MET"] = 1;
+		
+		//You'll need to handle any preg sex or preg talk options in ulaMenu()
+		ulaMenu();
+	}
+	else
+	//Already know she's preggo
+	{
+		//For now do her approach stuff with no fanfare
+		output("TODO: ULA PREG APPROACH");
+		ulaApproach();
+	}
+}
+
+public function ulaBirthHook():void
+{
+	clearOutput();
+	clearMenu();
+	//INSERT BIRTHING SCENE HERE
+	output("\n\nTODO: ULA BIRTH SCENE");
+	
+	//This just handles flags for birth
+	ulaBirth();
+	addButton(0, "Next", mainGameMenu, "", "");
 }

@@ -2829,6 +2829,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		processElliePregEvents(deltaT, doOut, totalDays);
 		processIlariaPregEvents(deltaT, doOut, totalDays);
 		processFZilPregEvents(deltaT, doOut, totalDays);
+		processUlaPregEvents(deltaT, doOut, totalDays);
 		//9999 processQuaellePregEvents(deltaT, doOut, totalDays);
 	}
 	
