@@ -616,7 +616,7 @@ public function fuckTheStormguardsButt():void
 	if(stormguardHonor() != 2) 
 	{
 		output("\n\n<i>“You’ve done this before, haven’t you Mr. Noble Warrior?”</i> you laugh quietly. You stick your [pc.cock " + x + "] between his big cheeks, using the delicious, smooth texture to rub bulging lust into it, stroking his back and head-tentacles with mocking fondness. <i>“Go on, tell me - how many other " + pc.mf("guys","futa") + " have gotten to pack your fudge as a result of you biting off more than you could chew? I won’t tell.”</i>");
-		output("\n\n<i>“Storm lancers must be ready for... all forms of physical hardship,”</i> comes the grumbling reply. <i>“Get on with it.”</i>}");
+		output("\n\n<i>“Storm lancers must be ready for... all forms of physical hardship,”</i> comes the grumbling reply. <i>“Get on with it.”</i>");
 	}
 	else
 	{

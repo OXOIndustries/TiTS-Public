@@ -333,7 +333,7 @@ public function carlBuyTalk(item:ItemSlotClass):void
 			output("You tap one of the buttons and it expands, taking up a fair amount of the display. Before you can look over the appearing information, however, Carl pipes in, <i>“Now here’s an ancient thing, no real surprise why it doesn’t move off too fast. Still one of the best of its type; big, powerful and simple. Got a bit of a kick, though, so aimin’s a bit tricky. Careful with ‘er. Gonna make ya look like a cowpoke, too. Don’t go for the look.”</i>");
 			output("\n\nDamage Rating: 11 Kinetic");
 			output("\nDamage Type: Bullet");
-			output("\nAccuracy Bonus: -2");
+			output("\nAccuracy Bonus: -5");
 			output("\nCritical Bonus: 2");
 			break;
 		case "mark III laser pistol":
