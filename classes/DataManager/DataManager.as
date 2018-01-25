@@ -1111,6 +1111,8 @@
 		
 		CONFIG::AIR
 		{
+			private var baDataBlob:ByteArray;
+			
 			private function saveToFile():void
 			{
 				if (kGAMECLASS.userInterface.systemText != "BY FENOXO") kGAMECLASS.showName("SAVE\nFILE");
@@ -1146,34 +1148,63 @@
 					kGAMECLASS.output2("Attempting to save data to file...");
 					
 					// Convert data into a byte array
-					var baDataBlob:ByteArray = new ByteArray();
+					baDataBlob = new ByteArray();
 					baDataBlob.writeObject(dataBlob);
 					baDataBlob.position = 0;
 				
-					var airSaveDir:File = File.documentsDirectory.resolvePath(saveDir);
-					
-					if (!airSaveDir.exists)
+					if (!IsDesktopAir)
 					{
-						airSaveDir.createDirectory();
+						var airSaveDir:File = File.documentsDirectory.resolvePath(saveDir);
+						
+						if (!airSaveDir.exists)
+						{
+							airSaveDir.createDirectory();
+						}
+						
+						trace(airSaveDir.toString());
+						var airFile:File = airSaveDir.resolvePath(dataBlob.saveName + " - " + dataBlob.daysPassed + " days.tits");
+						var stream:FileStream = new FileStream();
+						
+						try
+						{
+							airSaveDir.createDirectory();
+							stream.open(airFile, FileMode.WRITE);
+							stream.writeBytes(baDataBlob);
+							stream.close();
+							saveToFileWriteHandler();
+						}
+						catch (e:Error)
+						{
+							kGAMECLASS.output2("\n\nError: " + e.message);
+						}
+						kGAMECLASS.userInterface.mainButtonsOnly();
 					}
-					
-					trace(airSaveDir.toString());
-					var airFile:File = airSaveDir.resolvePath(dataBlob.saveName + " - " + dataBlob.daysPassed + " days.tits");
-					var stream:FileStream = new FileStream();
-					
-					try
+					else
 					{
-						airSaveDir.createDirectory();
-						stream.open(airFile, FileMode.WRITE);
-						stream.writeBytes(baDataBlob);
-						stream.close();
-						saveToFileWriteHandler();
+						/*
+						var file:FileReference = new FileReference();
+						file.addEventListener(Event.COMPLETE, saveToFileWriteHandler);
+						file.save(baDataBlob, dataBlob.saveName + " - " + dataBlob.daysPassed + " days.tits");
+						*/
+						
+						if (kGAMECLASS.sharedData.LastUsedFolderPath == null)
+						{
+							stickyFileRef = File.documentsDirectory.resolvePath("My Games/Trials in Tainted Space");
+						}
+						else
+						{
+							trace(kGAMECLASS.sharedData.LastUsedFolderPath);
+							
+							stickyFileRef = new File();
+							stickyFileRef.url = kGAMECLASS.sharedData.LastUsedFolderPath;
+						}
+					
+						if (!stickyFileRef.exists) stickyFileRef.createDirectory();
+						
+						stickyFileRef = stickyFileRef.resolvePath(dataBlob.saveName + " - " + dataBlob.daysPassed + " days.tits");
+						stickyFileRef.browseForSave("Create TiTS Save");
+						stickyFileRef.addEventListener(Event.SELECT, saveToFileDesktopWriteHandler);
 					}
-					catch (e:Error)
-					{
-						kGAMECLASS.output2("\n\nError: " + e.message);
-					}
-					kGAMECLASS.userInterface.mainButtonsOnly();
 				}
 				else
 				{
@@ -1210,6 +1241,24 @@
 				kGAMECLASS.output2("Save complete.");
 				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+			}
+			
+			private function saveToFileDesktopWriteHandler(e:Event):void
+			{
+				// We need to ensure we force a file extension of the type the load code is expecting				
+				var tarFile:File = e.target as File;
+				
+				if (tarFile.extension != "tits")
+				{
+					tarFile.url += ".tits";
+				}
+				
+				var fileStream:FileStream = new FileStream();
+				fileStream.open(tarFile, FileMode.WRITE);
+				fileStream.writeBytes(baDataBlob);
+				fileStream.close();
+				
+				saveToFileWriteHandler();
 			}
 		}
 		
