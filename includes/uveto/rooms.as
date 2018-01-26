@@ -2861,13 +2861,28 @@ public function initUvetoRoomsII():void
 	rooms["KORGII H14"].planet = "PLANET: UVETO VII";
 	rooms["KORGII H14"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII H14"].moveMinutes = 2;
-	rooms["KORGII H14"].northExit = "";
+	rooms["KORGII H14"].northExit = "KORGII H12";
 	rooms["KORGII H14"].eastExit = "KORGII F14";
 	rooms["KORGII H14"].southExit = "";
 	rooms["KORGII H14"].westExit = "KORGII J14";
 	rooms["KORGII H14"].addFlag(GLOBAL.INDOOR);
 	rooms["KORGII H14"].addFlag(GLOBAL.PUBLIC);
 	rooms["KORGII H14"].runOnEnter = korgiH14Bonus;
+
+	rooms["KORGII H12"] = new RoomClass(this);
+	rooms["KORGII H12"].roomName = "HERBS &\nHAPPY";
+	rooms["KORGII H12"].description = "";
+	rooms["KORGII H12"].planet = "PLANET: UVETO VII";
+	rooms["KORGII H12"].system = "SYSTEM: SIRETTA";
+	rooms["KORGII H12"].moveMinutes = 2;
+	rooms["KORGII H12"].northExit = "";
+	rooms["KORGII H12"].eastExit = "";
+	rooms["KORGII H12"].southExit = "KORGII H14";
+	rooms["KORGII H12"].westExit = "";
+	rooms["KORGII H12"].addFlag(GLOBAL.INDOOR);
+	rooms["KORGII H12"].addFlag(GLOBAL.PUBLIC);
+	rooms["KORGII H12"].addFlag(GLOBAL.COMMERCE);
+	rooms["KORGII H12"].runOnEnter = herbsAndHappyBonus;
 
 	rooms["KORGII F14"] = new RoomClass(this);
 	rooms["KORGII F14"].roomName = "SOUTH\nTUNNEL";

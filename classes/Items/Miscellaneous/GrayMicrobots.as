@@ -65,7 +65,7 @@
 				{
 					if(inCombat()) kGAMECLASS.output("\n\n");
 					else kGAMECLASS.clearOutput();
-					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " has already used a vial of gray goo during this fight so drinking it again could be dangerous!");
+					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " has already healed during this fight! Doing so again would be more than ill-advised!");
 				}
 				return false;
 			}

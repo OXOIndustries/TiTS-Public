@@ -5379,7 +5379,7 @@
 		public function hasEmoteEars(): Boolean
 		{
 			// For ear types that move emotively, like cute animal ears.
-			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_SIMII) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
+			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_SIMII) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
 			return false;
 		}
 		public function earDescript(): String
@@ -5406,6 +5406,10 @@
 					else adjectives.push("rounded");
 					if(isBimbo()) adjectives.push("doggie", "puppy");
 					if(kGAMECLASS.silly) adjectives.push("doge");
+					if(!nonFurrySkin) adjectives.push("furry");
+					break;
+				case GLOBAL.TYPE_KORGONNE:
+					adjectives = ["cute","triangular","rounded","fuzzy","floppy","dog-like","korgonne-like","canine"];
 					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_EQUINE:
@@ -6537,10 +6541,12 @@
 					adjectives = ["equine", "horse-like"];
 					break;
 				case GLOBAL.TYPE_CANINE:
+				case GLOBAL.TYPE_KORGONNE:
 					adjectives = ["canine", "dog-like"];
 					sRace = race();
 					if (sRace.indexOf("ausar") != -1) adjectives.push("ausar");
 					if (sRace.indexOf("huskar") != -1) adjectives.push("huskar");
+					if (tailType == GLOBAL.TYPE_KORGONNE) adjectives.push("curled");
 					break;
 				case GLOBAL.TYPE_BOVINE:
 					adjectives = ["bovine", "cow-like"];
@@ -6916,6 +6922,7 @@
 						case GLOBAL.TYPE_EQUINE: adjectives = ["equine", "equine", "horse-like"]; break;
 						case GLOBAL.TYPE_BOVINE: adjectives = ["bovine", "bovine", "cow-like"]; break;
 						case GLOBAL.TYPE_CANINE: adjectives = ["canine", "canine", "dog-like"]; break;
+						case GLOBAL.TYPE_KORGONNE: adjectives = ["canine", "canine", "dog-like"]; break;
 						case GLOBAL.TYPE_FELINE: adjectives = ["feline", "feline", "cat-like", "graceful"]; break;
 						case GLOBAL.TYPE_VULPINE: adjectives = ["vulpine", "vulpine", "fox-like", "foxy"]; break;
 						case GLOBAL.TYPE_LUPINE: adjectives = ["lupine", "lupine", "wolf-like"]; break;
@@ -6994,7 +7001,10 @@
 				{
 					case GLOBAL.TYPE_EQUINE: adjectives = ["equine", "horse-like", "bestial"]; break;
 					case GLOBAL.TYPE_BOVINE: adjectives = ["bovine", "cow-like", "bestial"]; break;
-					case GLOBAL.TYPE_CANINE: adjectives = ["canine", "dog-like"]; break;
+					case GLOBAL.TYPE_CANINE: 
+					case GLOBAL.TYPE_KORGONNE:
+						adjectives = ["canine", "dog-like"];
+						break;
 					case GLOBAL.TYPE_FELINE: adjectives = ["feline", "cat-like"]; break;
 					case GLOBAL.TYPE_VULPINE: adjectives = ["vulpine", "fox-like", "foxy"]; break;
 					case GLOBAL.TYPE_LUPINE: adjectives = ["lupine", "wolf-like"]; break;
@@ -7132,7 +7142,7 @@
 		}
 		public function hasToeClaws():Boolean
 		{
-			if(hasToes() && InCollection(legType, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_AVIAN)) return true;
+			if(hasToes() && InCollection(legType, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_KORGONNE)) return true;
 			return false;
 		}
 		public function kneesDescript(): String 
@@ -13796,6 +13806,7 @@
 				else if (type == GLOBAL.TYPE_SHARK) desc += "shark ";
 				else if (type == GLOBAL.TYPE_SWINE) desc += "swine ";
 				else if (type == GLOBAL.TYPE_MOUTHGINA) desc += "mouth-like ";
+				else if (type == GLOBAL.TYPE_KORGONNE) desc += "korgonne ";
 				else desc += "alien ";
 				var plainPussies:Array = ["vagina", "pussy"];
 				if(isBimbo()) plainPussies.push("cunt");
@@ -13836,6 +13847,13 @@
 						desc += RandomInCollection(["canine pussy","animal pussy","animalistic pussy","doggie cunt","animal cunt","canine cunt", "animalistic cunny", "canine honeypot", "canine slit", "animal pussy", "fragrant dog-cunt", "doggie slit"]);
 					else
 						desc += RandomInCollection(["dog-pussy","dog-pussy","bitch-pussy","animal-pussy","bitch-cunt","dog-cunt","dog-twat","bitch-slit", "animal-pussy", "dog-vagina", "dog-cunt","cunt","slit"]);
+				}
+				else if (type == GLOBAL.TYPE_KORGONNE)
+				{
+					if (!simple)
+						desc += RandomInCollection(["canine pussy","alien pussy","doggie pussy","doggie cunt","alien cunt","korgonne cunt","canine cunt", "animalistic cunny", "canine honeypot", "canine slit", "alien pussy", "fragrant korg-cunt", "korg-style slit"]);
+					else
+						desc += RandomInCollection(["korgonne-pussy","korg-pussy","bitch-pussy","animal-pussy","korg-cunt","dog-cunt","dog-twat","pheromone-box", "animal-pussy", "dog-vagina", "dog-cunt","cunt","slit","pussy"]);
 				}
 				else if (type == GLOBAL.TYPE_VULPINE)
 				{

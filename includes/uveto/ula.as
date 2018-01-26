@@ -7,6 +7,7 @@
 // ULA_STARTALK		- 1 if talked in teh OG encounter
 // ULA_DEFLOWERED	- 1 if hymen torn
 // ULA_SEXED 		- Counter for number of times banged
+// ULA_CREDIT_TALK 	- GetGameTimeStamp of when the talk happens. Used in korgiiCredits() to know if vendors take credits.
 
 // ULA_TOTAL_KIDS	- Total number of kids popped out
 // ULA_NUM_BABIES	- Number of babies presently impregnated with. Undefined if not preggo.

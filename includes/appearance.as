@@ -233,6 +233,7 @@ public function appearance(forTarget:Creature):void
 			break;
 		//dog-face
 		case GLOBAL.TYPE_CANINE:
+		case GLOBAL.TYPE_KORGONNE:
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2("You have a dog’s face, complete with wet nose and panting tongue. You’ve got " + faceFurScales + ", hiding your " + target.skin(true,true,true) + " underneath your furry visage.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2("You have the facial structure of a dog, wet nose and all, but overlaid with " + faceFurScales + ".");
 			else output2("You have a dog-like face, complete with a wet nose. The odd visage is hairless and covered with " + faceFurScales + ".");
@@ -535,6 +536,9 @@ public function appearance(forTarget:Creature):void
 				break;
 			case GLOBAL.TYPE_CANINE:
 				output2(" A pair of pointed ausar-like ears protrude from your " + headNoun + ", pointed and alert.");
+				break;
+			case GLOBAL.TYPE_KORGONNE:
+				output2(" A pair of triangular dog ears protrude from your " + headNoun + ", rounded at the top like a korgonne's.");
 				break;
 			case GLOBAL.TYPE_BOVINE:
 				output2(" A pair of round, floppy cow ears protrude from the sides of your " + headNoun + ".");
@@ -1317,6 +1321,7 @@ public function appearance(forTarget:Creature):void
 		case GLOBAL.TYPE_CANINE:
 		case GLOBAL.TYPE_VULPINE:
 		case GLOBAL.TYPE_LUPINE:
+		case GLOBAL.TYPE_KORGONNE:
 			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of " + target.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
 			if(target.hasArmFlag(GLOBAL.FLAG_PAWS)) output2(" Soft pads rest on the tips of each of your fingers. ");
 			if(target.armType == GLOBAL.TYPE_LUPINE) output2(" Your fingers are tipped with thick, canine claws as well");
@@ -1553,6 +1558,7 @@ public function appearance(forTarget:Creature):void
 			case GLOBAL.TYPE_VULPINE:
 			case GLOBAL.TYPE_LUPINE:
 			case GLOBAL.TYPE_TANUKI:
+			case GLOBAL.TYPE_KORGONNE:
 				output2(" canid"); break;
 			case GLOBAL.TYPE_FELINE:
 				output2(" felid"); break;
@@ -1732,6 +1738,28 @@ public function appearance(forTarget:Creature):void
 				output2(" " + target.furColor + " ");
 				if(target.tailType == GLOBAL.TYPE_LUPINE) output2("wolf-");
 				else output2("dog");
+				output2("tails sprout just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
+			}
+			break;
+		case GLOBAL.TYPE_KORGONNE:
+			if(target.tailCount == 1)
+			{
+				output2(" A");
+				if(target.hasTailFlag(GLOBAL.FLAG_LONG)) output2(" long,");
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
+				else output2(" curly");
+				output2(" " + target.furColor + " ");
+				output2("dog-");
+				output2("tail sprouts just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
+			}
+			else
+			{
+				output2(" " + StringUtil.upperCase(num2Text(target.tailCount)));
+				if(target.hasTailFlag(GLOBAL.FLAG_LONG)) output2(" long,");
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
+				else output2(" curly");
+				output2(" " + target.furColor + " ");
+				output2("dog-");
 				output2("tails sprout just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
 			}
 			break;
@@ -2102,6 +2130,7 @@ public function appearance(forTarget:Creature):void
 			else output2(" Your willowy, sheep-like legs are capped off by hooves, allowing you to spring into action at a moment’s notice.");
 			break;
 		case GLOBAL.TYPE_CANINE:
+		case GLOBAL.TYPE_KORGONNE:
 			if(target.legCount < 4) 
 			{
 				output2(" " + StringUtil.upperCase(num2Text(target.legCount)));
@@ -3847,6 +3876,11 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 		case GLOBAL.TYPE_VULPINE:
 			if(!eachOne) output2(" The exterior lips are that of a bitch and have a tendency to swell when in heat, giving it a very animalistic bent.");
 			else output2("\nEach vagina’s exterior lips are that of a bitch and have a tendency to swell when in heat, giving them a very animalistic bent.");
+			break;
+		case GLOBAL.TYPE_KORGONNE:
+			if(!eachOne) output2(" The surrounding mound and lips is nice and plump, swelling at the slightest provocation.");
+			else output2("\nEach vagina's surrounding mound and lips are nice and plump, swelling at the slightest provocation.");
+			output2(" Less visible are the bundled nerves inside, ready to delight at stretching around a knot.");
 			break;
 		//Kitty flavor
 		case GLOBAL.TYPE_FELINE:

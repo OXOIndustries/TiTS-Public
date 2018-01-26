@@ -1,3 +1,7 @@
+import classes.Items.Recovery.HealingPoultice;
+import classes.Items.Combat.AphroDaisy;
+import classes.Items.Transformatives.KorgonneSnacks;
+
 //Overview:
 //This is my (B, the one and only!) submission for the Korg’ii hold: a shopkeeper by the name of Nenne.
 
@@ -8,13 +12,22 @@
 
 //She’s sexable, of course, with at least one scene per gender (and maybe a third for characters with no gender, I haven’t decided yet. Especially if I only have a max wordcount of 10,000). The Korg’ii Hold doesn’t accept credits until the PC has completed a quest involving the princess, so, in order to get any of Nenne’s items, you’ll have to entertain her for a little bit. This doesn’t necessarily mean sex, but she definitely wouldn’t say no. The more items you get for free, the more you have to entertain her.
 
+public function showNenne(nude:Boolean = false):void
+{
+	var nudeS:String = "";
+	if(nude) nudeS = "_NUDE";
+	showBust("NENNE" + nudeS);
+	author("B");
+	showName("\nNENNE");
+}
+
 // The PC enters a shop called ‘Herbs & Happy’ for the first time
 // (scene: Herbs And Happy)
-public function herbsAndHappyBonus():void
+public function herbsAndHappyBonus():Boolean
 {
-	author("B!");
 	if(flags["MET_NENNE"] == undefined)
 	{
+		showNenne();
 		output("You enter what appears to be a shop, chiseled into the stone of the Korg’ii hold; outside is a simple, finger-painted sign displaying some grass, or perhaps herbs, followed by some alien text that you had difficulty translating. You surmised it to be some kind of herbal shop – perhaps this place offers natural medicines and the like? Only one way to find out.");
 		output("\n\nThe room just beyond the entrance is a little cozier than you had anticipated: it is little more than a foyer for a larger residential apartment. Another opening to your right, chiseled into the stone, leads and bends into where the shopkeeper must live. Before you is a crude stone chair that’s a little small, but the seat’s been carefully smoothed and rounded to provide as much comfort as possible; behind it is a number of small holes, carefully drilled and pockmarked into the stone, where mosses, herbs, plants, grasses and vines are stored and spill out of.");
 		output("\n\nStanding before all of that is a Korgonne, fussing beneath the holes in the walls, carefully sorting the spilled greens with her pawed hands. She turns to look at her customer, and you see the greying lines around the mouth of her snout and the frayed, limp tips of her ears. She’s clearly a bit older than some of the other Korgonne around the hold.");
@@ -22,21 +35,24 @@ public function herbsAndHappyBonus():void
 		if(!korgiTranslate()) output("Name of Nenne, welcoming you to Herbs And Happy!");
 		else output("My name is Nenne, and welcome to Herbs And Happiness!");
 		output("”</i>");
-		output("\n\nNenne moves a little slower than you’ve seen most Korgonne move, but you attribute that to her apparent age. Her disposition is nonetheless as cheerful and excited as you’ve come to expect from a Korgonne. You introduce yourself to the older Korgonne with a smile. <i>“");
+		output("\n\nNenne moves a little slower than you’ve seen most Korgonne move, but you attribute that to her apparent age. Her disposition is nonetheless as cheerful and excited as you’ve come to expect from a Korgonne.\n\nYou introduce yourself to the older Korgonne with a smile.\n\n<i>“");
 		if(!korgiTranslate()) output("I can being of help for you, [pc.name]?");
 		else output("How can I help you today, [pc.name]?");
 		output("”</i>");
 		flags["MET_NENNE"] = 1;
 		processTime(2);
 		herbsAndHappyMenu();
+		return true;
 	}
 	// The PC enters Herbs & Happy, subsequent times
 	else
 	{
+		showBust("NENNE");
 		output("You return to your favorite apothecary within the Korg’ii hold. Sitting on the simple stone chair, weaving strands of ivy into braids to sell, is Nenne; she hums to herself in absent-minded contentment, but as soon as you enter the room, she places her plants in their appropriate slot and stands to greet you.");
 		addButton(0,"Nenne",approachNenne);
 	}
 	// end scene (scene: Herbs And Happy)
+	return false;
 }
 
 public function approachNenne(back:Boolean = false):void
@@ -98,15 +114,34 @@ public function shopNennes():void
 	output("”</i>");
 
 	//[=Poultice=][={Transformative}=][=Itchy Weed=][=Hot Moss=][=AphroDaisy=][=AcceptCredit?=][=Back=]
+	clearMenu();
+	addItemButton(0, new AphroDaisy(), mainGameMenu);
+	addItemButton(1, new HealingPoultice(), mainGameMenu);
+	addItemButton(2, new KorgonneSnacks(), mainGameMenu);
+	if(nenneFreebies() == 0) 
+	{
+		output("\n\n<b>You can't get any items for free right now...</b>");
+		setButtonDisabled(0);
+		setButtonDisabled(1);
+		setButtonDisabled(2);
+	}
+	if(flags["NENNE_SEX_CRED_OFFER"] != undefined && !korgiiCredits()) 
+	{
+		if(silly) addButton(5,"Credits?",nenneAcceptCredits,undefined,"Accept Credits?","Nenne’s offered you any one thing in her shop for free, provided you fuck her hot, Korgonne-milf ass until she’s a quivering, senseless mush on the floor.");
+		else addButton(5,"Credits?",nenneAcceptCredits,undefined,"Accept Credits?","Nenne’s offered you any one thing in her shop for free, provided you ‘satisfy’ her craving for some ‘conversation.’");
+	}
+	else if(korgiiCredits() && flags["NENNE_TAKES_CREDS"] != undefined) addButton(5,"Use Credits",nenneAcceptCredits,undefined,"Use Credits","Nenne accepts credit in her store, but she’s still willing to trade you something of hers in exchange for a bit of attention.");
+	else addButton(5,"Credits?",nenneAcceptCredits,undefined,"Accept Credits?","Ask Nenne if she accepts credits as a form of economy in her shop.");
 
 	addButton(14,"Back",approachNenne,true);
 }
+public function nenneFreebies():Number
+{
+	if(flags["NENNE_SEX_CRED"] == undefined) return 0;
+	else return flags["NENNE_SEX_CRED"];
+}
 
 
-
-//[=Poultice=]
-//// Tooltip: You can’t see the actual plants and herbs; they’re wrapped tightly in a thin gauze, which is tied shut at the top. You’re supposed to unravel the gauze, then apply the herbs to your body, and keep them in place <i>with</i> the gauze. It’s a bit primitive as far as medicine goes, and it’s too unwieldy to use more than once in a fight, but it’ll do in a pinch.\n\nRestores 25 HP immediately\nRestores an additional 8 HP once per turn if used in combat\nRestores an additional 1 HP every minute if used outside of combat\nRestores 50 HP total\n\nCost: 40 Credits
-//
 //[={Transformative}=]
 //// Tooltip: According to Nenne, this little plant, when ingested, promotes healthy fur growth and maintenance. You’re sure that eating the local fauna would do much more to you than that....\n\nCost: 15 Credits
 //// I was told not to write much about the Korgonne transformative, so this placeholder a little more bare-bones than usual.
@@ -119,10 +154,7 @@ public function shopNennes():void
 //// Tooltip: This dark-green moss is kept in a clear capsule; the plant is slightly submerged in a yellowish, sloshing oil. The moss itself doesn’t emanate any heat, but when it makes contact with any skin, fur, or scale, it releases oil that causes an igniting sensation on the body. The sensation doesn’t last long, but worsens over time. Hot Moss is the most dangerous organic weapon available to the Korg’ii, and must be handled with care. <i>Keep away from eyes and genitals.</i>\n\nDoes {x} Burning Damage that increases over time\n\nCost: 125 Credits
 //// I was thinking that this item does Burning damage that increases over time until, I dunno, turn four or five, when it stops working all together. That’s not up to me, though, of course.
 //
-//[=AphroDaisy=]
-//// Tooltip: This gentle flower with wavy pink petals emits a scent that reminds you of the lust-inducing pheromones of the female Korgonne. One whiff of this is guaranteed to force any opponent to think about something else.\n\nDoes {x} Lust damage\n\nCost: 40 Credits
-//
-//// end scene (scene: H&H Inventory)
+
 
 //[=AcceptCredit?=]
 // Tooltip: Ask Nenne if she accepts credits as a form of economy in her shop.
@@ -130,15 +162,15 @@ public function shopNennes():void
 // Tooltip (already selected; does not accept credit; Silly Mode on): Nenne’s offered you any one thing in her shop for free, provided you fuck her hot, Korgonne-milf ass until she’s a quivering, senseless mush on the floor.
 // Tooltip (already selected; accepts credit): Nenne accepts credit in her store, but she’s still willing to trade you something of hers in exchange for a bit of attention.
 // (scene: H&H Credit)
-public function acceptCredits():void
+public function nenneAcceptCredits():void
 {
-	clearOutput();
-	showNenne();
-	output("As you browse along Nenne’s wares, you notice that each little hole that houses her plants and herbs has a number of little scratches beneath them. They don’t look informative enough to be names or descriptions, so you surmise them to be price tags. But all you have are credits. You turn to her and ask if she accepts them.");
-
 	// Continue here if she does not.
-	if(9999)
+	if(!korgiiCredits())
 	{
+		clearOutput();
+		showNenne();
+		output("As you browse along Nenne’s wares, you notice that each little hole that houses her plants and herbs has a number of little scratches beneath them. They don’t look informative enough to be names or descriptions, so you surmise them to be price tags. But all you have are credits. You turn to her and ask if she accepts them.");
+		flags["NENNE_SEX_CRED_OFFER"] = 1;
 		output("\n\n<i>“");
 		if(!korgiTranslate()) output("Credits? What those?");
 		else output("What are credits?");
@@ -168,27 +200,33 @@ public function acceptCredits():void
 		output("”</i>");
 
 		output("\n\nWhile she’s saying she just wants to enjoy a decent company, you’re also hearing her undertones loud and clear. If you want something for free from Nenne, you’ll need to ‘satisfy’ her ‘need’ for some good ‘conversation.’ That doesn’t sound like such a bad deal to you.");
+		clearMenu();
+		addButton(0,"Next",approachNenne,true);
 	}
 	// Continue here if she does.
 	else
 	{
-		output("\n\n<i>“");
-		if(korgiTranslate()) output("Princess saying to me that credit is good!");
-		else output("Tribe say credits are good for trade now thanks to Nayna,");
-		output("”</i> Nenne says, smiling toward you. <i>“");
-		if(korgiTranslate()) output("Okay to taking herbs if I am okay to taking credits. Good trade!");
-		else output("It’s still not my preferred economy, but if it’s good for the princess, then it’s good for me.");
-		output("”</i>");
+		shopkeep = chars["NENNE"];
+		
+		flags["NENNE_TAKES_CREDS"] = 1;
 
-		output("\n\nShe pulls forward, one finger trailing down your arm gently as her eyes lock onto yours. <i>“");
-		if(!korgiTranslate()) output("But trading in together-time still offer good, cuteness");
-		else output("But my offer to give you something for free in exchange for some time together is still on the table, cutie,");
-		output("”</i> she says, her voice low and dripping with sensuality.");
+		shopkeep.keeperBuy = "As you browse along Nenne’s wares, you notice that each little hole that houses her plants and herbs has a number of little scratches beneath them. They don’t look informative enough to be names or descriptions, so you surmise them to be price tags. But all you have are credits. You turn to her and ask if she accepts them.\n\n<i>“";
+		if(korgiTranslate()) shopkeep.keeperBuy += "Princess saying to me that credit is good!";
+		else shopkeep.keeperBuy += "Tribe say credits are good for trade now thanks to Nayna,";
+		shopkeep.keeperBuy += "”</i> Nenne says, smiling toward you. <i>“";
+		if(korgiTranslate()) shopkeep.keeperBuy += "Okay to taking herbs if I am okay to taking credits. Good trade!";
+		else shopkeep.keeperBuy += "It’s still not my preferred economy, but if it’s good for the princess, then it’s good for me.";
+		shopkeep.keeperBuy += "”</i>";
 
-		output("\n\nIf you’re in the mood to make something else of hers drip, and get some stock of hers for free, then it’s good to know that the offer is still there.");
+		shopkeep.keeperBuy += "\n\nShe pulls forward, one finger trailing down your arm gently as her eyes lock onto yours. <i>“";
+		if(!korgiTranslate()) shopkeep.keeperBuy += "But trading in together-time still offer good, cuteness";
+		else shopkeep.keeperBuy += "But my offer to give you something for free in exchange for some time together is still on the table, cutie,";
+		shopkeep.keeperBuy += "”</i> she says, her voice low and dripping with sensuality.";
+
+		shopkeep.keeperBuy += "\n\nIf you’re in the mood to make something else of hers drip, and get some stock of hers for free, then it’s good to know that the offer is still there.\n\n";
+		buyItem();
 	}
 	// end scene (scene: H&H Credit)
-	//9999
 }
 
 //[=Talk=]
