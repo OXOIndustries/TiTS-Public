@@ -539,7 +539,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.131";
+			version = "0.7.132";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -790,7 +790,7 @@
 		{
 			userInterface.setButtonDisabled(slot);
 		}
-		
+
 		public function addItemButton(slot:int, item:ItemSlotClass, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, seller:Creature = null, buyer:Creature = null):void
 		{
 			var comparisonString:String = null;
