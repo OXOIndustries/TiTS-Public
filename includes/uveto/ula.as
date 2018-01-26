@@ -8,6 +8,12 @@
 // ULA_DEFLOWERED	- 1 if hymen torn
 // ULA_SEXED 		- Counter for number of times banged
 
+// ULA_TOTAL_KIDS	- Total number of kids popped out
+// ULA_NUM_BABIES	- Number of babies presently impregnated with. Undefined if not preggo.
+// ULA_THIS_PREG_MET- Have you see the pregnancy alert yet?
+// ULA_BIRTH_TIMER	- Days since her last birth. For tracking nursing scenes and the like :3
+// ULA_PREG_TIMER	- Tracks incubation in days. 170 can pop in room, 185 does email pop if not around.
+
 /*PHYSICAL ATTRIBUTES:
 4' 9" - on the edge of being a midget :3
 125 lbs. Chubby thighs and a tiny bit of squish
@@ -1018,7 +1024,7 @@ public function ulaRoomBonusFunc():Boolean
 		return true;
 	}
 	//IMMEDIATELY proc birth
-	else if(flags["ULA_PREG_TIMER"] >= 180)
+	else if(flags["ULA_PREG_TIMER"] >= 170)
 	{
 		ulaBirthHook();
 		return true;
