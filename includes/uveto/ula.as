@@ -550,7 +550,7 @@ public function stayAndStarsTell(inVillage:Boolean = false):void
 	if(!inVillage)
 	{
 		//Crotchless.
-		if(!pc.hasGenitals() || pc.totalVaginas() <= pc.blockedVaginas())
+		if(!pc.hasGenitals() || (pc.totalVaginas() <= pc.blockedVaginas() && !pc.hasCock()))
 		{
 			output("\n\nThose thick fingers wriggle around but find nothing. A few awkward seconds of groping stretch on before the Korgonne girl pulls back, confused. <i>“No funhaving parts?”</i>");
 			output("\n\n<i>“Yeah...”</i> you admit.");
