@@ -302,6 +302,9 @@ package classes.UIComponents
 		public function setDisabled():void
 		{
 			this.alpha = 0.3;
+			this.func = undefined;
+			this.arg = undefined;
+			this.buttonMode = false;
 		}
 		
 		public function setActive():void
