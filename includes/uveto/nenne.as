@@ -211,10 +211,10 @@ public function nenneAcceptCredits():void
 		flags["NENNE_TAKES_CREDS"] = 1;
 
 		shopkeep.keeperBuy = "As you browse along Nenne’s wares, you notice that each little hole that houses her plants and herbs has a number of little scratches beneath them. They don’t look informative enough to be names or descriptions, so you surmise them to be price tags. But all you have are credits. You turn to her and ask if she accepts them.\n\n<i>“";
-		if(korgiTranslate()) shopkeep.keeperBuy += "Princess saying to me that credit is good!";
+		if(!korgiTranslate()) shopkeep.keeperBuy += "Princess saying to me that credit is good!";
 		else shopkeep.keeperBuy += "Tribe say credits are good for trade now thanks to Nayna,";
 		shopkeep.keeperBuy += "”</i> Nenne says, smiling toward you. <i>“";
-		if(korgiTranslate()) shopkeep.keeperBuy += "Okay to taking herbs if I am okay to taking credits. Good trade!";
+		if(!korgiTranslate()) shopkeep.keeperBuy += "Okay to taking herbs if I am okay to taking credits. Good trade!";
 		else shopkeep.keeperBuy += "It’s still not my preferred economy, but if it’s good for the princess, then it’s good for me.";
 		shopkeep.keeperBuy += "”</i>";
 
@@ -260,7 +260,7 @@ public function nenneFamilyTalk():void
 	else output("I’m a proud, loving mother, with three fully-grown pups. Triplets, as a matter of fact,");
 	output("”</i> she says happily, her tail wagging in delight at the thought of her family. <i>“");
 	if(silly) output("Two tramps and a lady");
-	else if(korgiTranslate()) output("Two boylies, one girly");
+	else if(!korgiTranslate()) output("Two boylies, one girly");
 	else output("Two boys and a girl");
 	output(". ");
 	if(!korgiTranslate()) output("All big now; boys watchdogs at Korg’ii big-door and girl groom for fee at low floor. Living not with mommy many days, but visiting can often!");

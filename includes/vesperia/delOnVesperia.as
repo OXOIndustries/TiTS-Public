@@ -534,11 +534,14 @@ public function delGetsButtplowedAtKallysPart2(x:int):void
 	else if(pc.balls > 1) output("your [pc.balls] slap against her cheeks, your shaft fully buried");
 	else output("your hips press into hers, your shaft fully buried");
 	output(". She cries out, fingers digging into the edge of the bench as you settle inside her, giving her a few seconds to adjust to your girth before you start to move.");
-
-	stretchDelilahsButt();
+	
 	pc.cockChange();
-
+	
 	output("\n\nBut that’s the last kindness you’re going to show this wanton whore’s little pucker. You draw yourself only half-way out before slamming back home, thrusting back with all the force your [pc.hips] can muster, sending shockwaves through the flesh of the lusty slut’s bubble butt. Her prick jumps in response to your next thrust, hopping straight up and twitching visibly as a bead of creamy white beads at its tip. You consider giving her a little tug to help her along, but then... that’d defeat the purpose! This slut’s supposed to be a little anal whore, so by God that’s what she’ll be. You reaffirm your grip on her broad hips and start pounding with a vengeance, faster and harder until Del’s whining and moaning with every push, crying her pleasure aloud with utter abandon. You can barely reconcile the bashful little trap you met back on Tarkus with this moaning, giggling whore, spilling cum all over her own belly as you pound her ass.");
+	
+	if(flags["TOOK_DELILAHS_BUTTGINITY"] == undefined && chars["DELILAH"].analVirgin) output("\n\n<b>You have taken Del’s anal virginity!</b>");
+	stretchDelilahsButt(true);
+	
 	output("\n\nBetween the sloppy blowjob she gave you and now the tight, wringing grip of the shemale’s cock-draining boypussy, you don’t know how long you’re going to hold out. Her ass feels like a vice, so tight around your [pc.cock " + x + "] that it’s nearly painful, yet with every thrust you can feel the twitch and spasm of her muscles as her little sphincter tries to push you out or draw you in, you’re never sure. Either way, it’s making a tight, wet, squirming hole for you to fuck, ushering you inexorably towards your now-inevitable orgasm.");
 	output("\n\nYou feel your cock swelling inside her, cum rushing through your [pc.cock " + x + "] towards the waiting receptacle of the trap-whore’s wanton hole. She seems to sense the oncoming climax, and responds with a shrill yelp of pleasure, her own cock twitching madly, so close yet so far from orgasm. She reaches up and grabs your shoulders, clutching tightly at you as you flood her bowels with cum. Shockwaves of pleasure tear through your body as [pc.cumColor] ropes let loose from your [pc.cock], smearing the trap’s rectal walls with your sticky seed. Your [pc.hips] piston away, thrusting you as deep into her ass as you can go before you’ve finished, making sure to bust your nut straight into her spasming colon, giving it a taste of cum before you’re finally finished.");
 	output("\n\nYou shudder with an absolute contentment, panting heavily as your cock starts to deflate in Delilah’s well-fucked ass. Before you can get comfortable, though, the sultry slut gives you a gentle push back, popping your prick free of her gaping asshole amidst a backwash of spent seed. Grinning hungrily, Del slips down off the bench and onto her knees, wrapping both her hands around your half-soft cock.");
