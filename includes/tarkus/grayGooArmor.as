@@ -796,6 +796,10 @@ public function gooArmorGoBack(arg:Array):void
 }
 
 // Crew Menu Text
+public function gooArmorInteractBonus(btnSlot:int = 0):String
+{
+	return gooArmorOnSelfBonus(btnSlot, false);
+}
 public function gooArmorOnSelfBonus(btnSlot:int = 0, fromCrew:Boolean = true):String
 {
 	var bonusText:String = "";

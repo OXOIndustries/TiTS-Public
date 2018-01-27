@@ -228,6 +228,10 @@ public function disableSiegwulfe():void
 }
 
 // Crew Menu Text
+public function siegwulfeInteractBonus(btnSlot:int = 0):String
+{
+	return siegwulfeOnShipBonus(btnSlot, true);
+}
 public function siegwulfeOnShipBonus(btnSlot:int = 0, fromInv:Boolean = false):String
 {
 	// Bought, but not activated.
