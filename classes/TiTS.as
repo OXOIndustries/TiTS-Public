@@ -172,6 +172,7 @@
 		include "../includes/vendingMachine.as";
 		
 		// Misc Events
+		include "../includes/events/araDiplomacyMission.as";
 		include "../includes/events/atha_lets_fapper.as";
 		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
 		include "../includes/events/erra.as";

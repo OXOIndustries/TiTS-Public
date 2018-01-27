@@ -2613,7 +2613,15 @@ public function variableRoomUpdateCheck():void
 	// Crystal Goo Silly Modes
 	if(silly) rooms["2O25"].southExit = "2O27";
 	else rooms["2O25"].southExit = "";
-	
+	// Ara Diplomacy Mission
+	if(flags["MET_FEIAN"] != undefined && flags["FEIAN_LOCATION"] != undefined)
+	{
+		if(flags["FEIAN_AT_LOCATION"] != undefined) feiAnAppear();
+		else feiAnRemove();
+	}
+	// Bothrioc Embassy
+	if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_FAILURE && flags["BOTHRIOC_EMBASSY_ENTERED"] >= 2) rooms["BOTHRIOC EMBASSAY"].removeFlag(GLOBAL.NPC);
+	else rooms["BOTHRIOC EMBASSAY"].addFlag(GLOBAL.NPC);
 	// KQuest
 	kquest2RoomStateUpdater();
 	if (flags["KQ2_MYRELLION_STATE"] == 2)
@@ -2626,7 +2634,6 @@ public function variableRoomUpdateCheck():void
 		rooms["2I7"].removeFlag(GLOBAL.SHIPHANGAR);
 		rooms["2I7"].addFlag(GLOBAL.TAXI);
 	}
-	
 	//Federation Quest
 	if(flags["SELLERA_DENIED"] != undefined && (GetGameTimestamp() < flags["SELLERA_DENIED"] + 60*48))
 	{

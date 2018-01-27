@@ -187,6 +187,7 @@ package classes.Characters
 		// mf rather than mfn
 		override public function getDescription(arg:String, arg2:*):String
 		{
+			var buffer:String = "";
 			var firstLetter:String = arg.substr(0, 1);
 			var actualTag:String = firstLetter.toLowerCase() + arg.substr(1);
 			var doCaps:Boolean = firstLetter == firstLetter.toUpperCase();
@@ -194,25 +195,28 @@ package classes.Characters
 			switch (actualTag)
 			{
 				case "he":
-					return mfn("he", "she", "they");
+					buffer = mfn("he", "she", "they");
 					break;
 				
 				case "his":
-					return mfn("his", "her", "their");
+					buffer = mfn("his", "her", "their");
 					break;
 					
 				case "him":
-					return mfn("him", "her", "them");
+					buffer = mfn("him", "her", "them");
 					break;
 					
 				case "himself":
-					return mfn("himself", "herself", "themselves");
+					buffer = mfn("himself", "herself", "themselves");
 					break;
 					
 				default:
 					return super.getDescription(arg, arg2);
 					break;
 			}
+			
+			if (arg.charCodeAt(0) > 64 && arg.charCodeAt(0) < 90) buffer = upperCase(buffer);
+			return buffer;
 		}
 		
 		override public function mfn(m:String, f:String, n:String, ignorePref:Boolean = false):String
