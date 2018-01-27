@@ -301,7 +301,7 @@ package classes.Items.Transformatives
 					changes++;
 				}
 				//Change nips to blue
-				if(pc.nippleColor != "blue" && changes < changeLimit && rand(3) == 0)
+				if(pc.nippleColor != "blue" && changes < changeLimit && rand(3) == 0 && pc.korgonneScore() >= 3)
 				{
 					if(pc.nippleColorUnlocked("blue"))
 					{
@@ -312,10 +312,28 @@ package classes.Items.Transformatives
 					changes++;
 				}
 				//Change lips to blue
-				if(pc.lipColor != "blue" && changes < changeLimit && rand(3) == 0)
+				if(pc.lipColor != "blue" && changes < changeLimit && rand(6) == 0)
 				{
 					output("\n\nYour [pc.lipsChaste] go momentarily numb. At first you assume it's an effect of the korgonne spices, but after a bit, you take a glance in your Codex's camera and discover <b>your blue-colored lips!</b> Exotic.");
 					pc.lipColor = "blue";
+					changes++;
+				}
+				//Change tongue to blue
+				if(pc.tongueType != GLOBAL.TYPE_KORGONNE && changes < changeLimit &&  rand(3) == 0)
+				{
+					if(pc.tongueTypeUnlocked(GLOBAL.TYPE_KORGONNE))
+					{
+						if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("\n\nRippling, uncomfortable swelling of your tongue forces you to open your mouth. Just in time too, as inch after inch of newly-grown muscle slithers out of your lips to dangle freely. It's shockingly blue. You nearly it in your surprise. After a second, a twinge in your neck reels it most of the way back in, but it seems more comfortable to let the tip flop out over your lower lip. <b>That's definitely a korgonne tongue!</b>");
+						}
+						else
+						{
+							output("\n\nA twist of your oral muscles violently expels your tongue from your mouth, just in time for you to see blue splotches spreading over it like wildfire. As you start to panic, it sheds inches. It looks like you're slurping up your tongue, but in reality, it's simply getting shorter. You wiggle it experimentally as the blue consumes the last holdouts of your oral muscle. Your tongue has stopped shrinking  with much of its length intact, <b>leaving you with a korgonne tongue.</b> Weirdly, you have trouble holding it entirely in your mouth. Resting the tip on your lower lip is easier.");
+						}
+						pc.tongueType = GLOBAL.TYPE_KORGONNE;
+						pc.clearTongueFlags();
+						pc.addTongueFlag(GLOBAL.FLAG_LONG);
+					}
+					else output("\n\n" + pc.tongueTypeLockedMessage());
 					changes++;
 				}
 				//Ears to Korgonne type - triangular and rounded - need appearance update/Creature.as

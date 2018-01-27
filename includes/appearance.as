@@ -899,6 +899,9 @@ public function appearance(forTarget:Creature):void
 		case GLOBAL.TYPE_CANINE:
 			output2(" Your mouth contains a flat tongue that constantly drips with slobber.");
 			break;
+		case GLOBAL.TYPE_KORGONNE:
+			output2(" Your mouth contains a long blue tongue that dangles over your lower lip whenever you stop thinking about it."):
+			break;
 		case GLOBAL.TYPE_TENTACLE:
 			output2(" Your mouth contains a long, prehensile tentacle-like tongue.");
 			break;

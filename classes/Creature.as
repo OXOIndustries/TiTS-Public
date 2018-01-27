@@ -5571,13 +5571,14 @@
 			//Pick adjective
 			if(hasTongueFlag(GLOBAL.FLAG_LONG))
 			{
-				adjectives.push("lengthy", "long", "extensive");
+				adjectives.push("lengthy", "long", "large","sizeable");
 				if (InCollection(tongueType, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_OVIR, GLOBAL.TYPE_FROG)) adjectives.push("extendable");
 				else if (tongueType == GLOBAL.TYPE_DEMONIC) adjectives.push("two-foot long");
 				else if (tongueType == GLOBAL.TYPE_DRACONIC) adjectives.push("four-foot long");
+				else if (tongueType == GLOBAL.TYPE_KORGONNE) adjectives.push("nearly foot-long");
 			}
 			if(hasTongueFlag(GLOBAL.FLAG_PREHENSILE))
-				adjectives.push("talented", "rapacious", "ravenous", "flexible", "voracious", "prehensile");
+				adjectives.push("talented", "flexible", "prehensile");
 			if(hasTongueFlag(GLOBAL.FLAG_TAPERED))
 				adjectives.push("tapered", "pointy");
 			if(hasTongueFlag(GLOBAL.FLAG_HOLLOW))
@@ -5597,9 +5598,12 @@
 				adjectives.push("lubricated", "wet", "slippery");
 				if(tongueType != GLOBAL.TYPE_GOOEY) adjectives.push("slimy", "slick");
 			}
+			if(tongueType == GLOBAL.TYPE_KORGONNE) adjectives.push("blue","floppy");
+			if(tongueType == GLOBAL.TYPE_CANINE) adjectives.push("large","broad");
+
 			
-			//Show adjective 50% of the time
-			if(rand(2) == 0 && adjectives.length > 0) 
+			//Show adjective 33% of the time
+			if(rand(3) == 0 && adjectives.length > 0) 
 			{
 				description += adjectives[rand(adjectives.length)];
 				descripted++;
@@ -5647,7 +5651,7 @@
 					types.push("horse-like", "equine");
 					break;
 				case GLOBAL.TYPE_CANINE:
-					types.push("dog-like", "canine", "large", "floppy");
+					types.push("dog-like", "canine", "floppy");
 					sRace = race();
 					if(sRace.indexOf("ausar") != -1) types.push("ausar");
 					if(sRace.indexOf("huskar") != -1) types.push("huskar");
@@ -5685,10 +5689,13 @@
 				case GLOBAL.TYPE_TENTACLE:
 					types.push("writhing", "tentacle-like");
 					break;
+				case GLOBAL.TYPE_KORGONNE:
+					types.push("alien","dog-like","korgonne-like","alien");
+					break;
 			}
 			
-			//Show type 50% of the time
-			if(rand(2) == 0 && types.length > 0) 
+			//Show type 25% of the time
+			if(rand(4) == 0 && types.length > 0) 
 			{
 				if (descripted > 0) description += ", ";
 				description += types[rand(types.length)];
@@ -11108,6 +11115,7 @@
 			if (kaithritScore() >= 6) race = "kaithrit";
 			if (felineScore() >= 5 && race != "kaithrit") race = felineRace();
 			if (canineScore() + lupineScore() >= 5 && !InCollection(race, ["ausar", "huskar"])) race = canineRace();
+			if (korgonneScore() >= 6) race = "korgonne";
 			if (leithanScore() >= 6) race = "leithan";
 			if (nukiScore() >= 6) race = "kui-tan";
 			if (vanaeScore() >= 6) race = "vanae-morph";
@@ -11561,6 +11569,20 @@
 			if (tailType == GLOBAL.TYPE_LAPINE) counter++;
 			if (armType == GLOBAL.TYPE_LAPINE) counter++;
 			if (counter > 0 && hasFur()) counter++;
+			return counter;
+		}
+		public function korgonneScore(): int {
+			var counter: int = 0;
+			if (earType == GLOBAL.TYPE_KORGONNE)) counter++;
+			if (hasTail(GLOBAL.TYPE_KORGONNE) && hasTailFlag(GLOBAL.FLAG_FURRED)) counter++;
+			if (armType == GLOBAL.TYPE_KORGONNE && hasArmFlag(GLOBAL.FLAG_FURRED)) counter++;
+			if (legType == GLOBAL.TYPE_KORGONNE && hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) counter++;
+			if (faceType == GLOBAL.TYPE_KORGONNE) counter++;
+			if (counter > 1 && hasCock() && cockTotal(GLOBAL.TYPE_CANINE) == cockTotal() && totalKnots() == cockTotal()) counter++;
+			if (counter > 1 && hasVagina() && vaginaTotal(GLOBAL.TYPE_KORGONNE) == vaginaTotal()) counter++;
+			if (nippleColor == "blue") counter++;
+			if (hasMuzzle() && counter > 0) counter += 1;
+			if (counter > 0 && !hasFur()) counter--;
 			return counter;
 		}
 		public function canineScore(): int {
