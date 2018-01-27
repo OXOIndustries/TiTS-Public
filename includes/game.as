@@ -388,7 +388,7 @@ public function addBust(arg:String):void
 public function addTopBust(arg:String):void
 {
 	var b:Array = GetCurrentBusts();
-	b.insertAt(0,arg);
+	b.unshift(arg);
 	showBust(b);
 }
 public function showCodex():void
