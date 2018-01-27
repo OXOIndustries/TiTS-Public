@@ -217,6 +217,9 @@ public function walkUpToDocLashAgain(back:Boolean = true):void
 	if(pc.hasKeyItem("Doctor Badger's Bimbo Raygun - Still programmed for use on Penny.")) addButton(2,"Raygun?",raygunStuff,undefined,"Ask About Doctor Badger’s Raygun","Talk to Doctor Lash about the raygun Dr. Badger gave you for Penny, and see if he can help you change it to work on her instead");
 	addButton(5,"Buy",drLashBuyWrapper,undefined,"Buy","Ask Dr. Lash if he has any items to sell.");
 	if(peacekeeperTalkAvailable()) addButton(6,"Peacekeepers",drLashPeacekeeprTalk);
+	
+	if(bothriocQuestActive()) bothriocQuestDoctorButton(4, "Lash");
+	
 	addButton(14,"Back",mainGameMenu);
 }
 public function drLashBuyWrapper():void

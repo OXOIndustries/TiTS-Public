@@ -108,6 +108,8 @@ public function encounterBothriocQuadomme():void
 				addButton(0, "Yes", encounterBothriocQuadommeNext, "yes first", "Yes", "Submit to this strange alien dominatrix.");
 				addButton(1, "No", encounterBothriocQuadommeNext, "no first", "No", "Step away.");
 				if(addiction <= 50) addButton(2, "Fight It", encounterBothriocQuadommeNext, "fight", "Fight It", "Draw your weapon and show this thing who’s the boss around here.");
+				
+				bothriocQuestQuadommeButton(4, true);
 			}
 			else addButton(0, "Next", bothriocQuadommePCLoss);
 		}
@@ -147,9 +149,16 @@ public function encounterBothriocQuadomme():void
 			{
 				addButton(0, "Struggle", encounterBothriocQuadommeNext, "struggle first", "Struggle", "");
 				addButton(1, "Don’t", encounterBothriocQuadommeNext, "don't first", "Don’t", "");
+				
+				bothriocQuestQuadommeButton(4, true);
 			}
 			else addButton(0, "Next", bothriocQuadommePCLoss);
 		}
+	}
+	// Fei An Strozo Special
+	else if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_DIPLOMACY && flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"] >= 3 && flags["MET_FEIAN"] == undefined)
+	{
+		bothriocQuestFeiAnStrozoIntro();
 	}
 	// Repeat
 	else
@@ -238,6 +247,8 @@ public function encounterBothriocQuadomme():void
 			addButton(0, "Yes", encounterBothriocQuadommeNext, "yes", "Yes", "Submit to this strange alien dominatrix.");
 			addButton(1, "No", encounterBothriocQuadommeNext, "no", "No", "Step away.");
 			if(addiction <= 50) addButton(2, "Fight It", encounterBothriocQuadommeNext, "fight", "Fight It", "Draw your weapon and show this thing who’s the boss around here.");
+			
+			bothriocQuestQuadommeButton(4, true);
 		}
 		// Strength Check Fail
 		else
@@ -256,6 +267,8 @@ public function encounterBothriocQuadomme():void
 			clearMenu();
 			addButton(0, "Struggle", encounterBothriocQuadommeNext, "struggle", "Struggle", "");
 			addButton(1, "Don’t", encounterBothriocQuadommeNext, "don't", "Don’t", "");
+			
+			bothriocQuestQuadommeButton(4, false);
 		}
 	}
 	processTime(7 + rand(3));
@@ -403,11 +416,12 @@ public function bothriocQuadommeToMainMenu(victory:Boolean = true):void
 public function bothriocQuadommeToMainMenuNext():void
 {
 	CombatAttacks.removeWeb(pc);
+	pc.removeStatusEffect("Fail Quadomme Diplomacy");
 	mainGameMenu();
 }
 
 // Voluntary Quadomme Maid Training
-public function bothriocQuadommeMaidTraining(isTribute:Boolean = false):void
+public function bothriocQuadommeMaidTraining():void
 {
 	bothriocQuadommePCLoss(true);
 }
@@ -814,6 +828,8 @@ public function bothriocQuadommePCNeedFillLow(arg:Array):void
 				}
 				output(". It hasn’t taken off your gag and blindfold, but you’re so weak you can’t muster the will to tear them off yourself. You feel hard, warm lips press onto your brow.");
 				output("\n\n<i>“Until then, farlander...”</i> The last thing you hear before you slump into an exhausted slumber is the slithery sound of an eight-limbed creature winching itself away.");
+				
+				IncrementFlag("BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT");
 			}
 			processTime(75 + rand(16));
 			pc.orgasm();
@@ -823,6 +839,7 @@ public function bothriocQuadommePCNeedFillLow(arg:Array):void
 		case 5:
 			showBust("");
 			showName("\n...FILLED");
+			
 			output("You come to with a long groan some time later and clamber to your feet, irritatingly peeling off the mask of spider-silk. You thankfully don’t have to fumble about in the dark too long to find your [pc.gear], but... how to put this... it fits tighter upon you now. You massage your [pc.belly] and make a few careful movements, shivering as you feel smooth, oval weight shift inside you and a small amount of warm, clinging oil escapes your");
 			if(butt) output(" [pc.anus]");
 			if(butt && vIdx >= 0) output(" and");
@@ -925,7 +942,7 @@ public function bothriocQuadommePCNeedFillHigh(arg:Array):void
 			addButton(0, "Next", bothriocQuadommePCNeedFillHigh, [2, addiction, isTribute, butt, vIdx, vIdx2, cIdx, cIdx2]);
 			break;
 		case 2:
-			output("\n\nThe ovipositor has narrowed to a tip, and it’s with that the quadomme goes questing in, the perfect tool to " + (vIdx >= 0 ? "slip inside your moistened pussy" : "open up your asshole") + " and feed the large, bumpy stem inexorably inwards. You feel the wonderful oily, hot pressure climb further and further up " + (vIdx >= 0 ? "[pc.oneVagina], resting gently at last against your cervix, utterly filling it." : "your colon, not stopping until it feels like it’s packing every inch of your rectum.") + "");
+			output("The ovipositor has narrowed to a tip, and it’s with that the quadomme goes questing in, the perfect tool to " + (vIdx >= 0 ? "slip inside your moistened pussy" : "open up your asshole") + " and feed the large, bumpy stem inexorably inwards. You feel the wonderful oily, hot pressure climb further and further up " + (vIdx >= 0 ? "[pc.oneVagina], resting gently at last against your cervix, utterly filling it." : "your colon, not stopping until it feels like it’s packing every inch of your rectum.") + "");
 			if((vIdx >= 0 && pc.vaginas[vIdx].wetness() > 2) || (butt && pc.ass.wetness() > 2))
 			{
 				output(" Your " + (vIdx >= 0 ? "cunt" : "back passage") + " juices itself eagerly, " + (vIdx >= 0 ? "[pc.girlCum]" : "lube") + " spurting around the ovipositor cramming into it, making it all the easier for it to enter you.");
@@ -1071,6 +1088,8 @@ public function bothriocQuadommePCNeedFillHigh(arg:Array):void
 				}
 				output(", the knowledge of a breeding well done. Your eyes are still shut, your lips are still sealed - you haven’t been given permission to use them again. You feel hard, warm lips press onto your brow.");
 				output("\n\n<i>“Travel far, see much, precious egg-giver. Have many stories to tell, when you are by my side. You may have your sight and voice back again... after you’ve had some rest.”</i> The last thing you hear before you slump into an exhausted slumber is the slithery sound of an eight-limbed creature winching itself away.");
+				
+				IncrementFlag("BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT");
 			}
 			processTime(75 + rand(16));
 			pc.orgasm();
@@ -1080,6 +1099,7 @@ public function bothriocQuadommePCNeedFillHigh(arg:Array):void
 		case 5:
 			showBust("");
 			showName("\n...FILLED");
+			
 			output("You come to with a long groan some time later and clamber to your feet, blinking and massaging your throat. You thankfully don’t have to fumble about in the dark too long to find your [pc.gear], but... how to put this... it fits tighter upon you now. You massage your [pc.belly] and make a few careful movements, shivering as you feel smooth, oval weight shift inside you and a small amount of warm, clinging oil escape your");
 			if(butt) output(" [pc.anus]");
 			if(butt && vIdx >= 0) output(" and");
@@ -1192,7 +1212,7 @@ public function bothriocQuadommePCAllFull(arg:Array):void
 			}
 			break;
 		case 1:
-			output("\n\nThe low-level horniness you feel watching these little trysts quickly builds, and when the work breaks organically to form snowballing orgies you only feel an awkwardness about joining in head-first for an instant.");
+			output("The low-level horniness you feel watching these little trysts quickly builds, and when the work breaks organically to form snowballing orgies you only feel an awkwardness about joining in head-first for an instant.");
 			if(cIdx >= 0) output(" [pc.EachCock] " + (pc.cocks.length == 1 ? "is an unexpected and eagerly seized-upon gift" : "are unexpected and eagerly seized-upon gifts") + " in this community of dickless drones. One myr rides you energetically, jerking your [pc.cock " + cIdx + "] backwards and forwards in her soft, wet pussy, whilst another sits her own leaking sex down on your face, moaning ecstatically as you tongue her avidly. You orgasm brilliantly, gripping her waist with your [pc.hips] and thrusting a load of [pc.cum] up into the giggly ant slave... and immediately a bothrioc pushes the other myr aside in order to slather your face and mouth with oil, straight from its ovipositor. The warm, coating fat sinks into your [pc.skin] and down your throat, the soft heat inside you expands, and you’re quickly hard again - perfect for another bothrioc to clamber on top of you and thrust their abdomen entrance down onto your [pc.cock " + cIdx + "]. They do so again, and again - every time you groaningly cum there’s a red myr sinking her fangs into you or a bothrioc slathering your [pc.lips] with oil, so you keep getting erect, to the intense gratification of the entire harem and their myriad slick, warm, inviting holes.");
 			else output(" These drones are all empathetic lesbians really, and they know what they’re doing, even with your relatively alien anatomy. You lean back and wrap your [pc.thigh] around a red myr’s waist, rhythmically rubbing your [pc.vagina " + vIdx + "] against hers, whilst a pidemme stands over you, gently pushing the tip of their purple ovipositor into your mouth, growing more and more vocally excited as you suckle them until they reward you with a great gush of oil, oozing down your chin. The warm, coating fat sinks into your [pc.skin] and down your throat, the soft heat inside you expands, and you orgasm brilliantly, smearing [pc.femcum] all over the myr’s slim, neat sex as you wriggle with joy. Then you’re between somebody else’s thick thighs, and somebody else is nibbling teasingly at [pc.eachVagina], and so on and so on, fingers and tongues coaxing you to one spasm of sheer ecstasy after another.");
 			output("\n\nThe quadomme stalks elegantly through the ghostly, Bacchanalian display, releasing pent-up haremlings from their ceiling prisons and scooping up other squealing morsels to bind up in silk and stick somewhere. You rest for a little while afterwards, sweat slowly drying on your [pc.skinFurScales], head propped up on a pidemme’s plump rear, watching the trapped, luminescent insects swirling in the globes above... and then with an authoritative clap, the quadomme is directing you to new duties.");
@@ -1204,12 +1224,20 @@ public function bothriocQuadommePCAllFull(arg:Array):void
 			addButton(0, "Next", bothriocQuadommePCAllFull, [2, addiction, isTribute, butt, vIdx, vIdx2, cIdx, cIdx2]);
 			break;
 		case 2:
-			output("\n\nAfter what seems like a timeless, abyssal expanse uncomplainingly acting as a spider alien’s maid, another orgy forms, and this one the quadomme takes a more active hand in. It binds your wrists behind your back, binds your [pc.legs] in even more steely web, and then sits back and watches a pidemme thrust its hot, bumpy egg-cock up your " + (vIdx >= 0 ? "[pc.vagina]" : "[pc.ass]") + " whilst a gold myr dumps her abdominal honey pussy on top of your face. Intense sensation ratchets up your spine from the intrusion opening up your " + (vIdx >= 0 ? "pussy" : "bowels") + " as musky sweetness inundates your taste buds, your desperate licks around the myr’s supple walls only seeming to cause honey to flow even more abundantly from her generous, sticky cunt. The two of them sing high, breathless praises to their owner for allowing them this wonderful, alien treat as they energetically double team you. The quadomme itself watches on with a gratified smirk on its beautiful, androgynous face, firmly thrusting its own enormous ovipositor into the open mouth of another servant knelt behind it.");
+			output("After what seems like a timeless, abyssal expanse uncomplainingly acting as a spider alien’s maid, another orgy forms, and this one the quadomme takes a more active hand in. It binds your wrists behind your back, binds your [pc.legs] in even more steely web, and then sits back and watches a pidemme thrust its hot, bumpy egg-cock up your " + (vIdx >= 0 ? "[pc.vagina]" : "[pc.ass]") + " whilst a gold myr dumps her abdominal honey pussy on top of your face. Intense sensation ratchets up your spine from the intrusion opening up your " + (vIdx >= 0 ? "pussy" : "bowels") + " as musky sweetness inundates your taste buds, your desperate licks around the myr’s supple walls only seeming to cause honey to flow even more abundantly from her generous, sticky cunt. The two of them sing high, breathless praises to their owner for allowing them this wonderful, alien treat as they energetically double team you. The quadomme itself watches on with a gratified smirk on its beautiful, androgynous face, firmly thrusting its own enormous ovipositor into the open mouth of another servant knelt behind it.");
 			output("\n\nYou’re a sticky, drooling mess - face smeared with honey and [pc.ass] with oil, little after-quakes still trembling through you - when four strong arms firmly grip you by your silken bonds, attach you to the underside of a giant insect abdomen, and slowly truck you back to the cave complex’s entrance. Slim, chitinous fingers touch you, heartfelt, murmured goodbyes reach your [pc.ears]. You’re barely aware of what’s going on.");
 			output("\n\n<i>“You make for a fine servant, egg-bearer,”</i> says the quadomme, as the darkness of the tunnel swallows you whole. <i>“It is a shame to let you go... but let you go I must. We quadomme must always act truthfully and honorably, if we are to lay fair claim to our positions. And possessions.”</i>");
 			output("\n\nYou blink blearily. What is your glorious owner talking about... ? Oh. Oh yeah. The cold light of reality intrudes, as one with the dim light of the cavern it snatched you from, opening up beneath you. It lays you down carefully on the rock, snipping away its webs as it does.");
-			if(!isTribute) output("\n\n<i>“I hope you learned plenty, poor, naive farlander,”</i> the tall, black-armored creature says. It pauses for a moment, eyeing you. <i>“My pidemmes seem obedient, don’t they? One of them will abandon me, every two months or so. Their mood changes, and they set out to become dominants themselves. I am always looking for more additions to my harem. I have to.”</i> It sighs whisperingly, and then eerily, elegantly reels itself back into its tunnel. <i>“See you soon, farlander...”</i>");
-			else output("\n\n<i>“I hope you learned plenty, naive farlander,”</i> the tall, black-armored creature says. It pauses for a moment, eyeing you. <i>“You can tell Ara I shall be at [ara.his] little summit. Also tell [ara.him] not to send such a provoking messenger next time.”</i> It eerily, elegantly reels itself back into its tunnel. <i>“See you soon, farlander...”</i>");
+			if(!isTribute)
+			{
+				output("\n\n<i>“I hope you learned plenty, poor, naive farlander,”</i> the tall, black-armored creature says. It pauses for a moment, eyeing you. <i>“My pidemmes seem obedient, don’t they? One of them will abandon me, every two months or so. Their mood changes, and they set out to become dominants themselves. I am always looking for more additions to my harem. I have to.”</i> It sighs whisperingly, and then eerily, elegantly reels itself back into its tunnel. <i>“See you soon, farlander...”</i>");
+			}
+			else
+			{
+				output("\n\n<i>“I hope you learned plenty, naive farlander,”</i> the tall, black-armored creature says. It pauses for a moment, eyeing you. <i>“You can tell Ara I shall be at [ara.his] little summit. Also tell [ara.him] not to send such a provoking messenger next time.”</i> It eerily, elegantly reels itself back into its tunnel. <i>“See you soon, farlander...”</i>");
+				
+				IncrementFlag("BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT");
+			}
 			output("\n\nYou spend at least a minute sat there, head gyrating slowly, gathering your wits back up. Did it <i>really</i> abduct you for a whole day? Did it <i>really</i> make you work as a servant and sex toy that entire time? And did it <i>really</i> never occur to you to complain or struggle? You should, surely, at the very least feel resentful about all of this. And yet, what you do feel, as you pick yourself back up and put your [pc.gear] back on, is a dragging reluctance to leave. Of a soft, sexy, blissful memory that makes you want to turn your [pc.feet] back towards the quadomme’s lair.");
 			output("\n\nYou’ve certainly got a story to tell, if anybody’s willing to believe it.");
 			output("\n\n");
@@ -1241,6 +1269,13 @@ public function bothriocQuadommePCVictory():void
 	}
 	
 	output("The quadomme’s legs twitch at the tapestry of silk above it, attempting to pull the creature to safety... but they are out-of-sync, weak and disorientated, and a moment later the strange piebald creature slumps downwards in its webs, flat chest heaving, fingers trailing at the ground, its taunting silenced. You’ve won!");
+	
+	if(pc.hasStatusEffect("Fail Quadomme Diplomacy"))
+	{
+		bothriocQuestQuadommePCVictory();
+		return;
+	}
+	
 	if(pc.isNice())
 	{
 		output("\n\nYou consider the bothrioc’s pale flesh in the low light. You feel no urge to immediately move in and take a spiteful, lusty revenge: that’s not your style. After a moment, the defeated creature recovers itself a bit, coughing and looking up at you.");

@@ -125,17 +125,17 @@ public function encounterNyreaHuntress(forceType:uint = NYREA_UNKNOWN):void
 	else output(" taking advantage of your vulnerable state to loom over you threateningly, spear leveled at you.");
 	if (nyreaEggs)
 	{
-		output(" <i>“I'm not too picky where I put my eggs,”</i> she growls, circling you, <i>“Even an offworlder will do in a pinch. So why don't you just make this easy on yourself and submit. You might even like it.”</i>");
+		output(" <i>“I’m not too picky where I put my eggs,”</i> she growls, circling you, <i>“Even an offworlder will do in a pinch. So why don’t you just make this easy on yourself and submit. You might even like it.”</i>");
 	}
 	else
 	{
-		output(" <i>“You look like a healthy breeder,”</i> she growls, circling you, <i>“so why don't you just make this easy on yourself and submit. You might even like it.”</i>");
+		output(" <i>“You look like a healthy breeder,”</i> she growls, circling you, <i>“so why don’t you just make this easy on yourself and submit. You might even like it.”</i>");
 	}
 
 	if (!CodexManager.entryUnlocked("Nyrea"))
 	{
 		CodexManager.unlockEntry("Nyrea");
-		output("\n\nYou stare at the insectile woman as your codex beeps, <i>“Warning: Nyrea encountered. This species’ females are known to be extremely hostile, and may attempt to use unsuspecting travelers as breeding stock or as incubation space for her eggs. Caution is recommended, especially around the species' pseudo-penis.”</i>");
+		output("\n\nYou stare at the insectile woman as your codex beeps, <i>“Warning: Nyrea encountered. This species’ females are known to be extremely hostile, and may attempt to use unsuspecting travelers as breeding stock or as incubation space for her eggs. Caution is recommended, especially around the species’ pseudo-penis.”</i>");
 
 		output("\n\n<i>“Cute toy,”</i> the huntress grins, twirling her spear. <i>“Don’t think it’ll help you now, though.”</i>");
 	}
@@ -201,6 +201,8 @@ public function nyreaFight(settings:Array):void
 
 public function pcLossToNyrea():void
 {
+	if(bothriocQuestBetaNyreaMiniquestActive()) bothriocQuestBetaNyreaMiniquestReset();
+	
 	clearOutput();
 
 	if (enemy is NyreaAlpha) lostToAlpha(1);
@@ -564,21 +566,28 @@ public function pcVictoryOverNyrea():void
 	clearOutput();
 	nyreaHeaderFromCreature(enemy, "VICTORY:");
 
-	if (enemy.lust() >= enemy.lustMax())
+	if(enemy is NyreaBeta && bothriocQuestBetaNyreaMiniquestActive())
 	{
-		output("The nyrea stumbles back, breathing hard as you relentlessly tease her, forcing her further and further back until she's pressed against a cave wall, helpless. She tries to ward you off with her spear; you easily bat her spear-point away, pressing yourself right up against her. She gives a quiet moan, hands reaching for her groin, desperate for release. You grab her wrists, pinning them to the cave wall.");
+		bothriocQuestBetaNyreaPCVictoryBlurb();
 	}
 	else
 	{
-		output("Battered down, the nyrea starts trying to withdraw, warding you back with increasingly desperate thrusts of her spear. You grab the tip at the apex of one of her weakest thrusts, and easily snap the haft over");
-		if (pc.isBiped()) output(" your knee");
-		else output(" a nearby rock");
-		output(", leaving her helpless. With a look of panic, the nyrea turns to run, but finds nothing but cave wall behind her. You slam her up against it, grabbing her wrists before she can try and strike back.");
-	}
+		if (enemy.lust() >= enemy.lustMax())
+		{
+			output("The nyrea stumbles back, breathing hard as you relentlessly tease her, forcing her further and further back until she’s pressed against a cave wall, helpless. She tries to ward you off with her spear; you easily bat her spear-point away, pressing yourself right up against her. She gives a quiet moan, hands reaching for her groin, desperate for release. You grab her wrists, pinning them to the cave wall.");
+		}
+		else
+		{
+			output("Battered down, the nyrea starts trying to withdraw, warding you back with increasingly desperate thrusts of her spear. You grab the tip at the apex of one of her weakest thrusts, and easily snap the haft over");
+			if (pc.isBiped()) output(" your knee");
+			else output(" a nearby rock");
+			output(", leaving her helpless. With a look of panic, the nyrea turns to run, but finds nothing but cave wall behind her. You slam her up against it, grabbing her wrists before she can try and strike back.");
+		}
 
-	output("\n\n<i>“No...”</i> she moans, going almost limp in your grasp.");
-	if (enemy is NyreaBeta) output(" She turns her cheek from you, refusing to meet your gaze. <i>“H-how am I ever going to get my own harem fighting like this... I’m too weak to even ambush an offworlder. Go ahead... do whatever you want to me. I deserve it.”</i>");
-	else if (enemy is NyreaAlpha) output(" <i>“Go ahead,”</i> the alpha nyrea growls, looking you dead in the eye, <i>“I’ve taken my share of conquests... I know how this goes. You won, fair and square. I won’t resist you... this time.”</i>");
+		output("\n\n<i>“No...”</i> she moans, going almost limp in your grasp.");
+		if (enemy is NyreaBeta) output(" She turns her cheek from you, refusing to meet your gaze. <i>“H-how am I ever going to get my own harem fighting like this... I’m too weak to even ambush an offworlder. Go ahead... do whatever you want to me. I deserve it.”</i>");
+		else if (enemy is NyreaAlpha) output(" <i>“Go ahead,”</i> the alpha nyrea growls, looking you dead in the eye, <i>“I’ve taken my share of conquests... I know how this goes. You won, fair and square. I won’t resist you... this time.”</i>");
+	}
 
 	clearMenu();
 	if (pc.hasCock()) addButton(0, "Pitch Anal", fuckNyreaButts);
@@ -594,8 +603,7 @@ public function pcVictoryOverNyrea():void
 		clearOutput();
 		nyreaHeaderFromCreature(enemy, "VICTORY:");
 		processTime(10);
-		clearMenu();
-		lostToAlpha(-1);
+		if(enemy is NyreaAlpha) lostToAlpha(-1);
 		CombatManager.genericVictory();
 	});
 }

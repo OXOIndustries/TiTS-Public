@@ -1303,6 +1303,10 @@ package classes.GameData
 					output("\n\n<b>Your vision is obstructed by smoke, making you effectively blind!</b>");
 					addButton(10, "Nip-Pinch", kGAMECLASS.pinchKaskaNipple, undefined, "Nip-Pinch", "Maybe pinching Kaska’s nipple will get her to release you.");
 				}
+				if (hasEnemyOfClass(NyreaBeta) && kGAMECLASS.bothriocQuestBetaNyreaMiniquestActive())
+				{
+					addDisabledButton(10, "Retreat", "Retreat", "You’ll need to shake off this blasted net before trying this!");
+				}
 				
 				addButton(4, "Do Nothing", waitRound);
 				return;
@@ -1311,6 +1315,10 @@ package classes.GameData
 			if (hasEnemyOfClass(MyrGoldOfficer) && flags["FEDERATION_QUEST_WINDOW"] == 1)
 			{
 				addButton(10, "BreakWindow", kGAMECLASS.fedQuestOfficerBreakWindow, undefined, "Break Window", "Maybe this’ll get rid of the smoke?");
+			}
+			if (hasEnemyOfClass(NyreaBeta) && kGAMECLASS.bothriocQuestBetaNyreaMiniquestActive())
+			{
+				addButton(10, "Retreat", kGAMECLASS.bothriocQuestBetaNyreaRetreat, undefined, "Retreat", "Retreat slowly in the direction of the Quadomme Bothrioc.");
 			}
 			
 			//Combat Notes :
@@ -1407,8 +1415,7 @@ package classes.GameData
 					kGAMECLASS.setEnemy(null);
 				}
 				else output("You choose not to act.");
-				kGAMECLASS.sneezingTitsCombatWaitBonus(_hostiles);
-				processCombat();
+				waitRoundEffects();
 			}
 			else
 			{
@@ -1426,9 +1433,13 @@ package classes.GameData
 				{
 					(_hostiles[0] as KorgonneMale).setStatusValue("SURPRISE_MUTHA_TRUCKAH",1,1);
 				}
-				kGAMECLASS.sneezingTitsCombatWaitBonus(_hostiles);
-				processCombat();
+				waitRoundEffects();
 			}
+		}
+		public function waitRoundEffects():void
+		{
+			kGAMECLASS.sneezingTitsCombatWaitBonus(_hostiles);
+			processCombat();
 		}
 		
 		private function fantasizeRound():void
@@ -1675,6 +1686,12 @@ package classes.GameData
 						CombatManager.abortCombat();
 						return;
 					}
+					if (hasEnemyOfClass(NyreaBeta) && kGAMECLASS.bothriocQuestBetaNyreaMiniquestActive())
+					{
+						kGAMECLASS.bothriocQuestBetaNyreaMiniquestRun();
+						CombatManager.abortCombat();
+						return;
+					}
 					if (pc.canFly()) 
 					{
 						if (pc.legCount == 1) output("Your [pc.foot] leaves");
@@ -1683,6 +1700,7 @@ package classes.GameData
 					}
 					else output("You manage to leave the fight behind you.")
 					kGAMECLASS.processTime(8);
+					
 					CombatManager.abortCombat();
 				}
 				else {

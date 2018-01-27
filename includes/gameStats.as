@@ -2436,6 +2436,49 @@ public function displayQuestLog(showID:String = "All"):void
 				sideCount++;
 			}
 			*/
+			// Ara’s Diplomacy Mission
+			if(flags["BOTHRIOC_QUEST"] != undefined || flags["ARAKEI_CLOSED_OFF"] == 1)
+			{
+				output2("\n<b><u>Ara’s Diplomacy Mission</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(flags["ARAKEI_CLOSED_OFF"] == 1) output2(" Refused to help, Failed");
+				else
+				{
+					switch(flags["BOTHRIOC_QUEST"])
+					{
+						case BOTHRIOC_QUEST_START:
+							if(flags["BOTHRIOC_QUEST_DOCTOR"] != undefined) output2(" Accepted, Help from Doctor " + flags["BOTHRIOC_QUEST_DOCTOR"]);
+							else output2(" Agreed to help, <i>Acquire suppressant from a scientist...</i>");
+							break;
+						case BOTHRIOC_QUEST_RESEARCH:
+							output2(" Accepted, Doctor " + flags["BOTHRIOC_QUEST_DOCTOR"] + " creating suppressant");
+							if(flags["BOTHRIOC_QUEST_RESEARCH"] != undefined && ((GetGameTimestamp() - flags["BOTHRIOC_QUEST_RESEARCH"]) > (flags["BOTHRIOC_QUEST_DOCTOR"] != "Lessau" ? 4320 : 7200))) output2(", Research Complete, <i>Return to " + flags["BOTHRIOC_QUEST_DOCTOR"] + "</i>");
+							else output2(", Researching...");
+							break;
+						case BOTHRIOC_QUEST_DIPLOMACY:
+							output2(" Accepted, Doctor " + flags["BOTHRIOC_QUEST_DOCTOR"] + " created suppressant, <i>Gather quadommes...</i>");
+							break;
+						case BOTHRIOC_QUEST_QUADOMME:
+							output2(" Accepted, Doctor " + flags["BOTHRIOC_QUEST_DOCTOR"] + " created suppressant, Gathered quadommes");
+							if(flags["BOTHRIOC_QUEST_COUNTERAGENT"] != undefined) output2(", Gave Ara" + (flags["BOTHRIOC_QUEST_COUNTERAGENT"] > 0 ? "" : " fake") + " suppressant, <i>Attend summit with Ara...</i>");
+							else output2(", <i>Return to Ara!</i>");
+							break;
+						case BOTHRIOC_QUEST_SUCCESS:
+							output2(" Accepted, Doctor " + flags["BOTHRIOC_QUEST_DOCTOR"] + " created suppressant, Quadomme summit success");
+							break;
+						case BOTHRIOC_QUEST_FAILURE:
+							output2(" Accepted, Doctor " + flags["BOTHRIOC_QUEST_DOCTOR"] + " created suppressant, Quadomme summit failure");
+							break;
+					}
+					if(flags["BOTHRIOC_QUEST_COMPLETE"] != undefined) output2(", Completed");
+					if(flags["BOTHRIOC_QUEST_RESEARCH"] != undefined) output2("\n<b>* Research, Duration:</b> " + prettifyMinutes(GetGameTimestamp() - flags["BOTHRIOC_QUEST_RESEARCH"]));
+					if(flags["BOTHRIOC_QUEST_SUMMIT_DATE"] != undefined) output2("\n<b>* Diplomatic Talks, Duration:</b> " + prettifyMinutes(GetGameTimestamp() - flags["BOTHRIOC_QUEST_SUMMIT_DATE"]));
+					if(flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"] != undefined) output2("\n<b>* Quadommes to Summit:</b> " + flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"]);
+					if(flags["BOTHRIOC_QUEST_BETA_NYREA_BAITED"] != undefined) output2("\n<b>* Quadommes, Beta Nyrea Baited, Total:</b> " + flags["BOTHRIOC_QUEST_BETA_NYREA_BAITED"]);
+					if(flags["BOTHRIOC_QUEST_GENEALOGY"] != undefined) output2("\n<b>* Bothrioc Genealogy, Given To:</b> " + flags["BOTHRIOC_QUEST_GENEALOGY_GIVEN"]);
+				}
+				sideCount++;
+			}
 			// Bothrioc Addiction
 			if(flags["BOTHRIOC_ADDICTION"] != undefined && flags["BOTHRIOC_ADDICTION"] != 0)
 			{
@@ -4924,6 +4967,8 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Ara Kei:</b> Met [ara.him]");
 					if(flags["ARAKEI_POLISHED_BOOTIES"] != undefined) output2(", Prostrated yourself to [ara.him]");
 					else if(flags["ARAKEI_REFUSED_BOOTIES"] != undefined) output2(", Refused to prostrate yourself to [ara.him]");
+					if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_FAILURE) output2(", <i>Whereabouts unknown</i>");
+					if(flags["ARAKEI_CLOSED_OFF"] != undefined) output2("\n<b>* Ara Kei, Relationship:</b> No longer associating with you");
 				}
 				// Charles
 				if(flags["MET_CHARLES"] != undefined)
@@ -5625,9 +5670,17 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Deep Caverns
-			if(flags["BOTHRIOC_PIDEMME_ENCOUNTERED"] != undefined || flags["BOTHRIOC_QUADOMME_ENCOUNTERED"] != undefined || flags["MET_GOO_KNIGHT"] != undefined || flags["MET_INFECTED_MYR_FEMALE"] != undefined || flags["MET_INFECTED_MYR_MALE"] != undefined || flags["MET_NYREA_ALPHA"] != undefined || flags["MET_NYREA_BETA"] != undefined || flags["CRYSTALGOO_T1_ENCOUNTERS"] != undefined || flags["CRYSTALGOO_T2_ENCOUNTERS"] != undefined )
+			if(flags["MET_FEIAN"] != undefined || flags["BOTHRIOC_PIDEMME_ENCOUNTERED"] != undefined || flags["BOTHRIOC_QUADOMME_ENCOUNTERED"] != undefined || flags["MET_GOO_KNIGHT"] != undefined || flags["MET_INFECTED_MYR_FEMALE"] != undefined || flags["MET_INFECTED_MYR_MALE"] != undefined || flags["MET_NYREA_ALPHA"] != undefined || flags["MET_NYREA_BETA"] != undefined || flags["CRYSTALGOO_T1_ENCOUNTERS"] != undefined || flags["CRYSTALGOO_T2_ENCOUNTERS"] != undefined )
 			{
 				output2("\n<b><u>The Deep Caverns</u></b>");
+				if(flags["MET_FEIAN"] != undefined)
+				{
+					output2("\n<b>* Fei An Strozo:</b> Met her");
+					if(flags["FEIAN_SEX"] == FEIAN_SEX_HERM) output2(", Has penis and vagina");
+					else if(flags["FEIAN_SEX"] == FEIAN_SEX_MALE) output2(", Has penis");
+					else if(flags["FEIAN_SEX"] == FEIAN_SEX_FEMALE) output2(", Has vagina");
+					if(flags["JOIN_FEIAN_HAREM"] != undefined) output2(", You joined her harem");
+				}
 				if(flags["BOTHRIOC_PIDEMME_ENCOUNTERED"] != undefined)
 				{
 					output2("\n<b>* Bothrioc Pidemme, Times Encountered:</b> " + flags["BOTHRIOC_PIDEMME_ENCOUNTERED"]);

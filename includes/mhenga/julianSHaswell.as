@@ -20,7 +20,6 @@ public function juliansOffice():void {
 	{
 		output("\n\nDr. Julian S. Haswell is busy behind his desk as always. His piercing blue eyes flick up, taking notice of you, but he doesn’t bother to greet you just yet, figuring that you’ll speak up if it’s important.");
 		addButton(0,"Dr. Haswell",approachJulianRouter);
-		if(pexigaQuestDocChatsAvailable()) addButton(1,"Pexiga Help",drHaswellPexigaTalk,undefined,"Pexiga Help","Ask for help with the Pexiga’s unique situation.");
 	}
 }
 
@@ -56,8 +55,8 @@ public function approachJulianRouter():void {
 		clearOutput();
 		showDrHaswell();
 		output("Dr Haswell mutters, <i>“The zil aren’t going to capture themselves. I have no business with you until you do.”</i>");
-		clearMenu();
-		addButton(0,"Next",mainGameMenu);
+		
+		julianHaswellMenu();
 	}
 	//Generic "BLUH"
 	else
@@ -65,9 +64,20 @@ public function approachJulianRouter():void {
 		clearOutput();
 		showDrHaswell();
 		output("Dr. Haswell doesn’t even look up at you. <i>“I have no business with you at present, [pc.name].”</i>\n\nIt looks like there’s nothing to be done with him right now.");
-		clearMenu();
-		addButton(0,"Next",mainGameMenu);
+		
+		julianHaswellMenu();
 	}
+}
+public function julianHaswellMenu():void
+{
+	clearMenu();
+	
+	if(pexigaQuestDocChatsAvailable()) addButton(1,"Pexiga Help",drHaswellPexigaTalk,undefined,"Pexiga Help","Ask for help with the Pexiga’s unique situation.");
+	
+	if(bothriocQuestComplete()) bothriocQuestGenealogyButton(4, "Haswell");
+	else if(bothriocQuestActive()) bothriocQuestDoctorButton(4, "Haswell");
+	
+	addButton(14, "Back", mainGameMenu);
 }
 
 

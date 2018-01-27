@@ -252,6 +252,9 @@ public function takeATransPortMyrellion(arg:String = ""):void
 	currentLocation = arg;
 	generateMapForLocation(currentLocation);
 	processTime(25);
+	
+	if(bothriocQuestBetaNyreaMiniquestActive()) bothriocQuestBetaNyreaMiniquestClear(true);
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -827,6 +830,9 @@ public function ascendFromDeepCaves():void
 	}
 	currentLocation = "1D18";
 	generateMapForLocation(currentLocation);
+	
+	if(bothriocQuestBetaNyreaMiniquestActive()) bothriocQuestBetaNyreaMiniquestClear(true);
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -877,10 +883,15 @@ public function slimyPassageBonus():Boolean
 public function DeepCavesBonus():Boolean
 {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
-	if(flags["NO_MANS_STEP"] == undefined) flags["NO_MANS_STEP"] = 1;
+	if(flags["DEEP_CAVES_STEP"] == undefined) flags["DEEP_CAVES_STEP"] = 1;
 	else {
-		//if(pc.accessory is JungleLure) flags["NO_MANS_STEP"]++;
-		flags["NO_MANS_STEP"]++;
+		//if(pc.accessory is JungleLure) flags["DEEP_CAVES_STEP"]++;
+		flags["DEEP_CAVES_STEP"]++;
+	}
+	if(bothriocQuestBetaNyreaMiniquestActive() && bothriocQuestBetaNyreaFound())
+	{
+		bothriocQuestEncounterNyreaBeta();
+		return true;
 	}
 	if(rand(200) == 0) 
 	{
@@ -889,9 +900,9 @@ public function DeepCavesBonus():Boolean
 	}
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
-	if((pc.accessory is MuskRepel && flags["NO_MANS_STEP"] >= 10 && rand(4) == 0) || (pc.accessory is MuskLure && flags["NO_MANS_STEP"] >= 3 && rand(2) == 0) || (!(pc.accessory is MuskRepel) && flags["NO_MANS_STEP"] >= 5 && rand(4) == 0)) {
+	if((pc.accessory is MuskRepel && flags["DEEP_CAVES_STEP"] >= 10 && rand(4) == 0) || (pc.accessory is MuskLure && flags["DEEP_CAVES_STEP"] >= 3 && rand(2) == 0) || (!(pc.accessory is MuskRepel) && flags["DEEP_CAVES_STEP"] >= 5 && rand(4) == 0)) {
 		//Reset step counter
-		flags["NO_MANS_STEP"] = 0;
+		flags["DEEP_CAVES_STEP"] = 0;
 		
 		//Build possible encounters
 		if(flags["KILLED_TAIVRA"] != undefined)
@@ -929,7 +940,7 @@ public function DeepCavesBonus():Boolean
 		choices.push(encounterPidemmeBothrioc);
 		choices.push(encounterPidemmeBothrioc);
 		
-		choices.push(encounterBothriocQuadomme);
+		if(!bothriocQuestBetaNyreaMiniquestActive() && flags["BOTHRIOC_QUEST"] != BOTHRIOC_QUEST_QUADOMME && !InCollection(currentLocation, ["2S7", "2O27", "2O29", "2Q29", "2S29"])) choices.push(encounterBothriocQuadomme);
 		
 		//Run the event
 		choices[rand(choices.length)]();

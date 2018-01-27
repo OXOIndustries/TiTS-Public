@@ -7,8 +7,20 @@ public function showAraKei():void
 
 public function bothriocEmbassyFunc():Boolean
 {
-	showBust("ARAKEI");
 	author("Nonesuch");
+	
+	// Intro If Araflag ClosedOff
+	if(flags["ARAKEI_CLOSED_OFF"] != undefined)
+	{
+		bothriocEmbassyClosedOffFunc();
+		return false;
+	}
+	if(bothriocQuestComplete() && flags["BOTHRIOC_EMBASSY_ENTERED"] != undefined)
+	{
+		return bothriocEmbassyPostSummitFunc();
+	}
+	
+	showBust("ARAKEI");
 
 	if (flags["BOTHRIOC_EMBASSY_ENTERED"] == undefined)
 	{
@@ -66,6 +78,17 @@ public function bothriocEmbassyFunc():Boolean
 
 public function approachAraKei():void
 {
+	if(bothriocQuestActive())
+	{
+		bothriocQuestGreeting();
+		return;
+	}
+	if(bothriocQuestComplete())
+	{
+		bothriocQuestApproachAraKei();
+		return;
+	}
+	
 	clearOutput();
 	showAraKei();
 
@@ -485,6 +508,11 @@ public function araKeiTalk():void
 		addButton(2, "She", setAraKeiGender, 2, "She", "It’s a she, right? Obviously a she.");
 		return;
 	}
+	else if(bothriocQuestAvailable() && flags["BOTHRIOC_QUEST"] == undefined)
+	{
+		bothriocQuestTalk();
+		return;
+	}
 
 	araKeiTalkMenu();
 }
@@ -564,7 +592,13 @@ public function araKeiTalkMenu(lastF:Function = null):void
 		ttB: "Ask whether the other bothrioc are on board with [ara.his] plans.", 
 		prevF: lastF
 	}, flags["ARAKEI_TALKED_HISTORY"] == undefined);
-
+	
+	if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_QUADOMME)
+	{
+		if(flags["BOTHRIOC_QUEST_COUNTERAGENT"] == undefined) addButton(4, "Finish", bothriocQuestSummit, ["intro", bothriocAddiction()], "Finish", "Tell Ara you’ve finished the mission [ara.he] set for you.");
+		else addButton(4, "Ready", bothriocQuestSummit, ["ready", bothriocAddiction()], "Ready", "Join Ara Kei at the summit.");
+	}
+	
 	addButton(14, "Back", araKeiMenu);
 }
 
@@ -572,23 +606,19 @@ public function araKeiTalkBothrioc():void
 {
 	clearOutput();
 	showAraKei();
-
-	output("<i>“I’m afraid I simply haven’t the time to explain every intricacy of our species, but I can certainly outline some very important things to bear in mind. Now...”</i> one of Ara Kei’s fingers taps a chin in thought. <i>“Where to start...”</i>");
 	
-	output("\n\n<i>“We used to be the boogiemen of this planet. Before the myr really got going; before they became boogiemen unto themselves. To this day though, when a myr mother wants her rebellious spawn to behave, she threatens that the bothrioc will take her away and keep her in a harem, stuffed full of children that aren’t hers.”</i>");
-
-	output("\n\n"+ ara.mfn("He laughs", "She laughs", "They laugh") + " when "+ ara.mfn("he catches", "she catches", "they catch") +" your expression. "+ ara.mfn("He displays", "She displays", "They display") + " a lot of teeth when "+ ara.mfn("he does", "she does", "they do") +" that.");
-
-	output("\n\n<i>“Effective, isn’t it? Don’t worry, I’m not going to fill your head with lies, nor stuff your belly with spawn. Our reproductive system is unique though, and I readily admit is an easy source of fascination and revulsion.”</i> The four-legged bothrioc makes a sweeping gesture that takes in everyone in the embassy. <i>“As you can see, we all have an abdomen at the base of our torso. That is the ovipositor. It creates eggs and a fertilizing oil. We exchange the oil to fertilize eggs, and then plant the eggs in another’s orifices using the tube. Usually this is an intra-bothrioc matter, but we’re quite capable of both implanting in and being fertilized by others. That is where the fear and fascination a boogieman needs is sourced.”</i>");
-	
-	output("\n\nAra Kei coos down at the dutiful harem member still polishing [ara.his] leg chitin to a gleaming shine, pointing out a few spots that need special attention. <i>“We can put life in barren soil, but to the other species, that life is alien. We can be a mother where mothers are slim, and a father where the inverse is true. However, because it doesn’t have their genes and their eggs it is somehow not theirs when they bear it. There would probably be a strong tendency to abandon our young if not for the other little peculiarity of our breeding.”</i>");
-	
-	output("\n\nThe ginger human busily eroding a mountain of paperwork into a hill gives a long drooping whistle from across the room, of the <i>“here comes the big one”</i> variety. The look Ara Kei gives him is nothing short of venomous, and all the more backed up by the incredible chitinous physiology on display.");
-	
-	output("\n\n<i>“Thank you, Charles, your commentary is appreciated.”</i>");
-	
-	output("\n\nYou’re not sure what the dynamic between the two of them is. Charles is clearly human, but he’s definitely working largely for Ara Kei. He’s not a harem boy, you think, but that’s all the conclusion you can draw.");
-
+	if(flags["BOTHRIOC_QUEST_COMPLETE"] != undefined) bothriocQuestTalkBlurbs("bothrioc");
+	else
+	{
+		output("<i>“I’m afraid I simply haven’t the time to explain every intricacy of our species, but I can certainly outline some very important things to bear in mind. Now...”</i> one of Ara Kei’s fingers taps a chin in thought. <i>“Where to start...”</i>");
+		output("\n\n<i>“We used to be the boogiemen of this planet. Before the myr really got going; before they became boogiemen unto themselves. To this day though, when a myr mother wants her rebellious spawn to behave, she threatens that the bothrioc will take her away and keep her in a harem, stuffed full of children that aren’t hers.”</i>");
+		output("\n\n"+ ara.mfn("He laughs", "She laughs", "They laugh") + " when "+ ara.mfn("he catches", "she catches", "they catch") +" your expression. "+ ara.mfn("He displays", "She displays", "They display") + " a lot of teeth when "+ ara.mfn("he does", "she does", "they do") +" that.");
+		output("\n\n<i>“Effective, isn’t it? Don’t worry, I’m not going to fill your head with lies, nor stuff your belly with spawn. Our reproductive system is unique though, and I readily admit is an easy source of fascination and revulsion.”</i> The four-legged bothrioc makes a sweeping gesture that takes in everyone in the embassy. <i>“As you can see, we all have an abdomen at the base of our torso. That is the ovipositor. It creates eggs and a fertilizing oil. We exchange the oil to fertilize eggs, and then plant the eggs in another’s orifices using the tube. Usually this is an intra-bothrioc matter, but we’re quite capable of both implanting in and being fertilized by others. That is where the fear and fascination a boogieman needs is sourced.”</i>");
+		output("\n\nAra Kei coos down at the dutiful harem member still polishing [ara.his] leg chitin to a gleaming shine, pointing out a few spots that need special attention. <i>“We can put life in barren soil, but to the other species, that life is alien. We can be a mother where mothers are slim, and a father where the inverse is true. However, because it doesn’t have their genes and their eggs it is somehow not theirs when they bear it. There would probably be a strong tendency to abandon our young if not for the other little peculiarity of our breeding.”</i>");
+		output("\n\nThe ginger human busily eroding a mountain of paperwork into a hill gives a long drooping whistle from across the room, of the <i>“here comes the big one”</i> variety. The look Ara Kei gives him is nothing short of venomous, and all the more backed up by the incredible chitinous physiology on display.");
+		output("\n\n<i>“Thank you, Charles, your commentary is appreciated.”</i>");
+		output("\n\nYou’re not sure what the dynamic between the two of them is. Charles is clearly human, but he’s definitely working largely for Ara Kei. He’s not a harem boy, you think, but that’s all the conclusion you can draw.");
+	}
 	processTime(5+rand(3));
 	clearMenu();
 	addButton(0, "Next", araKeiTalkBothriocII);
@@ -598,18 +628,19 @@ public function araKeiTalkBothriocII():void
 {
 	clearOutput();
 	showAraKei();
-
-	output("<i>“Yes,”</i> sighs Ara Kei theatrically, <i>“this is what has us classed by your thinking machines as not merely dangerous, but to be avoided at all costs. Our fertilizing slime has a variety of hormones in it. They serve to signal a bothrioc in submission that their time as a dominant is through. Their abdomens begin to swell more with fertile oil than eggs, that we may bathe larger batches of eggs in it, before depositing them. In species with biological sexes, it is feminizing, as the trigger to change to fertilization production is the same hormone mixture that turns girls into women. The real prize, however, is that it brings them to love their role as an incubator and to be naturally led by the dominant partners. It also tends to make them a bit absent-minded. If you watch closely, it takes my lovely harem here a good deal of concentration to handle all of this paperwork.”</i>");
 	
-	output("\n\nAt [ara.his] invitation, you take in the harem a bit more closely. Charles is sharp and on tack, but the bothrioc around the place are, while certainly seemingly competent, also working very hard to be. One bothrioc is filling out forms with a tongue stuck out and their face inches from the paper, contorted in concentration. Another, seeming lost in thought, is gently pulled toward a back room while another is brought in to take their place. Ara Kei regards [ara.his] harem warmly.");
+	if(flags["BOTHRIOC_QUEST_COMPLETE"] != undefined) bothriocQuestTalkBlurbs("bothrioc ii");
+	else
+	{
+		output("<i>“Yes,”</i> sighs Ara Kei theatrically, <i>“this is what has us classed by your thinking machines as not merely dangerous, but to be avoided at all costs. Our fertilizing slime has a variety of hormones in it. They serve to signal a bothrioc in submission that their time as a dominant is through. Their abdomens begin to swell more with fertile oil than eggs, that we may bathe larger batches of eggs in it, before depositing them. In species with biological sexes, it is feminizing, as the trigger to change to fertilization production is the same hormone mixture that turns girls into women. The real prize, however, is that it brings them to love their role as an incubator and to be naturally led by the dominant partners. It also tends to make them a bit absent-minded. If you watch closely, it takes my lovely harem here a good deal of concentration to handle all of this paperwork.”</i>");
+		output("\n\nAt [ara.his] invitation, you take in the harem a bit more closely. Charles is sharp and on tack, but the bothrioc around the place are, while certainly seemingly competent, also working very hard to be. One bothrioc is filling out forms with a tongue stuck out and their face inches from the paper, contorted in concentration. Another, seeming lost in thought, is gently pulled toward a back room while another is brought in to take their place. Ara Kei regards [ara.his] harem warmly.");
+		output("\n\n<i>“You see, the impression is that our oil makes you stupid. No, that is not the case. Rather, your priorities are reoriented, and between our love and our oil, you come to love your new place in life, to the point of excluding most other cares or concerns. My darlings are working so hard because this is important to me, and they wouldn’t be motivated by anything less.”</i> This last statement is accompanied by an encompassing gesture of [ara.his] arms.");
+		output("\n\nTurning [ara.his] gaze once more to you, Ara Kei adds, <i>“And that is what you are told to fear. You see me before you, and I don’t attack you, or try to deceive you. However, the rules in the caverns we call home are not the ones I have embraced here, in order to state our case. Down there, the pidemmes and quadommes still consider any wanderer fair game. Consider that the real warning.”</i>");
+	}
 	
-	output("\n\n<i>“You see, the impression is that our oil makes you stupid. No, that is not the case. Rather, your priorities are reoriented, and between our love and our oil, you come to love your new place in life, to the point of excluding most other cares or concerns. My darlings are working so hard because this is important to me, and they wouldn’t be motivated by anything less.”</i> This last statement is accompanied by an encompassing gesture of [ara.his] arms.");
-	
-	output("\n\nTurning [ara.his] gaze once more to you, Ara Kei adds, <i>“And that is what you are told to fear. You see me before you, and I don’t attack you, or try to deceive you. However, the rules in the caverns we call home are not the ones I have embraced here, in order to state our case. Down there, the pidemmes and quadommes still consider any wanderer fair game. Consider that the real warning.”</i>");
-
 	//Unlocks “Charles” option in Embassy main menu
 	processTime(10 + rand(3));
-
+	
 	flags["ARAKEI_TALKED_BOTHRIOC"] = 1;
 	araKeiTalkMenu(araKeiTalkBothrioc);
 }
@@ -618,25 +649,21 @@ public function araKeiTalkAmbassador():void
 {
 	clearOutput();
 	showAraKei();
-
-	output("<i>“What exactly are you aiming to achieve up here?”</i> you ask. Ara Kei gazes at you silently for a few moments.");
 	
-	output("\n\n<i>“Perhaps you do not know?”</i> "+ ara.mfn("he says", "she says", "they say") +", seemingly mostly to [ara.himself]. <i>“Yes, likely. Something always taken for granted... well, who are we to judge such an attitude, after all.”</i>");
+	if(flags["BOTHRIOC_QUEST_COMPLETE"] != undefined) bothriocQuestTalkBlurbs("ambassador");
+	else
+	{
+		output("<i>“What exactly are you aiming to achieve up here?”</i> you ask. Ara Kei gazes at you silently for a few moments.");
+		output("\n\n<i>“Perhaps you do not know?”</i> "+ ara.mfn("he says", "she says", "they say") +", seemingly mostly to [ara.himself]. <i>“Yes, likely. Something always taken for granted... well, who are we to judge such an attitude, after all.”</i>");
+		output("\n\n<i>“It is both straightforward and very complicated, Steele,”</i> "+ ara.mfn("he goes", "she goes", "they go") +" on in louder tones. <i>“When your U.G.C. first stepped down from the stars to greet us, I was at first elated, and not just because they postponed the myr destroying the world. Here, at last, was an opportunity to get my race equal representation on Myrellion - to speak for our needs and wishes, instead of living forever in helpless fear of what the myr might do next. For surely if I presented our plight to these enlightened beings, they would help us?”</i>");
+		output("\n\nAra Kei’s long, elegant face twists wryly.");
+		output("\n\n<i>“Alas. It turns out aliens are turned just as cruel by bureaucracy and ulterior motive as the myr are. Did you know that your U.G.C’s legal protections for planetary sovereignty doesn’t merely require sapience? Merely existing and thinking do not satisfy the requirements for citizenship in this galaxy; it also requires a demonstration that the species has contributed meaningfully to the planet, through cultural or technological innovation. They tell me this clause exists to prevent warlike and savage species from being uplifted before they are capable of integration. From my brief exposure to this Xenogen organization and their fur-thing friends, however, I suspect the </i>real<i> reason is that it allows for the casual exploitation of races who are helpless to resist. Is that an unfair assumption to make, starwalker?”</i>");
+		output("\n\nYou shrug uncomfortably. Ara Kei sighs, absently ruffling the hair of the haremling dutifully polishing [ara.his] chitin.");
+		output("\n\n<i>“Unfortunately, the bothrioc’s very nature means we have extremely little to show for our long history, and the myr leadership will not hesitate to see us bereft of those protections. Therefore, I am the ambassador for my people out of a necessity of which most aren’t even aware. Oh, if I could make them see how precarious it all is, that would surely unite them like nothing ever has.”</i>");
+		output("\n\n"+ ara.mfn("He smiles", "She smiles", "They smile") +" down lovingly.");
+		output("\n\n<i>“At least my little ones support my endeavours, even if the rest of the species is too ill-informed.”</i>");
+	}
 	
-	output("\n\n<i>“It is both straightforward and very complicated, Steele,”</i> "+ ara.mfn("he goes", "she goes", "they go") +" on in louder tones. <i>“When your U.G.C. first stepped down from the stars to greet us, I was at first elated, and not just because they postponed the myr destroying the world. Here, at last, was an opportunity to get my race equal representation on Myrellion - to speak for our needs and wishes, instead of living forever in helpless fear of what the myr might do next. For surely if I presented our plight to these enlightened beings, they would help us?”</i>");
-	
-	output("\n\nAra Kei’s long, elegant face twists wryly.");
-	
-	output("\n\n<i>“Alas. It turns out aliens are turned just as cruel by bureaucracy and ulterior motive as the myr are. Did you know that your U.G.C’s legal protections for planetary sovereignty doesn’t merely require sapience? Merely existing and thinking do not satisfy the requirements for citizenship in this galaxy; it also requires a demonstration that the species has contributed meaningfully to the planet, through cultural or technological innovation. They tell me this clause exists to prevent warlike and savage species from being uplifted before they are capable of integration. From my brief exposure to this Xenogen organization and their fur-thing friends, however, I suspect the </i>real<i> reason is that it allows for the casual exploitation of races who are helpless to resist. Is that an unfair assumption to make, starwalker?”</i>");
-	
-	output("\n\nYou shrug uncomfortably. Ara Kei sighs, absently ruffling the hair of the haremling dutifully polishing [ara.his] chitin.");
-	
-	output("\n\n<i>“Unfortunately, the bothrioc’s very nature means we have extremely little to show for our long history, and the myr leadership will not hesitate to see us bereft of those protections. Therefore, I am the ambassador for my people out of a necessity of which most aren’t even aware. Oh, if I could make them see how precarious it all is, that would surely unite them like nothing ever has.”</i>");
-	
-	output("\n\n"+ ara.mfn("He smiles", "She smiles", "They smile") +" down lovingly.");
-	
-	output("\n\n<i>“At least my little ones support my endeavours, even if the rest of the species is too ill-informed.”</i>");
-
 	processTime(5 + rand(3));
 	flags["ARAKEI_TALKED_AMBASSADOR"] = 1;
 	araKeiTalkMenu(araKeiTalkAmbassador);
@@ -646,21 +673,19 @@ public function araKeiTalkHistory():void
 {
 	clearOutput();
 	showAraKei();
-
-	output("<i>“History? You ask for history from a species with no written records, no architecture, only the technology required to trap, eat and breed?”</i> Ara Kei sneers in apparent disbelief - however, the way [ara.his] eight limbs tremble slightly with restless energy telegraph "+ ara.mfn("he’s", "she’s", "they’re")+ " pleased you’ve brought this topic up.");
 	
-	output("\n\n<i>“We have history, Steele, but not as you understand it. Imagine that the only unspoken descriptions that existed of you were written by someone else - someone who was at best ambivalent to you, at worst an enemy.”</i> "+ ara.mfn("He watches", "She watches", "They watch") +" your expression closely with those big, black eyes of "+ ara.mfn("his", "hers", "theirs") +". <i>“Yes, there is someone, isn’t there? Not such a pleasant thought, is it. That is why I am here - to fight against my race being a scribbled footnote in somebody else’s tragedy. In order to apply for legal protection within the U.G.C.”</i>");
+	if(flags["BOTHRIOC_QUEST_COMPLETE"] != undefined) bothriocQuestTalkBlurbs("history");
+	else
+	{
+		output("<i>“History? You ask for history from a species with no written records, no architecture, only the technology required to trap, eat and breed?”</i> Ara Kei sneers in apparent disbelief - however, the way [ara.his] eight limbs tremble slightly with restless energy telegraph "+ ara.mfn("he’s", "she’s", "they’re")+ " pleased you’ve brought this topic up.");
+		output("\n\n<i>“We have history, Steele, but not as you understand it. Imagine that the only unspoken descriptions that existed of you were written by someone else - someone who was at best ambivalent to you, at worst an enemy.”</i> "+ ara.mfn("He watches", "She watches", "They watch") +" your expression closely with those big, black eyes of "+ ara.mfn("his", "hers", "theirs") +". <i>“Yes, there is someone, isn’t there? Not such a pleasant thought, is it. That is why I am here - to fight against my race being a scribbled footnote in somebody else’s tragedy. In order to apply for legal protection within the U.G.C.”</i>");
+		output("\n\nA gleaming black arm is swept at the rows of bothrioc busying themselves over the books and reams of paper that are piled on the tables all around.");
+		output("\n\n<i>“Even before the farlanders arrived, I - that is to say, me and my harem - collected and scoured the records of both sets of myr, tracking down every single mention of our race that we could find. It has been fascinating - and incredibly frustrating.”</i> A single index finger is pointed downwards. With a sigh of pleasure, the tongue polisher envelopes it in their mouth. Ara Kei’s attention and fervency are entirely directed at you. <i>“It is like a single bright thread woven into a vast garment, constantly disappearing from sight, reappearing where you wouldn’t expect - but definitively there. We had empires, you know. Bothrioc sometimes stood at the head of red myr armies. Some legends even had them as kings to gold myr queens. But it’s all so vague, so often contradictory, because of course the myr do not often waste print talking about us. WE are not THEY. Ah!”</i>");
+		output("\n\nThere is a distinct, wet <i>“pop”</i>, and the submissive looks vaguely confused as all four of Ara Kei’s hands go up into the air, giving voice to pure exasperation.");
+		output("\n\n<i>“My people! So assured that they would forever be the top pods on Myrellion that they never even noticed the myr building, and developing, and growing, until their factories and palaces were being built right on top of them. Now the myr are bent on destroying the world, a world that we happen to be on, but have no say in the running of. I will not have it, Steele.”</i> "+ ara.mfn("He wags", "She wags", "They wag") +" a stern, spit-polished finger at you, as if you had disagreed. <i>“The work I am doing here will prove the bothrioc are a distinct culture - one that deserves to be recognized and given a say in how this planet is developed. We shall not wallow in ignorance and shy away from the light, as the wetraxxal and the ganrael do; nor shall we bend our knees to the Federation, as some of the nyrea have chosen. We shall come to the galactic table on our own terms, as a result of our own hard work, with our heads held high!”</i>");
+		output("\n\n<i>“Or at least some of us will,”</i> "+ ara.mfn("he amends", "she amends", "they amend") +", gazing at the hive of activity around [ara.him] serenely. <i>“Some of us will come kissing the ground upon which the others walk. But you get the idea.”</i>");
+	}
 	
-	output("\n\nA gleaming black arm is swept at the rows of bothrioc busying themselves over the books and reams of paper that are piled on the tables all around.");
-	
-	output("\n\n<i>“Even before the farlanders arrived, I - that is to say, me and my harem - collected and scoured the records of both sets of myr, tracking down every single mention of our race that we could find. It has been fascinating - and incredibly frustrating.”</i> A single index finger is pointed downwards. With a sigh of pleasure, the tongue polisher envelopes it in their mouth. Ara Kei’s attention and fervency are entirely directed at you. <i>“It is like a single bright thread woven into a vast garment, constantly disappearing from sight, reappearing where you wouldn’t expect - but definitively there. We had empires, you know. Bothrioc sometimes stood at the head of red myr armies. Some legends even had them as kings to gold myr queens. But it’s all so vague, so often contradictory, because of course the myr do not often waste print talking about us. WE are not THEY. Ah!”</i>");
-	
-	output("\n\nThere is a distinct, wet <i>“pop”</i>, and the submissive looks vaguely confused as all four of Ara Kei’s hands go up into the air, giving voice to pure exasperation.");
-	
-	output("\n\n<i>“My people! So assured that they would forever be the top pods on Myrellion that they never even noticed the myr building, and developing, and growing, until their factories and palaces were being built right on top of them. Now the myr are bent on destroying the world, a world that we happen to be on, but have no say in the running of. I will not have it, Steele.”</i> "+ ara.mfn("He wags", "She wags", "They wag") +" a stern, spit-polished finger at you, as if you had disagreed. <i>“The work I am doing here will prove the bothrioc are a distinct culture - one that deserves to be recognized and given a say in how this planet is developed. We shall not wallow in ignorance and shy away from the light, as the wetraxxal and the ganrael do; nor shall we bend our knees to the Federation, as some of the nyrea have chosen. We shall come to the galactic table on our own terms, as a result of our own hard work, with our heads held high!”</i>");
-	
-	output("\n\n<i>“Or at least some of us will,”</i> "+ ara.mfn("he amends", "she amends", "they amend") +", gazing at the hive of activity around [ara.him] serenely. <i>“Some of us will come kissing the ground upon which the others walk. But you get the idea.”</i>");
-
 	processTime(5+rand(3));
 	flags["ARAKEI_TALKED_HISTORY"] = 1;
 	araKeiTalkMenu(araKeiTalkHistory);
@@ -670,15 +695,17 @@ public function araKeiTalkOtherBothrioc():void
 {
 	clearOutput();
 	showAraKei();
-
-	flags["ARAKEI_TALKED_OTHERBOTHRIOC"] = 1;
-
-	output("<i>“Do you have the support of the other bothrioc?”</i> you ask.");
 	
-	output("\n\n<i>“It is an up-hill struggle securing that if I am to be honest with you, Steele,”</i> Ara Kei sighs. <i>“The problem is that the dominants innately distrust one another. If your haremlings give you everything you need, why would you be reaching out to another, except to try and steal their prizes? Outside of our lovers we are a solitary species, always have been; wider organization is a difficult thing to sell. It does not help that I have the single largest harem of any bothrioc known. I keep an even forty, which has slaked my thirst for more lovers.”</i> "+ ara.mfn("He laughs", "She laughs", "They laugh") +", again with that wry note. <i>“But try explaining that to other quadommes! They just think I’m particularly greedy and untrustworthy. And it’s no good me applying for citizenship on my own. I need as many other quadommes as possible to step forward, if my plan has any chance of succeeding.”</i>");
-
-	// 9999 Diplomacy mission goes here
+	if(flags["BOTHRIOC_QUEST_COMPLETE"] != undefined) bothriocQuestTalkBlurbs("other bothrioc");
+	else
+	{
+		output("<i>“Do you have the support of the other bothrioc?”</i> you ask.");
+		output("\n\n<i>“It is an up-hill struggle securing that if I am to be honest with you, Steele,”</i> Ara Kei sighs. <i>“The problem is that the dominants innately distrust one another. If your haremlings give you everything you need, why would you be reaching out to another, except to try and steal their prizes? Outside of our lovers we are a solitary species, always have been; wider organization is a difficult thing to sell. It does not help that I have the single largest harem of any bothrioc known. I keep an even forty, which has slaked my thirst for more lovers.”</i> "+ ara.mfn("He laughs", "She laughs", "They laugh") +", again with that wry note. <i>“But try explaining that to other quadommes! They just think I’m particularly greedy and untrustworthy. And it’s no good me applying for citizenship on my own. I need as many other quadommes as possible to step forward, if my plan has any chance of succeeding.”</i>");
+	}
+	
+	// Diplomacy mission goes here
 	processTime(3+rand(2));
+	flags["ARAKEI_TALKED_OTHERBOTHRIOC"] = 1;
 	araKeiTalkMenu(araKeiTalkOtherBothrioc);
 }
 
@@ -1284,6 +1311,12 @@ public function showCharles():void
 
 public function approachCharles():void
 {
+	if(bothriocQuestComplete() && flags["MET_CHARLES"] == 1)
+	{
+		bothriocQuestApproachCharles();
+		return;
+	}
+	
 	clearOutput();
 	showCharles();
 
