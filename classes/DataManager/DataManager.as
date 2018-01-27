@@ -60,7 +60,7 @@
 		{
 			private var stickyFileRef:File;
 			private var stickyFileStreamRef:FileStream;
-			private var saveDir:String = "data/com.taintedspace.www"
+			private var saveDir:String = "data/com.taintedspace.www";
 		}
 		
 		CONFIG::FLASH
@@ -234,7 +234,7 @@
 				kGAMECLASS.addGhostButton(7, "Delete File", this.deleteFileMenu, undefined, "Delete File", "Delete a save file.");
 				
 				// Hide the "import saves" and "save sets" option for operating systems we don't support
-				if ((Capabilities.os.indexOf("Windows") >= 0) && Capabilities.cpuArchitecture == "x86")
+				if (IsDesktopAir)
 				{
 					kGAMECLASS.addGhostButton(10, "Import Saves", this.importSavesMenu, undefined, "Import Saves", "Attempt to import saves from other game sources.");
 					if (hasAnyImportedSaves()) kGAMECLASS.addGhostButton(11, "Save Set", this.saveSetMenu, undefined, "Save Set", "Switch between available imported save slot sets.");
@@ -242,6 +242,26 @@
 			}
 			
 			kGAMECLASS.addGhostButton(14, "Back", dataRouter);
+		}
+		
+		private function get IsDesktopAir():Boolean
+		{
+			return IsWindowsAir || IsMacAir || IsLinuxAir;
+		}
+		
+		private function get IsWindowsAir():Boolean
+		{
+			return ((Capabilities.os.indexOf("Windows") >= 0) && Capabilities.cpuArchitecture == "x86");
+		}
+		
+		private function get IsLinuxAir():Boolean
+		{
+			return false;
+		}
+		
+		private function get IsMacAir():Boolean
+		{
+			return false;
 		}
 		
 		private function deleteSaveMenu():void
@@ -1091,6 +1111,8 @@
 		
 		CONFIG::AIR
 		{
+			private var baDataBlob:ByteArray;
+			
 			private function saveToFile():void
 			{
 				if (kGAMECLASS.userInterface.systemText != "BY FENOXO") kGAMECLASS.showName("SAVE\nFILE");
@@ -1126,34 +1148,63 @@
 					kGAMECLASS.output2("Attempting to save data to file...");
 					
 					// Convert data into a byte array
-					var baDataBlob:ByteArray = new ByteArray();
+					baDataBlob = new ByteArray();
 					baDataBlob.writeObject(dataBlob);
 					baDataBlob.position = 0;
 				
-					var airSaveDir:File = File.documentsDirectory.resolvePath(saveDir);
-					
-					if (!airSaveDir.exists)
+					if (!IsDesktopAir)
 					{
-						airSaveDir.createDirectory();
+						var airSaveDir:File = File.documentsDirectory.resolvePath(saveDir);
+						
+						if (!airSaveDir.exists)
+						{
+							airSaveDir.createDirectory();
+						}
+						
+						trace(airSaveDir.toString());
+						var airFile:File = airSaveDir.resolvePath(dataBlob.saveName + " - " + dataBlob.daysPassed + " days.tits");
+						var stream:FileStream = new FileStream();
+						
+						try
+						{
+							airSaveDir.createDirectory();
+							stream.open(airFile, FileMode.WRITE);
+							stream.writeBytes(baDataBlob);
+							stream.close();
+							saveToFileWriteHandler();
+						}
+						catch (e:Error)
+						{
+							kGAMECLASS.output2("\n\nError: " + e.message);
+						}
+						kGAMECLASS.userInterface.mainButtonsOnly();
 					}
-					
-					trace(airSaveDir.toString());
-					var airFile:File = airSaveDir.resolvePath(dataBlob.saveName + " - " + dataBlob.daysPassed + " days.tits");
-					var stream:FileStream = new FileStream();
-					
-					try
+					else
 					{
-						airSaveDir.createDirectory();
-						stream.open(airFile, FileMode.WRITE);
-						stream.writeBytes(baDataBlob);
-						stream.close();
-						saveToFileWriteHandler();
+						/*
+						var file:FileReference = new FileReference();
+						file.addEventListener(Event.COMPLETE, saveToFileWriteHandler);
+						file.save(baDataBlob, dataBlob.saveName + " - " + dataBlob.daysPassed + " days.tits");
+						*/
+						
+						if (kGAMECLASS.sharedData.LastUsedFolderPath == null)
+						{
+							stickyFileRef = File.documentsDirectory.resolvePath("My Games/Trials in Tainted Space");
+						}
+						else
+						{
+							trace(kGAMECLASS.sharedData.LastUsedFolderPath);
+							
+							stickyFileRef = new File();
+							stickyFileRef.url = kGAMECLASS.sharedData.LastUsedFolderPath;
+						}
+					
+						if (!stickyFileRef.exists) stickyFileRef.createDirectory();
+						
+						stickyFileRef = stickyFileRef.resolvePath(dataBlob.saveName + " - " + dataBlob.daysPassed + " days.tits");
+						stickyFileRef.browseForSave("Create TiTS Save");
+						stickyFileRef.addEventListener(Event.SELECT, saveToFileDesktopWriteHandler);
 					}
-					catch (e:Error)
-					{
-						kGAMECLASS.output2("\n\nError: " + e.message);
-					}
-					kGAMECLASS.userInterface.mainButtonsOnly();
 				}
 				else
 				{
@@ -1191,6 +1242,24 @@
 				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 			}
+			
+			private function saveToFileDesktopWriteHandler(e:Event):void
+			{
+				// We need to ensure we force a file extension of the type the load code is expecting				
+				var tarFile:File = e.target as File;
+				
+				if (tarFile.extension != "tits")
+				{
+					tarFile.url += ".tits";
+				}
+				
+				var fileStream:FileStream = new FileStream();
+				fileStream.open(tarFile, FileMode.WRITE);
+				fileStream.writeBytes(baDataBlob);
+				fileStream.close();
+				
+				saveToFileWriteHandler();
+			}
 		}
 		
 		CONFIG::FLASH
@@ -1201,7 +1270,7 @@
 				
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
-				kGAMECLASS.output2("Selected a file to load.");
+				kGAMECLASS.output2("Select a file to load:\n");
 				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 				
@@ -1222,25 +1291,46 @@
 				kGAMECLASS.output2("Select a file to load:\n");
 				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 				
-				stickyFileRef = File.documentsDirectory.resolvePath(saveDir);
-				trace(stickyFileRef.nativePath);
-				
-				if (!stickyFileRef.exists)
+				if (!IsDesktopAir)
 				{
-					stickyFileRef.createDirectory();
-				}
-				
-				var files:Array = stickyFileRef.getDirectoryListing();
-				
-				for (var i:uint = 0; i < files.length; i++)
-				{
-					var offset:uint = 0;
-					if (i >= 14) offset += 1;
+					stickyFileRef = File.documentsDirectory.resolvePath(saveDir);
 					
-					kGAMECLASS.output2("\n#" + i + " - " + files[i].name);
-					kGAMECLASS.addGhostButton(i + offset, "#" + i, loadFileSelected, files[i]);
+					if (!stickyFileRef.exists)
+					{
+						stickyFileRef.createDirectory();
+					}
+					
+					var files:Array = stickyFileRef.getDirectoryListing();
+					
+					for (var i:uint = 0; i < files.length; i++)
+					{
+						var offset:uint = 0;
+						if (i >= 14) offset += 1;
+						
+						kGAMECLASS.output2("\n#" + i + " - " + files[i].name);
+						kGAMECLASS.addGhostButton(i + offset, "#" + i, loadFileSelected, files[i]);
+					}
+					kGAMECLASS.userInterface.mainButtonsOnly();
 				}
-				kGAMECLASS.userInterface.mainButtonsOnly();
+				else
+				{
+					if (kGAMECLASS.sharedData.LastUsedFolderPath == null)
+					{
+						stickyFileRef = File.documentsDirectory.resolvePath("My Games/Trials in Tainted Space");
+					}
+					else
+					{
+						trace(kGAMECLASS.sharedData.LastUsedFolderPath);
+						
+						stickyFileRef = new File();
+						stickyFileRef.url = kGAMECLASS.sharedData.LastUsedFolderPath;
+					}
+					
+					if (!stickyFileRef.exists) stickyFileRef.createDirectory();
+					
+					stickyFileRef.browseForOpen("Load TiTS Save", [new FileFilter("TiTS Saves", "*.tits")]);
+					stickyFileRef.addEventListener(Event.SELECT, loadFileSelectedDesktop);
+				}
 			}
 		}
 		
@@ -1275,6 +1365,29 @@
 				
 				stickyFileStreamRef = new FileStream();
 				stickyFileStreamRef.open(tarFile, FileMode.READ);
+				
+				var bytes:ByteArray = new ByteArray();
+				stickyFileStreamRef.readBytes(bytes);
+				
+				bytes.position = 0;
+				var dataBlob:Object = bytes.readObject();
+				
+				stickyFileStreamRef.close();
+				doFileLoad(dataBlob);
+			}
+			
+			private function loadFileSelectedDesktop(e:Event):void
+			{
+				clearOutput2();
+				userInterface().dataButton.Glow();
+				output2("Attempting to load file...");
+				
+				var tarFile:File = e.target as File;
+				
+				stickyFileStreamRef = new FileStream();
+				stickyFileStreamRef.open(tarFile, FileMode.READ);
+				
+				kGAMECLASS.sharedData.LastUsedFolderPath = tarFile.parent.url;
 				
 				var bytes:ByteArray = new ByteArray();
 				stickyFileStreamRef.readBytes(bytes);

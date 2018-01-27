@@ -416,6 +416,7 @@
 		include "../includes/uveto/milodanMaleHostile.as";
 		include "../includes/uveto/natalie.as";
 		include "../includes/uveto/nayna.as";
+		include "../includes/uveto/nenne.as";
 		include "../includes/uveto/nerrasa.as";
 		include "../includes/uveto/pippa.as"
 		include "../includes/uveto/reasner.as";
@@ -539,7 +540,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.130";
+			version = "0.7.132";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -786,6 +787,11 @@
 			userInterface.addDisabledGhostButton(slot, cap, ttHeader, ttBody);
 		}
 		
+		public function setButtonDisabled(slot:int):void
+		{
+			userInterface.setButtonDisabled(slot);
+		}
+
 		public function addItemButton(slot:int, item:ItemSlotClass, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, seller:Creature = null, buyer:Creature = null):void
 		{
 			var comparisonString:String = null;

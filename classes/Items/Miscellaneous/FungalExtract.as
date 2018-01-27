@@ -60,7 +60,22 @@
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
-			kGAMECLASS.clearOutput();
+			if (target.hasStatusEffect("Healed"))
+			{
+				if(!kGAMECLASS.infiniteItems()) quantity++;
+				if (target == kGAMECLASS.pc)
+				{
+					kGAMECLASS.clearOutput();
+					kGAMECLASS.output("Using suppliments to heal yourself will only work once per fight. No body can handle the metabolic strain of downing multiple regenerative items in such quick succession.");
+				}
+				else
+				{
+					if(inCombat()) kGAMECLASS.output("\n\n");
+					else kGAMECLASS.clearOutput();
+					kGAMECLASS.output(target.capitalA + target.short + " has already healed during this fight! Doing so again would be more than ill-advised!");
+				}
+				return false;
+			}
 			// Player used an item
 			if (target == kGAMECLASS.pc)
 			{
@@ -92,6 +107,7 @@
 			else kGAMECLASS.output(" You are hit by a rush of arousal!");
 			targetCreature.lust(20);
 			targetCreature.HP(healing);
+			if (inCombat()) targetCreature.createStatusEffect("Healed", 0, 0, 0, 0, true, "", "", true, 0);
 		}
 		
 		public function npcUsed(targetCreature:Creature, usingCreature:Creature):void
@@ -106,6 +122,7 @@
 			else kGAMECLASS.output("!");
 			targetCreature.lust(20);
 			targetCreature.HP(healing);
+			if (inCombat()) targetCreature.createStatusEffect("Healed", 0, 0, 0, 0, true, "", "", true, 0);
 		}
 	}
 }
