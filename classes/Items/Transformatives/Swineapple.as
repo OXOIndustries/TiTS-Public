@@ -174,8 +174,6 @@ package classes.Items.Transformatives
 						
 						changes++;
 						pc.shiftCock(x, GLOBAL.TYPE_SWINE);
-						pc.cocks[x].addFlag(GLOBAL.FLAG_CORKSCREWED);
-						pc.cocks[x].addFlag(GLOBAL.FLAG_SHEATHED);
 					}
 					else
 					{

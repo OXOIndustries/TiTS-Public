@@ -10572,6 +10572,11 @@
 					cocks[slot].addFlag(GLOBAL.FLAG_OVIPOSITOR);
 					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
 					break;
+				case GLOBAL.TYPE_SWINE:
+					cocks[slot].addFlag(GLOBAL.FLAG_CORKSCREWED);
+					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
+					cocks[slot].cockColor = "pink";
+					break;
 			}
 		}
 		//PC can fly?
@@ -10811,6 +10816,7 @@
 			else if(InCollection(raceSimple, ["tentacle beast", "cockvine", "plant"])) shiftCock(arg, GLOBAL.TYPE_TENTACLE);
 			else if(raceSimple == "suula") shiftCock(arg, GLOBAL.TYPE_SIREN);
 			else if(raceSimple == "anemone") shiftCock(arg, GLOBAL.TYPE_ANEMONE);
+			else if(raceSimple == "pig") shiftCock(arg, GLOBAL.TYPE_SWINE);
 			else if(InCollection(raceSimple, ["sionach", "siel"]))
 			{
 				shiftCock(arg, GLOBAL.TYPE_INHUMAN);
@@ -10827,13 +10833,6 @@
 						cocks[arg].cockColor = "pink";
 						break;
 				}
-			}
-			else if (raceSimple == "pig")
-			{
-				shiftCock(arg, GLOBAL.TYPE_SWINE);
-				cocks[arg].addFlag(GLOBAL.FLAG_CORKSCREWED);
-				cocks[arg].addFlag(GLOBAL.FLAG_SHEATHED);
-				cocks[arg].cockColor = "pink";
 			}
 			//else if(InCollection(race, ["synthetic", "robot", "companion droid"])) shiftCock(arg, GLOBAL.TYPE_SYNTHETIC);
 			else if(skinType == GLOBAL.SKIN_TYPE_GOO)
