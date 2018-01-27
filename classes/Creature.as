@@ -11573,7 +11573,7 @@
 		}
 		public function korgonneScore(): int {
 			var counter: int = 0;
-			if (earType == GLOBAL.TYPE_KORGONNE)) counter++;
+			if (earType == GLOBAL.TYPE_KORGONNE) counter++;
 			if (hasTail(GLOBAL.TYPE_KORGONNE) && hasTailFlag(GLOBAL.FLAG_FURRED)) counter++;
 			if (armType == GLOBAL.TYPE_KORGONNE && hasArmFlag(GLOBAL.FLAG_FURRED)) counter++;
 			if (legType == GLOBAL.TYPE_KORGONNE && hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) counter++;
