@@ -3613,9 +3613,11 @@ public function taivraMorningEvent():void
 	{
 		output("\n\nYou tell her you are surprised to see her read a book. <i>“Oh, that?”</i> the nyrean queen suddenly breaks into laughter. <i>“Don’t tell me you’re surprised I can read? Did you think we were illiterate savages just because we live underground?”</i> ");
 		output("\n\nShe pauses for a moment before she continues, now a somber tone in her voice. <i>“To be truthful, most of my private library stems from the myr, traded or raided from the surface. As far as I can tell, our people never cared much about writing or the arts.”</i>");
-		output("\n\nYou quickly apologize and explain that you didn’t intend to insult her; you just didn’t expect her to be able to read in the darkness. <i>“Ah, of course”</i> your lover answers, <i>“I tend to forget that offworlders are not as adapted to the twilight of the caves as we are.”</i>");
+		output("\n\nYou quickly apologize and explain that you didn’t intend to insult her; you just didn’t expect her to be able to read in the darkness.");
 		flags["TAIVRA_OLD_BOOK"] = 1;
 	}
+	else output("\n\nIt takes her a moment to note the confused look on your face.");
+	output(" <i>“Ah, of course”</i> your lover answers, <i>“I tend to forget that offworlders are not as adapted to the twilight of the caves as we are.”</i>");
 	output("\n\nWithout a further word, Taivra gets up and steps over to a lantern in the center of the room, opening its blinds. In a moment’s notice, the chamber is flooded with a pleasant blue light. <i>“Better now, my dear? Can’t have you stumbling around in the dark.”</i>");
 	output("\n\nWith the light illuminating her now, you can’t fail to notice that she isn’t wearing any of her usual attire – nor can you fail to notice the quivering tentacles behind her, giving away her excitement despite the otherwise calm demeanor.");
 	output("\n\nA moment later she’s back to lying beside you with a lecherous smile on her face. <i>“So, [pc.name], I hope you’re not planning on leaving anytime soon.”</i> she coos, slowly cupping one of her breasts to accentuate her statement while one of her tentacles starts wrapping around your [pc.legOrLegs]. It’s pretty obvious what she expects from you are this point.");
