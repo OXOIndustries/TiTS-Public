@@ -1300,7 +1300,6 @@ package classes.GameData
 				
 				if (hasEnemyOfClass(Kaska))
 				{
-					output("\n\n<b>Your vision is obstructed by smoke, making you effectively blind!</b>");
 					addButton(10, "Nip-Pinch", kGAMECLASS.pinchKaskaNipple, undefined, "Nip-Pinch", "Maybe pinching Kaska’s nipple will get her to release you.");
 				}
 				if (hasEnemyOfClass(NyreaBeta) && kGAMECLASS.bothriocQuestBetaNyreaMiniquestActive())
@@ -1314,6 +1313,7 @@ package classes.GameData
 			
 			if (hasEnemyOfClass(MyrGoldOfficer) && flags["FEDERATION_QUEST_WINDOW"] == 1)
 			{
+				output("\n\n<b>Your vision is obstructed by smoke, making you effectively blind!</b>");
 				addButton(10, "BreakWindow", kGAMECLASS.fedQuestOfficerBreakWindow, undefined, "Break Window", "Maybe this’ll get rid of the smoke?");
 			}
 			if (hasEnemyOfClass(NyreaBeta) && kGAMECLASS.bothriocQuestBetaNyreaMiniquestActive())

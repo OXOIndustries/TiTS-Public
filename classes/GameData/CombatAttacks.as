@@ -1966,9 +1966,9 @@ package classes.GameData
 			
 			if (target.hasStatusEffect("Disarmed"))
 			{
-				if (attacker is PlayerCharacter) output("You try to disarm " + target.getCombatName() + " but can’t. <b>They’ve already been disarmed!</b>");
+				if (attacker is PlayerCharacter) output("You try to disarm " + target.getCombatName() + " but can’t. <b>" + (attacker.isPlural ? "They’ve" : (StringUtil.capitalize(target.getCombatPronoun("heshe"), false) + "’s")) + " already been disarmed!</b>");
 				else if (target is PlayerCharacter) output(StringUtil.capitalize(attacker.getCombatName(), false) + " tr" + (attacker.isPlural ? "y" : "ies") + " to disarm you but can’t!");
-				else output(StringUtil.capitalize(attacker.getCombatName(), false) + " tr" + (attacker.isPlural ? "y" : "ies") + " to disarm " + target.getCombatName() + " but can’t. <b>" + (target.isPlural ? "They’ve" : StringUtil.capitalize(target.getCombatPronoun("heshe"), false)) + " already been disarmed!</b>");
+				else output(StringUtil.capitalize(attacker.getCombatName(), false) + " tr" + (attacker.isPlural ? "y" : "ies") + " to disarm " + target.getCombatName() + " but can’t. <b>" + (target.isPlural ? "They’ve" : (StringUtil.capitalize(target.getCombatPronoun("heshe"), false) + "’s")) + " already been disarmed!</b>");
 				return;
 			}
 			
