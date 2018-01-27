@@ -1215,7 +1215,14 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 			return;
 		}
 	}
-	
+	//Nyrean Queen’s Chambers
+	// 50% chance and only once every 24h
+	else if(currentLocation == "2C15" && !dreamed && pc.hasPerk("Nyrean Royal") && !pc.hasStatusEffect("Taivra Bed Event Cooldown") && rand(2) == 0)
+	{
+		addButton(0, "Next", taivraMorningEvent);
+		return;
+	}
+
 	addButton(0, "Next", mainGameMenu);
 }
 
