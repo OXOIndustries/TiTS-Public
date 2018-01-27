@@ -4626,12 +4626,12 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Mechanist’s Shop</u></b>")
 				output2("\n<b>* Aurora:</b> Met her");
-				if(flags["TARKUS_DESTROYED"] != undefined && flags["DECK13_SHIELDS_ON"] != 1) output2(", <i>Whereabouts unknown</i>");
-				else
-				{
+				//if(flags["TARKUS_DESTROYED"] != undefined && flags["DECK13_SHIELDS_ON"] != 1) output2(", <i>Whereabouts unknown</i>");
+				//else
+				//{
 					if(flags["AURORA_SEEN_AFTER_SPLOSION"] != undefined) output2(", She remains as perky as ever");
 					if(silly) output2(", <i>This bat is too fukken kawaii!</i>");
-				}
+				//}
 				variousCount++;
 			}
 			// The Mess!
