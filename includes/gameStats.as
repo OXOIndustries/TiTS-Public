@@ -2475,7 +2475,7 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["BOTHRIOC_QUEST_SUMMIT_DATE"] != undefined) output2("\n<b>* Diplomatic Talks, Duration:</b> " + prettifyMinutes(GetGameTimestamp() - flags["BOTHRIOC_QUEST_SUMMIT_DATE"]));
 					if(flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"] != undefined) output2("\n<b>* Quadommes to Summit:</b> " + flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"]);
 					if(flags["BOTHRIOC_QUEST_BETA_NYREA_BAITED"] != undefined) output2("\n<b>* Quadommes, Beta Nyrea Baited, Total:</b> " + flags["BOTHRIOC_QUEST_BETA_NYREA_BAITED"]);
-					if(flags["BOTHRIOC_QUEST_GENEALOGY"] != undefined) output2("\n<b>* Bothrioc Genealogy, Given To:</b> " + flags["BOTHRIOC_QUEST_GENEALOGY_GIVEN"]);
+					if(flags["BOTHRIOC_QUEST_GENEALOGY"] != undefined) output2("\n<b>* Bothrioc Genealogy, Given To:</b> " + flags["BOTHRIOC_QUEST_GENEALOGY"]);
 				}
 				sideCount++;
 			}
@@ -6100,6 +6100,13 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				else if((flags["ULA_LEAVE_TIMER"] + 60*24*2) <= GetGameTimestamp()) output2(", <i>Whereabouts unknown</i>");
 				else output2(", <i>Is freezing!</i>");
+				variousCount++;
+			}
+			// Herbs & Happy
+			if(flags["MET_NENNE"] != undefined)
+			{
+				output2("\n<b><u>Herbs & Happy</u></b>");
+				output2("\n<b>* Nenne:</b> Met her");
 				variousCount++;
 			}
 			// Krym

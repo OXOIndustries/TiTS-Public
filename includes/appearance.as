@@ -538,7 +538,7 @@ public function appearance(forTarget:Creature):void
 				output2(" A pair of pointed ausar-like ears protrude from your " + headNoun + ", pointed and alert.");
 				break;
 			case GLOBAL.TYPE_KORGONNE:
-				output2(" A pair of triangular dog ears protrude from your " + headNoun + ", rounded at the top like a korgonne's.");
+				output2(" A pair of triangular dog ears protrude from your " + headNoun + ", rounded at the top like a korgonne’s.");
 				break;
 			case GLOBAL.TYPE_BOVINE:
 				output2(" A pair of round, floppy cow ears protrude from the sides of your " + headNoun + ".");
@@ -3882,7 +3882,7 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 			break;
 		case GLOBAL.TYPE_KORGONNE:
 			if(!eachOne) output2(" The surrounding mound and lips is nice and plump, swelling at the slightest provocation.");
-			else output2("\nEach vagina's surrounding mound and lips are nice and plump, swelling at the slightest provocation.");
+			else output2("\nEach vagina’s surrounding mound and lips are nice and plump, swelling at the slightest provocation.");
 			output2(" Less visible are the bundled nerves inside, ready to delight at stretching around a knot.");
 			break;
 		//Kitty flavor

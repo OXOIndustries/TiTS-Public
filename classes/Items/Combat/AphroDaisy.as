@@ -80,7 +80,7 @@
 				if (targetCreature is PlayerCharacter)
 				{
 					clearOutput();
-					output("You don't have anyone to use this on right now.\n");
+					output("You don’t have anyone to use this on right now.\n");
 				}
 				else
 				{

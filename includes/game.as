@@ -2616,7 +2616,7 @@ public function variableRoomUpdateCheck():void
 	// Ara Diplomacy Mission
 	if(flags["MET_FEIAN"] != undefined && flags["FEIAN_LOCATION"] != undefined)
 	{
-		if(flags["FEIAN_AT_LOCATION"] != undefined) feiAnAppear();
+		if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_DIPLOMACY || flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_QUADOMME) feiAnAppear();
 		else feiAnRemove();
 	}
 	// Bothrioc Embassy

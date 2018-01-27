@@ -892,15 +892,20 @@ public function bothriocQuestFeiAnStrozoResponse(arg:Array):void
 public function feiAnStrozoHaremBonus():Boolean
 {
 	// PC returns to Fei’s square before Quadomme Meet, agreed to join harem
-	if(flags["JOIN_FEIAN_HAREM"] != undefined)
+	if(flags["JOIN_FEIAN_HAREM"] != undefined || flags["FEIAN_AT_LOCATION"] == undefined)
 	{
-		output("\n\nThere is a great gash in the earth here. It’s Fei An Strozo’s burrow - your owner-to-be. You shiver slightly at the thought. It seems to be all quiet right now, though.");
+		output("\n\nThere is a great gash in the earth here. It’s Fei An Strozo’s burrow");
+		if(flags["JOIN_FEIAN_HAREM"] != undefined) output(" - your owner-to-be. You shiver slightly at the thought");
+		output(". It seems to be all quiet right now, though.");
+		
+		addDisabledButton(0, "Fei An", "Fei An Strozo", "She seems to be away at the moment...");
 	}
 	// PC returns to Fei’s square before Quadomme Meet, agreed to find TF
 	else
 	{
 		output("\n\nThere is a great gash in the earth here, Fei An Strozo’s burrow. It seems your steps alerted her, because the seven foot being rises out of the ground with sedate, eerie grace as you approach.");
-		addButton(0, "Fei An", approachFeiAnStrozo, undefined, "Fei An Strozo", "");
+		
+		addButton(0, "Fei An", approachFeiAnStrozo, undefined, "Fei An Strozo", "Meet the lavish quadomme.");
 	}
 	
 	return false;
@@ -910,7 +915,8 @@ public function approachFeiAnStrozo():void
 	clearOutput();
 	showFeiAnStrozo();
 	
-	output("<i>“Have you done as I have asked, farlander?”</i> she asks, with an arch flick of her red hair. <i>“Time’s a-wasting, you know.”</i>");
+	if(flags["FEIAN_SEX"] == undefined) output("<i>“Have you done as I have asked, farlander?”</i> she asks, with an arch flick of her red hair. <i>“Time’s a-wasting, you know.”</i>");
+	else output("<i>“Ah, back again, farlander?”</i> she asks, with an arch flick of her red hair. <i>“I hope you have something special for me...”</i>");
 	
 	approachFeiAnStrozoMenu();
 }
@@ -1023,7 +1029,7 @@ public function giveFeiAnStrozoItem(item:ItemSlotClass):void
 		IncrementFlag("BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT");
 		flags["BOTHRIOC_QUEST"] = BOTHRIOC_QUEST_QUADOMME;
 	}
-	feiAnRemove();
+	//feiAnRemove();
 	flags["FEIAN_AT_LOCATION"] = undefined;
 	
 	processTime(5);
@@ -1879,7 +1885,7 @@ public function bothriocQuestGenealogy(response:String):void
 			processTime(2);
 			
 			// + 50,000 credits, return to Main Menu
-			output("\n\n<b>Haswell has been given the Bothrioc Genealogy.</b>");
+			output("\n\n<b>Haswell has been given the Bothrioc Genealogy and you have been paid 50,000 credits for the exchange.</b>");
 			pc.removeKeyItem("Bothrioc Genealogy");
 			flags["BOTHRIOC_QUEST_GENEALOGY"] = "Haswell";
 			pc.credits += 50000;
@@ -1924,7 +1930,7 @@ public function bothriocQuestGenealogy(response:String):void
 			processTime(4);
 			
 			// + 50,000 credits, return to Main Menu
-			output("\n\n<b>Haswell has been given the Bothrioc Genealogy.</b>");
+			output("\n\n<b>Haswell has been given the Bothrioc Genealogy and you have been paid 50,000 credits for the exchange.</b>");
 			pc.removeKeyItem("Bothrioc Genealogy");
 			flags["BOTHRIOC_QUEST_GENEALOGY"] = "Haswell";
 			pc.credits += 50000;

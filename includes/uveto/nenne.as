@@ -120,7 +120,7 @@ public function shopNennes():void
 	addItemButton(2, new KorgonneSnacks(), mainGameMenu);
 	if(nenneFreebies() == 0) 
 	{
-		output("\n\n<b>You can't get any items for free right now...</b>");
+		output("\n\n<b>You can’t get any items for free right now...</b>");
 		setButtonDisabled(0);
 		setButtonDisabled(1);
 		setButtonDisabled(2);

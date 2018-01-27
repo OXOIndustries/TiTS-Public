@@ -35,7 +35,7 @@ package classes.Items.Transformatives
 			//Longass shit, not sure what used for yet.
 			this.description = "some korgonne snacks";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This packet of dried Uvetan foods is a favorite of the korgonne. Inside are two kinds of fish, a brittle wafer of indeterminate origin, and grainy mix of mineral seasonings. Your nose wrinkles in confusion at the alien aromas present, and your Codex informs you that these items are not fit for typical human consumption. It's a safe bet your prototype immune system will kick in should you try to eat this, likely inducing korgonne-like mutations.";
+			this.tooltip = "This packet of dried Uvetan foods is a favorite of the korgonne. Inside are two kinds of fish, a brittle wafer of indeterminate origin, and grainy mix of mineral seasonings. Your nose wrinkles in confusion at the alien aromas present, and your Codex informs you that these items are not fit for typical human consumption. It’s a safe bet your prototype immune system will kick in should you try to eat this, likely inducing korgonne-like mutations.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -141,10 +141,10 @@ package classes.Items.Transformatives
 					if(pc.hipRatingUnlocked(pc.hipRating()+1))
 					{
 						output("\n\nYour gait shifts to accommodate a waist that suddenly seems a little wider.");
-						if(pc.hipRatingRaw+1 >= 4 && pc.hipRatingRaw < 4) output(" <b>You've got well-formed hips!</b>");
-						else if(pc.hipRatingRaw+1 >= 6 && pc.hipRatingRaw < 6) output(" <b>You've got noticeable hips!</b>");
-						else if(pc.hipRatingRaw+1 >= 10 && pc.hipRatingRaw < 10) output(" <b>You've got curvy hips!</b>");
-						else if(pc.hipRatingRaw+1 >= 14 && pc.hipRatingRaw < 14) output(" <b>You've got thick hips, just like a korgonne!</b>");
+						if(pc.hipRatingRaw+1 >= 4 && pc.hipRatingRaw < 4) output(" <b>You’ve got well-formed hips!</b>");
+						else if(pc.hipRatingRaw+1 >= 6 && pc.hipRatingRaw < 6) output(" <b>You’ve got noticeable hips!</b>");
+						else if(pc.hipRatingRaw+1 >= 10 && pc.hipRatingRaw < 10) output(" <b>You’ve got curvy hips!</b>");
+						else if(pc.hipRatingRaw+1 >= 14 && pc.hipRatingRaw < 14) output(" <b>You’ve got thick hips, just like a korgonne!</b>");
 						pc.hipRatingRaw++;
 					}
 					else output("\n\n" + pc.hipRatingLockedMessage());
@@ -155,17 +155,17 @@ package classes.Items.Transformatives
 				{
 					if(pc.buttRatingUnlocked(pc.buttRating()+1))
 					{
-						if(pc.buttRatingRaw < 8) output("\n\nYou teeter for a second, seemingly unbalanced. In hindsight, you're pretty sure your butt just got bigger.");
+						if(pc.buttRatingRaw < 8) output("\n\nYou teeter for a second, seemingly unbalanced. In hindsight, you’re pretty sure your butt just got bigger.");
 						else if(pc.buttRatingRaw < 13) output("\n\nYou nearly tip over backward as some extra weight packs onto your derriere. Your butt is definitely growing as a result of the rich Uvetan food.");
-						else output("\n\nA stray muscle twitch makes your butt wobble... for a little longer than it otherwise would. It's getting bigger!");
+						else output("\n\nA stray muscle twitch makes your butt wobble... for a little longer than it otherwise would. It’s getting bigger!");
 
-						if(pc.buttRatingRaw+1 >= 6 && pc.buttRatingRaw < 6) output(" <b>You've got hand-filling ass-cheeks!</b>");
-						else if(pc.buttRatingRaw+1 >= 8 && pc.buttRatingRaw < 8) output(" <b>You've got a squeezable booty!</b>");
-						else if(pc.buttRatingRaw+1 >= 10 && pc.buttRatingRaw < 10) output(" <b>You've got a spacious ass!</b>");
-						else if(pc.buttRatingRaw+1 >= 13 && pc.buttRatingRaw < 13) output(" <b>You've got an expansive ass!</b>");
+						if(pc.buttRatingRaw+1 >= 6 && pc.buttRatingRaw < 6) output(" <b>You’ve got hand-filling ass-cheeks!</b>");
+						else if(pc.buttRatingRaw+1 >= 8 && pc.buttRatingRaw < 8) output(" <b>You’ve got a squeezable booty!</b>");
+						else if(pc.buttRatingRaw+1 >= 10 && pc.buttRatingRaw < 10) output(" <b>You’ve got a spacious ass!</b>");
+						else if(pc.buttRatingRaw+1 >= 13 && pc.buttRatingRaw < 13) output(" <b>You’ve got an expansive ass!</b>");
 						else if(pc.buttRatingRaw+1 >= 15 && pc.buttRatingRaw < 15) 
 						{
-							output(" <b> You've got big, wide korgonne-style ass now!</b>");
+							output(" <b> You’ve got big, wide korgonne-style ass now!</b>");
 							//SUPER BONUS TAIL-GROW!
 							if(pc.tailCountUnlocked(1) && pc.tailCount == 0 && pc.tailTypeUnlocked(GLOBAL.TYPE_KORGONNE))
 							{
@@ -187,9 +187,9 @@ package classes.Items.Transformatives
 				{
 					if(pc.buttRatingUnlocked(pc.buttRating()+1))
 					{
-						output("\n\nYou teeter for a second, seemingly unbalanced. In hindsight, you're pretty sure your butt just got bigger.");
-						if(pc.buttRatingRaw+1 >= 6 && pc.buttRatingRaw < 6) output(" <b>You've got hand-filling ass-cheeks!</b>");
-						else if(pc.buttRatingRaw+1 >= 8 && pc.buttRatingRaw < 8) output(" <b>You've got a squeezable booty!</b>");
+						output("\n\nYou teeter for a second, seemingly unbalanced. In hindsight, you’re pretty sure your butt just got bigger.");
+						if(pc.buttRatingRaw+1 >= 6 && pc.buttRatingRaw < 6) output(" <b>You’ve got hand-filling ass-cheeks!</b>");
+						else if(pc.buttRatingRaw+1 >= 8 && pc.buttRatingRaw < 8) output(" <b>You’ve got a squeezable booty!</b>");
 						pc.buttRatingRaw++;
 					}
 					else output("\n\n" + pc.buttRatingLockedMessage());
@@ -266,7 +266,7 @@ package classes.Items.Transformatives
 						output(", burning like a furnace. You whimper and double over as the flesh there clenches down, your [pc.vagina " + x + "] going wild. You grow acutely aware of the emptiness inside you as the inferno dies down to a pleasant, lusty heat. Mutagenic quivers ripple through your feminine slit, rapid-fire. Each on changes it a little more.");
 						if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED)) output(" Your mound quivers and plumps.");
 						if(pc.vaginas[x].vaginaColor != "pale blue") output(" Starting at the slit, creamy blue stains your skin, spreading until you have a cerulean cunt.");
-						if(pc.vaginas[x].clits > 2) output(" Clits vanish until you're left with just the one at the top.");
+						if(pc.vaginas[x].clits > 2) output(" Clits vanish until you’re left with just the one at the top.");
 						if(pc.vaginas[x].clits > 1) output(" The extra clit vanishes to leave you with just the one in the usual place.");
 						output(" A few inches inside, bundles of nerve cluster together in anticipation of being stretched out by a knot.");
 						output("\n\nYou pant like a horny bitch as the changes finish, <b>leaving you with a korgonne pussy.</b>");
@@ -305,7 +305,7 @@ package classes.Items.Transformatives
 				{
 					if(pc.nippleColorUnlocked("blue"))
 					{
-						output("\n\nYour [pc.nipples] perk up all on their own. In a flash, you're grabbing at your chest and watching for signs of change. Then it hits: blossoms of blue coloration congealing in the centers. They pulsate with your heartbeat, spreading out until <b>your chest is capped with blue peaks!</b>");
+						output("\n\nYour [pc.nipples] perk up all on their own. In a flash, you’re grabbing at your chest and watching for signs of change. Then it hits: blossoms of blue coloration congealing in the centers. They pulsate with your heartbeat, spreading out until <b>your chest is capped with blue peaks!</b>");
 						pc.nippleColor = "blue";
 					}
 					else output("\n\n" + pc.nippleColorLockedMessage());
@@ -314,19 +314,19 @@ package classes.Items.Transformatives
 				//Change lips to blue
 				if(pc.lipColor != "blue" && changes < changeLimit && rand(6) == 0)
 				{
-					output("\n\nYour [pc.lipsChaste] go momentarily numb. At first you assume it's an effect of the korgonne spices, but after a bit, you take a glance in your Codex's camera and discover <b>your blue-colored lips!</b> Exotic.");
+					output("\n\nYour [pc.lipsChaste] go momentarily numb. At first you assume it’s an effect of the korgonne spices, but after a bit, you take a glance in your Codex’s camera and discover <b>your blue-colored lips!</b> Exotic.");
 					pc.lipColor = "blue";
 					changes++;
 				}
 				//Change tongue to blue
-				if(pc.tongueType != GLOBAL.TYPE_KORGONNE && changes < changeLimit &&  rand(3) == 0)
+				if(pc.tongueType != GLOBAL.TYPE_KORGONNE && changes < changeLimit && rand(3) == 0)
 				{
 					if(pc.tongueTypeUnlocked(GLOBAL.TYPE_KORGONNE))
 					{
-						if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("\n\nRippling, uncomfortable swelling of your tongue forces you to open your mouth. Just in time too, as inch after inch of newly-grown muscle slithers out of your lips to dangle freely. It's shockingly blue. You nearly it in your surprise. After a second, a twinge in your neck reels it most of the way back in, but it seems more comfortable to let the tip flop out over your lower lip. <b>That's definitely a korgonne tongue!</b>");
+						if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("\n\nRippling, uncomfortable swelling of your tongue forces you to open your mouth. Just in time too, as inch after inch of newly-grown muscle slithers out of your lips to dangle freely. It’s shockingly blue. You nearly it in your surprise. After a second, a twinge in your neck reels it most of the way back in, but it seems more comfortable to let the tip flop out over your lower lip. <b>That’s definitely a korgonne tongue!</b>");
 						else
 						{
-							output("\n\nA twist of your oral muscles violently expels your tongue from your mouth, just in time for you to see blue splotches spreading over it like wildfire. As you start to panic, it sheds inches. It looks like you're slurping up your tongue, but in reality, it's simply getting shorter. You wiggle it experimentally as the blue consumes the last holdouts of your oral muscle. Your tongue has stopped shrinking  with much of its length intact, <b>leaving you with a korgonne tongue.</b> Weirdly, you have trouble holding it entirely in your mouth. Resting the tip on your lower lip is easier.");
+							output("\n\nA twist of your oral muscles violently expels your tongue from your mouth, just in time for you to see blue splotches spreading over it like wildfire. As you start to panic, it sheds inches. It looks like you’re slurping up your tongue, but in reality, it’s simply getting shorter. You wiggle it experimentally as the blue consumes the last holdouts of your oral muscle. Your tongue has stopped shrinking with much of its length intact, <b>leaving you with a korgonne tongue.</b> Weirdly, you have trouble holding it entirely in your mouth. Resting the tip on your lower lip is easier.");
 						}
 						pc.tongueType = GLOBAL.TYPE_KORGONNE;
 						pc.clearTongueFlags();
@@ -341,7 +341,7 @@ package classes.Items.Transformatives
 					//RIPPED & EDITED FROM AUSARTREATS
 					if (target.earTypeUnlocked(GLOBAL.TYPE_KORGONNE))
 					{
-						kGAMECLASS.output("\n\nYour ears begin to itch uncontrollably. You desperately try to scratch at them, but the itch spreads and grows... as do your ears! Your ears twist and morph, growing a thin layer of " + pc.furColor + " fur as they reshape into a pair of triangular, canine ears with rounded points. You experimentally move them, feeling them perk and flop at your command. And you can hear so much better than before, every slight creak and rustle around you is so clear now! <b>You now have a korgonne's fuzzy ears!</b>");
+						kGAMECLASS.output("\n\nYour ears begin to itch uncontrollably. You desperately try to scratch at them, but the itch spreads and grows... as do your ears! Your ears twist and morph, growing a thin layer of " + pc.furColor + " fur as they reshape into a pair of triangular, canine ears with rounded points. You experimentally move them, feeling them perk and flop at your command. And you can hear so much better than before, every slight creak and rustle around you is so clear now! <b>You now have a korgonne’s fuzzy ears!</b>");
 						pc.earType = GLOBAL.TYPE_KORGONNE;
 						changes++;
 					}
@@ -354,7 +354,7 @@ package classes.Items.Transformatives
 					if (target.tailTypeUnlocked(GLOBAL.TYPE_KORGONNE))
 					{
 						// If PC had a tail before:
-						if(pc.tailCount == 1) kGAMECLASS.output("\n\nYou feel something itching on your [pc.tail]. Twisting around, you watch in a mix of horror and excitement as " + pc.furColor + " bristles, the beginnings of a thick coat of fur, sprout up across the length of your reforming posterior appendage. It starts wagging as the change completes, curling upward and <b>leaving you with an korgonne's dog-like tail.</b>");
+						if(pc.tailCount == 1) kGAMECLASS.output("\n\nYou feel something itching on your [pc.tail]. Twisting around, you watch in a mix of horror and excitement as " + pc.furColor + " bristles, the beginnings of a thick coat of fur, sprout up across the length of your reforming posterior appendage. It starts wagging as the change completes, curling upward and <b>leaving you with an korgonne’s dog-like tail.</b>");
 						//Multitails
 						else if(pc.tailCount == 2) kGAMECLASS.output("\n\nYour [pc.tails] knot together, torturing you with brief convulsions. A kind of numb heat spreads through them, forcing you to twist about for a visual inspection. They’re merging together into a single, narrow entity. The flesh crawls eerily as it assume its new shape, curling upward. Hairs sprout out of it while you watch, thickening into a coat of fur. <b>Your [pc.tails] have combined into a single korgonne tail.</b>");
 						// If PC is tailless peasant:
@@ -362,7 +362,7 @@ package classes.Items.Transformatives
 						{
 							kGAMECLASS.output("\n\nOuch! A knot of discomfort forms just above your [pc.butt] as if it had suffered a nasty sting or bite, but no such injury occured. You twist for a look at it");
 							if(pc.isCrotchGarbed()) kGAMECLASS.output(", peeling back your [pc.underGarments]");
-							kGAMECLASS.output(". There’s a raised, irritated lump there, and it’s getting bigger. Wiggling slightly, it extends as new bones form within it, gently wagging as it lengthens. You’re growing a tail! Fine hairs sprout on its [pc.skin], giving it a distinctly canine cast. When it finishes growing, it’s not very long and curls upward, the better to flap back and forth when you're pleased; <b>you’ve obviously gained a korgonne's tail.</b>");
+							kGAMECLASS.output(". There’s a raised, irritated lump there, and it’s getting bigger. Wiggling slightly, it extends as new bones form within it, gently wagging as it lengthens. You’re growing a tail! Fine hairs sprout on its [pc.skin], giving it a distinctly canine cast. When it finishes growing, it’s not very long and curls upward, the better to flap back and forth when you’re pleased; <b>you’ve obviously gained a korgonne’s tail.</b>");
 						}
 						pc.tailCount = 1;
 						pc.tailType = GLOBAL.TYPE_KORGONNE;
@@ -395,12 +395,12 @@ package classes.Items.Transformatives
 					if (target.legTypeUnlocked(GLOBAL.TYPE_KORGONNE))
 					{
 						kGAMECLASS.output("\n\nYou feel a powerful itch spread across your [pc.legs]. You clutch at them, scratching violently as your hair grows and thickens, spreading out into a dark mat across your [pc.skin]. Within a few minutes, your legs are utterly covered in a thick, silky-smooth " + pc.furColor + " fur!");
-						if(!pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output(" More pressing is how the itching distracted you from the real changes going on beneath. The joints are all different, bending at odd angles, much like a dog's leg.");
+						if(!pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output(" More pressing is how the itching distracted you from the real changes going on beneath. The joints are all different, bending at odd angles, much like a dog’s leg.");
 						if(!pc.hasLegFlag(GLOBAL.FLAG_PAWS)) output(" And your feet have changed as well, reshaping into a clawed, canine shape with short toes and lots of padding. You barely resist the urge to squeeze them.");
 						output(" <b>These are definitely korgonne legs!</b>");
 						if(pc.isTaur())
 						{
-							output(" The change extends beyonds just your [pc.legs]. It reaches all the way up your lower body. <b>From the waist down, you're built like a huge dog!</b>");
+							output(" The change extends beyonds just your [pc.legs]. It reaches all the way up your lower body. <b>From the waist down, you’re built like a huge dog!</b>");
 						}
 						pc.legType = GLOBAL.TYPE_KORGONNE;
 						pc.clearLegFlags();
@@ -420,7 +420,7 @@ package classes.Items.Transformatives
 						output("\n\nA sudden burst of pain lights up your cheeks as you feel the bones underneath creaking. The sensation spreads across your [pc.face], the feeling intensifying in your teeth as they grow into a much sharper, carnivorous set. Your bones continue reform while your nose and jaw shift into position, ");
 						if(pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) output("the pain slowly subsiding now that your muzzle has reshaped into a short canine one");
 						else output("painfully elongating and stretching farther from your face. The agony begins to subside when your face settles into a short, canine muzzle");
-						output(". For a short moment, you find your breathing closed off as your nose turns black and moist. A few last cracks announce your bones falling into place, then silence. You check your appearance in the Codex and notice that <b>you now have a korgonne's muzzle.</b>");
+						output(". For a short moment, you find your breathing closed off as your nose turns black and moist. A few last cracks announce your bones falling into place, then silence. You check your appearance in the Codex and notice that <b>you now have a korgonne’s muzzle.</b>");
 						pc.faceType = GLOBAL.TYPE_KORGONNE;
 						pc.clearFaceFlags();
 						pc.addFaceFlag(GLOBAL.FLAG_MUZZLED);
