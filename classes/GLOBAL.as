@@ -1135,6 +1135,8 @@
 		public static const ITEM_FLAG_SKIN_TIGHT:int					= 22; // Used specifically for items that are body conforming (like goo armor and omnisuit).
 		public static const ITEM_FLAG_VAGINAL_CHASTITY:int 				= 23; //Used for undies that prevent penetration. Y u do dis, Nonesuch?
 		public static const ITEM_FLAG_ANAL_CHASTITY:int 				= 24; //Used for undies that prevent penetration. Y u do dis, Nonesuch?
+		public static const ITEM_FLAG_VAGINALLY_SEALED:int 				= 25; //For undies that seal in cumflation :3
+		public static const ITEM_FLAG_ANALLY_SEALED:int 				= 26; //For undies that seal in Kiro's enormous loads.
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1160,6 +1162,10 @@
 			"Ignores Blindness",
 			"Covers Body",
 			"Body Conforming",
+			"Vaginal Chastity",
+			"Anal Chastity",
+			"Vaginal Cum-Sealed",
+			"Anal Cum-Sealed",
 		];
 		
 		/**

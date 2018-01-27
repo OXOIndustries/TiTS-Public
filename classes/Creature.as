@@ -18753,7 +18753,8 @@
 			if(z >= 0)
 			{
 				amountVented = 0;
-				if(cumDrain)
+				//Fen - added blocked vag check here instead of in cumdrain as putting it in the cumdrain check would need a more complicated if check
+				if(cumDrain && pc.blockedVaginas() < pc.totalVaginas() && (!pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_VAGINALLY_SEALED) || statusEffects[z].value1 > 300000))
 				{
 					//Figure out how much cum is vented over time.
 					//Should vent 1/2 the current amount over 30 minutes
@@ -18815,7 +18816,7 @@
 			if(a >= 0)
 			{
 				amountVented = 0;
-				if(cumDrain)
+				if(cumDrain && (!pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANALLY_SEALED) || statusEffects[a].value1 > 300000))
 				{
 					//Figure out how much cum is vented over time.
 					//Should vent 1/2 the current amount over 30 minutes
