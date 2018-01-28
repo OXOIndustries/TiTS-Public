@@ -224,6 +224,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/dryad.png", mimeType = "image/png")]
 		public var Bust_DRYAD:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/egg_trainer.png", mimeType = "image/png")]
+		public var Bust_EGG_TRAINER:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/eimear.png", mimeType = "image/png")]
 		public var Bust_CFS_EIMEAR:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/eimear_nude.png", mimeType = "image/png")]
@@ -521,6 +524,15 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/broodmother.png", mimeType = "image/png")]
 		public var Bust_PREGRASK:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/quaelle.png", mimeType = "image/png")]
+		public var Bust_QUAELLE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/quaelle_nude.png", mimeType = "image/png")]
+		public var Bust_QUAELLE_NUDE:Class;
+		public function get Bust_QUAELLE_F1():Class { return Bust_QUAELLE; }
+		public function get Bust_QUAELLE_F2():Class { return Bust_QUAELLE; }
+		public function get Bust_QUAELLE_B1():Class { return Bust_QUAELLE; }
+		public function get Bust_QUAELLE_B2():Class { return Bust_QUAELLE; }
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/quenton.png", mimeType = "image/png")]
 		public var Bust_QUENTON:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/quenton_nude.png", mimeType = "image/png")]
@@ -669,6 +681,8 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/ula.png", mimeType = "image/png")]
 		public var Bust_ULA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/ula_preg.png", mimeType = "image/png")]
+		public var Bust_ULA_PREG:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/ula_nude.png", mimeType = "image/png")]
 		public var Bust_ULA_NUDE:Class;
 
@@ -909,6 +923,9 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/dryad.png", mimeType = "image/png")]
 			public var Full_DRYAD:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/egg_trainer.png", mimeType = "image/png")]
+			public var Full_EGG_TRAINER:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/eimear.png", mimeType = "image/png")]
 			public var Full_CFS_EIMEAR:Class;
@@ -1189,6 +1206,15 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/pexiga_bimbo.png", mimeType = "image/png")]
 			public var Full_PEXIGA_BIMBO:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quaelle.png", mimeType = "image/png")]
+			public var Full_QUAELLE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quaelle_nude.png", mimeType = "image/png")]
+			public var Full_QUAELLE_NUDE:Class;
+			public function get Full_QUAELLE_F1():Class { return Full_QUAELLE; }
+			public function get Full_QUAELLE_F2():Class { return Full_QUAELLE; }
+			public function get Full_QUAELLE_B1():Class { return Full_QUAELLE; }
+			public function get Full_QUAELLE_B2():Class { return Full_QUAELLE; }
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quenton.png", mimeType = "image/png")]
 			public var Full_QUENTON:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quenton_nude.png", mimeType = "image/png")]
@@ -1323,6 +1349,8 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ula.png", mimeType = "image/png")]
 			public var Full_ULA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ula_preg.png", mimeType = "image/png")]
+			public var Full_ULA_PREG:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ula_nude.png", mimeType = "image/png")]
 			public var Full_ULA_NUDE:Class;
 

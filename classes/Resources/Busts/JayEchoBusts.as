@@ -27,6 +27,15 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/jay_echo/busky_nude.png", mimeType = "image/png")]
 		public var Bust_BUSKY_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/jay_echo/charles.png", mimeType = "image/png")]
+		public var Bust_CHARLES:Class;
+		/*NOT USED:
+		[Embed(source = "../../../assets/images/npcs/jay_echo/charles_nude.png", mimeType = "image/png")]
+		public var Bust_CHARLES_NUDE:Class;*/
+
+		[Embed(source = "../../../assets/images/npcs/jay_echo/creation_doctor.png", mimeType = "image/png")]
+		public var Bust_CREATION_DOCTOR:Class;
+
 		[Embed(source = "../../../assets/images/npcs/jay_echo/gooey_shopkeeper.png", mimeType = "image/png")]
 		public var Bust_CRYSTAL_GOO_SHOPKEEP:Class;
 		
@@ -130,6 +139,15 @@ package classes.Resources.Busts
 			public var Full_BUSKY:Class;
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/busky_nude.png", mimeType = "image/png")]
 			public var Full_BUSKY_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/charles.png", mimeType = "image/png")]
+			public var Full_CHARLES:Class;
+			/*NOT USED:
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/charles_nude.png", mimeType = "image/png")]
+			public var Full_CHARLES_NUDE:Class;*/
+
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/creation_doctor.png", mimeType = "image/png")]
+			public var Full_CREATION_DOCTOR:Class;
 
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/gooey_shopkeeper.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_SHOPKEEP:Class;

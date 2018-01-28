@@ -40,7 +40,8 @@ public function showCaveUla(nude:Boolean = false):void
 	var nudeS:String = "";
 	if(nude) nudeS = "_NUDE";
 	showName("COLD\nKORGONNE");
-	showBust("ULA" + nudeS);
+	if(ulaPregBelly() >= 2) showBust("ULA_PREG");
+	else showBust("ULA" + nudeS);
 }
 
 public function showUla(nude:Boolean = false):void
