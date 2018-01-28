@@ -1870,6 +1870,17 @@ package classes.GameData
 						target.removeStatusEffect("Naleen Coiled");
 					}
 				}
+				//Limber confers a 20% escape chance.
+				else if(target.hasPerk("Limber") && rand(10) <= 1)
+				{
+					output("You contort your body wildly to escape! All that time spent practicing yoga with Paige has paid off!");
+					if(panicJack)
+					{
+						output(" The [pc.cumNoun] you squirt helps a little too.");
+						pc.lust(-10);
+					}
+					target.removeStatusEffect("Naleen Coiled");
+				}
 				else
 				{
 					if(target.physique() + rand(20) + 1 + latexBonus + panicBonus + target.statusEffectv1("Naleen Coiled") * 5 + slipperyBonus > 24) {
@@ -1974,6 +1985,17 @@ package classes.GameData
 						}
 						target.removeStatusEffect("Grappled");
 					}
+				}
+				//Limber confers a 20% escape chance.
+				else if(target.hasPerk("Limber") && rand(10) <= 1)
+				{
+					output("You contort your body wildly to escape! All that time spent practicing yoga with Paige has paid off!");
+					if(panicJack)
+					{
+						output(" The [pc.cumNoun] you squirt helps a little too.");
+						pc.lust(-10);
+					}
+					target.removeStatusEffect("Grappled");
 				}
 				else
 				{

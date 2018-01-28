@@ -206,6 +206,12 @@ public function adultCockvineStruggleOverride():void
 	{
 		output(" But it’s useless. The moment you manage to fight one off two more have tightened their damp, muscular weight around another part of your body. After thirty seconds of sweaty, fretful struggling you have to concede you’re no better off than you started.");
 	}
+	//Limber confers a 20% escape chance.
+	else if(target.hasPerk("Limber") && rand(10) <= 1)
+	{
+		output(" You contort your body wildly to escape! All that time spent practicing yoga with Paige has paid off!");
+		target.removeStatusEffect("Grappled");
+	}
 	else
 	{
 		output(" You pull, push and wriggle the best you can, and after a lengthy tussle manage to force the monster to part some of its grip on you. Muscles and lungs straining, you manage to climb some of the way to safety.");

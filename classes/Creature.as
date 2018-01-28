@@ -19512,6 +19512,12 @@
 				
 				switch (thisStatus.storageName)
 				{
+					case "LimberTime":
+						if (this is PlayerCharacter && requiresRemoval)
+						{
+							kGAMECLASS.eventQueue.push(kGAMECLASS.paigeLimberRemove);
+						}
+						break;
 					case "GastiUnlockTimer":
 						if (this is PlayerCharacter && requiresRemoval)
 						{
