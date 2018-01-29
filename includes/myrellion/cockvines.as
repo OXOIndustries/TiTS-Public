@@ -201,16 +201,13 @@ public function adultCockvineStruggleOverride():void
 
 	if (pc.PQ() > pc.RQ()) chance = pc.PQ();
 	else chance = pc.RQ();
+	
+	//Limber confers a 20% escape chance.
+	if(pc.hasPerk("Limber")) chance += 20;
 
 	if (rand(100) > chance)
 	{
 		output(" But it’s useless. The moment you manage to fight one off two more have tightened their damp, muscular weight around another part of your body. After thirty seconds of sweaty, fretful struggling you have to concede you’re no better off than you started.");
-	}
-	//Limber confers a 20% escape chance.
-	else if(target.hasPerk("Limber") && rand(10) <= 1)
-	{
-		output(" You contort your body wildly to escape! All that time spent practicing yoga with Paige has paid off!");
-		target.removeStatusEffect("Grappled");
 	}
 	else
 	{

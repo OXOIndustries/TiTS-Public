@@ -28,8 +28,8 @@
 			this.description = "some Backdoor Boi Slutwear";
 			
 			//Displayed on tooltips during mouseovers
+			this.tooltip = "Emboldened by the success of its Slut-Seal Thong, TamaniCorp took their patented orifice-sealing technology behind closed doors for months in order to produce a successor. The result a whole new way of storing up liquid butt-love: Backdoor Boi Slutwear. On the surface, it might appear like a boner-hugging thong for men, but inside its cock-wrapping fabric lies an array of proprietary microscopic machinery, just waiting to convert stray cum into a perfect, butthole-girding seal. With a pair of these on, you won’t lose more than single drop worth of liquid-love, no matter how packed your asshole.\n\n<i>“Backdoor Boi Slut”</i> is written across the back in glittery white cursive. The strip of fabric for covering up the asshole is stamped with a red target.\n\nA warning on the tag states, <i>“Seal not guaranteed for fluid quantities over 250L.”</i>";
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
-			this.tooltip = "Emboldened by the success of its Slut-Seal Thong, TamaniCorp took their patented orifice-sealing technology behind closed doors for months in order to produce a successor. The result a whole new way of storing up liquid butt-love: Backdoor Boi Slutwear. On the surface, it might appear like a boner-hugging thong for men, but inside its cock-wrapping fabric lies an array of proprietary microscopic machinery, just waiting to convert stray cum into a perfect, butthole-girding seal. With a pair of these on, you won't lose more than single drop worth of liquid-love, no matter how packed your asshole.\n\n<i>“Backdoor Boi Slut”</i> is written across the back in glittery white cursive. The strip of fabric for covering up the asshole is stamped with a red target.\n\nA warning on the tag states, <i>“Seal not guaranteed for fluid quantities over 250L.”</i>";
 			
 			this.attackVerb = "null";
 			
