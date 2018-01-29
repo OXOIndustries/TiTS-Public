@@ -996,6 +996,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Fathered, Sera’s Children:</b> " + StatTracking.getStat("pregnancy/sera sired"));
 				if(StatTracking.getStat("pregnancy/tam sired") > 0)
 					output2("\n<b>* Fathered, Tam’s Children:</b> " + StatTracking.getStat("pregnancy/tam sired"));
+				if(StatTracking.getStat("pregnancy/ula sired") > 0)
+					output2("\n<b>* Fathered, Ula’s Children:</b> " + StatTracking.getStat("pregnancy/ula sired"));
 				if(StatTracking.getStat("pregnancy/zil call girl kids") > 0)
 					output2("\n<b>* Fathered, " + (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "Zil Call Girl" : "Zheniya") + " Children:</b> " + StatTracking.getStat("pregnancy/zil call girl kids"));
 			}
@@ -3872,6 +3874,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["ELLIE_EMBARASSED_LIL_DICK_FUCK"] != undefined) output2(", Fucked her with an embarrassingly small dick for her size");
 					if(flags["NEPH_AFFECTION"] != undefined) output2("\n<b>* Ellie, Affection:</b> " + flags["NEPH_AFFECTION"] + " %");
 					if(flags["ELLIE_PREG_TIMER"] != undefined && flags["ELLIE_TOTAL_KIDS"] == undefined) output2("\n<b>* Ellie, Days Pregnant:</b> " + flags["ELLIE_PREG_TIMER"]);
+					if(flags["ELLIE_TOTAL_KIDS"] > 0) output2("\n<b>* Ellie, Total Kids:</b> " + flags["ELLIE_TOTAL_KIDS"]);
 					if(flags["ELLIE_SEXED"] != undefined) output2("\n<b>* Ellie, Times Sexed:</b> " + flags["ELLIE_SEXED"]);
 					if(flags["PUBLIC_USE_COUNT"] > 0) output2("\n<b>* Ellie, Times You Were Used Publicly:</b> " + flags["PUBLIC_USE_COUNT"]);
 				}
@@ -6096,6 +6099,8 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 					if(flags["ULA_STARTALK"] != undefined) output2(", Talked to her");
 					if(flags["ULA_DEFLOWERED"] != undefined) output2(", Took her virginity");
+					if(flags["ULA_PREG_TIMER"] != undefined) output2("\n<b>* " + coldKorgiName + ", Days Pregnant:</b> " + flags["ULA_PREG_TIMER"]);
+					if(flags["ULA_TOTAL_KIDS"] > 0) output2("\n<b>* " + coldKorgiName + ", Total Kids:</b> " + flags["ULA_TOTAL_KIDS"]);
 					if(flags["ULA_SEXED"] != undefined) output2("\n<b>* " + coldKorgiName + ", Times Sexed:</b> " + flags["ULA_SEXED"]);
 				}
 				else if((flags["ULA_LEAVE_TIMER"] + 60*24*2) <= GetGameTimestamp()) output2(", <i>Whereabouts unknown</i>");
