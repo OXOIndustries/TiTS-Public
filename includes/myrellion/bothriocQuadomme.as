@@ -171,7 +171,7 @@ public function encounterBothriocQuadomme():void
 		var autoSubmit:Boolean = false;
 		
 		// Bad End
-		if(flags["BOTHRIOC_QUADOMME_SUMBIT"] >= 2)
+		if(flags["BOTHRIOC_QUADOMME_SUMBIT"] >= 2 && !bothriocQuestActive())
 		{
 			output("\n\nHot, blissful understanding blossoms within you as you feel the stuff clinging to you in half a dozen places. Strings, weaves and thatches of gossamer glisten across the floor and walls, emerging from a large hole in the ceiling, only discernible to you now that you’re well and truly coated in it. You’ve blundered into a bothrioc’s trap! You wait tremulously for the wonderful, elegant being to emerge from the space above.");
 			output("\n\nThe tall, flat-chested androgyne lolls elegantly downwards, propping its jaw up with one pair of hands as it gazes at you with laidback interest. A blush descends on you, prickling your [pc.skin] as you run your eyes over the big, elegant and confident alpha that has you transfixed: Concentrated power. Your eyes keep being drawn to its abdomen – the fact that it is so big, packed tight with eggs. It feels like there’s a vein linking that sight and your loins, and every time you allow yourself to look at it a pulse of heat courses urgently through it into your [pc.groin], forcing your [pc.lips] open with a groan of pure lust. Your [pc.legs] feel like they’ve turned to jelly, and inexorably you find yourself relaxing in its bonds, opening yourself up entirely to this unspeakably wonderful alpha. Any floating misapprehensions you have about doing this disappear in a tidal wave of bliss once you’ve done it: This is it. This is where you belong.");
@@ -200,7 +200,7 @@ public function encounterBothriocQuadomme():void
 		// Auto-Submit
 		// Will happen if 100 Obedience
 		// If 80-99 50% chance of happening upon getting webbed
-		else if(addiction >= 100 || (addiction >= 80 && rand(2) == 0))
+		else if((addiction >= 100 || (addiction >= 80 && rand(2) == 0)) && !bothriocQuestActive())
 		{
 			output("\n\nHot, blissful understanding blossoms within you as you feel the stuff clinging to you in half a dozen places. Strings, weaves and thatches of gossamer glisten across the floor and walls, emerging from a large hole in the ceiling, only discernible to you now that you’re well and truly coated in it. You’ve blundered into a bothrioc’s trap! You wait tremulously for the wonderful, elegant being to emerge from the space above.");
 			output("\n\nThe tall, flat-chested androgyne lolls elegantly downwards, propping its jaw up with one pair of hands as it gazes at you with laidback interest. A blush descends on you, prickling your [pc.skin] as you run your eyes over the big, elegant and confident alpha that has you transfixed: Concentrated power. Your eyes keep being drawn to its abdomen – the fact that it is so big, packed tight with eggs. It feels like there’s a vein linking that sight and your loins, and every time you allow yourself to look at it a pulse of heat courses urgently through it into your [pc.groin], forcing your [pc.lips] open with a groan of pure lust. Your " + (pc.legCount == 1 ? "[pc.leg] feels like it’s" : "[pc.legs] feel like they’ve") + " turned to jelly, and inexorably you find yourself relaxing in its bonds, opening yourself up entirely to this unspeakably wonderful alpha. Any floating misapprehensions you have about doing this disappear in a tidal wave of bliss once you’ve done it: This is it. This is where you belong.");
