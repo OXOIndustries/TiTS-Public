@@ -171,46 +171,61 @@ public function encounterBothriocQuadomme():void
 		var autoSubmit:Boolean = false;
 		
 		// Bad End
-		if(flags["BOTHRIOC_QUADOMME_SUMBIT"] >= 2 && !bothriocQuestActive())
+		if(flags["BOTHRIOC_QUADOMME_SUMBIT"] >= 2)
 		{
-			output("\n\nHot, blissful understanding blossoms within you as you feel the stuff clinging to you in half a dozen places. Strings, weaves and thatches of gossamer glisten across the floor and walls, emerging from a large hole in the ceiling, only discernible to you now that you’re well and truly coated in it. You’ve blundered into a bothrioc’s trap! You wait tremulously for the wonderful, elegant being to emerge from the space above.");
-			output("\n\nThe tall, flat-chested androgyne lolls elegantly downwards, propping its jaw up with one pair of hands as it gazes at you with laidback interest. A blush descends on you, prickling your [pc.skin] as you run your eyes over the big, elegant and confident alpha that has you transfixed: Concentrated power. Your eyes keep being drawn to its abdomen – the fact that it is so big, packed tight with eggs. It feels like there’s a vein linking that sight and your loins, and every time you allow yourself to look at it a pulse of heat courses urgently through it into your [pc.groin], forcing your [pc.lips] open with a groan of pure lust. Your [pc.legs] feel like they’ve turned to jelly, and inexorably you find yourself relaxing in its bonds, opening yourself up entirely to this unspeakably wonderful alpha. Any floating misapprehensions you have about doing this disappear in a tidal wave of bliss once you’ve done it: This is it. This is where you belong.");
-			output("\n\n<i>“Very pleasing,”</i> the quadomme whispers. Its beam furrows into a frown. <i>“In another way, though - rather upsetting.”</i>");
-			output("\n\nDiscordant dismay rings in your head. What could you have possibly done to displease the egg-giver? You’d do anything to set it right.");
-			output("\n\n<i>“It makes my soul ache, to think of a soft, loving creature such as yourself, wandering around this war-torn land on your own,”</i> it continues, shaking its head. <i>“It’s really only a matter of time before something dreadful happens to you, whilst you’re fumbling around in the dark for something you cannot quite find. No - there’s only one solution, little one. Your search ends here.”</i>");
-			output("\n\nMomentary bafflement gives way to surging, astonished hope as the quadomme glides downwards, close enough for it to lay its hands on you.");
-			output("\n\n<i>“Because you will obey my every word, won’t you?”</i> Slim fingers touch your crown, sliding " + (pc.hasHair() ? "through" : "over") + " your [pc.hair] and around to your [pc.ear].");
-			output("\n\n<i>“Yes, egg-giver,”</i> you groan, closing your eyes and bending your head into those stroking, scratching digits.");
-			output("\n\n<i>“You will be my toy, my servant, mother to my children, and you will love every second of it, won’t you?”</i> Another finger slides slowly down your spine, touching the crack of your [pc.ass].");
-			output("\n\n<i>“Yes, egg-giver!”</i> you say again. The words are formed automatically. To resist the quadomme’s desires, to expresses anything else, would go utterly against what you have become.");
-			output("\n\n<i>“Good.”</i> It withdraws slightly, leaving you craving its touch... particularly on your [pc.groin], which throb with unrequited lust. <i>“Throw away your garments and your weapons. They belong to an old you. A harder, violent, close-minded you. You will no longer need them.”</i>");
-			output("\n\nYou do hesitate for a second... you heft your [pc.weapon] and recall your ship, your old friends, your mission... but it is as if you are looking at them from the wrong end of a telescope, and what you see twinges you only slightly. It no longer satisfies you, that old life, and when you consider what you stand to gain, sugar fills your veins");
-			if(pc.hasVagina()) output(", [pc.femcum] drips from your [pc.vaginas]");
-			if(pc.hasCock()) output(", heat hardens your [pc.cocks]");
-			output(", and peaceful joy radiates through your mind. There is no choice here at all. You strip off your [pc.gear], fling your weapons into the dark. Naked there under the tar-black gaze of the quadomme, it is as if you have been reborn.");
-			output("\n\n<i>“Wonderful,”</i> the long, spidery creature sussurates, clasping its hands, and you beam back, ecstatic that you’ve pleased your new owner. <i>“Now - let’s take you upstairs and introduce you to your many new sisters.”</i>");
-			output("\n\nIt spends some time hovering over you, hogtying you in sticky silk to its heavy abdomen, and then it heaves you upwards, carrying its prey up into the pitch black night of its home.");
+			if(bothriocQuestActive())
+			{
+				bothriocQuestQuadommeAutoSubmit();
+			}
+			else
+			{
+				output("\n\nHot, blissful understanding blossoms within you as you feel the stuff clinging to you in half a dozen places. Strings, weaves and thatches of gossamer glisten across the floor and walls, emerging from a large hole in the ceiling, only discernible to you now that you’re well and truly coated in it. You’ve blundered into a bothrioc’s trap! You wait tremulously for the wonderful, elegant being to emerge from the space above.");
+				output("\n\nThe tall, flat-chested androgyne lolls elegantly downwards, propping its jaw up with one pair of hands as it gazes at you with laidback interest. A blush descends on you, prickling your [pc.skin] as you run your eyes over the big, elegant and confident alpha that has you transfixed: Concentrated power. Your eyes keep being drawn to its abdomen – the fact that it is so big, packed tight with eggs. It feels like there’s a vein linking that sight and your loins, and every time you allow yourself to look at it a pulse of heat courses urgently through it into your [pc.groin], forcing your [pc.lips] open with a groan of pure lust. Your [pc.legs] feel like they’ve turned to jelly, and inexorably you find yourself relaxing in its bonds, opening yourself up entirely to this unspeakably wonderful alpha. Any floating misapprehensions you have about doing this disappear in a tidal wave of bliss once you’ve done it: This is it. This is where you belong.");
+				output("\n\n<i>“Very pleasing,”</i> the quadomme whispers. Its beam furrows into a frown. <i>“In another way, though - rather upsetting.”</i>");
+				output("\n\nDiscordant dismay rings in your head. What could you have possibly done to displease the egg-giver? You’d do anything to set it right.");
+				output("\n\n<i>“It makes my soul ache, to think of a soft, loving creature such as yourself, wandering around this war-torn land on your own,”</i> it continues, shaking its head. <i>“It’s really only a matter of time before something dreadful happens to you, whilst you’re fumbling around in the dark for something you cannot quite find. No - there’s only one solution, little one. Your search ends here.”</i>");
+				output("\n\nMomentary bafflement gives way to surging, astonished hope as the quadomme glides downwards, close enough for it to lay its hands on you.");
+				output("\n\n<i>“Because you will obey my every word, won’t you?”</i> Slim fingers touch your crown, sliding " + (pc.hasHair() ? "through" : "over") + " your [pc.hair] and around to your [pc.ear].");
+				output("\n\n<i>“Yes, egg-giver,”</i> you groan, closing your eyes and bending your head into those stroking, scratching digits.");
+				output("\n\n<i>“You will be my toy, my servant, mother to my children, and you will love every second of it, won’t you?”</i> Another finger slides slowly down your spine, touching the crack of your [pc.ass].");
+				output("\n\n<i>“Yes, egg-giver!”</i> you say again. The words are formed automatically. To resist the quadomme’s desires, to expresses anything else, would go utterly against what you have become.");
+				output("\n\n<i>“Good.”</i> It withdraws slightly, leaving you craving its touch... particularly on your [pc.groin], which throb with unrequited lust. <i>“Throw away your garments and your weapons. They belong to an old you. A harder, violent, close-minded you. You will no longer need them.”</i>");
+				output("\n\nYou do hesitate for a second... you heft your [pc.weapon] and recall your ship, your old friends, your mission... but it is as if you are looking at them from the wrong end of a telescope, and what you see twinges you only slightly. It no longer satisfies you, that old life, and when you consider what you stand to gain, sugar fills your veins");
+				if(pc.hasVagina()) output(", [pc.femcum] drips from your [pc.vaginas]");
+				if(pc.hasCock()) output(", heat hardens your [pc.cocks]");
+				output(", and peaceful joy radiates through your mind. There is no choice here at all. You strip off your [pc.gear], fling your weapons into the dark. Naked there under the tar-black gaze of the quadomme, it is as if you have been reborn.");
+				output("\n\n<i>“Wonderful,”</i> the long, spidery creature sussurates, clasping its hands, and you beam back, ecstatic that you’ve pleased your new owner. <i>“Now - let’s take you upstairs and introduce you to your many new sisters.”</i>");
+				output("\n\nIt spends some time hovering over you, hogtying you in sticky silk to its heavy abdomen, and then it heaves you upwards, carrying its prey up into the pitch black night of its home.");
+				
+				processTime(5 + rand(2));
+				
+				clearMenu();
+				addButton(0, "Next", bothriocQuadommeBadEnd);
+			}
 			
-			processTime(5 + rand(2));
 			autoSubmit = true;
-			
-			clearMenu();
-			addButton(0, "Next", bothriocQuadommeBadEnd);
 		}
 		// Auto-Submit
 		// Will happen if 100 Obedience
 		// If 80-99 50% chance of happening upon getting webbed
-		else if((addiction >= 100 || (addiction >= 80 && rand(2) == 0)) && !bothriocQuestActive())
+		else if(addiction >= 100 || (addiction >= 80 && rand(2) == 0))
 		{
-			output("\n\nHot, blissful understanding blossoms within you as you feel the stuff clinging to you in half a dozen places. Strings, weaves and thatches of gossamer glisten across the floor and walls, emerging from a large hole in the ceiling, only discernible to you now that you’re well and truly coated in it. You’ve blundered into a bothrioc’s trap! You wait tremulously for the wonderful, elegant being to emerge from the space above.");
-			output("\n\nThe tall, flat-chested androgyne lolls elegantly downwards, propping its jaw up with one pair of hands as it gazes at you with laidback interest. A blush descends on you, prickling your [pc.skin] as you run your eyes over the big, elegant and confident alpha that has you transfixed: Concentrated power. Your eyes keep being drawn to its abdomen – the fact that it is so big, packed tight with eggs. It feels like there’s a vein linking that sight and your loins, and every time you allow yourself to look at it a pulse of heat courses urgently through it into your [pc.groin], forcing your [pc.lips] open with a groan of pure lust. Your " + (pc.legCount == 1 ? "[pc.leg] feels like it’s" : "[pc.legs] feel like they’ve") + " turned to jelly, and inexorably you find yourself relaxing in its bonds, opening yourself up entirely to this unspeakably wonderful alpha. Any floating misapprehensions you have about doing this disappear in a tidal wave of bliss once you’ve done it: This is it. This is where you belong.");
-			output("\n\n<i>“What a pleasing sight,”</i> the eight-limbed bothrioc says, grin widening. Just this voicing of approval causes joy to glow in your breast. <i>“You have come some distance, haven’t you farlander? Yes, I can tell. And after all that hard learning you’ve achieved true understanding of your natural place in the order of things: An obedient breeder bitch, face down, ass raised. I’m very proud of you.”</i> Its tone turns commanding. <i>“Do exactly what I say, to the letter – and I will give you what you need.”</i>");
-			output("\n\nEuphoria washes over you and you mumble a string of breathless “thank you”s as your new Master descends upon you. Struggling doesn’t even occur to you.");
+			if(bothriocQuestActive())
+			{
+				bothriocQuestQuadommeAutoSubmit();
+			}
+			else
+			{
+				output("\n\nHot, blissful understanding blossoms within you as you feel the stuff clinging to you in half a dozen places. Strings, weaves and thatches of gossamer glisten across the floor and walls, emerging from a large hole in the ceiling, only discernible to you now that you’re well and truly coated in it. You’ve blundered into a bothrioc’s trap! You wait tremulously for the wonderful, elegant being to emerge from the space above.");
+				output("\n\nThe tall, flat-chested androgyne lolls elegantly downwards, propping its jaw up with one pair of hands as it gazes at you with laidback interest. A blush descends on you, prickling your [pc.skin] as you run your eyes over the big, elegant and confident alpha that has you transfixed: Concentrated power. Your eyes keep being drawn to its abdomen – the fact that it is so big, packed tight with eggs. It feels like there’s a vein linking that sight and your loins, and every time you allow yourself to look at it a pulse of heat courses urgently through it into your [pc.groin], forcing your [pc.lips] open with a groan of pure lust. Your " + (pc.legCount == 1 ? "[pc.leg] feels like it’s" : "[pc.legs] feel like they’ve") + " turned to jelly, and inexorably you find yourself relaxing in its bonds, opening yourself up entirely to this unspeakably wonderful alpha. Any floating misapprehensions you have about doing this disappear in a tidal wave of bliss once you’ve done it: This is it. This is where you belong.");
+				output("\n\n<i>“What a pleasing sight,”</i> the eight-limbed bothrioc says, grin widening. Just this voicing of approval causes joy to glow in your breast. <i>“You have come some distance, haven’t you farlander? Yes, I can tell. And after all that hard learning you’ve achieved true understanding of your natural place in the order of things: An obedient breeder bitch, face down, ass raised. I’m very proud of you.”</i> Its tone turns commanding. <i>“Do exactly what I say, to the letter – and I will give you what you need.”</i>");
+				output("\n\nEuphoria washes over you and you mumble a string of breathless “thank you”s as your new Master descends upon you. Struggling doesn’t even occur to you.");
+				
+				clearMenu();
+				addButton(0, "Next", bothriocQuadommePCLoss);
+			}
 			
 			autoSubmit = true;
-			
-			clearMenu();
-			addButton(0, "Next", bothriocQuadommePCLoss);
 		}
 		// Strength check success
 		else if(pc.physique() + (rand(60) - 39) > 30)

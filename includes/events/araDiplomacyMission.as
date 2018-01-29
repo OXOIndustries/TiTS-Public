@@ -599,6 +599,89 @@ public function bothriocQuestQuadomme(arg:Array):void
 	}
 }
 
+// If PC auto-submits
+public function bothriocQuestQuadommeAutoSubmit():void
+{
+	output("\n\nHot, blissful understanding blossoms within you as you feel the stuff clinging to you in half a dozen places. Strings, weaves and thatches of gossamer glisten across the floor and walls, emerging from a large hole in the ceiling, only discernible to you now that you’re well and truly coated in it. You’ve blundered into a bothrioc’s trap! You wait tremulously for the wonderful, elegant being to emerge from the space above.");
+	output("\n\nThe tall, flat-chested androgyne lolls elegantly downwards, propping its jaw up with one pair of hands as it gazes at you with laidback interest. A blush descends on you, prickling your [pc.skin] as you run your eyes over the big, elegant and confident alpha that has you transfixed: Concentrated power. You want to simply stare at it, bathe in its presence, await it to take hold of you in its strong hands and put you in your rightful place... but the words Ara Kei imparted to you ring, strident above the soft lilt of your natural thoughts, and there’s no ignoring them. [ara.he] gave you a duty, and you cannot fail it.");
+	output("\n\n<i>“Please egg-giver,”</i> you say, remaining very still and fixing the creature’s elegant, white face with a plaintive gaze. <i>“I must ask of you something.”</i>");
+	output("\n\n<i>“To fill you so full of warm, bumpy life that you can’t remember your own name?”</i> the quadomme replies with a smile. <i>“That’s going to happen anyway little one, don’t worry. Only beg if you’re into that kind of thing.”</i>");
+	output("\n\n<i>“No...”</i> You pause a moment to firmly push down on the wave of heat that rose to your [pc.skin] just now. <i>“...It’s something else. Something important.”</i>");
+	output("\n\n<i>“Something </i>more<i> important to you than being my incubator?”</i> Both of the quadomme’s armored eyebrows rise. <i>“My! You’ve certainly got my attention. Go ahead, little one. I’m listening.”</i>");
+	
+	clearMenu();
+	addButton(0, "Next", bothriocQuestQuadommeAutoSubmitNext);
+}
+public function bothriocQuestQuadommeAutoSubmitNext():void
+{
+	clearOutput();
+	
+	bothriocQuestQuadommeAraGender = (rand(3) - 1);
+	
+	// Intelligence check: 100% = pass, 80-99 = ⅔ chance pass, 79 or less = fail
+	// Pass
+	if(pc.IQ() >= 100 || (pc.IQ() >= 80 && rand(2) != 0))
+	{
+		output("You lay out Ara’s plan - to bring as many quadommes together so that they may unite, and lobby the U.G.C. for the rights the race needs to avoid being annihilated by the myr and being casually exploited by Xenogen. Your love and sincerity for the cause pushes you from a mere extension of an invitation to a rousing oration, a call to action to all spidery harem-keepers that would rouse the most cynical of hearts. There are tears coursing down your face by the time you’re done.");
+		output("\n\nThe spidery alien retains a poker face throughout, but by the end you can tell by their intent stare and fixed quality of their smirk that you’ve managed to get past their preconceptions.");
+		output("\n\n<i>“My word. Ara certainly knew what " + araQmfn("he was", "she was", "they were") + " doing when " + araQmfn("he", "she", "they") + " sent you, didn’t " + araQmfn("he", "she", "they") + "?”</i> it says at last. <i>“Very well. You can tell Ara I will come to " + araQmfn("his", "her", "their") + " summit. I shall arrive expecting terrible treachery. But I would bitterly regret missing this, whatever the case.”</i>");
+		output("\n\n<i>“Now we’ve decided what we’re doing tomorrow...”</i> A hungry expression descends upon the quadomme’s eerie, androgynous features. <i>“Let’s get on with what we’re doing today. You, embedded on my ovipositor, more specifically.”</i>");
+		
+		IncrementFlag("BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT");
+		
+		if(pc.isFullyPregnant())
+		{
+			output("\n\n<i>“I’m sorry, egg-giver,”</i> you say sincerely. You jerk one of your stuck hands in the direction of your [pc.belly]. <i>“I’m... um...”</i>");
+			output("\n\nThe quadomme’s snort of exasperation can probably be heard for miles.");
+			output("\n\n<i>“Ara sent an eloquent, </i>full<i> egg-bearer?! The nerve! The cunning!”</i> It cries. It snaps your bonds irritably. <i>“Go on, get out of here, you monstrous... siren! I’ll be along to this summit of Ara’s just to give [ara.him] a piece of my mind!”</i>");
+			output("\n\nIt disappears back into its hole without another word. You smile dizzily. That was kind of fun.");
+			output("\n\n");
+			
+			bothriocQuadommeToMainMenu(true);
+		}
+		else
+		{
+			output("\n\nYou smile back happily, allowing that heat you’ve been denying for so long to finally overwhelm you. You wouldn’t have it any other way.");
+			output("\n\n");
+			
+			// {standard loss scene from here}
+			clearMenu();
+			addButton(0, "Next", bothriocQuadommePCLoss);
+		}
+	}
+	// Fail
+	else
+	{
+		output("You lay out Ara’s plan - to bring as many quadommes together so that they may unite, and lobby the U.G.C. for the rights the race needs to avoid being annihilated by the myr or being casually exploited by Xenogen. You do your utmost to stress how important this is for the future of their race, but you can tell the quadomme is barely even listening - just nodding along with a smile, waiting for you to finish. You trail off towards the end, feeling miserable. You didn’t give it justice.");
+		output("\n\n<i>“My!”</i> the quadomme says with a big, toothy beam. <i>“What a fascinating and moving yarn! The future of the bothrioc itself at stake, you say? Ara’s certainly raised " + araQmfn("his", "her", "their") + " game recently. I, however, know that one altogether too well.”</i> It shifts downwards slightly, so that its huge, gleaming black abdomen moves further into the light.");
+		output("\n\n<i>“But you know what? I’m willing to play along. I’d love to see how " + araQmfn("he thinks he is", "she thinks she is", "they think they are") + " going to get the better of me, and all of our peers. But I do demand payment for my appearance at this summit of " + araQmfn("his", "hers", "theirs") + ". And for your sheer audacity.”</i> The smile drops off of its face, and it looks down at you with naked hunger. <i>“I’m gonna stuff you so full of eggs you aren’t going to be able to remember your own name, catspaw. Then, and only then, will I consider coming.”</i>");
+		if(pc.isFullyPregnant())
+		{
+			output("\n\n<i>“I’m sorry, egg-giver,”</i> you say sincerely. You jerk one of your stuck hands in the direction of your [pc.belly]. <i>“I’m... um...”</i>");
+			output("\n\nThe quadomme’s snort of exasperation can probably be heard for miles.");
+			output("\n\n<i>“Ara sends a clumsy, </i>full<i> egg-bearer?!”</i> it cries. <i>“Who " + araQmfn("does he", "does she", "do they") + " think they are? No, it’s not good enough. I demand payment of some kind.”</i> It looms above you, jaw set. <i>“You shall be my servant for the day. Follow my demands, and obey my desires, for that time. Only then will I deign to come to this blasted conference.”</i>");
+			output("\n\nIt doesn’t frame it as a request, because it isn’t one. You nod soulfully. It was your fault for being so stuffed with life, after all.");
+			output("\n\nIt takes a firm grip of you with its four gleaming black stilettos, and climbs with its prize back up into its tunnel...");
+			output("\n\n");
+			
+			// follows on from standard maid training from here
+			clearMenu();
+			addButton(0, "Next", bothriocQuadommeMaidTraining);
+		}
+		else
+		{
+			output("\n\nThat’s fine. That’s more than fair. That’s absolutely wonderful. You smile back happily, allowing that heat you’ve been denying to finally overwhelm you. You love doing your bit for the cause.");
+			output("\n\n");
+			
+			// {standard loss scene from here}
+			clearMenu();
+			addButton(0, "Next", bothriocQuadommePCLoss);
+		}
+	}
+	
+	processTime(2);
+}
+
 // If PC defeats a Quadomme having unsuccessfully tried Diplomacy with them
 public function bothriocQuestQuadommePCVictory():void
 {
