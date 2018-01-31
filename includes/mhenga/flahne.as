@@ -1388,7 +1388,7 @@ public function flahneTalksAboutCumslutPenny():void
 		output("\n\n<i>“Oh, right, right, sorry. Hey, you’re the one who started all this after all – could you maybe convince her to be a little more... generous? I just... I can’t get the thought of it out of my head. Just... put a word in for me, will you?”</i> She shakes her head briefly, then looks back at you with a less hazy expression. <i>“Right, what can I do for you, anyway?”</i>");
 	}
 
-	clearMenu(5 + rand(3));
+	processTime(5 + rand(3));
 	meetingFlahne(false);
 }
 
