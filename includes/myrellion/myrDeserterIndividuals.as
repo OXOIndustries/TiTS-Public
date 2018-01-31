@@ -807,7 +807,7 @@ public function specialRedAntPreggosShitEvent():void
 	StatTracking.track("pregnancy/briha kids");
 	if(son) StatTracking.track("pregnancy/briha sons");
 	else StatTracking.track("pregnancy/briha daughters");
-	StatTracking.track("pregnancy/total births");
+	StatTracking.track("pregnancy/total sired");
 	StatTracking.track("pregnancy/total day care");
 }
 public function addUniqueChildBriha(isMale:Boolean = false, timeOffset:int = 0):void

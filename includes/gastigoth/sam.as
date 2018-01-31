@@ -381,6 +381,7 @@ public function samGastBirth():void
 	ChildManager.addChild(c)
 	
 	StatTracking.track("pregnancy/sam sired", flags["SAM_NUM_BABIES"]);
+	StatTracking.track("pregnancy/total sired", flags["SAM_NUM_BABIES"]);
 	StatTracking.track("pregnancy/total day care", flags["SAM_NUM_BABIES"]);
 
 	if(flags["SAM_TOTAL_KIDS"] == undefined) flags["SAM_TOTAL_KIDS"] = 0;

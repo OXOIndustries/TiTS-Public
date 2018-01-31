@@ -2477,6 +2477,7 @@ public function zilCallGirlPregnancyEnds(deltaT:uint):void
 	}
 	
 	StatTracking.track("pregnancy/zil call girl kids", flags["ZIL_CALLGIRL_EGG_COUNT"]);
+	StatTracking.track("pregnancy/total sired", flags["ZIL_CALLGIRL_EGG_COUNT"]);
 	
 	zilCallGirlPregnancyCleanup();
 	if (flags["ZIL_CALLGIRL_HAS_BIRTHED"] == undefined) flags["ZIL_CALLGIRL_HAS_BIRTHED"] = 1;

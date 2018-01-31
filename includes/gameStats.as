@@ -874,7 +874,7 @@ public function statisticsScreen(showID:String = "All"):void
 		}
 		
 		//Births header!
-		var totalOffspring:Number = StatTracking.getStat("pregnancy/total births");
+		var totalOffspring:Number = (StatTracking.getStat("pregnancy/total births") + StatTracking.getStat("pregnancy/total sired"));
 		var totalProduce:Number = 0;
 		totalProduce += StatTracking.getStat("pregnancy/ovilium eggs laid");
 		totalProduce += StatTracking.getStat("pregnancy/egg trainer eggs laid");
@@ -889,6 +889,8 @@ public function statisticsScreen(showID:String = "All"):void
 				if(StatTracking.getStat("pregnancy/total day care") > 0)
 					output2("\n<b>* Total @ Daycare:</b> " + StatTracking.getStat("pregnancy/total day care"));
 				// Mother
+				if(StatTracking.getStat("pregnancy/total births") > 0)
+					output2("\n<b>* Births, Total:</b> " + StatTracking.getStat("pregnancy/total births"));
 				if(StatTracking.getStat("pregnancy/fertile bothrioc eggs") > 0)
 					output2("\n<b>* Births, Bothrioc Eggs, Fertile:</b> " + StatTracking.getStat("pregnancy/fertile bothrioc eggs"));
 				if(StatTracking.getStat("pregnancy/infertile bothrioc eggs") > 0)
@@ -952,9 +954,11 @@ public function statisticsScreen(showID:String = "All"):void
 				if(StatTracking.getStat("pregnancy/zaalt kids") > 0)
 					output2("\n<b>* Births, Zaalt’s Children:</b> " + StatTracking.getStat("pregnancy/zaalt kids"));
 				// Father
+				if(StatTracking.getStat("pregnancy/total sired") > 0)
+					output2("\n<b>* Sired, Total:</b> " + StatTracking.getStat("pregnancy/total sired"));
 				if(StatTracking.getStat("pregnancy/briha kids") > 0)
 				{
-					output2("\n<b>* Fathered, Briha’s Children:</b> ");
+					output2("\n<b>* Sired, Briha’s Children:</b> ");
 					var unnamedBrihaKids:Number = StatTracking.getStat("pregnancy/briha kids");
 					if(flags["BRIHA_OLDEST_SPAWN_AGE"] != undefined)
 					{
@@ -977,29 +981,29 @@ public function statisticsScreen(showID:String = "All"):void
 					else if(flags["BRIHA_OLDEST_SPAWN_AGE"] == undefined && flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] == undefined) output2(" " + unnamedBrihaKids);
 				}
 				if(StatTracking.getStat("pregnancy/briha sons") > 0)
-					output2("\n<b>* Fathered, Briha’s Sons:</b> " + StatTracking.getStat("pregnancy/briha sons"));
+					output2("\n<b>* Sired, Briha’s Sons:</b> " + StatTracking.getStat("pregnancy/briha sons"));
 				if(StatTracking.getStat("pregnancy/briha daughters") > 0)
-					output2("\n<b>* Fathered, Briha’s Daughters:</b> " + StatTracking.getStat("pregnancy/briha daughters"));
+					output2("\n<b>* Sired, Briha’s Daughters:</b> " + StatTracking.getStat("pregnancy/briha daughters"));
 				if(StatTracking.getStat("pregnancy/ellie sired") > 0)
-					output2("\n<b>* Fathered, Ellie’s Children:</b> " + StatTracking.getStat("pregnancy/ellie sired"));
+					output2("\n<b>* Sired, Ellie’s Children:</b> " + StatTracking.getStat("pregnancy/ellie sired"));
 				if(StatTracking.getStat("pregnancy/ilaria sired") > 0)
-					output2("\n<b>* Fathered, Ilaria’s Children:</b> " + StatTracking.getStat("pregnancy/ilaria sired"));
+					output2("\n<b>* Sired, Ilaria’s Children:</b> " + StatTracking.getStat("pregnancy/ilaria sired"));
 				if(StatTracking.getStat("pregnancy/khorgan sired") > 0)
-					output2("\n<b>* Fathered, Khorgan’s Children:</b> " + StatTracking.getStat("pregnancy/khorgan sired"));
+					output2("\n<b>* Sired, Khorgan’s Children:</b> " + StatTracking.getStat("pregnancy/khorgan sired"));
 				if(StatTracking.getStat("pregnancy/raskvel sired/total") > 0)
-					output2("\n<b>* Fathered, Raskvel Eggs:</b> " + StatTracking.getStat("pregnancy/raskvel sired/total"));
+					output2("\n<b>* Sired, Raskvel Eggs:</b> " + StatTracking.getStat("pregnancy/raskvel sired/total"));
 				if(StatTracking.getStat("pregnancy/raskvel sired/day care") > 0)
-					output2("\n<b>* Fathered, Raskvel @ Daycare:</b> " + StatTracking.getStat("pregnancy/raskvel sired/day care"));
+					output2("\n<b>* Sired, Raskvel @ Daycare:</b> " + StatTracking.getStat("pregnancy/raskvel sired/day care"));
 				if(StatTracking.getStat("pregnancy/sam sired") > 0)
-					output2("\n<b>* Fathered, Sam’s Children:</b> " + StatTracking.getStat("pregnancy/sam sired"));
+					output2("\n<b>* Sired, Sam’s Children:</b> " + StatTracking.getStat("pregnancy/sam sired"));
 				if(StatTracking.getStat("pregnancy/sera sired") > 0)
-					output2("\n<b>* Fathered, Sera’s Children:</b> " + StatTracking.getStat("pregnancy/sera sired"));
+					output2("\n<b>* Sired, Sera’s Children:</b> " + StatTracking.getStat("pregnancy/sera sired"));
 				if(StatTracking.getStat("pregnancy/tam sired") > 0)
-					output2("\n<b>* Fathered, Tam’s Children:</b> " + StatTracking.getStat("pregnancy/tam sired"));
+					output2("\n<b>* Sired, Tam’s Children:</b> " + StatTracking.getStat("pregnancy/tam sired"));
 				if(StatTracking.getStat("pregnancy/ula sired") > 0)
-					output2("\n<b>* Fathered, Ula’s Children:</b> " + StatTracking.getStat("pregnancy/ula sired"));
+					output2("\n<b>* Sired, Ula’s Children:</b> " + StatTracking.getStat("pregnancy/ula sired"));
 				if(StatTracking.getStat("pregnancy/zil call girl kids") > 0)
-					output2("\n<b>* Fathered, " + (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "Zil Call Girl" : "Zheniya") + " Children:</b> " + StatTracking.getStat("pregnancy/zil call girl kids"));
+					output2("\n<b>* Sired, " + (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "Zil Call Girl" : "Zheniya") + " Children:</b> " + StatTracking.getStat("pregnancy/zil call girl kids"));
 			}
 			if(totalProduce)
 			{
@@ -4037,12 +4041,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(StatTracking.getStat("milkers/breast milker uses") > 0)
 				{
 					output2("\n<b>* Milker, Breast, Times Used:</b> " + StatTracking.getStat("milkers/breast milker uses"));
-					output2("\n<b>* Milker, Breast, Fluid Milked:</b> " + StatTracking.getStat("milkers/milk milked") + " mLs");
+					output2("\n<b>* Milker, Breast, Fluid Milked:</b> " + Math.round(StatTracking.getStat("milkers/milk milked")) + " mLs");
 				}
 				if(StatTracking.getStat("milkers/prostate milker uses") > 0)
 				{
 					output2("\n<b>* Milker, Prostate, Times Used:</b> " + StatTracking.getStat("milkers/prostate milker uses"));
-					output2("\n<b>* Milker, Prostate, Cum Milked:</b> " + StatTracking.getStat("milkers/cum milked") + " mLs");
+					output2("\n<b>* Milker, Prostate, Cum Milked:</b> " + Math.round(StatTracking.getStat("milkers/cum milked")) + " mLs");
 					if(flags["NT_TAILCOCK_MILKINGS"] != undefined) output2("\n<b>* Milker, Prostate, Times Used with Parasitic Tail-Cock:</b> " + flags["NT_TAILCOCK_MILKINGS"]);
 				}
 				// Brynn
@@ -4073,7 +4077,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["CARRIE_BLOWJOBBED"] != 1) output2(" " + flags["CARRIE_BLOWJOBBED"] + " times");
 					}
 					if(flags["CARRIE_SMALLCOCK_SUX"] != undefined) output2(", Sucked your small cock");
-					if(StatTracking.getStat("milkers/cum jarred") > 0) output2("\n<b>* Carrie, Cum Jarred:</b> " + StatTracking.getStat("milkers/cum jarred") + " mLs");
+					if(StatTracking.getStat("milkers/cum jarred") > 0) output2("\n<b>* Carrie, Cum Jarred:</b> " + Math.round(StatTracking.getStat("milkers/cum jarred")) + " mLs");
 					if(flags["CAMERON_MILKED"] != undefined) output2("\n<b>* Carrie, Times fucked her and Cameron:</b> " + flags["CAMERON_MILKED"]);
 					if(flags["CORA_SUCKED"] != undefined)
 					{
@@ -4175,7 +4179,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["FUCKED_BY_HALEY"] != undefined) output2(", Fucked by her");
 					if(flags["USED_MILKER"] != undefined) output2("\n<b>* Haley, Times Used Taur-Milker:</b> " + flags["USED_MILKER"]);
 					if(StatTracking.getStat("contests/haley milker losses") + StatTracking.getStat("contests/haley milker wins") > 0) output2("\n<b>* Haley, Milking Competition, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/haley milker wins") + "/" + StatTracking.getStat("contests/haley milker losses") + ", of " + (StatTracking.getStat("contests/haley milker losses") + StatTracking.getStat("contests/haley milker wins")) + " games");
-					if(StatTracking.getStat("haley milker/cum milked") > 0) output2("\n<b>* Haley, Milking Competition, Your Cum Milked:</b> " + StatTracking.getStat("haley milker/cum milked") + " mLs");
+					if(StatTracking.getStat("haley milker/cum milked") > 0) output2("\n<b>* Haley, Milking Competition, Your Cum Milked:</b> " + Math.round(StatTracking.getStat("haley milker/cum milked")) + " mLs");
 					if(pc.hasStatusEffect("Won Haley's Credits")) output2("\n<b>* Haley, Milking Competition, Time Until Next Prize:</b> " + prettifyMinutes(pc.getStatusMinutes("Won Haley's Credits")));
 				}
 				// Millie milks!
@@ -6255,7 +6259,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Spunk Bunker</u></b>");
 				if(flags["KIRO_KALLY_TEAM_MILKED"] != undefined) output2("\n<b>* Services, Times Cock-Milked with Kiro and Kally:</b> " + flags["KIRO_KALLY_TEAM_MILKED"]);
-				if(StatTracking.getStat("spunk bunker/cum milked") > 0) output2("\n<b>* Services, Cock-Milker, Cum Milked:</b> " + StatTracking.getStat("spunk bunker/cum milked") + " mLs");
+				if(StatTracking.getStat("spunk bunker/cum milked") > 0) output2("\n<b>* Services, Cock-Milker, Cum Milked:</b> " + Math.round(StatTracking.getStat("spunk bunker/cum milked")) + " mLs");
 				if(flags["VIXETTE_MOUTHGASMED"] != undefined) output2("\n<b>* Vixette, Times She Sucked Your Dick:</b> " + flags["VIXETTE_MOUTHGASMED"]);
 				variousCount++;
 			}
@@ -6320,7 +6324,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Services, Sperm Donation Bay, Times Donated:</b> " + flags["BREEDWELL_TIMES_DONATED"]);
 					if(flags["BREEDWELL_DONATION_LOCKED"] != undefined) output2(", Locked");
 					else if(flags["BREEDWELL_DONATION_USED"] != undefined && (flags["BREEDWELL_DONATION_USED"] < days)) output2(", Last used " + ((days - flags["BREEDWELL_DONATION_USED"] == 1) ? "yesterday" : ((days - flags["BREEDWELL_DONATION_USED"]) + " days ago")));
-					output2("\n<b>* Services, Sperm Donation Bay, Cum Milked:</b> " + StatTracking.getStat("breedwell/cum milked") + " mLs");
+					output2("\n<b>* Services, Sperm Donation Bay, Cum Milked:</b> " + Math.round(StatTracking.getStat("breedwell/cum milked")) + " mLs");
 				}
 				variousCount++;
 			}
@@ -6817,6 +6821,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(pc.hasStatusEffect("Treated")) output2(", Used");
 			}
 			miscCount++;
+		}
+		if(StatTracking.getStat("joyco/milk milked") + StatTracking.getStat("joyco/cum milked") > 0)
+		{
+			output2("\n<b><u>Contributions</u></b>");
+			if(StatTracking.getStat("joyco/milk milked") > 0) output2("\n<b>* JoyCo, Milk Fluid Milked:</b> " + Math.round(StatTracking.getStat("joyco/milk milked")) + " mLs");
+			if(StatTracking.getStat("joyco/cum milked") > 0) output2("\n<b>* JoyCo, Cum Fluid Milked:</b> " + Math.round(StatTracking.getStat("joyco/cum milked")) + " mLs");
 		}
 		// Sexploration: Porny Smuts
 		if(flags["LETS_FAP_ARCHIVES"] != undefined || flags["STEPH_WATCHED"] != undefined)

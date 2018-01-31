@@ -2127,6 +2127,7 @@ public function ellieBirth():void
 	flags["ELLIE_OPERATION"] = 4;
 	
 	StatTracking.track("pregnancy/ellie sired", flags["ELLIE_TOTAL_KIDS"]);
+	StatTracking.track("pregnancy/total sired", flags["ELLIE_TOTAL_KIDS"]);
 	StatTracking.track("pregnancy/total day care", flags["ELLIE_TOTAL_KIDS"]);
 }
 

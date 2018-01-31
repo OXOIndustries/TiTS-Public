@@ -144,6 +144,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	
 	flags["COMBAT MENU SEEN"] = undefined;
 	
+	// Original stat hotfixes.
 	if (flags["PC_UPBRINGING"] == undefined)
 	{
 		if(eventQueue.indexOf(fixPcUpbringing) == -1) eventQueue.push(fixPcUpbringing);

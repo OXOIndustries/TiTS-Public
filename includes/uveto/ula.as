@@ -2443,6 +2443,7 @@ public function ulaPregEmailText():String
 public function ulaBirth():void
 {	
 	StatTracking.track("pregnancy/ula sired", flags["ULA_NUM_BABIES"]);
+	StatTracking.track("pregnancy/total sired", flags["ULA_NUM_BABIES"]);
 	
 	if(flags["ULA_TOTAL_KIDS"] == undefined) flags["ULA_TOTAL_KIDS"] = 0;
 	flags["ULA_TOTAL_KIDS"] += flags["ULA_NUM_BABIES"];

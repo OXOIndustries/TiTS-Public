@@ -774,6 +774,7 @@ public function ilariaBirth():void
 	ChildManager.addChild(c)
 	
 	StatTracking.track("pregnancy/ilaria sired", flags["ILARIA_NUM_BABIES"]);
+	StatTracking.track("pregnancy/total sired", flags["ILARIA_NUM_BABIES"]);
 	StatTracking.track("pregnancy/total day care", flags["ILARIA_NUM_BABIES"]);
 	
 	if(flags["ILARIA_TOTAL_KIDS"] == undefined) flags["ILARIA_TOTAL_KIDS"] = 0;

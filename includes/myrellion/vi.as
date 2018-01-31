@@ -873,6 +873,7 @@ public function rideVi():void
 	// Scene end, back to menu
 	processTime(37);
 	IncrementFlag("VI_SEXED");
+	StatTracking.track("joyco/cum milked", cum);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1092,6 +1093,7 @@ public function viPotencyTest():void
 	else output("I mean, you’re a kui-tan!");
 	output("”</i>");
 	IncrementFlag("VI_POTENCY_TEST");
+	StatTracking.track("joyco/cum milked", totalCum);
 
 	processTime(63);
 	pc.orgasm();
@@ -1437,6 +1439,7 @@ public function cowgirlWithVi():void
 	// Unlock talk topic ‘Pleasure’ if not unlocked already.
 	// Scene end, back to menu
 	IncrementFlag("VI_SEXED");
+	StatTracking.track("joyco/cum milked", pc.cumQ());
 	processTime(13);
 	pc.orgasm();
 	clearMenu();
@@ -1734,6 +1737,7 @@ public function roughSexWithVi():void
 	// Unlock talk topic ‘Pleasure’ if not unlocked already.
 	// Scene end, back to menu
 	IncrementFlag("VI_SEXED");
+	StatTracking.track("joyco/cum milked", pc.cumQ());
 	processTime(19);
 	pc.orgasm();
 	clearMenu();
