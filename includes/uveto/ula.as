@@ -2342,7 +2342,7 @@ public function ulaCreditsTalk():void
 
 public function korgiiCredits():Boolean
 {
-	return (flags["ULA_CREDIT_TALK"] != undefined && flags["ULA_CREDIT_TALK"] + 60 * 24 < GetGameTimestamp());
+	return (flags["ULA_CREDIT_TALK"] != undefined && flags["ULA_CREDIT_TALK"] + (60 * 24) < GetGameTimestamp());
 }
 
 //ULA PREG AS DONE BY UPCASTDRAKE STARTS HERE

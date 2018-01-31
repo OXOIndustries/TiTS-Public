@@ -326,9 +326,21 @@
 			_buttons[i].setText(btnText);
 		}
 		
-		public function setButtonDisabled(i:int):void
+		public function setButtonDisabled(i:int, temporary:Boolean = false):void
 		{
 			_buttons[i].setDisabled();
+			
+			if (i > 14 || temporary) return;
+			
+			var bd:ButtonData = _buttonData[i];
+			if (bd.buttonName.length > 0)
+			{
+				_buttonData[i].setData(bd.buttonName, undefined, undefined, bd.tooltipHeader, bd.tooltipBody);
+			}
+			else
+			{
+				_buttonData[i].clearData();
+			}
 		}
 		
 		public function setButtonActive(i:int):void

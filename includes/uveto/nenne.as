@@ -247,7 +247,7 @@ public function nenneAcceptCredits():void
 		else shopkeep.keeperBuy += "But my offer to give you something for free in exchange for some time together is still on the table, cutie,";
 		shopkeep.keeperBuy += "”</i> she says, her voice low and dripping with sensuality.";
 
-		shopkeep.keeperBuy += "\n\nIf you’re in the mood to make something else of hers drip, and get some stock of hers for free, then it’s good to know that the offer is still there.\n\n";
+		shopkeep.keeperBuy += "\n\nIf you’re in the mood to make something else of hers drip, and get some stock of hers for free, then it’s good to know that the offer is still there.\n";
 		buyItem();
 	}
 	// end scene (scene: H&H Credit)
@@ -330,9 +330,9 @@ public function nenneFamilyTalk():void
 	if(pc.hasGenitals())
 	{
 		if(pc.lust() >= 33) addButton(3,"Flirt",flirtWithNenne,undefined,"Flirt","Nenne’s not hard on the eyes. Why not let her know as much?");
-		else addDisabledButton(3,"Flirt","Flirt","You aren't turned on enough for that right now.");
+		else addDisabledButton(3,"Flirt","Flirt","You aren’t turned on enough for that right now.");
 	}
-	else addDisabledButton(3,"Flirt","Flirt","It seems a little silly to flirt with her while you don't have any proper genitals.");
+	else addDisabledButton(3,"Flirt","Flirt","It seems a little silly to flirt with her while you don’t have any proper genitals.");
 	addDisabledButton(0,"Family","Family","You already discussed that.");
 }
 
@@ -390,9 +390,9 @@ public function theShopNenneTalk():void
 	if(pc.hasGenitals())
 	{
 		if(pc.lust() >= 33) addButton(3,"Flirt",flirtWithNenne,undefined,"Flirt","Nenne’s not hard on the eyes. Why not let her know as much?");
-		else addDisabledButton(3,"Flirt","Flirt","You aren't turned on enough for that right now.");
+		else addDisabledButton(3,"Flirt","Flirt","You aren’t turned on enough for that right now.");
 	}
-	else addDisabledButton(3,"Flirt","Flirt","It seems a little silly to flirt with her while you don't have any proper genitals.");
+	else addDisabledButton(3,"Flirt","Flirt","It seems a little silly to flirt with her while you don’t have any proper genitals.");
 	addDisabledButton(1,"The Shop","The Shop","You already discussed that.");
 }
 
@@ -443,9 +443,9 @@ public function nenneUvetoTalk():void
 	if(pc.hasGenitals())
 	{
 		if(pc.lust() >= 33) addButton(3,"Flirt",flirtWithNenne,undefined,"Flirt","Nenne’s not hard on the eyes. Why not let her know as much?");
-		else addDisabledButton(3,"Flirt","Flirt","You aren't turned on enough for that right now.");
+		else addDisabledButton(3,"Flirt","Flirt","You aren’t turned on enough for that right now.");
 	}
-	else addDisabledButton(3,"Flirt","Flirt","It seems a little silly to flirt with her while you don't have any proper genitals.");
+	else addDisabledButton(3,"Flirt","Flirt","It seems a little silly to flirt with her while you don’t have any proper genitals.");
 	addDisabledButton(2,"Uveto","Uveto","You already discussed that.");
 }
 
@@ -613,7 +613,7 @@ public function fuckNenneProperStart():void
 	{
 		clearOutput();
 		showName("\nERROR");
-		output("How the fuck did this happen? You don't have any genitals at all?");
+		output("How the fuck did this happen? You don’t have any genitals at all?");
 	}
 }
 
@@ -773,7 +773,7 @@ public function nenneFemaleOrHermNoOralSlorral():void
 	clearOutput();
 	showNenne(true);
 	output("Your hands remain mostly still at Nenne’s back, groping at the thick fur and skin there, massaging her body as she frots against you. Her pheromones permeate the air of her room, and your [pc.vaginas] ");
-	if(pc.totalVaginas() > 1) output("are wetter than they've");
+	if(pc.totalVaginas() > 1) output("are wetter than they’ve");
 	else output("is wetter than it’s");
 	output(" been since you can remember, but your lust sits backseat to all your other sensations, including how soft and warm and plush Nenne feels atop you; the way her erect nipples dig into your own; and the way her heavy boobs squish and mold around your [pc.chest] and the way her belly rubs against yours.");
 
