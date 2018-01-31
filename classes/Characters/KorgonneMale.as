@@ -9,6 +9,7 @@
 	import classes.Items.Guns.HammerPistolScavenged;
 	import classes.Items.Melee.YappiStrap;
 	import classes.Items.Armor.InsulatedCoat;
+	import classes.Items.Transformatives.KorgonneSnacks;
 	import classes.Items.Upgrades.HardLightUpgrade
 
 	import classes.kGAMECLASS;
@@ -266,6 +267,7 @@
 			if(rand(20) == 0) inventory.push(new InsulatedCoat());
 			//5% chance of yappstrapp
 			if(rand(20) == 0) inventory.push(new YappiStrap());
+			if(rand(4) == 0 && inventory.length == 0) inventory.push(new KorgonneSnacks());
 			
 			//Temporarily put on these snowbitches till I find a real home for it.
 			if(!kGAMECLASS.pc.hasHardLightUpgraded() && rand(10) == 0) inventory.push(new HardLightUpgrade());

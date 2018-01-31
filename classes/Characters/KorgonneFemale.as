@@ -10,6 +10,7 @@
 	import classes.Items.Melee.YappiStrap;
 	import classes.Items.Armor.InsulatedCoat;
 	import classes.Items.Upgrades.HardLightUpgrade;
+	import classes.Items.Transformatives.KorgonneSnacks;
 
 
 	import classes.kGAMECLASS;
@@ -241,6 +242,7 @@
 			if(rand(20) == 0) inventory.push(new InsulatedCoat());
 			//Temporarily put on these snowbitches till I find a real home for it.
 			if(!kGAMECLASS.pc.hasHardLightUpgraded() && rand(10) == 0) inventory.push(new HardLightUpgrade());
+			if(rand(4) == 0 && inventory.length == 0) inventory.push(new KorgonneSnacks());
 			/*
 			if (rand(10) == 0)
 			{
