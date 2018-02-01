@@ -280,6 +280,7 @@ package classes.Characters
 			else
 			{
 				var critChance:int = 33;
+				var bStun:Boolean = false;
 
 				if (rand(100) > critChance)
 				{
@@ -290,10 +291,11 @@ package classes.Characters
 				{
 					// [Hit And Stun]: 
 					output(" You are splattered with her [enemy.milk], unable to get it off. All of a sudden, your cheeks begin to flush and you lose control to your limbs, falling to the ground. She’s leading into a follow-up attack...");
-					CombatAttacks.applyStun(target, 2);
+					bStun = true;
 				}
 				
 				applyDamage(new TypeCollection( { tease: 8 + rand(4) } ), this, target, "minimal");
+				if(bStun) CombatAttacks.applyStun(target, 2);
 			}
 		}
 		

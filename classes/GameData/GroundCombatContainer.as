@@ -1300,7 +1300,6 @@ package classes.GameData
 				
 				if (hasEnemyOfClass(Kaska))
 				{
-					output("\n\n<b>Your vision is obstructed by smoke, making you effectively blind!</b>");
 					addButton(10, "Nip-Pinch", kGAMECLASS.pinchKaskaNipple, undefined, "Nip-Pinch", "Maybe pinching Kaska’s nipple will get her to release you.");
 				}
 				if (hasEnemyOfClass(NyreaBeta) && kGAMECLASS.bothriocQuestBetaNyreaMiniquestActive())
@@ -1314,6 +1313,7 @@ package classes.GameData
 			
 			if (hasEnemyOfClass(MyrGoldOfficer) && flags["FEDERATION_QUEST_WINDOW"] == 1)
 			{
+				output("\n\n<b>Your vision is obstructed by smoke, making you effectively blind!</b>");
 				addButton(10, "BreakWindow", kGAMECLASS.fedQuestOfficerBreakWindow, undefined, "Break Window", "Maybe this’ll get rid of the smoke?");
 			}
 			if (hasEnemyOfClass(NyreaBeta) && kGAMECLASS.bothriocQuestBetaNyreaMiniquestActive())
@@ -1870,6 +1870,17 @@ package classes.GameData
 						target.removeStatusEffect("Naleen Coiled");
 					}
 				}
+				//Limber confers a 20% escape chance.
+				else if(target.hasPerk("Limber") && rand(10) <= 1)
+				{
+					output("You contort your body wildly to escape! All that time spent practicing yoga with Paige has paid off!");
+					if(panicJack)
+					{
+						output(" The [pc.cumNoun] you squirt helps a little too.");
+						pc.lust(-10);
+					}
+					target.removeStatusEffect("Naleen Coiled");
+				}
 				else
 				{
 					if(target.physique() + rand(20) + 1 + latexBonus + panicBonus + target.statusEffectv1("Naleen Coiled") * 5 + slipperyBonus > 24) {
@@ -1974,6 +1985,17 @@ package classes.GameData
 						}
 						target.removeStatusEffect("Grappled");
 					}
+				}
+				//Limber confers a 20% escape chance.
+				else if(target.hasPerk("Limber") && rand(10) <= 1)
+				{
+					output("You contort your body wildly to escape! All that time spent practicing yoga with Paige has paid off!");
+					if(panicJack)
+					{
+						output(" The [pc.cumNoun] you squirt helps a little too.");
+						pc.lust(-10);
+					}
+					target.removeStatusEffect("Grappled");
 				}
 				else
 				{

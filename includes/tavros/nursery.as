@@ -610,9 +610,18 @@ public function nurseryComputerStaff():void
 
 public function nurseryComputerChildren():void
 {
+	
+	// Children sired count hotfix.
+	if(nurserySiredBabyDiff() > 0 || StatTracking.getStat("pregnancy/total sired") <= 0)
+	{
+		nurserySiredRecordsFix();
+		return;
+	}
+	
 	clearOutput();
 	clearBust();
 	
+	// Children at daycare count hotfix.
 	if(nurseryOrphanedBabyDiff() > 0 || (StatTracking.getStat("pregnancy/total day care") < ChildManager.numChildrenAtNursery()))
 	{
 		author("Jacques00");
@@ -931,7 +940,7 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 							addChildBriha(1, true, brihaDaySpan);
 							StatTracking.track("pregnancy/briha sons");
 						}
-						StatTracking.track("pregnancy/total births");
+						StatTracking.track("pregnancy/total sired");
 					}
 					brihaKids--;
 					corrected = true;
@@ -952,6 +961,65 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 	}
 	
 	return corrected;
+}
+private var siredList:Array = [
+	"pregnancy/briha kids",
+	"pregnancy/ellie sired",
+	"pregnancy/ilaria sired",
+	"pregnancy/khorgan sired",
+	"pregnancy/raskvel sired/total",
+	"pregnancy/sam sired",
+	"pregnancy/sera sired",
+	"pregnancy/tam sired",
+	"pregnancy/ula sired",
+	"pregnancy/zil call girl kids",
+];
+public function nurserySiredBabyDiff():int
+{
+	var numSired:int = 0;
+	
+	for(var i:int = 0; i < siredList.length; i++)
+	{
+		numSired += StatTracking.getStat(siredList[i]);
+	}
+	
+	return (numSired - StatTracking.getStat("pregnancy/total sired"));
+}
+public function nurserySiredRecordsFix():void
+{
+	clearOutput();
+	clearBust();
+	author("Jacques00");
+	
+	output("<b>The computer makes some blips while it syncs with your codex.</b> It then displays a holo pop-up that reads:");
+	output("\n\n<i>“It seems that the nursery computer and your codex are out of sync. Please wait while we correct your records....”</i> After a few seconds, it then concoludes, <i>“... Data sync successful! Thank you for your patience.”</i>");
+	output("\n\nLooks like whatever information was off has been corrected now.");
+	
+	var numSired:int = 0;
+	var numBirth:int = StatTracking.getStat("pregnancy/total births");
+	
+	for(var i:int = 0; i < siredList.length; i++)
+	{
+		if(StatTracking.getStat(siredList[i]) > 0)
+		{
+			numSired += StatTracking.getStat(siredList[i]);
+			switch(siredList[i])
+			{
+				case "pregnancy/briha kids":
+					numBirth -= StatTracking.getStat("pregnancy/briha kids");
+					break;
+				case "pregnancy/raskvel sired/total":
+					numBirth -= StatTracking.getStat("pregnancy/raskvel sired/day care");
+					break;
+			}
+		}
+	}
+	
+	StatTracking.setStat("pregnancy/total sired", numSired);
+	StatTracking.setStat("pregnancy/total births", numBirth);
+	
+	clearMenu();
+	addButton(0, "Next", nurseryComputerChildren);
 }
 
 

@@ -658,6 +658,16 @@ public function yogaHardMode():void
 	// end scene (scene: Hard Mode 3)
 	processTime(10);
 	if(currentLocation != "PAIGE_HOUSE") pc.credits -= 20;
+	//CUE HARDMODE GAINS
+	if(!pc.hasPerk("Limber"))
+	{
+		if(eventQueue.indexOf(hardmodePaigePerkGain) == -1) eventQueue.push(hardmodePaigePerkGain);
+	}
+	else
+	{
+		//RESET THE TIMER, THE MOVE ON WITH LIFE.
+		pc.setStatusMinutes("LimberTime",24*60*14);
+	}
 	clearMenu();
 	if(currentLocation == "PAIGE_HOUSE") addButton(0,"Next",apartmentYogaEndings);
 	else addButton(0,"Next",yogaHardEnding);
@@ -2393,4 +2403,28 @@ public function crewPaigeEyeholes():void
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",backToPaigeMenu);
+}
+
+//CUE HARDMODE GAINS
+public function hardmodePaigePerkGain():void
+{
+	// Play this whenever the PC unlocks the perk
+	clearOutput();
+	output("You walk away from Paige’s after yet another intense session. They’ve been getting easier and easier lately: your limbs move with a different sort of fluidity since you’ve started, and your body feels very flexible and loose. You wonder if this sort of limberness could be applied to anything else in your everyday life....");
+	output("\n\n<b>New Perk Unlocked: Limber:</b> you have an additional 20% chance to escape all grapples! You must perform Hard yoga with Paige every now and again to maintain this perk.");
+	pc.createPerk("Limber",0,0,0,0,"Grants an addition 20% chance to escape from grapples!");
+	pc.createStatusEffect("LimberTime");
+	pc.setStatusMinutes("LimberTime",24*60*14);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+// Play this if the PC neglects their yoga and loses the perk
+public function paigeLimberRemove():void
+{
+	clearOutput();
+	output("You hadn’t noticed, but your limbs have slowly begun to ache and stiffen over time. It’s not uncomfortable to move around or anything, but the flexibility you’ve had before seems to be out of your reach now.");
+ 	output("\n\nYou’ve neglected your yoga sessions with Paige, <b>and you’ve lost the Limber perk.</b> A few more sessions with her should set you straight again.");
+ 	pc.removePerk("Limber");
+ 	clearMenu();
+ 	addButton(0,"Next",mainGameMenu);
 }

@@ -1,3 +1,8 @@
+import classes.Items.Apparel.AnalPrincessPanties;
+import classes.Items.Apparel.AssManBoxers;
+import classes.Items.Apparel.BackdoorBoiSlutwear;
+import classes.Items.Apparel.CumflationControlBoyshorts;
+import classes.Items.Apparel.SlutSealThong;
 /*
 	LERRIS_TALKED_BACKROOM
 		0/undefined -- not even attempted the talk scene
@@ -118,6 +123,14 @@ public function lerrisProducts():void
 	chars["LERRIS"].inventory.push(new LactaidOverdrive());
 	// Unlocks
 	if(pc.level >= 2) chars["LERRIS"].inventory.push(new NukiNutbutter());
+	if(pc.level >= 3) 
+	{
+		chars["LERRIS"].inventory.push(new SlutSealThong());
+		chars["LERRIS"].inventory.push(new AnalPrincessPanties());
+		chars["LERRIS"].inventory.push(new AssManBoxers());
+		chars["LERRIS"].inventory.push(new BackdoorBoiSlutwear());
+		chars["LERRIS"].inventory.push(new CumflationControlBoyshorts());
+	}
 	// Sera babies
 	if(flags["MET_SERA"] != undefined) chars["LERRIS"].inventory.push(new Priapin());
 	//chars["LERRIS"].inventory.push(new Sterilex());

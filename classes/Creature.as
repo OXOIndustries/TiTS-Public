@@ -10572,6 +10572,11 @@
 					cocks[slot].addFlag(GLOBAL.FLAG_OVIPOSITOR);
 					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
 					break;
+				case GLOBAL.TYPE_SWINE:
+					cocks[slot].addFlag(GLOBAL.FLAG_CORKSCREWED);
+					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
+					cocks[slot].cockColor = "pink";
+					break;
 			}
 		}
 		//PC can fly?
@@ -10811,6 +10816,7 @@
 			else if(InCollection(raceSimple, ["tentacle beast", "cockvine", "plant"])) shiftCock(arg, GLOBAL.TYPE_TENTACLE);
 			else if(raceSimple == "suula") shiftCock(arg, GLOBAL.TYPE_SIREN);
 			else if(raceSimple == "anemone") shiftCock(arg, GLOBAL.TYPE_ANEMONE);
+			else if(raceSimple == "pig") shiftCock(arg, GLOBAL.TYPE_SWINE);
 			else if(InCollection(raceSimple, ["sionach", "siel"]))
 			{
 				shiftCock(arg, GLOBAL.TYPE_INHUMAN);
@@ -10827,13 +10833,6 @@
 						cocks[arg].cockColor = "pink";
 						break;
 				}
-			}
-			else if (raceSimple == "pig")
-			{
-				shiftCock(arg, GLOBAL.TYPE_SWINE);
-				cocks[arg].addFlag(GLOBAL.FLAG_CORKSCREWED);
-				cocks[arg].addFlag(GLOBAL.FLAG_SHEATHED);
-				cocks[arg].cockColor = "pink";
 			}
 			//else if(InCollection(race, ["synthetic", "robot", "companion droid"])) shiftCock(arg, GLOBAL.TYPE_SYNTHETIC);
 			else if(skinType == GLOBAL.SKIN_TYPE_GOO)
@@ -18753,7 +18752,8 @@
 			if(z >= 0)
 			{
 				amountVented = 0;
-				if(cumDrain)
+				//Fen - added blocked vag check here instead of in cumdrain as putting it in the cumdrain check would need a more complicated if check
+				if(cumDrain && blockedVaginas() < totalVaginas() && (!lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_VAGINALLY_SEALED) || statusEffects[z].value1 > 300000))
 				{
 					//Figure out how much cum is vented over time.
 					//Should vent 1/2 the current amount over 30 minutes
@@ -18815,7 +18815,7 @@
 			if(a >= 0)
 			{
 				amountVented = 0;
-				if(cumDrain)
+				if(cumDrain && (!lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANALLY_SEALED) || statusEffects[a].value1 > 300000))
 				{
 					//Figure out how much cum is vented over time.
 					//Should vent 1/2 the current amount over 30 minutes
@@ -19512,6 +19512,12 @@
 				
 				switch (thisStatus.storageName)
 				{
+					case "LimberTime":
+						if (this is PlayerCharacter && requiresRemoval)
+						{
+							kGAMECLASS.eventQueue.push(kGAMECLASS.paigeLimberRemove);
+						}
+						break;
 					case "GastiUnlockTimer":
 						if (this is PlayerCharacter && requiresRemoval)
 						{

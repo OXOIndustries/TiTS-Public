@@ -586,6 +586,7 @@ public function tamtamGastBirth():void
 	ChildManager.addChild(c)
 	
 	StatTracking.track("pregnancy/tam sired", flags["TAMTAM_NUM_BABIES"]);
+	StatTracking.track("pregnancy/total sired", flags["TAMTAM_NUM_BABIES"]);
 	StatTracking.track("pregnancy/total day care", flags["TAMTAM_NUM_BABIES"]);
 
 	if(flags["TAMTAM_TOTAL_KIDS"] == undefined) flags["TAMTAM_TOTAL_KIDS"] = 0;
@@ -630,6 +631,7 @@ public function khorganGastBirth():void
 	ChildManager.addChild(c)
 	
 	StatTracking.track("pregnancy/khorgan sired", flags["KHORGAN_NUM_BABIES"]);
+	StatTracking.track("pregnancy/total sired", flags["KHORGAN_NUM_BABIES"]);
 	StatTracking.track("pregnancy/total day care", flags["KHORGAN_NUM_BABIES"]);
 
 	if(flags["KHORGAN_TOTAL_KIDS"] == undefined) flags["KHORGAN_TOTAL_KIDS"] = 0;

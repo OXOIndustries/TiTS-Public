@@ -560,16 +560,18 @@ public function stressReliefGo():void
 	}
 	output("\n\nThe cock-nursing nursedroid doesn’t stay there long, though she makes sure to rub her nose affectionately against your [pc.belly] before moving. She draws back fast, her lips lavishing your [pc.cock " + x + "] with more of her inhumanly slick spittle in her wake. When she reaches your [pc.cockHead " + x + "], she reverses direction, increasing the suction as she goes. You feel bloated with lust, overwhelmingly engorged and spasming with tremors of pleasure that are pushing you closer and closer to release.");
 	output("\n\nV-Ko doesn’t seem to mind that you’re about to explode, that your cock is twitching raptly inside her maw, hypnotized by the undulations of her slippery tongue. In fact, it could be your imagination, but you’re pretty sure she’s egging you on with her eyes, inaudibly pleading with you for you to feed her the load she so obviously wants to extract. Her tongue wraps around your [pc.knot " + x + "] and gives a few quick, encouraging tugs. It’s all you can do not to scream your pleasure into the sky when your orgasm boils out of you with geyser-like force.");
+	
+	var cumQ:Number = pc.cumQ();
 	//Mostly empty!
-	if(pc.cumQ() < 5) output("\n\nWhile it may feel like you’re an erupting volcano, the [pc.cum] leaking out of your [pc.cockHead " + x + "] is little more than a single, quickly-devoured droplet. V-Ko sucks you through an empty ejaculation without care or judgement, simply happy to give you pleasure.");
+	if(cumQ < 5) output("\n\nWhile it may feel like you’re an erupting volcano, the [pc.cum] leaking out of your [pc.cockHead " + x + "] is little more than a single, quickly-devoured droplet. V-Ko sucks you through an empty ejaculation without care or judgement, simply happy to give you pleasure.");
 	//Small cums!
-	else if(pc.cumQ() <= 10) output("\n\nYou feel like V-Ko’s greedy maw is wringing you dry, one drop of [pc.cum] at a time. Her throat practically hums around you as she sucks away the liquid bounty. She sucks you well past the point that you stop shooting, keeping your [pc.cock " + x + "] raptly and torturously pleased for as long as possible.");
+	else if(cumQ <= 10) output("\n\nYou feel like V-Ko’s greedy maw is wringing you dry, one drop of [pc.cum] at a time. Her throat practically hums around you as she sucks away the liquid bounty. She sucks you well past the point that you stop shooting, keeping your [pc.cock " + x + "] raptly and torturously pleased for as long as possible.");
 	//Medium cums
-	else if(pc.cumQ() <= 50) output("\n\nYou do feel something like an erupting volcano, spurting hot ropes of [pc.cum] down V-Ko’s throat without pause. Her inorganic throat is all too happy to accept the offering, and you marvel at the way her lubricated interior massages each [pc.cumColor] pulse to be bigger than the preceeding one. Unfortunately, not even a vacuum-powered suck-job can keep you cumming forever, and your climax dies down to a few dangling droplets. You’re treated to a few lascivious tongue-caresses as you come down. Clearly whoever wrote this routine wanted V-Ko to make her clients feel ultimately pampered.");
+	else if(cumQ <= 50) output("\n\nYou do feel something like an erupting volcano, spurting hot ropes of [pc.cum] down V-Ko’s throat without pause. Her inorganic throat is all too happy to accept the offering, and you marvel at the way her lubricated interior massages each [pc.cumColor] pulse to be bigger than the preceeding one. Unfortunately, not even a vacuum-powered suck-job can keep you cumming forever, and your climax dies down to a few dangling droplets. You’re treated to a few lascivious tongue-caresses as you come down. Clearly whoever wrote this routine wanted V-Ko to make her clients feel ultimately pampered.");
 	//Large cums!
-	else if(pc.cumQ() <= 500) output("\n\nThere’s so much shooting out of you that you actually have a pang of worry for the poor girl before you remember that she doesn’t breathe. Indeed, the more [pc.cum] you put into her, the harder she seems to suckle your [pc.cock " + x + "], wringing it for every drop. Your body wants to thrust, but she’s vacuuming you with such force that you couldn’t pull away without damaging yourself. All you can do is let her slick throat-walls milk you with perfectly timed caresses until you go dry.");
+	else if(cumQ <= 500) output("\n\nThere’s so much shooting out of you that you actually have a pang of worry for the poor girl before you remember that she doesn’t breathe. Indeed, the more [pc.cum] you put into her, the harder she seems to suckle your [pc.cock " + x + "], wringing it for every drop. Your body wants to thrust, but she’s vacuuming you with such force that you couldn’t pull away without damaging yourself. All you can do is let her slick throat-walls milk you with perfectly timed caresses until you go dry.");
 	//Huge cums!
-	else if(pc.cumQ() <= 10000) output("\n\nThe torrential outpouring of [pc.cum] actually stops V-Ko’s throat from pulling you any deeper and actually relaxes the tugging sensation enough for you to pull partway out and ram back inside, just in time to dump a fresh wave of [pc.cumColor] delight into whatever serves as her belly. The nursedroid does her best to coax more out of you, but she’s simply no match for the volume you’re expelling. You can actually feel her breasts pushing against your [pc.legOrLegs] as they expand, revealing just where it’s all going. The knowledge that her tits are getting bigger the harder you cum only spurs a fresh gout of [pc.cum] from your lust-drunk dick.");
+	else if(cumQ <= 10000) output("\n\nThe torrential outpouring of [pc.cum] actually stops V-Ko’s throat from pulling you any deeper and actually relaxes the tugging sensation enough for you to pull partway out and ram back inside, just in time to dump a fresh wave of [pc.cumColor] delight into whatever serves as her belly. The nursedroid does her best to coax more out of you, but she’s simply no match for the volume you’re expelling. You can actually feel her breasts pushing against your [pc.legOrLegs] as they expand, revealing just where it’s all going. The knowledge that her tits are getting bigger the harder you cum only spurs a fresh gout of [pc.cum] from your lust-drunk dick.");
 	//Hyper cums!
 	else
 	{
@@ -586,7 +588,11 @@ public function stressReliefGo():void
 	//Resume
 	output("\n\nThose wonderfully tight, vacuum-sealing lips pop off of your spent shaft, briefly curving into a smile. V-Ko blows you a kiss, and coos, <i>“It was my pleasure to help ensure your good health, [pc.name]. Please return should you ever feel the need to publicly release.”</i> The nursedroid stands, straightens, and her eyes flash white, losing the pink-tinged hue they held during her oral service. <i>“Do you require medical assistance, [pc.name]?”</i>");
 	//Titflated or buttflated
-	if(pc.cumQ() > 500) output("\n\nShe presses a hose from a socket in the wall against her [pc.cum]-swollen tit and sighs, deflating back to her normal proportions in short order. You wonder what she does with all that spooge....");
+	if(cumQ > 500)
+	{
+		output("\n\nShe presses a hose from a socket in the wall against her [pc.cum]-swollen tit and sighs, deflating back to her normal proportions in short order. You wonder what she does with all that spooge....");
+		StatTracking.track("joyco/cum milked", cumQ);
+	}
 	if(pc.inRut())
 	{
 		output("\n\n<b>Somehow, the nursedroid has eased your overwhelming desire to breed.</b>");
@@ -686,10 +692,10 @@ public function VKoStressReliefForLadyginas():void
 		pc.clearHeat(false);
 	}
 	output("\n\nShe stands, leaving you sitting on the ground. You don’t even know how you got down there, and V-Ko doesn’t show any sign of telling you. She’s back to offering her normal services again.");
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
 	processTime(10);
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
 	approachVKo(false);
 }
 
@@ -989,9 +995,9 @@ public function agreeToElectroStim():void
 
 	output("\n\nUpon noticing that you’ve awakened, V-Ko immediately bows. <i>“Procedure concluded, thank you for your patronage.”</i>");
 	output("\n\nRising from the mattress, you stretch out a few kinks, grab your [pc.gear] and put it back into place, then head back out of the clinic.");
-	pc.orgasm();
-	pc.orgasm();
 	processTime(50+rand(15));
+	pc.orgasm();
+	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1061,9 +1067,11 @@ public function agreeToVKoBoobSucks():void
 	output("\n\nHer chest starts emitting a low pumping noise, and you feel the cups begin to drain you of your [pc.milk]. You breathe a sigh of relief, humming in pleasure as the suction cups stimulate you in a most delightful manner. It’s not quite sexual, at least not so much that you’re going to cum over the seats any moment now, but still very satisfying on a deep level.");
 
 	output("\n\nYou’re so relaxed that you find yourself slipping into an almost trance-like state, the steady pumping of your breasts almost lulling you to sleep. You can’t help but groan in disappointment when the cups pop from your breasts, some of the excess [pc.milkNoun] leaking from V-Ko. Her own chest looks ");
-	if(pc.milkQ() < 500) output("at least a little inflated.");
-	else if(pc.milkQ() < 5000) output("bloated.");
-	else if(pc.milkQ() < 10000) output("enormous, she must’ve drained quite a bit from you.");
+	
+	var milkQ:Number = pc.milkQ();
+	if(milkQ < 500) output("at least a little inflated.");
+	else if(milkQ < 5000) output("bloated.");
+	else if(milkQ < 10000) output("enormous, she must’ve drained quite a bit from you.");
 	else output("ready to burst, then again it’s no surprise with how productive you are.");
 
 	output("\n\nAs the droid busies herself with emptying your [pc.milk] from her tits and into a nearby receptacle, your fingers reach up and gently knead the tender flesh of your [pc.breasts]. A smile crosses your lips as you stroke the still-tingling, sensitive skin of your just-milked nipples. You may not have climaxed from this treatment, but you still feel a lot better than you did before - it’s just so good to get all that [pc.milk] <b>out</b>.");
@@ -1074,6 +1082,7 @@ public function agreeToVKoBoobSucks():void
 	if(!pc.isTaur() && !pc.isDrider() && !pc.isNaga() && !pc.isGoo()) output("chair");
 	else output("mattress");
 	output(", you roll your neck and shoulders, smiling in pleasure at the feeling of relief that comes from being drained of your heavy load - it feels so good to have lightened your burden. Gathering your things, you reapply your top and leave the clinic.");
+	StatTracking.track("joyco/milk milked", milkQ);
 	processTime(45+rand(10));
 	pc.lust(rand(10)+1);
 	pc.milked(pc.milkFullness);

@@ -44,7 +44,8 @@ You lose 1 level of Egg Trained each week you go without either using the machin
 public function eggTrainerInstallation():void
 {
 	clearOutput();
-	showBust("");
+	showBust("EGG_TRAINER");
+	showName("EGG\nTRAINER");
 	author("Savin");
 
 	if(InShipInterior())
@@ -74,7 +75,7 @@ public function eggTrainerInstallation():void
 public function repeatEggTrainerApproach():void
 {
 	clearOutput();
-	showBust("");
+	showBust("EGG_TRAINER");
 	showName("EGG\nTRAINER");
 	author("Savin");
 	output("You find yourself drawn back to the bubblegum-pink Tamani Corp box sitting in your hold. The Egg Trainer is humming ever so faintly, thrumming as its internal mechanisms slosh around and heat the dozens and dozens of eggs inside it. It smells faintly of lilacs and lube. The saddle-seat atop it beckons you, inviting you to take a seat and take a load in.");
@@ -141,6 +142,7 @@ public function eggTrainerMenu():void
 public function rawTentacleGogogo():void
 {
 	clearOutput();
+	showBust("EGG_TRAINER");
 	showName("EGG\nTRAINER");
 	var x:int = pc.findEmptyPregnancySlot(0);
 	//If all holes full, pick a vagina.
@@ -227,6 +229,7 @@ public function rawTentacleGogogo():void
 public function eggTrainingMachineTime():void
 {
 	clearOutput();
+	showBust("EGG_TRAINER");
 	showName("EGG\nTRAINER");
 	author("Savin");
 
@@ -352,7 +355,8 @@ public function eggTrainingMachineTime():void
 public function layingTrainingTwo():void
 {
 	clearOutput();
-	showName("EGG\nTRAINING");
+	showBust("EGG_TRAINER");
+	showName("EGG\nTRAINER");
 	author("Savin");
 	var x:int = pc.findEmptyPregnancySlot(0);
 	//If all holes full, pick a vagina.
@@ -429,7 +433,8 @@ public function carryTrainingWithEggMachine():void
 {
 	clearOutput();
 	author("Savin");
-	showName("EGG\nTRAINING");
+	showBust("EGG_TRAINER");
+	showName("EGG\nTRAINER");
 
 	var x:int = pc.findEmptyPregnancySlot(0);
 	//If all holes full, pick a vagina.
@@ -724,6 +729,7 @@ public function bonusEggTrainingLayEffects(pregSlot:int, pregEggs:int, doOut:Boo
 public function fauxPregImplantation():void
 {
 	clearOutput();
+	showBust("EGG_TRAINER");
 	showName("EGG\nTRAINER");
 	author("Savin");
 	var x:int = pc.findEmptyPregnancySlot(0);
@@ -791,6 +797,7 @@ public function eggTrainerPreggoRemoval():void
 {
 	clearOutput();
 	author("Savin");
+	showBust("EGG_TRAINER");
 	showName("EGG\nTRAINER");
 
 	var slot:int = pc.findPregnancyOfType("EggTrainerFauxPreg");
@@ -950,6 +957,7 @@ public function leaveEggMachine():void
 public function eggTrainerOvalastingMenu():void
 {
 	clearOutput();
+	showBust("EGG_TRAINER");
 	showName("\nOVALASTING");
 	author("Nonesuch");
 	
@@ -999,6 +1007,7 @@ public function eggTrainerOvalastingGo(oIdx:int = -1):void
 {
 	clearOutput();
 	showName("\nOVALASTING");
+	showBust("EGG_TRAINER");
 	author("Nonesuch");
 	
 	var ovas:int = 0;
@@ -1310,6 +1319,7 @@ public function eggTrainerOvalastingRemovalMenu():void
 {
 	clearOutput();
 	showName("\nOVALASTING");
+	showBust("EGG_TRAINER");
 	author("Nonesuch");
 	
 	clearMenu();
@@ -1366,6 +1376,7 @@ public function eggTrainerOvalastingRemoval(oIdx:int = -2):void
 {
 	clearOutput();
 	showName("\nOVALASTING");
+	showBust("EGG_TRAINER");
 	author("Nonesuch");
 	
 	var ovaEffect:StorageClass = pc.getStatusEffect("Ovalasting");

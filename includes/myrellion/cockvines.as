@@ -201,6 +201,9 @@ public function adultCockvineStruggleOverride():void
 
 	if (pc.PQ() > pc.RQ()) chance = pc.PQ();
 	else chance = pc.RQ();
+	
+	//Limber confers a 20% escape chance.
+	if(pc.hasPerk("Limber")) chance += 20;
 
 	if (rand(100) > chance)
 	{

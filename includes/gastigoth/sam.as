@@ -11,12 +11,21 @@ import classes.GameData.Pregnancy.Containers.Genders;
 public function showSam(nude:Boolean = false):void
 {
 	showName("\nSAM");
+	showBust(samBustString(nude));	
+}
+public function samBustString(nude:Boolean = false):String
+{
+	var bustString:String = "";
 	var nudeS:String = "";
 	if(nude) nudeS = "_NUDE";
 	//Pregnant
-	if(flags["SAM_GAST_PREG_TIMER"] >= 80) showBust("TECHGUARD_JAIL_PREG");
-	else showBust("TECHGUARD_JAIL" + nudeS);
+	if(flags["SAM_GAST_PREG_TIMER"] >= 80) bustString += "TECHGUARD_JAIL_PREG";
+	else bustString += "TECHGUARD_JAIL";
+	bustString += nudeS;
+	return bustString;
 }
+
+
 public function samCapacity():Number
 {
 	return 300;
@@ -372,6 +381,7 @@ public function samGastBirth():void
 	ChildManager.addChild(c)
 	
 	StatTracking.track("pregnancy/sam sired", flags["SAM_NUM_BABIES"]);
+	StatTracking.track("pregnancy/total sired", flags["SAM_NUM_BABIES"]);
 	StatTracking.track("pregnancy/total day care", flags["SAM_NUM_BABIES"]);
 
 	if(flags["SAM_TOTAL_KIDS"] == undefined) flags["SAM_TOTAL_KIDS"] = 0;

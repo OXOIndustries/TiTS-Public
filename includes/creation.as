@@ -201,8 +201,10 @@ public function chooseStartingRace(race:String = "human"):void {
 	
 	//NEW
 	author("Fenoxo & JimThermic");
+	showBust("CREATION_DOCTOR");
+	showName("CHOOSE\nNAME/SEX");
 	// Removed the part where Victor is thinking about death and gloriously happy at the same time, it was a mixed focus. I've just neatened things up and spaced things out.
-	output("Victor approaches the lady in question. Without hesitation, she agrees, quite flattered to be chosen to sire his child and heir. The sex is amazing, and with the use of special Tamani-brand fertility agents, pregnancy is assured.");
+	output("Victor approaches the paramour in question. Without hesitation, she agrees, quite flattered to deepen her relationship him and be the mother of his child and heir. The sex is amazing, and with the use of special TamaniCorp-brand fertility agents, pregnancy is assured.");
 	output("\n\nOnly wanting the best for their future child, the two lovebirds head to Victor’s private clinic, eager to make sure only the best genes take hold in his future heir. On route, the mining magnate holds hands with the mother of his child, a knowing grin on both their faces.");
 	output("\n\nWhen they arrive, Victor’s doctor sits him down, while his chosen wife is taken to the medbay. He tucks his holo-glasses into his coat pocket, looking at the expectant father with a warm smile.");
 	output("\n\n<i>“So, Victor, what sex did you want the child to be?”</i> the doctor asks, <i>“Given that grin, I bet you and the lucky girl even have a name picked out.”</i>");
@@ -470,6 +472,8 @@ public function chooseHeight():void {
 	
 	//NEW
 	author("Fenoxo & JimThermic");
+	showBust("CREATION_DOCTOR");
+	showName("SELECT\nHEIGHT");
 	// This is just neatened up and spaced better.
 	output("The doctor asks <i>“So, you’re going to have a </i>");
 	if(pc.hasCock())
@@ -528,6 +532,7 @@ public function applyHeight():void {
 
 public function chooseThickness():void {
 	clearOutput();
+	showBust("CREATION_DOCTOR");
 	creationHeader("CHOOSING\nTHICKNESS");
 	
 	//OLD
@@ -571,6 +576,7 @@ public function applyThickness(arg:Number):void {
 //Hair Color:
 public function chooseHairColor():void {
 	clearOutput();
+	showBust("CREATION_DOCTOR");
 	creationHeader("SELECTING HAIR\nPIGMENT");
 	
 	//OLD
@@ -626,6 +632,7 @@ public function chooseGryvainColor():void
 {
 	clearOutput();
 	creationHeader("SELECTING\nPIGMENT");
+	showBust("CREATION_DOCTOR");
 	author("Savin");
 
 	output("<i>“Next up is coloration,”</i> the doctor says, tapping on a holographic screen. <i>“Gryvain share a single coloration across much of their bodies: the scales on their limbs, their hair color... more intimate areas. What color were you thinking of?”</i>");
@@ -661,6 +668,7 @@ public function applyGryvainColor(col:String = "black"):void
 //Eye Color:
 public function chooseEyeColor():void {
 	clearOutput();
+	showBust("CREATION_DOCTOR");
 	creationHeader("SELECTING EYE\nPIGMENT");
 	
 	//OLD
@@ -713,6 +721,7 @@ public function applyeEyeColor(eyeColor:String = "brown"):void {
 public function chooseSkinTone():void
 {
 	clearOutput();
+	showBust("CREATION_DOCTOR");
 	creationHeader("SELECTING\nSKIN PIGMENT");
 	
 	output("<i>“Great. How about skin pigmentation?”</i>");
@@ -767,6 +776,7 @@ public function applySkinTone(skinTone:String = "pale"):void {
 //Boob Size:
 public function chooseBreastSize():void {
 	clearOutput();
+	showBust("CREATION_DOCTOR");
 	creationHeader("SELECTING\nBREAST SIZE");
 	
 	//OLD
@@ -848,6 +858,7 @@ public function applyBreastSize(size:int = 0):void {
 //Junk Size (Males/Futas)
 public function chooseYourJunkSize():void {
 	clearOutput();
+	showBust("CREATION_DOCTOR");
 	creationHeader("SETTING PENIS\nLENGTH");
 	
 	//OLD
@@ -949,6 +960,7 @@ public function chooseGryvainBalls():void
 	
 	clearOutput();
 	creationHeader("SELECT\nTESTES");
+	showBust("CREATION_DOCTOR");
 	author("Savin");
 
 	output("<i>“Speaking of sex characteristics, half-gryvain hermaphrodites have some variance in where they produce their seed. I’ve seen both internal and external testes, so the choice is up to you.”</i>");
@@ -984,6 +996,7 @@ public function applyGryvainBalls(externalBalls:Boolean):void
 public function chooseYourVagina():void {
 	clearOutput();
 	creationHeader("SELECT VAGINAL\nTRAITS");
+	showBust("CREATION_DOCTOR");
 	
 	//OLD
 	/*
@@ -1035,6 +1048,7 @@ public function fullyUpgradeCunt():void {
 public function chooseSexualGift():void {
 	clearOutput();
 	creationHeader("CHOOSING A\nSEXUAL GIFT");
+	showBust("CREATION_DOCTOR");
 	
 	//OLD
 	/*
@@ -1202,6 +1216,7 @@ public function applySexualGift(arg:String = "none"):void {
 public function chooseAPhysicalAffinity():void {
 	clearOutput();
 	creationHeader("CHOOSING AN\nAFFINITY");
+	showBust("CREATION_DOCTOR");
 	
 	//OLD
 	/*
