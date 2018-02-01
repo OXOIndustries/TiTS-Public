@@ -102,6 +102,8 @@ public function encounterBothriocQuadomme():void
 				output("\n\nEuphoria washes over you and you mumble a string of breathless “thank you”s as you stumble " + ((pc.legCount != 1 && pc.hasFeet()) ? "to your feet" : "upwards") + " and into the four arms of your new Master. Saying no doesn’t even occur to you.");
 			}
 			
+			CombatAttacks.removeWeb(pc);
+			
 			clearMenu();
 			if(addiction < 90)
 			{
@@ -257,6 +259,8 @@ public function encounterBothriocQuadomme():void
 				output("\n\n<i>“So then, farlander,”</i> it says, making you jump and refocus on its face. Its grin is wider, knowing. <i>“You are coming to understand your place in the grand scheme of things. It feels so good, being an obedient, egg-stuffed little slut doesn’t it? And yet still you struggle and rip yourself from my bonds. Like a child who doesn’t want to do his homework, despite the knowledge it imparts.<i>“ It opens its other pair of arms to you, a commanding expression on its long, beautiful face. <i>“Your Master demands you set such silliness to one side. Come to me, farlander, and I will show you where you truly belong.”</i>");
 				output("\n\nIt is all you can do not to immediately obey.");
 			}
+			
+			CombatAttacks.removeWeb(pc);
 			
 			clearMenu();
 			addButton(0, "Yes", encounterBothriocQuadommeNext, "yes", "Yes", "Submit to this strange alien dominatrix.");
