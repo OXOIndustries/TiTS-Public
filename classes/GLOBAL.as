@@ -1137,6 +1137,7 @@
 		public static const ITEM_FLAG_ANAL_CHASTITY:int 				= 24; //Used for undies that prevent penetration. Y u do dis, Nonesuch?
 		public static const ITEM_FLAG_VAGINALLY_SEALED:int 				= 25; //For undies that seal in cumflation :3
 		public static const ITEM_FLAG_ANALLY_SEALED:int 				= 26; //For undies that seal in Kiro's enormous loads.
+		public static const ITEM_FLAG_HIGH_PHYSIQUE:int 				= 27; //For items that require high physique - 66%+, rounded up.
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1166,6 +1167,7 @@
 			"Anal Chastity",
 			"Vaginal Cum-Sealed",
 			"Anal Cum-Sealed",
+			"Requires High Physique"
 		];
 		
 		/**

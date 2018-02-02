@@ -1352,6 +1352,7 @@ package classes.GameData
 			// shoot
 			var sf:Function = pc.rangedWeapon.attackImplementor == null ? CombatAttacks.RangedAttack : pc.rangedWeapon.attackImplementor;
 			if(pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon()) addDisabledButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), "Ranged Attack", "Your ranged weapon is too heavy to lift and use!");
+			else if(pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_HIGH_PHYSIQUE) && !pc.canUsePowerArmorWeapon() && pc.PQ() < 66) addDisabledButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), "Ranged Attack", "You lack the physique necessary to use such a weapon! You need at least " + Math.ceil(pc.physiqueMax() * 66/100) + " physique to use it.");
 			else addButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), selectSimpleAttack, { func: sf, isRanged: true }, "Ranged Attack", "Attack a single enemy with a ranged weapon. Damage is based on aim.");
 			
 			//

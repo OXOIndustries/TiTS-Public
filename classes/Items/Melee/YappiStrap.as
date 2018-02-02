@@ -9,6 +9,7 @@ package classes.Items.Melee
 	
 	public class YappiStrap extends ItemSlotClass
 	{
+		//Level ??? (???). Balance 2.0
 		//constructor
 		public function YappiStrap()
 		{

@@ -427,6 +427,7 @@
 		include "../includes/uveto/stormguardMale.as";
 		include "../includes/uveto/subTuner.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
+		include "../includes/uveto/tuuvaBlacksmith.as";
 		include "../includes/uveto/ula.as";
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
@@ -540,7 +541,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.134";
+			version = "0.7.135";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1517,6 +1518,10 @@
 		public function get lieve():Lieve
 		{
 			return chars["LIEVE"];
+		}
+		public function get tuuva():Tuuva
+		{
+			return chars["TUUVA"];
 		}
 
 		public function testShipCombat():void
