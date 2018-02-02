@@ -600,13 +600,13 @@ public function fuckNenneProperStart():void
 	if((pc.hasCock() && !pc.hasVagina()) || (!pc.hasCock() && pc.hasVagina()))
 	{
 		if(rand(2) == 0) nenneGets69();
-		else if(pc.hasCock()) maleOrHermAndNotDoingOral();
+		else if(pc.hasCock()) penisRouter([maleOrHermAndNotDoingOral, 900000000, false]);
 		else nenneFemaleOrHermNoOralSlorral();
 	}
 	else if(pc.isHerm())
 	{
 		if(rand(3) == 0) nenneFemaleOrHermNoOralSlorral();
-		else if(rand(2) == 0) maleOrHermAndNotDoingOral();
+		else if(rand(2) == 0) penisRouter([maleOrHermAndNotDoingOral, 900000000, false]);
 		else nenneGets69();
 	}
 	else
@@ -671,17 +671,16 @@ public function nenneGets69():void
 	processTime(30);
 	pc.orgasm();
 	clearMenu();
-	clearMenu();
 	addButton(0,"Next",freebieNenneScene);	
 }
 
 // Continue here if the PC is male or herm and is not doing oral
-public function maleOrHermAndNotDoingOral():void
+public function maleOrHermAndNotDoingOral(x:int = 0):void
 {
 	clearOutput();
 	showNenne();
-	var x:int = pc.cockThatFits(600);
-	if(x < 0) x = rand(pc.cockTotal());
+	//var x:int = pc.cockThatFits(600);
+	//if(x < 0) x = rand(pc.cockTotal());
 	
 	output("Your hands idly grope and massage at the thick of Nenne’s back while she takes the initiative – mostly out of necessity, because if it were up to you, you’d simply lay there and enjoy the warmth of her body and the way her motherly curves press against you. Her soft paw travels between you two, tickling at your [pc.belly] as she searches your tingling loins for her prize.");
 	output("\n\nYour [pc.cock " + x + "] is hard as could be between you two, and you hadn’t noticed it until now, too distracted by the tastes, smells, and sensations of everything else. As soon as her hand finds your [pc.knot " + x + "], you involuntarily lurch your [pc.hips] upward in pleasure, suddenly desperate to penetrate the hole that is her open palm.");

@@ -1998,10 +1998,15 @@
 					buffer = simpleCockNoun(biggestCockIndex());
 					break;
 				case "biggestCockHead":
+				case "biggestCockhead":
 				case "cockHeadBiggest":
+				case "cockheadBiggest":
 					buffer = cockHead(biggestCockIndex());
 					break;
+				case "smallestCockHead":
+				case "smallestCockhead":
 				case "cockHeadSmallest":
+				case "cockheadSmallest":
 					buffer = cockHead(smallestCockIndex());
 					break;
 				case "smallestCockDescript":
