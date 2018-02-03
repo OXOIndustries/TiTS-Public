@@ -612,7 +612,7 @@ public function nurseryComputerChildren():void
 {
 	
 	// Children sired count hotfix.
-	if(nurserySiredBabyDiff() > 0 && StatTracking.getStat("pregnancy/total sired") <= 0)
+	if(nurserySiredBabyDiff() > 0)
 	{
 		nurserySiredRecordsFix();
 		return;
