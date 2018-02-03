@@ -474,7 +474,7 @@
 				var damage:TypeCollection = new TypeCollection( { kinetic: 55+rand(5) });
 				applyDamage(damage, pc, this, "minimal");
 				//Does him: 
-				if(this.HP() <= 0) output("\n\n<b>If he’s getting back up from that, you’re a monkey’s uncle.");
+				if(this.HP() <= 0) output("\n\n<b>If he’s getting back up from that, you’re a monkey’s uncle.</b>");
 				//Go to ground defeat
 				else
 				{

@@ -612,7 +612,7 @@ public function nurseryComputerChildren():void
 {
 	
 	// Children sired count hotfix.
-	if(nurserySiredBabyDiff() > 0 || StatTracking.getStat("pregnancy/total sired") <= 0)
+	if(nurserySiredBabyDiff() > 0)
 	{
 		nurserySiredRecordsFix();
 		return;
@@ -992,7 +992,7 @@ public function nurserySiredRecordsFix():void
 	author("Jacques00");
 	
 	output("<b>The computer makes some blips while it syncs with your codex.</b> It then displays a holo pop-up that reads:");
-	output("\n\n<i>“It seems that the nursery computer and your codex are out of sync. Please wait while we correct your records....”</i> After a few seconds, it then concoludes, <i>“... Data sync successful! Thank you for your patience.”</i>");
+	output("\n\n<i>“It seems that the nursery computer and your codex are out of sync. Please wait while we correct your records....”</i> After a few seconds, it then concludes, <i>“... Data sync successful! Thank you for your patience.”</i>");
 	output("\n\nLooks like whatever information was off has been corrected now.");
 	
 	var numSired:int = 0;
