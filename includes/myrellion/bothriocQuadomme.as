@@ -111,7 +111,7 @@ public function encounterBothriocQuadomme():void
 				addButton(1, "No", encounterBothriocQuadommeNext, "no first", "No", "Step away.");
 				if(addiction <= 50) addButton(2, "Fight It", encounterBothriocQuadommeNext, "fight", "Fight It", "Draw your weapon and show this thing who’s the boss around here.");
 				
-				bothriocQuestQuadommeButton(4, true);
+				bothriocQuestQuadommeButton(4, false);
 			}
 			else addButton(0, "Next", bothriocQuadommePCLoss);
 		}
@@ -267,7 +267,7 @@ public function encounterBothriocQuadomme():void
 			addButton(1, "No", encounterBothriocQuadommeNext, "no", "No", "Step away.");
 			if(addiction <= 50) addButton(2, "Fight It", encounterBothriocQuadommeNext, "fight", "Fight It", "Draw your weapon and show this thing who’s the boss around here.");
 			
-			bothriocQuestQuadommeButton(4, true);
+			bothriocQuestQuadommeButton(4, false);
 		}
 		// Strength Check Fail
 		else
@@ -287,7 +287,7 @@ public function encounterBothriocQuadomme():void
 			addButton(0, "Struggle", encounterBothriocQuadommeNext, "struggle", "Struggle", "");
 			addButton(1, "Don’t", encounterBothriocQuadommeNext, "don't", "Don’t", "");
 			
-			bothriocQuestQuadommeButton(4, false);
+			bothriocQuestQuadommeButton(4, true);
 		}
 	}
 	processTime(7 + rand(3));
