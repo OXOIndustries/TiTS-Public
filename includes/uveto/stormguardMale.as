@@ -1113,7 +1113,7 @@ public function NTWinSceneForStormLancah():void
 		else if(pc.isNaga()) output("pile your coils on his beefy chest");
 		else if(pc.isGoo()) output("pool your goo-puddle around his head");
 		else output("park your tauric hind-end over him");
-		output(", he nods his head knowingly. <i>“As I expected. A warrior would not wish to weigh to be weighed down with child! Even so, I will savor your taste and remember it as the taste of defeat.”</i>");
+		output(", he nods his head knowingly. <i>“As I expected. A warrior would not wish to be weighed down with a child! Even so, I will savor your taste and remember it as the taste of defeat.”</i>");
 	}
 
 	output("\n\nYou roll your eyes and drop your mound onto the noisome warrior’s mouth, shivering not from the cold, but from the deliciously rough feeling of his wind-cracked lips on your soft, feminine ones.");
