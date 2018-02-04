@@ -316,6 +316,7 @@ public function giveTuuvaSavicite():void
 	if(!korgiTranslate()) output("Got green rock? Give Tuuva!");
 	else output("Got some savicite? Hand it over.");
 	output("”</i>");
+	clearMenu();
 	//Options to give savicite here.
 	if (pc.hasItemByClass(Savicite)) addButton(0,"Give 1",actuallyGiveSavicite,1,"Give 1","Give Tuuva one piece of Savicite.");
 	else addDisabledButton(0,"Give 1","Give 1","You don't have that much Savicite to give!");
@@ -702,7 +703,7 @@ public function tuuvaSexMenu():void
 {
 	clearMenu();
 	addButton(1,"Get Fucked",getFuckedByTuuva,undefined,"Get Fucked","Help her bury her bone.");
-	if(pc.hasCock() && pc.cockThatFits(tuuva.vaginalCapacity(0)) >= 0) addButton(0,"Fuck Her",fuckTuuva,x,"Fuck Her","Use your boy bits.");
+	if(pc.hasCock() && pc.cockThatFits(tuuva.vaginalCapacity(0)) >= 0) addButton(0,"Fuck Her",penisRouter,[fuckTuuva,tuuva.vaginalCapacity(0),false,0],"Fuck Her","Use your boy bits.");
 	else if(pc.hasCock()) addDisabledButton(0,"Fuck Her","Fuck Her","You're too big to fit inside her.");
 	else addDisabledButton(0,"Fuck Her","Fuck Her","This requires a penis.");
 	addButton(14,"Back",approachTuuva);
@@ -1070,7 +1071,7 @@ output("\n\n[Next] Puts you at the entrance of the Hold.");
 //[Get Fucked] Help her bury her bone.
 
 //Fuck her
-public function fuckTuuva,x,"Fuck Her",""(x:int = 0):void
+public function fuckTuuva(x:int = 0):void
 {
 	clearOutput();
 	showTuuva(true);
