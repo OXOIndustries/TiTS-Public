@@ -81,7 +81,24 @@ public function showTuuva(nude:Boolean = false):void
 public function tuuvaBlacksmithShopBonus():Boolean
 {
 	output("The inside of the blacksmith’s shop is the definition of rustic. The walls are made of worn, uneven stone, with only small, bone sconces bearing dim torches to break it up. The floors are more polished, but are still notably worn and gritty, with only a few scattered pelts to keep walking on it from being painful. The store is separated into at least two chambers; the one you’re in, which is largely empty, sans a set of training dummies and a few sets of weapons and armor put on display, and what you can only assume is the forge, separated from the front room by a solid wall with a small door and a serving window.");
-	if(flags["MET_TUUVA"] == undefined) output("\n\nThere doesn’t seem to be anyone here, however there is a small bell hung in the window that you could ring.");
+	//Shop Options
+	//Affection Events
+	//25: First Fuckings
+	//Triggers when entering the shop after reaching 25 Affection
+	//Replace text after shop description in Earthshapers section
+	if(tuuvaAffection() >= 25 && flags["TUUVA_25AFF"] == undefined)
+	{
+		showName("\nEMPTY?");
+		output("Tuuva doesn’t seem to be in at the moment. Strangely, the door into the forge area is slightly open, and you can hear something stirring in the back. Maybe you should go investigate?");
+		//[Backroom] Go into the forge area to investigate the strange noises.
+		addButton(0,"Backroom",tuuvaBackroomEvent,undefined,"Backroom","Go into the forge area to investigate the strange noises.");
+	}
+	//First time meeting :3
+	else if(flags["MET_TUUVA"] == undefined) 
+	{
+		output("\n\nThere doesn’t seem to be anyone here, however there is a small bell hung in the window that you could ring.");
+		addButton(0,"Bell",approachTuuva,undefined,"Bell","Ring the bell.");
+	}
 	else 
 	{
 		output("\n\nTuuva peers at you over the counter, ");
@@ -93,10 +110,8 @@ public function tuuvaBlacksmithShopBonus():Boolean
 			if(tuuva.hasCock(GLOBAL.TYPE_EQUINE)) output(", and the telltale thump of her [tuuva.cock] on the bottom of the counter");
 		}
 		output(".");
+		addButton(0,"Tuuva",approachTuuva,undefined,"Tuuva","Approach the counter.");
 	}
-	//[Bell]
-	if(flags["MET_TUUVA"] == undefined) addButton(0,"Bell",approachTuuva,undefined,"Bell","Ring the bell.");
-	else addButton(0,"Tuuva",approachTuuva,undefined,"Tuuva","Approach the counter.");
 	return false;
 }
 
@@ -175,7 +190,7 @@ public function tuuvaMenu():void
 	addButton(2,"Talk",tuuvaTalk,undefined,"Talk","Get to know the small-statured smith.");
 	if(silly) addButton(3,"Appearance",tuuvaAppearance,undefined,"Appearance","Creepily stare at her for an awkward amount of time so you can meticulously list her physical features.");
 	else addButton(3,"Appearance",tuuvaAppearance,undefined,"Appearance","Looks over Tuuva's appearance.");
-	if(tuuvaAffection() >= 25) //&& 9999affectionevent)
+	if(tuuvaAffection() >= 25 && flags["TUUVA_25AFF"] != undefined)
 	{
 		if(pc.lust() >= 33) addButton(4,"Sex",tuuvaSexTimes,undefined,"Sex","<i>Peruse</i> her <i>“wares”</i>.");
 		else addDisabledButton(4,"Sex","Sex","You aren't turned on enough for this.")
@@ -322,6 +337,7 @@ public function actuallyGiveSavicite(arg:Number = 1):void
 	pc.destroyItemByClass(Savicite,arg);
 	//Savicite valued at 12k. Tuuva gives almost full value for it. SQUANCH!
 	tuuvaCredits(10000*arg);
+	tuuvaAffection(arg*4);
 	clearOutput();
 	showTuuva();
 	if(arg == 1) output("You hand over " + num2Text(arg) + " piece of Savicite. Tuuva smiles happily.");
@@ -486,13 +502,13 @@ public function tuuvaScavenging():void
 	{
 		output("Tuuva might be lies, a bits. Tuuva was ore-looking in high-rocks, find big green rock, but big kitties find Tuuva. Run fast, but they catch. Then, big lizard show up, scare kitties, but also Tuuva. Make fun of Tuuva too! Say mean things about Tuuva being tiny, hate lizard!");
 		//Given frostwyrm scales:
-		if(9999) output(" But you kill, even give Tuuva lizard skin to make stoppies, so happy now.");
+		if(flags["GAVE_TUUVA_SCALES"] != undefined) output(" But you kill, even give Tuuva lizard skin to make stoppies, so happy now.");
 	}
 	else 
 	{
 		output("maaaaybe I’m not telling you everything. One time I was out scouting for ore in the cliffs. I found a huge chunk of savicite up there, but a pack of milodans were guarding it, and they saw me. I tried to run away, but I wasn’t fast enough, and they caught me. I thought I was dead, or worse, but then that stupid frostwyrm showed up. It scared them off, but then it started fucking with me. It mocked me, told me I was too small to even be an appetizer! Then it just flew off, fucker!");
 		//Given frostwyrm scales:
-		if(9999) output(" I was so happy when you brought me its scales. Not just because I can make some damn good armor with it, but because I know it’s dead.");
+		if(flags["GAVE_TUUVA_SCALES"] != undefined) output(" I was so happy when you brought me its scales. Not just because I can make some damn good armor with it, but because I know it’s dead.");
 	}
 	output("”</i>");
 	output("\n\nYou ask if she had more against it than just some insults.");
@@ -501,7 +517,7 @@ public function tuuvaScavenging():void
 	else 
 	{
 		output("That dumb dragon ");
-		if(!9999) output("makes");
+		if(flags["GAVE_TUUVA_SCALES"] == undefined) output("makes");
 		else output("made");
 		output(" it almost impossible to get any ore or salvage in its territory. Such a pain in the ass!");
 	}
@@ -605,6 +621,16 @@ public function biggerDForTuuva():void
 	else output("Come back in a while, I want to have some alone time with this new buddy.");
 	output("”</i> With that, she pops the pill and rushes back to her room, the sounds of self-pleasure welling up almost immediately.");
 
+	tuuva.cocks[0].cType =  GLOBAL.TYPE_EQUINE;
+	tuuva.cocks[0].cockColor = "black";
+	tuuva.cocks[0].delFlag(GLOBAL.FLAG_TAPERED);
+	tuuva.cocks[0].addFlag(GLOBAL.FLAG_BLUNT);
+	tuuva.cocks[0].addFlag(GLOBAL.FLAG_FLARED);
+
+	tuuva.ballSizeRaw = 13;
+	tuuva.ballEfficiency = 800;
+	tuuva.cumMultiplierRaw = 400;
+
 	processTime(25);
 	//[Next] Puts you in the shop.
 	clearMenu();
@@ -675,6 +701,10 @@ public function tuuvaSexTimes():void
 public function tuuvaSexMenu():void
 {
 	clearMenu();
+	addButton(1,"Get Fucked",getFuckedByTuuva,undefined,"Get Fucked","Help her bury her bone.");
+	if(pc.hasCock() && pc.cockThatFits(tuuva.vaginalCapacity(0)) >= 0) addButton(0,"Fuck Her",fuckTuuva,x,"Fuck Her","Use your boy bits.");
+	else if(pc.hasCock()) addDisabledButton(0,"Fuck Her","Fuck Her","You're too big to fit inside her.");
+	else addDisabledButton(0,"Fuck Her","Fuck Her","This requires a penis.");
 	addButton(14,"Back",approachTuuva);
 }
 
@@ -705,23 +735,11 @@ public function giveTuuvaFrostwormScales():void
 	else output("I’ll have some pieces ready in about a week.");
 	output("”</i> With that, she heads back through the door, and after a few minutes she comes back, ready to do more business.");
 	processTime(15);
+	tuuvaAffection(10);
+	flags["GAVE_TUUVA_SCALES"] = GetGameTimestamp();
+
 	pc.removeKeyItem("Frostwyrm Scales");
 	tuuvaMenu();
-}
-
-//Shop Options
-//Affection Events
-//25: First Fuckings
-//Triggers when entering the shop after reaching 25 Affection
-//Replace text after shop description in Earthshapers section
-
-public function tuuva25AffectionEvent():void
-{
-	clearOutput();
-	showTuuva();
-	output("Tuuva doesn’t seem to be in at the moment. Strangely, the door into the forge area is slightly open, and you can hear something stirring in the back. Maybe you should go investigate?");
-
-	//[Backroom] Go into the forge area to investigate the strange noises.
 }
 
 //Backroom
@@ -1046,17 +1064,22 @@ output("\n\nYour return trip isn’t as exciting as the trip there, but it’s f
 output("\n\n[Next] Puts you at the entrance of the Hold.");
 */
 
-
 //Sex Options
 //Each sex scene adds two Affection
 //[Fuck her] Use your boy bits. //requires a dick
 //[Get Fucked] Help her bury her bone.
 
-/*Fuck her
-public function fuckTuuva(x:int = 0):void
+//Fuck her
+public function fuckTuuva,x,"Fuck Her",""(x:int = 0):void
 {
 	clearOutput();
 	showTuuva(true);
+	//Try and find a dick to fit her butt...
+	var y:int = pc.cockThatFits(tuuva.analCapacity());
+	//If found a dick, but it's already going in her pussy, try for next best fit:
+	if(y == x && pc.cockTotal() > 1) pc.cockThatFits2(tuuva.analCapacity());
+	//If somehow shit is still fubar, set as no-go.
+	if(y == x) y = -1;
 	output("<i>“Roll over and show me that pussy!”</i>");
 	output("\n\nShe complies eagerly, flipping herself over, letting her [tuuva.cock] and [tuuva.balls] hang low as her fat little puppy pussy presents itself to you. Fat drops of fragrant cunt juice roll out of her slit, over her swolen, furless snatch, while her tail swings wildly above. Well, it’d be a waste to pass up such a juicy snack wouldn’t it? You grab onto her big, meaty sides and dig in.");
 	output("\n\n<i>“Ooooh, ");
@@ -1101,114 +1124,328 @@ public function fuckTuuva(x:int = 0):void
 	output(". She doesn’t let you miss it either; the second you try and pull away her legs suddenly jump up, wrap around your back and drag you down onto the bed with her, keeping you nice and close to her spasming snatch while it utterly soaks you. This girl should be a wrestler!");
 
 	output("\n\nWell, she’s had hers, now it’s time for you to have yours! You pry her coiled legs from around your back and sit up, presenting your [pc.cocks] for inspection.");
-	if(pc.cockTotal() > 1) 
+	if(y >= 0) 
 	{
 		output(" She marvels at your multiple endowments, tongue lolling out as she admires your alien genital arrangement.");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Tuuva never see double dongers before... Gimme!");
+		else output("I’ve never seen someone with two dicks, other than you... Don’t make me wait!");
+		output("”</i>");
+	}
+	else if(pc.cocks[x].cLength() < 12) 
+	{
+		output(" She stares hungrily at your dick");
+		if(pc.cockTotal() > 1) output("s");
+		output(", like a starving puppy at a ");
+		if(pc.cockTotal() == 2) output("pair of");
+		else if(pc.cockTotal() > 2) output("bunch of");
+		output(" juicy sausage");
+		if(pc.cockTotal() > 1) output("s");
+		output(". <i>“");
+		if(!korgiTranslate()) output("Tuuva");
+		else output("I’m");
+		output(" waaaaaaaaiting.”</i>");
+	}
+	//12-15:
+	else if(pc.cocks[x].cLength() < 15)
+	{
+		output(" She awes at the sheer size of your meaty meat, shuddering a bit at your tumescence. <i>“Mmmhm, ");
+		if(!korgiTranslate()) output("big, very big, Tuuva want!");
+		else 
+		{
+			output("that’s a big ");
+			if(pc.cockTotal() > 1) output("bunch of dicks");
+			else output("dick");
+			output(". I want a piece of ");
+			if(pc.cockTotal() == 1) output("that");
+			else output("those");
+			output("!");
+		}
+		output("”</i>");
+	}
+	else
+	{
+		output(" She almost jumps when she sees the size of your mega meat. Her pussy visibly spasms in anticipation, and her whole body starts shuddering. <i>“Fffff... ");
+		if(!korgiTranslate()) output("Tuuva never see super big meats before outsiders come... thank you thank you!");
+		else output("I’ve never seen dicks this big before you outsiders came... Spirits thank you!");
+		output("”</i>");
+		if(tuuva.hasCock(GLOBAL.TYPE_EQUINE)) output(" She rubs her own oversized member to emphasize her love of huge dicks.");
+	}
+	output("\n\nThe thick fragrance from the layers of cunt juice on your face is giving you an increasing sense of tunnel-vision. Your focus is increasingly focused on the short distance between your [pc.cocks], her throbbing pussy, and how to make it much shorter for a long, <i>loooooooong</i> time! It doesn’t help that every time you try and wipe it off, it just mixes it around and it gets worse. There’s so much of it on you that nothing short of a heavy shower is going to get it off, and it looks like she knows that.");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Like Tuuva’s fuck-juice? Make you want to fuck Tuuva long time with much hardnesssSSS!");
+	else output("Do you like my pussy juice that much? Does it make you want to fuck me <i>hard</i> like a bitch in heaaaAAT!");
+	output("”</i> You don’t even let her completely finish before you ram your dick");
+	if(y >= 0) output("s");
+	output(" in her up to the hilt");
+	if(y >= 0) output("s");
+	output(". You let out a feral growl as you forcefully pin her to the bed, one hand pushing her back down while the other man-handles her thick tush.");
+	pc.cockChange();
+	output("\n\nShe gurgles and yips as you line yourself up in prime position, pull your [pc.cocks] back, and ram ");
+	if(y < 0) output("it");
+	else output("them");
+	output(" into her ");
+	if(y < 0) output("pussy");
+	else output("holes");
+	output(" with as much force as you can, causing the bed to shake under you. You jackhammer in and out of her with no regard for her own pleasure, which, ironically, seems to be turning her on even more. Arcs and splashes of girl-juice fly out of her increasingly upraised booty with each thrust you make, turning the bed into a musky swamp of sexual fluids.");
+	output("\n\nAs your wild fuck grows more intense, you start dragging her more upright, plowing her face directly into the sheets soaked by her own juices. You even yank her tail as you drag her up. You’d probably stop if it didn’t make her moan out; seems like she’s a bit of masochist. You decide to take advantage of this, slowing down your feral thrusts just enough that you can get some slaps in on her tawny-furred booty");
+	output("\n\nHer ");
+	if(y < 0) output("pussy convulses");
+	else output("sloppy holes convulse");
+	output(" around your tool");
+	if(y >= 0) output("s");
+	output(" even harder as your treatment grows rougher. Her first mid-coitus orgasm hits her like a truck. Her pussy soaks and convulses so much that you think it might rip your dick right off!");
+	if(y >= 0) output(" Her ass is doing its own number on your other member, squeezing down so hard that you find it hard to even move.");
+	output(" You try and power through her grip, but come to regret that as you feel your orgasm rushing toward you.");
 
+	//Normal cum output:
+	if(pc.cumQ() < 3000) output("\n\nYou fill her with every drop you have to give, emptying your [pc.balls] far more than you thought you were capable of.");
+	//High cum output:
+	else if(pc.cumQ() < 15000) output("\n\nYou gloriously unload your overfilled [pc.balls] into the puffy puppy. Her belly bloats out from your sheer output, turning the muscular munchkin into a roly-poly little puffer. You even manage to outpace her girl cum, an impressive feat given her biblically wet cunt.");
+	//Living fire hydrant:
+	else output("\n\nYou fire out [pc.cum] in high-pressure bursts. Her belly bloats out almost immediately as your inhuman output makes itself well known. Her eyes bug out as she watches you utterly fill her up, never seeming to run dry, even as she starts to resemble a korgonne-themed beach ball. She starts to whimper, but stops as your seed overflows so much that it reaches her mouth, and she starts guzzling down your cum as it comes.");
+	if(pc.hasKnot(x)) output(" Your knot inflates mid orgasm, trapping the diminutive dogslut on your spasming [pc.cockNounSimple " + x + "]. She takes it <i>very</i> well, the sensation causing her to orgasm yet again, mere seconds after her last one.");
 
+	output("\n\nHer own [tuuva.cock] unloads in time with yours, adding to the heady pool that the two of you have created in her bed.");
+	output("\n\nThe two of you eventually run dry and collapse onto the bed with a wet squelch. You lie in your own collective mess, panting and filthy. After a few minutes, the two of you pass out in each other’s arms.");
+	processTime(35);
+	pc.orgasm();
+	IncrementFlag("SEXED_TUUVA");
+	tuuvaAffection(2);
+	tuuva.loadInCunt(pc,0);
+	clearMenu();
+	if(flags["SEXED_TUUVA"] == 1) addButton(0,"Next",tuuva25SexAftermath);
+	else addButton(0,"Next",tuuvaFuckPoststuff,x);
+}
 
-	output("\n\n<i>“{Tuuva never see double dongers before... Gimme!/I’ve never seen someone with two dicks, other than you... Don’t make me wait!}”</i>} {<12 inches on biggest dick:She stares hungrily at your dick{s}, like a starving puppy at a {pair of/bunch of} juicy sausage{s}. <i>“{Tuuva/I’m} waaaaaaaaiting.”</i>/12-15:She awes at the sheer size of your meaty meat, shuddering a bit at your tumescence. <i>“Mmmhm, {big, very big, Tuuva want!/that’s a big {bunch of} dick{s}. I want a piece of {that/those}!}”</i>/16-20:She almost jumps when she sees the size of your mega meat. Her pussy visibly spasms in anticipation, and her whole body starts shuddering. <i>“Fffff... {Tuuva never see super big meats before outsiders come... thank you thank you!/I’ve never seen dicks this big before you outsiders came... Spirits thank you!}”</i> {Synth sheath:She rubs her own oversized member to emphasize her love of huge dicks.}");
+public function tuuvaFuckPoststuff(knot:Boolean = false):void
+{
+	clearOutput();
+	showTuuva(true);
+	var knot:Boolean = pc.hasKnot(x);
+	output("You wake up a bit later, Tuuva riding your [pc.cock " + x + "], cowgirl style. You feel just as hard and ready to go as when you started! She becomes all too aware of your regained consciousness when you grab onto her hips and yank her down to your base. She yells out in pleasure as you renew your passions.");
+	output("\n\nYou go at it for another few minutes before you cum again, giving her another hearty filling as you feel your libido finally settle down.");
+	output("\n\nIt seems like she took some time to clean up while you were out. The bed doesn’t feel like a pond anymore, and your face is <i>mostly</i> devoid of her juices. It seems like she left just enough for it to keep you going for at least another round.");
+	output("\n\n");
+	if(knot) output("After waiting for your knot to deflate, again, s");
+	else output("S");
+	output("he hops up off the bed and leads you back to the front of the shop");
+	if(!pc.isCrotchExposed() && !pc.isChestExposed()) output(",making sure to throw you your gear before you leave");
+	output(". She puts her apron back on and fires the forge up while you step back into the customer area.");
+	//[Next] //Back to Earthshapers
+	if(knot) processTime(90);
+	else processTime(30);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-output("\n\nThe thick fragrance from the layers of cunt juice on your face is giving you an increasing sense of tunnel-vision. Your focus is increasingly focused on the short distance between your [pc.cocks], her throbbing pussy, and how to make it much shorter for a long, <i>loooooooong</i> time! It doesn’t help that every time you try and wipe it off, it just mixes it around and it gets worse. There’s so much of it on you that nothing short of a heavy shower is going to get it off, and it looks like she knows that.");
+//Get Fucked
+public function getFuckedByTuuva():void
+{
+	if(!pc.hasVagina()) actuallyGetFuckedByTuuva(-1);
+	else
+	{
+		clearOutput();
+		showTuuva(true);
+		output("How do you want her to take you?");
+		//[Anal]
+		//[Vaginal]
+		clearMenu();
+		addButton(0,"Anal",actuallyGetFuckedByTuuva,-1);
+		addButton(1,"Vaginal",actuallyGetFuckedByTuuva,rand(pc.totalVaginas()));
+	}
+}
 
-output("\n\n<i>“{Like Tuuva’s fuck-juice? Make you want to fuck Tuuva long time with much hardnesssSSS!/Do you like my pussy juice that much? Does it make you want to fuck me <i>hard</i> like a bitch in heaaaAAT!}”</i> You don’t even let her completely finish before you ram your dick{s} in her up to the hilt{s}. You let out a feral growl as you forcefully pin her to the bed, one hand pushing her back down while the other man-handles her thick tush.");
+public function actuallyGetFuckedByTuuva(x:int):void
+{
+	clearOutput();
+	showTuuva(true);
+	var capacity:Number = 0;
+	var wetness:Number = 0;
 
-output("\n\nShe gurgles and yips as you line yourself up in prime position, pull your [pc.cocks] back, and ram {it/them} into her {pussy/holes} with as much force as you can, causing the bed to shake under you. You jackhammer in and out of her with no regard for her own pleasure, which, ironically, seems to be turning her on even more. Arcs and splashes of girl-juice fly out of her increasingly upraised booty with each thrust you make, turning the bed into a musky swamp of sexual fluids.");
+	if(x >= 0)
+	{
+		capacity = pc.vaginalCapacity(x);
+		wetness = pc.vaginas[x].wetness();
+	}
+	else
+	{
+		capacity = pc.analCapacity();
+		wetness = pc.ass.wetness();
+	}
+	output("Instead of saying what you want, you just turn around and bend over, spreading your cheeks to expose your [pc.vagOrAss " + x + "] to her. She literally jumps at your invitation, hopping off the bed and grabbing onto your [pc.hips].");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Tuuva in leading now! You listen!");
+	else output("I’m in charge now, so you’d better listen!");
+	output("”</i> To prove her point, she drags you off your feet and tosses you onto the bed, ass up. She gets up with you, looming overhead, as much as she can given her size. <i>“");
+	if(!korgiTranslate()) output("Slippy, need lots of slippy!");
+	else output("Gonna need a lot of lube for this!");
+	output(" Her confident demeanor seems to vanish in the wake of confusion as she tries to find a source of lube.");
+	output("\n\nSuddenly something clicks and she remembers her womanhood. She digs down under her [tuuva.balls] and moans out as she hunts for girl cum. She whimpers as she alternates between working over her soaking cunt, and stroking her juices onto her [tuuva.cock]. She nearly cums on the spot, but thankfully she remembers you.");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("T-Tuuva almost forget, sorries.");
+	else output("I-I almost forgot about you, sorry.");
+	output("”</i> Her way of saying sorry is apparently shoving her hand up your [pc.vagOrAss " + x + "]. You moan out as she dives three fingers, knuckle-deep, shoveling a hearty helping of her juices in ");
+	if(wetness > 0) output("to mix with your own");
+	else output("to lube up your dry entrance");
+	output(". She keeps this up almost as long as she kept up her own foreplay, making sure that you’re just as ready for what’s going to happen as she is.");
 
-output("\n\nAs your wild fuck grows more intense, you start dragging her more upright, plowing her face directly into the sheets soaked by her own juices. You even yank her tail as you drag her up. You’d probably stop if it didn’t make her moan out; seems like she’s a bit of masochist. You decide to take advantage of this, slowing down your feral thrusts just enough that you can get some slaps in on her tawny-furred booty");
+	output("\n\nShe stops after a minute, and within seconds she’s mounted you, guiding her [tuuva.cock] to your lubed entrance.");
+	//Normal:
+	if(tuuva.hasCock(GLOBAL.TYPE_EQUINE)) 
+	{
+		output(" Her puppy prick spears into your ");
+		if(x >= 0) output("honey pot");
+		else output("booty hole");
+		output(", easily gliding through you thanks to the massive amount of pheromone-laced girl juice she slathered both of you in");
+		if(x >= 0) pc.cuntChange(x,tuuva.cockVolume(0));
+		else pc.buttChange(tuuva.cockVolume(0));
+		output("\n\n<i>“Mhmm, nice!”</i>.");
+	}
+	else
+	{
+		output(" Her massive horse cock rams its way into you, leaving a noticeable bulge in your [pc.belly]. ");
+		if(capacity <= tuuva.cockVolume(0) * 1.5) output("She struggles to fit the whole thing in you, even with all the lube, but she’s not giving up! She gives you a series of shallow thrusts, embedding herself in you, a fraction of an inch at a time. After a minute, she finally achieves her goal and bottoms out inside you.");
+		else 
+		{
+			output("She wiggles a little to get the fat, flat head to slip inside. Capacious as you are, a horse-cock is still a horse-cock. She gives a series of shallow thrusts, embedding herself deeper inside you. Now that she's gotten the tip inside, it's a simple matter of spreading the depths of your stretchy ");
+			if(x >= 0) output("quim");
+			else output("sphincter");
+			output(" around her bestial dick, marvelling at the ease of the insertion. After a minute, she finally achieves her goal and bottomss out inside you.");
+		}
+		if(x >= 0) pc.cuntChange(x,tuuva.cockVolume(0));
+		else pc.buttChange(tuuva.cockVolume(0));
 
-output("\n\nHer {pussy/sloppy holes} {convulses/convulse} around your tool{s} even harder as your treatment grows rougher. Her first mid-coitus orgasm hits her like a truck. Her pussy soaks and convulses so much that you think it might rip your dick right off! {her ass is doing its own number on your other member, squeezing down so hard that you find it hard to even move.} You try and power through her grip, but come to regret that as you feel your orgasm rushing toward you.");
+		if(wetness < 3)
+		{
+			output("\n\n<i>“Ugh, needed more ");
+			if(!korgiTranslate()) output("slippy");
+			else output("lube");
+			output("...”</i>");
+		}
+		else
+		{
+			output("\n\n<i>“Wow! So wet!”</i> Her tongue lolls out. <i>“");
+			if(!korgiTranslate()) output("Perfect slippy!");
+			else output("It’s perfect.");
+			output("”</i>");
+		}
+	}
+	output(" She barely gives you time to adjust before she picks up the pace, pounding your [pc.vagOrAss " + x + "] with dizzying speed. The little girl’s got plenty of muscle on her, so she hits you hard, fast, and can keep it up. You need to try <i>hard</i> to keep yourself from losing balance and being pounded into the sheets. That seems to be exactly what she wants, though, if the voracity of her thrusts is any indication.");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) 
+	{
+		output("Tuuva small, but Tuuva strong! Strong enough to make ");
+		if(tuuvaAffection() < 75) output("friend");
+		else output("lover");
+		output(" into bitch!");
+	}
+	else output("I might be small, but I’m damn strong. Definitely strong enough to turn you into a needy bitch!");
+	output("”</i> She punctuates by giving you one huge shove that knocks the last bit of strength out of your [pc.legs] and sends you tumbling forward. Despite that, she doesn’t let go of you, keeping her hands wrapped firmly around your [pc.hips], and her [tuuva.cock] stuck firmly in your [pc.vagOrAss " + x + "].");
 
-output("\n\n{Normal cum output:");
-output("\n\nYou fill her with every drop you have to give, emptying your [pc.balls] far more than you thought you were capable of.");
-output("\n\n/High cum output:");
-output("\n\nYou gloriously unload your overfilled [pc.balls] into the puffy puppy. Her belly bloats out from your sheer output, turning the muscular munchkin into a roly-poly little puffer. You even manage to outpace her girl cum, an impressive feat given her biblically wet cunt.");
-output("\n\n/Living fire hydrant:");
-output("\n\nYou fire out [pc.cum] in high-pressure bursts. Her belly bloats out almost immediately as your inhuman output makes itself well known. Her eyes bug out as she watches you utterly fill her up, never seeming to run dry, even as she starts to resemble a korgonne-themed beach ball. She starts to whimper, but stops as your seed overflows so much that it reaches her mouth, and she starts guzzling down your cum as it comes.");
-output("\n\n}");
+	output("\n\nShe does pull out for a second so she can flip you over, but she goes right back to it. Her hands latch right on to your [pc.chest] as she leans more into you. It’s a very different feeling now that you can stare her right in the eyes while she fucks you. They’re wide as can be as she returns your stare, her tongue lolling out and her tail wagging like an excited puppy.");
+	if(pc.hasCock(GLOBAL.TYPE_EQUINE)) output(" To contrast that cute imagery is seeing just how much her horse meat is bulging your gut out. It’s definitely grown a good bit since you started, and each thrust feels like having your gut railed with a fleshy, piping hot piston. It should be painful, but it’s somehow incredibly pleasurable.");
 
-output("\n\n{Knot:Your knot inflates mid orgasm, trapping the diminutive dogslut on your spasming [pc.cockNounSimple]. She takes it <i>very</i> well, the sensation causing her to orgasm yet again, mere seconds after her last one.}");
+	output("\n\n");
+	if(tuuvaAffection() >= 75) 
+	{
+		output("Suddenly she puts one hand around your neck and pulls you in for a deep, passionate kiss. Your [pc.lipsChaste] wrap around her muzzle, locking around her own lips as best as the two of you can. Her pace messes up a bit while she does this, but she quickly rights herself. The passion intensifies as her tongue wraps around yours, pulling you even deeper into her doggy kisses.");
+		output("\n\nShe lets go for only brief moments to whisper sweet nothings in your ear, affirming her feelings for you. <i>“");
+		if(!korgiTranslate()) output("Love, love, love! Sex good, but you better! So happy, w-want you stay...");
+		else output("I love you so much! The sex is amazing, but you’re so much more amazing. You make me so happy... why can’t you stay with me...");
+		output("”</i> She slows down and looks at you sadly, genuinely asking. You cup her cheek and tell her that you can’t settle down because of your mission, but you can take her out to the stars, even if only briefly.");
 
-output("\n\nHer own [tuuva.cock] unloads in time with yours, adding to the heady pool that the two of you have created in her bed.");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) 
+		{
+			output("Lover take Tuuva ");
+			//Done 100 affection event:
+			if(9999) output("back ");
+			output("to space?”</i>");
+		}
+		else
+		{
+			output("You’d take me ");
+			if(9999) output("back ");
+			output("to outer space?");
+		}
+		output("”</i> You nod. <i>“...");
+		if(!korgiTranslate()) output("Tuuva");
+		else output("I’d");
+		output(" like that...”</i> She gleefully picks her pace back up, even going a bit faster, spurred on by your promise.");
+	}
+	else
+	{
+		output("\n\nShe moves her face up closer to yours, but seems apprehensive to do anything. She looks like she wants to kiss you, but, for some reason she’s holding back. You give her a little peck on the lips, signaling her that it’s okay to go all in, and that she does.");
+		output("\n\nShe dives onto your [pc.lipsChaste], coiling her tongue into your mouth and tying up your own like a predatory snake. She presses her whole body down on you more, making sure you feel her weight on you as she possessively mates with you. As she feels you body submit, she ups her pace, getting ready to finish up.");
+	}
+	output("\n\nYour lengthy fuck eventually devolves into a sweaty rut. Your bodies are pressed as tightly together as possible, to the point where you find it hard to tell where the heat from your body ends and hers begins. You’ve melted into a singular pile of hot, passionate fuck; sweating, and moaning, and groaning almost senselessly as the little muscle-ball completely overwhelms you, and seemingly herself.");
+	output("\n\nYour senses flash back to you for a second as you feel the telltale swelling of her knot inside you. Any protest or even encouragement you could give is drown out by sheer pleasure.");
+	output("\n\nIn the first moment of respite you’ve gotten in stars know how long, Tuuva pulls back and turns around.");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Time for maties!");
+	else output("Time to finish up!");
+	output("”</i>");
 
-output("\n\nThe two of you eventually run dry and collapse onto the bed with a wet squelch. You lie in your own collective mess, panting and filthy. After a few minutes, the two of you pass out in each other’s arms.");
+	output("\n\nYou see her [tuuva.balls], and in fact her whole body, tense up as her knot seals itself firmly inside your [pc.vagOrAss " + x + "].");
 
-output("\n\n[Next]");
+	//normal:
+	if(!tuuva.hasCock(GLOBAL.TYPE_EQUINE))
+	{
+		output("\n\nShe cums inside you, filling your ");
+		if(x >= 0)
+		{
+			if(!pc.isPregnant(x)) output("womb");
+			else output("tunnel");
+		}
+		else output("bowels");
+		output(" with warm puppy seed. Her tail wags like crazy, and she looks back at you with her tongue lolling out. She’s obviously enjoying herself greatly as her orgasm drags on. She even still tries to thrust despite her tie to you.");
+		output("\n\nShe cums an impressive amount for such a little thing. You even feel your [pc.belly] bulge out a bit from the sheer amount. She seems very proud of that fact, as she lays a hand on your slightly pudged-out belly.");
+		output("\n\n<i>“Heh, ");
+		if(!korgiTranslate()) output("Tuuva good breeder, yes?");
+		else output("I’m a pretty damn good breeder, aren’t I?");
+		output("”</i> You nod softly, body still limp as you bask in the lazy afterglow, and her still pulsing prick.");
+	}
+	//Synth:
+	else
+	{
+		output("\n\nShe unloads gloriously inside you, filling your ");
+		if(x >= 0)
+		{
+			if(!pc.isPregnant(x)) output("womb");
+			else output("tunnel");
+		}
+		else output("bowels");
+		output(" with what feels like gallons of seed. You see her big, black horsey balls pulse and throb heavily as the little doggo slut struggles to truly deal with the immense virility you gifted her with. Her face twists and contorts as she’s subjected to pleasures she was never meant to experience so intensely.");
+		output("\n\nYour body responds by bloating, your [pc.belly] filling out to pregnant proportions, each passing second seeming to add another month, and after that, a twin, then a triplet to your arbitrary, unborn-child-based measuring standard for cum inflation. It doesn’t stop there, and eventually her seed spills out around the seal her knot has made.");
+		output("\n\nYou feel like a [pc.race] cocksleave, reduced to a drooling, fleshy holster by the strong little korg, and her massively oversized cock. She seems just as put out as you are by her dick. Her eyes are crossed and her mouth seems to be mumbling out some kind of blissed out nonsense.");
+		output("\n\nAt some point she stops cumming and collapses, leaving the both of you to bask in the afterglow.");
+	}
 
-output("\n\nYou wake up a bit later, Tuuva riding your [pc.cock], cowgirl style. You feel just as hard and ready to go as when you started! She becomes all too aware of your regained consciousness when you grab onto her hips and yank her down to your base. She yells out in pleasure as you renew your passions.");
+	processTime(30);
+	if(x >= 0) pc.loadInCunt(tuuva,x);
+	else pc.loadInAss(tuuva);
+	pc.orgasm();
+	IncrementFlag("SEXED_TUUVA");
+	tuuvaAffection(2);
+	clearMenu();
+	if(flags["SEXED_TUUVA"] == 1) addButton(0,"Next",tuuva25SexAftermath);
+	else addButton(0,"Next",tuuvaPostSexDrill,x);
+}
 
-output("\n\nYou go at it for another few minutes before you cum again, giving her another hearty filling as you feel your libido finally settle down.");
+public function tuuvaPostSexDrill(x:int):void
+{
+	clearOutput();
+	showTuuva(true);
+	output("It takes almost an hour for her knot to deflate. During that time she really doesn’t attempt to do much other than yip, and throb inside you. She crawls away once her knot finally does deflate, pulling her [tuuva.cock] out of your [pc.vagOrAss " + x + "] and letting the ");
+	if(!tuuva.hasCock(GLOBAL.TYPE_EQUINE)) output("trickle");
+	else output("torrent");
+	output(" of seed flow out of your well-used hole.");
 
-output("\n\nIt seems like she took some time to clean up while you were out. The bed doesn’t feel like a pond anymore, and your face is <i>mostly</i> devoid of her juices. It seems like she left just enough for it to keep you going for at least another round.");
-
-output("\n\n{After waiting for your knot to deflate, again, s/S}he hops up off the bed and leads you back to the front of the shop {,making sure to throw you your gear before you leave}. She puts her apron back on and fires the forge up while you step back into the customer area.");
-
-output("\n\n[Next] //Back to Earthshapers");
-output("\n\nGet Fucked");
-output("\n\nHow do you want her to take you?");
-output("\n\n[Anal]");
-output("\n\n[Vaginal]");
-output("\n\nInstead of saying what you want, you just turn around and bend over, spreading your cheeks to expose your [pc.vagOrAss] to her. She literally jumps at your invitation, hopping off the bed and grabbing onto your [pc.hips].");
-
-output("\n\n<i>“{Tuuva in leading now! You listen!/I’m in charge now, so you’d better listen!}”</i> To prove her point, she drags you off your feet and tosses you onto the bed, ass up. She gets up with you, looming overhead, as much as she can given her size. <i>“{Slippy, need lots of slippy!/Gonna need a lot of lube for this!} Her confident demeanor seems to vanish in the wake of confusion as she tries to find a source of lube.");
-
-output("\n\nSuddenly something clicks and she remembers her womanhood. She digs down under her [tuuva.balls] and moans out as she digs for girl cum. She moans as she alternates between working over her soaking cunt, and stroking her juices onto her [tuuva.cock]. She nearly cums on the spot, but thankfully she remembers you.");
-
-output("\n\n<i>“{T-Tuuva almost forget, sorries./I-I almost forgot about you, sorry.}”</i> Her way of saying sorry is apparently shoving her hand up your [pc.vagOrAss]. You moan out as she dives three fingers, knuckle-deep, shoveling a hearty helping of her juices in {vagina or self-lubing butthole:to mix with your own/to lube up your dry entrance}. She keeps this up almost as long as she kept up her own lubricating, making sure that you’re just as ready for what’s going to happen as she is.");
-
-output("\n\nShe stops after a minute, and within seconds she’s mounted you, guiding her [tuuva.cock] to your lubed entrance. {Normal:Her puppy prick spears into your {honey pot/booty hole}, easily gliding through you thanks to the massive amount of pheromone-laced girl juice she slathered both of you in");
-
-output("\n\n<i>“Mhmm, nice!”</i>./Synth sheath:Her massive horse cock rams its way into you, leaving a noticeable bulge in your [pc.belly]. She struggles to fit the whole thing in you, even with all the lube, but she’s not giving up! She gives you a series of shallow thrusts, embedding herself in you, a fraction of an inch at a time. After a minute, she finally achieves her goal and bottoms out inside you.");
-
-output("\n\n<i>“Ugh, needed more {slippy/lube}...”</i>} She barely gives you time to adjust before she picks up the pace, pounding your [pc.vagOrAss] with dizzying speed. The little girl’s got plenty of muscle on her, so she hits you hard, fast, and can keep it up. You need to try <i>hard</i> to keep yourself from losing balance and being pounded into the sheets. That seems to be exactly what she wants, though, if the voracity of her thrusts is any indication.");
-
-output("\n\n<i>“{Tuuva small, but Tuuva strong! Strong enough to make {friend/lover} into bitch!/I might be small, but I’m damn strong. Definitely strong enough to turn you into a needy bitch!}”</i> She punctuates by giving you one huge shove that knocks the last bit of strength out of your [pc.legs] and sends you tumbling forward. Despite that, she doesn’t let go of you, keeping her hands wrapped firmly around your [pc.hips], and her [tuuva.cock] stuck firmly in your [pc.vagOrAss].");
-
-output("\n\nShe does pull out for a second so she can flip you over, but she goes right back to it. Her hands latch right on to your [pc.chest] as she leans more into you. It’s a very different feeling now that you can stare her right in the eyes while she fucks you. They’re wide as can be as she returns your stare, her tongue lolling out and her tail wagging like an excited puppy. {synth:To contrast that cute imagery is seeing just how much her horse meat is bulging your gut out. It’s definitely grown a good bit since you started, and each thrust feels like having your gut railed with a fleshy, piping hot piston. It should be painful, but it’s somehow incredibly pleasurable.}");
-
-output("\n\n{Lover:Suddenly she puts one hand around your neck and pulls you in for a deep, passionate kiss. Your [pc.lips] wrap around her muzzle, locking around her own lips as best as the two of you can. Her pace messes up a bit while she does this, but she quickly rights herself. The passion intensifies as her tongue wraps around yours, pulling you even deeper into her doggy kisses.");
-
-output("\n\nShe lets go for only brief moments to whisper sweet nothings in your ear, affirming her feelings for you. <i>“{Love, love, love! Sex good, but you better! So happy, w-want you stay.../I love you so much! The sex is amazing, but you’re so much more amazing. You make me so happy... why can’t you stay with me...}”</i> She slows down and looks at you sadly, genuinely asking. You cup her cheek and tell her that you can’t settle down because of your mission, but you can take her out to the stars, even if only briefly.");
-
-output("\n\n<i>“{Lover take Tuuva {Done 100 affection event:back} to space?”</i>/You’d take me {back} to outer space?}”</i> You nod. <i>“...{Tuuva/I’d} like that...”</i> She gleefully picks her pace back up, even going a bit faster, spurred on by your promise.");
-
-output("\n\n/She moves her face up closer to yours, but seems apprehensive to do anything. She looks like she wants to kiss you, but, for some reason she’s holding back. You give her a little peck on the lips, signaling her that it’s okay to go all in, and that she does.");
-
-output("\n\nShe dives onto your [pc.lips], coiling her tongue into your mouth and tying up your own like a predatory snake. She presses her whole body down on you more, making sure you feel her weight on you as she possessively mates with you. As she feels you body submit, she ups her pace, getting ready to finish up.");
-output("\n\n}");
-
-output("\n\nYour lengthy fuck eventually devolves into a sweaty rut. Your bodies are pressed as tightly together as possible, to the point where you find it hard to tell where the heat from your body ends and hers begins. You’ve melted into a singular pile of hot, passionate fuck; sweating, and moaning, and groaning almost senselessly as the little muscle-ball completely overwhelms you, and seemingly herself.");
-
-output("\n\nYour senses flash back to you for a second as you feel the telltale swelling of her knot inside you. Any protest or even encouragement you could give is drown out by sheer pleasure.");
-
-output("\n\nIn the first moment of respite you’ve gotten in stars know how long, Tuuva pulls back and turns around.");
-
-output("\n\n<i>“{Time for maties!/Time to finish up!}”</i>");
-
-output("\n\nYou see her [tuuva.balls], and in fact her whole body, tense up as her knot seals itself firmly inside your [pc.vagOrAss].");
-
-output("\n\n{normal:");
-output("\n\nShe cums inside you, filling your {womb/bowels} with warm puppy seed. Her tail wags like crazy, and she looks back at you with her tongue lolling out. She’s obviously enjoying herself greatly as her orgasm drags on. She even still tries to thrust despite her tie to you.");
-
-output("\n\nShe cums an impressive amount for such a little thing. You even feel your [pc.belly] bulge out a bit from the sheer amount. She seems very proud of that fact, as she lays a hand on your slightly pudged-out belly.");
-
-output("\n\n<i>“Heh, {Tuuva good breeder, yes?/I’m a pretty damn good breeder, aren’t I?”</i> You nod softly, body still limp as you bask in the lazy afterglow, and her still pulsing prick.");
-
-output("\n\n/Synth:");
-output("\n\nShe unloads gloriously inside you, filling your {womb/bowels} with what feels like gallons of seed. You see her big, black horsey balls pulse and throb heavily as the little doggo slut struggles to truly deal with the immense virility you gifted her with. Her face twists and contorts as she’s subjected to pleasures she was never meant to experience so intensely.");
-
-output("\n\nYour body responds by bloating, your [pc.belly] filling out to pregnant proportions, each passing second seeming to add another month, and after that, a twin, then a triplet to your arbitrary, unborn-child-based measuring standard for cum inflation. It doesn’t stop there, and eventually her seed spills out around the seal her knot has made.");
-
-output("\n\nYou feel like a [pc.race] cocksleave, reduced to a drooling, fleshy holster by the strong little korg, and her massively oversized cock. She seems just as put out as you are by her dick. Her eyes are crossed and her mouth seems to be mumbling out some kind of blissed out nonsense.");
-
-output("\n\nAt some point she stops cumming and collapses, leaving the both of you to bask in the afterglow.");
-output("\n\n}");
-
-output("\n\n[Next]");
-
-output("\n\nIt takes almost an hour for her knot to deflate. During that time she really doesn’t attempt to do much other than yip, and throb inside you. She crawls away once her knot finally does deflate, pulling her [tuuva.cock] out of your [pc.vagOrAss] and letting the {trickle/torrent} of seed flow out of your well-used hole.");
-
-output("\n\n<i>“Mmph, back to work...”</i> She groggily cleans herself up{ and tosses you your gear}. She waits for you to get yourself back together and on your feet, even fetching some water for you to drink. Eventually you get back to the customer area as Tuuva gets back to her counter.");
-
-output("\n\n[Next] //Back to Earthshapers");
-*/
+	output("\n\n<i>“Mmph, back to work...”</i> She groggily cleans herself up");
+	if(!pc.isCrotchExposed()) output(" and tosses you your gear");
+	output(". She waits for you to get yourself back together and on your feet, even fetching some water for you to drink. Eventually you get back to the customer area as Tuuva gets back to her counter.");
+	processTime(60);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
