@@ -2878,18 +2878,25 @@ public function goToTaivrasChambersForSex():void
 
 	output("\n\n<i>“Tell me, what appeals to you offworlders?”</i> she purrs, grinding her hips against your crotch. Her words are a subtle affirmation that she’ll defer to you, letting you choose just how you’ll make love to your queenly lover...");
 	processTime(7);
+	
+	queenTaivraSexMenu();
+}
+public function queenTaivraSexMenu(canLeave:Boolean = false):void
 	clearMenu();
 	//[Cowgirl] [Glory Fuck] [Tentacock Orgy] [Breed Her]
-	addButton(0,"RideCowgirl",cowgirlWivTaivra,undefined,"Ride: Cowgirl","Roll Taivra over and mount her, riding her thick, throbbing ovipositor until she’s bloating you with eggs... or at least, with her sticky fem-cum.")
+	addButton(0,"RideCowgirl",cowgirlWivTaivra,undefined,"Ride: Cowgirl","Roll Taivra over and mount her, riding her thick, throbbing ovipositor until she’s bloating you with eggs... or at least, with her sticky fem-cum.");
+	
 	if(pc.hasCock() && pc.cockThatFits(taivra.analCapacity()) >= 0) addButton(1,"Glory Fuck",gloryFuckTaivra,undefined,"Glory Fuck","Get Taivra to ram her cock into the gloryhole in her wall and fuck the jiggling goo inside while you slide your cock up the queen’s tight little behind.");
 	else addDisabledButton(1,"Glory Fuck","Glory Fuck","You need a penis to access this scene.");
+	
 	if(pc.hasCock() && pc.cockThatFits(200) >= 0) addButton(2,"Breed Her",dockingBonerIntensifies,undefined,"Breed Her","Slide your cock into the queen’s ovipositor and flood her womb with your seed. The position might be a little awkward, but it’s worth it to make sure you have some royal offspring.");
 	else addDisabledButton(2,"Breed Her","Breed Her","You need a dick that will fit inside her dick for this to work.");
-
+	
 	if(pc.hasHardLightEquipped()) addButton(3,"HL Anal",taivraHardlightFunzies,undefined,"Hardlight Anal","Use your hardlight-enabled underwear to pound Taivra’s asshole. Her cockvine ‘tails’ will be in striking range of <i>your</i> [pc.vagOrAss]!");
 	else addDisabledButton(3,"HL Anal","Hardlight Anal","You need hardlight-enabled underwear for this.");
-
-	addDisabledButton(14,"Back","Back","There’s no way you’re getting out of here without satisfying your domineering partner at least once!");
+	
+	if(canLeave) addButton(14,"Leave",taivraMorningEventLeave,undefined,"Leave","Ignore Taivra and take your leave.");
+	else addDisabledButton(14,"Back","Back","There’s no way you’re getting out of here without satisfying your domineering partner at least once!");
 }
 
 //Cowgirl
@@ -3625,16 +3632,9 @@ public function taivraMorningEvent():void
 	else output("partner?");
 	processTime(5);
 	pc.createStatusEffect("Taivra Bed Event Cooldown", 0, 0, 0, 0, true, "", "", false, 1440);
-	clearMenu();
-	// Remeber to update goToTaivrasChambersForSex too is you change anything here
-	addButton(0,"RideCowgirl",cowgirlWivTaivra,undefined,"Ride: Cowgirl","Roll Taivra over and mount her, riding her thick, throbbing ovipositor until she’s bloating you with eggs... or at least, with her sticky fem-cum.")
-	if(pc.hasCock() && pc.cockThatFits(taivra.analCapacity()) >= 0) addButton(1,"Glory Fuck",gloryFuckTaivra,undefined,"Glory Fuck","Get Taivra to ram her cock into the gloryhole in her wall and fuck the jiggling goo inside while you slide your cock up the queen’s tight little behind.");
-	else addDisabledButton(1,"Glory Fuck","Glory Fuck","You need a penis to access this scene.");
-	if(pc.hasCock() && pc.cockThatFits(200) >= 0) addButton(2,"Breed Her",dockingBonerIntensifies,undefined,"Breed Her","Slide your cock into the queen’s ovipositor and flood her womb with your seed. The position might be a little awkward, but it’s worth it to make sure you have some royal offspring.");
-	else addDisabledButton(2,"Breed Her","Breed Her","You need a dick that will fit inside her dick for this to work.");
-	if(pc.hasHardLightEquipped()) addButton(3,"HL Anal",taivraHardlightFunzies,undefined,"Hardlight Anal","Use your hardlight-enabled underwear to pound Taivra’s asshole. Her cockvine ‘tails’ will be in striking range of <i>your</i> [pc.vagOrAss]!");
-	else addDisabledButton(3,"HL Anal","Hardlight Anal","You need hardlight-enabled underwear for this.");
-	addButton(14,"Leave",taivraMorningEventLeave,undefined,"Leave","Ignore Taivra and take your leave.");
+	
+	// Remeber to update goToTaivrasChambersForSex too if you change anything here
+	queenTaivraSexMenu(true);
 }
 
 public function taivraMorningEventLeave():void
