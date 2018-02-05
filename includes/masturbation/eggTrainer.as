@@ -41,11 +41,10 @@ You lose 1 level of Egg Trained each week you go without either using the machin
 
 //Installing it in the Ship
 //Inventory -> Egg Trainer. Sets it up in the Cargo hold, just like a Dong Designer. 
-public function eggTrainerInstallation():void
+public function eggTrainerInstallation():Boolean
 {
 	clearOutput();
 	showBust("EGG_TRAINER");
-	showName("EGG\nTRAINER");
 	author("Savin");
 
 	if(InShipInterior())
@@ -63,11 +62,31 @@ public function eggTrainerInstallation():void
 		pc.destroyItemByClass(EggTrainer);
 		//Display egg trainer options here.
 		eggTrainerMenu();
+		
+		return true;
 	}
-	else
-	{
-		output("You must be onboard your ship in order to install the Egg Trainer.");
-	}
+	
+	showName("EGG\nTRAINER");
+	output("You must be onboard your ship in order to install the Egg Trainer.");
+	
+	return false;
+}
+public function eggTrainerUninstallation():void
+{
+	clearOutput();
+	showBust("EGG_TRAINER");
+	showName("\nUNINSTALLING...");
+	
+	output("You take some time to uninstall the dedicated egg-implanting device.");
+	output("\n\n<b>You no longer have the TamaniCorp Egg Trainer installed!</b>");
+	
+	processTime(8);
+	flags["EGG_TRAINER_INSTALLED"] = undefined;
+	
+	//clearMenu();
+	//addButton(0, "Next", mainGameMenu);
+	output("\n\n");
+	quickLoot(new EggTrainer());
 }
 
 //Approach the Box
@@ -133,6 +152,10 @@ public function eggTrainerMenu():void
 			addButton(9, "Rem. OL Egg", eggTrainerOvalastingRemovalMenu, undefined, "Remove Ovalasting Egg", ("Get " + (ovas == 1 ? "the Ovalasting Egg" : "one of the Ovalasting Eggs") + " out of you."));
 		}
 	}
+	
+	if(pc.hasPregnancyOfType("EggTrainerFauxPreg") || pc.hasPregnancyOfType("OvalastingEggPregnancy")) addDisabledButton(13, "Uninstall", "Uninstall Device", "It might not be a good idea to uninstall the device while still implanted with eggs.");
+	else addButton(13, "Uninstall", eggTrainerUninstallation, undefined, "Uninstall Device", "Unplug the machine and put it in your inventory.");
+	
 	addButton(14,"Leave",leaveEggMachine);
 }
 

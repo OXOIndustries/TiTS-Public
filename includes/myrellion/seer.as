@@ -135,7 +135,8 @@ public function setupShopSeer():void
 	//9999 - THESE CAN BE ADDED TO HER INVENTORY ONCE THEY’RE IMPLEMENTED
 	//shopkeep.inventory.push(new Capraphorm());
 	//shopkeep.inventory.push(new Illumorphene());
-	//shopkeep.inventory.push(new WiffOWis());
+	
+	if(flags["SLEEP_FAPNEA_INSTALLED"] == undefined) shopkeep.inventory.push(new SleepFapnea());
 }
 
 

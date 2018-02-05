@@ -230,6 +230,8 @@ public function buyFromLuca():void
 	chars["LUCA"].inventory.push(new FizzyFix());
 	chars["LUCA"].inventory.push(new SaltyJawBreaker());
 	
+	if(flags["SLEEP_FAPNEA_INSTALLED"] == undefined) chars["LUCA"].inventory.push(new SleepFapnea());
+	
 	shopkeep = chars["LUCA"];
 	//[Shop Menu Here]
 	buyItem();

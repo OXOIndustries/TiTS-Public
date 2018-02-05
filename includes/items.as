@@ -1831,8 +1831,7 @@ public function shipStorageMenuRoot():void
 	if (flags["DONG_DESIGNER_INSTALLED"] == 1)
 	{
 		output("\n\nNearby, the TamaniCorp Dong Designer hums with life.");
-		addButton(btnSlot,"D.Designer",useInstalledDickBox,undefined,"Dong Designer","Use the TamaniCorp Hora Series Dong Designer you found on Tarkus.");
-		btnSlot++;
+		addButton(btnSlot++,"D.Designer",useInstalledDickBox,undefined,"Dong Designer","Use the TamaniCorp Hora Series Dong Designer you found on Tarkus.");
 	}
 	if(flags["EGG_TRAINER_INSTALLED"] == 1) 
 	{
@@ -1841,9 +1840,14 @@ public function shipStorageMenuRoot():void
 		if(pc.hasPregnancyOfType("EggTrainerCarryTraining")) output(" You run a hand across your swollen belly, vaguely wishing you could squat the current load out... only to get another mind-melting orgasm from the next batch going in!");
 		//if PC has a faux-preg egg: 
 		else if(pc.hasPregnancyOfType("EggTrainerFauxPreg")) output(" You run a hand across your [pc.belly]. You could get your Faux Preg Egg out at any time with the device, if you wanted to.");
-		addButton(btnSlot,"EggTrainer",repeatEggTrainerApproach,undefined,"Egg Trainer","Put your Egg Trainer to use.");
-		btnSlot++;
+		addButton(btnSlot++,"EggTrainer",repeatEggTrainerApproach,undefined,"Egg Trainer","Put your Egg Trainer to use.");
 	}
+	if(flags["SLEEP_FAPNEA_INSTALLED"] == 1) 
+	{
+		output("\n\nNext to your bed is the Sleep Fapnea device, where you can modify your dreams for when you sleep.");
+		addButton(btnSlot++, "SleepFap.", sleepFapneaApproach, undefined, "Sleep Fapnea Device", "Change your sleep settings.");
+	}
+	
 	addButton(14, "Back", mainGameMenu);
 }
 

@@ -7,6 +7,7 @@ package classes.Items.Toys
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Interfaces.*;
 	import classes.GameData.CodexManager;
 	
 	public class EggTrainer extends ItemSlotClass
@@ -36,18 +37,9 @@ package classes.Items.Toys
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
-			this.attackVerb = "";
-			
 			//Information
 			this.basePrice = 7500;
-			this.attack = 0;
-			this.defense = 0;
-			this.shieldDefense = 0;
-			this.shields = 0;
-			this.sexiness = 0;
-			this.critBonus = 0;
-			this.evasion = 0;
-			this.fortification = 0;
+			
 			this.addFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT);
 			
 			this.version = _latestVersion;
@@ -57,14 +49,14 @@ package classes.Items.Toys
 		{
 			if (target is PlayerCharacter) 
 			{
-				kGAMECLASS.eggTrainerInstallation();
+				return kGAMECLASS.eggTrainerInstallation();
 			}
 			else
 			{
-				kGAMECLASS.clearOutput();
-				kGAMECLASS.output(target.capitalA + target.short + " cannot use the Egg Trainer.");
+				clearOutput();
+				output(target.capitalA + target.short + " cannot use the Egg Trainer.");
 			}
-			return true;
+			return false;
 		}
 	}
 }

@@ -6862,7 +6862,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Sexploration: The Sex Toys
-		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["SYRI_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || flags["WULFE_PURCHASED"] != undefined || flags["SUKMASTRED"] != undefined || flags["BUBBLE_BUDDIED"] != undefined || flags["EGG_TRAINER_INSTALLED"] != undefined || pc.hasItemByClass(EggTrainer))
+		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["SYRI_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || flags["WULFE_PURCHASED"] != undefined || flags["SUKMASTRED"] != undefined || flags["BUBBLE_BUDDIED"] != undefined || flags["EGG_TRAINER_INSTALLED"] != undefined || pc.hasItemByClass(EggTrainer) || flags["SLEEP_FAPNEA_INSTALLED"] != undefined || pc.hasItemByClass(SleepFapnea))
 		{
 			output2("\n<b><u>Sex Toys</u></b>");
 			// BionaHoles
@@ -6873,6 +6873,30 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["GRAVCUFFS_USES"] != undefined) output2("\n<b>* Grav-Cuffs, Times Used:</b> " + flags["GRAVCUFFS_USES"]);
 			// Hover Hole
 			if(flags["HOVERHOLE_USES"] != undefined) output2("\n<b>* Hovering Pocket-Pussy, Times Used:</b> " + flags["HOVERHOLE_USES"]);
+			// Sleep Fapnea Device
+			if(flags["SLEEP_FAPNEA_INSTALLED"] != undefined || pc.hasItemByClass(SleepFapnea))
+			{
+				output2("\n<b>* JoyCo, Sleep Fapnea Machine:</b>");
+				if(flags["SLEEP_FAPNEA_INSTALLED"] != undefined) output2(" Installed");
+				else output2(" Acquired");
+				if(flags["SLEEP_FAPNEA_ACTIVE"] != undefined)
+				{
+					output2(", Active");
+					output2("\n<b>* JoyCo, Sleep Fapnea Machine, Mode:</b>");
+					switch(flags["SLEEP_FAPNEA_ACTIVE"])
+					{
+						case 0: output2(" Chaste Mode"); break;
+						case 1:
+							output2(" Free Dreaming");
+							if(flags["SLEEP_FAPNEA_REPEAT"] != undefined) output2(", Repeat On");
+							break;
+						case 2:
+							output2(" Scripted Dreaming, Repeat On");
+							if(pc.hasStatusEffect("Sleep Fapnea Dream")) output2(", “" + sleepFapneaDreamTitle(pc.statusEffectv1("Sleep Fapnea Dream")) + "”");
+							break;
+					}
+				}
+			}
 			// Siegwulfe
 			if(flags["WULFE_PURCHASED"] != undefined)
 			{

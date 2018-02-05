@@ -1210,7 +1210,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 	if(passiveTimeEffects(minPass)) return;
 	
 	// Dream events
-	var dreamed:Boolean = dreamChances();
+	var dreamed:Boolean = dreamChances(inShip);
 	
 	// Between sleep events
 	if(outputs)
