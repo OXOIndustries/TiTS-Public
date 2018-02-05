@@ -4,7 +4,7 @@
 //Futangels come down, informing you that you are dirty and need to be cleansed, they then proceed to lift their habits, revealing chiseled bodies and big, fat, equine members. Bukkake culminating in massive, oral cumflation.
 //So futa muscle angel with a horsecock...
 
-public function dreamChances():Boolean
+public function dreamChances(inShip:Boolean = false):Boolean
 {
 	if (flags["ANNO_SLEEPWITH_DOMORNING"] == 1) return false;
 	if (flags["BESS_SLEEPWITH_DOMORNING"] == 1) return false;
@@ -24,8 +24,31 @@ public function dreamChances():Boolean
 			dreamed = true;
 		}
 	}
+	else if(inShip && flags["SLEEP_FAPNEA_ACTIVE"] != undefined)
+	{
+		if(pc.hasStatusEffect("Sleep Fapnea Dream"))
+		{
+			eventQueue.push(sleepFapneaDreamGo);
+			dreamed = true;
+		}
+		else if(flags["SLEEP_FAPNEA_REPEAT"] != undefined && flags["SLEEP_FAPNEA_DREAMCATCHER"] != undefined)
+		{
+			eventQueue.push(flags["SLEEP_FAPNEA_DREAMCATCHER"]);
+			dreamed = true;
+		}
+	}
+	
 	//If you havent dreamed in 20 days, and didnt get a special dream
-	if(!dreamed && days >= flags["DREAM_CD"] + 20 && rand(4) == 0)
+	var bDream:Boolean = (days >= flags["DREAM_CD"] + 20 && rand(4) == 0);
+	if(inShip && flags["SLEEP_FAPNEA_ACTIVE"] != undefined)
+	{
+		// Chaste mode
+		if(flags["SLEEP_FAPNEA_ACTIVE"] == 0) bDream = false;
+		// Dream mode
+		else bDream = true;
+	}
+	
+	if(!dreamed && bDream)
 	{
 		if(MailManager.isEntryViewed("lets_fap_unlock"))
 		{
@@ -39,7 +62,7 @@ public function dreamChances():Boolean
 			dreams.push(venusDreamyButtStart);
 		}
 		// On board ship-related dreams
-		if(currentLocation == "SHIP INTERIOR")
+		if(inShip)
 		{
 			if(annoIsCrew() && flags["CREWMEMBER_SLEEP_WITH"] == "ANNO" && pc.hasCock())
 			{
@@ -56,7 +79,12 @@ public function dreamChances():Boolean
 	}
 	if(dreams.length > 0) 
 	{
-		if(!dreamed) eventQueue.push(dreams[rand(dreams.length)]);
+		if(!dreamed)
+		{
+			var dreamFunc:Function = dreams[rand(dreams.length)];
+			if(inShip && flags["SLEEP_FAPNEA_ACTIVE"] != undefined) flags["SLEEP_FAPNEA_DREAMCATCHER"] = dreamFunc;
+			eventQueue.push(dreamFunc);
+		}
 		dreamed = true;
 	}
 	if(dreamed) flags["DREAM_CD"] = days;
@@ -288,8 +316,6 @@ public function shotgunWeddingDream2():void
 public function shotgunWeddingDream3(cockHolding:Creature):void
 {
 	clearOutput();
-	showAnno();
-	author("Night Trap");
 	
 	var changed:Boolean = false;
 	for(var x:int = 0; x < pc.totalCocks(); x++)
@@ -312,7 +338,26 @@ public function shotgunWeddingDream3(cockHolding:Creature):void
 			pc.cocks[x].cockFlags.push(cockHolding.cocks[x].cockFlags[y]);
 		}
 	}
+	
+	if(flags["CREWMEMBER_SLEEP_WITH"] != "ANNO")
+	{
+		showBust("");
+		showName("\nWAKING...");
+		
+		output("You wake with a start to the loud sound of your codex’s alarm beeps, paired with the humming of your ship against the ambient silence. After a moment, you take a look at your surroundings. You are in your bed, covered in [pc.cumVisc] [pc.cumNoun].");
+		output("\n\nOh, it was just a dream...");
+		output("\n\nDisappointed, you rub away the mess of [pc.cum] from your [pc.cockHead] and wipe the sleep from your eyes.");
+		if(flags["CREWMEMBER_SLEEP_WITH"] == undefined) output(" Now if only Anno " + (flags["ANNOxSYRI_WINCEST"] != undefined ? "and Syri were" : "was") + " here to wake up with you...");
+		
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		
+		return;
+	}
 
+	showAnno();
+	author("Night Trap");
+	
 	output("<i>“[pc.name]. [pc.name]! Damn boss, what kind of dream are you having?!?”</i> You wake with a start to Anno shaking you. After a moment her words sink in, and you look at your surroundings. You are in your bed, covered in [pc.cumVisc] [pc.cumNoun], with Anno lying next to you, her tail, lower back, and enchanting butt plastered in your [pc.cumVisc] [pc.cumNoun] as well. Your bitch - no, your lover - breaks her frown and laughs softly. <i>“You got yourself, the bed, and me covered in your [pc.cum]. As much as I may love the stuff, I also love being warned when this sort of thing is going to happen.”</i>");
 	output("\n\nYou wipe the sleep from your eyes before apologizing to Anno. You roll out of bed and start stripping the sheets with her help.");
 	output("\n\n<i>“So who was it boss? Who or what did you bust your nut all over in your dream?”</i> ");
@@ -451,6 +496,24 @@ public function reahaDreamPart2():void
 public function reahaDreamPart3():void
 {
 	clearOutput();
+	
+	if(flags["CREWMEMBER_SLEEP_WITH"] != "REAHA")
+	{
+		showBust("");
+		showName("\nWAKING...");
+		
+		output("You abruptly wake up, eyes opening wide in pure shock. <i>“Reaha was talking? How is that possible? She’s just a cow!”</i> Thoughts like these keep swirling inside your head until it dawns upon you that the whole farmer life setting was just a dream, and that Reaha, is as much a talking person as you are.");
+		output("\n\nJust a dream... you remind yourself.");
+		output("\n\nDisappointed, you rub away the mess of [pc.cum] from your [pc.cockHead] and wipe the sleep from your eyes.");
+		if(flags["CREWMEMBER_SLEEP_WITH"] == undefined) output(" Now if only Reaha was next to you...");
+		
+		pc.lust(5);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		
+		return;
+	}
+	
 	reahaHeader(true);
 	author("Shadefalcon");
 	//50 % chance of occurring instead of sleeping Reaha:
@@ -940,7 +1003,7 @@ public function annoAndKaedesGinormousTiddies():void
 	output("<i>“Ooooh yeah...”</i> you moan, letting your eyes open as a tingle of pleasure rushes through your body, <i>“That’s the stuff.”</i>");
 
 	output("\n\nA groan of bliss escapes your lips as your [pc.eyes] meet Kaede’s blue puppy-dog eyes, your [pc.cock] held firmly amidst her big, soft titties while the puppy sits happily between your legs. ");
-	if(pc.cocks[0].cLength() >= 12) output("Your [pc.cockHead] is just barely able to poke out beyond Kaede’s cleavage and right into her mouth, where it’s lavished with oral affections.");
+	if(pc.cocks[0].cLength() <= 12) output("Your [pc.cockHead] is just barely able to poke out beyond Kaede’s cleavage and right into her mouth, where it’s lavished with oral affections.");
 	else output("Your [pc.cockNoun] is well sheathed in Kaede’s cleavage, though a fair amount remain remains uncovered and unloved. Luckily, those excess inches are quickly gobbled up by the eager-to-please halfbreed, taken into her warm, wet embrace of tongue.");
 	output(" Void, she’s gotten really good at these titjobs since she took those breast mods she mentioned, not to mention the hefty pair of G-cups suit her well. Speaking of, Anno is positioned just behind her, guiding her girlfriend’s head onto your cock while sporting a rather similar bust: nice and big and soft and... milky.");
 
@@ -968,8 +1031,26 @@ public function annoAndKaedesGinormousTiddies():void
 public function annoKaedeTiddyDrama():void
 {
 	clearOutput();
+	
+	if(flags["CREWMEMBER_SLEEP_WITH"] != "ANNO")
+	{
+		showBust("");
+		showName("\nWAKING...");
+		
+		output("You suck in a deep breath as you’re suddenly ripped from your sleep, and your pleasant dream subsequently, only to hear your name suddenly fade into the sound of your codex’s alarm beeps, paired with the humming of your ship against the ambient silence.");
+		output("\n\nOh, it was just a dream...");
+		output("\n\nDisappointed, you rub away the mess of [pc.cum] from your [pc.cockHead] and proceed to wake up.");
+		if(flags["CREWMEMBER_SLEEP_WITH"] == undefined) output(" Now if only Anno was here besides you...");
+		
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		
+		return;
+	}
+	
 	showAnno();
 	author("HugsAlright");
+	
 	output("You suck in a deep breath as you’re suddenly ripped from your sleep, and your pleasant dream subsequently, only to hear your name still being yelled... and something warm and stiff still between your lips.");
 	output("\n\nLooking up, you see Anno, very out of breath, and her face red with lust, halfheartedly trying to get your attention with each call of <i>“[pc.name]...”</i>");
 	output("\n\nYou stop and realize the girl’s nipple is still in your mouth, and you quickly relinquish it as its snowy-haired owner turns to look at you, the sudden absence of your tongue on her teat getting her attention.");

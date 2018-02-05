@@ -189,11 +189,11 @@ public function tuuvaMenu():void
 	addButton(1,"Savicite",giveTuuvaSavicite,undefined,"Savicite","Turn in your collected Savicite");
 	addButton(2,"Talk",tuuvaTalk,undefined,"Talk","Get to know the small-statured smith.");
 	if(silly) addButton(3,"Appearance",tuuvaAppearance,undefined,"Appearance","Creepily stare at her for an awkward amount of time so you can meticulously list her physical features.");
-	else addButton(3,"Appearance",tuuvaAppearance,undefined,"Appearance","Looks over Tuuva's appearance.");
+	else addButton(3,"Appearance",tuuvaAppearance,undefined,"Appearance","Looks over Tuuva’s appearance.");
 	if(tuuvaAffection() >= 25 && flags["TUUVA_25AFF"] != undefined)
 	{
 		if(pc.lust() >= 33) addButton(4,"Sex",tuuvaSexTimes,undefined,"Sex","<i>Peruse</i> her <i>“wares”</i>.");
-		else addDisabledButton(4,"Sex","Sex","You aren't turned on enough for this.")
+		else addDisabledButton(4,"Sex","Sex","You aren’t turned on enough for this.")
 	}
 	else addDisabledButton(4,"Sex","Sex","Doesn’t seem like she’s the kind to bang complete strangers, at least not if they’re an outsider.");
 	addButton(5,"Special",specialTalkOptions,undefined,"Special","Look over any potential special scenes you can partake in with her.");
@@ -228,9 +228,9 @@ public function tuuvaTalkMenu():void
 	//[Scavenging] Ask about her days scavenging.
 	if(flags["TUUVA_SELF_TALK"] != undefined) addButton(2,"Scavenging",tuuvaScavenging,undefined,"Scavenging","Ask about her days scavenging.");
 	else addDisabledButton(2,"Scavenging","Scavenging","You should get to know a little more about her before getting into specifics.");
-	//[Dick] Ask about her extra equipment.  //Requires 25 Affection event and Scavenging talk done. Hidden until requirements are met.
+	//[Dick] Ask about her extra equipment. //Requires 25 Affection event and Scavenging talk done. Hidden until requirements are met.
 	if(flags["TUUVA_SCAVENGING_TALK"] != undefined && tuuvaAffection() >= 25) addButton(3,"Dick",tuuvaScavenging,undefined,"Dick","Ask about her days scavenging.");
-	else addDisabledButton(3,"Locked","Locked","You don't know her well enough for this. Requires 25 Tuuva affection.");
+	else addDisabledButton(3,"Locked","Locked","You don’t know her well enough for this. Requires 25 Tuuva affection.");
 	//[Bigger.D] She’s looking for some quick and simple dick growth, ey? You might have the answer for that. //Requires 75 Affection event done and Dick talk done. Hidden until requirements are met. Requires a Synth Sheath.
 	if(flags["TUUVA_DICK_TALK"] != undefined && tuuvaAffection() >= 75) 
 	{
@@ -254,7 +254,7 @@ public function tuuvaShopMenu(choice:String = ""):void
 		//[Credits]
 		addButton(0,"Credits",tuuvaShopMenu,"credits","Credits","Shop using credits.");
 		//[Savicite]
-		addButton(1,"Savicite",tuuvaShopMenu,"savicite","Savicite","Shop using the value of any Savicite you've given her as a bargaining tool.");
+		addButton(1,"Savicite",tuuvaShopMenu,"savicite","Savicite","Shop using the value of any Savicite you’ve given her as a bargaining tool.");
 	}
 	else if(choice == "credits")
 	{
@@ -319,13 +319,13 @@ public function giveTuuvaSavicite():void
 	clearMenu();
 	//Options to give savicite here.
 	if (pc.hasItemByClass(Savicite)) addButton(0,"Give 1",actuallyGiveSavicite,1,"Give 1","Give Tuuva one piece of Savicite.");
-	else addDisabledButton(0,"Give 1","Give 1","You don't have that much Savicite to give!");
+	else addDisabledButton(0,"Give 1","Give 1","You don’t have that much Savicite to give!");
 	if (pc.hasItemByClass(Savicite,2)) addButton(1,"Give 2",actuallyGiveSavicite,2,"Give 2","Give Tuuva two pieces of Savicite.");
-	else addDisabledButton(1,"Give 2","Give 2","You don't have that much Savicite to give!");
+	else addDisabledButton(1,"Give 2","Give 2","You don’t have that much Savicite to give!");
 	if (pc.hasItemByClass(Savicite,3)) addButton(2,"Give 3",actuallyGiveSavicite,3,"Give 3","Give Tuuva three pieces of Savicite.");
-	else addDisabledButton(2,"Give 3","Give 3","You don't have that much Savicite to give!");
+	else addDisabledButton(2,"Give 3","Give 3","You don’t have that much Savicite to give!");
 	if (pc.hasItemByClass(Savicite,2)) addButton(3,"Give 5",actuallyGiveSavicite,5,"Give 5","Give Tuuva five pieces of Savicite.");
-	else addDisabledButton(3,"Give 5","Give 5","You don't have that much Savicite to give!");
+	else addDisabledButton(3,"Give 5","Give 5","You don’t have that much Savicite to give!");
 
 	if (pc.hasItemByClass(Savicite)) addButton(4,"Give All",actuallyGiveSavicite,-1,"Give All","Give Tuuva all your Savicite.");
 	else addDisabledButton(4,"Give All","Give All","You need at least some Savicite to do this!");
@@ -342,7 +342,7 @@ public function actuallyGiveSavicite(arg:Number = 1):void
 	clearOutput();
 	showTuuva();
 	if(arg == 1) output("You hand over " + num2Text(arg) + " piece of Savicite. Tuuva smiles happily.");
-	else output("You hand over " + num2Text(arg) + " pieces of Savicite. With each piece, Tuuva's smile grows wider.");
+	else output("You hand over " + num2Text(arg) + " pieces of Savicite. With each piece, Tuuva’s smile grows wider.");
 	if(!korgiTranslate()) output(" <i>“That good stuff. Worth eh... " + arg*10000 + " of core-credits to Tuuva.”</i> She giggles. <i>“Dumb aliens always thinking in credits. Shine-rock better currency. You smart to use.”</i>");
 	else output(" <i>“That’s good stuff. Worth about... " + arg*10000 + " of your core-credits to me.”</i> She giggles. <i>“Aliens are so goofy, working with that made-up currency. Dealing directly is such a better way to go about it, and it seems you agree.”</i>");
 	clearMenu();
@@ -622,7 +622,7 @@ public function biggerDForTuuva():void
 	else output("Come back in a while, I want to have some alone time with this new buddy.");
 	output("”</i> With that, she pops the pill and rushes back to her room, the sounds of self-pleasure welling up almost immediately.");
 
-	tuuva.cocks[0].cType =  GLOBAL.TYPE_EQUINE;
+	tuuva.cocks[0].cType = GLOBAL.TYPE_EQUINE;
 	tuuva.cocks[0].cockColor = "black";
 	tuuva.cocks[0].delFlag(GLOBAL.FLAG_TAPERED);
 	tuuva.cocks[0].addFlag(GLOBAL.FLAG_BLUNT);
@@ -678,7 +678,7 @@ public function tuuvaAppearance():void
 public function specialTalkOptions():void
 {
 	if(pc.hasKeyItem("Frostwyrm Scales")) addButton(0,"Scales",giveTuuvaFrostwormScales,undefined,"Scales","You have a pile of frostwyrm scales, and she seems like she’d know what to do with them.");
-	else addDisabledButton(0,"Scales","Scales","You don't have any scales to give her.");
+	else addDisabledButton(0,"Scales","Scales","You don’t have any scales to give her.");
 
 }
 
@@ -704,7 +704,7 @@ public function tuuvaSexMenu():void
 	clearMenu();
 	addButton(1,"Get Fucked",getFuckedByTuuva,undefined,"Get Fucked","Help her bury her bone.");
 	if(pc.hasCock() && pc.cockThatFits(tuuva.vaginalCapacity(0)) >= 0) addButton(0,"Fuck Her",penisRouter,[fuckTuuva,tuuva.vaginalCapacity(0),false,0],"Fuck Her","Use your boy bits.");
-	else if(pc.hasCock()) addDisabledButton(0,"Fuck Her","Fuck Her","You're too big to fit inside her.");
+	else if(pc.hasCock()) addDisabledButton(0,"Fuck Her","Fuck Her","You’re too big to fit inside her.");
 	else addDisabledButton(0,"Fuck Her","Fuck Her","This requires a penis.");
 	addButton(14,"Back",approachTuuva);
 }
@@ -1309,7 +1309,7 @@ public function actuallyGetFuckedByTuuva(x:int):void
 		if(capacity <= tuuva.cockVolume(0) * 1.5) output("She struggles to fit the whole thing in you, even with all the lube, but she’s not giving up! She gives you a series of shallow thrusts, embedding herself in you, a fraction of an inch at a time. After a minute, she finally achieves her goal and bottoms out inside you.");
 		else 
 		{
-			output("She wiggles a little to get the fat, flat head to slip inside. Capacious as you are, a horse-cock is still a horse-cock. She gives a series of shallow thrusts, embedding herself deeper inside you. Now that she's gotten the tip inside, it's a simple matter of spreading the depths of your stretchy ");
+			output("She wiggles a little to get the fat, flat head to slip inside. Capacious as you are, a horse-cock is still a horse-cock. She gives a series of shallow thrusts, embedding herself deeper inside you. Now that she’s gotten the tip inside, it’s a simple matter of spreading the depths of your stretchy ");
 			if(x >= 0) output("quim");
 			else output("sphincter");
 			output(" around her bestial dick, marvelling at the ease of the insertion. After a minute, she finally achieves her goal and bottomss out inside you.");
