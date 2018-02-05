@@ -6882,16 +6882,15 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["SLEEP_FAPNEA_ACTIVE"] != undefined)
 				{
 					output2(", Active");
-					output2("\n<b>* JoyCo, Sleep Fapnea Machine, Mode:</b>");
 					switch(flags["SLEEP_FAPNEA_ACTIVE"])
 					{
-						case 0: output2(" Chaste Mode"); break;
+						case 0: output2(", Chaste Mode"); break;
 						case 1:
-							output2(" Free Dreaming");
+							output2(", Free Dreaming");
 							if(flags["SLEEP_FAPNEA_REPEAT"] != undefined) output2(", Repeat On");
 							break;
 						case 2:
-							output2(" Scripted Dreaming, Repeat On");
+							output2(", Scripted Dreaming, Repeat On");
 							if(pc.hasStatusEffect("Sleep Fapnea Dream")) output2(", “" + sleepFapneaDreamTitle(pc.statusEffectv1("Sleep Fapnea Dream")) + "”");
 							break;
 					}

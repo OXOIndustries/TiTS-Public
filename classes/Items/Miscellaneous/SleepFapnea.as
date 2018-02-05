@@ -22,12 +22,12 @@
 			type = GLOBAL.GADGET;
 			
 			shortName = "SleepFap.";
-			longName = "Sleep Fapnea device";
+			longName = "Sleep Fapnea machine";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
 			description = "a small, rectangular device labeled “Sleep Fapnea Machine”";
-			tooltip = "This device promises to ensure vivid and highly sexual dreams for 95% of users. Originally developed by JoyCo. for the treatment of chronic nightmares, the focus and name of the product was changed when early testing found that it nearly always caused wet dreams. “Dream modules” (sold separately) allow users to experience specific dreams handcrafted by acclaimed erotica writers.";
+			tooltip = "This device promises to ensure vivid and highly sexual dreams for 95% of users. Originally developed by JoyCo for the treatment of chronic nightmares, the focus and name of the product was changed when early testing found that it nearly always caused wet dreams. “Dream modules” (sold separately) allow users to experience specific dreams handcrafted by acclaimed erotica writers.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
