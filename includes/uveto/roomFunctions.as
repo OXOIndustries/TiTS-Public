@@ -43,7 +43,7 @@ public function TundraEncounterBonus():Boolean
 	}
 	//Christmas event jumps in front of everything else!
 	if(milodanBreedingProc()) return true;
-	
+	if (tuuvaExpeditionRescueChance()) return true;
 	if (tryUvetoWeatherEvent(flags["TUNDRA_STEP"])) return true;
 	if (tryEncounterSavicite(flags["TUNDRA_STEP"])) return true;
 	return false;
@@ -99,6 +99,7 @@ public function GlacialRiftEncounterBonus():Boolean
 	//Christmas event jumps in front of everything else!
 	if(milodanBreedingProc()) return true;
 
+	if (tuuvaExpeditionRescueChance()) return true;
 	if (tryUvetoWeatherEvent(flags["TUNDRA_STEP"])) return true;
 	if (tryEncounterSavicite(flags["TUNDRA_STEP"])) return true;
 	return false;

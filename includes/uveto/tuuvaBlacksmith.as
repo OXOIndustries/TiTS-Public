@@ -31,12 +31,6 @@
 //Sexiness = 8
 //Evasion = 10
 
-//The Frozen Spire
-//Given as reward for 75 Affection event
-//Description: A large spike of ice attached to a long, steel rod, and kept frozen with inverted heat belts.
-//Tooltip: A spear with a tip made from pure ice. The large spike sits on a shaky-looking piece of tech that seems to be made from scavenged heat belt components, their function inverted to keep the tip frozen in all temperatures.
-//Damage = 16 Kinetic, 12 Freezing
-//Accuracy = 10
 */
 
 //Affection
@@ -47,17 +41,22 @@ public function tuuvaAffection(change:Number = 0):Number
 	if(change != 0)
 	{
 		flags["TUUVA_AFFECTION"] += change;
+		if(flags["TUUVA_AFFECTION"] < 0) flags["TUUVA_AFFECTION"] = 0;
 	}
 	var bonus:Number = 0;
 	if(flags["TUUVA_SELF_TALK"] != undefined) bonus += 5;
 	if(flags["TUUVA_SMITHING_TALK"] != undefined) bonus += 5;
 	if(flags["TUUVA_SCAVENGING_TALK"] != undefined) bonus += 5;
 	if(flags["TUUVA_DICK_TALK"] != undefined) bonus += 5;
+	//75 Affection cap if "just friends".
+	if(flags["TUUVA_AFFECTION"] + bonus > 75 && flags["TUUVA_75AFF"] == -1) return 75;
+	//100 Affection cap!
+	if(flags["TUUVA_AFFECTION"] + bonus > 100) return 100;
 	return flags["TUUVA_AFFECTION"] + bonus;
 }
 public function tuuvaLover():Boolean
 {
-	return false;//9999
+	return (flags["TUUVA_75AFF"] == 1);
 }
 public function tuuvaCredits(arg:Number = 0):Number
 {
@@ -77,22 +76,103 @@ public function showTuuva(nude:Boolean = false):void
 	showBust("TUUVA"+nudeS);
 }
 
+public function tuuvaExpeditionRescueChance():Boolean
+{
+	if(pc.hasKeyItem("Korgonne Medical Kit"))
+	{
+		//-20% chance to start, increases 1% for every chance. You'll get her eventually!
+		var bonus:Number = flags["TUUVA_SAVED"] * -1;
+		if(rand(100) <= -30 + bonus) 
+		{
+			tuuva50AffFindEvent();
+			return true;
+		}
+		else flags["TUUVA_SAVED"] += -1;
+	}
+	return false;
+}
+
 //Earthshapers
 public function tuuvaBlacksmithShopBonus():Boolean
 {
 	output("The inside of the blacksmith’s shop is the definition of rustic. The walls are made of worn, uneven stone, with only small, bone sconces bearing dim torches to break it up. The floors are more polished, but are still notably worn and gritty, with only a few scattered pelts to keep walking on it from being painful. The store is separated into at least two chambers; the one you’re in, which is largely empty, sans a set of training dummies and a few sets of weapons and armor put on display, and what you can only assume is the forge, separated from the front room by a solid wall with a small door and a serving window.");
 	//Shop Options
 	//Affection Events
+	//======================
 	//25: First Fuckings
 	//Triggers when entering the shop after reaching 25 Affection
 	//Replace text after shop description in Earthshapers section
 	if(tuuvaAffection() >= 25 && flags["TUUVA_25AFF"] == undefined)
 	{
 		showName("\nEMPTY?");
-		output("Tuuva doesn’t seem to be in at the moment. Strangely, the door into the forge area is slightly open, and you can hear something stirring in the back. Maybe you should go investigate?");
+		output("\n\n<b>Tuuva doesn’t seem to be in at the moment.</b> Strangely, the door into the forge area is slightly open, and you can hear something stirring in the back. Maybe you should go investigate?");
 		//[Backroom] Go into the forge area to investigate the strange noises.
 		addButton(0,"Backroom",tuuvaBackroomEvent,undefined,"Backroom","Go into the forge area to investigate the strange noises.");
+		return false;
 	}
+	//50: Expedition & Refinding!
+	//============================
+	//Start expedition!
+	if(flags["TUUVA_50AFF"] == undefined && tuuvaAffection() >= 50)
+	{
+		tuuva50AffectionExpedition();
+		return true;
+	}
+	//Tuuva expedition faaaail notice!
+	if(flags["TUUVA_50AFF"] != undefined && flags["TUUVA_50AFF"] + 24*60 < GetGameTimestamp() && flags["TUUVA_SAVED"] == undefined)
+	{
+		showBust("KORGONNE_MALE");
+		showName("OH\nNO!");
+		output("\n\nYou enter the shop, expecting to see Tuuva, but instead it’s still cold and empty. You yell out to see if she’s just sleeping, but get no answer. You start to leave, hoping that it’s just a delay, rather than the worst, only to be met by one of the men from the expedition party.");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Y-you Tuuva friend, yes?");
+		else output("Y-you’re Tuuva’s friend from the other day, right?");
+		output("”</i> You nod, a sense of worry bubbling up in your gut, one that’s justified by his next words. <i>“");
+		if(!korgiTranslate()) output("S-she gone, big snow slide! Tuuva save me, but she fall in big hole. We make look parties, but none find yet. Please help!");
+		else output("W-we lost her. I few of us got caught in an avalanche. Tuuva managed to save me, and the rest got out alright, but she fell down into a hole that was uncovered by the shaking. We’ve sent out search parties, but none of them have found her yet. Please, help find her, you’re her friend after all!");
+		output("”</i>");
+
+		output("\n\nWell great, turns out you’re clairvoyant, but only about the worst shit! Looks like you’re going to need to track Tuuva down. You ask for more information about where she could be, but all he tells you that she probably fell into an underground cave system, and that those can span a few miles. He <i>does</i> give you a medical kit for when you do find her, so that’s something at least.");
+
+		//Get Emergency Medical Kit
+		//Next part triggers randomly while wandering in the Snowbank, Lakeshore and Ice Ridge.
+		pc.createKeyItem("Korgonne Medical Kit");
+		output("\n\n(<b>Key Item Gained:</b> Korgonne Medical Kit!)");
+		flags["TUUVA_SAVED"] = -1;
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return true;
+	}
+	//Shop empty during Tuuva expedition:
+	if(flags["TUUVA_SAVED"] <= -1 || (flags["TUUVA_50AFF"] != undefined && flags["TUUVA_50AFF"] + 24*60 >= GetGameTimestamp())) 
+	{
+		output("\n\n<b>Tuuva is still out on her expedition</b>, and nobody has taken her place. You won’t be able to use the shop until she gets back.");
+		return false;
+	}
+	//50 affection complete!
+	if(flags["TUUVA_SAVED"] == 1)
+	{
+		clearOutput();
+		showTuuva();
+		output("You walk into Earthshapers and are happy to see Tuuva back at the forge, working like she usually does. You stroll up to the counter and lean over, greeting the hard-working little pup. She returns your greeting by rushing up and pulling you into a big hug.");
+		output("\n\n<i>“Thank you, thank you, thank you, thank you! ");
+		if(!korgiTranslate()) output("Tuuva not even know what say");
+		else output("I don’t even know what to say");
+		output(", just... I-I... Thank you...”</i>");
+		output("\n\nYou tell her it was no problem, and that she’s very welcome. She still seems a bit uneasy about something, like there’s something she wants to say but can’t. It’s probably best not to push it, especially after everything she’s been through. She’ll say it when she wants to.");
+		output("\n\n<i>“Did ");
+		if(!korgiTranslate()) output("friend");
+		else output("you");
+		output(" want something");
+		if(!korgiTranslate()) output(", buddy");
+		output("?”</i>");
+		flags["TUUVA_SAVED"] = 2;
+		//shop menu
+		tuuvaMenu();
+		return true;
+	}
+	//Normal Tuuva stuff
+	//==============================
 	//First time meeting :3
 	else if(flags["MET_TUUVA"] == undefined) 
 	{
@@ -196,7 +276,13 @@ public function tuuvaMenu():void
 		else addDisabledButton(4,"Sex","Sex","You aren’t turned on enough for this.")
 	}
 	else addDisabledButton(4,"Sex","Sex","Doesn’t seem like she’s the kind to bang complete strangers, at least not if they’re an outsider.");
-	addButton(5,"Special",specialTalkOptions,undefined,"Special","Look over any potential special scenes you can partake in with her.");
+
+	//Special Talk Options
+	//[Scales] You have a pile of frostwyrm scales, and she seems like she’d know what to do with them.
+	if(tuuvaAffection() >= 75 && flags["TUUVA_75AFF"] == undefined) addButton(5,"Feelings",tuuva75AffectionProc,undefined,"Feelings","She seems really uneasy about something. You should ask her about it.");
+	else if(tuuvaAffection() >= 100 && flags["TUUVA_DATE"] == undefined && tuuvaLover()) addButton(5,"Date",dateTalkOption,undefined,"Date","You’ve gotten pretty close. Maybe it’s time to do something special with her.");
+	else if(pc.hasKeyItem("Frostwyrm Scales")) addButton(5,"Scales",giveTuuvaFrostwormScales,undefined,"Scales","You have a pile of frostwyrm scales, and she seems like she’d know what to do with them.");
+	else addDisabledButton(5,"Special","Special","There aren't any special events you can do with her right now.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -220,6 +306,7 @@ public function tuuvaTalk():void
 public function tuuvaTalkMenu():void
 {
 	clearMenu();
+	output("\n\n" + tuuvaAffection());
 	//[Herself] Start simple, ask about her. //Required for other talk scenes to become available.
 	addButton(0,"Herself",talkToTuuvaAboutHerself,undefined,"Herself","Start simple and ask about her.");
 	//[Smithing] Ask about the shop and what she does.
@@ -229,7 +316,7 @@ public function tuuvaTalkMenu():void
 	if(flags["TUUVA_SELF_TALK"] != undefined) addButton(2,"Scavenging",tuuvaScavenging,undefined,"Scavenging","Ask about her days scavenging.");
 	else addDisabledButton(2,"Scavenging","Scavenging","You should get to know a little more about her before getting into specifics.");
 	//[Dick] Ask about her extra equipment. //Requires 25 Affection event and Scavenging talk done. Hidden until requirements are met.
-	if(flags["TUUVA_SCAVENGING_TALK"] != undefined && tuuvaAffection() >= 25) addButton(3,"Dick",tuuvaScavenging,undefined,"Dick","Ask about her days scavenging.");
+	if(flags["TUUVA_SCAVENGING_TALK"] != undefined && flags["TUUVA_25AFF"] != undefined) addButton(3,"Dick",talkToTuuvaAboutDicks,undefined,"Dick","Ask about her extra equipment");
 	else addDisabledButton(3,"Locked","Locked","You don’t know her well enough for this. Requires 25 Tuuva affection.");
 	//[Bigger.D] She’s looking for some quick and simple dick growth, ey? You might have the answer for that. //Requires 75 Affection event done and Dick talk done. Hidden until requirements are met. Requires a Synth Sheath.
 	if(flags["TUUVA_DICK_TALK"] != undefined && tuuvaAffection() >= 75) 
@@ -265,6 +352,12 @@ public function tuuvaShopMenu(choice:String = ""):void
 		if(silly) shopkeep.keeperBuy += " Masterworks all, you can’t go wrong!";
 		shopkeep.keeperBuy += "”</i>\n";
 		//Show inventory
+		if(flags["GAVE_TUUVA_SCALES"] != undefined && flags["GAVE_TUUVA_SCALES"] + 24*60*7 < GetGameTimestamp())
+		{
+			if(!shopkeep.hasItemByClass(FrostbanePlate)) shopkeep.inventory.push(new FrostbanePlate());
+			if(!shopkeep.hasItemByClass(FrostbaneMail)) shopkeep.inventory.push(new FrostbaneMail());
+			if(!shopkeep.hasItemByClass(FrostbaneBikini)) shopkeep.inventory.push(new FrostbaneBikini());
+		}
 		buyItem();
 	}
 	else
@@ -285,6 +378,21 @@ public function tuuvaShopMenu(choice:String = ""):void
 			setButtonDisabled(1);
 			setButtonDisabled(2);
 		}
+		//Frostwyrm shit!
+		if(flags["GAVE_TUUVA_SCALES"] != undefined && flags["GAVE_TUUVA_SCALES"] + 24*60*7 < GetGameTimestamp())
+		{
+			output("\nFrostbane Plate - 42000 credits.\nFrostbane Mail - 42000 credtis.\nFrostbane Bikini - 40000 credits.");
+			addItemButton(3, new FrostbanePlate(), saviciteBuyFromTuuva,new FrostbanePlate());
+			addItemButton(4, new FrostbaneMail(), saviciteBuyFromTuuva,new FrostbaneMail());
+			addItemButton(5, new FrostbaneBikini(), saviciteBuyFromTuuva,new FrostbaneBikini());
+			if(tuuvaCredits() <= 42000)
+			{
+				setButtonDisabled(3);
+				setButtonDisabled(4);
+				if(tuuvaCredits() <= 40000) setButtonDisabled(5);
+			}
+		}
+
 		//Just disable the bowieeeee
 		if(tuuvaCredits() < 8000) setButtonDisabled(2);
 		addButton(14,"Back",approachTuuva);
@@ -663,23 +771,12 @@ public function tuuvaAppearance():void
 		output("\n\nYou’ve been intimate with her enough to know what she’s packing down there.");
 
 		//No Synth Sheath:
-		if(!pc.hasCock(GLOBAL.TYPE_EQUINE)) output("\n\nShe’s packing an eight inch, black puppy dong, though it can get much larger over time, with a pair of balls about an inch and a half in diameter.");
+		if(!tuuva.hasCock(GLOBAL.TYPE_EQUINE)) output("\n\nShe’s packing an eight inch, black puppy dong, though it can get much larger over time, with a pair of balls about an inch and a half in diameter.");
 		else output("\n\nShe’s packing a sixteen inch, black horse dong, though it can get <i>much</i> larger over time, with a sizeable knot, and a pair of huge horsey balls, about four inches in diameter.");
 		output(" Underneath her maleness is a tubby little, chocolate colored pussy.");
 	}
 	clearMenu();
 	addButton(0,"Next",approachTuuva);
-}
-
-//Special Talk Options
-//[Scales] You have a pile of frostwyrm scales, and she seems like she’d know what to do with them.
-//[Feelings] She seems really uneasy about something. You should ask her about it.
-//[Date] You’ve gotten pretty close. Maybe it’s time to do something special with her.
-public function specialTalkOptions():void
-{
-	if(pc.hasKeyItem("Frostwyrm Scales")) addButton(0,"Scales",giveTuuvaFrostwormScales,undefined,"Scales","You have a pile of frostwyrm scales, and she seems like she’d know what to do with them.");
-	else addDisabledButton(0,"Scales","Scales","You don’t have any scales to give her.");
-
 }
 
 //Sex
@@ -720,8 +817,11 @@ public function giveTuuvaFrostwormScales():void
 	output("\n\nShe gasps when she realizes what they are, and practically vaults over the counter to get a better look. <i>“");
 	if(!korgiTranslate()) 
 	{
-		if(tuuvaAffection() < 25) output("Outsider");
-		else if(tuuvaAffection() < 75) output("Friend");
+		if(!tuuvaLover())
+		{
+			if(tuuvaAffection() < 25) output("Outsider");
+			else if(tuuvaAffection() < 75) output("Friend");
+		}
 		else output("Lover");
 		output(" kill big lizard?");
 	}
@@ -851,219 +951,330 @@ public function tuuva25SexAftermath():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-/*
-output("\n\n50: The Expedition");
-output("\n\n //Triggers when you walk into Earthshapers after you reach 50 Affection.");
-output("\n\n//Requires Scavenger talk to be done");
-
-output("\n\nPart 1");
-output("\n\nYou walk in to the shop and see a bit of a comotion. Several other korgs are gathered in the shop, looking geared up for a serious trek, and carrying mugs of some kind of brew. Tuuva is behind the counter handing equipment over to one of the men, but also seems to be kitted out, herself. She waves you over when she spots you, scooting the man getting equipment out of the way after he grabs what he needs.");
-
-output("\n\nYou walk up and ask exactly what’s going on. <i>“{Scavenge friends short on people, ask Tuuva to come help find big ores. Very danger though, so much equipment need./My old scavenger friends came over and told me that they were low on people for a big expedition, so they asked me come with to help find some big ore deposits. It’s gonna be a dangerous trip, so I made a ton of equipment for all of us.”</i>");
-
-output("\n\nOne of the men slides a drink across the counter, toward Tuuva. She grabs it and chugs it down, causing the group to let out a collective cheer and drink down their own.");
-
-output("\n\n<i>“{Gone for day, back later with loot, bye bye!/We’ll be gone for a day and come back with tons of materials! See ya later!}”</i> She doesn’t give you a chance to argue before she hops over the counter and leaves with the group.");
-
-output("\n\nPart of you wonders if it’s a good idea for her to go out, despite being out of it for so long. You suppose that even if she’s a bit rusty, she does have the rest of the team to help her out.");
-
-output("\n\n... You really hope the fact that you’re thinking this isn’t some kind of foreshadowing.");
-
-output("\n\n//Shop is empty until event finishes. Next event trigger happens when the PC enters the shop after 24 hours.");
-
-output("\n\n//Empty text: Tuuva is still out on her expedition, and nobody has taken her place. You won’t be able to use the shop until she gets back.");
-
-output("\n\nPart 2");
-output("\n\nYou enter the shop, expecting to see Tuuva, but instead it’s still cold and empty. You yell out to see if she’s just sleeping, but get no answer. You start to leave, hoping that it’s just a delay, rather than the worst, only to be met by one of the men from the expedition party.");
-
-output("\n\n<i>“{Y-you Tuuva friend, yes?/Y-you’re Tuuva’s friend from the other day, right?}”</i> You nod, a sense of worry bubbling up in your gut, one that’s justified by his next words. <i>“{S-she gone, big snow slide! Tuuva save me, but she fall in big hole. We make look parties, but none find yet. Please help!/W-we lost her. I few of us got caught in an avalanche. Tuuva managed to save me, and the rest got out alright, but she fell down into a hole that was uncovered by the shaking. We’ve sent out search parties, but none of them have found her yet. Please, help find her, you’re her friend after all!}”</i>");
-
-output("\n\nWell great, turns out you’re clairvoyant, but only about the worst shit! Looks like you’re going to need to track Tuuva down. You ask for more information about where she could be, but all he tells you that she probably fell into an underground cave system, and that those can span a few miles. He <i>does</i> give you a medical kit for when you do find her, so that’s something at least.");
-
-output("\n\n//Get Emergency Medical Kit");
-output("\n\n//Next part triggers randomly while wandering in the Snowbank, Lakeshore and Ice Ridge.");
-
-output("\n\nPart 3");
-output("\n\nAs you’re wandering the wastes of Uveto, you pick up on a faint noise amid the whistling of the bitter wind. It’s very quiet, but you can follow along. It gets louder as you approach, and eventually you start to make it out more. It sounds like... crying? Could it be Tuuva?");
-
-output("\n\nYou call out her name to see if you get a response. The crying sound stops, and you hear a faint call.");
-
-output("\n\n<i>“H-hello?”</i> It’s definitely Tuuva. You follow her voice, calling out for her to help guide you. Eventually you find a small fissure in the ground, and, looking down, you see Tuuva at the bottom. <i>“H-help, p-please...”</i> You yell down that you’re here and that you’re going to help her. Of course, you don’t really know how you’re going to get down the fissure. It’s not deep enough that you’d die if you fell, but you certainly don’t want to go jumping in any big, deep holes, that aren’t attached to a magnificent ass.");
-
-output("\n\nYou don’t <i>want</i> to, but nature has different plans. The ledge you’re standing on gives way, and you fall through before you can react. Lucky you manage to grab onto a ledge midway down, allowing you to make the rest of the fall with much less force. It still hurts when you land, but at least you didn’t break anything.");
-
-output("\n\n<i>“{Friend/Are you} a-alright?”</i> Tuuva asks, her voice very weak. You tell her that you aren’t the one who needs worrying about here. You turn on your Codex light and look over her. She’s beat up pretty bad, even still bleeding in certain spots. You pull out the medical kit that the scavenger gave you and start to work. Lucky her wounds aren’t that complex, and you have your codex to fill in any details you need.");
-
-output("\n\n<i>“{F-friend save Tuuva, why?/W-why did you come save me?}”</i> You say that she’s your friend, of course you’re not just going to leave her to die, if you can help it. <i>“F-friend... thank you.”</i> You finish tending to her wounds, and bring her to her feet. She still needs to be propped up by you, but the two of you can move.");
-
-output("\n\nAnd move you have to. You hear a pair of feet walking toward the fissure. What you think might be a search party quickly reveals its true form with the familiar growls of male milodans. <i>“{D-dumb cats! Quick, go into cave!/Milodans! We gotta hide, quick, into the cave!}”</i> You run deeper into the cave system, out of sight from the opening of the fissure.");
-
-output("\n\nThere’s a few tense minutes where you can see the two hunter’s shadows in the fissure opening. They probably followed Tuuva’s voice, just like you did. You keep as quiet as possible, barely even wanting to breathe in fear that the pair will come down and attack you and the injured korgonne. You breathe a sigh of relief after they pass, still cautious about making too much sound.");
-
-output("\n\nTuuva suddenly starts tugging you deeper into the cave. <i>“{Tuuva been here, know way out. No able to make it without help./I’ve been in these caves before, so I know a way out. I wouldn’t have been able to make it without your help.}”</i> That sounds like a plan. You walk with her while she leads you.");
-
-output("\n\n[Next]");
-
-output("\n\nYou push on for what feels like an hour before it becomes too much for Tuuva and she needs to stop. <i>“S-s-orry, s-so t-tired.”</i> The poor little thing can barely keep her eyes open. You find a nice crevice to settle down in. She passes out almost as soon as she touches the ground, completely spent after this entire experience.");
-
-output("\n\nAbout half an hour passes before you start thinking about taking a snooze yourself, that’s when you hear something moving in the cave. You make sure Tuuva is as well hidden as she can be and ready your [pc.weapon]. Your mind races with the possibilities; is it those two hunters from earlier, or some kind of beast roaming the caves? Either way, you’re prepared for the worst.");
-
-output("\n\nSuddenly you hear something rush up behind you, and before you can react, you’re being tackled to the ground. It isn’t by milodans or strange cave beasts, though, your attacker is a korgonne{, it’s Buln, in fact}. Several more show up and surround you, aiming their various weapons at you. Thankfully, several of them recognize you and calm the mob down. The commotion was enough to wake Tuuva up, and she weakly steps out of her hiding spot, only to be mobbed with hugs and kisses from the search party.");
-
-output("\n\n[Next]");
-
-output("\n\nThe party leads you back to the hold, rushing Tuuva to the healer as quickly as they can, leaving you alone.");
-
-output("\n\n//puts you at the entrance of the Hold.");
-output("\n\n//Next part triggers when you enter Earthshapers again.");
-
-output("\n\nFinale");
-
-output("\n\nYou walk into Earthshapers and are happy to see Tuuva back at the forge, working like she usually does. You stroll up to the counter and lean over, greeting the hard-working little pup. She returns your greeting by rushing up and pulling you into a big hug.");
-
-output("\n\n<i>“Thank you, thank you, thank you, thank you! {Tuuva not even know what say/I don’t even know what to say}, just... I-I... Thank you...”</i>");
-
-output("\n\nYou tell her it was no problem, and that she’s very welcome. She still seems a bit uneasy about something, like there’s something she wants to say but can’t. It’s probably best not to push it, especially after everything she’s been through. She’ll say it when she wants to.");
-
-output("\n\n<i>“Did {friend/you} want something{non-doge:, buddy}?”</i>");
-
-output("\n\n//shop menu");
-
-output("\n\n75: Admitting feelings");
-output("\n\n//Affection caps at 75 if player does not take the Lover route.");
-output("\n\n//Adds the Feelings option to the Special Menu at 75 Affection");
-
-output("\n\n<i>“You seem a little tense, is anything wro-”</i>");
-
-output("\n\n<i>“Wh-w-what do you think of {Tuuva/me}?”</i>");
-
-output("\n\nWhat?");
-
-output("\n\n<i>“B-be-because {Tuuva likes you lots, a-a-and was wonderings what you thinks/I like you a lot, a-and I was wondering what you thought of me}...”</i>");
-
-output("\n\nOoooh, <i>that’s</i> what this is all about. It’s obvious she has feelings for you, so now it’s up to you how this goes from now on.");
-
-output("\n\n[Love] Tell her that you love her too.");
-output("\n\n[Friends] Tell her that she’s a great friend, even if you don’t <i>quite</i> feel that way about her.");
-
-output("\n\nFriends");
-output("\n\nYou tell Tuuva that she’s a great friend, and that you like her a lot too.");
-
-output("\n\n<i>“O-oh, j-just like...”</i> She looks dejected, almost like she’s about to cry. You put a stop to that by pulling her into a big hug and reassuring her.");
-
-output("\n\n<i>“Come on now, just because it’s not like that doesn’t mean you aren’t important to me. You’re still a great person and a great friend.”</i> She smiles and seems at least happy with that answer.");
-
-output("\n\nLove");
-output("\n\n<i>“Yeah”</i> you move in until you’re face-to-face with the blushing bork, <i>“I like you a lot too.”</i> You punctuate that by pulling her into a deep kiss. She goes wide-eyed in response, not quite knowing how to respond. You decide to help her along, guiding her hands to wrap behind your back, and using your [pc.tongue] to train hers, as you make-out over the counter. Eventually she gets into the groove of it, closing her eyes so she can focus on the sensation. Her tail goes wild, almost looking like some kind of rotor, trying to lift her up and over the counter in order to be even closer to you.");
-
-output("\n\nAfter a minute, you disengage, leaving Tuuva momentarily speechless at what just happened.");
-
-output("\n\n<i>“Y-you really love {Tuuva/me}?”</i>");
-
-output("\n\n<i>“Do I need to demonstrate again?”</i>");
-
-output("\n\n<i>“... Maybe...”</i>  Well, if she says so. You lean in for another kiss, this time being met in the middle by the passionate pup. You keep this one up for a bit longer than the last one, eventually breaking it off slowly.");
-
-output("\n\n//merge");
-
-output("\n\n<i>“I... thank you. {Tuuva have gift for {lover/friend}/I have a gift for you, since you’ve been such a good friend to me{, and now that you’re even more than that}}.”</i> She reaches under the counter and pulls up some kind of spear with a tip that looks like it’s made of pure ice. <i>“{It special. Tuuva only make a few, and want you to have one./It’s special. I only get to make a few of these, and I wanted you to have this one.}”</i> You pick up the spear and give it a few thrusts, admiring just how light the ice tip makes it. You deeply thank her for the gift, saying you’ll use it very well.");
-
-output("\n\nShe smiles wide and heads back to work, a new spring in her step after what happened.");
-
-output("\n\n//Get The Frozen Spire");
-
-output("\n\n[Next] //Puts you in Earthshapers.");
-
-output("\n\n100: Date night");
-output("\n\n//Activated through the Date talk option which becomes available at 100 Affection.");
-
-output("\n\n<i>“You’ve never been off world, have you?”</i>");
-
-output("\n\nShe shakes her head. <i>“{Tuuva scavenge lots, but never find space goer/I found a lot of things in my scavenging days, but I never found a spaceship}.”</i>");
-
-output("\n\nYou ask if she ever even thought about it.");
-
-output("\n\n<i>“Sometimes, but {Tuuva never able to do it/I’ll never be able to do it}.”</i> She says dismissively.");
-
-output("\n\n<i>“What if I took you?”</i> Her ears perk up and her tail goes crazy.");
-
-output("\n\n<i>“{Lover/You’d} do that?”</i>");
-
-output("\n\nYou have a ship, and there’s nothing stopping you, you tell her. Of course, you also tell her that she’ll need to be wearing more than an apron. She looks down at her worn, dirty apron and nods softly.");
-
-output("\n\n<i>“{Tuuva forget outsiders so picky. Have fix, go wait at gate and Tuuva meet./I forgot that you outsiders were so dang picky. Don’t worry, I got something; go wait at the front gate and I’ll meet you there.}”</i> She hops back to her room and you hear a bit of a commotion going on as she does something. You have no idea what she’s doing, but you decide that you’ll see it when you see it and head out to the meeting spot.");
-
-output("\n\n[Next]");
-
-output("\n\nAbout twenty minutes pass before you see Tuuva again. She bounds up to you with a huge smile on her face, and a much more trim and clean appearance. Her fur is finely combed and washed free of the usual soot. Even her hair is a bit more styled, for what little she could do with such a short cut. She has a few pieces of jewelry too; some earrings, and a few bracelets. Her big, hide coat is still very tribal, but maybe that’s just for the trip to your ship.");
-
-output("\n\n<i>“{Tuuva/I} feel weird, but pretty. {Lover like/Do you like it}?”</i> You give her a quick kiss and tell her that she looks stunning. She squirms happily at that, even more so when she spies the gate guards checking her out too. <i>“U-uh, {we go now,/can we head out now,} please.”</i> You chuckle, put your hand around her shoulder and lead her out, getting an approving gesture from the two guards.");
-
-output("\n\nThe trip is stressful due to the dangers of the Uvetan tundra, but that doesn’t stop you from taking in some of the sights. The huge mountains, the massive glaciers, the towering spires of polished obsidian, it’s quite the spectacle. Even Tuuva seems to think so.");
-
-output("\n\n<i>“{Tuuva not remember how pretty-pretty here was. Been so long, except for.../I can’t believe I forgot how beautiful it was out here. It’s been so long since I’ve gotten out, aside from...}”</i> She looks over into the distance, and when you look, you see a large hole, partially filled in by a massive pile of snow. That must be where she fell into the caves.");
-
-output("\n\nYou move past that bad memory and reach Irestead. Tuuva cowers behind you when she sees the guards, but you assure her that they won’t hurt her. Indeed, you’re able to enter town without any trouble. She looks around, curious, but not particularly impressed.");
-
-output("\n\n<i>“{This outsider city? ... Neat/So this is your outsider city? ... Interesting}.”</i> You admit, it’s not the most impressive place, but it’s just an appetizer for what you’re going to show her. She smiles as you lead her through the streets and toward the central hub. If there’s one thing she does marvel at, it’s the space elevator. <i>“So big! {Tuuva only see it from long away. Now that close... wow!/I’ve only seen this thing from far away before now. That I’m right here... just, wow!}”</i>");
-
-output("\n\nShe keeps aweing at it until the point where you finally reach it. She’s apprehensive about getting on, but you give her an encouraging tug and she hops on. She yelps as the lift rockets up, but goes almost silent when she sees the view out the window.");
-
-output("\n\nWatching the only thing she’s ever known shrink rapidly before her eyes must be hard to process. She seems caught between wonder and fear as she gazes out the window, until, almost as soon as it started, the ride ends.");
-
-output("\n\nShe looks back at you, unsure of what to do now, but you take her hand and encourage her to keep going.");
-
-output("\n\n[Next]");
-
-output("\n\nYou lead the pup-out-of-water through the station, helping keep her from having too much sensory overload from the experience. She even almost scurries away when she sees the gun turrets near the hanger, but you keep her steady.");
-
-output("\n\n<i>“Why {outsiders have so many shooties/do you people have so many guns}?”</i> She whispers in your [pc.ear] For protection, you tell her. <i>“{Outsiders need learn to be more sneaky, not just shooty everything!/You outsiders need to learn how to be more subtle, and not just put guns everywhere and shoot everything!}”</i> She has a point, but that’s something for another day. For now, you’re at your ship.");
-
-output("\n\nYou take her in and show her around, introducing her to all the various bits and workings of your spacecraft. {Crew peeps:You also introduce her your crew, mostly letting her hit it off, herself.} Finally, you take her to the cockpit, sitting her down while you prepare the launch sequence.");
-
-output("\n\nShe sits and watches while you finish entering the sequence, an jumps a bit when she feels the ship lift off. She stares out in awe as you leave the planet’s atmosphere. She’s speechless as you completely exit the planet, face almost pressed against the glass of your view-screen.");
-
-output("\n\nIt’s at this point that you remember that you didn’t actually pick out a destination for this date! You flip through the extranet, looking for nearby events. Tuuva turns to you and notices what you’re doing.");
-
-output("\n\n<i>“Something wrong?”</i>");
-
-output("\n\n<i>“Um, no. Just getting the coordinates of where we’re going.”</i>");
-
-output("\n\n<i>“Ooooh! {Where we go/Where are we going}?”</i> She rushes up to you to see what you’re doing, prompting you to tap the first thing that isn’t a strip club. <i>“OOOOH, THAT {LOOK SUPER NICE/LOOKS SO NICE}!”</i> You look down and see that you’ve landed on the page for a garden festival on Verifore Two. You’ve heard great things about Verifore, and it seems like the perfect contrast to show her the wonders of alien worlds. It’s a bit exclusive, but lucky for you, your family name gives you enough pull to get a spot immediately. Off to Verifore, you exclamate, causing her to cheer out.");
-
-output("\n\n[Next]");
-output("\n\nThe warp trip to Verifore seems to be the most exciting part of the trip for the enraptured doggo; the myriad of colors flying past as you enter warp, all the different kinds of ship she sees, the idea that you’re going faster than should be physically possible. It all sets her off like a little kid on her first plane trip.");
-
-output("\n\nFinally, you reach Verifore, and both marvel at the lushness on display, even from so far up. To call the planet lush is an understatement; the trees and flowers in some areas must be at least two hundred kilometers tall! It’s fascinating just to look at from up here, you can’t imagine how it is on the ground.");
-
-output("\n\nActually landing is a thing onto itself. The lines are so long that it takes at least an hour for you to get to the hanger. However, this just gives you time to hang out with your date more. She finally takes off the heavy coat she was wearing, revealing a backless, knee-length, dark blue dress. It’s obviously been modified to fit her diminutive but wide size, but it still looks good on her.");
-
-output("\n\n<i>“{You like? Tuuva find it long time ago, save for special day/Do you like it? I found it a long time ago, in my scavenging days, and I’ve been saving it for a special day.}”</i> You lean in and give her a big, long kiss, telling her that you love it, when your lips part. She smiles and goes back in for another kiss, and you spend the remainder of your wait time enjoying eachother.");
-
-output("\n\nWhen you’re finally able to step off, you’re greeted by a pair of plant-like natives who shower you with flower petals. Verifore is just as much of a spectacle as you could have ever imagined. The warm sunlight bathes over miles of rainbow-colored plants, stretching far, wide, and tall. You could sit here and just look out into the horizon all day, but it seems like there’s a tour going on.");
-
-output("\n\nThe guide comes up to you and gathers you into the group, leading you along the sparkling, silver path through the planet. The dryad-like woman takes you along a path that winds up and down the thick, lush plant-life, even going through several tunnels that, amazingly, are naturally made! Thick, knotted vines swirl around each other, creating a natural canopy that blooms with various, multi-colored flowers.");
-
-output("\n\nYou get to see some of the planet’s animal life too. Creatures large and small scamper around you, each seeming to have some kind of plant-like attribute in order to blend in with their environment. A large, cat-like creature even comes up to you and Tuuva. The guide tells you it’s harmless, prompting Tuuva to go up and start petting it. It purrs as the rest of the group comes up to it and start mauling it with cuddles.");
-
-output("\n\nThe last thing she points out is one of the massive trees you saw from orbit. She says their roots spread to the deepest reaches of the planet, sucking nutrients from unknown sources, and that their exact biology has been a subject of scientific study for hundreds of years. Hundreds of species live inside them, and only inside them, supported by environments that are wholly unique to each tree.");
-
-output("\n\nYou had no idea that this place would be so interesting. Tuuva seems to be having the time of her life too! She’s constantly dragging you around, having you look at everything from wonderful vistas, to something as simple as grass. Everything is magnificent to her, and she seems like she couldn’t be happier.");
-
-output("\n\n[Next]");
-
-output("\n\nThe day winds down as the guide leads you to a resort where you’ll be staying for the night. You mingle with the other guests, take a dive in the pool, and eat some of the finest food you’ve ever tasted, but eventually it all comes down to you and Tuuva, cuddling in bed as the last of the sunlight fades.");
-
-output("\n\nShe absolutely beams at you in happiness. <i>“Thaaaaaaaank you! {Tuuva never ever thought she’d do anything like this. Lover make Tuuva soooooooo happy!/I absolutely never thought I’d ever get to do anything this amazing. You make me so happy that I-I don’t even know what to say!}”</i> You tell her that her being happy is all the thanks you need, causing her to burst out in tears of happiness.");
-
-output("\n\nThe two of you cuddle together for the last few hours before you sleep, just enjoying eachother in this magical moment.");
-
-output("\n\n[Next]");
-
-output("\n\nYour return trip isn’t as exciting as the trip there, but it’s filled with a kind of warmth that makes it just as enjoyable. You reach the hold and give Tuuva one last big hug before she heads back to her shop, getting swarmed by other korg asking all about her trip.");
-
-output("\n\n[Next] Puts you at the entrance of the Hold.");
-*/
+//50: The Expedition
+ //Triggers when you walk into Earthshapers after you reach 50 Affection.
+//Requires Scavenger talk to be done
+
+//Part 1
+public function tuuva50AffectionExpedition():void
+{
+	showTuuva();
+	output("\n\nYou walk in to the shop and see a bit of a comotion. Several other korgs are gathered in the shop, looking geared up for a serious trek, and carrying mugs of some kind of brew. Tuuva is behind the counter handing equipment over to one of the men, but also seems to be kitted out, herself. She waves you over when she spots you, scooting the man getting equipment out of the way after he grabs what he needs.");
+	output("\n\nYou walk up and ask exactly what’s going on. <i>“");
+	if(!korgiTranslate()) output("Scavenge friends short on people, ask Tuuva to come help find big ores. Very danger though, so much equipment need.");
+	else output("My old scavenger friends came over and told me that they were low on people for a big expedition, so they asked me come with to help find some big ore deposits. It’s gonna be a dangerous trip, so I made a ton of equipment for all of us.");
+	output("”</i>");
+
+	output("\n\nOne of the men slides a drink across the counter, toward Tuuva. She grabs it and chugs it down, causing the group to let out a collective cheer and drink down their own.");
+
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Gone for day, back later with loot, bye bye!");
+	else output("We’ll be gone for a day and come back with tons of materials! See ya later!");
+	output("”</i> She doesn’t give you a chance to argue before she hops over the counter and leaves with the group.");
+
+	output("\n\nPart of you wonders if it’s a good idea for her to go out, despite being out of it for so long. You suppose that even if she’s a bit rusty, she does have the rest of the team to help her out.");
+	output("\n\n...You really hope the fact that you’re thinking this isn’t some kind of foreshadowing.");
+	//Shop is empty until event finishes. Next event trigger happens when the PC enters the shop after 24 hours.
+	flags["TUUVA_50AFF"] = GetGameTimestamp();
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Part 3
+public function tuuva50AffFindEvent():void
+{
+	showTuuva();
+	output("\n\nAs you’re wandering the wastes of Uveto, you pick up on a faint noise amid the whistling of the bitter wind. It’s very quiet, but you can follow along. It gets louder as you approach, and eventually you start to make it out more. It sounds like... crying? Could it be Tuuva?");
+	output("\n\nYou call out her name to see if you get a response. The crying sound stops, and you hear a faint call.");
+	output("\n\n<i>“H-hello?”</i> It’s definitely Tuuva. You follow her voice, calling out for her to help guide you. Eventually you find a small fissure in the ground, and, looking down, you see Tuuva at the bottom. <i>“H-help, p-please...”</i> You yell down that you’re here and that you’re going to help her. Of course, you don’t really know how you’re going to get down the fissure. It’s not deep enough that you’d die if you fell, but you certainly don’t want to go jumping in any big, deep holes, that aren’t attached to a magnificent ass.");
+	output("\n\nYou don’t <i>want</i> to, but nature has different plans. The ledge you’re standing on gives way, and you fall through before you can react. Lucky you manage to grab onto a ledge midway down, allowing you to make the rest of the fall with much less force. It still hurts when you land, but at least you didn’t break anything.");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Friend");
+	else output("Are you");
+	output(" a-alright?”</i> Tuuva asks, her voice very weak. You tell her that you aren’t the one who needs worrying about here. You turn on your Codex light and look over her. She’s beat up pretty bad, even still bleeding in certain spots. You pull out the medical kit that the scavenger gave you and start to work. Lucky her wounds aren’t that complex, and you have your codex to fill in any details you need.");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("F-friend save Tuuva, why?");
+	else output("W-why did you come save me?");
+	output("”</i> You say that she’s your friend, of course you’re not just going to leave her to die, if you can help it. <i>“F-friend... thank you.”</i> You finish tending to her wounds, and bring her to her feet. She still needs to be propped up by you, but the two of you can move.");
+	output("\n\nAnd move you have to. You hear a pair of feet walking toward the fissure. What you think might be a search party quickly reveals its true form with the familiar growls of male milodans. <i>“");
+	if(!korgiTranslate()) output("D-dumb cats! Quick, go into cave!");
+	else output("Milodans! We gotta hide, quick, into the cave!");
+	output("”</i> You run deeper into the cave system, out of sight from the opening of the fissure.");
+
+	output("\n\nThere’s a few tense minutes where you can see the two hunter’s shadows in the fissure opening. They probably followed Tuuva’s voice, just like you did. You keep as quiet as possible, barely even wanting to breathe in fear that the pair will come down and attack you and the injured korgonne. You breathe a sigh of relief after they pass, still cautious about making too much sound.");
+
+	output("\n\nTuuva suddenly starts tugging you deeper into the cave. <i>“");
+	if(!korgiTranslate()) output("Tuuva been here, know way out. No able to make it without help.");
+	else output("I’ve been in these caves before, so I know a way out. I wouldn’t have been able to make it without your help.");
+	output("”</i> That sounds like a plan. You walk with her while she leads you.");
+	pc.removeKeyItem("Korgonne Medical Kit");
+	output("\n\n(<b>Key Item Used:</b> Korgonne Medical Kit.)");
+	processTime(15);
+	clearMenu();
+	addButton(0,"Next",tuuva50AffFindEvent2);
+}
+
+public function tuuva50AffFindEvent2():void
+{
+	clearOutput();
+	showTuuva();
+	output("You push on for what feels like an hour before it becomes too much for Tuuva and she needs to stop. <i>“S-s-orry, s-so t-tired.”</i> The poor little thing can barely keep her eyes open. You find a nice crevice to settle down in. She passes out almost as soon as she touches the ground, completely spent after this entire experience.");
+	output("\n\nAbout half an hour passes before you start thinking about taking a snooze yourself, that’s when you hear something moving in the cave. You make sure Tuuva is as well hidden as she can be and ready your [pc.weapon]. Your mind races with the possibilities; is it those two hunters from earlier, or some kind of beast roaming the caves? Either way, you’re prepared for the worst.");
+	output("\n\nSuddenly you hear something rush up behind you, and before you can react, you’re being tackled to the ground. It isn’t by milodans or strange cave beasts, though, your attacker is a korgonne");
+	if(flags["MET_BULN"] != undefined) output(", it’s Buln, in fact");
+	output(". Several more show up and surround you, aiming their various weapons at you. Thankfully, several of them recognize you and calm the mob down. The commotion was enough to wake Tuuva up, and she weakly steps out of her hiding spot, only to be mobbed with hugs and kisses from the search party.");
+	processTime(75);
+	clearMenu();
+	addButton(0,"Next",tuuva50AffFindEvent3);
+}
+
+public function tuuva50AffFindEvent3():void
+{
+	clearOutput();
+	showTuuva();
+	output("The party leads you back to the hold, rushing Tuuva to the healer as quickly as they can, leaving you alone.");
+
+	//puts you at the entrance of the Hold.
+	//Next part triggers when you enter Earthshapers again.
+	currentLocation = "KORGII B14";
+	generateMap();
+	clearMenu();
+	flags["TUUVA_SAVED"] = 1;
+	addButton(0,"Next",mainGameMenu);
+}
+
+//75: Admitting feelings
+//Affection caps at 75 if player does not take the Lover route.
+//Adds the Feelings option to the Special Menu at 75 Affection
+public function tuuva75AffectionProc():void
+{
+	clearOutput();
+	showTuuva();
+	output("<i>“You seem a little tense, is anything wro-”</i>");
+	output("\n\n<i>“Wh-w-what do you think of ");
+	if(!korgiTranslate()) output("Tuuva");
+	else output("me");
+	output("?”</i>");
+	output("\n\nWhat?");
+	output("\n\n<i>“B-be-because ");
+	if(!korgiTranslate()) output("Tuuva likes you lots, a-a-and was wonderings what you thinks");
+	else output("I like you a lot, a-and I was wondering what you thought of me");
+	output("...”</i>");
+	output("\n\nOoooh, <i>that’s</i> what this is all about. It’s obvious she has feelings for you, so now it’s up to you how this goes from now on.");
+	processTime(5);
+	clearMenu();
+	//[Love] Tell her that you love her too.
+	//[Friends] Tell her that she’s a great friend, even if you don’t <i>quite</i> feel that way about her.”</i>);
+	addButton(0,"Love",iLoveTuuva,undefined,"Love","Tell her that you love her too.");
+	addButton(1,"Friends",iDontLoveTuuva,undefined,"Friends","Tell her that she’s a great friend, even if you don’t <i>quite</i> feel that way about her.");
+}
+
+//Friends
+public function iDontLoveTuuva():void
+{
+	clearOutput();
+	showTuuva();
+	output("You tell Tuuva that she’s a great friend, and that you like her a lot too.");
+	output("\n\n<i>“O-oh, j-just like...”</i> She looks dejected, almost like she’s about to cry. You put a stop to that by pulling her into a big hug and reassuring her.");
+	output("\n\n<i>“Come on now, just because it’s not like that doesn’t mean you aren’t important to me. You’re still a great person and a great friend.”</i> She smiles and seems at least happy with that answer.");
+	flags["TUUVA_75AFF"] = -1;
+	tuuvaLoveChoiceEpilogue(false);
+}
+
+//Love
+public function iLoveTuuva():void
+{
+	clearOutput();
+	showTuuva();
+	output("<i>“Yeah”</i> you move in until you’re face-to-face with the blushing bork, <i>“I like you a lot too.”</i> You punctuate that by pulling her into a deep kiss. She goes wide-eyed in response, not quite knowing how to respond. You decide to help her along, guiding her hands to wrap behind your back, and using your [pc.tongue] to train hers, as you make-out over the counter. Eventually she gets into the groove of it, closing her eyes so she can focus on the sensation. Her tail goes wild, almost looking like some kind of rotor, trying to lift her up and over the counter in order to be even closer to you.");
+	output("\n\nAfter a minute, you disengage, leaving Tuuva momentarily speechless at what just happened.");
+	output("\n\n<i>“Y-you really love ");
+	if(!korgiTranslate()) output("Tuuva");
+	else output("me");
+	output("?”</i>");
+	output("\n\n<i>“Do I need to demonstrate again?”</i>");
+	output("\n\n<i>“...Maybe...”</i>  Well, if she says so. You lean in for another kiss, this time being met in the middle by the passionate pup. You keep this one up for a bit longer than the last one, eventually breaking it off slowly.");
+	flags["TUUVA_75AFF"] = 1;
+	tuuvaLoveChoiceEpilogue(true);
+}
+
+public function tuuvaLoveChoiceEpilogue(love:Boolean = false):void
+{
+	output("\n\n<i>“I... thank you. ");
+	if(!korgiTranslate())
+	{
+		output("Tuuva have gift for ");
+		if(love) output("lover");
+		else output("friend");
+	}
+	else
+	{
+		output("I have a gift for you, since you’ve been such a good friend to me");
+		if(love) output(", and now that you’re even more than that");
+	}
+	output(".”</i> She reaches under the counter and pulls up some kind of spear with a tip that looks like it’s made of pure ice. <i>“");
+	if(!korgiTranslate()) output("It special. Tuuva only make a few, and want you to have one.");
+	else output("It’s special. I only get to make a few of these, and I wanted you to have this one.");
+	output("”</i> You pick up the spear and give it a few thrusts, admiring just how light the ice tip makes it. You deeply thank her for the gift, saying you’ll use it very well.");
+	output("\n\nShe smiles wide and heads back to work, a new spring in her step after what happened.\n\n");
+
+	//Get The Frozen Spire
+	processTime(7);
+	quickLoot(new FrozenSpire());
+}
+
+//100: Date night
+//Activated through the Date talk option which becomes available at 100 Affection.
+public function dateTalkOption():void
+{
+	clearOutput();
+	showTuuva();
+	output("<i>“You’ve never been off world, have you?”</i>");
+	output("\n\nShe shakes her head. <i>“");
+	if(!korgiTranslate()) output("Tuuva scavenge lots, but never find space goer");
+	else output("I found a lot of things in my scavenging days, but I never found a spaceship");
+	output(".”</i>");
+	output("\n\nYou ask if she ever even thought about it.");
+	output("\n\n<i>“Sometimes, but ");
+	if(!korgiTranslate()) output("Tuuva never able to do it");
+	else output("I’ll never be able to do it");
+	output(".”</i> She says dismissively.");
+	output("\n\n<i>“What if I took you?”</i> Her ears perk up and her tail goes crazy.");
+	output("\n\n<i>“");
+	if(!korgiTranslate() || tuuvaLover()) output("Lover");
+	else output("You’d");
+	output(" do that?”</i>");
+	output("\n\nYou have a ship, and there’s nothing stopping you, you tell her. Of course, you also tell her that she’ll need to be wearing more than an apron. She looks down at her worn, dirty apron and nods softly.");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Tuuva forget outsiders so picky. Have fix, go wait at gate and Tuuva meet.");
+	else output("I forgot that you outsiders were so dang picky. Don’t worry, I got something; go wait at the front gate and I’ll meet you there.");
+	output("”</i> She hops back to her room and you hear a bit of a commotion going on as she does something. You have no idea what she’s doing, but you decide that you’ll see it when you see it and head out to the meeting spot.");
+
+	processTime(10);
+	clearMenu();
+	addButton(0,"Next",tuuvaDate2);
+}
+
+public function tuuvaDate2():void
+{
+	clearOutput();
+	showTuuva();
+	currentLocation = "KORGII B14";
+	generateMap();
+	output("About twenty minutes pass before you see Tuuva again. She bounds up to you with a huge smile on her face, and a much more trim and clean appearance. Her fur is finely combed and washed free of the usual soot. Even her hair is a bit more styled, for what little she could do with such a short cut. She has a few pieces of jewelry too; some earrings, and a few bracelets. Her big, hide coat is still very tribal, but maybe that’s just for the trip to your ship.");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Tuuva");
+	else output("I");
+	output(" feel weird, but pretty. ");
+	if(!korgiTranslate()) output("Lover like");
+	else output("Do you like it");
+	output("?”</i> You give her a quick kiss and tell her that she looks stunning. She squirms happily at that, even more so when she spies the gate guards checking her out too. <i>“U-uh, ");
+	if(!korgiTranslate()) output("we go now,");
+	else output("can we head out now,");
+	output(" please.”</i> You chuckle, put your hand around her shoulder and lead her out, getting an approving gesture from the two guards.");
+	output("\n\nThe trip is stressful due to the dangers of the Uvetan tundra, but that doesn’t stop you from taking in some of the sights. The huge mountains, the massive glaciers, the towering spires of polished obsidian, it’s quite the spectacle. Even Tuuva seems to think so.");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Tuuva not remember how pretty-pretty here was. Been so long, except for...");
+	else output("I can’t believe I forgot how beautiful it was out here. It’s been so long since I’ve gotten out, aside from...");
+	output("”</i> She looks over into the distance, and when you look, you see a large hole, partially filled in by a massive pile of snow. That must be where she fell into the caves.");
+	output("\n\nYou move past that bad memory and reach Irestead. Tuuva cowers behind you when she sees the guards, but you assure her that they won’t hurt her. Indeed, you’re able to enter town without any trouble. She looks around, curious, but not particularly impressed.");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("This outsider city? ... Neat");
+	else output("So this is your outsider city? ... Interesting");
+	output(".”</i>\n\nYou admit, it’s not the most impressive place, but it’s just an appetizer for what you’re going to show her.\n\nShe smiles as you lead her through the streets and toward the central hub. If there’s one thing she does marvel at, it’s the space elevator. <i>“So big! ");
+	if(!korgiTranslate()) output("Tuuva only see it from long away. Now that close... wow!");
+	else output("I’ve only seen this thing from far away before now. That I’m right here... just, wow!");
+	output("”</i>");
+	output("\n\nShe keeps aweing at it until the point where you finally reach it. She’s apprehensive about getting on, but you give her an encouraging tug and she hops on. She yelps as the lift rockets up, but goes almost silent when she sees the view out the window.");
+	output("\n\nWatching the only thing she’s ever known shrink rapidly before her eyes must be hard to process. She seems caught between wonder and fear as she gazes out the window, until, almost as soon as it started, the ride ends.");
+	output("\n\nShe looks back at you, unsure of what to do now, but you take her hand and encourage her to keep going.");
+	processTime(120);
+	clearMenu();
+	addButton(0,"Next",tuuvaDate3);
+}
+
+public function tuuvaDate3():void
+{
+	clearOutput();
+	showTuuva();
+	currentLocation = "SHIP INTERIOR";
+	generateMap();
+	output("You lead the pup-out-of-water through the station, helping keep her from having too much sensory overload from the experience. She even almost scurries away when she sees the gun turrets near the hanger, but you keep her steady.");
+	output("\n\n<i>“Why ");
+	if(!korgiTranslate()) output("outsiders have so many shooties");
+	else output("do you people have so many guns");
+	output("?”</i> She whispers in your [pc.ear] For protection, you tell her. <i>“");
+	if(!korgiTranslate()) output("Outsiders need learn to be more sneaky, not just shooty everything!");
+	else output("You outsiders need to learn how to be more subtle, and not just put guns everywhere and shoot everything!");
+	output("”</i> She has a point, but that’s something for another day. For now, you’re at your ship.");
+
+	output("\n\nYou take her in and show her around, introducing her to all the various bits and workings of your spacecraft.");
+	if(crew(true) > 0) output(" You also introduce her your crew, mostly letting her hit it off, herself. ");
+	output("Finally, you take her to the cockpit, sitting her down while you prepare the launch sequence.");
+
+	output("\n\nShe sits and watches while you finish entering the sequence, an jumps a bit when she feels the ship lift off. She stares out in awe as you leave the planet’s atmosphere. She’s speechless as you completely exit the planet, face almost pressed against the glass of your view-screen.");
+	output("\n\nIt’s at this point that you remember that you didn’t actually pick out a destination for this date! You flip through the extranet, looking for nearby events. Tuuva turns to you and notices what you’re doing.");
+	output("\n\n<i>“Something wrong?”</i>");
+	output("\n\n<i>“Um, no. Just getting the coordinates of where we’re going.”</i>");
+	output("\n\n<i>“Ooooh! ");
+	if(!korgiTranslate()) output("Where we go");
+	else output("Where are we going");
+	output("?”</i> She rushes up to you to see what you’re doing, prompting you to tap the first thing that isn’t a strip club. <i>“OOOOH, THAT ");
+	if(!korgiTranslate()) output("LOOK SUPER NICE");
+	else output("LOOKS SO NICE");
+	output("!”</i> You look down and see that you’ve landed on the page for a garden festival on Verifore Two. You’ve heard great things about Verifore, and it seems like the perfect contrast to show her the wonders of alien worlds. It’s a bit exclusive, but lucky for you, your family name gives you enough pull to get a spot immediately. Off to Verifore, you exclamate, causing her to cheer out.");
+	processTime(60);
+	clearMenu();
+	addButton(0,"Next",tuuvaDate4);
+}
+
+public function tuuvaDate4():void
+{
+	clearOutput();
+	showTuuva();
+	output("The warp trip to Verifore seems to be the most exciting part of the trip for the enraptured doggo; the myriad of colors flying past as you enter warp, all the different kinds of ship she sees, the idea that you’re going faster than should be physically possible. It all sets her off like a little kid on her first plane trip.");
+	output("\n\nFinally, you reach Verifore, and both marvel at the lushness on display, even from so far up. To call the planet lush is an understatement; the trees and flowers in some areas must be at least two hundred kilometers tall! It’s fascinating just to look at from up here, you can’t imagine how it is on the ground.");
+	output("\n\nActually landing is a thing onto itself. The lines are so long that it takes at least an hour for you to get to the hanger. However, this just gives you time to hang out with your date more. She finally takes off the heavy coat she was wearing, revealing a backless, knee-length, dark blue dress. It’s obviously been modified to fit her diminutive but wide size, but it still looks good on her.");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("You like? Tuuva find it long time ago, save for special day");
+	else output("Do you like it? I found it a long time ago, in my scavenging days, and I’ve been saving it for a special day.");
+	output("”</i> You lean in and give her a big, long kiss, telling her that you love it, when your lips part. She smiles and goes back in for another kiss, and you spend the remainder of your wait time enjoying eachother.");
+
+	output("\n\nWhen you’re finally able to step off, you’re greeted by a pair of plant-like natives who shower you with flower petals. Verifore is just as much of a spectacle as you could have ever imagined. The warm sunlight bathes over miles of rainbow-colored plants, stretching far, wide, and tall. You could sit here and just look out into the horizon all day, but it seems like there’s a tour going on.");
+	output("\n\nThe guide comes up to you and gathers you into the group, leading you along the sparkling, silver path through the planet. The dryad-like woman takes you along a path that winds up and down the thick, lush plant-life, even going through several tunnels that, amazingly, are naturally made! Thick, knotted vines swirl around each other, creating a natural canopy that blooms with various, multi-colored flowers.");
+	output("\n\nYou get to see some of the planet’s animal life too. Creatures large and small scamper around you, each seeming to have some kind of plant-like attribute in order to blend in with their environment. A large, cat-like creature even comes up to you and Tuuva. The guide tells you it’s harmless, prompting Tuuva to go up and start petting it. It purrs as the rest of the group comes up to it and start mauling it with cuddles.");
+	output("\n\nThe last thing she points out is one of the massive trees you saw from orbit. She says their roots spread to the deepest reaches of the planet, sucking nutrients from unknown sources, and that their exact biology has been a subject of scientific study for hundreds of years. Hundreds of species live inside them, and only inside them, supported by environments that are wholly unique to each tree.");
+	output("\n\nYou had no idea that this place would be so interesting. Tuuva seems to be having the time of her life too! She’s constantly dragging you around, having you look at everything from wonderful vistas, to something as simple as grass. Everything is magnificent to her, and she seems like she couldn’t be happier.");
+	processTime(12*24);
+	clearMenu();
+	addButton(0,"Next",tuuvaDate5);
+}
+
+public function tuuvaDate5():void
+{
+	clearOutput();
+	showTuuva();
+	output("The day winds down as the guide leads you to a resort where you’ll be staying for the night. You mingle with the other guests, take a dive in the pool, and eat some of the finest food you’ve ever tasted, but eventually it all comes down to you and Tuuva, cuddling in bed as the last of the sunlight fades.");
+	output("\n\nShe absolutely beams at you in happiness. <i>“Thaaaaaaaank you! ");
+	if(!korgiTranslate()) output("Tuuva never ever thought she’d do anything like this. Lover make Tuuva soooooooo happy!");
+	else output("I absolutely never thought I’d ever get to do anything this amazing. You make me so happy that I-I don’t even know what to say!");
+	output("”</i> You tell her that her being happy is all the thanks you need, causing her to burst out in tears of happiness.");
+	output("\n\nThe two of you cuddle together for the last few hours before you sleep, just enjoying eachother in this magical moment.");
+	processTime(4*60);
+	clearMenu();
+	addButton(0,"Next",tuuvaDate6);
+}
+public function tuuvaDate6():void
+{
+	clearOutput();
+	showTuuva();
+	output("Your return trip isn’t as exciting as the trip there, but it’s filled with a kind of warmth that makes it just as enjoyable. You reach the hold and give Tuuva one last big hug before she heads back to her shop, getting swarmed by other korg asking all about her trip.");
+	processTime(10*24);
+	flags["TUUVA_DATE"] = 1;
+	clearMenu();
+	addButton(0,"Next",move,"KORGII B14");
+}
 
 //Sex Options
 //Each sex scene adds two Affection
@@ -1087,7 +1298,7 @@ public function fuckTuuva(x:int = 0):void
 	if(!korgiTranslate())
 	{
 		output("friend like Tuuva’s woman juices? Lucky for ");
-		if(tuuvaAffection() >= 75) output("lover");
+		if(tuuvaLover()) output("lover");
 		else output("friend");
 		output(", Tuuva have much.");
 	}
@@ -1109,12 +1320,13 @@ public function fuckTuuva(x:int = 0):void
 	output("\n\n<i>“Ugh, ");
 	if(!korgiTranslate()) output("much tongue, so long... c-cuuuuum!");
 	else output("your tongue is so big, a-and loooong... f-fuck, I’m cumming!");
-	output("”</i>/You pound your oral organ into her like a breeding stud pounds into their favorite mare. Girl cum bursts out as you pummel her puss like a prime piece of meat, and she squeals like a whore while she does.");
+	output("”</i>");
+	output(" You pound your oral organ into her like a breeding stud pounds into their favorite mare. Girl cum bursts out as you pummel her puss like a prime piece of meat, and she squeals like a whore while she does.");
 
 	output("\n\n<i>“Oooh, ");
 	if(!korgiTranslate())
 	{
-		if(tuuvaAffection() < 75) output("friend");
+		if(!tuuvaLover()) output("friend");
 		else output("lover");
 		output(" make lady hole feel good, sooooo good... t-too good, gonna c-cummm!");
 	}
@@ -1281,7 +1493,7 @@ public function actuallyGetFuckedByTuuva(x:int):void
 	output("”</i> To prove her point, she drags you off your feet and tosses you onto the bed, ass up. She gets up with you, looming overhead, as much as she can given her size. <i>“");
 	if(!korgiTranslate()) output("Slippy, need lots of slippy!");
 	else output("Gonna need a lot of lube for this!");
-	output(" Her confident demeanor seems to vanish in the wake of confusion as she tries to find a source of lube.");
+	output("”</i> Her confident demeanor seems to vanish in the wake of confusion as she tries to find a source of lube.");
 	output("\n\nSuddenly something clicks and she remembers her womanhood. She digs down under her [tuuva.balls] and moans out as she hunts for girl cum. She whimpers as she alternates between working over her soaking cunt, and stroking her juices onto her [tuuva.cock]. She nearly cums on the spot, but thankfully she remembers you.");
 	output("\n\n<i>“");
 	if(!korgiTranslate()) output("T-Tuuva almost forget, sorries.");
@@ -1337,7 +1549,7 @@ public function actuallyGetFuckedByTuuva(x:int):void
 	if(!korgiTranslate()) 
 	{
 		output("Tuuva small, but Tuuva strong! Strong enough to make ");
-		if(tuuvaAffection() < 75) output("friend");
+		if(!tuuvaLover()) output("friend");
 		else output("lover");
 		output(" into bitch!");
 	}
@@ -1345,10 +1557,10 @@ public function actuallyGetFuckedByTuuva(x:int):void
 	output("”</i> She punctuates by giving you one huge shove that knocks the last bit of strength out of your [pc.legs] and sends you tumbling forward. Despite that, she doesn’t let go of you, keeping her hands wrapped firmly around your [pc.hips], and her [tuuva.cock] stuck firmly in your [pc.vagOrAss " + x + "].");
 
 	output("\n\nShe does pull out for a second so she can flip you over, but she goes right back to it. Her hands latch right on to your [pc.chest] as she leans more into you. It’s a very different feeling now that you can stare her right in the eyes while she fucks you. They’re wide as can be as she returns your stare, her tongue lolling out and her tail wagging like an excited puppy.");
-	if(pc.hasCock(GLOBAL.TYPE_EQUINE)) output(" To contrast that cute imagery is seeing just how much her horse meat is bulging your gut out. It’s definitely grown a good bit since you started, and each thrust feels like having your gut railed with a fleshy, piping hot piston. It should be painful, but it’s somehow incredibly pleasurable.");
+	if(tuuva.hasCock(GLOBAL.TYPE_EQUINE)) output(" To contrast that cute imagery is seeing just how much her horse meat is bulging your gut out. It’s definitely grown a good bit since you started, and each thrust feels like having your gut railed with a fleshy, piping hot piston. It should be painful, but it’s somehow incredibly pleasurable.");
 
 	output("\n\n");
-	if(tuuvaAffection() >= 75) 
+	if(tuuvaLover()) 
 	{
 		output("Suddenly she puts one hand around your neck and pulls you in for a deep, passionate kiss. Your [pc.lipsChaste] wrap around her muzzle, locking around her own lips as best as the two of you can. Her pace messes up a bit while she does this, but she quickly rights herself. The passion intensifies as her tongue wraps around yours, pulling you even deeper into her doggy kisses.");
 		output("\n\nShe lets go for only brief moments to whisper sweet nothings in your ear, affirming her feelings for you. <i>“");
@@ -1361,13 +1573,13 @@ public function actuallyGetFuckedByTuuva(x:int):void
 		{
 			output("Lover take Tuuva ");
 			//Done 100 affection event:
-			if(9999) output("back ");
+			if(flags["TUUVA_DATE"] != undefined) output("back ");
 			output("to space?”</i>");
 		}
 		else
 		{
 			output("You’d take me ");
-			if(9999) output("back ");
+			if(flags["TUUVA_DATE"] != undefined) output("back ");
 			output("to outer space?");
 		}
 		output("”</i> You nod. <i>“...");
@@ -1377,7 +1589,7 @@ public function actuallyGetFuckedByTuuva(x:int):void
 	}
 	else
 	{
-		output("\n\nShe moves her face up closer to yours, but seems apprehensive to do anything. She looks like she wants to kiss you, but, for some reason she’s holding back. You give her a little peck on the lips, signaling her that it’s okay to go all in, and that she does.");
+		output("She moves her face up closer to yours, but seems apprehensive to do anything. She looks like she wants to kiss you, but, for some reason she’s holding back. You give her a little peck on the lips, signaling her that it’s okay to go all in, and that she does.");
 		output("\n\nShe dives onto your [pc.lipsChaste], coiling her tongue into your mouth and tying up your own like a predatory snake. She presses her whole body down on you more, making sure you feel her weight on you as she possessively mates with you. As she feels you body submit, she ups her pace, getting ready to finish up.");
 	}
 	output("\n\nYour lengthy fuck eventually devolves into a sweaty rut. Your bodies are pressed as tightly together as possible, to the point where you find it hard to tell where the heat from your body ends and hers begins. You’ve melted into a singular pile of hot, passionate fuck; sweating, and moaning, and groaning almost senselessly as the little muscle-ball completely overwhelms you, and seemingly herself.");
