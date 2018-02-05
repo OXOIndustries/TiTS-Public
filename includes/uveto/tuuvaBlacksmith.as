@@ -74,6 +74,7 @@ public function showTuuva(nude:Boolean = false):void
 	if(nude) nudeS = "_NUDE";
 	showName("\nTUUVA");
 	showBust("TUUVA"+nudeS);
+	author("QuestyRobo");
 }
 
 public function tuuvaExpeditionRescueChance():Boolean
