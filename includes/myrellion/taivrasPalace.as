@@ -2882,6 +2882,7 @@ public function goToTaivrasChambersForSex():void
 	queenTaivraSexMenu();
 }
 public function queenTaivraSexMenu(canLeave:Boolean = false):void
+{
 	clearMenu();
 	//[Cowgirl] [Glory Fuck] [Tentacock Orgy] [Breed Her]
 	addButton(0,"RideCowgirl",cowgirlWivTaivra,undefined,"Ride: Cowgirl","Roll Taivra over and mount her, riding her thick, throbbing ovipositor until she’s bloating you with eggs... or at least, with her sticky fem-cum.");
