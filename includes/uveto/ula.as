@@ -274,6 +274,9 @@ public function ulaSexApproach():void
 		{
 			addDisabledButton(4,"Tentatail","Tentatail","Ula needs to lose her virginity before trying this.");
 		}
+		/*
+		if(pc.hasGenitals()) addButton(5,"Roleplay",roleplayWithUla,undefined,"Roleplay","Roleplay your first meeting with Ula - and the potentially hot sex that came with it.");
+		else addDisabledButton(5,"Roleplay","Roleplay","You need genitals for this.");*/
 	}
 	else
 	{
@@ -2143,7 +2146,7 @@ public function otherTribesTalkarydooda():void
 	if(!korgiTranslate()) output("Wyrm-Murder clan only exception. Strong people. Hunt frostwyrms. All hunters wear full suit of scales. Even stops some core-bangs.");
 	else output("Wyrm-Murder clan are the only exception. A strong people. They hunt frostwyrms. All their hunters have full suits of frostwyrm scale. It even stops some core-bangs.");
 	output("”</i>");
-	if(9999) output(" She runs her fingers over your armor. <i>“You know, yes?”</i>");
+	if(pc.armor is FrostbaneMail || pc.armor is FrostbanePlate || pc.armor is FrostbaneBikini) output(" She runs her fingers over your armor. <i>“You know, yes?”</i>");
 	else 
 	{
 		output(" She sighs heavily. <i>“");
