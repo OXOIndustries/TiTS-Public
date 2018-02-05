@@ -274,6 +274,9 @@ public function ulaSexApproach():void
 		{
 			addDisabledButton(4,"Tentatail","Tentatail","Ula needs to lose her virginity before trying this.");
 		}
+		/*
+		if(pc.hasGenitals()) addButton(5,"Roleplay",roleplayWithUla,undefined,"Roleplay","Roleplay your first meeting with Ula - and the potentially hot sex that came with it.");
+		else addDisabledButton(5,"Roleplay","Roleplay","You need genitals for this.");*/
 	}
 	else
 	{
