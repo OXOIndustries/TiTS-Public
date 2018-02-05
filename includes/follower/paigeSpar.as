@@ -1141,9 +1141,10 @@ public function FFWVKH(args:Array):void
 	output("\n\nHer breath catches at first, and then she responds eagerly, slapping her long, flat Ausar tongue against yours, tasting your tip and scrawling her way into your mouth to count your teeth and massage your tastebuds. She sucks on your tongue before devouring it back down, and she twists her head to give your tongues a different angle to dance with.");
 	output("\n\nYou don’t stop fucking her as you kiss, your [pc.hips] jackhammering into hers");
 	var x:int = -1;
-	if(pc.hasCock() && pc.cockThatFits(paige.vaginalCapacity(0))) 
+	if(pc.hasCock() && pc.cockThatFits(paige.vaginalCapacity(0)) >= 0) 
 	{
 		x = pc.cockThatFits(paige.vaginalCapacity(0));
+		if(x < 0) x = pc.smallestCockIndex();
 		output(", feeding her sloppy cunt your [pc.cock " + x + "] to the limit. The repeated squelching noises of her cunny sucking your dick are at odds with the repeated smacking of her mouth sucking your tongue; her tunnel grips you possessively while her mouth kisses you worshipfully, and you’re not sure which hole is thirstier");
 		//if (pc.hasBalls = true)
 		if(pc.balls > 0) output(". You hope it’s her cunt, because your [pc.balls] have quite the thirst-quencher lined up for her");
