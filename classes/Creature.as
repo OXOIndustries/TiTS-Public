@@ -17420,7 +17420,6 @@
 			for(var i:int = 0; i < totalVaginas(); i++)
 			{
 				if(vaginas[i].hasFlag(GLOBAL.FLAG_PLUGGED) || isChastityBlocked(i)) count++;
-
 			}
 			return count;
 		}
