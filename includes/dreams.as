@@ -1003,7 +1003,7 @@ public function annoAndKaedesGinormousTiddies():void
 	output("<i>“Ooooh yeah...”</i> you moan, letting your eyes open as a tingle of pleasure rushes through your body, <i>“That’s the stuff.”</i>");
 
 	output("\n\nA groan of bliss escapes your lips as your [pc.eyes] meet Kaede’s blue puppy-dog eyes, your [pc.cock] held firmly amidst her big, soft titties while the puppy sits happily between your legs. ");
-	if(pc.cocks[0].cLength() >= 12) output("Your [pc.cockHead] is just barely able to poke out beyond Kaede’s cleavage and right into her mouth, where it’s lavished with oral affections.");
+	if(pc.cocks[0].cLength() <= 12) output("Your [pc.cockHead] is just barely able to poke out beyond Kaede’s cleavage and right into her mouth, where it’s lavished with oral affections.");
 	else output("Your [pc.cockNoun] is well sheathed in Kaede’s cleavage, though a fair amount remain remains uncovered and unloved. Luckily, those excess inches are quickly gobbled up by the eager-to-please halfbreed, taken into her warm, wet embrace of tongue.");
 	output(" Void, she’s gotten really good at these titjobs since she took those breast mods she mentioned, not to mention the hefty pair of G-cups suit her well. Speaking of, Anno is positioned just behind her, guiding her girlfriend’s head onto your cock while sporting a rather similar bust: nice and big and soft and... milky.");
 
