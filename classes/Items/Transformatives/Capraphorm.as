@@ -37,7 +37,7 @@ package classes.Items.Transformatives
 		{
 			_latestVersion = 1;
 			quantity = 1;
-			stackSize = 1;
+			stackSize = 10;
 			type = GLOBAL.PILL;
 			
 			shortName = "CapraP.";
