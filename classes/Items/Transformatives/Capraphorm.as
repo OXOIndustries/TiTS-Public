@@ -83,7 +83,7 @@ package classes.Items.Transformatives
 				target.addStatusValue("adjjjisjjrhiwig", 2, 1);
 				target.setStatusMinutes("adjjjisjjrhiwig", duration);
 				
-				CodexManager.unlockEntry("Capraphorm");
+				//CodexManager.unlockEntry("Capraphorm");
 			}
 			else
 			{

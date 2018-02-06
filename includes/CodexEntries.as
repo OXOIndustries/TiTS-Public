@@ -103,7 +103,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Snugglé", snuggleCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Steele Tech", steeleTechCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Xenogen", xenogenCodex, true);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Envyoidics", envyoidicsCodex, true);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Envyoidics", envyoidicsCodex, true);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Factions", "Black Void", blackVoidCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Factions", "J.A.F.", jointAusarFederationCodex, true);
@@ -130,7 +130,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Bubble Buddy", bubbBuddyCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Muffstick", muffstickCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "FizzyFix", fizzyfixCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Capraphorm", capraphormCodex);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Capraphorm", capraphormCodex);
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Chill Pill", chillPillCodex);
 	
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Ships", "9999", shipNameCodex);
@@ -3148,6 +3148,7 @@ public function fizzyfixCodex():void
 	CodexManager.unlockEntry("Muffstick");
 	CodexManager.viewedEntry("FizzyFix");
 }
+/*
 public function capraphormCodex():void
 {
 	clearOutputCodex();
@@ -3164,7 +3165,6 @@ public function capraphormCodex():void
 	CodexManager.unlockEntry("Envyoidics");
 	CodexManager.viewedEntry("Capraphorm");
 }
-/*
 public function chillPillCodex():void
 {
 	clearOutputCodex();
@@ -3559,6 +3559,7 @@ public function xenogenCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Xenogen");
 }
+/*
 public function envyoidicsCodex():void
 {
 	clearOutputCodex();
@@ -3572,6 +3573,7 @@ public function envyoidicsCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Envyoidics");
 }
+*/
 
 
 /* Organizations */

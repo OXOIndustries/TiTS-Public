@@ -139,7 +139,7 @@ public function setupShopSeer():void
 	if(flags["SLEEP_FAPNEA_INSTALLED"] == undefined) shopkeep.inventory.push(new SleepFapnea());
 	
 	CodexManager.unlockEntry("Tentatool");
-	CodexManager.unlockEntry("Capraphorm");
+	//CodexManager.unlockEntry("Capraphorm");
 }
 
 
@@ -250,7 +250,7 @@ public function topicShopSeer():void
 	
 	processTime(3);
 	
-	CodexManager.unlockEntry("Envyoidics");
+	//CodexManager.unlockEntry("Envyoidics");
 	
 	talkSeerMenu();
 	addDisabledButton(1, "The Shop");
