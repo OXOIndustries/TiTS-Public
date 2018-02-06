@@ -356,6 +356,9 @@ public function appearance(forTarget:Creature):void
 			if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS) || target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFaceFlag(GLOBAL.FLAG_SCALED) || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) output2(" under your " + faceFurScales);
 			output2(" but it’s adorned with a flat, pig-like nose.");
 			break;
+		case GLOBAL.TYPE_GOAT:
+			output2("Your face is elongated forward and much like a goat’s in shape and structure.");
+			break;
 	}
 	if(target.hasStatusEffect("Mimbrane Face"))
 	{
@@ -403,6 +406,14 @@ public function appearance(forTarget:Creature):void
 			else if(hasLuminousEyes) output2(" Like twinkling beacons, your");
 			else output2(" Your");
 			output2(" " + target.eyeColor + " eyes are sheep-like, sporting horizontal pupils.");
+			break;
+		case GLOBAL.TYPE_GOAT:
+		case GLOBAL.TYPE_ADREMMALEX:
+			if(hasMetallicEyes) output2(" Metallically glistening in the light, your");
+			else if(hasGemstoneEyes) output2(" Like jewels, shimmering in the light, your");
+			else if(hasLuminousEyes) output2(" Like twinkling beacons, your");
+			else output2(" Your");
+			output2(" " + target.eyeColor + " eyes sport " + (target.eyeType != GLOBAL.TYPE_ADREMMALEX ? "horizontal" : "cross-shaped") + " pupils, much like a vaguely alien goat.");
 			break;
 		case GLOBAL.TYPE_GRYVAIN:
 			output2(" Your eyes have a curious mix of feline and dragonic features; a pair of black vertical slits instead of rounded pupils, ");
@@ -545,6 +556,11 @@ public function appearance(forTarget:Creature):void
 				break;
 			case GLOBAL.TYPE_SHEEP:
 				output2(" A pair of sheep-like ears flop cutely down the sides of your " + headNoun + ".");
+				break;
+			case GLOBAL.TYPE_GOAT:
+				output2(" A pair of " + num2Text(target.earLength) + "-inch long, flicking goat ears protrude from the sides of your " + headNoun);
+				if(!nonFurrySkin) output2(" with tufts of fur on their backs");
+				output2(".");
 				break;
 			case GLOBAL.TYPE_DRIDER:
 				output2(" A pair of large pointy ears stick out from your " + headNoun + ".");
@@ -700,6 +716,11 @@ public function appearance(forTarget:Creature):void
 				break;
 			case GLOBAL.TYPE_SHEEP:
 				output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of sheep-like ears that flop cutely down the sides of your head.");
+				break;
+			case GLOBAL.TYPE_GOAT:
+				output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of " + num2Text(target.earLength) + "-inch long, flicking goat ears. They stick noticeably out to the sides");
+				if(!nonFurrySkin) output2(" with tufts of fur on their backs");
+				output2(".");
 				break;
 			case GLOBAL.TYPE_DRIDER:
 				output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of cute pointed ears, bigger than your old human ones.");
@@ -961,8 +982,35 @@ public function appearance(forTarget:Creature):void
 				break;
 			//Goatliness is next to godliness.
 			case GLOBAL.TYPE_GOAT:
-				if(target.hornLength >= 6) output2(" Two curled goat horns twist back from your forehead, curling over your [target.ears] like a satyr out of terran legend.");
-				else output2(" Two goat horns stick stright out from your forehead, making you appear like a satyr out of terran legend.");
+				if(target.hornLength >= 6)
+				{
+					output2(" " + StringUtil.capitalize(num2Text(target.horns)));
+					if(target.hasStatusEffect("Horn Style"))
+					{
+						if(target.getStatusTooltip("Horn Style") != "") output2(" " + target.getStatusTooltip("Horn Style"));
+						output2(" goat horns extend from the top of your forehead.");
+						switch(target.statusEffectv1("Horn Style"))
+						{
+							case 1:
+								output2(" The curled goat horns coil out from the sides of your forehead, " + num2Text(int(target.hornLength)) + " inches to the left and right.");
+								break;
+							case 2:
+								output2(" The bow-curved goat horns extend in opposite directions from the sides of your forehead, " + num2Text(int(target.hornLength)) + " inches to the left and right.");
+								break;
+							case 3:
+								output2(" The thick ibex-like horns rise " + num2Text(int(target.hornLength)) + " inches into the air, curving towards your back in a regal manner.");
+								break;
+							case 4:
+								output2(" The oryx-like horns rise " + num2Text(int(target.hornLength)) + " inches into the air, thin and mostly straight aside a slight bend towards the floor.");
+								break;
+							case 5:
+								output2(" The markhor-like horns rise " + num2Text(int(target.hornLength)) + " inches into the air, twisted and alien in shape.");
+								break;
+						}
+					}
+					else output2(" curled goat horns twist back from your forehead, curling over your [target.ears] like a satyr out of terran legend.");
+				}
+				else output2(" " + StringUtil.capitalize(num2Text(target.horns)) + " goat horns stick stright out from your forehead, making you appear like a satyr out of terran legend.");
 				break;
 			//Ram horns
 			case GLOBAL.TYPE_SHEEP:
@@ -1198,6 +1246,7 @@ public function appearance(forTarget:Creature):void
 			case 4: output2(" You have speckles of " + target.skinAccent + " covering your body."); break;
 			case 5: output2(" You have dapples of " + target.skinAccent + " covering your body."); break;
 			case 6: output2(" You have " + target.skinAccent + " piebald markings covering your body."); break;
+			case 7: output2(" Parts of your " + ((target.hasFur() || target.hasFeathers()) ? "fur" : "body") + " show abstract " + target.skinAccent + " tattoos, ones that glow faintly with a pleasant aura."); break;
 		}
 	}
 	// Freckles
@@ -2346,6 +2395,22 @@ public function appearance(forTarget:Creature):void
 				output2(" legs grow down from your " + target.hipDescript() + ", ending in three-toed, webbed, frog-like feet. They look built for leaping and sticking to flat surfaces rather than running.");
 			}
 			else output2(" Your " + plural(target.leg(true)) + " look built for leaping than running, ending in three-toed, webbed, frog-like feet.");
+			break;
+		case GLOBAL.TYPE_GOAT:
+			output2(" " + StringUtil.upperCase(num2Text(target.legCount)));
+			if(rand(2) == 0)
+			{
+				if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
+				output2(" legs grow from your " + target.hipDescript() + ",");
+				if(target.hasLegFlag(GLOBAL.FLAG_GOOEY)) output2(" covered in goo and");
+				else if(target.hasFur() || target.hasLegFlag(GLOBAL.FLAG_FURRED)) output2(" covered in coarse fur and");
+				output2(" providing a surprisingly strong sense of balance.");
+			}
+			else
+			{
+				output2(" double jointed legs covered in " + target.skinFurScales(true,true,true,true) + " supports your body, looking much like a goat’s all the way down.");
+			}
 			break;
 		case GLOBAL.TYPE_OVIR:
 			if(target.skinType != GLOBAL.SKIN_TYPE_SCALES)

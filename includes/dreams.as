@@ -24,6 +24,16 @@ public function dreamChances(inShip:Boolean = false):Boolean
 			dreamed = true;
 		}
 	}
+	else if(pc.hasStatusEffect("Primorditatts Queued"))
+	{
+		if(!pc.hasPerk("Primorditatts"))
+		{
+			eventQueue.push(capraphormDreamSequence);
+			eventQueue.push(capraphormPrimorditattsGain);
+			dreamed = true;
+		}
+		pc.removeStatusEffect("Primorditatts Queued");
+	}
 	else if(inShip && flags["SLEEP_FAPNEA_ACTIVE"] != undefined)
 	{
 		if(pc.hasStatusEffect("Sleep Fapnea Dream"))
@@ -76,6 +86,7 @@ public function dreamChances(inShip:Boolean = false):Boolean
 		}
 		if(seraIsMistress()) dreams.push(demonDream);
 		if(isHalloweenish()) dreams.push(superGhostioDream);
+		if(pc.hasPerk("Primorditatts")) dreams.push(capraphormDreamSequence);
 	}
 	if(dreams.length > 0) 
 	{
@@ -91,6 +102,43 @@ public function dreamChances(inShip:Boolean = false):Boolean
 	return dreamed;
 }
 
+// For temporarily setting genitals for dream scenes that require specific genitals!
+public var dreamNewVagina:Boolean = false;
+public var dreamNewCock:Boolean = false;
+public function dreamCheckVagina():void
+{
+	if(!pc.hasVagina())
+	{
+		dreamNewVagina = true;
+		pc.createVagina();
+		pc.setNewVaginaValues(0);
+	}
+}
+public function dreamResetVagina():void
+{
+	if(dreamNewVagina)
+	{
+		pc.removeVaginas();
+		dreamNewVagina = false;
+	}
+}
+public function dreamCheckCock():void
+{
+	if(!pc.hasCock())
+	{
+		dreamNewCock = true;
+		pc.createCock();
+		pc.setNewCockValues(0);
+	}
+}
+public function dreamResetCock():void
+{
+	if(dreamNewCock)
+	{
+		pc.removeCocks();
+		dreamNewCock = false;
+	}
+}
 
 public function angelDreamGo():void
 {
@@ -172,6 +220,8 @@ public function angelFutaBukkakePart3():void
 
 public function shotgunWeddingDream():void
 {
+	dreamCheckCock();
+	
 	clearOutput();
 	author("Night Trap");
 	showName("SYRI\n& ANNO");
@@ -308,7 +358,7 @@ public function shotgunWeddingDream2():void
 	output(" As you pump rope after rope of [pc.cum] into Anno’s womb, the howling in the temple, both yours and everyone else’s, somehow synchronizes and harmonizes. The pitch grows and grows, until suddenly, you hear your name being called.");
 	//PC Cums and is covered in cum
 	pc.orgasm();
-	applyCumSoaked(pc);
+	if(!dreamNewCock) applyCumSoaked(pc);
 	clearMenu();
 	addButton(0,"Next",shotgunWeddingDream3,cockHolding);
 }
@@ -344,10 +394,16 @@ public function shotgunWeddingDream3(cockHolding:Creature):void
 		showBust("");
 		showName("\nWAKING...");
 		
-		output("You wake with a start to the loud sound of your codex’s alarm beeps, paired with the humming of your ship against the ambient silence. After a moment, you take a look at your surroundings. You are in your bed, covered in [pc.cumVisc] [pc.cumNoun].");
+		output("You wake with a start to the loud sound of your codex’s alarm beeps, paired with the humming of your ship against the ambient silence. After a moment, you take a look at your surroundings. You are in your bed");
+		if(!dreamNewCock) output(", covered in [pc.cumVisc] [pc.cumNoun]");
+		output(".");
 		output("\n\nOh, it was just a dream...");
-		output("\n\nDisappointed, you rub away the mess of [pc.cum] from your [pc.cockHead] and wipe the sleep from your eyes.");
+		output("\n\nDisappointed, you");
+		if(!dreamNewCock) output(" rub away the mess of [pc.cum] from your [pc.cockHead] and");
+		output(" wipe the sleep from your eyes.");
 		if(flags["CREWMEMBER_SLEEP_WITH"] == undefined) output(" Now if only Anno " + (flags["ANNOxSYRI_WINCEST"] != undefined ? "and Syri were" : "was") + " here to wake up with you...");
+		
+		dreamResetCock();
 		
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -358,13 +414,23 @@ public function shotgunWeddingDream3(cockHolding:Creature):void
 	showAnno();
 	author("Night Trap");
 	
-	output("<i>“[pc.name]. [pc.name]! Damn boss, what kind of dream are you having?!?”</i> You wake with a start to Anno shaking you. After a moment her words sink in, and you look at your surroundings. You are in your bed, covered in [pc.cumVisc] [pc.cumNoun], with Anno lying next to you, her tail, lower back, and enchanting butt plastered in your [pc.cumVisc] [pc.cumNoun] as well. Your bitch - no, your lover - breaks her frown and laughs softly. <i>“You got yourself, the bed, and me covered in your [pc.cum]. As much as I may love the stuff, I also love being warned when this sort of thing is going to happen.”</i>");
+	output("<i>“[pc.name]. [pc.name]! Damn boss, what kind of dream are you having?!?”</i> You wake with a start to Anno shaking you. After a moment her words sink in, and you look at your surroundings. You are in your bed");
+	if(!dreamNewCock) output(", covered in [pc.cumVisc] [pc.cumNoun],");
+	output(" with Anno lying next to you");
+	if(!dreamNewCock) output(", her tail, lower back, and enchanting butt plastered in your [pc.cumVisc] [pc.cumNoun] as well");
+	output(". Your bitch - no, your lover - breaks her frown and laughs softly.");
+	if(!dreamNewCock) output(" <i>“You got yourself, the bed, and me covered in your [pc.cum]. As much as I may love the stuff, I also love being warned when this sort of thing is going to happen.”</i>");
 	output("\n\nYou wipe the sleep from your eyes before apologizing to Anno. You roll out of bed and start stripping the sheets with her help.");
-	output("\n\n<i>“So who was it boss? Who or what did you bust your nut all over in your dream?”</i> ");
+	output("\n\n<i>“So who was it boss? Who or what did you");
+	if(!dreamNewCock) output(" bust your nut all over");
+	else output(" get all exicted about");
+	output(" in your dream?”</i> ");
 	if(pc.isNice()) output("Sheepishly");
 	else if(pc.isMischievous()) output("Impishly");
 	else output("Bluntly");
-	output(" you admit that it was her. Your lover blushes slightly, giggling as she gives you a dismissive gesture. <i>“Oh, you’re having me on. That’s way too corny. And besides, I’m sure you say that to all the girls you surprise with sleep-bukkake.”</i>");
+	output(" you admit that it was her. Your lover blushes slightly, giggling as she gives you a dismissive gesture. <i>“Oh, you’re having me on. That’s way too corny. And besides, I’m sure you say that to all the girls");
+	if(!dreamNewCock) output(" you surprise with sleep-bukkake");
+	output(".”</i>");
 	output("\n\nYou explain the dream to her quickly, Anno laughing at just about every detail you mention. <i>“Well traditional Ausar weddings aren’t quite like you described, but I kind of want to try that skirt thing you mentioned. Probably not in front of my parents though. And sis would be pissed at you for even suggesting that she would provide a collar for me. She thinks I’m ‘perpetuating stereotypes,’”</i> Anno says in a mocking imitation of Syri’s voice, <i>“every time I go for walkies or talk about petplay.”</i>");
 	output("\n\nYou concede that perhaps it would be best not to tell Syri about this dream, especially considering how slutty she was acting in it. <i>“Well, I’m sure glad we’re not actually married. I’ve got a date with Kaede later tonight where I plan on ‘tying the knot’ with her. Having just one lover would be so limiting, plus if you’re going to be polyamorous anyway, why bother having some huge wedding ceremony? That collar did sound really cute though. I wouldn’t mind finding something like it around my neck one day,”</i> she says with a wink. <i>“Maybe we could arrange some sort of wedding roleplay with");
 	//if Pupcest unlocked:
@@ -374,7 +440,13 @@ public function shotgunWeddingDream3(cockHolding:Creature):void
 	else output("those two");
 	output(" would be so much fun. Plus I’d be lying if I said I wouldn’t love to see how messy that could get.”</i>");
 
-	output("\n\nYou tell her that sounds fun, but you’re a little tired of weddings for now. She giggles again at your reaction as she takes the last of the sheets off the bed and throws them into the laundry. <i>“I’m going to get all this [pc.cum] off me now boss. I’ll see you later. Don’t wait up for me!”</i> She blows you a kiss as she steps into the bathroom, the door closing behind her. You stretch the last kinks out of your muscles, and start getting ready for your day. What a dream!");
+	output("\n\nYou tell her that sounds fun, but you’re a little tired of weddings for now. She giggles again at your reaction as she takes the last of the sheets off the bed and throws them into the laundry. <i>“I’m going to get all this");
+	if(!dreamNewCock) output(" [pc.cum]");
+	else output(" love musk");
+	output(" off me now boss. I’ll see you later. Don’t wait up for me!”</i> She blows you a kiss as she steps into the bathroom, the door closing behind her. You stretch the last kinks out of your muscles, and start getting ready for your day. What a dream!");
+	
+	dreamResetCock();
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -382,6 +454,8 @@ public function shotgunWeddingDream3(cockHolding:Creature):void
 //Requirements: Reaha is bed partner, has dick
 public function reahaDreamSequenceForNerdsByNerdsDesignedByNerdsToArouseNerdsForNerdpletion():void
 {
+	dreamCheckCock();
+	
 	clearOutput();
 	showBust(reahaBustDisplay(true));
 	author("Shadefalcon");
@@ -504,10 +578,14 @@ public function reahaDreamPart3():void
 		
 		output("You abruptly wake up, eyes opening wide in pure shock. <i>“Reaha was talking? How is that possible? She’s just a cow!”</i> Thoughts like these keep swirling inside your head until it dawns upon you that the whole farmer life setting was just a dream, and that Reaha, is as much a talking person as you are.");
 		output("\n\nJust a dream... you remind yourself.");
-		output("\n\nDisappointed, you rub away the mess of [pc.cum] from your [pc.cockHead] and wipe the sleep from your eyes.");
+		output("\n\nDisappointed, you");
+		if(!dreamNewCock) output(" rub away the mess of [pc.cum] from your [pc.cockHead] and");
+		output(" wipe the sleep from your eyes.");
 		if(flags["CREWMEMBER_SLEEP_WITH"] == undefined) output(" Now if only Reaha was next to you...");
 		
 		pc.lust(5);
+		dreamResetCock();
+		
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 		
@@ -544,6 +622,8 @@ public function reahaDreamPart3():void
 		pc.milkInMouth(reaha);
 	}
 	pc.lust(5);
+	dreamResetCock();
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -725,7 +805,7 @@ public function venusDreamsPartDicknipples():void
 	output("\n\nYour cocks are bathing in slick “personal” lubricant, and the feeling of mounting euphoria is in your tits as well as your brain. Your entire upper body is floating, the lower half forgotten. She turned you over at some point there, so she is looming over you now.");
 	output("\n\n<i>“How are we... going to do this?”</i> she asks, her usual calm demeanor momentarily turned perplexed.");
 	output("\n\nYou are laying on your back with your huge firm breasts almost covering your face. Her vines hold you fast and jerk your tits, and her body is over you. She’s partly connected to a vast structure underground, and so the act of fitting your dicknipple in her pussy is daunting. You hear a satisfied sigh from above, and notice she is spreading her slick nether lips with the fingers of one hand. Your vine-wrapped dicknipples jut skyward - and then are released.");
-	output("\n\nFreed, they glisten with her vines’ strange humours and your own all too understandable fluids. She mingles the juice from her pussy with this, grabbing one of the nipplecocks. Then she pulls you closer to the hole, and straddles one of your [pc.breast]. The slicked up shaft slides inside of her.");
+	output("\n\nFreed, they glisten with her vines’ strange humors and your own all too understandable fluids. She mingles the juice from her pussy with this, grabbing one of the nipplecocks. Then she pulls you closer to the hole, and straddles one of your [pc.breast]. The slicked up shaft slides inside of her.");
 	output("\n\n<i>“Oh yes!”</i> she cries out, with every appearance of abandon. You can only see her taut ass and curved back. You feel so much more. Your [pc.dickNipple] is buried in her sex. It is not that hot, but it is wet and perfectly sized. She rides you down to the hilt, astride your huge tit as if it were an inflatable bouncy ball. Your cock swells, its slight curve pressing against the walls of her sex as she extends above the deep rooted hole in the ground and mounts your tit reverse cowgirl.");
 	output("\n\nThis still leaves one cock out in the cold. She could just grasp it with the vines, but the plant woman chooses a more personal touch. Her long slender fingers capture it. The entrance of her wet perfect sex squeezes tight on your cock’s base. The back “muscle” of the erected dicknipple is being sucked as if by tiny mouths. A complete internal muscular control is mirrored in her hand, so the way her thumb and forefinger pump the base of the neglected dick not trapped in her folds is the same as her pussy’s ministrations.");
 	clearMenu();
@@ -934,6 +1014,8 @@ public function venusDreamsEpilogue2():void
 //self facial scene, for penis-havers
 public function venusAutofellateDream():void
 {
+	dreamCheckCock();
+	
 	clearOutput();
 	showBust("VENUSPITCHER");
 	showName("VENUS\nPITCHER");
@@ -949,11 +1031,19 @@ public function venusAutofellateDream():void
 	output("\n\nWith the help of a supportive green hand on your butt, your body bends impossibly and the tip of your cock enters your mouth. You taste plant nectar drooling from the leaf-onahole as your eyes roll back, and the vine in your ass goes wild with insistent hammering pulses. No vibrator could make you hum so hard, and no other additive could make your own [pc.cum] pulsing down your greedy gullet quite so sweet. Comforting, mind-filling, shock-jolting orgasm makes you uselessly fatigued, and the vine keeping you in place feels more and more natural when it is impossible to fight.");
 
 	output("\n\nSucking yourself is shockingly pleasurable. You never realized how warm your own mouth is. Somehow your entire length pulses down your throat. You are a self contained system for pleasure. Your only need is the vine invading your overfucked rear and asserting dominion over your prostate. The electric buzz keeps you sucking, keeps you in place, and keeps your eyes fixed on the approving smile of the curvy green woman pulling you down underground and into her lair when-");
-
-	output("\n\nYou awaken with a start, somehow having propped yourself against the edge of the bunk in just the right position to deliver a sloppy self-facial blast from your spent and softening [pc.cock].");
-	if(pc.balls > 1) output(" Your [pc.balls] are still taut against the base muscle and are churning as though eager to go another round.");
+	
+	if(!dreamNewCock)
+	{
+		output("\n\nYou awaken with a start, somehow having propped yourself against the edge of the bunk in just the right position to deliver a sloppy self-facial blast from your spent and softening [pc.cock].");
+		if(pc.balls > 1) output(" Your [pc.balls] are still taut against the base muscle and are churning as though eager to go another round.");
+		applyCumSoaked(pc);
+	}
+	else
+	{
+		output("\n\nYou awaken with a start, somehow having propped yourself against the edge of the bunk and stroking... your phantom cock?");
+		dreamResetCock();
+	}
 	output(" Pity it was just a dream... surely such delights exist nowhere in the universe.");
-	applyCumSoaked(pc);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -963,6 +1053,8 @@ public function venusAutofellateDream():void
 //messy plant nectar fucked-full scene for vagina havers
 public function everyLittleInchDream():void
 {
+	dreamCheckVagina();
+	
 	clearOutput();
 	showBust("VENUSPITCHER");
 	showName("VENUS\nPITCHER");
@@ -984,7 +1076,15 @@ public function everyLittleInchDream():void
 	output("\n\nYour clit sings oversensitivity that would make you back away from any normal lover, that would require you to have a breather to just feel pretty and free and alive and safe and like your own person again.");
 	output("\n\nInstead you roll into it, working your oversensitized nub against the top of her cock as your brain turns to nectar and a slow, happy, drugged giggle escapes when she begins pushing your bouncy, cum-inflated belly against the ground on every obscenely squelching thrust.");
 	output("\n\nYour quivering pussy doesn’t stop its overload of torment until the moment you are listening to a beeping alarm clock and grabbing sheets instead of sex-moistened leaves on the forest floor.");
-	output("\n\nAnd tears are in the corners of your eyes again, as you resolve to get dressed once the flood has been cleaned up.");
+	if(!dreamNewVagina)
+	{
+		output("\n\nAnd tears are in the corners of your eyes again, as you resolve to get dressed once the flood has been cleaned up.");
+	}
+	else
+	{
+		output("\n\nRecovering from your orgasmic ordeal, you prepare to wake up... finding that you are missing your [pc.vagina], not needing to clean the imaginary flood below you.");
+		dreamResetVagina();
+	}
 
 	pc.orgasm();
 	clearMenu();
@@ -992,9 +1092,11 @@ public function everyLittleInchDream():void
 }
 
 
-//This dream should have a random chance of occurring if the PC has completed Kaede’s Uveto encounter, and has Anno as their sleeping partner. Requires a donger. 
+//This dream should have a random chance of occurring if the PC has completed Kaede’s Uveto encounter, and has Anno as their sleeping partner. Requires a donger.
 public function annoAndKaedesGinormousTiddies():void
 {
+	dreamCheckCock();
+	
 	clearOutput();
 	showBust("KAEDE_NUDE","ANNO_NUDE");
 	showName("KAEDE\n& ANNO");
@@ -1039,8 +1141,12 @@ public function annoKaedeTiddyDrama():void
 		
 		output("You suck in a deep breath as you’re suddenly ripped from your sleep, and your pleasant dream subsequently, only to hear your name suddenly fade into the sound of your codex’s alarm beeps, paired with the humming of your ship against the ambient silence.");
 		output("\n\nOh, it was just a dream...");
-		output("\n\nDisappointed, you rub away the mess of [pc.cum] from your [pc.cockHead] and proceed to wake up.");
+		output("\n\nDisappointed, you");
+		if(!dreamNewCock) output(" rub away the mess of [pc.cum] from your [pc.cockHead] and");
+		output(" proceed to wake up.");
 		if(flags["CREWMEMBER_SLEEP_WITH"] == undefined) output(" Now if only Anno was here besides you...");
+		
+		dreamResetCock();
 		
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -1058,7 +1164,10 @@ public function annoKaedeTiddyDrama():void
 	//ifSilly:
 	if(silly) output("\n\nWait! This is not your beautiful house! These are not Anno’s massive milk-leaking breasts!");
 	else output("\n\nYou’re quick to realize none of what you just dreamt actually happened, looking around to see not a single pair of breasts above a D-cup, nor any ginger half-breeds attached to your cock, leaving you with a slight pang of disappointment.");
-	output("\n\n<i>“Oh...”</i> she moans, <i>“You’re finally awake, you’ve been, uh... doing </i>that<i> for a while now.”</i> With that last word she nods her head to get you to look down, and you do so, only to see you’ve covered this pup’s tummy in your [pc.cum], your [pc.cockHead] still gently leaking onto her smooth stomach.");
+	output("\n\n<i>“Oh...”</i> she moans, <i>“You’re finally awake, you’ve been, uh... doing </i>that<i> for a while now.”</i> With that last word she nods her head to get you to look down, and you do so, only to see you’ve");
+	if(!dreamNewCock) output(" covered this pup’s tummy in your [pc.cum], your [pc.cockHead] still gently leaking onto her smooth stomach");
+	else output(" been humping the pup’s tummy with your crotch");
+	output(".");
 	output("\n\nYou look back up to the girl’s nipples, still stiff and a bit reddened from your sleepy suckling... and all too succulent for you to resist.");
 
 	if(pc.isNice()) 
@@ -1078,7 +1187,12 @@ public function annoKaedeTiddyDrama():void
 	{
 		output("\n\nYou don’t say a word, but quickly place your mouth back onto one of Anno’s still stiff teats, drawing a surprised gasp from your lover. Then you start to move your tongue, flicking it across the girl’s nipple, causing her to sigh lustfully, wrapping her arms around your waist to keep you where you are, compelling you to restart you suckling. Though, much less milk is to be found this time.");
 	}
-	output("\n\nNo doubt you’ll need to stop and get moving again soon, but for now you can lie here and savor the moment with your cum-covered lover.");
+	output("\n\nNo doubt you’ll need to stop and get moving again soon, but for now you can lie here and savor the moment with your");
+	if(!dreamNewCock) output(" cum-covered");
+	output(" lover.");
+	
+	dreamResetCock();
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1159,3 +1273,118 @@ public function demonDream2():void
 	pc.orgasm();
 	addButton(0,"Next",mainGameMenu);
 }
+
+// Capraphorm: Dream sequence
+// Only triggers when PC has the Primorditatts perk. Has a 5% chance of triggering every time PC goes to sleep on the ship. Repeatable.
+// Do goats dream of electric rituals?
+public function capraphormDreamSequence(pageNum:int = 0):void
+{
+	clearOutput();
+	author("SoAndSo");
+	clearMenu();
+	
+	switch(pageNum)
+	{
+		case 0:
+			dreamCheckCock();
+			
+			showBust("GOAT_WORSHIPPER", "GOAT_WORSHIPPER", "GOAT_WORSHIPPER");
+			showName("\nA RITUAL");
+			
+			output("Your sleep is a soft one, a calm one and one that warms your heart. With that warmth comes courage, joy, and righteousness, a sense of purpose and power. You feel it deep within, placing a hand on your chest.");
+			output("\n\nTaking a deep breath through your nose, your eyes re-open to the world around you.");
+			output("\n\nA crowd of hooded figures of all sizes stands before you. As far as the eye can see, a static tide of brown robes and pointy, flicking ears point in your direction with faces covered. The sight reminds you of your purpose, why you are here and it makes you smile to the solemn crowd. You stand naked before them: A singular, green orator to a populace of brown initiates.");
+			output("\n\nThe sky is open to you, a grey slate of thunderclouds and distant lightning. Beneath, you stand on a smooth plane of granite, but wait... not a plane, more of a plinth or an altar. It’s roughly hewn but there are intricate, alien designs carved into its surface. They glow in faint colors of greens, reds and oranges.");
+			output("\n\nThere’s a monotonous harmony of notes coming from crowd, all varying in intensity in seemingly random intervals. They hum in perfect pitch, the sound resonating off of the black stones around you.");
+			output("\n\nYou raise a hand of clawed fingers, green fur running across your skin. Unknowable and alien words leap from your throat, directed towards the crowd. A figure near the front walks forward, shorter than most.");
+			output("\n\nAs they approach, you extend your other hand outward to greet them. They accept: A dainty, feminine hand settles into your large palm. The figure removes their hood.");
+			output("\n\nYour gaze is drawn to them, a female goat-like alien standing before you. Locking your eyes with hers, you sense a lifetime’s worth of memories and happiness filling your mind when you share the gaze. You call back to the crowd and their humming shifts, a new, joyous chord ringing throughout.");
+			output("\n\n");
+			
+			addButton(0, "Next", capraphormDreamSequence, 1);
+			break;
+		case 1:
+			showBust("GOAT_MAIDEN");
+			showName("THE\nVIRGIN");
+			
+			output("Guiding her by the hand, you help her remove the cloak. Her form is furred and pure white, naked and petite: Just as you remember her. She’s as assured and confident as you feel, somehow you can sense this from looking in her eyes. You both want what’s to come.");
+			output("\n\nHelping her onto the altar, she lies on her back with her arms outstretched over her head. She is in full view of the crowd, a tentative chord added to the chorus.");
+			output("\n\nYou descend from the altar top, lining yourself up with her exposed cunny. Your sheathed member, proud and slender, rises in anticipation of your conquest. With your loins afire and the love of your life before you, you say some final, unintelligible words to the crowd and plunge your shaft into your lover!");
+			output("\n\nShe bleats and squeals, her hymen giving way to your insertion. You thrust your lower body to as deep a place as your shaft can go, making sure to be gentle even so. You feel your lover’s hooves clamp round your locked thighs, urging you on with approval.");
+			output("\n\nAlthough your body is flushed with pleasuring heat, your mind is clear.");
+			output("\n\nA lightning bolt strikes the ground several hundred meters away, to which you raise your hands to the air and look straight into the dark grey sky. The crowd of hoods grows louder in its chorus, a purposeful, dissonant note breaking through each harmony. You call to the sky in a final plea to the heavens, the last word being ‘a...dremma..lex’?");
+			output("\n\nAnother bolt of light hits you and your entwined lover with overwhelming force entering your body! You feel locked, paralyzed in place as it surges around your entire being, essence, and consciousness. Out of the corner of your eye, your lover is convulsing in delight on the altar as a glow takes over her form!");
+			output("\n\nIn the space of seconds, the glow spreads, burns then fades from you both, a thin film of smoke rising from the altar around you. Your eyes are fixed on your lover: She’s panting heavily but is still smiling, her own eyes closed together.");
+			output("\n\nYour body feeling taught, used, and spent, you take some sheepish steps back. Your alien shaft is just as spent, covered in virginal blood and sexual fluids. The female pulls herself up, gingerly standing up on the edge of the altar.");
+			output("\n\nShe’s changed: Her fur is the same jade green as yours, her head adorned with large, black horns! Various markings in gold and red dot her fur and she seems taller, stronger, and more youthful. Approaching each other, you embrace and the crowd erupts in cheer!");
+			
+			addButton(0, "Next", capraphormDreamSequence, 2);
+			break;
+		case 2:
+			showBust("");
+			showName("\nWAKING...");
+			
+			output("And then you wake.");
+			output("\n\nWhat a strange dream! The adoration, the sense of security and the blessings bestowed... you miss it all already.");
+			output("\n\nStill, the tender embrace has left its own mark: Arousal flushes to your [pc.crotch]!");
+			
+			dreamResetCock();
+			// PC lust fills to max.
+			pc.maxOutLust();
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+	return;
+}
+public function capraphormPrimorditattsGain():void
+{
+	clearOutput();
+	showBust("");
+	showName("\nTATTOOS...?");
+	author("SoAndSo");
+	
+	output("There’s an indescribable itch that takes over your [pc.skinFurScales], one that covers your body. You feel the urge to scratch but merely brushing your fingers against the sensitive surface makes you wince.");
+	if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_FUR))
+	{
+		if(pc.skinType != GLOBAL.SKIN_TYPE_FUR)
+		{
+			output("\n\nYour [pc.skinFurScales] visibly shifts color to a cool, jade green shade!");
+		}
+		else
+		{
+			output("\n\nYou feel sharp hairs come out from unseen pores all over your body, their color a cool, jade green shade!");
+			pc.skinType = GLOBAL.SKIN_TYPE_FUR;
+			pc.clearSkinFlags();
+		}
+		
+		pc.addSkinFlag(GLOBAL.FLAG_FURRED);
+		pc.addSkinFlag(GLOBAL.FLAG_THICK);
+		pc.furColor = "jade green";
+	}
+	output("\n\nOn your [pc.chest], back and [pc.legs], you can see that surreal, unfamiliar markings in vibrant red and gold shades have formed " + (pc.hasFur() ? "in the mess of hair" : "all over yourself") + ". When your body has calmed itself, you take note that a pleasurable, even sexy, aura seems to come about when you focus on them.");
+	//output(" In turn, <i>you</i> feel sexier!");
+	output(" <b>You’ve now got alien tattoos!</b>");
+	
+	if(pc.hasAccentMarkings())
+	{
+		output(" The newly obtained accents seem to have replaced your previous body markings however.");
+		pc.clearAccentMarkings();
+	}
+	pc.skinAccent = "gold and red";
+	
+	output("\n\n(<b>Perk Gained: Primorditatts</b> - You’re covered in faintly glowing gold and red tattoos! Sometimes, you get weird dreams.)");
+	// Cut - Note: "You have a permanent increase to sexiness (+2) but have -10% lust resistance."
+	
+	// Perk: "Primorditatts"
+	// v1: 
+	// v2: 
+	// v3: 
+	// v4: 
+	pc.createPerk("Primorditatts", 0, 0, 0, 0, "You’re covered in intricate tattoos that sometimes give you strange dreams.");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+	return;
+}
+

@@ -576,13 +576,14 @@
 		public function hasAccentMarkings():Boolean
 		{
 			if(skinAccent == "") return false;
-			return (hasStatusEffect("Vanae Markings") || hasStatusEffect("Shark Markings") || hasStatusEffect("Body Markings"));
+			return (hasStatusEffect("Vanae Markings") || hasStatusEffect("Shark Markings") || hasStatusEffect("Body Markings") || hasPerk("Primorditatts"));
 		}
 		public function clearAccentMarkings():void
 		{
 			removeStatusEffect("Vanae Markings");
 			removeStatusEffect("Shark Markings");
 			removeStatusEffect("Body Markings");
+			removePerk("Primorditatts");
 			skinAccent = "";
 		}
 		public function accentMarkings():int
@@ -592,6 +593,7 @@
 			if(hasStatusEffect("Vanae Markings")) accentType = 0;
 			if(hasStatusEffect("Shark Markings")) accentType = statusEffectv1("Shark Markings");
 			if(hasStatusEffect("Body Markings")) accentType = statusEffectv1("Body Markings");
+			if(hasPerk("Primorditatts")) accentType = 7;
 			return accentType;
 		}
 		public function getAccentMarking(accentType:int = -1, asNoun:Boolean = true):String
@@ -605,6 +607,7 @@
 				case 4: return (asNoun ? "speckles" : "speckled"); break;
 				case 5: return (asNoun ? "dapples" : "dappled"); break;
 				case 6: return (asNoun ? "piebald" : "piebald"); break;
+				case 7: return (asNoun ? "tattoos" : "tattooed"); break;
 			}
 			return "NO MARKING PATTERN FOUND!";
 		}
@@ -5384,7 +5387,7 @@
 		public function hasEmoteEars(): Boolean
 		{
 			// For ear types that move emotively, like cute animal ears.
-			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_SIMII) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
+			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT, GLOBAL.TYPE_SIMII) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
 			return false;
 		}
 		public function earDescript(): String
@@ -5512,6 +5515,10 @@
 				case GLOBAL.TYPE_SHEEP:
 					adjectives = ["sheep", "lamb-like", "floppy"];
 					if(!nonFurrySkin) adjectives.push("softly furred");
+					break;
+				case GLOBAL.TYPE_GOAT:
+					adjectives = ["goat", "flickering", "narrow"];
+					if(!nonFurrySkin) adjectives.push("furred");
 					break;
 				case GLOBAL.TYPE_SIMII:
 					adjectives = ["simii", "simian", "monkey", "monkey-like", "oddly-shaped"];
@@ -5738,7 +5745,7 @@
 			return description;
 		}
 		public function hasSmallNose(): Boolean {
-			return InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_HUMANMASKED, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_MOUSEMAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_SIMII);
+			return InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_HUMANMASKED, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_MOUSEMAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_SIMII, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT);
 		}
 		public function faceDesc(): String {
 			var faceo: String = "";
@@ -6468,6 +6475,7 @@
 					case GLOBAL.TYPE_SHARK: adjectives.push("shark-like","shark-like","shark-like","piscine"); break;
 					case GLOBAL.TYPE_SWINE: adjectives.push("pig-nosed"); break;
 					case GLOBAL.TYPE_SIMII: adjectives.push("simian", "monkey-like"); break;
+					case GLOBAL.TYPE_GOAT: adjectives.push("caprine", "goat-like"); break;
 				}
 				if (hasFaceFlag(GLOBAL.FLAG_ANGULAR)) adjectives.push("angular");
 				if (hasFaceFlag(GLOBAL.FLAG_LONG)) adjectives.push("long");
@@ -6964,6 +6972,7 @@
 						case GLOBAL.TYPE_SWINE: adjectives = ["swine", "swine", "pig-like"]; break;
 						case GLOBAL.TYPE_TENTACLE: adjectives = ["tentacle-toed", "tentacled", "tentacle imitation", "tentacle formed"]; break;
 						case GLOBAL.TYPE_SHEEP: adjectives = ["sheep", "sheep", "sheep-like", "lamb-like"]; break;
+						case GLOBAL.TYPE_GOAT: adjectives = ["goat", "goat", "caprine", "goat-like"]; break;
 						case GLOBAL.TYPE_SIMII: adjectives = ["simii", "simian", "simiiforme", "monkey-like"]; break;
 					}
 				}
@@ -7043,6 +7052,7 @@
 					case GLOBAL.TYPE_NYREA: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
 					case GLOBAL.TYPE_SHARK: adjectives = ["shark-like","clawed","webbed"]; break;
 					case GLOBAL.TYPE_SHEEP: adjectives = ["sheep", "sheep-like", "lamb-like", "bestial"]; break;
+					case GLOBAL.TYPE_GOAT: adjectives = ["goat", "goat-like", "caprine", "bestial"]; break;
 					case GLOBAL.TYPE_SIMII: adjectives = ["simian", "ape-like", "dexterous"]; break;
 				}
 			}
@@ -10582,6 +10592,12 @@
 					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
 					cocks[slot].cockColor = "pink";
 					break;
+				case GLOBAL.TYPE_GOAT:
+					cocks[slot].knotMultiplier = 1;
+					cocks[slot].cThicknessRatioRaw = 0.75;
+					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
+					cocks[slot].cockColor = RandomInCollection(["red", "pink", "cherry red"]);
+					break;
 			}
 		}
 		//PC can fly?
@@ -10822,6 +10838,7 @@
 			else if(raceSimple == "suula") shiftCock(arg, GLOBAL.TYPE_SIREN);
 			else if(raceSimple == "anemone") shiftCock(arg, GLOBAL.TYPE_ANEMONE);
 			else if(raceSimple == "pig") shiftCock(arg, GLOBAL.TYPE_SWINE);
+			else if(InCollection(raceSimple, ["goat", "adremmalex"])) shiftCock(arg, GLOBAL.TYPE_GOAT);
 			else if(InCollection(raceSimple, ["sionach", "siel"]))
 			{
 				shiftCock(arg, GLOBAL.TYPE_INHUMAN);
@@ -11112,6 +11129,7 @@
 				if (huskarScore() < 3) race = "ausar";
 				else race = "huskar";
 			}
+			if (goatScore() >= 4) race = goatRace();
 			if (demonScore() >= 5) race = "demon-morph";
 			if (dragonScore() >= 5) race = "dragon-morph";
 			if (gabilaniScore() >= 5) race = "gabilani";
@@ -11329,7 +11347,11 @@
 		}
 		public function goatRace():String
 		{
-			if(hasHorns() && horns >= 2 && hornType == GLOBAL.TYPE_GOAT && !hasMuzzle() && !hasFur() && hasLegFlag(GLOBAL.FLAG_HOOVES)) return "satyr-morph";
+			if(hasHorns() && horns >= 2 && hornType == GLOBAL.TYPE_GOAT && legType == GLOBAL.TYPE_GOAT)
+			{
+				if(getStatusTooltip("Horn Style") == "black" && eyeType == GLOBAL.TYPE_ADREMMALEX && hasPerk("Primorditatts")) return "adremmalex";
+				if(!hasMuzzle() && !hasFur()) return "satyr-morph";
+			}
 			return "goat-morph";
 		}
 		public function plantRace():String
@@ -11688,6 +11710,18 @@
 			if (tallness >= 72) counter--;
 			if (tallness >= 84) counter--;
 			if (tallness >= 96) counter--;
+			return counter;
+		}
+		public function goatScore(): int
+		{
+			var counter:int = 0;
+			if (legType == GLOBAL.TYPE_GOAT) counter++;
+			if (hasHorns(GLOBAL.TYPE_GOAT)) counter++;
+			if (eyeType == GLOBAL.TYPE_GOAT || eyeType == GLOBAL.TYPE_ADREMMALEX) counter++;
+			if (earType == GLOBAL.TYPE_GOAT) counter++;
+			if (faceType == GLOBAL.TYPE_GOAT) counter++;
+			if (counter > 2 && hasFur()) counter++;
+			if (counter > 3 && cockTotal(GLOBAL.TYPE_GOAT) > 0) counter++;
 			return counter;
 		}
 		public function gryvainScore():int
@@ -14911,6 +14945,9 @@
 				case GLOBAL.TYPE_SHARK:
 					collection = ["tubular", "shark-like", "finned"];
 					break;
+				case GLOBAL.TYPE_GOAT:
+					collection = ["caprine"];
+					break;
 				default:
 					trace("Fallback cock shape used in cockShape() for type: " + GLOBAL.TYPE_NAMES[cock.cType]);
 					collection = ["bestial"];
@@ -15061,6 +15098,9 @@
 						case GLOBAL.TYPE_SWINE:
 							desc += RandomInCollection(["swine-cock","swine-schlong","pig-cock","pig-prick","hog-dick","cock","boar-dick",mf("sow-seeder","sow-schlong")]);
 							break;
+						case GLOBAL.TYPE_GOAT:
+							desc += RandomInCollection(["caprine-cock", "caprine-schlong", "goat-cock", "goat-prick", "goat-dick", "cock", "caprine-dick", "phallus"]);
+							break;
 						//Basic dicks names: "cock",
 						case GLOBAL.TYPE_HUMAN:
 						//Nothing special for these two.
@@ -15183,6 +15223,9 @@
 							break;
 						case GLOBAL.TYPE_SWINE:
 							desc += RandomInCollection(["swine cock","swine schlong","pig prick","corkscrew-shaped pig cock","twisted swine dick","animalistic dick","twisted prick","animalistic shaft"]);
+							break;
+						case GLOBAL.TYPE_GOAT:
+							desc += RandomInCollection(["caprine cock", "caprine schlong", "goat prick", "caprine dick", "bestial cock", "animalistic dick", "animalistic shaft"]);
 							break;
 						//Basic dicks names: "cock",
 						case GLOBAL.TYPE_HUMAN:
@@ -18003,6 +18046,7 @@
 			horns = 0;
 			hornLength = 0;
 			removeStatusEffect("Horn Bumps");
+			removeStatusEffect("Horn Style");
 			return;
 		}
 		
@@ -18121,6 +18165,14 @@
 							types.push("deer-like");
 							break;
 						case GLOBAL.TYPE_GOAT:
+							switch(statusEffectv1("Horn Style"))
+							{
+								case 1: types.push("curled", "ridged", "bony", "ornate"); break;
+								case 2: types.push("bow-curved", "ridged", "bony", "ornate"); break;
+								case 3: types.push("ibex", "thick", "back-curved", "imperious", "ridged"); break;
+								case 4: types.push("oryx", "ridged", "slender", "curved"); break;
+								case 5: types.push("markhor", "wisting", "regal", "bony"); break;
+							}
 							types.push("goat");
 							break;
 						case GLOBAL.TYPE_SHEEP:
@@ -19486,6 +19538,7 @@
  						}
 						}
 						break;
+					case "adjjjisjjrhiwig":
 					case "Goblinola Bar":
 					case "Laquine Ears":
 						if(thisStatus.minutesLeft <= 0) thisStatus.minutesLeft = 1;
@@ -19737,6 +19790,12 @@
 						if (requiresRemoval)
 						{
 							Priapin.effectEnds(maxEffectLength, doOut, this, thisStatus);
+						}
+						break;
+					case "adjjjisjjrhiwig":
+						if (this is PlayerCharacter && (wholeHoursPassed >= 1 || requiresRemoval))
+						{
+							Capraphorm.OnHourTF(deltaT, maxEffectLength, doOut, this, thisStatus);
 						}
 						break;
 					case "Cum Soaked":
