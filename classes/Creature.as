@@ -11609,7 +11609,10 @@
 			if (earType == GLOBAL.TYPE_DEER) counter++;
 			if (hasTail(GLOBAL.TYPE_DEER)) counter++;
 			if (legType == GLOBAL.TYPE_DEER) counter++;
+			if (faceType == GLOBAL.TYPE_DEER) counter++;
+			if (eyeType == GLOBAL.TYPE_DEER) counter++;
 			if (counter > 1 && vaginaTotal(GLOBAL.TYPE_DEER) > 0) counter++;
+			if (counter > 1 && cockTotal(GLOBAL.TYPE_DEER) > 0) counter++;
 			return counter;
 		}
 		public function demonScore(): int
@@ -14277,13 +14280,11 @@
 			if (vaginaNum < 0) return "<b>Error: Invalid vaginaNum (" + vaginaNum + ") passed to vaginaDescript()</b>";
 			//If no vaginas back the fuck out
 			if (vaginas.length < 0) return "VAGINA ERROR";
-
 			//Vars
 			var vag: String = "";
 			var descripted: int = 0;
 			var bonus: int = 0;
 			var temp: int = 0;
-
 			//Bonus chance for virgins
 			if (vaginalVirgin) bonus += 20
 			//Color super low chance!
@@ -20337,4 +20338,3 @@
 		}
 	}
 }
-

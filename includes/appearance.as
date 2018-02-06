@@ -356,6 +356,41 @@ public function appearance(forTarget:Creature):void
 			if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS) || target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFaceFlag(GLOBAL.FLAG_SCALED) || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) output2(" under your " + faceFurScales);
 			output2(" but it’s adorned with a flat, pig-like nose.");
 			break;
+		//Deer face
+		//Two types: human-like flat face and furry muzzled deer face.
+		//Both count as TYPE_DEER faces, and the descriptor checks the FLAG_MUZZLED to determine which description to output.
+		case GLOBAL.TYPE_DEER:
+			if (target.hasFaceFlag(GLOBAL.FLAG_MUZZLED))
+			{
+				output2("Your face is entirely deer-like in appearance, with a long, ");
+				output2(target.mf("elegant", "dainty"));
+				output2(" snout");
+				if ((target.skinType == GLOBAL.SKIN_TYPE_FUR) || target.hasFaceFlag(GLOBAL.FLAG_FURRED))
+				{
+					output2(" covered in " + faceFurScales + ". Underneath your fur, you have " + target.skin(true, true, true) + ".");
+				}
+				else if ((target.skinType == GLOBAL.SKIN_TYPE_FEATHERS || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)))
+				{
+					output2(" covered in " + target.skin(true, true, true) + " and lightly framed with " + faceFurScales + ".");
+				}
+				else if ((target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)))
+				{
+					output2(" decorated with " + faceFurScales + ", making you look less mammalian.");
+				}
+				else
+				{
+					output2(". It looks a little strange covered in nothing but " + faceFurScales + ".");
+				}
+			}
+			else 
+			{
+				if ((target.skinType == GLOBAL.SKIN_TYPE_FUR) || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2("Underneath your " + faceFurScales + ", you have a mostly human face with a black button nose, making you appear more deer-like.");
+				else if ((target.skinType == GLOBAL.SKIN_TYPE_FEATHERS) || (target.hasFaceFlag(GLOBAL.FLAG_FEATHERED))) output2("You have a mostly human face with "+ target.skin(true,true,true) + " and a black deer-like nose, lightly framed with " + faceFurScales + ".");
+				else if ((target.skinType == GLOBAL.SKIN_TYPE_SCALES) || (target.hasFaceFlag(GLOBAL.FLAG_SCALED))) output2("You have a mostly human face with " + target.skin(true,true,true) + " and a black deer-like nose, decorated with " + faceFurScales + ".");
+				else output2("Your face is mostly human in shape and structure with " + faceFurScales + ", aside from your black button nose, making you appear more deer-like.");
+				if (pc.hasSkinFlag(GLOBAL.FLAG_FRECKLED)) output("White speckles adorn your cheeks, further enhancing your deer-like visage.");	
+			}
+			
 	}
 	if(target.hasStatusEffect("Mimbrane Face"))
 	{
@@ -499,6 +534,13 @@ public function appearance(forTarget:Creature):void
 				output2(" around each iris,");
 			}
 			output2(" giving them a very synthetic appearance.");
+			break;
+		case GLOBAL.TYPE_DEER:
+			output2(" You have large doe-eyes, with huge " + target.eyeColor + " irises that");
+			if (hasMetallicEyes) output2(" metalically glisten in the light.");
+			else if (hasGemstoneEyes) output2(" shimmer in the light, like jewels.");
+			else if (hasLuminousEyes) output2(" gleam ominously in the dark.");
+			else output2(" make you look cuter than a puppy.");
 			break;
 		default:
 			if(hasMetallicEyes) output2(" Metallically glistening " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
@@ -3458,9 +3500,9 @@ public function crotchStuff(forTarget:Creature = null):void
 		}
 	}
 	if(target.hasVagina() && target.pluggedVaginas() > 0)
-	{
-		output2("\n\n<b>The smooth plug of set cundarian cum rubs against the lips of your [pc.vaginas] and [pc.eachClit] as you move, a constant source of aggravating arousal that you can do nothing about.</b>");
-	}
+-	{
+-		output2("\n\n<b>The smooth plug of set cundarian cum rubs against the lips of your [pc.vaginas] and [pc.eachClit] as you move, a constant source of aggravating arousal that you can do nothing about.</b>");
+-	}
 	//Genderless lovun'
 	if(!target.hasGenitals()) {
 		output2("\n\nYou have a curious lack of any sexual endowments.");
