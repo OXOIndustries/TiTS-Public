@@ -971,11 +971,16 @@ public function bothriocQuadommePCNeedFillHigh(arg:Array):void
 			output("\n\n<i>“Relax,”</i> it grunts, and you do, once again as if it were commanding your nerve endings directly, and the egg slides delightfully inside, sending shivers of sheer bliss through you as it travels further and further up the tube mired deep inside you.");
 			output("\n\n<i>“It displeases me to give an egg-bearer direct orders like this,”</i> the quadomme says coolly, two fingers hooking your nose to pull your head even further back. <i>“It should be baked into you to always tighten yourself up around your owner, so that you are pleasuring and milking their stem for every last egg.”</i> You feel its breath ghosting over your shoulder. <i>“Do you understand, dozy farlander? Or shall I have to punish you?”</i>");
 			output("\n\n<i>“No, egg-giver!”</i> you cry immediately, every cell in your body pulsing with the slutty need to please. <i>“Fill every inch of me with your ovi-cock! Train me! I will be the best fuck you’ve ever had!”</i>");
-			output("\n\nIt releases your nose, its sharp teeth latch into your shoulder, and then it shoves another egg into you hard, stiletto heels pressed deep into your [pc.ass], stretching your tender entranceway wide. This time you orgasm to it, every spasm of your " + (vIdx >= 0 ? "cunt" : "back passage") + " willing the heavy, grapefruit-sized object deep inside you. Y");
-			if(cIdx >= 0) output("our [pc.cock " + cIdx + "] sprays [pc.cum] in delirious gouts, practically slapping against your [pc.belly] as the weight rides over your boy buzzer");
-			else output(", and y");
-			output("our [pc.vagina " + vIdx + "] drools [pc.femcum] " + (pc.girlCumQ() < 1000 ? "down your thighs" : "by the bucketload") + ", desperately hungry for more");
-			output(". The way your limbs are caught up only seems to make the orgasm more intense, trapped inside of you instead of thrashed outwards. Your hands clench up reactively to every brilliant pulse of sensation.");
+			output("\n\nIt releases your nose, its sharp teeth latch into your shoulder, and then it shoves another egg into you hard, stiletto heels pressed deep into your [pc.ass], stretching your tender entranceway wide. This time you orgasm to it, every spasm of your " + (vIdx >= 0 ? "cunt" : "back passage") + " willing the heavy, grapefruit-sized object deep inside you.");
+			if(cIdx >= 0 || vIdx >= 0)
+			{
+				output(" Y");
+				if(cIdx >= 0) output("our [pc.cock " + cIdx + "] sprays [pc.cum] in delirious gouts, practically slapping against your [pc.belly] as the weight rides over your boy buzzer");
+				if(cIdx >= 0 && vIdx >= 0) output(", and y");
+				if(vIdx >= 0) output("our [pc.vagina " + vIdx + "] drools [pc.femcum] " + (pc.girlCumQ() < 1000 ? "down your thighs" : "by the bucketload") + ", desperately hungry for more");
+				output(".");
+			}
+			output(" The way your limbs are caught up only seems to make the orgasm more intense, trapped inside of you instead of thrashed outwards. Your hands clench up reactively to every brilliant pulse of sensation.");
 			output("\n\n<i>“Mmm,”</i> breathes the quadomme, as it withdraws its teeth from your [pc.skin]. <i>“I feel your willingness to be bettered. Very well. I shall continue to breed you. Be warned...”</i> its tone clouds with foreboding lust again. <i>“All of my harem are stuffed up, you know, so you’re going to have to take quite the load.”</i> Its four hands descend upon your helpless, spread-eagled form as another dense, oval weight pushes itself against your spread " + (vIdx >= 0 ? "pussy lips" : "ass cheeks") + ". <i>“Shiver for me, egg-bearer.”</i>");
 			processTime(3);
 			pc.lust(15);
