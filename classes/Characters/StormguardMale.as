@@ -235,6 +235,12 @@
 		}
 		public function descUpdate():void
 		{
+			if(kGAMECLASS.flags["MET_GEL_ZON"] != undefined)
+			{
+				short = "Gel Zon";
+				a = "";
+				capitalA = "";
+			}
 			this.long = "You are battling ";
 			if(kGAMECLASS.flags["MET_GEL_ZON"] != undefined) long += "Gel Zon ";
 			long += "the storm lancer. He is a 6\' 3\" slate-blue cundarian armed with a heavy kinetic pistol and a storm lance, clad everywhere except his head, his blunt three-foot-long tail and the tips of his black hooves in sleek white armor, emblazoned with lightning bolts.";
@@ -304,7 +310,7 @@
 		{
 			if(!hasStatusEffect("IceMonkey")) 
 			{
-				output("<i>“Cheap, whorish tricks!”</i> cries the storm lancer in outrage, face noticeably reddened. <i>“But if you refuse to fight like a warrior should, I am prepared.”</i> He closes his yellow eyes");
+				output("<i>“Cheap, whorish tricks!”</i> " + (kGAMECLASS.flags["MET_GEL_ZON"] != undefined ? "Gel Zon cries" : "cries the storm lancer") + " in outrage, face noticeably reddened. <i>“But if you refuse to fight like a warrior should, I am prepared.”</i> He closes his yellow eyes");
 				if(hasStatusEffect("Flying"))
 				{
 					this.removeStatusEffect("Flying");
@@ -315,7 +321,7 @@
 			}
 			else
 			{
-				output("The storm lancer grits his teeth, face red, but this time doesn’t verbally respond to your lusty offensive. Instead he closes his yellow eyes");
+				output((kGAMECLASS.flags["MET_GEL_ZON"] != undefined ? "Gel Zon" : "The storm lancer") + " grits his teeth, face red, but this time doesn’t verbally respond to your lusty offensive. Instead he closes his yellow eyes");
 				if(hasStatusEffect("Flying"))
 				{
 					this.removeStatusEffect("Flying");
@@ -332,7 +338,7 @@
 		//Activates if PC successfully hits him with a melee attack. Activates Jetpack status
 		public function jetpackHOOOOOOO(target:Creature):void
 		{
-			output("The storm lancer takes a step back, staggered slightly by your attack");
+			output((kGAMECLASS.flags["MET_GEL_ZON"] != undefined ? "Gel Zon" : "The storm lancer") + " takes a step back, staggered slightly by your attack");
 			if(this.shields() > 0) output(", even if it did thwack off his shield");
 			output(". He grins at you, chest heaving, almost seeming to delight in your successful strike - and then the next instant his jetpack roars into life, and he shoots upward upon a plume of blue flame.");
 			output("\n\n<i>“Are hard blows all you have, challenger?”</i> he roars over the howling wind. <i>“I hope not, for your sake!”</i>");
@@ -343,7 +349,7 @@
 		//Activates only if jetpack active
 		public function pewpewSG(target:Creature):void
 		{
-			output("The storm lancer steadies himself in the wind and and then fires his heavy pistol at you twice with two deafening CRACKs.");
+			output((kGAMECLASS.flags["MET_GEL_ZON"] != undefined ? "Gel Zon" : "The storm lancer") + " steadies himself in the wind and and then fires his heavy pistol at you twice with two deafening CRACKs.");
 			if(rangedCombatMiss(this, target)) output(" You dodge the shots!");
 			//Else fuck this shiiiit
 			else
@@ -351,17 +357,19 @@
 				var oldShields:Number = target.shields();
 				var damage:TypeCollection = rangedDamage();
 				damageRand(damage, 15);
-				applyDamage(damage, this, target, "minimal");
+				//applyDamage(damage, this, target, "minimal");
+				var damageResult:DamageResult = calculateDamage(damage, this, target);
 				if(target.shields() > 0) output(" The shot blats off your shield!");
 				else if(oldShields > 0 && target.shields() <= 0) output(" The shot shatters your shield and smashes into you!");
 				else output(" The shot pelts into your frame with numbing, deadening force.");
+				outputDamage(damageResult);
 			}
 		}
 		//Storm Javelin
 		//Activates only if jetpack active
 		public function stormyJav(target:Creature):void
 		{
-			output("The air hums and static charge crawls up your [pc.skin] as the storm lancer hefts his brass-clad spear and thrusts it at you. ");
+			output("The air hums and static charge crawls up your [pc.skin] as " + (kGAMECLASS.flags["MET_GEL_ZON"] != undefined ? "Gel Zon" : "the storm lancer") + " hefts his brass-clad spear and thrusts it at you. ");
 			if(combatMiss(this, target)) output("You flatten yourself to the ground and the lightning flares overhead, vaporizing all the snow off a rock mound instead.");
 			else
 			{
@@ -375,7 +383,7 @@
 		//Always does this after two or more turns in the air. High damage, induces knockdown. Deactivates jetpack
 		public function stormLanceInAir(target:Creature):void
 		{
-			output("The storm lancer reels back on the sputtering flame of his jetpack, and for a moment you lose sight of him in the ceaseless blizzard. Suddenly he’s thundering down from an angle, roaring out some wild, wordless battle-cry, his crackling lance pointed directly at you! ");
+			output((kGAMECLASS.flags["MET_GEL_ZON"] != undefined ? "Gel Zon" : "The storm lancer") + " reels back on the sputtering flame of his jetpack, and for a moment you lose sight of him in the ceaseless blizzard. Suddenly he’s thundering down from an angle, roaring out some wild, wordless battle-cry, his crackling lance pointed directly at you! ");
 			if(combatMiss(this, target)) 
 			{
 				output("You hold yourself steady until the very last moment before flinging yourself to one side, the huge weight and impetus of the cundarian flying just past your head, like narrowly avoiding being flattened by a heavy goods vehicle.");
@@ -402,7 +410,7 @@
 		//Jetpack deactivated only. Low acc kinetic shot, high acc electric melee
 		public function coveringChargeFromStormoLancer(target:Creature):void
 		{
-			output("The storm lancer pushes forward, head down and pistol-holding hand up, taking instinctive shots at you as he closes the gap.");
+			output((kGAMECLASS.flags["MET_GEL_ZON"] != undefined ? "Gel Zon" : "The storm lancer") + " pushes forward, head down and pistol-holding hand up, taking instinctive shots at you as he closes the gap.");
 			if(rangedCombatMiss(this, target) || rangedCombatMiss(this, target) || rangedCombatMiss(this, target)) output(" The shots go wide.");
 			else
 			{
@@ -435,7 +443,7 @@
 		//Jetpack deactivated only. Electric ranged, chance to induce stun
 		public function thunderboltAttack(target:Creature):void
 		{
-			output("The storm lancer circles you, hooves crunching into the snow, before pointing his crackling, sparking brass spear directly at you.");
+			output((kGAMECLASS.flags["MET_GEL_ZON"] != undefined ? "Gel Zon" : "The storm lancer") + " circles you, hooves crunching into the snow, before pointing his crackling, sparking brass spear directly at you.");
 			if(combatMiss(this, target)) output(" You hurl yourself to one side to avoid the jagged arc of lightning aimed at you - it blasts apart a rock instead.");
 			else
 			{
@@ -470,7 +478,7 @@
 			}
 			else
 			{
-				output("The shot flashes as it hits him somewhere on the back of his armor. It’s impossible to tell if you got him through the driving snow... a wail of failing micro-engines reaches your ears as the blue flame guttering beneath the storm lancer sputters and then winks out. He bellows in alarm, hands clawing the air as he falls a good twelve feet, landing with a heavy, wince-inducing thud into the snow.");
+				output("The shot flashes as it hits him somewhere on the back of his armor. It’s impossible to tell if you got him through the driving snow... a wail of failing micro-engines reaches your ears as the blue flame guttering beneath " + (kGAMECLASS.flags["MET_GEL_ZON"] != undefined ? "Gel Zon" : "the storm lancer") + " sputters and then winks out. He bellows in alarm, hands clawing the air as he falls a good twelve feet, landing with a heavy, wince-inducing thud into the snow.");
 				var damage:TypeCollection = new TypeCollection( { kinetic: 55+rand(5) });
 				applyDamage(damage, pc, this, "minimal");
 				//Does him: 
@@ -492,7 +500,7 @@
 		//Activates if shields = 0 on last turn. Recharges shield to 75%. 4 turn cooldown.
 		public function lightningRodHonor2(target:Creature):void
 		{
-			output("The storm lancer cranes his spear behind him, as if attempting to scratch his back. For one moment you think he’s going to holster his weapon - then he taps his armor carefully with the crackling tip, and there’s a static buzz as the barely-perceptible bubble of his energy shield reasserts itself around him.");
+			output((kGAMECLASS.flags["MET_GEL_ZON"] != undefined ? "Gel Zon" : "The storm lancer") + " cranes his spear behind him, as if attempting to scratch his back. For one moment you think he’s going to holster his weapon - then he taps his armor carefully with the crackling tip, and there’s a static buzz as the barely-perceptible bubble of his energy shield reasserts itself around him.");
 			output("\n\n<i>“So easy to fry yourself or your equipment doing that,”</i> he grunts, ");
 			if(this.hasStatusEffect("Flying")) output("circling you in the air");
 			else output("prowling around you in the snow");
@@ -504,7 +512,7 @@
 		//Becomes medium acc kinetic shot, high acc energy melee, low chance to cause stun
 		public function coveringChargeMk2(target:Creature):void
 		{
-			output("The storm lancer charges forward, head down and pistol-holding hand up, taking shots that seem to follow your every movement.")
+			output((kGAMECLASS.flags["MET_GEL_ZON"] != undefined ? "Gel Zon" : "The storm lancer") + " charges forward, head down and pistol-holding hand up, taking shots that seem to follow your every movement.")
 			if(rangedCombatMiss(this, target) || rangedCombatMiss(this, target)) output(" The shots go wide.");
 			else
 			{
@@ -545,14 +553,14 @@
 		//Activates if PC uses any form of special offensive ability twice in a row. Before PC uses it subsequently: +60 thermal resist, +60 energy resist, +60 kinetic resist, +60 stun resist, +60 corrosive resist, +60 freezing resist. Does not substitute SL’s own attack
 		public function stormJavelinMk2(target:Creature):void
 		{
-			output("As you prep your attack for the second time, the storm lancer suddenly ducks his ridged head behind his arms");
+			output("As you prep your attack for the second time, " + (kGAMECLASS.flags["MET_GEL_ZON"] != undefined ? "Gel Zon" : "the storm lancer") + " suddenly ducks his ridged head behind his arms");
 			if(hasStatusEffect("Flying")) output(", falls to the ground");
-			output(" and curls himself into a tight ball! ");
+			output(" and curls himself into a tight ball!");
 			//<insert standard ability text here.> 
-			output("The heavy, lightning-embossed armor of the storm lancer absorbs most of the blow.");
-			output("\n\n<i>“Your attacks may be fierce, but they’re also predictable, warrior!”</i> he booms triumphantly, ");
-			if(hasStatusEffect("Flying")) output("rising swiftly from the snow.");
-			else output("re-opening his limbs and weaving through the air.");
+			output(" The heavy, lightning-embossed armor of the storm lancer absorbs most of the blow.");
+			output("\n\n<i>“Your attacks may be fierce, but they’re also predictable, warrior!”</i> he booms triumphantly,");
+			if(!hasStatusEffect("Flying")) output(" rising swiftly from the snow.");
+			else output(" re-opening his limbs and weaving through the air.");
 		}
 		public function disarmedRecovery(target:Creature):void
 		{
