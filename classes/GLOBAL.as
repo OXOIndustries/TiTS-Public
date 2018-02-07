@@ -228,6 +228,7 @@
 		public static const TYPE_RAHN:int 									= 78;
 		public static const TYPE_THRAGGEN:int 								= 79;
 		public static const TYPE_ADREMMALEX:int 							= 80;
+		public static const TYPE_MOTHRINE:int 								= 81;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -311,6 +312,7 @@
 			"Rahn",
 			"Thraggen",
 			"Adremmalex",
+			"Mothrine",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [

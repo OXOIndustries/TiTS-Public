@@ -5387,7 +5387,7 @@
 		public function hasEmoteEars(): Boolean
 		{
 			// For ear types that move emotively, like cute animal ears.
-			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT, GLOBAL.TYPE_SIMII) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
+			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT, GLOBAL.TYPE_SIMII, GLOBAL.TYPE_MOTHRINE) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
 			return false;
 		}
 		public function earDescript(): String
@@ -5523,6 +5523,9 @@
 				case GLOBAL.TYPE_SIMII:
 					adjectives = ["simii", "simian", "monkey", "monkey-like", "oddly-shaped"];
 					if(hasFaceFlag(GLOBAL.FLAG_FURRED)) adjectives.push("furry", "softly furred");
+					break;
+				case GLOBAL.TYPE_MOTHRINE:
+					adjectives = ["mothrine", "round", "unassuming"];
 					break;
 			}
 			if (hasLongEars()) adjectives.push(num2Text(Math.round(earLength)) + "-inch long");
@@ -5703,6 +5706,9 @@
 					break;
 				case GLOBAL.TYPE_KORGONNE:
 					types.push("alien","dog-like","korgonne-like","alien");
+					break;
+				case GLOBAL.TYPE_MOTHRINE:
+					types.push("alien", "insectile", "straw-like", "moth-like");
 					break;
 			}
 			
@@ -6330,6 +6336,7 @@
 			(	hasArmFlag(GLOBAL.FLAG_FURRED) || hasLegFlag(GLOBAL.FLAG_FURRED) || hasTailFlag(GLOBAL.FLAG_FURRED)
 			||	hasSkinFlag(GLOBAL.FLAG_FLUFFY)
 			||	perkv1("Regal Mane") == GLOBAL.FLAG_FURRED
+			||	statusEffectv1("Wing Style") == GLOBAL.FLAG_FURRED
 			||	statusEffectv1("Special Scrotum") == GLOBAL.FLAG_FURRED
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_FURRED);
@@ -6344,6 +6351,7 @@
 			(	hasArmFlag(GLOBAL.FLAG_SCALED) || hasLegFlag(GLOBAL.FLAG_SCALED) || hasTailFlag(GLOBAL.FLAG_SCALED)
 			||	InCollection(wingType, GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN)
 			||	perkv1("Regal Mane") == GLOBAL.FLAG_SCALED
+			||	statusEffectv1("Wing Style") == GLOBAL.FLAG_SCALED
 			||	statusEffectv1("Special Scrotum") == GLOBAL.FLAG_SCALED
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_SCALED);
@@ -6357,6 +6365,7 @@
 			if(part == "any" &&
 			(	hasArmFlag(GLOBAL.FLAG_CHITINOUS) || hasLegFlag(GLOBAL.FLAG_CHITINOUS) || hasTailFlag(GLOBAL.FLAG_CHITINOUS)
 			||	perkv1("Regal Mane") == GLOBAL.FLAG_CHITINOUS
+			||	statusEffectv1("Wing Style") == GLOBAL.FLAG_CHITINOUS
 			||	statusEffectv1("Special Scrotum") == GLOBAL.FLAG_CHITINOUS
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_CHITINOUS);
@@ -6369,6 +6378,7 @@
 			if(part == "any" &&
 			(	hasArmFlag(GLOBAL.FLAG_GOOEY) || armType == GLOBAL.TYPE_GOOEY || hasLegFlag(GLOBAL.FLAG_GOOEY) || legType == GLOBAL.TYPE_GOOEY || hasTailFlag(GLOBAL.FLAG_GOOEY)
 			||	perkv1("Regal Mane") == GLOBAL.FLAG_GOOEY
+			||	statusEffectv1("Wing Style") == GLOBAL.FLAG_GOOEY
 			||	statusEffectv1("Special Scrotum") == GLOBAL.FLAG_GOOEY
 			)) return true;
 			if(part == "arm") return (armType == GLOBAL.TYPE_GOOEY || hasArmFlag(GLOBAL.FLAG_GOOEY));
@@ -6382,6 +6392,7 @@
 			(	hasArmFlag(GLOBAL.FLAG_FEATHERED) || hasLegFlag(GLOBAL.FLAG_FEATHERED) || hasTailFlag(GLOBAL.FLAG_FEATHERED)
 			||	InCollection(wingType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE)
 			||	perkv1("Regal Mane") == GLOBAL.FLAG_FEATHERED
+			||	statusEffectv1("Wing Style") == GLOBAL.FLAG_FEATHERED
 			||	statusEffectv1("Special Scrotum") == GLOBAL.FLAG_FEATHERED
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_FEATHERED);
@@ -6476,6 +6487,7 @@
 					case GLOBAL.TYPE_SWINE: adjectives.push("pig-nosed"); break;
 					case GLOBAL.TYPE_SIMII: adjectives.push("simian", "monkey-like"); break;
 					case GLOBAL.TYPE_GOAT: adjectives.push("caprine", "goat-like"); break;
+					case GLOBAL.TYPE_MOTHRINE: adjectives.push("mothrine", "alien", "insectoid", "insect-like"); break;
 				}
 				if (hasFaceFlag(GLOBAL.FLAG_ANGULAR)) adjectives.push("angular");
 				if (hasFaceFlag(GLOBAL.FLAG_LONG)) adjectives.push("long");
@@ -6783,6 +6795,11 @@
 				case GLOBAL.TYPE_DARK_SYLVAN:
 					adjectives.push("dark sylvan", "delicate", "black gossamer", "shadowy");
 					break;
+				case GLOBAL.TYPE_MOTHRINE:
+					adjectives.push("mothrine", "patterned", "graceful");
+					if(wingTexture() == GLOBAL.FLAG_FURRED) adjectives.push("fuzzy", "furred");
+					else adjectives.push("fragile", "delicate");
+					break;
 				case GLOBAL.TYPE_DOVE:
 					adjectives.push("large", "bird-like", "dove-like", "soft", "feathery");
 					break;
@@ -6800,8 +6817,13 @@
 					}
 					break;
 			}
-
+			
 			if (!nounOnly && rand(2) == 0 && adjectives.length > 0) description += RandomInCollection(adjectives) + " ";
+			if (!nounOnly && wingColor() != "" && rand(2) == 0)
+			{
+				if(description != "") description += ", ";
+				description += wingColor() + " ";
+			}
 			description += (nouns.length > 0 ? RandomInCollection(nouns) : "wing");
 			return description;
 		}
@@ -6859,7 +6881,7 @@
 				if (InCollection(armType, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_PANDA) || hasArmFlag(GLOBAL.FLAG_PAWS)) adjective.push("bestial");
 				if (hasArmFlag(GLOBAL.FLAG_PAWS)) adjective.push("animalistic");
 				if (hasArmFlag(GLOBAL.FLAG_GOOEY)) adjective.push("slimy", "slick", "gooey");
-				else if (InCollection(armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_LEITHAN)) adjective.push("chitinous");
+				else if (InCollection(armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_MOTHRINE, GLOBAL.TYPE_LEITHAN)) adjective.push("chitinous");
 				if (armType == GLOBAL.TYPE_SHARK) adjective.push("webbed","slick");
 				if (armType == GLOBAL.TYPE_TENTACLE) adjective.push("tentacled", "tentacle-fingered");
 				if (armType == GLOBAL.TYPE_LAPINE && hasArmFlag(GLOBAL.FLAG_THICK)) adjective.push("big","rabbit-like","broad","furry");
@@ -6889,7 +6911,7 @@
 				if (armType == GLOBAL.TYPE_FROG) adjective.push("webbed", "sticky");
 				if (InCollection(armType, GLOBAL.TYPE_EQUINE)) adjective.push("hoof-tipped");
 				if (hasArmFlag(GLOBAL.FLAG_GOOEY)) adjective.push("slimy", "slick", "gooey");
-				else if (InCollection(armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_LEITHAN)) adjective.push("chitinous");
+				else if (InCollection(armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_MOTHRINE, GLOBAL.TYPE_LEITHAN)) adjective.push("chitinous");
 			}
 			// Build
 			if (adjective.length > 0 && rand(2) == 0) output += RandomInCollection(adjective);
@@ -6974,6 +6996,7 @@
 						case GLOBAL.TYPE_SHEEP: adjectives = ["sheep", "sheep", "sheep-like", "lamb-like"]; break;
 						case GLOBAL.TYPE_GOAT: adjectives = ["goat", "goat", "caprine", "goat-like"]; break;
 						case GLOBAL.TYPE_SIMII: adjectives = ["simii", "simian", "simiiforme", "monkey-like"]; break;
+						case GLOBAL.TYPE_MOTHRINE: adjectives = ["slender", "svelte", "graceful", "insect-like", "carapace-covered"]; break;
 					}
 				}
 				//ADJECTIVE!
@@ -7054,6 +7077,7 @@
 					case GLOBAL.TYPE_SHEEP: adjectives = ["sheep", "sheep-like", "lamb-like", "bestial"]; break;
 					case GLOBAL.TYPE_GOAT: adjectives = ["goat", "goat-like", "caprine", "bestial"]; break;
 					case GLOBAL.TYPE_SIMII: adjectives = ["simian", "ape-like", "dexterous"]; break;
+					case GLOBAL.TYPE_MOTHRINE: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
 				}
 			}
 			//ADJECTIVE!
@@ -10598,6 +10622,15 @@
 					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
 					cocks[slot].cockColor = RandomInCollection(["red", "pink", "cherry red"]);
 					break;
+				case GLOBAL.TYPE_MOTHRINE:
+					cocks[slot].cockColor = "black";
+					cocks[slot].knotMultiplier = 1;
+					cocks[slot].cThicknessRatioRaw = 1;
+					cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
+					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+					cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
+					cocks[slot].addFlag(GLOBAL.FLAG_OVIPOSITOR);
+					break;
 			}
 		}
 		//PC can fly?
@@ -10605,7 +10638,7 @@
 			//web also makes false!
 			if (hasStatusEffect("Web")) return false;
 			if (hasStatusEffect("Flying")) return true;
-			if (InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_BEE, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DRAGONFLY, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_DARK_SYLVAN, GLOBAL.TYPE_DOVE, GLOBAL.TYPE_GRYVAIN])) return true;
+			if (InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_BEE, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DRAGONFLY, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_DARK_SYLVAN, GLOBAL.TYPE_MOTHRINE, GLOBAL.TYPE_DOVE, GLOBAL.TYPE_GRYVAIN])) return true;
 			return false;
 		}
 		public function hasFlightEffects(): Boolean
@@ -10642,7 +10675,7 @@
 		public function hasJointedWings(): Boolean
 		{
 			if(!hasWings()) return false;
-			return InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DOVE, GLOBAL.TYPE_GRYVAIN]);
+			return InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DOVE, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_MOTHRINE]);
 		}
 		// Wing types that double as back genitals (tentacle-like)
 		public function hasBackGenitals(): Boolean {
@@ -10654,12 +10687,49 @@
 			wingType = 0;
 			wingCount = 0;
 			removeStatusEffect("Wing Position");
+			removeStatusEffect("Wing Style");
 		}
 		public function shiftWings(wingShape:Number = 0, wingNum:Number = 0):void
 		{
+			if(wingShape != wingType) removeStatusEffect("Wing Style");
 			wingType = wingShape;
 			wingCount = wingNum;
 			if(!hasJointedWings()) removeStatusEffect("Wing Position");
+		}
+		public function wingTexture(): int
+		{
+			if(hasStatusEffect("Wing Style")) return statusEffectv1("Wing Style");
+			
+			if(InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE])) return GLOBAL.FLAG_FEATHERED;
+			if(InCollection(wingType, [GLOBAL.TYPE_SMALLDEMONIC, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN])) return GLOBAL.FLAG_SCALED;
+			if(InCollection(wingType, [GLOBAL.TYPE_MOTHRINE])) return GLOBAL.FLAG_CHITINOUS;
+			return 0;
+		}
+		public function wingColor(): String
+		{
+			if(hasStatusEffect("Wing Style") && getStatusTooltip("Wing Style") != "") return getStatusTooltip("Wing Style");
+			
+			var sColor:String = "";
+			var iFlag:int = wingTexture();
+			switch(iFlag)
+			{
+				case GLOBAL.FLAG_FURRED:
+				case GLOBAL.FLAG_FEATHERED: sColor = furColor; break;
+				case GLOBAL.FLAG_SCALED:
+				case GLOBAL.FLAG_CHITINOUS: sColor = scaleColor; break;
+				default:
+					switch(wingType)
+					{
+						case GLOBAL.TYPE_DRAGONFLY: sColor = "iridescent"; break;
+						case GLOBAL.TYPE_SMALLBEE:
+						case GLOBAL.TYPE_BEE:
+						case GLOBAL.TYPE_MYR: sColor = "transparent"; break;
+						case GLOBAL.TYPE_SYLVAN: sColor = "blue"; break;
+						case GLOBAL.TYPE_DARK_SYLVAN: sColor = "glittering black"; break;
+					}
+					break;
+			}
+			return sColor;
 		}
 		//check for vagoo
 		public function hasVagina(hole: int = 0): Boolean {
@@ -10839,6 +10909,7 @@
 			else if(raceSimple == "anemone") shiftCock(arg, GLOBAL.TYPE_ANEMONE);
 			else if(raceSimple == "pig") shiftCock(arg, GLOBAL.TYPE_SWINE);
 			else if(InCollection(raceSimple, ["goat", "adremmalex"])) shiftCock(arg, GLOBAL.TYPE_GOAT);
+			else if(raceSimple == "mothrine") shiftCock(arg, GLOBAL.TYPE_MOTHRINE);
 			else if(InCollection(raceSimple, ["sionach", "siel"]))
 			{
 				shiftCock(arg, GLOBAL.TYPE_INHUMAN);
@@ -11152,6 +11223,7 @@
 			if (race == "myr" && redMyrScore() >= 8) race = "red myr";
 			if (orangeMyrScore() >= 9) race = "orange myr";
 			if (nyreaScore() >= 5) race = "nyrea";
+			if (mothrineScore() >= 5) race = "mothrine";
 			if (sharkScore() >= 5) race = sharkRace();
 			if (sheepScore() >= 5) race = sheepRace();
 			if (plantScore() >= 5) race = plantRace();
@@ -11239,6 +11311,9 @@
 						break;
 					case "gabilani":
 						sRaceShort = "goblin";
+						break;
+					case "mothrine":
+						sRaceShort = "moth";
 						break;
 				}
 			}
@@ -11864,6 +11939,25 @@
 			if (legType == GLOBAL.TYPE_LUPINE && hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) counter++;
 			if (faceType == GLOBAL.TYPE_LUPINE) counter++;
 			if (counter > 0 && !hasFur()) counter--;
+			return counter;
+		}
+		public function mothrineScore(): int
+		{
+			var counter:int = 0;
+			if (hasAntennae(GLOBAL.TYPE_MOTHRINE)) counter++
+			if (faceType == GLOBAL.TYPE_MOTHRINE)
+			{
+				counter++;
+				if (tongueType == GLOBAL.TYPE_MOTHRINE) counter++;
+				if (hasHair() && hairType == GLOBAL.HAIR_TYPE_REGULAR) counter++;
+			}
+			if (eyeType == GLOBAL.TYPE_MOTHRINE) counter++;;
+			if (earType == GLOBAL.TYPE_MOTHRINE) counter++;
+			if (armType == GLOBAL.TYPE_MOTHRINE) counter++;
+			if (legType == GLOBAL.TYPE_MOTHRINE) counter++;
+			if (hasWings(GLOBAL.TYPE_MOTHRINE)) counter++;
+			if (counter > 2 && hasCock(GLOBAL.TYPE_MOTHRINE)) counter++;
+			if (!hasChitin() && !hasFur()) counter--;
 			return counter;
 		}
 		public function myrScore(): int
@@ -14948,6 +15042,9 @@
 				case GLOBAL.TYPE_GOAT:
 					collection = ["caprine"];
 					break;
+				case GLOBAL.TYPE_MOTHRINE:
+					collection = ["mothrine", "insectile", "alien", "curved"];
+					break;
 				default:
 					trace("Fallback cock shape used in cockShape() for type: " + GLOBAL.TYPE_NAMES[cock.cType]);
 					collection = ["bestial"];
@@ -15101,6 +15198,9 @@
 						case GLOBAL.TYPE_GOAT:
 							desc += RandomInCollection(["caprine-cock", "caprine-schlong", "goat-cock", "goat-prick", "goat-dick", "cock", "caprine-dick", "phallus"]);
 							break;
+						case GLOBAL.TYPE_MOTHRINE:
+							desc += RandomInCollection(["ovipositor", "ovi-cock", "egg-layer", "moth-cock", "ovi-dong", "ovi-dick", "egg-dick", "moth-dick", "egg-organ", "moth-prick", "mothipositor", "ovi-member", "egg-shaft", "ovi-shaft"]);
+							break;
 						//Basic dicks names: "cock",
 						case GLOBAL.TYPE_HUMAN:
 						//Nothing special for these two.
@@ -15226,6 +15326,9 @@
 							break;
 						case GLOBAL.TYPE_GOAT:
 							desc += RandomInCollection(["caprine cock", "caprine schlong", "goat prick", "caprine dick", "bestial cock", "animalistic dick", "animalistic shaft"]);
+							break;
+						case GLOBAL.TYPE_MOTHRINE:
+							desc += RandomInCollection(["mothrine ovipositor", "mothrine ovi-cock", "mothrine cock", "mothrine egg-organ", "mothrine egg-shaft", "mothrine shaft", "mothrine tool", "mothrine cock", "mothrine egg-layer", "mothrine lady-cock", "insectile ovi-cock", "insectile cock", "insectile ovi-dick", "insectile ovipositor", "insectile prick", "insectile shaft", "insectile member"]);
 							break;
 						//Basic dicks names: "cock",
 						case GLOBAL.TYPE_HUMAN:
@@ -18258,6 +18361,10 @@
 					break;
 				case GLOBAL.TYPE_MYR:
 					adjectives.push("myr", "ant-like", "insect-like", "insectile");
+					nouns.push("feeler");
+					break;
+				case GLOBAL.TYPE_MOTHRINE:
+					adjectives.push("mothrine", "feather-like", "feathery", "frilly", "expressive", "foot-long");
 					nouns.push("feeler");
 					break;
 				case GLOBAL.TYPE_HRAD:

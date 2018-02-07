@@ -359,6 +359,9 @@ public function appearance(forTarget:Creature):void
 		case GLOBAL.TYPE_GOAT:
 			output2("Your face is elongated forward and much like a goat’s in shape and structure.");
 			break;
+		case GLOBAL.TYPE_MOTHRINE:
+			output2("Your moth-like face is covered in " + faceFurScales + " and has a sculpted look.");
+			break;
 	}
 	if(target.hasStatusEffect("Mimbrane Face"))
 	{
@@ -510,6 +513,22 @@ public function appearance(forTarget:Creature):void
 				output2(" around each iris,");
 			}
 			output2(" giving them a very synthetic appearance.");
+			break;
+		case GLOBAL.TYPE_MOTHRINE:
+			if(rand(2) == 0)
+			{
+				output2(" Your eyes are bulgy and ");
+				switch(target.eyeColor)
+				{
+					case "black": output2("abyssal"); break;
+					case "cyan": output2("refractive"); break;
+					case "white": output2("reflective"); break;
+					case "gold": output2("radiant"); break;
+					default: output2("iridescent"); break;
+				}
+				output2(", interfering with the natural light around them.");
+			}
+			else output2(" Your " + target.eyeColor + " orbs-for-eyes bulge slightly forward, bathed in a muted, ambient glow.");
 			break;
 		default:
 			if(hasMetallicEyes) output2(" Metallically glistening " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
@@ -695,6 +714,9 @@ public function appearance(forTarget:Creature):void
 			case GLOBAL.TYPE_SIMII:
 				output2(" A pair of large, strangely-shaped ears protrude from your " + headNoun + ".");
 				break;
+			case GLOBAL.TYPE_MOTHRINE:
+				output2(" A pair of moth ears are recessed at the sides of your " + headNoun + ", looking like slightly raised mounds of membranous tissue.");
+				break;
 		}
 	}
 	//not bald
@@ -838,6 +860,9 @@ public function appearance(forTarget:Creature):void
 			case GLOBAL.TYPE_SIMII:
 				output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of large, strangely-shaped ears.");
 				break;
+			case GLOBAL.TYPE_MOTHRINE:
+				output2(" The " + target.hairDescript(true,true) + " atop your head hides the two raised mounds of membranous tissue that are your ears.");
+				break;
 		}
 	}
 	// Additional ear stuffs
@@ -871,7 +896,7 @@ public function appearance(forTarget:Creature):void
 		}
 		else
 		{
-			if(InCollection(target.earType, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE))
+			if(InCollection(target.earType, [GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE]))
 			{
 				if(target.antennae == 1) output2(" A limp [target.antenna] also grows");
 				else if(rand(2) == 0) output2(" " + StringUtil.capitalize(num2Text(target.antennae)) + " limp [target.antennae] also grow");
@@ -912,6 +937,9 @@ public function appearance(forTarget:Creature):void
 			break;
 		case GLOBAL.TYPE_BEE:
 			output2(" Your mouth contains a long, bright yellow [target.tongueNoun] that can extend a foot past past your [target.lips] when fully extended. The tip has a tube inside it, capable of gathering sweet nectar from jungle flowers or lovers.");
+			break;
+		case GLOBAL.TYPE_MOTHRINE:
+			output2(" Your mouth contains a long [target.tongueNoun] that can extend a foot past past your [target.lips] when fully extended. The tip has a tube inside it, capable of gathering sweet nectar from jungle flowers or lovers.");
 			break;
 		case GLOBAL.TYPE_FROG:
 			if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth contains a long and stretchy frog tongue, capable of reaching much longer distances than most races.");
@@ -1147,13 +1175,13 @@ public function appearance(forTarget:Creature):void
 				if(target.wingCount == 2) output2(" a pair of");
 				else if(target.wingCount == 4) output2(" a quartet of");
 				else if(target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
-				output2(" large, feathery wings sprout from your back" + (target.statusEffectv1("Wing Position") == 1 ? " and fold over your body" : "") + ". Though you usually keep the " + target.furColor + "-colored wings folded close, they can unfurl to allow you to soar as gracefully as a bird.");
+				output2(" large, feathery wings sprout from your back" + (target.statusEffectv1("Wing Position") == 1 ? " and fold over your body" : "") + ". Though you usually keep the " + target.wingColor() + "-colored wings folded close, they can unfurl to allow you to soar as gracefully as a bird.");
 				break;
 			case GLOBAL.TYPE_SMALLDRACONIC:
 				output2(" small, vestigial wings sprout from your shoulders. They might look like bat’s wings, but the membranes are covered in fine, delicate scales.");
 				break;
 			case GLOBAL.TYPE_DRACONIC:
-				output2(" magnificent "+ target.scaleColor + " wings sprout from your shoulders" + (target.statusEffectv1("Wing Position") == 1 ? " and fold over your body" : "") + ". When unfurled they stretch further than your arm span, and a single beat of them is all you need to set out toward the sky. They look a bit like bat’s wings, but the membranes are covered in fine, delicate scales and a wicked talon juts from the end of each bone.");
+				output2(" magnificent " + target.wingColor() + " wings sprout from your shoulders" + (target.statusEffectv1("Wing Position") == 1 ? " and fold over your body" : "") + ". When unfurled they stretch further than your arm span, and a single beat of them is all you need to set out toward the sky. They look a bit like bat’s wings, but the membranes are covered in fine, delicate scales and a wicked talon juts from the end of each bone.");
 				break;
 			case GLOBAL.TYPE_DRAGONFLY:
 				output2(" giant dragonfly wings hang from your shoulders. At a whim, you could twist them into a whirring rhythm fast enough to lift you off the ground and allow you to fly.");
@@ -1162,20 +1190,20 @@ public function appearance(forTarget:Creature):void
 				if(target.wingCount == 2) output2(" a pair of");
 				else if(target.wingCount == 4) output2(" a quartet of");
 				else if(target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
-				output2(" blue gossamer wings sprout from your back, displaying a prismatic sheen when they flap. Despite their delicate appearance they have no problem carrying you aloft, and can fold up safely against your back for protection.");
+				output2(" " + target.wingColor() + " gossamer wings sprout from your back, displaying a prismatic sheen when they flap. Despite their delicate appearance they have no problem carrying you aloft, and can fold up safely against your back for protection.");
 				break;
 			case GLOBAL.TYPE_DARK_SYLVAN:
 				if(target.wingCount == 2) output2(" a pair of");
 				else if(target.wingCount == 4) output2(" a quartet of");
 				else if(target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
-				output2(" gossamer wings sprout from your back, glittering black with a pattern that makes them look as though they’re coated in wisps of shadow when they flap. Despite their delicate appearance they have no problem carrying you aloft, and can fold up safely against your back for protection.");
+				output2(" gossamer wings sprout from your back, " + target.wingColor() + " with a pattern that makes them look as though they’re coated in wisps of shadow when they flap. Despite their delicate appearance they have no problem carrying you aloft, and can fold up safely against your back for protection.");
 				break;
 			case GLOBAL.TYPE_DOVE:
 				if(target.wingCount == 2) output2(" a pair of");
 				else output2(" " + num2Text(int(target.wingCount)));
 				if(target.wingCount < 4) output2(" " + target.furColor + " wings adorn your back, feathered like a dove’s and big enough to be worn like a cloak when folded over your body. They’re strong enough to glide with, but nice and soft to the touch.");
-				else if(target.wingCount < 6) output2(" wings sprout from your back, each covered in wonderfully soft " + target.furColor + " feathers and big enough to be worn like a robe when all " + num2Text(int(target.wingCount)) + " are folded over your body. They’re arranged so they don’t get in each other’s way when spread, thus you can still glide with them.");
-				else output2(" wings sprout from your back, each covered in wonderfully soft " + target.furColor + " feathers and big enough to be worn like a luxurious ceremonial robe when all " + num2Text(int(target.wingCount)) + " are folded over your body, which you often find yourself doing to help with getting through tight spaces. Despite their sheer bulk, you can still glide with them.");
+				else if(target.wingCount < 6) output2(" wings sprout from your back, each covered in wonderfully soft " + target.wingColor() + " feathers and big enough to be worn like a robe when all " + num2Text(int(target.wingCount)) + " are folded over your body. They’re arranged so they don’t get in each other’s way when spread, thus you can still glide with them.");
+				else output2(" wings sprout from your back, each covered in wonderfully soft " + target.wingColor() + " feathers and big enough to be worn like a luxurious ceremonial robe when all " + num2Text(int(target.wingCount)) + " are folded over your body, which you often find yourself doing to help with getting through tight spaces. Despite their sheer bulk, you can still glide with them.");
 				break;
 			case GLOBAL.TYPE_GRYVAIN:
 				if(target.wingCount == 2) output2(" a pair of");
@@ -1194,6 +1222,12 @@ public function appearance(forTarget:Creature):void
 				else if(target.wingType == GLOBAL.TYPE_TENTACLE) output2(" Each tentacle contains a hefty knot with a long, nub-lined shaft and tipped with a cum-drooling slit");
 				else output2(" Each tentacle contains a bulbous head with a cum-leaking slit");
 				output2(", perfect for mass breeding.");
+				break;
+			case GLOBAL.TYPE_MOTHRINE:
+				output2(" " + num2Text(int(target.wingCount)) + " " + target.wingColor() + " moth wings sprout from your back, covered in symmetrical, abstract patterns.");
+				if(target.wingTexture() == GLOBAL.FLAG_FURRED) output2(" They’re covered in a soft fuzz and feel very light.");
+				else output2(" They feel very light and delicate to the touch.");
+				output2(" They fold behind you neatly and compactly, the ends in line with the back of your lower calves. They let you hover for a short time and glide easily, although true flight is deceptively difficult to maintain.");
 				break;
 		}
 	}
@@ -1218,6 +1252,10 @@ public function appearance(forTarget:Creature):void
 		output2(", making you appear quite royal.");
 	}
 	// Fluff stuff
+	if(!target.hasFur() && !target.hasFeathers() && (target.hasSkinFlag(GLOBAL.FLAG_FURRED) || target.hasSkinFlag(GLOBAL.FLAG_FEATHERED)))
+	{
+		output2(" Growing from your " + target.skinNoun(false, true) + " is a layer of downy " + (!target.hasSkinFlag(GLOBAL.FLAG_FEATHERED) ? "fur" : "feathers") + ".");
+	}
 	if(target.hasSkinFlag(GLOBAL.FLAG_FLUFFY))
 	{
 		if(target.biggestTitSize() > 2) output2(" Nestled between your breasts");
@@ -1396,6 +1434,10 @@ public function appearance(forTarget:Creature):void
 		case GLOBAL.TYPE_NYREA:
 			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Shiny hardened " + target.scaleColor + " goo covers your arms from the biceps down, resembling a pair of long " + target.scaleColor + " gloves from a distance.");
 			else output2(" Shining black exoskeleton covers your arms from the biceps down, resembling a pair of long black gloves from a distance.");
+			break;
+		case GLOBAL.TYPE_MOTHRINE:
+			if(rand(2) == 0) output2(" Your arms are almost skeletal, a fine exoskeleton of " + target.scaleColor + " " + (target.hasArmFlag(GLOBAL.FLAG_GOOEY) ? "goo" :"chitin") + " giving them a spindly look.");
+			else output2(" Your lithe, graceful arms and hands are deceptively sturdy and covered in " + target.scaleColor + " " + (target.hasArmFlag(GLOBAL.FLAG_GOOEY) ? "goo" :"chitin") + ".");
 			break;
 		case GLOBAL.TYPE_MYR:
 			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Shiny hardened " + target.scaleColor + " goo");
@@ -2325,6 +2367,9 @@ public function appearance(forTarget:Creature):void
 		case GLOBAL.TYPE_DRIDER:
 			if(target.isTaur()) output2(" Your legs are long and spindly, sprouting outwards from your sides like a spider.");
 			else output2(" Where your legs would normally start you have grown the body of a spider, with " + num2Text(target.legCount) + " spindly legs that sprout from its sides.");
+			break;
+		case GLOBAL.TYPE_MYR:
+			output2(" You have " + StringUtil.upperCase(num2Text(target.legCount)) + " " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "hardened" : "chitinous") + " legs that end in pointed, single-toed feet. You can balance on them with ease, a touch of natural grace in your movements.");
 			break;
 		case GLOBAL.TYPE_VULPINE:
 			output2(" Your legs are crooked into high knees with hocks and long feet, like those of a fox; cute bulbous toes decorate the ends.");
@@ -3763,6 +3808,11 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 			else if(target.cocks[x].cLength() < 18) output2("but it’s not lengthy like");
 			else output2("but it’s wider than");
 			output2(" a pig’s.");
+			break;
+		// Moths
+		case GLOBAL.TYPE_MOTHRINE:
+			if(rand(2) == 0) output2(" It’s a sensitive tube of stiff muscle that retracts inwards when soft. The head is pointed and slightly damp, suggesting self-lubrication.");
+			else output2(" It’s essentially a flexible, semi-hollow, sensitive tube that retracts inwards when not aroused. The head of your moth-cock is slightly pointed but soft, springy and a little moist.");
 			break;
 	}
 	

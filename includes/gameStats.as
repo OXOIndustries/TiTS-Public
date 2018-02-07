@@ -228,6 +228,8 @@ public function statisticsScreen(showID:String = "All"):void
 		{
 			output2("\n<b>* Back:</b>");
 			if(pc.wingCount > 0) output2(" " + pc.wingCount + ",");
+			if(pc.wingTexture() > 0) output2(" " + GLOBAL.FLAG_NAMES[pc.wingTexture()] + ",");
+			if(pc.wingColor() != "") output2(" " + StringUtil.toDisplayCase(pc.wingColor()) + ",");
 			output2(" " + GLOBAL.TYPE_NAMES[pc.wingType] + " " + StringUtil.toDisplayCase(pc.wingsDescript(true)));
 		}
 		if(pc.tailCount > 0)
@@ -347,24 +349,26 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.hasCock() || pc.balls != 0)
 		{
 			output2("\n<b><u>Male Organs</u></b>");
-			output2("\n<b>* Total Count:</b>");
+			//output2("\n<b>* Total Count:</b>");
 			if(pc.cocks.length > 0)
 			{
-				output2(" " + pc.cocks.length + " Penis");
-				if(pc.cocks.length != 1) output2("es");
+				output2("\n<b>* Penis, Count:</b> " + pc.cocks.length);
+				//output2(" " + pc.cocks.length + " Penis");
+				//if(pc.cocks.length != 1) output2("es");
 			}
 			if(pc.balls <= 0)
 			{
-				output2(", Prostate");
+				//output2(", Prostate");
 				output2("\n<b>* Prostate, Volume:</b> " + prettifyVolume(pc.ballVolume(), 1));
 				output2("\n<b>* Prostate, Weight:</b> " + prettifyWeight(pc.bodyPartWeight("testicle")));
 				if(pc.weightQ("testicle") > 0) output2(" (" + pc.weightQ("testicle") + " %)");
 			}
 			else if(pc.balls > 0)
 			{
-				if(pc.cocks.length > 0) output2(",");
-				output2(" " + pc.balls + " Testicle");
-				if(pc.balls != 1) output2("s");
+				output2("\n<b>* Testicle, Count:</b> " + pc.balls);
+				//if(pc.cocks.length > 0) output2(",");
+				//output2(" " + pc.balls + " Testicle");
+				//if(pc.balls != 1) output2("s");
 				if(pc.hasStatusEffect("Uniball")) output2(", Uniball");
 				if(pc.hasStatusEffect("Special Scrotum"))
 				{
@@ -443,17 +447,19 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.hasVagina())
 		{
 			output2("\n<b><u>Female Organs</u></b>");
-			output2("\n<b>* Total Count:</b>");
+			//output2("\n<b>* Total Count:</b>");
 			if(pc.vaginas.length != 0)
 			{
-				output2(" " + pc.vaginas.length + " Vagina");
-				if(pc.vaginas.length != 1) output2("s");
+				output2("\n<b>* Vagina, Count:</b> " + pc.vaginas.length);
+				//output2(" " + pc.vaginas.length + " Vagina");
+				//if(pc.vaginas.length != 1) output2("s");
 			}
 			if(pc.totalClits() > 0)
 			{
-				if(pc.vaginas.length != 0) output2(",");
-				output2(" " + pc.totalClits() +" Clit");
-				if(pc.totalClits() != 1) output2("s");
+				output2("\n<b>* Clitoris, Count:</b> " + pc.totalClits());
+				//if(pc.vaginas.length != 0) output2(",");
+				//output2(" " + pc.totalClits() +" Clit");
+				//if(pc.totalClits() != 1) output2("s");
 				if(pc.clitLength != 0) output2("\n<b>* Clitoris, Length:</b> " + prettifyLength(pc.clitLength));
 				if(pc.totalClits() != 1) output2(", each");
 				if(pc.vaginas.length > 1)

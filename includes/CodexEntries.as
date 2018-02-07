@@ -27,19 +27,21 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Dzaan", dzaanCodex,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Fanfir", fanfirCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Galotians", galotianCodexEntry, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Gryvain", gryvainCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Humans", humanTerranCodex, true);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Laquines", laquineCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Leithans", leithanCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Kaithrit", kaithritCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Kalabast/Fhan’i", kalabastFhaniCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Kui-Tan", kuitanCodexEntry,true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Laquines", laquineCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Leithans", leithanCodexEntry);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Mothrine", mothrineCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Ovir", ovirCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Rahn", rahnCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Rodenians", rodenianCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Roehm", roehmCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Siel", sielCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Saeri", saeriCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Saurmorians",saurmorianCodexEntry,true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Siel", sielCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Simii", simiiCodex);
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Sionach", sionachCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Spinarrans", spinarranCodexEntry);
@@ -48,7 +50,6 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Thraggen", thraggenCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Toves", toveCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Varmints", varmintCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Gryvain", gryvainCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Vildarii", vildariiCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Vulkrimi", vulkrimiCodexEntry);
 	
@@ -67,13 +68,13 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Raskvel", raskVelCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Sydians", sydianCodexEntry);
 	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Bothrioc", bothriocCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Cockvines", cockvinesCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Ganrael", crystalGooCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Gold Myr", goldMyrmedionCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Myr Fungus", myrFungusCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Nyrea", nyreaCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Bothrioc", bothriocCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Essyras", essyraCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Frostwyrm", frostwyrmCodexEntry);
@@ -92,6 +93,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Aegis", aegisShipyardsCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "BI/G", bellIsleGrunmannCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Camarilla", camarillaCodex);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Envyoidics", envyoidicsCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Humphard Inc.", humphardIncCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "J’ejune", jejuneCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "JoyCo", joyCoCodex, true);
@@ -103,7 +105,6 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Snugglé", snuggleCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Steele Tech", steeleTechCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Xenogen", xenogenCodex, true);
-	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Envyoidics", envyoidicsCodex, true);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Factions", "Black Void", blackVoidCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Factions", "J.A.F.", jointAusarFederationCodex, true);
@@ -114,24 +115,24 @@ public function configureCodex():void
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Religions", "Stormguard", stormguardCodex);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Throbb", throbbCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Dumbfuck", dumbfuckCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Gush", gushCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "The Treatment", treatmentCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Tentatool", tentacoolCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Throbb", throbbCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "The Treatment", treatmentCodexEntry);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "SynthSheath", synthSheathCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "BionaHoles", bionaholeCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Grav Cuffs", gravCuffsCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Holodom", holodomCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Suma Cream", sumaCreamCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "ClearYu", clearYuCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Rubber-Made", rubberMadeCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Bubble Buddy", bubbBuddyCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Muffstick", muffstickCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "FizzyFix", fizzyfixCodex);
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Capraphorm", capraphormCodex);
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Chill Pill", chillPillCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "ClearYu", clearYuCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "FizzyFix", fizzyfixCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Grav Cuffs", gravCuffsCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Holodom", holodomCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Muffstick", muffstickCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Rubber-Made", rubberMadeCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Suma Cream", sumaCreamCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "SynthSheath", synthSheathCodex);
 	
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Ships", "9999", shipNameCodex);
 	
@@ -149,9 +150,9 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "BXBI: I", bxbiChapter1Story);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "BXBI: II", bxbiChapter2Story);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Captured...", capturedByTheDemons);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dragon’s Hoard", dragonsHordeCodexStory, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Diverting Jokes", DivertingTarkusJokesAndJests);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dildo Snakes", dildoSnakes, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dragon’s Hoard", dragonsHordeCodexStory, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Fuck the System", fuckTheSystem);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Satyr Slave", satyrSlaveStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Stolen Goods", stolenGoodsStory);
@@ -819,6 +820,50 @@ public function laquineCodexEntry():void
 	outputCodex("\n\nBecause they lack multiple nipples, communal nursing is the norm amongst laquines, and the average individual will have been suckled from dozens of willing milk-mothers during her or his youth. It has been theorized that this may have deliberately evolved as a social building mechanic. Perhaps as a result of this, polygamous relationships are not unheard of amongst laquines.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Laquines");
+}
+public function mothrineCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Mothrine"));
+	outputCodex("<i>Ancient, long dead, and with much to tell us...</i>\n\n");
+	outputCodex("<b>Name (Singular & Plural):</b> Mothrine");
+	outputCodex("\n<b>Sexes:</b> Male, Female, Sexless.");
+	outputCodex("\n<b>Height:</b> 6\' to 6\' 7\" for males, 5\' 10\" to 6\' 5\" for females and sexless mothrine.");
+	outputCodex("\n<b>Weight:</b> 90 to 150 lbs across all sexes.");
+	outputCodex("\n<b>Hair:</b> Extremely varied, white and green being the most common.");
+	outputCodex("\n<b>Eyes:</b> Extremely varied but usually one of four colors ‘clan types’; black, cyan, white or gold.");
+	outputCodex("\n<b>Ears:</b> Two ear holes on each side, no pronounced ears.");
+	outputCodex("\n<b>Average Lifespan:</b> Estimated at 340 Terran years although some sources say far less than that.");
+	outputCodex("\n<b>Homeworld:</b> First Cidulfixulu.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("History"));
+	outputCodex("The mothrine appeared to have died out as a race at some point within the last seven centuries. What is believed to be their homeworld, First Cidulfixulu, contained some extremely well preserved remains deep within a mountain cavern. Most information has been collated from the settlement uncovered there and some few instances of further habitation along the planet’s surface.");
+	outputCodex("\n\nWhat’s known is that they were a society of insectoid, bipedal, moth-like humanoids. Their society had no technological analogue that we’d recognize, even the concept of ‘weapons’ seemed to be lacking if the archeological research is to be understood. It’s surmised that they based their society on bio-mechanics and organic materials rather than regular synthetic construction. This is postulated due to the fact that evidence of extremely detailed architecture exists, yet no known instrument can accurately recreate that ‘mothrine touch’.");
+	outputCodex("\n\nWhat’s also known is that something exceedingly powerful wiped out the mothrine within the course of a few days. Evidence of bodies and preserved brain material show heavy psionic scarring, suggesting a virus or energy wave that targeted their psionically latent minds.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Appearance"));
+	outputCodex("From reconstructions, mothrine remains, and real-time projections through gene-theoritics, the mothrine have shown to be that: Tall, bi-pedal moth-like humanoids.");
+	outputCodex("\n\nHumanoid, as it turns out, is mostly a rough guide, as they were most certainly insects first. All mothrine were tall to some degree and taller than the current Terran average. All mothrine had large wings that more than likely gave them the power of flight: To what degree is unknown.Mothrine came in many different and vibrant colors across all their features but evidence suggests that there were four ‘clans’ that flourished with a specific palette for each.");
+	outputCodex("\n\nThese four form the majority of the physical remains found.");
+	outputCodex("\n\nWhat’s also known is that there were three distinct sexes and there were few physical differences between either aside from genitalia. Sexless mothrine appeared to have a high place in their society as some evidence points to advanced cranial development and activity within such individuals.");
+	outputCodex("\n\nMothrine had exoskeletons and endoskeletons, both being lightweight and hollow. They had svelte limbs, well developed tendons and figures that would be considered ‘ultra-thin’ by modern Terran standards.");
+	outputCodex("\n\nTheir bodies were covered in a mix of chitin and fuzzy down, similar to some species of Terran moths. Their eyes are posited to be quite large and bulbous although no preserved examples remain. Aside from ‘clan’ markings, colors of each feature would change dramatically between individual mothrine. It’s posited that their gene sequences, being different to Terran gene construction, allowed for more ‘harmless’ if random mutations to develop within color pigments.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Society"));
+	outputCodex("Mothrine society has only been hinted at through paleontology and archeology.");
+	outputCodex("\n\nWhat’s known is that there was no hierarchy of sexes aside the rare ‘sexless’ individuals. Oftentimes these individuals seemed to display physical and mental ability quite above the mothrine average but the relative scales for both sets of claims are difficult to compare.");
+	outputCodex("\n\nAs a flying species, the lush canopy and wide plains of First Cidulfixulu seemed to form a basis for mothrine society, as depictions and architecture showed amazing displays of flight-based migration.");
+	outputCodex("\n\nTechnologically speaking, there are no recorded instances of advanced metallurgy. Most uses of metal tended to be in a raw, powdered form for reasons unknown. It’s presumed that mothrine were able to use some sort of biomechanical matter and engineer it at the base level for their needs. Even so, very little evidence for that hypothesis exists. How the four clans interacted with the society remains just hidden and unexplainable.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Through reconstructions and theories, it’s touted that mothrine were very ceremonial. Males and females underwent several rituals and rites of joining, often leading to monogamous and lifelong relationships. How this culture and these traditions developed is unknown.");
+	outputCodex("\n\nSexual orientation shows some rare outliers with two recorded cases of high-value couples being F/F pairings.");
+	outputCodex("\n\nGiven the lack of physical evidence, it’s unknown how large the mothrine population was or how many offspring were produced in a typical joining.");
+	outputCodex("\n\nMothrine sexual habits tended to be complex and draped in ritual, often with displays, dances, and bouts of so called ‘flight-joinings’ being performed before any coitus.");
+	outputCodex("\n\nMale mothrine had a large, hardened ovipositor-like penis and lacked a visible scrotum. Female genitals tended to be closer to Terran vaginas but more fitting for tube-like insertions. It’s wildly suggested that intercourse could last from anywhere between seven minutes to seventeen hours. It apparently wasn’t uncommon to sustain injuries given how light and potentially delicate mothrine features were and some more obscure references found in surface sites.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Mothrine");
 }
 public function rahnCodexEntry():void
 {
