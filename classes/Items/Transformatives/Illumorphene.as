@@ -390,7 +390,7 @@ package classes.Items.Transformatives
 			target.setStatusValue("Wing Style", 4, 0);
 			target.setStatusTooltip("Wing Style", newWingColor);
 			
-			output("\n\nAn ache in your [pc.eyes] grows all of a sudden. You can feel them pressing against your eyelids as they close involuntarily. In just as sudden a motion, the ache fades and you reactively open your eyelids. Does everything seem a little bit brighter or...? Richer in color? It seems that you now have <b>bulgy " + newEyeColor + " moth eyes!</b>");
+			output("\n\nAn ache in your [pc.eyes] grows all of a sudden. You can feel them pressing against your eyelids as they close involuntarily. In just as sudden a motion, the ache fades and you reactively open your eyelids. Does everything seem a little bit brighter or... richer in color? It seems that you now have <b>bulgy " + newEyeColor + " moth eyes!</b>");
 			
 			target.eyeType = GLOBAL.TYPE_MOTHRINE;
 			target.eyeColor = newEyeColor;
@@ -414,7 +414,8 @@ package classes.Items.Transformatives
 			output("\n\n");
 			
 			// 6 hours of in game time passes.
-			kGAMECLASS.genericSleep(360);
+			kGAMECLASS.processTime(6 * 58);
+			//kGAMECLASS.genericSleep(360);
 			
 			clearMenu();
 			addButton(0, "Next", kGAMECLASS.useItemFunction);
