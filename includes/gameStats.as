@@ -6124,6 +6124,13 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Nenne:</b> Met her");
 				variousCount++;
 			}
+			// The Warm Crusts
+			if(flags["MET_HEIDRUN"] != undefined)
+			{
+				output2("\n<b><u>The Warm Crusts</u></b>");
+				output2("\n<b>* Heidrun:</b> Met her");
+				variousCount++;
+			}
 			// Krym
 			if(flags["MET_KRYM"] != undefined)
 			{
