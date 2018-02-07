@@ -31,6 +31,7 @@ package classes.Items.Transformatives
 	import classes.Util.InCollection;
 	import classes.Util.RandomInCollection;
 	import classes.Engine.Map.InShipInterior;
+	import classes.Engine.Utility.indefiniteArticle;
 	
 	public class Illumorphene extends ItemSlotClass
 	{
@@ -48,7 +49,7 @@ package classes.Items.Transformatives
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
 			description = "an Illumorpheme case";
-			tooltip = "A pitch black, ergonomic, high quality box with an artistic moth-shape on the front. Opening it reveals five items held in cream colored padding: An injector of clear liquid and four vials of colored liquid. There’s a small bit of whimsical instruction inside the lid: <i>“Pick a shade, plug it in, peer into your potential.”</i>\n\nThe vials are labeled Venal, Verdant, Voltaic, and Vatic. A warning label that comes with the box implies that this would only be safe to use when you’re on the ship.";
+			tooltip = "A pitch black, ergonomic, high quality box with an artistic moth-shape on the front. Opening it reveals five items held in cream colored padding: An injector of clear liquid and four vials of colored liquid. The vials are labeled ‘Venal’, ‘Verdant’, ‘Voltaic’, and ‘Vatic’.\n\nThere’s a small bit of whimsical instruction inside the lid: <i>“Pick a shade, plug it in, peer into your potential.”</i>\n\n<b>A warning label that comes with the box implies that this would only be safe to use when you’re on the ship.</b>";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -131,7 +132,7 @@ package classes.Items.Transformatives
 			output("\n\nWith the apparatus lined up, and after delicately dabbling with putting the vial and injector together, you align the base of the injector to the side of your neck. The small, circular surface that hovers over your [pc.skinFurScales] has no obvious transfer method. Must be one of those high-tech, fancy nanoneedles. How in the hell did the Seer get her hands on this stuff...?");
 			output("\n\nWithout an extra thought, you press the injector to your neck. Immediately, your nerves tense and tingle in response as a several hundred infinitesimal pinpricks fill your blood vessels with the combined serum. It’s not painful but you involuntarily wince all the same.");
 			output("\n\nA few seconds of holding it is interrupted by a <i>bee-buh beep</i> from the injector. Looks like it’s finished!");
-			output("\n\nAnd not a second too soon as your limbs become stiff, thoughts become sluggish, and that bed you’re on has gotten mighty comfy right now, zzz...");
+			output("\n\nAnd not a second too soon as your limbs become stiff, thoughts become sluggish, and that bed you’re on has gotten... mighty... comfy right now... <i>zzz...</i>");
 			output("\n\n");
 			
 			clearMenu();
@@ -276,7 +277,7 @@ package classes.Items.Transformatives
 			target.scaleColor = newChitinColor;
 			target.furColor = newFurColor;
 			
-			output("\n\nYour limbs and bones feel something similar: a loss of mass coinciding with the sensation of lightness. Your limbs, body and [pc.face] pulse and twitch as they’re all morphed at the base level into something new and unfamiliar. You close your eyes as the changes overtake you, realizing that they also ache with the promise of change! Even your nose feels odd to breathe through but it’s something you can adjust to quickly. After a few minutes, the intense palsy in your body subsides, so you take a glance to inspect your skinny, lithe <b>moth-like legs and arms!</b> Placing a freshly remodeled hand where you think your nose is, you feel for your <b>mothrine face!</b> On top of that, you’re also " + (target.tallness < setHeight ? "taller" : "shorter") + "!");
+			output("\n\nYour limbs and bones feel something similar: a loss of mass coinciding with the sensation of lightness. Your limbs, body and [pc.face] pulse and twitch as they’re all morphed at the base level into something new and unfamiliar. You close your eyes as the changes overtake you, realizing that they also ache with the promise of change! Even your nose feels odd to breathe through but it’s something you can adjust to quickly. After a few minutes, the intense palsy in your body subsides, so you take a glance to inspect your skinny, lithe <b>moth-like legs and arms!</b> Placing a freshly remodeled hand where you think your nose is, you feel for your <b>mothrine face!</b> On top of that, <b>you’re also " + (target.tallness < setHeight ? "taller" : "shorter") + "!</b>");
 			if(target.legCount > 2) output(" However, It appears the rest of your legs have dissolved away, much like your old skin...");
 			
 			target.faceType = GLOBAL.TYPE_MOTHRINE;
@@ -308,13 +309,19 @@ package classes.Items.Transformatives
 			target.legCount = 2;
 			target.genitalSpot = 0;
 			
+			target.hipRatingRaw = setHips;
+			target.buttRatingRaw = setButt;
+			
 			target.tone = setTone;
 			target.thickness = setThicc;
 			target.tallness = setHeight;
 			
 			output("\n\nThere’s an altogether weirder feeling in your " + (!target.hasDickNipples() ? "[pc.nipples]" : "[pc.dickNipples]") + ". Before your eyes, they appear to meld into the surface of your [pc.chest], becoming a color-blended patch of sensitive flesh. Your areola appear to have essentially vanished, leaving a discolored, protudent patch where your nipples should be. You now have <b>membranous " + newNippleColor + " nipples!</b>");
 			
-			for(var bIdx:int = 0; bIdx < target.breastRows.length; bIdx++)
+			var bIdx:int = 0;
+			target.nipplesPerBreast = 1;
+			target.nippleLengthRatio = 1;
+			for(bIdx = 0; bIdx < target.breastRows.length; bIdx++)
 			{
 				target.breastRows[bIdx].nippleType = GLOBAL.NIPPLE_TYPE_FLAT;
 			}
@@ -324,7 +331,7 @@ package classes.Items.Transformatives
 			{
 				output("\n\nYour [pc.breasts] aren’t left out of this, a soothing flush in your milkers tells you they’ve certainly changed. <b>They’ve " + (target.breastRows[target.biggestTitRow()].breastRatingRaw > setCups ? "shrunk" : "grown") + " to");
 				
-				for(var bIdx:int = 0; bIdx < target.breastRows.length; bIdx++)
+				for(bIdx = 0; bIdx < target.breastRows.length; bIdx++)
 				{
 					target.breastRows[bIdx].breastRatingRaw = setCups;
 				}
@@ -334,7 +341,7 @@ package classes.Items.Transformatives
 			
 			if(target.hasCock())
 			{
-				output("\n\nYour [pc.cock] twitches and tenses on its own accord, the surface and inner muscle tissue hardening, but not with arousal! The consistent sense of mass-loss is present but thankfully, you can tell that it’s not in length and width. Instead, you’ve now got a semi-hollow, solid and flexible <b>mothipositor!</b> It softens and retracts, returning to a shrunken state.");
+				output("\n\nYour [pc.cock] twitches and tenses on its own accord, the surface and inner muscle tissue hardening, but not with arousal! The consistent sense of mass-loss is present but thankfully, you can tell that it’s not in length and width. Instead, <b>you’ve now got a semi-hollow, solid and flexible mothipositor!</b> It softens and retracts, returning to a shrunken state.");
 				if(target.cocks.length == 2) output(" Not only that, but your other cock follows suit and transfomrs into a similar shape!");
 				else if(target.cocks.length > 1) output(" Not only that, but the rest of your cocks follow suit, each one transforming similarly!");
 				
@@ -383,12 +390,12 @@ package classes.Items.Transformatives
 			target.setStatusValue("Wing Style", 4, 0);
 			target.setStatusTooltip("Wing Style", newWingColor);
 			
-			output("\n\nAn ache in your [pc.eyes] grows all of a sudden. You can feel them pressing against your eyelids as they close involuntarily. In just as sudden a motion, the ache fades and you reactively open your eyelids. Does everything seem a little bit brighter or...? Richer in color? It seems that you now have bulgy <b>" + newEyeColor + " moth eyes!</b>");
+			output("\n\nAn ache in your [pc.eyes] grows all of a sudden. You can feel them pressing against your eyelids as they close involuntarily. In just as sudden a motion, the ache fades and you reactively open your eyelids. Does everything seem a little bit brighter or...? Richer in color? It seems that you now have <b>bulgy " + newEyeColor + " moth eyes!</b>");
 			
 			target.eyeType = GLOBAL.TYPE_MOTHRINE;
 			target.eyeColor = newEyeColor;
 			
-			output("\n\nAround your neck, new follicles and feelings clamber through your [pc.skinFurScales]. A few moments of flesh irritation give way to soft, unbelievably light strands of fuzzy down. It’s formed a feather boa around your neck!");
+			output("\n\nAround your neck, new follicles and feelings clamber through your [pc.skinFurScales]. A few moments of flesh irritation give way to soft, unbelievably light strands of fuzzy down. <b>It’s formed " + indefiniteArticle(newFurColor) + " feather boa around your neck!</b>");
 			// Cosmetic Perk: "Regal Mane"
 			// v1: Mane appearance type (set by global type flag)
 			target.createPerk("Regal Mane", 0, 0, 0, 0, "You have an impressive mane bordering your neck.");
@@ -403,6 +410,7 @@ package classes.Items.Transformatives
 			target.antennaeType = GLOBAL.TYPE_MOTHRINE;
 			target.antennae = 2;
 			
+			output("\n\nAfter the changes, you give yourself a final once-over before continuing your day.");
 			output("\n\n");
 			
 			// 6 hours of in game time passes.
