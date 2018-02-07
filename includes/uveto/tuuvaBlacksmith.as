@@ -1506,7 +1506,7 @@ public function actuallyGetFuckedByTuuva(x:int):void
 
 	output("\n\nShe stops after a minute, and within seconds she’s mounted you, guiding her [tuuva.cock] to your lubed entrance.");
 	//Normal:
-	if(tuuva.hasCock(GLOBAL.TYPE_EQUINE)) 
+	if(!tuuva.hasCock(GLOBAL.TYPE_EQUINE)) 
 	{
 		output(" Her puppy prick spears into your ");
 		if(x >= 0) output("honey pot");
