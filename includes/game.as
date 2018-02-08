@@ -2140,7 +2140,9 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	//Nogwitch is fastest mount atm.
 	if(pc.accessory is NogwichLeash) moveMinutes = (moveMinutes >= 3 ? Math.floor(moveMinutes/3) : moveMinutes-1);
 	//Hoverboard & Kordiiaks cuts time in half-ish.
-	else if(pc.hasItemByClass(Hoverboard) || pc.accessory is KordiiakLeash) moveMinutes = (moveMinutes >= 4 ? Math.floor(moveMinutes/2) : moveMinutes-1);
+	else if(pc.hasItemByClass(Hoverboard) || pc.accessory is KordiiakLeash) moveMinutes = (moveMinutes > 2 ? Math.floor(moveMinutes/2) : moveMinutes-1);
+	//Grunch reduce by 25%
+	else if(pc.accessory is GrunchLeash) moveMinutes = (moveMinutes > 4 ? Math.floor(moveMinutes * .75) : moveMinutes-1);
 	//Not sure who put this in, but I hate it. Tentacles aren't an optimal mode of movement. Reducing to -1;
 	else if(pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) moveMinutes--;
 	

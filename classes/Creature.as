@@ -4814,7 +4814,7 @@
 		{
 			if(!robotOnly)
 			{
-				if(hasStatusEffect("Varmint Buddy") || accessory is KordiiakLeash) return true;
+				if(hasStatusEffect("Varmint Buddy") || accessory is KordiiakLeash || accessory is ShoulderGrunchLeash) return true;
 			}
 			if(!accessoryOnly)
 			{
@@ -20513,7 +20513,7 @@
 		// Mounts!
 		public function isRidingMount():Boolean
 		{
-			if(accessory is KordiiakLeash || accessory is NogwichLeash) return true;
+			if(accessory is KordiiakLeash || accessory is GrunchLeash || accessory is NogwichLeash) return true;
 			return false;
 		}
 	}

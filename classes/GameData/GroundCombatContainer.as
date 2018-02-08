@@ -7,6 +7,8 @@ package classes.GameData
 	import classes.Items.Accessories.BimboleumDefenseSystem;
 	import classes.Items.Accessories.SalamanderDefenseSystem;
 	import classes.Items.Accessories.KordiiakLeash;
+	import classes.Items.Accessories.ShoulderGrunchLeash;
+	import classes.Items.Accessories.GrunchLeash;
 	import classes.Items.Apparel.Harness;
 	import classes.Items.Armor.GooArmor;
 	import classes.ItemSlotClass;
@@ -917,6 +919,7 @@ package classes.GameData
 						{
 							if(target.hasStatusEffect("Varmint Buddy")) output("\n\n<b>A loud howl alerts you that your pet varmint has fully recovered. It quickly shakes itself awake and leaps back to your side, gnashing its razor-sharp teeth at the enemy.</b>");
 							else if(target.accessory is KordiiakLeash) output("\n\n<b>A deep roar alerts you that your kor’diiak has recovered. It lumbers up onto its legs, growling.</b>");
+							else if(target.accessory is ShoulderGrunchLeash) output("\n\n<b>Quiet chitters alert you that your grunch has recovered.</b>");
 							else output("\n\n<b>There’s a familiar and welcome sound of whirring servos above you. Your righted drone moves back down to your side to aid you.</b>");
 						}
 						else output("\n\n<b>A telling hum returns to the battlefield. " + StringUtil.capitalize(possessive(target.getCombatName()), false) + " combat drone returns to the fold!</b>");
@@ -1656,7 +1659,7 @@ package classes.GameData
 				//Lower difficulty for flight if enemy cant!
 				if(pc.canFly() && (!_hostiles[0].canFly() || _hostiles[0].isImmobilized())) difficulty--;
 				//Lower difficulty for immobilized foe
-				if(_hostiles[0].isImmobilized()) difficulty--;
+				if(_hostiles[0].isImmobilized()) difficulty-=2;
 				//Easy mode is magic!
 				if(kGAMECLASS.easy)
 				{
@@ -1669,6 +1672,9 @@ package classes.GameData
 				if(pc.level >= _hostiles[0].level + 3) difficulty--;
 				if(pc.level >= _hostiles[0].level + 4) difficulty--;
 				if(pc.level >= _hostiles[0].level + 5) difficulty--;
+
+				//Grunch makes easier!
+				if(pc.accessory is GrunchLeash) difficulty -= 2;
 
 				//Set threshold value and check!
 				if(difficulty < 0) difficulty = 100;
@@ -2113,10 +2119,12 @@ package classes.GameData
 						else if(pc.accessory is SiegwulfeItem) addDisabledButton(bOff, "Siegwulfe", "Siegwulfe, Go!", "You are disarmed and can’t communicate with [wulfe.name] right now!");
 						else if(pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE) && pc.accessory.shortName != "") addDisabledButton(bOff, pc.accessory.shortName, "Accessory Target", ("You are disarmed and can’t access your " + pc.accessory.longName + " right now!"));
 						else if(pc.accessory is KordiiakLeash) addDisabledButton(bOff, "Kor’diiak", "Kor’diiak, Go!", "You are disarmed and had to leave your pet bear behind!");
+						else if(pc.accessory is ShoulderGrunchLeash) addDisabledButton(bOff, "Kor’diiak", "Kor’diiak, Go!", "You are disarmed and had to leave your pet behind!");
 						else addDisabledButton(bOff, "Drone Target", "Drone Target", "You are disarmed and can’t access your combat drone right now!");
 					}
 					else if(pc.hasTamWolf()) addButton(bOff, "TamWolf", selectDroneTarget, undefined, "Tam-wolf, Go!", ("Have Tam-wolf target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 					else if(pc.accessory is KordiiakLeash) addButton(bOff, "Kor’diiak", selectDroneTarget, undefined, "Kor’diiak, Go!", ("Have your ice bear target " + (_hostiles.length > 1 ? "an" : "the") + " enemy. Hopefully."));
+					else if(pc.accessory is ShoulderGrunchLeash) addButton(bOff, "Grunch", selectDroneTarget, undefined, "Grunch, Go!", ("Have your grunch target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 					else if(pc.accessory is SiegwulfeItem) addButton(bOff, "Siegwulfe", selectDroneTarget, undefined, "Siegwulfe, Go!", ("Have [wulfe.name] target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 					else if(pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE) && pc.accessory.shortName != "") addButton(bOff, pc.accessory.shortName, selectDroneTarget, undefined, "Accessory Target", ("Have your " + pc.accessory.longName + " target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 					else addButton(bOff, "Drone Target", selectDroneTarget, undefined, "Drone Target", ("Have your drone target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
@@ -2125,6 +2133,7 @@ package classes.GameData
 				{
 					if(pc.hasStatusEffect("Varmint Buddy")) addDisabledButton(bOff, "Varmint", "Varmint, Go!", "You can’t communicate with your varmint right now!");
 					if(pc.accessory is KordiiakLeash) addDisabledButton(bOff, "Kor’diiak", "Kor’diiak, Go!", "You can’t communicate with your kor’diiak right now!");
+					if(pc.accessory is ShoulderGrunchLeash) addDisabledButton(bOff, "Grunch", "Grunch, Go!", "You can’t communicate with your pet right now!");
 					else if(pc.hasTamWolf()) addDisabledButton(bOff, "TamWolf", "Tam-wolf, Go!", "You can’t communicate with Tam-wolf right now!");
 					else if(pc.accessory is SiegwulfeItem) addDisabledButton(bOff, "Siegwulfe", "Siegwulfe, Go!", "You can’t communicate with [wulfe.name] right now!");
 					else if(pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE) && pc.accessory.shortName != "") addDisabledButton(bOff, pc.accessory.shortName, "Accessory Target", ("You can’t access your " + pc.accessory.longName + " right now!"));
@@ -2147,6 +2156,7 @@ package classes.GameData
 				if(pc.droneTarget == null) 
 				{
 					if(pc.accessory is KordiiakLeash) pc.createStatusEffect("Drone Targeting", -1, 0, 0, 0, true, "Radio", ("Your kor’diiak is targeting..."), true, 0, 0xFFFFFF);
+					else if(pc.accessory is ShoulderGrunchLeash) pc.createStatusEffect("Drone Targeting", -1, 0, 0, 0, true, "Radio", ("Your pet is targeting..."), true, 0, 0xFFFFFF);
 					else pc.createStatusEffect("Drone Targeting", -1, 0, 0, 0, true, "Radio", ("Your " + (pc.hasStatusEffect("Varmint Buddy") ? "varmint" : "drone") + " is targeting..."), true, 0, 0xFFFFFF);
 				}
 			}
@@ -2189,6 +2199,7 @@ package classes.GameData
 			{
 				//pc.createStatusEffect("Drone Targeting", 0, 0, 0, 0, true, "Radio", ("Your " + (pc.hasStatusEffect("Varmint Buddy") ? "varmint" : "drone") + " is targeting..."), true, 0, 0xFFFFFF);
 				if(pc.accessory is KordiiakLeash) pc.createStatusEffect("Drone Targeting", 0, 0, 0, 0, true, "Radio", ("Your kor’diiak is targeting..."), true, 0, 0xFFFFFF);
+				else if(pc.accessory is ShoulderGrunchLeash) pc.createStatusEffect("Drone Targeting", 0, 0, 0, 0, true, "Radio", ("Your pet is targeting..."), true, 0, 0xFFFFFF);
 				else pc.createStatusEffect("Drone Targeting", 0, 0, 0, 0, true, "Radio", ("Your " + (pc.hasStatusEffect("Varmint Buddy") ? "varmint" : "drone") + " is targeting..."), true, 0, 0xFFFFFF);
 			}
 			else

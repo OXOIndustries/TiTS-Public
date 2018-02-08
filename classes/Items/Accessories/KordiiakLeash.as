@@ -49,6 +49,7 @@ package classes.Items.Accessories
 			droneAttack = kordiiakAttack;
 			
 			addFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE);
+			addFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER);
 			
 			version = _latestVersion;
 		}
