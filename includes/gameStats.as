@@ -2950,6 +2950,24 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["BEA_SAVCOUNT"] != undefined) output2("\n<b>* Savicite Sold to " + flags["BEA_TITLE"] + ", Total:</b> " + flags["BEA_SAVCOUNT"]);
 				sideCount++;
 			}
+			// Tuuva Expedition
+			if(flags["TUUVA_50AFF"] != undefined)
+			{
+				output2("\n<b><u>Tuuva’s Expedition</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(flags["TUUVA_SAVED"] == undefined || flags["TUUVA_SAVED"] < 1)
+				{
+					output2(" Active");
+					if(flags["TUUVA_SAVED"] < 1) output2(" Tuuva lost, <i>Find Tuuva!</i>");
+					output2("\n<b>* Duration:</b> " + prettifyMinutes(GetGameTimestamp() - flags["TUUVA_50AFF"]));
+				}
+				else
+				{
+					output2(" Saved Tuuva");
+					if(flags["TUUVA_SAVED"] >= 2) output2(", Completed");
+				}
+				sideCount++;
+			}
 		}
 		
 		if(showID == "Canadia" || showID == "All")
@@ -3368,10 +3386,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["BUBBLED_CELISE"] != undefined) output2("\n<b>* Celise, Times Given Cum Bubble:</b> " + flags["BUBBLED_CELISE"]);
 					if(flags["TIMES_CELISE_IN_BALLS"] != undefined)
 					{
-						output2("\n<b>* Celise, Times She’s Stimulated</b>");
-						if(silly) output2("<b> Your Internal Testicular Fortitude</b>");
-						else output2("<b> the Inside of Your Balls</b>");
-						output2("<b>:</b> " + flags["TIMES_CELISE_IN_BALLS"]);
+						output2("\n<b>* Celise, Times She’s Stimulated " + (silly ? "Your Internal Testicular Fortitude" : "the Inside of Your Balls") + ":</b> " + flags["TIMES_CELISE_IN_BALLS"]);
 					}
 					if(flags["LACTATION_FED_CELISE"] != undefined) output2("\n<b>* Celise, Times Breast-Fed Her:</b> " + flags["LACTATION_FED_CELISE"]);
 					if(flags["KIRO_CELISE_3SOME"] != undefined) output2("\n<b>* Celise, Times Sexed with Kiro:</b> " + flags["KIRO_CELISE_3SOME"]);
@@ -4386,7 +4401,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Erika:</b> Met her");
 					if(flags["ERIKA_SEEN_NAKED"] != undefined) output2(", Seen Her Naked");
-					if(flags["ERIKA_GIVEN_ANUSOFT"] != undefined) output2("\n<b>* Erika</b>: You have given her some anusoft");
+					if(flags["ERIKA_GIVEN_ANUSOFT"] != undefined) output2(", You have given her some Anusoft");
 					if(flags["ERIKA_SEXED"] != undefined) output2("\n<b>* Erika, Times Sexed:</b> " + flags["ERIKA_SEXED"]);
 				}
 				variousCount++;
@@ -6122,6 +6137,27 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				else if((flags["ULA_LEAVE_TIMER"] + 60*24*2) <= GetGameTimestamp()) output2(", <i>Whereabouts unknown</i>");
 				else output2(", <i>Is freezing!</i>");
+				variousCount++;
+			}
+			// Earthshapers
+			if(flags["MET_TUUVA"] != undefined)
+			{
+				output2("\n<b><u>Earthshapers</u></b>");
+				output2("\n<b>* Tuuva:</b> Met her");
+				if(flags["TUUVA_SAVED"] <= -1) output2(", Away");
+				output2("\n<b>* Tuuva, Affection:</b> " + tuuvaAffection() + " %");
+				if(!tuuvaLover())
+				{
+					if(tuuvaAffection() < 25) output(", Strangers");
+					else if(tuuvaAffection() < 75) output(", Friends");
+					else output(", Close friends");
+				}
+				else output(", Lovers");
+				if(flags["SEXED_TUUVA"] != undefined)
+				{
+					output2("\n<b>* Tuuva, Sex Organs:</b> " + listCharGenitals("TUUVA"));
+					output2("\n<b>* Tuuva, Times Sexed:</b> " + flags["SEXED_TUUVA"]);
+				}
 				variousCount++;
 			}
 			// Herbs & Happy

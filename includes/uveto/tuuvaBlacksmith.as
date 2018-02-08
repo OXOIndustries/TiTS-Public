@@ -165,7 +165,7 @@ public function tuuvaBlacksmithShopBonus():Boolean
 		if(!korgiTranslate()) output("friend");
 		else output("you");
 		output(" want something");
-		if(!korgiTranslate()) output(", buddy");
+		if(korgiTranslate() && tuuvaAffection() >= 25 && tuuvaAffection() < 75) output(", buddy");
 		output("?”</i>");
 		flags["TUUVA_SAVED"] = 2;
 		//shop menu
@@ -273,7 +273,7 @@ public function tuuvaMenu():void
 	else addButton(3,"Appearance",tuuvaAppearance,undefined,"Appearance","Looks over Tuuva’s appearance.");
 	if(tuuvaAffection() >= 25 && flags["TUUVA_25AFF"] != undefined)
 	{
-		if(pc.lust() >= 33) addButton(4,"Sex",tuuvaSexTimes,undefined,"Sex","<i>Peruse</i> her <i>“wares”</i>.");
+		if(pc.lust() >= 33) addButton(4,"Sex",tuuvaSexTimes,undefined,"Sex","<i>Peruse</i> her “wares”.");
 		else addDisabledButton(4,"Sex","Sex","You aren’t turned on enough for this.")
 	}
 	else addDisabledButton(4,"Sex","Sex","Doesn’t seem like she’s the kind to bang complete strangers, at least not if they’re an outsider.");
@@ -293,7 +293,7 @@ public function tuuvaMenu():void
 //[Savicite] Turn in your collected Savicite
 //[Talk] Get to know the small-statured smith.
 //[Appearance] {Silly:Creepily stare at her for an awkward amount of time so you can meticulously list her physical features.}
-//[Sex] <i>Peruse</i> her <i>“wares”</i>. //Unlocks after 25 Affection event. {Locked:Doesn’t seem like she’s the kind to bang complete strangers, at least not if they’re an outsider.}
+//[Sex] <i>Peruse</i> her “wares”. //Unlocks after 25 Affection event. {Locked:Doesn’t seem like she’s the kind to bang complete strangers, at least not if they’re an outsider.}
 //[Special] //Menu for her Affection events, when they become available, as well as handing in Frostwyrm scales.
 
 //Talk Options
@@ -307,7 +307,7 @@ public function tuuvaTalk():void
 public function tuuvaTalkMenu():void
 {
 	clearMenu();
-	output("\n\n" + tuuvaAffection());
+	//output("\n\n" + tuuvaAffection());
 	//[Herself] Start simple, ask about her. //Required for other talk scenes to become available.
 	addButton(0,"Herself",talkToTuuvaAboutHerself,undefined,"Herself","Start simple and ask about her.");
 	//[Smithing] Ask about the shop and what she does.
@@ -444,7 +444,6 @@ public function giveTuuvaSavicite():void
 public function actuallyGiveSavicite(arg:Number = 1):void
 {
 	if(arg == -1) arg = pc.numberOfItemByClass(Savicite);
-	pc.destroyItemByClass(Savicite,arg);
 	//Savicite valued at 12k. Tuuva gives almost full value for it. SQUANCH!
 	tuuvaCredits(10000*arg);
 	tuuvaAffection(arg*4);
@@ -454,6 +453,10 @@ public function actuallyGiveSavicite(arg:Number = 1):void
 	else output("You hand over " + num2Text(arg) + " pieces of Savicite. With each piece, Tuuva’s smile grows wider.");
 	if(!korgiTranslate()) output(" <i>“That good stuff. Worth eh... " + arg*10000 + " of core-credits to Tuuva.”</i> She giggles. <i>“Dumb aliens always thinking in credits. Shine-rock better currency. You smart to use.”</i>");
 	else output(" <i>“That’s good stuff. Worth about... " + arg*10000 + " of your core-credits to me.”</i> She giggles. <i>“Aliens are so goofy, working with that made-up currency. Dealing directly is such a better way to go about it, and it seems you agree.”</i>");
+	
+	output("\n\n");
+	pc.destroyItemByClass(Savicite,arg);
+	
 	clearMenu();
 	addButton(0,"Next",approachTuuva);
 }
@@ -728,9 +731,12 @@ public function biggerDForTuuva():void
 	else output("aren’t");
 	output(" all bad. ");
 	if(!korgiTranslate()) output("Come back in bit, Tuuva want alone time with new friend");
-	else output("Come back in a while, I want to have some alone time with this new buddy.");
-	output("”</i> With that, she pops the pill and rushes back to her room, the sounds of self-pleasure welling up almost immediately.");
+	else output("Come back in a while, I want to have some alone time with this new buddy");
+	output(".”</i> With that, she pops the pill and rushes back to her room, the sounds of self-pleasure welling up almost immediately.");
 
+	output("\n\n");
+	pc.destroyItemByClass(HorseCock);
+	
 	tuuva.cocks[0].cType = GLOBAL.TYPE_EQUINE;
 	tuuva.cocks[0].cockColor = "black";
 	tuuva.cocks[0].delFlag(GLOBAL.FLAG_TAPERED);
@@ -822,6 +828,7 @@ public function giveTuuvaFrostwormScales():void
 		{
 			if(tuuvaAffection() < 25) output("Outsider");
 			else if(tuuvaAffection() < 75) output("Friend");
+			else output("Very friend");
 		}
 		else output("Lover");
 		output(" kill big lizard?");

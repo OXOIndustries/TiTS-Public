@@ -2897,6 +2897,7 @@
 			if (arg == null || inventory.length == 0 || amount == 0) return;
 			
 			var i:int = 0;
+			var msg:String = "";
 			
 			// Remove all!
 			if (amount < 0)
@@ -2931,15 +2932,17 @@
 									inventory.splice(i, 1);
 								}
 							}
-							if(i >= inventory.length) output("ERROR: Item out of inventory range!");
-							else if(inventory[i].quantity <= 0) output("ERROR: Item quantity less than zero!");
-							else output("ERROR: Item type does not match!");
+							if(msg != "") msg += "\n";
+							if(i >= inventory.length) msg += "ERROR: Item out of inventory range!";
+							else if(inventory[i].quantity <= 0) msg += "ERROR: Item quantity less than zero!";
+							else msg += "ERROR: Item type does not match!";
 							amount--;
 						}
 					}
 					else i++;
 				}
 			}
+			if(msg != "") output(msg);
 			return;
 		}
 		
