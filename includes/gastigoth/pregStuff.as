@@ -199,6 +199,8 @@ public function processGastigothPregEvents(deltaT:uint, doOut:Boolean, totalDays
 	if(flags["KHORGAN_GAST_PREG_TIMER"] != undefined) flags["KHORGAN_GAST_PREG_TIMER"] += totalDays;
 	if(flags["SAM_GAST_PREG_TIMER"] != undefined) flags["SAM_GAST_PREG_TIMER"] += totalDays;
 	
+	var timestamp:int = GetGameTimestamp() + deltaT;
+	
 	//Gastigoth Preg email stuff
 	//5 repeatable emails per NPC D:
 	//Tam-Tam
@@ -206,39 +208,33 @@ public function processGastigothPregEvents(deltaT:uint, doOut:Boolean, totalDays
 	{
 		if(flags["TAMTAM_PREG_EMAIL1"] == undefined)
 		{
-			if (MailManager.hasEntry("tamtam_preg1")) MailManager.deleteMailEntry("tamtam_preg1");
-			MailManager.addMailEntry("tamtam_preg1", preg1EmailText("Tam-Tam"), "Gastigoth Inmate Tam-Tam - Pregnancy Detected", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-			goMailGet("tamtam_preg1");
+			resendMail("tamtam_preg1", timestamp);
 			flags["TAMTAM_PREG_EMAIL1"] = 1;
 		}
 		if(flags["TAMTAM_PREG_EMAIL2"] == undefined && flags["TAMTAM_GAST_PREG_TIMER"] >= 80)
 		{
-			if (MailManager.hasEntry("tamtam_preg2")) MailManager.deleteMailEntry("tamtam_preg2");
-			MailManager.addMailEntry("tamtam_preg2", preg2EmailText("Tam-Tam"), "Gastigoth Inmate Tam-Tam - Pregnancy Options", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-			goMailGet("tamtam_preg2");
+			timestamp = (GetGameTimestamp() + deltaT - (flags["TAMTAM_GAST_PREG_TIMER"] * 24 * 60) + (80 * 24 * 60));
+			resendMail("tamtam_preg2", timestamp);
 			flags["TAMTAM_PREG_EMAIL2"] = 1;
 		}
 		if(flags["TAMTAM_PREG_EMAIL3"] == undefined && flags["TAMTAM_GAST_PREG_TIMER"] >= 160)
 		{
-			if (MailManager.hasEntry("tamtam_preg3")) MailManager.deleteMailEntry("tamtam_preg3");
-			MailManager.addMailEntry("tamtam_preg3", preg3EmailText("Tam-Tam"), "Gastigoth Inmate Tam-Tam - Pregnancy Update", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-			goMailGet("tamtam_preg3");
+			timestamp = (GetGameTimestamp() + deltaT - (flags["TAMTAM_GAST_PREG_TIMER"] * 24 * 60) + (160 * 24 * 60));
+			resendMail("tamtam_preg3", timestamp);
 			flags["TAMTAM_PREG_EMAIL3"] = 1;
 		}
 		if(flags["TAMTAM_PREG_EMAIL4"] == undefined && flags["TAMTAM_GAST_PREG_TIMER"] >= 230)
 		{
-			if (MailManager.hasEntry("tamtam_preg4")) MailManager.deleteMailEntry("tamtam_preg4");
-			MailManager.addMailEntry("tamtam_preg4", preg4EmailText("Tam-Tam"), "Gastigoth Inmate Tam-Tam - It’s Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-			goMailGet("tamtam_preg4");
+			timestamp = (GetGameTimestamp() + deltaT - (flags["TAMTAM_GAST_PREG_TIMER"] * 24 * 60) + (230 * 24 * 60));
+			resendMail("tamtam_preg4", timestamp);
 			flags["TAMTAM_PREG_EMAIL4"] = 1;
 		}
 		//Trigger Birth
 		if(flags["TAMTAM_GAST_PREG_TIMER"] >= 240)
 		{
-			if (MailManager.hasEntry("tamtam_preg5")) MailManager.deleteMailEntry("tamtam_preg5");
-			MailManager.addMailEntry("tamtam_preg5", preg5EmailText("Tam-Tam"), "Gastigoth Inmate Tam-Tam - Child Delivery Report", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-			goMailGet("tamtam_preg5");
-			tamtamGastBirth();
+			timestamp = (GetGameTimestamp() + deltaT - (flags["TAMTAM_GAST_PREG_TIMER"] * 24 * 60) + (240 * 24 * 60));
+			resendMail("tamtam_preg5", timestamp);
+			tamtamGastBirth(timestamp);
 		}
 	}
 	
@@ -247,39 +243,33 @@ public function processGastigothPregEvents(deltaT:uint, doOut:Boolean, totalDays
 	{
 		if(flags["KHORGAN_PREG_EMAIL1"] == undefined)
 		{
-			if (MailManager.hasEntry("khorgan_preg1")) MailManager.deleteMailEntry("khorgan_preg1");
-			MailManager.addMailEntry("khorgan_preg1", preg1EmailText("Khorgan"), "Gastigoth Inmate Khorgan - Pregnancy Detected", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-			goMailGet("khorgan_preg1");
+			resendMail("khorgan_preg1", timestamp);
 			flags["KHORGAN_PREG_EMAIL1"] = 1;
 		}
 		if(flags["KHORGAN_PREG_EMAIL2"] == undefined && flags["KHORGAN_GAST_PREG_TIMER"] >= 50)
 		{
-			if (MailManager.hasEntry("khorgan_preg2")) MailManager.deleteMailEntry("khorgan_preg2");
-			MailManager.addMailEntry("khorgan_preg2", preg2EmailText("Khorgan"), "Gastigoth Inmate Khorgan - Pregnancy Options", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-			goMailGet("khorgan_preg2");
+			timestamp = (GetGameTimestamp() + deltaT - (flags["KHORGAN_GAST_PREG_TIMER"] * 24 * 60) + (50 * 24 * 60));
+			resendMail("khorgan_preg2", timestamp);
 			flags["KHORGAN_PREG_EMAIL2"] = 1;
 		}
 		if(flags["KHORGAN_PREG_EMAIL3"] == undefined && flags["KHORGAN_GAST_PREG_TIMER"] >= 100)
 		{
-			if (MailManager.hasEntry("khorgan_preg3")) MailManager.deleteMailEntry("khorgan_preg3");
-			MailManager.addMailEntry("khorgan_preg3", preg3EmailText("Khorgan"), "Gastigoth Inmate Khorgan - Pregnancy Update", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-			goMailGet("khorgan_preg3");
+			timestamp = (GetGameTimestamp() + deltaT - (flags["KHORGAN_GAST_PREG_TIMER"] * 24 * 60) + (100 * 24 * 60));
+			resendMail("khorgan_preg3", timestamp);
 			flags["KHORGAN_PREG_EMAIL3"] = 1;
 		}
 		if(flags["KHORGAN_PREG_EMAIL4"] == undefined && flags["KHORGAN_GAST_PREG_TIMER"] >= 140)
 		{
-			if (MailManager.hasEntry("khorgan_preg4")) MailManager.deleteMailEntry("khorgan_preg4");
-			MailManager.addMailEntry("khorgan_preg4", preg4EmailText("Khorgan"), "Gastigoth Inmate Khorgan - It’s Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-			goMailGet("khorgan_preg4");
+			timestamp = (GetGameTimestamp() + deltaT - (flags["KHORGAN_GAST_PREG_TIMER"] * 24 * 60) + (140 * 24 * 60));
+			resendMail("khorgan_preg4", timestamp);
 			flags["KHORGAN_PREG_EMAIL4"] = 1;
 		}
 		//Trigger Birth
 		if(flags["KHORGAN_GAST_PREG_TIMER"] >= 150)
 		{
-			if (MailManager.hasEntry("khorgan_preg5")) MailManager.deleteMailEntry("khorgan_preg5");
-			MailManager.addMailEntry("khorgan_preg5", preg5EmailText("Khorgan"), "Gastigoth Inmate Khorgan - Child Delivery Report", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-			goMailGet("khorgan_preg5");
-			khorganGastBirth();
+			timestamp = (GetGameTimestamp() + deltaT - (flags["KHORGAN_GAST_PREG_TIMER"] * 24 * 60) + (150 * 24 * 60));
+			resendMail("khorgan_preg5", timestamp);
+			khorganGastBirth(timestamp);
 		}
 	}
 	
@@ -288,44 +278,41 @@ public function processGastigothPregEvents(deltaT:uint, doOut:Boolean, totalDays
 	{
 		if(flags["SAM_PREG_EMAIL1"] == undefined)
 		{
-			if (MailManager.hasEntry("sam_preg1")) MailManager.deleteMailEntry("sam_preg1");
-			MailManager.addMailEntry("sam_preg1", preg1EmailText("Sam"), "Gastigoth Inmate Sam - Pregnancy Detected", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-			goMailGet("sam_preg1");
+			resendMail("sam_preg1", timestamp);
 			flags["SAM_PREG_EMAIL1"] = 1;
 		}
 		if(flags["SAM_PREG_EMAIL2"] == undefined && flags["SAM_GAST_PREG_TIMER"] >= 60)
 		{
-			if (MailManager.hasEntry("sam_preg2")) MailManager.deleteMailEntry("sam_preg2");
-			MailManager.addMailEntry("sam_preg2", preg2EmailText("Sam"), "Gastigoth Inmate Sam - Pregnancy Options", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-			goMailGet("sam_preg2");
+			timestamp = (GetGameTimestamp() + deltaT - (flags["SAM_GAST_PREG_TIMER"] * 24 * 60) + (60 * 24 * 60));
+			resendMail("sam_preg2", timestamp);
 			flags["SAM_PREG_EMAIL2"] = 1;
 		}
 		if(flags["SAM_PREG_EMAIL3"] == undefined && flags["SAM_GAST_PREG_TIMER"] >= 120)
 		{
-			if (MailManager.hasEntry("sam_preg3")) MailManager.deleteMailEntry("sam_preg3");
-			MailManager.addMailEntry("sam_preg3", preg3EmailText("Sam"), "Gastigoth Inmate Sam - Pregnancy Update", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-			goMailGet("sam_preg3");
+			timestamp = (GetGameTimestamp() + deltaT - (flags["SAM_GAST_PREG_TIMER"] * 24 * 60) + (120 * 24 * 60));
+			resendMail("sam_preg3", timestamp);
 			flags["SAM_PREG_EMAIL3"] = 1;
 		}
 		if(flags["SAM_PREG_EMAIL4"] == undefined && flags["SAM_GAST_PREG_TIMER"] >= 170)
 		{
-			if (MailManager.hasEntry("sam_preg4")) MailManager.deleteMailEntry("sam_preg4");
-			MailManager.addMailEntry("sam_preg4", preg4EmailText("Sam"), "Gastigoth Inmate Sam - It’s Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-			goMailGet("sam_preg4");
+			timestamp = (GetGameTimestamp() + deltaT - (flags["SAM_GAST_PREG_TIMER"] * 24 * 60) + (170 * 24 * 60));
+			resendMail("sam_preg4", timestamp);
 			flags["SAM_PREG_EMAIL4"] = 1;
 		}
 		//Trigger Birth
 		if(flags["SAM_GAST_PREG_TIMER"] >= 180)
 		{
-			if (MailManager.hasEntry("sam_preg5")) MailManager.deleteMailEntry("sam_preg5");
-			MailManager.addMailEntry("sam_preg5", preg5EmailText("Sam"), "Gastigoth Inmate Sam - Child Delivery Report", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-			goMailGet("sam_preg5");
-			samGastBirth();
+			timestamp = (GetGameTimestamp() + deltaT - (flags["SAM_GAST_PREG_TIMER"] * 24 * 60) + (180 * 24 * 60));
+			resendMail("sam_preg5", timestamp);
+			samGastBirth(timestamp);
 		}
 	}
 }
 
-public function preg1EmailText(prisonerName:String):String
+public function preg1EmailTextTamTam():String { return preg1EmailText("Tam-Tam"); };
+public function preg1EmailTextKhorgan():String { return preg1EmailText("Khorgan"); };
+public function preg1EmailTextSam():String { return preg1EmailText("Sam"); };
+private function preg1EmailText(prisonerName:String):String
 {
 	var eText:String = "";
 	var plural:Boolean = ((prisonerName == "Tam-Tam" && flags["TAMTAM_NUM_BABIES"] > 1)
@@ -357,7 +344,10 @@ public function preg1EmailText(prisonerName:String):String
 	return doParse(eText);
 }
 
-public function preg2EmailText(prisonerName:String):String
+public function preg2EmailTextTamTam():String { return preg2EmailText("Tam-Tam"); };
+public function preg2EmailTextKhorgan():String { return preg2EmailText("Khorgan"); };
+public function preg2EmailTextSam():String { return preg2EmailText("Sam"); };
+private function preg2EmailText(prisonerName:String):String
 {
 	var eText:String = "";
 	var plural:Boolean = ((prisonerName == "Tam-Tam" && flags["TAMTAM_NUM_BABIES"] > 1)
@@ -380,7 +370,10 @@ public function preg2EmailText(prisonerName:String):String
 	return doParse(eText);
 }
 
-public function preg3EmailText(prisonerName:String):String
+public function preg3EmailTextTamTam():String { return preg3EmailText("Tam-Tam"); };
+public function preg3EmailTextKhorgan():String { return preg3EmailText("Khorgan"); };
+public function preg3EmailTextSam():String { return preg3EmailText("Sam"); };
+private function preg3EmailText(prisonerName:String):String
 {
 	var eText:String = "";
 	var plural:Boolean = ((prisonerName == "Tam-Tam" && flags["TAMTAM_NUM_BABIES"] > 1)
@@ -431,7 +424,10 @@ public function preg3EmailText(prisonerName:String):String
 	return doParse(eText);
 }
 
-public function preg4EmailText(prisonerName:String):String
+public function preg4EmailTextTamTam():String { return preg4EmailText("Tam-Tam"); };
+public function preg4EmailTextKhorgan():String { return preg4EmailText("Khorgan"); };
+public function preg4EmailTextSam():String { return preg4EmailText("Sam"); };
+private function preg4EmailText(prisonerName:String):String
 {
 	var eText:String = "";
 	var plural:Boolean = ((prisonerName == "Tam-Tam" && flags["TAMTAM_NUM_BABIES"] > 1)
@@ -499,7 +495,10 @@ public function preg4EmailText(prisonerName:String):String
 	return doParse(eText);
 }
 
-public function preg5EmailText(prisonerName:String):String
+public function preg5EmailTextTamTam():String { return preg5EmailText("Tam-Tam"); };
+public function preg5EmailTextKhorgan():String { return preg5EmailText("Khorgan"); };
+public function preg5EmailTextSam():String { return preg5EmailText("Sam"); };
+private function preg5EmailText(prisonerName:String):String
 {
 	var eText:String = "";
 	var plural:Boolean = ((prisonerName == "Tam-Tam" && flags["TAMTAM_NUM_BABIES"] > 1)
@@ -557,8 +556,10 @@ public function khorganPregsturbate():void
 	addButton(0, "Next", smutFapMenu, true);
 }
 
-public function tamtamGastBirth():void
+public function tamtamGastBirth(birthTimestamp:int = -1):void
 {
+	if(birthTimestamp < 0) birthTimestamp = GetGameTimestamp();
+	
 	var traitChar:Creature = chars["PC_BABY"];
 	var c:UniqueChild = new TamTamUniqueChild();
 	
@@ -582,8 +583,8 @@ public function tamtamGastBirth():void
 	if(traitChar.furColor != "NOT SET" && rand(2) == 0) c.furColor = traitChar.furColor;
 	
 	c.MaturationRate = 1.0;
-	c.BornTimestamp = GetGameTimestamp() - rand(10*60);
-	ChildManager.addChild(c)
+	c.BornTimestamp = birthTimestamp;
+	ChildManager.addChild(c);
 	
 	StatTracking.track("pregnancy/tam sired", flags["TAMTAM_NUM_BABIES"]);
 	StatTracking.track("pregnancy/total sired", flags["TAMTAM_NUM_BABIES"]);
@@ -602,8 +603,10 @@ public function tamtamGastBirth():void
 	flags["TAMTAM_PREG_EMAIL_CUSTOM"] = undefined;
 }
 
-public function khorganGastBirth():void
+public function khorganGastBirth(birthTimestamp:int = -1):void
 {
+	if(birthTimestamp < 0) birthTimestamp = GetGameTimestamp();
+	
 	var traitChar:Creature = chars["PC_BABY"];
 	var c:UniqueChild = new KhorganUniqueChild();
 	
@@ -627,8 +630,8 @@ public function khorganGastBirth():void
 	if(traitChar.furColor != "NOT SET" && rand(2) == 0) c.furColor = traitChar.furColor;
 	
 	c.MaturationRate = 1.0;
-	c.BornTimestamp = GetGameTimestamp() - rand(10*60);
-	ChildManager.addChild(c)
+	c.BornTimestamp = birthTimestamp;
+	ChildManager.addChild(c);
 	
 	StatTracking.track("pregnancy/khorgan sired", flags["KHORGAN_NUM_BABIES"]);
 	StatTracking.track("pregnancy/total sired", flags["KHORGAN_NUM_BABIES"]);

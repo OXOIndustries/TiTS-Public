@@ -352,8 +352,10 @@ public function tryKnockUpSam():int
 	return 0;
 }
 
-public function samGastBirth():void
+public function samGastBirth(birthTimestamp:int = -1):void
 {
+	if(birthTimestamp < 0) birthTimestamp = GetGameTimestamp();
+	
 	var traitChar:Creature = chars["PC_BABY"];
 	
 	var c:UniqueChild = new SamUniqueChild();
@@ -377,8 +379,8 @@ public function samGastBirth():void
 	if(traitChar.furColor != "NOT SET" && rand(2) == 0) c.furColor = traitChar.furColor;
 	
 	c.MaturationRate = 1.0;
-	c.BornTimestamp = GetGameTimestamp() - rand(10*60);
-	ChildManager.addChild(c)
+	c.BornTimestamp = birthTimestamp;
+	ChildManager.addChild(c);
 	
 	StatTracking.track("pregnancy/sam sired", flags["SAM_NUM_BABIES"]);
 	StatTracking.track("pregnancy/total sired", flags["SAM_NUM_BABIES"]);

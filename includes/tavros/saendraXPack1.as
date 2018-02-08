@@ -2457,7 +2457,7 @@ public function zilCallGirlPregnancyEnds(deltaT:uint):void
 	
 	_tempZilGirlChildRef = new ZilCallgirlUniqueChild();
 	_tempZilGirlChildRef.RaceType = GLOBAL.TYPE_BEE;
-	_tempZilGirlChildRef.BornTimestamp = GetGameTimestamp() + deltaT;
+	_tempZilGirlChildRef.BornTimestamp = (flags["ZIL_CALLGIRL_PREG"] + flags["ZIL_CALLGIRL_GESTATION"]);
 	_tempZilGirlChildRef.MaturationRate = 1.0;
 
 	for (var i:int = 0; i < flags["ZIL_CALLGIRL_EGG_COUNT"]; i++)
@@ -2471,9 +2471,7 @@ public function zilCallGirlPregnancyEnds(deltaT:uint):void
 		ChildManager.addChild(_tempZilGirlChildRef);
 		StatTracking.track("pregnancy/total day care", flags["ZIL_CALLGIRL_EGG_COUNT"]);
 		
-		MailManager.clearEntry("zil_callgirl_birth"); // Removes cached text but also sets timestamps to default
-		MailManager.unlockEntry("zil_callgirl_birth", GetGameTimestamp() + deltaT); // Regenerates cache and sets new appropriate timestamp
-		AddLogEvent("<b>New Email from Nurse Amanda Carter (A_Carter@TavrosMedical.net)!</b>", "words");
+		resendMail("zil_callgirl_birth", (flags["ZIL_CALLGIRL_PREG"] + flags["ZIL_CALLGIRL_GESTATION"]));
 	}
 	
 	StatTracking.track("pregnancy/zil call girl kids", flags["ZIL_CALLGIRL_EGG_COUNT"]);

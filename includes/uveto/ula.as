@@ -2405,21 +2405,21 @@ public function processUlaPregEvents(deltaT:uint, doOut:Boolean, totalDays:uint)
 	{
 		//update the timer
 		flags["ULA_PREG_TIMER"] += totalDays;
+		var extraDays:int = 0;
 	
 		//Ideally birth will be triggered by the PC proccing the birth scene, otherwise she's gotta blow sometime
 		if(flags["ULA_PREG_TIMER"] > 185)
 		{
+			extraDays = (flags["ULA_PREG_TIMER"] - 186);
+			var birthTimestamp:int = (GetGameTimestamp() + deltaT - (flags["ULA_PREG_TIMER"] * 24 * 60) + (186 * 24 * 60));
 			//EMAIL SHIIIIIIIIIIIIIIIIIIIIIT
-			if (MailManager.hasEntry("ula_birth")) MailManager.deleteMailEntry("ula_birth");
-			MailManager.addMailEntry("ula_birth", ulaPregEmailText(), "Ula message!", "Bill Billingston", "bill_billingston@steeletech.con", quickPCTo, quickPCToAddress);
-			goMailGet("ula_birth");
-			
-			ulaBirth();
+			resendMail("ula_birth", birthTimestamp);
+			ulaBirth(birthTimestamp);
 		}
 	}
 	
 	//if Ula's given birth increment the "time since last birth" timer
-	if(flags["ULA_BIRTH_TIMER"] != undefined) flags["ULA_BIRTH_TIMER"] += totalDays;
+	if(flags["ULA_BIRTH_TIMER"] != undefined) flags["ULA_BIRTH_TIMER"] += extraDays;
 }
 
 public function ulaPregEmailText():String
@@ -2443,8 +2443,10 @@ public function ulaPregEmailText():String
 }
 
 //The purely game-state centric parts of birth
-public function ulaBirth():void
-{	
+public function ulaBirth(birthTimestamp:int = -1):void
+{
+	if(birthTimestamp < 0) birthTimestamp = GetGameTimestamp();
+	
 	StatTracking.track("pregnancy/ula sired", flags["ULA_NUM_BABIES"]);
 	StatTracking.track("pregnancy/total sired", flags["ULA_NUM_BABIES"]);
 	
