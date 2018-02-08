@@ -893,6 +893,7 @@ public function DeepCavesBonus():Boolean
 		bothriocQuestEncounterNyreaBeta();
 		return true;
 	}
+	if(tryEncounterBothriocQuadomme()) return true;
 	if(rand(200) == 0) 
 	{
 		findStrangeEgg();
@@ -939,8 +940,6 @@ public function DeepCavesBonus():Boolean
 		
 		choices.push(encounterPidemmeBothrioc);
 		choices.push(encounterPidemmeBothrioc);
-		
-		if(!bothriocQuestBetaNyreaMiniquestActive() && flags["BOTHRIOC_QUEST"] != BOTHRIOC_QUEST_QUADOMME && !InCollection(currentLocation, ["2S7", "2O27", "2O29", "2Q29", "2S29"])) choices.push(encounterBothriocQuadomme);
 		
 		//Run the event
 		choices[rand(choices.length)]();

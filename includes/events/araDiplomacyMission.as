@@ -863,7 +863,7 @@ public function feiAnAppear():void
 {
 	if(flags["FEIAN_LOCATION"] == undefined) return;
 	
-	rooms[flags["FEIAN_LOCATION"]].addFlag(GLOBAL.PLANT_BULB);
+	rooms[flags["FEIAN_LOCATION"]].addFlag(GLOBAL.SPIDER_WEB);
 	rooms[flags["FEIAN_LOCATION"]].removeFlag(GLOBAL.HAZARD);
 	rooms[flags["FEIAN_LOCATION"]].runOnEnter = feiAnStrozoHaremBonus;
 }
@@ -871,7 +871,7 @@ public function feiAnRemove():void
 {
 	if(flags["FEIAN_LOCATION"] == undefined) return;
 	
-	rooms[flags["FEIAN_LOCATION"]].removeFlag(GLOBAL.PLANT_BULB);
+	rooms[flags["FEIAN_LOCATION"]].removeFlag(GLOBAL.SPIDER_WEB);
 	rooms[flags["FEIAN_LOCATION"]].addFlag(GLOBAL.HAZARD);
 	rooms[flags["FEIAN_LOCATION"]].runOnEnter = DeepCavesBonus;
 }
@@ -880,6 +880,13 @@ public function feiAnRemove():void
 // Adjoin to standard square blurb
 public function bothriocQuestFeiAnStrozoIntro():void
 {
+	showBothriocQuadomme();
+	showName("ENCOUNTER:\nQUADOMME");
+	
+	if(!CodexManager.hasUnlockedEntry("Bothrioc")) CodexManager.unlockEntry("Bothrioc");
+	
+	CombatAttacks.applyWeb(pc);
+	
 	bothriocQuestQuadommeAraGender = (rand(3) - 1);
 	
 	showBust(feiAnStrozoBustDisplay());
@@ -898,6 +905,9 @@ public function bothriocQuestFeiAnStrozoIntro():void
 	flags["FEIAN_AT_LOCATION"] = 1;
 	
 	feiAnAppear();
+	
+	processTime(7 + rand(3));
+	IncrementFlag("BOTHRIOC_QUADOMME_ENCOUNTERED");
 	
 	clearMenu();
 	addButton(0, "You Have?", bothriocQuestFeiAnStrozoResponse, ["you have?", addiction]);

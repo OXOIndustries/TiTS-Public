@@ -2935,7 +2935,7 @@
 							if(msg != "") msg += "\n";
 							if(i >= inventory.length) msg += "ERROR: Item out of inventory range!";
 							else if(inventory[i].quantity <= 0) msg += "ERROR: Item quantity less than zero!";
-							else msg += "ERROR: Item type does not match!";
+							else if(!(inventory[i] is arg)) msg += "ERROR: Item type does not match!";
 							amount--;
 						}
 					}

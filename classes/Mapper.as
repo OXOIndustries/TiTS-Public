@@ -37,6 +37,7 @@
 		public static const room_plant_bulb_mask:int	= 1 << 24;
 		public static const room_tundra_mask:int		= 1 << 25;
 		public static const room_frozen_mask:int		= 1 << 26;
+		public static const room_spider_web_mask:int	= 1 << 27;
 
 		private var roomsObj:Object;
 
@@ -238,6 +239,10 @@
 			if (roomsObj[targetRoom].hasFlag(GLOBAL.FROZENTUNDRA))
 			{
 				map[x][y][z] |= room_frozen_mask;
+			}
+			if (roomsObj[targetRoom].hasFlag(GLOBAL.SPIDER_WEB))
+			{
+				map[x][y][z] |= room_spider_web_mask;
 			}
 			
 			if (this.mapDebug) trace("Finished room ", targetRoom)

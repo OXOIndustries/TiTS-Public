@@ -2630,12 +2630,8 @@ public function variableRoomUpdateCheck():void
 	// Crystal Goo Silly Modes
 	if(silly) rooms["2O25"].southExit = "2O27";
 	else rooms["2O25"].southExit = "";
-	// Ara Diplomacy Mission
-	if(flags["MET_FEIAN"] != undefined && flags["FEIAN_LOCATION"] != undefined)
-	{
-		if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_DIPLOMACY || flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_QUADOMME) feiAnAppear();
-		else feiAnRemove();
-	}
+	// Quadomme locations
+	markersBothriocQuadomme();
 	// Bothrioc Embassy
 	if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_FAILURE && flags["BOTHRIOC_EMBASSY_ENTERED"] >= 2) rooms["BOTHRIOC EMBASSAY"].removeFlag(GLOBAL.NPC);
 	else rooms["BOTHRIOC EMBASSAY"].addFlag(GLOBAL.NPC);
@@ -2855,6 +2851,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		processIlariaPregEvents(deltaT, doOut, totalDays);
 		processFZilPregEvents(deltaT, doOut, totalDays);
 		processUlaPregEvents(deltaT, doOut, totalDays);
+		processBothriocQuadommeEvents(deltaT, doOut, totalDays);
 		//9999 processQuaellePregEvents(deltaT, doOut, totalDays);
 	}
 	

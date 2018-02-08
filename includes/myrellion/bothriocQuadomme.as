@@ -37,6 +37,76 @@ public function showBothriocQuadomme():void
 	author("Nonesuch");
 }
 
+// Quadomme encounter check
+public function tryEncounterBothriocQuadomme():Boolean
+{
+	var quadommeTrap:Boolean = false;
+	switch(currentLocation)
+	{
+		case "2K7":
+			// Fei An Strozo Special
+			if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_DIPLOMACY && flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"] >= 4 && flags["MET_FEIAN"] == undefined)
+			{
+				bothriocQuestFeiAnStrozoIntro();
+				flags["DEEP_CAVES_STEP"] = 0;
+				generateMap();
+				return true;
+			}
+			break;
+		case "2U23":
+		case "2S13":
+		case "2K27":
+		case "2I21":
+		case "2M15":
+			if(flags["QUADOMME_" + currentLocation + "_AWAY"] == undefined)
+			{
+				flags["QUADOMME_" + currentLocation + "_AWAY"] = 1;
+				flags["QUADOMME_" + currentLocation + "_MET"] = 1;
+				quadommeTrap = true;
+			}
+			break;
+	}
+	if(quadommeTrap)
+	{
+		encounterBothriocQuadomme();
+		flags["DEEP_CAVES_STEP"] = 0;
+		if(!rooms[currentLocation].hasFlag(GLOBAL.SPIDER_WEB)) rooms[currentLocation].addFlag(GLOBAL.SPIDER_WEB);
+		generateMap();
+		return true;
+	}
+	return false;
+}
+public function processBothriocQuadommeEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
+{
+	if(currentLocation != "2U23" && flags["QUADOMME_2U23_AWAY"] != undefined) flags["QUADOMME_2U23_AWAY"] = undefined;
+	if(currentLocation != "2S13" && flags["QUADOMME_2S13_AWAY"] != undefined) flags["QUADOMME_2S13_AWAY"] = undefined;
+	if(currentLocation != "2K27" && flags["QUADOMME_2K27_AWAY"] != undefined) flags["QUADOMME_2K27_AWAY"] = undefined;
+	if(currentLocation != "2I21" && flags["QUADOMME_2I21_AWAY"] != undefined) flags["QUADOMME_2I21_AWAY"] = undefined;
+	if(currentLocation != "2M15" && flags["QUADOMME_2M15_AWAY"] != undefined) flags["QUADOMME_2M15_AWAY"] = undefined;
+}
+public function markersBothriocQuadomme():void
+{
+	// Generic
+	if(flags["QUADOMME_2U23_MET"] != undefined) rooms["2U23"].addFlag(GLOBAL.SPIDER_WEB);
+	else rooms["2U23"].removeFlag(GLOBAL.SPIDER_WEB);
+	if(flags["QUADOMME_2S13_MET"] != undefined) rooms["2S13"].addFlag(GLOBAL.SPIDER_WEB);
+	else rooms["2S13"].removeFlag(GLOBAL.SPIDER_WEB);
+	if(flags["QUADOMME_2K27_MET"] != undefined) rooms["2K27"].addFlag(GLOBAL.SPIDER_WEB);
+	else rooms["2K27"].removeFlag(GLOBAL.SPIDER_WEB);
+	if(flags["QUADOMME_2I21_MET"] != undefined) rooms["2I21"].addFlag(GLOBAL.SPIDER_WEB);
+	else rooms["2I21"].removeFlag(GLOBAL.SPIDER_WEB);
+	if(flags["QUADOMME_2M15_MET"] != undefined) rooms["2M15"].addFlag(GLOBAL.SPIDER_WEB);
+	else rooms["2M15"].removeFlag(GLOBAL.SPIDER_WEB);
+	// Fei-An Strozo
+	if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_DIPLOMACY && flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"] >= 4 && flags["MET_FEIAN"] == undefined) rooms["2K7"].addFlag(GLOBAL.OBJECTIVE);
+	else rooms["2K7"].removeFlag(GLOBAL.OBJECTIVE);
+	if(flags["MET_FEIAN"] != undefined && flags["FEIAN_LOCATION"] != undefined)
+	{
+		if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_DIPLOMACY || flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_QUADOMME) feiAnAppear();
+		else feiAnRemove();
+	}
+}
+
 // Intro Texts
 public function encounterBothriocQuadomme():void
 {
@@ -44,6 +114,7 @@ public function encounterBothriocQuadomme():void
 	showName("ENCOUNTER:\nQUADOMME");
 	
 	var addiction:Number = bothriocAddiction();
+	var autoSubmit:Boolean = false;
 	if(!CodexManager.hasUnlockedEntry("Bothrioc")) CodexManager.unlockEntry("Bothrioc");
 	
 	CombatAttacks.applyWeb(pc);
@@ -157,11 +228,6 @@ public function encounterBothriocQuadomme():void
 			else addButton(0, "Next", bothriocQuadommePCLoss);
 		}
 	}
-	// Fei An Strozo Special
-	else if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_DIPLOMACY && flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"] >= 3 && flags["MET_FEIAN"] == undefined)
-	{
-		bothriocQuestFeiAnStrozoIntro();
-	}
 	// Repeat
 	else
 	{
@@ -169,8 +235,6 @@ public function encounterBothriocQuadomme():void
 		output("\n\nAs you gaze off into the distance, straining your eyes for any sign of movement, something brushes your face. You swat it aside irritably. It sticks to your hand. Disgusted, you look at it. Gluey gossamer is plastered across your palm, almost completely translucent but – as you find out when you impulsively try to yank it off –as strong as steel wire.");
 		if(addiction < 50) output(" Chilly understanding descends on you as you feel the stuff clinging to you in half a dozen places. Strings, weaves and thatches of gossamer glisten across the floor and walls, emerging from a large hole in the ceiling, only discernible to you now that you’re well and truly coated in it. You’ve blundered into a bothrioc’s trap! Desperately you attempt to yank yourself clear as from above you comes the busy skitter and clack of multiple feet...");
 		else output(" Hot and cold rushes through you as you feel the stuff clinging to you in half a dozen places. Strings, weaves and thatches of gossamer glisten across the floor and walls, emerging from a large hole in the ceiling, only discernible to you now that you’re well and truly coated in it. You’ve blundered into a bothrioc’s trap! Above you comes the busy skitter and clack of multiple feet. A large part of you shivers with glee at the sound, but you clamp down on that and concentrate on yanking yourself clear, understanding perhaps that if the dominatrix arrives before you are free, you may not be able to make conscious decisions about what happens next.");
-		
-		var autoSubmit:Boolean = false;
 		
 		// Bad End
 		if(flags["BOTHRIOC_QUADOMME_SUMBIT"] >= 2)
