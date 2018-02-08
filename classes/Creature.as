@@ -20509,6 +20509,13 @@
 			createStatusEffect("Priapism", 0, 0, 0, 0, false, "OffenseUp", desc, false, 0, 0xB793C4);
 			setStatusMinutes("Priapism", (7*24*60));
 		}
+		
+		// Mounts!
+		public function isRidingMount():Boolean
+		{
+			if(accessory is KordiiakLeash || accessory is NogwichLeash) return true;
+			return false;
+		}
 	}
 }
 

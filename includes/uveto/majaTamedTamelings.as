@@ -227,7 +227,6 @@ public function purchaseTameling(arg:ItemSlotClass):void
 {
 	clearOutput();
 	showMaja();
-	author("Gardeford");
 	flags["MAJA_RENTING"] = arg.description;
 	output("Maja goes vanishes into the back and returns with your brand-new rental pet.\n\n");
 	pc.credits -= arg.basePrice;
@@ -253,7 +252,6 @@ public function returnPetToMaja():void
 {
 	clearOutput();
 	showMaja();
-	author("Gardeford");
 	output("You return the rented animal to a grateful Maja.");
 	if(flags["MAJA_RENTING"] == new KordiiakLeash().description)
 	{
