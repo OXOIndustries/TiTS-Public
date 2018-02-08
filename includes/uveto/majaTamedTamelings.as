@@ -395,6 +395,22 @@ public function majaAliensTalk():void
 	else output("N-no, korgonne never have this kind of thing happen naturally. At least not in our clans records, and I’ve never heard tales of it elsewhere. The men here are too frightened that their pups will turn out this way to even consider me an option, and the other girls would rather have exotic alien cock if they’re going to go for someone with both parts,");
 	output("”</i> she whines, still looking like she’s surprised you’re still listening.");
 
+	if(flags["TUUVA_25AFF"] != undefined) 
+	{
+		output("\n\n<i>“");
+		//tuuva affection low:
+		if(tuuvaAffection() < 50) output("The blacksmith");
+		else output("Tuuva");
+		output(" has a dick as well, and the other korgonne don’t seem to have any extra concerns about her,”</i> you mention. Maja blushes, reaching down to fiddle with the hem of her skirt.");
+
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("T-tuuva not care what other korgs think. Also has normal korg dick. Maja has weird korg dick. Too much drugs,");
+		else output("T-tuuva doesn’t care what other people think; she got a normal sized dick. I ended up with this,");
+		output("”</i> she explains, lifting the hem of her dress for a moment. The action reveals a pair of volleyball sized testes and a sheath fit for ");
+		if(silly) output("fucking excalibur holy shit");
+		else output("a claymore");
+		output(". At full length you imagine the thing must be as big as a smaller korgonne’s whole torso, head included. She drops her skirt, dusting it with her hands.");
+	}
 	output("\n\n<i>“Well, what about you? How do you feel about ");
 	if(!korgiTranslate()) output("warm shares");
 	else output("sex");
