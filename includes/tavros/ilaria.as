@@ -745,8 +745,10 @@ public function tryKnockUpIlaria():int
 	return 0;
 }
 
-public function ilariaBirth():void
+public function ilariaBirth(birthTimestamp:int = -1):void
 {
+	if(birthTimestamp < 0) birthTimestamp = GetGameTimestamp();
+	
 	var traitChar:Creature = chars["PC_BABY"];
 	var c:UniqueChild = new IlariaUniqueChild();
 	
@@ -770,8 +772,8 @@ public function ilariaBirth():void
 	if(traitChar.furColor != "NOT SET" && rand(2) == 0) c.furColor = traitChar.furColor;
 	
 	c.MaturationRate = 1.0;
-	c.BornTimestamp = GetGameTimestamp() - rand(10*60);
-	ChildManager.addChild(c)
+	c.BornTimestamp = birthTimestamp;
+	ChildManager.addChild(c);
 	
 	StatTracking.track("pregnancy/ilaria sired", flags["ILARIA_NUM_BABIES"]);
 	StatTracking.track("pregnancy/total sired", flags["ILARIA_NUM_BABIES"]);
@@ -794,18 +796,16 @@ public function processIlariaPregEvents(deltaT:uint, doOut:Boolean, totalDays:ui
 		
 		if(flags["ILARIA_PREG_EMAIL1"] == undefined && flags["ILARIA_PREG_TIMER"] >= 7)
 		{
-			if (MailManager.hasEntry("ilaria_preg1")) MailManager.deleteMailEntry("ilaria_preg1");
-			MailManager.addMailEntry("ilaria_preg1", ilariaPreg1EmailText(), "Surprise, Surprise!", "Ilaria Ilgade", "Ilaria@BunBunBakery.com", quickPCTo, quickPCToAddress);
-			goMailGet("ilaria_preg1");
+			var mailTimestamp:int = (GetGameTimestamp() + deltaT - (flags["ILARIA_PREG_TIMER"] * 24 * 60) + (7 * 24 * 60));
+			resendMail("ilaria_preg1", mailTimestamp);
 			flags["ILARIA_PREG_EMAIL1"] = 1;
 			ilaria.bellyRatingMod = 10;
 		}
 		if(flags["ILARIA_PREG_TIMER"] >= 180)
 		{
-			if (MailManager.hasEntry("ilaria_preg2")) MailManager.deleteMailEntry("ilaria_preg2");
-			MailManager.addMailEntry("ilaria_preg2", ilariaPreg2EmailText(), "Ilaria Ilgade", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
-			goMailGet("ilaria_preg2");
-			ilariaBirth();
+			var birthTimestamp:int = (GetGameTimestamp() + deltaT - (flags["ILARIA_PREG_TIMER"] * 24 * 60) + (180 * 24 * 60));
+			resendMail("ilaria_preg2", birthTimestamp);
+			ilariaBirth(birthTimestamp);
 		}
 		
 		//belly stuff

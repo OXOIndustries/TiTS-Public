@@ -2791,7 +2791,8 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	// because the order the events are processed may become important, so maintaining a relatively simplistic way
 	// to change the order of things happening across deltaT time may be useful.
 	
-	var totalDays:uint = ((GetGameTimestamp() + deltaT) / 1440) - days;
+	var nextTimestamp:uint = (GetGameTimestamp() + deltaT);
+	var totalDays:uint = (nextTimestamp / 1440) - days;
 	
 	processUvetoWeather(deltaT, doOut);
 	processRenvraMessageEvents(deltaT, doOut);
@@ -2881,24 +2882,24 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	if(sendMails)
 	{
 		//NEVRIE MAIL!
-		if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (GetGameTimestamp() - (24 * 60))) nevriMailGet();
-		if (!MailManager.isEntryUnlocked("orangepills") && flags["MCALLISTER_MYR_HYBRIDITY"] == 2 && GetGameTimestamp() >= (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) nevriOrangeMailGet();
+		if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (nextTimestamp - (24 * 60))) nevriMailGet();
+		if (!MailManager.isEntryUnlocked("orangepills") && flags["MCALLISTER_MYR_HYBRIDITY"] == 2 && nextTimestamp >= (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) nevriOrangeMailGet();
 		if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"] + 20) nevriBJMailGet();
 
 		//Emmy Mail
-		if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (GetGameTimestamp() - (24 * 60))) emmyMailGet();
+		if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (nextTimestamp - (24 * 60))) emmyMailGet();
 		//Emmy mail stage 2 START
-		if (!MailManager.isEntryUnlocked("emmy_gift_starter") && flags["EMMY_ORAL_TIMER"] <= (GetGameTimestamp() - (72 * 60))) emmyMailGet2();
+		if (!MailManager.isEntryUnlocked("emmy_gift_starter") && flags["EMMY_ORAL_TIMER"] <= (nextTimestamp - (72 * 60))) emmyMailGet2();
 		//Emmy mail set up for sextoy go
-		if (!MailManager.isEntryUnlocked("emmy_implant_explain_email") && flags["EMMY_PRESEX_FUN_TIMER"] <= (GetGameTimestamp() - (100 * 60))) emmyMailGet3();
-		if (!MailManager.isEntryUnlocked("emmy_harness_here") && flags["EMMY_TOY_TIMER"] <= GetGameTimestamp()) emmyMailGet4();
+		if (!MailManager.isEntryUnlocked("emmy_implant_explain_email") && flags["EMMY_PRESEX_FUN_TIMER"] <= (nextTimestamp - (100 * 60))) emmyMailGet3();
+		if (!MailManager.isEntryUnlocked("emmy_harness_here") && flags["EMMY_TOY_TIMER"] <= nextTimestamp) emmyMailGet4();
 
 		//Saendra Mail
 		if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1 && rooms[currentLocation].planet != "SHIP: PHOENIX" && !InShipInterior(pc)) saendraPhoenixMailGet();
 		//Anno Mail
 		if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["ANNO_MISSION_OFFER"] != 2 && flags["FOUGHT_TAM"] == undefined && flags["RUST_STEP"] != undefined && rand(20) == 0) goMailGet("annoweirdshit");
 		//KIRO FUCKMEET
-		if (!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50 && flags["MET_FLAHNE"] != undefined && flags["KIRO_ORGY_DATE"] == undefined && rand(3) == 0) { goMailGet("kirofucknet", -1, kiroFuckNetBonus()); }
+		if (!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50 && flags["MET_FLAHNE"] != undefined && flags["KIRO_ORGY_DATE"] == undefined && rand(3) == 0) { goMailGet("kirofucknet", nextTimestamp, kiroFuckNetBonus(deltaT)); }
 		//KIRO DATEMEET
 		if (!MailManager.isEntryUnlocked("kirodatemeet") && kiroTrust() >= 100 && kiroSexed() && rand(10) == 0) { goMailGet("kirodatemeet"); }
 		trySendStephMail();
@@ -2912,27 +2913,27 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			if(flags["CARVER_DEL_TALK"] == 3)
 			{
 				if(flags["DEL_MOVE_TIMER"] == undefined) flags["DEL_MOVE_TIMER"] = GetGameTimestamp();
-				else if(flags["DEL_MOVE_TIMER"] + 60*24*10 <= GetGameTimestamp()) goMailGet("del_moved_light");
+				else if((flags["DEL_MOVE_TIMER"] + (60*24*10)) <= nextTimestamp) goMailGet("del_moved_light", (flags["DEL_MOVE_TIMER"] + (60*24*10)));
 			}
 			//Del moving to Canada as shemale
 			else if (delilahSubmissiveness() >= 10 || flags["CARVER_DEL_TALK"] == 2) 
 			{
 				if(flags["DEL_MOVE_TIMER"] == undefined) flags["DEL_MOVE_TIMER"] = GetGameTimestamp();
-				else if(flags["DEL_MOVE_TIMER"] + 60*24*10 <= GetGameTimestamp()) goMailGet("del_moved");
+				else if((flags["DEL_MOVE_TIMER"] + (60*24*10)) <= nextTimestamp) goMailGet("del_moved", (flags["DEL_MOVE_TIMER"] + (60*24*10)));
 			}
 		}
 
 		// Pippa Nuru massage email
-		if (!MailManager.isEntryUnlocked("pippa_nuru") && flags["PIPPA_NURU_TIMER"] <= (GetGameTimestamp() - (24 * 60)) && currentLocation != "PIPPA HOUSE") pippaNuruEmailGet();
+		if (!MailManager.isEntryUnlocked("pippa_nuru") && flags["PIPPA_NURU_TIMER"] <= (nextTimestamp - (24 * 60)) && currentLocation != "PIPPA HOUSE") pippaNuruEmailGet();
 		// Pippa Crew message email
-		if (!MailManager.isEntryUnlocked("pippa_crew") && flags["PIPPA_RECRUIT_TIMER"] <= (GetGameTimestamp() - (36 * 60)) && currentLocation != "PIPPA HOUSE") pippaCrewEmailGet();
+		if (!MailManager.isEntryUnlocked("pippa_crew") && flags["PIPPA_RECRUIT_TIMER"] <= (nextTimestamp - (36 * 60)) && currentLocation != "PIPPA HOUSE") pippaCrewEmailGet();
 
 		//Plantation Quest Offer
 		//Key string - "plantation_quest_start"
 		if (!MailManager.isEntryUnlocked("plantation_quest_start") && flags["PLANTATION_MEALS"] != undefined && flags["PLANTATION_ZIL_TALK"] != undefined && flags["PLANTATION_PLANTATION_TALK"] != undefined && flags["PLANTATION_WORKERS_TALK"] != undefined && flags["PLANET_3_UNLOCKED"] != undefined)
 		{
 			if(flags["PQUEST_DELAY_TIMER"] == undefined) flags["PQUEST_DELAY_TIMER"] = GetGameTimestamp();
-			else if(GetGameTimestamp() >= flags["PQUEST_DELAY_TIMER"] + 60*10) goMailGet("plantation_quest_start");
+			else if(nextTimestamp >= (flags["PQUEST_DELAY_TIMER"] + (60*10))) goMailGet("plantation_quest_start", (flags["PQUEST_DELAY_TIMER"] + (60*10)));
 		}
 		if(pc.hasCock() && pc.thinnestCockThickness() < 7 && pc.balls >= 2 && pc.ballDiameter() >= 12 && pc.ballFullness >= 50 && !MailManager.isEntryUnlocked("kally_kiro_milkvite") && kiroKallyThreesomesAvailable() && rand(20) == 0 && flags["KIRO_KALLY_TEAM_MILKED"] == undefined) goMailGet("kally_kiro_milkvite");
 
@@ -2940,14 +2941,14 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		if (!MailManager.isEntryUnlocked("ushamee_meet") && (flags["KASHIMA_STATE"] == 2 || flags["KASHIMA_STATE"] == 3))
 		{
 			if(flags["KASHIMA_DELAY_TIMER"] == undefined) flags["KASHIMA_DELAY_TIMER"] = GetGameTimestamp();
-			else if(GetGameTimestamp() >= (flags["KASHIMA_DELAY_TIMER"] + 60*24*5)) goMailGet("ushamee_meet");
+			else if(nextTimestamp >= (flags["KASHIMA_DELAY_TIMER"] + (60*24*5))) goMailGet("ushamee_meet", (flags["KASHIMA_DELAY_TIMER"] + (60*24*5)));
 		}
 		
 		//Syri Panty vid
 		if (!MailManager.isEntryUnlocked("syri_video") && flags["SYRI_GIFT_PANTY"] != undefined)
 		{
 			if(flags["SYRI_VIDEO_DELAY_TIMER"] == undefined) flags["SYRI_VIDEO_DELAY_TIMER"] = GetGameTimestamp();
-			else if(GetGameTimestamp() >= (flags["SYRI_VIDEO_DELAY_TIMER"] + 60*24*3)) goMailGet("syri_video");
+			else if(nextTimestamp >= (flags["SYRI_VIDEO_DELAY_TIMER"] + (60*24*3))) goMailGet("syri_video", (flags["SYRI_VIDEO_DELAY_TIMER"] + (60*24*3)));
 		}
 		//Shade Holiday shit
 		if(isChristmas() && flags["SHADE_ON_UVETO"] >= 3)
@@ -2958,23 +2959,16 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			}
 		}
 		//Prai email stuff
-		if (flags["PRAI_EMAIL_NUMBER"] != undefined && GetGameTimestamp() >= (flags["PRAI_EMAIL_STAMP"] + 60*10))
+		if (flags["PRAI_EMAIL_NUMBER"] != undefined && flags["PRAI_EMAIL_STAMP"] != undefined && nextTimestamp >= (flags["PRAI_EMAIL_STAMP"] + (60*10)))
 		{
-			if (MailManager.hasEntry("prai_email")) MailManager.deleteMailEntry("prai_email");
-			MailManager.addMailEntry("prai_email", praiEmailText, praiSubjectText, "Prai Ellit", "Prai@Xenotech.net", quickPCTo, quickPCToAddress);
-			goMailGet("prai_email");
+			resendMail("prai_email", (flags["PRAI_EMAIL_STAMP"] + (60*10)));
 			flags["PRAI_EMAIL_NUMBER"] = undefined;
 			flags["PRAI_EMAIL_STAMP"] = undefined;
 		}
 		//Sucuccow email
 		if(pc.hasCock() && flags["SUCCUCOW_EMAIL_THIS_YEAR"] == undefined && flags["CIARAN_MET"] != undefined && isHalloweenish())
 		{
-			if (MailManager.isEntryUnlocked("succucow_email"))
-			{
-				MailManager.deleteMailEntry("succucow_email");
-				MailManager.addMailEntry("succucow_email", succucowEmailText, "Check out this weird cabin? Cash reward.", "Ciaran Eildean", "Warden_Eildean@NewTexas.gov", quickPCTo, quickPCToAddress);
-			}
-			goMailGet("succucow_email");
+			resendMail("succucow_email");
 			flags["SUCCUCOW_EMAIL_THIS_YEAR"] = 1;
 		}
 		else if (!isHalloweenish())
@@ -2985,12 +2979,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		//RandyClaws email
 		if(flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] == undefined && flags["CIARAN_MET"] != undefined && isChristmas())
 		{
-			if (MailManager.isEntryUnlocked("randy_claws_email"))
-			{
-				MailManager.deleteMailEntry("randy_claws_email");
-				MailManager.addMailEntry("randy_claws_email", clawsEmailText, "Merry Christmas!", "New Texas Department of Wildlife", "NT_DoW@NewTexas.gov", quickPCTo, quickPCToAddress);
-			}
-			goMailGet("randy_claws_email");
+			resendMail("randy_claws_email");
 			flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] = 1;
 		}
 		else if(!isChristmas())
@@ -3000,7 +2989,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		}
 		
 		//Other Email Checks!
-		if (rand(100) == 0) emailRoulette();
+		if (rand(100) == 0) emailRoulette(deltaT);
 	}
 	
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
@@ -3665,6 +3654,7 @@ public function goMailGet(mailKey:String = "", timeStamp:int = -1, messageBody:S
 	var mailFrom:String = "<i>Unknown Sender</i>";
 	var mailFromAdress:String = "<i>Unknown Address</i>";
 	if(timeStamp < 0) timeStamp = GetGameTimestamp();
+	var deltaT:uint = (timeStamp - GetGameTimestamp());
 	if(mailKey != "" && MailManager.hasEntry(mailKey))
 	{
 		var mailEmail:Object = MailManager.getEntry(mailKey);
@@ -3674,22 +3664,32 @@ public function goMailGet(mailKey:String = "", timeStamp:int = -1, messageBody:S
 		if (mailEmail.FromAddress != null) mailFromAdress = mailEmail.FromAddress();
 		if (messageBody.length == 0)
 		{
-			AddLogEvent("<b>New Email from " + mailFrom + " (" + mailFromAdress +")!</b>", "words");
+			AddLogEvent("<b>New Email from " + mailFrom + " (" + mailFromAdress +")!</b>", "words", deltaT);
 		}
 		else
 		{
-			AddLogEvent("<b>New Email from " + mailFrom + " (" + mailFromAdress +")!</b>" + messageBody, "words");
+			AddLogEvent("<b>New Email from " + mailFrom + " (" + mailFromAdress +")!</b>" + messageBody, "words", deltaT);
 		}
 		MailManager.unlockEntry(mailKey, timeStamp);
 	}
 }
+// Reset and ressend the e-mail!
+public function resendMail(mailKey:String = "", timeStamp:int = -1, messageBody:String = ""):void
+{
+	// Removes cached text but also sets timestamps to default
+	MailManager.clearEntry(mailKey);
+	// Regenerates cache and sets new appropriate timestamp
+	goMailGet(mailKey, timeStamp, messageBody);
+}
 // Random Emails!
-public function emailRoulette():void
+public function emailRoulette(deltaT:uint):void
 {
 	var mailList:Array = [];
 	var mailKey:String = "";
 	var mailSubject:String = "\\\[No Subject\\\]";
 	var mailContent:String = "<i>This message turns up empty...</i>";
+	
+	var nextTimestamp:uint = (GetGameTimestamp() + deltaT);
 	
 	// Character/Event specific:
 	if(!MailManager.isEntryUnlocked("burtsmeadhall") && pc.level >= 1)
@@ -3732,7 +3732,7 @@ public function emailRoulette():void
 		// Regular:
 		if (mailKey == "kirofucknet")
 		{
-			goMailGet(mailKey, -1, kiroFuckNetBonus());
+			goMailGet(mailKey, nextTimestamp, kiroFuckNetBonus(deltaT));
 		}
 		// Spam:
 		else if (mailKey == "cov8" && flags["SPAM_MSG_COV8"] == undefined)
@@ -3741,24 +3741,24 @@ public function emailRoulette():void
 		}
 		else if(mailKey == "fatloss" && pc.isBimbo())
 		{
-			goMailGet(mailKey, -1, " The subject line reads <i>“" + mailSubject + "”</i>. Ooo, secrets and stuff! You eagerly open the message and the codex lights up with the display:\n\n<i>" + mailContent + "</i>\n\nMmm, that sounds yummy!");
+			goMailGet(mailKey, nextTimestamp, "\n\nThe subject line reads <i>“" + mailSubject + "”</i>. Ooo, secrets and stuff! You eagerly open the message and the codex lights up with the display:\n\n<i>" + mailContent + "</i>\n\nMmm, that sounds yummy!");
 			pc.lust(20);
-			MailManager.readEntry("fatloss", GetGameTimestamp());
+			MailManager.readEntry("fatloss", nextTimestamp);
 		}
 		else if(mailKey == "estrobloom" && !pc.hasKeyItem("Coupon - Estrobloom"))
 		{
-			goMailGet(mailKey, -1, "\n\n<b>You have gained a coupon for Estrobloom!</b>");
+			goMailGet(mailKey, nextTimestamp, "\n\n<b>You have gained a coupon for Estrobloom!</b>");
 			pc.createKeyItem("Coupon - Estrobloom", 0.9, 0, 0, 0, "Save 10% on your next purchase of Estrobloom!");
 		}
 		else if(mailKey == "hugedicktoday" && pc.isBro() && pc.hasCock())
 		{
-			goMailGet(mailKey, -1, " The subject line reads <i>“" + mailSubject + "”</i>. Hell yeah--who wouldn’t want a bigger dick? You quicky open the message to read its contents and the codex lights up with the display:\n\n<i>" + mailContent + "</i>\n\nYou’re not quite sure you understood all that, but your dick did.");
+			goMailGet(mailKey, nextTimestamp, "\n\nThe subject line reads <i>“" + mailSubject + "”</i>. Hell yeah--who wouldn’t want a bigger dick? You quicky open the message to read its contents and the codex lights up with the display:\n\n<i>" + mailContent + "</i>\n\nYou’re not quite sure you understood all that, but your dick did.");
 			pc.lust(20);
-			MailManager.readEntry("hugedicktoday", GetGameTimestamp());
+			MailManager.readEntry("hugedicktoday", nextTimestamp);
 		}
 		else
 		{
-			goMailGet(mailKey);
+			goMailGet(mailKey, nextTimestamp);
 		}
 	}
 }

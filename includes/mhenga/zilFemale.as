@@ -1583,18 +1583,25 @@ public function processFZilPregEvents(deltaT:uint, doOut:Boolean, totalDays:uint
 		flags["FZIL_PREG_TIMER"] += totalDays;
 	
 		//Ideally birth will be triggered by the PC proccing the birth scene, otherwise she's gotta blow sometime
-		if(flags["FZIL_PREG_TIMER"] > 245) fZilBirth(false);
+		if(flags["FZIL_PREG_TIMER"] > 245)
+		{
+			var birthTimestamp:int = (GetGameTimestamp() + deltaT - (flags["FZIL_PREG_TIMER"] * 24 * 60) + (246 * 24 * 60));
+			fZilBirth(false, birthTimestamp);
+		}
 	}
 }
 
 //The purely game-state centric parts of birth
-public function fZilBirth(witnessed:Boolean):Number
+public function fZilBirth(witnessed:Boolean, birthTimestamp:int = -1):Number
 {
+	if(birthTimestamp < 0) birthTimestamp = GetGameTimestamp();
+	
 	var numMale:Number = 0;
 	
 	if(witnessed)
 	{
 		var c:Child = Child.NewChild(GLOBAL.TYPE_BEE, 1.0, 2);
+		c.BornTimestamp = birthTimestamp;
 		numMale = c.NumMale;
 		ChildManager.addChild(c);
 	}
@@ -2098,7 +2105,7 @@ public function fZilBirthFollow():void
 	showName("PREGNANT\nFEMALE ZIL");
 	author("MistyBirb");
 	
-	var numMale:Number = fZilBirth(true);
+	var numMale:Number = fZilBirth(true, (GetGameTimestamp() + 240 + rand(60)));
 	
 	output("He takes off into the jungle without another word, moving with an obvious sense of urgency. You struggle to keep pace with him, but never lose him entirely, and you eventually emerge from the jungle brush to find a quaint collection of primitive huts and several dozen zil. Almost the entire population of the village turns to look at you, their antennae collectively twitching, but most look more confused than hostile.");
 	output("\n\nYour zil guide continues on without hesitation, and you’re forced to shrug off your apprehension and follow him before he disappears among his kin. He takes you through the center of the village and towards the opposite edge without stopping or even looking back to see if you’re still following him. As you walk, you can hear some strained cries, and notice a particularly thick gathering of zil around a lone hut up ahead. You’re lead directly towards them, the male zil pushing his way through the crowd and making some space for you.");
