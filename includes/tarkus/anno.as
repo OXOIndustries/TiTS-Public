@@ -285,6 +285,9 @@ public function annoShopSetup():void
 	author("Savin");
 	showAnno();
 	shopkeep = chars["ANNO"];
+	
+	gooArmorOrphanedCheck(chars["ANNO"]);
+	
 	if(flags["TARKUS_DESTROYED"] != undefined)
 	{
 		// First Time

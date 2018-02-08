@@ -7,6 +7,8 @@ public function roamingBarEncounter(button:int = 0):void
 	if(roamingKiroAvailable() && rand(3) <= 1) NPCs.push(kiroSetup);
 	//"Help: Bodies" option, has had an update from Anno about the Nova. @ Golden Peak
 	if(flags["DECK13_GRAY_PRIME_DECISION"] == 1 && flags["ANNO_NOVA_UPDATE"] == 1 && currentLocation == "609") NPCs.push(grayGooAtBarSetup);
+	// Repeat goo armor meet
+	else if(flags["GOO_ARMOR_AWAY"] != undefined) NPCs.push(grayGooArmorRoamingBonus);
 	//50% anno chances
 	if(
 	(	(currentLocation == "ANON'S BAR AND BOARD" && !pc.hasStatusEffect("Anno x Kaede Bar"))

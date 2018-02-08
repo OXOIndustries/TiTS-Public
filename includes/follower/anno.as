@@ -644,6 +644,8 @@ public function annoFollowerInventoryCheck():void
 		anno.sellMarkup = 1.2;
 		anno.buyMarkdown = 0.8;
 	}
+	
+	gooArmorOrphanedCheck(chars["ANNO"]);
 
 	// Set her up so she can buy/sell everything
 	anno.typesBought = [GLOBAL.ALL];

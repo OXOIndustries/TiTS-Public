@@ -265,23 +265,7 @@ public function grayGooArrivesAtShip():void
 	
 	processTime(10+rand(5));
 	
-	output("\n\n<b>You");
-	
-	if(!(pc.armor is EmptySlot))
-	{
-		output(" have swapped your [pc.armor] and");
-		eventQueue.push(function():void {
-			clearOutput();
-			clearMenu();
-			var oldArmor:ItemSlotClass = pc.armor;
-			oldArmor.onRemove(pc);
-			itemCollect([oldArmor]);
-			pc.armor = new GooArmor();
-		});
-	}
-	else pc.armor = new GooArmor();
-	
-	output(" are now wearing [goo.name] as armor!</b>");
+	output("\n\n" + gooArmorInventoryBlurb(new GooArmor(), "obtain"));
 	
 	clearMenu();
 	if(pc.lust() >= 33)
@@ -297,6 +281,49 @@ public function grayGooArrivesAtShip():void
 		else addDisabledButton(1, "GooSleeve", "Goo Cocksleeve", "You don’t have the proper anatomy for that...")
 	}
 	addButton(2, "No Sex", gooFapNope, undefined, "No Sex", "You are not in the mood to sex [goo.name] at this time.");
+}
+
+public function grayGooArmorRoamingBonus(slot:int = 8):void
+{
+	output("\n\nThere’s a gray goo-girl bouncing around nearby, her eyes saucer-like and full of wonder and curiosity--that must be [goo.name]!");
+	addButton(slot, chars["GOO"].short, grayGooArmorRoamingApproach, undefined, chars["GOO"].short, "Meet your silver friend.");
+}
+public function grayGooArmorRoamingApproach():void
+{
+	clearOutput();
+	author("Jacques00");
+	showGrayGooArmor();
+	
+	output("<i>“Oh, [pc.name]! Hi!”</i> [goo.name] says with glee, perking up as you approach. <i>“I can’t believe you’re here!”</i>");
+	output("\n\nYou return her excitement with a");
+	if(pc.isBimbo() || pc.isNice()) output(" smile");
+	else if(pc.isBro() || pc.isMischievous()) output(" smirk");
+	else output(" grimace");
+	output(".");
+	output("\n\n<i>“So, like, can I come back with you... pleasepleasepleaseplease... please?”</i> she asks, eyes wide and hands together in a pleading fashion.");
+	output("\n\nLooks like you have a choice to make. Do you take the lonely goo-girl back with you?");
+	
+	processTime(1);
+	
+	clearMenu();
+	addButton(0, "Sure", grayGooArmorRoamingTake, undefined, "Sure", "Tell the goo-girl you’ll take her with you.");
+	addButton(1, "Not Now", grayGooAtBarNotNow, undefined, "Not Now", "Maybe next time...");
+}
+public function grayGooArmorRoamingTake():void
+{
+	clearOutput();
+	author("Jacques00");
+	showGrayGooArmor();
+	
+	output("<i>“Yay! You’re totally the bestest buddy in the whooole universe!”</i>");
+	output("\n\nWith that, [goo.name] shamelessly launches herself towards you and engulfs your entire body, sensually teasing all your privates in the process.");
+	
+	processTime(3);
+	
+	output("\n\n" + gooArmorInventoryBlurb(goo.armor, "obtain"));
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function gooFapNope():void
@@ -567,7 +594,7 @@ public function grayGooSpessSkype():void
 	// Nova is not alive or does not have cybernetic body!
 	if(flags["DECK13_GRAY_PRIME_DECISION"] != 1) return;
 	
-	if (hasGooArmor() && flags["ANNO_NOVA_UPDATE"] == 3 && flags["GRAYGOO_SPESS_SKYPE"] == undefined && rand(5) == 0)
+	if (hasGooArmor() && flags["ANNO_NOVA_UPDATE"] >= 3 && flags["GRAYGOO_SPESS_SKYPE"] == undefined && rand(5) == 0)
 	{
 		flags["GRAYGOO_SPESS_SKYPE"] = 1;
 		eventQueue.push(grayGooSpessSkypeScene);
@@ -751,6 +778,88 @@ public function gooArmorInStorageBlurb(store:Boolean = true):String
 	}
 	
 	return RandomInCollection(halp);
+}
+public function gooArmorInventoryBlurb(armorItem:ItemSlotClass, reaction:String = ""):String
+{
+	//showBust(novaBustDisplay());
+	
+	var msg:String = "";
+	
+	switch(reaction)
+	{
+		case "buy":
+			msg += ParseText("<i>“Guess who’s baaack... It’s me, [goo.name]!”</i> Your gooey partner springs out and gives you a great big hug, excited about her return.");
+			break;
+		case "sell":
+			msg += ParseText("<i>“O-oh... okay. I hope I was worth the price.”</i> [goo.name] looks at you with a wimper in her lips and watery eyes. When she notices your reaction, she tries to perk up before quickly disappearing with a final farewell, <i>“Goodbye now!”</i>");
+			
+			gooArmorInventoryRemove(armorItem);
+			break;
+		case "discard":
+		case "drop":
+			if(InShipInterior()) msg += ParseText("<i>“Well, if you don’t have any place for me, I’ll just pack my things and go...”</i> [goo.name] materializes a faux suitcase and fills it with various self-created items, closes it, and cartoonishly stuffs the case between her cleavage. <i>“Have a nice day!”</i> she finishes as she leaps into the nearest trash chute and ejects herself out of your ship.");
+			else if(InPublicSpace()) msg += ParseText("<i>“Out here? With all these people?”</i> [goo.name] appears very overwhelmed. <i>“Maybe I should make some new friends? Do any of them like blowjobs? I wonder...”</i> She continues thinking out loud to herself and disappears into the distance.");
+			else msg += ParseText("<i>“Out here? All alone? By myself?”</i> [goo.name] appears very scared at the thought. <i>“I-If you say so... I mean, I can make new friends... maybe?”</i> Saddened at losing a friend, she wanders off and disappears into the distance.");
+			
+			gooArmorInventoryRemove(armorItem);
+			break;
+		case "replace":
+			msg += ParseText("<i>“No way! You wanna trade me for... for </i>that<i>?!”</i> [goo.name] exclaims. <i>“That’s like... like... argh!”</i> The goo is so flustered that she can barely come up with any more words. Giving up due to the futility of the situation, she just melts into a silver puddle and speeds off and away from you, never to be seen again.");
+			
+			gooArmorInventoryRemove(armorItem);
+			break;
+		case "wear":
+			msg += "<i>“Alright, I’m ready for action!”</i>";
+			break;
+		case "collect":
+			msg += "<i>“I’ll just be in here if you need me!”</i>";
+			break;
+		case "obtain":
+			msg += "<b>You";
+			if(!(pc.armor is EmptySlot))
+			{
+				msg += ParseText(" have swapped your [pc.armor] and");
+				eventQueue.push(function():void {
+					clearOutput();
+					clearMenu();
+					var oldArmor:ItemSlotClass = pc.armor;
+					oldArmor.onRemove(pc);
+					itemCollect([oldArmor]);
+					pc.armor = armorItem;
+				});
+			}
+			else pc.armor = armorItem;
+			msg += ParseText(" are now wearing [goo.name] as armor!</b>");
+			
+			if(flags["GOO_ARMOR_AWAY"] != undefined)
+			{
+				goo.armor = new GooeyCoverings();
+				goo.armor.quantity = 1;
+				goo.armor.defense = 2;
+				goo.armor.hasRandomProperties = true;
+				
+				gooArmorCheck(true);
+				flags["GOO_ARMOR_AWAY"] = undefined;
+			}
+			break;
+	}
+	
+	return msg;
+}
+public function gooArmorInventoryRemove(armorItem:ItemSlotClass):void
+{
+	goo.armor = armorItem;
+	goo.armor.quantity = 1;
+	flags["GOO_ARMOR_AWAY"] = 1;
+}
+
+// Retrofix for orphaned armor!
+public function gooArmorOrphanedCheck(shopkeeper:Creature):void
+{
+	if(flags["ANNO_NOVA_UPDATE"] >= 3 && flags["GOO_ARMOR_AWAY"] == undefined && !hasGooArmor() && !shopkeeper.hasItemByClass(GooArmor))
+	{
+		shopkeeper.inventory.push((goo.armor is GooArmor) ? goo.armor : (new GooArmor()));
+	}
 }
 
 // Menu Function Replacers
@@ -1392,6 +1501,7 @@ public function gooArmorCrewOption(arg:Array):void
 			if(pc.armor is GooArmor)
 			{
 				goo.armor = pc.armor;
+				goo.armor.quantity = 1;
 				pc.armor = new EmptySlot();
 			}
 			else
@@ -1409,6 +1519,7 @@ public function gooArmorCrewOption(arg:Array):void
 					}
 				}
 				goo.armor = getArmor;
+				goo.armor.quantity = 1;
 			}
 			
 			flags["GOO_ARMOR_ON_SHIP"] = true;
@@ -1422,6 +1533,7 @@ public function gooArmorCrewOption(arg:Array):void
 			
 			// Swap Nova armor back to old armor.
 			goo.armor = new GooeyCoverings();
+			goo.armor.quantity = 1;
 			goo.armor.defense = 2;
 			goo.armor.hasRandomProperties = true;
 			
