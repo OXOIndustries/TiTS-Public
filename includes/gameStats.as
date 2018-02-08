@@ -6174,6 +6174,27 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Heidrun:</b> Met her");
 				variousCount++;
 			}
+			// Tamed Tamelings
+			if(flags["MET_MAJA"] != undefined)
+			{
+				output2("\n<b><u>Tamed Tamelings</u></b>");
+				if(flags["MAJA_RENTING"] != undefined)
+				{
+					output2("\n<b>* Currently Renting:</b> ");
+					switch(flags["MAJA_RENTING"])
+					{
+						case "a kor’diiak bear leash": output2("Kor’diiak Bear"); break;
+						case "a nog’wich leash": output2("Nog’wich"); break;
+						case "a 9999 leash": output2("Grunch"); break;
+						case "a 9999 leash": output2("Shoulder Grunch"); break;
+						case "a 9999 leash": output2("Miniature Giant Baby Kor’diiak"); break;
+						default: output2("<i>Unknown beast!</i>"); break;
+					}
+				}
+				output2("\n<b>* Maja:</b> Met her");
+				if(flags["SEXED_MAJA"] != undefined) output2("\n<b>* Maja, Times Sexed:</b> " + flags["SEXED_MAJA"]);
+				variousCount++;
+			}
 			// Krym
 			if(flags["MET_KRYM"] != undefined)
 			{

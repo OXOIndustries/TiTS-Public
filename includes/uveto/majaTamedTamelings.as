@@ -13,6 +13,7 @@ public function majaTrust():Boolean
 //Approach
 public function tamedTamelingsBonus():Boolean
 {
+	author("Gardeford");
 	if(flags["MET_MAJA"] == undefined)
 	{
 		flags["MET_MAJA"] = 1;
@@ -47,7 +48,7 @@ public function tamedTamelingsBonus():Boolean
 		else output("Oh. An offworlder. What do you want?");
 		output("”</i> she grumbles, looking wary.");
 
-		output("\n\n");
+		output("\n\n<i>“");
 		if(pc.isNice()) output("I’m just looking around. My name is [pc.name]. Your chief’s daughter gave me the password after I rescued her, and I’ve been having fun so far. What do you do down here, besides sit around and look pretty?");
 		else if(pc.isMischievous()) output("I’m [pc.name]. I got the password from your chief’s daughter after I rescued her, so I’m having a look around the place. Why do they have a cute thing like you shut up down here?");
 		else output("I’m [pc.name]. I rescued your chief’s daughter. She gave me the password. What’s a hot piece of ass like you doing cooped up down here anyway?");
@@ -55,8 +56,8 @@ public function tamedTamelingsBonus():Boolean
 
 		output("\n\n<i>“");
 		if(!korgiTranslate()) output("You rescue Ula? Maja heard about you. Still need prove self. Some alien say nice, but no act nice");
-		else output("So you’re the one who rescued Ula? I heard about you. I still dont trust you. Some aliens do nice things, but then expect nasty things in return,");
-		output("”</i> she says, her hackles smoothing out. She still watches you with a wary intensity. It looks like you’ll need to prove yourself to this Maja somehow.");
+		else output("So you’re the one who rescued Ula? I heard about you. I still dont trust you. Some aliens do nice things, but then expect nasty things in return");
+		output(",”</i> she says, her hackles smoothing out. She still watches you with a wary intensity. It looks like you’ll need to prove yourself to this Maja somehow.");
 
 		output("\n\n<i>“");
 		if(!korgiTranslate()) 
@@ -74,7 +75,7 @@ public function tamedTamelingsBonus():Boolean
 	//Repeat
 	else
 	{
-		output("Maja, the korgonne beast tamer, stands behind her desk. Various bags and crates of animal feed are littered along the back wall, and the hard-working dog-girl sorts through them diligently. Every so often, she carts a load of food into the back room, feeding the mounts and companion animals kept in the hold’s basement.  Her massive cleavage jiggles as she works, reined in by her sturdy leather top.");
+		output("Maja, the korgonne beast tamer, stands behind her desk. Various bags and crates of animal feed are littered along the back wall, and the hard-working dog-girl sorts through them diligently. Every so often, she carts a load of food into the back room, feeding the mounts and companion animals kept in the hold’s basement. Her massive cleavage jiggles as she works, reined in by her sturdy leather top.");
 		addButton(0, "Maja", repeatMajaApproach, undefined, "Maja", "Speak with the proprietor of this shop.")
 		return false;
 	}
@@ -84,7 +85,8 @@ public function repeatMajaApproach(back:Boolean = false):void
 {
 	clearOutput();
 	showMaja();
-	if(back) output("Is there something else you'd like to ask of Maja?");
+	author("Gardeford");
+	if(back) output("Is there something else you’d like to ask of Maja?");
 	else
 	{
 		output("She ");
@@ -106,8 +108,9 @@ public function repeatMajaApproach(back:Boolean = false):void
 			output("So how can I help you today, ");
 			if(majaTrust()) output("[pc.name]");
 			else output("[pc.Mister] offworlder");
-			output("”</i>");
+			output("?");
 		}
+		output("”</i>");
 	}
 	majaMenu();
 }
@@ -130,6 +133,7 @@ public function majaAppearance():void
 {
 	clearOutput();
 	showMaja();
+	author("Gardeford");
 	output("You take a closer look at the korgonne beast tamer.");
 	output("\n\nThe thick leather top she wears strains to hold in her massive chest, leaving her cleavage looking like a crevasse between two gargantuan bread loaves.");
 	if(flags["SEXED_MAJA"] != undefined) output(" You know for a fact that her mammoth mammaries are also tipped by suckable sapphire nipples.");
@@ -149,20 +153,20 @@ public function majaRentButton():void
 {
 	clearOutput();
 	showMaja();
+	author("Gardeford");
 	//first time, else just a menu.
 	if(flags["MAJA_RENT"] == undefined)
 	{
 		flags["MAJA_RENT"] = 1;
-		output("<i>“");
-		if(pc.isBimbo()) output("So, like, what kinda animals do you have down here? Anything cute? Fluffy ones make the <b>best</b> pillows,”</i> you say, staring at the stocky korgonne’s bust and licking your [pc.lips]. Maja blushes and makes an attempt to cover her chest with her arms.");
-		else if(pc.isBro()) output("So Is this where you keep those bear things?”</i> you crane your neck toward the back door, trying to catch a glimpse of the mighty beasts.");
-		else output("So what animals do you have available? Some extra help sounds like it could be useful,”</i> you ask, looking toward the back door.");
+		if(pc.isBimbo()) output("<i>“So, like, what kinda animals do you have down here? Anything cute? Fluffy ones make the <b>best</b> pillows,”</i> you say, staring at the stocky korgonne’s bust and licking your [pc.lips]. Maja blushes and makes an attempt to cover her chest with her arms.");
+		else if(pc.isBro()) output("<i>“So Is this where you keep those bear things?”</i> you crane your neck toward the back door, trying to catch a glimpse of the mighty beasts.");
+		else output("<i>“So what animals do you have available? Some extra help sounds like it could be useful,”</i> you ask, looking toward the back door.");
 		output(" The busty dog-girl nods proudly, tail wagging unchecked behind her. She scrambles around behind the desk before reaching for a set of keys on her belt.");
 
 		output("\n\n<i>“");
 		if(!korgiTranslate()) output("Yesyes! I tame. Make kor’diiaks listen. Also tame nog’wich, and grunches. All are ready for huntings");
-		else output("Definitely! My ancestors tamed the first kor’diiaks used by our clan. I don’t do much hunting anymore, but I keep all of the animals we have in check. Kor’diiaks, nog’wiches, and even grunches,");
-		output("”</i> The excited Korg lists off, her eyes full of fiery passion. It looks like you’re spoiled for choice.");
+		else output("Definitely! My ancestors tamed the first kor’diiaks used by our clan. I don’t do much hunting anymore, but I keep all of the animals we have in check. Kor’diiaks, nog’wiches, and even grunches");
+		output(",”</i> The excited Korg lists off, her eyes full of fiery passion. It looks like you’re spoiled for choice.");
 
 		output("\n\n");
 		if(!majaTrust()) 
@@ -172,7 +176,7 @@ public function majaRentButton():void
 			else output("But I don’t think I trust you with our prized hunting animals. You can have a Grunch for now,");
 			output("”</i> she says matter-of-factly, jingling a single key loose from the ring.");
 		}
-		output("\n\nShe motions for you to follow as she waddles back into the rear cave. The thin passage leads to a larger, curved cavern filled with fenced cages all along the back wall. Pens for the korgonne's animals are stocked with plenty of beasts, large and small. Maja takes you right past a few that seem to be nothing more than simple livestock, fuzzy things that shift around when you approach.");
+		output("\n\nShe motions for you to follow as she waddles back into the rear cave. The thin passage leads to a larger, curved cavern filled with fenced cages all along the back wall. Pens for the korgonne’s animals are stocked with plenty of beasts, large and small. Maja takes you right past a few that seem to be nothing more than simple livestock, fuzzy things that shift around when you approach.");
 		output("\n\n<i>“");
 		if(!korgiTranslate()) output("Those just gibgles. Make tasty drinkings and foods,");
 		else output("Those are just gibgles. You can make some tasty drinks from their milk and they make a mean steak, but they’re worthless on the ice,");
@@ -188,14 +192,11 @@ public function majaRentButton():void
 		output("\n\n<i>“");
 		if(!korgiTranslate()) output("Nog’wich good smellers. Sniff out big shinies. Many many in mines. Old nog’wich much good for ridings,");
 		else output("These are the nog’wich. They have very good noses for sniffing out minerals and avoiding active lava flows. The younger ones are a favorite of miners, but the older ones grow too big to maneuver in the mines, so they’re used for scouting. They’re also good with kids,");
-		output("”</i> she explains, reaching out to pet the top of the creature's muzzle. The graceful creature nuzzles against her hand like a cat, emitting a soft cooing noise before pulling away and darting along the track. More nog’wich approach her as you travel to the next pen, sticking their heads through to receive pets. Some adventurous ones stay long enough for you to rub their rounded ears.");
+		output("”</i> she explains, reaching out to pet the top of the creature’s muzzle. The graceful creature nuzzles against her hand like a cat, emitting a soft cooing noise before pulling away and darting along the track. More nog’wich approach her as you travel to the next pen, sticking their heads through to receive pets. Some adventurous ones stay long enough for you to rub their rounded ears.");
 
 		output("\n\nYou expect the final pen to extend into an even deeper cavern, given the trend of the last three, but you find it to be no larger than the waiting room where Maja keeps her desk. Inside, a gaggle of awkward looking lizard-like creatures mill about in the enclosed space. Eyes like saucers flit around, settling on you for a half second before moving on. One of the creatures makes a move to approach the fence, but trips on its own legs and falls with a thunk. Three others surrounding it bounce five feet straight into the air, landing with unbelievable grace to face their fallen companion.");
 		output("\n\n<i>“");
-		if(!korgiTranslate()) 
-		{
-			output("Grunch not much smart. Needings small pen. Otherwise giving selves many hurts. Need many watchings. Small ones have " + (silly ? "spit of danger!":"acid spits."));
-		}
+		if(!korgiTranslate()) output("Grunch not much smart. Needings small pen. Otherwise giving selves many hurts. Need many watchings. Small ones have " + (silly ? "spit of danger!":"acid spits."));
 		else output("Grunch arent the smartest things, but they try. They hurt themselves if they have too much space to move around and no one to look after them. The little ones can spit acid from their mouths if you point them at something you need melted. We still have to take care of them after they grow up though. They get attached to the miners they grew up with, and they taste like garbage, so we can’t cook them.");
 		output("”</i> Maja watches as the creatures sniff each other before returning to aimlessly wandering their pen.");
 
@@ -226,6 +227,7 @@ public function purchaseTameling(arg:ItemSlotClass):void
 {
 	clearOutput();
 	showMaja();
+	author("Gardeford");
 	flags["MAJA_RENTING"] = arg.description;
 	output("Maja goes vanishes into the back and returns with your brand-new rental pet.\n\n");
 	pc.credits -= arg.basePrice;
@@ -251,6 +253,7 @@ public function returnPetToMaja():void
 {
 	clearOutput();
 	showMaja();
+	author("Gardeford");
 	output("You return the rented animal to a grateful Maja.");
 	if(flags["MAJA_RENTING"] == new KordiiakLeash().description)
 	{

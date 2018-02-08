@@ -9,8 +9,6 @@ package classes.Items.Accessories
 	
 	public class NogwichLeash extends ItemSlotClass
 	{
-		
-		
 		public function NogwichLeash() 
 		{
 			_latestVersion = 1;
@@ -42,6 +40,8 @@ package classes.Items.Accessories
 			critBonus = 0;
 			evasion = 0;
 			fortification = 0;
+			
+			addFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE);
 			
 			version = _latestVersion;
 		}

@@ -14,8 +14,6 @@ package classes.Items.Accessories
 	
 	public class KordiiakLeash extends ItemSlotClass
 	{
-		
-		
 		public function KordiiakLeash() 
 		{
 			_latestVersion = 1;
@@ -32,7 +30,7 @@ package classes.Items.Accessories
 			
 			description = "a kor’diiak bear leash";
 			
-			tooltip = "This leash leads back to the fearsome kor’diiak bear you rented from Maja in Korg'ii Hold. So long as you equip it in your accessory slot, you will ride it, reducing travel time and the chance of encountering hostile creatures in Uveto's wilds. It may also assist you in combat... from time to time.";
+			tooltip = "This leash leads back to the fearsome kor’diiak bear you rented from Maja in Korg’ii Hold. So long as you equip it in your accessory slot, you will ride it, reducing travel time and the chance of encountering hostile creatures in Uveto’s wilds. It may also assist you in combat... from time to time.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -47,8 +45,11 @@ package classes.Items.Accessories
 			critBonus = 0;
 			evasion = 0;
 			fortification = 0;
+			
 			droneAttack = kordiiakAttack;
-			addFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER);	
+			
+			addFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE);
+			
 			version = _latestVersion;
 		}
 		public function kordiiakAttack(attacker:Creature, target:Creature):void
@@ -59,17 +60,17 @@ package classes.Items.Accessories
 				{
 					if (attacker is PlayerCharacter) output("Your");
 					else output(StringUtil.capitalize(possessive(attacker.getCombatName()), false));
-					output(" kor'diiak roars in sudden agitation, biting ");
+					output(" kor’diiak roars in sudden agitation, biting ");
 					if (target is PlayerCharacter) output("you");
 					else output(target.getCombatName());
 					output(".");
 					applyDamage(new TypeCollection( { kinetic: 35 } ), attacker, target, "minimal");
 				}
-				else output("Your kor'diiak looks bored.");
+				else output("Your kor’diiak looks bored.");
 			}
 			else
 			{
-				output("Your kor'diiak sighs heavily, panting and confused by the strange locale.");
+				output("Your kor’diiak sighs heavily, panting and confused by the strange locale.");
 			}
 		}
 	}
