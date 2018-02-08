@@ -1088,6 +1088,15 @@ public function equipmentDisplay():void
 public function inventoryDisplay():void
 {
 	var x:int = 0;
+	output("<b><u>Equipment:</u></b>\n");
+	output("<b>Melee Weapon:</b> " + StringUtil.toDisplayCase(pc.meleeWeapon.longName) + "\n");
+	output("<b>Ranged Weapon:</b> " + StringUtil.toDisplayCase(pc.rangedWeapon.longName) + "\n");
+	output("<b>Armor:</b> " + StringUtil.toDisplayCase(pc.armor.longName) + "\n");
+	output("<b>Shield:</b> " + StringUtil.toDisplayCase(pc.shield.longName) + "\n");
+	output("<b>Accessory:</b> " + StringUtil.toDisplayCase(pc.accessory.longName) + "\n");
+	output("<b>Underwear Bottom:</b> " + StringUtil.toDisplayCase(pc.lowerUndergarment.longName) + "\n");
+	output("<b>Underwear Top:</b> " + StringUtil.toDisplayCase(pc.upperUndergarment.longName) + "\n\n");
+	
 	output("<b><u>Inventory:</u></b> (" + pc.inventory.length + "/" + pc.inventorySlots() + " slots used.)");
 	if(pc.inventory.length > 0)
 	{
