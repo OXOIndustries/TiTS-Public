@@ -433,7 +433,7 @@ public function giveTuuvaSavicite():void
 	else addDisabledButton(1,"Give 2","Give 2","You don’t have that much Savicite to give!");
 	if (pc.hasItemByClass(Savicite,3)) addButton(2,"Give 3",actuallyGiveSavicite,3,"Give 3","Give Tuuva three pieces of Savicite.");
 	else addDisabledButton(2,"Give 3","Give 3","You don’t have that much Savicite to give!");
-	if (pc.hasItemByClass(Savicite,2)) addButton(3,"Give 5",actuallyGiveSavicite,5,"Give 5","Give Tuuva five pieces of Savicite.");
+	if (pc.hasItemByClass(Savicite,5)) addButton(3,"Give 5",actuallyGiveSavicite,5,"Give 5","Give Tuuva five pieces of Savicite.");
 	else addDisabledButton(3,"Give 5","Give 5","You don’t have that much Savicite to give!");
 
 	if (pc.hasItemByClass(Savicite)) addButton(4,"Give All",actuallyGiveSavicite,-1,"Give All","Give Tuuva all your Savicite.");

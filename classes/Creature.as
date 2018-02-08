@@ -2920,15 +2920,21 @@
 					if (inventory[i] is arg) 
 					{
 						//If we still need to eat some, eat em up!
-						while (amount > 0 && inventory[i].quantity > 0 && (inventory[i] is arg)) 
+						while (amount > 0)
 						{
-							inventory[i].quantity--;
-							amount--;
-							if (inventory[i].quantity <= 0)
+							if(i < inventory.length && inventory[i].quantity > 0 && (inventory[i] is arg))
 							{
-								inventory[i].quantity = 0;
-								inventory.splice(i, 1);
+								inventory[i].quantity--;
+								if (inventory[i].quantity <= 0)
+								{
+									inventory[i].quantity = 0;
+									inventory.splice(i, 1);
+								}
 							}
+							if(i >= inventory.length) output("ERROR: Item out of inventory range!");
+							else if(inventory[i].quantity <= 0) output("ERROR: Item quantity less than zero!");
+							else output("ERROR: Item type does not match!");
+							amount--;
 						}
 					}
 					else i++;
@@ -4659,31 +4665,31 @@
 			switch(stat)
 			{
 				case "physique":
-				statCurrent = physique();
-				statPercent = statCurrent / physiqueMax(true) * 100;
+					statCurrent = physique();
+					statPercent = statCurrent / physiqueMax(true) * 100;
 					break;
 				case "reflexes":
-				statCurrent = reflexes();
-				statPercent = statCurrent / reflexesMax(true) * 100;
+					statCurrent = reflexes();
+					statPercent = statCurrent / reflexesMax(true) * 100;
 					break;
 				case "aim":
-				statCurrent = aim();
-				statPercent = statCurrent / aimMax(true) * 100;
+					statCurrent = aim();
+					statPercent = statCurrent / aimMax(true) * 100;
 					break;
 				case "intelligence":
-				statCurrent = intelligence();
-				statPercent = statCurrent / intelligenceMax(true) * 100;
+					statCurrent = intelligence();
+					statPercent = statCurrent / intelligenceMax(true) * 100;
 					break;
 				case "willpower":
-				statCurrent = willpower();
-				statPercent = statCurrent / willpowerMax(true) * 100;
+					statCurrent = willpower();
+					statPercent = statCurrent / willpowerMax(true) * 100;
 					break;
 				case "libido":
-				statCurrent = libido();
-				statPercent = statCurrent / libidoMax(true) * 100;
+					statCurrent = libido();
+					statPercent = statCurrent / libidoMax(true) * 100;
 					break;
 				default:
-				kGAMECLASS.output("ERROR: slowStatGain called with stat argument of " + stat + ". This isn’t a real stat!");
+					output("ERROR: slowStatGain called with stat argument of " + stat + ". This isn’t a real stat!");
 				return 0;
 					break;
 			}
@@ -17837,24 +17843,24 @@
 				cockVirgin = false;
 				if(display)
 				{
-				var msg:String = "";
-				if(spacingsF) msg += " ";
-				msg += "<b>"
-				if (this is PlayerCharacter)
-				{
-					msg += "You have succumbed to your desires and lost your";
-					if (hasVagina()) msg += " masculine";
-					msg += " virginity.";
-				}
-				else
-				{
-					msg += capitalA + short + " has succumbed to " + mf("his", "her") + " desires and lost " + mf("his", "her");
-					if (hasVagina()) msg += " masculine";
-					msg += " virginity.";
-				}
-				msg += "</b>"
-				if (spacingsB) msg += " ";
-				output(msg);
+					var msg:String = "";
+					if(spacingsF) msg += " ";
+					msg += "<b>"
+					if (this is PlayerCharacter)
+					{
+						msg += "You have succumbed to your desires and lost your";
+						if (hasVagina()) msg += " masculine";
+						msg += " virginity.";
+					}
+					else
+					{
+						msg += capitalA + short + " has succumbed to " + mf("his", "her") + " desires and lost " + mf("his", "her");
+						if (hasVagina()) msg += " masculine";
+						msg += " virginity.";
+					}
+					msg += "</b>"
+					if (spacingsB) msg += " ";
+					output(msg);
 				}
 				return true;
 			}
@@ -20436,7 +20442,7 @@
 		public function sstdCatch(cumFrom:Creature = null, victim:Creature = null, location:String = "ass"):void
 		{
 			var catchSSTD:String = cumFrom.getRandomSSTD();
-			//kGAMECLASS.output(catchSSTD);
+			//output(catchSSTD);
 			switch(catchSSTD)
 			{
 				case "Undetected Furpies":

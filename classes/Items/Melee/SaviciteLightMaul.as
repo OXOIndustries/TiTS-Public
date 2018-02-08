@@ -47,7 +47,7 @@
 			baseDamage.kinetic.damageValue = 5;
 			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_STUN);
 			baseDamage.addFlag(DamageFlag.CRUSHING);
-			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
+			//addFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON);
 			
 			this.attack = -3;
 			this.defense = 0;
