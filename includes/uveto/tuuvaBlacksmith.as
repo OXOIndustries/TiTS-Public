@@ -283,7 +283,7 @@ public function tuuvaMenu():void
 	if(tuuvaAffection() >= 75 && flags["TUUVA_75AFF"] == undefined) addButton(5,"Feelings",tuuva75AffectionProc,undefined,"Feelings","She seems really uneasy about something. You should ask her about it.");
 	else if(tuuvaAffection() >= 100 && flags["TUUVA_DATE"] == undefined && tuuvaLover()) addButton(5,"Date",dateTalkOption,undefined,"Date","You’ve gotten pretty close. Maybe it’s time to do something special with her.");
 	else if(pc.hasKeyItem("Frostwyrm Scales")) addButton(5,"Scales",giveTuuvaFrostwormScales,undefined,"Scales","You have a pile of frostwyrm scales, and she seems like she’d know what to do with them.");
-	else addDisabledButton(5,"Special","Special","There aren't any special events you can do with her right now.");
+	else addDisabledButton(5,"Special","Special","There aren’t any special events you can do with her right now.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -1095,7 +1095,7 @@ public function iLoveTuuva():void
 	else output("me");
 	output("?”</i>");
 	output("\n\n<i>“Do I need to demonstrate again?”</i>");
-	output("\n\n<i>“...Maybe...”</i>  Well, if she says so. You lean in for another kiss, this time being met in the middle by the passionate pup. You keep this one up for a bit longer than the last one, eventually breaking it off slowly.");
+	output("\n\n<i>“...Maybe...”</i> Well, if she says so. You lean in for another kiss, this time being met in the middle by the passionate pup. You keep this one up for a bit longer than the last one, eventually breaking it off slowly.");
 	flags["TUUVA_75AFF"] = 1;
 	tuuvaLoveChoiceEpilogue(true);
 }
@@ -1506,7 +1506,7 @@ public function actuallyGetFuckedByTuuva(x:int):void
 
 	output("\n\nShe stops after a minute, and within seconds she’s mounted you, guiding her [tuuva.cock] to your lubed entrance.");
 	//Normal:
-	if(tuuva.hasCock(GLOBAL.TYPE_EQUINE)) 
+	if(!tuuva.hasCock(GLOBAL.TYPE_EQUINE)) 
 	{
 		output(" Her puppy prick spears into your ");
 		if(x >= 0) output("honey pot");

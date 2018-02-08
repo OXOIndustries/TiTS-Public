@@ -132,11 +132,13 @@ public function setupShopSeer():void
 	shopkeep.inventory.push(new YTRLube());
 	shopkeep.inventory.push(new Tentacool());
 	shopkeep.inventory.push(new WhiffOWisp());
-	//9999 - THESE CAN BE ADDED TO HER INVENTORY ONCE THEY’RE IMPLEMENTED
-	//shopkeep.inventory.push(new Capraphorm());
-	//shopkeep.inventory.push(new Illumorphene());
+	shopkeep.inventory.push(new Capraphorm());
+	shopkeep.inventory.push(new Illumorphene());
 	
 	if(flags["SLEEP_FAPNEA_INSTALLED"] == undefined) shopkeep.inventory.push(new SleepFapnea());
+	
+	CodexManager.unlockEntry("Tentatool");
+	//CodexManager.unlockEntry("Capraphorm");
 }
 
 
@@ -246,6 +248,8 @@ public function topicShopSeer():void
 	output("\n\n...Huh?");
 	
 	processTime(3);
+	
+	//CodexManager.unlockEntry("Envyoidics");
 	
 	talkSeerMenu();
 	addDisabledButton(1, "The Shop");
@@ -930,7 +934,7 @@ public function giveWhiffBlurb():String
 	{
 		buffer = "A ceremony of some sort: heavy mountain ranges covering a plateau of hooded figures chanting in unison. The sky cracks with lightning and the chorus escalates in volume.";
 		//pcHasPrimorditatts: 
-		if(9999 == 0) buffer += " This scene feels eerily familiar...";
+		if(pc.hasPerk("Primorditatts")) buffer += " This scene feels eerily familiar...";
 		buffer += " Two more prominent figures are the focus. You’re able to tell that they’re...Goats? One is small and pure white, the other is green, gold, and muscular. They appear to be locked into an awkward missionary position... <i>oh</i>. Something about the primal display before you awakens a deep lust in your mind. The sound of thunder and the sight of lightning adds an intangible sense of adrenaline with each crack of white light. But your enjoyment is cut short as the image fades and burns away to more random visual treats...";
 		whiffTexts.push(buffer);
 	}

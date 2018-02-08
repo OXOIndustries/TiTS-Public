@@ -10,8 +10,6 @@ package classes.Items.Transformatives
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	import classes.Util.InCollection;
-	import classes.Util.RandomInCollection;
-	import classes.Engine.Utility.indefiniteArticle;
 	import classes.Engine.Utility.getPlanetName;
 	import classes.Engine.Utility.IncrementFlag;
 	import classes.Engine.Utility.rand;

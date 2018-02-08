@@ -389,7 +389,7 @@ public function stormguardFightPrep():void
 	CombatManager.setHostileActors(stormy);
 	CombatManager.victoryScene(pcWinsVsSG);
 	CombatManager.lossScene(losesToSG);
-	CombatManager.displayLocation("STORMLANCER");
+	CombatManager.displayLocation(flags["MET_GEL_ZON"] != undefined ? "GEL ZON" : "STORMLANCER");
 	clearMenu();
 	addButton(0,"Next",CombatManager.beginCombat);
 }

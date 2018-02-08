@@ -315,7 +315,7 @@ public function nenneFamilyTalk():void
 
 	output("\n\nYou’ve stepped on one mine after another with the topic, so you decide to try and diffuse the situation. Knowing that Korgonne appreciate physical contact, you gently lay your hand on her scalp and give it a rub. You tell her that she’s a beautiful Korgonne, and if she tries, you’re sure she can find another mate that appreciates her for her. There’s bound to be someone in the hold that would enjoy the company of a motherly, experienced Korgonne like herself.");
 
-	output("\n\nShe leans into your head, her tail wagging furiously behind her at your encouragement. <i>“");
+	output("\n\nShe leans against your head, her tail wagging furiously behind her at your encouragement. <i>“");
 	if(!korgiTranslate()) output("Too hoping right.");
 	else output("I hope you’re right, too.");
 	output("”</i> Her eyes meet yours, and they narrow seductively; her tail stops its rampant swishing and slows to a much more casual pace. <i>“");
@@ -700,7 +700,7 @@ public function maleOrHermAndNotDoingOral(x:int = 0):void
 	{
 		output("\n\nThen, a light pinch, as Nenne adjusts her grip on you and gives you a light tug. Your [pc.cock " + x + "] is pulled along the tight, warm valley of her hefty bottom, until it finds something warmer and tighter: the pre that Nenne had used to lube your shaft is washed with the feminine juices that’s practically spilling from her pursed pussy lips. With a light downward thrust from her hips, you’ve entered her.");
 		pc.cockChange();
-		output("\n\nNenne hums in delight at feeling such a virile cock properly penetrate her; her breath comes out in feral sputters from the sides of her jowls, and she clenches on top of you. The pay that snaked you inside her loops up to your shoulder, gripping it loosely. Despite her easygoing pace and her expertise touch and directions, her body must have forgotten what a good fucking felt like after so long. You’re not sure you have the control over your body to give her the fucking she deserves, beyond whatever you do instinctually and automatically; you hope that it’ll be enough for her all the same.");
+		output("\n\nNenne hums in delight at feeling such a virile cock properly penetrate her; her breath comes out in feral sputters from the sides of her jowls, and she clenches on top of you. The paw that snaked you inside her loops up to your shoulder, gripping it loosely. Despite her easygoing pace and her expertise touch and directions, her body must have forgotten what a good fucking felt like after so long. You’re not sure you have the control over your body to give her the fucking she deserves, beyond whatever you do instinctually and automatically; you hope that it’ll be enough for her all the same.");
 		output("\n\nWhenever Nenne lifts herself up and off your [pc.cock " + x + "], you lay still, allowing the cool air of the room to simmer off your hard dick for the precious moment it’s exposed until Nenne squats herself back down. When she does, your [pc.hips] thrust upward, jabbing yourself into her as deeply as you can");
 		if(pc.hasKnot(x)) output("; a few more thrusts like that, with how ‘ready’ you both are, and you’ll be tied to her in no time");
 		output(".");

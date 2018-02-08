@@ -908,7 +908,7 @@ public function intimateCatchChaurmine():void
 		}
 	}
 	//3-1 odds for pussy is good enough for me!
-	x = choices[rand(choices.length)];
+	if(choices.length > 1) x = choices[rand(choices.length)];
 
 	//pcDitz:
 	if(pc.isBimbo())
@@ -976,7 +976,7 @@ public function intimateCatchChaurmine():void
 		output(" against the edges of his hard, heavy scales. With a pleased huff, his hot breath billowing down against you, he runs a hand");
 		if(pc.hasHair()) output(" through your [pc.hair]; his scale-claws feeling like a warm comb as they caress your scalp");
 		else output("along your scalp; his scale-claws massaging their warmth into you");
-		if(pc.earType == GLOBAL.TYPE_EQUINE || pc.earType == GLOBAL.TYPE_CANINE || pc.earType == GLOBAL.TYPE_FELINE) output(", and a moan slips through your [pc.lips] when the titan lightly grazes your [pc.ears]");
+		if(pc.hasEmoteEars()) output(", and a moan slips through your [pc.lips] when the titan lightly grazes your [pc.ears]");
 		output(".");
 
 		output("\n\nReveling in the heat and continuing affections, you reach up to Chaurmine’s bestial visage, tenderly rubbing his armored jaw");
@@ -1046,7 +1046,7 @@ public function intimateCatchChaurmine():void
 	if(pc.hasVagina())
 	{
 		output("\n\nHe quickly zeroes in on your [pc.clits], the lizard’s fingers teasing [pc.eachClit] as he runs them along your mons. Moans slip from you at his touch, your lower lips wedged between his [pc.girlCum]-slicked digits. You suddenly jolt, half in alarm and half in pleasure, when two of his sharp scale-claws curve and dip into [pc.oneVagina]; the grip he has on its outer folds is delightfully smooth. Writhing and whining in his arms, you’re thankful that his claws are apparently too wet and lubed up by your [pc.girlCumNoun] juices to cause harm or discomfort; instead, his claws and scales have <i>just</i> enough of an edge to stimulate your inner walls with the most lascivious friction. On the verge of a toe-curling high, you cry out in distress when he slides out of your [pc.vagina], the mind blowing friction gone as he brings his ");
-		if(pc.vaginas[x].wetness() >= 3) output("[pc.girlCum] drenched hand");
+		if(pc.isSquirter()) output("[pc.girlCum] drenched hand");
 		else output("[pc.girlCum] sheened fingers");
 		output(" to his rapacious tongue, rumbling happily as he licks himself clean");
 		output(".");
@@ -1163,7 +1163,7 @@ public function intimateCatchChaurmine():void
 		}
 
 		output("\n\nYou gasp, the fat cock spreading you wide, grinding against your tight walls, hits <i>that</i> spot. Swooning as the renewed inner heat boils over, you all but cream yourself silly on that juicy shaft, ");
-		if(pc.vaginas[x].wetness() >= 3) output("[pc.girlCum] gushing from your [pc.vaginas], drenching both of your lower bodies in your love lube");
+		if(pc.isSquirter()) output("[pc.girlCum] gushing from your [pc.vaginas], drenching both of your lower bodies in your love lube");
 		else output("streams of [pc.girlCum] running down into the lizard’s studded sheath");
 		output(". You can’t help but shudder with each luxurious contraction.");
 

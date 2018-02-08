@@ -228,6 +228,8 @@ public function statisticsScreen(showID:String = "All"):void
 		{
 			output2("\n<b>* Back:</b>");
 			if(pc.wingCount > 0) output2(" " + pc.wingCount + ",");
+			if(pc.wingTexture() > 0) output2(" " + GLOBAL.FLAG_NAMES[pc.wingTexture()] + ",");
+			if(pc.wingColor() != "") output2(" " + StringUtil.toDisplayCase(pc.wingColor()) + ",");
 			output2(" " + GLOBAL.TYPE_NAMES[pc.wingType] + " " + StringUtil.toDisplayCase(pc.wingsDescript(true)));
 		}
 		if(pc.tailCount > 0)
@@ -347,24 +349,26 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.hasCock() || pc.balls != 0)
 		{
 			output2("\n<b><u>Male Organs</u></b>");
-			output2("\n<b>* Total Count:</b>");
+			//output2("\n<b>* Total Count:</b>");
 			if(pc.cocks.length > 0)
 			{
-				output2(" " + pc.cocks.length + " Penis");
-				if(pc.cocks.length != 1) output2("es");
+				output2("\n<b>* Penis, Count:</b> " + pc.cocks.length);
+				//output2(" " + pc.cocks.length + " Penis");
+				//if(pc.cocks.length != 1) output2("es");
 			}
 			if(pc.balls <= 0)
 			{
-				output2(", Prostate");
+				//output2(", Prostate");
 				output2("\n<b>* Prostate, Volume:</b> " + prettifyVolume(pc.ballVolume(), 1));
 				output2("\n<b>* Prostate, Weight:</b> " + prettifyWeight(pc.bodyPartWeight("testicle")));
 				if(pc.weightQ("testicle") > 0) output2(" (" + pc.weightQ("testicle") + " %)");
 			}
 			else if(pc.balls > 0)
 			{
-				if(pc.cocks.length > 0) output2(",");
-				output2(" " + pc.balls + " Testicle");
-				if(pc.balls != 1) output2("s");
+				output2("\n<b>* Testicle, Count:</b> " + pc.balls);
+				//if(pc.cocks.length > 0) output2(",");
+				//output2(" " + pc.balls + " Testicle");
+				//if(pc.balls != 1) output2("s");
 				if(pc.hasStatusEffect("Uniball")) output2(", Uniball");
 				if(pc.hasStatusEffect("Special Scrotum"))
 				{
@@ -443,17 +447,19 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.hasVagina())
 		{
 			output2("\n<b><u>Female Organs</u></b>");
-			output2("\n<b>* Total Count:</b>");
+			//output2("\n<b>* Total Count:</b>");
 			if(pc.vaginas.length != 0)
 			{
-				output2(" " + pc.vaginas.length + " Vagina");
-				if(pc.vaginas.length != 1) output2("s");
+				output2("\n<b>* Vagina, Count:</b> " + pc.vaginas.length);
+				//output2(" " + pc.vaginas.length + " Vagina");
+				//if(pc.vaginas.length != 1) output2("s");
 			}
 			if(pc.totalClits() > 0)
 			{
-				if(pc.vaginas.length != 0) output2(",");
-				output2(" " + pc.totalClits() +" Clit");
-				if(pc.totalClits() != 1) output2("s");
+				output2("\n<b>* Clitoris, Count:</b> " + pc.totalClits());
+				//if(pc.vaginas.length != 0) output2(",");
+				//output2(" " + pc.totalClits() +" Clit");
+				//if(pc.totalClits() != 1) output2("s");
 				if(pc.clitLength != 0) output2("\n<b>* Clitoris, Length:</b> " + prettifyLength(pc.clitLength));
 				if(pc.totalClits() != 1) output2(", each");
 				if(pc.vaginas.length > 1)
@@ -1004,6 +1010,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Sired, Ula’s Children:</b> " + StatTracking.getStat("pregnancy/ula sired"));
 				if(StatTracking.getStat("pregnancy/zil call girl kids") > 0)
 					output2("\n<b>* Sired, " + (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "Zil Call Girl" : "Zheniya") + " Children:</b> " + StatTracking.getStat("pregnancy/zil call girl kids"));
+				if(StatTracking.getStat("pregnancy/zil sired") > 0)
+					output2("\n<b>* Sired, Zil Children:</b> " + StatTracking.getStat("pregnancy/zil sired"));
 			}
 			if(totalProduce)
 			{
@@ -4538,7 +4546,11 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] != undefined) output2("\n<b>* Elder Venus Pitcher, Times Hypnotized By:</b> " + flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"]);
 					if(venusSubmission() > 0) output2("\n<b>* Elder Venus Pitcher, Dominance:</b> " + formatFloat(venusSubmission(), 1) + " %");
 				}
-				if(flags["TIMES_MET_FEMZIL"] != undefined) output2("\n<b>* Female Zil, Times Encountered:</b> " + flags["TIMES_MET_FEMZIL"]);
+				if(flags["TIMES_MET_FEMZIL"] != undefined)
+				{
+					output2("\n<b>* Female Zil, Times Encountered:</b> " + flags["TIMES_MET_FEMZIL"]);
+					if(flags["FZIL_PREG_TIMER"] != undefined) output2("\n<b>* Female Zil, Days Pregnant:</b> " + flags["FZIL_PREG_TIMER"]);
+				}
 				if(flags["ENCOUNTERED_ZIL"] != undefined)
 				{
 					output2("\n<b>* Male Zil, Times Encountered:</b> " + flags["ENCOUNTERED_ZIL"]);
@@ -4918,6 +4930,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Female Raskvel, Times Encountered:</b> " + flags["MET_FEMALE_RASKVEL"]);
 					if(flags["TIMES_RODE_RASKVEL_FACE"] != undefined) output2("\n<b>* Female Raskvel, Times Riding Her Face:</b> " + flags["TIMES_RODE_RASKVEL_FACE"]);
+					if(flags["RASKVEL_PREG_TIMER"] != undefined) output2("\n<b>* Female Raskvel, Days Pregnant:</b> " + flags["RASKVEL_PREG_TIMER"]);
 				}
 				if(flags["MET_MALE_RASKVEL_GANG"] != undefined) output2("\n<b>* Male Raskvel Gang, Times Encountered:</b> " + flags["MET_MALE_RASKVEL_GANG"]);
 				if(flags["MET_SEXBOT_FEMALE_ON_TARKUS"] != undefined) output2("\n<b>* Female Sexbots, Times Encountered:</b> " + flags["MET_SEXBOT_FEMALE_ON_TARKUS"]);
@@ -6116,6 +6129,13 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Herbs & Happy</u></b>");
 				output2("\n<b>* Nenne:</b> Met her");
+				variousCount++;
+			}
+			// The Warm Crusts
+			if(flags["MET_HEIDRUN"] != undefined)
+			{
+				output2("\n<b><u>The Warm Crusts</u></b>");
+				output2("\n<b>* Heidrun:</b> Met her");
 				variousCount++;
 			}
 			// Krym
