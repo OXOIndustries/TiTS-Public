@@ -302,6 +302,11 @@ package classes.Resources.Busts
 		public var Bust_HANA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/hana_nude.png", mimeType = "image/png")]
 		public var Bust_HANA_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/heidrun.png", mimeType = "image/png")]
+		public var Bust_HEIDRUN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/heidrun_nude.png", mimeType = "image/png")]
+		public var Bust_HEIDRUN_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/horisha_peck.png", mimeType = "image/png")]
 		public var Bust_HORISHA_AND_PECK:Class;
@@ -994,6 +999,11 @@ package classes.Resources.Busts
 			public var Full_HANA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/hana_nude.png", mimeType = "image/png")]
 			public var Full_HANA_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/heidrun.png", mimeType = "image/png")]
+			public var Full_HEIDRUN:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/heidrun_nude.png", mimeType = "image/png")]
+			public var Full_HEIDRUN_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/horisha_peck.png", mimeType = "image/png")]
 			public var Full_HORISHA_AND_PECK:Class;
