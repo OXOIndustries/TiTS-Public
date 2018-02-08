@@ -4802,7 +4802,7 @@
 		{
 			if(!robotOnly)
 			{
-				if(hasStatusEffect("Varmint Buddy")) return true;
+				if(hasStatusEffect("Varmint Buddy") || accessory is KordiiakLeash) return true;
 			}
 			if(!accessoryOnly)
 			{

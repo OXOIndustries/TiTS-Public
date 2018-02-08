@@ -2136,7 +2136,14 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	if(pc.hasStatusEffect("Egregiously Endowed")) moveMinutes *= 2;
 	if(pc.hasItemByClass(DongDesigner)) moveMinutes *= 2;
 	if(pc.hasPowerArmorItem() && !pc.inPowerArmor()) moveMinutes *= 2;
-	if(pc.hasItemByClass(Hoverboard) || (pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))) moveMinutes = (moveMinutes > 1 ? 1 : 0);
+	//Things that make you go fastah!
+	//Nogwitch is fastest mount atm.
+	if(pc.accessory is NogwichLeash) moveMinutes = (moveMinutes >= 3 ? Math.floor(moveMinutes/3) : moveMinutes-1);
+	//Hoverboard & Kordiiaks cuts time in half-ish.
+	else if(pc.hasItemByClass(Hoverboard) || pc.accessory is KordiiakLeash) moveMinutes = (moveMinutes >= 4 ? Math.floor(moveMinutes/2) : moveMinutes-1);
+	//Not sure who put this in, but I hate it. Tentacles aren't an optimal mode of movement. Reducing to -1;
+	else if(pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) moveMinutes--;
+	
 	if(moveMinutes < 0) moveMinutes = 0;
 	StatTracking.track("movement/time travelled", moveMinutes);
 	processTime(moveMinutes);
