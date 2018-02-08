@@ -40,7 +40,7 @@
 			attackNoun = "smack";
 			
 			//Information
-			this.basePrice = 7000;
+			this.basePrice = 10000;
 			
 			baseDamage = new TypeCollection();
 			baseDamage.kinetic.damageValue = 22;
