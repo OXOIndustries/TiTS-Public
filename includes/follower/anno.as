@@ -1310,7 +1310,7 @@ public function annoFollowerSuckAndFuckSexPartII():void
 		output("You give the tail a little push back through the hole in her ");
 		if (anno.armor is AnnosCatsuit) output("catsuit's");
 		else output("jeans'");
-		outut(" rear end before yanking the whole outfit down, struggling to get her waistband down around the huskar's broad hips and thunderous thighs. Finally, her huge, juicy butt pops free, and you drag her pants down, letting them ball around your ausar lover's spread legs and leaving her nice and bare for you. She gives a happy moan as the last of her clothing falls free, wiggling her enormous ass back into your bare, cum-slathered groin. You answer with a quick slap on one of her rounded cheeks, eliciting a startled squeak from her as her flesh jiggles in response.");
+		output(" rear end before yanking the whole outfit down, struggling to get her waistband down around the huskar's broad hips and thunderous thighs. Finally, her huge, juicy butt pops free, and you drag her pants down, letting them ball around your ausar lover's spread legs and leaving her nice and bare for you. She gives a happy moan as the last of her clothing falls free, wiggling her enormous ass back into your bare, cum-slathered groin. You answer with a quick slap on one of her rounded cheeks, eliciting a startled squeak from her as her flesh jiggles in response.");
 	}
 	
 	output("\n\n<i>“Not yet,”</i> you tease, pulling your crotch back from her ample ass. ");
@@ -2314,7 +2314,7 @@ public function annoFollowerAppearance():void
 	if(annoIsHuskar())
 	{
 		output("Anno Dorna is six feet of thick, curvy ausar beauty. She still has her lush snow-white hair and a pair of big, alert canine ears perched atop her head, now joined by a collar of silky white fur around her shoulders and neck, and a tail so fluffy that even ");
-		if(flags["MET_PENNY" != undefined) output("Penny");
+		if(flags["MET_PENNY"] != undefined) output("Penny");
 		else output("a fox-morph");
 		output(" would be jealous. Her tail never seems to stand still, always wagging playfully behind her whenever she sees you, more like a big, happy puppy than the fearsome predators she descends from.");
 		output("\n\nShe’s wearing ");

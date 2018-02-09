@@ -25,7 +25,7 @@ package classes.Items.Accessories
 			
 			description = "a grunch leash";
 			
-			tooltip = "This leash leads back to the mount you rented from Maja. Sadly, it won't belch acid in combat like its younger kin. It also isn't quite as fast as a kor'diiak or a nog'wich. However, if you need a brief sprint to carry you out of combat in a hurry, nothing beats a grunch.";
+			tooltip = "This leash leads back to the mount you rented from Maja. Sadly, it won’t belch acid in combat like its younger kin. It also isn’t quite as fast as a kor’diiak or a nog’wich. However, if you need a brief sprint to carry you out of combat in a hurry, nothing beats a grunch.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			

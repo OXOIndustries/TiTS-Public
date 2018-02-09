@@ -1,3 +1,5 @@
+import classes.Items.Treasures.MiniatureGiantBabyKordiiak;
+
 public function showMaja(nude:Boolean = false):void
 {
 	var nudeS:String = "";
@@ -246,7 +248,7 @@ public function purchaseTameling(arg:ItemSlotClass):void
 	}
 	else if(pc.credits < arg.basePrice)
 	{
-		output("You realize after a moment that <b>you can't afford such extravagance.</b> Oh well.");
+		output("You realize after a moment that <b>you can’t afford such extravagance.</b> Oh well.");
 		clearMenu();
 		addButton(0,"Next",majaRentButton);
 		return;
@@ -273,7 +275,7 @@ public function purchaseTameling(arg:ItemSlotClass):void
 	//Grunch
 	else if(arg is GrunchLeash)
 	{
-		output("<i>“I guess I’ll stick with a grunch today,”</i> you say, a little hesitant based on the shopkeeper's obvious bias about them. She gives you a");
+		output("<i>“I guess I’ll stick with a grunch today,”</i> you say, a little hesitant based on the shopkeeper’s obvious bias about them. She gives you a");
 		if(majaTrust()) output(" sympathetic");
 		else output(" curt");
 		output(" nod and heads into the back room, separating a drab key from her ring. She comes back a minute later leading one of the droopy lizards you saw in the pens. It hardly seems to take notice of you, but takes a step closer when Maja hands over its leash. It shivers periodically, seemingly more from fear than cold.");
@@ -285,7 +287,7 @@ public function purchaseTameling(arg:ItemSlotClass):void
 	//Shoulder grunch
 	else if(arg is ShoulderGrunchLeash)
 	{
-		output("<i>“I guess I’ll take a shoulder grunch for now,”</i> you say, a little hesitant based on the shopkeeper's feelings about them. She nods, seperating a small key from her ring as she heads back into the pen area. A minute later she returns with a parrot sized winged lizard on one arm. It looks at you, its head listing lazily to one side, and burps.");
+		output("<i>“I guess I’ll take a shoulder grunch for now,”</i> you say, a little hesitant based on the shopkeeper’s feelings about them. She nods, seperating a small key from her ring as she heads back into the pen area. A minute later she returns with a parrot sized winged lizard on one arm. It looks at you, its head listing lazily to one side, and burps.");
 		output("\n\n<i>“");
 		if(!korgiTranslate()) output("Go ahead and take. Maja no want stinky lizard. Keep if want,");
 		else output("Go ahead and keep this one if you want it. It’s just gonna grow up and take up space here, so maybe you can get some better use out of it,");
@@ -419,7 +421,7 @@ public function majaAliensTalk():void
 	//merge
 	output("\n\nSuddenly the thick skirt she wears even down here in the warm caves makes a bit more sense. You ");
 	if(pc.isBimbo()) output("jump into a hug that almost knocks the poor girl off her feet.");
-	else if(pc.isBro())  
+	else if(pc.isBro())
 	{
 		if(pc.tallness >= 12*5 && pc.PQ() >= 60) output("lift");
 		else output("lock");

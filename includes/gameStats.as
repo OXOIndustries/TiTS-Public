@@ -6185,9 +6185,9 @@ public function displayEncounterLog(showID:String = "All"):void
 					{
 						case "a kor’diiak bear leash": output2("Kor’diiak Bear"); break;
 						case "a nog’wich leash": output2("Nog’wich"); break;
-						case "a 9999 leash": output2("Grunch"); break;
-						case "a 9999 leash": output2("Shoulder Grunch"); break;
-						case "a 9999 leash": output2("Miniature Giant Baby Kor’diiak"); break;
+						case "a grunch leash": output2("Grunch"); break;
+						case "a shoulder grunch leash": output2("Shoulder Grunch"); break;
+						case "a miniature giant baby kor’diiak": output2("Miniature Giant Baby Kor’diiak"); break;
 						default: output2("<i>Unknown beast!</i>"); break;
 					}
 				}

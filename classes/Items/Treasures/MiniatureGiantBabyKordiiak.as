@@ -23,15 +23,15 @@
 			this.shortName = "MGBK";
 			
 			//Regular name
-			this.longName = "miniature giant baby kor'diiak";
+			this.longName = "miniature giant baby kor’diiak";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a miniature giant baby kor'diiak";
+			this.description = "a miniature giant baby kor’diiak";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "You're not rightly sure how this baby miniature giant kor'diiak found its way into your inventory, but it's there all the same. According to your Codex, it will take decades to mature, so for the time being, you have a cuddly pet.\n\n(This item is nothing but a cute souvenier.)";
+			this.tooltip = "You’re not rightly sure how this baby miniature giant kor’diiak found its way into your inventory, but it’s there all the same. According to your Codex, it will take decades to mature, so for the time being, you have a cuddly pet.\n\n(This item is nothing but a cute souvenier.)";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
