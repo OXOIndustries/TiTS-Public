@@ -260,6 +260,12 @@ public function configureMails():void
 	MailManager.addMailEntry("ilaria_preg2", ilariaPreg2EmailText, "Ilaria Ilgade", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("prai_email", praiEmailText, praiSubjectText, "Prai Ellit", "Prai@Xenotech.net", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("ula_birth", ulaPregEmailText, "Ula message!", "Bill Billingston", "bill_billingston@SteeleTech.corp", quickPCTo, quickPCToAddress);
+	//Anno thickness emails!
+	MailManager.addMailEntry("kaedeReactsToHuskarAnnoEmailMail", kaedeReactsToHuskarAnnoEmail, "Oh my god","Kaede","KaedeAEntara17@IndieTransports.net", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("syriReactsToHuskarAnnoEmailMail", syriReactsToHuskarAnnoEmail, "lol","Syri Dorna","BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("annoReactsToSyriHuskarTeasingMail", annoReactsToSyriHuskarTeasing, "-no subject-","Anno Dorna","Anno_Dorna@SteeleTech.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("syriGetsBlockedByAnnoOverHuskarMail", syriGetsBlockedByAnnoOverHuskar, "Besties with testes","Syri Dorna","BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
+
 }
 
 public function kallyKiroMilkvite():String

@@ -2213,6 +2213,7 @@ public function futaBabePantyfapsRouter():void
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) jackOffWithLadyPantiesYouSicko(flags["BEA_TITLE"]);
 		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) jackOffWithLadyPantiesYouSicko("Erra");
 		if(pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent.")) jackOffWithLadyPantiesYouSicko("Myrna");
+		if(pc.hasKeyItem("Panties - Anno's - Blue boxer briefs.")) jackOffWithLadyPantiesYouSicko("Anno");
 	}
 	//More than one pair? Build a menu.
 	else
@@ -2224,6 +2225,11 @@ public function futaBabePantyfapsRouter():void
 		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) 
 		{
 			addButton(button,"Aina’s",jackOffWithLadyPantiesYouSicko,"Aina","Aina’s Panties","Use Aina’s large, striped centaur panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Anno's - Blue boxer briefs."))
+		{
+			addButton(button,"Anno's",jackOffWithLadyPantiesYouSicko,"Anno","Anno's Panties","Use Anno's blue boxer-briefs for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace."))
@@ -2308,6 +2314,7 @@ public function futaBabePantySchlicksRouter():void
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) pureLadyWaifuPussyRubFap(flags["BEA_TITLE"]);
 		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) pureLadyWaifuPussyRubFap("Erra");
 		if(pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent.")) pureLadyWaifuPussyRubFap("Myrna");
+		if(pc.hasKeyItem("Panties - Anno's - Blue boxer briefs.")) pureLadyWaifuPussyRubFap("Anno");
 	}
 	//More than one pair? Build a menu.
 	else
@@ -2319,6 +2326,11 @@ public function futaBabePantySchlicksRouter():void
 		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) 
 		{
 			addButton(button,"Aina’s",pureLadyWaifuPussyRubFap,"Aina","Aina’s Panties","Use Aina’s large, striped centaur panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Anno's - Blue boxer briefs."))
+		{
+			addButton(button,"Anno's",pureLadyWaifuPussyRubFap,"Anno","Anno's Panties","Use Anno's blue boxer-briefs for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace."))
@@ -2401,6 +2413,7 @@ public function pantyCollectionList(total:Boolean = false):Array
 	if(total || pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) panties.push(flags["BEA_TITLE"]);
 	if(total || pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) panties.push("Erra");
 	if(total || pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent.")) panties.push("Myrna");
+	if(total || pc.hasKeyItem("Panties - Anno's - Blue boxer briefs.")) panties.push("Anno");
 	return panties;
 }
 public function pantyFapCount(total:Boolean = false):Number
@@ -2448,6 +2461,7 @@ public function pantyFapRandom(genitalSelect:int = -1, waifu:String = ""):void
 	{
 		switch(waifu)
 		{
+			case "Anno": jackOffWithLadyPantiesYouSicko("Anno"); break;
 			case "Kiro": futaBabePantyfaps("Kiro"); break;
 			case "Penny": futaBabePantyfaps("Penny"); break;
 			case "Syri": futaBabePantyfaps("Syri"); break;
@@ -2468,6 +2482,7 @@ public function pantyFapRandom(genitalSelect:int = -1, waifu:String = ""):void
 	{
 		switch(waifu)
 		{
+			case "Anno": pureLadyWaifuPussyRubFap("Anno"); break;
 			case "Kiro": futaPantiesFapInPussy("Kiro"); break;
 			case "Penny": futaPantiesFapInPussy("Penny"); break;
 			case "Syri": futaPantiesFapInPussy("Syri"); break;
@@ -2491,6 +2506,7 @@ public function getPantyColor(waifu:String = ""):String
 	var pantyColor:String = "CODERS DUN GOOFED";
 	switch(waifu)
 	{
+		case "Anno": pantyColor = "dark blue"; break;
 		case "Kiro": pantyColor = "black"; break;
 		case "Penny": pantyColor = "blue"; break;
 		case "Syri": pantyColor = "blue"; break;
@@ -2515,6 +2531,7 @@ public function getPantyTexture(waifu:String = ""):String
 	var pantyTexture:String = "CODERS DUN GOOFED";
 	switch(waifu)
 	{
+		case "Anno": pantyTexture = "cotton"; break;
 		case "Kiro": pantyTexture = "lace"; break;
 		case "Penny": pantyTexture = "cotton"; break;
 		case "Syri": 

@@ -22,6 +22,8 @@ package classes.Resources.Busts
 		public var Bounds_ANNO:Rectangle = new Rectangle(25, 15, 70, 70);
 		[Embed(source = "../../../assets/images/npcs/cheshire/anno_nude.png", mimeType = "image/png")]
 		public var Bust_ANNO_NUDE:Class;
+		public function get Bust_ANNO_HUSKAR():Class { return Bust_ANNO; }
+		public function get Bust_ANNO_HUSKAR_NUDE():Class { return Bust_ANNO_NUDE; }
 		
 		[Embed(source = "../../../assets/images/npcs/cheshire/Carl.png", mimeType = "image/png")]
 		public var Bust_CARL:Class;

@@ -731,8 +731,14 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if (!counter)
 		{
+			//If anno is disabled due to thiccness
+			if(flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 60 > GetGameTimestamp())
+			{
+				crewMessages += "\n\nAnno isn't in at the moment. You'll have to wait a bit longer for her to start digging into the treats....";
+				addDisabledButton(btnSlot++,"Anno","Anno","Anno isn't in at the moment. You'll have to wait a bit longer for her to start digging into the treats....");
+			}
 			//25% chance of special maid scene proccing if Anno has the maid outfit and haven't seen the scene in a day - gotta have a dink that fits and not be naga or taur
-			if (flags["ANNO_MAID_OUTFIT"] != undefined && rand(4) == 0 && !pc.hasStatusEffect("The Lusty Ausar Maid") && !pc.isTaur() && !pc.isNaga() && pc.cockThatFits(anno.vaginalCapacity()) >= 0)
+			else if (flags["ANNO_MAID_OUTFIT"] != undefined && rand(4) == 0 && !pc.hasStatusEffect("The Lusty Ausar Maid") && !pc.isTaur() && !pc.isNaga() && pc.cockThatFits(anno.vaginalCapacity()) >= 0)
 			{
 				if (rand(2) == 0) crewMessages += "\n\nAnno’s not in her quarters as you’d expect. Instead you find her prancing about the common area of your ship, dressed in what appears to be... a maid outfit?";
 				else crewMessages += "\n\nAnno doesn’t seem to be in her quarters at the moment, leaving the room strikingly empty, but you think you catch a few glimpses of the snowy pup cavorting about your ship’s common area. Odd.";
@@ -741,7 +747,11 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			else
 			{
 				if (hours >= 6 && hours <= 7 || hours >= 19 && hours <= 20) crewMessages += "\n\nAnno is walking about in her quarters, sorting through her inventory and organizing some of her equipment.";
-				else if (hours >= 12 || hours <= 13) crewMessages += "\n\nAnno’s busy doing a quick workout in her quarters to the beat of some fast-paced ausar heavy metal. <i>“Gotta keep in shape!”</i> she says.";
+				else if (hours >= 12 || hours <= 13) 
+				{
+					if(!annoIsHuskar()) crewMessages += "\n\nAnno’s busy doing a quick workout in her quarters to the beat of some fast-paced ausar heavy metal. <i>“Gotta keep in shape!”</i> she says.";
+					else crewMessages += "\n\nYou catch Anno standing in the middle of her quarters, wearing a skin-tight leotard that's practically tearing itself apart trying to contain her chest and pillowy ass. She's following along with a low-impact cardio routine playing on her desk's holoscreen; guess Anno still wants to keep in shape, but isn't looking to burn off those sexy curves you've given her. You happily drink in her jiggling movements for a few moments before moving on.";
+				}
 				// PC has Freed Reaha and Anno, add to Anno’s random selection:
 				else if (!curedReahaInDebt() && rand(3) == 0) crewMessages += "\n\nAnno’s sitting in the kitchen with a [reaha.milkNoun] moustache on her upper lip, looking awfully happy with herself. You can’t imagine where that came from...";
 				else crewMessages += "\n\nAnno is sitting in the common area with her nose buried in half a dozen different data slates. It looks like she’s splitting her attention between the latest Warp Gate research and several different field tests of experimental shield generators.";
@@ -1489,6 +1499,12 @@ public function shipMenu():Boolean
 	if(flags["ELLIE_LAYING_PC_MIA"] != undefined)
 	{
 		ellieLayPlayerOffNT();
+		return true;
+	}
+	//Anno Thiccening xpack
+	if(flags["ANNO_HUSKAR_COMPLETE"] == undefined && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 60 < GetGameTimestamp())
+	{
+		annoSomethingsChanging();
 		return true;
 	}
 	
@@ -2885,6 +2901,14 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	
 	if(sendMails)
 	{
+		/* ANNO THICKNESS! */
+		if(annoIsHuskar())
+		{
+			if(!MailManager.isEntryUnlocked("syriGetsBlockedByAnnoOverHuskarMail") && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 700 <= GetGameTimestamp()) goMailGet("syriGetsBlockedByAnnoOverHuskarMail");
+			if(!MailManager.isEntryUnlocked("annoReactsToSyriHuskarTeasingMail") && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 375 <= GetGameTimestamp()) goMailGet("annoReactsToSyriHuskarTeasingMail");
+			if(!MailManager.isEntryUnlocked("syriReactsToHuskarAnnoEmailMail") && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 370 <= GetGameTimestamp()) goMailGet("syriReactsToHuskarAnnoEmailMail");
+			if(!MailManager.isEntryUnlocked("kaedeReactsToHuskarAnnoEmailMail") && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 250 <= GetGameTimestamp()) goMailGet("kaedeReactsToHuskarAnnoEmailMail");
+		}
 		//NEVRIE MAIL!
 		if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (nextTimestamp - (24 * 60))) nevriMailGet();
 		if (!MailManager.isEntryUnlocked("orangepills") && flags["MCALLISTER_MYR_HYBRIDITY"] == 2 && nextTimestamp >= (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) nevriOrangeMailGet();

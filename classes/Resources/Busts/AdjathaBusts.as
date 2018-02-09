@@ -26,6 +26,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/angel.png", mimeType = "image/png")]
 		public var Bust_ANGEL:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/anno_huskar.png", mimeType = "image/png")]
+		public var Bust_ANNO_HUSKAR:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/anno_huskar_nude.png", mimeType = "image/png")]
+		public var Bust_ANNO_HUSKAR_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/anyxine.png", mimeType = "image/png")]
 		public var Bust_ANYXINE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/anyxine_nude.png", mimeType = "image/png")]
@@ -761,6 +766,11 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/angel.png", mimeType = "image/png")]
 			public var Full_ANGEL:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/anno_huskar.png", mimeType = "image/png")]
+			public var Full_ANNO_HUSKAR:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/anno_huskar_nude.png", mimeType = "image/png")]
+			public var Full_ANNO_HUSKAR_NUDE:Class;
 		
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/anyxine.png", mimeType = "image/png")]
 			public var Full_ANYXINE:Class;
