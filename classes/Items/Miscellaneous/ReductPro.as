@@ -933,7 +933,7 @@ package classes.Items.Miscellaneous
 			// Shrink cock size by 33%...
 			var nShrink:Number = (Math.round((pc.cocks[cockNum].cLengthRaw / 3) * 100) / 100);
 			
-			if (pc.cockLengthUnlocked(cockNum, (pc.cocks[cockNum].cLengthRaw - nShrink)) || rand(10) == 0) //10% chance to bypass Goo Crotch, permanently wasting biomass.
+			if (pc.cockLengthUnlocked(cockNum, (pc.cocks[cockNum].cLengthRaw - nShrink)))
 			{
 				output("\n\nYour " + pc.cockDescript(cockNum) + " twitches as it shrinks, disappearing steadily into your " + (pc.hasSheath() ? "sheath" : "crotch"));
 				pc.cocks[cockNum].cLengthRaw -= nShrink;
@@ -1109,8 +1109,6 @@ package classes.Items.Miscellaneous
 			if (nSize >= 1 && pc.ballSizeUnlocked(nSize))
 			{
 				output("\n\nYou feel your scrotum shift, shrinking down along with your " + pc.ballsDescript() + ". Within a few seconds the paste has been totally absorbed and the shrinking stops.");
-				if (pc.isGoo())
-					output(" <b>Any biomass you have invested in your balls are wasted.</b>");
 				pc.ballSize(nSize, true);
 				
 				if (pc.isBro())
