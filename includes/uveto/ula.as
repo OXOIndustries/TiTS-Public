@@ -72,7 +72,8 @@ public function ulaBonus():void
 	}
 	if(flags["ULA_CAVE"] == currentLocation && flags["ULA_SAVED"] == undefined)
 	{
-		if(flags["ULA_LEAVE_TIMER"] == undefined || flags["ULA_LEAVE_TIMER"] + 60*24*2 > GetGameTimestamp())
+		//ULA TEMPORARILY RE-ENABLED
+		if(flags["ULA_LEAVE_TIMER"] == undefined || flags["ULA_LEAVE_TIMER"] + 60*24*2 > GetGameTimestamp() || 9999 == 9999)
 		{
 			output("\n\nA shivering figure lurks in shadowy darkness at the rear of the cave, its large, canine ears quivering in distress. Features are difficult to make out without getting any closer, but it is clear from the mop of snow-soaked hair and chattering teeth that whatever is cowering back there is suffering from some serious hypothermia.");
 			addButton(0,"Figure",caveMeetUla);
