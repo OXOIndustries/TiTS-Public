@@ -674,6 +674,8 @@ public function bothriocQuestQuadommeAutoSubmitNext():void
 			output("\n\nThat’s fine. That’s more than fair. That’s absolutely wonderful. You smile back happily, allowing that heat you’ve been denying to finally overwhelm you. You love doing your bit for the cause.");
 			output("\n\n");
 			
+			IncrementFlag("BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT");
+			
 			// {standard loss scene from here}
 			clearMenu();
 			addButton(0, "Next", bothriocQuadommePCLoss);
