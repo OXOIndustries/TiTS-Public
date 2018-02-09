@@ -1594,6 +1594,8 @@ public function enterKorgHold():void
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
+	
+	removeUvetoCold(false);
 }
 
 //Leave Awoo
@@ -1617,12 +1619,16 @@ public function leaveAwoo():void
 	output(", you step out into the snow.");
 	output("\n\nThe door seals shut behind you, leaving you in the driven snow.");
 	processTime(1);
+	
+	addUvetoCold(false);
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
 public function korgiD12Bonus():void
 {
+	output("\n\n");
 	if(rand(3) == 0) output("A naked dog-person is trotting by right now, clad in little more than wispy fabric and jingling stone jewelry. He spares you a friendly wave and bounces along on his way.");
 	else if(rand(2) == 0) output("A naked dog-girl is trotting by right now, openly ogling you on the way by. You can see her nipples visibly plump around her jeweled nipple-piercings.");
 	else output("A group of korg fisherman trundle by with nothing but a few pouches of bait and metallic fishing poles.");

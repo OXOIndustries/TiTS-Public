@@ -1046,7 +1046,7 @@ public function intimateCatchChaurmine():void
 	if(pc.hasVagina())
 	{
 		output("\n\nHe quickly zeroes in on your [pc.clits], the lizard’s fingers teasing [pc.eachClit] as he runs them along your mons. Moans slip from you at his touch, your lower lips wedged between his [pc.girlCum]-slicked digits. You suddenly jolt, half in alarm and half in pleasure, when two of his sharp scale-claws curve and dip into [pc.oneVagina]; the grip he has on its outer folds is delightfully smooth. Writhing and whining in his arms, you’re thankful that his claws are apparently too wet and lubed up by your [pc.girlCumNoun] juices to cause harm or discomfort; instead, his claws and scales have <i>just</i> enough of an edge to stimulate your inner walls with the most lascivious friction. On the verge of a toe-curling high, you cry out in distress when he slides out of your [pc.vagina], the mind blowing friction gone as he brings his ");
-		if(pc.isSquirter()) output("[pc.girlCum] drenched hand");
+		if(pc.isSquirter() || pc.girlCumQ() >= 500) output("[pc.girlCum] drenched hand");
 		else output("[pc.girlCum] sheened fingers");
 		output(" to his rapacious tongue, rumbling happily as he licks himself clean");
 		output(".");

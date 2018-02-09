@@ -147,6 +147,7 @@ public function bothriocQuestTalkNext(arg:Array):void
 				else if(pc.isAss() || pc.isBro()) output("<i>“I’ll help you,”</i> you reply impatiently. <i>“If the reward’s worthwhile, at least.”</i>");
 				else if(pc.isMischievous()) output("<i>“Giving this the big build up, aren’t you?”</i> you say, with a quirk of the lip. <i>“C’mon then - let’s hear what I’m getting into.”</i>");
 				else output("<i>“Of course I’ll help you,”</i> you reply, straightening your back. <i>“I’m Captain Steele! Just lay it out.”</i>");
+				output("\n\n");
 			}
 			output("<i>“I need two things, Steele.”</i> The quadomme brings two gleaming black palms together, angles them towards you. <i>“Firstly: I need you to voyage down to the Deep Caves, approach as many quadommes as you can, and convince them to meet me. I shall give you the place, date, time. It will be the first summit of our people for a very, very long time.”</i>");
 			output("\n\n<i>“It won’t be easy. They will know you’re coming. They will see you as a pawn of mine,");
