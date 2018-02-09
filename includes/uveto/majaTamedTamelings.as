@@ -219,6 +219,7 @@ public function majaRentButton():void
 	if(!majaTrust()) setButtonDisabled(0);
 	addItemButton(1, new NogwichLeash(), purchaseTameling,new NogwichLeash());
 	addItemButton(2, new ShoulderGrunchLeash(), purchaseTameling,new ShoulderGrunchLeash());
+	addItemButton(3, new GrunchLeash(), purchaseTameling, new GrunchLeash());
 	if(flags["MAJA_RENTING"] != undefined)
 	{
 		output("\n\n<b>You will not be able to rent a new animal until you return the old one.");
@@ -232,7 +233,7 @@ public function purchaseTameling(arg:ItemSlotClass):void
 {
 	clearOutput();
 	showMaja();
-	if(!korgiiCredits()) //9999 allow grunch passthrough
+	if(!korgiiCredits() && !(arg is GrunchLeash)) //allow grunch passthrough
 	{
 		output("You pull out a few credit chits, prepared to give the stocky korgonne whatever kind of payment she needs for riding the animals. Maja gives you a confused look, glancing at the chits and back up to you.");
 		output("\n\n<i>“");
@@ -250,7 +251,7 @@ public function purchaseTameling(arg:ItemSlotClass):void
 		addButton(0,"Next",majaRentButton);
 		return;
 	}
-	flags["MAJA_RENTING"] = arg.description;
+	if(!(arg is GrunchLeash) && !(arg is ShoulderGrunchLeash) && !(arg is MiniatureGiantBabyKordiiak)) flags["MAJA_RENTING"] = arg.description;
 	pc.credits -= arg.basePrice;
 	eventQueue.push(majaRentButton);
 	//Kor'diiak
@@ -269,11 +270,36 @@ public function purchaseTameling(arg:ItemSlotClass):void
 		else output("Normally only the smaller nog’wich go out for hunts, but I figure since there are all kinds of aliens out there I’d give you one of the biggest one we have who’s still in her prime. I think she likes you,");
 		output("”</i> she says, handing the leash off to you.\n\n");
 	}
+	//Grunch
+	else if(arg is GrunchLeash)
+	{
+		output("<i>“I guess I’ll stick with a grunch today,”</i> you say, a little hesitant based on the shopkeeper's obvious bias about them. She gives you a");
+		if(majaTrust()) output(" sympathetic");
+		else output(" curt");
+		output(" nod and heads into the back room, separating a drab key from her ring. She comes back a minute later leading one of the droopy lizards you saw in the pens. It hardly seems to take notice of you, but takes a step closer when Maja hands over its leash. It shivers periodically, seemingly more from fear than cold.");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Return if want, or not. Maja has too many grunch.");
+		else output("Return it if you want. I’ve got plenty, and they aren’t really used except to prank new scouts.");
+		output("”</i>");
+	}
+	//Shoulder grunch
+	else if(arg is ShoulderGrunchLeash)
+	{
+		output("<i>“I guess I’ll take a shoulder grunch for now,”</i> you say, a little hesitant based on the shopkeeper's feelings about them. She nods, seperating a small key from her ring as she heads back into the pen area. A minute later she returns with a parrot sized winged lizard on one arm. It looks at you, its head listing lazily to one side, and burps.");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Go ahead and take. Maja no want stinky lizard. Keep if want,");
+		else output("Go ahead and keep this one if you want it. It’s just gonna grow up and take up space here, so maybe you can get some better use out of it,");
+		output("”</i> she says as she heaps the lizard onto your shoulder. It makes a clucky whistling sound, looking around the room as if trying to discern what changed.");
+	}
+	else if(arg is MiniatureGiantBabyKordiiak)
+	{
+		output("You look to the left and right to make sure no one is watching, leaning close to whisper your request in Maja’s ear.");
+		output("\n\n<i>“Tell him this is [pc.name] Steele, requesting a miniature giant baby kor’diiak delivered to this location.”</i> Maja nods curtly, spinning around on her stool and opening a small door in the stone wall. She pulls out a corded telephone, speaking a phrase into the receiver. The cave begins to shake, and a massive korgonne fist smashes through the ceiling, bathed in rays of shadowy light. You hold out your hands, and the fist drops a basketball sized kor’diiak into your hands. It yips playfully, poking at your fingers with its tiny horn. When you look away you find Maja sitting at her desk, with no sign of the damage caused to the cave. What could have come over you?");
+	}
 	else
 	{
 		output("Maja goes vanishes into the back and returns with your brand-new rental pet.\n\n");
 	}
-	
 	quickLoot(arg);
 }
 
@@ -315,7 +341,32 @@ public function returnPetToMaja():void
 		if(pc.hasItemByClass(KordiiakLeash)) pc.destroyItemByClass(KordiiakLeash);
 		else if(pc.accessory is KordiiakLeash) pc.accessory = new EmptySlot();
 	}
-	else output("You return the rented animal to a grateful Maja.");
+	//Nog'wich
+	else if(flags["MAJA_RENTING"] == new NogwichLeash().description)
+	{
+		output("The large horse-leopard you had left waiting at the door enters at your call, brushing against Maja before heading back into the pen area of its own volition. Maja smiles, going to let her back into her enclosure. She comes back a moment later with a huge smile.");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Many thankings. Little korgs will be happy. Many ridings again.");
+		else output("Thanks for keeping her safe, the little ones will be happy to have their favorite riding nog back in the hold.");
+		output("”</i>");
+		if(pc.hasItemByClass(NogwichLeash)) pc.destroyItemByClass(NogwichLeash);
+		else if(pc.accessory is NogwichLeash) pc.accessory = new EmptySlot();
+	}
+	//Either grunch
+	else
+	{
+		output("Maja scowls as you bring the grunch back through the door, but takes it off your hands. She’s in the back room for under a minute before plodding back to her desk, sitting grumpily on her stool.");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Much thankings. So glad having grunch back,");
+		else output("Gee thanks. I don’t know what I’d have done if that one didn’t return,");
+		output("”</i> she snarks with a playful smile.");
+		//Just purge all grunches, it's fiiiine. PC can't have both at once anyhow.
+		if(pc.hasItemByClass(GrunchLeash)) pc.destroyItemByClass(GrunchLeash);
+		else if(pc.accessory is GrunchLeash) pc.accessory = new EmptySlot();
+		if(pc.hasItemByClass(ShoulderGrunchLeash)) pc.destroyItemByClass(ShoulderGrunchLeash);
+		else if(pc.accessory is ShoulderGrunchLeash) pc.accessory = new EmptySlot();
+	}
+	//else output("You return the rented animal to a grateful Maja.");
 	//Cathorse
 	if(flags["MAJA_RENTING"] == new NogwichLeash().description)
 	{
