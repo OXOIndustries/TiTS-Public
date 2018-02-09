@@ -690,7 +690,7 @@ public function maleOrHermAndNotDoingOral(x:int = 0):void
 	else if(pc.cocks[x].cLength() < 12) output("and poking along the base of her tail.");
 	else output("and brushing along the underside of her raised tail.");
 
-	output("\n\nPre-cum dribbles from you, sliding down the [pc.skinFurScales] of your shaft, and you feel every exciting moment of that droplets life: your senses are so hyper-tuned that you felt it bubble up from your loins, and you felt it seep from your tip, and you feel it drip its way slowly back down to the crease where your cock meets your ");
+	output("\n\nPre-cum dribbles from you, sliding down the [pc.skin] of your shaft, and you feel every exciting moment of that droplets life: your senses are so hyper-tuned that you felt it bubble up from your loins, and you felt it seep from your tip, and you feel it drip its way slowly back down to the crease where your cock meets your ");
 	if(pc.balls > 0) output("[pc.sack]");
 	else output("crotch");
 	output(". And you feel when Nenne scoops it between her fingers and use that little drop as lube.");
@@ -714,7 +714,7 @@ public function maleOrHermAndNotDoingOral(x:int = 0):void
 		output("\n\nYou feel her walls cling to your every centimeter when you push in or out, every nerve and cell alighting at the touch; you hear the gentle ‘schlep’ every time you slide against each other");
 		if(!pc.hasKnot(x)) output(", and the gentle clap when your bodies meet at your base");
 		else output(", and the tight, sort-of-peeling sound when her tunnel stretches slightly to accommodate your [pc.knot " + x + "]");
-		output("); and every time you pull apart, a new wave of her Korgonne pheromones wafts through the air and into your nose, bringing you closer–");
+		output("; and every time you pull apart, a new wave of her Korgonne pheromones wafts through the air and into your nose, bringing you closer–");
 
 		output("\n\nBefore you know it, you’re there. You were much closer than you had realized, and you weren’t focused on the buildup within you as you fucked Nenne. A large rush starts from inside you, building and bubbling up your shaft; with some emergency, you push once more");
 		if(!pc.hasKnot(x)) output(", hilting you entirely inside Nenne’s body, as deeply as you can reach");

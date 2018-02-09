@@ -42,6 +42,9 @@ public function tuuvaAffection(change:Number = 0):Number
 	{
 		flags["TUUVA_AFFECTION"] += change;
 		if(flags["TUUVA_AFFECTION"] < 0) flags["TUUVA_AFFECTION"] = 0;
+		// Cooldown to prevent auto events from triggering automatically. (3 hours?)
+		pc.createStatusEffect("Tuuva Affection Cooldown", 0, 0, 0, 0, true, "", "", false, 180);
+		pc.setStatusMinutes("Tuuva Affection Cooldown", 180);
 	}
 	var bonus:Number = 0;
 	if(flags["TUUVA_SELF_TALK"] != undefined) bonus += 5;
@@ -103,7 +106,7 @@ public function tuuvaBlacksmithShopBonus():Boolean
 	//25: First Fuckings
 	//Triggers when entering the shop after reaching 25 Affection
 	//Replace text after shop description in Earthshapers section
-	if(tuuvaAffection() >= 25 && flags["TUUVA_25AFF"] == undefined)
+	if(tuuvaAffection() >= 25 && flags["TUUVA_25AFF"] == undefined && !pc.hasStatusEffect("Tuuva Affection Cooldown"))
 	{
 		showName("\nEMPTY?");
 		output("\n\n<b>Tuuva doesn’t seem to be in at the moment.</b> Strangely, the door into the forge area is slightly open, and you can hear something stirring in the back. Maybe you should go investigate?");
@@ -114,7 +117,7 @@ public function tuuvaBlacksmithShopBonus():Boolean
 	//50: Expedition & Refinding!
 	//============================
 	//Start expedition!
-	if(flags["TUUVA_50AFF"] == undefined && tuuvaAffection() >= 50)
+	if(flags["TUUVA_50AFF"] == undefined && tuuvaAffection() >= 50 && !pc.hasStatusEffect("Tuuva Affection Cooldown"))
 	{
 		tuuva50AffectionExpedition();
 		return true;
@@ -160,6 +163,9 @@ public function tuuvaBlacksmithShopBonus():Boolean
 		if(!korgiTranslate()) output("Tuuva not even know what say");
 		else output("I don’t even know what to say");
 		output(", just... I-I... Thank you...”</i>");
+		
+		tuuvaAffection(15);
+		
 		output("\n\nYou tell her it was no problem, and that she’s very welcome. She still seems a bit uneasy about something, like there’s something she wants to say but can’t. It’s probably best not to push it, especially after everything she’s been through. She’ll say it when she wants to.");
 		output("\n\n<i>“Did ");
 		if(!korgiTranslate()) output("friend");
@@ -539,7 +545,7 @@ public function tuuvaSmithingTalk():void
 	output("You ask to know more about the shop and her profession.");
 	output("\n\n<i>“");
 	if(!korgiTranslate()) output("Tuuva get shop from Da many year ago. Ma look so smiles when she see Tuuva work. Part of reason Tuuva agree take over was make her smiley. Now... no here....");
-	else output("/I got the shop from dad when he retired a long time ago. Mom looked so happy when she saw me working.... You know, part of the reason I agreed to take over was because it made her happy. But now... she’s gone....");
+	else output("I got the shop from dad when he retired a long time ago. Mom looked so happy when she saw me working.... You know, part of the reason I agreed to take over was because it made her happy. But now... she’s gone....");
 	output("”</i>");
 	output("\n\nShe whimpers, but otherwise stays silent as she steadies herself.");
 
@@ -862,7 +868,7 @@ public function tuuvaBackroomEvent():void
 	output("\n\n<i>“");
 	if(!korgiTranslate())
 	{
-		if(silly) output("Swipey no swiping! swipey no swiping!");
+		if(silly) output("Swipey no swiping! Swipey no swiping!");
 		else output("Stealing peoples get out!");
 	}
 	else output("Get the fuck out of here, you thief!");
@@ -912,7 +918,7 @@ public function tuuvaSex25Event():void
 	showTuuva();
 	output("You casually approach the korg, grinning as she gasps and throbs at your approach. The ");
 	if(!silly) output("thick");
-	else output("thicc");
+	else output("THICC");
 	output("-set little dog-slut freezes in place, that is, except for her tail, which is thrashing around like a tree in a hurricane. She obviously wants you, but it also looks like you’re going to have to be the one to take charge this time.");
 
 	output("\n\n");
@@ -946,7 +952,7 @@ public function tuuva25SexAftermath():void
 	else output("tits");
 	output(".");
 	output("\n\n<i>“");
-	if(!korgiTranslate()) output("Back work, much things, very busy. If friend want more snuggy-snuggy, than Tuuva give");
+	if(!korgiTranslate()) output("Back work, much things, very busy. If friend want more snuggy-snuggy, then Tuuva give");
 	else output("Gotta get back to work, lots to do, getting pretty busy. If you want to fuck again, I’m always ready");
 	output(".”</i> She tugs her half-hard cock and slaps her fluffy booty for emphasis. Well you’re not going to say no to that! You assure her that you’ll keep her in mind if you’re ever in the mood.");
 	output("\n\n");
@@ -1582,7 +1588,7 @@ public function actuallyGetFuckedByTuuva(x:int):void
 			output("Lover take Tuuva ");
 			//Done 100 affection event:
 			if(flags["TUUVA_DATE"] != undefined) output("back ");
-			output("to space?”</i>");
+			output("to space?");
 		}
 		else
 		{
@@ -1598,10 +1604,10 @@ public function actuallyGetFuckedByTuuva(x:int):void
 	else
 	{
 		output("She moves her face up closer to yours, but seems apprehensive to do anything. She looks like she wants to kiss you, but, for some reason she’s holding back. You give her a little peck on the lips, signaling her that it’s okay to go all in, and that she does.");
-		output("\n\nShe dives onto your [pc.lipsChaste], coiling her tongue into your mouth and tying up your own like a predatory snake. She presses her whole body down on you more, making sure you feel her weight on you as she possessively mates with you. As she feels you body submit, she ups her pace, getting ready to finish up.");
+		output("\n\nShe dives onto your [pc.lipsChaste], coiling her tongue into your mouth and tying up your own like a predatory snake. She presses her whole body down on you more, making sure you feel her weight on you as she possessively mates with you. As she feels your body submit, she ups her pace, getting ready to finish up.");
 	}
 	output("\n\nYour lengthy fuck eventually devolves into a sweaty rut. Your bodies are pressed as tightly together as possible, to the point where you find it hard to tell where the heat from your body ends and hers begins. You’ve melted into a singular pile of hot, passionate fuck; sweating, and moaning, and groaning almost senselessly as the little muscle-ball completely overwhelms you, and seemingly herself.");
-	output("\n\nYour senses flash back to you for a second as you feel the telltale swelling of her knot inside you. Any protest or even encouragement you could give is drown out by sheer pleasure.");
+	output("\n\nYour senses flash back to you for a second as you feel the telltale swelling of her knot inside you. Any protest or even encouragement you could give is drowned out by sheer pleasure.");
 	output("\n\nIn the first moment of respite you’ve gotten in stars know how long, Tuuva pulls back and turns around.");
 	output("\n\n<i>“");
 	if(!korgiTranslate()) output("Time for maties!");

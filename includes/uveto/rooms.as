@@ -2720,7 +2720,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII B12"] = new RoomClass(this);
 	rooms["KORGII B12"].roomName = "KORG’II\nENTRANCE";
-	rooms["KORGII B12"].description = "The entrance to Korg’ii Hold is quite brisk thanks to the endless holes that the dog-folk drilled into the door. Warmer breezes waft in from the east, humid and comfortable. The door out lies just to the west, presently closed.\n\nTwo guards stand alongside the entranceway, manning the lever and handles necessary to open it wide.";
+	rooms["KORGII B12"].description = "The entrance to Korg’ii Hold is quite brisk thanks to the endless holes that the dog-folk drilled into the door. Warmer breezes waft in from the west, humid and comfortable. The door out lies just to the east, presently closed.\n\nTwo guards stand alongside the entranceway, manning the lever and handles necessary to open it wide.";
 	rooms["KORGII B12"].planet = "PLANET: UVETO VII";
 	rooms["KORGII B12"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII B12"].moveMinutes = 2;
@@ -3334,7 +3334,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII R30"] = new RoomClass(this);
 	rooms["KORGII R30"].roomName = "B1 SOUTHWEST\nSTAIRWELL";
-	rooms["KORGII R30"].description = "A hunter gives you a wary look on his way up the stairs, carrying a pack stuffed with provisions. He’s dressed for the cold, doubtless on his out of the hold. There’s no way he would be wearing such thick garments down here otherwise; the air is too hot and humid. You wipe your brow and look to the staircase. It stretches further up and down into the hold, but a burly korgonne with a sour face stops you from journeying any deeper. The tunnel north opens up prodigiously, though it bends away to prevent you from seeing too much.";
+	rooms["KORGII R30"].description = "A hunter gives you a wary look on his way up the stairs, carrying a pack stuffed with provisions. He’s dressed for the cold, doubtless on his way out of the hold. There’s no way he would be wearing such thick garments down here otherwise; the air is too hot and humid. You wipe your brow and look to the staircase. It stretches further up and down into the hold, but a burly korgonne with a sour face stops you from journeying any deeper. The tunnel north opens up prodigiously, though it bends away to prevent you from seeing too much.";
 	rooms["KORGII R30"].planet = "PLANET: UVETO VII";
 	rooms["KORGII R30"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII R30"].moveMinutes = 2;

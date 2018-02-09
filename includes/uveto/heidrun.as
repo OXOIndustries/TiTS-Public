@@ -294,7 +294,7 @@ public function boneHeidrun(x:int):void
 	output("\n\nBreaking the kiss, she looks at you with smoldering eyes before pushing you gently back. You’re confused, but you back off nonetheless. Now that you aren’t pinning her down, she turns around and lifts her derriere high into the air.");
 	output("\n\nYou grin as you catch on to what she wants. Grabbing onto her tail with one hand and her fertile hip with the other, you drive your cock home into her pussy. She moans out loud and bucks back into your [pc.hips], urging you to fuck her faster. You’re happy to oblige, pulling back until only your [pc.cockHead " + x + "] remains inside her, only to drive back into her with the full force of your body.");
 
-	output("\n\nShe barks and whimpers into the bedroll as you hammer into her juicy slit. Only encouraging you to go ");
+	output("\n\nShe barks and whimpers into the bedroll as you hammer into her juicy slit, only encouraging you to go ");
 	if(silly) output("harder, better, faster, stronger");
 	else output("harder and faster");
 	output(". You slap her furry cheek, telling her to calm down. You start fucking her harder nonetheless.");

@@ -96,7 +96,7 @@ public function pippaYammiThreesome():void
 	
 	if (pippaYammiThreesomeCount(0) == 0)
 	{
-		output("You reach a hand around each of the ladies, grabbing two handfuls of plump ass. <i>“How about both Pippa and I both stay here in the kitchen?”</i>");
+		output("You reach a hand around each of the ladies, grabbing two handfuls of plump ass. <i>“How about Pippa and I both stay here in the kitchen?”</i>");
 		
 		output("\n\nPippa giggles. <i>“I see you’re thinking what I’m thinking, " + pippaCallsSteele() + ".”</i> She reachs around and grabs Yammi’s other ass cheek, eliciting a sharp intake of air from the sparadat.");
 		
