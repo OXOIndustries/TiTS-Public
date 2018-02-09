@@ -141,6 +141,11 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		clearMenu();
 		return;
 	}
+	//Bad end for negative hp.
+	if(pc.HPMax() < 1)
+	{
+		if(eventQueue.indexOf(deathByNoHP) == -1) eventQueue.push(deathByNoHP);
+	}
 	
 	flags["COMBAT MENU SEEN"] = undefined;
 	
@@ -3780,4 +3785,10 @@ public function isChristmas():Boolean
 {
 	return checkDate(25, 12, 8);
 }
-
+public function deathByNoHP():void
+{
+	clearOutput();
+	showName("GAME\nOVER");
+	output("You collapse unconscious... and do not rise again, your body's capacity to take damage reduced to less than nothing. Whoops.");
+	badEnd();
+}
