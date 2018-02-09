@@ -691,10 +691,19 @@ public function talkToTuuvaAboutDicks():void
 	output("\n\n<i>“So, you’ve been fine with it?”</i>");
 
 	output("\n\n<i>“");
-	if(!korgiTranslate()) output("Sometimes wish it bigger, but no want more blue outsider juice, hear bad things about it. If Tuuva want bigger, she want quick, and she want simple, no drugs.");
-	else output("Sometimes I wish it was a bit bigger, but I don’t want to go looking for anymore of that blue stuff, I hear bad things about it. If I wanted to make it bigger, I’d want it quick and simple, no drugs.");
-	output("”</i>");
-	output("\n\nQuick and simple, ey?");
+	if(tuuva.hasCock(GLOBAL.TYPE_EQUINE))
+	{
+		if(!korgiTranslate()) output("Am now, since alien be helping.”</i>");
+		else output("I am now, thanks to the help you gave me.”</i>");
+		output("\n\nGood to hear.");
+	}
+	else
+	{
+		if(!korgiTranslate()) output("Sometimes wish it bigger, but no want more blue outsider juice, hear bad things about it. If Tuuva want bigger, she want quick, and she want simple, no drugs.");
+		else output("Sometimes I wish it was a bit bigger, but I don’t want to go looking for anymore of that blue stuff, I hear bad things about it. If I wanted to make it bigger, I’d want it quick and simple, no drugs.");
+		output("”</i>");
+		output("\n\nQuick and simple, ey?");
+	}
 	flags["TUUVA_DICK_TALK"] = 1;
 	processTime(25);
 	clearMenu();
