@@ -1021,12 +1021,14 @@ public function tellEmmyShesTheBelleOfTheBalls():void
 	emmyMainMenu();
 }
 
+/*
 public function emmyMailGet():void
 {
 	AddLogEvent("<b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!</b>", "passive");
 
 	MailManager.unlockEntry("emmy_apology", GetGameTimestamp());
 }
+*/
 
 //Sex Quest - Sex Attempt Start
 //PC comes on, she actually gets a little offended - skipped with the <i>“You - You”</i> option.
@@ -1295,6 +1297,7 @@ public function emmyPleased():void
 //Post-Oral Email Request
 //Requires GF status - three days since first blowjob
 //Email
+/*
 public function emmyMailGet2():void
 {
 	AddLogEvent("<b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!</b>", "passive");
@@ -1310,6 +1313,7 @@ public function emmyMailGet4():void
 	AddLogEvent("<b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!</b>", "passive");
 	MailManager.unlockEntry("emmy_harness_here", GetGameTimestamp());
 }
+*/
 
 //More Serious Talk - added to main menu
 public function moreSeriousEmmyTalkAboutEmail():void

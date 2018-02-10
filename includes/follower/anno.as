@@ -4678,7 +4678,8 @@ public function annoHuskarTreatIntro():void
 	pc.lust(10);
 	clearMenu();
 	//[Steal Panties] [Replace Treats] [Leave]
-	addButton(0,"Steal Panties",stealAnnosPanties,undefined,"Steal Panties","Well.... you might as well take advantage of free reign here.");
+	if(pc.hasKeyItem("Panties - Anno's - Blue boxer briefs.")) addDisabledButton(0,"Steal Panties","Steal Panties","You already did that, you panty thief!");
+	else addButton(0,"Steal Panties",stealAnnosPanties,undefined,"Steal Panties","Well.... you might as well take advantage of free reign here.");
 	addButton(1,"ReplaceTreats",giveAnnoHuskarTreats,undefined,"Replace Treats","Well, you for one are sure Anno’s going to love a little thickness in her life...");
 	addButton(14,"Leave",crew);
 }

@@ -300,7 +300,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 			faps.push(fap);
 		}
 	}
-	if (flags["LAQUINE_LASS_TRYSTS"] != undefined  && pc.hasCock() && LaquineEars.lassLaquineAcceptable(pc,pc.biggestCockIndex()))
+	if (flags["LAQUINE_LASS_TRYSTS"] != undefined && pc.hasCock() && LaquineEars.lassLaquineAcceptable(pc,pc.biggestCockIndex()))
 	{
 		fap = new FapCommandContainer();
 		fap.text = "F.Laquine";
@@ -2330,7 +2330,7 @@ public function futaBabePantySchlicksRouter():void
 		}
 		if(pc.hasKeyItem("Panties - Anno's - Blue boxer briefs."))
 		{
-			addButton(button,"Anno's",pureLadyWaifuPussyRubFap,"Anno","Anno’s Panties","Use Anno’s blue boxer-briefs for a little self-pleasure.");
+			addButton(button,"Anno’s",pureLadyWaifuPussyRubFap,"Anno","Anno’s Panties","Use Anno’s blue boxer-briefs for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace."))

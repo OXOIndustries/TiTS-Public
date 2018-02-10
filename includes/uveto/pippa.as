@@ -2770,12 +2770,14 @@ public function pippaFlirt():void
 	}
 }
 
+/*
 public function pippaNuruEmailGet():void
 {
 	AddLogEvent("<b>New Email From Pippa (pippa_pig@cmail.com)!</b>", "passive");
 
 	MailManager.unlockEntry("pippa_nuru", GetGameTimestamp());
 }
+*/
 
 public function pippaTalkParents():void
 {

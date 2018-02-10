@@ -444,6 +444,7 @@ public function myrellionNevrieBloodVial():void
 	myrellionNevrieMenu();
 }
 
+/*
 public function nevriMailGet():void
 {
 	AddLogEvent("<b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!</b>", "passive");
@@ -462,6 +463,7 @@ public function nevriBJMailGet():void
 
 	MailManager.unlockEntry("bjreminder", GetGameTimestamp());
 }
+*/
 
 public function mcallisterMeeting():void
 {
