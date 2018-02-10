@@ -443,7 +443,7 @@ public function otherWorkSlooootNonGoo():void
 		output("\n\nBy the end of the session, you feel no different as when you first came in. But you at least feel a little more knowledgeable on the topic of yoga, and you also feel a little more in-sync with your teacher.");
 		// end scene (scene: Next Yoga (goo))
 	}
-	if(currentLocation != "PAIGE_HOUSE") pc.credits -= 20;
+	if(currentLocation == "YOGA_HOUSE") pc.credits -= 20;
 	pc.energy(-20);
 	yogaToning(0);
 	clearMenu();
@@ -484,10 +484,10 @@ public function paigeYogaEasyMode():void
 		else output("\n\nYou’re sure this wasn’t what the yoga teachers of old had intended when they came up with this position, but your prodigious [pc.chest] has propped your upper body up and off the floor, assisting you with your stretch. You grip onto your ankles rather easily from this position. The twins are pulling their weight this time!");
 		output("\n\n<i>“Now hold this position,”</i> instructs Paige. <i>“And breathe in...”</i>");
 	}
-	if(currentLocation != "PAIGE_HOUSE") pc.credits -= 20;
+	if(currentLocation == "YOGA_HOUSE") pc.credits -= 20;
 	processTime(10);
 	clearMenu();
-	if(currentLocation == "PAIGE_HOUSE") addButton(0,"Next",easyModeEndingInApartment);
+	if(currentLocation != "YOGA_HOUSE") addButton(0,"Next",easyModeEndingInApartment);
 	else addButton(0,"Next",easyModeYogaEnd);
 }
 
@@ -552,10 +552,10 @@ public function yogaMediumMode():void
 		output("\n\n<i>“This pose is called the ‘supine twist,’”</i> she says as she runs both her hands over your body, particularly along your left, stretched leg, making sure it’s in the correct position. <i>“It’s one of yoga’s stricter poses; if you lift your knee too close to your chest, you risk pulling a gluteal muscle. Nobody likes damaged glutes!”</i> You laugh politely. <i>“Okay, now breathe in...”</i>");
 	}
 	// connect all (scene: Medium Mode) endings here (scene: Medium Mode Ending 1)
-	if(currentLocation != "PAIGE_HOUSE") pc.credits -= 20;
+	if(currentLocation == "YOGA_HOUSE") pc.credits -= 20;
 	processTime(10);
 	clearMenu();
-	if(currentLocation == "PAIGE_HOUSE") addButton(0,"Next",mediumModeEndingInApartment);
+	if(currentLocation != "YOGA_HOUSE") addButton(0,"Next",mediumModeEndingInApartment);
 	else addButton(0,"Next",mediumModeYogaEnd);
 }
 public function mediumModeYogaEnd():void
@@ -657,7 +657,7 @@ public function yogaHardMode():void
 	}
 	// end scene (scene: Hard Mode 3)
 	processTime(10);
-	if(currentLocation != "PAIGE_HOUSE") pc.credits -= 20;
+	if(currentLocation == "YOGA_HOUSE") pc.credits -= 20;
 	//CUE HARDMODE GAINS
 	if(!pc.hasPerk("Limber"))
 	{
@@ -669,7 +669,7 @@ public function yogaHardMode():void
 		pc.setStatusMinutes("LimberTime",24*60*14);
 	}
 	clearMenu();
-	if(currentLocation == "PAIGE_HOUSE") addButton(0,"Next",apartmentYogaEndings);
+	if(currentLocation != "YOGA_HOUSE") addButton(0,"Next",apartmentYogaEndings);
 	else addButton(0,"Next",yogaHardEnding);
 }
 
@@ -832,7 +832,7 @@ public function paigeCrewToggle(recruit:Boolean = true):void
 	
 	if(recruit)
 	{
-		output("You ask Paige if she is able to join your crew. With a smile, she " + (currentLocation == "PAIGE_HOUSE" ? "quickly" : "wraps up her session, closes her classroom,") + " gathers her things and heads toward your ship.");
+		output("You ask Paige if she is able to join your crew. With a smile, she " + (currentLocation != "YOGA_HOUSE" ? "quickly" : "wraps up her session, closes her classroom,") + " gathers her things and heads toward your ship.");
 		
 		flags["PAIGE_CREW"] = 1;
 		
@@ -2203,7 +2203,7 @@ public function theBigMoment3():void
 		addButton(0,"Next",moveSouth);
 	}
 	flags["PAIGE_CREW"] = 1;
-	currentLocation = "PAIGE_HOUSE";
+	//currentLocation = "PAIGE_HOUSE";
 	processTime(20);
 }
 
