@@ -344,7 +344,7 @@ public function nessaFuckTimeLetsGo():void
 		else output("- both within and without");
 		output(". [pc.CumNoun] slops out of her with every squirt, soaking you in the bed in [pc.cumColor] mess.");
 		//Add cum splatter flag for PC, cause fuck showers.
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 		
 		if(cumSave > 40000) cumSave = 40000 + rand(Math.ceil((pc.cumQ() - 40000) / 2));
 	}

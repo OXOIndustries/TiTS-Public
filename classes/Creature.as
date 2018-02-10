@@ -20475,10 +20475,6 @@
 		}
 		public function applyPussyDrenched():void
 		{
-			applyPussySoaked();
-		}
-		public function applyPussySoaked():void
-		{
 			var desc:String = "";
 			
 			if(!this.hasStatusEffect("Pussy Drenched"))
@@ -20490,6 +20486,10 @@
 			else this.addStatusValue("Pussy Drenched",1,1);
 			
 			if(this is PlayerCharacter) kGAMECLASS.mimbraneFeed("all");
+		}
+		public function applyPussySoaked():void
+		{
+			applyPussyDrenched();
 		}
 		public function applyPriapism():void
 		{

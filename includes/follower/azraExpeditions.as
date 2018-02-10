@@ -2132,7 +2132,7 @@ public function multiBalljobRaskTraps2():void
 	output("\n\n<i>“Oh fellas...”</i> groans the fourth raskvel from somewhere. <i>“This alien’s happy hole... it squirms! It’s amaaazing...”</i>");
 	output("\n\n<i>“Nngh,”</i> manages one of the others in response. The way their penises are all squeezed together inside Azra’s mouth whilst her cheeks and tongue tighten themselves around them is obviously an intense sensation for them; when they grab the suula’s head and begin to thrust reactively into her wet suck, nuts battering down onto your face, they’re pretty much frotting each other.");
 	output("\n\nWhen one set of testicles tighten up so hard underneath your lips you’re worried they’re going to form semen-based black holes, the over-eager little femboy creates a snowballing effect for the others, so that when his eyes roll back and he flumes a fountain of liquid alabaster into the suula’s vast maw, his shivering thrusts creates a snowballing effect for the others packed against him. They hold Azra down to their groins and cum hard into her, their muscular hips thrusting upwards into that slick, warm glory, and her eyes roll. Even with a mouth as accommodating as her they quickly swell her cheeks out and make her cough it back up, pearly spooge splattering and drooling down onto you. The raskvels’ balls gradually withdraw into themselves, at least some of the tightly packed pressure within them relieved.");
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	pc.loadInMouth(new RaskvelMale());
 	processTime(20);
 	pc.lust(100);
@@ -3254,7 +3254,7 @@ public function azraTribbyTribbyBangBang3():void
 	processTime(20);
 	pc.orgasm();
 	pc.applyCumSoaked();
-	pc.applyPussySoaked();
+	pc.applyPussyDrenched();
 	//[Next]
 	clearMenu();
 	addButton(0,"Next",azraTribbyTribbyBangBang4);
@@ -3738,7 +3738,7 @@ public function loseToNaleenBrosHardestWithAVengeance():void
 	if(pc.isBimbo()) output(" You make sure to get some in your hair too. That’ll be like, way hotter.");
 	output(" You don’t stop sucking, not until he stops feeding you cum and pulls himself out from beneath you.");
 	if(pc.isSquirter() || (pc.hasCock() && pc.cumQ() >= 1000)) output(" Wow, the ground is really soggy.");
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	output("\n\nYou close your eyes from exhaustion, just for a minute.");
 	processTime(20);
 	pc.loadInMouth(enemy);

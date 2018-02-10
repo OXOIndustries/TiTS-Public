@@ -705,8 +705,8 @@ public function seraSexPartyStage2(response:String = "none"):void
 			if(pc.hasVagina()) pc.orgasm();
 			if(pc.isLactating()) pc.milked(100);
 			pc.exhibitionism(1);
-			//applyCumSoaked(pc);
-			applyPussyDrenched(pc);
+			//pc.applyCumSoaked();
+			pc.applyPussyDrenched();
 			restHeal();
 			
 			clearMenu();
@@ -1389,7 +1389,7 @@ public function seraSexPartyStage4(response:String = "none"):void
 			if(pc.hasVagina()) pc.orgasm();
 			pc.girlCumInMouth(ppVedice);
 			pc.girlCumInMouth(ppVedice);
-			applyPussyDrenched(pc);
+			pc.applyPussyDrenched();
 			pc.exhibitionism(1);
 			
 			// {merge}
@@ -1519,7 +1519,7 @@ public function seraSexPartyStage4(response:String = "none"):void
 			pc.loadInAss(sera);
 			sera.orgasm();
 			sera.orgasm();
-			applyPussyDrenched(pc);
+			pc.applyPussyDrenched();
 			pc.exhibitionism(1);
 			IncrementFlag("SERA_PARTY_FUCKED");
 			

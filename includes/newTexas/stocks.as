@@ -564,7 +564,7 @@ public function stocksMouthgasms(args:Array):void
 		output("\n\nYou’re practically creme-filled... and still getting glazed. You shudder in climax, moaning louder and hotter, spurring Kiro to squirt still more upon you. It splatters the boards and coats your back. Pearly bliss oozes down your [pc.hips] and elbows, completing the thickest coat of paint you’ve ever seen.");
 		output("\n\nAt some point, the orgasmic splashes stop falling. A familiar voice says something grateful sounding, and another cock winds its way into your lips. You hum happily and suck, curious how they’ll match up to the kui-tan cum cannon.");
 		pc.loadInMouth(chars["KIRO"]);
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 		pc.orgasm();
 	}
 	//Zephyr

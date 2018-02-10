@@ -1253,7 +1253,7 @@ public function simoneWorkoutResults(response:String = ""):void
 			pc.loadInMouth(pp);
 			pc.exhibitionism(2);
 			pc.lust(30+rand(10));
-			applyPussyDrenched(pc);
+			pc.applyPussyDrenched();
 			
 			if(!pc.hasGenitals() && flags["SIMONE_TEASED"] == undefined) flags["SIMONE_TEASED"] = true;
 			

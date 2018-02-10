@@ -559,7 +559,7 @@ public function walkiesPart2():void
 	
 	var ppBelle:PregnancyPlaceholder = getBellePregContainer();
 	pc.loadInMouth(ppBelle);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	pc.exhibitionism(1);
 	
 	clearMenu();

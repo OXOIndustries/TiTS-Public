@@ -4021,7 +4021,7 @@ public function dragonGurlAnnoThreesome():void
 
 	processTime(20);
 	pc.orgasm();
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",annoXGedanThreesomeEpilogue);
 }

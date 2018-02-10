@@ -561,6 +561,9 @@ public function appearance(forTarget:Creature):void
 		
 		switch(target.earType)
 		{
+			case GLOBAL.TYPE_HUMAN:
+				// Human ears don't get acknowledged, I guess!
+				break;
 			case GLOBAL.TYPE_EQUINE:
 				output2(" A pair of horse-like ears rise up from the top of your " + headNoun + ".");
 				break;
@@ -717,6 +720,9 @@ public function appearance(forTarget:Creature):void
 			case GLOBAL.TYPE_MOTHRINE:
 				output2(" A pair of moth ears are recessed at the sides of your " + headNoun + ", looking like slightly raised mounds of membranous tissue.");
 				break;
+			default:
+				output2(" There is nothing notable to mention about your ears.");
+				break;
 		}
 	}
 	//not bald
@@ -732,6 +738,9 @@ public function appearance(forTarget:Creature):void
 				break;
 			case GLOBAL.TYPE_CANINE:
 				output2(" The " + target.hairDescript(true,true) + " on your head is overlapped by a pair of pointed dog ears.");
+				break;
+			case GLOBAL.TYPE_KORGONNE:
+				output2(" The " + target.hairDescript(true,true) + " on your head is overlapped by a pair of triangular dog ears, rounded at the top like a korgonne’s.");
 				break;
 			case GLOBAL.TYPE_BOVINE:
 				output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of rounded cow ears that stick out sideways.");
@@ -862,6 +871,9 @@ public function appearance(forTarget:Creature):void
 				break;
 			case GLOBAL.TYPE_MOTHRINE:
 				output2(" The " + target.hairDescript(true,true) + " atop your head hides the two raised mounds of membranous tissue that are your ears.");
+				break;
+			default:
+				output2(" The " + target.hairDescript(true,true) + " atop your head hides non-descript ears.");
 				break;
 		}
 	}

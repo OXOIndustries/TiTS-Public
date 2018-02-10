@@ -1214,8 +1214,8 @@ public function antOrgyPartDues(voluntary:Boolean):void
 	pc.lust(25);
 	pp.loadInCunt(pc, 0);
 	pc.girlCumInMouth(pp);
-	applyPussyDrenched(pc);
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
+	pc.applyPussyDrenched();
 	clearMenu();
 	addButton(0,"Next",antOrgyPartThree,voluntary);
 }
@@ -1280,8 +1280,8 @@ public function antOrgyPartThree(voluntary:Boolean):void
 	processTime(18);
 	pc.orgasm();
 	pc.girlCumInMouth(pp);
-	applyPussyDrenched(pc);
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
+	pc.applyPussyDrenched();
 	//[Next]
 	clearMenu();
 	addButton(0,"Next",antOrgyPartFour,voluntary);
@@ -1327,8 +1327,8 @@ public function antOrgyPartFour(voluntary:Boolean):void
 	//Red myr dose
 	imbibeVenomEffects(true);
 	pc.girlCumInMouth(pp);
-	applyPussyDrenched(pc);
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
+	pc.applyPussyDrenched();
 	//[Next]
 	clearMenu();
 	addButton(0,"Next",antOrgyPartFive,voluntary);
@@ -1360,8 +1360,8 @@ public function antOrgyPartFive(voluntary:Boolean):void
 	pc.girlCumInMouth(pp);
 	pc.girlCumInMouth(pp);
 	pc.girlCumInMouth(pp);
-	applyPussyDrenched(pc);
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
+	pc.applyPussyDrenched();
 	clearMenu();
 	addButton(0,"Next",antOrgyEnding, voluntary);
 }

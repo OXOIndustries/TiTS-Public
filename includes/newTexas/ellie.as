@@ -1101,7 +1101,7 @@ public function publicUseEnding():void
 	processTime(65);
 	pc.lust(200);
 	pc.exhibitionism(2);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	
 	addButton(0, "Next", publicUseEndingPartTwo);
 }

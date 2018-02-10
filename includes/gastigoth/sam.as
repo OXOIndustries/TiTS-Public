@@ -233,7 +233,7 @@ public function samPrisonStuff(args:Array):void
 
 		//PUSSY-SOAKED CONDITION, pass an hour or whatever I don’t care, PC should cum once, Sam should have a high chance to get knocked the fuck up if/when that’s ever a thing.
 		processTime(30);
-		pc.applyPussySoaked();
+		pc.applyPussyDrenched();
 		if(impregnate) tryKnockUpSam();
 		pc.orgasm();
 	}
@@ -278,7 +278,7 @@ public function samPrisonStuff(args:Array):void
 
 		//PUSSY-SOAKED CONDITION, pass an hour or whatever I don’t care, PC should cum twice, no Sam pregnancy check obviously (you monster)
 		processTime(35);
-		pc.applyPussySoaked();
+		pc.applyPussyDrenched();
 		pc.orgasm();
 		pc.orgasm();
 	}

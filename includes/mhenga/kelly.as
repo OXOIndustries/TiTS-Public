@@ -3335,6 +3335,7 @@ public function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ(onCouch:Bool
 			output("\n\nAt that, she pouts and sticks out her tongue, clearly unable to think of a verbal retort to that.");
 		}
 		//Hard:
+		else
 		{
 			output("\n\nA fine job, but you already expected as much from your bitch-bunny.");
 			output("\n\n<i>“But of course,”</i> she grins smugly. <i>“Only the finest for my rose,”</i> she declares in a triumphant tone, closing the distance between you so that she is sitting on your lap, more or less, arms going around your neck, clearly a moment’s whim away from closing the distance and kissing you.");
@@ -4683,7 +4684,7 @@ public function getLickedOutByKellllaaaahhhh(noIntro:Boolean = false):void
 	{
 		output("\n\nYou ask if she wants to hear a little secret.");
 		output("\n\n<i>“Uh... sure?”</i> she replies, blinking in confusion.");
-		output("\n\nNobody likes a blabber-mouth, particularly when there’s something far more important she could be doing with those plump lips of hers. Having said that you waste no time in burying her short muzzle into your [pc.vagina " + x + "], gasping when you feel her nose make contact with ");
+		output("\n\nNobody likes a blabber-mouth, particularly when there’s something far more important she could be doing with those plump lips of hers. Having said that you waste no time in burying her short muzzle into your [pc.vagina], gasping when you feel her nose make contact with ");
 		if(pc.clitLength > 3) output("the base of ");
 		output("your [pc.clit].");
 	}

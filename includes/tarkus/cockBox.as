@@ -455,7 +455,7 @@ public function dickBoxTF(args:Array):void
 		output("\n\nOnce your body finishes attempting to impregnate the device, you slip your [pc.cumNoun]-soaked prick free. It looks exactly as promised minus the licentious paint job you’ve accidentally given it. Nothing a quick shower and a little time with a mop and bucket won’t fix...");
 		if(flags["DONG_DESIGNER_FLOODED"] != undefined) output("\n\nYou’re both disappointed and relieved that you didn’t wind up flooding the room this time - relieved that your ship won’t smell like [pc.cum] for a day while it airs out and disappointed in your apparently weakened virility.");
 		//Shower!
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 		pc.shower();
 		IncrementFlag("DONG_DESIGNER_BACKWASHED");
 	}
@@ -467,8 +467,8 @@ public function dickBoxTF(args:Array):void
 		output("\n\nWhen you come down, you note the machine has a red hologram of a big-breasted kui-tan above it along with a warning not to use the device until it has been cleaned by a custodian. Fuck the machine - you’re going to need a shower.");
 		if(celiseIsCrew()) output(" Celise can handle this mess.");
 		else output(" You can take care of this mess after.");
-		applyCumSoaked(pc);
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
+		pc.applyCumSoaked();
 		pc.loadInMouth(pc);
 		pc.shower();
 		IncrementFlag("DONG_DESIGNER_FLOODED");
@@ -537,10 +537,10 @@ public function cockBoxDickDoublingHijinxII(args:Array):void
 		if(pc.cumQ() >= 5000)
 		{
 			output(" Although, puddle is hardly a fitting word for the lake you’ve created.");
-			applyCumSoaked(pc);
+			pc.applyCumSoaked();
 		}
 		if(celiseIsCrew()) output(" Celise will certainly be pleased.");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 	}
 	output("\n\n<i>“Thanks again for using Tamani-brand products in your INVALID FACILITY TYPE!”</i> The purple-haired harlot winks and blows a kiss down at you from above. <i>“Cum back soon!”</i> She flickers out of existence with a saucy, satisfied smile.");
 	output("\n\nIt’s hard to be mad at her after getting off like that, even when you pull out and find that <b>the dick you put into the machine has divided its mass into two smaller penises.</b> You could probably find someone on Novahome to help you get rid of the extra if you wanted.");

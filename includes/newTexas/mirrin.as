@@ -1647,7 +1647,7 @@ public function mirrinFirstTimev2Part2():void
 	//PC gains ‘Vaginally filled’ (ALREADY DUN) and ‘Sore’ and status effects.
 	processTime(10);
 	soreDebuff(3);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",goToFrontOfGym);
 }
@@ -1671,7 +1671,7 @@ public function mirrinFirstTimev3Part2():void
 	//PC gains ‘Orally Filled’, ‘Cum Covered’ and ‘Sore’ and status effects. Also (check to see if the former 2 are even the right names).
 	processTime(10);
 	soreDebuff(3);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",goToFrontOfGym);
 }
@@ -2378,7 +2378,7 @@ public function uhOhButtmiliation():void
 	output("”</i>");
 
 	processTime(20);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",oinkoinkEpilogueButtHimiliation);
 }

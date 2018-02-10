@@ -1340,7 +1340,7 @@ public function treatmentHourProcs(totalHours:int):void
 			{
 				pc.orgasm();
 			}
-			applyCumSoaked(pc);
+			pc.applyCumSoaked();
 			pc.boostCum(80);
 			ExtendLogEvent("\n\n(<b>Perk Gained: Amazonian Virility</b> - Guarantees you’ll never run out of cum.)");
 	 		pc.createPerk("Amazonian Virility",0,0,0,0,"Ensures you never ejaculate less than 300 mLs.");
@@ -2004,8 +2004,8 @@ public function treatmentHourProcs(totalHours:int):void
 				if(pc.cumQ() >= 10000)
 				{
 					ExtendLogEvent(ParseText(", then keeps squirting, hosing extra spunk across your [pc.hair], shoulders, and back. It slaps wetly against you, getting a shower by standing under a firehose full of goo. There’s just so much cum! Your straining middle could never contain it all, much as you might want to, so you make do by rubbing the excess over your [pc.chest] and [pc.cocks] both, sometimes even catching some in your mouth so that you can spit it onto a spot that hasn’t been glazed yet."));
-					applyCumSoaked(pc);
-					applyCumSoaked(pc);
+					pc.applyCumSoaked();
+					pc.applyCumSoaked();
 				}
 				else ExtendLogEvent(". More jizz dribbles out, the last dregs of your orgasm, so you take your time licking them from the pulsing length, greedily devouring every drop.");
 				if(pc.cockTotal() > 1)

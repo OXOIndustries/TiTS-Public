@@ -952,7 +952,7 @@ public function eatFlahneOutUnderDesk():void {
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) 
 	{
 		output(" Above, her cock-like organ bloats and explodes, pumping huge blasts of white-hued cum out like some kind of cannon. The jizz-bombs splatter off the top of your enclosure, sticking to the underside of the desk briefly before raining spunk over your entire body. You ignore the one-woman bukkake show and keep going, ensuring that Flahne has as torturously long an orgasm as possible.");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 	}
 
 	output("\n\nHer thighs clamp down on either side of you, surrounding you in squishy, jiggling flesh, compressing your mouth even harder against her gooey mound. Closing your eyes, you drink her girlish ejaculate until her body relaxes and releases you.");

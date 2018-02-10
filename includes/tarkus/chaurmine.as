@@ -205,7 +205,7 @@ public function gentleChaurmineHJFinisher():void
 	output("\n\nYou let him ride out the last of his lengthy orgasm by his own movements; given that he hasn’t gotten too sensitive. After a few last thrusts, he seems to start to calm down, almost immediately going soft in your grip. Seems you nearly exhausted the titan. Certain that that’s the best you can do for him right now, you clear your face of what remains of his thick seed.");
 	processTime(5);
 	pc.lust(5);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	pc.addNice(1);
 
 	//[Next] // Go to Handjob End
@@ -225,7 +225,7 @@ public function chaurmineHJRoughEnd():void
 	output("\n\nAs his amber sack tenses intensely and seems to shrink, his ribbed shaft bulges even more. The metal behemoth’s hands claw at the air, and feet dig and tear into the ground in both incredible pain and sublime pleasure, forcing a hoarse growl from his maw as his bloated shaft fires rapid loads of thick seed onto his face and chest repeatedly, drenching him from horn to cock. As his release peaks in ferocity, you find yourself just as covered as he is, your chagrin almost causing you to miss his clenching spout of a shaft slow to a trickle.");
 	processTime(5);
 	pc.lust(5);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	pc.addHard(1);
 	//[Next] // Go to Handjob End
 	clearMenu();
@@ -246,7 +246,7 @@ public function playfulChaurmineHJend():void
 	output("\n\nSatisfied, you straighten yourself as you release the brute’s cock, and caress his prostate one last time as your fingers exit his clenching depths. As the big lizard’s black dick thumps onto his torso, he groans tiredly and lets loose one last massive blast of his seed, coating himself in the musky glaze.");
 	processTime(5);
 	pc.lust(5);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	pc.addMischievous(1);
 	//[Next] // Go to Handjob End
 	clearMenu();
@@ -343,7 +343,7 @@ public function titfuckChaurmineToiletPaper():void
 	output("\n\nNot daring to touch him and not quite able to slide from under his titanic form, you can only watch as he sits up flaccidly, his head weakly tilting back as his jaws almost screech open from his heated scales grinding together. With a great sigh of relief, you feel the dangerous incandescence virtually vanish as, with a sound somewhere between a growl and a sigh, you both see and <i>feel</i> the heat violently vent, almost burst, from between his jaws.");
 	output("\n\nShortly the shimmering heat all but disappears, seeming to mean he’s recovered, as he stands with a much less audible creak from his scales. Snorting a hot breath of what you think is gratitude down onto you, he proceeds to lumber northward. Talking over his shoulder as well as his thick scales let him, he rumbles, <i>“What happened here never leaves this place. No one knows what we did because it never happened. But uh... I suppose I could help you improve your... technique, if we meet again.”</i> He grunts dismissively, leaving you to continue gratefully breathe in cool and fresh air.");
 	processTime(35);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	pc.lust(10);
 	if(pc.isLactating()) pc.milked(10);
 	clearMenu();
@@ -1533,7 +1533,7 @@ public function gentleChaurmineHJFinisherOnShip():void
 	pc.addNice(1);
 	processTime(5);
 	pc.lust(5);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",chaurmineHJShipRecovery);
 }
@@ -1551,7 +1551,7 @@ public function roughChaurmineHJFinisherOnShip():void
 	pc.addHard(1);
 	processTime(5);
 	pc.lust(5);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",chaurmineHJShipRecovery);
 }
@@ -1571,7 +1571,7 @@ public function playfulChaurmineHJEndingOnShip():void
 	pc.addMischievous(1);
 	processTime(5);
 	pc.lust(5);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",chaurmineHJShipRecovery);
 }
@@ -1662,7 +1662,7 @@ public function chaurmineShippyShipTitfuckyDuckyHucky():void
 	output("\n\nShortly the he removes his claws, seeming to mean he’s recovered, as he stands with a slightly audible creak from his scales. Snorting a hot breath of what you think is gratitude down onto you, he proceeds to lumber to what can only be the ship’s showers. Talking over his shoulder as well as his thick scales let him, he rumbles, <i>“What happened here never leaves this place. No one knows what we did because it never happened. But uh... I suppose I could help you improve your... technique, if you want.”</i> He grunts dismissively, leaving you to continue gratefully breathe in the thick, musky air before promptly following him, the scandalously messy and sloppy sounds preceding you reverberating in the ship’s halls.");
 
 	processTime(25);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	chaurmineRelationship(4);
 	IncrementFlag("SEXED_CHAURMINE");
 	pc.lust(10);

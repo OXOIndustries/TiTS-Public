@@ -1657,8 +1657,8 @@ public function newTexanGanguBangu():void
 	pc.exhibitionism(2);
 	pc.exhibitionism(2);
 	
-	applyCumSoaked(pc);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
 	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1812,8 +1812,8 @@ public function gravCuffsCowgirlBangu():void
 	pc.exhibitionism(2);
 	pc.exhibitionism(2);
 	
-	applyPussyDrenched(pc);
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
+	pc.applyPussyDrenched();
 	
 	clearMenu();
 	addButton(0,"Next",cowGirlGanguBanguEpilogue);
