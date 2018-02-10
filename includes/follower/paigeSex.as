@@ -3749,7 +3749,7 @@ public function SSDYHH(args:Array):void
 		{
 			output("twisting her head to one side as if she were kissing you, then drives her tongue forward, slipping it inside your moist pocket. You gasp in pleasure as she goes, wriggling her tongue up and down and side to side, bloating it to fill you out as much as she can and press against your every pleasurable nook. She angles her head up, lining her upper lip with your [pc.clit], then makes a light chewing motion to include it in her deliberation against your [pc.vagina]");
 			//if (pc.hasCock = true)
-			if(pc.hasCock()) output(". [pc.Eachcock] is rigid as could be, the residual pleasure from your girly bits having you hard as could be for some extra attention, even though the most you’ll get is her hand");
+			if(pc.hasCock()) output(". [pc.EachCock] is rigid as could be, the residual pleasure from your girly bits having you hard as could be for some extra attention, even though the most you’ll get is her hand");
 			output(".");
 		}
 		//if (pc.hasVagina = false)

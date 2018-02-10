@@ -724,13 +724,13 @@ public function annoFollowerTalkMenu(doOut:Boolean = true):void
 
 	//Giving Anno the Thickness
 	//Must have sexed Anno at least once. She must be on the crew, the PC must have visited Uveto and seen the Bimbo Twins on the station, and the PC must have at least 10 Huskar Treats in their inventory. If reqs. are met, add [Huskar?] to Anno's talk menu. Ghost out if PC lacks sufficient Huskar Treats.
-	if(flags["ANNO_HUSKARRED"] != undefined) addDisabledButton(11,"Huskar?","Huskar?","You've already done this! Anno can't get any chubbier!");
+	if(flags["ANNO_HUSKARRED"] != undefined) addDisabledButton(11,"Huskar?","Huskar?","You’ve already done this! Anno can’t get any chubbier!");
 	else if(annoIsCrew() && haveFuckedAnno() && flags["UVETO_HUSKAR_FOURSOME"] == 1)
 	{
-		if(pc.hasItemByClass(HuskarTreats,10)) addButton(11,"Huskar?",annoHuskarTreatIntro,undefined,"Huskar?","See how Anno feels about gettin' down with the thickness.");
-		else addDisabledButton(11,"Huskar?","Huskar?","You'll want to have some actual huskar treats before you see if Anno'd be open to taking them. About 10 would be sure to do the trick.");
+		if(pc.hasItemByClass(HuskarTreats,10)) addButton(11,"Huskar?",annoHuskarTreatIntro,undefined,"Huskar?","See how Anno feels about gettin’ down with the thickness.");
+		else addDisabledButton(11,"Huskar?","Huskar?","You’ll want to have some actual huskar treats before you see if Anno’d be open to taking them. About 10 would be sure to do the trick.");
 	}
-	else addDisabledButton(11,"Locked","Locked","You'll need to have had sex with Anno, been to Uveto and met certain individuals, and have Anno on your crew for this.");
+	else addDisabledButton(11,"Locked","Locked","You’ll need to have had sex with Anno, been to Uveto and met certain individuals, and have Anno on your crew for this.");
 
 	addButton(14, "Back", annoFollowerMenu);
 }
@@ -1319,14 +1319,14 @@ public function annoFollowerSuckAndFuckSexPartII():void
 	else
 	{
 		output("You give the tail a little push back through the hole in her ");
-		if (anno.armor is AnnosCatsuit) output("catsuit's");
-		else output("jeans'");
-		output(" rear end before yanking the whole outfit down, struggling to get her waistband down around the huskar's broad hips and thunderous thighs. Finally, her huge, juicy butt pops free, and you drag her pants down, letting them ball around your ausar lover's spread legs and leaving her nice and bare for you. She gives a happy moan as the last of her clothing falls free, wiggling her enormous ass back into your bare, cum-slathered groin. You answer with a quick slap on one of her rounded cheeks, eliciting a startled squeak from her as her flesh jiggles in response.");
+		if (anno.armor is AnnosCatsuit) output("catsuit’s");
+		else output("jeans’");
+		output(" rear end before yanking the whole outfit down, struggling to get her waistband down around the huskar’s broad hips and thunderous thighs. Finally, her huge, juicy butt pops free, and you drag her pants down, letting them ball around your ausar lover’s spread legs and leaving her nice and bare for you. She gives a happy moan as the last of her clothing falls free, wiggling her enormous ass back into your bare, cum-slathered groin. You answer with a quick slap on one of her rounded cheeks, eliciting a startled squeak from her as her flesh jiggles in response.");
 	}
 	
 	output("\n\n<i>“Not yet,”</i> you tease, pulling your crotch back from her ample ass. ");
 	if(!annoIsHuskar()) output("You slide down to your [pc.knees], hands running up and down Anno’s toned legs and big, ");
-	else output("You slide down to your [pc.knees], hands running up and down Anno's thick legs and big, ");
+	else output("You slide down to your [pc.knees], hands running up and down Anno’s thick legs and big, ");
 	output("squishy butt as you go, feeling up every inch of bare ausar flesh, fingers running through the furred lower halves of her legs, all the way down to her cute, clawed feet. Slowly, sensually, you work your way back up to your goal: the soft, pliant flesh of her ass; at your touch, her cheeks quiver and quake as Anno’s excitement makes itself known with a vigorous tail-wag that batters at your face. Again you move the troublesome tail out of the way as your hands spread her cheeks wide, revealing the flushed red lips of her sex. Anno tries and fails to suppress an anxious whimper as your breath comes hot on her naked slit, fingers holding her cheeks wide open, just enough to give her the slightest hint of a gape. ");
 	
 	output("\n\n<i>“Mmmm. What’re you...”</i> Anno moans, her voice trailing off as you lean in, tongue darting out to lap at the sweet ambrosia glazing the lips of her sex. She gasps and fidgets, feet clawing at the ground in response to the sudden, pleasurable touch. You give one of her full cheeks a squeeze to calm her twitching leg, letting you concentrate on the pair of eager holes at hand. Your tongue probes in, gently parting the veil of her cunny only to be instantly greeted with an almost overpowering scent of sex and need as a trail of slime rolls out onto your delving [pc.tongue]. You shudder at the sweet taste of your lover’s want, eagerly lapping up the sweet juices.");
@@ -1418,7 +1418,7 @@ public function annoFollowerAnalSex():void
 	output("\n\nWith a whimper of pleasure, Anno settles down atop the bed, ass in the air and wiggling happily as you feel up that perfect round ass. You can feel your [pc.cocksLight] jumping to attention as you move directly behind your ausar lover, your crotch dangerously close to her rear end... if only it weren’t for those troublesome clothes. With a little grin, you lean over her, your [pc.chest] ");
 
 	if(!annoIsHuskar()) output("pressing tight into Anno’s back as your hands run up her sides, playing across her ribs and the ample curves of her bust.");
-	else output("pressing tight into Anno's back as your hands run up her sides, playing across her husky love handles and the tremendous curves of her bust.");
+	else output("pressing tight into Anno’s back as your hands run up her sides, playing across her husky love handles and the tremendous curves of her bust.");
 
 	output(" Anno moans lightly as your hands tease their way around her tits, her tail wagging hard");
 	if(pc.legCount > 1) output(" between");
@@ -1441,7 +1441,7 @@ public function annoFollowerAnalSex():void
 	output(" It isn’t long before your digits are soaked in Anno’s slick juices, coated with the thick, sweet excitement of your ausar lover. She groans as your fingers slip inside her, teasing the entrance to her womanhood, even the hood of her [anno.clit], making sure to slather yourself up with as much of her juices as you can scrounge up - which has the added effect of getting the horny ausar slut nice and ready, breath coming ragged as she’s fingered deep, clearly expecting a nice cock to follow your fingers’ course. ");
 
 	if(!annoIsHuskar()) output("\n\nYou strip yourself out of your [pc.gear], letting your [pc.cock " + selCock + "] flop free into the crack of her ass, the crown just pressing into the base of her tail. Anno gives you a lusty grin over her shoulder and clenches down, momentarily trapping your prick between the taut cheeks. You answer with a sharp slap on her ass, enough to make her yelp and let you go.");
-	else output("\n\nYou strip yourself out of your [pc.gear], letting your [pc.cock " + selCock + "] flop free and thrust it into the tight grip of her ass until it's all but disappeared into the depths of the huskar's callipygian booty. Anno gives you a lusty grin over her shoulder and squeezes her cheeks together with all her might, momentarily trapping your prick in the valley of her crack. You answer with a sharp slap on her ass, enough to make her yelp and let you go.");
+	else output("\n\nYou strip yourself out of your [pc.gear], letting your [pc.cock " + selCock + "] flop free and thrust it into the tight grip of her ass until it’s all but disappeared into the depths of the huskar’s callipygian booty. Anno gives you a lusty grin over her shoulder and squeezes her cheeks together with all her might, momentarily trapping your prick in the valley of her crack. You answer with a sharp slap on her ass, enough to make her yelp and let you go.");
 
 	output(" Once you’ve regained control of your prick, you spend the next few moments slathering it in the readily-available juices on your fingers, only stopping to refresh your supplies in the rivers running down Anno’s thighs. ");
 
@@ -1534,7 +1534,7 @@ public function annoFollowerAnalSexCum(selCock:int):void
 	
 	output("\n\n<i>“That wasn’t so bad,”</i> she admits as you withdraw from her");
 	if(!annoIsHuskar()) output(", leaving a tiny trickle of seed drooling from her abused hole.");
-	else output(". Her big ol' ass slaps back together with nothing to keep it spread, trapping the leaking streak of [pc.cumNoun] between them.");
+	else output(". Her big ol’ ass slaps back together with nothing to keep it spread, trapping the leaking streak of [pc.cumNoun] between them.");
 
 	
 	output("\n\n<i>“I don’t think I’d mind doing this again, boss,”</i> Anno adds with a wink as you stagger off, collecting your [pc.gear] and leaving her to clean herself up.");
@@ -1774,7 +1774,7 @@ public function annoFollowerSixtyNineSex():void
 	output(", leaving herself bare but for the fur coating her lower limbs and the aura of need and desire practically radiating off her.");
 	
 	if(!annoIsHuskar()) output("\n\nBare as an ausar can be, Anno sashays back to the counter and leans over it, finally revealing her bosom to you as it’s all but in your face. She grins at you, watching your face as it’s overcome with desire, eyes drawn to the luscious curves, the rises and falls of her breasts.");
-	else output("\n\nBare as a fluffy huskar can be, Anno sashays back to the bed and leans over it, showing off the goods for your hungry eyes to devour. She grins at you, watching your face as it's overcome with desire, eyes drawn to the luscious curves, the rises and falls of her pendulous breasts.");
+	else output("\n\nBare as a fluffy huskar can be, Anno sashays back to the bed and leans over it, showing off the goods for your hungry eyes to devour. She grins at you, watching your face as it’s overcome with desire, eyes drawn to the luscious curves, the rises and falls of her pendulous breasts.");
 
 	output(" <i>“I think I know where that massage should start back up,”</i> she hints, sliding up onto the bed and rolling onto her back, giving you easy access to her chest. With a pat on the sheets beside her, she invites you in - and you’re quick to oblige. ");
 	
@@ -1951,7 +1951,7 @@ public function annoFollowerShowerSex():void
 
 
 	if(!annoIsHuskar()) output("You let your hands wander across her body: they start at her shoulders and slide slowly down, making sure to sensuously rub at the right spots as they go. Your fingers slip around her ribs and up her chest to cup the slippery mounds of her tits, giving them an affectionate little squeeze. Anno moans at this, her back arching and her hips squirming back against your [pc.crotch] while you massage her big breasts, letting your fingers sink into her soft, pliant flesh. Her nipples stiffen between your digits, and you feel your lover being wracked by a full-body shudder as you roll the twin points between your fingertips. Teasing and squeezing, you keep up the pressure on Anno’s breasts until her breath is coming out in shuddering gasps and her sodden figure is trembling at your every touch.");
-	else output("You let your hands wander across her body: they start at her slender shoulders and slide slowly down, feeling Anno's figure get wider and thicker with every inch. You rub your fingers through her fulffy collar, then down her back, groping at her love handles and breeder's hips before reaching around to heft up those succulent melons dangling from her chest. Your fingers sink deep into them, kneading her boobs like dough before working your way up to pull and pinch at her nipples. You feel your lover being wracked by a full-body shudder as you roll the twin points between your fingertips, using them to lift her heavy breasts up and jiggle them about. Teasing and squeezing, you keep up the pressure on Anno's breasts until her breath is coming out in shuddering gasps and her sodden figure is trembling at your every touch.");
+	else output("You let your hands wander across her body: they start at her slender shoulders and slide slowly down, feeling Anno’s figure get wider and thicker with every inch. You rub your fingers through her fulffy collar, then down her back, groping at her love handles and breeder’s hips before reaching around to heft up those succulent melons dangling from her chest. Your fingers sink deep into them, kneading her boobs like dough before working your way up to pull and pinch at her nipples. You feel your lover being wracked by a full-body shudder as you roll the twin points between your fingertips, using them to lift her heavy breasts up and jiggle them about. Teasing and squeezing, you keep up the pressure on Anno’s breasts until her breath is coming out in shuddering gasps and her sodden figure is trembling at your every touch.");
 
 	output(" You can only imagine the sultry gulf forming between her legs by now as the ausar’s plentiful excitement mixes with the hot water of the shower into a glistening, inviting delta. ");
 	
@@ -2391,7 +2391,7 @@ public function annoxKaedeFollowerMeeting():void
 		
 		output("\n\nYou slide into the booth beside your ausar lovers, and quickly find a shot glass of a strong-smelling green ausar drink in front of you. ");
 		if(!annoIsHuskar()) output("You knock it back as the pair of wolf-eared babes giggle and tease at each other - and at least one fluffy tail starts caressing your [pc.leg]. You spend a few pleasant minutes conversing with the couple, but it isn’t long before you feel the weight of lusty eyes wandering over you. Anno’s arm slips around your waist, and she nuzzles up against your shoulder.");
-		else output("You knock it back, watching the pups all the while. Kaede can't seem to keep her hands off Anno, taking any excuse to grab a thigh or love handle, or just to pet Anno's silky collar. The way she shifts from side to side, the poor girl can barely keep her dick in her pants. And you feel the growing weight of lusty gazes wandering all over you, too. A fluffy tail caresses your [pc.leg], and Anno squeezes her shoulders together, drawing her lovers' attention decidedly to her most pronounced assets.");
+		else output("You knock it back, watching the pups all the while. Kaede can’t seem to keep her hands off Anno, taking any excuse to grab a thigh or love handle, or just to pet Anno’s silky collar. The way she shifts from side to side, the poor girl can barely keep her dick in her pants. And you feel the growing weight of lusty gazes wandering all over you, too. A fluffy tail caresses your [pc.leg], and Anno squeezes her shoulders together, drawing her lovers’ attention decidedly to her most pronounced assets.");
 		
 		output("\n\n<i>“What do you say we get out of here, huh boss? I’ve got a rent-by-the-hour down the way... and a cute little piece of ass to split between us.”</i>");
 	}

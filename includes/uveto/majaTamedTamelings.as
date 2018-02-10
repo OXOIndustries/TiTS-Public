@@ -308,27 +308,25 @@ public function purchaseTameling(arg:ItemSlotClass):void
 public function canReturnMajaPet():Boolean
 {
 	//Bear:
-	if(flags["MAJA_RENTING"] == new KordiiakLeash().description)
+	if(flags["MAJA_RENTING"] == "a kor’diiak bear leash")
 	{
 		if(pc.hasItemByClass(KordiiakLeash) || pc.accessory is KordiiakLeash) return true;
 	}
 	//Cathorse
-	if(flags["MAJA_RENTING"] == new NogwichLeash().description)
+	if(flags["MAJA_RENTING"] == "a nog’wich leash")
 	{
 		if(pc.hasItemByClass(NogwichLeash) || pc.accessory is NogwichLeash) return true;
 	}
 	//Acid spitboi
-	if(flags["MAJA_RENTING"] == new ShoulderGrunchLeash().description)
-	{
-		if(pc.hasItemByClass(ShoulderGrunchLeash) || pc.accessory is ShoulderGrunchLeash) return true;
-	}
+	if(pc.hasItemByClass(ShoulderGrunchLeash) || pc.accessory is ShoulderGrunchLeash) return true;
+	if(pc.hasItemByClass(GrunchLeash) || pc.accessory is GrunchLeash) return true;
 	return false;
 }
 public function returnPetToMaja():void
 {
 	clearOutput();
 	showMaja();
-	if(flags["MAJA_RENTING"] == new KordiiakLeash().description)
+	if(flags["MAJA_RENTING"] == "a kor’diiak bear leash")
 	{
 		output("You lead the large bear-like beast waiting outside the door back into Tamed Tamelings. It immediately bounds over to maja, giving her a big lick and knocking her off balance so she falls back into her chair.");
 		output("\n\n<i>“Oof, guess you missed ");
@@ -344,7 +342,7 @@ public function returnPetToMaja():void
 		else if(pc.accessory is KordiiakLeash) pc.accessory = new EmptySlot();
 	}
 	//Nog'wich
-	else if(flags["MAJA_RENTING"] == new NogwichLeash().description)
+	else if(flags["MAJA_RENTING"] == "a nog’wich leash")
 	{
 		output("The large horse-leopard you had left waiting at the door enters at your call, brushing against Maja before heading back into the pen area of its own volition. Maja smiles, going to let her back into her enclosure. She comes back a moment later with a huge smile.");
 		output("\n\n<i>“");
@@ -369,12 +367,6 @@ public function returnPetToMaja():void
 		else if(pc.accessory is ShoulderGrunchLeash) pc.accessory = new EmptySlot();
 	}
 	//else output("You return the rented animal to a grateful Maja.");
-	//Cathorse
-	if(flags["MAJA_RENTING"] == new NogwichLeash().description)
-	{
-		if(pc.hasItemByClass(NogwichLeash)) pc.destroyItemByClass(NogwichLeash);
-		else if(pc.accessory is NogwichLeash) pc.accessory = new EmptySlot();
-	}
 	flags["MAJA_RENTING"] = undefined;
 	clearMenu();
 	addButton(0,"Next",repeatMajaApproach,true);

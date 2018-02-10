@@ -1919,7 +1919,7 @@ public function herEyes3():void
 {
 	clearOutput();
 	showPaige();
-	output("Her sobs are muffled by your [pc.upperGarments], her grip hard as iron on your hand and the arm locked around your shoulders almost tight enough to be painful. <i>“[pc.name]”</i> she repeats, struggling to maintain her composure. Every time she stiffens up, she promptly collapses into you again.");
+	output("Her sobs are muffled by your " + (!pc.isChestExposed() ? "[pc.upperGarments]" : "body") + ", her grip hard as iron on your hand and the arm locked around your shoulders almost tight enough to be painful. <i>“[pc.name]”</i> she repeats, struggling to maintain her composure. Every time she stiffens up, she promptly collapses into you again.");
 	output("\n\nYou remain on her couch for a moment, holding your Ausar lover as she gets everything she needs out of her, out of her. You stroke at her back tenderly as you wait. <i>“This is,”</i> she tries to say, then stops to take a breath. <i>“This is the nicest thing anyone’s ever done for me, [pc.name],”</i> she tells you. <i>“That’s... that’s five hundred thousand credits! Half a million! That’s....”</i>");
 	output("\n\n<i>“Please stop reminding me,”</i> you chuckle. <i>“I’m not going to back down, but saying it over and over doesn’t make it easier.”</i>");
 	output("\n\nShe laughs cutely between her sniffles. <i>“Right.”</i>");

@@ -44,7 +44,7 @@ package classes.Items.Accessories
 			//droneAttack = grunchAttack;
 			
 			//addFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER);
-			addFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE);
+			//addFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE);
 			
 			version = _latestVersion;
 		}

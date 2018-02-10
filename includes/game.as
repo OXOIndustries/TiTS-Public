@@ -734,8 +734,8 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			//If anno is disabled due to thiccness
 			if(flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 60 > GetGameTimestamp())
 			{
-				crewMessages += "\n\nAnno isn't in at the moment. You'll have to wait a bit longer for her to start digging into the treats....";
-				addDisabledButton(btnSlot++,"Anno","Anno","Anno isn't in at the moment. You'll have to wait a bit longer for her to start digging into the treats....");
+				crewMessages += "\n\nAnno isn’t in at the moment. You’ll have to wait a bit longer for her to start digging into the treats....";
+				addDisabledButton(btnSlot++,"Anno","Anno","Anno isn’t in at the moment. You’ll have to wait a bit longer for her to start digging into the treats....");
 			}
 			//25% chance of special maid scene proccing if Anno has the maid outfit and haven't seen the scene in a day - gotta have a dink that fits and not be naga or taur
 			else if (flags["ANNO_MAID_OUTFIT"] != undefined && rand(4) == 0 && !pc.hasStatusEffect("The Lusty Ausar Maid") && !pc.isTaur() && !pc.isNaga() && pc.cockThatFits(anno.vaginalCapacity()) >= 0)
@@ -750,7 +750,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 				else if (hours >= 12 || hours <= 13) 
 				{
 					if(!annoIsHuskar()) crewMessages += "\n\nAnno’s busy doing a quick workout in her quarters to the beat of some fast-paced ausar heavy metal. <i>“Gotta keep in shape!”</i> she says.";
-					else crewMessages += "\n\nYou catch Anno standing in the middle of her quarters, wearing a skin-tight leotard that's practically tearing itself apart trying to contain her chest and pillowy ass. She's following along with a low-impact cardio routine playing on her desk's holoscreen; guess Anno still wants to keep in shape, but isn't looking to burn off those sexy curves you've given her. You happily drink in her jiggling movements for a few moments before moving on.";
+					else crewMessages += "\n\nYou catch Anno standing in the middle of her quarters, wearing a skin-tight leotard that’s practically tearing itself apart trying to contain her chest and pillowy ass. She’s following along with a low-impact cardio routine playing on her desk’s holoscreen; guess Anno still wants to keep in shape, but isn’t looking to burn off those sexy curves you’ve given her. You happily drink in her jiggling movements for a few moments before moving on.";
 				}
 				// PC has Freed Reaha and Anno, add to Anno’s random selection:
 				else if (!curedReahaInDebt() && rand(3) == 0) crewMessages += "\n\nAnno’s sitting in the kitchen with a [reaha.milkNoun] moustache on her upper lip, looking awfully happy with herself. You can’t imagine where that came from...";
@@ -1911,17 +1911,17 @@ public function showerOptions(option:int = 0):void
 				if(pc.hasHair()) output("through your [pc.hair]");
 				else output("over your head");
 				output(". Even here, it’s difficult to relax with your pussy plugged up like it is, the obstruction keeping you constantly aroused and frustrated. Perhaps the hot water...? You pluck the shower head from out of its fixture and angle it at your [pc.vagina]. For a moment you think nothing is going to happen - then, in a wave of relief and hollowing out, <b>the plug begins to lose its solidity, melting into fluffy blue foam</b> which easily washes away down your [pc.legs] and into the drain. You sigh with relief. At last!");
+				var removed:Number = 0;
 				for(var i:int = 0; i < pc.totalVaginas(); i++)
 				{
-					var removed:Number = 0;
 					if(pc.isPlugged(i)) 
 					{
 						pc.vaginas[i].delFlag(GLOBAL.FLAG_PLUGGED);
 						removed++;
 					}
-					if(removed == 2) output(" <b>You tend to the other plug while you're at it.</b>")
-					if(removed > 2) output(" <b>You tend to the other plugs while you're at it.</b>")
 				}
+				if(removed == 2) output(" <b>You tend to the other plug while you’re at it.</b>");
+				if(removed > 2) output(" <b>You tend to the other plugs while you’re at it.</b>");
 				if(pc.isPlugged(-1))
 				{
 					output(" <b>The plug in your ass vanishes as well.</b>");
@@ -1941,14 +1941,8 @@ public function showerOptions(option:int = 0):void
 			{
 				//[Masturbate] [Finish]
 				output(" With the shower head where it is, perhaps you could take care of that aggravating lust now as well?");
-				clearMenu();
-				if (pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(0, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
-				else if (!pc.canMasturbate()) addDisabledButton(0, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
-				else
-				{
-					showerSex = shipShowerFaps(true);
-				}
-				addButton(showerSex, "Nevermind", shipShowerFappening, "Nevermind", "On second thought...");
+				
+				shipShowerFapButtons(showerSex);
 			}
 			else addButton(0, "Next", showerExit);
 			return;
@@ -2017,13 +2011,7 @@ public function showerOptions(option:int = 0):void
 			else output(" flex your [pc.asshole]");
 			output(". Maybe you’re not done showering just yet.");
 			
-			if (pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(0, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
-			else if (!pc.canMasturbate()) addDisabledButton(0, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
-			else
-			{
-				showerSex = shipShowerFaps(true);
-			}
-			addButton(showerSex, "Nevermind", shipShowerFappening, "Nevermind", "On second thought...");
+			shipShowerFapButtons(showerSex);
 		}
 		else
 		{
@@ -2046,6 +2034,16 @@ public function showerOptions(option:int = 0):void
 		else output(" You don’t seem to have any crew members onboard who can have shower sex with you at the moment.");
 		addButton(14, "Back", showerMenu);
 	}
+}
+public function shipShowerFapButtons(showerSex:int = 0):void
+{
+	if (pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(0, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
+	else if (!pc.canMasturbate()) addDisabledButton(0, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
+	else
+	{
+		showerSex = shipShowerFaps(true);
+	}
+	addButton(showerSex, "Nevermind", shipShowerFappening, "Nevermind", "On second thought...");
 }
 
 public function sneakBackYouNudist():void
@@ -3813,6 +3811,6 @@ public function deathByNoHP():void
 {
 	clearOutput();
 	showName("GAME\nOVER");
-	output("You collapse unconscious... and do not rise again, your body's capacity to take damage reduced to less than nothing. Whoops.");
+	output("You collapse unconscious... and do not rise again, your body’s capacity to take damage reduced to less than nothing. Whoops.");
 	badEnd();
 }

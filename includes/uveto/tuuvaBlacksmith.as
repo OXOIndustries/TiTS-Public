@@ -324,7 +324,7 @@ public function tuuvaTalkMenu():void
 	else addDisabledButton(2,"Scavenging","Scavenging","You should get to know a little more about her before getting into specifics.");
 	//[Dick] Ask about her extra equipment. //Requires 25 Affection event and Scavenging talk done. Hidden until requirements are met.
 	if(flags["TUUVA_SCAVENGING_TALK"] != undefined && flags["TUUVA_25AFF"] != undefined) addButton(3,"Dick",talkToTuuvaAboutDicks,undefined,"Dick","Ask about her extra equipment");
-	else addDisabledButton(3,"Locked","Locked","You don’t know her well enough for this. Requires 25 Tuuva affection.");
+	else addDisabledButton(3,"Locked","Locked","You don’t know her well enough for this.");
 	//[Bigger.D] She’s looking for some quick and simple dick growth, ey? You might have the answer for that. //Requires 75 Affection event done and Dick talk done. Hidden until requirements are met. Requires a Synth Sheath.
 	if(flags["TUUVA_DICK_TALK"] != undefined && tuuvaAffection() >= 75) 
 	{
@@ -373,12 +373,12 @@ public function tuuvaShopMenu(choice:String = ""):void
 		if(!korgiTranslate()) output(" see Tuuva’s things!");
 		else output(" see what I have to offer.");
 		if(silly) output(" Masterworks all, you can’t go wrong!");
-		output("”</i>\n\n<b>You have given Tuuva " + tuuvaCredits() + " credits worth of Savicite:</b>\nA lightweight maul with a pure savicite head. - 7000 credits.\nA masterwork yappi strap - 7000 credits.\nA korgonne greatbow - 8000 credits.");
+		output("”</i>\n\n<b>You have given Tuuva " + tuuvaCredits() + " credits worth of Savicite:</b>");
 
 		clearMenu();
-		addItemButton(0, new SaviciteLightMaul(), saviciteBuyFromTuuva,new SaviciteLightMaul());
-		addItemButton(1, new MasterworkYappiStrap(), saviciteBuyFromTuuva,new MasterworkYappiStrap());
-		addItemButton(2, new KorgGreatBow(), saviciteBuyFromTuuva,new KorgGreatBow());
+		tuuvaShopOption(0, new SaviciteLightMaul());
+		tuuvaShopOption(1, new MasterworkYappiStrap());
+		tuuvaShopOption(2, new KorgGreatBow());
 		if(tuuvaCredits() < 7000)
 		{
 			setButtonDisabled(0);
@@ -388,10 +388,9 @@ public function tuuvaShopMenu(choice:String = ""):void
 		//Frostwyrm shit!
 		if(flags["GAVE_TUUVA_SCALES"] != undefined && flags["GAVE_TUUVA_SCALES"] + 24*60*7 < GetGameTimestamp())
 		{
-			output("\nFrostbane Plate - 42000 credits.\nFrostbane Mail - 42000 credtis.\nFrostbane Bikini - 40000 credits.");
-			addItemButton(3, new FrostbanePlate(), saviciteBuyFromTuuva,new FrostbanePlate());
-			addItemButton(4, new FrostbaneMail(), saviciteBuyFromTuuva,new FrostbaneMail());
-			addItemButton(5, new FrostbaneBikini(), saviciteBuyFromTuuva,new FrostbaneBikini());
+			tuuvaShopOption(3, new FrostbanePlate());
+			tuuvaShopOption(4, new FrostbaneMail());
+			tuuvaShopOption(5, new FrostbaneBikini());
 			if(tuuvaCredits() <= 42000)
 			{
 				setButtonDisabled(3);
@@ -404,6 +403,11 @@ public function tuuvaShopMenu(choice:String = ""):void
 		if(tuuvaCredits() < 8000) setButtonDisabled(2);
 		addButton(14,"Back",approachTuuva);
 	}
+}
+private function tuuvaShopOption(btnSlot:int, item:ItemSlotClass):void
+{
+	output("\n" + StringUtil.upperCase(item.description, false) + " - " + item.basePrice + " credits.");
+	addItemButton(btnSlot, item, saviciteBuyFromTuuva, item);
 }
 
 public function saviciteBuyFromTuuva(arg:ItemSlotClass):void

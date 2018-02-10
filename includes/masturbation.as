@@ -2229,7 +2229,7 @@ public function futaBabePantyfapsRouter():void
 		}
 		if(pc.hasKeyItem("Panties - Anno's - Blue boxer briefs."))
 		{
-			addButton(button,"Anno's",jackOffWithLadyPantiesYouSicko,"Anno","Anno's Panties","Use Anno's blue boxer-briefs for a little self-pleasure.");
+			addButton(button,"Anno’s",jackOffWithLadyPantiesYouSicko,"Anno","Anno’s Panties","Use Anno’s blue boxer-briefs for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace."))
@@ -2254,7 +2254,7 @@ public function futaBabePantyfapsRouter():void
 		}
 		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch."))
 		{
-			addButton(button,"Erra's",jackOffWithLadyPantiesYouSicko,"Erra","Erra","Use Erra’s purple, paw-printed panties for a little self-pleasure.");
+			addButton(button,"Erra’s",jackOffWithLadyPantiesYouSicko,"Erra","Erra’s Panties","Use Erra’s purple, paw-printed panties for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) 
@@ -2269,7 +2269,7 @@ public function futaBabePantyfapsRouter():void
 		}
 		if(pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent."))
 		{
-			addButton(button,"Myrna's",jackOffWithLadyPantiesYouSicko,"Myrna","Myrna's Panties","Use Myrna's fur-lined, silky green panties for a little self-pleasure.");
+			addButton(button,"Myrna’s",jackOffWithLadyPantiesYouSicko,"Myrna","Myrna’s Panties","Use Myrna’s fur-lined, silky green panties for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) 
@@ -2330,7 +2330,7 @@ public function futaBabePantySchlicksRouter():void
 		}
 		if(pc.hasKeyItem("Panties - Anno's - Blue boxer briefs."))
 		{
-			addButton(button,"Anno's",pureLadyWaifuPussyRubFap,"Anno","Anno's Panties","Use Anno's blue boxer-briefs for a little self-pleasure.");
+			addButton(button,"Anno's",pureLadyWaifuPussyRubFap,"Anno","Anno’s Panties","Use Anno’s blue boxer-briefs for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace."))
@@ -2355,7 +2355,7 @@ public function futaBabePantySchlicksRouter():void
 		}
 		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) 
 		{
-			addButton(button,"Erra's",pureLadyWaifuPussyRubFap,"Erra","Erra's Panties","Use Erra's purple, paw-printed panties for a little self-pleasure.");
+			addButton(button,"Erra’s",pureLadyWaifuPussyRubFap,"Erra","Erra’s Panties","Use Erra’s purple, paw-printed panties for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) 
@@ -2370,7 +2370,7 @@ public function futaBabePantySchlicksRouter():void
 		}
 		if(pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent."))
 		{
-			addButton(button,"Myrna's",pureLadyWaifuPussyRubFap,"Myrna","Myrna's Panties","Use Myrna's fur-lined, silky green panties for a little self-pleasure.");
+			addButton(button,"Myrna’s",pureLadyWaifuPussyRubFap,"Myrna","Myrna’s Panties","Use Myrna’s fur-lined, silky green panties for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) 
