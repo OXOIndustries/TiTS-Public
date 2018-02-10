@@ -898,13 +898,13 @@ public function intimateCatchChaurmine():void
 	var x:int = -1;
 
 	var choices:Array = [-1];
-	for(x = 0; x < pc.totalVaginas(); x++)
+	for(var i:int = 0; i < pc.totalVaginas(); i++)
 	{
-		if(!pc.isBlocked(x)) 
+		if(!pc.isBlocked(i)) 
 		{
-			choices.push(x);
-			choices.push(x);
-			choices.push(x);
+			choices.push(i);
+			choices.push(i);
+			choices.push(i);
 		}
 	}
 	//3-1 odds for pussy is good enough for me!
