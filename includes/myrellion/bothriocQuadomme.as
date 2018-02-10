@@ -163,6 +163,10 @@ public function encounterBothriocQuadomme():void
 				output("\n\n<i>“Goodness me, farlander,”</i> it says, making you jump and refocus on its face. Its grin is wider, knowing. <i>“You’ve obviously gotten to know my race quite well and yet this is the first time you’ve been in the presence of a true quadomme? Poor thing. A hungry, succulent babe such as yourself, feeding off only the scraps that my two-legged brethren can provide.”</i> It opens its other pair of arms to you, a commanding expression on its long, beautiful face. <i>“Time to learn under a true master. Come to me, farlander, and I will show you where you truly belong.”</i>");
 				output("\n\nIt is all you can do not to immediately obey.");
 			}
+			else if(bothriocQuestActive())
+			{
+				bothriocQuestQuadommeAutoSubmitBlurb();
+			}
 			else
 			{
 				output("\n\nIt lolls elegantly downwards, propping its jaw up with one pair of hands as it gazes at you ruminatively, almost like it’s too lazy to haul itself back into its hole.");
@@ -184,6 +188,7 @@ public function encounterBothriocQuadomme():void
 				
 				bothriocQuestQuadommeButton(4, false);
 			}
+			else if(bothriocQuestActive()) addButton(0, "Next", bothriocQuestQuadommeAutoSubmitNext);
 			else addButton(0, "Next", bothriocQuadommePCLoss);
 		}
 		// Strength Check Fail
@@ -210,6 +215,10 @@ public function encounterBothriocQuadomme():void
 				output("\n\n<i>“Goodness me, farlander,”</i> it says, making you jump and refocus on its face. Its grin is wider, knowing. <i>“You’ve obviously gotten to know my race quite well and yet this is the first time you’ve been in the presence of a true dominatrix? Poor thing. A hungry, succulent babe such as yourself, feeding off only the scraps that my two-legged brethren can provide.”</i> It opens its other pair of arms to you, a commanding expression on its long, beautiful face. <i>“Time to learn under a true master. Just relax, and let me take care of everything.”</i>");
 				output("\n\nIt is all you can do not to immediately obey.");
 			}
+			else if(bothriocQuestActive())
+			{
+				bothriocQuestQuadommeAutoSubmitBlurb();
+			}
 			else
 			{
 				output("\n\nIt lolls elegantly downwards, propping its jaw up with one pair of hands as it gazes at you with predatory interest. A hot blush descends on you as you gaze at it – like the other bothrioc you have submitted to but bigger, more elegant and confident, concentrated. Your eyes keep being drawn to its abdomen – the fact that it is so big, packed tight with eggs. It feels like there’s a vein linking that sight and your loins, and every time you allow yourself to look at it a pulse of heat courses urgently through it into your [pc.groin], forcing your [pc.lips] open with a groan of pure lust. Your [pc.lowerBody] feels like it’s turned to jelly, and inexorably you find yourself relaxing in its bonds, opening yourself up entirely to this unspeakably wonderful alpha. Any floating misapprehensions you have about doing this disappear in a tidal wave of bliss once you’ve done it: This is it. This is where you belong. Soft, quietly astonished laughter reaches your ears.");
@@ -225,6 +234,7 @@ public function encounterBothriocQuadomme():void
 				
 				bothriocQuestQuadommeButton(4, true);
 			}
+			else if(bothriocQuestActive()) addButton(0, "Next", bothriocQuestQuadommeAutoSubmitNext);
 			else addButton(0, "Next", bothriocQuadommePCLoss);
 		}
 	}
@@ -961,8 +971,8 @@ public function bothriocQuadommePCNeedFillHigh(arg:Array):void
 			}
 			else if(vIdx >= 0)
 			{
-				output("<i>“Ah yes, it is as I thought,”</i> the quadomme hums, its hand finding its way between your [pc.thighs]. You tense up in your bonds as it traces the lips of your [pc.vagina " + vIdx + "] slowly, dipping a warm, smooth finger inside to teasingly stroke at your sensitive hole. <i>“A lone worker, out on her own in the Deepest Deep. Answering a call only she can hear... seeking out a bliss she can find nowhere else.");
-				if(vIdx2 >= 0) output(" <i>“ It laughs in soft, delighted surprise as another hands finds your [pc.vagina " + vIdx2 + "], and gets to work slowly fingering that one as well. You huff and spasm as the twin pleasure of it assaults your senses. <i>“Haven’t you been busy, preparing yourself for life as a dedicated egg-bearer! Don’t worry, my multi-holed new incubator: I shall give you the attention you so clearly deserve.”</i>");
+				output("<i>“Ah yes, it is as I thought,”</i> the quadomme hums, its hand finding its way between your [pc.thighs]. You tense up in your bonds as it traces the lips of your [pc.vagina " + vIdx + "] slowly, dipping a warm, smooth finger inside to teasingly stroke at your sensitive hole. <i>“A lone worker, out on her own in the Deepest Deep. Answering a call only she can hear... seeking out a bliss she can find nowhere else.”</i>");
+				if(vIdx2 >= 0) output(" It laughs in soft, delighted surprise as another hands finds your [pc.vagina " + vIdx2 + "], and gets to work slowly fingering that one as well. You huff and spasm as the twin pleasure of it assaults your senses. <i>“Haven’t you been busy, preparing yourself for life as a dedicated egg-bearer! Don’t worry, my multi-holed new incubator: I shall give you the attention you so clearly deserve.”</i>");
 			}
 			else
 			{

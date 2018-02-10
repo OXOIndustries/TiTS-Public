@@ -443,9 +443,7 @@ public function bothriocQuestResearch(response:String):void
 // Ara’s pronouns selected at random for each quadomme
 public function bothriocQuestQuadommeButton(btnSlot:int = 0, isStuck:Boolean = false):void
 {
-	if(flags["BOTHRIOC_QUEST"] != BOTHRIOC_QUEST_DIPLOMACY) return;
-	
-	addButton(btnSlot, "Diplomacy", bothriocQuestQuadomme, ["encounter", isStuck], "Diplomacy", "Try and persuade this quadomme to work with Ara Kei.");
+	if(bothriocQuestActive()) addButton(btnSlot, "Diplomacy", bothriocQuestQuadomme, ["encounter", isStuck], "Diplomacy", "Try and persuade this quadomme to work with Ara Kei.");
 }
 private var bothriocQuestQuadommeAraGender:int = 0; // 0: f, 1: m, -1: n
 private function araQmfn(m:String = "", f:String = "", n:String = ""):String
@@ -604,14 +602,19 @@ public function bothriocQuestQuadomme(arg:Array):void
 public function bothriocQuestQuadommeAutoSubmit():void
 {
 	output("\n\nHot, blissful understanding blossoms within you as you feel the stuff clinging to you in half a dozen places. Strings, weaves and thatches of gossamer glisten across the floor and walls, emerging from a large hole in the ceiling, only discernible to you now that you’re well and truly coated in it. You’ve blundered into a bothrioc’s trap! You wait tremulously for the wonderful, elegant being to emerge from the space above.");
-	output("\n\nThe tall, flat-chested androgyne lolls elegantly downwards, propping its jaw up with one pair of hands as it gazes at you with laidback interest. A blush descends on you, prickling your [pc.skin] as you run your eyes over the big, elegant and confident alpha that has you transfixed: Concentrated power. You want to simply stare at it, bathe in its presence, await it to take hold of you in its strong hands and put you in your rightful place... but the words Ara Kei imparted to you ring, strident above the soft lilt of your natural thoughts, and there’s no ignoring them. [ara.he] gave you a duty, and you cannot fail it.");
+	
+	bothriocQuestQuadommeAutoSubmitBlurb();
+	
+	clearMenu();
+	addButton(0, "Next", bothriocQuestQuadommeAutoSubmitNext);
+}
+public function bothriocQuestQuadommeAutoSubmitBlurb():void
+{
+	output("\n\nThe tall, flat-chested androgyne lolls elegantly downwards, propping its jaw up with one pair of hands as it gazes at you with laidback interest. A blush descends on you, prickling your [pc.skin] as you run your eyes over the big, elegant and confident alpha that has you transfixed: Concentrated power. You want to simply stare at it, bathe in its presence, await it to take hold of you in its strong hands and put you in your rightful place... but the words Ara Kei imparted to you ring, strident above the soft lilt of your natural thoughts, and there’s no ignoring them. [ara.He] gave you a duty, and you cannot fail it.");
 	output("\n\n<i>“Please egg-giver,”</i> you say, remaining very still and fixing the creature’s elegant, white face with a plaintive gaze. <i>“I must ask of you something.”</i>");
 	output("\n\n<i>“To fill you so full of warm, bumpy life that you can’t remember your own name?”</i> the quadomme replies with a smile. <i>“That’s going to happen anyway little one, don’t worry. Only beg if you’re into that kind of thing.”</i>");
 	output("\n\n<i>“No...”</i> You pause a moment to firmly push down on the wave of heat that rose to your [pc.skin] just now. <i>“...It’s something else. Something important.”</i>");
 	output("\n\n<i>“Something </i>more<i> important to you than being my incubator?”</i> Both of the quadomme’s armored eyebrows rise. <i>“My! You’ve certainly got my attention. Go ahead, little one. I’m listening.”</i>");
-	
-	clearMenu();
-	addButton(0, "Next", bothriocQuestQuadommeAutoSubmitNext);
 }
 public function bothriocQuestQuadommeAutoSubmitNext():void
 {
