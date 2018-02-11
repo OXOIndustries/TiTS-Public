@@ -1252,6 +1252,8 @@ public function bothriocQuestSummit(arg:Array):void
 				output("\n\nShe gestures, and the gloopy bottle of purple blood and the heavy, well-thumbed journal is hurried over to you by a pidemme.");
 				output("\n\n<i>“Shall we depart?”</i> The arch bothrioc has had the suppressant whisked away and is considering the room at large with all four hands rested on [ara.his] hips. <i>“I shall have need of you, once more, at the summit. Tell me when you’re ready.”</i>");
 			}
+			if(flags["JOIN_FEIAN_HAREM"] != undefined) output("\n\n<b>You clearly remember the deal you made with the quadomme Fei An Strozo; a promise made of bottomless, smothering silk. If you follow Ara now, you instinctively know it will be the end of your quest - and the beginning of eternal happiness.</b>");
+			output("\n\n");
 			
 			// Remove both Counteragents from inventory, add Bothrioc Genealogy
 			pc.removeKeyItem("Bothrioc Pheromone Counteragent");
