@@ -451,7 +451,7 @@ public function tailCuntDryadFun():void
 	IncrementFlag("DRYAD_BANGED_PC");
 	pc.orgasm();
 	//Use a suitably voluminous stand-in :D
-	var pp:PregnancyPlaceholder = getNaynaPregContainer();
+	var pp:PregnancyPlaceholder = getDryadPregContainer();
 	pc.loadInCuntTail(pp);
 	clearMenu();
 	addButton(0,"Next",postCuntTailDryad);

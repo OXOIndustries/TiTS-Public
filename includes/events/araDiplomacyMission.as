@@ -2044,6 +2044,9 @@ public function bothriocQuestGenealogy(response:String):void
 // Fei Bad End
 public function bothriocQuestBadEnd(page:int = 0):void
 {
+	clearOutput();
+	author("Nonesuch");
+	
 	switch(page)
 	{
 		case 0:
@@ -2116,28 +2119,63 @@ public function bothriocQuestBadEnd(page:int = 0):void
 				if(vIdx >= 0) output("[pc.vagina " + vIdx + "], ");
 				output("[pc.ass] and mouth, begging sweetly for her to fuck you, fuck you hard.");
 			}
-			output("\n\nSlowly but surely the quadomme introduces you to the more exotic play she saves for her more experienced slaves - binding you up in web and hanging you from the ceiling for days on end with your");
-			if(vIdx >= 0) output(" [pc.vagina " + vIdx + "]");
-			else if(cIdx >= 0) output(" [pc.cock " + cIdx + "]");
-			else output(" privates");
-			output(" exposed, so she can casually tease it as she passes underneath. Binding your arms and setting you to eat out the boi-pussy of one of her nyrea males, whipping your [pc.ass] if you don’t get him off fast enough, until you’ve learned to do quite incredible things with your [pc.lips] and [pc.tongue]. The " + (feiAnHasCock() ? "penis" : "vagina") + " she’s grown for herself via " + (flags["GAVE_FEIAN_ITEMS"] != undefined ? "your" : "some") + " farlander ‘magic’ has kindled a very un-bothrioc-like taste for clothes, and soon the whole harem is involved in cleaning silk and weaving it into garments - first for her, because of course Fei demands a wardrobe fit for a queen, then for her harem, so you’re soon wearing silky kimonos, maid costumes and all sorts besides, and then for whoever on Myrellion wants and can afford them. The redheaded quadomme winds up making quite a lot of money out of her strange but unarguably fine garments, which she hungrily reinvests in refurbishing her mini-palace, and buying the sort of equipment she can’t make herself: vibrators, plugs, nipple clamps, piercings, body paint, bitch suits, endless amounts of ripe fruit...");
 			
+			var pp:BothriocQuadomme = new BothriocQuadomme();
+			pp.createPerk("Fixed CumQ", 5000, 0, 0, 0);
+			
+			if(pc.hasVagina())
+			{
+				for(vIdx = 0; vIdx < pc.vaginas.length; vIdx++)
+				{
+					pc.cuntChange(vIdx, pp.cockVolume(0));
+					pc.loadInCunt(pp, vIdx);
+				}
+			}
+			else
+			{
+				pc.buttChange(pp.cockVolume(0));
+				pc.loadInAss(pp);
+			}
+			
+			pc.removeAll();
 			processTime(52 * 4);
 			
 			addButton(0, "Next", bothriocQuestBadEnd, 1);
 			break;
 		case 1:
 			showBust(feiAnStrozoBustDisplay());
-			showName("FEI AN\nSTROZO");
+			showName("EXTRAVAGANT\nTASTES");
+			
+			output("Slowly but surely the quadomme introduces you to the more exotic play she saves for her more experienced slaves - binding you up in web and hanging you from the ceiling for days on end with your");
+			if(pc.hasVagina()) output(" [pc.vaginas]");
+			else if(pc.hasCock()) output(" [pc.cocks]");
+			else output(" privates");
+			output(" exposed, so she can casually tease it as she passes underneath. Binding your arms and setting you to eat out the boi-pussy of one of her nyrea males, whipping your [pc.ass] if you don’t get him off fast enough, until you’ve learned to do quite incredible things with your [pc.lips] and [pc.tongue]. The " + (feiAnHasCock() ? "penis" : "vagina") + " she’s grown for herself via " + (flags["GAVE_FEIAN_ITEMS"] != undefined ? "your" : "some") + " farlander ‘magic’ has kindled a very un-bothrioc-like taste for clothes, and soon the whole harem is involved in cleaning silk and weaving it into garments - first for her, because of course Fei demands a wardrobe fit for a queen, then for her harem, so you’re soon wearing silky kimonos, maid costumes and all sorts besides, and then for whoever on Myrellion wants and can afford them. The redheaded quadomme winds up making quite a lot of money out of her strange but unarguably fine garments, which she hungrily reinvests in refurbishing her mini-palace, and buying the sort of equipment she can’t make herself: vibrators, plugs, nipple clamps, piercings, body paint, bitch suits, endless amounts of ripe fruit...");
+			
+			pc.armor = new ComfortableClothes();
+			pc.armor.longName = "silk kimono";
+			
+			pc.createStatusEffect("Milk Paused");
+			pc.createStatusEffect("Cum Paused");
+			processTime((5 * 24 * 60) + rand(1440));
+			
+			addButton(0, "Next", bothriocQuestBadEnd, 2);
+			break;
+		case 2:
+			showBust(feiAnStrozoBustDisplay());
 			
 			// If PC scotched the summit and also agreed to this, for some fucking reason
-			if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_FAILURE)
+			if(flags["KQ2_MYRELLION_STATE"] == 1 || flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_FAILURE)
 			{
+				showName("BOTHRIOC\nBOTTOM BITCH");
+				
 				output("Unfortunately, the ever-developing bliss you’ve discovered of being a bothrioc bottom bitch coincides with increasing tensions between the myr, who have little to no interest in anyone who happens to be caught between them. Eventually the specter of nuclear war forces Fei to abandon both her fledgling seamstress career and her home to evacuate her harem back to the distant continent she originated from - a much emptier land, but a respectable distance away from the ant people’s population centers and missile silos.");
 				output("\n\nThe quadomme, who was only just discovering how much she enjoys being a socialite, is broodingly upset about it for months afterwards. Still - she still has all of her exciting purchases, and more importantly she has you and her other 39 lovers to use them on. Things settle down in your new quarters into a familiar, peaceful rhythm, interspersed with dizzying, mind-blowing highs. A cozier happily ever after than you were expecting, perhaps, but a happily ever after nonetheless.");
 			}
 			else
 			{
+				showName("FEI’S DREAM\nCOME TRUE");
+				
 				output("Whilst this is all going on, your Mistress is attending regular meetings with Ara and the other dominants, slowly thrashing a governing consensus out. Where they get the energy from you have no idea, but you suppose the unquestioning support of multitudes of submissives, and quick relief available whenever tensions run high, helps a lot. You lose track of the number of times Fei takes you along to some conference or other and winds up face-fucking you in a bathroom stall, brown thighs jiggling as she");
 				if(feiAnHasCock()) output(" thrusts her bulging cock into your wet and willing suck");
 				else output(" thrusts her pussy into your desperately lapping tongue");
@@ -2147,7 +2185,10 @@ public function bothriocQuestBadEnd(page:int = 0):void
 				output("\n\nYou changed the galaxy in a small but significant way, and you live very happily ever after.");
 			}
 			
-			processTime(2);
+			bothriocAddiction(100);
+			processTime((3 * 30 * 24 * 60) + rand(1440));
+			pc.removeStatusEffect("Milk Paused");
+			pc.removeStatusEffect("Cum Paused");
 			
 			badEnd("THE END.");
 			break;

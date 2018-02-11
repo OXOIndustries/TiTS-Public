@@ -4096,6 +4096,10 @@ public function nineTailZilBadEnd():void
 	if(!pc.hasGenitals()) output(", finding them to be quite bare");
 	else output(", discovering your body to be completely bare");
 	output(".");
+	
+	pc.removeAll();
+	pc.maxOutLust();
+	
 	output("\n\nThe room itself is dark, but you are far from alone. The soft slap of fists pumping foreskin-clad flesh can be heard from all sides, accompanied by muted moans and half-whimpered groans of delight. When you shift position, your hands fall in pools of half-cooled honeyspunk, fragrant and viscous. You swoon, eyes slowly adjusting in time to see a yellow-skinned prick thrusting your way, drooling amber from the copious dickskin.");
 	//Bimbo:
 	if(pc.isBimbo()) 
@@ -4133,6 +4137,9 @@ public function nineTailZilBadEnd():void
 	{
 		output("\n\n<i>“And you’re going to look so nice with your new tails.”</i>");
 		output("\n\nNew tails? Something sharp bites into you at the end of your spin, and for a moment you nearly bite down on the cock in your mouth. Arousal wins out over pain, however, twisting the unpleasant sensation into something else... something that makes you ever more eager to take in a load, wherever you can. Any place will do, but... behind seems like the way you want it. In your butt or... a tail rears up next to you... your tail. <b>You’ve got a tailcunt now!</b>");
+		
+		cuntSnakeTailTF(true, true, true);
+		
 		output("\n\nIt’s ripped out of your vision by an eager zil, something that only bothers you up until the point that his cock slips inside with a lurid squelching sound. <i>Stars, it feels good.</i> Your tongue and hands go wild in response, but it’s your tailpussy that truly occupies your mind. It’s like every thrust inside is an orgasm. Every inch of the zil’s prick feels like it presses in on your mind, leaving an imprint of its veiny features for you to remember for the rest of your days.");
 	}
 	//Merge
@@ -4147,7 +4154,17 @@ public function nineTailZilBadEnd():void
 	output("\n\nCum shoots into your tail, and your eyes cross. You collapse, any control over your motions abandoned in the wake of your parasite’s pleasure. It’s getting pregnant with it; you’re sure of it. Especially now that another zil is taking a turn. They seem endless, parading their hard penises in an endless circle around you. Some of them fuck your friend’s cunt-snakes, but most seem more interested in using you. Waves of syrupy jism cascade over your body. Fuck-hungry boys line up for turns at your creampied tailcunt, yet the insatiable parasite never seems to tire of wringing out more.");
 	output("\n\nYou can barely breathe without whimpering and cumming, let alone think. You act on instinct, and your tail’s instincts seem so much strong on your own... Time passes in a sea of climaxes and waves of honey, your body used a receptacle for an entire populace’s lust...");
 	processTime(230);
+	
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!pp.hasCock()) pp.createCock();
+	pp.shiftCock(0, GLOBAL.TYPE_BEE);
+	pp.cumType = GLOBAL.FLUID_TYPE_HONEY;
+	pp.createPerk("Fixed CumQ", 5000, 0, 0, 0);
+	
+	pc.loadInMouth(pp);
+	pc.loadInCuntTail(pp);
 	pc.orgasm();
+	
 	clearMenu();
 	addButton(0,"Next",zil9TailFullGameOver);
 }
@@ -4167,6 +4184,15 @@ public function zil9TailFullGameOver2():void
 	show9Tail();
 	output("Months crawl by, and more cunt-snakes are affixed to you, usually after you’ve been fucked into unconsciousness. That’s fine though, the new parasites can help you satisfy your growing desires. Sometimes they even let you fuck that suula girl you got caught with so that you can sample a different flavor of jizz. She’s been pretty consistently pregnant ever since they figured out that the kids come out more zil than suula.");
 	output("\n\nLife as a fuck-toy is sort of degrading, but you’re taking care of. You don’t need to worry about responsibility or planning. You can content yourself with effortless climaxes and an ever-increasing addiction to honey-cum.");
+	
+	pc.tailCount = 9;
+	
+	pc.createStatusEffect("Milk Paused");
+	pc.createStatusEffect("Cum Paused");
+	processTime((4 * 7 * 24 * 60) + rand(1440));
+	pc.removeStatusEffect("Milk Paused");
+	pc.removeStatusEffect("Cum Paused");
+	
 	//[Bad End]
 	badEnd("GAME OVER.");
 }

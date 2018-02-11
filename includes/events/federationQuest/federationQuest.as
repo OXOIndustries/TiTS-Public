@@ -1058,6 +1058,8 @@ public function fedQuestSquadLossCock():void
 	showBust("GOLD_REMNANT_FIGHTER", "GOLD_REMNANT_FIGHTER", "GOLD_REMNANT_FIGHTER");
 	author("Savin");
 	
+	pc.removeAll();
+	
 	output("<b>Your place in the myr orgy continues for hours, and hours, and hours...</b>");
 	output("\n\nYou lose track of how many myr come to sample your cock" + (pc.totalCocks() > 1 ? "s" : "") + ", thrusting their plump rears onto your [pc.cock] and riding you until you’ve filled them with [pc.cum]. Time flows in fits and bursts, sometimes blindingly fast, then sensually slow until the orgy finally winds down. Exhausted warriors collapse all around you, but your [pc.cocks] " + (pc.totalCocks() > 1 ? "are never without a hand, lips, or pussy to warm them" : "is never without a hand, lips, or pussy to warm it") + ".");
 	output("\n\nThroughout the night, you keep your [pc.ears] perked for any sign of rescue. Any hint that Lieve and her soldiers are nearby.");
@@ -1068,6 +1070,12 @@ public function fedQuestSquadLossCock():void
 	output("\n\nYou wonder if anybody will ever come looking for you. Someone from Steele Tech, or the embassy... maybe even the Marshal and her troops.");
 	output("\n\nNobody ever does. The rest of your days are spend as the myrs’ fuck-puppet, a sextoy to be used and forgotten, until well after you hear cheers of the Federation’s retreat from Gold territory. Your adventure ends in the hands of the people you made your enemy, deep inside their reclaimed homeland.");
 	
+	pc.createStatusEffect("Milk Paused");
+	pc.createStatusEffect("Cum Paused");
+	processTime((5 * 7 * 24 * 60) + rand(1440));
+	pc.removeStatusEffect("Milk Paused");
+	pc.removeStatusEffect("Cum Paused");
+	
 	badEnd();
 }
 
@@ -1077,6 +1085,8 @@ public function fedQuestSquadLossCooter():void
 	clearMenu();
 	showBust("GOLD_REMNANT_FIGHTER", "GOLD_REMNANT_FIGHTER", "GOLD_REMNANT_FIGHTER");
 	author("Savin");
+	
+	pc.removeAll();
 	
 	output("Myr after myr after myr takes her pleasure from you, riding your face before returning to the orgy. Time flows in fits and bursts, sometimes blindingly fast, then sensually slow until the orgy finally winds down. Exhausted warriors collapse all around you, fawning over you until they’re fast asleep... and you’re still bound up, unable to leave.");
 	output("\n\nThroughout the night, you keep your [pc.ears] perked for any sign of rescue. Any hint that Lieve and her soldiers are nearby. ");
@@ -1090,6 +1100,12 @@ public function fedQuestSquadLossCooter():void
 	output("\n\nThank God, you’re saved. You scramble up the moment the myr release you and go staggering towards them. Before you reach their lines, though, the door of the shuttle slides open and a familiar face comes out.");
 	output("\n\n[rival.name] smiles at you, adjusting the collar of [rival.hisHer] executive suit.");
 	output("\n\n<i>“Good to see you, cousin,”</i> [rival.heShe] smirks. <i>“How does it feel to see the new C.E.O. of Steele Tech? Don’t worry, I’m sure we’ll find some use for you... while you work off that big, fat ransom I paid the queen for you.”</i>");
+	
+	pc.createStatusEffect("Milk Paused");
+	pc.createStatusEffect("Cum Paused");
+	processTime((5 * 7 * 24 * 60) + rand(1440));
+	pc.removeStatusEffect("Milk Paused");
+	pc.removeStatusEffect("Cum Paused");
 	
 	badEnd();
 }
@@ -1308,6 +1324,9 @@ public function fedQuestOfficerLoss():void
 	output("\n\nBy the time you realize what she’s after, it’s too late. You’ve already surrendered so much that telling her the rest comes easily, words flowing out of your mouth without a second thought, as if you’re hypnotized by the pleasure-pain of her foot and the promise restrained by her too-tight shirt, overflowing with myrish honeypots. Every breath she takes creates tidalwaves of motion in her chest, refusing to let your gaze wander from her turgid teats.");
 	output("\n\nSuddenly, without warning, the pressure on your crotch subsides. The myr officer steps back and adjusts the cap on her head, antennae wriggling. <i>“Thank you, Steele. You’ve been most helpful... for a venom-sucking red sympathizer. We’ll be taking your ship; you won’t need it any more. Not once your ‘friends’ in the Federation realize what you’ve done.”</i>");
 	output("\n\nA few soldiers arrive before too much longer, restraining you while the officer leaves. Hours pass, then days, bound up in the myr compound. You hope for rescue, for Lieve and the other red myr to kick in the door and come bail you out... but they never come. The guards refuse to speak of them, to tell you how the battle played out. Still, you soon start catching glimpses of familiar-looking rifles in their hands, or new gear marked with the Federation symbol that’s been only partially patched over.");
+	
+	pc.removeEquipment();
+	
 	output("\n\nA week passes in loneliness and fear before the officer who captured you returns, a smug smirk on her amber lips. You’re hauled to your [pc.feet] by your current set of guards and dragged to the main chamber of the factory. It’s been cleared out of half-built tanks; your ship sits here, battered and scorch-marked; the flag of the Gilden Republic is painted over bridge, and the whole exteriors been repainted gold.");
 	output("\n\n<i>“A wonderful weapon,”</i> you captor beams. <i>“Alone, it was enough to destroy the Federation navy. And their air corps. Those self-righteous crimson bitches had no answer for such fearsome technology!”</i>");
 	output("\n\nTo destroy... oh, no.");
@@ -1318,6 +1337,13 @@ public function fedQuestOfficerLoss():void
 	output("\n\nThe inevitable fate of a war criminal awaits you...");
 	
 	CombatManager.genericLoss();
+	
+	pc.createStatusEffect("Milk Paused");
+	pc.createStatusEffect("Cum Paused");
+	processTime((6 * 24 * 60) + rand(1440));
+	pc.removeStatusEffect("Milk Paused");
+	pc.removeStatusEffect("Cum Paused");
+	
 	badEnd();
 }
 
@@ -2146,12 +2172,25 @@ public function fedQuestQueenDefeatCock():void
 	if(pc.totalCocks() == 1) output("\n\nLike all golden queens, Estallia looks like she could take a tree trunk up her twat without a second though. Yet when she lowers her back-pussy down the length of your [pc.cock], it feels every bit as tight as a virgin’s first embrace. You never get used to this feeling, to being so thoroughly wrapped in nectar-slicked muscle, squeezing and kneading you from [pc.knot] to [pc.cockHead].");
 	else if(pc.totalCocks() == 2) output("\n\nEstallia’s quim opens like a book, taking your first cockhead between her plush pussylips, and then your second as well, sliding down the length of both your cocks! Despite all the extra room in her cunt, you can feel her muscles squeezing down on you, wrapping every inch of dick in nectar-slick flesh.");
 	else output("\n\nAll of your cocks slide into the queen’s quim with ease -- you’re her own one-"+pc.mf("","wo")+"man harem, packing enough cock to fertilize her over and over again until her abdomen is bloated with little myr... and she knows it. Loves it. Relishes it. Her eyes close and a moan escapes her lips, lasting until her quim is pressed against your crotch and all your cocks are fully consumed in the nectar-slick mire of queenly cunt.");
-	output("\n\n<i>“That’s it. You’re no drone... but you’ll do,”</i> Estallia smirks, settling her abdomen against your [pc.legs]. She braces two arms on the ceiling, steadying her titanic frame, while the other pair cup and squeeze her ripe honeypots. Fragrant amber drips to the floor in thick, quivering piles, leaning across her breasts and black-chitin fingers in little rivers that beg to be licked clean.");
+	
+	pc.cockChange();
+	
+	output("\n\n<i>“That’s it. You’re no drone... but you’ll do,”</i> Estallia smirks, settling her abdomen against your [pc.legOrLegs]. She braces two arms on the ceiling, steadying her titanic frame, while the other pair cup and squeeze her ripe honeypots. Fragrant amber drips to the floor in thick, quivering piles, leaning across her breasts and black-chitin fingers in little rivers that beg to be licked clean.");
 	output("\n\nBut you’re going <i>nowhere</i> with her abdomen crushing down on you, burying you beneath what feels like a solid ton of fuckmeat.Your arms wrap around her plump backside, sinking into the flesh stretched out between her many armored plates. Your whole world is dominated by the steady rise and fall of the queen’s body, faster and faster until you’re squirming and moaning, pumping [pc.cum] into her waiting wombs.");
 	output("\n\nEstallia moans softly, squeezing a particularly thick stream of honey from her teats. <i>“Ah, that feels like a clutch being fertilized... a good first start, [pc.name]. But you have a lot more golden lives to replace tonight.”</i>");
 	output("\n\nYou shudder beneath the queen’s plush abdomen, feeling her vaginal muscles slowly wring every last drop of seed out of your cock" + (pc.totalCocks() > 1 ? "s" : "") + ". And she doesn’t stop there -- she never lets you catch your breath on the best of days, and now... now she’s relentless, starting to move again before you’ve even passed the shivering pleasures of your first orgasm, hungry for your seed.");
 	output("\n\nAnd she’ll harvest it. Again and again and again, until you’ve fathered a whole generation of the War Queen’s spawn. Her abdomen is swollen with pregnant weight by the time she’s done breeding you that night, but that doesn’t stop her coming the next night, and the night after that...");
 	output("\n\nYou’re reduced to little more than another drone, and when the war finally ends years later, you join a legion of male myr in servicing the most powerful queen on Myrellion, ensuring her wombs are never empty, and her brood is the largest of them all.");
+	
+	pc.removeAll();
+	pc.orgasm();
+	
+	pc.createStatusEffect("Milk Paused");
+	pc.createStatusEffect("Cum Paused");
+	processTime((3 * 365 * 24 * 60) + rand(1440));
+	pc.removeStatusEffect("Milk Paused");
+	pc.removeStatusEffect("Cum Paused");
+	
 	pc.orgasm();
 	
 	badEnd();
@@ -2176,6 +2215,28 @@ public function fedQuestQueenDefeatCooter():void
 	output("\n\nInstead, the myr brothers pull apart, leaning back to let some of the other boys in on the action. Chitinous hands grab your own, guiding your hands to wrap around the mass of naked dicks surrounding you.Other boys find their own ways to use your body, thrusting their cocks between your [pc.feet]" + (pc.hasBreasts() ? ", between your [pc.boobs]," : "") + " and even under your arms -- anywhere they can press two folds of flesh together around their needy pricks.");
 	output("\n\nInundated by golden-hued bodies and amber-leaking dicks, you can’t exactly do much but squirm and moan as the queen’s sons fuck you into the pillows. Over their heads, you can just make out their mother in the door, watching with a glint of pride in her eyes. How sweet...");
 	output("\n\nYour rumination is interrupted by a sudden feeling of stickiness in your [pc.vagOrAss], squirting from one of the boy’s cocks. Your body instinctively clenches around him, milking all that fuck-honey out of him... and there’s a <i>lot</i> to milk, too, pouring out of those grapefruit-sized gonads hanging between his skinny legs until you feel like you’ve got a gallon of steaming spunk sloshing around in your " + (pc.hasVagina() ? "womb" : "gut") + ". The myr boy pulls out with a contented sigh, drying his cockhead off on your thigh... and making room for another of his brothers to take his place.");
+	
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!pp.hasCock()) pp.createCock();
+	pp.shiftCock(0, GLOBAL.TYPE_MYR);
+	pp.cumType = GLOBAL.FLUID_TYPE_HONEY;
+	pp.createPerk("Fixed CumQ", 500, 0, 0, 0);
+	
+	if(pc.hasVagina())
+	{
+		for(var vIdx:int = 0; vIdx < pc.vaginas.length; vIdx++)
+		{
+			pc.cuntChange(vIdx, pp.cockVolume(0));
+			pc.loadInCunt(pp, vIdx);
+		}
+	}
+	else
+	{
+		pc.buttChange(pp.cockVolume(0));
+		pc.loadInAss(pp);
+	}
+	
+	pc.removeAll();
 	pc.orgasm();
 	
 	addButton(0, "Next", fedQuestQueenDefeatCooter2, undefined, "", "");
@@ -2194,6 +2255,30 @@ public function fedQuestQueenDefeatCooter2():void
 	output("\n\nEven months later, " + (pc.hasVagina() ? "when your belly is swollen full of half-myr offspring, " : "") + "the boys are still taking turns railing you. These are different drones, you know, drawn from a different queen’s failed harem, but the result is the same: you’re nothing more than the alien cumdump, a fixture in Estallia’s palace to keep her fuck-boys nice and virile while their queen is leading the charge against your former comrades in the Federation.");
 	output("\n\nNow you’re just a sextoy, an ornament in the depths of Estallia’s palace. Countless myr boys use your body every day -- and more than a few of her daughters as well, joining in with their brothers and step-fathers to further debase the offworld-whore.");
 	output("\n\nAnd after a time, the never-ending suffusion of pleasure erases all doubts from your mind: this is right where you belong. Where you deserve to be.");
+	
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!pp.hasCock()) pp.createCock();
+	pp.shiftCock(0, GLOBAL.TYPE_MYR);
+	pp.cumType = GLOBAL.FLUID_TYPE_HONEY;
+	pp.createPerk("Fixed CumQ", 72000, 0, 0, 0);
+	
+	if(pc.hasVagina())
+	{
+		for(var vIdx:int = 0; vIdx < pc.vaginas.length; vIdx++)
+		{
+			pc.loadInCunt(pp, vIdx);
+		}
+	}
+	else
+	{
+		pc.loadInAss(pp);
+	}
+	
+	pc.createStatusEffect("Milk Paused");
+	pc.createStatusEffect("Cum Paused");
+	processTime((5 * 7 * 24 * 60) + rand(1440));
+	pc.removeStatusEffect("Milk Paused");
+	pc.removeStatusEffect("Cum Paused");
 	
 	badEnd();
 }

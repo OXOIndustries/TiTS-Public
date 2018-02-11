@@ -1141,6 +1141,9 @@ public function milodanBadEndHandler():Boolean
 	else
 	{
 		output("\n\nThe milodan pulls out of your abused form with a low growl, standing and collecting his loincloth as he has so many times before... right before collecting you, picking your cum-leaking body up with frightening ease, dressing you clumsily and slinging you over one bulging, furry shoulder with no sign of strain, resting his palm possessively on your [pc.ass]. Dimly understanding that you’re being taken as a slave by this primitive, you struggle and squirm, but it’s useless - weak and battered as you are, your weapons freezing in the snow where you were just claimed, you have no chance whatsoever of escaping his iron grasp. He ignores your squirming for the most part, though his hand does tighten on your rump, further quashing your chances of regaining freedom.");
+		
+		pc.removeAll();
+		
 		output("\n\nSome thirty minutes later, shivering and afraid, you find yourself passing a thick wall of ice as you enter a village, other milodan tribe members watching curiously as you’re carried into a large tent and laid on your belly on a pile of sheets, still struggling and protesting feebly. The milodan climbs in with you, his furry weight pinning you down as he slides his hardening cock into your jizz-leaking ");
 		if (pc.hasVagina()) output("cunt");
 		else output("[pc.asshole]");
@@ -1162,6 +1165,13 @@ public function milodanBadEndHandler():Boolean
 			output("\n\nIt’s home. Your home.");
 			output("\n\nThe only one you’ll ever need.");
 		}
+		
+		pc.createStatusEffect("Milk Paused");
+		pc.createStatusEffect("Cum Paused");
+		processTime((360 * 24 * 60) + rand(1440));
+		pc.removeStatusEffect("Milk Paused");
+		pc.removeStatusEffect("Cum Paused");
+		
 		badEnd();
 		return true;
 	}

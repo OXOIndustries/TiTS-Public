@@ -2538,7 +2538,9 @@ public function jerynnPetstuffBadEnd():void
 	output("\n\nSoon enough you’re back in the elevator and heading back down to the streets of Irestead. You simply lose yourself to the impromptu fucking motion, no longer caring much of the possibility that you might be discovered, simply content to fuck, to be used as little more than a living cocksleeve.");
 	
 	output("\n\nLight returns to your world all too soon, already at the destination Jerynn had set off to reach; the medical station already here on Uveto. The fritzy-droid confirms that it has the capability to carry out at least a portion of the ordered work. Uncaring for your comfort it jabs you with a hypospray right on the shoulder as it holds idle conversation with the taur. Seconds later you’re out for the count....");
-
+	
+	processTime(54);
+	
 	clearMenu();
 	addButton(0, "Next", jerynnPetstuffBadEndII, false);
 }
@@ -2547,7 +2549,9 @@ public function jerynnPetstuffBadEndII(isOptIn:Boolean):void
 {
 	clearOutput();
 	showJerynn(false, true);
-
+	
+	pc.removeAll();
+	
 	output("Numb. Everything is numb. Your head feels as though it’s been filled with cotton wool, your mouth similar. It’s a real struggle to tear open your eyes, every single muscle in your body refusing to cooperate, and when you do the light entering them is physically painful. You have to squint to keep the worst of the pain away, your surroundings blurry, unfocused.");
 
 	output("\n\nGradually your [pc.eyes] adjust to the room, details filtering in.");
@@ -2614,7 +2618,11 @@ public function jerynnPetstuffBadEndII(isOptIn:Boolean):void
 	output("\n\nThe bowl soon finds itself licked clean, and no sooner have you finished do you find staying upright an increasing struggle. You let yourself fall to your side, barely struggling to keep your eyes open as a new wave of exhaustion kicks in.");
 	if (jerynnIsMistress()) output(" Mistress");
 	output(" Jerynn scooches closer, her comforting hand still petting over your [pc.skinFurScales], her other hand rattling a rather sizeable bottle of medications....");
-
+	
+	pc.createStatusEffect("Milk Paused");
+	pc.createStatusEffect("Cum Paused");
+	processTime((7 * 24 * 60) + rand(1440));
+	
 	clearMenu();
 	addButton(0, "Next", jerynnPetstuffBadEndIII, isOptIn);
 }
@@ -2706,7 +2714,7 @@ public function jerynnPetstuffBadEndIII(isOptIn:Boolean):void
 	{
 		output("\n\nBy the fourth week, the changes desired by");
 		if (!jerynnIsMistress()) output(" Mistress");
-		output(" Jerynn seem to be over, but you’re left with one final oddity; a curious pressure building just on the edge of your [pc.pussy]. The nature of it finally becomes clear one day, when you awake soon after a meal to the sensation of something... blooming between your [pc.thighs]. With new-found flexibility, you manage to contort yourself in such a way to survey the cause of the change. Your labia have plumped up some, and gained a fine dusting of scales in the process.");
+		output(" Jerynn seem to be over, but you’re left with one final oddity; a curious pressure building just on the edge of your [pc.pussies]. The nature of it finally becomes clear one day, when you awake soon after a meal to the sensation of something... blooming between your [pc.thighs]. With new-found flexibility, you manage to contort yourself in such a way to survey the cause of the change. Your labia have plumped up some, and gained a fine dusting of scales in the process.");
 	}
 
 	output("\n\nWith your body changed so dramatically, you’re reliant on");
@@ -2730,7 +2738,54 @@ public function jerynnPetstuffBadEndIII(isOptIn:Boolean):void
 	if (pc.hasVagina()) output(" needy");
 	else output(" virgin");
 	output(" pussy desperate for any stimulation. And so Mistress finds you with your ass high in the air, presenting your soaked cunt for her inspection every time she walks through the apartment door. Without fail you wind up stuffed full of her cock and pounded senseless, the stresses of her day washed away with a night of vigorous fucking.");
+	
+	processTime((4 * 7 * 24 * 60) + rand(1440));
+	
+	if (pc.biggestTitSize() > 3)
+	{
+		for(var bRow:int = 0; bRow < pc.breastRows.length; bRow++)
+		{
+			pc.breastRows[bRow].breastRatingRaw = 3;
+		}
+	}
+	
+	if (pc.thickness >= 75) pc.thickness = 74;
+	if (pc.tone >= 75) pc.tone = 74;
+	
+	if (pc.hasCock()) pc.removeCocks();
 
+	if (pc.skinType != GLOBAL.SKIN_TYPE_SKIN && flags["JERYNN_RESPONSE_SKIN"] == 0)
+	{
+		pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+		pc.skinTone = "pale pink";
+	}
+	else if (pc.skinType != GLOBAL.SKIN_TYPE_FUR && flags["JERYNN_RESPONSE_SKIN"] == 1)
+	{
+		pc.skinType = GLOBAL.SKIN_TYPE_FUR;
+		pc.furColor = "black";
+	}
+	else if (flags["JERYNN_RESPONSE_SKIN"] >= 2)
+	{
+		if(pc.skinType != GLOBAL.SKIN_TYPE_SCALES) pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
+		if(pc.scaleColor != "red") pc.scaleColor = "red";
+	}
+	
+	if (!pc.hasVagina()) pc.createVagina();
+	var vIdx:int = pc.gapestVaginaIndex();
+	if (!pc.hasVaginaType(GLOBAL.TYPE_GRYVAIN))
+	{
+		for(vIdx = 0; vIdx < pc.vaginas.length; vIdx++)
+		{
+			pc.shiftVagina(vIdx, GLOBAL.TYPE_GRYVAIN);
+			pc.inflateVagina(vIdx);
+		}
+	}
+	
+	vIdx = pc.gapestVaginaIndex();
+	pc.cuntChange(vIdx, jerynn.biggestCockVolume(), false);
+	pc.loadInCunt(jerynn, vIdx);
+	pc.maxOutCumflation("vagina " + vIdx, jerynn);
+	
 	clearMenu();
 	addButton(0, "Next", jerynnPetstuffBadEndIV);
 }
@@ -2782,6 +2837,10 @@ public function jerynnPetstuffBadEndIV():void
 	output("\n\nYour ass is high in the air before she’s even finished the word, the wedged tip of her cock nudging its way into your pussy not long behind it.");
 	
 	output("\n\nA long trip indeed.");
+	
+	processTime((5 * 7 * 24 * 60) + rand(1440));
+	pc.removeStatusEffect("Milk Paused");
+	pc.removeStatusEffect("Cum Paused");
 	
 	badEnd("GAME OVER?");
 }
