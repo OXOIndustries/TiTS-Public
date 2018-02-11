@@ -1232,6 +1232,7 @@
 				ballSizeRaw = Math.min((6 * Math.PI), ((ballSizeRaw * ballSizeRaw * balls) / 2));
 			}
 			balls = 0;
+			if(hasStatusEffect("Mimbrane Balls") && balls == 0) removeStatusEffect("Mimbrane Balls");
 		}
 		
 		public function scrotumType(): int
@@ -19546,7 +19547,7 @@
 				if (hasStatusEffect("Oil Numbed")) prodFactor /= 1.2;
 				
 				var producedLust:Number = deltaT * prodFactor;
-					if (perkv1("Ultra-Exhibitionist") > 0) producedLust += (0.5 * deltaT * exposureLevel(true));
+				if (perkv1("Ultra-Exhibitionist") > 0) producedLust += (0.5 * deltaT * exposureLevel(true));
 				
 				if (lust() + producedLust < lustCap)
 				{

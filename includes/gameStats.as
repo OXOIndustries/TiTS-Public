@@ -6065,6 +6065,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					var lancerName:String = (flags["MET_GEL_ZON"] == undefined ? "Stormguard Lancer" : "Gel Zon");
 					var lancerSexed:int = (flags["SEXED_SG_MALE"] == undefined ? 0 : flags["SEXED_SG_MALE"]);
 					output2("\n<b>* " + lancerName + ", Times Encountered:</b> " + flags["MET_STORMGUARD"]);
+					if(flags["STORMGUARD_HONOR"] != undefined) output2("\n<b>* " + lancerName + ", Honor Level:</b> " + stormguardHonor());
 					if(flags["SPANKED_SG_COUNT"] != undefined)
 					{
 						lancerSexed -= flags["SPANKED_SG_COUNT"];

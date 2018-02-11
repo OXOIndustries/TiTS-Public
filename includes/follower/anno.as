@@ -724,13 +724,13 @@ public function annoFollowerTalkMenu(doOut:Boolean = true):void
 
 	//Giving Anno the Thickness
 	//Must have sexed Anno at least once. She must be on the crew, the PC must have visited Uveto and seen the Bimbo Twins on the station, and the PC must have at least 10 Huskar Treats in their inventory. If reqs. are met, add [Huskar?] to Anno's talk menu. Ghost out if PC lacks sufficient Huskar Treats.
-	if(flags["ANNO_HUSKARRED"] != undefined) addDisabledButton(11,"Huskar?","Huskar?","You’ve already done this! Anno can’t get any chubbier!");
+	if(flags["ANNO_HUSKARRED"] != undefined) addDisabledButton(12,"Huskar?","Huskar?","You’ve already done this! Anno can’t get any chubbier!");
 	else if(annoIsCrew() && haveFuckedAnno() && flags["UVETO_HUSKAR_FOURSOME"] == 1)
 	{
-		if(pc.hasItemByClass(HuskarTreats,10)) addButton(11,"Huskar?",annoHuskarTreatIntro,undefined,"Huskar?","See how Anno feels about gettin’ down with the thickness.");
-		else addDisabledButton(11,"Huskar?","Huskar?","You’ll want to have some actual huskar treats before you see if Anno’d be open to taking them. About 10 would be sure to do the trick.");
+		if(pc.hasItemByClass(HuskarTreats,10)) addButton(12,"Huskar?",annoHuskarTreatIntro,undefined,"Huskar?","See how Anno feels about gettin’ down with the thickness.");
+		else addDisabledButton(12,"Huskar?","Huskar?","You’ll want to have some actual huskar treats before you see if Anno’d be open to taking them. About 10 would be sure to do the trick.");
 	}
-	else addDisabledButton(11,"Locked","Locked","You’ll need to have had sex with Anno, been to Uveto and met certain individuals, and have Anno on your crew for this.");
+	else addDisabledButton(12,"Locked","Locked","You’ll need to have had sex with Anno, been to Uveto and met certain individuals, and have Anno on your crew for this.");
 
 	addButton(14, "Back", annoFollowerMenu);
 }

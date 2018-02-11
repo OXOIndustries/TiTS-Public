@@ -309,7 +309,7 @@ public function loungeSleepSeer():void
 	clearMenu();
 	
 	output("You open your eyes.");
-	output("\n\nAll around you is a veil of blackness. Complete abyssal darkness. So dark that your eyes start aching for even a hint of light. You stimulate your limbs in panic, realising that they’re moving as if in water. It doesn’t matter either way: You can’t even see them.");
+	output("\n\nAll around you is a veil of blackness. Complete abyssal darkness. So dark that your eyes start aching for even a hint of light. You stimulate your limbs in panic, realizing that they’re moving as if in water. It doesn’t matter either way: You can’t even see them.");
 	output("\n\nWithout a physical reference, up is down and down is up, left and right have no bearing. You almost feel weightless: Drifting, static in the vast nothingness of... somewhere. Alone, unnoticed, unknown.");
 	output("\n\nYour eyes twinge. Slowly but surely, infinitesimal white lights dot the black canvas around you in every direction. You can see the outline of your limbs against their distant glow.");
 	output("\n\n<i>Stars</i>.");
@@ -535,7 +535,7 @@ public function tentaSeer():void
 	output("\n\nEmbrace...?");
 	output("\n\nA strange, euphoric heat surges through your guts");
 	if (pc.hasVagina()) output(", womb" + (pc.vaginas.length == 1 ? "" : "s"));
-	output(" and gullet! It’s a liquidy, slimy heat that coincides with the energetic twisting and squirming from the multitude of slimy beasts lodged into your body! Without even realising it, your body has pushed out an orgasm so hard that it’s numbed your senses to its strength.");
+	output(" and gullet! It’s a liquidy, slimy heat that coincides with the energetic twisting and squirming from the multitude of slimy beasts lodged into your body! Without even realizing it, your body has pushed out an orgasm so hard that it’s numbed your senses to its strength.");
 	if (pc.hasCock() && pc.cumQ() >= 1000) output("\n\nYour [pc.multiCocks] can’t even maintain hardness! Instead of spraying a weighty load, your [pc.cum] dribbles out with a painful heat like a slack hose. It flows and spreads all over your tentacle-stuffed [pc.belly], then the table, and then to the floor below.");
 	else if (pc.hasCock()) output("\n\nYour [pc.multiCocks] can’t even maintain hardness! Instead of shooting a rope of [pc.cum], it dribbles and leaks out with a painful heat like a slack hose. It forms a [pc.cumVisc] puddle in between your [pc.thighs].");
 	else output("\n\nInside your [pc.pussy], [pc.girlCum] oozes around and then out of your well-fucked hole. The tentacle that threatens to press into your womb makes it impossible to squirt out! The thought of being bred by monstrous limbs almost becomes too much to bear...");

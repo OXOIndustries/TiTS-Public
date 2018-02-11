@@ -819,8 +819,8 @@ public function foodWithMirrin():void
 		output("\n\nTime to chow down! You both dive into different dishes. Your [pc.lipsChaste] are already wrapping round some sauce slathered ribs, the flame-blasted meat just falling into your mouth. There’s definitely enough to go around for two but you’re watching Mirrin and she’s... really going at it. The sides of her mouth have at least three different sauces dotted around already, and she’s got a chunk of steak resting in between her claws.");
 		output("\n\n<i>“Fuckin’ *</i>slurp<i>* greatest place in the world,”</i> she says in between mouthfuls. ");
 		if(pc.isNice()) output("You beam back at her, sensing a secret shared love: ");
-		else if(pc.isMischievous()) output("You encourage her with a few ribs, realising the shared secret you have: ");
-		else output("You eyeroll at her enthusiasm but realise you’re enjoying the same thing: ");
+		else if(pc.isMischievous()) output("You encourage her with a few ribs, realizing the shared secret you have: ");
+		else output("You eyeroll at her enthusiasm but realize you’re enjoying the same thing: ");
 		output("stuffing juicy meat into your mouth.");
 		output("\n\nThere doesn’t seem to be much room to talk: It takes a straight twenty minutes for you to both clear out the food, although Mirrin definitely took the lion’s share. Your body’s going to be angry at you sooner rather than later... and Mirrin’s just out for the count. Slovenly hunched over, it seems she’s had more than she can handle. You wonder if she’s hiding something from you...");
 		output("\n\n<i>“Can’t... </i>*huff*<i> fuckin’... </i>ertu að djóka<i>, I’m... so bad,”</i> she says, staring at the empty punnets. She slowly dunks her head on the table, her normally immaculate hair looking frazzled. You almost get grazed by her horns...");
@@ -2268,7 +2268,7 @@ public function yeahAnalStuff():void
 	output("\n\nAs you’re already facing the window, you get a good look at your current, bound state.");
 	if(pc.thickness > 65) output(" Is that an... apple in your mouth??");
 	else output(" That’s one tight ballgag you have on...!");
-	output("\n\n<i>“Hng hrrngngn,”</i> you try to say, only just realising that you can’t actually speak...");
+	output("\n\n<i>“Hng hrrngngn,”</i> you try to say, only just realizing that you can’t actually speak...");
 
 	//PC thickness >65:
 	if(piggie)
