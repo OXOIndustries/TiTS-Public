@@ -6065,7 +6065,17 @@ public function displayEncounterLog(showID:String = "All"):void
 					var lancerName:String = (flags["MET_GEL_ZON"] == undefined ? "Stormguard Lancer" : "Gel Zon");
 					var lancerSexed:int = (flags["SEXED_SG_MALE"] == undefined ? 0 : flags["SEXED_SG_MALE"]);
 					output2("\n<b>* " + lancerName + ", Times Encountered:</b> " + flags["MET_STORMGUARD"]);
-					if(flags["STORMGUARD_HONOR"] != undefined) output2("\n<b>* " + lancerName + ", Honor Level:</b> " + stormguardHonor());
+					if(flags["STORMGUARD_HONOR"] != undefined)
+					{
+						output2("\n<b>* " + lancerName + ", Respect Level:</b> " + flags["STORMGUARD_HONOR"]);
+						switch(flags["STORMGUARD_HONOR"])
+						{
+							case 0: output2(", Inferior"); break;
+							case 1: output2(", Equal"); break;
+							case 2: output2(", Superior"); break;
+							default: output2(", Respected"); break;
+						}
+					}
 					if(flags["SPANKED_SG_COUNT"] != undefined)
 					{
 						lancerSexed -= flags["SPANKED_SG_COUNT"];
@@ -6155,11 +6165,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Tuuva, Affection:</b> " + tuuvaAffection() + " %");
 				if(!tuuvaLover())
 				{
-					if(tuuvaAffection() < 25) output(", Strangers");
-					else if(tuuvaAffection() < 75) output(", Friends");
-					else output(", Close friends");
+					if(tuuvaAffection() < 25) output2(", Strangers");
+					else if(tuuvaAffection() < 75) output2(", Friends");
+					else output2(", Close friends");
 				}
-				else output(", Lovers");
+				else output2(", Lovers");
 				if(flags["SEXED_TUUVA"] != undefined)
 				{
 					output2("\n<b>* Tuuva, Sex Organs:</b> " + listCharGenitals("TUUVA"));
@@ -6208,7 +6218,17 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b><u>Stormguard Campsite</u></b>");
 				output2("\n<b>* Krymhilde:</b> Met her");
 				if(flags["KRYM_KOMBAT_RESULT"] != undefined) output2(", Challenged her in a duel");
-				if(flags["KRYM_RESPECT"] != undefined) output2("\n<b>* Krymhilde, Respect Level:</b> " + flags["KRYM_RESPECT"]);
+				if(flags["KRYM_RESPECT"] != undefined)
+				{
+					output2("\n<b>* Krymhilde, Respect Level:</b> " + flags["KRYM_RESPECT"]);
+					switch(flags["KRYM_RESPECT"])
+					{
+						case 0: output2(", Inferior"); break;
+						case 1: output2(", Equal"); break;
+						case 2: output2(", Superior"); break;
+						default: output2(", Respected"); break;
+					}
+				}
 				variousCount++;
 			}
 			

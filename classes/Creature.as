@@ -19657,6 +19657,7 @@
 					case "adjjjisjjrhiwig":
 					case "Goblinola Bar":
 					case "Laquine Ears":
+					case "LimberTime":
 						if(thisStatus.minutesLeft <= 0) thisStatus.minutesLeft = 1;
 						break;
 					case "Ovilium":
