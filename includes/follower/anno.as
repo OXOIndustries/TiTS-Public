@@ -2324,6 +2324,9 @@ public function annoFollowerAppearance():void
 	annoFollowerHeader();
 	if(annoIsHuskar())
 	{
+		// Hotfix
+		if(!chars["ANNO"].hasPerk("Regal Mane")) annoToHuskarTF();
+		
 		output("Anno Dorna is six feet of thick, curvy ausar beauty. She still has her lush snow-white hair and a pair of big, alert canine ears perched atop her head, now joined by a collar of silky white fur around her shoulders and neck, and a tail so fluffy that even ");
 		if(flags["MET_PENNY"] != undefined) output("Penny");
 		else output("a fox-morph");
@@ -4112,9 +4115,9 @@ public function annoPupperPlay():void
 
 	output("\n\n<i>“There’s just one problem,”</i> you whisper, gently nudging Anno onto her back, <i>“I don’t let any of my puppies wear clothes.”</i> ");
 	//annoCatsuit:
-	if(anno.armor is AnnosCatsuit) output("The puppy in question beams up at you as you straddle her, grabbing hold of the zipper keeping her own pair of puppies contained. You pull it down painfully slow, her tail moving back and forth with anticipation until her uniform parts around her [anno.breasts], eliciting a sigh of relief from the puppy as her breasts are finally freed from their confines. No use trying to resist the pull of those hypnotic double-D’s. You reach down, groping a full orb and teasing the nipple of another with a finger and a thumb. Anno starts to whimper under the weight of your tender touch before too long; girlish, needy whimpers: music to your ears. Can’t give her what she wants just yet, though, not before you get the rest of her suit off. You grab hold of the little bit of catsuit still clinging to Anno’s sultry body and pull down; your puppy is happy to assist, helping her tail make its exodus from her uniform and wiggling her way out until her furry feet pop free.");
+	if(anno.armor is AnnosCatsuit) output("The puppy in question beams up at you as you straddle her, grabbing hold of the zipper keeping her own pair of puppies contained. You pull it down painfully slow, her tail moving back and forth with anticipation until her uniform parts around her [anno.breasts], eliciting a sigh of relief from the puppy as her breasts are finally freed from their confines. No use trying to resist the pull of those " + (!annoIsHuskar() ? "hypnotic double-D’s" : "mesmerizing G-cup jugs") + ". You reach down, groping a full orb and teasing the nipple of another with a finger and a thumb. Anno starts to whimper under the weight of your tender touch before too long; girlish, needy whimpers: music to your ears. Can’t give her what she wants just yet, though, not before you get the rest of her suit off. You grab hold of the little bit of catsuit still clinging to Anno’s sultry body and pull down; your puppy is happy to assist, helping her tail make its exodus from her uniform and wiggling her way out until her furry feet pop free.");
 	//annoBlouse:
-	else output("The puppy in question beams up at you as you straddle her, grabbing at the buttons keeping her own pair of puppies contained. You undo them quickly, but not too quick; no, you want to watch her squirm with anticipation, and you do just that until her shirt parts around her [anno.breasts], eliciting a sigh of relief from the puppy as her breasts are finally freed from their confines. No use trying to resist the pull of those hypnotic double-D’s. You reach down, groping a full orb and teasing the nipple of another with a finger and thumb. Anno starts to whimper under the weight of your tender touch before too long; girlish, needy whimpers: music to your ears. Can’t give her what she wants just yet, though, not before you get into those pants. You grab hold of her jeans and start to pull them off; your puppy is happy to assist, helping her tail make its exodus from her pants and wiggling her way out until her boots come off with the rest of her clothes.");
+	else output("The puppy in question beams up at you as you straddle her, grabbing at the buttons keeping her own pair of puppies contained. You undo them quickly, but not too quick; no, you want to watch her squirm with anticipation, and you do just that until her shirt parts around her [anno.breasts], eliciting a sigh of relief from the puppy as her breasts are finally freed from their confines. No use trying to resist the pull of those " + (!annoIsHuskar() ? "hypnotic double-D’s" : "mesmerizing G-cup jugs") + ". You reach down, groping a full orb and teasing the nipple of another with a finger and thumb. Anno starts to whimper under the weight of your tender touch before too long; girlish, needy whimpers: music to your ears. Can’t give her what she wants just yet, though, not before you get into those pants. You grab hold of her jeans and start to pull them off; your puppy is happy to assist, helping her tail make its exodus from her pants and wiggling her way out until her boots come off with the rest of her clothes.");
 	output(" A leash-bound Anno bare before you, now there’s a sight you could get used to. <i>“That’s more like it,”</i> you say, giving her a scratch between the ears.");
 
 	output("\n\nWithout too much thought you reach your free hand down between Anno’s thighs. The ausar takes notice, her tail wagging expectantly as your hand nears her drooling sex. She whimpers as you make contact with her [anno.vagina], the naughty digit working its way along the edge of her nether lips until her mewls become soft little moans. Rather unfortunately for Anno, you pull your hand back, a single finger glistening with fem-lube as your puppy whines with woe. <i>“Can’t give you a treat yet, girl,”</i> you tell her, <i>“Not until you’ve had your exercise.”</i> You reach a hand down and give her [anno.hair] a little tussle, returning a smile to her face.");
@@ -4228,7 +4231,8 @@ public function annoFrenchMaid():void
 	pc.createStatusEffect("The Lusty Ausar Maid",0,0,0,0,true,"","",false,60*24);
 	
 	clearOutput();
-	showAnno();
+	showBust("ANNO_MAID");
+	showName("\nANNO");
 	author("HugsAlright");
 	clearMenu();
 	
@@ -4261,7 +4265,8 @@ public function annoFrenchMaid():void
 public function annoFrenchMaidIDontWantCuteMaidButt():void
 {
 	clearOutput();
-	showAnno();
+	showBust("ANNO_MAID");
+	showName("\nANNO");
 	author("HugsAlright");
 	clearMenu();
 	
@@ -4331,7 +4336,7 @@ public function annoFrenchMaidGimmeMore(x:int):void
 	output("\n\nAnno is practically bouncing in your lap at this point, her tail becoming an intangible white blur. Her furry hands drift off your shoulders to cup her own breasts, squeezing and kneading them through her maid outfit, making her moan into your [pc.ear]. You feel your [pc.cock " + x + "] begin to swell with cum and let out a groan as it starts to spasm. You tighten your grip on Anno’s hips and hold her down as pleasure radiates through your body, pumping the slutty maid full of [pc.cumNoun], painting her love tunnel [pc.cumColor]. Your cum filling her is enough to make your lover join you in orgasm as she throws her head back, crying out in pleasure, her lower lips tightening around your [pc.cock " + x + "] as you fill her with your seed. Anno moans as girlcum sprays out onto your [pc.thighs] and all over the once-clean chair. You give a few final jerky thrusts into your slut-puppy before your orgasm finally comes to an end, [pc.cum] steadily leaking out of Anno’s cunt, its owner whimpering as she feels your heat inside her.");
 	output("\n\nYou’re left with your [pc.chest] heaving, and a happy puppy still on top of you. You lean back and sink into the chair, letting yourself go limp as Anno pulls herself off of you, still-warm [pc.cumNoun] spilling out onto the chair now soaked in your combined fluids. It seems Anno isn’t done yet, though; she kneels down between your legs again, looking up at you with a devious grin before she gives your soft, cum-covered cock a long lick up its side.");
 	output("\n\n<i>“Quite the vicious cycle, huh boss?”</i>");
-	output("\n\nLooking down at the ausar, you give her a tired and slightly worried smile. You rest a hand between her fluffy, twitching pupper ears, scritching and scratching until her tail starts wagging again. Anno brings her lips to kiss your tender [pc.cockHead " + x + "] while you lean your head back and let the maid continue with her <i>“duties”</i> a pleasurable calm overtaking your body.");
+	output("\n\nLooking down at the ausar, you give her a tired and slightly worried smile. You rest a hand between her fluffy, twitching pupper ears, scritching and scratching until her tail starts wagging again. Anno brings her lips to kiss your tender [pc.cockHead " + x + "] while you lean your head back and let the maid continue with her “duties” a pleasurable calm overtaking your body.");
 	
 	processTime(15 + rand(10));
 	
@@ -4738,11 +4743,29 @@ public function annoSomethingsChanging():void
 	output("\n\nAnno cups her breasts, hefting up the meaty sweater-puppies now hanging heavily on her chest. She can barely get her hands around her nipples now, sinking her fingers into the vast swathe of soft boobflesh until they all but disappear. <i>“I don’t know what I’m gonna do with all these extra curves...”</i> she murmurs, running her hands from boob to belly, then slowly down between her legs.");
 	output("\n\nAs her fingers disappear inside her soaked twat, Anno moans and whispers, <i>“Hate to say it, but... I could get used to this.”</i>");
 	output("\n\nYeah, so could you. So how about taking this new body for a test drive?");
-	//Attach Anno’s sex menu here.
 	
+	annoToHuskarTF();
+	
+	//Attach Anno’s sex menu here.
 	processTime(30);
 	pc.lust(33);
 	annoFollowerSexMenu();
+}
+// Change Anno properties!
+public function annoToHuskarTF():void
+{
+	chars["ANNO"].tone = 10;
+	chars["ANNO"].thickness = 80;
+	chars["ANNO"].nippleWidthRatio = 1.25;
+	chars["ANNO"].breastRows[0].breastRatingRaw = 15;
+	chars["ANNO"].hipRatingRaw = 15;
+	chars["ANNO"].buttRatingRaw = 15;
+	chars["ANNO"].inflateVagina(0);
+	chars["ANNO"].vaginas[0].wetnessRaw = 12;
+	chars["ANNO"].addSkinFlag(GLOBAL.FLAG_FLUFFY);
+	chars["ANNO"].addArmFlag(GLOBAL.FLAG_FLUFFY);
+	chars["ANNO"].addLegFlag(GLOBAL.FLAG_FLUFFY);
+	chars["ANNO"].createPerk("Regal Mane", GLOBAL.FLAG_FURRED, 0, 0, 0, "");
 }
 
 //A Few Emails For Steele
