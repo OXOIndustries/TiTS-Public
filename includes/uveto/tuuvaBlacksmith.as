@@ -326,7 +326,8 @@ public function tuuvaTalkMenu():void
 	if(flags["TUUVA_SCAVENGING_TALK"] != undefined && flags["TUUVA_25AFF"] != undefined) addButton(3,"Dick",talkToTuuvaAboutDicks,undefined,"Dick","Ask about her extra equipment");
 	else addDisabledButton(3,"Locked","Locked","You don’t know her well enough for this.");
 	//[Bigger.D] She’s looking for some quick and simple dick growth, ey? You might have the answer for that. //Requires 75 Affection event done and Dick talk done. Hidden until requirements are met. Requires a Synth Sheath.
-	if(flags["TUUVA_DICK_TALK"] != undefined && tuuvaAffection() >= 75) 
+	if(tuuva.hasCock(GLOBAL.TYPE_EQUINE)) addDisabledButton(4,"SynthSheath","SynthSheath","She is already as big as she can be!");
+	else if(flags["TUUVA_DICK_TALK"] != undefined && tuuvaAffection() >= 75) 
 	{
 		if(pc.hasItemByClass(HorseCock)) addButton(4,"SynthSheath",biggerDForTuuva,undefined,"SynthSheath","She’s looking for some quick and simple dick growth, ey? You might have the answer for that.");
 		else addDisabledButton(4,"SynthSheath","SynthSheath","You need a SynthSheath in your inventory in order to help Tuuva get the bigger dick of her dreams.");
@@ -757,6 +758,7 @@ public function biggerDForTuuva():void
 	pc.destroyItemByClass(HorseCock);
 	
 	tuuva.cocks[0].cType = GLOBAL.TYPE_EQUINE;
+	tuuva.cocks[0].cLengthRaw = 16;
 	tuuva.cocks[0].cockColor = "black";
 	tuuva.cocks[0].delFlag(GLOBAL.FLAG_TAPERED);
 	tuuva.cocks[0].addFlag(GLOBAL.FLAG_BLUNT);

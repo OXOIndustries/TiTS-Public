@@ -4751,7 +4751,24 @@ public function annoSomethingsChanging():void
 	pc.lust(33);
 	annoFollowerSexMenu();
 }
+
 // Change Anno properties!
+public function annoToNormalTF():void
+{
+	chars["ANNO"].tone = 30;
+	chars["ANNO"].thickness = 40;
+	chars["ANNO"].nippleWidthRatio = 1;
+	chars["ANNO"].breastRows[0].breastRatingRaw = 5;
+	chars["ANNO"].hipRatingRaw = 10;
+	chars["ANNO"].buttRatingRaw = 9;
+	chars["ANNO"].vaginas[0].delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
+	chars["ANNO"].vaginas[0].delFlag(GLOBAL.FLAG_PUMPED);
+	chars["ANNO"].vaginas[0].wetnessRaw = 6;
+	//chars["ANNO"].removeSkinFlag(GLOBAL.FLAG_FLUFFY);
+	chars["ANNO"].removeArmFlag(GLOBAL.FLAG_FLUFFY);
+	chars["ANNO"].removeLegFlag(GLOBAL.FLAG_FLUFFY);
+	chars["ANNO"].removePerk("Regal Mane");
+}
 public function annoToHuskarTF():void
 {
 	chars["ANNO"].tone = 10;
@@ -4762,7 +4779,7 @@ public function annoToHuskarTF():void
 	chars["ANNO"].buttRatingRaw = 15;
 	chars["ANNO"].inflateVagina(0);
 	chars["ANNO"].vaginas[0].wetnessRaw = 12;
-	chars["ANNO"].addSkinFlag(GLOBAL.FLAG_FLUFFY);
+	//chars["ANNO"].addSkinFlag(GLOBAL.FLAG_FLUFFY);
 	chars["ANNO"].addArmFlag(GLOBAL.FLAG_FLUFFY);
 	chars["ANNO"].addLegFlag(GLOBAL.FLAG_FLUFFY);
 	chars["ANNO"].createPerk("Regal Mane", GLOBAL.FLAG_FURRED, 0, 0, 0, "");
