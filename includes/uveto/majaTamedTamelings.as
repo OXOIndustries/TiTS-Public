@@ -235,6 +235,7 @@ public function purchaseTameling(arg:ItemSlotClass):void
 {
 	clearOutput();
 	showMaja();
+	author("Gardeford");
 	if(!korgiiCredits() && !(arg is GrunchLeash)) //allow grunch passthrough
 	{
 		output("You pull out a few credit chits, prepared to give the stocky korgonne whatever kind of payment she needs for riding the animals. Maja gives you a confused look, glancing at the chits and back up to you.");
@@ -326,6 +327,7 @@ public function returnPetToMaja():void
 {
 	clearOutput();
 	showMaja();
+	author("Gardeford");
 	if(flags["MAJA_RENTING"] == "a kor’diiak bear leash")
 	{
 		output("You lead the large bear-like beast waiting outside the door back into Tamed Tamelings. It immediately bounds over to maja, giving her a big lick and knocking her off balance so she falls back into her chair.");
@@ -377,6 +379,7 @@ public function talkToMaja():void
 {
 	clearOutput();
 	showMaja();
+	author("Gardeford");
 	output("What will you talk to Maja about?");
 	clearMenu();
 	addButton(14,"Back",repeatMajaApproach,true);
@@ -390,6 +393,7 @@ public function majaAliensTalk():void
 {
 	clearOutput();
 	showMaja();
+	author("Gardeford");
 	output("<i>“");
 	if(pc.isBimbo()) output("So like, why don’t you trust aliens? You guys are super fluffy and trustable. I can’t think of anyone who wouldn’t be nice to you.");
 	else output("So why don’t you trust aliens? Did someone try to hurt you?");
@@ -482,6 +486,8 @@ public function majaAliensTalk():void
 public function majaTamingTalk():void
 {
 	clearOutput();
+	showMaja();
+	author("Gardeford");
 	output("<i>“");
 	if(pc.isBimbo()) output("So, like, how do you tame those big scary monsters all by yourself? Isn’t that suuuuper dangerous?");
 	else output("So how do you tame a kor’diiak all by yourself? No offense, but it seems like it would be dangerous to do alone.");
@@ -516,6 +522,7 @@ public function majaSpaceTalk():void
 {
 	clearOutput();
 	showMaja();
+	author("Gardeford");
 	output("<i>“So what do you think about space, apart from the aliens. Do you think you’d ever travel to other planets?”</i> You ask, taking a seat ");
 	if(pc.isTaur()) output("against");
 	else output("on");
