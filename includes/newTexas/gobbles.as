@@ -15,6 +15,7 @@ public function gobblesAvailable():Boolean
 	//if (flags["GOBBLES_EVENT_DATE"] == undefined || flags["GOBBLES_EVENT_DATE"] < currDate.fullYear)
 	
 	// Play for future dates, plus room "because nice". Also because fuck doing something to tie it to a single day that moves around every year.
+	/*
 	// 0-indexed month numbers. Woo.
 	if (currDate.month == 9 && (currDate.date >= 10 && currDate.date <= 15))
 	{
@@ -25,8 +26,9 @@ public function gobblesAvailable():Boolean
 	{
 		return true;
 	}
+	*/
 	
-	if (silly)
+	if (isThanksgiving() || silly)
 	{
 		/* Once every 7 in game days whilst silly is enabled methinks.
 		if (flags["GOBBLES_SILLY_DAYCOUNT"] == undefined || flags["GOBBLES_SILLY_DAYCOUNT"] < days - 7)

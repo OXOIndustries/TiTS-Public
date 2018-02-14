@@ -3791,22 +3791,44 @@ public function emailRoulette(deltaT:uint):void
 
 // Event Dates
 // checkDate(day:int, month:int, dayRange:int)
-public function isEaster():Boolean
+public function holidaySeasonCheck(seasonFlag:String = ""):Boolean
 {
-	return checkDate(16, 4, 2);
+	// Flag auto return
+	if(gameOptions.seasonalOverridePreferences[seasonFlag] != undefined) return gameOptions.seasonalOverridePreferences[seasonFlag];
+	// Normal date ranges.
+	switch(seasonFlag)
+	{
+		case "NEW_YEARS": return checkDate(1, 1, 3); break;
+		case "LUNAR_NEW_YEAR": return checkDate(5, 2, 15); break;
+		case "VALENTINES": return checkDate(14, 2, 3); break;
+		case "ST_PATRICKS": return checkDate(17, 3, 3); break;
+		case "APRIL_FOOLS": return checkDate(1, 4, 0); break;
+		case "EASTER": return checkDate(16, 4, 2); break;
+		case "JULY_4TH": return checkDate(4, 7, 7); break;
+		case "OKTOBERFEST": return checkDate(18, 9, 4); break;
+		case "HALLOWEEN": return checkDate(29, 10, 10); break;
+		case "THANKSGIVING":
+			// Canadian Holiday
+			if(checkDate(12, 10, 6)) return true;
+			// American Holiday
+			if(checkDate(24, 11, 6)) return true;
+			break;
+		case "CHRISTMAS": return checkDate(25, 12, 8); break;
+	}
+	
+	return false;
 }
-public function isNearlyJulyFourth():Boolean
-{
-	return checkDate(4, 7, 7);
-}
-public function isHalloweenish():Boolean
-{
-	return checkDate(29, 10, 10);
-}
-public function isChristmas():Boolean
-{
-	return checkDate(25, 12, 8);
-}
+public function isNewYears():Boolean { return holidaySeasonCheck("NEW_YEARS"); }
+public function isLunarNewYear():Boolean { return holidaySeasonCheck("LUNAR_NEW_YEAR"); }
+public function isValentines():Boolean { return holidaySeasonCheck("VALENTINES"); }
+public function isStPatricks():Boolean { return holidaySeasonCheck("ST_PATRICKS"); }
+public function isAprilFools():Boolean { return holidaySeasonCheck("APRIL_FOOLS"); } // APRIL FOOLS!
+public function isEaster():Boolean { return holidaySeasonCheck("EASTER"); }
+public function isNearlyJulyFourth():Boolean { return holidaySeasonCheck("JULY_4TH"); }
+public function isOktoberfest():Boolean { return holidaySeasonCheck("OKTOBERFEST"); }
+public function isHalloweenish():Boolean { return holidaySeasonCheck("HALLOWEEN"); }
+public function isThanksgiving():Boolean { return holidaySeasonCheck("THANKSGIVING"); }
+public function isChristmas():Boolean { return holidaySeasonCheck("CHRISTMAS"); }
 
 // Bad Ends
 public function deathByNoHP():void

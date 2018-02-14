@@ -7,9 +7,6 @@ public function showKellyName():void
 }
 public function kellyBustDisplay(nude:Boolean = false):String
 {
-	// 9999 - Special artist exceptions!
-	if(!InCollection(kGAMECLASS.gameOptions.configuredBustPreferences["KELLY"], ["ADJATHA", "GATS"])) return "KELLY";
-	
 	return "KELLY" + (nude ? "_NUDE" : "");
 }
 public function showKelly(nude:Boolean = false):void {

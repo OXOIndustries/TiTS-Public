@@ -20,7 +20,7 @@ import classes.Items.Junk.DamagedVIChip;
 
 public function showDrBadgerAndPexiga(nude:Boolean = false):void
 {
-	var nameDisplay:String = "DR.BADGER &\n";
+	var nameDisplay:String = "DR. BADGER &\n";
 	nameDisplay += pexiga.short.toUpperCase();
 	showName(nameDisplay);
 

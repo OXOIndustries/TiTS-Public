@@ -758,9 +758,7 @@
 		
 		public function showName(name:String):void
 		{
-			//APRIL FOOLS! roomText = name;
-			//roomText = ParseText(name);
-			roomText = name;
+			roomText = ((name is String) ? ParseText(name) : name);
 		}
 
 		// Text input bullshittery
@@ -1085,7 +1083,7 @@
 		{
 			try
 			{
-				_buttonTray.addButton(slot, cap, func, arg, ttHeader, ttBody);
+				_buttonTray.addButton(slot, ((cap is String) ? ParseText(cap) : cap), func, arg, ((ttHeader is String) ? ParseText(ttHeader) : ttHeader), ttBody);
 			}
 			catch (e:*)
 			{
@@ -1140,7 +1138,7 @@
 		{
 			try
 			{
-				_buttonTray.addDisabledButton(slot, cap, ttHeader, ttBody);
+				_buttonTray.addDisabledButton(slot, ((cap is String) ? ParseText(cap) : cap), ((ttHeader is String) ? ParseText(ttHeader) : ttHeader), ttBody);
 			}
 			catch (e:*)
 			{
@@ -1153,7 +1151,7 @@
 		{
 			try
 			{
-				_buttonTray.addGhostButton(slot, cap, func, arg, ttHeader, ttBody);
+				_buttonTray.addGhostButton(slot, ((cap is String) ? ParseText(cap) : cap), func, arg, ((ttHeader is String) ? ParseText(ttHeader) : ttHeader), ttBody);
 			}
 			catch (e:*)
 			{
@@ -1165,7 +1163,7 @@
 		{
 			try
 			{
-				_buttonTray.addDisabledGhostButton(slot, cap, ttHeader, ttBody);
+				_buttonTray.addDisabledGhostButton(slot, ((cap is String) ? ParseText(cap) : cap), ((ttHeader is String) ? ParseText(ttHeader) : ttHeader), ttBody);
 			}
 			catch (e:*)
 			{
@@ -1437,6 +1435,11 @@
 		public function resetPCStats():void
 		{
 			this._rightSideBar.resetItems();
+		}
+		
+		public function resetPCCaptions():void
+		{
+			this._rightSideBar.resetCaptions();
 		}
 		
 		public function showNPCStats():void 

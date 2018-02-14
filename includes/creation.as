@@ -29,6 +29,7 @@ public function hasIllegalInput(sText:String = ""):Boolean
 			case "marcopolo": eventQueue.push(Cheats.exploreUnlock); break;
 			case "motherlode": eventQueue.push(Cheats.XPToLevel); break;
 			case "88mph": eventQueue.push(Cheats.TimeSkip); break;
+			case "tistheseason": eventQueue.push(Cheats.toggleSeasons); break;
 			
 			// Treatment
 			case "bimbo": eventQueue.push(Cheats.TryTreatmentHaxCowGirl); break;

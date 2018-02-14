@@ -243,6 +243,12 @@ package classes.UIComponents
 			_coreStatBlock.resetItems();
 			_advancementBlock.resetItems();
 			_playerPartyBlock.resetItems();
+			resetCaptions();
+		}
+		
+		public function resetCaptions():void
+		{
+			_advancementBlock.updateStatCaptions();
 		}
 	}
 

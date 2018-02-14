@@ -4100,7 +4100,7 @@ package classes.GameData
 					}
 					else
 					{
-						output("\n\n<b>" + StringUtil.toTitleCase(target.getCombatName()) + ":</b>");
+						output("\n\n<b>" + StringUtil.toTitleCase((target.uniqueName && target.uniqueName.length > 0) ? target.uniqueName : target.short) + ":</b>");
 						if(target.isInvisible()) output("\n<i>The enemy is practically invisible to you!</i>");
 						else if (target.long.length > 0) output("\n" + target.long);
 						else if(target.lust() < 50 || target.isLustImmune == true) output("\n<i>Nothing in particular to take note of.</i>");
@@ -4128,7 +4128,7 @@ package classes.GameData
 					else
 					{
 						target.getCombatDescriptionExtension();
-						output("\n\n<b>" + StringUtil.toTitleCase(target.getCombatName()) + ":</b>");
+						output("\n\n<b>" + StringUtil.toTitleCase((target.uniqueName && target.uniqueName.length > 0) ? target.uniqueName : target.short) + ":</b>");
 						if(target.isInvisible()) output("\n<i>The enemy is practically invisible to you!</i>");
 						else if(target.lust() < 50 || target.isLustImmune == true) output("\n<i>Nothing in particular to take note of.</i>");
 						else showMonsterArousalFlavor(target);
