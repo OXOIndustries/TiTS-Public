@@ -619,6 +619,72 @@
 			addEventListener(Event.FRAME_CONSTRUCTED, finishInit);
 		}
 		
+		/* Try to safely report errors to the user
+		 * Usage:
+		 *
+			try
+			{
+				<code>
+			}
+			catch (e:*)
+			{
+				if (kGAMECLASS.reportError(e)) throw e;
+			}
+		 *
+		 * <code> can be a little thing or something big as displaying the complete appearance/stat/log output
+		 * but to work as intended interrupting the code block at any point should never leave the game state broken
+		 *
+		 * returns true if error reporting failed - just rethrow the exception
+		*/
+		public function reportError(arg:*):Boolean
+		{
+			var text:String;
+			
+			// Step 1: generate an error message based on the argument type passed in
+			if (arg is Error)
+			{
+				var ee:Error = arg as Error;
+				text = ("\n\n<b>Something bad happened!</b>\n\n<b>Please report this message, and include any prior scene text or a description of what you did before seeing this message:</b>\n\n");
+				//output("Version: " + version + "\n\n");
+				text += ("Flash Player:  " + Capabilities.playerType + " - " + Capabilities.os + "\n");
+				text += ("Flash Version: " + Capabilities.version + "\n");
+				text += ("Game Version: " + version + "\n\n");
+				text += ("Error Name: " + ee.name + "\n");
+				text += ("Error Mesg: " + ee.message + "\n");
+				text += (ee.getStackTrace());
+			}
+			
+			// Step 2: Try to display the error text without disrupting the control flow
+			// Goal is that -apart from the failed action- the game continues as smooth as possible
+			if ( text )
+			{
+				var module:ContentModule = userInterface.activeModule;
+				
+				// during startup - little we can do but try to resume default error handling
+				if (!module) return true;
+				
+				switch ( module.moduleName )
+				{
+					case "PrimaryOutput":
+						output( text, false, false );
+						return false;
+						break;
+					case "SecondaryOutput":
+						output2( text.replace( /\[/g, '\\[' ), false ); // work around missing parse arg
+						return false;
+						break;
+					case "CodexDisplay":
+						outputCodex( text.replace( /\[/g, '\\[' ), false ); // work around missing parse arg
+						userInterface.outputCodex();
+						return false;
+						break;
+					// email needs a public method to print text so errors during mail display aren't fatal anymore
+				}
+			}
+			// We either could not handle the argument type or display the message
+			// let the calling method handle it if it can
+			return true;
+		}
 		private function uncaughtErrorHandler(e:UncaughtErrorEvent):void
 		{
 			if(stage.contains(userInterface.textInput)) removeInput();
