@@ -4172,6 +4172,7 @@
 		public function energyMax(): Number {
 			var bonus:int = 0;
 			bonus += statusEffectv1("Royal Nectar");
+			bonus += statusEffectv1("Cum High");
 			if(hasPerk("Heroic Reserves")) bonus += 33;
 			return (energyMod + 100 + bonus);
 		}
@@ -4284,6 +4285,7 @@
 			var bonus:int = 0;
 			bonus += statusEffectv1("Sera Spawn Reflex Mod");
 			bonus += statusEffectv1("Riya Spawn Reflex Mod");
+			bonus += statusEffectv2("Cum High");
 
 			var currReflexes:int = reflexesRaw + reflexesMod + bonus;
 
@@ -4401,6 +4403,7 @@
 			}
 			var bonus:Number = 0;
 			bonus -= statusEffectv1("Adorahol");
+			bonus += statusEffectv3("Cum High");
 
 			var currInt:int = intelligenceRaw + intelligenceMod + bonus;
 			
@@ -4454,6 +4457,7 @@
 
 			var bonus:Number = 0;
 			if(accessory is BeatricesScarf) bonus += 3;
+			bonus += statusEffectv4("Cum High");
 
 			var currWill:int = willpowerRaw + willpowerMod + bonus;
 
@@ -5592,7 +5596,8 @@
 			if(hasTongueFlag(GLOBAL.FLAG_LONG))
 			{
 				adjectives.push("lengthy", "long", "large","sizeable");
-				if (InCollection(tongueType, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_OVIR, GLOBAL.TYPE_FROG)) adjectives.push("extendable");
+				if (InCollection(tongueType, [GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_OVIR, GLOBAL.TYPE_FROG])) adjectives.push("extendable");
+				else if (tongueType == GLOBAL.TYPE_BOVINE) adjectives.push("foot-long");
 				else if (tongueType == GLOBAL.TYPE_DEMONIC) adjectives.push("two-foot long");
 				else if (tongueType == GLOBAL.TYPE_DRACONIC) adjectives.push("four-foot long");
 				else if (tongueType == GLOBAL.TYPE_KORGONNE) adjectives.push("nearly foot-long");
@@ -10008,6 +10013,7 @@
 				if (isSquirter(0)) squirterBonus += vaginas[0].wetness();
 				girlCumAmount++;
 			}
+			if(hasPerk("Treated Readiness") && girlCumAmount < 200) girlCumAmount = 200;
 			// Scale values.
 			girlCumAmount *= 5; // 5 ml produced per vagina
 			squirterBonus *= 10; // extra 10 mL produced per extra squirter bonus
@@ -19805,7 +19811,7 @@
 							omegaBlurbs.push("You find yourself idly wondering how much a breeding stand custom-made to your measurements would cost, and if it would really be worth the investment.");
 							omegaBlurbs.push("You feel oddly serene, for someone who’s supposed to crave being fucked all the time.");
 							AddLogEvent(omegaBlurbs[rand(omegaBlurbs.length)], "passive");
-							}
+						}
 						break;
 					case "Kally Cummed Out":
 						if(this is PlayerCharacter && requiresRemoval && kGAMECLASS.currentLocation == "CANADA5")
@@ -19975,6 +19981,12 @@
 							AddLogEvent("Unfortunately, as you admire your now-larger bosom, you realize that the gentle, wet rumble of the pads has come to a stop. <b>It looks like you’ve exhausted the BoobSwell Pads" + (bRows() > 1 ? " on your " + kGAMECLASS.num2Text2(thisStatus.value1+1) + " row of breasts" : "") + ParseText("!</b> You peel them off your [pc.skinFurScales] and toss them away."), "passive", maxEffectLength);
 						}
 						break;
+					case "Cum High":
+						if (this is PlayerCharacter && requiresRemoval)
+						{
+							AddLogEvent("Your reflexes and mental abilities return to their natural state, as well as the concerns about your quest. <b>You are no longer cum high.</b> You are positive it will take you a while to be able to experience this high again.", "passive", maxEffectLength);
+						}
+						break;
 					case "The Treatment":
 						if (this is PlayerCharacter && requiresRemoval)
 						{
@@ -20114,35 +20126,29 @@
 						}
 						break;
 					case "Oil Warmed":
-						var oilDesc:String = "";
-						if(this is PlayerCharacter) oilDesc = "You’re covered in warm, protective oil!";
-						else oilDesc = capitalA + short + " is covered in warm, protective oil!";
-						oilDesc += "\nFreezing Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Warmed") / 1440)) + "%";
-						setStatusTooltip("Oil Warmed", oilDesc);
+						if(this is PlayerCharacter) thisStatus.tooltip = "You’re covered in warm, protective oil!";
+						else thisStatus.tooltip = capitalA + short + " is covered in warm, protective oil!";
+						thisStatus.tooltip += "\nFreezing Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Warmed") / 1440)) + "%";
 						break;
 					case "Oil Cooled":
-						if(this is PlayerCharacter) desc = "You’re covered in cool, protective oil!";
-						else desc = capitalA + short + " is covered in cool, protective oil!";
-						desc += "\nBurning Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Cooled") / 1440)) + "%";
-						setStatusTooltip("Oil Cooled", desc);
+						if(this is PlayerCharacter) thisStatus.tooltip = "You’re covered in cool, protective oil!";
+						else thisStatus.tooltip = capitalA + short + " is covered in cool, protective oil!";
+						thisStatus.tooltip += "\nBurning Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Cooled") / 1440)) + "%";
 						break;
 					case "Oil Numbed":
-						if(this is PlayerCharacter) desc = "You’re covered in numbing, lust-inhibiting oil!";
-						else desc = capitalA + short + " is covered in numbing, lust-inhibiting oil!";
-						desc += "\nLust gains are decreased.";
-						setStatusTooltip("Oil Numbed", desc);
+						if(this is PlayerCharacter) thisStatus.tooltip = "You’re covered in numbing, lust-inhibiting oil!";
+						else thisStatus.tooltip = capitalA + short + " is covered in numbing, lust-inhibiting oil!";
+						thisStatus.tooltip += "\nLust gains are decreased.";
 						break;
 					case "Oil Aroused":
-						if(this is PlayerCharacter) desc = "You’re covered in arousing, lust-inducing oil!";
-						else desc = capitalA + short + " is covered in arousing, lust-inducing oil!";
-						desc += "\nTeasing is more effective, but arousal comes more easily.";
-						setStatusTooltip("Oil Aroused", desc);
+						if(this is PlayerCharacter) thisStatus.tooltip = "You’re covered in arousing, lust-inducing oil!";
+						else thisStatus.tooltip = capitalA + short + " is covered in arousing, lust-inducing oil!";
+						thisStatus.tooltip += "\nTeasing is more effective, but arousal comes more easily.";
 						break;
 					case "Oil Slicked":
-						if(this is PlayerCharacter) desc = "You’re covered in super slippery oil!";
-						else desc = capitalA + short + " is covered in super slippery oil!";
-						desc += "\nIt’s easier to slip away from someone’s grasp.";
-						setStatusTooltip("Oil Slicked", desc);
+						if(this is PlayerCharacter) thisStatus.tooltip = "You’re covered in super slippery oil!";
+						else thisStatus.tooltip = capitalA + short + " is covered in super slippery oil!";
+						thisStatus.tooltip += "\nIt’s easier to slip away from someone’s grasp.";
 						break;
 					case "Tentatool":
 						if (this is PlayerCharacter && requiresRemoval)
