@@ -1017,6 +1017,7 @@ public function singleDickFap():void {
 	}
 	else if(cum <= 500) {
 		output(" Big squirts of [pc.cum] fire out one after another, each easily thicker and larger than an average human’s by far. They splatter across nearly every inch of your body, so thick that runnels of your spent goo drip down the sides of your [pc.chest] and [pc.face].");
+		pc.applyCumSoaked();
 	}
 	else {
 		output(" Large torrents of [pc.cum] spray out of your cumslit with such vigor that you’re able to watch them arc through the air before they rain down around you, each many times the size of a normal orgasm in its own right. The [pc.cumColor] rain slicks you from [pc.feet] to [pc.face], staining you the proof of your incredible virility");
