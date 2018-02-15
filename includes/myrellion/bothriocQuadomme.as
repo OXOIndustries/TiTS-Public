@@ -1434,7 +1434,7 @@ public function bothriocQuadommeSexMenu():void
 	clearMenu();
 	
 	// Requires dick less than 6 inches big
-	if(pc.smallestCockLength() > 6) addDisabledButton(0, "Small Dick", "Small Dick", "You don’t have one of those.");
+	if(!pc.hasCock() || pc.smallestCockLength() > 6) addDisabledButton(0, "Small Dick", "Small Dick", "You don’t have one of those.");
 	else addButton(0, "Small Dick", bothriocQuadommeSexScenes, ["small dick", addiction, -1, -1, -1, -1], "Small Dick", "Have some... very specific... fun.");
 	
 	// Requires penis + hard personality
