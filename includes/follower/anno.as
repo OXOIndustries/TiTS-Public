@@ -1843,7 +1843,7 @@ public function annoFollowerShowerSex():void
 	}
 	else
 	{
-		output("\n\n<i>“Wouldn’t miss it,”</i> you say with a grin, following the plush puppy and grabbing a handful of her behemoth buttocks ass as you walk. She swishes her tail playfully across your hand as your fingers vanish into sinfully smooth rump, moaning softly as you start to squeeze and knead the doughy mountain.");
+		output("\n\n<i>“Wouldn’t miss it,”</i> you say with a grin, following the plush puppy and grabbing a handful of her behemoth buttocks as you walk. She swishes her tail playfully across your hand as your fingers vanish into sinfully smooth rump, moaning softly as you start to squeeze and knead the doughy mountain.");
 	}
 	
 	output("\n\nThe two of you stumble the rest of the way, hands and lips all over each other. Anno’s back meets a bulkhead just beside her bathroom and her legs wrap around you. ");
@@ -4737,8 +4737,8 @@ public function annoSomethingsChanging():void
 	output("\n\n<i>“Ah! N-not again!”</i> Anno yelps, and you hear something heavy hitting the deck, following by hysterical laughing. Figuring it’s about time you saw what the perky pup’s getting up to, you tap the door’s control panel and step inside uninvited.");
 	output("\n\nAnd what a sight you behold when you enter! Anno’s splayed out on the deck, spilling out of the tatters of her clothes. And good <i>lord</i> is there a lot to spill all of a sudden. What were once D-cups are growing before your eyes, plumping out to ginormous G-cups at the least, and her thighs and ass are both filling out, making her legs spread - and revealing a plumper puss that’s leaking like a faucet, cumming all over her meaty legs as its owner gropes and squeezes her burgeoning boobflesh.");
 	output("\n\nSpeaking of growing, there’s a ring of coarse, thin white fur growing around Anno’s neck and shoulders, quickly growing thicker and richer. She can’t help but scratch herself, raking her claws across the growing mane around her neck. While she’s busy, you get an eyefull of her tits and belly softening, growing squishy and oh so gropable... you can’t help yourself but get down over the morphing mutt, grabbing one of her titties and running your thumb over the puffy pink teat.");
-	output("\n\nJust as you do, Anno screams in orgasmic pleasure, and the nipple retracts! You watch with glee as the neat you aren’t busy with turns inverted, leaving a cute little crater that your tongue’s quick to explore, licking and kissing until the newly-minted Huskar grabs the back of your head, smooshing your face into her awesome cleavage while she cums her brains out.");
-	output("\n\nThe final bit to plump out is Anno’s belly, though it’s not quite as extreme a change as she might have been afraid of. She’s left with just the right amount of pudge to qualify as <i>“chubby,”</i> and to give you something to squeeze while you kiss her. You can feel the quiver of her soft, supple new body as Anno calms herself, slowly steadying her breath and accepting the kisses you’re trying to lavish all over her chest and neck. You nuzzle into her fur of her new collar, drinking deep of the smells of sex dripping off of your companion.");
+	output("\n\nJust as you do, Anno screams in orgasmic pleasure, and the nipple retracts! You watch with glee as the teat you aren’t busy with turns inverted, leaving a cute little crater that your tongue’s quick to explore, licking and kissing until the newly-minted Huskar grabs the back of your head, smooshing your face into her awesome cleavage while she cums her brains out.");
+	output("\n\nThe final bit to plump out is Anno’s belly, though it’s not quite as extreme a change as she might have been afraid of. She’s left with just the right amount of pudge to qualify as “chubby,” and to give you something to squeeze while you kiss her. You can feel the quiver of her soft, supple new body as Anno calms herself, slowly steadying her breath and accepting the kisses you’re trying to lavish all over her chest and neck. You nuzzle into her fur of her new collar, drinking deep of the smells of sex dripping off of your companion.");
 	output("\n\n<i>“Oh <b>fuck</b>, boss,”</i> Anno whines, squirming under you. <i>“I feel like my tits are a hundred times more sensitive... and there’s like three times more of ‘em, too. I haven’t cum that hard in... I dunno how long!”</i>");
 	output("\n\nAnno cups her breasts, hefting up the meaty sweater-puppies now hanging heavily on her chest. She can barely get her hands around her nipples now, sinking her fingers into the vast swathe of soft boobflesh until they all but disappear. <i>“I don’t know what I’m gonna do with all these extra curves...”</i> she murmurs, running her hands from boob to belly, then slowly down between her legs.");
 	output("\n\nAs her fingers disappear inside her soaked twat, Anno moans and whispers, <i>“Hate to say it, but... I could get used to this.”</i>");
@@ -4759,6 +4759,7 @@ public function annoToNormalTF():void
 	chars["ANNO"].thickness = 40;
 	chars["ANNO"].nippleWidthRatio = 1;
 	chars["ANNO"].breastRows[0].breastRatingRaw = 5;
+	chars["ANNO"].breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
 	chars["ANNO"].hipRatingRaw = 10;
 	chars["ANNO"].buttRatingRaw = 9;
 	chars["ANNO"].vaginas[0].delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
@@ -4775,6 +4776,7 @@ public function annoToHuskarTF():void
 	chars["ANNO"].thickness = 80;
 	chars["ANNO"].nippleWidthRatio = 1.25;
 	chars["ANNO"].breastRows[0].breastRatingRaw = 15;
+	chars["ANNO"].breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_INVERTED;
 	chars["ANNO"].hipRatingRaw = 15;
 	chars["ANNO"].buttRatingRaw = 15;
 	chars["ANNO"].inflateVagina(0);
