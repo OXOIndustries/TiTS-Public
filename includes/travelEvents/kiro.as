@@ -1748,7 +1748,7 @@ public function yesImTakingKirosVcards():void
 	kiro.orgasm();
 	kiro.orgasm();
 	pc.lust(3000);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	processTime(14);
 	//[Next]
 	clearMenu();
@@ -3472,8 +3472,8 @@ public function kiroFuckOrgyFuntimes6():void
 	kiro.orgasm();
 	kiro.orgasm();
 	for(var i:int = 0; i < 10; i++) { pc.orgasm(); }
-	applyCumSoaked(pc);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
 	
 	//20,000 in every hole
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();

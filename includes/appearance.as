@@ -561,6 +561,9 @@ public function appearance(forTarget:Creature):void
 		
 		switch(target.earType)
 		{
+			case GLOBAL.TYPE_HUMAN:
+				// Human ears don't get acknowledged, I guess!
+				break;
 			case GLOBAL.TYPE_EQUINE:
 				output2(" A pair of horse-like ears rise up from the top of your " + headNoun + ".");
 				break;
@@ -717,6 +720,9 @@ public function appearance(forTarget:Creature):void
 			case GLOBAL.TYPE_MOTHRINE:
 				output2(" A pair of moth ears are recessed at the sides of your " + headNoun + ", looking like slightly raised mounds of membranous tissue.");
 				break;
+			default:
+				output2(" There is nothing notable to mention about your ears.");
+				break;
 		}
 	}
 	//not bald
@@ -732,6 +738,9 @@ public function appearance(forTarget:Creature):void
 				break;
 			case GLOBAL.TYPE_CANINE:
 				output2(" The " + target.hairDescript(true,true) + " on your head is overlapped by a pair of pointed dog ears.");
+				break;
+			case GLOBAL.TYPE_KORGONNE:
+				output2(" The " + target.hairDescript(true,true) + " on your head is overlapped by a pair of triangular dog ears, rounded at the top like a korgonne’s.");
 				break;
 			case GLOBAL.TYPE_BOVINE:
 				output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of rounded cow ears that stick out sideways.");
@@ -863,6 +872,9 @@ public function appearance(forTarget:Creature):void
 			case GLOBAL.TYPE_MOTHRINE:
 				output2(" The " + target.hairDescript(true,true) + " atop your head hides the two raised mounds of membranous tissue that are your ears.");
 				break;
+			default:
+				output2(" The " + target.hairDescript(true,true) + " atop your head hides non-descript ears.");
+				break;
 		}
 	}
 	// Additional ear stuffs
@@ -917,16 +929,16 @@ public function appearance(forTarget:Creature):void
 	switch(target.tongueType)
 	{
 		case GLOBAL.TYPE_SNAKE:
-			output2(" A snake-like [target.tongueNoun] occasionally flits between your lips, tasting the air.");
+			output2(" A snake-like tongue occasionally flits between your lips, tasting the air.");
 			break;
 		case GLOBAL.TYPE_DEMONIC:
-			output2(" A slowly undulating [target.tongueNoun] occasionally slips from between your lips. It hangs nearly two feet long when you let the whole thing slide out, though you can retract it to appear normal.");
+			output2(" A slowly undulating tongue occasionally slips from between your lips. It hangs nearly two feet long when you let the whole thing slide out, though you can retract it to appear normal.");
 			break;
 		case GLOBAL.TYPE_DRACONIC:
-			output2(" Your mouth contains a thick, fleshy [target.tongueNoun] that, if you so desire, can telescope to a distance of about four feet. It has sufficient manual dexterity that you can use it almost like a third arm.");
+			output2(" Your mouth contains a thick, fleshy tongue that, if you so desire, can telescope to a distance of about four feet. It has sufficient manual dexterity that you can use it almost like a third arm.");
 			break;
 		case GLOBAL.TYPE_LEITHAN:
-			output2(" Your mouth contains a narrow but flexible [target.tongueNoun] that, if you so desire, can extend a good distance out from your mouth. Its tip is forked, and you are capable of moving it around in an almost prehensile manner.");
+			output2(" Your mouth contains a narrow but flexible tongue that, if you so desire, can extend a good distance out from your mouth. Its tip is forked, and you are capable of moving it around in an almost prehensile manner.");
 			break;
 		case GLOBAL.TYPE_RASKVEL:
 			output2(" Your mouth contains a thick, purple tongue that, if you so desire, can extend a fair portion from your mouth. Its tip is blunted slightly.");
@@ -936,10 +948,10 @@ public function appearance(forTarget:Creature):void
 			else output2(" A tapered tongue fills your mouth, able to taste the very air when extended beyond your oral cavity.");
 			break;
 		case GLOBAL.TYPE_BEE:
-			output2(" Your mouth contains a long, bright yellow [target.tongueNoun] that can extend a foot past past your [target.lips] when fully extended. The tip has a tube inside it, capable of gathering sweet nectar from jungle flowers or lovers.");
+			output2(" Your mouth contains a long, bright yellow tongue that can extend a foot past past your [target.lips] when fully extended. The tip has a tube inside it, capable of gathering sweet nectar from jungle flowers or lovers.");
 			break;
 		case GLOBAL.TYPE_MOTHRINE:
-			output2(" Your mouth contains a long [target.tongueNoun] that can extend a foot past past your [target.lips] when fully extended. The tip has a tube inside it, capable of gathering sweet nectar from jungle flowers or lovers.");
+			output2(" Your mouth contains a long tongue that can extend a foot past past your [target.lips] when fully extended. The tip has a tube inside it, capable of gathering sweet nectar from jungle flowers or lovers.");
 			break;
 		case GLOBAL.TYPE_FROG:
 			if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth contains a long and stretchy frog tongue, capable of reaching much longer distances than most races.");
@@ -950,6 +962,10 @@ public function appearance(forTarget:Creature):void
 			break;
 		case GLOBAL.TYPE_KORGONNE:
 			output2(" Your mouth contains a long blue tongue that dangles over your lower lip whenever you stop thinking about it.");
+			break;
+		case GLOBAL.TYPE_BOVINE:
+			if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth houses a broad, prehensile tongue which extends over a foot long with a smooth surface is perfect for pleasuring sensitive areas.");
+			else output2(" Your mouth contains a smooth, broad tongue, perfect for pleasuring sensitive spots.");
 			break;
 		case GLOBAL.TYPE_TENTACLE:
 			output2(" Your mouth contains a long, prehensile tentacle-like tongue.");

@@ -962,6 +962,7 @@ public function nameBessForRealsies():void
 	displayInput();
 	this.userInterface.textInput.text = chars["BESS"].mf("Ben","Bess");
 	//(Default Name: {if (bess.gender = female) <i>“Bess”</i>}{else: <i>“Ben”</i>}");
+	output("\n\n\n");
 	clearMenu();
 	addButton(0, "Next", nameBessProcessing);
 }
@@ -970,18 +971,18 @@ public function nameBessProcessing():void
 {
 	if (this.userInterface.textInput.text == "") {
 		nameBessForRealsies();
-		output("\n\n\n<b>You must input a name.</b>");
+		output("<b>You must input a name.</b>");
 		return;
 	}
 	// Illegal characters check. Just in case...
 	if (hasIllegalInput(this.userInterface.textInput.text)) {
 		nameBessForRealsies();
-		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
+		output("<b>To prevent complications, please avoid using code in the name.</b>");
 		return;
 	}
 	if (this.userInterface.textInput.text.length > 14) {
 		nameBessForRealsies();
-		output("\n\n\n<b>You must enter a name no more than fourteen characters long.</b>");
+		output("<b>You must enter a name no more than fourteen characters long.</b>");
 		return;
 	}
 	chars["BESS"].short = this.userInterface.textInput.text;
@@ -1616,6 +1617,7 @@ public function bessTitlesTheirName():void
 
 		displayInput();
 		userInterface.textInput.text = chars["BESS"].short;
+		output("\n\n\n");
 
 		clearMenu();
 		addButton(0, "Next", bessTitlesTryChangeName);
@@ -1625,16 +1627,19 @@ public function bessTitlesTheirName():void
 public function bessTitlesTryChangeName():void
 {
 	if (this.userInterface.textInput.text == "") {
-		output("\n\n\n<b>You must input a name.</b>");
+		bessTitlesTheirName();
+		output("<b>You must input a name.</b>");
 		return;
 	}
 	// Illegal characters check. Just in case...
 	if (hasIllegalInput(this.userInterface.textInput.text)) {
-		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
+		bessTitlesTheirName();
+		output("<b>To prevent complications, please avoid using code in the name.</b>");
 		return;
 	}
 	if (this.userInterface.textInput.text.length > 14) {
-		output("\n\n\n<b>You must enter a name no more than fourteen characters long.</b>");
+		bessTitlesTheirName();
+		output("<b>You must enter a name no more than fourteen characters long.</b>");
 		return;
 	}
 	chars["BESS"].short = this.userInterface.textInput.text;

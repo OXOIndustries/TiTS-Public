@@ -1972,7 +1972,7 @@ public function roughButtfuckFromKiroPart2():void
 	pc.orgasm();
 	pc.loadInAss(kiro);
 	pc.loadInAss(kiro);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Yes",yesKiroLetsShower);
 	addButton(1,"No",noKiroLetsNotShower);
@@ -3033,7 +3033,7 @@ public function kiroAndKallyGloryholeSupremo3():void
 	output("\n\nYou cry out, fingers pumping, lewdly squishing, <i>“Yessss!”</i>");
 	output("\n\nAnd the orgasmic onslaught redoubles. Spooge backs up the drain, forming a lake that spreads through the bathroom. You cum yourself, joining right in alongside them.");
 	processTime(10);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	pc.loadInMouth(kiro);
 	pc.loadInMouth(kally);
 	pc.orgasm();

@@ -732,7 +732,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if (!counter)
 		{
 			//If anno is disabled due to thiccness
-			if(flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 60 > GetGameTimestamp())
+			if(flags["ANNO_HUSKAR_COMPLETE"] == undefined && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 60 > GetGameTimestamp())
 			{
 				crewMessages += "\n\nAnno isn’t in at the moment. You’ll have to wait a bit longer for her to start digging into the treats....";
 				addDisabledButton(btnSlot++,"Anno","Anno","Anno isn’t in at the moment. You’ll have to wait a bit longer for her to start digging into the treats....");
@@ -2902,23 +2902,23 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		/* ANNO THICKNESS! */
 		if(annoIsHuskar())
 		{
-			if(!MailManager.isEntryUnlocked("syriGetsBlockedByAnnoOverHuskarMail") && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 700 <= GetGameTimestamp()) goMailGet("syriGetsBlockedByAnnoOverHuskarMail");
-			if(!MailManager.isEntryUnlocked("annoReactsToSyriHuskarTeasingMail") && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 375 <= GetGameTimestamp()) goMailGet("annoReactsToSyriHuskarTeasingMail");
-			if(!MailManager.isEntryUnlocked("syriReactsToHuskarAnnoEmailMail") && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 370 <= GetGameTimestamp()) goMailGet("syriReactsToHuskarAnnoEmailMail");
-			if(!MailManager.isEntryUnlocked("kaedeReactsToHuskarAnnoEmailMail") && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 250 <= GetGameTimestamp()) goMailGet("kaedeReactsToHuskarAnnoEmailMail");
+			if(!MailManager.isEntryUnlocked("syriGetsBlockedByAnnoOverHuskarMail") && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 700 <= GetGameTimestamp()) goMailGet("syriGetsBlockedByAnnoOverHuskarMail", (flags["ANNO_HUSKARRED"] + 700));
+			if(!MailManager.isEntryUnlocked("annoReactsToSyriHuskarTeasingMail") && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 375 <= GetGameTimestamp()) goMailGet("annoReactsToSyriHuskarTeasingMail", (flags["ANNO_HUSKARRED"] + 375));
+			if(!MailManager.isEntryUnlocked("syriReactsToHuskarAnnoEmailMail") && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 370 <= GetGameTimestamp()) goMailGet("syriReactsToHuskarAnnoEmailMail", (flags["ANNO_HUSKARRED"] + 370));
+			if(!MailManager.isEntryUnlocked("kaedeReactsToHuskarAnnoEmailMail") && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 250 <= GetGameTimestamp()) goMailGet("kaedeReactsToHuskarAnnoEmailMail", (flags["ANNO_HUSKARRED"] + 250));
 		}
 		//NEVRIE MAIL!
-		if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (nextTimestamp - (24 * 60))) nevriMailGet();
-		if (!MailManager.isEntryUnlocked("orangepills") && flags["MCALLISTER_MYR_HYBRIDITY"] == 2 && nextTimestamp >= (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) nevriOrangeMailGet();
-		if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"] + 20) nevriBJMailGet();
+		if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (nextTimestamp - (24 * 60))) goMailGet("myrpills", (flags["MCALLISTER_MEETING_TIMESTAMP"] + (24 * 60)));
+		if (!MailManager.isEntryUnlocked("orangepills") && flags["MCALLISTER_MYR_HYBRIDITY"] == 2 && nextTimestamp >= (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) goMailGet("orangepills", (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60)));
+		if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"] + 20) goMailGet("bjreminder", ((flags["NEVRIE_FIRST_DISCOUNT_DATE"] + 20) * 24 * 60));
 
 		//Emmy Mail
-		if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (nextTimestamp - (24 * 60))) emmyMailGet();
+		if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (nextTimestamp - (24 * 60))) goMailGet("emmy_apology", (flags["EMMY_EMAIL_TIMER"] + (24 * 60)));
 		//Emmy mail stage 2 START
-		if (!MailManager.isEntryUnlocked("emmy_gift_starter") && flags["EMMY_ORAL_TIMER"] <= (nextTimestamp - (72 * 60))) emmyMailGet2();
+		if (!MailManager.isEntryUnlocked("emmy_gift_starter") && flags["EMMY_ORAL_TIMER"] <= (nextTimestamp - (72 * 60))) goMailGet("emmy_gift_starter", (flags["EMMY_ORAL_TIMER"] + (72 * 60)));
 		//Emmy mail set up for sextoy go
-		if (!MailManager.isEntryUnlocked("emmy_implant_explain_email") && flags["EMMY_PRESEX_FUN_TIMER"] <= (nextTimestamp - (100 * 60))) emmyMailGet3();
-		if (!MailManager.isEntryUnlocked("emmy_harness_here") && flags["EMMY_TOY_TIMER"] <= nextTimestamp) emmyMailGet4();
+		if (!MailManager.isEntryUnlocked("emmy_implant_explain_email") && flags["EMMY_PRESEX_FUN_TIMER"] <= (nextTimestamp - (100 * 60))) goMailGet("emmy_implant_explain_email", (flags["EMMY_PRESEX_FUN_TIMER"] + (100 * 60)));
+		if (!MailManager.isEntryUnlocked("emmy_harness_here") && flags["EMMY_TOY_TIMER"] <= nextTimestamp) goMailGet("emmy_harness_here", flags["EMMY_TOY_TIMER"]);
 
 		//Saendra Mail
 		if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1 && rooms[currentLocation].planet != "SHIP: PHOENIX" && !InShipInterior(pc)) saendraPhoenixMailGet();
@@ -2950,9 +2950,9 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		}
 
 		// Pippa Nuru massage email
-		if (!MailManager.isEntryUnlocked("pippa_nuru") && flags["PIPPA_NURU_TIMER"] <= (nextTimestamp - (24 * 60)) && currentLocation != "PIPPA HOUSE") pippaNuruEmailGet();
+		if (!MailManager.isEntryUnlocked("pippa_nuru") && flags["PIPPA_NURU_TIMER"] <= (nextTimestamp - (24 * 60)) && currentLocation != "PIPPA HOUSE") goMailGet("pippa_nuru", (flags["PIPPA_NURU_TIMER"] + (24 * 60)));
 		// Pippa Crew message email
-		if (!MailManager.isEntryUnlocked("pippa_crew") && flags["PIPPA_RECRUIT_TIMER"] <= (nextTimestamp - (36 * 60)) && currentLocation != "PIPPA HOUSE") pippaCrewEmailGet();
+		if (!MailManager.isEntryUnlocked("pippa_crew") && flags["PIPPA_RECRUIT_TIMER"] <= (nextTimestamp - (36 * 60)) && currentLocation != "PIPPA HOUSE") goMailGet("pippa_crew", (flags["PIPPA_RECRUIT_TIMER"] + (36 * 60)));
 
 		//Plantation Quest Offer
 		//Key string - "plantation_quest_start"
@@ -3715,7 +3715,7 @@ public function emailRoulette(deltaT:uint):void
 	var mailSubject:String = "\\\[No Subject\\\]";
 	var mailContent:String = "<i>This message turns up empty...</i>";
 	
-	var nextTimestamp:uint = (GetGameTimestamp() + deltaT);
+	var randTimestamp:uint = (GetGameTimestamp() + 1 + rand(deltaT));
 	
 	// Character/Event specific:
 	if(!MailManager.isEntryUnlocked("burtsmeadhall") && pc.level >= 1)
@@ -3758,7 +3758,7 @@ public function emailRoulette(deltaT:uint):void
 		// Regular:
 		if (mailKey == "kirofucknet")
 		{
-			goMailGet(mailKey, nextTimestamp, kiroFuckNetBonus(deltaT));
+			goMailGet(mailKey, randTimestamp, kiroFuckNetBonus(deltaT));
 		}
 		// Spam:
 		else if (mailKey == "cov8" && flags["SPAM_MSG_COV8"] == undefined)
@@ -3767,46 +3767,70 @@ public function emailRoulette(deltaT:uint):void
 		}
 		else if(mailKey == "fatloss" && pc.isBimbo())
 		{
-			goMailGet(mailKey, nextTimestamp, "\n\nThe subject line reads <i>“" + mailSubject + "”</i>. Ooo, secrets and stuff! You eagerly open the message and the codex lights up with the display:\n\n<i>" + mailContent + "</i>\n\nMmm, that sounds yummy!");
+			goMailGet(mailKey, randTimestamp, "\n\nThe subject line reads <i>“" + mailSubject + "”</i>. Ooo, secrets and stuff! You eagerly open the message and the codex lights up with the display:\n\n<i>" + mailContent + "</i>\n\nMmm, that sounds yummy!");
 			pc.lust(20);
-			MailManager.readEntry("fatloss", nextTimestamp);
+			MailManager.readEntry("fatloss", randTimestamp);
 		}
 		else if(mailKey == "estrobloom" && !pc.hasKeyItem("Coupon - Estrobloom"))
 		{
-			goMailGet(mailKey, nextTimestamp, "\n\n<b>You have gained a coupon for Estrobloom!</b>");
+			goMailGet(mailKey, randTimestamp, "\n\n<b>You have gained a coupon for Estrobloom!</b>");
 			pc.createKeyItem("Coupon - Estrobloom", 0.9, 0, 0, 0, "Save 10% on your next purchase of Estrobloom!");
 		}
 		else if(mailKey == "hugedicktoday" && pc.isBro() && pc.hasCock())
 		{
-			goMailGet(mailKey, nextTimestamp, "\n\nThe subject line reads <i>“" + mailSubject + "”</i>. Hell yeah--who wouldn’t want a bigger dick? You quicky open the message to read its contents and the codex lights up with the display:\n\n<i>" + mailContent + "</i>\n\nYou’re not quite sure you understood all that, but your dick did.");
+			goMailGet(mailKey, randTimestamp, "\n\nThe subject line reads <i>“" + mailSubject + "”</i>. Hell yeah--who wouldn’t want a bigger dick? You quicky open the message to read its contents and the codex lights up with the display:\n\n<i>" + mailContent + "</i>\n\nYou’re not quite sure you understood all that, but your dick did.");
 			pc.lust(20);
-			MailManager.readEntry("hugedicktoday", nextTimestamp);
+			MailManager.readEntry("hugedicktoday", randTimestamp);
 		}
 		else
 		{
-			goMailGet(mailKey, nextTimestamp);
+			goMailGet(mailKey, randTimestamp);
 		}
 	}
 }
 
 // Event Dates
 // checkDate(day:int, month:int, dayRange:int)
-public function isEaster():Boolean
+public function holidaySeasonCheck(seasonFlag:String = ""):Boolean
 {
-	return checkDate(16, 4, 2);
+	// Flag auto return
+	if(gameOptions.seasonalOverridePreferences[seasonFlag] != undefined) return gameOptions.seasonalOverridePreferences[seasonFlag];
+	// Normal date ranges.
+	switch(seasonFlag)
+	{
+		case "NEW_YEARS": return checkDate(1, 1, 3); break;
+		case "LUNAR_NEW_YEAR": return checkDate(5, 2, 15); break;
+		case "VALENTINES": return checkDate(14, 2, 3); break;
+		case "ST_PATRICKS": return checkDate(17, 3, 3); break;
+		case "APRIL_FOOLS": return checkDate(1, 4, 0); break;
+		case "EASTER": return checkDate(16, 4, 2); break;
+		case "JULY_4TH": return checkDate(4, 7, 7); break;
+		case "OKTOBERFEST": return checkDate(18, 9, 4); break;
+		case "HALLOWEEN": return checkDate(29, 10, 10); break;
+		case "THANKSGIVING":
+			// Canadian Holiday
+			if(checkDate(12, 10, 6)) return true;
+			// American Holiday
+			if(checkDate(24, 11, 6)) return true;
+			break;
+		case "CHRISTMAS": return checkDate(25, 12, 8); break;
+	}
+	
+	return false;
 }
-public function isNearlyJulyFourth():Boolean
-{
-	return checkDate(4, 7, 7);
-}
-public function isHalloweenish():Boolean
-{
-	return checkDate(29, 10, 10);
-}
-public function isChristmas():Boolean
-{
-	return checkDate(25, 12, 8);
-}
+public function isNewYears():Boolean { return holidaySeasonCheck("NEW_YEARS"); }
+public function isLunarNewYear():Boolean { return holidaySeasonCheck("LUNAR_NEW_YEAR"); }
+public function isValentines():Boolean { return holidaySeasonCheck("VALENTINES"); }
+public function isStPatricks():Boolean { return holidaySeasonCheck("ST_PATRICKS"); }
+public function isAprilFools():Boolean { return holidaySeasonCheck("APRIL_FOOLS"); } // APRIL FOOLS!
+public function isEaster():Boolean { return holidaySeasonCheck("EASTER"); }
+public function isNearlyJulyFourth():Boolean { return holidaySeasonCheck("JULY_4TH"); }
+public function isOktoberfest():Boolean { return holidaySeasonCheck("OKTOBERFEST"); }
+public function isHalloweenish():Boolean { return holidaySeasonCheck("HALLOWEEN"); }
+public function isThanksgiving():Boolean { return holidaySeasonCheck("THANKSGIVING"); }
+public function isChristmas():Boolean { return holidaySeasonCheck("CHRISTMAS"); }
+
+// Bad Ends
 public function deathByNoHP():void
 {
 	clearOutput();

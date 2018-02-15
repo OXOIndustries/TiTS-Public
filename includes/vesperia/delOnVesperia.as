@@ -1118,7 +1118,7 @@ public function delSlutTrainingEpilogue2():void
 
 	processTime(45);
 
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	for(var x:int = 0; x < 10; x++)
 	{
 		pc.orgasm();

@@ -902,9 +902,17 @@ public function syriTalksAboutAnno():void
 		output("\n\nSuddenly, Syri’s lips curl into a fierce grin, and her big, blue eyes search you over. <i>“Hmm... maybe I ought to ask her to take some vacation time and come on out here. What do you say, Steele... ever thought about what it’d be like with twins?”</i>");
 		output("\n\n<i>“Twins? I, uh...”</i> you fidget, <i>“I thought she was your older sister?”</i>");
 		output("\n\n<i>“By like, five minutes. Don’t change the subject, killjoy,”</i> Syri growls, looming over you. ");
-		//If PC has a cock: 
-		if(pc.hasCock()) output("<i>“Come on, we even have the same cup size. Imagine two identical pairs of tits, big and soft and all over your [pc.cockNounBiggest], jacking you off together until you bust a big, thick nut all over our faces... watching us lick it off each other, maybe turns into kissing, groping, until you bend us over and take us together, still in each others’ arms...”</i>");
-		else output("<i>“Imagine yourself bent over, face buried in Anno’s big, perky tits, your hands all over the sensitive little teats of hers as I fuck you from behind, pounding you extra hard cuz you’ve got your grubby, terran hands on my sister... until maybe my cock slips, and suddenly I’m doing her, pounding her wet, sloppy little bitch-hole while you watch.”</i>");
+		if(!annoIsHuskar())
+		{
+			//If PC has a cock: 
+			if(pc.hasCock()) output("<i>“Come on, we even have the same cup size. Imagine two identical pairs of tits, big and soft and all over your [pc.cockNounBiggest], jacking you off together until you bust a big, thick nut all over our faces... watching us lick it off each other, maybe turns into kissing, groping, until you bend us over and take us together, still in each others’ arms...”</i>");
+			else output("<i>“Imagine yourself bent over, face buried in Anno’s big, perky tits, your hands all over the sensitive little teats of hers as I fuck you from behind, pounding you extra hard cuz you’ve got your grubby, terran hands on my sister... until maybe my cock slips, and suddenly I’m doing her, pounding her wet, sloppy little bitch-hole while you watch.”</i>");
+		}
+		else
+		{
+			if(pc.hasCock()) output("<i>“Come on, Anno’s huge jugs and my perky tits, jacking you off together until you bust a big, thick nut all over our faces... watching us lick it off each other, maybe turns into kissing, groping, until you bend us over and take us together, still in each others' arms...”</i>");
+			else output("<i>“Imagine yourself bent over, face buried in Anno’s big, fat tits, your hands all over the sensitive little nips of hers as I fuck you from behind, pounding you extra hard cuz you’ve got your grubby, terran hands on my sister... until maybe my cock slips, and suddenly I'm doing her, pounding her wet, sloppy little bitch-hole while you watch.”</i>");
+		}
 		output(" Your eyes dart down to the suddenly immense-looking bulge in Syri’s pants. She’s... she’s not joking, is she?");
 		output("\n\nThe ausar follows your gaze, her body suddenly tense. Syri grabs you by the ");
 		if(pc.armor.shortName != "") output("front of your " + pc.armor.longName);
@@ -1122,16 +1130,13 @@ public function annoAppearance():void
 {
 	clearOutput();
 	author("Savin");
-	//userInterface.showName("\nANNO");
 	showAnno();
 	output("Anno Dorna is a six-foot tall ausar girl with long, snow-white hair and a pair of huge, perky wolf ears perched atop her head. Though distinctly humanoid in face and form, the silky fur on her arms and legs, plus the swishing, bushy tail give her a playfully alien appearance, more like a perky little puppy than a fearsome predator. She’s wearing the distinctive Steele Tech field uniform: an ultra-sheer black and yellow catsuit that hugs her frame and accentuates her curves in all the right places, supporting her ample bust so that it looks almost impossibly perky for its size. Thanks to the catsuit, you can see the full expanse of her fleshy body: a big, bouncy butt only barely hidden by her tail, a sizable rack, and a pair of long, toned legs.");
 	if(annoSexed() > 0)
 	{
-		//userInterface.showBust("ANNO_NUDE");
 		output("\n\nAnno has a pair of full DD-cup breasts, big and bouncy and oh so soft, each tipped with a big, sensitive nipple that’s perfect to tug and squeeze.");
 		output("\n\nBetween her legs, Anno has a tight little pussy. Naturally stretchier and so much wetter than a human’s, her sex is perfect for taking thick knots and great big cocks with ease. It’s topped with a trimmed landing strip of downy white fuzz. Opposite that, she has a nice, inviting little asshole between her firm cheeks, right where it belongs.");
 	}
-	//else userInterface.showBust("ANNO");
 	annoMainMenu();
 	removeButton(5);
 	addDisabledButton(5,"Appearance");

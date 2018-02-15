@@ -237,7 +237,7 @@ public function popDatBubbleButtBubb(item:ItemSlotClass):void
 		else 
 		{
 			output(" You should probably clean this up at some point!");
-			applyCumSoaked(pc);
+			pc.applyCumSoaked();
 		}
 		//increase lust by 1-3 and non-goos gain the “Cum Soaked” status
 		pc.lust(1+rand(3));
@@ -257,7 +257,7 @@ public function popDatBubbleButtBubb(item:ItemSlotClass):void
 		else
 		{
 			output("You’re completely soaked! If you just [pc.walk] around like this, people might start getting ideas.");
-			applyCumSoaked(pc);
+			pc.applyCumSoaked();
 		}
 		//increase libido by 1, lust by 2-5, and non-goos gain the “Cum Soaked” status
 		pc.libido(1);
@@ -284,7 +284,7 @@ public function popDatBubbleButtBubb(item:ItemSlotClass):void
 			else if(pc.libido() < 80) output("chuckle in lusty delight");
 			else output("coo with whorish satisfaction");
 			output(" at what you must look like. Your [pc.skinFurScales] is so coated by the dripping spunk that you could pass for a galotian! You’re going to need one heck of a shower to get all this off.");
-			applyCumSoaked(pc);
+			pc.applyCumSoaked();
 		}
 		//increase libido by 1, lust by 7-10, and non-goos gain the “Cum Soaked” status
 		pc.libido(1);
@@ -358,7 +358,7 @@ public function drinkSomeBubbleBud(item:ItemSlotClass):void
 		{
 			output(" Stars, you can barely keep up! Jizz cascades over your cheeks and chin. It spills down your [pc.chest] no matter how you chug, and that’s just perfect. You delight in your self-induced bukkake, content to drown in as much spunk as you can cram into your maw while bathing in the excess. The rest of the universe fades away beneath the spermy tide. There’s just you and the endless, orgasmic taste of drinking cum.\n\nEventually, you run out of sperm-filled goo to drink, but not until your whole front is painted in cream. You must look like a complete and total slut. The assessment wouldn’t be entirely wrong, you suppose, mid-way through scooping a handful of leftovers into your mouth, sucking the residual flavor from your fingers. Mmmmm...");
 			pp.createPerk("Fixed CumQ",40000,0,0,0);
-			applyCumSoaked(pc);
+			pc.applyCumSoaked();
 		}
 		pc.loadInMouth(pp);
 	}
@@ -425,7 +425,7 @@ public function drinkSomeBubbleBud(item:ItemSlotClass):void
 		output("\n\nStill. It’s quite an achievement. But really? Drinking this might just be the end of you. It’s far, far too much just to drink. You’ll just have to ensure you don’t consume <i>all</i> of it. It’s hard to imagine how you’ll even start drinking from it without just making a titanic mess of yourself.");
 		output("\n\nNot that it’s necessarily a bad thing, but flooding the room isn’t going to do anything for your expansive [pc.balls]. You bury your face into the warm ocean of [pc.cumNoun], laughing at how absurd it is.");
 		output("\n\nTime to get to business. You open your [pc.mouth] wide, with a soft <i>“Aaah~”</i>, before biting down as hard as you can. The bubble doesn’t so much burst as it does unleash itself into your mouth and all over your face. Gulping it down is an immediate challenge, forcing you to nearly choke on [pc.cumNoun]. It doesn’t take long for your stomach to fill, and it takes even less time to gather an all-new spunky coating.");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 		output("\n\nYour body is overwhelmed in little to no time, and it’s a bit of a struggle to keep so much [pc.cumNoun] down.");
 		pc.lust(10);
 		processTime(6);
@@ -604,7 +604,7 @@ public function battenTheHatches():void
 	output("\n\nThe swelling condom expands to cover your [pc.chest], and you can almost imagine you’re slipping into some warm, aquatic shelter. Your [pc.skinFurScales] seems almost to be engulfed by the toy’s overwrought rubber and the fluid tide within. The pressure of your [pc.cumNoun] takes your breath away as it rolls over you like a hungry, amethyst galotian. When it sloshes over your neck and bulges obscenely against your [pc.lips], you gurgle in incoherent bliss, very nearly completely covered by your expanding release. With a full bathtub worth of [pc.cum] pinning you down, it’s all you can do to keep yourself from passing out as the blob spreads past your eyes, blinding you with its ocean of torrid [pc.cumNoun].");
 	output("\n\nThe latex sheath, so thin that tension lines have spread all across its bulk, squeals in protest. Groaning, creaking pressure sends rippling waves through the too-full spunk vessel and, without further warning, it pops! Tens of gallons of [pc.cumVisc] [pc.cumNoun] erupt from the exploded bubble, painting you stem to stern in warm, [pc.cumGem] goo. Wallowing in the small lake of jizz around you, a spectator would be hard pressed not to mistake you for a [pc.cumColor] galotian! While you lay there, enjoying the slimy polish of your monumental climax, a faint flicker of concern crosses your mind: how are you going to clean up? Hopefully your gear has been waterproofed, because you’re going to be wearing your fresh coat of [pc.cumVisc] laquer until you can find a shower or a hungry rahn.");
 	//player’s lust resets to zero, they gain the “Cum Soaked” status, and their libido increases by 2-5
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	processTime(10);
 	pc.orgasm();
 	clearMenu();
@@ -932,7 +932,7 @@ public function popCeliseAfterTooStuff():void
 	output("\n\nYou twist relentlessly, the material growing thinner and thinner until, with a loud pop, the condom breaks, spilling galotian goo all over the floor. The blob of slime gurgles and burbles amorphously for a moment before Celise regains her composure and reforms her upper body with wincing tenderness. <i>“If that’s how you treat all your officers,”</i> she remarks, massaging her flushed nipples, <i>“no wonder you’ve got such a small crew!”</i>");
 	output("\n\nYour slime girl sticks out her tongue before lunging forward to grab you in a gooey hug.");
 	processTime(3);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	//[End]
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

@@ -1743,11 +1743,11 @@ public function ohNoSillyCumFloods():void
 	output("\n\nYou close your eyes and your vision hazes...");
 	
 	processTime(5);
-	applyCumSoaked(pc);
-	applyCumSoaked(pc);
-	applyCumSoaked(pc);
-	applyCumSoaked(pc);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
 	
 	clearMenu();
 	addButton(0,"Next",ohNoSillyCumFloodsPtII);
@@ -2281,7 +2281,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			
 			processTime(2 + rand(4));
 			pc.girlCumInMouth(getCarriePregContainer());
-			applyPussyDrenched(pc);
+			pc.applyPussyDrenched();
 			// [pb]
 			clearMenu();
 			addButton(0, "Next", carrieSoothingShowerGo, "shower threesome p2");
@@ -2467,8 +2467,8 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			// Maybe Twins?
 			var ppCora:PregnancyPlaceholder = getCarriePregContainer();
 			pc.girlCumInMouth(ppCora);
-			applyPussyDrenched(pc);
-			applyPussyDrenched(pc);
+			pc.applyPussyDrenched();
+			pc.applyPussyDrenched();
 			// Lust decreased by 50%
 			pc.lust(-50);
 			// [pb]

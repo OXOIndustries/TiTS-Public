@@ -723,7 +723,7 @@ public function consensualKrymButtfuck():void
 
 	output("\n\nShe licks her lips, releasing her death grip on you once she’s found her voice. <i>“Okay [pc.name], that was damned good fun... but I’m going to be feeling this for a while...”</i>");
 	if(pc.cumQ() >= 2000) output(" she squirms a little bit, still speared on you. <i>“I’m fairly sure your cum’s roiling around my stomach... and not just from our little starter.”</i>");
-	output(" Her hands are surprisingly tender, running down your back – it’s then that you realise her nails have done a bit of a number on you, and she traces sensitive lines.");
+	output(" Her hands are surprisingly tender, running down your back – it’s then that you realize her nails have done a bit of a number on you, and she traces sensitive lines.");
 
 	output("\n\n<i>“Damn, good thing you’re made of tough stuff. Any harder and you’d make a total bloody mess of everything.”</i> She pauses and looks down at her cum-drenched body. <i>“More literally, I mean, this is absolutely a mess. But it’s the good kind of mess...”</i>");
 	output("\n\nHer speech takes on a wistful rambling quality, and she wiggles her hips. <i>“I’m going to smell of sex for ages...”</i> Krym gives you a kiss along the jaw, smirking when you");

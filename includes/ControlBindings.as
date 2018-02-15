@@ -292,6 +292,14 @@
 			Cheats.TimeSkip();
 		},
 		true);
+	
+	inputManager.AddBindableControl(
+		"Toggle Seasons",
+		"Toggle select holiday seasons.",
+		function():void {
+			Cheats.toggleSeasons();
+		},
+		true);
 		
 	inputManager.BindCheatSequence("Give ZilRations", 38, 40, 37, 39);
 	inputManager.BindCheatSequence("Room Transport", "idclev");
@@ -307,6 +315,7 @@
 	inputManager.BindCheatSequence("Destinations Unlocked", "marcopolo");
 	inputManager.BindCheatSequence("Runamode Bess", "insaneinthemembrane");
 	inputManager.BindCheatSequence("Time Skip", 56, 56, 77, 80, 72);
+	inputManager.BindCheatSequence("Toggle Seasons", "tistheseason");
 	
 	// Insert the default bindings
 	inputManager.BindKeyToControl(49, "Button 1");             // case 49: pressButton(0);

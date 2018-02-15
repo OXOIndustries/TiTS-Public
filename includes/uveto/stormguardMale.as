@@ -133,7 +133,11 @@ public function stormguardIntro():void
 				flags["SG_HONOR_0_MET"] = 1;
 			}
 			else output("\n\n<i>“Let me guess - I’m not worth your time,”</i> you say.");
-			output("\n\n<i>“What’s the point?”</i> he replies, the faintest of shrugs rolling off his bare, mountainous shoulders. <i>“I am not challenged by you. You do not learn from your defeats. Or worse - you want me to defeat you, because that excites you. In either case, there is little honor in fighting such an opponent.”</i> He flicks a ridged eyebrow at you. <i>“If you have genuine interest in bettering yourself, I will train you, as I would a vassal. But it has a cost. You know what it is.”</i> He shifts against the snow. <i>“Otherwise, leave me to my meditation.”</i>");
+			output("\n\n<i>“What’s the point?”</i> he replies, the faintest of shrugs rolling off his bare, mountainous shoulders. <i>“I am not challenged by you.");
+			if(flags["SG_DEFEATED_PC"] != undefined) output(" You do not learn from your defeats. Or worse - you want me to defeat you, because that excites you. In either case, there is little honor in fighting such an opponent.");
+			output("”</i> He flicks a ridged eyebrow at you. <i>“If you have genuine interest in bettering yourself, I will train you, as I would a vassal. But it has a cost.");
+			if(flags["SG_DEFEATED_PC"] != undefined) output(" You know what it is.");
+			output("”</i> He shifts against the snow. <i>“Otherwise, leave me to my meditation.”</i>");
 			//[Spar] [Challenge] [Leave]
 			clearMenu();
 			addButton(0,"Spar",sparSGBro0Honor);
@@ -449,7 +453,12 @@ public function pcWinsVsSG():void
 	}
 	else addDisabledButton(3,"Throatfuck","Throatfuck","You need a penis for this.");
 
-	addButton(14,"Leave",CombatManager.genericVictory);
+	addButton(14,"Leave",pcWinsVsSGLeave);
+}
+public function pcWinsVsSGLeave():void
+{
+	stormguardHonor(1);
+	CombatManager.genericVictory();
 }
 
 //PC Loses
@@ -1034,7 +1043,7 @@ public function lossScenesForStormguard():void
 			else output("<i>“I’ve wanted to do that for so long, honored " + pc.mf("warrior","valkyrie") + " - get just a little back for myself. May our battles long continue - you are such an inspiration!”</i>");
 		}
 		// {merge}
-		output("\n\nWhen you slide off his warm, tough flesh, wincing slightly, he does not stop you. You have to spend a short time peeling trailers of his cum off your back - the stuff sets like sticking plaster on your [pc.skinFurScale]. By the time you’ve put your gear back on, ");
+		output("\n\nWhen you slide off his warm, tough flesh, wincing slightly, he does not stop you. You have to spend a short time peeling trails of his cum off your back - the stuff sets like sticking plaster on your [pc.skinFurScales]. By the time you’ve put your gear back on, ");
 		if(flags["MET_GEL_ZON"] == undefined) output("the storm lancer");
 		else output("Gel Zon");
 		output(" has returned to his lying position, hardened back up against the freeze - except now he has a big, pleased grin on his blunt features.");

@@ -1815,7 +1815,7 @@ public function saendraTailcockFuck():void
 
 	pc.orgasm();
 	saendra.orgasm();
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	processTime(30+rand(15));
 	clearMenu();
 	addButton(0, "Next", saendraPostFuckscene);

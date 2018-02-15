@@ -797,14 +797,10 @@ public function statisticsScreen(showID:String = "All"):void
 		// Sexy Stuff
 		output2("\n<b>* Sexiness:</b> " + pc.sexiness());
 		var teases:Array = [-1, -1, -1, -1];
-		if(flags["TIMES_BUTT_TEASED"] != undefined) teases[0] = flags["TIMES_BUTT_TEASED"];
-		if(flags["TIMES_CHEST_TEASED"] != undefined) teases[1] = flags["TIMES_CHEST_TEASED"];
-		if(flags["TIMES_CROTCH_TEASED"] != undefined) teases[2] = flags["TIMES_CROTCH_TEASED"];
-		if(flags["TIMES_HIPS_TEASED"] != undefined) teases[3] = flags["TIMES_HIPS_TEASED"];
-		for(i = 0; i < teases.length; i++)
-		{
-			if(teases[i] > 100) teases[i] = 100;
-		}
+		if(flags["TIMES_BUTT_TEASED"] != undefined) teases[0] = Math.min(flags["TIMES_BUTT_TEASED"], 100);
+		if(flags["TIMES_CHEST_TEASED"] != undefined) teases[1] = Math.min(flags["TIMES_CHEST_TEASED"], 100);
+		if(flags["TIMES_CROTCH_TEASED"] != undefined) teases[2] = Math.min(flags["TIMES_CROTCH_TEASED"], 100);
+		if(flags["TIMES_HIPS_TEASED"] != undefined) teases[3] = Math.min(flags["TIMES_HIPS_TEASED"], 100);
 		if(teases[0] >= 0) output2("\n<b>* Tease Skill, Ass:</b> " + teases[0] + "/100");
 		if(teases[1] >= 0) output2("\n<b>* Tease Skill, Chest:</b> " + teases[1] + "/100");
 		if(teases[2] >= 0) output2("\n<b>* Tease Skill, Crotch:</b> " + teases[2] + "/100");
@@ -2468,9 +2464,11 @@ public function displayQuestLog(showID:String = "All"):void
 							output2(" Accepted, Doctor " + flags["BOTHRIOC_QUEST_DOCTOR"] + " creating suppressant");
 							if(flags["BOTHRIOC_QUEST_RESEARCH"] != undefined && ((GetGameTimestamp() - flags["BOTHRIOC_QUEST_RESEARCH"]) > (flags["BOTHRIOC_QUEST_DOCTOR"] != "Lessau" ? 4320 : 7200))) output2(", Research Complete, <i>Return to " + flags["BOTHRIOC_QUEST_DOCTOR"] + "</i>");
 							else output2(", Researching...");
+							if(flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"] == undefined || flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"] < 4) output2(", <i>Gather quadommes...</i>");
 							break;
 						case BOTHRIOC_QUEST_DIPLOMACY:
-							output2(" Accepted, Doctor " + flags["BOTHRIOC_QUEST_DOCTOR"] + " created suppressant, <i>Gather quadommes...</i>");
+							output2(" Accepted, Doctor " + flags["BOTHRIOC_QUEST_DOCTOR"] + " created suppressant");
+							if(flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"] == undefined || flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"] < 4) output2(", <i>Gather quadommes...</i>");
 							break;
 						case BOTHRIOC_QUEST_QUADOMME:
 							output2(" Accepted, Doctor " + flags["BOTHRIOC_QUEST_DOCTOR"] + " created suppressant, Gathered quadommes");
@@ -2487,7 +2485,11 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["BOTHRIOC_QUEST_COMPLETE"] != undefined) output2(", Completed");
 					if(flags["BOTHRIOC_QUEST_RESEARCH"] != undefined) output2("\n<b>* Research, Duration:</b> " + prettifyMinutes(GetGameTimestamp() - flags["BOTHRIOC_QUEST_RESEARCH"]));
 					if(flags["BOTHRIOC_QUEST_SUMMIT_DATE"] != undefined) output2("\n<b>* Diplomatic Talks, Duration:</b> " + prettifyMinutes(GetGameTimestamp() - flags["BOTHRIOC_QUEST_SUMMIT_DATE"]));
-					if(flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"] != undefined) output2("\n<b>* Quadommes to Summit:</b> " + flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"]);
+					if(flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"] != undefined)
+					{
+						output2("\n<b>* Quadommes to Summit:</b> " + flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"]);
+						if(flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"] >= 4) output2(", Enough quadommes!");
+					}
 					if(flags["BOTHRIOC_QUEST_BETA_NYREA_BAITED"] != undefined) output2("\n<b>* Quadommes, Beta Nyrea Baited, Total:</b> " + flags["BOTHRIOC_QUEST_BETA_NYREA_BAITED"]);
 					if(flags["BOTHRIOC_QUEST_GENEALOGY"] != undefined) output2("\n<b>* Bothrioc Genealogy, Given To:</b> " + flags["BOTHRIOC_QUEST_GENEALOGY"]);
 				}
@@ -6059,6 +6061,17 @@ public function displayEncounterLog(showID:String = "All"):void
 					var lancerName:String = (flags["MET_GEL_ZON"] == undefined ? "Stormguard Lancer" : "Gel Zon");
 					var lancerSexed:int = (flags["SEXED_SG_MALE"] == undefined ? 0 : flags["SEXED_SG_MALE"]);
 					output2("\n<b>* " + lancerName + ", Times Encountered:</b> " + flags["MET_STORMGUARD"]);
+					if(flags["STORMGUARD_HONOR"] != undefined)
+					{
+						output2("\n<b>* " + lancerName + ", Respect Level:</b> " + flags["STORMGUARD_HONOR"]);
+						switch(flags["STORMGUARD_HONOR"])
+						{
+							case 0: output2(", Inferior"); break;
+							case 1: output2(", Equal"); break;
+							case 2: output2(", Superior"); break;
+							default: output2(", Respected"); break;
+						}
+					}
 					if(flags["SPANKED_SG_COUNT"] != undefined)
 					{
 						lancerSexed -= flags["SPANKED_SG_COUNT"];
@@ -6148,11 +6161,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Tuuva, Affection:</b> " + tuuvaAffection() + " %");
 				if(!tuuvaLover())
 				{
-					if(tuuvaAffection() < 25) output(", Strangers");
-					else if(tuuvaAffection() < 75) output(", Friends");
-					else output(", Close friends");
+					if(tuuvaAffection() < 25) output2(", Strangers");
+					else if(tuuvaAffection() < 75) output2(", Friends");
+					else output2(", Close friends");
 				}
-				else output(", Lovers");
+				else output2(", Lovers");
 				if(flags["SEXED_TUUVA"] != undefined)
 				{
 					output2("\n<b>* Tuuva, Sex Organs:</b> " + listCharGenitals("TUUVA"));
@@ -6201,7 +6214,17 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b><u>Stormguard Campsite</u></b>");
 				output2("\n<b>* Krymhilde:</b> Met her");
 				if(flags["KRYM_KOMBAT_RESULT"] != undefined) output2(", Challenged her in a duel");
-				if(flags["KRYM_RESPECT"] != undefined) output2("\n<b>* Krymhilde, Respect Level:</b> " + flags["KRYM_RESPECT"]);
+				if(flags["KRYM_RESPECT"] != undefined)
+				{
+					output2("\n<b>* Krymhilde, Respect Level:</b> " + flags["KRYM_RESPECT"]);
+					switch(flags["KRYM_RESPECT"])
+					{
+						case 0: output2(", Inferior"); break;
+						case 1: output2(", Equal"); break;
+						case 2: output2(", Superior"); break;
+						default: output2(", Respected"); break;
+					}
+				}
 				variousCount++;
 			}
 			

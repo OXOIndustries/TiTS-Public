@@ -19,6 +19,7 @@ package classes.UIComponents.SideBarComponents
 	import flash.text.AntiAliasType;
 	import classes.Resources.NPCBustImages;
 	import classes.StringUtil;
+	import classes.Engine.Interfaces.ParseText;
 	/**
 	 * ...
 	 * @author Gedan
@@ -74,7 +75,7 @@ package classes.UIComponents.SideBarComponents
 		{
 			if (asInit) ResetBarValues();
 			
-			_nameHeader.text = (char.uniqueName && char.uniqueName.length > 0 ? char.uniqueName.toUpperCase() : char.short.toUpperCase());
+			_nameHeader.text = (char.uniqueName && char.uniqueName.length > 0 ? ParseText(char.uniqueName).toUpperCase() : ParseText(char.short).toUpperCase());
 			
 			_statBars.shield.setValue(char.shields(), char.shieldsMax());
 			_statBars.hp.setValue(char.HP(), char.HPMax());

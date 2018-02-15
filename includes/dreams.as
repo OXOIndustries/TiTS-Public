@@ -207,8 +207,8 @@ public function angelFutaBukkakePart3():void
 		else if(pc.hasCock()) output("[pc.cum]");
 		else output("[pc.girlCum]");
 		output(". You’ll need a shower for sure.");
-		if(pc.hasCock() && pc.cumQ() >= 30) applyCumSoaked(pc);
-		if(pc.hasVagina() && pc.isSquirter()) applyPussyDrenched(pc);
+		if(pc.hasCock() && pc.cumQ() >= 30) pc.applyCumSoaked();
+		if(pc.hasVagina() && pc.isSquirter()) pc.applyPussyDrenched();
 	}
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -358,7 +358,7 @@ public function shotgunWeddingDream2():void
 	output(" As you pump rope after rope of [pc.cum] into Anno’s womb, the howling in the temple, both yours and everyone else’s, somehow synchronizes and harmonizes. The pitch grows and grows, until suddenly, you hear your name being called.");
 	//PC Cums and is covered in cum
 	pc.orgasm();
-	if(!dreamNewCock) applyCumSoaked(pc);
+	if(!dreamNewCock) pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",shotgunWeddingDream3,cockHolding);
 }
@@ -602,7 +602,7 @@ public function reahaDreamPart3():void
 	else
 	{
 		output("You abruptly wake up, eyes opening wide in pure shock. <i>“Reaha was talking? How is that possible? She’s just a cow!”</i> Thoughts like these keep swirling inside your head while you fondle the pair of lactating tits in front of you. Feeling a bit thirsty, you’re about to get some delicious milk straight from the tap, when you’re suddenly interrupted with a questioning low voice; <i>“Ummmmm, [pc.name]?”</i>");
-		output("\n\nReluctantly, you move away from the inviting bosom and look up, only to find yourself eye to eye with a flustered Reaha, her face flushed with rosy red color. You drowsily gaze back at her puzzled expression for a while, still kneading her breasts, until you’re struck by a realisation. Gradually, it dawns upon you that the whole farmer life setting was just a dream, and that Reaha, obviously, is as much a talking person as you are. After letting go of her mammaries, you look away from her for a bit, your face colored with the same red hue..");
+		output("\n\nReluctantly, you move away from the inviting bosom and look up, only to find yourself eye to eye with a flustered Reaha, her face flushed with rosy red color. You drowsily gaze back at her puzzled expression for a while, still kneading her breasts, until you’re struck by a realization. Gradually, it dawns upon you that the whole farmer life setting was just a dream, and that Reaha, obviously, is as much a talking person as you are. After letting go of her mammaries, you look away from her for a bit, your face colored with the same red hue..");
 		output("\n\n<i>“" + (pc.isNice() ? "I’m sorry, h" : "H") + "ow long have I been doing that?”</i> you eventually utter, slightly embarrassed.");
 		output("\n\n<i>“You’ve been going at it for quite some time now, to be honest,”</i> she responds, her tone less insecure now.");
 		output("\n\nNot entirely sure what to do or say, you’re surprised by Reaha raising a hand towards your cheek, gently moving your head until your eyes meet once again. Reaha smiles at you with a reassuring, yet playful grin, <i>“I didn’t tell you to stop.”</i> Hearing this, your expression lightens up considerably and you quickly lower your head back into her welcoming pillows.");
@@ -988,17 +988,17 @@ public function venusDreamsEpilogue2():void
 	if(pc.hasCock() || pc.hasDickNipples()) 
 	{
 		output("[pc.cum]");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 		if(pc.hasVagina()) 
 		{
 			if(pc.cumType != pc.girlCumType) output(" and [pc.girlcum]");
-			applyPussyDrenched(pc);
+			pc.applyPussyDrenched();
 		}
 	}
 	else if(pc.hasVagina()) 
 	{
 		output("[pc.girlcum]");
-		applyPussyDrenched(pc);
+		pc.applyPussyDrenched();
 	}
 	else if(pc.hasStatusEffect("Sweaty")) output("sweat");
 	else output("drool");
@@ -1036,7 +1036,7 @@ public function venusAutofellateDream():void
 	{
 		output("\n\nYou awaken with a start, somehow having propped yourself against the edge of the bunk in just the right position to deliver a sloppy self-facial blast from your spent and softening [pc.cock].");
 		if(pc.balls > 1) output(" Your [pc.balls] are still taut against the base muscle and are churning as though eager to go another round.");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 	}
 	else
 	{

@@ -2952,5 +2952,12 @@ public function ulaPregPussBadEnd():void
 	showUla(true);
 	output("As the years pass, you think less and less of your inheritance. Why bother? [rival.name] likely claimed it an age ago. Your presence as Ula’s personal pussy-worshipper is accepted by the Korg’ii Tribe. In fact, the knowledge that she broke you into a cunt-obsessed, slobbering pet with nothing more than her pregnant pheromones earned her no small amount of esteem amongst the younger warriors.");
 	output("\n\nUla celebrated her ascension to chieftan by giving you an all-night pussy buffet, and from that point on, she ruled from a throne that would allow her legs to remain spread wide and her favorite lover-slash-pet between them.");
+	
+	pc.createStatusEffect("Milk Paused");
+	pc.createStatusEffect("Cum Paused");
+	processTime((3 * 365 * 24 * 60) + rand(1440));
+	pc.removeStatusEffect("Milk Paused");
+	pc.removeStatusEffect("Cum Paused");
+	
 	badEnd("BAD(GOOD?) END!");
 }

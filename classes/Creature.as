@@ -1232,6 +1232,7 @@
 				ballSizeRaw = Math.min((6 * Math.PI), ((ballSizeRaw * ballSizeRaw * balls) / 2));
 			}
 			balls = 0;
+			if(hasStatusEffect("Mimbrane Balls") && balls == 0) removeStatusEffect("Mimbrane Balls");
 		}
 		
 		public function scrotumType(): int
@@ -4171,6 +4172,7 @@
 		public function energyMax(): Number {
 			var bonus:int = 0;
 			bonus += statusEffectv1("Royal Nectar");
+			bonus += statusEffectv1("Cum High");
 			if(hasPerk("Heroic Reserves")) bonus += 33;
 			return (energyMod + 100 + bonus);
 		}
@@ -4283,6 +4285,7 @@
 			var bonus:int = 0;
 			bonus += statusEffectv1("Sera Spawn Reflex Mod");
 			bonus += statusEffectv1("Riya Spawn Reflex Mod");
+			bonus += statusEffectv2("Cum High");
 
 			var currReflexes:int = reflexesRaw + reflexesMod + bonus;
 
@@ -4400,6 +4403,7 @@
 			}
 			var bonus:Number = 0;
 			bonus -= statusEffectv1("Adorahol");
+			bonus += statusEffectv3("Cum High");
 
 			var currInt:int = intelligenceRaw + intelligenceMod + bonus;
 			
@@ -4453,6 +4457,7 @@
 
 			var bonus:Number = 0;
 			if(accessory is BeatricesScarf) bonus += 3;
+			bonus += statusEffectv4("Cum High");
 
 			var currWill:int = willpowerRaw + willpowerMod + bonus;
 
@@ -5591,7 +5596,8 @@
 			if(hasTongueFlag(GLOBAL.FLAG_LONG))
 			{
 				adjectives.push("lengthy", "long", "large","sizeable");
-				if (InCollection(tongueType, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_OVIR, GLOBAL.TYPE_FROG)) adjectives.push("extendable");
+				if (InCollection(tongueType, [GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_OVIR, GLOBAL.TYPE_FROG])) adjectives.push("extendable");
+				else if (tongueType == GLOBAL.TYPE_BOVINE) adjectives.push("foot-long");
 				else if (tongueType == GLOBAL.TYPE_DEMONIC) adjectives.push("two-foot long");
 				else if (tongueType == GLOBAL.TYPE_DRACONIC) adjectives.push("four-foot long");
 				else if (tongueType == GLOBAL.TYPE_KORGONNE) adjectives.push("nearly foot-long");
@@ -10009,6 +10015,7 @@
 				if (isSquirter(0)) squirterBonus += vaginas[0].wetness();
 				girlCumAmount++;
 			}
+			if(hasPerk("Treated Readiness") && girlCumAmount < 200) girlCumAmount = 200;
 			// Scale values.
 			girlCumAmount *= 5; // 5 ml produced per vagina
 			squirterBonus *= 10; // extra 10 mL produced per extra squirter bonus
@@ -10616,6 +10623,7 @@
 					cocks[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
 					cocks[slot].addFlag(GLOBAL.FLAG_OVIPOSITOR);
 					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
+					cocks[slot].cockColor = "purple";
 					break;
 				case GLOBAL.TYPE_SWINE:
 					cocks[slot].addFlag(GLOBAL.FLAG_CORKSCREWED);
@@ -11067,6 +11075,7 @@
 		
 		//Remove cock
 		public function removeCock(arraySpot:int, totalRemoved:int = 1): void {
+			if(hasStatusEffect("Mimbrane Cock") && arraySpot == 0) removeStatusEffect("Mimbrane Cock");
 			if(hasStatusEffect("Painted Penis") && arraySpot == statusEffectv1("Painted Penis")) clearPaintedPenisEffect();
 			removeJunk(cocks, arraySpot, totalRemoved);
 			if(!hasCock())
@@ -11114,6 +11123,7 @@
 
 		//Remove vaginas
 		public function removeVagina(arraySpot: int = 0, totalRemoved: int = 1): void {
+			if(hasStatusEffect("Mimbrane Pussy") && arraySpot == 0) removeStatusEffect("Mimbrane Pussy");
 			removeJunk(vaginas, arraySpot, totalRemoved);
 			if(!hasVagina())
 			{
@@ -11140,6 +11150,7 @@
 
 		//Remove a breast row
 		public function removeBreastRow(arraySpot:int, totalRemoved:int): void {
+			if(hasStatusEffect("Mimbrane Boobs") && arraySpot == 0) removeStatusEffect("Mimbrane Boobs");
 			if (hasStatusEffect("Boobswell Pads") && statusEffectv1("Boobswell Pads") == arraySpot)
 			{
 				if(this is PlayerCharacter) AddLogEvent("The Boobswell pads you had been wearing on your " + num2Ordinal(arraySpot + 1) + " row of breast" + (breastRows[arraySpot].breasts != 1 ? "s" : "") + " disintegrate as the row was removed. <b>You’re no longer under the effects of the Boobswell Pads!</b>");
@@ -19544,7 +19555,7 @@
 				if (hasStatusEffect("Oil Numbed")) prodFactor /= 1.2;
 				
 				var producedLust:Number = deltaT * prodFactor;
-					if (perkv1("Ultra-Exhibitionist") > 0) producedLust += (0.5 * deltaT * exposureLevel(true));
+				if (perkv1("Ultra-Exhibitionist") > 0) producedLust += (0.5 * deltaT * exposureLevel(true));
 				
 				if (lust() + producedLust < lustCap)
 				{
@@ -19654,6 +19665,7 @@
 					case "adjjjisjjrhiwig":
 					case "Goblinola Bar":
 					case "Laquine Ears":
+					case "LimberTime":
 						if(thisStatus.minutesLeft <= 0) thisStatus.minutesLeft = 1;
 						break;
 					case "Ovilium":
@@ -19801,7 +19813,7 @@
 							omegaBlurbs.push("You find yourself idly wondering how much a breeding stand custom-made to your measurements would cost, and if it would really be worth the investment.");
 							omegaBlurbs.push("You feel oddly serene, for someone who’s supposed to crave being fucked all the time.");
 							AddLogEvent(omegaBlurbs[rand(omegaBlurbs.length)], "passive");
-							}
+						}
 						break;
 					case "Kally Cummed Out":
 						if(this is PlayerCharacter && requiresRemoval && kGAMECLASS.currentLocation == "CANADA5")
@@ -19971,6 +19983,13 @@
 							AddLogEvent("Unfortunately, as you admire your now-larger bosom, you realize that the gentle, wet rumble of the pads has come to a stop. <b>It looks like you’ve exhausted the BoobSwell Pads" + (bRows() > 1 ? " on your " + kGAMECLASS.num2Text2(thisStatus.value1+1) + " row of breasts" : "") + ParseText("!</b> You peel them off your [pc.skinFurScales] and toss them away."), "passive", maxEffectLength);
 						}
 						break;
+					case "Cum High":
+						if (this is PlayerCharacter && requiresRemoval)
+						{
+							AddLogEvent("Your reflexes and mental abilities return to their natural state, as well as the concerns about your quest. <b>You are no longer cum high.</b> You are positive it will take you a while to be able to experience this high again.", "passive", maxEffectLength);
+							createStatusEffect("Cum High Cooldown", 0, 0, 0, 0, true, "", "", false, 2880);
+						}
+						break;
 					case "The Treatment":
 						if (this is PlayerCharacter && requiresRemoval)
 						{
@@ -20110,35 +20129,29 @@
 						}
 						break;
 					case "Oil Warmed":
-						var oilDesc:String = "";
-						if(this is PlayerCharacter) oilDesc = "You’re covered in warm, protective oil!";
-						else oilDesc = capitalA + short + " is covered in warm, protective oil!";
-						oilDesc += "\nFreezing Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Warmed") / 1440)) + "%";
-						setStatusTooltip("Oil Warmed", oilDesc);
+						if(this is PlayerCharacter) thisStatus.tooltip = "You’re covered in warm, protective oil!";
+						else thisStatus.tooltip = capitalA + short + " is covered in warm, protective oil!";
+						thisStatus.tooltip += "\nFreezing Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Warmed") / 1440)) + "%";
 						break;
 					case "Oil Cooled":
-						if(this is PlayerCharacter) desc = "You’re covered in cool, protective oil!";
-						else desc = capitalA + short + " is covered in cool, protective oil!";
-						desc += "\nBurning Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Cooled") / 1440)) + "%";
-						setStatusTooltip("Oil Cooled", desc);
+						if(this is PlayerCharacter) thisStatus.tooltip = "You’re covered in cool, protective oil!";
+						else thisStatus.tooltip = capitalA + short + " is covered in cool, protective oil!";
+						thisStatus.tooltip += "\nBurning Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Cooled") / 1440)) + "%";
 						break;
 					case "Oil Numbed":
-						if(this is PlayerCharacter) desc = "You’re covered in numbing, lust-inhibiting oil!";
-						else desc = capitalA + short + " is covered in numbing, lust-inhibiting oil!";
-						desc += "\nLust gains are decreased.";
-						setStatusTooltip("Oil Numbed", desc);
+						if(this is PlayerCharacter) thisStatus.tooltip = "You’re covered in numbing, lust-inhibiting oil!";
+						else thisStatus.tooltip = capitalA + short + " is covered in numbing, lust-inhibiting oil!";
+						thisStatus.tooltip += "\nLust gains are decreased.";
 						break;
 					case "Oil Aroused":
-						if(this is PlayerCharacter) desc = "You’re covered in arousing, lust-inducing oil!";
-						else desc = capitalA + short + " is covered in arousing, lust-inducing oil!";
-						desc += "\nTeasing is more effective, but arousal comes more easily.";
-						setStatusTooltip("Oil Aroused", desc);
+						if(this is PlayerCharacter) thisStatus.tooltip = "You’re covered in arousing, lust-inducing oil!";
+						else thisStatus.tooltip = capitalA + short + " is covered in arousing, lust-inducing oil!";
+						thisStatus.tooltip += "\nTeasing is more effective, but arousal comes more easily.";
 						break;
 					case "Oil Slicked":
-						if(this is PlayerCharacter) desc = "You’re covered in super slippery oil!";
-						else desc = capitalA + short + " is covered in super slippery oil!";
-						desc += "\nIt’s easier to slip away from someone’s grasp.";
-						setStatusTooltip("Oil Slicked", desc);
+						if(this is PlayerCharacter) thisStatus.tooltip = "You’re covered in super slippery oil!";
+						else thisStatus.tooltip = capitalA + short + " is covered in super slippery oil!";
+						thisStatus.tooltip += "\nIt’s easier to slip away from someone’s grasp.";
 						break;
 					case "Tentatool":
 						if (this is PlayerCharacter && requiresRemoval)
@@ -20477,10 +20490,6 @@
 		}
 		public function applyPussyDrenched():void
 		{
-			applyPussySoaked();
-		}
-		public function applyPussySoaked():void
-		{
 			var desc:String = "";
 			
 			if(!this.hasStatusEffect("Pussy Drenched"))
@@ -20492,6 +20501,10 @@
 			else this.addStatusValue("Pussy Drenched",1,1);
 			
 			if(this is PlayerCharacter) kGAMECLASS.mimbraneFeed("all");
+		}
+		public function applyPussySoaked():void
+		{
+			applyPussyDrenched();
 		}
 		public function applyPriapism():void
 		{

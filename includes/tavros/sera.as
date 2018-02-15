@@ -941,7 +941,7 @@ public function getTailUsedBySera():void
 	pc.loadInCuntTail(chars["SERA"]);
 	processTime(45+rand(15));
 	pc.orgasm();
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1371,7 +1371,7 @@ public function holdBackForSera():void
 	output("\n\n<i>“Hmm,”</i> she smirks contentedly, toying with her hair. <i>“A lustful tail-dick attached to you that </i>I<i> control. Very nice indeed. I think we’ll do this again. Regularly.”</i>");
 	processTime(10);
 	pc.orgasm();
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

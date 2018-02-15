@@ -1814,7 +1814,7 @@ public function tittyBlow():void
 		output("\n\nYou answer by throwing yourself back against her. Your [pc.hips] impact her ass with an audible splattering sound, and when you draw back, your whole crotch is painted with Sylvie’s lusty liquid. The moose-taur herself gasps at her empty snatch, then moans when you return. Her pussy gushes like a geyser. Sylvie herself leans back across her body, playing with her breasts once more. She coos, <i>“Like that. Fuck me like that!”</i> until the pleasure overwhelms her.");
 		output("\n\nSylvie’s body leaves no room to doubt the earnestness of her climax. You can’t fake squirting enough girlcum to drown a galotian, and there’s no way she’s a good enough actor to fake her eyes rolling back or her mouth hanging slack in wordless ecstasy. Her pussy hugs you tight, tight enough to stop you from thrusting any longer, wringing you with near-painful contractions. Slapping Sylvie’s ass encouragingly, you spur her to cum that much harder. She trembles in overwhelming pleasure, then her forelegs give out, dropping her to her knees, canting her ass up that much higher. The new angle rubs your [pc.cock " + x + "] against whole new bundles of nerves and gives the drooling drunkard something new to scream about.");
 		output("\n\nLetting out a groan of your own, revel in the feeling of your [pc.sheathOrKnot " + x + "] nestling snugly into her drenched mons, delighting in the wet squishes emanating from her twat as she cums. There’s no doubt that you’re lubed up enough for two-dozen titfucks, let alone one from a sexually satisfied ‘taur.");
-		applyPussyDrenched(pc);
+		pc.applyPussyDrenched();
 	}
 	//Dick 5" thick or more.
 	else
@@ -1833,7 +1833,7 @@ public function tittyBlow():void
 		else output("against");
 		output(" her bestial mons and utterly drenched in her squirting girlcum.");
 		output(" You’re pretty sure you’re wet enough for your tit-job now. There’s no way Sylvie can complain that you didn’t give her anything for her trouble.");
-		applyPussyDrenched(pc);
+		pc.applyPussyDrenched();
 	}
 	//Merge
 	output("\n\n<i>“Nice and wet,”</i> you observe, pulling out. Thick webs of moose-mare cum dangle between you, snapping one strand at a time. Your cock is shiny and throbbing, angry and hard, tortured with pleasure to the point where all you want to do is thrust it back inside and hump away until you get to cum as hard as Sylvie did. But you wanted a titfuck, and you’re going to get a titfuck. <i>“My turn.”</i> You pat the moose’s quivering ass. <i>“Turn around.”</i>");
@@ -1916,7 +1916,7 @@ public function fuckyTittyBlowblow2():void
 	if(cumQ > 70000)
 	{
 		output("\n\nEven nine foot tall animal-girls have their limits, and you can tell that you’ve reached it the moment her middle pushes down against the ground. [pc.Cum] sprays out of her snatch and back over you.");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 	}
 	//More than 100k. No new pg
 	if(cumQ > 100000) 
@@ -1924,19 +1924,19 @@ public function fuckyTittyBlowblow2():void
 		output(" But it’s not enough. You thread your still-spurting shaft");
 		if(pc.cockTotal() > 1) output("s");
 		output(" between her taut tummy and quivering thigh, washing underside in a thick coating of spermy goodness.");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 	}
 	//More than 110k - no new PG
 	if(cumQ > 110000)
 	{
 		output(" There’s enough to leave her stranded in the midst of a musky puddle, though you suppose it might make it easier to drag her to a pool for cleaning.");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 	}
 	//More than 150k.
 	if(cumQ > 150000)
 	{
 		output("\n\nYou stalk back around Sylvie, still ejaculating, spraying her with enough to cake her hair down into a cum-impregnated sheet. She wisely grabs hold of your [pc.cock " + x + "] as soon as you get within arm’s reach and threads it through her armpit. The tight, warm embrace milks more out of you, but it takes you a dozen ecstatic spurts before you identify why she did it: she’s aimed you into one of the pools. She milks the rest of your [pc.cum] like that, simultaneously squeezing out every drop while protecting her favorite bar from a deluge of spunk-induced property damage.");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 	}
 	processTime(25);
 	pc.orgasm();
@@ -2188,7 +2188,7 @@ public function cuffsAndTongueFromNonesuchyDuchy(forcy:Boolean = false):void
 		output("\n\n<i>“Yes! Like that!”</i> she groans, slamming her hooves into the floor as you hollow your cheeks determinedly. <i>“Fuuuuuck are you good at that!”</i>");
 		output("\n\nHer clit throbs in your mouth, and a huge gout of pussy juice spatters over your chin as it contracts out. You are dizzied by doughty hills of moose flesh excitedly battering into your upturned face, but all the way through the moosetaur’s loud, gratuitous orgasm you keep a firm hold on that tender little nub, audibly intensifying her pleasure.");
 	}
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
 	processTime(15);
 	pc.lust(80);
 	clearMenu();
@@ -2453,7 +2453,7 @@ public function sylvieRutFunPart2():void
 	//Merge
 	output("\n\nFinally, something clicks in your head. It’s enough. You’ve followed your instincts to the letter, ensuring your mate is more than sufficiently lubricated for what’s to come. You pull back, [pc.face] connected by a web of creamy cunt-love for a brief few seconds, gasping. Sylvie is leaning back across her own lower body, rubbing her ass, making her pussy wink at you as it dribbles fresh streams of girlish goo into the pool, strengthening the already dizzying saturation of taur-scent in the air into a mist thick enough to cut with a knife.");
 	processTime(20);
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
 	pc.createStatusEffect("Mare Musk",0,0,0,0,false,"Icon_Smelly","You smell like a horny mare! The potent female scent is sure to drive others wild - though it gets you a little worked up as well.",false,0);
 	clearMenu();
 	addButton(0,"Next",sylvieRutFunPart3);
@@ -2525,11 +2525,11 @@ public function sylvieRutFunPart4(cumQ:Number = 0):void
 	clearOutput();
 	showSylvie();
 	output("Sylvie pushes you off her into the pool");
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
 	if(cumQ >= 3000) 
 	{
 		output(", and a tide of [pc.cumGem] sex-juice pours out over you, soaking you further");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 	}
 	output(". You swim your way back up the surface, sputtering and gasping, glaring daggers at the grinning moose-girl.");
 	output("\n\n<i>“Better?”</i>");

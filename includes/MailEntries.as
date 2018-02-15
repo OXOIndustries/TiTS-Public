@@ -475,6 +475,7 @@ public function initialMailConfiguration():void
 	//Space conversion!
 	var eName:String = pc.short.replace(/\s+/g, '_');
 	userInterface.textInput.text = eName + "_Steele";
+	output2("\n\n\n");
 
 	clearGhostMenu();
 	addGhostButton(0, "Confirm", confirmMailConfig);
@@ -489,20 +490,20 @@ public function confirmMailConfig():void
 	if (userInterface.textInput.text == "")
 	{
 		initialMailConfiguration();
-		output2("\n\n\n<b>You must input something.</b>");
+		output2("<b>You must input something.</b>");
 		return;
 	}
 	// Illegal characters check. Just in case...
 	if (hasIllegalInput(userInterface.textInput.text))
 	{
 		initialMailConfiguration();
-		output2("\n\n\n<b>To prevent complications, please avoid using code characters.</b>");
+		output2("<b>To prevent complications, please avoid using code characters.</b>");
 		return;
 	}
 	if (userInterface.textInput.text.indexOf(" ") != -1)
 	{
 		initialMailConfiguration();
-		output2("\n\n\n<b>Spaces are verboten!</b>");
+		output2("<b>Spaces are verboten!</b>");
 		return;
 	}
 

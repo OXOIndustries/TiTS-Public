@@ -28,6 +28,7 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/anno_huskar.png", mimeType = "image/png")]
 		public var Bust_ANNO_HUSKAR:Class;
+		public var Bounds_ANNO_HUSKAR:Rectangle = new Rectangle(30, 5, 70, 70);
 		[Embed(source = "../../../assets/images/npcs/adjatha/anno_huskar_nude.png", mimeType = "image/png")]
 		public var Bust_ANNO_HUSKAR_NUDE:Class;
 

@@ -335,7 +335,7 @@
 				pc.orgasm();
 				if(rand(6) == 0) pc.orgasm();
 				
-				kGAMECLASS.applyCumSoaked(pc);
+				pc.applyCumSoaked();
 			}
 			
 			kGAMECLASS.clearMenu();

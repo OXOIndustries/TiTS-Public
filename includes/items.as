@@ -266,7 +266,7 @@ public function shop(keeper:Creature):void {
 public function buyItem():void {
 	clearOutput();
 	output(shopkeep.keeperBuy);
-	if(shopkeep.inventory.length >= 10) output("\n" + multiButtonPageNote() + "\n");
+	if(shopkeep.inventory.length > 10) output("\n" + multiButtonPageNote() + "\n");
 
 	//Build menu
 	clearMenu();
@@ -500,7 +500,7 @@ public function sellItem():void
 	
 	clearOutput();
 	output(shopkeep.keeperSell);
-	if(pc.inventory.length >= 10) output("\n" + multiButtonPageNote() + "\n");
+	if(pc.inventory.length > 10) output("\n" + multiButtonPageNote() + "\n");
 	
 	clearMenu();
 	var sellOptions:Boolean = kGAMECLASS.gameOptions.vendorToggle;

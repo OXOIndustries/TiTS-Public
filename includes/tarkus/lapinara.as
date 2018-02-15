@@ -611,7 +611,7 @@ public function getStuffedInTheStuffByStuffWithStuffForStuffFREEEEEEDOOOOM():voi
 	else pc.loadInAss(enemy);
 	//Normal is 2. This scene is 4. Bump from normal to EGGSTRA.
 
-	if(pc.hasCock()) applyCumSoaked(pc);
+	if(pc.hasCock()) pc.applyCumSoaked();
 
 	// Two Options are possible: Ending 1 or Continuation 1.
 	//Ending 1

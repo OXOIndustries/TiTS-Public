@@ -10,7 +10,7 @@
 		//constructor
 		public function Syri()
 		{
-			this._latestVersion = 3;
+			this._latestVersion = 4;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -52,7 +52,7 @@
 			this.eyeColor = "dark blue";
 			this.tallness = 72;
 			this.thickness = 40;
-			this.tone = 0;
+			this.tone = 30;
 			this.hairColor = "black";
 			this.scaleColor = "ebony";
 			this.furColor = "black";
@@ -168,7 +168,6 @@
 			dataObject.intelligenceRaw = 9;
 			dataObject.willpowerRaw = 4;
 		}
-		
 		public function UpgradeVersion2(d:Object):void
 		{
 			delete d.armor;
@@ -178,6 +177,10 @@
 			delete d.resistances;
 			delete d.bonusResistances;
 			delete d.bonusLustVuln;
+		}
+		public function UpgradeVersion3(dataObject:Object):void
+		{
+			dataObject.tone = 30;
 		}
 	}
 }

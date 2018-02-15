@@ -101,7 +101,7 @@ public function dryadMeeting():void
 		if (flags["DRYAD_BANGED_PC"] != undefined) 
 		{
 			if(pc.hasVagina() || !pc.isTaur()) addButton(7, "Drain Her", dryadDrain, undefined, "Drain Her", "Let the dryad pump you full.");
-			else addDisabledButton(7,"Drain","Drain","You need to be bipedal (or at least non-tauric) in order to do this... or have a pussy for her to mount.");
+			else addDisabledButton(7,"Drain Her","Drain Her","You need to be bipedal (or at least non-tauric) in order to do this... or have a pussy for her to mount.");
 		}
 		else addDisabledButton(7,"Drain Her","Drain Her","You have to let her fuck you before you can do this.");
 	}
@@ -456,7 +456,7 @@ public function tailCuntDryadFun():void
 	IncrementFlag("DRYAD_BANGED_PC");
 	pc.orgasm();
 	//Use a suitably voluminous stand-in :D
-	var pp:PregnancyPlaceholder = getNaynaPregContainer();
+	var pp:PregnancyPlaceholder = getDryadPregContainer();
 	pc.loadInCuntTail(pp);
 	clearMenu();
 	addButton(0,"Next",postCuntTailDryad);

@@ -4,6 +4,7 @@
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.DataManager.Serialization.ItemSaveable;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Engine.Interfaces.ParseText;
 	import flash.utils.describeType;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
@@ -266,8 +267,6 @@
 					if(buyer.hasPerk("Supply And Demand")) discount = true;
 				}
 				
-				//APRIL FOOLS!
-				var aprilFools:Boolean = false;
 				var valueString:String = "";
 				
 				if(!short)
@@ -278,14 +277,14 @@
 				
 				if (discount)
 				{
-					valueString += "Basic Price: " + Math.round(price) + " " + (!aprilFools ? "Credits" : "Dogecoins");
+					valueString += "Basic Price: " + Math.round(price) + " " + ParseText("Credits");
 					if(seller.hasPerk("Supply And Demand")) price *= 1.1;
 					if(buyer.hasPerk("Supply And Demand")) price *= 0.95;
-					valueString += "\nFinal Price: " + Math.round(price) + " " + (!aprilFools ? "Credits" : "Dogecoins");
+					valueString += "\nFinal Price: " + Math.round(price) + " " + ParseText("Credits");
 				}
 				else
 				{
-					valueString += "Price: " + Math.round(price) + " " + (!aprilFools ? "Credits" : "Dogecoins");
+					valueString += "Price: " + Math.round(price) + " " + ParseText("Credits");
 				}
 				
 				compareString = mergeString(compareString, valueString);

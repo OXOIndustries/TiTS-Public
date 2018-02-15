@@ -20,7 +20,7 @@ import classes.Items.Junk.DamagedVIChip;
 
 public function showDrBadgerAndPexiga(nude:Boolean = false):void
 {
-	var nameDisplay:String = "DR.BADGER &\n";
+	var nameDisplay:String = "DR. BADGER &\n";
 	nameDisplay += pexiga.short.toUpperCase();
 	showName(nameDisplay);
 
@@ -554,6 +554,7 @@ public function pexigaNamingSetup():void
 	if(stage.contains(this.userInterface.textInput)) 
 		this.removeInput();
 	this.displayInput();
+	output("\n\n\n");
 	clearMenu();
 	addButton(0, "Next", pexigaNamingConventions, pexigaNamingSetup);
 }
@@ -562,7 +563,7 @@ public function pexigaNamingConventions(retFunc:Function = null):void
 {
 	if(userInterface.textInput.text == "") {
 		retFunc();
-		output("\n\n\n<b>You must input a name.</b>");
+		output("<b>You must input a name.</b>");
 		return;
 	}
 	
@@ -575,12 +576,12 @@ public function pexigaNamingConventions(retFunc:Function = null):void
 	// Illegal characters check. Just in case...
 	if(hasIllegalInput(userInterface.textInput.text)) {
 		retFunc();
-		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
+		output("<b>To prevent complications, please avoid using code in the name.</b>");
 		return;
 	}
 	if(userInterface.textInput.text.toLowerCase() != "lil bobby tables" && userInterface.textInput.length > 12) {
 		retFunc();
-		output("\n\n\n<b>Please select a name no more than twelve characters long.</b>");
+		output("<b>Please select a name no more than twelve characters long.</b>");
 		return;
 	}
 	pexiga.short = userInterface.textInput.text;
@@ -1073,6 +1074,7 @@ public function pexigaNamingSetup4BimboBadgerwerk():void
 	if(stage.contains(this.userInterface.textInput)) 
 		this.removeInput();
 	this.displayInput();
+	output("\n\n\n");
 	clearMenu();
 	addButton(0, "Next", pexigaNamingConventions, pexigaNamingSetup4BimboBadgerwerk);
 }
@@ -1357,6 +1359,7 @@ public function pexigaNamingSetup4AbsentBadgers():void
 	if(stage.contains(this.userInterface.textInput)) 
 		this.removeInput();
 	this.displayInput();
+	output("\n\n\n");
 	clearMenu();
 	addButton(0, "Next", pexigaNamingConventions, pexigaNamingSetup4AbsentBadgers);
 }
