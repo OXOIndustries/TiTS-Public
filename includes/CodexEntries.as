@@ -2561,7 +2561,7 @@ public function korgonneCodexEntry():void
 	outputCodex("\n<b>Fur:</b> A mixture of white and tawny with black down the back.");
 	outputCodex("\n<b>Hair:</b> Longer fur growing from the top of the head to the nape of the neck. Typically brown, white, or burnt orange.");
 	outputCodex("\n<b>Ears:</b> Positioned atop the head; triangular in shape and slightly rounded at the tip.");
-	outputCodex("\n<b>Face:</b> Humanoid in appearance with wide, expressive eyes and a short muzzle capped by a black, moist nose.");
+	outputCodex("\n<b>Face:</b> Humanoid in appearance with wide, expressive eyes and a short muzzle capped by a black or blue, moist nose.");
 	outputCodex("\n<b>Limbs:</b> Two arms and two digitigrade legs. Both palms and soles contain soft, leathery pads, similar to a cat’s.");
 	outputCodex("\n<b>Tails:</b> Either a foot long and fluffy or short and curled upward, depending on parentage.");
 	outputCodex("\n<b>Lifespan:</b> 156 years on average with exceptional individuals reaching into their second century.");
