@@ -9586,14 +9586,16 @@
 		public function boostCum(amount:Number = 1):void
 		{
 			var total:* = amount;
+			var potent:Boolean = hasPerk("Potent");
 			//Loop through one at a time!
 			while(total > 0)
 			{
 				total--;
 				amount = 1;
 			
-				if(cumMultiplierRaw > 10) amount /= 2;
-				if(cumMultiplierRaw > 50) amount /= 2;
+				if(cumMultiplierRaw > 10 && !potent) amount /= 2;
+				if(cumMultiplierRaw > 50 && !potent) amount /= 2;
+				if(cumMultiplierRaw > 75 && !potent) amount /= 2;
 				if(cumMultiplierRaw > 100) amount /= 2;
 
 				//Efficiency is always 3x Multiplier
