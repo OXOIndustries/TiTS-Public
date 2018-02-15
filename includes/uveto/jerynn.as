@@ -2152,7 +2152,7 @@ public function jerynnPetstuffNoOptIn():void
 	else output(" pussy");
 	output(" plugged with cock as she drags you to the bathroom. With some care she lowers you to the floor, her cock sliding out of you and followed by a lewd burp of spunk when the angled tip finally slips free.");
 	
-	output("\n\nYou lie there to drain out some, soothing heat of the shower soon making itself known across your [pc.skinFurScale]. Jerynn, looking after her toy you suppose, cleans you up, slowly and methodically, scrubbing you down and helping to work feeling back into your limbs once she peels the harness off of you. When you finally regain <i>some</i> control of your still jelly-like arms, you return the favor, helping to wash all of her hard to reach places.");
+	output("\n\nYou lie there to drain out some, soothing heat of the shower soon making itself known across your [pc.skinFurScales]. Jerynn, looking after her toy you suppose, cleans you up, slowly and methodically, scrubbing you down and helping to work feeling back into your limbs once she peels the harness off of you. When you finally regain <i>some</i> control of your still jelly-like arms, you return the favor, helping to wash all of her hard to reach places.");
 	
 	output("\n\nEventually though she turns the steamy water off and directs you out of her shower. She points you to her packs and you make with retrieving all of your gear, suiting back up and getting ready to return to your travels.");
 	

@@ -1043,7 +1043,7 @@ public function lossScenesForStormguard():void
 			else output("<i>“I’ve wanted to do that for so long, honored " + pc.mf("warrior","valkyrie") + " - get just a little back for myself. May our battles long continue - you are such an inspiration!”</i>");
 		}
 		// {merge}
-		output("\n\nWhen you slide off his warm, tough flesh, wincing slightly, he does not stop you. You have to spend a short time peeling trailers of his cum off your back - the stuff sets like sticking plaster on your [pc.skinFurScale]. By the time you’ve put your gear back on, ");
+		output("\n\nWhen you slide off his warm, tough flesh, wincing slightly, he does not stop you. You have to spend a short time peeling trails of his cum off your back - the stuff sets like sticking plaster on your [pc.skinFurScales]. By the time you’ve put your gear back on, ");
 		if(flags["MET_GEL_ZON"] == undefined) output("the storm lancer");
 		else output("Gel Zon");
 		output(" has returned to his lying position, hardened back up against the freeze - except now he has a big, pleased grin on his blunt features.");
