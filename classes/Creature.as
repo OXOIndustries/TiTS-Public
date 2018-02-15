@@ -19985,6 +19985,7 @@
 						if (this is PlayerCharacter && requiresRemoval)
 						{
 							AddLogEvent("Your reflexes and mental abilities return to their natural state, as well as the concerns about your quest. <b>You are no longer cum high.</b> You are positive it will take you a while to be able to experience this high again.", "passive", maxEffectLength);
+							createStatusEffect("Cum High Cooldown", 0, 0, 0, 0, true, "", "", false, 2880);
 						}
 						break;
 					case "The Treatment":

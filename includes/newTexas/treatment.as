@@ -4049,6 +4049,8 @@ public function cumHighUpdate(addLog:Boolean = true):void
 	// The player cannot get cum high again for 48 hours, regardless of the effect strength.
 	// The status icon is the same as the alcohol one but pink.
 	
+	if(pc.hasStatusEffect("Cum High Cooldown")) return;
+	
 	var msg:String = "";
 	var fluidMLs:Number = pc.cumFlationAmount();
 	if(fluidMLs < 3000) return;
@@ -4060,8 +4062,9 @@ public function cumHighUpdate(addLog:Boolean = true):void
 	// v4: + willpower
 	pc.createStatusEffect("Cum High", 0, 0, 0, 0, false, "Icon_DizzyDrunk", "", false, 0, 0xFF69B4);
 	
-	var effect:StorageClass = (pc as PlayerCharacter).getStatusEffect("Cum High");
+	var effect:StorageClass = pc.getStatusEffect("Cum High");
 	
+	// Stage 1
 	if(fluidMLs >= 3000 && effect.value1 < 10)
 	{
 		if(addLog)
@@ -4073,6 +4076,7 @@ public function cumHighUpdate(addLog:Boolean = true):void
 		effect.value3 = -1;
 		effect.value4 = -1;
 	}
+	// Stage 2
 	else if(fluidMLs >= 6000 && effect.value1 < 20)
 	{
 		if(addLog)
@@ -4084,6 +4088,7 @@ public function cumHighUpdate(addLog:Boolean = true):void
 		effect.value3 = -2;
 		effect.value4 = -2;
 	}
+	// Stage 3
 	else if(fluidMLs >= 12000 && effect.value1 < 30)
 	{
 		if(addLog)
@@ -4103,7 +4108,7 @@ public function cumHighUpdate(addLog:Boolean = true):void
 	effect.tooltip = "You get high on the cum inside you!\n\nYou feel energetic but your thoughts and movements are relaxed. It is also harder to resist indulging yourself.\n\n" + StringUtil.printPlusMinus(effect.value1) + " Max Energy\n" + StringUtil.printPlusMinus(effect.value2) + " Reflexes\n" + StringUtil.printPlusMinus(effect.value3) + " Intelligence\n" + StringUtil.printPlusMinus(effect.value4) + " Willpower";
 	
 	effect.minutesLeft += 480;
-	if(effect.minutesLeft > 2880) effect.minutesLeft = 2880;
+	if(effect.minutesLeft > 1440) effect.minutesLeft = 1440;
 	
 	if(addLog && msg != "") AddLogEvent(msg, "passive");
 }
