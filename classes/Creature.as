@@ -9658,9 +9658,16 @@
 			if(originalMultiplier < 125 && milkMultiplier >= 125) createStatusEffect("Pending Gain MilkMultiplier Note: 125");
 		}
 		//PC has been milked for "amount" fullness.
-		public function milked(amount:Number = 50):Number
+		public function milked(amount:Number = 50, mLs:Boolean = false):Number
 		{
-			var x:int;
+			// if mLs to approx % conversion
+			if(mLs)
+			{
+				var fluidVolume:Number = milkQ();
+				var fluidAmount:Number = amount;
+				amount = ((fluidAmount / fluidVolume) * 100);
+			}
+			
 			if(hasPerk("Milky")) amount *= 1.5;
 			//Boost lactation by a relevant amount
 			if(milkMultiplier < 125) boostLactation(1 + Math.round(amount/50));
