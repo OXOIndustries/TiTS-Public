@@ -239,7 +239,9 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	//Standard buttons:
 	addButton(13, "Inventory", inventory);
 	//Other standard buttons
-	if(pc.lust() < 33)
+	// Arousal Masturbation
+	if(hasButton(8)) {} // Button overrides!
+	else if(pc.lust() < 33)
 	{
 		if(canArouseSelf()) addButton(8, "Arousal", arousalMenu);
 		else addDisabledButton(8, "Masturbate");
@@ -248,21 +250,18 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	{
 		if(pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(8, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
 		else if(!pc.canMasturbate()) addDisabledButton(8, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
-		else if(InRoomWithFlag(GLOBAL.WATERFALL)) addButton(8,"Masturbate",fapOnWaterfall,undefined,"Masturbate","Try to blow off some steam.");
 		else addButton(8, "Masturbate", masturbateMenu);
 	}
-	if (!rooms[currentLocation].hasFlag(GLOBAL.BED)) 
+	// Sleep/Rest
+	if(hasButton(9)) {} // Button overrides!
+	else if(!rooms[currentLocation].hasFlag(GLOBAL.BED))
 	{
 		if(canRest()) addButton(9, "Rest", restMenu);
 		else addDisabledButton(9, "Rest", "Rest", "You can’t seem to rest or wait here at the moment....");
 	}
-	else 
+	else
 	{
-		if (currentLocation == "KI-H16" && flags["KI_REFUSED_VANDERBILT"] != undefined && flags["KI_VANDERBILT_WORKING"] != undefined)
-		{
-			addDisabledButton(9, "Sleep", "Sleep", "You can’t afford to risk sleeping with Elenora around. Who knows if she’ll be able to hold it together... or if she’ll try something while you rest.");
-		}
-		else if(canSleep()) addButton(9, "Sleep", sleepMenu);
+		if(canSleep()) addButton(9, "Sleep", sleepMenu);
 		else addDisabledButton(9, "Sleep", "Sleep", "You can’t seem to sleep here at the moment....");
 	}
 	addButton(14, "Codex", showCodex);
@@ -2351,6 +2350,9 @@ public function variableRoomUpdateCheck():void
 		rooms["DEEP JUNGLE 2"].addFlag(GLOBAL.PLANT_BULB);
 	}
 	else rooms["DEEP JUNGLE 2"].removeFlag(GLOBAL.PLANT_BULB);
+	// Xenogen Camp
+	if(flags["CLEARED_XENOGEN_CAMP_BODIES"] != undefined) rooms["ABANDONED CAMP"].addFlag(GLOBAL.BED);
+	else rooms["ABANDONED CAMP"].removeFlag(GLOBAL.BED);
 	// Visited Thare Plantation
 	if(flags["THARE_MANOR_ENTERED"] != undefined && flags["PQ_P_BURNED"] == undefined) rooms["THARE MANOR"].addFlag(GLOBAL.OBJECTIVE);
 	else rooms["THARE MANOR"].removeFlag(GLOBAL.OBJECTIVE);

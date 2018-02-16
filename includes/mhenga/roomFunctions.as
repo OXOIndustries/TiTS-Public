@@ -654,8 +654,10 @@ public function sleepInRuinedCamp():void
 		flags["CLEARED_XENOGEN_CAMP_BODIES"] = 1;
 		output("The bodies lying around make the prospect of sleeping here... unpleasant, but then again, you’re far enough from town that you’d rather sleep here than trudge all the way back. You spend several minutes dragging the mutilated bodies out of the camp and dump them into a ditch not far away. Best you can do under the circumstances.");
 		output("\n\nYou clear out one of the tents and bunker down to sleep");
-
-		//Standard sleep messages, etc. 
+		
+		rooms["ABANDONED CAMP"].addFlag(GLOBAL.BED);
+		generateMap();
+		//Standard sleep messages, etc.
 	}
 	//Repeat [Sleep]
 	else

@@ -38,7 +38,14 @@ public function nonLustFaps():Array
 	}
 	return faps;
 }
-public function arousalMenu():void {
+public function arousalMenu():void
+{
+	if(InRoomWithFlag(GLOBAL.WATERFALL))
+	{
+		fapOnWaterfall();
+		return;
+	}
+	
 	clearOutput();
 	showName("\nAROUSAL");
 	showBust("");
@@ -540,8 +547,13 @@ public function selectRandomFap(faps:Array):void
 	filtFaps[rand(filtFaps .length)].execute();
 }
 
-public function masturbateMenu(roundTwo:Boolean = false):void {
-	
+public function masturbateMenu(roundTwo:Boolean = false):void
+{
+	if(InRoomWithFlag(GLOBAL.WATERFALL))
+	{
+		fapOnWaterfall();
+		return;
+	}
 	if (flags["KASHIMA_STATE"] == 1 && flags["CHIEF_NEYKKAR_WITH_PC"] == 1 && (pc.hasCock() || pc.hasVagina()))
 	{
 		lustyBugpony();

@@ -841,6 +841,11 @@
 			userInterface.addButton(slot, cap, func, arg, ttHeader, ttBody);
 		}
 		
+		public function hasButton(slot:int):Boolean
+		{
+			return (userInterface.buttonTray.getButtonNameForIndex(slot) != "");
+		}
+		
 		public function addGhostButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
 		{
 			userInterface.addGhostButton(slot, cap, func, arg, ttHeader, ttBody);
