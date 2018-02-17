@@ -1688,7 +1688,7 @@ public function treatmentHourProcs(totalHours:int):void
 			
 			// 85 hours:
 			// Gain bovine tongue.
-			if(treatedHours >= 85 && pc.tongueType != GLOBAL.TYPE_BOVINE)
+			if(startHours < 85 && treatedHours >= 85 && pc.tongueType != GLOBAL.TYPE_BOVINE && rand(10) == 0)
 			{
 				AddLogEvent("A strange feeling in your mouth distracts you from fantasizing about sexy, New Texan hunks railing you. Within moments, it is concentrated into your tongue, and you feel it change shape, becoming smoother and broader. You pull out your codex and use its mirror to check on <b>your tongue, now a bovine one</b>. You are sure it will suit you once you become a full blown cow-slut.", "passive", (85 - startHours) * 60);
 				
@@ -1699,7 +1699,7 @@ public function treatmentHourProcs(totalHours:int):void
 			
 			// 90 hours:
 			// Gain "long" tongue flag.
-			if(treatedHours >= 90 && pc.tongueType == GLOBAL.TYPE_BOVINE && !pc.hasTongueFlag(GLOBAL.FLAG_LONG))
+			if(startHours < 90 && treatedHours >= 90 && pc.tongueType == GLOBAL.TYPE_BOVINE && !pc.hasTongueFlag(GLOBAL.FLAG_LONG) && rand(5) == 0)
 			{
 				AddLogEvent(ParseText("While admiring a passing stud, you feel your tongue push against your teeth on its own. Curiously, you open your mouth and your [pc.tongue] dangles out, longer than you remember it and still growing. It elongates more until it is a little over a foot long."), "passive", (90 - startHours) * 60);
 				ExtendLogEvent("\n\nWow! You can already imagine all the new possibilities when going down on your mates. They’ll love it!");
@@ -1710,7 +1710,7 @@ public function treatmentHourProcs(totalHours:int):void
 			
 			// 160 hours
 			// Total cumflation > 40000 mL, 1/10 Chance, Gain "Cum Highs".
-			if(treatedHours >= 160 && pc.cumFlationAmount() >= 3000 && !pc.hasPerk("Cum Highs"))
+			if(treatedHours >= 160 && pc.cumFlationAmount() >= 3000 && !pc.hasPerk("Cum Highs") && rand(2) == 0)
 			{
 				var filledHoles:int = 0;
 				if(pc.statusEffectv1("Anally-Filled") > 0) filledHoles++;
