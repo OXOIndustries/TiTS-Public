@@ -426,6 +426,7 @@ package classes.Items.Transformatives
 							{
 								// "Horn Style"
 								// v1: shape style
+								// v2: material type
 								// tooltip: custom color
 								target.createStatusEffect("Horn Style", 0, 0, 0, 0, true, "", "", false, 0);
 								target.setStatusValue("Horn Style", 1, newHornShape);

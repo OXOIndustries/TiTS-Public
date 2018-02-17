@@ -135,9 +135,13 @@ public function buyFromCeria():void
 		{
 			chars["CERIA"].keeperBuy += " Off to the side, there is a clear jar that contains a number of white gumball-like pills.";
 			if(!chars["CERIA"].hasItemByClass(Hornitol)) chars["CERIA"].inventory.push(new Hornitol());
+			if(!chars["CERIA"].hasItemByClass(Hornucopia)) chars["CERIA"].inventory.push(new Hornucopia());
 		}
-		else chars["CERIA"].destroyItemByClass(Hornitol);
-		
+		else
+		{
+			chars["CERIA"].destroyItemByClass(Hornitol);
+			chars["CERIA"].destroyItemByClass(Hornucopia);
+		}
 		if(flags["PLANET_3_UNLOCKED"] != undefined || CodexManager.entryViewed("Rubber-Made"))
 		{
 			chars["CERIA"].keeperBuy += " Another rack holds what seem to be various tubes of skin";

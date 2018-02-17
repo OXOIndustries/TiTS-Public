@@ -980,6 +980,18 @@ public function appearance(forTarget:Creature):void
 	//Horns
 	if(target.horns > 0)
 	{
+		var hornsNoun:String = target.hornsNoun();
+		var hornStyle:int = -1;
+		var hornMaterial:int = -1;
+		var hornColor:String = "";
+		
+		if(target.hasStatusEffect("Horn Style"))
+		{
+			hornStyle = target.statusEffectv1("Horn Style");
+			hornMaterial = target.statusEffectv2("Horn Style");
+			hornColor = target.getStatusTooltip("Horn Style");
+		}
+		
 		switch(target.hornType)
 		{
 			//Demonic horns
@@ -1029,11 +1041,11 @@ public function appearance(forTarget:Creature):void
 				if(target.hornLength >= 6)
 				{
 					output2(" " + StringUtil.capitalize(num2Text(target.horns)));
-					if(target.hasStatusEffect("Horn Style"))
+					if(hornStyle > 0)
 					{
-						if(target.getStatusTooltip("Horn Style") != "") output2(" " + target.getStatusTooltip("Horn Style"));
+						if(hornMaterial <= 0 && hornColor != "") output2(" " + hornColor);
 						output2(" goat horns extend from the top of your forehead.");
-						switch(target.statusEffectv1("Horn Style"))
+						switch(hornStyle)
 						{
 							case 1:
 								output2(" The curled goat horns coil out from the sides of your forehead, " + num2Text(int(target.hornLength)) + " inches to the left and right.");
@@ -1084,6 +1096,18 @@ public function appearance(forTarget:Creature):void
 			case GLOBAL.TYPE_NARWHAL:
 				output2(" A slender ivory horn extends from your forehead, " + num2Text(int(target.hornLength)) + "-inches long with a spiral pattern of ridges and grooves up its length, giving it a graceful appearance.");
 				break;
+		}
+		if(hornMaterial > 0 && hornColor != "")
+		{
+			switch(hornMaterial)
+			{
+				case 1: output2(" Your " + hornsNoun + " " + (target.horns == 1 ? "is" : "are") + " not " + (target.horns == 1 ? "its" : "their") + " typical color, instead being " + hornColor + "."); break;
+				case 2:
+					output2(" Your " + hornsNoun + " appear" + (target.horns == 1 ? "s" : "") + " to be crafted from polished " + hornColor + ", and " + (target.horns == 1 ? "has" : "have") + " a pleasant, reflective shine.");
+					if(silly && hornColor == "steel") output2(" You’re getting used to comments that " + (target.horns == 1 ? "it’s" : "they’re") + " a little too on the nose.");
+					break;
+				case 3: output2(" Your " + hornsNoun + " appear" + (target.horns == 1 ? "s" : "") + " to be made of cut, shaped and polished " + hornColor + ", giving you an almost regal appearance."); break;
+			}
 		}
 	}
 	else if(target.hasStatusEffect("Horn Bumps")) output2(" <b>Your forehead is red and irritated in two different places. The upraised bumps stand out quite visibly.</b>");

@@ -2645,6 +2645,9 @@
 				case "hornsNoun":
 					buffer = hornsNoun();
 					break;
+				case "hornColor":
+					buffer = hornColor();
+					break;
 				case "antenna":
 					buffer = antennaeDescript(false);
 					break;
@@ -18343,6 +18346,13 @@
 			//Horn nouns
 			if(InCollection(hornType, GLOBAL.TYPE_DEER, GLOBAL.TYPE_DRYAD)) return "antler";
 			return "horn";
+		}
+		public function hornColor():String 
+		{
+			var sColor:String = "";
+			if(hasStatusEffect("Horn Style")) sColor = getStatusTooltip("Horn Style");
+			
+			return (sColor != "" ? sColor : "naturally-colored");
 		}
 		
 		public function hasAntennae(aType:Number = 0):Boolean
