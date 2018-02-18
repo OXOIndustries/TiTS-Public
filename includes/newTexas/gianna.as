@@ -4373,7 +4373,7 @@ public function approachAnnoXXXGianna():void
 {
 	clearOutput();
 	showName("ANNO\&GIANNA");
-	showBust("ANNO",giannaBustDisplay());
+	showBust(annoBustDisplay(),giannaBustDisplay());
 	output("Neither Anno nor Gianna notice your approach, not even when you’re right behind them.");
 	if(flags["GIANNA_X_ANNO_3SUM"] == undefined)
 	{
@@ -4401,7 +4401,7 @@ public function leaveAnnoXGianna():void
 {
 	clearOutput();
 	showName("ANNO\n& GIANNA");
-	showBust("ANNO",giannaBustDisplay());
+	showBust(annoBustDisplay(),giannaBustDisplay());
 	output("You stay silent as the two girls head into a stall. Gianna’s in for some fun.");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -4412,7 +4412,7 @@ public function coughAtAnnoXGianna():void
 {
 	clearOutput();
 	showName("ANNO\n& GIANNA");
-	showBust("ANNO",giannaBustDisplay());
+	showBust(annoBustDisplay(),giannaBustDisplay());
 	var x:int = pc.cockThatFits(anno.vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
 	output("You clear your throat.");
@@ -4442,7 +4442,7 @@ public function giannaXAnnoThreesomeGo(x:int):void
 	
 	clearOutput();
 	showName("ANNO\n& GIANNA");
-	showBust("ANNO_NUDE",giannaBustDisplay());
+	showBust(annoBustDisplay(true),giannaBustDisplay());
 	
 	output("The moment the door closes behind you, Anno is on Gianna, kissing her hard, bearing her into the wall. The synthetic companion squeaks cutely, slamming hard into the rustic, wood-panelled wall before sliding down to the bench.");
 	if(gianna.buttRating() >= 15) output(" Her silicone-packed ass distends beneath the weight of two eager girls, creating half-moons that protrude out to either side.");
@@ -4505,7 +4505,7 @@ public function giannaXAnnoThreesomeGo2(x:int):void
 {
 	clearOutput();
 	showName("ANNO\n& GIANNA");
-	showBust("ANNO_NUDE",giannaBustDisplay());
+	showBust(annoBustDisplay(true),giannaBustDisplay());
 	
 	output("You’re on Anno in a flash, [pc.cockNoun " + x + "] delving deep into the ausar’s needy cunny. She is so <i>drenched</i> that it’s like riding into her pussy on a red carpet. Her velvety folds squeeze tight, just like the girl behind them. Her knees lock behind your back to pull you deeper, and her arms fall on your shoulders, sharp-clawed fingers scraping ");
 	if(!pc.hasScales()) output("across your [pc.skinFurScales]");
@@ -4525,7 +4525,7 @@ public function giannaXAnnoThreesomeGo3(x:int):void
 {
 	clearOutput();
 	showName("ANNO\n& GIANNA");
-	showBust("ANNO_NUDE",giannaBustDisplay());
+	showBust(annoBustDisplay(true),giannaBustDisplay());
 	
 	output("It is then that Gianna takes your hand and presses it against her tight, synthetic cunt. She leans over the table next to Anno, offering you a chance to take her doggie-style for desert after having your fill of missionary with the canine slut. Something seems mismatched about that, but you’re too horny to care. You pull out of the fucked-out pup and thrust yourself into the eager android, burying your ausar-basted bone deep into silken lips of Gianna’s talented nethers. They cup and caress you, stroking you, fluttering over your flesh in ripples that demand you orgasm as soon as possible.");
 	output("\n\nGianna moans, but not for long. The exhausted Anno slides over to her, and soon the two hotties are frenching, trading tongues as you satisfy your second quim of the day. There are differences between the two that you’d love to point out, were you not on the edge of exploding. Gianna’s cunt is definitely the more active of the two, but Anno’s has a certain something to it, perhaps the smell, perhaps her pheromones that keep Gianna’s expertly manipulated folds from massaging her out of your brain entirely.");
@@ -4558,7 +4558,7 @@ public function giannaXAnnoThreesomeGo4(x:int):void
 {
 	clearOutput();
 	showName("ANNO\n& GIANNA");
-	showBust("ANNO_NUDE",giannaBustDisplay());
+	showBust(annoBustDisplay(true),giannaBustDisplay());
 	
 	output("There’s no shower in this stall, so cleanup is a brief affair, one interrupted numerous times by Gianna or Anno offering to clean the fluids from a patch of cum-soaked skin with their tongues.");
 	output("\n\nWhen you and Anno leave, she remarks, <i>“We should spend more time on New Texas, Boss. I liked that one.”</i>");

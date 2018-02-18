@@ -3081,7 +3081,7 @@ public function uvetoStationLoungeHuskarBimboActive():Boolean
 
 public function annoUvetoHuskarFoursome():void
 {
-	showBust("ANNO", "MARINA", "GALINA");
+	showBust(annoBustDisplay(), "MARINA", "GALINA");
 	showName("ANNO &\nFRIENDS");
 	author("Savin");
 	
@@ -3171,7 +3171,7 @@ public function annoUvetoHuskarFoursome():void
 public function annoUvetoHuskarFoursomeII():void
 {
 	clearOutput();
-	showBust("ANNO", "MARINA", "GALINA");
+	showBust(annoBustDisplay(), "MARINA", "GALINA");
 	showName("ANNO &\nFRIENDS");
 	author("Savin");
 	
@@ -3198,7 +3198,7 @@ public function annoUvetoHuskarFoursomeII():void
 public function annoUvetoHuskarFoursomeNoThanks():void
 {
 	clearOutput();
-	showBust("ANNO", "MARINA", "GALINA");
+	showBust(annoBustDisplay(), "MARINA", "GALINA");
 	showName("ANNO &\nFRIENDS");
 	author("Savin");
 
@@ -3222,7 +3222,7 @@ public function annoUvetoHuskarFoursomeNoThanks():void
 public function annoUvetoHuskarFoursomeSure():void
 {
 	clearOutput();
-	showBust("ANNO_NUDE", "MARINA_NUDE", "GALINA_NUDE");
+	showBust(annoBustDisplay(true), "MARINA_NUDE", "GALINA_NUDE");
 	showName("ANNO &\nFRIENDS");
 	author("Savin");
 	
@@ -3295,7 +3295,7 @@ public function annoUvetoHuskarFoursomeMenu():void
 public function annoUvetoHuskarFoursomeMountUp():void
 {
 	clearOutput();
-	showBust("ANNO_NUDE", "MARINA_NUDE", "GALINA_NUDE");
+	showBust(annoBustDisplay(true), "MARINA_NUDE", "GALINA_NUDE");
 	showName("ANNO &\nFRIENDS");
 	author("Savin");
 
@@ -3335,7 +3335,7 @@ public function annoUvetoHuskarFoursomeMountUp():void
 public function annoUvetoHuskarFoursomeMountUpII():void
 {
 	clearOutput();
-	showBust("ANNO_NUDE", "MARINA_NUDE", "GALINA_NUDE");
+	showBust(annoBustDisplay(true), "MARINA_NUDE", "GALINA_NUDE");
 	showName("ANNO &\nFRIENDS");
 	author("Savin");
 
@@ -3392,7 +3392,7 @@ public function annoUvetoHuskarFoursomeMountUpII():void
 public function annoUvetoHuskarFoursomeMountUpIII():void
 {
 	clearOutput();
-	showBust("ANNO_NUDE", "MARINA_NUDE", "GALINA_NUDE");
+	showBust(annoBustDisplay(true), "MARINA_NUDE", "GALINA_NUDE");
 	showName("ANNO &\nFRIENDS");
 	author("Savin");
 
@@ -3450,7 +3450,7 @@ public function annoUvetoHuskarFoursomeMountUpIII():void
 public function annoUvetoHuskarFoursomeMountUpIV():void
 {
 	clearOutput();
-	showBust("ANNO_NUDE", "MARINA_NUDE", "GALINA_NUDE");
+	showBust(annoBustDisplay(true), "MARINA_NUDE", "GALINA_NUDE");
 	showName("ANNO &\nFRIENDS");
 	author("Savin");
 
@@ -3496,7 +3496,7 @@ public function annoUvetoHuskarFoursomeMountUpIV():void
 public function annoUvetoHuskarFoursomePoundPuppies():void
 {
 	clearOutput();
-	showBust("ANNO_NUDE", "MARINA_NUDE", "GALINA_NUDE");
+	showBust(annoBustDisplay(true), "MARINA_NUDE", "GALINA_NUDE");
 	showName("ANNO &\nFRIENDS");
 	author("Savin");
 
@@ -3553,7 +3553,7 @@ public function annoUvetoHuskarFoursomePoundPuppies():void
 public function annoUvetoHuskarFoursomePoundPuppiesII():void
 {
 	clearOutput();
-	showBust("ANNO_NUDE", "MARINA_NUDE", "GALINA_NUDE");
+	showBust(annoBustDisplay(true), "MARINA_NUDE", "GALINA_NUDE");
 	showName("ANNO &\nFRIENDS");
 	author("Savin");
 
@@ -3605,7 +3605,7 @@ public function annoUvetoHuskarFoursomePoundPuppiesII():void
 public function annoUvetoHuskarFoursomePoundPuppiesIII():void
 {
 	clearOutput();
-	showBust("ANNO_NUDE", "MARINA_NUDE", "GALINA_NUDE");
+	showBust(annoBustDisplay(true), "MARINA_NUDE", "GALINA_NUDE");
 	showName("ANNO &\nFRIENDS");
 	author("Savin");
 
@@ -3670,7 +3670,7 @@ public function annoUvetoHuskarFoursomePoundPuppiesIII():void
 public function annoUvetoHuskarFoursomePoundPuppiesIV():void
 {
 	clearOutput();
-	showBust("ANNO_NUDE", "MARINA_NUDE", "GALINA_NUDE");
+	showBust(annoBustDisplay(true), "MARINA_NUDE", "GALINA_NUDE");
 	showName("ANNO &\nFRIENDS");
 	author("Savin");
 
@@ -3725,7 +3725,7 @@ public function annoUvetoHuskarFoursomeRepeat():void
 	}
 
 	clearOutput();
-	showBust("ANNO", "MARINA", "GALINA");
+	showBust(annoBustDisplay(), "MARINA", "GALINA");
 	showName("ANNO &\nFRIENDS");
 	author("Savin");
 
@@ -3755,7 +3755,7 @@ public function annoUvetoHuskarFoursomeRepeat():void
 public function annoUvetoHuskarRepeatLater():void
 {
 	clearOutput();
-	showBust("ANNO", "MARINA", "GALINA");
+	showBust(annoBustDisplay(), "MARINA", "GALINA");
 	showName("ANNO &\nFRIENDS");
 	author("Savin");
 
@@ -3781,7 +3781,7 @@ public function annoUvetoHuskarRepeatLater():void
 public function annoUvetoHuskarRepeatSure():void
 {
 	clearOutput();
-	showBust("ANNO", "MARINA", "GALINA");
+	showBust(annoBustDisplay(), "MARINA", "GALINA");
 	showName("ANNO &\nFRIENDS");
 	author("Savin");
 

@@ -628,7 +628,7 @@ public function kaseSexThreesomeAnno():void
 	clearOutput();
 	author("HugsAlright");
 	showName("KASE\nAND ANNO");
-	showBust(kaseBustDisplay(true), "ANNO_NUDE");
+	showBust(kaseBustDisplay(true), annoBustDisplay(true));
 	clearMenu();
 	
 	output("<i>“Miss Dorna?”</i> he asks, gulping audibly, <i>“I-I find it’s best not to encourage her... but if that’s what you want captain, then I’d be happy to join you for a little excursion with her.”</i> He smiles as best he can at you, but you can’t help but notice the hint of nervousness in his mien.");
@@ -906,7 +906,7 @@ public function kaseVoyeurAnno():void
 	clearOutput();
 	author("HugsAlright");
 	showName("KASE\nAND ANNO");
-	showBust(kaseBustDisplay(), "ANNO");
+	showBust(kaseBustDisplay(), annoBustDisplay());
 	clearMenu();
 	
 	output("[pc.Walk]ing around your ship, you notice Kase standing alone. He seems deep in thought, tapping away at his datapad, looking quite determined and not taking notice of you in the slightest. Before you can make your way to him and see what he’s up to, Anno appears from the other side of the room, right behind your kaithrit employee. Holding a finger to her mouth, she makes a shushing motion then reaches up to her catsuit’s zipper, and pulls it down just enough so her uniform parts around her sizable breasts, showing just the slightest hint of pink nipple. ");
@@ -1039,7 +1039,7 @@ public function kaseApartmentJoin():void
 public function annoAndKaseDoMath():void
 {
 	clearOutput();
-	showBust(kaseBustDisplay(),"ANNO");
+	showBust(kaseBustDisplay(), annoBustDisplay());
 	author("HugsAlright");
 	if(silly) author("HugsNotright");
 	output("[pc.Walk]ing about your ship, you notice your hard-working kaithrit crewmate, Kase, sitting at a small table, surrounded by some amount of papers and hard at work on his holopad. He seems a bit perturbed, though, tapping away at his datapad and stopping to stroke his chin, his mien growing more and more upset each time he does.");

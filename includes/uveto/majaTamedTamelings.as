@@ -120,12 +120,12 @@ public function repeatMajaApproach(back:Boolean = false):void
 public function majaMenu():void
 {
 	clearMenu();
-	addButton(0,"Appearance",majaAppearance,undefined,"Appearance",(kGAMECLASS.silly ? "Take a gander at that fiiiine ass doggo." : "Take a look at Maja."));
+	addButton(0,"Appearance",majaAppearance,undefined,"Appearance",(silly ? "Take a gander at that fiiiine ass doggo." : "Take a look at Maja."));
 	//[rent](ask Maja what beasts she has available for rent)
 	addButton(1,"Rent",majaRentButton,undefined,"Rent","Ask Maja what beasts she has available for rent.");
 	//[return](return your rented animal)
-	if(canReturnMajaPet()) addButton(2,"Return",returnPetToMaja,undefined,"Return","Return the rented beast to its home.");
-	else addDisabledButton(2,"Return","Return","You need to have rented a beast and have its leash on hand in order to return it.");
+	if(canReturnMajaPet()) addButton(2,"Return",returnPetToMajaMenu,undefined,"Return","Return a rented beast to its home.");
+	else addDisabledButton(2,"Return","Return","You need to have rented a beast and have its leash on hand (or at least in your inventory) in order to return it.");
 	//[talks](talk with Maja{, and maybe get on her better side}.
 	addButton(3,"Talk",talkToMaja,undefined,"Talk","Talk with Maja" + (!majaTrust() ? ", and maybe get on her better side" : "") + ".");
 	//[sex]({maybe you should get her to trust you before asking about sex./Help Maja out with her own beast.}
@@ -144,7 +144,7 @@ public function majaAppearance():void
 	output(" Various animal cleaning and leatherworking tools are stuffed into holsters on the heavy skirt wrapped around her waist. Enough tools adorn the network of pockets that the skirt weighs heavily around her knees, reducing her to a determined waddle as she moves between work areas.");
 
 	output("\n\nGolden brown fur covers nearly her entire body, leaving only a small circle of white on the center of her chest. She stands at an even five feet, a decent size for a korgonne, but her disproportionate bust makes her look shorter. The rest of her frame is lithe and fit, subtly muscled beneath the layer of fur. Squeezably ");
-	if(silly) output("thicc");
+	if(silly) output("THICC");
 	else output("thick");
 	output(" hips and a tight, round butt keep her skirt on her waist despite the weight of her tools." + (flags["SEXED_MAJA"] != undefined ? " You know for a fact that the heavy skirt also hides two feet of beryl bitch-cock and a pair of hefty volleyballs to match.":"") + " Her arms can hardly reach past her titanic endowments, leaving her oddly off balance whenever she reaches for objects around the room. Her tail seems about average compared to the other korgonne you’ve seen, wagging happily as she goes about her work.");
 	output("\n\n" + (flags["SEXED_MAJA"] == undefined ? " You don’t know what the stocky beast-tamer is packing down below, and the skirt she wears is heavy enough to obscure even a guess.":" You know precisely what lies beneath that heavy skirt. Nigh on two whole feet of sapphire doggycock, and a pair of volleyball-sized cream spheres to supply it. Her original sex remains hidden behind them, a puffy cerulean slit with a clit the size of a small jewel."));
@@ -217,11 +217,16 @@ public function majaRentButton():void
 	clearMenu();
 	addButton(14,"Back",repeatMajaApproach,true);
 	//[Kor’diiaks](big guys, make travel in ice faster. Probably reduce the chances for random encounters, but not for things like frostwyrms.)[Nog’wich](medium sized mount, slightly faster than a kor’diiak, but doesn’t reduce encounter chance.)[Grunch](It’s a mount. Doesn’t go to fast, but increases run away effectiveness.)[Shoulder Grunch](A smaller grunch that can sit on your shoulder. Spits gobs of acid that (reduce armor/are more effective against armored targets).){silly:[MGBK](Miniature Giant Baby Kor’diiak. Take it.)}[no](all good for now)
-	addItemButton(0, new KordiiakLeash(), purchaseTameling,new KordiiakLeash());
+	addItemButton(0, new KordiiakLeash(), purchaseTameling, new KordiiakLeash());
 	if(!majaTrust()) setButtonDisabled(0);
-	addItemButton(1, new NogwichLeash(), purchaseTameling,new NogwichLeash());
-	addItemButton(2, new ShoulderGrunchLeash(), purchaseTameling,new ShoulderGrunchLeash());
+	addItemButton(1, new NogwichLeash(), purchaseTameling, new NogwichLeash());
+	addItemButton(2, new ShoulderGrunchLeash(), purchaseTameling, new ShoulderGrunchLeash());
 	addItemButton(3, new GrunchLeash(), purchaseTameling, new GrunchLeash());
+	if(silly)
+	{
+		addItemButton(4, new MiniatureGiantBabyKordiiak(), purchaseTameling, new MiniatureGiantBabyKordiiak());
+		if(!majaTrust()) setButtonDisabled(4);
+	}
 	if(flags["MAJA_RENTING"] != undefined)
 	{
 		output("\n\n<b>You will not be able to rent a new animal until you return the old one.");
@@ -262,8 +267,8 @@ public function purchaseTameling(arg:ItemSlotClass):void
 	{
 		output("<i>“I’d like to take a kor’diiak out,”</i> you say, handing Maja a credit chit. She gives the small piece of tech a thoughtful look, stowing it in a small box on her desk. She separates a large silver key from her ring and scurries to the back pens. A minute later she comes back, leading one of the hulking bear-like creatures by a thick-roped collar. It huffs inquisitively in your direction, and Maja transfers the leash to your hands.");
 		output("\n\n<i>“");
-		if(!korgiTranslate()) output("Here go! Kor’diiak will do a protect. Big scary to bad guys. He make sure many get home safe, so you make sure he get home safe.”</i>\n\n");
-		else output("Here you are, this big guy ought to protect you out on the ice. Or anywhere cold really. He’s helped a lot of korgonne get back safe from hunts. He’ll have your back, so you make sure to have his.”</i>\n\n");
+		if(!korgiTranslate()) output("Here go! Kor’diiak will do a protect. Big scary to bad guys. He make sure many get home safe, so you make sure he get home safe.”</i>");
+		else output("Here you are, this big guy ought to protect you out on the ice. Or anywhere cold really. He’s helped a lot of korgonne get back safe from hunts. He’ll have your back, so you make sure to have his.”</i>");
 	}
 	else if(arg is NogwichLeash)
 	{
@@ -271,7 +276,7 @@ public function purchaseTameling(arg:ItemSlotClass):void
 		output("\n\n<i>“");
 		if(!korgiTranslate()) output("Normally would give smaller nog’wich for huntings, but aliens can be all shapes or even sizes. I give you one of biggest nog’wich. Then you can give rides if finding lost aliens,");
 		else output("Normally only the smaller nog’wich go out for hunts, but I figure since there are all kinds of aliens out there I’d give you one of the biggest one we have who’s still in her prime. I think she likes you,");
-		output("”</i> she says, handing the leash off to you.\n\n");
+		output("”</i> she says, handing the leash off to you.");
 	}
 	//Grunch
 	else if(arg is GrunchLeash)
@@ -301,8 +306,10 @@ public function purchaseTameling(arg:ItemSlotClass):void
 	}
 	else
 	{
-		output("Maja goes vanishes into the back and returns with your brand-new rental pet.\n\n");
+		output("Maja goes vanishes into the back and returns with your brand-new rental pet.");
 	}
+	output("\n\n");
+	
 	quickLoot(arg);
 }
 
@@ -323,53 +330,89 @@ public function canReturnMajaPet():Boolean
 	if(pc.hasItemByClass(GrunchLeash) || pc.accessory is GrunchLeash) return true;
 	return false;
 }
-public function returnPetToMaja():void
+public function returnPetToMajaMenu():void
+{
+	var btnSlot:int = 0;
+	
+	clearMenu();
+	if(flags["MAJA_RENTING"] == "a kor’diiak bear leash" && (pc.hasItemByClass(KordiiakLeash) || pc.accessory is KordiiakLeash))
+	{
+		addButton(btnSlot++, "Kor’diiak", returnPetToMaja, "kor’diiak", "Return Kor’diiak", "Return the kor’diiak to its home.");
+	}
+	if(flags["MAJA_RENTING"] == "a nog’wich leash" && (pc.hasItemByClass(NogwichLeash) || pc.accessory is NogwichLeash))
+	{
+		addButton(btnSlot++, "Nog’wich", returnPetToMaja, "nog’wich", "Return Nog’wich", "Return the nog’wich to its home.");
+	}
+	if(pc.hasItemByClass(GrunchLeash) || pc.accessory is GrunchLeash)
+	{
+		addButton(btnSlot++, "Grunch", returnPetToMaja, "grunch", "Return Grunch", "Return the grunch to its home.");
+	}
+	if(pc.hasItemByClass(ShoulderGrunchLeash) || pc.accessory is ShoulderGrunchLeash)
+	{
+		addButton(btnSlot++, "S.Grunch", returnPetToMaja, "shoulder grunch", "Return Shoulder Grunch", "Return the shoulder grunch to its home.");
+	}
+	addButton(14, "Back", majaMenu);
+}
+public function returnPetToMaja(beast:String = ""):void
 {
 	clearOutput();
 	showMaja();
 	author("Gardeford");
-	if(flags["MAJA_RENTING"] == "a kor’diiak bear leash")
+	switch(beast)
 	{
-		output("You lead the large bear-like beast waiting outside the door back into Tamed Tamelings. It immediately bounds over to maja, giving her a big lick and knocking her off balance so she falls back into her chair.");
-		output("\n\n<i>“Oof, guess you missed ");
-		if(!korgiTranslate()) output("Maja");
-		else output("me");
-		output(",”</i> she says, patting the shaggy creature affectionately. She leads him back to the pens, coming back a minute later with a huge grin.");
-		output("\n\n<i>“");
-		if(!korgiTranslate()) output("Much thankings! Hopefully he did many helpings,");
-		else output("Thanks for bringing him back. I hope he was a lot of help. Just ask if you need anything else,");
-		output("”</i> she says, sliding the key back onto her ring.");
-		//(back to menu)
-		if(pc.hasItemByClass(KordiiakLeash)) pc.destroyItemByClass(KordiiakLeash);
-		else if(pc.accessory is KordiiakLeash) pc.accessory = new EmptySlot();
+		case "kor’diiak":
+			output("You lead the large bear-like beast waiting outside the door back into Tamed Tamelings. It immediately bounds over to maja, giving her a big lick and knocking her off balance so she falls back into her chair.");
+			output("\n\n<i>“Oof, guess you missed ");
+			if(!korgiTranslate()) output("Maja");
+			else output("me");
+			output(",”</i> she says, patting the shaggy creature affectionately. She leads him back to the pens, coming back a minute later with a huge grin.");
+			output("\n\n<i>“");
+			if(!korgiTranslate()) output("Much thankings! Hopefully he did many helpings,");
+			else output("Thanks for bringing him back. I hope he was a lot of help. Just ask if you need anything else,");
+			output("”</i> she says, sliding the key back onto her ring.");
+			
+			if(pc.hasItemByClass(KordiiakLeash)) pc.destroyItemByClass(KordiiakLeash);
+			else if(pc.accessory is KordiiakLeash) pc.accessory = new EmptySlot();
+			
+			flags["MAJA_RENTING"] = undefined;
+			break;
+		case "nog’wich":
+			output("The large horse-leopard you had left waiting at the door enters at your call, brushing against Maja before heading back into the pen area of its own volition. Maja smiles, going to let her back into her enclosure. She comes back a moment later with a huge smile.");
+			output("\n\n<i>“");
+			if(!korgiTranslate()) output("Many thankings. Little korgs will be happy. Many ridings again.");
+			else output("Thanks for keeping her safe, the little ones will be happy to have their favorite riding nog back in the hold.");
+			output("”</i>");
+			
+			if(pc.hasItemByClass(NogwichLeash)) pc.destroyItemByClass(NogwichLeash);
+			else if(pc.accessory is NogwichLeash) pc.accessory = new EmptySlot();
+			
+			flags["MAJA_RENTING"] = undefined;
+			break;
+		case "grunch":
+		case "shoulder grunch":
+			output("Maja scowls as you bring the grunch back through the door, but takes it off your hands. She’s in the back room for under a minute before plodding back to her desk, sitting grumpily on her stool.");
+			output("\n\n<i>“");
+			if(!korgiTranslate()) output("Much thankings. So glad having grunch back,");
+			else output("Gee thanks. I don’t know what I’d have done if that one didn’t return,");
+			output("”</i> she snarks with a playful smile.");
+			
+			//Just purge all grunches, it's fiiiine. PC can't have both at once anyhow.
+			if(beast == "grunch")
+			{
+				if(pc.hasItemByClass(GrunchLeash)) pc.destroyItemByClass(GrunchLeash);
+				else if(pc.accessory is GrunchLeash) pc.accessory = new EmptySlot();
+			}
+			if(beast == "shoulder grunch")
+			{
+				if(pc.hasItemByClass(ShoulderGrunchLeash)) pc.destroyItemByClass(ShoulderGrunchLeash);
+				else if(pc.accessory is ShoulderGrunchLeash) pc.accessory = new EmptySlot();
+			}
+			break;
+		default:
+			output("You return the rented animal to a grateful Maja.");
+			break;
 	}
-	//Nog'wich
-	else if(flags["MAJA_RENTING"] == "a nog’wich leash")
-	{
-		output("The large horse-leopard you had left waiting at the door enters at your call, brushing against Maja before heading back into the pen area of its own volition. Maja smiles, going to let her back into her enclosure. She comes back a moment later with a huge smile.");
-		output("\n\n<i>“");
-		if(!korgiTranslate()) output("Many thankings. Little korgs will be happy. Many ridings again.");
-		else output("Thanks for keeping her safe, the little ones will be happy to have their favorite riding nog back in the hold.");
-		output("”</i>");
-		if(pc.hasItemByClass(NogwichLeash)) pc.destroyItemByClass(NogwichLeash);
-		else if(pc.accessory is NogwichLeash) pc.accessory = new EmptySlot();
-	}
-	//Either grunch
-	else
-	{
-		output("Maja scowls as you bring the grunch back through the door, but takes it off your hands. She’s in the back room for under a minute before plodding back to her desk, sitting grumpily on her stool.");
-		output("\n\n<i>“");
-		if(!korgiTranslate()) output("Much thankings. So glad having grunch back,");
-		else output("Gee thanks. I don’t know what I’d have done if that one didn’t return,");
-		output("”</i> she snarks with a playful smile.");
-		//Just purge all grunches, it's fiiiine. PC can't have both at once anyhow.
-		if(pc.hasItemByClass(GrunchLeash)) pc.destroyItemByClass(GrunchLeash);
-		else if(pc.accessory is GrunchLeash) pc.accessory = new EmptySlot();
-		if(pc.hasItemByClass(ShoulderGrunchLeash)) pc.destroyItemByClass(ShoulderGrunchLeash);
-		else if(pc.accessory is ShoulderGrunchLeash) pc.accessory = new EmptySlot();
-	}
-	//else output("You return the rented animal to a grateful Maja.");
-	flags["MAJA_RENTING"] = undefined;
+	//(back to menu)
 	clearMenu();
 	addButton(0,"Next",repeatMajaApproach,true);
 }
