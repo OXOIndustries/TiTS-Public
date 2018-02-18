@@ -144,7 +144,7 @@ public function syriPlayGameResult(tries:int = 15):Boolean
 	
 	if(misses <= 1) won = true;
 	// Give result
-	output("\n\nMisses: " + misses);
+	//output("\n\nMisses: " + misses);
 	return won;
 }
 

@@ -4394,6 +4394,10 @@ public function displayEncounterLog(showID:String = "All"):void
 					var syriShootsLoss:int = (flags["TIMES_LOST_TO_SYRI"] > 0 ? flags["TIMES_LOST_TO_SYRI"] : 0);
 					var syriShootsTotal:int = (syriShootsWin + syriShootsLoss);
 					if(syriShootsTotal > 0) output2("\n<b>* Syri, Gaming, Win/Loss Ratio:</b> " + syriShootsWin + "/" + syriShootsLoss + ", of " + syriShootsTotal + " games");
+					syriShootsWin = (flags["SYRI_PETPLAY_WINS"] > 0 ? flags["SYRI_PETPLAY_WINS"] : 0);
+					syriShootsLoss = (flags["SYRI_PETPLAY_LOST"] > 0 ? flags["SYRI_PETPLAY_LOST"] : 0);
+					syriShootsTotal = (syriShootsWin + syriShootsLoss);
+					if(syriShootsTotal > 0) output2("\n<b>* Syri, Pet-Play, Win/Loss Ratio:</b> " + syriShootsWin + "/" + syriShootsLoss + ", of " + syriShootsTotal + " games");
 					if(flags["FUCKED_SYRI_COUNT"] != undefined) output2("\n<b>* Syri, Times Sexed:</b> " + flags["FUCKED_SYRI_COUNT"]);
 					if(flags["TIMES_BUTTFUCKED_BY_SYRI"] != undefined) output2("\n<b>* Syri, Times She Fucked Your Ass:</b> " + flags["TIMES_BUTTFUCKED_BY_SYRI"]);
 					if(flags["SyriTailcocked"] != undefined) output2("\n<b>* Syri, Times You Used Your Tailcock on Her:</b> " + flags["SyriTailcocked"]);
