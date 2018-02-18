@@ -161,12 +161,12 @@
 			throw new Error("useFunction must be overriden in a child class!");
 		}
 		
-		public function onEquip(targetCreature:Creature):void
+		public function onEquip(targetCreature:Creature, outputText:Boolean = false):void
 		{
 			
 		}
 		
-		public function onRemove(targetCreature:Creature):void
+		public function onRemove(targetCreature:Creature, outputText:Boolean = false):void
 		{
 			
 		}

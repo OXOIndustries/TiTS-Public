@@ -3724,6 +3724,25 @@
 			removeEquipment();
 		}
 		
+		public function onEquipClothes(item:String = "all"):void
+		{
+			if(item == "all" || item == "underwear" || item == "upperUndergarment") { upperUndergarment.onEquip(this); }
+			if(item == "all" || item == "underwear" || item == "lowerUndergarment") { lowerUndergarment.onEquip(this); }
+			if(item == "all" || item == "clothing" || item == "armor") { armor.onEquip(this); }
+		}
+		public function onEquipEquipment(item:String = "all"):void
+		{
+			if(item == "all" || item == "weapons" || item == "meleeWeapon") { meleeWeapon.onEquip(this); }
+			if(item == "all" || item == "weapons" || item == "rangedWeapon") { rangedWeapon.onEquip(this); }
+			if(item == "all" || item == "accessory") { accessory.onEquip(this); }
+			if(item == "all" || item == "shield") { shield.onEquip(this); }
+		}
+		public function onEquipAll():void
+		{
+			onEquipClothes();
+			onEquipEquipment();
+		}
+		
 		//STATS!
 		//Personalities!
 		public function isNice(): Boolean {

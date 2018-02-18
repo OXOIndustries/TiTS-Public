@@ -1375,7 +1375,7 @@ public function unequip(item:ItemSlotClass, override:Boolean = false):void
 	var i:int = 0;
 	for(i = 0; i < unequippedItems.length; i++)
 	{
-		unequippedItems[i].onRemove(pc);
+		unequippedItems[i].onRemove(pc, true);
 	}
 	
 	itemCollect(unequippedItems);
@@ -1530,8 +1530,8 @@ public function equipItem(arg:ItemSlotClass):void {
 		}
 		else output(" <b>AN ERROR HAS OCCURRED: Equipped invalid item type. Item: " + arg.longName + "</b> ");
 
-		removedItem.onRemove(pc);
-		arg.onEquip(pc);
+		removedItem.onRemove(pc, true);
+		arg.onEquip(pc, true);
 	}
 	
 	//If item to loot after!

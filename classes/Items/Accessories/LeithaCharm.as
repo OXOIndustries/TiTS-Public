@@ -58,7 +58,7 @@
 		
 		// Using Leitha Charm as the test for this system, so there's going to be some hard-coded checks in various places
 		// to ensure this stuff works.
-		override public function onEquip(targetCreature:Creature):void
+		override public function onEquip(targetCreature:Creature, outputText:Boolean = false):void
 		{
 			/*
 			 * se1 + deltaT
@@ -68,7 +68,7 @@
 			targetCreature.createStatusEffect("Leitha Charm", -720 + rand(360), 0, 0, 0, false, "Pill", "Your leitha charm necklace hangs from your neck, infusing your body with targeted transformative nanomachines.", false, 0);
 		}
 		
-		override public function onRemove(targetCreature:Creature):void
+		override public function onRemove(targetCreature:Creature, outputText:Boolean = false):void
 		{
 			targetCreature.removeStatusEffect("Leitha Charm");
 		}
