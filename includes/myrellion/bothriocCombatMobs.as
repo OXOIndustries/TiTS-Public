@@ -346,8 +346,8 @@ public function bothriocPidemmeButtEggs(fromCombat:Boolean):void
 			output(" load, as it’s squeezed out by the relentless pressure of eggs on your prostate.");
 			if (pc.cumQ() <= 10) output(" Only the meager drops that your body has produced and held back during this experience dribble out.");
 			else if (pc.cumQ() <= 100) output(" A respectable, virile load is spent upon the ground in a long stream.");
-			else if (pc.cumQ() <= 500) output(" By the time your stream of [pc.jizz] fully gushes out onto the ground, you’ll have a respectable puddle.");
-			else if (pc.cumQ() <= 1000) output(" The thick puddle that has already formed on the ground from your precum is just the beginning. The [pc.jizz] pouring from you now would be likened by poets to a lake or sea.");
+			else if (pc.cumQ() <= 500) output(" By the time your stream of [pc.cum] fully gushes out onto the ground, you’ll have a respectable puddle.");
+			else if (pc.cumQ() <= 1000) output(" The thick puddle that has already formed on the ground from your precum is just the beginning. The [pc.cum] pouring from you now would be likened by poets to a lake or sea.");
 		}
 		if (pc.hasCock() && pc.hasVagina()) output(" Meanwhile, y");
 		// This looks dumb but trust me

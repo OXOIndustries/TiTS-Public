@@ -2041,6 +2041,9 @@
 				case "tailCockHead":
 					buffer = tailCockHead();
 					break;
+				case "tailCockHeads":
+					buffer = tailCockHeads();
+					break;
 				case "tailCocks":
 				case "cockTails":
 					buffer = tailCocksDescript();
@@ -2315,9 +2318,11 @@
 					buffer = clitDescript(arg2, true);
 					break;
 				case "eachClit":
+				case "eachClitoris":
 					buffer = eachClit();
 					break;
 				case "oneClit":
+				case "oneClitoris":
 					buffer = oneClit();
 					break;
 				case "oneClitPerVagina":
@@ -2508,12 +2513,16 @@
 				case "foot":
 					buffer = foot();
 					break;
+				case "toe":
+					buffer = toe();
+					break;
 				case "toes":
 					buffer = toes();
 					break;
 				case "belly":
 				case "stomach":
 				case "tummy":
+				case "abdomen":
 					buffer = bellyDescript();
 					break;
 				case "bellySize":
@@ -7145,7 +7154,6 @@
 			if(legCount == 1) return foot(forceType,forceAdjective);
 			
 			// Default:
-			var select: Number = 0;
 			var output: String = "";
 			output = footAdjectives(forceType, forceAdjective);
 		
@@ -7166,7 +7174,6 @@
 			return output;
 		}
 		public function foot(forceType: Boolean = false, forceAdjective: Boolean = false): String {
-			var select: Number = 0;
 			var output: String = "";
 			output = footAdjectives(forceType, forceAdjective);
 			//Noun
@@ -7186,18 +7193,24 @@
 			else output += "foot";
 			return output;
 		}
-		public function toes(): String {
-			var select: Number = 0;
+		public function toe(): String {
 			var output: String = "";
 			//Noun
-			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hoof-tips";
-			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && legType != GLOBAL.TYPE_AVIAN && rand(2) == 0) output += "paw-toes";
+			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hoof-tip";
+			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && legType != GLOBAL.TYPE_AVIAN && rand(2) == 0) output += "paw-toe";
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilia";
-			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && rand(2) == 0) output += "pointed toes";
-			else if (legType == GLOBAL.TYPE_LIZAN) output += "claws";
-			else if (legType == GLOBAL.TYPE_FROG && rand(2) == 0) output += "webbed toes";
-			else if (legType == GLOBAL.TYPE_SHARK && rand(2) == 0) output += RandomInCollection(["claws","webbed toes"]);
-			else output += "toes";
+			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && rand(2) == 0) output += "pointed toe";
+			else if (legType == GLOBAL.TYPE_LIZAN) output += "claw";
+			else if (legType == GLOBAL.TYPE_FROG && rand(2) == 0) output += "webbed toe";
+			else if (legType == GLOBAL.TYPE_SHARK && rand(2) == 0) output += RandomInCollection(["claw","webbed toe"]);
+			else output += "toe";
+			return output;
+		}
+		public function toes(): String {
+			var output: String = "";
+			//Noun
+			if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilia";
+			else output += plural(toe());
 			return output;
 		}
 		public function hasKnees():Boolean
@@ -7230,7 +7243,6 @@
 			return plural(kneeDescript());
 		}
 		public function kneeDescript(): String {
-			var select: Number = 0;
 			var output: String = "";
 			//Noun
 			if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilium";
@@ -17068,6 +17080,11 @@
 		public function tailCockHead(): String {
 			if (!hasTailCock()) return "|||<b>ERROR:</b> No tail cock to describe |||";
 			return cockHeadGetName(tailGenitalArg);
+		}
+		public function tailCockHeads(): String {
+			if (!hasTailCock()) return "|||<b>ERROR:</b> No tail cock to describe |||";
+			if (tailCount == 1) return cockHeadGetName(tailGenitalArg);
+			return plural(cockHeadGetName(tailGenitalArg));
 		}
 		public function cockHeadGetName(type: int = 0): String {
 			var names: Array;

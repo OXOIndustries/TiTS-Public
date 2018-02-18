@@ -11202,7 +11202,7 @@ public function bessGetBlowjob():void
 		output("\n\n");
 		if (bessIsSub()) output("<i>“...Um, "+ bessPCSexName() +", did you want me to fuck your ass with my tail?”</i> [bess.name] momentarily pulls back and meekly suggests. You nod firmly, definitely approving of some butt-play.");
 		else output("<i>“...How about we get that ass some action, hmm?</i> [bess.name] momentarily pulls back and "+ bess.mf("saucily", "sultrily") +" suggests. You nod dreamily in agreement, only half-catching [bess.hisHer] words.”</i>");
-		output(" Suddenly [bess.hisHer] silvery metal JoyCock curls around your hips and approaches your ass. Moments later, your [pc.assColor] buttocks are pushed apart, [bess.hisHer] thick tip pushes pointedly against your [pc.asshole].");
+		output(" Suddenly [bess.hisHer] silvery metal JoyCock curls around your hips and approaches your ass. Moments later, your [pc.skinFurScalesColor] buttocks are pushed apart, [bess.hisHer] thick tip pushes pointedly against your [pc.asshole].");
 		pc.buttChange(200, true, true, false);
 	
 		output("\n\nWhen it slips inside your buttocks you try not to clench, relaxing and feeling it weave its way deep inside of you. Swiftly seeking out your prostate, it drags along it in long, low strokes. Delicious, humming pleasure floods through every inch of your being as [bess.heShe] teases your inner ass, fucking and pumping deep inside of your sweet hole!");
@@ -11922,7 +11922,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		}
 		else
 		{
-			output("\n\nWith practiced grace, [bess.name] strips off [bess.hisHer] [bess.undergarments]. It’s not long before [bess.heShe]’s standing there in all [bess.hisHer] naked glory, [bess.hisHer] [bess.cock] boldly on display.");
+			output("\n\nWith practiced grace, [bess.name] strips off [bess.hisHer] [bess.underGarments]. It’s not long before [bess.heShe]’s standing there in all [bess.hisHer] naked glory, [bess.hisHer] [bess.cock] boldly on display.");
 		}
 	}
 

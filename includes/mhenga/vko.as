@@ -1071,7 +1071,7 @@ public function agreeToVKoBoobSucks():void
 	output("\n\nV-Ko approaches you, and you note the crosses on her chest moving. They retract inward, sinking in to expose a pair of prehensile, hose-like protrusions. The crosses themselves have melted into concave, parabolic arcs perfectly sized to fit your [pc.breasts]. Without further ado, the cups align themselves with your [pc.nipples] and give each an experimental pump.");
 
 	output("\n\nA shudder ripples across your skin and you bite back a moan as you feel your [pc.nipples] pop into place, encapsulated by the suctioning cups.");
-	if(pc.hasFuckableNipples()) output(" Though your [nipples] have no protrusions to play with, that doesn’t stop the cups from fashioning themselves around your areolas and ensuring that your [pc.milk] will go inside of the nursedroid.");
+	if(pc.hasFuckableNipples()) output(" Though your [pc.nipples] have no protrusions to play with, that doesn’t stop the cups from fashioning themselves around your areolas and ensuring that your [pc.milk] will go inside of the nursedroid.");
 	if(pc.bRows() > 1) output(" Below your primary tits, your remaining breasts practically tingle with anticipation of their turn.");
 
 	output("\n\nHer chest starts emitting a low pumping noise, and you feel the cups begin to drain you of your [pc.milk]. You breathe a sigh of relief, humming in pleasure as the suction cups stimulate you in a most delightful manner. It’s not quite sexual, at least not so much that you’re going to cum over the seats any moment now, but still very satisfying on a deep level.");

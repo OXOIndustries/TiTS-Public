@@ -2059,7 +2059,7 @@ public function liftVoyeurism():void
 		output("\n\nYou take a moment to look around and as you’ve expected, you can see most if not all spectators are profusely pleasuring themselves to the lewd acts on display before them. Not one to ignore your own impulses, you");
 		if(!pc.isCrotchExposed()) output(" quickly take off your gear and");
 		output(" start to play with your ");
-		if(pc.hasCock()) output("[pc.cockLargest]");
+		if(pc.hasCock()) output("[pc.cockBiggest]");
 		else if(pc.hasVagina()) output("[pc.pussy]");
 		else output("[pc.nipples]");
 		output(" satisfied that you can take a load off, watch some hot cow on bull action, and ");

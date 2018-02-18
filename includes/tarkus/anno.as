@@ -737,7 +737,7 @@ public function talkToAnnoAboutShitz():void
 	output("You ask Anno if she’s got a few free minutes to chat.");
 	output("\n\nShe glances around the customer-less storefront and grins, <i>“I dunno, I’m pretty swamped at the moment...”</i>");
 	output("\n\nYou both chuckle as Anno hops up onto the counter");
-	if(!pc.isTaur()) output(", patting an empty space beside her invitingly. You join her, your [pc.legOrlegs] dangling off the edge with hers");
+	if(!pc.isTaur()) output(", patting an empty space beside her invitingly. You join her, your [pc.legOrLegs] dangling off the edge with hers");
 	output(".");
 
 	output("\n\n<i>“So, what’s on your mind, boss?”</i>");

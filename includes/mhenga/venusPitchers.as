@@ -183,20 +183,21 @@ public function firstTimeVenusEntrance(tricked:Boolean = false):void {
 	// merge
 	output("\n\nSoft, spongy flesh hits your back as you come to rest in the bottom of the hole. It’s uneven and bundled together in what feels like huge ropes, dozens of them squirming and sliding along your back following the impact. You roll aside instinctively, trying to escape whatever you landed on, but that just earns you a face full of tentacles, slippery, wiggling tentacles. They flex and arch away from the bottom of this tiny cave, flopping you back onto another bed of moist vines where you can see the light from above slowly dimming, blocked by a busty silhouette that eventually plugs the gap entirely, shrouding you in darkness.");
 	output("\n\nThe air is thick with whatever was making you sneeze – the spores, you think – but at this point, they’re just making the tip of your nose itch. That’s a far lesser concern than the fact that you’re in a pitch black hole surrounded by tentacles strong enough to toss you around like a child’s toy. One rubs your cheek, smearing your [pc.skinFurScales] with something warm and wet that’s leaking from a semi-rigid, flared tip. Another ");
-	if(!pc.isNude()) {
-		if(pc.lowerUndergarment.shortName != "") output("slithers up inside your [pc.lowerUndergarment.longName]");
-		else if(pc.armor.shortName != "") output("slithers up inside your [pc.armor.longName]");
-		else output("slithers up inside your [pc.upperUndergarments.longName]");
+	if(!pc.isNude())
+	{
+		if(pc.hasLowerGarment()) output("slithers up inside your [pc.lowerUndergarment]");
+		else if(pc.hasArmor()) output("slithers up inside your [pc.armor]");
+		else output("slithers up inside your [pc.upperUndergarments]");
 	}
 	else output("slithers across your nude body");
 	output(", the friction peeling back an outer covering to expose something even softer and wetter, tipped with a sucking, hungry hole that plants dripping-wet kisses all over your abdomen and [pc.fullChest].");
 	if(!pc.isNude()) output(" Your gear is soon a soaking hot mess.");
 	
 	output("\n\nYou try to resist, but your mind is a little more sluggish and relaxed than it was a few moments ago. Vines as thick and strong as small trees gradually encircle each of your limbs, snaring them in slippery tight caresses.");
-	if(pc.lowerUndergarment.shortName != "")
+	if(pc.hasLowerGarment())
 	{ 
 		output(" Smaller, quicker tentacles see to your ");
-		if(pc.armor.shortName != "") output("[pc.armor] and ");
+		if(pc.hasArmor()) output("[pc.armor] and ");
 		output("sticky underwear, removing the obstructing material in a matter of moments.");
 	}
 	output(" The slithering restraints pull tight, spreading your nude form for what you can only assume is coming violation, languidly dragging their fluid-leaking lengths over your [pc.skinFurScales]. The worst part of it is the omnipresent darkness. The shroud of sable murk makes every touch seem a surprise, and sightlessness enhances the touches’ effects on your vulnerable psyche.");
@@ -989,7 +990,7 @@ public function elderVenusPitcherDickNipplePlay():void {
 	
 	output("\n\n<i>“Quite an unusual set of pointers you have there. Let’s see whether I get milk or honey for playing with them,”</i> the seductive plant-girl wonders aloud. <i>“You just relax and hang out while I milk these puppies-”</i> she tugs on your [pc.dickNipples] eagerly, <i>“-so well that they pop out whenever you think about me.”</i>");
 	
-	output("\n\Letting go of your chest phalluses, the verdant seductress rocks back, swaying pendulously for a moment before her momentum carries her forward, smushing her big green jugs to either side of you [pc.face], smothering you in those big, soft boobs. You groan in pleasure at having yourself put so close to the objects of your affection, still watching them bounce and spin in your mind’s eye as you lie there, waiting to experience more of the pleasure she’s promised. Your [pc.nippleDicks] are so hard and now that they’re exposed, the feeling of imaginary tongues sliding over them has grown even more potent.");
+	output("\n\Letting go of your chest phalluses, the verdant seductress rocks back, swaying pendulously for a moment before her momentum carries her forward, smushing her big green jugs to either side of you [pc.face], smothering you in those big, soft boobs. You groan in pleasure at having yourself put so close to the objects of your affection, still watching them bounce and spin in your mind’s eye as you lie there, waiting to experience more of the pleasure she’s promised. Your [pc.nipples] are so hard and now that they’re exposed, the feeling of imaginary tongues sliding over them has grown even more potent.");
 	
 	output("\n\nThat sensation becomes far more palpable a moment later, only it’s happening on every single surface of your dicknipples, surrounding them in a warm, wet surface that tugs and squeezes them relentlessly. Those warm sheaths engulf the entirety of your pricks, and blinded by breasts as you are, your sense of touch is magnified, making the pleasure so exquisite that you begin to leak pre already. Hundreds of cilia stroke and caress you like a swarm of tiny tongues. The nubs at the ends press against your [pc.chest] and close up, sealing up just in time for them to begin sucking slightly, pulsing slow vacuum-powered tugs on your shafts. Circles of pressure constrict around your lengths at various points and begin to drag inward, new ones forming at the bottom of your [pc.dickNipples] whenever they slide past the tips, milking you unendingly.");
 	
@@ -1015,7 +1016,7 @@ public function elderVenusPitcherDickNipplePlay():void {
 	
 	output("\n\n<i>“Two...”</i>");
 	
-	output("\n\nYou feel like your [pc.nippleDicks] are about to explode, twitching wildly and arching inside their velvety soft prisons.");
+	output("\n\nYou feel like your [pc.nipples] are about to explode, twitching wildly and arching inside their velvety soft prisons.");
 	
 	output("\n\n<i>“One...”</i>");
 	

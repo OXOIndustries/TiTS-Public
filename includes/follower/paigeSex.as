@@ -3885,7 +3885,7 @@ public function SSDYTH(args:Array):void
 		output("\n\nPaige closes her eyes as she focuses on her work");
 		if(pc.cockTotal() >= 2) output(", suckling on your [pc.cock] and alternating her motions with stroking your [pc.cock 1]");
 		//if (pc.cocks >= 3)
-		if(pc.cockTotal() >= 3) output(", and helplessly letting [pc.eachcock] bump against her features as she goes");
+		if(pc.cockTotal() >= 3) output(", and helplessly letting [pc.eachCock] bump against her features as she goes");
 		//if (pc.hasVagina = true)
 		if(pc.hasVagina()) output(". She crooks her fingers on her other hand, pushing at your sensitive vaginal walls, looking for your G-spot. You don’t know where it is, but your lips are pursed in sheer anticipation of her finding it");
 		output(". <i>“You’re a bit of a fiend for cum. You must be, if you suck dick this well.”</i> Her fur stands on end slightly in the playful chiding, but her motions speed up, confirming you. <i>“");

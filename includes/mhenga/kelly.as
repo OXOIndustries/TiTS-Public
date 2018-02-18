@@ -2003,7 +2003,7 @@ public function helpKellyFindHerHoneyThisWasntAPloyForCumPlayAtAll():void
 		output("\n\nYou accept her and move your other hand to her breast. You cup both orbs, hefting and massaging them; every now and then you give her nipples a little tug, earning an excited squeak out of your laquine lover.");
 
 		output("\n\nWith a pleased hum she shifts on the couch, falling over onto her back and dragging you down with her, her long, powerful legs wrapping themselves around your waist to hug you closer to her. ");
-		if(!pc.isNude()) output("Her twin shafts brush against your [pc.crotchGarments], warm enough that you can feel a sense of heat against your [pc.belly] even through them.");
+		if(!pc.isNude()) output("Her twin shafts brush against your [pc.lowerGarments], warm enough that you can feel a sense of heat against your [pc.belly] even through them.");
 		else output("Naked as you are, there is nothing to keep her shafts pushing against your [pc.belly], hot and hard against your [pc.skin].");
 		output(" She keeps kissing you, tongue squirming as it wraps affectionately around your own [pc.tongue], then slurps lewdly out between your lips as she breaks the kiss, eyes half-closed and chest heaving as she pants for breath. Her arms move and pull you down against her, burying your face squarely in her cleavage. <i>“Oh, I do love it when you want to play,”</i> she giggles, smooshing your face a little deeper into her tits, then smirking down at you.");
 

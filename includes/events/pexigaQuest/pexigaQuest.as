@@ -1851,7 +1851,7 @@ public function fuckNymFoe2():void
 		if(pc.hasToes()) output("toe-curling");
 		else if(pc.isNaga()) output("tail-curling");
 		else if(pc.hasLegFlag(GLOBAL.FLAG_HOOVES)) output("hoof-stomping");
-		else output("[pc.footNoun]-clenching");
+		else output("foot-clenching");
 		output(" pleasure. Panting like a bitch in heat, you clench your eyes shut and bite down on your lower lip as the droid works your posterior like a skin-tight pocket pussy.");
 
 		output("\n\nWhen she pushes her tongue back into your lust-slick cunt and suckles her lips against your well-edged joy buzzer, you’re putty in her hands. Your first orgasm is so intense, your body actually aches with how tightly your muscles clench. If it were anybody else, you’d be afraid of hurting them as your ");

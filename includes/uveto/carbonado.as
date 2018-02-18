@@ -1330,7 +1330,7 @@ public function cfsHolidayShoppingIII():void
 		}
 		else
 		{
-			output("\n\nThe striated organ writhes like a living thing inside you, and Gwen's hot breath on your [pc.vagina] only serves to expedite your pleasure. Her hands jump into action as you gasp in bliss, one masturbating your [pc.clit] with mindless furor. The other holds your lips open long enough for her to lower her head a little more. Lightning lances of lust dart through your rump as her tongue retracts from your [pc.assHole], only to dive into your [pc.vagina] with greater energy. She doesn't even attempt to breath as she makes love to your sex.");
+			output("\n\nThe striated organ writhes like a living thing inside you, and Gwen's hot breath on your [pc.vagina] only serves to expedite your pleasure. Her hands jump into action as you gasp in bliss, one masturbating your [pc.clit] with mindless furor. The other holds your lips open long enough for her to lower her head a little more. Lightning lances of lust dart through your rump as her tongue retracts from your [pc.asshole], only to dive into your [pc.vagina] with greater energy. She doesn't even attempt to breath as she makes love to your sex.");
 			output("\n\nYou struggle to form thoughts. 'Wait. This isn't the time. So many people watching', But all these rational thoughts swiftly lose out to the baser impulses. 'So good. Maybe if I just <b>Cum</b> a little bit!' Your eyes cross, and you grit your teeth as the last command hits [pc.eachVagina]. ");
 			if(pc.girlCumQ() < 100) output("Droplets");
 			else if(pc.girlCumQ() < 1000) output("Squirts");
