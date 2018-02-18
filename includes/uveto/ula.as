@@ -201,7 +201,7 @@ public function ulaTalkMenu():void
 	addButton(1,"Mining",ulaMiningTalk,undefined,"Mining","Ask Ula about the korgonne’s own mining.");
 	addButton(2,"Ula’s Role",ulasRoleInTheClan,undefined,"Ula’s Role","Ask Ula about her role in her clan.");
 	addButton(3,"Other Tribes",otherTribesTalkarydooda,undefined,"Other Tribes","Ask Ula about other korgonne tribes.");
-	addButton(4,"Explain:Guns",talkAboutGunsWithUla,undefined,"Explain: Guns","Explain guns too Ula.");
+	addButton(4,"Explain:Guns",talkAboutGunsWithUla,undefined,"Explain: Guns","Explain guns to Ula.");
 	addButton(5,"Exp:Electricity",explainElectricityToUla,undefined,"Explain: Electricity","Explain electricity to Ula.");
 	addButton(6,"Exp:Savicite",talkAboutSavicite,undefined,"Explain: Savicite","Explain Savicite to Ula.");
 	addButton(7,"Exp:Credits",ulaCreditsTalk,undefined,"Explain: Credits","Explain the universal galactic currency to Ula.");
