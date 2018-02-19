@@ -296,10 +296,11 @@
 		include "../includes/tarkus/sexbots.as";
 		include "../includes/tarkus/shekka.as";
 		include "../includes/tarkus/stellarTether.as";
+		include "../includes/tarkus/sydianFemale.as";
 		include "../includes/tarkus/sydianMale.as";
 		include "../includes/tarkus/taxi.as";
 		include "../includes/tarkus/theMess.as";
-		include "../includes/tarkus/sydianFemale.as";
+		include "../includes/tarkus/verusha.as";
 
 		//Third planet
 		include "../includes/newTexas/newTexas.as";
@@ -543,7 +544,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.138";
+			version = "0.7.139";
 
 			//temporary nonsense variables.
 			temp = 0;
