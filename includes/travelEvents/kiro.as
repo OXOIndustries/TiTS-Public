@@ -1,27 +1,38 @@
 // Roaming Bar Encounter Button
 public function roamingBarEncounter(button:int = 0):void
 {
-	//Build list of available NPCs
-	var NPCs:Array = new Array();
-	//66% chance Kiro could be there if available.
-	if(roamingKiroAvailable() && rand(3) <= 1) NPCs.push(kiroSetup);
-	//"Help: Bodies" option, has had an update from Anno about the Nova. @ Golden Peak
-	if(flags["DECK13_GRAY_PRIME_DECISION"] == 1 && flags["ANNO_NOVA_UPDATE"] == 1 && currentLocation == "609") NPCs.push(grayGooAtBarSetup);
-	// Repeat goo armor meet
-	else if(flags["GOO_ARMOR_AWAY"] != undefined) NPCs.push(grayGooArmorRoamingBonus);
-	//50% anno chances
-	if(
-	(	(currentLocation == "ANON'S BAR AND BOARD" && !pc.hasStatusEffect("Anno x Kaede Bar"))
-	||	(currentLocation == "BURT'S MAIN HALL" && flags["ANNOxSYRI_EVENT"] != undefined)
-	||	!InCollection(currentLocation, ["ANON'S BAR AND BOARD", "BURT'S MAIN HALL"])
-	)
-	&&	annoIsCrew() && !pc.hasStatusEffect("Anno Bar Busy") && rand(2) == 0) NPCs.push(annoRandoBarBonus);
-	if(flags["ERRA_HEARTBROKEN"] == undefined) NPCs.push(erraBarText);
-	//Pick available NPC, run setup func
-	if(NPCs.length > 0)
+	if(flags["BAR_NPC_TIMER"] == undefined || flags["BAR_NPC"] == undefined) flags["BAR_NPC_TIMER"] = GetGameTimestamp()-1;
+	//Do we need to set a new bar NPC? If yes, set it! (Changes 2 hours after proccing)
+	if(flags["BAR_NPC_TIMER"] < GetGameTimestamp())
 	{
-		NPCs[rand(NPCs.length)](button);
+		flags["BAR_NPC_TIMER"] = GetGameTimestamp()+90+rand(60);
+		//Build list of available NPCs
+		var NPCs:Array = new Array();
+		//66% chance Kiro could be there if available.
+		if(roamingKiroAvailable() && rand(3) <= 1) NPCs.push(kiroSetup);
+		//"Help: Bodies" option, has had an update from Anno about the Nova. @ Golden Peak
+		if(flags["DECK13_GRAY_PRIME_DECISION"] == 1 && flags["ANNO_NOVA_UPDATE"] == 1 && currentLocation == "609") NPCs.push(grayGooAtBarSetup);
+		//Verusha usually occupies the bar on Tarkus.
+		if(currentLocation == "302") NPCs.push(verushaBonusFunc,verushaBonusFunc,verushaBonusFunc,verushaBonusFunc,verushaBonusFunc);
+		// Repeat goo armor meet
+		else if(flags["GOO_ARMOR_AWAY"] != undefined) NPCs.push(grayGooArmorRoamingBonus);
+		//50% anno chances
+		if(
+		(	(currentLocation == "ANON'S BAR AND BOARD" && !pc.hasStatusEffect("Anno x Kaede Bar"))
+		||	(currentLocation == "BURT'S MAIN HALL" && flags["ANNOxSYRI_EVENT"] != undefined)
+		||	!InCollection(currentLocation, ["ANON'S BAR AND BOARD", "BURT'S MAIN HALL"])
+		)
+		&&	annoIsCrew() && !pc.hasStatusEffect("Anno Bar Busy") && rand(2) == 0) NPCs.push(annoRandoBarBonus);
+		if(flags["ERRA_HEARTBROKEN"] == undefined) NPCs.push(erraBarText);
+		//Pick available NPC, run setup func
+		if(NPCs.length > 0)
+		{
+			flags["BAR_NPC"] = NPCs[rand(NPCs.length)];
+			//NPCs[rand(NPCs.length)](button);
+		}
 	}
+	//If an NPC is active, run setup!
+	if(flags["BAR_NPC"] != undefined) flags["BAR_NPC"](button);
 }
 
 //Bar Preview Blurb
