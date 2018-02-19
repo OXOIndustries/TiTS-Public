@@ -599,6 +599,10 @@ package classes.Resources.Busts
 		public var Bust_SHELLY:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/shelly_nude.png", mimeType = "image/png")]
 		public var Bust_SHELLY_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/shelly_huge.png", mimeType = "image/png")]
+		public var Bust_SHELLY_HUGE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/shelly_huge_nude.png", mimeType = "image/png")]
+		public var Bust_SHELLY_HUGE_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/double_goo.png", mimeType = "image/png")]
 		public var Bust_SLUTGOO:Class;
@@ -1280,6 +1284,10 @@ package classes.Resources.Busts
 			public var Full_SHELLY:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/shelly_nude.png", mimeType = "image/png")]
 			public var Full_SHELLY_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/shelly_huge.png", mimeType = "image/png")]
+			public var Full_SHELLY_HUGE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/shelly_huge_nude.png", mimeType = "image/png")]
+			public var Full_SHELLY_HUGE_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/simone.png", mimeType = "image/png")]
 			public var Full_SIMONE:Class;

@@ -248,6 +248,8 @@
 		public var Bust_SHELLY:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Shelly_Nude.png", mimeType = "image/png")]
 		public var Bust_SHELLY_NUDE:Class;
+		public function get Bust_SHELLY_HUGE():Class { return Bust_SHELLY; }
+		public function get Bust_SHELLY_HUGE_NUDE():Class { return Bust_SHELLY_NUDE; }
 
 		[Embed(source = "../../../assets/images/npcs/gats/Steph.png", mimeType = "image/png")]
 		public var Bust_STEPH:Class;
