@@ -142,7 +142,7 @@ public function verushaMenu():void
 	else addButton(1,"Talk",talkToVerusha,undefined,"Talk","Talk to her some more, why not?");
 	if(flags["VERUSHA_GROPED"] == undefined) addButton(2,"Grope",gropeVerusha,undefined,"Grope","This is probably a bad idea.");
 	else addDisabledButton(2,"Grope","Grope","Even the galaxies most vapid, air-headed bimbo bunny would know this is a bad idea.");
-	if(pc.lust() < 33) addDisabledButton(3,"Sex","Sex","You aren't turned on enough for that.");
+	if(pc.lust() < 33) addDisabledButton(3,"Sex","Sex","You aren’t turned on enough for that.");
 	else addButton(3,"Sex",sexWithVerusha);
 }
 
@@ -221,7 +221,7 @@ public function verushaTalkMenu():void
 	clearMenu();
 	addButton(0,"Her Past",verushaPastTalk);
 	if(flags["VERUSHA_PAST_TALK"] != undefined) addButton(1,"Pirates",verushaPiratesTalk);
-	else addDisabledButton(1,"Locked","Locked","You don't know enough about her to ask this!");
+	else addDisabledButton(1,"Locked","Locked","You don’t know enough about her to ask this!");
 	addButton(2,"Mercenary",verushaMercenaryTalk);
 	addButton(3,"Race",verushaRaceTalk)
 	addButton(14,"Back",approachVerusha);
@@ -434,7 +434,7 @@ public function sexWithVerusha():void
 	addButton(0,"Yes",yesSexWithVerusha);
 	addButton(1,"No",noSexWithVerusha);
 	if(flags["VERUSHA_ASSERTED"] == undefined) addButton(2,"Assert",verushaGetsAsserted);
-	else addDisabledButton(2,"Assert","Assert","That didn't end well last time. No reason to do it all over again!");
+	else addDisabledButton(2,"Assert","Assert","That didn’t end well last time. No reason to do it all over again!");
 }
 
 //[Yes]
@@ -521,7 +521,7 @@ public function randomMercEncounterWivVerusha():void
 	clearOutput();
 	showVerusha();
 	flags["MET_VERUSHAS_FRIEND"] = 1;
-	showName("VERUSHA'S\nFRIEND!");
+	showName("VERUSHA’S\nFRIEND!");
 	output("<i>“So, you’re going off the call again?”</i> a stranger calls out at her. You struggle to turn your head to see who’s talking. When you’ve turned your head enough, you see a gryvain behind you. You assume that she is one of the mercs Verusha works with.");
 	output("\n\n<i>“Yeah, such is the burden of the well endowed. Sluts just fall into your lap.”</i> She chuckles.");
 	output("\n\n<i>“I know, probably didn’t notify commander about that, did you? You never do.”</i>");
@@ -569,11 +569,11 @@ public function verushaSexRouter():void
 	IncrementFlag("SEXED_VERUSHA");
 	var choices:Array = [];
 	if(pc.hasGenitals()) choices.push(verushaDrillsYourButt);
-	if(pc.inHeat() && pc.hasVagina() && (flags["VERUSHA_HEAT_SEX"] == undefined || (flags["VERUSHA_HEAT_SEX"] != undefined && flags["VERUSHA_HEAT_SEX"] + 48*60 < GetGameTimestamp()))) choices.push(verushaHeatSex);
+	if(pc.hasVagina() && pc.inHeat() && (flags["VERUSHA_HEAT_SEX"] == undefined || (flags["VERUSHA_HEAT_SEX"] != undefined && flags["VERUSHA_HEAT_SEX"] + 48*60 < GetGameTimestamp()))) choices.push(verushaHeatSex);
 	choices.push(verushaOralScene);
 	if(pc.hasCock() && flags["VERUSHA_ORALED"] != undefined) choices.push(verushaRimming);
 	if(pc.hasCock() && pc.cockThatFits(verushaCapacity()) >= 0 && pc.inRut() && (flags["VERUSHA_RUT_SEX"] == undefined || (flags["VERUSHA_RUT_SEX"] != undefined && flags["VERUSHA_RUT_SEX"] + 48*60 < GetGameTimestamp()))) choices.push(verushaRutScene);
-	if(pc.smallestCockLength() <= 6) choices.push(verushaSPH);
+	if(pc.hasCock() && pc.smallestCockLength() <= 6) choices.push(verushaSPH);
 	//NOW DO THE THING!
 	choices[rand(choices.length)]();
 }
@@ -780,8 +780,11 @@ public function verushaOralScene():void
 	output("\n\n<i>“Purse your lips dear.”</i> She strokes your cheek.");
 	output("\n\nYou do as she tells you, pursing your lips in such a way that she can apply the lipstick easily. She steadily applies the crimson make-up onto your [pc.lips]. Once she’s done with prettying up your lips, she quickly caps off the makeup before chucking it away.");
 	if(pc.lipColor != "red" && pc.lipColor != "scarlet" && pc.lipColor != "crimson") output("\n\n<i>“I’m sure you don’t mind me prettying up your lips.”</i>");
-	else output("Even though your lips are already crimson you don’t say anything, but you must be making a face, since she squeezes your lips into a cute pout.");
-	output("\n\n<i>“It’s not the color, my dear, it’s for smearing the lipstick all over my dick.”</i>}");
+	else
+	{
+		output(" Even though your lips are already crimson you don’t say anything, but you must be making a face, since she squeezes your lips into a cute pout.");
+		output("\n\n<i>“It’s not the color, my dear, it’s for smearing the lipstick all over my dick.”</i>");
+	}
 	output("\n\nWith your lips to her perverse standards, she gets back to what she came here for: her canine dick between your lips.");
 	output("\n\nShe grabs the back of your head, pulling you towards her towering erection. You purse your lips softly, giving her a perfect hole to thrust into. She does so with great relish, spreading your [pc.lips] around her cock. She keeps pushing into your throat, feeding you inch after inch of her dick. She doesn’t slow down ");
 	if(!pc.canDeepthroat()) output("despite your occasional gags, steadily pushing through any resistance your throat instinctively puts up.");
@@ -933,7 +936,9 @@ public function verushaRimming():void
 	output("\n\n<i>“Clean me up, little [pc.boyGirl].”</i> She presses her cum covered toes against your lips urgently. You open your mouth, taking her toe inside. You lick and suckle on it until it’s clean of cum and push it It of mouth with a pop, only to be replaced by another. You spend minutes sucking on her toes, licking all around her foot, making sure that none of your [pc.cum] remains on her foot.");
 	output("\n\nOnce her foot is completely clean you let go of it and look up at her with expectant eyes. She only smirks and presents you with her metallic leg, still covered in your [pc.cum].");
 	output("\n\nYou meekly take hold of the cybernetic leg and start licking the cum off it. You don’t spend as much time on it as you did with her real leg because she doesn’t feel what you’re doing, and it’s also easier to lick your [pc.cum] off from it since it’s not sticking to any fur.");
-	output("\n\nWhen you are done cleaning her feet, she squats down {if silly mode:, her heels touching the floor, and} before you can say anything she pulls your head into a kiss, invading your mouth with her tongue. She doesn’t give you the time to realize what’s going on before she pulls free from your tongue lock.");
+	output("\n\nWhen you are done cleaning her feet, she squats down");
+	if(silly) output(", her heels touching the floor, and");
+	output(" before you can say anything she pulls your head into a kiss, invading your mouth with her tongue. She doesn’t give you the time to realize what’s going on before she pulls free from your tongue lock.");
 	output("\n\nShe stands back up, picking up the tablet from the corner of your bed before lifting her other leg onto the bed. She spreads her other butt cheek with one hand, brings the tablet behind her and snaps a picture with the other. She turns the tablet, allowing you to see the picture: her asshole is surrounded by the crimson imprints of your [pc.lips]. Putting the tablet away she turns her attention back to you.");
 	output("\n\n<i>“If you want to make out with my ass again, I’ll be at the bar.”</i> She picks up her pants and leaves you kneeling at the side of your bed. You snicker when you notice that she left wet footprints on the floor.");
 	output("\n\nPicking up your own gear, you’re left with the choice of whether to take a shower or to go out like this. You’re covered in cum, but some people might find that sexy.");
@@ -1053,7 +1058,7 @@ public function showerTimesWivVerushaBruv():void
 	output("\n\nWhen you’re right next to the shower, she still shows no sign of reacting.");
 	if(pc.IQ() < 50) output(" Either she’s playing it up for you or she’s incredibly oblivious");
 	else output(" The impact of her trick is lessened somewhat, since you already noticed it that she’s faking it");
-	output(". Once you’re at arm's distance from her, she suddenly pulls you under the shower, and you’re soaking wet in a few moments.");
+	output(". Once you’re at arm’s distance from her, she suddenly pulls you under the shower, and you’re soaking wet in a few moments.");
 	output("\n\nShe presses your back to the wall and holds you firmly in place. she grabs your ass and lifts you up, still keeping one hand on your shoulder. She leans forward, growling into your ear, <i>“My turn.”</i> She grabs the back of your neck before flipping you around, pressing your face against the wall.");
 
 	output("\n\nShe lets you down enough that your feet are able to touch the floor, but without relaxing her grip on your neck.");
@@ -1169,7 +1174,7 @@ public function verushaSPH():void
 
 public function verushaQuickwalkOption():void
 {
-	output("\n\n<b>You can choose to stay in your ship, if you'd like. Otherwise, you'll amble back to the bar.</b>");
+	output("\n\n<b>You can choose to stay in your ship, if you’d like. Otherwise, you’ll amble back to the bar.</b>");
 	clearMenu();
 	addButton(0,"Next",moveToTarkusBar);
 	addButton(1,"Stay",mainGameMenu);
@@ -1182,7 +1187,7 @@ public function moveToTarkusBar():void
 	clearOutput();
 	currentLocation = "302";
 	generateMap();
-	output("Traveling back to Tarkus's Bar takes little more than a handful of minutes.");
+	output("Traveling back to Tarkus’s Bar takes little more than a handful of minutes.");
 	if(flags["BAR_NPC"] == verushaBonusFunc) output(" Verusha is still there. She smirks at your rapid return and pats her lap encouragingly.");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
