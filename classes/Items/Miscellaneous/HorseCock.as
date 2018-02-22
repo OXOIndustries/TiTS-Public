@@ -113,7 +113,7 @@
  						}
  						return true;
  					}
- 				}				
+ 				}
 			}
 			else {
 				kGAMECLASS.output(target.capitalA + target.short + " fiddles with the sheath to no effect, and worse yet, it tears. This ruins the sheath.");
