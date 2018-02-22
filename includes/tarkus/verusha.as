@@ -569,10 +569,10 @@ public function verushaSexRouter():void
 	IncrementFlag("SEXED_VERUSHA");
 	var choices:Array = [];
 	if(pc.hasGenitals()) choices.push(verushaDrillsYourButt);
-	if(pc.inHeat() && pc.hasVagina() && (flags["VERUSHA_HEAT_SEX"] == undefined || (flags["VERUSHA_HEAT_SEX"] != undefined && flags["VERUSHA_HEAT_SEX"] + 48*60 < GetGameTimestamp()))) choices.push(verushaHeatSex);
+	if(pc.inHeat() && pc.hasVagina() && (flags["VERUSHA_HEAT_SEX"] == undefined || (flags["VERUSHA_HEAT_SEX"] != undefined && flags["VERUSHA_HEAT_SEX"] + 48*60 < GetGameTimestamp()))) choices.push(verushaHeatSex,verushaHeatSex,verushaHeatSex,verushaHeatSex,verushaHeatSex,verushaHeatSex);
 	choices.push(verushaOralScene);
 	if(pc.hasCock() && flags["VERUSHA_ORALED"] != undefined) choices.push(verushaRimming);
-	if(pc.hasCock() && pc.cockThatFits(verushaCapacity()) >= 0 && pc.inRut() && (flags["VERUSHA_RUT_SEX"] == undefined || (flags["VERUSHA_RUT_SEX"] != undefined && flags["VERUSHA_RUT_SEX"] + 48*60 < GetGameTimestamp()))) choices.push(verushaRutScene);
+	if(pc.hasCock() && pc.cockThatFits(verushaCapacity()) >= 0 && pc.inRut() && (flags["VERUSHA_RUT_SEX"] == undefined || (flags["VERUSHA_RUT_SEX"] != undefined && flags["VERUSHA_RUT_SEX"] + 48*60 < GetGameTimestamp()))) choices.push(verushaRutScene,verushaRutScene,verushaRutScene);
 	if(pc.smallestCockLength() <= 6) choices.push(verushaSPH);
 	//NOW DO THE THING!
 	choices[rand(choices.length)]();
