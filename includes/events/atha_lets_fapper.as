@@ -1332,6 +1332,13 @@ public function letsFapEquine3():void
 	output("\n\nWhen she finishes, the camgirl is virtually buried under the pearl muck of her still-drizzling horsecock. <i>“Well,”</i> she begins weakly, <i>“that didn’t exactly go the way I’d planned it. Note to self: check all your sex toys to see if they’re actually anatomy-altering bio-medical supplies.”</i> Wiping the opaque, syrupy spoo from her eyes, Atha blinks and surveys the damage. <i>“Well, I think my recording equipment survived, so that’s a plus. I gotta waterproof everything in this room, I think.”</i>");
 	output("\n\nTurning to the camera, she offers a tapped out shrug. <i>“Hope you guys enjoyed that little catastrophe! Despite the white molasses dripping down my walls, I actually had a good time.”</i> She swings the now floppy horsecock back and forth, its rubbery girth sagging like a fleshy pendulum. <i>“I guess if you wanna see more stuff like that, be sure to hit the Love button on these videos! If you’ve got ideas for new stuff, leave a comment! And, if you wanna help me make this my full time job, please support me on Champeon!”</i> Waving her drooping member goodbye, she ends the video with a button press.");
 	output("\n\nThe little orange message box pops up asking if you’d like to become a Champeon and support Atha’s cock reviews. Would you like to learn more?");
+	
+	if(!CodexManager.entryUnlocked("SynthSheath"))
+	{
+		output("\n\nYour Codex beeps with a warning about how the device you just witnessed, a “Xenogen Biotech SynthSheath Mk1”, may irreversibly alter ones biology. You grimace at the fact.");
+		CodexManager.unlockEntry("SynthSheath");
+	}
+	
 	processTime(10);
 	pc.lust(25);
 	champeonOrOffMenu();

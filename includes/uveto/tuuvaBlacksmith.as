@@ -326,11 +326,12 @@ public function tuuvaTalkMenu():void
 	if(flags["TUUVA_SCAVENGING_TALK"] != undefined && flags["TUUVA_25AFF"] != undefined) addButton(3,"Dick",talkToTuuvaAboutDicks,undefined,"Dick","Ask about her extra equipment");
 	else addDisabledButton(3,"Locked","Locked","You don’t know her well enough for this.");
 	//[Bigger.D] She’s looking for some quick and simple dick growth, ey? You might have the answer for that. //Requires 75 Affection event done and Dick talk done. Hidden until requirements are met. Requires a Synth Sheath.
-	if(tuuva.hasCock(GLOBAL.TYPE_EQUINE)) addDisabledButton(4,"SynthSheath","SynthSheath","She is already as big as she can be!");
+	var bSynthSheath:Boolean = (CodexManager.entryUnlocked("SynthSheath"));
+	if(tuuva.hasCock(GLOBAL.TYPE_EQUINE)) addDisabledButton(4,(!bSynthSheath ? "HorseCock?" : "SynthSheath"),(!bSynthSheath ? "Horse-Cock?" : "SynthSheath"),"She is already as big as she can be!");
 	else if(flags["TUUVA_DICK_TALK"] != undefined && tuuvaAffection() >= 75) 
 	{
-		if(pc.hasItemByClass(HorseCock)) addButton(4,"SynthSheath",biggerDForTuuva,undefined,"SynthSheath","She’s looking for some quick and simple dick growth, ey? You might have the answer for that.");
-		else addDisabledButton(4,"SynthSheath","SynthSheath","You need a SynthSheath in your inventory in order to help Tuuva get the bigger dick of her dreams.");
+		if(pc.hasItemByClass(HorseCock)) addButton(4,(!bSynthSheath ? "HorseCock?" : "SynthSheath"),biggerDForTuuva,undefined,(!bSynthSheath ? "Horse-Cock?" : "SynthSheath"),"She’s looking for some quick and simple dick growth, ey? You might have the answer for that.");
+		else addDisabledButton(4,(!bSynthSheath ? "???" : "SynthSheath"),(!bSynthSheath ? "???" : "SynthSheath"),("You’ll need a " + (!bSynthSheath ? "special dildo" : "SynthSheath") + " in your inventory in order to help Tuuva get the bigger dick of her dreams."));
 	}
 	else addDisabledButton(4,"Locked","Locked","You need to know Tuuva pretty well and have an affection of 75 or more for this.");
 	addButton(14,"Back",approachTuuva);
@@ -754,9 +755,6 @@ public function biggerDForTuuva():void
 	else output("Come back in a while, I want to have some alone time with this new buddy");
 	output(".”</i> With that, she pops the pill and rushes back to her room, the sounds of self-pleasure welling up almost immediately.");
 
-	output("\n\n");
-	pc.destroyItemByClass(HorseCock);
-	
 	tuuva.cocks[0].cType = GLOBAL.TYPE_EQUINE;
 	tuuva.cocks[0].cLengthRaw = 16;
 	tuuva.cocks[0].cockColor = "black";
@@ -769,6 +767,16 @@ public function biggerDForTuuva():void
 	tuuva.cumMultiplierRaw = 400;
 
 	processTime(25);
+	
+	if(!CodexManager.entryUnlocked("SynthSheath"))
+	{
+		output("\n\nYour Codex beeps with a warning about how this device may irreversibly alter ones biology. You grimace ruefully at the device before regarding Tuuva’s enhanced genitalia.");
+		CodexManager.unlockEntry("SynthSheath");
+	}
+	
+	output("\n\n");
+	pc.destroyItemByClass(HorseCock);
+	
 	//[Next] Puts you in the shop.
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

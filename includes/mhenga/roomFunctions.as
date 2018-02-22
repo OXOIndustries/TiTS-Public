@@ -234,7 +234,15 @@ public function jungleEncounterChances():Boolean {
 		//Build possible encounters
 		choices.push(femzilEncounter);
 		choices.push(femzilEncounter);
-		choices.push(maleZilEncounter);
+		if(pc.hasStatusEffect("Zil Pheromones"))
+		{
+			choices.push(maleZilPreggomonesEncounter);
+			choices.push(maleZilPreggomonesEncounter);
+			choices.push(maleZilPreggomonesEncounter);
+			if(pc.statusEffectv1("Zil Pheromones") >= 2) choices.push(maleZilPreggomonesEncounter);
+			if(pc.statusEffectv1("Zil Pheromones") >= 3) choices.push(maleZilPreggomonesEncounter);
+		}
+		else choices.push(maleZilEncounter);
 		choices.push(maleZilEncounter);
 		choices.push(encounterCuntSnakeOnJungleLand);
 		choices.push(encounterCuntSnakeOnJungleLand);

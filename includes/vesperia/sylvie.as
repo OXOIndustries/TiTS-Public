@@ -64,18 +64,21 @@ public function sylvieHasCock():Boolean
 }
 public function sylvieCockVolume():Number
 {
-	return 621;
+	return (sylvieHasCock() ? 621 : 0);
 }
 public function sylviePP():PregnancyPlaceholder
 {
 	var ppSylvie:PregnancyPlaceholder = new PregnancyPlaceholder();
 	ppSylvie.removeCocks();
-	ppSylvie.createCock(30, 1);
-	ppSylvie.shiftCock(0,GLOBAL.TYPE_EQUINE);
-	ppSylvie.cocks[0].cockColor = "brown";
-	ppSylvie.balls = 2;
-	ppSylvie.ballSizeRaw = 19;
-	ppSylvie.createPerk("Fixed CumQ",158000,0,0,0);
+	if(sylvieHasCock())
+	{
+		ppSylvie.createCock(30, 1);
+		ppSylvie.shiftCock(0,GLOBAL.TYPE_EQUINE);
+		ppSylvie.cocks[0].cockColor = "brown";
+		ppSylvie.balls = 2;
+		ppSylvie.ballSizeRaw = 19;
+		ppSylvie.createPerk("Fixed CumQ",158000,0,0,0);
+	}
 	ppSylvie.removeVaginas();
 	ppSylvie.createVagina();
 	ppSylvie.vaginas[0].loosenessRaw = 3;
@@ -416,15 +419,19 @@ public function sylvieMenu():void
 		//[Get Sexy]
 		if(pc.lust() >= 33) addButton(0,"Get Sexy",sylvieSexyTimeIntro,undefined,"Get Sexy","Now that she’s finally loosened up for a bit of fun, party with Sylvie!");
 		else addDisabledButton(0,"Get Sexy","Get Sexy","You aren’t turned on enough for that.");
-		if(pc.hasItemByClass(HorseCock)) addButton(1,"SynthSheath",giveTheMooseABone,undefined,"SynthSheath","See how Sylvie feels about turning herself into the total package via an artificial package.");
-		else if(!sylvieHasCock()) addDisabledButton(1,"SynthSheath","SynthSheath","You'd need to have a SynthSheath in order to do that.");
+		
+		var bSynthSheath:Boolean = (CodexManager.entryUnlocked("SynthSheath"));
+		if(sylvieHasCock()) addDisabledButton(1,(!bSynthSheath ? "HorseCock?" : "SynthSheath"),(!bSynthSheath ? "Horse-Cock?" : "SynthSheath"),"Sylvie already has a cock!");
+		else if(pc.hasItemByClass(HorseCock)) addButton(1,(!bSynthSheath ? "HorseCock?" : "SynthSheath"),giveTheMooseABone,undefined,(!bSynthSheath ? "Horse-Cock?" : "SynthSheath"),"See how Sylvie feels about turning herself into the total package via an artificial package.");
+		else if(!sylvieHasCock()) addDisabledButton(1,(!bSynthSheath ? "HorseCock?" : "SynthSheath"),(!bSynthSheath ? "Horse-Cock?" : "SynthSheath"),"You’d need to have a " + (!bSynthSheath ? "special dildo" : "SynthSheath") + " in order to do that.");
+		
 		//[Hug]
 		//Semi-random hug with heavy petting. Guarantees forcy funtimes on next drunk approach that day.
 		addButton(2,"Hug",hugSylvie,undefined,"Hug","Being drunk is no obstacle when it comes to snuggling.");
 		//Bonus talking about her dick stuff. Twice-only.
 		if(sylvieHasCock() && (flags["SYLVIE_DONG_TALK"] == undefined || (flags["SYLVIE_DONG_TALK"] != undefined && flags["SYLVIE_DONG_TALK"] + 72*60 < GetGameTimestamp() && flags["SYLVIE_SYNTHSHEATHED"] == 1))) addButton(5,"Ask: Penis?",sylviePenisTalk,undefined,"Ask: Penis?","Ask Sylvie how life with a penis is treating her.");
 		//Gloryhole suck
-		else if(sylvieHasCock() && flags["SYLVIE_DONG_TALK"] != undefined) addButton(5,"GloryholeSuck",sylvieGloryholeSuck,undefined,"Gloryhole Suck","Ask her if she's taken her new addition to the gloryholes yet. You'll probably wind up working one yourself, but that's fiiine.");
+		else if(sylvieHasCock() && flags["SYLVIE_DONG_TALK"] != undefined) addButton(5,"GloryholeSuck",sylvieGloryholeSuck,undefined,"Gloryhole Suck","Ask her if she’s taken her new addition to the gloryholes yet. You’ll probably wind up working one yourself, but that’s fiiine.");
 	}
 	//If bartender is away!
 	if(kallyIsAway() && sylvieDrunkLevel() <= 1)
@@ -1469,8 +1476,8 @@ public function sylvieSexMenu():void
 		else addDisabledButton(2,"TakeVaginal","Take Vaginal","You need a vagina for this.");
 		//Requires 10" of dick: FuckHerPuss
 		var x:int = pc.cockThatFits(sylvieCuntSize());
-		if(pc.hasCock() && pc.cockVolume(x) >= 50) addButton(3,"FuckHerPuss",penisRouter,[fuckDickedSylviesPussah,sylvieCuntSize(),false,50],"FuckHerPuss","Just because she has a dick doesn't mean she can't take one...");
-		else if(pc.hasCock()) addDisabledButton(3,"FuckHerPuss","FuckHerPuss","Your penis isn't appropriately sized for her.");
+		if(pc.hasCock() && pc.cockVolume(x) >= 50) addButton(3,"FuckHerPuss",penisRouter,[fuckDickedSylviesPussah,sylvieCuntSize(),false,50],"FuckHerPuss","Just because she has a dick doesn’t mean she can’t take one...");
+		else if(pc.hasCock()) addDisabledButton(3,"FuckHerPuss","FuckHerPuss","Your penis isn’t appropriately sized for her.");
 		else addDisabledButton(3,"FuckHerPuss","FuckHerPuss","You need a penis for this.");
 	}
 	else
@@ -1549,7 +1556,7 @@ public function leaveSylvieHighAndLessThanDryYaCunt():void
 	{
 		clearOutput();
 		showSylvie();
-		output("What else would you like to do with Sylvie? Her cock droops slightly at the realization that you won't be riding it.");
+		output("What else would you like to do with Sylvie? Her cock droops slightly at the realization that you won’t be riding it.");
 		sylvieMenu();
 	}
 }
@@ -2149,7 +2156,7 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 	if(pc.clitLength >= 3) output("Of course, the size of [pc.eachClit] helps immensely, making your [pc.clits] impossible to miss. ");
 	output("You know the moment you find her clit both by the flash of pleasure from that brief hard resistance against your own throbbing [pc.clits] and by her louder, hitching moans.");
 
-	output("\n\n<i>“Yes! Ah, right there,”</i> Sylvie breathlessly pants out. ”</i><i>Harder, ah, faster!”</i> she begs, squeezing you between her wide thighs, her plush, muscular flesh rippling around you in ecstasy. Her enthusiastic movements leave you breathless with pleasure");
+	output("\n\n<i>“Yes! Ah, right there,”</i> Sylvie breathlessly pants out. <i>“Harder, ah, faster!”</i> she begs, squeezing you between her wide thighs, her plush, muscular flesh rippling around you in ecstasy. Her enthusiastic movements leave you breathless with pleasure");
 	//(if tallness<5' or strength<80%)
 	if(pc.tallness < 5*12 || pc.PQ() < 80)
 	{
@@ -2343,7 +2350,7 @@ public function cuffnFuckSylviePartDues():void
 	if(pc.totalVaginas() > 1) output("s");
 	output(" and down her gullet.");
 
-	output("\n\n<i>“Ahhh,”</i> she sighs with a smack of her lips, finally releasing her grip around your waist and lowering you down. Your " + (pc.legCount == 1 ? "[pc.leg] is" : "[pc.legs] are") + " utterly nerveless, and you find yourself simply pooling onto the floor in front of her, [pc.eachVagina] throbbing mightily. It’s a pitiable state of affairs that earns you another tipsy honk of laughter from above. <i>“‘S what happens if you bounce that butt around after I’ve had a few, I’m afraid,”</i> the moosetaur says. You are smothered in boob again as she reaches down and unlocks your cuffs with a practiced click. Your shoulders and wrists sigh with relief. <i>“I get thirsty! And this - ”</i> she pats her broad, furry side - <i>“needs a whole lot of foof juice to be properly satisfied. ");
+	output("\n\n<i>“Ahhh,”</i> she sighs with a smack of her lips, finally releasing her grip around your waist and lowering you down. Your " + (pc.legCount == 1 ? "[pc.leg] is" : "[pc.legs] are") + " utterly nerveless, and you find yourself simply pooling onto the floor in front of her, [pc.eachVagina] throbbing mightily. It’s a pitiable state of affairs that earns you another tipsy honk of laughter from above. <i>“‘S what happens if you bounce that butt around after I’ve had a few, I’m afraid,”</i> the moosetaur says. You are smothered in boob again as she reaches down and unlocks your cuffs with a practiced click. Your shoulders and wrists sigh with relief. <i>“I get thirsty! And this --”</i> she pats her broad, furry side - <i>“needs a whole lot of foof juice to be properly satisfied. ");
 	if(flags["SYLVIE_CUFFNFUCK"] != undefined && pc.isSquirter()) output("And you’re the juiciest, subbiest little slut I know. If you’re around, I just gotta have you!");
 	else output("And you’re fantastic at both ends. You be sure to be around regularly, alright?");
 	output("”</i>");
@@ -2683,6 +2690,14 @@ public function giveTheMooseABone():void
 	clearOutput();
 	showSylvie();
 	author("Wsan");
+	
+	if(!CodexManager.entryUnlocked("SynthSheath"))
+	{
+		output("While checking your inventory, you run a hand over the strange horse dildo you found. Your Codex beeps with a warning about how the dildo-like device, a “Xenogen Biotech SynthSheath Mk1”, may irreversibly alter ones biology. You grimace ruefully at the thought of enhancing Sylvie’s genitalia.");
+		CodexManager.unlockEntry("SynthSheath");
+		output("\n\n");
+	}
+	
 	output("An idea pops into your head right as Sylvie is directing the most intense fuck-me eyes your way.");
 	output("\n\n<i>“Hey, Sylvie?”</i> you ask, looking through your belongings.");
 	output("\n\n<i>“Yeees?”</i> she practically purrs, leaning forward and unintentionally wafting her lusty pheromones into your nostrils.");
@@ -2844,7 +2859,7 @@ public function sylvieTriesHerDongerOn3():void
 	output("\n\nBending down, she seizes an asscheek and pulls, aggressively shoving two of her fingers right into your [pc.asshole]. The surprise penetration makes you moan a little, and Sylvie begins to rub her fingers along your sensitive insides.");
 	output("\n\n<i>“That’s right, moan for me like a little slut,”</i> she croons, squeezing your ass. <i>“You’ll be screaming my name in a moment anyway.”</i>");
 	output("\n\nAfter a few seconds she withdraws, standing on the bed on all fours, its intact state a testament to how well it supports weight. She smiles down at you cheerfully.");
-	output("\n\n<i>“They test these beds specifically by getting ‘taurs to jump on them. You know, so they - we -  can fuck like animals and not worry about them breaking. Welcome to Canadia!”</i>");
+	output("\n\n<i>“They test these beds specifically by getting ‘taurs to jump on them. You know, so they - we - can fuck like animals and not worry about them breaking. Welcome to Canadia!”</i>");
 	output("\n\nWith that, she’s on top of you and pushing at your asshole with her oversized horsecock with a grunt of effort. You groan as you feel the inexorable stretching, your body giving way to her overwhelming dominance and size, her flare working its way inside until there’s a wet slurp and she’s inside you.");
 	//stretch to fuck
 	output("\n\n<i>“Uh!”</i> She grunts, leaning against the wall above you and already breathing heavily with lust. Pheromones wash over you and cloud your mind, wrapping around your brain and enthralling you with the idea of getting that impressive rod deeper inside. <i>“Okay, let’s go slowly at first...”</i> she whispers, half to herself.");
@@ -2855,9 +2870,9 @@ public function sylvieTriesHerDongerOn3():void
 	output("\n\nWith a low, drawn-out groan she finally delivers on her promise, slipping her entire length between your cheeks. You can feel her loaded balls gently slapping against you");
 	if(pc.balls > 0) 
 	{
-		output("r own, the gigantic testes resting against your ");
-		if(pc.ballDiameter() < 6) output("smaller set, radiating intense warmth as if to remind you just how much of her spunk is going to be pumping inside you.");
-		else output("her smaller but no less impressive set reminding you just how much spunk is going to be pumped inside you.");
+		output("r own, the gigantic testes resting against your");
+		if(pc.ballDiameter() < 6) output(" smaller set, radiating intense warmth as if to remind you just how much of her spunk is going to be pumping inside you.");
+		else output("s--her smaller but no less impressive set reminding you just how much spunk is going to be pumped inside you.");
 	}
 	else output(", their swollen weight resting between your inner thighs and reminding you of just how much spunk you’re going to have pumped inside you.");
 	pc.buttChange(sylvieCockVolume());
@@ -2948,7 +2963,7 @@ public function sylviePenisTalk():void
 		output("\n\nThat sounds like a pretty good deal, really. Getting back to your original question, though, Sylvie suddenly recalls something.");
 		output("\n\n<i>“Oh. Speaking of cumming my brains out, there is actually one downside to having a horsecock. It gets fucking </i>everywhere<i>. And I mean that! I had to get an upgrade kit for my ‘taur milker just to handle the overflow. I had to stop mid-session the first time after I came once and clean my entire room,”</i> she sighs, recalling the sticky disaster. <i>“Well, that’s only a downside if you let it be! I do have to make sure I have some condoms on me all the time, though.”</i>");
 	}
-	output("\n\nIs there anything else you'd like to do with Sylvie?");
+	output("\n\nIs there anything else you’d like to do with Sylvie?");
 	processTime(10);
 	sylvieMenu();
 }
@@ -3056,7 +3071,9 @@ public function sylvieGloryholeSuck():void
 
 	output("\n\nYou turn to give her a kiss and she calmly takes your face in her hands, pressing against you and sucking your [pc.tongue] while her lips twitch upwards in a smile. When you part from her embrace, she deliberately licks her lips and winks at you.");
 	output("\n\n<i>“We should do this again sometime,”</i> she suggests, jiggling a little in excitement. <i>“I had sooo much fun.”</i>");
-
+	
+	var ppSylvie:PregnancyPlaceholder = sylviePP();
+	
 	if(!pc.isBimbo()) 
 	{
 		output("\n\n<i>“Me too,”</i> you say, sliding a hand over your tummy. <i>“Definitely going to have to sleep this off, though.”</i>");
@@ -3089,15 +3106,15 @@ public function sylvieGloryholeSuck():void
 		pc.orgasm();
 		pc.orgasm();
 		processTime(45);
-		pc.loadInMouth(sylviePP());
-		pc.loadInMouth(sylviePP());
-		pc.loadInMouth(sylviePP());
-		pc.loadInMouth(sylviePP());
-		pc.loadInMouth(sylviePP());
+		pc.loadInMouth(ppSylvie);
+		pc.loadInMouth(ppSylvie);
+		pc.loadInMouth(ppSylvie);
+		pc.loadInMouth(ppSylvie);
+		pc.loadInMouth(ppSylvie);
 
 	}
 	processTime(70);
-	pc.loadInMouth(sylviePP());
+	pc.loadInMouth(ppSylvie);
 	pc.applyCumSoaked();
 	pc.lust(20);
 	moveTo("SHIP INTERIOR");
