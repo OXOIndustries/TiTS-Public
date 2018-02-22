@@ -1860,6 +1860,40 @@ public function landingEventCheck(arg:String = ""):Boolean
 	return false;
 }
 
+public function nearestMedicalCenter():String
+{
+	var roomID:String = currentLocation;
+	var planetName:String = getPlanetName();
+	
+	switch(planetName)
+	{
+		//case "Tavros Station": roomID = "NURSERYG4"; break;
+		case "Mhen'ga": roomID = "ESBETH MEDICAL OFFICE"; break;
+		//case "Tarkus": roomID = ""; break;
+		case "Myrellion":
+			var myrLoc:int = int(currentLocation);
+			if
+			(	currentLocation == "GMEREHOSPITAL"
+			||	currentLocation == "GENES MODS"
+			||	currentLocation == "ENTITE"
+			||	(myrLoc >= 700 && myrLoc < 800)
+			) roomID = "GMEREHOSPITAL";
+			else if
+			(	currentLocation == "KRESSIA MEDICAL"
+			||	currentLocation == "LIEVE BUNKER"
+			||	currentLocation == "FAZIAN_RESCUE_ROOM"
+			||	(myrLoc >= 800 && myrLoc < 900)
+			) roomID = "KRESSIA MEDICAL";
+			else roomID = (rand(2) == 0 ? "GMEREHOSPITAL" : "KRESSIA MEDICAL");
+			break;
+		//case "New Texas": roomID = ""; break;
+		//case "Uveto": roomID = "UVI R32"; break;
+		case "Kashima": roomID = "KI-H16"; break;
+	}
+	
+	return roomID;
+}
+
 public function showerMenu(special:String = "ship"):void {
 	clearOutput();
 	output("You find yourself in the " + special + "’s shower room. What would you like to do?");

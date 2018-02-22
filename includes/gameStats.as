@@ -594,6 +594,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "KorgonnePregnancy": output2(" Korgonne"); break;
 						case "RiyaPregnancy": output2(" Riya"); break;
 						case "ZaaltPregnancy": output2(" Zaalt"); break;
+						case "ZilPregnancy": output2(" Zil"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -955,6 +956,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Water Queen Young:</b> " + StatTracking.getStat("pregnancy/queen of the deep eggs"));
 				if(StatTracking.getStat("pregnancy/zaalt kids") > 0)
 					output2("\n<b>* Births, Zaalt’s Children:</b> " + StatTracking.getStat("pregnancy/zaalt kids"));
+				if(StatTracking.getStat("pregnancy/zil birthed") > 0)
+					output2("\n<b>* Births, Zil Young:</b> " + StatTracking.getStat("pregnancy/zil birthed"));
 				// Father
 				if(StatTracking.getStat("pregnancy/total sired") > 0)
 					output2("\n<b>* Sired, Total:</b> " + StatTracking.getStat("pregnancy/total sired"));

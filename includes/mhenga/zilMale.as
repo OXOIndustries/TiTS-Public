@@ -61,7 +61,7 @@ public function winVsZil():void {
 	if(pc.lust() < 33) pc.lust(33-pc.lust());
 	clearMenu();
 	//if(pc.hasCock() && pc.shortestCockLength() <= 20) addButton(0,"Buttfuck",buttfuckDefeatedZil);
-	//else addDisabledButton(0,"Buttfuck","Buttfuck","You'll need a dick shorter than 17\" long to plug this wasp.");
+	//else addDisabledButton(0,"Buttfuck","Buttfuck","You’ll need a dick shorter than 17\" long to plug this wasp.");
 	if(pc.hasCock())
 	{
 		if(pc.cockThatFits(enemy.analCapacity()) >= 0 || pc.shortestCockLength() < 20) addButton(0,"Buttfuck",buttfuckDefeatedZil);
@@ -1362,3 +1362,293 @@ public function useTailOnZilWhenUWin():void
 	pc.loadInCuntTail(enemy);
 	CombatManager.genericVictory();
 }
+
+public function zilPregnancyBirthing(pregSlot:int = 0, numBabies:int = 2):void
+{
+	clearOutput();
+	showName("\nBIRTHING!");
+	author("HugsAlright");
+	
+	var isSmol:Boolean = (!pc.isTaur() && pc.tallness <= 64);
+	var isZil:Boolean = (pc.raceShort() == "zil");
+	var isNude:Boolean = (pc.isNude());
+	
+	output("Pain wracks your gut, bending you over as you protectively place a hand on your [pc.stomach]. That and the fluids spilling onto");
+	if(!isNude) output(" your " + (!pc.isCrotchExposed() ? "[pc.lowerGarments]" : "clothing"));
+	else output(" the " + ((InShipInterior() || InPublicSpace()) ? "ground" : "floor"));
+	output(" are sure signs that your babies are coming.");
+	// mhen’gaWilderness:
+	if(getPlanetName() != "Mhen'ga" && (rooms[currentLocation].hasFlag(GLOBAL.FOREST) || rooms[currentLocation].hasFlag(GLOBAL.JUNGLE)) && rooms[currentLocation].hasFlag(GLOBAL.OUTDOOR))
+	{
+		showBust("ZIL");
+		
+		output("\n\nOut in the wilderness of the hot, humid jungle, you have no choice but to find a suitable place to safely deliver your young. A sudden burst of pain leaves you groaning, urging you to");
+		if(!isNude) output(" strip yourself and");
+		output(" sit down on the ground with haste, prepping for a more “natural” birth.");
+		output("\n\nJust as you’re wishing you had stayed in Esbeth a little bit longer, you hear rustling in the nearby undergrowth.");
+		output("\n\nWhat?! Zil?! Naleen?! Not now!");
+		output("\n\nThen, you’re met with a sense of calm as a familiar musk fills your nostrils, and out from the brush comes the zil who fathered your child.");
+		if(flags["MET_ZIL_SIRE"] != undefined) output(" Like last time, that scent of his lets you know exactly who he is, like it’s especially produced for you, giving you quite a bit of release");
+		else output(" You vaguely recognize the bee-boy’s face, but it’s his scent that gives his identity away, like it’s there just for you");
+		output(".");
+		output("\n\n<i>“It is you!”</i> he says, walking up to you before noticing what’s going on, <i>“And you’re... oh, oh!”</i> The zil hurries to your side and kneels beside you, <i>“Here, my village’s midwife can help. This jungle is no place for children to be born.”</i> With that, he");
+		if(isSmol) output(" hooks an arm under your [pc.legOrLegs] and another under your neck, lifting you up into the air");
+		else output(" lifts your arm over his shoulder and helps you to your feet, and it takes most of his and your strength to get you up");
+		output(".");
+		if(isSmol) output("\n\nDespite being a reasonable size for the alien to carry, you guess your added baby-weight inhibits the use of his wings, but he carries you swiftly and carefully through the Mhen’ga jungle.");
+		else output("\n\nObviously too big for the alien to carry, your weight is supported by the zil’s back-breaking efforts as he carefully leads you through the Mhen’ga jungle.");
+		output("\n\nAfter");
+		if(isSmol) output(" walking for");
+		output(" what feels like an eternity, you and your bee-daddy enter a clearing in the brush, leading to what looks to be a zil village, with tents everywhere, longhouses, and native peoples working around nearby bonfires.");
+		if(isZil) output(" No one seems to pay attention to you or the father of your children, most likely due to your heavily-modded appearance.");
+		else output(" Your trip through the camp draws a few strange glares and gasps, leaving you to wonder if there’s ever been an offworlder here before.");
+		output("\n\nThe hormones and pain raging in your head make your trip through the village seem naught but a blur, but before you know it, you’re inside a tent being laid down on the ground before a thickset zil woman.");
+		output("\n\n<i>“Midwife!”</i> your companion calls out as he sets you down, <i>“This offworlder is my mate... I found her out in the jungle. She needs help!”</i>");
+		output("\n\n<i>“An offworlder?”</i> the zil woman questions, kneeling down in front of you, <i>“I can’t say I’ve had the chance to work with one before. I will do my best to help her, if she is indeed your mate.”</i> She eyes you up before");
+		if(!pc.isTaur() && !pc.isNaga()) output(" spreading your legs and");
+		output(" getting a good look at your downstairs, <i>“Oh my, you haven’t come a moment too soon... looks like it’s time to get started.”</i>");
+		output("\n\nYour next hour after that is spent almost entirely in pain with only a few brief moments of respite. The village midwife helps you along the way, seemingly well experienced, a small wonder, given by how libidinous most zil are. All the same, your mate holds your hand the whole way through this ordeal. Your mind seems completely devoted to birthing your children, because you can’t really remember much of the whole event once your first baby wiggles free, slowly sliding from your vagina and into the arms of the midwife. The newborn’s " + (numBabies == 2 ? "twin follows" : "siblings follow") + " soon after.");
+		output("\n\nThen, the sound of hoarse crying seems to clear all that pain from your eyes, leaving you with the view of your newborn children being swaddled and cleaned by the zil woman before you.");
+		output("\n\nTheir crying is silenced when they’re placed in your and their father’s arms, wrapped in a warm embrace, held carefully like the delicate bundles they are. Like a proper mother should, you let the hungry babies suckle from your teats,");
+		if(numBabies <= pc.totalBreasts()) output(" one for " + (numBabies == pc.totalBreasts() ? "each breast" : "most of your breasts"));
+		else output(" having your mate hold the one" + (numBabies <= 3 ? "" : "s") + " you can’t immediately feed");
+		output(". Looking at them as they enjoy their first meal, you notice they’re some sort of biological chimera, possessing a mostly zil-like appearance, but with human skin, [baby.skintone] like yours, and [baby.haircolor] fuzz atop their heads too.");
+		output("\n\nOnce the midwife has made sure all is in order and your children are healthy and fed, she leaves you and your bee-boyfriend alone with your newborns. There’s a few moments of blissful silence that you spend reveling in warm, parental emotions, looking at your babies, their tiny hands grasping at your fingers.");
+		output("\n\n<i>“I- I think you should take them,”</i> the zil finally speaks up, causing you to turn towards him, only to see a somewhat distressed look on his face, <i>“This jungle... it’s dangerous, my people don’t live very long because of it. I’ve seen Esbeth though, and the technology you offworlders have, so I- I think they’d be much safer, and happier, somewhere like that.”</i>");
+		output("\n\nYou contemplate that for a moment, and it all makes sense. Nothing about the zil’s tone or words makes it seem like he’s trying to shirk responsibility. No, he’s being completely genuine. Giving him a nod in response, you carefully pull out your Codex and tap the screen a few times, calling a drone to collect your children and take them to the nursery your dad had built.");
+		output("\n\nYou spend just a little while longer in the company of your mate and your children before the probes arrive, startling more than a few villagers as they fly their way to your tent and present a small space for you to put your children.");
+		output("\n\n<i>“Th- these will keep our children safe?”</i> the zil boy asks, seeming a bit nervous at the sight of all that cold, unfeeling metal.");
+		output("\n\nYou tell him they’re specially made to transport your newborns safely to a high-tech nursery in another system.");
+		output("\n\n<i>“Oh, alright then...”</i> he says, standing up with one of your half-breed babies in his arms and walking towards a probe, <i>“Sh- should I just put them in here?”</i>");
+		output("\n\nAfter you give him a nod, the zil carefully puts his child into the cushioned, life supported compartment, lingering a few moments before stepping back, allowing the pod to close. Then, like that, they’re off with your precious bundles en-route to Tavros, leaving you and your mate alone.");
+		output("\n\nHe breathes a long sigh, before turning to you again. <i>“It will be nice knowing they’re safe out there,”</i> he says, <i>“but, I... I hope one day I will see them again, and their mother.”</i> With that, he smiles at you, <i>“But I think it might be time for you to leave... as much as I wish you could stay, no doubt the rest of the tribe is getting antsy with an outsider around for so long.”</i>");
+		output("\n\nThe bee-boy walks his way to the tent’s flap and opens it to invite you out, <i>“" + (!isNude ? "Once you’ve dressed yourself and feel rested" : "Once you feel rested enough to move") + ", I can lead you back to Esbeth, if you’d like.”</i>");
+		output("\n\nHis invitation puts a grin on your face for some reason, maybe it’s just all this class from a race of apparent fuck-happy barbarians. You accept his offer and pick yourself up from the floor");
+		if(!isNude) output(" along with all your gear");
+		output(", taking a deep breath as you gather your thoughts and strength before getting ready to make your way back to civilization as a new " + pc.mf("father", "mother") + "...");
+		output("\n\n");
+		
+		processTime(248);
+		// Returns the PC to Esbeth, removes pheromone flag, resets belly rating, puts zil kids in nursery.
+		IncrementFlag("MET_ZIL_SIRE");
+		currentLocation = "JUNGLE EDGE";
+	}
+	// Ship:
+	else if(InShipInterior())
+	{
+		showBust("");
+		
+		output("\n\nYou hurry to the nearest box of medical supplies, breathing heavily and counting yourself lucky you’re somewhere safe. Once you’ve made the proper preparations");
+		if(!isNude) output(" and striped yourself bare");
+		output(", you lie down on your bed");
+		if(!pc.isTaur() && !pc.isNaga()) output(" with your legs spread");
+		output(", ready to deliver your children.");
+		output("\n\nYour next hour after that is spent almost entirely in pain with only a few brief moments of respite. There’s only you and yourself to hold your hand or help you with your kids now, and part of you wishes you were in a clinic. You don’t have time for those worries though, because you know the well being of both your and your babies depends on you doing everything right. Your mind seems completely devoted to birthing your children, because you can’t remember most of the whole even once your first baby wiggles free, slowly sliding from your vagina. The newborn’s " + (numBabies == 2 ? "twin follows" : "siblings follow") + " soon after.");
+		output("\n\nThen, the sound of hoarse crying seems to clear all that pain from your eyes, leaving you with the view of your newborn children, who you promptly proceed to clean and swaddling them.");
+		output("\n\nTheir crying is silenced when they feel your touch, wrapped in your arms, held carefully like the delicate bundles they are. Like a proper mother should, you let the hungry babies suckle from your teats,");
+		if(numBabies <= pc.totalBreasts()) output(" one for each breast");
+		else output(" and unfortunately you don’t have enough breasts for all of them, resorting to having them take turns");
+		output(". Looking at them as they enjoy their first meal, you notice they’re some sort of biological chimera, possessing a zil’s appearance, but with [baby.skintone] human skin like yours, and [baby.haircolor] fuzz atop their heads.");
+		output("\n\nAfter you spend a little bit more time making sure your babies are in good health and well-fed, you pull out your Codex and tap the screen a few times; before you can say “SteeleTech,” a drone prepared to carry your children to your personal nursery arrives. They seem to have no trouble getting into or out of your ship, docking with the nearest airlock. You carefully place your newborns inside the cushioned, life-supported compartment, giving them each a long, warm hug before letting them go. Once you’ve said your goodbyes, the drone closes itself and detach safely from your ship before flying off, en-route to Tavros.");
+		output("\n\nYou let out a heavy sigh, a little pang of sadness caused by having to leave your kids like that so soon, but the rational part of your brain reminds you that uncharted space is no place for a baby to be. With that, you");
+		if(!isNude) output(" dress yourself and");
+		output(" prepare to continue your journey as a new " + pc.mf("dad", "mom") + "...");
+		output("\n\n");
+		
+		processTime(236);
+		// Removes the preggomones, puts the PC in their ship, and brings the babies to the nursery.
+	}
+	// Civilization:
+	else if(InPublicSpace())
+	{
+		showBust("LEITHAN_MALE");
+		
+		output("\n\nYour hunched position and pained noises attract the attention of a nearby leithan male, who hurries his way up to you and asks if you need help.");
+		output("\n\nSure enough, you do need help, and tell the large purple bug-pony you think your water just broke.");
+		output("\n\n<i>“Oh! Uh- darn it if only I had stuck to medical school!”</i> he curses before looking up at you, <i>“There’s a clinic not to far from here I could help you get to!”</i>");
+		output("\n\nYou’re only able to muster a <i>“Yes”</i> at that proposition, noticing that the leithan is trotting in place nervously on all six legs.");
+		output("\n\n<i>“Okay, here,”</i> he says,");
+		if(isSmol) output(" extending his arms to scoop you up, ready to carry you");
+		else output(" placing your arm over his shoulder, supporting most of you weight with his large frame");
+		output(", <i>“Let’s get you to a hospital.”</i>");
+		output("\n\nAfter that, it’s not too long a " + (isSmol ? "trip" : "walk") + " to the nearest clinic, where your spontaneous aid walks in and announces that you need help. Immediately, nurses rush to your side, and you’re placed on a gurney and quickly transported to a nearby emergency room.");
+		output("\n\nWith the comfort of modern technology and experienced professionals all around you, your next hour passes with great amounts of pain, but much easier than it would have if you were on your own in the wilds. Doctors constantly check your vitals and carefully watch your still unborn children as your contractions continue. Your mind seems completely devoted to birthing your children, because you can’t really remember much of the whole event once your first baby wiggles free, slowly sliding from your vagina and into the arms of the clinic staff. The newborn’s " + (numBabies == 2 ? "twin follows" : "siblings follow") + " soon after.");
+		output("\n\nThen, the sound of hoarse crying seems to clear all that pain from your eyes, leaving you with the view of your newborn children being swaddled and cleaned by the nurses before you.");
+		output("\n\nTheir crying is silenced when they’re placed in your arms, wrapped in your arms, held carefully like the delicate bundles they are. Like a proper mother should, you let the hungry babies suckle from your teats,");
+		if(numBabies <= pc.totalBreasts()) output(" one for each breast");
+		else output(" and unfortunately you don’t have enough breasts for all of them");
+		output(". Looking at them as they enjoy their first meal, you notice they’re some sort of biological chimera, possessing a zil’s appearance, but with human skin, [baby.skintone] like yours, and [baby.haircolor] hair too.");
+		output("\n\nOnce your doctors have made sure all is in order and your children are healthy and fed, they leave you alone with your newborns. There’s a few moments of blissful silence, reveling in warm, parental emotions as you look at your babies, their tiny hands grasping at your fingers.");
+		// onTavros
+		if(getPlanetName() == "Tavros Station")
+		{
+			output("\n\nEventually, though, you realize your kids should probably be in your nursery, and that you should be on your way soon. So, you call over a nurse and ask her that your bee-babies be taken to your nursery on the station. Once she realizes just who “[pc.name] Steele” is, she hurries along, gathering other nurses and equipment to safely bring your children elsewhere.");
+			output("\n\nYou make sure to give each one of them a warm hug before letting them go.");
+		}
+		else
+		{
+			output("\n\nEventually, though, you realize your kids should probably be in your nursery, and that you should be on your way soon. You pull out your Codex and tap the screen a few times, and after a few more moments alone with your babies, a nurse appears in your room. She tells you there’s some strange drone in the waiting area asking for “[pc.name] Steele,” and you say to let them in.");
+			output("\n\nSure enough, they’re the probes made to take your newborn young to the nursery your dad had prepared for you. You carefully place your newborns inside the cushioned, life-supported probes, giving them each a long, warm hug before letting them go. Once you’ve said your goodbyes, the drone closes themselves and detach safely from your ship before flying off, en-route to Tavros.");
+		}
+		output("\n\nYou breath a heavy sigh, a little pang of sadness left behind after having to leave your kids like that so soon, but you know you have to get moving again, and you’ll be able to see them again soon. Then all it take is a bit of paperwork and a quick once-over from a medical scanner and before you know it you have your [pc.gear] back and you’re ready to continue your journey, this time as a brand-new " + pc.mf("dad", "mom") + ".");
+		output("\n\n");
+		
+		processTime(248);
+		// Removes the preggomones, puts the PC outside nearest clinic if possible, and brings the babies to the nursery.
+		currentLocation = nearestMedicalCenter();
+	}
+	// Wilderness:
+	else
+	{
+		showBust("");
+		
+		output("\n\nOut in the wilderness, you have no choice but to find a suitable place to safely deliver your young. A sudden burst of pain leaves you groaning, leading you to");
+		if(!isNude) output(" strip yourself and");
+		output(" sit down on the ground faster, prepping for a more “natural” birth.");
+		output("\n\nYour next hour after that is spent almost entirely in pain with brief moments of respite. There’s only you and yourself to hold your hand or help you with your kids now, and part of you wishes you were in a clinic. You don’t have time for those worries though, because your mind seems completely devoted to birthing your children, to the point where you can’t remember much of the whole event. Soon, your first baby wiggles free, slowly sliding from your vagina, the newborn’s " + (numBabies == 2 ? "twin" : "siblings") + " following soon after.");
+		output("\n\nThen, the sound of hoarse crying seems to clear all that pain from your eyes, leaving you with the view of your newborn children, quickly cutting the cords, cleaning them off, and swaddling.");
+		output("\n\nTheir crying is silenced when they feel your touch, wrapped in your arms, held carefully like the delicate bundles they are. Like a proper mother should, you let the hungry babies suckle from your teats,");
+		if(numBabies <= pc.totalBreasts()) output(" one for each breast");
+		else output(" and unfortunately you don’t have enough breasts for all of them");
+		output(". Looking at them as they enjoy their first meal, you notice they’re some sort of biological chimera, possessing a zil’s appearance, but with human skin, [baby.skintone] like yours, and [baby.haircolor] hair too.");
+		output("\n\nAfter a few more moments of making sure your babies are in good health and well-fed, you pull out your Codex and tap the screen a few time, and before you can say “SteeleTech,” a drone prepared to carry your children to the your personal nursery arrives. They seem to have no trouble getting to you, hovering around and repeating pre-programmed commands. You carefully place your newborns inside the cushioned, life-supported probes, giving them each a long, warm hug before letting them go. Once you’ve said your goodbyes, the drone closes itself before flying off, en-route to Tavros.");
+		output("\n\nYou breath a heavy sigh, a little pang of sadness left behind after having to leave your kids like that so soon, but your instincts remind you that this place is nowhere for a baby to be. With that, you");
+		if(!isNude) output(" dress yourself and");
+		output(" prepare to continue your journey as a new " + pc.mf("dad", "mom") + "...");
+		output("\n\n");
+		
+		processTime(252);
+		// Removes the preggomones and brings the babies to the nursery.
+	}
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+// Special Sex Scene
+// This scene can occur if the PC has preggomones and is in the Mhen’ga wilderness.
+public function maleZilPreggomonesEncounter():void
+{
+	showBust("ZIL");
+	showName("MALE\nZIL!");
+	author("HugsAlright");
+	
+	output("\n\nAs you’re moving through the jungle, rustling in the nearby undergrowth catches your attention, and you instinctively reach for your [pc.weapon]. A powerful, familiar musk suddenly fills your nostrils and imbues you with a sense of calm.");
+	if(flags["MET_ZIL_PREGGOMONES"] == undefined) output(" Then, out from the brush a zil-boy appears, and you don’t know just why you are certain of this, but it’s the father of the children inside you... Wait, it’s the pheromones! Sure, the bee-boy’s face looks vaguely familiar, but it’s his scent you recognize, like it was tailor made for you, setting your heart fluttering.");
+	else output(" Then, out from the brush, a zil-boy appears, and just like last time, his scent gives his identity away. Those pheromones let you know just who he is and set your heart fluttering.");
+	output("\n\n<i>“Ah, it’s you!”</i> he says, stepping out from the foliage to reveal his naked form, a chitinous codpiece retracting to display his slowly stiffening cock.");
+	output("\n\nHis sex-filled musk is having a similar effect on you, your pussy already glistening with beads of girlcum");
+	if(pc.hasCock()) output(" and your [pc.cocks] stiffening noticeably");
+	output(". Your mind calls for you to fall into the zil’s arms and let him take you.");
+	output("\n\n<i>“So, offworlders can smell it too, then?”</i> the zil coos, walking a bit closer to you, <i>“Oh, but let me explain! This is how my people remember our mates. Our scents become attuned to one another, and aren’t nearly as potent to anyone else. It tends to draw mates together, and makes them more protective of each other.”</i> He pauses and stops in front of you, <i>“Not to mention it makes time spent with one’s mate a bit more... rewarding.”</i> He’s got a warm smile on his face after that... not very devious or sexual, just happy, like simply being here with you is enough to get him up.");
+	output("\n\n");
+	if(flags["MET_ZIL_PREGGOMONES"] == undefined) output("Well, that explains your new pheromones and how you know just who this alien is. ");
+	output("You look down to notice his shaft is at full-mast, and his gaze seems to be stricken dumb with lust... and you’re not feeling too different.");
+	output("\n\n<i>“So, mate,”</i> he says, stepping back a bit, <i>“How would you feel about spending a bit of time together like that?”</i>");
+	output("\n\n");
+	
+	IncrementFlag("MET_ZIL_PREGGOMONES");
+	
+	pc.lust(50);
+	processTime(2);
+	
+	clearMenu();
+	addButton(0, "Yes", maleZilPreggomonesEncounterNext, "yes", "Yes", "Fuck the zil-boy. Right here. Right now.");
+	addButton(1, "No", maleZilPreggomonesEncounterNext, "no", "No", "Resist your urges and carry on with your journey.");
+}
+public function maleZilPreggomonesEncounterNext(response:String = ""):void
+{
+	clearOutput();
+	showBust("ZIL");
+	showName("MALE\nZIL");
+	author("HugsAlright");
+	clearMenu();
+	
+	switch(response)
+	{
+		case "yes":
+			output("There’s no doubt you want your mate as badly as he wants you right now, and without another word exchanged, you fall into each other’s arms. Your lips lock together and your tongues slide across one another as you both succumb to lust.");
+			// Normal Variant
+			if(!pc.isTaur())
+			{
+				output("\n\nYour bee-boyfriend breaks the kiss, leaving both of you with hungry looks on your faces. His arms shift around you, getting a good hold around your shoulders and waist before he starts to lower you.");
+				output("\n\n<i>“Here, lie down,”</i> he whispers, gently laying you on the soft jungle turf, leaving you gazing up into his black orbs and the few rays of light breaking through the canopy.");
+				if(!pc.isNude()) output(" Quick to realize your clothes are still in the way, you reach for your [pc.gear] to pull it all away, and your mate is happy to assist until you’re as nude as he is. All that’s left then is for the zil to pull himself back and position his sleek form right between your eagerly spreading thighs.");
+				else output(" With you already as nude as he is, all the zil has to do is pull himself back and position his sleek form right between your eagerly spreading thighs.");
+				output("\n\nYou wiggle in anticipation as you lay there on your back, trying to line your [pc.vagina] up with his honey-drooling cock. Luckily, your mate doesn’t seem like one to keep a lady waiting, or is just as eager as you are. He rocks his hips forward, pressing his glans against your sopping folds and drawing a gasp from your lungs. You wrap your [pc.legOrLegs] around his waist in a fit of lust-filled instinct, grasping at his shoulders as you try to quell the mind-blowing pleasure of that simple touch.");
+				output("\n\nThe zil doesn’t need " + (!pc.hasLegs() ? "you" : "your legs") + " to help him in though, because he’s already pushing into you, gently moving his hips forward, penetrating your honeypot and stretching your nether lips around his engorged shaft. You moan under the weight of pheromone-induced bliss, unable to quiet yourself as your hypersensitive inner walls are caressed by alien cockflesh with one smooth thrust inwards. It’s all enough to make you cum on the spot. Your whole body tenses, bracing for shockwave after shockwave of pleasure that rock your body soon after. Your [pc.vagina] clenches and convulses around your lover’s honey-dipper, trying to milk an orgasm from the alien atop you, but to no avail.");
+				if(pc.hasCock()) output(" At the same time, your [pc.cocks] empt" + (pc.cocks.length == 1 ? "ies itself" : "y themselves") + " onto your [pc.chest], a few stray spurts of [pc.cum] splattering your lover as well.");
+				output("\n\nYou go limp as you come down from your sudden and powerful climax, left gazing up at your smiling lover, who seems unphased. No, it’s obvious from the look on his face that there’s more to come, already thrusting his hips against your own.");
+				output("\n\nIt’s strange; he’s small like most zil, lithe and bordering on a girly physique, but something about the musk in the air is making him seem so... manly? All those thoughts fade from your head when your bee-boyfriend darts down and takes one of your [pc.nipples] between his lips. His tongue swirls around your teat, drawing circles around the nub until you’re whimpering with need, his hips slowly thrusting against your own.");
+				if(pc.isLactating()) output(" Before too long, your mate gives you what you need and starts to suckle on your [pc.breast], drawing [pc.milk] into his mouth and leaving you moaning in bliss.");
+				output("\n\nWith all the attention you’re receiving, it’s no surprise you’re");
+				if(pc.hasCock()) output(" already hard again and");
+				output(" speeding towards your next orgasm, but you bite your lip and hold on until your lover can finish with you. His hips pumps faster and faster against yours, fucking you hard");
+				if(pc.hasBreasts()) output(" enough to make your tits wobble and rock with each thrust");
+				else output(" enough to have you in a constant state of ecstasy");
+				output(" while still being gentle with your pregnant body. Your legs stay locked around his back, keeping him in place as he has his way with you, but you don’t think the bee-boy would necessarily be going anywhere if you were to let go. All the same, your embrace pulls him closer and his sweet-pre leaking prick deeper inside you, rubbing against your deepest depths until there’s not a moment of silence between your moaning and groaning.");
+				output("\n\nDespite your attempts to delay your climax, it comes again, and even more powerful than the last. Your cock-filled pussy spasms, squirting [pc.girlcum] onto your lover’s crotch, your [pc.hips] grinding against his in a series of autonomous, lust-driven movement, rubbing your most sensitive parts against his shaft.");
+				if(pc.hasCock()) output(" What [pc.cum] you have left splatters you and your bee-boyfriend as your love-muscle convulses with the weight of your second orgasm.");
+				output(" All the while you scream with bliss, and luckily it doesn’t look like your mate is far behind you this time. Your nipple pops free of his lips as he pulls off it, letting out a howl of pleasure and burying his honey-stick inside you with one good thrust. The turgid shaft spasm inside you, coating your inner walls with honey-cum that soon dribbles out of your slit without a knot to hold it back, his hips bucking against yours.");
+				output("\n\nWith a few last jerky hip-thrusts and spurts of sweet, golden cum, you both come down from your peaks, left gazing happily into eachother’s eyes before your mate pulls out of your honey-dripping cunt. You whimper as his cockflesh rubs against your still-sensitive pussy one last time, and your lover rolls to your side. There, he’s able to wrap his arms around you and you’re able to rest your head on his chest. It seems like you’re both ready for sleep after that, and with your mate holding you tight, you’ll feel safe taking a nap in the jungle with him.");
+			}
+			// Taur Variant
+			else
+			{
+				output("\n\nWith a body like yours, it’s obvious you aren’t going to be able to get any action from this end, so you break the kiss, leaving your bee-boyfriend gazing hungrily at you before you turn yourself around. Then you bend down on your front legs and present your [pc.ass] to the zil, looking over your shoulder and smirking at him.");
+				output("\n\nBehind you, the alien");
+				if(!pc.isNude()) output(" is already tearing away your clothes, licking his lips at the sight of your [pc.vagina], his cock twitching with need");
+				else output(" licks his lips, his eyes locked on your [pc.vagina] and his cock twitching with need");
+				output(". A moment after you turn back around, you feel a pair of hands grab at your backmost hips and pull your rear just a bit closer until his glans press against your sopping folds drawing a gasp from you lungs. You bite your lip in response, trying to quell the pleasure of such a light touch.");
+				output("\n\nEager for more, you try to rock your hips back against the zil’s honey-dripping tip. He doesn’t need the help, though, because he’s already pushing into you, gently moving his hips forward, penetrating your honeypot and stretching your nether lips around his engorged shaft. You moan under the weight of pheromone-induced bliss, unable to quiet yourself as your hypersensitive inner walls are caressed by smooth cockflesh with one smooth thrust inwards. It’s all enough to make you cum on the spot. Your whole body tenses, bracing for the shockwaves after shockwaves of pleasure that rock your body soon after. Your [pc.vagina] clenches and convulses around your lover’s honey-dipper, trying to milk an orgasm from the alien atop you to no avail.");
+				if(pc.hasCock()) output(" At the same time, your [pc.cocks] empty onto the ground below, leaving your legs shaking with the force of your peak.");
+				output("\n\nYou go limp as you come down from your sudden and powerful climax. You’re barely able to muster the strength to look back at your smiling lover, who seems unphased. No, it’s obvious from the look on his face that there’s more to come, already thrusting his hips against your own.");
+				output("\n\nIt’s strange, he’s small like most zil, lithe and bordering on a girly physique, but something about the musk in the air is making him seem so... manly? All those thoughts fade when you feel a finger make contact with your [pc.asshole], making you gasp before a bit of pressure appears behind that digit. Turning around again, you see your lover grinning at your needy face as his finger presses against your pucker, until it finally slips in with little more than a whimper from you.");
+				output("\n\nWith all the attention you’re receiving, it’s no surprise you’re already");
+				if(pc.hasCock()) output(" hard again and");
+				output(" speeding towards your next orgasm, but you bite your lip and hold on until your lover can finish with you. His hips pump faster and faster, hard enough to keep you in constant bliss, but gentle enough for your pregnant body. A sly digit still probes at your ass, small movements that have you groaning and clenching around your lover’s finger. Even with its fairly modest size, your mate’s cock stays well sheathed inside you, rubbing against your sensitive inner walls and seeking out your deepest depths.");
+				output("\n\nDespite your attempts to delay your climax, it comes again, and even more powerful than the last. Your cock-filled pussy spasms, squirting [pc.girlcum] onto your lover’s crotch, your [pc.hips] grinding against his in a series of autonomous, lust-driven movement, rubbing your most sensitive parts against his shaft. Following suit, your [pc.asshole] clamps down around the member filling it.");
+				if(pc.hasCock()) output(" What [pc.cum] you have left splatters you and your bee-boyfriend as your love-muscle convulses with the weight of your second orgasm.");
+				output(" All the while you scream with bliss, and luckily it doesn’t look like your mate is far behind you this time. He lets out a howl of pleasure behind you and buries his honey-stick inside you with one good thrust. The turgid shaft spasm inside you, coating your inner walls with honey-cum that soon dribbles out of your slit without a knot to hold it back, his hips bucking against yours.");
+				output("\n\nWith a few last jerky hip-thrusts and spurts of sweet, golden cum, you both come down from your peaks, and your mate pulls out of your honey-dripping cunt. You whimper as his cockflesh rubs against your still-sensitive pussy one last time. With barely any willpower left to hold you you up, you carefully lay yourself down on the soft turf of the Mhen’ga jungle. Your lover joins you on the ground soon after. There, he’s able to wrap his arms around you and you’re able to rest your head on his chest. It seems like you’re both ready for sleep after that, and with your mate holding you tight, you’ll feel safe taking a nap in the jungle with him.");
+			}
+			output("\n\n");
+			
+			pc.orgasm();
+			processTime(25);
+			
+			addButton(0, "Next", maleZilPreggomonesEncounterNext, "next");
+			break;
+		case "next":
+			output("You awake sometime later with a zil-boy still holding you close, and are quick to give a yawn and stretch your tired limbs, which seems to wake your mate. He does the same as you, stretching and yawning until he turns to you. <i>“Hello, my mate, sleep well?”</i> he asks,");
+			if(pc.hasBreasts()) output(" groping at one of your still naked tits");
+			else output(" circling one of your still naked nipples with his finger");
+			output(".");
+			output("\n\nYou " + (!pc.isTaur() ? "gasp" : "whimper") + " slightly at his touch and tell the zil you did rest well with him at your side.");
+			output("\n\nHe smiles, <i>“Care to stick around then?”</i>");
+			output("\n\nAs much as you would love to stay with him for a bit longer, you remember you still have a fortune to chase, and tell the bee-boy you have to get moving again.");
+			output("\n\nYour mate seems a bit disappointed at that, but seems happy all the same. <i>“Of course,”</i> he says, pulling himself from your embrace and rising to his feet, <i>“I’d offer to escort you back to my village, but it looks like you have your own places to be. So, until next time, my mate, stay safe.”</i>");
+			output("\n\nLike that, he’s gone again, back into the jungle, clearing your mind of that lusty haze. The zil was right though, you do have places to be. Standing yourself up straight");
+			if(!pc.isNude()) output(" and dressing yourself");
+			output(", you get ready to move again.");
+			
+			processTime(237);
+			restHeal();
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		case "no":
+			output("You try to clear your head enough to form a coherent decision, taking a deep breath to empty that musk from your lungs. Then, once you’re back in your own head, you tell the zil that you don’t think you you’re going to be spending any time with your mate today.");
+			output("\n\nYour mate seems a bit disappointed at that, but still smiles all the same. <i>“Of course,”</i> he says, taking a few steps away from you, <i>“I’d offer to escort you back to my village, but it’s obvious you have your own places to be. Stay safe, my mate.”</i>");
+			output("\n\nLike that, he’s gone again, back into the jungle, clearing your mind of that lusty haze. The zil was right though, you do have places to be.");
+			output("\n\n");
+			
+			processTime(2);
+			// Should add some lust.
+			pc.lust(15);
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+}
+

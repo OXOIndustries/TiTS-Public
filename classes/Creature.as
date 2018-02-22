@@ -3969,6 +3969,7 @@
 			}
 			if(accessory is Allure) muskLevel += 1;
 			if(hasStatusEffect("Roehm Slimed")) muskLevel += Math.min((statusEffectv4("Roehm Slimed") * 3), statusEffectv3("Roehm Slimed"));
+			if(hasStatusEffect("Zil Pheromones")) muskLevel += statusEffectv1("Zil Pheromones");
 			
 			return muskLevel;
 		}
@@ -4316,6 +4317,7 @@
 			var bonus:int = 0;
 			bonus += statusEffectv1("Sera Spawn Reflex Mod");
 			bonus += statusEffectv1("Riya Spawn Reflex Mod");
+			bonus += statusEffectv1("Zil Pregnancy Reflex Mod");
 			bonus += statusEffectv2("Cum High");
 
 			var currReflexes:int = reflexesRaw + reflexesMod + bonus;
@@ -20112,6 +20114,26 @@
 							reflexesMod += thisStatus.value1;
 						}
 						break;
+					case "Zil Pheromones":
+						if (this is PlayerCharacter)
+						{
+							if(isLactating() && milkType != GLOBAL.FLUID_TYPE_HONEY)
+							{
+								AddLogEvent(ParseText(""), "passive", maxEffectLength);
+								milkType = GLOBAL.FLUID_TYPE_HONEY;
+							}
+							if(hasCock() && cumType != GLOBAL.FLUID_TYPE_HONEY)
+							{
+								AddLogEvent(ParseText(""), "passive", maxEffectLength);
+								cumType = GLOBAL.FLUID_TYPE_HONEY;
+							}
+							if(hasVagina() && girlCumType != GLOBAL.FLUID_TYPE_HONEY)
+							{
+								AddLogEvent(ParseText(""), "passive", maxEffectLength);
+								girlCumType = GLOBAL.FLUID_TYPE_HONEY;
+							}
+						}
+						break;
 					case "GaloMax":
 						if (requiresRemoval)
 						{
@@ -20177,6 +20199,13 @@
 						break;
 					case "Ovilium":
 						if (!hasPregnancyOfType("OviliumEggPregnancy"))
+						{
+							requiresRemoval = true;
+						}
+						break;
+					case "Zil Pheromones":
+					case "Zil Pregnancy Reflex Mod":
+						if (!hasPregnancyOfType("ZilPregnancy"))
 						{
 							requiresRemoval = true;
 						}
