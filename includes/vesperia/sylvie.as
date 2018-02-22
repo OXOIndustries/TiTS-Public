@@ -318,6 +318,7 @@ public function repeatSylvieApproaches():void
 		else if(pc.tallness >= 66) output(", pressing the side of a breast against your cheek");
 		else output(", pressing the side of her muscular taur-body to your cheek");
 		output(". <i>“How do you feel about a hug?”</i> She smiles coyly. <i>“Or you could buy me a drink.”</i> Leaning closer, she adds, <i>“I have some stories so spicy they’d curl your hair.”</i>");
+		if(sylvieHasCock()) output("\n\nYou note that the new addition to her undercarriage is quite firm.");
 	}
 	//Drunko stunko
 	else
@@ -336,6 +337,7 @@ public function repeatSylvieApproaches():void
 			else output("wet and wanton against her fingertips.");
 		}
 		output(" The moose-woman’s half-lidded eyes glitter with unrestrained passion, for life and your body in equal parts.");
+		if(sylvieHasCock()) output(" Something heavy and wet-sounding slaps into her belly.");
 	}
 	processTime(5);
 	sylvieMenu();
@@ -367,7 +369,9 @@ public function sylvieRoomBonuses(slot:int):void
 			//Unmet
 			if(flags["MET_SYLVIE"] == undefined) output("\n\nAn obviously drunk centaur (or is that moosetaur?) girl is giggling to herself and handing out kisses like candy. Her top sits next to her on the table, no doubt discarded when she messily spilled something on herself. A few drops of foaming brew on her collarbone lend credence to this theory.");
 			//Met
-			else output("\n\nSylvie the moosetaur is still at her table but just barely. At some point, she shed her top, leaving the symbols of her office rumpled and discarded, and now she’s offering hugs and kisses to any and all. Over a dozen empty mugs are stacked in a haphazard pyramid on her table. Just how much has she had to drink?");
+			else output("\n\nSylvie the moosetaur is still at her table but just barely. At some point, she shed her top, leaving the symbols of her office rumpled and discarded, and now she’s offering hugs and kisses to any and all. Over a dozen empty mugs are stacked in a haphazard pyramid on her table. ");
+			if(sylvieHasCock()) output("One sits underneath, half full of drizzling pre. ");
+			output("Just how much has she had to drink?");
 		}
 		var bName:String = "Sylvie";
 		if(flags["MET_SYLVIE"] == undefined) bName = "Moose-girl";
@@ -508,6 +512,7 @@ public function buyBeersForMooseSloot():void
 		else if(hours == 2) output("23");
 		else output("24");
 		output("... or something tonight. It’ll take at least... two times that many to get me really hammered.”</i> She leans heavily against you and whispers. <i>“You’re not trying to get me hammered so you can get in my little horsey-panties, are you?”</i> Snorting, the buzzed taur-girl giggles again. <i>“Cause it won’t work. I’m not wearing any!”</i> She laughs harder.");
+		if(sylvieHasCock()) output(" <i>“My cock wouldn’t fit in them anyway!”</i>");
 		output("\n\nThe order arrives while Sylvie is too busy laughing to respond.");
 		if(flags["MET_KALLY"] != undefined) output(" Kally winks at you when she drops off the drink and swats her tail against your [pc.butt] on the way out.");
 		else output(" The bartender smiles warmly at Sylvie as she drops off the drink, even going so far as to pet the titanic ‘taur’s bottom half before going.");
@@ -777,7 +782,9 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 		if(!pc.isAss()) output("barely manage to keep from rolling your eyes");
 		else output("roll your eyes");
 		output(". It’s quite clear just how her and the bartender held themselves back: vigorous application of genital stimulation, or in baser terms: Repeated, feverish fucking. <i>“So did the place just break out into an orgy, or what?”</i>");
-		output("\n\nSylvie actually looks offended at that. <i>“What? No, of course not. We very politely informed the minotau-err... gentlemen and their friends that we had a lovely bathing area where nudity and adult activities are allowed.”</i> She gestures at the room to the south. <i>“I might have spent a few minutes cuddling one first... and let him feel me up - it was the only honorable thing to do after giving him such a stiffy! But we didn’t break any obscenity laws.”</i> Her bluish-green lips curl with mirth. <i>“Then it turned into an orgy. Kally and I are above such things, naturally. We watched from one of the more distant tubs.”</i> A sigh so low it almost sounds like a moan bubbles out of her throat. <i>“I’ve never seen so many girls get so vigorously pounded. They’re like fuck-machines, [pc.name]. One girl after another - BAM! Fucked silly. POW! Drooling in the dirt, leaking cum from both ends. Once they finally finished up, Kally had to shut down the bar for three hours just to vent the pheromones and mop up all the jizz.”</i>");
+		output("\n\nSylvie actually looks offended at that. <i>“What? No, of course not. We very politely informed the minotau-err... gentlemen and their friends that we had a lovely bathing area where nudity and adult activities are allowed.”</i> She gestures at the room to the south. <i>“I might have spent a few minutes cuddling one first... and let him feel me up - it was the only honorable thing to do after giving him such a stiffy! But we didn’t break any obscenity laws.”</i> Her bluish-green lips curl with mirth. <i>“Then it turned into an orgy. Kally and I are above such things, naturally. We watched from one of the more distant tubs.”</i> A sigh so low it almost sounds like a moan bubbles out of her throat. <i>“I’ve never seen so many girls get so vigorously pounded. They’re like fuck-machines, [pc.name]. One girl after another - BAM! Fucked silly. POW! Drooling in the dirt, leaking cum from both ends. Once they finally finished up, Kally had to shut down the bar for three hours just to vent the pheromones and mop up all the jizz");
+		if(sylvieHasCock()) output(", and thanks to you, that mop is getting a whole lot more use. To be honest, I’m kind of liking getting treated like those bull-boys. One look at my swinging dick, and half the girls in here start getting doe-eyed.");
+		output(".”</i>");
 		output("\n\n<i>“Wow.”</i>");
 		output("\n\n<i>“And you thought your stories were wild, eh?”</i> Sylvie smiles and finishes her drink. <i>“");
 		processTime(15);
@@ -794,9 +801,17 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 	{
 		output("<i>“So, I’ve actually sort of done Throbb. Once. Not on purpose or anything. Some hoser I busted for indecency thought he could get revenge by sticking me with a double-dose of it while I was on duty. Lost five or six teeth for the trouble. Word of advice, [pc.name] - don’t be standing behind any kind of centaur unless she wants you there.”</i>");
 		output("\n\n");
-		if(!CodexManager.entryUnlocked("Throbb")) output("You look her up and down, unsure exactly what the drug is supposed to do. <i>“What’d it do to you?”</i>");
-		else if(pc.isBimbo()) output("You lick your lips and peer around her flank to look for the dick. Sadly, none appears. <i>“Where’s the dick?”</i>");
-		else output("You look around her flank, trying to spot the male organ you undoubtedly missed. <i>“I don’t see any dick. You get it removed?”</i>");
+		if(!sylvieHasCock())
+		{
+			if(!CodexManager.entryUnlocked("Throbb")) output("You look her up and down, unsure exactly what the drug is supposed to do. <i>“What’d it do to you?”</i>");
+			else if(pc.isBimbo()) output("You lick your lips and peer around her flank to look for the dick. Sadly, none appears. <i>“Where’s the dick?”</i>");
+			else output("You look around her flank, trying to spot the male organ you undoubtedly missed. <i>“I don’t see any dick. You get it removed?”</i>");
+		}
+		else
+		{
+			if(!CodexManager.entryUnlocked("Throbb")) output("You look her up and down, unsure exactly what the drug is supposed to do. <i>“What’d it do to you?”</i>");
+			else output("You look squarely at her cock, secure in the knowledge that you’re solely responsible for it. <i>“I guess it didn’t work, huh? Last I checked, I’m responsible for that monster.”</i>");
+		}
 		output("\n\nSylvie’s fluffy little moosetail flutters as she giggles. <i>“One of the perks of being in the Vesperian police forces is a top of the line GeneGuard immune system. It doesn’t just protect us from poisons and pathogens - it repairs genetic damage on the fly, counters most transformations too. It’s a double-edged sword, but it keeps me safe.”</i> She pats her flat tummy affectionately. <i>“But sometimes the really strong stuff temporarily overloads it.”</i>");
 		output("\n\n<i>“What happened?”</i> You lean in, genuinely interested in her reaction to the illicit drug.");
 		output("\n\n<i>“What happened?”</i> Sylvie smiles roguishly. <i>“I grew a four foot dick, that’s what happened! There I am, cuffing the poor, misguided moron when the whole room spins on its axis. Apparently I dropped like a sack of rocks, just flopped over on my flank and lay there laughing like a hyena. I don’t really remember the laughing part, but I do remember feeling that dick boil up out of my loins, all hot and tight and throbbing. I guess that’s where the drug gets its name from, because after a second or two, that’s about all I could really feel - incredible, blissful throbbing.”</i>");
@@ -806,7 +821,9 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 		output("\n\nYou look at the giddy taur in shock.");
 		output("\n\n<i>“It’s true. I got a copy of the security holo back at my bunk. They still call me ‘Six-Gallon Sylvie’ at HQ, sometimes.”</i> The moose-woman proudly preens. <i>“It’s always nice to know that if I ever wanted to hang up the law woman routine and throw my life away, I’d have the biggest dick on the station.”</i>");
 		output("\n\nYou lean back to digest what she’s had to say. <i>“How long did it take to wear off?”</i>");
-		output("\n\nSylvie replies, <i>“Do you mean ‘how long were you a big-dicked sex-fiend?’”</i> She winks. <i>“About an hour. I got hauled off before too long and put in confinement with a breeding relief stand - for races that get hit by rutting season really, really hard. I’m pretty sure I was still grinding up on it long after the dick went away. I guess my body might have recovered, but part of my mind wanted to keep going. I got two days paid leave to recover, got blitzed off my ass in here, and went back on duty afterward.”</i>");
+		output("\n\nSylvie replies, <i>“Do you mean ‘how long were you a big-dicked sex-fiend?’”</i> She winks. <i>“About an hour. I got hauled off before too long and put in confinement with a breeding relief stand - for races that get hit by rutting season really, really hard. I’m pretty sure I was still grinding up on it long after the dick went away. I guess my body might have recovered, but part of my mind wanted to keep going. I got two days paid leave to recover, got blitzed off my ass in here, and went back on duty afterward.");
+		if(sylvieHasCock()) output(" Of course, we all know a certain someone indulged my appreciation for the male orgasm. Thanks for that by the way. That nick-name I mentioned? It's all anybody calls me now.");
+		output("”</i>");
 		output("\n\n<i>“And the guy who drugged you?”</i>");
 		output("\n\nShe smirks. <i>“Spending another two years in jail. Assaulting an officer is a stupid idea, I don’t care what planet you’re on.”</i>");
 		output("\n\n");
@@ -880,7 +897,10 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 		if(flags["MET_DR_BADGER"] != undefined) output("Does she mean Doctor Badger?");
 		else output("You’ve definitely heard bits on the news about someone like that, though she’s probably got the name wrong.");
 		output(" <i>“Yeah.”</i>");
-		output("\n\nSylvie licks the beer from her gleaming teal lips and explains, <i>“She was on this very station a few months back. We didn’t catch her at first. She somehow faked her geneprint and records in ways our scientists are still trying to figure out. Apparently she looked like a pudgy tiger - with a dick of course. Every pervert in the galaxy seems to feel the need to get one, whether or not they were born with it.”</i> Patting her hindquarters, she proudly declares, <i>“I can proudly say that I’m 100% female... and lucky Doctor Bimbomancer didn’t set her sights on me.”</i>");
+		output("\n\nSylvie licks the beer from her gleaming teal lips and explains, <i>“She was on this very station a few months back. We didn’t catch her at first. She somehow faked her geneprint and records in ways our scientists are still trying to figure out. Apparently she looked like a pudgy tiger - with a dick of course. Every pervert in the galaxy seems to feel the need to get one, whether or not they were born with it.”</i> Patting her hindquarters, ");
+		if(sylvieHasCock()) output("she says, <i>“I guess that makes me one of those perverts doesn't it? Fuck! Well, better you than Doctor Bimbomancer! I'm just lucky she didn't set her sights on me.");
+		else output("she proudly declares, <i>“I can proudly say that I’m 100% female... and lucky Doctor Bimbomancer didn’t set her sights on me.");
+		output("”</i>");
 		output("\n\nScratching your neck nervously, you ask, <i>“Why’s that?”</i>");
 		output("\n\n<i>“Because in the three days she was here, she managed to turn two cute deer-girls on vacation into silicone-inflated nymphomaniacs.”</i> She shakes her head, then brushes a loose lock of hair out of the way. <i>“They went from petite beauties to artificial ultra-porn goddesses. And on top of that, the bitch managed to give my ex-partner the slip - and a few other additions that rendered him unable to continue his duties.”</i> Those last few words come out strangely wistfully...");
 		output("\n\n<i>“What kind of additions? You sound like you liked them...”</i> you pry, curiosity piqued.");
@@ -1381,12 +1401,15 @@ public function hugSylvie():void
 public function sylvieSexyTimeIntro():void
 {
 	clearOutput();
+	//Even futa sylvie still wants you to have genitals:
 	if(!pc.hasGenitals() && !pc.hasPerk("Myr Venom"))
 	{
 		if(flags["SYLVIE_THROBB_GIFT"] == undefined)
 		{
 			output("The moment you speak, Sylvie is drunkenly shaking her head.");
-			output(" <i>“Nope! You don’t have any genitals silly. Not yet anyway.”</i> She leans close, close enough to accidentally whack you with one of her antlers. <i>“Oopsie!”</i> Sylvie kisses the spot where she bumped you, then drifts down to your ear, whispering, <i>“I have a little Throbb from a recent bust, if you’d like to get suited up for a little fun.”</i>\n\n");
+			output(" <i>“Nope! You don’t have any genitals silly. Not yet anyway.”</i> She leans close, close enough to accidentally whack you with one of her antlers. <i>“Oopsie!”</i> Sylvie kisses the spot where she bumped you, then drifts down to your ear, whispering, <i>“I have a little Throbb from a recent bust, if you’d like to get suited up for a little fun.");
+			if(sylvieHasCock()) output(" 'Course you could always just slap a SynthSheath on yourself, like you did me.");
+			output("”</i>\n\n");
 			quickLoot(new Throbb());
 			CodexManager.unlockEntry("Throbb");
 			flags["SYLVIE_THROBB_GIFT"] = 1;
@@ -1402,16 +1425,20 @@ public function sylvieSexyTimeIntro():void
 		}
 		return;
 	}
-	if(pc.biggestCockVolume() < 50 && !pc.hasVagina() && !pc.hasPerk("Myr Venom"))
+	//Sylvie doesn't care if the PC has a decent-sized cock if she's got her own dick. buttfuxk ahoy.
+	if(!sylvieHasCock())
 	{
-		output("The moment you speak, Sylvie is drunkenly shaking her head.");
-		output(" <i>“Nope! You’re, not packing quite enough just yet. You know, that mouse girl might over there might have some Throbb.”</i> Sylvie titters, leaning so close her antler nearly bumps your head. Her voice comes out in a hushed, slurred whisper. <i>“Because she’s my shecret informant! So long as she feeds me intel, I let her minor transguh... transgressions slide, and when I meet a cutie like you who needs a little extra...”</i> She grabs you by the crotch and squeezes, kissing you full on the mouth. Sylvie’s pops off with a giddy grin, still rubbing you. <i>“...I can send you over there to top up. Just be safe, okay?”</i>");
-		output("\n\nSylvie nods as if that was the easiest task in the world.");
-		flags["SYLVIE_MABBSED"] = 1;
-		CodexManager.unlockEntry("Throbb");
-		clearMenu();
-		addButton(0,"Next",mainGameMenu);
-		return;
+		if(pc.biggestCockVolume() < 50 && !pc.hasVagina() && !pc.hasPerk("Myr Venom"))
+		{
+			output("The moment you speak, Sylvie is drunkenly shaking her head.");
+			output(" <i>“Nope! You’re, not packing quite enough just yet. You know, that mouse girl might over there might have some Throbb.”</i> Sylvie titters, leaning so close her antler nearly bumps your head. Her voice comes out in a hushed, slurred whisper. <i>“Because she’s my shecret informant! So long as she feeds me intel, I let her minor transguh... transgressions slide, and when I meet a cutie like you who needs a little extra...”</i> She grabs you by the crotch and squeezes, kissing you full on the mouth. Sylvie’s pops off with a giddy grin, still rubbing you. <i>“...I can send you over there to top up. Just be safe, okay?”</i>");
+			output("\n\nSylvie nods as if that was the easiest task in the world.");
+			flags["SYLVIE_MABBSED"] = 1;
+			CodexManager.unlockEntry("Throbb");
+			clearMenu();
+			addButton(0,"Next",mainGameMenu);
+			return;
+		}
 	}
 	showSylvie(true);
 	output("The moment you speak, Sylvie is in motion, displaying remarkable reflexes for one so wildly inebriated. She grabs you by the hand and ");
