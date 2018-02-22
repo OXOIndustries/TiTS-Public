@@ -16,10 +16,11 @@ Hangs out at the tables near the stage, completely on display for customers. She
 "Fair warning: this suit amplifies physical sensation by five. So if you fuck me, I'm going to orgasm pretty much instantly. The good news is, my gryvain half means I don't have a refractory period. I'm ready to go again while I'm still squirting the first load out. Treat me right, and I'll empty my balls for you by the time you finish."
 */
 
-public function showTerensha():void
+public function showTerensha(cumflatedHer:Boolean = false):void
 {
 	showName("\nTERENSHA");
-	showBust("TERENSHA");
+	if(!cumflatedHer) showBust("TERENSHA");
+	else showBust("TERENSHA_FILLED");
 	if(silly) author("Savinbuns");
 	else author("Savin");
 }
@@ -913,7 +914,7 @@ public function renBallJobPart2():void
 public function roomServiceOutroCrap(cumflatedHer:Boolean = false):void
 {
 	clearOutput();
-	showTerensha();
+	showTerensha(cumflatedHer);
 	output("You wake with a yawn, rolling onto your back and stretching languidly. A glance around the private brothel room doesn’t show Terensha anywhere, though your attention is quickly grabbed by the sound of a shower running. Part of the bulkhead across from the bed has slide aside, revealing a small stall just barely large enough for the big alien beauty to stand in. She’s still in her purple suit, using the nozzle to wash away the excess mess of lube and cum left on the latex - and giving it that extra little bit of sweet-smelling shine before she returns to selling herself on the floor.");
 	output("\n\n<i>“Hey,”</i> Ren smiles, seeing you sit up. She turns in the stall to face you, having little choice but to press her breasts against the steam-stained glass");
 	if(cumflatedHer) output(", and her cum-bloated belly jiggles incessantly, still sloshing with your pent-up seed");
