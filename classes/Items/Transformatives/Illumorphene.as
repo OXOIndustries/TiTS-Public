@@ -284,6 +284,7 @@ package classes.Items.Transformatives
 			target.clearFaceFlags();
 			target.addFaceFlag(GLOBAL.FLAG_ANGULAR);
 			
+			target.earLength = 0;
 			target.earType = GLOBAL.TYPE_MOTHRINE;
 			
 			target.tongueType = GLOBAL.TYPE_MOTHRINE;
@@ -293,7 +294,8 @@ package classes.Items.Transformatives
 			
 			target.hairType = GLOBAL.HAIR_TYPE_REGULAR;
 			target.hairColor = newHairColor;
-			target.hairStyle = "straight";
+			if(target.hairLength > 0) target.hairStyle = "straight";
+			else target.hairStyle = "null";
 			
 			target.armType = GLOBAL.TYPE_MOTHRINE;
 			target.clearArmFlags();
