@@ -180,7 +180,7 @@ public function playWithZil(choice:Number = -1):void
 		
 		if(pc.isLactating() && rand(2) == 0)
 		{
-			msg += "You decide you’re going to feed your babies while you’re here. Picking up one of from them from their cribs, you hear " + (boy ? "him" : "her") + " coo with glee when they open their [baby.eyecolor] eyes and see your face looking back at them. Even with the amazing staff this nursery has, you’re sure all your children would enjoy a meal from their " + pc.mf("father", "mother") + ".";
+			msg += "You decide you’re going to feed your babies while you’re here. Picking up one of from them from their cribs, you hear " + (boy ? "him" : "her") + " coo with glee when they open their [baby.eyeColor] eyes and see your face looking back at them. Even with the amazing staff this nursery has, you’re sure all your children would enjoy a meal from their " + pc.mf("father", "mother") + ".";
 			msg += "\n\nWith just that in mind, you";
 			if(!pc.isChestExposed()) msg += " remove your top and";
 			msg += " lift your " + (boy ? "son" : "daughter") + " to your chest. Almost immediately " + (boy ? "he" : "she") + " latches onto your teat and starts to suckle, taking in your nourishing nectar. You’re left alone in a blissful silence, a warm fuzzy feeling permeating your body as parental instincts take over.";
@@ -191,7 +191,7 @@ public function playWithZil(choice:Number = -1):void
 		}
 		else
 		{
-			msg += "You decide you’re going to play with your babies for a bit while you’re here. Picking up one of from them from their cribs, you hear " + (boy ? "him" : "her") + " coo with glee when they open their [baby.eyecolor] eyes and see your face looking back at them. Even with the amazing staff this nursery has, you’re sure they could use a " + pc.mf("father", "mother") + "’s touch.";
+			msg += "You decide you’re going to play with your babies for a bit while you’re here. Picking up one of from them from their cribs, you hear " + (boy ? "him" : "her") + " coo with glee when they open their [baby.eyeColor] eyes and see your face looking back at them. Even with the amazing staff this nursery has, you’re sure they could use a " + pc.mf("father", "mother") + "’s touch.";
 			msg += "\n\nWith that in mind, you lift your baby up to your to your face, looking at " + (boy ? "his" : "her") + " smiling face for a moment. You can’t help but grin at your offspring’s happy mien, and blowing a raspberry on " + (boy ? "his" : "her") + " cheeks, drawing a chorus of joyous baby-giggles from the half-breed.";
 			msg += "\n\nPlaying with babies seems to be so easy, bouncing " + (boy ? "him" : "her") + " in your arms, tickling, and peek-a-boo, all of it making for one happy bee. Eventually, your child grows tired, and with a few last embraces, you put the newborn back in " + (boy ? "his" : "her") + " crib, happily sleeping. Then, you do the same for all your other babies, taking time out of your busy schedule to make sure they all have smiles on their faces before setting them down to rest again.";
 			msg += "\n\nOnce all is said and done, you’re left feeling fulfilled as a parent, gazing down upon your offspring one last time before heading back to the rest of the nursery.";
