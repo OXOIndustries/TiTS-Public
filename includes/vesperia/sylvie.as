@@ -1479,6 +1479,22 @@ public function sylvieSexMenu():void
 		if(pc.hasCock() && pc.cockVolume(x) >= 50) addButton(3,"FuckHerPuss",penisRouter,[fuckDickedSylviesPussah,sylvieCuntSize(),false,50],"FuckHerPuss","Just because she has a dick doesn’t mean she can’t take one...");
 		else if(pc.hasCock()) addDisabledButton(3,"FuckHerPuss","FuckHerPuss","Your penis isn’t appropriately sized for her.");
 		else addDisabledButton(3,"FuckHerPuss","FuckHerPuss","You need a penis for this.");
+		if(pc.hasCock())
+		{
+			if(pc.biggestCockLength() >= 12) addButton(4,"TittyBlow",tittyBlow,undefined,"Titty Blow","Get your dick wet in Sylvie’s drizzling pussy, then stuff it between her tits until you’re blowing a load down her throat.");
+			else addDisabledButton(4,"TittyBlow","TittyBlow","Your penis is too short to truly enjoy the expanse of cleavage that Sylvie offers. Come back when your largest member is 12 inches or longer.");
+		}
+		else addDisabledButton(4,"TittyBlow","Titty Blow","You need a penis 12 inches or longer to titfuck her massive mammaries.");
+		if(pc.hasVagina())
+		{
+			addButton(5,"SpankNGrind",spankyGrindyWimyFunSchlicks,false,"Spank ‘N Grind","Spank her and grind on her slit and clit until you mutually orgasm.");
+			addButton(6,"Cuffs&Tongue",cuffsAndTongueFromNonesuchyDuchy,false,"Cuffs & Tongue","Get cuffed up and force-fed dripping deer cunt.");
+		}
+		else 
+		{
+			addDisabledButton(5,"SpankNGrind","Spank ‘N Grind","You need a vagina in order to do all this.");
+			addDisabledButton(6,"Cuffs&Tongue","Cuffs & Tongue","You need a vagina in order to experience this forceful scene!");
+		}
 	}
 	else
 	{
@@ -1536,29 +1552,19 @@ public function sylvieForcyRouter():void
 //If picks leave option, FORCEY TIMES!
 public function leaveSylvieHighAndLessThanDryYaCunt():void
 {
-	if(!sylvieHasCock())
-	{
-		clearOutput();
-		showSylvie(true);
-		output("When you turn to leave, Sylvie ");
-		if(!(pc.armor is EmptySlot)) output("snags you by the collar");
-		else output("grabs you by the shoulder");
-		output(" and spins you around, slamming you into her side. <i>“Don’t worry, Momma Sylvie will pick for you if you don’t wanna worry about it.”</i> She pulls your face ");
-		if(pc.tallness < 80) output("up");
-		else if(pc.tallness < 95) output("over");
-		else output("down");
-		output(" to one of her tits, forcibly rubbing her nipple over your [pc.lipsChaste]. <i>“I know just what to do with you,”</i> she drunkenly promises, bending low to slap your ass. The motion makes her breast jiggle against your face.");
-		processTime(2);
-		clearMenu();
-		addButton(0,"Next",sylvieForcyRouter);
-	}
-	else
-	{
-		clearOutput();
-		showSylvie();
-		output("What else would you like to do with Sylvie? Her cock droops slightly at the realization that you won’t be riding it.");
-		sylvieMenu();
-	}
+	clearOutput();
+	showSylvie(true);
+	output("When you turn to leave, Sylvie ");
+	if(!(pc.armor is EmptySlot)) output("snags you by the collar");
+	else output("grabs you by the shoulder");
+	output(" and spins you around, slamming you into her side. <i>“Don’t worry, Momma Sylvie will pick for you if you don’t wanna worry about it.”</> She pulls your face ");
+	if(pc.tallness < 80) output("up");
+	else if(pc.tallness < 95) output("over");
+	else output("down");
+	output(" to one of her tits, forcibly rubbing her nipple over your [pc.lipsChaste]. <i>“I know just what to do with you,”</i> she drunkenly promises, bending low to slap your ass. The motion makes her breast jiggle against your face.");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",sylvieForcyRouter);
 }
 
 //[COMPLETE] [Wsan] [Mount Pussy] - Big Dikked Taur Mount It
@@ -2085,6 +2091,7 @@ public function sylvieFuckyTitBlow3(cumQ:Number):void
 
 //[COMPLETE] [Meredith Caerwyn] [Spank ‘N Grind] Spank Her Grind on her slit & clit till mutual ‘gasms. [4Ladies]
 //Since pressure on her backside triggers lubrication, spanking makes her super wet. Gonna need a mop.
+//FutaSylvie compatible!
 public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 {
 	clearOutput();
@@ -2097,7 +2104,9 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 		if(pc.isBimbo()) output("giggle");
 		else if((pc.isNice() || pc.isMischievous()) && !pc.isBro()) output("grin");
 		else output("smirk");
-		output(" and give that well-filled booty a good, solid slap it deserves. Sylvie lets out a delighted little moan and sways her ample ass provocatively. <i>“Oh, yes,”</i> she breathlessly teases, <i>“Surely you can do it harder.”</i>");
+		output(" and give that well-filled booty a good, solid slap it deserves. Sylvie lets out a delighted little moan and sways her ample ass provocatively");
+		if(sylvieHasCock()) output(", semi-hard cock slapping between her hind-thighs");
+		output(". <i>“Oh, yes,”</i> she breathlessly teases, <i>“Surely you can do it harder.”</i>");
 
 		output("\n\nYou ");
 		if(pc.isBimbo() || pc.isMischievous()) output("release a fake scandalized gasp and ask cheekily whether");
@@ -2130,12 +2139,25 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 
 		output("\n\nBatting away her wandering hands, you");
 		//(Tallness <5’)
-		if(pc.tallness < 5*12) output(" swiftly crouch and pass under her, small as you are, faster than");
+		if(pc.tallness < 5*12) 
+		{
+			output(" swiftly crouch and pass under her");
+			if(sylvieHasCock()) output(", banging off her cock in the process,");
+			else output(", small as you are,");
+			output(" faster than");
+		}
 		else if(!pc.isNaga()) output(" pinch her side hard enough to distract her and push her arm as you pass at her other side, before");
-		else output(" decide to use her closeness against her, swiftly coiling your body with hers and slithering under her arms until you are snugly wrapped around her backside, trapping her in your coils beneath you, before");
+		else 
+		{
+			output(" decide to use her closeness against her, swiftly coiling your body with hers");
+			if(sylvieHasCock()) output(", ignoring the way your snake-like tail slithers against her rigid dick,");
+			output(" and slithering under her arms until you are snugly wrapped around her backside, trapping her in your coils beneath you, before");
+		}		
 		output(" she can react with more than a surprised gasp. You give her a few good, hard slaps on her hind quarters to keep her from trying to turn around, resulting in her moaning breathlessly. Now that you have her trapped ");
 		if(!pc.isNaga()) output("in the corner with no space to turn around");
-		output(", you decide you have changed your mind. After all, bad girls need to be taught some manners, no? <i>Perhaps a </i>hands-on<i> lesson will be needed</i>, you think, growing hot as her wet, inflamed nether lips rub against your ");
+		output(", you decide you have changed your mind. After all, bad girls need to be taught some manners, no? <i>Perhaps a </i>hands-on<i> lesson will be needed</i>, you think, growing hot as her ");
+		if(sylvieHasCock()) output("heavy sack and ");
+		output("wet, inflamed nether lips rub against your ");
 		if(pc.tallness < 5 * 12) output("front");
 		else output("crotch");
 		output(".");
@@ -2165,7 +2187,12 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 	{
 		output("\n\nWhich, you realize, isn’t much of one. A minor adjustment of the angle and you are pretty sure you can manage to grind directly on her cute clit and puffy, shimmering purple pussy. <i>It’s good having a tail instead of legs,</i> you think, smiling in satisfaction. You squeeze her body with your tail teasingly when you give her another strike on her ample backside, rubbing it in satisfaction at her excited pants. Her lubrication makes your tail more slippery and wet, only further making it easier for you to be able to slide and grind against her.");
 	}
-	output("\n\nYou start eagerly grinding against her deliciously soaked, swollen lips, making sure to give her hard slaps on both sides of her ample ass at the same time. Sylvie lets out a loud moaning gasp, followed by breathless whines and pants to the rhythm of your gyrating movements, scattered with whimpering groans and gasps whenever you reward her with a smack on her broad rear.");
+	output("\n\nYou start eagerly grinding against her deliciously soaked, swollen lips, ");
+	if(sylvieHasCock()) output("careful not to press too hard against her swelling balls as you make ");
+	else output("making ");
+	output("sure to give her hard slaps on both sides of her enormous ass");
+	if(!sylvieHasCock()) output(" at the same time");
+	output(". Sylvie lets out a loud moaning gasp, followed by breathless whines and pants to the rhythm of your gyrating movements, scattered with whimpering groans and gasps whenever you reward her with a smack on her broad rear.");
 	output("\n\nBy now, there is enough lubrication gushing from her eager cunt that your bodies slide against each other with practically no friction and, more importantly, no chafing. The sheer sensation is extremely satisfying, making your grinding much more enjoyable than usual.");
 	if(pc.isNaga()) output(" You eagerly take advantage of her copious lubrication to rhythmically constrict and relax your body around hers in addition to your grinding. Whenever you do that, Sylvie lets out a hitched, breathless moan, her legs trembling stronger from excitement and arousal.");
 	output("\n\nMoreover, her puffy, fat lips make a perfect surface for rubbing [pc.eachVagina] against, making you wish every snatch you encountered was this deliciously modded. ");
@@ -2200,7 +2227,9 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 	if(pc.isSquirter()) output(" a veritable flood of [pc.girlCum] flow down to mix with Sylvie’s feminine juices, together all but making a small lake on the floor beneath you.");
 	else if(pc.wettestVaginalWetness() < 4) output(" a river of [pc.girlCum] flow down to mix with Sylvie’s feminine juices, making the puddle from her copious lubrication a little bigger.");
 	else output(" a stream of [pc.girlCum] flow down your body to mix with Sylvie’s feminine juices, though it doesn’t make the puddle from her copious lubrication any bigger.");
+
 	output("\n\nYou pant breathlessly after your orgasm and rub Sylvie’s quivering backside as she reaches her own orgasm, set off by the feeling of your entrance clenching and fluttering against her own.");
+	if(sylvieHasCock()) output(" Gallon after gallon bursts forth from her flaring cock in the peak of her passion. You didn't have to directly touch it to set her off. The feelings coursing through her animalistic cunt and stinging hindquarters are more than enough to empty every drop from her diminishing balls.");
 
 	//(If not naga)
 	if(!pc.isNaga()) output("\n\nOnce you catch your breath, you help her turn around and lay on the floor with her legs under her, both of you letting out chuckles from all the slipping and sliding you do on the wet floor. When she is settled, you lean against her flank and relax, the post-orgasm buzz still pleasantly running through your body.");
@@ -2210,7 +2239,10 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 	else if((pc.isNice() || pc.isMischievous()) && !pc.isBro()) output("a teasing smile.");
 	else output("a smug smirk.");
 
-	output("\n\nLooking around the room, Sylvie sighs and starts getting up. <i>“Should probably start cleaning,”</i> she say, mumbling under her breath, <i>“since it’ll take us a while I suspect.”</i> She look exasperatedly at the miniature lake under you. You look at her");
+	output("\n\nLooking around the room, Sylvie sighs and starts getting up. <i>“Should probably start cleaning,”</i> she say, mumbling under her breath, <i>“since it’ll take us a while I suspect.”</i> She look exasperatedly at the ");
+	if(sylvieHasCock()) output("sperm-infused");
+	output("miniature");
+	output(" lake under you. You look at her");
 
 	//(No Treatment and Libido<75)
 	if(!pc.isTreated() && pc.libido() < 75)
@@ -2247,7 +2279,9 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 //By Nonesuch
 //Requires: Pussy
 
+
 //Tooltip: Get cuffed up and force-fed dripping deer cunt.
+//Futasylvie compatible nau!
 public function cuffsAndTongueFromNonesuchyDuchy(forcy:Boolean = false):void
 {
 	clearOutput();
@@ -2307,6 +2341,7 @@ public function cuffsAndTongueFromNonesuchyDuchy(forcy:Boolean = false):void
 		output("\n\n<i>“Yes! Like that!”</i> she groans, slamming her hooves into the floor as you hollow your cheeks determinedly. <i>“Fuuuuuck are you good at that!”</i>");
 		output("\n\nHer clit throbs in your mouth, and a huge gout of pussy juice spatters over your chin as it contracts out. You are dizzied by doughty hills of moose flesh excitedly battering into your upturned face, but all the way through the moosetaur’s loud, gratuitous orgasm you keep a firm hold on that tender little nub, audibly intensifying her pleasure.");
 	}
+	if(sylvieHasCock()) output("\n\nThrough it all is the lurid gushing of her cock's voluminous ejaculations. Splat after splat of augmented seed hits hard into the floor, Sylvie's balls visibly quaking with the effort of disgorging so much. The sweat-slicked equine organ lurches time after time, long after you expected it to stop, hosing out a tidal wave of white, salty goo in response to your tongue's loving licks.");
 	pc.applyPussyDrenched();
 	processTime(15);
 	pc.lust(80);
