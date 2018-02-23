@@ -829,7 +829,7 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 		output("\n\n<i>“It’s true. I got a copy of the security holo back at my bunk. They still call me ‘Six-Gallon Sylvie’ at HQ, sometimes.”</i> The moose-woman proudly preens. <i>“It’s always nice to know that if I ever wanted to hang up the law woman routine and throw my life away, I’d have the biggest dick on the station.”</i>");
 		output("\n\nYou lean back to digest what she’s had to say. <i>“How long did it take to wear off?”</i>");
 		output("\n\nSylvie replies, <i>“Do you mean ‘how long were you a big-dicked sex-fiend?’”</i> She winks. <i>“About an hour. I got hauled off before too long and put in confinement with a breeding relief stand - for races that get hit by rutting season really, really hard. I’m pretty sure I was still grinding up on it long after the dick went away. I guess my body might have recovered, but part of my mind wanted to keep going. I got two days paid leave to recover, got blitzed off my ass in here, and went back on duty afterward.");
-		if(sylvieHasCock()) output(" Of course, we all know a certain someone indulged my appreciation for the male orgasm. Thanks for that by the way. That nick-name I mentioned? It's all anybody calls me now.");
+		if(sylvieHasCock()) output(" Of course, we all know a certain someone indulged my appreciation for the male orgasm. Thanks for that by the way. That nick-name I mentioned? It’s all anybody calls me now.");
 		output("”</i>");
 		output("\n\n<i>“And the guy who drugged you?”</i>");
 		output("\n\nShe smirks. <i>“Spending another two years in jail. Assaulting an officer is a stupid idea, I don’t care what planet you’re on.”</i>");
@@ -905,7 +905,7 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 		else output("You’ve definitely heard bits on the news about someone like that, though she’s probably got the name wrong.");
 		output(" <i>“Yeah.”</i>");
 		output("\n\nSylvie licks the beer from her gleaming teal lips and explains, <i>“She was on this very station a few months back. We didn’t catch her at first. She somehow faked her geneprint and records in ways our scientists are still trying to figure out. Apparently she looked like a pudgy tiger - with a dick of course. Every pervert in the galaxy seems to feel the need to get one, whether or not they were born with it.”</i> Patting her hindquarters, ");
-		if(sylvieHasCock()) output("she says, <i>“I guess that makes me one of those perverts doesn't it? Fuck! Well, better you than Doctor Bimbomancer! I'm just lucky she didn't set her sights on me.");
+		if(sylvieHasCock()) output("she says, <i>“I guess that makes me one of those perverts doesn’t it? Fuck! Well, better you than Doctor Bimbomancer! I’m just lucky she didn’t set her sights on me.");
 		else output("she proudly declares, <i>“I can proudly say that I’m 100% female... and lucky Doctor Bimbomancer didn’t set her sights on me.");
 		output("”</i>");
 		output("\n\nScratching your neck nervously, you ask, <i>“Why’s that?”</i>");
@@ -1415,7 +1415,7 @@ public function sylvieSexyTimeIntro():void
 		{
 			output("The moment you speak, Sylvie is drunkenly shaking her head.");
 			output(" <i>“Nope! You don’t have any genitals silly. Not yet anyway.”</i> She leans close, close enough to accidentally whack you with one of her antlers. <i>“Oopsie!”</i> Sylvie kisses the spot where she bumped you, then drifts down to your ear, whispering, <i>“I have a little Throbb from a recent bust, if you’d like to get suited up for a little fun.");
-			if(sylvieHasCock()) output(" 'Course you could always just slap a SynthSheath on yourself, like you did me.");
+			if(sylvieHasCock()) output(" ‘Course you could always just slap a SynthSheath on yourself, like you did me.");
 			output("”</i>\n\n");
 			quickLoot(new Throbb());
 			CodexManager.unlockEntry("Throbb");
