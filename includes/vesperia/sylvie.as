@@ -1563,6 +1563,7 @@ public function leaveSylvieHighAndLessThanDryYaCunt():void
 
 //[COMPLETE] [Wsan] [Mount Pussy] - Big Dikked Taur Mount It
 //for taurs with dik >10"
+//Now supports futa sylvie
 public function taurPussyMountWsanIsMyHero(forcy:Boolean = false):void
 {
 	clearOutput();
@@ -1572,7 +1573,9 @@ public function taurPussyMountWsanIsMyHero(forcy:Boolean = false):void
 	//Forcy Fen Intro
 	if(forcy)
 	{
-		output("Sylvie, never breaking eye-contact, backs up, forcing you to step back further and further. Soon, you’re against a door, but she just keeps coming. She kicks off the ground, launching her massive rump high in the air, and hops back, slamming her hooves against the wall to either side of your head. Her pussy, big, round and smelling strongly of horny taur fills your vision and tickles your nose. You push back, but the touch just makes her lubricate. Musky moose-goo trickles out of her pussy, doubling the intensity of her wanton scent.");
+		output("Sylvie, never breaking eye-contact, backs up, forcing you to step back further and further. Soon, you’re against a door, but she just keeps coming. She kicks off the ground, launching her massive rump high in the air, and hops back, slamming her hooves against the wall to either side of your head. Her pussy, big, round and smelling strongly of horny taur fills your vision and tickles your nose. ");
+		if(sylvieHasCock()) output("Her dick and balls are there too, lower, dangling useless. It's clear which part of her she favors at the moment. ");
+		output("You push back, but the touch just makes her lubricate. Musky moose-goo trickles out of her pussy, doubling the intensity of her wanton scent.");
 		output("\n\nFrom somewhere deep inside you, a growl worms out of your throat, and you push back twice as hard. Sylvie doesn’t fall away. Instead, the door behind you gives out, and you stumble in, Sylvie clopping in after. Her pussy is lush and dribbling, shimmering like a puffy purple target for your [pc.cocks]. You rear up and throw yourself at her, launching yourself halfway up her massive rump, clawing at her furred midriff for purchase.");
 		output("\n\n<i>“Oh! That’s it, big [pc.boyGirl], now you’re getting in the spi-”</i> she slurs, tensing up when she feels your [pc.cock " + x + "] slap against her dribbling pussy. <i>“Oh, fuck it!”</i> she groans, holding still while you align the rigid pole. <i>“Fuck me so hard!”</i>");
 	}
@@ -1594,7 +1597,9 @@ public function taurPussyMountWsanIsMyHero(forcy:Boolean = false):void
 	else output("as deep as possible,");
 	output(" sheathing your entire length inside her impossibly tight, sodden fuckhole. It’s a struggle to endure the wildly erotic way her walls grip at you, desperately enticing you to blow a fat load right into her depths.");
 	output("\n\n<i>“Uhhh! M-my clit!”</i> she gasps, rocking back into you. <i>“Your cumveinnngh! Is rubbing my clit!”</i>");
-	output("\n\nSylvie throws her head back and cries out in ecstasy, her back arching to the point she’s leaning back into you and looking up into your eyes with an expression of agonizing lust. Her mouth hangs open, emitting fluttering gasps of shocked pleasure, each one signalling a simultaneous squeeze of her pussy walls around your bloated prick. You roughly take her head in your hands and kiss her, sealing her groans with your [pc.lips].");
+	output("\n\nSylvie throws her head back and cries out in ecstasy, her back arching to the point she’s leaning back into you and looking up into your eyes with an expression of agonizing lust. Her mouth hangs open, emitting fluttering gasps of shocked pleasure, each one signalling a simultaneous squeeze of her pussy walls around your bloated prick. ");
+	if(sylvieHasCock()) output("Contractions ripple through her sack as her balls brew up a massive, ready-to-go load. ");
+	output("You roughly take her head in your hands and kiss her, sealing her groans with your [pc.lips].");
 	output("\n\nSylvie’s powerful hind legs continue to needily fuck back into you as you strain to keep her immobile, clamping your forelegs around her midriff to hold her still. The gesture calms the moosetaur somewhat, acting as a primal reminder that a mare should be submissive and docile when she’s being pumped full of cock. Given the opportunity to explore her body, you reach down and free her massive, shaking tits from the constraints of her mountie top. She moans as you squeeze a rock-hard nipple before letting go, watching them bounce atop her chest every time you thrust into her quivering snatch.");
 	output("\n\n<i>“Oh my </i>god<i>, you’re good,”</i> Sylvie pants between each thudding impact against her ample ass, stroking your ego every bit as much as your dick. Her pretty little face has taken on an expression of fervent admiration, your passionate tryst evidently earning you the respect of the busty bombshell. You can’t help but want to drive her on even further, her words only encouraging you to pummel her harder.");
 	output("\n\nShe drops onto the bed and screams in maddened pleasure, unable to keep her voice down as you slam her into submission. Her massive breasts shake beneath her as you work yourself towards orgasm, leaning down and placing your hands on her sweaty shoulders for grip. When you finally find yourself reaching a crescendo, you pull her up and into you as you sink your cock ");
@@ -1602,7 +1607,9 @@ public function taurPussyMountWsanIsMyHero(forcy:Boolean = false):void
 	else output("to the hilt");
 	output(" in her spasming, squirting cunt.");
 
-	output("\n\nSylvie gives a little scream every time you deposit a warm load in her, your bulging cumvein compressing her clit against her swollen pussy. She suffers a back-arching orgasm with each jet of spunk you pack into her warm, wet pussy, her legs shaking and her stomach flexing with the effort of keeping up. Her squeezed-close eyes slowly open, her body still tautly wrapped around your cock, and she looks up at you worshipfully, lifting an arm behind her to gently caress your face.");
+	output("\n\nSylvie gives a little scream every time you deposit a warm load in her, your bulging cumvein compressing her clit against her swollen pussy. She suffers a back-arching orgasm with each jet of spunk you pack into her warm, wet pussy, her legs shaking and her stomach flexing with the effort of keeping up. ");
+	if(sylvieHasCock()) output("Heavy splatters impact of a nearby wall as her enormous cock goes off like a cannon, for all its size, essentially useless compared to your quim-stuffing tool.");
+	output("Her squeezed-close eyes slowly open, her body still tautly wrapped around your cock, and she looks up at you worshipfully, lifting an arm behind her to gently caress your face.");
 	output("\n\n<i>“You... you’re amashing,”</i> she whispers in a drunken slur, little shocks running across her expression every time she feels your cock pump more semen down her fuckhole. <i>“Mmmm...”</i>");
 	output("\n\nYou bend down to kiss her again, enjoying the softness of her lips before you pull away. <i>“I think half the station must’ve heard you there,”</i> you murmur to her.");
 	output("\n\n<i>“Who cares,”</i> she moans, still bathing in the afterglow. <i>“Anyone would sound like me after </i>that<i>. I’ve never been mounted like that in my life.”</i>");
@@ -1615,7 +1622,11 @@ public function taurPussyMountWsanIsMyHero(forcy:Boolean = false):void
 	output("\n\n<i>“Give it to me, you beast,”</i> Sylvie moans, shallowly thrusting her hips back at you. <i>“Fill me up.”</i>");
 	output("\n\n<i>“You asked for it,”</i> you grunt, rearing back.");
 	output("\n\nYou spear her all the way to the hilt, pushing through the wetness of her unresisting walls. She cries out in passion, her humanoid front half collapsing onto the bed. You fuck her slower than before, but with even more intensity. Each thrust results in a loud slap of flesh on flesh, the shaking moosetaur’s muscular butt providing a cushy surface for you to bounce against.");
-	output("\n\nYou reduce her to a mewling mess on the bed with each flex of your hips, Sylvie’s squirting pussy desperately working your rod inside her, squeezing you with all her might. She groans into the sheets, teeth grit during the rough violation of her nethers. Each movement sets her ass shaking and her body shuffling forward, the busty ‘taur grabbing at the sheets with white knuckles as she’s dragged across them again and again.");
+	output("\n\nYou reduce her to a mewling mess on the bed with each flex of your hips, Sylvie’s squirting pussy desperately working your rod inside her, squeezing you with all her might. She groans into the ");
+	if(sylvieHasCock()) output("cum-soaked ");
+	output("sheets, teeth grit during the rough violation of her nethers. Each movement sets her ass shaking and her body shuffling forward, the busty ‘taur grabbing at the sheets with white knuckles as she’s dragged across them again and again");
+	if(sylvieHasCock()) output(", sending ripples through flooding pools of wasted jism she's created.");
+	output(".");
 	output("\n\nFinally, you feel yourself about to cum again. You pull back and, with a bestial roar of dominance, slam into Sylvie at full force before you tighten your grip around her midriff and begin pumping her full of your seed. Between the load you already dumped in her and the gouts of sticky cum spurting into her now, it’s not long before she’s messily overflowing. Warm seed slowly rolls down her shaking, spread-apart hind legs as it leaks from her abused pussy, spattering to the floor.");
 	output("\n\nWhen you’re finally done, you give a deep, satisfied sigh and pull your cock from Sylvie’s still-gushing cunt, dismounting her. She stays on the bed for a second before pushing herself up with her arms, orange eyes half-lidded and clearly still in an orgasmic haze.");
 	output("\n\n<i>“Oh my god,”</i> she mumbles, dizzily seeking out your face and meeting your gaze in reverence. <i>“My world is still spinning, and that’s </i>not<i> the alcohol.”</i>");
@@ -1675,6 +1686,7 @@ public function taurPussyMountWsanIsMyHero(forcy:Boolean = false):void
 }
 
 //[COMPLETE] [Fenoxo] [Reverse Moose-girl] AKA: Get Your Pelvis Shattered
+//Now Futa-Sylvie compatible!
 public function pelvisShatteringFuntimesWithSylvie(force:Boolean = false):void
 {
 	clearOutput();
@@ -1688,6 +1700,7 @@ public function pelvisShatteringFuntimesWithSylvie(force:Boolean = false):void
 	output(" before the moose-girl’s enormous ass thrusts ");
 	if(pc.tallness >= 80) output("into your chest");
 	else output("against your face");
+	if(sylvieHasCock()) output(", her churning balls slapping heavily into your [pc.chest]");
 	output(". The walls tilt crazily as you fall, but at least the water’s edge cushions the impact of ass-on-plasticized aluminum. Assessing your new position, you determine that you could lie back comfortably here, if you chose. The enormous back-half of the drunken police-girl decides for you as it settles into place above, its heavy hooves splattering noisily as it gets into position.");
 
 	//Crotch covered
@@ -1696,6 +1709,7 @@ public function pelvisShatteringFuntimesWithSylvie(force:Boolean = false):void
 		output("\n\n<i>“[pc.name]~!”</i> Sylvie calls, leaning back across four-legged lower body, <i>“Pull it out already! Don’t make me beg!”</i> She hurriedly drums on her quivering haunches, rapidly transitioning to shuddering slaps that cut through the air like a sharp knife. Her engorged pussy juices itself in response, puffy and gleaming, looking more like a target for taur-dick than traditional female genitalia. In a small, soaked crease, you can see the swelling mass of her clitoris gleaming like a fresh grape, begging to be rubbed and squeezed. Droplets of musky lady-lube drizzle over your [pc.lowerGarmentOuter], filling the air around you with insidious pheromones so strong ");
 		if(pc.hasCock(GLOBAL.TYPE_EQUINE)) output("that your flaring horse-cock threatens to burst free under the strength of its own engorgement.");
 		else output("that your head swims.");
+		if(sylvieHasCock()) output(" The length of her own equine tool, a full 30 inches, hangs there erect and forgotten, sliming pre into the water.");
 		output("\n\n");
 		if(pc.lust() >= 75) output("You hastily remove the obstructing garment before your steel-hard tumescence thrusts straight through, unable to restrain a sigh of sensuous relief.");
 		else
@@ -1716,7 +1730,7 @@ public function pelvisShatteringFuntimesWithSylvie(force:Boolean = false):void
 	else
 	{
 		output("\n\n<i>“[pc.name]~!”</i> Sylvie calls, leaning back across her four-legged body, ");
-		if(pc.lust() >= 40) output("smiling mischievously down at you. <i>“You’re so nice, getting all hard for me! Wanna see me get ready for you?”</i> She winks. <i>“Of course you do. Watch this!”</i>");
+		if(pc.lust() >= 40 || pc.isErect()) output("smiling mischievously down at you. <i>“You’re so nice, getting all hard for me! Wanna see me get ready for you?”</i> She winks. <i>“Of course you do. Watch this!”</i>");
 		else 
 		{
 			output("pouting down at you. <i>“Aww, having trouble getting hard? Don’t worry, I have a great cure for whiskey dick!”</i> ");
@@ -1739,7 +1753,7 @@ public function pelvisShatteringFuntimesWithSylvie(force:Boolean = false):void
 	//Uncovered, not hard
 	if(pc.isCrotchExposed())
 	{
-		if(pc.lust() < 40) output("\n\n<i>“I told you I’d make you hard,”</i> Sylvie titters, cupping her pendulous tits. She bites her lip and whimpers. Her sopping wet cunt clenches excitedly. <i>“I hope you’re as tough as you look, because I am going to fuck you so hard your dick falls in love with me forever.”</i>");
+		if(pc.lust() < 40 && !pc.isErect()) output("\n\n<i>“I told you I’d make you hard,”</i> Sylvie titters, cupping her pendulous tits. She bites her lip and whimpers. Her sopping wet cunt clenches excitedly. <i>“I hope you’re as tough as you look, because I am going to fuck you so hard your dick falls in love with me forever.”</i>");
 		//Uncovered, hard
 		else output("\n\n<i>“I told you that you’d want to see,”</i> Sylvie titters, gesturing toward your twitching boner. She bites her lip and sighs wistfully, her sopping wet cunt clenching. <i>“I hope you’re as tough as you look, because I am going to fuck you so hard your dick falls in love with me forever.”</i>");
 	}
@@ -1770,6 +1784,7 @@ public function crotchBustingSnuSnuPartTwo():void
 	else if(pc.hasKnot(x)) output(", pushing your knot inside her before it can dare inflate.");
 	else output(", squishing her padded pussy’s entrance down in order to take every single millimeter of available dick.");
 	pc.cockChange();
+	if(sylvieHasCock()) output(" Her monstrous member is sandwiched between your bodies, belching what feels like a gallon of slippery pre over your [pc.skinFurScales].");
 
 	output("\n\n<i>“");
 	if(cVolume < 300)
@@ -1786,7 +1801,9 @@ public function crotchBustingSnuSnuPartTwo():void
 	output(" Her clit rubs against your [pc.sheathOrKnot " + x + "] on the way down, a little rubbery nub that makes her squeal when it passes over the ridge of a vein");
 	if(pc.balls > 0) output(" and moan as it rests against your [pc.sack]");
 	output(".");
-	output("\n\n<i>“Oof!”</i> you grunt involuntarily. The longer this goes on, the more forcefully she rides your dick, and the more crushing the blows from her bestial heiny.");
+	output("\n\n<i>“Oof!”</i> you grunt involuntarily. The longer this goes on, the more forcefully she rides your dick, ");
+	if(sylvieHasCock()) output("the more mess her bolted-on dick makes, ");
+	output("and the more crushing the blows rain down from her bestial heiny.");
 	//Bro - no new PG
 	if(pc.isBro()) output(" You grunt in irritation and grab her tail in your fist, yanking on it until she’s compelled to take a little of her weight off your middle. She cries out like a slut in heat, getting off on it, so you slap her ass with your other hand for her temerity, dragging her up and down your dick. What was once a forceful copulation has yields to a submissive, lazy fuck, Sylvie’s slutty body obeying your every whim.");
 	//Nonbro no new pg
@@ -1822,6 +1839,10 @@ public function crotchBustingSnuSnuPartTwo():void
 	var cumBathed:Boolean = (cumQ >= 10000);
 	//merge
 	output("\n\nIn the moment of climax, you thrust up into her for all the good it does: exactly none. You’re still pinned to the ground, still smothered in hundreds of pounds of juicing, eager ‘taur. But that’s part of what makes it so hot - what makes it so easy to cum, and cum, and cum some more inside her. The knowledge that Sylvie’s body has all but enveloped your own, wreathing your [pc.cock " + x + "] in silky softness and your [pc.legOrLegs] in shaggy fur.");
+	if(sylvieHasCock())
+	{
+		output("\n\nYou can hear more than see the effect is has on her own maleness, the lurid splatters gleefully impacting on walls, churning up waves of water turned cum-lubed. As you climax, hers drags on, seemingly without end. The water level rises apace with your pleasure, heedless of anything but your paired, mounting release.");
+	}
 	//sub 1k cums
 	if(cumQ < 1000) output("\n\nSylvie looks on, eyelids drooping blissfully, her cunt drinking down every drop of [pc.cum] you have to offer. A dazed smile spreads across her features in what you can only assume is satisfaction, like all it took was the sight of your orgasm to give her one of her own.");
 	//1k-10k cum
