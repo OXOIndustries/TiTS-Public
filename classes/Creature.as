@@ -12132,7 +12132,7 @@
 			if (tailType == GLOBAL.TYPE_SWINE) counter++;
 			if (thickness >= 80) counter++;
 			if (skinType == GLOBAL.SKIN_TYPE_SKIN && InCollection(skinTone, "pink", "brown-pink", "red-pink", "white", "black", "gray", "brown")) counter++;
-			if (hasSheath()) counter++;
+			if (hasSheath(0)) counter++;
 			
 			return counter;
 		}
@@ -12216,8 +12216,10 @@
 
 			//Saurmorian score at least 6
 			//sheathed saurian penis
-			if(score >= 6 && hasCock(GLOBAL.TYPE_SAURIAN) && hasSheath()) score++;
-
+			if(score >= 6 && hasCock())
+			{
+				if(cocks[0].cType == GLOBAL.TYPE_SAURIAN && hasSheath(0)) score++;
+			}
 			//Saurmorian score at least 6
 			//Vagina count is 1
 			//Has slightly or fully plump, ribbed vagina
@@ -12232,7 +12234,7 @@
 			if(hasHair()) score--;
 			if(antennae > 0) score--;
 			if(hasFur()) score-= 2;
-			if(hasKnot()) score--;
+			if(hasKnot(0)) score--;
 			return score;
 		}
 		public function sharkScore(): int
