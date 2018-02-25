@@ -20116,26 +20116,6 @@
 							reflexesMod += thisStatus.value1;
 						}
 						break;
-					case "Zil Pheromones":
-						if (this is PlayerCharacter)
-						{
-							if(isLactating() && milkType != GLOBAL.FLUID_TYPE_HONEY)
-							{
-								AddLogEvent(ParseText(""), "passive", maxEffectLength);
-								milkType = GLOBAL.FLUID_TYPE_HONEY;
-							}
-							if(hasCock() && cumType != GLOBAL.FLUID_TYPE_HONEY)
-							{
-								AddLogEvent(ParseText(""), "passive", maxEffectLength);
-								cumType = GLOBAL.FLUID_TYPE_HONEY;
-							}
-							if(hasVagina() && girlCumType != GLOBAL.FLUID_TYPE_HONEY)
-							{
-								AddLogEvent(ParseText(""), "passive", maxEffectLength);
-								girlCumType = GLOBAL.FLUID_TYPE_HONEY;
-							}
-						}
-						break;
 					case "GaloMax":
 						if (requiresRemoval)
 						{
