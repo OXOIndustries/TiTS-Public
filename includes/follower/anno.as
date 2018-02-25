@@ -241,8 +241,6 @@ public function annoFollowerMenu():void
 	else addDisabledButton(13, "Evict", "Evict from Ship", "You can’t bring yourself to kick Anno off your ship here. Head back to a mainline planet or station first.");
 
 	addButton(14, "Back", crew);
-	
-	addButton(10, "TEST", annoxErraIntro, undefined, "TEST", "TEST.");
 }
 
 public function annoSleepWithIntroduce():void
@@ -4468,6 +4466,8 @@ public function combineAndHaveAFinishAnnoXKaedeAccidentPetPlay():void {
 	addButton(0, "Next", mainGameMenu);
 }
 
+// Anno X Erra Event by HugsAlright
+// https://docs.google.com/document/d/1q0LmFudEwFR-GYGBOEMYMaMZune98ITPBkl-vBAhmmY/edit#
 public function annoxErraIntro():void
 {
 	clearOutput();
@@ -4499,6 +4499,7 @@ public function annoxErraIntro():void
 	output("\n\nBest to not keep the ladies waiting...");
 
 	IncrementFlag("ANNO_X_ERRA_INTRODUCED");
+	pc.createStatusEffect("Anno-Erra Cooldown", 0, 0, 0, 0, true, "", "", false, 4320);
 
 	processTime(10);
 
@@ -4687,6 +4688,7 @@ public function annoxErraJoin():void
 
 	anno.orgasm();
 	annoSexed(1);
+	IncrementFlag("ERRA_SEXED");
 	pc.orgasm();
 	processTime(60);
 
