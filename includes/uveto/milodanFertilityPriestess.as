@@ -585,7 +585,7 @@ public function pcDunkedByFertilityPriestess(isRepeat:Boolean = false):void
 		output("\n\n<i>“Much better,”</i> she purrs, setting her staff aside and crawling up onto the ice overtop you. Her knees come to rest against your [pc.hips], and the succulent mounds of her chest nearly brush your [pc.face] before she rises up, planting her hands on your [pc.chest]. Her thick, furry tail brushes along your thighs, curling around your [pc.leg]. <i>“Now stay down, and let me show you the path of the spirits...”</i>");
 	}
 
-	if (pc.hasCock())
+	if (pc.hasCock() && (!pc.hasVagina() || isRepeat || rand(3) != 0))
 	{
 		var cockIdx:int = pc.biggestCockIndex();
 		// PC gains a moderate, permanent bonus to Virility. 
@@ -615,7 +615,7 @@ public function pcDunkedByFertilityPriestess(isRepeat:Boolean = false):void
 		
 		output("\n\nAnd again, and again. The kitty-cat priestess starts bouncing, riding the twinned cocks inside her with eager desire. Her hands pinch and tweak her nipples, twisting the bone pierces running through the black promontories until she throws her head back with a howl of pleasure. Her grip on your dick tightens, and you feel a rush of heat - not just from the cat-woman herself, but somewhere closer to your thighs, radiating up and through her in throbbing pulses. Your [pc.cock "+cockIdx+"] tenses, feeling the surge of energy from the [pc.knot "+cockIdx+"] spreading her lips straight to your [pc.cockHead "+cockIdx+"], nestled deep in the pussy’s slit.");
 		
-		output("\n\nThe alien energy demands one thing, and one thing only: an inexorable compulsion that your body cannot deny. Every muscle in your body tenses, culminating in a burst of sensation around your [pc.cock "+cockIdx+"]. [pc.cum] surges through your shaft, erupting into the cat-woman’s waiting womb.");
+		output("\n\nThe alien energy demands one thing, and one thing only: an inexorable compulsion that your body cannot deny. Every muscle in your body tenses, culminating in a burst of sensation around your [pc.cock "+cockIdx+"]. [pc.Cum] surges through your shaft, erupting into the cat-woman’s waiting womb.");
 		
 		output("\n\nShe gasps, smiles, and rests a hand on her belly. A purr rumbles in the back of her throat, and her thick-furred tail brushes heavily against your [pc.legOrLegs]. Every twitch and throb of your dick is echoed by the grip of her pussy, refusing to let a single drop of your load escape");
 		if (pc.hasKnot(cockIdx)) output(" despite your [pc.knot "+cockIdx+"] lodged between her lips");
@@ -742,7 +742,7 @@ public function fertilityPriestessPcKnockUpII(vagIdx:int):void
 
 	output("The cat-man laughs, sending vibrations from his belly through his dick. <i>“As you say,”</i> he says, groping one of her bone-pierced breasts before returning his hands to your [pc.hips].");
 
-	output("\n\nSomewhere between the tip and the knot touching your lips, your [pc.tongue]’s drooped out of your mouth, and your vision’s gone hazy. Pleasure ripples through you, making your breath come in uneven gasps. You feel so close to the edge of orgasm from just the first thrust alone! Feeling him start to pull back, to slide that nubby, knotty kitty-cock back through your [pc.cunt "+vagIdx+"] leaves you screaming your sudden climax to the heavens. Your twat squeezes hard around the two turgid rods invading your holes, trying at once to draw them deeper and push them out - to make them do <i>something<i> to make you feel even better.");
+	output("\n\nSomewhere between the tip and the knot touching your lips, your [pc.tongue]’s drooped out of your mouth, and your vision’s gone hazy. Pleasure ripples through you, making your breath come in uneven gasps. You feel so close to the edge of orgasm from just the first thrust alone! Feeling him start to pull back, to slide that nubby, knotty kitty-cock back through your [pc.cunt "+vagIdx+"] leaves you screaming your sudden climax to the heavens. Your twat squeezes hard around the two turgid rods invading your holes, trying at once to draw them deeper and push them out - to make them do <i>something</i> to make you feel even better.");
 	
 	pc.orgasm();
 	

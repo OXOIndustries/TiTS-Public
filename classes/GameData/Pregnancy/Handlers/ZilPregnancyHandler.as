@@ -37,7 +37,7 @@ package classes.GameData.Pregnancy.Handlers
 			_canFertilizeEggs = false;
 			_pregnancyQuantityMinimum = 2; // PC should always be impregnated with twins at the least.
 			_pregnancyQuantityMaximum = 6;
-			_definedAverageLoadSize = 6400;
+			_definedAverageLoadSize = 480;
 			_pregnancyChildType = GLOBAL.CHILD_TYPE_LIVE;
 			_pregnancyChildRace = GLOBAL.TYPE_BEE;
 			_childMaturationMultiplier = 1.0;

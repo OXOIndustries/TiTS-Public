@@ -303,7 +303,8 @@ public function rideDatZilCawk():void {
 		output("\n\nYou pinch him tightly around his base, bottling up his cum before he can release it and chasing away the relief he so desperately sought. <i>“Sorry, cutie. I just want to make sure we both get to cum together, hard. I’ll put you inside now, okay?”</i>");
 		output("\n\nThe zil nods and smiles.");
 	}
-	var x:int = pc.cuntThatFits(enemy.cockVolume(0));
+	var x:int = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
+	if(x < 0) x = pc.cuntThatFits(enemy.cockVolume(0));
 	if(x < 0) x = pc.smallestVaginaIndex();
 	// End personality forks
 	// Too big 4 u
@@ -848,7 +849,8 @@ public function getBredByZil():void {
 	if(pc.tone >= 65) output("pinches your bottock, admiring the firmness of it.");
 	else output("jiggles your bottock, admiring the way it ripples while your juices stream unchecked from your fingers.");
 	output(" The male’s fingers join yours in exploring your netherlips. Gingerly, he rubs the outside of your soaked folds, adding a second sensation to your already overburdened vagina.");
-	var x:int = pc.cuntThatFits(enemy.cockVolume(0));
+	var x:int = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
+	if(x < 0) x = pc.cuntThatFits(enemy.cockVolume(0));
 	if(x < 0) x = 0;
 	output("\n\n<i>“Are you ready to be bred?”</i> the zil asks with a hint of politeness. His tone brooks no disagreement. The question is a formality - you both know you want, no, need it. You bite your lip and nod. At the same time, you pull your fingers free of the steaming-hot honeypot between your [pc.legOrLegs]. Your " + possessive(pc.vaginaDescript(x)) + " lips are slightly parted, spread and open, ready to be taken.");
 	
@@ -1194,16 +1196,21 @@ public function theZilPretendToBeHelia():void {
 	if(pc.isNaga()) output(" before flipping you over to have access to your vagina");
 	output(". His sheathed prong slides across your " + pc.skinFurScales() + " eagerly, barely exposing his tip, leaking his masculine pre-honey across your eager flesh. You ache to have him inside you, but you’re little more than a spectator in this play. A literal and figurative honey-pot is brought closer, so close that it blocks most of the surroundings from your view, filling the air with the lusty aroma that has your head swimming. A tuft of neatly trimmed hair sits above it, covered in droplets of accumulated ardor, and underneath you see inky pussy, its lips puffy and ever-so-sightly parted by the bud of her clit.");
 	output("\n\nSome unseen signal passes between your waspy lovers, and they press their hips in on you from both sides as one. The taste of a lovely, wondrous pussy on your lips wars with the sensation of being suddenly stuffed from behind with a throbbing, dominant cock. The member drips and dribbles a bit of pre-emptive payload to smooth its passage as it burrows into your [pc.vagOrAss]. The honey suspended in the surprisingly soft pubic hair above the female’s cleft smears across your nose, assisting you deeper into your lusty fugue, and your mouth dumbly falls open, the tongue extending of its own volition to taste the marvelous flavor the wasp-woman has to offer.");
-	var x:int = pc.cuntThatFits(enemy.cockVolume(0));
-	if(x < 0) x = rand(pc.vaginaTotal());
+	var x:int = -1;
+	if(pc.hasVagina())
+	{
+		x = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
+		if(x < 0) x = pc.cuntThatFits(enemy.cockVolume(0));
+		if(x < 0) x = rand(pc.vaginaTotal());
+	}
 	// stretch
-	if(!pc.hasVagina()) pc.buttChange(enemy.cockVolume(0),true,true,false);
+	if(x < 0) pc.buttChange(enemy.cockVolume(0),true,true,false);
 	else pc.cuntChange(x,enemy.cockVolume(0),true,true,false);
 	output("\n\nSmooth armor compresses your [pc.butt] when the foreskin-wrapped dick bottoms out, the zil’s smooth, hairless sack rubbing against you for a moment before he draws back and begins to fuck your [pc.vagOrAss] slowly, almost languidly.");
 	output("\n\n<i>“Oh, this is nice,”</i> he admits. His sack seems to grow a little bit bigger against your body as his constantly leaking pre turns your innards into a slippery mess. The slow friction gradually increases as the zil begins to pump faster and faster, locking eyes with his opposite across your submissive, conquered frame. His dick grows a hair thicker and plumper; his hips thrust faster, and you know a messy, gooey climax is close at hand for the bug-man.");
 	output("\n\nThe female bites her lips and shudders while your tongue polishes her clit, gathering every drop of her hot honey, sliding deeper into her folds where it can properly tickle the rest of her nerve endings. You dole out cunnilingus with no thought but eagerness for the taste in your mouth, instinctively improving your technique whenever you discover something that gets you a fresh dribble of her juices. Her legs are quaking lustily around your head as she rides you towards a much-needed cum. If your mouth weren’t muff-deep in cunt, a dopey smile would be visible on it.");
 	// Vagina
-	if(pc.hasVagina()) {
+	if(x >= 0) {
 		output("\n\n");
 		if(pc.hasClit()) output("[pc.EachClit] is throbbing, beaded with honeyed moisture and your own secretions. ");
 		output("The dick inside you is sliding perfectly through you while your tunnel flutters around with unadulterated pleasure, spurred on by the scents locking your body into a breeding frenzy.");
@@ -1251,7 +1258,7 @@ public function theZilPretendToBeHelia():void {
 	output("\n\nAs their climaxes conclude, the spent pair pull away, dropping you into the puddled, mixed sex-juices before turning on each other, grinding their sloppy genitalia against each other as they prepare to fuck away the rest of their insatiable lust. Your eyes flutter closed as your body asserts its need for rest, lulling you into a dreamless, sticky slumber.\n\n");
 	processTime(20+rand(10));
 	pc.orgasm();
-	if (pc.hasVagina()) pc.loadInCunt(enemy, x);
+	if (x >= 0) pc.loadInCunt(enemy, x);
 	else pc.loadInAss(enemy);
 	var ppZilFem:ZilFemale = new ZilFemale();
 	pc.loadInMouth(ppZilFem);
