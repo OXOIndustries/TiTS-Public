@@ -1675,7 +1675,7 @@ public function pippaFuckPussy(cockOrStraponIndex:int):void
 	pippaAffection(2);
 	processTime(25);
 	pc.orgasm();
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
 	
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1842,7 +1842,7 @@ public function pippaGetSatOnFocus():void
 	output("\n\nStill coming down from her climax, but not wanting to smother you too much, Pippa climbs off of you and sighs, <i>“I’m already looking forward to the next time I get to use you, " + pippaCallsSteele() + ".”</i> She leans down and kisses your cheek. She winks at you and says, <i>“Be sure to clean yourself up,”</i> before leaving you to do just that.");
 	
 	pc.orgasm();
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
 	pc.girlCumInMouth(pippa);
 	if (silly) output(pc.modThickness(10, true));
 	processTime(10);
@@ -1950,7 +1950,7 @@ public function pippaGetSatOnMasturbate():void
 	
 	flags["PIPPA_ABUSIVE_SAT_ON"] = 1;
 	pc.orgasm();
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
 	pc.girlCumInMouth(pippa);
 	if (silly) output(pc.modThickness(10, true));
 	processTime(10);
@@ -2069,8 +2069,8 @@ public function pippaFeedMilkTakeControl():void
 	pc.milked(pc.milkFullness);
 	processTime(15);
 	pippaDominance(-1);
-	if (pc.hasVagina()) applyPussyDrenched(pc);
-	if (pc.hasCock()) applyCumSoaked(pc);
+	if (pc.hasVagina()) pc.applyPussyDrenched();
+	if (pc.hasCock()) pc.applyCumSoaked();
 	
 	addButton(0, "Next", mainGameMenu);
 	
@@ -2157,8 +2157,8 @@ public function pippaFeedMilkHerControl(gaveControl:Boolean):void
 	pc.milked(pc.milkFullness);
 	processTime(10);
 	pippaDominance(1);
-	if (pc.hasVagina()) applyPussyDrenched(pc);
-	if (pc.hasCock()) applyCumSoaked(pc);
+	if (pc.hasVagina()) pc.applyPussyDrenched();
+	if (pc.hasCock()) pc.applyCumSoaked();
 	
 	addButton(0, "Next", mainGameMenu);
 }
@@ -2770,12 +2770,14 @@ public function pippaFlirt():void
 	}
 }
 
+/*
 public function pippaNuruEmailGet():void
 {
 	AddLogEvent("<b>New Email From Pippa (pippa_pig@cmail.com)!</b>", "passive");
 
 	MailManager.unlockEntry("pippa_nuru", GetGameTimestamp());
 }
+*/
 
 public function pippaTalkParents():void
 {

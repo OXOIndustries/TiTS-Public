@@ -315,7 +315,7 @@ public function nenneFamilyTalk():void
 
 	output("\n\nYou’ve stepped on one mine after another with the topic, so you decide to try and diffuse the situation. Knowing that Korgonne appreciate physical contact, you gently lay your hand on her scalp and give it a rub. You tell her that she’s a beautiful Korgonne, and if she tries, you’re sure she can find another mate that appreciates her for her. There’s bound to be someone in the hold that would enjoy the company of a motherly, experienced Korgonne like herself.");
 
-	output("\n\nShe leans into your head, her tail wagging furiously behind her at your encouragement. <i>“");
+	output("\n\nShe leans against your head, her tail wagging furiously behind her at your encouragement. <i>“");
 	if(!korgiTranslate()) output("Too hoping right.");
 	else output("I hope you’re right, too.");
 	output("”</i> Her eyes meet yours, and they narrow seductively; her tail stops its rampant swishing and slows to a much more casual pace. <i>“");
@@ -600,13 +600,13 @@ public function fuckNenneProperStart():void
 	if((pc.hasCock() && !pc.hasVagina()) || (!pc.hasCock() && pc.hasVagina()))
 	{
 		if(rand(2) == 0) nenneGets69();
-		else if(pc.hasCock()) maleOrHermAndNotDoingOral();
+		else if(pc.hasCock()) penisRouter([maleOrHermAndNotDoingOral, 900000000, false]);
 		else nenneFemaleOrHermNoOralSlorral();
 	}
 	else if(pc.isHerm())
 	{
 		if(rand(3) == 0) nenneFemaleOrHermNoOralSlorral();
-		else if(rand(2) == 0) maleOrHermAndNotDoingOral();
+		else if(rand(2) == 0) penisRouter([maleOrHermAndNotDoingOral, 900000000, false]);
 		else nenneGets69();
 	}
 	else
@@ -671,17 +671,16 @@ public function nenneGets69():void
 	processTime(30);
 	pc.orgasm();
 	clearMenu();
-	clearMenu();
 	addButton(0,"Next",freebieNenneScene);	
 }
 
 // Continue here if the PC is male or herm and is not doing oral
-public function maleOrHermAndNotDoingOral():void
+public function maleOrHermAndNotDoingOral(x:int = 0):void
 {
 	clearOutput();
 	showNenne();
-	var x:int = pc.cockThatFits(600);
-	if(x < 0) x = rand(pc.cockTotal());
+	//var x:int = pc.cockThatFits(600);
+	//if(x < 0) x = rand(pc.cockTotal());
 	
 	output("Your hands idly grope and massage at the thick of Nenne’s back while she takes the initiative – mostly out of necessity, because if it were up to you, you’d simply lay there and enjoy the warmth of her body and the way her motherly curves press against you. Her soft paw travels between you two, tickling at your [pc.belly] as she searches your tingling loins for her prize.");
 	output("\n\nYour [pc.cock " + x + "] is hard as could be between you two, and you hadn’t noticed it until now, too distracted by the tastes, smells, and sensations of everything else. As soon as her hand finds your [pc.knot " + x + "], you involuntarily lurch your [pc.hips] upward in pleasure, suddenly desperate to penetrate the hole that is her open palm.");
@@ -691,7 +690,7 @@ public function maleOrHermAndNotDoingOral():void
 	else if(pc.cocks[x].cLength() < 12) output("and poking along the base of her tail.");
 	else output("and brushing along the underside of her raised tail.");
 
-	output("\n\nPre-cum dribbles from you, sliding down the [pc.skinFurScales] of your shaft, and you feel every exciting moment of that droplets life: your senses are so hyper-tuned that you felt it bubble up from your loins, and you felt it seep from your tip, and you feel it drip its way slowly back down to the crease where your cock meets your ");
+	output("\n\nPre-cum dribbles from you, sliding down the [pc.skin] of your shaft, and you feel every exciting moment of that droplets life: your senses are so hyper-tuned that you felt it bubble up from your loins, and you felt it seep from your tip, and you feel it drip its way slowly back down to the crease where your cock meets your ");
 	if(pc.balls > 0) output("[pc.sack]");
 	else output("crotch");
 	output(". And you feel when Nenne scoops it between her fingers and use that little drop as lube.");
@@ -701,7 +700,7 @@ public function maleOrHermAndNotDoingOral():void
 	{
 		output("\n\nThen, a light pinch, as Nenne adjusts her grip on you and gives you a light tug. Your [pc.cock " + x + "] is pulled along the tight, warm valley of her hefty bottom, until it finds something warmer and tighter: the pre that Nenne had used to lube your shaft is washed with the feminine juices that’s practically spilling from her pursed pussy lips. With a light downward thrust from her hips, you’ve entered her.");
 		pc.cockChange();
-		output("\n\nNenne hums in delight at feeling such a virile cock properly penetrate her; her breath comes out in feral sputters from the sides of her jowls, and she clenches on top of you. The pay that snaked you inside her loops up to your shoulder, gripping it loosely. Despite her easygoing pace and her expertise touch and directions, her body must have forgotten what a good fucking felt like after so long. You’re not sure you have the control over your body to give her the fucking she deserves, beyond whatever you do instinctually and automatically; you hope that it’ll be enough for her all the same.");
+		output("\n\nNenne hums in delight at feeling such a virile cock properly penetrate her; her breath comes out in feral sputters from the sides of her jowls, and she clenches on top of you. The paw that snaked you inside her loops up to your shoulder, gripping it loosely. Despite her easygoing pace and her expertise touch and directions, her body must have forgotten what a good fucking felt like after so long. You’re not sure you have the control over your body to give her the fucking she deserves, beyond whatever you do instinctually and automatically; you hope that it’ll be enough for her all the same.");
 		output("\n\nWhenever Nenne lifts herself up and off your [pc.cock " + x + "], you lay still, allowing the cool air of the room to simmer off your hard dick for the precious moment it’s exposed until Nenne squats herself back down. When she does, your [pc.hips] thrust upward, jabbing yourself into her as deeply as you can");
 		if(pc.hasKnot(x)) output("; a few more thrusts like that, with how ‘ready’ you both are, and you’ll be tied to her in no time");
 		output(".");
@@ -715,7 +714,7 @@ public function maleOrHermAndNotDoingOral():void
 		output("\n\nYou feel her walls cling to your every centimeter when you push in or out, every nerve and cell alighting at the touch; you hear the gentle ‘schlep’ every time you slide against each other");
 		if(!pc.hasKnot(x)) output(", and the gentle clap when your bodies meet at your base");
 		else output(", and the tight, sort-of-peeling sound when her tunnel stretches slightly to accommodate your [pc.knot " + x + "]");
-		output("); and every time you pull apart, a new wave of her Korgonne pheromones wafts through the air and into your nose, bringing you closer–");
+		output("; and every time you pull apart, a new wave of her Korgonne pheromones wafts through the air and into your nose, bringing you closer–");
 
 		output("\n\nBefore you know it, you’re there. You were much closer than you had realized, and you weren’t focused on the buildup within you as you fucked Nenne. A large rush starts from inside you, building and bubbling up your shaft; with some emergency, you push once more");
 		if(!pc.hasKnot(x)) output(", hilting you entirely inside Nenne’s body, as deeply as you can reach");

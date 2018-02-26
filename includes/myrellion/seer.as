@@ -132,10 +132,13 @@ public function setupShopSeer():void
 	shopkeep.inventory.push(new YTRLube());
 	shopkeep.inventory.push(new Tentacool());
 	shopkeep.inventory.push(new WhiffOWisp());
-	//9999 - THESE CAN BE ADDED TO HER INVENTORY ONCE THEY’RE IMPLEMENTED
-	//shopkeep.inventory.push(new Capraphorm());
-	//shopkeep.inventory.push(new Illumorphene());
-	//shopkeep.inventory.push(new WiffOWis());
+	shopkeep.inventory.push(new Capraphorm());
+	shopkeep.inventory.push(new Illumorphene());
+	
+	if(flags["SLEEP_FAPNEA_INSTALLED"] == undefined) shopkeep.inventory.push(new SleepFapnea());
+	
+	CodexManager.unlockEntry("Tentatool");
+	//CodexManager.unlockEntry("Capraphorm");
 }
 
 
@@ -246,6 +249,8 @@ public function topicShopSeer():void
 	
 	processTime(3);
 	
+	//CodexManager.unlockEntry("Envyoidics");
+	
 	talkSeerMenu();
 	addDisabledButton(1, "The Shop");
 }
@@ -304,7 +309,7 @@ public function loungeSleepSeer():void
 	clearMenu();
 	
 	output("You open your eyes.");
-	output("\n\nAll around you is a veil of blackness. Complete abyssal darkness. So dark that your eyes start aching for even a hint of light. You stimulate your limbs in panic, realising that they’re moving as if in water. It doesn’t matter either way: You can’t even see them.");
+	output("\n\nAll around you is a veil of blackness. Complete abyssal darkness. So dark that your eyes start aching for even a hint of light. You stimulate your limbs in panic, realizing that they’re moving as if in water. It doesn’t matter either way: You can’t even see them.");
 	output("\n\nWithout a physical reference, up is down and down is up, left and right have no bearing. You almost feel weightless: Drifting, static in the vast nothingness of... somewhere. Alone, unnoticed, unknown.");
 	output("\n\nYour eyes twinge. Slowly but surely, infinitesimal white lights dot the black canvas around you in every direction. You can see the outline of your limbs against their distant glow.");
 	output("\n\n<i>Stars</i>.");
@@ -530,7 +535,7 @@ public function tentaSeer():void
 	output("\n\nEmbrace...?");
 	output("\n\nA strange, euphoric heat surges through your guts");
 	if (pc.hasVagina()) output(", womb" + (pc.vaginas.length == 1 ? "" : "s"));
-	output(" and gullet! It’s a liquidy, slimy heat that coincides with the energetic twisting and squirming from the multitude of slimy beasts lodged into your body! Without even realising it, your body has pushed out an orgasm so hard that it’s numbed your senses to its strength.");
+	output(" and gullet! It’s a liquidy, slimy heat that coincides with the energetic twisting and squirming from the multitude of slimy beasts lodged into your body! Without even realizing it, your body has pushed out an orgasm so hard that it’s numbed your senses to its strength.");
 	if (pc.hasCock() && pc.cumQ() >= 1000) output("\n\nYour [pc.multiCocks] can’t even maintain hardness! Instead of spraying a weighty load, your [pc.cum] dribbles out with a painful heat like a slack hose. It flows and spreads all over your tentacle-stuffed [pc.belly], then the table, and then to the floor below.");
 	else if (pc.hasCock()) output("\n\nYour [pc.multiCocks] can’t even maintain hardness! Instead of shooting a rope of [pc.cum], it dribbles and leaks out with a painful heat like a slack hose. It forms a [pc.cumVisc] puddle in between your [pc.thighs].");
 	else output("\n\nInside your [pc.pussy], [pc.girlCum] oozes around and then out of your well-fucked hole. The tentacle that threatens to press into your womb makes it impossible to squirt out! The thought of being bred by monstrous limbs almost becomes too much to bear...");
@@ -614,7 +619,7 @@ public function lezSeer2():void
 	
 	output("\n\nThrough the peripheral view below you, you see the Seer’s tits jiggle and squirm in an eerily familiar manner. Like perverse flowers in full bloom, her purple-grey areola expand outwards and three more slimy tentacles from each breast grope and snatch at your [pc.fullChest]!");
 	if (pc.hasTailGenital()) output("\n\nYour " + (pc.hasTailCock() ? "[pc.tailCock]" : "[pc.tailCunt]") + " is ensnared in sync: a fleshy, slimy appendage squeezes and teases against its sensitive surface.");
-	output("\n\nHer tenta-nips completely engorge themselves on your " + (pc.hasDickNipples() ? "[pc.dicknipples]" : "[pc.milkyNipples]") + ". It appears there’s a hidden orifice nestled in between her nipple-feelers and they’re warm, comforting confines pleasure your nerves and [pc.nipples] to no end.");
+	output("\n\nHer tenta-nips completely engorge themselves on your " + (pc.hasDickNipples() ? "[pc.nipples]" : "[pc.milkyNipples]") + ". It appears there’s a hidden orifice nestled in between her nipple-feelers and they’re warm, comforting confines pleasure your nerves and [pc.nipples] to no end.");
 	output("\n\nIn one final demonstration of her complete physical control over your body, a thick squirming tentacle pushes itself without hesitation into your [pc.pussy]! It slithers and grinds against the soft, sensitive flesh inside you like some primordial monster!");
 	output("\n\n<i>“Mmmffuhhuf!”</i> You try to scream, yet your mouth is so full of tongue that nothing comes out. The Seer slows her oral onslaught as you do...");
 	output("\n\n<i>Watch</i>. A thought that’s not yours echoes from all angles in your mind. Looking down, you just about see through the double cleavage of tentacle ensnared breasts that the Seer is <i>also</i> penetrating her tight, puffy pussy with her own appendage! This must be her idea of ‘mutual’...");
@@ -929,7 +934,7 @@ public function giveWhiffBlurb():String
 	{
 		buffer = "A ceremony of some sort: heavy mountain ranges covering a plateau of hooded figures chanting in unison. The sky cracks with lightning and the chorus escalates in volume.";
 		//pcHasPrimorditatts: 
-		if(9999 == 0) buffer += " This scene feels eerily familiar...";
+		if(pc.hasPerk("Primorditatts")) buffer += " This scene feels eerily familiar...";
 		buffer += " Two more prominent figures are the focus. You’re able to tell that they’re...Goats? One is small and pure white, the other is green, gold, and muscular. They appear to be locked into an awkward missionary position... <i>oh</i>. Something about the primal display before you awakens a deep lust in your mind. The sound of thunder and the sight of lightning adds an intangible sense of adrenaline with each crack of white light. But your enjoyment is cut short as the image fades and burns away to more random visual treats...";
 		whiffTexts.push(buffer);
 	}

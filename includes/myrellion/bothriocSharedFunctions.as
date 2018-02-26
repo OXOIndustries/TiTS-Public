@@ -45,7 +45,7 @@ public function updateBothriocAddiction(totalDays:uint):void
 
 	if (s > 0 && bothriocAddiction() == 0)
 	{
-		AddLogEvent("The world has taken on harder edges in the last couple of hours, and you feel cooler and somehow taller. There’s a small, aching emptiness inside of you where the soft, profound peace you once knew resided - however, that is easy to shake off with the stronger rationality returning on top of it, and the realisation the bothrioc hormones must finally be worked out of your system.", "passive", ((1440 - (GetGameTimestamp() % 1440)) + (i * 1440)));
+		AddLogEvent("The world has taken on harder edges in the last couple of hours, and you feel cooler and somehow taller. There’s a small, aching emptiness inside of you where the soft, profound peace you once knew resided - however, that is easy to shake off with the stronger rationality returning on top of it, and the realization the bothrioc hormones must finally be worked out of your system.", "passive", ((1440 - (GetGameTimestamp() % 1440)) + (i * 1440)));
 	}
 }
 

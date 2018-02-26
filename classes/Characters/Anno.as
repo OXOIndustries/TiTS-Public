@@ -30,7 +30,7 @@
 		//constructor
 		public function Anno()
 		{
-			this._latestVersion = 9;
+			this._latestVersion = 10;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -90,7 +90,7 @@
 			this.eyeColor = "blue";
 			this.tallness = 70;
 			this.thickness = 40;
-			this.tone = 0;
+			this.tone = 30;
 			this.hairColor = "white";
 			this.scaleColor = "ebony";
 			this.furColor = "white";
@@ -209,6 +209,7 @@
 		
 		override public function get bustDisplay():String
 		{
+			if(kGAMECLASS.annoIsHuskar()) return "ANNO_HUSKAR";
 			return "ANNO";
 		}
 		
@@ -261,6 +262,10 @@
 		public function UpgradeVersion8(dataObject:Object):void
 		{
 			dataObject.vaginas[0].hymen = false;
+		}
+		public function UpgradeVersion9(dataObject:Object):void
+		{
+			dataObject.tone = 30;
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

@@ -1444,7 +1444,7 @@ public function bimboBadgerShopStuff():void
 		output(" Dr. Badger herself is still here, busy tinkering with the random piles of junk, although she’s now doing so with a much more confused and bubbly expression than she had before you treated her to a dose of her own medicine.");
 		output("\n\nDoctor Badger is still wearing the same ripped top she had on earlier, apparently not ever bothering to replace it, so her very large breasts are still just hanging out freely.");
 		
-		addButton(0,"Dr.Badger",approachDoctorBimboBadger,undefined,"Dr.Badger","Check in with the totally bimbofied badger.");
+		addButton(0,"Dr.Badger",approachDoctorBimboBadger,undefined,"Dr. Badger","Check in with the totally bimbofied badger.");
 	}
 }
 

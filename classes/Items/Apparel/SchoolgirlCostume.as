@@ -43,12 +43,12 @@ package classes.Items.Apparel
 			version = _latestVersion;
 		}
 		
-		override public function onEquip(targetCreature:Creature):void
+		override public function onEquip(targetCreature:Creature, outputText:Boolean = false):void
 		{
 			targetCreature.createStatusEffect("Sexy Costume", 10, 0, 0, 0, false, "LustUp", "The outfit you are wearing is making you feel randier than usual.", false, 0, 0xB793C4);
 		}
 		
-		override public function onRemove(targetCreature:Creature):void
+		override public function onRemove(targetCreature:Creature, outputText:Boolean = false):void
 		{
 			targetCreature.removeStatusEffect("Sexy Costume");
 		}

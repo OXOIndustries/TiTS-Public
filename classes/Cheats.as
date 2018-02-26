@@ -124,7 +124,7 @@
 			kGAMECLASS.displayInput();
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0, "Tele", Cheats.TryRoomTeleport);
-			kGAMECLASS.addButton(1, "Nah", Cheats.BackOutFromTeleport);
+			kGAMECLASS.addButton(1, "Nah", Cheats.cheatsReturnToMain);
 		}
 		
 		public static function SceneExecute():void
@@ -142,7 +142,7 @@
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0, "Execute", Cheats.TrySceneExecute);
 			kGAMECLASS.addButton(1, "Args", Cheats.SceneExecuteArgs);
-			kGAMECLASS.addButton(2, "Nah", Cheats.BackOutFromTeleport);
+			kGAMECLASS.addButton(2, "Nah", Cheats.cheatsReturnToMain);
 		}
 		
 		public static function TrySceneExecute():void
@@ -204,7 +204,7 @@
 			
 			clearMenu();
 			addButton(0, "Execute", GoSceneExecuteArgs, func);
-			addButton(1, "Nah", BackOutFromTeleport);
+			addButton(1, "Nah", cheatsReturnToMain);
 		}
 		
 		public static function GoSceneExecuteArgs(func:String):void
@@ -257,7 +257,7 @@
 			if (kGAMECLASS.rooms[kGAMECLASS.userInterface.textInput.text] == undefined)
 			{
 				Cheats.RoomTeleport();
-				kGAMECLASS.output("\n\n\n\nCouldn't find yo room. Wakka wakka.");
+				kGAMECLASS.output("\n\n\n\nCouldn’t find yo room. Wakka wakka.");
 				return;
 			}
 			
@@ -266,7 +266,7 @@
 			kGAMECLASS.move(room);
 		}
 		
-		public static function BackOutFromTeleport():void
+		public static function cheatsReturnToMain():void
 		{
 			kGAMECLASS.removeInput();
 			kGAMECLASS.mainGameMenu();
@@ -324,7 +324,7 @@
 			kGAMECLASS.addButton(2, "Days", Cheats.TryTimeSkip, 2);
 			kGAMECLASS.addButton(3, "Months", Cheats.TryTimeSkip, 3);
 			kGAMECLASS.addButton(4, "Years", Cheats.TryTimeSkip, 4);
-			kGAMECLASS.addButton(14, "Back", Cheats.BackOutFromTeleport);
+			kGAMECLASS.addButton(14, "Back", Cheats.cheatsReturnToMain);
 		}
 		
 		public static function TryTimeSkip(unit:int):void
@@ -349,7 +349,7 @@
 			if(sTime > 60*24*365*50)
 			{
 				Cheats.TimeSkip();
-				kGAMECLASS.output("\n\n\n\nBAD! You can't skip more than 50 years at a time.");
+				kGAMECLASS.output("\n\n\n\nBAD! You can’t skip more than 50 years at a time.");
 				return;
 			}
 			//Breaking it up into 1 processTime/day calls should make stuff proc more consistently
@@ -359,6 +359,88 @@
 			else kGAMECLASS.processTime(sTime);
 			
 			Cheats.TimeSkip();
+		}
+		
+		// Toggle holiday seasons.
+		private static var toggleSeasonList:Array = [
+			// flag, short, long
+			//["NEW_YEARS", "NewYrs", "New Years"],
+			//["LUNAR_NEW_YEAR", "Lunar", "Lunar New Years"],
+			//["VALENTINES", "Valent.", "Valentine’s"],
+			//["ST_PATRICKS", "StPatty", "Saint Patrick’s"],
+			["APRIL_FOOLS", "AprFool", "April Fools"],
+			["EASTER", "Easter", "Easter"],
+			["JULY_4TH", "July4th", "July 4th"],
+			//["OKTOBERFEST", "OktFest", "Oktoberfest"],
+			["HALLOWEEN", "Spooky", "Halloween"],
+			["THANKSGIVING", "Thxgvg", "Thanksgiving"],
+			["CHRISTMAS", "X-Mas", "Christmas"],
+		];
+		public static function toggleSeasons():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			
+			kGAMECLASS.userInterface.resetPCCaptions();
+			
+			Cheats.OutputStuff(true);
+			
+			kGAMECLASS.output("\nToggle the seasonal events you want to activate or disable:");
+			kGAMECLASS.output("\n\n<b><u>Holiday Seasons</u></b>");
+			
+			var btnSlot:int = 0;
+			kGAMECLASS.clearMenu();
+			for(var idx:int = 0; idx < Cheats.toggleSeasonList.length; idx++)
+			{
+				kGAMECLASS.output("\n<b>* " + Cheats.toggleSeasonList[idx][2] + ":</b> ");
+				
+				var toggleSetting:String = "";
+				var btnTooltip:String = "";
+				if(kGAMECLASS.gameOptions.seasonalOverridePreferences[Cheats.toggleSeasonList[idx][0]] == undefined)
+				{
+					kGAMECLASS.output("Automatic");
+					toggleSetting = "Auto";
+					btnTooltip = "Currently set to Automatic. Select to toggle to Always On.";
+				}
+				else if(kGAMECLASS.gameOptions.seasonalOverridePreferences[Cheats.toggleSeasonList[idx][0]] == true)
+				{
+					kGAMECLASS.output("Always On");
+					toggleSetting = "On";
+					btnTooltip = "Currently set to Always On. Select to toggle to Always Off.";
+				}
+				else
+				{
+					kGAMECLASS.output("Always Off");
+					toggleSetting = "Off";
+					btnTooltip = "Currently set to Always Off. Select to toggle to Automatic.";
+				}
+				
+				kGAMECLASS.addButton(btnSlot, (Cheats.toggleSeasonList[idx][1] + ":" + toggleSetting), Cheats.toggleSeason, Cheats.toggleSeasonList[idx][0], Cheats.toggleSeasonList[idx][2], btnTooltip);
+				
+				btnSlot++;
+			}
+			
+			kGAMECLASS.addButton(13, "Default", Cheats.toggleSeasonDefault, undefined, "Default All Seasons", "Reset all holiday seasons to Automatic.");
+			kGAMECLASS.addButton(14, "Back", Cheats.cheatsReturnToMain);
+		}
+		private static function toggleSeason(season:String = ""):void
+		{
+			if(kGAMECLASS.gameOptions.seasonalOverridePreferences[season] == undefined) kGAMECLASS.gameOptions.seasonalOverridePreferences[season] = true;
+			else if(kGAMECLASS.gameOptions.seasonalOverridePreferences[season] == true) kGAMECLASS.gameOptions.seasonalOverridePreferences[season] = false;
+			else kGAMECLASS.gameOptions.seasonalOverridePreferences[season] = undefined;
+			toggleSeasons();
+		}
+		private static function toggleSeasonDefault():void
+		{
+			for(var idx:int = 0; idx < Cheats.toggleSeasonList.length; idx++)
+			{
+				kGAMECLASS.gameOptions.seasonalOverridePreferences[Cheats.toggleSeasonList[idx][0]] = undefined;
+			}
+			kGAMECLASS.gameOptions.seasonalOverridePreferences = { };
+			
+			toggleSeasons();
 		}
 	}
 }

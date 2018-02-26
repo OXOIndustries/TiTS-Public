@@ -57,6 +57,7 @@ public function flyToPoeAConfirm():void
 public function flyToPoeA():void
 {
 	author("Adjatha");
+	showBust("POE_A");
 	output("Electing to have a little fun, you set a course for Poe A and before long, the planet looms before you on the display. It’s not particularly large, for a civilized world, but the traffic for landing vehicles is a little ridiculous. Thousands of craft are coming in every minute, with no sign of the influx slowing down. They’re from all over the galaxy too, even models you’ve never heard of before. Taking your place in the landing queue, you look around at some of the other visitors, eyes watering with envy as you spot a few ships that probably cost as much as this whole planet. Apparently the stories of stars slumming it up during the festival weren’t exaggerated!");
 	
 	processTime(5);
@@ -70,6 +71,7 @@ public function landingOnPoeA():void
 	
 	clearOutput();
 	showName("\nLANDING...");
+	showBust("POE_A");
 	author("Adjatha");
 	output("When you finally get the chance to land, your ship is shepherded into a city-sized parking lot, automated vessels whipping back and forth to pick up visitors and speed them to the party. From what you read, the whole planet is virtually one big scene, so when an empty cart swings around to give you a lift, you tell the craft to take you to the west end of Craven city. Might as well start by seeking out your accidental host.");
 	output("\n\nAt the command, the small cart swings its doors closed, sealing you in with a hissing lock. A port opens up and in the blink of an eye, the entire interior is flooded with cushioning foam, leaving your surprised body half out of your seat. With a lurching sense of acceleration, the transport sets out at top speed, your body presumably protected from the wild speeds by the foam around you. Not exactly the most comfortable way to travel, but you’ve had worse. Before long, the craft halts, your semi-solid prison deteriorating into a frothy, bubbly lather that leaves you clean and disinfected, ready to party. The door slides open and the city boils into view.");
@@ -309,8 +311,8 @@ public function goblinPartTwo():void
 	output("\n\nThe suppressed flow builds within you, cock-milk ballooning your belly until, muscles aching and body trembling from the endless orgasm, your concentration slips and the pressure breaks your embrace. Like a rocket, you launch off of the kui-tan’s supernova, arcing through the air in delirious bliss. The planet’s lower gravity takes you over the heads of the leering onlookers, who are immediately soaked in the splashing spunk of the explosive release. Those directly beneath you are coated in a thick glaze of pearl goo as you fly overhead, spasming slit unable to hold in the nectar bloating your body to spherical proportions.");
 	processTime(22);
 	pc.orgasm();
-	applyCumSoaked(pc);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",gobboPart3);
 }
@@ -340,9 +342,9 @@ public function gobboPart3():void
 		pc.maxOutCumflation("mouth", pp);
 		pc.maxOutCumflation("ass", pp);
 	}
-	applyCumSoaked(pc);
-	applyCumSoaked(pc);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",gobboEpilogue);
 }
@@ -536,19 +538,19 @@ public function bountyHuntsPart2():void
 	if(pc.milkMultiplier < 100) pc.milkMultiplier = 100;
 	pc.milked();
 	processTime(45);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	var cumQ:Number = 0;
 	if(pc.hasCock()) {
 		cumQ = pc.cumQ();
-		if(cumQ >= 1000) applyCumSoaked(pc);
-		if(cumQ >= 5000) applyCumSoaked(pc);
-		if(cumQ >= 10000) applyCumSoaked(pc);
+		if(cumQ >= 1000) pc.applyCumSoaked();
+		if(cumQ >= 5000) pc.applyCumSoaked();
+		if(cumQ >= 10000) pc.applyCumSoaked();
 	}
 	if(pc.hasVagina()) {
 		cumQ = pc.girlCumQ();
-		if(cumQ >= 1000) applyPussyDrenched(pc);
-		if(cumQ >= 5000) applyPussyDrenched(pc);
-		if(cumQ >= 10000) applyPussyDrenched(pc);
+		if(cumQ >= 1000) pc.applyPussyDrenched();
+		if(cumQ >= 5000) pc.applyPussyDrenched();
+		if(cumQ >= 10000) pc.applyPussyDrenched();
 	}
 	for(var x:int = 0; x < 25; x++) { pc.orgasm(); }
 	clearMenu();

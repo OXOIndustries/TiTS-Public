@@ -251,13 +251,28 @@ public function uvetoKaedeCass():void
 
 	output("\n\nGlancing up at you, Kaede asks, <i>“Do you have any kids, [pc.name]?”</i>");
 
-	var numChildren:Number = StatTracking.getStat("pregnancy/total births");
+	var numChildren:Number = (StatTracking.getStat("pregnancy/total births") + StatTracking.getStat("pregnancy/total sired"));
+	// preggos
+	if(pc.isPregnant() && pc.bellyRatingMod > 10)
+	{
+		for (var i:int = 0; i < pc.pregnancyData.length; i++)
+		{
+			var pData:PregnancyData = pc.pregnancyData[i];
+			if(pData.pregnancyType != "" && pData.pregnancyQuantity > 0)
+			{
+				var pChildType:int = PregnancyManager.getPregnancyChildType(pc, i);
+				if(pChildType == GLOBAL.CHILD_TYPE_LIVE) numChildren += pData.pregnancyQuantity;
+				//else if(pChildType == GLOBAL.CHILD_TYPE_SEED) numChildren += pData.pregnancyQuantity;
+				//else if(pChildType == GLOBAL.CHILD_TYPE_EGGS) numChildren += pData.pregnancyQuantity;
+			}
+		}
+	}
 	if (numChildren > 0)
 	{
 		output("\n\n<i>“I do,”</i> you answer.");
 		if (numChildren >= 10) output(" <i>“Lots.”</i>");
 	}
-	else output(" <i>“Not yet,”</i> you answer. Given your ancestry, who knows how long that’ll stay true.");
+	else output("\n\n<i>“Not yet,”</i> you answer. Given your ancestry, who knows how long that’ll stay true.");
 
 	output("\n\nKaede smiles. <i>“That’s good. You");
 	if (numChildren == 0) output("’ll have some eventually, I’m sure. It’s... it’s a trip.");

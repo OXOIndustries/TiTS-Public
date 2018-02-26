@@ -168,36 +168,7 @@ package classes.GameData.Pregnancy.Handlers
 		
 		public static function riyaSpawnSuccessfulImpregnation(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
-			BasePregnancyHandler.defaultOnSuccessfulImpregnation(father, mother, pregSlot, thisPtr);
-			
-			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
-			
-			// Define limits
-			var quantityMin:int = thisPtr.pregnancyQuantityMinimum;
-			var quantityMax:int = thisPtr.pregnancyQuantityMaximum;
-			if(mother.perkv2("Broodmother") > 0) quantityMax = Math.max(quantityMax, Math.round(quantityMax * mother.perkv2("Broodmother")));
-			
-			// Always start with the minimum amount of children.
-			var quantity:int = quantityMin;
-			
-			// Unnaturally fertile mothers may get multiple children.
-			for(var i:Number = mother.fertility(); i >= 2.0; i -= 1.0)
-			{
-				quantity += rand((quantityMax - quantityMin) + 1);
-			}
-			if (quantity < quantityMin) quantity = quantityMin;
-			if (quantity > quantityMax) quantity = quantityMax;
-			
-			// Add extra bonuses.
-			var fatherBonus:int = Math.round((father.cumQ() * 2) / thisPtr.definedAverageLoadSize);
-			var motherBonus:int = Math.round((quantity * mother.pregnancyMultiplier()) - quantity);
-			quantity += fatherBonus + motherBonus;
-			
-			// Cap at 3x the maximum!
-			quantityMax = Math.round(quantityMax * 3.0);
-			if (quantity > quantityMax) quantity = quantityMax;
-			
-			pData.pregnancyQuantity = quantity;
+			BasePregnancyHandler.defaultOnSuccessfulImpregnation(father, mother, pregSlot, thisPtr, [3.0, 2.0, 1.0]);
 		}
 		
 		public static function riyaSpawnOnDurationEnd(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void

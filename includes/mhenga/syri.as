@@ -130,6 +130,24 @@ public function syriGamesStart():void {
 	addButton(14,"Back",notTodayDogslut);
 }
 
+// Game scoring
+public function syriPlayGameResult(tries:int = 15):Boolean
+{
+	var won:Boolean = false;
+	var misses:int = 0;
+	
+	// Calculate misses
+	for(var i:int = 0; i < tries; i++)
+	{
+		if(rangedCombatMiss(chars["PC"], chars["SYRI"], 0)) misses++;
+	}
+	
+	if(misses <= 1) won = true;
+	// Give result
+	//output("\n\nMisses: " + misses);
+	return won;
+}
+
 //Not Today
 public function notTodayDogslut():void {
 	clearOutput();
@@ -217,16 +235,7 @@ public function betYourselfAgainstSyri():void {
 }
 
 public function syriGameRouting():void {
-	var won:Boolean = false;
-	var misses:int = 0;
-	
-	for(var i:int = 0; i < 15; i++)
-	{
-		if(rangedCombatMiss(pc,chars["SYRI"])) misses++;
-	}
-
-	if(misses <= 1) won = true;
-
+	var won:Boolean = syriPlayGameResult(15);
 	if(won) {
 		IncrementFlag("TIMES_WON_AGAINST_SYRI");
 	}
@@ -2379,16 +2388,7 @@ public function syriPettyPlayeeeeeeBettyBooButtMcBunners():void
 
 public function syriPetPlayWinLossRouter():void
 {
-	var won:Boolean = false;
-	var misses:int = 0;
-	
-	for(var i:int = 0; i < 30; i++)
-	{
-		if(rangedCombatMiss(pc,chars["SYRI"])) misses++;
-	}
-
-	if(misses <= 1) won = true;
-
+	var won:Boolean = syriPlayGameResult(30);
 	if(won) syriPetPlayVictoryWinzo();
 	else loseToSyriPetPlayeeeee();
 }

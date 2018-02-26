@@ -152,6 +152,7 @@ package classes.UIComponents.ContentModules
 			_mailText.htmlText += "</p></span>";
 			
 			MailManager.clearEntry(key);
+			update();
 			kGAMECLASS.updateMailStatus();
 			clearGhostMenu();
 			addGhostButton(0, "Next", kGAMECLASS.showMails);

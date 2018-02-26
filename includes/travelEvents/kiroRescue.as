@@ -413,7 +413,7 @@ public function kirosShipChubnookiUpDaButt():void
 	}
 	pc.orgasm();
 	pc.orgasm();
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 
 	processTime(60+rand(15));
 
@@ -602,7 +602,7 @@ public function kirosShipChubnookiUpDaCooter():void
 
 	pc.orgasm();
 	pc.orgasm();
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	
 	for (var i:int = 0; i < 20; i++)
 	{
@@ -851,7 +851,7 @@ public function kirosShipChubnookiFucksYouGud(anal:Boolean = false):void
 	
 	pc.orgasm();
 	pc.orgasm();
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 
 	processTime(60+rand(15));
 

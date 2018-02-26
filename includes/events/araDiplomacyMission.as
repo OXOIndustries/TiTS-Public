@@ -147,6 +147,7 @@ public function bothriocQuestTalkNext(arg:Array):void
 				else if(pc.isAss() || pc.isBro()) output("<i>“I’ll help you,”</i> you reply impatiently. <i>“If the reward’s worthwhile, at least.”</i>");
 				else if(pc.isMischievous()) output("<i>“Giving this the big build up, aren’t you?”</i> you say, with a quirk of the lip. <i>“C’mon then - let’s hear what I’m getting into.”</i>");
 				else output("<i>“Of course I’ll help you,”</i> you reply, straightening your back. <i>“I’m Captain Steele! Just lay it out.”</i>");
+				output("\n\n");
 			}
 			output("<i>“I need two things, Steele.”</i> The quadomme brings two gleaming black palms together, angles them towards you. <i>“Firstly: I need you to voyage down to the Deep Caves, approach as many quadommes as you can, and convince them to meet me. I shall give you the place, date, time. It will be the first summit of our people for a very, very long time.”</i>");
 			output("\n\n<i>“It won’t be easy. They will know you’re coming. They will see you as a pawn of mine,");
@@ -442,9 +443,7 @@ public function bothriocQuestResearch(response:String):void
 // Ara’s pronouns selected at random for each quadomme
 public function bothriocQuestQuadommeButton(btnSlot:int = 0, isStuck:Boolean = false):void
 {
-	if(flags["BOTHRIOC_QUEST"] != BOTHRIOC_QUEST_DIPLOMACY) return;
-	
-	addButton(btnSlot, "Diplomacy", bothriocQuestQuadomme, ["encounter", isStuck], "Diplomacy", "Try and persuade this quadomme to work with Ara Kei.");
+	if(bothriocQuestActive()) addButton(btnSlot, "Diplomacy", bothriocQuestQuadomme, ["encounter", isStuck], "Diplomacy", "Try and persuade this quadomme to work with Ara Kei.");
 }
 private var bothriocQuestQuadommeAraGender:int = 0; // 0: f, 1: m, -1: n
 private function araQmfn(m:String = "", f:String = "", n:String = ""):String
@@ -603,14 +602,19 @@ public function bothriocQuestQuadomme(arg:Array):void
 public function bothriocQuestQuadommeAutoSubmit():void
 {
 	output("\n\nHot, blissful understanding blossoms within you as you feel the stuff clinging to you in half a dozen places. Strings, weaves and thatches of gossamer glisten across the floor and walls, emerging from a large hole in the ceiling, only discernible to you now that you’re well and truly coated in it. You’ve blundered into a bothrioc’s trap! You wait tremulously for the wonderful, elegant being to emerge from the space above.");
-	output("\n\nThe tall, flat-chested androgyne lolls elegantly downwards, propping its jaw up with one pair of hands as it gazes at you with laidback interest. A blush descends on you, prickling your [pc.skin] as you run your eyes over the big, elegant and confident alpha that has you transfixed: Concentrated power. You want to simply stare at it, bathe in its presence, await it to take hold of you in its strong hands and put you in your rightful place... but the words Ara Kei imparted to you ring, strident above the soft lilt of your natural thoughts, and there’s no ignoring them. [ara.he] gave you a duty, and you cannot fail it.");
+	
+	bothriocQuestQuadommeAutoSubmitBlurb();
+	
+	clearMenu();
+	addButton(0, "Next", bothriocQuestQuadommeAutoSubmitNext);
+}
+public function bothriocQuestQuadommeAutoSubmitBlurb():void
+{
+	output("\n\nThe tall, flat-chested androgyne lolls elegantly downwards, propping its jaw up with one pair of hands as it gazes at you with laidback interest. A blush descends on you, prickling your [pc.skin] as you run your eyes over the big, elegant and confident alpha that has you transfixed: Concentrated power. You want to simply stare at it, bathe in its presence, await it to take hold of you in its strong hands and put you in your rightful place... but the words Ara Kei imparted to you ring, strident above the soft lilt of your natural thoughts, and there’s no ignoring them. [ara.He] gave you a duty, and you cannot fail it.");
 	output("\n\n<i>“Please egg-giver,”</i> you say, remaining very still and fixing the creature’s elegant, white face with a plaintive gaze. <i>“I must ask of you something.”</i>");
 	output("\n\n<i>“To fill you so full of warm, bumpy life that you can’t remember your own name?”</i> the quadomme replies with a smile. <i>“That’s going to happen anyway little one, don’t worry. Only beg if you’re into that kind of thing.”</i>");
 	output("\n\n<i>“No...”</i> You pause a moment to firmly push down on the wave of heat that rose to your [pc.skin] just now. <i>“...It’s something else. Something important.”</i>");
 	output("\n\n<i>“Something </i>more<i> important to you than being my incubator?”</i> Both of the quadomme’s armored eyebrows rise. <i>“My! You’ve certainly got my attention. Go ahead, little one. I’m listening.”</i>");
-	
-	clearMenu();
-	addButton(0, "Next", bothriocQuestQuadommeAutoSubmitNext);
 }
 public function bothriocQuestQuadommeAutoSubmitNext():void
 {
@@ -672,6 +676,8 @@ public function bothriocQuestQuadommeAutoSubmitNext():void
 		{
 			output("\n\nThat’s fine. That’s more than fair. That’s absolutely wonderful. You smile back happily, allowing that heat you’ve been denying to finally overwhelm you. You love doing your bit for the cause.");
 			output("\n\n");
+			
+			IncrementFlag("BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT");
 			
 			// {standard loss scene from here}
 			clearMenu();
@@ -863,7 +869,7 @@ public function feiAnAppear():void
 {
 	if(flags["FEIAN_LOCATION"] == undefined) return;
 	
-	rooms[flags["FEIAN_LOCATION"]].addFlag(GLOBAL.PLANT_BULB);
+	rooms[flags["FEIAN_LOCATION"]].addFlag(GLOBAL.SPIDER_WEB);
 	rooms[flags["FEIAN_LOCATION"]].removeFlag(GLOBAL.HAZARD);
 	rooms[flags["FEIAN_LOCATION"]].runOnEnter = feiAnStrozoHaremBonus;
 }
@@ -871,7 +877,7 @@ public function feiAnRemove():void
 {
 	if(flags["FEIAN_LOCATION"] == undefined) return;
 	
-	rooms[flags["FEIAN_LOCATION"]].removeFlag(GLOBAL.PLANT_BULB);
+	rooms[flags["FEIAN_LOCATION"]].removeFlag(GLOBAL.SPIDER_WEB);
 	rooms[flags["FEIAN_LOCATION"]].addFlag(GLOBAL.HAZARD);
 	rooms[flags["FEIAN_LOCATION"]].runOnEnter = DeepCavesBonus;
 }
@@ -880,6 +886,13 @@ public function feiAnRemove():void
 // Adjoin to standard square blurb
 public function bothriocQuestFeiAnStrozoIntro():void
 {
+	showBothriocQuadomme();
+	showName("ENCOUNTER:\nQUADOMME");
+	
+	if(!CodexManager.hasUnlockedEntry("Bothrioc")) CodexManager.unlockEntry("Bothrioc");
+	
+	CombatAttacks.applyWeb(pc);
+	
 	bothriocQuestQuadommeAraGender = (rand(3) - 1);
 	
 	showBust(feiAnStrozoBustDisplay());
@@ -898,6 +911,9 @@ public function bothriocQuestFeiAnStrozoIntro():void
 	flags["FEIAN_AT_LOCATION"] = 1;
 	
 	feiAnAppear();
+	
+	processTime(7 + rand(3));
+	IncrementFlag("BOTHRIOC_QUADOMME_ENCOUNTERED");
 	
 	clearMenu();
 	addButton(0, "You Have?", bothriocQuestFeiAnStrozoResponse, ["you have?", addiction]);
@@ -1236,6 +1252,8 @@ public function bothriocQuestSummit(arg:Array):void
 				output("\n\nShe gestures, and the gloopy bottle of purple blood and the heavy, well-thumbed journal is hurried over to you by a pidemme.");
 				output("\n\n<i>“Shall we depart?”</i> The arch bothrioc has had the suppressant whisked away and is considering the room at large with all four hands rested on [ara.his] hips. <i>“I shall have need of you, once more, at the summit. Tell me when you’re ready.”</i>");
 			}
+			if(flags["JOIN_FEIAN_HAREM"] != undefined) output("\n\n<b>You clearly remember the deal you made with the quadomme Fei An Strozo; a promise made of bottomless, smothering silk. If you follow Ara now, you instinctively know it will be the end of your quest - and the beginning of eternal happiness.</b>");
+			output("\n\n");
 			
 			// Remove both Counteragents from inventory, add Bothrioc Genealogy
 			pc.removeKeyItem("Bothrioc Pheromone Counteragent");
@@ -2028,6 +2046,9 @@ public function bothriocQuestGenealogy(response:String):void
 // Fei Bad End
 public function bothriocQuestBadEnd(page:int = 0):void
 {
+	clearOutput();
+	author("Nonesuch");
+	
 	switch(page)
 	{
 		case 0:
@@ -2100,28 +2121,63 @@ public function bothriocQuestBadEnd(page:int = 0):void
 				if(vIdx >= 0) output("[pc.vagina " + vIdx + "], ");
 				output("[pc.ass] and mouth, begging sweetly for her to fuck you, fuck you hard.");
 			}
-			output("\n\nSlowly but surely the quadomme introduces you to the more exotic play she saves for her more experienced slaves - binding you up in web and hanging you from the ceiling for days on end with your");
-			if(vIdx >= 0) output(" [pc.vagina " + vIdx + "]");
-			else if(cIdx >= 0) output(" [pc.cock " + cIdx + "]");
-			else output(" privates");
-			output(" exposed, so she can casually tease it as she passes underneath. Binding your arms and setting you to eat out the boi-pussy of one of her nyrea males, whipping your [pc.ass] if you don’t get him off fast enough, until you’ve learned to do quite incredible things with your [pc.lips] and [pc.tongue]. The " + (feiAnHasCock() ? "penis" : "vagina") + " she’s grown for herself via " + (flags["GAVE_FEIAN_ITEMS"] != undefined ? "your" : "some") + " farlander ‘magic’ has kindled a very un-bothrioc-like taste for clothes, and soon the whole harem is involved in cleaning silk and weaving it into garments - first for her, because of course Fei demands a wardrobe fit for a queen, then for her harem, so you’re soon wearing silky kimonos, maid costumes and all sorts besides, and then for whoever on Myrellion wants and can afford them. The redheaded quadomme winds up making quite a lot of money out of her strange but unarguably fine garments, which she hungrily reinvests in refurbishing her mini-palace, and buying the sort of equipment she can’t make herself: vibrators, plugs, nipple clamps, piercings, body paint, bitch suits, endless amounts of ripe fruit...");
 			
+			var pp:BothriocQuadomme = new BothriocQuadomme();
+			pp.createPerk("Fixed CumQ", 5000, 0, 0, 0);
+			
+			if(pc.hasVagina())
+			{
+				for(vIdx = 0; vIdx < pc.vaginas.length; vIdx++)
+				{
+					pc.cuntChange(vIdx, pp.cockVolume(0));
+					pc.loadInCunt(pp, vIdx);
+				}
+			}
+			else
+			{
+				pc.buttChange(pp.cockVolume(0));
+				pc.loadInAss(pp);
+			}
+			
+			pc.removeAll();
 			processTime(52 * 4);
 			
 			addButton(0, "Next", bothriocQuestBadEnd, 1);
 			break;
 		case 1:
 			showBust(feiAnStrozoBustDisplay());
-			showName("FEI AN\nSTROZO");
+			showName("EXTRAVAGANT\nTASTES");
+			
+			output("Slowly but surely the quadomme introduces you to the more exotic play she saves for her more experienced slaves - binding you up in web and hanging you from the ceiling for days on end with your");
+			if(pc.hasVagina()) output(" [pc.vaginas]");
+			else if(pc.hasCock()) output(" [pc.cocks]");
+			else output(" privates");
+			output(" exposed, so she can casually tease it as she passes underneath. Binding your arms and setting you to eat out the boi-pussy of one of her nyrea males, whipping your [pc.ass] if you don’t get him off fast enough, until you’ve learned to do quite incredible things with your [pc.lips] and [pc.tongue]. The " + (feiAnHasCock() ? "penis" : "vagina") + " she’s grown for herself via " + (flags["GAVE_FEIAN_ITEMS"] != undefined ? "your" : "some") + " farlander ‘magic’ has kindled a very un-bothrioc-like taste for clothes, and soon the whole harem is involved in cleaning silk and weaving it into garments - first for her, because of course Fei demands a wardrobe fit for a queen, then for her harem, so you’re soon wearing silky kimonos, maid costumes and all sorts besides, and then for whoever on Myrellion wants and can afford them. The redheaded quadomme winds up making quite a lot of money out of her strange but unarguably fine garments, which she hungrily reinvests in refurbishing her mini-palace, and buying the sort of equipment she can’t make herself: vibrators, plugs, nipple clamps, piercings, body paint, bitch suits, endless amounts of ripe fruit...");
+			
+			pc.armor = new ComfortableClothes();
+			pc.armor.longName = "silk kimono";
+			
+			pc.createStatusEffect("Milk Paused");
+			pc.createStatusEffect("Cum Paused");
+			processTime((5 * 24 * 60) + rand(1440));
+			
+			addButton(0, "Next", bothriocQuestBadEnd, 2);
+			break;
+		case 2:
+			showBust(feiAnStrozoBustDisplay());
 			
 			// If PC scotched the summit and also agreed to this, for some fucking reason
-			if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_FAILURE)
+			if(flags["KQ2_MYRELLION_STATE"] == 1 || flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_FAILURE)
 			{
+				showName("BOTHRIOC\nBOTTOM BITCH");
+				
 				output("Unfortunately, the ever-developing bliss you’ve discovered of being a bothrioc bottom bitch coincides with increasing tensions between the myr, who have little to no interest in anyone who happens to be caught between them. Eventually the specter of nuclear war forces Fei to abandon both her fledgling seamstress career and her home to evacuate her harem back to the distant continent she originated from - a much emptier land, but a respectable distance away from the ant people’s population centers and missile silos.");
 				output("\n\nThe quadomme, who was only just discovering how much she enjoys being a socialite, is broodingly upset about it for months afterwards. Still - she still has all of her exciting purchases, and more importantly she has you and her other 39 lovers to use them on. Things settle down in your new quarters into a familiar, peaceful rhythm, interspersed with dizzying, mind-blowing highs. A cozier happily ever after than you were expecting, perhaps, but a happily ever after nonetheless.");
 			}
 			else
 			{
+				showName("FEI’S DREAM\nCOME TRUE");
+				
 				output("Whilst this is all going on, your Mistress is attending regular meetings with Ara and the other dominants, slowly thrashing a governing consensus out. Where they get the energy from you have no idea, but you suppose the unquestioning support of multitudes of submissives, and quick relief available whenever tensions run high, helps a lot. You lose track of the number of times Fei takes you along to some conference or other and winds up face-fucking you in a bathroom stall, brown thighs jiggling as she");
 				if(feiAnHasCock()) output(" thrusts her bulging cock into your wet and willing suck");
 				else output(" thrusts her pussy into your desperately lapping tongue");
@@ -2131,7 +2187,10 @@ public function bothriocQuestBadEnd(page:int = 0):void
 				output("\n\nYou changed the galaxy in a small but significant way, and you live very happily ever after.");
 			}
 			
-			processTime(2);
+			bothriocAddiction(100);
+			processTime((3 * 30 * 24 * 60) + rand(1440));
+			pc.removeStatusEffect("Milk Paused");
+			pc.removeStatusEffect("Cum Paused");
 			
 			badEnd("THE END.");
 			break;

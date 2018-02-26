@@ -123,6 +123,127 @@ public function nurseryFoyerFunc():Boolean
 	return false;
 }
 
+public function zilBabyBonus(btnSlot:Number):Number
+{
+	var zilBlurbs:Array = [];
+	
+	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 0, 12) > 0) zilBlurbs.push("Your half-breed zil babies are happily resting their day away nearby, and you could probably pay them a visit if you’d like.");
+	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 13, 36) > 0) zilBlurbs.push("Your bee-kids are playing nearby, quickly noticing your presence and giggling happily, probably hoping you’ll pay them a visit.");
+	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 37, 9001) > 0) zilBlurbs.push("Your half-breed zil babies are happily resting their day away nearby, and your older bee-kids are playing around the nursery, giggling happily, probably hoping you’ll pay them a visit.");
+	
+	if(zilBlurbs.length > 0) output("\n\n" + zilBlurbs[rand(zilBlurbs.length)]);
+	
+	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 0, 36) > 0)
+	{
+		// Picks randomly if the PC has both toddlers and newborns. Should exclude Zhen’s kids if possible, should actually just be restricted to generic zil offspring, or require multiple zil children. 
+		addButton(btnSlot, "Zil", playWithZil, undefined, "Zil Kids", "Pay a visit to your half-breed children.");
+		btnSlot++;
+	}
+	else if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 37, 9001) > 0)
+	{
+		addDisabledButton(btnSlot, "Zil", "Zil Kids", "You don’t have any kids young enough to play with. Maybe when you finish the quest, you’ll have time to be a real parent.");
+		btnSlot++;
+	}
+	return btnSlot;
+}
+public function playWithZil(choice:Number = -1):void
+{
+	clearOutput();
+	author("HugsAlright");
+	showName("PLAY\nTIME!");
+	
+	if(choice == -1)
+	{
+		output("Which age group will you play with? (Buttons are in month age ranges)");
+		clearMenu();
+		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 0, 12) > 0) addButton(0, "0-12 Months", playWithZil, 0);
+		else addDisabledButton(0, "0-12 Months", "0-12 Months", "You have no kids in that age range.");
+		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 13, 36) > 0) addButton(1, "12-36 Months", playWithZil, 1);
+		else addDisabledButton(1, "12-36 Months", "12-36 Months", "You have no kids in that age range.");
+		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 37, 9001) > 0) addDisabledButton(3, "36+ Months", "16+ Month", "These kids are too old to play with.");
+		return;
+	}
+	
+	var boy:Boolean = true;
+	var girl:Boolean = false;
+	var msg:String = "";
+	var numBabies:int = 0;
+	
+	// Newborn
+	// Available from 0-730 days in game, chooses random child gender if both are available.
+	if(choice == 0)
+	{
+		boy = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_BEE, ChildManager.GENDER_MALE, 0, 12);
+		girl = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_BEE, ChildManager.GENDER_FEMALE, 0, 12);
+		if(boy && girl) boy = (rand(2) == 0);
+		numBabies = ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 0, 12);
+		
+		if(pc.isLactating() && rand(2) == 0)
+		{
+			msg += "You decide you’re going to feed your babies while you’re here. Picking up one of from them from their cribs, you hear " + (boy ? "him" : "her") + " coo with glee when they open their [baby.eyeColor] eyes and see your face looking back at them. Even with the amazing staff this nursery has, you’re sure all your children would enjoy a meal from their " + pc.mf("father", "mother") + ".";
+			msg += "\n\nWith just that in mind, you";
+			if(!pc.isChestExposed()) msg += " remove your top and";
+			msg += " lift your " + (boy ? "son" : "daughter") + " to your chest. Almost immediately " + (boy ? "he" : "she") + " latches onto your teat and starts to suckle, taking in your nourishing nectar. You’re left alone in a blissful silence, a warm fuzzy feeling permeating your body as parental instincts take over.";
+			msg += "\n\nAfter a while your baby has had " + (boy ? "his" : "her") + " fill, and you put the delicate bundle back into " + (boy ? "his" : "her") + " crib, quietly sleeping and well-fed.";
+			if(numBabies == 2) msg += " Then, you do the same for " + (boy ? "his" : "her") + " sibling, giving the infant a nice meal and a warm, " + pc.mf("fatherly", "motherly") + " embrace before you set the baby down to rest again.";
+			else if(numBabies > 2) msg += " Then, you do the same for all your other babies, giving them a nice meal and a warm, " + pc.mf("fatherly", "motherly") + " embrace before you set them down to rest again.";
+			msg += "\n\nOnce all is said and done, you’re left feeling fulfilled as a parent, gazing down upon your offspring one last time before heading back to the rest of the nursery.";
+		}
+		else
+		{
+			msg += "You decide you’re going to play with your babies for a bit while you’re here. Picking up one of from them from their cribs, you hear " + (boy ? "him" : "her") + " coo with glee when they open their [baby.eyeColor] eyes and see your face looking back at them. Even with the amazing staff this nursery has, you’re sure they could use a " + pc.mf("father", "mother") + "’s touch.";
+			msg += "\n\nWith that in mind, you lift your baby up to your to your face, looking at " + (boy ? "his" : "her") + " smiling face for a moment. You can’t help but grin at your offspring’s happy mien, and blowing a raspberry on " + (boy ? "his" : "her") + " cheeks, drawing a chorus of joyous baby-giggles from the half-breed.";
+			msg += "\n\nPlaying with babies seems to be so easy, bouncing " + (boy ? "him" : "her") + " in your arms, tickling, and peek-a-boo, all of it making for one happy bee. Eventually, your child grows tired, and with a few last embraces, you put the newborn back in " + (boy ? "his" : "her") + " crib, happily sleeping. Then, you do the same for all your other babies, taking time out of your busy schedule to make sure they all have smiles on their faces before setting them down to rest again.";
+			msg += "\n\nOnce all is said and done, you’re left feeling fulfilled as a parent, gazing down upon your offspring one last time before heading back to the rest of the nursery.";
+		}
+		output(msg);
+		
+		processTime(5);
+	}
+	// Toddler
+	// Available from 731 day in game and onwards. Chooses a random variant if both genders are available.
+	else if(choice == 1)
+	{
+		boy = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_BEE, ChildManager.GENDER_MALE, 13, 36);
+		girl = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_BEE, ChildManager.GENDER_FEMALE, 13, 36);
+		if(boy && girl) boy = (rand(2) == 0);
+		numBabies = ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 13, 36);
+		
+		if(boy)
+		{
+			msg += "Before you can even go over to them, one of your zil sons runs up to you, flanked by his " + (numBabies == 2 ? "twin" : "siblings at either side") + ". He looks quite a bit like you, bearing human skin and hair, but maintaining a zil’s appearance, especially with all that chitin growing on his limbs and those wings on his back.";
+			msg += "\n\n<i>“" + pc.mf("Daddy, Daddy", "Mommy, Mommy") + "!”</i> he shouts barely able to stop himself from tripping when he stops in front of you, <i>“Wanna see something cool I learned how to do?!”</i>";
+			msg += "\n\nYou smile and bring yourself down";
+			if(pc.isTaur()) msg += " on your haunches";
+			else if(pc.hasKnees()) msg += " on your knees";
+			msg += " in front of the toddler and tell him you’d love to see.";
+			msg += "\n\nA huge grin appears on your son’s face, <i>“Alright! Watch this!”</i> His mien quickly changes to one of pure concentration. Then <i>pop</i>! His wings fold out and start to buzz gently... much less intimidation than his full-sized kinsmen. Nevertheless, you smile as the young half-breed attempts a take-off, and sure enough, his perseverance pays off. His quickly flapping wings propel him off the ground, only a few inches, hovering there for a moment before he drops back onto the ground. He seems exhausted after that, breathing heavily but looking up at your with pride in his smile, <i>“Did I do that good, " + pc.mf("daddy", "mommy") + "?”</i>";
+			msg += "\n\nYou chuckle and tell the tiny bee-boy you’re very impressed with that, and think he’ll be soaring all around the nursery in no time at all.";
+			msg += "\n\n<i>“Really?!”</i> he exclaims, his " + (numBabies == 2 ? "twin" : "siblings") + " clapping supportively behind him, <i>“Okay! I’m gonna go practice some more then!”</i>";
+			msg += "\n\nAnd like that, your son " + (numBabies == 2 ? "is" : "and his kin are") + " running off again. They seem to get along well together...";
+		}
+		else
+		{
+			msg += "Before you can even go over to them, one of your zil daughters runs up to you, flanked by her " + (numBabies == 2 ? "twin" : "siblings at either side") + ". She looks quite a bit like you, bearing human skin and hair, but maintaining a zil’s appearance, especially with all that chitin growing on her limbs and that abdomen behind her.";
+			msg += "\n\n<i>“" + pc.mf("Daddy, Daddy", "Mommy, Mommy") + "!”</i> she shouts, barely able to stop herself from tripping when she stops in front of you. Then she takes up a slightly guilty stance, hiding her hands behind her back, <i>“I think I stung someone accidentally.”</i>";
+			msg += "\n\nYou look at that tiny stinger on the bee-girl’s abdomen and smile warmly at your offspring asking her just who she thinks she hurt.";
+			msg += "\n\nBefore she can answer, " + (numBabies == 2 ? "her twin" : "one of her siblings") + " takes a couple steps towards you, brandishing quite the welt on their tiny arm. This prompts you to ask your daughter why she hasn’t gone to Briget about this.";
+			msg += "\n\n<i>“I thought I would get in trouble...”</i> she mumbles, looking down at her feet.";
+			msg += "\n\nYou chuckle and extend your arms forward, then pull the tiny half-breed into a hug, telling her that sometimes you do something wrong and you have to get in trouble, but that it’s also the right thing to do. It also behooves you to explain that she needs to be more careful with her abdomen.";
+			msg += "\n\nWhen she pulls back from the hug, her face seems a lot less nervous, and a lot more happy, <i>“Thanks, " + pc.mf("daddy", "mommy") + ", I promise we’ll go to Briget now!”</i>";
+			msg += "\n\nThen like that she and her kin are off in their caretaker’s direction, leaving you with quite a bit of parental-pride swelling in your chest.";
+		}
+		msg += "\n\nWell, you unfortunately don’t have much more time to spend here with a fortune that still needs chasing, looks like you should say your goodbyes and get moving.";
+		output(msg);
+		
+		processTime(7);
+	}
+	
+	// Returns the PC to the nursery.
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
 public function milodanPlayOptions(button:Number):Number
 {
 	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 0, 16) > 0)
@@ -349,6 +470,7 @@ public function nurseryKidsDormsFunc():Boolean
 	khorganBabyBlurbs();
 	tamtamBabyBlurbs();
 	var button:Number = 0;
+	button = zilBabyBonus(button);
 	button = milodanPlayOptions(button);
 	button = ellieKidVisits(button);
 	button = samBabiesVisitOptions(button);
@@ -612,7 +734,7 @@ public function nurseryComputerChildren():void
 {
 	
 	// Children sired count hotfix.
-	if(nurserySiredBabyDiff() > 0 || StatTracking.getStat("pregnancy/total sired") <= 0)
+	if(nurserySiredBabyDiff() > 0)
 	{
 		nurserySiredRecordsFix();
 		return;
@@ -992,7 +1114,7 @@ public function nurserySiredRecordsFix():void
 	author("Jacques00");
 	
 	output("<b>The computer makes some blips while it syncs with your codex.</b> It then displays a holo pop-up that reads:");
-	output("\n\n<i>“It seems that the nursery computer and your codex are out of sync. Please wait while we correct your records....”</i> After a few seconds, it then concoludes, <i>“... Data sync successful! Thank you for your patience.”</i>");
+	output("\n\n<i>“It seems that the nursery computer and your codex are out of sync. Please wait while we correct your records....”</i> After a few seconds, it then concludes, <i>“... Data sync successful! Thank you for your patience.”</i>");
 	output("\n\nLooks like whatever information was off has been corrected now.");
 	
 	var numSired:int = 0;

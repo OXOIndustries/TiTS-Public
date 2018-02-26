@@ -1,16 +1,20 @@
 ﻿import classes.Items.Miscellaneous.SmallEgg;
 
-public function shellyDisplay(nude:Boolean = false):void
-{
-	if(flags["KNOW_SHELLYS_NAME"] == undefined) showName("BUNNY\nWOMAN");
-	else showName("\nSHELLY");
-	if(!nude) showBust("SHELLY");
-	else showBust("SHELLY_NUDE");
-	author("Gardeford");
-}
 public function showShelly(nude:Boolean = false):void
 {
-	shellyDisplay(nude);
+	showBust(shellyBustDisplay(nude));
+	
+	if(flags["KNOW_SHELLYS_NAME"] == undefined) showName("BUNNY\nWOMAN");
+	else showName("\nSHELLY");
+}
+public function shellyBustDisplay(nude:Boolean = false):String
+{
+	var sBust:String = "SHELLY";
+	
+	if(flags["CAME_INSIDE_SHELLY"] != undefined || pc.hasStatusEffect("Shelly Leave Egg CD")) sBust += "_HUGE";
+	if(nude) sBust += "_NUDE";
+	
+	return sBust;
 }
 
 public function shellyCapacity():Number
@@ -37,7 +41,8 @@ public function ShellyBlurb(slot:int = 5):void
 public function investigateSlashShelly():void
 {
 	clearOutput();
-	shellyDisplay();
+	showShelly();
+	author("Gardeford");
 	//Investigate
 	if(flags["APPROACHED_SHELLY"] == undefined)
 	{
@@ -96,7 +101,8 @@ public function investigateSlashShelly():void
 public function talkToShelly():void
 {
 	clearOutput();
-	shellyDisplay();
+	showShelly();
+	author("Gardeford");
 	flags["TALKED_TO_SHELLY"] = 1;
 	output("You ask the embarrassed bunny-girl about her sign and what she’s doing in the bar. She brightens, looking a little less nervous.");
 	output("\n\n<i>“Really? You want to hear about it? Everyone else has just been rude”</i> she says, the relief evident in her voice. You assure her that you’d love to hear about this “Ovilium” stuff.");
@@ -119,7 +125,8 @@ public function talkToShelly():void
 public function assistShellyLaying():void
 {
 	clearOutput();
-	shellyDisplay();
+	showShelly();
+	author("Gardeford");
 	output("You tell Shelly if she wants some assistance with her egg laying, you’re available now. She nods, grinning and gripping your hand tightly as she pulls you to one of the back rooms. The room is well lit and surprisingly comfortable-looking for what you would expect from a bar like this.");
 	output("\n\n<i>“The company gave me this room in case I needed to use it for emergencies. They refurbished it to be a little more inviting than it originally was,”</i> she says as she continues in and stands by the bed. <i>“Okay, so all you need to do is stimulate me... down there.”</i>");
 	output("\n\nA blush begins running up her ears, but you tell her not to worry; you’ll have the excess eggs out of her in no time. This calms her down a bit, and she sits on the edge of the bed, reaching behind her back to undo her bra. You take that time to kneel at the foot of the bed next to her, unbuttoning the fastener on her shorts and pulling them down to reveal a pair of gray lace underwear. Not exactly the sexiest you’ve ever seen, but by no means a mood dampener.");
@@ -162,7 +169,8 @@ public function getShellyPregContainer():PregnancyPlaceholder
 public function sexWithShelly():void
 {
 	clearOutput();
-	shellyDisplay(true);
+	showShelly(true);
+	author("Gardeford");
 	
 	var x:int = pc.cockThatFits(shellyCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
@@ -223,7 +231,6 @@ public function sexWithShelly():void
 public function humanoidsCumOutsideShelly():void
 {
 	clearOutput();
-	shellyDisplay(true);
 	output("Deciding to honor her wish, you piston a few more times for build-up and then gently lay her on the bed, popping your cock out of her pussy just in time. [pc.EachCock] pulses with orgasmic bliss, spurting blasts of [pc.cum] all over her body. A few ropes reach her face, painting parts of her dusky body [pc.cumColor]. She smiles and thanks you for not cumming inside.");
 
 	//if first time: 
@@ -236,7 +243,6 @@ public function humanoidsCumOutsideShelly():void
 public function humanoidsCumInsideShelly():void
 {
 	clearOutput();
-	shellyDisplay(true);
 	output("Ignoring her warning, you piston several times inside her before hilting in preparation for the coming torrent. Your rapid thrusts set off her second orgasm, and you give her a kiss as her body clamps around you. Her tightened insides are too much to resist, and your dick blows its load inside her egg filled womb.");
 	if(pc.cockTotal() > 2) output(" Your other cocks spurt wildly over her legs and the underside of her stomach.");
 	else if(pc.cockTotal() == 2) output(" Your other cock spurts wildly over her legs and the underside of her stomach.");
@@ -251,7 +257,6 @@ public function humanoidsCumInsideShelly():void
 public function taursCumOutsideShelly():void
 {
 	clearOutput();
-	shellyDisplay(true);
 	output("Deciding to honor her wish, you thrust a few more times, popping out of her velvety box just in time. [pc.EachCock] pulses with orgasmic fervor, spurting your load over her butt and back. Your cum paints her back [pc.cumColor], and a few shots even make it to her neck. She smiles weakly and thanks you for not cumming inside.");
 	//(if first time: Curious, you ask her why not.)
 	if(flags["KNOWS_ABOUT_SHELLY_CUM_REACTION"] == undefined) output("\n\nCurious, you ask her why not.");
@@ -263,7 +268,6 @@ public function taursCumOutsideShelly():void
 public function taursCumInsideShelly():void
 {
 	clearOutput();
-	shellyDisplay(true);
 	output("Ignoring her warning, you piston your powerful hips a few more times, finally hilting inside her in preparation for flooding her with seed. Your thrusts start her orgasm anew, and she bites the sheets, now soaked in sugary fluids. Her tightened insides are too much to resist in the heat of the moment, and your breath catches as you’re overwhelmed by lust. Your dick pumps its load into her egg-stuffed womb.");
 	if(pc.cockTotal() > 1)
 	{
@@ -280,6 +284,8 @@ public function taursCumInsideShelly():void
 
 public function omniShellyEpilogueBlurb():void
 {
+	showShelly(true);
+	author("Gardeford");
 	//if first time: 
 	if(flags["KNOWS_ABOUT_SHELLY_CUM_REACTION"] == undefined)
 	{
@@ -307,7 +313,8 @@ public function omniShellyEpilogueBlurb():void
 public function shellyIntenseEggLaying(pageNum:int = 1):void
 {
 	clearOutput();
-	shellyDisplay(true);
+	showShelly(true);
+	author("Gardeford");
 	
 	if(pageNum == 1)
 	{
@@ -530,7 +537,6 @@ public function noDontFuckShelly():void
 public function yesBoneShellyWivHardlight():void
 {
 	clearOutput();
-	showShelly(true);
 	author("Zeikfried");
 	//first time seeing the ‘Yes’ subsection
 	if(flags["SHELLY_HL_SEX_BONUS"] == undefined)
@@ -649,6 +655,7 @@ public function yesBoneShellyWivHardlight():void
 	pc.orgasm();
 	pc.createStatusEffect("Shelly Assist Cooldown", 0, 0, 0, 0, true, "", "", false, 24*60);
 	oviliumEggReward();
+	showShelly(true);
 }
 
 //’Leave Egg’
@@ -664,7 +671,6 @@ public function yesBoneShellyWivHardlight():void
 public function leaveEggInShellyThenJizzOnItYaJerk():void
 {
 	clearOutput();
-	showShelly(true);
 	author("Zeikfried");
 	var x:int = pc.cockThatFits(shellyCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
@@ -739,10 +745,12 @@ public function leaveEggInShellyThenJizzOnItYaJerk():void
 		//end
 		//pc orgasm, get 3 eggs
 		//pass time, go to appropriate location, hide Shelly button completely for 24hr
+		pc.createStatusEffect("Shelly Assist Cooldown", 0, 0, 0, 0, true, "", "", false, 24*60);
 		if(!pc.hasStatusEffect("Shelly Leave Egg CD")) pc.createStatusEffect("Shelly Leave Egg CD", 0, 0, 0, 0, true, "", "", false, 24*60*16);
 		processTime(30);
 		pc.orgasm();
 		oviliumEggReward(true);
 	}
+	showShelly(true);
 }
 

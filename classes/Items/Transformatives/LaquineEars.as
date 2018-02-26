@@ -10,8 +10,6 @@ package classes.Items.Transformatives
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	import classes.Util.InCollection;
-	import classes.Util.RandomInCollection;
-	import classes.Engine.Utility.indefiniteArticle;
 	import classes.Engine.Utility.getPlanetName;
 	import classes.Engine.Utility.IncrementFlag;
 	import classes.Engine.Utility.rand;
@@ -1651,7 +1649,7 @@ package classes.Items.Transformatives
 				pc.exhibitionism(1);
 				pc.slowStatGain("libido",1);
 				pc.lust(33);
-				kGAMECLASS.applyPussyDrenched(pc);
+				pc.applyPussyDrenched();
 			}
 			//(Vag && noheat && !preggos) Heat status for 1 week or till preggers. Temporary fertileboost.
 			if(select == 7)
@@ -1938,7 +1936,7 @@ package classes.Items.Transformatives
 				if(!masturbate) AddLogEvent(textBuff,"passive",deltaShift);
 				else output(textBuff);
 				pc.orgasm();
-				kGAMECLASS.applyCumSoaked(pc);
+				pc.applyCumSoaked();
 			}
 			if(masturbate)
 			{

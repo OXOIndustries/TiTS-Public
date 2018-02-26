@@ -21,20 +21,26 @@ public function hasIllegalInput(sText:String = ""):Boolean
 	// Cheat codes check
 	if(chars["PC"].short.length >= 1)
 	{
+		var cheatFunc:Function = null;
 		switch(sText)
 		{
 			// Gameplay/Debug
-			case "furfag": eventQueue.push(Cheats.infiniteItemUse); break;
-			case "idclev": eventQueue.push(Cheats.RoomTeleport); break;
-			case "marcopolo": eventQueue.push(Cheats.exploreUnlock); break;
-			case "motherlode": eventQueue.push(Cheats.XPToLevel); break;
-			case "88mph": eventQueue.push(Cheats.TimeSkip); break;
+			case "furfag": cheatFunc = Cheats.infiniteItemUse; break;
+			case "idclev": cheatFunc = Cheats.RoomTeleport; break;
+			case "marcopolo": cheatFunc = Cheats.exploreUnlock; break;
+			case "motherlode": cheatFunc = Cheats.XPToLevel; break;
+			case "88mph": cheatFunc = Cheats.TimeSkip; break;
+			case "tistheseason": cheatFunc = Cheats.toggleSeasons; break;
 			
 			// Treatment
-			case "bimbo": eventQueue.push(Cheats.TryTreatmentHaxCowGirl); break;
-			case "bull": eventQueue.push(Cheats.TryTreatmentHaxBull); break;
-			case "cumcow": eventQueue.push(Cheats.TryTreatmentHaxCumCow); break;
-			case "amazon": eventQueue.push(Cheats.TryTreatmentHaxAmazon); break;
+			case "bimbo": cheatFunc = Cheats.TryTreatmentHaxCowGirl; break;
+			case "bull": cheatFunc = Cheats.TryTreatmentHaxBull; break;
+			case "cumcow": cheatFunc = Cheats.TryTreatmentHaxCumCow; break;
+			case "amazon": cheatFunc = Cheats.TryTreatmentHaxAmazon; break;
+		}
+		if(cheatFunc != null && eventQueue.indexOf(cheatFunc) == -1)
+		{
+			eventQueue.push(cheatFunc);
 		}
 	}
 	
@@ -311,6 +317,7 @@ public function chooseStartingRace(race:String = "human"):void {
 	displayInput();
 	userInterface.textInput.text = "";
 	userInterface.textInput.maxChars = 33;
+	output("\n\n\n");
 }
 
 public function setStartingSex(sex:int = 1):void {
@@ -318,7 +325,7 @@ public function setStartingSex(sex:int = 1):void {
 	if(pc.originalRace != "human") race = pc.originalRace.substring(5);
 	if(userInterface.textInput.text == "") {
 		chooseStartingRace(race);
-		output("\n\n\n<b>You must input a name.</b>");
+		output("<b>You must input a name.</b>");
 		return;
 	}
 	
@@ -330,14 +337,15 @@ public function setStartingSex(sex:int = 1):void {
 	// Illegal characters check. Just in case...
 	if(hasIllegalInput(userInterface.textInput.text)) {
 		chooseStartingRace(race);
-		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
+		output("<b>To prevent complications, please avoid using code in the name.</b>");
 		return;
 	}
 	if(userInterface.textInput.length > 16) {
 		chooseStartingRace(race);
-		output("\n\n\n<b>Please select a name no more than sixteen characters long.</b>");
+		output("<b>Please select a name no more than sixteen characters long.</b>");
 		return;
 	}
+	
 	//Male or herm? Dick stuff.
 	if (sex == 1 || sex == 2) {
 		pc.createCock();
@@ -488,6 +496,7 @@ public function chooseHeight():void {
 	output("\n\n<b>Please give your character’s height in inches. For reference, six feet tall is 72 inches.</b>");
 	
 	displayInput();
+	output("\n\n\n");
 	//[Height Box]
 	clearMenu();
 	addButton(0,"Next",applyHeight);
@@ -519,6 +528,7 @@ public function applyHeight():void {
 	if(fail) {
 		userInterface.textInput.text = "";
 		displayInput();
+		output("\n\n\n");
 		clearMenu();
 		addButton(0,"Next",applyHeight);
 		addButton(14,"Back",startCharacterCreation);

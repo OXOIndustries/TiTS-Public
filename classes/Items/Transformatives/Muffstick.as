@@ -330,7 +330,7 @@
 				target.vaginas[selVag].addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 				
 				target.orgasm();
-				if(target.hasCock() && target.cumQ() >= 1000) kGAMECLASS.applyCumSoaked(target);
+				if(target.hasCock() && target.cumQ() >= 1000) target.applyCumSoaked();
 			}
 			
 			// Repeated uses:

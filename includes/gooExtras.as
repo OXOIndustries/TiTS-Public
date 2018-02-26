@@ -1021,7 +1021,7 @@ public function gooBodyCustomizer():void
 	addGhostButton(3,"Hip Size",adjustGooBody,["hip size","menu"],"Hip Size","Make adjustments to your hip size.");
 	addGhostButton(4,"Butt Size",adjustGooBody,["butt size","menu"],"Butt Size","Make adjustments to your butt size.");
 	
-	// Bodypart fixans: (Primarily for things that got force changes--like Dr.Badger and Holiday events)
+	// Bodypart fixans: (Primarily for things that got force changes--like Dr. Badger and Holiday events)
 	var nonGooPart:Number = 0;
 	if(pc.skinType != GLOBAL.SKIN_TYPE_GOO || pc.hairType != GLOBAL.HAIR_TYPE_GOO)
 	{

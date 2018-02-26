@@ -928,7 +928,7 @@ public function analViTease():void
 		output("you’re creaming yourself and ");
 		if(pc.isSquirter()) output("squirting");
 		else output("dribbling");
-		output(" your [pc.girlcumVisc] girl-cum all over the sheets, your thighs shaking spastically");
+		output(" your [pc.girlCumVisc] girl-cum all over the sheets, your thighs shaking spastically");
 	}
 	else 
 	{

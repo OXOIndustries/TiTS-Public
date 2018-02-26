@@ -76,6 +76,10 @@ package classes.Characters
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
 			}
+			if(hasPerk("Cum Highs"))
+			{
+				kGAMECLASS.cumHighUpdate();
+			}
 			if (cumFrom != null)
 			{
 				if(!cumFrom.hasStatusEffect("Ovilium Effect") && hasStatusEffect("Ovilium"))
@@ -116,6 +120,10 @@ package classes.Characters
 			if(hasStatusEffect("Strangely Warm") || hasStatusEffect("Flushed") || hasStatusEffect("Fuck Fever"))
 			{
 				OmegaOil.reduceOmegaEffect(this);
+			}
+			if(hasPerk("Cum Highs"))
+			{
+				kGAMECLASS.cumHighUpdate();
 			}
 			// Cumflation
 			if (cumFrom != null)
@@ -201,6 +209,10 @@ package classes.Characters
 					if(cumFrom.cumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
 				}
 			}
+			if(hasPerk("Cum Highs"))
+			{
+				kGAMECLASS.cumHighUpdate();
+			}
 			if(hasPerk("Dumb4Cum"))
 			{
 				kGAMECLASS.dumb4CumReset();
@@ -218,6 +230,10 @@ package classes.Characters
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
 			}
+			if(hasPerk("Cum Highs"))
+			{
+				kGAMECLASS.cumHighUpdate();
+			}
 			kGAMECLASS.mimbraneFeed("boobs");
 			if(cumFrom != null) sstdChecks(cumFrom,"nipple");
 			return false;
@@ -226,6 +242,10 @@ package classes.Characters
 		override public function loadInCuntTail(cumFrom:Creature = null):Boolean
 		{
 			if (this.hasTailCunt()) kGAMECLASS.feedCuntSnake(cumFrom);
+			if(hasPerk("Cum Highs"))
+			{
+				kGAMECLASS.cumHighUpdate();
+			}
 			if (cumFrom != null)
 			{
 				sstdChecks(cumFrom,"tail cunt");

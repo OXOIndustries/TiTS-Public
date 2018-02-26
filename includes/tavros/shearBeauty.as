@@ -135,9 +135,13 @@ public function buyFromCeria():void
 		{
 			chars["CERIA"].keeperBuy += " Off to the side, there is a clear jar that contains a number of white gumball-like pills.";
 			if(!chars["CERIA"].hasItemByClass(Hornitol)) chars["CERIA"].inventory.push(new Hornitol());
+			if(!chars["CERIA"].hasItemByClass(Hornucopia)) chars["CERIA"].inventory.push(new Hornucopia());
 		}
-		else chars["CERIA"].destroyItemByClass(Hornitol);
-		
+		else
+		{
+			chars["CERIA"].destroyItemByClass(Hornitol);
+			chars["CERIA"].destroyItemByClass(Hornucopia);
+		}
 		if(flags["PLANET_3_UNLOCKED"] != undefined || CodexManager.entryViewed("Rubber-Made"))
 		{
 			chars["CERIA"].keeperBuy += " Another rack holds what seem to be various tubes of skin";
@@ -878,12 +882,67 @@ public function ceriaFurColorMenu(colorType:String = "none"):void
 //Fur Treatment
 public function furColorApplication(newColor:String):void
 {
-	if(pc.balls > 0 && InCollection(pc.statusEffectv1("Special Scrotum"), [GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FEATHERED]))
+	if(pc.hasWings() && InCollection(pc.statusEffectv1("Wing Style"), [GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FEATHERED]) && !pc.hasStatusEffect("Ceria Dye Wings"))
+	{
+		ceriaFurColorWings(["choose", newColor]);
+		return;
+	}
+	if(pc.balls > 0 && InCollection(pc.statusEffectv1("Special Scrotum"), [GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FEATHERED]) && !pc.hasStatusEffect("Ceria Dye Balls"))
 	{
 		ceriaFurColorBallZ(["choose", newColor]);
 		return;
 	}
 	furColorApplicationGo(newColor);
+}
+public function ceriaFurColorWings(arg:Array):void
+{
+	clearOutput();
+	clearBust();
+	showName("DYE\nWINGS")
+	clearMenu();
+	
+	var option:String = arg[0];
+	var newColor:String = arg[1];
+	var special:String = (arg.length > 2 ? arg[2] : "");
+	
+	if(option == "choose")
+	{
+		output("It looks like you have furry wings you can dye... do you wish for Ceria to color them too? If so, would you like to retain the fur color regardless of your body’s fur color changes in the future, or would you like them to match with the rest of your body’s fur color naturally?");
+		output("\n\nCurrently, your wings are " + (pc.getStatusTooltip("Wing Style") != "" ? (pc.getStatusTooltip("Wing Style") + " and retains their own color, separate from your body fur color") : (pc.furColor + " and matches your body’s fur color")) + ".");
+		output("\n\nBe warned, however, <b>if your wings are the only thing you have to dye, you might be wasting your credits if you choose not to dye it!</i>");
+		
+		addButton(0, "Match", ceriaFurColorWings, ["done", newColor, "match"], "Match Fur", "Dye them to always match the fur color.");
+		addButton(1, "Unique", ceriaFurColorWings, ["done", newColor, "unique"], "Unique Color", "Dye them, but retain its own fur color seperately.");
+		addButton(2, "No Dye", ceriaFurColorWings, ["done", newColor, "none"], "Don’t Dye", "Dye everything else, if applicable, and don’t apply dye to wing fur. (This will still cost credits!)");
+		addButton(3, "Current", ceriaFurColorWings, ["done", newColor, "current"], "Current Preference", "Dye them and keep the preferences how they already are.");
+		addButton(14, "Nevermind", furColorMenu);
+		return;
+	}
+	
+	switch(special)
+	{
+		case "match":
+			output("You decide to dye your wings " + newColor + " and let them naturally match your body’s fur color whenever it changes.");
+			pc.setStatusTooltip("Wing Style", "");
+			break;
+		case "unique":
+			output("You decide to dye your wings " + newColor + " and let them stay that way, especially if your body’s fur color ever changes.");
+			pc.setStatusTooltip("Wing Style", newColor);
+			break;
+		case "none":
+			var oldColor:String = (pc.getStatusTooltip("Wing Style") != "" ? pc.getStatusTooltip("Wing Style") : pc.furColor);
+			output("You decide to let your wings retain their " + oldColor + " fur while the rest of your fur (if any) gets dyed " + newColor + ".");
+			pc.setStatusTooltip("Wing Style", oldColor);
+			break;
+		default:
+			output("You decide to dye your wings " + newColor + " and let them do whatever they do when the rest of your body’s fur color changes.");
+			if(pc.getStatusTooltip("Wing Style") != "") pc.setStatusTooltip("Wing Style", newColor);
+			break;
+	}
+	
+	pc.createStatusEffect("Ceria Dye Wings", 0, 0, 0, 0, true, "", "", false, 0);
+	
+	addButton(0, "Next", furColorApplication, newColor);
 }
 public function ceriaFurColorBallZ(arg:Array):void
 {
@@ -931,7 +990,9 @@ public function ceriaFurColorBallZ(arg:Array):void
 			break;
 	}
 	
-	addButton(0, "Next", furColorApplicationGo, newColor);
+	pc.createStatusEffect("Ceria Dye Balls", 0, 0, 0, 0, true, "", "", false, 0);
+	
+	addButton(0, "Next", furColorApplication, newColor);
 }
 public function furColorApplicationGo(newColor:String):void
 {
@@ -977,6 +1038,10 @@ public function furColorApplicationGo(newColor:String):void
 	pc.credits -= ceriaServicePrice(1500);
 	if(newColor.indexOf("glowing") != -1 || newColor.indexOf("luminous") != -1 || newColor == "iridescent") pc.credits -= ceriaServicePrice(300);
 	pc.furColor = newColor;
+	
+	pc.removeStatusEffect("Ceria Dye Wings");
+	pc.removeStatusEffect("Ceria Dye Balls");
+	
 	//[Next] Go to Ceria Main
 	processTime(22);
 	clearMenu();

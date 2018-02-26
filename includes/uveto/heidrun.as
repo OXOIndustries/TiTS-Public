@@ -16,7 +16,7 @@ public function warmCrustsBonus():Boolean
 		greetingsHeidrun();
 		return true;
 	}
-	output("\"The Warm Crusts\" is the local clothing store for all of your winter wear needs. It’s located inside of a relatively small cave, its walls jagged and carelessly carved. Several clothing racks occupy the small room, making it feel even smaller. Opposite from the doorway, you see a counter and Heidrun standing behind it, tapping her clawed fingers on the stone surface and looking at you from time to time while you browse the wares. The shopkeeper tries her best to look just as bored as she was before, but the way her tail occasionally twitches betrays how glad she is to have a " + pc.mf("handsome","cute") + " customer around. She’s flirting with you quite forcefully, as usual, making sure that the best goods are on display.");
+	output("“The Warm Crusts” is the local clothing store for all of your winter wear needs. It’s located inside of a relatively small cave, its walls jagged and carelessly carved. Several clothing racks occupy the small room, making it feel even smaller. Opposite from the doorway, you see a counter and Heidrun standing behind it, tapping her clawed fingers on the stone surface and looking at you from time to time while you browse the wares. The shopkeeper tries her best to look just as bored as she was before, but the way her tail occasionally twitches betrays how glad she is to have a " + pc.mf("handsome","cute") + " customer around. She’s flirting with you quite forcefully, as usual, making sure that the best goods are on display.");
 	addButton(0,"Heidrun",approachHeidrun);
 	return false;
 }
@@ -35,11 +35,11 @@ public function greetingsHeidrun():void
 	output(" As the dog lady speaks, she pushes her massive breasts together, creating a tantalizing cleavage for you to ogle.");
 
 	if(pc.isNice()) output("\n\n<i>“Thank you, but no. I’m just looking around for now.”</i>");
-	else if(pc.isMischievous()) output("\n\n<i>“Nah, just browsing <i>the goods</i>.”</i>");
+	else if(pc.isMischievous()) output("\n\n<i>“Nah, just browsing </i>the goods<i>.”</i>");
 	else output("\n\n<i>“If I need your help, I’ll ask.”</i>");
 
-	if(!korgiTranslate()) output("\n\n<i>“Of course,”</i> she says, darting back behind the counter and beckoning you to come closer, clearly excited to have you here. All the while, her tail is wagging up a storm behind that squishy big butt of hers.  <i>“If alien wanting to buy many things - just say. Call-word Heidrun. Happy to meet alien.”</i>");
-	else if(pc.isMischievous()) output("\n\n<i>“Of course,”</i> she says, darting back behind the counter and beckoning you to come closer, clearly excited to have you here. All the while, her tail is wagging up a storm behind that squishy big butt of hers. <i>“If you need help with anything or you want to buy something -  just ask. I’m Heidrun. Happy to meet you, stranger.");
+	if(!korgiTranslate()) output("\n\n<i>“Of course,”</i> she says, darting back behind the counter and beckoning you to come closer, clearly excited to have you here. All the while, her tail is wagging up a storm behind that squishy big butt of hers. <i>“If alien wanting to buy many things - just say. Call-word Heidrun. Happy to meet alien.”</i>");
+	else if(pc.isMischievous()) output("\n\n<i>“Of course,”</i> she says, darting back behind the counter and beckoning you to come closer, clearly excited to have you here. All the while, her tail is wagging up a storm behind that squishy big butt of hers. <i>“If you need help with anything or you want to buy something - just ask. I’m Heidrun. Happy to meet you, stranger.”</i>");
 	output(" She leans even lower, squishing her luscious bust against the counter and enhancing her cleavage even more.");
 
 	if(!pc.isBimbo() && !pc.isBro()) output("\n\nTempting as she may be, for now you are more interested in getting a feel of this place than in flirting with the shopkeeper.");
@@ -71,7 +71,7 @@ public function approachHeidrun():void
 	processTime(1);
 	clearMenu();
 	if(pc.lust() >= 33) addButton(2,"Sex",sexWithHeidrun);
-	else addDisabledButton(2,"Sex","Sex","You aren't turned on enough for that right now.");
+	else addDisabledButton(2,"Sex","Sex","You aren’t turned on enough for that right now.");
 	addButton(1,"Appearance",heidrunAppearance);
 	if(flags["HEIDRUN_CREDS"] != undefined)
 	{
@@ -156,9 +156,9 @@ public function sexWithHeidrun():void
 
 	output("\n\n");
 	if(!korgiTranslate()) output("<i>“Yes, alien show many pleasures.”</i>");
-	else output("<i>“I’m sure that an outsider like you has many pleasurable things to show me.");
+	else output("<i>“I’m sure that an outsider like you has many pleasurable things to show me.”</i>");
 	output(" Her pheromones start to quickly fill the room as her pussy starts to drip down her legs. She grips you by your hand and starts pulling you towards the back. ");
-	if(!korgiTranslate()) output("<i>Alien come in back. Other korgonne not bother there.”</i>");
+	if(!korgiTranslate()) output("<i>“Alien come in back. Other korgonne not bother there.”</i>");
 	else output("<i>“Let’s go into the backroom, the other korgonne stay out of there.”</i>");
 
 	output("\n\nMaking your way past the wooden counter, she leads you into a small backroom. Ripping off her bandages, she flops down onto the bedroll, spreading her legs and giving you a tempting blue target. ");
@@ -173,10 +173,10 @@ public function sexWithHeidrun():void
 	clearMenu();
 	if(pc.hasGenitals())
 	{
-		if(!pc.hasCock() && pc.blockedVaginas() > 0) addDisabledButton(0,"Lick Muff","Lick Muff","You need some genitalia that isn't all plugged up for this.");
+		if(!pc.hasCock() && pc.blockedVaginas() > 0) addDisabledButton(0,"Lick Muff","Lick Muff","You need some genitalia that isn’t all plugged up for this.");
 		else addButton(0,"Lick Muff",lickMuffHeidrun,undefined,"Lick Muff","Get between her thighs and put your tongue to work.");
 	}
-	else addDisabledButton(0,"Lick Muff","Lick Muff","You need some genitalia for this. Heidrun isn't going to let a good deed go unrewarded...");
+	else addDisabledButton(0,"Lick Muff","Lick Muff","You need some genitalia for this. Heidrun isn’t going to let a good deed go unrewarded...");
 	
 	if(pc.hasCock() && pc.cockThatFits(300) >= 0) addButton(1,"Bone Her",penisRouter,[boneHeidrun,300,false],"Bone Her","Give the dog a bone.");
 	else if(pc.hasCock()) addDisabledButton(1,"Bone Her","Bone Her","You need a penis that would fit inside her in order to do this.");
@@ -184,11 +184,11 @@ public function sexWithHeidrun():void
 	
 	if(pc.hasVagina() && !pc.hasCock())
 	{
-		if(pc.blockedVaginas() > 0) addDisabledButton(2,"Get Boned","Get Boned","You'll want to take care of the blockage below before receiving any sort of sex like this...");
+		if(pc.blockedVaginas() > 0) addDisabledButton(2,"Get Boned","Get Boned","You’ll want to take care of the blockage below before receiving any sort of sex like this...");
 		else addButton(2,"Get Boned",getBonedByHeidrun,undefined,"Get Boned","Maybe the shopkeeper has something to help you out.");
 	}
-	else if(pc.hasCock()) addDisabledButton(2,"Get Boned","Get Boned","She has no interest in substites while you're packing the real deal.");
-	else addDisabledButton(2,"Get Boned","Get Boned","You'll need to only have a vagina for this.");
+	else if(pc.hasCock()) addDisabledButton(2,"Get Boned","Get Boned","She has no interest in substites while you’re packing the real deal.");
+	else addDisabledButton(2,"Get Boned","Get Boned","You’ll need to only have a vagina for this.");
 	addButton(14,"Leave",approachHeidrun);
 }
 
@@ -294,7 +294,7 @@ public function boneHeidrun(x:int):void
 	output("\n\nBreaking the kiss, she looks at you with smoldering eyes before pushing you gently back. You’re confused, but you back off nonetheless. Now that you aren’t pinning her down, she turns around and lifts her derriere high into the air.");
 	output("\n\nYou grin as you catch on to what she wants. Grabbing onto her tail with one hand and her fertile hip with the other, you drive your cock home into her pussy. She moans out loud and bucks back into your [pc.hips], urging you to fuck her faster. You’re happy to oblige, pulling back until only your [pc.cockHead " + x + "] remains inside her, only to drive back into her with the full force of your body.");
 
-	output("\n\nShe barks and whimpers into the bedroll as you hammer into her juicy slit. Only encouraging you to go ");
+	output("\n\nShe barks and whimpers into the bedroll as you hammer into her juicy slit, only encouraging you to go ");
 	if(silly) output("harder, better, faster, stronger");
 	else output("harder and faster");
 	output(". You slap her furry cheek, telling her to calm down. You start fucking her harder nonetheless.");
@@ -360,9 +360,9 @@ public function getBonedByHeidrun():void
 	output(" She continues making you moan every time you open your mouth to say something.");
 
 	output("\n\nEventually, you get hold of your voice and manage to gasp. <i>“Fa- faster. Fuck me faster!”</i>");
-	output("\n\nShe stifles her laughter as you mindlessly beg for her to go faster. ");
-	if(!korgiTranslate()) output("<i>“Alien almost as slutty as me.");
-	else output("<i>“You’re almost as slutty as I am when I’m at the receiving end.");
+	output("\n\nShe stifles her laughter as you mindlessly beg for her to go faster. <i>“");
+	if(!korgiTranslate()) output("Alien almost as slutty as me.");
+	else output("You’re almost as slutty as I am when I’m at the receiving end.");
 	output("”</i> Finished with teasing you she speeds up her thrusting, turning that slow thrusting into blinding pleasure.");
 
 	output("\n\nWhile she was slowly pumping into you at first, she’s now hammering into you with such force that you see stars. She pulls all the way out in such a way that all of those small nubs massage your g-spot. When only the tip remains inside, she thrusts back in, bringing it right against your cervix. Not to mention the knot that stretches you out deliciously everytime she thrusts deep as possible.");
@@ -370,8 +370,8 @@ public function getBonedByHeidrun():void
 	output("\n\nYou can’t move your arms properly even if you wanted to so there’s nothing you can do when she pulls the dildo out of your slit and flips you over onto your stomach. She lifts your [pc.ass] to her crotch level so that your resting on your [pc.breasts] and knees. Somehow this position allows her to thrust even harder.");
 	output("\n\nYou drool onto the pillow as she keeps roughly pounding your [pc.pussy " + x + "]. You’re not going to last long at this pace. Hopefully, you’ll cum before she breaks your body... or your mind. You can feel the pleasure building inside you, and it’s going to spill over any second now. It’s so close that you feel like you’re going to go mad. You reach between your legs, towards your [pc.clit]. You start jilling on it like there’s no tomorrow.");
 	output("\n\nWith the rough fucking from her and your touching your [pc.clit] the pleasure inside you spills over. With a breathless scream you cum explosively, your [pc.girlCum] squirting around the boney dildo inside you. You curl your toes and clench around the toy as waves of pleasure roll over you.");
-	output("\n\nWhen your orgasm is over you can’t feel your legs and you can’t smell anything but pussy. Thankfully the feeling returns to your legs rather quickly, allowing you to stand up, very shakily, but standing nonetheless. Once you can stand again Heidrun sits down and pulls off her strap-on. ");
-	if(!korgiTranslate()) output("<i>“Alien enjoyed " + pc.mf("himself","herself")  + " yes? Alien go now, Heidrun is needing to take care of her own need.");
+	output("\n\nWhen your orgasm is over you can’t feel your legs and you can’t smell anything but pussy. Thankfully the feeling returns to your legs rather quickly, allowing you to stand up, very shakily, but standing nonetheless. Once you can stand again Heidrun sits down and pulls off her strap-on. <i>“");
+	if(!korgiTranslate()) output("Alien enjoyed " + pc.mf("himself","herself") + " yes? Alien go now, Heidrun is needing to take care of her own need.");
 	else output("Did you enjoy yourself? Good, now if you don’t mind I have some business to take care of.");
 	output("”</i> She starts to licking the strapon while fingering her pussy, leaving no doubt what she’s going to do. Not wanting to disturb her you grab your gear and limp your way out of the backroom. Damn your [pc.pussy " + x + "] is sore.");
 

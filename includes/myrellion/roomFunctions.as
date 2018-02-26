@@ -893,6 +893,7 @@ public function DeepCavesBonus():Boolean
 		bothriocQuestEncounterNyreaBeta();
 		return true;
 	}
+	if(tryEncounterBothriocQuadomme()) return true;
 	if(rand(200) == 0) 
 	{
 		findStrangeEgg();
@@ -939,8 +940,6 @@ public function DeepCavesBonus():Boolean
 		
 		choices.push(encounterPidemmeBothrioc);
 		choices.push(encounterPidemmeBothrioc);
-		
-		if(!bothriocQuestBetaNyreaMiniquestActive() && flags["BOTHRIOC_QUEST"] != BOTHRIOC_QUEST_QUADOMME && !InCollection(currentLocation, ["2S7", "2O27", "2O29", "2Q29", "2S29"])) choices.push(encounterBothriocQuadomme);
 		
 		//Run the event
 		choices[rand(choices.length)]();
@@ -1215,8 +1214,8 @@ public function antOrgyPartDues(voluntary:Boolean):void
 	pc.lust(25);
 	pp.loadInCunt(pc, 0);
 	pc.girlCumInMouth(pp);
-	applyPussyDrenched(pc);
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
+	pc.applyPussyDrenched();
 	clearMenu();
 	addButton(0,"Next",antOrgyPartThree,voluntary);
 }
@@ -1281,8 +1280,8 @@ public function antOrgyPartThree(voluntary:Boolean):void
 	processTime(18);
 	pc.orgasm();
 	pc.girlCumInMouth(pp);
-	applyPussyDrenched(pc);
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
+	pc.applyPussyDrenched();
 	//[Next]
 	clearMenu();
 	addButton(0,"Next",antOrgyPartFour,voluntary);
@@ -1328,8 +1327,8 @@ public function antOrgyPartFour(voluntary:Boolean):void
 	//Red myr dose
 	imbibeVenomEffects(true);
 	pc.girlCumInMouth(pp);
-	applyPussyDrenched(pc);
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
+	pc.applyPussyDrenched();
 	//[Next]
 	clearMenu();
 	addButton(0,"Next",antOrgyPartFive,voluntary);
@@ -1361,8 +1360,8 @@ public function antOrgyPartFive(voluntary:Boolean):void
 	pc.girlCumInMouth(pp);
 	pc.girlCumInMouth(pp);
 	pc.girlCumInMouth(pp);
-	applyPussyDrenched(pc);
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
+	pc.applyPussyDrenched();
 	clearMenu();
 	addButton(0,"Next",antOrgyEnding, voluntary);
 }

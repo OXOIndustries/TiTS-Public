@@ -59,97 +59,120 @@ public function meetingFlahne(outputT:Boolean = true):Boolean {
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] < 1) trace("NO DICK OUT");
 	else if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) trace("DICK OUT");
 	else trace("NEITHER DICK OPTION");
-	if (outputT) {
-		if(flags["MET_FLAHNE"] == undefined) {
-			showFlahne();
-			flags["MET_FLAHNE"] = 1;
-			output("\n\nSome kind of amber, gel-like material in the shape of a woman is sitting behind the desk, fiddling with paperwork. Upon seeing you, she withdraws the remains of a sucker from her mouth, tosses it in a waste bin full of similar candied sticks, and says, <i>“Hi there! I just need you to fill out some paperwork about your business on planet!”</i>");
-			output("\n\nA rickety-looking chair is the only available seating, ");
-			if(!pc.isTaur()) output("so you sit down on it as gingerly as possible");
-			else output("so you swat it aside and try to remain comfortable standing");
-			output(". The gel-woman extends her hand in greeting, and you take it, introducing yourself.");
-			output("\n\nShe smiles back, <i>“Call me Flahne. I’m the official U.G.C. contact here in Esbeth and on Mhen’ga as a whole. It’s a thankless job, but somebody has to keep all the paperwork straight until we can smooth over relations with the natives and get a real civilization going here.”</i>");
-			output("\n\nYou spend much of the time marvelling at the gelatinous woman’s appearance. Her hair is the same honeyed color as the rest of her, and it isn’t even real hair - just transparent, amber gel done up in a stylish bun that perches atop shoulder-length tresses. Two long ears protrude from the sides of her head, each about as wide as her face and narrowing to points at the tips. Her eyes are a stunning, mischievous violet. One glaring absence is the lack of a nose under them; she has no olfactory organ whatsoever, unless it is hidden elsewhere on her person. The pouting lips help to draw your eye away, and you can’t help but glance lower into the barely-concealed cleavage her half-buttoned top is struggling to contain. The elastic white fabric just doesn’t seem up to containing what must be G-cups.");
-			output("\n\n<i>“Ahem.”</i> Flahne clears her throat with a twinkle in her eyes. <i>“These are pretty standard forms. You can fill them out on the workstation over there or your computing device of choice.”</i>");
-			output("\n\nYou nod and produce your codex, busily filling out forms as Flahne makes small talk. Seeing the odd looks you give her, she explains that she is a rahn, specifically a loo’rahn, as determined by her coloration. Numerous interruptions dot the conversation as she consumes stick after stick of candy, sucking long and hard on each and then resuming her instructions as if she had never paused at all. Flahne apparently has a monstrous sweet tooth.");
-			output("\n\n<i>“Once you’ve finished up, just go ahead and transfer the files over,”</i> the gracious, soft-looking secretary bubbles. At that, you realize that you are finished and press the send button; the codex actually has tactile screen deformation to give the buttons an edge you can feel, not at all like those cheap touchscreens you find everywhere for a few credits. <i>“Oh, absolutely perfect! You’ve got a head for this stuff, sugar.”</i> She chews on the candy as she looks over the forms, and a long prehensile tongue dangles out of her mouth, curling around the stick to hold it while she types away at an ancient-looking keyboard.");
-			output("\n\nFlahne’s computer chimes merrily, and she announces, <i>“All done! Now, since you’re such a cutie, I’d like to tell you to watch out if you go outside of town. A fair portion of the natives here are aggressive and more than a little sexually active... if you catch my meaning. I’d hate to see someone as " + pc.mfn("handsome","pretty","unique") + " as you go out and get accosted by those devilish zil!”</i> she shudders. <i>“Besides, if you’re going to have a little fun with anyone, it ought to be someone nice and soft.”</i>");
-			output("\n\n<b>Your codex quietly displays a message that the available information on the rahn race has been aggregated.</b>");
-			//Pass 10 minutes.
-			//Room options without description.
-			processTime(10);
-		}
-		else if(flags["SEEN_BIMBO_PENNY"] == 1)
+	
+	if(flags["MET_FLAHNE"] == undefined)
+	{
+		showFlahne();
+		flags["MET_FLAHNE"] = 1;
+		output("\n\nSome kind of amber, gel-like material in the shape of a woman is sitting behind the desk, fiddling with paperwork. Upon seeing you, she withdraws the remains of a sucker from her mouth, tosses it in a waste bin full of similar candied sticks, and says, <i>“Hi there! I just need you to fill out some paperwork about your business on planet!”</i>");
+		output("\n\nA rickety-looking chair is the only available seating, ");
+		if(!pc.isTaur()) output("so you sit down on it as gingerly as possible");
+		else output("so you swat it aside and try to remain comfortable standing");
+		output(". The gel-woman extends her hand in greeting, and you take it, introducing yourself.");
+		output("\n\nShe smiles back, <i>“Call me Flahne. I’m the official U.G.C. contact here in Esbeth and on Mhen’ga as a whole. It’s a thankless job, but somebody has to keep all the paperwork straight until we can smooth over relations with the natives and get a real civilization going here.”</i>");
+		output("\n\nYou spend much of the time marvelling at the gelatinous woman’s appearance. Her hair is the same honeyed color as the rest of her, and it isn’t even real hair - just transparent, amber gel done up in a stylish bun that perches atop shoulder-length tresses. Two long ears protrude from the sides of her head, each about as wide as her face and narrowing to points at the tips. Her eyes are a stunning, mischievous violet. One glaring absence is the lack of a nose under them; she has no olfactory organ whatsoever, unless it is hidden elsewhere on her person. The pouting lips help to draw your eye away, and you can’t help but glance lower into the barely-concealed cleavage her half-buttoned top is struggling to contain. The elastic white fabric just doesn’t seem up to containing what must be G-cups.");
+		output("\n\n<i>“Ahem.”</i> Flahne clears her throat with a twinkle in her eyes. <i>“These are pretty standard forms. You can fill them out on the workstation over there or your computing device of choice.”</i>");
+		output("\n\nYou nod and produce your codex, busily filling out forms as Flahne makes small talk. Seeing the odd looks you give her, she explains that she is a rahn, specifically a loo’rahn, as determined by her coloration. Numerous interruptions dot the conversation as she consumes stick after stick of candy, sucking long and hard on each and then resuming her instructions as if she had never paused at all. Flahne apparently has a monstrous sweet tooth.");
+		output("\n\n<i>“Once you’ve finished up, just go ahead and transfer the files over,”</i> the gracious, soft-looking secretary bubbles. At that, you realize that you are finished and press the send button; the codex actually has tactile screen deformation to give the buttons an edge you can feel, not at all like those cheap touchscreens you find everywhere for a few credits. <i>“Oh, absolutely perfect! You’ve got a head for this stuff, sugar.”</i> She chews on the candy as she looks over the forms, and a long prehensile tongue dangles out of her mouth, curling around the stick to hold it while she types away at an ancient-looking keyboard.");
+		output("\n\nFlahne’s computer chimes merrily, and she announces, <i>“All done! Now, since you’re such a cutie, I’d like to tell you to watch out if you go outside of town. A fair portion of the natives here are aggressive and more than a little sexually active... if you catch my meaning. I’d hate to see someone as " + pc.mfn("handsome","pretty","unique") + " as you go out and get accosted by those devilish zil!”</i> she shudders. <i>“Besides, if you’re going to have a little fun with anyone, it ought to be someone nice and soft.”</i>");
+		output("\n\n<b>Your codex quietly displays a message that the available information on the rahn race has been aggregated.</b>");
+		//Pass 10 minutes.
+		//Room options without description.
+		processTime(10);
+		flahneMenu();
+		return true;
+	}
+	else if(flags["SEEN_BIMBO_PENNY"] == 1)
+	{
+		//Flahne busy with Penny IF TIME IS BETWEEN 0800 AND 1700
+		if(hours >= 8 && hours < 17)
 		{
-			//Flahne busy with Penny IF TIME IS BETWEEN 0800 AND 1700
-			if(hours >= 8 && hours < 17)
-			{
-				showBust(flahneBustDisplay(false));
-				output("\n\nFlahne is at her desk, but although her figure looks a little curvier and her flesh a little lighter than normal, she looks surprisingly normal given her activities with Penny. She must be putting all that mass somewhere,");
-				//IF PC HAS TALKED TO FLAHNE ABOUT HER OVIPOSITOR
-				if(flags["FLAHNE_LIKE_OVIPOSITOR"] != undefined) output(" so you have to assume there’s some massive pile of eggs hidden somewhere nearby.");
-				else output(" but you have no idea where.");
-				output(" Flahne unbuttons part of her top as you approach, licking her lips lewdly. <i>“I’m not sure I could thank you enough for your work with Penny, but I’m willing to try if you are.”</i> Pouting, she offers a little less excitedly, <i>“Or did you just want to talk?”</i>");
-				output("\n\nWhat did you want with Flahne?");
-			}
-			//IF TIME IS BETWEEN 1701 AND 0759
-			else
-			{
-				//showName("\nROBOT");
-				showBust("ESBETH_DROID");
-				output("\n\nThere’s another sign on the desk that says simple ‘Out - Be Back At 08:00.’ Standing next to the desk is what appears to be a very simple droid, doing its best to handle the customs process in Flahne’s absence. Thankfully you don’t have to deal with it yourself as you’ve already come through officially, so you walk right past the small crowd of annoyed-looking travelers.");
-				//[Remove ‘TALK’ and ‘SEX OPTIONS’ buttons when Flahne is not present]
-				addDisabledButton(0,"Robot");
-				vendingMachineButton(4, "J'ejune");
-				return false;
-			}
-		}
-		else if(flags["FLAHNE_PISSED"] > 0 || pc.hasStatusEffect("Flahne_Extra_Pissed")) {
 			showBust(flahneBustDisplay(false));
-			output("\n\nFlahne doesn’t look like she wants anything to do with you right now.");
-			addDisabledButton(0,"Flahne");
-			vendingMachineButton(4, "J'ejune");
-			return false;
+			output("\n\nFlahne is at her desk, but although her figure looks a little curvier and her flesh a little lighter than normal, she looks surprisingly normal given her activities with Penny. She must be putting all that mass somewhere,");
+			//IF PC HAS TALKED TO FLAHNE ABOUT HER OVIPOSITOR
+			if(flags["FLAHNE_LIKE_OVIPOSITOR"] != undefined) output(" so you have to assume there’s some massive pile of eggs hidden somewhere nearby.");
+			else output(" but you have no idea where.");
+			
+			addButton(0, "Flahne", flahneApproach);
 		}
-		else if(flags["FLAHNE_MAKEUP"] == 1) 
+		//IF TIME IS BETWEEN 1701 AND 0759
+		else
 		{
-			extranetFlahneConsequencesMakeup();
-			return true;
-		}
-		else if(flags["FLAHNE_EXTRANETTED"] == 1)
-		{
-			extranetFlahneConsequences();
-			return true;
-		}
-		else if(flags["FLAHNE_GALLINKED"] == 1) 
-		{
-			galLinkConsequence();
-			return true;
-		}
-		else if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] == undefined && flags["PENNY_IS_A_CUMSLUT"] != undefined)
-		{
-			flahneTalksAboutCumslutPenny();
-		}
-		//Repeat Flahn Approaches
-		//Haven’t fucked her
-		else if(flags["FLAHNE_SEXED"] == undefined) {
-			showBust(flahneBustDisplay(false));
-			output("\n\nFlahne looks up at you with a smile on her juicy, amber lips. <i>“Well, what can I do for you today, " + pc.mf("Mister","Miss") + " Steele?”</i> Her big, bouncy breasts are straining her top as hard as ever, though the way she has almost half the buttons undone isn’t helping.");
-			output("\n\nWhat do you do with the curvy rahn secretary?");
-		}
-		//Fucked her
-		else if(flags["FLAHNE_LIKE_OVIPOSITOR"] != 1) {
-			showBust(flahneBustDisplay(false));
-			output("\n\nFlahne’s honey-colored skin blushes orange at your approach, and she asks, <i>“Hey there cutie, come back for a little more sugar? I could use a snack.”</i> Her tongue snakes out to lick her lips before curling around her sucker and slowly pumping it in and out of her mouth. She leans down over her desk, pressing her big, soft breasts against the table so that they strain at the side seams of her shirt. <i>“Or did you just want a peep?”</i>");
-			output("\n\nThe curvy rahn seems happy with either option, though you could probably just talk too. What did you want to do with Flahne?");
-		}
-		//Fucked her and like the ovipositor
-		else {
-			showBust(flahneBustDisplay(false));
-			output("\n\nFlahne’s honey-colored skin blushes orange at your approach, though a big smile spreads across her plump lips. She gives a little shiver and sighs with slow relief as an oblong distention lifts her skirt higher and higher. Flahne coos, <i>“Guess who’s happy to see you?”</i> She unbuttons part of her top while licking a lollipop rather lewdly. <i>“So, wanna have some more fun?”</i> Pouting, she offers a little less excitedly, <i>“Or did you just want to talk?”</i>");
-			output("\n\nWhat did you want with Flahne?");
+			//showName("\nROBOT");
+			showBust("ESBETH_DROID");
+			output("\n\nThere’s another sign on the desk that says simple ‘Out - Be Back At 08:00.’ Standing next to the desk is what appears to be a very simple droid, doing its best to handle the customs process in Flahne’s absence. Thankfully you don’t have to deal with it yourself as you’ve already come through officially, so you walk right past the small crowd of annoyed-looking travelers.");
+			//[Remove ‘TALK’ and ‘SEX OPTIONS’ buttons when Flahne is not present]
+			addDisabledButton(0,"Robot");
 		}
 	}
+	else if(flags["FLAHNE_PISSED"] > 0 || pc.hasStatusEffect("Flahne_Extra_Pissed"))
+	{
+		showBust(flahneBustDisplay(false));
+		output("\n\nFlahne doesn’t look like she wants anything to do with you right now.");
+		addDisabledButton(0,"Flahne");
+	}
+	else if(flags["FLAHNE_MAKEUP"] == 1) 
+	{
+		extranetFlahneConsequencesMakeup();
+		return true;
+	}
+	else if(flags["FLAHNE_EXTRANETTED"] == 1)
+	{
+		extranetFlahneConsequences();
+		return true;
+	}
+	else if(flags["FLAHNE_GALLINKED"] == 1) 
+	{
+		galLinkConsequence();
+		return true;
+	}
+	else
+	{
+		showBust(flahneBustDisplay(false));
+		output("\n\nFlahne is at her desk, looking as sweet as ever.");
+		addButton(0, "Flahne", flahneApproach);
+	}
+	
+	vendingMachineButton(1, "J'ejune");
+	return false;
+}
+public function flahneApproach():void
+{
+	clearOutput();
+	showFlahne();
+	
+	if(flags["SEEN_BIMBO_PENNY"] == 1)
+	{
+		output("Flahne unbuttons part of her top as you approach, licking her lips lewdly. <i>“I’m not sure I could thank you enough for your work with Penny, but I’m willing to try if you are.”</i> Pouting, she offers a little less excitedly, <i>“Or did you just want to talk?”</i>");
+		output("\n\nWhat did you want with Flahne?");
+	}
+	else if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] == undefined && flags["PENNY_IS_A_CUMSLUT"] != undefined)
+	{
+		flahneTalksAboutCumslutPenny();
+	}
+	//Repeat Flahn Approaches
+	//Haven’t fucked her
+	else if(flags["FLAHNE_SEXED"] == undefined)
+	{
+		output("Flahne looks up at you with a smile on her juicy, amber lips. <i>“Well, what can I do for you today, " + pc.mf("Mister","Miss") + " Steele?”</i> Her big, bouncy breasts are straining her top as hard as ever, though the way she has almost half the buttons undone isn’t helping.");
+		output("\n\nWhat do you do with the curvy rahn secretary?");
+	}
+	//Fucked her
+	else if(flags["FLAHNE_LIKE_OVIPOSITOR"] != 1)
+	{
+		output("Flahne’s honey-colored skin blushes orange at your approach, and she asks, <i>“Hey there cutie, come back for a little more sugar? I could use a snack.”</i> Her tongue snakes out to lick her lips before curling around her sucker and slowly pumping it in and out of her mouth. She leans down over her desk, pressing her big, soft breasts against the table so that they strain at the side seams of her shirt. <i>“Or did you just want a peep?”</i>");
+		output("\n\nThe curvy rahn seems happy with either option, though you could probably just talk too. What did you want to do with Flahne?");
+	}
+	//Fucked her and like the ovipositor
+	else {
+		output("Flahne’s honey-colored skin blushes orange at your approach, though a big smile spreads across her plump lips. She gives a little shiver and sighs with slow relief as an oblong distention lifts her skirt higher and higher. Flahne coos, <i>“Guess who’s happy to see you?”</i> She unbuttons part of her top while licking a lollipop rather lewdly. <i>“So, wanna have some more fun?”</i> Pouting, she offers a little less excitedly, <i>“Or did you just want to talk?”</i>");
+	}
+	flahneMenu();
+}
+public function flahneMenu():void
+{
+	clearMenu();
+	
 	addButton(0,"Talk",talkToFlahne);
 	if(pc.lust() >= 33) addButton(1,"Sex Options",flahneSexMenu);
 	else {
@@ -158,8 +181,8 @@ public function meetingFlahne(outputT:Boolean = true):Boolean {
 	}
 	if(hasACumBubble()) addButton(2,"Cum Bubble",giveFlahneATreatSetup,undefined,"Cum Bubble","Give the rahn a gift of sealed cum.");
 	else addDisabledButton(2, "Locked", "Locked", "You do not have the item required for this scene. Purchasing a Bubble Buddy may be a good place to start...");
-	vendingMachineButton(4, "J'ejune");
-	return false;
+	
+	addButton(14, "Back", mainGameMenu);
 }
 
 //Talk to Flahne
@@ -952,7 +975,7 @@ public function eatFlahneOutUnderDesk():void {
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) 
 	{
 		output(" Above, her cock-like organ bloats and explodes, pumping huge blasts of white-hued cum out like some kind of cannon. The jizz-bombs splatter off the top of your enclosure, sticking to the underside of the desk briefly before raining spunk over your entire body. You ignore the one-woman bukkake show and keep going, ensuring that Flahne has as torturously long an orgasm as possible.");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 	}
 
 	output("\n\nHer thighs clamp down on either side of you, surrounding you in squishy, jiggling flesh, compressing your mouth even harder against her gooey mound. Closing your eyes, you drink her girlish ejaculate until her body relaxes and releases you.");
@@ -1389,7 +1412,7 @@ public function flahneTalksAboutCumslutPenny():void
 	}
 
 	processTime(5 + rand(3));
-	meetingFlahne(false);
+	flahneMenu();
 }
 
 

@@ -9,6 +9,7 @@ package classes.Items.Melee
 	
 	public class YappiStrap extends ItemSlotClass
 	{
+		//Level ??? (???). Balance 2.0
 		//constructor
 		public function YappiStrap()
 		{
@@ -38,7 +39,7 @@ package classes.Items.Melee
 			attackNoun = "smack";
 			
 			//Information
-			this.basePrice = 12800;
+			this.basePrice = 9000;
 			this.attack = -2;
 			
 			baseDamage = new TypeCollection();

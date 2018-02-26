@@ -1205,7 +1205,7 @@ public function pcLossToNyreaAdditionalTwo():void
 	
 	if ((pc.hasCock()) && (!pc.hasVagina())) output(" Your dick jerks and paints the rock below you [pc.cumColor], staining your [pc.stomach] as your back arches like a whore. Each savage thrust from behind rubs along your prostate and elicits another spurt until you’re groaning stuck somewhere between agony and ecstasy, a nonstop stream of cum threading from your overtaxed cock.");
 	else if ((!pc.hasCock()) && (pc.hasVagina())) output(" Your neglected pussy spasms and contracts impossibly tight as your back arches like a whore, spraying girlcum on the rock beneath you as you shake and ball up your hands. You open the eyes you didn’t know you had closed and take a halting, gasping breath as you ride out the aftershocks of being taken so utterly.");
-	else if ((pc.hasCock()) && (pc.hasVagina())) output(" You squeeze your eyes shut and groan through gritted teeth as the dual orgasms overwhelm you, your dick jerking and painting your stomach and the rock below you [pc.cumColour] as your neglected pussy spasms and contracts. You arch your back like a whore, shaking with your white-knuckled hands balled into fists as you ride out the intense sensations. When you resurface from your orgiastic pleasure, you take a halting, gasping breath and ride out the aftershocks of being taken so utterly.");
+	else if ((pc.hasCock()) && (pc.hasVagina())) output(" You squeeze your eyes shut and groan through gritted teeth as the dual orgasms overwhelm you, your dick jerking and painting your stomach and the rock below you [pc.cumColor] as your neglected pussy spasms and contracts. You arch your back like a whore, shaking with your white-knuckled hands balled into fists as you ride out the intense sensations. When you resurface from your orgiastic pleasure, you take a halting, gasping breath and ride out the aftershocks of being taken so utterly.");
 	else output(" You squeeze your eyes shut and groan through gritted teeth as the anal orgasm overwhelms you. You arch your back like a whore, shaking with your white-knuckled hands balled into fists as you ride out the intense sensations. When you resurface from your orgiastic pleasure, you take a halting, gasping breath and ride out the aftershocks of being taken so utterly.");
 	output(" You hear a coo of approval from behind you.");
 	output("\n\n<i>“Wasn’t that easy? I can be generous to my betas.”</i>");
@@ -1295,9 +1295,9 @@ public function pcLossToNyreaBadEndPartTwo():void
 			pc.cuntChange(x, enemy.cockVolume(0), false);
 		}
 	}
-	applyCumSoaked(pc);
-	applyCumSoaked(pc);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
 	
 	output("\n\nYou don’t question it when you pass through a community of myr, nyrea, and wetraxxel to stand in front of a large stone gate guarded by what looks to be nyrean elites. You don’t question it when she fucks you to a screaming orgasm in front of them, either. You are, after all, hers. It’s not your place to do anything except happily submit to her will. She takes you past a well lit cavern with a guard post, traveling through a tunnel network until you arrive at a set of heavy stone doors flanked by brilliantly glowing blue lanterns. Pushing it open, she steps inside and the sight that greets your eyes is one of debauchery and lust. Several dozen nyrean males are within, all in various states of bondage. Some are cuffed to each other, others are chained to the bed or to chairs, and still others are locked in stocks. All of them have dildos or plugs shoved deep into their cunts and pools of wetness below them. You realize with an inward spike of happiness that your mistress must have left them here while looking for you. She must have really wanted you to be her breeder! While you’re taking stock of the situation, your Alpha lets go of your hand and fetches something from the near-empty racks of bondage gear. When she brings it back, you see it’s a golden collar. You can’t read the writing on it, though. She sees you looking and smirks knowingly.");
 	output("\n\n<i>“It says you’re my property, offworlder.”</i>");

@@ -7,9 +7,6 @@ public function showKellyName():void
 }
 public function kellyBustDisplay(nude:Boolean = false):String
 {
-	// 9999 - Special artist exceptions!
-	if(!InCollection(kGAMECLASS.gameOptions.configuredBustPreferences["KELLY"], ["ADJATHA", "GATS"])) return "KELLY";
-	
 	return "KELLY" + (nude ? "_NUDE" : "");
 }
 public function showKelly(nude:Boolean = false):void {
@@ -2006,7 +2003,7 @@ public function helpKellyFindHerHoneyThisWasntAPloyForCumPlayAtAll():void
 		output("\n\nYou accept her and move your other hand to her breast. You cup both orbs, hefting and massaging them; every now and then you give her nipples a little tug, earning an excited squeak out of your laquine lover.");
 
 		output("\n\nWith a pleased hum she shifts on the couch, falling over onto her back and dragging you down with her, her long, powerful legs wrapping themselves around your waist to hug you closer to her. ");
-		if(!pc.isNude()) output("Her twin shafts brush against your [pc.crotchGarments], warm enough that you can feel a sense of heat against your [pc.belly] even through them.");
+		if(!pc.isNude()) output("Her twin shafts brush against your [pc.lowerGarments], warm enough that you can feel a sense of heat against your [pc.belly] even through them.");
 		else output("Naked as you are, there is nothing to keep her shafts pushing against your [pc.belly], hot and hard against your [pc.skin].");
 		output(" She keeps kissing you, tongue squirming as it wraps affectionately around your own [pc.tongue], then slurps lewdly out between your lips as she breaks the kiss, eyes half-closed and chest heaving as she pants for breath. Her arms move and pull you down against her, burying your face squarely in her cleavage. <i>“Oh, I do love it when you want to play,”</i> she giggles, smooshing your face a little deeper into her tits, then smirking down at you.");
 
@@ -3335,6 +3332,7 @@ public function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ(onCouch:Bool
 			output("\n\nAt that, she pouts and sticks out her tongue, clearly unable to think of a verbal retort to that.");
 		}
 		//Hard:
+		else
 		{
 			output("\n\nA fine job, but you already expected as much from your bitch-bunny.");
 			output("\n\n<i>“But of course,”</i> she grins smugly. <i>“Only the finest for my rose,”</i> she declares in a triumphant tone, closing the distance between you so that she is sitting on your lap, more or less, arms going around your neck, clearly a moment’s whim away from closing the distance and kissing you.");
@@ -4683,7 +4681,7 @@ public function getLickedOutByKellllaaaahhhh(noIntro:Boolean = false):void
 	{
 		output("\n\nYou ask if she wants to hear a little secret.");
 		output("\n\n<i>“Uh... sure?”</i> she replies, blinking in confusion.");
-		output("\n\nNobody likes a blabber-mouth, particularly when there’s something far more important she could be doing with those plump lips of hers. Having said that you waste no time in burying her short muzzle into your [pc.vagina " + x + "], gasping when you feel her nose make contact with ");
+		output("\n\nNobody likes a blabber-mouth, particularly when there’s something far more important she could be doing with those plump lips of hers. Having said that you waste no time in burying her short muzzle into your [pc.vagina], gasping when you feel her nose make contact with ");
 		if(pc.clitLength > 3) output("the base of ");
 		output("your [pc.clit].");
 	}

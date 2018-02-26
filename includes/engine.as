@@ -210,70 +210,61 @@ public function penisRouter(args:Array):void
 	{
 		clearOutput();
 		showName("\nSELECTING...");
-		output("Which of your phallic implements will you use?\n");
+		output("Which of your phallic implements will you use?");
 		clearMenu();
+		if(choices.length > 0) output("\n\n<b><u>Suitable:</u></b>");
 		for(x = 0; x < choices.length; x++)
 		{
 			switch(choices[x])
 			{
 				case -1:
-					output("\n(" + (x+1) + ") Your hardlight strap-on?");
-					addButton(x,"HL Strapon",scene,choices[x]);
-					break;
-				case 0:
-					output("\n(" + (x+1) + ") Your " + pc.numTwoText(choices[x]+1) + " " + num2Text(pc.cLength(choices[x])) + "-inch [pc.cockNoun " + choices[x] + "]?");
-					addButton(x,"First Penis",scene,choices[x]);
-					break;
-				case 1:
-					output("\n(" + (x+1) + ") Your " + pc.numTwoText(choices[x]+1) + " " + num2Text(pc.cLength(choices[x])) + "-inch [pc.cockNoun " + choices[x] + "]?");
-					addButton(x,"Second Penis",scene,choices[x]);
-					break;
-				case 2:
-					output("\n(" + (x+1) + ") Your " + pc.numTwoText(choices[x]+1) + " " + num2Text(pc.cLength(choices[x])) + "-inch [pc.cockNoun " + choices[x] + "]?");
-					addButton(x,"Third Penis",scene,choices[x]);
-					break;
-				case 3:
-					output("\n(" + (x+1) + ") Your " + pc.numTwoText(choices[x]+1) + " " + num2Text(pc.cLength(choices[x])) + "-inch [pc.cockNoun " + choices[x] + "]?");
-					addButton(x,"Fourth Penis",scene,choices[x]);
-					break;
-				case 4:
-					output("\n(" + (x+1) + ") Your " + pc.numTwoText(choices[x]+1) + " " + num2Text(pc.cLength(choices[x])) + "-inch [pc.cockNoun " + choices[x] + "]?");
-					addButton(x,"Fifth Penis",scene,choices[x]);
-					break;
-				case 5:
-					output("\n(" + (x+1) + ") Your " + pc.numTwoText(choices[x]+1) + " " + num2Text(pc.cLength(choices[x])) + "-inch [pc.cockNoun " + choices[x] + "]?");
-					addButton(x,"Sixth Penis",scene,choices[x]);
-					break;
-				case 6:
-					output("\n(" + (x+1) + ") Your " + pc.numTwoText(choices[x]+1) + " " + num2Text(pc.cLength(choices[x])) + "-inch [pc.cockNoun " + choices[x] + "]?");
-					addButton(x,"Seventh Penis",scene,choices[x]);
-					break;
-				case 7:
-					output("\n(" + (x+1) + ") Your " + pc.numTwoText(choices[x]+1) + " " + num2Text(pc.cLength(choices[x])) + "-inch [pc.cockNoun " + choices[x] + "]?");
-					addButton(x,"Eight Penis",scene,choices[x]);
-					break;
-				case 8:
-					output("\n(" + (x+1) + ") Your " + pc.numTwoText(choices[x]+1) + " " + num2Text(pc.cLength(choices[x])) + "-inch [pc.cockNoun " + choices[x] + "]?");
-					addButton(x,"Ninth Penis",scene,choices[x]);
-					break;
-				case 9:
-					output("\n(" + (x+1) + ") Your " + pc.numTwoText(choices[x]+1) + " " + num2Text(pc.cLength(choices[x])) + "-inch [pc.cockNoun " + choices[x] + "]?");
-					addButton(x,"Tenth Penis",scene,choices[x]);
+					//output("\n(" + (x+1) + ") Your hardlight strap-on?");
+					output("\n<b>Hardlight Strap-On</b>: " + StringUtil.toDisplayCase(pc.lowerUndergarment.longName));
+					addButton(x, "HL Strapon", scene, choices[x]);
 					break;
 				default:
-					output("\n(" + (x+1) + ") Your " + pc.numTwoText(choices[x]+1) + " " + num2Text(pc.cLength(choices[x])) + "-inch [pc.cockNoun " + choices[x] + "]?");
-					addButton(x,"2ManyPenis",scene,choices[x]);
+					//output("\n(" + (x+1) + ") Your " + num2Ordinal(choices[x] + 1) + " " + num2Text(pc.cLength(choices[x])) + "-inch [pc.cockNoun " + choices[x] + "]?");
+					output("\n<b>" + StringUtil.capitalize(num2Ordinal(choices[x] + 1)) + " Penis:</b>" + penisRouterCockDesc(choices[x]));
+					addButton(x, ("Penis " + (choices[x] + 1)), scene, choices[x], StringUtil.capitalize(num2Ordinal(choices[x] + 1)) + " Penis", "Use your [pc.cock " + choices[x] + "].");
 					break;
 			}
 		}
-		if(ineligibles.length > 0) output("\n\nUnsuitable:")
+		if(ineligibles.length > 0) output("\n\n<b><u>Unsuitable:</u></b>");
 		for(x = 0; x < ineligibles.length; x++)
 		{
-			output("\n" + pc.NumTwoText(ineligibles[x]+1) + " penis, type: [pc.cockNoun " + ineligibles[x] + "].");
-			if(pc.cockVolume(ineligibles[x], true) > maxFit) output(" Reason: Too large.");
-			if(pc.cockVolume(ineligibles[x], false) < minFit) output(" Reason: Too small.");
+			//output("\n" + StringUtil.toTitleCase(num2Ordinal(ineligibles[x] + 1)) + " penis, type: [pc.cockNoun " + ineligibles[x] + "].");
+			//if(pc.cockVolume(ineligibles[x], true) > maxFit) output(" Reason: Too large.");
+			//if(pc.cockVolume(ineligibles[x], false) < minFit) output(" Reason: Too small.");
+			output("\n<b>" + StringUtil.capitalize(num2Ordinal(ineligibles[x] + 1)) + " Penis:</b>" + penisRouterCockDesc(ineligibles[x]));
+			if(pc.cockVolume(ineligibles[x], true) > maxFit) output(" (Too large.)");
+			if(pc.cockVolume(ineligibles[x], false) < minFit) output(" (Too small.)");
 		}
 	}
 	//Failsafe - assume primary ween
 	else scene(0);
 }
+public function penisRouterCockDesc(cIdx:int = 0, fullDesc:Boolean = false):String
+{
+	if(cIdx < 0 || cIdx >= pc.cocks.length) return (" ERROR: Penis of index " + cIdx + " does not exist!");
+	
+	var msg:String = "";
+	var i:int = 0;
+	
+	if(fullDesc)
+	{
+		if(pc.cocks[cIdx].cockFlags.length > 0)
+		{
+			for(i = 0; i < pc.cocks[cIdx].cockFlags.length; i++)
+			{
+				msg += (" " + GLOBAL.FLAG_NAMES[pc.cocks[cIdx].cockFlags[i]] + ",");
+			}
+		}
+		if(pc.cocks[cIdx].cockColor != "") msg += (" " + StringUtil.toDisplayCase(pc.cocks[cIdx].cockColor) + ",");
+	}
+	msg += (" " + GLOBAL.TYPE_NAMES[pc.cocks[cIdx].cType]);
+	if(pc.cocks[cIdx].cLength() > 0) msg += (", " + formatFloat(pc.cocks[cIdx].cLength(), 3) + " in long");
+	if(pc.cocks[cIdx].thickness() > 0) msg += (", " + formatFloat(pc.cocks[cIdx].thickness(), 3) + " in thick");
+	
+	return msg;
+}
+

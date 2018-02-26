@@ -18,7 +18,7 @@
 			
 			this.quantity = 1;
 			this.stackSize = 1;
-			this.type = GLOBAL.UPPER_UNDERGARMENT;
+			this.type = GLOBAL.LOWER_UNDERGARMENT;
 			
 			this.shortName = "F.Loin";
 			

@@ -511,7 +511,7 @@ public function lirielButtSex(myrWomen:Boolean = false):void
 			if (pc.cockTotal() == 1) output("ing");
 			output(". With a hoarse cry [pc.eachCock] explodes, sending shotgun blasts of [pc.cum] splattering violently against the mushroom head. Your orgasm rages on until the entire cap is covered in spunk. Once your climax has subsided, she forces you down into your own [pc.cumColor] mess.");
 			output("\n\nThe entire time Liriel hammers your still spasming hole at top speed, taking full advantage of your orgasm to increase her own pleasure.");
-			applyCumSoaked(pc);
+			pc.applyCumSoaked();
 		}
 		// if (cumExtreme)
 		else
@@ -521,7 +521,7 @@ public function lirielButtSex(myrWomen:Boolean = false):void
 			output(". You yell to the heavens as your violent climax sends blasts of [pc.cum] crashing onto the mushroom like mini-tsunamis of your own creation. She continues to fuck the cum out of you as your ejaculate covers the mushroom. Even then your orgasm rages on until you feel the mess flooding your [pc.feet]. You roar and scream in a way that only seems to make Liriel even happier.");
 			if (myrWomen) output(" Somewhere in the distance you hear a loud, <i>“DAMN!”</i> then a gaggle of laughter with some affirmations sprinkled in.");
 			output("\n\nThe entire time Liriel hammers away at your still spasming hole at top speed, taking full advantage of your orgasm to increase her own pleasure.");
-			applyCumSoaked(pc);
+			pc.applyCumSoaked();
 		}
 	}
 	else if (pc.hasVagina())

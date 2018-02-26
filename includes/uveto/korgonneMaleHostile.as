@@ -327,10 +327,10 @@ public function korgWinSexMenu():void
 		else if(pc.hasCock()) addDisabledButton(2,"Pitch Anal","Pitch Anal","You won’t fit him with your mountainous meat.");
 		else addDisabledButton(2,"Pitch Anal","Pitch Anal","You don’t have anything to fuck the raider’s ass with!");
 
-		if(pc.hasVagina() && pc.blockedVaginas() == 0) addButton(3,"Pussy-Worship",korgPussWorship,undefined,"Pussy-Worship","Entice the korg-boy to serve with a snoot full of pussy.");
-		else if(pc.blockedVaginas() > 0 && pc.hasVagina()) addDisabledButton(3,"Pussy-Worship","Pussy-Worship","You should get rid of whatever is blocking your [pc.vaginas] first.");
-		else if(pc.hasCuntSnake()) addDisabledButton(3,"Pussy-Worship","Pussy-Worship","You need to have a pussy to make the korgonne worship - your parasitic tail-cunt isn’t interested in reverence, only sperm.");
-		else addDisabledButton(3,"Pussy-Worship","Pussy-Worship","You need to have a pussy to make the korgonne worship.");
+		if(pc.hasVagina() && pc.blockedVaginas() == 0) addButton(3,"PussyWorship",korgPussWorship,undefined,"Pussy-Worship","Entice the korg-boy to serve with a snoot full of pussy.");
+		else if(pc.blockedVaginas() > 0 && pc.hasVagina()) addDisabledButton(3,"PussyWorship","Pussy-Worship","You should get rid of whatever is blocking your [pc.vaginas] first.");
+		else if(pc.hasCuntSnake()) addDisabledButton(3,"PussyWorship","Pussy-Worship","You need to have a pussy to make the korgonne worship - your parasitic tail-cunt isn’t interested in reverence, only sperm.");
+		else addDisabledButton(3,"PussyWorship","Pussy-Worship","You need to have a pussy to make the korgonne worship.");
 
 		if(!pc.hasGenitals()) addDisabledButton(4,"Mutual Mast.","Mutual Mast.","Before the korgonne can masturbate your genitals to orgasm, you need to get some genitals!");
 		else if(pc.hasVagina() && !pc.hasCock() && pc.blockedVaginas() > 0) addDisabledButton(4,"Mutual Mast.","Mutual Masturbation","You should get rid of whatever you have blocking your pussy up first.");
@@ -342,7 +342,7 @@ public function korgWinSexMenu():void
 		addDisabledButton(0,"Cowgirl","Cowgirl","You aren’t aroused enough for this.");
 		addDisabledButton(1,"Cowgirl(Tail)","Cowgirl (Tail)","You aren’t aroused enough for this.");
 		addDisabledButton(2,"Pitch Anal","Pitch Anal","You aren’t aroused enough for this.");
-		addDisabledButton(3,"Pussy-Worship","Pussy-Worship","You aren’t aroused enough for this.");
+		addDisabledButton(3,"PussyWorship","Pussy-Worship","You aren’t aroused enough for this.");
 		addDisabledButton(4,"Mutual Mast.","Mutual Masturbation","You aren’t aroused enough for this.");
 	}
 	addButton(14,"Leave",CombatManager.genericVictory);

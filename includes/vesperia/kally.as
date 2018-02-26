@@ -1972,7 +1972,7 @@ public function roughButtfuckFromKiroPart2():void
 	pc.orgasm();
 	pc.loadInAss(kiro);
 	pc.loadInAss(kiro);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Yes",yesKiroLetsShower);
 	addButton(1,"No",noKiroLetsNotShower);
@@ -3033,7 +3033,7 @@ public function kiroAndKallyGloryholeSupremo3():void
 	output("\n\nYou cry out, fingers pumping, lewdly squishing, <i>“Yessss!”</i>");
 	output("\n\nAnd the orgasmic onslaught redoubles. Spooge backs up the drain, forming a lake that spreads through the bathroom. You cum yourself, joining right in alongside them.");
 	processTime(10);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	pc.loadInMouth(kiro);
 	pc.loadInMouth(kally);
 	pc.orgasm();
@@ -3697,7 +3697,7 @@ public function rahnMilkerFunTimes(arg:String):void
 		output("\n\nYou can understand how Kiro can be so distracted. With the smell of two horny herm-sisters compounded by the artificial pheromones soaking Kiro’s cock, it’s difficult to focus on anything but fucking. You slap your [pc.hips] into the wall again and again, belatedly grateful that the latex padding is positioned to provide you with cushions on either side of your alien cock-holster. It’s finally starting to moisten enough for you to make lewd-sounding ‘schluck’s when you tug back and thrust back in. The excess lube allows you to go absolutely wild, humping with reckless, animal abandon.");
 		output("\n\nThe rougher you are, the wetter it gets.");
 		output("\n\nYou feel the vaunted venom a few minutes after it starts moistening. At first, it manifests as a gentle tingle, like your [pc.cockNoun " + x + "] is being massaged by thousands of microscopic fingers. You gasp with joy and revel in the libertine decadence of it all. Then it spreads deeper inside you, carried by your traitorous bloodstream to infect the rest of your body. Goosebumps break out over every inch of you");
-		if(pc.hasFur() || pc.hasFeathers() || pc.hasScales()) output(", raising your [pc.furSkinScales] straight up");
+		if(pc.hasFur() || pc.hasFeathers() || pc.hasScales()) output(", raising your [pc.skinFurScales] straight up");
 		output(". Your [pc.skin] flushes. A violent, wrenching surge hits your gut, nearly doubling you over, not in pain but in pleasure.");
 		output("\n\nAs soon as it finishes, it starts again, a little milder this time, answered by flutters of nearby musculature that make your [pc.cockNoun " + x + "] violently seize and spurt. It’s making you cum... and you aren’t even orgasming! The wall-mounted plant-puss only gets wetter as your body obeys its venomous instructions, releasing measured squirts of [pc.cumNoun] deep into collection tube.");
 	}

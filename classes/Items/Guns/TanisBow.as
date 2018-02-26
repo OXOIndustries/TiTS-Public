@@ -20,7 +20,7 @@
 			this.type = GLOBAL.RANGED_WEAPON;
 			
 			//Used on inventory buttons
-			this.shortName = "Tanis's Bow";
+			this.shortName = "Tanis’s Bow";
 			
 			//Regular name
 			this.longName = "leithan compound bow";

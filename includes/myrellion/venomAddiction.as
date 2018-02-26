@@ -350,7 +350,7 @@ public function sluttyMcSlutOral():void
 	output("\n\nShe gives you a wink and rounds the bend, back onto the street. You sigh and lick your lips, shivering at the forgotten tenderness your venom-highs bring. God damn you needed that... and now you need something to sate your rising lusts.");
 	pc.lust(150);
 	imbibeVenomEffects();
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

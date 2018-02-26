@@ -1,9 +1,6 @@
 ﻿package classes.Items.Miscellaneous
 {
 	import classes.Engine.Interfaces.*;
-	import classes.Engine.Utility.indefiniteArticle;
-	import classes.Engine.Utility.num2Ordinal;
-	import classes.Engine.Utility.rand;
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;

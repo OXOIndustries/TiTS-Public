@@ -2390,8 +2390,8 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 				//else flags["BETHS_TIMES_WHORED_MOUTH"] += n;
 			}
 			pc.orgasm();
-			applyCumSoaked(pc);
-			applyPussyDrenched(pc);
+			pc.applyCumSoaked();
+			pc.applyPussyDrenched();
 			
 			// [pb]
 			addButton(0, "Next", brothelTrappifyAnswer, ((pc.libido() < 66 || pc.WQ() >= 50) ? "trained" : "libido"));
@@ -2999,8 +2999,8 @@ public function brothelTurnTrixWhoringTrap(service:String = "none"):Number
 				processTime(60);
 				pc.loadInMouth(pp);
 				pc.loadInMouth(pp);
-				applyCumSoaked(pc);
-				applyCumSoaked(pc);
+				pc.applyCumSoaked();
+				pc.applyCumSoaked();
 				pp.removeCocks();
 				pp.createCock();
 				scenesLimit--;

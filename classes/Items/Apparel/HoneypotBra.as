@@ -79,12 +79,12 @@
 			}
 		}
 		
-		override public function onEquip(targetCreature:Creature):void
+		override public function onEquip(targetCreature:Creature, outputText:Boolean = false):void
 		{
 			toggleSexiness(targetCreature.hasStatusEffect("Bra Transparency"));
 		}
 		
-		override public function onRemove(targetCreature:Creature):void
+		override public function onRemove(targetCreature:Creature, outputText:Boolean = false):void
 		{
 			toggleSexiness(false);
 		}

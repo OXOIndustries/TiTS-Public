@@ -1137,7 +1137,7 @@ public function titFuckBurtBecauseYoureAFilthyFatChestedHo():void {
 	if(pc.hasLipples()) 
 	{
 		output("\n\nHe looks down at your [pc.nipples] and smirks as an idea comes to his mind, his hands leaving your head to begin fingering your juicy teat holes in time with the thrusting of his cock between your fleshy orbs. He traces the kissable bow lips, tracing the sensitive mouths decorating your breasts between deep thrusts of his fingers into your supple titflesh.");
-		output("\n\nHe doesn’t seem interested in fucking your [pc.nipples] however, keeping his eyes on your [face] as he continues to hunch and thrust against your [pc.chest], that swollen cybernetic flare bumping your chin with every forward thrust, eager for your kisses and licks. He fucks your breasts with a singular focus, his hips driving at a steady pace focused on his pleasure and not yours. Between thrusts, he grunts out, <i>“You deserve a gift, [pc.name]... how about a pearl necklace?”</i>");
+		output("\n\nHe doesn’t seem interested in fucking your [pc.nipples] however, keeping his eyes on your [pc.face] as he continues to hunch and thrust against your [pc.chest], that swollen cybernetic flare bumping your chin with every forward thrust, eager for your kisses and licks. He fucks your breasts with a singular focus, his hips driving at a steady pace focused on his pleasure and not yours. Between thrusts, he grunts out, <i>“You deserve a gift, [pc.name]... how about a pearl necklace?”</i>");
 	}
 	//[if (nipplecunts = true)]
 	else if(pc.hasFuckableNipples()) {

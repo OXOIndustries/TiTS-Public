@@ -1226,7 +1226,7 @@ public function blowNayna3():void
 	pc.loadInMouth(pp);
 	processTime(11);
 	pc.lust(100);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	//[Next]
 	clearMenu();
 	addButton(0,"Next",blowNayna4);
@@ -1395,7 +1395,7 @@ public function fuckNayna():void
 	output("\n\nShe cranes her neck to kiss you, tasting heavily of her own cum, and you kiss her right back, trying not to grin when you reach up to discover that she’s <i>still</i> cumming. There are worse things than making someone orgasm so hard that they ejaculate for two minutes straight, you suppose. Closing your eyes, you snuggle in your exceedingly productive fuck-bunny, happy to doze against her once she finally stops squirting.");
 	processTime(22);
 	pc.orgasm();
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",naynaFuckEppiloggie,cum);
 }
@@ -1758,7 +1758,7 @@ public function helpNaynaWithBallflation():void
 	clearOutput();
 	showNayna(true);
 	output("Grinning, you kneel down and take her dick in both hands, stroking it. When you pump down, the flow doubles. When you stroke up, its owner moans, balls quivering, and the next downstroke is nearly four times as thick as the first. Nayna’s balls gradually diminish while you milk her, but her cum gets absolutely everywhere: ");
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	if(pc.hasHair()) output("in your [pc.hairNoun]");
 	else output("on your head");
 	output(", in your mouth, on your [pc.chest], and all over your arms from the elbows down.");

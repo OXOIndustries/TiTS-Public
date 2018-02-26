@@ -141,7 +141,7 @@ package classes.GameData.Pregnancy.Handlers
 						
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 0.1, true);
 						// Soaked in female juices status
-						kGAMECLASS.applyPussyDrenched(kGAMECLASS.pc);
+						kGAMECLASS.pc.applyPussyDrenched();
 						
 						AddLogEvent(ParseText(msg));
 					}, true);
@@ -159,7 +159,7 @@ package classes.GameData.Pregnancy.Handlers
 						{
 							msg += "When is your [pc.vagina " + pregSlot + "] going to stop making like a candy faucet?! The sweet-smelling goo that keeps trickling past your pussy lips slows every so often, and you think maybe that’s it - and then another brightly-colored gush warms your [pc.thighs]. It’s not as if it’s making your midriff feel any less stuffed, either. The jelly babies packed tightly in there seem perfectly content where they are right now. You’re just going to have to live with the feeling of being a soft, leaking blancmange generator.";
 							// Soaked in female juices status
-							kGAMECLASS.applyPussyDrenched(kGAMECLASS.pc);
+							kGAMECLASS.pc.applyPussyDrenched();
 						
 							AddLogEvent(ParseText(msg));
 						}

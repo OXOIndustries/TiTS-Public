@@ -2878,18 +2878,26 @@ public function goToTaivrasChambersForSex():void
 
 	output("\n\n<i>“Tell me, what appeals to you offworlders?”</i> she purrs, grinding her hips against your crotch. Her words are a subtle affirmation that she’ll defer to you, letting you choose just how you’ll make love to your queenly lover...");
 	processTime(7);
+	
+	queenTaivraSexMenu();
+}
+public function queenTaivraSexMenu(canLeave:Boolean = false):void
+{
 	clearMenu();
 	//[Cowgirl] [Glory Fuck] [Tentacock Orgy] [Breed Her]
-	addButton(0,"RideCowgirl",cowgirlWivTaivra,undefined,"Ride: Cowgirl","Roll Taivra over and mount her, riding her thick, throbbing ovipositor until she’s bloating you with eggs... or at least, with her sticky fem-cum.")
+	addButton(0,"RideCowgirl",cowgirlWivTaivra,undefined,"Ride: Cowgirl","Roll Taivra over and mount her, riding her thick, throbbing ovipositor until she’s bloating you with eggs... or at least, with her sticky fem-cum.");
+	
 	if(pc.hasCock() && pc.cockThatFits(taivra.analCapacity()) >= 0) addButton(1,"Glory Fuck",gloryFuckTaivra,undefined,"Glory Fuck","Get Taivra to ram her cock into the gloryhole in her wall and fuck the jiggling goo inside while you slide your cock up the queen’s tight little behind.");
 	else addDisabledButton(1,"Glory Fuck","Glory Fuck","You need a penis to access this scene.");
+	
 	if(pc.hasCock() && pc.cockThatFits(200) >= 0) addButton(2,"Breed Her",dockingBonerIntensifies,undefined,"Breed Her","Slide your cock into the queen’s ovipositor and flood her womb with your seed. The position might be a little awkward, but it’s worth it to make sure you have some royal offspring.");
 	else addDisabledButton(2,"Breed Her","Breed Her","You need a dick that will fit inside her dick for this to work.");
-
+	
 	if(pc.hasHardLightEquipped()) addButton(3,"HL Anal",taivraHardlightFunzies,undefined,"Hardlight Anal","Use your hardlight-enabled underwear to pound Taivra’s asshole. Her cockvine ‘tails’ will be in striking range of <i>your</i> [pc.vagOrAss]!");
 	else addDisabledButton(3,"HL Anal","Hardlight Anal","You need hardlight-enabled underwear for this.");
-
-	addDisabledButton(14,"Back","Back","There’s no way you’re getting out of here without satisfying your domineering partner at least once!");
+	
+	if(canLeave) addButton(14,"Leave",taivraMorningEventLeave,undefined,"Leave","Ignore Taivra and take your leave.");
+	else addDisabledButton(14,"Back","Back","There’s no way you’re getting out of here without satisfying your domineering partner at least once!");
 }
 
 //Cowgirl
@@ -3597,6 +3605,53 @@ public function taivrasEggStuffedBeta(response:String = "intro"):void
 			addButton(0, "Next", move, rooms[currentLocation].eastExit);
 			break;
 	}
+}
+
+// Appears if you sleep in the queens bed after marrying her
+public function taivraMorningEvent():void
+{
+	clearOutput();
+	showTaivra(true);
+	author("Stygs");
+	output("As you slowly open your eyes, you realize that the room has become a lot darker than you remember. The only light now seems to stem from some fungi patches on the wall, filling the chamber with an eerie gloom. While trying to figure out what happened, you suddenly become aware of someone else moving next to you.");
+	output("\n\n<i>“Ah, [pc.name]. Finally awake?”</i> says a familiar voice in the gloom right next to you. Shifting around, you see the silhouette of Queen Taivra lying in the silken blankets besides you, an old book in her hands and a smile on her face.");
+	output("\n\n<i>“I have to admit, you star walkers have a surprisingly deep sleep.”</i> she says, putting the book away and slowly turning to face you. ”</i>I feared I would have had to leave again before you woke up.”</i>");
+	if (flags["TAIVRA_OLD_BOOK"] == undefined)
+	{
+		output("\n\nYou tell her you are surprised to see her read a book. <i>“Oh, that?”</i> the nyrean queen suddenly breaks into laughter. <i>“Don’t tell me you’re surprised I can read? Did you think we were illiterate savages just because we live underground?”</i> ");
+		output("\n\nShe pauses for a moment before she continues, now a somber tone in her voice. <i>“To be truthful, most of my private library stems from the myr, traded or raided from the surface. As far as I can tell, our people never cared much about writing or the arts.”</i>");
+		output("\n\nYou quickly apologize and explain that you didn’t intend to insult her; you just didn’t expect her to be able to read in the darkness.");
+		flags["TAIVRA_OLD_BOOK"] = 1;
+	}
+	else output("\n\nIt takes her a moment to note the confused look on your face.");
+	output(" <i>“Ah, of course”</i> your lover answers, <i>“I tend to forget that offworlders are not as adapted to the twilight of the caves as we are.”</i>");
+	output("\n\nWithout a further word, Taivra gets up and steps over to a lantern in the center of the room, opening its blinds. In a moment’s notice, the chamber is flooded with a pleasant blue light. <i>“Better now, my dear? Can’t have you stumbling around in the dark.”</i>");
+	output("\n\nWith the light illuminating her now, you can’t fail to notice that she isn’t wearing any of her usual attire – nor can you fail to notice the quivering tentacles behind her, giving away her excitement despite the otherwise calm demeanor.");
+	output("\n\nA moment later she’s back to lying beside you with a lecherous smile on her face. <i>“So, [pc.name], I hope you’re not planning on leaving anytime soon.”</i> she coos, slowly cupping one of her breasts to accentuate her statement while one of her tentacles starts wrapping around your [pc.legOrLegs]. It’s pretty obvious what she expects from you are this point.");
+	output("\n\nSo, how do you want to make love to your royal ");
+	if (flags["BEAT_TAIVRA_TIMESTAMP"] == undefined) output("spouse?");
+	else output("partner?");
+	processTime(5);
+	pc.createStatusEffect("Taivra Bed Event Cooldown", 0, 0, 0, 0, true, "", "", false, 1440);
+	
+	// Remeber to update goToTaivrasChambersForSex too if you change anything here
+	queenTaivraSexMenu(true);
+}
+
+public function taivraMorningEventLeave():void
+{
+	clearOutput();
+	showTaivra(true);
+	author("Stygs");
+	output("As much as you want to spend more time with your alien wife, you have an important race to win. After all, who knows what your rival is doing right now...");
+ 	output("\n\nQueen Taivra is obviously very displeased with your decision, but having met [rival.name] herself, it doesn’t take much to convince her. You are quick to assure her that you will come back as soon as your quest allows it.");
+	output("\n\nAs the queen leaves the room, you can’t help but feel ")
+	if(pc.isNice()) output("a pang of guilt for the poor betas");
+	else if(pc.isMischievous()) output("a bit of pity for those in her harem");
+	else output("malicious glee thinking about the slaves");
+	output(" that are now going to serve as your substitutes.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 /*

@@ -473,7 +473,7 @@ public function yesIVolunteerForBadEndsBecauseImBadAtSexGames():void {
 	output("\n\nElectronic fingers");
 	if(pc.hasCock()) output(" clutch your [pc.cocks]");
 	else if(pc.hasVagina()) output(" slide into your [pc.vaginas]");
-	else output(" slip into your [asshole]");
+	else output(" slip into your [pc.asshole]");
 	output(" and you groan. They move confidently, every second collating more data about you, learning how to touch you, how you like to be touched, how to touch you in ways no organic ever has...");
 	if(pc.hasCock()) output(" [pc.eachCock] strains");
 	if(pc.hasCock() && pc.hasVagina()) output(" and your");
@@ -570,7 +570,7 @@ public function pcLosesToHanSoSosBot():void
 	output("\n\nElectronic fingers");
 	if(pc.hasCock()) output(" clutch your [pc.cocks]");
 	else if(pc.hasVagina()) output(" slide into your [pc.vaginas]");
-	else output(" slip into your [asshole]");
+	else output(" slip into your [pc.asshole]");
 	output(" and you groan. They move confidently, every second collating more data about you, learning how to touch you, how you like to be touched, how to touch you in ways no organic ever has...");
 	if(pc.hasCock()) output(" [pc.eachCock] strains");
 	if(pc.hasVagina() && pc.hasVagina()) output(" and your");

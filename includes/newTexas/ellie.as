@@ -1101,7 +1101,7 @@ public function publicUseEnding():void
 	processTime(65);
 	pc.lust(200);
 	pc.exhibitionism(2);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	
 	addButton(0, "Next", publicUseEndingPartTwo);
 }
@@ -2143,6 +2143,7 @@ public function ellieNameYourKiddos(kiddo:int = 0):void
 	{
 		case 0:	output("What should your first kid with Ellie, the male one, be named?\n\n(No bracket or escape characters" + (!silly ? ", and max of 16 charcters" : "") + ")");
 				displayInput();
+				output("\n\n\n");
 				addButton(0, "Next", ellieNameYourKiddos, ++kiddo, "", "");
 				break;
 				
@@ -2159,6 +2160,7 @@ public function ellieNameYourKiddos(kiddo:int = 0):void
 				flags["ELLIE_KID1"] = userInterface.textInput.text;
 				output("What should your second kid with Ellie, the female one with Ellie’s eyes, be named?\n\n(No bracket or escape characters" + (!silly ? ", and max of 16 charcters" : "") + ")");
 				displayInput();
+				output("\n\n\n");
 				addButton(0, "Next", ellieNameYourKiddos, ++kiddo, "", "");
 				break;
 				
@@ -2175,6 +2177,7 @@ public function ellieNameYourKiddos(kiddo:int = 0):void
 				flags["ELLIE_KID2"] = userInterface.textInput.text;
 				output("What should your third kid with Ellie, the female one with heterochromia, be named\n\n(No bracket or escape characters" + (!silly ? ", and max of 16 charcters" : "") + ")");
 				displayInput();
+				output("\n\n\n");
 				addButton(0, "Next", ellieNameYourKiddos, ++kiddo, "", "");
 				break;
 				

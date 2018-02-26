@@ -785,7 +785,7 @@ public function erikaPublicSexThreesomeAusarAss():void
 	// If PC has large cock
 	if (pc.cocks[x].cLength >= 20) output("The size of your [pc.cock] bulges her belly, an imprint of your [pc.cockHead] forming in her abdomen with every thrust.");
 	output("\n\nErika’s moans and whimpers are muffled by the cock in her mouth, and with every thrust you send her back onto said dick, effectively sawing her between the two dicks impaling her.");
-	output("\n\nWith your [pc.cockNounSimple] rubbing against her prostate, she is starting to get hard despite just cumming. In short order her puppy pecker is rock hard again. “ < i > What kind of lover would I be if I didn’t even give you a reach around while drilling your ass?”</i> you chuckle, earning another muffled whimper from her, along a gush of pre. <i>“Tell me, ");
+	output("\n\nWith your [pc.cockNounSimple] rubbing against her prostate, she is starting to get hard despite just cumming. In short order her puppy pecker is rock hard again. <i>“What kind of lover would I be if I didn’t even give you a reach around while drilling your ass?”</i> you chuckle, earning another muffled whimper from her, along a gush of pre. <i>“Tell me, ");
 	if (pc.isBimbo()) output("dear, ");
 	output("which do you enjoy more: the dick up your ass or the hand gliding along your ");
 	if (pc.isAss()) output("bitch clit");

@@ -137,6 +137,7 @@ public function joyCoDonationButton(btnSlot:int = 0, vkoModel:String = "vko"):vo
 {
 	addButton(btnSlot, "Donate", joyCoDonationPrompt, vkoModel, "Donate", "Donate a small amount of credits for a good cause.");
 }
+public function joyCoDonationPromptVKo():void { joyCoDonationPrompt("vko"); }
 public function joyCoDonationPrompt(vkoModel:String = "vko"):void
 {
 	clearOutput();

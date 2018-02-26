@@ -12,7 +12,6 @@ package classes.Items.Transformatives
 	import classes.Util.InCollection;
 	import classes.Util.RandomInCollection;
 	import classes.Engine.Utility.num2Text;
-	import classes.Engine.Utility.indefiniteArticle;
 	
 	public class PupperPoppers extends ItemSlotClass
 	{
