@@ -949,7 +949,7 @@ public function kaseEvict():void
 	
 	processTime(3);
 	flags["KASE_CREW"] = 0;
-	flags["CREWMEMBER_SLEEP_WITH"] = undefined;
+	if(flags["CREWMEMBER_SLEEP_WITH"] == "KASE") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 	
 	addButton(0,"Next",mainGameMenu);
 }
