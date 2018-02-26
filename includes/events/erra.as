@@ -60,6 +60,17 @@ public function erraAnalCapacity():Number
 	return 350;
 }
 
+public function erraAvailableForThreesome():Boolean
+{
+	if (flags["ERRA_SEXED"] >= 3)
+	{
+		if (InCollection(rooms[shipLocation].planet, ["TAVROS STATION", "PLANET: MHEN'GA", "PLANET: TARKUS", "PLANET: NEW TEXAS", "PLANET: UVETO VII", "CANADIA STATION"])) return true;
+		else if (rooms[shipLocation].planet == "PLANET: MYRELLION" && flags["KQ2_MYRELLION_STATE"] == undefined) return true;
+		return false;
+	}
+	return false;
+}
+
 //Opening Scene
 public function approachErra(back:Boolean = false):void
 {
