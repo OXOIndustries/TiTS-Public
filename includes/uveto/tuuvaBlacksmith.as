@@ -76,7 +76,8 @@ public function showTuuva(nude:Boolean = false):void
 	var nudeS:String = "";
 	if(nude) nudeS = "_NUDE";
 	showName("\nTUUVA");
-	showBust("TUUVA"+nudeS);
+	var horseS:String = (nude ? (tuuva.hasCock(GLOBAL.TYPE_EQUINE) ? "_HORSE" : "") : "");
+	showBust("TUUVA"+horseS+nudeS);
 	author("QuestyRobo");
 }
 
