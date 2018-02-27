@@ -1507,6 +1507,16 @@ public function shipMenu():Boolean
 		return true;
 	}
 	
+	//Anno/Erra Threesome
+	if((pc.hasCock() || pc.hasHardLightStrapOn()) && annoIsCrew() && flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined && erraAvailableForThreesome() && !pc.hasStatusEffect("Anno-Erra Cooldown"))
+	{
+		if(rand(10) == 0)
+		{
+			annoxErraIntro();
+			return true;
+		}
+	}
+	
 	// Location Exceptions
 	if(shipLocation == "600") myrellionLeaveShip();
 	
