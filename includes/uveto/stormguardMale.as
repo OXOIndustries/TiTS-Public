@@ -63,7 +63,7 @@ public function showStormguard(nude:Boolean = false):void
 }
 public function stormguardHonor(arg:Number = 0):Number
 {
-	if(flags["STORMGUARD_HONOR"] == undefined) flags["STORMGUARD_HONOR"] = 0;
+	if(flags["STORMGUARD_HONOR"] == undefined) flags["STORMGUARD_HONOR"] = 1;
 	if(flags["STORMGUARD_HONOR"] + arg < 0) flags["STORMGUARD_HONOR"] = 0;
 	else if(flags["STORMGUARD_HONOR"] + arg > 2) flags["STORMGUARD_HONOR"] = 2;
 	else flags["STORMGUARD_HONOR"] += arg;
