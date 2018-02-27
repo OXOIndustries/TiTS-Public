@@ -2337,6 +2337,8 @@ public function variableRoomUpdateCheck():void
 		else rooms["9008"].removeFlag(GLOBAL.NPC);
 		rooms["CANADA4"].removeFlag(GLOBAL.NPC);
 	}
+	if(flags["KASE_CREW"] == 0 && !rooms["RESIDENTIAL DECK KASES APARTMENT"].hasFlag(GLOBAL.NPC)) rooms["RESIDENTIAL DECK KASES APARTMENT"].addFlag(GLOBAL.NPC);
+	else if(flags["KASE_CREW"] != 0 && rooms["RESIDENTIAL DECK KASES APARTMENT"].hasFlag(GLOBAL.NPC)) rooms["RESIDENTIAL DECK KASES APARTMENT"].removeFlag(GLOBAL.NPC);
 
 	/* MHENGA */
 	

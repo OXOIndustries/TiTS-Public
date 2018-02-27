@@ -950,6 +950,7 @@ public function kaseEvict():void
 	processTime(3);
 	flags["KASE_CREW"] = 0;
 	if(flags["CREWMEMBER_SLEEP_WITH"] == "KASE") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
+	variableRoomUpdateCheck();
 	
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1030,6 +1031,7 @@ public function kaseApartmentJoin():void
 	
 	processTime(5+rand(3));
 	flags["KASE_CREW"] = 2;
+	variableRoomUpdateCheck();
 	
 	addButton(0, "Next", mainGameMenu, undefined, "", "");
 }
