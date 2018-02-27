@@ -269,6 +269,7 @@ public function talkToNenne():void
 	addButton(1,"The Shop",theShopNenneTalk,undefined,"The Shop","Ask Nenne about her shop. How did she come to sell all-natural medicines and poisons in the Korg’ii hold?");
 	addButton(2,"Uveto",nenneUvetoTalk,undefined,"Uveto","Ask Nenne what an experienced Korgonne like herself thinks about Uveto, and what opinions she has about the universe, if any.");
 	addDisabledButton(3,"Flirt","Flirt","Maybe talk to her a little before jumping straight to the fuck-offers.");
+	addButton(4,"PB Cookie",peanutButterNenne,undefined,"PB Cookie","You wonder how much Nenne would like to have a peanut butter cookie.");
 	addButton(14,"Back",approachNenne,true);
 }
 
@@ -861,4 +862,74 @@ public function freebieNenneScene():void
 	processTime(180+rand(20));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+//[=PeanutButter=]
+// Add this option to Nenne’s talk menu if Silly Mode is activated
+// Tooltip: You wonder how much Nenne would like to have a peanut butter cookie.
+// Continue from here if this is the first time the PC is giving Nenne a cookie
+public function peanutButterNenne():void
+{
+	clearOutput();
+	showNenne(true);
+	author("B!");
+	if(flags["NENNE_COOKIES"] == undefined)
+	{
+		output("As the conversation moves on, you hear what sounds like a quiet rumbling, or even a purring, coming from nearby. <i>“Sorry,”</i> Nenne says sheepishly, scratching at her ears. <i>“");
+		if(!korgiTranslate()) output("Eat time while ago; eat time of next not for time of many. Hungry am!");
+		else output("It’s been a while since breakfast, and it’ll be a little bit of time until lunch. I guess I’m a little hungrier than I thought.");
+		output("”</i>");
+		output("\n\nYou ask if any of the plants she offers make for a decent meal. <i>“");
+		if(!korgiTranslate()) output("Can, but not time of all. Unfilling and hard taste too. Korg’ii more for meats than planties.");
+		else output("They can be, but they usually aren’t. They also aren’t very filling and they can be hard on the palette. Korg’ii like myself are more for meats than we are for plants.");
+		output("”</i>");
+		output("\n\nRecognizing her plight and sympathizing, you reach into your ");
+		if(!silly) output("pocket");
+		else output("convenient, trans-dimensional, portable hammerspace");
+		output(" and rummage around for the provisions you know you have with you. You don’t have a lot, but among your wares is a small baggie, and inside it is a pair of homemade peanut butter cookies. Oh yeah! You forgot that you had those!");
+		output("\n\nYou pull out the baggie and offer one of the cookies to Nenne. <i>“");
+		if(!korgiTranslate()) output("Is food? Never before of seeing. Alien food good for Korg’ii?");
+		else output("That’s food? I’ve never seen anything like it before. Is your alien food good for us Korg’ii?");
+		output("”</i> You answer that there isn’t a creature in this universe that doesn’t love peanut butter cookies. They’re among the most delicious treats that you and your kind are capable of producing.");
+
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Will try!");
+		else output("Sure, I’ll give it a try,");
+		output("”</i> Nenne says, outstretching her paw. You remove one of the two cookies and give it to her; she turns it over in her paw and gives it a sniff, investigating it and frowning when miniscule bits crumble to her floor. The cookie itself isn’t very large and would likely only give her a mouthful if she ate the whole thing at once – so, without any further delay, she shoves the whole thing into her maw.");
+	}
+	// Continue from here for subsequent cookie-givings
+	else
+	{
+		output("As the conversation moves on, you hear what sounds like a quiet rumbling, or even a purring, coming from nearby. You eye Nenne suspiciously; she smiles sheepishly back at you, her hands behind her back, as she tries to maintain her innocence.");
+		output("\n\nYou ask Nenne if she’s had a chance to eat properly today. <i>“");
+		if(!korgiTranslate()) output("Yessing! Never Nenne skip meals; important for fur of quality keeping and health!");
+		else output("Yes, of course! I’d never intentionally skip any meals; a good diet is important for maintaining proper fur quality and health.");
+		output("”</i> She rocks forward on her heels, leaning towards you. <i>“Buuuuuuuuuut, ");
+		if(!korgiTranslate()) output("last eat time many ago-ago, and next eat time many waits from now. Having any... treats for Nenne to eat for waiting?");
+		else output("breakfast was a long time ago, and lunch won’t be for a little while yet. Do you have any... treats to give me to tide me over until then?");
+		output("”</i>");
+		output("\n\nYou smirk and say that you might just have the thing. As soon as your hand reaches into your ");
+		if(!silly) output("pocket");
+		else output("convenient, trans-dimensional, portable hammerspace");
+		output(", Nenne’s nipples become erect and she begins to salivate. As soon as you withdraw yet another peanut-butter cookie (you had more in there than you realized!) and offer it to her, she snatches it from your hand and unceremoniously crams the whole thing into her mouth.");
+	}
+	// Merge here
+	output("\n\nAs soon as her mouth closes and her teeth skewer into the pastry, the response is immediate: her eyes widen and her pupils dilate, and her knees begin to buckle. Nenne loses her balance; she leans backward, her hand searching for the nearest wall to lean against. Her fur stands on end; her tail straightens behind her; her black nipples become hard as stone, jutting obscenely into the cool air of her apartment; and viscous juice drips from her cunt.");
+	output("\n\nA throaty groan escapes her, muffled through the flaky cookie resting idle and half-eaten in her mouth. She breathes deeply through her nose as her eyes roll upward, back into her skull. Her jaw moves slightly, biting into it once more, and she falls to both knees: her motherly hips thrust forward, into the air, fucking at some invisible cock while her pussy spews her feminine cum forward, splashing along the floor in front of her.");
+	output("\n\nHer breathing increases with her pulse as she frantically tries to maintain control of her own body. One hand is still against the wall, while her other paws ineffectually at her breast, squeezing at her nipple and kneading at the taut flesh with whatever strength is still with her. Her legs splay so widely that she’s nearly doing the splits; her soaking wet pussy soon touches onto the floor, and when it does, another spasm rockets up and down her body, and she frantically fucks her own floor in animalistic, unrestrained pleasure.");
+	output("\n\nHer jaw moves once more, biting into the cookie, and her mouth soon goes slack; her tongue lolls from her mouth, leaking spittle and chewed bits of cookie out onto her breasts and across her neck. Her hips roll forward, harshly dragging the petals of her pussy against the chiselled stone floor of her shop and leaving trails of her hot liquid for her to slide back across. She humps the floor with raw abandon, and every time she completes a circuit, she shivers in delight and sprays a fresh coat down beneath her.");
+	output("\n\nFinally, she swallows what bit of peanut butter cookie she hasn’t drooled back onto herself. As soon as the delicious treat slides down her throat, her upper body loses its strength as all energy and motor functions rush to between her legs. Her body visibly ripples and shivers as she cums one final time in front of you, legs nearly parallel to the floor and her pussy plugged snugly against it, the fluids rising up just slightly to meet her drippy, needy vagina. She goes silent and still, save for the occasional, pleasurable aftershocks that make her twitch, from the fat of her thighs up to her belly and heavy boobs.");
+	output("\n\nAfter a moment, her eyes roll back down from behind her skull – and then they un-cross, focusing in front of her. It takes her a moment to recognize where she was and what she was doing; she first looks at her weary arms, then down across her belly and to the floor beneath her. She says nothing and makes no expression when she recognizes the lustful mess she made beneath herself.");
+	output("\n\nYou ask Nenne if she enjoyed the treat you gave her.");
+	output("\n\nHer hair is haggard and messy around her eyes and ears, and her mouth hangs agape as she tries to catch her breath. You can tell that she understood the question, but it takes her longer than you think she realizes to answer you.");
+	output("\n\n<i>“Uh,”</i> she begins, still heaving as she comes down from her multiple orgasms, <i>“yes. ");
+	if(!korgiTranslate()) output("Wanting not to be selfish, but... if more having, maybe giving to Nenne? Enjoy would being of another treat.");
+	else output("I don’t want to sound selfish or anything, but... if you have any more, maybe you could give it to me? I’d, uh, enjoy having another treat.");
+	output("”</i>");
+	output("\n\nYou tell her that if you ever happen to have another peanut butter cookie, you’ll be sure to think of her.");
+	processTime(10);
+	pc.lust(5);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	IncrementFlag("NENNE_COOKIES");
 }
