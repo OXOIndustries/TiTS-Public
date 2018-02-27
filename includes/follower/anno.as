@@ -4085,6 +4085,7 @@ public function annoIsPet():Boolean
 {
 	return (flags["TAKEN_ANNO_AROUND_AS_A_PET"] != undefined || flags["ANNO_PETPLAYED"] != undefined);
 }
+
 public function annoTimesWalked():Number
 {
 	var timesWalked:Number = 0;
@@ -4092,6 +4093,7 @@ public function annoTimesWalked():Number
 	if(flags["ANNO_PETPLAYED"] != undefined) timesWalked += flags["ANNO_PETPLAYED"];
 	return timesWalked;
 }
+
 public function annoPupperPlay():void
 {
 	clearOutput();
@@ -4230,6 +4232,7 @@ public function showAnnoMaid(nude:Boolean = false):void
 	//showBust("ANNO_MAID");
 	showBust(annoBustDisplay(nude));
 }
+
 public function annoFrenchMaid():void
 {
 	pc.createStatusEffect("The Lusty Ausar Maid",0,0,0,0,true,"","",false,60*24);
@@ -4529,7 +4532,8 @@ public function reahaJoinsAnnoXKaedeAccidentPetPlay():void
 }
 
 //[Mount the Cow]
-public function mountCowAnnoXKaedeAccidentPetPlay():void {
+public function mountCowAnnoXKaedeAccidentPetPlay():void
+{
 	clearOutput();
 	author("Savin");
 	showName("ANNO & KAEDE &\nREAHA");
@@ -4974,7 +4978,6 @@ public function annoxErraLeave():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
-}
 
 //[Huskar?]
 //TT: See how Anno feels about gettin' down with the thickness.
@@ -5092,6 +5095,7 @@ public function annoToNormalTF():void
 	chars["ANNO"].removeLegFlag(GLOBAL.FLAG_FLUFFY);
 	chars["ANNO"].removePerk("Regal Mane");
 }
+
 public function annoToHuskarTF():void
 {
 	chars["ANNO"].tone = 10;
@@ -5136,6 +5140,7 @@ public function annoReactsToSyriHuskarTeasing():String
 {
 	return "ffs could you please email Syri and tell her to stop asking me for more selfies she keeps making fun of me :(\n\nOh my god it’s worse than when we were in high school and my tits came in before hers.\n\nAt least kaedeypoo likes my new curves :3\n\nAnno E. Dorna\nPlanetary Branch Manager, Tarkus\nSteele Tech Applied Sciences Division";
 }
+
 //Some random time later:
 //From: BlastMaster@GalLink.org
 //To: [pc.email]@SteeleTech.corp
