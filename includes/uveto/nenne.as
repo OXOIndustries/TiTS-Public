@@ -269,7 +269,9 @@ public function talkToNenne():void
 	addButton(1,"The Shop",theShopNenneTalk,undefined,"The Shop","Ask Nenne about her shop. How did she come to sell all-natural medicines and poisons in the Korg’ii hold?");
 	addButton(2,"Uveto",nenneUvetoTalk,undefined,"Uveto","Ask Nenne what an experienced Korgonne like herself thinks about Uveto, and what opinions she has about the universe, if any.");
 	addDisabledButton(3,"Flirt","Flirt","Maybe talk to her a little before jumping straight to the fuck-offers.");
-	addButton(4,"PB Cookie",peanutButterNenne,undefined,"PB Cookie","You wonder how much Nenne would like to have a peanut butter cookie.");
+	if(silly) addButton(4,"BellyRub!",nenneBellyRub,undefined,"Belly Rub!","Ask if Nenne knows who a good girl is.");
+	else addDisabledButton(4,"BellyRub!","BellyRub!","You aren't feeling <i>silly</i> enough for this. Maybe there's an option somewhere to correct that!");
+	addButton(5,"PB Cookie",peanutButterNenne,undefined,"PB Cookie","You wonder how much Nenne would like to have a peanut butter cookie.");
 	addButton(14,"Back",approachNenne,true);
 }
 
@@ -336,6 +338,57 @@ public function nenneFamilyTalk():void
 	else addDisabledButton(3,"Flirt","Flirt","It seems a little silly to flirt with her while you don’t have any proper genitals.");
 	addDisabledButton(0,"Family","Family","You already discussed that.");
 }
+
+//[=Belly Rub!=]
+// hide this button unless Silly Mode is on
+// Tooltip: Ask if Nenne knows who a good girl is.
+// (scene: Belly Rub)
+
+public function nenneBellyRub():void
+{
+	clearOutput();
+	showNenne();
+	author("B");
+	output("You look Nenne over; at her tired grey fur and her slightly-bent posture. She’s getting up there in years a little bit. You bet that, if there’s any one thing that Nenne would enjoy more than anything, it would be to feel young again. And sure, you could fuck her, but you have something a little more immediate in mind.");
+	output("\n\n<i>“Hey Nenne,”</i> you ask her. Her ears perk up at the sound of her name, and her tail begins swishing quickly behind her. <i>“Who’s a good girl?”</i>");
+	output("\n\nNenne tilts her head, her mouth shut as she contemplates the question. <i>“");
+	if(!korgiTranslate()) output("‘Good-being’ perspective matters, supposing");
+	else output("I suppose the matter of what is ‘good’ is a matter of perspective");
+	output(",”</i> she answers, choosing her words carefully. <i>“");
+	if(!korgiTranslate()) output("Unright of Nenne judging to anyone of goodness of them. Gooding for Nenne not being gooding of others, might.");
+	else output("It wouldn’t be right of me to judge whether anyone is good. What is good by me and my perspective might not be good by others.");
+	output("”</i>");
+	output("\n\nYou step forward, stepping beside Nenne. You ignore her philosophical answer and ask again. <i>“Who’s a good girl, Nenne?”</i>");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Asking then, gooding of not? Classic problem: okay to stealing of bread to feeding family of starved? Intent to committing gooding of not matters more than action? Where law of word more meaning than law of spirit?");
+	else output("But then you have to ask, what is ‘evil?’ It’s a classic problem: is it alright to steal a loaf of bread to feed a starving family? Does the intent to commit evil matter more than the evil act itself? When and where does the word of the law beat the spirit of the law?");
+	output("”</i>");
+
+	output("\n\n<i>“It’s you!”</i> you announce suddenly!");
+	output("\n\n<b><i>“Really?!”</i></b> Nenne nearly shouts, her eyes lighting up in surprise and pure glee. Her tail wags furiously behind her in surprise, completely elated at the news that she is, in fact, a good girl.");
+	output("\n\nYou launch your attack, bringing your hand to Nenne’s belly, and vigorously start rubbing it with your open palm. At first, Nenne is surprised, but then her left leg starts to kick furiously; her tongue lolls out of her mouth and she begins panting and laughing in surprise.");
+	output("\n\nShe quickly loses her balance with her kicking leg; you use your other hand to brace her and ease her to the floor of her shop gently. Now that she’s laying on her back, you use both hands to rub at her slightly-flabby belly, everywhere from just above her crotch to just below her breasts, getting your ticklish hands everywhere in between.");
+	output("\n\n<i>“It’s you! Yes, Nenne, it’s you!”</i> you repeat loudly, watching her leg kick impiously. Nenne leans her head back, her tongue wagging in the air and her tail thrashing ecstatically underneath her. Joining her left leg, her two arms paw aggressively at nothing above her, all while panting in happy exhaustion at the tactile sensations you’re bombarding her with.");
+	output("\n\nAfter a few minutes of this, you give the exhausted old Korgonne a break, removing your hands from her worn belly. She lays on the floor for a moment longer, her limbs still twitching in delight, before her eyes blink open and lock onto yours.");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("You too good!");
+	else output("You’re good too!");
+	output("”</i> she says happily, drawing her tongue back into her mouth. It takes her another moment to roll onto her shaky limbs, and then another to pull herself back up. <i>“");
+	if(!korgiTranslate()) output("Knowing didn’t Korgonne doing could that! Liked! Afraiding not doing to again!");
+	else output("I didn’t know the Korgonne could do that! I liked it a lot; don’t be afraid to give me another one!");
+	output("”</i>");
+
+	// end scene (scene: Belly Rub); grey out all options, including [=Back=], except [=Flirt=]
+	processTime(20);
+	if(pc.hasGenitals())
+	{
+		if(pc.lust() >= 33) addButton(3,"Flirt",flirtWithNenne,undefined,"Flirt","Nenne’s not hard on the eyes. Why not let her know as much?");
+		else addDisabledButton(3,"Flirt","Flirt","You aren’t turned on enough for that right now.");
+	}
+	else addDisabledButton(3,"Flirt","Flirt","It seems a little silly to flirt with her while you don’t have any proper genitals.");
+	addDisabledButton(4,"BellyRub!","BellyRub!","You already discussed that.");
+}
+
 
 //[=The Shop=]
 // Tooltip: Ask Nenne about her shop. How did she come to sell all-natural medicines and poisons in the Korg’ii hold?
