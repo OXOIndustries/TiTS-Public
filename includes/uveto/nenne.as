@@ -270,7 +270,7 @@ public function talkToNenne():void
 	addButton(2,"Uveto",nenneUvetoTalk,undefined,"Uveto","Ask Nenne what an experienced Korgonne like herself thinks about Uveto, and what opinions she has about the universe, if any.");
 	addDisabledButton(3,"Flirt","Flirt","Maybe talk to her a little before jumping straight to the fuck-offers.");
 	if(silly) addButton(4,"BellyRub!",nenneBellyRub,undefined,"Belly Rub!","Ask if Nenne knows who a good girl is.");
-	else addDisabledButton(4,"BellyRub!","BellyRub!","You aren't feeling <i>silly</i> enough for this. Maybe there's an option somewhere to correct that!");
+	else addDisabledButton(4,"BellyRub!","BellyRub!","You aren’t feeling <i>silly</i> enough for this. Maybe there’s an option somewhere to correct that!");
 	addButton(5,"PB Cookie",peanutButterNenne,undefined,"PB Cookie","You wonder how much Nenne would like to have a peanut butter cookie.");
 	addButton(14,"Back",approachNenne,true);
 }
