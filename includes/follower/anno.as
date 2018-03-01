@@ -4381,13 +4381,13 @@ public function annoFrenchMaidGimmeMoreMore(x:int):void
 	{
 		output("\n\nYou awaken only to find Anno still on top of you. You squirm a bit under her, and that seems enough to rouse the ausar. The spunk-covered maid stretches and yawns softly before she tries to nuzzle her head back into your shoulder. <i>“Morning boss...”</i> is all you get out of her.");
 		output("\n\nOpening your mouth, you’re only able to release a halfhearted sigh. " + (pc.isAss() ? "You know you need to get moving, but can’t with your maid-puppy in the way" : "As much as you want to let your maid-puppy rest, you need to get moving") + ", and you " + (!pc.isAss() ? "reluctantly" : "") + " tell her so. Anno groans and picks herself up off of you, displeasure clear in her tired noises.");
-		output("\n\nYou wiggle yourself out from under her and stand up, your legs still a bit sore. Turning around you see Anno curling up on the chair, ready to go back to her nap. You crack a smile and reach a hand down to give her a quick appreciative scratch between her ears. She smiles, her tail batting against the chair. You gather your gear from the floor. Luckily it seems like it’s avoided most of yours and Anno’s cum. You give yourself a great big stretch " + (!pc.isNude() ? "as you put on the last of your [pc.armor] " : "") + "and take a quick look back at your maid, still asleep.");
+		output("\n\nYou wiggle yourself out from under her and stand up, your legs still a bit sore. Turning around you see Anno curling up on the chair, ready to go back to her nap. You crack a smile and reach a hand down to give her a quick appreciative scratch between her ears. She smiles, her tail batting against the chair. You gather your gear from the floor. Luckily it seems like it’s avoided most of yours and Anno’s cum. You give yourself a great big stretch " + (pc.hasArmor() ? "as you put on the last of your [pc.armor] " : "") + "and take a quick look back at your maid, still asleep.");
 	}
 	else
 	{
 		output("\n\nYou awaken only to find Anno still on top of you. You squirm a bit under her, and that seems enough to rouse the ausar. The spunk-covered maid stretches and yawns softly before she tries to nuzzle her head back into your shoulder. <i>“Morning boss...”</i> is all you get out of her.");
 		output("\n\nOpening your mouth, you’re only able to release a halfhearted sigh. " + (pc.isAss() ? "You know you need to get moving, but can’t with your maid-puppy in the way" : "As much as you want to let your maid-puppy rest, you need to get moving") + ", and you " + (!pc.isAss() ? "reluctantly " : "") + "tell her so. Anno groans and picks herself up off you, displeasure clear in her tired noises. She lifts herself off of your soft [pc.cockNoun " + x + "], multiple orgasms worth of [pc.cum] leaking out from her slightly-agape sex as your [pc.knot " + x + "] is freed.");
-		output("\n\nYou wiggle yourself out from under her and stand up, your legs still a bit sore. Turning around you see Anno curling up on the chair, ready to go back to her nap. You crack a smile and reach a hand down to give her a quick appreciative scratch between her ears. She smiles, her tail batting against the chair. You gather your gear from the floor. Luckily it seems like it’s avoided most of yours and Anno’s cum. You give yourself a great big stretch " + (!pc.isNude() ? "as you put on the last of your [pc.armor] " : "") + "and take a quick look back at your maid, still asleep. ");
+		output("\n\nYou wiggle yourself out from under her and stand up, your legs still a bit sore. Turning around you see Anno curling up on the chair, ready to go back to her nap. You crack a smile and reach a hand down to give her a quick appreciative scratch between her ears. She smiles, her tail batting against the chair. You gather your gear from the floor. Luckily it seems like it’s avoided most of yours and Anno’s cum. You give yourself a great big stretch " + (pc.hasArmor() ? "as you put on the last of your [pc.armor] " : "") + "and take a quick look back at your maid, still asleep. ");
 	}
 	
 	annoSexed(1);
@@ -4745,7 +4745,7 @@ public function annoxErraJoin():void
 		output("\n\nYou have just the plan for these puppies, but you’re going to need them to do a little prep work first.");
 		output("\n\n<i>“Alright, girls,”</i> you say, stepping towards the edge of your bed, getting your crotch about face-level with your pets, <i>“How about we play a little fetch?”</i>");
 		output("\n\nWith that, you ");
-		if (!pc.isNude())
+		if (!pc.isCrotchExposed())
 		{
 			output("drop your pants, letting your slowly-stiffening [pc.cocks] drop from ");
 			if(pc.cockTotal() > 1) output("their");
@@ -4929,13 +4929,13 @@ public function annoxErraWatch():void
 	if (pc.hasCock())
 	{
 		output("your [pc.cocks] ");
-		if (!pc.isNude()) output("straining against your clothes");
+		if (!pc.isCrotchExposed()) output("straining against your clothes");
 		else output("proudly erect in the open");
 	}
 	else if (pc.hasVagina())
 	{
 		output("your [pc.vaginas] ");
-		if (!pc.isNude()) output("soaking your [pc.lowerundergarments]");
+		if (!pc.isCrotchExposed()) output("soaking your [pc.lowerGarment]");
 		else output("wetting your thighs");
 	}
 	else output("lust burning in your loins");
