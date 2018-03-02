@@ -12216,14 +12216,14 @@
 
 			//Saurmorian score at least 6
 			//sheathed saurian penis
-			if(score >= 6 && hasCock())
+			if(score >= 4 && hasCock())
 			{
 				if(cocks[0].cType == GLOBAL.TYPE_SAURIAN && hasSheath(0)) score++;
 			}
 			//Saurmorian score at least 6
 			//Vagina count is 1
 			//Has slightly or fully plump, ribbed vagina
-			if(score >= 6 && hasVagina())
+			if(score >= 4 && hasVagina())
 			{
 				if(vaginas[0].hasFlag(GLOBAL.FLAG_RIBBED) && (vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[0].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))) score++;
 			}
