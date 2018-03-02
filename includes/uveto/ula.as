@@ -56,6 +56,90 @@ public function ulaCapacity():Number
 {
 	return 500;
 }
+public function korgiTranslate():Boolean
+{
+	return (flags["KORGI_TRANSLATING"] == 1);
+}
+public function translateKorgii():void
+{
+	clearOutputCodex();
+	showUla();
+	showName("\nTRANSLATION!");
+	outputCodex("You send in the language data your Codex has stealthily assembled during your time in Korg'ii Hold. The upload takes but a moment, yet the waiting seems to take forever.");
+	outputCodex("\n\n...");
+	outputCodex("\n\n...");
+	outputCodex("\n\n...");
+	outputCodex("\n\n...");
+	outputCodex("\n\n.......");
+	outputCodex("\n\n...");
+	outputCodex("<i>Translation subroutine for 'korgonne' species updated!</i>\n\nThat ought to do it. From now on, you should have an easier time understanding Uveto's fluffy dog-people.");
+	flags["KORGI_TRANSLATING"] = 1;
+	clearGhostMenu();
+	addGhostButton(4, "Back", showCodex);
+	userInterface.outputCodex();
+}
+public function translationToggle():void
+{
+	clearOutputCodex();
+	showUla();
+	showName("\nTRANSLATION!");
+	if(flags["KORGI_TRANSLATING"] == 1)
+	{
+		outputCodex("You've got to admit, you liked the way the translator made the korgonne sound <i>before</i> you updated it. A quick software rollback should have them back to sounding like adorable savages once more. Annnnd... <b>done</b>.");
+		flags["KORGI_TRANSLATING"] = -1;
+	}
+	else
+	{
+		outputCodex("With a heavy sigh, you pull the latest software update for your translator back off the extranet. Now <b>you'll hear the korgonne sounding like normal people once more.</b>");
+		flags["KORGI_TRANSLATING"] = 1;
+	}
+	clearGhostMenu();
+	addGhostButton(4, "Back", showCodex);
+	userInterface.outputCodex();
+}
+public function korgiTranslateProgress():Number
+{
+	var qualifyingEvents:Number = 0;
+	//Tuuva
+	if(flags["TUUVA_SELF_TALK"] != undefined) qualifyingEvents++;
+	if(flags["TUUVA_SMITHING_TALK"] != undefined) qualifyingEvents++;
+	if(flags["TUUVA_SCAVENGING_TALK"] != undefined) qualifyingEvents++;
+	if(flags["TUUVA_DICK_TALK"] != undefined) qualifyingEvents++;
+	if(tuuva.hasCock(GLOBAL.TYPE_EQUINE)) qualifyingEvents++;
+	if(flags["TUUVA_SAVED"] == 2) qualifyingEvents++;
+	if(flags["TUUVA_COOKIES"] != undefined) qualifyingEvents++;
+	//Heidrun
+	if(flags["MET_HEIDRUN"] != undefined) qualifyingEvents++;
+	if(flags["SEXED_HEIDRUN"] != undefined) qualifyingEvents++;
+	//Maja
+	if(flags["MAJA_RENT"] != undefined) qualifyingEvents++;
+	if(flags["MAJA_TRUST_TALK"] != undefined) qualifyingEvents++;
+	if(flags["MAJA_TAMING_TALK"] != undefined) qualifyingEvents++;
+	if(flags["MAJA_SPACE_TALK"] != undefined) qualifyingEvents++;
+	//Nenne
+	if(flags["NENNE_FAMILY"] != undefined) qualifyingEvents++;
+	if(flags["NENNE_BELLY_RUBS"] != undefined) qualifyingEvents++;
+	if(flags["NENNE_SHOP_TALK"] != undefined) qualifyingEvents++;
+	if(flags["NENNE_UVETO_TALK"] != undefined) qualifyingEvents++;
+	if(flags["NENNE_COOKIES"] != undefined) qualifyingEvents++;
+	if(flags["SEXED_NENNE"] != undefined) qualifyingEvents++;
+	//Ula
+	if(flags["ULA_SAVED"] != undefined) qualifyingEvents++;
+	if(flags["ULA_STARTALK"] != undefined) qualifyingEvents++;
+	if(flags["ULA_SEXED"] != undefined) qualifyingEvents++;
+	if(flags["ULA_CREDIT_TALK"] != undefined) qualifyingEvents++;
+	if(flags["ULA_SAVICITE_TALK"] != undefined) qualifyingEvents++;
+	if(flags["ULA_ELECTRICITY_TALK"] != undefined) qualifyingEvents++;
+	if(flags["ULA_GUN_TALK"]  != undefined) qualifyingEvents++;
+	if(flags["ULA_OTHER_TRIBES"] != undefined) qualifyingEvents++;
+	if(flags["ULAS_ROLE"] != undefined) qualifyingEvents++;
+	if(flags["ULA_MINING_TALKED"] != undefined) qualifyingEvents++;
+
+	qualifyingEvents *= 4;
+	if(qualifyingEvents >= 100) qualifyingEvents = 100;
+	if(qualifyingEvents < 0) qualifyingEvents = 0;
+	return qualifyingEvents;
+}
 
 //Meeting
 //Bonustext
@@ -2050,6 +2134,7 @@ public function ulaMiningTalk():void
 	else output("Want to talk about something else");
 	output("?”</i> Ula seems discomforted by the recent turns the conversation.");
 	processTime(15);
+	flags["ULA_MINING_TALKED"] = 1;
 	addDisabledButton(1,"Mining","Mining","You just spoke about this.");
 }
 
@@ -2098,6 +2183,7 @@ public function ulasRoleInTheClan():void
 	if(!korgiTranslate()) output("Want talk something else?");
 	else output("Want to talk about something else?");
 	output("”</i> Ula strokes your knee affectionately.");
+	flags["ULAS_ROLE"] = 1;
 	processTime(10);
 	addDisabledButton(2,"Ula’s Role","Ula’s Role","You already spoke of this.");
 }
@@ -2165,6 +2251,7 @@ public function otherTribesTalkarydooda():void
 	if(!korgiTranslate()) output("Have magic of own. Now, you want talk something else? Or want snuggle?");
 	else output("We have magic of our own. Now, do you want to talk about something, or snuggle in?");
 	output("”</i>");
+	flags["ULA_OTHER_TRIBES"] = 1;
 	processTime(10);
 	addDisabledButton(3,"Other Tribes","Other Tribes","You’ve already had this conversation.");
 }
@@ -2194,6 +2281,7 @@ public function talkAboutGunsWithUla():void
 	output("\n\nThe barbarian princess beams ");
 	if(pc.tallness >= 66) output("up ");
 	output("at you. <i>“Ula good stupid. Much learnings. Talk more? Tell of more core-magic?”</i>");
+	flags["ULA_GUN_TALK"] = 1;
 	processTime(10);
 	addDisabledButton(4,"Explain Guns","Explain Guns","You already spoke of this.");
 }
@@ -2227,6 +2315,7 @@ public function explainElectricityToUla():void
 	output("\n\n<i>“Oooooh.”</i> Mischief dances in the korgonne’s eyes. <i>“");
 	if(!korgiTranslate()) output("Much learn. Many thanks. Other talks now?");
 	else output("I learned so much. Many thanks! Want to talk about something else now?”</i>");
+	flags["ULA_ELECTRICITY_TALK"] = 1;
 	processTime(10);
 	addDisabledButton(5,"Exp:Electricity","Explain: Electricity","You already discussed this.");
 }
@@ -2297,6 +2386,7 @@ public function talkAboutSavicite():void
 	if(!korgiTranslate()) output("Second one better wish. Maybe other-talk now?");
 	else output("The second one is a better wish. Maybe we could talk about something else now?");
 	output("”</i>");
+	flags["ULA_SAVICITE_TALK"] = 1;
 	processTime(10);
 	addDisabledButton(6,"Exp:Savicite","Explain: Savicite","You already spoke of this.");
 }

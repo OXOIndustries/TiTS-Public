@@ -2582,7 +2582,34 @@ public function korgonneCodexEntry():void
 	outputCodex("Korgonne culture holds industriousness as the highest virtue. The more productive an individual, the greater respect they are afforded by their peers. The quality of work contributes as well; a miner who slaves at his job for fifteen hours straight would not be as well-regarded as one who finds a way to extract three times the minerals in half as many hours.");
 	outputCodex("\n\nIntelligence and wit are valued commodities. They see no greater sin than having a brilliant mind and refusing to use it to its fullest, viewing idle genius as the worst kind of sloth. To this end, they rigorously school their young, affording their teachers luxurious pay. Korgonne have achieved a level of scientific understanding well beyond what many anthropologists thought isolated, tribal cultures capable of. Further diplomatic studies by the U.G.C. are planned, and a number of private corporations have expressed interest in bringing a korgonne scientist up to galactic standards.");
 	outputCodex("\n\nAnother major difference from galactic norms is the korgonne attitude toward loyalty and honesty, going far beyond general approval to a fanatical adherence to code. Dishonesty is considered gauche and a habitual liar absolute scum. The punishment for thievery is banishment, considered to be worse than death; this sentiment also extends to alien explorers, making it difficult for outsiders to befriend and enter even the most peaceful korgonne colony. A korgonne’s word is his bond, and a cultivated friendship often transforms into a lifetime of loyalty. Similarly, one social misstep could make a mortal, implacable enemy.");
-	outputCodex("\n\nLastly, their language has proven difficult for procedural translation software to adapt to. Extensive samples are needed to improve the accuracy; though basic conceptual understanding is still possible, many subtleties are lost. Developing algorithms to properly handle korgonne speech could advance translation technology by decades.");
+	if(flags["KORGI_TRANSLATING"] == undefined)
+	{
+		outputCodex("\n\nLastly, their language has proven difficult for procedural translation software to adapt to. Extensive samples are needed to improve the accuracy; though basic conceptual understanding is still possible, many subtleties are lost. Developing algorithms to properly handle korgonne speech could advance translation technology by decades.");
+		if(korgiTranslateProgress() != 0) 
+		{
+			outputCodex(" (<b>Data Collection Progress: " + Math.round(korgiTranslateProgress()) + "%.</b>");
+
+			if(korgiTranslateProgress() >= 100) 
+			{
+				output(" <b>Would you like to submit your Codex's language data to improve translations?</b>");
+				clearGhostMenu();
+				addGhostButton(4, "Back", showCodex);
+				addGhostButton(0, "Translate", translateKorgii);
+			}
+			outputCodex(")");
+		}
+	}
+	else
+	{
+		outputCodex("\n\nLastly, while their language has proven difficult for procedural translation software to adapt to, your extensive sampling of the residents of Korg’ii Hold improved the algorithm to near perfection. Your efforts to refine translation software has not gone unnoticed.");
+		if(!korgiTranslate()) 
+		{
+			output(" <b>For some reason, you're using the old software version.</b>");
+		}
+		clearGhostMenu();
+		addGhostButton(0, "Translate", translationToggle);
+		addGhostButton(4, "Back", showCodex);		
+	}
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Sex and Mating"));
 	outputCodex("Reproduction among the korgonne is slow, not because of infrequent mating but because of infrequent ovulation. Females are only fertile in times of plenty, when supplies and space both exist in ample quantities. Further study is needed to determine the exact mechanisms behind this selective behavior. Pregnancies result in a single, helpless offspring that matures over a period of 25 to 30 years. Development is comparable to terran and ausar stages, though at a more gradual pace.");

@@ -327,7 +327,7 @@ public function nenneFamilyTalk():void
 	output("”</i>");
 
 	output("\n\n<i>“Maybe,”</i> you respond, understanding exactly what she means.");
-
+	flags["NENNE_FAMILY"] = 1;
 	// end scene (scene: Nenne’s Family); grey out all options, including [=Back=], except [=Flirt=]
 	processTime(20);
 	if(pc.hasGenitals())
@@ -377,7 +377,7 @@ public function nenneBellyRub():void
 	if(!korgiTranslate()) output("Knowing didn’t Korgonne doing could that! Liked! Afraiding not doing to again!");
 	else output("I didn’t know the Korgonne could do that! I liked it a lot; don’t be afraid to give me another one!");
 	output("”</i>");
-
+	flags["NENNE_BELLY_RUBS"] = 1;
 	// end scene (scene: Belly Rub); grey out all options, including [=Back=], except [=Flirt=]
 	processTime(20);
 	if(pc.hasGenitals())
@@ -438,7 +438,7 @@ public function theShopNenneTalk():void
 	if(!korgiTranslate()) output("Asking is being thanked! Nenne love alien for curiousness; Korg’ii not being of curious asking anymore. Ask again, will tell!");
 	else output("Thanks for asking, by the way! I appreciate your curiosity; it’s so rare nowadays for a Korg’ii to ask me about my profession. I’d love to tell the story again if you’d ask!");
 	output("”</i>");
-
+	flags["NENNE_SHOP_TALK"] = 1;
 	// end scene (scene: Nenne’s Shop); grey out all options, including [=Back=], except [=Flirt=]
 	processTime(20);
 	if(pc.hasGenitals())
@@ -490,7 +490,7 @@ public function nenneUvetoTalk():void
 	if(!korgiTranslate()) output("Easy finding of Nenne!");
 	else output("You’ll know where to find me,");
 	output("”</i> she answers with a wink.");
-
+	flags["NENNE_UVETO_TALK"] = 1;
 	// end scene (scene: Nenne’s Uveto); grey out all options, including [=Back=], except [=Flirt=]
 	// If Nenne turns out to be popular enough, this should be a decent hook to make her a crewmate in an expansion.
 	processTime(20);
@@ -912,6 +912,7 @@ public function freebieNenneScene():void
 	}
 	// end scene (scene: Freebie); advance clock by two hours; if the PC has earned a free item, display the shop’s menu and reduce all costs to 0 credits; else, display a [=Next=] button and place the PC one square outside of Herbs & Happy
 	// I’ll admit that I kind of got lost as to how to create some kind of economy between the PC and Nenne when it came to free items, so I just resorted to more sex. In order to get a free item, the PC needs to have sex with Nenne, and how many times the PC needs to fuck her increases by one with each item they get (up to a maximum of five times before Nenne finally gives the PC something). So, the first time, they get a free item after fucking her once; then, they need to fuck her twice for another free item; then three times; etc.
+	IncrementFlag("SEXED_NENNE");
 	processTime(180+rand(20));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

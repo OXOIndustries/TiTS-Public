@@ -1636,6 +1636,8 @@ public function korgiD12Bonus():void
 	output("\n\nTo the west is a door carved with pictures of spears and fallen beasts.");
 	if(!korgiTranslate()) output(" Your translator can’t make out the foreign script that accompanies it.");
 	else output(" Rough script declares it to be “Hunter’s Hole,” obviously some kind of shop.");
+
+	if(korgiTranslateProgress() >= 100 && flags["KORGI_TRANSLATING"] == undefined) output("\n\n<b>A chirp from your Codex reminds you that it has gained enough data to improve korgonne language processing.</b> To update the algorithm, visit the \"Korgonne\" entry in your Codex and select \"Translation.\"");
 }
 
 public function korgiH14Bonus():void

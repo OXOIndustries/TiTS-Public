@@ -271,6 +271,7 @@ public function lickMuffHeidrun():void
 	else output("<i>“Come back and treat me to a wonderful time again.”</i>");
 	output(" She winks at you lustily before sauntering out of the backroom. You quickly throw your things back on and follow her to the storefront.");
 	processTime(20);
+	IncrementFlag("SEXED_HEIDRUN");
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -327,6 +328,7 @@ public function boneHeidrun(x:int):void
 	else output("<i>“Mmm, you taste good. Come back and give me some more.”</i>");
 	output(" You stand up, stretching your limbs you grab your equipment before walking back to the storeroom.");
 	output("\n\nA moment later Heidrun walks out of the backroom, cum still leaking down her thighs. She licks your neck affectionately before ushering you out of the store.");
+	IncrementFlag("SEXED_HEIDRUN");
 	processTime(20);
 	pc.orgasm();
 	clearMenu();
@@ -374,7 +376,7 @@ public function getBonedByHeidrun():void
 	if(!korgiTranslate()) output("Alien enjoyed " + pc.mf("himself","herself") + " yes? Alien go now, Heidrun is needing to take care of her own need.");
 	else output("Did you enjoy yourself? Good, now if you don’t mind I have some business to take care of.");
 	output("”</i> She starts to licking the strapon while fingering her pussy, leaving no doubt what she’s going to do. Not wanting to disturb her you grab your gear and limp your way out of the backroom. Damn your [pc.pussy " + x + "] is sore.");
-
+	IncrementFlag("SEXED_HEIDRUN");
 	processTime(20);
 	pc.orgasm();
 	clearMenu();

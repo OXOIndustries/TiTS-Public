@@ -4,10 +4,7 @@ public function korgiSillyTranslate():Boolean
 {
 	return true;
 }
-public function korgiTranslate():Boolean
-{
-	return false;
-}
+
 public function showKorgiFemaleHostile(nude:Boolean = false):void
 {
 	showName("FEMALE\nKORGONNE");
