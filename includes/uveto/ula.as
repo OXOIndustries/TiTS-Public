@@ -359,9 +359,8 @@ public function ulaSexApproach():void
 		{
 			addDisabledButton(4,"Tentatail","Tentatail","Ula needs to lose her virginity before trying this.");
 		}
-		/*
-		if(pc.hasGenitals()) addButton(5,"Roleplay",roleplayWithUla,undefined,"Roleplay","Roleplay your first meeting with Ula - and the potentially hot sex that came with it.");
-		else addDisabledButton(5,"Roleplay","Roleplay","You need genitals for this.");*/
+		if(!pc.hasGenitals() || (pc.totalVaginas() <= pc.blockedVaginas() && !pc.hasCock())) addDisabledButton(5,"Roleplay","Roleplay","You need genitals for this.");
+		else addButton(5,"Roleplay",roleplayWithUla,undefined,"Roleplay","Roleplay your first meeting with Ula - and the potentially hot sex that came with it."); 
 	}
 	else
 	{
@@ -378,6 +377,44 @@ public function ulaSexApproach():void
 		addButton(14,"Back",ulaApproach,true);
 		addButton(0,"Eat Her Out",eatOutPregnantUla,undefined,"Eat Her Out","Eat out the pregnant korgonne, as requested.");
 	}
+}
+
+public function roleplayWithUla():void
+{
+	clearOutput();
+	showCaveUla(true);
+	if(flags["ULA_RPED"] == undefined)
+	{
+		output("<i>“Roleplay,”</i> you answer.");
+		output("\n\nUla seems confused by this. <i>“");
+		if(!korgiTranslate()) output("Rolling play? Ula not seeing how this make warm-feel-share.");
+		else output("Role playing? I don’t see how playing will help us share our warmth.");
+		output("”</i>");
+		output("\n\nYou take a little bit of time to explain the concept, telling her that you’d like to re-enact meeting with her, pretending to share an intimate moment with the shivering princess in her lonely cave.");
+		output("\n\nThe pudgy korgonne giggles at this. <i>“");
+		if(!korgiTranslate()) output("Alien make breed-times many complexities. Korgonne way simple.");
+		else output("Aliens make sex so complicated. The korgonne way is simpler.");
+		output("”</i> Her eyes twinkle as she leans closer. <i>“");
+		if(!korgiTranslate()) output("I try alien way for [pc.name].");
+		else output("I’ll try the alien way for you.");
+		output("”</i> She pretends to shiver. <i>“");
+		if(!korgiTranslate()) output("Am losting in cave! Big strong alien make warm?");
+		else output("Am losting in cave! Big strong alien make warm?”</i> After a second, Ula giggles, <i>“I must have sounded so silly to you back then, but you sounded pretty stupid too!");
+		output("”</i>");
+		output("\n\nYou grin, imagining that the room’s backdrop is the chill, empty interior of a cave and a beckoning, horny korgonne princess.");
+	}
+	else
+	{
+		output("<i>“Let’s roleplay again,”</i> you answer.");
+		output("\n\nUla smirks. <i>“");
+		if(!korgiTranslate()) output("[pc.name] like saving-warm-shares muching.”</i> She smiles broadly. <i>“But Ula liking too.");
+		else output("You like fucking damsels in distress quite a lot.”</i> She smiles broadly. <i>“Almost as much as this damsel enjoys it.");
+		output("”</i> Her eyes twinkle as she leans closer, moaning");
+		if(korgiTranslate()) output(" theatrically");
+		output(", <i>“So horny! Need big alien for sex-making!”</i> Her hips wriggle, and the scent of her arousal floods the air. <i>“Suuuuch wet!”</i>");
+	}
+	clearMenu();
+	addButton(0,"Next",ulaFuckRouter);
 }
 
 //[Figure]
@@ -817,7 +854,8 @@ public function korgiCavePussPart3():void
 	for(var x:int = 0; x < 14; x++) { pc.orgasm(); }
 	IncrementFlag("ULA_SEXED");
 	clearMenu();
-	addButton(0,"Next",korgiCavePussPart4);
+	if(flags["ULA_SEXED"] == 1) addButton(0,"Next",korgiCavePussPart4);
+	else addButton(0,"Next",mainGameMenu);
 }
 
 public function korgiCavePussPart4():void
@@ -1033,6 +1071,14 @@ public function korgiCockFuck2():void
 		pc.orgasm();
 		clearMenu();
 		addButton(0,"Next",korgiCockFuck3);
+	}
+	//If repeated from RP menu, skip epilogue
+	if(flags["ULA_SEXED"] != undefined) 
+	{
+		flags["ULA_DEFLOWERED"] = 1;
+		IncrementFlag("ULA_SEXED");
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
 	}
 }
 
