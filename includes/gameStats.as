@@ -4781,10 +4781,11 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 					if(flags["ANNO_ANALSEXED"] != undefined) output2("\n<b>* Anno, Times Fucked Her Ass:</b> " + flags["ANNO_ANALSEXED"]);
 					if(flags["ANNO_TRIBERATOR_USED"] != undefined) output2("\n<b>* Anno, Times Used Her Vibrator:</b> " + flags["ANNO_TRIBERATOR_USED"]);
+					if(flags["ANNO_MAID_SEX"] != undefined) output2("\n<b>* Anno, Times Fucked Her in Maid Outfit:</b> " + flags["ANNO_MAID_SEX"]);
+					if(flags["ANNO_X_ERRA_JOINED"] != undefined) output2("\n<b>* Anno, Times Sexed in Threesome with Erra:</b> " + flags["ANNO_X_ERRA_JOINED"]);
 					if(flags["UVETO_HUSKAR_FOURSOME_MOUNTUP"] != undefined) output2("\n<b>* Anno, Times Mounted with Marina and Galina:</b> " + flags["UVETO_HUSKAR_FOURSOME_MOUNTUP"]);
 					if(flags["UVETO_HUSKAR_FOURSOME_POUNDPUPPIES"] != undefined) output2("\n<b>* Anno, Times Pounded Both Marina and Galina:</b> " + flags["UVETO_HUSKAR_FOURSOME_POUNDPUPPIES"]);
 					if(annoIsPet()) output2("\n<b>* Anno, Times Walked:</b> " + annoTimesWalked());
-					if(flags["ANNO_MAID_SEX"] != undefined) output2("\n<b>* Anno, Times Fucked Her in Maid Outfit:</b> " + flags["ANNO_MAID_SEX"]);
 				}
 				variousCount++;
 			}
@@ -6195,6 +6196,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Herbs & Happy</u></b>");
 				output2("\n<b>* Nenne:</b> Met her");
+				if(flags["NENNE_COOKIES"] != undefined) output2("\n<b>* Nenne, Times Given Her Peanut Butter Cookies:</b> " + flags["NENNE_COOKIES"]);
 				variousCount++;
 			}
 			// The Warm Crusts

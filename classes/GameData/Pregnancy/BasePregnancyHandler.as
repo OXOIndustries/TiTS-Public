@@ -410,7 +410,7 @@ package classes.GameData.Pregnancy
 			// 0: Applies extra multiplier to quantityMax (after fertility calculation).
 			// 1: Minimum fertility threshold before adding extra children.
 			// 2: Increment to count through fertility loop.
-			if (qtyEdit.length > 2)
+			if (qtyEdit != null && qtyEdit.length > 2)
 			{
 				var limit:Number = Math.min(qtyEdit[1], 100);
 				var inc:Number = Math.max(qtyEdit[2], 0.1);
@@ -424,7 +424,7 @@ package classes.GameData.Pregnancy
 					quantity += rand((quantityMax - quantityMin) + 1);
 				}
 			}
-			if (qtyEdit.length > 0 && qtyEdit[0] > 1) quantityMax = Math.round(quantityMax * qtyEdit[0]);
+			if (qtyEdit != null && qtyEdit.length > 0 && qtyEdit[0] > 1) quantityMax = Math.round(quantityMax * qtyEdit[0]);
 			
 			// Quantity bonuses
 			var fatherBonus:int = Math.round((father.cumQ() * 2) / thisPtr.definedAverageLoadSize);
