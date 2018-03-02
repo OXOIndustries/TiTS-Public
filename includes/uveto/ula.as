@@ -401,7 +401,7 @@ public function roleplayWithUla():void
 		if(!korgiTranslate()) output("Am losting in cave! Big strong alien make warm?");
 		else output("Am losting in cave! Big strong alien make warm?”</i> After a second, Ula giggles, <i>“I must have sounded so silly to you back then, but you sounded pretty stupid too!");
 		output("”</i>");
-		output("\n\nYou grin, imagining that the room’s backdrop is the chill, empty interior of a cave and a beckoning, horny korgonne princess.");
+		output("\n\nYou grin, imagining that the room’s backdrop is the chill, empty interior of a cave and a beckoning, horny korgonne princess, her scent overwhelming your senses.");
 	}
 	else
 	{
