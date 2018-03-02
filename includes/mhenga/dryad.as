@@ -510,20 +510,21 @@ public function dryadFaceFuckSpecial():void
 	}
 	output("\n\nBetween her gentle sucking and maddening coaxing by way of tonguing your urethra, it’s not long before you’re grunting and struggling not to just claim her throat. You groan out loud.");
 	output("\n\n<i>“Nnnfuck gonna cum, don’t stop licking!”</i>");
-
-	if(pc.cumQ() < 5000) 
+	
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 5000) 
 	{
 		output("\n\nHer eyes go wide when she feels you orgasm, [pc.cumFlavor] warmth landing on her tongue. She quickly recovers, lashing her tongue across your cockslit ");
 
-		if(pc.cumQ() >= 40) output("while she struggles to swallow down your loads before they spill from her lips. She springs a few leaks at the edges of her cheeks, the cum trailing down her face to drip onto her tits, but she does manage to swallow most of it.");
+		if(cumQ >= 40) output("while she struggles to swallow down your loads before they spill from her lips. She springs a few leaks at the edges of her cheeks, the cum trailing down her face to drip onto her tits, but she does manage to swallow most of it.");
 		else 
 		{
 			output("to gather every single droplet of flavorful [pc.cumNoun].");
-			if(pc.cumQ() < 10) output(" There’s not much there, but she clearly makes the most of it, noisily gulping around your cock in order to capture every single sperm.");
+			if(cumQ < 10) output(" There’s not much there, but she clearly makes the most of it, noisily gulping around your cock in order to capture every single sperm.");
 			else output(" She playfully lets a rivulet escape the corner of her mouth to drip down to her tits, rubbing it into her nipple one-handed.");
 		}
 	}
-	else if(pc.cumQ() < 15000) output("\n\nHer eyes go wide when she feels you orgasm, [pc.cumFlavor] warmth landing on her tongue. She quickly recovers, lashing her tongue across your cockslit while she struggles to swallow down your loads before they spill from her lips. She springs a few leaks at the edges of her cheeks, and shortly after can’t keep up with your virile flow. Your jizz spurts out of her mouth, running down her chest and leaving it painted [pc.cumColor].");
+	else if(cumQ < 15000) output("\n\nHer eyes go wide when she feels you orgasm, [pc.cumFlavor] warmth landing on her tongue. She quickly recovers, lashing her tongue across your cockslit while she struggles to swallow down your loads before they spill from her lips. She springs a few leaks at the edges of her cheeks, and shortly after can’t keep up with your virile flow. Your jizz spurts out of her mouth, running down her chest and leaving it painted [pc.cumColor].");
 	else output("\n\nHer eyes go wide when she feels you orgasm, [pc.cumFlavor] warmth landing on her tongue. She tries to recover and swallow it all down, but she only manages a few cheek-straining gulps before your virile flow sends your jizz cascading down her tits and splattering to the ground, leaving her painted [pc.cumColor].");
 	output("\n\nShe’s panting through her nose, her cheeks flushed red with lust as she gulps down the last few spurts of seed. Time to take this up a notch.");
 
@@ -664,25 +665,26 @@ public function letZeSuckingsCommence():void
 	output("\n\nConscious thought is wiped from your minds, two beasts in heat rutting in the wild, one dominantly taken by the other as a personal cum-pump. You buck and writhe in her grip, panting while an almost continuous stream of spunk is sucked straight from your [pc.balls]. Helpless to resist, you cum into her hungry mouth one orgasm after another. You have no idea how much time passes, unthinkingly ejaculating until, finally, you can give her no more. Your [pc.cock] flexes one last time in her throat as her eyes roll back, her giant underslung cock erupting once more, painting what little undrenched brush there was a pearly white. You sigh and go limp, body battered and mind tired by the fuck-frenzy ordeal the horny taur’s put you through.");
 	
 	processTime(10);
+	var cumQ:Number = pc.cumQ();
 	pc.orgasm();
 
 	if(!pc.isTaur()) output("\n\nThe dryad slowly lowers you, your legs collapsing out from under you the moment you’re on the ground.");
 	else output("\n\nThe dryad slowly slides off your cock, your legs collapsing the moment she’s not under you holding you up.");
 	output(" You’re a fucking mess, your eyes half-closed on the verge of unconsciousness and your mouth hanging open, drool running down your face. The dryad is in a similar condition, panting hard and dripping cum from both her cock and her mouth.");
-	if(pc.cumQ() < 30000) {}
-	else if(pc.cumQ() < 75000) output(" Her equine half’s belly is sagging slightly, full of the virile spunk you’ve pumped into her.");
+	if(cumQ < 30000) {}
+	else if(cumQ < 75000) output(" Her equine half’s belly is sagging slightly, full of the virile spunk you’ve pumped into her.");
 	else output(" Her equine half’s belly is sagging halfway to the ground, absolutely full of the virile spunk you’ve pumped into her.");
 	output(" She looks down at you and giggles.");
 
 	output("\n\n<i>“Sorry babe. I guess I got just a little bit carried away, but you just tasted sooo good,”</i> She smiles, rubbing her");
-	if(pc.cumQ() < 15000) output(" still-flat");
-	else if(pc.cumQ() < 30000) output(" slightly swollen");
-	else if(pc.cumQ() < 75000) output(" cum-stuffed");
+	if(cumQ < 15000) output(" still-flat");
+	else if(cumQ < 30000) output(" slightly swollen");
+	else if(cumQ < 75000) output(" cum-stuffed");
 	else output(" prodigiously cum-stuffed");
 	output(" tummy. <i>“Thanks so much! If you’re always this delicious, you can spray your spunk into my mouth any time you want. If I’d cum any harder, I’d probably have blacked out!”</i>");
 
 	output("\n\nShe bends down and kisses you on the cheek before prancing off with a new spring in her step, her cute little tail flitting from side to side.");
-	if(pc.cumQ() >= 75000) output(" She has a little bit of trouble maneuvering when she’s so full of your spunk, though, and almost stumbles into a bush before recovering.");
+	if(cumQ >= 75000) output(" She has a little bit of trouble maneuvering when she’s so full of your spunk, though, and almost stumbles into a bush before recovering.");
 	output(" Your eyes slide shut, the roughness of her taking its toll on you. You lapse almost immediately into a dream of the dryad, cheerfully giggling as she does whatever she wants with your body.");
 
 	//30 minutes pass
@@ -760,12 +762,14 @@ public function dryadAnalFunsies():void
 	output("\n\n<i>“Fffuuuck,”</i> she groans, her erect cock dripping seed below her, <i>“I feel so full...”</i>");
 
 	output("\n\n<i>“That’s the idea,”</i> you quip from above her, slowly rocking your [pc.hips] to get your cock further into the warmth of her guts while she moans and shivers underneath you.");
-
+	
+	var cumQ:Number = pc.cumQ();
+	
 	if(pc.cocks[x].cLength() < 40) 
 	{
 		output("\n\nBy the time you’re halfway in, she’s panting hard against the tree, her fingers tightly gripping its bark. She whines quietly when it gets to three quarters, laying her forehead against the tree and taking deep breaths. You give her a second to acclimatize, but she <i>did</i> say not to take it easy, so you’re perhaps a little less merciful than you could be.");
 		output("\n\nYou slowly push forward, your passage being eased by the precum ");
-		if(pc.cumQ() >= 15000) output("spraying");
+		if(cumQ >= 15000) output("spraying");
 		else output("dribbling");
 		output(" from your cock into her. When you finally hilt yourself, you sigh with satisfaction and look down. She gives a shuddering sigh and her upper half slackens, finally bringing her head back up and unclenching her hands.");
 	}
@@ -788,7 +792,7 @@ public function dryadAnalFunsies():void
 	else output(" filling the dryad’s plump butt with as much of your cock as you can");
 	output(" as you pour all of your spunk into her guts with an animalistic grunt. She screams half in lust and half in utter satisfaction, shaking like a leaf as she noisily cums from both her cock and cunt, tightly gripping the tree so as to not fall over.");
 	output("\n\nYou give her a few last pumps, making sure you’ve truly filled her ass well and good. You pull out slowly, and the moment your [pc.cockHead] slips past her abused ring she collapses to the ground, moaning and drooling jizz from her asshole.");
-	if(pc.cumQ() >= 50000) output(" Her tauric stomach is swollen with your seed, her body branded by your hyper-virility.");
+	if(cumQ >= 50000) output(" Her tauric stomach is swollen with your seed, her body branded by your hyper-virility.");
 	output("\n\n<i>“Hey,”</i> you shrug, <i>“you did say not to be gentle.”</i>");
 	output("\n\nA semi-conscious moan is her only reply as she flops onto her side, breathing deeply. In a few moments her breathing slows, and then she’s asleep. You shake your head in amusement and prepare to move on. You’d wake her up to avoid her being taken advantage of by the natives, but you’re pretty confident she can handle herself, and frankly she’d probably be grateful to get off again.");
 	IncrementFlag("DRYAD_FUCKED");

@@ -6165,6 +6165,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["ULA_PREG_TIMER"] != undefined) output2("\n<b>* " + coldKorgiName + ", Days Pregnant:</b> " + flags["ULA_PREG_TIMER"]);
 					if(flags["ULA_TOTAL_KIDS"] > 0) output2("\n<b>* " + coldKorgiName + ", Total Kids:</b> " + flags["ULA_TOTAL_KIDS"]);
 					if(flags["ULA_SEXED"] != undefined) output2("\n<b>* " + coldKorgiName + ", Times Sexed:</b> " + flags["ULA_SEXED"]);
+					if(flags["ULA_RPED"] != undefined) output2("\n<b>* " + coldKorgiName + ", Times Roleplayed With:</b> " + flags["ULA_RPED"]);
 				}
 				else if((flags["ULA_LEAVE_TIMER"] + 60*24*2) <= GetGameTimestamp()) output2(", <i>Whereabouts unknown</i>");
 				else output2(", <i>Is freezing!</i>");
@@ -6184,6 +6185,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					else output2(", Close friends");
 				}
 				else output2(", Lovers");
+				if(flags["TUUVA_COOKIES"] != undefined) output2("\n<b>* Tuuva, Times Given Her Peanut Butter Cookies:</b> " + flags["TUUVA_COOKIES"]);
 				if(flags["SEXED_TUUVA"] != undefined)
 				{
 					output2("\n<b>* Tuuva, Sex Organs:</b> " + listCharGenitals("TUUVA"));

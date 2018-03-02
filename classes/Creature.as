@@ -17434,6 +17434,12 @@
 			if (slot < -1 || slot > 3)
 			{
 				throw new Error("isPregnant argument out of range. Expected -1 to 3, got " + slot);
+				return false;
+			}
+			if (slot >= pregnancyData.length)
+			{
+				throw new Error("isPregnant not of normal range. Currently -1 to " + (pregnancyData.length - 1) + ", got " + slot);
+				return false;
 			}
 			
 			// Find a pregnancy in a given slot

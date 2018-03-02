@@ -37,21 +37,28 @@ Snuck out to go alien hunting... and didn’t bring clothing for the cold.
 
 public function showCaveUla(nude:Boolean = false):void
 {
-	var nudeS:String = "";
-	if(nude) nudeS = "_NUDE";
-	showName("COLD\nKORGONNE");
-	if(ulaPregBelly() >= 2) showBust("ULA_PREG");
-	else showBust("ULA" + nudeS);
+	if(flags["MET_ULA"] == undefined) showName("COLD\nKORGONNE");
+	else showName("\nULA");
+	
+	showBust(ulaBustDisplay(nude));
 }
-
 public function showUla(nude:Boolean = false):void
 {
 	if(flags["MET_ULA"] == undefined) showName("KORGONNE\nPRINCESS");
 	else showName("\nULA");
-	var nudeS:String = "";
-	if(nude) nudeS = "_NUDE";
-	showBust("ULA" + nudeS);
+	
+	showBust(ulaBustDisplay(nude));
 }
+public function ulaBustDisplay(nude:Boolean = false):String
+{
+	if(ulaPregBelly() >= 2) return "ULA_PREG";
+	
+	var sBust:String = "ULA";
+	if(nude) sBust += "_NUDE";
+	
+	return sBust;
+}
+
 public function ulaCapacity():Number 
 {
 	return 500;
@@ -65,14 +72,14 @@ public function translateKorgii():void
 	clearOutputCodex();
 	showUla();
 	showName("\nTRANSLATION!");
-	outputCodex("You send in the language data your Codex has stealthily assembled during your time in Korg'ii Hold. The upload takes but a moment, yet the waiting seems to take forever.");
+	outputCodex("You send in the language data your Codex has stealthily assembled during your time in Korg’ii Hold. The upload takes but a moment, yet the waiting seems to take forever.");
 	outputCodex("\n\n...");
 	outputCodex("\n\n...");
 	outputCodex("\n\n...");
 	outputCodex("\n\n...");
 	outputCodex("\n\n.......");
 	outputCodex("\n\n...");
-	outputCodex("<i>Translation subroutine for 'korgonne' species updated!</i>\n\nThat ought to do it. From now on, you should have an easier time understanding Uveto's fluffy dog-people.");
+	outputCodex("<i>Translation subroutine for ‘korgonne’ species updated!</i>\n\nThat ought to do it. From now on, you should have an easier time understanding Uveto’s fluffy dog-people.");
 	flags["KORGI_TRANSLATING"] = 1;
 	clearGhostMenu();
 	addGhostButton(4, "Back", showCodex);
@@ -85,12 +92,12 @@ public function translationToggle():void
 	showName("\nTRANSLATION!");
 	if(flags["KORGI_TRANSLATING"] == 1)
 	{
-		outputCodex("You've got to admit, you liked the way the translator made the korgonne sound <i>before</i> you updated it. A quick software rollback should have them back to sounding like adorable savages once more. Annnnd... <b>done</b>.");
+		outputCodex("You’ve got to admit, you liked the way the translator made the korgonne sound <i>before</i> you updated it. A quick software rollback should have them back to sounding like adorable savages once more. Annnnd... <b>done</b>.");
 		flags["KORGI_TRANSLATING"] = -1;
 	}
 	else
 	{
-		outputCodex("With a heavy sigh, you pull the latest software update for your translator back off the extranet. Now <b>you'll hear the korgonne sounding like normal people once more.</b>");
+		outputCodex("With a heavy sigh, you pull the latest software update for your translator back off the extranet. Now <b>you’ll hear the korgonne sounding like normal people once more.</b>");
 		flags["KORGI_TRANSLATING"] = 1;
 	}
 	clearGhostMenu();
@@ -130,7 +137,7 @@ public function korgiTranslateProgress():Number
 	if(flags["ULA_CREDIT_TALK"] != undefined) qualifyingEvents++;
 	if(flags["ULA_SAVICITE_TALK"] != undefined) qualifyingEvents++;
 	if(flags["ULA_ELECTRICITY_TALK"] != undefined) qualifyingEvents++;
-	if(flags["ULA_GUN_TALK"]  != undefined) qualifyingEvents++;
+	if(flags["ULA_GUN_TALK"] != undefined) qualifyingEvents++;
 	if(flags["ULA_OTHER_TRIBES"] != undefined) qualifyingEvents++;
 	if(flags["ULAS_ROLE"] != undefined) qualifyingEvents++;
 	if(flags["ULA_MINING_TALKED"] != undefined) qualifyingEvents++;
@@ -413,6 +420,7 @@ public function roleplayWithUla():void
 		if(korgiTranslate()) output(" theatrically");
 		output(", <i>“So horny! Need big alien for sex-making!”</i> Her hips wriggle, and the scent of her arousal floods the air. <i>“Suuuuch wet!”</i>");
 	}
+	IncrementFlag("ULA_RPED");
 	clearMenu();
 	addButton(0,"Next",ulaFuckRouter);
 }

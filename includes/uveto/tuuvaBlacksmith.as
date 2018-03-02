@@ -196,7 +196,7 @@ public function tuuvaBlacksmithShopBonus():Boolean
 	else if(tuuvaPooped())
 	{
 		output("\n\nTuuva is still recovering from your last encounter.");
-		addDisabledButton(0,"Tuuva","Tuuva","She's going to need a little time to rest before talking with you again.");
+		addDisabledButton(0,"Tuuva","Tuuva","She’s going to need a little time to rest before talking with you again.");
 	}
 	else 
 	{
@@ -303,7 +303,7 @@ public function tuuvaMenu():void
 	else if(pc.hasKeyItem("Frostwyrm Scales")) addButton(5,"Scales",giveTuuvaFrostwormScales,undefined,"Scales","You have a pile of frostwyrm scales, and she seems like she’d know what to do with them.");
 	else addDisabledButton(5,"Special","Special","There aren’t any special events you can do with her right now.");
 	if(flags["SEXED_TUUVA"] != undefined) addButton(6,"PB Cookie",pbcookie4Tuuva,undefined,"PB Cookie","You wonder how much Tuuva would like to have a peanut butter cookie.");
-	else addDisabledButton(6,"Locked","Locked","You'll need to have sex with her before you can do this.");
+	else addDisabledButton(6,"Locked","Locked","You’ll need to have sex with her before you can do this.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
