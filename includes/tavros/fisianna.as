@@ -32,6 +32,9 @@
  * FISI_HARDLIGHTED		1 if used a hardlight dildo on Fisi, else undefined
  * FISI_TRUST			0-100 based on how much she trusts the player, undefined if Fisi still at bar
  * 
+ * #Sex n' Cuddles Expansion
+ * FISI_TIMES_CUDDLED	Number of times the cuddle scene played, also used to make sure the scene plays in order
+ * FISI_TIMES_MASSAGED	Number of times the cuddle scene played, also used to make sure the scene plays in order
  * 
  * HOW DO I TELL WHAT MY RELATIONSHIP IS WITH FISI?????
  * if FISI_LOVER == 1, you're lovers
@@ -409,7 +412,324 @@ public function fisiMainMenu(fromBack:Boolean = false):void
 		addDisabledButton(4, "Locked", "Locked", "You must be lovers with Fisianna in order to be able to do this.");
 	}
 	
+	if (flags["FISI_LOVER"] == 1) addButton(5, "Cuddle", cuddleFisi, undefined, "Cuddle", "Cuddle with the cute kitten for a while.");
+	else addDisabledButton(5, "Locked", "Locked", "You must be lovers with Fisianna in order to be able to do this.");
+	
+	if (flags["FISI_TIMES_MASSAGED"] != undefined && !pc.hasGooSkin() && !pc.isGoo()) addButton(6, "Massage", massageFisi, undefined, "Massage", "Get a relaxing, and intimate rub-down from Fisianna.");
+	else if	(pc.hasGooSkin() || pc.isGoo()) addDisabledButton(6, "Massage", "Massage", "The massage would be more effective with a more solid body type.");
+	else addDisabledButton(6, "Locked", "Locked", "THIS REALLY NEEDS A BETTER TOOLTIP!");
+
 	addButton(14, "Leave", leaveFisi);
+}
+
+public function cuddleFisi():void
+{
+	clearOutput();
+	author("Lkynmbr24");
+	showFisi();
+	
+	if ((pc.isSore() || pc.HP() <= pc.HPMax() * 0.75) && !pc.hasGooSkin() && !pc.isGoo()) {
+		massageFisi();
+		return;
+	}
+	
+	//Play them in order the first time, after that its just random
+	var cuddleScene:int;
+	if (flags["FISI_TIMES_CUDDLED"] <= 12) cuddleScene = flags["FISI_TIMES_CUDDLED"];
+	else cuddleScene = rand(13);
+	
+	switch(cuddleScene)
+	{
+		default: 
+			output("You scootch over to Fisianna and gently wrap your arms around her shoulders. She yelps in surprise when you pull her to your chest, but quickly relaxes when she sees your intent and makes herself comfortable against you. The two of you recline on the park bench, your feline lover content on listening to the ambience of your steady heartbeat.");
+			break;
+		case 1: 
+			output("You interlace your fingers with Fisianna's while she gives you a meaningful look. Your lover leans into your shoulder and gently rests her head against it. After her eyes fully close, you can hear her murmur, <i>“I love being with you like this, [pc.name]...”</i> She smiles and purrs as the two of you spend the rest of your time together in comfortable silence.");
+			break;	
+		case 2:
+			output("When you least expect it, Fisianna reaches over and gives you a quick peck on the cheek. She has a sly smile on her peachy lips and giggles softly at your surprised reaction. Not one to be outdone, you pounce on the unfortunate kitty, smothering whatever parts of her face you can catch with kisses. She lets out a small shriek of mock-fear and laughs jovially while she folds under your relentless assault.");
+			break;			
+		case 3:
+			output("You feel Fisianna shifting steadily closer to you. When you look over to her, she plants a kiss square on your [pc.lipsChaste] before you can react. The feline's golden eyes close shut while she sinks deeper into you, forcing you to lean against the arm of the bench. You wrap your arms around your lover as you spend the next few minutes making out.");
+			break;
+		case 4:
+			output("Fisianna rises up from the bench without any forewarning, making you wonder if she is about to leave you. Before you can ask if anything is wrong, however, she turns to you and smiles widely while she steps in front of you. Your feline lover rotates in place to face away from you before bending over to plant her twin-tailed bottom on your lap.");
+			output("\n\n<i>“Sorry, I just feel more comfy sitting here than on the hard bench… Y-you don't mind, right?”</i> Fisianna asks coyly while sensuously running the tip of one of her tails along your chin. You wrap your arms around her waist to answer her question and relax back against the bench, with the soft feline purring providing the most enjoyable accompaniment.");
+			break;
+		case 5:
+			output("You lean over to Fisianna and scoop her cheek into your hand before planting a kiss to her peachy lips. She reacts on instinct and presses herself into you before you can think to pull away; not that you wanted to, anyways. Your feline lover moans into your mouth as she prolongs the kiss and leans heavily into you, almost making the two of you fall off the bench. When you shift position to keep your balance, Fisianna suddenly pulls back from you, gasping at her own boldness as soon as your and her lips part.");
+			output("\n\n<i>“A-ah! S-sorry, [pc.name]! I don't know what came over me… I-I kinda lost control for a moment there.”</i> She smiles sheepishly. Trying your best not to chuckle, you straighten yourself out and pet the amorous kitten between her ears, letting her know that you forgive her. She smiles in relief and settles in to lean against you, content with spending the rest of your time together this way.");
+			break;
+		case 6:
+			output("You hear a soft mewling next to you while you relax against the bench. Turning to Fisianna, you see that she is looking at you with glimmer in her golden eyes that tells you she really wants something. You can’t help but smile at her overly cute display and gently pat your lap, welcoming her to climb on.");
+			output("\n\nFisi's face lights up as she eagerly accepts the invitation, rising up from the bench to settle down sideways onto your lap. Fisianna leans into your chest, happily purring while watching the passersby go about their business.");
+			break;
+		case 7:
+			output("You can feel the bench vibrating dully beneath you as you relax. Moments later, you feel Fisianna's head nuzzling into your shoulder as she tries to get your attention with her animalistic affections. You laugh and wrap an arm around her, stopping to scritch under her soft, rounded chin. On contact, the feline's ears twitch and flatten against her head. She has a blissed out expression on her face, and her purring intensifies as you gently pet her.");
+			break;
+		case 8:
+			output("You feel a furred arm wrap itself around yours while the two of you relax on the bench. Fisianna gives you a light tug while she leans in to peck your cheek.");
+			output("\n\n<i>“I love you so much, [pc.name]. Just thought I'd tell you that!”</i> she says sweetly as she rests against you. You return her affections with your own kiss, and the two of you spend a pleasurable few moments in each other's arms.");
+			break;
+		case 9:
+			output("Fisianna wraps her furred arms around one of yours, pulling it close to herself and squeezing it tightly. When you turn your head to look at her, she has a very anxious expression on her face while she gazes at you.");
+			if(pc.isNice()) output("<i>“You look worried about something. What's the matter?”</i> you ask Fisianna gently.");
+			else if(pc.isMischievous())	output("<i>“Alright, alright! I'm not going anywhere! What's gotten you so worked up?”</i > you ask Fisianna lightheartedly.");
+			else output("<i>“Alright, something's obviously got you bothered. Spit it out.”</i > you tell Fisianna bluntly.");
+			output(" Your lover fidgets in her seat for a few moments before inching closer to hug you.");
+			output("\n\n<i>“I… I just worry about you sometimes while you're away on the Rush, about all the dangers that might await you - or that you might have already had to face;  about how soon you would come back to me… or even if at all. I don't know if I could handle potentially losing you…”</i> Fisianna sniffles and buries her head into your side. With your free arm, you reach around to gently pet the feline, stroking your fingers through her long hair, telling her everything will be okay and that you'll make sure to come back in one piece for her.");
+			break;
+		case 10:
+			output("While looking ahead and enjoying the companionable silence the two of you are sharing, you feel something long, skinny and furry start to snake up and around your body. A second tendril-like object coils itself around your midsection, squeezing close to your form. The moment you look towards your lover, she flashes you a sweet smile, and you feel her tails' grip tightening gently. Their embrace feels lovely, and when she wraps her arms around your torso, you feel as comfy as if you were wrapped with a downy blanket.");
+			output("\n\nYou wrap your arms around Fisianna in appreciation for the warm snuggle and gently scritch her behind the ears. She coos at the returned gesture of affection and begins to purr in your arms. The two of you spend the next few minutes cuddling comfortably.");
+			break;
+		case 11:
+			author("Nnxx");
+			output("While your half-cat lover is looking away, you wrap your arms around her chest and gently pull her against you. She emits a cute squeak, surprised by your action and turns around only to be greeted by a deep kiss.");
+			output("\n\nAfter pulling away from her lips, you spend several moments lost in her golden gaze, gently running one hand through her hair and keeping her close to you with the other. Eventually, your kitty lover wraps her arms around your neck and pulls you into a deeper and longer kiss.");
+			output("\n\nWhen you finish making out with Fisianna, she nuzzles on your shoulder while you both enjoy the tranquility, the relaxing purr from your feline lover being the only sound you pay attention to.");
+			break;
+		case 12:
+			author("Miakoda");
+			output("Without saying a word, Fisianna gently scoots over to you. She then lifts her legs onto the bench and lays her head down on your lap, effectively turning it into a pillow. After a brief moment of relaxation, she begins to purr slightly, sending gentle vibrations through the seat and directly into you. She looks up towards your face, her golden eyes quickly finding yours.");
+			output("\n\n<i>“It's ok if I just lay my head here, right [pc.name]? You're just so comfy...”</i> She murmurs, her last words slowly drifting away. Instead of giving a direct answer, you bring your hand to her head, gently scritching between her perked feline ears, while your other hand softly wraps around her waist. As a result, Fisianna begins to purr more deeply, letting herself melt under your touch. You can see a faint smile curl on her peachy lips, and you can't help but smile as well. Leaning back against against the bench, you let yourself enjoy the sensation of Fisi's purring while the two of you sit together.");
+			break;
+	}
+	
+	IncrementFlag("FISI_TIMES_CUDDLED");
+	processTime(10);
+	clearMenu();
+	addButton(0,"Next",fisiMainMenu, true);
+//	fisiMainMenu(true);
+}
+
+public function cuddleFisiHLI():void
+{
+	clearOutput();
+	author("Lkynmbr24");
+	showFisi();
+
+	output("<i>“Say, [pc.name], I've been thinking. Usually whenever we're together and when we… erm… 'fool around', we always wind up going to my place. I've always loved your company there, but I've been wondering what it would be like at </i>your<i> place. I'd love to see it whenever we would get the chance... M-maybe spend a night there together.”</i> Fisianna blushes furiously while she shyly looks away towards the palm trees ahead. <i>“T-that is, if you want to...<i>“");
+	output("\n\nYou think for a moment about inviting the feline aboard your ship for a night alone. While you normally wouldn't have any problem going there with most other people, ");
+	if(crew(true) == 0) output("it's admittedly very empty and not very homey.");
+	else output("you feel that Fisianna could get a little worked up upon meeting some of your crewmates.");
+	output(" You spend some time figuring out a solution, but then realize that while you are on Tavros you ");
+	//If never visited Nursery Apartment: supposedly");
+	output(" have access to a perfectly comfortable private apartment on the Nursery deck. ");
+	 //If visited Nursery Apartment: It has a lot of the things that you had while growing up, so what better place to bring a date than there?");
+	 //else: Surely, a room your Dad left you to stay in while preggers can’t be <i>that</i> bad.");
+	output("\n\n<i>“Sure, I have a place around here that we can go to for the night. Did you want to go tonight or-?”</i> you ask before being cut-off mid question.");
+	output("\n\n<i>“Yes! Yes! Yes! I'd <b>love</b> to!”</i> Fisianna is practically bouncing in her seat. She is grinning giddily while her tails waggle in an orange and white blur behind her. The excited feline doesn't bother hiding her feelings this time when she gives you a tight hug, her twitching ears tickling your face all the while. When she lets go, she's still all smiles as she stands up from her seat.");
+	output("\n\n<i>“So, where to, [pc.name]? I'm dying to see where you live!”</i> she asks jovially while you straighten yourself out and rise from your seat. You laugh at the feline's eagerness and wave your hand invitingly to her, beckoning her to follow.");
+	output("\n\n<i>“This way,”</i> you croon to Fisianna. She follows without hesitation as the two of you make your way to the elevators in the center of the plaza.");
+	output("\n\nWhen the elevator stops and lets you off at the Nursery deck, you lead Fisianna past the foyer and up the stairs to the second floor. The feline's eyes and ears are a blur, taking in her surroundings while the two of you make your way to your personal apartment.");
+	output("\n\n<i>“I-is this your own <b>personal</b> nursery?”</i> Fisianna asks while she marvels at the sheer amount of rooms spread across the grandiose deck. After seeing you nod your head in confirmation, the feline's eyes open wide in shock.");
+	output("\n\n<i>“R-really? Wow… your father really must have went all-out for you: to get a whole deck on Tavros just for you and your children! I can't say that I'm not a little envious…”</i> she adds wistfully with a distant look on her face. In her moment of reverie, you catch the corners of her mouth curl into a slight smile while she thinks aloud. <i>“Mmm… to think that all manner of children can grow in such a well-to-do environment, being well taken care of by dedicated staff and maternal figures alike. I wonder: if I'd ever have children, would they be really happy here…? I would obviously visit them as often as I can");
+	if (ChildManager.numChildrenAtNursery() > 1) output(", and they would love to play with all their brothers and sisters");
+	output("...”</i> Fisianna looks up towards the ceiling, deep in thought. You can't help but chuckle at the catgirl's errant musings, which snaps her out of them when she hears you. She blushes dark pink as she avoids your gaze, trying her best to pretend that she didn't say anything.");
+	output("\n\nWhen the two of you arrive at your apartment, Fisianna waits patiently while you open the door and welcome her to your home. Once you enter, your lover follows you inside, her eyes and ears still busily darting about. After briefly showing her your kitchen, living room and dining room areas, you lead her to your bedroom. Once inside, the catgirl immediately starts to curiously poke and prod a few devices scattered about the room.");
+	output("\n\n<i>“Wow, your place looks very nice! It's certainly a lot more simplistic than I was expecting from one growing up under one of the wealthiest business magnates in the galaxy…”</i> Fisianna walks around your bed to point out a few posters on one of your walls. <i>“Oh, you're a fan of </i>Space Wars<i>!? I <b>loved</b> this series growing up! I can't believe they're still making movies, and even games! They've been around for so long!”</i> The excited feline squeals before moving on to the next poster. <i>“And </i>Watchers of the Universe<i>!? It seems we have a little more in common than I initially knew!”</i>");
+	output("\n\nShe smiles widely as she moves on from the posters to your old gadgets and gizmos, breathlessly explaining her experiences with similar devices. When Fisianna finally manages to calm down, she looks winded as she smiles shyly. <i>“Hehe… sorry. I-I guess my inner nerd decided to come out there…”</i>");
+	output("\n\nYou smile and explain to Fisianna that this genuine, dorky side is one of the things you love about her, regarding your room as a 'real blast from the past'. After talking more about your shared interests in various old nerd flicks and devices, you settle down on your bed. Your feline companion joins you immediately afterwards and climbs onto your lap. Her peachy lips hungrily seek yours as she presses her whole pliant body into you with a loving passion. Overwhelmed by your lover's amorous advances, you lay back on the bed, taking her with you as the two of you continue making out.");
+	output("\n\nAfter a few moments of sloppy kissing, the two of you wrap your arms around each other. You reach down and attempt to slide a hand under Fisianna's jeans. Her breath catches the moment she feels it and she separates herself from your mouth with a bright blush and a small frown on her face.");
+	output("\n\n<i>“U-um… as much as I want you to do unimaginably ");
+	if (silly) outputut("LOOD");
+	else output("lewd");
+	output(" things to me, I was thinking we could just… y'know… snuggle together, just for tonight.”</i> The disappointment on your face must be quite apparent, since Fisianna immediately stammers an apology while blushing a brighter red. <i>“I know, sorry if you feel like I led you on, b-but we can uh… snuggle… naked, if that satisfies you?”</i>");
+	output("\n\nYou bring a hand up to your chin and look towards the ceiling in exaggerated mock-thought. The feline whines at your acting job. <i>“C'mon, [pc.name]... It's only for one night here. You're so");
+	if (silly) outputut("thirsty");
+	else output("insatiable");
+	output("!”</i> She nudges your arm playfully. You can no longer keep up your charade and burst into laughter.");
+	if (pc.isAss()) output("<i>“Fine, fine! But remember that you owe me for this,”</i> you tease.");
+	else output("<i>“Fine, fine! Whatever you're comfortable with doing, Fisi,”</i> you concede.");
+	output(" You give Fisianna a parting kiss before you slide off of the bed. <i>“I'll go get ready then,”</i> you tell her as you grab a nearby towel and head to your shower to freshen up. You can see your lover curiously eyeing a device she initially missed, before you disappear into the bathroom.");
+	output("\n\nWhen you're done showering, you wrap the towel around yourself, and pile your gear ");
+	if (!pc.isNude()); output("and clothes ");
+	output("in a corner of the room. You come out to find that Fisianna is still examining the same item, though now she has progressed to tinkering with it instead of just looking. You clear your throat to let the neko know that she can use the shower to freshen up now. With a slight start, she puts down the device and grabs a spare towel, but not before giving your body a playful tease with one of her long tails. Now who is being ");
+	if (silly) output("thirsty");
+	else output("insatiable");
+	output("! When she disappears into the bathroom, you make the final preparations before slinking under the bed covers completely nude.");
+	output("\n\nThe catgirl finally emerges out of the shower  after a ten minute wait and strolls into the room in all her naked glory. Her long hair is a waterfall of orange and white behind her, and her perky tits bounce enticingly with every step. She smiles while she walks over and climbs onto the bed with you. In the warm afterglow of her hot shower, she feels smooth to the touch as you cradle her into your arms. After her head settles onto your [pc.chest], Fisianna softly purrs, picking up in frequency when you begin to stroke her hair. If it wasn't for the adorable smile she is giving you, by now you would have lost control of your urges and taken things further. Instead you reach down to kiss the top of the feline's head and can hear her murmur sleepily, <i>“I love you too.”</i> With that, you settle back on the pillow and let her bodily vibrations lull you to sleep.");
+
+	addButton(0,"Next",cuddleFisiHLII);
+}
+
+public function cuddleFisiHLII():void
+{
+	clearOutput();
+	author("Lkynmbr24");
+	showFisi();
+
+	output("When you wake up, the first thing you notice is that you no longer feel Fisianna purring. But it's the second thing you notice that causes your eyes to shoot open. Your lover doesn't seem to be in bed with you anymore. Furthermore, you can hear very faint whimpers and moans coming from somewhere nearby. Without stirring too much, you take a brief look around the room.");
+	output("\n\nYou see Fisianna in the other side of the bedroom sitting down sideways on a chair. You are about to greet her with a good morning, but then notice that her eyes are closed and that her mouth is partially open. Assuming she moved from the bed and fell asleep on the chair, you start to turn in your bed to go back to sleep when you also notice a dim light coming from her belly, as well as subtle hand movements. On closer inspection, you can see that she has underwear on, and not just any underwear, but your own [pc.lowerGarment]! It takes you a moment to realize that the dull light on the feline's stomach is coming from the hardlight projector.");
+	output("\n\nYou can see a furred paw slowly working its way up and down the shaft of light while Fisianna's hips wiggle in ecstasy. She bites her bottom lip and inhales sharply from hitting a particularly sensitive spot. Her paw's movements rise in tempo as she works the base of the dildo, and her other hand slips between her thighs to rub at her slit through the fabric. It doesn't take long before you hear her huff, and with a buck of her hips, she gushes her girlish nectar into your [pc.lowerGarment]. The sweet and tangy smells of her excess arousal fill the air while she continues to ride her orgasm. You can hear her breathing shakily and see her whole body  shuddering from the aftermath of her release. After she strokes the light phallus and her spasming cunny a few more times, she slumps against the chair, raising the hand she was stroking her pussy with to her lips. While she laps up her juices, you take the opportunity to speak up.");
+	if (pc.isNice()) output("\n\n<i>“Fisi?”</i> you call out to her.");
+	else if (pc.isMischievous()) output("\n\n<i>“So, I take it that you like my toy, huh?”</i> you ask her with a big shit-eating grin on your face. ");
+	else output("<i>“You just couldn't help yourself, could you? And I thought you didn't want to do any funny stuff...”</i> You frown and shake your head in mock-disappointment.");
+	output(" The moment you speak up, the sated kitten pops her fingers out of her mouth and mewls in surprise, almost jumping out of her skin and nearly falling off of the chair.");
+	output("\n\n<i>“A-ah! [pc.name]! I didn't know you were watching! I-I mean, I thought it would be sexy if you woke up while I was wearing your underwear, b-but then when I put your underwear on, I accidentally flipped the hardlight on. I-I felt new… pleasurable things I never felt before a-and… well…”</i> Fisianna sinks back into the chair, looking defeated. <i>“Well… no explaining my way out of this one, huh? Curiosity sure killed this cat.”</i> She covers up the blush on her face by facepalming. You slide out of bed to make your way to your embarrassed lover and plant a reassuring kiss on her cheek.");
+	output("\n\n<i>“Hey, it's ok, Kitten. No need to be shy about it. It looked like you were really enjoying yourself with that thing… Tell you what: how about I stop by Aliss's </i>Mi Amour<i> shop next time I can and get you a pair just like mine? Maybe we can have more fun next time with a toy to share, hm?”</i> you propose to Fisianna. You see a finger on her face slide over, revealing one of her bright, golden eyes.");
+	output("\n\n<i>“R-really? You'd do that? T-that… uhm… would be nice, thank you, [pc.name].”</i> She slides her hands off of her face and rises up from the chair to give you a hug. When you release each other after the brief embrace, Fisianna shimmies out of your underwear and hands them to you.");
+	output("\n\n<i>“Uh… sorry that I got them wet… It just felt so good…”</i> she says apologetically. You tell her not to worry about it while you put your [pc.undergarment] back on. Sure enough, the wet spot on the undergarment feels slightly cold to the touch, but you'll bear for the time being. You gather the rest of your gear while the both of you get ready to head back to the plaza. Once done, you make your way out of the nursery and head down the elevators to the residential deck.");
+	output("\n\n<i>“Thank you again for letting me see your home, [pc.name]! I'd love to be able to do this again with you whenever you have time to.<i>“");
+	output("\n\nYou bid Fisianna farewell as she gives you a goodbye kiss and heads home.");
+
+	processTime(90+rand(30));
+	moveTo("SHIP INTERIOR");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function massageFisi():void
+{
+	clearOutput();
+	author("Lkynmbr24");
+	showFisi();
+	clearMenu();
+
+	if (flags["FISI_TIMES_MASSAGED"] == undefined) {
+		output("While the two of you are relaxing side by side, Fisianna sees it fit to wrap her arms around you lovingly. Normally, you would welcome the embrace more readily, however thanks to your past strenuous activities, you're feeling ");
+		if (pc.hasStatusEffect("Worn Out") || pc.HP() <= pc.HPMax() * 0.25) output("as if you're being squeezed by a powerful, vice-tight grip");
+		else if (pc.hasStatusEffect("Very Sore") || pc.HP() <= pc.HPMax() * 0.5) output("pretty tender");
+		else output("a little sore");
+		output(" under her furred limbs. You silently wince in pain, trying to weather the hug out as best as you can. Fisianna is quick to notice the grimace on your face, however, and immediately loosens her grip.");
+		output("\n\n<i>“O-oh! I'm sorry, [pc.name]... A-are you hurt?”</i> The color on Fisianna's face drains rapidly while she flusters over you. Truth be told, ");
+		if (pc.hasStatusEffect("Worn Out") || pc.HP() <= pc.HPMax() * 0.25) output("you feel like you were hit by a space freighter.");
+		else if (pc.hasStatusEffect("Very Sore") || pc.HP() <= pc.HPMax() * 0.5) output("you <i>are</i> feeling pretty battered up right now.");
+		else output("you do feel kind of scratched up. ");
+		output("\n\nHer hands gingerly rub across your arms and legs. She stops and flinches whenever you jump from her hitting an especially tender spot, but continues quickly afterwards. Once she is done, she looks into your eyes with ");
+		if (pc.hasStatusEffect("Worn Out") || pc.HP() <= pc.HPMax() * 0.25) output("a surprisingly stern expression");
+		else if (pc.hasStatusEffect("Very Sore") || pc.HP() <= pc.HPMax() * 0.5) output("very worried expression");
+		else output("frown");
+		output(" on her face.");
+		if (pc.hasStatusEffect("Worn Out") || pc.HP() <= pc.HPMax() * 0.25) {
+			output("<i>“[pc.name]! Your body is an absolute train wreck right now! H-how in the world are you still able to go on in that state?”</i> Fisianna's eyes begin to water while she shakes her head, though her serious expression is still unfaltering on her face. She then grabs your hand, more forcefully than you are used to from her. <i>“Come on. ");
+			if (pc.HP() <= pc.HPMax() * 0.25) output("If you insist on not taking care of yourself and going to a hospital, then ");
+			output("I'm taking you to my home to treat you, and I'm not taking 'no' for an answer. You really shouldn't be pushing yourself this hard.<i>“");
+		}
+		else if (pc.hasStatusEffect("Very Sore") || pc.HP() <= pc.HPMax() * 0.5) output("<i>“Y-you're really hurt! Please, don't try to tough it out or anything. I know you're a Rusher, but you really need to take a break to recuperate too! Let me help you… Please… I'm really worried for you.”</i> Fisianna looks into your eyes with tears starting to well up in hers while she pushes her hand into yours. She seems like she is genuinely worried about you. Will you take her up on her offer to help you feel better, or would you rather hang in there and wait for another opportunity to recover?");
+		else output("<i>“Mmm… you seem to be quite a bit sore. I could take care of that - i-if you want me to, of course? I'd hate for it to affect you if you come to any danger. I wouldn't want that on my conscience if it was anyone else, let alone you, [pc.name]…”</i> Fisianna eyes you with a fretful look and gently takes your hand. She looks like she is genuinely worried about you. Will you take her up on her offer to help you feel better, or would you rather tough it out?");
+		if (pc.hasStatusEffect("Worn Out") || pc.HP() <= pc.HPMax() * 0.25) {
+			addButton(0, "Yes", massageFisiYesI, undefined, "Yes", "It doesn't look like you have much of a choice in this matter. Fisianna's mind is set.");
+			addDisabledButton(1, "No", "No", "It doesn't look like you have much of a choice in this matter. Fisianna's mind is set.");
+		}
+		else {
+			addButton(0, "Yes", massageFisiYesI, undefined, "Yes", "Take her up on her offer for some good ol' medical care, with love!");
+			if (silly) addButton(1, "No", massageFisiNo, undefined, "No", "You can shrug off the pain for now. You eat pain for breakfast!");
+			else addButton(1, "No", massageFisiNo, undefined, "No", "You can shrug off the pain for now.");
+		}
+	}
+	else {
+		output("You bring up the prospect of receiving another massage from the lovely catgirl. Her eyes light up in surprise upon your request.");
+		output("\n\n<i>“O-oh, of course! You need only to ask! Let me just check you out really quickly…”</i> Fisianna's soft hands search your body for any sore or tender spots with a caring gentleness. After about a minute of doing this, she finally lets you go with a ");
+		if (pc.hasStatusEffect("Worn Out") || pc.HP() <= pc.HPMax() * 0.25) {
+			output("very worried look} on her face.");
+			output("\n\n<i>“I swear, [pc.name], you'll be the end of me someday… I really <b>really</b> worry for you out there, and seeing you like this just…”</i> Fisianna trails off, visibly shuddering from an unpleasant thought. <i>“I just can't bear the thought of potentially losing you if things would have turn out even worse for you. I don't know what I would do without you…”</i> She turns to you with weary eyes after shaking off the unwelcome possibility. <i>“I'll do whatever I can to help you along the way while you're out in the Rush. Just please, for my poor heart, please be more careful in the future…<i>“");
+		}
+		else if (pc.hasStatusEffect("Very Sore") || pc.HP() <= pc.HPMax() * 0.5) {
+			output("concerned look.");
+			output("\n\n<i>“[pc.name]! You're hurting… and pretty badly at that. I know the Rush is dangerous but… seeing you like this never puts my heart at ease.”</i> Fisianna stares into your eyes with a sorrowful expression on her face. <i>“Of course I'll fix you up. I would be more than happy to.<i>“");
+		}
+		else if (pc.hasStatusEffect("Sore") || pc.HP() <= pc.HPMax() * 0.75) {
+			output("thoughtful frown.");
+			output("\n\n<i>“Mmm… you do seem like your muscles are a little tender. I'll help take care of that, no worries! After all, it's best to go out there in peak condition!”</i> Fisianna dotingly smiles at you.");
+		}
+		else {
+			output("relieved expression.");
+			output("\n\n<i>“Mmm, well you seem like you're perfectly fine to me… thank goodness,”</i> Fisianna whispers, the last part more to herself than to you. <i>“Still, if all you want is a massage, I would be more than happy to help you limber up and relax.”</i> She smiles dotingly at you.");
+		}
+		addButton(0, "Next",  massageFisiYesI);
+	}
+	processTime(10);
+}
+
+public function massageFisiYesI():void
+{
+	clearOutput();
+	author("Lkynmbr24");
+	showFisi();
+
+	if (flags["FISI_TIMES_MASSAGED"] == undefined) {
+		output("You look towards Fisianna's hand and agree to have her massage you.");
+		output("\n\n<i>“Great! Let's go then. I have a nice and comfortable futon I can use for you, with some medicinal oils and everything.”</i> She gently squeezes your hand in reassurance.");
+	}
+	output("With that, the two of you rise up from the bench. Fisianna walks ahead of you, leading you towards her apartment. Once the two of you arrive, she ushers you inside to take a seat on the living room sofa.");
+	if (pc.HP() < pc.HPMax()) {
+		output("\n\n<i>“Mmm alright, first off, let's take care of any cuts and bruises. We don't want those becoming an issue later on during the massage. One moment while I get my first aid kit.”</i> Fisianna starts towards her spare bedroom door, but stops just short of it before turning back around to you. ");
+		if (!pc.isNude()) output("<i>“In the meantime, can you uhm… strip down for me? It'll be hard to apply any bandages and ointments otherwise,”</i> she adds hurriedly, with a pink blush already flooding onto her face. ");
+		else output("In the meantime, please relax as best as you can for me,”</i> she instructs you with an almost professional tone to her voice.");
+		output("When she disappears to her bedroom, you take the time to ");
+		if (!pc.isNude()) output("strip out of your gear and}");
+		output("recline to a comfortable position while you wait.");
+		output("\n\nFinally, the impromptu nurse emerges from her workroom with a hi-tech looking medkit. You grin to yourself, figuring that this is one of the perks of having close family ties to the medical business. You sit up in your seat once Fisianna places the kit on the table next to you. A blush starts to creep across her face when she makes eye contact with your naked form, but she stays completely composed otherwise.");
+		output("\n\n<i>“I'll need to scan for any injuries you might have sustained. The massage won't be quite as enjoyable with anything like those lingering around…”</i> With a button click, Fisianna's medkit opens with a soft 'psshh', revealing its contents. Inside is a wide array of top-of-the-line bandage wrappings, ointments and gauzes, as well as some high tech tools like an electric thermometer, a stethoscope, and even a sphygmomanometer! Fisianna reaches for a complex-looking scanner on the edge of the medkit and points it at your mid-section.");
+		output("\n\n<i>“Okay, try not to move for a few seconds, [pc.name]. The scan will be inaccurate if you make any sudden movements.”</i> Fisianna instructs. You relax back in your seat once more, allowing for your lover to do her work. After about fifteen seconds, she speaks up again. <i>“Alright, you're good to move again. Thankfully, any damage done to you is pretty much all topical, so just a few ointment applications to your cuts and bruises should be all we need to super-speed the healing process! Let's get to it then!”</i> she says with audible enthusiasm in her voice.");
+		output("\n\nOver the course of the next few minutes, Fisianna dresses your wounds with fast-absorbing oils. Within seconds of each application, you can feel the medicines tingle wherever you were hurting, causing a delightful sense of relief to flow through you. By the time she is done, you feel virtually no pain on your cuts anymore! You rub your [pc.skinFurScales], and sure enough, the ointments have already been fully absorbed by your body, leaving behind no discomfort or residue. Fisianna smiles in satisfaction when she no longer sees you wincing from simply touching your previously sensitive abrasions.");
+		output("\n\n<i>“Phew, I'm glad you feel all better, even moreso that my brother and sister hooked me up with the best JoyCo has to offer!”</i> Fisianna pats her medkit a few times. She then looks wistfully towards the ceiling. <i>“I-I suppose I should also thank my upbringing for this as well. Even though it wasn't the most enjoyable of experiences, I'm still thankful I’ve retained knowledge of at least the basics.”</i> With a shake of her head, she places the medicines and tools back into the medkit and closes it back up.");
+	}
+	output("<i>“Alright, I'll just need a few minutes and I'll be right back with you, okay, [pc.name]?”</i> After you nod your head in acknowledgement, Fisianna starts for her bedroom door. You stare after her for a while when she suddenly turns around and");
+	if (pc.isNude()) output("shoots a sweet smile at you before disappearing into her bedroom.");
+	else output("calls back, <i>“Oh, do you mind stripping down as well? It'll be hard to do anything with clothes on, admittedly.”</i> She disappears into her bedroom immediately after. Following her instructions, you shuck your gear off and lay them aside.");
+	output("\n\nFor the next few moments, you sit patiently in silence while you wait for Fisianna to reappear. With nothing else to do, you idly fumble with a nearby remote and press a few buttons in hopes of turning the holoscreen on. Oddly, when you press the power button to what you are sure of is the controller to the television, the screen doesn't turn on, but instead some admittedly relaxing music starts playing. Right at that moment, a white towel flashes by your vision and falls on your lap, while at the same time, a pair of orange and white arms wrap around your shoulders from behind, enveloping you in a gentle hug.");
+	output("\n\n<i>“Hey, music ! Good idea !”</i> Fisianna giggles past your ear. <i>“It's a universal remote; it controls a good amount of appliances around the house. You just happened to trigger the music player, so sorry if you wanted to watch something while you waited. Sorrier still that it took me a bit long to get back to you but… I needed to 'dress for the occasion’.”</i > Curious, you turn around to your lover, and ");
+	if (flags["FISI_TIMES_MASSAGED"] == undefined) output("double-take");
+	else output("smile");
+	output(" when you see what sort of attire she has picked...");
+	output("\n\nFisianna looks to have changed out of her usual garb and into an oversized baby-blue t-shirt dress that stops just around the top of her thighs. The neck-hole of the shirt is large enough to expose her smooth shoulders, and look like they're dangerously close to slipping past them. You can clearly see her white bra-straps poking out from under her shirt as well. Looking more closely, you can see a large black paw print on the chest. You just barely manage to catch a glimpse of a pair of dark panties underneath the long hem.");
+	output("\n\n<i>“Hehe, you like it? I mainly wear it when I'm at home by myself, but I thought it might be good to have us both wear something comfy.”</i> Fisianna grins at you while she makes her way around the couch to lay a futon on the floor in front of it. After you give your approval, she rolls out the mat and places various massaging oils next to it. <i>“I'm glad you like it though! Now, why don't you wrap that towel around you so we can get started?”</i> she asks excitedly while kneeling down to pick out which oils to use.");
+	output("\n\nYou promptly rise up from the couch and wrap the short towel around your waist. Afterwards, Fisianna gently pats the futon in front of her, beckoning you to lie down. You comply and spread yourself on the mat, lying on your front-side and crossing your arms on the flat, soft pillow beneath your head.");
+	output("\n\nAt the very moment that you fully settle down, Fisianna pops open one of the bottles of aromatic oil next to her and pours some onto her hand. She then spreads the oil along your back, gently kneading the warming liquid into your [pc.skinFurScales]. While she works the ointment into you, she delicately pokes and prods at certain places on your back with her soft paw pads, feeling for any tense spots and knots. After she's finished working on your back, you can feel her hesitate slightly before she passes over your glutes, though not without giving one of your buttcheeks a gentle squeeze. She then moves on to the back of your [pc.legs] and spreads more of the oil there in the same fashion. Finally, she spreads the last bits around your arms, working hard to cover as much surface area as possible on you.");
+	output("\n\n<i>“Mmm, okay. That should be everywhere. Just tell me if anything starts hurting, alright?”</i> Fisianna asks in a soothing voice. You groan in response when she begins the massage itself, starting from your [pc.legs]. She clearly doesn't have the same expertise as you might expect from a professional masseuse, but her unique hands definitely help make up for the difference. They are plush enough to not strain you further, yet at the same time firm enough to grind down deep into your ");
+	if (pc.isSore()) output("sore ");
+	output("muscles.");
+	
+	moveTo("RESIDENTIAL DECK FISIS APARTMENT");
+	clearMenu();
+	addButton(0, "Next", massageFisiYesII);
+}
+
+public function massageFisiYesII():void
+{
+	clearOutput();
+	author("Lkynmbr24");
+	showFisi();
+	
+	output("Once you feel Fisianna breathily sigh into your neck, she begins to purr. Her undulations of contentment and pleasure immediately wash over your entire body like a refreshing wave of cool water. She wraps her legs tightly around your sides, making sure you can feel the full effects of her bodily vibrations from top to bottom. All the while during this, she plants light kisses onto your neck, sending intense tremors down your spine with each one.");
+	output("\n\n<i>“Mmm... does it still ache anywhere, [pc.name]?”</i> she murmurs in-between kisses.");
+	output("\n\n<i>“Ooooh...”</i> is all you can blurt out in response as your mind draws a total blank for anything intelligible to say to your lover. You feel as if you are completely melting into nothingness under her, and loving every waking moment of it.");
+	output("\n\nAfter a few moments of this, you gently lift Fisi’s arms and roll yourself onto your back, careful to stay under the still purring neko so that you are hugging her close to you. She looks lovingly into your eyes as you pull her into a kiss. You silently thank her to taking such good care of you, putting those emotions into the embrace while you snuggle together. When you break the kiss, she cradles your face with one of her soft paws.");
+	if (pc.HP() < pc.HPMax() || pc.isSore()) output("\n\n<i>“I hope I could at least help a little for your future adventures this way. I still worry for you whenever you aren't here, but… I thank goodness anytime you come back at least relatively unharmed. I'll be wishing that you find your father's probes as soon as possible so I don't have to keep worrying.”</i>");
+	else output("\n\n<i>“I'm glad for any chance I could do this for you, especially for moments like this… I know I can't keep you here forever, but I do hope that you can find your father's probes as soon as possible so you could possibly be here all the time.”</i>");
+	output(" Fisianna smiles wistfully. You pet her between her fuzzy ears, assuring her that you will do your best in finding your father's legacy for her sake, as well as yours.");
+	output("\n\nWith a parting kiss, the two of you rise up from the futon and pack up from the massage session. After you return Fisianna's towel and ");
+	if (pc.isNude()) output("gather your belongings");
+	else output("equip your [pc.gear]");
+	output(", you stretch and find yourself completely loose and limber, fully ready to tackle whatever challenge comes your way.");
+	output("\n\n<i>“Please don't be afraid to ask me to do this for you again if you feel hurt in any way, [pc.name]. I would, as always, be more than happy to make sure you're at least in tip-top shape.”</i> Fisianna assures you, affection full in her voice. With a final kiss and a wave goodbye, you head out of her apartment and onto the street in front of it. After that massage, how could you <i>not</i> want another one?");
+	
+	pc.HP(pc.HPMax());
+	pc.energy(pc.energyMax());
+	if (pc.statusEffectv1("Sore Counter") > 1 ) soreChange( -3);
+	else pc.lust(0, true);
+	
+	IncrementFlag("FISI_TIMES_MASSAGED");
+	processTime(60+rand(15));
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function massageFisiNo():void
+{
+	clearOutput();
+	author("Lkynmbr24");
+	showFisi();
+	
+	output("You tell Fisianna that you are fine, and that you can deal with your discomfort another time. In response, she looks down towards your interlaced hands.");
+	output("\n\n<i>“I-I… but…”</i> she stammers, struggling to find the words to say to you. With a small sniffle, Fisianna speaks up again. <i>“A-alright, [pc.name], but please...<b>please</b> be very careful for me. It really pains me to see you hurt and not be able to do anything about it. M-maybe it's partially from having a medical upbringing, but… it's mainly because I love you so much. Promise me you'll still be in one piece when this is all over,”</i> Fisianna pleads. You nod your head, and gingerly hug your caring lover, assuring her that you will be okay.");
+	
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",fisiMainMenu, true);
 }
 
 public function appearanceFisi():void
