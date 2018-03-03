@@ -83,6 +83,12 @@ public function zilCallgirlAtNursery():Boolean
 	return false;
 }
 
+public function visitedNursery():Boolean
+{
+	if (flags["BRIGET_MET"] != undefined || flags["NURSERY_VISITED"] != undefined || flags["USED_NURSERY_COMPUTER"] != undefined) return true;
+	return false;
+}
+
 // Room functions
 
 
@@ -119,6 +125,8 @@ public function nurseryFoyerFunc():Boolean
 		output("\n\nYou find Ellie milling about in the reception area, clearly deep in thought as she mumbles to herself.");
 		addButton(2, "Ellie", ellieAtNurseryPreHatch, undefined, "", "");
 	}
+
+	if(flags["NURSERY_VISITED"] == undefined) flags["NURSERY_VISITED"] =1;
 
 	return false;
 }

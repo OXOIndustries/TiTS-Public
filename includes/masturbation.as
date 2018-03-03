@@ -2213,6 +2213,7 @@ public function futaBabePantyfapsRouter():void
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) jackOffWithLadyPantiesYouSicko(flags["BEA_TITLE"]);
 		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) jackOffWithLadyPantiesYouSicko("Erra");
 		if(pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent.")) jackOffWithLadyPantiesYouSicko("Myrna");
+		if(pc.hasKeyItem("Panties - Fisianna's - ????")) futaBabePantyfaps("Fisianna");
 	}
 	//More than one pair? Build a menu.
 	else
@@ -2249,6 +2250,11 @@ public function futaBabePantyfapsRouter():void
 		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch."))
 		{
 			addButton(button,"Erra's",jackOffWithLadyPantiesYouSicko,"Erra","Erra","Use Erra’s purple, paw-printed panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Fisianna's - ????")) 
+		{
+			addButton(button,"Fisianna’s",futaBabePantyfaps,"Fisianna","Fisianna’s Panties","Use Fisianna’s ??? for a quick wank.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) 
@@ -2308,6 +2314,7 @@ public function futaBabePantySchlicksRouter():void
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) pureLadyWaifuPussyRubFap(flags["BEA_TITLE"]);
 		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) pureLadyWaifuPussyRubFap("Erra");
 		if(pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent.")) pureLadyWaifuPussyRubFap("Myrna");
+		if(pc.hasKeyItem("Panties - Fisianna's - ????")) futaPantiesFapInPussy("Fisianna");
 	}
 	//More than one pair? Build a menu.
 	else
@@ -2344,6 +2351,11 @@ public function futaBabePantySchlicksRouter():void
 		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) 
 		{
 			addButton(button,"Erra's",pureLadyWaifuPussyRubFap,"Erra","Erra's Panties","Use Erra's purple, paw-printed panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Fisianna's - ????")) 
+		{
+			addButton(button,"Fisianna’s",futaPantiesFapInPussy,"Fisianna","Fisianna’s Panties","Use Fisianna’s ??? for a quick jill-off session.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) 
@@ -2401,8 +2413,10 @@ public function pantyCollectionList(total:Boolean = false):Array
 	if(total || pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) panties.push(flags["BEA_TITLE"]);
 	if(total || pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) panties.push("Erra");
 	if(total || pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent.")) panties.push("Myrna");
+	if(total || pc.hasKeyItem("Panties - Fisianna's - ????")) panties.push("Fisianna");
 	return panties;
 }
+
 public function pantyFapCount(total:Boolean = false):Number
 {
 	return pantyCollectionList(total).length;
