@@ -1777,9 +1777,8 @@ public function pbcookie4Tuuva():void
 		output("\n\nYou ask Tuuva if she’s still hungry. You have plenty more where that came from.");
 		output("\n\nTuuva makes no movement, as exhausted as she is, but her eyes eventually fall to yours. She stares at you with a blank, listless expression, as though you hadn’t asked her anything at all, and she makes no effort to answer.");
 		output("\n\nYou tell her that if she ever finds herself craving some more of the most delicious treat in the galaxy, you’ll be sure to share.");
-		// Continue here if it’s not the first cookie
-		IncrementFlag("TUUVA_COOKIES");
 	}
+	// Continue here if it’s not the first cookie
 	else
 	{
 		output("The silence of Tuuva’s blacksmith shop is interrupted by your rumbling stomach. You reach for your codex to look at the time, but just as you do, Tuuva is bounding on the spot in front of you, her tail wagging excitedly.");
@@ -1829,12 +1828,14 @@ public function pbcookie4Tuuva():void
 
 		output("\n\nShe remains limp as you finally move to push her off of you. She falls to the floor like a rag doll, her body folding over itself in its exhaustion. You think to ask her something – maybe offer if she’s in the mood for some more cookies. You’re sure you have some more somewhere – but you doubt you’d get an answer if you did.");
 		output("\n\nYou pull yourself to your feet and make for the doorway of Tuuva’s smithy. You’re a bit of a mess, but hey, you got a pretty entertaining show out of giving her some peanut butter cookies.");
+		
+		// apply Cum Soaked and Pussy Drenched; increase Lust by 50
+		pc.applyCumSoaked();
+		pc.applyPussyDrenched();
 	}
+	IncrementFlag("TUUVA_COOKIES");
 	pc.createStatusEffect("Tuuva Pooped");
 	pc.setStatusMinutes("Tuuva Pooped",35);
-	// apply Cum Soaked and Pussy Drenched; increase Lust by 50
-	pc.applyCumSoaked();
-	pc.applyPussyDrenched();
 	pc.lust(50);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
