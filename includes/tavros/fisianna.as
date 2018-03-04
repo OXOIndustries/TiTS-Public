@@ -36,7 +36,11 @@
  * FISI_TIMES_CUDDLED	0-infinity, how many times you've cuddled Fisi, also used to make sure the scene plays in order
  * FISI_TIMES_MASSAGED	0-infinity, how many times you've Fisi massaged you. Unlocks the menu button if bigger than 0
  * FISI_HL_PANTIES		1 if player has unlocked the "Give Panties" option, else undefined
- * 
+ * FISI_PRURIENCE
+ * FISI_TIMES_ANAL		0-infinity, how many times you've fucked the pussy's ass, undefined if haven't unlocked sex menu
+ * FISI_TIMES_ORAL		0-infinity, how many times you've fucked the pussy's mouth, undefined if haven't unlocked sex menu
+ * FISI_TIMES_FS		0-infinity, how many times you've fucked the pussy's pussy silly, doenst appear in menu
+
  * HOW DO I TELL WHAT MY RELATIONSHIP IS WITH FISI?????
  * if FISI_LOVER == 1, you're lovers
  * if FISI_REJECTED == 1, you're ex-friends
@@ -413,22 +417,235 @@ public function fisiMainMenu(fromBack:Boolean = false):void
 		addDisabledButton(4, "Locked", "Locked", "You must be lovers with Fisianna in order to be able to do this.");
 	}
 	
-	if (flags["FISI_LOVER"] == 1) addButton(5, "Cuddle", cuddleFisi, undefined, "Cuddle", "Cuddle with the cute kitten for a while.");
-	else addDisabledButton(5, "Locked", "Locked", "You must be lovers with Fisianna in order to be able to do this.");
-	
-	if (flags["FISI_TIMES_MASSAGED"] != undefined && !pc.isTaur() && !pc.hasGooSkin()) addButton(6, "Massage", massageFisi, undefined, "Massage", "Get a relaxing, and intimate rub-down from Fisianna.");
-//	else if (pc.isTaur()) addDisabledButton(6, "Massage", "Massage", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
-	else if	(pc.hasGooSkin()) addDisabledButton(6, "Massage", "Massage", "The massage would be more effective with a more solid body type.");
-	// Stygs
-	else addDisabledButton(6, "Locked", "Locked", "THIS REALLY NEEDS A BETTER TOOLTIP!");
+	//Xpack
+	if (pc.hasGooSkin()) {
+		addDisabledButton(5, "Cuddle", "Cuddle", "The cuddles would be more effective with a more solid body type.");
+		addDisabledButton(6, "Massage", "Massage", "The massage would be more effective with a more solid body type.");
+		addDisabledButton(10, "Give Panties", "Give Panties", "This would be more effective with a more solid body type.");
+	}
+	else if (pc.isTaur()) {
+		addDisabledButton(5, "Cuddle", "Cuddle", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
+		addDisabledButton(6, "Massage", "Massage", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
+		addDisabledButton(10, "Give Panties", "Give Panties", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");	
+	}
+	else {
+		if (flags["FISI_LOVER"] == undefined) addDisabledButton(5, "Locked", "Locked", "You must be lovers with Fisianna in order to be able to do this.");
+		else addButton(5, "Cuddle", cuddleFisi, undefined, "Cuddle", "Cuddle with the cute kitten for a while.");
 
-	if (pc.hasHardLightEquipped && flags["FISI_HL_PANTIES"] != undefined && !pc.hasKeyItem("Panties - Fisianna's - ????")) addButton(6, "Give Panties", givePantiesToFisi);
-	else addDisabledButton(6, "Locked", "Locked", "THIS REALLY NEEDS A BETTER TOOLTIP!");
+		if (flags["FISI_TIMES_MASSAGED"] == undefined) addDisabledButton(6, "Locked", "Locked", "?????");
+		else addButton(6, "Massage", massageFisi, undefined, "Massage", "Get a relaxing, and intimate rub-down from Fisianna.");
 
-	addButton(7, "Sex Bet", massageFisi, undefined, "Massage", "Get a relaxing, and intimate rub-down from Fisianna.");
-	addButton(8, "Breed Her", massageFisi, undefined, "Massage", "Get a relaxing, and intimate rub-down from Fisianna.");
+		if (flags["FISI_HL_PANTIES"] == undefined) addDisabledButton(10, "Locked", "Locked", "?????");
+		else if (pc.hasKeyItem("Panties - Fisianna's - ????")) addDisabledButton(10, "Give HL Panties", "Give Panties", "You already gave her the panties.");
+		else if (!pc.hasItemByClass(HardlightAGThong)) addDisabledButton(10, "Give HL Panties", "Give HL Panties", "You don't have a hardlight anti-grav thong in your inventory.");
+		else addButton(10, "Give Panties", givePantiesToFisi, undefined, "Give HL Panties", "?????");
+	}
+	addButton(9, "Breed Her", breedFisi, undefined, "Massage", "Get a relaxing, and intimate rub-down from Fisianna.");
 
 	addButton(14, "Leave", leaveFisi);
+}
+
+public function betFisi():void
+{
+	clearOutput();
+	author("Lkynmbr24");
+	showFisi();
+
+	output("BET MENU MAIN FUNCTION INTERFACE PLACEHOLDER TEXT!");
+	output("\n\nSay, I was actually thinking, how about we do something a little more… <b>stimulating</b> this time around?");
+
+//	processTime(12);
+	clearMenu();
+	addButton(0,"Next",betFisiWinLossRouter);
+}
+
+public function betFisiWinLossRouter():void
+{
+	var won:Boolean = false;
+	var misses:int = 0;
+	
+	for(var i:int = 0; i < 30; i++)
+	{
+		if(rangedCombatMiss(pc,chars["SYRI"])) misses++;
+	}
+
+	if (misses <= 1) won = true;
+
+	if (won) betFisiWinI();
+	else betFisiLose();
+}
+
+public function betFisiWinI():void
+{
+	clearOutput();
+	author("Lkynmbr24");
+	showFisi();
+	
+	output("A WINNER IS YOU!");
+	output("\n\nThe two of you play extremely cautiously while you search for each other in the densely forested map.");
+	
+//	processTime(12);
+	clearMenu();
+	addButton(0,"Next",betFisiWinII);
+}
+
+public function betFisiWinII():void
+{
+	clearOutput();
+	author("Lkynmbr24");
+	showFisi();
+	
+	output("A WINNER IS YOU! 2");
+	output("\n\nYou take your holo-harness off and smile in triumph at Fisianna.");
+	if (flags["FISI_PRURIENCE"] < 25) output("\n\nMmm… so I lost.");
+	else if (flags["FISI_PRURIENCE"] >= 25 && flags["FISI_PRURIENCE"] < 50) output("\n\nAh… I guess I lose this time.");
+	else if (flags["FISI_PRURIENCE"] >= 50 && flags["FISI_PRURIENCE"] < 75) output("\n\nOh wow, nice shot!");
+	else output("\n\nOh, no way!");
+	output("\n\nYou stand up from your seat and motion for Fisianna to follow");
+
+//	processTime(12);
+	clearMenu();
+//	addButton(0,"Next",betFisiWinMenu);
+	addButton(0, "Oral", betFisiWinOral, undefined, "Oral", "?????");
+	if (largestCockIndexThatFitsFisiDimensions() >= 0 || (pc.hasHardLightEquipped() && pc.hasVagina())) addButton(1, "Anal", betFisiWinAnal, undefined, "Anal", "????");
+	else addDisabledButton(1, "Anal", "Anal", "You need a cock that fits, or a vagina and a hardlight strapon for this.");
+	addButton(2, "Fuck Silly", betFisiWinFuckedSillyI, undefined, "Fuck Silly", "?????");
+	addButton(3, "Let Her Lead", betFisiWinLerHerLead, undefined, "Let Her Lead", "?????");
+}
+
+public function betFisiWinOral():void
+{
+	flags["FISI_PRURIENCE"] -= 5;
+	oralFisi();
+}
+
+public function oralFisi():void
+{
+	clearOutput();
+	author("Lkynmbr24");
+	showFisi();
+	output("You break your eye contact with Fisianna to sit at the edge of the bed, your mind made up.");
+
+	IncrementFlag("FISI_TIMES_ORAL");
+//	processTime(12);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function betFisiWinAnal():void
+{
+	flags["FISI_PRURIENCE"] -= 10;
+	analFisi();
+}
+
+public function analFisi():void
+{
+	clearOutput();
+	author("Lkynmbr24");
+	showFisi();
+	
+	output("Your hands wander idly over Fisianna's shapely thighs and hips.");
+	
+	IncrementFlag("FISI_TIMES_ANAL");
+//	processTime(12);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function betFisiWinFuckedSillyI():void
+{
+	clearOutput();
+	author("Lkynmbr24");
+	showFisi();
+	
+	output("Wasting no more time, you spring on Fisianna again, playfully sucking and biting at her neck.");
+	
+	flags["FISI_PRURIENCE"] -= 10;
+	IncrementFlag("FISI_TIMES_FS");
+//	processTime(12);
+	clearMenu();
+	addButton(0, "Use Mouth", useMouthFisi, true);
+	addButton(1, "Fuck Her", fuckHerFisi, true);
+}
+
+public function useMouthFisi():void
+{
+	clearOutput();
+	author("Lkynmbr24");
+	showFisi();
+	
+	output("You decide that for this time, you'll deviate from the plan to what Fisianna might prefer at the moment.");
+	
+	flags["FISI_PRURIENCE"] += 5;
+//	IncrementFlag("FISI_TIMES_FS");
+//	processTime(12);
+	clearMenu();
+	addButton(0, "Next", betFisiWinFuckedSillyII, true);
+}
+
+public function fuckHerFisi():void
+{
+	clearOutput();
+	author("Lkynmbr24");
+	showFisi();
+	
+	output("Nah, you're going to stick to the plan just as you intended with a finish that will satisfy the both of you!");
+	
+	flags["FISI_PRURIENCE"] -= 10;
+	IncrementFlag("FISI_TIMES_FS");
+//	processTime(12);
+	clearMenu();
+	addButton(0, "Next", betFisiWinFuckedSillyII, true);
+}
+
+public function betFisiWinFuckedSillyII():void
+{
+	clearOutput();
+	author("Lkynmbr24");
+	showFisi();
+	
+	output("When you come to, you immediately notice that Fisianna is still fast asleep, and still purring softly.");
+	
+//	processTime(12);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function betFisiWinLerHerLead():void
+{
+	clearOutput();
+	author("Lkynmbr24");
+	showFisi();
+	
+	output("You decide to let Fisianna call the shots this time.");
+	
+//	processTime(12);
+	clearMenu();
+	addButton(0, "Next", fisiMainMenu, true);
+//Next button should trigger [Sexy Cuddles], [Get Ridden], or [Get Pegged] depending on Fisianna's current prurience level.
+}
+
+public function betFisiLose():void
+{
+	clearOutput();
+	author("Lkynmbr24");
+	showFisi();
+	
+	output("BETTER LUCK NEXT TIME, LOSER!");
+	
+//	processTime(12);
+	clearMenu();
+	addButton(0, "Next", fisiMainMenu, true);
+}
+
+public function breedFisi():void
+{
+	clearOutput();
+	author("Lkynmbr24");
+	showFisi();
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function cuddleFisi():void
@@ -509,12 +726,12 @@ public function cuddleFisi():void
 	IncrementFlag("FISI_TIMES_CUDDLED");
 	processTime(10);
 
-	if (pc.hasHardLightEquipped && flags["FISI_TIMES_SEXED"] != undefined && rand(4) == 0) {
-		addButton(0,"Next",cuddleFisiHLI);
+	if (pc.hasHardLightEquipped && flags["FISI_TIMES_VAG"] != undefined && flags["FISI_HL_PANTIES"] == undefined && rand(4) == 0) {
+		addButton(0, "Next", cuddleFisiHLI);
 		return;
 	}
 	
-	addButton(0,"Next",fisiMainMenu, true);
+	addButton(0, "Next", fisiMainMenu, true);
 //	fisiMainMenu(true);
 }
 
@@ -559,7 +776,7 @@ public function cuddleFisiHLI():void
 	else output("Whatever you're comfortable with doing, Fisi,”</i> you concede.");
 	output(" You give Fisianna a parting kiss before you slide off of the bed. <i>“I'll go get ready then,”</i> you tell her as you grab a nearby towel and head to your shower to freshen up. You can see your lover curiously eyeing a device she initially missed, before you disappear into the bathroom.");
 	output("\n\nWhen you're done showering, you wrap the towel around yourself, and pile your gear ");
-	if (!pc.isNude()); output("and clothes ");
+	if (!pc.isNude()) output("and clothes ");
 	output("in a corner of the room. You come out to find that Fisianna is still examining the same item, though now she has progressed to tinkering with it instead of just looking. You clear your throat to let the neko know that she can use the shower to freshen up now. With a slight start, she puts down the device and grabs a spare towel, but not before giving your body a playful tease with one of her long tails. Now who is being ");
 	if (silly) output("thirsty");
 	else output("insatiable");
@@ -567,14 +784,15 @@ public function cuddleFisiHLI():void
 	output("\n\nThe catgirl finally emerges out of the shower  after a ten minute wait and strolls into the room in all her naked glory. Her long hair is a waterfall of orange and white behind her, and her perky tits bounce enticingly with every step. She smiles while she walks over and climbs onto the bed with you. In the warm afterglow of her hot shower, she feels smooth to the touch as you cradle her into your arms. After her head settles onto your [pc.chest], Fisianna softly purrs, picking up in frequency when you begin to stroke her hair. If it wasn't for the adorable smile she is giving you, by now you would have lost control of your urges and taken things further. Instead you reach down to kiss the top of the feline's head and can hear her murmur sleepily, <i>“I love you too.”</i> With that, you settle back on the pillow and let her bodily vibrations lull you to sleep.");
 
 	moveTo("NURSERYE14");
-	addButton(0,"Next",cuddleFisiHLII);
+	clearMenu();
+	addButton(0, "Next", cuddleFisiHLII);
 }
 
 public function cuddleFisiHLII():void
 {
 	clearOutput();
 	author("Lkynmbr24");
-	showFisi();
+	showFisi(2);
 
 	output("When you wake up, the first thing you notice is that you no longer feel Fisianna purring. But it's the second thing you notice that causes your eyes to shoot open. Your lover doesn't seem to be in bed with you anymore. Furthermore, you can hear very faint whimpers and moans coming from somewhere nearby. Without stirring too much, you take a brief look around the room.");
 	output("\n\nYou see Fisianna in the other side of the bedroom sitting down sideways on a chair. You are about to greet her with a good morning, but then notice that her eyes are closed and that her mouth is partially open. Assuming she moved from the bed and fell asleep on the chair, you start to turn in your bed to go back to sleep when you also notice a dim light coming from her belly, as well as subtle hand movements. On closer inspection, you can see that she has underwear on, and not just any underwear, but your own [pc.lowerGarment]! It takes you a moment to realize that the dull light on the feline's stomach is coming from the hardlight projector.");
@@ -593,8 +811,9 @@ public function cuddleFisiHLII():void
 	processTime(120+rand(15));
 	moveTo("LIFT: RESIDENTIAL DECK");
 	if (flags["FISI_HL_PANTIES"] == undefined) flags["FISI_HL_PANTIES"] = 1;
+
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function givePantiesToFisi():void
@@ -626,7 +845,10 @@ public function givePantiesToFisi():void
 	output(",”</i> Fisianna practically purrs the last part as she looks into your eyes with unadulterated lust. It seems giving her those panties has put her in a very amorous mood. Thoughts swim through your head on how you would like to take your feline lover.");
 
 	pc.createKeyItem("Panties - Fisianna's - ????");
+	pc.destroyItemByClass(HardlightAGThong, 1);
+	processTime(45+rand(10));
 
+	clearMenu();
 	addButton(0, "Next", sexFisi);
 }
 
@@ -2141,6 +2363,18 @@ public function sexFisi():void
 	if (!(flags["FISI_SEX_NUMBER"] >= 3)) addDisabledButton(3, "Vaginal", "Vaginal", "It doesn’t look like she is comfortable enough with you to do this yet.");
 	else if (largestCockIndexThatFitsFisiDimensions() >= 0 || (pc.hasHardLightEquipped() && pc.hasVagina())) addButton(3, "Vaginal", vaginalFisi, undefined, "Vaginal", "Make love with the feline.");
 	else addDisabledButton(3, "Vaginal", "Vaginal", "You need a cock that fits, or a vagina and a hardlight strapon for this.");
+
+	
+	if ((flags["FISI_TIMES_ORAL"] == undefined)) addDisabledButton(5, "Oral", "Oral", "??????");
+	else if (flags["FISI_PRURIENCE"] < 50) addDisabledButton(5, "Oral", "Oral", "??????");
+	else addButton(5, "Oral", oralFisi, undefined, "Oral", "????");
+
+	if ((flags["FISI_TIMES_ANAL"] == undefined)) addDisabledButton(6, "Anal", "Anal", "??????");
+	else if (flags["FISI_PRURIENCE"] < 25) addDisabledButton(6, "Anal", "Anal", "??????");
+	else if (largestCockIndexThatFitsFisiDimensions() >= 0 || (pc.hasHardLightEquipped() && pc.hasVagina())) addButton(6, "Anal", analFisi, undefined, "Anal", "????");
+	else addDisabledButton(3, "Anal", "Anal", "You need a cock that fits, or a vagina and a hardlight strapon for this.");
+
+	addButton(10, "Sex Bet", betFisi, undefined, "Sex Bet", "????");
 }
 
 public function tailjobFisi():void
