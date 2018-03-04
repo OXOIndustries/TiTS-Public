@@ -1794,7 +1794,7 @@ public function pbcookie4Tuuva():void
 		output("\n\nThe moment your hand withdraws the baggie of cookies, Tuuva is buck-naked, having stripped herself of her blacksmithing apron at the very sight of your peanut butter cookie treats. Unable to contain herself, she lunges at you, knocking you both to the floor; in the chaos, Tuuva grabs for the baggie, ripping it from your grip.");
 
 		output("\n\nShe straddles your [pc.chest], her ");
-		if(!korgiTranslate()) output("sheath bouncing happily against your body as it bloats only slightly with her dong as it anticipates the incoming ‘treat’");
+		if(!tuuva.hasCock(GLOBAL.TYPE_EQUINE)) output("sheath bouncing happily against your body as it bloats only slightly with her dong as it anticipates the incoming ‘treat’");
 		else output("horsecock flopping about listlessly across your neck, slapping you in the chin as she bounds on top of you in excitement. It’s not quite hard yet, but it’s getting there in a hurry");
 		output(". She fumbles with the baggie, unsure of how to open it; frustrated and increasingly horny, she grips onto the clear plastic with the points of her claws and rips the whole thing apart.");
 
