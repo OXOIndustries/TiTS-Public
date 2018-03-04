@@ -6199,6 +6199,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b><u>Herbs & Happy</u></b>");
 				output2("\n<b>* Nenne:</b> Met her");
 				if(flags["NENNE_COOKIES"] != undefined) output2("\n<b>* Nenne, Times Given Her Peanut Butter Cookies:</b> " + flags["NENNE_COOKIES"]);
+				if(flags["SEXED_NENNE"] != undefined) output2("\n<b>* Nenne, Times Sexed:</b> " + flags["SEXED_NENNE"]);
 				variousCount++;
 			}
 			// The Warm Crusts
