@@ -76,6 +76,7 @@ public function clearOutputCodex():void
 	this.userInterface.clearOutputCodex();
 }
 
+/*
 public function num2Text(number:Number):String {
 	var returnVar:String = null;
 	var numWords:Array = new Array("zero","one","two","three","four","five","six","seven","eight","nine","ten");
@@ -98,6 +99,7 @@ public function num2Text2(number:int):String {
 	}
 	return(returnVar);
 }
+*/
 
 public function leftBarClear():void {
 	this.userInterface.leftBarClear();

@@ -1,6 +1,7 @@
 ﻿package classes.Items.Transformatives
 {
 	import classes.Engine.Interfaces.*;
+	import classes.Engine.Utility.num2Text;
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
@@ -111,7 +112,7 @@
 			{
 				var newEarGrow:int = (1 + rand(4));
 				pc.earLength += newEarGrow;
-				output("\n\nYou shudder in pleasure as the Sylvanol works over your ears, making them stretch out another " + kGAMECLASS.num2Text(newEarGrow) + " inches before they stop growing, tingling with delicious new sensitivity.");
+				output("\n\nYou shudder in pleasure as the Sylvanol works over your ears, making them stretch out another " + num2Text(newEarGrow) + " inches before they stop growing, tingling with delicious new sensitivity.");
 				//New length 12 inches:
 				if(pc.earLength >= 12) output("\n\nYou have a feeling they won’t be able to grow much more than this, though.");
 			}

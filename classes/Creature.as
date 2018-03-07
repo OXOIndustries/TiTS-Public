@@ -19533,7 +19533,7 @@
 					if (tightnessChange)
 					{
 						if (tv.loosenessRaw < tv.minLooseness) tv.loosenessRaw = tv.minLooseness;
-						if(this is PlayerCharacter) AddLogEvent("<b>Your" + (vaginas.length > 1 ? " " + kGAMECLASS.num2Text2(i + 1) : "") + " " + vaginaDescript(i) + " has recovered from its ordeals, tightening up a bit.</b>", "passive", deltaT);
+						if(this is PlayerCharacter) AddLogEvent("<b>Your" + (vaginas.length > 1 ? " " + num2Ordinal(i + 1) : "") + " " + vaginaDescript(i) + " has recovered from its ordeals, tightening up a bit.</b>", "passive", deltaT);
 					}
 				}
 			}
@@ -19689,7 +19689,7 @@
 			
 			if (doOut && (this is PlayerCharacter) && (newRating > originalRating && (newRating % 2 == 0 || newRating < 6)))
 			{
-				AddLogEvent("Thanks to the BoobSwell pads you’re wearing, your chest is slowly but steadily filling out! <b>You figure that " + (bRows() == 1 ? "you " : "your "+ kGAMECLASS.num2Text2(statusEffectv1("Boobswell Pads") + 1) + " row of breasts ") + " could now fit into " + indefiniteArticle(breastCup(0, targetRow.breastRating())) + " bra!</b>", "passive", deltaT);
+				AddLogEvent("Thanks to the BoobSwell pads you’re wearing, your chest is slowly but steadily filling out! <b>You figure that " + (bRows() == 1 ? "you " : "your "+ num2Ordinal(statusEffectv1("Boobswell Pads") + 1) + " row of breasts ") + " could now fit into " + indefiniteArticle(breastCup(0, targetRow.breastRating())) + " bra!</b>", "passive", deltaT);
 			}
 		}
 		
@@ -20043,7 +20043,7 @@
 					case "Boobswell Pads":
 						if (this is PlayerCharacter && requiresRemoval)
 						{
-							AddLogEvent("Unfortunately, as you admire your now-larger bosom, you realize that the gentle, wet rumble of the pads has come to a stop. <b>It looks like you’ve exhausted the BoobSwell Pads" + (bRows() > 1 ? " on your " + kGAMECLASS.num2Text2(thisStatus.value1+1) + " row of breasts" : "") + ParseText("!</b> You peel them off your [pc.skinFurScales] and toss them away."), "passive", maxEffectLength);
+							AddLogEvent("Unfortunately, as you admire your now-larger bosom, you realize that the gentle, wet rumble of the pads has come to a stop. <b>It looks like you’ve exhausted the BoobSwell Pads" + (bRows() > 1 ? " on your " + num2Ordinal(thisStatus.value1+1) + " row of breasts" : "") + ParseText("!</b> You peel them off your [pc.skinFurScales] and toss them away."), "passive", maxEffectLength);
 						}
 						break;
 					case "Cum High":

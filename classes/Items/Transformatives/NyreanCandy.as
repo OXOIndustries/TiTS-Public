@@ -2,6 +2,7 @@
 {
 	import classes.Engine.Interfaces.*;
 	import classes.Engine.Utility.rand;
+	import classes.Engine.Utility.num2Text;
 	import classes.Engine.Utility.num2Ordinal;
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
@@ -453,7 +454,7 @@
 							lengthGain = 3;
 							if(target.cocks[selCock].cLengthRaw + lengthGain > 14) lengthGain = 14 - target.cocks[selCock].cLengthRaw;
 							
-							output("\n\nA pleasant feeling comes to your [pc.cock " + selCock + "]. You look down to discover it has grown " + kGAMECLASS.num2Text(lengthGain) + " inches!");
+							output("\n\nA pleasant feeling comes to your [pc.cock " + selCock + "]. You look down to discover it has grown " + num2Text(lengthGain) + " inches!");
 							
 							target.cocks[selCock].cLengthRaw += lengthGain;
 							changes++;
@@ -464,7 +465,7 @@
 							lengthGain = 3;
 							if(target.cocks[selCock].cLengthRaw - lengthGain < 14) lengthGain = 14 - (target.cocks[selCock].cLengthRaw - lengthGain);
 							
-							output("\n\nA pleasant feeling comes to your [pc.cock " + selCock + "]. You look down to discover it has shrunk " + kGAMECLASS.num2Text(lengthGain) + " inches!");
+							output("\n\nA pleasant feeling comes to your [pc.cock " + selCock + "]. You look down to discover it has shrunk " + num2Text(lengthGain) + " inches!");
 							
 							target.cocks[selCock].cLengthRaw -= lengthGain;
 							changes++;
