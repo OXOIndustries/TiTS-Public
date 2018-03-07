@@ -1580,7 +1580,7 @@ public function taurPussyMountWsanIsMyHero(forcy:Boolean = false):void
 	if(forcy)
 	{
 		output("Sylvie, never breaking eye-contact, backs up, forcing you to step back further and further. Soon, you’re against a door, but she just keeps coming. She kicks off the ground, launching her massive rump high in the air, and hops back, slamming her hooves against the wall to either side of your head. Her pussy, big, round and smelling strongly of horny taur fills your vision and tickles your nose. ");
-		if(sylvieHasCock()) output("Her dick and balls are there too, lower, dangling useless. It's clear which part of her she favors at the moment. ");
+		if(sylvieHasCock()) output("Her dick and balls are there too, lower, dangling useless. It’s clear which part of her she favors at the moment. ");
 		output("You push back, but the touch just makes her lubricate. Musky moose-goo trickles out of her pussy, doubling the intensity of her wanton scent.");
 		output("\n\nFrom somewhere deep inside you, a growl worms out of your throat, and you push back twice as hard. Sylvie doesn’t fall away. Instead, the door behind you gives out, and you stumble in, Sylvie clopping in after. Her pussy is lush and dribbling, shimmering like a puffy purple target for your [pc.cocks]. You rear up and throw yourself at her, launching yourself halfway up her massive rump, clawing at her furred midriff for purchase.");
 		output("\n\n<i>“Oh! That’s it, big [pc.boyGirl], now you’re getting in the spi-”</i> she slurs, tensing up when she feels your [pc.cock " + x + "] slap against her dribbling pussy. <i>“Oh, fuck it!”</i> she groans, holding still while you align the rigid pole. <i>“Fuck me so hard!”</i>");
@@ -1631,7 +1631,7 @@ public function taurPussyMountWsanIsMyHero(forcy:Boolean = false):void
 	output("\n\nYou reduce her to a mewling mess on the bed with each flex of your hips, Sylvie’s squirting pussy desperately working your rod inside her, squeezing you with all her might. She groans into the ");
 	if(sylvieHasCock()) output("cum-soaked ");
 	output("sheets, teeth grit during the rough violation of her nethers. Each movement sets her ass shaking and her body shuffling forward, the busty ‘taur grabbing at the sheets with white knuckles as she’s dragged across them again and again");
-	if(sylvieHasCock()) output(", sending ripples through flooding pools of wasted jism she's created.");
+	if(sylvieHasCock()) output(", sending ripples through flooding pools of wasted jism she’s created.");
 	output(".");
 	output("\n\nFinally, you feel yourself about to cum again. You pull back and, with a bestial roar of dominance, slam into Sylvie at full force before you tighten your grip around her midriff and begin pumping her full of your seed. Between the load you already dumped in her and the gouts of sticky cum spurting into her now, it’s not long before she’s messily overflowing. Warm seed slowly rolls down her shaking, spread-apart hind legs as it leaks from her abused pussy, spattering to the floor.");
 	output("\n\nWhen you’re finally done, you give a deep, satisfied sigh and pull your cock from Sylvie’s still-gushing cunt, dismounting her. She stays on the bed for a second before pushing herself up with her arms, orange eyes half-lidded and clearly still in an orgasmic haze.");
@@ -2229,7 +2229,7 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 	else output(" a stream of [pc.girlCum] flow down your body to mix with Sylvie’s feminine juices, though it doesn’t make the puddle from her copious lubrication any bigger.");
 
 	output("\n\nYou pant breathlessly after your orgasm and rub Sylvie’s quivering backside as she reaches her own orgasm, set off by the feeling of your entrance clenching and fluttering against her own.");
-	if(sylvieHasCock()) output(" Gallon after gallon bursts forth from her flaring cock in the peak of her passion. You didn't have to directly touch it to set her off. The feelings coursing through her animalistic cunt and stinging hindquarters are more than enough to empty every drop from her diminishing balls.");
+	if(sylvieHasCock()) output(" Gallon after gallon bursts forth from her flaring cock in the peak of her passion. You didn’t have to directly touch it to set her off. The feelings coursing through her animalistic cunt and stinging hindquarters are more than enough to empty every drop from her diminishing balls.");
 
 	//(If not naga)
 	if(!pc.isNaga()) output("\n\nOnce you catch your breath, you help her turn around and lay on the floor with her legs under her, both of you letting out chuckles from all the slipping and sliding you do on the wet floor. When she is settled, you lean against her flank and relax, the post-orgasm buzz still pleasantly running through your body.");
@@ -2341,7 +2341,7 @@ public function cuffsAndTongueFromNonesuchyDuchy(forcy:Boolean = false):void
 		output("\n\n<i>“Yes! Like that!”</i> she groans, slamming her hooves into the floor as you hollow your cheeks determinedly. <i>“Fuuuuuck are you good at that!”</i>");
 		output("\n\nHer clit throbs in your mouth, and a huge gout of pussy juice spatters over your chin as it contracts out. You are dizzied by doughty hills of moose flesh excitedly battering into your upturned face, but all the way through the moosetaur’s loud, gratuitous orgasm you keep a firm hold on that tender little nub, audibly intensifying her pleasure.");
 	}
-	if(sylvieHasCock()) output("\n\nThrough it all is the lurid gushing of her cock's voluminous ejaculations. Splat after splat of augmented seed hits hard into the floor, Sylvie's balls visibly quaking with the effort of disgorging so much. The sweat-slicked equine organ lurches time after time, long after you expected it to stop, hosing out a tidal wave of white, salty goo in response to your tongue's loving licks.");
+	if(sylvieHasCock()) output("\n\nThrough it all is the lurid gushing of her cock’s voluminous ejaculations. Splat after splat of augmented seed hits hard into the floor, Sylvie’s balls visibly quaking with the effort of disgorging so much. The sweat-slicked equine organ lurches time after time, long after you expected it to stop, hosing out a tidal wave of white, salty goo in response to your tongue’s loving licks.");
 	pc.applyPussyDrenched();
 	processTime(15);
 	pc.lust(80);
@@ -3129,6 +3129,7 @@ public function sylvieGloryholeSuck():void
 	output("\n\n<i>“We should do this again sometime,”</i> she suggests, jiggling a little in excitement. <i>“I had sooo much fun.”</i>");
 	
 	var ppSylvie:PregnancyPlaceholder = sylviePP();
+	clearMenu();
 	
 	if(!pc.isBimbo()) 
 	{
@@ -3139,6 +3140,8 @@ public function sylvieGloryholeSuck():void
 		output("\n\nYou share a laugh, then head back into the bar. Most of the regulars are still there, and you can’t help but flush red when they break into laughter and cheers at the sight of your cum-swollen tummy. Sylvie, on the other hand, stands proud and tall, her virility on display for all to see. You mention you’re going to go sleep off the weight and she gives you another long, deep kiss in front of the crowd before patting your butt and waving you off.");
 		output("\n\n<i>“Bye [pc.name]!”</i> she calls from behind you, already settling down for a drink at a table. <i>“Come back soon, lover!”</i>");
 		output("\n\nBack at your ship, you collapse onto your bed with shaky legs and stretch out for a moment before relaxing. That <i>was</i> pretty fun... maybe when you wake up you can go back and see if Sylvie’s up for round two.");
+		
+		addButton(0,"Next",mainGameMenu);
 	}
 	else
 	{
@@ -3146,34 +3149,42 @@ public function sylvieGloryholeSuck():void
 		output("\n\n<i>“But?”</i> Sylvie echoes, looking at you.");
 		output("\n\n<i>“Why can’t we just do it again right now?”</i> you ask, putting a finger on your lips in confusion. <i>“Can you not go again at the moment?”</i>");
 		output("\n\nSylvie’s eyebrows raise, then she slowly breaks into a smirk.");
-		output("\n\n------");
-		output("\n\n<i>“Nnnnrrrgh, fuck!”</i> she pants, pummeling your face with heavy, deliberate thrusts that send sweat droplets flying from her balls to land on your cum-soaked chest. <i>“Here’s number six, drink up!”</i>");
-		output("\n\nHaving foregone the gloryhole idea entirely, you’re pressed up against the back of a toilet gurgling around Sylvie’s fat cock cumming so hard you’re not even really sure where you are right now or what day it is. Nothing is relevant except for the rush of warm seed and endorphins inside you, the moosetaur emptying her quaking testes into your stomach with groans of fulfillment.");
-		output("\n\n<i>“Hooo, that hit the spot,”</i> Sylvie huffs, wiping her sweaty brow with the back of a hand as she dismounts. <i>“You sure know how to take care of a girl, [pc.name].”</i>");
-		output("\n\nYou nod vaguely, the dizzy euphoria of multiple orgasms still washing through your body. Sylvie peers closer, and you manage to focus your eyes on her flawless face.");
-		output("\n\n<i>“How’s that for going again?”</i> Sylvie pants in happiness, flashing you a brilliant smile. <i>“You a bit less thirsty now, babe?”</i>");
-		output("\n\n<i>“Uh huuuh,”</i> you croon, giving the woman a dopey smile. <i>“You rock.”</i>");
-		output("\n\n<i>“Aww, you’re the best!”</i> she giggles, rubbing your head. <i>“C’mere and I’ll clean you up a bit and you can go rest in your ship, okay?”</i>");
-		output("\n\nShe’s so nice! You obediently follow her instructions and let her clean you up with some tissues and water, though there’s nothing she can do about your massive, cum-swollen tummy. She did tell you to rest, though, so you guess you’ll go do that next to be a good [pc.girlBoy].");
-		output("\n\nWhen she leads you back into the bar, enough of the patrons that were there when you entered the bathrooms are around that the crowd breaks into laughter and cheering at the sight of you and your obscenely gravid tummy. You’re not really sure what all the fuss is about, but you giggle and blow kisses to the people in the bar as Sylvie ushers you towards your ship.");
-		output("\n\nWhen you’re on the boarding ramp, she tugs your arm hard enough to spin you around and send you straight into her cleavage. Giving you a tight hug, she kisses you deeply and passionately, sucking your [pc.tongue] while you play with her nipples through her clothes. When you part, she licks her lips and winks at you.");
-		output("\n\n<i>“Now go get some sleep, [pc.name]. Come see me again in the bar soon!”</i> she tells you. <i>“You’re the best off-duty distraction I’ve ever met.”</i>");
-		output("\n\nTurning around and blowing you a kiss over her shoulder, she trots back to the bar while you step inside and collapse onto your bed. You <i>should</i> go see her again soon... maybe when you wake up.");
-		pc.orgasm();
-		pc.orgasm();
-		processTime(45);
-		pc.loadInMouth(ppSylvie);
-		pc.loadInMouth(ppSylvie);
-		pc.loadInMouth(ppSylvie);
-		pc.loadInMouth(ppSylvie);
-		pc.loadInMouth(ppSylvie);
-
+		
+		addButton(0,"Next",sylvieGloryholeSuckBimboEnd,ppSylvie);
 	}
 	processTime(70);
 	pc.loadInMouth(ppSylvie);
 	pc.applyCumSoaked();
 	pc.lust(20);
-	moveTo("SHIP INTERIOR");
+	//moveTo("SHIP INTERIOR");
+	currentLocation = "SHIP INTERIOR";
+}
+public function sylvieGloryholeSuckBimboEnd(ppSylvie:PregnancyPlaceholder):void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	
+	output("<i>“Nnnnrrrgh, fuck!”</i> she pants, pummeling your face with heavy, deliberate thrusts that send sweat droplets flying from her balls to land on your cum-soaked chest. <i>“Here’s number six, drink up!”</i>");
+	output("\n\nHaving foregone the gloryhole idea entirely, you’re pressed up against the back of a toilet gurgling around Sylvie’s fat cock cumming so hard you’re not even really sure where you are right now or what day it is. Nothing is relevant except for the rush of warm seed and endorphins inside you, the moosetaur emptying her quaking testes into your stomach with groans of fulfillment.");
+	output("\n\n<i>“Hooo, that hit the spot,”</i> Sylvie huffs, wiping her sweaty brow with the back of a hand as she dismounts. <i>“You sure know how to take care of a girl, [pc.name].”</i>");
+	output("\n\nYou nod vaguely, the dizzy euphoria of multiple orgasms still washing through your body. Sylvie peers closer, and you manage to focus your eyes on her flawless face.");
+	output("\n\n<i>“How’s that for going again?”</i> Sylvie pants in happiness, flashing you a brilliant smile. <i>“You a bit less thirsty now, babe?”</i>");
+	output("\n\n<i>“Uh huuuh,”</i> you croon, giving the woman a dopey smile. <i>“You rock.”</i>");
+	output("\n\n<i>“Aww, you’re the best!”</i> she giggles, rubbing your head. <i>“C’mere and I’ll clean you up a bit and you can go rest in your ship, okay?”</i>");
+	output("\n\nShe’s so nice! You obediently follow her instructions and let her clean you up with some tissues and water, though there’s nothing she can do about your massive, cum-swollen tummy. She did tell you to rest, though, so you guess you’ll go do that next to be a good [pc.girlBoy].");
+	output("\n\nWhen she leads you back into the bar, enough of the patrons that were there when you entered the bathrooms are around that the crowd breaks into laughter and cheering at the sight of you and your obscenely gravid tummy. You’re not really sure what all the fuss is about, but you giggle and blow kisses to the people in the bar as Sylvie ushers you towards your ship.");
+	output("\n\nWhen you’re on the boarding ramp, she tugs your arm hard enough to spin you around and send you straight into her cleavage. Giving you a tight hug, she kisses you deeply and passionately, sucking your [pc.tongue] while you play with her nipples through her clothes. When you part, she licks her lips and winks at you.");
+	output("\n\n<i>“Now go get some sleep, [pc.name]. Come see me again in the bar soon!”</i> she tells you. <i>“You’re the best off-duty distraction I’ve ever met.”</i>");
+	output("\n\nTurning around and blowing you a kiss over her shoulder, she trots back to the bar while you step inside and collapse onto your bed. You <i>should</i> go see her again soon... maybe when you wake up.");
+	pc.orgasm();
+	pc.orgasm();
+	processTime(45);
+	pc.loadInMouth(ppSylvie);
+	pc.loadInMouth(ppSylvie);
+	pc.loadInMouth(ppSylvie);
+	pc.loadInMouth(ppSylvie);
+	pc.loadInMouth(ppSylvie);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3433,9 +3444,6 @@ public function catchFutaSylviaVaginally():void
 			output("\n\n<i>“You are </i>quite<i> the stud,”</i> you agree, smiling. <i>“With your new equipment, you might need someone around to take the load off. Ease your burden.”</i>");
 			output("\n\n<i>“You can take my load any time you like, girl,”</i> Sylvie says with a grin, pecking you on the lips. <i>“For now though, let’s get you washed up, [pc.name].”</i>");
 		}
-		output("\n\n-----");
-		output("\n\nWashing up is mostly uneventful, though Sylvie seems very taken with the idea of kissing you and fondling your pregnant-looking tummy. You get the feeling that she’s very into the whole thing, and you have to say that for your part it’s very nice having your partner fussing over you so much.");
-		output("\n\nOne intimate and enjoyable bath later, you’re both clean and Sylvie needs to go to work. The little kiss and smile she gives you as you wave off her uniformed departure makes you feel a little like you’re a wife in one of those old shows you once saw in a documentary back on Earth, and you can’t help but snicker at the thought.");
 	}
 	//taur:
 	else
@@ -3502,13 +3510,21 @@ public function catchFutaSylviaVaginally():void
 			output("\n\n<i>“You are </i>quite<i> the stud,”</i> you agree, smiling. <i>“With your new equipment, you might need someone around to take the load off. Ease your burden.”</i>");
 			output("\n\n<i>“You can take my load any time you like, girl,”</i> Sylvie says with a grin, pecking you on the lips. <i>“For now though, let’s get you washed up, [pc.name].”</i>");
 		}
-		output("\n\n----");
-		output("\n\nWashing up is mostly uneventful, though Sylvie seems very taken with the idea of kissing you and fondling your pregnant-looking tummy. You get the feeling that she’s very into the whole thing, and you have to say that for your part it’s very nice having your partner fussing over you so much.");
-		output("\n\nOne intimate and enjoyable bath later, you’re both clean and Sylvie needs to go to work. The little kiss and smile she gives you as you wave off her uniformed departure makes you feel a little like you’re a wife in one of those old shows you once saw in a documentary back on Earth, and you can’t help but snicker at the thought.");
 	}
-	processTime(30);
+	processTime(20);
 	pc.loadInCunt(sylviePP(),x);
 	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",catchFutaSylviaVaginallyEnd);
+}
+public function catchFutaSylviaVaginallyEnd():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	output("Washing up is mostly uneventful, though Sylvie seems very taken with the idea of kissing you and fondling your pregnant-looking tummy. You get the feeling that she’s very into the whole thing, and you have to say that for your part it’s very nice having your partner fussing over you so much.");
+	output("\n\nOne intimate and enjoyable bath later, you’re both clean and Sylvie needs to go to work. The little kiss and smile she gives you as you wave off her uniformed departure makes you feel a little like you’re a wife in one of those old shows you once saw in a documentary back on Earth, and you can’t help but snicker at the thought.");
+	processTime(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3665,9 +3681,16 @@ public function fistSylvie():void
 		output("\n\n<i>“Ooh, I do so love surprises,”</i> Sylvie says, leaning in and smiling. <i>“‘Specially when I get to cum at the end of them.”</i>");
 		output("\n\n<i>“Oh, there’ll be a lot of cumming alright,”</i> you say knowingly, rising from your seat with a mysterious smile playing on your lips.");
 	}
-	output("\n\n----");
+	clearMenu();
+	addButton(0,"Next",fistSylvieNext);
+}
+public function fistSylvieNext():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
 	moveTo("CANADA7");
-	output("\n\nOnce you’re in the room and the door is locked securely behind you, Sylvie turns and gazes at you with one arm on her cocked hips.");
+	output("Once you’re in the room and the door is locked securely behind you, Sylvie turns and gazes at you with one arm on her cocked hips.");
 	output("\n\n<i>“So, which way do I face for my surprise, cutie?”</i> she asks, beaming confidently.");
 	output("\n\n<i>“Away,”</i> you tell her");
 	if(!pc.isChestExposed()) output(", taking off your [pc.upperGarments]");
@@ -3762,8 +3785,16 @@ public function sylvieProstateStimEnd():void
 	output("\n\n<i>“No reason we can’t do both,”</i> you say, leaning forward and kissing her before taking her hand.");
 	output("\n\nYou lead the drained ‘taur-girl to the water and watch her happily sink into its depths, sighing in satisfaction. Joining her in the bath, you soap her up and wash her down, getting all the hard-to-reach places for the tired girl. By the time you finish, she’s practically swaying on her feet with sleepiness, and you find yourself having to gently guide her back to the room so she can take a nap.");
 	output("\n\nNaked and sparkling clean, Sylvie collapses onto the bed and is out like a light. After sharing in her incredible little experience, you’d like to be there for her when she wakes up; you clamber around the gently snoring moosegirl’s entanglement of limbs and wrap your arm around her back to take a quick break.");
-	output("\n\n---");
-	output("\n\nShe’s only asleep for maybe half an hour when her eyelids flutter, her eyes opening to gaze at your face for a few seconds before recognition dawns on her.");
+	processTime(15);
+	clearMenu();
+	addButton(0,"Next",sylvieProstateStimEndEnd);
+}
+public function sylvieProstateStimEndEnd():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	output("She’s only asleep for maybe half an hour when her eyelids flutter, her eyes opening to gaze at your face for a few seconds before recognition dawns on her.");
 	output("\n\n<i>“Oh my gooosh,”</i> she fawns, catching you in a hug against her bountiful bosom. <i>“You just skyrocketed to the top of my list. Wow. I’m gonna have to teach </i>everyone<i> I know about this.”</i>");
 	output("\n\nYou can already envision a not-so-distant future of Kally and Sylvie taking turns milking each other for gallons and gallons. Rubbing up against you with affection, Sylvie gets herself dressed - making sure to give you a nice show as she works her clothes on, smiling the whole time - and gets ready to go back to work. Right before she leaves, she gives you a kiss.");
 	output("\n\n<i>“Make sure you come back soon, got it?”</i> she tells you, looking at you meaningfully. <i>“I want to see a </i>lot<i> more of you around.”</i>");

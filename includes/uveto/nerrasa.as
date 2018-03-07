@@ -88,7 +88,10 @@ public function uvetoNerrasaBuy():void
 	}
 	else chars["NERRASA"].destroyItemByClass(SiegwulfeItem);
 	
-	if(pc.statusEffectv1("Backpack Upgrade") < 10) chars["NERRASA"].inventory.push(new ExpandedBackpackII());
+	if(pc.statusEffectv1("Backpack Upgrade") < 10)
+	{
+		if(!chars["NERRASA"].hasItemByClass(ExpandedBackpackII)) chars["NERRASA"].inventory.push(new ExpandedBackpackII());
+	}
 	else chars["NERRASA"].destroyItemByClass(ExpandedBackpackII);
 
 	shopkeep = nerrasa;

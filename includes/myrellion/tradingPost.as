@@ -125,7 +125,7 @@ public function seifynTalkMenu(arg:Function = undefined):void
 	else if(arg == seifynTaivraTalk) addDisabledButton(2,"Taivra","Taivra","You just had this discussion.");
 	else if(flags["SEIFYN_NYREA_TALK"] == 1) addButton(2,"Taivra",seifynTaivraTalk,undefined,"Taivra","Ask about the nyrean queen she mentioned.");
 	else addDisabledButton(2,"Taivra","Taivra","Maybe you should ask about the Nyrea first.");
-	//else addDisabledButton(2,"Taivra","Taivra","Seifyn doesn't want to discuss this with you.");
+	//else addDisabledButton(2,"Taivra","Taivra","Seifyn doesn’t want to discuss this with you.");
 	addButton(14,"Back",seifynMenu);
 }
 
