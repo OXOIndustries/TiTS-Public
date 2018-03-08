@@ -1385,7 +1385,7 @@ public function zilPregnancyBirthing(pregSlot:int = 0, numBabies:int = 2):void
 	else output(" the " + ((InShipInterior() || InPublicSpace()) ? "ground" : "floor"));
 	output(" are sure signs that your babies are coming.");
 	// mhen’gaWilderness:
-	if(getPlanetName() != "Mhen'ga" && (rooms[currentLocation].hasFlag(GLOBAL.FOREST) || rooms[currentLocation].hasFlag(GLOBAL.JUNGLE)) && rooms[currentLocation].hasFlag(GLOBAL.OUTDOOR))
+	if(getPlanetName() == "Mhen'ga" && (rooms[currentLocation].hasFlag(GLOBAL.FOREST) || rooms[currentLocation].hasFlag(GLOBAL.JUNGLE)) && rooms[currentLocation].hasFlag(GLOBAL.OUTDOOR))
 	{
 		showBust("ZIL");
 		
