@@ -694,7 +694,7 @@ public function liveCumstreamerEpisode():void
 	output("\n\t<b>ZeroMinus:</b> I’m just hoping for something with a lotta cummies! XD");
 	output("\n\t<b>RavenWulf:</b> She should play some CoV while jacking off- that’d be hilarious!");
 	output("\n\nIt seems to join the conversation, you’ll need to put in a user name. Probably best to stay away from your real name, just in case. What would you like to call yourself?");
-	//output("\n\n{Enter CumStreamer name}");
+	// Enter CumStreamer name
 	displayInput();
 	userInterface.textInput.text = "";
 	userInterface.textInput.maxChars = 12;

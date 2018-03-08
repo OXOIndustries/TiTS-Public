@@ -972,7 +972,7 @@ public function bothriocQuestFeiAnStrozoResponse(arg:Array):void
 			break;
 		case "no":
 			output("<i>“You know I can’t agree to that,”</i> you say carefully.");
-			if(addiction >= 50) output(" It freezes your [pc.skin] to refuse this powerful, forceful creature, and the words taste bitter in your mouth, but you manage it. You aren’t willing to completely surrender yourself, not just yet.}");
+			if(addiction >= 50) output(" It freezes your [pc.skin] to refuse this powerful, forceful creature, and the words taste bitter in your mouth, but you manage it. You aren’t willing to completely surrender yourself, not just yet.");
 			output(" <i>“Surely there is some other tribute I could pay? I could... fetch a nyrea for you...”</i>");
 			output("\n\n<i>“You wish to buy me with some scabby-kneed beta worker crawling around nearby?”</i> Fei sneers elegantly, hungry eyes never leaving you. <i>“I accept only the most unique and delectable morsels into my harem. If you lack the integrity and courage to accept my terms, then clearly you do not deserve my ownership of you in the first place! So yes, we shall have to consider an alternative tribute. More’s the pity.”</i>");
 			output("\n\nShe is silent for a time, still in her resting squat, finger tapping her cheek.");

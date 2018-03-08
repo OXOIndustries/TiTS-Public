@@ -555,7 +555,7 @@ public function iceQueenUvetoEntry(oldUvetoVisitFlagValue:* = undefined):void
 	output("\n\n<i>“Are you sure?”</i> you ask, following Zaalt as he forces himself towards the airlock. He gasps and slumps against the bulkhead, gritting his tusked teeth against the pain. Again, you draw near to help... but this time Zaalt slams one of his meaty paws against your chest, sending you staggering back! He roars like a beast, throwing his head back with feral outrage.");
 	
 	output("\n\nYour brain hurts. Not a headache, but a sudden rush of internal agony that makes you stumble back and scream, clawing at your skull as if to get at your brain and stave off the agonizing assault. It feels like talons are clawing at your mind, rending your senses. What’s happening to you!?");
-	//9999 " {PC is Psionic: You can feel the psionic energy suddenly rushing out of Zaalt’s mind, slamming against you like a wave of mental force. You never felt anything from him before, but all of a sudden he’s radiating mental energy like the most powerful psion you’ve ever seen!}");
+	//9999 PC is Psionic: output(" You can feel the psionic energy suddenly rushing out of Zaalt’s mind, slamming against you like a wave of mental force. You never felt anything from him before, but all of a sudden he’s radiating mental energy like the most powerful psion you’ve ever seen!");
 	
 	if (crew(true) > 0)
 	{
