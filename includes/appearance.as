@@ -2494,7 +2494,11 @@ public function appearance(forTarget:Creature):void
 			}
 			else
 			{
-				output2(" double jointed legs covered in " + target.skinFurScales(true,true,true,true) + " supports your body, looking much like a goat’s all the way down.");
+				output2(" double jointed legs covered in ");
+				if(target.hasLegFlag(GLOBAL.FLAG_GOOEY)) output2(target.skinTone + " goo");
+				else if(target.hasFur() || target.hasLegFlag(GLOBAL.FLAG_FURRED)) output2(target.furColor + " fur");
+				else output2(target.skinFurScales(true,true,true,true));
+				output2(" supports your body, looking much like a goat’s all the way down.");
 			}
 			break;
 		case GLOBAL.TYPE_OVIR:
