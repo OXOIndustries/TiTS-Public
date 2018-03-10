@@ -16730,7 +16730,7 @@
 			var sNoun:Array = [];
 
 			//if a idxOverride is set higher than your current dick count, set it to autopick something different
-			if(idxOverride >= cockTotal()) idxOverride = -3;
+			if(hasCock() && idxOverride >= cockTotal()) idxOverride = -3;
 			//Autopick? Prefer dick if available.
 			if(idxOverride == -3)
 			{
@@ -16776,6 +16776,7 @@
 			// Penis?
 			else if(idxOverride >= 0)
 			{
+				if(forceAdjective == -1) return simpleCockNoun(idxOverride);
 				return cockDescript(idxOverride);
 			}
 			// Giant Clits?
