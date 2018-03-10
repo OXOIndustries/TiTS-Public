@@ -3771,14 +3771,26 @@ public function displayEncounterLog(showID:String = "All"):void
 						else if(flags["FISI_REL_TYPE"] == 2) output2("Open Relationship");
 						else if(flags["FISI_REL_TYPE"] == 3) output2("Polyamorous");
 					}
+					if(flags["FISI_TIMES_CUDDLED"] > 0) output2("\n<b>* Fisianna, Times Cuddled With Her:</b> " + flags["FISI_TIMES_CUDDLED"]);
+					if(flags["FISI_TIMES_MASSAGED"] > 0) output2("\n<b>* Fisianna, Times She Massaged You:</b> " + flags["FISI_TIMES_MASSAGED"]);
 					if(flags["FISI_TIMES_SEXED"] > 0)
 					{
+						if(flags["FISI_PRURIENCE"] > 0) output2("\n<b>* Fisianna, Prurience:</b> " + flags["FISI_PRURIENCE"]);
 						output2("\n<b>* Fisianna, Times Sexed:</b> " + flags["FISI_TIMES_SEXED"]);
 						if(flags["FISI_TIMES_TJ"] > 0) output2("\n<b>* Fisianna, Times Had a Tailjob from Her:</b> " + flags["FISI_TIMES_TJ"]);
 						if(flags["FISI_TIMES_EATEN"] > 0) output2("\n<b>* Fisianna, Times Eaten Her Out:</b> " + flags["FISI_TIMES_EATEN"]);
 						if(flags["FISI_TIMES_69"] > 0) output2("\n<b>* Fisianna, Times Sixty-Nine’d:</b> " + flags["FISI_TIMES_69"]);
 						if(flags["FISI_TIMES_VAG"] > 0) output2("\n<b>* Fisianna, Times Fucked "+ (silly ? "the Pussy’s Pussy" : "Her Pussy")+ "</b> " + flags["FISI_TIMES_VAG"]);
+						if(flags["FISI_TIMES_ANAL"] > 0) output2("\n<b>* Fisianna, Times Fucked Her Ass:</b> " + flags["FISI_TIMES_ANAL"]);
+						if(flags["FISI_TIMES_ORAL"] > 0) output2("\n<b>* Fisianna, Times She Gave You Oral:</b> " + flags["FISI_TIMES_ORAL"]);
+						if(flags["FISI_TIMES_FS"] > 0) output2("\n<b>* Fisianna, Times You Fucker Her Silly:</b> " + flags["FISI_TIMES_FS"]);
+						if(flags["FISI_TIMES_RIDDEN"] > 0) output2("\n<b>* Fisianna, Times She Rode You:</b> " + flags["FISI_TIMES_RIDDEN"]);
+						if(flags["FISI_TIMES_PEGGED"] > 0) output2("\n<b>* Fisianna, Times She Pegged You:</b> " + flags["FISI_TIMES_PEGGED"]);
+						if(flags["FISI_TIMES_EDGED"] > 0) output2("\n<b>* Fisianna, Times She Edged You:</b> " + flags["FISI_TIMES_EDGED"]);
+						if(flags["FISI_TIMES_SEXY_CUDDLED"] > 0) output2("\n<b>* Fisianna, Times You Had Sexy Cuddles With Her:</b> " + flags["FISI_TIMES_SEXY_CUDDLED"]);
+						if(flags["FISI_TIMES_BREED"] > 0) output2("\n<b>* Fisianna, Times Breed Her:</b> " + flags["FISI_TIMES_BREED"]);
 					}
+					if(flags["FISI_TIMES_BET"] != undefined) output2("\n<b>* Fisianna, Sex Bets, Win/Loss Ratio:</b> " + flags["FISI_TIMES_WON"] + "/" + flags["FISI_TIMES_LOST"] + ", of " + flags["FISI_TIMES_BET"] + " games");
 				}
 				// Fyn
 				if(flags["SEEN_FYN"] == true)
