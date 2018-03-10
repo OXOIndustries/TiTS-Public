@@ -1740,7 +1740,7 @@ public function annoFollowerSixtyNineSex():void
 		output("You nod and ease up, letting the ausar slip from your grasp - though she does nothing to keep your wandering hands from playing across her breasts as she stands up and takes hold of the");
 		if (anno.armor is AnnosCatsuit) output(" zipper hidden in her collar");
 		else output(" button near her neckline");
-		output(". She puffs her chest out, making her big double-Ds strain against the material of her top as she slowly, sensually");
+		output(". She puffs her chest out, making her big double-D’s strain against the material of her top as she slowly, sensually");
 		if (anno.armor is AnnosCatsuit) output(" slides the zipper down");
 		else output(" starts to undo her buttons");
 		output(". It takes the better part of half a minute");
@@ -4363,7 +4363,7 @@ public function annoFrenchMaidGimmeMoreMore(x:int):void
 		output("\n\nYou pat the ausar maid on the ass and tell her that’s just fine, though you think the ship might need some more work. Anno manages to chuckle.");
 		output("\n\n<i>“Think it’d be okay if we stay like this for a while?”</i> your spent lover whispers into your ear, <i>“I don’t think I could move right now.”</i>");
 		output("\n\nYou breathe deep and give the girl another pat on the ass.");
-		output("\n\n<i>“" + (pc.isNice() ? "Sounds good to me" : " I guess I can give you a little break") + ",”</i> you say, not feeling like you could move yourself.");
+		output("\n\n<i>“" + (pc.isNice() ? "Sounds good to me" : "I guess I can give you a little break") + ",”</i> you say, not feeling like you could move yourself.");
 		output("\n\nThere you sit, sleepy maid-clad ausar atop your heaving chest, your legs and crotch aching pleasantly while [pc.cum] and slick ausar girlcum spills out onto the chair and floor. You throw your arms around Anno’s back and let yourself drift off to sleep until your puppyslut is ready to move again.");
 	}
 	else
@@ -4372,7 +4372,7 @@ public function annoFrenchMaidGimmeMoreMore(x:int):void
 		output("\n\nBetween pants the tired puppy manages to string some words together. <i>“Sorry... boss...”</i> she takes in a deep breath, <i>“I think... we might be stuck here for... a while.”</i> ");
 		output("\n\nYou pat the ausar maid on the ass and tell her that you’re fine with that. ");
 		output("\n\nShe coos happily and nuzzles her head into the nape of your neck, <i>“That’s good. I don’t think I could move right now anyway.”</i>");
-		output("\n\nHonestly, you don’t feel like you could move yourself. You wrap your arms around Anno’s back and pull your knotted maid close, her double-D’s pressing into your [pc.chest], radiating heat through the soft, thin fabrics of her now cum-soaked maid outfit.");
+		output("\n\nHonestly, you don’t feel like you could move yourself. You wrap your arms around Anno’s back and pull your knotted maid close, her " + (!annoIsHuskar() ? "double-D’s" : "massive G-cups") + " pressing into your [pc.chest], radiating heat through the soft, thin fabrics of her now cum-soaked maid outfit.");
 		output("\n\nThe ausar babe settles in atop you, knot held securely inside her. She manages to wrap her shapely, furred legs around your back to make herself more comfortable, and pulls you a little closer to herself in the process. You find yourself bathed in warmth and bliss, the gentle breathing of your spent lover in your ear drawing attention away from the pleasant ache of your legs, no doubt caused by the eager-to-please puppy-slut.");
 		output("\n\nYou feel your eyelids grow heavy, the warmth of Anno’s embrace and her breath on your cheek slowly carrying you away to sleep. You let your eyes close as you and your well-knotted lover drift into unconsciousness to wait it out.");
 	}
