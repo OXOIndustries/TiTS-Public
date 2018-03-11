@@ -35,7 +35,7 @@ public var BOTHRIOC_QUEST_FAILURE:int = -1; // Bothrioc do not unite.
 
 public function bothriocQuestAvailable():Boolean
 {
-	if(pc.level < 8) return false;
+	if(pc.level < 7) return false;
 	
 	return (flags["MET_CHARLES"] != undefined && flags["ARAKEI_TALKED"] != undefined && flags["ARAKEI_TALKED_BOTHRIOC"] != undefined && flags["ARAKEI_TALKED_AMBASSADOR"] != undefined && flags["ARAKEI_TALKED_HISTORY"] != undefined && flags["ARAKEI_TALKED_OTHERBOTHRIOC"] != undefined && flags["DEEP_CAVES_STEP"] != undefined);
 }

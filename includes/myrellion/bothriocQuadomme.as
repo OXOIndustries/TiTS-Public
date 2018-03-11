@@ -40,7 +40,7 @@ public function showBothriocQuadomme():void
 // Quadomme encounter check
 public function tryEncounterBothriocQuadomme():Boolean
 {
-	if(pc.level < 8) return false;
+	if(pc.level < 7) return false;
 	
 	var quadommeTrap:Boolean = false;
 	switch(currentLocation)
