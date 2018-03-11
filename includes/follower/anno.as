@@ -491,6 +491,8 @@ public function annoAtAnonsAddendum(slot:int = 8):void
 	// Recruited but booted off da ship
 	if (flags["ANNO_CREWMEMBER"] == 2)
 	{
+		if(flags["BAR_NPC"] == annoRandoBarBonus) refreshRoamingBarEncounter();
+		
 		output("\n\nAnno is sitting at the bar, nursing a whiskey and working on a glowing datapad.");
 		addButton(slot, "Anno", annoFindingALostPooch, undefined, "Anno", "See how the ausar recruit is doing.");
 	}
@@ -503,6 +505,8 @@ public function annoAtAnonsAddendum(slot:int = 8):void
 		{
 			if (rand(3) == 0 || pc.hasStatusEffect("Anno x Kaede Bar"))
 			{
+				if(flags["BAR_NPC"] == annoRandoBarBonus) refreshRoamingBarEncounter();
+				
 				output("\n\nAnno is drinking and conversing with " + (hasMetKaede() ? "Kaede" : "a red-headed friend") + " at the bar.");
 				pc.createStatusEffect("Anno x Kaede Bar", 0, 0, 0, 0, true, "", "", false, 15);
 				addButton(slot, "Anno", annoxKaedeFollowerMeeting, undefined, ("Anno & " + (hasMetKaede() ? "Kaede" : "Friend")), "Catch up with the two.");
@@ -3856,6 +3860,8 @@ public function annoThicknessBarEvent():void
 	output("\n\nAfter a moment, she stands up and starts heading towards the door... which brings her right to you. <i>“Hey, boss,”</i> she says with a forced little smile. <i>“Just found the one guy in this joint who can’t handle a girl bigger than he is. Ah well. I’m gonna head back to the ship... maybe you could come by and help me vent some frustrations?”</i>");
 	output("\n\nShe gives you a wink and saunters past, huge ass wiggling for you until she’s out of sight. Hate to see her leave, but you love to see her go...");
 	processTime(3);
+	pc.createStatusEffect("Anno Bar Busy",0,0,0,0,true,"","",false,65);
+	refreshRoamingBarEncounter();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3883,6 +3889,7 @@ public function annoShootsAGuyDownnnn():void
 
 	output("\n\nShe plants a kiss on your cheek and sashays out. This time, the other patrons give a few catcalls - and get a happy wiggle out of Anno’s tail for their trouble.");
 	pc.createStatusEffect("Anno Bar Busy",0,0,0,0,true,"","",false,65);
+	refreshRoamingBarEncounter();
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -3902,6 +3909,7 @@ public function annoGonnaGitIt():void
 	output("\n\nBye...?");
 	processTime(2);
 	pc.createStatusEffect("Anno Bar Busy",0,0,0,0,true,"","",false,135);
+	refreshRoamingBarEncounter();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3926,6 +3934,7 @@ public function annoGonnaGitDragonBOOOTAYYYYY():void //Hi geddy
 	{
 		output("After a moment, Anno gives you a questioning look, as if to say <i>“it’s time to go.”</i> You figure you’ve interfered in her date enough if that’s the case and excuse yourself.");
 		pc.createStatusEffect("Anno Bar Busy",0,0,0,0,true,"","",false,135);
+		refreshRoamingBarEncounter();
 	}
 	else
 	{
@@ -3957,6 +3966,7 @@ public function annoCanDoShitSolo():void
 	output("\n\n<i>“Aw,”</i> Anno sighs, sipping on her drink. <i>“Well, see you around, boss. As for you...”</i> she adds, turning and slipping a hand around the gryvain’s shoulder. <i>“Where were we...”</i>");
 	processTime(1);
 	pc.createStatusEffect("Anno Bar Busy",0,0,0,0,true,"","",false,135);
+	refreshRoamingBarEncounter();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -4076,6 +4086,7 @@ public function annoPupAtWork():void
 	output("\n\nYou spend a few minutes tipping back your drink and chatting with Anno, but unfortunately she soon says she needs to head back to the ship and start filling out paperwork for her grant. She leaves you with a big hug and a paid-for tab before sashaying out the door.");
 	processTime(20);
 	pc.createStatusEffect("Anno Bar Busy",0,0,0,0,true,"","",false,135);
+	refreshRoamingBarEncounter();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
