@@ -49,6 +49,7 @@
  * FISI_TIMES_WON		0-infinity, how many times have you won against her
  * FISI_TIMES_LOST		0-infinity, how many times have you lost her
  * FISI_BET_RESULT		0 if lost last bet, 1 if won last time
+ * FISI_LAST_SEXED		last date PC & Fisi had sex, used for auto triggering the breeding scene
  * FISI_TYPE			undefined = nekomimi, 1 = anthro (for future Xpacks)
  * FISI_PREGNANCY		undefined/0 n= not pregnant, used a placeholder for future Xpacks
  * 
@@ -338,7 +339,12 @@ public function approachFisi():void
 		maxTrustScene();
 		return;
 	}
-	
+	//Breeding scene takes precedence - increase chance by 20% every couple of days
+	if (flags["FISI_TIMES_BREED"] > 0 && (rand(5) <= Math.floor((GetGameTimestamp() - flags["FISI_LAST_SEXED"]) / (60*24*3)))) {
+		breedFisiStart();
+		return;
+	}
+
 	clearOutput();
 	author("Lkynmbr24");
 	showFisi();
@@ -705,10 +711,8 @@ public function givePantiesToFisi():void
 	pc.destroyItemByClass(HardlightAGThong, 1);
 	flags["FISI_HL_PANTIES"] = 2;
 	processTime(45+rand(10));
-
 	moveTo("RESIDENTIAL DECK FISIS APARTMENT");
-	clearMenu();
-	addButton(0, "Next", sexFisi);
+	sexFisi(true);
 }
 
 public function massageFisi():void
@@ -841,7 +845,7 @@ public function massageFisiYesII():void
 	output("\n\nAfter Fisianna finishes massaging your shoulders, you can feel her soft paws pull away from your body. You wish that she wasn't done yet, but you are feeling <i>much</i> more relaxed than you did to begin with, so much so that you find it difficult to will yourself to move again.");
 
 	clearMenu();
-	addButton(0, "Next", massageFisiYesII);
+	addButton(0, "Next", massageFisiYesIII);
 }
 
 public function massageFisiYesIII():void
@@ -872,6 +876,7 @@ public function massageFisiYesIII():void
 	if (pc.statusEffectv1("Sore Counter") > 1 ) soreChange( -3);
 	else pc.lust(0, true);
 	
+	currentLocation = "RESIDENTIAL DECK 13";
 	IncrementFlag("FISI_TIMES_MASSAGED");
 	processTime(60+rand(30));
 	clearMenu();
@@ -983,6 +988,7 @@ public function oralFisi():void
 
 	IncrementFlag("FISI_TIMES_ORAL");
 	IncrementFlag("FISI_TIMES_SEXED");
+	flags["FISI_LAST_SEXED"] = GetGameTimestamp();
 
 	var x:int = largestCockIndexThatFitsFisiDimensions();
 	
@@ -1102,6 +1108,7 @@ public function analFisiI():void
 
 	IncrementFlag("FISI_TIMES_ANAL");
 	IncrementFlag("FISI_TIMES_SEXED");
+	flags["FISI_LAST_SEXED"] = GetGameTimestamp();
 
 	output("Your hands wander idly over Fisianna's shapely thighs and hips. Her breath becomes labors while you continue to grope her affectionately. When you reach her shapely posterior, you give it a firm squeeze, prompting a soft mewl to escape her lips. You continue kneading her soft bum while snaking your hand towards her belt buckles. With relative ease, you undo the clasps binding them together and slide her jeans off. After unceremoniously throwing them to the side, you are treated to the lovely vision of an already stained-through pair of lace panties, leaving her aroused vulva on full display for you.");
 	output("\n\n<i>“Well then... someone's raring to go,”</i> you tease the kitten, smiling coyly while easing the rest of her clothing off. ");
@@ -1251,6 +1258,7 @@ public function fuckFisiSillyI():void
 	
 	IncrementFlag("FISI_TIMES_FS");
 	IncrementFlag("FISI_TIMES_SEXED");
+	flags["FISI_LAST_SEXED"] = GetGameTimestamp();
 
 	var x:int = largestCockIndexThatFitsFisiDimensions();
 
@@ -1534,6 +1542,7 @@ public function getRiddenByFisiI():void
 
 	IncrementFlag("FISI_TIMES_RIDDEN");
 	IncrementFlag("FISI_TIMES_SEXED");
+	flags["FISI_LAST_SEXED"] = GetGameTimestamp();
 
 	var x:int = largestCockIndexThatFitsFisiDimensions();
 
@@ -1629,6 +1638,7 @@ public function getPeggedByFisiI():void
 
 	IncrementFlag("FISI_TIMES_PEGGED");
 	IncrementFlag("FISI_TIMES_SEXED");
+	flags["FISI_LAST_SEXED"] = GetGameTimestamp();
 
 	output("<i>“You know... I never have too many chances to field test that 'present' you gave to me before. I think I would love to do so this time around.”</i> Fisianna smiles innocently​. You flush at the idea of feline companion pegging you with her new hardlight dildo panties. She giggles lightly when she sees the growing grin of excitement on your face. <i>“Alright then! It looks like you're on board with the idea! I'm glad...”</i> She slides off of the bed while giving you a wide smile in glee.");
 	if (!pc.isNude()) output("\n\n<i>“First things first though...”</i> Fisianna croons seductively as her paws settle on your [pc.legs]. You watch quietly while her hands wander further up your body. She gives your crotch a playful grope before she moves her hands up to your chest. In a flash, she removes your [pc.gear], abandoning her previously slow paced teasing. Once she finishes, the catgirl steps backwards, looking in marvel at your now naked body. <i>“Okay, now it's my turn...”</i>");
@@ -1754,6 +1764,7 @@ public function GetEdgedByFisi():void
 
 	IncrementFlag("FISI_TIMES_EDGED");
 	IncrementFlag("FISI_TIMES_SEXED");
+	flags["FISI_LAST_SEXED"] = GetGameTimestamp();
 
 	fisiPrurience(10);
 	currentLocation = "RESIDENTIAL DECK 13";
@@ -1891,6 +1902,7 @@ public function sexyCuddlesWithFisiI():void
 
 	IncrementFlag("FISI_TIMES_SEXY_CUDDLED");
 	IncrementFlag("FISI_TIMES_SEXED");
+	flags["FISI_LAST_SEXED"] = GetGameTimestamp();
 
 	var x:int = largestCockIndexThatFitsFisiDimensions();
 	//Randomize between penile and vaginal variants if PC has both.
@@ -1988,16 +2000,236 @@ public function sexyCuddlesWithFisiII(cockOrCunt:int = 0):void
 	addButton(0, "Next", mainGameMenu);
 }
 
+//[Auto-Triggered Heat Intro]
+//Triggers if PC hasn't sexed Fisianna in over 24 hours.
+//Triggers at a default 20% chance on encounter after 24 hours.
+//Chance increases in 20% increments every 3 solar days afterwards until chance reaches 100%
+//Small dialogue changes for 100% chance.
+//Has to have "Bred Her" at least once.
+//Merges into [Breed Her] scene depending on her prurience.
+public function breedFisiStart():void
+{
+	author("Night Trap");
+	showFisi(2);
+
+	var x:int = largestCockIndexThatFitsFisiDimensions();
+
+
+	output("You walk over to where your diminutive neko girlfriend is sitting. Before you have the chance to sit down next to her, Fisianna abruptly stands up from her seat, much to your surprise. When you are about to ask how she is doing, she suddenly latches on tightly to you. Thinking that the amorous kitten just misses you that much after all the time that you were gone, you  return her affections with your own innocent hug. After a few moments spent in the gentle embrace, you notice that your lover is exceptionally warm to the touch and take in a distinct scent that wafts from her body. She smells... pleasant to say the least, but it’s also faintly carnal in nature, with a hint of a pheromonal perfume. It grows more and more intense the longer you stay intimately close to her.");
+	output("\n\nAfter you separate yourself from her, she stares into your eyes, her pupils dilated and filled with a feral hunger. Her face is flushed a deep shade of red, and she breathes heavily while shivering slightly on the spot. She inches closer to you until her breasts press against your");
+	if (pc.biggestTitSize() > 1) output("s");
+	else output("chest");
+	output(", nuzzling into your neck and purring <i>hard</i> against you.");
+	if (flags["FISI_LAST_SEXED"] + 13 * 24 * 60 < GetGameTimestamp()) output("\n\n<i>“Nnguh... [pc.name]... I-It's been <b>too</b> loong since... since... P-please... I want you... home.”</i>");
+	else output("\n\n<i>“Haah... [pc.name]. M-my home... Please. T-take me there.”</i>“");
+	output(" Fisianna huffs and slumps against you, barely able to hold herself upright. If it weren't for the now-overwhelming primal scent of her arousal, you would worry that she came down with something fierce, though you can only surmise that she took a double dose of Breeder's Bliss ");
+	if (flags["FISI_LAST_SEXED"] + 13 * 24 * 60 < GetGameTimestamp()) output("a long while");
+	else output("sometime");
+	output(" before your arrival. Naughty girl...")
+	output("\n\nNot wanting anyone else to notice your partner's super-libidinous state, you quickly usher her out of the park and towards her apartment. She clings to you the entire way, making it difficult to walk without tripping over each other. You swear you may have seen a head or two turn in your direction before you exit the plaza, though you pay it no further mind.");
+	output("\n\nWhen you finally reach her home and open the door, Fisianna springs onto you, littering your face, neck, and anywhere else she can reach with kisses and lustful licks. You only have one small stretch to go to make it to her bedroom, but she does <i>not</i> make it easy for you. Your vision is obscured by her voluminous hair, and she vigorously dry humps you the entire way over. You pick her up and bridal carry her the rest of the way, kicking down the bedroom door once there and dumping the panting catgirl onto the bed. No sooner than she hits the mattress, she bounces up and pulls you on top of her, locking you in a fierce, sloppy kiss that lasts over a minute. When you break the kiss, she looks totally winded, her hair slightly disheveled from the rough handling.");
+	output("\n\n<i>“I... I've b-been waiting, ever since you entered the system. I... hng... I took some of those... pills. This heat... P-please, [pc.name].”</i> Fisianna whimpers, almost melting into a gibbering puddle of horny kitten under you before you even get her naked. ");
+	if (!pc.isNude()) output("You can feel her hands roaming all over your body and tugging at your clothing. ");
+	output("Without a second thought, you raise yourself off of the neko, ");
+	if (!pc.isNude()) output("shedding your gear and ");
+	output("easing her off of the bed.");
+	if (fisiPrurience() < 50) {
+		if (flags["FISI_TIMES_BREED"] == undefined) {
+		output("\n\nEven as close as the two of you have grown, Fisianna still has some trouble with her shyness in the bedroom from time to time. The neko sometimes seems like she's holding back, or at the very least like she's embarrassed to be doing something so base and carnal. As you ponder on ways to help the catgirl come out of her shell, your mind drifts to the Breeder's Bliss you're carrying. If Fisianna enjoys her feline mods, maybe she'd enjoy experiencing heat like a feline too?");
+			output("\n\nWith this thought in mind, you smile at your diminutive lover before broaching the topic with her. <i>“Hey, Fisi? Have you ever wondered what it would be like to be in heat?”</i>");
+			output("\n\nThe neko blushes brightly when she hears your question, and her tails shoot out straight in embarrassment. <i>“I- wha? N-no! I mean... not really... w-why do you want to know?”</i>");
+			output("\n\nYou grin at Fisi with a doubting expression. <i>“Really? You've never once thought about it? I bet it would feel </i>really<i> good for you.”</i>");
+			output("\n\nFisianna takes a deep breath to calm herself before answering. <i>“Alright, y-yes, I have wondered a few times what it would feel like. Still, I-I'd like to know why you would suddenly ask about something like that.”</i>");
+			output("\n\nYou produce the two small pills - enough to put Fisianna into a deep heat - and offer them to the blushing feline. <i>“I thought we could have a really special bit of fun. What do you say, Kitten?”</i>");
+		}
+		else {
+			output("\n\nRemembering how comparatively uninhibited Fisianna becomes when she goes into heat, you decide it would be fun if she tried it once more. <i>“Hey, Fisi. What would you say to going into heat again?”</i>");
+			output("\n\nThe cute girl's eyes go wide and her face blushes brightly when she hears your question, but she looks just a little excited. She nods her head and rubs her arm shyly while averting her gaze, muttering her reply where you can barely hear it, <i>“U-um, I have some pills on hand already. If you wanted to... do that again.”</i> She doesn't make eye contact with you, but you follow her gaze to a cabinet in the room. Before you can move to grab the pills for her, Fisianna jumps up and speeds across the floor almost comically quickly. She produces two doses of Breeder's Bliss in mere moments before scurrying back to you.");
+		}
+		output("\n\nFisianna shyly pops the two pills into her mouth, surprising you by swallowing them dry. Just a few seconds later, her pupils dilate and her already blushing face flushes with even more blood, along with the rest of her body. The neko draws in a deep breath before bringing her paws up to her head. She releases a shuddering sigh as she trails her paw pads down from her scalp, tracing the contours of her shoulders, breasts, and hips before sliding her hands over her crotch, lightly bucking her hips into her paws just one small time in an involuntary reflex.");
+	}
+	else {
+		output("\n\nYou help remove her garments one-by-one, starting from the top down. Her vest comes off easily enough, though Fisi fidgets madly when her t-shirt catches on her hair. <i>“Mrf... Stars...”</i> she curses under her breath in frustration while she struggles with the neck-hole. With some assistance on your part, the two of you successfully untangle her from the offending garment and toss it aside. You step in behind her to remove her lacy bra while she feverishly works on her jeans. You free her pert boobs from their confines at about the same time she slides herself out of her jeans, chucking them haphazardly across the room with a kick. Finally, almost forcefully, the catgirl rips her panties down from her waist with surprising speed, apparently very eager to be rid of them. She sighs with visible relief, finally free from the clothing that was barring you from being able to properly breed your libidinous girlfriend.");
+		if (flags["FISI_TIMES_BREED"] == undefined) {
+			output("\n\nFisianna has begun to truly come out of her shell these days. You wonder if she might be willing to indulge any fantasies she hasn't told you about yet, chiefly, going into heat like a real cat. The Breeder's Bliss you're carrying with you could let the two of you have a lot of fun if she were willing to try it. To that end, you smile at your diminutive lover and broach the topic with her. <i>“Hey, Fisi? Have you ever thought about what it would be like to be in heat?”</i>");
+			output("\n\nFisianna's face colors, but she doesn't clam up like she might have in the past. <i>“Well, I have thought about it in the past. The opportunity just never came up before now. Why do you ask?”</i>");
+			output("\n\nYou produce the two small pills that would be required to put Fisianna into a deep heat and offer them to the blushing feline. <i>“I thought we could have a really special bit of fun. What do you say, Kitten?”</i>");
+		}
+		else {
+			output("\n\nRemembering how utterly uninhibited Fisianna becomes when she goes into heat, you decide it would be fun if she tried it once more. <i>“Hey, Fisi. What would you say to going into heat again?”</i>");
+			output("\n\nFisianna blushes darkly, but she gamely faces you down. <i>“I'm down for it if you are, [pc.name]. Just give me a minute to get what I need.”</i>");
+		}
+		output("\n\nThe diminutive nekomata separates from you and scurries over to a dresser. She pulls out two different drawers and grabs a few items. Then she turns around with her hands held behind her back and speaks to you in a breathy, eager tone. <i>“Why don't you ");
+		if (pc.isNude()) output("make yourself");
+		else output("slip into something a little more");
+		output("comfortable? I'll be back in just a moment.”</i> Then she excitedly steps out of the room. ")
+		if (pc.isNude()) output("With no clothes to take off");
+		else output("After you strip off your [pc.gear]");
+		output(" you're left waiting in breathless anticipation for Fisianna's return. About a minute later, Fisi returns to the bedroom, with not a scrap of clothing covering her curvy body. For whatever reason, she's still carrying the Breeder's Bliss in her pawhand. She briefly strikes a little pose at the doorway, flushing scarlet as she does. You're delighted to see your formerly-shy lover open up like this for you, and as she walks across the room to rejoin you, you notice there's already a trickle of moisture trailing down her thigh.");
+		output("\n\nOnce she's closed the distance between the two of you, the blushing nekomata surprises you by swallowing the pills dry. Seconds later, her pupils dilate, she flushes even more darkly, and the tangy scent of her arousal dramatically increases in intensity. Not only that, the smell grows richer somehow, more fragrant, and you soon realize that Fisianna's cunny honey is laced with delicious pheromones that quickly tease all the blood in your body not needed to keep you alive into your [pc.cocks].");
+	}
+	breedFisi();
+}
+
+//[Breed Her]
+//PC must have a penis.
+//Has to have done Anal scene at least once.
+//Raises prurience by 10.
+//Must have two "Breeder's Bliss" items to unlock the scene.
+//Repeat scenes do not need the "Breeder's Bliss” item.
+//Scene done by Night Trap.
 public function breedFisi():void
 {
 	clearOutput();
-	author("Lkynmbr24");
-	showFisi();
+	author("Night Trap");
+	showFisi(2);
+
+	var x:int = largestCockIndexThatFitsFisiDimensions();
 
 	IncrementFlag("FISI_TIMES_BREED");
 	IncrementFlag("FISI_TIMES_SEXED");
+	flags["FISI_LAST_SEXED"] = GetGameTimestamp();
 
-	output("You decide to let Fisianna call the shots this time.");
+	//merge auto-proceed heat scene intro here if Fisi has low prurience.
+	if (fisiPrurience() < 50) {
+		output("Fisianna looks down at herself with an almost confused expression before she begins disrobing urgently, softly grunting with effort. After she shrugs out of her vest, you help her lift her shirt above her head, though your assistance seems wholly unnecessary. The nekomata girl pants feverishly as she tears off her bra, baring her gloriously-flushed breasts, the soft orbs bouncing pleasantly from the force of their owner's motions. When Fisi grunts <i>“Mmmf, stars!”</i> in frustration as she fumbles clumsily with her pants, you step in again to help her remove the offending garment.");
+		output("\n\nYou crouch down to tug the jeans off, hooking your fingers into the waistband before yanking down. The moment you do, an overwhelmingly powerful scent hits you full-force, causing your nostrils to flare and your [pc.cocks] to thicken. Fisi's panties have already soaked through with her excessive feminine moisture, and the smell of her nectar is incredible. It's more tantalizing than even her usual tangy aroma. There's a wonderfully sweet pheromonal undertone to the smell that just commands you to breathe in more of the stuff.");
+		output("\n\nBefore you can do anything else, though, Fisianna gently tugs you up to a standing position again, nuzzling her face into your [pc.chest] with her eyes shut tight. She drinks in your scent, rubbing her nose against your body and purring happily as she huffs your personal smell. <i>“Mmmf, [pc.name], please! I-I don't know why I feel so, like... I feel like I'm going to melt, but I just want to rub against you! Y-you smell so g-good, mmmm...”</i> The dripping wet nekomata trails her face down to your crotch, breathing deeply of your essence. She leans forward as if to nuzzle her face into your package, but opens her eyes at the last second and twirls away from you like she hadn't been doing anything at all.");
+		output("\n\nFisianna gives you a wonderful view of her soft bottom as she yanks down her ruined panties, trailing a thick strand of fragrant moisture from her pussy all the way down to her ankles before the strand snaps and sticks wetly to the inside of her leg. Even as she steps out of her undergarment, her box continues dripping sweet-smelling cunny honey between her furred feet. Fisi throws herself onto the bed and buries her face in the pillows shyly, but she spreads her legs and subtly lifts her hips, unconsciously winking her slippery pink entrance at you and crooking her tails invitingly.");
+		output("\n\n");
+		if (!pc.isNude()) output("You shuck your own clothing as quickly as you can, never taking your gaze off of Fisianna's dripping womanhood. ");
+		output("The scent of feline pheromones fills the room, polluting every breath you take with the odor of horny, fertile female. You're certain that Fisi's neighbors must be able to smell her needy little box at this point, and you delight in the knowledge that the horny neko girl is all yours. ");
+		if (pc.inRut()) output("Given your own breed-focused state, Fisi's heat scent is driving you wild. You groan as [pc.eachCock] throbs out pre-cum while you grow priapismically hard from being presented with a nubile, willing mate.");
+		else output("Fisi's heat scent clouds your mind with thoughts of her tight, wet hole. You don't need to touch [pc.eachCock] to reach full hardness. Just the sight of your lover in such a desperately horny state is enough to make you painfully hard.");
+		output(" You must have spent too long being entranced by Fisianna's mound, because she lifts her head from the pillows to look back at you with a worried look on her face. <i>“Haa, haa, [pc.name], please... I feel so hot. It's like I'm on fire inside! But somehow, I know only you can put the flames out. I... I need you to cum in me! As much as you can!”</i> The catgirl's inflamed pussy clenches hungrily as she speaks, dribbling more fragrant femlube to puddle under her erect clitoris.");
+		output("\n\nThe instant the last words are out of Fisi's mouth, she shamefully hides her face in the pillow she's clinging to. She mewls pitifully and begins bucking her hips into the now-slippery sheets, dragging her throbbing button through the puddle of her own tangy juices in an effort that only causes her tight little slit to leak even more of those deliciously odiferous fluids. The sight is so incredibly erotic that part of you is tempted to start masturbating on the spot. Thankfully for Fisianna, the rest of your brain is still functional enough to delay your gratification, at least long enough for you to crawl across the bed and on top of your desperately horny, fertile-smelling girlfriend.");
+		output("\n\nYou allow your " + pc.cockDescript(x) + " to flop between the soft cheeks of Fisi's plush butt, causing the catgirl to tremble with excitement and need. She pushes back into your member rapidly, hotdogging you with her cushiony bottom until you groan and spurt a jet of creamy precum, much thicker than it would usually be at this point. You have to grab Fisianna by her flared hips to still her movements, lest you blow your load on her ass rather than deep in her hot little box. The nekomata mewls pathetically as you deny her motions, but her tails twitch excitedly at the feeling of you dominating her.");
+		output("\n\nTrembling with lust and anticipation, Fisianna looks back at you over her shoulder, her scarlet face covered by her hair save for one widely-dilated feline eye. <i>“[pc.name]... </i>breed me!<i>”</i> She whispers your name, but she screams her plea as she lifts her butt higher even in spite of your grip. Fisianna's entrance brushes your [pc.knot], the cock-ready orifice breathing out a wave after wave of incredibly wet heat and drooling slippery fluid on you like a hungry mouth. Almost as soon as you feel the first drop of wetness on your [pc.knot], you feel a heavy flow of your lover's feminine essence dripping down your ");
+		if (pc.balls > 0) output("[pc.balls]");
+		else if (pc.hasVagina()) output("[pc.clits]"); 
+		else("taint");
+		output(". Fisianna wiggles her hips as much as she can while you hold them, painting you in her lust while trying to entice you to penetrate her.");
+		output("\n\It's all too much to resist. You take a deep breath of the rich, pheromonal air and place your [pc.legs] between Fisi's knees in order to spread her thighs. You run your shaft through her folds to lubricate your length, but even this brief second is too much of a tease for the horny feline. She whimpers as you thrust through her labia, sounding more and more desperate as your " + pc.cockHead(x) + " slots up with her entrance. Fisianna's pitiful sounds are transformed into a neighborhood-waking yowl the moment you finally penetrate her. Her pussy is tight, wet, and above all, <i>hot</i> - so much so that you lose your balance for a moment and slip forward, producing a lurid, wet squelching noise. Without so much as a warning, you inadvertently cram your cock into Fisianna's defenseless slit ");
+		if (pc.cocks[x].cLength() >= 8) output("until you run into her cervix");
+		else output("until your [pc.knot] mashes into her vulva");
+		output(", just managing to catch yourself with your hands on either side of the petite feline before going too deep.");
+		output("\n\nYou don't even have the time to think to ask Fisianna if you've just hurt her before she throws back her head and screams louder than you've ever heard her scream in normal circumstances. The rapid, frantic contractions of her velvety folds along your length definitively answers that she's not screaming in pain. You cry out yourself and try not to cum as your " + pc.cockDescript(x) + " is clenched and milked by a primeval female reflex. The thick jet of pre-seed forced out of you by Fisianna's tunnel is instantly washed away by the musky torrent of female ejaculate that splatters against your " + pc.cockHead(x) + ". <i>“Void, Fisi, slow down!”</i> you warn her.");
+		output("\n\nThe neko girl's curvy hips piston so fast that it causes her orgasmic shrieks to waver in pitch, her movements propelling her spasming folds up and down your shaft as she creams your cock. <i>“");
+		if (silly) output("NNnnNYYaAaaNNnn");
+		else output("NNnnNNaAaaHH");
+		output("!!!”</i> Fisianna screams into her pillow, completely deaf to your pleas. Clenching your teeth against an agonized groan of effort, you struggle to hold out against this incredible cockmilking, an unbearably pleasurable process designed by millions of years of evolution to force you to cum.");
+		if (pc.inRut()) output("\n\nIt's a truly Herculean effort in your rutting daze");
+		else output("\n\nIt's difficult");
+		output(", but your desire to please your lover wins out over the instinct to just dump your jizz deep into a fertile, unprotected pussy. Fisianna's tails finally cease thrashing under you as the catgirl collapses back into the now massive puddle of her own pussy juice. The both of you take deep, shuddering breaths, she from exhaustion, you to master your own lust and tamp down your orgasm, something that proves incredibly difficult as Fisianna's pussy continues to twitch and spasm with the aftershocks of her epic climax. <i>“D-don't stop, please... You haven't cum yet. I want your liquid love, [pc.name]...”</i> Fisianna gasps weakly between breaths.");
+		output("\n\n<i>“It's coming, Fisi. Just a bit more,”</i> you respond without even thinking. You gasp as the neko's tunnel clenches happily around you at your response, and you can't help but lean down to snare her lips in a kiss. It's only a brief liplock, owing to your awkward position and shortness of breath, but your exhausted lover clenches her inner muscles even more tightly around your " + pc.simpleCockNoun(x) + " as your tongue slides into her mouth, making you wonder for a moment if this kiss will be enough to make the both of you cum.");
+		output("\n\nOnce you feel in control of yourself again, you draw your hips upwards before beginning to thrust down into Fisi, relishing how sinfully <i>wet</i> she really is as her femcum splatters wetly onto her thighs, and ass, and your entire lower half with each damp clap of your hips against her soft bottom. The realization that you're finally fucking her totally reenergizes Fisianna. <i>“Oh, yes, [pc.name]! </i>[pc.name]<i>!”</i>  She mewls your name in delight and raises her hips up to meet your thrusts, somehow even more energetic than before she creamed your cock until she almost blacked out.");
+		output("\n\nAfter just a few minutes of joyfully humping into you, Fisianna's body locks up and begins trembling fitfully, the only warning you receive before your " + pc.cockDescript(x) + " is once more blasted with girljizz and assaulted by mind-numbing contractions. This time, you are so deep in your cups with lust that you have absolutely no hope of withstanding such a thorough cock-milking, and you realize it within the first seconds of Fisianna's screaming orgasm. Instead of trying to hold out, you throw restraint to the winds and begin fucking Fisi as hard and fast as you can, intent on maximizing pleasure for both of you before you finally seed your feline mate's burning womb.");
+		output("\n\nYou pound into Fisianna so hard that the both of you bounce off the mattress, gravity allowing you to fuck her harder and deeper than ever before. Every one of your thrusts slams into her g-spot with an incredibly loud squelch, the stimulation coaxing even more cunny honey out of Fisi's sloppy slit and taking her voice away from her so that her cries of delight are cut off every half-second. The nekomata raises her hips up to meet every one of your thrusts, unconsciously keeping her vaginal opening angled higher than her uterus even at the nadir of her movements, instinctively positioning her reproductive system to allow gravity to carry your sperm to her eggs as efficiently as possible.");
+		output("\n\nSo blistering is the pace of your penetration that Fisianna never truly stops creaming around you, instead eventually winding down into a continual mini-orgasm that makes her eyes roll into the back of her head and her claws score ever-deeper slashes into the pillow she's hugging in a death grip. Gone is the normally shy and reserved girl you're used to. In her place is a needy female being given exactly what she wants and more.");
+		output("\n\nEven as far gone to instinct and climax as she is, though, Fisianna is still a hopeless romantic at heart. She's too blissed-out to form words, but her feline paw-hands reach out to yours. You get the message, and place your hands atop her cute, fuzzy paws, interlocking your fingers with hers. Not too long after, Fisi's cunt gushes around you again, ratcheting up the pheromone concentration to the point where  you're certain that every ausar with a dick on Tavros must be sporting a stiffy now. Just knowing you're the only person Fisianna is willing to let breed her like this is enough to make you cum.");
+		output("\n\nYour lover's sopping wet and oh-so-tight womanhood crushing your length in softness definitely doesn't hinder you though.");
+		if (pc.hasKnot(x)) {
+			output("\n\nThe catgirl's cunny is so ready to be seeded that your knot slips in on the first try, silencing Fisianna's yowl of orgasm and forcing her eyes to open wide in shock at the overwhelming pleasure. You think she might be trying to speak, but she can barely move her jaw from the silent scream of pleasure it's locked in. Your breeding bulb does everything a female in heat could ever want, stimulating her g-spot, stretching her walls, and sealing every single eager sperm your [pc.balls] can churn out inside her defenseless womb. ");
+			if (pc.cumQ() >= 750) {
+				output("Which in your case, is a very good thing. You cum, and cum, and cum, your [pc.balls] working until ");
+				if (pc.balls > 1) output("they hurt");
+				else output("it hurts");
+				output(" in order to try as hard as possible to knock up your fertile-smelling lover. All Fisianna can manage in her fucked - mute state are little gasps and moans as her trim belly swells larger and larger with your [pc.cumNoun]. When the once-trim neko is pushed up off the bed slightly by her stretched middle, you finally run out of jizz to pump into her.");
+			}
+			else {
+				output("You cum for what feels like ages, your [pc.balls] working until ");
+				if (pc.balls > 1) output("they hurt");
+				else output("it hurts");
+				output(" in order to try as hard as possible to knock up your fertile-smelling lover. All Fisianna can manage in her fucked-mute state are little gasps and moans as you dump all of your [pc.cumNoun] into her pussy.} You're not idle during your climax, even with your tie limiting your range of motion. You continue to hump into the petite girl beneath you in short, jerky thrusts as you kiss her back and neck, working with her orgasmic contractions to release as much as you can until finally, you run out of jizz.");
+			}
+		}
+		else {
+			output("\n\nYou ram your cock as deeply as possible into Fisianna, pressing your " + pc.cockHead(x) + " into her cervix just as you erupt in a torrent of [pc.cum]. ");
+			if (pc.cumQ() >= 750) {
+				output("You cum, and cum, and cum, your [pc.balls] working until ");
+				if (pc.balls > 1) output("they hurt");
+				else output("it hurts");
+				output(" in order to try as hard as possible to knock up your fertile-smelling lover. Your first spurt of jizz alone is enough to completely fill Fisianna's canal, the sheer volume of your ejaculate enough to force some spunk into her eager womb. The nekomata babbles throughout, trying to say your name and declarations of pleasure and love for you, but she's just too stimulated to form words. With nothing to hold your [pc.cumNoun] in, your subsequent ejaculations gush back out in great gouts of seed, mixing with the tangy lake on the bed to form the most erotic cocktail imaginable.")
+			}
+			else {
+				output("You cum for what feels like ages, your [pc.balls] working until ");
+				if (pc.balls > 1) output("they hurt");
+				else output("it hurts");
+				output(" in order to try as hard as possible to knock up your fertile-smelling lover. The nekomata babbles throughout, trying to say your name and declarations of pleasure and love for you, but she's just too stimulated to form words. Thanks to the position you're both in and the angle Fisianna has placed her womanhood at, almost all of your [pc.cum] stays just where it belongs.} You're not idle during your climax. You continue to hump into the petite girl beneath you, synchronizing your thrusts into her with each spurt of seed as you kiss her back and neck, working with her orgasmic contractions to release as much as you can, until you finally run out of jizz.");
+			}
+		}
+		output("\n\nYou collapse on top of Fisianna, feeling utterly exhausted, but fulfilled in the way that only comes from giving in to your basest instincts. Though she seems barely conscious, Fisi is purring as loudly as you've ever heard, if not more so. The vibrations feel incredible against your tired body, and you savor the sensation. To repay the favor for the neko, you squeeze her paws in your hands and begin kissing at her sweaty neck in the most sensual way you can manage.");
+		output("\n\nFisianna's purring intensifies, and after a moment to catch her breath, she turns her head so that the two of you can kiss again. You feel so close to her right now, and it's obvious she feels exactly the same way. You dance your tongue past Fisi's lips, leading her in the kiss, tasting her mouth and finding it in this moment to be the sweetest thing you've ever enjoyed, making you hungry for more. You both pour all of your passion and love for each other into the liplock, no longer simply two animals fucking, but two people making love, connecting with each other in a way more meaningful and fulfilling than anything mere beasts could ever experience.");
+		output("\n\nYou kiss each other until you're on the edge of blacking out, but Fisianna breaks away first. You gasp for air immediately, breathing so heavily that you almost miss your lover calling you in a breathless whisper, her eyes shut and most of her beautiful face covered by her hair. <i>“[pc.name]? I loved doing this with you. I loved this, and I love you so much. I don't think I can say it enough.”</i>");
+		output("\n\nYou can't help but smile at the uninhibited declaration of love from Fisianna. You beam at her, even knowing she can't see it. <i>“I love you too, Fisi. I can't wait to love you like this again.”</i> You gently tuck her hair back from her face before planting a kiss on her cheek. Fisianna smiles even more at your response, and she giggles and nuzzles back into you when you roll onto your side and pull her against your [pc.chest]. The two of you fall unconscious with your arms around her, still holding hands and smiling even in your sleep.");
+	}
+	//merge auto-procced heat scene intro here if Fisi has high prurience.
+	else {
+		output("Fisianna sighs breathily and traces the curves of her body, gasping at her own increased sensitivity. Her nipples quickly become erect, standing out hard and proud, signaling to you their desire to be pinched and teased. Before you can satisfy their demands though, their nekomata owner presses herself into your [pc.chest], breathing deeply of your scent. <i>“Mmmm, [pc.name], you smell so good. Why do you smell so good? Mmmm, I love your smell as much as I love you...”</i> she purrs happily and rubs her face against your [pc.skinFurScales], slowly moving her face down your body in a teasingly slow journey towards your [pc.cocks].");
+		output("\n\nBefore her hot little mouth can reach your manhood though, Fisianna breaks away from you and clambers onto the bed, trailing drops of sweet-smelling nectar as she moves towards the head. She keeps her delightful bottom hidden from you teasingly, concealing her round softness with her tails. While normally she'd be using her tails for balance as she crawled, the neko holds them much closer than usual over her butt.");
+		output("\n\nFisi moans softly and bends her head down under her body as she rests on all fours, hiding her blushing face from you in shame behind the curtain of her wonderful C-cup breasts. Her thighs are absolutely soaked in her lust, and her pussy is boiling over with hot, feminine moisture, translucent strands of the stuff dripping down to puddle on the sheets between her knees. <i>“Oh God... w-why am I so wet? You haven't even touched me and I'm staining the sheets! Oooohh, [pc.name], I can't stand it anymore! I feel like one of those Treated girls. Please, just fill me up so I don't have keep ruining the linens all week!”</i>");
+		output("\n\nFisi collapses onto the bed, but she hikes her hind end as high up into the air as possible as she lies prone, her shame combining with her instincts to put her womb in the perfect position to let gravity carry your virile seed to it, even as her pussy twitches and drips an even thicker strand of her fragrant nectar.");
+		output("\n\nWhen the neko finally moves the tail that she's been keeping suspiciously close to her heart-shaped butt, you notice another sort of heart entirely: Fisi has inserted a heart-shaped ruby buttplug into her tailhole. It glistens in the light almost as much as her dripping wet pussy. She looks back shyly over her shoulder, but she smiles at you. <i>“Um, I just really wanted your cum in my pussy, [pc.name], nowhere else, and I thought this would be a cute way to show that. It also makes me feel more full... I feel so empty right now. Please, fill me, [pc.name]! I need you to cum inside me so bad it hurts!”</i>");
+		output("\n\nThere's absolutely no way you can turn your lover down, not with her pussy clenching enticingly and leaking a torrent of pheromonal juices that flood your mind with thoughts of fucking your fertile-smelling mate pregnant. You practically pounce on her, placing your [pc.legs] between Fisi's knees in order to spread her thighs. You run your shaft through her folds to lubricate your length, but even this brief second is too much of a tease for the horny feline. She whimpers as you thrust through her labia, only getting more desperate as your " + pc.cockHead(x) + " slots up with her entrance.");
+		output("\n\nFisianna's pitiful sounds are transformed into a neighborhood-waking yowl the moment you finally penetrate her. Her pussy is tight, wet, and above all else, <i>hot</i> - so much so that you lose your balance for a moment and slip forward, producing a lurid, wet squelching noise. Without so much as a warning, you inadvertently cram your cock into Fisianna's defenseless slit ");
+		if (pc.cocks[x].cLength() >= 8) output("until you run into her cervix");
+		else output("until your [pc.knot] mashes into her vulva");
+		output(", just managing to catch yourself with your hands on either side of the petite feline before going too deep.");
+		output("\n\nYou don't even have the time to think to ask Fisianna if you've just hurt her before she throws back her head and screams louder than you've ever heard her scream in normal circumstances. The rapid, frantic contractions of her velvety folds along your length definitively answers that she's not screaming in pain. You cry out yourself and try not to cum as your " + pc.cockDescript(x) + " is clenched and milked by a primeval female reflex. The thick jet of pre-seed forced out of you by Fisianna's tunnel is instantly washed away by the musky torrent of female ejaculate that splatters against your " + pc.cockHead(x) + ". <i>“Void, Fisi, slow down!”</i> you warn her.");
+		output("\n\nThe neko girl's curvy hips piston so fast that it causes her orgasmic shrieks to waver in pitch, her movements propelling her spasming folds up and down your shaft as she creams your cock. <i>“");
+		if (silly) output("NNnnNYYaAaaNNnn");
+		else output("NNnnNNaAaaHH");
+		output("!!!”</i> Fisianna screams into her pillow, completely deaf to your pleas. Her pillowy ass pounds up into your groin, at one point pressing the ruby heart buttplug into you at just the right angle. Suddenly, the anal toy begins vibrating, adding more stimulation than Fisianna's body can take. Her digitigrade legs start twitching and spasming wildly, and her motions as she fucks herself on your " + pc.cockDescript(x) + " become irregular and almost epileptic. You clench your teeth against an agonized groan of effort, struggling to hold out against this incredible cockmilking, an unbearably pleasurable process combining orgasm-inducing contractions honed by millions of years of evolution with the dick-melting mechanical vibrations that only human ingenuity could create.");
+		if (pc.inRut()) output("\n\nIt's a truly Herculean effort in your rutting daze");
+		else output("\n\nIt's difficult");
+		output(", but your desire to please your lover wins out over the instinct to just dump your jizz deep into a fertile, unprotected pussy. Fisianna's tails finally cease thrashing under you as the catgirl collapses back into the now massive puddle of her own pussy juice. The both of you take deep, shuddering breaths, she from exhaustion, you to master your own lust and tamp down your orgasm, something that proves incredibly difficult as Fisianna's pussy continues to twitch and spasm with the aftershocks of her epic climax and the toy in her butt continues to vibrate. Her box is so much tighter than usual, not just from her heat, but from the sex toy stretching her colon. There's only so much room in Fisi's pelvis, and the ruby plug combined with your " + pc.cockDescript(x) + " has packed the feline as full as she can possibly be, leaving her tunnel with nowhere to stretch to when you hilt yourself. Your " + pc.simpleCockNoun(x) + " is receiving a portion of the pleasure the buttplug is delivering to your lover, and it's already enough to make your eyes cross when combined with the sopping wet, glove-tight folds of Fisianna's pussy. How intense must the sensations be for her?");
+		output("\n\nEvidently, incredibly intense, as the nekomata girl can barely form words. She pants desperately with her tongue hanging out, her mouth drooling in imitation of her leaky box. Fisianna eventually manages a few words, her voice breaking with pleasure every few seconds and jumping up an octave. <i>“P-P-LEase, [pc.name], p-plEASe, fUCK me! Yo-you hAVEn't cum yet! I want yOOur looooove...”</i> She emphasizes her last words by weakly grinding her hips.");
+		output("\n\n<i>“It's coming, Fisi. Just a bit more,”</i> you reply without thinking. You gasp as the neko's tunnel clenches happily around you at your response, and you can't help but lean down to snare her lips in a kiss. It's only a brief liplock, owing to your awkward position and shortness of breath, but your exhausted lover clenches her inner muscles even more tightly around your " + pc.simpleCockNoun(x) + " as your tongue slides into her mouth, making you wonder for a moment if this kiss will be enough to make the both of you cum.");
+		output("\n\nThanks to the vibrations of the toy filling her ass, it really is enough for Fisi to climax. The feline girl moans deeply into your kiss and squirts a torrent of girlcum around your intruding manhood, her too-full tunnel pressurizing and splattering the slippery, pheromone-laced liquid all over the both of you while velvety contractions and intense vibrations assault your cock. There's absolutely no hope of holding out this time, so you pull back from the kiss and begin fucking Fisianna as hard and as fast as you possibly can. You're determined to get as much pleasure as possible out of this for both of you, and the shrieks of pleasure from your lover spur you on to hold out longer even while the lurid wet sounds her pussy makes as you stuff it full of dickmeat entice you to give in and seed her burning womb.");
+		output("\n\nYou pound into Fisianna so hard that the both of you bounce off the mattress, gravity allowing you to fuck her harder and deeper than ever before. Every one of your thrusts slams into her g-spot with an incredibly loud squelch, the stimulation coaxing even more cunny honey out of Fisi's sloppy slit and taking her voice away from her so that her cries of delight are cut off every half-second. The nekomata raises her hips up to meet every one of your thrusts, unconsciously keeping her vaginal opening angled higher than her uterus even at the nadir of her movements, instinctively positioning her reproductive system to allow gravity to carry your sperm to her eggs as efficiently as possible.");
+		output("\n\nSo blistering is the pace of your penetration that Fisianna never truly stops creaming around you, instead eventually winding down into a continual mini-orgasm that makes her eyes roll into the back of her head and her claws score ever-deeper slashes into the pillow she's hugging in a death grip. The ruby heart stretching her sphincter never stops vibrating, driving pleasure for both of you to incredible heights. Fisi trembles and shudders in total ecstasy, thrilling in the primal sensation of being a needy female getting exactly what she wants and more.");
+		output("\n\nEven as far gone to instinct and climax as she is, though, Fisianna is still a hopeless romantic at heart. She's too blissed-out to form words, but her feline paw-hands reach out to yours. You get the message and place your hands atop her cute, fuzzy paws, interlocking your fingers with hers. Not too long after, Fisi's cunt gushes around you harder than ever, ratcheting up the pheromone concentration to the point where you're certain that every ausar with a dick on Tavros must be sporting a stiffy now. Just knowing you're the only person Fisianna is willing to let breed her like this is enough to make you cum.");
+		output("\n\nYour lover's sopping wet and oh-so-tight womanhood crushing your length in softness definitely doesn't hinder you though. ");
+		if (pc.hasKnot(x)) {
+			output("\n\nThe catgirl's cunny is so ready to be seeded that your knot slips in on the first try, silencing Fisianna's yowl of orgasm and forcing her eyes to open wide in shock at the overwhelming pleasure. You think she might be trying to speak, but her eyes are rolled back into her head, and she can barely move her jaw from the silent scream of pleasure it's locked in. Your breeding bulb does everything a female in heat could ever want, stimulating her g-spot, stretching her walls, and sealing every single eager sperm your [pc.balls] can churn out inside her defenseless womb. ");
+			if (pc.cumQ() >= 750) {
+				output("Which, in your case, is a very good thing. You cum, and cum, and cum, your [pc.balls] working until ");
+				if (pc.balls > 1) output("they hurt");
+				else output("it hurts");
+				output(" in order to try as hard as possible to knock up your fertile-smelling lover. All Fisianna can manage in her fucked-mute state are little gasps and moans as her trim belly swells larger and larger with your [pc.cumNoun]. When the once-trim neko is pushed up off the bed slightly by her stretched middle, you finally run out of jizz to pump into her.");
+			}
+			else {
+				output("You cum for what feels like ages, your [pc.balls] working until ");
+				if (pc.balls > 1) output("they hurt");
+				else output("it hurts");
+				output("hurt{s} in order to try as hard as possible to knock up your fertile-smelling lover. All Fisianna can manage in her fucked-mute state are little gasps and moans as you dump all of your [pc.cumNoun] into her pussy.");
+			output("\n\nYou're not idle during your climax, even with your tie limiting your range of motion. The toy in Fisi's plush butt vibrates against your knot, pleasuring you so intensely that you helplessly hump into the petite girl beneath you in short, jerky thrusts as you kiss her back and neck, working with her orgasmic contractions to release as much as you can, until you finally run out of jizz.");
+			}
+		}
+		else {
+			output("\n\nYou ram your cock as deeply as possible into Fisianna, pressing your " + pc.cockHead(x) + " into her cervix just as you erupt in a torrent of [pc.cum]. ");
+			if (pc.cumQ() >= 750) {
+				output("You cum, and cum, and cum, your [pc.balls] working until ");
+				if (pc.balls > 1) output("they hurt");
+				else output("it hurts");
+				output(" in order to try as hard as possible to knock up your fertile-smelling lover. Your first spurt of jizz alone is enough to completely fill Fisianna's canal, the sheer volume of your ejaculate enough to force some spunk into her eager womb. The nekomata babbles throughout, trying to say your name and declarations of pleasure and love for you, but she's just too stimulated to form words. With nothing to hold your [pc.cumNoun] in, your subsequent ejaculations gush back out in great gouts of seed, mixing with the tangy lake on the bed to form the most erotic cocktail imaginable.")
+			}
+			else {
+				output("You cum for what feels like ages, your [pc.balls] working until ");
+				if (pc.balls > 1) output("they hurt");
+				else output("it hurts");
+				output(" in order to try as hard as possible to knock up your fertile-smelling lover. The nekomata babbles throughout, trying to say your name and declarations of pleasure and love for you, but she's just too stimulated to form words. Thanks to the position you're both in and the angle Fisianna has placed her womanhood at, almost all of your [pc.cum] stays just where it belongs.");
+			}
+			output("\n\nYou're not idle during your climax. You continue to hump into the petite girl beneath you, synchronizing your thrusts into her with each spurt of seed as you kiss her back and neck, working with her orgasmic contractions and the vibrations of the toy in her plush butt to release as much as you can, until you finally run out of jizz.");
+		}
+		output("\n\nYou collapse on top of Fisianna, feeling utterly exhausted, but fulfilled in the way that only comes from giving in to your basest instincts. Though she seems barely conscious, Fisi is purring as loudly as you've ever heard, if not more so. The vibrations feel incredible against your tired body, and you savor the sensation. To repay the favor for the neko, you squeeze her paws in your hands and begin kissing at her sweaty neck in the most sensual way you can manage.");
+		output("\n\nFisianna's purring intensifies, and after a moment to catch her breath, she turns her head so that the two of you can kiss again. You feel so close to her right now, and it's obvious she feels exactly the same way. You dance your tongue past Fisi's lips, leading her in the kiss, tasting her mouth and finding it in this moment to be the sweetest thing you've ever enjoyed, making you hungry for more. You both pour all of your passion and love for each other into the liplock, no longer simply two animals fucking, but two people making love, connecting with each other in a way more meaningful and fulfilling than anything mere beasts could ever experience.");
+		output("\n\nYou kiss each other until you're on the edge of blacking out, but Fisianna breaks away first. You gasp for air immediately, breathing so heavily that you almost miss your lover calling you in a breathless whisper, her eyes shut and most of her beautiful face covered by her hair. <i>“[pc.name]? I loved doing this with you. I loved this, and I love you so much. I don't think I can say it enough.”</i>");
+		output("\n\nYou can't help but smile at the uninhibited declaration of love from Fisianna. You beam at her, even knowing she can't see it. <i>“I love you too, Fisi. I can't wait to love you like this again.”</i> You gently tuck her hair back from her face before planting a kiss on her cheek. Fisianna smiles even more at your response, and she giggles and nuzzles back into you when you roll onto your side and pull her against your [pc.chest]. You take a second to turn off the buttplug's vibrations. Fisi gasps as the sensation stops abruptly before giggling and nuzzling back into you. ");
+		if (flags["FISI_TIMES_BREED"] == undefined) output("<i>“I didn't even know that vibrated before now. I'm really glad I used it.”</i>");
+		else output("<i>“I'm purring so hard I almost forgot that was still in there.”</i>");
+		output(" The two of you fall unconscious with your arms around her, still holding hands and smiling even in your sleep.");
+	}
 
 	if (flags["FISI_TIMES_BREED"] == undefined) pc.destroyItemByClass(BreedersBliss,2);
 	fisiPrurience(10);
@@ -3330,9 +3562,8 @@ public function sixthDateMerge():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-public function sexFisi():void
+public function sexFisi(skipText:Boolean = false):void
 {
-	clearOutput();
 	author("Lkynmbr24");
 	showFisi();
 	clearMenu();
@@ -3342,11 +3573,14 @@ public function sexFisi():void
 	//make sure not to play the won blurbs for the bet scenes from here
 	flags["FISI_BET_RESULT"] = 0;
 
-	output("You propose the idea of going back to Fisianna’s place for a bit of ‘fun’ while shooting an unsubtle wink at her, making your intentions clear.");
-	output("\n\n<i>“O-oh my... Y-you wanna do... that?”</i> Fisianna’s face lights up in surprise as her face flushes pink. She recovers quickly as her eyes lower halfway, making her look both cute and seductive. <i>“W-well... I-I suppose we <b>could</b>...”</i> Fisianna drags the <i>“could”</i> in mock thought as she stands up from the bench. ");
-	if (pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output("You follow suit and wrap your [pc.tails] around hers while you walk back to Fisianna’s apartment.");
-	else output("You follow suit and walk arm in arm back to Fisianna’s apartment.");
-	output("\n\nOnce the two of you arrive, you jump to the attack and seize Fisianna in a fierce and passionate kiss. You lock lips with each other tightly while your tongues dance between the seal of your mouths. Without breaking the kiss, the two of you stumble all the way into her bedroom, where you eventually trip over the edge of her bed, consequently pulling the both of you apart. Fisianna looks at you with her golden eyes, filled with passion and hunger for you as you lay next to each other side by side on the bed, panting for breath from the long kiss. You think about what you would like to do with your feline lover this time.");
+	if (!skipText) {
+		clearOutput();
+		output("You propose the idea of going back to Fisianna’s place for a bit of ‘fun’ while shooting an unsubtle wink at her, making your intentions clear.");
+		output("\n\n<i>“O-oh my... Y-you wanna do... that?”</i> Fisianna’s face lights up in surprise as her face flushes pink. She recovers quickly as her eyes lower halfway, making her look both cute and seductive. <i>“W-well... I-I suppose we <b>could</b>...”</i> Fisianna drags the <i>“could”</i> in mock thought as she stands up from the bench. ");
+		if (pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output("You follow suit and wrap your [pc.tails] around hers while you walk back to Fisianna’s apartment.");
+		else output("You follow suit and walk arm in arm back to Fisianna’s apartment.");
+		output("\n\nOnce the two of you arrive, you jump to the attack and seize Fisianna in a fierce and passionate kiss. You lock lips with each other tightly while your tongues dance between the seal of your mouths. Without breaking the kiss, the two of you stumble all the way into her bedroom, where you eventually trip over the edge of her bed, consequently pulling the both of you apart. Fisianna looks at you with her golden eyes, filled with passion and hunger for you as you lay next to each other side by side on the bed, panting for breath from the long kiss. You think about what you would like to do with your feline lover this time.");
+	}
 
 	if (pc.hasCock() || pc.hasVagina()) addButton(0, "Tailjob", tailjobFisi, undefined, "Tailjob", "Let her tails go to work on you.");
 	else addDisabledButton(0, "Tailjob", "Tailjob", "You need a cock or vagina for this.");
@@ -3383,8 +3617,10 @@ public function sexFisi():void
 	else if (flags["FISI_HL_PANTIES"] == 2) addButton(8, "Get Pegged", getPeggedByFisiI, undefined, "Get Ridden", "????");
 	else addDisabledButton(8, "Get Pegged", "Get Pegged", "??????");
 
-	if (flags["FISI_TIMES_BREED"] == undefined && pc.hasItemByClass(BreedersBliss,2)) addDisabledButton(8, "Breed Her", "Breed Her", "You need to have two Breeder’s Bliss with you for this");
-	addButton(9, "Breed Her", breedFisi, undefined, "Breed Her", "????");
+	if (flags["FISI_TIMES_ANAL"] == undefined) addDisabledButton(8, "Locked", "Locked", "You'll need to win against Fisi and do s with her to unlock this.");
+	else if (flags["FISI_TIMES_BREED"] == undefined && pc.hasItemByClass(BreedersBliss, 2)) addDisabledButton(8, "Breed Her", "Breed Her", "You need to have two Breeder’s Bliss with you for this");
+	else if (largestCockIndexThatFitsFisiDimensions() >= 0 || (pc.hasHardLightEquipped() && pc.hasVagina())) addButton(8, "Breed Her", breedFisi, undefined, "Breed Her", "????");
+	else addDisabledButton(8, "Breed Her", "Breed Her", "??????");
 }
 
 public function tailjobFisi():void
@@ -3398,6 +3634,7 @@ public function tailjobFisi():void
 	
 	IncrementFlag("FISI_TIMES_TJ");
 	IncrementFlag("FISI_TIMES_SEXED");
+	flags["FISI_LAST_SEXED"] = GetGameTimestamp();
 
 	if (flags["FISI_SEX_NUMBER"] == undefined) output("<i>“Mmm... [pc.name]. I-I’ve actually been thinking... I wanted to repay you for what you did during the movie the time before. Your caress... your touch felt so good, and I appreciate that you’re willing to take things slow with me. I feel I might have left you a little hot and bothered then so... I was wondering if I could provide some... ‘help’ with that?”</i> Fisianna asks coyly as she raises her twin tails, waving them in front of her to hint at what she plans to do to repay your earlier effort. ");
 	else output("<i>“D-did you like the feel of my tails on you the last time? I’d be happy to rub them on you again since you seem to like them so much!”</i> Fisianna raises both of her tails and waves them in front of you like snakes to a charmer’s flute. The anticipation of feeling those on your loins again is killing you.");
@@ -3520,6 +3757,7 @@ public function eatOutFisi():void
 	
 	IncrementFlag("FISI_TIMES_EATEN");
 	IncrementFlag("FISI_TIMES_SEXED");
+	flags["FISI_LAST_SEXED"] = GetGameTimestamp();
 
 	output("Without warning, you pounce onto Fisianna and fiercely lock lips with her again, resuming your kiss from before. The two of you press so hard into each other’s mouths with such passion that you almost wind up brushing teeth against one another. Your tongues vie for dominance in a sensual struggle between closed lips. Eventually you win out and roll Fisianna below you, pinning her down under you. She moans fervidly into your mouth as she concedes defeat in the tongue battle.");
 	output("\n\nYou start to snake one of your hands off of Fisianna’s face and run it down her lithe body. Her breath catches when your hand reaches one of her breasts. You give it a playful squeeze and Fisianna squeals with delight into your mouth. Unfortunately for the feline, her chest pillows are not your main target this time. Your hand snakes lower and lower down her petite body until you bridge the hem of cloth between her shirt and her pants. There, you worm your hands under her pants and feel the familiar trail of fur leading down to her sensitive knob. On contact with Fisianna’s pleasure button, she breaks the kiss and lets out a hearty moan. After she quickly settles down, she looks into your eyes and smiles excitedly.");
@@ -3584,6 +3822,7 @@ public function sixtyNineFisi():void
 	
 	IncrementFlag("FISI_TIMES_69");
 	IncrementFlag("FISI_TIMES_SEXED");
+	flags["FISI_LAST_SEXED"] = GetGameTimestamp();
 
 	var x:int = largestCockIndexThatFitsFisiDimensions();
 	
@@ -3687,6 +3926,7 @@ public function vaginalFisi():void
 	
 	IncrementFlag("FISI_TIMES_VAG");
 	IncrementFlag("FISI_TIMES_SEXED");
+	flags["FISI_LAST_SEXED"] = GetGameTimestamp();
 
 	var x:int = largestCockIndexThatFitsFisiDimensions();
 	
