@@ -261,7 +261,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	}
 	else
 	{
-		if(canSleep()) addButton(9, "Sleep", sleepMenu);
+		if(canRest() || canSleep()) addButton(9, "Sleep", sleepMenu);
 		else addDisabledButton(9, "Sleep", "Sleep", "You can’t seem to sleep here at the moment....");
 	}
 	addButton(14, "Codex", showCodex);
@@ -947,6 +947,7 @@ public function canRest():Boolean
 }
 public function canSleep():Boolean
 {
+	if(InShipInterior(pc) && pc.hasStatusEffect("Disable Ship Bed")) return false;
 	return true;
 }
 
@@ -991,7 +992,8 @@ public function sleepMenu():void
 	addButton(7, "Wait 3 hr", wait, 180, "Wait 3 Hours", "Wait for 3 hours.");
 	
 	addButton(8, "Rest", rest, undefined, "Rest", "Take a break and fully rest a while.");
-	addButton(9, "Sleep", sleep, undefined, "Sleep", "Go to sleep for some time.");
+	if(canSleep()) addButton(9, "Sleep", sleep, undefined, "Sleep", "Go to sleep for some time.");
+	else addDisabledButton(9, "Sleep", "Sleep", "You can’t seem to sleep here at the moment....");
 	
 	addButton(14, "Back", mainGameMenu);
 }

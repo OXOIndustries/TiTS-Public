@@ -964,7 +964,7 @@ public function appearance(forTarget:Creature):void
 			output2(" Your mouth contains a long blue tongue that dangles over your lower lip whenever you stop thinking about it.");
 			break;
 		case GLOBAL.TYPE_BOVINE:
-			if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth houses a broad, prehensile tongue which extends over a foot long with a smooth surface is perfect for pleasuring sensitive areas.");
+			if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth houses a broad, prehensile tongue which extends over a foot long with a smooth surface that is perfect for pleasuring sensitive areas.");
 			else output2(" Your mouth contains a smooth, broad tongue, perfect for pleasuring sensitive spots.");
 			break;
 		case GLOBAL.TYPE_TENTACLE:

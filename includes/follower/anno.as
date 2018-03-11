@@ -4710,6 +4710,8 @@ public function annoxErraJoin():void
 {
 	clearOutput();
 	author("HugsAlright");
+	showName("ANNO &\nERRA");
+	showBust(annoBustDisplay(true), "ERRA_NUDE");
 	
 	var cIdx:int = (pc.hasCock() ? pc.biggestCockIndex() : -1);
 	
@@ -4898,6 +4900,8 @@ public function annoxErraWatch():void
 {
 	clearOutput();
 	author("HugsAlright");
+	showName("ANNO &\nERRA");
+	showBust(annoBustDisplay(true), "ERRA_NUDE");
 
 	output("You smirk at the pair of lusty ausar and go to take a seat in a nearby armchair, telling the girls you’d rather sit back and watch this one.");
 	output("\n\n<i>“Awww, if that’s what you want,”</i> Anno whines, her shoulders slumping as she turns back to Erra, <i>“I guess I’ll just have to take care of this extra-good girl all by myself.”</i> They both smile at each other, and the more dominant pup is quick to bend back over and press herself against her pet, trapping the subby girl in another kiss. Their mouths stay locked for a long, passionate moment before you see their lips part, tongues slipping and sliding across one another.");
@@ -4965,6 +4969,8 @@ public function annoxErraLeave():void
 {
 	clearOutput();
 	author("HugsAlright");
+	showName("ANNO &\nERRA");
+	showBust(annoBustDisplay(true), "ERRA_NUDE");
 
 	output("As amazing as this display happening on your own bed is, you tell the girls you have other things to do, much to their dismay.");
 	output("\n\nWith a disappointed pet beneath her, Anno lets out a whining <i>“Awwww”</i> before responding, <i>“Are you suuuuuure? You’re just gonna leave me all alone with this cute puppy?”</i> She emphasizes that last point by grabbing Erra’s face and moving it into view so you can see it.");
@@ -4978,6 +4984,7 @@ public function annoxErraLeave():void
 	anno.orgasm();
 	pc.lust(50);
 	processTime(5);
+	pc.createStatusEffect("Disable Ship Bed", 0, 0, 0, 0, true, "", "", false, 60);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
