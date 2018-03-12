@@ -964,7 +964,7 @@ public function appearance(forTarget:Creature):void
 			output2(" Your mouth contains a long blue tongue that dangles over your lower lip whenever you stop thinking about it.");
 			break;
 		case GLOBAL.TYPE_BOVINE:
-			if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth houses a broad, prehensile tongue which extends over a foot long with a smooth surface is perfect for pleasuring sensitive areas.");
+			if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth houses a broad, prehensile tongue which extends over a foot long with a smooth surface that is perfect for pleasuring sensitive areas.");
 			else output2(" Your mouth contains a smooth, broad tongue, perfect for pleasuring sensitive spots.");
 			break;
 		case GLOBAL.TYPE_TENTACLE:
@@ -2494,7 +2494,11 @@ public function appearance(forTarget:Creature):void
 			}
 			else
 			{
-				output2(" double jointed legs covered in " + target.skinFurScales(true,true,true,true) + " supports your body, looking much like a goat’s all the way down.");
+				output2(" double jointed legs covered in ");
+				if(target.hasLegFlag(GLOBAL.FLAG_GOOEY)) output2(target.skinTone + " goo");
+				else if(target.hasFur() || target.hasLegFlag(GLOBAL.FLAG_FURRED)) output2(target.furColor + " fur");
+				else output2(target.skinFurScales(true,true,true,true));
+				output2(" supports your body, looking much like a goat’s all the way down.");
 			}
 			break;
 		case GLOBAL.TYPE_OVIR:

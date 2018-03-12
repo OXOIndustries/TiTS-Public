@@ -40,6 +40,8 @@ public function showBothriocQuadomme():void
 // Quadomme encounter check
 public function tryEncounterBothriocQuadomme():Boolean
 {
+	if(pc.level < 7) return false;
+	
 	var quadommeTrap:Boolean = false;
 	switch(currentLocation)
 	{
@@ -123,6 +125,10 @@ public function encounterBothriocQuadomme():void
 	
 	CombatAttacks.applyWeb(pc);
 	
+	var bMelee:Boolean = (pc.hasMeleeWeapon() && (pc.meleeWeapon.baseDamage.burning.damageValue > 0 || pc.meleeWeapon.baseDamage.corrosive.damageValue > 0));
+	var bRanged:Boolean = (pc.hasRangedWeapon() && (pc.rangedWeapon.baseDamage.burning.damageValue > 0 || pc.rangedWeapon.baseDamage.corrosive.damageValue > 0));
+	var success:Boolean = ( bMelee || bRanged || (pc.physique() + (rand(60) - 39) > 30) );
+	
 	// First
 	if(flags["BOTHRIOC_QUADOMME_ENCOUNTERED"] == undefined)
 	{
@@ -130,7 +136,7 @@ public function encounterBothriocQuadomme():void
 		output("\n\nAs you gaze off into the distance, straining your eyes for any sign of movement, something brushes your face. You swat it aside irritably. It sticks to your hand. Disgusted, you look at it. Gluey gossamer is plastered across your palm, almost completely translucent but – as you find out when you impulsively try to yank it off – as strong as steel wire. You suddenly feel it clinging to you in half-a-dozen places. Your immediate reaction, to wrench your limbs away in fright, only seems to bring them into contact with more of the hanging, ghostly threads. With a sinking, blooming horror, you realize you’ve blundered into some sort of web trap. Strings, weaves and thatches of gossamer glisten across the floor and walls, emerging from a large hole in the ceiling, only noticeable to you now that you’re well and truly coated in it. From up above you hear movement, the busy sound of many feet... Desperately you fight your way backwards, attempting to claw the sticky web off you.");
 		
 		// Strength check success
-		if(pc.physique() + (rand(60) - 39) > 30)
+		if(success)
 		{
 			output("\n\nYou wrench yourself clear of the stuff and stumble to safety just as a large shape emerges from the hole up above.");
 			output("\n\n<i>“Oh dear,”</i> says the tall, lithe creature with a breathy laugh, dangling upside down from its web. <i>“You’re much too fast for me, farlander! No fun at all.”</i>");
@@ -308,7 +314,7 @@ public function encounterBothriocQuadomme():void
 			autoSubmit = true;
 		}
 		// Strength check success
-		else if(pc.physique() + (rand(60) - 39) > 30)
+		else if(success)
 		{
 			output("\n\nYou wrench yourself clear of the stuff and stumble to safety just as a large shape emerges from the darkness up above.");
 			output("\n\n<i>“Oh dear,”</i> says the eight-limbed bothrioc with a breathy laugh, dangling upside down from its web. <i>“You’re much too fast for me, farlander! No fun at all.”</i>");

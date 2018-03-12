@@ -585,15 +585,16 @@ public function stayAndStarsTell(inVillage:Boolean = false):void
 	output("\n\nLeaning close, ");
 	if(flags["MET_ULA"] != undefined) output("Ula");
 	else output("the Korgonne");
-	output(" licks her cyan-blue lips and glances toward the entrance, suddenly unsure. After a second of indecision, she straightens her little shoulders and faces you. <i>“");
+	output(" licks her cyan-blue lips and glances toward the entrance, suddenly unsure. After a second of indecision, she straightens her little shoulders and faces you.");
 
 	if(!korgiTranslate())
 	{
+		output(" <i>“");
 		if(inVillage) output("Space");
 		else output("Aliens");
 		output(" new. Never seen.”</i> A paw gingerly extends toward your [pc.face].");
 	}
-	else output("\n\n<i>“I don’t understand space. It’s too vast and strange to comprehend.”</i> A paw gingerly extends toward your [pc.face].");
+	else output(" <i>“I don’t understand space. It’s too vast and strange to comprehend.”</i> A paw gingerly extends toward your [pc.face].");
 
 	output("\n\nYou let it. <i>“Really?”</i>");
 

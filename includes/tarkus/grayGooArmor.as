@@ -220,6 +220,8 @@ public function grayGooAtBarSure():void
 	flags["ANNO_NOVA_UPDATE"] = 2;
 
 	processTime(45+rand(15));
+	
+	refreshRoamingBarEncounter();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -321,6 +323,8 @@ public function grayGooArmorRoamingTake():void
 	processTime(3);
 	
 	output("\n\n" + gooArmorInventoryBlurb(goo.armor, "obtain"));
+	
+	refreshRoamingBarEncounter();
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
