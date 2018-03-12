@@ -19715,14 +19715,14 @@
 					case "Foxfire":
 						if(this is PlayerCharacter)
 						{
-						if (thisStatus.value4 < kGAMECLASS.GetGameTimestamp() || thisStatus.value4 <= 60) thisStatus.value4 = kGAMECLASS.GetGameTimestamp(); // failsafe and update for the old system
-						var endTime:uint = kGAMECLASS.GetGameTimestamp() + deltaT;
-						
-						while (thisStatus.value4 <= endTime)
- 						{
-							Foxfire.attemptTF(this);
-							thisStatus.value4 += ((3 * 60) + rand(2 * 60));
- 						}
+							if (thisStatus.value4 < kGAMECLASS.GetGameTimestamp() || thisStatus.value4 <= 60) thisStatus.value4 = kGAMECLASS.GetGameTimestamp(); // failsafe and update for the old system
+							var endTime:uint = kGAMECLASS.GetGameTimestamp() + deltaT;
+							
+							while (thisStatus.value4 <= endTime)
+	 						{
+								Foxfire.attemptTF(this);
+								thisStatus.value4 += ((3 * 60) + rand(2 * 60));
+	 						}
 						}
 						break;
 					case "adjjjisjjrhiwig":
@@ -19733,6 +19733,13 @@
 						break;
 					case "Ovilium":
 						if(thisStatus.minutesLeft < deltaT) thisStatus.minutesLeft = (deltaT + 1);
+						break;
+					case "Zil Pheromones":
+					case "Zil Pregnancy Reflex Mod":
+						if (!hasPregnancyOfType("ZilPregnancy"))
+						{
+							thisStatus.minutesLeft = 1;
+						}
 						break;
 					/*
 					case "Exhibitionism Reserve":
@@ -20187,13 +20194,6 @@
 						break;
 					case "Ovilium":
 						if (!hasPregnancyOfType("OviliumEggPregnancy"))
-						{
-							requiresRemoval = true;
-						}
-						break;
-					case "Zil Pheromones":
-					case "Zil Pregnancy Reflex Mod":
-						if (!hasPregnancyOfType("ZilPregnancy"))
 						{
 							requiresRemoval = true;
 						}
