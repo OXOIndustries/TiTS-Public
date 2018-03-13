@@ -5972,6 +5972,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Jerynn:</b> Met her");
 					if(jerynnIsMistress()) output2(", Mistress");
+					if(flags["JERYNN_HARNESS_GIFTED"] != undefined) output2(", Gave you a harness");
 					if(jerynnPetstuffLevel() > 0) output2("\n<b>* Jerynn, Dominance Level:</b> " + jerynnPetstuffLevel() + "/" + jerynnPetstuffMax());
 					if(flags["JERYNN_FUCKED"] != undefined) output2("\n<b>* Jerynn, Times Sexed:</b> " + flags["JERYNN_FUCKED"]);
 				}
