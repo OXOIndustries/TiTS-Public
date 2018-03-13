@@ -3597,6 +3597,10 @@
 			if(tight && upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_SKIN_TIGHT)) return true;
 			return (upperUndergarment is EmptySlot || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST));
 		}
+		public function isExposed(tight:Boolean = false):Boolean
+		{
+			return (isChestExposed(tight) && isCrotchExposed(tight) && isAssExposed(true));
+		}
 		
 		public function isChestVisible(tight:Boolean = false): Boolean
 		{

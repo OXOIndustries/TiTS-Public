@@ -164,9 +164,18 @@ public function ulaBonus():void
 	if(flags["ULA_CAVE"] == currentLocation && flags["ULA_SAVED"] == undefined)
 	{
 		//ULA TEMPORARILY RE-ENABLED
-		if(flags["ULA_LEAVE_TIMER"] == undefined || flags["ULA_LEAVE_TIMER"] + 60*24*2 > GetGameTimestamp() || 9999 == 9999)
+		if(flags["ULA_LEAVE_TIMER"] == undefined || flags["ULA_LEAVE_TIMER"] + 60*24*5 > GetGameTimestamp())
 		{
 			output("\n\nA shivering figure lurks in shadowy darkness at the rear of the cave, its large, canine ears quivering in distress. Features are difficult to make out without getting any closer, but it is clear from the mop of snow-soaked hair and chattering teeth that whatever is cowering back there is suffering from some serious hypothermia.");
+			//Timer not started
+			if(flags["ULA_LEAVE_TIMER"] == undefined) { output("\n\n<b>Maybe you could help her out and improve relations with the locals...</b>"); }
+			else if(flags["ULA_LEAVE_TIMER"] + 60*24*4 < GetGameTimestamp()) output("\n\n<b>She seems to be gathering her strength for another trip into the wilds. If you mean to help her, do it soon.</b>");
+			else if(flags["ULA_LEAVE_TIMER"] + 60*24*3 < GetGameTimestamp()) output("\n\n<b>You doubt the korgonne will stick around too much longer. Delay too long, and you'll miss your chance to help her out.</b>");
+			else if(flags["ULA_LEAVE_TIMER"] + 60*24*2 < GetGameTimestamp()) output("\n\n<b>She hasn't left, but you're sure that she'll have to take off eventually. A cave is a poor substitute for a home. And with her departure, you'll miss out on any chance to help her or her people out.</b>");
+			else
+			{
+				output("\n\n<b>If you don't help her out now, she's probably going to be gone forever in a few days.</b>");
+			}
 			addButton(0,"Figure",caveMeetUla);
 		}
 		else

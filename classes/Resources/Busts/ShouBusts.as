@@ -420,6 +420,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/luna_nude.png", mimeType = "image/png")]
 		public var Bust_LUNA_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/lund.png", mimeType = "image/png")]
+		public var Bust_LUND:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/lund_nude.png", mimeType = "image/png")]
+		public var Bust_LUND_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/lustomorph_ausar.png", mimeType = "image/png")]
 		public var Bust_LUSTOMORPH_AUSAR:Class;
 		public var Bounds_LUSTOMORPH_AUSAR:Rectangle = new Rectangle(17, 30, 64, 64);
@@ -1065,6 +1070,11 @@
 			public var Full_LUNA:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/luna_nude.png", mimeType = "image/png")]
 			public var Full_LUNA_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lund.png", mimeType = "image/png")]
+			public var Full_LUND:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lund_nude.png", mimeType = "image/png")]
+			public var Full_LUND_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lustomorph_ausar.png", mimeType = "image/png")]
 			public var Full_LUSTOMORPH_AUSAR:Class;

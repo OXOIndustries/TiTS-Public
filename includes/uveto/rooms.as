@@ -2783,7 +2783,8 @@ public function initUvetoRoomsII():void
 	rooms["KORGII F8"].westExit = "KORGII H8";
 	rooms["KORGII F8"].addFlag(GLOBAL.INDOOR);
 	rooms["KORGII F8"].addFlag(GLOBAL.PUBLIC);
-	//rooms["KORGII F8"].runOnEnter = korgiD12Bonus;
+	rooms["KORGII F8"].addFlag(GLOBAL.NPC);
+	rooms["KORGII F8"].runOnEnter = lundHangoutBonus;
 
 	rooms["KORGII H8"] = new RoomClass(this);
 	rooms["KORGII H8"].roomName = "NORTH\nTUNNEL";
@@ -2822,10 +2823,23 @@ public function initUvetoRoomsII():void
 	rooms["KORGII J10"].northExit = "KORGII J8";
 	rooms["KORGII J10"].eastExit = "";
 	rooms["KORGII J10"].southExit = "KORGII J12";
-	rooms["KORGII J10"].westExit = "";
+	rooms["KORGII J10"].westExit = "KORGII L10";
 	rooms["KORGII J10"].addFlag(GLOBAL.INDOOR);
 	rooms["KORGII J10"].addFlag(GLOBAL.PUBLIC);
 	//rooms["KORGII J10"].runOnEnter = korgiD12Bonus;
+
+	rooms["KORGII L10"] = new RoomClass(this);
+	rooms["KORGII L10"].roomName = "KORG'II\nDWELLING";
+	rooms["KORGII L10"].description = "";
+	rooms["KORGII L10"].planet = "PLANET: UVETO VII";
+	rooms["KORGII L10"].system = "SYSTEM: SIRETTA";
+	rooms["KORGII L10"].moveMinutes = 2;
+	rooms["KORGII L10"].northExit = "";
+	rooms["KORGII L10"].eastExit = "KORGII J10";
+	rooms["KORGII L10"].southExit = "";
+	rooms["KORGII L10"].westExit = "";
+	rooms["KORGII L10"].addFlag(GLOBAL.INDOOR);
+	rooms["KORGII L10"].runOnEnter = lundsRoomBonus;
 
 	rooms["KORGII J12"] = new RoomClass(this);
 	rooms["KORGII J12"].roomName = "WEST\nTUNNEL";

@@ -2800,6 +2800,8 @@ public function variableRoomUpdateCheck():void
 		rooms["UVGR K20"].removeFlag(GLOBAL.NPC);
 		rooms["KORGII B14"].removeFlag(GLOBAL.OBJECTIVE);
 	}
+	if(flags["LUND_FUCKED_OFF"] == undefined && !rooms["KORGII F8"].hasFlag(GLOBAL.NPC)) rooms["KORGII F8"].addFlag(GLOBAL.NPC);
+	else if(flags["LUND_FUCKED_OFF"] != undefined && rooms["KORGII F8"].hasFlag(GLOBAL.NPC)) rooms["KORGII F8"].removeFlag(GLOBAL.NPC);
 	//Myrna
 	if(isChristmas())
 	{
@@ -2822,7 +2824,6 @@ public function variableRoomUpdateCheck():void
 		rooms["CANADA3"].addFlag(GLOBAL.NPC);
 	}
 	else rooms["CANADA3"].removeFlag(GLOBAL.NPC);
-
 
 	/* MISC */
 	
