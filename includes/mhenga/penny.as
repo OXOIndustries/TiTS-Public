@@ -3743,7 +3743,7 @@ public function noPennyNoRP():void
 {
 	clearOutput();
 	showPenny();
-	author("Penny");
+	author("Doots");
 	output("After giving it some thought you change your mind, and let Penny know that after some thought you’re not up to it, at least not at the moment.");
 	output("\n\n<i>“That’s alright, no harm no foul. Do you want to do something else then?”</i> she seems to be a bit disappointed by your change of mind. But she perks up quickly, thinking of other things you could do.");
 	processTime(2);
@@ -3864,6 +3864,7 @@ public function pennyJailRPEpilogue():void
 	clearOutput();
 	showPenny();
 	pc.shower();
+	author("Doots");
 	output("You spend the next half an hour in the shower in the gentle care of Penny. She thoroughly cleans you up while paying gentle attention to your thoroughly abused ass and the bite mark she left on your neck.");
 	output("\n\nAfter the shower, you get back to the front room with Penny. She sits down on the edge of her desk before pulling you into her lap. Her erection palpably throbs against your ass as you settle into position. <i>“I had so much fun, my mate. I really hope you’re up for this again sometime, but if not I understand.”</i> She’s still apologetic about biting your neck!\n\nYou assure her that your neck is fine before taking your leave. As you step outside, the bite mark on your neck tingles, you touch it instinctively, feeling a wave of lust shudder down your spine down to your [pc.asshole] at the memory.");
 	processTime(4);
