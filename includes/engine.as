@@ -187,6 +187,7 @@ public function formatList():String {
 //Args[1] = Cock Size, if known.
 //Args[2] = -1 if butts only, 0 if vagina only, 1 if both :3
 //Args[3] = 1 must be pregnant, -1 if must not be pregnant, 0 if it doesnt matter
+//Args[4] = true/false to disable/enable blocked orifices, respectively
 public function vaginaRouter(args:Array):void
 {
 	var scene:Function = args[0];
@@ -203,28 +204,31 @@ public function vaginaRouter(args:Array):void
 	var unpregHoles:Boolean = false;
 	if(args.length > 3)
 	{
-		pregHoles == (args[3] >= 0);
-		unpregHoles == (args[3] <= 0);
+		pregHoles = (args[3] >= 0);
+		unpregHoles = (args[3] <= 0);
 	}
+	var noBlockedHoles:Boolean = (args.length > 4 ? args[4] : false);
 
 	//Build up a choice of holes.
 	var choices:Array = [];
 	var ineligibles:Array = [];
 	//Cunts to build :3
-	if(cuntsOkay)
+	if(cuntsOkay && pc.hasVagina())
 	{
 		for(var x:int = 0; x < pc.totalVaginas(); x++)
 		{
-			if((pregHoles && pc.isPregnant(x)) || (unpregHoles && !pc.isPregnant(x))) choices.push(x);
+			if(noBlockedHoles && pc.isBlocked(x)) ineligibles.push(x);
+			else if((pregHoles && unpregHoles) || (pregHoles && pc.isPregnant(x)) || (unpregHoles && !pc.isPregnant(x))) choices.push(x);
 			else ineligibles.push(x);
 		}
 	}
 	//Butt check :3
-	else if(buttsOkay)
+	if(buttsOkay)
 	{
-		if((pregHoles && pc.isPregnant(3)) || (unpregHoles && !pc.isPregnant(3))) choices.push(-1);
+		if(noBlockedHoles && pc.isBlocked(-1)) ineligibles.push(-1);
+		else if((pregHoles && unpregHoles) || (pregHoles && pc.isPregnant(3)) || (unpregHoles && !pc.isPregnant(3))) choices.push(-1);
+		else ineligibles.push(-1);
 	}
-	else ineligibles.push(-1);
 
 	//Only one choice? Use it
 	if(choices.length == 1) scene(choices[0]);
@@ -244,48 +248,86 @@ public function vaginaRouter(args:Array):void
 			switch(choices[x])
 			{
 				case -1:
-					//output("\n(" + (x+1) + ") Your hardlight strap-on?");
-					output("\n<b>Hardlight Strap-On</b>: " + StringUtil.toDisplayCase(pc.lowerUndergarment.longName));
-					addButton(x, "HL Strapon", scene, choices[x]);
+					output("\n<b>Anus</b>: " + vaginaRouterDesc(choices[x]));
+					addButton(x, "Anus", scene, choices[x], "Anus", "Use your [pc.asshole].");
 					break;
 				default:
-					//output("\n(" + (x+1) + ") Your " + num2Ordinal(choices[x] + 1) + " " + num2Text(pc.cLength(choices[x])) + "-inch [pc.cockNoun " + choices[x] + "]?");
 					output("\n<b>" + StringUtil.capitalize(num2Ordinal(choices[x] + 1)) + " Vagina:</b>" + vaginaRouterDesc(choices[x]));
-					addButton(x, ("Vagina " + (choices[x] + 1)), scene, choices[x], StringUtil.capitalize(num2Ordinal(choices[x] + 1)) + " Vagina", "Use your " + pc.vaginaDescript(choices[x],true,true) + ".");
+					addButton(x, ("Vagina " + (choices[x] + 1)), scene, choices[x], StringUtil.capitalize(num2Ordinal(choices[x] + 1)) + " Vagina", "Use your [pc.vagina " + choices[x] + "].");
 					break;
 			}
 			if(choices[x] >= 0)
 			{
-				if(cockSize/2 > pc.vaginalCapacity(choices[x])) output(" <b>Stretch Likely!</b>");
-				else if(cockSize/2 > pc.vaginalCapacity(choices[x])) output(" <b>Stretch Possible!</b>")
+				if(cockSize > pc.vaginalCapacity(choices[x])) output(", <b>Stretch Likely!</b>");
+				else if(cockSize > pc.vaginalCapacity(choices[x]) * 0.75) output(", <b>Stretch Possible!</b>")
 			}
 			else
 			{
-				if(cockSize/2 > pc.analCapacity()) output(" <b>Stretch Likely!</b>");
-				else if(cockSize/2 > pc.analCapacity()) output(" <b>Stretch Possible!</b>")
+				if(cockSize > pc.analCapacity()) output(", <b>Stretch Likely!</b>");
+				else if(cockSize > pc.analCapacity() * 0.75) output(", <b>Stretch Possible!</b>")
 			}
 		}
 		if(ineligibles.length > 0) output("\n\n<b><u>Unsuitable:</u></b>");
 		for(x = 0; x < ineligibles.length; x++)
 		{
-			//output("\n" + StringUtil.toTitleCase(num2Ordinal(ineligibles[x] + 1)) + " penis, type: [pc.cockNoun " + ineligibles[x] + "].");
-			//if(pc.cockVolume(ineligibles[x], true) > maxFit) output(" Reason: Too large.");
-			//if(pc.cockVolume(ineligibles[x], false) < minFit) output(" Reason: Too small.");
-			output("\n<b>" + StringUtil.capitalize(num2Ordinal(ineligibles[x] + 1)) + " Vagina:</b>" + vaginaRouterDesc(ineligibles[x]));
-			if(!cuntsOkay && ineligibles[x] >= 0) output(" (Vaginas Ineligible.");
-			if(!buttsOkay && ineligibles[x] < 0) output(" (Anal Ineligible.");
-			if(ineligibles[x] >= 0 && pc.isPregnant(ineligibles[x]) && !pregHoles) output(" (Pregnancy Blocked.)");
-			if(ineligibles[x] < 0 && pc.isPregnant(3) && !pregHoles) output(" (Pregnancy Blocked.)");
-			if(ineligibles[x] >= 0 && !pc.isPregnant(ineligibles[x]) && !unpregHoles) output(" (Req's Pregnancy.)");
-			if(ineligibles[x] < 0 && !pc.isPregnant(3) && !unpregHoles) output(" (Req's Pregnancy.)");
+			if(ineligibles[x] == -1) output("\n<b>Anus</b>: " + vaginaRouterDesc(ineligibles[x]));
+			else output("\n<b>" + StringUtil.capitalize(num2Ordinal(ineligibles[x] + 1)) + " Vagina:</b>" + vaginaRouterDesc(ineligibles[x]));
+			
+			var notes:Array = [];
+			
+			if(noBlockedHoles && pc.isBlocked(ineligibles[x])) notes.push("Orifice Blocked.");
+			if(!cuntsOkay && ineligibles[x] >= 0) notes.push("Vaginas Ineligible.");
+			if(!buttsOkay && ineligibles[x] < 0) notes.push("Anal Ineligible.");
+			if(ineligibles[x] >= 0 && pc.isPregnant(ineligibles[x]) && !pregHoles && unpregHoles) notes.push("Pregnancy Blocked.");
+			if(ineligibles[x] < 0 && pc.isPregnant(3) && !pregHoles && unpregHoles) notes.push("Pregnancy Blocked.");
+			if(ineligibles[x] >= 0 && !pc.isPregnant(ineligibles[x]) && !unpregHoles && pregHoles) notes.push("Req’s Pregnancy.");
+			if(ineligibles[x] < 0 && !pc.isPregnant(3) && !unpregHoles && pregHoles) notes.push("Req’s Pregnancy.");
+			
+			if(notes.length > 0)
+			{
+				var note:String = "";
+				for(var n:int = 0; n < notes.length; n++)
+				{
+					if(n > 0) note += " ";
+					note += notes[n];
+				}
+				if(note != "") output(" (" + note + ")");
+			}
 		}
 	}
-	//Failsafe - assume primary ween
-	else scene(0);
+	//Failsafe - assume primary vagina, if exists
+	else {
+		clearOutput();
+		showName("\nFUCK");
+		output("ERROR: Eligible: " + choices.length + ", Uneligible: " + ineligibles.length + ", Preg: " + pregHoles + ", Unpreg: " + unpregHoles);
+	}
+	//scene((cuntsOkay && pc.hasVagina()) ? 0 : -1);
 }
-public function vaginaRouterDesc(x:int):String
+public function vaginaRouterDesc(vIdx:int = -1, fullDesc:Boolean = false):String
 {
-	return target.vaginaDescript(0,true,true) + " (" + Math.round(pc.vaginas[x].looseness()) + "/5 looseness & " + Math.round(pc.vaginas[x].wetness()) + "/5 wetness)";
+	var hole:VaginaClass = (vIdx < 0 ? pc.ass : pc.vaginas[vIdx]);
+	
+	var msg:String = "";
+	var i:int = 0;
+	
+	if(fullDesc)
+	{
+		if(hole.vagooFlags.length > 0)
+		{
+			for(i = 0; i < hole.vagooFlags.length; i++)
+			{
+				msg += (" " + GLOBAL.FLAG_NAMES[hole.vagooFlags[i]] + ",");
+			}
+		}
+		if(vIdx >= 0 && hole.vaginaColor != "") msg += (" " + StringUtil.toDisplayCase(hole.vaginaColor) + ",");
+	}
+	if((vIdx < 0 && pc.analVirgin) || (vIdx >= 0 && hole.hymen)) msg += (" Virgin");
+	if(vIdx >= 0) msg += (" " + GLOBAL.TYPE_NAMES[hole.type]);
+	else msg += (" Asshole");
+	if(hole.looseness() > 0) msg += (", " + formatFloat(hole.looseness(), 3) + "/5 looseness");
+	if(hole.wetness() > 0) msg += (", " + formatFloat(hole.wetness(), 3) + "/5 wetness");
+	
+	return msg;
 }
 
 //Args[0] = target scene.
@@ -325,12 +367,10 @@ public function penisRouter(args:Array):void
 			switch(choices[x])
 			{
 				case -1:
-					//output("\n(" + (x+1) + ") Your hardlight strap-on?");
 					output("\n<b>Hardlight Strap-On</b>: " + StringUtil.toDisplayCase(pc.lowerUndergarment.longName));
-					addButton(x, "HL Strapon", scene, choices[x]);
+					addButton(x, "HL Strapon", scene, choices[x], "Hardlight Strap-On", "Use the dildo from your [pc.lowerUndergarment].");
 					break;
 				default:
-					//output("\n(" + (x+1) + ") Your " + num2Ordinal(choices[x] + 1) + " " + num2Text(pc.cLength(choices[x])) + "-inch [pc.cockNoun " + choices[x] + "]?");
 					output("\n<b>" + StringUtil.capitalize(num2Ordinal(choices[x] + 1)) + " Penis:</b>" + penisRouterCockDesc(choices[x]));
 					addButton(x, ("Penis " + (choices[x] + 1)), scene, choices[x], StringUtil.capitalize(num2Ordinal(choices[x] + 1)) + " Penis", "Use your [pc.cock " + choices[x] + "].");
 					break;
@@ -339,12 +379,23 @@ public function penisRouter(args:Array):void
 		if(ineligibles.length > 0) output("\n\n<b><u>Unsuitable:</u></b>");
 		for(x = 0; x < ineligibles.length; x++)
 		{
-			//output("\n" + StringUtil.toTitleCase(num2Ordinal(ineligibles[x] + 1)) + " penis, type: [pc.cockNoun " + ineligibles[x] + "].");
-			//if(pc.cockVolume(ineligibles[x], true) > maxFit) output(" Reason: Too large.");
-			//if(pc.cockVolume(ineligibles[x], false) < minFit) output(" Reason: Too small.");
 			output("\n<b>" + StringUtil.capitalize(num2Ordinal(ineligibles[x] + 1)) + " Penis:</b>" + penisRouterCockDesc(ineligibles[x]));
-			if(pc.cockVolume(ineligibles[x], true) > maxFit) output(" (Too large.)");
-			if(pc.cockVolume(ineligibles[x], false) < minFit) output(" (Too small.)");
+			
+			var notes:Array = [];
+			
+			if(pc.cockVolume(ineligibles[x], true) > maxFit) notes.push("Too large.");
+			if(pc.cockVolume(ineligibles[x], false) < minFit) notes.push("Too small.");
+			
+			if(notes.length > 0)
+			{
+				var note:String = "";
+				for(var n:int = 0; n < notes.length; n++)
+				{
+					if(n > 0) note += " ";
+					note += notes[n];
+				}
+				if(note != "") output(" (" + note + ")");
+			}
 		}
 	}
 	//Failsafe - assume primary ween

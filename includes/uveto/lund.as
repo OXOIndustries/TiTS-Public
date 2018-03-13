@@ -42,7 +42,7 @@ public function lundCumPlaceholder():PregnancyPlaceholder
 public function lundsRoomBonus():Boolean
 {
 	if(flags["MET_LUND"] != undefined) output("Lund’s room would best be described as basic, though perhaps bare would be a better way to put it. Inside is a neatly-made bed and a chest of drawers and... nothing else. It’s not the biggest place either, but you suppose he doesn’t really need much room. It doesn’t look like he spends much time inside it, leading you to wonder why you’re here instead of elsewhere.");
-	else output("This dwelling would best be described as basic, though perhaps bare would be a better way to put it. Inside is a neatly-made bed and a chest of drawers and... nothing else. It’s not the biggest place either, but you suppose the owner doesn’t really need much room. It doesn’t look like he spends much time here, leading you to wonder why you're bothering to look it over so thoroughly.");
+	else output("This dwelling would best be described as basic, though perhaps bare would be a better way to put it. Inside is a neatly-made bed and a chest of drawers and... nothing else. It’s not the biggest place either, but you suppose the owner doesn’t really need much room. It doesn’t look like he spends much time here, leading you to wonder why you’re bothering to look it over so thoroughly.");
 	return false;
 }
 
@@ -175,7 +175,7 @@ public function approachLund(back:Boolean = false):void
 	if(back)
 	{
 		author("Fenoxo");
-		output("Is there something else you'd like from Lund?");
+		output("Is there something else you’d like from Lund?");
 		lundMenu();
 	}
 	//These 2 intro blurbs take priority over the below ones
@@ -243,7 +243,7 @@ public function lundMenu():void
 	else addDisabledButton(2,"Outside","Outside","Maybe talk to him a bit about himself first.");
 	if(flags["LUND_OUTSIDE_TALK"] == undefined) addDisabledButton(3,"Sex","Sex","Maybe talk to him a bit more before jumping his bone.");
 	else if(pc.lust() >= 33) addButton(3,"Sex",lundSexStarter);
-	else addDisabledButton(3,"Sex","Sex","You aren't quite in the mood right now.");
+	else addDisabledButton(3,"Sex","Sex","You aren’t quite in the mood right now.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -252,11 +252,11 @@ public function lundAppearance():void
 {
 	clearOutput();
 	showLund();
-	output("Lund stands at a very proud 5’4, covered in pale blue fur. Though his coat is quite shaggy and thick, you can still see the musculature underneath. He’s not particularly big, but he is a very well-built biped in a compact package. Wearing nothing across his torso, you can see his well-defined pectoral muscles and multiple rows of abdominals. He has a brown cloth belt around his waist with two short hunting swords sheathed there, lustrous and clearly created with some care.");
+	output("Lund stands at a very proud 5\' 4\", covered in pale blue fur. Though his coat is quite shaggy and thick, you can still see the musculature underneath. He’s not particularly big, but he is a very well-built biped in a compact package. Wearing nothing across his torso, you can see his well-defined pectoral muscles and multiple rows of abdominals. He has a brown cloth belt around his waist with two short hunting swords sheathed there, lustrous and clearly created with some care.");
 	output("\n\nAround his wrists, he has some furry armlets that you suppose he wears to stay warm. You wonder how much good it’s doing him what with the bare chest and exposed skin, but he’s evidently managing. He at least has a sort of short, fluffy kilt covering his thighs, and furry anklets to match the ones around his wrists.");
 	output("\n\n<i>“Don’t you get cold?”</i> you ask him. He only shrugs.");
 
-	if(flags["SEXED_LUND"] == undefined) output("\n\nYou know from prior experience that though it’s hidden by his clothing and a sheath right now, Lund has a huge 10”</i> cock totally at odds with his relatively tiny frame. No wonder he’s so proud of himself. When he cums, a fat knot forms at the base of it, bulging with virility and ensuring his partner is going to be taking in - or swallowing - every shot of jizz he has to give.");
+	if(flags["SEXED_LUND"] != undefined) output("\n\nYou know from prior experience that though it’s hidden by his clothing and a sheath right now, Lund has a huge 10”</i> cock totally at odds with his relatively tiny frame. No wonder he’s so proud of himself. When he cums, a fat knot forms at the base of it, bulging with virility and ensuring his partner is going to be taking in - or swallowing - every shot of jizz he has to give.");
 	//Dicked him:
 	if(flags["LUND_DICKED_DOWN"] != undefined) output(" You also know, through intimate discovery, that he has a tight, sensitive asshole between his taut, firm buttcheeks that feels amazing to be inside.");
 	clearMenu();
@@ -450,15 +450,15 @@ public function lundSexMenu():void
 	clearMenu();
 	//[Doggystyle] [DickHimDown] [Ride him] [Leave]
 	addButton(0,"Doggystyle",lundDoggyStyle,undefined,"Doggystyle","Get railed by the korgonne the way he knows best.");
-	if(pc.hasCock() && pc.cockThatFits(500) >= 0 && !pc.isBimbo() && flags["LUND_MADE_U_SUBMIT"] == undefined && !pc.hasStatusEffect("LUND_DICKED_CD") && flags["LUND_COVERED_4"] != -1) addButton(1,"DickHimDown",penisRouter,[dickLundDown,500,false],"DickHimDown","Teach the arrogant korgonne a thing or two about where he belongs.");
-	else if(pc.isBimbo()) addDisabledButton(1,"DickHimDown","DickHimDown","He's wayyy too much of a stud for you to even think about dicking down a notch!");
-	else if(flags["LUND_MADE_U_SUBMIT"] != undefined) addDisabledButton(1,"DickHimDown","DickHimDown","After how he fucked you, you can't even begin to imagine turning the tables on him!");
-	else if(flags["LUND_COVERED_4"] == -1) addDisabledButton(1,"DickHimDown","DickHimDown","After your bragging, you don't think he'll ever agree to this again.");
-	else if(!pc.hasCock()) addDisabledButton(1,"DickHimDown","DickHimDown","You sort of need a penis to dick him with...");
-	else if(pc.hasCock() && pc.cockThatFits(500) < 0) addDisabledButton(1,"DickHimDown","DickHimDown","His fuzzy little frame would rip in half. You're wayyy too big.");
-	else addDisabledButton(1,"DickHimDown","DickHimDown","The buff little dog-dude is still kind of sore from the last time.");
+	if(pc.hasCock() && pc.cockThatFits(500) >= 0 && !pc.isBimbo() && flags["LUND_MADE_U_SUBMIT"] == undefined && !pc.hasStatusEffect("LUND_DICKED_CD") && flags["LUND_COVERED_4"] != -1) addButton(1,"DickHimDown",penisRouter,[dickLundDown,500,false],"Dick Him Down","Teach the arrogant korgonne a thing or two about where he belongs.");
+	else if(pc.isBimbo()) addDisabledButton(1,"DickHimDown","Dick Him Down","He’s wayyy too much of a stud for you to even think about dicking down a notch!");
+	else if(flags["LUND_MADE_U_SUBMIT"] != undefined) addDisabledButton(1,"DickHimDown","Dick Him Down","After how he fucked you, you can’t even begin to imagine turning the tables on him!");
+	else if(flags["LUND_COVERED_4"] == -1) addDisabledButton(1,"DickHimDown","Dick Him Down","After your bragging, you don’t think he’ll ever agree to this again.");
+	else if(!pc.hasCock()) addDisabledButton(1,"DickHimDown","Dick Him Down","You sort of need a penis to dick him with...");
+	else if(pc.hasCock() && pc.cockThatFits(500) < 0) addDisabledButton(1,"DickHimDown","Dick Him Down","His fuzzy little frame would rip in half. You’re wayyy too big.");
+	else addDisabledButton(1,"DickHimDown","Dick Him Down","The buff little dog-dude is still kind of sore from the last time.");
 	//Disabled forever till I get the adjusted scene in:
-	if(flags["LUND_DICKED_DOWN"] != undefined) addDisabledButton(1,"DickHimDown","DickHimDown","The followup scene for this is still pending. Be patient!");
+	if(flags["LUND_DICKED_DOWN"] != undefined) addDisabledButton(1,"DickHimDown","Dick Him Down","The followup scene for this is still pending. Be patient!");
 	addButton(2,"Ride Him",vaginaRouter,[rideLundWheeee,lundCumPlaceholder().cockVolume(0),1,0],"Ride Him","Take your pleasure from him yourself.");
 	addButton(14,"Leave",leaveLundsSexMenu,undefined,"Leave","You’re not in the mood right now.");
 }
@@ -471,6 +471,8 @@ public function lundDoggyStyle():void
 	flags["LUND_LAST_SEX"] = "Doggystyle";
 	IncrementFlag("SEXED_LUND");
 	var x:int = -1;
+	var lundipoo:PregnancyPlaceholder = lundCumPlaceholder();
+	
 	if(pc.hasVagina()) x = rand(pc.totalVaginas());
 	if(pc.isBimbo()) 
 	{
@@ -479,7 +481,7 @@ public function lundDoggyStyle():void
 		output("\n\n<i>“I- Uuuhh,”</i> you mutter, losing yourself in his words. Gosh, he always knows just what to say to you...");
 		//Next button -> goes to Bimbo Sex.
 		clearMenu();
-		addButton(0,"Next",bimboLundSex);
+		addButton(0,"Next",bimboLundSex,x);
 		return;
 	}
 	//If you’ve selected [Submit], you get a different scene the next time you pick Doggystyle:
@@ -604,8 +606,8 @@ public function lundDoggyStyle():void
 		output("being forcibly submitted by a ");
 		if(pc.tallness >= 6*12) output("much smaller ");
 		output("korgonne.");
-		if(x >= 0) pc.cuntChange(x,lundCumPlaceholder().cockVolume(0));
-		else pc.buttChange(lundCumPlaceholder().cockVolume(0));
+		if(x >= 0) pc.cuntChange(x,lundipoo.cockVolume(0));
+		else pc.buttChange(lundipoo.cockVolume(0));
 
 		output("\n\nBy the time he’s finished with you, you’re practically wilting. Your entire body is covered in sweat and your ");
 		//taur: 
@@ -617,23 +619,9 @@ public function lundDoggyStyle():void
 		output(". Lund has you dominated in both mind and body, and everyone in the room knows it, especially you. You can’t help but moan when he spanks you across your [pc.ass] and steps away, looking back at him with unsuppressed lust.");
 
 		output("\n\nYou can’t help but laugh breathlessly when he raises his arm and receives a cheer from the other korgonnes in the room. The foreign alien, conquered! Fuck it, you’ll be his sexy trophy if he wants. He’s more than earned it with his stellar sexual performance and besides, you like him. You realize he’s turned back to face you, and you flash him a beautiful smile before sinking to your knees in front of him and dedicatedly sucking his bulging dick.");
-
-		output("\n\n-");
-
-		output("\n\nHours pass in the breeding room, most of which you spend being ridden");
-		if(pc.isTaur()) output(", in both the metaphorical and literal sense,");
-		output(" by Lund. You’ve noticed the korgonnes switching partners - well, most of them - but the same doesn’t seem to apply to you. You’re just for Lund, apparently. Maybe it’s the collar... ");
-		//Already pierced!
-		if(9999 == 0) output("and the shiny new nipple piercings. Hanging from each [pc.nipple] is a small golden ring, not unlike the type you might go see through the ear of a cowgirl. Lund said he liked them and, well, you weren’t going to say no to that. Besides... looking down at them now, hanging from your [pc.breasts]");
-		else output("Besides, looking down at yourself right now");
-		output(", you personally think it’s really hot to be marked so visibly.");
-		output("\n\nBy the time the two of you leave, you’re fucked out for the day. Well, you might have one or two sessions with Lund left in you, but you’re okay for now. You give both him and his balls a warm kiss before you leave, heading back to the Hold proper. You’ll have to do this again sometime soon!");
-		output("\n\n(<b>Developer Note:</b> Piercings are not yet supported. These will be enabled in a future update! <3 -Fen)");
-		//9999 add nip piercings!
-		//add description for piercings:
-		//Your nipples are each pierced with a small golden ring, courtesy of Lund. If you lift them to check, you can see inscriptions along the inside written in korgonne script. Lund only smiled when you asked him what they said, but you’re pretty sure you have a good idea. At least no-one else will know unless you tell them.
+		
 		clearMenu();
-		addButton(0,"Next",move,"KORGII R43");
+		addButton(0,"Next",lundDoggyStyleSubmitEnd);
 	}
 	//Not bimbo:
 	else
@@ -718,8 +706,8 @@ public function lundDoggyStyle():void
 			else output("overfull asshole");
 			output(" with the force of a man twice his size.");
 		}
-		if(x >= 0) pc.cuntChange(x,lundCumPlaceholder().cockVolume(0));
-		else pc.buttChange(lundCumPlaceholder().cockVolume(0));
+		if(x >= 0) pc.cuntChange(x,lundipoo.cockVolume(0));
+		else pc.buttChange(lundipoo.cockVolume(0));
 
 		output("\n\nYou rut like mindless beasts, minutes passing by while your sweaty forms bounce and grab at each other, wordlessly fighting as the two of you seek to establish dominance over the other. Finally, though, you can feel Lund’s knot getting even bigger as he prepares to cum, his movements getting more frenetic and desperate. Though you’d never admit it out loud, you’re intensely grateful that you’ll be able to cum at the same time he will; in the lust for dominance, you’ve been fighting against the sensation of orgasm almost since he started railing you.");
 
@@ -739,7 +727,7 @@ public function lundDoggyStyle():void
 		else if(pc.hasCock()) output("[pc.Cum] spurts from your [pc.cocks] onto the bedsheets even as your [pc.pussy " + x + "] grips and massages Lund’s cock, trying to entice him into cumming inside you to no avail.");
 		else if(pc.hasVagina()) output("[pc.GirlCum] drips from your stretched-out entrance even as your [pc.pussy " + x + "] grips and massages Lund’s cock, trying to entice him into cumming inside you to no avail.");
 		//Fen added for analbuttbois
-		else output("Muscular ass-twitches massage Lund's cock, trying to entice him into cumming inside you to no avail.");
+		else output("Muscular ass-twitches massage Lund’s cock, trying to entice him into cumming inside you to no avail.");
 
 		output("\n\nBy the time he <i>does</i> cum again, it’s on the heels of your third shuddering, moaning orgasm. The squeezing is just too much for him to hold out against, and he groans loudly as he paints your insides with creamy spunk all over again, adding to the jizz he’s already offloaded in you. Finally, his knot slips free and he sits back on his haunches, panting hard.");
 		output("\n\nYou’re left huffing and covered in a sheen of shimmering sweat, heat rising from your bodies with visible steam, and you’ve probably gotten some bruises across your ass. But <i>fuck</i> if that wasn’t one of the most satisfying fucks you’ve ever gotten. The way your [pc.vagOrAss " + x + "] aches is incredibly satisfying, matched only by the warm, slow drool of Lund’s cum running down your backside.");
@@ -748,24 +736,45 @@ public function lundDoggyStyle():void
 		output("\n\nYou turn and eye him. Really, after that, he can keep going? Part of you wants to make him prove it, ");
 		if(pc.isAmazon() || pc.isTreatedBull() || pc.PQ() >= 70) output("knowing that due to your exceptional strength you should be able to keep up.");
 		else output("but you’re really not sure if you can keep up with him and you know for sure that if you show him weakness, he’ll take full advantage of it - and you.");
-		processTime(40);
 		pc.orgasm();
 		pc.orgasm();
 		if(x >= 0)
 		{
-			pc.loadInCunt(lundCumPlaceholder(),x);
-			pc.loadInCunt(lundCumPlaceholder(),x);
+			pc.loadInCunt(lundipoo,x);
+			pc.loadInCunt(lundipoo,x);
 		}
 		else
 		{
-			pc.loadInAss(lundCumPlaceholder());
-			pc.loadInAss(lundCumPlaceholder());
+			pc.loadInAss(lundipoo);
+			pc.loadInAss(lundipoo);
 		}
 		//[Leave] [Again]
 		clearMenu();
 		addButton(0,"Leave",leaveLundSex);
 		addButton(1,"Again",moreLundSex,x);
 	}
+	processTime(40);
+}
+
+public function lundDoggyStyleSubmitEnd():void
+{
+	clearOutput();
+	showLund(true);
+	output("Hours pass in the breeding room, most of which you spend being ridden");
+	if(pc.isTaur()) output(", in both the metaphorical and literal sense,");
+	output(" by Lund. You’ve noticed the korgonnes switching partners - well, most of them - but the same doesn’t seem to apply to you. You’re just for Lund, apparently. Maybe it’s the collar... ");
+	//Already pierced!
+	if(9999 == 0) output("and the shiny new nipple piercings. Hanging from each [pc.nipple] is a small golden ring, not unlike the type you might go see through the ear of a cowgirl. Lund said he liked them and, well, you weren’t going to say no to that. Besides... looking down at them now, hanging from your [pc.breasts]");
+	else output("Besides, looking down at yourself right now");
+	output(", you personally think it’s really hot to be marked so visibly.");
+	output("\n\nBy the time the two of you leave, you’re fucked out for the day. Well, you might have one or two sessions with Lund left in you, but you’re okay for now. You give both him and his balls a warm kiss before you leave, heading back to the Hold proper. You’ll have to do this again sometime soon!");
+	output("\n\n(<b>Developer Note:</b> Piercings are not yet supported. These will be enabled in a future update! <3 -Fen)");
+	processTime(128);
+	//9999 add nip piercings!
+	//add description for piercings:
+	//Your nipples are each pierced with a small golden ring, courtesy of Lund. If you lift them to check, you can see inscriptions along the inside written in korgonne script. Lund only smiled when you asked him what they said, but you’re pretty sure you have a good idea. At least no-one else will know unless you tell them.
+	clearMenu();
+	addButton(0,"Next",move,"KORGII R43");
 }
 
 //[Leave]
@@ -899,7 +908,7 @@ public function evenEvenMoreLundSex(x:int):void
 	addButton(0,"Leave",leaveEvenEvenMoreLundSex);
 	addButton(1,"Submit",evenEvenEvenMoreLundSex,x);
 	if(pc.isAmazon()) addButton(2,"AmazonFuck",amazonFuckLundsShitUp,x,"Amazon Fuck","Show him how amazons do it.");
-	else addDisabledButton(2,"AmazonFuck","Amazon Fuck","You'd need to be some kind of amazon for this.");
+	else addDisabledButton(2,"AmazonFuck","Amazon Fuck","You’d need to be some kind of amazon for this.");
 }
 //[Leave]
 public function leaveEvenEvenMoreLundSex():void
@@ -1157,7 +1166,7 @@ public function rideLundWheeee(x:int):void
 		IncrementFlag("SEXED_LUND");
 		//Next button -> goes to Bimbo Sex.
 		clearMenu();
-		addButton(0,"Next",bimboLundSex);
+		addButton(0,"Next",bimboLundSex,x);
 		return;
 	}
 	//Not bimbo, first time
@@ -1178,9 +1187,11 @@ public function rideLundWheeee(x:int):void
 	output("\n\n<i>“Hope you’re ready for this, Lund,”</i> you tell him, feeling his cock swell and harden against your [pc.ass]. <i>“I dunno if you’re man enough to take it.”</i>");
 	output("\n\n<i>“Hmph,”</i> Lund grunts, reaching up to spread his hands across your [pc.chest]. <i>“You not bait Lund to do all work.”</i>");
 	output("\n\nSatisfied you’ve convinced him to let you take the lead, you settle back and let the thought of teasing him fade from your mind. You really just want for the both of you to have a good time, and assuaging Lund’s machismo tendencies is probably the easiest way. Reaching back, you lightly take ahold of his canine prick and align it with your [pc.vagOrAss " + x + "]. You groan in pleasure as you slowly slide backwards onto it, using your hips to take it inside. Lund grunts, chewing his lip while the crown of his dick spreads you apart.");
-
-	if(x >= 0) pc.cuntChange(x,lundCumPlaceholder().cockVolume(0));
-	else pc.buttChange(lundCumPlaceholder().cockVolume(0));
+	
+	var lundipoo:PregnancyPlaceholder = lundCumPlaceholder();
+	
+	if(x >= 0) pc.cuntChange(x,lundipoo.cockVolume(0));
+	else pc.buttChange(lundipoo.cockVolume(0));
 
 	output("\n\n<i>“Awww fuck, that’s good,”</i> you moan, rocking back and forth in Lund’s lap just to feel him rub along your insides. Taking it deep is great, but there’s something to be said for quick, light movements that just tease the tip...");
 
@@ -1191,12 +1202,18 @@ public function rideLundWheeee(x:int):void
 	else output("pre-cum-slick asshole");
 	output(", enjoying the sensation of being filled up.");
 
-	if(pc.totalVaginas() > 1) 
+	if(x >= 0 && pc.totalVaginas() > 1)
 	{
 		output("\n\nAn idea comes to you then, and you slide off Lund’s cock to a groan of disappointment only to elicit a gasp of surprise when you slide him right back into another tight, wet cunt. You look down at Lund’s expression and can’t resist a sultry laugh at his shock, gyrating your [pc.hips] atop his lap just to remind him who’s in charge. Bouncing up and down on his groin, you alternate between two of your slickened pussies while Lund grunts in helpless pleasure.");
-		if(x >= (pc.totalVaginas()-1)) x--;
-		else x++;
-		pc.cuntChange(x,lundCumPlaceholder().cockVolume(0));
+		
+		var unusedVags:Array = [];
+		for(var v:int = 0; v < pc.totalVaginas(); v++)
+		{
+			if(v != x) unusedVags.push(v);
+		}
+		if(unusedVags.length > 0) x = unusedVags[rand(unusedVags.length)];
+		
+		pc.cuntChange(x,lundipoo.cockVolume(0));
 	}
 
 	output("\n\nShaking your hips in preparation, you place your hands on Lund’s chest and begin slamming down on him, taking as much pleasure as you want from the powerless korgonne. You can feel his knot beginning to swell at the base of his cock but don’t slow your pace at all, groaning deeply every time you take him to the hilt. You can tell he’s fighting it, trying his hardest not to cum with the rough stimulation, his entire body tensed with the effort. You can’t help but rub his nipples just to tease him, but you never stop fucking as hard as you can.");
@@ -1222,7 +1239,7 @@ public function rideLundWheeee(x:int):void
 		output(" tightens around him so much his next thrust is almost halted in midair. Every loud, slapping thrust from below just spurs you further onward, groaning and grunting while you blow your load into Lund’s luxurious fur. He doesn’t seem to mind at all, focused entirely on his own orgasm.");
 	}
 	else if(pc.hasVagina()) output("\n\nYour [pc.pussy] flexes, tightens and spurts all over Lund’s throbbing canid cock, almost trapping his fat knot inside you before he overpowers your instinctive squeezing. The sensation of him forcing himself in and out as you cum explosively only spurs you further onwards, driving you higher until you’re crying out in ecstasy with your head back.");
-	else output("\n\nYour [pc.asshole] flexes and tightens over Lund's throbbing canid cock, almost trapping his fat knot inside you before he overpowers your instinctive squeezing. The sensation of him forcing himself in and out as you cum explosively only spurs you further onwards, driving you higher until you’re crying out in ecstasy with your head back.")
+	else output("\n\nYour [pc.asshole] flexes and tightens over Lund’s throbbing canid cock, almost trapping his fat knot inside you before he overpowers your instinctive squeezing. The sensation of him forcing himself in and out as you cum explosively only spurs you further onwards, driving you higher until you’re crying out in ecstasy with your head back.")
 
 	output("\n\n<i>“Oh, fuck!”</i> you scream in pleasure, watching Lund nail you as hard as he can from underneath you all throughout your orgasm. <i>“Keep going, keep going!”</i>");
 
@@ -1237,10 +1254,11 @@ public function rideLundWheeee(x:int):void
 	output("\n\nHis ears perk up slightly at the words ‘next time’, but he doesn’t say anything, just pants. You bend down to kiss him on the snout and take your leave with a predatory grin.");
 
 	processTime(30);
-	if(x >= 0) pc.loadInCunt(lundCumPlaceholder(),x);
-	else pc.loadInAss(lundCumPlaceholder());
+	if(x >= 0) pc.loadInCunt(lundipoo,x);
+	else pc.loadInAss(lundipoo);
 	pc.orgasm();
 	IncrementFlag("SEXED_LUND");
+	IncrementFlag("LUND_RIDE_HIMMED");
 	flags["LUND_LAST_SEX"] = "Rode";
 	clearMenu();
 	addButton(0,"Next",leaveLundsHouse);
@@ -1248,18 +1266,25 @@ public function rideLundWheeee(x:int):void
 
 //[Bimbo Sex]
 //This is not a selectable scene, it’s just what bimbos get sent off to do after picking their sex scene of choice.
-public function bimboLundSex():void
+public function bimboLundSex(x:int = -2):void
 {
 	clearOutput();
-	moveToLundsHouse();
 	showLund(true);
 	output("<i>“It okay,”</i> Lund nods, spreading his arms. <i>“Lund can give alien what want. Alien just need shut up and sit down.”</i>");
 	output("\n\n<i>“Not here!”</i> he hisses immediately, looking around and pulling his groin back from your outstretched hand.");
 	output("\n\n<i>“Oh, sorry,”</i> you say confusedly, standing back up. Following orders is hard sometimes.");
 	output("\n\n<i>“No, it Lund fault,”</i> he sighs. <i>“Need remember alien follow simple instructions. Come.”</i>");
 	output("\n\n<i>“All over your cock!”</i> you happily agree, attracting a couple of grins from passing korgonne. Lund doesn’t even say anything, just tugging you along.");
-	output("\n\n-");
-	output("\n\n<i>“Ooh, your room! Oh my gosh, I feel so special,”</i> you titter, looking around at the mostly-bare living space while he shuts the door. <i>“I actually don’t get to do this often! Usually it’s just wherever th-”</i>");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",bimboLundSexNext,x);
+}
+public function bimboLundSexNext(x:int):void
+{
+	clearOutput();
+	moveToLundsHouse();
+	showLund(true);
+	output("<i>“Ooh, your room! Oh my gosh, I feel so special,”</i> you titter, looking around at the mostly-bare living space while he shuts the door. <i>“I actually don’t get to do this often! Usually it’s just wherever th-”</i>");
 	output("\n\n<i>“Hold this in mouth a second,”</i> Lund says, handing you his waistcloth. Obliging the furry man, you put it in your mouth and chomp down on it.");
 	output("\n\n<i>“Rlike dish?”</i> you slur through the cloth.");
 	output("\n\n<i>“Hmm,”</i> Lund hums, considering. <i>“This and this too.”</i>");
@@ -1267,9 +1292,13 @@ public function bimboLundSex():void
 	output("\n\n<i>“Perfect,”</i> he sighs, looking relieved. You’re not sure why, but you have a few seconds to mull it over before the telltale rustling of cloth draws your attention. Presented with the sight of Lund’s magnificent canine cock, you almost drop the waistcloths before remembering he told you to hold them. Instead you make a quiet whine of need that makes one of his ears twitch.");
 	output("\n\n<i>“On bed,”</i> he points, motioning that you should turn around. <i>“Get on hands and knees.”</i>");
 	output("\n\nYou guess an alien that looks like a doggy probably wants to bone like one too, and for a moment you giggle at your own clever pun. Getting on the bed and wiggling your butt, you arch your back sensually and turn back to look at him with a smug face. Forgetting your speech is all but unintelligible right now, you start to say something only to be shocked into silence when Lund slides his entire fucking cock into your ");
-	var x:int = -1;
-	if(pc.hasVagina()) x = rand(pc.totalVaginas());
-	if(pc.hasVagina()) output("[pc.pussy]");
+	
+	if(x < -1)
+	{
+		x = -1;
+		if(pc.hasVagina()) x = rand(pc.totalVaginas());
+	}
+	if(x >= 0) output("[pc.pussy " + x + "]");
 	else output("[pc.asshole]");
 	output(".");
 
@@ -1340,10 +1369,6 @@ public function bimboLundSex():void
 
 	output("\n\nYou smile before opening your mouth wide, exposing your pearly-white teeth and throat. Lund doesn’t bother resisting the sight.");
 
-	output("\n\n-");
-
-	output("\n\nBy the time you stagger out of Lund’s bedroom, your mind and body in complete disarray, you have spunk leaking from every orifice and a healthy amount splashed across your tits, face, and back. Luckily, he directed you to a spring bath you intend to make full use of, but that doesn’t stop the curious stares from passerbys in the halls to get there. Let them look, you think with a dopey smile. The more people see how proud you are of getting fucked like a whore, the better! Maybe they’ll even take you for themselves. Once you wash up, you head back to the Hold proper.");
-
 	processTime(65);
 	var lundipoo:PregnancyPlaceholder = lundCumPlaceholder();
 	pc.buttChange(lundipoo.cockVolume(0));
@@ -1362,6 +1387,15 @@ public function bimboLundSex():void
 
 	for(y = 0; y < 10; y++) { pc.orgasm(); }
 	flags["LUND_LAST_SEX"] = "Doggystyle";
+	clearMenu();
+	addButton(0,"Next",bimboLundSexEnd,x);
+}
+public function bimboLundSexEnd(x:int):void
+{
+	clearOutput();
+	showLund(true);
+	output("By the time you stagger out of Lund’s bedroom, your mind and body in complete disarray, you have spunk leaking from every orifice and a healthy amount splashed across your tits, face, and back. Luckily, he directed you to a spring bath you intend to make full use of, but that doesn’t stop the curious stares from passerbys in the halls to get there. Let them look, you think with a dopey smile. The more people see how proud you are of getting fucked like a whore, the better! Maybe they’ll even take you for themselves. Once you wash up, you head back to the Hold proper.");
+	processTime(4);
 	clearMenu();
 	addButton(0,"Next",leaveLundsHouse);
 }

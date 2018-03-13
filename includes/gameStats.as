@@ -6132,7 +6132,6 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
-			// Princess Ula
 			// Korg’ii Hold
 			if(flags["ULA_SAVED"] != undefined || flags["ULA_LEAVE_TIMER"] != undefined) 
 			{
@@ -6151,6 +6150,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				else output2("Cave");
 				output2("</u></b>");
 				if(flags["ULA_SAVED"] != undefined) output2("\n<b>* Secret Code:</b> <i>One “awoo” in top “sparklehole”, third from right.</i>");
+				// Princess Ula
 				var coldKorgiName:String = (flags["MET_ULA"] != undefined ? "Ula" : "Cold Korgonne");
 				output2("\n<b>* " + coldKorgiName + ":</b> Met her");
 				if(flags["ULA_SAVED"] != undefined)
@@ -6169,6 +6169,16 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				else if((flags["ULA_LEAVE_TIMER"] + 60*24*2) <= GetGameTimestamp()) output2(", <i>Whereabouts unknown</i>");
 				else output2(", <i>Is freezing!</i>");
+				// Lund Funs
+				if(flags["ULA_SAVED"] != undefined && flags["MET_LUND"] != undefined)
+				{
+					output2("\n<b>* Lund:</b> Met him");
+					if(flags["LUND_FUCKED_OFF"] != undefined) output2(", He is hostile, <i>Whereabouts unknown</i>");
+					if(flags["SEXED_LUND"] != undefined) output2("\n<b>* Lund, Times Sexed:</b> " + flags["SEXED_LUND"]);
+					if(flags["LUND_DICKED_DOWN"] != undefined) output2(", Dicked him down");
+					if(flags["LUND_RIDE_HIMMED"] != undefined) output2("\n<b>* Lund, Times Rode Him:</b> " + flags["LUND_RIDE_HIMMED"]);
+					variousCount++;
+				}
 				variousCount++;
 			}
 			// Earthshapers

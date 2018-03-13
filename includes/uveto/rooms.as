@@ -2829,7 +2829,7 @@ public function initUvetoRoomsII():void
 	//rooms["KORGII J10"].runOnEnter = korgiD12Bonus;
 
 	rooms["KORGII L10"] = new RoomClass(this);
-	rooms["KORGII L10"].roomName = "KORG'II\nDWELLING";
+	rooms["KORGII L10"].roomName = "KORG’II\nDWELLING";
 	rooms["KORGII L10"].description = "";
 	rooms["KORGII L10"].planet = "PLANET: UVETO VII";
 	rooms["KORGII L10"].system = "SYSTEM: SIRETTA";
