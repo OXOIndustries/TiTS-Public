@@ -95,8 +95,8 @@ public function meetLund():void
 	//[Fuck off] [Go away] [Leave]
 	processTime(3);
 	clearMenu();
-	addButton(0,"Fuck Off",tellLundFuckOff);
-	addButton(1,"Go Away",goAwayLund);
+	addButton(1,"Fuck Off",tellLundFuckOff);
+	addButton(0,"Go Away",goAwayLund);
 	addButton(14,"Leave",leaveAwayFromLundo);
 }
 
