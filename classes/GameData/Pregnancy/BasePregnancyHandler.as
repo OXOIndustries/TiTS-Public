@@ -414,6 +414,7 @@ package classes.GameData.Pregnancy
 			{
 				var limit:Number = Math.min(qtyEdit[1], 100);
 				var inc:Number = Math.max(qtyEdit[2], 0.1);
+				var cnt:Number = 0;
 				
 				// Always start with the minimum amount of children.
 				quantity = quantityMin;
@@ -422,6 +423,9 @@ package classes.GameData.Pregnancy
 				for(var i:Number = mother.fertility(); i >= limit; i -= inc)
 				{
 					quantity += rand((quantityMax - quantityMin) + 1);
+					// To prevent overloop crashes.
+					cnt++;
+					if (cnt >= 100) break;
 				}
 			}
 			if (qtyEdit != null && qtyEdit.length > 0 && qtyEdit[0] > 1) quantityMax = Math.round(quantityMax * qtyEdit[0]);

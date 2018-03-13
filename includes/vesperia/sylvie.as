@@ -2872,7 +2872,7 @@ public function sylvieTriesHerDongerOn2():void
 	if(pc.hasCock()) output("\n\nYour cock dribbles an endless supply of pre-cum, a thick dollop of real cum mixed in every time you tighten up in orgasm. For some reason it just won’t stop, streaks of [pc.cumColor] running down the thick length of Sylvie’s swollen horsecock to drip from her balls.");
 	if(pc.hasVagina()) output("\n\nYour [pc.pussy] sympathetically contracts and squeezes too, a scant trickle of femcum rolling down your trembling thighs.");
 	output("\n\nYour desperate bucks and hip-thrusts gradually die down in intensity until all you’re doing is slowly sliding up and down a couple of inches of Sylvie’s dick, and you collapse back onto the bed with limbs spread. Your muscles ache <i>everywhere</i>");
-	if(pc.isAmazon()) output(", your only saving grace your amazonian endurance");
+	if(pc.hasPerk("Amazonian Endurance")) output(", your only saving grace your amazonian endurance");
 	output(".");
 
 	output("\n\n<i>“You’re a fucking star with how you dance on my pole, Steele,”</i> Sylvie purrs, slowly pulling out of your stretched-out asshole. <i>“I was this close to cumming right into your belly with the way you were squeezing me.”</i>");
@@ -3071,7 +3071,7 @@ public function sylvieGloryholeSuck():void
 	output("\n\nShe’s so <i>warm</i>. There are probably animals that have less blood flowing in their body than Sylvie does just in her massive cock. You can faintly feel her heartbeat through it with your hands if you wrap your palms around the bottom of the shaft, not to mention hear her happy sighs. She’s very easy to please, really. But you’d rather see her the way she was last time; grunting and groaning in ecstasy as a torrent of cum flows from her prick.");
 
 	output("\n\nTaking a firm hold of the head, you ignore Sylvie’s gasps as you stretch your jaw wide enough for your [pc.lips] to sting and begin attempting to forcefeed yourself her cock. Mouth cruelly distended by the foreign object, you press your tongue hard into the underside of her and pull it further in with some help from your hands.");
-	if(pc.isTreated() || pc.isAmazon()) output(" You shiver in pleasure when she slips a couple of inches inside, your Treated body rewarding you for doing such a good job for your master. Your eyes roll back in your head when her thick flare pops past your back teeth, conforming to the opening of your throat. This’ll be fun!");
+	if(pc.isTreated()) output(" You shiver in pleasure when she slips a couple of inches inside, your Treated body rewarding you for doing such a good job for your master. Your eyes roll back in your head when her thick flare pops past your back teeth, conforming to the opening of your throat. This’ll be fun!");
 	else output("This is fucking hard! You almost gag when she’s a couple of inches inside, risking losing your precious progress, but manage to fight off the urge. With immense relief, you feel her thick flare pop past your back teeth and conform to the opening of your throat.");
 
 	output("\n\n<i>“Oooooh, that’s a nice combo of tight, warm, and wet,”</i> Sylvie moans, her length shivering in your grip. <i>“You can keep doing that!”</i>");
