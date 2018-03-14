@@ -734,7 +734,7 @@ public function lundDoggyStyle():void
 		output("\n\n<i>“Alright, we can call this a draw,”</i> you moan, pushing yourself up with shaky arms. <i>“I think you’ve proven you fuck as well as you talk shit.”</i>");
 		output("\n\n<i>“Some respect for alien,”</i> Lund admits, leaning backwards and stretching. <i>“Could go again, though.”</i>");
 		output("\n\nYou turn and eye him. Really, after that, he can keep going? Part of you wants to make him prove it, ");
-		if(pc.isAmazon() || pc.isTreatedBull() || pc.PQ() >= 70) output("knowing that due to your exceptional strength you should be able to keep up.");
+		if(pc.isAmazon(false) || pc.isTreatedBull() || pc.PQ() >= 70) output("knowing that due to your exceptional strength you should be able to keep up.");
 		else output("but you’re really not sure if you can keep up with him and you know for sure that if you show him weakness, he’ll take full advantage of it - and you.");
 		pc.orgasm();
 		pc.orgasm();
@@ -907,7 +907,7 @@ public function evenEvenMoreLundSex(x:int):void
 	clearMenu();
 	addButton(0,"Leave",leaveEvenEvenMoreLundSex);
 	addButton(1,"Submit",evenEvenEvenMoreLundSex,x);
-	if(pc.isAmazon()) addButton(2,"AmazonFuck",amazonFuckLundsShitUp,x,"Amazon Fuck","Show him how amazons do it.");
+	if(pc.isAmazon(false)) addButton(2,"AmazonFuck",amazonFuckLundsShitUp,x,"Amazon Fuck","Show him how amazons do it.");
 	else addDisabledButton(2,"AmazonFuck","Amazon Fuck","You’d need to be some kind of amazon for this.");
 }
 //[Leave]

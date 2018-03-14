@@ -3937,8 +3937,9 @@
 		{
 			return (isTreated() && hasPerk("Pheromone Cloud"));
 		}
-		public function isAmazon():Boolean
+		public function isAmazon(treatedOnly:Boolean = true):Boolean
 		{
+			if(!treatedOnly && amazonScore() >= 4) return true;
 			return (isTreated() && hasStatusEffect("Treated Amazon"));
 		}
 		public function isCumCow():Boolean
@@ -11296,9 +11297,11 @@
 			// Human-morphs
 			if (race == "human" && cowScore() >= 4) race = mfn("cow-boy", "cow-girl", "hucow");
 			if (race == "human" && hradScore() >= 4) race = "hrad";
+			if (race == "human" && amazonScore() >= 4) race = "amazoness";
 			// Centaur-morphs
 			if (horseScore() >= 3 && isCentaur()) race = taurRace(equineRace());
 			else if (bovineScore() >= 3 && isTaur()) race = rawmfn("bull", "cow", "bovine") + "-taur";
+			else if (race == "amazoness" && isCentaur()) race = "amazonian centaur";
 			else if (race == "human" && isCentaur()) race = "centaur";
 			else if (isTaur()) race = taurRace(race); // Other taurs
 			// Naga-morphs
@@ -11682,6 +11685,20 @@
 			//if (tongueType == GLOBAL.TYPE_BOVINE && hasTongueFlag(GLOBAL.FLAG_LONG)) counter++;
 			if (faceType == GLOBAL.TYPE_BOVINE) counter += 2;
 			if (hasScales()) counter--;
+			return counter;
+		}
+		public function amazonScore(): int
+		{
+			var counter: int = 0;
+			// Must have vagina!
+			if(hasVagina())
+			{
+				if(tallness >= 84) counter++;
+				if(tone >= 75) counter++;
+				if(thickness >= 25) counter++;
+				if(hasPerk("Snu-Snu Queen") || hasPerk("Energizing Libido") || hasPerk("Amazonian Endurance")) counter += 2;
+				if(tone < 75) counter -= 2;
+			}
 			return counter;
 		}
 		public function avianScore():int

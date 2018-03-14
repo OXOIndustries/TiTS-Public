@@ -1956,7 +1956,7 @@ public function pennySexMenu(outputT:Boolean = true):void {
 	this.addButton(5,"EatHerOut",gardeFordWritesPennySmex,undefined,"EatHerOut","Eat out Penny.");
 	if(penny.hasCock() && !pc.isTaur() && !pc.isNaga()) addButton(6,"U.Desk Suck",suckPennyUnderDesk,undefined,"Under Desk Suck","Suck Penny off under her desk.");
 	else if(!penny.hasCock()) addDisabledButton(6,"U.Desk Suck","Under Desk Suck","Penny needs to be a hermaphrodite for this.");
-	else addDisabledButton(6,"U.Desk Suck","Under Desk Suck","You need to have a body that would fit under Penny's desk for this.");
+	else addDisabledButton(6,"U.Desk Suck","Under Desk Suck","You need to have a body that would fit under Penny’s desk for this.");
 	if(penny.hasCock() && pc.hasGenitals()) addButton(7,"Roleplay",pennyRPScene,undefined,"Roleplay","Roleplay a penitent prisoner for Penny to abuse.");
 	else if(!penny.hasCock()) addDisabledButton(7,"Roleplay","Roleplay","Penny needs a penis in order to this.");
 	else addDisabledButton(7,"Roleplay","Roleplay","You need genitals to roleplay with Penny.");
@@ -3673,7 +3673,7 @@ public function suckPennyUnderDesk():void
 	else output("<i>“How about I suck you off while you work?”</i>");
 	output(" You lick your [pc.lips], thinking of that delicious cock throbbing in her pants, eager to sink itself into a warm, wet hole.");
 
-	output("\n\n<i>“I don’t think I’ll be able to work with a pair of lips wrapped around my cock, but I’d love to try,”</i> Penny murrs seductively before standing up, her zipper down and her dick raring to go.  She rounds the desk stopping in front of you, poking you with her erection. <i>“But we’re doing this my way.”</i>");
+	output("\n\n<i>“I don’t think I’ll be able to work with a pair of lips wrapped around my cock, but I’d love to try,”</i> Penny murrs seductively before standing up, her zipper down and her dick raring to go. She rounds the desk stopping in front of you, poking you with her erection. <i>“But we’re doing this my way.”</i>");
 	output("\n\nBefore you can react Penny pulls your arms behind your back and with a telltale click, she cuffs you. <i>“");
 	if(penny.cocks[0].cLength() >= 13) 
 	{
@@ -3826,7 +3826,7 @@ public function yesPennyLetsRP():void
 		{
 			output(" Your [pc.vaginas] ");
 			if(pc.totalVaginas() == 1) output("doesn’t");
-			else output("don't");
+			else output("don’t");
 			output(" disappoint either, ");
 			if(pc.isSquirter()) output("squirting");
 			else output("leaking");
