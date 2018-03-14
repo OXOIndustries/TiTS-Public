@@ -473,7 +473,15 @@ public function buyItemGo(arg:ItemSlotClass):void {
 		output("\n\n" + gooArmorInventoryBlurb(arg, "buy"));
 		shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg), 1);
 	}
-	
+	if(arg is HorseCock)
+	{
+		//Gotta count these fuckers
+		IncrementFlag("SYNTHSHEATH_TWO_FOUND");
+		if(chars["SHEKKA"].hasItemByClass(HorseCock) && !synthSheathAvailable()) 
+		{
+			chars["SHEKKA"].destroyItemByClass(HorseCock,1);
+		}
+	}
 	output("\n\n");
 	//Set everything to take us back to buyItem!
 	itemScreen = buyItem;

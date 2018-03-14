@@ -143,6 +143,18 @@ public function shekkaShop(sell:Boolean = false):void
 	}
 	else chars["SHEKKA"].destroyItemByClass(FZRFireSuppressionSystem);
 	
+	if(synthSheathAvailable() && CodexManager.entryUnlocked("SynthSheath"))
+	{
+		if(!chars["SHEKKA"].hasItemByClass(HorseCock)) 
+		{
+			chars["SHEKKA"].inventory.push(new HorseCock());
+		}
+	}
+	else if(chars["SHEKKA"].hasItemByClass(HorseCock)) 
+	{
+		chars["SHEKKA"].destroyItemByClass(HorseCock,1);
+	}
+
 	if(!sell) buyItem();
 	else sellItem();
 }

@@ -23,7 +23,7 @@
 			this.type = GLOBAL.SEXTOY;
 			
 			//Used on inventory buttons
-			this.shortName = "Horse-Cock";
+			this.shortName = "HorseCock";
 			
 			//Regular name
 			this.longName = "equine phallus complete with balls";
@@ -41,7 +41,7 @@
 			this.attackVerb = "";
 			
 			//Information
-			this.basePrice = 1000;
+			this.basePrice = 18000;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;

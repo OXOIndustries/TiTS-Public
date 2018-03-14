@@ -136,11 +136,28 @@ public function bonusTubeSteak():Boolean
 	}
 	return rustPlainsEncounters();
 }
-public function bonusTubeSteakSecond():Boolean
+
+public function synthSheathMax():Number
 {
-	if(CodexManager.entryUnlocked("SynthSheath") && rand(90) == 0 && flags["SYNTHSHEATH_TWO_FOUND"] == undefined)
+	return 4;
+}
+
+public function synthSheathAvailable():Boolean
+{
+
+	if(flags["SYNTHSHEATH_TWO_FOUND"] == undefined) flags["SYNTHSHEATH_TWO_FOUND"] = 0;
+	return (flags["SYNTHSHEATH_TWO_FOUND"]+1 < synthSheathMax());
+}
+
+public function bonusTubeSteakRepeat():Boolean
+{
+	if(synthSheathAvailable())
 	{
-		output("\n\nAs you walk along the jagged, rusted metal of Tarkus’ surface, you spy another Xenogen SynthSheath. As you gently run a hand along your crotch, you remember the last time you used one of these. Do you pick it up?");
+		if(CodexManager.entryUnlocked("SynthSheath"))
+		{
+			output("\n\nAs you walk along the jagged, rusted metal of Tarkus’ surface, you spy another Xenogen SynthSheath. As you gently run a hand along your crotch, you remember the last time you used one of these. Do you pick it up?");
+		}
+		else output("\n\nAs you walk along the jagged, rusted metal of Tarkus’ surface, you spy another synthetic horse-cock. Do you pick it up?");
 		
 		clearMenu();
 		addButton(0, "Take It", grabARubbahTube);
@@ -196,7 +213,7 @@ public function rustPlainsEncounters():Boolean {
 		choices[rand(choices.length)]();
 		return true;
 	}
-	if(bonusTubeSteakSecond()) return true;
+	if(bonusTubeSteakRepeat()) return true;
 	return false;
 }
 
@@ -229,7 +246,7 @@ public function rustCoastEncounters():Boolean {
 		weightedRand(e)();
 		return true;
 	}
-	if(bonusTubeSteakSecond()) return true;
+	if(bonusTubeSteakRepeat()) return true;
 	return false;
 }
 
@@ -265,7 +282,7 @@ public function rustRidgesEncounters():Boolean {
 		weightedRand(e)();
 		return true;
 	}
-	if(bonusTubeSteakSecond()) return true;
+	if(bonusTubeSteakRepeat()) return true;
 	return false;
 }
 //Goos and Saxbots
@@ -308,9 +325,9 @@ public function grabARubbahTube():void
 		output("\n\n<i>“Xe...en .io...h Sy...hS...th.Mk1”</i> You slowly sound out as you discern the remaining letters.");
 		output("\n\nYou turn the object over in your hands, the rubbery tube flopping this way and that before you stow the strange object in your pack.");
 	}
-	else if(flags["SYNTHSHEATH_TWO_FOUND"] == undefined)
+	else if(flags["SYNTHSHEATH_ACQUIRED"] != undefined)
 	{
-		flags["SYNTHSHEATH_TWO_FOUND"] = 1;
+		IncrementFlag("SYNTHSHEATH_TWO_FOUND");
 		output("You walk over and gingerly pull it out and hold it up in the air. Sure enough, it’s another SynthSheath; you spy the distinct lettering, faded though it may be, spelling out the label “Xenogen Biotech SynthSheath Mk1”. You waggle the fleshy tube around in the air for a moment for your amusement before stowing it safely in your pack.");
 	}
 	output("\n\n");
