@@ -66,7 +66,7 @@
 				if (target == kGAMECLASS.pc)
 				{
 					kGAMECLASS.clearOutput();
-					kGAMECLASS.output("Using suppliments to heal yourself will only work once per fight. No body can handle the metabolic strain of downing multiple regenerative items in such quick succession.");
+					kGAMECLASS.output("Using supplements to heal yourself will only work once per fight. No body can handle the metabolic strain of downing multiple regenerative items in such quick succession.");
 				}
 				else
 				{
