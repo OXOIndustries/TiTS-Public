@@ -397,26 +397,27 @@ public function talkToSaendraAboutStuffAndThings(doOutput:Boolean = true):void
 	addButton(1, "Hobbies", saendraHobbies);
 	addButton(2, "Valeria Work", saendraValeriaWork);
 	addButton(3, "Her Race", saendraHerRace);
+	addButton(4, "Her Arm", saendraHerArm);
 	
-	if (days != flags["SAENDRA TALK PHOENIX STATUS"]) addButton(4, "Phoenix Status", saendraPhoenixStatus);
-	else addDisabledButton(4, "Phoenix Status", "Phoenix Status", "You’ve already talked to Saendra about the status of her ship today.");
+	if (days != flags["SAENDRA TALK PHOENIX STATUS"]) addButton(5, "PhoenixStatus", saendraPhoenixStatus, undefined, "Phoenix Status", "Check on the status of Saendra’s ship.");
+	else addDisabledButton(5, "PhoenixStatus", "Phoenix Status", "You’ve already talked to Saendra about the status of her ship today.");
 
 	if (flags["SAENDRA_XPACK1_CREDITOFFER"] == 1)
 	{
-		if (pc.credits >= 20000) addButton(5, "OfferCreds", sx1OfferCredits, undefined, "Offer Credits", "Offer to pay for Saendra’s ship to be repaired. You may end up in the hole for twenty grand or so, but you’ll make her very, very happy.")
-		else addDisabledButton(5, "OfferCreds", "Offer Credits", "You figure you’ll need about twenty grand to get Saendra back into space....")
+		if (pc.credits >= 20000) addButton(6, "OfferCreds", sx1OfferCredits, undefined, "Offer Credits", "Offer to pay for Saendra’s ship to be repaired. You may end up in the hole for twenty grand or so, but you’ll make her very, very happy.")
+		else addDisabledButton(6, "OfferCreds", "Offer Credits", "You figure you’ll need about twenty grand to get Saendra back into space....")
 	}
 	else
 	{
-		if (flags["SAENDRA CREDITS TALK AVAILABLE"] != undefined && flags["SAENDRA OFFERED CREDITS"] == undefined) addButton(5, "OfferCreds", saendraOfferCredits, undefined, "OfferCreds", "A loader of a few thousand credits would go a long way towards helping Saendra get back on her feet...");
-		else if (flags["SAENDRA CREDITS TALK AVAILABLE"] != undefined && flags["SAENDRA OFFERED CREDITS"] != undefined) addDisabledButton(5, "Offer Credits", "Offer Credits", "You’ve already offered her credits, but she politely declined.");
-		else addDisabledButton(5, "OfferCreds", "Offer Credits", "Maybe if you can find out about the problems she’s been having in a little more detail, you could offer to help her out with some credits.");
+		if (flags["SAENDRA CREDITS TALK AVAILABLE"] != undefined && flags["SAENDRA OFFERED CREDITS"] == undefined) addButton(6, "OfferCreds", saendraOfferCredits, undefined, "OfferCreds", "A loader of a few thousand credits would go a long way towards helping Saendra get back on her feet...");
+		else if (flags["SAENDRA CREDITS TALK AVAILABLE"] != undefined && flags["SAENDRA OFFERED CREDITS"] != undefined) addDisabledButton(6, "Offer Credits", "Offer Credits", "You’ve already offered her credits, but she politely declined.");
+		else addDisabledButton(6, "OfferCreds", "Offer Credits", "Maybe if you can find out about the problems she’s been having in a little more detail, you could offer to help her out with some credits.");
 	}
 	
 	if (!saendra.hasCock())
 	{
-		if (flags["SAENDRA TIMES SEXED"] != undefined) addButton(6, "Futafication", saendraFutification, undefined, "Futafication", "Ask Saendra if she’s ever thought about growing a dick.");
-		else addDisabledButton(6, "Futafication", "Futafication", "Get a little more intimate with Saendra and then you might be in a position to ask about her lack of a wang-doodle.");
+		if (flags["SAENDRA TIMES SEXED"] != undefined) addButton(7, "Futafication", saendraFutification, undefined, "Futafication", "Ask Saendra if she’s ever thought about growing a dick.");
+		else addDisabledButton(7, "Futafication", "Futafication", "Get a little more intimate with Saendra and then you might be in a position to ask about her lack of a wang-doodle.");
 	}
 	
 	addButton(14, "Back", saendrasBarMenu);
@@ -580,8 +581,7 @@ public function saendraHerArm():void
 	processTime(5);
 	saendraAffection(5);
 
-	clearMenu();
-	addButton(0, "Next", talkToSaendraAboutStuffAndThings, false);
+	removeButton(4);
 }
 
 public function saendraPhoenixStatus():void
@@ -635,7 +635,7 @@ public function saendraPhoenixStatus():void
 	processTime(3);
 	saendraAffection(5);
 
-	removeButton(4);
+	removeButton(5);
 }
 
 public function saendraOfferCredits():void
@@ -661,7 +661,7 @@ public function saendraOfferCredits():void
 	processTime(2);
 	saendraAffection(5);
 
-	removeButton(5);
+	removeButton(6);
 }
 
 public function saendraFutification():void
@@ -772,11 +772,11 @@ public function saendraDoCockuMenu(triedThrobb:Boolean = false):void
 	clearMenu();
 	if (pc.credits >= 2000)
 	{
-		addButton(0, "Okay", saendraOkayLetsDoItCredits, undefined, "Okay", "Agree to pay the fees required to get Saendra set up with a cock.");
+		addButton(0, "Okay", saendraOkayLetsDoItCredits, undefined, "Okay", "Agree to pay the fees required to get Saendra set up with a cock.\n\nCost: 2,000 credits");
 	}
 	else
 	{
-		addButton(0, "Okay", saendraBuhuImPoor, undefined, "Okay", "Agree to pay the fees required to get Saendra set up with a cock.");
+		addButton(0, "Okay", saendraBuhuImPoor, undefined, "Okay", "Agree to pay the fees required to get Saendra set up with a cock.\n\nCost: 2,000 credits");
 	}
 
 	if (!triedThrobb)
@@ -802,24 +802,19 @@ public function saendraOkayLetsDoItCredits():void
 
 	if (flags["SAENDRA OH GOD IM POOR"] == undefined)
 	{
-		pc.credits -= 2000;
-
 		output("<i>“Sounds good. Let’s do it.”</i>");
-
 		output("\n\nSaen flashes you a grin, her prior nervousness evaporating behind her usual bravado. <i>“Alright. I’ll meet you over there, hero. Don’t keep me waiting!”</i> With that, she slips out of the booth, grabs her jacket from over her seat, and pops out of the bar. ");
 	}
 	else
 	{
 		output("<i>“Hey, I finally got the money!”</i> you announce.");
-		
 		output("\n\nSaen blinks. <i>“Huh? Didya win a bet or something, hero?”</i>");
-		
 		output("\n\n<i>“No, for getting you, you know... what we talked about.”</i> ");
-		
 		output("\n\n<i>“...Oh. I guess I did agree to that, huh? Alright, if you got the money, I’m still willing to give it a shot, [pc.name]. Meet ya at Dark Chrysalis?”</i>");
-		
 		output("\n\nYou nod as Saen packs up and pops on out of the bar, reaching back and brushing your cheek with one of her fluffy tails as she goes. ");
 	}
+	
+	pc.credits -= 2000;
 
 	processTime(1);
 	flags["SAENDRA GONNA GO GET A COCK"] = 1;
@@ -1375,10 +1370,8 @@ public function takeSaensStrappedyDappedyCock():void
 {
 	//Strapon buttsecks. Not available after FutaSaen rises.
 	saenHeader(true);
-	var selCunt:int;
-	
-	if (pc.cuntThatFits(33.5) >= 0) selCunt = pc.cuntThatFits(33.5);
-	else selCunt = 0;
+	var selCunt:int = pc.cuntThatFits(33.5);
+	if (selCunt < 0) selCunt = 0;
 
 	output("Dangling on the side of Saen’s nightstand is a very tempting toy indeed, a thick, footlong vibrator hooked onto a set of sheer black leather straps. Following your gaze, Saen gets a big grin on her face as she reaches over and grabs the oversized strapon.");
 	if (pc.hasCock()) output(" <i>“Wanna see if you can take as good as you can get?”</i> Saen teases, grabbing your [pc.cock] and giving it a few playful tugs.");
@@ -1792,7 +1785,7 @@ public function saendraTailcockFuck():void
 	output("\n\nYou shudder as you feel the wet fur and soft titflesh slide around your [pc.tailCock]. It gets even better when she finally begins to use her tails in earnest, the furry appendages making your [pc.tailCock] feel like it’s in a very long, very soft onahole!");
 
 	output("\n\nDetermined to get her off too, you spit on the fingers of one hand, then reach down and roughly shove them into her ass and pussy without warning.")
-	if (saendra.hasCock()) output(" With your other hand, your grab her kitty dick, already hard, and spit into it before pumping up and down.");
+	if (saendra.hasCock()) output(" You spit into your other hand, using it to grab her already hard kitty dick and pump the turgid mass up and down.");
 
 	output("\n\nSaendra gasps, her mouth falling open in a perfect ‘O’ of pleasure and surprise. <i>“Oh you little-”</i> is all she manages to get out before you start thrusting your fingers in and out of her sodden box and tight ass")
 	if (saendra.hasCock()) output(" and jerking her spiny cock off")
@@ -1915,9 +1908,7 @@ public function newFutaSaendraScenes():void
 	else output("pounding your pussy");
 	output(", Saen reaches down, grabs the bright pink panties she was wearing off the floor, and stuffs them straight in your mouth! Your eyes go wide, you gag, and then the smell and taste of sweat, perfume, and alien cockmusk hits you. It’s the latter one that overpowers you; the scent of pent-up sexual desire and dried hints of hermaphroditic semen on the crotch. You can taste every boner Saen’s had all day, and your heart flutters knowing your [pc.vagOrAss " + x + "] is going to be getting a full helping of this wonderful stuff.");
 
-	output("\n\n<i>“That’s more like it!”</i> Saendra cheers, slapping your ass and earning a muted yelp as her panties absorb the sounds of your screams. <i>“Unf! Yeah, now you’re gonna get it");
-	if(pc.catDog("nyan", "bork", false) == "bork") output(", my favorite little bottom bitch");
-	output("!”</i>");
+	output("\n\n<i>“That’s more like it!”</i> Saendra cheers, slapping your ass and earning a muted yelp as her panties absorb the sounds of your screams. <i>“Unf! Yeah, now you’re gonna get it" + pc.catDog("", ", my favorite little bottom bitch", false) + "!”</i>");
 
 	output("\n\nNow that you’re not going to be waking the neighbors - or at least, not the ones three doors down - Saen starts to move faster and harder, hammering your ");
 	if(pc.hasVagina()) output("pussy");

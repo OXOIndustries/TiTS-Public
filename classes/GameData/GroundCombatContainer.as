@@ -440,8 +440,8 @@ package classes.GameData
 				{
 					output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " shield powers back up at one quarter power!</b>");
 				}
-				pc.shields(Math.round(pc.shieldsMax()/4));
-				pc.createStatusEffect("Used Shield Regen",0,0,0,0,true,"","",true,0);
+				target.shields(Math.round(target.shieldsMax()/4));
+				target.createStatusEffect("Used Shield Regen",0,0,0,0,true,"","",true,0);
 			}
 
 			if (target.hasStatusEffect("Riposting")) target.removeStatusEffect("Riposting");
@@ -880,7 +880,7 @@ package classes.GameData
 					else
 					{
 						target.lust(5 + rand(10));
-						if (target is PlayerCharacter) output("\n\n<b>The parasite’s venom is coursing through your veins. Your sexual desire is rising at an alarming rate.</b>");
+						output("\n\n<b>The parasite’s venom is coursing through your veins. Your sexual desire is rising at an alarming rate.</b>");
 					}
 				}
 				else

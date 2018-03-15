@@ -108,10 +108,10 @@
 		public static function tryKnockUp(father:Creature, mother:Creature, pregSlot:int):Boolean
 		{
 			// Split off to a special handler for pregnancy mechanics when the player ISN'T involved... to come. (dohoh)
-			if (!father is PlayerCharacter && !mother is PlayerCharacter) return tryKnockUpNPCs(father, mother, pregSlot);
+			if (!(father is PlayerCharacter) && !(mother is PlayerCharacter)) return tryKnockUpNPCs(father, mother, pregSlot);
 			
 			// Determine which of the Creatures involved declares the pregHandler we need to use
-			var npc:Creature = (father is PlayerCharacter) ? mother : father;
+			var npc:Creature = ((father is PlayerCharacter) ? mother : father);
 			
 			// Grab the pregtype from the NPC and find the handler we need to process it
 			var pHandler:BasePregnancyHandler = PregnancyManager.findHandler(npc.impregnationType);
@@ -128,7 +128,8 @@
 		
 		public static function tryKnockUpNPCs(father:Creature, mother:Creature, pregSlot:int):Boolean
 		{
-			throw new Error("Not implemented yet.");
+			// 9999 Not implemented yet.
+			return false;
 		}
 		
 		// Fragments are large blocks of descriptive text that COULD be glued together.
@@ -165,11 +166,9 @@
 		
 		public static function getPregnancyChildType(tarCreature:Creature, pregSlot:int):int
 		{
-			if (!tarCreature.isPregnant()) return -1;
+			if (!tarCreature.isPregnant(pregSlot)) return -1;
 			
 			return (_pregHandlers[tarCreature.pregnancyData[pregSlot].pregnancyType] as BasePregnancyHandler).pregnancyChildType;
-			
-			return -1;
 		}
 		
 		public static function getLongestRemainingDuration(tarCreature:Creature):int

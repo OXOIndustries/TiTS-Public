@@ -172,6 +172,7 @@ public function initsx1PirateGroupFight():void
 	pc.createStatusEffect("Pitch Black", 0, 0, 0, 0, false, "Icon_Slow", "It’s pitch black here, making it almost impossible to see anything but for bursts of light accompanying weaponsfire.", true, 0);
 	saendra.createStatusEffect("Pitch Black", 0, 0, 0, 0, false, "Icon_Slow", "It’s pitch black here, making it almost impossible to see anything but for bursts of light accompanying weaponsfire.", true, 0);
 	saendra.long = "";
+	saendra.customDodge = "";
 	
 	var enemies:Array = [];
 	
@@ -849,7 +850,8 @@ public function sx1InitShotguardFight(wasFlashed:Boolean = false):void
 {
 	var tEnemy:Creature = new SX1Shotguard();
 	CombatAttacks.applyBlind(tEnemy, 3);
-	saendra.long = "Saendra lithely snakes out of cover from time to time, ready to take potshots at anything and everything she can sight quickly enough before ducking back to safety.";
+	saendra.long = "Saendra quickly pokes out of cover from time to time, ready to take potshots at anything and everything she can sight quickly enough before shifting back to safety.";
+	saendra.customDodge = "Saen casually sidesteps out of the way.";
 	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors([pc, saendra]);
@@ -938,7 +940,8 @@ public function sx1ShotguardPCLoss():void
 
 public function sx1InitTechguardFight():void
 {
-	saendra.long = "Saendra lithely snakes out of cover from time to time, ready to take potshots at anything and everything she can sight quickly enough before ducking back to safety.";
+	saendra.long = "Saendra quickly pokes out of cover from time to time, ready to take potshots at anything and everything she can sight quickly enough before shifting back to safety.";
+	saendra.customDodge = "Saen casually sidesteps out of the way.";
 	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors([pc, saendra]);

@@ -1390,7 +1390,7 @@ public function riyaSpawnPregnancyEnds():void
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;
-	var babym:Boolean = (se.value4 == 1 ? true : false);
+	var babym:Boolean = (se.value4 == 1);
 	
 	output("Pain explodes in your guts and fluid leaks");
 	if(!pc.isCrotchExposed()) output(" into your [pc.lowerGarment]");
@@ -1637,7 +1637,7 @@ public function riyaNurseryCafeteriaApproach():void
 	if(flags["MET_RIYA_IN_NURSERY"] == undefined)
 	{
 		babyIdx = 0;
-		babym = (riyaNoNameBabies[babyIdx].NumMale > 0 ? true : false);
+		babym = (riyaNoNameBabies[babyIdx].NumMale > 0);
 		babyName = riyaNoNameBabies[babyIdx].Name;
 		
 		output("<i>“So, you’re pretty decked out up here, huh?”</i> she says immediately, shoveling another bite of food into her mouth. <i>“I kinda figured I’d be supporting you and the brat, to be honest.”</i> Sitting down across from her, you ask if she had any trouble getting in.");
@@ -1666,7 +1666,7 @@ public function riyaNurseryCafeteriaApproach():void
 		processTime(1);
 		
 		babyIdx = 0;
-		babym = (riyaNoNameBabies[babyIdx].NumMale > 0 ? true : false);
+		babym = (riyaNoNameBabies[babyIdx].NumMale > 0);
 		babyName = riyaNoNameBabies[babyIdx].Name;
 		
 		output("<i>“Man, you must really like me.”</i> Riya quips as you sit next to her, the caramel woman’s arm sliding around your shoulders and pulling you tight against her. <i>“I guess you’re okay too.");
@@ -1824,7 +1824,7 @@ public function nameRiyaSpawnResultPlus(arg:Array):void
 	
 	var riyaNoNameBabies:Array = listRiyaNoNameBabies();
 	var babyIdx:int = 0;
-	var babym:Boolean = (riyaNoNameBabies[babyIdx].NumMale > 0 ? true : false);
+	var babym:Boolean = (riyaNoNameBabies[babyIdx].NumMale > 0);
 	var babyName:String = riyaNoNameBabies[babyIdx].Name;
 	var namedBabies:int = arg[3];
 	
@@ -1878,7 +1878,7 @@ public function riyaNurseryActions(arg:Array):void
 				if(riyaBabies[i].Years > 1) riyaBabies.splice(i, 1);
 			}
 			babyIdx = (riyaBabies.length > 1 ? rand(riyaBabies.length) : 0);
-			babym = (riyaBabies[babyIdx].NumMale > 0 ? true : false);
+			babym = (riyaBabies[babyIdx].NumMale > 0);
 			babyName = riyaBabies[babyIdx].Name;
 			
 			output("Approaching Riya, you ask if she’d like to visit your kid" + (riyaBabies.length == 1 ? "" : "s") + ".");
@@ -1965,7 +1965,7 @@ public function riyaNurseryActions(arg:Array):void
 				if(riyaBabies[i].Years <= 1) riyaBabies.splice(i, 1);
 			}
 			babyIdx = (riyaBabies.length > 1 ? rand(riyaBabies.length) : 0);
-			babym = (riyaBabies[babyIdx].NumMale > 0 ? true : false);
+			babym = (riyaBabies[babyIdx].NumMale > 0);
 			babyName = riyaBabies[babyIdx].Name;
 			
 			numKids = ChildManager.numOfMobileGendersInRange(1, 5).total;

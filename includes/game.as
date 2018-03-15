@@ -2121,6 +2121,56 @@ public function sneakBackYouNudist():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
+public function dropNewClothes():void
+{
+	clearOutput();
+	
+	output("Deciding to let consumerism solve your problem, you flip open your codex and search for a speedy clothing drop service. When you find one, you request an emergency drop and send them your current coordinates.");
+	output("\n\nYou don’t need to wait long as within a few minutes a service drone hovers toward your location with a supply box filled with mystery clothes.");
+	if(currentLocation == "SHIP INTERIOR") output(" You open your airlock and allow the drone to enter your ship.");
+	output(" It drops the box in front of you as a yellow light near its sensors blink awaitingly. It obviously expects a payment.");
+	output("\n\nYou wave your codex over the drone’s sensors and the light turns");
+	
+	var cost:int = 200;
+	var lootList:Array = [];
+	
+	lootList.push(new DressClothes());
+	if(!pc.hasVagina()) lootList.push(new PlainBriefs());
+	else lootList.push(new PlainPanties());
+	if(pc.biggestTitSize() < 1) lootList.push(new PlainUndershirt());
+	else lootList.push(new PlainBra());
+	
+	for(var i:int = 0; i < lootList.length; i++)
+	{
+		cost += lootList[i].basePrice;
+	}
+	
+	if(pc.credits <= 0)
+	{
+		output(" red. Your credit account is dry at the moment, of course, so this seems more like a charity drop than a business transaction. The drone makes a beeping tone of pity");
+	}
+	else if(pc.credits < cost)
+	{
+		output(" orange. You didn’t have enough to pay the full price, but your Codex shows that <b>the service took whatever you had left in your credit account</b>. Well, this better be worth the cost... The drone makes a disappointed beeping noise");
+		
+		pc.credits = 0;
+	}
+	else
+	{
+		output(" green. Your Codex shows that <b>the service took " + cost + " credits from your credit account</b>. Well, this better be worth the cost... The drone makes a satisfied beeping melody");
+		
+		pc.credits -= cost;
+	}
+	output(" and then buzzes away");
+	if(currentLocation == "SHIP INTERIOR") output(", out of your ship, and");
+	output(" into the distance.");
+	output("\n\nWith your new package in hand, you open the box and take out the vaccuum-sealed contents inside. After opening each packet, you look at your new clothing items. Not an impressive spread, but at least it will keep you covered.");
+	
+	processTime(15);
+	
+	output("\n\n");
+	itemCollect(lootList);
+}
 
 public function move(arg:String, goToMainMenu:Boolean = true):void
 {
@@ -2145,9 +2195,82 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 		{
 			clearOutput();
 			output("Nudity is illegal in that location! You’ll have to cover up if you want to go there.");
+			
+			var i:int = 0;
+			var chestCovered:Boolean = (pc.hasBreasts() ? false : true);
+			var groinCovered:Boolean = false;
+			var item:ItemSlotClass;
+			
+			for(i = 0; i < pc.inventory.length; i++)
+			{
+				item = pc.inventory[i];
+				switch(item.type)
+				{
+					case GLOBAL.CLOTHING:
+					case GLOBAL.ARMOR:
+						if(!item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
+						{
+							chestCovered = true;
+							groinCovered = true;
+						}
+						break;
+					case GLOBAL.UPPER_UNDERGARMENT:
+						if(!item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
+						{
+							chestCovered = true;
+						}
+						break;
+					case GLOBAL.LOWER_UNDERGARMENT:
+						if(!item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
+						{
+							groinCovered = true;
+						}
+						break;
+				}
+			}
+			
 			clearMenu();
-			if(currentLocation == "SHIP INTERIOR") { /* No need to sneak back if already in ship! */ }
-			else addButton(0, "SneakBack", sneakBackYouNudist, undefined, "SneakBack", "Sneak back to the ship. Fuckin’ prudes. It might take you a couple hours to get back safely.");
+			if(currentLocation == "SHIP INTERIOR")
+			{
+				// No need to sneak back if already in ship!
+				for(i = 0; i < pc.ShipStorageInventory.length; i++)
+				{
+					item = pc.ShipStorageInventory[i];
+					switch(item.type)
+					{
+						case GLOBAL.CLOTHING:
+						case GLOBAL.ARMOR:
+							if(!item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
+							{
+								chestCovered = true;
+								groinCovered = true;
+							}
+							break;
+						case GLOBAL.UPPER_UNDERGARMENT:
+							if(!item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
+							{
+								chestCovered = true;
+							}
+							break;
+						case GLOBAL.LOWER_UNDERGARMENT:
+							if(!item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
+							{
+								groinCovered = true;
+							}
+							break;
+					}
+				}
+			}
+			else
+			{
+				output("\n\nYou can try your luck and sneak back to your ship if you are daring...");
+				addButton(0, "SneakBack", sneakBackYouNudist, undefined, "SneakBack", "Sneak back to the ship. Fuckin’ prudes. It might take you a couple hours to get back safely.");
+			}
+			if(!chestCovered || !groinCovered)
+			{
+				output("\n\nDue to your lack of coverage, you can call for an emergency clothing drop to help with your situation--though it may cost you some credits if you choose to do so.");
+				addButton(1, "Help!", dropNewClothes, undefined, "Emergency Clothing Drop", "Call a drone to retrieve a new set of clothes.");
+			}
 			addButton(14, "Back", mainGameMenu);
 			return;
 		}

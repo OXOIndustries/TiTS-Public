@@ -482,6 +482,9 @@ public function jackIntoDaBubbleBooty():void
 	author("Adjatha");
 	showName("BUBBLE\nBUDDY");
 	CodexManager.unlockEntry("Bubble Buddy");
+	
+	var x:int = pc.biggestCockIndex();
+	
 	if(flags["BUBBLE_BUDDIED"] == undefined) output("Taking out the light purple toy, you turn it around in your hands for a moment to inspect the thing. It’s roughly six inches long and two inches wide, with a hole at one of the ends. The interior drips with an oily lubrication that the wobbly gel of the toy seems to perpetually produce. The sheath has a thin membrane at the top that seems to serve as a cap, resembling nothing so much as a circle of stretched latex. It’s not shooting out any lasers or floating in mid air, so you assume you’ll have to do this the old fashioned way.\n\n");
 	
 	if(!pc.isNude()) output("Stripping out of your [pc.gear], you tentatively grip the squishy toy in one hand. ");
@@ -489,7 +492,6 @@ public function jackIntoDaBubbleBooty():void
 	if(pc.cockTotal() == 1) output("is");
 	else output("are");
 	output(" already stiffening at the thought of your release, so you bring the violet onahole to your [pc.cockHead " + x + "].");
-	var x:int = pc.biggestCockIndex();
 	if(pc.cocks[x].thickness() < 2) output(" The slick, slimy interior slides down the tender flesh of your swollen member, enlarging as it conforms to the shape of your stiffening shaft.");
 	else if(pc.cocks[x].thickness < 4) output(" The yielding toy slides over your [pc.cock " + x + "] with only a modicum of difficulty. Its yielding, purple bulk distends as it swallows the girth of your plump pecker.");
 	//Cock Thickness over 4":

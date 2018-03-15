@@ -357,34 +357,58 @@ package classes.Characters
 		*/
 		public function hasItemInStorageByClass(ref:Class, amount:int = 1):Boolean
 		{
-			if(ShipStorageInventory.length == 0) return false;
-			var foundAmount:int = 0;
-			for(var x:int = 0; x < ShipStorageInventory.length; x++)
+			if (ref == null || ShipStorageInventory.length == 0) return false;
+			
+			var amt:int = 0;
+			
+			for (var i:uint = 0; i < ShipStorageInventory.length; i++)
 			{
-				if(ShipStorageInventory[x] is ref) foundAmount += ShipStorageInventory[x].quantity;
+				if (ShipStorageInventory[i] is ref) amt += ShipStorageInventory[i].quantity;
 			}
-			if(foundAmount >= amount) return true;
+			
+			if (amt >= amount) return true;
 			return false;
 		}
 		public function destroyItemInStorageByClass(ref:Class, amount:int = 1):void
 		{
-			if(ShipStorageInventory.length == 0) return;
-			var foundAmount:int = 0;
-			for(var x:int = 0; x < ShipStorageInventory.length; x++)
+			if (ref == null || ShipStorageInventory.length == 0 || amount == 0) return;
+			
+			var i:int = 0;
+			
+			// Remove all!
+			if (amount < 0)
 			{
-				//Item in the slot?
-				if(ShipStorageInventory[x] is ref) 
+				while (i < ShipStorageInventory.length)
 				{
-					//If we still need to eat some, eat em up!
-					while(amount > 0 && ShipStorageInventory[x].quantity > 0) 
+					if (ShipStorageInventory[i] is ref)
 					{
-						ShipStorageInventory[x].quantity--;
-						amount--;
-						if(ShipStorageInventory[x].quantity <= 0) ShipStorageInventory.splice(x,1);
+						ShipStorageInventory[i].quantity = 0;
+						ShipStorageInventory.splice(i, 1);
 					}
+					else i++;
 				}
 			}
-			return;
+			// Normal
+			else
+			{
+				while (amount > 0 && i < ShipStorageInventory.length)
+				{
+					//Item in the slot?
+					if (ShipStorageInventory[i] is ref)
+					{
+						var nFromSlot:int = Math.min(amount, ShipStorageInventory[i].quantity);
+						amount -= nFromSlot;
+						ShipStorageInventory[i].quantity -= nFromSlot;
+						if (ShipStorageInventory[i].quantity == 0)
+						{
+							ShipStorageInventory.splice(i, 1);
+						}
+						else i++;
+					}
+					else i++;
+				}
+				if(amount > 0) throw new Error("Ship inventory item quantity needed: " + amount + "!");
+			}
 		}
 		
 		override public function HPMax():Number

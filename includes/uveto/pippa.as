@@ -2301,7 +2301,7 @@ public function pippaAppearance():void
 	
 	output("Pippa was born a human, but has currently modded herself into a pig-morph. She stands about 5.5 feet tall, 1.68 meters in the common metric system. She’s typically clothed in a tight, white tank top that ends just above her belly button and a pair of tight, gray yoga pants that end midway down her calves. ");
 	
-	var seenPippaNaked:Boolean = pippaSexed(0) > 0 || pippaSpecialMassagesGiven(0) > 0 ? true : false;
+	var seenPippaNaked:Boolean = (pippaSexed(0) > 0 || pippaSpecialMassagesGiven(0) > 0);
 	
 	if (seenPippaNaked) output("She typically forgoes undergarments, sometimes made obvious by her pants, ");
 	else output("Her pants are ");

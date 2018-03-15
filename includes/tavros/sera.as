@@ -1161,10 +1161,7 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	// Default
 	else
 	{
-		output(" <i>“Then prove it. Bark, little ");
-		if(pc.catDog("nyan", "bork", false) == "bork") output("bitch");
-		else output("doggy");
-		output(".”</i> You hesitate a moment, not sure if she’s being serious, and her slim smile fades into a sneer. <i>“I said BARK, slut.”</i>");
+		output(" <i>“Then prove it. Bark, little " + pc.catDog("doggy", "bitch", false) + ".”</i> You hesitate a moment, not sure if she’s being serious, and her slim smile fades into a sneer. <i>“I said BARK, slut.”</i>");
 		
 		//if first-time:
 		if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == 0)
