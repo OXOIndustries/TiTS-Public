@@ -111,6 +111,12 @@ public function markersBothriocQuadomme():void
 		if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_DIPLOMACY || flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_QUADOMME) feiAnAppear();
 		else feiAnRemove();
 	}
+	else
+	{
+		rooms["2K7"].removeFlag(GLOBAL.SPIDER_WEB);
+		rooms["2K7"].addFlag(GLOBAL.HAZARD);
+		rooms["2K7"].runOnEnter = DeepCavesBonus;
+	}
 }
 
 // Intro Texts

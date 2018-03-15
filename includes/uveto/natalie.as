@@ -1,7 +1,8 @@
 public function showNatalie(nude:Boolean = false):void
 {
-	if(flags["NATALIE_MET"] != undefined) showName("\nNATALIE");
-	else showName("\nSTEPH...?");
+	if(flags["NATALIE_MET"] != undefined) showName("\nSTEPH...?");
+	else if(flags["NATALIE_MET"] == -2) showName("MISS\nNOBODY");
+	else showName("\nNATALIE");
 	showBust(natalieBustDisplay(nude));
 }
 public function natalieBustDisplay(nude:Boolean = false):String
@@ -25,6 +26,12 @@ public function natalieFreezerAddendum(btnSlot:int = 0):void
 		
 		// [Steph...?]
 		addButton(btnSlot, "Steph...?", approachNatalie, undefined, "Steph...?", "You’ve got to sate your curiosity. Is that who you think it is?");
+	}
+	else if(flags["NATALIE_MET"] == -2)
+	{
+		output("\n\nYou notice the blonde woman, who considers herself as “some nobody”, sitting quietly and alone in one of the booths near the back of the bar, cradling a frothy, hot drink.");
+		
+		addButton(btnSlot, "Ms.Nobody", approachNatalie, undefined, "Miss Nobody", "Do you sate your curiosity by giving her another visit?");
 	}
 	else
 	{
@@ -54,6 +61,19 @@ public function approachNatalie():void
 		addButton(0, "Sorry", greetNatalie, "sorry", "Sorry", "Apologize and leave.");
 		addButton(1, "Whatever", greetNatalie, "whatever", "Whatever", "You don’t know about that... but you’re not gonna push it. For now.");
 		addButton(2, "No Way", greetNatalie, "no way", "No Way", "This is the most obvious ruse in the world...");
+		
+		return;
+	}
+	// Repeat from no intro
+	if(flags["NATALIE_MET"] == -2)
+	{
+		output("You walk over to the blonde’s booth and rap a hand on her table, drawing her gaze out of her mug with a start. <i>“H-hi again.”</i> she stammers, curious by your return. <i>“Come back to join me?”</i>");
+		output("\n\nOn second glance, she does look very familiar... Do you stay and try to guess who she is?");
+		
+		processTime(1);
+		
+		addButton(0, "Hm...", greetNatalie, "no way", "Hm...", "You can definitely tell who she is!");
+		addButton(14, "Leave", greetNatalie, "leave", "Leave", "Apologize and leave.");
 		
 		return;
 	}
@@ -107,17 +127,26 @@ public function greetNatalie(response:String = "none"):void
 	switch(response)
 	{
 		case "sorry":
-			output("Guess you have the wrong person after all. You apologize for intruding and turn back to the bar floor. The woman mumbles a stuttering <i>“No problem...”</i> and huddles up around her drink. ");
+			output("Guess you have the wrong person after all. You apologize for intruding and turn back to the bar floor. The woman mumbles a stuttering <i>“No problem...”</i> and huddles up around her drink.");
 			
 			processTime(1);
 			// +2 Kind
 			pc.addNice(2);
+			flags["NATALIE_MET"] = -2;
 			
 			addButton(0, "Next", mainGameMenu);
 			break;
 		case "whatever":
 			output("You shrug. <i>“Guess I got the wrong person, miss nobody. See you around,”</i> you say, eying her as you turn back to the bar.");
 			output("\n\n<i>“Uh, yeah... see ya...”</i> the woman mumbles into her drink, huddling up over the steaming mug.");
+			
+			processTime(1);
+			flags["NATALIE_MET"] = -2;
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		case "leave":
+			output("You give a shrug and explain that you must have been mistaken, then turn back to the bar floor. The woman mumbles a stuttering <i>“O-oh, okay... see ya then...”</i> and huddles up around her drink.");
 			
 			processTime(1);
 			
