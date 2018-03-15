@@ -161,7 +161,8 @@ package classes.GameData.Pregnancy
 				// This is probably the least intensive method to do this, as near-perfect order
 				// should incur less performance cost than forcibly recreating an array and ensuring
 				// its order.
-				ChildManager.CHILDREN = ChildManager.CHILDREN.sortOn("Days", Array.DESCENDING | Array.NUMERIC);
+				//ChildManager.CHILDREN = ChildManager.CHILDREN.sortOn("Days", Array.DESCENDING | Array.NUMERIC);
+				ChildManager.CHILDREN.sortOn("Days", Array.DESCENDING | Array.NUMERIC);
 				
 				_ageBuckets = [];
 				
