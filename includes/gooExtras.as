@@ -740,22 +740,23 @@ public function gooShiftMenu():void
 	output2("Now that you’re ");
 	if(!pc.isGoo()) output2("part");
 	else output2("a");
-	output2(" goo creature, you can resize the goo’ed up parts of your form however you like. Which part of yourself will you focus on?");
+	output2(" goo creature, you can resize and change the goo’ed up parts of your form however you like. Which part of yourself will you focus on?");
 	showBiomass();
 	clearGhostMenu();
-	if(flags["GALOMAX_DOSES"] > 1 || (!pc.hasStatusEffect("GaloMax") && flags["GALOMAX_DOSES"] == 1))
+	var isGaloMaxxing:Boolean = pc.hasStatusEffect("GaloMax");
+	if(flags["GALOMAX_DOSES"] > 1 || (!isGaloMaxxing && flags["GALOMAX_DOSES"] == 1))
 	{
 		if(pc.hairType == GLOBAL.HAIR_TYPE_GOO) addGhostButton(0, "Hair", gooHairAdjustmenu);
 		else addGhostButton(0,"Fix Hair",doseEffectRevertFix,"hair");
 	}
 	else addDisabledGhostButton(0, "Hair");
-	if(flags["GALOMAX_DOSES"] > 3 || (!pc.hasStatusEffect("GaloMax") && flags["GALOMAX_DOSES"] == 3))
+	if(flags["GALOMAX_DOSES"] > 3 || (!isGaloMaxxing && flags["GALOMAX_DOSES"] == 3))
 	{
 		if(pc.hasStatusEffect("Goo Crotch")) addGhostButton(1,"Crotch",gooCrotchCustomizer);
 		else addGhostButton(1,"Fix Crotch",doseEffectRevertFix,"crotch");
 	}
 	else addDisabledGhostButton(1,"Locked","Locked","It takes three doses of GaloMax to unlock this option.");
-	if(flags["GALOMAX_DOSES"] > 4 || (!pc.hasStatusEffect("GaloMax") && flags["GALOMAX_DOSES"] == 4))
+	if(flags["GALOMAX_DOSES"] > 4 || (!isGaloMaxxing && flags["GALOMAX_DOSES"] == 4))
 	{
 		if(pc.hasStatusEffect("Gel Body")) addGhostButton(2,"Chest",gooChestCustomizer);
 		else addGhostButton(2,"Fix Chest",doseEffectRevertFix,"body");
@@ -767,7 +768,7 @@ public function gooShiftMenu():void
 		addDisabledGhostButton(2,"Locked","Locked","It takes four doses of GaloMax to unlock this option.");
 		addDisabledGhostButton(3,"Locked","Locked","It takes four doses of GaloMax to unlock this option.");
 	}
-	if(flags["GALOMAX_DOSES"] > 2 || (!pc.hasStatusEffect("GaloMax") && flags["GALOMAX_DOSES"] == 2))
+	if(flags["GALOMAX_DOSES"] > 2 || (!isGaloMaxxing && flags["GALOMAX_DOSES"] == 2))
 	{
 		if(pc.hasStatusEffect("Goo Vent")) addGhostButton(4,"ToggleVent",ventToggle,undefined,"Toggle Vent","Toggle on or off whether you would like to add excess biomass to your own orgasmic releases.");
 		else addGhostButton(4,"Fix Vent",doseEffectRevertFix,"vent");
@@ -777,6 +778,12 @@ public function gooShiftMenu():void
 	addGhostButton(5, "Cumflation", gooCumflationOptions, undefined, "Cumflation Options", "Adjust whether or not you want to retain the fluids pumped into you or convert them to biomass.");
 	
 	if(pc.hasSkinFlag(GLOBAL.FLAG_ABSORBENT) && (pc.hasStatusEffect("Cum Soaked") || pc.hasStatusEffect("Pussy Drenched"))) addGhostButton(6, "Clean Self", gooCleanSelf, undefined, "Clean Yourself", "Use your absorbant skin to clean off the sex fluids you are covered in.");
+	
+	if(flags["GALOMAX_DOSES"] > 2 || (!isGaloMaxxing && flags["GALOMAX_DOSES"] == 2))
+	{
+		addGhostButton(9, "Fluids", gooFluidOptions, undefined, "Body Fluid Options", "Adjust the type of your bodily fluids.");
+	}
+	else addDisabledGhostButton(9,"Locked","Locked","It takes two doses of GaloMax to unlock this option.");
 	
 	addGhostButton(14, "Back", backToAppearance, pc);
 }
@@ -2373,6 +2380,14 @@ public function reshapeAGooCawkMenu(arg:Array):void
 		cTypes.push(GLOBAL.TYPE_HRAD);
 	if(flags["AMBER_SEED_USED"] != undefined && (flags["AMBER_SEED_USED"] & AmberSeed.FLAG_GOO_COCK) == AmberSeed.FLAG_GOO_COCK)
 		cTypes.push(GLOBAL.TYPE_AVIAN);
+	if(CodexManager.entryViewed("Suulas"))
+		cTypes.push(GLOBAL.TYPE_SIREN);
+	if(CodexManager.entryViewed("Saurmorians"))
+		cTypes.push(GLOBAL.TYPE_SAURIAN);
+	if(flags["KNOW_JADES_NAME"] != undefined)
+		cTypes.push(GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SWINE);
+	if(flags["SEER_MET"] == undefined)
+		cTypes.push(GLOBAL.TYPE_GOAT, GLOBAL.TYPE_MOTHRINE);
 	
 	var newType:Number = 0;
 	var btnName:String = "";
@@ -3007,7 +3022,11 @@ public function pickNewGooCuntMenu(arg:Array):void
 		vTypes.push(GLOBAL.TYPE_NYREA);
 	if (flags["AMBER_SEED_USED"] != undefined && (flags["AMBER_SEED_USED"] & AmberSeed.FLAG_GOO_CUNT) == AmberSeed.FLAG_GOO_CUNT)
 		vTypes.push(GLOBAL.TYPE_AVIAN);
-	if(kGAMECLASS.flags["MUFFSTICK_COLORED"] != undefined)
+	if(flags["KNOW_JADES_NAME"] != undefined)
+		vTypes.push(GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SWINE);
+	if(CodexManager.entryViewed("Venus Pitchers") || CodexManager.entryViewed("Cockvines"))
+		vTypes.push(GLOBAL.TYPE_FLOWER);
+	if(flags["MUFFSTICK_COLORED"] != undefined)
 		vTypes.push(GLOBAL.TYPE_MOUTHGINA);
 	
 	var newType:Number = 0;
@@ -3323,6 +3342,96 @@ public function gooCleanSelfGo():void
 	
 	pc.removeStatusEffect("Cum Soaked");
 	pc.removeStatusEffect("Pussy Drenched");
+	
+	clearGhostMenu();
+	addGhostButton(0, "Next", gooShiftMenu);
+}
+
+// Fluid options
+public function gooFluidOptions():void
+{
+	clearOutput2();
+	clearGhostMenu();
+	
+	output2("Being able to manipulate your body, you have the ability to change your expressed fluids to goo at will.");
+	
+	if(!pc.canLactate() && !pc.hasCock() && !pc.hasVagina())
+	{
+		output2(" <b>Your body does not have any valid fluids to change at the moment!</b>");
+	}
+	else
+	{
+		output2(" Your current bodily fluids are as follows:");
+		output2("\n");
+		var gooCost:int = 200;
+		var btnSlot:int = 0;
+		if(pc.canLactate())
+		{
+			output2("\n<b>Lactation:</b> " + StringUtil.capitalize(pc.fluidColorSimple(pc.milkType)) + " " + GLOBAL.FLUID_TYPE_NAMES[pc.milkType]);
+			if(pc.milkType != GLOBAL.FLUID_TYPE_SPECIAL_GOO)
+			{
+				if(gooBiomass() < gooCost) addDisabledGhostButton(btnSlot, "Goo Lact.", "Goo Lactation Fluid", "You don’t have enough biomass for that.\n\n<b>" + gooCost + " mLs Biomass</b>");
+				else addGhostButton(btnSlot, "Goo Lact.", gooFluidOptionsRevert, "milk", "Goo Lactation Fluid", "Change your lactation fluid to goo.\n\n<b>" + gooCost + " mLs Biomass</b>");
+			}
+			else addDisabledGhostButton(btnSlot, "Goo Lact.", "Goo Lactation Fluid", "Your lactation fluid is already goo!");
+			btnSlot++;
+		}
+		if(pc.hasCock())
+		{
+			output2("\n<b>Cum Type:</b> " + StringUtil.capitalize(pc.fluidColorSimple(pc.cumType)) + " " + GLOBAL.FLUID_TYPE_NAMES[pc.cumType]);
+			if(pc.cumType != GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO)
+			{
+				if(gooBiomass() < gooCost) addDisabledGhostButton(btnSlot, "Goo Cum", "Goo Cum", "You don’t have enough biomass for that.\n\n<b>" + gooCost + " mLs Biomass</b>");
+				else addGhostButton(btnSlot, "Goo Cum", gooFluidOptionsRevert, "cum", "Goo Cum", "Change your cum to goo.\n\n<b>" + gooCost + " mLs Biomass</b>");
+			}
+			else addDisabledGhostButton(btnSlot, "Goo Cum", "Goo Cum", "Your cum is already goo!");
+			btnSlot++;
+		}
+		if(pc.hasVagina())
+		{
+			output2("\n<b>Girlcum Type:</b> " + StringUtil.capitalize(pc.fluidColorSimple(pc.girlCumType)) + " " + GLOBAL.FLUID_TYPE_NAMES[pc.girlCumType]);
+			if(pc.girlCumType != GLOBAL.FLUID_TYPE_SPECIAL_GOO)
+			{
+				if(gooBiomass() < gooCost) addDisabledGhostButton(btnSlot, "Goo Femcum", "Goo Girlcum", "You don’t have enough biomass for that.\n\n<b>" + gooCost + " mLs Biomass</b>");
+				else addGhostButton(btnSlot, "Goo Femcum", gooFluidOptionsRevert, "girlcum", "Goo Girlcum", "Change your girlcum to goo.\n\n<b>" + gooCost + " mLs Biomass</b>");
+			}
+			else addDisabledGhostButton(btnSlot, "Goo Femcum", "Goo Girlcum", "Your girlcum is already goo!");
+			btnSlot++;
+		}
+		showBiomass();
+	}
+	
+	addGhostButton(14, "Back", gooShiftMenu);
+}
+public function gooFluidOptionsRevert(fluidType:String = "none"):void
+{
+	clearOutput2();
+	
+	output2("Closing your [pc.eyes] and applying some concentration, you focus your will into your");
+	
+	switch(fluidType)
+	{
+		case "milk":
+			output2(" lactation glands. You can feel your chest fizz for a moment while your mind clouds, but it soon passes and your discover a change after softly pinching your [pc.nipple]...");
+			pc.milkType = GLOBAL.FLUID_TYPE_SPECIAL_GOO;
+			output2("\n\n<b>You now lactate [pc.milk] from your [pc.nipples]!</b>");
+			break;
+		case "cum":
+			output2(" masculine glands. You can feel your prostate fizz for a moment while your mind clouds, but it soon passes and your discover a change after gently stroking [pc.oneCock]...");
+			pc.cumType = GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO;
+			output2("\n\n<b>You now expel [pc.cum] from your [pc.cocks]!</b>");
+			break;
+		case "girlcum":
+			output2(" feminine glands. You can feel your female organs fizz for a moment while your mind clouds, but it soon passes and your discover a change after delicately slipping a finger into [pc.oneVagina]...");
+			pc.girlCumType = GLOBAL.FLUID_TYPE_SPECIAL_GOO;
+			output2("\n\n<b>You now expel [pc.girlCum] from your [pc.vaginas]!</b>");
+			break;
+		default:
+			output2("... nothing. Welp. Something went wrong here--and you lost some goo to boot. Ack!");
+			break;
+	}
+	
+	gooBiomass(-200);
 	
 	clearGhostMenu();
 	addGhostButton(0, "Next", gooShiftMenu);
