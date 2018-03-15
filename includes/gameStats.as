@@ -4589,7 +4589,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] != undefined || flags["UTHRA HARVEST DAY"] != undefined || flags["FOUND_MANGO"] != undefined)
 			{
 				output2("\n<b><u>Mhen’gan Resources</u></b>");
-				if(flags["FOUND_MANGO"] != undefined) output2("\n<b>* Mhen’gan Mango, Times Found:</b> " + flags["FOUND_MANGO"]);
+				if(flags["FOUND_MANGO"] != undefined) output2("\n<b>* Mhen’gan Mango, Total Found:</b> " + flags["FOUND_MANGO"]);
 				if(flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] != undefined) output2("\n<b>* Oxonium Deposit:</b> Found");
 				if(flags["UTHRA HARVEST DAY"] != undefined) output2("\n<b>* Uthra Sap, Days Since Last Harvest:</b> " + (days - flags["UTHRA HARVEST DAY"]));
 				
@@ -6903,10 +6903,10 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined)
 			{
 				if(!CodexManager.entryViewed("SynthSheath")) output2("\n<b>* ???, Equine Phallus Found, Total:</b> ");
-				else output2("\n<b>* Xenogen Biotech, SynthSheath, Total Found:</b> ");
+				else output2("\n<b>* Xenogen Biotech, SynthSheath, Total Acquired:</b> ");
 				var horseCocksTotal:int = 0;
 				if(flags["SYNTHSHEATH_ACQUIRED"] != undefined) horseCocksTotal++;
-				if(flags["SYNTHSHEATH_TWO_FOUND"] != undefined) horseCocksTotal++;
+				if(flags["SYNTHSHEATH_TWO_FOUND"] != undefined) horseCocksTotal += flags["SYNTHSHEATH_TWO_FOUND"];
 				output2(String(horseCocksTotal));
 			}
 			miscCount++;

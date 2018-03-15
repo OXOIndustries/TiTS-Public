@@ -145,15 +145,9 @@ public function shekkaShop(sell:Boolean = false):void
 	
 	if(synthSheathAvailable() && CodexManager.entryUnlocked("SynthSheath"))
 	{
-		if(!chars["SHEKKA"].hasItemByClass(HorseCock)) 
-		{
-			chars["SHEKKA"].inventory.push(new HorseCock());
-		}
+		if(!chars["SHEKKA"].hasItemByClass(HorseCock)) chars["SHEKKA"].inventory.push(new HorseCock());
 	}
-	else if(chars["SHEKKA"].hasItemByClass(HorseCock)) 
-	{
-		chars["SHEKKA"].destroyItemByClass(HorseCock,1);
-	}
+	else chars["SHEKKA"].destroyItemByClass(HorseCock);
 
 	if(!sell) buyItem();
 	else sellItem();

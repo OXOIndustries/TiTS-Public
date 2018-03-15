@@ -48,16 +48,16 @@ public function firstTimeOnTarkusBonus():Boolean
 	{
 		flags["BEEN_ON_TARKUS"] = 1;
 		clearOutput();
-		output("You step down out of your ship and into a crowd of tiny, scaly folk: only a few feet tall, they're all sporting lithe frames and ridiculously long ears that nearly drag around on the ground behind them, most bearing a variety of piercings and tattoos. As you leave your ship behind, you're quickly swarmed by several of these curious creatures, which your Codex helpfully identifies as the raskvel, the planet's native species (or one of them, anyway). They shower you with questions about name, sex, species, et cetera as one or two in very scruffy uniforms try to hand you some paperwork. You hurriedly scribble down your signature before pushing off some of the more outgoing raskvel climbing up your [pc.leg]. Eventually, another starship lands, leaving you in peace for a moment as they scurry off to see the next new and interesting thing.");
+		output("You step down out of your ship and into a crowd of tiny, scaly folk: only a few feet tall, they’re all sporting lithe frames and ridiculously long ears that nearly drag around on the ground behind them, most bearing a variety of piercings and tattoos. As you leave your ship behind, you’re quickly swarmed by several of these curious creatures, which your Codex helpfully identifies as the raskvel, the planet’s native species (or one of them, anyway). They shower you with questions about name, sex, species, et cetera as one or two in very scruffy uniforms try to hand you some paperwork. You hurriedly scribble down your signature before pushing off some of the more outgoing raskvel climbing up your [pc.leg]. Eventually, another starship lands, leaving you in peace for a moment as they scurry off to see the next new and interesting thing.");
 		CodexManager.unlockEntry("Raskvel");
-		output("\n\n<b>You are on the starship Nova, now known as the raskvel's city, Novahome.</b>");
+		output("\n\n<b>You are on the starship Nova, now known as the raskvel’s city, Novahome.</b>");
 	}
 	return returnToShipAfterRecruitingAnno();
 }
 
 public function BonusFunction210():Boolean
 {
-	if(flags["TARKUS_DESTROYED"] == undefined) output(" Shafts of outside light cut into the artificial brilliance of the tunnel's lamps to the west, indicating a way outside.");
+	if(flags["TARKUS_DESTROYED"] == undefined) output(" Shafts of outside light cut into the artificial brilliance of the tunnel’s lamps to the west, indicating a way outside.");
 	output("\n\nThe cargo elevator seems to be working down here - its doors sit open to the north, awaiting a passenger. Now if only the raskvel could get it to go to the hangar, you could save yourself a lot of walking.");
 	return false;
 }
@@ -65,7 +65,7 @@ public function BonusFunction210():Boolean
 public function bonusFunction213():Boolean
 {
 	if(flags["TARKUS_DESTROYED"] == undefined) output(" An enclosed bulkhead to the south houses a narrow entryway of some kind. Black marks around the perimeter of the door indicate at least one explosion has gone off on the other side.");
-	else output(" A solid metal plate has been welded over a charred doorway to the south and a bright red \'X\' spraypainted across it.");
+	else output(" A solid metal plate has been welded over a charred doorway to the south and a bright red ‘X’ spraypainted across it.");
 	return false;
 }
 
@@ -111,7 +111,7 @@ public function novaElevatorControlPanel():void
 	author("Gedan");
 	showName("NOVA\nELEVATOR");
 	
-	output("You step into the cavernous elevator and take a look around. There's a heavily damaged control panel attached to a console beside the elevator's doors. Through the grime and rust you can just barely make out a set buttons, some of which <i>might</i> be in working order.");
+	output("You step into the cavernous elevator and take a look around. There’s a heavily damaged control panel attached to a console beside the elevator’s doors. Through the grime and rust you can just barely make out a set buttons, some of which <i>might</i> be in working order.");
 	
 	clearMenu();
 	//if (currentLocation != "NOVA SHIP DECK ELEVATOR") addButton(0, "Hangar Deck", move, "NOVA SHIP DECK ELEVATOR");
@@ -130,7 +130,7 @@ public function bonusTubeSteak():Boolean
 {
 	if(flags["SYNTHSHEATH_ACQUIRED"] == undefined)
 	{
-		output("\n\nAs you walk along the jagged, rusted metal of Tarkus’ surface, you spy something incongruous with the rest of the landscape. A small rubber tube sticks out from underneath the rubble.");
+		output("\n\nAs you walk along the jagged, rusted metal of Tarkus’s surface, you spy something incongruous with the rest of the landscape. A small rubber tube sticks out from underneath the rubble.");
 		
 		addButton(0,"Rubber Tube",grabARubbahTube);
 	}
@@ -144,20 +144,22 @@ public function synthSheathMax():Number
 
 public function synthSheathAvailable():Boolean
 {
-
 	if(flags["SYNTHSHEATH_TWO_FOUND"] == undefined) flags["SYNTHSHEATH_TWO_FOUND"] = 0;
-	return (flags["SYNTHSHEATH_TWO_FOUND"]+1 < synthSheathMax());
+	return (flags["SYNTHSHEATH_TWO_FOUND"] + 1 < synthSheathMax());
 }
 
 public function bonusTubeSteakRepeat():Boolean
 {
-	if(synthSheathAvailable())
+	if(flags["SYNTHSHEATH_ACQUIRED"] == undefined) return false;
+	if(synthSheathAvailable() && rand(90) == 0)
 	{
 		if(CodexManager.entryUnlocked("SynthSheath"))
 		{
-			output("\n\nAs you walk along the jagged, rusted metal of Tarkus’ surface, you spy another Xenogen SynthSheath. As you gently run a hand along your crotch, you remember the last time you used one of these. Do you pick it up?");
+			output("\n\nAs you walk along the jagged, rusted metal of Tarkus’s surface, you spy another Xenogen SynthSheath.");
+			if(flags["SYNTHSHEATH_USED"] >= 1) output(" As you gently run a hand along your crotch, you remember the last time you used one of these.");
+			output(" Do you pick it up?");
 		}
-		else output("\n\nAs you walk along the jagged, rusted metal of Tarkus’ surface, you spy another synthetic horse-cock. Do you pick it up?");
+		else output("\n\nAs you walk along the jagged, rusted metal of Tarkus’s surface, you spy another synthetic horse-cock. Do you pick it up?");
 		
 		clearMenu();
 		addButton(0, "Take It", grabARubbahTube);
