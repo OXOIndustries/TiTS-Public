@@ -236,7 +236,7 @@ package classes.Characters
 			
 			var sHackAvail:Boolean = !hasStatusEffect("Shield Hack Cooldown");
 			var sBoostAvail:Boolean = !hasStatusEffect("Shield Boost Cooldown");
-			var sDisarmAvail:Boolean = !hasStatusEffect("Disarm Cooldown") && !target.hasStatusEffect("Disarmed");
+			var sDisarmAvail:Boolean = !hasStatusEffect("Disarm Cooldown") && !target.hasStatusEffect("Disarmed") && !target.hasStatusEffect("Disarm Immune");
 			
 			var attacks:Array = [];
 			attacks.push( { v: x1HammerPistol, w: 40 } );
@@ -365,8 +365,9 @@ package classes.Characters
 		{
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
+			var sDisarmAvail:Boolean = !hasStatusEffect("Disarm Cooldown") && !target.hasStatusEffect("Disarmed") && !target.hasStatusEffect("Disarm Immune");
 			
-			if (rand(4) == 0) saendraDisarmingShot(target);
+			if (sDisarmAvail && rand(4) == 0) saendraDisarmingShot(target);
 			else saendraHammerPistol(target);
 		}
 		
@@ -386,6 +387,8 @@ package classes.Characters
 
 				CombatAttacks.applyDisarm(target, 2 + rand(2));
 			}
+			
+			target.createStatusEffect("Disarm Cooldown", 4, 0, 0, 0, false);
 		}
 		
 		private function saendraHammerPistol(target:Creature):void

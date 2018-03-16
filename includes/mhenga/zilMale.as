@@ -305,7 +305,7 @@ public function rideDatZilCawk():void {
 	}
 	var x:int = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
 	if(x < 0) x = pc.cuntThatFits(enemy.cockVolume(0));
-	if(x < 0) x = pc.smallestVaginaIndex();
+	if(x < 0) x = pc.biggestVaginaIndex();
 	// End personality forks
 	// Too big 4 u
 	if(enemy.cockVolume(0) > pc.vaginalCapacity(x)) {

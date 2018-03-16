@@ -1314,7 +1314,7 @@ public function getFinedForPriapism(bMale:Boolean = false):void
 			output("\n\nYou shake your head and look at him wide-eyed. <i>“What was that about?”</i>");
 			output("\n\n<i>“Like I said, kid, don’t sweat it. You did great. Probably gonna impress the captain too.”</i> He seems very proud of himself. <i>“In my rank, I have to be extra tough to climb higher. Small tickets don’t matter--it’s all about the raw attitude in this business.”</i>");
 			output("\n\n<i>“So you’re not going to fine me?”</i> you ask, starting to get the picture.");
-			output("\n\n<i>“If you actually threw a punch, I would’ve had to, heh,”</i> he chuckles. <i>“I’ll let you slide... for now.”</i>");
+			output("\n\n<i>“If you actually threw a punch, I would’ve had to, heh,”</i> he chuckles. <i>“I’ll let it slide... for now.”</i>");
 			output("\n\nYour [pc.cock " + cIdx + "] throbs while your restrained limbs are helpless to do anything about it. Precum leaks from your [pc.cockhead " + cIdx + "], running down to the [pc.base " + cIdx + "].");
 			output("\n\nThe officer turns to you and nods in understanding. <i>“Ah, been there. Just gotta keep fucking and jacking. It’ll pass,”</i> he advises. <i>“And " + (pc.cocks.length == 1 ? "put a cocksock on it" : "wear cocksocks") + " or something if you don’t want to get caught again--I might not be around to let you off the hook next time.”</i>");
 			output("\n\nThe drone finally arrives near your ship and lands. The top opens and the officer athletically leaps out. He releases your locks, messily wraps you in a modesty blanket, and escorts you to your ship’s airlock.");
@@ -1356,7 +1356,7 @@ public function getFinedForPriapism(bMale:Boolean = false):void
 			output("\n\nAs you open your airlock, the policewoman wiggles her curvy bottom in her seat and blows you a fat kiss.");
 			output("\n\n<i>“Catch you again sometime, babe?”</i> Her long-lashed eye winks at you.");
 			output("\n\nYou " + (pc.isBimbo() ? "giggle" : "chuckle") + " to yourself, stepping inside your ship and wave back to her.");
-			output("\n\nShe smiles and her drone’s top closes and she hovers off.");
+			output("\n\nShe smiles and her drone’s top closes until she finally hovers off.");
 			output("\n\nWhat a strange encounter");
 			if(pc.exhibitionism() >= 66) output("... maybe you should go around with an exposed hard-on more often");
 			output("!");

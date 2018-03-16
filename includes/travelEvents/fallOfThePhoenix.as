@@ -421,6 +421,7 @@ public function phoenixCargo():Boolean
 public function startPhoenixPirateFight():void
 {
 	saendra.long = "Saendra lithely snakes out of cover from time to time, taking potshots at anything and everything she can sight quickly enough before ducking back to safety.";
+	saendra.customDodge = "Saen quickly ducks out of the way of the attack.";
 	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors	([pc, saendra]);
@@ -435,12 +436,17 @@ public function startPhoenixPirateFight():void
 
 public function loseToPhoenixPirates():void 
 {
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	
+	clearOutput();
+	showBust("MIRIAN", "VOIDPIRATE", "VOIDPIRATE");
+	showName("DEFEAT:\nVOID GANG");
+	author("Savin");
+	
 	// Not a Bad End: Saendra sold into slavery!
 	flags["FALL OF THE PHOENIX STATUS"] = -1;
 	flags["FALL OF THE PHOENIX DEFEATED PIRATES"] = -1;
-	clearOutput();
-	showBust("MIRIAN", "VOIDPIRATE", "VOIDPIRATE");
-	author("Savin");
 
 	output("You never saw the blow coming. Under a hail of gunfire, you dive into cover, only to find a pair of pirates with stun batons leaping at you. Though you throw one of them off, the other connects, shocking you; with a scream, you crumple to the ground, only to be shocked again and again, until blackness takes you...");
 
@@ -467,12 +473,14 @@ public function loseToPhoenixPirates():void
 
 	// PC loses 75% of credits + all equipment save underclothes
 	pc.credits = Math.floor(pc.credits * 0.25);
-	pc.shield = new EmptySlot();
-	pc.accessory = new EmptySlot();
-	pc.armor = new EmptySlot();
+	pc.removeEquipment("shield");
+	pc.removeEquipment("accessory");
+	pc.removeEquipment("meleeWeapon");
 	pc.meleeWeapon = new Rock();
+	pc.removeEquipment("rangedWeapon");
 	pc.rangedWeapon = new Rock();
-	pc.inventory = [];
+	pc.removeClothes("armor");
+	pc.clearInventory();
 
 	currentLocation = "SHIP INTERIOR";
 
@@ -485,9 +493,13 @@ public function loseToPhoenixPirates():void
 
 public function victoryOverPhoenixPirates():void
 {
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	
 	clearOutput();
-	author("Savin");
 	showBust(saendraBustDisplay(),"VALERIA");
+	showName("\nVICTORY!");
+	author("Savin");
 
 	output("The last pirate drops under your combined assault, and the din of gunfire dies down. You blink hard, your ears ringing from so much fire in such tight quarters. Checking to make sure the pirates are down for the count, you lower your");
 	if (!pc.rangedWeapon is Rock || !pc.meleeWeapon is Rock) output(" weapon");

@@ -85,7 +85,7 @@ private function seraPregSpawnChildren(father:Creature, numKids:int = 0):Array
 		else { c.NumMale = 0; c.NumFemale = 1; c.NumIntersex = 0; c.NumNeuter = 0; }
 		
 		// Race modifier (if different races)
-		c.originalRace = c.hybridizeRace(c.originalRace, father.originalRace, ((father is PlayerCharacter) ? true : false));
+		c.originalRace = c.hybridizeRace(c.originalRace, father.originalRace, (father is PlayerCharacter));
 		
 		// Adopt father's colors at random (if applicable):
 		if(rand(2) == 0) c.skinTone = traitChar.skinTone;
@@ -880,7 +880,7 @@ public function brigetSeraPregCheckNext():void
 	
 	var seraNoNameBabies:Array = listSeraNoNameBabies();
 	var babyIdx:int = (seraNoNameBabies.length - 1);
-	var babym:Boolean = (seraNoNameBabies[babyIdx].NumMale > 0 ? true : false);
+	var babym:Boolean = (seraNoNameBabies[babyIdx].NumMale > 0);
 	var babyName:String = seraNoNameBabies[babyIdx].Name;
 	
 	output("The droid leads you back into Sera’s room. Someone has given it a serious tidy whilst its main occupant was absent, which makes the appearance of the person lying in the bed all the more noticeable. Sera’s blue hair is messy and frazzled, there are dark circles under her yellow eyes, and a couple of her claws are broken. Still, there’s a content expression on her worn face. In her arms, she has a regular, human, brown-haired baby, fast asleep against her breast.");

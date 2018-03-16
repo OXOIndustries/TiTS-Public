@@ -477,9 +477,9 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	{
 		//Gotta count these fuckers
 		IncrementFlag("SYNTHSHEATH_TWO_FOUND");
-		if(chars["SHEKKA"].hasItemByClass(HorseCock) && !synthSheathAvailable()) 
+		if(!synthSheathAvailable())
 		{
-			chars["SHEKKA"].destroyItemByClass(HorseCock,1);
+			if(shopkeep is Shekka) shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg), 1);
 		}
 	}
 	output("\n\n");

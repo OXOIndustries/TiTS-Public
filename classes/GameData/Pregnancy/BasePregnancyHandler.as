@@ -270,8 +270,8 @@ package classes.GameData.Pregnancy
 				var slotType:uint;
 				
 				if (thisPtr.canImpregnateButt && thisPtr.canImpregnateVagina) slotType = Creature.PREGSLOT_ANY;
-				else if (!thisPtr.canImpregnateButt) Creature.PREGSLOT_VAG;
-				else if (!thisPtr.canImpregnateVagina) Creature.PREGSLOT_ASS;
+				else if (thisPtr.canImpregnateVagina) slotType = Creature.PREGSLOT_VAG;
+				else if (thisPtr.canImpregnateButt) slotType = Creature.PREGSLOT_ASS;
 				
 				pregSlot = mother.findEmptyPregnancySlot(slotType);
 				

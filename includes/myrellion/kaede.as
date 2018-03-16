@@ -649,10 +649,7 @@ public function kaedeMyrellionSucknRide():void
 	clearOutput();
 	kaedeHeader(true);
 
-	output("Your eyes wander inexorably towards the turgid red shaft resting on your belly.");
-	if (pc.catDog("nyan", "bork", false) == "bork") output(" Now that’s one doggy bone you can’t wait to lick!");
-	else output(" You can’t help but lick your lips at the sight of it.");
-	output(" Your hand slips down and wraps around her cock, and you suck in a sharp breath as you feel the hotness of it, more than a human’s ought to be, and diamond hard between your fingers. Kaede moans, leaning back on her knees and cupping one of her breasts as you start to tentatively stroke her length.");
+	output("Your eyes wander inexorably towards the turgid red shaft resting on your belly. " + pc.catDog("You can’t help but lick your lips at the sight of it.", "Now that’s one doggy bone you can’t wait to lick!", false) + " Your hand slips down and wraps around her cock, and you suck in a sharp breath as you feel the hotness of it, more than a human’s ought to be, and diamond hard between your fingers. Kaede moans, leaning back on her knees and cupping one of her breasts as you start to tentatively stroke her length.");
 	
 	output("\n\n<i>“Oooh,”</i> she purrs, starting to move her hips. <i>“That’s nice...”</i>");
 	

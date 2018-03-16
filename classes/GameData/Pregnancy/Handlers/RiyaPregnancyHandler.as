@@ -275,7 +275,7 @@ package classes.GameData.Pregnancy.Handlers
 				else { c.NumMale = 0; c.NumFemale = 1; c.NumIntersex = 0; c.NumNeuter = 0; }
 				
 				// Race modifier (if different races)
-				c.originalRace = c.hybridizeRace(mother.originalRace, c.originalRace, ((mother is PlayerCharacter) ? true : false));
+				c.originalRace = c.hybridizeRace(mother.originalRace, c.originalRace, (mother is PlayerCharacter));
 				
 				// Adopt mother’s colors at random (if applicable):
 				//if(rand(2) == 0) c.skinTone = traitChar.skinTone;

@@ -1232,7 +1232,7 @@
 				ballSizeRaw = Math.min((6 * Math.PI), ((ballSizeRaw * ballSizeRaw * balls) / 2));
 			}
 			balls = 0;
-			if(hasStatusEffect("Mimbrane Balls") && balls == 0) removeStatusEffect("Mimbrane Balls");
+			removeStatusEffect("Mimbrane Balls");
 		}
 		
 		public function scrotumType(): int
@@ -1733,7 +1733,7 @@
 					buffer = chestCover();
 					break;
 				case "chestCovers":
-					buffer = chestCover();
+					buffer = chestCovers();
 					break;
 				case "skinNoun":
 					buffer = skinNoun(true);
@@ -2931,27 +2931,21 @@
 				while (amount > 0 && i < inventory.length)
 				{
 					//Item in the slot?
-					if (inventory[i] is arg) 
+					if (inventory[i] is arg)
 					{
-						//If we still need to eat some, eat em up!
-						while (amount > 0)
+						var nFromSlot:int = Math.min(amount, inventory[i].quantity);
+						amount -= nFromSlot;
+						inventory[i].quantity -= nFromSlot;
+						if (inventory[i].quantity == 0)
 						{
-							if(i < inventory.length && inventory[i].quantity > 0 && (inventory[i] is arg))
-							{
-								inventory[i].quantity--;
-								if (inventory[i].quantity <= 0)
-								{
-									inventory[i].quantity = 0;
-									inventory.splice(i, 1);
-								}
-							}
-							amount--;
+							inventory.splice(i, 1);
 						}
+						else i++;
 					}
 					else i++;
 				}
+				if(amount > 0) throw new Error("Inventory item quantity needed: " + amount + "!");
 			}
-			return;
 		}
 		
 		public function getWeaponName(fromStat:Boolean = false):String
@@ -3718,23 +3712,86 @@
 			return (inPowerArmor() || physique() >= 40 || hasPerk("Bigger Guns"));
 		}
 		
+		public function canDropItem(item:ItemSlotClass):Boolean
+		{
+			if(item.hasFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE)) return false;
+			return true;
+		}
 		public function removeClothes(item:String = "all"):void
 		{
-			if(item == "all" || item == "underwear" || item == "upperUndergarment") { upperUndergarment.onRemove(this); upperUndergarment = new EmptySlot(); }
-			if(item == "all" || item == "underwear" || item == "lowerUndergarment") { lowerUndergarment.onRemove(this); lowerUndergarment = new EmptySlot(); }
-			if(item == "all" || item == "clothing" || item == "armor") { armor.onRemove(this); armor = new EmptySlot(); }
+			var newItems:Array = [];
+			if(item == "all" || item == "underwear" || item == "upperUndergarment")
+			{
+				upperUndergarment.onRemove(this);
+				if(!canDropItem(upperUndergarment)) newItems.push(upperUndergarment);
+				upperUndergarment = new EmptySlot();
+			}
+			if(item == "all" || item == "underwear" || item == "lowerUndergarment")
+			{
+				lowerUndergarment.onRemove(this);
+				if(!canDropItem(lowerUndergarment)) newItems.push(lowerUndergarment);
+				lowerUndergarment = new EmptySlot();
+			}
+			if(item == "all" || item == "clothing" || item == "armor")
+			{
+				armor.onRemove(this);
+				if(!canDropItem(armor)) newItems.push(armor);
+				armor = new EmptySlot();
+			}
+			if(newItems.length > 0)
+			{
+				for(var i:int = 0; i < newItems.length; i++) { inventory.push(newItems[i]); }
+			}
 		}
 		public function removeEquipment(item:String = "all"):void
 		{
-			if(item == "all" || item == "weapons" || item == "meleeWeapon") { meleeWeapon.onRemove(this); meleeWeapon = new EmptySlot(); }
-			if(item == "all" || item == "weapons" || item == "rangedWeapon") { rangedWeapon.onRemove(this); rangedWeapon = new EmptySlot(); }
-			if(item == "all" || item == "accessory") { accessory.onRemove(this); accessory = new EmptySlot(); }
-			if(item == "all" || item == "shield") { shield.onRemove(this); shield = new EmptySlot(); }
+			var newItems:Array = [];
+			if(item == "all" || item == "weapons" || item == "meleeWeapon")
+			{
+				meleeWeapon.onRemove(this);
+				if(!canDropItem(meleeWeapon)) newItems.push(meleeWeapon);
+				meleeWeapon = new EmptySlot();
+			}
+			if(item == "all" || item == "weapons" || item == "rangedWeapon")
+			{
+				rangedWeapon.onRemove(this);
+				if(!canDropItem(rangedWeapon)) newItems.push(rangedWeapon);
+				rangedWeapon = new EmptySlot();
+			}
+			if(item == "all" || item == "accessory")
+			{
+				accessory.onRemove(this);
+				if(!canDropItem(accessory)) newItems.push(accessory);
+				accessory = new EmptySlot();
+			}
+			if(item == "all" || item == "shield")
+			{
+				shield.onRemove(this);
+				if(!canDropItem(shield)) newItems.push(shield);
+				shield = new EmptySlot();
+			}
+			if(newItems.length > 0)
+			{
+				for(var i:int = 0; i < newItems.length; i++) { inventory.push(newItems[i]); }
+			}
 		}
 		public function removeAll():void
 		{
 			removeClothes();
 			removeEquipment();
+		}
+		public function clearInventory():void
+		{
+			var i:int = 0;
+			while (i < inventory.length)
+			{
+				if (canDropItem(inventory[i]))
+				{
+					inventory[i].quantity = 0;
+					inventory.splice(i, 1);
+				}
+				else i++;
+			}
 		}
 		
 		public function onEquipClothes(item:String = "all"):void
@@ -5434,7 +5491,19 @@
 		public function hasEmoteEars(): Boolean
 		{
 			// For ear types that move emotively, like cute animal ears.
-			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT, GLOBAL.TYPE_SIMII, GLOBAL.TYPE_MOTHRINE) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
+			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT, GLOBAL.TYPE_SIMII) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
+			return false;
+		}
+		public function hasFlatEars(): Boolean
+		{
+			// For ear types that are mostly flat, hidden or inset, like reptile/bird ears.
+			if(InCollection(earType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_FROG, GLOBAL.TYPE_OVIR, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_DAYNAR, GLOBAL.TYPE_MOTHRINE)) return true;
+			return false;
+		}
+		public function hasNonScritchEars(): Boolean
+		{
+			// For ear types that are not scritchable.
+			if(hasFlatEars() || InCollection(earType, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_VANAE, GLOBAL.TYPE_DRIDER)) return true;
 			return false;
 		}
 		public function earDescript(): String
@@ -7494,8 +7563,8 @@
 		}
 		//REMOVING THINGS!
 		//status
-		public function removeStatusEffect(statusName: String): void {
-			removeStorageSlot(statusEffects, statusName);
+		public function removeStatusEffect(statusName: String): Boolean {
+			return removeStorageSlot(statusEffects, statusName);
 		}
 		//statuses
 		public function removeStatuses(): void {
@@ -7563,16 +7632,16 @@
 			concentratedFireTarget = null;
 		}
 		//perk
-		public function removePerk(perkName: String): void {
-			removeStorageSlot(perks, perkName);
+		public function removePerk(perkName: String): Boolean {
+			return removeStorageSlot(perks, perkName);
 		}
 		//perks
 		public function removePerks(): void {
 			removeStorage(perks);
 		}
 		//key item
-		public function removeKeyItem(itemName: String): void {
-			removeStorageSlot(keyItems, itemName);
+		public function removeKeyItem(itemName: String): Boolean {
+			return removeStorageSlot(keyItems, itemName);
 		}
 		//key items
 		public function removeKeyItems(): void {
@@ -7587,22 +7656,24 @@
 			}
 		}
 		//General function used by all
-		public function removeStorageSlot(array:Array, storageName:String): void {
+		public function removeStorageSlot(array:Array, storageName:String): Boolean {
 			trace("Removing storage slot", storageName);
-			var counter: Number = array.length;
 			//Various Errors preventing action
 			if (array.length <= 0) {
 				trace("Attempted to remove storage slot " + storageName + " on " + short + " but chosen array has no members.");
-				return;
+				return false;
 			}
+			var counter: Number = array.length;
 			while (counter > 0) {
 				counter--;
 				if (array[counter].storageName == storageName) {
 					array.splice(counter, 1);
 					trace("Removed \"" + storageName + "\" from a storage array on " + short + ".");
 					counter = 0;
+					return true;
 				}
 			}
+			return false;
 		}
 		public function clearPaintedPenisEffect():void
 		{
@@ -7634,11 +7705,11 @@
 		}
 		public function getKeyItem(keyName:String):StorageClass
 		{
-			var r:Array = keyItems.filter(function(elem:StorageClass, i:int, a:Array):Boolean {
-				return (elem as StorageClass).storageName == keyName;
-			});
+			for (var i:int = 0; i < keyItems.length; i++)
+			{
+				if (keyItems[i].storageName == keyName) return keyItems[i];
+			}
 			
-			if (r.length > 0) return r[0];
 			return null;
 		}
 		//General function.
@@ -10737,7 +10808,7 @@
 		public function hasJointedWings(): Boolean
 		{
 			if(!hasWings()) return false;
-			return InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DOVE, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_MOTHRINE]);
+			return InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DOVE, GLOBAL.TYPE_GRYVAIN]);
 		}
 		// Wing types that double as back genitals (tentacle-like)
 		public function hasBackGenitals(): Boolean {
@@ -12211,47 +12282,28 @@
 		public function saurmorianScore():Number
 		{
 			var score:Number = 0;
-			//Has smooth or thick scale skin type
-			//Has silver scale color
 			if(hasScales() && (hasSkinFlag(GLOBAL.FLAG_SMOOTH) || hasSkinFlag(GLOBAL.FLAG_THICK)) && scaleColor == "silver") score += 2;
-
-			//Has scaled leithan arms
 			if(armType == GLOBAL.TYPE_LEITHAN && hasPartScales("arm")) 
 			{
-				//Has plantigrade, scaled gryvain legs
 				if(legCount > 1 && legType == GLOBAL.TYPE_GRYVAIN && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) score++;
 			}
-			//Has lizan ears
 			if(earType == GLOBAL.TYPE_LIZAN) score++;
-
-			//Has muzzled lizan face
 			if(faceType == GLOBAL.TYPE_LIZAN && hasMuzzle())
 			{
-				//Has long, scaled lizan tail
 				if(tailType == GLOBAL.TYPE_LIZAN && hasTailFlag(GLOBAL.FLAG_LONG) && hasTailFlag(GLOBAL.FLAG_SCALED)) score++;
 			}
-			//has naga eyes
 			if(eyeType == GLOBAL.TYPE_NAGA) score++;
-			//Has long, squishy canine tongue
 			if(hasTongueFlag(GLOBAL.FLAG_LONG) && tongueType == GLOBAL.TYPE_CANINE) score++;
-
-			//Saurmorian score at least 6
-			//sheathed saurian penis
 			if(score >= 4 && hasCock())
 			{
 				if(cocks[0].cType == GLOBAL.TYPE_SAURIAN && hasSheath(0)) score++;
 			}
-			//Saurmorian score at least 6
-			//Vagina count is 1
-			//Has slightly or fully plump, ribbed vagina
 			if(score >= 4 && hasVagina())
 			{
 				if(vaginas[0].hasFlag(GLOBAL.FLAG_RIBBED) && (vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[0].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))) score++;
 			}
-			//Has non muzzled/lizan face
 			if(!hasMuzzle()) score--;
 			if(!faceType == GLOBAL.TYPE_LIZAN) score--;
-			//Has hair length greater than 0"
 			if(hasHair()) score--;
 			if(antennae > 0) score--;
 			if(hasFur()) score-= 2;
@@ -12425,6 +12477,7 @@
 		}
 		
 		public function sackDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
+			if (balls <= 0) return "prostate";
 			var desc: String = "";
 			if ((adjectives && rand(3) == 0) || forceAdjectives) {
 				if (ballFullness <= 0) desc += "painfully empty ";
@@ -12439,7 +12492,6 @@
 					else desc += "cum-packed ";
 				}
 			}
-			if (balls == 0) return "prostate";
 			temp = rand(2);
 			if (temp == 0) desc += "scrotum";
 			if (temp == 1) desc += "sack";
@@ -17412,7 +17464,6 @@
 			var bonus:Number = 0;
 			var eggs:int = statusEffectv1("Nyrea Eggs");
 			
-			//if(hasPerk("Fecund Figure")) - don't need this. Should return 0 if the perk aint real.
 			if(eggs > 50) bonus += (eggs - 50) * 0.01;
 			bonus += perkv3("Fecund Figure");
 			bonus += statusEffectv1("Anally-Filled")/1000;
@@ -17456,12 +17507,10 @@
 			if (slot < -1 || slot > 3)
 			{
 				throw new Error("isPregnant argument out of range. Expected -1 to 3, got " + slot);
-				return false;
 			}
 			if (slot >= pregnancyData.length)
 			{
 				throw new Error("isPregnant not of normal range. Currently -1 to " + (pregnancyData.length - 1) + ", got " + slot);
-				return false;
 			}
 			
 			// Find a pregnancy in a given slot
@@ -17821,7 +17870,6 @@
 			if (pregSlot < -2 || (pregSlot >= 0 && pregSlot <= 2 && !hasVagina(pregSlot)) || pregSlot > 4)
 			{
 				throw new Error("Unexpected pregnancy slot used to call tryKnockUp.");
-				return false;
 			}
 			
 			// The array storing chars will just throw out a null if a key doesn't exist - catch that and shit out an obvious error.
@@ -17833,7 +17881,6 @@
 					return PregnancyManager.tryKnockUp(cumFrom, this, pregSlot);
 				}
 				throw new Error("Null creature used to call tryKnockUp. Does this creature actually have a defined statblock?");
-				return false;
 			}
 			
 			if(!cumFrom.hasStatusEffect("Ovilium Effect") && this is PlayerCharacter && kGAMECLASS.hasOvalastingEgg(this, pregSlot))
@@ -18732,7 +18779,7 @@
 						if(hasPerk("Potent") && hasPerk("Breed Hungry")) weightFluid *= 0.5;
 						else if(hasPerk("Potent") || hasPerk("Breed Hungry")) weightFluid *= 0.75;
 						if(hasStatusEffect("Nyrea Eggs")) weightFluid += (0.125 * statusEffectv1("Nyrea Eggs"));
-						if(partNum > 0 && partNum <= balls) weightFluid = (weightFluid / partNum);
+						if(partNum > 0 && partNum <= num) weightFluid = (weightFluid / num);
 						weightTesticle += weightFluid;
 					}
 					if(hasPerk("Bulgy")) weightTesticle *= 0.75;

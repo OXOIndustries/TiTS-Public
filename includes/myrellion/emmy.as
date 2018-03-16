@@ -794,11 +794,7 @@ public function askEmmyBoutMeleeShit():void
 	output("\n\n");
 	if(flags["MET_EMMY"] != undefined) output("Emmy");
 	else output("The spotted shopkeep");
-	output(" pushes a jumpsuit-enclosed clawtip against the center of your chest hard enough to push you back a half step. Fortunately, the potentially dangerous digit was rounded off to a nub - probably to keep from tearing her shining, full-body uniform. <i>“Don’t doubt it, ");
-	if(pc.mf("b","") == "b") output("buster");
-	else if(pc.catDog("nyan", "bork", false) == "bork") output("bitch");
-	else output("lady");
-	output(".");
+	output(" pushes a jumpsuit-enclosed clawtip against the center of your chest hard enough to push you back a half step. Fortunately, the potentially dangerous digit was rounded off to a nub - probably to keep from tearing her shining, full-body uniform. <i>“Don’t doubt it, " + pc.mf("buster", pc.catDog("lady", "bitch", false)) + ".");
 	if(pc.tone < 30 && pc.tallness < 72) output(" Say, why are you even asking about this stuff? You don’t really have the build to be mixing it up in melee, ya know?”</i>");
 	else if(pc.tone >= 75) output(" Say, you are pretty muscly, aren’t you? I bet you don’t even have to swing a weapon to scare off a few ruffians, do you?”</i> She purrs - a louder, deeper sound than you’d hear from a kaithrit and strokes your arm.");
 	else output(" Say, are you really planning to fight up close? It seems risky.”</i>");

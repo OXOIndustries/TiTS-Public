@@ -758,7 +758,7 @@
 		
 		public function showName(name:String):void
 		{
-			roomText = ((name is String) ? ParseText(name) : name);
+			roomText = (name != null ? ParseText(name) : "");
 		}
 
 		// Text input bullshittery
@@ -1083,7 +1083,7 @@
 		{
 			try
 			{
-				_buttonTray.addButton(slot, ((cap is String) ? ParseText(cap) : cap), func, arg, ((ttHeader is String) ? ParseText(ttHeader) : ttHeader), ttBody);
+				_buttonTray.addButton(slot, (cap != null ? ParseText(cap) : ""), func, arg, (ttHeader != null ? ParseText(ttHeader) : ""), ttBody);
 			}
 			catch (e:*)
 			{
@@ -1138,7 +1138,7 @@
 		{
 			try
 			{
-				_buttonTray.addDisabledButton(slot, ((cap is String) ? ParseText(cap) : cap), ((ttHeader is String) ? ParseText(ttHeader) : ttHeader), ttBody);
+				_buttonTray.addDisabledButton(slot, (cap != null ? ParseText(cap) : ""), (ttHeader != null ? ParseText(ttHeader) : ""), ttBody);
 			}
 			catch (e:*)
 			{
@@ -1151,7 +1151,7 @@
 		{
 			try
 			{
-				_buttonTray.addGhostButton(slot, ((cap is String) ? ParseText(cap) : cap), func, arg, ((ttHeader is String) ? ParseText(ttHeader) : ttHeader), ttBody);
+				_buttonTray.addGhostButton(slot, (cap != null ? ParseText(cap) : ""), func, arg, (ttHeader != null ? ParseText(ttHeader) : ""), ttBody);
 			}
 			catch (e:*)
 			{
@@ -1163,7 +1163,7 @@
 		{
 			try
 			{
-				_buttonTray.addDisabledGhostButton(slot, ((cap is String) ? ParseText(cap) : cap), ((ttHeader is String) ? ParseText(ttHeader) : ttHeader), ttBody);
+				_buttonTray.addDisabledGhostButton(slot, (cap != null ? ParseText(cap) : ""), (ttHeader != null ? ParseText(ttHeader) : ""), ttBody);
 			}
 			catch (e:*)
 			{
