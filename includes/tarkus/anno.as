@@ -1580,7 +1580,11 @@ public function gimmeAGoozooka(buyGoovolverToo:Boolean = false):void
 	{
 		pc.credits -= 1000;
 		if (pc.hasItemByClass(Goovolver)) pc.destroyItemByClass(Goovolver, 1);
-		else if (pc.rangedWeapon is Goovolver) pc.rangedWeapon = new Rock();
+		else if (pc.rangedWeapon is Goovolver)
+		{
+			pc.rangedWeapon.onRemove(pc);
+			pc.rangedWeapon = new Rock();
+		}
 	}
 	else
 	{

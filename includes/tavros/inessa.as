@@ -587,13 +587,13 @@ public function inessaBuyGo():void
 		if(!chars["INESSA"].hasItemByClass(BioWhip)) chars["INESSA"].inventory.push(new BioWhip());
 	}
 	//Else no whip
-	else chars["INESSA"].destroyItemByClass(BioWhip);
+	else chars["INESSA"].destroyItemByClass(BioWhip, -1);
 	
 	if(flags["MET_SERA"] != undefined)
 	{
 		if(!chars["INESSA"].hasItemByClass(LeatherLeash)) chars["INESSA"].inventory.push(new LeatherLeash());
 	}
-	else chars["INESSA"].destroyItemByClass(LeatherLeash);
+	else chars["INESSA"].destroyItemByClass(LeatherLeash, -1);
 	
 	CodexManager.unlockEntry("BionaHoles");
 	CodexManager.unlockEntry("Grav Cuffs");

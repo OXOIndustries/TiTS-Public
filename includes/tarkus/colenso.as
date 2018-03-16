@@ -45,7 +45,7 @@ public function colensoBuyMenu():void
 	{
 		if(!chars["COLENSO"].hasItemByClass(TarkusJokeBook)) chars["COLENSO"].inventory.push(new TarkusJokeBook());
 	}
-	else chars["COLENSO"].destroyItemByClass(TarkusJokeBook, 1);
+	else chars["COLENSO"].destroyItemByClass(TarkusJokeBook, -1);
 	
 	buyItem();
 }

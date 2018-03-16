@@ -1791,17 +1791,21 @@ public function letAzraTrapQueenTalk():void
 	output("\n\nThe Queen slaps the back of his head, silencing him. <i>“What Azaphel means is that a weapon would be sufficient. My army is ever in need of fresh weapons.”</i>");
 	output("\n\nAzra holds up her empty hands and looks to you. <i>“[pc.name], could you part with a weapon?”</i>");
 	output("\n\nOnce more, it falls to you to defuse the situation.");
-	if(!(pc.meleeWeapon is Rock && pc.rangedWeapon is Rock) || hasAWeapon()) 
+	if(!(pc.meleeWeapon is Rock && pc.rangedWeapon is Rock) || hasAWeapon())
 	{
 		output(" What will you give Azra?");
 		processTime(5);
 		clearMenu();
 		var button:Number = 0;
-		if(!(pc.meleeWeapon is Rock)) addButton(button,"Melee Wpn",giveQueenAWeapon,-1,"Melee Weapon.","Give her your melee weapon: " + pc.meleeWeapon.description + ".");
-		else addDisabledButton(button,"Melee Wpn","Melee Weapon","She has no interest in a rock.");
+		if(pc.canDropItem(pc.meleeWeapon)) addDisabledButton(button,"Melee Wpn","Melee Weapon","You cannot drop your " + pc.meleeWeapon.description + "!");
+		else if(pc.hasMeleeWeapon()) addButton(button,"Melee Wpn",giveQueenAWeapon,-1,"Melee Weapon.","Give her your melee weapon: " + pc.meleeWeapon.description + ".");
+		else if(pc.meleeWeapon is Rock) addDisabledButton(button,"Melee Wpn","Melee Weapon","She has no interest in a rock.");
+		else addDisabledButton(button,"Melee Wpn","Melee Weapon","You do not have a melee weapon on hand.");
 		button++;
-		if(!(pc.rangedWeapon is Rock)) addButton(button,"Ranged Wpn",giveQueenAWeapon,-2,"Ranged Weapon.","Give her your ranged weapon: " + pc.rangedWeapon.description + ".");
-		else addDisabledButton(button,"RangedWpn","Ranged Weapon","She has no interest in a rock.");
+		if(pc.canDropItem(pc.rangedWeapon)) addDisabledButton(button,"Melee Wpn","Melee Weapon","You cannot drop your " + pc.rangedWeapon.description + "!");
+		else if(pc.hasRangedWeapon()) addButton(button,"Ranged Wpn",giveQueenAWeapon,-2,"Ranged Weapon.","Give her your ranged weapon: " + pc.rangedWeapon.description + ".");
+		else if(pc.rangedWeapon is Rock) addDisabledButton(button,"RangedWpn","Ranged Weapon","She has no interest in a rock.");
+		else addDisabledButton(button,"RangedWpn","Ranged Weapon","You do not have a ranged weapon on hand.");
 		button++;
 		for(var i:int = 0; i < pc.inventory.length; i++)
 		{
@@ -1836,11 +1840,13 @@ public function giveQueenAWeapon(slot:Number = -1):void
 	if(slot <= -2) 
 	{
 		desc = pc.rangedWeapon.description;
+		pc.rangedWeapon.onRemove(pc);
 		pc.rangedWeapon = new Rock();
 	}
 	else if(slot == -1) 
 	{
 		desc = pc.meleeWeapon.description;
+		pc.meleeWeapon.onRemove(pc);
 		pc.meleeWeapon = new Rock();
 	}
 	else if(slot < pc.inventory.length)

@@ -522,7 +522,7 @@ public function mods4UChrysalisBuy():void
 		{
 			if(!chars["CHRYSALISDRONE"].hasItemByClass(GaloMax)) chars["CHRYSALISDRONE"].inventory.push(new GaloMax());
 		}
-		else chars["CHRYSALISDRONE"].destroyItemByClass(GaloMax);
+		else chars["CHRYSALISDRONE"].destroyItemByClass(GaloMax, -1);
 	}
 	
 	buyItem();
@@ -3450,7 +3450,7 @@ public function seraBitcheningStore(response:String = "buy"):void
 		{
 			if(!chars["SERA"].hasItemByClass(GaloMax)) chars["SERA"].inventory.push(new GaloMax());
 		}
-		else chars["SERA"].destroyItemByClass(GaloMax);
+		else chars["SERA"].destroyItemByClass(GaloMax, -1);
 	}
 	
 	shopkeep = chars["SERA"];

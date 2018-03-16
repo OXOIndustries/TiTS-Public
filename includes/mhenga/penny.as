@@ -3359,7 +3359,6 @@ public function givePennyAHossCawk():void
 	clearOutput();
 	showPenny(true);
 	author("Alkahest");
-	pc.destroyItemByClass(HorseCock);
 	if(!penny.hasCock())
 	{
 		output("Penny giggles as she waggles the toy in her hand, the huge balls attached to it swinging back and forth heavily. <i>“What is this even? You know I don’t have a cock, right, [pc.name]?”</i> she chuckles before stripping before you, her big breasts swaying enticingly before you. <i>“That’s okay though! We can still have some fun, regardless,”</i> she says seductively, her eyes half-lidded and focused on you. She looks down at the toy in her hand and absently presses it to her crotch. Giggling, Penny wiggles her ample hips back and forth, the sheath smushed into her groin. Penny laughs as the toy’s huge balls slap into her thighs.");
