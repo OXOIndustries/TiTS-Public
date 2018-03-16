@@ -278,7 +278,7 @@ private function bodyPartUpdates(partName:String = "none", deltaT:uint = 0):void
 			}
 			if(heightQ >= lvlRatioBelly[3])
 			{
-				if(nCurBellyDebuff > 0.3) msg = "You move but your reaction time is extremely late. You’re belly is just too massive and cumbersome for you to move yourself normally anymore!";
+				if(nCurBellyDebuff > 0.3) msg = "You try to move around but your reactions are extremely slow. Your belly is just too massive and cumbersome for you to move yourself normally anymore! Everything must be done slowly and painstakingly.";
 				if(nCurBellyDebuff < 0.3) msg = "Though still greatly in the way, your belly seems a little less massive than before.";
 				nNewBellyDebuff = 0.3;
 			}

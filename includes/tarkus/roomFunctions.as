@@ -151,7 +151,7 @@ public function synthSheathAvailable():Boolean
 
 public function bonusTubeSteakRepeat():Boolean
 {
-	if(synthSheathAvailable())
+	if(synthSheathAvailable() && rand(100) == 0)
 	{
 		if(CodexManager.entryUnlocked("SynthSheath"))
 		{

@@ -1,3 +1,4 @@
+import classes.Characters.PregnancyPlaceholder;
 //Sylvie Bartheon (Hortonne, lul, but I like the more serious shit)
 //ORIGINAL DESIGN:
 //“Mount-Me” - Off Duty security officer there from 4pm till 3am
@@ -42,6 +43,13 @@ public function showSylvie(nude:Boolean = false):void
 	if(nude) showBust("SYLVIE_NUDE");
 	else if(sylvieDrunkLevel() >= 2) showBust("SYLVIE_BRA");
 	else showBust("SYLVIE");
+}
+
+public function sylvieBustString(nude:Boolean = false):String
+{
+	if(nude) return "SYLVIE_NUDE";
+	else if(sylvieDrunkLevel() >= 2)  return "SYLVIE_BRA";
+	else  return "SYLVIE";
 }
 public function showSylvieInBra():void
 {
@@ -1380,6 +1388,12 @@ public function hugSylvie():void
 	else
 	{
 		output("\n\n<i>“God, I love giving out hugs!”</i> Sylvie declares while rubbing her whole body against you. If you had genitals, this would probably feel very, very erotic. Instead, it just feels kind of nice. The incredible police woman must feel similarly as she presses her bare belly against you, her genitals safely ensconced in the rear half of her moose-body. After what feels like minutes of pressing yourselves against one another, she sighs contentedly. <i>“Mmm, you’re fucking amazing. I can hug you all day, and you don’t get all stupid horny or anything. I wish I could hug you all forever.”</i>");
+	}
+	//Interrupt for loooods!
+	if(sylvieHasCock() && flags["KIRO_MET_KALLY"] != undefined && (pc.hasVagina() || pc.hasPerk("Buttslut")) && flags["SEXED_SYLVIE"] != undefined && sylvieDrunkLevel() >= 2 && !isKallySisterSchlicking() && !kallyIsAway() && roamingKiroAvailable()) 
+	{
+		horsecockFuckpuppetProc();
+		return;
 	}
 	//Merge	
 	output("\n\nYour whole body is sweating by the time you separate. Sylvie is flushed and smiling, and you imagine you must be in a similar state. Regardless, the giantess of a ‘taur decides to cool herself off by chugging an entire beer before your eyes. A belch bursts heedlessly from her mouth the second you separate. Her eyes are a little glassier, a bit drunker, perhaps, but her smile is bright enough to dazzle the grumpiest curmudgeon. <i>“");
@@ -3807,3 +3821,360 @@ public function sylvieProstateStimEndEnd():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+
+//Steele is a Horsecock Fuckpuppet
+//By QuestyRobo
+//Requires Sylvie to have a horse dingus, and at least the initial meeting between Kiro and Kally done.
+//Requires you to have a pussy or be a Buttslut (with the perk).
+//scene triggers when you Hug Sylvie while she's drunk and DtF, if you meet the requirements.
+//Adds to the end of Hug, if requirements are met
+public function horsecockFuckpuppetProc():void
+{
+	showSylvieAndKally();
+	author("QuestyRobo");
+	output("\n\nYou hear a loud rumbling, like glasses tumbling around wildly. Indeed you look behind you and see Kally struggling to not drop a plate of empty beer mugs, her horse dick brazenly erect, unable to be contained by her mere skirt. Sylvie chuckles drunkedly as Kally barely gets herself together, no doubt blushing under her dusky fur as her eyes, and cock turn toward you.");
+	output("\n\n<i>“She was shooting us a real nice look, before she started tumbling. Oh, let’s invite her over for some fun! Pretty pleeeeease?”</i>");
+	clearMenu();
+	addButton(0,"Invite",inviteKallyOverForTripleHorsemeat,undefined,"Invite","Call Kally over for some fun. Who knows where it might lead!");
+	addButton(1,"Nah",noFunsiesSylvie);
+}
+
+public function noFunsiesSylvie():void
+{
+	clearOutput();
+	showSylvie();
+	author("QuestyRobo");
+	output("Sylvie pouts, momentarily put out.");
+	sylvieMenu();
+}
+
+public function inviteKallyOverForTripleHorsemeat():void
+{
+	clearOutput();
+	showSylvieAndKallyAndKiro();
+	author("QuestyRobo");
+	output("Being ");
+	if(pc.isDrunk() || pc.isSmashed()) output("more composed about your inebriated state");
+	else output("sober");
+	output(", you try and keep it subtle, raising your hand like you’re ordering another round of drinks. Sylvie, being off her fucking rocker drunk, yells out at the top of her lungs. <i>“Kallllly! Bring that sweet dick over here so we can have a taste!”</i>");
+	output("\n\nKally’s probably a fur-coated tomato by this point, but she shuffles over anyway. She glares at Sylvie with a look somewhere between “I’m going to strangle you” and “I’m going to make you choke on my dick”.");
+	output("\n\n<i>“Syviiiiiiiiiiiiiiiiiie!”</i> Kally quietly screams out between gritted teeth.");
+	output("\n\n<i>“Sorry Kally, I’ve just got this thing about big ol’ horsey dicks ever since I got one of my own, and you had yours just hanging there.”</i>");
+	output("\n\n<i>“Only since you got one of your own?”</i> you chide.");
+	output("\n\n<i>“Well, more of a one than before.”</i> She trails off dreamily as her massive mare meat throbs against her underside. Kally’s stallion is equally straining, as if the two are having a competition to see which one can drain more blood from their owners.");
+	output("\n\nThe two have almost entirely lost focus as they ogle eachother’s equipment. It’s a regular horse-cock house party here, and if the person coming towards you is who you think it is, it’s about to get even bigger.");
+
+	//Kiro and Kally sitting in a tree F U C K I N G:
+	if(kiroKallyThreesomes() > 0) 
+	{
+		output("\n\nSuddenly Kiro comes up and grabs Kally from behind, fondling her sister’s rock-hard cock while threading her own erection under her quaking sack. <i>“Guess who?”</i>");
+		output("\n\nKally starts to moan out, only to be silenced as Kiro locks lips with her. Sylvie almost drools while she looks over the incestuous pair, cursing under her breath that she can’t reach her own cock to relieve the pent-up pressure.");
+		output("\n\nThe ‘nukis part lips, Kally stammering out between moans of pleasure. <i>“K-Kiro please! I-I-I’m gonna cuuuuuum!”</i> Indeed, Kally’s cock is ");
+		if(kally.cumQ() < 8000) output("dribbling pre-cum liberally, slicking her feet and the floor in a thin puddle of nuki-horse cum.");
+		else if(kally.cumQ() < 16000) output("shooting huge gobs of pre onto the floor in front of her.");
+		else output("lancing huge sprays of intoxicating seed, several feet in front of her. <i>“C-cum sooooooo much...”</i>");
+
+		output("\n\nShe looks like she’s about to blow, right before Kiro pulls away from her with a flourish. Kally drops to her knees, trying desperately to resist touching herself while Kiro saunters over to Sylvie.");
+	}
+	else
+	{
+		output("\n\nIndeed, Kiro barges her way in between the two ready-to-rut girls. Her own bestial meat is shamelessly snaked up her dress, the head flaring between her tits, and her balls are swollen enough to be clearly visible beneath it.");
+		output("\n\n<i>“Looks like you’re having some fun over here. Mind if I join in?”</i>");
+		output("\n\nKally struggles to speak out in protest at having her sister expose herself in front of the whole bar, but Sylvie seems to feel the exact opposite. <i>“Go right ahead, cutie. The more the merrier!”</i>");
+		output("\n\nKally shakes her head rapidly, still too shocked to speak properly. Kiro doesn’t care, though. <i>“Great!”</i> She lifts up her dress and lets her own flared meat fall into view.");
+		output("\n\nSylvie coos while Kally recoils in embarrassment, actually falling back onto her cushy butt.");
+		output("\n\n<i>“Come on sis, I see your dick every time I come in here. I’m just returning the favor.”</i> She’s joking around, though, there’s some kind of tension between the two that you could cut with a knife. Before it gets more awkward, Kiro turns to Sylvie and focuses on her.");
+	}
+
+	//first:
+	if(flags["CANADIA_TRIPLE_HORSED"] == undefined)
+	{
+		output("\n\nSylvie snaps out of her stupor as Kiro approaches. <i>“Mhmmm, you’re just as bad as she said you were.”</i>");
+		output("\n\n<i>“You’ve heard of me?”</i>");
+		output("\n\n<i>“Bits and pieces from Kally. She might have let slip that you’ve been... naughty before.”</i> Kiro gulps as Sylvie steps toward her. <i>“Mhmmm, don’t worry, I won’t say anything. But if you do anything bad, I might have to break out the cuffs, and ‘discipline’ you.”</i> The moose-taur looms over Kiro, making sure to emphasize her own colossal cock. Kiro’s look is somewhere between excitement and terror; the usual reaction to a hung taur talking about plowing you. Before that can go any further, Kally gets up and interrupts.");
+	}
+	//Repeat
+	else
+	{
+		output("\n\nSylvie smiles as the familiar felon approaches her. <i>“I knew you couldn’t resist coming back.”</i>");
+		output("\n\n<i>“What can I say officer, your... authority is just hard to resist.”</i> Kiro says, staring directly at Sylvie’s rock-hard member. Sylvie is equally entranced with Kiro’s horse boner. You feel like one of them’s about to get on their knees and start sucking, before Kally gets up from the floor and interrupts.");
+	}
+	output("\n\n<i>“Guys, can we take this somewhere else?”</i> She points you in the onlooking crowd, embarrassed, and far more aroused than she’d like to be.");
+	output("\n\nKiro finally takes notice of you. She comes up and wraps herself around you, lavishing your body in sesual attention while her hermhood throbs hotly agaist your leg. <i>“What do you say angel? There’s three, fat, throbbing, drooling horse cocks looking for holes to fill. Think you can take all of them?”</i>");
+	output("\n\nIt’s a daunting proposal to say the least. <i>Are</i> you up to it?");
+	processTime(20);
+	pc.lust(20);
+
+	clearMenu();
+	if(pc.isPregnant()) addDisabledButton(0,"Gangbang","Gangbang","This would be unsafe given your current, pregnant state.");
+	else if(!pc.hasVagina()) addDisabledButton(0,"Gangbang","Gangbang","You don’t even have a pussy!");
+	else addButton(0,"Gangbang",tripleHorseingIntro,false,"Gangbang","You’ve always wondered what it’d be like to be a horse’s onahole.");
+	if(pc.hasPerk("Buttslut")) addButton(1,"UpTheAss",tripleHorseingIntro,true,"UpTheAss","Let’s take this in a different direction.");
+	else addDisabledButton(1,"UpTheAss","Up The Ass","You’d need to be a <i>special</i> kind of butt slut to even consider this.");
+	addButton(3,"Nope",turnDownATripleHorsing,"You enjoy your organs far too much to do this.")
+}
+
+//Nope
+public function turnDownATripleHorsing():void
+{
+	clearOutput();
+	showSylvieAndKallyAndKiro();
+	author("QuestyRobo");
+	output("You politely decline, causing a collective sigh of disappointment to ring out from the three girls. ");
+	//Kiro and Kally fucking:
+	if(kiroKallyThreesomes() > 0) 
+	{
+		output("Kiro shrugs and walks back over to Kally and Sylvie, putting her arms around each of their shoulders. <i>“Looks like we’re making our own fun, girls. Don’t worry sis, I’ll drain <b>those</b> personally.”</i> She says, pointing at Kally’s massively swollen nuts. The two coo as Kiro leads them off, blatantly displaying them like a pair of first-place trophies.");
+		output("\n\n<i>“Catch you later, Angel.”</i>");
+	}
+	else
+	{
+		output("\n\nBefore anyone else can say anything, Sylvie hoists Kally up and starts carrying her off. <i>“Don’t worry, I’ll get you taken care of.”</i> Kally struggles slightly, but eventually goes limp in the moose-taurs arms, getting carried away to sexy times unknown.");
+		output("\n\n<i>“Welp, I got things to do, myself. Catch you later, Angel.”</i> Kiro dismounts herself from you, her cock still fully erect. Strangely, she seems to be following Sylvie. You wonder why.");
+	}
+	output("\n\nWith that, you’re left to your own devices, as well as the snickering, whispering crowd that still seems attentive to you, at least for a few minutes. When everything dies down, you go back to your business.");
+	//Disable all 3 for an hour!
+	pc.createStatusEffect("SYLVIE WORKING");
+	pc.setStatusMinutes("SYLVIE WORKING",60);
+	pc.createStatusEffect("KIRO_TEMP_DISABLED");
+	pc.setStatusMinutes("KIRO_TEMP_DISABLED",60);
+	pc.createStatusEffect("Kally Cummed Out");
+	pc.setStatusMinutes("Kally Cummed Out",60);
+
+	processTime(4);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+public function showSylvieAndKally(nude:Boolean = false):void
+{
+	showBust(sylvieBustString(nude),kallyBustString(nude));
+	showName("SYLVIE\n& KALLY");
+}
+public function showSylvieAndKallyAndKiro(nude:Boolean = false):void
+{
+	showBust(sylvieBustString(nude),kallyBustString(nude),kiroBustDisplay(nude));
+	showName("SYLVIE\n& KALLY & KIRO");
+}
+
+//Either Option
+public function tripleHorseingIntro(upAss:Boolean = false):void
+{
+	clearOutput();
+	showSylvieAndKallyAndKiro(true);
+	author("QuestyRobo");
+	var x:int = 0;
+	if(pc.totalVaginas() > 1) x = pc.smallestVaginaIndex();
+	if(!upAss) output("You feel [pc.oneVagina] squeeze in on itself. Whether it’s in anticipation or fear is beyond you at this point. All you need to know is that there’s a trio of horse-cocks in front of you, and you’ve got enough ready holes for each of them!");
+	else output("The idea of taking one massive horse cock in your ass would give any normal person pause. The idea of taking two would make them quake in their boots. You’re not normal people though, not anymore. Your [pc.ass] was made to take cocks! Little cocks, big cocks, multiple cocks, all the cocks!");
+	output(" You grab Kiro’s hefty meat and give it a quick jerk, signaling your approval without a single word.");
+
+	output("\n\n<i>“Oooh, feeling feisty today, angel? Good.”</i> She returns the favor by grabbing your [pc.ass]. <i>“Because you’re gonna need a <b>lot</b> of energy for what’s coming up. Come on, girls!”</i> she yells out as she tightens her grip and uses it to lead you into the baths, the other two following closely behind.");
+	//currentLocation = Baths
+	currentLocation = "CANADA7";
+	generateMap();
+	output("\n\nWhen you get there, Kiro finds the closest, sturdiest looking bench and tosses you onto it, ass up. ");
+	if(!pc.isCrotchExposed() && !pc.isAssExposed()) output("You take the opportunity to strip yourself of all those pesky clothes you were wearing, tossing them off to the side, where they won’t get dirty. ");
+	output("The horse-equipped trio surround you, puzzling out exactly what to do with you.");
+	if(upAss && !pc.hasVagina()) 
+	{
+		output("\n\nKally pauses as she realizes something. <i>“Hey, there’s three of us, but [pc.name] only has two holes.”</i>");
+		output("\n\n<i>“Don’t worry sis, [pc.name] is a top class slut. I’m sure [pc.heShe] knows what [pc.heShe]’s doing.”</i> Indeed you do. You spread your [pc.asshole] with one hand, and point toward Kiro and Sylvie with the other, crooking your finger to lead them into your ass.");
+		output("\n\n<i>“See?”</i>");
+		if(flags["CANADIA_TRIPLE_HORSED_ANAL"] == undefined)
+		{
+			output("\n\n<i>“T-that’s crazy!”</i>");
+			output("\n\n<i>“Just trust [pc.himHer], sis. [pc.HeShe]’ll be fine.”</i> Kally still looks worried, but seems to be going along with it, now. Sylvie, on the other hand, seems excited at the prospect of really stretching you out.");
+		}
+		else output("\n\n<i>“Again? Jeez, you’re really addicted to doing this, aren’t you? You nod excitedly, eagerly waiting for them to start.");
+	}
+	else if(upAss)
+	{
+		output("\n\nKiro moans out as she grabs her cock. <i>“Aw yeah. I don’t get into good double penetration sessions often enough. Let’s start getting you ready he-”</i> she starts reaching for your [pc.pussy] and you wag your finger at her before she finishes. Your girly bits are going to wait, this time. You spread your [pc.asshole] with one hand, and point toward Kiro and Sylvie with the other, crooking your finger to lead them into your ass.");
+		if(flags["CANADIA_TRIPLE_HORSED_ANAL"] == undefined) 
+		{
+			output("\n\nKiro coos in pleased surprise, but Kally is worried. <i>“Wait, two up your ass? T-that’s crazy!”</i>");
+			output("\n\n<i>“Just trust [pc.himHer], sis. [pc.HeShe]’ll be fine.”</i> Kally still looks worried, but seems to be going along with it, now. Sylvie, on the other hand, seems excited at the prospect of really stretching you out.");
+		}
+		else output("\n\n<i>“Ever the buttslut, aren’t you, angel?”</i> You nod eagerly in agreement, causing the three to cheer eagerly.");
+	}
+	else
+	{
+		output("\n\nKiro walks up to you and sticks one of her fingers into your [pc.pussy], really digging it in, in order to get a good grasp of your capacity. <i>“");
+		if(pc.wetness() < 3) output("Mmmm, gonna need extra lube for you.");
+		else if(pc.wetness() < 5) output("Good wetness down here, angel. I love to see that from my sluts.");
+		else output("Woah, now that’s a gusher. You want me to grab a few guys from the bar to help out down there? Who am I kidding; I want this all to myself.");
+		output("”</i> She pulls out, satisfied with her findings.");
+		output("\n\n<i>“I call pussy!”</i> she yells out.");
+	}
+	output("\n\n<i>“Alright sluts, gather around for some lube.”</i> Kiro pulls out a huge bottle of her favorite elasticizing lube. From where, you have no idea. ");
+	if(kiroKallyThreesomes() > 0) 
+	{
+		output("She personally administers the lubricant, squirting out huge flows into her hands and vigorously jerking off both Sylvie and Kally.");
+		output("\n\nSylvie groans out. <i>“Ooooh, you’re such a dear! Mhnf, I wish I could reach down theeeeere.”</i>");
+		output("\n\nKally almost seems to be competing with Sylvie in how much she can get off from Kiro’s ministrations. <i>“Kiroooooooo, why are your hands so gooooood?”</i>");
+		output("\n\n <i>“Lots of practice, sis. Maybe you should help me out one of these days?”</i>");
+		output("\n\n<i>“Yesyesyesyesyeeeeeeeeeeeeeeeees!”</i> Kally’s eyes starts to cross as her cock ");
+		if(kally.cumQ() < 8000) output("dribbles");
+		else if(kally.cumQ() < 16000) output("drools");
+		else output("spews");
+		output(" pre-cum. Kiro seems to think that’s enough lube for both of them, and starts to get herself ready. Instead of just using the lube, she plants her dick against her sister’s soaking up the pre that she’s leaking. ");
+		if(kally.cumQ() < 8000) output("Of course it’s not enough to get her fully ready, and she squirts another volley onto her’s and Kally’s members.");
+		else if(kally.cumQ() < 16000) output("Kally’s enhanced production provides ample lube, but not quite enough for Kiro’s mammoth member. She squirts another round onto their twined meat.");
+		else 
+		{
+			output("Kally’s production is utterly obscene at this point. In a only a few seconds, she manages to squirt out enough pre to fully cover Kiro’s cock, <i>and</i> give her own a second coating.");
+			output("\n\n<i>“Proud of you,”</i> Kiro declares as her sisters pre overflows their stacked sticks.");
+		}
+		output(" She pulls away, leaving the chubbier ‘nuki panting like the pent-up whore she is. <i>“Don’t blow your top yet, Kally. [pc.name] needs [pc.hisHer] treat.”</i> Kally nods and settles down before turning to you.");
+	}
+	else
+	{
+		output("\n\nShe gets to work immediately on Sylvie, squirting out a huge gout of lube onto her tauric member, and jerking her vigorously.");
+		output("\n\n<i>“Ooooooh, you’re such a dear. Mhnf! I wish I could reach down theeeeeere!”</i>");
+		output("\n\nKally looks embarrassed, and aroused at watching her sister jerk off a massively hung taur. She starts to mindlessly jerk herself off, but quickly returns to some kind of sense as she remembers the point to all of this.");
+		output("\n\n<i>“H-hey, toss me some of that lube.”</i> Kiro does so with one hand, not even losing a stroke on Sylvie as she tosses the bottle of lube at her sister. Kally barely manages to get her hands off her cock in time to catch it. She squeezes a streak out on her member, and moans out as she renews her strokes.");
+		output("\n\nSylvie’s beast member starts drooling pre-cum, drawing a big grin out of Kiro. She takes her other hand and scoops up the musky mixture of pre and lube. She brings it up to her nose for a quick sniff that causes the degenerate delinquent to shudder. After licking her lips, she rams her hand down her shaft to her base, vigorously working herself, and Sylvie over.");
+		output("\n\nThe three seem to be reaching a fever-pitch before Kiro manages to yank herself off herself and Sylvie, and then calms Kally down.");
+		output("\n\n<i>“C-come on sis’, save it for [pc.name]!”</i>");
+		output("\n\nKally gasp and nods as she drags herself off her cock and turns to you.");
+	}
+	output("\n\n<i>“I guess I better rear up first.”</i> Sylvie walks up and plants herself above you, her fat moose cock planted right up against your [pc.anus]. Kiro steps up behind her, while Kally works around to your front.");
+
+	output("\n\n<i>“Mhmm, nice view back here.”</i>  Kiro plants a kiss on Sylvie’s sweltering taur-pussy, drawing a moan out from her.");
+
+	output("\n\n<i>“Same over here.”</i> Kally grabs the moose-taur’s massive tits and starts manhandling them.");
+	output("\n\nSylvie cries out. <i>“A-ahh, appreciate the compliments, but shouldn’t we be focusing on [pc.name]?”</i>");
+	output("\n\n<i>“Why not both?”</i> Kiro lines up her cock ");
+	if(!upAss) output("with your [pc.pussy " + x + "]");
+	else output("alongside Sylvie’s");
+	output(", while at the same time diving deeper into Sylvie’s cunt. Kally follows suit and brings her beast cock in line with your face.");
+
+	output("\n\n<i>“Hope you’re ready, sugar, cause I don’t think I can hold my hips back after all of this.”</i> You’re as ready as you’ll ever be, not like saying otherwise would mean anything at this point. The trio line up, pull back, and thrust in.");
+	output("\n\nIt’s an almost transcendental experience, having three giant futa cocks spear you at the same time. Your body feels like a machine made for pleasure; the way their cocks throb in joy, the way they cry out in sheer bliss as they stretch you beyond reason, it all jolts something deep inside you that says <i>“this is right.”</i>");
+	if(!upAss) 
+	{
+		pc.buttChange(sylvieCockVolume())
+		pc.cuntChange(x,kiro.cockVolume(0));
+	}
+	else pc.buttChange(sylvieCockVolume() + kiro.cockVolume(0));
+	output("\n\n<i>“Uuuugh! So fucking tight! Stars, I feel you down there, Kiro. [pc.name] is so nice letting us both in, isn’t [pc.heShe]?”</i>");
+	output("\n\nKiro responds, but with her face buried in moose-muff, all that any of you hear is gibberish, undercut with pleasure. You feel her cock throbbing even harder inside you, spurred to even greater hardness and size by the avalanche of pheromones she’s buried herself in.");
+	output("\n\nKally moans out in front of you as she slides inch after inch down your throat. ");
+	if(pc.canDeepthroat()) output("You take each one like a champ, even flexing your throat in such a way that it draws the horny bartender in faster.");
+	else output("Each one is a struggle, but it’s a struggle that you’re willing to make.");
+	output(" She bottoms out, pushing your face into her fuzzy crotch, and letting you feel her throbbing sack on your chin.");
+	output("\n\n<i>“Ooooooh, your throat is so goood, [pc.name]! D-don’t want to cum yet. Just give me a minute.”</i>");
+	output("\n\nSylvie doesn’t seem to be listening, as she pulls Kally into a deep kiss, pressing their fat tits against each other.");
+
+	output("\n\nThe action on your lower half has been pretty slow so far. They’ve mostly been sitting there, throbbing and spurting pre inside you, while they wait for you to adjust. Kiro breaks that calm in feral fashion. The pheromone-soaked kui-tan drags her head out of Sylvie’s drooling cunt just enough to yell out like a mad woman. As she does that, she yanks her beasthood out of you, to the tip, and rams it back in with all her might.");
+
+	if(upAss) 
+	{
+		output("\n\nBeing in the same hole, Sylvie’s cock gets dragged along with Kiro's, the moosey mountie spurred to movement whether she likes it or not. She pops off of Kally’s lips when she feels the disturbance.");
+		output("\n\n<i>“H-hey, remember who you’re in there with! I guess we’re off to the races now. Hope you’re ready!”</i>");
+	}
+	else
+	{
+		output("\n\nSylvie dislodges from Kally and groans out when Kiro moves, feeling their cocks rub together through your thin inner walls. Hell, it’s making you go almost crazy.");
+		output("\n\n<i>“Unf, getting started now? Alright. Hope you’re ready, [pc.name]!”</i>");
+	}
+	output("\n\nSylvie follows Kiro’s lead, thrusting <i>deep</i>  inside of you, causing your gut to bow out to near bursting. She has some trouble syncing up with Kiro’s ravenous pace, but she works it out. You groan around Kally’s fat, throat-stuffing dick, your eyes crossing in pleasure as your body feels like it’s overheating.");
+	output("\n\nYou cum immediately,");
+	if(pc.hasCock()) 
+	{
+		output(" your [pc.cocks] limply soaking the bench under you, and");
+	}
+	output(" your ass ");
+	if(pc.hasVagina()) output("and [pc.vaginas] ");
+	output("squeezing down on the invading horse members as hard as your muscles will allow. This doesn’t seem to even slow the two down. Between Kiro’s pheromone-induced rut and Sylvie’s tauric strength, they batter down your resistance before it can even begin.");
+
+	output("\n\nYou feel another orgasm trailing right on the heels of the first one. ");
+	if(upAss) 
+	{
+		output("You welcome it with open arms, embracing the mindless anal pounding. This is <i>exactly</i> what you’ve wanted ever since ");
+		if(pc.hasPerk("Buttslut")) output("that wonderful trip into the buttslutinator");
+		else output("you learned the <i>truth</i> about what your ass is for");
+		output(". Your body and mind were molded just for this, and you gleefully sink into your destined role as a mindless cumdump.");
+	}
+	else output("You try and hold it back, to retain some ounce of sanity and not just be reduced to a horse-cock fuckpuppet, but nothing can close the floodgates now that they’ve been so thoroughly ripped open.");
+	output(" You cum again, and again, and again, every muscle in your body going slack, and every neuron in your brain frying with pleasure.");
+
+	output("\n\nKally, spurred on by the sheer energy of the other two, as well as your dopey, cross-eyed stare as you choke on her cock, gets moving again. She groans heavily in effort as she rears back and slams herself into your throat. Her weighty balls slam against your chin as she bottoms out again. With how fucked-out your body is, there’s no resistance for her to break through. Her strokes are interrupted, though, when Sylvie grabs the chubby ‘nuki, and presses her into a tight hug.");
+	output("\n\nThe rutting taur is barely holding it together at this point. Kiro’s frantic feasting on her animalistic womanhood is loud enough to echo throughout the baths, and her thrusts have grown nearly as desperate as Kiro’s. Even with her speed, you can feel her throbbing <i>hard</i>. She’s almost there, and both of you know it.");
+	output("\n\n<i>“Uuugh. Sorry girls, looks like I’m going f-fiiiiiiRRRST!”</i> Her thrusts stop and her cock bloats. She yanks Kally even further in, pulling her into a deep kiss. Kiro doesn’t stop though, not even when massive gouts of moose-taur cum come rushing through Sylvie’s urethra. The tightness of the two titanic pieces of meat means that Kiro’s thrusts actually compresses Slyvie’s cumvein enough to keep her orgasm from fully blooming.");
+	output("\n\nShe pulls away from Kally again, leaving the overwhelmed nuki hanging limply, aside from her thrusting hips. <i>“Kiro pleeeeeeeeease! I need to cum!”</i> Despite the blockage on her male half, from the sounds of it, her female half is cumming along nicely. Kiro almost chokes as a rush of girl cum shoots down Sylvie’s passage, soaking the desperate ‘nuki, and causing her to finally take her head out of the mountie’s ass.");
+	output("\n\n<i>“Oooooooooh fuck, Sylvie! I could drown in this stuff back here.”</i>");
+	output("\n\n<i>“Glad you l-li-UUUUGHH!”</i> Her sentence is interrupted when the pressure on her urethra finally overwhelms the tightness of your insides. Moose cum blasts into your bowels");
+	output(", stretching your [pc.belly] into a gravid dome.");
+
+	output("\n\n<i>“Blowing already, big girl?”</i>");
+	output("\n\n<i>“...Sorry. I think I can keep going.”</i>");
+	output("\n\n<i>“Maybe you can...”</i> Kiro mutters. You soon find out why, when the two start thrusting again. Kiro’s balls feel like two beach balls slapping against your [pc.ass]. They quake and throb hotly, so delightfully overstuffed with her musky cum that the skin has gone completely taut.");
+	output("\n\nYou quickly realize that Kally is in the same position. Her balls are the size of pumpkins, and slowly growing by the second. Her thrusts have grown even more frantic, barely even bothering to bottom out anymore. When she’s not smooching Sylvie, she huffing and moaning and groaning like a complete slut. Her copious pre is starting to tinge with her signature alcoholic flavor, causing your already light head to swim even more.");
+	output("\n\nThe three finally seem to be at their limit. The small, sexual enclave that your orgy has created is sweltering and sweaty, everyone inside well worn and ready to blow. Sylvie’s already cum once, so she’s far too sensitive to keep going for too long on round two. Kiro’s balls are so big that she has to fan her legs all the way out, and she likely won’t be able to walk, or thrust if she goes on too much longer. Kally is just at the end of her rope, barely even conscious at this point.");
+	output("\n\n<i>“F-f-fuuuuuck! I can’t take it anymore, angel.”</i> Kiro bottoms out as quickly as she can. <i>“Cuuuuuming!”</i> As soon as she says that, everyone cries out in unison, joining her.");
+	output("\n\nYou fill out like a balloon attached to a fire hose, reaching limits of fullness that you never thought were possible. The three over-productive skanks make sure that every single inch of space inside of you is filled with their essence, before pulling out. It should hurt, or at least feel strange, but you’re stuffed with so much of Kally’s intoxicating brew, that you can’t feel anything but absolute pleasure.");
+
+	output("\n\nThe three absolutely baste you in their fluids, the excess running off into a pool beneath the bench. ");
+	if(kally.cumQ() >= 16000) output("Kally absolutely steals the show, though. The virility drugs she’s been taking have turned her into a one-nuki tsunami. Kiro and Sylvie look on in awe as she outpaces both of them put together. Kally herself is far too engrossed in it to really notice. Her eyes are completely screwed up into her head, and her mouth hangs open in silent bliss. ");
+	output("They all eventually run dry, limply falling to the ground in various states of exhaustion. You yourself are completely immobilized on the bench, looking like a galotian that just got done being the center of a kui-tan gangbang. Which isn’t really far from the truth.");
+	output("\n\n<i>“That... was... amazing!”</i> Kiro exhaustedly cries out, to weary, but enthusiastic cheers from the rest of you.");
+	output("\n\nKally rouses from her stupor. <i>“I-I’m gonna g-get this cleaned up. Sylvie, could you be a de");
+	if(!silly) output("a");
+	else output("e");
+	output("r and get [pc.name] cleaned up? You can pop [pc.himHer] in my room when you’re done.”</i>");
+	output("\n\nSylvie complies, picking up your well-used form and taking you off. Unfortunately, the feeling of gallons of hot fluid sloshing around inside of you as you’re moved is enough to finally take you down, and you pass out on Sylvie’s back.");
+	pc.imbibeAlcohol
+	processTime(35);
+	var cummies:Number = 13+rand(5);
+	for (var y:int = 0; y++; y < cummies) { pc.orgasm(); }
+	var sylviesLoad:PregnancyPlaceholder = sylviePP();
+	pc.loadInAss(sylviesLoad);
+	pc.loadInAss(sylviesLoad);
+	if(upAss) pc.loadInAss(kiro);
+	pc.loadInMouth(kally);
+	pc.applyCumSoaked();
+	if(upAss) IncrementFlag("CANADIA_TRIPLE_HORSED_ANAL")
+	else IncrementFlag("CANADIA_TRIPLE_HORSED");
+	clearMenu();
+	addButton(0,"Next",tripleHorseingOutro);
+}
+
+//[Next] //Three hours pass.
+public function tripleHorseingOutro():void
+{
+	clearOutput();
+	author("QuestyRobo");
+	showName("KALLY'S\nBEDROOM");
+	currentLocation = "CANADA8";
+	generateMap();
+	output("You wake up in Kally’s bedroom, cleaned up, but still stuffed full of nuki and taur cum. You’re also still tipsy from Kally’s copious cum, and the smell of it still wafts off of your skin. Still, you manage to get up and head down to the bar");
+	if(!pc.isNude()) output(" re-dressing yourself before leaving the room, of course");
+	output(". When you get down there, Kally, ");
+	
+	if(!sylvieInBar()) output("and Kiro");
+	else output("Kiro, and Sylvie");
+	//force Kiro to be new bar-girl:
+	flags["BAR_NPC"] = kiroSetup;
+	flags["BAR_NPC_TIMER"] = GetGameTimestamp();
+	output(" are still there, and each give you a sly look, as well as several of the bar patrons.");
+	output("\n\nIt might have gotten a little out of hand, but it doesn’t seem like anyone minded, least of all you.");
+	processTime(60*2+30);
+	//Kiro and Sylvie have shit to do :3
+	if(!pc.hasStatusEffect("SYLVIE WORKING")) 
+	{
+		pc.createStatusEffect("SYLVIE WORKING");
+		pc.setStatusMinutes("SYLVIE WORKING",260);
+	}
+	if(!pc.hasStatusEffect("KIRO_TEMP_DISABLED"))
+	{
+		pc.createStatusEffect("KIRO_TEMP_DISABLED");
+		pc.setStatusMinutes("KIRO_TEMP_DISABLED",240);
+	}
+	IncrementFlag("SEXED_SYLVIE");
+	//Count as a threesome IF they're already bangin'
+	if(kiroKallyThreesomes() > 0) kiroKallyThreesomes(1);
+	clearMenu();
+	addButton(0,"Next",move,"CANADA5");
+}
+
