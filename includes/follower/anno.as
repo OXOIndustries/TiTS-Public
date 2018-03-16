@@ -726,13 +726,19 @@ public function annoFollowerTalkMenu(doOut:Boolean = true):void
 
 	//Giving Anno the Thickness
 	//Must have sexed Anno at least once. She must be on the crew, the PC must have visited Uveto and seen the Bimbo Twins on the station, and the PC must have at least 10 Huskar Treats in their inventory. If reqs. are met, add [Huskar?] to Anno's talk menu. Ghost out if PC lacks sufficient Huskar Treats.
-	if(flags["ANNO_HUSKARRED"] != undefined) addDisabledButton(12,"Huskar?","Huskar?","You’ve already done this! Anno can’t get any chubbier!");
+	trace("CREW: " + annoIsCrew() + " haveFuckedAnno(): " + haveFuckedAnno() + " UVETO_HUSKAR_FOURSOME: " + flags["UVETO_HUSKAR_FOURSOME"]);
+	if(flags["ANNO_HUSKARRED"] != undefined) 
+	{
+		if(annoIsHuskar() && flags["ANNO_NEVER_HUSKAR"] == undefined) addButton(12,"Un-Huskar?",unhuskarizeAnno,undefined,"Un-Huskar?","Talk to Anno about undoing the physical changes you gave her - change back from extra-thick and curvy to svelte and perky.");
+		else addDisabledButton(12,"Huskar?","Huskar?","You’ve already done this! Anno can’t get any chubbier!");
+	}
 	else if(annoIsCrew() && haveFuckedAnno() && flags["UVETO_HUSKAR_FOURSOME"] == 1)
 	{
 		if(pc.hasItemByClass(HuskarTreats,10)) addButton(12,"Huskar?",annoHuskarTreatIntro,undefined,"Huskar?","See how Anno feels about gettin’ down with the thickness.");
 		else addDisabledButton(12,"Huskar?","Huskar?","You’ll want to have some actual huskar treats before you see if Anno’d be open to taking them. About 10 would be sure to do the trick.");
 	}
 	else addDisabledButton(12,"Locked","Locked","You’ll need to have had sex with Anno, been to Uveto and met certain individuals, and have Anno on your crew for this.");
+	if(flags["ANNO_NEVER_HUSKAR"] != undefined) addDisabledButton(12,"Huskar","Huskar","Anno is doesn't want stretch marks. Too bad!");
 
 	addButton(14, "Back", annoFollowerMenu);
 }
@@ -5170,4 +5176,63 @@ public function annoReactsToSyriHuskarTeasing():String
 public function syriGetsBlockedByAnnoOverHuskar():String
 {
 	return "Anno blocked me on Extramail hahaha\n\nHer cutie-patootie girlfriend didn’t though, and I got some sweeeet pics from her. We’re best friends (again) now. Sorry, you’re demoted until I get some naughty pics!\n\nI had to bribe Red so you can have seconds on this one :P\n\n-Best Ausar\n\n<i>Attached to the email is a picture of Syri with her shirt rolled up over her bare boobs, clutched in her teeth while she points at the cock poking out of her fly with both hands. In the background, you can juuust make out her own terminal monitor with a topless picture of Kaede on it.</i>";
+}
+
+//Engage Operation Fitness Pupper
+//Unlocks from Anno’s [Talk] menu after she has been transformed into a Huskar, and at least a week has passed.
+//[Un-Huskarize]
+//TT: Talk to Anno about undoing the physical changes you gave her - change back from extra-thick and curvy to svelte and perky.
+public function unhuskarizeAnno():void
+{
+	clearOutput();
+	showAnno();
+	author("Savin");
+	output("You sit yourself on the edge of Anno’s desk, letting your eyes wander over the curvy huskar’s plush body. She’s barely poured herself into her clothes, and her bust is threatening to burst out if she so much as breathes too deep. Your love shifts in her seat, putting herself on display... and there’s a lot of her to take in.");
+	output("\n\nAnd yet... you find yourself unsatisfied. You miss the supple curves and lean figure Anno had when she came aboard. Finally, after a long moment, you say as much to the freshly minted huskar: you’d like to change her back.");
+	output("\n\nAnno just gives you a flat look, staring at you with her arms crossed. <i>“You’re not serious, right? All that effort to make me a big, busty beauty and you wanna just undo it all? Oh, boss, you hurt my feelings. I was starting to really love all these curves!”</i>");
+	output("\n\nUnfortunately, you aren’t. When you affirm as much, Anno sighs and reaches into her desk, pulling out a baggie of normal ausar treats. <i>“Well, like I said, I got a whole crate of these things lying around. They should undo the curves, collar, and pull the body back into a healthy... er... BMI range, too. Just be sure you want me back the way I was, boss: I took all those stupid huskar treats as a favor to your " + pc.mf("","girl-") + "boners; I’m not gonna go back and forth whenever you get a feeling for some thickness or a tight piece of ass. I’ll get stretch marks!”</i>");
+	output("\n\nShe places the baggie between you with an exaggerated huff. <i>“So what’s it gonna be? Thickness for life, or back to normal?”</i>");
+	processTime(4);
+	clearMenu();
+	addButton(0,"Nevermind",neverMindAnnoStayFat,undefined,"Nevermind","If that’s the way it’s gonna be, you’ll stick with husky Anno.");
+	addButton(1,"Confirm",goodbyeBestAnno,undefined,"Confirm","");
+}
+
+//[Nevermind]
+//If that’s the way it’s gonna be, you’ll stick with husky Anno.
+//Conversation is repeatable.
+public function neverMindAnnoStayFat():void
+{
+	clearOutput();
+	showAnno();
+	author("Savin");
+	output("After a moment’s consideration, you shake your head and tell Anno to nevermind. If you have to choose permanently, you’ll stick with a huskar over a normal ausar.");
+	output("\n\n<i>“Hey, I’m normal,”</i> Anno chides, scooping the ausar treats back into her desk. <i>“But I’m glad you can still stomach me like this. Had me worried there, boss... like I said, I’m really liking this whole huskar thing. I look damn good with a little extra heft, hmm?”</i>");
+	output("\n\nYou have to admit, she does. Though you might not think her current form is <i>perfect</i>, but between the two choices, you’re more than satisfied with your lover just as she is.");
+	processTime(3);
+	annoFollowerMenu();
+}
+
+//[Confirm]
+//Go back to normal, Anno.
+//Removes option to Huskarize/Dehuskarize in the future.
+public function goodbyeBestAnno():void
+{
+	clearOutput();
+	flags["ANNO_HUSKAR_COMPLETE"] = undefined;
+	flags["ANNO_HUSKARRED"] = undefined;
+	flags["ANNO_NEVER_HUSKAR"] = 1;
+	showAnno(true);
+	author("Savin");
+	output("<i>“If you’re sure...”</i> Anno says once you confirm your decision. <i>“Ah well, at least Syri will probably stop making fun of me. Poor Kaede’s gonna be heartbroken, though. I’d almost convinced her to go into professional porn with me.”</i>");
+	output("\n\n<i>“I’m kidding! Mostly,”</i> she adds with a playful wink. <i>“Now get outta here while I stuff my face with doggie treats.”</i>");
+	if(pc.isBimbo()) output("\n\n<i>“Aww, I don’t get to watch?”</i> you huff.");
+	else output("\n\n<i>“Alright, alright,”</i> you say.");
+	output("\n\nAnno shoos you out and closes her cabin door. You rest your back against the opposite wall and wait, tapping your [pc.foot] on the deck until you hear a grunt of frustration from inside Anno’s cabin and the door slides open again. She’s wearing her familiar black and gold jumpsuit, but even zipped up to the neck it looks like it’s falling off her, pooling around her middle in rolls of material.");
+	output("\n\n<i>“Boooossss the suit resizer broke,”</i> she whines, tugging at the flabby latex. Her expression brightens immediately, though, as she yanks the zipper down and lets her tits fall free - now back to their perky D-cups, and lacking the mane of fluff plunging between them. <i>“Oh well, I guess that’s an excuse to take it all off.”</i>");
+	output("\n\nAnno sashays forward, her slimmer hips swaying until she’s pressing her bare chest against you. <i>“Ohh boss, I feel so cold without all that extra weight on. You’ll warm me up, won’t you?”</i>");
+	//Insert Anno sex scenes, minus Back button.
+	processTime(3);
+	pc.lust(5);
+	annoFollowerSexMenu();
 }
