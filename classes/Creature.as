@@ -2944,7 +2944,7 @@
 					}
 					else i++;
 				}
-				if(amount > 0) throw new Error("Inventory item quantity needed: " + amount + "!");
+				if(amount > 0) output("<b>ERROR - Inventory item quantity needed: " + amount + "!</b>");
 			}
 		}
 		

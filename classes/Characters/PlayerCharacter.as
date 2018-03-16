@@ -408,7 +408,7 @@ package classes.Characters
 					}
 					else i++;
 				}
-				if(amount > 0) throw new Error("Ship inventory item quantity needed: " + amount + "!");
+				if(amount > 0) output("<b>ERROR - Ship inventory item quantity needed: " + amount + "!</b>");
 			}
 		}
 		
