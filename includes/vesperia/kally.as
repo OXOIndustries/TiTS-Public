@@ -4130,7 +4130,7 @@ public function kiroXKallyEmailShow():void
 	output("\n\nThe holo ends, leaving you to wonder whose room they decided to destroy while filming that.");
 	if(pc.lust() >= 50) 
 	{
-		output(" Also, you'd best clean up the mess you made in the process.")
+		output(" Also, you’d best clean up the mess you made in the process.");
 		pc.orgasm();
 	}
 	else pc.lust(10);

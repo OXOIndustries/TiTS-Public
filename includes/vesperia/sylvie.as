@@ -40,16 +40,14 @@ import classes.Characters.PregnancyPlaceholder;
 public function showSylvie(nude:Boolean = false):void
 {
 	showName("\nSYLVIE");
-	if(nude) showBust("SYLVIE_NUDE");
-	else if(sylvieDrunkLevel() >= 2) showBust("SYLVIE_BRA");
-	else showBust("SYLVIE");
+	showBust(sylvieBustString(nude));
 }
 
 public function sylvieBustString(nude:Boolean = false):String
 {
 	if(nude) return "SYLVIE_NUDE";
-	else if(sylvieDrunkLevel() >= 2)  return "SYLVIE_BRA";
-	else  return "SYLVIE";
+	else if(sylvieDrunkLevel() >= 2) return "SYLVIE_BRA";
+	else return "SYLVIE";
 }
 public function showSylvieInBra():void
 {
@@ -4040,7 +4038,7 @@ public function tripleHorseingIntro(upAss:Boolean = false):void
 	}
 	output("\n\n<i>“I guess I better rear up first.”</i> Sylvie walks up and plants herself above you, her fat moose cock planted right up against your [pc.anus]. Kiro steps up behind her, while Kally works around to your front.");
 
-	output("\n\n<i>“Mhmm, nice view back here.”</i>  Kiro plants a kiss on Sylvie’s sweltering taur-pussy, drawing a moan out from her.");
+	output("\n\n<i>“Mhmm, nice view back here.”</i> Kiro plants a kiss on Sylvie’s sweltering taur-pussy, drawing a moan out from her.");
 
 	output("\n\n<i>“Same over here.”</i> Kally grabs the moose-taur’s massive tits and starts manhandling them.");
 	output("\n\nSylvie cries out. <i>“A-ahh, appreciate the compliments, but shouldn’t we be focusing on [pc.name]?”</i>");
@@ -4070,7 +4068,7 @@ public function tripleHorseingIntro(upAss:Boolean = false):void
 
 	if(upAss) 
 	{
-		output("\n\nBeing in the same hole, Sylvie’s cock gets dragged along with Kiro's, the moosey mountie spurred to movement whether she likes it or not. She pops off of Kally’s lips when she feels the disturbance.");
+		output("\n\nBeing in the same hole, Sylvie’s cock gets dragged along with Kiro’s, the moosey mountie spurred to movement whether she likes it or not. She pops off of Kally’s lips when she feels the disturbance.");
 		output("\n\n<i>“H-hey, remember who you’re in there with! I guess we’re off to the races now. Hope you’re ready!”</i>");
 	}
 	else
@@ -4078,7 +4076,7 @@ public function tripleHorseingIntro(upAss:Boolean = false):void
 		output("\n\nSylvie dislodges from Kally and groans out when Kiro moves, feeling their cocks rub together through your thin inner walls. Hell, it’s making you go almost crazy.");
 		output("\n\n<i>“Unf, getting started now? Alright. Hope you’re ready, [pc.name]!”</i>");
 	}
-	output("\n\nSylvie follows Kiro’s lead, thrusting <i>deep</i>  inside of you, causing your gut to bow out to near bursting. She has some trouble syncing up with Kiro’s ravenous pace, but she works it out. You groan around Kally’s fat, throat-stuffing dick, your eyes crossing in pleasure as your body feels like it’s overheating.");
+	output("\n\nSylvie follows Kiro’s lead, thrusting <i>deep</i> inside of you, causing your gut to bow out to near bursting. She has some trouble syncing up with Kiro’s ravenous pace, but she works it out. You groan around Kally’s fat, throat-stuffing dick, your eyes crossing in pleasure as your body feels like it’s overheating.");
 	output("\n\nYou cum immediately,");
 	if(pc.hasCock()) 
 	{
@@ -4144,7 +4142,7 @@ public function tripleHorseingOutro():void
 {
 	clearOutput();
 	author("QuestyRobo");
-	showName("KALLY'S\nBEDROOM");
+	showName("KALLY’S\nBEDROOM");
 	currentLocation = "CANADA8";
 	generateMap();
 	output("You wake up in Kally’s bedroom, cleaned up, but still stuffed full of nuki and taur cum. You’re also still tipsy from Kally’s copious cum, and the smell of it still wafts off of your skin. Still, you manage to get up and head down to the bar");
