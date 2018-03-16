@@ -2251,6 +2251,9 @@ public function labWalkInHypnoEvent():void
 	if(!(pc.upperUndergarment is EmptySlot)) loots.push(pc.upperUndergarment);
 	if(loots.length > 0)
 	{
+		pc.armor.onRemove(pc);
+		pc.lowerUndergarment.onRemove(pc);
+		pc.upperUndergarment.onRemove(pc);
 		quickLoot(pc.armor,pc.lowerUndergarment,pc.upperUndergarment);
 		if(!(pc.armor is EmptySlot)) pc.armor = new EmptySlot();
 		if(!(pc.lowerUndergarment is EmptySlot)) pc.lowerUndergarment = new EmptySlot();

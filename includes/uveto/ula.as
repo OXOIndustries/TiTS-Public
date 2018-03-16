@@ -514,7 +514,11 @@ public function giveUlaCoat():void
 	clearOutput();
 	showCaveUla();
 	//BINGE AND PURGE!
-	if(pc.armor is InsulatedCoat) pc.armor = new EmptySlot();
+	if(pc.armor is InsulatedCoat)
+	{
+		pc.armor.onRemove(pc);
+		pc.armor = new EmptySlot();
+	}
 	else pc.destroyItemByClass(InsulatedCoat);
 
 	output("<i>“Here,”</i> you hand her the Korgonne-made garment from your inventory");
