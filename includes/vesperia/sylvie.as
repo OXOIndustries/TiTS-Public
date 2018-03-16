@@ -4126,7 +4126,7 @@ public function tripleHorseingIntro(upAss:Boolean = false):void
 	output("\n\nSylvie complies, picking up your well-used form and taking you off. Unfortunately, the feeling of gallons of hot fluid sloshing around inside of you as you’re moved is enough to finally take you down, and you pass out on Sylvie’s back.");
 	processTime(35);
 	var cummies:Number = 13+rand(5);
-	for (var y:int = 0; y++; y < cummies) { pc.orgasm(); }
+	for (var y:int = 0; y < cummies; y++) { pc.orgasm(); }
 	var sylviesLoad:PregnancyPlaceholder = sylviePP();
 	pc.loadInAss(sylviesLoad);
 	pc.loadInAss(sylviesLoad);
