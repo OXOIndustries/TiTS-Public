@@ -150,8 +150,8 @@ public function synthSheathAvailable():Boolean
 
 public function bonusTubeSteakRepeat():Boolean
 {
+	if(flags["SYNTHSHEATH_ACQUIRED"] == undefined) return false;
 	if(synthSheathAvailable() && rand(100) == 0)
-	if(synthSheathAvailable() && rand(90) == 0)
 	{
 		if(CodexManager.entryUnlocked("SynthSheath"))
 		{
