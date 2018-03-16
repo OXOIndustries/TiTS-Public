@@ -143,10 +143,12 @@ package classes.GameData.Pregnancy
 		private var _ageBuckets:Array;
 		
 		// Determine if the age bucket cache potentially needs an update
+		// Might be called with negative quantities if the amount of time is unknown.
 		public function updateTime(numMinutes:int):void
 		{
 			// We don't really care about the specific passage of time right now, but it's being 
 			// handed down in case it potentially becomes useful in the future.
+			// if(numMinutes > 0) {}
 			if (!ageInvalidated && kGAMECLASS.days != _dayLastUpdated)
 			{
 				ageInvalidated = true;

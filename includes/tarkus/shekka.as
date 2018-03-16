@@ -141,13 +141,13 @@ public function shekkaShop(sell:Boolean = false):void
 	{
 		if(!chars["SHEKKA"].hasItemByClass(FZRFireSuppressionSystem)) chars["SHEKKA"].inventory.push(new FZRFireSuppressionSystem());
 	}
-	else chars["SHEKKA"].destroyItemByClass(FZRFireSuppressionSystem);
+	else chars["SHEKKA"].destroyItemByClass(FZRFireSuppressionSystem, -1);
 	
 	if(synthSheathAvailable() && CodexManager.entryUnlocked("SynthSheath"))
 	{
 		if(!chars["SHEKKA"].hasItemByClass(HorseCock)) chars["SHEKKA"].inventory.push(new HorseCock());
 	}
-	else if(chars["SHEKKA"].hasItemByClass(HorseCock)) chars["SHEKKA"].destroyItemByClass(HorseCock);
+	else chars["SHEKKA"].destroyItemByClass(HorseCock, -1);
 
 	if(!sell) buyItem();
 	else sellItem();

@@ -264,18 +264,18 @@ public function genesModsBuyStuff():void
 		{
 			if(!chars["GENE"].hasItemByClass(GaloMax)) chars["GENE"].inventory.push(new GaloMax());
 		}
-		else chars["GENE"].destroyItemByClass(GaloMax);
+		else chars["GENE"].destroyItemByClass(GaloMax, -1);
 	}
 	if(flags["GENE_UNLOCK_CERESPIRIN"] != undefined)
 	{
 		if(!chars["GENE"].hasItemByClass(Cerespirin)) chars["GENE"].inventory.push(new Cerespirin());
 	}
-	else chars["GENE"].destroyItemByClass(Cerespirin);
+	else chars["GENE"].destroyItemByClass(Cerespirin, -1);
 	if(CodexManager.entryUnlocked("Muffstick"))
 	{
 		if(!chars["GENE"].hasItemByClass(Muffstick)) chars["GENE"].inventory.push(new Muffstick());
 	}
-	else chars["GENE"].destroyItemByClass(Muffstick);
+	else chars["GENE"].destroyItemByClass(Muffstick, -1);
 	shopkeep = chars["GENE"];
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;
