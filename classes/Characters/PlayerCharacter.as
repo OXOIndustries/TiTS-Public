@@ -128,6 +128,7 @@ package classes.Characters
 			// Cumflation
 			if (cumFrom != null)
 			{
+				if(cumFrom is Kally) imbibeAlcohol(100);
 				sstdChecks(cumFrom,"ass");
 				if(cumflationEnabled() && cumFrom.cumType != GLOBAL.FLUID_TYPE_CUNDARIAN_SEED) cumflationHappens(cumFrom,3);
 				//PLUGGING TIME!
@@ -275,7 +276,7 @@ package classes.Characters
 					}
 					break;
 				case "cum":
-					if(fluidFrom is Kally) imbibeAlcohol(20);
+					if(fluidFrom is Kally) imbibeAlcohol(100);
 					if(hasPerk("Autofellatio Queen") && fluidFrom is PlayerCharacter) energy(35 * fxMult);
 					break;
 				case "girl-cum":

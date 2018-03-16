@@ -4124,7 +4124,6 @@ public function tripleHorseingIntro(upAss:Boolean = false):void
 	else output("e");
 	output("r and get [pc.name] cleaned up? You can pop [pc.himHer] in my room when you’re done.”</i>");
 	output("\n\nSylvie complies, picking up your well-used form and taking you off. Unfortunately, the feeling of gallons of hot fluid sloshing around inside of you as you’re moved is enough to finally take you down, and you pass out on Sylvie’s back.");
-	pc.imbibeAlcohol
 	processTime(35);
 	var cummies:Number = 13+rand(5);
 	for (var y:int = 0; y++; y < cummies) { pc.orgasm(); }

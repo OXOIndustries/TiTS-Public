@@ -147,7 +147,7 @@ public function shekkaShop(sell:Boolean = false):void
 	{
 		if(!chars["SHEKKA"].hasItemByClass(HorseCock)) chars["SHEKKA"].inventory.push(new HorseCock());
 	}
-	else chars["SHEKKA"].destroyItemByClass(HorseCock);
+	else if(chars["SHEKKA"].hasItemByClass(HorseCock)) chars["SHEKKA"].destroyItemByClass(HorseCock);
 
 	if(!sell) buyItem();
 	else sellItem();
