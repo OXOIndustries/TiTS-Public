@@ -61,6 +61,7 @@ public function roamingKiroAvailable():Boolean
 	//Kiro off doing something else...
 	if(flags["KIRO_DISABLED_MINUTES"] != undefined) return false;
 	//She can be there!
+	if(pc.hasStatusEffect("KIRO_TEMP_DISABLED")) return false;
 	return true;
 }
 
@@ -219,6 +220,7 @@ public function kiroMenu():void
 	}
 	else 
 	{
+		addDisabledButton(0,"Talk","Talk","Kiro doesn't seem to be in the mood for long conversations right now.");
 		addButton(1,"Wingman",playWingmanWithKiro,undefined,"Play Wingman","Hang out with Kiro and help her get laid. With balls like that, she probably needs it.");
 		addButton(2,"DrinkOff",kiroDrankinConterst,undefined,"Drinking Contest","See who can hold their liquor better...");
 	}

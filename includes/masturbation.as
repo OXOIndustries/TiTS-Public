@@ -32,7 +32,7 @@ public function nonLustFaps():Array
 		
 		faps.push(["Hand Milk", milkturbation, "", ""]);
 	}
-	if(hasSmutOptions() && InShipInterior())
+	if(hasSmutOptions())
 	{
 		faps.push(["Smut", smutFapMenu, "Smut", "You could go check out some smutty videos on the extranet."]);
 	}
@@ -413,7 +413,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = cuffSelfRouter;
 		faps.push(fap);
 	}
-	if(hasSmutOptions() && InShipInterior())
+	if(hasSmutOptions())
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Smut";
