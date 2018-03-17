@@ -9546,17 +9546,43 @@
 			}
 			return false;
 		}
-		public function hasPiercedNipples():Boolean
+		public function hasPiercedNipples(idx:int = -1):Boolean
 		{
-			return false;
+			if(idx < 0)
+			{
+				for(idx = 0; idx < breastRows.length; idx++)
+				{
+					if(!(breastRows[idx].piercing is EmptySlot)) return true;
+				}
+				return false;
+			}
+			return (!(breastRows[idx].piercing is EmptySlot));
 		}
-		public function hasPiercedCocks():Boolean
+		public function hasPiercedCocks(idx:int = -1):Boolean
 		{
-			return false;
+			if(!hasCock()) return false;
+			if(idx < 0)
+			{
+				for(idx = 0; idx < cocks.length; idx++)
+				{
+					if(!(cocks[idx].piercing is EmptySlot)) return true;
+				}
+				return false;
+			}
+			return (!(cocks[idx].piercing is EmptySlot));
 		}
-		public function hasPiercedVaginas():Boolean
+		public function hasPiercedVaginas(idx:int = -1):Boolean
 		{
-			return false;
+			if(!hasVagina()) return false;
+			if(idx < 0)
+			{
+				for(idx = 0; idx < vaginas.length; idx++)
+				{
+					if(!(vaginas[idx].piercing is EmptySlot)) return true;
+				}
+				return false;
+			}
+			return (!(vaginas[idx].piercing is EmptySlot));
 		}
 		public function hasNipples(): Boolean {
 			if(nipplesPerBreast > 0) return true;

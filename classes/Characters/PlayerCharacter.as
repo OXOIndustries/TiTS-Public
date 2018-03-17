@@ -13,13 +13,10 @@ package classes.Characters
 	import classes.kGAMECLASS;
 	import classes.GLOBAL;
 	import classes.ItemSlotClass;
-	import classes.Engine.Interfaces.ParseText;
-	import classes.Engine.Interfaces.ParseQuotes;
 	import classes.Engine.Utility.num2Text;
 	import classes.Util.InCollection;
 	import classes.Util.RandomInCollection;
-	import classes.Engine.Interfaces.AddLogEvent;
-	import classes.Engine.Interfaces.ExtendLogEvent;
+	import classes.Engine.Interfaces.*
 	
 	/**
 	 * Yeah this is kinda bullshit, but it also means we can version the PC data structure like NPCs.
@@ -408,7 +405,7 @@ package classes.Characters
 					}
 					else i++;
 				}
-				if(amount > 0) trace("<b>ERROR - Ship inventory item quantity needed: " + amount + "!</b>");
+				if(amount > 0) output("<b>ERROR - Ship inventory item quantity needed: " + amount + "!</b>");
 			}
 		}
 		

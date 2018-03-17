@@ -1092,6 +1092,7 @@
 			"Quest Item",
 			"Gem",
 			"Sex Toy",
+			"Piercing",
 		];
 
 		//CHARACTERS
@@ -1184,7 +1185,7 @@
 			"Stud-Style Piercing",
 			"Ring-Style Piercing",
 			"Permanent Piercing",
-			"Piercing w/Chains"
+			"Piercing w/Chains",
 		];
 		
 		/**

@@ -738,7 +738,7 @@ public function annoFollowerTalkMenu(doOut:Boolean = true):void
 		else addDisabledButton(12,"Huskar?","Huskar?","You’ll want to have some actual huskar treats before you see if Anno’d be open to taking them. About 10 would be sure to do the trick.");
 	}
 	else addDisabledButton(12,"Locked","Locked","You’ll need to have had sex with Anno, been to Uveto and met certain individuals, and have Anno on your crew for this.");
-	if(flags["ANNO_NEVER_HUSKAR"] != undefined) addDisabledButton(12,"Huskar","Huskar","Anno is doesn't want stretch marks. Too bad!");
+	if(flags["ANNO_NEVER_HUSKAR"] != undefined) addDisabledButton(12,"Huskar","Huskar","Anno is doesn’t want stretch marks. Too bad!");
 
 	addButton(13,"PIERCE ME",testPiercing);
 
@@ -5243,6 +5243,9 @@ public function goodbyeBestAnno():void
 	if(pc.isBimbo()) output("\n\n<i>“Aww, I don’t get to watch?”</i> you huff.");
 	else output("\n\n<i>“Alright, alright,”</i> you say.");
 	output("\n\nAnno shoos you out and closes her cabin door. You rest your back against the opposite wall and wait, tapping your [pc.foot] on the deck until you hear a grunt of frustration from inside Anno’s cabin and the door slides open again. She’s wearing her familiar black and gold jumpsuit, but even zipped up to the neck it looks like it’s falling off her, pooling around her middle in rolls of material.");
+	
+	annoToNormalTF();
+	
 	output("\n\n<i>“Boooossss the suit resizer broke,”</i> she whines, tugging at the flabby latex. Her expression brightens immediately, though, as she yanks the zipper down and lets her tits fall free - now back to their perky D-cups, and lacking the mane of fluff plunging between them. <i>“Oh well, I guess that’s an excuse to take it all off.”</i>");
 	output("\n\nAnno sashays forward, her slimmer hips swaying until she’s pressing her bare chest against you. <i>“Ohh boss, I feel so cold without all that extra weight on. You’ll warm me up, won’t you?”</i>");
 	//Insert Anno sex scenes, minus Back button.

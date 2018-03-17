@@ -258,44 +258,54 @@ public function actuallyPierceYourself(args:Array):void
 	switch(slot)
 	{
 		case "lip":
-			oldItem = pc.lipPiercing.makeCopy();;
-			pc.lipPiercing = item.makeCopy();;
+			oldItem = pc.lipPiercing.makeCopy();
+			pc.lipPiercing = item.makeCopy();
+			pc.lipPiercing.onEquip(pc);
 			break;
 		case "ears":
 			oldItem = pc.earPiercing.makeCopy();
 			pc.earPiercing = item.makeCopy();
+			pc.earPiercing.onEquip(pc);
 			break;
 		case "nose":
 			oldItem = pc.nosePiercing.makeCopy();
 			pc.nosePiercing = item.makeCopy();
+			pc.nosePiercing.onEquip(pc);
 			break;
 		case "tongue":
 			oldItem = pc.tonguePiercing.makeCopy();
 			pc.tonguePiercing = item.makeCopy();
+			pc.tonguePiercing.onEquip(pc);
 			break;
 		case "nipples":
 			oldItem = pc.breastRows[x].piercing.makeCopy();
 			pc.breastRows[x].piercing = item.makeCopy();
+			pc.breastRows[x].piercing.onEquip(pc);
 			break;
 		case "belly":
 			oldItem = pc.bellyPiercing.makeCopy();
 			pc.bellyPiercing = item.makeCopy();
+			pc.bellyPiercing.onEquip(pc);
 			break;
 		case "cock":
 			oldItem = pc.cocks[x].piercing.makeCopy();
 			pc.cocks[x].piercing = item.makeCopy();
+			pc.cocks[x].piercing.onEquip(pc);
 			break;
 		case "vagina":
 			oldItem = pc.vaginas[x].piercing.makeCopy();
 			pc.vaginas[x].piercing = item.makeCopy();
+			pc.vaginas[x].piercing.onEquip(pc);
 			break;
 		case "clit":
 			oldItem = pc.vaginas[x].clitPiercing.makeCopy();
 			pc.vaginas[x].clitPiercing = item.makeCopy();
+			pc.vaginas[x].clitPiercing.onEquip(pc);
 			break;
 		default:
 			oldItem = pc.lipPiercing.makeCopy();
 			pc.lipPiercing = item.makeCopy();
+			pc.lipPiercing.onEquip(pc);
 			break;
 	}
 	//Remove the old item and store for looting!
@@ -1324,42 +1334,52 @@ public function actuallyRemoveAPiercing(slot:String = "lip"):void
 	{
 		case "lip":
 			item = pc.lipPiercing;
+			pc.lipPiercing.onRemove(pc, true);
 			pc.lipPiercing = new EmptySlot();
 			break;
 		case "ears":
 			item = pc.earPiercing;
+			pc.earPiercing.onRemove(pc, true);
 			pc.earPiercing = new EmptySlot();
 			break;
 		case "nose":
 			item = pc.nosePiercing;
+			pc.nosePiercing.onRemove(pc, true);
 			pc.nosePiercing = new EmptySlot();
 			break;
 		case "tongue":
 			item = pc.tonguePiercing;
+			pc.tonguePiercing.onRemove(pc, true);
 			pc.tonguePiercing = new EmptySlot();
 			break;
 		case "nipples":
 			item = pc.breastRows[x].piercing;
+			pc.breastRows[x].piercing.onRemove(pc, true);
 			pc.breastRows[x].piercing = new EmptySlot();
 			break;
 		case "belly":
 			item = pc.bellyPiercing;
+			pc.bellyPiercing.onRemove(pc, true);
 			pc.bellyPiercing = new EmptySlot();
 			break;
 		case "cock":
 			item = pc.cocks[x].piercing;
+			pc.cocks[x].piercing.onRemove(pc, true);
 			pc.cocks[x].piercing = new EmptySlot();
 			break;
 		case "vagina":
 			item = pc.vaginas[x].piercing;
+			pc.vaginas[x].piercing.onRemove(pc, true);
 			pc.vaginas[x].piercing = new EmptySlot();
 			break;
 		case "clit":
 			item = pc.vaginas[x].clitPiercing;
+			pc.vaginas[x].clitPiercing.onRemove(pc, true);
 			pc.vaginas[x].clitPiercing = new EmptySlot();
 			break;
 		default:
 			item = pc.lipPiercing;
+			pc.lipPiercing.onRemove(pc, true);
 			pc.lipPiercing = new EmptySlot();
 			break;
 	}
