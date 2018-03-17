@@ -19160,6 +19160,7 @@
 			var o:int = -1;
 			//Place to store draining notices.
 			var notice:String = "";
+			var fluidType:int = GLOBAL.FLUID_TYPE_CUM;
 			var amountVented:Number;
 			var removals:Array = new Array();
 			var cumDrain:Boolean = (!hasPerk("No Cum Leakage") && !hasStatusEffect("No Cum Leakage"));
@@ -19189,6 +19190,7 @@
 			if(z >= 0)
 			{
 				amountVented = 0;
+				fluidType = statusEffects[z].value3;
 				//Fen - added blocked vag check here instead of in cumdrain as putting it in the cumdrain check would need a more complicated if check
 				if(cumDrain && blockedVaginas() < totalVaginas() && (!lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_VAGINALLY_SEALED) || statusEffects[z].value1 > 300000))
 				{
@@ -19208,7 +19210,7 @@
 				{
 					if(amountVented >= 25000) 
 					{
-						notice = upperCase(fluidViscosity(statusEffects[z].value3)) + " " + fluidNoun(statusEffects[z].value3) + " hoses out ";
+						notice = upperCase(fluidViscosity(fluidType)) + " " + fluidNoun(fluidType) + " hoses out ";
 						if(legCount > 1) notice += ParseText("from between your [pc.legs] ");
 						else notice += "of you ";
 						notice += "in a seemingly endless tide. You can’t even move without wet gushes splattering onto the ground, marking a slut-shaming trail wherever you move.";
@@ -19216,28 +19218,28 @@
 					}
 					else if(amountVented >= 10000)
 					{
-						notice = "Trailing " + fluidNoun(statusEffects[z].value3) + " behind you like slime from a slug, clearly marking your passage more effectively than any tracking bug ever could. There’s nothing you can do about it either, save for waiting for the boundless sexual effluvia to finish spilling from your soiled body.";
+						notice = "Trailing " + fluidNoun(fluidType) + " behind you like slime from a slug, clearly marking your passage more effectively than any tracking bug ever could. There’s nothing you can do about it either, save for waiting for the boundless sexual effluvia to finish spilling from your soiled body.";
 					}
 					else if(amountVented >= 5000)
 					{
-						notice = "There’s so much " + fluidNoun(statusEffects[z].value3) + " sliding out of you. You can’t ";
+						notice = "There’s so much " + fluidNoun(fluidType) + " sliding out of you. You can’t ";
 						if(isNaga() || isGoo()) notice += "slither a few feet";
 						else notice += "take a step";
 						notice += ParseText(" without thick blobs of goo rolling down your [pc.leg] to the floor, advertising your sexual adventures to anyone close to enough to see, or smell, you.");
 					}
 					else if(amountVented >= 2500)
 					{
-						notice = upperCase(fluidNoun(statusEffects[z].value3)) + " is everywhere. It just won’t stop coming out of you. Sure, the more " + fluidViscosity(statusEffects[z].value3) + " goop leaks out, the tighter your belly becomes, but it’s just so damn messy! You’re pretty sure you could’ve filled up a two liter bottle and then some if you were so inclined. Just how thoroughly did you get stuffed?";
+						notice = upperCase(fluidNoun(fluidType)) + " is everywhere. It just won’t stop coming out of you. Sure, the more " + fluidViscosity(fluidType) + " goop leaks out, the tighter your belly becomes, but it’s just so damn messy! You’re pretty sure you could’ve filled up a two liter bottle and then some if you were so inclined. Just how thoroughly did you get stuffed?";
 					}
 					else if(amountVented >= 1000)
 					{
-						notice = upperCase(fluidNoun(statusEffects[z].value3)) + ParseText(" gets all over the place. It keeps drooling down your [pc.legOrLegs]");
+						notice = upperCase(fluidNoun(fluidType)) + ParseText(" gets all over the place. It keeps drooling down your [pc.legOrLegs]");
 						if(!isCrotchExposed()) notice += ParseText(" and getting all over your [pc.lowerGarments]");
 						notice += ", squishing and sliding and making you absolutely reek of sex.";
 					}
 					else if(amountVented >= 500)
 					{
-						notice = "There’s no lack of " + fluidNoun(statusEffects[z].value3) + ParseText(" dripping down your [pc.thighs], evidence of your recent and all-too sloppy encounter.");
+						notice = "There’s no lack of " + fluidNoun(fluidType) + ParseText(" dripping down your [pc.thighs], evidence of your recent and all-too sloppy encounter.");
 					}
 					
 					if (!omitNotice && notice != "")
@@ -19252,6 +19254,7 @@
 			if(a >= 0)
 			{
 				amountVented = 0;
+				fluidType = statusEffects[a].value3;
 				if(cumDrain && (!lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANALLY_SEALED) || statusEffects[a].value1 > 300000))
 				{
 					//Figure out how much cum is vented over time.
@@ -19269,7 +19272,7 @@
 				{
 					if(amountVented >= 25000) 
 					{
-						notice = upperCase(fluidViscosity(statusEffects[a].value3)) + " " + fluidNoun(statusEffects[a].value3) + " hoses out ";
+						notice = upperCase(fluidViscosity(fluidType)) + " " + fluidNoun(fluidType) + " hoses out ";
 						if(legCount > 1) notice += ParseText("from between your [pc.legs] ");
 						else notice += "of you ";
 						notice += "in a seemingly endless tide. You can’t even move without wet gushes splattering onto the ground, marking a slut-shaming trail wherever you move.";
@@ -19277,28 +19280,28 @@
 					}
 					else if(amountVented >= 10000)
 					{
-						notice = "Trailing " + fluidNoun(statusEffects[a].value3) + " behind you like slime from a slug, clearly marking your passage more effectively than any tracking bug ever could. There’s nothing you can do about it either, save for waiting for the boundless sexual effluvia to finish spilling from your soiled body.";
+						notice = "Trailing " + fluidNoun(fluidType) + " behind you like slime from a slug, clearly marking your passage more effectively than any tracking bug ever could. There’s nothing you can do about it either, save for waiting for the boundless sexual effluvia to finish spilling from your soiled body.";
 					}
 					else if(amountVented >= 5000)
 					{
-						notice = "There’s so much " + fluidNoun(statusEffects[a].value3) + " sliding out of you. You can’t ";
+						notice = "There’s so much " + fluidNoun(fluidType) + " sliding out of you. You can’t ";
 						if(isNaga() || isGoo()) notice += "slither a few feet";
 						else notice += "take a step";
 						notice += ParseText(" without thick blobs of goo rolling down your [pc.leg] to the floor, advertising your sexual adventures to anyone close to enough to see, or smell, you.");
 					}
 					else if(amountVented >= 2500)
 					{
-						notice = upperCase(fluidNoun(statusEffects[a].value3)) + " is everywhere. It just won’t stop coming out of you. Sure, the more " + fluidViscosity(statusEffects[a].value3) + " goop leaks out, the tighter your belly becomes, but it’s just so damn messy! You’re pretty sure you could’ve filled up a two liter bottle and then some if you were so inclined. Just how thoroughly did you get stuffed?";
+						notice = upperCase(fluidNoun(fluidType)) + " is everywhere. It just won’t stop coming out of you. Sure, the more " + fluidViscosity(fluidType) + " goop leaks out, the tighter your belly becomes, but it’s just so damn messy! You’re pretty sure you could’ve filled up a two liter bottle and then some if you were so inclined. Just how thoroughly did you get stuffed?";
 					}
 					else if(amountVented >= 1000)
 					{
-						notice = upperCase(fluidNoun(statusEffects[a].value3)) + ParseText(" gets all over the place. It keeps drooling down your [pc.legOrLegs]");
+						notice = upperCase(fluidNoun(fluidType)) + ParseText(" gets all over the place. It keeps drooling down your [pc.legOrLegs]");
 						if(!isCrotchExposed()) notice += ParseText(" and getting all over your [pc.lowerGarments]");
 						notice += ", squishing and sliding and making you absolutely reek of sex.";
 					}
 					else if(amountVented >= 500)
 					{
-						notice = "There’s no lack of " + fluidNoun(statusEffects[a].value3) + ParseText(" dripping down your [pc.thighs], evidence of your recent and all-too sloppy encounter.");
+						notice = "There’s no lack of " + fluidNoun(fluidType) + ParseText(" dripping down your [pc.thighs], evidence of your recent and all-too sloppy encounter.");
 					}
 					
 					if (!omitNotice && notice != "")
@@ -19313,12 +19316,16 @@
 			if(o >= 0)
 			{
 				amountVented = 0;
+				fluidType = statusEffects[o].value3;
 				
 				// Conservation of spunk
 				var oralSources:Array = [];
 				if(hairType == GLOBAL.HAIR_TYPE_GOO) oralSources.push("Goo Hair");
 				if(hasPerk("Honeypot")) oralSources.push("Honeypot");
-				if(hasPerk("'Nuki Nuts") && InCollection(statusEffects[o].value3, GLOBAL.VALID_CUM_TYPES)) oralSources.push("'Nuki Nuts");
+				if(hasPerk("'Nuki Nuts") && InCollection(fluidType, GLOBAL.VALID_CUM_TYPES)) oralSources.push("'Nuki Nuts");
+				
+				// Because Cum Cascade adds a new status effect and resorts the list, messing up the statusEffects indexing, we'll flag to play it at the end instead.
+				var cumCascaded:Boolean = false;
 				
 				if(oralSources.length <= 0) oralSources.push("default");
 				
@@ -19359,23 +19366,18 @@
 								if(amountVented >= 2000) kGAMECLASS.honeyPotBump();
 								break;
 							case "'Nuki Nuts":
-								/*
-								//Calculate amount metabolized over time
-								var cumTransfer:Number = (statusEffects[o].value2) / 10; //Metabolize entire (initial) load over 10 minutes.
-								cumTransfer *= timePassed;
-								cumTransfer += amountVented;
-								if (cumTransfer > statusEffects[o].value1) cumTransfer = statusEffects[o].value1;
-								statusEffects[o].value1 -= cumTransfer;
-								cumCascade(cumTransfer, statusEffects[o].value3);
-								trace("Cum Metabolized: " + cumTransfer + " mLs");
-								//cumProduced(timePassed);
-								*/
-								cumCascade(amountVented, statusEffects[o].value3, timePassed);
+								cumCascaded = true;
 								break;
 						}
 					}
+					if (!omitNotice && notice != "")
+					{
+						AddLogEvent(notice, "words", timePassed);
+						notice = "";
+					}
 				}
 				if(statusEffects[o].value1 <= 0) removals.push("Orally-Filled");
+				if(cumCascaded) cumCascade(amountVented, fluidType, timePassed);
 			}
 			//Remove if no more cum!
 			while(removals.length > 0) 
@@ -19403,52 +19405,8 @@
 			return (statusEffectv1("Anally-Filled") + statusEffectv1("Vaginally-Filled") + statusEffectv1("Orally-Filled"));
 		}
 
-		/**
-		 * Kui-tan "Cum Cascade" function.
-		 * Takes ingested cum and adds 5x to balls.
-		 * @param	amount	amount of cum digested in mL
-		 * @param	fluid type of cum digested (defaults to cum)
-		 */
-		public function cumCascade(amount:Number, fluid:Number = GLOBAL.FLUID_TYPE_CUM, timePassed:Number = 0): void 
+		public function cumCascade(amount:Number, fluid:int = GLOBAL.FLUID_TYPE_CUM, timePassed:int = 0): void 
 		{
-			/*
-			var percent:Number = (amount / maxCum()) * 500; //Take percentage of maximum cum, and multiply 5x.
-			trace("Percent Increase: " + percent + " %");
-			if (percent > 10) {
-				if (this is PlayerCharacter) {
-					var ccnotice:String = ParseText(" You hear a faint gurgling from your stomach and [pc.balls] as you feel ");
-					if (balls == 1) ccnotice += "it";
-					else ccnotice += "them";
-					if (ballFullness + percent > 100) ccnotice += ParseText(" swelling with more and more [pc.cumNoun]");
-					else ccnotice += ParseText(" getting fuller and fuller with [pc.cumNoun]");
-					ccnotice += " each passing second. With your kui-tan physiology, all that " + fluidNoun(fluid) + ParseText(" you ingested must have spiked your own [pc.cumNoun] production!");
-					AddLogEvent(ccnotice, "passive");
-				}
-				lust(20); //increase Lust
-			}
-			if (ballFullness + percent > 100) { //prevent craziness when going over
-				var delta:Number = 0;
-				var bbnotice:String = ""; //potential blue balls notification.
-				if (ballFullness < 100) { //catch transition from filling to swelling
-					delta = Math.round((100 - ballFullness) * maxCum() / 100);
-					
-					if (this is PlayerCharacter) { //blue ball notices
-						if (balls == 1) AddLogEvent(ParseText(" Your [pc.ballsNoun] has filled so much from your cum cascade that it’s started to swell. It won’t take much to excite you so long as your [pc.balls] is this full."), "passive");
-						else AddLogEvent(ParseText(" Your [pc.ballsNoun] have filled so much from your cum cascade that they’ve started to swell. It won’t take much to excite you so long as your [pc.balls] are this full."), "passive");
-					}
-					
-					createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4); //add blue balls status effect
-				}
-				ballFullness = 100;
-				var finalCum:Number = currentCum() + (amount * 5) - delta; //x5 again because we aren't using percent for this
-				var deltaBallSize:Number = Math.round(Math.sqrt(finalCum / (2 * ballEfficiency * balls)) * 100) / 100 - ballSize(); //calculate new ball size to hold all that cum
-				ballSizeMod += deltaBallSize;
-				addPerkValue("'Nuki Nuts", 1, deltaBallSize);
-				trace("Ball size change: " + deltaBallSize);
-			}
-			else ballFullness += percent;
-			*/
-			
 			// Give Cum Cascade effect
 			if (!hasStatusEffect("Cum Cascade"))
 			{

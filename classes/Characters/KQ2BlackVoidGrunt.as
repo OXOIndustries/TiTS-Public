@@ -277,6 +277,11 @@ package classes.Characters
 					output(" blinding Kara, though you manage to avoid any serious effect.");
 					CombatAttacks.applyBlind(kara, 3);
 				}
+				else if (blindedPC && !blindedKara)
+				{
+					output(" blinding you, as Kara moves to avoid the blast.");
+					CombatAttacks.applyBlind(pc, 3);
+				}
 				else
 				{
 					output(" though both you and Kara manage to avoid any serious effect.");

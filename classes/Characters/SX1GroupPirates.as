@@ -266,6 +266,11 @@ package classes.Characters
 				output(" blinding Saendra, though you manage to avoid any serious effect.");
 				CombatAttacks.applyBlind(saen, 3);
 			}
+			else if (blindedPC && !blindedSaen)
+			{
+				output(" blinding you, as Saendra moves to avoid the blast.");
+				CombatAttacks.applyBlind(pc, 3);
+			}
 			else
 			{
 				output(" though both you and Saendra manage to avoid any serious effect.");
@@ -302,7 +307,7 @@ package classes.Characters
 				applyDamage(new TypeCollection( { kinetic: 8 * mul } ), this, target, (target is PlayerCharacter ? "minimal" : "suppress"));
 			}
 
-			createStatusEffect("NadeCD", 5);
+			createStatusEffect("Nade Cooldown", 5);
 		}
 	}
 }

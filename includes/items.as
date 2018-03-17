@@ -2437,8 +2437,7 @@ public function replaceItemPicker(lootList:Array):void {
 		
 		if(pc.inventory[i].shortName != "")
 		{
-			var butDesc:String = pc.inventory[i].shortName + " x" + pc.inventory[i].quantity
-			addButton(btnSlot, butDesc, replaceItemGo, [i, lootList]); // HAAACK. We can only pass one arg, so shove the two args into an array
+			addItemButton(btnSlot, pc.inventory[i], replaceItemGo, [i, lootList]); // HAAACK. We can only pass one arg, so shove the two args into an array
 		}
 		btnSlot++;
 		i++;
