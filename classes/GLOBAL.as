@@ -1053,24 +1053,25 @@
 		public static const TIMES_CELISE_IN_BALLS:int                  = 2;
 
 		//ITEM TYPES
-		public static const PILL:int                                   = 0; // Used for medicinal/misc and mostly legal drugs.
-		public static const FOOD:int                                   = 1; // Used for consumable food items.
-		public static const POTION:int                                 = 2; // Used for drinks/recovery items.
-		public static const MELEE_WEAPON:int                           = 3;
-		public static const RANGED_WEAPON:int                          = 4;
-		public static const ARMOR:int                                  = 5;
-		public static const SHIELD:int                                 = 6;
-		public static const UPPER_UNDERGARMENT:int                     = 7;
-		public static const LOWER_UNDERGARMENT:int                     = 8;
-		public static const ACCESSORY:int                              = 9;
-		public static const DRUG:int                                   = 10; // Used for illegal or detrimental drugs/consumables.
-		public static const CLOTHING:int                               = 11;
-		public static const ALL:int                                    = 12; // Used for pawn shops!
-		public static const GADGET:int 								   = 13; // Used for devices/appliances.
-		public static const EXPLOSIVECONSUMABLE:int					   = 14;
-		public static const QUEST_ITEM:int							   = 15; // Used for quest-related items.
-		public static const GEM:int 								   = 16; // Used for very valuable items.
-		public static const SEXTOY:int 								   = 17; // Used for any portable sexual relief devices.
+		public static const PILL:int									= 0; // Used for medicinal/misc and mostly legal drugs.
+		public static const FOOD:int									= 1; // Used for consumable food items.
+		public static const POTION:int									= 2; // Used for drinks/recovery items.
+		public static const MELEE_WEAPON:int							= 3;
+		public static const RANGED_WEAPON:int							= 4;
+		public static const ARMOR:int									= 5;
+		public static const SHIELD:int									= 6;
+		public static const UPPER_UNDERGARMENT:int 						= 7;
+		public static const LOWER_UNDERGARMENT:int 						= 8;
+		public static const ACCESSORY:int 								= 9;
+		public static const DRUG:int									= 10; // Used for illegal or detrimental drugs/consumables.
+		public static const CLOTHING:int 								= 11;
+		public static const ALL:int										= 12; // Used for pawn shops!
+		public static const GADGET:int 									= 13; // Used for devices/appliances.
+		public static const EXPLOSIVECONSUMABLE:int						= 14;
+		public static const QUEST_ITEM:int								= 15; // Used for quest-related items.
+		public static const GEM:int 									= 16; // Used for very valuable items.
+		public static const SEXTOY:int 									= 17; // Used for any portable sexual relief devices.
+		public static const PIERCING:int 								= 18; // Used for piercings
 		
 		public static const ITEM_TYPE_NAMES:Array = [
 			"Pill",
@@ -1143,6 +1144,12 @@
 		public static const ITEM_FLAG_VAGINALLY_SEALED:int 				= 25; //For undies that seal in cumflation :3
 		public static const ITEM_FLAG_ANALLY_SEALED:int 				= 26; //For undies that seal in Kiro's enormous loads.
 		public static const ITEM_FLAG_HIGH_PHYSIQUE:int 				= 27; //For items that require high physique - 66%+, rounded up.
+		public static const ITEM_FLAG_PIERCING_MULTIPLE:int 			= 28; //For piercings that are multiple - IE, will fit on both ears or all 
+		public static const ITEM_FLAG_PIERCING_STUD:int 				= 29; //Piercings of the "stud" type.
+		public static const ITEM_FLAG_PIERCING_RING:int 				= 30; //Piercings of the "ring" type.
+		public static const ITEM_FLAG_PIERCING_NO_REMOVE:int 			= 31; //Piercings that the PC cannot remove by themself.
+		public static const ITEM_FLAG_PIERCING_CHAINS:int 				= 32; //Piercings of the "ring" type.
+
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1172,7 +1179,12 @@
 			"Anal Chastity",
 			"Vaginal Cum-Sealed",
 			"Anal Cum-Sealed",
-			"Requires High Physique"
+			"Requires High Physique",
+			"Multiple Piercings",
+			"Stud-Style Piercing",
+			"Ring-Style Piercing",
+			"Permanent Piercing",
+			"Piercing w/Chains"
 		];
 		
 		/**

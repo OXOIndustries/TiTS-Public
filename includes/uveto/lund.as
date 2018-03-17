@@ -762,13 +762,15 @@ public function lundDoggyStyleSubmitEnd():void
 	if(pc.isTaur()) output(", in both the metaphorical and literal sense,");
 	output(" by Lund. You’ve noticed the korgonnes switching partners - well, most of them - but the same doesn’t seem to apply to you. You’re just for Lund, apparently. Maybe it’s the collar... ");
 	//Already pierced!
-	if(9999 == 0) output("and the shiny new nipple piercings. Hanging from each [pc.nipple] is a small golden ring, not unlike the type you might go see through the ear of a cowgirl. Lund said he liked them and, well, you weren’t going to say no to that. Besides... looking down at them now, hanging from your [pc.breasts]");
+	if(flags["LUND_PIERCED"] == undefined) 
+	{
+		output("and the shiny new nipple piercings. Hanging from each [pc.nipple] is a small golden ring, not unlike the type you might go see through the ear of a cowgirl. Lund said he liked them and, well, you weren’t going to say no to that. Besides... looking down at them now, hanging from your [pc.breasts]");
+		pc.breastRows[0].piercing = new LundsRings();
+	}
 	else output("Besides, looking down at yourself right now");
 	output(", you personally think it’s really hot to be marked so visibly.");
 	output("\n\nBy the time the two of you leave, you’re fucked out for the day. Well, you might have one or two sessions with Lund left in you, but you’re okay for now. You give both him and his balls a warm kiss before you leave, heading back to the Hold proper. You’ll have to do this again sometime soon!");
-	output("\n\n(<b>Developer Note:</b> Piercings are not yet supported. These will be enabled in a future update! <3 -Fen)");
 	processTime(128);
-	//9999 add nip piercings!
 	//add description for piercings:
 	//Your nipples are each pierced with a small golden ring, courtesy of Lund. If you lift them to check, you can see inscriptions along the inside written in korgonne script. Lund only smiled when you asked him what they said, but you’re pretty sure you have a good idea. At least no-one else will know unless you tell them.
 	clearMenu();

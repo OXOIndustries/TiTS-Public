@@ -659,6 +659,8 @@
 		{
 			return "Your [pc.face] briefly itches, but nothing happens.";
 		}
+		//New piercing hotness:
+		public var nosePiercing:ItemSlotClass = new EmptySlot();
 
 		public var tongueType: Number = 0;
 		public function tongueTypeUnlocked(newTongueType:Number):Boolean
@@ -679,6 +681,8 @@
 		{
 			return "Your [pc.tongue] feels odd in your mouth but doesn’t change.";
 		}
+		//New piercing hotness:
+		public var tonguePiercing:ItemSlotClass = new EmptySlot();
 
 		public var lipMod:Number = 0;
 		public function lipModUnlocked(newLipMod:Number):Boolean
@@ -691,6 +695,8 @@
 			return "Your [pc.lips] feel momentarily hot, but a quick lick confirms that nothing has changed.";
 		}
 		public var lipColor:String = "peach";
+		//New piercing hotness:
+		public var lipPiercing:ItemSlotClass = new EmptySlot();
 
 		public var earType: Number = 0;
 		public var earLength:Number = 0;
@@ -702,6 +708,8 @@
 		{
 			return "Your [pc.ears] are burning. Someone must be talking about you.";
 		}
+		//New piercing hotness:
+		public var earPiercing:ItemSlotClass = new EmptySlot();
 
 		public var antennae: Number = 0;
 		public function antennaeUnlocked(newAntennaeNumber:Number):Boolean
@@ -12903,7 +12911,7 @@
 			}
 			//Non taurs or taurs who didn't roll flanks
 			else {
-				desc += RandomInCollection(["hip", "hip", "hip", "side"]);
+				desc += RandomInCollection(["hip", "hip", "hip"]);
 			}
 			if (asPlural) desc = plural(desc);
 			return desc;
@@ -17481,6 +17489,7 @@
 				return currBellyRating;
 			}
 		}
+		public var bellyPiercing:ItemSlotClass = new EmptySlot();
 		
 		// Pregnancy Data Storage
 		public var pregnancyData:Array = new Array();

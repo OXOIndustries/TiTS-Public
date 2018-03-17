@@ -2,6 +2,8 @@
 {
 	import classes.DataManager.Serialization.UnversionedSaveable;
 	import classes.kGAMECLASS;
+	import classes.ItemSlotClass;
+	import classes.Items.Miscellaneous.EmptySlot;
 	public class VaginaClass extends UnversionedSaveable
 	{
 		//constructor
@@ -109,6 +111,11 @@
 		public var clitPierced:Number = 0;
 		public var clitPShort:String = "";
 		public var clitPLong:String = "";
+
+		//New piercing hotness:
+		public var piercing:ItemSlotClass = new EmptySlot();
+		//New piercing hotness:
+		public var clitPiercing:ItemSlotClass = new EmptySlot();
 		
 		//FLAG CHECKIN!
 		public function hasFlag(arg:int):Boolean {

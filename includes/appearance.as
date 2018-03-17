@@ -2,6 +2,7 @@
 import classes.Creature;
 import classes.StorageClass;
 import classes.GameData.Pregnancy.PregnancyManager;
+import classes.Items.Piercings.LundsRings;
 public function pcAppearance(e:MouseEvent = null):void 
 {
 	if (pc.short.length == 0) return;
@@ -3211,7 +3212,7 @@ public function boobStuff(forTarget:Creature = null):void
 			}
 		}
 	}
-	
+	if(target.breastRows[0].piercing is LundsRings && target is PlayerCharacter) output2("\n\nYour [pc.nipples] are each pierced with a small golden ring, courtesy of Lund. If you lift them to check, you can see inscriptions along the inside written in korgonne script. Lund only smiled when you asked him what they said, but you’re pretty sure you have a good idea. At least no-one else will know unless you tell them.");
 	if(forTarget != null) setTarget(null);
 }
 
