@@ -1072,6 +1072,7 @@
 		public static const GEM:int 									= 16; // Used for very valuable items.
 		public static const SEXTOY:int 									= 17; // Used for any portable sexual relief devices.
 		public static const PIERCING:int 								= 18; // Used for piercings
+		public static const COCKSOCK:int 								= 19; // Used for cockwear
 		
 		public static const ITEM_TYPE_NAMES:Array = [
 			"Pill",
@@ -1093,6 +1094,7 @@
 			"Gem",
 			"Sex Toy",
 			"Piercing",
+			"Cockwear",
 		];
 
 		//CHARACTERS
@@ -1148,8 +1150,8 @@
 		public static const ITEM_FLAG_PIERCING_MULTIPLE:int 			= 28; //For piercings that are multiple - IE, will fit on both ears or all 
 		public static const ITEM_FLAG_PIERCING_STUD:int 				= 29; //Piercings of the "stud" type.
 		public static const ITEM_FLAG_PIERCING_RING:int 				= 30; //Piercings of the "ring" type.
-		public static const ITEM_FLAG_PIERCING_NO_REMOVE:int 			= 31; //Piercings that the PC cannot remove by themself.
-		public static const ITEM_FLAG_PIERCING_CHAINS:int 				= 32; //Piercings of the "ring" type.
+		public static const ITEM_FLAG_PIERCING_CHAINS:int 				= 31; //Piercings of the "chain" type.
+		public static const ITEM_FLAG_NO_REMOVE:int 					= 32; //Worn items that the PC cannot remove by themself.
 
 		
 		public static const ITEM_FLAG_NAMES:Array = [
@@ -1181,11 +1183,11 @@
 			"Vaginal Cum-Sealed",
 			"Anal Cum-Sealed",
 			"Requires High Physique",
-			"Multiple Piercings",
-			"Stud-Style Piercing",
-			"Ring-Style Piercing",
-			"Permanent Piercing",
-			"Piercing w/Chains",
+			"Multiples",
+			"Stud",
+			"Ring",
+			"Chained",
+			"Permanent",
 		];
 		
 		/**

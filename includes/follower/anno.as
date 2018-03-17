@@ -747,7 +747,7 @@ public function annoFollowerTalkMenu(doOut:Boolean = true):void
 public function testPiercing():void
 {
 	clearOutput();
-	output("You get pierced, yo.");
+	output("You get pierced, yo.\n\n");
 	//pc.cocks[0].piercing = new HorseCock();
 	quickLoot(new LundsRings());
 	annoFollowerMenu();

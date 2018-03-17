@@ -406,6 +406,8 @@
 		{
 			return "Your [pc.eye] twitches, resisting a change.";
 		}
+		//New piercing hotness:
+		public var eyebrowPiercing:ItemSlotClass = new EmptySlot();
 		
 		public var tallness: Number = 0;
 		public function tallnessUnlocked(newTallness:Number):Boolean
@@ -1096,6 +1098,122 @@
 		public var nosePierced: Number = 0;
 		public var nosePShort: String = "";
 		public var nosePLong: String = "";
+		
+		public function hasPiercing():Boolean
+		{
+			return (hasEarPiercing() || hasEyebrowPiercing() || hasNosePiercing() || hasLipPiercing() || hasTonguePiercing() || hasBellyPiercing() || hasNipplePiercing() || hasCockPiercing() || hasVaginaPiercing() || hasClitPiercing());
+		}
+		public function hasEarPiercing():Boolean
+		{
+			return (!(earPiercing is EmptySlot));
+		}
+		public function hasEyebrowPiercing():Boolean
+		{
+			return (!(eyebrowPiercing is EmptySlot));
+		}
+		public function hasNosePiercing():Boolean
+		{
+			return (!(nosePiercing is EmptySlot));
+		}
+		public function hasLipPiercing():Boolean
+		{
+			return (!(lipPiercing is EmptySlot));
+		}
+		public function hasTonguePiercing():Boolean
+		{
+			return (!(tonguePiercing is EmptySlot));
+		}
+		public function hasBellyPiercing():Boolean
+		{
+			return (!(bellyPiercing is EmptySlot));
+		}
+		public function hasNipplePiercing(idx:int = -1):Boolean
+		{
+			return (hasPiercedNipples(idx));
+		}
+		public function hasPiercedNipples(idx:int = -1):Boolean
+		{
+			if(breastRows.length <= 0 || idx >= breastRows.length) return false;
+			if(idx < 0)
+			{
+				for(idx = 0; idx < breastRows.length; idx++)
+				{
+					if(!(breastRows[idx].piercing is EmptySlot)) return true;
+				}
+				return false;
+			}
+			return (!(breastRows[idx].piercing is EmptySlot));
+		}
+		public function hasCockPiercing(idx:int = -1):Boolean
+		{
+			return (hasPiercedCocks(idx));
+		}
+		public function hasPiercedCocks(idx:int = -1):Boolean
+		{
+			if(!hasCock() || idx >= cocks.length) return false;
+			if(idx < 0)
+			{
+				for(idx = 0; idx < cocks.length; idx++)
+				{
+					if(!(cocks[idx].piercing is EmptySlot)) return true;
+				}
+				return false;
+			}
+			return (!(cocks[idx].piercing is EmptySlot));
+		}
+		public function hasVaginaPiercing(idx:int = -1):Boolean
+		{
+			return (hasPiercedVaginas(idx));
+		}
+		public function hasPiercedVaginas(idx:int = -1):Boolean
+		{
+			if(!hasVagina() || idx >= vaginas.length) return false;
+			if(idx < 0)
+			{
+				for(idx = 0; idx < vaginas.length; idx++)
+				{
+					if(!(vaginas[idx].piercing is EmptySlot)) return true;
+				}
+				return false;
+			}
+			return (!(vaginas[idx].piercing is EmptySlot));
+		}
+		public function hasClitPiercing(idx:int = -1):Boolean
+		{
+			return (hasPiercedClits(idx));
+		}
+		public function hasPiercedClits(idx:int = -1):Boolean
+		{
+			if(!hasVagina() || idx >= vaginas.length) return false;
+			if(idx < 0)
+			{
+				for(idx = 0; idx < vaginas.length; idx++)
+				{
+					if(!(vaginas[idx].clitPiercing is EmptySlot)) return true;
+				}
+				return false;
+			}
+			return (!(vaginas[idx].clitPiercing is EmptySlot));
+		}
+		
+		// Cock-socks
+		public function hasCocksock(idx:int = -1):Boolean
+		{
+			return (hasSockedCocks(idx));
+		}
+		public function hasSockedCocks(idx:int = -1):Boolean
+		{
+			if(!hasCock() || idx >= cocks.length) return false;
+			if(idx < 0)
+			{
+				for(idx = 0; idx < cocks.length; idx++)
+				{
+					if(!(cocks[idx].cocksock is EmptySlot)) return true;
+				}
+				return false;
+			}
+			return (!(cocks[idx].cocksock is EmptySlot));
+		}
 
 		//Sexual Stuff
 		public var cocks:/*CockClass*/Array;
@@ -2082,6 +2200,12 @@
 					break;
 				case "nipplesNoun":
 					buffer = nipplesNoun(arg2);
+					break;
+				case "nippleNounSimple":
+					buffer = nippleNoun(arg2, true);
+					break;
+				case "nipplesNounSimple":
+					buffer = nipplesNoun(arg2, true);
 					break;
 				case "nipple":
 				case "nippleDescript":
@@ -5693,7 +5817,7 @@
 			var nouns:Array = ["nose"];
 			var description:String = "";
 			
-			if(nosePierced > 0) adjectives.push("pierced");
+			if(hasNosePiercing()) adjectives.push("pierced");
 			
 			if(rand(2) == 0 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
 			description += nouns[rand(nouns.length)];
@@ -5750,7 +5874,7 @@
 			}
 			
 			//Mention of piercings
-			if (tonguePierced > 0)
+			if (hasTonguePiercing())
 			{
 				if (descripted > 0) description += ", ";
 				description += tongueNoun(false,true);
@@ -5854,8 +5978,8 @@
 			var description:String = "";
 			var descripted:int = 0;
 			
-			//Mention of piercings.
-			if (bPiercings && tonguePierced > 0)
+			//Mention of piercings. 9999
+			if (bPiercings)
 			{
 				if (tonguePierced < 2) description += "pierced";
 				else if (tonguePierced < 3) description += "double-pierced";
@@ -9545,44 +9669,6 @@
 				if (biggestTitSize() >= 1) return true;
 			}
 			return false;
-		}
-		public function hasPiercedNipples(idx:int = -1):Boolean
-		{
-			if(idx < 0)
-			{
-				for(idx = 0; idx < breastRows.length; idx++)
-				{
-					if(!(breastRows[idx].piercing is EmptySlot)) return true;
-				}
-				return false;
-			}
-			return (!(breastRows[idx].piercing is EmptySlot));
-		}
-		public function hasPiercedCocks(idx:int = -1):Boolean
-		{
-			if(!hasCock()) return false;
-			if(idx < 0)
-			{
-				for(idx = 0; idx < cocks.length; idx++)
-				{
-					if(!(cocks[idx].piercing is EmptySlot)) return true;
-				}
-				return false;
-			}
-			return (!(cocks[idx].piercing is EmptySlot));
-		}
-		public function hasPiercedVaginas(idx:int = -1):Boolean
-		{
-			if(!hasVagina()) return false;
-			if(idx < 0)
-			{
-				for(idx = 0; idx < vaginas.length; idx++)
-				{
-					if(!(vaginas[idx].piercing is EmptySlot)) return true;
-				}
-				return false;
-			}
-			return (!(vaginas[idx].piercing is EmptySlot));
 		}
 		public function hasNipples(): Boolean {
 			if(nipplesPerBreast > 0) return true;
@@ -13419,9 +13505,9 @@
 				description += RandomInCollection(["rubber-wrapped","latex-encased","shrink-wrapped","ebony-coated","latex-lacquered","suit-encased","latex-enclosed","rubber-encased","latex-wrapped","rubber-painted"]);
 				descripted++;
 			}
-			if (descripted && rand(2) == 0 && nipplesPierced > 0 && rowNum == 0) {
+			if (descripted && rand(2) == 0 && hasNipplePiercing(rowNum)) {
 				if (descripted > 0) description += ", ";
-				if (nipplesPierced == 5) description += "chained ";
+				if (rowNum >= 0 && breastRows[rowNum].piercing.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_CHAINS)) description += "chained ";
 				else description += "pierced ";
 				descripted++;
 			}
@@ -13464,42 +13550,53 @@
 			if (asPlural) description = plural(description);
 			return description;
 		}
-		public function nippleNoun(rowNum:int = 0):String
+		public function nippleNoun(rowNum:int = 0, simple:Boolean = false):String
 		{
 			var nouns:Array = [];
-			if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) {
+			if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE)
+			{
+				if(simple) return "fuckable nipple";
 				nouns.push("penetrable nipple", "fuckable nip", "fuckable nipple", "pliable nipple-cunt", "stretchy nipple-cunt");
-			} else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) {
+			}
+			else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES)
+			{
+				if(simple) return "lipple";
 				nouns.push("lipple", "lip-nipple", "kissable nipple", "mouth-like nipple");
 			}
 			else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
 			{
+				if(simple) return "dick-nipple";
 				nouns.push("dick-nipple", "cock-nipple", "nipple-cock");
 			}
 			else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_INVERTED)
 			{
+				if(simple) return "inverted nipple";
 				nouns.push("inverted nipple", "hidden nip");
 			}
 			else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_FLAT)
 			{
+				if(simple) return "flat nipple";
 				nouns.push("tipless nipple", "flat nipple", "puffy nipple", "pebbly nipple");
 				nouns.push("tipless nip", "flat nip", "puffy nip", "pebbly nip");
 			}
 			else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_TENTACLED)
 			{
+				if(simple) return "tentacle nipple";
 				nouns.push("writhing tentacle", "tentacle nipple", "tendril teat", "wiggling tendril", "long, tentacle nipple");
 			}
 			//Normals
-			else {
+			else
+			{
+				if(simple) return "nipple";
 				nouns.push("nipple", "nipple");
 				if (isLactating() && nippleLength(rowNum) >= 1) nouns.push("nipple", "nipple", "teat", "teat");
 				nouns.push("bud");
 			}
 			return nouns[rand(nouns.length)];
 		}
-		public function nipplesNoun(rowNum:int = 0):String
+		public function nipplesNoun(rowNum:int = 0, simple:Boolean = false):String
 		{
-			return plural(nippleNoun(rowNum));
+			return plural(nippleNoun(rowNum, simple));
 		}
 		public function areolaSizeDescript(): String {
 			//Define areola size description by nippleWidth
@@ -13965,7 +14062,7 @@
 					descripted++;
 				}
 			}
-			if (!nounOnly && pussy >= 0 && vaginas[pussy].clitPierced > 0 && descripted < 2 && rand(3) < 2) {
+			if (!nounOnly && pussy >= 0 && hasClitPiercing(pussy) && descripted < 2 && rand(3) < 2) {
 				if (descripted > 0) descript += ", ";
 				descript += "pierced";
 				descripted++;
@@ -15676,10 +15773,10 @@
 				multiOkay = true;
 				for(x = 0; x < cockTotal(); x++)
 				{
-					if(cocks[x].pierced <= 0) multiOkay = false;
+					if(hasCockPiercing(x)) multiOkay = false;
 				}
 			}
-			if (adjectives < adjectiveLimit && rand(5) == 0 && cock.pierced > 0 && (!multi || multiOkay)) 
+			if (adjectives < adjectiveLimit && rand(5) == 0 && hasCockPiercing(x) && (!multi || multiOkay)) 
 			{
 				if(adjectives > 0) descript += ", ";
 				descript += "pierced";
@@ -15710,18 +15807,22 @@
 				adjectives++;
 			}
 			//Cocksocks!
-			//Pierced - 1/5 chance
+			//Sock - 1/5 chance
 			if(multi)
 			{
 				multiOkay = true;
 				for(x = 0; x < cockTotal(); x++)
 				{
-					if(cocks[x].sock == "") multiOkay = false;
+					if(hasCocksock(x)) multiOkay = false;
 				}
 			}
-			if (adjectives < adjectiveLimit && !multi && rand(5) == 0 && cock.sock != "" && (!multi || multiOkay)) {
+			if (adjectives < adjectiveLimit && !multi && rand(5) == 0 && !(cock.cocksock is EmptySlot)) {
 				if(adjectives > 0) descript += ", ";
-				descript += RandomInCollection(["sock-sheathed","garment-wrapped","wrapped","smartly dressed","cloth-shrouded","sock-shrouded","fabric swaddled","covered"]);
+				// Generic adjectives
+				var sockAdj:Array = ["wrapped","garment-wrapped","smartly dressed"];
+				// Actually coverd like socks
+				if(!cock.cocksock.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) sockAdj.push("covered","sock-sheathed","sock-shrouded","cloth-shrouded","fabric swaddled");
+				descript += RandomInCollection(sockAdj);
 				adjectives++;
 			}
 			return [descript,adjectives];
@@ -19045,17 +19146,6 @@
 		public var btnTargetText:String // Base text used for buttons
 		public var buttonText:String; // Transient version of ^ with a unique ID appended
 		
-		public function hasLipPiercing():Boolean
-		{
-			return false; // 9999
-		}
-		
-		public function hasTonguePiercing():Boolean
-		{
-			return false; // 9999
-		}
-		
-		
 		//Cumflation
 		//v1 = current in belly
 		//v2 = most had in belly
@@ -19531,13 +19621,13 @@
 		public function itemSlotUnlocked(slot:Number):Boolean
 		{
 			if
-			(	(InCollection(slot, GLOBAL.CLOTHING, GLOBAL.ARMOR) && hasStatusEffect("Armor Slot Disabled"))
-			||	(slot == GLOBAL.MELEE_WEAPON && hasStatusEffect("Melee Weapon Slot Disabled"))
-			||	(slot == GLOBAL.RANGED_WEAPON && hasStatusEffect("Ranged Weapon Slot Disabled"))
-			||	(slot == GLOBAL.SHIELD && hasStatusEffect("Shield Slot Disabled"))
-			||	(slot == GLOBAL.ACCESSORY && hasStatusEffect("Accessory Slot Disabled"))
-			||	(slot == GLOBAL.LOWER_UNDERGARMENT && hasStatusEffect("Lower Garment Slot Disabled"))
-			||	(slot == GLOBAL.UPPER_UNDERGARMENT && hasStatusEffect("Upper Garment Slot Disabled"))
+			(	(InCollection(slot, GLOBAL.CLOTHING, GLOBAL.ARMOR) && (hasStatusEffect("Armor Slot Disabled") || armor.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)))
+			||	(slot == GLOBAL.MELEE_WEAPON && (hasStatusEffect("Melee Weapon Slot Disabled") || meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)))
+			||	(slot == GLOBAL.RANGED_WEAPON && (hasStatusEffect("Ranged Weapon Slot Disabled") || rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)))
+			||	(slot == GLOBAL.SHIELD && (hasStatusEffect("Shield Slot Disabled") || shield.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)))
+			||	(slot == GLOBAL.ACCESSORY && (hasStatusEffect("Accessory Slot Disabled") || accessory.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)))
+			||	(slot == GLOBAL.LOWER_UNDERGARMENT && (hasStatusEffect("Lower Garment Slot Disabled") || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)))
+			||	(slot == GLOBAL.UPPER_UNDERGARMENT && (hasStatusEffect("Upper Garment Slot Disabled") || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)))
 			)	return false;
 			return true;
 		}

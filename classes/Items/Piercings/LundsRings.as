@@ -31,7 +31,7 @@
 			
 			addFlag(GLOBAL.ITEM_FLAG_PIERCING_MULTIPLE);
 			addFlag(GLOBAL.ITEM_FLAG_PIERCING_RING);
-			addFlag(GLOBAL.ITEM_FLAG_PIERCING_NO_REMOVE);
+			addFlag(GLOBAL.ITEM_FLAG_NO_REMOVE);
 			
 			this.version = _latestVersion;
 		}

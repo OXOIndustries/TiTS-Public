@@ -90,6 +90,8 @@
 		public var sock:String = "";
 		//New piercing hotness:
 		public var piercing:ItemSlotClass = new EmptySlot();
+		// Cocksock:
+		public var cocksock:ItemSlotClass = new EmptySlot();
 
 
 		//MEMBER FUNCTIONS
