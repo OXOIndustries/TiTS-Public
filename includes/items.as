@@ -280,24 +280,24 @@ public function useAPiercing(item:ItemSlotClass):Boolean
 		//Clits
 		if(pc.totalVaginas() > 1)
 		{
-			output("\n\t*(" + (button+1) + ") " + StringUtil.upperCase(num2Ordinal(x+1)) + " Vagina’s Clit");
-			btnName = "Clit #" + (x+1);
-			btnTitle = StringUtil.upperCase(num2Ordinal(x+1)) + " Vagina’s Clit";
+			output("\n\t*(" + (button+1) + ") " + StringUtil.upperCase(num2Ordinal(x+1)) + " Vagina’s Clit" + (pc.vaginas[x].clits == 1 ? "" : "s"));
+			btnName = "Clit" + (pc.vaginas[x].clits == 1 ? "" : "s") + " #" + (x+1);
+			btnTitle = StringUtil.upperCase(num2Ordinal(x+1)) + " Vagina’s Clit" + (pc.vaginas[x].clits == 1 ? "" : "s");
 		}
 		else
 		{
-			output("\n\t*(" + (button+1) + ") Clit");
-			btnName = "Clit";
-			btnTitle = "Clit";
+			output("\n\t*(" + (button+1) + ") Clit" + (pc.vaginas[x].clits == 1 ? "" : "s"));
+			btnName = "Clit" + (pc.vaginas[x].clits == 1 ? "" : "s");
+			btnTitle = "Clit" + (pc.vaginas[x].clits == 1 ? "" : "s");
 		}
-		if(pc.vaginas[x].clits > 1) output(" (Max 1x/Vagina)");
+		if(pc.vaginas[x].clits > 1 && !item.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_MULTIPLE)) output(" (Max 1x/Vagina)");
 		if(!(pc.vaginas[x].clitPiercing is EmptySlot)) output(" - Pierced: " + pc.vaginas[x].clitPiercing.longName);
 		else
 		{
 			output(" - <b>(EMPTY)</b>");
 		}
 		if(pc.vaginas[x].clitPiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You cannot remove that piercing without outside assistance.");
-		else addButton(button++,(button) + ": " + btnName,actuallyPierceYourself,[item,"clit",x]);
+		else addButton(button++,(button) + ": " + btnName,actuallyPierceYourself,[item,(pc.vaginas[x].clits == 1 ? "clit" : "clits"),x]);
 	}
 	
 	while((button < 59) && ((button + 1) % 15 != 0)) { button++; }
@@ -366,6 +366,7 @@ public function actuallyPierceYourself(args:Array):void
 			pc.vaginas[x].piercing.onEquip(pc);
 			break;
 		case "clit":
+		case "clits":
 			oldItem = pc.vaginas[x].clitPiercing.makeCopy();
 			pc.vaginas[x].clitPiercing = item.makeCopy();
 			pc.vaginas[x].clitPiercing.onEquip(pc);
@@ -385,10 +386,11 @@ public function actuallyPierceYourself(args:Array):void
 	}
 	//Text for it!
 	output("A quick pinch is all it takes to pierce yourself. Your upgraded immune system assists your body in sealing the wound and preventing infection. All finished, you can admire the placement of " + item.longName + " on your ");
-	if(InCollection(slot, ["nipples", "ears", "brows"]) && !item.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_MULTIPLE))
+	if(InCollection(slot, ["nipples", "ears", "brows", "clits"]) && !item.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_MULTIPLE))
 	{
 		if(slot == "nipples") output("nipple");
 		else if(slot == "brows") output("eyebrow");
+		else if(slot == "clits") output("clit");
 		else output("ear");
 	}
 	else output(slot);
@@ -1520,7 +1522,7 @@ public function removeAPiercingMenu():void
 			btnName = "Clit";
 			btnTitle = "Clit";
 		}
-		if(pc.vaginas[x].clits > 1) output(" (Max 1x/Vagina)");
+		if(pc.vaginas[x].clits > 1 && !pc.vaginas[x].piercing.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_MULTIPLE)) output(" (Max 1x/Vagina)");
 		if(!(pc.vaginas[x].clitPiercing is EmptySlot)) output(" - Pierced: " + pc.vaginas[x].clitPiercing.longName);
 		else
 		{
