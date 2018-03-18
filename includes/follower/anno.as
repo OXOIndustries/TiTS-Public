@@ -740,7 +740,7 @@ public function annoFollowerTalkMenu(doOut:Boolean = true):void
 	else addDisabledButton(12,"Locked","Locked","You’ll need to have had sex with Anno, been to Uveto and met certain individuals, and have Anno on your crew for this.");
 	if(flags["ANNO_NEVER_HUSKAR"] != undefined) addDisabledButton(12,"Huskar","Huskar","Anno is doesn’t want stretch marks. Too bad!");
 
-	addButton(13,"PIERCE ME",testPiercing);
+	//addButton(13,"PIERCE ME",testPiercing);
 
 	addButton(14, "Back", annoFollowerMenu);
 }
