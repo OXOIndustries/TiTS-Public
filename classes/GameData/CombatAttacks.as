@@ -1438,7 +1438,7 @@ package classes.GameData
 			
 			for (var x:int = 0; x < hGroup.length; x++)
 			{
-				output("\n" + hGroup[x].getCombatName() + " is caught in the explosion!");
+				output("\n" + StringUtil.capitalize(hGroup[x].getCombatName(), false) + " " + (!hGroup[x].isPlural ? "is" : "are") + " caught in the explosion!");
 				applyDamage(damageRand(damage, 15), attacker, hGroup[x], "minimal");
 			}
 		}
@@ -1847,11 +1847,11 @@ package classes.GameData
 				{
 					applyBlind(cTarget, 3);
 					
-					output("\n<b>" + cTarget.getCombatName() + " " + (cTarget.isPlural ? "are" : "is") + " blinded by the coarse granules.</b>");
+					output("\n<b>" + StringUtil.capitalize(cTarget.getCombatName(), false) + " " + (cTarget.isPlural ? "are" : "is") + " blinded by the coarse granules.</b>");
 				}
 				else
 				{
-					output("\n" + cTarget.getCombatName() + " manage" + (cTarget.isPlural ? "" : "s") + " to keep away from the blinding particles.");
+					output("\n" + StringUtil.capitalize(cTarget.getCombatName(), false) + " manage" + (cTarget.isPlural ? "" : "s") + " to keep away from the blinding particles.");
 				}
 			}
 		}
@@ -1882,12 +1882,12 @@ package classes.GameData
 					applyBlind(cTarget, 3);
 					
 					if (cTarget is PlayerCharacter) output("\n<b>You’re blinded by the luminous flashes.</b>");
-					else output("\n<b>" + cTarget.getCombatName() + " " + (cTarget.isPlural ? "are" : "is") + " blinded by the luminous flashes.</b>");
+					else output("\n<b>" + StringUtil.capitalize(cTarget.getCombatName(), false) + " " + (cTarget.isPlural ? "are" : "is") + " blinded by the luminous flashes.</b>");
 				}
 				else
 				{
 					if (cTarget is PlayerCharacter) output("\nYou manage to avoid the blinding projectile.");
-					else output("\n" + cTarget.getCombatName() + " manage" + (cTarget.isPlural ? "" : "s") + " to avoid the blinding projectile.");
+					else output("\n" + StringUtil.capitalize(cTarget.getCombatName(), false) + " manage" + (cTarget.isPlural ? "" : "s") + " to avoid the blinding projectile.");
 				}
 			}
 		}

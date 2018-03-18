@@ -559,7 +559,7 @@ public function walkiesPart2():void
 	
 	var ppBelle:PregnancyPlaceholder = getBellePregContainer();
 	pc.loadInMouth(ppBelle);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	pc.exhibitionism(1);
 	
 	clearMenu();
@@ -3062,35 +3062,33 @@ public function randomSubTunerShit():void
 	//1:
 	if(rand(4) == 0) 
 	{
-		AddLogEvent(ParseText("\n\nYou’re suddenly stricken by thoughts of Belle as you go about your day, feeling a sudden need to have her hands all over your body, making you hers.\n\nAfter daydreaming for a few more moments, you pull yourself from your dirty thoughts only to be stricken by powerful lust.\n\n... This collar is off, right?"));
+		buffer += "You’re suddenly stricken by thoughts of Belle as you go about your day, feeling a sudden need to have her hands all over your body, making you hers.\n\nAfter daydreaming for a few more moments, you pull yourself from your dirty thoughts only to be stricken by powerful lust.\n\n... This collar is off, right?";
 		pc.lust(10);
 	}
 	//2:
 	else if(rand(3) == 0)
 	{
 
-		buffer += ParseText("\n\nAs you’re going about your day, you find yourself tugging at your collar, or wanting it to be tugged on, more precisely. You can’t help but imagine a leash attached to the ring of ");
+		buffer += "As you’re going about your day, you find yourself tugging at your collar, or wanting it to be tugged on, more precisely. You can’t help but imagine a leash attached to the ring of ";
 		//upgradedSubTuner:
-		if(subTunerUpgraded()) buffer += ParseText("metal");
-		else buffer += ParseText("leather");
-		buffer += ParseText(" around your neck, being held by a big, strong master to gently guide you.");
-		buffer += ParseText("\n\n...Maybe you could pay Belle a visit soon.");
-
-		AddLogEvent(buffer);
+		if(subTunerUpgraded()) buffer += "metal";
+		else buffer += "leather";
+		buffer += " around your neck, being held by a big, strong master to gently guide you.";
+		buffer += "\n\n...Maybe you could pay Belle a visit soon.";
 	}
 	//3:
 	else if(rand(2) == 0)
 	{
-		buffer += ParseText("\n\nYou go rigid for a moment as you’re walking as a shock of need and heat hits your loins before quickly fading, leaving you panting.");
-		buffer += ParseText("\n\nAfter trying to figure out what happened, you tug at the collar around your neck and remember the special function Belle gave it and wonder it the thing is actually off or not.");
-		AddLogEvent(buffer);
+		buffer += "You go rigid for a moment as you’re walking as a shock of need and heat hits your loins before quickly fading, leaving you panting.";
+		buffer += "\n\nAfter trying to figure out what happened, you tug at the collar around your neck and remember the special function Belle gave it and wonder it the thing is actually off or not.";
 		pc.lust(10);
 	}
 	//4 (Requires the PC to have fucked Saec):
 	else
 	{
-		AddLogEvent(ParseText("\n\nAs you’re walking, you find your thoughts drifting to Saec, that lovely blonde pup of Belle’s, her soft fur, her warm smile, her womanly figure, and her big, squeezable breasts. You smile at the picture of the ausar, and ponder if the big blonde puppy could use a playmate in the near future."));
+		buffer += "As you’re walking, you find your thoughts drifting to Saec, that lovely blonde pup of Belle’s, her soft fur, her warm smile, her womanly figure, and her big, squeezable breasts. You smile at the picture of the ausar, and ponder if the big blonde puppy could use a playmate in the near future.";
 	}
+	if(buffer != "") AddLogEvent(buffer);
 }
 
 

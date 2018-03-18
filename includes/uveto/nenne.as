@@ -269,6 +269,9 @@ public function talkToNenne():void
 	addButton(1,"The Shop",theShopNenneTalk,undefined,"The Shop","Ask Nenne about her shop. How did she come to sell all-natural medicines and poisons in the Korg’ii hold?");
 	addButton(2,"Uveto",nenneUvetoTalk,undefined,"Uveto","Ask Nenne what an experienced Korgonne like herself thinks about Uveto, and what opinions she has about the universe, if any.");
 	addDisabledButton(3,"Flirt","Flirt","Maybe talk to her a little before jumping straight to the fuck-offers.");
+	if(silly) addButton(4,"BellyRub!",nenneBellyRub,undefined,"Belly Rub!","Ask if Nenne knows who a good girl is.");
+	else addDisabledButton(4,"BellyRub!","BellyRub!","You aren’t feeling <i>silly</i> enough for this. Maybe there’s an option somewhere to correct that!");
+	addButton(5,"PB Cookie",peanutButterNenne,undefined,"PB Cookie","You wonder how much Nenne would like to have a peanut butter cookie.");
 	addButton(14,"Back",approachNenne,true);
 }
 
@@ -315,7 +318,7 @@ public function nenneFamilyTalk():void
 
 	output("\n\nYou’ve stepped on one mine after another with the topic, so you decide to try and diffuse the situation. Knowing that Korgonne appreciate physical contact, you gently lay your hand on her scalp and give it a rub. You tell her that she’s a beautiful Korgonne, and if she tries, you’re sure she can find another mate that appreciates her for her. There’s bound to be someone in the hold that would enjoy the company of a motherly, experienced Korgonne like herself.");
 
-	output("\n\nShe leans into your head, her tail wagging furiously behind her at your encouragement. <i>“");
+	output("\n\nShe leans against your head, her tail wagging furiously behind her at your encouragement. <i>“");
 	if(!korgiTranslate()) output("Too hoping right.");
 	else output("I hope you’re right, too.");
 	output("”</i> Her eyes meet yours, and they narrow seductively; her tail stops its rampant swishing and slows to a much more casual pace. <i>“");
@@ -324,7 +327,7 @@ public function nenneFamilyTalk():void
 	output("”</i>");
 
 	output("\n\n<i>“Maybe,”</i> you respond, understanding exactly what she means.");
-
+	flags["NENNE_FAMILY"] = 1;
 	// end scene (scene: Nenne’s Family); grey out all options, including [=Back=], except [=Flirt=]
 	processTime(20);
 	if(pc.hasGenitals())
@@ -335,6 +338,57 @@ public function nenneFamilyTalk():void
 	else addDisabledButton(3,"Flirt","Flirt","It seems a little silly to flirt with her while you don’t have any proper genitals.");
 	addDisabledButton(0,"Family","Family","You already discussed that.");
 }
+
+//[=Belly Rub!=]
+// hide this button unless Silly Mode is on
+// Tooltip: Ask if Nenne knows who a good girl is.
+// (scene: Belly Rub)
+
+public function nenneBellyRub():void
+{
+	clearOutput();
+	showNenne();
+	author("B");
+	output("You look Nenne over; at her tired grey fur and her slightly-bent posture. She’s getting up there in years a little bit. You bet that, if there’s any one thing that Nenne would enjoy more than anything, it would be to feel young again. And sure, you could fuck her, but you have something a little more immediate in mind.");
+	output("\n\n<i>“Hey Nenne,”</i> you ask her. Her ears perk up at the sound of her name, and her tail begins swishing quickly behind her. <i>“Who’s a good girl?”</i>");
+	output("\n\nNenne tilts her head, her mouth shut as she contemplates the question. <i>“");
+	if(!korgiTranslate()) output("‘Good-being’ perspective matters, supposing");
+	else output("I suppose the matter of what is ‘good’ is a matter of perspective");
+	output(",”</i> she answers, choosing her words carefully. <i>“");
+	if(!korgiTranslate()) output("Unright of Nenne judging to anyone of goodness of them. Gooding for Nenne not being gooding of others, might.");
+	else output("It wouldn’t be right of me to judge whether anyone is good. What is good by me and my perspective might not be good by others.");
+	output("”</i>");
+	output("\n\nYou step forward, stepping beside Nenne. You ignore her philosophical answer and ask again. <i>“Who’s a good girl, Nenne?”</i>");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Asking then, gooding of not? Classic problem: okay to stealing of bread to feeding family of starved? Intent to committing gooding of not matters more than action? Where law of word more meaning than law of spirit?");
+	else output("But then you have to ask, what is ‘evil?’ It’s a classic problem: is it alright to steal a loaf of bread to feed a starving family? Does the intent to commit evil matter more than the evil act itself? When and where does the word of the law beat the spirit of the law?");
+	output("”</i>");
+
+	output("\n\n<i>“It’s you!”</i> you announce suddenly!");
+	output("\n\n<b><i>“Really?!”</i></b> Nenne nearly shouts, her eyes lighting up in surprise and pure glee. Her tail wags furiously behind her in surprise, completely elated at the news that she is, in fact, a good girl.");
+	output("\n\nYou launch your attack, bringing your hand to Nenne’s belly, and vigorously start rubbing it with your open palm. At first, Nenne is surprised, but then her left leg starts to kick furiously; her tongue lolls out of her mouth and she begins panting and laughing in surprise.");
+	output("\n\nShe quickly loses her balance with her kicking leg; you use your other hand to brace her and ease her to the floor of her shop gently. Now that she’s laying on her back, you use both hands to rub at her slightly-flabby belly, everywhere from just above her crotch to just below her breasts, getting your ticklish hands everywhere in between.");
+	output("\n\n<i>“It’s you! Yes, Nenne, it’s you!”</i> you repeat loudly, watching her leg kick impiously. Nenne leans her head back, her tongue wagging in the air and her tail thrashing ecstatically underneath her. Joining her left leg, her two arms paw aggressively at nothing above her, all while panting in happy exhaustion at the tactile sensations you’re bombarding her with.");
+	output("\n\nAfter a few minutes of this, you give the exhausted old Korgonne a break, removing your hands from her worn belly. She lays on the floor for a moment longer, her limbs still twitching in delight, before her eyes blink open and lock onto yours.");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("You too good!");
+	else output("You’re good too!");
+	output("”</i> she says happily, drawing her tongue back into her mouth. It takes her another moment to roll onto her shaky limbs, and then another to pull herself back up. <i>“");
+	if(!korgiTranslate()) output("Knowing didn’t Korgonne doing could that! Liked! Afraiding not doing to again!");
+	else output("I didn’t know the Korgonne could do that! I liked it a lot; don’t be afraid to give me another one!");
+	output("”</i>");
+	flags["NENNE_BELLY_RUBS"] = 1;
+	// end scene (scene: Belly Rub); grey out all options, including [=Back=], except [=Flirt=]
+	processTime(20);
+	if(pc.hasGenitals())
+	{
+		if(pc.lust() >= 33) addButton(3,"Flirt",flirtWithNenne,undefined,"Flirt","Nenne’s not hard on the eyes. Why not let her know as much?");
+		else addDisabledButton(3,"Flirt","Flirt","You aren’t turned on enough for that right now.");
+	}
+	else addDisabledButton(3,"Flirt","Flirt","It seems a little silly to flirt with her while you don’t have any proper genitals.");
+	addDisabledButton(4,"BellyRub!","BellyRub!","You already discussed that.");
+}
+
 
 //[=The Shop=]
 // Tooltip: Ask Nenne about her shop. How did she come to sell all-natural medicines and poisons in the Korg’ii hold?
@@ -384,7 +438,7 @@ public function theShopNenneTalk():void
 	if(!korgiTranslate()) output("Asking is being thanked! Nenne love alien for curiousness; Korg’ii not being of curious asking anymore. Ask again, will tell!");
 	else output("Thanks for asking, by the way! I appreciate your curiosity; it’s so rare nowadays for a Korg’ii to ask me about my profession. I’d love to tell the story again if you’d ask!");
 	output("”</i>");
-
+	flags["NENNE_SHOP_TALK"] = 1;
 	// end scene (scene: Nenne’s Shop); grey out all options, including [=Back=], except [=Flirt=]
 	processTime(20);
 	if(pc.hasGenitals())
@@ -436,7 +490,7 @@ public function nenneUvetoTalk():void
 	if(!korgiTranslate()) output("Easy finding of Nenne!");
 	else output("You’ll know where to find me,");
 	output("”</i> she answers with a wink.");
-
+	flags["NENNE_UVETO_TALK"] = 1;
 	// end scene (scene: Nenne’s Uveto); grey out all options, including [=Back=], except [=Flirt=]
 	// If Nenne turns out to be popular enough, this should be a decent hook to make her a crewmate in an expansion.
 	processTime(20);
@@ -690,7 +744,7 @@ public function maleOrHermAndNotDoingOral(x:int = 0):void
 	else if(pc.cocks[x].cLength() < 12) output("and poking along the base of her tail.");
 	else output("and brushing along the underside of her raised tail.");
 
-	output("\n\nPre-cum dribbles from you, sliding down the [pc.skinFurScales] of your shaft, and you feel every exciting moment of that droplets life: your senses are so hyper-tuned that you felt it bubble up from your loins, and you felt it seep from your tip, and you feel it drip its way slowly back down to the crease where your cock meets your ");
+	output("\n\nPre-cum dribbles from you, sliding down the [pc.skin] of your shaft, and you feel every exciting moment of that droplets life: your senses are so hyper-tuned that you felt it bubble up from your loins, and you felt it seep from your tip, and you feel it drip its way slowly back down to the crease where your cock meets your ");
 	if(pc.balls > 0) output("[pc.sack]");
 	else output("crotch");
 	output(". And you feel when Nenne scoops it between her fingers and use that little drop as lube.");
@@ -700,7 +754,7 @@ public function maleOrHermAndNotDoingOral(x:int = 0):void
 	{
 		output("\n\nThen, a light pinch, as Nenne adjusts her grip on you and gives you a light tug. Your [pc.cock " + x + "] is pulled along the tight, warm valley of her hefty bottom, until it finds something warmer and tighter: the pre that Nenne had used to lube your shaft is washed with the feminine juices that’s practically spilling from her pursed pussy lips. With a light downward thrust from her hips, you’ve entered her.");
 		pc.cockChange();
-		output("\n\nNenne hums in delight at feeling such a virile cock properly penetrate her; her breath comes out in feral sputters from the sides of her jowls, and she clenches on top of you. The pay that snaked you inside her loops up to your shoulder, gripping it loosely. Despite her easygoing pace and her expertise touch and directions, her body must have forgotten what a good fucking felt like after so long. You’re not sure you have the control over your body to give her the fucking she deserves, beyond whatever you do instinctually and automatically; you hope that it’ll be enough for her all the same.");
+		output("\n\nNenne hums in delight at feeling such a virile cock properly penetrate her; her breath comes out in feral sputters from the sides of her jowls, and she clenches on top of you. The paw that snaked you inside her loops up to your shoulder, gripping it loosely. Despite her easygoing pace and her expertise touch and directions, her body must have forgotten what a good fucking felt like after so long. You’re not sure you have the control over your body to give her the fucking she deserves, beyond whatever you do instinctually and automatically; you hope that it’ll be enough for her all the same.");
 		output("\n\nWhenever Nenne lifts herself up and off your [pc.cock " + x + "], you lay still, allowing the cool air of the room to simmer off your hard dick for the precious moment it’s exposed until Nenne squats herself back down. When she does, your [pc.hips] thrust upward, jabbing yourself into her as deeply as you can");
 		if(pc.hasKnot(x)) output("; a few more thrusts like that, with how ‘ready’ you both are, and you’ll be tied to her in no time");
 		output(".");
@@ -714,7 +768,7 @@ public function maleOrHermAndNotDoingOral(x:int = 0):void
 		output("\n\nYou feel her walls cling to your every centimeter when you push in or out, every nerve and cell alighting at the touch; you hear the gentle ‘schlep’ every time you slide against each other");
 		if(!pc.hasKnot(x)) output(", and the gentle clap when your bodies meet at your base");
 		else output(", and the tight, sort-of-peeling sound when her tunnel stretches slightly to accommodate your [pc.knot " + x + "]");
-		output("); and every time you pull apart, a new wave of her Korgonne pheromones wafts through the air and into your nose, bringing you closer–");
+		output("; and every time you pull apart, a new wave of her Korgonne pheromones wafts through the air and into your nose, bringing you closer–");
 
 		output("\n\nBefore you know it, you’re there. You were much closer than you had realized, and you weren’t focused on the buildup within you as you fucked Nenne. A large rush starts from inside you, building and bubbling up your shaft; with some emergency, you push once more");
 		if(!pc.hasKnot(x)) output(", hilting you entirely inside Nenne’s body, as deeply as you can reach");
@@ -858,7 +912,78 @@ public function freebieNenneScene():void
 	}
 	// end scene (scene: Freebie); advance clock by two hours; if the PC has earned a free item, display the shop’s menu and reduce all costs to 0 credits; else, display a [=Next=] button and place the PC one square outside of Herbs & Happy
 	// I’ll admit that I kind of got lost as to how to create some kind of economy between the PC and Nenne when it came to free items, so I just resorted to more sex. In order to get a free item, the PC needs to have sex with Nenne, and how many times the PC needs to fuck her increases by one with each item they get (up to a maximum of five times before Nenne finally gives the PC something). So, the first time, they get a free item after fucking her once; then, they need to fuck her twice for another free item; then three times; etc.
+	IncrementFlag("SEXED_NENNE");
 	processTime(180+rand(20));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+//[=PeanutButter=]
+// Add this option to Nenne’s talk menu if Silly Mode is activated
+// Tooltip: You wonder how much Nenne would like to have a peanut butter cookie.
+// Continue from here if this is the first time the PC is giving Nenne a cookie
+public function peanutButterNenne():void
+{
+	clearOutput();
+	showNenne(true);
+	author("B!");
+	if(flags["NENNE_COOKIES"] == undefined)
+	{
+		output("As the conversation moves on, you hear what sounds like a quiet rumbling, or even a purring, coming from nearby. <i>“Sorry,”</i> Nenne says sheepishly, scratching at her ears. <i>“");
+		if(!korgiTranslate()) output("Eat time while ago; eat time of next not for time of many. Hungry am!");
+		else output("It’s been a while since breakfast, and it’ll be a little bit of time until lunch. I guess I’m a little hungrier than I thought.");
+		output("”</i>");
+		output("\n\nYou ask if any of the plants she offers make for a decent meal. <i>“");
+		if(!korgiTranslate()) output("Can, but not time of all. Unfilling and hard taste too. Korg’ii more for meats than planties.");
+		else output("They can be, but they usually aren’t. They also aren’t very filling and they can be hard on the palette. Korg’ii like myself are more for meats than we are for plants.");
+		output("”</i>");
+		output("\n\nRecognizing her plight and sympathizing, you reach into your ");
+		if(!silly) output("pocket");
+		else output("convenient, trans-dimensional, portable hammerspace");
+		output(" and rummage around for the provisions you know you have with you. You don’t have a lot, but among your wares is a small baggie, and inside it is a pair of homemade peanut butter cookies. Oh yeah! You forgot that you had those!");
+		output("\n\nYou pull out the baggie and offer one of the cookies to Nenne. <i>“");
+		if(!korgiTranslate()) output("Is food? Never before of seeing. Alien food good for Korg’ii?");
+		else output("That’s food? I’ve never seen anything like it before. Is your alien food good for us Korg’ii?");
+		output("”</i> You answer that there isn’t a creature in this universe that doesn’t love peanut butter cookies. They’re among the most delicious treats that you and your kind are capable of producing.");
+
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Will try!");
+		else output("Sure, I’ll give it a try,");
+		output("”</i> Nenne says, outstretching her paw. You remove one of the two cookies and give it to her; she turns it over in her paw and gives it a sniff, investigating it and frowning when miniscule bits crumble to her floor. The cookie itself isn’t very large and would likely only give her a mouthful if she ate the whole thing at once – so, without any further delay, she shoves the whole thing into her maw.");
+	}
+	// Continue from here for subsequent cookie-givings
+	else
+	{
+		output("As the conversation moves on, you hear what sounds like a quiet rumbling, or even a purring, coming from nearby. You eye Nenne suspiciously; she smiles sheepishly back at you, her hands behind her back, as she tries to maintain her innocence.");
+		output("\n\nYou ask Nenne if she’s had a chance to eat properly today. <i>“");
+		if(!korgiTranslate()) output("Yessing! Never Nenne skip meals; important for fur of quality keeping and health!");
+		else output("Yes, of course! I’d never intentionally skip any meals; a good diet is important for maintaining proper fur quality and health.");
+		output("”</i> She rocks forward on her heels, leaning towards you. <i>“Buuuuuuuuuut, ");
+		if(!korgiTranslate()) output("last eat time many ago-ago, and next eat time many waits from now. Having any... treats for Nenne to eat for waiting?");
+		else output("breakfast was a long time ago, and lunch won’t be for a little while yet. Do you have any... treats to give me to tide me over until then?");
+		output("”</i>");
+		output("\n\nYou smirk and say that you might just have the thing. As soon as your hand reaches into your ");
+		if(!silly) output("pocket");
+		else output("convenient, trans-dimensional, portable hammerspace");
+		output(", Nenne’s nipples become erect and she begins to salivate. As soon as you withdraw yet another peanut-butter cookie (you had more in there than you realized!) and offer it to her, she snatches it from your hand and unceremoniously crams the whole thing into her mouth.");
+	}
+	// Merge here
+	output("\n\nAs soon as her mouth closes and her teeth skewer into the pastry, the response is immediate: her eyes widen and her pupils dilate, and her knees begin to buckle. Nenne loses her balance; she leans backward, her hand searching for the nearest wall to lean against. Her fur stands on end; her tail straightens behind her; her black nipples become hard as stone, jutting obscenely into the cool air of her apartment; and viscous juice drips from her cunt.");
+	output("\n\nA throaty groan escapes her, muffled through the flaky cookie resting idle and half-eaten in her mouth. She breathes deeply through her nose as her eyes roll upward, back into her skull. Her jaw moves slightly, biting into it once more, and she falls to both knees: her motherly hips thrust forward, into the air, fucking at some invisible cock while her pussy spews her feminine cum forward, splashing along the floor in front of her.");
+	output("\n\nHer breathing increases with her pulse as she frantically tries to maintain control of her own body. One hand is still against the wall, while her other paws ineffectually at her breast, squeezing at her nipple and kneading at the taut flesh with whatever strength is still with her. Her legs splay so widely that she’s nearly doing the splits; her soaking wet pussy soon touches onto the floor, and when it does, another spasm rockets up and down her body, and she frantically fucks her own floor in animalistic, unrestrained pleasure.");
+	output("\n\nHer jaw moves once more, biting into the cookie, and her mouth soon goes slack; her tongue lolls from her mouth, leaking spittle and chewed bits of cookie out onto her breasts and across her neck. Her hips roll forward, harshly dragging the petals of her pussy against the chiselled stone floor of her shop and leaving trails of her hot liquid for her to slide back across. She humps the floor with raw abandon, and every time she completes a circuit, she shivers in delight and sprays a fresh coat down beneath her.");
+	output("\n\nFinally, she swallows what bit of peanut butter cookie she hasn’t drooled back onto herself. As soon as the delicious treat slides down her throat, her upper body loses its strength as all energy and motor functions rush to between her legs. Her body visibly ripples and shivers as she cums one final time in front of you, legs nearly parallel to the floor and her pussy plugged snugly against it, the fluids rising up just slightly to meet her drippy, needy vagina. She goes silent and still, save for the occasional, pleasurable aftershocks that make her twitch, from the fat of her thighs up to her belly and heavy boobs.");
+	output("\n\nAfter a moment, her eyes roll back down from behind her skull – and then they un-cross, focusing in front of her. It takes her a moment to recognize where she was and what she was doing; she first looks at her weary arms, then down across her belly and to the floor beneath her. She says nothing and makes no expression when she recognizes the lustful mess she made beneath herself.");
+	output("\n\nYou ask Nenne if she enjoyed the treat you gave her.");
+	output("\n\nHer hair is haggard and messy around her eyes and ears, and her mouth hangs agape as she tries to catch her breath. You can tell that she understood the question, but it takes her longer than you think she realizes to answer you.");
+	output("\n\n<i>“Uh,”</i> she begins, still heaving as she comes down from her multiple orgasms, <i>“yes. ");
+	if(!korgiTranslate()) output("Wanting not to be selfish, but... if more having, maybe giving to Nenne? Enjoy would being of another treat.");
+	else output("I don’t want to sound selfish or anything, but... if you have any more, maybe you could give it to me? I’d, uh, enjoy having another treat.");
+	output("”</i>");
+	output("\n\nYou tell her that if you ever happen to have another peanut butter cookie, you’ll be sure to think of her.");
+	processTime(10);
+	pc.lust(5);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	IncrementFlag("NENNE_COOKIES");
 }

@@ -2711,9 +2711,9 @@ public function embryAnalSex():void
 	else if(pc.hasVagina())
 	{
 		output("\n\nInch by inch, you bury your strap-on cock inside of [embry.name]’s ");
-		if(embry.analVirgin) output("virgin");
-		else output("[embry.assAdjective]");
-		output(" ass. Watching it slip inside of her gives you quite a rush. When her warm confines grip and squeeze your length, the other end rubs inside of your [pc.pussy], deliciously caressing your inner walls. Both of you moan at once, pleasured by shared penetration.");
+		if(embry.analVirgin) output("virgin ass");
+		else output("[embry.asshole]");
+		output(". Watching it slip inside of her gives you quite a rush. When her warm confines grip and squeeze your length, the other end rubs inside of your [pc.pussy], deliciously caressing your inner walls. Both of you moan at once, pleasured by shared penetration.");
 		output("\n\nEager to stir up your own pussy, as well as her [embry.ass], you thrust your hips against her. The simii girl lets out a sweet moan. Grabbing her [embry.hips] firmly in hand, you let your carnal instincts guide you, and grind lustily against her [embry.ass]. The purple strap on caresses your wet cunny with every passionate thrust, stirring up your sopping wet box.");
 		output("\n\nLewd, wet smacking noises fill the air as you liberally fuck [embry.name]’s butt. Your hips slap against hers under her frilly skirt, and her naughty tunnel eagerly welcomes your thrusting strap on. As you plow her you can see her lusty expression in the mirror and her [embry.breasts] jiggling against the table, adding further passion to your fevered thrusts.");
 		output("\n\n[embry.name] rocks with you in unconcious rhythm, crying out with pleasure as you have your way with her cute, plushy ass. Her butt wrings your fake dick, squeezing it for all it’s worth, and you shudder with pleasure as it in turn stirs your honeypot. In that split second, you know you’re going to come!");
@@ -2736,9 +2736,9 @@ public function embryAnalSex():void
 	else
 	{
 		output("\n\nInch by inch, you bury your strap-on cock inside of [embry.name]’s ");
-		if(embry.analVirgin) output("virgin");
-		else output("[embry.assAdjective]");
-		output(" ass. Watching it slip inside of her gives you quite a rush. You thrust your hips against her, and the simii girl lets out a sweet moan.");
+		if(embry.analVirgin) output("virgin ass");
+		else output("[embry.asshole]");
+		output(". Watching it slip inside of her gives you quite a rush. You thrust your hips against her, and the simii girl lets out a sweet moan.");
 		output("\n\nGrabbing her [embry.hips] firmly in hand, you let your carnal instincts guide you, and grind lustily against her [embry.ass]. Lewd, wet smacking noises fill the air as you liberally fuck [embry.name]’s butt. Your hips slap against hers under her frilly skirt, and her naughty tunnel eagerly welcomes your thrusting strap on.");
 		output("\n\nAs you plow her you can see her lusty expression in the mirror and her [embry.breasts] jiggling against the table, adding further passion to your fevered thrusts.");
 		output("\n\n[embry.name] rocks with you in unconcious rhythm, crying out with pleasure as you have your way with her cute, plushy ass. Her butt wrings your plastic cock, squeezing it for all it’s worth. You seize her [embry.hips] and with one last powerful thrust, you bury your tip deep inside of her ");

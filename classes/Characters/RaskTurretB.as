@@ -36,7 +36,7 @@
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "An armored tank full of high-flammable who-knows-what sits behind an armored shield. A single barrel emerges from a small gap, tipped with the a glowing pilot light. Flamethrowers rarely miss.";
-			this.customDodge = "Somehow, the turret's swivelling moves it out of the way.";
+			this.customDodge = "Somehow, the turret’s swivelling moves it out of the way.";
 			this.customBlock = "The armor plates soak up your attack.";
 			this.isPlural = false;
 			isLustImmune = true;

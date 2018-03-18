@@ -141,6 +141,11 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		clearMenu();
 		return;
 	}
+	//Bad end for negative hp.
+	if(pc.HPMax() < 1)
+	{
+		if(eventQueue.indexOf(deathByNoHP) == -1) eventQueue.push(deathByNoHP);
+	}
 	
 	flags["COMBAT MENU SEEN"] = undefined;
 	
@@ -234,7 +239,9 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	//Standard buttons:
 	addButton(13, "Inventory", inventory);
 	//Other standard buttons
-	if(pc.lust() < 33)
+	// Arousal Masturbation
+	if(hasButton(8)) {} // Button overrides!
+	else if(pc.lust() < 33)
 	{
 		if(canArouseSelf()) addButton(8, "Arousal", arousalMenu);
 		else addDisabledButton(8, "Masturbate");
@@ -243,21 +250,18 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	{
 		if(pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(8, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
 		else if(!pc.canMasturbate()) addDisabledButton(8, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
-		else if(InRoomWithFlag(GLOBAL.WATERFALL)) addButton(8,"Masturbate",fapOnWaterfall,undefined,"Masturbate","Try to blow off some steam.");
 		else addButton(8, "Masturbate", masturbateMenu);
 	}
-	if (!rooms[currentLocation].hasFlag(GLOBAL.BED)) 
+	// Sleep/Rest
+	if(hasButton(9)) {} // Button overrides!
+	else if(!rooms[currentLocation].hasFlag(GLOBAL.BED))
 	{
 		if(canRest()) addButton(9, "Rest", restMenu);
 		else addDisabledButton(9, "Rest", "Rest", "You can’t seem to rest or wait here at the moment....");
 	}
-	else 
+	else
 	{
-		if (currentLocation == "KI-H16" && flags["KI_REFUSED_VANDERBILT"] != undefined && flags["KI_VANDERBILT_WORKING"] != undefined)
-		{
-			addDisabledButton(9, "Sleep", "Sleep", "You can’t afford to risk sleeping with Elenora around. Who knows if she’ll be able to hold it together... or if she’ll try something while you rest.");
-		}
-		else if(canSleep()) addButton(9, "Sleep", sleepMenu);
+		if(canSleep()) addButton(9, "Sleep", sleepMenu);
 		else addDisabledButton(9, "Sleep", "Sleep", "You can’t seem to sleep here at the moment....");
 	}
 	addButton(14, "Codex", showCodex);
@@ -726,8 +730,14 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if (!counter)
 		{
+			//If anno is disabled due to thiccness
+			if(flags["ANNO_HUSKAR_COMPLETE"] == undefined && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 60 > GetGameTimestamp())
+			{
+				crewMessages += "\n\nAnno isn’t in at the moment. You’ll have to wait a bit longer for her to start digging into the treats....";
+				addDisabledButton(btnSlot++,"Anno","Anno","Anno isn’t in at the moment. You’ll have to wait a bit longer for her to start digging into the treats....");
+			}
 			//25% chance of special maid scene proccing if Anno has the maid outfit and haven't seen the scene in a day - gotta have a dink that fits and not be naga or taur
-			if (flags["ANNO_MAID_OUTFIT"] != undefined && rand(4) == 0 && !pc.hasStatusEffect("The Lusty Ausar Maid") && !pc.isTaur() && !pc.isNaga() && pc.cockThatFits(anno.vaginalCapacity()) >= 0)
+			else if (flags["ANNO_MAID_OUTFIT"] != undefined && rand(4) == 0 && !pc.hasStatusEffect("The Lusty Ausar Maid") && !pc.isTaur() && !pc.isNaga() && pc.cockThatFits(anno.vaginalCapacity()) >= 0)
 			{
 				if (rand(2) == 0) crewMessages += "\n\nAnno’s not in her quarters as you’d expect. Instead you find her prancing about the common area of your ship, dressed in what appears to be... a maid outfit?";
 				else crewMessages += "\n\nAnno doesn’t seem to be in her quarters at the moment, leaving the room strikingly empty, but you think you catch a few glimpses of the snowy pup cavorting about your ship’s common area. Odd.";
@@ -736,7 +746,11 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			else
 			{
 				if (hours >= 6 && hours <= 7 || hours >= 19 && hours <= 20) crewMessages += "\n\nAnno is walking about in her quarters, sorting through her inventory and organizing some of her equipment.";
-				else if (hours >= 12 || hours <= 13) crewMessages += "\n\nAnno’s busy doing a quick workout in her quarters to the beat of some fast-paced ausar heavy metal. <i>“Gotta keep in shape!”</i> she says.";
+				else if (hours >= 12 || hours <= 13) 
+				{
+					if(!annoIsHuskar()) crewMessages += "\n\nAnno’s busy doing a quick workout in her quarters to the beat of some fast-paced ausar heavy metal. <i>“Gotta keep in shape!”</i> she says.";
+					else crewMessages += "\n\nYou catch Anno standing in the middle of her quarters, wearing a skin-tight leotard that’s practically tearing itself apart trying to contain her chest and pillowy ass. She’s following along with a low-impact cardio routine playing on her desk’s holoscreen; guess Anno still wants to keep in shape, but isn’t looking to burn off those sexy curves you’ve given her. You happily drink in her jiggling movements for a few moments before moving on.";
+				}
 				// PC has Freed Reaha and Anno, add to Anno’s random selection:
 				else if (!curedReahaInDebt() && rand(3) == 0) crewMessages += "\n\nAnno’s sitting in the kitchen with a [reaha.milkNoun] moustache on her upper lip, looking awfully happy with herself. You can’t imagine where that came from...";
 				else crewMessages += "\n\nAnno is sitting in the common area with her nose buried in half a dozen different data slates. It looks like she’s splitting her attention between the latest Warp Gate research and several different field tests of experimental shield generators.";
@@ -1486,6 +1500,22 @@ public function shipMenu():Boolean
 		ellieLayPlayerOffNT();
 		return true;
 	}
+	//Anno Thiccening xpack
+	if(flags["ANNO_HUSKAR_COMPLETE"] == undefined && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 60 < GetGameTimestamp())
+	{
+		annoSomethingsChanging();
+		return true;
+	}
+	
+	//Anno/Erra Threesome
+	if((pc.hasCock() || pc.hasHardLightStrapOn()) && annoIsCrew() && flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined && erraAvailableForThreesome() && !pc.hasStatusEffect("Anno-Erra Cooldown"))
+	{
+		if(rand(10) == 0)
+		{
+			annoxErraIntro();
+			return true;
+		}
+	}
 	
 	// Location Exceptions
 	if(shipLocation == "600") myrellionLeaveShip();
@@ -1840,6 +1870,40 @@ public function landingEventCheck(arg:String = ""):Boolean
 	return false;
 }
 
+public function nearestMedicalCenter():String
+{
+	var roomID:String = currentLocation;
+	var planetName:String = getPlanetName();
+	
+	switch(planetName)
+	{
+		//case "Tavros Station": roomID = "NURSERYG4"; break;
+		case "Mhen'ga": roomID = "ESBETH MEDICAL OFFICE"; break;
+		//case "Tarkus": roomID = ""; break;
+		case "Myrellion":
+			var myrLoc:int = int(currentLocation);
+			if
+			(	currentLocation == "GMEREHOSPITAL"
+			||	currentLocation == "GENES MODS"
+			||	currentLocation == "ENTITE"
+			||	(myrLoc >= 700 && myrLoc < 800)
+			) roomID = "GMEREHOSPITAL";
+			else if
+			(	currentLocation == "KRESSIA MEDICAL"
+			||	currentLocation == "LIEVE BUNKER"
+			||	currentLocation == "FAZIAN_RESCUE_ROOM"
+			||	(myrLoc >= 800 && myrLoc < 900)
+			) roomID = "KRESSIA MEDICAL";
+			else roomID = (rand(2) == 0 ? "GMEREHOSPITAL" : "KRESSIA MEDICAL");
+			break;
+		//case "New Texas": roomID = ""; break;
+		//case "Uveto": roomID = "UVI R32"; break;
+		case "Kashima": roomID = "KI-H16"; break;
+	}
+	
+	return roomID;
+}
+
 public function showerMenu(special:String = "ship"):void {
 	clearOutput();
 	output("You find yourself in the " + special + "’s shower room. What would you like to do?");
@@ -1890,17 +1954,17 @@ public function showerOptions(option:int = 0):void
 				if(pc.hasHair()) output("through your [pc.hair]");
 				else output("over your head");
 				output(". Even here, it’s difficult to relax with your pussy plugged up like it is, the obstruction keeping you constantly aroused and frustrated. Perhaps the hot water...? You pluck the shower head from out of its fixture and angle it at your [pc.vagina]. For a moment you think nothing is going to happen - then, in a wave of relief and hollowing out, <b>the plug begins to lose its solidity, melting into fluffy blue foam</b> which easily washes away down your [pc.legs] and into the drain. You sigh with relief. At last!");
+				var removed:Number = 0;
 				for(var i:int = 0; i < pc.totalVaginas(); i++)
 				{
-					var removed:Number = 0;
 					if(pc.isPlugged(i)) 
 					{
 						pc.vaginas[i].delFlag(GLOBAL.FLAG_PLUGGED);
 						removed++;
 					}
-					if(removed == 2) output(" <b>You tend to the other plug while you're at it.</b>")
-					if(removed > 2) output(" <b>You tend to the other plugs while you're at it.</b>")
 				}
+				if(removed == 2) output(" <b>You tend to the other plug while you’re at it.</b>");
+				if(removed > 2) output(" <b>You tend to the other plugs while you’re at it.</b>");
 				if(pc.isPlugged(-1))
 				{
 					output(" <b>The plug in your ass vanishes as well.</b>");
@@ -1920,14 +1984,8 @@ public function showerOptions(option:int = 0):void
 			{
 				//[Masturbate] [Finish]
 				output(" With the shower head where it is, perhaps you could take care of that aggravating lust now as well?");
-				clearMenu();
-				if (pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(0, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
-				else if (!pc.canMasturbate()) addDisabledButton(0, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
-				else
-				{
-					showerSex = shipShowerFaps(true);
-				}
-				addButton(showerSex, "Nevermind", shipShowerFappening, "Nevermind", "On second thought...");
+				
+				shipShowerFapButtons(showerSex);
 			}
 			else addButton(0, "Next", showerExit);
 			return;
@@ -1996,13 +2054,7 @@ public function showerOptions(option:int = 0):void
 			else output(" flex your [pc.asshole]");
 			output(". Maybe you’re not done showering just yet.");
 			
-			if (pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(0, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
-			else if (!pc.canMasturbate()) addDisabledButton(0, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
-			else
-			{
-				showerSex = shipShowerFaps(true);
-			}
-			addButton(showerSex, "Nevermind", shipShowerFappening, "Nevermind", "On second thought...");
+			shipShowerFapButtons(showerSex);
 		}
 		else
 		{
@@ -2025,6 +2077,16 @@ public function showerOptions(option:int = 0):void
 		else output(" You don’t seem to have any crew members onboard who can have shower sex with you at the moment.");
 		addButton(14, "Back", showerMenu);
 	}
+}
+public function shipShowerFapButtons(showerSex:int = 0):void
+{
+	if (pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(0, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
+	else if (!pc.canMasturbate()) addDisabledButton(0, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
+	else
+	{
+		showerSex = shipShowerFaps(true);
+	}
+	addButton(showerSex, "Nevermind", shipShowerFappening, "Nevermind", "On second thought...");
 }
 
 public function sneakBackYouNudist():void
@@ -2136,7 +2198,16 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	if(pc.hasStatusEffect("Egregiously Endowed")) moveMinutes *= 2;
 	if(pc.hasItemByClass(DongDesigner)) moveMinutes *= 2;
 	if(pc.hasPowerArmorItem() && !pc.inPowerArmor()) moveMinutes *= 2;
-	if(pc.hasItemByClass(Hoverboard) || (pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))) moveMinutes = (moveMinutes > 1 ? 1 : 0);
+	//Things that make you go fastah!
+	//Nogwitch is fastest mount atm.
+	if(pc.accessory is NogwichLeash) moveMinutes = (moveMinutes >= 3 ? Math.floor(moveMinutes/3) : moveMinutes-1);
+	//Hoverboard & Kordiiaks cuts time in half-ish.
+	else if(pc.hasItemByClass(Hoverboard) || pc.accessory is KordiiakLeash) moveMinutes = (moveMinutes > 2 ? Math.floor(moveMinutes/2) : moveMinutes-1);
+	//Grunch reduce by 25%
+	else if(pc.accessory is GrunchLeash) moveMinutes = (moveMinutes > 4 ? Math.floor(moveMinutes * .75) : moveMinutes-1);
+	//Not sure who put this in, but I hate it. Tentacles aren't an optimal mode of movement. Reducing to -1;
+	else if(pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) moveMinutes--;
+	
 	if(moveMinutes < 0) moveMinutes = 0;
 	StatTracking.track("movement/time travelled", moveMinutes);
 	processTime(moveMinutes);
@@ -2266,6 +2337,8 @@ public function variableRoomUpdateCheck():void
 		else rooms["9008"].removeFlag(GLOBAL.NPC);
 		rooms["CANADA4"].removeFlag(GLOBAL.NPC);
 	}
+	if(flags["KASE_CREW"] == 0 && !rooms["RESIDENTIAL DECK KASES APARTMENT"].hasFlag(GLOBAL.NPC)) rooms["RESIDENTIAL DECK KASES APARTMENT"].addFlag(GLOBAL.NPC);
+	else if(flags["KASE_CREW"] != 0 && rooms["RESIDENTIAL DECK KASES APARTMENT"].hasFlag(GLOBAL.NPC)) rooms["RESIDENTIAL DECK KASES APARTMENT"].removeFlag(GLOBAL.NPC);
 
 	/* MHENGA */
 	
@@ -2323,6 +2396,9 @@ public function variableRoomUpdateCheck():void
 		rooms["DEEP JUNGLE 2"].addFlag(GLOBAL.PLANT_BULB);
 	}
 	else rooms["DEEP JUNGLE 2"].removeFlag(GLOBAL.PLANT_BULB);
+	// Xenogen Camp
+	if(flags["CLEARED_XENOGEN_CAMP_BODIES"] != undefined) rooms["ABANDONED CAMP"].addFlag(GLOBAL.BED);
+	else rooms["ABANDONED CAMP"].removeFlag(GLOBAL.BED);
 	// Visited Thare Plantation
 	if(flags["THARE_MANOR_ENTERED"] != undefined && flags["PQ_P_BURNED"] == undefined) rooms["THARE MANOR"].addFlag(GLOBAL.OBJECTIVE);
 	else rooms["THARE MANOR"].removeFlag(GLOBAL.OBJECTIVE);
@@ -2621,12 +2697,8 @@ public function variableRoomUpdateCheck():void
 	// Crystal Goo Silly Modes
 	if(silly) rooms["2O25"].southExit = "2O27";
 	else rooms["2O25"].southExit = "";
-	// Ara Diplomacy Mission
-	if(flags["MET_FEIAN"] != undefined && flags["FEIAN_LOCATION"] != undefined)
-	{
-		if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_DIPLOMACY || flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_QUADOMME) feiAnAppear();
-		else feiAnRemove();
-	}
+	// Quadomme locations
+	markersBothriocQuadomme();
 	// Bothrioc Embassy
 	if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_FAILURE && flags["BOTHRIOC_EMBASSY_ENTERED"] >= 2) rooms["BOTHRIOC EMBASSAY"].removeFlag(GLOBAL.NPC);
 	else rooms["BOTHRIOC EMBASSAY"].addFlag(GLOBAL.NPC);
@@ -2784,7 +2856,8 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	// because the order the events are processed may become important, so maintaining a relatively simplistic way
 	// to change the order of things happening across deltaT time may be useful.
 	
-	var totalDays:uint = ((GetGameTimestamp() + deltaT) / 1440) - days;
+	var nextTimestamp:uint = (GetGameTimestamp() + deltaT);
+	var totalDays:uint = (nextTimestamp / 1440) - days;
 	
 	processUvetoWeather(deltaT, doOut);
 	processRenvraMessageEvents(deltaT, doOut);
@@ -2845,6 +2918,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		processIlariaPregEvents(deltaT, doOut, totalDays);
 		processFZilPregEvents(deltaT, doOut, totalDays);
 		processUlaPregEvents(deltaT, doOut, totalDays);
+		processBothriocQuadommeEvents(deltaT, doOut, totalDays);
 		//9999 processQuaellePregEvents(deltaT, doOut, totalDays);
 	}
 	
@@ -2873,25 +2947,33 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	
 	if(sendMails)
 	{
+		/* ANNO THICKNESS! */
+		if(annoIsHuskar())
+		{
+			if(!MailManager.isEntryUnlocked("syriGetsBlockedByAnnoOverHuskarMail") && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 700 <= GetGameTimestamp()) goMailGet("syriGetsBlockedByAnnoOverHuskarMail", (flags["ANNO_HUSKARRED"] + 700));
+			if(!MailManager.isEntryUnlocked("annoReactsToSyriHuskarTeasingMail") && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 375 <= GetGameTimestamp()) goMailGet("annoReactsToSyriHuskarTeasingMail", (flags["ANNO_HUSKARRED"] + 375));
+			if(!MailManager.isEntryUnlocked("syriReactsToHuskarAnnoEmailMail") && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 370 <= GetGameTimestamp()) goMailGet("syriReactsToHuskarAnnoEmailMail", (flags["ANNO_HUSKARRED"] + 370));
+			if(!MailManager.isEntryUnlocked("kaedeReactsToHuskarAnnoEmailMail") && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 250 <= GetGameTimestamp()) goMailGet("kaedeReactsToHuskarAnnoEmailMail", (flags["ANNO_HUSKARRED"] + 250));
+		}
 		//NEVRIE MAIL!
-		if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (GetGameTimestamp() - (24 * 60))) nevriMailGet();
-		if (!MailManager.isEntryUnlocked("orangepills") && flags["MCALLISTER_MYR_HYBRIDITY"] == 2 && GetGameTimestamp() >= (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) nevriOrangeMailGet();
-		if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"] + 20) nevriBJMailGet();
+		if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (nextTimestamp - (24 * 60))) goMailGet("myrpills", (flags["MCALLISTER_MEETING_TIMESTAMP"] + (24 * 60)));
+		if (!MailManager.isEntryUnlocked("orangepills") && flags["MCALLISTER_MYR_HYBRIDITY"] == 2 && nextTimestamp >= (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) goMailGet("orangepills", (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60)));
+		if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"] + 20) goMailGet("bjreminder", ((flags["NEVRIE_FIRST_DISCOUNT_DATE"] + 20) * 24 * 60));
 
 		//Emmy Mail
-		if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (GetGameTimestamp() - (24 * 60))) emmyMailGet();
+		if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (nextTimestamp - (24 * 60))) goMailGet("emmy_apology", (flags["EMMY_EMAIL_TIMER"] + (24 * 60)));
 		//Emmy mail stage 2 START
-		if (!MailManager.isEntryUnlocked("emmy_gift_starter") && flags["EMMY_ORAL_TIMER"] <= (GetGameTimestamp() - (72 * 60))) emmyMailGet2();
+		if (!MailManager.isEntryUnlocked("emmy_gift_starter") && flags["EMMY_ORAL_TIMER"] <= (nextTimestamp - (72 * 60))) goMailGet("emmy_gift_starter", (flags["EMMY_ORAL_TIMER"] + (72 * 60)));
 		//Emmy mail set up for sextoy go
-		if (!MailManager.isEntryUnlocked("emmy_implant_explain_email") && flags["EMMY_PRESEX_FUN_TIMER"] <= (GetGameTimestamp() - (100 * 60))) emmyMailGet3();
-		if (!MailManager.isEntryUnlocked("emmy_harness_here") && flags["EMMY_TOY_TIMER"] <= GetGameTimestamp()) emmyMailGet4();
+		if (!MailManager.isEntryUnlocked("emmy_implant_explain_email") && flags["EMMY_PRESEX_FUN_TIMER"] <= (nextTimestamp - (100 * 60))) goMailGet("emmy_implant_explain_email", (flags["EMMY_PRESEX_FUN_TIMER"] + (100 * 60)));
+		if (!MailManager.isEntryUnlocked("emmy_harness_here") && flags["EMMY_TOY_TIMER"] <= nextTimestamp) goMailGet("emmy_harness_here", flags["EMMY_TOY_TIMER"]);
 
 		//Saendra Mail
 		if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1 && rooms[currentLocation].planet != "SHIP: PHOENIX" && !InShipInterior(pc)) saendraPhoenixMailGet();
 		//Anno Mail
 		if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["ANNO_MISSION_OFFER"] != 2 && flags["FOUGHT_TAM"] == undefined && flags["RUST_STEP"] != undefined && rand(20) == 0) goMailGet("annoweirdshit");
 		//KIRO FUCKMEET
-		if (!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50 && flags["MET_FLAHNE"] != undefined && flags["KIRO_ORGY_DATE"] == undefined && rand(3) == 0) { goMailGet("kirofucknet", -1, kiroFuckNetBonus()); }
+		if (!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50 && flags["MET_FLAHNE"] != undefined && flags["KIRO_ORGY_DATE"] == undefined && rand(3) == 0) { goMailGet("kirofucknet", nextTimestamp, kiroFuckNetBonus(deltaT)); }
 		//KIRO DATEMEET
 		if (!MailManager.isEntryUnlocked("kirodatemeet") && kiroTrust() >= 100 && kiroSexed() && rand(10) == 0) { goMailGet("kirodatemeet"); }
 		trySendStephMail();
@@ -2905,27 +2987,27 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			if(flags["CARVER_DEL_TALK"] == 3)
 			{
 				if(flags["DEL_MOVE_TIMER"] == undefined) flags["DEL_MOVE_TIMER"] = GetGameTimestamp();
-				else if(flags["DEL_MOVE_TIMER"] + 60*24*10 <= GetGameTimestamp()) goMailGet("del_moved_light");
+				else if((flags["DEL_MOVE_TIMER"] + (60*24*10)) <= nextTimestamp) goMailGet("del_moved_light", (flags["DEL_MOVE_TIMER"] + (60*24*10)));
 			}
 			//Del moving to Canada as shemale
 			else if (delilahSubmissiveness() >= 10 || flags["CARVER_DEL_TALK"] == 2) 
 			{
 				if(flags["DEL_MOVE_TIMER"] == undefined) flags["DEL_MOVE_TIMER"] = GetGameTimestamp();
-				else if(flags["DEL_MOVE_TIMER"] + 60*24*10 <= GetGameTimestamp()) goMailGet("del_moved");
+				else if((flags["DEL_MOVE_TIMER"] + (60*24*10)) <= nextTimestamp) goMailGet("del_moved", (flags["DEL_MOVE_TIMER"] + (60*24*10)));
 			}
 		}
 
 		// Pippa Nuru massage email
-		if (!MailManager.isEntryUnlocked("pippa_nuru") && flags["PIPPA_NURU_TIMER"] <= (GetGameTimestamp() - (24 * 60)) && currentLocation != "PIPPA HOUSE") pippaNuruEmailGet();
+		if (!MailManager.isEntryUnlocked("pippa_nuru") && flags["PIPPA_NURU_TIMER"] <= (nextTimestamp - (24 * 60)) && currentLocation != "PIPPA HOUSE") goMailGet("pippa_nuru", (flags["PIPPA_NURU_TIMER"] + (24 * 60)));
 		// Pippa Crew message email
-		if (!MailManager.isEntryUnlocked("pippa_crew") && flags["PIPPA_RECRUIT_TIMER"] <= (GetGameTimestamp() - (36 * 60)) && currentLocation != "PIPPA HOUSE") pippaCrewEmailGet();
+		if (!MailManager.isEntryUnlocked("pippa_crew") && flags["PIPPA_RECRUIT_TIMER"] <= (nextTimestamp - (36 * 60)) && currentLocation != "PIPPA HOUSE") goMailGet("pippa_crew", (flags["PIPPA_RECRUIT_TIMER"] + (36 * 60)));
 
 		//Plantation Quest Offer
 		//Key string - "plantation_quest_start"
 		if (!MailManager.isEntryUnlocked("plantation_quest_start") && flags["PLANTATION_MEALS"] != undefined && flags["PLANTATION_ZIL_TALK"] != undefined && flags["PLANTATION_PLANTATION_TALK"] != undefined && flags["PLANTATION_WORKERS_TALK"] != undefined && flags["PLANET_3_UNLOCKED"] != undefined)
 		{
 			if(flags["PQUEST_DELAY_TIMER"] == undefined) flags["PQUEST_DELAY_TIMER"] = GetGameTimestamp();
-			else if(GetGameTimestamp() >= flags["PQUEST_DELAY_TIMER"] + 60*10) goMailGet("plantation_quest_start");
+			else if(nextTimestamp >= (flags["PQUEST_DELAY_TIMER"] + (60*10))) goMailGet("plantation_quest_start", (flags["PQUEST_DELAY_TIMER"] + (60*10)));
 		}
 		if(pc.hasCock() && pc.thinnestCockThickness() < 7 && pc.balls >= 2 && pc.ballDiameter() >= 12 && pc.ballFullness >= 50 && !MailManager.isEntryUnlocked("kally_kiro_milkvite") && kiroKallyThreesomesAvailable() && rand(20) == 0 && flags["KIRO_KALLY_TEAM_MILKED"] == undefined) goMailGet("kally_kiro_milkvite");
 
@@ -2933,14 +3015,14 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		if (!MailManager.isEntryUnlocked("ushamee_meet") && (flags["KASHIMA_STATE"] == 2 || flags["KASHIMA_STATE"] == 3))
 		{
 			if(flags["KASHIMA_DELAY_TIMER"] == undefined) flags["KASHIMA_DELAY_TIMER"] = GetGameTimestamp();
-			else if(GetGameTimestamp() >= (flags["KASHIMA_DELAY_TIMER"] + 60*24*5)) goMailGet("ushamee_meet");
+			else if(nextTimestamp >= (flags["KASHIMA_DELAY_TIMER"] + (60*24*5))) goMailGet("ushamee_meet", (flags["KASHIMA_DELAY_TIMER"] + (60*24*5)));
 		}
 		
 		//Syri Panty vid
 		if (!MailManager.isEntryUnlocked("syri_video") && flags["SYRI_GIFT_PANTY"] != undefined)
 		{
 			if(flags["SYRI_VIDEO_DELAY_TIMER"] == undefined) flags["SYRI_VIDEO_DELAY_TIMER"] = GetGameTimestamp();
-			else if(GetGameTimestamp() >= (flags["SYRI_VIDEO_DELAY_TIMER"] + 60*24*3)) goMailGet("syri_video");
+			else if(nextTimestamp >= (flags["SYRI_VIDEO_DELAY_TIMER"] + (60*24*3))) goMailGet("syri_video", (flags["SYRI_VIDEO_DELAY_TIMER"] + (60*24*3)));
 		}
 		//Shade Holiday shit
 		if(isChristmas() && flags["SHADE_ON_UVETO"] >= 3)
@@ -2951,23 +3033,16 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			}
 		}
 		//Prai email stuff
-		if (flags["PRAI_EMAIL_NUMBER"] != undefined && GetGameTimestamp() >= (flags["PRAI_EMAIL_STAMP"] + 60*10))
+		if (flags["PRAI_EMAIL_NUMBER"] != undefined && flags["PRAI_EMAIL_STAMP"] != undefined && nextTimestamp >= (flags["PRAI_EMAIL_STAMP"] + (60*10)))
 		{
-			if (MailManager.hasEntry("prai_email")) MailManager.deleteMailEntry("prai_email");
-			MailManager.addMailEntry("prai_email", praiEmailText, praiSubjectText, "Prai Ellit", "Prai@Xenotech.net", quickPCTo, quickPCToAddress);
-			goMailGet("prai_email");
+			resendMail("prai_email", (flags["PRAI_EMAIL_STAMP"] + (60*10)));
 			flags["PRAI_EMAIL_NUMBER"] = undefined;
 			flags["PRAI_EMAIL_STAMP"] = undefined;
 		}
 		//Sucuccow email
 		if(pc.hasCock() && flags["SUCCUCOW_EMAIL_THIS_YEAR"] == undefined && flags["CIARAN_MET"] != undefined && isHalloweenish())
 		{
-			if (MailManager.isEntryUnlocked("succucow_email"))
-			{
-				MailManager.deleteMailEntry("succucow_email");
-				MailManager.addMailEntry("succucow_email", succucowEmailText, "Check out this weird cabin? Cash reward.", "Ciaran Eildean", "Warden_Eildean@NewTexas.gov", quickPCTo, quickPCToAddress);
-			}
-			goMailGet("succucow_email");
+			resendMail("succucow_email");
 			flags["SUCCUCOW_EMAIL_THIS_YEAR"] = 1;
 		}
 		else if (!isHalloweenish())
@@ -2978,12 +3053,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		//RandyClaws email
 		if(flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] == undefined && flags["CIARAN_MET"] != undefined && isChristmas())
 		{
-			if (MailManager.isEntryUnlocked("randy_claws_email"))
-			{
-				MailManager.deleteMailEntry("randy_claws_email");
-				MailManager.addMailEntry("randy_claws_email", clawsEmailText, "Merry Christmas!", "New Texas Department of Wildlife", "NT_DoW@NewTexas.gov", quickPCTo, quickPCToAddress);
-			}
-			goMailGet("randy_claws_email");
+			resendMail("randy_claws_email");
 			flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] = 1;
 		}
 		else if(!isChristmas())
@@ -2993,7 +3063,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		}
 		
 		//Other Email Checks!
-		if (rand(100) == 0) emailRoulette();
+		if (rand(100) == 0) emailRoulette(deltaT);
 	}
 	
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
@@ -3658,6 +3728,7 @@ public function goMailGet(mailKey:String = "", timeStamp:int = -1, messageBody:S
 	var mailFrom:String = "<i>Unknown Sender</i>";
 	var mailFromAdress:String = "<i>Unknown Address</i>";
 	if(timeStamp < 0) timeStamp = GetGameTimestamp();
+	var deltaT:uint = (timeStamp - GetGameTimestamp());
 	if(mailKey != "" && MailManager.hasEntry(mailKey))
 	{
 		var mailEmail:Object = MailManager.getEntry(mailKey);
@@ -3667,22 +3738,32 @@ public function goMailGet(mailKey:String = "", timeStamp:int = -1, messageBody:S
 		if (mailEmail.FromAddress != null) mailFromAdress = mailEmail.FromAddress();
 		if (messageBody.length == 0)
 		{
-			AddLogEvent("<b>New Email from " + mailFrom + " (" + mailFromAdress +")!</b>", "words");
+			AddLogEvent("<b>New Email from " + mailFrom + " (" + mailFromAdress +")!</b>", "words", deltaT);
 		}
 		else
 		{
-			AddLogEvent("<b>New Email from " + mailFrom + " (" + mailFromAdress +")!</b>" + messageBody, "words");
+			AddLogEvent("<b>New Email from " + mailFrom + " (" + mailFromAdress +")!</b>" + messageBody, "words", deltaT);
 		}
 		MailManager.unlockEntry(mailKey, timeStamp);
 	}
 }
+// Reset and ressend the e-mail!
+public function resendMail(mailKey:String = "", timeStamp:int = -1, messageBody:String = ""):void
+{
+	// Removes cached text but also sets timestamps to default
+	MailManager.clearEntry(mailKey);
+	// Regenerates cache and sets new appropriate timestamp
+	goMailGet(mailKey, timeStamp, messageBody);
+}
 // Random Emails!
-public function emailRoulette():void
+public function emailRoulette(deltaT:uint):void
 {
 	var mailList:Array = [];
 	var mailKey:String = "";
 	var mailSubject:String = "\\\[No Subject\\\]";
 	var mailContent:String = "<i>This message turns up empty...</i>";
+	
+	var randTimestamp:uint = (GetGameTimestamp() + 1 + rand(deltaT));
 	
 	// Character/Event specific:
 	if(!MailManager.isEntryUnlocked("burtsmeadhall") && pc.level >= 1)
@@ -3725,7 +3806,7 @@ public function emailRoulette():void
 		// Regular:
 		if (mailKey == "kirofucknet")
 		{
-			goMailGet(mailKey, -1, kiroFuckNetBonus());
+			goMailGet(mailKey, randTimestamp, kiroFuckNetBonus(deltaT));
 		}
 		// Spam:
 		else if (mailKey == "cov8" && flags["SPAM_MSG_COV8"] == undefined)
@@ -3734,44 +3815,74 @@ public function emailRoulette():void
 		}
 		else if(mailKey == "fatloss" && pc.isBimbo())
 		{
-			goMailGet(mailKey, -1, " The subject line reads <i>“" + mailSubject + "”</i>. Ooo, secrets and stuff! You eagerly open the message and the codex lights up with the display:\n\n<i>" + mailContent + "</i>\n\nMmm, that sounds yummy!");
+			goMailGet(mailKey, randTimestamp, "\n\nThe subject line reads <i>“" + mailSubject + "”</i>. Ooo, secrets and stuff! You eagerly open the message and the codex lights up with the display:\n\n<i>" + mailContent + "</i>\n\nMmm, that sounds yummy!");
 			pc.lust(20);
-			MailManager.readEntry("fatloss", GetGameTimestamp());
+			MailManager.readEntry("fatloss", randTimestamp);
 		}
 		else if(mailKey == "estrobloom" && !pc.hasKeyItem("Coupon - Estrobloom"))
 		{
-			goMailGet(mailKey, -1, "\n\n<b>You have gained a coupon for Estrobloom!</b>");
+			goMailGet(mailKey, randTimestamp, "\n\n<b>You have gained a coupon for Estrobloom!</b>");
 			pc.createKeyItem("Coupon - Estrobloom", 0.9, 0, 0, 0, "Save 10% on your next purchase of Estrobloom!");
 		}
 		else if(mailKey == "hugedicktoday" && pc.isBro() && pc.hasCock())
 		{
-			goMailGet(mailKey, -1, " The subject line reads <i>“" + mailSubject + "”</i>. Hell yeah--who wouldn’t want a bigger dick? You quicky open the message to read its contents and the codex lights up with the display:\n\n<i>" + mailContent + "</i>\n\nYou’re not quite sure you understood all that, but your dick did.");
+			goMailGet(mailKey, randTimestamp, "\n\nThe subject line reads <i>“" + mailSubject + "”</i>. Hell yeah--who wouldn’t want a bigger dick? You quicky open the message to read its contents and the codex lights up with the display:\n\n<i>" + mailContent + "</i>\n\nYou’re not quite sure you understood all that, but your dick did.");
 			pc.lust(20);
-			MailManager.readEntry("hugedicktoday", GetGameTimestamp());
+			MailManager.readEntry("hugedicktoday", randTimestamp);
 		}
 		else
 		{
-			goMailGet(mailKey);
+			goMailGet(mailKey, randTimestamp);
 		}
 	}
 }
 
 // Event Dates
 // checkDate(day:int, month:int, dayRange:int)
-public function isEaster():Boolean
+public function holidaySeasonCheck(seasonFlag:String = ""):Boolean
 {
-	return checkDate(16, 4, 2);
+	// Flag auto return
+	if(gameOptions.seasonalOverridePreferences[seasonFlag] != undefined) return gameOptions.seasonalOverridePreferences[seasonFlag];
+	// Normal date ranges.
+	switch(seasonFlag)
+	{
+		case "NEW_YEARS": return checkDate(1, 1, 3); break;
+		case "LUNAR_NEW_YEAR": return checkDate(5, 2, 15); break;
+		case "VALENTINES": return checkDate(14, 2, 3); break;
+		case "ST_PATRICKS": return checkDate(17, 3, 3); break;
+		case "APRIL_FOOLS": return checkDate(1, 4, 0); break;
+		case "EASTER": return checkDate(16, 4, 2); break;
+		case "JULY_4TH": return checkDate(4, 7, 7); break;
+		case "OKTOBERFEST": return checkDate(18, 9, 4); break;
+		case "HALLOWEEN": return checkDate(29, 10, 10); break;
+		case "THANKSGIVING":
+			// Canadian Holiday
+			if(checkDate(12, 10, 6)) return true;
+			// American Holiday
+			if(checkDate(24, 11, 6)) return true;
+			break;
+		case "CHRISTMAS": return checkDate(25, 12, 8); break;
+	}
+	
+	return false;
 }
-public function isNearlyJulyFourth():Boolean
-{
-	return checkDate(4, 7, 7);
-}
-public function isHalloweenish():Boolean
-{
-	return checkDate(29, 10, 10);
-}
-public function isChristmas():Boolean
-{
-	return checkDate(25, 12, 8);
-}
+public function isNewYears():Boolean { return holidaySeasonCheck("NEW_YEARS"); }
+public function isLunarNewYear():Boolean { return holidaySeasonCheck("LUNAR_NEW_YEAR"); }
+public function isValentines():Boolean { return holidaySeasonCheck("VALENTINES"); }
+public function isStPatricks():Boolean { return holidaySeasonCheck("ST_PATRICKS"); }
+public function isAprilFools():Boolean { return holidaySeasonCheck("APRIL_FOOLS"); } // APRIL FOOLS!
+public function isEaster():Boolean { return holidaySeasonCheck("EASTER"); }
+public function isNearlyJulyFourth():Boolean { return holidaySeasonCheck("JULY_4TH"); }
+public function isOktoberfest():Boolean { return holidaySeasonCheck("OKTOBERFEST"); }
+public function isHalloweenish():Boolean { return holidaySeasonCheck("HALLOWEEN"); }
+public function isThanksgiving():Boolean { return holidaySeasonCheck("THANKSGIVING"); }
+public function isChristmas():Boolean { return holidaySeasonCheck("CHRISTMAS"); }
 
+// Bad Ends
+public function deathByNoHP():void
+{
+	clearOutput();
+	showName("GAME\nOVER");
+	output("You collapse unconscious... and do not rise again, your body’s capacity to take damage reduced to less than nothing. Whoops.");
+	badEnd();
+}

@@ -13,7 +13,7 @@
 		//constructor
 		public function Tuuva()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			fluidSimulate = false;
@@ -62,6 +62,15 @@
 			this.vaginalVirgin = false;
 			this.analVirgin = false;
 		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			if(dataObject.cocks[0].cType == GLOBAL.TYPE_EQUINE)
+			{
+				dataObject.cocks[0].cLengthRaw = 16;
+			}
+		}
+		
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.approachTuuva();

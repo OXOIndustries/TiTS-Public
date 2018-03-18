@@ -266,7 +266,7 @@ public function shop(keeper:Creature):void {
 public function buyItem():void {
 	clearOutput();
 	output(shopkeep.keeperBuy);
-	if(shopkeep.inventory.length >= 10) output("\n" + multiButtonPageNote() + "\n");
+	if(shopkeep.inventory.length > 10) output("\n" + multiButtonPageNote() + "\n");
 
 	//Build menu
 	clearMenu();
@@ -467,6 +467,13 @@ public function buyItemGo(arg:ItemSlotClass):void {
 		flags["WULFE_ON_SHIP"] = false;
 		IncrementFlag("WULFE_PURCHASED");
 	}
+	// Goo Special
+	if(arg is GooArmor)
+	{
+		output("\n\n" + gooArmorInventoryBlurb(arg, "buy"));
+		shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg), 1);
+	}
+	
 	output("\n\n");
 	//Set everything to take us back to buyItem!
 	itemScreen = buyItem;
@@ -493,7 +500,7 @@ public function sellItem():void
 	
 	clearOutput();
 	output(shopkeep.keeperSell);
-	if(pc.inventory.length >= 10) output("\n" + multiButtonPageNote() + "\n");
+	if(pc.inventory.length > 10) output("\n" + multiButtonPageNote() + "\n");
 	
 	clearMenu();
 	var sellOptions:Boolean = kGAMECLASS.gameOptions.vendorToggle;
@@ -658,6 +665,10 @@ public function sellItemGo(arg:ItemSlotClass):void {
 	
 	pc.credits += price;
 	output("You sell " + arg.description + " for " + num2Text(price) + " credits.");
+	
+	// Special Events
+	if(arg is GooArmor) output("\n\n" + gooArmorInventoryBlurb(arg, "sell"));
+	
 	arg.quantity--;
 	if (arg.quantity <= 0 && pc.inventory.indexOf(arg) != -1)
 	{
@@ -855,6 +866,10 @@ public function dropItemGo(arg:ItemSlotClass):void {
 	clearOutput();
 	
 	output("You drop " + arg.description + ".");
+	
+	// Special Events
+	if(arg is GooArmor) output("\n\n" + gooArmorInventoryBlurb(arg, "drop"));
+	
 	arg.quantity--;
 	if (arg.quantity <= 0 && pc.inventory.indexOf(arg) != -1)
 	{
@@ -1073,6 +1088,15 @@ public function equipmentDisplay():void
 public function inventoryDisplay():void
 {
 	var x:int = 0;
+	output("<b><u>Equipment:</u></b>\n");
+	output("<b>Melee Weapon:</b> " + StringUtil.toDisplayCase(pc.meleeWeapon.longName) + "\n");
+	output("<b>Ranged Weapon:</b> " + StringUtil.toDisplayCase(pc.rangedWeapon.longName) + "\n");
+	output("<b>Armor:</b> " + StringUtil.toDisplayCase(pc.armor.longName) + "\n");
+	output("<b>Shield:</b> " + StringUtil.toDisplayCase(pc.shield.longName) + "\n");
+	output("<b>Accessory:</b> " + StringUtil.toDisplayCase(pc.accessory.longName) + "\n");
+	output("<b>Underwear Bottom:</b> " + StringUtil.toDisplayCase(pc.lowerUndergarment.longName) + "\n");
+	output("<b>Underwear Top:</b> " + StringUtil.toDisplayCase(pc.upperUndergarment.longName) + "\n\n");
+	
 	output("<b><u>Inventory:</u></b> (" + pc.inventory.length + "/" + pc.inventorySlots() + " slots used.)");
 	if(pc.inventory.length > 0)
 	{
@@ -1351,7 +1375,7 @@ public function unequip(item:ItemSlotClass, override:Boolean = false):void
 	var i:int = 0;
 	for(i = 0; i < unequippedItems.length; i++)
 	{
-		unequippedItems[i].onRemove(pc);
+		unequippedItems[i].onRemove(pc, true);
 	}
 	
 	itemCollect(unequippedItems);
@@ -1447,17 +1471,17 @@ public function equipItem(arg:ItemSlotClass):void {
 		{
 			if(pc.hasCombatStatusEffect("Disarmed"))
 			{
-				output("<b> You are no longer disarmed!</b>");
+				output(" <b>You are no longer disarmed!</b>");
 				pc.removeStatusEffect("Disarmed");
 			}
 			else
 			{
-				output("<b> Once you get your gear back, this will be equipped.</b>");
+				output(" <b>Once you get your gear back, this will be equipped.</b>");
 			}
 		}
 		if(pc.hasStatusEffect("Gunlock") && arg.type == GLOBAL.RANGED_WEAPON)
 		{
-			output("<b> Your new ranged weapon doesn’t suffer from the effects of gunlock!</b>");
+			output(" <b>Your new ranged weapon doesn’t suffer from the effects of gunlock!</b>");
 			pc.removeStatusEffect("Gunlock");
 		}
 		//Set the quantity to 1 for the equipping, then set it back to holding - 1 for inventory!
@@ -1465,9 +1489,11 @@ public function equipItem(arg:ItemSlotClass):void {
 		{
 			if(pc.armor is Omnisuit)
 			{
-				output("\n\nTouching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you’re completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn’t be better to just put it back on.\n\n");
+				output("\n\nTouching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you’re completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn’t be better to just put it back on.");
 				pc.removeStatusEffect("Rubber Wrapped");
 			}
+			if(arg is GooArmor) output("\n\n" + gooArmorInventoryBlurb(arg, "wear"));
+			
 			removedItem = pc.armor;
 			if(removedItem is Omnisuit) removedItem = new OmnisuitCollar();
 			pc.armor = arg;
@@ -1504,14 +1530,15 @@ public function equipItem(arg:ItemSlotClass):void {
 		}
 		else output(" <b>AN ERROR HAS OCCURRED: Equipped invalid item type. Item: " + arg.longName + "</b> ");
 
-		removedItem.onRemove(pc);
-		arg.onEquip(pc);
+		removedItem.onRemove(pc, true);
+		arg.onEquip(pc, true);
 	}
 	
 	//If item to loot after!
 	if(removedItem.shortName != "Rock" && removedItem.shortName != "" && removedItem.quantity > 0) 
 	{
-		output(" ");
+		//output(" ");
+		output("\n\n");
 		// Renamed from lootList so I can distinguish old vs new uses
 		var unequippedItems:Array = new Array();
 		unequippedItems[unequippedItems.length] = removedItem;
@@ -1614,6 +1641,10 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 		if(newLootList[0].quantity > 1) output("s stow");
 		else output(" stows");
 		output(" away quite easily.");
+		
+		// Special Events
+		if(newLootList[0] is GooArmor) output("\n\n" + gooArmorInventoryBlurb(newLootList[0], "collect"));
+		
 		//Clear the item off the newLootList.
 		newLootList.splice(0,1);
 		clearMenu();
@@ -1638,7 +1669,12 @@ public function discardItem(lootList:Array):void {
 	}
 	
 	clearOutput();
-	output("You discard " + lootList[0].description + " (x" + lootList[0].quantity + ").\n\n");
+	output("You discard " + lootList[0].description + " (x" + lootList[0].quantity + ").");
+	
+	// Special Events
+	if(lootList[0] is GooArmor) output("\n\n" + gooArmorInventoryBlurb(lootList[0], "discard"));
+	
+	output("\n\n");
 	lootList.splice(0,1);
 	clearMenu();
 	if(lootList.length > 0) addButton(0,"Next",itemCollect, lootList);
@@ -1744,6 +1780,10 @@ public function replaceItemGo(args:Array):void
 	var lootList:Array = args[1];
 	clearOutput();
 	output("You toss out " + pc.inventory[indice].description + " (x" + pc.inventory[indice].quantity + ") to make room for " + lootList[0].description + " (x" + lootList[0].quantity + ").");
+	
+	// Special Events
+	if(pc.inventory[indice] is GooArmor) output("\n\n" + gooArmorInventoryBlurb(pc.inventory[indice], "replace"));
+	
 	pc.inventory[indice] = lootList[0];
 	lootList.splice(0,1);
 	clearMenu();
@@ -1787,6 +1827,9 @@ public function shipStorageMenuRoot():void
 	}
 	
 	clearOutput();
+	showBust("");
+	showName("\nSTORAGE");
+	
 	output("You turn to your ship’s storage.");
 	
 	clearMenu();
@@ -2215,4 +2258,8 @@ public function doInventoryReplace(args:Array):void
 	pc.ShipStorageInventory.push(tarItem);
 	
 	shipStorageMenuType(type);
+	
+	// Special Events
+	if(invItem is GooArmor) output("\n\n" + gooArmorInStorageBlurb(false));
+	if(tarItem is GooArmor) output("\n\n" + gooArmorInStorageBlurb());
 }

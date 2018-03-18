@@ -38,6 +38,7 @@ public function emmyIsCrew():Boolean
 	return false;
 }
 /*Moved these into the Creature block.*/
+/*
 public function applyCumSoaked(arg:Creature):void
 {
 	arg.applyCumSoaked();
@@ -47,6 +48,7 @@ public function applyPussyDrenched(arg:Creature):void
 {
 	arg.applyPussyDrenched();
 }
+*/
 
 //Push it out?
 public function pushOutTheCumDummy():void
@@ -1021,12 +1023,14 @@ public function tellEmmyShesTheBelleOfTheBalls():void
 	emmyMainMenu();
 }
 
+/*
 public function emmyMailGet():void
 {
 	AddLogEvent("<b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!</b>", "passive");
 
 	MailManager.unlockEntry("emmy_apology", GetGameTimestamp());
 }
+*/
 
 //Sex Quest - Sex Attempt Start
 //PC comes on, she actually gets a little offended - skipped with the <i>“You - You”</i> option.
@@ -1295,6 +1299,7 @@ public function emmyPleased():void
 //Post-Oral Email Request
 //Requires GF status - three days since first blowjob
 //Email
+/*
 public function emmyMailGet2():void
 {
 	AddLogEvent("<b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!</b>", "passive");
@@ -1310,6 +1315,7 @@ public function emmyMailGet4():void
 	AddLogEvent("<b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!</b>", "passive");
 	MailManager.unlockEntry("emmy_harness_here", GetGameTimestamp());
 }
+*/
 
 //More Serious Talk - added to main menu
 public function moreSeriousEmmyTalkAboutEmail():void
@@ -2510,13 +2516,13 @@ public function emmy69OrgasmTime(args:Array):void
 	if(youSuck == 2)
 	{
 		output("\n\nA spray of girlcum fills your mouth, drawing you back to the real world with the tangy taste of Emmy’s cunt. You swallow noisily, letting her paint your nose and cheeks with more of her gushing goo. Her balls pull tight below your chin, and you hear the sound of her masculine spunk splattering off the bottom of her tits. Flecks of it hit your [pc.belly], warm and wet, a salty compliment to the feminine love you’re currently struggling to swallow.");
-		applyPussyDrenched(pc);
+		pc.applyPussyDrenched();
 	}
 	//Emmy boycum
 	else 
 	{
 		output("\n\nThick, salty-tasting spunk fills your mouth, drawing you back to the real world before you choke on it. You swallow noisily, but it’s not fast enough for Emmy’s super-sized ejaculations. Spunk rolls over your bottom lip in a wave while small streams dribble from the corners of your mouth. Still, you persevere, gulping down as much of as you can. Her poor balls are being blasted from behind by girlcum too, making her whole sack gleam brighter than a brand new starfighter.");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 	}
 	//Merge
 	output("\n\nPure pleasure backs your ceaseless swallowing. Both you and Emmy are lost to it, ingesting as much of the other’s love as possible before your twinned orgasms completely wind down. How long you spend bound to Emmy’s crotch, you don’t know, but when you stagger up and burp, tasting her on your tongue and breath, you feel completely and totally winded.");
@@ -3249,8 +3255,8 @@ public function noShowerWithEmemsPostFux():void
 	processTime(2);
 	IncrementFlag("EMMY_FUCKED");
 	//cum splattered
-	applyCumSoaked(pc);
-	applyPussyDrenched(pc);
+	pc.applyCumSoaked();
+	pc.applyPussyDrenched();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

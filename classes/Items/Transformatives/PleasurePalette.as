@@ -489,7 +489,7 @@
 				
 				// Orally Filled and Cum Splattered
 				target.loadInMouth(target);
-				//if(lottaCum) kGAMECLASS.applyCumSoaked(target);
+				//if(lottaCum) target.applyCumSoaked();
 			}
 			else
 			{

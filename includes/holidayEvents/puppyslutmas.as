@@ -85,7 +85,7 @@ public function annoPuppyslutmasArrive():void
 	hideMinimap();
 	
 	// Anno all dressed up!
-	showBust("ANNO");
+	showBust(annoBustDisplay());
 	showName("\nANNO");
 	author("Savin");
 
@@ -252,7 +252,7 @@ public function syriWearTheDamnDress():void
 {
 	clearOutput();
 	// Syri in a dress
-	showBust("SYRI");
+	showBust(syriBustDisplay());
 	showName("\nSYRI");
 	author("Savin");
 
@@ -296,7 +296,7 @@ public function syriWearTheTux():void
 {
 	clearOutput();
 	// Syri in da tux
-	showBust("SYRI");
+	showBust(syriBustDisplay());
 	showName("\nSYRI");
 	author("Savin");
 
@@ -391,7 +391,9 @@ public function puppyslutmasArrive():void
 {
 	clearOutput();
 
-	showBust(pPartner().toUpperCase());
+	if(pPartner() == "Anno") showBust(annoBustDisplay());
+	else if(pPartner() == "Syri") showBust(syriBustDisplay());
+	else showBust(pPartner().toUpperCase());
 	pPartyLocation();
 	currentLocation = "PUPPYSLUTMAS";
 	showLocationName();
@@ -411,7 +413,9 @@ public function puppyslutmasStairs():void
 {
 	clearOutput();
 	
-	showBust(pPartner().toUpperCase());
+	if(pPartner() == "Anno") showBust(annoBustDisplay());
+	else if(pPartner() == "Syri") showBust(syriBustDisplay());
+	else showBust(pPartner().toUpperCase());
 	showName("OFFICE\nCOMPLEX");
 	author("Savin");
 
@@ -454,7 +458,7 @@ public function puppyslutmasMeetAnno():void
 {
 	clearOutput();
 
-	showBust("SYRI", "ANNO");
+	showBust(syriBustDisplay(), annoBustDisplay());
 	author("Savin");
 
 	output("You put an arm around Syri’s shoulders and guide the reluctant ausar over to her sister and her date.");
@@ -534,7 +538,7 @@ public function puppyslutmasMeetSyri():void
 {
 	clearOutput();
 
-	showBust("SYRI", "ANNO");
+	showBust(syriBustDisplay(), annoBustDisplay());
 	author("Savin");
 
 	output("Giving Anno an affirmative hand-squeeze, you start heading over towards her sister.");
@@ -602,7 +606,7 @@ public function puppyslutmasPostGreets():void
 {
 	clearOutput();
 
-	showBust("ANNO", "SYRI", "KAEDE");
+	showBust(annoBustDisplay(), syriBustDisplay(), "KAEDE");
 	author("Savin");
 
 	output("The Dorna family christmas party is about what you’d expect from a wealthy black-tie event. A few dozen older ausar are mingling around the terrace, voices muffled by the cheery music wafting out from the main floor inside. A large fountain dominates the center of the terrace, tipped with a strange winged creature you can’t identify. A big, stuffed Santa sits next to the door with an electronic device in its hand, allowing the guests to anonymously donate to the charities the Dorna family is supporting. A big punch bowl is set out near the railing, which has attracted the attention of many other guests.");
@@ -633,7 +637,7 @@ public function puppyslutmasDrinks():void
 {
 	clearOutput();
 
-	showBust("ANNO", "SYRI", "KAEDE");
+	showBust(annoBustDisplay(), syriBustDisplay(), "KAEDE");
 	author("Savin");
 
 	output("You motion your train of ausar babes over towards the punch bowl. They follow you eagerly, and you quickly find yourself pouring glasses of a dark red punch that smells much more boozy than what you’re used to from your father’s functions. Even if that’s not your scene, there’s champagne and wine in easy access from a few tux-wearing attendants manning a portable bar. ");
@@ -676,7 +680,7 @@ public function puppyslutmasCharity():void
 {
 	clearOutput();
 
-	showBust("ANNO", "SYRI", "KAEDE");
+	showBust(annoBustDisplay(), syriBustDisplay(), "KAEDE");
 	author("Savin");
 
 	output("You wander up to the over-sized Santa mock-up next to the ballroom door, eyes drawn to the holo-terminal in the jolly man’s hands. Sensing your approach, the computer flashes with a welcome message before giving you a small spiel:");
@@ -704,7 +708,7 @@ public function puppyslutmasDonate():void
 {
 	clearOutput();
 
-	showBust("ANNO", "SYRI", "KAEDE");
+	showBust(annoBustDisplay(), syriBustDisplay(), "KAEDE");
 	author("Savin");
 
 	output("You pull your Codex out and swipe it across the holo-terminal, bringing up a transaction window. How much would you like to donate?");
@@ -766,7 +770,7 @@ public function puppyslutmasChatSyri():void
 {
 	clearOutput();
 
-	showBust("SYRI");
+	showBust(syriBustDisplay());
 	author("Savin");
 
 	output("<i>“Enjoying the party so far?”</i> you ask your raven-haired companion.");
@@ -815,7 +819,7 @@ public function puppyslutmasChatAnno():void
 {
 	clearOutput();
 
-	showBust("ANNO");
+	showBust(annoBustDisplay());
 	author("Savin");
 
 	output("<i>“Everything alright, Anno?”</i> you ask, putting an arm around the snowy ausar girl’s shoulders.");
@@ -864,7 +868,7 @@ public function puppyslutmasDance():void
 {
 	clearOutput();
 
-	showBust("ANNO", "SYRI", "KAEDE");
+	showBust(annoBustDisplay(), syriBustDisplay(), "KAEDE");
 	author("Savin");
 
 	output("<i>“What do you say we go inside, girls?”</i> you ask, slipping your arm around " + pPartner() + "’s waist.");
@@ -921,7 +925,7 @@ public function puppyslutmasDanceWithAnno():void
 {
 	clearOutput();
 
-	showBust("ANNO");
+	showBust(annoBustDisplay());
 	author("Savin");
 
 	output("<i>“Shall we?”</i> you ask, extending an arm to");
@@ -1086,7 +1090,7 @@ public function puppyslutmasDanceWithSyri():void
 {
 	clearOutput();
 
-	showBust("SYRI");
+	showBust(syriBustDisplay());
 	author("Savin");
 
 	output("<i>“How about it, Syri?”</i> you ask, extending your arm to the raven-haired ausar.");
@@ -1179,7 +1183,7 @@ public function puppyslutmasDornasArrive():void
 {
 	clearOutput();
 
-	showBust("ANNO", "SYRI", "KAEDE");
+	showBust(annoBustDisplay(), syriBustDisplay(), "KAEDE");
 	author("Savin");
 
 	output("As the band packs up and the throngs on the dance floor start to disperse, the girls rejoin you in a laughing, smiling pack of fluffy tails and perky ears. The lights dim a bit, bathing the hall in a sultry darkness - light streams in from the doors, but not much else.");
@@ -1294,7 +1298,7 @@ public function puppyslutmasMeetTheDornasHue():void
 {
 	clearOutput();
 
-	showBust("ANNO", "SYRI", "KAEDE");
+	showBust(annoBustDisplay(), syriBustDisplay(), "KAEDE");
 	author("Savin");
 
 	output("You follow the Dornas out to their car. As promised, it’s parked on a small ledge on the far side of the floor, down a flight of stairs to put it on level with the common garage. Of course, by car they clearly meant <i>“hover limo,”</i> a long dark stretch with a driver - the older ausar from before - standing at its side. He opens the door with a bow, allowing you and your ever-increasing ausar following to pile in.");
@@ -1417,7 +1421,7 @@ public function puppyslutmasMeetTheDornasHueSyri():void
 
 	clearOutput();
 
-	showBust("SYRI");
+	showBust(syriBustDisplay());
 	author("Savin");
 	
 	output("<b>Hours pass...</b>");
@@ -1449,7 +1453,7 @@ public function puppyslutmasMeetTheDornasHueAnno():void
 
 	clearOutput();
 
-	showBust("ANNO");
+	showBust(annoBustDisplay());
 	author("Savin");
 	
 	output("<b>Hours pass...</b>");
@@ -1495,8 +1499,18 @@ public function annoChristmasSpecial():void
 	output("\n\nOh, you most certainly do want to get into this little gift, " + (!pc.isNude() ? "but first, you have to do some unwrapping of your own" : "and you're already prepared to get down and dirty with it") + ".");
 	if(!pc.isNude()) output("\n\nYou quickly pull yourself together and stop gawking before tossing a little wink Anno's way. That little gesture makes the pup smile even wider. Well, it's either that or the fact that you're stripping yourself of your gear in front of her, pulling away your clothes until you're good, bare, and ready to help Anno undress too.");
 	else output("\n\nGiving her a little wink, you saunter forward, showing off your already-naked form to Anno, but even though you're good and bare... you think your lover is going to need a little help getting her outfit off.");
-	output("\n\nBefore you do any unwrapping, though, you take advantage of that mistletoe she’s holding: you wrap your arms around her, grabbing a handful of ausar ass and pressing your [pc.lips] to Anno’s, kissing her passionately as you bring her down onto the nearby sofa, mistletoe dropping to the ground. " + (pc.isTaur() ? "With your tauric lower half unable to fit on the couch" : "Straddling your canid gift") + ", you push her onto her back, steadily pulling away from your kiss. You reach your hands down to Anno’s big red ribbon and slowly begin to undo it. The ausar girl beneath you starts biting her lip with anticipation until the crimson cord is loose enough to let her double-D’s pop free.");
-	output("\n\nThose full orbs come jiggling to a halt as Anno is freed from her “clothing”, making you lick your lips. Not needing any sort of invitation, you grab at your present’s big, squishy tits, gently cupping and massaging her breasts until she starts to whimper. You lean forward, kissing Anno once more, letting your tongue slip into her mouth as you toy with her chest. It’s not long before your diligent, devious hands make their way to Anno’s perky pink nipples, tugging and pinching them until she’s moaning into your mouth, making you pull back from your tongue-tying kiss with a smile.");
+	output("\n\nBefore you do any unwrapping, though, you take advantage of that mistletoe she’s holding: you wrap your arms around her, ");
+	if(!annoIsHuskar()) output("grabbing a handful of ausar ass");
+	else output("sinking your fingers into some plus huskar booty");
+	output(" and pressing your [pc.lips] to Anno’s, kissing her passionately as you bring her down onto the nearby sofa, mistletoe dropping to the ground. " + (pc.isTaur() ? "With your tauric lower half unable to fit on the couch" : "Straddling your canid gift") + ", you push her onto her back, steadily pulling away from your kiss. You reach your hands down to Anno’s big red ribbon and slowly begin to undo it. ");
+	if(!annoIsHuskar()) output("The ausar girl beneath you starts biting her lip with anticipation until the crimson cord is loose enough to let her double-D’s pop free.");
+	else output("The ausar girl beneath you bites her lip with anticipation, but you barely start to undo the crimson cord before the sheer weight of her tits tear it free, letting her puppies spread out.");
+	if(!annoIsHuskar()) output("\n\nThose full orbs come jiggling to a halt as Anno is freed from her “clothing”");
+	else output("\n\nThose jiggling mounds orbs just keep quivering after Anno's been freed from her “clothing”");
+
+	output(", making you lick your lips. Not needing any sort of invitation, you grab at your present’s big, squishy tits, gently cupping and massaging her breasts until she starts to whimper. You lean forward, kissing Anno once more, letting your tongue slip into her mouth as you toy with her chest. ");
+	if(!annoIsHuskar()) output("It’s not long before your diligent, devious hands make their way to Anno’s perky pink nipples, tugging and pinching them until she’s moaning into your mouth, making you pull back from your tongue-tying kiss with a smile.");
+	else output("It’s not long before your diligent, devious hands make their way to Anno’s big pink nipples, tugging and pinching them until she’s moaning into your mouth, making you pull back from your tongue-tying kiss with a smile. A few more squeezes and tugs, and her inverted nipples start to peak out, so tiny and tender compared to the rest of her huge boobs that you can't help but lean down and take one in your mouth, suckling gently on the sensitive pink point.");
 	output("\n\nThe ausar beams up at you and reaches a furry hand up to caress your cheek, <i>“There’s more to your present than that, you know.”</i>");
 	output("\n\nYou return her smile and move back until you’re between her shapely legs, pulling the last of her ribbon off to reveal her lube-leaking snatch, " + (pc.hasCock() ? "ready for a big cock to fill it" : "her legs already slathered with feminine fluids") + ".");
 	if(pc.hasCock() && !pc.isTaur())
@@ -1506,14 +1520,28 @@ public function annoChristmasSpecial():void
 		output("\n\nIt all becomes too much for Anno, your suckling and fucking pushing her closer and closer to climax until a particularly loud moan escapes her mouth, soaking ausar pussy beginning to spasm around your [pc.cock].");
 		if(pc.hasKnot())
 		{
-			output("\n\nWithout a second thought you slam your hips forward, forcing your [pc.knot] into Anno’s pussy as her girlcum leaks out onto the couch. You jackhammer her convulsing cunt, making the ausar moan louder as you hurry to bring yourself to orgasm. Your scramble to climax pays off as the ecstasy of release fills your body, [pc.cock] beginning to spasm as you cum and cum inside of Anno, " + (pc.cumQ() >= 5000 ? "her flat tummy swelling as you fill her with [pc.cum], making her groan until her belly is round with your seed." : "her ladyjizz spilling out around your [pc.knot].") + "");
+			output("\n\nWithout a second thought you slam your hips forward, forcing your [pc.knot] into Anno’s pussy as her girlcum leaks out onto the couch. You jackhammer her convulsing cunt, making the ausar moan louder as you hurry to bring yourself to orgasm. Your scramble to climax pays off as the ecstasy of release fills your body, [pc.cock] beginning to spasm as you cum and cum inside of Anno, ");
+			if(pc.cumQ() >= 5000)
+			{
+				if(!annoIsHuskar()) output("her flat tummy swelling as you fill her with [pc.cum]");
+				else output("her plush belly swelling as you fill her with [pc.cum]");
+				output(", making her groan until her belly is round with your seed.");
+			}
+			else output("her ladyjizz spilling out around your [pc.knot].");
 			output("\n\nAs your orgasm finally passes, you raise your head to look at Anno, who’s currently recovering from her own peak.");
 			output("\n\n<i>“Merry Christmas, boss,”</i> she says, smiling up at you.");
 			output("\n\nWell, the two of you are going to be stuck here for a while; you let yourself fall forward, nuzzling your head into Anno’s chest as her arms close around your shoulders, ready to sleep off your knot.");
 		}
 		else
 		{
-			output("\n\nYou pick up the pace, [pc.hips] moving at a blinding speed as you hurry to join your lover in orgasm. Your scramble to climax pays off as the ecstasy of release fills your body, [pc.cock] beginning to spasm as you cum and cum inside of Anno, " + (pc.cumQ() >= 5000 ? "her flat tummy swelling as you fill her with [pc.cum], making her groan until her belly is round with your seed." : "her ladyjizz spilling out around your [pc.cock].") + "");
+			output("\n\nYou pick up the pace, [pc.hips] moving at a blinding speed as you hurry to join your lover in orgasm. Your scramble to climax pays off as the ecstasy of release fills your body, [pc.cock] beginning to spasm as you cum and cum inside of Anno, ");
+			if(pc.cumQ() >= 5000)
+			{
+				if(!annoIsHuskar()) output("her flat tummy swelling as you fill her with [pc.cum]");
+				else output("her plush belly swelling as you fill her with [pc.cum]");
+				output(", making her groan until her belly is round with your seed.");
+			}
+			else output("her ladyjizz spilling out around your [pc.cock].");
 			output("\n\nAs your orgasm finally passes, you pull out and raise your head to look at Anno, who’s currently recovering from her own peak.");
 			output("\n\n<i>“Merry Christmas, boss,”</i> she says, smiling up at you.");
 			output("\n\nYou thank her for her gift before you let yourself fall forward, nuzzling your head into Anno’s chest as her arms close around your shoulders, the two of you ready to sleep your afterglow away.");
@@ -1551,14 +1579,28 @@ public function annoChristmasSpecial():void
 		output("\n\nIt all becomes too much for Anno, your lovemaking (and sizeable cock) pushing her closer and closer to climax until a particularly loud moan escapes her mouth, soaking ausar pussy beginning to spasm around your [pc.cockBiggest].");
 		if(pc.hasKnot(pc.biggestCockIndex()))
 		{
-			output("\n\nWithout a second thought you slam your hips forward, forcing your [pc.knotBiggest] into Anno’s pussy as her girlcum leaks out onto the couch. You jackhammer her convulsing cunt, making the ausar moan louder as you hurry to bring yourself to orgasm. Your scramble to climax pays off as the ecstasy of release fills your body, [pc.cockBiggest] beginning to spasm as you cum and cum inside of Anno, " + (pc.cumQ() >= 5000 ? "her flat tummy swelling as you fill her with [pc.cum], making her groan until her belly is round with your seed." : "her ladyjizz spilling out around your [pc.knotBiggest].") + "");
+			output("\n\nWithout a second thought you slam your hips forward, forcing your [pc.knotBiggest] into Anno’s pussy as her girlcum leaks out onto the couch. You jackhammer her convulsing cunt, making the ausar moan louder as you hurry to bring yourself to orgasm. Your scramble to climax pays off as the ecstasy of release fills your body, [pc.cockBiggest] beginning to spasm as you cum and cum inside of Anno, ");
+			if(pc.cumQ() >= 5000)
+			{
+				if(!annoIsHuskar()) output("her flat tummy swelling as you fill her with [pc.cum]");
+				else output("her plush belly swelling as you fill her with [pc.cum]");
+				output(", making her groan until her belly is round with your seed.");
+			}
+			else output("her ladyjizz spilling out around your [pc.knotBiggest].");
 			output("\n\nAs your orgasm finally passes, you do your best to get a good look at Anno, who’s currently recovering from her own peak.");
 			output("\n\nShe's doing the same, moving as far as she can with your bitch-breaker inside her to look up at her lover. <i>“Merry Christmas, boss,”</i> she says, smiling up at you.");
 			output("\n\nWell, the two of you are going to be stuck here for a while; you let yourself recline forward against the couch, while Anno just hugs and nuzzles your lower-half, the two of you ready to sleep off your knot.");
 		}
 		else
 		{
-			output("\n\nYou pick up the pace, [pc.hips] moving at a blinding speed as you hurry to join your lover in orgasm. Your scramble to climax pays off as the ecstasy of release fills your body, [pc.cockBiggest] beginning to spasm as you cum and cum inside of Anno, " + (pc.cumQ() >= 5000 ? "her flat tummy swelling as you fill her with [pc.cum], making her groan until her belly is round with your seed." : "her ladyjizz spilling out around your [pc.cockBiggest].") + "");
+			output("\n\nYou pick up the pace, [pc.hips] moving at a blinding speed as you hurry to join your lover in orgasm. Your scramble to climax pays off as the ecstasy of release fills your body, [pc.cockBiggest] beginning to spasm as you cum and cum inside of Anno, ");
+			if(pc.cumQ() >= 5000)
+			{
+				if(!annoIsHuskar()) output("her flat tummy swelling as you fill her with [pc.cum]");
+				else output("her plush belly swelling as you fill her with [pc.cum]");
+				output(", making her groan until her belly is round with your seed.");
+			}
+			else output("her ladyjizz spilling out around your [pc.cockBiggest].");
 			output("\n\nAs your orgasm finally passes, you do your best to get a good look at Anno, who’s currently recovering from her own peak.");
 			output("\n\nShe's doing the same, moving as far as she can with your softening taur-cock holding her in place to look up at her lover. <i>“Merry Christmas, boss,”</i> she says, smiling up at you.");
 			output("\n\nWell, the two of you are going to be stuck here for a while; you let yourself recline forward against the couch, while Anno just hugs and nuzzles your lower-half, the two of your ready to sleep your afterglow away.");
@@ -1567,7 +1609,10 @@ public function annoChristmasSpecial():void
 	}
 	else
 	{
-		output("\n\nGrinning, you work your way down Anno's bare body, planting little kisses along her tight  tummy as you go, all the way to her pretty pink pussy. You pause before digging in and look up at your lover, only to see her tail wagging as fast as it can and her face completely full of need.");
+		output("\n\nGrinning, you work your way down Anno's bare body, ");
+		if(!annoIsHuskar()) output("planting little kisses along her tight tummy as you go, all the way to her pretty pink pussy");
+		else output("planting little kisses along her soft stomach as you go, all the way to her pretty pink pussy");
+		output(". You pause before digging in and look up at your lover, only to see her tail wagging as fast as it can and her face completely full of need.");
 		output("\n\n<i>“C'mon, boss,”</i> she coos lustfully with a big smile on her face, <i>“Don't you want this nice Christmas breakfast I made you?”</i>");
 		output("\n\nYou give her a lascivious smirk in response and sink back down to her body, throwing her lube-glossed thighs over your shoulders quick enough to make the ausar yelp. Then, with her legs nice and spread with your head between them, you let your [pc.tongue] loll from your mouth and trail it along the inside of Anno's thigh, gathering her fem-lube as you go and drawing a shuddering breath from the snowy pup. After that it's just a short trip of your tongue to reach her velvety folds, dragging your oral organ up and down her wet, pink slit until she starts to whimper. You move your way up to her clit and start to kiss at her engorged pleasure-buzzer, flicking your [pc.tongue] across it and turning a once steady flow of Anno's feminine fluids into an Ausaril river!");
 		output("\n\n<i>“Booooooss,”</i> the sopping-wet doggirl pleads and whines, <i>“Quit teasing meeeeeee... give me my present already!”</i>");

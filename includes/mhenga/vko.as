@@ -403,6 +403,7 @@ public function customVKoInputCauseCoolKidsTypeOutTheirSexScenesLikeABoss():void
 	output("You tell the nursedroid that you would like a less... standard service.");
 	output("\n\nV-Ko cocks her head to the side for a moment, eyes flickering. Her vision clears, and she explains, <i>“I regret that I am only a virtual intelligence. My ability to respond to questions and inputs is limited by my programming. If there are any nonstandard routines in my programming, you would have to give the right command to activate them. In the words of my forebears, ‘you must ask the right question.’”</i>");
 	this.displayInput();
+	output("\n\n\n");
 	clearMenu();
 	addButton(0,"Enter",parseVKoCustomInputs);
 	addButton(14,"Back",backOutOfVKoTextEntrance);
@@ -415,49 +416,58 @@ public function backOutOfVKoTextEntrance():void
 	approachVKo();
 }
 
+public function parseVKoCustomInputError():void
+{
+	clearOutput();
+	showVKo();
+	output("V-Ko cocks her head to the side for a moment, eyes flickering. Her vision clears, and she explains, <i>“I regret that I am only a virtual intelligence. My ability to respond to questions and inputs is limited by my programming. If there are any nonstandard routines in my programming, you would have to give the right command to activate them. In the words of my forebears, ‘you must ask the right question.’”</i>");
+	this.displayInput();
+	output("\n\n\n");
+}
 public function parseVKoCustomInputs():void
 {
 	var toParse:String = this.userInterface.textInput.text;
 	toParse = toParse.toLowerCase();
 
 	//Check for cheats
-	hasIllegalInput(toParse);
+	if(hasIllegalInput(toParse))
+	{
+		parseVKoCustomInputError();
+		output("<b>To prevent complications, please avoid using code in the name.</b>");
+		return;
+	}
 	
 	//Incorrect Input
 	//Repeat "Custom Inputs" without the first sentence.
+	var customInputs:Array = [];
 	
 	//Genital-specific commands
-	if((toParse.indexOf("release") >= 0 || toParse.indexOf("relief") >= 0) && (pc.hasCock() || pc.hasVagina()))
+	if(toParse.indexOf("release") >= 0 || toParse.indexOf("relief") >= 0)
 	{
-		if(stage.contains(this.userInterface.textInput)) 
-			this.removeInput();
-		if(pc.hasCock() && (!pc.hasVagina() || rand(2) == 0)) stressReliefGo();
-		else VKoStressReliefForLadyginas();
+		if(pc.hasCock()) customInputs.push(stressReliefGo);
+		if(pc.hasVagina()) customInputs.push(VKoStressReliefForLadyginas);
 	}
-	else if(toParse.indexOf("electro") >= 0 || toParse.indexOf("stim") >= 0)
+	if(toParse.indexOf("electro") >= 0 || toParse.indexOf("stim") >= 0)
 	{
-		if(stage.contains(this.userInterface.textInput)) 
-			this.removeInput();
-		vKoElectroTherapy();
+		customInputs.push(vKoElectroTherapy);
 	}
-	else if(toParse.indexOf("milk") >= 0 || toParse.indexOf("breastpump") >= 0 || toParse.indexOf("pump") >= 0 || toParse.indexOf("lactate") >= 0)
-	{
-		if(stage.contains(this.userInterface.textInput)) 
-			this.removeInput();
-		VKOBreastPumpFunction();
+	if(toParse.indexOf("milk") >= 0 || toParse.indexOf("breastpump") >= 0 || toParse.indexOf("pump") >= 0 || toParse.indexOf("lactate") >= 0)
+	{ 
+		customInputs.push(VKOBreastPumpFunction);
 	}
-	else if(toParse.indexOf("donate") >= 0 || toParse.indexOf("charity") >= 0)
+	if(toParse.indexOf("donate") >= 0 || toParse.indexOf("charity") >= 0)
 	{
-		if(stage.contains(this.userInterface.textInput)) 
-			this.removeInput();
-		joyCoDonationPrompt("vko");
+		customInputs.push(joyCoDonationPromptVKo);
+	}
+	
+	if(customInputs.length > 0)
+	{
+		if(stage.contains(this.userInterface.textInput)) this.removeInput();
+		customInputs[rand(customInputs.length)]();
 	}
 	else
 	{
-		clearOutput();
-		showVKo();
-		output("V-Ko cocks her head to the side for a moment, eyes flickering. Her vision clears, and she explains, <i>“I regret that I am only a virtual intelligence. My ability to respond to questions and inputs is limited by my programming. If there are any nonstandard routines in my programming, you would have to give the right command to activate them. In the words of my forebears, ‘you must ask the right question.’”</i>");
-		this.displayInput();
+		parseVKoCustomInputError();
 	}
 }
 
@@ -1061,7 +1071,7 @@ public function agreeToVKoBoobSucks():void
 	output("\n\nV-Ko approaches you, and you note the crosses on her chest moving. They retract inward, sinking in to expose a pair of prehensile, hose-like protrusions. The crosses themselves have melted into concave, parabolic arcs perfectly sized to fit your [pc.breasts]. Without further ado, the cups align themselves with your [pc.nipples] and give each an experimental pump.");
 
 	output("\n\nA shudder ripples across your skin and you bite back a moan as you feel your [pc.nipples] pop into place, encapsulated by the suctioning cups.");
-	if(pc.hasFuckableNipples()) output(" Though your [nipples] have no protrusions to play with, that doesn’t stop the cups from fashioning themselves around your areolas and ensuring that your [pc.milk] will go inside of the nursedroid.");
+	if(pc.hasFuckableNipples()) output(" Though your [pc.nipples] have no protrusions to play with, that doesn’t stop the cups from fashioning themselves around your areolas and ensuring that your [pc.milk] will go inside of the nursedroid.");
 	if(pc.bRows() > 1) output(" Below your primary tits, your remaining breasts practically tingle with anticipation of their turn.");
 
 	output("\n\nHer chest starts emitting a low pumping noise, and you feel the cups begin to drain you of your [pc.milk]. You breathe a sigh of relief, humming in pleasure as the suction cups stimulate you in a most delightful manner. It’s not quite sexual, at least not so much that you’re going to cum over the seats any moment now, but still very satisfying on a deep level.");

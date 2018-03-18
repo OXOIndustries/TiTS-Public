@@ -1465,6 +1465,7 @@ public function uvetoSlipperyIce():void
 public function tryEncounterSavicite(nStep:int = 0):Boolean
 {
 	var getChance:int = 150;
+	if(pc.accessory is NogwichLeash) getChance = 80;
 	
 	if (nStep != 0 && rand(getChance) <= 1)
 	{
@@ -1480,14 +1481,18 @@ public function encounterSavicite(choice:String = "encounter"):void
 		clearOutput();
 		showName("A CHUNK OF\nSAVICITE!");
 		
-		output("As you’re wandering, you notice something dark and rough-looking sticking up out of the snow. You stop and bend down, dusting it off to see what the strange object is.");
+		if(pc.accessory is NogwichLeash) output("Your nog’wich suddenly rears back and mewls softly, ruffling its round ears. It looks like it found");
+		else output("As you’re wandering, you notice");
+		output(" something dark and rough-looking sticking up out of the snow. You stop");
+		if(pc.isRidingMount()) output(", dismount");
+		output(" and bend down, dusting it off to see what the strange object is.");
 		output("\n\nIt’s a rock, about the size of your fist, colored a dark and luminous green. Its fuzzy to the touch, but when your wrap your fingers around the strange stone, you feel a wave of unexpected heat rush through your arm... and right to your loins! You recoil back, shuddering uncontrollably as");
 		if(pc.hasGenitals()) {
 			if(pc.hasCock()) output(" your [pc.cock] jumps to attention");
 			if(pc.isHerm()) output(" and");
 			if(pc.hasVagina()) output(" your [pc.cunt] clenches hungrily");
 		}
-		else output(" barren groin burns with desire, undiminished by your neuter state");
+		else output(" your barren groin burns with desire, undiminished by your neutered state");
 		output(". Your Codex beeps a confirmation of what you already knew: this is savicite, a psionically-active local mineral, valuable as a fuel source. Could be worth something back at Irestead...");
 		
 		processTime(1);
@@ -1589,6 +1594,8 @@ public function enterKorgHold():void
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
+	
+	removeUvetoCold(false);
 }
 
 //Leave Awoo
@@ -1612,12 +1619,16 @@ public function leaveAwoo():void
 	output(", you step out into the snow.");
 	output("\n\nThe door seals shut behind you, leaving you in the driven snow.");
 	processTime(1);
+	
+	addUvetoCold(false);
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
 public function korgiD12Bonus():void
 {
+	output("\n\n");
 	if(rand(3) == 0) output("A naked dog-person is trotting by right now, clad in little more than wispy fabric and jingling stone jewelry. He spares you a friendly wave and bounces along on his way.");
 	else if(rand(2) == 0) output("A naked dog-girl is trotting by right now, openly ogling you on the way by. You can see her nipples visibly plump around her jeweled nipple-piercings.");
 	else output("A group of korg fisherman trundle by with nothing but a few pouches of bait and metallic fishing poles.");
@@ -1625,6 +1636,8 @@ public function korgiD12Bonus():void
 	output("\n\nTo the west is a door carved with pictures of spears and fallen beasts.");
 	if(!korgiTranslate()) output(" Your translator can’t make out the foreign script that accompanies it.");
 	else output(" Rough script declares it to be “Hunter’s Hole,” obviously some kind of shop.");
+
+	if(korgiTranslateProgress() >= 100 && flags["KORGI_TRANSLATING"] == undefined) output("\n\n<b>A chirp from your Codex reminds you that it has gained enough data to improve korgonne language processing.</b> To update the algorithm, visit the “Korgonne” entry in your Codex and select “Translation.”");
 }
 
 public function korgiH14Bonus():void

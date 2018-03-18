@@ -29,7 +29,7 @@
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a lightweight maul with a pure savicite head.";
+			this.description = "a lightweight maul with a pure savicite head";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A rustic, unassuming steel handle that ends in a blunt head made of glowing, green stone. It’s about the size of a watermelon, and is smoothed into a rough circle. It won’t deal that much damage, but the lust-inducing properties of Savicite mean it’ll take down your enemies in another way.";
@@ -47,7 +47,7 @@
 			baseDamage.kinetic.damageValue = 5;
 			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_STUN);
 			baseDamage.addFlag(DamageFlag.CRUSHING);
-			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
+			//addFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON);
 			
 			this.attack = -3;
 			this.defense = 0;

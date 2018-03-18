@@ -224,7 +224,6 @@ public function configureMails():void
 
 	MailManager.addMailEntry("jade_dumplings", "I’m making <i>special</i> dumplings, if you want some, come to the shop ;)\n\n~Jade", "Dumplings!","Jade","professional_panda@cmail.com",quickPCTo,quickPCToAddress);
 
-	MailManager.addMailEntry("zil_callgirl_birth", zilCallGirlBirthMessage, "Zheniya", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("del_moved",delEmailString,"Change of Venue","Del Crawford","Delray.Crawford.136572@Galnet.org",quickPCTo,quickPCToAddress);
 	MailManager.addMailEntry("del_moved_light",delLightEmailString,"Change of Venue","Del Crawford","Delray.Crawford.136572@Galnet.org",quickPCTo,quickPCToAddress);
 
@@ -241,25 +240,32 @@ public function configureMails():void
 	MailManager.addMailEntry("randy_claws_email", clawsEmailText, "Merry Christmas!", "New Texas Department of Wildlife", "NT_DoW@NewTexas.gov", quickPCTo, quickPCToAddress);
 	
 	//Stubs so that the mail entries show up on a load - this is basically for emails that are repeatable and also have dynamic content
-	MailManager.addMailEntry("tamtam_preg1", undefined, "Gastigoth Inmate Tam-Tam - Pregnancy Detected", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-	MailManager.addMailEntry("tamtam_preg2", undefined, "Gastigoth Inmate Tam-Tam - Pregnancy Options", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-	MailManager.addMailEntry("tamtam_preg3", undefined, "Gastigoth Inmate Tam-Tam - Pregnancy Update", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-	MailManager.addMailEntry("tamtam_preg4", undefined, "Gastigoth Inmate Tam-Tam - It’s Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-	MailManager.addMailEntry("tamtam_preg5", undefined, "Gastigoth Inmate Tam-Tam - Child Delivery Report", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-	MailManager.addMailEntry("khorgan_preg1", undefined, "Gastigoth Inmate Khorgan - Pregnancy Detected", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-	MailManager.addMailEntry("khorgan_preg2", undefined, "Gastigoth Inmate Khorgan - Pregnancy Options", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-	MailManager.addMailEntry("khorgan_preg3", undefined, "Gastigoth Inmate Khorgan - Pregnancy Update", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-	MailManager.addMailEntry("khorgan_preg4", undefined, "Gastigoth Inmate Khorgan - It’s Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-	MailManager.addMailEntry("khorgan_preg5", undefined, "Gastigoth Inmate Khorgan - Child Delivery Report", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-	MailManager.addMailEntry("sam_preg1", undefined, "Gastigoth Inmate Sam - Pregnancy Detected", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-	MailManager.addMailEntry("sam_preg2", undefined, "Gastigoth Inmate Sam - Pregnancy Options", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-	MailManager.addMailEntry("sam_preg3", undefined, "Gastigoth Inmate Sam - Pregnancy Update", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-	MailManager.addMailEntry("sam_preg4", undefined, "Gastigoth Inmate Sam - It’s Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-	MailManager.addMailEntry("sam_preg5", undefined, "Gastigoth Inmate Sam - Child Delivery Report", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
-	MailManager.addMailEntry("ilaria_preg1", undefined, "Surprise, Surprise!", "Ilaria Ilgade", "Ilaria@BunBunBakery.com", quickPCTo, quickPCToAddress);
-	MailManager.addMailEntry("ilaria_preg2", undefined, "Ilaria Ilgade", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
-	MailManager.addMailEntry("prai_email", undefined, undefined, "Prai Ellit", "Prai@Xenotech.net", quickPCTo, quickPCToAddress);
-	MailManager.addMailEntry("ula_birth", undefined, "Ula message!", "Bill Billingston", "bill_billingston@steeletech.con", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("zil_callgirl_birth", zilCallGirlBirthMessage, "Zheniya", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("tamtam_preg1", preg1EmailTextTamTam, "Gastigoth Inmate Tam-Tam - Pregnancy Detected", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("tamtam_preg2", preg2EmailTextTamTam, "Gastigoth Inmate Tam-Tam - Pregnancy Options", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("tamtam_preg3", preg3EmailTextTamTam, "Gastigoth Inmate Tam-Tam - Pregnancy Update", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("tamtam_preg4", preg4EmailTextTamTam, "Gastigoth Inmate Tam-Tam - It’s Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("tamtam_preg5", preg5EmailTextTamTam, "Gastigoth Inmate Tam-Tam - Child Delivery Report", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("khorgan_preg1", preg1EmailTextKhorgan, "Gastigoth Inmate Khorgan - Pregnancy Detected", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("khorgan_preg2", preg2EmailTextKhorgan, "Gastigoth Inmate Khorgan - Pregnancy Options", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("khorgan_preg3", preg3EmailTextKhorgan, "Gastigoth Inmate Khorgan - Pregnancy Update", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("khorgan_preg4", preg4EmailTextKhorgan, "Gastigoth Inmate Khorgan - It’s Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("khorgan_preg5", preg5EmailTextKhorgan, "Gastigoth Inmate Khorgan - Child Delivery Report", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("sam_preg1", preg1EmailTextSam, "Gastigoth Inmate Sam - Pregnancy Detected", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("sam_preg2", preg2EmailTextSam, "Gastigoth Inmate Sam - Pregnancy Options", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("sam_preg3", preg3EmailTextSam, "Gastigoth Inmate Sam - Pregnancy Update", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("sam_preg4", preg4EmailTextSam, "Gastigoth Inmate Sam - It’s Nearly Time!", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("sam_preg5", preg5EmailTextSam, "Gastigoth Inmate Sam - Child Delivery Report", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("ilaria_preg1", ilariaPreg1EmailText, "Surprise, Surprise!", "Ilaria Ilgade", "Ilaria@BunBunBakery.com", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("ilaria_preg2", ilariaPreg2EmailText, "Ilaria Ilgade", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("prai_email", praiEmailText, praiSubjectText, "Prai Ellit", "Prai@Xenotech.net", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("ula_birth", ulaPregEmailText, "Ula message!", "Bill Billingston", "bill_billingston@SteeleTech.corp", quickPCTo, quickPCToAddress);
+	//Anno thickness emails!
+	MailManager.addMailEntry("kaedeReactsToHuskarAnnoEmailMail", kaedeReactsToHuskarAnnoEmail, "Oh my god","Kaede","KaedeAEntara17@IndieTransports.net", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("syriReactsToHuskarAnnoEmailMail", syriReactsToHuskarAnnoEmail, "lol","Syri Dorna","BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("annoReactsToSyriHuskarTeasingMail", annoReactsToSyriHuskarTeasing, "-no subject-","Anno Dorna","Anno_Dorna@SteeleTech.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("syriGetsBlockedByAnnoOverHuskarMail", syriGetsBlockedByAnnoOverHuskar, "Besties with testes","Syri Dorna","BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
+
 }
 
 public function kallyKiroMilkvite():String
@@ -469,6 +475,7 @@ public function initialMailConfiguration():void
 	//Space conversion!
 	var eName:String = pc.short.replace(/\s+/g, '_');
 	userInterface.textInput.text = eName + "_Steele";
+	output2("\n\n\n");
 
 	clearGhostMenu();
 	addGhostButton(0, "Confirm", confirmMailConfig);
@@ -483,20 +490,20 @@ public function confirmMailConfig():void
 	if (userInterface.textInput.text == "")
 	{
 		initialMailConfiguration();
-		output2("\n\n\n<b>You must input something.</b>");
+		output2("<b>You must input something.</b>");
 		return;
 	}
 	// Illegal characters check. Just in case...
 	if (hasIllegalInput(userInterface.textInput.text))
 	{
 		initialMailConfiguration();
-		output2("\n\n\n<b>To prevent complications, please avoid using code characters.</b>");
+		output2("<b>To prevent complications, please avoid using code characters.</b>");
 		return;
 	}
 	if (userInterface.textInput.text.indexOf(" ") != -1)
 	{
 		initialMailConfiguration();
-		output2("\n\n\n<b>Spaces are verboten!</b>");
+		output2("<b>Spaces are verboten!</b>");
 		return;
 	}
 
@@ -508,8 +515,8 @@ public function confirmMailConfig():void
 	output2("\n\nWelcome, " + quickPCToAddress() +".");
 	output2("\n\nPlease press the NEXT button to proceed to your inbox.");
 
-	MailManager.unlockEntry("welcomeMailConfirmed", GetGameTimestamp());
-	MailManager.unlockEntry("messageFromDad", GetGameTimestamp());
+	MailManager.unlockEntry("welcomeMailConfirmed", 0);
+	MailManager.unlockEntry("messageFromDad", 0);
 
 	clearGhostMenu();
 	addGhostButton(0, "Next", showMails);

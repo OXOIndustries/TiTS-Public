@@ -186,6 +186,11 @@ public function kiEnterMedbay():Boolean
 		addDisabledButton(1, "Elenora", "Approach Elenora", "You’ve got places to be and things to do, no point wasting time.");
 	}
 	
+	if (flags["KI_REFUSED_VANDERBILT"] != undefined && flags["KI_VANDERBILT_WORKING"] != undefined)
+	{
+		addDisabledButton(9, "Sleep", "Sleep", "You can’t afford to risk sleeping with Elenora around. Who knows if she’ll be able to hold it together... or if she’ll try something while you rest.");
+	}
+	
 	return false;
 }
 

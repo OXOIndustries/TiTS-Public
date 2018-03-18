@@ -1,25 +1,38 @@
 // Roaming Bar Encounter Button
 public function roamingBarEncounter(button:int = 0):void
 {
-	//Build list of available NPCs
-	var NPCs:Array = new Array();
-	//66% chance Kiro could be there if available.
-	if(roamingKiroAvailable() && rand(3) <= 1) NPCs.push(kiroSetup);
-	//"Help: Bodies" option, has had an update from Anno about the Nova. @ Golden Peak
-	if(flags["DECK13_GRAY_PRIME_DECISION"] == 1 && flags["ANNO_NOVA_UPDATE"] == 1 && currentLocation == "609") NPCs.push(grayGooAtBarSetup);
-	//50% anno chances
-	if(
-	(	(currentLocation == "ANON'S BAR AND BOARD" && !pc.hasStatusEffect("Anno x Kaede Bar"))
-	||	(currentLocation == "BURT'S MAIN HALL" && flags["ANNOxSYRI_EVENT"] != undefined)
-	||	!InCollection(currentLocation, ["ANON'S BAR AND BOARD", "BURT'S MAIN HALL"])
-	)
-	&&	annoIsCrew() && !pc.hasStatusEffect("Anno Bar Busy") && rand(2) == 0) NPCs.push(annoRandoBarBonus);
-	if(flags["ERRA_HEARTBROKEN"] == undefined) NPCs.push(erraBarText);
-	//Pick available NPC, run setup func
-	if(NPCs.length > 0)
+	if(flags["BAR_NPC_TIMER"] == undefined || flags["BAR_NPC"] == undefined) flags["BAR_NPC_TIMER"] = GetGameTimestamp()-1;
+	//Do we need to set a new bar NPC? If yes, set it! (Changes 2 hours after proccing)
+	if(flags["BAR_NPC_TIMER"] < GetGameTimestamp())
 	{
-		NPCs[rand(NPCs.length)](button);
+		flags["BAR_NPC_TIMER"] = GetGameTimestamp()+90+rand(60);
+		//Build list of available NPCs
+		var NPCs:Array = new Array();
+		//66% chance Kiro could be there if available.
+		if(roamingKiroAvailable() && rand(3) <= 1) NPCs.push(kiroSetup);
+		//"Help: Bodies" option, has had an update from Anno about the Nova. @ Golden Peak
+		if(flags["DECK13_GRAY_PRIME_DECISION"] == 1 && flags["ANNO_NOVA_UPDATE"] == 1 && currentLocation == "609") NPCs.push(grayGooAtBarSetup);
+		//Verusha usually occupies the bar on Tarkus.
+		if(currentLocation == "302") NPCs.push(verushaBonusFunc,verushaBonusFunc,verushaBonusFunc,verushaBonusFunc,verushaBonusFunc);
+		// Repeat goo armor meet
+		else if(flags["GOO_ARMOR_AWAY"] != undefined) NPCs.push(grayGooArmorRoamingBonus);
+		//50% anno chances
+		if(
+		(	(currentLocation == "ANON'S BAR AND BOARD" && !pc.hasStatusEffect("Anno x Kaede Bar"))
+		||	(currentLocation == "BURT'S MAIN HALL" && flags["ANNOxSYRI_EVENT"] != undefined)
+		||	!InCollection(currentLocation, ["ANON'S BAR AND BOARD", "BURT'S MAIN HALL"])
+		)
+		&&	annoIsCrew() && !pc.hasStatusEffect("Anno Bar Busy") && rand(2) == 0) NPCs.push(annoRandoBarBonus);
+		if(flags["ERRA_HEARTBROKEN"] == undefined) NPCs.push(erraBarText);
+		//Pick available NPC, run setup func
+		if(NPCs.length > 0)
+		{
+			flags["BAR_NPC"] = NPCs[rand(NPCs.length)];
+			//NPCs[rand(NPCs.length)](button);
+		}
 	}
+	//If an NPC is active, run setup!
+	if(flags["BAR_NPC"] != undefined) flags["BAR_NPC"](button);
 }
 
 //Bar Preview Blurb
@@ -1746,7 +1759,7 @@ public function yesImTakingKirosVcards():void
 	kiro.orgasm();
 	kiro.orgasm();
 	pc.lust(3000);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	processTime(14);
 	//[Next]
 	clearMenu();
@@ -1863,7 +1876,7 @@ public function catchVaginalFromKiro():void
 	output(" beneath. An unsubtle back-and-forth waggle has the tanuki’s wide-eyed gaze riveted to your [pc.butt] and her giant python so rigid that the veins might as well be steel cables.");
 	output("\n\n<i>“Angel,”</i> Kiro says with a zombie-like stagger in your direction, <i>“I don’t think... Ahh, fuck it!”</i> She grabs your [pc.butts] in her hands, kneading your pliant flesh like a woman entranced, the softly padded fingertips contrasting against the silky fur of her fingers in the most pleasant of ways. You could lie here for hours with your ass up, being massaged by a lover too libidinous to do anything but worship your body. The kui-tan giggles and squeezes, spreading your cheeks to give her a better view. <i>“Gosh.”</i> The word is two parts breathy pant and one part joyful wonder. <i>“I don’t think I’ll ever get tired of this view.”</i>");
 	output("\n\nYou press back against her, letting her claw-tipped fingers sink deeper into your flesh. <i>“You can do more than look, you know.”</i> You bite your lip and look over your shoulder at her. <i>“You can </i>fuck<i> me.”</i>");
-	if(pc.hasLipples()) output(" Stars, your [pc.lipples] want to suck off the entire universe right now; they’re so hot and tingly from dragging back and forth against Kiro’s cum-scented sheets.")
+	if(pc.hasLipples()) output(" Stars, your [pc.nipples] want to suck off the entire universe right now; they’re so hot and tingly from dragging back and forth against Kiro’s cum-scented sheets.")
 	else if(!pc.hasDickNipples()) output(" Stars, your [pc.nipples] could cut diamonds, and dragging the hard tips against Kiro’s cum-scented sheets isn’t helping!");
 	else output(" Stars, your [pc.nippleCocks] are pressing hard on your [pc.nipples], demanding to pop out and jizz all over Kiro’s sheets. One shuddering whimper later, and they’re out, sending tingles of fizzing excitement to distract your Kiro-focused brain from the all-consuming need for her dick.");
 
@@ -3116,15 +3129,15 @@ public function giveKiroSomeRelief():void
 
 
 // GalLink e-mail stuff
-public function kiroFuckNetBonus():String
+public function kiroFuckNetBonus(deltaT:uint):String
 {
 	if(pc.isBimbo() || pc.isBro() || !pc.hasStatusEffect("Focus Pill") || pc.IQ() < 50 || pc.WQ() < 50)
 	{
 		pc.lust(20);
 		
-		MailManager.readEntry("kirofucknet", GetGameTimestamp());
+		MailManager.readEntry("kirofucknet", (GetGameTimestamp() + deltaT));
 		
-		return " The subject line reads <i>“Kiro Tamahime has invited you to the group ‘GalLink Fuckmeet’”</i>. Curiously, you open the letter to see what it could be...\n\nThe message is headed by a big holo-image of Kiro with her massive equine dong shoved to the hilt up some girl’s backside, stretching her sphincter like a rubber band. Kiro’s holding the camera and giving you a big, goofy grin and a thumb’s-up.\n\n<i>Kiro Tamahime wants you to join the GalLink group “GalLink Fuckmeet.”\n\nGalLink Fuckmeet: Bone random citizens of the galaxy with no hassle, no commitment, just fun!\n\nSuggested Members: Kiro Tamahime, Saendra en Illya, BigBooty Flahne, Sera Succubus, GirlBoy Alex</i>\n\nYou shrug and click “Join”...\n\nAnd are instantly flooded with several THOUSAND pictures of the group’s members (mostly Kiro) engaged in lewd acts.\n\nWell, at least you won’t need to look for new porn for a while.";
+		return "\n\nThe subject line reads <i>“Kiro Tamahime has invited you to the group ‘GalLink Fuckmeet’”</i>. Curiously, you open the letter to see what it could be...\n\nThe message is headed by a big holo-image of Kiro with her massive equine dong shoved to the hilt up some girl’s backside, stretching her sphincter like a rubber band. Kiro’s holding the camera and giving you a big, goofy grin and a thumb’s-up.\n\n<i>Kiro Tamahime wants you to join the GalLink group “GalLink Fuckmeet.”\n\nGalLink Fuckmeet: Bone random citizens of the galaxy with no hassle, no commitment, just fun!\n\nSuggested Members: Kiro Tamahime, Saendra en Illya, BigBooty Flahne, Sera Succubus, GirlBoy Alex</i>\n\nYou shrug and click “Join”...\n\nAnd are instantly flooded with several THOUSAND pictures of the group’s members (mostly Kiro) engaged in lewd acts.\n\nWell, at least you won’t need to look for new porn for a while.";
 	}
 	
 	return "";
@@ -3470,8 +3483,8 @@ public function kiroFuckOrgyFuntimes6():void
 	kiro.orgasm();
 	kiro.orgasm();
 	for(var i:int = 0; i < 10; i++) { pc.orgasm(); }
-	applyCumSoaked(pc);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
 	
 	//20,000 in every hole
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();

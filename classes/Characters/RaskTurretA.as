@@ -36,7 +36,7 @@
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "This security turret is armed with a high-caliber machinegun, designed to mow down large-bodied soft targets.";
-			this.customDodge = "Somehow, the turret's swivelling moves it out of the way.";
+			this.customDodge = "Somehow, the turret’s swivelling moves it out of the way.";
 			this.customBlock = "The armor plates soak up your attack.";
 			this.isPlural = false;
 			isLustImmune = true;

@@ -589,7 +589,7 @@ public function approachCuntSnake(response:String = "intro"):void
 					if(pc.girlCumQ() >= 1000)
 					{
 						output(" Your hands, " + (pc.hasLegs() ? " legs," : "") + " tail, and practically everything else nearby are left soaked and dripping.");
-						applyPussyDrenched(pc);
+						pc.applyPussyDrenched();
 					}
 					output("\n\nThe relief of orgasm lulls you to sleep, but you wake up with a start only a few minutes later. You look down at the mess you made and give a nervous laugh. That was a ride. You stand up and get a feel for moving around again, then work to gather your " + (pc.isNude() ? "possessions" : "clothing") + ". There’s still a lingering hunger coming from your tail, the need for a meal of a more masculine nature, but the sensation is little more than an itch for now. You’ll probably want to take your new friend out to dinner fairly soon, though, lest its appetite become a serious distraction... ");
 				}
@@ -614,7 +614,7 @@ public function approachCuntSnake(response:String = "intro"):void
 						if(pc.cumQ() >= 1000)
 						{
 							output(", drenching your lower half with a copious amount of [pc.cum] at the same time");
-							applyCumSoaked(pc);
+							pc.applyCumSoaked();
 						}
 						output(".");
 					}

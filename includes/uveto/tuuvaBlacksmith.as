@@ -42,6 +42,9 @@ public function tuuvaAffection(change:Number = 0):Number
 	{
 		flags["TUUVA_AFFECTION"] += change;
 		if(flags["TUUVA_AFFECTION"] < 0) flags["TUUVA_AFFECTION"] = 0;
+		// Cooldown to prevent auto events from triggering automatically. (3 hours?)
+		pc.createStatusEffect("Tuuva Affection Cooldown", 0, 0, 0, 0, true, "", "", false, 180);
+		pc.setStatusMinutes("Tuuva Affection Cooldown", 180);
 	}
 	var bonus:Number = 0;
 	if(flags["TUUVA_SELF_TALK"] != undefined) bonus += 5;
@@ -73,7 +76,8 @@ public function showTuuva(nude:Boolean = false):void
 	var nudeS:String = "";
 	if(nude) nudeS = "_NUDE";
 	showName("\nTUUVA");
-	showBust("TUUVA"+nudeS);
+	var horseS:String = (nude ? (tuuva.hasCock(GLOBAL.TYPE_EQUINE) ? "_HORSE" : "") : "");
+	showBust("TUUVA"+horseS+nudeS);
 	author("QuestyRobo");
 }
 
@@ -93,6 +97,12 @@ public function tuuvaExpeditionRescueChance():Boolean
 	return false;
 }
 
+public function tuuvaPooped():Boolean
+{
+	return pc.hasStatusEffect("Tuuva Pooped");
+}
+
+
 //Earthshapers
 public function tuuvaBlacksmithShopBonus():Boolean
 {
@@ -103,7 +113,7 @@ public function tuuvaBlacksmithShopBonus():Boolean
 	//25: First Fuckings
 	//Triggers when entering the shop after reaching 25 Affection
 	//Replace text after shop description in Earthshapers section
-	if(tuuvaAffection() >= 25 && flags["TUUVA_25AFF"] == undefined)
+	if(tuuvaAffection() >= 25 && flags["TUUVA_25AFF"] == undefined && !pc.hasStatusEffect("Tuuva Affection Cooldown") && !tuuvaPooped())
 	{
 		showName("\nEMPTY?");
 		output("\n\n<b>Tuuva doesn’t seem to be in at the moment.</b> Strangely, the door into the forge area is slightly open, and you can hear something stirring in the back. Maybe you should go investigate?");
@@ -114,7 +124,7 @@ public function tuuvaBlacksmithShopBonus():Boolean
 	//50: Expedition & Refinding!
 	//============================
 	//Start expedition!
-	if(flags["TUUVA_50AFF"] == undefined && tuuvaAffection() >= 50)
+	if(flags["TUUVA_50AFF"] == undefined && tuuvaAffection() >= 50 && !pc.hasStatusEffect("Tuuva Affection Cooldown") && !tuuvaPooped())
 	{
 		tuuva50AffectionExpedition();
 		return true;
@@ -151,7 +161,7 @@ public function tuuvaBlacksmithShopBonus():Boolean
 		return false;
 	}
 	//50 affection complete!
-	if(flags["TUUVA_SAVED"] == 1)
+	if(flags["TUUVA_SAVED"] == 1 && !tuuvaPooped())
 	{
 		clearOutput();
 		showTuuva();
@@ -160,12 +170,15 @@ public function tuuvaBlacksmithShopBonus():Boolean
 		if(!korgiTranslate()) output("Tuuva not even know what say");
 		else output("I don’t even know what to say");
 		output(", just... I-I... Thank you...”</i>");
+		
+		tuuvaAffection(15);
+		
 		output("\n\nYou tell her it was no problem, and that she’s very welcome. She still seems a bit uneasy about something, like there’s something she wants to say but can’t. It’s probably best not to push it, especially after everything she’s been through. She’ll say it when she wants to.");
 		output("\n\n<i>“Did ");
 		if(!korgiTranslate()) output("friend");
 		else output("you");
 		output(" want something");
-		if(!korgiTranslate()) output(", buddy");
+		if(korgiTranslate() && tuuvaAffection() >= 25 && tuuvaAffection() < 75) output(", buddy");
 		output("?”</i>");
 		flags["TUUVA_SAVED"] = 2;
 		//shop menu
@@ -179,6 +192,11 @@ public function tuuvaBlacksmithShopBonus():Boolean
 	{
 		output("\n\nThere doesn’t seem to be anyone here, however there is a small bell hung in the window that you could ring.");
 		addButton(0,"Bell",approachTuuva,undefined,"Bell","Ring the bell.");
+	}
+	else if(tuuvaPooped())
+	{
+		output("\n\nTuuva is still recovering from your last encounter.");
+		addDisabledButton(0,"Tuuva","Tuuva","She’s going to need a little time to rest before talking with you again.");
 	}
 	else 
 	{
@@ -273,7 +291,7 @@ public function tuuvaMenu():void
 	else addButton(3,"Appearance",tuuvaAppearance,undefined,"Appearance","Looks over Tuuva’s appearance.");
 	if(tuuvaAffection() >= 25 && flags["TUUVA_25AFF"] != undefined)
 	{
-		if(pc.lust() >= 33) addButton(4,"Sex",tuuvaSexTimes,undefined,"Sex","<i>Peruse</i> her <i>“wares”</i>.");
+		if(pc.lust() >= 33) addButton(4,"Sex",tuuvaSexTimes,undefined,"Sex","<i>Peruse</i> her “wares”.");
 		else addDisabledButton(4,"Sex","Sex","You aren’t turned on enough for this.")
 	}
 	else addDisabledButton(4,"Sex","Sex","Doesn’t seem like she’s the kind to bang complete strangers, at least not if they’re an outsider.");
@@ -283,7 +301,9 @@ public function tuuvaMenu():void
 	if(tuuvaAffection() >= 75 && flags["TUUVA_75AFF"] == undefined) addButton(5,"Feelings",tuuva75AffectionProc,undefined,"Feelings","She seems really uneasy about something. You should ask her about it.");
 	else if(tuuvaAffection() >= 100 && flags["TUUVA_DATE"] == undefined && tuuvaLover()) addButton(5,"Date",dateTalkOption,undefined,"Date","You’ve gotten pretty close. Maybe it’s time to do something special with her.");
 	else if(pc.hasKeyItem("Frostwyrm Scales")) addButton(5,"Scales",giveTuuvaFrostwormScales,undefined,"Scales","You have a pile of frostwyrm scales, and she seems like she’d know what to do with them.");
-	else addDisabledButton(5,"Special","Special","There aren't any special events you can do with her right now.");
+	else addDisabledButton(5,"Special","Special","There aren’t any special events you can do with her right now.");
+	if(flags["SEXED_TUUVA"] != undefined) addButton(6,"PB Cookie",pbcookie4Tuuva,undefined,"PB Cookie","You wonder how much Tuuva would like to have a peanut butter cookie.");
+	else addDisabledButton(6,"Locked","Locked","You’ll need to have sex with her before you can do this.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -293,7 +313,7 @@ public function tuuvaMenu():void
 //[Savicite] Turn in your collected Savicite
 //[Talk] Get to know the small-statured smith.
 //[Appearance] {Silly:Creepily stare at her for an awkward amount of time so you can meticulously list her physical features.}
-//[Sex] <i>Peruse</i> her <i>“wares”</i>. //Unlocks after 25 Affection event. {Locked:Doesn’t seem like she’s the kind to bang complete strangers, at least not if they’re an outsider.}
+//[Sex] <i>Peruse</i> her “wares”. //Unlocks after 25 Affection event. {Locked:Doesn’t seem like she’s the kind to bang complete strangers, at least not if they’re an outsider.}
 //[Special] //Menu for her Affection events, when they become available, as well as handing in Frostwyrm scales.
 
 //Talk Options
@@ -307,7 +327,7 @@ public function tuuvaTalk():void
 public function tuuvaTalkMenu():void
 {
 	clearMenu();
-	output("\n\n" + tuuvaAffection());
+	//output("\n\n" + tuuvaAffection());
 	//[Herself] Start simple, ask about her. //Required for other talk scenes to become available.
 	addButton(0,"Herself",talkToTuuvaAboutHerself,undefined,"Herself","Start simple and ask about her.");
 	//[Smithing] Ask about the shop and what she does.
@@ -318,12 +338,14 @@ public function tuuvaTalkMenu():void
 	else addDisabledButton(2,"Scavenging","Scavenging","You should get to know a little more about her before getting into specifics.");
 	//[Dick] Ask about her extra equipment. //Requires 25 Affection event and Scavenging talk done. Hidden until requirements are met.
 	if(flags["TUUVA_SCAVENGING_TALK"] != undefined && flags["TUUVA_25AFF"] != undefined) addButton(3,"Dick",talkToTuuvaAboutDicks,undefined,"Dick","Ask about her extra equipment");
-	else addDisabledButton(3,"Locked","Locked","You don’t know her well enough for this. Requires 25 Tuuva affection.");
+	else addDisabledButton(3,"Locked","Locked","You don’t know her well enough for this.");
 	//[Bigger.D] She’s looking for some quick and simple dick growth, ey? You might have the answer for that. //Requires 75 Affection event done and Dick talk done. Hidden until requirements are met. Requires a Synth Sheath.
-	if(flags["TUUVA_DICK_TALK"] != undefined && tuuvaAffection() >= 75) 
+	var bSynthSheath:Boolean = (CodexManager.entryUnlocked("SynthSheath"));
+	if(tuuva.hasCock(GLOBAL.TYPE_EQUINE)) addDisabledButton(4,(!bSynthSheath ? "HorseCock?" : "SynthSheath"),(!bSynthSheath ? "Horse-Cock?" : "SynthSheath"),"She is already as big as she can be!");
+	else if(flags["TUUVA_DICK_TALK"] != undefined && tuuvaAffection() >= 75) 
 	{
-		if(pc.hasItemByClass(HorseCock)) addButton(4,"SynthSheath",biggerDForTuuva,undefined,"SynthSheath","She’s looking for some quick and simple dick growth, ey? You might have the answer for that.");
-		else addDisabledButton(4,"SynthSheath","SynthSheath","You need a SynthSheath in your inventory in order to help Tuuva get the bigger dick of her dreams.");
+		if(pc.hasItemByClass(HorseCock)) addButton(4,(!bSynthSheath ? "HorseCock?" : "SynthSheath"),biggerDForTuuva,undefined,(!bSynthSheath ? "Horse-Cock?" : "SynthSheath"),"She’s looking for some quick and simple dick growth, ey? You might have the answer for that.");
+		else addDisabledButton(4,(!bSynthSheath ? "???" : "SynthSheath"),(!bSynthSheath ? "???" : "SynthSheath"),("You’ll need a " + (!bSynthSheath ? "special dildo" : "SynthSheath") + " in your inventory in order to help Tuuva get the bigger dick of her dreams."));
 	}
 	else addDisabledButton(4,"Locked","Locked","You need to know Tuuva pretty well and have an affection of 75 or more for this.");
 	addButton(14,"Back",approachTuuva);
@@ -367,12 +389,12 @@ public function tuuvaShopMenu(choice:String = ""):void
 		if(!korgiTranslate()) output(" see Tuuva’s things!");
 		else output(" see what I have to offer.");
 		if(silly) output(" Masterworks all, you can’t go wrong!");
-		output("”</i>\n\n<b>You have given Tuuva " + tuuvaCredits() + " credits worth of Savicite:</b>\nA lightweight maul with a pure savicite head. - 7000 credits.\nA masterwork yappi strap - 7000 credits.\nA korgonne greatbow - 8000 credits.");
+		output("”</i>\n\n<b>You have given Tuuva " + tuuvaCredits() + " credits worth of Savicite:</b>");
 
 		clearMenu();
-		addItemButton(0, new SaviciteLightMaul(), saviciteBuyFromTuuva,new SaviciteLightMaul());
-		addItemButton(1, new MasterworkYappiStrap(), saviciteBuyFromTuuva,new MasterworkYappiStrap());
-		addItemButton(2, new KorgGreatBow(), saviciteBuyFromTuuva,new KorgGreatBow());
+		tuuvaShopOption(0, new SaviciteLightMaul());
+		tuuvaShopOption(1, new MasterworkYappiStrap());
+		tuuvaShopOption(2, new KorgGreatBow());
 		if(tuuvaCredits() < 7000)
 		{
 			setButtonDisabled(0);
@@ -382,10 +404,9 @@ public function tuuvaShopMenu(choice:String = ""):void
 		//Frostwyrm shit!
 		if(flags["GAVE_TUUVA_SCALES"] != undefined && flags["GAVE_TUUVA_SCALES"] + 24*60*7 < GetGameTimestamp())
 		{
-			output("\nFrostbane Plate - 42000 credits.\nFrostbane Mail - 42000 credtis.\nFrostbane Bikini - 40000 credits.");
-			addItemButton(3, new FrostbanePlate(), saviciteBuyFromTuuva,new FrostbanePlate());
-			addItemButton(4, new FrostbaneMail(), saviciteBuyFromTuuva,new FrostbaneMail());
-			addItemButton(5, new FrostbaneBikini(), saviciteBuyFromTuuva,new FrostbaneBikini());
+			tuuvaShopOption(3, new FrostbanePlate());
+			tuuvaShopOption(4, new FrostbaneMail());
+			tuuvaShopOption(5, new FrostbaneBikini());
 			if(tuuvaCredits() <= 42000)
 			{
 				setButtonDisabled(3);
@@ -398,6 +419,11 @@ public function tuuvaShopMenu(choice:String = ""):void
 		if(tuuvaCredits() < 8000) setButtonDisabled(2);
 		addButton(14,"Back",approachTuuva);
 	}
+}
+private function tuuvaShopOption(btnSlot:int, item:ItemSlotClass):void
+{
+	output("\n" + StringUtil.upperCase(item.description, false) + " - " + item.basePrice + " credits.");
+	addItemButton(btnSlot, item, saviciteBuyFromTuuva, item);
 }
 
 public function saviciteBuyFromTuuva(arg:ItemSlotClass):void
@@ -433,7 +459,7 @@ public function giveTuuvaSavicite():void
 	else addDisabledButton(1,"Give 2","Give 2","You don’t have that much Savicite to give!");
 	if (pc.hasItemByClass(Savicite,3)) addButton(2,"Give 3",actuallyGiveSavicite,3,"Give 3","Give Tuuva three pieces of Savicite.");
 	else addDisabledButton(2,"Give 3","Give 3","You don’t have that much Savicite to give!");
-	if (pc.hasItemByClass(Savicite,2)) addButton(3,"Give 5",actuallyGiveSavicite,5,"Give 5","Give Tuuva five pieces of Savicite.");
+	if (pc.hasItemByClass(Savicite,5)) addButton(3,"Give 5",actuallyGiveSavicite,5,"Give 5","Give Tuuva five pieces of Savicite.");
 	else addDisabledButton(3,"Give 5","Give 5","You don’t have that much Savicite to give!");
 
 	if (pc.hasItemByClass(Savicite)) addButton(4,"Give All",actuallyGiveSavicite,-1,"Give All","Give Tuuva all your Savicite.");
@@ -444,7 +470,6 @@ public function giveTuuvaSavicite():void
 public function actuallyGiveSavicite(arg:Number = 1):void
 {
 	if(arg == -1) arg = pc.numberOfItemByClass(Savicite);
-	pc.destroyItemByClass(Savicite,arg);
 	//Savicite valued at 12k. Tuuva gives almost full value for it. SQUANCH!
 	tuuvaCredits(10000*arg);
 	tuuvaAffection(arg*4);
@@ -454,6 +479,10 @@ public function actuallyGiveSavicite(arg:Number = 1):void
 	else output("You hand over " + num2Text(arg) + " pieces of Savicite. With each piece, Tuuva’s smile grows wider.");
 	if(!korgiTranslate()) output(" <i>“That good stuff. Worth eh... " + arg*10000 + " of core-credits to Tuuva.”</i> She giggles. <i>“Dumb aliens always thinking in credits. Shine-rock better currency. You smart to use.”</i>");
 	else output(" <i>“That’s good stuff. Worth about... " + arg*10000 + " of your core-credits to me.”</i> She giggles. <i>“Aliens are so goofy, working with that made-up currency. Dealing directly is such a better way to go about it, and it seems you agree.”</i>");
+	
+	output("\n\n");
+	pc.destroyItemByClass(Savicite,arg);
+	
 	clearMenu();
 	addButton(0,"Next",approachTuuva);
 }
@@ -536,7 +565,7 @@ public function tuuvaSmithingTalk():void
 	output("You ask to know more about the shop and her profession.");
 	output("\n\n<i>“");
 	if(!korgiTranslate()) output("Tuuva get shop from Da many year ago. Ma look so smiles when she see Tuuva work. Part of reason Tuuva agree take over was make her smiley. Now... no here....");
-	else output("/I got the shop from dad when he retired a long time ago. Mom looked so happy when she saw me working.... You know, part of the reason I agreed to take over was because it made her happy. But now... she’s gone....");
+	else output("I got the shop from dad when he retired a long time ago. Mom looked so happy when she saw me working.... You know, part of the reason I agreed to take over was because it made her happy. But now... she’s gone....");
 	output("”</i>");
 	output("\n\nShe whimpers, but otherwise stays silent as she steadies herself.");
 
@@ -682,10 +711,19 @@ public function talkToTuuvaAboutDicks():void
 	output("\n\n<i>“So, you’ve been fine with it?”</i>");
 
 	output("\n\n<i>“");
-	if(!korgiTranslate()) output("Sometimes wish it bigger, but no want more blue outsider juice, hear bad things about it. If Tuuva want bigger, she want quick, and she want simple, no drugs.");
-	else output("Sometimes I wish it was a bit bigger, but I don’t want to go looking for anymore of that blue stuff, I hear bad things about it. If I wanted to make it bigger, I’d want it quick and simple, no drugs.");
-	output("”</i>");
-	output("\n\nQuick and simple, ey?");
+	if(tuuva.hasCock(GLOBAL.TYPE_EQUINE))
+	{
+		if(!korgiTranslate()) output("Am now, since alien be helping.”</i>");
+		else output("I am now, thanks to the help you gave me.”</i>");
+		output("\n\nGood to hear.");
+	}
+	else
+	{
+		if(!korgiTranslate()) output("Sometimes wish it bigger, but no want more blue outsider juice, hear bad things about it. If Tuuva want bigger, she want quick, and she want simple, no drugs.");
+		else output("Sometimes I wish it was a bit bigger, but I don’t want to go looking for anymore of that blue stuff, I hear bad things about it. If I wanted to make it bigger, I’d want it quick and simple, no drugs.");
+		output("”</i>");
+		output("\n\nQuick and simple, ey?");
+	}
 	flags["TUUVA_DICK_TALK"] = 1;
 	processTime(25);
 	clearMenu();
@@ -728,10 +766,11 @@ public function biggerDForTuuva():void
 	else output("aren’t");
 	output(" all bad. ");
 	if(!korgiTranslate()) output("Come back in bit, Tuuva want alone time with new friend");
-	else output("Come back in a while, I want to have some alone time with this new buddy.");
-	output("”</i> With that, she pops the pill and rushes back to her room, the sounds of self-pleasure welling up almost immediately.");
+	else output("Come back in a while, I want to have some alone time with this new buddy");
+	output(".”</i> With that, she pops the pill and rushes back to her room, the sounds of self-pleasure welling up almost immediately.");
 
 	tuuva.cocks[0].cType = GLOBAL.TYPE_EQUINE;
+	tuuva.cocks[0].cLengthRaw = 16;
 	tuuva.cocks[0].cockColor = "black";
 	tuuva.cocks[0].delFlag(GLOBAL.FLAG_TAPERED);
 	tuuva.cocks[0].addFlag(GLOBAL.FLAG_BLUNT);
@@ -742,6 +781,16 @@ public function biggerDForTuuva():void
 	tuuva.cumMultiplierRaw = 400;
 
 	processTime(25);
+	
+	if(!CodexManager.entryUnlocked("SynthSheath"))
+	{
+		output("\n\nYour Codex beeps with a warning about how this device may irreversibly alter ones biology. You grimace ruefully at the device before regarding Tuuva’s enhanced genitalia.");
+		CodexManager.unlockEntry("SynthSheath");
+	}
+	
+	output("\n\n");
+	pc.destroyItemByClass(HorseCock);
+	
 	//[Next] Puts you in the shop.
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -822,6 +871,7 @@ public function giveTuuvaFrostwormScales():void
 		{
 			if(tuuvaAffection() < 25) output("Outsider");
 			else if(tuuvaAffection() < 75) output("Friend");
+			else output("Very friend");
 		}
 		else output("Lover");
 		output(" kill big lizard?");
@@ -855,7 +905,7 @@ public function tuuvaBackroomEvent():void
 	output("\n\n<i>“");
 	if(!korgiTranslate())
 	{
-		if(silly) output("Swipey no swiping! swipey no swiping!");
+		if(silly) output("Swipey no swiping! Swipey no swiping!");
 		else output("Stealing peoples get out!");
 	}
 	else output("Get the fuck out of here, you thief!");
@@ -905,7 +955,7 @@ public function tuuvaSex25Event():void
 	showTuuva();
 	output("You casually approach the korg, grinning as she gasps and throbs at your approach. The ");
 	if(!silly) output("thick");
-	else output("thicc");
+	else output("THICC");
 	output("-set little dog-slut freezes in place, that is, except for her tail, which is thrashing around like a tree in a hurricane. She obviously wants you, but it also looks like you’re going to have to be the one to take charge this time.");
 
 	output("\n\n");
@@ -939,7 +989,7 @@ public function tuuva25SexAftermath():void
 	else output("tits");
 	output(".");
 	output("\n\n<i>“");
-	if(!korgiTranslate()) output("Back work, much things, very busy. If friend want more snuggy-snuggy, than Tuuva give");
+	if(!korgiTranslate()) output("Back work, much things, very busy. If friend want more snuggy-snuggy, then Tuuva give");
 	else output("Gotta get back to work, lots to do, getting pretty busy. If you want to fuck again, I’m always ready");
 	output(".”</i> She tugs her half-hard cock and slaps her fluffy booty for emphasis. Well you’re not going to say no to that! You assure her that you’ll keep her in mind if you’re ever in the mood.");
 	output("\n\n");
@@ -1095,7 +1145,7 @@ public function iLoveTuuva():void
 	else output("me");
 	output("?”</i>");
 	output("\n\n<i>“Do I need to demonstrate again?”</i>");
-	output("\n\n<i>“...Maybe...”</i>  Well, if she says so. You lean in for another kiss, this time being met in the middle by the passionate pup. You keep this one up for a bit longer than the last one, eventually breaking it off slowly.");
+	output("\n\n<i>“...Maybe...”</i> Well, if she says so. You lean in for another kiss, this time being met in the middle by the passionate pup. You keep this one up for a bit longer than the last one, eventually breaking it off slowly.");
 	flags["TUUVA_75AFF"] = 1;
 	tuuvaLoveChoiceEpilogue(true);
 }
@@ -1506,7 +1556,7 @@ public function actuallyGetFuckedByTuuva(x:int):void
 
 	output("\n\nShe stops after a minute, and within seconds she’s mounted you, guiding her [tuuva.cock] to your lubed entrance.");
 	//Normal:
-	if(tuuva.hasCock(GLOBAL.TYPE_EQUINE)) 
+	if(!tuuva.hasCock(GLOBAL.TYPE_EQUINE)) 
 	{
 		output(" Her puppy prick spears into your ");
 		if(x >= 0) output("honey pot");
@@ -1575,7 +1625,7 @@ public function actuallyGetFuckedByTuuva(x:int):void
 			output("Lover take Tuuva ");
 			//Done 100 affection event:
 			if(flags["TUUVA_DATE"] != undefined) output("back ");
-			output("to space?”</i>");
+			output("to space?");
 		}
 		else
 		{
@@ -1591,10 +1641,10 @@ public function actuallyGetFuckedByTuuva(x:int):void
 	else
 	{
 		output("She moves her face up closer to yours, but seems apprehensive to do anything. She looks like she wants to kiss you, but, for some reason she’s holding back. You give her a little peck on the lips, signaling her that it’s okay to go all in, and that she does.");
-		output("\n\nShe dives onto your [pc.lipsChaste], coiling her tongue into your mouth and tying up your own like a predatory snake. She presses her whole body down on you more, making sure you feel her weight on you as she possessively mates with you. As she feels you body submit, she ups her pace, getting ready to finish up.");
+		output("\n\nShe dives onto your [pc.lipsChaste], coiling her tongue into your mouth and tying up your own like a predatory snake. She presses her whole body down on you more, making sure you feel her weight on you as she possessively mates with you. As she feels your body submit, she ups her pace, getting ready to finish up.");
 	}
 	output("\n\nYour lengthy fuck eventually devolves into a sweaty rut. Your bodies are pressed as tightly together as possible, to the point where you find it hard to tell where the heat from your body ends and hers begins. You’ve melted into a singular pile of hot, passionate fuck; sweating, and moaning, and groaning almost senselessly as the little muscle-ball completely overwhelms you, and seemingly herself.");
-	output("\n\nYour senses flash back to you for a second as you feel the telltale swelling of her knot inside you. Any protest or even encouragement you could give is drown out by sheer pleasure.");
+	output("\n\nYour senses flash back to you for a second as you feel the telltale swelling of her knot inside you. Any protest or even encouragement you could give is drowned out by sheer pleasure.");
 	output("\n\nIn the first moment of respite you’ve gotten in stars know how long, Tuuva pulls back and turns around.");
 	output("\n\n<i>“");
 	if(!korgiTranslate()) output("Time for maties!");
@@ -1660,6 +1710,133 @@ public function tuuvaPostSexDrill(x:int):void
 	if(!pc.isCrotchExposed()) output(" and tosses you your gear");
 	output(". She waits for you to get yourself back together and on your feet, even fetching some water for you to drink. Eventually you get back to the customer area as Tuuva gets back to her counter.");
 	processTime(60);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[=PB Cookie=]
+// Hide this button until the PC has had sex with Tuuva
+// Tooltip: You wonder how much Tuuva would like to have a peanut butter cookie.
+public function pbcookie4Tuuva():void
+{
+	clearOutput();
+	showTuuva(true);
+	author("B");
+	// Continue here if it’s the first cookie
+	if(flags["TUUVA_COOKIES"] == undefined)
+	{
+		output("The silence of Tuuva’s blacksmith shop is interrupted by your rumbling stomach. You glance at your codex for the local time. ");
+		//if {time is between 00:00 and 07:59}
+		if(hours < 8) output("It’s well past everyone’s bedtime, but maybe Tuuva could go for a light midnight snack with you?");
+		//if {time is between 08:00 and 11:59}
+		else if(hours < 12) output("It’s around morning in Uveto; maybe Tuuva could go for a light, supplemental breakfast with you? You don’t even know if she’s eaten yet.");
+		//if {time is between 12:00 and 05:59}
+		else if(hours < 18) output("It’s about the afternoon on Uveto. You don’t know if Tuuva’s eaten her lunch yet; maybe she’d enjoy a light snack with you?");
+		else output("It’s starting to get a little late on Uveto; you aren’t sure if Tuuva’s eaten her dinner yet. Maybe she’d like to have a light snack with you to tide her over?");
+
+		output("\n\nYou ask Tuuva if she’s feeling hungry. In response, she looks down and pats at her belly. <i>“");
+		if(!korgiTranslate()) output("Working hard lately, putting foodies off for short time. Could eating soon, Tuuva guess");
+		else output("I’ve been working pretty hard lately, and I put off eating to focus on my work. I could go for something to eat, I guess");
+		output(".”</i>");
+
+		output("\n\nYou reach into your pocket");
+		//if {PC is naked}
+		if(silly) output("space that’s capable of folding into itself infinitely");
+		output(" and begin rummaging around inside it for something to eat. You know that you had left some peanut butter cookies in there somewhere – you had made them a while ago and only remembered that you had them when your belly started rumbling. You withdraw a baggie carrying two of them and ask if she’d like to share one with you.");
+
+		output("\n\nTuuva looks the baggie over, her eyes squinting at the cookies in the bag. <i>“");
+		if(!korgiTranslate()) output("What is? Alien food? Is good for Korgonne eating? Any good tasting?");
+		else output("What are they? Alien food? Is it safe for Korgonne to eat them? Do they even taste any good?");
+		output("”</i> You reply that, where you come from, these are called ‘peanut butter cookies.’ If they weren’t safe for Korgonne to eat, your codex would have warned you by now, and you can guarantee that if there’s a more nostalgic tasting cookie in the universe, you haven’t found it yet.");
+
+		output("\n\nTuuva scrunches her face in thought as she considers your words, and then outstretches her paw, wordlessly asking for one of your cookies. You withdraw one from the bag and give it to her; she turns it over and gives it a few sniffs. Her fingers are gentle, but even still, it begins to flake apart in her grip and crumble onto the top of her counter; without much more thought or forewarning, she opens up and crams the whole thing into her mouth before it can tear apart any more.");
+
+		output("\n\nShe barely has time to register the texture of the flaky cookie in her mouth before her eyes widen and her pupils dilate. Her limbs go stock still, but you can clearly see her onyx nipples underneath and around the edges of her blacksmith’s apron grow hard as diamonds, jutting against the thick fabric of her clothing like concealed headlights. And, further south, you smell the familiar tang of a bitch in heat, accompanied by the unceremonious drip-drip-drip of her suddenly-aroused vagina. To say nothing of ");
+		//if {natural}
+		if(!tuuva.hasCock(GLOBAL.TYPE_EQUINE)) output("the canine cock sprouting immediately between her legs, pressing insistently forward and tenting her apron, followed by a quick dollop of her Korgonne precum staining it black.");
+		else output("the horsecock flopping straight up, going from flaccid to full-throttle in the space of a few seconds; it bashes loudly against the underside of the counter, followed by what sounds like rain against a window – or, more likely, precum against stone.");
+
+		output("\n\nShe looks up at you, tears welling in her eyes and her heart rate increasing rapidly, as she dares to bite into the cookie and experience its explosive flavor at the fullest; as soon as her teeth skewer the pastry, she shucks in a deep breath of air through her nose and, with what strength she has before her functions are diverted elsewhere, she rips off her apron, exposing all of herself to the air of her blacksmith – just as that very air is inundated with the flowing fluids and wafting stench of a herm on the verge of a <i>shattering</i> orgasm.");
+
+		if(!tuuva.hasCock(GLOBAL.TYPE_EQUINE)) output("\n\nYou watch as her dog dick sprouts from herself, her cock being ushered forward and inflating to its full girth in the span of a few heartbeats; in the same amount of time, her knot expands, blasting from its protective sheath in mere seconds. Her fuzzy balls bounce, expand, and retract, in rhythmic beats in time with her canine cock, and it’s rather clear after a few heartbeats that they’re expanding with seed at a steady pace.");
+		else output("\n\nWatching her equine cock expand at the speed it does is a spectacle itself: it drools her precum obscenely, even as the muscles inside it tighten and the veins popping out of it throb with power, lifting itself until the flat tip of her cannon sets its trajectory over her counter with no help from Tuuva at all. Her enormous, jet-back balls audibly gurgle as they flounce from side to side underneath the strength of Tuuva’s beating heart, their size and volume increasing as the seconds tick by with urgent jets of viscous cum, ready to fire at a moment’s notice.");
+
+		output("\n\nShe bites into the cookie again, and breath leaves her nose in a needy, visceral groan; her eyes dart around the room, unfocused and almost panicked; the strength leaves her knees as she’s brought crashing down to the floor in her orgasmic bliss, the functions leaving her body in a rush. Cum <i>explodes</i> from her cock, ");
+		if(!tuuva.hasCock(GLOBAL.TYPE_EQUINE)) output("slamming into the underside of the table with audible force");
+		else output("arcing high and well over the countertop, splashing in a long, white strip across the floor of her shop ahead");
+		output(", and before she even had the time to recoil from the first gout, the muscles in her cock ripple with her second load, and then her third, each of them as voluminous and high-pressured as the last.");
+
+		output("\n\nTuuva’s retains the cognizance to use her hands somewhere: her right hand goes to her ");
+		if(!tuuva.hasCock(GLOBAL.TYPE_EQUINE)) output("knot, massaging at it frantically, ushering each stream of pearly cum forward");
+		else output("right nut, rubbing at it frantically to try and encourage out every drop of cum to paint her store with");
+		output(", while her left hand dips lower, between her splayed legs, as she frigs at her clit vigorously; her cunt exudes splash after splash of feminine cum onto the floor beneath her, the puddle’s tides reaching to her split knees and rising against her body as the hurricane that is Tuuva’s cunt rains down more and more liquid beneath her.");
+
+		output("\n\nHer jaw barely has the strength to bite into the cookie one final time, and once she does, her eyes cross and her arms tense against her genitals; a shudder overtakes her, starting from her loins and working its way to her extremities, including the head of her penis and the well of her pussy, blasting forth another wave of both her varieties of cum, adding the her increasing mess. Her dick lurches with every blob of cum that bubbles from inside her and thrusts forth; her hips jerk in time with her alternating orgasms, with her thrusting forward every time she cums from her cock, followed by an elongated, helpless squat as her cunt demands her body’s energy.");
+		output("\n\nUnable to take any more, she finally swallows the cookie, and with that, one last impetuous wave of orgasmic bliss rocks her body, from her toes to her scalp. With her mouth no longer full, she’s free to groan to the heavens, her voice rocked and tone-deaf while her tired-but-not-spent loins launch their finals loads across her store. Her last shot of cum reaches the highest, arcing high enough for just a little bit of it to hit the ceiling; her pussy squeezes at nothing as it gushes the last of her feminine load, growing the pool beneath her until it’s large enough to soak her ankles.");
+		output("\n\nTuuva twitches helplessly on her knees, her arms exhausted and her hands unmoving. Her tongue has fallen out of her mouth and her eyes focus directly above her, at the spot where her jizz had touched the ceiling of her smithy. Her breath is deep and rushed, but steady.");
+		output("\n\nYou ask Tuuva if she’s still hungry. You have plenty more where that came from.");
+		output("\n\nTuuva makes no movement, as exhausted as she is, but her eyes eventually fall to yours. She stares at you with a blank, listless expression, as though you hadn’t asked her anything at all, and she makes no effort to answer.");
+		output("\n\nYou tell her that if she ever finds herself craving some more of the most delicious treat in the galaxy, you’ll be sure to share.");
+	}
+	// Continue here if it’s not the first cookie
+	else
+	{
+		output("The silence of Tuuva’s blacksmith shop is interrupted by your rumbling stomach. You reach for your codex to look at the time, but just as you do, Tuuva is bounding on the spot in front of you, her tail wagging excitedly.");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Hungry? Treat time? More buttery peanut cookies? Having more buttery peanut cookies, [pc.name]? Share with Tuuva?");
+		else output("Are you hungry? Is it time for treat? More of those peanut butter cookies? Do you have any more peanut butter cookies, [pc.name]? Could you share with me?");
+		output("”</i> she asks in a flurry. Her mouth begins to slobber, and she wipes at her jowls with the sleeve of her blacksmithing apron. She hasn’t even eaten any cookies yet, and already her nipples have gone from pillow-like pebbles to glass-cutting diamonds.");
+
+		output("\n\nYou smile down at Tuuva impishly as you reach into your pocket");
+		if(silly) output("space that’s capable of folding into itself infinitely");
+		output(". You tell Tuuva that, if memory serves you correctly, you just happen to have a few cookies–");
+
+		output("\n\nThe moment your hand withdraws the baggie of cookies, Tuuva is buck-naked, having stripped herself of her blacksmithing apron at the very sight of your peanut butter cookie treats. Unable to contain herself, she lunges at you, knocking you both to the floor; in the chaos, Tuuva grabs for the baggie, ripping it from your grip.");
+
+		output("\n\nShe straddles your [pc.chest], her ");
+		if(!tuuva.hasCock(GLOBAL.TYPE_EQUINE)) output("sheath bouncing happily against your body as it bloats only slightly with her dong as it anticipates the incoming ‘treat’");
+		else output("horsecock flopping about listlessly across your neck, slapping you in the chin as she bounds on top of you in excitement. It’s not quite hard yet, but it’s getting there in a hurry");
+		output(". She fumbles with the baggie, unsure of how to open it; frustrated and increasingly horny, she grips onto the clear plastic with the points of her claws and rips the whole thing apart.");
+
+		output("\n\nBefore you have the chance to react to anything, Tuuva grabs onto both peanut butter cookies in the baggie, and shoves them into her maw simultaneously.");
+
+		output("\n\nThe effect is visibly immediate: her pulse quickens, sending small vibrations through the jiggling flesh of her boobs, and the increased blood pressure floods to her ");
+		if(!tuuva.hasCock(GLOBAL.TYPE_EQUINE)) output("sheath, causing her doggie dick to jettison from the saggy pocket between her legs. The pointed tip of her cock juts you in the chin, followed by a quick, warm splash of her precum, which is accompanied by a second and a third.");
+		else output("horsecock; it was already large and daunting, but the rushing blood causes it to bloat wider and longer within seconds, until it encapsulates your entire vision. You can practically hear the rush of blood into her tool and sound of her elastic skin stretching to accommodate the monstrosity that is her cock. It draws along your face, leaving slimy trails of precum as it goes, until the head of Tuuva’s dick lines up with your scalp, where it deposits more and more premium loads into your [pc.hair].");
+
+		output("\n\nNot to be forgotten, your [pc.chest] is soaked to the bone with the hot juices dripping from Tuuva’s cunt; as soon as she bites into the two cookies at once, she shakes violently on top of you and her thighs clench on your sides, pinching your torso between her thick legs, followed by heady splash along your torso. She squeals through her closed mouth, her eyes shut tightly, her hands on your [pc.chest], as she vigorously starts fucking your body, her cunt dragging line, watery lines as far down as your belly and as far up as your neck.");
+
+		output("\n\nHer cock thrusts impiously with her lower body, ");
+		if(!tuuva.hasCock(GLOBAL.TYPE_EQUINE)) output("stabbing you in the chin and marking fat lines of pre across your cheeks");
+		else output("the thick of her meat grating against your cheek and nose while her cock head dumps bubbling load after load of pre along your scalp");
+		output(". She lifts one arm to tug at her left nipple, pinching it and rolling the onyx nub between the digits of her paw. The other goes to her ");
+		if(!tuuva.hasCock(GLOBAL.TYPE_EQUINE)) output("fuzzy nuts, themselves gurgling with suddenly pent-up need; it’s tough to tell between all the rocking motions atop of you, but with every forward lunge, despite the frequency of Tuuva’s leaking pre, you could swear they were getting bigger. With her free hand, she hefts them upward, getting them more comfortable as they grind against your chest, and as soon as they shift, you’re rewarded with another thick shot of precum in the face.");
+		else output("leathery balls; they were already obscene against her diminutive frame, but now, they bloat with the sort of musky need that comes after a few weeks without release. Tuuva has to heft them one at a time in order to reposition them into a more comfortable position against your body, and with each heft and movement, you can hear the audible sloshing of her ready cum, despite the constant deposits her cock head is making against your scalp. And with each motion forward, they’re only getting bigger.");
+
+		output("\n\nWith what conscious thought Tuuva still has, she moves her jaw again, chewing into the two cookies once more. The explosion of flavor in her mouth comes with a fresh, rocking wave of ecstasy along her loins: her body shivers and her eyes dilate, followed by ");
+
+		if(!tuuva.hasCock(GLOBAL.TYPE_EQUINE)) output("a blast of hot, fresh, and voluminous Korgonne cum to the face; you lie there, pinned by the horny Korg’ii and helpless as Tuuva gives you a legendary moneyshot that coats you from your chin, to your cheeks, to your forehead, and beyond.");
+		else output("waves of hot, fresh, and constant Korgonne cum expands Tuuva’s already intimidating horsecock and unloads wave after wave after wave onto the floor just beyond your head. You breathe a sigh of relief, thinking yourself too beneath her turgid tube to get any of her prodigious load onto your face, when, in her horny excitement,");
+		output(" Tuuva rocks her body backward, her feminine half orgasming beyond her control, bathing your torso in her love as her pussy desperately cums and cums, searching for some phantom cock to milk for her needy seed.");
+		if(tuuva.hasCock(GLOBAL.TYPE_EQUINE)) output(" Her exaggerated humping draws her back far enough that the bloated tip of her horsecock aligns itself almost perfectly with your face, and before you know it, in a single blast, your features are hidden beneath a veneer of thick, pearly white cum – and, before you have a chance to wipe any of it anyway, Tuuva deposits a second, musky layer.");
+
+		output("\n\nTuuva throws her head back in pleasure as her two sets of genitals experience the absolutely life-changing orgasms, and in her haste, she swallows the remainder of the cookies in her mouth. Her legs clench down on you even harder; her body betrays her as the peanut butter ambrosia coats her throat and settles in her belly, and she bellows out to the air her pleasure as she continues to inundate you with her fluids. Your upper body is soaked in the flooding cascades of her pussy’s ejaculate, reaching as high as just above your [pc.chest] to as low as your groin, and everything in between. And, for your neck and above, everything is completely soaked in her cum");
+		if(tuuva.hasCock(GLOBAL.TYPE_EQUINE)) output(", as well as a large portion of the floor beyond you");
+		output(".");
+
+		output("\n\nTuuva sits, gasping for breath, on top of your prone and messy body. Various limbs and extremities twitch in pleasure; her cock continues to seep cum, but at a much more reasonable rate, at least compared to just moments before. Her tongue hangs limply from her slack mouth and her eyes are focused on nothing at all.");
+
+		output("\n\nShe remains limp as you finally move to push her off of you. She falls to the floor like a rag doll, her body folding over itself in its exhaustion. You think to ask her something – maybe offer if she’s in the mood for some more cookies. You’re sure you have some more somewhere – but you doubt you’d get an answer if you did.");
+		output("\n\nYou pull yourself to your feet and make for the doorway of Tuuva’s smithy. You’re a bit of a mess, but hey, you got a pretty entertaining show out of giving her some peanut butter cookies.");
+		
+		// apply Cum Soaked and Pussy Drenched; increase Lust by 50
+		pc.applyCumSoaked();
+		pc.applyPussyDrenched();
+	}
+	IncrementFlag("TUUVA_COOKIES");
+	pc.createStatusEffect("Tuuva Pooped");
+	pc.setStatusMinutes("Tuuva Pooped",35);
+	pc.lust(50);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

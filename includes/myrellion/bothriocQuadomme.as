@@ -37,6 +37,80 @@ public function showBothriocQuadomme():void
 	author("Nonesuch");
 }
 
+// Quadomme encounter check
+public function tryEncounterBothriocQuadomme():Boolean
+{
+	var quadommeTrap:Boolean = false;
+	switch(currentLocation)
+	{
+		case "2K7":
+			// Fei An Strozo Special
+			if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_DIPLOMACY && flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"] >= 3 && flags["MET_FEIAN"] == undefined)
+			{
+				bothriocQuestFeiAnStrozoIntro();
+				flags["DEEP_CAVES_STEP"] = 0;
+				generateMap();
+				return true;
+			}
+			break;
+		case "2U23":
+		case "2S13":
+		case "2K27":
+		case "2I21":
+		case "2M15":
+			if(bothriocQuestActive() && flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"] == 3)
+			{
+				// 4th quadomme is Fei An Strozo.
+			}
+			else if(flags["QUADOMME_" + currentLocation + "_AWAY"] == undefined)
+			{
+				flags["QUADOMME_" + currentLocation + "_AWAY"] = 1;
+				flags["QUADOMME_" + currentLocation + "_MET"] = 1;
+				quadommeTrap = true;
+			}
+			break;
+	}
+	if(quadommeTrap)
+	{
+		encounterBothriocQuadomme();
+		flags["DEEP_CAVES_STEP"] = 0;
+		if(!rooms[currentLocation].hasFlag(GLOBAL.SPIDER_WEB)) rooms[currentLocation].addFlag(GLOBAL.SPIDER_WEB);
+		generateMap();
+		return true;
+	}
+	return false;
+}
+public function processBothriocQuadommeEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
+{
+	if(currentLocation != "2U23" && flags["QUADOMME_2U23_AWAY"] != undefined) flags["QUADOMME_2U23_AWAY"] = undefined;
+	if(currentLocation != "2S13" && flags["QUADOMME_2S13_AWAY"] != undefined) flags["QUADOMME_2S13_AWAY"] = undefined;
+	if(currentLocation != "2K27" && flags["QUADOMME_2K27_AWAY"] != undefined) flags["QUADOMME_2K27_AWAY"] = undefined;
+	if(currentLocation != "2I21" && flags["QUADOMME_2I21_AWAY"] != undefined) flags["QUADOMME_2I21_AWAY"] = undefined;
+	if(currentLocation != "2M15" && flags["QUADOMME_2M15_AWAY"] != undefined) flags["QUADOMME_2M15_AWAY"] = undefined;
+}
+public function markersBothriocQuadomme():void
+{
+	// Generic
+	if(flags["QUADOMME_2U23_MET"] != undefined) rooms["2U23"].addFlag(GLOBAL.SPIDER_WEB);
+	else rooms["2U23"].removeFlag(GLOBAL.SPIDER_WEB);
+	if(flags["QUADOMME_2S13_MET"] != undefined) rooms["2S13"].addFlag(GLOBAL.SPIDER_WEB);
+	else rooms["2S13"].removeFlag(GLOBAL.SPIDER_WEB);
+	if(flags["QUADOMME_2K27_MET"] != undefined) rooms["2K27"].addFlag(GLOBAL.SPIDER_WEB);
+	else rooms["2K27"].removeFlag(GLOBAL.SPIDER_WEB);
+	if(flags["QUADOMME_2I21_MET"] != undefined) rooms["2I21"].addFlag(GLOBAL.SPIDER_WEB);
+	else rooms["2I21"].removeFlag(GLOBAL.SPIDER_WEB);
+	if(flags["QUADOMME_2M15_MET"] != undefined) rooms["2M15"].addFlag(GLOBAL.SPIDER_WEB);
+	else rooms["2M15"].removeFlag(GLOBAL.SPIDER_WEB);
+	// Fei An Strozo
+	if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_DIPLOMACY && flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"] >= 3 && flags["MET_FEIAN"] == undefined) rooms["2K7"].addFlag(GLOBAL.OBJECTIVE);
+	else rooms["2K7"].removeFlag(GLOBAL.OBJECTIVE);
+	if(flags["MET_FEIAN"] != undefined && flags["FEIAN_LOCATION"] != undefined)
+	{
+		if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_DIPLOMACY || flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_QUADOMME) feiAnAppear();
+		else feiAnRemove();
+	}
+}
+
 // Intro Texts
 public function encounterBothriocQuadomme():void
 {
@@ -44,6 +118,7 @@ public function encounterBothriocQuadomme():void
 	showName("ENCOUNTER:\nQUADOMME");
 	
 	var addiction:Number = bothriocAddiction();
+	var autoSubmit:Boolean = false;
 	if(!CodexManager.hasUnlockedEntry("Bothrioc")) CodexManager.unlockEntry("Bothrioc");
 	
 	CombatAttacks.applyWeb(pc);
@@ -92,6 +167,10 @@ public function encounterBothriocQuadomme():void
 				output("\n\n<i>“Goodness me, farlander,”</i> it says, making you jump and refocus on its face. Its grin is wider, knowing. <i>“You’ve obviously gotten to know my race quite well and yet this is the first time you’ve been in the presence of a true quadomme? Poor thing. A hungry, succulent babe such as yourself, feeding off only the scraps that my two-legged brethren can provide.”</i> It opens its other pair of arms to you, a commanding expression on its long, beautiful face. <i>“Time to learn under a true master. Come to me, farlander, and I will show you where you truly belong.”</i>");
 				output("\n\nIt is all you can do not to immediately obey.");
 			}
+			else if(bothriocQuestActive())
+			{
+				bothriocQuestQuadommeAutoSubmitBlurb();
+			}
 			else
 			{
 				output("\n\nIt lolls elegantly downwards, propping its jaw up with one pair of hands as it gazes at you ruminatively, almost like it’s too lazy to haul itself back into its hole.");
@@ -113,6 +192,7 @@ public function encounterBothriocQuadomme():void
 				
 				bothriocQuestQuadommeButton(4, false);
 			}
+			else if(bothriocQuestActive()) addButton(0, "Next", bothriocQuestQuadommeAutoSubmitNext);
 			else addButton(0, "Next", bothriocQuadommePCLoss);
 		}
 		// Strength Check Fail
@@ -139,6 +219,10 @@ public function encounterBothriocQuadomme():void
 				output("\n\n<i>“Goodness me, farlander,”</i> it says, making you jump and refocus on its face. Its grin is wider, knowing. <i>“You’ve obviously gotten to know my race quite well and yet this is the first time you’ve been in the presence of a true dominatrix? Poor thing. A hungry, succulent babe such as yourself, feeding off only the scraps that my two-legged brethren can provide.”</i> It opens its other pair of arms to you, a commanding expression on its long, beautiful face. <i>“Time to learn under a true master. Just relax, and let me take care of everything.”</i>");
 				output("\n\nIt is all you can do not to immediately obey.");
 			}
+			else if(bothriocQuestActive())
+			{
+				bothriocQuestQuadommeAutoSubmitBlurb();
+			}
 			else
 			{
 				output("\n\nIt lolls elegantly downwards, propping its jaw up with one pair of hands as it gazes at you with predatory interest. A hot blush descends on you as you gaze at it – like the other bothrioc you have submitted to but bigger, more elegant and confident, concentrated. Your eyes keep being drawn to its abdomen – the fact that it is so big, packed tight with eggs. It feels like there’s a vein linking that sight and your loins, and every time you allow yourself to look at it a pulse of heat courses urgently through it into your [pc.groin], forcing your [pc.lips] open with a groan of pure lust. Your [pc.lowerBody] feels like it’s turned to jelly, and inexorably you find yourself relaxing in its bonds, opening yourself up entirely to this unspeakably wonderful alpha. Any floating misapprehensions you have about doing this disappear in a tidal wave of bliss once you’ve done it: This is it. This is where you belong. Soft, quietly astonished laughter reaches your ears.");
@@ -154,13 +238,9 @@ public function encounterBothriocQuadomme():void
 				
 				bothriocQuestQuadommeButton(4, true);
 			}
+			else if(bothriocQuestActive()) addButton(0, "Next", bothriocQuestQuadommeAutoSubmitNext);
 			else addButton(0, "Next", bothriocQuadommePCLoss);
 		}
-	}
-	// Fei An Strozo Special
-	else if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_DIPLOMACY && flags["BOTHRIOC_QUEST_QUADOMME_TO_SUMMIT"] >= 3 && flags["MET_FEIAN"] == undefined)
-	{
-		bothriocQuestFeiAnStrozoIntro();
 	}
 	// Repeat
 	else
@@ -169,8 +249,6 @@ public function encounterBothriocQuadomme():void
 		output("\n\nAs you gaze off into the distance, straining your eyes for any sign of movement, something brushes your face. You swat it aside irritably. It sticks to your hand. Disgusted, you look at it. Gluey gossamer is plastered across your palm, almost completely translucent but – as you find out when you impulsively try to yank it off –as strong as steel wire.");
 		if(addiction < 50) output(" Chilly understanding descends on you as you feel the stuff clinging to you in half a dozen places. Strings, weaves and thatches of gossamer glisten across the floor and walls, emerging from a large hole in the ceiling, only discernible to you now that you’re well and truly coated in it. You’ve blundered into a bothrioc’s trap! Desperately you attempt to yank yourself clear as from above you comes the busy skitter and clack of multiple feet...");
 		else output(" Hot and cold rushes through you as you feel the stuff clinging to you in half a dozen places. Strings, weaves and thatches of gossamer glisten across the floor and walls, emerging from a large hole in the ceiling, only discernible to you now that you’re well and truly coated in it. You’ve blundered into a bothrioc’s trap! Above you comes the busy skitter and clack of multiple feet. A large part of you shivers with glee at the sound, but you clamp down on that and concentrate on yanking yourself clear, understanding perhaps that if the dominatrix arrives before you are free, you may not be able to make conscious decisions about what happens next.");
-		
-		var autoSubmit:Boolean = false;
 		
 		// Bad End
 		if(flags["BOTHRIOC_QUADOMME_SUMBIT"] >= 2)
@@ -256,7 +334,7 @@ public function encounterBothriocQuadomme():void
 				output("\n\nIt lolls elegantly downwards, propping its jaw up with one pair of hands as it gazes at you ruminatively, almost like it’s too lazy to haul itself back into its hole.");
 				if(pc.RQ() >= 66 || pc.IQ() >= 66) output(" You want to remain on your guard - you remember the sounds of its scurrying, how fast it can move when it wants to – but it is so difficult. You don’t want to do anything but relax and bask in the presence of this strong, dominant being.");
 				output(" A hot blush descends on you as you gaze at it – like the other bothrioc you have submitted to but bigger, more elegant and confident, concentrated. Your eyes keep being drawn to its insect abdomen – the fact that it is so big, packed tight with eggs. It feels like there’s a vein linking that sight and your loins, and every time you allow yourself to look at it a pulse of heat courses urgently through it into your [pc.groin], making your [pc.lips] open and practically forcing out a groan. Your [pc.lowerBody] feels weak and it is all you can do not to " + (pc.hasKnees() ? "get on your knees" : "debase yourself") + " in front of this creature.");
-				output("\n\n<i>“So then, farlander,”</i> it says, making you jump and refocus on its face. Its grin is wider, knowing. <i>“You are coming to understand your place in the grand scheme of things. It feels so good, being an obedient, egg-stuffed little slut doesn’t it? And yet still you struggle and rip yourself from my bonds. Like a child who doesn’t want to do his homework, despite the knowledge it imparts.<i>“ It opens its other pair of arms to you, a commanding expression on its long, beautiful face. <i>“Your Master demands you set such silliness to one side. Come to me, farlander, and I will show you where you truly belong.”</i>");
+				output("\n\n<i>“So then, farlander,”</i> it says, making you jump and refocus on its face. Its grin is wider, knowing. <i>“You are coming to understand your place in the grand scheme of things. It feels so good, being an obedient, egg-stuffed little slut doesn’t it? And yet still you struggle and rip yourself from my bonds. Like a child who doesn’t want to do his homework, despite the knowledge it imparts.”</i> It opens its other pair of arms to you, a commanding expression on its long, beautiful face. <i>“Your Master demands you set such silliness to one side. Come to me, farlander, and I will show you where you truly belong.”</i>");
 				output("\n\nIt is all you can do not to immediately obey.");
 			}
 			
@@ -897,8 +975,8 @@ public function bothriocQuadommePCNeedFillHigh(arg:Array):void
 			}
 			else if(vIdx >= 0)
 			{
-				output("<i>“Ah yes, it is as I thought,”</i> the quadomme hums, its hand finding its way between your [pc.thighs]. You tense up in your bonds as it traces the lips of your [pc.vagina " + vIdx + "] slowly, dipping a warm, smooth finger inside to teasingly stroke at your sensitive hole. <i>“A lone worker, out on her own in the Deepest Deep. Answering a call only she can hear... seeking out a bliss she can find nowhere else.");
-				if(vIdx2 >= 0) output(" <i>“ It laughs in soft, delighted surprise as another hands finds your [pc.vagina " + vIdx2 + "], and gets to work slowly fingering that one as well. You huff and spasm as the twin pleasure of it assaults your senses. <i>“Haven’t you been busy, preparing yourself for life as a dedicated egg-bearer! Don’t worry, my multi-holed new incubator: I shall give you the attention you so clearly deserve.”</i>");
+				output("<i>“Ah yes, it is as I thought,”</i> the quadomme hums, its hand finding its way between your [pc.thighs]. You tense up in your bonds as it traces the lips of your [pc.vagina " + vIdx + "] slowly, dipping a warm, smooth finger inside to teasingly stroke at your sensitive hole. <i>“A lone worker, out on her own in the Deepest Deep. Answering a call only she can hear... seeking out a bliss she can find nowhere else.”</i>");
+				if(vIdx2 >= 0) output(" It laughs in soft, delighted surprise as another hands finds your [pc.vagina " + vIdx2 + "], and gets to work slowly fingering that one as well. You huff and spasm as the twin pleasure of it assaults your senses. <i>“Haven’t you been busy, preparing yourself for life as a dedicated egg-bearer! Don’t worry, my multi-holed new incubator: I shall give you the attention you so clearly deserve.”</i>");
 			}
 			else
 			{
@@ -971,11 +1049,16 @@ public function bothriocQuadommePCNeedFillHigh(arg:Array):void
 			output("\n\n<i>“Relax,”</i> it grunts, and you do, once again as if it were commanding your nerve endings directly, and the egg slides delightfully inside, sending shivers of sheer bliss through you as it travels further and further up the tube mired deep inside you.");
 			output("\n\n<i>“It displeases me to give an egg-bearer direct orders like this,”</i> the quadomme says coolly, two fingers hooking your nose to pull your head even further back. <i>“It should be baked into you to always tighten yourself up around your owner, so that you are pleasuring and milking their stem for every last egg.”</i> You feel its breath ghosting over your shoulder. <i>“Do you understand, dozy farlander? Or shall I have to punish you?”</i>");
 			output("\n\n<i>“No, egg-giver!”</i> you cry immediately, every cell in your body pulsing with the slutty need to please. <i>“Fill every inch of me with your ovi-cock! Train me! I will be the best fuck you’ve ever had!”</i>");
-			output("\n\nIt releases your nose, its sharp teeth latch into your shoulder, and then it shoves another egg into you hard, stiletto heels pressed deep into your [pc.ass], stretching your tender entranceway wide. This time you orgasm to it, every spasm of your " + (vIdx >= 0 ? "cunt" : "back passage") + " willing the heavy, grapefruit-sized object deep inside you. Y");
-			if(cIdx >= 0) output("our [pc.cock " + cIdx + "] sprays [pc.cum] in delirious gouts, practically slapping against your [pc.belly] as the weight rides over your boy buzzer");
-			else output(", and y");
-			output("our [pc.vagina " + vIdx + "] drools [pc.femcum] " + (pc.girlCumQ() < 1000 ? "down your thighs" : "by the bucketload") + ", desperately hungry for more");
-			output(". The way your limbs are caught up only seems to make the orgasm more intense, trapped inside of you instead of thrashed outwards. Your hands clench up reactively to every brilliant pulse of sensation.");
+			output("\n\nIt releases your nose, its sharp teeth latch into your shoulder, and then it shoves another egg into you hard, stiletto heels pressed deep into your [pc.ass], stretching your tender entranceway wide. This time you orgasm to it, every spasm of your " + (vIdx >= 0 ? "cunt" : "back passage") + " willing the heavy, grapefruit-sized object deep inside you.");
+			if(cIdx >= 0 || vIdx >= 0)
+			{
+				output(" Y");
+				if(cIdx >= 0) output("our [pc.cock " + cIdx + "] sprays [pc.cum] in delirious gouts, practically slapping against your [pc.belly] as the weight rides over your boy buzzer");
+				if(cIdx >= 0 && vIdx >= 0) output(", and y");
+				if(vIdx >= 0) output("our [pc.vagina " + vIdx + "] drools [pc.femcum] " + (pc.girlCumQ() < 1000 ? "down your thighs" : "by the bucketload") + ", desperately hungry for more");
+				output(".");
+			}
+			output(" The way your limbs are caught up only seems to make the orgasm more intense, trapped inside of you instead of thrashed outwards. Your hands clench up reactively to every brilliant pulse of sensation.");
 			output("\n\n<i>“Mmm,”</i> breathes the quadomme, as it withdraws its teeth from your [pc.skin]. <i>“I feel your willingness to be bettered. Very well. I shall continue to breed you. Be warned...”</i> its tone clouds with foreboding lust again. <i>“All of my harem are stuffed up, you know, so you’re going to have to take quite the load.”</i> Its four hands descend upon your helpless, spread-eagled form as another dense, oval weight pushes itself against your spread " + (vIdx >= 0 ? "pussy lips" : "ass cheeks") + ". <i>“Shiver for me, egg-bearer.”</i>");
 			processTime(3);
 			pc.lust(15);
@@ -1021,7 +1104,7 @@ public function bothriocQuadommePCNeedFillHigh(arg:Array):void
 			if(vIdx >= 0) output(", your [pc.oneVagina] clamping up and rippling around the indescribably delicious undulations and stretching of the quadomme’s ovipositor");
 			if(cIdx >= 0) output(", [pc.eachCock] swelling up and squirting [pc.cum] up and then back down on yourself from the undulating pressure and the barest of strokes one of its hand’s favors " + (pc.cocks.length == 1 ? "it" : "them") + " with");
 			output(". You can’t help but cry out at the magnitude of it, writhing ineffectually against your strong, sticky bonds.");
-			output("\n\n<i>“Oh my,”</i> says the quadomme. It exhales, and you whine, closing your eyes as you feel yet another thick oval rub against your thoroughly invaded entrance. <i>“You farlanders certainly have well-developed tonsils, don’t you? Some of my harem are trying to sleep, you know. <i>“ Two chitinous fingers press lightly into the pit of your throat. <i>“No more noise.”</i>");
+			output("\n\n<i>“Oh my,”</i> says the quadomme. It exhales, and you whine, closing your eyes as you feel yet another thick oval rub against your thoroughly invaded entrance. <i>“You farlanders certainly have well-developed tonsils, don’t you? Some of my harem are trying to sleep, you know.”</i> Two chitinous fingers press lightly into the pit of your throat. <i>“No more noise.”</i>");
 			output("\n\nYou inhale, and for a wild moment consider screaming, give vent to the intense pleasure you are experiencing... but you can’t. You have been ordered not to by the egg-giver, and your vocal chords may as well have been snipped. The urge subsides, and a surge of endorphins from blissful compliance makes you sag in your bonds. Perhaps, if you do well, it will give you your voice back.");
 			output("\n\n<i>“I think I will take your sight away as well,”</i> the quadomme continues in a musing tone, all the while pushing the latest egg into your tenderized tunnel. <i>“Yes, I believe so. Close your eyes. Concentrate on nothing but your soft, fertile body... mmm... and how best to use it to gratify me.”</i> Your eyes snap shut on command. The world becomes muffled darkness. There is nothing... except the hot, slippery, heavy weight of its massive egg-cock, thrust deep within you, and the knowledge it barely seems halfway done.");
 			output("\n\n<i>“Don’t fret yourself, future toy, ornament and servant. You’re in good hands.”</i> Narrow smoothness caresses your cheek, at the same as something else slides along the line of your back, making you arch it in response. <i>“Hands that are getting to know you better all the time.”</i>");
@@ -1183,7 +1266,7 @@ public function bothriocQuadommePCAllFull(arg:Array):void
 			output("\n\n<i>“Now,”</i> it says eventually, its tone no less forbidding. <i>“What do you say?”</i>");
 			if(addiction >= 60) output("\n\n<i>“Thank you for disciplining me, egg-bearer!”</i> you reply, the grateful words spilling from your [pc.lips]. Oh, to hear just a single word of approval from the dominant after receiving this punishment... you might just cum on the spot. <i>“I will try my hardest to have a warm, empty hole for you the next time we meet.”</i>");
 			else output("\n\n<i>“Th- thank you for disciplining me.”</i> The humiliation burns on your [pc.skinFurScales], but you’ve wholly grasped how counterproductive to be angry about this is, and you’re glad that your voice comes out sounding thoroughly bitchified. <i>“I will do better next time. Please may I go now?”</i>");
-			output("\n\n<i>“Hmm... ”</i> The bothrioc draws the rumination out in a whispery drone, sliding a finger up and down your spine as it does.");
+			output("\n\n<i>“Hmm...”</i> The bothrioc draws the rumination out in a whispery drone, sliding a finger up and down your spine as it does.");
 			
 			// 50% lets you go
 			if(rand(2) == 0)
@@ -1351,7 +1434,7 @@ public function bothriocQuadommeSexMenu():void
 	clearMenu();
 	
 	// Requires dick less than 6 inches big
-	if(pc.smallestCockLength() > 6) addDisabledButton(0, "Small Dick", "Small Dick", "You don’t have one of those.");
+	if(!pc.hasCock() || pc.smallestCockLength() > 6) addDisabledButton(0, "Small Dick", "Small Dick", "You don’t have one of those.");
 	else addButton(0, "Small Dick", bothriocQuadommeSexScenes, ["small dick", addiction, -1, -1, -1, -1], "Small Dick", "Have some... very specific... fun.");
 	
 	// Requires penis + hard personality

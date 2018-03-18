@@ -453,8 +453,8 @@ public function sexWithKallysDel():void
 	//If the PC has a SynthSheath in their inventory, add [Horsecock?] to Del’s talk menu
 	else
 	{
-		if(pc.hasItemByClass(HorseCock)) addButton(2,"Horse-Cock?",giveDelilahAHorsedick,undefined,"Horse-Cock?","Poor Delilah’s dick is barely more than a bitch-clit now, and you’ve got this equine dick-sheathe in your pack. Maybe you could give Del an upgrade?");
-		else addDisabledButton(2,"Horsecock?","Horsecock?","You need to have an item that can give her a horse-dick for this.");
+		if(pc.hasItemByClass(HorseCock)) addButton(2,"HorseCock?",giveDelilahAHorsedick,undefined,"Horse-Cock?","Poor Delilah’s dick is barely more than a bitch-clit now, and you’ve got this equine dick-sheathe in your pack. Maybe you could give Del an upgrade?");
+		else addDisabledButton(2,"HorseCock?","Horse-Cock?","You need to have an item that can give her a horse-dick for this.");
 	}
 	if(pc.mf("him","her") == "her" && !pc.analVirgin && pc.hasCock()) addButton(5,"Public Use",delSlutTraining,undefined,"Public Use","Kallly’s customers look a little pent up! You and Del could take care of them all with your asses, just like old times.");
 	else if(pc.mf("him","her") != "her" || pc.analVirgin || !pc.hasCock()) addDisabledButton(5,"Public Use","Public Use","Slut training requires you to be feminine, dick-equipped, non-anal virgin so that you can show Delilah how it’s done.");
@@ -848,7 +848,6 @@ public function acceptHorseplowDelPlayButtStuffCunnyPlowWhatAmIEvenWritingAnymor
 	clearOutput();
 	showDel(true);
 	author("Savin");
-	pc.destroyItemByClass(HorseCock);
 
 	output("<i>“I think we can work with that,”</i> you say, patting Del’s thigh. <i>“Let’s get you attached to your new horsey friend here.”</i>");
 	output("\n\nDel hops out of your lap and takes your hand. <i>“’Kay! Let’s go to the baths and try it on. Um, miss Kally! I’m gonna go on break for a minute!”</i>");
@@ -890,7 +889,16 @@ public function acceptHorseplowDelPlayButtStuffCunnyPlowWhatAmIEvenWritingAnymor
 	pc.loadInMouth(del);
 	//move PC to Onsen.
 	moveTo("CANADA7");
-
+	
+	if(!CodexManager.entryUnlocked("SynthSheath"))
+	{
+		output("\n\nYour Codex beeps with a warning about how this device may irreversibly alter ones biology. You grimace ruefully at the device before regarding Del’s enhanced genitalia.");
+		CodexManager.unlockEntry("SynthSheath");
+	}
+	
+	output("\n\n");
+	pc.destroyItemByClass(HorseCock);
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1118,7 +1126,7 @@ public function delSlutTrainingEpilogue2():void
 
 	processTime(45);
 
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	for(var x:int = 0; x < 10; x++)
 	{
 		pc.orgasm();

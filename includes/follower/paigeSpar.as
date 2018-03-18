@@ -358,7 +358,7 @@ public function FFLO():void
 	output("\n\nYou’re dazed, beaten, exhausted, and horny as you could possibly be. If you went to Paige right now and asked her to fuck you, you know damn well she’d reciprocate for another round. But until you make that decision to swallow your pride, all you can do is put your effects back on and leave after her.");
 
 	// end scene (scene: FFLO); place PC one square outside of Paige’s Yoga Class or back to the ship’s main menu; increase Lust by 50; add Cum Soaked status
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
 	pc.girlCumInMouth(paige);
 	processTime(20);
 	pc.lust(50);
@@ -430,7 +430,7 @@ public function FFLV():void
 		if(pc.hasVagina()) output("[pc.vagina], her juices overflowing yours as she marks you. Your own flows from you in response to your dominator’s unspoken command: your [pc.girlCum] squirts from you in waves, the liquids mixing into a unique tonic of [pc.race] and Ausar girl-cum, soaking you both to the bone. When you think Paige is done, she convulses again, intent on making sure you don’t cum more than she does, until she’s got nothing left to squirt with");
 		else output("pelvis, her juices overflowing as she marks you. You feel intensely frustrated, unable to join her orgasmic state: you clench your hands and your teeth in agony as Paige paints your legs with her Ausar liquids, and you’re helpless to vent your own lust for your dominator in kind. On top of everything – losing the fight; being forced to remain still as Paige fucks you; and your ever-mounting lust with no outlet – being unable to obey to Paige’s unspoken command to cum with her has you feel lame as a submissive");
 		output(".");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 	}
 	// Merge here
 	output("\n\nPaige rocks against you a few more times, getting absolutely everything out of you before she lets you go. She giggles to herself as she comes down her adrenaline high; you feel her body relax against you, her strong muscles losing their tension. <i>You,</i> on the other hand, are far more bruised than you were when you started: ");

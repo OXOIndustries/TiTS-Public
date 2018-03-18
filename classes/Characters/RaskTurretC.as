@@ -36,7 +36,7 @@
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "This sophistocated turret would be absolutely terrifying were it not for the sparks spraying out of it with every movement. Ancient servos grind dangerously as they attempt to bring a high-powered laser to bear.";
-			this.customDodge = "Somehow, the turret's swivelling moves it out of the way.";
+			this.customDodge = "Somehow, the turret’s swivelling moves it out of the way.";
 			this.customBlock = "The armor plates soak up your attack.";
 			this.isPlural = false;
 			isLustImmune = true;

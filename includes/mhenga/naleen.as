@@ -718,7 +718,9 @@ public function yesSnuggleWifZatNaleen():void {
 	userInterface.showBust("NALEEN");
 	userInterface.showName("\nNALEEN");
 	author("Savin");
-	output("<i>“I guess you’ll have to,”</i> you grin, reaching back around to cup a handful of the naleen’s bountiful bottom. She gives a happy little gasp, wiggling her behind and slowly lowering herself to the forest floor, pulling you down with her. You let yourself be cradled down to the ground, head resting on the best pair of pillows around, nestled in the valley of soft white fur and warm, yielding flesh that seems to conform to your very shape. She giggles, shifting her tits playfully as you get comfortable atop her, helping you to pull off your [pc.armor.longArmor] and gear, tossing it aside, submerging you in the pleasant warmth of the naleen’s sexy body. You hadn’t even realized how cold you were, but your rock-hard nipples and shivering body soon draw the attention of the pretty kitty: <i>“I told you, pet, it gets so very cold here. But we’ll keep each other warm tonight, won’t we?”</i>");
+	output("<i>“I guess you’ll have to,”</i> you grin, reaching back around to cup a handful of the naleen’s bountiful bottom. She gives a happy little gasp, wiggling her behind and slowly lowering herself to the forest floor, pulling you down with her. You let yourself be cradled down to the ground, head resting on the best pair of pillows around, nestled in the valley of soft white fur and warm, yielding flesh that seems to conform to your very shape. She giggles, shifting her tits playfully as you get comfortable atop her, helping you to pull off your");
+	if(pc.hasArmor()) output(" [pc.armor] and");
+	output(" gear, tossing it aside, submerging you in the pleasant warmth of the naleen’s sexy body. You hadn’t even realized how cold you were, but your rock-hard nipples and shivering body soon draw the attention of the pretty kitty: <i>“I told you, pet, it gets so very cold here. But we’ll keep each other warm tonight, won’t we?”</i>");
 	
 	output("\n\nYou nod enthusiastically, stopping only to gasp as you feel a slender spear of warmth wrapping around");
 	if(pc.legCount > 1) output(" one of");

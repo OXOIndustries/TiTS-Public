@@ -1821,7 +1821,7 @@ public function breedwellCockmilkerOverLimit(arg:Array):void
 	}
 	
 	// Cum-covered status active
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	
 	pc.credits += cumPrice;
 	breedwellCockmilkerEnd(cumQ);

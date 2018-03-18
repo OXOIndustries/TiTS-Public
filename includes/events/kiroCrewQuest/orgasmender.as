@@ -440,7 +440,7 @@ public function orgasmenderScene3():void
 	//Lipples
 	else if(pc.hasLipples())
 	{
-		output("\n\nSticky-slick heat explodes behind your [pc.lipples], accompanied by the faint pleasure of your lip-gasms. It seems so distant compared to what’s happening in your loins, but that doesn’t stop you from enjoying it. It doesn’t stop you from loving the way the tentacle-cum feels as it cascades over your bloated lips, or how your cock-loving cushions squeeze and compress around the hard-pumping, thrusting mass. It’s a constant, thumping rhythm layered just behind the more intense jolts of the rest of your climax.");
+		output("\n\nSticky-slick heat explodes behind your [pc.nipples], accompanied by the faint pleasure of your lip-gasms. It seems so distant compared to what’s happening in your loins, but that doesn’t stop you from enjoying it. It doesn’t stop you from loving the way the tentacle-cum feels as it cascades over your bloated lips, or how your cock-loving cushions squeeze and compress around the hard-pumping, thrusting mass. It’s a constant, thumping rhythm layered just behind the more intense jolts of the rest of your climax.");
 	}
 	//Pusspples
 	else if(pc.hasNippleCunts())

@@ -172,6 +172,8 @@ package classes.Characters
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 			
+			impregnationType = "ZilPregnancy";
+			
 			this.breastRows[0].breastRatingRaw = 0;
 			this.nippleColor = "black";
 			this.milkMultiplier = 0;

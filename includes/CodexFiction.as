@@ -2795,3 +2795,143 @@ public function stolenGoodsStory():void
 	outputCodex("\n\nMaybe find Eshe, if he could.");
 	CodexManager.viewedEntry("Stolen Goods");
 }
+
+/* Cow Stuff - rights purchased for $50, 2/14/2018.
+By: Abe E Seedy
+Tags: TF transformation cowgirl bullgirl milk lactation lustification corruption cum for the cum-god
+
+﻿Carrie scowled at the lock, fumbling with her keys angrily as she searched for the right one. Coming into the lab on Saturday morning was some serious bullshit. Sure, as the undergrad assistant she'd sometimes had to come in early to do the grunt work, she accepted that, but normally she got more notice about it than a poorly-worded text message. Just what the hell could be so "imported" that both Dr Madison and Dr Singh had needed her to come in urgently? Well, whatever, she thought as the last door to the lab slid open, she was here now, and hopefully it wouldn't be long before she was free t-
+
+She was stopped in her tracks by a sudden, urgent cry; sounding like something halfway between a moan and an animal roar. Looking up from putting her keys back in her purse, she suddenly noticed that the lab was a mess. Equipment was strewn haphazardly across the floor, but more importantly, she wasn't alone in here. Two people were fucking with wild abandon against the side of one of the big tables, carrying on with such single-minded enthusiasm that they mustn't have noticed her coming in. It was - Carrie somehow realised two things in the exact same instant - that these two people were Dr Madison and Dr Singh, and that the term "people" was no longer entirely accurate.
+
+Dr Lucy Singh was leaning forwards over the table, hands flat against the surface to give herself better grip. Only they weren't exactly hands anymore - her fingers had merged into thick, black stubs, two to each hand, with a third, shorter one seeming to approximate a thumb. With these hoof-hands she pawed frantically at hard plastic tabletop, while her whole body was rocked forwards again and again. Her face had changed too; her features were still similar enough to what they were before for Carrie to recognise her, but now her mouth came at the end of short muzzle, her nose was large, pink and flat, and her short brown hair was interrupted by both her now-elongated ears and two small white horns. Her tongue hung from her mouth as she cried out, making the same sound that had drawn her attention in the first place. Now that she had more context for it, Carrie realised it sounded most like a very enthusiastic "moo".
+
+She was also, Carrie couldn't help but notice, incredibly naked. There was some sort of short brown fur that seemed to reach over most of her body, but that did nothing to conceal her modesty. Her breasts were huge, easily as large as cantaloupes, which was - she would have been lucky to get much past apples before. Her dark brown nipples were larger than before too; having pulled out to inch-long teats that spurted milk every time her body was pushed forwards. Finally, a thin cord of a tail stood almost straight up from her rear, topped with a tuft of long brown hair as she waved it happily from side to side. And behind that stood what could only be Dr Emily Madison.
+
+There were a lot of similarities between the two women. Like Lucy, Emily's face had pushed forwards into a vaguely bovine muzzle, and her longer and wider tongue panted out from between her thick pink lips. Short fur seemed to cover her body too - although in Emily's case it was coloured with the more traditional irregular black-and-white spots rather than just a flat brown - and similarly it did nothing to distract from her utter lack of clothes. Her breasts were less pronounced though; they'd been about the same size originally, and while Emily had certainly gone up a cup size or so, her bust hadn't more than doubled in size as Lucy's had. No, instead her most notable feature were her horns. Unlike Lucy's cute little points, Emily's horns were almost a foot long, curving up over her head and startlingly intimidating. Her expression was different too - while Lucy had look of blissful enjoyment on her face, Emily was snorting and stamping powerfully, her eyes screwed shut as she thrusted into the eager body below her.
+
+Carrie stood, stock still, for several long seconds. Her two senior research partners still didn't seem to notice her presence, and they certainly didn't slow their rhythm. Finally the impasse was broken when Carrie unthinkingly let go of her keys, and the sound as they dropped to the floor was enough to make Lucy look up. Emily seemed to be much too preoccupied to be distracted, but Lucy quickly locked eyes with Carrie and broke into a wide grin. Without breaking eye contact she pressed backwards, the sudden shift in sensation evidently being enough to satisfy Emily's needs. With an urgent grunt she pulled away, revealing a thick, pink cock that she quickly pressed down against Lucy's back.
+
+Very quickly, Carrie revised what she considered to be Emily's most notable feature.
+
+Before she could think much more than that, Emily let out a desperate, animal cry, her body twitching and convulsing as she came voluminously onto Lucy's back. Lucy sighed with contentment, giving a pleasant little wiggle as she shuddered with satisfaction. For her part, Emily seemed to be putting her all into her orgasm, having to lean forward and support herself with her own hoof-like hands as she grunted and panted incoherently while thick ropes of cum spattered against Lucy's fur.
+
+It took several seconds for Emily to appear to be completely finished, and even after that it was some time before either of them seemed to want to do anything other than catch their breath. Eventually though, Lucy broke the silence.
+
+"Mmm, good mmmorning Mmiss Denning", she said slowly. Had her muzzle given her some sort of speech impediment, something that made her drag out her 'm's? "Thank you for commming in on your Saturday on such short notice."
+
+After considerable effort, Carrie managed to respond. "What… what is all of this? What happened?"
+
+Lucy closed her eyes briefly, taking a moment to play with her big full breasts. "We had a... breakthrough", she said eventually.
+
+Carrie was incredulous. "A breakthrough? We were researching fabric softener! What kind of breakthrough could go from that to this?!"
+
+"A really good one", Lucy answered with a grin.
+
+Carrie couldn't even begin to respond, but before she could try Emily recovered herself enough to give out a short snorted laugh. "Oh come now", she admonished, giving Lucy a playful slap on the rump, "don't tease the poor girl." Looking up, she added to Carrie directly, "we had a visitor after you left last night. They said they had something that would help the research, but they neglected to mention that it wasn't our research they were helping."
+
+Carrie blinked. "That's it? Someone else did this to you? And you're not mad?"
+
+Lucy and Emily shared a quick look, then both laughed out loud. "Uh, no", Emily answered eventually. "We had more important things to do than get mad."
+
+With surprising dexterity, Lucy picked herself up, sliding across the table until she was sitting on the edge closest to Carrie. She spread her legs wide, and Carrie could almost smell how slick and wet she was. "Like, fuck the most", she said simply.
+
+This had all gone so far past anything Carrie could have imagined that she could barely even form words to respond. "Uhw. Wha? Are you..." Suddenly, in amongst everything else, she was struck by something. "Wait, didn't you have a speech impediment a second ago?"
+
+"Oh, you noticed", Lucy said, sounding genuinely amused. "That's just something that happens when you get really into it. It's like…" She looked around for a second before gesturing to Emily, who had moved around the table to stand next to her. "Take Dr Madison here. Right now she seems pretty spent, right? I mean, you saw all the fun we just had. But, all you have to do is act that part…"
+
+She slid off the table, lowering herself to all fours on the ground in front of Emily and raising her rump enticingly. As she did so, Carrie could see Emily's nostrils twitch as she took in Lucy's scent, her thick cock hardening in seconds.
+
+"...and she won't be able to help but play along", Lucy finished.
+
+She got up, but Carrie somehow didn't register it until Lucy was right behind her. Then there was the sensation of her breasts pressing against her back, and Carrie could feel the increasing dampness as her still-dripping nipples rubbed along her clothes. Distracted by that, she didn't resist as Lucy gripped her firmly by her shoulders and pushed her downwards, kneeling instinctively in response to the command before she even really processed it.
+
+"Wait, what? What is… what…?", she mumbled, blinking and shaking her head.
+
+Lucy leaned down over her, her soft fur brushing lightly against Carrie's cheek. "What we're doing now, Ms Denning, is showing you something new. Isn't that what being a student is all about?"
+
+"What?", Carrie answered, starting to get up. "No, I-"
+
+"Stop", Lucy said flatly, and for some reason she couldn't quite explain, Carrie did. She froze in place, with nothing but Lucy breathing softly just above her, and Emily's increasingly stiff cock in front of her. "Good girl", Lucy added happily.
+
+Carrie didn't try to get up again, but she still managed to stammer slowly, "I... I don't... "
+
+"Oh, it's quite simple." As she spoke, Lucy settled herself downwards, wrapping Carrie up into an embrace from behind; pulling her nice and close enough that she could feel her fur tickling her arms and legs, and the weight of her cow tits against her back. Their faces were right next to each other, and Carrie found herself blushing desperately as Lucy's muzzle rubbed along her cheek. "Our friend last night told as that the only payment they needed was for us to spread this a little further, and we both decided that we thought you'd earned your share of this too. All you need to do is lean into it…"
+
+Lucy leaned forwards, bringing Carrie along with her. And then all of a sudden Emily's cock was just there, so close to her face that Carrie's lips were almost touching it as she breathed heavily.
+
+"That's it girl", Lucy whispered encouragingly. "Breathe it in. It smells good, doesn't it?"
+
+It… did smell good. There was something about it, something about having such a strong scent of sex, lust and heat right under her nose, something about the way she could see Emily blushing just at the edges of her vision, how she seemed cutely embarrassed but still completely unable to stop herself from getting all nice and hard…
+
+"It feels even better, I promise you", Lucy continued. "Have you ever sucked someone's cock because that person needed you to do it right then, that they absolutely had to have some way to let off their desperately overpowering need, and the only way they could take care of it was to push you down to the ground and fuck you so hard that they couldn't even think any more?"
+
+That was… Carrie didn't think she had, but that sounded… she could…
+
+"And have you ever sucked someone's cock because you needed to - because you absolutely had to have your mouth filled, you had to feel that delicious cum sliding down your throat as you finally get to indulge yourself?" Carrie barely noticed Lucy's hand sliding down her body, finding its way inside her clothes and tugging them aside. Instead she was lost in the words that were being whispered so delicately right into her ear. "Have you ever felt yourself get so caught up in lust that you can't think anymore, that the idea of doing anything other than falling to all fours and getting fucked as hard as possible doesn't even occur to you, because you need it, you need it so, so badly…"
+
+There was a pressure under her chin, and then Carrie found her head being tilted back until she was looking up at Emily's desperately blushing face.
+
+"P… please", she stammered. "I... mmm… I need to mmm… need to mmake you… mmmooo…"
+
+From behind, Carrie felt Lucy run a single, hoofed hand along the length of her body, savoring how her now-naked flesh felt.
+
+"I promise you", Lucy said softly, "that's exactly how you'll feel all the time if you just... lean... in…"
+
+She felt so warm, the weight of Lucy's tits pressing down against her, so hot and wet and full of milk, and it was all… so...
+
+Carrie drifted forwards. There was no single moment of decision or confirmation, it was more that every inch of movement felt better, more right, as her lips slid slowly around Emily's shaft. It was so slick, the taste of it tingling on her tongue as she swept it back and forth. 
+
+Lucy smiled. "Theeere we go", she breathed happily. "It feels good, doesn't it? Letting yourself accept it. Giving in to your new needs." She stood up, moving to stand beside Emily and look down at her student confidently. "And we're going to make you need this constantly, aren't we? How does that make you feel?"
+
+It felt… Carrie couldn't seem to focus on anything clearly, just that everything she was doing seemed… good, and the only thing she wanted to do was to keep doing it. Her head began to move back and forth slowly, one of her hands drifted down unconsciously towards her crotch.
+
+Noticing Carrie's wandering hand, Lucy's smile widened. "Good girl", she said encouragingly. Leaning back against the table, she took up a wide-legged stance, the better to show off her considerable assets. "Here, let me show you exactly what it's like, what it really means to become a nice, eager cow slut like me…"
+
+It was hard to see Lucy clearly, given that Emily often blocked her view as she slid slowly back and forth along her cock, but Carrie had enough of a good view that she could watch as Lucy hefted her breasts in both hands.
+
+"I can't tell you how good it felt to get nice, big, dripping cow tits like these. To feel the weight of them hanging down beneath you, feeling so good as they fill with milk, and even better when you… mhmmm… get mmilked…"
+
+Carrie couldn't stop staring. She'd never really wanted her tits to be any bigger before, but now she couldn't help but imagine it; having breasts so big she couldn't possibly hide them, the feeling of them being all nice and full, pulling her down to the ground as she needed to be… how she couldn't help but… couldn't help but need…
+
+"Getting all nice and wrapped up in… mmhmm… such lovely warmm fur…", Lucy continued slowly, rubbing her hoof hands happily over her whole body. "Feeling what it's like to be… mhmMMm... mmarked, from your cute cow tail to your… mmmMhmm... sweet little cow horns, right down to... mmmHhmm… every single inch of your flesh, all to show what a… mhmmooo! Perfect little animmmal slut you are.."
+
+That sounded… how did that sound so good? The idea that everyone who saw her could immediately know what she was for, and be nice and ready to fuck her before she could even raise her tail. Wait, her… what…?
+
+"Don't you want… mhmmm… hooves…", Lucy carried on, barely visible now in the corner of her eyes as Carrie couldn't stop herself from moving faster and faster along Emily's cock. "Sweet, helpless little hooves that… mmhmmmoo! Feel so good pushing innmmmooo! Into y-mooo! Moo!"
+
+Lucy was clearly getting so carried away she was losing her ability to talk, but somehow that just made things even hotter. The idea that she was so swept up that she couldn't even form words anymore, that she didn't need words, she was beyond them, or like, less than them - she was something to be taken and fucked and used, not spoken to - Carrie had spent so long working so hard to put herself through college, and then support herself in graduate school, hadn't she earned some time off from… everything? Not needing to make deadlines, work shifts, balance the 101 tasks of her adult life, instead all she would have to do was raise her tail and open her legs so she could be fucked over and over again like a good little animal slut. She was… god, she only realised she was touching herself when her hand came back dripping wet, and all of this came while Carrie was still enthusiastically sucking on Dr Madison's cock, and she needed… she needed to feel the satisfaction, needed the reward - everything was intense and confusing but the way she was clenching her hoof hands into her hair and pulling her close just felt so good, and she wanted, she wanted more...
+
+Without thinking about it, her hands reached up, hefting Emily's balls and giving them a desperate, encouraging pull and finally, finally that was enough to make her shudder and come.
+
+It felt good. She'd given blowjobs before, but this time it just felt so right, having this great bull of a girl hold her close and fill her up, to be used and fucked and taken and rewarded for her efforts. Emily leaned her head back and let out a great, bellowing "mooo!" as she gave into it utterly, and all the while Carrie kept up a slow, steady rhythm with her hands, working to gently milk her partner of as much delicious cum as possible.
+
+That was… she could taste it properly now, Carrie realised belatedly, whereas at first Emily's cock had been so deep in her mouth that her cum had surged down her throat almost without touching her tongue. It was only then that she realised that Emily was pulling back from her, withdrawing her cock achingly slowly along the inside of her mouth, except… except Carrie could still feel her lips brushing up against the base of her thick shaft, and that didn't seem to be changing. How could… that didn't…
+
+It hit her then, right at the moment when she breathed in deeply and was overwhelmed with a sudden rush of cloying, lustful scent from her newly shifted nose. She was changing. Her own face was pushing outwards, sliding into a cow muzzle of her own, one that was big enough to service this or any other cock. Her tongue was growing too, becoming long, wide and flat, perfect for lapping happily at the crotch of whoever she would need to service in the future. She was getting exactly what she wanted, being made into an animal slut, and the realisation of the realness of that was enough to snap her out of it. That was- she had to stop, she had papers to write and jobs to do and friends to keep up with, she couldn't just... whatever this was, she had to pull away...
+
+Before Carrie could act on that thought, she was interrupted by Emily pulling herself backwards abruptly, and the sudden, gasping emptiness that provoked in Carrie was enough to send all other thoughts tumbling from her mind. She could taste it, feel the slickness of her on her lips, and the still-hard cock was standing right in front of her face, but it wasn't in her, and the injustice of that was the only thing she could focus on. She should stop, she knew she should stop and get up and walk away, but there was a cock right there and she hadn't cum yet, and even though she ground her pussy along the ground in a desperate attempt at stimulation it couldn't begin to touch the ache that she felt. It was maddening; this panting, urgent need, and she couldn't help but bargain with herself. If she just- if she just got fucked once, right now, then… then after that she could get up and walk away. That… that made sense, right? That wouldn't be too far? If she just… just got to get fucked this one time, when she needed it so badly, how could that be wrong?
+
+It took her a few seconds to work her mouth enough to form words. "Please", she gasped. "Please I, m-"
+
+Carrie stopped. She'd felt what was coming and bit down on it, but sound had formed itself automatically from her new mouth that she'd almost unconsciously let it out. That was the line. Somehow she knew it perfectly - making that sound was exactly the line between a brief indulgence and giving in. She'd only just managed to stop herself, but... doing that meant her mouth was closed, and that meant she couldn't taste Emily again, couldn't feel her sliding deliciously into her, couldn't beg to be taken and fucked and-
+
+"Mhmmmm, it's okay", Lucy said softly. Carrie had all but forgotten she was there, but at the sound of her voice she turned and saw her leaning back against the table with a satisfied expression on her face, thick strands of slickness dripping from her hard fingers. As she watched, Lucy brought her hand up to her mouth, sending out her long tongue to lick it clean as she smiled contentedly. "Just… mmmm… let it out. All you need to do is… mhmmm... give in, accept it, let yourself mmmooo… and then you can feel so, so good…"
+
+Carrie tried to shake her head to clear it, but all that did was prompt her to breathe in deeply, giving her another dose of that lustful scent. Emily was still just standing there, still hard, still panting, looking down at her and just… waiting. What was she waiting for? Why couldn't she, she needed to go and stay and leave and fuck and she was dripping, god they were both dripping, and if she reached out her tongue she could taste it, if she just opened her mouth she could-
+
+"I…m, m, I need, have mm… have to mmm...", Carrie stammered. Her head was a whirlwind of desperate urges, and beneath it all was a steady, rising heat. But she couldn't, she was… she was a student, she was a person, not some cow fuck slut, but there was that heat, the desperate, intoxicating scent of a dripping cock right in front of her pulling her forwards, and with every second she stayed here she felt that one wild noise welling up inside her, demanding to be let out.
+
+Casually, Lucy leaned forward and said, "you have to do it before she'll fuck you, you know."
+
+"Mooooo!", Carrie cried. For a second she surprised herself, so unexpected was the noise that she almost couldn't believe she was the one to make it. But then as soon as she had it was like a dam had been broken, and she couldn't stop. "Moooo! I- moooo! Please f- moo! Fuck mmMmoo! Fuck mmm-moooo!"
+
+Emily, to her credit, wasted no time. Instantly she had spun Carrie around and pushed her to the ground, plunging her cock into her slick pussy in one fluid movement. The sensation of finally, finally being so perfectly fucked was enough to drive all the words out of Carrie's mind, so that the only response she could make was an urgent, animal cry; mooing over and over again with every thrust that Emily gave her. It was- it was all she could think to possibly want, just the ability to be fucked over and over again like the nice perfect cowslut she could so happily be.
+
+Somehow, it didn't take Emily long to finish. Whether the sight of this new convert giving in so utterly was enough to push her over the edge, or if she simply didn't need that much in the way of prompting anymore, it was only a few short minutes before she held Carrie close and once again came inside her. This time though, the response was electric, as Carrie finally felt the full force of the changes sweep over her. Her breasts swelled outwards, seemingly filled directly from the cum that Emily had pumped down her throat, becoming in mere seconds every bit as round and heavy as Lucy's, her nipples elongating until they formed perfect teats for her new cowslut tits. Fur sprouted on her skin, starting in the centre of her chest, right where the pooling heat from Emily's latest deposit was the strongest, before spreading out in a slow, tingling wave to envelop her entire body. 
+
+She leaned into it hard, mooing desperately and pushing herself back against Emily's cock, savouring every possible sensation as she was changed, as she was remade into something so much better. With difficulty, she forced her eyes to focus on her hands in front of her on the ground, watching as her fingers melded together, forming the three hard, black, hoof-like digits that both her partners had, and knowing that the same process was working its way over her feet too. Horns poked up through her hair, her ears drifted upwards to become long, pointed and fluffy, her flat tongue hung from her mouth between panted moos, and she was, she was, she felt so slick and wet and full and she would always feel like this, always be ready to fuck and be taken and be milked and that was what she was for-
+
+"MMmooooo!", Carrie the cowslut bellowed, finally feeling her climax wash over just her as her cow tail grew out in one sudden spurt from above her rear. And then with that, collapsing heavily to the ground and quietly enjoying the slight 'slosh' sound that made, she felt finished.
+
+"Welcome to the herd", Lucy said happily, leaning down to scratch her softly behind one ear. "Rest up for now, because we've got a lot of work to do, and you always were such a good assistant…"*/

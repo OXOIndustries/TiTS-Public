@@ -2181,7 +2181,7 @@ public function fuckedByFemLane():void
 		output(".");
 		if (pc.cumQ() <= 349) output(" You sigh as your [pc.cum] finally spills from your aching dick and into Lane’s impatient honeypot. She coos out every time she feels a fresh spurt and gently slides her hips over yours, sucking out all your cum and letting her vagina drink it all, deep inside her. By the time you’re done, there isn’t a drop left from you, and all of it has tucked neatly inside Lane’s body.");
 		else if (pc.cumQ() >= 600) output(" Lane moans in approval as your cum sinks into her body. The teasing had left you pent up! You cum and you cum inside her, and you hear every splurge of juice shooting into her as well as you can feel it. Lane whispers encouragement as you deposit as many loads as you can, and her thirsty honeypot takes it all in. Her muscles work overtime to make sure nothing escapes, and they succeed, barely.");
-		else if (pc.cumQ() >= 2500) output("Your first two wads of spunk pack into her easily enough, but you’re shooting so much that she’s totally stuffed by the fourth. You’re not halfway done, though, and you keep blasting your [pc.cum] into her rounded, swollen belly. No matter what her cunt tries to do to contain it, it shoots out around your girth and sprays uselessly onto the quilt beneath you. The juice leaks backward, pooling underneath your body and sticking your [pc.skinfurScales] to the fabric. Even then, it doesn’t stop until you’re resting in sizeable puddle of your own cum.");
+		else if (pc.cumQ() >= 2500) output("Your first two wads of spunk pack into her easily enough, but you’re shooting so much that she’s totally stuffed by the fourth. You’re not halfway done, though, and you keep blasting your [pc.cum] into her rounded, swollen belly. No matter what her cunt tries to do to contain it, it shoots out around your girth and sprays uselessly onto the quilt beneath you. The juice leaks backward, pooling underneath your body and sticking your [pc.skinFurScales] to the fabric. Even then, it doesn’t stop until you’re resting in sizeable puddle of your own cum.");
 		if (pc.balls > 0)
 		{
 			output(" The aching in your [pc.balls] drains with every jet you unleash into your willing and wanting mistress, until the discomfort in them is nothing but a distant memory.");
@@ -2682,7 +2682,7 @@ public function firstTimeLaneMPCFH():void
 	}
 	else if (pc.breastRows.length >= 2)
 	{
-		output("\n\nHis hands busily grope and feel along your [fullChest], and wherever his mouth doesn’t reach, his webbed hands are more than ready to pick up the slack. You coo, loving the way he doesn’t neglect any part of you. His excitement begins to escalate further as his face travels to your other breasts, judging from the way his humping becomes more insistent – he must be a real fan of boobs, big or small.");
+		output("\n\nHis hands busily grope and feel along your [pc.fullChest], and wherever his mouth doesn’t reach, his webbed hands are more than ready to pick up the slack. You coo, loving the way he doesn’t neglect any part of you. His excitement begins to escalate further as his face travels to your other breasts, judging from the way his humping becomes more insistent – he must be a real fan of boobs, big or small.");
 	}
 	if (pc.hasCock())
 	{
@@ -3095,7 +3095,7 @@ public function firstTimeLaneFPCFGenderless():void
 
 		output("\n\n<i>“But I am not an unfair mistress,”</i> she declares to you, and you feel her shift her weight forward, so that she’s lying atop you properly without removing her quim from your patient mouth. <i>“Keep pleasuring your mistress, [pc.name],”</i> she instructs, and without warning, you feel her press her own mouth to your crotch,");
 		if (pc.hasVagina()) output(" digging herself daintily into your [pc.vagina], not nearly as enthusiastic as you – acting as though it’s more of a service than a pleasure");
-		else output(" licking along the [pc.skinfurScales] of your void pelvis, not really with any goal or purpose");
+		else output(" licking along the [pc.skinFurScales] of your void pelvis, not really with any goal or purpose");
 		output(" while her hands wrap around your [pc.hips] and roughly grip onto your [pc.ass] for support.");
 
 		output("\n\nYou redouble your efforts, stimulated by the pleasure and attention your mistress is giving you. Your tongue is so long that you don’t need to crane your head at all to slather it all over her gash and taste her every inch, but you do so anyway, pressing your lips against her genital slit, putting them back where they belong.");

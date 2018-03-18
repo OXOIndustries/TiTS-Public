@@ -3,7 +3,7 @@
 
 /* FLAGS
 flags["MET_ERRA"]			- Have PC and Erra introduced each other? 1 if yes. Undefined if knot (dohohoh)
-flags["ERRA_SEXED"]   		- times sexed. Undefined if unsexed.
+flags["ERRA_SEXED"]	 		- times sexed. Undefined if unsexed.
 flags["ERRA_NEW_INTROED"] 	- has PC seen her new intro
 flags["ERRA_LOVERS"]		- 1 indicates lover status. 2 indicates lovers & she is collared
 flags["ERRA_HEARTBROKEN"]	- 1 indicates you broke her heart and she will not appear any longer.
@@ -58,6 +58,17 @@ public function erraVaginalCapacity():Number
 public function erraAnalCapacity():Number
 {
 	return 350;
+}
+
+public function erraAvailableForThreesome():Boolean
+{
+	if (flags["ERRA_SEXED"] >= 3)
+	{
+		if (InCollection(rooms[shipLocation].planet, ["TAVROS STATION", "PLANET: MHEN'GA", "PLANET: TARKUS", "PLANET: NEW TEXAS", "PLANET: UVETO VII", "CANADIA STATION"])) return true;
+		else if (rooms[shipLocation].planet == "PLANET: MYRELLION" && flags["KQ2_MYRELLION_STATE"] == undefined) return true;
+		return false;
+	}
+	return false;
 }
 
 //Opening Scene
@@ -473,7 +484,7 @@ public function badGirlAnalErraStuff():void
 	{
 		output("\n\n");
 		if(!pc.isTaur()) output("Keeping a hand on your ausar’s hips, you grab your rapidly stiffening member and give it a few strokes as you line it up with Erra’s pucker, left agape by your fingers. ");
-		else output("Keeping Erra in her place, you mount her with your frontmost legs around her shoulders, stiffening member lined up with Erra's pucker, left agape by your fingers. ");
+		else output("Keeping Erra in her place, you mount her with your frontmost legs around her shoulders, stiffening member lined up with Erra’s pucker, left agape by your fingers. ");
 		output("<i>“Time for your punishment, girl,”</i> you whisper into a twitching wolf-ear. With that said, you thrust into her, [pc.cock " + x + "] spreading her tailhole even wider as you shove your tool into her with one, long stroke. Erra moans all the louder when you push into her, but another good tug of her leash is enough to keep your puppy quiet, so she can focus on nothing but the [pc.cock " + x + "] filling her. She whines and whimpers as you bottom, her tight little tailhole spasming around your [pc.cock " + x + "] as she tries to accommodate your length.");
 		pc.cockChange();
 		output("\n\nYou smile at your pet’s little howls. Keeping her leash nice and taut, you start to pull out of her. Erra moans again as your [pc.cock " + x + "] glides along her inner walls; of course, she’s quickly silenced by a pull of her leash, making her grunt. You, on the other hand, aren’t able to stay so silent: the sheer tightness of your puppy’s pucker makes you groan with satisfaction until your [pc.cockHead " + x + "] meets her asshole again. Looking at Erra, you can see she’s still panting, tongue hanging out while she tries to suppress her noises of pleasure. With a grunt you thrust back into your pet, [pc.cock " + x + "] filling her once more, another moan escaping the ausar’s mouth before you pull her leash again, <i>“Bad girl, quiet.”</i>");
@@ -886,7 +897,7 @@ public function walkiesWithErra():void
 		//notNude:
 		if(!pc.isCrotchExposed()) output(", unbuckle your [pc.lowerGarments], revealing the glistening lips of your [pc.vaginas].");
 		else output(" and spread the folds of your [pc.vagina].");
-		if(pc.isTaur()) output(" You turn around and press your upper-half up against a nearby wall, spreading your legs to make sure Erra's there for everyone to see when she eats you out.");
+		if(pc.isTaur()) output(" You turn around and press your upper-half up against a nearby wall, spreading your legs to make sure Erra’s there for everyone to see when she eats you out.");
 
 		output(" The ausar girl audibly gulps and hastily looks around, a hint of worry on her face before she turns her gaze to you and shrugs.");
 

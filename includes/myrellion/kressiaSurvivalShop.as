@@ -340,7 +340,7 @@ public function milkingShiareCuckoldBullshit():void
 	else output("brushing your hands over your lower body");
 	output(". ");
 	if(x >= 0) output("Your [pc.cocks] spring to attention, ready to penetrate the ant-girl’s ample abdomen");
-	else if(pc.hasHardLightEquipped()) output("You pull out your [pc.hardlightStrapon], feeling the jolting pleasure as it connects to your nerves");
+	else if(pc.hasHardLightEquipped()) output("You pull out your [pc.lowerUndergarment], feeling the jolting pleasure as it connects to your nerves");
 	else output("You pull a silvery strapon from the bondage gear. It’s no hardlight, but it’ll do for now");
 	output(". The candied ant’s breath quickens as you crawl steadily closer behind her, mounting in a gasp as you push her into a better position. Her bust hangs over the edge of the bed, giving Anarrie a perfect view of her wife’s helplessness.");
 
@@ -348,7 +348,7 @@ public function milkingShiareCuckoldBullshit():void
 	{
 		output("\n\nYou grip the begrudging sub’s twitching abdomen, lining yourself up with her glistening slit. Just as she begins to voice what you assume is a complaint, you let ");
 		if(x >= 0) output("your [pc.cock " + x + "]");
-		else if(pc.hasHardLightEquipped()) output("your [pc.hardlightStrapon]");
+		else if(pc.hasHardLightEquipped()) output("your [pc.lowerUndergarment]");
 		else output("the silvery metal strapon");
 		output(" penetrate her. Attempted objections die in her throat, replaced by a drawn out moan. You can’t see her face from behind, but all four of her hands clench into fists, straining in their restraints as you begin to slowly grind your hips.");
 	}
@@ -365,7 +365,7 @@ public function milkingShiareCuckoldBullshit():void
 
 	output("\n\nVice-like pressure compresses your ");
 	if(x >= 0) output("[pc.cock " + x + "]");
-	else if(pc.hasHardLightEquipped()) output("[pc.hardlightStrapon]");
+	else if(pc.hasHardLightEquipped()) output("[pc.lowerUndergarment]");
 	else output("strapon");
 	output(" in rhythmic intervals, and you struggle to increase the speed of your pistoning. ");
 	if(x >= 0 || pc.hasHardLightEquipped())

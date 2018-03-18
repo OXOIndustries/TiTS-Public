@@ -893,6 +893,7 @@ public function DeepCavesBonus():Boolean
 		bothriocQuestEncounterNyreaBeta();
 		return true;
 	}
+	if(tryEncounterBothriocQuadomme()) return true;
 	if(rand(200) == 0) 
 	{
 		findStrangeEgg();
@@ -939,8 +940,6 @@ public function DeepCavesBonus():Boolean
 		
 		choices.push(encounterPidemmeBothrioc);
 		choices.push(encounterPidemmeBothrioc);
-		
-		if(!bothriocQuestBetaNyreaMiniquestActive() && flags["BOTHRIOC_QUEST"] != BOTHRIOC_QUEST_QUADOMME && !InCollection(currentLocation, ["2S7", "2O27", "2O29", "2Q29", "2S29"])) choices.push(encounterBothriocQuadomme);
 		
 		//Run the event
 		choices[rand(choices.length)]();
@@ -1175,18 +1174,24 @@ public function goWithTheAntOrgy(voluntary:Boolean = true):void
 	output("\n\n<i>“Yes ma’am!”</i> The five answer, saluting.");
 	processTime(15);
 	pc.lust(20);
+	
+	var x:int = pc.cockThatFits(1000);
+	if(x < 0) x = pc.smallestCockIndex();
+	
 	clearMenu();
-	addButton(0,"Next",antOrgyPartDues,voluntary);
+	addButton(0,"Next",antOrgyPartDues, [voluntary, x]);
 }
 
-public function antOrgyPartDues(voluntary:Boolean):void
+public function antOrgyPartDues(arg:Array):void
 {
 	clearOutput();
 	showAntOrgy();
+	
+	var voluntary:Boolean = arg[0];
+	var x:int = arg[1];
+	
 	output("Some unspoken signal goes through the horde of armored ant-girls, and as the first lucky lady steps over you, a dozen of the aroused ant-girls advance. Your lover-to-be smiles down at you, then lowers herself down so that her crotch sits on your chest and [pc.oneCock] has no choice but to slide up and into her descending abdomen, filling the air with the sloppy, wet-sounding ‘squish’ of penetration. Another, exponentially more decadent sound fills the air but a second later: all twelve of the eager myr maidens mounting their substitute members. Some do it from behind, facing away from you as they watch you being taken. Others face forward, pressing their breasts against one another, shading you beneath a quartet of sapphic kisses.");
 	pc.cockChange();
-	var x:int = pc.cockThatFits(1000);
-	if(x < 0) x = pc.smallestCockIndex();
 	output("\n\nMoans fill the air, and you feel the first flecks of honey spattering against your skin. At first, it’s mere droplets from your lover’s excessively lubricated slot, but then you feel others on your [pc.legs], your arms, and even your [pc.face]. You knew Gildenmere had a mostly female army, but you had no idea how horny intensive training would leave them - how it would make them so wet and ready that their quivering snatches would be dribbling honey, dumping out little micro-squirts from the mere sight of a penis-packing star-walker. You might care more if their sex juices didn’t resemble a slicker version of honey, or if you weren’t ");
 	if(pc.cockVolume(x) < 1000) output("hilted");
 	else output("firmly embedded");
@@ -1215,18 +1220,20 @@ public function antOrgyPartDues(voluntary:Boolean):void
 	pc.lust(25);
 	pp.loadInCunt(pc, 0);
 	pc.girlCumInMouth(pp);
-	applyPussyDrenched(pc);
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
+	pc.applyPussyDrenched();
 	clearMenu();
-	addButton(0,"Next",antOrgyPartThree,voluntary);
+	addButton(0,"Next",antOrgyPartThree, [voluntary, x]);
 }
 
-public function antOrgyPartThree(voluntary:Boolean):void
+public function antOrgyPartThree(arg:Array):void
 {
 	clearOutput();
 	showAntOrgy();
-	var x:int = pc.cockThatFits(1000);
-	if(x < 0) x = pc.smallestCockIndex();
+	
+	var voluntary:Boolean = arg[0];
+	var x:int = arg[1];
+	
 	output("Who would have thought that you’d wind up in the middle of an army barracks, surrounded by a dozen masturbating myr, surrounded by hundreds more, also masturbating, while four more line up to fuck you after the first finishes? You let yourself groan. There’s no point in holding it back, not while you’re in the middle of such a debauched gathering. Not while scores of women moan and writhe, juicing and fondling themselves over the thought of a chance at your dick. How could you? It’d be almost... selfish.");
 	output("\n\nLetting your tongue loll out, you thrust your hips upward, slamming home hard, feeling the honeyed honey’s clit grind on against your groin. She screams, thrashing and jiggling, oozing more honey from her bronzed nipples in the moment of her orgasm. Clamping down hard, her walls caress your [pc.cock " + x + "], lavishing it in orgasmic attentions even as her honey drenches your crotch");
 	if(pc.balls > 0) output(", soaking your [pc.balls] in syrupy goodness");
@@ -1235,7 +1242,8 @@ public function antOrgyPartThree(voluntary:Boolean):void
 	output("\n\nThe frenzied, potent squeezes on your [pc.cock " + x + "] seem endless, a constant tug and stroke that inexorably drags you toward your own peak. Rather than resist, you let yourself be brought to that heavenly state, marveling at the raw display of glistening, sweat-drenched femininity all around you. Glossy, smooth buttcheeks tremble. Pussy-bearing abdomens bounce and wobble. Pert, orangish-gold breasts gently bounce against suckling onyx lips. Everywhere there is nothing but fucking, nothing but rutting, a symphony of sensuous pleasure enveloping your senses from head to nose to dick to toes.");
 	output("\n\nYou think it might be too much when an adventurous private turns to place her pussy atop your head, utterly enveloping you from chin to the bridge of your nose, but then you find yourself cumming, orgasming to the sight and scent of a hot wet box pressing on your face, needfully demanding your tongue slip inside. You do, of course. What else could you do but lick and cum... slurp and orgasm? Your whole world is amber, a fine coating of it from head to toe, laden with pheromones and sweetness. Your cock is swaddled in it, jerking and spurting, firing [pc.cumNoun] to the tempo set by your gilded mistresses.");
 	//Huge cums
-	if(pc.cumQ() > 5000)
+	var cumQ:Number = pc.cumQ();
+	if(cumQ > 5000)
 	{
 		output("\n\nWhen the cum proves too much for the lucky cadet, she ");
 		if(!pc.hasKnot(x)) 
@@ -1248,9 +1256,9 @@ public function antOrgyPartThree(voluntary:Boolean):void
 		else 
 		{
 			output("tries to pull free, but it’s no use. She’s knotted, sealed to your body by the bulbous, swollen flesh just above your base. Her frantic tugs only serve to excite you further - and ensure another ");
-			if(pc.cumQ() < 5500) output("few squirts are");
-			else if(pc.cumQ() < 6000) output("gallon is");
-			else if(pc.cumQ() < 10000) output("few gallons are");
+			if(cumQ < 5500) output("few squirts are");
+			else if(cumQ < 6000) output("gallon is");
+			else if(cumQ < 10000) output("few gallons are");
 			else output("swimming pool worth of spunk is");
 			output(" delivered to her vestigial womb.");
 		}
@@ -1281,17 +1289,21 @@ public function antOrgyPartThree(voluntary:Boolean):void
 	processTime(18);
 	pc.orgasm();
 	pc.girlCumInMouth(pp);
-	applyPussyDrenched(pc);
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
+	pc.applyPussyDrenched();
 	//[Next]
 	clearMenu();
-	addButton(0,"Next",antOrgyPartFour,voluntary);
+	addButton(0,"Next",antOrgyPartFour, [voluntary, x]);
 }
 
-public function antOrgyPartFour(voluntary:Boolean):void
+public function antOrgyPartFour(arg:Array):void
 {
 	clearOutput();
 	showAntOrgy();
+	
+	var voluntary:Boolean = arg[0];
+	var x:int = arg[1];
+	
 	output("Light nearly blinds your eyes when the squirming harlot is pulled off your face, revealing the severe-looking visage of this barrack’s commander. <i>“You’re contracted to serve until my soldiers are satisfied, and serve you shall.”</i> She produces a vial of bubbling, pink-hued liquid. <i>“Wartime authorization 647 sanctions the use of enhancement chemicals in times of extreme need, determined by the unit commander.”</i> Looking over soldiers, she bellows out, <i>“I think this qualifies as extreme need. What do my fine soldiers think?”</i>");
 	output("\n\nA chorus of cheers and moans answers her, and nodding to herself, she holds the vial to your [pc.lipsChaste], tipping the frothy liquid in your panting maw. <i>“Drink up.”</i>");
 	//Addict
@@ -1328,21 +1340,23 @@ public function antOrgyPartFour(voluntary:Boolean):void
 	//Red myr dose
 	imbibeVenomEffects(true);
 	pc.girlCumInMouth(pp);
-	applyPussyDrenched(pc);
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
+	pc.applyPussyDrenched();
 	//[Next]
 	clearMenu();
-	addButton(0,"Next",antOrgyPartFive,voluntary);
+	addButton(0,"Next",antOrgyPartFive, [voluntary, x]);
 }
 
-public function antOrgyPartFive(voluntary:Boolean):void
+public function antOrgyPartFive(arg:Array):void
 {
 	clearOutput();
 	showAntOrgy();
+	
+	var voluntary:Boolean = arg[0];
+	var x:int = arg[1];
+	
 	output("You’re still tongue-fucking the same greedy girl a half-hour later. Two more vaginas have graced your [pc.cock " + x + "] since, but it shows no sign of flagging. Nor should it. You can’t imagine yourself being any less hard or ready to fuck than these women’s other toys. It’s sweet, not just in the smell and the taste of their gloriously delectible cum, but in the raw experience of it - the wonderfully improbable gestalt of a horde of women on your fingers, mouth, and cock, surrounding you and bathing you in the scintillating scent of their wanton need.");
 	output("\n\nYou’re aware of yourself cumming a few more times, feeling the pleasant contractions at molten eruptions repeatedly, but you never seem to come down from them. Especially not when more venom is drizzled between the gilded cunt on your face and your tongue, forcing you to drink more down. Your fingers feel just as good as your cock, thrusting in and out, pumping and humping and squelching in the beautiful entrances to these pretty privates’ privates.");
-	var x:int = pc.cockThatFits(1000);
-	if(x < 0) x = pc.smallestCockIndex();
 	output("\n\nOver and over, your [pc.cock " + x + "] experiences new vaginas. Far more than five girls mount you, and the poles must have seen at least two hundred different cunts, but there are always more to use you, always more slits, clits, and tits.");
 	output("\n\nYou serve them as best you are able. Even when your muscles ache and your [pc.cocks] ");
 	if(pc.cockTotal() == 1) output("is");
@@ -1361,13 +1375,13 @@ public function antOrgyPartFive(voluntary:Boolean):void
 	pc.girlCumInMouth(pp);
 	pc.girlCumInMouth(pp);
 	pc.girlCumInMouth(pp);
-	applyPussyDrenched(pc);
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
+	pc.applyPussyDrenched();
 	clearMenu();
-	addButton(0,"Next",antOrgyEnding, voluntary);
+	addButton(0,"Next",antOrgyEnding, [voluntary, x]);
 }
 
-public function antOrgyEnding(voluntary:Boolean):void
+public function antOrgyEnding(arg:Array):void
 {
 	currentLocation = "734";
 	rooms["734"].southExit = "";
@@ -1375,6 +1389,9 @@ public function antOrgyEnding(voluntary:Boolean):void
 	
 	clearOutput();
 	showName("THE\nAFTERMATH");
+	
+	var voluntary:Boolean = arg[0];
+	var x:int = arg[1];
 	
 	//Take 50% HP damage, reduce energy to 0, then pass 120 minutes
 	processTime(120);
