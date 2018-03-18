@@ -2178,7 +2178,7 @@ public function dropNewClothes():void
 public function move(arg:String, goToMainMenu:Boolean = true):void
 {
 	//Prevent movement for nudists into nude-restricted zones.
-	if(rooms[arg].hasFlag(GLOBAL.NUDITY_ILLEGAL))
+	if(goToMainMenu && rooms[arg].hasFlag(GLOBAL.NUDITY_ILLEGAL))
 	{
 		var nudistPrevention:Boolean = false;
 		if(!pc.isCoveredUp())
@@ -2286,7 +2286,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	{
 		if(currentLocation != "SHIP INTERIOR")
 		{
-			if(!disableExploreEvents() && seranigansTrigger("hijacked")) return;
+			if(goToMainMenu && !disableExploreEvents() && seranigansTrigger("hijacked")) return;
 			if(flags["SERA_QUIT_SMOKING"] == undefined && flags["SERA_PREGNANCY_TIMER"] >= 24) eventQueue.push(seraPregQuitSmoking);
 		}
 	}
@@ -2302,7 +2302,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	}
 
 	//Waterfall stuff.
-	if(rooms[arg].hasFlag(GLOBAL.WATERFALL))
+	if(goToMainMenu && rooms[arg].hasFlag(GLOBAL.WATERFALL))
 	{
 		pc.energy(-6);
 		if(arg == "8. RED ROCK SCREE" && currentLocation == "7. DRIFTWOOD SHOULDER")
