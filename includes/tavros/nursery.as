@@ -661,7 +661,13 @@ public function nurseryComputerMenu(lastUsed:Function = null):void
 
 	if (lastUsed == nurseryComputerFacilities) addDisabledButton(3, "Facilities");
 	else addButton(3, "Facilities", nurseryComputerFacilities);
-
+	
+	if(debug)
+	{
+		if (lastUsed == pregAverageLoadSizes) addDisabledButton(13, "Load Sizes");
+		else addButton(13, "Load Sizes", pregAverageLoadSizes);
+	}
+	
 	addButton(14, "Back", nurseryComputerLeaveMenu);
 }
 
@@ -2233,7 +2239,7 @@ public function pregAverageLoadSizes():void
 	clearOutput();
 	showName("AVERAGE\nLOAD SIZES");
 	
-	output("The average load sizes for each potential sire are as follows:\n<i>(Pregnancies that are set to alwaysImpregnate are ignored.)</i>");
+	output("The average load sizes for each potential sire are as follows:\n<i>(Pregnancies that are set to alwaysImpregnate are omitted.)</i>");
 	
 	output("\n\n<b><u>CockvinePregnancy</u></b>: " + (new CockvinePregnancy()).definedAverageLoadSize + " mLs");
 	output("\n* <b>Cockvine:</b> " + (new Cockvine()).cumQ() + " mLs");
@@ -2277,7 +2283,6 @@ public function pregAverageLoadSizes():void
 	
 	output("\n\n");
 	
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	nurseryComputerMenu(pregAverageLoadSizes);
 }
 
