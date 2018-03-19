@@ -244,7 +244,8 @@ public function seraMenu(toLeave:Boolean = false):void
 		if(flags["SERA_TRIPLE_X_RATED"] > 0)
 		{
 			addButton(3,"Talk",talkToSera);
-			if(pc.hasStatusEffect("Sera Breed No Sex")) addDisabledButton(5, "Sex", "Sex", (pcSeraPregDays() > 220 ? "You are too pregnant for this!" : "You’ve convinced your mistress that she’d breed with you, so casual sex is probably out of the question..."));
+			if(pc.statusEffectv1("Sera Breed No Sex") == 1) addDisabledButton(5, "Sex", "Sex", "You’ve convinced your mistress that she’d breed with you, so casual sex is probably out of the question...");
+			else if(pc.isFullyWombPregnant() && pc.hasStatusEffect("Sera Breed No Sex")) addDisabledButton(5, "Sex", "Sex", "You are too pregnant for this!");
 			else addButton(5,"Sex?",seraSexMenu,true,"Sex?","Ask your mistress if you are allowed to have sex with her.");
 		}
 		else addButton(5,"Sex?",seraSexMenu,true);

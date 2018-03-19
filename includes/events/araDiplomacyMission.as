@@ -1705,7 +1705,7 @@ public function bothriocQuestApproachAraKei():void
 	if(flags["BOTHRIOC_QUEST_COMPLETE"] == undefined)
 	{
 		output("<i>“Steele!”</i>");
-		output("\n\nAra Kei instantly switches [ara.he] attention to you and clacks across, leaving [ara.his] four submissives looking softly confused, the moment [ara.he] notice" + ara.mfn("s", "s", "") + " you.");
+		output("\n\nAra Kei instantly switches [ara.his] attention to you and clacks across, leaving [ara.his] four submissives looking softly confused, the moment [ara.he] notice" + ara.mfn("s", "s", "") + " you.");
 		if(bothriocAddiction() < 50)
 		{
 			output("\n\n<i>“The returning hero. Do you like what you see?”</i> [ara.he] spread" + ara.mfn("s", "s", "") + " [ara.his] arms out to indicate the sprawling bustle around [ara.him], smiling grandly as [ara.he] do" + ara.mfn("es", "es", "") + ". <i>“Such are the resources warranted for a fully recognized sapient species within the U.G.C.’s jurisdiction. Such are the resources necessary to run a fledgling government.”</i> You don’t think you’ve ever heard that last word uttered with such relish.");
@@ -1742,7 +1742,7 @@ public function bothriocQuestApproachAraKei():void
 	else
 	{
 		output("<i>“Steele!”</i>");
-		output("\n\nAra Kei instantly switches [ara.he] attention to you and clacks across, leaving [ara.his] four submissives looking softly confused, the moment [ara.he] notice" + ara.mfn("s", "s", "") + " you.");
+		output("\n\nAra Kei instantly switches [ara.his] attention to you and clacks across, leaving [ara.his] four submissives looking softly confused, the moment [ara.he] notice" + ara.mfn("s", "s", "") + " you.");
 		output("\n\n<i>“And what do we owe this pleasure to?”</i> the quadomme asks, smiling.");
 		
 		processTime(1);

@@ -301,7 +301,7 @@ public function seraBreedingApproach():Boolean
 		
 		// [Nope] [NRN]
 		if(!pc.hasVagina()) addDisabledButton(0, "Nope", "Nothing Planned", "You will need a vagina for this!");
-		else if(pcSeraPregDays() >= 190) addDisabledButton(0, "Nope", "Nothing Planned", "You might be a little too pregnant for this!");
+		else if(pc.isFullyWombPregnant() && pcSeraPregDays() >= 190) addDisabledButton(0, "Nope", "Nothing Planned", "You might be a little too pregnant for this!");
 		else addButton(0, "Nope", seraBreedResponse, ["ready"], "Nothing Planned", "You’re ready.");
 		addButton(1, "Not Now", seraBreedResponse, ["not now"], "Not Right Now", "Maybe get fucked a little later.");
 	}
@@ -314,7 +314,7 @@ public function seraBreedingApproach():Boolean
 		
 		// [Ready] [NRN]
 		if(!pc.hasVagina()) addDisabledButton(0, "Ready", "Ready", "You will need a vagina for this!");
-		else if(pcSeraPregDays() >= 190) addDisabledButton(0, "Ready", "Ready", "You might be a little too pregnant for this!");
+		else if(pc.isFullyWombPregnant() && pcSeraPregDays() >= 190) addDisabledButton(0, "Ready", "Ready", "You might be a little too pregnant for this!");
 		else addButton(0, "Ready", seraBreedResponse, ["ready"], "I’m Ready", "You’re ready.");
 		addButton(1, "Not Now", seraBreedResponse, ["not now"], "Not Right Now", "Maybe get fucked a little later.");
 	}
@@ -346,6 +346,8 @@ public function seraBreedResponse(arg:Array):void
 			
 			//Grey out [Sex]
 			pc.createStatusEffect("Sera Breed No Sex");
+			// Set flag for mandatory breeding.
+			pc.setStatusValue("Sera Breed No Sex", 1, 1);
 			
 			addButton(0, "Next", seraMenu, true);
 			break;
@@ -715,7 +717,7 @@ public function seraSpawnPregnancyApproach(pregDays:Number = 0):Boolean
 		msgList.push("<i>“How’s it going, " + RandomInCollection(["breeding bitch", "babycakes", "up-stick", "broodmare", "barefoot", "slut oven", "Captain Hormones", "baby factory", "pramface", "bulge", "leaky tits"]) + "?”</i> leers Sera lasciviously, leaning on the counter and taking her handiwork in.");
 	}
 	
-	if(msgList.length > 0 && pregDays >= 100)
+	if(msgList.length > 0)
 	{
 		clearOutput();
 		author("Nonesuch");
