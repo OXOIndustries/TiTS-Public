@@ -54,6 +54,8 @@ package classes.GameData
 		protected var _lossFunction:Function;
 		public var genericLoss:Function;
 		
+		protected var _continue:Function;
+		
 		public function victoryScene(func:Function):void
 		{
 			_victoryFunction = func;

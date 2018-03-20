@@ -140,14 +140,14 @@ package classes.GameData
 			combatContainer.beginCombat();
 		}
 			
-		public static function genericVictory():void
+		public static function genericVictory(func:Function = null):void
 		{
-			combatContainer.genericVictory();
+			combatContainer.genericVictory(func);
 			postCombat();
 		}
-		public static function genericLoss():void
+		public static function genericLoss(func:Function = null):void
 		{
-			combatContainer.genericLoss();
+			combatContainer.genericLoss(func);
 			postCombat();
 		}
 		public static function postCombat():void

@@ -2092,6 +2092,7 @@ public function unequip(item:ItemSlotClass, override:Boolean = false):void
 	var i:int = 0;
 	for(i = 0; i < unequippedItems.length; i++)
 	{
+		if(unequippedItems[i].fortification != 0) pc.HP(-1 * unequippedItems[i].fortification);
 		unequippedItems[i].onRemove(pc, true);
 	}
 	
@@ -2246,7 +2247,10 @@ public function equipItem(arg:ItemSlotClass):void {
 			pc.upperUndergarment = arg;
 		}
 		else output(" <b>AN ERROR HAS OCCURRED: Equipped invalid item type. Item: " + arg.longName + "</b> ");
-
+		
+		if(removedItem.fortification != 0) pc.HP(-1 * removedItem.fortification);
+		if(arg.fortification != 0) pc.HP(arg.fortification);
+		
 		removedItem.onRemove(pc, true);
 		arg.onEquip(pc, true);
 	}
