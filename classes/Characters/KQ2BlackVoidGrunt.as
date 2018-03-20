@@ -225,7 +225,7 @@ package classes.Characters
 		
 		private function attackPass():void
 		{
-			output(StringUtil.capitalize(uniqueName, false) + " is unable to attack!");
+			output(StringUtil.capitalize(uniqueName, false) + (hasStatusEffect("Stunned") ? " is unable to attack!" : " goes scrambling for his dropped weapon."));
 		}
 		
 		private function rangedAttack(target:Creature):void

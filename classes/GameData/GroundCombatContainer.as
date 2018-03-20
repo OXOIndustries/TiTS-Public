@@ -889,7 +889,7 @@ package classes.GameData
 				}
 			}
 			
-			if (target.hasStatusEffect("Disarmed") && flags["CHECKED_GEAR_AT_OGGY"] == undefined)
+			if (target.hasStatusEffect("Disarmed") && (!(target is PlayerCharacter) || flags["CHECKED_GEAR_AT_OGGY"] == undefined))
 			{
 				target.addStatusValue("Disarmed",1,-1);
 				if(target.statusEffectv1("Disarmed") <= 0)
