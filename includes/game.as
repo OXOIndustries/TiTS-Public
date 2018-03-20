@@ -1909,12 +1909,20 @@ public function nearestMedicalCenter():String
 	return roomID;
 }
 
-public function showerMenu(special:String = "ship"):void {
+public function showerMenu(special:String = "ship"):void
+{
 	clearOutput();
-	output("You find yourself in the " + special + "’s shower room. What would you like to do?");
+	
+	var showerInShip:Boolean = (special == "ship" && InShipInterior(pc));
+	
+	output("You find yourself in the " + special + "’s shower room.");
+	if(showerInShip) output("\n\nNext to the shower is a medicine cabinet with some various hygiene products.");
+	output("\n\nWhat would you like to do?");
+	
 	clearMenu();
 	addButton(0, "Shower", showerOptions, 0, "Shower", "Take a shower and wash off any sweat or grime you might have.");
-	if (special == "ship" && InShipInterior(pc) && pc.lust() >= 33 && crew(true) > 0) addButton(1, "Sex", showerOptions, 1, "Sex", "Have some shower sex with a crew member.");
+	if (showerInShip || special == "nursery") addButton(1, "Cabinet", showerOptions, 1, "Bathroom Cabinet", "Check your bathroom’s medicine cabinet.");
+	if (showerInShip && pc.lust() >= 33 && crew(true) > 0) addButton(2, "Sex", showerOptions, 2, "Sex", "Have some shower sex with a crew member.");
 	showerDoucheToggleButton(5);
 	addButton(14, "Back", showerExit);
 }
@@ -1940,7 +1948,7 @@ public function showerOptions(option:int = 0):void
 {
 	var showerInShip:Boolean = InShipInterior(pc);
 	
-	if(showerInShip && seranigansTrigger("shower")) return;
+	if(option == 0 && showerInShip && seranigansTrigger("shower")) return;
 	
 	clearOutput();
 	clearMenu();
@@ -2070,16 +2078,28 @@ public function showerOptions(option:int = 0):void
 		pc.shower();
 		processTime(10);
 	}
-	// Shower sex options
+	// Bathroom cabinet
 	else if (option == 1)
+	{
+		output("You open the medicine cabinet and find a small collection of body hygiene and toiletry supplies.");
+		
+		var btnSlot:int = 0;
+		
+		if(pc.hasBeard()) addButton(btnSlot++, "Beard", showerCabinet, "beard", "Beard", "Do something with your [pc.beardNoun].");
+		if(pc.isBimbo()) addButton(btnSlot++, "Cosmétique", showerCabinet, "cosmetique", "Cosmétique Magazine", "Like, read up on the latest beauty trends!");
+		
+		addButton(14, "Back", showerMenu);
+	}
+	// Shower sex options
+	else if (option == 2)
 	{
 		if (annoIsCrew() && pc.hasGenitals())
 		{
 			addButton(showerSex, "Anno", annoFollowerShowerSex);
 			showerSex++;
 		}
-		if (showerSex > 0) output(" Feeling a little turned on, you decide that maybe you should have some fun shower sex with one of your crew. Who do you approach?");
-		else output(" You don’t seem to have any crew members onboard who can have shower sex with you at the moment.");
+		if (showerSex > 0) output("Feeling a little turned on, you decide that maybe you should have some fun shower sex with one of your crew. Who do you approach?");
+		else output("You don’t seem to have any crew members onboard who can have shower sex with you at the moment.");
 		addButton(14, "Back", showerMenu);
 	}
 }
@@ -2091,7 +2111,101 @@ public function shipShowerFapButtons(showerSex:int = 0):void
 	{
 		showerSex = shipShowerFaps(true);
 	}
-	addButton(showerSex, "Nevermind", shipShowerFappening, "Nevermind", "On second thought...");
+	addButton(showerSex, "Nevermind", shipShowerFappening, "Nevermind", "Nevermind", "On second thought...");
+}
+public function showerCabinet(response:String = "none"):void
+{
+	clearOutput();
+	clearMenu();
+	
+	switch(response)
+	{
+		case "beard":
+			output("You pull the cabinet mirror to the side and take a good look at your [pc.beard].");
+			if(!pc.hasLivingBeard())
+			{
+				output("\n\nWith the supplies that you have on hand, you guess you can’t do more than a shave. If you want to do anything fancier, you’ll probably have better luck visiting a stylist who specializes in fixing facial hair.");
+				
+				addButton(0, "Shave", showerCabinet, "beard shave", "Shave", "Shave your [pc.beard].");
+			}
+			else
+			{
+				output("\n\nUnfortunately, you don’t have the supplies to manipulate your living facial hair. You’ll have to visit a specialist if you want to change it in style and length.");
+			}
+			
+			addButton(14, "Back", showerMenu);
+			break;
+		case "beard shave":
+			output("To prepare, you lather your lower face and around your [pc.lipsChaste], making sure to get the parts covered by your facial hair. You then wipe your hands dry and pull out");
+			if(pc.beardLength > 0.125)
+			{
+				output(" a cheap wireless electric razor. Flicking a switch, the battery charges and the device hums to life.");
+				output("\n\nYou spend the next ten minutes or so shaving the [pc.beardNoun] from your visage. After you you’ve got it all, you turn on the sink faucet and rinse your face and slap on some aftershave.");
+				output("\n\nTaking a final look at the mirror shows that the razor could only lop off so much, so you are left with some <b>stubble decorating your face</b>. If you want to remove it all, you’ll need to shave again.");
+				
+				processTime(11);
+				pc.beardLength = 0.050;
+			}
+			else
+			{
+				output(" an inexpensive, disposable razor. Getting in close, you slide the blade across the stubble on your face.");
+				output("\n\nIt doesn’t take long, but you do find yourself having to repeat a few times in order to get rid of the rough spots. Once complete, you rub on some post-shave balm and feel the tingly, stinging sensation it leaves behind.");
+				output("\n\nThe pain is worth it though. As you take a final review of your efforts, you grin. A clean shave. <b>You no longer have a beard!</b>");
+				
+				processTime(7);
+				pc.removeBeard();
+			}
+			
+			addButton(0, "Next", showerMenu);
+			break;
+		case "cosmetique":
+			output("A mini-slate with the Cosmétique logo emblazoned on it sits next to the mirror. " + RandomInCollection([
+				"<i>Ooo!</i>--maybe there’s a sexy article you can read!",
+				"<i>Yay!</i> It’s your favorite magazine!",
+				"<i>Hmm</i>, beauty tips and sex advice--<i>why not?!</i>",
+				"It’s, like, totally the latest and greatest source for <i>glamour and glitter!</i>",
+			]) + " You quickly flick on the device and page through the articles.");
+			
+			var cosmoList:Array = [];
+			var cosmoMsg:String = "";
+			
+			cosmoMsg = "An article";
+			if(silly) cosmoMsg += ", written by one with the handle of “Alexa Jonez”,";
+			cosmoMsg += " about the dangers of low semen intake catches your attention. It reads like alarmist propaganda, running off a sprinkling of obscure facts and small case “studies”. If you didn’t know any better, you would swear the author is prophesying an end-times scenario.";
+			cosmoMsg += "\n\n<i>“Like, get a grip silly lady--there’s plenty of spooge for everyone!”</i>";
+			cosmoMsg += "\n\nHmm... However, if the author is right, then you’ll have to do your best to prevent the world from imminent malnutrition. You must save all the cummies!";
+			cosmoList.push(cosmoMsg);
+			cosmoMsg = "A strikingly beautiful image of a glamour model pops up on the page and you have to pause for a moment to soak in the view. She is a natural bombshell of a woman, yet any signs of modding only accentuates her features even more. She seems so alien yet so familiar to you.";
+			cosmoMsg += "\n\n<i>“Wow, she’s gorgeous! Like a goddess!”</i> You fawn and fan-girl over the figure and set your sights on becoming just as pretty as she is.";
+			cosmoMsg += "\n\nYou save the image for later; for when you need another positive motivation booster.";
+			cosmoList.push(cosmoMsg);
+			cosmoMsg = "A colorful chart comes into view, advertising several shades of a new lipstick line. You scroll up and down, in awe of the color combinations.";
+			cosmoMsg += "\n\n<i>“Ooh, neat! I didn’t know lips can be that color!”</i> You study one that is of interest to you--one where the model’s lips are artistically covered in a thick, translucent white glaze. It looks completely oozing with life and at the same time, it’s gloss is hypnotizing to view, even at a glance. And to top it off, the lipstick has been sprinkled with a little glitter, giving it a playful shimmer. The lipstick is lusty, lewd and lively, all in one!";
+			cosmoMsg += "\n\nYou tap on the bookmark icon to save it for later. This is the kind of makeup that goes with everything--especially slutwear!";
+			cosmoList.push(cosmoMsg);
+			cosmoMsg = "An advertisement for a heavy-duty G-spot vibrator flashes onto the page. You struggle to press the tiny ‘x’ icon in the upper corner to close the window but accidently hit the ad instead. The slate’s browser opens up and loads a video that highlights the device’s features as very enticing audio plays. You surrender to it, as it is too late to turn back now, and give the commercial a fair listen.";
+			cosmoMsg += "\n\n<i>“Wow, that’s totally awesome!”</i> you remark as the incredibly erotic-looking machine transforms into a small, palmable cylinder--a shape reminiscent to that of a tube of lipstick. With a press of a button, the device shape-shifts back to its original lewd form.";
+			cosmoMsg += "\n\nThe advertisement ends with an info link and you ponder if it’s something you might want to invest in the future...";
+			cosmoList.push(cosmoMsg);
+			cosmoMsg = "A title springs out to you: “Gains for Girls on the Go: 10 Easy Steps!”. It seems to be an article about personal fitness and diet; to move fat to the most important parts of a girl’s figure. Interesting...";
+			cosmoMsg += "\n\nYou let out a loud giggle as you read. The author who wrote the piece gives very useful advice but delivers them in such a comedic manner that you can’t help but laugh at every punch line and witty comment.";
+			cosmoMsg += "\n\nYour eyes almost water from the humor being thrown your way. What a great read! You’re convinced that the writer is just as enjoyable in person and would definitely like to meet her.";
+			cosmoList.push(cosmoMsg);
+			
+			output("\n\n" + cosmoList[rand(cosmoList.length)]);
+			output("\n\nAfter some time, you finish browsing the articles and ogling the images, turn off the tablet, and set it aside.");
+			
+			processTime(14);
+			
+			addButton(0, "Next", showerMenu);
+			break;
+		default:
+			output("Nothing valid selected!");
+			output("\n\n");
+			
+			addButton(0, "Next", showerMenu);
+			break;
+	}
 }
 
 public function sneakBackYouNudist():void
