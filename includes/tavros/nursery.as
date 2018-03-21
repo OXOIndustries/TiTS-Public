@@ -661,7 +661,13 @@ public function nurseryComputerMenu(lastUsed:Function = null):void
 
 	if (lastUsed == nurseryComputerFacilities) addDisabledButton(3, "Facilities");
 	else addButton(3, "Facilities", nurseryComputerFacilities);
-
+	
+	if(debug)
+	{
+		if (lastUsed == pregAverageLoadSizes) addDisabledButton(13, "Load Sizes");
+		else addButton(13, "Load Sizes", pregAverageLoadSizes);
+	}
+	
 	addButton(14, "Back", nurseryComputerLeaveMenu);
 }
 
@@ -2225,5 +2231,58 @@ public function nurserySpecialistWaterPricessesII(child:Child):void
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+// Debug function!
+public function pregAverageLoadSizes():void
+{
+	clearOutput();
+	showName("AVERAGE\nLOAD SIZES");
+	
+	output("The average load sizes for each potential sire are as follows:\n<i>(Pregnancies that are set to alwaysImpregnate are omitted.)</i>");
+	
+	output("\n\n<b><u>CockvinePregnancy</u></b>: " + (new CockvinePregnancy()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Cockvine:</b> " + (new Cockvine()).cumQ() + " mLs");
+	
+	output("\n\n<b><u>KorgonnePregnancy</u></b>: " + (new KorgonnePregnancyHandler()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Korgonne Male:</b> " + (new KorgonneMale()).cumQ() + " mLs");
+	
+	output("\n\n<b><u>MilodanPregnancy</u></b>: " + (new MilodanPregnancyHandler()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Milodan Male:</b> " + (new MilodanMale()).cumQ() + " mLs");
+	output("\n* <b>Milodan Male (Group):</b> " + (new MilodanMaleGroup()).cumQ() + " mLs");
+	
+	output("\n\n<b><u>RenvraEggPregnancy</u></b>: " + (new RenvraEggPregnancy()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Renvra:</b> " + chars["RENVRA"].cumQ() + " mLs");
+	
+	output("\n\n<b><u>RenvraFullPregnancy</u></b>: " + (new RenvraFullPregnancy()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Renvra:</b> " + chars["RENVRA"].cumQ() + " mLs");
+	
+	output("\n\n<b><u>RiyaPregnancy</u></b>: " + (new RiyaPregnancyHandler()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Riya:</b> " + getRiyaPregContainer().cumQ() + " mLs");
+	
+	output("\n\n<b><u>SeraSpawnPregnancy</u></b>: " + (new SeraSpawnPregnancyHandler()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Sera:</b> " + chars["SERA"].cumQ() + " mLs");
+	
+	output("\n\n<b><u>SydianPregnancy</u></b>: " + (new SydianPregnancyHandler()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Sydian Male:</b> " + (new SydianMale()).cumQ() + " mLs");
+	
+	output("\n\n<b><u>ZaaltPregnancy</u></b>: " + (new ZaaltPregnancyHandler()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Zaalt:</b> " + (new Zaalt()).cumQ() + " mLs");
+	
+	output("\n\n<b><u>ZilPregnancy</u></b>: " + (new ZilPregnancyHandler()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Zil Male:</b> " + (new ZilMale()).cumQ() + " mLs");
+	output("\n* <b>Zil Male (Pack):</b> " + (new ZilPack()).cumQ() + " mLs");
+	output("\n* <b>Zil Hover Fly:</b> " + (new ZilHoverFly()).cumQ() + " mLs");
+	output("\n* <b>Zil Tribe:</b> " + (new ZilTribe()).cumQ() + " mLs");
+	
+	/*
+	
+	output("\n\n<b><u></u></b>: " + (new ()).definedAverageLoadSize + " mLs");
+	output("\n* <b>:</b> " + (new ()).cumQ() + " mLs");
+	*/
+	
+	output("\n\n");
+	
+	nurseryComputerMenu(pregAverageLoadSizes);
 }
 

@@ -889,7 +889,7 @@ package classes.GameData
 				}
 			}
 			
-			if (target.hasStatusEffect("Disarmed") && flags["CHECKED_GEAR_AT_OGGY"] == undefined)
+			if (target.hasStatusEffect("Disarmed") && (!(target is PlayerCharacter) || flags["CHECKED_GEAR_AT_OGGY"] == undefined))
 			{
 				target.addStatusValue("Disarmed",1,-1);
 				if(target.statusEffectv1("Disarmed") <= 0)
@@ -3672,13 +3672,15 @@ package classes.GameData
 		{ 
 			_roundCounter = 1;
 			
-			genericVictory = function():void {
+			genericVictory = function(func:Function):void {
+				_continue = func;
 				StatTracking.track("combat/wins");
 				getCombatPrizes();
 				doCombatCleanup();
 			}
 			
-			genericLoss = function():void {
+			genericLoss = function(func:Function):void {
+				_continue = func;
 				StatTracking.track("combat/losses");
 				clearMenu();
 				if (StatTracking.getStat("combat/wins") == 0 && StatTracking.getStat("combat/losses") == 3)
@@ -4697,7 +4699,8 @@ package classes.GameData
 			userInterface().mainButtonsReset();
 			userInterface().hideNPCStats();
 			userInterface().leftBarDefaults();
-			kGAMECLASS.mainGameMenu();
+			if (_continue != null) _continue();
+			else kGAMECLASS.mainGameMenu();
 		}
 		
 		override public function getCombatPrizes():void

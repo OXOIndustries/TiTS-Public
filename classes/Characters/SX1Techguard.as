@@ -34,7 +34,7 @@ package classes.Characters
 			this.a = "the ";
 			this.capitalA = "The ";
 			// this.long = "You’re fighting a pirate techie, an ausar woman in a flight suit with a machine pistol at her hip. She’s got a shock of blonde hair, perky breasts under her suit, and a shield generator that’s thrumming with overcharged energy."
-			this.long = "An ausar woman in a flight suit with a machine pistol at her hip. She’s got a shock of blonde hair, perky breasts under her suit, and a shield generator that’s thrumming with overcharged energy.";
+			this.long = "";
 			this.customBlock = "The pirates armor deflects your attack with an alarming ease.";
 			this.isPlural = false;
 			isLustImmune = false;
@@ -189,6 +189,8 @@ package classes.Characters
 		{
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
+			
+			long = "An ausar woman in a flight suit with a machine pistol at her hip. She’s got a shock of blonde hair, perky breasts under her suit, and a " + (shields() > 0 ? "shield generator that’s thrumming with overcharged energy" : "currently disabled shield generator") + ".";
 			
 			// 1x per encounter, don't call it "Cooldown" to avoid auto-handling
 			if (shields() <= 0 && !hasStatusEffect("Shield Boost CD"))

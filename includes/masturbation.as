@@ -2380,7 +2380,7 @@ public function futaBabePantySchlicksRouter():void
 		}
 		if(pc.hasKeyItem("Panties - Fisianna's - Lacy, white panties with a cute cat pattern.")) 
 		{
-			addButton(button,"Fisianna’s",jackOffWithLadyPantiesYouSicko,"Fisianna","Fisianna’s Panties","Use Fisianna’s lacy, white panties for a quick jill-off session.");
+			addButton(button,"Fisianna’s",pureLadyWaifuPussyRubFap,"Fisianna","Fisianna’s Panties","Use Fisianna’s lacy, white panties for a quick jill-off session.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) 

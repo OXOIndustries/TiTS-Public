@@ -236,10 +236,10 @@ package classes.Characters
 			
 			var sHackAvail:Boolean = !hasStatusEffect("Shield Hack Cooldown");
 			var sBoostAvail:Boolean = !hasStatusEffect("Shield Boost Cooldown");
-			var sDisarmAvail:Boolean = !hasStatusEffect("Disarm Cooldown") && !target.hasStatusEffect("Disarmed") && !target.hasStatusEffect("Disarm Immune");
+			var sDisarmAvail:Boolean = !hasStatusEffect("Disarm Cooldown") && !hasStatusEffect("Disarmed") && !target.hasStatusEffect("Disarmed") && !target.hasStatusEffect("Disarm Immune");
 			
 			var attacks:Array = [];
-			attacks.push( { v: x1HammerPistol, w: 40 } );
+			if(!hasStatusEffect("Disarmed")) attacks.push( { v: x1HammerPistol, w: 40 } );
 			attacks.push( { v: x1LowBlow, w:20 } );
 			
 			if (target.shields() > 0 && sHackAvail) attacks.push( { v: x1ShieldHack, w: 25 } );
@@ -361,10 +361,11 @@ package classes.Characters
 		{
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
-			var sDisarmAvail:Boolean = !hasStatusEffect("Disarm Cooldown") && !target.hasStatusEffect("Disarmed") && !target.hasStatusEffect("Disarm Immune");
+			var sDisarmAvail:Boolean = !hasStatusEffect("Disarm Cooldown") && !hasStatusEffect("Disarmed") && !target.hasStatusEffect("Disarmed") && !target.hasStatusEffect("Disarm Immune");
 			
 			if (sDisarmAvail && rand(4) == 0) saendraDisarmingShot(target);
-			else saendraHammerPistol(target);
+			else if(!hasStatusEffect("Disarmed")) saendraHammerPistol(target);
+			else saendraNoAction();
 		}
 		
 		private function saendraDisarmingShot(target:Creature):void
@@ -401,6 +402,11 @@ package classes.Characters
 				output(" shooting one of the pirates square in the back!");
 				applyDamage(new TypeCollection( { kinetic: 10 }, DamageFlag.BULLET), this, target);
 			}
+		}
+		
+		private function saendraNoAction():void
+		{
+			output("Saendra attempts to get a hold of her Hammer pistol as the battle ensues but is unsuccessful.");
 		}
 	}
 
