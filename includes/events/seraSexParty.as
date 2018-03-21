@@ -1621,7 +1621,7 @@ public function seraSexPartyConclusion():void
 	// If >5 days
 	else
 	{
-		showBust("SERA");
+		showBust("SERA","FIX");
 		
 		if(seraInfluence() <= 90)
 		{

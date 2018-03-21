@@ -249,6 +249,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/fazian_2.png", mimeType = "image/png")]
 		public var Bust_FAZIAN_2:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/fix.png", mimeType = "image/png")]
+		public var Bust_FIX:Class;
+		//[Embed(source = "../../../assets/images/npcs/shou_puppy/fix_nude.png", mimeType = "image/png")]
+		//public var Bust_FIX_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/frog_1.png", mimeType = "image/png")]
 		public var Bust_FROG_1:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/frog_2.png", mimeType = "image/png")]
@@ -469,6 +474,11 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr_queen_spores.png", mimeType = "image/png")]
 		public var Bust_MYR_INFECTED_QUEEN:Class;
+
+		//[Embed(source = "../../../assets/images/npcs/shou_puppy/naleen_male.png", mimeType = "image/png")]
+		//public var Bust_NALEEN_MALE:Class;
+		//[Embed(source = "../../../assets/images/npcs/shou_puppy/naleen_male_nude.png", mimeType = "image/png")]
+		//public var Bust_NALEEN_MALE_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/nayna.png", mimeType = "image/png")]
 		public var Bust_NAYNA:Class;
@@ -909,6 +919,11 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fazian_2.png", mimeType = "image/png")]
 			public var Full_FAZIAN_2:Class;
 
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fix.png", mimeType = "image/png")]
+			public var Full_FIX:Class;
+			//[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fix_nude.png", mimeType = "image/png")]
+			//public var Full_FIX_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/frog_1.png", mimeType = "image/png")]
 			public var Full_FROG_1:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/frog_2.png", mimeType = "image/png")]
@@ -1113,6 +1128,11 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fungal_myr_queen_spores.png", mimeType = "image/png")]
 			public var Full_MYR_INFECTED_QUEEN:Class;
+
+			//[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/naleen_male.png", mimeType = "image/png")]
+			//public var Full_NALEEN_MALE:Class;
+			//[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/naleen_male_nude.png", mimeType = "image/png")]
+			//public var Full_NALEEN_MALE_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nayna.png", mimeType = "image/png")]
 			public var Full_NAYNA:Class;
