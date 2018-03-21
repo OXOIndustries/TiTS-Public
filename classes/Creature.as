@@ -17165,7 +17165,7 @@
 			}
 			//F->big FF
 			else if (val < 15) {
-				descript += RandomInCollection(["soccerball-sized", "hand-overflowing", "generous", "jiggling"]);
+				descript += RandomInCollection(["soccerball-sized", "generous", "jiggling"]);
 			}
 			//G -> HHH
 			else if (val < 24) {
@@ -17188,6 +17188,7 @@
 
 			var descript: String = "";
 			var descripted: Boolean = false;
+			var milkied:Boolean = false;
 			if (breastRows[rowNum].breastRating() < 1) {
 				if(rand(2) == 0)
 				{
@@ -17204,7 +17205,7 @@
 			//Lactation notices are rare unless near-empty or full!
 			var lacBonusChance:Number = 0;
 			if(canMilkSquirt()) lacBonusChance = 2;
-			if(canLactate() && pc.milkFullness < 10) lacBonusChance = 1;
+			if(canLactate() && milkFullness < 10) lacBonusChance = 1;
 			if (canLactate() && rand(8) <= (1+lacBonusChance)) {
 				//Tits reeel full
 				if (milkFullness >= 80)
@@ -17247,7 +17248,9 @@
 					if (descripted) descript += ", ";
 					descript += RandomInCollection(["drained","",(fluidNoun(milkType) + "-drained"),"empty","empty"]);
 					descripted = true;
-				}				
+				}
+				//Used to prevent milk-related nounse from being used.
+				milkied = true;			
 			}
 			// A-cups
 			if(breastRows[rowNum].breastRating() == 1) {
@@ -17257,7 +17260,7 @@
 			}
 			else {
 				if(descripted) descript += " ";
-				descript += chestNoun(rowNum);
+				descript += chestNoun(rowNum,milkied);
 			}
 			return descript;
 		}
@@ -17266,13 +17269,20 @@
 		{
 			if(rowNum == 99) rowNum = 0;
 			var nouns:Array = [];
-			if (isLactating() && !milkied)
+			if (isLactating())
 			{
-				if(InCollection(milkType,GLOBAL.FLUID_TYPE_NECTAR,GLOBAL.FLUID_TYPE_NECTAR)) nouns.push("sugar-melon","honey-melon");
-				else nouns.push("milker","milker");
+				if(!milkied)
+				{
+					if(breastRows[0].breastRating() >= 5)
+					{
+						if(InCollection(milkType,GLOBAL.FLUID_TYPE_NECTAR,GLOBAL.FLUID_TYPE_NECTAR) && breastRows[0].breastRating() >= 2) nouns.push("sugar-melon","honey-melon");
+						nouns.push("milk-tank","milk-jug");
+					}
+					else nouns.push("milker","milker");
+				}
+				if(breastRows[0].breastRating() >= 2) nouns.push("udder", "udder", "udder", "udder");
 			}
 			nouns.push("breast", "breast", "breast", "breast", "breast", "breast");
-			if (isLactating()) nouns.push("udder", "udder", "udder", "udder");
 			nouns.push("tit", "tit", "tit");
 			if (breastRows[rowNum].breastRating() > 6) nouns.push("tit");
 			nouns.push("jug");
@@ -17284,15 +17294,27 @@
 			
 			return nouns[rand(nouns.length)];
 		}
-		public function chestNoun(rowNum:int = 99):String
+		//"milkied" is used to tell if a milk description was appended. If not, lactation-enhanced nounage can show up :3
+		public function chestNoun(rowNum:int = 99, milkied:Boolean = false):String
 		{
 			if (rowNum == 99) rowNum = 0;
 			if (breastRows[rowNum].breastRating() <= 0) return "chest";
 			
 			var nouns:Array = [];
-			
+			if (isLactating())
+			{
+				if(!milkied)
+				{
+					if(breastRows[0].breastRating() >= 5)
+					{
+						if(InCollection(milkType,GLOBAL.FLUID_TYPE_NECTAR,GLOBAL.FLUID_TYPE_NECTAR) && breastRows[0].breastRating() >= 2) nouns.push("sugar-melons","honey-melons");
+						nouns.push("milk-tanks","milk-jugs");
+					}
+					else nouns.push("milkers","milkers");
+				}
+				if(breastRows[0].breastRating() >= 2) nouns.push("udders", "udders", "udders", "udders");
+			}
 			nouns.push("breasts", "breasts", "breasts", "breasts", "breasts", "breasts");
-			if (isLactating()) nouns.push("udders", "udders", "udders", "udders");
 			nouns.push("tits", "tits", "tits");
 			if (breastRows[rowNum].breastRating() > 6) nouns.push("tits");
 			nouns.push("jugs");
