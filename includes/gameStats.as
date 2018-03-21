@@ -298,8 +298,8 @@ public function statisticsScreen(showID:String = "All"):void
 				output2("\n<b><u>Lactation</u></b>");
 				output2("\n<b>* Milk, Type:</b> " + GLOBAL.FLUID_TYPE_NAMES[pc.milkType]);
 				output2("\n<b>* Milk, Capacity:</b> " + formatFloat(pc.milkFullness, 1) + " %");
-				output2("\n<b>* Milk, Current:</b> " + Math.round(pc.milkFullness/100 * pc.milkCapacity()) + " mLs");
-				output2("\n<b>* Milk, Max:</b> " + pc.milkCapacity() + " mLs");
+				output2("\n<b>* Milk, Current" + ((pc.breastRows.length == 1) ? "" : ", Total") + ":</b> " + Math.round(pc.lactationQ(99)) + " mLs");
+				output2("\n<b>* Milk, Max" + ((pc.breastRows.length == 1) ? "" : ", Total") + ":</b> " + pc.milkCapacity(99) + " mLs");
 				output2("\n<b>* Milk, Production Training:</b> " + formatFloat(pc.milkMultiplier, 1) + " %");
 				output2("\n<b>* Milk, Production Bonus:</b> " + Math.round(pc.milkRate*100)/10 + " %");
 			}
@@ -341,6 +341,11 @@ public function statisticsScreen(showID:String = "All"):void
 					}
 					output2("\n<b>* Areola, Size:</b> " + prettifyLength(pc.nippleWidth(x)));
 					if(pc.breastRows[x].breasts != 1) output2(" each");
+					if(pc.breastRows.length != 1)
+					{
+						output2("\n<b>* Milk, Current:</b> " + Math.round(pc.lactationQ(x)) + " mLs");
+						output2("\n<b>* Milk, Max:</b> " + pc.milkCapacity(x) + " mLs");
+					}
 				}
 			}
 		}

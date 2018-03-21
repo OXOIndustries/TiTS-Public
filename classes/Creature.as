@@ -2311,11 +2311,17 @@
 				case "chestSimple":
 				case "chestNoun":
 				case "breastsNoun":
-					buffer = chestNoun();
+					buffer = chestNoun(arg2);
 					break;
 				case "breastNoun":
 				case "breast":
-					buffer = breastNoun();
+					buffer = breastNoun(arg2);
+					break;
+				case "breastNounChaste":
+				case "breastChaste":
+				case "breastNounDry":
+				case "breastDry":
+					buffer = breastNoun(arg2, true);
 					break;
 				case "breastCupSize":
 					buffer = breastCup(arg2);
@@ -9957,7 +9963,7 @@
 				{
 					if(breastRows[x].breastRatingRaw >= 5) breastRows[x].breastRatingLactationMod = 2.5;
 					else breastRows[x].breastRatingLactationMod = 1.5;
-				}	
+				}
 			}
 			else if(milkFullness < 200)
 			{
@@ -17016,7 +17022,7 @@
 		
 		public function cockDescript(cockNum: Number = 0, dynamicLength:Boolean = false, multi:Boolean = false): String {
 			if (totalCocks() == 0) return "<b>ERROR: CockDescript Called But No Cock Present</b>";
-			if (cockTotal() <= cockNum && cockNum != 99) return "<b>ERROR: CockDescript called with index of " + cockNum + " - out of BOUNDS</b>";
+			if (cockTotal() <= cockNum || cockNum < 0) return "<b>ERROR: CockDescript called with index of " + cockNum + " - out of BOUNDS</b>";
 
 			//Variables
 			var adjectiveLimit:Number = 2;
@@ -17187,7 +17193,6 @@
 			if (breastRows.length == 0) return "<b>ERROR, breastDescript() called when no breasts are present.</b>";
 
 			var descript: String = "";
-			var descripted: Boolean = false;
 			if (breastRows[rowNum].breastRating() < 1) {
 				if(rand(2) == 0)
 				{
@@ -17199,64 +17204,91 @@
 			//33% of the time size-descript them
 			if (rand(3) == 0) {
 				descript += breastSize(breastRows[rowNum].breastRating());
-				descripted = true;
 			}
 			//Lactation notices are rare unless near-empty or full!
 			var lacBonusChance:Number = 0;
 			if(canMilkSquirt()) lacBonusChance = 2;
-			if(canLactate() && pc.milkFullness < 10) lacBonusChance = 1;
-			if (canLactate() && rand(8) <= (1+lacBonusChance)) {
+			if(canLactate() && milkFullness < 10) lacBonusChance = 1;
+			if (canLactate() && rand(8) <= (1+lacBonusChance))
+			{
+				var milkAdjectives:Array = [];
 				//Tits reeel full
 				if (milkFullness >= 80)
 				{
-					if (descripted) descript += ", ";
-					//Milk
-					if (InCollection(milkType, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK, GLOBAL.FLUID_TYPE_LEITHAN_MILK))
-						descript += RandomInCollection(["milk-packed", "milk-stuffed", "milk-filled", "fluid-filled","milk-engorged","swollen","engorged","stuffed","milk-bloated","lactation-swollen","milk-swollen","cream-filled","cream-stuffed","milk-stuffed","milk-laden","full","full"]);
-					//Hunny Bunny 
-					else if (InCollection(milkType, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR))
-						descript += RandomInCollection(["honey-laden","honey-stuffed","honey-engorged","honey-swollen","sugar-stuffed","sugar-swollen","sugar-laden","sugar-engorged","swollen","engorged","full","full"])
-					//Nonspecific weird-boob-filler
-					else
-						descript += RandomInCollection(["lactation-engorged", "fluid-filled","swollen","engorged","full","full","fluid-laden"]);
-					descripted = true;
+					switch(milkType)
+					{
+						//Milk
+						case GLOBAL.FLUID_TYPE_MILK:
+						case GLOBAL.FLUID_TYPE_CHOCOLATE_MILK:
+						case GLOBAL.FLUID_TYPE_STRAWBERRY_MILK:
+						case GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK:
+						case GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK:
+						case GLOBAL.FLUID_TYPE_LEITHAN_MILK:
+							milkAdjectives.push("milk-packed", "milk-stuffed", "milk-filled", "fluid-filled","milk-engorged","swollen","engorged","stuffed","milk-bloated","lactation-swollen","milk-swollen","cream-filled","cream-stuffed","milk-stuffed","milk-laden","full","full");
+							break;
+						//Hunny Bunny
+						case GLOBAL.FLUID_TYPE_HONEY:
+						case GLOBAL.FLUID_TYPE_NECTAR:
+						case GLOBAL.FLUID_TYPE_MILKSAP:
+						case GLOBAL.FLUID_TYPE_CUMSAP:
+						case GLOBAL.FLUID_TYPE_VANILLA:
+						case GLOBAL.FLUID_TYPE_SUGAR:
+							if(InCollection(milkType, [GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR])) milkAdjectives.push("honey-laden","honey-stuffed","honey-engorged","honey-swollen");
+							milkAdjectives.push("sugar-stuffed","sugar-swollen","sugar-laden","sugar-engorged","swollen","engorged","full","full");
+							break;
+						//Nonspecific weird-boob-filler
+						default:
+							milkAdjectives.push("lactation-engorged", "fluid-filled","swollen","engorged","full","full","fluid-laden");
+							break;
+					}
 				}
 				//Enough milk to express sum milk
 				//Not a ton of variance but shouldn't show up TOO much.
 				else if (isLactating())
 				{
-					//Milk
-					if (InCollection(milkType, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK, GLOBAL.FLUID_TYPE_LEITHAN_MILK))
+					switch(milkType)
 					{
-						if (descripted) descript += ", ";
-						descript += RandomInCollection(["milky","milky","creamy","lactating","lactating","milky","motherly","motherly"]);
-						descripted = true;
+						//Milk
+						case GLOBAL.FLUID_TYPE_MILK:
+						case GLOBAL.FLUID_TYPE_CHOCOLATE_MILK:
+						case GLOBAL.FLUID_TYPE_STRAWBERRY_MILK:
+						case GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK:
+						case GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK:
+						case GLOBAL.FLUID_TYPE_LEITHAN_MILK:
+							milkAdjectives.push("milky","milky","creamy","lactating","lactating","milky","motherly","motherly");
+							break;
+						//Hunny Bunny
+						case GLOBAL.FLUID_TYPE_HONEY:
+						case GLOBAL.FLUID_TYPE_NECTAR:
+						case GLOBAL.FLUID_TYPE_MILKSAP:
+						case GLOBAL.FLUID_TYPE_CUMSAP:
+						case GLOBAL.FLUID_TYPE_VANILLA:
+						case GLOBAL.FLUID_TYPE_SUGAR:
+							if(InCollection(milkType, [GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR])) milkAdjectives.push("honey-infused");
+							milkAdjectives.push("sugary","sugary","sugary","motherly");
+							break;
+						//Nonspecific gets NUTHING
 					}
-					//Hunny Bunny 
-					else if (InCollection(milkType, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR))
-					{
-						if (descripted) descript += ", ";
-						descript += RandomInCollection(["sugary","sugary","sugary","honey-infused","motherly"]);
-						descripted = true;
-					}
-					//Nonspecific gets NUTHING
 				}
 				//Fuckin' empty bro
 				else 
 				{
-					if (descripted) descript += ", ";
-					descript += RandomInCollection(["drained","",(fluidNoun(milkType) + "-drained"),"empty","empty"]);
-					descripted = true;
-				}				
+					milkAdjectives.push(["drained","",(fluidNoun(milkType) + "-drained"),"empty","empty"]);
+				}
+				if(milkAdjectives.length > 0)
+				{
+					if (descript != "") descript += ", ";
+					descript += RandomInCollection(milkAdjectives);
+				}
 			}
 			// A-cups
 			if(breastRows[rowNum].breastRating() == 1) {
-				if(descripted) descript += ", ";
+				if(descript != "") descript += ", ";
 				descript += RandomInCollection(["tiny ", "girly ", "waifish "]);
 				descript += RandomInCollection(["breasts", "mammaries", "boobs", "tits"]);
 			}
 			else {
-				if(descripted) descript += " ";
+				if(descript != "") descript += " ";
 				descript += chestNoun(rowNum);
 			}
 			return descript;
@@ -17264,11 +17296,12 @@
 		//"milkied" is used to tell if a milk description was appended. If not, lactation-enhanced nounage can show up :3
 		public function breastNoun(rowNum:int = 99, milkied:Boolean = false):String
 		{
-			if(rowNum == 99) rowNum = 0;
+			if(rowNum < 0 || rowNum == 99) rowNum = 0;
 			var nouns:Array = [];
 			if (isLactating() && !milkied)
 			{
-				if(InCollection(milkType,GLOBAL.FLUID_TYPE_NECTAR,GLOBAL.FLUID_TYPE_NECTAR)) nouns.push("sugar-melon","honey-melon");
+				if(InCollection(milkType,[GLOBAL.FLUID_TYPE_HONEY,GLOBAL.FLUID_TYPE_NECTAR])) nouns.push("sugar-melon","honey-melon");
+				else if(InCollection(milkType,[GLOBAL.FLUID_TYPE_MILKSAP,GLOBAL.FLUID_TYPE_CUMSAP,GLOBAL.FLUID_TYPE_VANILLA,GLOBAL.FLUID_TYPE_SUGAR])) nouns.push("sugar-melon","sweet-melon");
 				else nouns.push("milker","milker");
 			}
 			nouns.push("breast", "breast", "breast", "breast", "breast", "breast");
@@ -17286,7 +17319,7 @@
 		}
 		public function chestNoun(rowNum:int = 99):String
 		{
-			if (rowNum == 99) rowNum = 0;
+			if (rowNum < 0 || rowNum == 99) rowNum = 0;
 			if (breastRows[rowNum].breastRating() <= 0) return "chest";
 			
 			var nouns:Array = [];
