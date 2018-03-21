@@ -73,7 +73,7 @@ public function approachNenne(back:Boolean = false):void
 {
 	clearOutput();
 	showNenne();
-	if(back) output("What else would you like to do with Nayna?");
+	if(back) output("What else would you like to do with Nenne?");
 	else
 	{
 		output("<i>“");
@@ -236,7 +236,7 @@ public function nenneAcceptCredits():void
 
 		shopkeep.keeperBuy = "As you browse along Nenne’s wares, you notice that each little hole that houses her plants and herbs has a number of little scratches beneath them. They don’t look informative enough to be names or descriptions, so you surmise them to be price tags. But all you have are credits. You turn to her and ask if she accepts them.\n\n<i>“";
 		if(!korgiTranslate()) shopkeep.keeperBuy += "Princess saying to me that credit is good!";
-		else shopkeep.keeperBuy += "Tribe say credits are good for trade now thanks to Nayna,";
+		else shopkeep.keeperBuy += "Tribe says credits are good for trade now thanks to Nayna,";
 		shopkeep.keeperBuy += "”</i> Nenne says, smiling toward you. <i>“";
 		if(!korgiTranslate()) shopkeep.keeperBuy += "Okay to taking herbs if I am okay to taking credits. Good trade!";
 		else shopkeep.keeperBuy += "It’s still not my preferred economy, but if it’s good for the princess, then it’s good for me.";

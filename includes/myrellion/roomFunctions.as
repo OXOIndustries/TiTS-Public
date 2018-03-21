@@ -338,6 +338,12 @@ public function searchBunkerRifleCheck():void
 	addButton(0, "Next", mainGameMenu);
 }
 
+public function myrellionDerelictApproachBonus():Boolean
+{
+	if((flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_DIPLOMACY || flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_QUADOMME) && flags["FEIAN_LOCATION"] != undefined) return feiAnStrozoHaremBonus();
+	return DeepCavesBonus();
+}
+
 public function myrellionUndergroundCrashSiteBonus():Boolean
 {
 	if (flags["KQ2_MYRELLION_STATE"] == 2)

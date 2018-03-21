@@ -873,7 +873,6 @@ public function feiAnAppear():void
 	
 	rooms[flags["FEIAN_LOCATION"]].addFlag(GLOBAL.SPIDER_WEB);
 	rooms[flags["FEIAN_LOCATION"]].removeFlag(GLOBAL.HAZARD);
-	rooms[flags["FEIAN_LOCATION"]].runOnEnter = feiAnStrozoHaremBonus;
 }
 public function feiAnRemove():void
 {
@@ -881,7 +880,6 @@ public function feiAnRemove():void
 	
 	rooms[flags["FEIAN_LOCATION"]].removeFlag(GLOBAL.SPIDER_WEB);
 	rooms[flags["FEIAN_LOCATION"]].addFlag(GLOBAL.HAZARD);
-	rooms[flags["FEIAN_LOCATION"]].runOnEnter = DeepCavesBonus;
 }
 
 // Intro
