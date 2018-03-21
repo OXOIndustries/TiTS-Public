@@ -94,7 +94,7 @@ public function tamedTamelingsBonus():Boolean
 	}
 	else if(pc.hasStatusEffect("MAJA_FUCK_RECOVERY")) 
 	{
-		output("Various bags and crates of animal feed are littered along the back wall to feed the creatures further into the shop. Carts, leashes, and reins hang from the walls in abundance, but without anyone to mind the shop, you're left with nothing to do but admire the supplies.\n\nMaja is still recovering from your last bout of sexual activities.");
+		output("Various bags and crates of animal feed are littered along the back wall to feed the creatures further into the shop. Carts, leashes, and reins hang from the walls in abundance, but without anyone to mind the shop, you’re left with nothing to do but admire the supplies.\n\nMaja is still recovering from your last bout of sexual activities.");
 		return false;
 	}
 	//Repeat
@@ -155,7 +155,7 @@ public function majaMenu():void
 	if(majaTrust()) 
 	{
 		if(pc.lust() >= 33) addButton(4,"Sex",majaSexyTimes,undefined,"Sex","Help Maja out with her own beast.");
-		else addDisabledButton(4,"Sex","Sex","You aren't turned on enough for this.");
+		else addDisabledButton(4,"Sex","Sex","You aren’t turned on enough for this.");
 	}
 	else addDisabledButton(4,"Sex","Sex","Maybe you should get her to trust you before asking about sex.");
 	addButton(14,"Leave",mainGameMenu);
@@ -696,7 +696,7 @@ public function majaSexMenu():void
 	addButton(0,"WorshipDick",worshipMajasBitchBreakingBoner,undefined,"WorshipDick","Service maja with your mouth and hands. There’s a lot there to work with.");
 
 	if((pc.hasCock() && pc.cockThatFits(majaPlaceholder().vaginalCapacity(0)) >= 0) || pc.hasHardLightEquipped()) addButton(1,"Pitch Dick",penisRouter,[pitchDickingToMaja,majaPlaceholder().vaginalCapacity(0),true],"Pitch Dick","Give her a good dicking.");
-	else if(pc.hasCock()) addDisabledButton(1,"Pitch Dick","Pitch Dick","Your penis won't fit in there.");
+	else if(pc.hasCock()) addDisabledButton(1,"Pitch Dick","Pitch Dick","Your penis won’t fit in there.");
 	else addDisabledButton(1,"Pitch Dick","Pitch Dick","You need a penis that will fit inside Maja OR a hardlight strap-on to do this scene.");
 
 	if(pc.hasCock()) addButton(2,"Frotjob",penisRouter,[majaFrotjob,90000000,false],"Frotjob","Hey, there’s enough room in there for your dick too!");
@@ -709,7 +709,7 @@ public function majaSexMenu():void
 	}
 	else 
 	{
-		addDisabledButton(3,"Catch Dick","Catch Dick","You'd need to have a vagina to take Maja's dick in it.");
+		addDisabledButton(3,"Catch Dick","Catch Dick","You’d need to have a vagina to take Maja’s dick in it.");
 	}
 	addButton(14,"Back",repeatMajaApproach,true);
 }
@@ -768,7 +768,7 @@ public function worshipMajasBitchBreakingBoner():void
 
 	output("\n\nYou nibble briefly on the soft point of her tip, bobbing your head at her top while you gather cum. You pause your knot massage briefly, pulling back with a mouthful of heady cream. The taste enthralls your taste-buds, and you take a moment to savor it before continuing. Maja grunts weekly as you pull her into a kiss, swallowing the cocktail of your saliva and her cum without resistance. If anything she kisses you back with more strength than she’s shown so far. Your tongues mash together in a timeless dance, and she licks your face to clean up the excess jizz that wasn’t wiped away earlier.");
 
-	output("\n\nAll the while you can feel her turgid shaft throbbing against your [pc.skinFurScales], the knot swelling slowly beneath your [pc.belly]. With some difficulty, you wrench yourself away from her sloppy kisses. Your face, while now cleaned of the korgonne shopkeeper's cum, drips with her saliva. Her cock needs you, beckoning you from between her pillowy breasts with gentle throbs. Maja’s thighs spread farther, almost unconsciously, inviting you to take her sapphire schlong as deeply as you can.");
+	output("\n\nAll the while you can feel her turgid shaft throbbing against your [pc.skinFurScales], the knot swelling slowly beneath your [pc.belly]. With some difficulty, you wrench yourself away from her sloppy kisses. Your face, while now cleaned of the korgonne shopkeeper’s cum, drips with her saliva. Her cock needs you, beckoning you from between her pillowy breasts with gentle throbs. Maja’s thighs spread farther, almost unconsciously, inviting you to take her sapphire schlong as deeply as you can.");
 
 	//pc can deepthroat or has a [wsan deepthroat item] in inventory
 	if(pc.canDeepthroat())
@@ -856,9 +856,9 @@ public function worshipMajasBitchBreakingBoner():void
 	//close shop for 1 hr!
 	pc.createStatusEffect("MAJA_FUCK_RECOVERY");
 	pc.setStatusMinutes("MAJA_FUCK_RECOVERY",60);
-	//(pass 30m)(shop closed for 1 hour, trying to enter gives <i>“looks like Maja hasn’t recovered yet”</i>)(small chance(10%?) to put pc in heat)
+	//(pass 30m)(shop closed for 1 hour, trying to enter gives “looks like Maja hasn’t recovered yet”)(small chance(10%?) to put pc in heat)
 	//heat chance?
-	if(!pc.isPregnant() && !pc.inHeat() && rand(5) == 0)
+	if(pc.hasVagina() && !pc.isFullyWombPregnant() && !pc.inHeat() && rand(5) == 0)
 	{
 		// Heat effects
 		// v1 - fertility boon
@@ -866,7 +866,7 @@ public function worshipMajasBitchBreakingBoner():void
 		// v3 - libido boost
 		// v4 - tease bonus!
 		pc.createStatusEffect("Heat", 5, 25, 10, 3, false, "LustUp", "Your body is begging for impregnation, increasing your libido and fertility but also your ability to tease.\n\n+500% Fertility\n+25 Minimum Lust\n+10 Libido\n+3 Tease Damage", false, 28800, 0xB793C4);
-		AddLogEvent(ParseText("The lingering, all-consuming scent of Maja's cock on your lips leaves you with a nagging sense that you really <i>should have had her knock you up.</i> Twinges in your [pc.vaginas] confirm that <b>your body has slipped into heat!</b> You'll need to get knocked up <i>as soon as possible</i> or you won't be able to think around <i>big, mouth-wateringly musky dicks</i> like Maja's. You feel a little wet just thinking about it!"));
+		AddLogEvent(ParseText("The lingering, all-consuming scent of Maja’s cock on your lips leaves you with a nagging sense that you really <i>should have had her knock you up.</i> Twinges in your [pc.vaginas] confirm that <b>your body has slipped into heat!</b> You’ll need to get knocked up <i>as soon as possible</i> or you won’t be able to think around <i>big, mouth-wateringly musky dicks</i> like Maja’s. You feel a little wet just thinking about it!"));
 		pc.lust(5);
 	}
 	clearMenu();
@@ -999,7 +999,7 @@ public function majaFrotjob(x:int):void
 	else output("You know her tits are big enough for your plans, but leaving her in suspense is too good to pass up.");
 	output(" First though, you’ll need her warmed up a little.");
 
-	output("\n\nYou cup her balls in both hands, gently fondling the volleyball sized orbs. These puppies are bigger than the average human's breast, and fluffier than the rest of her. Maja gasps as you continue, lifting her sensitive parts up to tease her feminine lips. She’s slick with wetness already, and your fingers only expedite her lust. Inch by inch, her sapphire sword slides from its sheath, filling the air with the heavy scent of mint. Her knot pushes itself out last, still relatively small at this point, but throbbing with anticipation as the whole of her length plops down between her breasts.");
+	output("\n\nYou cup her balls in both hands, gently fondling the volleyball sized orbs. These puppies are bigger than the average human’s breast, and fluffier than the rest of her. Maja gasps as you continue, lifting her sensitive parts up to tease her feminine lips. She’s slick with wetness already, and your fingers only expedite her lust. Inch by inch, her sapphire sword slides from its sheath, filling the air with the heavy scent of mint. Her knot pushes itself out last, still relatively small at this point, but throbbing with anticipation as the whole of her length plops down between her breasts.");
 
 	output("\n\n<i>“The way I see it, you’ve got enough cushion here for us both,”</i> you explain, trying to get a hold on her massive mammaries. The task is harder than you thought it would be. You’d planned for another quip, but your hands sink into her pillowy titflesh, unable to keep a grip on her soft fur. You marvel at modern technology for a moment. They feel like she’s had them this big her whole life, and if they were any softer you’d worry about your dick getting a good night’s sleep instead of a good time.");
 	output("\n\nFinally, you resort to pinching her thick nipples between your thumb and forefinger. The beryl buds provide an excellent hold, and the action elicits a surprised yip from their owner. You scoot up closer, letting one teat go long enough to ");
@@ -1102,7 +1102,7 @@ public function pitchDickingToMaja(x:int):void
 	else output("I know your all ready to go, but i’ve gotta make sure your two hander doesn’t hit the table. Besides, You’ve got the perfect sheath right here,”</i> you explain,");
 	output(" caressing the length of her azure lance as it grows to its full length. You guide the pointed tip right into the bottom of her cleavage, grinning as her hips buck at the sudden penetration. To your delight, even more juices flow from her pussy, and the scent of fruity mint fills the air around you.");
 
-	output("\n\nWith her cock taken care of, you return to kneading her golden furred buttocks. There isn’t much time before the heavy cloud of musk turns you into a fuck-hungry cuntslave, and you intend to spend every second of it teasing the poor animal tamer. Her cerulean gemstone of a clit pokes out just above her balls, big enough for you to lean in and pinch it gently between your teeth. Juice covers your face, steaming hot in the temperate cave  You hold your breath as you rub your nose in her sopping cunny, knowing that your next breath will bring the sweet obliteration of your restraint. You roll her clit on your [pc.tongue] till you run out of air, finally inhaling her scent in a frantic gasp.");
+	output("\n\nWith her cock taken care of, you return to kneading her golden furred buttocks. There isn’t much time before the heavy cloud of musk turns you into a fuck-hungry cuntslave, and you intend to spend every second of it teasing the poor animal tamer. Her cerulean gemstone of a clit pokes out just above her balls, big enough for you to lean in and pinch it gently between your teeth. Juice covers your face, steaming hot in the temperate cave. You hold your breath as you rub your nose in her sopping cunny, knowing that your next breath will bring the sweet obliteration of your restraint. You roll her clit on your [pc.tongue] till you run out of air, finally inhaling her scent in a frantic gasp.");
 
 	output("\n\nThe minty aroma isn’t quite as debilitating as you thought it would be. It does a good job of overwhelming your senses, but you seem to still be in control of your faculties. You stick out your [pc.tongue], ready to resume tongue-fucking her turquoise cock-cave, only to meet empty air. Lazily, you drop your gaze to her crotch, and find your [pc.cockOrStrapon " + x + "] already lined up. The ");
 	if(x >= 0) output("[pc.cockHead " + x + "]");
@@ -1158,10 +1158,10 @@ public function pitchDickingToMaja(x:int):void
 		{
 			if(pc.cumQ() < 25) output("You drain everything you’ve got into the still cumming dog-slut, furiously finger fucking her butt when you finish, dragging her orgasm out as long as you can.");
 			else if(pc.cumQ() < 400) output("You fill the still cumming dog-slut’s womb, relishing in the tightness as she clenches around your [pc.cock " + x + "] and fingers.");
-			else if(pc.cumQ() < 1000) output("You flood the shuddering dog-slut's womb, trying to plug her up as best you can while some of your [pc.cum] dribbles down her hips. Her asshole clenches tightly around your fingers in an attempt to push them away from her sensitive spots.");
+			else if(pc.cumQ() < 1000) output("You flood the shuddering dog-slut’s womb, trying to plug her up as best you can while some of your [pc.cum] dribbles down her hips. Her asshole clenches tightly around your fingers in an attempt to push them away from her sensitive spots.");
 			else output("You fill the dog-girl tamers womb with enough seed to overflow. It washes over your hips and joins the puddle beneath her, the force of it too strong for you to do anything but join her in muscle clenching euphoria.");
 		}
-		else output("You tremble against the shuddering dog-slut's womb, unable truly ejaculate and yet thanks to your turgid piece of technology able to feel the sensation of unleashing a massive, phallus-draining orgasm deep inside her.")
+		else output("You tremble against the shuddering dog-slut’s womb, unable truly ejaculate and yet thanks to your turgid piece of technology able to feel the sensation of unleashing a massive, phallus-draining orgasm deep inside her.")
 	}
 	//merge
 	output("\n\nYou collapse atop Maja, giving her some weak scratches behind the ears and a kiss on the cheek. She gives you a groan of encouraging acknowledgement, too exerted to pull herself out of the puddle beneath her. You’re content to sit there, petting and rubbing her while she recovers. The exhausted korgonne stretches after the short rest, and you stand to let her get up.");
@@ -1204,7 +1204,7 @@ public function catchMajasCockYaSlut():void
 	output("\n\nYou push Maja back from the table, batting her hands to the side and easily unclasping the belt on her skirt. Her sea-blue doggy dick springs up, happy to be free from confinement. Pulsating throbs push back at you as you grip the hefty dogmeat, asking, begging you for release. In time you may well oblige, but you ");
 	if(silly) output("cum");
 	else output("come");
-	output(" first. A fitful whine escapes the animal tamer's lips as you brush the head of her cock over your exposed [pc.pussyNoun " + x + "]. A dripping stream of pre flows endlessly from her oversized rod, ");
+	output(" first. A fitful whine escapes the animal tamer’s lips as you brush the head of her cock over your exposed [pc.pussyNoun " + x + "]. A dripping stream of pre flows endlessly from her oversized rod, ");
 	if(pc.vaginas[x].wetness() <= 1) output("and you make use of it to paint your nethers into a perfect picture of lust.");
 	else
 	{
