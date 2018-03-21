@@ -8,7 +8,9 @@ flags["KAEDE_CS_COUNTDOWN"]			- Set as game timestamp to track 14 time on statio
 flags["GLORYHOLED_KAEDE"]			- Counts time gloryholed Kaede... capped at 1 for now.
 flags["KAEDE_EXHIBITIONISM"]		- tracks the exhibitionism score of kaede. Range 0-100
 
+//Breastfeeding scene: https://docs.google.com/document/d/1SHsdx_JcjSTMukFT9pOzAD_Qyvkx3k2kwl4lYiCt8Ik/edit#heading=h.fksuca9tdauj
 */
+
 public function kaedeCouldBeOnNewCanadaRepeats():Boolean
 {
 	if(flags["KAEDE_FUCKED"] != undefined && flags["KAEDE_FUCKED"] > 0 && flags["KAEDE_NT_ENCOUNTER"] != undefined && flags["KAEDE_CANADA_MET"] != undefined && !pc.hasStatusEffect("Kaede Canada Cooldown") && flags["KAEDE_CS_COUNTDOWN"] != -1) return true;
@@ -447,6 +449,8 @@ public function getARoomWithKaede():void
 	//See if there’s someone you and Kaede could invite over for some group fun...
 	addButton(3,"InviteAFriend",inviteAFriend,undefined,"InviteAFriend","See if there’s someone you and Kaede could invite over for some group fun...");
 
+	if (pc.isLactating() && pc.biggestTitSize() >= 3) addButton(4, "Breastfeed Kaede", breastfeedKaede, undefined);
+	else addDisabledButton(4, "Breastf. Kaede", "Breastfeed Kaede", "You need to have at least C-cup breasts and be lactating for this.");
 }
 
 //Fuck Her Ass
@@ -786,6 +790,46 @@ public function watchAnnoAndKaedeYaSloot():void
 
 	//Append their normal threesome from here on out
 	watchThemKaedeAndAnnoContinuationSplice();
+}
+
+//Add to Kaede's Canadia sex scene roster. PC must be milky and have C+ cups.
+public function breastfeedKaede():void
+{
+	clearOutput();
+	showKaede(true);
+	author("Savin");
+
+	output("Rather than getting right to molesting the panting pup's perky tits or her throbbing prick, you slowly slip out of the last of your gear, running your hands over your [pc.breasts] and locking your fingers around your [pc.nipples]. A little bead of [pc.milk] leaks out of your stiffening teats, accompanied by a little moan from the back of your throat. Kaede's eyes are locked on your chest now, and she bites her lower lip hungrily. Between your [pc.legs], you can feel her turgid red rocket struggling to punch through her pants to get at your [pc.vagOrAss].");
+	output("\n\n<i>“Easy, girl,”</i> you coo at her, resting a [pc.milkType]-stained hand on her chest, right between her own little rack. <i>“My [pc.boobs] are so full... think you could help me out with that?”</i>");
+	output("\n\nKaede's nodding eagerly before you're halfway through speaking. You favor her with a little smile and slip your hands under the pits of her arms, pulling Kaede up into a position where you can cradle her with her face nestled into your rack. Her cheek brushes one of your [pc.nipples], drawing a little shudder of pleasure from you as Kaede's slender lips latch around it.");
+	output("\n\n<i>“Good girl.”</i> You praise her and stroke her cheek, feeling the first little spike of pressure around your teat. The weight of your lactation builds up just under the surface, only slowly releasing amid the first gentle suckles of your half-ausar lover. Kaede's hand plays across your breast, caressing the [pc.skinFurScales] before moving onto the other boob and squeezing until a bit of [pc.milk] beads out.");
+	output("\n\nYou echo your previous praise; soft, meaningless words murmured into the submissive girl's wolf-ear while she drinks deep of your bounty. You watch with amusement as her jeans' crotch tents with the steady throbbing of her erection. It's almost sad to keep such a cute thing pent up in there, so while you whisper in Kaede's ear, you slip your hand down her belly, tickling the bare flesh until your fingers find her zipper. You barely have to tug before her dick does the rest of the work, springing free with a gasp that sends quivering shockwaves through your boobflesh.");
+	output("\n\nYour fingers wrap around the veiny red shaft of Kaede's dick, starting to stroke up and down her modest length. The knot of crimson flesh at her base quivers, starting to swell with her flaring lusts. She moans, hips squirming under your pistoning hand, but her lips refuse to detach from your [pc.nipple] until your boob is about as drained as it can be. Trickles of loose [pc.milk] run down Kaede's cheek and chin, drooling into her mess of ginger hair. Stars, she's insatiable!");
+	output("\n\nGrinning down at the lusty puppy, you shift her from one breast to ");
+	if (pc.totalBreasts() > 2) output("an"); 
+	else output("the ");
+	output("other, giving her a fresh source of [pc.milk] to suckle from. Speaking of milk, though, you can't help but notice the thin veneer of pre-cum starting to trickle down from the tapered tip of her throbbing tool. Kaede doesn't seem to even acknowledge your work down there, completely content to let you do whatever you want with her while she's busy nursing.");
+	output("\n\nYou whisper something about not holding back into Kaede's ear, and as if on command, you feel her cock stiffen in your hand. A couple more strokes and her hips lift up off the bed, and a mighty throb heralds a rush of steamy white cream geysering from her crown. A yip of pleasure escapes Kaede's lips around her mouthful of tit, but you're much more interested in what's escaping her dick, splattering all over your fingers and her thighs and belly.");
+	output("\n\n<i>“What a good girl,”</i> you coo. <i>“Give me all that ");
+	if (silly) output("goo");
+	else output("cum")
+	output(".”</i>");
+	output("\n\nLike she could hold back even if she wanted to. Kaede's balls empty their load in a heartbeat, leaving her softening everywhere but the turgid bitch-breaker you've wrapped your fist around. You let all her sweet spunk drool down around your fingers, coating them in pearly seed before you start moving again, just like before. Her cum's the perfect lube to keep jerking her off, gliding your hand up and down her wilting shaft until Kaede's squirming and moaning, and her dick starts standing back to attention.");
+	output("\n\n<i>“[pc.name]!”</i> Kaede whimpers, bucking her hips against your hand. <i>“I... I can't... aaahh!”</i>");
+	output("\n\nAnother, smaller stream of puppy cream pumps out of her dick and onto her belly, barely two minutes after the first shot. Kaede finally breaks off from your tits with a whine of unbridled pleasure, gripping you tightly as you milk out her second load hot on the heels of the first.");
+	output("\n\nThe last little dribble of milk rolls down your [pc.boobs], dripping onto Kaede's cheek. She's totally lost focus on her milky meal, though, fixating on your incessant tugging on her dick. Two orgasms in and you're still not content to let up, not yet anyway. This poor puppy's gotten herself so backed up, you're sure you can wring at least one more cumshot out of her. She's made so much lube for you, after all... it'd be such a shame to waste it.");
+	output("\n\nKaede buries her face in your [pc.milk]-stained cleavage, trying not to whimper with overstimulated pleasure as your hand works its magic up and down her dick, over and over again. Her rock-hard knot greets your fist at every downward pump, trembling with primal passion -- and heralding a constant dribble of cum from her turgid tip. She's leaking like a faucet now, every little twitch making more and more puppy pre spill down her girthy dog-tool.");
+	output("\n\n<i>“Ah! You're... ah, you're worse than Anno!”</i> Kaede whimpers, clutching at your shoulders. <i>“Always doing this to me!”</i>");
+	output("\n\n<i>“Your dick's not complaining,”</i> you chide, moving your wrist a little faster. <i>“Or do you really want me to stop?”</i>");
+	output("\n\nKaede gasps, curling her legs in as you start properly jacking her. <i>“N-no! I didn't say that! I don't... don't stop.”</i>");
+	output("\n\nYou move your free hand up from Kaede's back to her cheek, pulling her out of your tits long enough to say, <i>“That's my girl,”</i> before pulling her into a long kiss. She absolutely melts in your embrace, going limp everywhere but her prick and the lips playing back across your own. That precious puppy pecker in your hand quivers in time with your kiss, heralding the biggest eruption of Kaede's cum yet. A thick spurt of white sails into the air, coming down in a wet mess all over Kaede's thighs. Her tail goes stock-straight under her, and Kaede's lips lock around yours in a silent ring of gasping, wordless pleasure.");
+	output("\n\nWhen you finally break the kiss, you've left Kaede breathless, panting for pleasure as she slowly comes down off her orgasmic high. She's absolutely drenched in cum and [pc.milk]. but the way she looks at you, eyes wide and starry... you know she loved every minute of it. So you just hold the tuckered-out dickgirl close, and let the time pass you by...");
+
+	pc.milked();
+	processTime(30+rand(10));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 //Time Runs Out
