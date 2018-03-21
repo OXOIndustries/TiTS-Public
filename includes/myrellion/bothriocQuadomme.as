@@ -115,7 +115,6 @@ public function markersBothriocQuadomme():void
 	{
 		rooms["2K7"].removeFlag(GLOBAL.SPIDER_WEB);
 		rooms["2K7"].addFlag(GLOBAL.HAZARD);
-		rooms["2K7"].runOnEnter = DeepCavesBonus;
 	}
 }
 
