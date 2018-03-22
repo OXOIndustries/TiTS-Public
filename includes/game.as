@@ -230,7 +230,8 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	lootScreen = inventory;
 	
 	// Dynamic room functions on enter
-	if(rooms[currentLocation].runOnEnter != undefined) {
+	if(rooms[currentLocation].runOnEnter != undefined)
+	{
 		if(rooms[currentLocation].runOnEnter()) return;
 		//If in a hazard area
 		if(rooms[currentLocation].hasFlag(GLOBAL.HAZARD) && !disableExploreEvents())
@@ -604,6 +605,7 @@ public const CREW_VARMINT:int = 10;
 public const CREW_SIEGEWFULFE:int = 11;
 public const CREW_AZRA:int = 12;
 public const CREW_PAIGE:int = 13;
+public const CREW_KASE:int = 14;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -621,6 +623,7 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (gooArmorIsCrew()) crewMembers.push(CREW_GOO_ARMOR_IS_CREW);
 	if (pexigaIsCrew()) crewMembers.push(CREW_PEXIGA);
 	if (paigeIsCrew()) crewMembers.push(CREW_PAIGE);
+	if (kaseIsCrew()) crewMembers.push(CREW_KASE);
 
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -715,6 +718,36 @@ public function getCrewOnShip():Array
 	return c;
 }
 
+public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean = true):Array
+{
+	var crewMembers:Array = [];
+	
+	if (annoIsCrew()) crewMembers.push("Anno");
+	if (azraIsCrew()) crewMembers.push("Azra");
+	if (bessIsCrew()) crewMembers.push(customName ? chars["BESS"].short : chars["BESS"].mf("Ben-14","Bess-13"));
+	if (celiseIsCrew()) crewMembers.push("Celise");
+	if (daneIsCrew()) crewMembers.push("Dane");
+	if (kaseIsCrew()) crewMembers.push("Kase");
+	if (kiroIsCrew()) crewMembers.push("Kiro");
+	if (gooArmorIsCrew()) crewMembers.push(customName ? chars["GOO"].short : "Goo Armor");
+	if (paigeIsCrew()) crewMembers.push("Paige");
+	if (pippaOnShip()) crewMembers.push("Pippa");
+	if (reahaIsCrew()) crewMembers.push("Reaha");
+	if (seraIsCrew()) crewMembers.push("Sera");
+	if (shekkaIsCrew()) crewMembers.push("Shekka");
+	if (syriIsCrew()) crewMembers.push("Syri");
+	if (yammiIsCrew()) crewMembers.push("Yammi");
+	
+	if (allcrew)
+	{
+		if (hasGooArmor() && !gooArmorIsCrew()) crewMembers.push(customName ? chars["GOO"].short : "Goo Armor");
+		if (siegwulfeIsCrew()) crewMembers.push(customName ? chars["WULFE"].short : "Siegwulfe");
+		if (varmintIsTame()) crewMembers.push("Varmint");
+	}
+	
+	return crewMembers;
+}
+
 public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 	if(!counter) {
 		clearOutput();
@@ -738,6 +771,12 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			{
 				crewMessages += "\n\nAnno isn’t in at the moment. You’ll have to wait a bit longer for her to start digging into the treats....";
 				addDisabledButton(btnSlot++,"Anno","Anno","Anno isn’t in at the moment. You’ll have to wait a bit longer for her to start digging into the treats....");
+			}
+			//If anno is away
+			else if(annoIsAway())
+			{
+				crewMessages += "\n\nAnno is currently away or otherwise busy at the moment.";
+				addDisabledButton(btnSlot++,"Anno","Anno","Anno is currently away or otherwise busy at the moment.");
 			}
 			//25% chance of special maid scene proccing if Anno has the maid outfit and haven't seen the scene in a day - gotta have a dink that fits and not be naga or taur
 			else if (flags["ANNO_MAID_OUTFIT"] != undefined && rand(4) == 0 && !pc.hasStatusEffect("The Lusty Ausar Maid") && !pc.isTaur() && !pc.isNaga() && pc.cockThatFits(anno.vaginalCapacity()) >= 0)
@@ -783,6 +822,11 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			else crewMessages += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
 			addButton(btnSlot++, "Celise", celiseFollowerInteractions);
 		}
+	}
+	if (kaseIsCrew())
+	{
+		count++;
+		if(!counter) crewMessages += kaseCrewBlurbs(btnSlot++);
 	}
 	if (paigeIsCrew())
 	{
@@ -851,11 +895,6 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		{
 			crewMessages += seraOnShipBonus(btnSlot++);
 		}
-	}
-	if (kaseIsCrew())
-	{
-		count++;
-		if(!counter) crewMessages += kaseCrewBlurbs(btnSlot++);
 	}
 	if (yammiIsCrew())
 	{
@@ -1442,19 +1481,8 @@ public function outputMaxXP():String
 	return msg;
 }
 
-public function shipMenu():Boolean
+public function insideShipEvents():Boolean
 {
-	rooms["SHIP INTERIOR"].outExit = shipLocation;
-	
-	setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
-
-	if(shipLocation == "KIROS SHIP AIRLOCK") output("\n\n<b>You’re parked in the hangar of the distressed ship. You can step out to investigate at your leisure.</b>");
-	
-	// Lane follower hook
-	if (tryFollowerLaneIntervention())
-	{
-		return true;
-	}
 	// Puppyslutmas hook :D
 	if (annoIsCrew() && annoPuppyslutmasEntry())
 	{
@@ -1466,38 +1494,11 @@ public function shipMenu():Boolean
 		approachPexigaCrewFirstTime();
 		return true;
 	}
-	// Goo Armor hook
-	if (flags["ANNO_NOVA_UPDATE"] == 2)
-	{
-		grayGooArrivesAtShip();
-		return true;
-	}
-	// Azra follower greeting
-	if(flags["AZRA_RECRUITED"] == 1 && azraIsCrew())
-	{
-		azraInShipGreeting();
-		return true;
-	}
-	//Paige follower greeting
-	if(paigeIsCrew() && flags["PAIGE_SHIP_GREETING"] == undefined) 
-	{
-		firstTimePaigeCrewHiHi();
-		return true;
-	}
-	//Kase follower greeting
-	if(kaseIsCrew() && flags["KASE_CREW"] == 1)
-	{
-		kaseCrewGreeting();
-		return true;
-	}
 	//Kase/Anno Fun
-	if(kaseIsCrew() && annoIsCrew() && (flags["KASE_MATHED"] == undefined || ((flags["KASE_MATHED"] != undefined && flags["KASE_MATHED"] + 7*24*60 < GetGameTimestamp()))))
+	if(kaseIsCrew() && annoIsCrew() && (flags["KASE_MATHED"] == undefined || ((flags["KASE_MATHED"] != undefined && flags["KASE_MATHED"] + 7*24*60 < GetGameTimestamp()))) && rand(10) == 0)
 	{
-		if(rand(10) == 0)
-		{
-			annoAndKaseDoMath();
-			return true;
-		}
+		annoAndKaseDoMath();
+		return true;
 	}
 	//Ellie Preg laying
 	if(flags["ELLIE_LAYING_PC_MIA"] != undefined)
@@ -1511,16 +1512,18 @@ public function shipMenu():Boolean
 		annoSomethingsChanging();
 		return true;
 	}
+	return false;
+}
+
+public function shipMenu():Boolean
+{
+	rooms["SHIP INTERIOR"].outExit = shipLocation;
 	
-	//Anno/Erra Threesome
-	if((pc.hasCock() || pc.hasHardLightStrapOn()) && annoIsCrew() && flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined && erraAvailableForThreesome() && !pc.hasStatusEffect("Anno-Erra Cooldown"))
-	{
-		if(rand(10) == 0)
-		{
-			annoxErraIntro();
-			return true;
-		}
-	}
+	setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
+	
+	if(insideShipEvents()) return true;
+	
+	if(shipLocation == "KIROS SHIP AIRLOCK") output("\n\n<b>You’re parked in the hangar of the distressed ship. You can step out to investigate at your leisure.</b>");
 	
 	// Location Exceptions
 	if(shipLocation == "600") myrellionLeaveShip();
@@ -2402,6 +2405,41 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 		{
 			if(goToMainMenu && !disableExploreEvents() && seranigansTrigger("hijacked")) return;
 			if(flags["SERA_QUIT_SMOKING"] == undefined && flags["SERA_PREGNANCY_TIMER"] >= 24) eventQueue.push(seraPregQuitSmoking);
+		}
+	}
+	
+	//Procs on ship enter:
+	if (arg == "SHIP INTERIOR")
+	{
+		// Lane follower hook
+		if (flags["LANE_FULLY_HYPNOTISED_DAY"] != undefined && flags["FOLLOWER_LANE_INTERVENTION"] == undefined)
+		{
+			tryFollowerLaneIntervention();
+		}
+		// Goo Armor hook
+		if (flags["ANNO_NOVA_UPDATE"] == 2)
+		{
+			eventQueue.push(grayGooArrivesAtShip);
+		}
+		// Azra follower greeting
+		if(flags["AZRA_RECRUITED"] == 1 && azraIsCrew())
+		{
+			eventQueue.push(azraInShipGreeting);
+		}
+		//Paige follower greeting
+		if(paigeIsCrew() && flags["PAIGE_SHIP_GREETING"] == undefined) 
+		{
+			eventQueue.push(firstTimePaigeCrewHiHi);
+		}
+		//Kase follower greeting
+		if(kaseIsCrew() && flags["KASE_CREW"] == 1)
+		{
+			eventQueue.push(kaseCrewGreeting);
+		}
+		//Anno/Erra Threesome
+		if((pc.hasCock() || pc.hasHardLightStrapOn()) && annoIsCrew() && flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined && erraAvailableForThreesome() && !pc.hasStatusEffect("Anno-Erra Cooldown") && rand(5) == 0)
+		{
+			eventQueue.push(annoxErraIntro);
 		}
 	}
 	
@@ -3610,6 +3648,11 @@ public function processAnnoEvents(deltaT:uint, doOut:Boolean):void
 {	
 	var totalHours:int = ((minutes + deltaT) / 60);
 	if(!isChristmas()) flags["ANNO_GIFT_WRAPPED"] = undefined;
+	if(flags["ANNO_AWAY"] != undefined && deltaT >= 1)
+	{
+		flags["ANNO_AWAY"] -= deltaT;
+		if(flags["ANNO_AWAY"] <= 0) flags["ANNO_AWAY"] = undefined;
+	}
 	if(flags["ANNO_ASLEEP"] != undefined && totalHours >= 1)
 	{
 		flags["ANNO_ASLEEP"] -= totalHours;

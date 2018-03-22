@@ -4767,6 +4767,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_ANNO"] != undefined)
 				{
 					output2("\n<b>* Anno:</b> Met her");
+					if(flags["ANNO_AWAY"] != undefined) output2(", Away");
 					if(flags["ANNO_ASLEEP"] != undefined) output2(", Currently sleeping");
 					if(!annoNotRecruited())
 					{

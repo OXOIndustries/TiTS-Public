@@ -175,8 +175,10 @@ public function majaAppearance():void
 	output("\n\nGolden brown fur covers nearly her entire body, leaving only a small circle of white on the center of her chest. She stands at an even five feet, a decent size for a korgonne, but her disproportionate bust makes her look shorter. The rest of her frame is lithe and fit, subtly muscled beneath the layer of fur. Squeezably ");
 	if(silly) output("THICC");
 	else output("thick");
-	output(" hips and a tight, round butt keep her skirt on her waist despite the weight of her tools." + (flags["SEXED_MAJA"] != undefined ? " You know for a fact that the heavy skirt also hides two feet of beryl bitch-cock and a pair of hefty volleyballs to match.":"") + " Her arms can hardly reach past her titanic endowments, leaving her oddly off balance whenever she reaches for objects around the room. Her tail seems about average compared to the other korgonne you’ve seen, wagging happily as she goes about her work.");
-	output("\n\n" + (flags["SEXED_MAJA"] == undefined ? " You don’t know what the stocky beast-tamer is packing down below, and the skirt she wears is heavy enough to obscure even a guess.":" You know precisely what lies beneath that heavy skirt. Nigh on two whole feet of sapphire doggycock, and a pair of volleyball-sized cream spheres to supply it. Her original sex remains hidden behind them, a puffy cerulean slit with a clit the size of a small jewel."));
+	output(" hips and a tight, round butt keep her skirt on her waist despite the weight of her tools.");
+	if(flags["SEXED_MAJA"] != undefined) output(" You recall that the heavy skirt also hides two feet of beryl bitch-cock and a pair of hefty volleyballs to match.");
+	output(" Her arms can hardly reach past her titanic endowments, leaving her oddly off balance whenever she reaches for objects around the room. Her tail seems about average compared to the other korgonne you’ve seen, wagging happily as she goes about her work.");
+	output("\n\n" + (flags["SEXED_MAJA"] == undefined ? "You don’t know what the stocky beast-tamer is packing down below, and the skirt she wears is heavy enough to obscure even a guess.":"You know precisely what lies beneath that heavy skirt. Nigh on two whole feet of sapphire doggycock, and a pair of volleyball-sized cream spheres to supply it. Her original sex remains hidden behind them, a puffy cerulean slit with a clit the size of a small jewel."));
 	clearMenu();
 	addButton(0,"Next",repeatMajaApproach,true);
 }
@@ -810,16 +812,17 @@ public function worshipMajasBitchBreakingBoner():void
 		output("\n\nWith all of your oxygen deprived thoughts directed at the feeling of her orgasm, it would appear you entirely missed your own.");
 		if(pc.hasGenitals())
 		{
+			var cumQ:Number = pc.cumQ();
 			output(" A ");
-			if((pc.hasCock() && pc.cumQ() < 15) || pc.wettestVaginalWetness() < 3) output("few drops");
-			else if((pc.hasCock() && pc.cumQ() < 1000) || pc.wettestVaginalWetness() < 5) output("puddle");
+			if((pc.hasCock() && cumQ < 15) || pc.wettestVaginalWetness() < 3) output("few drops");
+			else if((pc.hasCock() && cumQ < 1000) || pc.wettestVaginalWetness() < 5) output("puddle");
 			else output("lake");
 			output(" of sexual fluid spreads out around your ");
 			if(pc.isNaga()) output("coils");
 			else output("[pc.feet]");
 			output(". It’s not enough to stain the stone structure of the cavern, but Maja ");
-			if((pc.hasCock() && pc.cumQ() < 15) || pc.wettestVaginalWetness() < 3) output("might not even notice");
-			else if((pc.hasCock() && pc.cumQ() < 1000) || pc.wettestVaginalWetness() < 5) output("won’t have that much trouble compared to the cleaning she already does");
+			if((pc.hasCock() && cumQ < 15) || pc.wettestVaginalWetness() < 3) output("might not even notice");
+			else if((pc.hasCock() && cumQ < 1000) || pc.wettestVaginalWetness() < 5) output("won’t have that much trouble compared to the cleaning she already does");
 			else output("might need some help cleaning");
 			output(".");
 		}
@@ -869,6 +872,7 @@ public function worshipMajasBitchBreakingBoner():void
 		AddLogEvent(ParseText("The lingering, all-consuming scent of Maja’s cock on your lips leaves you with a nagging sense that you really <i>should have had her knock you up.</i> Twinges in your [pc.vaginas] confirm that <b>your body has slipped into heat!</b> You’ll need to get knocked up <i>as soon as possible</i> or you won’t be able to think around <i>big, mouth-wateringly musky dicks</i> like Maja’s. You feel a little wet just thinking about it!"));
 		pc.lust(5);
 	}
+	IncrementFlag("SEXED_MAJA");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -966,6 +970,7 @@ public function heatFuckMaja():void
 		majaPP.createPerk("Fixed CumQ",400,0,0,0);
 	}
 	pc.loadInCunt(majaPP,x);
+	IncrementFlag("SEXED_MAJA");
 	clearMenu();
 	addButton(0,"Next",repeatMajaApproach,true);
 }
@@ -1010,6 +1015,7 @@ public function majaFrotjob(x:int):void
 	output("\n\n<i>“See? I knew they’d fit,”</i> you say, rocking your hips forward. Maja moans as your length grinds against her own, thrusting into the enveloping velvet of her boobjob. At this point you can see pre leaking in a slow fountain from her tip, coming in small gouts with every forward push. The slick liquid quickly wicks to her fur, and you make sure to catch some of it between her titanic endowments.");
 
 	output("\n\nThe warm wetness leaves her whole chest smelling of mint, a musky mix you’re sure will soak into your crotch. With your combined pre-cum to provide lube, the fluffy softness of her fur transforms into a slippery chest cunt. A chorus of wet slaps greet your ears as your hips piston into her, her chest jiggling furiously with every impact.");
+	var cumQ:Number = pc.cumQ();
 	if(pc.cocks[x].cLength() >= 24) 
 	{
 		output(" Your [pc.cockHead " + x + "] peeks out of her cleavage as you hump, ");
@@ -1031,9 +1037,9 @@ public function majaFrotjob(x:int):void
 
 		output("\n\n<i>“Oh gods,”</i> you cry, your thrusts slowing for a moment as lances of pleasure streak through your muscles. While you’re frozen at the end of a thrust, Maja steals the opportunity to suction cup herself right back onto your [pc.cockNoun " + x + "]. Her tight lips are enough to coax out your release, and you join her in unfocused bliss.");
 
-		if(pc.cumQ() < 75) output("\n\nShe vacuums every drop of cum from your [pc.cockNoun " + x + "] the second it spurts from your tip. You try to will even a little more cum out of your spent [pc.balls], but all that comes are a few dry throbs. Luckily the insensate dog-girl doesn’t seem to care, her own gouts of mint cream occupying her as she sucks mindlessly on your [pc.cockHead " + x + "].");
-		else if(pc.cumQ() < 400) output("\n\nShe slurps hungrily at your [pc.cum] as it jets from your [pc.cockNoun " + x + "]. A few jets fill up her mouth, and she savors your taste with a few slow swallows. All the while her own cream cannon pelts her under the chin with gout after gout of liquid lust. She seems too engrossed in sucking yours to notice, and takes the shots in her stride.");
-		else if(pc.cumQ() < 1000) output("\n\nShe gulps down your cum as it spurts, inhaling your ivory elixir as she bobs her head on your [pc.cockHead " + x + "]. Your output doesn’t quite match hers, but the difference is hardly noticeable. She alternates flawlessly between swallowing your cream and getting blasted under the chin by her own.");
+		if(cumQ < 75) output("\n\nShe vacuums every drop of cum from your [pc.cockNoun " + x + "] the second it spurts from your tip. You try to will even a little more cum out of your spent [pc.balls], but all that comes are a few dry throbs. Luckily the insensate dog-girl doesn’t seem to care, her own gouts of mint cream occupying her as she sucks mindlessly on your [pc.cockHead " + x + "].");
+		else if(cumQ < 400) output("\n\nShe slurps hungrily at your [pc.cum] as it jets from your [pc.cockNoun " + x + "]. A few jets fill up her mouth, and she savors your taste with a few slow swallows. All the while her own cream cannon pelts her under the chin with gout after gout of liquid lust. She seems too engrossed in sucking yours to notice, and takes the shots in her stride.");
+		else if(cumQ < 1000) output("\n\nShe gulps down your cum as it spurts, inhaling your ivory elixir as she bobs her head on your [pc.cockHead " + x + "]. Your output doesn’t quite match hers, but the difference is hardly noticeable. She alternates flawlessly between swallowing your cream and getting blasted under the chin by her own.");
 		//Megacumultra deluxe:
 		else output("\n\nShe makes an attempt to contain your seed, cheeks bloating as she swallows the first few pulses. Your flood of cum overwhelms her after that, forcing her to cease her ministrations. Ropes of thick cream mix with her own, basting her face with a mint and [pc.cumNoun] batter. The insensate dog-slut doesnt seem to care, licking away at her fur and the pair of cocks before her.");
 	}
@@ -1057,9 +1063,9 @@ public function majaFrotjob(x:int):void
 
 		output("\n\n<i>“Bad dog! You wanted more, so drink it all up,”</i> you shout, pushing the insensate animal tamer’s face into the pool of her own cum. She licks as best she can, trying to clean up her mess even as she continues to add to it. The sight of her hysteric attempts to follow your orders brings you over the edge, and you stop thrusting as you hug Maja’s bountiful bust as tightly as you can.");
 
-		if(pc.cumQ() < 25) output("\n\nYou aren’t about to be impregnating any chest-cunts, but you try your best. Your [pc.cum] quickly wicks into her fur, joining the creamy coating of her minty pre-cum. [pc.EachCock] throbs a few more times, shooting dry into the warm depths of her cleavage.");
-		else if(pc.cumQ() < 400) output("\n\nYou fill her slick cleavage with more than just mint-scented pre-cum. [pc.EachCock] throbs as spurts of [pc.cum] coat her fur, too thick to wick away into her fur.");
-		else if(pc.cumQ() < 1000) output("\n\n[pc.EachCock] fills her chest-cunt to the brim, painting the inside of her cleavage [pc.cumColor]. Some of your [pc.cum] leaks from the top of her chest, flowing down to join her pool.");
+		if(cumQ < 25) output("\n\nYou aren’t about to be impregnating any chest-cunts, but you try your best. Your [pc.cum] quickly wicks into her fur, joining the creamy coating of her minty pre-cum. [pc.EachCock] throbs a few more times, shooting dry into the warm depths of her cleavage.");
+		else if(cumQ < 400) output("\n\nYou fill her slick cleavage with more than just mint-scented pre-cum. [pc.EachCock] throbs as spurts of [pc.cum] coat her fur, too thick to wick away into her fur.");
+		else if(cumQ < 1000) output("\n\n[pc.EachCock] fills her chest-cunt to the brim, painting the inside of her cleavage [pc.cumColor]. Some of your [pc.cum] leaks from the top of her chest, flowing down to join her pool.");
 		else output("\n\nYou fill her chest-cunt with more seed than even her O-cups can handle, matching her torrent ounce for ounce. [pc.EachCock] pulses as [pc.cum] pours out of her cleavage, joining the pool below her head. It’s all you can do to retain your composure as the torrent comes to a close.");
 	}
 	output("\n\nMaja’s mountains fall to the side as your muscles slacken, unable to hold them up anymore. Steamy cum drips down their sides as she pants, still licking at the puddle beneath her. You stretch as you extract yourself from the sticky mess, delighted to see a similar puddle of juices pooled around her butt. A few errant spurts still pulse from her cock, but her knot has returned to a more reasonable size, and the massive member has begun sliding back into her sheath.");
@@ -1067,11 +1073,12 @@ public function majaFrotjob(x:int):void
 	//(pass 30 min)(maja out for 1.5 hr)(place pc just outside maja door)
 	processTime(30);
 	pc.orgasm();
-	clearMenu();
-	addButton(0,"Next",move,"KORGII T41");
 	//disable for 1.5 hrs!
 	pc.createStatusEffect("MAJA_FUCK_RECOVERY");
 	pc.setStatusMinutes("MAJA_FUCK_RECOVERY",90);
+	IncrementFlag("SEXED_MAJA");
+	clearMenu();
+	addButton(0,"Next",move,"KORGII T41");
 }
 
 //Pitch dickin’
@@ -1104,10 +1111,7 @@ public function pitchDickingToMaja(x:int):void
 
 	output("\n\nWith her cock taken care of, you return to kneading her golden furred buttocks. There isn’t much time before the heavy cloud of musk turns you into a fuck-hungry cuntslave, and you intend to spend every second of it teasing the poor animal tamer. Her cerulean gemstone of a clit pokes out just above her balls, big enough for you to lean in and pinch it gently between your teeth. Juice covers your face, steaming hot in the temperate cave. You hold your breath as you rub your nose in her sopping cunny, knowing that your next breath will bring the sweet obliteration of your restraint. You roll her clit on your [pc.tongue] till you run out of air, finally inhaling her scent in a frantic gasp.");
 
-	output("\n\nThe minty aroma isn’t quite as debilitating as you thought it would be. It does a good job of overwhelming your senses, but you seem to still be in control of your faculties. You stick out your [pc.tongue], ready to resume tongue-fucking her turquoise cock-cave, only to meet empty air. Lazily, you drop your gaze to her crotch, and find your [pc.cockOrStrapon " + x + "] already lined up. The ");
-	if(x >= 0) output("[pc.cockHead " + x + "]");
-	else output("head");
-	output(" teases at her lips, ready to fill her up. When did that happen?");
+	output("\n\nThe minty aroma isn’t quite as debilitating as you thought it would be. It does a good job of overwhelming your senses, but you seem to still be in control of your faculties. You stick out your [pc.tongue], ready to resume tongue-fucking her turquoise cock-cave, only to meet empty air. Lazily, you drop your gaze to her crotch, and find your [pc.cockOrStrapon " + x + "] already lined up. The " + (x >= 0 ? "[pc.cockHead " + x + "]" : "head") + " teases at her lips, ready to fill her up. When did that happen?");
 
 	output("\n\nNo use worrying about it now. Your hands are still kneading delicious doggy-butt, the perfect handholds to pull yourself into her molten slit. She rocks forward as you thrust, the tip of her cock slipping through her breasts till the tip inches out the top. Once you get her started, instinct takes over. It doesn’t matter that there’s no cunt for her to fuck, her hips pump all the same, wetting her chest with pre as she bucks.");
 	pc.cockChange();
@@ -1126,25 +1130,32 @@ public function pitchDickingToMaja(x:int):void
 	//pc has a one dick that fits and a tailcock
 	else if(x >= 0 && pc.hasTailCock())
 	{
-		output("\n\nYou pull her asscheeks open, revealing the bright blue pucker of Maja’s asshole. Her tail begins to frantically shake as you line your own up to poke at her tight ring. Sensation floods into your body through your [pc.tailCock], particularily the astounding heat of her entrance against its tip. There’s a little resistance, but the strong muscles in your tail push easily into her depths once you ");
+		output("\n\nYou pull her asscheeks open, revealing the bright blue pucker of Maja’s asshole. Her tail begins to frantically shake as you line your own up to poke at her tight ring. Sensation floods into your body through [pc.oneTailCock], particularily the astounding heat of her entrance against its tip. There’s a little resistance, but the strong muscles in your " + (pc.tailCount == 1 ? "tail pushes" : "tails push") + " easily into her depths once you ");
 		if(silly) output("breach the gates.");
 		else output("press inside.");
 	}
 	//only one dick:
 	else output("\n\nYou pull her asscheeks open, revealing the bright blue pucker of Maja’s asshole. Her tail frantically wags as you tease around the entrance with two fingers. The heat of her is astounding, burning feverishly on your [pc.skinFurScales]. Theres hardly any resistance as you slip your digits into her ass, rubbing her walls as you search for pleasure points.");
 	//merge
-	output("\n\nMaja half chokes on a moan that squeezes its way through her clenched teeth, squirting fem-cum that splatters your thighs as her prostate is sandwiched between ");
-	if(y >= 0 || (x >= 0 && pc.hasTailCock())) output("two of your cocks");
-	else output("both of your cocks");
+	output("\n\nMaja half chokes on a moan that squeezes its way through her clenched teeth, squirting fem-cum that splatters your thighs as her prostate is sandwiched between");
+	var totalCocks:int = 0;
+	if(x >= 0)
+	{
+		totalCocks += pc.cockTotal();
+		if(pc.hasTailCock()) totalCocks += pc.tailCount;
+	}
+	if(totalCocks >= 2) output(" " + (totalCocks == 2 ? "both" : "two") + " of your cocks");
+	else output(" your [pc.cockOrStrapon " + x + "] and fingers");
 	output(". You can hear her cock spattering the underside of breasts and tightly bound passage of her cleavage, and see ropes of pearly cream fire off almost into the cave wall behind the desk when her cockhead clears the top.");
 
+	var cumQ:Number = pc.cumQ();
 	//2dick or tail
 	if(y >= 0 || (x >= 0 && pc.hasTailCock()))
 	{
 		output("\n\nThe musky scent of her cum brings you over the edge. You hilt inside both the cum-drained korgonne’s holes, pushing her down onto her jizz-soaked skirt as you cum. ");
-		if(pc.cumQ() < 25) output("You drain everything you have into Maja’s pussy and ass, filling them to the best of your ability. The strength of her orgasmic contractions rings more out of you than you would’ve thought possible.");
-		else if(pc.cumQ() < 400) output("You fill Maja’s pussy and ass with [pc.cum], enough that the strength of her orgasmic contractions pushes a little of it back out. It’s hard to keep from wasting such good seed, but you do your best to keep her plugged.");
-		else if(pc.cumQ() < 1000) output("You flood Maja’s ass and pussy both with your [pc.cum], enough to leak back out and drip down her thighs while still leaving her full. You keep her plugged up as best you can, but either way she’ll come out of this full of seed.");
+		if(cumQ < 25) output("You drain everything you have into Maja’s pussy and ass, filling them to the best of your ability. The strength of her orgasmic contractions rings more out of you than you would’ve thought possible.");
+		else if(cumQ < 400) output("You fill Maja’s pussy and ass with [pc.cum], enough that the strength of her orgasmic contractions pushes a little of it back out. It’s hard to keep from wasting such good seed, but you do your best to keep her plugged.");
+		else if(cumQ < 1000) output("You flood Maja’s ass and pussy both with your [pc.cum], enough to leak back out and drip down her thighs while still leaving her full. You keep her plugged up as best you can, but either way she’ll come out of this full of seed.");
 		else output("Seed pours into Maja from both ends, flooding her womb and ass before almost immediately pouring back out to join the puddle beneath her. Your [pc.cum] mixes with her own, ");
 		if(pc.fluidColorSimple(pc.cumType) != "white") output("blending the pearly white with [pc.cumColor]");
 		else output("indistinguishable once it splashes down");
@@ -1156,9 +1167,9 @@ public function pitchDickingToMaja(x:int):void
 		output("\n\nThe musky scent of her cum brings you over the edge. You hilt inside Maja’s korgonne cunt, kneading her prostate with your first two fingers and pushing her onto her jizz-soaked skirt as you cum. ");
 		if(x >= 0)
 		{
-			if(pc.cumQ() < 25) output("You drain everything you’ve got into the still cumming dog-slut, furiously finger fucking her butt when you finish, dragging her orgasm out as long as you can.");
-			else if(pc.cumQ() < 400) output("You fill the still cumming dog-slut’s womb, relishing in the tightness as she clenches around your [pc.cock " + x + "] and fingers.");
-			else if(pc.cumQ() < 1000) output("You flood the shuddering dog-slut’s womb, trying to plug her up as best you can while some of your [pc.cum] dribbles down her hips. Her asshole clenches tightly around your fingers in an attempt to push them away from her sensitive spots.");
+			if(cumQ < 25) output("You drain everything you’ve got into the still cumming dog-slut, furiously finger fucking her butt when you finish, dragging her orgasm out as long as you can.");
+			else if(cumQ < 400) output("You fill the still cumming dog-slut’s womb, relishing in the tightness as she clenches around your [pc.cock " + x + "] and fingers.");
+			else if(cumQ < 1000) output("You flood the shuddering dog-slut’s womb, trying to plug her up as best you can while some of your [pc.cum] dribbles down her hips. Her asshole clenches tightly around your fingers in an attempt to push them away from her sensitive spots.");
 			else output("You fill the dog-girl tamers womb with enough seed to overflow. It washes over your hips and joins the puddle beneath her, the force of it too strong for you to do anything but join her in muscle clenching euphoria.");
 		}
 		else output("You tremble against the shuddering dog-slut’s womb, unable truly ejaculate and yet thanks to your turgid piece of technology able to feel the sensation of unleashing a massive, phallus-draining orgasm deep inside her.")
@@ -1172,12 +1183,13 @@ public function pitchDickingToMaja(x:int):void
 	//(pass 1hr)(put back outside tamelings)
 	processTime(60);
 	pc.orgasm();
-	clearMenu();
-
-	addButton(0,"Next",move,"KORGII T41");
 	//disable for 30m!
 	pc.createStatusEffect("MAJA_FUCK_RECOVERY");
 	pc.setStatusMinutes("MAJA_FUCK_RECOVERY",30);
+	IncrementFlag("SEXED_MAJA");
+	
+	clearMenu();
+	addButton(0,"Next",move,"KORGII T41");
 }
 
 //Catch dicking
@@ -1262,6 +1274,7 @@ public function catchMajasCockYaSlut():void
 		majaPP.createPerk("Fixed CumQ",400,0,0,0);
 	}
 	pc.loadInCunt(majaPP,x);
+	IncrementFlag("SEXED_MAJA");
 
 	clearMenu();
 	addButton(0,"Next",move,"KORGII T41");

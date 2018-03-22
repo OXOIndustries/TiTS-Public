@@ -56,6 +56,19 @@ public function annoNotCrew():Boolean
 	return false;
 }
 
+// Anno away settings and checks
+public function setAnnoAway(nMin:int = 1):void
+{
+	if(flags["ANNO_AWAY"] == undefined) flags["ANNO_AWAY"] = 0;
+	flags["ANNO_AWAY"] += nMin;
+}
+public function annoIsAway():Boolean
+{
+	if(flags["ANNO_HUSKAR_COMPLETE"] == undefined && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 60 > GetGameTimestamp()) return true;
+	if(flags["ANNO_AWAY"] != undefined) return true;
+	return false;
+}
+
 //I got tired of importing the catsuit for all these Hugs scenes
 public function annoWearingCatsuit():Boolean
 {
@@ -5016,6 +5029,7 @@ public function annoxErraLeave():void
 	pc.lust(50);
 	processTime(5);
 	pc.createStatusEffect("Disable Ship Bed", 0, 0, 0, 0, true, "", "", false, 60);
+	setAnnoAway(60);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

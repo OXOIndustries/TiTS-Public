@@ -3751,7 +3751,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII X43"] = new RoomClass(this);
 	rooms["KORGII X43"].roomName = "B2 SOUTHEAST\nSTAIRWELL";
-	rooms["KORGII X43"].description = "The bottom half of this staircase is a perfect example of rough tunneling, while the upper half is refined, decorated with artful inlays and inscriptions that depict the presence of many dwellings up above. The barrier between the two is obviously the result of simple pragmatism. In places where the korgonne spend most of their time, they've taken the time to create masterwork from their native stone. In less important locales, tunneling fast is more important. A rough-hewn tunnel leads away to the north.";
+	rooms["KORGII X43"].description = "The bottom half of this staircase is a perfect example of rough tunneling, while the upper half is refined, decorated with artful inlays and inscriptions that depict the presence of many dwellings up above. The barrier between the two is obviously the result of simple pragmatism. In places where the korgonne spend most of their time, they’ve taken the time to create masterwork from their native stone. In less important locales, tunneling fast is more important. A rough-hewn tunnel leads away to the north.";
 	rooms["KORGII X43"].planet = "PLANET: UVETO VII";
 	rooms["KORGII X43"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII X43"].moveMinutes = 2;
@@ -3769,7 +3769,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII X41"] = new RoomClass(this);
 	rooms["KORGII X41"].roomName = "ROUGH-HEWN\nTUNNEL";
-	rooms["KORGII X41"].description = "A nearby geothermal vent has warmed the air on this level to near balmy levels. You can only imagine how a thick-furred korgonne would deal with the heat, naked or not. Rough-carved tunnel stretches away to the south or bends south to a stairwell. The passage's floor is smooth and hazard free in both directions.";
+	rooms["KORGII X41"].description = "A nearby geothermal vent has warmed the air on this level to near balmy levels. You can only imagine how a thick-furred korgonne would deal with the heat, naked or not. Rough-carved tunnel stretches away to the south or bends south to a stairwell. The passage’s floor is smooth and hazard free in both directions.";
 	rooms["KORGII X41"].planet = "PLANET: UVETO VII";
 	rooms["KORGII X41"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII X41"].moveMinutes = 2;
@@ -3805,7 +3805,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII V39"] = new RoomClass(this);
 	rooms["KORGII V39"].roomName = "\nSTABLES";
-	rooms["KORGII V39"].description = "This curved cavern is filled with fenced cages of all kinds. Pens for the korgonne’s animals are stocked with plenty of beasts, large and small. A few that seem to be nothing more than simple livestock, fuzzy things that shift around when you approach. A thin curving passage to the west leads back to the animal tamer's place of business.";
+	rooms["KORGII V39"].description = "This curved cavern is filled with fenced cages of all kinds. Pens for the korgonne’s animals are stocked with plenty of beasts, large and small. A few that seem to be nothing more than simple livestock, fuzzy things that shift around when you approach. A thin curving passage to the west leads back to the animal tamer’s place of business.";
 	rooms["KORGII V39"].planet = "PLANET: UVETO VII";
 	rooms["KORGII V39"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII V39"].moveMinutes = 2;
@@ -3841,7 +3841,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII T37"] = new RoomClass(this);
 	rooms["KORGII T37"].roomName = "REINFORCED\nTUNNEL";
-	rooms["KORGII T37"].description = "Bolted-together metal bars brace this tunnel's ceiling. You don't see any particular reason why, but a Codex scan reveals the rock overhead to be comprised of a weaker mineral formulation. Evidently the keen-eyed dog-folk noticed something you didn't - without the aid of a computer. A sturdy door, reinforced by gleaming titanium, offers entrance to the south. Carved runes suggest that it leads to “Tamed Tamelings.”";
+	rooms["KORGII T37"].description = "Bolted-together metal bars brace this tunnel’s ceiling. You don’t see any particular reason why, but a Codex scan reveals the rock overhead to be comprised of a weaker mineral formulation. Evidently the keen-eyed dog-folk noticed something you didn’t - without the aid of a computer. A sturdy door, reinforced by gleaming titanium, offers entrance to the south. Carved runes suggest that it leads to “Tamed Tamelings.”";
 	rooms["KORGII T37"].planet = "PLANET: UVETO VII";
 	rooms["KORGII T37"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII T37"].moveMinutes = 2;
@@ -3859,7 +3859,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII T35"] = new RoomClass(this);
 	rooms["KORGII T35"].roomName = "GLASSY\nTUNNEL";
-	rooms["KORGII T35"].description = "You can see your own reflection in the near-black volcanic glass that makes up the floor, walls, and much of the ceiling. It ripples and distorts with the imperfections in the tunnel's surface as it makes its way to the east and west. Regular old rock frames a tunnel to the south, propped up by metal reinforcements.";
+	rooms["KORGII T35"].description = "You can see your own reflection in the near-black volcanic glass that makes up the floor, walls, and much of the ceiling. It ripples and distorts with the imperfections in the tunnel’s surface as it makes its way to the east and west. Regular old rock frames a tunnel to the south, propped up by metal reinforcements.";
 	rooms["KORGII T35"].planet = "PLANET: UVETO VII";
 	rooms["KORGII T35"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII T35"].moveMinutes = 2;
@@ -3895,7 +3895,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII R33"] = new RoomClass(this);
 	rooms["KORGII R33"].roomName = "B2 NORTHWEST\nSTAIRWELL";
-	rooms["KORGII R33"].description = "You stand at the landing for a narrow staircase. Speckled Savicite in the walls provides dim but eerie green light to guide travelers on their way. Apparently the korgonne would rather admire its beauty than dig it out of the walls for its numerous industrial uses. Going any further down seems pointless, but if you'd like to climb higher into the hold, this is the place. A cramped doorway on the south wall offers access to a glassy passageway.";
+	rooms["KORGII R33"].description = "You stand at the landing for a narrow staircase. Speckled Savicite in the walls provides dim but eerie green light to guide travelers on their way. Apparently the korgonne would rather admire its beauty than dig it out of the walls for its numerous industrial uses. Going any further down seems pointless, but if you’d like to climb higher into the hold, this is the place. A cramped doorway on the south wall offers access to a glassy passageway.";
 	rooms["KORGII R33"].planet = "PLANET: UVETO VII";
 	rooms["KORGII R33"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII R33"].moveMinutes = 2;
@@ -3931,7 +3931,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII X35"] = new RoomClass(this);
 	rooms["KORGII X35"].roomName = "GLASSY\nTUNNEL";
-	rooms["KORGII X35"].description = "A pair of korgonne pups scamper by on the inky, volcanic floor, pressing their noses to the glass-like wall to admire their reflections. One pulls out a chalky rock, about to make his mark, when a scowling guard shoos them both off. You can duck into a stairwell's landing through an opening on the north or follow this reflective passage to its conclusion, westward."
+	rooms["KORGII X35"].description = "A pair of korgonne pups scamper by on the inky, volcanic floor, pressing their noses to the glass-like wall to admire their reflections. One pulls out a chalky rock, about to make his mark, when a scowling guard shoos them both off. You can duck into a stairwell’s landing through an opening on the north or follow this reflective passage to its conclusion, westward."
 	rooms["KORGII X35"].planet = "PLANET: UVETO VII";
 	rooms["KORGII X35"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII X35"].moveMinutes = 2;
@@ -3949,7 +3949,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII V35"] = new RoomClass(this);
 	rooms["KORGII V35"].roomName = "GLASSY\nTUNNEL";
-	rooms["KORGII V35"].description = "You're surprised that the few korgonne at this level don't go slipping and sliding past on the smooth, glossy floor. They're quite adept at navigating on the otherwise treacherous surface, either through long practice or the surprising amount of grip offered by their paw-pads. For a half-second, you consider skating around in a pair of socks.";
+	rooms["KORGII V35"].description = "You’re surprised that the few korgonne at this level don’t go slipping and sliding past on the smooth, glossy floor. They’re quite adept at navigating on the otherwise treacherous surface, either through long practice or the surprising amount of grip offered by their paw-pads. For a half-second, you consider skating around in a pair of socks.";
 	rooms["KORGII V35"].planet = "PLANET: UVETO VII";
 	rooms["KORGII V35"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII V35"].moveMinutes = 2;

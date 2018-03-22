@@ -3320,21 +3320,31 @@ public function tryFollowerLaneIntervention():Boolean
 	if(flags["LANE_FULLY_HYPNOTISED_DAY"] <= days - 7 && flags["FOLLOWER_LANE_INTERVENTION"] == undefined)
 	{
 		// Figure out which follower is actually gonna take lead on this.
-		var availFollowers:Array = [];
+		var availFollowers:Array = getCrewOnShipNames(false, false);
 		
-		if (annoIsCrew()) availFollowers.push("Anno");
-		if (celiseIsCrew()) availFollowers.push("Celise");
-		if (daneIsCrew()) availFollowers.push("Dane");
-		if (reahaIsCrew() && reahaIsCured()) availFollowers.push("Reaha");
-		if (bessIsCrew() && flags["BESS_JUST_A_SEXBOT"] != 1 && (flags["BESS_LOVER"] != undefined || flags["BESS_IS_FRIEND"] != undefined || bessAffection() >= 30)) availFollowers.push(chars["BESS"].mf("Ben-14","Bess-13"));
-		if (syriIsCrew()) availFollowers.push("Syri");
-		if (azraIsCrew()) availFollowers.push("Azra");
-		if (kiroIsCrew()) availFollowers.push("Kiro");
-		if (shekkaIsCrew()) availFollowers.push("Shekka");
+		// Prune those that don't apply.
+		var i:int = 0;
+		while(i < availFollowers.length)
+		{
+			if (
+				(InCollection(availFollowers[i], ["Ben-14","Bess-13"]) && !(flags["BESS_JUST_A_SEXBOT"] != 1 && (flags["BESS_LOVER"] != undefined || flags["BESS_IS_FRIEND"] != undefined || bessAffection() >= 30)))
+			||	(availFollowers[i] == "Reaha" && !reahaIsCured())
+			||	(availFollowers[i] == "Sera")
+			||	(availFollowers[i] == "Goo Armor")
+			) {
+				availFollowers.splice(i, 1);
+			}
+			else i++;
+		}
 		
 		if (availFollowers.length > 0)
 		{
-			followerLaneIntervention(availFollowers[rand(availFollowers.length)]);
+			var followerName:String = availFollowers[rand(availFollowers.length)];
+			
+			eventQueue.push(function():void {
+				followerLaneIntervention(followerName);
+			});
+			
 			return true;
 		}
 	}
@@ -3352,7 +3362,7 @@ public function lFollowerName(customName:Boolean = true):String
 
 public function lFollowerMF(m:String, f:String):String
 {
-	if (InCollection(flags["FOLLOWER_LANE_INTERVENTION"], ["Dane", "Ben-14"])) return m;
+	if (InCollection(flags["FOLLOWER_LANE_INTERVENTION"], ["Ben-14", "Dane", "Kase"])) return m;
 	return f;
 }
 
