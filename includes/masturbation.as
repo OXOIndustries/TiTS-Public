@@ -29,8 +29,11 @@ public function nonLustFaps():Array
 		{
 			faps.push(["Magic Milker", joyCoMagicMilker7Sucks, "", ""]);
 		}
-		
 		faps.push(["Hand Milk", milkturbation, "", ""]);
+	}
+	if(pc.hasStatusEffect("Boobswell Pads")) 
+	{
+		faps.push(["Remove B.Swell", removeBoobswellPads, "Remove Boobswell Pads", "Remove the attached boobswell pads."]);
 	}
 	if(hasSmutOptions())
 	{
@@ -281,6 +284,8 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Remove B.Swell";
+		fap.ttHeader = "Remove Boobswell Pads";
+		fap.ttBody = "Remove the attached boobswell pads.";
 		fap.func = removeBoobswellPads;
 		fap.ignoreRandomSelection = true;
 		faps.push(fap);

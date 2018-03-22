@@ -20052,6 +20052,7 @@
 						}
 						break;
 					case "Heat":
+						if(!hasVagina() || fertility() <= 0) requiresRemoval = true;
 						if(this is PlayerCharacter && requiresRemoval) AddLogEvent("You feel a little more calm and rational now that <b>your heat has ended.</b>","passive");
 						else if(isFullyWombPregnant())
 						{
@@ -20061,6 +20062,7 @@
 						break;
 					case "Rut":
 					case "Lagonic Rut":
+						if(!hasCock() || virility() <= 0) requiresRemoval = true;
 						if(this is PlayerCharacter && requiresRemoval) AddLogEvent("You find yourself more calm, less aggressive and sexually driven. <b>It appears your rut has ended.</b>");
 						break;
 					case "Exhibitionism Reserve":

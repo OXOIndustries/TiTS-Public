@@ -19,7 +19,7 @@ public function fqInitRooms():void
 	rooms["M25"].planet = "PLANET: MYRELLION";
 	rooms["M25"].system = "SYSTEM: SINDATHU";
 	rooms["M25"].northExit = "M23";
-	rooms["M25"].runOnEnter = function():void{author("Savin")};;
+	rooms["M25"].runOnEnter = function():void{author("Savin")};
 	rooms["M25"].moveMinutes = 1;
 	//rooms["M25"].addFlag(GLOBAL.OBJECTIVE);
 	rooms["M25"].addFlag(GLOBAL.INDOOR);
@@ -31,7 +31,7 @@ public function fqInitRooms():void
 	rooms["M23"].system = "SYSTEM: SINDATHU";
 	rooms["M23"].northExit = "M21";
 	rooms["M23"].southExit = "M25";
-	rooms["M23"].runOnEnter = function():void{author("Savin")};;
+	rooms["M23"].runOnEnter = function():void{author("Savin")};
 	rooms["M23"].moveMinutes = 1;
 	rooms["M23"].addFlag(GLOBAL.INDOOR);
 	//rooms["M23"].addFlag(GLOBAL.OBJECTIVE);
@@ -45,7 +45,7 @@ public function fqInitRooms():void
 	rooms["M21"].southExit = "M23";
 	rooms["M21"].eastExit = "O21";
 	rooms["M21"].westExit = "K21";
-	rooms["M21"].runOnEnter = function():void{author("Savin")};;
+	rooms["M21"].runOnEnter = function():void{author("Savin")};
 	rooms["M21"].moveMinutes = 1;
 	rooms["M21"].addFlag(GLOBAL.INDOOR);
 	//rooms["M21"].addFlag(GLOBAL.OBJECTIVE);
@@ -73,7 +73,7 @@ public function fqInitRooms():void
 	rooms["M17"].southExit = "M19";
 	rooms["M17"].eastExit = "O17";
 	rooms["M17"].westExit = "K17";
-	rooms["M17"].runOnEnter = function():void{author("Savin")};;
+	rooms["M17"].runOnEnter = function():void{author("Savin")};
 	rooms["M17"].moveMinutes = 1;
 	rooms["M17"].addFlag(GLOBAL.INDOOR);
 	//rooms["M17"].addFlag(GLOBAL.OBJECTIVE);
@@ -114,7 +114,7 @@ public function fqInitRooms():void
 	rooms["K17"].system = "SYSTEM: SINDATHU";
 	rooms["K17"].southExit = "K19";
 	rooms["K17"].eastExit = "M17";
-	rooms["K17"].runOnEnter = function():void{author("Savin")};;
+	rooms["K17"].runOnEnter = function():void{author("Savin")};
 	rooms["K17"].moveMinutes = 1;
 	rooms["K17"].addFlag(GLOBAL.INDOOR);
 	//rooms["K17"].addFlag(GLOBAL.OBJECTIVE);
@@ -127,7 +127,7 @@ public function fqInitRooms():void
 	rooms["K19"].northExit = "K17";
 	rooms["K19"].southExit = "K21";
 	rooms["K19"].eastExit = "M19";
-	rooms["K19"].runOnEnter = function():void{author("Savin")};;
+	rooms["K19"].runOnEnter = function():void{author("Savin")};
 	rooms["K19"].moveMinutes = 1;
 	rooms["K19"].addFlag(GLOBAL.INDOOR);
 	//rooms["K19"].addFlag(GLOBAL.OBJECTIVE);
@@ -155,7 +155,7 @@ public function fqInitRooms():void
 	rooms["O21"].system = "SYSTEM: SINDATHU";
 	rooms["O21"].northExit = "O19";
 	rooms["O21"].westExit = "M21";
-	rooms["O21"].runOnEnter = function():void{author("Savin")};;
+	rooms["O21"].runOnEnter = function():void{author("Savin")};
 	rooms["O21"].moveMinutes = 1;
 	rooms["O21"].addFlag(GLOBAL.INDOOR);
 	//rooms["O21"].addFlag(GLOBAL.OBJECTIVE);
@@ -168,7 +168,7 @@ public function fqInitRooms():void
 	rooms["O19"].northExit = "O17";
 	rooms["O19"].southExit = "O21";
 	rooms["O19"].westExit = "M19";
-	rooms["O19"].runOnEnter = function():void{author("Savin")};;
+	rooms["O19"].runOnEnter = function():void{author("Savin")};
 	rooms["O19"].moveMinutes = 1;
 	rooms["O19"].addFlag(GLOBAL.INDOOR);
 	//rooms["O19"].addFlag(GLOBAL.OBJECTIVE);
@@ -181,7 +181,7 @@ public function fqInitRooms():void
 	rooms["O17"].southExit = "O19";
 	rooms["O17"].eastExit = "Q17";
 	rooms["O17"].westExit = "M17";
-	rooms["O17"].runOnEnter = function():void{author("Savin")};;
+	rooms["O17"].runOnEnter = function():void{author("Savin")};
 	rooms["O17"].moveMinutes = 1;
 	rooms["O17"].addFlag(GLOBAL.INDOOR);
 	//rooms["O17"].addFlag(GLOBAL.OBJECTIVE);
@@ -193,7 +193,7 @@ public function fqInitRooms():void
 	rooms["Q17"].system = "SYSTEM: SINDATHU";
 	rooms["Q17"].northExit = "Q15";
 	rooms["Q17"].westExit = "O17";
-	rooms["Q17"].runOnEnter = function():void{author("Savin")};;
+	rooms["Q17"].runOnEnter = function():void{author("Savin")};
 	rooms["Q17"].moveMinutes = 1;
 	rooms["Q17"].addFlag(GLOBAL.INDOOR);
 	//rooms["Q17"].addFlag(GLOBAL.OBJECTIVE);
@@ -205,7 +205,7 @@ public function fqInitRooms():void
 	rooms["Q15"].system = "SYSTEM: SINDATHU";
 	rooms["Q15"].southExit = "Q17";
 	rooms["Q15"].eastExit = "S15";
-	rooms["Q15"].runOnEnter = function():void{author("Savin")};;
+	rooms["Q15"].runOnEnter = function():void{author("Savin")};
 	rooms["Q15"].moveMinutes = 1;
 	rooms["Q15"].addFlag(GLOBAL.INDOOR);
 	//rooms["Q15"].addFlag(GLOBAL.OBJECTIVE);
@@ -242,7 +242,7 @@ public function fqInitRooms():void
 	rooms["V17"].system = "SYSTEM: SINDATHU";
 	rooms["V17"].southExit = "V19";
 	rooms["V17"].westExit = "T17";
-	rooms["V17"].runOnEnter = function():void{author("Savin")};;
+	rooms["V17"].runOnEnter = function():void{author("Savin")};
 	rooms["V17"].moveMinutes = 1;
 	rooms["V17"].addFlag(GLOBAL.INDOOR);
 	//rooms["V17"].addFlag(GLOBAL.OBJECTIVE);
@@ -265,7 +265,7 @@ public function fqInitRooms():void
 	rooms["I21"].system = "SYSTEM: SINDATHU";
 	rooms["I21"].eastExit = "K21";
 	rooms["I21"].westExit = "G21";
-	rooms["I21"].runOnEnter = function():void{author("Savin")};;
+	rooms["I21"].runOnEnter = function():void{author("Savin")};
 	rooms["I21"].moveMinutes = 1;
 	rooms["I21"].addFlag(GLOBAL.INDOOR);
 	//rooms["I21"].addFlag(GLOBAL.OBJECTIVE);
@@ -312,7 +312,7 @@ public function fqInitRooms():void
 	rooms["M9"].system = "SYSTEM: SINDATHU";
 	rooms["M9"].northExit = "M7";
 	rooms["M9"].southExit = "M11";
-	rooms["M9"].runOnEnter = function():void{author("Savin")};;
+	rooms["M9"].runOnEnter = function():void{author("Savin")};
 	rooms["M9"].moveMinutes = 1;
 	rooms["M9"].addFlag(GLOBAL.INDOOR);
 	//rooms["M9"].addFlag(GLOBAL.OBJECTIVE);
@@ -325,7 +325,7 @@ public function fqInitRooms():void
 	rooms["M7"].northExit = "M5";
 	rooms["M7"].southExit = "M9";
 	rooms["M7"].westExit = "K7";
-	rooms["M7"].runOnEnter = function():void{author("Savin")};;
+	rooms["M7"].runOnEnter = function():void{author("Savin")};
 	rooms["M7"].moveMinutes = 1;
 	rooms["M7"].addFlag(GLOBAL.INDOOR);
 	//rooms["M7"].addFlag(GLOBAL.OBJECTIVE);
@@ -337,7 +337,7 @@ public function fqInitRooms():void
 	rooms["M5"].system = "SYSTEM: SINDATHU";
 	rooms["M5"].southExit = "M7";
 	rooms["M5"].eastExit = "O5";
-	rooms["M5"].runOnEnter = function():void{author("Savin")};;
+	rooms["M5"].runOnEnter = function():void{author("Savin")};
 	rooms["M5"].moveMinutes = 1;
 	rooms["M5"].addFlag(GLOBAL.INDOOR);
 	//rooms["M5"].addFlag(GLOBAL.OBJECTIVE);
@@ -360,7 +360,7 @@ public function fqInitRooms():void
 	rooms["K7"].system = "SYSTEM: SINDATHU";
 	rooms["K7"].eastExit = "M7";
 	rooms["K7"].westExit = "I7";
-	rooms["K7"].runOnEnter = function():void{author("Savin")};;
+	rooms["K7"].runOnEnter = function():void{author("Savin")};
 	rooms["K7"].moveMinutes = 1;
 	rooms["K7"].addFlag(GLOBAL.INDOOR);
 	//rooms["K7"].addFlag(GLOBAL.OBJECTIVE);
