@@ -1192,8 +1192,14 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 				case "KASE":
 					if (kaseIsCrew() && rand(3) == 0)
 					{
-						kaseCrewSleep();
-						interrupt = true;
+						if (pc.isLactating() && flags["KASE_SNOOZED"] == 1 && rand(2) == 0){
+							kaseCrewSleepSuckling();
+							interrupt = true;
+						}
+						else {
+							kaseCrewSleep();
+							interrupt = true;
+						}
 					}
 					break;
 				// No partner selected.

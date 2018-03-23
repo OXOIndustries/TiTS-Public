@@ -1,4 +1,6 @@
-﻿public function saenHeader(nude:Boolean = false):void
+﻿// milking scene: https://docs.google.com/document/d/1w3zwGo1yy_OxUtgkmmsRRUdPBrZE48G3G-c4FEIyq7s/edit#
+
+public function saenHeader(nude:Boolean = false):void
 {
 	clearOutput();
 	author("Savin");
@@ -259,6 +261,11 @@ public function saendrasBarMenu():void
 	{
 		addDisabledButton(3, "Kiss Her", "Kiss Her", "Maybe if she liked you more and stuff you could totally make out and kiss her on the lips and stuff and things.")
 	}
+
+	if (flags["SAENDRA_FEED_MILK"] == undefined) addButton(4, "Her Drink", askSaendraAboutDrink, undefined);
+	else if (pc.isLactating() && pc.biggestTitSize() >= 2 && saendraAffection() >= 50) addButton(4, "Feed Her", feedSaendraYourMilk, undefined, "Feed Her", "Give Saendra some of your own sweet cream.");
+	else if (saendraAffection() >= 50) addDisabledButton(4, "Feed Her", "Feed Her", "You need to have at least B-cup breasts and be lactating for this.");
+	else addDisabledButton(4, "Feed Her", "Feed Her", "Maybe you should get to know her better before trying this.");
 
 	if (flags["SAENDRA_XPACK1_STATUS"] == 5)
 	{
@@ -1969,4 +1976,82 @@ public function newFutaSaendraScenes():void
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function askSaendraAboutDrink():void
+{
+	clearOutput();
+	showName("\nSAENDRA");
+	showBust(saendraBustDisplay(),"VALERIA");
+	author("Savin");
+
+	output("<i>“Actually, I wanted to know what's in the glass,”</i> you tell her, peering into the mug of thick, frothy white. <i>“I see you drinkin' it every time I'm here. ");
+	if (pc.isBimbo() || pc.isBro() || pc.isMischievous()) {
+		output("I didn't know cum was on the menu!”</i>");
+		output("\n\nSaendra rolls her eyes. <i>“It's not, hormones-for-brains.");
+	}
+	else {
+		output("Kinda looks like jizz, y'know.”</i>");
+		output("\n\nSaendra snickers. <i>“Yeah, I've noticed. Val likes to point it out every chance she gets.");
+	}
+	output(" It's not cum.");
+	if (saendra.hasCock()) output(".. not that I'm above guzzling spunk or anything. I've had some fun suckin' my own cock now, thanks to your upgrades. Kaithrit flexibility and all. Anyway.");
+	output(" What I'm drinkin' is cream. Good ol' ausari steamed, fermented cream. It's like milk, but full of fat and booze that goes right to my ass.”</i>");
+	output("\n\nValeria sighs from Saen's wrist. <i>“That jizz soda is super bad for you, Saendra! Do you know how many calories are in a glass.”</i>");
+	output("\n\n<i>“Yes, mother, I do. It's not like I can afford to eat actual food anyway, and this stuff's cheaper than water. It's great.”</i>");
+	output("\n\nVal makes an even more exaggerated sigh until Saen swipes her hand through her companion's avatar. <i>“Let's talk about how many blow-bang holos you downloaded this year, huh?”</i>");
+	output("\n\nThe digital fairy huffs and quiets down, earning a laugh from Saendra. <i>“She's just jealous of my excellent taste in cheap booze-milk. So is your idle curiosity satisfied, [pc.name]?”</i>");
+
+	if (flags["SAENDRA_FEED_MILK"] == undefined) flags["SAENDRA_FEED_MILK"] = 0;
+	processTime(10);
+
+	clearMenu();
+	addButton(0, "Next", saendrasBarMenu);
+}
+
+public function feedSaendraYourMilk():void
+{
+	clearOutput();
+	saenHeader();
+
+	output("<i>“How about I get you something better to drink than that junk?”</i> you tease, flicking a finger across Saendra's mug."); 
+	if (flags["SAENDRA_FEED_MILK"] >= 1) output("\n\n<i>“You don't have to ask twice!”</i> Saendra grins, slipping out of the booth and extending a hand to you. <i>“C'mon.”</i>");
+	else {
+		output("\n\nSaendra flashes you a pretty smile. <i>“Well, if you wanna buy me a drink, I won't stop you. Don't have to ply me with alcohol if you're looking to get in my pants, though, hero...”</i>");
+		output("\n\n<i>“Who said anything about buying?”</i>");
+		output("\n\n<i>“No stealing!”</i> Saendra says with a grin. <i>“I basically live here. I don't-”</i>");
+		output("\n\nYou interrupt her by grabbing one of your own boobs and giving it a squeeze. <i>“I meant straight from the tap.”</i>");
+		output("\n\nSaendra blinks. <i>“O-oh! Well, that's... new. I mean, I'm not gonna say no...”</i>");
+		output("\n\n<i>“Then let's go,”</i> you say, standing and offering her a hand. You haul Saen up and out of the booth, pulling the red-haired kitty close. You whisper into her grey ear, <i>“I hope you're hungry.”</i>");
+	}
+	output("\n\nYou and Saendra walk up to her room above the bar hand-in-hand, her tails wrapping around your waist and her eyes rarely leaving your [pc.chest]. You can see the hunger growing in her eyes, taking on an almost feral, primitive desire as you ascend the steps.");
+	output("\n\nYou've barely made it into the room before Saendra is tearing off your ");
+	if (pc.hasArmor()) output("[pc.armor]");
+	else output("gear");
+	output(", grabbing your [pc.boobs] in her fluffy hands and squeezing them hard enough to make your breath catch in your throat. [pc.Milk] erupts from your [pc.nipples], wetting Saen's fur and running between her fingers.");
+	output("\n\n<i>“Ohhh, that's the good stuff right there!”</i> Saendra giggles, tugging a nipple up to her mouth and licking it clean. Her tongue's silk-soft and moves with inhuman deftness, circling and caressing your areola while her lips close around your [pc.nipple], kissing it with just enough suction to draw out another squirt of [pc.milk].");
+	output("\n\n<i>“Yeah,”</i> she purrs, licking her lips. <i>“This is way better than the trash at the bar. And the server's a real cutie, too. ");
+	if (saendra.hasCock()) output("I'll be sure to give [pc.himHer] a big, fat tip later...”</i>");
+	else if (pc.hasCock()) output("Maybe I'll work [pc.hisHer] tip later...”</i>");
+	else output(" Maybe I'll get my strapon later and give [pc.himHer] a nice, big tip...”</i>");
+	output("\n\nSounds tempting, but for right now, you have a lactic load that needs to be delivered into the bitchkitten's belly. Not that you need to do much to encourage her: the moment she's done talking again, Saen is wrapping her arms around your waist and shoving her face into your tits. You squirm, pressed between your lover's hot breath and the cold, unyielding wall. Her hands grope and knead your [pc.butt], holding you steady while her lips latch around your teat again. ");
+	output("\n\nThis time she drinks her fill, nuzzling into your soft breast and sucking down all you have to offer. You moan softly into her feline ear, letting Saen know just how much you enjoy feeling all that [pc.milk] leak out from your rock-hard nips.");
+	if (pc.hasCock()) {
+		output(" Your [pc.cock] stiffens against Saendra's thigh, momentarily breaking the kitten's concentration. She slips a hand around your waist and wraps her fingers around your [pc.cock], stroking it slowly.");
+		output("\n\n<i>“A little milk from down here, too?”</i> she murmurs. <i>“I'll take all you can give me, Hero.”</i>");
+	}
+	output("\n\nYour lover gives you a little wink and tightens her grip on you. There's a moment of sudden weightlessness, and then your back is slamming into the soft cushion of the bed. Saen's legs straddle your [pc.hips], pinning you to the sheets while her tongue runs all over your [pc.belly] and chest, working its way back up to your quivering cups. Her plush pink lips find their way to the breast that so far has gone unmolested, kissing her way into another long, sensuous drink from your ");
+	if (pc.lactationQ() >= 5000) output("boundless");
+	else if (pc.lactationQ() >= 1500) output("deep");
+	else output("fading");
+	output(" reserves.");
+	output("\n\nWhile she drinks, Saen's hands grope your thighs and other breast{s}, making sure your free meal is well-rewarded with pleasure. You squirm under her, feeling your heart hammer in your chest and your skin tingles in the wake of Saendra's kisses and caresses. Your [pc.legs] wrap around her hips, holding her tight to your body until the pretty kitty's had her fill of your [pc.milk].");
+	output("\n\nEven when she's finally drank you dry, Saendra doesn't try to seperate from you: she's content to turn her cheek to the side and rest her head in your cleavage. <i>“Delicious,”</i> she murmurs, hugging you. <i>“Careful you don't just become my favorite snack.”</i>");
+	
+	if (flags["SAENDRA_FEED_MILK"] == undefined) flags["SAENDRA_FEED_MILK"] = 0;
+	pc.milked();
+	processTime(20+rand(5));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
