@@ -1066,24 +1066,39 @@ public function followerBessRoom():void
 	// Just a suggestion - maybe an option in the room to deactivate Bess/Ben's picture portrait? Might irk some people that the pic doesn't match the dialogue, but they might not want to deactivate *all* the pics. This way the option isn't always in your face, either.
 }
 
-public function verifyBessModel():void
+public function verifyBessModel(jailbreaking:Boolean = false):void
 {
 	clearOutput();
 	bessHeader();
 	
-	output("As you approach [bess.name], [bess.heShe] greets you with wave and a bright smile.");
-	output("\n\nAll of a sudden, [bess.heShe] is suspended in mid air and out of nowhere, a huge bubble of light engulfs [bess.hisHer] body. The last you see is [bess.hisHer] surprised face before [bess.heShe] is completely covered in a sheet of semi-transparent, light-refractive energy.");
-	output("\n\nYou walk up to the strange hex-patterned dome and notice no heat radiating off of it. You give it an experimental touch with " + indefiniteArticle(pc.finger()) + " and confirm that it is some kind of hardlight force field. Slamming your fist against it feels like knocking on thick bulletproof glass.");
-	output("\n\nBefore you could figure out an alternate means of bypassing the shield, a holographic console appears in front of you.");
+	if (jailbreaking) {
+		output("As you enter [bess.hisHer] room, [bess.name] greets you with wave and a smile. Returning [bess.hisHer] greeting, you pull out the jailbreaking device and tell [bess.himHer] that you want to switch [bess.hisHer] model settings");
+		if (flags["BESS_OWNS_JBKIT"] == 1) output(". Surprisingly, [bess.heShe] doesnt seem to be fazed in the slightest by the request and");
+		else output(" again. With a smirk, [bess.heShe] quickly");
+		output(" turns around, giving you easy access to the ports on [bess.hisHer] back.");
+		output("\n\nConnecting the gadget with [bess.name] is straightforward and soon you find yourself watching a progressbar on the device's display, waiting for a menu to appear. Once the bar is full however, you only get a brief text telling you to disconnect the machines again. As you pull the plug");
+		if (flags["BESS_OWNS_JBKIT"] == 1) output(" out of [bess.name], you can't help but wonder if you just wasted 25, 000 credits on some scam.");
+		else output(", you suddenly remember the energy bubble from last time and take a step back just in case.");
+	}
+	else output("As you approach [bess.name], [bess.heShe] greets you with wave and a bright smile.");
+	if (jailbreaking && flags["BESS_OWNS_JBKIT"] > 1) output("\n\nWithin a moments notice, [bess.name] is suspended in mid air again, engulfed by some kind of semi-transparent, light-refractive hardlight field. After a bit, the usual holographic console appears in front of you.");
+	else {
+		output("\n\nAll of a sudden, [bess.heShe] is suspended in mid air and out of nowhere, a huge bubble of light engulfs [bess.hisHer] body. The last you see is [bess.hisHer] surprised face before [bess.heShe] is completely covered in a sheet of semi-transparent, light-refractive energy.");
+		output("\n\nYou walk up to the strange hex-patterned dome and notice no heat radiating off of it. You give it an experimental touch with " + indefiniteArticle(pc.finger()) + " and confirm that it is some kind of hardlight force field. Slamming your fist against it feels like knocking on thick bulletproof glass.");
+		output("\n\nBefore you could figure out an alternate means of bypassing the shield, a holographic console appears in front of you.");
+	}
 	output("\n\n<i>“Welcome to the JoyCo Personal Maintenance App.”</i> A soothing electronic female voice announces.");
 	output("\n\nIs this some kind of software package you weren’t aware of?");
 	output("\n\n<i>“It seems that your product is missing some essential configuration data. I will need to do a simple scan to correct the issue. Don’t worry, this is a completely normal personal maintenance operation. In order to undergo this one-time maintenance check, I need to verify your product’s make and model to ensure that the necessary changes are being made. Please tap ‘Next’ to proceed.”</i>");
-	output("\n\nLooks like you don’t have much choice but to go through with it.");
+	if (!jailbreaking) output("\n\nLooks like you don’t have much choice but to go through with it.");
+	
+	if (flags["BESS_OWNS_JBKIT"] == 1) flags["BESS_OWNS_JBKIT"] = 2;
 	
 	processTime(2);
 	clearMenu();
 	addButton(0, "Next", verifyBessModelMenu);
 }
+
 public function verifyBessModelMenu(sGender:String = "auto"):void
 {
 	setBessGender(sGender);
@@ -1561,6 +1576,8 @@ public function bessFunctionsMenu():void
 	addButton(6, "Genitals", talkToBessAboutGenitals, undefined, "Genitals", "Ask [bess.name] to change [bess.hisHer] genitals, such as if [bess.heShe] has a pussy or a cock.");
 	addButton(7, "Cum", talkToBessAboutCum, undefined, "Cum Flavor", "Ask [bess.name] to change [bess.hisHer] cum flavors.");
 	addButton(8, "Clothing", talkToBessAboutClothes, undefined, "Clothing", "Ask [bess.name] to change [bess.hisHer] clothing or accessories.");
+	if (flags["BESS_OWNS_JBKIT"] >= 1) addButton(9, "Model", verifyBessModel, true, "Model", "Change [bess.name] from Bess-13 to Ben-14 or vice versa.");
+	else addDisabledButton(9, "Model", "Model", "You need a Jailbreaking Kit to change the model of [bess.name].");
 	
 	// I couldn't find any scenes relating to these... anywhere
 	//addButton(10, "JoyCord", talkToBessAboutJoyCord);
@@ -2406,8 +2423,8 @@ public function bessSetBoobSize(newSize:int):void
 		else
 		{
 			output("\n\n<i>“Looks like you’ve got a lot to clean up. Hands and knees, now.”</i> You spank [bess.name]’s ass and force [bess.himHer] to lap up [bess.hisHer] own milk on [bess.hisHer] on all fours");
-			if (bess.hasCock()) output(", as well as [bess.hisHer] own [bess.cumFlavor] semen.”</i>");
-			output(" You make sure [bess.heShe] doesn’t miss a single spot.");
+			if (bess.hasCock()) output(", as well as [bess.hisHer] own [bess.cumFlavor] semen");
+			output(". You make sure [bess.heShe] doesn’t miss a single spot.");
 
 			// {if Celise companion 
 			if (9999 == 0) output("\n\nCelise comes across [bess.name] licking up [bess.hisHer] liquids and pouts. <i>“Aww, lucky! Why don’t I get a free meal like that?”</i>");
@@ -4229,20 +4246,25 @@ public function bessBuyShitItems():void
 	clearOutput();
 	bessHeader();
 
-	output("What JoyCo product would you like to purchase for [bess.name]?");
+	output("What product would you like to purchase for [bess.name]?");
 	
 	output("\n\nGlasses (Allows [bess.name] to equip Glasses in Accessory Menu) - 500 Creds");
 	output("\nKatana (Allows [bess.name] to equip Katana in Accessory Menu) - 1000 Creds");
+	output("\nJailbreaking Kit (Allows switching between Bess-13 and Ben-14 models) - 25000 Creds");
 
 	clearMenu();
 	
 	if (bessHasGlasses()) addDisabledButton(0, "Glasses", "Glasses", "[bess.name] already owns glasses!");
 	else if (pc.credits < 500) addDisabledButton(0, "Glasses", "Glasses", "You can’t afford to buy [bess.name] glasses!");
-	else addButton(0, "Glasses", bessBuyGlasses, undefined, "Glasses", "Buy some glasses and allow [bess.name] to equip them!");
+	else addButton(0, "Glasses", bessBuyGlasses, undefined, "Glasses", "Buy some glasses and allow [bess.name] to equip them!\n\nCost: 500");
 
 	if (bessHasKatana()) addDisabledButton(1, "Katana", "Katana", "[bess.name] already owns a katana!");
 	else if (pc.credits < 1000) addDisabledButton(1, "Katana", "Katana", "You can’t afford to buy [bess.name] a katana!");
-	else addButton(1, "Katana", bessBuyKatana, undefined, "Katana", "Buy a katana for [bess.name] to saunter around with it!");
+	else addButton(1, "Katana", bessBuyKatana, undefined, "Katana", "Buy a katana for [bess.name] to saunter around with it!\n\nCost: 1000");
+
+	if (flags["BESS_OWNS_JBKIT"] >= 1) addDisabledButton(2, "Jailbr. Kit", "Jailbreaking Kit", "You already own this!");
+	else if (pc.credits < 25000) addDisabledButton(2, "Jailbr. Kit", "Jailbreaking Kit", "Cost: 25000\nToo expensive!");
+	else addButton(2, "Jailbr. Kit", bessBuyJailbreakingKit, undefined, "Jailbreaking Kit", "This device allows you to change the model of your JoyCo unit from Bess-13 to Ben-14 and vice versa. \nWarning: While this should have no effect on the memory or personality of your android, the functionaly is no longer officially supported by JoyCo and may void the units warranty. Use with caution.\n\nCost: 25000");
 
 	addButton(14, "Back", talkToBessAboutAccessories);
 }
@@ -4274,6 +4296,21 @@ public function bessBuyKatana():void
 	clearMenu();
 	addButton(0, "Next", bessBuyShitItems);
 }
+
+public function bessBuyJailbreakingKit():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You transfer the credits to the vendor and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
+
+	pc.credits -= 25000;
+	flags["BESS_OWNS_JBKIT"] = 1;
+
+	clearMenu();
+	addButton(0, "Next", bessBuyShitItems);
+}
+
 
 public function bessBuyShitCocks():void
 {
