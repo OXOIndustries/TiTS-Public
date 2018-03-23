@@ -2423,8 +2423,8 @@ public function bessSetBoobSize(newSize:int):void
 		else
 		{
 			output("\n\n<i>“Looks like you’ve got a lot to clean up. Hands and knees, now.”</i> You spank [bess.name]’s ass and force [bess.himHer] to lap up [bess.hisHer] own milk on [bess.hisHer] on all fours");
-			if (bess.hasCock()) output(", as well as [bess.hisHer] own [bess.cumFlavor] semen.”</i>");
-			output(" You make sure [bess.heShe] doesn’t miss a single spot.");
+			if (bess.hasCock()) output(", as well as [bess.hisHer] own [bess.cumFlavor] semen");
+			output(". You make sure [bess.heShe] doesn’t miss a single spot.");
 
 			// {if Celise companion 
 			if (9999 == 0) output("\n\nCelise comes across [bess.name] licking up [bess.hisHer] liquids and pouts. <i>“Aww, lucky! Why don’t I get a free meal like that?”</i>");
