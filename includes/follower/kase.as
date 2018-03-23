@@ -5,6 +5,9 @@ import classes.Items.Apparel.AnnosCatsuit;
  * Kase Bonkiil, Logistics Officer - 
  * 		https://docs.google.com/document/d/1NMYeSeIxw5EOe7SQOy5hnF1jkyekz4JTWwegHr7ZSfA/edit#heading=h.kpjg8hebew1f
  * 
+ *  Suckling / Anno+Kase bar scene
+ * 		https://docs.google.com/document/d/1uwqUqUuub39dBvNMWAcvw4mgTsnE_1EFd_Ack5bX34g/edit#heading=h.vprcwujnevh1
+ * 
  * #Flags:
  * KASE_INTRO		- 1 if player has met Kase at the bar and knows his name,
  * 							to tell if player has ever met Kase use flags["SATELLITE_QUEST"] != undefined
