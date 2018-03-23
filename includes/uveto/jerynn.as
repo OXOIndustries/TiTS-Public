@@ -2759,16 +2759,19 @@ public function jerynnPetstuffBadEndIII(isOptIn:Boolean):void
 	{
 		pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
 		pc.skinTone = "pale pink";
+		pc.skinFlags = [GLOBAL.FLAG_SMOOTH];
 	}
 	else if (pc.skinType != GLOBAL.SKIN_TYPE_FUR && flags["JERYNN_RESPONSE_SKIN"] == 1)
 	{
 		pc.skinType = GLOBAL.SKIN_TYPE_FUR;
 		pc.furColor = "black";
+		pc.skinFlags = [GLOBAL.FLAG_SMOOTH];
 	}
 	else if (flags["JERYNN_RESPONSE_SKIN"] >= 2)
 	{
 		if(pc.skinType != GLOBAL.SKIN_TYPE_SCALES) pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
 		if(pc.scaleColor != "red") pc.scaleColor = "red";
+		pc.skinFlags = [GLOBAL.FLAG_SMOOTH];
 	}
 	
 	if (!pc.hasVagina()) pc.createVagina();

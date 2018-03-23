@@ -2521,6 +2521,8 @@ public function dolledBadEnd2():void
 		pc.addLegFlag(GLOBAL.FLAG_HEELS);
 	}
 	pc.skinType = GLOBAL.SKIN_TYPE_LATEX;
+	pc.clearSkinFlags();
+	pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
 	pc.skinTone = "red";
 	
 	clearMenu();

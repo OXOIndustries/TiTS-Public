@@ -88,6 +88,7 @@ public function gooKnightLossScene():void
 	output(".");
 	var fauxCock:Boolean = false;
 	var tempSkin:int = pc.skinType;
+	var tempFlags:Array = pc.skinFlags;
 	var tempTone:String = pc.skinTone;
 	if(pc.hasCock()) output("\n\n<i>“Amazing! Truly a cock befitting the prince of this planet,”</i> she says happily, taking [pc.oneCock] between her hands. Her goo feels nice and warm in the open cave air, and you gasp at her touch.");
 	else 
@@ -98,6 +99,7 @@ public function gooKnightLossScene():void
 		pc.cocks[0].cLengthRaw = 8;
 		pc.skinTone = enemy.skinTone;
 		pc.skinType = GLOBAL.SKIN_TYPE_GOO;
+		pc.clearSkinFlags();
 		fauxCock = true;
 	}
 	output(" When she finishes admiring her prize, her hands gently milk your [pc.cock], skillfully enough that you imagine you aren’t the first target of her lusts.");
@@ -172,6 +174,7 @@ public function gooKnightLossScene():void
 	{
 		pc.skinTone = tempTone;
 		pc.skinType = tempSkin;
+		pc.skinFlags = tempFlags;
 		pc.removeCock(0,1);
 	}
 	pc.orgasm();
