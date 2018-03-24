@@ -3395,6 +3395,8 @@ public function kiroAndKallyGoToGetMilkedThreesome():void
 
 public function kiroAndKallyGoToGetMilkedThreesome2():void
 {
+	moveTo("CANADAELEVATOR");
+	
 	clearOutput();
 	showKallyAndKiro();
 	author("Fen’s Horse-Cock");
@@ -3451,6 +3453,8 @@ public function kiroAndKallyGoToGetMilkedThreesome2():void
 
 public function kiroAndKallyGoToGetMilkedThreesome3():void
 {
+	moveTo("SPUNKBUNKERCORRIDOR");
+	
 	clearOutput();
 	showKallyAndKiro();
 	author("Fenoxo");
@@ -3522,6 +3526,8 @@ public function kiroAndKallyGoToGetMilkedThreesome4():void
 
 public function kiroAndKallyGoToGetMilkedThreesome5():void
 {
+	moveTo("SPUNKBUNKER");
+	
 	clearOutput();
 	showKallyAndKiroAndVixette(true);
 	author("Fenoxo");
@@ -3980,7 +3986,8 @@ public function yesVixetteCumSlurpies(arg:String):void
 		}
 		output(", there won’t be any room for you guys.");
 	}
-	else output("Sure, if you two think you can keep from busting another nut in her belly. I’m not paying the bill for a raptured android stomach.”</i>");
+	else output("Sure, if you two think you can keep from busting another nut in her belly. I’m not paying the bill for a raptured android stomach.");
+	output("”</i>");
 	output("\n\nKiro grins, then looks to Kally, who has already threaded the full, turgid length of her cock into Vixette’s maw. <i>“Guess I’m riding shotgun. Open wider, slut.”</i> She tabs the upturned vixen’s nose, or at least the part of her face molded to resemble a nose. <i>“Wider. This is a lot of cock.”</i>");
 	output("\n\nThe mechanical fox’s eyes briefly shift to appear as glowing purple hearts, then her mouth opens wide, wider than most girls ever could. A broad, flat tongue lolls out, cupping the underside of Kally’s dick for a moment before twisting to the side to lasso Kiro. The cocky pirate doesn’t give the ‘bot a chance to suck her in. Instead, she grabs herself by the root and rudely thrusts herself into the gynoid’s defenseless orifice, sighing in pleasure as her enormous horse-dick slides into place alongside her sister’s, sandwiching the tongue between them.");
 	output("\n\n<i>“Ahhh,”</i> Kiro sighs.");
