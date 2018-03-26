@@ -3657,7 +3657,7 @@ public function kiroKallyThreesomesApproach():void
 	//THREESOME INTERRUPTUS!
 	if(pc.hasCock() && pc.ballDiameter() >= 12 && pc.balls >= 2)
 	{
-		if(pc.thinnestCock() < 7) 
+		if(pc.thinnestCockThickness() < 7 || (pc.hasPerk("'Nuki Nuts") && pc.hasStatusEffect("Blue Balls"))) 
 		{
 			if(pc.ballFullness >= 50) 
 			{

@@ -163,4 +163,41 @@ public function initVesperiaRoom():void
 	rooms["CANADA9"].addFlag(GLOBAL.PRIVATE);
 	rooms["CANADA9"].addFlag(GLOBAL.BED);
 	rooms["CANADA9"].addFlag(GLOBAL.OBJECTIVE);
+	
+	rooms["CANADAELEVATOR"] = new RoomClass(this);
+	rooms["CANADAELEVATOR"].roomName = "\nELEVATOR";
+	rooms["CANADAELEVATOR"].description = "";
+	rooms["CANADAELEVATOR"].planet = "CANADIA STATION";
+	rooms["CANADAELEVATOR"].system = "SYSTEM: LIBERTERIA";
+	rooms["CANADAELEVATOR"].eastExit = "CANADA5";
+	rooms["CANADAELEVATOR"].moveMinutes = 1;
+	rooms["CANADAELEVATOR"].runOnEnter = undefined;
+	rooms["CANADAELEVATOR"].addFlag(GLOBAL.INDOOR);
+	rooms["CANADAELEVATOR"].addFlag(GLOBAL.PRIVATE);
+	rooms["CANADAELEVATOR"].addFlag(GLOBAL.LIFTDOWN);
+	
+	rooms["SPUNKBUNKERCORRIDOR"] = new RoomClass(this);
+	rooms["SPUNKBUNKERCORRIDOR"].roomName = "\nCORRIDOR";
+	rooms["SPUNKBUNKERCORRIDOR"].description = "";
+	rooms["SPUNKBUNKERCORRIDOR"].planet = "CANADIA STATION";
+	rooms["SPUNKBUNKERCORRIDOR"].system = "SYSTEM: LIBERTERIA";
+	rooms["SPUNKBUNKERCORRIDOR"].outExit = "CANADAELEVATOR";
+	rooms["SPUNKBUNKERCORRIDOR"].eastExit = "SPUNKBUNKER";
+	rooms["SPUNKBUNKERCORRIDOR"].moveMinutes = 1;
+	rooms["SPUNKBUNKERCORRIDOR"].runOnEnter = undefined;
+	rooms["SPUNKBUNKERCORRIDOR"].addFlag(GLOBAL.INDOOR);
+	rooms["SPUNKBUNKERCORRIDOR"].addFlag(GLOBAL.PRIVATE);
+	rooms["SPUNKBUNKERCORRIDOR"].addFlag(GLOBAL.LIFTUP);
+	
+	rooms["SPUNKBUNKER"] = new RoomClass(this);
+	rooms["SPUNKBUNKER"].roomName = "SPUNK\nBUNKER";
+	rooms["SPUNKBUNKER"].description = "";
+	rooms["SPUNKBUNKER"].planet = "CANADIA STATION";
+	rooms["SPUNKBUNKER"].system = "SYSTEM: LIBERTERIA";
+	rooms["SPUNKBUNKER"].westExit = "SPUNKBUNKERCORRIDOR";
+	rooms["SPUNKBUNKER"].moveMinutes = 1;
+	rooms["SPUNKBUNKER"].runOnEnter = undefined;
+	rooms["SPUNKBUNKER"].addFlag(GLOBAL.INDOOR);
+	rooms["SPUNKBUNKER"].addFlag(GLOBAL.PRIVATE);
+	rooms["SPUNKBUNKER"].addFlag(GLOBAL.NPC);
 }

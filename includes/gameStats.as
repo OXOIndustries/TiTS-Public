@@ -435,6 +435,7 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Length, Current:</b> " + prettifyLength(pc.cLengthFlaccid(x, true)));
 					output2("\n<b>* Length, Erect:</b> " + prettifyLength(pc.cLength(x)));
 					output2("\n<b>* Thickness:</b> " + prettifyLength(pc.cThickness(x)));
+					output2("\n<b>* Thickness, Ratio Modifier:</b> " + Math.round(pc.cocks[x].cThicknessRatio()*1000)/10 + " %");
 					if(pc.hasKnot(x)) output2("\n<b>* Knot Thickness:</b> " + prettifyLength(pc.knotThickness(x)));
 					if(pc.cockVolume(x, false) != pc.cockVolume(x))
 					{
@@ -6683,6 +6684,16 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					case 1: output2(", You sent her nudes for her"); break;
 					case 2: output2(", You sent her nudes to Kally"); break;
+				}
+			}
+			if(flags["KIRO_3SOME_REACTION"] != undefined)
+			{
+				output2("\n<b>* Kiro, Sexual Relationship with Kally:</b>");
+				switch(flags["KIRO_3SOME_REACTION"])
+				{
+					case -1: output2(" You think it is bad"); break;
+					case 0: output2(" Your opinion is neutral"); break;
+					case 1: output2(" You think it is good"); break;
 				}
 			}
 			output2("\n<b>* Kiro, Trust:</b> " + kiroTrust() + " %");

@@ -659,25 +659,20 @@ public function majaSexyTimes():void
 		if(!pc.isCrotchExposed()) output(" When did you pull your [pc.crotchCover] down?");
 		else output(" when did you remove your equipment?");
 
-		if(!korgiTranslate()) output("\n\n<i>“[pc.name] smells so good. Can we have matings?");
-		else output("<i>“Oh gods you smell <i>good</i>. I can’t stop thinking about... mating, breeding, fucking!");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("[pc.name] smells so good. Can we have matings?");
+		else output("Oh gods you smell <i>good</i>. I can’t stop thinking about... mating, breeding, fucking!");
 		output("”</i> she whines, her turgid dick throbbing harder with each word. <b>Breeding sounds like a really good idea</b>");
 		pc.lust(5);
 	}
 	else 
 	{
-		if(pc.isBimbo()) 
-		{
-			output("<i>“Are your chores done yet? I’d love to ");
-			if(silly) output("nom on");
-			else output("get a taste of");
-			output(" that peppermint pecker you’ve got hidden away,");
-		}
-		else if(pc.isBro()) output("<i>“You stretch, leaning heavily over the counter. <i>“Wanna fuck?");
-		else if(pc.isNice()) output("<i>“If you feel like taking a break I think I could help you relieve some stress,");
-		else if(pc.isMischievous()) output("<i>“Naughty:You know, if you took a break we could have hot, steamy warmth shares right now,");
-		else output("<i>“If you finished your job quicker we could be fucking right now,");
-		output("”</i> The overencumbered dog-girl drops the bag of grains she had been lugging toward the wall, turning red as her tail thrashes furiously behind her.");
+		if(pc.isBimbo()) output("<i>“Are your chores done yet? I’d love to " + (silly ? "nom on" : "get a taste of") + " that peppermint pecker you’ve got hidden away.”</i>");
+		else if(pc.isBro()) output("<i>“You stretch, leaning heavily over the counter. <i>“Wanna fuck?”</i>");
+		else if(pc.isNice()) output("<i>“If you feel like taking a break I think I could help you relieve some stress.”</i>");
+		else if(pc.isMischievous()) output("<i>“You know, if you took a break we could have hot, steamy warmth shares right now.”</i>");
+		else output("<i>“If you finished your job quicker we could be fucking right now.”</i>");
+		output(" The overencumbered dog-girl drops the bag of grains she had been lugging toward the wall, turning red as her tail thrashes furiously behind her.");
 
 		output("\n\n<i>“");
 		if(!korgiTranslate()) output("Maja");
@@ -1106,7 +1101,7 @@ public function pitchDickingToMaja(x:int):void
 
 	output("\n\n<i>“");
 	if(pc.isBimbo()) output("I knowww, but like, your balls are just so... There! And like, what kind of person would I be if I filled up your delicious pussy and just left your big strong dick to fend for itself?”</i> you ask,");
-	else output("I know your all ready to go, but i’ve gotta make sure your two hander doesn’t hit the table. Besides, You’ve got the perfect sheath right here,”</i> you explain,");
+	else output("I know your all ready to go, but i’ve gotta make sure your two hander doesn’t hit the table. Besides, you’ve got the perfect sheath right here,”</i> you explain,");
 	output(" caressing the length of her azure lance as it grows to its full length. You guide the pointed tip right into the bottom of her cleavage, grinning as her hips buck at the sudden penetration. To your delight, even more juices flow from her pussy, and the scent of fruity mint fills the air around you.");
 
 	output("\n\nWith her cock taken care of, you return to kneading her golden furred buttocks. There isn’t much time before the heavy cloud of musk turns you into a fuck-hungry cuntslave, and you intend to spend every second of it teasing the poor animal tamer. Her cerulean gemstone of a clit pokes out just above her balls, big enough for you to lean in and pinch it gently between your teeth. Juice covers your face, steaming hot in the temperate cave. You hold your breath as you rub your nose in her sopping cunny, knowing that your next breath will bring the sweet obliteration of your restraint. You roll her clit on your [pc.tongue] till you run out of air, finally inhaling her scent in a frantic gasp.");
