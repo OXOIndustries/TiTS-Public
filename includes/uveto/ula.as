@@ -35,6 +35,9 @@ Very susceptible to pheromones (including her own - which are quite strong), so 
 Snuck out to go alien hunting... and didn’t bring clothing for the cold.
 */
 
+import classes.PlayingCard;
+import classes.PlayingCardDeck;
+
 public function showCaveUla(nude:Boolean = false):void
 {
 	if(flags["MET_ULA"] == undefined) showName("COLD\nKORGONNE");
@@ -3119,3 +3122,189 @@ public function ulaPregPussBadEnd():void
 	
 	badEnd("BAD(GOOD?) END!");
 }
+
+public function blackjackTest():void
+{
+	clearOutput();
+	showUla();
+	flags["BLACKJACK_WIN"] = blackjackWin;
+	flags["BLACKJACK_LOSE"] = blackjackLose;
+	output("Want play blackjack? Kay!");
+	
+	startBlackjack();
+}
+
+public function startBlackjack():void
+{
+	clearOutput();
+	flags["BLACKJACK_STANDING"] = undefined;
+	showName("\nBLACKJACK!");
+	output("You start up a game of blackjack!");
+	var deck:PlayingCardDeck = new PlayingCardDeck();
+	var dealerHand:PlayingCardDeck = new PlayingCardDeck();
+	var pcHand:PlayingCardDeck = new PlayingCardDeck();
+	deck.initDeck();
+	deck.shuffleDeck();
+	deck.shuffleDeck();
+	deck.shuffleDeck();
+	output(" A quick shuffle of the cards and you're ready to play!");
+	
+	pcHand.addCard(deck.drawCard()[0]);
+	pcHand.addCard(deck.drawCard()[0]);
+	output("\n\nYou draw: " + pcHand.listHand() + ".\nValue: <b>" + pcHand.getCardPointTotalBlackjack() + " </b>");
+
+	dealerHand.addCard(deck.drawCard()[0]);
+	dealerHand.addCard(deck.drawCard()[0]);
+	output("\n\nThe dealer draws: " + dealerHand.listHand() + ".\nValue: <b>" + dealerHand.getCardPointTotalBlackjack() + "</b>");
+	blackJackOptions([deck,dealerHand,pcHand]);
+	
+}
+
+public function blackJackOptions(args:Array):void
+{
+	var deck:PlayingCardDeck = args[0];
+	var dealerHand:PlayingCardDeck = args[1];
+	var pcHand:PlayingCardDeck = args[2];
+	if(pcHand.getCardPointTotalBlackjack() == 21 && pcHand.cards.length == 2)
+	{
+		output("\n\n<b>BLACKJACK! You win!</b>");
+		clearMenu();
+		addButton(0,"Next",flags["BLACKJACK_WIN"]);
+	}
+	else if(pcHand.getCardPointTotalBlackjack() > 21)
+	{
+		output("\n\n<b>Bust! You lose!</b>");
+		clearMenu();
+		addButton(0,"Next",flags["BLACKJACK_LOSE"]);
+	}
+	else if(dealerHand.getCardPointTotalBlackjack() > 21)
+	{
+		output("\n\n<b>Dealer goes bust! You win!</b>");
+		clearMenu();
+		addButton(0,"Next",flags["BLACKJACK_WIN"]);
+	}
+	else if(dealerHand.getCardPointTotalBlackjack() == 21)
+	{
+		output("\n\n<b>Dealer has 21! You lose!</b>");
+		clearMenu();
+		addButton(0,"Next",flags["BLACKJACK_LOSE"]);
+	}
+	else if(dealerHand.getCardPointTotalBlackjack() >= 16 && pcHand.getCardPointTotalBlackjack() > dealerHand.getCardPointTotalBlackjack())
+	{
+		output("\n\n<b>You win!</b>");
+		clearMenu();
+		addButton(0,"Next",flags["BLACKJACK_WIN"]);
+	}
+	//If standing, proceed with dealer till result:
+	else if(flags["BLACKJACK_STANDING"] != undefined)
+	{
+		if(dealerHand.getCardPointTotalBlackjack() >= pcHand.getCardPointTotalBlackjack())
+		{
+			output("\n\n<b>Dealer wins!</b>");
+			clearMenu();
+			addButton(0,"Next",flags["BLACKJACK_LOSE"]);
+		}
+		//Dealer didnt win and must be below 16, so next round...
+		else
+		{
+			clearMenu();
+			addButton(0,"Next",blackjackStand,[deck,dealerHand,pcHand]);
+		}
+	}
+	else
+	{
+		output("\n\nDo you hit or stand? (Hitting draws a new card.)");
+		clearMenu();
+		addButton(0,"Hit",blackjackHit,[deck,dealerHand,pcHand],"Hit","Draw another card to try and get closer to 21 without going over.");
+		addButton(1,"Stand",blackjackStand,[deck,dealerHand,pcHand],"Stand","Keep your current cards for now.");
+	}
+}
+
+public function blackjackHit(args:Array):void
+{
+	var deck:PlayingCardDeck = args[0];
+	var dealerHand:PlayingCardDeck = args[1];
+	var pcHand:PlayingCardDeck = args[2];
+	clearOutput();
+	showName("\nBLACKJACK!");
+	pcHand.addCard(deck.drawCard()[0]);
+	output("You draw: " + pcHand.cards[pcHand.cards.length-1].cardDescription() + ".\n");
+	output("Your current hand: " + pcHand.listHand() + ".\nValue: <b>" + pcHand.getCardPointTotalBlackjack() + " </b>");
+	blackjackDealerAI([deck,dealerHand,pcHand]);
+
+}
+public function blackjackStand(args:Array):void
+{
+	var deck:PlayingCardDeck = args[0];
+	var dealerHand:PlayingCardDeck = args[1];
+	var pcHand:PlayingCardDeck = args[2];
+	flags["BLACKJACK_STANDING"] = true;
+	clearOutput();
+	showName("\nBLACKJACK!");
+	output("You keep your current hand: " + pcHand.listHand() + ".\nValue: <b>" + pcHand.getCardPointTotalBlackjack() + " </b>");
+	blackjackDealerAI([deck,dealerHand,pcHand]);
+}
+public function blackjackDealerAI(args:Array):void
+{
+	var deck:PlayingCardDeck = args[0];
+	var dealerHand:PlayingCardDeck = args[1];
+	var pcHand:PlayingCardDeck = args[2];
+	if(dealerHand.getCardPointTotalBlackjack() < 16)
+	{
+		dealerHand.addCard(deck.drawCard()[0]);
+		output("\n\nThe dealer draws a card: " + dealerHand.cards[dealerHand.cards.length-1].cardDescription() + ".\n");
+		output("Dealer's hand: " + dealerHand.listHand() + ".\nValue: <b>" + dealerHand.getCardPointTotalBlackjack() + "</b>");
+	}
+	else output("\n\nDealer stands: " + dealerHand.listHand() + ".\nValue: <b>" + dealerHand.getCardPointTotalBlackjack() + "</b>");
+	blackJackOptions([deck,dealerHand,pcHand]);
+}
+
+public function blackjackWin():void
+{
+	clearOutput();
+	output("Congrats on winning. Wagering TBAdded.");
+	clearMenu();
+	addButton(0,"Next",blackjackCleanup);
+	addButton(1,"Again",startBlackjack);
+}
+public function blackjackLose():void
+{
+	clearOutput();
+	output("That could have gone better. Wagering TBAdded.");
+	clearMenu();
+	addButton(0,"Next",blackjackCleanup);
+	addButton(1,"Again",startBlackjack);
+}
+public function blackjackCleanup():void
+{
+	flags["BLACKJACK_STANDING"] = undefined;
+	flags["BLACKJACK_LOSE"] = undefined;
+	flags["BLACKJACK_WIN"] = undefined;
+	mainGameMenu();
+}
+
+/*
+public function bjScorecheck():void
+{
+	var hand:PlayingCardDeck = new PlayingCardDeck();
+	hand.cards.push(new PlayingCard("spades",10,14));
+	hand.cards.push(new PlayingCard("hearts",10,10));
+	hand.cards.push(new PlayingCard("diamonds",10,13));
+	output(hand.getCardPointTotalBlackjack() + "\n");
+	hand = new PlayingCardDeck();
+	hand.cards.push(new PlayingCard("hearts",10,10));
+	hand.cards.push(new PlayingCard("hearts",10,10));
+	hand.cards.push(new PlayingCard("hearts",10,10));
+	hand.cards.push(new PlayingCard("spades",10,14));
+	hand.cards.push(new PlayingCard("hearts",10,10));
+	output(hand.getCardPointTotalBlackjack() + "\n");
+	hand = new PlayingCardDeck();
+	hand.cards.push(new PlayingCard("spades",10,14));
+	hand.cards.push(new PlayingCard("spades",10,14));
+	hand.cards.push(new PlayingCard("spades",10,14));
+	hand.cards.push(new PlayingCard("diamonds",10,13));
+	hand.cards.push(new PlayingCard("diamonds",10,13));
+	hand.cards.push(new PlayingCard("spades",10,14));
+	output(hand.getCardPointTotalBlackjack() + "\n");
+	hand = new PlayingCardDeck();
+}*/
