@@ -145,6 +145,11 @@ public function korgiTranslateProgress():Number
 	if(flags["ULAS_ROLE"] != undefined) qualifyingEvents++;
 	if(flags["ULA_MINING_TALKED"] != undefined) qualifyingEvents++;
 
+	if(flags["LUND_FUCKED_OFF"] != undefined) qualifyingEvents++;
+	if(flags["LUND_GO_AWAY"] != undefined) qualifyingEvents++;
+	if(flags["LUND_LEFT_FOOLISH"] != undefined) qualifyingEvents++;
+	if(flags["LUND_LAST_SEX"] != undefined) qualifyingEvents++;
+
 	qualifyingEvents *= 4;
 	if(qualifyingEvents >= 100) qualifyingEvents = 100;
 	if(qualifyingEvents < 0) qualifyingEvents = 0;

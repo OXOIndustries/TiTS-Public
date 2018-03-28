@@ -78,19 +78,34 @@ public function meetLund():void
 	else output("from behind you and look around, puzzled");
 	output(".");
 
-	output("\n\n<i>“Hey you. Alien. This way, idiot.”</i>");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Hey you. Alien. This way, idiot.");
+	else output("Hey, you. Alien. Come this way, idiot.");
+	output("”</i>");
 
 	output("\n\nTurning around to look at the source of the annoyed voice, you see a male Korgii leaned against the wall glaring at you. Pushing himself off with a quick movement, he walks over and ");
 	if(pc.tallness > 5*12+4) output("looks up at you angrily.");
 	else output("looks down his snout at you.");
 
-	output("\n\n<i>“You not big deal,”</i> he says, poking you rudely in the chest. <i>“Think you bigshot? No. Prouncing around on your stupid ");
-	if(pc.hasHooves()) output("hoof-foots");
-	else if (pc.hasLegFlag(GLOBAL.FLAG_PAWS)) output("paws");
-	else if(pc.hasToeClaws()) output("clawfoots");
-	else if(pc.hasLegFlag(GLOBAL.FLAG_HEELS)) output("heelfoots");
-	else output("foots");
-	output(". You might be invited, but not think you welcome.”</i>");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("You're not a big deal");
+	else output("You not big deal");
+	output(",”</i> he says, poking you rudely in the chest. <i>“");
+	if(!korgiTranslate()) 
+	{
+		output("Think you bigshot? No. Prouncing around on your stupid ");
+		if(pc.hasHooves()) output("hoof-foots");
+		else if (pc.hasLegFlag(GLOBAL.FLAG_PAWS)) output("paws");
+		else if(pc.hasToeClaws()) output("clawfoots");
+		else if(pc.hasLegFlag(GLOBAL.FLAG_HEELS)) output("heelfoots");
+		else output("foots");
+		output(". You might be invited, but not think you welcome.");
+	}
+	else
+	{
+		output("You think you're a big shot? No. Prancing around on your stupid [pc.feetOrFoot]... you may think you were invited, but you aren't welcome.");
+	}
+	output("”</i>");
 
 	//[Fuck off] [Go away] [Leave]
 	processTime(3);
@@ -110,7 +125,12 @@ public function tellLundFuckOff():void
 	if(pc.tallness > 6*12) output(" runt,");
 	output("”</i> you grunt roughly, pushing the annoying korgonne back against the ice wall hard enough to make him sharply exhale and slump downwards momentarily. <i>“I don’t have time for this bullshit.”</i>");
 
-	output("\n\n<i>“You regret that, alien,”</i> the korgonne coughs, looking up at you with hatred in his eyes as he gets up from the ground. <i>“Mark words. Lund find you.”</i>");
+	output("\n\n<i>“You");
+	if(korgiTranslate()) output("'ll");
+	output(" regret that, alien,”</i> the korgonne coughs, looking up at you with hatred in his eyes as he gets up from the ground. <i>“");
+	if(!korgiTranslate()) output("Mark words. Lund find you.");
+	else output("Mark my words. I'll find you.");
+	output("”</i>");
 
 	output("\n\nWith nothing more to be said, he stalks away without looking back. Well, one less asshole to deal with, at least.");
 	//Probably want to set a flag for this in the event of a future combat scenario.
@@ -132,11 +152,20 @@ public function goAwayLund():void
 	if(pc.tallness > 6*12) output("runt");
 	else output("creep");
 	output(",”</i> you snarl, brushing your chest off for emphasis. <i>“I might be new here but that doesn’t mean you can just walk all over me.”</i>");
-	output("\n\n<i>“Hm,”</i> the korgonne grunts, considering you. <i>“You not like other alien. Just don’t bother Lund and we get along.”</i>");
+	output("\n\n<i>“Hm,”</i> the korgonne grunts, considering you. <i>“");
+	if(!korgiTranslate()) output("You not like other alien. Just don’t bother Lund and we get along.");
+	else output("You're not like other aliens. Just don't bother Lund, and we'll get along.");
+	output("”</i>");
 	output("\n\n<i>“Who’s Lund?”</i> you ask, curiosity getting the better of you.");
-	output("\n\n<i>“Me,”</i> he says, jabbing his thumb at his chest. You’re starting to get the feeling he just likes to point at things a lot. <i>“Am Lund.”</i>");
+	output("\n\n<i>“Me,”</i> he says, jabbing his thumb at his chest. You’re starting to get the feeling he just likes to point at things a lot. <i>“");
+	if(!korgiTranslate()) output("Am");
+	else output("I'm");
+	output(" Lund.”</i>");
 	output("\n\n<i>“I see... well, I won’t bother Lund, then.”</i>");
-	output("\n\n<i>“Is good,”</i> he nods, and waves you along.");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Is");
+	else output("That's");
+	output(" good,”</i> he nods, and waves you along.");
 	//set a flag for this
 	processTime(4);
 	flags["LUND_GO_AWAY"] = 1;
@@ -150,16 +179,31 @@ public function leaveAwayFromLundo():void
 	clearOutput();
 	showLund();
 	output("You don’t really want to anger the korgonne when you’ve just gotten here. You turn to walk away and find he’s holding onto your arm, and you look back at him inquisitively.");
-	output("\n\n<i>“Hey! You mute? Not talk?”</i> he gestures at his mouth, watching you with a puzzled expression.");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Hey! You mute? Not talk");
+	else output("Hey! Are you a mute? Can you talk");
+	output("?”</i> he gestures at his mouth, watching you with a puzzled expression.");
 	output("\n\n<i>“I just don’t want to bother you when you’re clearly already, ah, sensitive,”</i> you reply, looking ");
 	if(pc.tallness > 12*5+4) output(" down");
 	output(" at the furry creature.");
-	output("\n\n<i>“Oh. Now Lund look like dumb asshole,”</i> he says, taking his hand away. <i>“You not like other alien, maybe. </i>Maybe.<i> Most real idiot.”</i>");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Oh. Now Lund look like dumb asshole,");
+	else output("Oh, so now Lund looks like a dumb asshole,");
+	output("”</i> he says, taking his hand away. <i>“");
+	if(!korgiTranslate()) output("You not like other alien, maybe. </i>Maybe.<i> Most real idiot.");
+	else output("You're not like other aliens, maybe. </i>Maybe.<i> Most are real idiots.");
+	output("”</i>");
 	output("\n\n<i>“So... you’re Lund?”</i> you ask.");
-	output("\n\n<i>“Am Lund,”</i> he nods, jabbing a thumb at his own chest. You’re starting to get the feeling he likes to point at things a lot. <i>“Biggest and bestest in hold.”</i>");
+	output("\n\n<i>“Am Lund,”</i> he nods, jabbing a thumb at his own chest. You’re starting to get the feeling he likes to point at things a lot. <i>“");
+	if(!korgiTranslate()) output("Biggest and bestest in hold.");
+	else output("The biggest and best in the hold.");
+	output("”</i>");
 	output("\n\nLooking around, you’ve already seen evidence he’s clearly not the biggest, but now’s probably not the best time to bring that up. Instead, you nod and point down the hallway.");
 	output("\n\n<i>“I’m going to go now,”</i> you say.");
-	output("\n\n<i>“Okay, is good. Smart alien,”</i> he says, and waves you along.");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Okay, is good. Smart alien,");
+	else output("Okay, that's good. Smart, for an alien,");
+	output("”</i> he says, and waves you along.");
 	//set a flag for this too
 	flags["LUND_LEFT_FOOLISH"] = 1;
 	processTime(4);
@@ -184,18 +228,36 @@ public function approachLund(back:Boolean = false):void
 	{
 		output("\n\nYour heart is racing, your step light and quick, and your cheeks slightly flushed. It’s not enough to tip a regular person off, but the korgonne are a keenly perceptive folk. By the time you reach him, it feels like half the people you’ve passed have cast you a curious, knowing eye and a smile. That really only makes it worse, and by the time you actually reach Lund you’re breathing harder than you should be. You feel a little like a nervous virgin walking out to meet [pc.hisHer] boyfriend for an illicit rendezvous.");
 		output("\n\n<i>“Hey, Lund,”</i> you say, smiling wide. <i>“How are you?”</i>");
-		output("\n\n<i>“Oh, alien friend now?”</i> Lund replies, arching a fluffy brow. <i>“The way you scream Lund name make it closer to pet, Lund think.”</i>");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Oh, alien friend now?");
+		else output("Oh, are we friends now?");
+		output("”</i> Lund replies, arching a fluffy brow. <i>“");
+		if(!korgiTranslate()) output("The way you scream Lund name make it closer to pet, Lund think.");
+		else output("The way you scream my name makes you closer to a pet, I think.");
+		output("”</i>");
 		output("\n\n<i>“I- well,”</i> you say, unsure of how to reply, <i>“I just thought-”</i>");
-		output("\n\n<i>“Say it,”</i> Lund says, meeting your gaze. <i>“Say alien Lund’s pet.”</i>");
+		output("\n\n<i>“Say it,”</i> Lund says, meeting your gaze. <i>“");
+		if(!korgiTranslate()) output("Say alien Lund’s pet.");
+		else output("Say you're my pet.");
+		output("”</i>");
 		output("\n\n<i>“What?”</i> you bristle, somewhat angered by his arrogance. <i>“You listen to me, I’m n-”</i>");
-		output("\n\n<i>“Say pet or Lund not fuck alien,”</i> he replies breezily, not breaking eye contact. You gape open-mouthed, not having expected the ultimatum. Given the situation, though, you really only have the one option.");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Say pet or Lund not fuck alien");
+		else output("Say you're my pet, or I won't fuck you");
+		output(",”</i> he replies breezily, not breaking eye contact. You gape open-mouthed, not having expected the ultimatum. Given the situation, though, you really only have the one option.");
 		output("\n\n<i>“I’m Lund’s pet,”</i> you mutter bitterly, hanging your head. It’s the truth, but you were hoping for something a little more amicable.");
-		output("\n\n<i>“Louder,”</i> he commands you, waving his hand. <i>“Whole crowd should know.”</i>");
+		output("\n\n<i>“Louder,”</i> he commands you, waving his hand. <i>“");
+		if(!korgiTranslate()) output("Whole crowd should know");
+		else output("The whole crowd should know");
+		output(".”</i>");
 		output("\n\nYou turn around and, indeed, there’s at least ten korgonnes with their eyes on the curious alien. Some of them are grinning, others wary, some meek, but all of them are waiting to see how you’ll react. You hesitate for a moment, but the way forward is clear. An idea pops into your head then; maybe if you go above and beyond, you’ll be rewarded?");
 		output("\n\nI-I’m,”</i> you begin, the audacity of what you’re doing swimming in your mind. You take a deep breath. <i>“I’m [pc.name], Lund’s little bitch pet.”</i>");
 		output("\n\nAt first, nothing. Then you hear a snort, and by the time you locate which one of the young women made the sound, she’s doubled over in laughter and the others are breaking into fits of giggles. Soon enough the entire gaggle of girls are surrounding Lund, poking the <i>“alien tamer”</i> and hitting him on the arm for good measure. A couple of them give you some endearing pats before they leave, waving at you as they go.");
 		output("\n\nYou feel slightly dumber for having done that. Lund just shrugs.");
-		output("\n\n<i>“It not like korgonne horrible people. So? Alien here to get fucked?”</i>");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("It not like korgonne horrible people. So? Alien here to get fucked?");
+		else output("It's not like korgonne treat their pets badly. So, are you here to get fucked?");
+		output("”</i>");
 		processTime(5);
 		flags["LUND_MADE_U_SUBMIT"] = 2;
 	}
@@ -207,27 +269,63 @@ public function approachLund(back:Boolean = false):void
 		//Bragged:
 		if(flags["LUND_COVERED_4"] == -1)
 		{
-			output("\n\nLund bristles at your greeting, throwing you a baleful glare. <i>“You make fun of Lund to girls.”</i>");
+			output("\n\nLund bristles at your greeting, throwing you a baleful glare. <i>“");
+			if(!korgiTranslate()) output("You make fun of Lund to girls.");
+			else output("You made fun of me to the girls.");
+			output("”</i>");
 			output("\n\n<i>“Aww, it was just jokes!”</i> you insist, spreading your arms. <i>“I didn’t mean anything by it. You’re not any less of a man for liking my cock up your ass.”</i>");
-			output("\n\n<i>“Lund </i>not<i> like it,”</i> he says pointedly, shaking his head. <i>“Not do that again. Ever.”</i>");
+			output("\n\n<i>“");
+			if(!korgiTranslate()) output("Lund </i>not<i> like it,");
+			else output("I </i>didn't<i> like it,");
+			output("”</i> he says pointedly, shaking his head. <i>“");
+			if(!korgiTranslate()) output("Not do that again. Ever.");
+			else output("Not doing that again. Ever.");
+			output("”</i>");
 			output("\n\nOh, well.");
 		}
 		//Covered for him:
 		else
 		{
-			output("\n\nLund eyes you hesitantly, then nods. <i>“Lund good. Alien maybe good person.”</i>");
+			output("\n\nLund eyes you hesitantly, then nods. <i>“");
+			if(!korgiTranslate()) output("Lund good. Alien maybe good person.");
+			else output("I'm good. You might be a good person after all.");
+			output("”</i>");
 			output("\n\n<i>“Are you talking about how I stuck my neck out for you with those girls?”</i> you snicker, giving him a wink. <i>“So?”</i>");
-			output("\n\n<i>“So... thanks,”</i> Lund says, averting his eyes, then looking back at you. <i>“But we not do that again... Lund sore.”</i>");
+			output("\n\n<i>“So... thanks,”</i> Lund says, averting his eyes, then looking back at you. <i>“");
+			if(!korgiTranslate()) output("But we not do that again... Lund sore.");
+			else output("But we can't do that again... I'm sore.");
+			output("”</i>");
 			output("\n\nOh... maybe you should wait a little while before asking him for another ride.");
 		}
 	}
 	//Defaults
 	else
 	{
-		if(flags["LUND_LAST_SEX"] == "Doggystyle") output("\n\n<i>“Oh? Alien back for more?”</i> Lund asks, watching you with interest. <i>“Not surprised, seem like your thing. Happy to teach alien place.”</i>");
-		else if(flags["LUND_LAST_SEX"] == "Dicked") output("\n\n<i>“You,”</i> Lund scowls, looking from side to side. <i>“What you want? Here to rub in Lund’s face?”</i>");
-		else if(flags["LUND_LAST_SEX"] == "Rode") output("\n\n<i>“You,”</i> Lund moans, looking from side to side. <i>“What you want? Lund’s hips still sore from last time.”</i>");
-		else output("\n\n<i>“What alien want?”</i> Lund asks, neutral at least for the time being. <i>“Lund can talk. Not too much though, alien not </i>that<i> important.”</i>");
+		if(flags["LUND_LAST_SEX"] == "Doggystyle") 
+		{
+			output("\n\n<i>“");
+			if(!korgiTranslate()) output("Oh? Alien back for more?");
+			else output("Oh? You're back for more?");
+			output("”</i> Lund asks, watching you with interest. <i>“");
+			if(!korgiTranslate()) output("Not surprised, seem like your thing. Happy to teach alien place.");
+			else output("Not surprised. It seemed like your thing. I'm happy to teach you your place.");
+			output("”</i>");
+		}
+		else if(flags["LUND_LAST_SEX"] == "Dicked") 
+		{
+			if(!korgiTranslate()) output("\n\n<i>“You,”</i> Lund scowls, looking from side to side. <i>“What you want? Here to rub in Lund’s face?”</i>");
+			else output("\n\n<i>“You,”</i> Lund scowls, looking from side to side. <i>“What do you want? Here to rub it in my face?”</i>");
+		}
+		else if(flags["LUND_LAST_SEX"] == "Rode") 
+		{
+			if(!korgiTranslate()) output("\n\n<i>“You,”</i> Lund moans, looking from side to side. <i>“What you want? Lund’s hips still sore from last time.”</i>");
+			else output("\n\n<i>“You,”</i> Lund moans, looking from side to side. <i>“What do you want? My hips are still sore from last time.”</i>");
+		}
+		else 
+		{
+			if(!korgiTranslate()) output("\n\n<i>“What alien want?”</i> Lund asks, neutral at least for the time being. <i>“Lund can talk. Not too much though, alien not </i>that<i> important.”</i>");
+			else output("\n\n<i>“What do you want?”</i> Lund asks, neutral at least for the time being. <i>“I can talk. Not too much though, you're not </i>that<i> important.”</i>");
+		}
 	}
 	//[Appearance] [Lund] [Outside] [Sex]
 	processTime(1);
@@ -269,40 +367,77 @@ public function talkToLundAboutLund():void
 	clearOutput();
 	showLund();
 	output("<i>“So what’s your story?”</i> you ask, nodding at the korgonne. <i>“Are you a guard?”</i>");
-	output("\n\n<i>“Hunter,”</i> Lund corrects you, a hand slipping down to one of his sheathed blades. <i>“Hunt for food.”</i> Unsheathing the sword and expertly flipping it around his wrist to hold it backwards, he inspects blade’s edge. <i>“Sometimes not for food. You?”</i>");
+	output("\n\n<i>“Hunter,”</i> Lund corrects you, a hand slipping down to one of his sheathed blades. <i>“");
+	if(!korgiTranslate()) output("Hunt for food.");
+	else output("I hunt for food.");
+	output("”</i> Unsheathing the sword and expertly flipping it around his wrist to hold it backwards, he inspects blade’s edge. <i>“Sometimes not for food. You?”</i>");
 	flags["LUND_LUND_TALK"] = 1;
 	if(!pc.isBimbo()) 
 	{
 		output("\n\n<i>“I guess I’m a hunter too,”</i> you say, shrugging. <i>“Hunting for probes my dad left behind.”</i>");
 		output("\n\n<i>“Treasure?”</i> Lund asks, glancing at you curiously.");
 		output("\n\n<i>“Something like that,”</i> you reply. <i>“At the very least, they’re worth a lot to me personally.”</i>");
-		output("\n\n<i>“Probe... here?”</i> he questions, pointing down. <i>“On planet?”</i>");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Probe... here?");
+		else output("The probe... it's here?");
+		output("”</i> he questions, pointing down. <i>“On planet?”</i>");
 		output("\n\n<i>“I don’t think so,”</i> you say, shaking your head. <i>“I’m here for different reasons.”</i>");
-		output("\n\n<i>“Hmm,”</i> he says, considering this. <i>“Alien not so different. Sometimes hunt. Sometimes not hunt. Is life.”</i>");
-		output("\n\nAbout as profound as a brokenly-translated hunter on a ball of ice is going to get, you suspect.");
+		output("\n\n<i>“Hmm,”</i> he says, considering this. <i>“");
+		if(!korgiTranslate()) output("Alien not so different. Sometimes hunt. Sometimes not hunt. Is life.");
+		else output("You're not so different. Sometimes we hunt. Sometimes we don't hunt. It's life.");
+		output("”</i>");
+		output("\n\nAbout as profound as a ");
+		if(!korgiTranslate()) output("brokenly-translated ");
+		output("hunter on a ball of ice is going to get, you suspect.");
 		clearMenu();
 		addButton(0,"Next",approachLund,true);
 	}
 	else
 	{
 		output("\n\n<i>“Um, kinda the same thing?”</i> you say, putting your finger on your lip. <i>“I gotta look for space probes ‘cuz my dad said so.”</i>");
-		output("\n\n<i>“Treasure hunting?”</i> Lund asks, eyeing you up and down. <i>“Lund not think alien suited to job.”</i>");
+		output("\n\n<i>“Treasure hunting?”</i> Lund asks, eyeing you up and down. <i>“");
+		if(!korgiTranslate()) output("Lund not think alien suited to job.");
+		else output("I don't think you're suited to the job.");
+		output("”</i>");
 		output("\n\n<i>“Aw, don’t be mean,”</i> you pout. <i>“They’re worth a lot to me, so I gotta find ‘em anyway.”</i>");
-		output("\n\n<i>“Probe... here?”</i> he questions, pointing down. <i>“On planet?”</i>");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Probe... here?");
+		else output("The probe... it's here?");
+		output("”</i> he questions, pointing down. <i>“On planet?”</i>");
 		output("\n\n<i>“Nuh uh,”</i> you say, shaking your head. <i>“I’m here for fun, I just wish it was a little warmer on this planet!”</i>");
-		output("\n\n<i>“Lund think he know what you mean,”</i> he says, looking at your [pc.lipsChaste] intently. <i>“Maybe can help warm alien.”</i>");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Lund think he know what you mean,");
+		else output("I think I know what you mean,");
+		output("”</i> he says, looking at your [pc.lipsChaste] intently. <i>“");
+		if(!korgiTranslate()) output("Maybe can help warm alien.");
+		else output("Maybe I could help you warm up.");
+		output("”</i>");
 		output("\n\n<i>“Oh, you’re so nice! You do look like you’d be warm if I hugged you...”</i> you say, looking at his coat of fur. <i>“Maybe we could get a little closer later...”</i>");
-		output("\n\n<i>“Lund cock get a little closer to your lips,”</i> Lund says bluntly, looking you in the eye. <i>“Recognize needy alien when see one.”</i>");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Lund cock get a little closer to your lips,");
+		else output("My cock could get a little closer to your lips right now,");
+		output("”</i> Lund says bluntly, looking you in the eye. <i>“");
+		if(!korgiTranslate()) output("Recognize needy alien when see one.");
+		else output("I recognize a needy alien when I see one.");
+		output("”</i>");
 		output("\n\n<i>“Oh gosh, I can’t say no to that,”</i> you giggle, looking from side to side. <i>“Is there somewhere we can..?”</i>");
 		output("\n\nLund takes your hand and tugs you down the hallway, leading you through a network of confusing twists and turns until you have no idea where you are. That doesn’t really matter though because you can see a very promising bulge underneath the korgonne’s kilt, the indistinct shape occupying your mind’s limited real estate.");
-		output("\n\n<i>“Here,”</i> Lund says abruptly, tearing off his kilt and throwing it at your feet. <i>“For knees.”</i>");
+		output("\n\n<i>“Here,”</i> Lund says abruptly, tearing off his kilt and throwing it at your feet. <i>“For ");
+		if(korgiTranslate()) output("your ");
+		output("knees.”</i>");
 		output("\n\nYou automatically obey, wordlessly opening your mouth and finding it immediately occupied by ten inches of delicious canine cock. What follows is close to thirty minutes of Lund fucking your face however he wants, your head obediently bobbing up and down on his doggy dick as he explores your throat’s limits. When he fiercely thrusts himself to the base it’s completely without warning, leaving your lips planted on his sheath while he holds you there and groans in release.");
 		output("\n\n<i>“Good,”</i> Lund grunts with some effort, holding you tightly against his groin. <i>“Tight.”</i>");
 		output("\n\nIt <i>is</i> tight, you dimly realize, feeling his cock somehow shift around in your mouth. Oh, he has a knot! It’s waaaay too late to do anything about that, though... especially what with the hypnotizing way his warm seed keeps streaming down your throat. Soon enough your cheeks are hopelessly puffed outwards, his knot pressing your tongue downwards and keeping it immobile while he paints your insides.");
 		output("\n\nYou may have just met, but you are <i>really</i> impressed with this studly little korgonne. Lifting a hand and dreamily running it over his flexed abs, you stroke and rub the defined musculature while Lund pumps you full of spunk. You hadn’t expected such a dominant male from such a species, but you were clearly wrong to think so. Feeling him strain against your hand as he cums, you gurgle around his knot while you follow suit.");
 		output("\n\nIt’s just too hard to resist. The thought of a dominant man feeling good enough with your body to cum inside it is <i>such</i> a turn-on, and you secretly find yourself hoping this becomes a regular thing. Looking up at him to watch his expression of release, the manly way he grunts in exertion and grits his teeth, you think the Hold is going to be very fun after all.");
 		output("\n\nWhen he’s finally finished, he wastes no time popping free of your throat, leaving you coughing momentarily while you become reacquainted with the idea of breathing without a cock in your mouth.");
-		output("\n\n<i>“Alien good fuck,”</i> Lund sighs in satisfaction, picking up his kilt. <i>“Even swallow. Good for something. Lund see you again.”</i>");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Alien good fuck,");
+		else output("You're a good fuck,");
+		output("”</i> Lund sighs in satisfaction, picking up his kilt. <i>“");
+		if(!korgiTranslate()) output("Even swallow. Good for something. Lund see you again.");
+		else output("You even swallowed. Looks like you're good for something. I'll see you again.");
+		output("”</i>");
 		output("\n\nAnd just like that, he’s gone. From introduction to being used like a fuckdoll in under thirty minutes, then left panting like a whore with still-warm cum and spit dribbling all down your chin and onto your [pc.chest]. For just a moment, you wonder if this is what love feels like.");
 		output("\n\nYou clean yourself off and make yourself as presentable as possible before meandering back into the tunnels. Miraculously, you find your way back to the hold without a hitch. Part of you wants to run straight back to Lund. Maybe he’ll fuck your slutty face again.");
 		//Dump player somewhere in the hold. Maybe even a random location?
@@ -311,7 +446,7 @@ public function talkToLundAboutLund():void
 		pc.orgasm();
 		clearMenu();
 		//maybe move somewhere
-		currentLocation = "KORGII J10"
+		currentLocation = "KORGII J10";
 		generateMap();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -323,18 +458,35 @@ public function askLundAboutOutside():void
 	clearOutput();
 	showLund();
 	output("<i>“So how do you hunt in such a hostile environment?”</i> you ask, thinking about what lies outside the hold.");
-	output("\n\n<i>“Purposeful,”</i> Lund replies, serious. <i>“Know exact where, how long, and safe caves. Need prepare too. Outside no joke. Not place for dumb alien.”</i>");
+	output("\n\n<i>“Purposeful");
+	if(korgiTranslate()) output("ly");
+	output(",”</i> Lund replies, serious. <i>“");
+	if(!korgiTranslate()) output("Know exact where, how long, and safe caves. Need prepare too. Outside no joke. Not place for dumb alien.");
+	else output("We know exactly where to go and for how long. We know which caves are safe. You need to prepare too. The outside is no joke - not a place for a dumb alien.");
+	output("”</i>");
 	output("\n\n<i>“I can handle myself,”</i> you tell him. <i>“I even rescued your princess from outside.”</i>");
-	output("\n\n<i>“That </i>you?!<i>”</i> Lund exclaims, eyes widening. <i>“Wait, maybe alien smart? Hmm.”</i>");
+	output("\n\n<i>“That </i>you?!<i>”</i> Lund exclaims, eyes widening. <i>“");
+	if(!korgiTranslate()) output("Wait, maybe alien smart? Hmm.");
+	else output("Wait, maybe you are smart? Hmm.");
+	output("”</i>");
 	output("\n\nYou roll your eyes, a gesture Lund likely doesn’t understand. <i>“Yeah, thanks for noticing.”</i>");
 	flags["LUND_OUTSIDE_TALK"] = 1;
 	if(pc.isBimbo() && pc.hasGenitals()) 
 	{
-		output("\n\n<i>“Whatever,”</i> Lund shrugs, blatantly checking your [pc.tits] out. <i>“You dumbest smart alien Lund met.”</i>");
+		output("\n\n<i>“Whatever,”</i> Lund shrugs, blatantly checking your [pc.tits] out. <i>“");
+		if(!korgiTranslate()) output("You dumbest smart alien Lund met.");
+		else output("You're the dumbest smart alien I've met.");
+		output("”</i>");
 		output("\n\n<i>“I’m not dumb!”</i> you protest, hands on [pc.hips]. <i>“I went to a good Terran acad-”</i>");
-		output("\n\n<i>“Lund let you suck cock if shut up,”</i> he says neutrally, watching your expression.");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Lund let you suck cock if shut up,");
+		else output("I'll let you suck my cock if you shut up,");
+		output("”</i> he says neutrally, watching your expression.");
 		output("\n\nYou freeze with your mouth open mid-sentence and, decidedly unsubtly, look down the hallway to see if anyone’s watching before fixing your gaze on his kilt. <i>“Oh... well...”</i> you trail off.");
-		output("\n\n<i>“Maybe smartest dumb alien, then?”</i> Lund considers this, and shrugs before taking your hand. <i>“Come.”</i>");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Maybe smartest dumb alien, then?");
+		else output("Maybe you are the smartest dumb alien, then?");
+		output("”</i> Lund considers this, and shrugs before taking your hand. <i>“Come.”</i>");
 		output("\n\nIn a private room, Lund has you on your knees and in front of his fat, juicy cock in moments. You’re about to start licking it when he flicks your forehead, and you recoil in confusion, looking up at him.");
 		moveToLundsHouse();
 		output("\n\n<i>“Beg,”</i> he tells you, pointing at his dick. <i>“Ask to suck.”</i>");
@@ -351,22 +503,33 @@ public function askLundAboutOutside():void
 		output("\n\n<i>“Nnnngh,”</i> Lund grunts, running his hands through your [pc.hair] before");
 		if(pc.horns > 0 && pc.hornLength >= 3) 
 		{
-			output(" wrapping them around your [pc.horns], smirking. <i>“Lund can guess why alien have these.”</i>");
+			output(" wrapping them around your [pc.horns], smirking. <i>“");
+			if(!korgiTranslate()) output("Lund can guess why alien have these.");
+			else output("I can guess why you have these.");
+			output("”</i>");
 			output("\n\nWhether or not that’s their primary use, Lund’s definitely figured your body out quick. Using your horns to pull you up and down, he savagely bucks his hips against your face until spit is flying from your lips while you make wet gagging noises around the base of his cock.");
 		}
 		else if(pc.earType == GLOBAL.TYPE_LEITHAN || pc.earType == GLOBAL.TYPE_LAPINE || (pc.earType == GLOBAL.TYPE_SYLVAN && pc.earLength >= 3) || (pc.earType == GLOBAL.TYPE_DARK_SYLVAN && pc.earLength >= 3))
 		{
-			output(" wrapping them around your [pc.ears] with a snicker. <i>“Good for handhold.”</i>");
+			output(" wrapping them around your [pc.ears] with a snicker. <i>“Good for ");
+			if(korgiTranslate()) output("a ");
+			output("handhold.”</i>");
 			output("\n\nWhether or not that’s their primary use, Lund’s definitely figured your body out quick. Using your long, sensitive ears to pull you up and down, he savagely bucks his hips against your face until spit is flying from your lips while you make wet gagging noises around the base of his cock. It hurts, but fuck if it isn’t so worth it...");
 		}
 		else output(" planting his hands on the back of your head with a grin. <i>“Hold tight.”</i>");
 
 		output("\n\nPressing your face into his abs repeatedly, he savagely bucks his hips against your face until spit is flying from your lips while you make wet gagging noises around the base of his cock}.");
 		output("\n\n<i>“Glrk-! Gllllrrg,”</i> you gurgle when he holds you flush against the soft fur of his crotch, cock buried in your throat. You find yourself running your hands from his muscular thighs to his firm butt, lightly squeezing his cheeks in admiration while he holds you still.");
-		output("\n\n<i>“Good noises,”</i> Lund pants, imbuing you with a sense of pride. <i>“Alien sound best with lips around cock.”</i>");
+		output("\n\n<i>“Good noises,”</i> Lund pants, imbuing you with a sense of pride. <i>“");
+		if(!korgiTranslate()) output("Alien sound best with lips around cock.");
+		else output("You sound best with your lips around a cock.");
+		output("”</i>");
 		output("\n\nWell, duh! Is what you’d say if you could, but you settle for just sucking on his cock particularly hard. The way he shivers in response is just <i>so</i> fucking hot, and you hope he cums soon so you can listen to him groan in ecstasy while he drains his balls down your throat.");
 		output("\n\nYou get your wish just a few minutes of facefucking later, obediently holding your throat open with your tongue at his balls as he cums forcefully into your mouth. He’s chosen not to tie you down this time, which makes you a little happy your neck won’t hurt but mostly sad you won’t get to sit there and suck on his fat knot. When he’s done, he pulls free and brusquely drags his cock from your forehead to your chin, wiping it off.");
-		output("\n\n<i>“Thank Lund,”</i> he tells you.");
+		output("\n\n<i>“Thank ");
+		if(!korgiTranslate()) output("Lund,");
+		else output("me,");
+		output("”</i> he tells you.");
 		output("\n\n<i>“Thank y- glk,”</i> you choke, swallowing down some more of his semen while you pat your chest. <i>“Thank you Lund.”</i>");
 		output("\n\n<i>“Good,”</i> he nods, scratching you behind the ear. <i>“See again soon.”</i>");
 		output("\n\nHe leaves you to your own devices, sitting on your knees with your hands in your lap and swishing your tongue around your mouth just to make you swallowed <i>all</i> of his cum");
@@ -401,18 +564,33 @@ public function lundSexStarter():void
 		output("<i>“So what do you do for fun when you’re not people-watching in a hallway, Lund?”</i> you ask, poking fun.");
 		if(pc.isBimbo()) 
 		{
-			output("\n\n<i>“Fuck dumb alien,”</i> he says, the corners of his mouth turning upwards.");
+			output("\n\n<i>“");
+			if(!korgiTranslate()) output("Fuck dumb alien,");
+			else output("Fuck dumb aliens,");
+			output("”</i> he says, the corners of his mouth turning upwards.");
 			output("\n\n<i>“But there are no aliens around,”</i> you say, confused.");
 			output("\n\nHe stares at you for a moment until it sinks in, and your face brightens. <i>“Ooohhh! You mean me,”</i> you giggle, smiling at him affectionately. <i>“You like me that much, huh? Don’t go falling in love!”</i>");
-			output("\n\nHe takes a look at your beaming expression and sighs morosely, shaking his head before raising it to look at you. <i>“Lund wonder how alien make it this far.”</i>");
+			output("\n\nHe takes a look at your beaming expression and sighs morosely, shaking his head before raising it to look at you. <i>“");
+			if(!korgiTranslate()) output("Lund wonder how alien make it this far.");
+			else output("I wonder how you made it this far.");
+			output("”</i>");
 		}
 		else
 		{
 			output("\n\n<i>“Fuck,”</i> he replies matter-of-factly.");
 			output("\n\n<i>“Fuck?”</i> you echo, somewhat torn between amusement and disbelief. <i>“So whenever you’re not here... you’re just fucking all the time?”</i>");
-			output("\n\nHe shrugs, then nods. <i>“Almost. Good for warm, good for fun, good for tribe. What not to love? Tribe female can’t get enough.”</i>");
+			output("\n\nHe shrugs, then nods. <i>“");
+			if(!korgiTranslate()) output("Almost. Good for warm, good for fun, good for tribe. What not to love? Tribe female can’t get enough.");
+			else output("Almost. It's good for warmth, good for fun, and good for the tribe. What's not to love? The tribe females can't get enough.");
+			output("”</i>");
 			output("\n\n<i>“Sounds like you have your hands full then,”</i> you say, looking around at the fluffy korgonnes walking by. You have to admit you’re just a little envious of his extremely simple lifestyle.");
-			output("\n\n<i>“Could make room for alien too,”</i> Lund says, his eyes narrowing. <i>“You on bottom. Where alien belong.”</i>");
+			output("\n\n<i>“");
+			if(!korgiTranslate()) output("Could make room for alien too,");
+			else output("I could make room for an alien too,");
+			output("”</i> Lund says, his eyes narrowing. <i>“");
+			if(!korgiTranslate()) output("You on bottom. Where alien belong.");
+			else output("You'd be on the bottom, where you belong.");
+			output("”</i>");
 			output("\n\n<i>“Is that so?”</i> you ask, looking ");
 			if(pc.tallness > 5*12+4) output("down");
 			else output("up");
@@ -423,12 +601,27 @@ public function lundSexStarter():void
 	else if(pc.isBimbo()) 
 	{
 		output("<i>“Hey babe, you interested in some fun?”</i> you say, smiling deeply at Lund. <i>“I’ve got a present between my legs I think you’d enjoy...”</i>");
-		output("\n\nHe sighs and shakes his head. <i>“Alien not good for tease. Alien good for hard, wet fuck.”</i>");
-		output("\n\nHe leans off the wall, looking at your [pc.lips] with a measured expression. <i>“Lund wonder if some way to keep pretty mouth without talk.”</i>");
+		output("\n\nHe sighs and shakes his head. <i>“");
+		if(!korgiTranslate()) output("Alien not good for tease. Alien good for hard, wet fuck.");
+		else output("You're not good at teasing. You're good at hard, wet fucks.");
+		output("”</i>");
+		output("\n\nHe leans off the wall, looking at your [pc.lips] with a measured expression. <i>“");
+		if(!korgiTranslate()) output("Lund wonder if some way to keep pretty mouth without talk.");
+		else output("I wonder if there's some way to keep your pretty mouth without all the talk.");
+		output("”</i>");
 		output("\n\n<i>“Rude,”</i> you say, pouting. <i>“I could refuse you, you know!”</i>");
-		output("\n\n<i>“Lund not think so,”</i> he says, a knowing smile on his face. <i>“Lund think you need his cock more than other way round.”</i>");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Lund not think so,");
+		else output("I don't think so,");
+		output("”</i> he says, a knowing smile on his face. <i>“");
+		if(!korgiTranslate()) output("Lund think you need his cock more than other way round.");
+		else output("I think you need my cock more than the other way around.");
+		output("”</i>");
 		output("\n\nNeed his cock? The nerve! You don’t <i>need</i> anyone’s cock, especially not Lund’s fat, juicy dogdick. That overly large knot of his is only good for shoving in warm assholes and tight, wet cunts to make them juice themselves, anyway. Being bounced up and down on it while you scream in pleasure is definitely at the absolute bottom of your list, yes sir.");
-		output("\n\n<i>“You want hard fuck?”</i> Lund says, waking you from your daydream.");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("You want hard fuck");
+		else output("You want a hard fuck");
+		output("?”</i> Lund says, waking you from your daydream.");
 		output("\n\n<i>“Huh?”</i> you say, startled. <i>“Oh, yeah, thanks!”</i>");
 		output("\n\nHow did he know?");
 	}
@@ -438,7 +631,13 @@ public function lundSexStarter():void
 		if(pc.tallness > 5*12+4) output("down");
 		else output("up");
 		output(" at the korgonne intently.");
-		output("\n\n<i>“Always interest in fun,”</i> he replies, leaning off the wall. <i>“More interest in fucking alien through floor.”</i>");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Always interest in fun,");
+		else output("I'm always interested in fun,");
+		output("”</i> he replies, leaning off the wall. <i>“");
+		if(!korgiTranslate()) output("More interest in fucking alien through floor.");
+		else output("But more interested in fucking you through the floor.");
+		output("”</i>");
 	}
 	processTime(5);
 	pc.lust(4);
@@ -475,7 +674,13 @@ public function lundDoggyStyle():void
 	if(pc.isBimbo()) 
 	{
 		output("<i>“So like, how do you wanna fuck?”</i> you say, tilting your head and putting some serious thought into it. <i>“I wanna-”</i>");
-		output("\n\n<i>“You not get choice,”</i> he tells you, shaking his finger. <i>“You not in charge. Lund know you prefer it. A man tell you where to go, what to do. How wide to spread legs. When to swallow.”</i>");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("You not get choice,");
+		else output("You don't get a choice,");
+		output("”</i> he tells you, shaking his finger. <i>“");
+		if(!korgiTranslate()) output("You not in charge. Lund know you prefer it. A man tell you where to go, what to do. How wide to spread legs. When to swallow.");
+		else output("You're not in charge. I know you prefer it this way. A man tells you where to go, what to do, how wide to spread your [pc.thighs], and when to swallow.");
+		output("”</i>");
 		output("\n\n<i>“I- Uuuhh,”</i> you mutter, losing yourself in his words. Gosh, he always knows just what to say to you...");
 		//Next button -> goes to Bimbo Sex.
 		clearMenu();
@@ -491,23 +696,50 @@ public function lundDoggyStyle():void
 		showName("\nLUND");
 
 		output("<i>“So, uh,”</i> you say, eyeballing Lund’s loincloth. <i>“Any chance you wa-”</i>");
-		output("\n\n<i>“Wanna fuck?”</i> Lund says, guessing correctly. <i>“Sure. But we not go to room today. Okay?”</i>");
+		output("\n\n<i>“Wanna fuck?”</i> Lund says, guessing correctly. <i>“");
+		if(!korgiTranslate()) output("Sure. But we not go to room today. Okay?");
+		else output("Sure, but we're not going to the room today. Okay?");
+		output("”</i>");
 		output("\n\n<i>“Sure,”</i> you shrug, just grateful you’ll be getting that fat cock. <i>“Where are we going?”</i>");
-		output("\n\n<i>“Lund show you,”</i> he says, producing something from behind his back. <i>“But first alien ");
-		if(!pc.isCrotchExposed() && !pc.isAssExposed()) output("take off clothes and ");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Lund show you,");
+		else output("I'll show you,");
+		output("”</i> he says, producing something from behind his back. <i>“");
+		if(!korgiTranslate()) 
+		{
+			output("But first alien ");
+			if(!pc.isCrotchExposed() && !pc.isAssExposed()) output("take off clothes and ");
+		}
+		else
+		{
+			output("But first you need to ");
+			if(!pc.isCrotchExposed() && !pc.isAssExposed()) output("take off your clothes and ");
+		}
 		output("put this on.”</i>");
 		output("\n\nIt’s... a leash. Lund has brought you a leash to wear, attached to a collar. You look at his face then back at the leash, about to say something when you notice the collar has some wording inscribed on it.");
 		output("\n\n<i>“What does this say?”</i> you ask, already knowing the answer.");
-		output("\n\n<i>“Not think alien have word for it. But close to ‘breeding bitch’,”</i> Lund says, a hint of a grin showing. <i>“Think alien suited to it.”</i>");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Not think alien have word for it. But close to ‘breeding bitch’");
+		else output("I don't think you have a word for it. But it's close to 'breeding bitch'");
+		output(",”</i> Lund says, a hint of a grin showing. <i>“");
+		if(!korgiTranslate()) output("Think alien suited to it.");
+		else output("I think you're suited to it.")
+		output("”</i>");
 		output("\n\nYou know you don’t have a choice. It’s wear this or don’t get your holes filled by Lund’s prick, and, well... that’s not really a decision, is it? You ");
 		if(!pc.isExposed()) output("strip down, leaving your clothes in a nearby compartment, and ");
 		output("take the leash from his hands, fastening the collar around your neck yourself. You guess you are now, more or less, officially Lund’s Bitch.");
-		output("\n\n<i>“Have other gifts for alien too,”</i> Lund says cheerfully, his grin readily apparent now. <i>“But wait until later. Earn them. Now come.”</i>");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Have other gifts for alien too");
+		else output("I have other gifts for you too");
+		output(",”</i> Lund says cheerfully, his grin readily apparent now. <i>“But wait until later. Earn them. Now come.”</i>");
 		output("\n\nHe tugs the leash just hard enough to make your head bow to him, stumbling along the floor behind him as he merrily walks down a corridor.");
 		if(pc.isTaur()) 
 		{
 			output("\n\nSuddenly he stops and turns back to you, eyeing your tauric form with a new appreciation.");
-			output("\n\n<i>“Actually,”</i> he declares proudly, <i>“Lund have new idea.”</i>");
+			output("\n\n<i>“Actually,”</i> he declares proudly, <i>“");
+			if(!korgiTranslate()) output("Lund have new idea.");
+			else output("I have a new idea.");
+			output("”</i>");
 			output("\n\nYou very soon find yourself slowly walking through the Hold, completely naked and bereft of dignity, wearing a collar that calls you little more than a breeding bitch, and with a very proud korgonne on your back. Helpless to resist his advances, you’re forced to put up with it when he reaches forward to roughly grope your [pc.breasts] and pinch your [pc.nipples], trying to at least keep your slutty moans low enough not to be heard.");
 			output("\n\nIt doesn’t help that passerbys are already gawking at your nakedness - your nipples as hard as diamonds - but when they pass by your back half you can hear giggles. Your face flushes red as you realize ");
 			if(pc.isHerm()) output("your [pc.cock] is fully erect under your tummy, and your [pc.pussy] is slick, wetness dribbling down your hindlegs");
@@ -554,7 +786,13 @@ public function lundDoggyStyle():void
 		output("\n\nWhen you finally arrive at your destination, the first thing you notice is the balmy sudden, blessed heat. Whether it’s just this room or it was gradual and you only just noticed it, the end result is that you’re so warm enough that being totally exposed is your only option. Clothes would be a hindrance. The next thing you notice is the... cavorting. Every single being in the room is engaged in a sexual act. Right in front of you, a naked korgonne woman looks you right in the eye and moans in orgasm, her considerable chest heaving as the man whose face her ass is occupying sucks her clit. Everywhere you look, korgonne women are being railed doggystyle, or riding someone’s face, or bouncing atop a man’s lap.");
 
 		output("\n\n<i>“What is this place?”</i> you ask, curiousity overcoming you.");
-		output("\n\n<i>“Breeding room,”</i> Lund informs you, spreading an arm. <i>“Like Lund say. For fun, but... also for tribe. More warriors, more hunters, more workers.”</i>");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Breeding room");
+		else output("The breeding room");
+		output(",”</i> Lund informs you, spreading an arm. <i>“");
+		if(!korgiTranslate()) output("Like Lund say. For fun, but... also for tribe. More warriors, more hunters, more workers.");
+		else output("Like I said. It's fun, but... also for the tribe. More warriors, more hunters, and more workers.");
+		output("”</i>");
 		output("\n\nThere’s a few gazes on you, but most of the room’s inhabitants are wholly focused on their own business. It’s actually somewhat refreshing to not be a walking curiosity in here for once. Your watching is interrupted by Lund’s decidedly unsubtle advances, bringing you back to the reality of why you were brought here.");
 		if(pc.isTaur()) 
 		{
@@ -637,7 +875,13 @@ public function lundDoggyStyle():void
 		if(pc.tallness > 5*12*4) output("big, ");
 		output(" dumb alien down a notch?”</i>");
 
-		output("\n\n<i>“You asking for it,”</i> Lund warns you. <i>“Lund going to fuck alien so hard you forget name.”</i>");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("You asking for it,");
+		else output("You're asking for it,");
+		output("”</i> Lund warns you. <i>“");
+		if(!korgiTranslate()) output("Lund going to fuck alien so hard you forget name.");
+		else output("I'm going to fuck you so hard you'll forget your name.");
+		output("”</i>");
 
 		if(pc.tallness >= 12*6) output("\n\n<i>“Wouldn’t expect anything less from my little man,”</i> you say, bending at the knees to look him in the eyes demeaningly.");
 		else output("\n\n<i>“I don’t know if you’ve got the size for that, champ,”</i> you say, smirking at him. <i>“You might be a big boy here, but out among the aliens you come up a little... short.”</i>");
@@ -715,7 +959,10 @@ public function lundDoggyStyle():void
 		output(". Picturesque you aren’t, but right now you couldn’t possibly care less. The way you’re fucking rippling around his knot feels <i>so</i> goddamn good, and if his loud groans are any indication, he’s feeling it too");
 		output("\n\nWhen he finally finishes, he leaves his knot inside you and plops down on your back with a grunt. You both take a deep inhale and groan, the exertion of the past half an hour washing over you in spades. Lund stretches atop you, limbs splaying to either side.");
 		output("\n\n<i>“Guess they weren’t kidding it being about the size of fight in the dog,”</i> you mumble, reaching back to rub his neck scruff. <i>“That was... satisfying.”</i>");
-		output("\n\n<i>“Satisfying? That it?”</i> he says abruptly, sitting back up and putting his hands on your back. <i>“Lund go again.”</i>");
+		output("\n\n<i>“Satisfying? That it?”</i> he says abruptly, sitting back up and putting his hands on your back. <i>“");
+		if(!korgiTranslate()) output("Lund go again.");
+		else output("I'm going again.");
+		output("”</i>");
 		output("\n\n<i>“Huh- Oh!”</i> you begin, before Lund cuts you off with a well-placed thrust. <i>“I- nngh! Hhhn!”</i>");
 		output("\n\n<i>Fuck it,</i> you think, tongue lolling from your mouth. If he wants to show off his endurance and give you multiple orgasms during the act, he’s welcome to. Besides, the way he’s using that <i>goddamn</i> knot of his to fuck you now, you don’t really want him to stop anyway. Post-orgasm sensitivity betraying you in the worst way in your war for dominance, you’re forcefully brought to a groaning orgasm while Lund fucks your ");
 		if(x >= 0) output("[pc.pussy]");
@@ -730,7 +977,10 @@ public function lundDoggyStyle():void
 		output("\n\nBy the time he <i>does</i> cum again, it’s on the heels of your third shuddering, moaning orgasm. The squeezing is just too much for him to hold out against, and he groans loudly as he paints your insides with creamy spunk all over again, adding to the jizz he’s already offloaded in you. Finally, his knot slips free and he sits back on his haunches, panting hard.");
 		output("\n\nYou’re left huffing and covered in a sheen of shimmering sweat, heat rising from your bodies with visible steam, and you’ve probably gotten some bruises across your ass. But <i>fuck</i> if that wasn’t one of the most satisfying fucks you’ve ever gotten. The way your [pc.vagOrAss " + x + "] aches is incredibly satisfying, matched only by the warm, slow drool of Lund’s cum running down your backside.");
 		output("\n\n<i>“Alright, we can call this a draw,”</i> you moan, pushing yourself up with shaky arms. <i>“I think you’ve proven you fuck as well as you talk shit.”</i>");
-		output("\n\n<i>“Some respect for alien,”</i> Lund admits, leaning backwards and stretching. <i>“Could go again, though.”</i>");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Some respect for alien,");
+		else output("I have some respect for you,");
+		output("”</i> Lund admits, leaning backwards and stretching. <i>“Could go again, though.”</i>");
 		output("\n\nYou turn and eye him. Really, after that, he can keep going? Part of you wants to make him prove it, ");
 		if(pc.isAmazon(false) || pc.isTreatedBull() || pc.PQ() >= 70) output("knowing that due to your exceptional strength you should be able to keep up.");
 		else output("but you’re really not sure if you can keep up with him and you know for sure that if you show him weakness, he’ll take full advantage of it - and you.");
@@ -784,7 +1034,10 @@ public function leaveLundSex():void
 	clearOutput();
 	showLund();
 	output("<i>“I’m sure you can, Lund,”</i> you tell him, smiling. <i>“But I have things to do.”</i>");
-	output("\n\n<i>“Hmm,”</i> Lund says, measuring you up before nodding. <i>“Lund think you telling truth. We continue some other time maybe.”</i>");
+	output("\n\n<i>“Hmm,”</i> Lund says, measuring you up before nodding. <i>“");
+	if(!korgiTranslate()) output("Lund think you telling truth. We continue some other time maybe.");
+	else output("I think you're telling the truth. We'll continue some other time, maybe.");
+	output("”</i>");
 	output("\n\n<i>“Oh, you’d like that, wouldn’t you?”</i> you say, your smile turning into a grin. Well, truth be told, so would you. No reason he needs to know that right now though. You gather your things and leave Lund in his room.");
 	processTime(3);
 	//main menu, dump in Hold somewhere
@@ -806,10 +1059,19 @@ public function moreLundSex(x:int):void
 	if(x >= 0) 
 	{
 		output(" You don’t even really question it when he shuffles to your front and presents it to you, sucking it clean and licking it all over just because you think he deserves it after such masterful work.");
-		output("\n\n<i>“Alien tongue as good as fuck,”</i> he sighs, looking down at you with a pleased expression. <i>“Still seem eager... go again?”</i>");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Alien tongue as good as fuck,");
+		else output("Your tongue is almost as good as a fuck,");
+		output("”</i> he sighs, looking down at you with a pleased expression. <i>“");
+		if(!korgiTranslate()) output("Still seem eager... go again?");
+		else output("Still, you seem eager... Want to go again?");
+		output("”</i>");
 	}
 	else output(" He takes it from your abused asshole with a wet slurp and lays it between the cheeks of your [pc.ass], squeezing your butt to create some cleavage.");
-	output("\n\n<i>“Alien has nice body,”</i> he admits, rubbing himself up and down. <i>“Go again?”</i>");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Alien has nice body,");
+	else output("You have a nice body,");
+	output("”</i> he admits, rubbing himself up and down. <i>“Go again?”</i>");
 
 	processTime(20);
 	for(var y:int = 0; y < 5; y++) { pc.orgasm(); }
@@ -827,7 +1089,10 @@ public function leaveMoreLundSex():void
 	clearOutput();
 	showLund(true);
 	output("<i>“No,”</i> you pant, taking a deep breath and trying to hide how out of breath you are. <i>“No, I’m done for now. I have other things to do.”</i>");
-	output("\n\n<i>“Sure,”</i> Lund shrugs disinterestedly. <i>“Lund give you more when you come back.”</i>");
+	output("\n\n<i>“Sure,”</i> Lund shrugs disinterestedly. <i>“");
+	if(!korgiTranslate()) output("Lund give you more when you come back.");
+	else output("I can give you more when you come back.");
+	output("”</i>");
 	output("\n\nThat’s an arrogant assumption on his part, but... whatever. Thinking better of a repartee, you gather your things and leave Lund in his room.");
 	processTime(4);
 	clearMenu();
@@ -844,7 +1109,10 @@ public function evenMoreLundSex(x:int):void
 
 	output("\n\nYou scream into his pillow, your muffled outburst only further spurring the hyperdominant korgonne into fucking you into the bed. You’ve never experienced this kind of challenge before, your body overwhelming your mind with sensations brought on by Lund’s sexual appetite. Even after he cums again, you don’t truly believe he’s done. And sure enough...");
 
-	output("\n\n<i>“Alien want more?”</i> he asks, eyeing you.");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Alien want more?");
+	else output("You want more?");
+	output("”</i> he asks, eyeing you.");
 	output("\n\n<i>“You’re fucking unbelievable,”</i> you pant, still lying on your stomach clutching his pillow.");
 	processTime(20);
 	for(var y:int = 0; y < 5; y++) { pc.orgasm(); }
@@ -863,7 +1131,10 @@ public function leaveEvenMoreLundSex():void
 	showLund(true);
 	output("Still, mustering the last bits of resistance you have towards just letting this stud bang your brains out, you have things to do. Or should be doing, anyway.");
 	output("\n\n<i>“I have to leave,”</i> you groan, getting up from the bed.");
-	output("\n\n<i>“Running away?”</i> Lund asks, moving aside to let you get up. <i>“Lund think he see alien again real soon.”</i>");
+	output("\n\n<i>“Running away?”</i> Lund asks, moving aside to let you get up. <i>“");
+	if(!korgiTranslate()) output("Lund think he see alien again real soon.");
+	else output("I think I'll see you again real soon.");
+	output("”</i>");
 	output("\n\n<i>“Yeah, well... maybe,”</i> you admit, gathering your stuff. You leave Lund in his room.");
 
 	processTime(4);
@@ -896,7 +1167,10 @@ public function evenEvenMoreLundSex(x:int):void
 
 	output("\n\nYou get your wish. In the small room, the noise of you being pounded out echoes off the walls and leaks under the door, the situation blatantly obvious for anyone walking by. You can’t stop your moans either, your voice climbing an octave with every thrust until it breaks and you’re left wordlessly gasping for air. When he cums, all you can muster is a breathless whine.");
 
-	output("\n\n<i>“Hnnnnh,”</i> Lund yawns, stretching his arms out while still inside you, as if this is nothing more to him than a game. <i>“Alien decent fuck. Go last round?”</i>");
+	output("\n\n<i>“Hnnnnh,”</i> Lund yawns, stretching his arms out while still inside you, as if this is nothing more to him than a game. <i>");
+	if(!korgiTranslate()) output("“Alien decent fuck. Go last round?");
+	else output("You're a decent fuck. Want to go one last round?");
+	output("”</i>");
 
 	output("\n\nYou could still leave with your dignity intact...");
 	processTime(30);
@@ -917,7 +1191,10 @@ public function leaveEvenEvenMoreLundSex():void
 	clearOutput();
 	showLund(true);
 	output("You may have lost the battle, but you won’t let yourself lose the war. Slowly relaxing your limbs and groaning as you lift yourself off Lund’s bulging cock, you turn away and gather your things to leave. Lund reclines on his bed and waves you off, smirking all the while.");
-	output("\n\n<i>“Lund probably see you again real soon, huh?”</i>");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Lund probably see you again real soon, huh?");
+	else output("I'll probably see you again real soon, huh?");
+	output("”</i>");
 	output("\n\nYou think better of trying to reply, and instead slowly make your way back through the hold. Maybe next time you’ll take him down a notch or two... yeah, next time.");
 	processTime(3);
 	clearMenu();
@@ -988,7 +1265,10 @@ public function evenEvenEvenMoreLundSex(x:int):void
 
 	output("\n\nTo finish himself off, he breaks free of your grip and pulls himself out, jacking himself off all over your [pc.chest] and your face. Cum lands in your mouth, all over your chest and some of it gets in your eye, prompting you to wince in pain and keep it closed even as you gasp in pleasure. Fuck it, you can’t lie: it feels incredibly empowering to have a strong, studly man groaning while he blows his load all over your body.");
 
-	output("\n\nHnnnnn-nngh,”</i> Lund grunts at length, stretching out and looking down at you after he’s finished. <i>“Alien fuck not bad. Got to go, though.”</i>");
+	output("\n\nHnnnnn-nngh,”</i> Lund grunts at length, stretching out and looking down at you after he’s finished. <i>“");
+	if(!korgiTranslate()) output("Alien fuck not bad. Got to go, though.");
+	else output("You don't fuck too bad. Got to go, though.");
+	output("”</i>");
 
 	output("\n\n<i>“Oh... oh!”</i> you exclaim, suddenly realizing how long you’ve been in his room. Shit, you’ve spent half the day with your brains leaking out your ears in here! <i>“I’ll see you later, okay?”</i>");
 	output("\n\n<i>“Nngh,”</i> Lund grumbles, scratching his ear.");
@@ -1020,7 +1300,10 @@ public function amazonFuckLundsShitUp(x:int):void
 	output("\n\n<i>“Pretty good, right?”</i> you pant loudly, watching Lund twist and grunt under you. <i>“C’mon, gimme that last load of yours.”</i>");
 	output("\n\nAs durable as the korgonne is, you have to <i>work</i> for it. By the time he does cum, swearing loudly and bucking, both of you are dripping sweat and exhaling steam while gripping each other tightly enough to bruise. Shuddering and biting your lip as he blows his load inside you, you finally achieve release on top of him as you feel his knot stretching your walls wide. Tensing your thighs is all you need to keep him inside you and cumming, leaving you free to recline and enjoy the sensation.");
 	output("\n\n<i>“Oh, fuck, that was </i>good<i>,”</i> you moan, head tilted back to look at the ceiling. <i>“Thanks, Lund.”</i>");
-	output("\n\n<i>“Right,”</i> he mutters. <i>“Alien getting off?”</i>");
+	output("\n\n<i>“Right,”</i> he mutters. <i>“");
+	if(!korgiTranslate()) output("Alien getting off?");
+	else output("You getting off?");
+	output("”</i>");
 	output("\n\n<i>“Fuck yea- oh, right,”</i> you realize, lifting yourself off his squeezed-dry cock. It comes free with a wet slurp, both of you wincing in pleasure at the stimulation. <i>“Okay, I’m gonna get outta here. See you soon, maybe!”</i>");
 	output("\n\nGathering your things, you bend down to give the tired korgonne a quick kiss on his snout before leaving. He’s still lying there panting by the time you close the door. Poor guy, maybe you should have gone a little easier... but where’s the fun in that?");
 
@@ -1046,23 +1329,44 @@ public function dickLundDown(x:int):void
 
 	if(flags["LUND_DICKED_DOWN"] == undefined) 
 	{
-		output("\n\n<i>“You want Lund to-”</i> he starts, looking at you incredulously then shaking his head. <i>“Not think alien understand. Lund not do that.”</i>");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("You want Lund to-");
+		else output("You want me to-");
+		output("”</i> he starts, looking at you incredulously then shaking his head. <i>“");
+		if(!korgiTranslate()) output("Not think alien understand. Lund not do that.");
+		else output("I don't think you understand. I won't do that.");
+		output("”</i>");
 		output("\n\n<i>“Aw, c’mon,”</i> you cajole him, rubbing his chest fluff. <i>“Big guy like you, I bet you’ve never even thought about how good it can feel. I bet I can make you cum like a frostwyrm.”</i>");
 		output("\n\nLund fights an internal battle for a little while, but eventually loses to his curiosity.");
-		output("\n\n<i>“Fine,”</i> he mutters, turning away. <i>“But if Lund not like, punishment for alien.”</i>");
+		output("\n\n<i>“Fine,”</i> he mutters, turning away. <i>“");
+		if(!korgiTranslate()) output("But if Lund not like, punishment for alien.");
+		else output("But if I don't like it, I'm going to punish you for it.");
+		output("”</i>");
 		output("\n\n<i>“No need to worry about that,”</i> you tell him, smirking as you watch him start towards his room. You can hardly wait.");
 		output("\n\nOnce you’re in Lund’s room, he’s refreshingly straightforward about it. Unclothed and on all fours upon his bed within a few seconds, he looks back at you with apprehension writ large on his face.");
-		output("\n\n<i>“Well? Alien start?”</i>");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Well? Alien start?");
+		else output("Well? Are you going to start?");
+		output("”</i>");
 		moveToLundsHouse();
 		output("\n\n<i>“What?”</i> you say, confused. <i>“No, no - you need to be lubed up, first. Here, relax.”</i>");
 		output("\n\nPlanting a hand on his right buttock, you take a second to admire Lund’s ass. He has the build of an athlete, and the muscle back here has just enough heft to support the tight, bubble-butt shape. It’s enough to make your mouth water.");
 		output("\n\n<i>“Did you think I was just going to go in raw?”</i> you ask, shaking your head as you drool on your fingers. <i>“That’s real brave of you, but jeez. You’re not enough of an asshole for that.”</i>");
-		output("\n\n<i>“Not know alien rit- yawp!”</i> Lund squeaks when you slip a lubed-up finger into his butt, immediately squeezing down on you so hard you can’t move it.");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Not know alien rit- yawp!");
+		else output("I don't know alien rit- yawp!");
+		output("”</i> Lund squeaks when you slip a lubed-up finger into his butt, immediately squeezing down on you so hard you can’t move it.");
 		output("\n\n<i>“Relaaax,”</i> you reassure him, rubbing his ass with your free hand. <i>“Just getting you warmed up.”</i>");
-		output("\n\n<i>“Not f-feel nice,”</i> Lund moans from up front.");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Not f-feel nice,");
+		else output("It doesn't f-feel nice,");
+		output("”</i> Lund moans from up front.");
 		output("\n\n<i>“Just wait,”</i> you tell him, snaking an arm around his hips to rub his balls slowly.");
 		output("\n\nHe responds to <i>that</i> pretty well, at least. You make comforting noises while you slip another finger inside the moaning korgonne, surprised at how well his tight little butt is taking this. He’s still working past the constant flexing, but once he manages to relax you think he’ll be in for a really, really good time. Angling your fingers downward, you start to gently rub along his walls until you locate what you’re looking for - the slight, sensitive protrusion of his prostate gland.");
-		output("\n\nNnn-?!”</i> he groans, his erect cock suddenly flagging. <i>“What alien doing?”</i>");
+		output("\n\nNnn-?!”</i> he groans, his erect cock suddenly flagging. <i>“");
+		if(!korgiTranslate()) output("What alien doing?");
+		else output("What are you doing?");
+		output("”</i>");
 		output("\n\n<i>“Just a little massage,”</i> you murmur sensually, gliding your fingers over the spot again and again. <i>“Don’t worry about it too much, big boy.”</i>");
 		output("\n\nIf his moans are anything to judge by, he won’t. Gradually, he relaxes his arms more and more, until finally he crosses them on the bed and lays his head atop them, keeping his ass high in the air for you to slowly fingerfuck. You can feel his cock drooling messily all over the hand you’re still rubbing his balls with, making a mess between his matted fur and ");
 		if(pc.hasFur()) output("yours.");
@@ -1103,7 +1407,12 @@ public function dickLundDown(x:int):void
 		output("\n\nTired and weak, he lets the pillow drop from his mouth, drooling onto his chest even as you pull him gently backwards into a hug. You ruffle the smooth fluff under his neck as he moans and slowly pull out from his asshole, letting your thick jizz slowly leak from his ass. Deciding to spend the next few minutes until Lund regains his senses taking care of him, you deign to lick and kiss the back of his neck, rubbing him all over.");
 		output("\n\nSure enough, when he finally recovers from the intensity of your fucking, he flops forward onto the bed with a tired grunt and waves you away. Not wanting to impose, you quickly plant a kiss and a rub between his shoulder blades and quietly gather your things, leaving the probably-sulky korgonne to himself.");
 		output("\n\nOut in the hallway, you pass by a little gaggle of fluffy korgonne girls milling about and give them a friendly wave. They reciprocate the gesture and, perhaps out of curiosity, eye you closer.");
-		output("\n\n<i>“Lund howl?”</i> one of the korgonne women asks, peering at you. <i>“What alien do?”</i>");
+		output("\n\n<i>“Lund howl");
+		if(korgiTranslate()) output("ed");
+		output("?”</i> one of the korgonne women asks, peering at you. <i>“");
+		if(!korgiTranslate()) output("What alien do?");
+		else output("What did you do?");
+		output("”</i>");
 		processTime(20);
 		pc.orgasm();
 		clearMenu();
@@ -1116,10 +1425,15 @@ public function dickLundDown(x:int):void
 		//Need dick, can’t be bimbo. Can’t have submitted.
 		output("\n\n<i>“Fine, but only this once. No more,”</i> he warns, looking from side to side.");
 		output("\n\n<i>“Awww, don’t worry,”</i> you murmur, getting closer to the bashful korgonne and running a hand through his hair. <i>“No-one will ever know how much you enjoy being my little </i>bitch<i>. Or what you sound like when my cock slides between your legs,”</i> you continue, moving your hand lower to rub his chest. <i>“That’s just for me and you, cutie.”</i>");
-		output("\n\n<i>“Alright, alright,”</i> he mumbles, defeated and with a growing bulge beneath his loincloth. <i>“Come to room.”</i>");
+		output("\n\n<i>“Alright, alright,”</i> he mumbles, defeated and with a growing bulge beneath his loincloth. <i>“Come to ");
+		if(korgiTranslate()) output("my ");
+		output("room.”</i>");
 		output("\n\nYou stride behind him with a smile across your face, feeling like a trillion bucks. Being guided to his own room by the adorable Korgii male you’ve bent to your will, so that you can get him on his back and make him cum all over himself while he moans your name? Yeah. You could <i>definitely</i> get used to this.");
 		output("\n\nWhen you get to his room, you shut the door behind you and wait, standing there with a smirk. Lund turns to face you, confused.");
-		output("\n\n<i>“What alien doing?”</i> he asks, already somewhat uncertain.");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("What alien doing?");
+		else output("What are you doing?");
+		output("”</i> he asks, already somewhat uncertain.");
 		output("\n\n<i>“I’d just like you to get me ready to fuck you,”</i> you say innocently, gesturing at your crotch. He takes a step towards you and you stop him, pointing at his snout. <i>“With your mouth.”</i>");
 		output("\n\nFor a moment, you can see him fighting this. His pride and dignity against your overbearing will and the fact he really, really wants to feel your [pc.cock " + x + "] inside him again. It doesn’t take long for the battle to be decided, and he drops to his knees in front of your grinning visage. He’s really yours now, and he knows it.");
 		output("\n\n<i>“Good boy,”</i> you tell him, ruffling his hair. <i>“Just do what comes natural, okay?”</i>");
@@ -1188,9 +1502,15 @@ public function dickLundDown(x:int):void
 
 		output("\n\nWith a shuddering groan, Lund’s back arches and a droplet of spunk hits the bed. Then another, and the next moment you’re tightening your grip on his hands and fucking the rest out of him with hard grunts of effort. He breaks into a howl instinctively but keeps it quiet, the stimulation of his asshole and prostate driving his orgasm onwards even as ropes of seed spurt from the end of his half-erect cock. You don’t stop pounding him throughout the entire process, and by the end of it he’s slumped beneath you with his snout in the sheets just moaning like a bitch.");
 		output("\n\n<i>“Good boy,”</i> you pant, halting for just a moment. <i>“Do you wanna cum again, Lund? Say you want me to make you cum again.”</i>");
-		output("\n\n<i>“Please,”</i> Lund moans, trying to thrust back into you. <i>“Alien make Lund cum!”</i>");
+		output("\n\n<i>“Please,”</i> Lund moans, trying to thrust back into you. <i>“");
+		if(!korgiTranslate()) output("Alien make Lund cum!");
+		else output("Alien, make me cum!");
+		output("”</i>");
 		output("\n\n<i>“It’s not </i>alien<i>,”</i> you say, punctuating the word with a particularly rough thrust. <i>“It’s [pc.name]. Say it!”</i>");
-		output("\n\n<i>“[pc.name]! [pc.name] make Lund cum!”</i> he cries, fingers digging into his sheets.");
+		output("\n\n<i>“[pc.name]! [pc.name] make ");
+		if(!korgiTranslate()) output("Lund");
+		else output("me");
+		output(" cum!”</i> he cries, fingers digging into his sheets.");
 		output("\n\n<i>“Good boy,”</i> you tell him, and resume slamming your cock into his tight little asshole.");
 		output("\n\nThe way he moves and cries out underneath you, you’re pretty sure you’ve got him cumming almost nonstop. By the time you’re ready to bust a nut inside him, he’s only too ready to receive it, moaning in ecstasy while his fingers rake the mattress with every thrust. You don’t bother to warn him, just pumping him harder until finally, the tingling sensation at the base of your cock coalesces into pure pleasure and you let out a loud groan of release.");
 
@@ -1243,7 +1563,10 @@ public function dontCoverForLund():void
 	generateMap();
 	showName("\nBRAGGING!");
 	output("<i>“He </i>really<i> likes a fat cock up his ass,”</i> you tell them, making a lewd sign with two of your fingers and a tight hole formed with your other hand. <i>“I made him cum his brains out with a reacharound, it was super hot.”</i>");
-	output("\n\n<i>“Wow!”</i> exclaims the one who asked you, turning to her friends. <i>“Maybe next fuck I sneak finger in to make howl. Bye alien!”</i>");
+	output("\n\n<i>“Wow!”</i> exclaims the one who asked you, turning to her friends. <i>“");
+	if(!korgiTranslate()) output("Maybe next fuck I sneak finger in to make howl. Bye alien!");
+	else output("Maybe next time we fuck, I'll sneak a finger in to make him howl. Bye, alien!");
+	output("”</i>");
 	output("\n\nHmm. Not exactly the reception you were hoping for, but it could get interesting later when word gets around.");
 	processTime(4);
 	//flag this
@@ -1261,7 +1584,13 @@ public function rideLundWheeee(x:int):void
 	if(pc.isBimbo()) 
 	{
 		output("<i>“So like, how do you wanna fuck?”</i> you say, tilting your head and putting some serious thought into it. <i>“I wanna-”</i>");
-		output("\n\n<i>“You not get choice,”</i> he tells you, shaking his finger. <i>“You not in charge. Lund know you prefer it. A man tell you where to go, what to do. How wide to spread legs. When to swallow.”</i>");
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("You not get choice,");
+		else output("You don't get a choice,");
+		output("”</i> he tells you, shaking his finger. <i>“");
+		if(!korgiTranslate()) output("You not in charge. Lund know you prefer it. A man tell you where to go, what to do. How wide to spread legs. When to swallow.");
+		else output("You're not in charge. I know how you prefer it. Let the man tell you where to go, what to do, and how wide to spread your [pc.thighs].");
+		output("”</i>");
 		output("\n\n<i>“I- Uuuhh,”</i> you mutter, losing yourself in his words. Gosh, he always knows just what to say to you...");
 		//Added here since OTHER bimbo scene increments this before the bimbo check.
 		IncrementFlag("SEXED_LUND");
@@ -1274,19 +1603,28 @@ public function rideLundWheeee(x:int):void
 	else if(flags["LUND_RIDE_HIMMED"] == undefined)
 	{
 		output("<i>“How about I take you for the ride of your life, and we can figure out afterwards if I belong ‘on the bottom’, hm?”</i> You murmur in his ear. <i>“Just one try.”</i>");
-		output("\n\n<i>“Ha,”</i> Lund snorts, then shrugs. <i>“Okay, one shot. Don’t blame Lund when alien get fucked through floor.”</i>");
+		output("\n\n<i>“Ha,”</i> Lund snorts, then shrugs. <i>“");
+		if(!korgiTranslate()) output("Okay, one shot. Don’t blame Lund when alien get fucked through floor.");
+		else output("Okay, you get one shot. Don't blame me when you get fucked through the floor.");
+		output("”</i>");
 	}
 	//Not bimbo, repeat
 	else
 	{
 		output("<i>“So?”</i> you ask, leaning in to murmur in his ear. <i>“Have I earned another chance to argue for my position?”</i>");
-		output("\n\n<i>“Pretty convincing,”</i> Lund grunts, acknowledging your prowess. <i>“Alien can try again. See if good.”</i>");
+		output("\n\n<i>“Pretty convincing,”</i> Lund grunts, acknowledging your prowess. <i>“");
+		if(!korgiTranslate()) output("Alien can try again. See if good.");
+		else output("You can try again. We'll see if it's good.");
+		output("”</i>");
 	}
 	output("\n\nIn Lund’s room, you have ");
 	if(!pc.isCrotchExposed()) output("yourself and ");
 	output("the korgonne undressed and ready in moments, pressing against his fur and reaching down between his legs to coax his oversized length from its sheath. Kissing Lund as you bear him to the bed, you lay him down and straddle him with a wide smile.");
 	output("\n\n<i>“Hope you’re ready for this, Lund,”</i> you tell him, feeling his cock swell and harden against your [pc.ass]. <i>“I dunno if you’re man enough to take it.”</i>");
-	output("\n\n<i>“Hmph,”</i> Lund grunts, reaching up to spread his hands across your [pc.chest]. <i>“You not bait Lund to do all work.”</i>");
+	output("\n\n<i>“Hmph,”</i> Lund grunts, reaching up to spread his hands across your [pc.chest]. <i>“");
+	if(!korgiTranslate()) output("You not bait Lund to do all work.");
+	else output("You won't bait me into doing all the work.");
+	output("”</i>");
 	output("\n\nSatisfied you’ve convinced him to let you take the lead, you settle back and let the thought of teasing him fade from your mind. You really just want for the both of you to have a good time, and assuaging Lund’s machismo tendencies is probably the easiest way. Reaching back, you lightly take ahold of his canine prick and align it with your [pc.vagOrAss " + x + "]. You groan in pleasure as you slowly slide backwards onto it, using your hips to take it inside. Lund grunts, chewing his lip while the crown of his dick spreads you apart.");
 	
 	var lundipoo:PregnancyPlaceholder = lundCumPlaceholder();
@@ -1371,10 +1709,19 @@ public function bimboLundSex(x:int = -2):void
 {
 	clearOutput();
 	showLund(true);
-	output("<i>“It okay,”</i> Lund nods, spreading his arms. <i>“Lund can give alien what want. Alien just need shut up and sit down.”</i>");
+	output("<i>“It okay,”</i> Lund nods, spreading his arms. <i>“");
+	if(!korgiTranslate()) output("Lund can give alien what want. Alien just need shut up and sit down.");
+	else output("I can give you what you want. You just need to shut up and sit down.");
+	output("”</i>");
 	output("\n\n<i>“Not here!”</i> he hisses immediately, looking around and pulling his groin back from your outstretched hand.");
 	output("\n\n<i>“Oh, sorry,”</i> you say confusedly, standing back up. Following orders is hard sometimes.");
-	output("\n\n<i>“No, it Lund fault,”</i> he sighs. <i>“Need remember alien follow simple instructions. Come.”</i>");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("No, it Lund fault,");
+	else output("No, it's my fault,");
+	output("”</i> he sighs. <i>“");
+	if(!korgiTranslate()) output("Need remember alien follow simple instructions. Come.");
+	else output("I need to remember aliens can't follow simple instructions. Come.");
+	output("”</i>");
 	output("\n\n<i>“All over your cock!”</i> you happily agree, attracting a couple of grins from passing korgonne. Lund doesn’t even say anything, just tugging you along.");
 	processTime(1);
 	clearMenu();
@@ -1386,12 +1733,18 @@ public function bimboLundSexNext(x:int):void
 	moveToLundsHouse();
 	showLund(true);
 	output("<i>“Ooh, your room! Oh my gosh, I feel so special,”</i> you titter, looking around at the mostly-bare living space while he shuts the door. <i>“I actually don’t get to do this often! Usually it’s just wherever th-”</i>");
-	output("\n\n<i>“Hold this in mouth a second,”</i> Lund says, handing you his waistcloth. Obliging the furry man, you put it in your mouth and chomp down on it.");
+	output("\n\n<i>“Hold this in ");
+	if(korgiTranslate()) output("your ");
+	output("mouth a second,”</i> Lund says, handing you his waistcloth. Obliging the furry man, you put it in your mouth and chomp down on it.");
 	output("\n\n<i>“Rlike dish?”</i> you slur through the cloth.");
 	output("\n\n<i>“Hmm,”</i> Lund hums, considering. <i>“This and this too.”</i>");
 	output("\n\nNow you have three waistcloths in your mouth. You ask Lund what they’re for and he listens to your question intently, the words coming out mostly as muffled, indistinct mumblings.");
 	output("\n\n<i>“Perfect,”</i> he sighs, looking relieved. You’re not sure why, but you have a few seconds to mull it over before the telltale rustling of cloth draws your attention. Presented with the sight of Lund’s magnificent canine cock, you almost drop the waistcloths before remembering he told you to hold them. Instead you make a quiet whine of need that makes one of his ears twitch.");
-	output("\n\n<i>“On bed,”</i> he points, motioning that you should turn around. <i>“Get on hands and knees.”</i>");
+	output("\n\n<i>“On ");
+	if(korgiTranslate()) output("the ");
+	output("bed,”</i> he points, motioning that you should turn around. <i>“Get on ");
+	if(korgiTranslate()) output("your ");
+	output("hands and knees.”</i>");
 	output("\n\nYou guess an alien that looks like a doggy probably wants to bone like one too, and for a moment you giggle at your own clever pun. Getting on the bed and wiggling your butt, you arch your back sensually and turn back to look at him with a smug face. Forgetting your speech is all but unintelligible right now, you start to say something only to be shocked into silence when Lund slides his entire fucking cock into your ");
 	
 	if(x < -1)
@@ -1408,7 +1761,10 @@ public function bimboLundSexNext(x:int):void
 	else output("asshole");
 	output(" desperately clamps down on the fat dick inside it, guaranteeing the pleasure of the one inside you.");
 
-	output("\n\n<i>“Fuuuck,”</i> Lund moans, jerking his hips. <i>“Alien worth it.”</i>");
+	output("\n\n<i>“Fuuuck,”</i> Lund moans, jerking his hips. <i>“");
+	if(!korgiTranslate()) output("Alien worth it.");
+	else output("This was worth it.");
+	output("”</i>");
 	output("\n\nA mindless, breathless giggle of joy escapes your mouth unbidden, your eyes rolling upwards as pleasure bubbles to the forefront of your mind, obscuring everything but the most important sensation: the need to please. Being a fun, slutty bimbo for the boys to enjoy... it’s nice to be so <i>solidly</i> reminded of your place every so often. Forcefully, even.");
 
 	output("\n\nArching your back like the good playtoy you are, you moan like a bitch as Lund begins to fuck you in earnest, spreading your legs with his hands dominantly wrapped around your [pc.hips] to keep you in place. ");
@@ -1466,7 +1822,10 @@ public function bimboLundSexNext(x:int):void
 
 	output("\n\n<i>“Did you like it?”</i> you ask, fluttering your eyelashes.");
 
-	output("\n\n<i>“Could get used to it,”</i> Lund says, looking down at you from atop your chest. <i>“Maybe try that out again.”</i>");
+	output("\n\n<i>“Could get used to it,”</i> Lund says, looking down at you from atop your chest. <i>“");
+	if(!korgiTranslate()) output("Maybe try that out again.");
+	else output("Maybe we'll try that out again.");
+	output("”</i>");
 
 	output("\n\nYou smile before opening your mouth wide, exposing your pearly-white teeth and throat. Lund doesn’t bother resisting the sight.");
 
@@ -1509,9 +1868,18 @@ public function leaveLundsSexMenu():void
 	output("You shake your head after a second of consideration. <i>“Nah.”</i>");
 	if(pc.isBimbo()) 
 	{
-		output("\n\nLund shrugs. <i>“Lund not fuck you this time. You come running soon enough.”</i>");
+		output("\n\nLund shrugs. <i>“");
+		if(!korgiTranslate()) output("Lund not fuck you this time. You come running soon enough.");
+		else output("I won't fuck you this time. You'll come running soon enough.");
+		output("”</i>");
 		output("\n\nAs if! Well... maybe. You cast a longing look down at his kilt before stepping away.");
 	}
-	else output("\n\n<i>“What, alien scare?”</i> Lund jeers, smiling smugly. <i>“Scare to lose to Lund. It okay, Lund understand. Come back when alien feel brave. Ha!”</i>");
+	else output("\n\n<i>“What, ");
+	if(!korgiTranslate()) output("alien scare");
+	else output("you scared");
+	output("?”</i> Lund jeers, smiling smugly. <i>“");
+	if(!korgiTranslate()) output("Scare to lose to Lund. It okay, Lund understand. Come back when alien feel brave. Ha!");
+	else output("Scared to lose to me. It's okay. I understand. Come back when you feel brave. Ha!");
+	output("”</i>");
 	lundMenu();
 }
