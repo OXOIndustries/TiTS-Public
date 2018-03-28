@@ -3877,6 +3877,7 @@ public function annoBarEncounterRouter():void
 	funcList.push(annoGonnaGitIt);
 	funcList.push(annoGonnaGitDragonBOOOTAYYYYY);
 	if(annoIsHuskar()) funcList.push(annoThicknessBarEvent);
+	if(kaseIsCrew()) funcList.push(annoKaseBarEvent);
 	if(syriAtBurts() && currentLocation != "BURT'S MAIN HALL") funcList.push(annoPupAtWork);
 	
 	if(funcList.length > 0) funcList[rand(funcList.length)]();
@@ -3898,6 +3899,23 @@ public function annoThicknessBarEvent():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+
+public function annoKaseBarEvent():void
+{
+	clearOutput();
+	showBust(annoBustDisplay(), kaseBustDisplay());
+	showName("ANNO &\nKASE");
+	author("HugsAlright");
+
+	output("Walking towards the snowy pup, you notice she's not alone, but is sitting next to another one of you crewmates, Kase.");
+	output("\n\nThe catboy isn't dressed nearly as casually as his canine friend, making it seem like his decision to join Anno must have been a spontaneous one. Nonetheless, they both are sipping their own brightly coloured drinks. Judging by the amount of empty glasses by Anno and the single, half empty drink her kaithrit subordinate has, Kase isn't much of a drinker. Still, they both smile and laugh happily with each other, and what's more, it doesn't seem like your ausar companion is even flirting with the catboy, keeping a distance that has Kase looking very comfortable, despite his usual nervousness around Anno.");
+	output("\n\nThe whole thing is quite cute, and you figure you'll let the two enjoy each other's company.");
+
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
 //Anno Shoots a Guy Down
 public function annoShootsAGuyDownnnn():void
 {
