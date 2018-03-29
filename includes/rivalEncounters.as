@@ -151,9 +151,9 @@ public function probeReclamationMhenga(response:int = 0):void
 		flags["MHENGA_PROBE_CASH_GOT"] = 1;
 		variableRoomUpdateCheck();
 		generateMapForLocation(currentLocation);
-		if(pc.hasGenitals() && pc.lust() >= 33)
+		if((pc.cockThatFits(600) >= 0 || pc.hasVagina()) && pc.lust() >= 33)
 		{
-			output("\n\nNice. Though there's something else the cute dzaan could do for you if she has the time...");
+			output("\n\nNice. Though there’s something else the cute dzaan could do for you if she has the time...");
 			clearMenu();
 			addButton(1,"Fuck",millieBonusSex,undefined,"Fuck","Have a quickie with Milly before she leaves.");
 			addButton(0,"Thank Her",thankMilly,undefined,"Thank Her","Thank Milly and send her on her way.");
@@ -203,6 +203,9 @@ public function millieBonusSex():void
 	output("\n\n<i>“Damn, you’re curvy </i>everywhere<i>,”</i> you murmur, teasing her nips just a bit.");
 	output("\n\n<i>“Nnnnmm,”</i> Milly sighs in satisfaction, subtly rubbing her thighs together as you play with her. <i>“I’m told that’s my best ass-et...”</i>");
 	output("\n\n<i>“Jokes too?”</i> you say, grinning. <i>“This should be fun.”</i>");
+	
+	var cIdx:int = pc.cockThatFits(600);
+	
 	if(!pc.isCrotchExposed()) 
 	{
 		output("\n\n<i>“Can I see- uh, what you’re... packing?”</i> Milly asks hesitantly. <i>“Sorry, I’ve never been very good with dirty talk.”</i>");
@@ -212,7 +215,7 @@ public function millieBonusSex():void
 		{
 			output("puts her hands between your [pc.legs] and gets a nice handful of ");
 			if(pc.balls > 0) output("your [pc.balls]");
-			else if(pc.hasCock()) output("your [pc.cockBiggest]");
+			else if(cIdx >= 0) output("your [pc.cockBiggest]");
 			else output("your [pc.pussy]");
 			output(", her eyebrows raising before a grin crosses her face.");
 		}
@@ -220,7 +223,7 @@ public function millieBonusSex():void
 	if(pc.isTaur()) 
 	{
 		if(pc.isCrotchExposed()) output("\n\nShuffling between your legs, Milly ");
-		if(pc.hasCock()) output("gets an immediate eyeful of your [pc.cockBiggest], a low whistle then a giggle issuing from underneath you");
+		if(cIdx >= 0) output("gets an immediate eyeful of your [pc.cockBiggest], a low whistle then a giggle issuing from underneath you");
 		else output("stretches her hand up your hindquarters and gets a couple of fingers inside your [pc.pussy]");
 		output(". You can hear the grin in her voice when she speaks.");
 	}
@@ -231,26 +234,25 @@ public function millieBonusSex():void
 	output("\n\n<i>“I get pretty wet,”</i> she admits, her face coloring itself a deep shade of scarlet once more. <i>“It’s a little embarrassing, actually.”</i>");
 	output("\n\n<i>“Don’t be embarrassed, that’s hot as fuck,”</i> you tell her, shaking your head. <i>“Like anyone’s going to complain that you’re turned on for them.”</i>");
 	output("\n\n<i>“Thanks, that does actually make me feel a little better,”</i> she says, giving you a lopsided grin. <i>“So... how do you want me?”</i>");
-	if(pc.hasCock() && !pc.isTaur()) 
+	if(cIdx >= 0 && !pc.isTaur()) 
 	{
-		var c:int = pc.cockThatFits(600);
 		output("\n\nGiven that you have a cock, you absolutely cannot pass up the opportunity to watch her jiggle from behind as you fuck her pussy. Some part of you harbors a slight suspicion about Steele Tech’s hiring criteria given Milly’s divine proportions, but you don’t see the issue. Regardless, you have a perfect d’zaan girl in front of you to fuck. You make a downward-pointing twirling motion with your finger and smile.");
 		output("\n\n<i>“Turn that amazing ass of yours around, Milly. Might help to brace yourself on the bike.”</i>");
 		output("\n\n<i>“Yes sir,”</i> she says, grinning as she turns. Putting her hands out on her bike, spreading her legs, and turning back to you, she flutters her eyelashes. <i>“Like what you see?”</i>");
 		output("\n\n<i>“Fuck yeah I do,”</i> you murmur, taking a second just to appreciate the sight. But only a second. <i>“Hope you’re ready for a little rough action, Milly.”</i>");
 		output("\n\n<i>“I’m well-equipped to handle it,”</i> she replies smugly, sighing lustily as you place your hands on her waspish waist. She’s not kidding, either. With this kind of padding you could probably rail her like she’s a New Texan cowgirl, but she did say she wasn’t too experienced. Best to start her off slow.");
-		output("\n\nShe moans when she feels you at her entrance, gasps when you slip your [pc.cockHead " + c + "] in, and gives a low, lengthy scream of pleasure as you slide yourself home.");
+		output("\n\nShe moans when she feels you at her entrance, gasps when you slip your [pc.cockHead " + cIdx + "] in, and gives a low, lengthy scream of pleasure as you slide yourself home.");
 		pc.cockChange();
 
-		if(pc.cocks[x].cLength() < 12) output("\n\n<i>“Oh god, that’s goooood,”</i> she pants, squirming in your grasp. <i>“I can feel you so deep inside...”</i>}");
-		else if(pc.cocks[x].cLength() < 24) output("\n\n<i>“Oohhh god,”</i> she groans in pleasure, shaking in your grip. <i>“You’re a lot bigger than anyone I’ve been with!”</i>");
+		if(pc.cocks[cIdx].cLength() < 12) output("\n\n<i>“Oh god, that’s goooood,”</i> she pants, squirming in your grasp. <i>“I can feel you so deep inside...”</i>");
+		else if(pc.cocks[cIdx].cLength() < 24) output("\n\n<i>“Oohhh god,”</i> she groans in pleasure, shaking in your grip. <i>“You’re a lot bigger than anyone I’ve been with!”</i>");
 		else output("\n\n<i>“Oh, god! Fuck!”</i> she screams into the forest, shuddering and bouncing on your cock. <i>“You’re fucking huge!”</i>");
 
 		output("\n\nBy the time you’ve even gotten yourself properly acquainted with the pleasure of fucking Milly’s pussy, she’s cum on your cock three times, straining her voice to express her joy. This girl is on a hair-trigger, and not afraid to let you know about it. With the way she squirts so hard when she cums, it’s impossible not to know when it happens.");
 		output("\n\n<i>“Ooooggggh god,”</i> she groans, head hanging low as your thighs bounce off her ass. <i>“Please cum in me before I go crazy! Please!”</i>");
 		output("\n\n<i>“Whatever you say,”</i> you huff, beginning to fuck her as hard as you can, the staccato sound of [pc.skinFurScales] slapping skin resounding throughout the little clearing as you fuck the daylights out of Milly with her draped over her bike. Gritting your teeth, you pull her braided ponytail and cum in her with a rough grunt, your instincts telling you to get as deep as possible inside her while she squirts all over your ");
 		if(pc.balls > 0) output("[pc.balls].");
-		else output("[pc.cock " + c + "].");
+		else output("[pc.cock " + cIdx + "].");
 		output("\n\nOnce you’re satisfied with how much you’ve unloaded inside her, you pull out and let her drip all down her thighs. Her creamed cunt glistens with your and her fluids, a steady drool of spunk running down her legs.");
 		output("\n\n<i>“Ooohhhh my god,”</i> Milly moans, rolling over onto her back and sending another cascade of spunk down her thighs. <i>“I have </i>never<i> fucked like that. Ever.”</i>");
 		output("\n\n<i>“Glad to help,”</i> you say, tipping an imaginary ten-gallon hat and earning a breathless laugh. The sight of her lying on her back, chest heaving and sweat-slick caramel skin has you wanting to go all over again. Not to mention she’s still leaking <i>your</i> cum from that tight, quivering pussy...");
@@ -258,20 +260,19 @@ public function millieBonusSex():void
 		output("\n\nBy the time you send the happy girl back to her crew with a pat on the butt, spunk down her throat and up her pussy, and a kiss on the cheek, you’ve cum in her three times. You briefly entertain the notion that you’ve just encountered a succubus instead of a cute d’zaan chick before getting ready to head back into the jungle proper.");
 	}
 	//Havecock, taur
-	else if(pc.hasCock())
+	else if(cIdx >= 0)
 	{
-		var tc:int = pc.cockThatFits(600);
-		output("\n\nHer divine proportions, like those of an old Earth fertility goddess, have inspired both you and your [pc.cock " + tc + "]. You’ve got to have that wet, warm pussy wrapped around your dick. You make a downward-pointing twirling motion with your finger and smile.");
+		output("\n\nHer divine proportions, like those of an old Earth fertility goddess, have inspired both you and your [pc.cock " + cIdx + "]. You’ve got to have that wet, warm pussy wrapped around your dick. You make a downward-pointing twirling motion with your finger and smile.");
 		output("\n\n<i>“Turn that amazing ass of yours around, Milly. Might help to brace yourself on the bike so I can mount you.”</i>");
 		output("\n\n<i>“Ooooh, </i>mounting<i>,”</i> she murmurs, biting her lip as she turns. <i>“Has a sexy ring to it...”</i>");
 		output("\n\n<i>“It does, doesn’t it?”</i> you agree, taking a step behind her as she bends.");
 		output("\n\nPutting her hands out on her bike, spreading her legs, and turning back to you, she flutters her eyelashes. <i>“Like what you see?”</i>");
 		output("\n\n<i>“Fuck yeah I do,”</i> you murmur, taking a second just to appreciate the sight. But only a second. <i>“Hope you’re ready for a little rough action, Milly.”</i>");
 		output("\n\n<i>“I’m well-equipped to handle it,”</i> she replies smugly, sighing lustily as you place your hands on her waspish waist. She’s not kidding, either. With this kind of padding you could probably rail her like she’s a New Texan cowgirl, but she did say she wasn’t too experienced. Best to start her off slow.");
-		output("\n\nShe moans when she feels you at her entrance, gasps when you slip your [pc.cockHead " + tc + "] in, and gives a low, lengthy scream of pleasure as you slide yourself home.");
+		output("\n\nShe moans when she feels you at her entrance, gasps when you slip your [pc.cockHead " + cIdx + "] in, and gives a low, lengthy scream of pleasure as you slide yourself home.");
 		pc.cockChange();
-		if(pc.cocks[x].cLength() < 12) output("\n\n<i>“Oh god, that’s goooood,”</i> she pants, squirming in your grasp. <i>“I can feel you so deep inside...”</i>}");
-		else if(pc.cocks[x].cLength() < 24) output("\n\n<i>“Oohhh god,”</i> she groans in pleasure, shaking in your grip. <i>“You’re a lot bigger than anyone I’ve been with!”</i>");
+		if(pc.cocks[cIdx].cLength() < 12) output("\n\n<i>“Oh god, that’s goooood,”</i> she pants, squirming in your grasp. <i>“I can feel you so deep inside...”</i>");
+		else if(pc.cocks[cIdx].cLength() < 24) output("\n\n<i>“Oohhh god,”</i> she groans in pleasure, shaking in your grip. <i>“You’re a lot bigger than anyone I’ve been with!”</i>");
 		else output("\n\n<i>“Oh, god! Fuck!”</i> she screams into the forest, shuddering and bouncing on your cock. <i>“You’re fucking huge!”</i>");
 		
 		output("\n\nBy the time you’ve even gotten yourself properly acquainted with the pleasure of fucking Milly’s pussy, she’s cum on your cock three times, straining her voice to express her joy. This girl is on a hair-trigger, and not afraid to let you know about it. With the way she squirts so hard when she cums, it’s impossible not to know when it happens.");
@@ -279,7 +280,7 @@ public function millieBonusSex():void
 
 		output("\n\n<i>“Whatever you say,”</i> you huff, beginning to fuck her as hard as you can, the staccato sound of [pc.skinFurScales] slapping skin resounding throughout the little clearing as you fuck the daylights out of Milly with her draped over her bike. Gritting your teeth, you cum in her with a rough grunt, your instincts telling you to get as deep as possible inside her while she squirts all over your ");
 		if(pc.balls > 0) output("[pc.balls]");
-		else output("[pc.cock " + c + "]");
+		else output("[pc.cock " + cIdx + "]");
 		output(".");
 
 		output("\n\nOnce you’re satisfied with how much you’ve unloaded inside her, you pull out and let her drip all down her thighs. Her creamed cunt glistens with your and her fluids, a steady drool of spunk running down her legs.");

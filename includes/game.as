@@ -2589,13 +2589,13 @@ public function variableRoomUpdateCheck():void
 		rooms["9017"].addFlag(GLOBAL.NPC);
 	}
 	else rooms["9017"].removeFlag(GLOBAL.NPC);
-	
+	// Fisi
 	if(fisiAtResDeck()) 
 	{
 		rooms["RESIDENTIAL DECK 5"].addFlag(GLOBAL.NPC);
 	}
 	else rooms["RESIDENTIAL DECK 5"].removeFlag(GLOBAL.NPC);
-	
+	// Riya
 	if(flags["MET_RIYA"] != undefined && riyaAtNursery())
 	{
 		rooms["CANADA4"].removeFlag(GLOBAL.NPC);
@@ -2625,6 +2625,9 @@ public function variableRoomUpdateCheck():void
 	}
 	if(flags["KASE_CREW"] == 0 && !rooms["RESIDENTIAL DECK KASES APARTMENT"].hasFlag(GLOBAL.NPC)) rooms["RESIDENTIAL DECK KASES APARTMENT"].addFlag(GLOBAL.NPC);
 	else if(flags["KASE_CREW"] != 0 && rooms["RESIDENTIAL DECK KASES APARTMENT"].hasFlag(GLOBAL.NPC)) rooms["RESIDENTIAL DECK KASES APARTMENT"].removeFlag(GLOBAL.NPC);
+	// Temp housing
+	if(nurserySpareApptIsOccupied()) rooms["NURSERYI6"].addFlag(GLOBAL.OBJECTIVE);
+	else rooms["NURSERYI6"].removeFlag(GLOBAL.OBJECTIVE);
 
 	/* MHENGA */
 	

@@ -2468,9 +2468,9 @@ public function zilCallGirlBirthMessage():String
 
 	var m:String = "Hello, " + pc.mf("Mr", "Miss") + ". Steele, I’m writing on behalf of Zheniya to inform you that your partner arrived at the Tavros Residential Clinic a few moments ago, having gone into labor. " + cs + " should be free to return home within the next few hours.\n\nCongratulations!\n\nNurse Carter\nTavros Residential Clinic, Deck 45\n<i>Healthier living for tomorrow.</i>";
 
-	return m;
-
 	_tempZilGirlChildRef = null;
+
+	return m;
 }
 
 public function zilCallGirlPregnancyEnds(deltaT:uint):void

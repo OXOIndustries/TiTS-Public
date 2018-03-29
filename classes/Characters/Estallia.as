@@ -34,7 +34,7 @@ package classes.Characters
 			this.a = "";
 			this.capitalA = "";
 			this.long = "";
-			this.customBlock = "Her defenses easily absorbs your attack.";
+			this.customBlock = "Her defenses easily absorbs the attack.";
 			this.isPlural = false;
 			
 			isLustImmune = false;
@@ -190,6 +190,7 @@ package classes.Characters
 			btnTargetText = "War Queen";
 			
 			this.createStatusEffect("Stun Immune");
+			this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			
 			sexualPreferences.setRandomPrefs(5, 0);
