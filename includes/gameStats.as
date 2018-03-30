@@ -6602,7 +6602,6 @@ public function displayEncounterLog(showID:String = "All"):void
 			var chaurmineFights:int = (chaurFightWin + chaurFightLoss);
 			if(chaurmineFights > 0) output2("\n<b>* " + chaurmineName + ", Combat, Your Win/Loss Ratio:</b> " + chaurFightWin + "/" + chaurFightLoss + ", of " + chaurmineFights + " encounters");
 			if(flags["SEXED_CHAURMINE"] > 0) output2("\n<b>* " + chaurmineName + ", Times Sexed Him:</b> " + flags["SEXED_CHAURMINE"]);
-			//sideCount++;
 			roamCount++;
 		}
 		// Erra
@@ -6665,6 +6664,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			
 			output2("\n<b>* " + kattomName + ":</b> " + (flags["MET_KATTOM"] == undefined ? "Seen" : "Met") + " him");
 			if(flags["KATTOM_LOCATION"] != undefined && rooms[flags["KATTOM_LOCATION"]].hasFlag(GLOBAL.HAZARD)) output2("\n<b>* " + kattomName + ", Last Known Location:</b> " + getPlanetName(flags["KATTOM_LOCATION"]) + " for " + prettifyMinutes(GetGameTimestamp() - flags["KATTOM_MOVE_CD"]));
+			roamCount++;
 		}
 		// Kirobutts!
 		if(flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && flags["KIRO_BAR_MET"] != undefined)
@@ -6720,6 +6720,14 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["KIRO_ORGY_DATE"] != undefined && ((flags["KIRO_ORGY_DATE"] + 2) < days)) output2(", Last was " + (days - flags["KIRO_ORGY_DATE"]) + " days ago");
 				}
 			}
+			roamCount++;
+		}
+		// Milly
+		if(flags["MHENGA_PROBE_CASH_GOT"] != undefined)
+		{
+			output2("\n<b>* Milly:</b> Met her");
+			if(flags["MILLY_FUCKED"] == 1) output2(", Sexed her");
+			else if(flags["MILLY_FUCKED"] > 1) output2("\n<b>* Milly, Times Sexed:</b> " + flags["MILLY_FUCKED"]);
 			roamCount++;
 		}
 		// BisonButts

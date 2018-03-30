@@ -3152,7 +3152,7 @@ public function startBlackjack():void
 	deck.shuffleDeck();
 	deck.shuffleDeck();
 	deck.shuffleDeck();
-	output(" A quick shuffle of the cards and you're ready to play!");
+	output(" A quick shuffle of the cards and you’re ready to play!");
 	
 	pcHand.addCard(deck.drawCard()[0]);
 	pcHand.addCard(deck.drawCard()[0]);
@@ -3258,7 +3258,7 @@ public function blackjackDealerAI(args:Array):void
 	{
 		dealerHand.addCard(deck.drawCard()[0]);
 		output("\n\nThe dealer draws a card: " + dealerHand.cards[dealerHand.cards.length-1].cardDescription() + ".\n");
-		output("Dealer's hand: " + dealerHand.listHand() + ".\nValue: <b>" + dealerHand.getCardPointTotalBlackjack() + "</b>");
+		output("Dealer’s hand: " + dealerHand.listHand() + ".\nValue: <b>" + dealerHand.getCardPointTotalBlackjack() + "</b>");
 	}
 	else output("\n\nDealer stands: " + dealerHand.listHand() + ".\nValue: <b>" + dealerHand.getCardPointTotalBlackjack() + "</b>");
 	blackJackOptions([deck,dealerHand,pcHand]);

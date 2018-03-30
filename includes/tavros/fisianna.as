@@ -2397,6 +2397,8 @@ public function breedFisiIV(x:int):void
 		output(" The two of you fall unconscious with your arms around her, still holding hands and smiling even in your sleep.");
 	}
 
+	if (flags["FISI_TIMES_BREED"] == undefined) pc.destroyItemByClass(BreedersBliss,2);
+	
 	IncrementFlag("FISI_TIMES_BREED");
 	IncrementFlag("FISI_TIMES_SEXED");
 	flags["FISI_LAST_SEXED"] = GetGameTimestamp();
@@ -2407,9 +2409,7 @@ public function breedFisiIV(x:int):void
 	fisianna.orgasm();
 	processTime(30+rand(15));
 
-	if (flags["FISI_TIMES_BREED"] == undefined) pc.destroyItemByClass(BreedersBliss,2);
 	fisiPrurience(10);
-	IncrementFlag("FISI_TIMES_BREED");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }

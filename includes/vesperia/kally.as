@@ -3479,7 +3479,7 @@ public function kiroAndKallyGoToGetMilkedThreesome3():void
 	output("\n\nKiro snorts and slaps your ass. <i>“If anybody gets to dump a load in [pc.name], it’s me.”</i>");
 	output("\n\nYou ");
 	if(pc.isNice()) output("laugh good naturedly. <i>“What kind of friend would I be if I let you make bad decisions while you’re cum-drunk?”</i>");
-	else if(pc.isMischievous()) output("smirk playfully. <i>“Who’s to say I don’t just mount you on my dick and swagger down the hall. I bet I could make your belly bigger than your balls by the time we got there.");
+	else if(pc.isMischievous()) output("smirk playfully. <i>“Who’s to say I don’t just mount you on my dick and swagger down the hall. I bet I could make your belly bigger than your balls by the time we got there.”</i>");
 	else output("smirk. <i>“You turn into a real slut when you’re cum-drunk, you know that?”</i>");
 	output("\n\nBoth sisters let out breathy giggles at your retort, no doubt imagining a variety of situations where the three of you are jizzing into an even larger variety of each other’s holes. Kiro’s titters are cut short by a sharp, almost pained gasp. Her balls are dangling about halfway down to her shins, the sack stretched taut, little more than shrink-wrapping for the pair of ludicrously virile orbs. She looks to her sister and then to you, eyes wide and pupils dilated wider. <i>“I... need to cum. Can I cum?”</i> She runs a hand through her increasingly slippery crotch-fur, fingertips massaging the tender flesh beneath. <i>“Just a little bit?”</i>");
 	processTime(13);
@@ -3541,7 +3541,7 @@ public function kiroAndKallyGoToGetMilkedThreesome5():void
 	//First time
 	if(flags["KIRO_KALLY_TEAM_MILKED"] == undefined) 
 	{
-		output("\n\n<i>“Hello Mistress Kally,”</i> the shapely android chirps. <i>“I see you’ve brought three wonderfully... exquisitely... scrumptious looking friends.”</i> She licks her lips, revealing a long purple tongue that glitters like an amethyst serpent in the artificial light. <i>“Are you all here for a milking, or are they just going to help you with your... donation.”</i> A convincingly high-pitched whine escapes her throat.");
+		output("\n\n<i>“Hello Mistress Kally,”</i> the shapely android chirps. <i>“I see you’ve brought two wonderfully... exquisitely... scrumptious looking friends.”</i> She licks her lips, revealing a long purple tongue that glitters like an amethyst serpent in the artificial light. <i>“Are you all here for a milking, or are they just going to help you with your... donation.”</i> A convincingly high-pitched whine escapes her throat.");
 		output("\n\n<i>“A milking... please!”</i> Kally cries.");
 		output("\n\n<i>“Why couldn’t they have installed my AI core into the milkers?”</i> the slutty robo-vixen sighs forlornly, staring at each of your bulging crotches in turn. <i>“Please tell me you’re all getting milked. Please.”</i>");
 		output("\n\nKiro nods, stroking herself. At long last, she finally manages to free her dick from her dress. It glitters with moisture, dripping thick webs of excitement to the floor.");

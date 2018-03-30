@@ -43,7 +43,7 @@ public function numNurseryUpgrades():int
 
 public function hasNurseryStaff():Boolean
 {
-	return yammiAtNursery() || reahaAtNursery() || zilCallgirlAtNursery();
+	return (numNurseryStaff() > 0);
 }
 
 public function numNurseryStaff():int
@@ -168,7 +168,7 @@ public function playWithZil(choice:Number = -1):void
 		else addDisabledButton(0, "0-12 Months", "0-12 Months", "You have no kids in that age range.");
 		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 13, 36) > 0) addButton(1, "12-36 Months", playWithZil, 1);
 		else addDisabledButton(1, "12-36 Months", "12-36 Months", "You have no kids in that age range.");
-		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 37, 9001) > 0) addDisabledButton(3, "36+ Months", "16+ Month", "These kids are too old to play with.");
+		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 37, 9001) > 0) addDisabledButton(3, "36+ Months", "36+ Month", "These kids are too old to play with.");
 		return;
 	}
 	
@@ -593,6 +593,11 @@ public function nurseryBrigetsApptFunc():Boolean
 	return false;
 }
 
+public function nurserySpareApptIsOccupied():Boolean
+{
+	if(flags["SERA_CREWMEMBER"] == 0) return true;
+	return false;
+}
 public function nurserySpareApptBonus():Boolean
 {
 	var btnSlot:int = 0;
@@ -738,6 +743,7 @@ public function nurseryComputerStaff():void
 		output("You currently have the following specialist staff on hand:\n");
 		if (yammiAtNursery()) output("\n<b>* Yammi, Head Chef");
 		if (reahaAtNursery()) output("\n<b>* Cured Reaha, Milk-giver");
+		if (zilCallgirlAtNursery()) output("\n<b>* Zheniya, Caregiver");
 	}
 
 	nurseryComputerMenu(nurseryComputerStaff);
