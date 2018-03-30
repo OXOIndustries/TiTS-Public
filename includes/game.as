@@ -3234,6 +3234,12 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	
 	if(sendMails)
 	{
+		/* SHEKKA RECROOT 
+		if(!shekkaRecruited() && flags["SHEKKA_REPEAT_TALKED"] != undefined && flags["SHEKKA_TALKED_PLAN"] != undefined && flags["PLANET_3_UNLOCKED"] != undefined && flags["TIMES_SEXED_SHEKKA"] != undefined)
+		{
+			if(!MailManager.isEntryUnlocked("shekkaFollowerIntroMail") && !pc.hasStatusEffect("Shekka_Follower_Email_CD")) goMailGet("shekkaFollowerIntroMail");
+			
+		}*/
 		/* ANNO THICKNESS! */
 		if(annoIsHuskar())
 		{

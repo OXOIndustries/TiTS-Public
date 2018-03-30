@@ -271,6 +271,10 @@ public function configureMails():void
 	MailManager.addMailEntry("syriReactsToHuskarAnnoEmailMail", syriReactsToHuskarAnnoEmail, "lol","Syri Dorna","BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("annoReactsToSyriHuskarTeasingMail", annoReactsToSyriHuskarTeasing, "-no subject-","Anno Dorna","Anno_Dorna@SteeleTech.corp", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("syriGetsBlockedByAnnoOverHuskarMail", syriGetsBlockedByAnnoOverHuskar, "Besties with testes","Syri Dorna","BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
+	//Shekka Recruitment Emails
+	//MailManager.addMailEntry("shekkaFollowerIntroMail", shekkaFollowerIntroEmail, "Can We Talk?","Shekka","shekka_mail@GalLink.org", quickPCTo, quickPCToAddress);
+
+
 
 }
 
