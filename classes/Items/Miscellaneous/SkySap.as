@@ -375,7 +375,7 @@
 				{
 					outputB("\n\nYou grab your [pc.breasts] and feel a churning, filling sensation inside of them. Your [pc.nipplesNoun] poke out through your fingertips, lewdly erect, and [pc.milk] begins to orgasmically spurt from your udders. You moan and milk your wildly spurting peaks, literally creaming yourself long and hard.");
 					// Milk change here to Vanae_maiden, Vanae_Huntress, or Vanae_Matron milk.
-					if(pc.hasVirginVagina()) pc.milkType = GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK;
+					if(pc.hasVirginVagina() || (pc.hasHymen() && rand(3) != 0)) pc.milkType = GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK;
 					else pc.milkType = GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK;
 					if(pc.milkMultiplier < 80) pc.milkMultiplier = 80;
 					if(pc.milkFullness < 50) pc.milkFullness = 50;

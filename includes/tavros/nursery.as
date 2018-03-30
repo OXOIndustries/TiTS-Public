@@ -137,7 +137,7 @@ public function zilBabyBonus(btnSlot:Number):Number
 	
 	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 0, 12) > 0) zilBlurbs.push("Your half-breed zil babies are happily resting their day away nearby, and you could probably pay them a visit if you’d like.");
 	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 13, 36) > 0) zilBlurbs.push("Your bee-kids are playing nearby, quickly noticing your presence and giggling happily, probably hoping you’ll pay them a visit.");
-	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 37, 9001) > 0) zilBlurbs.push("Your half-breed zil babies are happily resting their day away nearby, and your older bee-kids are playing around the nursery, giggling happily, probably hoping you’ll pay them a visit.");
+	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 0, 12) > 0 && ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 13, 36) > 0) zilBlurbs.push("Your half-breed zil babies are happily resting their day away nearby, and your older bee-kids are playing around the nursery, giggling happily, probably hoping you’ll pay them a visit.");
 	
 	if(zilBlurbs.length > 0) output("\n\n" + zilBlurbs[rand(zilBlurbs.length)]);
 	
@@ -166,9 +166,9 @@ public function playWithZil(choice:Number = -1):void
 		clearMenu();
 		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 0, 12) > 0) addButton(0, "0-12 Months", playWithZil, 0);
 		else addDisabledButton(0, "0-12 Months", "0-12 Months", "You have no kids in that age range.");
-		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 13, 36) > 0) addButton(1, "12-36 Months", playWithZil, 1);
-		else addDisabledButton(1, "12-36 Months", "12-36 Months", "You have no kids in that age range.");
-		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 37, 9001) > 0) addDisabledButton(3, "36+ Months", "36+ Month", "These kids are too old to play with.");
+		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 13, 36) > 0) addButton(1, "13-36 Months", playWithZil, 1);
+		else addDisabledButton(1, "13-36 Months", "13-36 Months", "You have no kids in that age range.");
+		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 37, 9001) > 0) addDisabledButton(3, "37+ Months", "37+ Month", "These kids are too old to play with.");
 		return;
 	}
 	
@@ -283,7 +283,7 @@ public function playWithMilodan(choice:Number = -1):void
 		else addDisabledButton(1,"3-6 Months","3-6 Months","You have no kits in that age range.");
 		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 7, 16) > 0) addButton(2,"7-16 Months",playWithMilodan,2);
 		else addDisabledButton(2,"7-16 Months","7-16 Months","You have no kits in that age range.");
-		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 17, 9001) > 0) addDisabledButton(3,"16+ Months","16+ Month","These kits are too old to play with.");
+		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 17, 9001) > 0) addDisabledButton(3,"17+ Months","17+ Month","These kits are too old to play with.");
 		return;
 	}
 	
@@ -1343,9 +1343,10 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 	{
 		parentName = parentList[p];
 		var babies:Array = listBabiesOfParent(parentName);
+		var nKids:Number = (StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " kids") + StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " sired"));
 		
 		output("\n<u><b>Children by " + (chars[parentName] != null ? chars[parentName].short : StringUtil.toDisplayCase(parentName.toLowerCase())) + "</b></u>");
-		if(StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " kids") > 0) output(" - Total: " + StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " kids"));
+		if(nKids > 0) output(" - Total: " + nKids);
 		if(babies.length > 0)
 		{
 			for(var i:int = 0; i < babies.length; i++)

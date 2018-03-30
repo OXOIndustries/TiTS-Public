@@ -11002,6 +11002,20 @@
 			}
 			return false;
 		}
+		public function hymenTotal():int {
+			if(vaginas.length <= 0) return 0;
+			var cnt:int = 0
+			for(var v:int = 0; v < vaginas.length; v++)
+			{
+				if(vaginas[v].hymen) cnt++;
+			}
+			return cnt;
+		}
+		public function hasHymen(v:int = -1):Boolean {
+			if(vaginas.length <= 0 || v >= vaginas.length) return false;
+			if(v < 0) return (hymenTotal() > 0);
+			return (vaginas[v].hymen);
+		}
 		public function hasVirginVagina(): Boolean {
 			return (vaginas.length > 0 && vaginalVirgin);
 		}
