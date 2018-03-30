@@ -235,6 +235,7 @@
 		//Vesperia/Canadia Station
 		include "../includes/vesperia/delOnVesperia.as";
 		include "../includes/vesperia/gloryhole.as";
+		include "../includes/vesperia/jesse.as";
 		include "../includes/vesperia/kaede.as";
 		include "../includes/vesperia/kally.as";
 		include "../includes/vesperia/luca.as";
