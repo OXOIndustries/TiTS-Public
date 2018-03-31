@@ -6769,7 +6769,7 @@
 			return true;
 		}
 		public function isNaga(): Boolean {
-			if (legCount == 1 && legType == GLOBAL.TYPE_NAGA) return true;
+			if (legCount == 1 && InCollection(legType, [GLOBAL.TYPE_NAGA, GLOBAL.TYPE_SHARK]) return true;
 			if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_PREHENSILE)) return true;
 			return false;
 		}
@@ -7392,14 +7392,17 @@
 			output = footAdjectives(forceType, forceAdjective);
 			//Noun
 			if (output != "") output += " ";
-			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hoof";
+			if (isNaga())
+			{
+				if tallness >= 84) output += "underbelly";
+				else if (tallness >= 48) output += "tail";
+				else output += "tail-tip";
+			}
+			else if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hoof";
 			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && legType != GLOBAL.TYPE_AVIAN && rand(10) < 8) output += "paw";
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "undercarriage";
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && rand(2) == 0) output += "high-heel";
 			else if (legType == GLOBAL.TYPE_LIZAN) output += "footclaw";
-			else if (legType == GLOBAL.TYPE_NAGA && tallness >= 84) output += "underbelly";
-			else if (legType == GLOBAL.TYPE_NAGA && tallness >= 48) output += "tail";
-			else if (legType == GLOBAL.TYPE_NAGA) output += "tail-tip";
 			else if (legType == GLOBAL.TYPE_FROG && rand(2) == 0) output += "webbed foot";
 			else if (legType == GLOBAL.TYPE_SHARK && rand(2) == 0) output += RandomInCollection(["footclaw","webbed foot"]);
 			else if (legType == GLOBAL.TYPE_TENTACLE && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) output += "writhing lower body";
@@ -7437,7 +7440,7 @@
 		}
 		public function hasToes():Boolean
 		{
-			if(hasLegFlag(GLOBAL.FLAG_AMORPHOUS) || hasLegFlag(GLOBAL.FLAG_HOOVES) || legType == GLOBAL.TYPE_NAGA) return false;
+			if(isNaga() || hasLegFlag(GLOBAL.FLAG_AMORPHOUS) || hasLegFlag(GLOBAL.FLAG_HOOVES)) return false;
 			return true;
 		}
 		public function hasHooves():Boolean
@@ -10916,7 +10919,7 @@
 		public function canSwim(): Boolean {
 			//Oh god, why Spiderman, why?!!!
 			if (hasStatusEffect("Web")) return false;
-			if (wingType == GLOBAL.TYPE_SHARK) return true;
+			if (wingType == GLOBAL.TYPE_SHARK || legType == GLOBAL.TYPE_SHARK) return true;
 			return true;
 		}
 		public function hasWings(wType:Number = 0): Boolean {
@@ -11516,8 +11519,7 @@
 			else if (race == "human" && isCentaur()) race = "centaur";
 			else if (isTaur()) race = taurRace(race); // Other taurs
 			// Naga-morphs
-			if (naleenScore() >= 5 && isNaga()) race = "naleen";
-			else if (isNaga()) race = "naga";
+			if (isNaga()) race = nagaRace();
 			// Slime-morphs
 			if (gooScore() >= 6) race = "goo-morph";
 			if (gooScore() >= 8) race = "galotian";
@@ -11706,6 +11708,12 @@
 				if(!hasMuzzle() && !hasFur()) return "satyr-morph";
 			}
 			return "goat-morph";
+		}
+		public function nagaRace():String
+		{
+			if (naleenScore() >= 5) return "naleen";
+			if (legType == GLOBAL.TYPE_SHARK) return "leviathan naga";
+			return "naga";
 		}
 		public function plantRace():String
 		{

@@ -27,7 +27,7 @@
 			//Used on inventory buttons
 			this.shortName = "S.Bites";
 			//Regular name
-			this.longName = "Shark Bites"
+			this.longName = "Shark Bites";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
@@ -270,20 +270,35 @@
 					changes++;
 				}
 				//Return to Humanoid form
-				if((pc.isTaur() || pc.isNaga()) && rand(2) == 0 && changes < changeLimit)
+				if(pc.legType != GLOBAL.TYPE_SHARK && (pc.isTaur() || pc.isNaga()) && rand(2) == 0 && changes < changeLimit)
 				{
 					if(pc.legCountUnlocked(GLOBAL.TYPE_SHARK))
 					{
 						output("\n\nAs you ");
 						if(pc.isTaur()) output("trot");
 						else output("slither");
-						output(" around, you feel a great warmth in your lower body. You look down only for that warmth to turn into searing pain. You barely stop yourself from screaming bloody murder as you black out for a brief second before the most soothing feeling runs through your body. It almost feel like the afterglow of sex in some respects. You wipe some tears from your eyes as you look down, noticing that <b>your body now has a human configuration, with two human legs!</b> You hope that this was mentioned in the potential side effects of consuming Shark Bites...");
-						pc.genitalSpot = 0;
-						pc.legType = GLOBAL.TYPE_HUMAN;
-						pc.legCount = 2;
-						pc.clearLegFlags();
-						pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-						pc.addLegFlag(GLOBAL.FLAG_SCALED);
+						output(" around, you feel a great warmth in your lower body. You look down only for that warmth to turn into searing pain. You barely stop yourself from screaming bloody murder as you black out for a brief second before the most soothing feeling runs through your body. It almost feel like the afterglow of sex in some respects. You wipe some tears from your eyes as you look down, noticing that <b>");
+						if(pc.isNaga())
+						{
+							output("your snake-like lower body has now converted to a shape much similar to that of a shark!");
+							pc.genitalSpot = 0;
+							pc.legType = GLOBAL.TYPE_SHARK;
+							pc.legCount = 1;
+							pc.clearLegFlags();
+							pc.addLegFlag(GLOBAL.FLAG_PREHENSILE);
+							pc.addLegFlag(GLOBAL.FLAG_SCALED);
+						}
+						else
+						{
+							output("your body now has a human configuration, with two human legs!");
+							pc.genitalSpot = 0;
+							pc.legType = GLOBAL.TYPE_HUMAN;
+							pc.legCount = 2;
+							pc.clearLegFlags();
+							pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+							pc.addLegFlag(GLOBAL.FLAG_SCALED);
+						}
+						output("</b> You hope that this was mentioned in the potential side effects of consuming Shark Bites...");
 					}
 					else output("\n\n" + pc.legCountLockedMessage());
 					changes++;

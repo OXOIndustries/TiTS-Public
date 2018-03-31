@@ -2527,7 +2527,11 @@ public function appearance(forTarget:Creature):void
 			}
 			break;
 		case GLOBAL.TYPE_SHARK:
-			if(target.legCount == 2)
+			if(target.legCount == 1)
+			{
+				output2(" Below your thighs, your flesh is fused together into a very long, snake-like tail, leaving a narrow, connecting gap between your crotch and [target.asshole]. It is covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo" : target.scaleColor + "-colored scales") + "and has small protruding fins on each side. It ends in a large caudal fin, perfect for underwater propulsion.");
+			}
+			else if(target.legCount == 2)
 			{
 				output2(" Your");
 				if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");

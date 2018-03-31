@@ -45,7 +45,7 @@
 		if(InCollection(sRace, ["satyr"])) sRace = "goat";
 		if(InCollection(sRace, ["sheep", "ram", "lamb"])) sRace = "ovine";
 		//if(InCollection(sRace, ["griffin", "hippogriff", "quetzalcoatl", "phoenix", "vulpogryph", "sirin", "harpy"])) sRace = "avian";
-		if(sRace.indexOf("shark") != -1 || InCollection(sRace, ["megalodon"])) sRace = "shark";
+		if(sRace.indexOf("shark") != -1 || InCollection(sRace, ["megalodon", "leviathan naga"])) sRace = "shark";
 		if(InCollection(sRace, ["treant", "dryad"])) sRace = "plant";
 		if(InCollection(sRace, ["red panda"])) sRace = "lesser panda";
 		if(sRace.indexOf("'rahn") != -1) sRace = "rahn";
