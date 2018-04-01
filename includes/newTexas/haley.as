@@ -1094,7 +1094,7 @@ public function haleyChallenge():void
 			output("\n\n<i>“Sorry [pc.name], I should have mentioned. There’s a monthly prize for the highest contribu-taur, and that’s now you!");
 			if (!pc.isTaur()) output(" Even if you aren’t a taur.");
 			output(" Congratulations!”</i>");
-			output("\n\nHaley hands you a 10,000 credit chit. You thank her and get ready to leave, the taur-girl still watching you.");
+			output("\n\nHaley hands you a 10,000 " + (isAprilFools() ? "dogecoin" : "credit") + " chit. You thank her and get ready to leave, the taur-girl still watching you.");
 			
 			pc.credits += 10000;
 			pc.createStatusEffect("Won Haley's Credits", 0, 0, 0, 0, true, "", "", false, 43200);

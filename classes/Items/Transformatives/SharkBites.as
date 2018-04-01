@@ -450,9 +450,9 @@
 					if(pc.sharkScore() >= 5) output(" Maybe you’re as shark like as you are going to get?");
 				}
 				return false;
-			}			
+			}
 			else {
-				kGAMECLASS.output(target.capitalA + target.short + " eats the jerky to no effect.");
+				output(target.capitalA + target.short + " eats the jerky to no effect.");
 			}
 			return false;
 		}

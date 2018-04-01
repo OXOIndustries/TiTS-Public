@@ -414,7 +414,7 @@ public function orryxBlackmarket():void
 		processTime(1);
 		clearMenu();
 		if(pc.credits >= 100) addButton(0,"Buy R. Venom",buySomeRedShit,undefined,"Buy Red Venom","Buy a dose of red venom.\n\n<b>Credits: </b>100");
-		else addDisabledButton(0,"Buy R, Venom","Buy Red Venom","You can't afford the 100 credit price!");
+		else addDisabledButton(0,"Buy R, Venom","Buy Red Venom","You can't afford the 100 " + (isAprilFools() ? "dogecoin" : "credit") + " price!");
 		addButton(1,"No Thanks",noThanksNoRedVenom);
 	}
 	//Over 10!

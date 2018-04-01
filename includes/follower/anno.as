@@ -2478,7 +2478,7 @@ public function fuckAnnoWithScienceYoFukkinLadyBoi():void
 	output("\n\nYou give the snowy ausar a playful smack on the rump; she moans and wiggles her hips, grinding her butt back against your glowing crotch. She finds the shaft of your energy-wang and pushes back against it, rubbing up along its length until her ass is flush against your groin, making it all too easy for you to grab Anno’s hips and dig into that big, squeezable ass of hers.");
 	output("\n\n<i>“Come on, boss,”</i> Anno coos, hooking her thumbs through her belt and shimmying out of her bottom. Your hardlight cock flops eagerly into the bared crack of her ass, fitting so snugly into it that you could swear Aliss’s strapons were made just for fucking big ol’ ausar butts. Anno gives a low, throaty moan as she feels the shimmering lightdick fill her crack, and one of her white-furred hands quickly makes its way down to the lips of her sex. She spreads herself wide open, thumb teasing across the mound of her clit as her fingers open her pussy up invitingly.");
 	output("\n\nIt’s a slight shift of your [pc.hips] to draw the glowing lightdick through the crack of Anno’s deliciously soft behind until the crown is pressed to the wide-open lips of her cunt. You shiver at the sensation stemming from your hardlight cock, and the wonderful neural connectors in it. <i>“Oooh, it tingles!”</i> Anno giggles, wiggling her behind back against the tip until it slips into her, eliciting a little gasp from your lover. You dig your fingers into her rump, squeezing tight enough to turn that gasp into another happy moan before you pull Anno back, making her come to you. She does so eagerly, rocking back on her knees to slide down the shimmering shaft of your strapon.");
-	output("\n\nYou might have paid a lot for this, but it’s worth every credit watching - and feeling! - Anno spear herself on your thick, turgid band of light.");
+	output("\n\nYou might have paid a lot for this, but it’s worth every " + (isAprilFools() ? "dogecoin" : "credit") + " watching - and feeling! - Anno spear herself on your thick, turgid band of light.");
 	output("\n\nAnno takes her time taking your strapon, slowly making her way down the lightdick’s length with muted gasps of pleasure and sultry moans that drive your own excitement into overdrive");
 	if(pc.hasCock()) 
 	{
@@ -3287,7 +3287,7 @@ public function annoUvetoHuskarFoursomeSure():void
 	
 	output("\n\n<i>“I know, right?”</i> Galina says, bouncing on the spot. The motion does mesmerizing things to her juicy curves, even restrained as they are by the company jumpsuit. <i>“Isn’t it amazing?”</i>");
 	
-	output("\n\n<i>“It’s a giant dick, Gally,”</i> Anno says flatly, still staring. <i>“It’s a giant, ten-thousand credit dick.”</i>");
+	output("\n\n<i>“It’s a giant dick, Gally,”</i> Anno says flatly, still staring. <i>“It’s a giant, ten-thousand " + (isAprilFools() ? "dogecoin" : "credit") + " dick.”</i>");
 	
 	output("\n\nThe mineralogist-puppy laughs, <i>“Oh, twenty thousand, easy. Maybe thirty. But! That’s nothing compared to the </i>archaeological<i> significance. If the natives have been using a psychically-conductive material in some sort of fertility rite, like the shape suggests-”</i>");
 	

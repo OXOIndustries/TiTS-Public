@@ -7658,7 +7658,7 @@ public function bessEvent11():void
 
 		output("You’re walking around the ship when you notice [bess.name] looking at [bess.hisHer] holopad. There’s a wistful look in [bess.hisHer] eyes. After a while, [bess.heShe] puts the pad down and walks off.");
 		
-		output("\n\nCurious, you pick it up and take a look. It’s the same data you’ve seen before - a list of cheap, synth paper books available from an extranet bookstore. [bess.HeShe] keeps looking at them, even though [bess.heShe] doesn’t have a credit to [bess.hisHer] name.");
+		output("\n\nCurious, you pick it up and take a look. It’s the same data you’ve seen before - a list of cheap, synth paper books available from an extranet bookstore. [bess.HeShe] keeps looking at them, even though [bess.heShe] doesn’t have a " + (isAprilFools() ? "dogecoin" : "credit") + " to [bess.hisHer] name.");
 		
 		output("\n\nDo you reconsider giving [bess.name] a wage and an official place as one of your crew?");
 	}
@@ -7734,7 +7734,7 @@ public function bessEvent11CrewType(crewType:uint):void
 	else output(" with a dumbfounded look");
 	output(". <i>“...I don’t get it. What’s this for?”</i>");
 	
-	output("\n\n<i>“...From now on, you’re the ship’s "+ bessCrewRole() +" and an official member of the crew. You’ll be getting a hundred credit wage a week; you can do whatever you want with your earnings.”</i> You tell [bess.name], relishing the look of utter surprise on [bess.hisHer] face.");
+	output("\n\n<i>“...From now on, you’re the ship’s "+ bessCrewRole() +" and an official member of the crew. You’ll be getting a hundred " + (isAprilFools() ? "dogecoin" : "credit") + " wage a week; you can do whatever you want with your earnings.”</i> You tell [bess.name], relishing the look of utter surprise on [bess.hisHer] face.");
 	
 	output("\n\n<i>“This is connected to an account you can access nearly anywhere. I had to register it under my name - since galactic banks don’t recognize AI’s as life forms - but for all intents and purposes, it is yours.”</i>");
 	
@@ -10735,7 +10735,7 @@ public function bessAtTavrosSure():void
 
 	output("[bess.name] lets out a sigh of relief, finally managing to meet your gaze. <i>“...Thank you, "+ bessPCName() +". I’ll make it up to you somehow, someday.”</i>");
 	
-	output("\n\nConsidering [bess.heShe] can’t even earn a single credit for [bess.himHer]self at the moment, it seems that day will be very far away indeed.");
+	output("\n\nConsidering [bess.heShe] can’t even earn a single " + (isAprilFools() ? "dogecoin" : "credit") + " for [bess.himHer]self at the moment, it seems that day will be very far away indeed.");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

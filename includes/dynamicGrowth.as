@@ -1136,7 +1136,7 @@ public function priapismBlurbs():void
 				msg += ParseText(" [pc.cumColor] bubble inside her arm.");
 				msg += "\n\nShe pops off and giggles, revealing the condom she slipped over your dick. <i>“Thanks! I needed a snack for the road.”</i> She winks and expertly extracts the stuffed prophylactic from your still-hard member, tying it off into a sealed balloon before pushing it into her belly.";
 				if(cumQ >= 1000) msg += " She looks instantly, terrifically pregnant.";
-				msg += " <i>“Here’s a credit for the trouble!”</i>";
+				msg += " <i>“Here’s a " + (isAprilFools() ? "dogecoin" : "credit") + " for the trouble!”</i>";
 				msg += "\n\nYou’re left staring at a single credit chit, still hard and a little leaky from the sudden sexual encounter.";
 				if(flags["RECRUITED_CELISE"] != undefined) msg += " Celise would be so jealous.";
 				processTime(5);

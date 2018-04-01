@@ -996,17 +996,17 @@ public function tipEmbry():void
 	output("How much do you tip her?");
 	clearMenu();
 	//[1 Credit] [10 Credits] [500 Credits] [2000 Credits] [5000 Credits]
-	if(pc.credits >= 1) addButton(0,"1C",tipEmbryASecondCreditYooCheapskate,undefined,"1 Credit","Tip her a single credit.");
-	else addDisabledButton(0,"1C","1 Credit","You don’t have any cash.");
+	if(pc.credits >= 1) addButton(0,"1C",tipEmbryASecondCreditYooCheapskate,undefined,("1 " + (isAprilFools() ? "Dogecoin" : "Credit")),"Tip her a single " + (isAprilFools() ? "dogecoin" : "credit") + ".");
+	else addDisabledButton(0,"1C",("1 " + (isAprilFools() ? "Dogecoin" : "Credit")),"You don’t have any cash.");
 	if(pc.credits >= 10) addButton(1,"10C",tipEmbryTenCredits,undefined,"10 Credits","Tip her ten credits.");
 	else addDisabledButton(1,"10C","10 Credits","You don’t have enough cash for that.");
 	if(pc.credits >= 500) addButton(2,"500C",tipEmbryFiveHunnahDorrah,undefined,"500 Credits","Tip her a whopping 500 credits.");
 	else addDisabledButton(2,"500C","500 Credits","You don’t have 500 creds to tip.");
 	if(pc.credits >= 2000) addButton(3,"2000C",tipEmbryTwoThousandHundredDarrus,undefined,"2000 Credits","Tip her a whopping 2000 credits.");
 	else addDisabledButton(3,"2000C","2000 Credits","You don’t have 2000 creds to tip.");
-	
 	if(pc.credits >= 5000) addButton(4,"5000C",tipEmrbyFiveThousandCredits,undefined,"5000 Credits","Tip her a whopping 5,000 credits.");
 	else addDisabledButton(4,"5000C","5000 Credits","You don’t have 5000 creds to spare.");
+	
 	addButton(14,"Back",callWaitress);
 }
 

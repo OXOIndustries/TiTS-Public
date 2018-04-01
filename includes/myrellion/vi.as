@@ -66,7 +66,7 @@ public function approachVi():void
 		//if health is below 25%:
 		if(pc.HPQ() < 25)
 		{
-			output(" The moment she spots how injured you are, a look of shocked concern spreads across her face. <i>“Oh my! How can you still stand? Please, allow me to heal you! The credit charge is more survivable than your wounds.”</i>");
+			output(" The moment she spots how injured you are, a look of shocked concern spreads across her face. <i>“Oh my! How can you still stand? Please, allow me to heal you! The " + (isAprilFools() ? "dogecoin" : "credit") + " charge is more survivable than your wounds.”</i>");
 		}
 		//else if health is below 50%:
 		else if(pc.HPQ() < 50)

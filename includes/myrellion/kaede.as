@@ -177,7 +177,7 @@ public function kaedeMyrellionTalkJob():void
 	
 	output("\n\n<i>“You bought a ship? That’s not cheap,”</i> you say, remembering what Kaede mentioned about noodles and crackers just a few minutes ago.");
 	
-	output("\n\nShe gives you a wry look. <i>“It wasn’t. I’m still paying </i>Talon<i> off, a chunk out of every paycheck I get. I’m so far in debt over her I can barely see the light, but she’s worth every credit. Every single one,”</i> Kaede says, her lips softening into a far-away smile.");
+	output("\n\nShe gives you a wry look. <i>“It wasn’t. I’m still paying </i>Talon<i> off, a chunk out of every paycheck I get. I’m so far in debt over her I can barely see the light, but she’s worth every " + (isAprilFools() ? "dogecoin" : "credit") + ". Every single one,”</i> Kaede says, her lips softening into a far-away smile.");
 	
 	output("\n\n<i>“Being out here, in space, seeing these strange planets... this is everything I ever wanted. I wouldn’t trade it for the world.”</i>");
 	

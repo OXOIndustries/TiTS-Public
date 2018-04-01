@@ -78,9 +78,9 @@ public function approachVKo(showShit:Boolean = true):void {
 			//Slightly Injured
 			else if(pc.HP() >= pc.HPMax() * .66) output("\n\n<i>“You have sustained minor injuries. I can heal them for a small surcharge. Medical supply purchases and disease examinations are available as well.”</i>");
 			//Injured
-			else if(pc.HP() >= pc.HPMax() * .33) output("\n\n<i>“You are injured. Please, allow me to heal you. The credit charge is quite minor compared to the damage to your body.”</i>");
+			else if(pc.HP() >= pc.HPMax() * .33) output("\n\n<i>“You are injured. Please, allow me to heal you. The " + (isAprilFools() ? "dogecoin" : "credit") + " charge is quite minor compared to the damage to your body.”</i>");
 			//Fuckin' Hurt
-			else output("\n\n<i>“Oh my! How can you still stand? Please, allow me to heal you. The credit charge is more survivable than your wounds!”</i> She seems genuinely concerned.");
+			else output("\n\n<i>“Oh my! How can you still stand? Please, allow me to heal you. The " + (isAprilFools() ? "dogecoin" : "credit") + " charge is more survivable than your wounds!”</i> She seems genuinely concerned.");
 			processTime(1);
 		}
 	}
@@ -390,7 +390,7 @@ public function turnDownVKoHealing():void
 {
 	clearOutput();
 	showVKo();
-	output("<i>“I’m sorry that you do not wish to engage in treatment for your malady. Is there another service I could offer that would be more palatable to your desires or credit limit?”</i>");
+	output("<i>“I’m sorry that you do not wish to engage in treatment for your malady. Is there another service I could offer that would be more palatable to your desires or " + (isAprilFools() ? "dogecoin" : "credit") + " limit?”</i>");
 	approachVKo(false);
 }
 

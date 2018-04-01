@@ -180,7 +180,7 @@ public function champeonAthaDonate(amount:int):void
 {
 	clearOutput();
 	showAtha();
-	output("You fill out a short contact form and authorize the credit transfer. A small ding tells you that the transaction has gone through and a confirmation message has been sent.");
+	output("You fill out a short contact form and authorize the " + (isAprilFools() ? "dogecoin" : "credit") + " transfer. A small ding tells you that the transaction has gone through and a confirmation message has been sent.");
 	if(flags["LETS_FAP_ARCHIVES"] == undefined)
 	{
 		output("\n\nPrevious episodes of Let’s Fap have been downloaded to your account!");

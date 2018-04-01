@@ -274,7 +274,7 @@ public function purchaseTameling(arg:ItemSlotClass):void
 	author("Gardeford");
 	if(!korgiiCredits() && !(arg is GrunchLeash)) //allow grunch passthrough
 	{
-		output("You pull out a few credit chits, prepared to give the stocky korgonne whatever kind of payment she needs for riding the animals. Maja gives you a confused look, glancing at the chits and back up to you.");
+		output("You pull out a few " + (isAprilFools() ? "dogecoins" : "credit chits") + ", prepared to give the stocky korgonne whatever kind of payment she needs for riding the animals. Maja gives you a confused look, glancing at the chits and back up to you.");
 		output("\n\n<i>“");
 		if(!korgiTranslate()) output("Korgs no take space money. Much sorry, but Maja have no use for silly money sticks. Can still have grunch though. Grunch is on the house, not even needings to bring back if don’t want,");
 		else output("Sorry, but I cant accept your alien money sticks. I guess you could still have a grunch for now if you want. I don’t really even mind if you bring it back, they grow like weeds,");
@@ -296,14 +296,14 @@ public function purchaseTameling(arg:ItemSlotClass):void
 	//Kor'diiak
 	if(arg is KordiiakLeash)
 	{
-		output("<i>“I’d like to take a kor’diiak out,”</i> you say, handing Maja a credit chit. She gives the small piece of tech a thoughtful look, stowing it in a small box on her desk. She separates a large silver key from her ring and scurries to the back pens. A minute later she comes back, leading one of the hulking bear-like creatures by a thick-roped collar. It huffs inquisitively in your direction, and Maja transfers the leash to your hands.");
+		output("<i>“I’d like to take a kor’diiak out,”</i> you say, handing Maja a " + (isAprilFools() ? "dogecoin" : "credit chit") + ". She gives the small piece of tech a thoughtful look, stowing it in a small box on her desk. She separates a large silver key from her ring and scurries to the back pens. A minute later she comes back, leading one of the hulking bear-like creatures by a thick-roped collar. It huffs inquisitively in your direction, and Maja transfers the leash to your hands.");
 		output("\n\n<i>“");
 		if(!korgiTranslate()) output("Here go! Kor’diiak will do a protect. Big scary to bad guys. He make sure many get home safe, so you make sure he get home safe.”</i>");
 		else output("Here you are, this big guy ought to protect you out on the ice. Or anywhere cold really. He’s helped a lot of korgonne get back safe from hunts. He’ll have your back, so you make sure to have his.”</i>");
 	}
 	else if(arg is NogwichLeash)
 	{
-		output("<i>“I think I’ll take a nog’wich today,”</i> you say handing maja a credit chit. She takes the small tech chip and stows it away in a small box on her desk, giving an approving nod as she closes it. She takes her key ring and scurries off into the back room, coming back a few minutes later with a horse-sized nog’wich on a fine leather leash. The creature eyes you up and down before brushing against you and purring. From such a large creature the effect if more like an engine.");
+		output("<i>“I think I’ll take a nog’wich today,”</i> you say handing maja a " + (isAprilFools() ? "dogecoin" : "credit chit") + ". She takes the small tech chip and stows it away in a small box on her desk, giving an approving nod as she closes it. She takes her key ring and scurries off into the back room, coming back a few minutes later with a horse-sized nog’wich on a fine leather leash. The creature eyes you up and down before brushing against you and purring. From such a large creature the effect if more like an engine.");
 		output("\n\n<i>“");
 		if(!korgiTranslate()) output("Normally would give smaller nog’wich for huntings, but aliens can be all shapes or even sizes. I give you one of biggest nog’wich. Then you can give rides if finding lost aliens,");
 		else output("Normally only the smaller nog’wich go out for hunts, but I figure since there are all kinds of aliens out there I’d give you one of the biggest one we have who’s still in her prime. I think she likes you,");

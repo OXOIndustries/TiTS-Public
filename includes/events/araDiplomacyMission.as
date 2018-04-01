@@ -309,7 +309,7 @@ public function bothriocQuestDoctor(response:String):void
 		case "Haswell agree":
 			showDrHaswell();
 			
-			output("Ouch. Still, there’s a lot more riding on this than mere money. Reluctantly, you spend a minute preparing your bank for a large scale credit transfer, and then tap your chit against Haswell’s screen.");
+			output("Ouch. Still, there’s a lot more riding on this than mere money. Reluctantly, you spend a minute preparing your bank for a large scale " + (isAprilFools() ? "dogecoin" : "credit") + " transfer, and then tap your chit against Haswell’s screen.");
 			output("\n\n<i>“Good.”</i> Haswell taps at his screen, not looking at you. <i>“I shall begin work immediately. Come back in three days. It should be complete by then.”</i>");
 			
 			processTime(1);

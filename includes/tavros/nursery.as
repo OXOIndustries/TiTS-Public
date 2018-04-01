@@ -1729,7 +1729,7 @@ public function nurseryBrigetNurseryStaff():void
 		if (numNurseryStaff() < 10) output(" Though most of the nursery’s duties are still fulfilled by drones and nurse droids, having an organic touch has certainly made our little home away from home that much more vibrant and pleasant. Even I have to admit, children do seem to respond better to living caregivers... at least until they get to know me.”</i> She chuckles pleasantly, though her eyes turn downcast rather quickly.");
 		else if (numNurseryStaff() >= 10)
 		{
-			output(" You’ve certainly found more employees than I would have expected. Our budget is a bit strained at present, but I believe the effects more than justify a bit of credit-pinching here and there: I never expected the nursery to feel so vibrant and alive");
+			output(" You’ve certainly found more employees than I would have expected. Our budget is a bit strained at present, but I believe the effects more than justify a bit of " + (isAprilFools() ? "dogecoin" : "credit") + "-pinching here and there: I never expected the nursery to feel so vibrant and alive");
 			if (ChildManager.numChildren() >= 2) output(", even with all your precious darlings here with me");
 			if (ChildManager.numChildren() >= 10) output("! We’ve built a community here thanks to you, dear");
 			output(". They say it takes a village, and I can certainly see the wisdom in that now. I simply </i>know<i> that your offspring will be the best and brightest the galaxy has to offer under our care");
