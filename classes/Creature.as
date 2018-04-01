@@ -6769,7 +6769,7 @@
 			return true;
 		}
 		public function isNaga(): Boolean {
-			if (legCount == 1 && InCollection(legType, [GLOBAL.TYPE_NAGA, GLOBAL.TYPE_SHARK]) return true;
+			if (legCount == 1 && InCollection(legType, [GLOBAL.TYPE_NAGA, GLOBAL.TYPE_SHARK])) return true;
 			if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_PREHENSILE)) return true;
 			return false;
 		}
@@ -7394,7 +7394,7 @@
 			if (output != "") output += " ";
 			if (isNaga())
 			{
-				if tallness >= 84) output += "underbelly";
+				if (tallness >= 84) output += "underbelly";
 				else if (tallness >= 48) output += "tail";
 				else output += "tail-tip";
 			}
