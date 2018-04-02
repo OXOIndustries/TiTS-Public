@@ -1,4 +1,4 @@
-//Shekka's Widget Warehouse
+/*Shekka's Widget Warehouse
 //Your one-stop shop for saucy Raskvel funtimes.
 //Author: Fenbroxo
 
@@ -22,10 +22,10 @@ Nearly infertile - only ever lays one to two eggs that are never fertilized.
 Sells a hoverboard (reduces movement times) and other gadgets
 */
 
-public function showShekka():void
+public function showShekka(nude:Boolean = false):void
 {
 	userInterface.showBust("SHEKKA");
-	userInterface.showName("\nSHEKKA");
+	userInterface.showName("\nSHEKKA" + (nude ? "_NUDE" : ""));
 }
 
 //Widget Warehouse Description\
@@ -133,8 +133,8 @@ public function shekkaMainMenu():void
 		if(pc.hasStatusEffect("Shekka_Pay_CD")) addDisabledButton(1,"Fund Project","Fund Project","You'll need to wait a bit before you get back to Shekka on this.");
 		else addButton(1,"Fund Project",shekkaFundProjectTalk,undefined,"Fund Project","Shekka might need some money to get her pet project going...");
 	}
-	else  if(flags["SHEKKA_ISSUES"] == 7 && !MailManager.entryUnlocked("shekkaFollowerUnlockEmail")) addDisabledButton(1,"Cure","Cure","You'll need to wait a while before you can get any more information on the cure.");
-	else if(flags["SHEKKA_ISSUES"] == 7 && MailManager.entryUnlocked("shekkaFollowerUnlockEmail")) addDisabledButton(1,"Cure","Cure","You'll need to wait a while before you can get any more information on the cure.");
+	else  if(flags["SHEKKA_ISSUES"] == 7 && !MailManager.isEntryUnlocked("shekkaFollowerUnlockEmail")) addDisabledButton(1,"Cure","Cure","You'll need to wait a while before you can get any more information on the cure.");
+	else if(flags["SHEKKA_ISSUES"] == 7 && MailManager.isEntryUnlocked("shekkaFollowerUnlockEmail")) addDisabledButton(1,"Cure","Cure","You'll need to wait a while before you can get any more information on the cure.");
 	if(flags["SHEKKA_ISSUES"] == 8) addButton(1,"Join Crew",shekkaRepeatJoinCrew,undefined,"Join Crew","Invite Shekka to join your crew.");
 	else addButton(1,"Talk",talkToShekka,undefined,"Talk","Talk to Shekka about a range of topics.");
 	if(pc.lust() >= 33)
@@ -2687,7 +2687,7 @@ public function vaginaSexWithShekkaOnCureThing():void
 		if(pc.cumQ() >= 2000)
 		{
 			//big cummies//
-			output("and go"):
+			output("and go");
 			if(pc.cockTotal() == 1) output("es");
 			output(" off in thick ropes of potent cock-sauce. Shekka’s face, hair, and ears are liberally coated in your [pc.cum], and a delighted wiggle from her body soon has it trailing down her back and into the crack of her ass.");
 		}
@@ -2733,14 +2733,14 @@ public function cureProgress1Email():String
 
 //Spelling and Reading Tests
 //A week after message one
-public function spellingAndReadingTestsMailText():void
+public function spellingAndReadingTestsMailText():String
 {
 	return "Hi [pc.name]. Hopefully not bothering you right now, but look! I’m super fucking proud.\n\n<i>What follows next in the email is a few screencaps of IQ test results. They seem... decidedly average except for one or two.\n\n<i>I know what you’re thinking; except for kid four and eight, that’s pretty average right? Well, most of our IQs look like that. The important part is how we do in practical spelling and reading tests.\n\nDirectly after that statement are a few more screengrabs, one appears to be a former examination block... it’s all surprisingly low. Half of it isn’t even completed. Below that though are a section of properly completed, reasonably well scored exams.\n\nWithout having a big old <i>“time to fuck”</i> button smashed into our thinking meats, it’s pretty hard to get anything done past the biological need to keep our species from getting squashed. These new kids aren’t so attention deficit. They’re <i>concentrating<i>, [pc.name]. How amazing is that?!\n\nSorry, I got carried away. It’s really exciting seeing the future of your people. I mean, eventually the children get to be our future. But, you know, for real.\n\nAnyway, I’ll leave you to whatever you’re balls-deep in. Take care Steele.\n\nLove’n’hugs\n\tShekka\n\n(<i>Another tasty little photo seems to have been thrown on the end of her message. She’s sat on her work-bench, legs spread wide as she cums around a vibrator as thick as your arm. Mnf.</i>)";
 }
 
 //Hey...
 //Three days after message two
-public function lastRaskvelCureEmail():void
+public function lastRaskvelCureEmail():String
 {
 	return "Hi [pc.name].\n\nIf I’m honest, I don’t really know how to word this. I’m going to opt for blunt and hope that’s the right way to handle things. My work here on Tarkus feels done. Done and dusted. Children are going to grow up into healthy adults, and lead my people onwards to something bright alongside the UGC. Or maybe just as corrupt as half of it. Regardless? Not really my problem.\n\nI’m just a mechanic, and I enjoy sex even if the end result isn’t going to be kids. These boys and girls are going to grow up and develop the actual skills to rule a people. I’m done growing up, the Cure isn’t going to do anything for me.\n\nAnd I kind of want off of this damned rust-ball. After all you’ve done this may sound like way too much to ask for. But could you allow me to join your ship? I don’t take up much space, and I can fix up any damage faster than anyone. I’d like to go with you, out there where it’s an adventure... and where the adventure is with you.\n\nWhat do you say? Please could you come down and see me?\n\nLots of Love,\n\tShekka";
 }
@@ -2848,4 +2848,4 @@ public function shekkaRepeatJoinCrew():void
 	//Welcome or Not Yet; same as First time
 	processTime(2);
 	//9999
-}*/
+}

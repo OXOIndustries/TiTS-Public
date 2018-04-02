@@ -8,7 +8,10 @@ public function shekkaRecruited():Boolean
 {
 	return (flags["SHEKKA_RECRUITED"] != undefined);
 }
-
+public function shekkaAddicted():Boolean
+{
+	return false;
+}
 //Post-Crew Menu
 //Clicking on Shekka’s name when you’re selecting Ship Followers gives you the current description.
 public function approachCrewShekka(back:Boolean = false):void
@@ -141,7 +144,7 @@ public function talkToCrewShekkaAboutTarkus():void
 	//Next: back to Places menu
 	processTime(30);
 	clearMenu();
-	addButton(0,"Next",9999);
+	//addButton(0,"Next",9999);
 }
 
 //Tavros //Unlocked by going there with her on crew
@@ -189,7 +192,8 @@ public function talkToShekkaAboutNewTexas():void
 	//Next: back to Places menu
 	processTime(10);
 	clearMenu();
-	addButton(0,"Next",);
+	//9999
+	//addButton(0,"Next",);
 }
 
 //Myrellion //Unlocked by going there with her on crew
@@ -210,7 +214,7 @@ public function shekkaMyrellionTalk():void
 	//Next: back to Places menu
 	//9999 Make shekka  not hate golds fen. SkoW is crazy.
 	clearMenu();
-	addButton(0,"Next",9999);
+	//addButton(0,"Next",9999);
 }
 
 //Uveto //Unlocked by going there with her on crew
@@ -225,7 +229,7 @@ public function shekkaUvetoTalk():void
 	//Next: back to Places menu
 	processTime(8);
 	clearMenu();
-	addButton(0,"Nex",9999);
+	//addButton(0,"Nex",9999);
 }
 
 //People
@@ -254,7 +258,7 @@ public function shekkaAzraTalk():void
 	processTime(5);
 	//Next: back to People menu
 	clearMenu();
-	addButton(0,"Next",9999);
+	//addButton(0,"Next",9999);
 }
 
 //Bess
@@ -268,7 +272,7 @@ public function shekkaBessTalk():void
 	//Next: back to People menu
 	processTime(5);
 	clearMenu();
-	addButton(0,"Next",9999);
+	//addButton(0,"Next",9999);
 }
 
 //Celise
@@ -285,7 +289,7 @@ public function shekkaCeliseTalk():void
 	output("\n\nMaybe she does, she’s just a lot gentler about it.");
 	processTime(5);
 	clearMenu();
-	addButton(0,"Next",9999);
+	//addButton(0,"Next",9999);
 }
 
 //Nova
@@ -305,7 +309,7 @@ public function talkToShekkaAboutNova():void
 	//Next: back to People menu
 	processTime(4);
 	clearMenu();
-	addButton(0,"Next",9999);
+	//addButton(0,"Next",9999);
 }
 
 //Reaha
@@ -318,7 +322,7 @@ public function shekkaReahaTalk():void
 	output("\n\nAfter that, she smiles and nods in satisfaction. <i>“She’s good people, and her milk is delicious. Look after that Moo.”</i>");
 	processTime(3);
 	clearMenu();
-	addButton(0,"Next",9999);
+	//addButton(0,"Next",9999);
 }
 
 //Yammi	
@@ -332,7 +336,7 @@ public function talkToShekkaAboutYammi():void
 	output("\n\nShekka snorts and slaps you on the leg <i>“Ass. But yeah, I like her, she’s nice. I can’t cook for crap, until meeting her I’d never had anything so incredibly delicious. You’re so lucky she’s not in some high-class establishment right now.”</i>");
 	processTime(3);
 	clearMenu();
-	addButton(0,"Next",9999);
+	//addButton(0,"Next",9999);
 }
 
 //Spend time
@@ -341,7 +345,8 @@ public function spendTimeWithShekka():void
 {
 	clearOutput();
 	showShekka();
-	if(onTavros9999)
+	//On Tavros
+	if(9999)
 	{
 		output("You ask if Shekka would like to take a break from... whatever it is she’s doing and hang out with you for a while. <i>“Hmmm, you’re asking me without that mischievous eyebrow wiggle, I assume you don’t mean sex?”</i>");
 		output("\n\n<i>“The night’s still young–wait, I have a tell?”</i>");
@@ -350,7 +355,8 @@ public function spendTimeWithShekka():void
 		processTime(2);
 		clearMenu();
 	}
-
+}
+/*
 
 output("\n\nNot on Tavros");
 output("\n\nYou basically have to peel Shekka away from her impromptu work-desk, lifting her up and onto your {broad, huggable/firm, muscular} side before propping her up with a hand. <i>“I resent being carried around like a hatchling, [pc.name].”</i>");
@@ -401,9 +407,7 @@ output("\n\nAs if she could stop you.");
 
 output("\n\n//Time transitions three hours");
 output("\n\n//Next: back to ship menu");
-
-
-
+*/
 
 
 //Option One
@@ -415,8 +419,8 @@ public function shekkaTavrosHangoutOne():void
 	author("SomeKindofWizard");
 	output("Of course, the best place to go before anywhere else is Anon’s bar!");
 	output("\n\nYou quickly discover that Shekka can put down a surprisingly decent amount of alcohol. ");
-	if(9999) output("More than you, actually");
-	elee output("It’s nothing to your own expertly-trained liver, but impressive nonetheless");
+	if(9999 == 0) output("More than you, actually");
+	else output("It’s nothing to your own expertly-trained liver, but impressive nonetheless");
 	output(". By the time shots have started to be ordered your table has a good card game going. The pink-haired Rask took a few rounds to figure out what’s going on, but by round six the pot is practically cascading into her little arms. <i>“Read ‘em and weep, suckers!”</i>");
 	output("\n\nOnce she has your hand back in hers (which she nuzzles into affectionately now) she hands you a credit chit. <i>“Here y’go... that wash fun, should cover the drink...”</i>");
 	//Increase drunkenness by 2 if physique greater than 20, by 4 if less.
@@ -463,7 +467,7 @@ public function shekkaTavrosHangoutTwo():void
 	processTime(120);
 	pc.lust(40);
 	currentLocation = "SHIP INTERIOR";
-	shekkaCrewSexMenu();
+	//9999shekkaCrewSexMenu();
 }
 
 //Addiction
@@ -487,11 +491,11 @@ public function shekkaAddictionWheeee():void
 		output("\n\nShekka’s eyes skirt about the room, unconsciously twitching. She nervously scratches at her ear, before walking away <i>“Yeah, just... uh. Wait here a moment...”</i>");
 		output("\n\nA few minutes pass, and Shekka returns, looking flushed. She rubs idly at a nipple hard enough to be seen through her suit. <i>“All good, I’m cured.”</i> she says with a confident smile.");
 		output("\n\nThat easy?! You stare, aghast. ");
-		if(curedReaha9999) output("Just thinking about how long it took for Reaha to recover makes this seem a little unlikely. ");
+		if(flags["REAHA_ADDICTION_CURED"] == 1) output("Just thinking about how long it took for Reaha to recover makes this seem a little unlikely. ");
 		output("Shekka shrugs helplessly <i>“I was addicted to you because it was fun. Fuck. Fuck it was so hot to crave you...”</i>");
 		output("\n\n<i>“And you just had the cure around because you were enjoying it?”</i>");
 		output("\n\nThe Raskvel smiles, taking another slow, deep breath. <i>“Yup, a different kind of addictive aphrodisiac, and a shit ton of caffeine. They’ll do battle in my brain or whatever for a while. Then I’m fine.");
-		if(curedReaha9999) output(" It’s not like Reaha’s case, that girl spent fuck knows how long on synthetic lust drugs.");
+		if(flags["REAHA_ADDICTION_CURED"] == 1) output(" It’s not like Reaha’s case, that girl spent fuck knows how long on synthetic lust drugs.");
 		output("”</i>");
 		output("\n\nWell... if she’s sure.");
 		processTime(20);
