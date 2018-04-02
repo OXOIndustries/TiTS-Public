@@ -3237,12 +3237,17 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	
 	if(sendMails)
 	{
-		/* SHEKKA RECROOT 
+		/* SHEKKA RECROOT */
 		if(!shekkaRecruited() && flags["SHEKKA_REPEAT_TALKED"] != undefined && flags["SHEKKA_TALKED_PLAN"] != undefined && flags["PLANET_3_UNLOCKED"] != undefined && flags["TIMES_SEXED_SHEKKA"] != undefined)
 		{
 			if(!MailManager.isEntryUnlocked("shekkaFollowerIntroMail") && !pc.hasStatusEffect("Shekka_Follower_Email_CD")) goMailGet("shekkaFollowerIntroMail");
-			
-		}*/
+			if(flags["SHEKKA_CURE_TIMER"] != undefined)
+			{
+				if(flags["SHEKKA_CURE_TIMER"]+10080 < GetGameTimestamp() && !MailManager.isEntryUnlocked("shekkaFollowerIntroMail")) goMailGet("shekkaFollowerFirstChildrenBorn");
+				if(flags["SHEKKA_CURE_TIMER"]+20080 < GetGameTimestamp() && !MailManager.isEntryUnlocked("shekkaFollowerTesting")) goMailGet("shekkaFollowerTesting");
+				if(flags["SHEKKA_CURE_TIMER"]+24080 < GetGameTimestamp() && !MailManager.isEntryUnlocked("shekkaFollowerUnlockEmail")) goMailGet("shekkaFollowerUnlockEmail");
+			}	
+		}
 		/* ANNO THICKNESS! */
 		if(annoIsHuskar())
 		{

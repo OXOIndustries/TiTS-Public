@@ -272,7 +272,10 @@ public function configureMails():void
 	MailManager.addMailEntry("annoReactsToSyriHuskarTeasingMail", annoReactsToSyriHuskarTeasing, "-no subject-","Anno Dorna","Anno_Dorna@SteeleTech.corp", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("syriGetsBlockedByAnnoOverHuskarMail", syriGetsBlockedByAnnoOverHuskar, "Besties with testes","Syri Dorna","BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
 	//Shekka Recruitment Emails
-	//MailManager.addMailEntry("shekkaFollowerIntroMail", shekkaFollowerIntroEmail, "Can We Talk?","Shekka","shekka_mail@GalLink.org", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("shekkaFollowerIntroMail", shekkaFollowerIntroEmail, "Can We Talk?","Shekka","shekka_mail@GalLink.org", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("shekkaFollowerFirstChildrenBorn", cureProgress1Email, "First Children Born","Shekka","shekka_mail@GalLink.org", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("shekkaFollowerTesting", spellingAndReadingTestsMailText, "Test Results","Shekka","shekka_mail@GalLink.org", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("shekkaFollowerUnlockEmail", lastRaskvelCureEmail, "Hey...","Shekka","shekka_mail@GalLink.org", quickPCTo, quickPCToAddress);
 
 
 

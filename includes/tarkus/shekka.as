@@ -1,4 +1,4 @@
-﻿//Shekka's Widget Warehouse
+//Shekka's Widget Warehouse
 //Your one-stop shop for saucy Raskvel funtimes.
 //Author: Fenbroxo
 
@@ -98,6 +98,22 @@ public function approachShekka(back:Boolean = false):void
 	{
 		output("Is there something else you would like to do with Shekka?");
 	}
+	else if(flags["SHEKKA_ISSUES"] == 5) 
+	{
+		shekkaCureTalk();
+		return;
+	}
+	if(flags["SHEKKA_ISSUES"] == 6 && !pc.hasStatusEffect("Shekka_Cure_CD"))
+	{
+		theCureIsReadyShekka();
+		return;
+	}
+	if(MailManager.isEntryViewed("shekkaFollowerUnlockEmail") && flags["SHEKKA_ISSUES"] == 7)
+	{
+		shekkaJoinCrewOffer();
+		flags["SHEKKA_ISSUES"] = 8;
+		return;
+	}
 	//Repeat Approach
 	else
 	{
@@ -111,8 +127,16 @@ public function shekkaMainMenu():void
 {
 	clearMenu();
 	addButton(0,"Appearance",shekkaAppearance,undefined,"Appearance","Review what Shekka looks like in detail.");
-	//if(MailManager.isEntryViewed("shekkaFollowerIntroMail")) addButton(1,"Talk",raskvelCureQuestShekkaTalk,undefined,"Talk","Talk with Shekka about the Raskvel.");
-	addButton(1,"Talk",talkToShekka,undefined,"Talk","Talk to Shekka about a range of topics.");
+	if(MailManager.isEntryViewed("shekkaFollowerIntroMail")) addButton(1,"Talk",raskvelCureQuestShekkaTalk,undefined,"Talk","Talk with Shekka about the Raskvel.");
+	else if(flags["SHEKKA_ISSUES"] != undefined && flags["SHEKKA_ISSUES"] >= 2 && flags["SHEKKA_ISSUES"] < 5) 
+	{
+		if(pc.hasStatusEffect("Shekka_Pay_CD")) addDisabledButton(1,"Fund Project","Fund Project","You'll need to wait a bit before you get back to Shekka on this.");
+		else addButton(1,"Fund Project",shekkaFundProjectTalk,undefined,"Fund Project","Shekka might need some money to get her pet project going...");
+	}
+	else  if(flags["SHEKKA_ISSUES"] == 7 && !MailManager.entryUnlocked("shekkaFollowerUnlockEmail")) addDisabledButton(1,"Cure","Cure","You'll need to wait a while before you can get any more information on the cure.");
+	else if(flags["SHEKKA_ISSUES"] == 7 && MailManager.entryUnlocked("shekkaFollowerUnlockEmail")) addDisabledButton(1,"Cure","Cure","You'll need to wait a while before you can get any more information on the cure.");
+	if(flags["SHEKKA_ISSUES"] == 8) addButton(1,"Join Crew",shekkaRepeatJoinCrew,undefined,"Join Crew","Invite Shekka to join your crew.");
+	else addButton(1,"Talk",talkToShekka,undefined,"Talk","Talk to Shekka about a range of topics.");
 	if(pc.lust() >= 33)
 	{
 		if(flags["TIMES_SEXED_SHEKKA"] == undefined) addButton(2,"Flirt",shekkaFlirtSexMenu,undefined,"Flirt","Flirt with Shekka in hopes of getting some action.");
@@ -2216,7 +2240,7 @@ public function pcLosesToNewShekkaBots():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-/*SHEKKA FOLLOWER XPACK INTRO, BY SomeKindofWizard
+//SHEKKA FOLLOWER XPACK INTRO, BY SomeKindofWizard
 //Content/Intro
 //The content in here is reliant on having done most of the available Shekka conversations (see her original document for all of that). 
 //Once you have completed [Repeat Good To Talk] [Her Plan] a day will pass and you will receive the following Codex mail.
@@ -2281,12 +2305,6 @@ public function raskvelCureQuestShekkaTalk():void
 		shekkaSexMenu();
 		eventQueue.push(shekkaFundProjectTalk);
 	}
-}
-
-if(flags["SHEKKA_ISSUES"] != undefined && flags["SHEKKA_ISSUES"] >= 2 && flags["SHEKKA_ISSUES"] < 5) 
-{
-	if(pc.hasStatusEffect("Shekka_Pay_CD")) addDisabledButton(1,"Fund Project","Fund Project","You'll need to wait a bit before you get back to Shekka on this.");
-	else addButton(1,"Fund Project",shekkaFundProjectTalk,undefined,"Fund Project","Shekka might need some money to get her pet project going...");
 }
 
 public function shekkaFundingCost():Number
@@ -2470,13 +2488,6 @@ public function noPayYetShekkaFund3():void
 	addButton(0,"Next",approachShekka,true);
 }
 
-if(flags["SHEKKA_ISSUES"] != undefined && flags["SHEKKA_ISSUES"] == 5) 
-{
-	shekkaCureTalk();
-	return;
-}
-
-
 //The Cure
 //Once the project is funded, you can select a text option for The Cure where Funding used to be. After a week passes, you get a reminder to go and check on how she’s doing.
 public function shekkaCureTalk():void
@@ -2491,6 +2502,7 @@ public function shekkaCureTalk():void
 	output("\n\nSounds like Shekka could use a little break. She smirks at that, running a hand through the soft quills of her hair. <i>“Is that <i>so<i> Steele? You might be right.”</i>");
 	pc.createStatusEffect("Shekka_Cure_CD");
 	pc.setStatusMinutes("Shekka_Cure_CD",60*24*7);
+	flags["SHEKKA_ISSUES"] = 6;
 	processTime(5);
 	pc.lust(10);
 	//Next: Jump to Sex Menu
@@ -2511,7 +2523,6 @@ public function theCureIsReadyShekka():void
 	output("\n\n<i>“I... [pc.name]? Thank you. Thank you for saving my people from themselves. I don’t know yet how this will all turn out, but I’m hopeful!”</i> The pear-shaped, red-scaled beauty rubs at her eyes with one sleeve, suddenly starting to sniffle. <i>“I-I’m sorry, it’s just–”</i>");
 	output("\n\nBefore her sniffles get a chance to devolve into fully-fledged sobbing, you haul her up and into your [pc.chest], nuzzling the soft quills of her hair. Shekka gulps down a deep breath, burying her face into you before slowly letting it out again. <i>“Alright, it’s cool. I’m cool. We’re all–meep!”</i> The mechanic’s attempt at pushing away proves entirely fruitless. It’s getting rather tempting to just sit there and enjoy her weight pressed down against you.");
 	output("\n\n...Judging by how her luscious booty grinds in your lap, she seems content to sit and soak in the moment too. Those movements eventually fall still, and long before your [pc.legs] even get a chance to fall asleep, the little red Rask starts to snore gently. The problem now is what to do with her; the cheap stool does not make for a good snuggling spot. You slip your hands under her cushy rear-end and stand up, keeping her held up like a lover.");
-
 	//If you have a cock(s)
 	if(pc.hasCock())
 	{
@@ -2558,11 +2569,17 @@ public function shekkaCuddleSleepWakeup():void
 	{
 		output("\n\n<i>“Nothing I like more than being able to make a choice, but it all looks so good!”</i>");
 		//Menu option; Dick (Jump to Dick)  //Menu option; Vagina (jump to Vagooter)
+		clearMenu();
+		addButton(0,"Dick",cureRewardUseDick);
+		addButton(1,"Vagina",vaginaSexWithShekkaOnCureThing);
 	}
-	else
+	else if(pc.hasCock())
 	{
-		//9999
+		addButton(0,"Next",cureRewardUseDick);
 	}
+	else addButton(0,"Next",vaginaSexWithShekkaOnCureThing);
+	flags["SHEKKA_ISSUES"] = 7;
+	flags["SHEKKA_CURE_TIMER"] = GetGameTimestamp();
 }
 
 //Dick (Use largest)
@@ -2575,7 +2592,7 @@ public function cureRewardUseDick():void
 	var x:int = pc.cockThatFits(shekka.vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
 	//SmallDick
-	if(pc.cocks[x].cLength() < 13) output("Her mouth opens as wide as it possibly can, tongue lolling out to trail gently over the cumslit of your [pc.cockHead]. She follows it like an arrow, wrapping her maw around your pecker with an affirmative gulp. Her mouth swallows you whole, tongue lashing your shaft affectionately as her eyes look up at yours for approval.");
+	if(pc.cocks[x].cLength() < 13) output("Her mouth opens as wide as it possibly can, tongue lolling out to trail gently over the cumslit of your [pc.cockHead " + x + "]. She follows it like an arrow, wrapping her maw around your pecker with an affirmative gulp. Her mouth swallows you whole, tongue lashing your shaft affectionately as her eyes look up at yours for approval.");
 	else output("No matter how wide that mouth opens, it only belongs to a little face, but her tongue practically spools out, bathing your cumslit in drool as she drinks in the scent of you. She nuzzles at your shaft with a horny little growl, hands joining in to stroke and rub at you. Her eyes go from your mammoth member to your own [pc.eyes], hunting for confirmation.");
 
 	output("\n\nMoans and groans erupt from her when your [pc.fingers] go through her quills, setting them to standing on end. A familiar buzzing hum joins the orchestra of lurid slurps as the vibrating tip of her tail kicks in, before slipping up beneath her spread legs to grind from top-clitty to bottom. Her affectionate worship of your prick continues like that until your ");
@@ -2600,7 +2617,7 @@ public function cureRewardUseDick():void
 	//Else
 	else
 	{
-		output("\n\nShe’s a voracious little thing, desperately trying to drink in every detail about you. Her hands grasp at your [pc.chest], and her buzzing tail coils around one of your [pc.legOrLegs] with an affirmative squeeze. It’s enough to urge you on to planting her at the crest of your [pc.cockHead] and push her down.");
+		output("\n\nShe’s a voracious little thing, desperately trying to drink in every detail about you. Her hands grasp at your [pc.chest], and her buzzing tail coils around one of your [pc.legOrLegs] with an affirmative squeeze. It’s enough to urge you on to planting her at the crest of your [pc.cockHead " + x + "] and push her down.");
 		output("\n\nYour whole being is swallowed and crushed down on with vice-like intensity by a soaking-wet furnace as your ");
 		if(pc.cocks[x].cLength() >= 20) output("prick doesn’t so much as stop. In the same penetration, your [pc.cockHead " + x + "] batters its way past Shekka’s cervix before making its home in the very depths of her womb.");
 		else output("cock kisses at the entrance to Shekka’s womb, grinding against her cervix. Sadly you can’t quite reach your way into her womb, but the insistent jerks of her hips make it clear that when you cum it’ll be reaching just fine.");
@@ -2632,7 +2649,7 @@ public function cureRewardUseDick():void
 	//Merge
 	output("\n\nIt takes at least a few more minutes for the both of you to come crashing down from the sexual high, although Shekka still occasionally twitches in the aftershocks of pleasure. <i>“Sweet fucking stars... I’m not sure what even came over me...”</i> she nuzzles your chest and wipes a little sweat from her brow.");
 	output("\n\nAfter you’ve both cooled down properly, and wiped yourselves off, the little Raskvel tiptoes and pulls you down for a quick kiss. <i>“Thank you again, [pc.name]. I’ll uh... I’ll let you know how distribution goes. Okay?”</i> You give her an affirmative nod, a ruffle of her quilly-hair, and return to your adventure.");
-
+	IncrementFlag("TIMES_SEXED_SHEKKA");
 	processTime(30);
 	pc.orgasm();
 	clearMenu();
@@ -2697,10 +2714,12 @@ public function vaginaSexWithShekkaOnCureThing():void
 
 	output("\n\nAfter you’ve both cooled down properly, and wiped yourselves off, the little Raskvel tiptoes and pulls you down for a quick kiss. <i>“Thank you again, [pc.name]. I’ll uh... I’ll let you know how distribution goes. Okay?”</i> You give her an affirmative nod, a ruffle of her quilly-hair, and return to your adventure.");
 	processTime(30);
+	IncrementFlag("TIMES_SEXED_SHEKKA");
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+
 
 //Progress Emails
 //After The Cure is ready, the button greys out, hover-over reads <i>“The Cure is in progress, you’ll have to wait and see.”</i>
@@ -2742,8 +2761,8 @@ public function shekkaJoinCrewOffer():void
 	//Two options: Welcome (hovertext: this will invite Shekka to live on your ship)
 	//Not Yet (hovertext: turn her down gentle, she’ll wait for you.
 	clearMenu();
-	addButton(0,"Welcome",);
-	addButton(1,"Not Yet",);
+	addButton(0,"Welcome",welcomeShekkaToTheTeam);
+	addButton(1,"Not Yet",noFollowerYetShekka);
 }
 
 //Welcome
