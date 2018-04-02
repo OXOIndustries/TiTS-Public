@@ -496,11 +496,26 @@ public function chooseHeight():void {
 	output("\n\n<b>Please give your character’s height in inches. For reference, six feet tall is 72 inches.</b>");
 	
 	displayInput();
+	userInterface.textInput.text = String(averageHeight());
 	output("\n\n\n");
 	//[Height Box]
 	clearMenu();
 	addButton(0,"Next",applyHeight);
 	addButton(14,"Back",startCharacterCreation);
+}
+
+public function averageHeight():Number
+{
+	var heightResult:Number = 68;
+	if(pc.originalRace == "half-leithan") heightResult += 14;
+	if(pc.originalRace == "half-kaithrit") heightResult -= 6;
+	if(pc.originalRace == "half kui-tan") heightResult -= 2;
+	if(pc.originalRace == "half-gryvain") heightResult += 4;
+	if(pc.hasCock()) heightResult += 5;
+	//Add a little randomness:
+	heightResult -= rand(3);
+	heightResult += rand(3);
+	return Math.round(heightResult);
 }
 
 public function applyHeight():void {
