@@ -5762,6 +5762,9 @@
 				case GLOBAL.TYPE_SHARK:
 					adjectives = ["pointed","sail-like","finned"];
 					break;
+				case GLOBAL.TYPE_SIREN:
+					adjectives = ["sail-like","pointed","pisine"];
+					break;
 				case GLOBAL.TYPE_SWINE:
 					adjectives = ["swine", "pig-like", "floppy"];
 					if(isBimbo()) adjectives.push("piggy");
@@ -6769,7 +6772,7 @@
 			return true;
 		}
 		public function isNaga(): Boolean {
-			if (legCount == 1 && legType == GLOBAL.TYPE_NAGA) return true;
+			if (legCount == 1 && InCollection(legType, [GLOBAL.TYPE_NAGA, GLOBAL.TYPE_SHARK])) return true;
 			if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_PREHENSILE)) return true;
 			return false;
 		}
@@ -7106,7 +7109,9 @@
 			if (hasArmFlag(GLOBAL.FLAG_GOOEY)) adjective.push("slimy", "slick", "gooey");
 			if (hasArmFlag(GLOBAL.FLAG_SPIKED)) adjective.push("spiked", "spiky", "prickly");
 			if (hasArmFlag(GLOBAL.FLAG_STICKY)) adjective.push("sticky");
+			if (hasArmFlag(GLOBAL.FLAG_LUBRICATED)) adjective.push("moist", "slippery", "slick");
 			if (armType == GLOBAL.TYPE_LAPINE && hasArmFlag(GLOBAL.FLAG_THICK)) adjective.push("big");
+			if (armType == GLOBAL.TYPE_SIREN) adjective.push("harpy-like");
 			// Build
 			if ((forceAdjective || rand(2) == 0) && adjective.length > 0) output += RandomInCollection(adjective);
 			// Noun
@@ -7177,7 +7182,7 @@
 		}
 		public function hasClawedHands(): Boolean {
 			if(armType == GLOBAL.TYPE_AVIAN && hasArmFlag(GLOBAL.FLAG_PAWS)) return true;
-			return InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_LUPINE);
+			return InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_LUPINE);
 		}
 		public function hasPaddedHands(): Boolean {
 			if (hasArmFlag(GLOBAL.FLAG_PAWS)) return true;
@@ -7245,6 +7250,7 @@
 						case GLOBAL.TYPE_MYR: adjectives = ["chitinous", "armored", scaleColor + "-armored", "chitinous"]; break;
 						case GLOBAL.TYPE_FROG: adjectives = ["frog", "amphibious", "frog-like", "powerful"]; break;
 						case GLOBAL.TYPE_NYREA: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
+						case GLOBAL.TYPE_SIREN:
 						case GLOBAL.TYPE_SHARK: adjectives = ["finned","shark-like","aquatic"]; break;
 						case GLOBAL.TYPE_SWINE: adjectives = ["swine", "swine", "pig-like"]; break;
 						case GLOBAL.TYPE_TENTACLE: adjectives = ["tentacle-toed", "tentacled", "tentacle imitation", "tentacle formed"]; break;
@@ -7269,6 +7275,7 @@
 					if (hasLegFlag(GLOBAL.FLAG_FEATHERED)) adjectives.push("feathered", "feathery");
 					if (hasLegFlag(GLOBAL.FLAG_GOOEY) && legType != GLOBAL.TYPE_GOOEY) adjectives.push("slimy", "slick", "gooey");
 					if (hasLegFlag(GLOBAL.FLAG_STICKY)) adjectives.push("sticky");
+					if (hasLegFlag(GLOBAL.FLAG_LUBRICATED)) adjectives.push("moist", "slippery", "slick");
 				}
 				//Random goes here!
 				if (adjectives.length > 0) output += RandomInCollection(adjectives) + " ";
@@ -7301,9 +7308,7 @@
 					case GLOBAL.TYPE_EQUINE: adjectives = ["equine", "horse-like", "bestial"]; break;
 					case GLOBAL.TYPE_BOVINE: adjectives = ["bovine", "cow-like", "bestial"]; break;
 					case GLOBAL.TYPE_CANINE: 
-					case GLOBAL.TYPE_KORGONNE:
-						adjectives = ["canine", "dog-like"];
-						break;
+					case GLOBAL.TYPE_KORGONNE: adjectives = ["canine", "dog-like"]; break;
 					case GLOBAL.TYPE_FELINE: adjectives = ["feline", "cat-like"]; break;
 					case GLOBAL.TYPE_VULPINE: adjectives = ["vulpine", "fox-like", "foxy"]; break;
 					case GLOBAL.TYPE_LUPINE: adjectives = ["lupine", "wolf-like"]; break;
@@ -7328,6 +7333,7 @@
 					case GLOBAL.TYPE_OVIR: adjectives = ["human-like"]; break;
 					case GLOBAL.TYPE_MYR: adjectives = ["chitinous", "armored", scaleColor + "-chitin"]; break;
 					case GLOBAL.TYPE_NYREA: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
+					case GLOBAL.TYPE_SIREN:
 					case GLOBAL.TYPE_SHARK: adjectives = ["shark-like","clawed","webbed"]; break;
 					case GLOBAL.TYPE_SHEEP: adjectives = ["sheep", "sheep-like", "lamb-like", "bestial"]; break;
 					case GLOBAL.TYPE_GOAT: adjectives = ["goat", "goat-like", "caprine", "bestial"]; break;
@@ -7382,7 +7388,7 @@
 			else if (legType == GLOBAL.TYPE_NAGA && tallness >= 48) output += "tails";
 			else if (legType == GLOBAL.TYPE_NAGA) output += "tail-tips";
 			else if (legType == GLOBAL.TYPE_FROG && rand(2) == 0) output += "webbed feet";
-			else if (legType == GLOBAL.TYPE_SHARK && rand(2) == 0) output += RandomInCollection(["footclaws", "webbed feet"]);
+			else if (InCollection(legType, [GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SIREN]) && rand(2) == 0) output += RandomInCollection(["footclaws", "webbed feet"]);
 			else if (legType == GLOBAL.TYPE_TENTACLE && rand(2) == 0) output += "tentacle feet";
 			else output += "feet";
 			return output;
@@ -7392,16 +7398,19 @@
 			output = footAdjectives(forceType, forceAdjective);
 			//Noun
 			if (output != "") output += " ";
-			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hoof";
+			if (isNaga())
+			{
+				if (tallness >= 84) output += "underbelly";
+				else if (tallness >= 48) output += "tail";
+				else output += "tail-tip";
+			}
+			else if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hoof";
 			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && legType != GLOBAL.TYPE_AVIAN && rand(10) < 8) output += "paw";
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "undercarriage";
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && rand(2) == 0) output += "high-heel";
 			else if (legType == GLOBAL.TYPE_LIZAN) output += "footclaw";
-			else if (legType == GLOBAL.TYPE_NAGA && tallness >= 84) output += "underbelly";
-			else if (legType == GLOBAL.TYPE_NAGA && tallness >= 48) output += "tail";
-			else if (legType == GLOBAL.TYPE_NAGA) output += "tail-tip";
 			else if (legType == GLOBAL.TYPE_FROG && rand(2) == 0) output += "webbed foot";
-			else if (legType == GLOBAL.TYPE_SHARK && rand(2) == 0) output += RandomInCollection(["footclaw","webbed foot"]);
+			else if (InCollection(legType, [GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SIREN]) && rand(2) == 0) output += RandomInCollection(["footclaw","webbed foot"]);
 			else if (legType == GLOBAL.TYPE_TENTACLE && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) output += "writhing lower body";
 			else if (legType == GLOBAL.TYPE_TENTACLE && rand(2) == 0) output += "tentacle foot";
 			else output += "foot";
@@ -7416,7 +7425,7 @@
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && rand(2) == 0) output += "pointed toe";
 			else if (legType == GLOBAL.TYPE_LIZAN) output += "claw";
 			else if (legType == GLOBAL.TYPE_FROG && rand(2) == 0) output += "webbed toe";
-			else if (legType == GLOBAL.TYPE_SHARK && rand(2) == 0) output += RandomInCollection(["claw","webbed toe"]);
+			else if (InCollection(legType, [GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SIREN]) && rand(2) == 0) output += RandomInCollection(["claw","webbed toe"]);
 			else output += "toe";
 			return output;
 		}
@@ -7437,7 +7446,7 @@
 		}
 		public function hasToes():Boolean
 		{
-			if(hasLegFlag(GLOBAL.FLAG_AMORPHOUS) || hasLegFlag(GLOBAL.FLAG_HOOVES) || legType == GLOBAL.TYPE_NAGA) return false;
+			if(isNaga() || hasLegFlag(GLOBAL.FLAG_AMORPHOUS) || hasLegFlag(GLOBAL.FLAG_HOOVES)) return false;
 			return true;
 		}
 		public function hasHooves():Boolean
@@ -10916,7 +10925,7 @@
 		public function canSwim(): Boolean {
 			//Oh god, why Spiderman, why?!!!
 			if (hasStatusEffect("Web")) return false;
-			if (wingType == GLOBAL.TYPE_SHARK) return true;
+			if (wingType == GLOBAL.TYPE_SHARK || InCollection(legType, [GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SIREN])) return true;
 			return true;
 		}
 		public function hasWings(wType:Number = 0): Boolean {
@@ -11001,6 +11010,20 @@
 				if (vaginas[x].type == type) return true;
 			}
 			return false;
+		}
+		public function hymenTotal():int {
+			if(vaginas.length <= 0) return 0;
+			var cnt:int = 0
+			for(var v:int = 0; v < vaginas.length; v++)
+			{
+				if(vaginas[v].hymen) cnt++;
+			}
+			return cnt;
+		}
+		public function hasHymen(v:int = -1):Boolean {
+			if(vaginas.length <= 0 || v >= vaginas.length) return false;
+			if(v < 0) return (hymenTotal() > 0);
+			return (vaginas[v].hymen);
 		}
 		public function hasVirginVagina(): Boolean {
 			return (vaginas.length > 0 && vaginalVirgin);
@@ -11502,8 +11525,7 @@
 			else if (race == "human" && isCentaur()) race = "centaur";
 			else if (isTaur()) race = taurRace(race); // Other taurs
 			// Naga-morphs
-			if (naleenScore() >= 5 && isNaga()) race = "naleen";
-			else if (isNaga()) race = "naga";
+			if (isNaga()) race = nagaRace();
 			// Slime-morphs
 			if (gooScore() >= 6) race = "goo-morph";
 			if (gooScore() >= 8) race = "galotian";
@@ -11693,6 +11715,12 @@
 			}
 			return "goat-morph";
 		}
+		public function nagaRace():String
+		{
+			if (naleenScore() >= 5) return "naleen";
+			if (legType == GLOBAL.TYPE_SHARK) return "leviathan naga";
+			return "naga";
+		}
 		public function plantRace():String
 		{
 			if (wingType == GLOBAL.TYPE_COCKVINE && wingCount > 0 && hasTail(GLOBAL.TYPE_COCKVINE) && cockTotal(GLOBAL.TYPE_TENTACLE) == cockTotal()) return "cockvine-morph";
@@ -11740,11 +11768,12 @@
 			if (tentacleScore() >= 25 || (armType == GLOBAL.TYPE_TENTACLE && legType == GLOBAL.TYPE_TENTACLE)) return "tentacle monster";
 			else return "tentacle-morph";
 		}
-		public function taurRace(race:String = ""):String
+		public function taurRace(sRace:String = ""):String
 		{
-			if (race.indexOf("leithan") != -1 || race.indexOf("chakat") != -1 || race.indexOf("taur") != -1) return race;
-			if (race.indexOf("-morph") != -1) race = race.replace("-morph", "");
-			return (race + (race.indexOf("-") != -1 ? " " : "-") + "taur");
+			if (sRace.indexOf("leithan") != -1 || sRace.indexOf("chakat") != -1 || sRace.indexOf("taur") != -1) return sRace;
+			if (sRace.indexOf("-morph") != -1) sRace = sRace.replace("-morph", "");
+			if (sRace.indexOf(" morph") != -1) sRace = sRace.replace(" morph", "");
+			return (sRace + (sRace.indexOf("-") != -1 ? " " : "-") + "taur");
 		}
 		public function mlpRace():String
 		{
@@ -12482,10 +12511,12 @@
 		public function suulaScore(): int
 		{
 			var counter: int = 0;
+			if (faceType == GLOBAL.TYPE_SHARK || faceType == GLOBAL.TYPE_SIREN) counter++;
+			if (hasHair() && hairType == GLOBAL.HAIR_TYPE_FEATHERS) counter++;
+			if (earType == GLOBAL.TYPE_SIREN) counter++;
+			if (eyeType == GLOBAL.TYPE_SIREN) counter++;
 			if (armType == GLOBAL.TYPE_SIREN) counter++;
 			if (legType == GLOBAL.TYPE_SIREN && legCount == 2 && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter++;
-			if (faceType == GLOBAL.TYPE_SHARK || faceType == GLOBAL.TYPE_SIREN) counter++;
-			if (earType == GLOBAL.TYPE_SIREN) counter++;
 			if (hasTail(GLOBAL.TYPE_SIREN)) counter++;
 			if (hasWings() && InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE])) counter++;
 			if (counter > 4 && hasCock(GLOBAL.TYPE_SIREN)) counter++;

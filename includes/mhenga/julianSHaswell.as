@@ -115,7 +115,7 @@ public function introductionToJulian():void {
 		output("\n\nJulian cocks an eyebrow. <i>“You must be new to Mhen’ga. The zil are bug-like humanoids native to this world. Not overly dangerous, though they do seem rather aggressive in their sexual copulations. They’re only rated as a class one threat. Any well-equipped explorer should be able to hold their own against them.”</i> He spins the blocky capture harness around and looks back to you.");
 	}
 	//If not an asshole:
-	if(!pc.isAss()) output("\n\nSeeing the worry in your eyes, Julian shakes his hands apologetically. <i>“It won’t be painful, I promise. If anything, quite the opposite. I simply need a few small tissue samples and large volumes of their sexual secretions for study, and then we’ll release them into the jungle. Surely a thousand credit reward will ease your conscience.”</i>");
+	if(!pc.isAss()) output("\n\nSeeing the worry in your eyes, Julian shakes his hands apologetically. <i>“It won’t be painful, I promise. If anything, quite the opposite. I simply need a few small tissue samples and large volumes of their sexual secretions for study, and then we’ll release them into the jungle. Surely a thousand " + (isAprilFools() ? "dogecoin" : "credit") + " reward will ease your conscience.”</i>");
 	//If an asshole
 	else output("\n\nJulian smiles at you. <i>“Surely you can appreciate what we can learn, regardless of the gray areas upon which we now tread, correct? There is only profit to be made here, friend, for both of us. One thousand credits worth, to be precise.”</i>");
 	//No new line:

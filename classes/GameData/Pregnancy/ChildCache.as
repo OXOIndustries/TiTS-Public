@@ -914,7 +914,7 @@ package classes.GameData.Pregnancy
 		{
 			if (_uniqueTypesInvalid)
 			{
-				_uniqueTypes = [];
+				_uniqueTypes = { };
 				
 				var c:Array = ChildManager.CHILDREN;
 				

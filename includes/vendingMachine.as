@@ -48,7 +48,7 @@ public function buyAPowahPotionMenu():void
 {
 	clearMenu();
 	if(pc.credits >= 5) addButton(0, "P.Potion", buyAPowahPotion,undefined, "Power Potion", "Get yourself an energy drink. Only 5 credits!");
-	else addDisabledButton(0, "P.Potion", "Power Potion", "You can’t even afford a five credit drink. Any poorer and you’ll be living out of a box.");
+	else addDisabledButton(0, "P.Potion", "Power Potion", "You can’t even afford a five " + (isAprilFools() ? "dogecoin" : "credit") + " drink. Any poorer and you’ll be living out of a box.");
 	if(canVendAmazonaIcedTea()) addButton(1, "Amazona", approachItemVendingMachine, "Amazona", "Amazona Iced Tea", "Get yourself an Amazona drink.");
 	addButton(14, "Back", mainGameMenu);
 }

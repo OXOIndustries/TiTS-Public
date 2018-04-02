@@ -63,6 +63,11 @@ public function altTooltip(itemName:String = "none"):String
 			else tooltip += "\n\n<i>“Hi, Milly Bayes here with Mighty Tight! Gotten knotted one too many times? Stopped by New Texas and ran with the bulls? Do you feel like you’re just worn out down there? J’ejune Pharmaceutical has your back with Mighty Tight! Mighty Tight is guaranteed to tighten your cooch, leaving you fresh and ready to party some more! Not only that, Mighty Tight works on asses too! Put the squeeze on your playmates with Mighty Tight!”</i>";
 			tooltip += "\n\nBelow this, in much smaller text, is a warning informing you <b>not to take Mighty Tight more than twice every four hours</b>. It also lists off a long string of minor potential side effects. Within the colorful packaging is a dull pink pill.";
 			break;
+		case "SirensBounty":
+			tooltip += "This Xenogen product is some kind of liquid contained in a stylish glass flask. ‘Siren’s Bounty’ is spelled out on the base in a combination of fancy cursive and musical notes which wrap around the entire container.";
+			tooltip += "\n\nYou idly note the little warning preamble on the back, but pay it no mind.";
+			if(silly) tooltip += " It’s not like you <i>read</i> warning labels anyway.";
+			break;
 		case "Sterilex":
 			tooltip += "This is a colorfully-packaged box featuring some holovid sales girl.";
 			if(!silly) tooltip += " Equally colorful lettering informs you that this is a powerful one-use contraceptive which is guaranteed to prevent pregnancy without impacting sexual performance.";

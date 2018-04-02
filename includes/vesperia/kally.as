@@ -2123,7 +2123,7 @@ public function tapKallysKegAsBimboII():void
 		output("”</i>");
 		output("\n\n<i>“Yesss,”</i> Kally hisses, barely managing not to moan.");
 		output("\n\nYou bob faster and keep squeezing on Kally’s balls. Even if you hadn’t heard that kui-tan liked that, you’d be able to tell by the way her cock jerks and pulses in your mouth whenever you give her nuts firm squeezes. Pre is pouring out now. You delight in milking it out of her.");
-		output("\n\n<i>“Do you think,”</i> Kiro pauses, leaning further forward, <i>“that if I nibbled on your ear right now, you’d pump every drop of cum in your body into [pc.himHer]? Like some kind of bimbofied, two-credit slut?”</i>");
+		output("\n\n<i>“Do you think,”</i> Kiro pauses, leaning further forward, <i>“that if I nibbled on your ear right now, you’d pump every drop of cum in your body into [pc.himHer]? Like some kind of bimbofied, two-" + (isAprilFools() ? "dogecoin" : "credit") + " slut?”</i>");
 		if(flags["KIRO_INTERRUPT_KALLYBEEJ"] != undefined) output(" A silent second passes. <i>“That trademark scowl doesn’t work when your eyes keep threatening to roll back. You know what’s going to happen, and you aren’t going to do anything about it. You’re just gonna sit there and cum, like a slut.”</i>");
 		output("\n\nKally’s balls are getting bigger in your hands. With each depraved suggestion, they’re swelling. The longer you knead them, the more they fill your hands, the more pre-cum she oozes on the tongue. You gulp down a load and suck her into your throat, rippling muscles around her dick without an ounce of conscious control. They just start squeezing, your throat transforming from useful orifice into cum-squeezing dick-holster.");
 		output("\n\nHere it comes. Her dick swells slightly. Where once it was hard, it’s now rock hard. Your nose flares, drinking in the scent of her overwhelming passion. Then you hear it. You hear Kally moan. It’s quiet, maybe a little muted, but it is undoubtedly the moan of a girl falling into ecstasy over getting her ear nipped by her sister");
@@ -2798,7 +2798,7 @@ public function searchKallysBar():void
 	else if(pc.RQ() >= 25) output("leap");
 	else output("less than gracefully tumble");
 	output(" over a vacant segment of the bar. It’s a good thing the Kui Country Bar and Lodge doesn’t get very much business. Nevertheless, there are a truly dazzling amount of surfaces to search. You crouch down and start by popping open the cabinets one after another. Booze... booze... lube... condoms.... Is Kally running a bar or a brothel? You decide to skip over the machines responsible for making ice and producing exotic flavorings, and the shelves full of liquor are equally useless.");
-	output("\n\nA gleam of reflected light off the credit terminal catches your eye, but so too does the rumpled shape of a forgotten handbag. Which will you search?");
+	output("\n\nA gleam of reflected light off the " + (isAprilFools() ? "dogecoin" : "credit") + " terminal catches your eye, but so too does the rumpled shape of a forgotten handbag. Which will you search?");
 	processTime(3);
 
 	clearMenu();

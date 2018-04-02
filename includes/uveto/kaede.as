@@ -216,7 +216,7 @@ public function uvetoKaedeAnno():void
 		output("\n\n<i>“We’re doing alright, thanks,”</i> Kaede answers with a bright smile. <i>“I wish I was leading the kind of lifestyle where we could be together on a more permanent basis, but we make do. I’m always keeping an eye out for");
 		if (annoNotRecruited()) output(" Tarkus");
 		else output(" Tavros");
-		output(" contracts so I have an excuse to visit as often as I can. Just about every spare credit I can put together goes into taking her out to nice places, buying little presents...”</i>");
+		output(" contracts so I have an excuse to visit as often as I can. Just about every spare " + (isAprilFools() ? "dogecoin" : "credit") + " I can put together goes into taking her out to nice places, buying little presents...”</i>");
 		
 		output("\n\nHang on a minute, isn’t Anno kind of rich? Why’s Kaede all but putting herself in the poor house like that; surely Anno should be doing the expensive wooing.");
 		
@@ -404,7 +404,7 @@ public function uvetoKaedeDone():void
 	clearOutput();
 	kaedeHeader();
 
-	output("You lean back in your chair as the little server droid zooms back to your table, balancing a steaming tray of food on its cylindrical head. Kaede slides the tray over from it and deposits a credit chit before sending it on its way. The droid beeps a polite <i>“Thank you!”</i> as it wheels off to tend to another table.");
+	output("You lean back in your chair as the little server droid zooms back to your table, balancing a steaming tray of food on its cylindrical head. Kaede slides the tray over from it and deposits a " + (isAprilFools() ? "dogecoin" : "credit chit") + " before sending it on its way. The droid beeps a polite <i>“Thank you!”</i> as it wheels off to tend to another table.");
 	
 	output("\n\nYour companion digs in with ferocity");
 	if (flags["KAEDE_UVETO_TEASED"] != undefined) output(", taking out the frustrations of your previous teasing on");

@@ -994,7 +994,7 @@ public function saenAndSeraWatch():void
 	
 	output("\n\nSera huffs. <i>“Fine. But only a quarter off for one cock-sucker.”</i>");
 	
-	output("\n\nSaendra gives you a reproachful look... just before Sera grabs her head and face-plants her on the counter. <i>“Hope you’re ready for a five hundred credit peepshow, meat,”</i> Sera says, walking around the counter and planting her legs behind Saendra’s upturned ass. The smooth, purple-hued hand not holding the fluffy privateer down reaches around and slaps her ass, fingers sinking into the halfbreed’s squeezable booty. ");
+	output("\n\nSaendra gives you a reproachful look... just before Sera grabs her head and face-plants her on the counter. <i>“Hope you’re ready for a five hundred " + (isAprilFools() ? "dogecoin" : "credit") + " peepshow, meat,”</i> Sera says, walking around the counter and planting her legs behind Saendra’s upturned ass. The smooth, purple-hued hand not holding the fluffy privateer down reaches around and slaps her ass, fingers sinking into the halfbreed’s squeezable booty. ");
 	
 	output("\n\n<i>“So where do you want it, slut?”</i> Sera sneers, her lengthy, blue-purple prick flopping into the crack of Saen’s ass.");
 	

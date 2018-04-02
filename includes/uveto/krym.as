@@ -178,7 +178,7 @@ public function useKrymsCamp():void
 	showKrym();
 	author("Savin");
 	output("<i>“And what’s it take to make it worth your while?”</i> you ask. <i>“Credits?”</i>");
-	output("\n\nKrymhilde chuckles, crossing her arms under her chest. <i>“Nah, got plenty of those. Besides, what am I gonna spend ‘em on out here? Milodan and korgonne wouldn’t know what to do with a credit chit unless it was shaped like a cock. Tell you what: you made it all the way out here all by yourself, so you must be pretty good in a fight. I could use the practice - none of the natives can make it past my turrets, if they even bother trying anymore. Starting to worry I’m gonna lose my edge.”</i>");
+	output("\n\nKrymhilde chuckles, crossing her arms under her chest. <i>“Nah, got plenty of those. Besides, what am I gonna spend ‘em on out here? Milodan and korgonne wouldn’t know what to do with a " + (isAprilFools() ? "dogecoin" : "credit chit") + " unless it was shaped like a cock. Tell you what: you made it all the way out here all by yourself, so you must be pretty good in a fight. I could use the practice - none of the natives can make it past my turrets, if they even bother trying anymore. Starting to worry I’m gonna lose my edge.”</i>");
 	output("\n\nSo what, she wants you to fight her?");
 	output("\n\n<i>“Call it an honor duel. You win, can use the camp like you own the place. I win, and I’m gonna drag you inside and use <b>you</b> to get nice and warm. Gets awful cold and lonely working out here all day.”</i>");
 	if(pc.isAss() || pc.isBro()) output("\n\nAs if you’d lose.");

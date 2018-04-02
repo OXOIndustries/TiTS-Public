@@ -1500,6 +1500,7 @@ public function bubbleBuddyVaandeEpilogue():void
 	output("\n\nGroaning, you pick up the sorely abused Bubble Buddy off of the floor and stow it with your other belongings. Poor girl had nearly as tough a time as you did yourself! You notice a credit chit on the nightstand and grab it in consideration of your unexpected generosity. At the very least, it should cover the added expenses the brothel mistress was so keen to hit you with. You leave with a mental note to avoid putting yourself on the wrong end of a hungry doh’rahn again.");
 	processTime(660);
 	pc.energyRaw = 0;
+	pc.credits += 15 + rand(16);
 	pc.HP(-Math.round(pc.HPMax()/2));
 	for(var x:int = 0; x < 15; x++) { pc.orgasm(); }
 	clearMenu();

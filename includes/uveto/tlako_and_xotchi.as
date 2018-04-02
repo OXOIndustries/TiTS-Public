@@ -191,7 +191,7 @@ public function buyAStupidSluttyWhaleCumBasket():void
 		if(pc.tallness > 48) output("your [pc.legOrLegs].");
 		else output("your midsection.");
 		output(" She’s actually flat against you, looking a little awkward. <i>“Am I doing this right? Toves don’t do physical affection. I’m still researching how you touchy-feely races do it.”</i>");
-		output("\n\nYou give her a look, but she’s too cheerful to notice. <i>“Thank you again!”</i> Tlako burbles! <i>“I owe Sub-Madam Xotchi Tzall a lot for the first run of these, so you can believe what a relief it is to finally start to move them! You’re a credit saver!”</i>");
+		output("\n\nYou give her a look, but she’s too cheerful to notice. <i>“Thank you again!”</i> Tlako burbles! <i>“I owe Sub-Madam Xotchi Tzall a lot for the first run of these, so you can believe what a relief it is to finally start to move them! You’re a " + (isAprilFools() ? "dogecoin" : "credit") + " saver!”</i>");
 		//[Unlocks Tlako Herself
 	}
 	output("\n\n");
@@ -273,7 +273,7 @@ public function tlakoThanksScene():void
 {
 	showTlako();
 	flags["TLAKO_THANKED"] = 1;
-	output("\n\nThe rightmost door wooshes open, revealing the diminutive pink form of Tlako. The little pink tove looks up at you. <i>“You have no idea how much of a credit saver you are,”</i> she says with a warm smile. <i>“I’ve finally paid off Sub-Madam Xotchi Tzall for the loan on the Welcome Baskets. People are actually buying them now, and I even received a missive from the Camarilla Department of Intraorganization - I’m being considered for a promotion! And that’s all thanks to you! You’re just so amazing!”</i>");
+	output("\n\nThe rightmost door wooshes open, revealing the diminutive pink form of Tlako. The little pink tove looks up at you. <i>“You have no idea how much of a " + (isAprilFools() ? "dogecoin" : "credit") + " saver you are,”</i> she says with a warm smile. <i>“I’ve finally paid off Sub-Madam Xotchi Tzall for the loan on the Welcome Baskets. People are actually buying them now, and I even received a missive from the Camarilla Department of Intraorganization - I’m being considered for a promotion! And that’s all thanks to you! You’re just so amazing!”</i>");
 	output("\n\n<i>“I was looking up ways to thank you, and I was wondering if you wanted to make use of my implant,”</i> she says, a little embarrassed. <i>“Is that an okay thing to offer? I mean, it’d only work if you had something to put in it. It’s not a pleasure organ for me like it is for you folks, so I wouldn’t feel it in the same way as you might, but if it’s something you’d like, I’d be happy to let you, um...”</i> she glances at her handheld, <i>“...flork me.”</i>");
 	clearMenu();
 	//[pc has two legs and a cock]

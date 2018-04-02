@@ -2481,6 +2481,17 @@ public function zilCallGirlPregnancyEnds(deltaT:uint):void
 	_tempZilGirlChildRef.RaceType = GLOBAL.TYPE_BEE;
 	_tempZilGirlChildRef.BornTimestamp = (flags["ZIL_CALLGIRL_PREG"] + flags["ZIL_CALLGIRL_GESTATION"]);
 	_tempZilGirlChildRef.MaturationRate = 1.0;
+	
+	// Adopt father's colors at random (if applicable):
+	if(rand(2) == 0) _tempZilGirlChildRef.skinTone = chars["PC_BABY"].skinTone;
+	//if(rand(2) == 0) _tempZilGirlChildRef.lipColor = chars["PC_BABY"].lipColor;
+	//if(rand(2) == 0) _tempZilGirlChildRef.nippleColor = chars["PC_BABY"].nippleColor;
+	if(rand(2) == 0) _tempZilGirlChildRef.eyeColor = chars["PC_BABY"].eyeColor;
+	if(rand(2) == 0) _tempZilGirlChildRef.hairColor = chars["PC_BABY"].hairColor;
+	//if(rand(2) == 0) _tempZilGirlChildRef.furColor = chars["PC_BABY"].furColor;
+	//if(rand(2) == 0) _tempZilGirlChildRef.scaleColor = chars["PC_BABY"].scaleColor;
+	//if(rand(2) == 0) _tempZilGirlChildRef.chitinColor = chars["PC_BABY"].scaleColor;
+	//if(rand(2) == 0) _tempZilGirlChildRef.featherColor = chars["PC_BABY"].furColor;
 
 	for (var i:int = 0; i < flags["ZIL_CALLGIRL_EGG_COUNT"]; i++)
 	{

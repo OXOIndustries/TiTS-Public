@@ -487,7 +487,7 @@ public function laneHandleCredits(totalDays:uint):void
 	if (flags["LANE_PAYS_PC_ERRY_DAY"] == 1)
 	{
 		pc.credits += (200 * totalDays);
-		AddLogEvent("A notification arrives in your codex’s message box with a shrill bleep. Quickly reading it, it's a credit transfer message; Lane has paid you a total of " + String(200 * totalDays) + " credits, right on time.", "good", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
+		AddLogEvent("A notification arrives in your codex’s message box with a shrill bleep. Quickly reading it, it's a " + (isAprilFools() ? "dogecoin" : "credit") + " transfer message; Lane has paid you a total of " + String(200 * totalDays) + " credits, right on time.", "good", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
 	}
 	if (flags["PC_PAYS_LANE_ERRY_DAY"] == 1)
 	{
@@ -585,7 +585,7 @@ public function visitLaneAfterDetoxing():void
 
 			output("\n\n[lane.HeShe] winces painfully as [lane.heShe] grips onto [lane.hisHer] side, where you had punched [lane.himHer]. Remorseless, you reach forward and wrap your right arm around [lane.hisHer] neck and pin [lane.hisHer] arm behind [lane.himHer] with your other, locking [lane.himHer] into the sleeper hold. [lane.HeShe] begins to choke, [lane.hisHer] words sputtering before they leave [lane.hisHer] lips – you grip onto [lane.himHer] tighter so [lane.heShe] can’t even do that.");
 
-			output("\n\n<i>“This is how it’s going to work,”</i> you say to [lane.himHer]. [lane.HisHer] free hand claws at your shins and your arms, and though [lane.hisHer] claws manage to draw your blood, you’re not going to give up that easily. <i>“I want you to pick up your codex, and I want you to transfer every last goddamn credit you have to me.”</i>");
+			output("\n\n<i>“This is how it’s going to work,”</i> you say to [lane.himHer]. [lane.HisHer] free hand claws at your shins and your arms, and though [lane.hisHer] claws manage to draw your blood, you’re not going to give up that easily. <i>“I want you to pick up your codex, and I want you to transfer every last goddamn " + (isAprilFools() ? "dogecoin" : "credit") + " you have to me.”</i>");
 
 			output("\n\n[lane.HeShe] redoubles what little effort [lane.heShe] can muster, trying to break your iron grip on [lane.himHer], but all it does is irritate you. <i>“Or, I can snap your neck right now, Lane, and you</i> will <i>pay me back in blood. It wouldn’t be difficult to find a black market for Daynarian blood these days.”</i>");
 
@@ -782,7 +782,7 @@ public function laneTakesOverTheSteeleFortuneII():void
 
 	output("\n\n<i>“Everything is perfect,”</i> [lane.Master] Lane answers, and [lane.hisHer] words flow like honey to your ears, making you sigh through your nose. <i>“It’s just been a long, exciting morning so far.”</i>");
 
-	output("\n\nThe other male chuckles. <i>“I can sympathize. A ten-billion-credit contract between businesses is nothing to take lightly. I’ve been counting the minutes until today, myself.”</i> You hear something slide across the marble top of [lane.Master] Lane’s business desk. <i>“This is the final contract we’ve agreed on last week. All we need is your signature, " + lane.mf("Mister", "Miss") + " Lane, and the universe can enjoy a long, rewarding relationship between Steele Tech and Reaper Armaments. Take your time looking it over, of course.”</i>");
+	output("\n\nThe other male chuckles. <i>“I can sympathize. A ten-billion-" + (isAprilFools() ? "dogecoin" : "credit") + " contract between businesses is nothing to take lightly. I’ve been counting the minutes until today, myself.”</i> You hear something slide across the marble top of [lane.Master] Lane’s business desk. <i>“This is the final contract we’ve agreed on last week. All we need is your signature, " + lane.mf("Mister", "Miss") + " Lane, and the universe can enjoy a long, rewarding relationship between Steele Tech and Reaper Armaments. Take your time looking it over, of course.”</i>");
 
 	output("\n\nThen, for another few minutes, the only sounds you hear are the gentle sucking of your mouth on Lane’s genitals. Despite Lane’s calm demeanor, " + lane.mf("his cock is harder than you’ve ever seen it, and from the way he’s gently rocking back and forth, he’s moments away from cumming", "her box is wetter than you’ve ever felt it before, and from the way her legs squeeze around your head, she’s moments away from cumming") + ". You hear the distinct sound of pen on paper as Lane signs the contract, and in that instant, [lane.heShe]’s delivering an explosive orgasm straight down your throat. Experienced as you are, you easily handle [lane.hisHer] entire, copious output, swallowing every drop and wanting more.");
 
