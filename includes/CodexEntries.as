@@ -334,7 +334,7 @@ public function leithanCodexEntry():void
 	outputCodex("\n<b>Sexes:</b> Male and Female");
 	outputCodex("\n<b>Height:</b> Leithans can range from 8\' 6\" to 10\' tall, with females usually slightly shorter and lighter than males. Their tauric frames are roughly 5\' at the shoulders, with their humanoid halves ranging from three and a half to five additional feet.");
 	outputCodex("\n<b>Hair:</b> Most Leithans have dark, stringy hair. Black, dark yellow, and shades of gray and brown are all common.");
-	outputCodex("\n<b>Eyes:</b> Leithan eyes are bright and universally blue, with white storm patterns surrounding their twin irises. Leithans have exceptional eyesight, and a secondary eyelid allows them to see even in extreme brightness, as is common on their homeworld, without sacrificing their low-light vision.");
+	outputCodex("\n<b>Eyes:</b> Leithan eyes have bright, universally blue irises, with white storm patterns surrounding their twin pupils. Leithans have exceptional eyesight, and a secondary eyelid allows them to see even in extreme brightness, as is common on their homeworld, without sacrificing their low-light vision.");
 	outputCodex("\n<b>Ears:</b> Leithans have two large, sensitive ears which grow from the center of their brows, roughly two inches apart. Their ears are alert, but are soft and frequently flop back against their heads at high speeds or in emotive response. A secondary pair of ears are located where human ears are, on the sides of the head. While larger than a human’s and gently tapered (some describe them as “elfin”), the secondary ears are for all intents and purposes without special function.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Combat"));
