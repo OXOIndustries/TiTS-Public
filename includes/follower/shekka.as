@@ -522,7 +522,7 @@ public function shekkaAddictionWheeee():void
 }
 
 //Going back to Shekka's talk menu
-output("\n\n<i>“What else did you want to talk about, [pc.name]?”</i>");
+//output("\n\n<i>“What else did you want to talk about, [pc.name]?”</i>");
 
 //Body
 //Wherein we get Shekka to bolt on some of that sweet-sweet futa-donger.

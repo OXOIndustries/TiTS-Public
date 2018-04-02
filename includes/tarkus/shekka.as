@@ -2547,6 +2547,7 @@ public function theCureIsReadyShekka():void
 	clearMenu();
 	addButton(0,"Next",shekkaCuddleSleepWakeup);
 }
+
 public function shekkaCuddleSleepWakeup():void
 {
 	clearOutput();
