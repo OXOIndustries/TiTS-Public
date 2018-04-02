@@ -404,6 +404,14 @@ public function appearance(forTarget:Creature):void
 			else output2(" each sat within " + indefiniteArticle(target.eyeColor) + " iris.");
 			output2(" A thick black ring lines your eye and your eyelids close from the side."); 
 			break;
+		case GLOBAL.TYPE_SIREN:
+			output2("Your eyes are predatory in nature, each with a vertical slit surrounded by");
+			if (hasMetallicEyes) output2(" a metallically glistening " + target.eyeColor + " iris.");
+			else if (hasGemstoneEyes) output2(" a shimmering gemstone-like " + target.eyeColor + " iris.");
+			else if (hasLuminousEyes) output2(" " +  indefiniteArticle(target.eyeColor) + " iris.");
+			else output2("  " + indefiniteArticle(target.eyeColor) + " iris.");
+			output2(" Your sclera are completely pitch black, giving you a slightly dangerous air."); 
+			break;
 		case GLOBAL.TYPE_SHEEP:
 			if(hasMetallicEyes) output2(" Metallically glistening in the light, your");
 			else if(hasGemstoneEyes) output2(" Like jewels, shimmering in the light, your");
@@ -1575,8 +1583,10 @@ public function appearance(forTarget:Creature):void
 				if(target.skinType == GLOBAL.SKIN_TYPE_FEATHERS) output2(" completely");
 				output2(" covered in");
 				if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
-				output2(" " + target.furColor + " feathers");
-				if(target.skinType != GLOBAL.SKIN_TYPE_FEATHERS && target.hasArmFlag(GLOBAL.FLAG_FEATHERED)) output2(" from elbow to wrist -- looking very much like natural arm warmers");
+				output2(" " + target.furColor + " vestigial feathers");
+				if(target.skinType != GLOBAL.SKIN_TYPE_FEATHERS && target.hasArmFlag(GLOBAL.FLAG_FEATHERED)) output2(" from elbow to wrist -- looking very much like natural arm warmers and");
+				else output2(",");
+				output2(" incapable of flight");
 			}
 			output2(".");
 			break;
@@ -2544,6 +2554,22 @@ public function appearance(forTarget:Creature):void
 				if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
 				else if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
 				output2(" legs come with webbing and small fins to better propel you through water.");
+			}
+			break;
+		case GLOBAL.TYPE_SIREN:
+			if(target.hasLegFlag(GLOBAL.FLAG_GOOEY))
+			{
+				output2("You have " + StringUtil.upperCase(num2Text(target.legCount)) + " semi-solid legs and clawed");
+				if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(", plantigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(", digitigrade");
+				output2(" feet.");
+			}
+			else
+			{
+				output2("You have " + (target.legCount == 2 ? "a pair of" : StringUtil.upperCase(num2Text(target.legCount))) + " powerful legs, with clawed");
+				if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(", plantigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(", digitigrade");
+				output2(" feet, powerful enough to propel you through water.");
 			}
 			break;
 		case GLOBAL.TYPE_TENTACLE:

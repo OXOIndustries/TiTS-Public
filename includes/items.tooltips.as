@@ -64,8 +64,9 @@ public function altTooltip(itemName:String = "none"):String
 			tooltip += "\n\nBelow this, in much smaller text, is a warning informing you <b>not to take Mighty Tight more than twice every four hours</b>. It also lists off a long string of minor potential side effects. Within the colorful packaging is a dull pink pill.";
 			break;
 		case "SirensBounty":
-			tooltip += "This Xenogen product is some kind of liquid contained in a stylish glass flask. ‘Siren’s Bounty’ is spelled out on the base in a combination of fancy cursive and musical notes which wrap around the entire container. You idly note the little warning preamble on the back, but pay it no mind.";
-			if(!silly) tooltip += " It’s not like you <i>read</i> warning labels anyway.";
+			tooltip += "This Xenogen product is some kind of liquid contained in a stylish glass flask. ‘Siren’s Bounty’ is spelled out on the base in a combination of fancy cursive and musical notes which wrap around the entire container.";
+			tooltip += "\n\nYou idly note the little warning preamble on the back, but pay it no mind.";
+			if(silly) tooltip += " It’s not like you <i>read</i> warning labels anyway.";
 			break;
 		case "Sterilex":
 			tooltip += "This is a colorfully-packaged box featuring some holovid sales girl.";

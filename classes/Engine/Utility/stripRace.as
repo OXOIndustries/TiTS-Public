@@ -23,6 +23,7 @@
 		if(sRace.indexOf("-morph") != -1) sRace = sRace.replace("-morph", "");
 		if(sRace.indexOf(" morph") != -1) sRace = sRace.replace(" morph", "");
 		if(sRace.indexOf("-taur") != -1) sRace = sRace.replace("-taur", "");
+		if(sRace.indexOf(" taur") != -1) sRace = sRace.replace(" taur", "");
 		if(sRace.indexOf(" centaur") != -1) sRace = sRace.replace(" centaur", "");
 		if(sRace.indexOf("-hybrid") != -1) sRace = sRace.replace("-hybrid", "");
 		if(sRace.indexOf(" hybrid") != -1) sRace = sRace.replace(" hybrid", "");

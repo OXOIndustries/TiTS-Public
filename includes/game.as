@@ -4154,7 +4154,7 @@ public function holidaySeasonCheck(seasonFlag:String = ""):Boolean
 		case "VALENTINES": return checkDate(14, 2, 3); break;
 		case "ST_PATRICKS": return checkDate(17, 3, 3); break;
 		case "APRIL_FOOLS": return checkDate(1, 4, 0); break;
-		case "EASTER": return checkDate(16, 4, 2); break;
+		case "EASTER": return checkDate(15, 4, 14); break;
 		case "JULY_4TH": return checkDate(4, 7, 7); break;
 		case "OKTOBERFEST": return checkDate(18, 9, 4); break;
 		case "HALLOWEEN": return checkDate(29, 10, 10); break;
