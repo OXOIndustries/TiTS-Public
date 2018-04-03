@@ -606,6 +606,7 @@ public const CREW_SIEGEWFULFE:int = 11;
 public const CREW_AZRA:int = 12;
 public const CREW_PAIGE:int = 13;
 public const CREW_KASE:int = 14;
+public const CREW_SHEKKA:int = 15;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -624,6 +625,7 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (pexigaIsCrew()) crewMembers.push(CREW_PEXIGA);
 	if (paigeIsCrew()) crewMembers.push(CREW_PAIGE);
 	if (kaseIsCrew()) crewMembers.push(CREW_KASE);
+	if (shekkaIsCrew()) crewMembers.push(CREW_SHEKKA);
 
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -894,6 +896,15 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if (!counter)
 		{
 			crewMessages += seraOnShipBonus(btnSlot++);
+		}
+	}
+	if (shekkaIsCrew())
+	{
+		count++;
+		if(!counter)
+		{
+			crewMessages += "\n\nShekka is hanging out around your ship's engines, constantly calibrating one circuit or another to maximize power.";
+			addButton(btnSlot++,"Shekka",approachCrewShekka);
 		}
 	}
 	if (yammiIsCrew())
@@ -1195,7 +1206,18 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 				annoSleepWithIntroduce();
 				return;
 			}
-
+			//Shekka interjection
+			if (flags["SHEKKA_SLEEPWITH_INTRODUCED"] == undefined && shekkaIsCrew() && (flags["CREWMEMBER_SLEEP_WITH"] == undefined || flags["CREWMEMBER_SLEEP_WITH"] == 0))
+			{
+				shareShekkaBedProc();
+				return;
+			}
+			//Shekka interjects to Anno
+			if (flags["SHEKKA_SLEEPWITH_INTRODUCED"] == undefined && shekkaIsCrew() && (flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") && annoIsCrew())
+			{
+				shekkaBedIntroWithAnnoProc();
+				return;
+			}
 			// Azra interjection! - Req's Azra onboard, not professional, banged once, nobody else in bed, and a week since your last visit to the sharkgal. Also a dick that fits inside.
 			if(azraIsCrew() && !azraProfessional() && flags["AZRA_SEXED"] != undefined && (flags["CREWMEMBER_SLEEP_WITH"] == undefined || flags["CREWMEMBER_SLEEP_WITH"] == 0) && flags["AZRA_VISITED"] + (60*24*7) < GetGameTimestamp() && pc.hasCock() && pc.cockThatFits(azra.vaginalCapacity(0)) >= 0) 
 			{
@@ -1207,10 +1229,30 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 			
 			switch(flags["CREWMEMBER_SLEEP_WITH"])
 			{
+				case "SHEKKA AND ANNO":
+					if (annoIsCrew() && (rand(3) == 0 || (isChristmas() && flags["ANNO_GIFT_WRAPPED"] == undefined)))
+					{
+						annoSleepSexyTimes();
+						interrupt = true;
+						break;
+					}
+					if (shekkaIsCrew() && rand(3) == 0)
+					{
+						shekkaSleepWithMornings();
+						interrupt = true;
+					}
+					break;
 				case "ANNO":
 					if (annoIsCrew() && (rand(3) == 0 || (isChristmas() && flags["ANNO_GIFT_WRAPPED"] == undefined)))
 					{
 						annoSleepSexyTimes();
+						interrupt = true;
+					}
+					break;
+				case "SHEKKA":
+					if (shekkaIsCrew() && rand(3) == 0)
+					{
+						shekkaSleepWithMornings();
 						interrupt = true;
 					}
 					break;
@@ -1734,6 +1776,7 @@ public function flyTo(arg:String):void
 			shipLocation = "TAVROS HANGAR";
 			currentLocation = "TAVROS HANGAR";
 			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
+			if(shekkaIsCrew()) flags["SHEKKA_BEEN_TAVROS"] = 1;
 			flyToTavros();
 			break;
 		case "Mhen'ga":
@@ -1752,18 +1795,21 @@ public function flyTo(arg:String):void
 			shipLocation = "500";
 			currentLocation = "500";
 			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
+			if(shekkaIsCrew()) flags["SHEKKA_BEEN_NT"] = 1;
 			landOnNewTexas();
 			break;
 		case "Myrellion":
 			shipLocation = "600";
 			currentLocation = "600";
 			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
+			if(shekkaIsCrew()) flags["SHEKKA_BEEN_MYRELLION"] = 1;
 			flyToMyrellion();
 			break;
 		case "MyrellionDeepCaves":
 			shipLocation = "2I7";
 			currentLocation = "2I7";
 			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
+			if(shekkaIsCrew()) flags["SHEKKA_BEEN_MYRELLION"] = 1;
 			flyToMyrellionDeepCaves();
 			break;
 		case "Poe A":
@@ -1782,6 +1828,7 @@ public function flyTo(arg:String):void
 			shipLocation = "UVS F15";
 			currentLocation = "UVS F15";
 			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
+			if(shekkaIsCrew()) flags["SHEKKA_BEEN_UVETO"] = 1;
 			interruptMenu = true;
 			flyToUveto();
 			break;
@@ -3240,7 +3287,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		/* SHEKKA RECROOT */
 		if(!shekkaRecruited() && flags["SHEKKA_REPEAT_TALKED"] != undefined && flags["SHEKKA_TALKED_PLAN"] != undefined && flags["PLANET_3_UNLOCKED"] != undefined && flags["TIMES_SEXED_SHEKKA"] != undefined)
 		{
-			if(!MailManager.isEntryUnlocked("shekkaFollowerIntroMail") && !pc.hasStatusEffect("Shekka_Follower_Email_CD")) goMailGet("shekkaFollowerIntroMail");
+			if(!MailManager.isEntryUnlocked("shekkaFollowerIntroMail") && !pc.hasStatusEffect("Shekka_Follower_Email_CD") && currentLocation != "WIDGET WAREHOUSE") goMailGet("shekkaFollowerIntroMail");
 			if(flags["SHEKKA_CURE_TIMER"] != undefined)
 			{
 				if(flags["SHEKKA_CURE_TIMER"]+10080 < GetGameTimestamp() && !MailManager.isEntryUnlocked("shekkaFollowerIntroMail")) goMailGet("shekkaFollowerFirstChildrenBorn");

@@ -24,8 +24,8 @@ Sells a hoverboard (reduces movement times) and other gadgets
 
 public function showShekka(nude:Boolean = false):void
 {
-	userInterface.showBust("SHEKKA");
-	userInterface.showName("\nSHEKKA" + (nude ? "_NUDE" : ""));
+	userInterface.showBust("SHEKKA" + (nude ? "_NUDE" : ""));
+	userInterface.showName("\nSHEKKA");
 }
 
 //Widget Warehouse Description\
@@ -40,10 +40,13 @@ public function widgetWarehouseBonusFuntimes():Boolean
 		shekkaMidDeal();
 		return true;
 	}
-
+	if(shekkaIsCrew())
+	{
+		output("\n\nYou recruited Shekka. <b>She's in your ship, not this shop!</b>");
+	}
 	//Shekka's Room Appearance Blurb
 	//Not met
-	if(flags["MET_SHEKKA"] == undefined)
+	else if(flags["MET_SHEKKA"] == undefined)
 	{
 		output("\n\nCrackles and zaps from welding equipment silhoutte the distinctive figure of a long-eared raskvel at work. Her rounded, egg-bearing hips identify her as a female of the species long before anything else. She doesn’t seem to be paying attention to you just yet, but you could easily get her attention. This is supposed to be a shop, right?");
 		addButton(0,"Mechanic",approachShekka);
@@ -98,7 +101,7 @@ public function approachShekka(back:Boolean = false):void
 	{
 		output("Is there something else you would like to do with Shekka?");
 	}
-	else if(flags["SHEKKA_ISSUES"] == 5) 
+	else if(flags["SHEKKA_ISSUES"] == 5 && !pc.hasStatusEffect("Shekka_Pay_CD")) 
 	{
 		shekkaCureTalk();
 		return;
@@ -127,15 +130,15 @@ public function shekkaMainMenu():void
 {
 	clearMenu();
 	addButton(0,"Appearance",shekkaAppearance,undefined,"Appearance","Review what Shekka looks like in detail.");
-	if(MailManager.isEntryViewed("shekkaFollowerIntroMail")) addButton(1,"Talk",raskvelCureQuestShekkaTalk,undefined,"Talk","Talk with Shekka about the Raskvel.");
-	else if(flags["SHEKKA_ISSUES"] != undefined && flags["SHEKKA_ISSUES"] >= 2 && flags["SHEKKA_ISSUES"] < 5) 
+	if(flags["SHEKKA_ISSUES"] != undefined && flags["SHEKKA_ISSUES"] >= 2 && flags["SHEKKA_ISSUES"] < 5) 
 	{
 		if(pc.hasStatusEffect("Shekka_Pay_CD")) addDisabledButton(1,"Fund Project","Fund Project","You'll need to wait a bit before you get back to Shekka on this.");
 		else addButton(1,"Fund Project",shekkaFundProjectTalk,undefined,"Fund Project","Shekka might need some money to get her pet project going...");
 	}
 	else  if(flags["SHEKKA_ISSUES"] == 7 && !MailManager.isEntryUnlocked("shekkaFollowerUnlockEmail")) addDisabledButton(1,"Cure","Cure","You'll need to wait a while before you can get any more information on the cure.");
 	else if(flags["SHEKKA_ISSUES"] == 7 && MailManager.isEntryUnlocked("shekkaFollowerUnlockEmail")) addDisabledButton(1,"Cure","Cure","You'll need to wait a while before you can get any more information on the cure.");
-	if(flags["SHEKKA_ISSUES"] == 8) addButton(1,"Join Crew",shekkaRepeatJoinCrew,undefined,"Join Crew","Invite Shekka to join your crew.");
+	else if(flags["SHEKKA_ISSUES"] == 8) addButton(1,"Join Crew",shekkaRepeatJoinCrew,undefined,"Join Crew","Invite Shekka to join your crew.");
+	else if(MailManager.isEntryViewed("shekkaFollowerIntroMail") && (flags["SHEKKA_ISSUES"] == undefined || flags["SHEKKA_ISSUES"] == 1)) addButton(1,"Talk",raskvelCureQuestShekkaTalk,undefined,"Talk","Talk with Shekka about the Raskvel.");
 	else addButton(1,"Talk",talkToShekka,undefined,"Talk","Talk to Shekka about a range of topics.");
 	if(pc.lust() >= 33)
 	{
@@ -1053,7 +1056,10 @@ public function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 	output("\n\nShekka nods, giggling, her hand still on her belly. <i>“Fuck yes. Cumming and fixing something? That was nirvana. We have got to do this again sometime. I’ll try and score a bunch more broken things to fix, and we can do this every time.”</i>");
 	output("\n\nYou shrug, unable to hide the grin on your face. Your [pc.cum] is pooling between her legs on her bench, and she hasn’t noticed. <i>“Sure thing, babe.”</i>");
 	output("\n\nShekka doesn’t even bother cleaning herself up. She just starts tugging on her jumpsuit, making sure it’s tight enough against her swollen crotch to hold in every drop. Judging by the audible squish it makes as it presses against her nethers, you can only assume it caught a fair amount of liquid action itself. She doesn’t comment on it, instead mentioning something about washing up after work, but you think she might just like the feel of her pussy swimming in it.");
+	processTime(30);
 	fuckedShekka();
+	shekka.loadInCunt(pc,0);
+	if(y >= 0) shekka.loadInAss(pc);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -2279,7 +2285,7 @@ public function raskvelCureQuestShekkaTalk():void
 		
 		//Merge
 		output("\n\nShekka takes back the pad with a weak smile, fighting hard to keep a yawn down. Okay, you bite, what exactly is the reason for all of this?");
-		output("\n\n<i>“Well, we talked about it before. The short version is that mature adults can’t get fixed up. So instead a treatment has to be given to them that won’t try to alter <i>their<i> thinking patterns... and at the same time pass it on to their children.”</i> She hops off of her stool again, starting to pace from side-to-side. There’s a musical jingle-jangle from her ears as she does so. <i>“If we started giving the treatment to Raskvel children post-birth then honestly it feels kind of... brain-washy. And also, just going to put it out there, I don’t like the idea of sticking needles into eggs. Or babies.”</i>");
+		output("\n\n<i>“Well, we talked about it before. The short version is that mature adults can’t get fixed up. So instead a treatment has to be given to them that won’t try to alter </i>their<i> thinking patterns... and at the same time pass it on to their children.”</i> She hops off of her stool again, starting to pace from side-to-side. There’s a musical jingle-jangle from her ears as she does so. <i>“If we started giving the treatment to Raskvel children post-birth then honestly it feels kind of... brain-washy. And also, just going to put it out there, I don’t like the idea of sticking needles into eggs. Or babies.”</i>");
 		output("\n\nThe next question is of course; where do you come in? She looks uncomfortable when you finally breach the question. <i>“Money is the first thing. I know you might not have any right now, that’s... I understand that. But I know you can make it an awful lot faster than I ever could on this glorified junk-heap.”</i> Before you get a chance to speak up, she shakes her hands in alarm. <i>“I-it’s not just money, [pc.name],  really! I... your name is a big deal, scientists will actually </i>listen<i> to me! Even if you can’t help with the money part... would you be willing to sign your name to it, so that I can get to work?”</i>");
 		output("\n\nShekka looks at you with earnest desperation, and you smile warmly, holding out a hand. Shekka’s eyes well up with moisture, which is quickly rubbed away. She flips out her quilled hair before slapping her smaller hand into your [pc.hand]. <i>“Th-thank you... I never doubted you for a second...”</i>");
 		//Next: Close out the dialogue here so that you have to select Talk again
@@ -2329,7 +2335,6 @@ public function shekkaFundProjectTalk():void
 		output("Looking at Shekka now, she doesn’t appear so much ‘bouncy’ as she does bashful, grinding one of her feet into the ground. <i>“Er, hey Steele... I know this is going to be awkward. And I really don’t know how to ask it gently. But... I need credits for this. A solid chunk. At least 5,000. Science doesn’t come free in our universe.”</i>");
 		output("\n\nHer ears flap and jingle musically for a moment as her face scrunches in consternation. <i>“There have been some complaints that we’re changing all of our children against their will. It’s... kind of a valid point, I guess. The alternative though is being a bunch of tinker-obsessed-sluts, birthing more children than we can maintain, and getting walked all over by the established UGC races and companies,”</i> as she gets fully invested in her complaints, she stamps her foot a few times. <i>“Nevermind that we’re smart. We’re </i>smart<i> for fuck’s sake. We could do and be amazing things if we weren’t being totally destroyed by outdated biology. It’s–uh... right. Sorry. Repeating myself.”</i>");
 		output("\n\nLuckily, you had been expecting as much, and you took a look through your reserves while she rants.");
-		flags["SHEKKA_PROJECT_FUNDED"] = 0;
 		//Costs 5k credits (fuck i’unno what stuff costs these days, change as you will)
 		processTime(5);
 		clearMenu();
@@ -2353,7 +2358,7 @@ public function shekkaFundProjectTalk():void
 	//After you’ve paid a second time and a day has passed.
 	else
 	{
-		output("\n\nShekka looks rather tired now that you look her over. Still, she manages a bright smile in her cluttered little warehouse. <i>“Heeey [pc.name].”</i> she says, plucking up a v-drink and knocking it back in a few gulps. Her tail goes on end at the rush of chemicals, forcing her to shudder a few times. <i>“Blech. Like a kick in the egg-hole, that stuff. Oh! Oh! Look!”</i> she bunny-hops over, waving her datapad at you.");
+		output("Shekka looks rather tired now that you look her over. Still, she manages a bright smile in her cluttered little warehouse. <i>“Heeey [pc.name].”</i> she says, plucking up a v-drink and knocking it back in a few gulps. Her tail goes on end at the rush of chemicals, forcing her to shudder a few times. <i>“Blech. Like a kick in the egg-hole, that stuff. Oh! Oh! Look!”</i> she bunny-hops over, waving her datapad at you.");
 		output("\n\nNo homescreen to make fun of this time; it appears to be a video. You press the play button and it kicks into place. It's a cross-section of an egg. Before you have a chance to be utterly horrified, she warns you that it’s a digital render, and to keep on watching. The beginning isn’t particularly interesting; it’s just growing (into an admittedly adorable mini-Rask).");
 		output("\n\nAt that point there is a freeze-frame, and a split-off showing a list of numbers.");
 		//Int is over 30
@@ -2390,6 +2395,7 @@ public function payShekkaForFunding1():void
 	output("\n\nWell... you’ve got her back on this, regardless of what crops up.\n\n(<b>You'll want to check back in a day or so...</b>)");
 	//Done: ends conversation. Attempting to select Fund Project again is greyed out for a day.
 	clearMenu();
+	flags["SHEKKA_PROJECT_FUNDED"] = 1;
 	IncrementFlag("SHEKKA_ISSUES");
 	pc.createStatusEffect("Shekka_Pay_CD");
 	pc.setStatusMinutes("Shekka_Pay_CD",16*60);
@@ -2418,7 +2424,7 @@ public function payShekkaForFunding2():void
 	showShekka();
 	author("SomeKindofWizard");
 	output("Much like the last time, you’re reaching for her datapad before she even finishes her explanation. There’s a tiny squeak of alarm when you get another eyeful of her home-screen. Looks like it’s changed recently.");
-	output("\n\nYou peer over the pad at Shekka, whose face is going bright purple with a vengeance. It <i>is<i> true what they say about Kui-tan herms and Galotians, you guess. Trying not to " + pc.mf("chuckle","giggle") + ", you transfer yet another wad of credits into the poor girl’s flagging wallet. She grumbles and pulls you down for a quick kiss when you hand her pad back. It’s a deep, tongue-filled kiss, ");
+	output("\n\nYou peer over the pad at Shekka, whose face is going bright purple with a vengeance. It <i>is</i> true what they say about Kui-tan herms and Galotians, you guess. Trying not to " + pc.mf("chuckle","giggle") + ", you transfer yet another wad of credits into the poor girl’s flagging wallet. She grumbles and pulls you down for a quick kiss when you hand her pad back. It’s a deep, tongue-filled kiss, ");
 	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("but you keep it brief to keep your saliva from turning her into a puddle.");
 	else output("and you are all too happy to wrestle oral-organs with her for a little longer.");
 
@@ -2426,6 +2432,7 @@ public function payShekkaForFunding2():void
 
 	//Done: ends conversation. Attempting to select Fund Project again is greyed out for a day.
 	IncrementFlag("SHEKKA_ISSUES");
+	flags["SHEKKA_PROJECT_FUNDED"] = 2;
 	pc.createStatusEffect("Shekka_Pay_CD");
 	pc.setStatusMinutes("Shekka_Pay_CD",16*60);
 	pc.credits -= 20000;
@@ -2463,11 +2470,12 @@ public function payShekkaForFunding3():void
 	if(pc.hasCock()) output("cock");
 	else output("ass");
 	output(" a cheeky squeeze");
-	output(".");
+	output(".\n\n(<b>Wait a day or so and then check back with her for an update!</b>)");
 
 	//Done: close dialogue. After this, Fund Project is replaced with The Cure.
 	processTime(6);
 	IncrementFlag("SHEKKA_ISSUES");
+	flags["SHEKKA_PROJECT_FUNDED"] = 3;
 	pc.createStatusEffect("Shekka_Pay_CD");
 	pc.setStatusMinutes("Shekka_Pay_CD",16*60);
 	pc.credits -= 10000;
@@ -2499,7 +2507,7 @@ public function shekkaCureTalk():void
 	output("Shekka yawns and stretches, ears jingle-jangling at your approach. There appears to be a little nestled away selection of chemistry goods, and a bundle of notes. <i>“How’s it going? Uuuuh... not done yet, that’s for sure. But I’ve been thrown a bunch of numbers and figures and seeing what sticks.”</i>");
 	output("\n\nThe curvaceous little rask stretches again, jingling from tip-to-tail. <i>“Sadly I don’t exactly have uh... the professional knowledge to synthesize any kind of drug myself. I wouldn’t dare to do something as incredibly challenging as tampering with my people’s DNA.”</i> She spins idly on her stool, plucking up an energy drink and knocking it all back.");
 	output("\n\n<i>“Thank you as usual for your support... both monetarily, and, uh... personally.”</i> Shekka pauses for a cheeky wink, tail flicking in your direction. <i>“I’ve got a lot of work to do collating all the stuff people are sending me so far. I wanted to stay involved, so I’m kind of project-leading between all the various scientists... stars and eggs, I swear they can ramble about fucking nonsense.”</i>");
-	output("\n\nSounds like Shekka could use a little break. She smirks at that, running a hand through the soft quills of her hair. <i>“Is that <i>so<i> Steele? You might be right.”</i>");
+	output("\n\nSounds like Shekka could use a little break. She smirks at that, running a hand through the soft feathers of her hair. <i>“Is that <i>so<i> Steele? You might be right.”</i>\n\n(<b>There might be another week or two of work to do on the cure, but you can pass some time with Shekka for now...</b>)");
 	pc.createStatusEffect("Shekka_Cure_CD");
 	pc.setStatusMinutes("Shekka_Cure_CD",60*24*7);
 	flags["SHEKKA_ISSUES"] = 6;
@@ -2518,7 +2526,7 @@ public function theCureIsReadyShekka():void
 	author("SomeKindofWizard");
 
 	output("Shekka seems to be in abject disbelief, tapping her datapad over and over. <i>“I... I think we’ve done it, Steele. The compound is prepared. It’s out of my hands. A few clinical trials, and then a shake-down of that creepy no-sex doctor on the east-side, and I think we’re there.”</i>");
-	output("\n\nWait, a shake-down? Shekka practically vibrates in her seat. <i>“Yeah! Go figure that some of the heavy lifting was done by that Lash creep. I basically had a team just double-checking his stuff incase he was <i>actually<i> trying to just end our race’s ability to reproduce entirely.”</i> she winces for a brief moment. <i>“He tried. Once. Something about getting him sent off to a sex-prison for trying to genophage a whole race kind of put that to a halt.”</i>");
+	output("\n\nWait, a shake-down? Shekka practically vibrates in her seat. <i>“Yeah! Go figure that some of the heavy lifting was done by that Lash creep. I basically had a team just double-checking his stuff incase he was </i>actually<i> trying to just end our race’s ability to reproduce entirely.”</i> she winces for a brief moment. <i>“He tried. Once. Something about getting him sent off to a sex-prison for trying to genophage a whole race kind of put that to a halt.”</i>");
 	output("\n\nAn awkward silence stretches at the thought of the anti-sex crazed doctor being pushed into some kind of butt-breeding machine. Yeuch...");
 	output("\n\n<i>“I... [pc.name]? Thank you. Thank you for saving my people from themselves. I don’t know yet how this will all turn out, but I’m hopeful!”</i> The pear-shaped, red-scaled beauty rubs at her eyes with one sleeve, suddenly starting to sniffle. <i>“I-I’m sorry, it’s just–”</i>");
 	output("\n\nBefore her sniffles get a chance to devolve into fully-fledged sobbing, you haul her up and into your [pc.chest], nuzzling the soft quills of her hair. Shekka gulps down a deep breath, burying her face into you before slowly letting it out again. <i>“Alright, it’s cool. I’m cool. We’re all–meep!”</i> The mechanic’s attempt at pushing away proves entirely fruitless. It’s getting rather tempting to just sit there and enjoy her weight pressed down against you.");
@@ -2554,8 +2562,8 @@ public function shekkaCuddleSleepWakeup():void
 	showShekka(true);
 	author("SomeKindofWizard");
 	output("Something wakes you up, and it takes a few moments for the world to re-orient itself. Soft gasps in your ear and the scent of a horny woman waft into your [pc.nose]. Unconsciously, you shift, and Shekka lets out a little surprised yelp. Apparently at some point she got naked, and you can now see her greedily plumbing her slit with slick digits. <i>“O-oh! [pc.Name], uh... it’s... absolutely what it looks like.”</i>");
-	output("\n\nShe nibbles at your neck and purrs sweetly, shock soon forgotten. <i>“I woke up in your lap and you just smelt so <i>good<i>! I had to... uh, sorry.”</i>");
-	output("\n\nThere are worse things in the world to wake to... indeed the only issue is that <i>you<i> are");
+	output("\n\nShe nibbles at your neck and purrs sweetly, shock soon forgotten. <i>“I woke up in your lap and you just smelt so </i>good<i>! I had to... uh, sorry.”</i>");
+	output("\n\nThere are worse things in the world to wake to... indeed the only issue is that <i>you</i> are");
 	if(!pc.isCrotchExposed() && !pc.isChestExposed()) output(" still dressed, and");
 	output(" feeling far too warm after waking up buried underneath a horny girl.");
 	if(!pc.isCrotchExposed() && !pc.isChestExposed()) 
@@ -2729,21 +2737,21 @@ public function vaginaSexWithShekkaOnCureThing():void
 //A week after The Cure is Ready
 public function cureProgress1Email():String
 {
-	return "<i>Hey [pc.name]! I’ve gotten some decent rest, and <i>finally<i> some of the tension has gone. I’ve just seen the first batch of children born! I know it should have all gone just fine, but I couldn’t help being nervous right up until those eggs hatched.\n\nThe first children are looking happy and healthy. Their parents are very much the same as usual, but soon we’ll see how the kids’ brains develop.\n\nA few of the matrons who were worried we were doing something bad to their children have relaxed at least. Apparently some pornstar said that curing all of their possible defects and helping their children develop would make them all ugly or stupid or something.\n\nIt got surprisingly high traction. Bleh. I’m already missing your company, it’s making me feel grouchy and old. On the plus side, about 1000% more of us are actually going to reach our race’s potential ‘Old Age’. Ever seen a Grandma-Rask? I thought I was going to be the only one to get that far along without a egged-out pussy you could climb into.\n\nI’m just about to curl up in bed with a cup of something warm to drink. I met a nice captain and we fooled around for a bit, but they’ve already up and left now. Stay safe, okay? I’ll keep in touch.\n\nLots of Love,\n\tShekka\n\n(<i>Oh! Now that’s a treat. A little attachment on the mail shows Shekka bent over her bed, ass up in the air, tail-up. Her winking ring and delicious pussy spread wide by her eager fingers.</i>)";
+	return ParseText("Hey [pc.name]! I’ve gotten some decent rest, and <i>finally</i> some of the tension has gone. I’ve just seen the first batch of children born! I know it should have all gone just fine, but I couldn’t help being nervous right up until those eggs hatched.\n\nThe first children are looking happy and healthy. Their parents are very much the same as usual, but soon we’ll see how the kids’ brains develop.\n\nA few of the matrons who were worried we were doing something bad to their children have relaxed at least. Apparently some pornstar said that curing all of their possible defects and helping their children develop would make them all ugly or stupid or something.\n\nIt got surprisingly high traction. Bleh. I’m already missing your company, it’s making me feel grouchy and old. On the plus side, about 1000% more of us are actually going to reach our race’s potential ‘Old Age’. Ever seen a Grandma-Rask? I thought I was going to be the only one to get that far along without a egged-out pussy you could climb into.\n\nI’m just about to curl up in bed with a cup of something warm to drink. I met a nice captain and we fooled around for a bit, but they’ve already up and left now. Stay safe, okay? I’ll keep in touch.\n\nLots of Love,\n\tShekka\n\n(<i>Oh! Now that’s a treat. A little attachment on the mail shows Shekka bent over her bed, ass up in the air, tail-up. Her winking ring and delicious pussy spread wide by her eager fingers.</i>)");
 }
 
 //Spelling and Reading Tests
 //A week after message one
 public function spellingAndReadingTestsMailText():String
 {
-	return "Hi [pc.name]. Hopefully not bothering you right now, but look! I’m super fucking proud.\n\n<i>What follows next in the email is a few screencaps of IQ test results. They seem... decidedly average except for one or two.\n\n<i>I know what you’re thinking; except for kid four and eight, that’s pretty average right? Well, most of our IQs look like that. The important part is how we do in practical spelling and reading tests.\n\nDirectly after that statement are a few more screengrabs, one appears to be a former examination block... it’s all surprisingly low. Half of it isn’t even completed. Below that though are a section of properly completed, reasonably well scored exams.\n\nWithout having a big old <i>“time to fuck”</i> button smashed into our thinking meats, it’s pretty hard to get anything done past the biological need to keep our species from getting squashed. These new kids aren’t so attention deficit. They’re <i>concentrating<i>, [pc.name]. How amazing is that?!\n\nSorry, I got carried away. It’s really exciting seeing the future of your people. I mean, eventually the children get to be our future. But, you know, for real.\n\nAnyway, I’ll leave you to whatever you’re balls-deep in. Take care Steele.\n\nLove’n’hugs\n\tShekka\n\n(<i>Another tasty little photo seems to have been thrown on the end of her message. She’s sat on her work-bench, legs spread wide as she cums around a vibrator as thick as your arm. Mnf.</i>)";
+	return ParseText("Hi [pc.name]. Hopefully not bothering you right now, but look! I’m super fucking proud.\n\n<i>What follows next in the email is a few screencaps of IQ test results. They seem... decidedly average except for one or two.</i>\n\nI know what you’re thinking; except for kid four and eight, that’s pretty average right? Well, most of our IQs look like that. The important part is how we do in practical spelling and reading tests.\n\nDirectly after that statement are a few more screengrabs, one appears to be a former examination block... it’s all surprisingly low. Half of it isn’t even completed. Below that though are a section of properly completed, reasonably well scored exams.\n\nWithout having a big old <i>“time to fuck”</i> button smashed into our thinking meats, it’s pretty hard to get anything done past the biological need to keep our species from getting squashed. These new kids aren’t so attention deficit. They’re <i>concentrating</i>, [pc.name]. How amazing is that?!\n\nSorry, I got carried away. It’s really exciting seeing the future of your people. I mean, eventually the children get to be our future. But, you know, for real.\n\nAnyway, I’ll leave you to whatever you’re balls-deep in. Take care Steele.\n\nLove’n’hugs\n\tShekka\n\n(<i>Another tasty little photo seems to have been thrown on the end of her message. She’s sat on her work-bench, legs spread wide as she cums around a vibrator as thick as your arm. Mnf.</i>)");
 }
 
 //Hey...
 //Three days after message two
 public function lastRaskvelCureEmail():String
 {
-	return "Hi [pc.name].\n\nIf I’m honest, I don’t really know how to word this. I’m going to opt for blunt and hope that’s the right way to handle things. My work here on Tarkus feels done. Done and dusted. Children are going to grow up into healthy adults, and lead my people onwards to something bright alongside the UGC. Or maybe just as corrupt as half of it. Regardless? Not really my problem.\n\nI’m just a mechanic, and I enjoy sex even if the end result isn’t going to be kids. These boys and girls are going to grow up and develop the actual skills to rule a people. I’m done growing up, the Cure isn’t going to do anything for me.\n\nAnd I kind of want off of this damned rust-ball. After all you’ve done this may sound like way too much to ask for. But could you allow me to join your ship? I don’t take up much space, and I can fix up any damage faster than anyone. I’d like to go with you, out there where it’s an adventure... and where the adventure is with you.\n\nWhat do you say? Please could you come down and see me?\n\nLots of Love,\n\tShekka";
+	return ParseText("Hi [pc.name].\n\nIf I’m honest, I don’t really know how to word this. I’m going to opt for blunt and hope that’s the right way to handle things. My work here on Tarkus feels done. Done and dusted. Children are going to grow up into healthy adults, and lead my people onwards to something bright alongside the UGC. Or maybe just as corrupt as half of it. Regardless? Not really my problem.\n\nI’m just a mechanic, and I enjoy sex even if the end result isn’t going to be kids. These boys and girls are going to grow up and develop the actual skills to rule a people. I’m done growing up, the Cure isn’t going to do anything for me.\n\nAnd I kind of want off of this damned rust-ball. After all you’ve done this may sound like way too much to ask for. But could you allow me to join your ship? I don’t take up much space, and I can fix up any damage faster than anyone. I’d like to go with you, out there where it’s an adventure... and where the adventure is with you.\n\nWhat do you say? Please could you come down and see me?\n\nLots of Love,\n\tShekka");
 }
 
 //Join Crew - First Time
@@ -2834,6 +2842,7 @@ public function noFollowerYetShekka():void
 	showShekka();
 	author("SomeKindofWizard");
 	output("Her expression sinks, and somehow her hanging ears seem to droop a little more. <i>“Aw... I understand. I won’t make things weird. Just... keep me in mind if you’re ever after a mechanic. Okay? You are still the most amazing person for everything you’ve done.”</i>");
+	flags["SHEKKA_RECRUITED"] = 0;
 	//Next: back to Shekka’s talk menu, Join Crew is now a button.
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -2848,5 +2857,7 @@ public function shekkaRepeatJoinCrew():void
 	output("<i>“Change your mind, [pc.name]? I’d be happy to go whenever.”</i> The shortstack rask smiles softly, flapping her jangling ears out with her hands and ruffling her hair.");
 	//Welcome or Not Yet; same as First time
 	processTime(2);
-	//9999
+	clearMenu();
+	addButton(0,"Welcome",welcomeShekkaToTheTeam);
+	addButton(1,"Not Yet",noFollowerYetShekka);
 }

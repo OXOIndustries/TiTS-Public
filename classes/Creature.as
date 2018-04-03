@@ -20041,6 +20041,18 @@
 				
 				switch (thisStatus.storageName)
 				{
+					case "Shekka_Pay_CD":
+						if (this is PlayerCharacter && requiresRemoval)
+						{
+							AddLogEvent("Now would be a good time to check back in with Shekka...");
+						}
+						break;
+					case "Shekka_Cure_CD":
+						if (this is PlayerCharacter && requiresRemoval)
+						{
+							AddLogEvent("<b>It's been a while since you left Shekka with everything she needed to pursue a cure. Now would be a good time to check on her progress.</b>");
+						}
+						break;
 					case "LimberTime":
 						if (this is PlayerCharacter && requiresRemoval)
 						{
