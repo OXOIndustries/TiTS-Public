@@ -859,6 +859,8 @@ public function shekkaSexMenu():void
 	//trace("CURRENT CUM RESERVE AT SHEKKA'S SEX MENU: " + pc.currentCum() + " MAX CUM: " + pc.maxCum() + " FULLNESS: " + pc.ballFullness + " EJACULATION AMOUNT: " + pc.cumQ());
 	if(pc.hasCock() && pc.biggestCockVolume() > chars["SHEKKA"].vaginalCapacity() && pc.tallness >= 60 && pc.cumQ() >= 500) 
 		addButton(2,"Big Dick",hugeEarShekkaFaps,undefined,"Big Dick Shenanigans","Use your oversized member on the small mechanic. She’s gotta have some way to please it, right?");
+	else if(pc.tallness < 60) addDisabledButton(2,"Big Dick","Big Dick Shenanigans","You aren't tall enough for this.");
+	else if(pc.cumQ() < 500) addDisabledButton(2,"Big Dick","Big Dick Shenanigans","Your dick isn't productive enough for this. You'll need a bit more cum on tap!");
 	else addDisabledButton(2,"Big Dick","Big Dick Shenanigans","This scene requires a large dick, a height of above five feet, and large volume of cum.");
 
 	//MilkQ over 1000
@@ -1194,21 +1196,59 @@ public function hugeEarShekkaFaps():void
 	userInterface.showBust("SHEKKA_NUDE");
 	userInterface.showName("\nSHEKKA");
 	author("Kirbu");
+	if(shekkaIsCrew()) author("Kirbu + SKoW");
 	
 	output("You lean in against the diminutive mechanic, close enough for your pulsing bulge to get her attention. The gesture is as subtle as a cargo ship tumbling through lower orbit. Shekka motions for you to ");
 	if(pc.isNude()) output("strip and ");
-	output("get down on the ground, a request you happily see to in short order. The warehouse floor is cool on your [pc.butt], and it takes a bit to get comfortable as you prop up on your lower arms. Comfort isn’t all that big a priority once your raskvel dance partner is back in clear view, situated between your [pc.legOrLegs].");
+	output("get down on the ground, a request you happily see to in short order. ");
+	if(shekkaIsCrew()) output("As inconvenient as it would be, part of you wants to spring for a rug in the engine room as the floor chills your [pc.ass]. Thankfully your comfort isn’t a long-term issue once your raskvel dance partner is back in clear view, situated between your [pc.legs].");
+	else output("The warehouse floor is cool on your [pc.butt], and it takes a bit to get comfortable as you prop up on your lower arms. Comfort isn’t all that big a priority once your raskvel dance partner is back in clear view, situated between your [pc.legOrLegs].");
 	output("\n\nWhereas you ");
 	if(pc.isNude()) output("rid yourself of gear and ");
-	output("clambered down in almost record time, Shekka is more concerned with taking her time on a proper show. The reptilian handywoman’s seductive gaze effortlessly hooks you in as her hands reach back to undo her jumpsuit. Each enticing inch of the fabric curtain clings desperately to her fine, crimson scales before surrendering its captives to bounce back in freedom. A tail skimming across your [pc.skin] in pace with the strip-tease adds a subtle physicality to the presentation; it’s enough for your rocket to prepare to launch.");
-	output("\n\nShekka’s spectacle has made it down to her waist by this point, far enough along for your [pc.cockBiggest] to display its true fury. The monument’s scale begins to dawn on the rask, her once-sensual expression fading to one of contemplative frustration. You’re worried when she drops the act entirely, haphazardly untangling her clothing from her legs and tossing it aside. With a perplexed, furrowed brow, Shekka focuses intently on the twitching colossus, no doubt seriously considering the undertaking.");
-	output("\n\nReality refuses to wane, however, and her face deflates with a defeated sigh. Shekka slumps forward, ");
-	if(pc.biggestCockLength() < 20) output("resting her chin down on your [pc.cockHeadBiggest]");
-	else output("resting a cheek on the side of your [pc.cockBiggest]");
-	output(". Funnily enough, your titanic rod appears to have no trouble propping up the sixty pound alien as she leans ");
-	if(pc.biggestCockLength() < 20) output("on");
-	else output("against");
-	output(" it.");
+	output("clambered down in almost record time, Shekka is more concerned with taking her time on a proper show. The reptilian handywoman’s seductive gaze effortlessly hooks you in as her hands reach back to undo her jumpsuit. ");
+
+	if(!shekka.hasCock())
+	{
+		output("Each enticing inch of the fabric curtain clings desperately to her fine, crimson scales before surrendering its captives to bounce back in freedom. A tail skimming across your [pc.skin] in pace with the strip-tease adds a subtle physicality to the presentation; it’s enough for your rocket to prepare to launch.");
+	}
+	else
+	{
+		output("Each enticing inch of the fabric curtain clings desperately to her fine, crimson scales. Before her suit gets a chance to release its captive curves, it’s held up by the little Rask’s growing horse-cock before before it finally surrenders the captive curves to freedom.");
+		output("\n\nSweet pebbly nipples stick out, adding to the visual temptations, but the moment her tail skims across your gradually-warming [pc.skinFurScalesNoun] in pace with the strip-tease it adds adds a subtle physicality to the presentation. If you weren’t horny now this is enough for your rocket to prepare to launch.");
+	}
+	output("\n\nShekka’s spectacle has made it down to her waist by this point, far enough along for your [pc.cockBiggest] to display its true fury. ");
+	if(flags["TIMES_SHEKKA_KIRBUED"] == undefined) 
+	{
+		output("The monument’s scale begins to dawn on the rask, her once-sensual expression fading to one of contemplative frustration. You’re worried when she drops the act entirely, haphazardly untangling her clothing from her legs and tossing it aside. With a perplexed, furrowed brow, Shekka focuses intently on the twitching colossus, no doubt seriously considering the undertaking.");
+		output("\n\nReality refuses to wane, however, and her face deflates with a defeated sigh. Shekka slumps forward, ");
+		if(pc.biggestCockLength() < 20) output("resting her chin down on your [pc.cockHeadBiggest]");
+		else output("resting a cheek on the side of your [pc.cockBiggest]");
+		output(". Funnily enough, your titanic rod appears to have no trouble propping up the sixty pound alien as she leans ");
+		if(pc.biggestCockLength() < 20) output("on");
+		else output("against");
+		output(" it.");
+	}
+	else
+	{
+		output("Thankfully your broad-reared Raskvel honey is now no longer a stranger to the monumental size of your [pc.cocks]. She leans bodily on ");
+		if(pc.cockTotal() > 1) output("one of your members");
+		else output("your member");
+		output(", ");
+		if(pc.biggestCockLength() < 20) 
+		{
+			output("resting her chin down on ");
+			if(pc.cockTotal() == 1) output("your");
+			else output("a");
+			output(" [pc.cockHeadBiggest].");
+		}
+		else
+		{
+			output("resting a cheek on the side of ");
+			if(pc.cockTotal() == 1) output("your");
+			else output("a");
+			output(" [pc.cockBiggest].");
+		}
+	}
 
 	output("\n\n<i>“You realize this hunk of meat ");
 	if(pc.biggestCockLength() < 30) output("is almost as tall as me");
@@ -1218,16 +1258,25 @@ public function hugeEarShekkaFaps():void
 	output(", right?”</i> Shekka concedes, the brunt of her scale more evident than ever. The scaley alien leans further ");
 	if(pc.biggestCockLength() < 20) output("onto");
 	else output("into");
-	output(" your penis. It’s clear to both of you that your massive member won’t be finding a home between the raskvel’s impressive thighs, but the alien isn’t ready to throw in the towel quite yet.");
+	output(" your penis. ");
+	if(shekka.hasCock()) output("Her prick presses against your own like a core of heat, oozing pre freely into your musky exterior. ");
+	output("It’s clear to both of you that your massive member won’t be finding a home between the raskvel’s impressive thighs, but the alien isn’t ready to throw in the towel quite yet.");
 	output("\n\nHer warm body feels quite nice pushing into your third leg; it’s certainly enough to keep your sexual engines idling contently. Shekka’s head twists a little as she thinks, causing her soft ears to brush against your torso. The long, floppy tracts of thin skin and scale are lazily resting along your belly. Curiously, you raise a hand up to feel one. The moment your thumb brushes along the fine, velvety underside, a shiver races up your lover’s tiny spine. She grasps onto your [pc.cockBiggest] to steady herself, the overwhelming tingle proving quite effective.");
-	output("\n\n<i>“Find something you like there?”</i> the miniature mechanic teases. You hold the ear up to her, hoping the gesture is enough to convey what you have in mind. It takes her a moment to get on your wavelength. Slowly, but surely, her perplexion makes ways for sly arousal.");
+	output("\n\n<i>“Find something you like there?”</i> the miniature mechanic teases. You hold the ear up to her, hoping the gesture is enough to convey what you have in mind.");
+	if(flags["TIMES_SHEKKA_KIRBUED"] == undefined) output(" It takes her a moment to get on your wavelength. Slowly, but surely, her perplexion makes ways for sly arousal.");
+	else output(" Shekka seems excited for a repeat ear-ride on the fuck-train to cumsville. Her body grinds hard enough against you that you can feel every contour of her lightly-scaled flesh against your veins.");
+	if(shekka.hasCock()) output(" Her cock seems to agree, judging by how it throbs eagerly, even while she gently frots against you.");
 	output("\n\n<i>“Ah, feeling like getting extra frisky, don’t you?,”</i> Shekka whispers as her tail resumes its sensuous stroking of your inner thigh. The creative raskvel puts the tips of her ears in each of her hands and blissfully glides them down your tower to its foundation. The interplay of her cold, metal piercings mingling with warm, pliable skin is a surprising touch - one that distracts you from their pointier features.");
 	output("\n\nA firm weave of thin velour skin embraces your [pc.cockBiggest]. Her ears ");
 	if(pc.biggestCockLength() < 20) output("easily");
 	else if(pc.biggestCockLength() < 30) output("just barely");
 	else output("almost");
 	output(" leave no square inch of your turgid sausage to the open elements. As world-rocking as the fine flesh burrito feels, the sight of the perfectly symmetric zigzag of crimson scales is equally impressive. If you weren’t so attached to it, you’d imagine the fine phallus would be better suited in an art gallery. Let no one say the little craftswoman doesn’t live up to her profession.");
-	output("\n\nThe charged heat emanating from your cock seeps into the woman’s lithe listeners. There’s no helping at least smirking as she visibly tries to keep from succumbing to the electricity flowing through her, too keen on making adjustments on her masterpiece. By the time Shekka is complete, she’s left with only a few free inches of skin planting her face extraordinarily close to your plump and exposed [pc.cockHeadBiggest]. Just the way she wants it, you imagine; the eccentric little deviant took extra care to tuck in some of the makeshift sheathe right underneath your mushroom top.");
+	output("\n\nThe charged heat emanating from your cock seeps into the woman’s lithe listeners. There’s no helping at least smirking as she visibly tries to keep from succumbing to the electricity flowing through her, too keen on making adjustments on her masterpiece. By the time Shekka is complete, she’s left with only a few free inches of skin planting her face extraordinarily close to your plump and exposed [pc.cockHeadBiggest]. Just the way she wants it, you imagine; the eccentric little deviant took extra care to tuck in some of the makeshift sheathe right underneath ");
+	var x:int = pc.biggestCockIndex();
+	if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output("underneath the broad expanse of your flare.");
+	else if(pc.cocks[x].hasFlag(GLOBAL.FLAG_TAPERED)) output("atop the barest limits of your tapered tip");
+	else output("your mushroom top.");
 	output("\n\n<i>“Well, what do you think?”</i> she asks. As you breathlessly voice your approval, Shekka moves in on your enshrouded meat. Her pert, little breasts do what little they can to flank your scale-covered shaft. Supple, leathery feet go to work on your ");
 	if(pc.balls > 0) output("[pc.balls]");
 	else output("taint");
@@ -1236,18 +1285,32 @@ public function hugeEarShekkaFaps():void
 	output("\n\nBy the time Shekka’s kissing and licking away at your mountaintop, you’ve spurted enough lube for her tight bind to begin shifting against your slick flesh. And shift it does. The movement isn’t much, but its all-encompassing nature means your genital’s every nerve ending gets to ride the electric high. The cocktail of writhing alien flesh and embrace slamming into your dick from every direction easily outdoes any imaginable onahole.");
 	output("\n\nYour arms’ attempt to prop you up by this point has become a meager one. They ache with the longing to reach out and assist in the penis parade. However, they turn to putty the moment you even try and reach towards the action. Your frustrated grabbers can only clutch at whatever flesh or object they can find nearby, eager for their opportunity to get tagged in to the action.");
 	output("\n\nFor whatever pleasure coaster you seem to be riding, Shekka’s must be going at least twice its speed. Unyielding rivers of pre have completely soaked her ears at this point. Their snug hold around your cock remains steadfast, but they still rub ever so slightly along your length. Turns out those smooth, velvety strokes are lightning on delicate raskvel senses. Each vertical centimeter traversed tickles millions of sensitive nerves all along the insides of Shekka’s luxurious ears. They send the alien into uncontrollable shivers, her tethered head pulling your cock one way and another.");
-	output("\n\nThe lost, little tail had long given up its thoughtful caress of your body by now. Instead, the appendage is anxious to shove its way into any available cavity. Its fervent search starts by prodding at your [pc.butt]. Pressed against the solid warehouse floor, however, the hope of anal exploration dims and vanishes with each fruitless poke and press. Defeat’s bitter taste is short lived when the desperate pioneer decides to make for familiar lands. Shekka spikes her tail right down her moist, quivering toolbox. For a brief moment, you imagine the thing was vibrating, but the suspicion instantly dissolves for more pressing concerns.");
-	output("\n\nWith feminine plumbing issues resolved, Shekka’s writhing conquest atop your [pc.cockBiggest] has escalated. Frequent shifts between impassioned grinding and lovemaking to your buzzing cockhead are chipping away at your foundation. Your massive redwood can no longer triumphantly withstand the elements pounding against it. A chorus of lumberjacks cry out as your legacy gracelessly plummets down to earth. This tree falling in the wood most definitely produces a noise, however.");
+	output("\n\nThe lost, little tail has long since given up its thoughtful caress of your body by now. Instead, the appendage is anxious to shove its way into any available cavity. Its fervent search starts by prodding at your [pc.butt]. Pressed against the ");
+	if(shekkaIsCrew()) output("solid warehouse floor");
+	else output("chill metal of your ship’s floor");
+	output(", however, the hope of anal exploration dims and vanishes with each fruitless poke and press. Defeat’s bitter taste is short lived when the desperate pioneer decides to make for familiar lands. Shekka spikes her tail right down her moist, quivering toolbox. For a brief moment, you imagine the thing was vibrating, but the suspicion instantly dissolves for more pressing concerns.");
+
+	output("\n\nWith feminine plumbing issues resolved, Shekka’s writhing conquest atop your [pc.cockBiggest] has escalated. Frequent shifts between impassioned grinding and lovemaking to your buzzing cockhead are chipping away at your foundation. Eventually your epic [pc.cockNounSimple " + x + "] can no longer triumphantly withstand the onslaught of attention, and as your restraint withers to be replaced with naught but the urgent need to orgasm, your seemingly endless prick finally plummets towards your waiting [pc.arms] like a felled tree.");
+
 	output("\n\nA deliciously moist thud welcomes Shekka and your captive cock to your [pc.fullChest], their combined sweat and pre spreading along the countryside in due time. Your hands’ hardships can finally come to an end with this wondrous turn of events. They seize the opportunity quite literally; your rather enthusiastic grasp swarms the raskvel’s backside, pressing both alien and dick hard against you. It makes for a scrumptious sandwich of writhing flesh and emotion, one that only tips all involved closer to that ever-approaching boiling point.");
-	output("\n\nDespite being closer to your head, your wistful technician’s attention remains faithful to your cocooned cock. In between a flurry of moans, grunts and gasps, she can’t help but suckle and sup at your exposed [pc.cockHeadBiggest] while the rest of her body writhes and rubs against both her electric, soggy ears and your pulsating, excited manhood. The most you can do is squirm underneath her and explore her backside. You find it hard to subconsciously decide between squeezing the alien tight or exploring any curves and crevices your fingers come across. What isn’t happening is your trek making its way to her more private locales; the alien has them locked tight with a firm, unyielding grasp.");
-	output("\n\nTime passes. The broiling mass of wincing flesh has cooked to perfection. The cascade of pre, sweat and feminine drippings coating and soaking into every last surface in a two foot radius is impressive. It may as well resemble little more than an arid desert compared to your churning payload, however. Between your vehement lover’s work and the everlasting ear insulation, your climax has found it difficult to work itself out; all the preparatory fluid in the world doesn’t seem to have done enough. But the pressure deep within your loins has grown painfully powerful. You shudder and convulse, breath caught in the back of your throat as you build up the strength for your release to overcome all obstacles before it.");
-	output("\n\nYou’ve seen little more of Shekka than her pink plumage brushing against you, but it’s easy to imagine her sultry expression smearing its way around your cock.");
+	output("\n\nDespite being closer to your head, your wistful technician’s attention remains faithful to your cocooned cock. In between a flurry of moans, grunts and gasps, she can’t help but suckle and sup at your exposed [pc.cockHeadBiggest] while the rest of her body writhes and rubs against both her electric, soggy ears and your pulsating, excited manhood. The most you can do is squirm underneath her and explore her backside. You find it hard to subconsciously decide between squeezing the alien tight or exploring any curves and crevices your fingers come across. What isn’t happening is your trek making its way to her more private locales; ");
+	if(shekkaIsCrew()) 
+	{
+		if(shekka.hasCock()) output("your lover has them enraptured by a hungrily thrusting tail, adding the lurid slosh of sexual juices to the musky atmosphere. Likewise there is no way to wrap your [pc.hands] around her throbbing futa-cock while it’s pinned between your dick and Shekka’s entire form.");
+		else output("your lover has them enraptured by a hungrily thrusting tail, adding the lurid slosh of sexual juices to the musky atmosphere.");
+	}
+	else output("the alien has them locked tight with a firm, unyielding grasp.");
+	output("\n\nTime passes. The broiling mass of glistening flesh has cooked to perfection. The cascade of pre, sweat and feminine drippings coating and soaking into every last surface in a two foot radius is impressive. It may as well resemble little more than an arid desert compared to your churning payload, however. Between your vehement lover’s work and the everlasting ear insulation, your climax has found it difficult to work itself out; all the preparatory fluid in the world doesn’t seem to have done enough. But the pressure deep within your loins has grown painfully powerful. You shudder and convulse, breath caught in the back of your throat as you build up the strength for your release to overcome all obstacles before it.");
+	output("\n\nYou’ve seen little more of Shekka than her pink plumage brushing against you, but it’s easy to imagine her sultry expression smearing its way around your cock. That pulsing insistence in your prostate");
+	if(pc.balls > 0 && pc.ballDiameter() >= 2) output(" and the tremendous weight of your [pc.balls]");
+	output(" batters at your sensibility like a ram, robbing you of the ability to do little more than wordlessly urge her on with unconscious thrusts of your hips.");
 	output("\n\nThe pressure mounts.");
 	output("\n\nEach moist, little suckle, smooch and sweep across the sensitive tip of your pole is a cattle prod to your pleasure sensors.");
 	output("\n\nThe pressure mounts.");
 	output("\n\nThe leathery full-body grope almost equals the dual layers of skin and scale entwined around your [pc.cockBiggest] in sheer encompassment. Your pseudo second skin still shifts ever-so-slighty against your charged [pc.skin] sending megawatts of passion through both of your tender, dripping bodies.");
 	output("\n\nThe pressure mounts.");
-	output("\n\nThe tension stimulating your genitalia’s every nerve manhandles your every thought. You press Shekka hard against your body, seeming to magnify her already fervent grinding and grappling. Her head explores each of its limited movement opportunities atop your fuck-stick; each tug and stretch culminates in another divine dick direction.");
+
+	output("\n\nBy now your body rocks tenuously on the borders between pleasure and pain; the tension stimulating your genitalia’s every nerve manhandles your every thought. You press Shekka hard against your body, magnifying her already fervent grinding and grappling. Her head explores each of its limited movement opportunities atop your fuck-stick; each tug and stretch culminates in another divine dick direction.");
 
 	output("\n\n");
 	if(pc.balls > 1) output("Your [pc.balls] are beyond their breaking point, quaking with otherworldly intensity. ");
@@ -1259,11 +1322,14 @@ public function hugeEarShekkaFaps():void
 	else if(pc.cumQ() < 25000) output("Tsunamis");
 	else output("Planet-sized discharges");
 	output(" of [pc.cum] strongarm their way up your mighty passage. It takes a few more mighty convulsions for your flesh volcano to spew forth, meeting Shekka head on.");
-	output("\n\nThe spunky raskvel takes your offering in stride, downing a few mouthfuls with unrelenting rapture as she slams her face just short of being inside your dick. Your orgasm outpaces her consumption after a few more spasms. She recoils back, still taking the brunt of your climax face-first. Her cum-soaked ears still wrapped tightly around your [pc.cockBiggest], Shekka manages to pull your twitching gusher back up off your body. The wonderful gesture only works to spread your seed even further, recoiling off the alien’s face back down to you and parts nearby.");
+	output("\n\nThe spunky raskvel takes your offering in stride, downing a few mouthfuls with unrelenting rapture as she slams her face just short of being inside your dick. Your orgasm outpaces her consumption after a few more spasms. She recoils back, still taking the brunt of your climax face-first. Her cum-soaked ears still wrapped tightly around your [pc.cockBiggest], Shekka manages to pull your twitching gusher back up off your body. The wonderful gesture only works to spread your seed even further, ");
+	if(shekkaIsCrew()) output("cascading");
+	else output("recoiling");
+	output(" off the alien’s face back down to you and parts nearby.");
 	if(pc.cumQ() < 6000) output(" Her iron will cracks slightly under your ceaseless cum assault, causing her to cough and sputter against your convulsing hose.");
 	else output("You swear her cracked voice pierces through the haze of pleasure swirling around your senses. For all the scaled woman has been through in her life, it still must be hard to fathom just how much jism you can pump out.");
 
-	output("\n\nA deep breath signals the end of your rush, and your Shekka-shrouded sheathe plummets back down upon your [pc.fullChest] with an amazingly moist smack. She about knocks what little wind you recovered right back out of you. Speaking of the little cock accessory, her face is still buried into your [pc.cockHeadBiggest]. She’s fairly motionless. save for a hint of twitching down by her groin. It’s hard to believe how tight of a grip she’s managed to maintain around your member. A little life pops out of her through her toes, once more prodding at your ");
+	output("\n\nA deep breath signals the end of your rush, and your Shekka-shrouded sheathe plummets back down upon your [pc.fullChest] with an amazingly moist smack. She just about smashes what little oxygen you’d gulped down right back out of you. Speaking of the little cock accessory, her face is still buried into your [pc.cockHeadBiggest]. She’s fairly motionless. save for a hint of twitching down by her groin. It’s hard to believe how tight of a grip she’s managed to maintain around your member. A little life pops out of her through her toes, once more prodding at your ");
 	if(pc.balls > 0) output("relaxing [pc.sack]");
 	else output("traumatized taint");
 	output(". You decide to leave her be and bask in the sizzling afterglow for a few moments.");
@@ -1282,11 +1348,16 @@ public function pageTwoOfShekkaStuffs():void
 	userInterface.showName("\nSHEKKA");
 	author("Kirbu");
 	output("<i>“I’m... I’m not through.”</i>");
-	output("\n\nYour pleasure stasis bubble abruptly bursts. Evidently, plenty of energy is still bouncing about within your blue-collar partner. Shekka’s sopping wet forehead glides against your beating cockflesh, giving you the first sight of anything besides feather since the completion of her ear weave. You only get a really good look at her eyes. Normally thin reptilian slits, you’re instead surprised to find her pupils have dilated quite wide. Has the raskvel found herself caught up in some sexual euphoria, you wonder?");
+	output("\n\nYour pleasure stasis bubble abruptly bursts. Evidently, plenty of energy is still bouncing about within your blue-collar partner. Shekka’s sopping wet forehead glides against your beating cockflesh, giving you the first sight of anything besides feather since the completion of her ear weave. You only get a really good look at her eyes. Normally thin reptilian slits, you’re instead surprised to find her pupils ");
+	if(!shekkaIsCrew()) output("have dilated quite wide.");
+	else output("have dilated into broad pools of harsh ship-light.");
+	output(" Has the raskvel found herself caught up in some sexual euphoria, you wonder?");
 	output("\n\nYou don’t get a good look at the pink peepers before they sink back towards your ample crotch harvest. Shekka makes a tiny sigh before raising her right hand to point at something.");
 	output("\n\n<i>“Locker over there. Middle one. Should be...”</i> she takes a moment to breathe in deep through her button nose, <i>“Should be a suit ‘bit bigger than you. Hurry up.”</i>");
 	output("\n\nGlancing down her shaky little arm, you indeed spot the container in question. It’s a little perturbing to not get to enjoy your post-sex cuddle! Nevertheless, you jumpstart your idle motor skills to get up and over the few feet across the clutter workspace. It’s made more difficult just with the copious amounts of spunk and sweat spread about you. Once it’s clear you’ll be able to get your ass up off the ground, Shekka reorients her sturdy grasp off your [pc.cockBiggest] to around your waist.");
-	output("\n\nYour mind slowly unravels its way through post-coitus relaxation, granting you the cognitive ability to start at empathizing with the clingy raskvel. As enchanted as she was - and still is - by her sensitive ears soaking in your genital heat and such, it dawns on you that this dance was a bit one-sided. Even with her tail wedged up inside her cunt, Shekka never seemed to be pushed beyond a tingling tickle. Her passionate grinding didn’t leave much more to be desired on your end, at least. It wasn’t evident at the time, but you figured the second that appendage of hers found its happy home that your alien fuckbuddy would have seen to her own amusement. Or something.");
+	output("\n\nYour mind slowly unravels its way through post-coitus relaxation, granting you the cognitive ability to start at empathizing with the clingy raskvel. As enchanted as she was - and still is - by her sensitive ears soaking in your genital heat and such, it dawns on you that this dance was a bit one-sided. Even with her tail wedged up inside her cunt, Shekka never seemed to be pushed beyond a tingling tickle. Her passionate grinding didn’t leave much more to be desired on your end, at least. It wasn’t evident at the time, but you figured the second that appendage of hers found its happy home that your alien fuckbuddy would have seen to her own amusement. Or ");
+	if(shekka.hasCock()) output("her meaty, new-grown pole would go off, or ");
+	output("something.");
 	output("\n\nBut, no. She rode along the edge, content but unfulfilled. A mist of fading pleasure may very well be obscuring you from whatever it is she’s pushing towards. What isn’t obscured is the rather amusing sight dangling in front of you. The way Shekka’s looks now, it’d be easy to forget her typically vibrant, outgoing demeanor. Now it just looks like a cock-obsessed raskvel with a wet ear fetish is bashfully digging her face into your meat, her legs suspended uselessly above the ground as her tail limply hangs out from between them. There’s really no telling what to make of it.");
 	output("\n\nAnyway, you eventually make the awkward journey to your destination, meekly pushing away the clutter to get at the locker’s innards. Inside you find a rather large hazmat suit of some sort. There’s a few of them, actually, each of varying sizes. The lion’s share are more along the lines of what you would expect for the tiny alien race. What would she need these for? Why would she even have this many? The sound of Shekka drawing in another large whiff of air through her nostrils breaks the mental line of questioning.");
 
@@ -1294,8 +1365,17 @@ public function pageTwoOfShekkaStuffs():void
 	output("\n\n<i>“But aren’t you-”</i>");
 	output("\n\n<i>“Just get it on,”</i> Shekka interrupts, giving you another clear shot at the abnormally wide slits you spotted earlier. It finally sinks in as you pull the heavy suit out from its resting spot. Rather, you smell it. The heady musk of your passionate fuck has the funky little workaholic in an intoxicating rut. Ears soaked with sweat and cum. Head locked inches away from warm, turgid cockflesh. Sweltering, passionate bodies rubbing and grinding against one another for fuck knows how long. Her nasal cavities have been trapped in a dramatically aromatic cloud of steamy copulation, one so potent that the enraptured raskvel can hardly work herself up without amping it up.");
 	output("\n\nYou’re happy to oblige on her sex scent-fueled climax! Besides, for what it’s worth, she still feels really fucking good with those lithe, moist, velvety listeners wrapped tightly around your towering passion. It’s a little hard and awkward aligning all involved legs to the appropriate legging - you’ve certainly put on some weight. It’s a rare occasion that makes you thankful for a generous lathering of sexual fluids, making it simple for you and your carry-on luggage to glide effortlessly into the heavy environmental protection.");
-	output("\n\nThe wrinkled, rough inner lining is a little coarse against your tender, soaked " + pc.skinNoun(false) + ". It’s certainly nowhere as satisfying as the flurry of fine scales and oases of delicate flesh slowly writhing atop your [pc.crotch]. Sensations go down in importance once you work the suit up to your shoulders; this bastard’s heavy! Is this thing supposed to be protection from radiation or medieval weaponry? It takes a bit of doing just to get your arms into the hefty sleeves. All this time, your raskvelian cock sleeve is clinging to your bare waist doing little more than slowly, slightly undulating against you and your cock.");
-	output("\n\n<i>“Go lie down,”</i> Shekka whispers, still unflinching. Her breath is hot and heavy against your sensitive cock-top. You spend a few more moments trying to get the arm situation under control before seeing to the next phase. The thought of returning to the warehouse floor isn’t very alluring, so you glance around to try and find a decent resting spot. There’s little more than a plethora of stools and benches; a junky-looking recliner in a corner seems your best bet.");
+	output("\n\nThe wrinkled, rough inner lining is a little coarse against your tender, soaked " + pc.skinNoun(false) + ". It’s certainly nowhere as satisfying as the flurry of fine scales and oases of delicate flesh slowly writhing atop your [pc.crotch]. Sensations go down in importance once you work the suit up to your shoulders; this bastard’s heavy! Is this thing supposed to be protection from radiation or medieval weaponry? It takes a bit of doing just to get your arms into the hefty sleeves. All this time, your raskvelian cock sleeve is clinging to your bare waist doing little more than slowly, slightly undulating against you and your cock");
+	if(shekka.hasCock()) output(", her own hermaphroditic musk intensifying as she grinds her equine meat against your own");
+	output(".");
+	output("\n\n<i>“Go lie down,”</i> Shekka whispers, still unflinching. Her breath is hot and heavy against your sensitive cock-top. You spend a few more moments trying to get the arm situation under control before seeing to the next phase. The thought of returning to ");
+	if(!shekkaIsCrew()) output("the warehouse floor");
+	else output("the cold floor of your ship");
+	output(" isn’t very alluring, so you glance around to try and find a decent resting spot. ");
+	if(!shekkaIsCrew()) output("There’s little more than a plethora of stools and benches");
+	else output("There's not much for furniture down here");
+	output("; a junky-looking recliner in a corner seems your best bet.");
+
 	output("\n\nYou awkwardly trundle on over to the chair, pushing away whatever random scrap is tossed atop it. The weighty suit makes the simple task cumbersome enough, but your crotch-bound lover makes your escapade even more stiff and clunky. Eventually the seat’s free for you to flop down atop it, kicking up a cloud of dust. You try and lean against the back of the seat only for it to give out on you. You seize up for a moment before resting at fairly elevated angle.");
 	output("\n\nThis isn’t exactly your sexiest moment.");
 	output("\n\nThe inadequacies don’t last long, thankfully. Shekka raises her head up from being buried deep into your [pc.cockHeadBiggest]. Thick, numerous strands of cum, sweat and whatever else form a tingly spiderweb between her head and yours. Her eyes are no less wide than they were before. But the silent, little alien has a glimmer of warm, mischievous fun in her expression now. For as cold and determined as she’s been up until now, it sets you at ease to see her enjoying herself. You were worried your cock had hypnotized her!");
@@ -1304,11 +1384,19 @@ public function pageTwoOfShekkaStuffs():void
 	if(pc.balls > 0) output(" and [pc.balls]");
 	output(". It’s slow, but forceful.");
 
-	output("\n\nThere was a time where you had actually forgotten about the ear-sheath wrapped tightly around your dick. That time has long since passed; the velvet flaps of skin feel just as heavenly on your swollen member as ever. Shekka’s newfound sense of action works its way down into her tail, next. It rubs and writhes between your thighs, slightly vibrating during its pound-fest upon the horny technician’s toolbox. Soon, her whole body is on fire, sliding and grinding against your moist, sensitive... everything!");
-	output("\n\nYour covered fingers dig into the ratty armrests. Your body is melting under the scaley, well-lubricated piston. The sounds of her heavy, muffled breathing fill the warehouse. The back of your throat seems to be where your own reactions are caught. The stew of sexual funk broiling within your suit has you at a fever pitch, your head left poking out of the potent pressure cooker. If not for Shekka’s hard fury raining almighty spears of bliss upon your every fiber of being, you’d be caught in the midst of one hell of a sauna.");
+	output("\n\nThere was a time where you had actually forgotten about the ear-sheath wrapped tightly around your dick. That time has long since passed; the velvet flaps of skin feel just as heavenly on your swollen member as ever. ");
+	if(shekka.hasCock()) output("Slick, wet, dribbling cock presses and slides over every aching, pleasure-drunk inch of your own. ");
+	output("Shekka’s newfound sense of action works its way down into her tail, next. It rubs and writhes between your thighs, slightly vibrating during its pound-fest upon the horny technician’s toolbox. Soon, her whole body is on fire, sliding and grinding against your moist, sensitive... everything!");
+	output("\n\nYour covered fingers dig into the ratty armrests. Your body is melting under the scaley, well-lubricated piston. The sounds of her heavy, muffled breathing fill the ");
+	if(shekkaIsCrew()) output("engine room");
+	else output("warehouse");
+	output(". The back of your throat seems to be where your own reactions are caught. The stew of sexual funk broiling within your suit has you at a fever pitch, your head left poking out of the potent pressure cooker. If not for Shekka’s hard fury raining almighty spears of bliss upon your every fiber of being, you’d be caught in the midst of one hell of a sauna.");
 	output("\n\nYou can’t even begin to fathom how your enthusiastic cock sleeve must be holding up sealed away in your coitus kiln. Her every breath is just another packed punch of sexual smog against her senses. You catch little whiffs every now and then escaping from the loose seal at your neck; it’s strong stuff to say the very, very least. The mere hint of the musky bouquet alone is re-energizing your drive, invigorating your spirit to match that of the one humping away atop you.");
-	output("\n\nFriction has become a distant myth for your slippery sweetheart by now. The finely-scaled body never ceases its awe-inspiring conquest of your senses, numbing them to fine paste of pleasure. Her jizz-soaked ears tug at your [pc.cockBiggest] with each thrash of her head, ensuring your colossal cock never exits a state of constant caress. What’s more, each time the feral hurricane is pulled back to her post, her mouth ravages your sensitive cockhead. Greedy licks, kisses and sucks have laid your twitching flesh bare. The clutching cacophony of sex paired with ongoing fragrant bursts brushing against your delicate senses paralyzes you.");
-	output("\n\nYour second climax certainly feels more powerful than the first. Encased away in the protective suit, you have no idea just how much each of your planet-trembling spasms is shooting out. But Shekka knows. Your liquid convulsions are the final piece to her passionate puzzle. Long, muffled moans eek out of the oppressive outfit. A new, almost searing hot liquid blasting along your thighs completes the symphony. The raskvel has reached balmy nirvana.");
+	output("\n\nFriction has become a distant myth for your slippery sweetheart by now. The finely-scaled body never ceases its awe-inspiring conquest of your senses, numbing them to fine paste of pleasure. Her jizz-soaked ears tug at your [pc.cockBiggest] with each thrash of her head, ensuring your colossal cock never exits a state of constant caress. What’s more, each time the feral hurricane is pulled back to her post, her mouth ravages your sensitive cockhead. Greedy licks, kisses and sucks have laid your twitching flesh bare. ");
+	if(shekka.hasCock()) output("Lower down, the artificial hermaphrodite's rod smears its wet-hot love over your [pc.sheathBiggest]. ");
+	output("The clutching cacophony of sex paired with ongoing fragrant bursts brushing against your delicate senses paralyzes you.");
+	output("\n\nYour second climax certainly feels more powerful than the first. Encased away in the protective suit, you have no idea just how much each of your planet-trembling spasms is shooting out. But Shekka knows. Your liquid convulsions are the final piece to her passionate puzzle. Long, muffled moans eek out of the oppressive outfit. A new, almost searing hot liquid blasting along your thighs completes the symphony. The raskvel has reached balmy nirvana");
+	if(shekka.hasCock()) output(", complete with an oozy, creamy release of semi-equine bliss.");
 	output("\n\nHer wailing tremors go on for some time beyond your powerful encore performance. It’s to be expected; the contumacious rabbit-lizard has spent most of her time teetering on the edge of euphoria. Each of her thrusts drop in intensity, the raskvel’s buzzing tail barely able to muster the strength to prod at her quivering cunt. The vice grip around your penis weakens. Soon, her entire body is limp against your twitching, spent soul. Just two pounding heartbeats are all that remain, laced with faint hums of satisfaction.");
 	output("\n\nThe afterglow is radiant. The warm soup of sexual fluids encased within the light yellow suit washes gently against your tender flesh. It’s hard to imagine a damp heat feeling all the more sweet. Shekka’s labored breathing hits your ears. The raskvel is overdosing on the aroma, you reckon. Freeing her would probably be the best next step, but your muscles don’t seem to willing to cooperate. So the two of you baste just a little longer.");
 	pc.orgasm();
@@ -1339,12 +1427,15 @@ public function pageThreeOfShekkaStuffs():void
 		output("\n\nThe last of your jizz-soaked cock-covering departs, exposing your pruned skin. A moist tingle encompasses your tired tower now. Shekka continues, still admiring your worn ego.");
 		output("\n\n<i>“I must sound like a little rask that dropped her first egg.”</i> She squishes an ear to her face, taking in a long drag that interrupts with a self-conscious laugh, <i>“I can’t tell you the last time I felt like this. ...Like a little rask.”</i>");
 		output("\n\nThe little rask notices you gazing intently into her eyes. Her face contorts for a second before she catches on.");
-		output("\n\n<i>“My eyes are dilated, aren’t they?”</i> You nod, causing her to snicker and shake her head again. <i>“That’s how you know this is genuine. Shit, I must have looked like a burnt out cokehead to you.”</i>");
+		output("\n\n<i>“My eyes are dilated, aren’t they?”</i> You nod, causing her to snicker and shake her head again. <i>“That’s how you know this is genuine. Shit, I must have looked like a burnt out gush-addict to you.”</i>");
 	}
 	else output("\n\n<i>“Still just as amazing,”</i> she chuckles. By the way she’s blinking her eyes, you figure she knows they’re dilated again.");
 	//Merge:
 	output("\n\nShekka runs her hands deep down into the suit, dragging through the remaining rivers of fun collected within. <i>“I’m betting this’ll be a bitch to clean up. They make these things to hold shit out, not in.”</i>");
-	output("\n\nSpeaking of which, being out of that suit is definitely high on your wish list. You’re careful not to go spilling any of the funky fun as you slide your wet, naked body out of the thing. Shekka isn’t as careful, wadding the mess up as best she can and hauling it over to a little pile of various other garments to be dealt with. She merely shrugs uncaringly when you point out the mess. Her whole warehouse is rich with the perfume of your ");
+	output("\n\nSpeaking of which, being out of that suit is definitely high on your wish list. You’re careful not to go spilling any of the funky fun as you slide your wet, naked body out of the thing. Shekka isn’t as careful, wadding the mess up as best she can and hauling it over to a little pile of various other garments to be dealt with. She merely shrugs uncaringly when you point out the mess. ");
+	if(shekkaIsCrew()) output("The whole ship");
+	else output("Her whole warehouse");
+	output(" is rich with the perfume of your ");
 	if(hours > 22 || hours < 4) output("late night");
 	else if(hours < 10) output("morning");
 	else if(hours <= 12) output("late morning");
@@ -1357,13 +1448,14 @@ public function pageThreeOfShekkaStuffs():void
 	if(!pc.isNude()) output(" and get redressed");
 	output(". As much as you’d love to soak in the festivities like your raskvel friend, you imagine it best to at least try and get presentable before taking on Tarkus again.");
 	output("\n\nShekka’s much less concerned. She slipped on her jumpsuit with nary a care. And by the way her dripped ears are draped around her like a couple of scarfs, you figure she wants to bask in the glory for whatever time she has left.");
+	if(shekka.hasCock()) output(" Her cock bulges the front obscenely.");
 	fuckedShekka();
+	pc.applyCumSoaked();
 	flags["TIMES_SHEKKA_KIRBUED"]++;
 	processTime(55+rand(100));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
-
 
 //MilkQ over 1000
 public function shekkaMilkDranking():void

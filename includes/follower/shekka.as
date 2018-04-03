@@ -97,7 +97,7 @@ public function crewShekkaAppearance():void
 		output(" as it struggles not to break out of her clothing.");
 	}
 	output("\n\nThe feathers that makes for her species’ hair is still dyed the adorable bubblegum-pink, flaring exotically at the top whilst hanging down to her back. The red-scaled alien’s ears don’t so much as emerge from her plumage as it does drape down her sides. Thick golden rings and studs jingle and jangle from them with every errant head-moving, ensuring she can never sneak anywhere. Her face is adorable and youthful, with a button nose, soft lips, and big, slitted eyes.");
-	if(9999 == 0) output(".. although, those slit pupils are currently dilated as far as they can go, tracing the movement of your mouth with ill-disguised need.");
+	if(flags["SHEKKA_SPITDICTED"] == 1) output(".. although, those slit pupils are currently dilated as far as they can go, tracing the movement of your mouth with ill-disguised need.");
 	output("\n\nShe bounces on her heels, adding a little clicker-click of her clawed feet to the music of her ears. <i>“If you want a proper look at me, I’m happy to accommodate!”</i>");
 	clearMenu();
 	addButton(0,"Next",approachCrewShekka,true);
@@ -577,18 +577,19 @@ public function shekkaAddictionWheeee():void
 	}
 	//Shekka is Addicted
 	//Selecting this when you have had sex with her at least once when you have aphrodisiac saliva gives this.
-	else if(9999)
+	else if(flags["SHEKKA_SPITDICTED"] == 1)
 	{
+		flags["SHEKKA_SPITDICTED"] = undefined;
 		output("You bite the bullet and ask her outright; <i>“Shekka, are you addicted to me?”</i>");
 		output("\n\nThe Rask in question gives the question maybe a half-heartbeat of thought before nodding. <i>“One hundred percent, [pc.name]. And before you say anything else? It is fucking <i>awesome</i>.”</i>");
 		output("\n\nOkay. Not the response you were anticipating.");
 		output("\n\n<i>“Like, think about it. I crave you, in a way that temporarily completes me. Sure, sometimes the addict-brain thing kicks in and I start to get a bit shaky without a hit... the tradeoff is an incredible orgasm all lip-to-lip.”</i>");
 		output("\n\nJust thinking about it seems to have Shekka all juicy, judging by the way she squirms on the spot, pupils dilating. <i>“Look, [pc.name]. You don’t have to worry about me. The stuff you pump out is pretty damn clean chemically speaking. If you ever replace it, I should be able to drop the habit nooooo problem.”</i>");
 		output("\n\nWell, if she’s sure...");
-		//9999 back to  talk
+		//back to  talk
 		processTime(8);
 		clearMenu();
-		addButton(0,"Next",mainGameMenu);
+		addButton(0,"Next",talkToCrewShekka);
 	}
 }
 
@@ -631,8 +632,8 @@ public function giveShekkaFollowerADick():void
 	addButton(0,"Not Yet",stayAGirl);
 	if(pc.hasItemByClass(HorseCock)) addButton(1,"SynthSheath",synthsheathShekka,undefined,"SynthSheath","You have a handy-dandy artificial horse-cock right here. It'll be so easy, so very easy to give her one.");
 	else addDisabledButton(1,"SynthSheath","SynthSheath","You don't have a synthetic horse-cock to slap on her.");
-	if(pc.hasItemByClass(Throbb)) addButton(2,"Throbb",throbbUpShekka,undefined,"Throbb","It's not a horse-cock, but that can always be fixed later, right? Throbb'll get her halfway there.");
-	else addDisabledButton(2,"Throbb","Throbb","You don't have any throbb.");
+	//if(pc.hasItemByClass(Throbb)) addButton(2,"Throbb",throbbUpShekka,undefined,"Throbb","It's not a horse-cock, but that can always be fixed later, right? Throbb'll get her halfway there.");
+	//else addDisabledButton(2,"Throbb","Throbb","You don't have any throbb.");
 }
 
 public function stayAGirl():void
@@ -685,7 +686,7 @@ public function throbbUpShekka():void
 	output("\n\nThe words seem to drift away from her in time with the chemical load that pounds its way furiously into her system, rewriting and reforming flesh.");
 	output("\n\nYou can see in real-time how her red skin grows more flushed, and her body starts to glisten with sweat as it tries to compensate for the abrupt shift in her hormones.");
 	//Started female, have a dick:
-	if(9999) output(" You recognize it well; when your own abrupt growth occurred it felt like every inch of your brain was torn between cumming on the spot, and finding somewhere to hide yourself.");
+	if(9999 == 0) output(" You recognize it well; when your own abrupt growth occurred it felt like every inch of your brain was torn between cumming on the spot, and finding somewhere to hide yourself.");
 	output(" The raskvel woman squirms on the spot, trying to figure out what to do with herself. Her tail begins buzzing away in response to the way her body slips into lusty-fucking overdrive.");
 	output("\n\n<i>“Ah fuck, it’s happening. I can feel it!”</i> No kidding; you can see how her hips roll on the spot as though she were treating you to a pole dance... except that she was about to bring the pole herself. Her clit begins to swell; that’s the first evidence at least. A new one seems intent on growing beneath, but her body takes its own shortcuts. Part of the show isn’t particularly attractive. For instance watching a cumslit grow in real-time is more than a little discomforting.");
 	output("\n\nThe way pre builds at the head of a freshly growing cock, or the sight of twinned thick balls dropping into place however? That’s a particularly fine point of the show, especially when the slickness of her own cunt polishes the brand-new balls to an alluring shininess. The subtle scent of her feminine nectar becomes the mixed-musk of a futa-girl. Each of the shortstack’s heartbeats bring additional length to her cock, until it stands almost painfully hard and pointed directly at you.");
@@ -959,6 +960,10 @@ public function shekkaCrewSexMenu():void
 		else addButton(1,"Tribadism",tribCrewVibeyVibe,undefined,"Tribadism","A little bit of tribadism with the raskvel’s tail in the middle for added texture.");
 	}
 	else addDisabledButton(1,"Tribadism","Tribadism","Tribadism requires you to have a vagina.");
+
+	if(pc.hasCock() && pc.biggestCockVolume() > chars["SHEKKA"].vaginalCapacity() && pc.tallness >= 60 && pc.cumQ() >= 500) 
+		addButton(2,"Big Dick",hugeEarShekkaFaps,undefined,"Big Dick Shenanigans","Use your over sized member on the small mechanic. She’s gotta have some way to please it, right?");
+	else addDisabledButton(2,"Big Dick","Big Dick Shenanigans","This scene requires a large dick, a height of above five feet, and large volume of cum.");
 
 	addButton(14,"Back",approachCrewShekka,true);
 }
