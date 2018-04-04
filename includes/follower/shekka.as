@@ -986,7 +986,8 @@ public function shekkaCrewSexApproach():void
 			if(pc.tallness < 4*12+6) output("close the distance");
 			else output("crouch down to her level");
 			output(" and dip in for a kiss, growing more excited as your lips meet.");
-			output("\n\nShekka lets out a delighted little moan, nipples growing hard enough to be seen through her sheer suit. <i>“How do you wanna do it, [pc.name]?”</i>");
+			if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("\n\nShekka lets out a shuddering little moan, nipples instantly stiff and rigid through the suit, her eyes dilated from slits into circles. <i>“H-how... god-that’s-good... Uh... how do you wanna do it- me?”</i>");
+			else output("\n\nShekka lets out a delighted little moan, nipples growing hard enough to be seen through her sheer suit. <i>“How do you wanna do it, [pc.name]?”</i>");
 		}
 		//In rut
 		else if(pc.inRut() && pc.hasCock())
@@ -1007,7 +1008,8 @@ public function shekkaCrewSexApproach():void
 			if(pc.biggestTitSize() < 1) output("pecs");
 			else output("tits");
 			output(", squeezing them like handholds as you draw her into a hungry make-out.");
-			output("\n\nBy the time you’re done warming up, Shekka’s gasping for breath. <i>“Oh fuck, how do you want me, [pc.name]?”</i>");
+			if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("\n\nBy the time you’re done warming up, Shekka’s drooling and shuddering, staring at you in chemically-supplimented adoration. <i>“Oh fuuuuck... How do you want me, [pc.name]? Just fucking take me.”</i>");
+			else output("\n\nBy the time you’re done warming up, Shekka’s gasping for breath. <i>“Oh fuck, how do you want me, [pc.name]?”</i>");
 		}
 		//Else
 		else
@@ -1031,7 +1033,9 @@ public function shekkaCrewSexApproach():void
 			if(pc.tallness < 4*12+6) output("close the distance");
 			else output("crouch down to her level");
 			output(" and dip in for a kiss, growing more excited as your lips meet.");
-			output("\n\nShekka lets out a delighted little moan, and her cock presses against your body in accusation. <i>“How do you wanna do it, [pc.name]?”</i>");
+
+			if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("\n\nShekka lets out a shuddering little moan, nipples instantly stiff and rigid through the suit, though nowhere near as obvious as the throbbing, shrink-wrapped length. Her eyes dilate from slits into circles. <i>“H-how... god-that’s-good... Uh... how do you wanna do it- me?”</i>");
+			else output("\n\nShekka lets out a delighted little moan, her cock presses against your body in accusation. <i>“How do you wanna do it, [pc.name]?”</i>");
 		}
 		//In rut
 		else if(pc.hasCock() && pc.inRut())
@@ -1052,7 +1056,8 @@ public function shekkaCrewSexApproach():void
 			if(pc.biggestTitSize() >= 5) output("between the plush softness of your breasts");
 			else output("between the press of your modest chests");
 			output(", already oozing pre into her suit. The smaller girl whimpers into a hard make-out, fingers squeezing at you.");
-			output("\n\nBy the time you’re done warming up, Shekka’s gasping for breath. <i>“Oh fuck, how do you want me, [pc.name]?”</i>");
+			if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("\n\nBy the time you’re done warming up, Shekka’s drooling and shuddering, staring at you in chemically-supplimented adoration. <i>“Oh fuuuuck... How do you want me, [pc.name]? Just fucking take me.”</i>");
+			else output("\n\nBy the time you’re done warming up, Shekka’s gasping for breath. <i>“Oh fuck, how do you want me, [pc.name]?”</i>");
 		}
 		//Else
 		else
@@ -1601,6 +1606,8 @@ public function shekkaCrewGrindsFinish():void
 	output("You come to feeling wet and sticky all over, a small form perched atop you. Its brilliant, exuberant eyes blink at you, and your groggy mind identifies it as Shekka. She giggles, kissing you on the lips once more before standing up and offering a hand");
 	if(pc.tallness >= 60) output(", a gesture that’s almost comical given the size difference");
 	output(".");
+	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output(" She sways slightly, hips wiggling and ready to pounce from the sample of your sinfully sensuous saliva.");
+
 	output("\n\n<i>“Wow,”</i> you pant, still a little stunned.");
 
 	//Never had vibrations before
