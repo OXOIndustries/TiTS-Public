@@ -2871,7 +2871,9 @@ public function sylvieTriesHerDongerOn2():void
 	output("\n\n<i>“Aww, I can feel how much you want me inside!”</i> Sylvie giggles, drawing back for a deeper thrust. <i>“Mmmm, the way you keep squeezing down on me... you really like my dick, huh [pc.name]?”</i>");
 	output("\n\nHonestly, you’re too focused on the feeling of internal displacement to be paying much attention to how she feels inside you. When Sylvie shoves herself back inside you gasp involuntarily, a response forced from your body on instinct.");
 	if(pc.bellyRating() < 30) output(" Looking downwards shakily, you can see a giant bulge protruding from beneath the [pc.skinFurScales] of your [pc.stomach]. Oh fuck, maybe you really <i>are</i> just a fucktoy.");
+	
 	pc.buttChange(sylvieCockVolume());
+	
 	output("\n\nOn the next thrust, though, something changes. Sylvie’s thick, round medial ring pushes and pops inside your asshole and you groan loudly enough Kally might have been able to hear it. Sylvie’s ears prick up and she stops for a moment, looking down at you and grinning.");
 	output("\n\n<i>“Ooooh, I think [pc.heShe] likes iiit,”</i> she singsongs, still drunk and having the time of her life. <i>“Why don’t you have some more?”</i>");
 	output("\n\nPulling herself out with a slowness that makes you quiver, she slides her iron-hard cock back inside right up to the ring in one go and giggles when you gasp in pleasure.");
@@ -2943,7 +2945,9 @@ public function sylvieTriesHerDongerOn3():void
 		else output("s--her smaller but no less impressive set reminding you just how much spunk is going to be pumped inside you.");
 	}
 	else output(", their swollen weight resting between your inner thighs and reminding you of just how much spunk you’re going to have pumped inside you.");
+	
 	pc.buttChange(sylvieCockVolume());
+	
 	output("\n\n<i>“Holy </i>shit<i>,”</i> Sylvie groans loudly, and you’re treated to the sensation of her cock flexing and pulsating deep inside your body. <i>“Okay,”</i> she says, taking a deep breath, <i>“nice and slow on the outstroke...”</i>");
 	output("\n\nTo her credit, she <i>does</i> take it slow on the outstroke and it <i>is</i> really nice feeling her mammoth length stroking you from the inside out, and the way her ring spreads you open when it pops out. But as much as you love her for the way she’s doing her absolute best to take care of you, it’s clearly taking a toll on her psyche trying to rein in her bestial instincts - and really, it’s not what you signed up for. You reach out and stroke one of her thick-furred legs, drawing the attention of the needy, panting moosetaur downwards.");
 	output("\n\n<i>“Just pound me like a fucking animal,”</i> you moan.");
@@ -3417,7 +3421,9 @@ public function catchFutaSylviaVaginally():void
 		output("\n\nRearing up on her forelegs and planting herself on either side of your head, you suddenly feel very enclosed. The only things in your vision are Sylvie’s lush, furry underside and the huge, angry-looking horsecock resting between your [pc.breasts]. Seized by lust, you lean down to give it a quick kiss of blessing before she drags it down your body to align her fat, ridged flare with your [pc.pussy " + x + "].");
 		output("\n\n<i>“Oooh fuck I’m gonna blow your little biped form up like a blimp,”</i> Sylvie pants, halting at your dripping entrance. <i>“You won’t be able to go </i>anywhere<i> without thinking of me, dripping spunk down those thighs of yours!”</i>");
 		output("\n\nWith an aggressive grunt, Sylvie violently bucks her powerful hips and sinks her massive cock right to the hilt. You instinctively recoil, your back arching so sharply your stomach presses against Sylvie’s underside as the pleasure rushes through your body. <i>Fuck, she’s so big!</i> You find yourself desperately clutching onto her fur, trying to retain some sense of control.");
-		pc.cuntChange(sylvieCockVolume(),x);
+		
+		pc.cuntChange(x, sylvieCockVolume());
+		
 		output("\n\n<i>“Wow, you weren’t ready for that one, were you?”</i> Sylvie purrs, slowly drawing herself back and taking the time to luxuriate in the uncontrollable spasming of your folds as you desperately squeeze down on her. <i>“No time to rest, though.”</i>");
 		output("\n\n<i>“Ooooohhhhh, god! Sylvie!”</i> you cry, juices squirting from around Sylvie’s turgid rod when she thrusts it back in. <i>“Oh my god!”</i>");
 		output("\n\n<i>“Goddess,”</i> she smugly corrects you, leaning downwards on her forelegs. <i>“Now fucking lie there and take my blessing.”</i>");
@@ -3469,7 +3475,9 @@ public function catchFutaSylviaVaginally():void
 		output("\n\nRearing up on her forelegs and landing on your back with a heavy impact, you suddenly feel very enclosed. You twist your torso back a little to look, only to be seized by Sylvie from behind. Upturning your face, she kisses you upside down while wiggling her hindquarters to get her fat, ridged flare aligned with your [pc.pussy " + x + "].");
 		output("\n\n<i>“Ooooh fuck I’m gonna leave you looking like a goddamn broodmare,”</i> Sylvie pants, pulling away and halting at your dripping entrance. <i>“You won’t be able to go </i>anywhere<i> without thinking of me, dripping spunk down that sexy ass of yours!”</i>");
 		output("\n\nWith an aggressive grunt, Sylvie violently bucks her powerful hips and sinks her massive cock right to the hilt.");
-		pc.cuntChange(sylvieCockVolume(),x);
+		
+		pc.cuntChange(x, sylvieCockVolume());
+		
 		output("\n\nYou instinctively recoil, your back arching so sharply you push Sylvie’s torso backwards with you before she catches you, holding you in her very generous bosom. <i>Fuck, she’s so big!</i> You find yourself desperately reaching backwards to clutch her forelegs, trying to retain some sense of sanity, but there’s no escape from the way she’s irresistibly spreading you open.");
 		output("\n\n<i>“Wow, you weren’t ready for that one, were you?”</i> Sylvie purrs, slowly drawing herself back and taking the time to luxuriate in the uncontrollable spasming of your folds as you desperately squeeze down on her. <i>“No time to rest, though.”</i>");
 		output("\n\n<i>“Ooooohhhhh, god! Sylvie!”</i> you cry, juices squirting from around Sylvie’s turgid rod when she thrusts it back in. <i>“Oh my god!”</i>");
@@ -3524,7 +3532,7 @@ public function catchFutaSylviaVaginally():void
 		}
 	}
 	processTime(20);
-	pc.loadInCunt(sylviePP(),x);
+	pc.loadInCunt(sylviePP(), x);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",catchFutaSylviaVaginallyEnd);
@@ -3573,6 +3581,7 @@ public function takeItUpYourButtYouDirtySlutbag():void
 		else output("stroking the [pc.skinFurScales] of your tummy with slow hip movements");
 		output(". <i>“I’m gonna have soooo much fun putting this in your little asshole and rutting you, [pc.name]. I wonder how many times you’ll cum for me?”</i>");
 		output("\n\nBefore you even have a chance to reply, she’s pulled back and has herself expertly angled, poised to shove her dick balls-deep into your [pc.asshole]. Which is why you’re surprised when she presses forward with gentleness unbecoming of such a large creature, forcing a soft moan from your lips. Her flare slowly spreads you apart to make you hers, the feeling making your legs shake a little while you grunt.");
+		
 		pc.buttChange(sylvieCockVolume());
 
 		output("\n\n" + pc.mf("<i>“Awww, there are those sounds I love,”</i> Sylvie coos, an arm snaking around you to rub your [pc.chest]. <i>“So tough! Now give it aaaalll up for me, baby. I wanna hear you moaning like a girl.”</i>","<i>“Awww, you sound so cute like that,”</i> Sylvie coos, an arm reaching around to cup one of your breasts. <i>“Being so tough for me! Now get ready to take it all in, okay?”</i>"));
@@ -3612,7 +3621,9 @@ public function takeItUpYourButtYouDirtySlutbag():void
 		output("\n\nSylvie is all over you, lifting you with a surprising amount of strength and pressing you against a wall with her giant rack. Holding you in midair, Sylvie captures you in a deep, heated kiss, almost forcing herself on you, so desperate is she in her need. When she pulls back, she’s panting and the only thing in her eyes is the fire of lust. To your surprise, though, she manages to hold back and take control of herself. Soon, only the embers of calculated desire smolder in her gaze.");
 		output("\n\n<i>“I am gonna make you cum so fucking hard,”</i> she whispers to you, running a hand down your cheek.");
 		output("\n\nBefore you even have a chance to reply, she’s pulled back and has herself expertly angled, poised to shove her dick balls-deep into your [pc.asshole]. Which is why you’re surprised when she presses forward with gentleness unbecoming of such a large creature, forcing a soft moan from your lips. Her flare slowly spreads you apart to make you hers, the feeling making your legs shake a little while you grunt.");
+		
 		pc.buttChange(sylvieCockVolume());
+		
 		output("\n\n" + pc.mf("<i>“Mmmm, that’s riiight, it’s good, isn’t it?”</i> Sylvie coos, staring deeply into your eyes. <i>“Now give it aaaalll up for me, baby. I wanna hear you moaning like a girl.”</i>"," <i>“Awww, you sound so cute like that,”</i> Sylvie coos, reaching forward to cup one of your breasts. <i>“Being so tough for me! Now get ready to take it all in, okay?”</i>"));
 		output("\n\nYou have to admit this is a <i>lot</i> more gentle than your first time trying anal with Sylvie. Despite her incredible size, you’re quickly discovering that having the giant moosegirl slowly slide herself in is even better than you expected. You shiver, moan and shudder while Sylvie giggles in lustful glee, enjoying every little bit of your reactions. She’s having way too much fun with this, and she knows it. She whispers sweet nothings in your ear constantly while stretching you out, getting you used to the prospect of being wrapped around her.");
 		if(pc.hasCock()) output("\n\n<i>“I think I’ll fuck you niiice and slow into a long, drawn-out prostate orgasm,”</i> she murmurs in your ear, nibbling on it between strokes. <i>“How would you like that, [pc.name]? Does that sound good?”</i>");
@@ -3907,7 +3918,7 @@ public function inviteKallyOverForTripleHorsemeat():void
 	if(pc.isPregnant()) addDisabledButton(0,"Gangbang","Gangbang","This would be unsafe given your current, pregnant state.");
 	else if(!pc.hasVagina()) addDisabledButton(0,"Gangbang","Gangbang","You don’t even have a pussy!");
 	else addButton(0,"Gangbang",tripleHorseingIntro,false,"Gangbang","You’ve always wondered what it’d be like to be a horse’s onahole.");
-	if(pc.hasPerk("Buttslut")) addButton(1,"UpTheAss",tripleHorseingIntro,true,"UpTheAss","Let’s take this in a different direction.");
+	if(pc.hasPerk("Buttslut")) addButton(1,"UpTheAss",tripleHorseingIntro,true,"Up the Ass","Let’s take this in a different direction.");
 	else addDisabledButton(1,"UpTheAss","Up The Ass","You’d need to be a <i>special</i> kind of butt slut to even consider this.");
 	addButton(3,"Nope",turnDownATripleHorsing,undefined,"Nevermind","You enjoy your organs far too much to do this.")
 }
@@ -4051,8 +4062,8 @@ public function tripleHorseingIntro(upAss:Boolean = false):void
 	output("\n\nIt’s an almost transcendental experience, having three giant futa cocks spear you at the same time. Your body feels like a machine made for pleasure; the way their cocks throb in joy, the way they cry out in sheer bliss as they stretch you beyond reason, it all jolts something deep inside you that says <i>“this is right.”</i>");
 	if(!upAss) 
 	{
-		pc.buttChange(sylvieCockVolume())
-		pc.cuntChange(x,kiro.cockVolume(0));
+		pc.buttChange(sylvieCockVolume());
+		pc.cuntChange(x, kiro.cockVolume(0));
 	}
 	else pc.buttChange(sylvieCockVolume() + kiro.cockVolume(0));
 	output("\n\n<i>“Uuuugh! So fucking tight! Stars, I feel you down there, Kiro. [pc.name] is so nice letting us both in, isn’t [pc.heShe]?”</i>");
@@ -4129,9 +4140,10 @@ public function tripleHorseingIntro(upAss:Boolean = false):void
 	pc.loadInAss(sylviesLoad);
 	pc.loadInAss(sylviesLoad);
 	if(upAss) pc.loadInAss(kiro);
+	else pc.loadInCunt(kiro, x);
 	pc.loadInMouth(kally);
 	pc.applyCumSoaked();
-	if(upAss) IncrementFlag("CANADIA_TRIPLE_HORSED_ANAL")
+	if(upAss) IncrementFlag("CANADIA_TRIPLE_HORSED_ANAL");
 	else IncrementFlag("CANADIA_TRIPLE_HORSED");
 	clearMenu();
 	addButton(0,"Next",tripleHorseingOutro);

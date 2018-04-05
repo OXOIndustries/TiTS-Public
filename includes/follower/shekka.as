@@ -21,7 +21,7 @@ public function approachCrewShekka(back:Boolean = false):void
 	author("SomeKindofWizard");
 	if(back)
 	{
-		output("Shekka's still there, cute as ever. Did you need anything else from her?");
+		output("Shekka’s still there, cute as ever. Did you need anything else from her?");
 	}
 	else
 	{
@@ -43,7 +43,7 @@ public function shekkaCrewMenu():void
 	addButton(1,"Talk",talkToCrewShekka);
 	addButton(2,"Spend Time",spendTimeWithShekka,undefined,"Spend Time","Spend some leisure time with your rasky crewmember.");
 	if(pc.lust() >= 33) addButton(3,"Sex",shekkaCrewSexApproach);
-	else addDisabledButton(3,"Sex","Sex","You aren't quite in the mood for that.");
+	else addDisabledButton(3,"Sex","Sex","You aren’t quite in the mood for that.");
 	/*Her menu looks as follows:
 		//Appearance
 		//Talk
@@ -87,7 +87,7 @@ public function crewShekkaAppearance():void
 	showShekka();
 	author("SomeKindofWizard or Fenoxo");
 	output("You take your time to admire Shekka’s figure, and she strikes a little pose for you, fanning herself. It seems moving from her previous wasteland to your ship has done wonders for her diet. Or more correctly... probably added a little to her cup-size.");
-	output("\n\nShe hasn’t seen fit to change out of her usual hex-patterned, Aegis-shipyards jumpsuit either. It clings to her body like an erotic second skin. Her nipples poke accusingly out as though shrinkwrapped, and the plump lips of her pussy seem almost engorged by the tight layer of nano-weave fabric.  The rest of her body is much as it has always been; the broad, egg-laying hips of a Raskvel put the span of her shoulders to shame.");
+	output("\n\nShe hasn’t seen fit to change out of her usual hex-patterned, Aegis-shipyards jumpsuit either. It clings to her body like an erotic second skin. Her nipples poke accusingly out as though shrinkwrapped, and the plump lips of her pussy seem almost engorged by the tight layer of nano-weave fabric. The rest of her body is much as it has always been; the broad, egg-laying hips of a Raskvel put the span of her shoulders to shame.");
 	//if futa
 	if(shekka.hasCock()) 
 	{
@@ -113,13 +113,13 @@ public function talkToCrewShekka():void
 	processTime(2);
 	clearMenu();
 	addButton(14,"Back",approachCrewShekka,true)
-	addButton(0,"Places",talkToShekkaAboutPlaces,undefined,"Places","Talk to Shekka about some of the places you've been.");
+	addButton(0,"Places",talkToShekkaAboutPlaces,undefined,"Places","Talk to Shekka about some of the places you’ve been.");
 	addButton(1,"People",talkToShekkaAboutPeople,undefined,"People","Talk to Shekka about some of the people you know.");
 	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED) || flags["SHEKKA_SPITDICTED"] != undefined) addButton(3,"Addiction",shekkaAddictionWheeee);
 	else addDisabledButton(3,"???","???","You need aphrodisiac spit for this...");
 	if(flags["SHEKKA_SLEEPWITH_INTRODUCED"] != undefined) addButton(4,"Sleep With",shekkaRepeatBedTalkies);
-	else addDisabledButton(4,"Sleep With","Sleep With","Once Shekka has suggested sharing the bed, she'll be more amenable to this in the future.");
-	if(!shekka.hasCock()) addButton(5,"Get A Dick",talkToShekkaAboutGettingADick,undefined,"Get A Dick","It's always better to have a little extra.");
+	else addDisabledButton(4,"Sleep With","Sleep With","Once Shekka has suggested sharing the bed, she’ll be more amenable to this in the future.");
+	if(!shekka.hasCock()) addButton(5,"Get A Dick",talkToShekkaAboutGettingADick,undefined,"Get A Dick","It’s always better to have a little extra.");
 	else addDisabledButton(5,"Get A Dick","Get A Dick","Shekka already has a dick!");
 }
 
@@ -132,14 +132,17 @@ public function talkToShekkaAboutPlaces():void
 	clearMenu();
 	addButton(14,"Back",talkToCrewShekka);
 	if(flags["SHEKKA_BEEN_TAVROS"] != undefined) addButton(0,"Tavros",shekkaTalksAboutTavros);
-	else addDisabledButton(0,"Tavros","Tavros","Shekka hasn't been there yet!");
+	else addDisabledButton(0,"Tavros","Tavros","Shekka hasn’t been there yet!");
 	addButton(1,"Tarkus",talkToCrewShekkaAboutTarkus);
-	if(flags["SHEKKA_BEEN_NT"] != undefined) addButton(2,"New Texas",talkToShekkaAboutNewTexas);
-	else addDisabledButton(2,"New Texas","New Texas","Shekka hasn't been there yet!");
-	if(flags["SHEKKA_BEEN_MYRELLION"] != undefined) addButton(3,"Myrellion",shekkaMyrellionTalk);
-	else addDisabledButton(3,"Myrellion","Myrellion","Shekka hasn't been there yet!");
-	if(flags["SHEKKA_BEEN_UVETO"] != undefined) addButton(4,"Uveto",shekkaUvetoTalk);
-	else addDisabledButton(4,"Uveto","Uveto","Shekka hasn't been there yet!");
+	if(flags["LANDED_ON_TEXAS"] == undefined) addDisabledButton(2,"???","???","You haven’t been to this location yet!");
+	else if(flags["SHEKKA_BEEN_NT"] != undefined) addButton(2,"New Texas",talkToShekkaAboutNewTexas);
+	else addDisabledButton(2,"New Texas","New Texas","Shekka hasn’t been there yet!");
+	if(flags["VISITED_MYRELLION"] == undefined) addDisabledButton(3,"???","???","You haven’t been to this location yet!");
+	else if(flags["SHEKKA_BEEN_MYRELLION"] != undefined) addButton(3,"Myrellion",shekkaMyrellionTalk);
+	else addDisabledButton(3,"Myrellion","Myrellion","Shekka hasn’t been there yet!");
+	if(flags["VISITED_UVETO"] == undefined) addDisabledButton(4,"???","???","You haven’t been to this location yet!");
+	else if(flags["SHEKKA_BEEN_UVETO"] != undefined) addButton(4,"Uveto",shekkaUvetoTalk);
+	else addDisabledButton(4,"Uveto","Uveto","Shekka hasn’t been there yet!");
 }
 //Tarkus
 public function talkToCrewShekkaAboutTarkus():void
@@ -237,12 +240,12 @@ public function shekkaMyrellionTalk():void
 	//If Shekka’s Addicted
 	if(shekkaAddicted()) output("\n\n<i>“Well... the reds I... I got a chance to see a few. That was... yeah.”</i> Shekka chews on her bottom lip, staring at your own kisser in accusation. <i>“It’s better with you though.”</i>");
 	//Else
-	else  output("\n\n<i>“Hmmn... there is something appealing about those hard-body Reds. All that order they preach about makes them almost like machines, ya know? And that's sort of exciting to me, like if I studied them long enough, I could puzzle out a way to squeeze a little bit of extra efficiency out of their society. They're less like jerks than I expected, too. I even saw a few smile!”</i>");
+	else output("\n\n<i>“Hmmn... there is something appealing about those hard-body Reds. All that order they preach about makes them almost like machines, ya know? And that’s sort of exciting to me, like if I studied them long enough, I could puzzle out a way to squeeze a little bit of extra efficiency out of their society. They’re less like jerks than I expected, too. I even saw a few smile!”</i>");
 	//Merge
 	output("\n\n<i>“The golds are a hot sticky mess. I mean their boobs are freaking ginormous, but that hasn’t really done them any favors... and the way they breed is just so... </i>alien<i>. Everybody should get to lay eggs, not just one, big egged-up slut! Queens aside, the golds I’ve met have been perfectly friendly. </i>More than friendly.<i> And while they’re real organized, sort of like the reds, they seem to be a lot less strict about it. I like that. Appeals to my inner chaos-lizard, ya know?”</i>");
 	output("\n\nFair enough.");
 	//Next: back to Places menu
-	//Make shekka  not hate golds fen. SkoW is crazy. - DONE!
+	//Make shekka not hate golds fen. SkoW is crazy. - DONE!
 	clearMenu();
 	addButton(0,"Next",talkToShekkaAboutPlaces);
 }
@@ -357,7 +360,7 @@ public function talkToShekkaAboutNova():void
 		output("\n\n<i>“Obviously I think she’s a sweetheart, [pc.name]”</i> she says after a pause, grinning when the weaponized grey-goo climbs off of you to give her a hug.");
 	}
 	//Else
-	else output("<i>“If I’d been told one of those rapey little monsters could turn out to be a wearable, weaponized bimbo-armor, I would have said that was crazy. But no...  She is a total sweetheart. Sadly a bit out of my technological expertise or I’d have a poke around inside of her.”</i>");
+	else output("<i>“If I’d been told one of those rapey little monsters could turn out to be a wearable, weaponized bimbo-armor, I would have said that was crazy. But no... She is a total sweetheart. Sadly a bit out of my technological expertise or I’d have a poke around inside of her.”</i>");
 	//Next: back to People menu
 	processTime(4);
 	clearMenu();
@@ -406,8 +409,8 @@ public function spendTimeWithShekka():void
 		output("\n\nConsidering you’re on Tavros, it only makes sense to get some time away from the ship. You are a little bit tall to be arm-in-arm, but you offer a hand which she takes with a smirk. <i>“So, where to?”</i> Shekka asks, eyes tracing over a few ships. There’s a recognizable twitch in her grip, and you have to guide her past before she gets in trouble tinkering.");
 		processTime(2);
 		clearMenu();
-		addButton(0,"Anon's Bar",shekkaTavrosHangoutOne);
-		addButton(1,"Beth's Broads",shekkaTavrosHangoutTwo);
+		addButton(0,"Anon’s Bar",shekkaTavrosHangoutOne);
+		addButton(1,"Beth’s Broads",shekkaTavrosHangoutTwo);
 	}
 	//Not on Tavros
 	else
@@ -557,7 +560,6 @@ public function shekkaAddictionWheeee():void
 		if(pc.tallness < 7*12) output("eye-to-eye");
 		else output("closer to eye level");
 		output(". <i>“Are you going to be okay?”</i> you ask.");
-
 		output("\n\nShekka’s eyes skirt about the room, unconsciously twitching. She nervously scratches at her ear, before walking away <i>“Yeah, just... uh. Wait here a moment...”</i>");
 		output("\n\nA few minutes pass, and Shekka returns, looking flushed. She rubs idly at a nipple hard enough to be seen through her suit. <i>“All good, I’m cured.”</i> she says with a confident smile.");
 		output("\n\nThat easy?! You stare, aghast. ");
@@ -573,7 +575,7 @@ public function shekkaAddictionWheeee():void
 		//Next: Back to ship menu
 		clearMenu();
 		addButton(0,"Next",approachCrewShekka,true);
-		//Greys out box until she’s addicted again, hovering over this says <i>“You’ve already spoken to Shekka about her addiction”</i>
+		//Greys out box until she’s addicted again, hovering over this says “You’ve already spoken to Shekka about her addiction”
 	}
 	//Shekka is Addicted
 	//Selecting this when you have had sex with her at least once when you have aphrodisiac saliva gives this.
@@ -586,7 +588,7 @@ public function shekkaAddictionWheeee():void
 		output("\n\n<i>“Like, think about it. I crave you, in a way that temporarily completes me. Sure, sometimes the addict-brain thing kicks in and I start to get a bit shaky without a hit... the tradeoff is an incredible orgasm all lip-to-lip.”</i>");
 		output("\n\nJust thinking about it seems to have Shekka all juicy, judging by the way she squirms on the spot, pupils dilating. <i>“Look, [pc.name]. You don’t have to worry about me. The stuff you pump out is pretty damn clean chemically speaking. If you ever replace it, I should be able to drop the habit nooooo problem.”</i>");
 		output("\n\nWell, if she’s sure...");
-		//back to  talk
+		//back to talk
 		processTime(8);
 		clearMenu();
 		addButton(0,"Next",talkToCrewShekka);
@@ -605,6 +607,7 @@ public function talkToShekkaAboutGettingADick():void
 	output("\n\nShekka sighs and shrugs, looking you up and down as if she could gauge a proper response. You give the matter some thought as well, does she?");
 	//Two Buttons: Get a dick and Stay girl
 	processTime(3);
+	clearMenu();
 	addButton(0,"Get A Dick",giveShekkaFollowerADick);
 	addButton(1,"Stay A Girl",stayAGirl);
 }
@@ -628,12 +631,13 @@ public function giveShekkaFollowerADick():void
 	if(silly) output("ol’ floppy horsey-donger.");
 	else output("equine member.");
 	processTime(5);
+	clearMenu();
 	//Three Options: Not Yet, SynthSheath and Throbb
 	addButton(0,"Not Yet",stayAGirl);
-	if(pc.hasItemByClass(HorseCock)) addButton(1,"SynthSheath",synthsheathShekka,undefined,"SynthSheath","You have a handy-dandy artificial horse-cock right here. It'll be so easy, so very easy to give her one.");
-	else addDisabledButton(1,"SynthSheath","SynthSheath","You don't have a synthetic horse-cock to slap on her.");
-	//if(pc.hasItemByClass(Throbb)) addButton(2,"Throbb",throbbUpShekka,undefined,"Throbb","It's not a horse-cock, but that can always be fixed later, right? Throbb'll get her halfway there.");
-	//else addDisabledButton(2,"Throbb","Throbb","You don't have any throbb.");
+	if(pc.hasItemByClass(HorseCock)) addButton(1,"SynthSheath",synthsheathShekka,undefined,"SynthSheath","You have a handy-dandy artificial horse-cock right here. It’ll be so easy, so very easy to give her one.");
+	else addDisabledButton(1,"SynthSheath","SynthSheath","You don’t have a synthetic horse-cock to slap on her.");
+	//if(pc.hasItemByClass(Throbb)) addButton(2,"Throbb",throbbUpShekka,undefined,"Throbb","It’s not a horse-cock, but that can always be fixed later, right? Throbb’ll get her halfway there.");
+	//else addDisabledButton(2,"Throbb","Throbb","You don’t have any throbb.");
 }
 
 public function stayAGirl():void
@@ -798,7 +802,7 @@ public function kickShekkaOuttaBed():void
 {
 	clearOutput();
 	showShekka();
-	output("You let Shekka know that you'd like a little more room in the bed for right now.")
+	output("You let Shekka know that you’d like a little more room in the bed for right now.")
 	output("\n\n<i>“Awww, for serious?”</i> Shekka lets out a deep-seated sigh. <i>“I was just getting used to it.”</i> She shrugs. <i>“Well if you change your mind... you know where I’ll be.”</i> Shekka slips out, starting to unzip her suit.");
 	flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 	clearMenu();
@@ -849,7 +853,6 @@ public function sleepWithJustAnno():void
 public function sleepWithJustShekka():void
 {
 	clearOutput();
-	showBust("ANN")
 	showBust(annoBustDisplay(),"SHEKKA");
 	showName("ANNO &\nSHEKKA");
 	author("SomeKindofWizard");

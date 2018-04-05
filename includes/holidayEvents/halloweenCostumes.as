@@ -1811,18 +1811,28 @@ public function spiderCostumeOutro():void
 		pc.eyeColor = "red";
 	}
 	output(".");
-	if(!pc.hasChitin() || pc.scaleColor != "gray")
+	if(!pc.hasChitin() || pc.skinTone != "gray" || pc.scaleColor != "black")
 	{
-		output(" It looks like your entire body is bathed in a pool of liquid gray ink. Even,");
+		output(" It looks like");
+		if(pc.skinTone != "gray")
+		{
+			output(" your entire body is bathed in a pool of liquid gray ink");
+			if(!pc.hasChitin()) output(" as glossy black chitin plates grow along its surface");
+			else if(pc.scaleColor != "black") output(" as your chitin pigment darkens to a glossy black");
+		}
+		else if(!pc.hasChitin()) output(" your body is affected as glossy black chitin plates grow along the surface of your gray skin");
+		else output(" the pigment of your chitin gradually darkens until it is a glossy black");
+		output(". Even,");
 		pc.skinType = GLOBAL.SKIN_TYPE_CHITIN;
 		pc.clearSkinFlags();
 		pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
-		pc.scaleColor = "gray";
+		pc.skinTone = "gray";
+		pc.scaleColor = "black";
 	}
 	else output(" Your chitin seems unchanged by the costume. No surprise, given that it was a perfect match. Still,");
 	if(pc.hairColor != "black")
 	{
-		output(" your hair is now an elegant shiny black, cascading down your back and ending right at your spider-like abdomen.");
+		output(" your hair is now an elegant shiny black, cascading down your back and ending right at your spider-like abdomen. In addition,");
 		pc.hairColor = "black";
 		pc.hairLength = pc.tallness/2;
 		pc.hairType = GLOBAL.HAIR_TYPE_REGULAR;
@@ -1830,7 +1840,7 @@ public function spiderCostumeOutro():void
 	else if(pc.hairLength < pc.tallness/2)
 	{
 		pc.hairLength = pc.tallness/2;
-		output(" your hair has lengthened, cascading down your back and ending right at your spider-like abdomen.");
+		output(" your hair has lengthened, cascading down your back and ending right at your spider-like abdomen. In addition,");
 	}
 	if(pc.tailType != GLOBAL.TYPE_ARACHNID && pc.tailCount != 1)
 	{

@@ -19,9 +19,9 @@
 		//constructor
 		public function Shekka()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
-			this._neverSerialize = true;
+			this._neverSerialize = false;
 			
 			this.inventory.push(new Cargobot());
 			this.inventory.push(new Hoverboard());
@@ -189,6 +189,11 @@
 			this.ass.bonusCapacity += 15;
 			this.ass.loosenessRaw = 2;
 			this._isLoading = false;
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject._neverSerialize = false;
 		}
 		
 		override public function onLeaveBuyMenu():void

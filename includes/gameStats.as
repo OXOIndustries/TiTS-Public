@@ -4827,12 +4827,13 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2(", Seen her sexbots");
 					if(flags["SEEN_SHEKKAS_SEXBOTS"] != undefined) output2(" and her <i>new</i> sexbots");
 				}
-				if(9999 == 0)
+				if(shekkaRecruited())
 				{
 					output2(", Crew member");
 					if(shekkaIsCrew()) output2(" (Onboard Ship)");
 				}
 				if(StatTracking.getStat("contests/shekka sexoff losses") + StatTracking.getStat("contests/shekka sexoff wins") > 0) output2("\n<b>* Shekka, Robot Sex-Off, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/shekka sexoff wins") + "/" + StatTracking.getStat("contests/shekka sexoff losses") + ", of " + (StatTracking.getStat("contests/shekka sexoff losses") + StatTracking.getStat("contests/shekka sexoff wins")) + " games");
+				if(flags["TIMES_SEXED_SHEKKA"] != undefined) output2("\n<b>* Shekka, Sex Organs:</b> " + listCharGenitals("SHEKKA"));
 				if(flags["TIMES_SEXED_SHEKKA"] != undefined) output2("\n<b>* Shekka, Times Sexed:</b> " + flags["TIMES_SEXED_SHEKKA"]);
 				if(flags["TIMES_TAILVIBED_WITH_SHEKKA"] != undefined) output2("\n<b>* Shekka, Times Fucked Her Tail-Vibrator:</b> " + flags["TIMES_TAILVIBED_WITH_SHEKKA"]);
 				if(flags["TIMES_SHEKKA_KIRBUED"] != undefined) output2("\n<b>* Shekka, Times Fucked Her Inside a Hazmat Suit:</b> " + flags["TIMES_SHEKKA_KIRBUED"]);
@@ -6384,6 +6385,8 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SEXED_SYLVIE"] > 0) output2("\n<b>* Sylvie, Times Sexed:</b> " + flags["SEXED_SYLVIE"]);
 					if(flags["SYLVIE_CUFFNFUCK"] != undefined) output2("\n<b>* Sylvie, Times You Were Cuffed and Fucked by Her:</b> " + flags["SYLVIE_CUFFNFUCK"]);
 					if(flags["SYLVIE_TAURMOUNT"] != undefined) output2("\n<b>* Sylvie, Times You Mounted Her:</b> " + flags["SYLVIE_TAURMOUNT"]);
+					if(flags["CANADIA_TRIPLE_HORSED"] != undefined) output2("\n<b>* Sylvie, Times Gangbanged By with Kiro and Kally:</b> " + flags["CANADIA_TRIPLE_HORSED"]);
+					if(flags["CANADIA_TRIPLE_HORSED_ANAL"] != undefined) output2("\n<b>* Sylvie, Times Anally Gangbanged By with Kiro and Kally:</b> " + flags["CANADIA_TRIPLE_HORSED_ANAL"]);
 				}
 				//Ushamee
 				if(flags["USHA_MET3"] != undefined)

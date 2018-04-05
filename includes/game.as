@@ -714,6 +714,7 @@ public function getCrewOnShip():Array
 	if (bessIsCrew()) c.push(bess);
 	if (celiseIsCrew()) c.push(celise);
 	if (reahaIsCrew()) c.push(reaha);
+	if (shekkaIsCrew()) c.push(shekka);
 	if (yammiIsCrew()) c.push(yammi);
 	if (gooArmorIsCrew()) c.push(gooArmor);
 	if (siegwulfeIsCrew()) c.push(wulfe);
@@ -3290,7 +3291,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			if(!MailManager.isEntryUnlocked("shekkaFollowerIntroMail") && !pc.hasStatusEffect("Shekka_Follower_Email_CD") && currentLocation != "WIDGET WAREHOUSE") goMailGet("shekkaFollowerIntroMail");
 			if(flags["SHEKKA_CURE_TIMER"] != undefined)
 			{
-				if(flags["SHEKKA_CURE_TIMER"]+10080 < GetGameTimestamp() && !MailManager.isEntryUnlocked("shekkaFollowerIntroMail")) goMailGet("shekkaFollowerFirstChildrenBorn");
+				if(flags["SHEKKA_CURE_TIMER"]+10080 < GetGameTimestamp() && !MailManager.isEntryUnlocked("shekkaFollowerFirstChildrenBorn")) goMailGet("shekkaFollowerFirstChildrenBorn");
 				if(flags["SHEKKA_CURE_TIMER"]+20080 < GetGameTimestamp() && !MailManager.isEntryUnlocked("shekkaFollowerTesting")) goMailGet("shekkaFollowerTesting");
 				if(flags["SHEKKA_CURE_TIMER"]+24080 < GetGameTimestamp() && !MailManager.isEntryUnlocked("shekkaFollowerUnlockEmail")) goMailGet("shekkaFollowerUnlockEmail");
 			}	
