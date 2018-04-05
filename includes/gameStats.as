@@ -1931,6 +1931,36 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				sideCount++;
 			}
+			//Host Shukuchi
+			if(flags["SHUKUCHI_TAVROS_ENCOUNTER"] != undefined)
+			{
+				output2("\n<b><u>" + (flags["SHUKUCHI_TAVROS_ENCOUNTER"] < 2 ? "Tavros Mafia?" : "Host Shukuchi") + "</u></b>");
+				output2("\n<b>* Status:</b>");
+				switch(flags["SHUKUCHI_FOURTH_ENCOUNTER"])
+				{
+					case undefined: output2(" Tracking"); break;
+				}
+				
+				output2("\n<b>* Tavros:</b>");
+				output2((flags["SHUKUCHI_TAVROS_ENCOUNTER"] < 3 ? " Chased" : " Didn't chase") + " culprits");
+				if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] >= 2) output2(", Talked to the victim");
+				
+				if (flags["SHUKUCHI_MHENGA_ENCOUNTER"] != undefined)
+				{
+					output2("\n<b>* Mhenga:</b>");
+					if (flags["SHUKUCHI_MHENGA_ENCOUNTER"]) output2(" Defeated agent on Mhenga");
+					else output2(", Lost to agent on Mhenga");
+				}
+				
+				if (flags["SHUKUCHI_UVETO7_ENCOUNTER"] != undefined)
+				{
+					output2("\n<b>* Uvetor:</b>");
+					if (flags["SHUKUCHI_UVETO7_ENCOUNTER"]) output2(" Defeated agents on Uveto");
+					else output2(", Lost to agents on Uveto");
+				}
+				
+				sideCount++;
+			}
 		}
 		if(showID == "New Texas" || showID == "All")
 		{

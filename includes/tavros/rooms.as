@@ -404,7 +404,7 @@ public function initTavrosRooms():void
 	rooms["9013"].addFlag(GLOBAL.INDOOR);
 	rooms["9013"].addFlag(GLOBAL.PUBLIC);
 	rooms["9013"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["9013"].runOnEnter = undefined;
+	rooms["9013"].runOnEnter = shukuchiFoxBonus;
 
 	//9014
 	rooms["9014"] = new RoomClass(this);
