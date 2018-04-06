@@ -2442,6 +2442,45 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["LANE_DETOX_COUNTER"] != undefined) output2("\n<b>* Hypnotism Detoxification Duration:</b> " + prettifyMinutes(flags["LANE_DETOX_COUNTER"]));
 				sideCount++;
 			}
+			// ShekkaQuest
+			if(flags["SHEKKA_ISSUES"] != undefined || MailManager.isEntryViewed("shekkaFollowerIntroMail"))
+			{
+				output2("\n<b><u>Shekka’s " + (flags["SHEKKA_PROJECT_FUNDED"] == undefined ? "Issue" : "Project") + "</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(flags["SHEKKA_ISSUES"] == undefined) output2(" Read Shekka’s message, <i>Give Shekka a visit!</i>");
+				else
+				{
+					if(flags["SHEKKA_ISSUES"] == 1) output2(" Shekka requests fertility treatment, <i>Use your name to help Shekka!</i>");
+					else
+					{
+						output2(" Accepted");
+						if(flags["SHEKKA_ISSUES"] == 5)
+						{
+							if(pc.hasStatusEffect("Shekka_Pay_CD")) output2(", <i>Funding...</i>");
+							else output2(", Funding complete, <i>Give Shekka a visit!</i>");
+						}
+						if(flags["SHEKKA_ISSUES"] == 6)
+						{
+							if(pc.hasStatusEffect("Shekka_Cure_CD")) output2(", Funded, <i>Creating cure...</i>");
+							else output2(", Funded, Cure ready, <i>Give Shekka a visit!</i>");
+						}
+						if(flags["SHEKKA_ISSUES"] >= 7) output2("Funded, Cure obtained, Completed");
+						if(flags["SHEKKA_PROJECT_FUNDED"] != undefined) output2("\n<b>* Research Phase:</b> " + flags["SHEKKA_PROJECT_FUNDED"]);
+						if(flags["SHEKKA_ISSUES"] < 5)
+						{
+							if(pc.hasStatusEffect("Shekka_Pay_CD")) output2(", Funded, <i>Wait until next data set...</i>");
+							else output2(", Data package ready, <i>Awaiting payment...</i>");
+						}
+						else output2(", Fully Funded");
+						if(flags["SHEKKA_ISSUES"] == 7 && flags["SHEKKA_CURE_TIMER"] != undefined)
+						{
+							output2("\n<b>* Shekka, Time Since Cured:</b> " + prettifyMinutes(GetGameTimestamp() - flags["SHEKKA_CURE_TIMER"]));
+							if(MailManager.isEntryViewed("shekkaFollowerUnlockEmail")) output2(", <i>Give Shekka a visit!</i>");
+						}
+					}
+				}
+				sideCount++;
+			}
 		}
 		
 		if(showID == "Myrellion" || showID == "All")
@@ -6782,6 +6821,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["SAENDRA GONNA GO GET A COCK"] == 2) output2(", Paid for, Seen Sera, Meet her at the <i>Phoenix</i>");
 				if(flags["SAENDRA GONNA GO GET A COCK"] == 3) output2(", Paid for, Seen Sera, Used drug, Completed");
 			}
+			if(flags["SAENDRA_FEED_MILK"] > 0) output2("\n<b>* Saendra, Times You Fed Her Your Breast Milk:</b> " + flags["SAENDRA_FEED_MILK"]);
 			if(flags["SAENDRA TIMES SEXED"] != undefined || flags["KIRO_X_SAEN_HAPPENED"] != undefined)
 			{
 				output2("\n<b>* Saendra, Sexual Organs:</b> " + listCharGenitals("SAENDRA"));

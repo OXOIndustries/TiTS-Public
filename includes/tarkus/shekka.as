@@ -82,7 +82,7 @@ public function approachShekka(back:Boolean = false):void
 		theCureIsReadyShekka();
 		return;
 	}
-	if(MailManager.isEntryViewed("shekkaFollowerUnlockEmail") && flags["SHEKKA_ISSUES"] == 7)
+	if(flags["SHEKKA_ISSUES"] == 7 && MailManager.isEntryViewed("shekkaFollowerUnlockEmail"))
 	{
 		shekkaJoinCrewOffer();
 		flags["SHEKKA_ISSUES"] = 8;
@@ -2411,11 +2411,11 @@ public function shekkaFundingCost():Number
 	if(flags["SHEKKA_ISSUES"] == 2) cost = 5;
 	else if(flags["SHEKKA_ISSUES"] == 3) cost = 20;
 	else if(flags["SHEKKA_ISSUES"] == 4) cost = 10;
-	return cost;
+	return (cost * 1000);
 }
 
 //Fund Project
-//After the second time it’s selected <i>“The Issue”</i> turns into <i>“Fund Project”</i>
+//After the second time it’s selected “The Issue” turns into “Fund Project”
 public function shekkaFundProjectTalk():void
 {
 	clearOutput();
@@ -2664,14 +2664,17 @@ public function shekkaCuddleSleepWakeup():void
 		if(!(pc.lowerUndergarment is EmptySlot)) output(" A few moments later and your [pc.lowerUndergarment] joins the pile, and");
 	}
 	output(" Shekka practically drools at the feast of delights on display.");
-
+	
+	flags["SHEKKA_ISSUES"] = 7;
+	flags["SHEKKA_CURE_TIMER"] = GetGameTimestamp();
+	
+	clearMenu();
 	//If you have a dick and vag, else jump direct to dick/vag
 	if(pc.isHerm())
 	{
 		output("\n\n<i>“Nothing I like more than being able to make a choice, but it all looks so good!”</i>");
 		//Menu option; Dick (Jump to Dick)
 		//Menu option; Vagina (jump to Vagooter)
-		clearMenu();
 		addButton(0,"Dick",cureRewardUseDick);
 		addButton(1,"Vagina",vaginaSexWithShekkaOnCureThing);
 	}
@@ -2679,9 +2682,16 @@ public function shekkaCuddleSleepWakeup():void
 	{
 		addButton(0,"Next",cureRewardUseDick);
 	}
-	else addButton(0,"Next",vaginaSexWithShekkaOnCureThing);
-	flags["SHEKKA_ISSUES"] = 7;
-	flags["SHEKKA_CURE_TIMER"] = GetGameTimestamp();
+	else if(pc.hasVagina())
+	{
+		addButton(0,"Next",vaginaSexWithShekkaOnCureThing);
+	}
+	else
+	{
+		output("\n\nUnfortunately, you have not genitals to have fun with...");
+		
+		addButton(0,"Next",mainGameMenu);
+	}
 }
 
 //Dick (Use largest)
@@ -2763,20 +2773,23 @@ public function vaginaSexWithShekkaOnCureThing():void
 {
 	clearOutput();
 	showShekka(true);
+	
+	var vIdx:int = pc.tightestVaginaIndex();
+	
 	output("An exceptionally long tongue runs over her lips, and a low, throaty ‘murr’ rolls through her like an animal. Her hands are moist with her own juices as they squeeze at your thighs, digging into fat and flesh hard enough to sting.");
-	output("\n\nNot that you notice one-hundred percent. Most of your attention is taken up by the way Shekka mashes her nose up against your womanhood, nuzzling your [pc.clit] out of its hood. Your [pc.hands] run through the downy pink quills of her hair before gripping the bases of her ears like sexual handlebars. The smaller girl moans into your mons as she’s forced to guzzle down the scent of horny [pc.race].");
-	output("\n\nIt also proves to drive her a little wilder; her tail flicks around, tip buzzing as she jams it hard into her own cunt with an audible ‘squish’. You indulge in her needs, rolling your hips against her face, moaning loudly and groping her large floppy ears until she’s whining into your slit. <i>“Mnf-more!”</i> she gasps between licks and kisses, before sucking at the lips of your [pc.pussy] until they’re plumped up.");
+	output("\n\nNot that you notice one-hundred percent. Most of your attention is taken up by the way Shekka mashes her nose up against your womanhood, nuzzling your [pc.clit " + vIdx + "] out of its hood. Your [pc.hands] run through the downy pink quills of her hair before gripping the bases of her ears like sexual handlebars. The smaller girl moans into your mons as she’s forced to guzzle down the scent of horny [pc.race].");
+	output("\n\nIt also proves to drive her a little wilder; her tail flicks around, tip buzzing as she jams it hard into her own cunt with an audible ‘squish’. You indulge in her needs, rolling your hips against her face, moaning loudly and groping her large floppy ears until she’s whining into your slit. <i>“Mnf-more!”</i> she gasps between licks and kisses, before sucking at the lips of your [pc.pussy " + vIdx + "] until they’re plumped up.");
 	output("\n\n<i>“C’mon”</i> you moan, squeezing her ears a little harder before rubbing them. Shekka’s muff-muffled moans turn to a cry of surprise, and her tail thrashes about wildly. With a smirk, you tweak her nose <i>“Wait, did you just cum?”</i>");
-	output("\n\n<i>“Sh-shut up, [pc.name]... fuck you’re so tasty.”</i> the horny rask mutters, before her tongue slowly unfurls. Your juices are dripping down her chin, mixing with saliva while her expansive hips wiggle. It takes a moment’s effort to draw her tail from her sopping twat, and it vibrates in the open air, dripping her honey freely onto the bed. If the lower lips of your [pc.vagina] weren’t already drenched from foreplay, just the sensation of her boiling-hot tongue flicking at your clit would be enough to make you juicier than an Ausar in heat.");
+	output("\n\n<i>“Sh-shut up, [pc.name]... fuck you’re so tasty.”</i> the horny rask mutters, before her tongue slowly unfurls. Your juices are dripping down her chin, mixing with saliva while her expansive hips wiggle. It takes a moment’s effort to draw her tail from her sopping twat, and it vibrates in the open air, dripping her honey freely onto the bed. If the lower lips of your [pc.vagina " + vIdx + "] weren’t already drenched from foreplay, just the sensation of her boiling-hot tongue flicking at your clit would be enough to make you juicier than an Ausar in heat.");
 	output("\n\nHer hands finally shift from your thighs, revealing deep red marks where she’d been holding on for dear life. One rests ");
 	if(pc.hasCock()) output("at the base of [pc.oneCock] like a sturdy handhold");
 	else output("on your [pc.stomach] to keep her body somewhat upright");
 	output(", while the other makes for your womanhood. She parts your folds like an opening flower, purring at the sight of freshly-flowing nectar before her tongue begins its work at last.");
-	output("\n\nShekka’s tiny mouth opens surprisingly wide as she presses it against your twat once more. Her moans vibrate deep into the core of your womb, and her tongue plunges into your [pc.vagina]. For such a small figure, her oral ministrations grind at sensitive walls and folds deep within your body on the perpetual hunt for your g-spot.");
+	output("\n\nShekka’s tiny mouth opens surprisingly wide as she presses it against your twat once more. Her moans vibrate deep into the core of your womb, and her tongue plunges into your [pc.vagina " + vIdx + "]. For such a small figure, her oral ministrations grind at sensitive walls and folds deep within your body on the perpetual hunt for your g-spot.");
 	if(pc.hasCock()) output(" The hand wrapped around your prick begins to jerk slowly. Although it’s obvious her vaginal exploration is the main focus, there’s no reason you can’t enjoy pleasure from both ends.");
-	output(" The hand holding the lips of your [pc.pussy] apart creeps south, using your wetness for lube to penetrate your puckered [pc.asshole].");
+	output(" The hand holding the lips of your [pc.pussy " + vIdx + "] apart creeps south, using your wetness for lube to penetrate your puckered [pc.asshole].");
 
-	output("\n\nYour hips jerk a few nerveless times on a particularly attentive lick, and Shekka’s tongue seems to hone in on the sensitive spot. Her lips grind against your [pc.clit], her finger bangs your rear, and now her sinuous tongue constantly lashes at an over-active bundle of nerves. Somehow you manage to keep yourself <i>mostly</i> still, lest poor Shekka gets thrown to the bed before reaching your creamy center.");
+	output("\n\nYour hips jerk a few nerveless times on a particularly attentive lick, and Shekka’s tongue seems to hone in on the sensitive spot. Her lips grind against your [pc.clit " + vIdx + "], her finger bangs your rear, and now her sinuous tongue constantly lashes at an over-active bundle of nerves. Somehow you manage to keep yourself <i>mostly</i> still, lest poor Shekka gets thrown to the bed before reaching your creamy center.");
 
 	//Futa
 	if(pc.isHerm()) 
@@ -2824,7 +2837,7 @@ public function vaginaSexWithShekkaOnCureThing():void
 
 
 //Progress Emails
-//After The Cure is ready, the button greys out, hover-over reads <i>“The Cure is in progress, you’ll have to wait and see.”</i>
+//After The Cure is ready, the button greys out, hover-over reads “The Cure is in progress, you’ll have to wait and see.”
 
 //First Children Born
 //A week after The Cure is Ready
@@ -2848,7 +2861,7 @@ public function lastRaskvelCureEmail():String
 }
 
 //Join Crew - First Time
-//After getting the third email <i>“Hey”</i> from Shekka, returning to her will immediately begin this conversation line.
+//After getting the third email “Hey” from Shekka, returning to her will immediately begin this conversation line.
 public function shekkaJoinCrewOffer():void
 {
 	clearOutput();

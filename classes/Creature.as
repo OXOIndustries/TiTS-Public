@@ -9184,13 +9184,9 @@
 			return vaginalCapacity(biggestVaginaIndex());
 		}
 		public function gapestVaginaLooseness(): Number {
-			var counter: Number = vaginas.length;
-			var index: Number = 0;
-			while (counter > 0) {
-				counter--;
-				if (vaginas[index].looseness() < vaginas[counter].looseness()) index = counter;
-			}
-			return vaginas[counter].looseness();
+			if (vaginas.length == 0) return -1;
+			
+			return vaginas[gapestVaginaIndex()].looseness();
 		}
 		public function gapestVaginaIndex():int {
 			var idx:int = -1;
@@ -9207,22 +9203,25 @@
 			}
 			return idx;
 		}
-		public function tightestVaginalLooseness():Number
-		{
+		public function tightestVaginalLooseness():Number {
 			if (vaginas.length == 0) return -1;
 			
-			var vIdx:int = -1;
-			
+			return vaginas[tightestVaginaIndex()].looseness();
+		}
+		public function tightestVaginaIndex():int {
+			var idx:int = -1;
 			for (var i:int = 0; i < vaginas.length; i++)
 			{
-				if (vIdx == -1) vIdx = 0;
+				if (idx == -1) idx = i;
 				else
 				{
-					if (vaginas[i].looseness() < vaginas[vIdx].looseness()) vIdx = i;
+					if (vaginas[i].looseness() < vaginas[idx].looseness())
+					{
+						idx = i;
+					}
 				}
 			}
-			
-			return vaginas[vIdx].looseness();
+			return idx;
 		}
 		public function wettestVaginalWetness(raw:Boolean = false): Number {
 			if(!hasVagina()) return -1;
