@@ -1161,7 +1161,7 @@ public function firstTransitionForEmbry():void
 	embry.femininity = 80;
 
 	output("[embry.name] approaches you, and pulls you aside for a moment. She seems nervous, more so than usual.");
-	output("\n\n<i>“...U-um, I’ve got a favor to ask. You can refuse, if you want, and i’ll totally understand!”</i> she rambles, and anxiously clutches her pink tail.");
+	output("\n\n<i>“...U-um, I’ve got a favor to ask. You can refuse, if you want, and I’ll totally understand!”</i> she rambles, and anxiously clutches her pink tail.");
 	output("\n\nYou tell her to go ahead, and she peers at you through her fairy floss colored hair. <i>“S-so... my transition drugs arrived today. I finally had the money for the next stage, thanks to you, b-but I need someone to supervise me when I take them.”</i>");
 	output("\n\n<i>“It’s the law... I can’t actually take them without a thumb-print from a witness. If anyone else were to take them... t-that’d be really dangerous.”</i>");
 	output("\n\n<i>“I could ask my landlord, but I kind of want you to be there. You know, for the change. Because you’re important to me...”</i> she practically mumbles out the last part, and looks down at her feet.");
@@ -1619,7 +1619,7 @@ public function doneWivGlassesChatGuvnah():void
 	if(flags["EMBRY_TOLD_YOU_LIKE_COCK"] != undefined)
 	{
 		output("\n\nYou ask [embry.name] if she’s planning on getting rid of her simii cock, and she shakes her head. <i>“Um... no. I’ve actually decided to keep it. I mean, you like it, and when I’m with you... y-you make feel like a woman, you know--? And just because I’ve got one, doesn’t mean I’m not one.”</i>");
-		output("\n\n<i>“I-I requested they give me a special dose, one that won’t get rid of my penis. I was surprised to hear other simii girls ask for that... i’m glad I’m not the only one.”</i>");
+		output("\n\n<i>“I-I requested they give me a special dose, one that won’t get rid of my penis. I was surprised to hear other simii girls ask for that... I’m glad I’m not the only one.”</i>");
 	}
 	// if PC.doesnotlikedick
 	else
@@ -1785,7 +1785,7 @@ public function beFuckBuddiesWithEmbry():void
 	clearOutput();
 	showSimii();
 	output("You tell [embry.name] you’d like to be her fuck buddy. Her big blue eyes shoot wide open and she grabs her tail in her hands.");
-	output("\n\n<i>“W-wha---what? F-f-fuck b-buddies--?”</i> the pink haired simii nervously stammers. <i>“I-I’m not that kind of girl, t-though--! I-it’s corny, but, you know, i’m saving myself for the " + pc.mf("man","woman") + " I love...”</i>");
+	output("\n\n<i>“W-wha---what? F-f-fuck b-buddies--?”</i> the pink haired simii nervously stammers. <i>“I-I’m not that kind of girl, t-though--! I-it’s corny, but, you know, I’m saving myself for the " + pc.mf("man","woman") + " I love...”</i>");
 	output("\n\n... It seems [embry.name] is not comfortable with the idea of just being your fuck buddy.");
 	processTime(1);
 	flags["EMBRY_TURNED_DOWN_FUCKBUDDY"] = 1;
@@ -2044,7 +2044,7 @@ public function openRelationshipWithKiro(poly:Boolean):void
 	else output("and that you believe in having romantic relationships with more than one person");
 	output(". She seems a little stunned by this revelation. The simii girl goes quiet, looking down, and staring at your hand.");
 	output("\n\nAfter a while, [embry.name] takes a deep breath, and nervously responds. <i>“U-um... ");
-	if(flags["SEXED_EMBRY"] == undefined) output("y-you’re the only person i’ve ever slept with");
+	if(flags["SEXED_EMBRY"] == undefined) output("y-you’re the only person I’ve ever slept with");
 	else output("I-I’ve never slept with anyone before");
 	output("... and I-I’ve never thought about sleeping with l-lots of people");
 	if(poly) output(", or falling in love with two different people");
@@ -2411,7 +2411,7 @@ public function analingusWithEmbry():void
 		else if(embry.biggestTitSize() < 3) output("small breasted");
 		else output("busty");
 		output(" monkey girl flushes from both arousal and excitement. <i>“L-lick out your ass? Okay...”</i></i> Her hands fumble as they strip off your [pc.gear]. Once she’s finished, you bend over, and present your [pc.ass] to her.");
-		output("\n\nShe gets down on her knees, and puts her slender hands on your buttocks. <i>“...O-okay, tell me if i’m doing it wrong...”</i> she slowly parts them and stares at your puckered hole. You cheekily flex it, and she lets out a little gasp. Her face inches closer to your rim, and you can feel her burning cheeks brushing against yours.");
+		output("\n\nShe gets down on her knees, and puts her slender hands on your buttocks. <i>“...O-okay, tell me if I’m doing it wrong...”</i> she slowly parts them and stares at your puckered hole. You cheekily flex it, and she lets out a little gasp. Her face inches closer to your rim, and you can feel her burning cheeks brushing against yours.");
 	}
 	output("\n\nShe stretches out her tongue, and with a tentative lick, caresses your anus with it. You can feel the wet tip sliding around your hole, tracing slowly around it, and ending up where it started. A little shiver trails up your spine, and you moan out loud, totally getting off on the naughty act.");
 	output("\n\n<i>“Y-you liked that? I’ll do it some more...”</i> she cutely laps your [pc.asshole], and teases it with her tongue. Her confidence grows with each lick, and you feel her hot breath washing over your hole, her nose hotly washing your sensitive pucker with tiny little breaths. The thought of her face buried in your ass makes your [pc.thighs] tremble with delight, and you push your butt backward.");

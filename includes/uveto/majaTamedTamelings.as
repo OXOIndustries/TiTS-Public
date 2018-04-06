@@ -1101,7 +1101,7 @@ public function pitchDickingToMaja(x:int):void
 
 	output("\n\n<i>“");
 	if(pc.isBimbo()) output("I knowww, but like, your balls are just so... There! And like, what kind of person would I be if I filled up your delicious pussy and just left your big strong dick to fend for itself?”</i> you ask,");
-	else output("I know your all ready to go, but i’ve gotta make sure your two hander doesn’t hit the table. Besides, you’ve got the perfect sheath right here,”</i> you explain,");
+	else output("I know you’re all ready to go, but I’ve gotta make sure your two-hander doesn’t hit the table. Besides, you’ve got the perfect sheath right here,”</i> you explain,");
 	output(" caressing the length of her azure lance as it grows to its full length. You guide the pointed tip right into the bottom of her cleavage, grinning as her hips buck at the sudden penetration. To your delight, even more juices flow from her pussy, and the scent of fruity mint fills the air around you.");
 
 	output("\n\nWith her cock taken care of, you return to kneading her golden furred buttocks. There isn’t much time before the heavy cloud of musk turns you into a fuck-hungry cuntslave, and you intend to spend every second of it teasing the poor animal tamer. Her cerulean gemstone of a clit pokes out just above her balls, big enough for you to lean in and pinch it gently between your teeth. Juice covers your face, steaming hot in the temperate cave. You hold your breath as you rub your nose in her sopping cunny, knowing that your next breath will bring the sweet obliteration of your restraint. You roll her clit on your [pc.tongue] till you run out of air, finally inhaling her scent in a frantic gasp.");
@@ -1141,7 +1141,7 @@ public function pitchDickingToMaja(x:int):void
 	}
 	if(totalCocks >= 2) output(" " + (totalCocks == 2 ? "both" : "two") + " of your cocks");
 	else output(" your [pc.cockOrStrapon " + x + "] and fingers");
-	output(". You can hear her cock spattering the underside of breasts and tightly bound passage of her cleavage, and see ropes of pearly cream fire off almost into the cave wall behind the desk when her cockhead clears the top.");
+	output(". You can hear her cock spattering the underside of her breasts and the tightly bound passage of her cleavage, and see ropes of pearly cream fire off almost into the cave wall behind the desk when her cockhead clears the top.");
 
 	var cumQ:Number = pc.cumQ();
 	//2dick or tail

@@ -1818,7 +1818,7 @@ public function carrieBlowjobIntro():void
 		if(hours >= 9 && hours < 17)
 		{
 			output("\n\nCarrie grins back embarrassedly, squirming slightly. Her nipples are erect as cherries, rubbing against her tight top.");
-			output("\n\n<i>“Nooooo,”</i> she whines. <i>“C’mon " + pc.mf("guy","girl") + ", don’t do that. You know I’m on shift!”</i> You move casually forwards so that she’s deep in your pheromone fug, and you can feel her warm, bubblegum-flavored breath. You spread your hand over the orb of one of her fine butt-cheeks and smooth downwards to her cleft, tracing her plump pussy through her leotard, feeling for yourself how sodden it is.");
+			output("\n\n<i>“Nooooo,”</i> she whines. <i>“C’mon " + pc.mf("guy","girl") + ", don’t do that. You know I’m on shift!”</i> You move casually forwards so that she’s deep in your pheromone fog, and you can feel her warm, bubblegum-flavored breath. You spread your hand over the orb of one of her fine butt-cheeks and smooth downwards to her cleft, tracing her plump pussy through her leotard, feeling for yourself how sodden it is.");
 			output("\n\n<i>“Later, then,”</i> you tease, pulling away and stepping back.");
 			output("\n\n<i>You’re terrible</i>, her eyes say.");
 			output("\n\n<i>I know</i>, yours reply.");
@@ -2015,7 +2015,7 @@ public function carrieBlowjobsGo():void
 			}
 			else
 			{
-				output("\n\nThe first wonderful spout of [pc.cum] looks like it clears the height of the tree - and that is after it gets past two horny, hungry mouths. The next two juicy blasts swell a cow girl’s stomach each, first one sister then the other fastening their hot mouth around your [pc.cockHead " + x + "] and dragging down a hot stream of cum intently. After that you are able to unsteadily you to your [pc.footOrFeet]");
+				output("\n\nThe first wonderful spout of [pc.cum] looks like it clears the height of the tree - and that is after it gets past two horny, hungry mouths. The next two juicy blasts swell a cow girl’s stomach each, first one sister then the other fastening their hot mouth around your [pc.cockHead " + x + "] and dragging down a hot stream of cum intently. After that you are able to unsteadily get to your [pc.footOrFeet]");
 				output(", Carrie quickly grabbing one of the glass jars between her knees. Clutching your massive cock, you growl and gasp as you unload again and again into the containers which are whisked in front of you. It’s a remarkably efficient operation, all things considered; Cora passes Carrie an empty jar as soon as you’ve filled another one up to the brim and slapped down its lid.");
 				output("\n\nYou’ve got more, plenty more coming by the time half a dozen jars have been filled with your virile seed, and there’s only one way to use it. The two cow-girls at your [pc.footOrFeet] flinch, gasp and giggle as you give them a heavy, well-deserved pasting each. Cora presents her plush tits, closes her eyes and opens her mouth and Carrie swiftly following suit, providing you with plenty of enjoyable targets. At long last, when their milky skin and red hair is absolutely dripping with [pc.cum], you sink back against the tree and wheeze, [pc.cocks] swinging, finally and utterly satiated.");
 				output("\n\n<i>“Whew!”</i> says Carrie, wiping cum out of her eyes and stroking her slightly swollen belly. <i>“Well, we didn’t get it all. But, um, we did better.”</i> She clinks the full jars together happily. <i>“We should definitely try again sometime.”</i>");
