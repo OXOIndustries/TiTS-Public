@@ -1818,7 +1818,7 @@ public function carrieBlowjobIntro():void
 		if(hours >= 9 && hours < 17)
 		{
 			output("\n\nCarrie grins back embarrassedly, squirming slightly. Her nipples are erect as cherries, rubbing against her tight top.");
-			output("\n\n<i>“Nooooo,”</i> she whines. <i>“C’mon " + pc.mf("guy","girl") + ", don’t do that. You know I’m on shift!”</i> You move casually forwards so that she’s deep in your pheromone fog, and you can feel her warm, bubblegum-flavored breath. You spread your hand over the orb of one of her fine butt-cheeks and smooth downwards to her cleft, tracing her plump pussy through her leotard, feeling for yourself how sodden it is.");
+			output("\n\n<i>“Nooooo,”</i> she whines. <i>“C’mon " + pc.mf("guy","girl") + ", don’t do that. You know I’m on shift!”</i> You move casually forwards so that she’s deep in your pheromone perfume, and you can feel her warm, bubblegum-flavored breath. You spread your hand over the orb of one of her fine butt-cheeks and smooth downwards to her cleft, tracing her plump pussy through her leotard, feeling for yourself how sodden it is.");
 			output("\n\n<i>“Later, then,”</i> you tease, pulling away and stepping back.");
 			output("\n\n<i>You’re terrible</i>, her eyes say.");
 			output("\n\n<i>I know</i>, yours reply.");

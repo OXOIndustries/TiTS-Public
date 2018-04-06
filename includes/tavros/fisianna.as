@@ -571,7 +571,7 @@ public function cuddleFisi():void
 	IncrementFlag("FISI_TIMES_CUDDLED");
 	processTime(10);
 
-	if (pc.hasHardLightEquipped && flags["FISI_TIMES_VAG"] != undefined && flags["FISI_HL_PANTIES"] == undefined && rand(4) == 0) {
+	if (pc.hasHardLightEquipped() && flags["FISI_TIMES_VAG"] != undefined && flags["FISI_HL_PANTIES"] == undefined && rand(4) == 0) {
 		addButton(0, "Next", cuddleFisiHLI);
 		return;
 	}
