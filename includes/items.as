@@ -1338,7 +1338,7 @@ public function unequipMenu(inCombat:Boolean = false):void
 	else addDisabledButton(3, "Accessory", "Accessory", "You do not have an accessory equipped.");
 	
 	if(pc.hasPiercing()) addButton(8,"Piercing",removeAPiercingMenu);
-	else addDisabledButton(8, "Piercing", "Piercing", "You are note wearing any piercings.");
+	else addDisabledButton(8, "Piercing", "Piercing", "You are not wearing any piercings.");
 	
 	if(pc.hasCock())
 	{
