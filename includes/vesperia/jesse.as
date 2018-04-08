@@ -3,32 +3,30 @@
  * By SoAndSo
  * https://docs.google.com/document/d/1lb9_5TKXai3emUyDMx18rIcNnbSMOe9NHRbB9uFSs1s/edit#
  * 
- * JESSE_MET			undefined = hasnt meet her, 0 = pc left when she got angry, 1 = give access to her menu
- * JESSE_PC_TITLE		0 = pc.name, 1 = Mister/Miss Steele, 2 = Sir/Madam
- * JESSE_HAD_SEX		1 = had sex at least once (used to unlock some stuff)
+ * MET_JESSE			undefined = hasnt meet her, 0 = pc left when she got angry, 1 = give access to her menu
+ * JESSE_PC_TITLE		0 = pc.name, 1 = Mister/Miss Steele
+ * JESSE_PC_TITLE_SEX	0 = pc.name, 1 = Mister/Miss Steele, 2 = Sir/Madam
  * JESSE_TEASE_STATE	0 = hasnt accesses the tease scenes, 1 = first scene played, 2 = second scene played
  * JESSE_TALK_HER		1 = Talked about Jesse
  * JESSE_TALK_INTERESTS	1 = Talked about her interests
  * JESSE_TALK_WORK		1 = Talked about her work
  * JESSE_TALK_PRUDE		1 = Talked about her prudeness
  * JESSE_TALK_BODY		1 = Talked about her body
- * JESSE_TIMES_RP
- * JESSE_TIMES_COWGIRL
- * JESSE_TIMES_FACE
- * JESSE_TIMES_TRICKS
- * JESSE_TIMES_TRAP
- * JESSE_TIMES_REVERSAL
+ * JESSE_TIMES_SEXED	times the PC accessed the sex menu/had sex
+ * JESSE_TIMES_RP		times the PC had the roleplay sex scene with jesse
+ * JESSE_TIMES_COWGIRL	times the PC had the reverse cowgirl sex scene with jesse
+ * JESSE_TIMES_FACE		times the PC had the face sex scene with jesse
+ * JESSE_TIMES_TRICKS	times the PC had the bag o tricks sex scene with jesse
+ * JESSE_TIMES_TRAP		times the PC had the trap fun sex scene with jesse
+ * JESSE_TIMES_REVERSAL	times the PC had the role reversal sex scene with jesse
  * 
  * 
 */
 
 /* TO DO:
- * Replace all ... with ...
- * Enable her cooldown status
  * Add a check for cock or hardlight to her sex scene
  * Add size limits to her
  * current max length: 18"
- * Codex stuff!
 */
 
 public function showJesse(nude:Boolean = false):void
@@ -38,17 +36,35 @@ public function showJesse(nude:Boolean = false):void
 	showName("\nJESSE");
 }
 
-// " + jessePCTitle() + "
 public function jessePCTitle(lowercase:Boolean = false):String
 {
 	if (flags["JESSE_PC_TITLE"] == 1) return pc.mf("Mister","Miss") +" Steele";
-	else if (flags["JESSE_PC_TITLE"] == 2) return pc.mf("Sir","Madam");
 	else return "[pc.name]";
 }
 
-public function jesseAnalCapacity():Number
+public function jessePCTitleSex(lowercase:Boolean = false):String
 {
-	return 600;
+	if (flags["JESSE_PC_TITLE_SEX"] == 1) return pc.mf("Mister","Miss") +" Steele";
+	else if (flags["JESSE_PC_TITLE_SEX"] == 2) return pc.mf("Sir","Madam");
+	else return "[pc.name]";
+}
+
+// shameless copied from fisianna
+public function largestCockIndexThatFitsJessesAss():int
+{
+	var i:int;
+	var maxFitIndex:int = -1;
+	var maxFitVol:Number = 0;
+	for (i = 0; i < pc.cocks.length; i++)
+	{
+		if (pc.cocks[i].cLength() <= 18 && pc.cocks[i].thickness() <= 6 && pc.cockVolume(i, false) > maxFitVol)
+		{
+			maxFitIndex = i;
+			maxFitVol = pc.cockVolume(i, false);
+		}
+	}
+	
+	return maxFitIndex;
 }
 
 public function jesseBarBonus(button:int):void
@@ -126,6 +142,7 @@ public function firstTimeApproachJesseII(formal:Boolean = false):void
 	else {
 		output("<i>“[pc.name] works for me, Jesse,”</i> is your reply.");
 		output("\n\n<i>“[pc.name], [pc.name]... just making sure I don’t slip into habits,”</i> she says with a smile, tapping the side of her head.");
+		flags["JESSE_PC_TITLE"] = 0;
 	}
 	output("\n\nNow that introductions are out of the way, she shuffles a little in her seat and takes an attentive posture. <i>“S-sooo, um... hm. What exactly do you... do?”</i> The curious young woman asks you. The thing is, you sense that she already knows something, considering her foreknowledge of you.");
 	output("\n\nYou explain your earlier work as a [pc.startingCareer], relaying your exploits in the field, as well as the knowledge and experience you’ve earned from it. She’s quite quickly enthralled, showing a certain inexperience herself. <i>“Wait, you use weapons? As in, actual boom-kapow-vwom-vwom weapons?”</i> she says enthusiastically, shooting a fake gun with her clasped hands.");
@@ -139,7 +156,7 @@ public function firstTimeApproachJesseII(formal:Boolean = false):void
 	output("\n\nYou let her down gently.");
 	output("\n\n<i>“Aw... that damned fool really was making it up,”</i> she says busily, tapping away on her device again. Her lips purse and pull in a cutesy manner as she argues on the extranet. The little lady asks you several similar questions, most of which are completely fabricated rumours.");
 	output("\n\nYou ask her what she’s here for, she’s said what she does but not what she’s doing.");
-	output("\n\nSnapping back to reality, Jesse looks up from the glowing device on the table. <i>“Ah, let me explain. Ordinarily, I would visit the premises of a client or clients and then our trade talks would take place. Buuut... space is, um,”</i> she pauses, trying to choose her phrasing. <i>“It’s much bigger than Earth, <i>soooooooo</i> I use stations as resting places. Currently, there’s a long running deal with varying levels of importance that’s being carried out on Vesperia. It’s years in the making and it might even take years to finish. However, the added neutrality of Canadia station helps <i>smooth</i> things over very gently.”</i>");
+	output("\n\nSnapping back to reality, Jesse looks up from the glowing device on the table. <i>“Ah, let me explain. Ordinarily, I would visit the premises of a client or clients and then our trade talks would take place. Buuut... space is, um,”</i> she pauses, trying to choose her phrasing. <i>“It’s much bigger than Earth, </i>soooooooo<i> I use stations as resting places. Currently, there’s a long running deal with varying levels of importance that’s being carried out on Vesperia. It’s years in the making and it might even take years to finish. However, the added neutrality of Canadia station helps <i>smooth</i> things over very gently.”</i>");
 	output("\n\nHer confidence shines through when she talks about her work, her face becomes prideful and relaxed.");
 	output("\n\n<i>“I mean, really when all is said and done, it’s just moving one stash of silly money from one place to another. Then again, it’s silly money that I get to partake in,”</i> she winks, sipping on a soda straw. <i>“Things have been slow, to put it mildly. Most of the time I don’t have much to do except... hang around and watch videos of pet dogs ");
 	if (silly) output("boopin’ snoots");
@@ -155,7 +172,7 @@ public function firstTimeApproachJesseII(formal:Boolean = false):void
 	output("\n\nGuess you’ll have to come back later!");
 
 	flags["MET_JESSE"] = 0;
-//	pc.createStatusEffect("Jesse Bar Cooldown",0,0,0,0,true,"","",false,60*24);
+	pc.createStatusEffect("Jesse Bar Cooldown",0,0,0,0,true,"","",false,60*24);
 	processTime(10);
 	clearMenu();
 	addButton(0,"Leave",mainGameMenu);
@@ -225,7 +242,7 @@ public function jesseAppearance():void
 	output("\n\nRight above her eyebrows are two flesh-red, tattoo-like markings that vaguely mimic the shape of her eyes. They animate accordingly when she makes a movement with the respective eyelid.");
 	output("\n\nJesse’s wearing a fashionable ensemble of an outfit. She has a white, long sleeved blouse that fits smartly and loosely round her arms. It covers her petite chest in translucent, silken material. A mini cravatte rests loosely round the collar. Below her midriff is a short black skirt that is also a little loose, thus allowing her lithe legs to move and swing freely. She has a set of grey, knee-length socks and black pumps with 2’’ heels on her dainty feet.");
 	if (flags["JESSE_TEASE_STATE"] >= 1) output("\n\nUnderneath her shirt is a no-nonsense white bra that accentuates her small B-cup bust. Her skirt hides a white pair of short, skintight boxers, making her hidden fem-bulge very apparent if anyone should get a peak. Her slender member is just as oddly proportioned because, at 10’’, she is quite long in that regard. It’s a dick meant for grippin’, not dippin’! Her proportionate bubble butt fits very snugly in her underwear.");
-	if (flags["JESSE_HAD_SEX"] != undefined) {
+	if (flags["JESSE_TIMES_SEXED"] != undefined) {
 		output("\n\nWhat she hides further under her clothes is another story.");
 		output("\n\nHer body is quite skinny overall, arms and legs in particular lacking in muscle tone and body fat. Aside a good few proportionate and cute curves in the right places, she certainly gives the impression of someone under a rather barebones diet. All soda diet...?");
 		output("\n\nHer skin follows in the pure white trend aside from some tattoo designs down the back of her lithe legs. Said designs are long, thin red stripes that mimic the seams of pantyhose.");
@@ -416,8 +433,8 @@ public function jesseTalkPrude():void
 	output("\n\nLet’s start this over, you suggest. Jesse nods in turn.");
 	output("\n\n<i>“Alright,”</i> she says to herself, inhaling deeply to prepare herself.");
 	output("\n\n<i>“My name is Jesse Lyon-Bowner and I am into you...?”</i> she says, her white cheeks flushing red.");
-	if (pc.isNice()) output("\n\n<i>“Well I’m Captain [pc.name] Steele and I’m into <i>you</i>,”</i> you say back, cool and deliberate.");
-	else if (pc.isMischievous()) output("\n\nWith a chuckle, you say: <i>“I’m Captain [pc.name] Steele and I want to be <i>inside</i> you.”</i> Possibly the most ridiculous thing you’ve said so far.");
+	if (pc.isNice()) output("\n\n<i>“Well I’m Captain [pc.name] Steele and I’m into </i>you<i>,”</i> you say back, cool and deliberate.");
+	else if (pc.isMischievous()) output("\n\nWith a chuckle, you say: <i>“I’m Captain [pc.name] Steele and I want to be </i>inside<i> you.”</i> Possibly the most ridiculous thing you’ve said so far.");
 	else output("\n\n<i>“Well I’m Captain [pc.name] Steele, heir to Steele Tech, saviour of wenches and I’m imagining you bent over a desk,”</i> you assert, trying to put her in a spot.");
 	output("\n\nHer eyes widen, orbs of stars and stardust blazing in your direction. Seemingly out of reflex, Jesse pushes her hands down her front so they rest in between her legs.");
 	output("\n\n<i>“I-I gotta go!”</i> she blurts out, quickly gathering her things up. In no time at all, she’s hurrying off towards the guest rooms.");
@@ -510,14 +527,14 @@ public function jesseFirstTeaseII(title:int):void
 	author("SoAndSo");
 	showJesse();
 
-	if (title == 1) flags["JESSE_PC_TITLE"] = 1;
-	else if (title == 2) flags["JESSE_PC_TITLE"] = 2;
-	else flags["JESSE_PC_TITLE"] = 0;
+	if (title == 1) flags["JESSE_PC_TITLE_SEX"] = 1;
+	else if (title == 2) flags["JESSE_PC_TITLE_SEX"] = 2;
+	else flags["JESSE_PC_TITLE_SEX"] = 0;
 
-	output("<i>“..." + jessePCTitle() + " from now on.”</i>");
-	output("\n\nShe nods, saying: <i>“yes " + jessePCTitle() + "”</i> without hesitation.");
+	output("<i>“..." + jessePCTitleSex() + " from now on.”</i>");
+	output("\n\nShe nods, saying: <i>“yes " + jessePCTitleSex() + "”</i> without hesitation.");
 	output("\n\n<i>“And you’ll be referred to as... whatever I feel like,”</i> you add, squeezing her a little closer.");
-	output("\n\nYou hear her giggle, although she’s still looking at the ground. <i>“Yes " + jessePCTitle() + ",”</i> she half-whispers.");
+	output("\n\nYou hear her giggle, although she’s still looking at the ground. <i>“Yes " + jessePCTitleSex() + ",”</i> she half-whispers.");
 	output("\n\n<i>“With that being said...”</i> you begin. You tell Jesse to recall a meeting she had between clients, perhaps the one that earned her the most money. You tell her to repeat it out loud.");
 	output("\n\nShe inhales through her nose, closes her nebul-eyes and then begins.");
 	output("\n\n<i>“There are three parties making a deal. Fifteen people in suits. Mostly human. Each party has security staff. It’s a long, spacious room with several side doors. One side is just a massive window that looks over a city. There’s a lot of money on the table. Literally. Briefcases, suitcases, note stacks...”</i>");
@@ -555,12 +572,12 @@ public function jesseSecondTeaseI():void
 	output("\n\nEyeing her up, you do the same trick of patting the seat next to you. Without a word, Jesse eagerly slides out of her side of the booth and slides in again on your side. She presses herself against you, your [pc.hip] touching hers. You put your arm behind her back so your hand rests on her other hip.");
 	output("\n\nJust as before.");
 	output("\n\nHer clothes feel very soft - comfortable, even - against the [pc.skinFurScales] of your hand. Jesse looks up at you expectantly, her wondrous eyes fixated on you.");
-	output("\n\n<i>“What do you need of me " + jessePCTitle() + "?”</i> she asks sweetly. Her bottom lip brushes against her upper teeth as she finishes.");
+	output("\n\n<i>“What do you need of me " + jessePCTitleSex() + "?”</i> she asks sweetly. Her bottom lip brushes against her upper teeth as she finishes.");
 	output("\n\nYou hold your thoughts for a few seconds, narrowing your eyes. She returns a small grin, although it falters back into a look of anticipation.");
 	output("\n\n<i>“Sit here,”</i> you assert, patting your [pc.legs]. Jesse immediately raises herself to sit on your lap, shuffling her skirt-covered bubble-butt against your pelvis and [pc.belly].");
 	output("\n\nNow that her head is nearer to your [pc.face], you whisper what’s going to happen next.");
 	output("\n\n<i>“We’re going to play a game, Jesse. You start where you left off with that meeting from before and I’ll help you along,”</i> you begin, your other hand walking its fingers from her waistline to her breast. <i>“You’ll learn to control your... </i>urges<i>. You don’t get to </i>cum<i> without my say. If you fail, then we begin again. Fail again, and again? We’ll keep going until you’re so drained and sore, you’ll beg for me to stop.”</i>");
-	output("\n\nYou kiss her behind the ear. Jesse’s pulse and breathing elevates just from hearing your challenge. <i>“I-I promise to do my best, " + jessePCTitle() + ",”</i> she whispers back, aware of the public place she’s in. That being said, no one appears to be watching you two.");
+	output("\n\nYou kiss her behind the ear. Jesse’s pulse and breathing elevates just from hearing your challenge. <i>“I-I promise to do my best, " + jessePCTitleSex() + ",”</i> she whispers back, aware of the public place she’s in. That being said, no one appears to be watching you two.");
 	output("\n\n<i>“Back to the kaithrit...”</i> You start, your hands pulling up her loose skirt hem.");
 	output("\n\n<i>“S-so, the kaithrit guy is </i>s-stuffing<i> his amazing cock in me... the o-other two watch, they’ve got big </i>eeefu<i>... big bulges. I h-hear them talking about me, calling me an ‘advantageous asset.’”</i>");
 	output("\n\nYou goad her with whispered words, one hand reaching for her undergarments and the other playing with her left tit. When your fingers reach her underwear, you expected to find a wetted, welcoming pussy... but instead, there’s a tightly packed bulge of her own, hardening against its white boxer short prison. She’s full of surprises!");
@@ -568,10 +585,10 @@ public function jesseSecondTeaseI():void
 	output("\n\n<i>“What do we have here?”</i> you murmur to her, feeling her body tense up in response.");
 	output("\n\n<i>“I-I can explain,”</i> she squeaks breathlessly, her knees rubbing together.");
 	output("\n\nYou <i>shhh</i> into her ear then put your hand right down her boxers to refocus her attention. Getting a quick grip on her femcock, you pull it out - balls and all - and angle it at the underside of the table. <i>“Continue, Jesse,”</i> you command, slowly jerking her meat at its base.");
-	output("\n\n<i>“Y-Yes, " + jessePCTitle() + ",”</i> she whimpers.");
+	output("\n\n<i>“Y-Yes, " + jessePCTitleSex() + ",”</i> she whimpers.");
 	output("\n\n<i>“G-goat lady goes to the other s-side of the table and u-undoes her suit. Her c-cock... gods, it’s even bigger tha... tha-”</i> there’s a pause, then she grunts like a powerlifter as she tries to hold back her need to cum.");
-	output("\n\n<i>“Fu-fuck... s-sorry, " + jessePCTitle() + ",”</i> Jesse murmurs. You whisper for her to continue regardless.");
-	output("\n\n<i>“A-ah... goat girl holds her meat to my m-mouth and I suck it up so quickly! I-I cant help it!”</i> She squeals, tensing herself again to hold back her orgasm. <i>“P-please may I c-cum, " + jessePCTitle() + "?? Pleeease...”</i>");
+	output("\n\n<i>“Fu-fuck... s-sorry, " + jessePCTitleSex() + ",”</i> Jesse murmurs. You whisper for her to continue regardless.");
+	output("\n\n<i>“A-ah... goat girl holds her meat to my m-mouth and I suck it up so quickly! I-I cant help it!”</i> She squeals, tensing herself again to hold back her orgasm. <i>“P-please may I c-cum, " + jessePCTitleSex() + "?? Pleeease...”</i>");
 	output("\n\n<i>“You may not,”</i> you say firmly. Your grip tightens in increments around the base of her femcock.");
 	output("\n\n<i>“Ungg...! G-goat girl grabs my h-hair and f-fucks my throat like I’m her toy. I g-gag and she slows, calling me a ‘g-good girl’, <b>gaah</b> I ca.. I ca-!”</i>");
 	output("\n\nWith a heavily stifled whine, a thin spurt of pre-cum shoots from her tightly gripped dick. It’s not enough to be a full orgasm but she still broke the rules...");
@@ -582,14 +599,14 @@ public function jesseSecondTeaseI():void
 	output("\n\n<i>“The l-last guy t-takes turns with goat girl using my s-slut mouth and stuffs it full! I can remember the taste,”</i> she gasps, her tongue sliding in and out of her mouth. She’s grinding her ass something crazy against your [pc.legs]. Her grippable femcock twitches with her pulse in your hand. In response you start pumping from base to tip. You leave her white cockhead untouched like the mean dominant that you are.");
 	output("\n\n<i>“The k-kaithrit guy hammers into me and I f-feel it all, hot f-fucking cuuhh...”</i> gasps Jesse, her speech slurring as she’s immersed more and more into her own memories. <i>“S-so hot, I feel so used...”</i>");
 	output("\n\nShe spreads her legs wide open, a complete turn from her protective position from before. Her femdick is the hardest it can be, quivering in your hard-gripping palm. Her face twists around in a perverse mix of pleasure and discomfort, something that you get a kick out of...");
-	output("\n\n<i>“G-goat girl and... the last guy finish on my whore f-face! They don’t let me c-cum... I cah... can’t cum...! P-please may I cum, " + jessePCTitle() + "!”</i>");
+	output("\n\n<i>“G-goat girl and... the last guy finish on my whore f-face! They don’t let me c-cum... I cah... can’t cum...! P-please may I cum, " + jessePCTitleSex() + "!”</i>");
 	output("\n\n<i>“You may not,”</i> you whisper, squeezing again on the base of her pulsing member.");
 	output("\n\nJesse grips onto your [pc.thigh] in response, whining like a spoiled brat. She should feel lucky that she’s even getting such attention!");
 	output("\n\n<i>“Keep going, Jesse,”</i> you goad.");
 	output("\n\n<i>“Agh... t-they all swap places and goat girl grips my waist! I c-can feel her, so aggressive...!”</i>");
 	output("\n\nHer breath catches on every other word, the sheer need to cum muddling her words. <i>“I-I cah... can’t feel...”</i>");
 	output("\n\nHer eyes roll back and her small frame goes a little limp in your arms. Ohh, she’s not getting out of this so easily! Letting go of her boob, you play-slap her cheekbone several times to get bring her back to the real world. Jesse twitches awake, her face reforming into the complex wash of sensations she was being subjected to.");
-	output("\n\n<i>“P-plea... " + jessePCTitle() + "... p-please may I c-cu-!”</i>");
+	output("\n\n<i>“P-plea... " + jessePCTitleSex() + "... p-please may I c-cu-!”</i>");
 	output("\n\nShe can’t even finish her story in this state, so you do the merciful thing.");
 	output("\n\n<i>“You may,”</i> you whisper, pumping her twitching femdick and then releasing your tight grip.");
 
@@ -609,7 +626,7 @@ public function jesseSecondTeaseII():void
 	output("\n\nShe collapses, her head falling neatly onto your [pc.chest]. Completely spent, you feel her body slump all over, her skinny legs dangling on either side of your lap. Her tongue hangs out like an exhausted dog, with a little bit of drool to add to the picture of spent lust.");
 	output("\n\nLetting go of her softening femcock, you notice a teeny bit of her jism caught on your thumb. Well, it’s obvious where to put this! You wipe it on the very tip of her tongue and it reflexively curls over your [pc.skinFurScales], licking up its owner’s expenditure. There’s a weak, contented sigh from the other end of it, the enervated Jesse trying to smile as you tend to her.");
 	output("\n\nYou whisper <i>“good girl”</i> into her ear, to which she half giggles, half sighs. ");
-	output("\n\n<i>“Thank you... </i>huah...<i> thank you, " + jessePCTitle() + ",”</i> she murmurs with a hoarse tone.");
+	output("\n\n<i>“Thank you... </i>huah...<i> thank you, " + jessePCTitleSex() + ",”</i> she murmurs with a hoarse tone.");
 	output("\n\nJesse’s so out for the count that you adjust to having the featherlight strumpet rest on you. You make sure her clothes - which remain surprisingly clean - are all arranged and adjusted properly: Wouldn’t want the prim and proper little careerist to show herself up, eh? You hear her murmur another ‘thank you’, her gaze fixed on you.");
 	output("\n\nAn indistinct period of time passes, the two of you resting in comfort together. Still drained of energy, Jesse slumps herself forward onto the table, her face buried into her folded arms.");
 	output("\n\n<i>“I’m so embarrassed,”</i> she groans. <i>“I-I need to lay down before I fall all over the place...”</i>");
@@ -630,7 +647,7 @@ public function jesseSexMenu():void
 	author("SoAndSo");
 	showJesse();
 
-	if (flags["JESSE_HAD_SEX"] == undefined)
+	if (flags["JESSE_TIMES_SEXED"] == undefined)
 	{
 		jesseSexIntroI();
 		return;
@@ -650,7 +667,6 @@ public function jesseSexMenu():void
 	output("\n\nWith a mishmash pile of clothes to either side of you, you complete your embrace with the clinging Jesse.");
 	output("\n\n<i>“So, what do we do now...?”</i> she whispers.");
 
-	//raise PC lust to max.
 	moveTo("SHIP INTERIOR");
 	processTime(10);
 	jesseSexMenuOptions();
@@ -658,18 +674,19 @@ public function jesseSexMenu():void
 
 public function jesseSexMenuOptions():void
 {
+	pc.lust(100);
 	clearMenu();
-	if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(0, "Office RP", jesseSexOfficeRPI, undefined, "Office RP", "Just another day in the office! Give her the hostile takeover she needs.");
-	else addDisabledButton(0, "Office RP", "Office RP", "You need a penis or a hardlight dildo for this.");
-	if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(1, "Reverse Cowgirl", jesseSexReverseCowgirlI, undefined, "Reverse Cowgirl", "Make her work for that dick! Collar her and have her ride you.");
-	else addDisabledButton(1, "Reverse Cowgirl", "Reverse Cowgirl", "You need a penis or a hardlight dildo for this.");
+	if (largestCockIndexThatFitsJessesAss() >= 0 || pc.hasHardLightEquipped()) addButton(0, "Office RP", jesseSexOfficeRPI, undefined, "Office RP", "Just another day in the office! Give her the hostile takeover she needs.");
+	else addDisabledButton(0, "Office RP", "Office RP", "You need a fitting penis or a hardlight dildo for this.");
+	if (largestCockIndexThatFitsJessesAss() >= 0 || pc.hasHardLightEquipped()) addButton(1, "Reverse Cowgirl", jesseSexReverseCowgirlI, undefined, "Reverse Cowgirl", "Make her work for that dick! Collar her and have her ride you.");
+	else addDisabledButton(1, "Reverse Cowgirl", "Reverse Cowgirl", "You need a fitting penis or a hardlight dildo for this.");
 	if (pc.hasVagina()) addButton(2, "Her Face", jesseSexHerFaceI, undefined, "Her Face", "And what a cute one it is! Use her mouth and tongue as your playthings.");
 	else addDisabledButton(2,"Her Face","Her Face","You need a vagina for this.");
 	addButton(3, "Bag O’ Tricks", jesseSexBagOTricksI, undefined, "Bag O’ Tricks", "Kinky! Bend her, bind her, fill her with toys. Push her till she cums her brains out.");
-	if (pc.hasCock()) addButton(4, "Trap Fun", jesseSexTrapFunI, undefined, "Trap Fun", "Face it, you’re as subby as she is! Use a special toy in her bag and get some mutual love.");
-	else addDisabledButton(4,"Trap Fun","Trap Fun","You need a penis for this.");
-	if (pc.hasCock()) addButton(5, "Role Reversal", jesseSexRoleReversal, undefined, "Role Reversal", "Face it, you’re as subby as she is! Get her to do the buttfun, although it’ll be awkward...");
-	else addDisabledButton(5,"Role Reversal","Role Reversal","You need a penis for this.");
+	if (largestCockIndexThatFitsJessesAss() >= 0) addButton(4, "Trap Fun", jesseSexTrapFunI, undefined, "Trap Fun", "Face it, you’re as subby as she is! Use a special toy in her bag and get some mutual love.");
+	else addDisabledButton(4,"Trap Fun","Trap Fun","You need a fitting penis for this.");
+	if (largestCockIndexThatFitsJessesAss() >= 0) addButton(5, "Role Reversal", jesseSexRoleReversal, undefined, "Role Reversal", "Face it, you’re as subby as she is! Get her to do the buttfun, although it’ll be awkward...");
+	else addDisabledButton(5,"Role Reversal","Role Reversal","You need a fitting penis for this.");
 }
 
 public function jesseSexIntroI():void
@@ -686,9 +703,9 @@ public function jesseSexIntroI():void
 	output("\n\nJesse bites her lower lip, pulling down the hem of her skirt. She nods to you then rises, letting you out of the seat. Putting her hand in yours, you sidestep behind her then put your hands round her waist. She’s a little taken aback but doesn’t resist.");
 	if (pc.tallness > 76) output(" She’s so petite next to you that it’s like you’re holding something precious, someone to protect.");
 	output("\n\nYou direct her to follow you to the ship.");
-	output("\n\n<i>“Y-yes, " + jessePCTitle() + " but I-I also want to grab something from my room, if I may?”</i>");
+	output("\n\n<i>“Y-yes, " + jessePCTitleSex() + " but I-I also want to grab something from my room, if I may?”</i>");
 	output("\n\nOf course, you say. She hurries off in her short heels, holding onto the edge of her skirt still. You suspect that she’s trying to not to alert the rest of the people on the station, the horny slut. Only a few minutes passes and she’s back with a nondescript duffle bag in her arms. It almost seems oversized but she manages well enough.");
-	output("\n\n<i>“All ready, " + jessePCTitle() + ".”</i>");
+	output("\n\n<i>“All ready, " + jessePCTitleSex() + ".”</i>");
 	output("\n\nYou’ve an inkling of what could be in that bag. You smirk to her and beckon her to follow you to the ship.");
 
 	moveTo("SHIP INTERIOR");
@@ -707,7 +724,7 @@ public function jesseSexIntroII():void
 	if(crew(true) == 0) output("It’s a little redundant considering you’re the only one who runs the thing but hey, it’s whatever. ");
 	output("Jesse can barely keep her gaze away from you, something you notice as you turn the corner to your room.");
 	output("\n\nAs soon as you both get in your room, she dumps her duffle bag on the floor with a huff of air. Couldn't have been <i>that</i> heavy, right? It makes a multi-timbral series of <i>clunks</i> and crumples, enough so that what’s inside seems not just heavy but robust. Jesse pats herself down afterwards, fidgeting with her sleeves. Then, she stands to attention with her hands behind her back.");
-	output("\n\n<i>“How may I serve, " + jessePCTitle() + "?”</i>");
+	output("\n\n<i>“How may I serve, " + jessePCTitleSex() + "?”</i>");
 	output("\n\nYou’re standing a few feet away from her, leaning to your left. Eyeing her up, you analyze your work-and-play strategy. Every so often, your [pc.eyes] meets hers and she flinches away. Jesse’s hopeful face still beams back at you all the same, her cheeks hugging closer to her batting eyelids.");
 	output("\n\nYou tell her to strip.");
 	output("\n\nYou had only need to get partway through the phrase and her skirt is already sliding to the floor. She spins on her heel, turning herself to the wall directly behind her. Then, she bends over to remove her skirt properly, giving you a good show of her bubble butt and lissom legs. The shoes and knee-length socks come off next, and Jesse then places the articles of clothing neatly on the floor at her side. Straightening herself up, the eager wench pauses before removing her blouse.");
@@ -717,7 +734,7 @@ public function jesseSexIntroII():void
 	output("\n\nShe stands ready, waiting for your instruction.");
 	output("\n\nWhat do you decide to do with her?");
 
-	flags["JESSE_HAD_SEX"] = 1;
+	IncrementFlag("JESSE_TIMES_SEXED");
 	processTime(15);
 	jesseSexMenuOptions();
 }
@@ -728,12 +745,8 @@ public function jesseSexOfficeRPI():void
 	author("SoAndSo");
 	showJesse();
 
-	var x:int = -1;
-	if(pc.hasCock())
-	{
-		x = pc.cockThatFits(jesseAnalCapacity());
-		if(x < 0) x = pc.smallestCockIndex();
-	}
+	var x:int = largestCockIndexThatFitsJessesAss();
+
 	output("<i>“I know,”</i> you say out loud.");
 	output("\n\nThe attentive Jesse inhales deeply in anticipation.");
 	output("\n\n<i>“Miss Lyon-Bowner, would you redress? Skirt, socks, and blouse only,”</i> you direct, formal and confident in your tone. Without hesitation, the eager strumpet gathers her top, socks, and skirt, putting them on just as quickly as she pulled them off. She pats and brushes herself down, looking as presentable as ever. She finishes by standing in front of your bed.");
@@ -741,6 +754,8 @@ public function jesseSexOfficeRPI():void
 	output("\n\n<i>“What would you say to a merger, Miss Lyon-Bowner?”</i>");
 	output("\n\nJesse openly giggles. <i>“I would have to review our combined assets, " + pc.mf("Mister","Miss") + " Steele. That would require... permission to peruse. A formal review, of course. A </i>personal<i> review. I’m known for my delicate supervision, after all.”</i>");
 	output("\n\n<i>“Naturally,”</i> you whisper into her ear. <i>“But if I may be bold, you’re not in the position to bargain.”</i>");
+
+	IncrementFlag("JESSE_TIMES_RP");
 
 	clearMenu();
 	addButton(0,"Next",jesseSexOfficeRPII,x);	
@@ -758,14 +773,14 @@ public function jesseSexOfficeRPII(x:int = -1):void
 	else output("careful to keep in character");
 	output(". Using a [pc.foot], you flip the lip of her black skirt to expose her most prized assets. She arches her back reflexively, her bubble butt pointing upwards upon splayed legs. Her dainty sack and long fempecker dangle freely underneath, the latter already projecting in anticipation.");
 	output("\n\nIn preparation, you ");
-	if (pc.hasCock()) output("tug your " + pc.cockNounComplex(x) + " to stiffness");
+	if (largestCockIndexThatFitsJessesAss() >= 0) output("tug your " + pc.cockNounComplex(x) + " to stiffness");
 	else output("quickly redress in your panties and turn on your hardlight rod");
 	output(". Climbing onto the bed, you position your [pc.face] a foot away from her peach of an ass. It’s just so cute ! With a firm but slow grip, you pull apart her snow white cheeks for the real prize beneath: her tight starfish that clenches and tenses as if begging to be forced open and filled up. Deciding that this eager buttslut needs a little bit of liquid capital to get this investment rolling, you suck up a big gob of saliva and spit straight at her sluthole. A coo of encouragement comes from beyond the pillows, so you know what needs to be done next.");
-	output("\n\nWith her front buried firmly into the bed, you straddle Jesse’s exposed behind and line your " + pc.cockOrStrapon(x) + " with her crevice. Using your " + pc.cockOrStrapon(x,-1) + ", the spit you applied is pressed onto her inviting hole. Her shoulders visibly tighten as she prepares herself for some scrambled merchandising. After a few seconds of teasing the awaiting strumpet, you lift your hips up then dive your " + pc.cockOrStrapon(x) + " straight in!");
+	output("\n\nWith her front buried firmly into the bed, you straddle Jesse’s exposed behind and line your " + pc.cockOrStrapon(x) + " with her crevice. Using your " + pc.cockOrStraponHead(x) + ", the spit you applied is pressed onto her inviting hole. Her shoulders visibly tighten as she prepares herself for some scrambled merchandising. After a few seconds of teasing the awaiting strumpet, you lift your hips up then dive your " + pc.cockOrStrapon(x) + " straight in!");
 	output("\n\nA squeal of delight comes from the pillows as you force yourself inside her. It’s something else: a loose hole but a tight chamber, gripping around your " + pc.cockOrStrapon(x) + " with the strength of a vice. Be blessed that you decided to lube her first!");
 	output("\n\nBut her sphincter has its own surprise and another tightening sensation clamps down on the shaft. So, she want’s to make it difficult, huh?");
 	output("\n\nIn response, you harshly smack the sides of her compromised tush, much to her surprise. Using that moment, you bury your ");
-	if (pc.cocks[x].cLength() < 8 || pc.hasHardLightEquipped()) output(pc.cockOrStrapon(x) + " up to the " + pc.knotDescript(x) + ", bashing down her resistance!");
+	if (largestCockIndexThatFitsJessesAss() >= 0 && pc.cocks[x].cLength() < 8 || pc.hasHardLightEquipped()) output(pc.cockOrStrapon(x) + " up to the " + pc.knotDescript(x) + ", bashing down her resistance!");
 	else output(pc.cockDescript(x) + " to as deep as her shallow body will allow!");
 	output("\n\n<i>“S-shi...! I cannn... feel it everywhere!”</i>");
 	output("\n\nYour little entrepreneur in heat is already screaming in girly tones as you invade her stock and you haven’t even gotten into it yet. You begin with slow, long humps: humps that force her to move in sync with you or else be battered by your [pc.hips].");
@@ -775,10 +790,10 @@ public function jesseSexOfficeRPII(x:int = -1):void
 	output("\n\nJesse pushes back against your hammering of her heavenly ass, the state of being reamed by her idol driving her to please you all the more. You lay on some more booty smacks for her breaking character with that last outburst, making her whine in admittance. There’s a deep feeling of satisfaction from revealing this once-prudish strumpet to be a malleable asswhore...");
 	output("\n\nYou can feel it building within, that feeling of climax and the ideas of where to put it!");
 	output("\n\n<i>“Ngg, I hope you’re ready for a ");
-	if (pc.hasCock()) output("liquid cash injection");
+	if (largestCockIndexThatFitsJessesAss() >= 0) output("liquid cash injection");
 	else output("end to proceedings");
 	output(", Miss Lyon-Bowner!”</i>");
-	if (pc.hasCock()) {
+	if (largestCockIndexThatFitsJessesAss() >= 0) {
 		output("\n\nHeat and euphoria burn through your " + pc.cockDescript(x) + " as ");
 		if (pc.cumQ() >= 1000) output("torrents of [pc.cumNoun] try to fill the defeated Jesse’s innards. She isn’t that deep however: instead of filling up, [pc.cum] splurts and squeezes out at an alarming rate from her already full hole! It seeps into the fabric around her and makes her behind look practically bukake’d.");
 		else output("Jesse’s reward is shot into her innards. Some of it splatters around the edges of her phallus-filled behind, [pc.cumVisc] on supple white flesh.");
@@ -786,7 +801,7 @@ public function jesseSexOfficeRPII(x:int = -1):void
 	else output("\n\nThe hardlights reactive energies grow as shockwaves of ecstasy force you to orgasm on the spot! Although Jesse won’t be getting a creamy reward, you figure that letting her know you got off to her tight, tight hole is reward enough...");
 	output("\n\nUnderneath, the exhausted Jesse huffs and whimpers as the effects of your brutish assault on her body gives way to numbness, warmness, and endorphins. Her stiff fempecker has gone all this time without attention: do you give her release?");
 
-	//orgasm event, set PC lust to 0
+	pc.orgasm();
 
 	clearMenu();
 	addButton(0, "Yes", jesseSexOfficeRPYes, x, "Yes", "She’s earned it after being such a good cock receptacle.");
@@ -804,13 +819,15 @@ public function jesseSexOfficeRPYes(x:int = -1):void
 	output("\n\nYou lean forward just a little and give the command: <i>“cum.”</i>");
 	output("\n\nWith a pained whine, the pinned buttslut bucks her hips into the air. Her cocktip spurts and splutters with strings of milky jism, landing all over her hips and midriff!");
 	output("\n\nHer few final spurts come together with a meek <i>“t-thank...yu...”</i> from the exhausted wench. ");
-	if (pc.hasCock()) output("You remove your softening " + pc.cockDescript(x) + " from her hole, making sure to wipe it down against her thigh.");
+	if (largestCockIndexThatFitsJessesAss() >= 0) output("You remove your softening " + pc.cockDescript(x) + " from her hole, making sure to wipe it down against her thigh.");
 	else output("You turn off your hardlight device and the energized object flickers and disperses, leaving Jesse uncoupled from you.");
 	output("\n\nYou clamber over to her side, playing with her ruffled wine-red hair. She is quite the mess. The both of you gaze with contentment at each other for some time, the afterglow giving way to a shared sexual warmth that brings smiles to your faces.");
 	output("\n\n<i>“I have to go, work is slow but it’s... still there,”</i> murmurs Jesse, gingerly lifting herself up from the bed. You watch her as she redresses");
-	if (pc.hasCock()) output(" despite her baby batter slathered behind soaking into her boxers");
+	if (largestCockIndexThatFitsJessesAss() >= 0) output(" despite her baby batter slathered behind soaking into her boxers");
 	output(", her movements slow and relaxed. She giggles when she notices you ogling her. <i>“I’ll still be around at the bar, if you wanna...”</i> she says, rubbing her knees together. Oh you’ll be sure to make use of her services again, you reply with a blown kiss.");
 	output("\n\nWith a pink-cheeked smile and a wave, Jesse grabs her bag and leaves the ship.");
+
+	processTime(60 + rand(15));
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -823,13 +840,15 @@ public function jesseSexOfficeRPNo(x:int = -1):void
 	showJesse();
 
 	output("No, not today. Your exhausted buttslut has had the honor of being plowed into the figurative mud. ");
-	if (pc.hasCock()) output("You remove your softening " + pc.cockDescript(x) + " from her hole, making sure to wipe it down against her thigh.");
+	if (largestCockIndexThatFitsJessesAss() >= 0) output("You remove your softening " + pc.cockDescript(x) + " from her hole, making sure to wipe it down against her thigh.");
 	else output("You turn off your hardlight device and the energized object flickers and disperses, leaving Jesse uncoupled from you.");
 	output("\n\nYou clamber over to her side, playing with her ruffled wine-red hair. She is quite the mess. The both of you gaze with content into each other for some time, the afterglow giving way to a shared sexual warmth that brings smiles to your faces. Her untouched fempecker lies half hard against her midriff and every so often, she idly strokes the shaft in an attempt to keep it hard. She’s going to remember you tonight, that’s for sure...");
 	output("\n\n<i>“I have to go, work is slow but it’s... still there,”</i> murmurs Jesse, gingerly lifting herself up from the bed. You watch her as she redresses");
-	if (pc.hasCock()) output(" even with her baby batter slathered behind soaking into her boxers");
+	if (largestCockIndexThatFitsJessesAss() >= 0) output(" even with her baby batter slathered behind soaking into her boxers");
 	output(", her movements slow and relaxed. She giggles when she notices you ogling her. <i>“I’ll still be around at the bar, if you wanna...”</i> she says, rubbing her knees together.Oh you’ll be sure to make sure of her services again, you reply with a blown kiss.");
 	output("\n\nWith a pink-cheeked smile and a wave, Jesse grabs her bag and leaves the ship.");
+
+	processTime(60 + rand(15));
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -841,26 +860,24 @@ public function jesseSexReverseCowgirlI():void
 	author("SoAndSo");
 	showJesse();
 
-	var x:int = -1;
-	if(pc.hasCock())
-	{
-		x = pc.cockThatFits(jesseAnalCapacity());
-		if(x < 0) x = pc.smallestCockIndex();
-	}
+	var x:int = largestCockIndexThatFitsJessesAss();
+
 	output("Hmm, let’s see what’s in that bag...");
 	output("\n\nGesturing to Jesse’s duffle, you say: <i>“bring that over here.”</i>");
 	output("\n\nWith a quick nod, she practically jumps onto the thing, lifts it in her arms and holds it up for your inspection. Good, you say, much to her delight. You only need to pull the zipper apart a few inches and you spot something <i>very</i> intriguing: a wide, black leather collar and chain. A simple thing but in the right hands...");
 	output("\n\nYou pull it out of the bag, chain and all, in one smooth motion then fiddle with the binding. <i>“Put the bag where you found it,”</i> you direct, keeping your [pc.eyes] on the naked girl as she follows your order. While she’s bending down with the heavy load, you see your chance!");
 	output("\n\nYou hook the leather ring around her thin neck like a spycatcher detaining a quarry. She yelps and instinctively tries to grab at her neck. It’s no use for her, of course, being the skinny thing that she is. You pull her back gently, making sure that her vision meets your face. Once her teary eyes meet yours, she relents completely with a dumbstruck look taking over.");
 	output("\n\nYou fasten the clip on the collar, making sure it’s firm but just on the edge of skintight. Jesse, with her gaze still locked to your face in awe, strokes and paws at the restraint round her neck. You tug on the silver chain to make sure there’s no slippage, Jesse’s posture jerking slightly as you do. ");
-	if (pc.hasHardLightEquipped()) output("Before continuing, you requip your [pc.underGarments] and turn on the hardlight device, the surge of resultant energy jolting your nerves. ");
+	if (largestCockIndexThatFitsJessesAss() < 0) output("Before continuing, you requip your [pc.underGarments] and turn on the hardlight device, the surge of resultant energy jolting your nerves. ");
 	output("All ready.");
 	output("\n\nWith Jesse more-or-less entranced in place, you clamber across the captains bed up to the headstop. Laying on your back, you spread your [pc.thighs] apart to giver her full view of your " + pc.cockOrStrapon(x) + ". Jesse’s lower lip grates against her teeth as she watches, her hands covering her growing erection. You won’t deny her that but instead, jerk on chain just hard enough for her to lose focus and fall face first onto the bed! Clumsy girl...");
-	output("\n\n<i>“Service me,”</i> you command, pointing to your " + pc.cockOrStrapon(x) + ". Her perfect hair now ruffled and her eye makeup running down her cheeks, she can only say <i>“y-yes " + pc.mf("Mister", "Miss") + " Steele...”</i> She slinks on all fours towards you with ginger movements, wary of getting the chain pulled. Without hesitation, she envelopes your " + pc.cockOrStrapon(x,-1) + " with her little mouth. The hot, wet hole of her mouth is a dream for your senses: your ");
-	if (pc.hasCock()) output("" + pc.cockDescript(x) + " being bathed by her dexterous tongue twitches and tenses in delight!");
+	output("\n\n<i>“Service me,”</i> you command, pointing to your " + pc.cockOrStrapon(x) + ". Her perfect hair now ruffled and her eye makeup running down her cheeks, she can only say <i>“y-yes " + jessePCTitleSex() + "...”</i> She slinks on all fours towards you with ginger movements, wary of getting the chain pulled. Without hesitation, she envelopes your " + pc.cockOrStraponHead(x) + " with her little mouth. The hot, wet hole of her mouth is a dream for your senses: your ");
+	if (largestCockIndexThatFitsJessesAss() >= 0) output("" + pc.cockDescript(x) + " being bathed by her dexterous tongue twitches and tenses in delight!");
 	else output("hardlight cock sends pulses of nerve teasing warmth through your lower body!");
 	output("\n\nLifting your right leg, you rest your heel on her spine. Let’s see how fast she can go! In tandem with your chain, you pull with heel and hand so that you force Jesse’s head to bob up and down on your " + pc.cockOrStrapon(x) + ". She audibly whimpers although having a mouth stuffed full makes sure it’s muffled. She struggles to keep up the pace, her lips slurping and slipping on your " + pc.cockOrStrapon(x) + " like some back alley whore. You make sure to keep the pace just enough to avoid her gag reflex: For someone who prides herself on professionalism, it would be uncouth for her to slip up now...");
 	output("\n\nBut that’s enough. With the slack chain, you push Jesse up by the shoulders so that she falls onto her back! She gasps for air as her poor mouth finds itself freed from your usage. No time for breaks, Jesse...");
+
+	IncrementFlag("JESSE_TIMES_COWGIRL");
 
 	clearMenu();
 	addButton(0,"Next",jesseSexReverseCowgirlII,x);	
@@ -880,17 +897,17 @@ public function jesseSexReverseCowgirlII(x:int = -1):void
 	output("\n\n<i>“Your turn, Jesse,”</i> you direct, smacking her stuffed butt with your free hand. She squeals melodiously as you do, pushing herself up and down on your and her knees to get this cock-milking going. That’s more like it!");
 	output("\n\nShe’s so eager that she begins at peak pace. Every pull up brings your " + pc.cockOrStrapon(x) + " to the edge of her entrance and every push down lets her take it up to your " + pc.knotDescript(x) + "! You help her along by pulling on the chain with each downward motion. With your free hand, you place it on her gyrating hip for guidance and encouragement, making sure she bends your shaft into all the right spots of her beautifuly tight sluthole. You grunt as the pleasurable feedback through your " + pc.cockOrStrapon(x) + " brings you closer and closer to climax!");
 	output("\n\nAs she lifts and pushes herself up again, you pull on the chain and her hip in turn so that she is practically impaled! She whines as the hard sensation of your " + pc.cockOrStrapon(x) + " catches her off guard! You unleash a feral snarl as it does the same to you, her tight passage squeezing you in response. In sync with that moment, you feel that familiar rise of euphoric heat in your loins!");
-	if (pc.hasCock()) {
+	if (largestCockIndexThatFitsJessesAss() >= 0) {
 		if (pc.cumQ() >= 1000) output("\n\nA veritable flood of [pc.cum] gushes through your " + pc.cockDescript(x) + " to the depths of Jesse’s roughly fucked sluthole. It has very little space to fill so in seconds, it already leaks and splurts out from the tight seal made from her hole and your " + pc.cockDescript(x) + "!");
 		else output("\n\nA surge of [pc.cum] gushes through your " + pc.cockDescript(x) + " and into the needy insides of Jesse’s roughly fucked sluthole. It coats the inside fully, giving her a properly packed creampie that she’ll be taking home with her!");
 	}
 	output("\n\nYou both collapse backwards into the bed in a breathless pile, the diminutive wench on your lap going limp in your arms. ");
-	if (pc.hasCock()) output("You feel your " + pc.cockDescript(x) + " shrink and recede from her loosened, gaping hole... and a comforting drizzle of [pc.cum] run down your lap");
+	if (largestCockIndexThatFitsJessesAss() >= 0) output("You feel your " + pc.cockDescript(x) + " shrink and recede from her loosened, gaping hole... and a comforting drizzle of [pc.cum] run down your lap");
 	else output("You turn off your hardlight device with a few lazy fidgets and it instantly dissipates from existence");
 	output(". Her tiny form quivers and heaves from the experience, her slender fempecker still upright and untouched.");
 	output("\n\nDo you help her out?");
 
-	//orgasm event, set PC lust to 0
+	pc.orgasm();
 
 	clearMenu();
 	addButton(0, "Yeah", jesseSexReverseCowgirlYeah, x, "Yeah", "She’s been a good little asswhore, why not?");
@@ -906,7 +923,7 @@ public function jesseSexReverseCowgirlYeah(x:int = -1):void
 	output("<i>“Aww, still upright, hmm?”</i> you tease into her pointy ear. Letting go of the chain, you clasp her slender shaft with both hands. <i>“Maybe you’ve earned this...”</i>");
 	output("\n\nJesse giggles as she finally gets to cum.");
 	output("\n\nWith loose wrists, you vigorously pump her slender member to its full state. You can feel it twitch and tense in your palms, her hips trying to keep up with your furious motions.");
-	output("\n\n<i>“Ah-ahhh! P-please! Lemmc-cum! Pleeease " + pc.mf("Mister","Miss") + " Steele!”</i> shrieks the insensate wench.");
+	output("\n\n<i>“Ah-ahhh! P-please! Lemmc-cum! Pleeease " + jessePCTitleSex() + "!”</i> shrieks the insensate wench.");
 	output("\n\n<i>“You may,”</i> you whisper.");
 	output("\n\n In that instant, her rapturous cries are joined with four thick shots of her milky spunk! It spurts on and around your hands and her crimson belly, dots and splotches of her pleasure juice dripping and drying all over you both. She really must’ve been pent up! You squeeze and tug to force the last few drops out and then feed the gasping slut your cum-covered fingers. She licks and sucks up her own seed, mumbling <i>“t-thankyu”</i> with your middle finger in her mouth.");
 	output("\n\nOnce she’s cleaned you up, you unbind the black collar and toss it to the side of the bed. You wrap your arms round her middle and hug her tight, both basking in the mutual afterglow with her head nestled on your [pc.chest].");
@@ -917,7 +934,7 @@ public function jesseSexReverseCowgirlYeah(x:int = -1):void
 	output(", she doesn’t bother to bring her usual composure to bear. You get up yourself and help her with the bag, putting the collar and chain inside. Might have to use that again...");
 	output("\n\nOnce she’s all ready, you give Jesse one last peck on the cheek and she departs from the ship, a lucid smile on her face all the way.");
 
-//PC stays on ship. 1 Hour of in game time passes.
+	processTime(60 + rand(15));
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -930,7 +947,7 @@ public function jesseSexReverseCowgirlNo(x:int = -1):void
 	showJesse();
 
 	output("She’s had her reward: A good, <i>hard</i> plow. Besides, seeing her semi-hard femdick silently beg for release is just so satisfying!");
-	output("\n\nJesse lies enervated on top of you, her arms loosely dangling to the side. You pull her up slightly and kiss the top of her head, proceeding to undo the bindings of her leather collar. She coos happily as the restraint leaves her neck, a dopey smile on her face. <i>“Mmmm, " + jessePCTitle() + "...”</i> she murmurs, as if talking while sleeping.");
+	output("\n\nJesse lies enervated on top of you, her arms loosely dangling to the side. You pull her up slightly and kiss the top of her head, proceeding to undo the bindings of her leather collar. She coos happily as the restraint leaves her neck, a dopey smile on her face. <i>“Mmmm, " + jessePCTitleSex() + "...”</i> she murmurs, as if talking while sleeping.");
 	output("\n\nPerhaps an hour passes as you both just wordlessly enjoy each others bodies. The enervated Jesse pushes herself up from the bed and lazily slides off of the edge of the bed. You laugh as she falls onto her back.");
 	output("\n\n<i>“H-hey... it’s not funny,”</i> she croaks, trying to grab at her clothes from the floor. <i>“Now I’m all soiled </i>and<i> bruised...”</i>");
 	output("\n\nYou toss her a nearby towel: at least you can solve one problem. After rubbing herself down in a rather careless fashion, she gets up and redresses. With her hair all ruffled and makeup ruined");
@@ -938,7 +955,7 @@ public function jesseSexReverseCowgirlNo(x:int = -1):void
 	output(", she doesn’t bother to bring her usual composure to bear. You get up yourself and help her with the bag, putting the collar and chain inside. Might have to use that again...");
 	output("\n\nOnce she’s all ready, you give Jesse one last peck on the cheek and she departs from the ship, a lucid smile on her face all the way.");
 
-//PC stays on ship. 1 Hour of in game time passes.
+	processTime(60 + rand(15));
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -967,7 +984,7 @@ public function jesseSexHerFaceI():void
 	output("\n\n<i>“Hold that position, Jesse. Otherwise...”</i>");
 	output("\n\nHolding your stance for a few seconds more to hammer the point home, you pull your [pc.foot] away. Her head is still tilted against the edge of the bed, just as you left it. Good.");
 
-//orgasm event, set PC lust to 0
+	IncrementFlag("JESSE_TIMES_FACE");
 
 	clearMenu();
 	addButton(0,"Next",jesseSexHerFaceII);	
@@ -998,7 +1015,7 @@ public function jesseSexHerFaceII():void
 	output("\n\n<i>“Excellent work... slut,”</i> you whisper into her pointed ear. She sighs in content at your approval, her glistening tongue rolling back into her mouth. Before it goes in completely however, you catch her by the hair with a free hand and lock your mouth to hers for a messy kiss. She whimpers at your grip but plays along all the same, letting your [pc.tongue] have its way with hers. Hmm, that’s an odd, [pc.girlCumFlavor] flavour... oh, of course: it’s your [pc.girlCum]!");
 	output("\n\nYou get a quick glimpse at Jesse’s bound arms. You should really undo those... and below that, her untouched femcock stands fully erect between her slim thighs. Do you help her get off?");
 
-	//orgasm event, set PC lust to 0
+	pc.orgasm();
 
 	clearMenu();
 	addButton(0, "Yes", jesseSexHerFaceYes, undefined, "Yeah", "Play-for-play, as it were. She’s earned it.");
@@ -1019,6 +1036,8 @@ public function jesseSexHerFaceYes():void
 	output("\n\nAfter what seems to be an hour, Jesse pushes herself forwards.");
 	output("\n\n<i>“Wish I could stay... but I probably have a meeting to attend,”</i> she sighs, her ruffled hair covering her face. You squeeze her one more time then help her off the bed. Once she has redressed and her bag of goodies has been packed away, you blow each other a kiss and she departs the ship.");
 
+	processTime(60 + rand(15));
+
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1034,7 +1053,7 @@ public function jesseSexHerFaceNo():void
 	output("\n\nAfter what seems to be an hour, Jesse pushes herself forwards.");
 	output("\n\n<i>“Wish I could stay... but I probably have a meeting to attend,”</i> she sighs, her ruffled hair covering her face. You squeeze her one more time then help her off the bed. Once she has redressed and her bag of goodies has been packed away, you blow each other a kiss and she departs the ship.");
 
-//PC stays on ship. 1 Hour of in game time passes.
+	processTime(60 + rand(15));
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1046,12 +1065,7 @@ public function jesseSexBagOTricksI():void
 	author("SoAndSo");
 	showJesse();
 
-	var x:int = -1;
-	if(pc.hasCock())
-	{
-		x = pc.cockThatFits(jesseAnalCapacity());
-		if(x < 0) x = pc.smallestCockIndex();
-	}
+	var x:int = largestCockIndexThatFitsJessesAss();
 	output("You’re more than a little intrigued by that duffle bag.");
 	output("\n\nWhile she’s standing to attention, you unzip the bulky green thing and have a root around for something <i>tasty</i>.");
 	output("\n\nWhile there’s some ‘expected’ things to be found inside, several of the strap-bound and oddly mechanical devices seem a little esoteric even for your knowledge. ");
@@ -1060,7 +1074,7 @@ public function jesseSexBagOTricksI():void
 	output("\n\nThe diversity of pure stuff gives you an interesting thought: hell, why not just use as much of this as is possible?");
 	output("\n\nYou pull out and set aside some very neat bits of kit: a cock-vibe, a complex looking cock-ring arrangement, synth-rope, lube, a mouth gag, a fancy dog bowl with ‘Jesse’ written on it, a strange plastic string of miniscule pink beads, and two different dildoes.");
 	output("\n\nYou lay it all out on the bed in an impressive, organized display and goad Jesse to have a look. She sniffs a bit, wrinkling her nose like an inspector looking over workmans tools.");
-	output("\n\n<i>“I think I can see where this is going, " + jessePCTitle() + ",”</i> she giggles, swaying from side to side in a playful manner. <i>“As in, this is <i>all</i> being used on me, right...?”</i>");
+	output("\n\n<i>“I think I can see where this is going, " + jessePCTitleSex() + ",”</i> she giggles, swaying from side to side in a playful manner. <i>“As in, this is </i>all<i> being used on me, right...?”</i>");
 	output("\n\nYou nod, stroking the side of her jaw with the back of your fingers. Jesse grins the cheekiest grin you’ve seen her pull and she immediately hops up onto the bed. She’s already on all fours, her bubbly booty accented by the arching of her back. So eager.");
 	output("\n\nYou begin with the binds. Two bits of rope, two sets of limbs, simple. As she keeps in position, you weave and loop the rope around her wrists and forearms then tighten them into an authentic arm-bind. You make sure there’s a little looseness, as is good practice: wouldn’t want her losing sensation in her hands, after all...");
 	output("\n\nShe continues to wiggle her tush as you go, closing her knees together so that her calves and ankles meet. She sticks her feet up in the air so that you have proper clearance to work with. <i>Definitely</i> a professional. You wonder if there’s some business potential in that... but that’s more something to think about later.");
@@ -1080,7 +1094,7 @@ public function jesseSexBagOTricksI():void
 	output("\n\nOo, can’t forget that bowl either. You align Jesse’s personal bowl underneath her, making sure her semi-hard rod is angled right over it. Perfect.");
 	output("\n\nOn with the show!");
 
-//PC stays on ship. 1 Hour of in game time passes. 
+	IncrementFlag("JESSE_TIMES_TRICKS");
 
 	clearMenu();
 	addButton(0,"Next",jesseSexBagOTricksII,x);	
@@ -1117,8 +1131,6 @@ public function jesseSexBagOTricksII(x:int = -1):void
 	output("\n\nYou spend a few minutes caressing and slapping her thoroughly reddened behind. In between that, you tease her tensing and twitching sluthole with a knuckle and finger, just to make her squirm her all the more. Her face is still buried into the bedding but the rest of her still manages to keep itself upright.");
 	output("\n\nHowever, you can see that the cock ring is giving way a little: a few slivers of pearly white hang off of the tip of her tortured femcock. It must’ve hurt a lot to force that tiny amount of cum out. She’s on the edge of bursting! Perhaps you should do the merciful thing? Or should she get <i>really</i> backed up?");
 
-	//orgasm event, set PC lust to 0
-
 	clearMenu();
 	addButton(0, "Release", jesseSexBagOTricksRelease, x, "Release", "She’s earned it, a nice light session for now.");
 	addButton(1, "Continue", jesseSexBagOTricksContinue, x, "Continue", "Nah, make her scream for it and see how much she can <i>really</i> cum.");
@@ -1142,11 +1154,12 @@ public function jesseSexBagOTricksRelease(x:int = -1):void
 	output("\n\n<i>“F-finished...”</i> she half whispers, a small grin forming on her face. You undo her complex array of bindings one by one, giving her smooth white skin a rub here and a pat there as she lays on her side. She coos at your tender administration, curling up into a ball once you’ve finished. Extracting the lodged combi-dildo gives her a bit of discomfort, but you remove it gently all the same.");
 	output("\n\nAfter packing her thoroughly used equipment away into her bag, you sit beside her and pull her up for a hug. Her limp little body feels slightly cold: hug time!");
 	output("\n\nYou hold an intimate embrace with her, whispering your approval into her ear. <i>“Good girl, very good...”</i>");
-	output("\n\nHalf an hour passes and Jesse seems to regain her stamina. <i>“Duty calls,”</i> she sighs, lazily sliding off the bed to redress. <i>“I-I’d love to see you again, " + jessePCTitle() + ".”</i>");
+	output("\n\nHalf an hour passes and Jesse seems to regain her stamina. <i>“Duty calls,”</i> she sighs, lazily sliding off the bed to redress. <i>“I-I’d love to see you again, " + jessePCTitleSex() + ".”</i>");
 	output("\n\nYou note that slipping her boxers on makes her wince, probably cuz she’s a little sensitive down there.");
 	output("\n\nOnce she’s finished, she gathers her bag, blows you a kiss, and leaves for the station.");
 
-//PC remains on ship. PC gains maximum lust. One hour of in game time passes.
+	processTime(60 + rand(15));
+	pc.lust(100);
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1173,13 +1186,14 @@ public function jesseSexBagOTricksContinue(x:int = -1):void
 	output("\n\nSetting the full bowl of her cum in front of her drooling, tongue-leashed mouth, you remove the mouth-gag. Her long tongue is dipping into the warm fluid immediately! You push it a little closer for her ease, just to guarantee she gets it all.");
 	output("\n\n<i>“Eat up, Jesse. All of it, every last drop.”</i> you encourage her, undoing her various restraints and bindings as she meekly laps and licks at her ‘meal’. There’s a defeated whine from the cum-hungry wench as you gently pull out the combi-dildo. Her abused hole even leaves a puckering gape as testament to your power over her.");
 	output("\n\nJesse is so out for the count that she barely moves. To help her along, you pat and pet her on the hips and hair. A timid note of approval is her only response, but one that tickles your chest with a little flutter. Aww...");
-	if (silly) output(" <i>you goddamn fucking psychopath omg wtf is wrong wif u</i>");
+	if (silly) output(" <i>you goddamn fucking psychopath omg wtf is wrong wif u.</i>");
 	output("\n\nIt takes her a good few minutes for Jesse to finish her bowl. A noticeable trail of white goop hangs off of her tongue, it seems that she hasn’t quite finished all of it. Still, she did well enough.");
 	output("\n\nPutting the bowl aside, you gently pull her up to your lap. Her exceedingly smooth, goosebumped skin feels heavenly against your [pc.skinFurScales] and you make sure to nestle her head on your [pc.chest]. You embrace her like a precious china doll, with kisses on the top of her head and a tight arm wrap round her soft middle. She almost seems to drift off in your arms, the occasional wince and whimper signifying her soreness. <i>“Good girl, very good...”</i> you whisper into her ear.");
 	output("\n\nAfter a peaceful half hour, Jesse slumps forward from the bed to the floor of your cabin.");
 	output("\n\n<i>“Owwwww, ow ow,”</i> she complains, rubbing her elbows. You can’t help but chuckle at it. While she very gingerly redresses, taking extra time with her tight boxers, and tries to take her distracted gaze away from you, there’s a window to repack her bag with the used toys. Once it’s packed she lifts it by the shoulder and blows you a kiss. With a mutual wave, she leaves the ship.");
 
-//PC stays on ship. 1 Hour of in game time passes.
+	processTime(60 + rand(15));
+	pc.lust(100);
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1229,7 +1243,7 @@ public function jesseSexTrapFunI():void
 	output("\n\nStill giggling, Jesse grabs and lubes the insides of the onahole. It’s a pretty robust one, made of some ultra-flexible plastic...? Hard to say. Once she’s done liberally lubing the entrance, she holds it over your tip-touching meat spears. It’s an interesting feat on her part for her skinny fingers hold her femcock and your [pc.cockNounSimple] in one hand lock.");
 	output("\n\n<i>“Ready?”</i> she asks, pursing her mouth so that her ruby-flushed cheeks bulge <i>just</i> so.");
 
-//PC stays on ship. 1 Hour of in game time passes. 
+	IncrementFlag("JESSE_TIMES_TRAP");
 
 	clearMenu();
 	addButton(0,"Next",jesseSexTrapFunII);	
@@ -1272,8 +1286,9 @@ public function jesseSexTrapFunII():void
 	output("\n\nBeing so spent, you lay akimbo on your comfy, comfy bed and watch the wobbly strumpet delicately redress. You can see her face screw up as the tightness of her boxers squishes her slightly shrunken sack. Aw, poor girl.");
 	output("\n\nYou give each other a silent wave and a blown kiss, then Jesse heads back to her place.");
 
-//PC stays on ship. Orgasm event, PC lust turns to 0. Gains ‘cum covered’ status.  One hour of in game time passes.
-	//orgasm event, set PC lust to 0
+	processTime(60 + rand(15));
+	pc.orgasm();
+	pc.applyCumSoaked();
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1323,6 +1338,8 @@ public function jesseSexRoleReversal():void
 	output("\n\nHer breath is quite heavy but you’re not sure that she’s actually tired out. Rather, it seems she isn’t willing to be the proper Domme she needs to be at the moment. You could encourage her to fuck you harder... or turn the tables.");
 	if (silly) output(" I AM THE TABLE, IHDFHUUHFUGDHGIH");
 
+	IncrementFlag("JESSE_TIMES_REVERSAL");
+
 	clearMenu();
 	addButton(0, "Encourage", jesseSexRoleReversalEncourage, undefined, "Encourage", "Pep her up, she’ll find away to make it work!");
 	addButton(1, "Take Over", jesseSexRoleReversalTakeOver, undefined, "Take Over", "It’s no good, she’s just not Domme material. Power bottom the over-ambitious buttslut.");
@@ -1337,7 +1354,7 @@ public function jesseSexRoleReversalEncourage():void
 	output("<i>“You can do it,”</i> you say in a needy tone, wishing for her to want it too. You give her firmly lodged femcock a few squeezes with your [pc.asshole] to remind her of just how <i>awesome</i> it feels to fuck a Steele’s ass.");
 	output("\n\n<i>“Mm, I do love the feeling of this boy butt,”</i> she says in a breathy tone, inhaling sharply through her nose afterwards. <i>“Been so long since I could... enter someone,”</i> she admits, gently rocking her hips against your [pc.ass] to tease at your hole. You coo in approval, giving your tush another enticing wiggle.");
 	output("\n\n<i>“And you want to pleasure your idol, right?”</i> you verbally prod, pushing back against her shallow, slow humps. <i>“Cuz you’re filling me up <b>so good</b>...”</i>");
-	output("\n\n<i>“Y-yeah! I want to fuck this... this </i>butt<i> pussy!”</i> she exclaims, pushing her envelope for dirty talk. <i>“Make " + pc.mf("Mister","Miss") + " Steele feel amazing with my useless body...”</i>");
+	output("\n\n<i>“Y-yeah! I want to fuck this... this </i>butt<i> pussy!”</i> she exclaims, pushing her envelope for dirty talk. <i>“Make " + jessePCTitleSex() + " feel amazing with my useless body...”</i>");
 	output("\n\n<i>That’s it</i>.");
 	if (silly) output(" Let the hate flow through you.");
 	output("\n\nYou feel her shuffle around behind you, as if grabbing for something from her bag. Turning your upper body to get a proper look, she holds out a medipen device. <i>“I-it’s Priapin, I bought a few and I forgot I had some... I wanted to make this awesome so...”</i> she states, angling it to her wrist. <i>“Here goes.”</i>");
@@ -1354,12 +1371,15 @@ public function jesseSexRoleReversalEncourage():void
 	output("\n\nSpurred on by this, Jesse forces one final <i>slam</i> into your well fucked [pc.asshole] and unleashes her built up seed with a pained series of squeals and moans! You can feel her jerk in place as her body forces out the unnatural, burning hot lifejuice created by the Priapin in her system. It floods your innards in long bursts, each one making her member’s muscles tense and pull against your [pc.asshole]. The hot seed builds up and fills you until you can feel it overflowing around the tight seal formed by Jesses femcock!");
 	output("\n\nThe near-screaming wench falls flat on your back as her impressive orgasm ends. Her breathing is more like an agonized wheeze, her small body ventilating at a post-marathon speed. Her fleshy tongue drags and slobbers over your [pc.skinFurScales] and her hands come to rest on your shoulders. <i>“Room...rooms spinning...”</i> she pants, a near-whisper forced through sore lungs.");
 	output("\n\nThe mutual comedown is quite something. There’s a warm, shared glow that radiates from you to Jesse and back again. It’s so intimate ");
-	if (flags["JESSE_HAD_SEX"] != undefined) output("and <i>different</i> ");
+	if (flags["JESSE_TIMES_SEXED"] != undefined) output("and <i>different</i> ");
 	output("from what you’d expect, the ‘flavor’ turning the experience into a memory of pure feeling.");
  	output("\n\nYou lay together for some time, occasionally giving each other a gentle, laze-laden kiss on the lips. Her right hand finds itself in yours and you give it a comforting squeeze. Soon though, the enervation takes over and you drift off...");
 	output("\n\n...awaking a few hours later, your Domme-for-a-day lover having left with her gear. There’s a small note on the pillow next to your with: ‘<3 so sore but so worth it’ written on it in impeccable hand-writing. Aw...");
 
- //PC stays on ship. Orgasm event, PC lust turns to 0. Gains ‘cum covered’ and ‘anally filled’ statuses.  One hour of in game time passes.
+	processTime(60 + rand(15));
+	pc.orgasm();
+	pc.applyCumSoaked();
+	pc.loadInAss();
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1394,7 +1414,10 @@ public function jesseSexRoleReversalTakeOver():void
 	output("\n\nYou lay together for some time, occasionally giving each other a gentle, laze-laden kiss on the lips. Her right hand finds itself in yours and you give it a comforting squeeze. Soon though, the enervation takes over and you drift off...");
 	output("\n\n...awaking a few hours later, your Domme-for-a-day lover having left with her gear. There’s a small note on the pillow next to your with: ‘<3 so sore but so worth it’ written on it in impeccable hand-writing. Aw...");
 
- //PC stays on ship. Orgasm event, PC lust turns to 0. Gains ‘cum covered’ and ‘anally filled’ statuses.  One hour of in game time passes.
+	processTime(60 + rand(15));
+	pc.orgasm();
+	pc.applyCumSoaked();
+	pc.loadInAss();
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
