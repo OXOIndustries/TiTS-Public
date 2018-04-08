@@ -145,6 +145,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Sneezing Tits", sneezingTitsCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "||||||||", eightClicksStory);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Assistant", assistantStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Becoming One...", becomingOneOfTheGirlsStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Bull’s Strength", bullsStrength, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "BXBI: I", bxbiChapter1Story);
