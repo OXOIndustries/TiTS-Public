@@ -255,15 +255,13 @@ public function jesseAppearance():void
 
 public function jesseTalkMenu(doOut:Boolean = true):void
 {
-	author("SoAndSo");
-	showJesse();
-
 	if (doOut) {
 		clearOutput();
 		output("You tell her you’d like to talk with her, get to know her some more.");
 		output("\n\n<i>“O-oh, yes yes, sure,”</i> she flusters, removing her earphones. <i>“Sooo, what would you like to know, " + jessePCTitle() + "?”</i>");
 	}
-
+	author("SoAndSo");
+	showJesse();
 	clearMenu();
 	addButton(0, "Her", jesseTalkHer, undefined, "Her", "Good starting point.");
 	addButton(1, "Interests", jesseTalkInterests, undefined, "Interests", "Maybe she likes cat videos too?");
