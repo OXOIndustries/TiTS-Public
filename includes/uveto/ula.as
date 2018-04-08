@@ -464,7 +464,7 @@ public function caveMeetUla():void
 	{
 		output("\n\nYour codex beeps. <i>“Korgonne identified. Tribal species native to Uveto VII that is frequently hostile to outsiders. Females are sexually aggressive and will use force and genital pheromones to entice mating. Use caution when traversing government-recognized korgonne lands.”</i>");
 		CodexManager.unlockEntry("Korgonne");
-		output(" <b>New Codex entry unlocked: Korgonne.</b>");
+		output(" <b>(New Codex entry unlocked: Korgonne.)</b>");
 	}
 	//Merge
 	output("\n\nThis close, you can see the poor puppy-girl is ill-dressed for the icy weather outside.");

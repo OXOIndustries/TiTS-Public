@@ -124,7 +124,7 @@ public function mabbsSpeciesTalk():void
 	output("\n\nMabbs squints at you. <i>“Rodenian, dummy. You see mouse-girls anywhere else? Didn’t think so. Go look it up on your computer if you wanna know more, ‘cause I ain’t here to blather on and on about my people. So buy something or get out of my face.”</i>");
 	if(!CodexManager.entryUnlocked("Rodenians"))
 	{
-		output("\n\n(<b>Codex entry unlocked!</b>)");
+		output("\n\n<b>(‘Rodenian’ Codex entry unlocked!)</b>");
 		CodexManager.unlockEntry("Rodenians");
 	}
 	processTime(2);

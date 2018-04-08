@@ -353,9 +353,9 @@ package classes.Characters
 			return;
 		}
 		*/
-		public function hasItemInStorageByClass(ref:Class, amount:int = 1):Boolean
+		public function numberOfItemInStorageByClass(ref:Class):int
 		{
-			if (ref == null || ShipStorageInventory.length == 0) return false;
+			if (ref == null || ShipStorageInventory.length == 0) return 0;
 			
 			var amt:int = 0;
 			
@@ -363,6 +363,13 @@ package classes.Characters
 			{
 				if (ShipStorageInventory[i] is ref) amt += ShipStorageInventory[i].quantity;
 			}
+			return amt;
+		}
+		public function hasItemInStorageByClass(ref:Class, amount:int = 1):Boolean
+		{
+			if (ref == null || ShipStorageInventory.length == 0) return false;
+			
+			var amt:int = numberOfItemInStorageByClass(ref);
 			
 			if (amt >= amount) return true;
 			return false;

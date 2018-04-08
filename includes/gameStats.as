@@ -6990,6 +6990,16 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["SYNTHSHEATH_ACQUIRED"] != undefined) horseCocksTotal++;
 				if(flags["SYNTHSHEATH_TWO_FOUND"] != undefined) horseCocksTotal += flags["SYNTHSHEATH_TWO_FOUND"];
 				output2(String(horseCocksTotal));
+				var horseCocksOwned:int = synthSheathsOwned();
+				var horseCocksUsed:int = synthSheathsUsed();
+				if(horseCocksOwned + horseCocksUsed > 0)
+				{
+					output2(" (");
+					if(horseCocksOwned > 0) output2("Own " + horseCocksOwned);
+					if(horseCocksOwned > 0 && horseCocksUsed > 0) output2(", ");
+					if(horseCocksUsed > 0) output2("Used " + horseCocksUsed);
+					output2(")");
+				}
 			}
 			miscCount++;
 		}

@@ -44,7 +44,7 @@ public function approachKirila(back:Boolean = false):void
 	}
 	if(!CodexManager.entryUnlocked("Spinarrans"))
 	{
-		output("\n\nYour Codex gives a little beep to indicate that it has prepared an article on Kirila's race. <b>New Codex entry unlocked: Spinarrans.</b>");
+		output("\n\nYour Codex gives a little beep to indicate that it has prepared an article on Kirila’s race. <b>(New Codex entry unlocked: Spinarrans.)</b>");
 		CodexManager.unlockEntry("Spinarrans");
 	}
 	silkAndSteelMenu();
