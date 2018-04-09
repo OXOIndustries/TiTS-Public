@@ -267,7 +267,7 @@ package classes.GameData.Pregnancy
 			if (pregSlot == -1)
 			{
 				// Find the first available pregnancy slot on the mother, else return a failure
-				var slotType:uint;
+				var slotType:uint = Creature.PREGSLOT_NONE;
 				
 				if (thisPtr.canImpregnateButt && thisPtr.canImpregnateVagina) slotType = Creature.PREGSLOT_ANY;
 				else if (thisPtr.canImpregnateVagina) slotType = Creature.PREGSLOT_VAG;

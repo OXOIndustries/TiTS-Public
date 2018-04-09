@@ -475,7 +475,7 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1, force:Boolea
 		var newFeedValue:int = tPC.statusEffectv3(effectName);
 		
 		// Omit willpower change
-		if (pc.hasPerk("Mimbrane Symbiosis"))
+		if (tPC.hasPerk("Mimbrane Symbiosis"))
 		{
 			if(tPC.willpowerMod != 0 && !willpowerModAffected()) tPC.willpowerMod = 0;
 		}

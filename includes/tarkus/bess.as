@@ -5701,7 +5701,7 @@ public function talkToBessPlayGraviballII():void
 			{
 				output("\n\nYou come up with a cunning plan in order to break through her defences. There’s no way you’re going to be able to beat her while she’s defending the goal - she’s far too good for that. Instead you come up with a plan to take advantage of ger biggest weakness, using your pulse boots to get up close to the goals.");
 				
-				output("\n\nYou stroke your her down your body and look at her rather suggestively, giving her a wink. <i>“...Hey Celise, how about you step away from those goals and we go get a little frisky?”</i>");
+				output("\n\nYou stroke your body and look at her rather suggestively, giving her a wink. <i>“...Hey Celise, how about you step away from those goals and we go get a little frisky?”</i>");
 				
 				output("\n\nCelise falls for it hook, line and sinker and moves away from the goals as soon as there’s a promise of a nice protein snack. The instant she does your team advances in, scoring a loud goal. The emerald galotian looks behind herself and suddenly realizes your ploy, looking thoroughly grumpy. <i>“...No fair, that’s cheating!”</i>");
 				

@@ -273,6 +273,7 @@ package classes.GameData.Pregnancy.Handlers
 				// IF pc.milkRate == 0 THEN pc.milkFullness = 60
 				if(kGAMECLASS.pc.milkMultiplier < 49)
 				{
+					kGAMECLASS.pc.milkFullness += 10;
 					kGAMECLASS.pc.milkMultiplier = 49;
 					buffer += ParseText(" The [pc.milk] has started dripping out of your [pc.nipples] more regularly. They definitely feel more full, your [pc.breasts] are going to be so sexy when your milk comes in for real.");
 				}
@@ -293,11 +294,13 @@ package classes.GameData.Pregnancy.Handlers
 				//First actual lactation increase
 				if(kGAMECLASS.pc.milkMultiplier < 70)
 				{
+					kGAMECLASS.pc.milkFullness += 10;
 					kGAMECLASS.pc.milkMultiplier = 70;
 					buffer += ParseText("Your [pc.milkyNipples] have been leaking [pc.milk] regularly, <b>you’ve started lactating.</b> It doesn’t seem like much yet, but based on the soreness in your [pc.breasts], you’ll start producing more soon. ");
 				}
 				else if(kGAMECLASS.pc.milkRate < 10)
 				{
+					kGAMECLASS.pc.milkFullness += 10;
 					kGAMECLASS.pc.milkRate++;
 					buffer += ParseText("You’ve noticed an <b>increase in your milk production,</b> your [pc.breasts] swelling with milk even faster than before. The extra production means that your [pc.milkyNipples] are almost never dry. ");
 				}

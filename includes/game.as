@@ -1973,7 +1973,7 @@ public function showerMenu(special:String = "ship"):void
 	var showerInShip:Boolean = (special == "ship" && InShipInterior(pc));
 	
 	output("You find yourself in the " + special + "’s shower room.");
-	if(showerInShip) output("\n\nNext to the shower is a medicine cabinet with some various hygiene products.");
+	if(showerInShip) output("\n\nNext to the shower is a medicine cabinet with various hygiene products.");
 	output("\n\nWhat would you like to do?");
 	
 	clearMenu();

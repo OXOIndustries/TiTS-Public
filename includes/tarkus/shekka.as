@@ -2466,7 +2466,8 @@ public function shekkaFundProjectTalk():void
 		}
 		//Merge
 		output("\n\nYou give her a proud hug and ask what she needs next. After a brief moment of nuzzle your [pc.chest] she snaps back to reality. <i>“Uuuuh... right. The cure has been designed, we just need the manufacturing to get it off the ground. Y’know... pay people to distribute it to the many Raskvel out there over the next few weeks. 10,000 credits.”</i>");
-		output("\n\nWeeks? That seems a little quick, to be honest. Shekka snorts at your disbelief. <i>“It’s just one shot and done. I figure all I have to do is put up a free sex sign in front of a nurse’s office and let nature take its course.”</i>");
+		output("\n\n<i>“Weeks? That seems a little quick, to be honest.”</i>");
+		output("\n\nShekka snorts at your disbelief. <i>“It’s just one shot and done. I figure all I have to do is put up a free sex sign in front of a nurse’s office and let nature take its course.”</i>");
 		clearMenu();
 		if(pc.credits >= shekkaFundingCost()) addButton(0,"Pay 10K",payShekkaForFunding3,undefined,"Pay 10K","Pay 10,000 credits to fund Shekka’s project.");
 		else addDisabledButton(0,"Pay","Pay","Helping Shekka with her project will set you back at least 10,000 credits.");
@@ -2626,11 +2627,11 @@ public function theCureIsReadyShekka():void
 	//If you have a cock(s)
 	if(pc.hasCock())
 	{
-		output("\n\nThe sheer heat of her resting form has your ");
-		if(!pc.isErect()) output("half-hard");
-		else if(pc.lust() >= 80) output("rock hard");
-		else output("tumescent");
-		output("[pc.cocksNounSimple] painfully trapped between you, making it an awkward mess waddling her towards a tiny bunk.");
+		output("\n\nThe sheer heat of her resting form has your");
+		if(!pc.isErect()) output(" half-hard");
+		else if(pc.lust() >= 80) output(" rock hard");
+		else output(" tumescent");
+		output(" [pc.cocksNounSimple] painfully trapped between you, making it an awkward mess waddling her towards a tiny bunk.");
 	}
 	//Else
 	else output("\n\nYou move slowly and carefully, trying not to jog her with each awkward step towards a tiny bunk.");
@@ -2921,7 +2922,7 @@ public function welcomeShekkaToTheTeam2():void
 	//You have Anno:
 	if(annoIsCrew())
 	{
-		output("Before you respond, there’s a gasp of surprise, and a snowy-white bundle of fur piles past you, pouncing onto Shekka. <i>“Got you! Y–oh. <i>Oh<i>, uh... sorry there Shekka. I thought you were someone else. Some twat’s been trying to salvage a piece of our engine for the past hour and I’ve just about started to consider lethal force.”</i>");
+		output("\n\nBefore you respond, there’s a gasp of surprise, and a snowy-white bundle of fur piles past you, pouncing onto Shekka. <i>“Got you! Y–oh. </i>Oh<i>, uh... sorry there Shekka. I thought you were someone else. Some twat’s been trying to salvage a piece of our engine for the past hour and I’ve just about started to consider lethal force.”</i>");
 		output("\n\nShekka blinks in disbelief <i>“...I’ve just joined the crew. Hi Anno.”</i>");
 		output("\n\nIt’s the curvy pup’s turn to blink a few times, before her tail begins beating hard from side-to-side. <i>“You are going to love adventuring. We can check out all the bars, I can introduce you to my girlfriend! You will have no idea what or who to do first!”</i>");
 		output("\n\nWith a sigh, you slip your hands beneath Anno’s arms, lifting her off of the poor stunned girl. She pouts, pulling a puppy-dog-eyes that could melt stone... although her furiously-wagging tail betrays her amusement. Shekka pulls herself up, dusting her ass off. <i>“Way to spoil the moment.”</i>");

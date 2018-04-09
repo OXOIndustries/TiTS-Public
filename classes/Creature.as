@@ -5445,7 +5445,6 @@
 		}
 		public function hasLeg(): Boolean {
 			return (hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || hasLegFlag(GLOBAL.FLAG_PLANTIGRADE));
-			return false;
 		}
 		public function hasLegs(): Boolean {
 			return (hasLeg() && legCount > 1);
@@ -7816,7 +7815,7 @@
 				if (array[counter].storageName == storageName) {
 					array.splice(counter, 1);
 					trace("Removed \"" + storageName + "\" from a storage array on " + short + ".");
-					counter = 0;
+					//counter = 0;
 					return true;
 				}
 			}
@@ -11112,6 +11111,9 @@
 		{
 			if(target < 0 || donor < 0) return;
 			if(target >= cocks.length || donor >= cocks.length) return;
+			
+			trace("Copying " + simpleCockNoun(donor) + " to target " + simpleCockNoun(target) + " donor index: " + donor + " target index: " + target + " donor type: " + cocks[donor].cType + " target type: " + cocks[target].cType);
+			
 			cocks[target].cType = cocks[donor].cType;
 			cocks[target].cLengthRaw = cocks[donor].cLengthRaw;
 			cocks[target].cLengthMod = cocks[donor].cLengthMod;
@@ -11121,11 +11123,11 @@
 			cocks[target].knotMultiplier = cocks[donor].knotMultiplier;
 			cocks[target].flaccidMultiplier = cocks[donor].flaccidMultiplier;
 			cocks[target].virgin = cocks[donor].virgin; // to make it work in a similar fashion as copyVagina
+			cocks[target].clearFlags();
 			for(var y:int = 0; y < cocks[donor].cockFlags.length; y++)
 			{
 				cocks[target].cockFlags[y] = cocks[donor].cockFlags[y];
 			}
-			trace("Copying " + simpleCockNoun(donor) + " to donor " + simpleCockNoun(target) + " donor index: " + donor + " target index: " + target + " donor type: " + cocks[donor].cType + " target type: " + cocks[target].cType);
 			return;
 		}
 		//General utility function for setting appropriate dick type with new-grown weiners.
@@ -11260,6 +11262,9 @@
 		{
 			if(target < 0 || donor < 0) return;
 			if(target >= vaginas.length || donor >= vaginas.length) return;
+			
+			trace("Copying " + vaginaNounDescript(donor) + " to target " + vaginaNounDescript(target) + " donor index: " + donor + " target index: " + target + " donor type: " + vaginas[donor].type + " target type: " + vaginas[target].type);
+			
 			vaginas[target].type = vaginas[donor].type;
 			vaginas[target].wetnessRaw = vaginas[donor].wetnessRaw;
 			vaginas[target].loosenessRaw = vaginas[donor].loosenessRaw;
@@ -11268,11 +11273,11 @@
 			vaginas[target].bonusCapacity = vaginas[donor].bonusCapacity;
 			vaginas[target].minLooseness = vaginas[donor].minLooseness;
 			vaginas[target].hymen = vaginas[donor].hymen;
+			vaginas[target].clearFlags();
 			for(var y:int = 0; y < vaginas[donor].vagooFlags.length; y++)
 			{
 				vaginas[target].vagooFlags[y] = vaginas[donor].vagooFlags[y];
 			}
-			trace("Copying " + vaginaNounDescript(donor) + " to donor " + vaginaNounDescript(target) + " donor index: " + donor + " target index: " + target + " donor type: " + vaginas[donor].type + " target type: " + vaginas[target].type);
 			return;
 		}
 		public function createVaginaUnlocked(numVag:int = 1):Boolean
@@ -13059,7 +13064,7 @@
 			}
 			//Non taurs or taurs who didn't roll flanks
 			else {
-				desc += RandomInCollection(["hip", "hip", "hip"]);
+				desc += "hip";
 			}
 			if (asPlural) desc = plural(desc);
 			return desc;
@@ -13541,13 +13546,13 @@
 				description += RandomInCollection(["rubber-wrapped","latex-encased","shrink-wrapped","ebony-coated","latex-lacquered","suit-encased","latex-enclosed","rubber-encased","latex-wrapped","rubber-painted"]);
 				descripted++;
 			}
-			if (descripted && rand(2) == 0 && hasNipplePiercing(rowNum)) {
+			if (hasNipplePiercing(rowNum) && descripted < 2 && rand(2) == 0) {
 				if (descripted > 0) description += ", ";
 				if (rowNum >= 0 && breastRows[rowNum].piercing.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_CHAINS)) description += "chained ";
 				else description += "pierced ";
 				descripted++;
 			}
-			if (!descripted && skinType == GLOBAL.SKIN_TYPE_GOO) {
+			if (skinType == GLOBAL.SKIN_TYPE_GOO && descripted < 2 && rand(3) == 0) {
 				if (descripted > 0) description += ", ";
 				description += RandomInCollection(["slime-slick ", "goopy ", "slippery "]);
 			}
@@ -17304,7 +17309,7 @@
 				//Fuckin' empty bro
 				else 
 				{
-					milkAdjectives.push(["drained","",(fluidNoun(milkType) + "-drained"),"empty","empty"]);
+					if(rand(5) != 0) milkAdjectives.push("drained",(fluidNoun(milkType) + "-drained"),"empty","empty");
 				}
 				if(milkAdjectives.length > 0)
 				{
@@ -17884,6 +17889,7 @@
 		 * Find the index of the first empty pregnancy slot
 		 * @return			index of the first empty pregnancy slot, -1 if none available.
 		 */
+		public static const PREGSLOT_NONE:uint = -1;
 		public static const PREGSLOT_ANY:uint = 0;
 		public static const PREGSLOT_VAG:uint = 1;
 		public static const PREGSLOT_ASS:uint = 2;

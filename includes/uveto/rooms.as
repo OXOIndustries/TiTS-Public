@@ -3769,7 +3769,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII X41"] = new RoomClass(this);
 	rooms["KORGII X41"].roomName = "ROUGH-HEWN\nTUNNEL";
-	rooms["KORGII X41"].description = "A nearby geothermal vent has warmed the air on this level to near balmy levels. You can only imagine how a thick-furred korgonne would deal with the heat, naked or not. Rough-carved tunnel stretches away to the south or bends south to a stairwell. The passage’s floor is smooth and hazard free in both directions.";
+	rooms["KORGII X41"].description = "A nearby geothermal vent has warmed the air on this level to near balmy levels. You can only imagine how a thick-furred korgonne would deal with the heat, naked or not. The rough-carved tunnel stretches away to the south or bends south to a stairwell. The passage’s floor is smooth and hazard free in both directions.";
 	rooms["KORGII X41"].planet = "PLANET: UVETO VII";
 	rooms["KORGII X41"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII X41"].moveMinutes = 2;
@@ -3787,7 +3787,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII V41"] = new RoomClass(this);
 	rooms["KORGII V41"].roomName = "ROUGH-HEWN\nTUNNEL";
-	rooms["KORGII V41"].description = "Bits of shiny but useless quarts sparkle in the walls and ceiling, left behind by miners intent on more valued prizes. The tunnel itself is carved straight along an east-west axis without much care for polish. They took the time to smooth the floor for comfort and safety but little else.";
+	rooms["KORGII V41"].description = "Bits of shiny but useless quartz sparkle in the walls and ceiling, left behind by miners intent on more valued prizes. The tunnel itself is carved straight along an east-west axis without much care for polish. They took the time to smooth the floor for comfort and safety but little else.";
 	rooms["KORGII V41"].planet = "PLANET: UVETO VII";
 	rooms["KORGII V41"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII V41"].moveMinutes = 2;

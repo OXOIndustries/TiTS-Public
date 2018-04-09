@@ -784,7 +784,7 @@ package classes.Characters
 			
 			for (var i:int = 0; i < totalDays; i++)
 			{
-				var oldBooty:Number = buttRatingRaw;
+				//var oldBooty:Number = buttRatingRaw;
 				var addBooty:Number = 1 + rand(9);
 				if (buttRatingRaw + addBooty > bootyMin) addBooty = bootyMin - buttRatingRaw;
 				if (addBooty < 0) return;

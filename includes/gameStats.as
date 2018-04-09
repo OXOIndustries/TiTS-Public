@@ -6038,7 +6038,6 @@ public function displayEncounterLog(showID:String = "All"):void
 				// Natalie Irson
 				if(flags["NATALIE_MET"] != undefined)
 				{
-					output2("");
 					if(flags["NATALIE_MET"] == -2) output2("\n<b>* Miss Nobody:</b> Seen her");
 					else output2("\n<b>* Natalie:</b> Met her");
 					if(flags["NATALIE_TAMES_VARMINT"] != undefined) output2(", She helped you tame a wild varmint");
