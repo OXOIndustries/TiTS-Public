@@ -408,7 +408,8 @@ package classes.Characters
 						{
 							ShipStorageInventory.splice(i, 1);
 						}
-						else i++;
+						//else i++;
+						else return;
 					}
 					else i++;
 				}

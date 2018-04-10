@@ -1843,6 +1843,7 @@ public function giveReahaClothes():void
 					break;
  			}
 			if (state == 1 && reaha.hasItemByClass(getDefinitionByName(cname) as Class)) state = 3;
+			if (state == 1 && pc.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE)) state = -1;
 		}
 		
 		if (buttons % 15 == 0 && (state || !buttons))
@@ -1865,6 +1866,10 @@ public function giveReahaClothes():void
 				break;
 			case 3: // in reaha's inventory
 				addDisabledButton(buttons-1, pc.inventory[x].shortName, StringUtil.toDisplayCase(pc.inventory[x].longName), "Reaha already has one of these.");
+				buttons++;
+				break;
+			case -1: // cannot drop!
+				addDisabledButton(buttons-1, pc.inventory[x].shortName, StringUtil.toDisplayCase(pc.inventory[x].longName), "You cannot drop this item.");
 				buttons++;
 				break;
  		}

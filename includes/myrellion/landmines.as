@@ -2,17 +2,15 @@ import classes.Creature;
 import classes.Items.Accessories.Minesweeper;
 public function tryEncounterLandmines():Boolean
 {
+	if (pc.accessory is Minesweeper) return false;
+	if (flags["KATTOM_LOCATION"] == currentLocation) return false;
+	
 	var hitChance:int = 100;
 	if(pc.hasItemByClass(Hoverboard)) hitChance += 200;
 	
 	if (rand(hitChance) <= 2)
 	{
 		IncrementFlag("ENCOUNTERED_LANDMINES");
-
-		if ((pc as Creature).accessory is Minesweeper)
-		{
-			return false;
-		}
 
 		if (pc.characterClass == GLOBAL.CLASS_SMUGGLER)
 		{
