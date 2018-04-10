@@ -2195,6 +2195,9 @@
 				case "hardlightCockFull":
 					buffer = cockOrStrapon(-1,1);
 					break;
+				case "cockOrStraponHead":
+					buffer = cockOrStraponHead(arg2);
+					break;
 				case "nippleNoun":
 					buffer = nippleNoun(arg2);
 					break;
@@ -17047,6 +17050,25 @@
 			return "strapon";
 		}
 		
+		public function cockOrStraponHead(idxOverride:int = -3): String {
+			//if a idxOverride is set higher than your current dick count, set it to autopick something different
+			if(idxOverride >= cockTotal()) idxOverride = -3;
+			//Autopick? Prefer dick if available.
+			if(idxOverride == -3)
+			{
+				//Have cock? Use it by default
+				if(hasCock()) idxOverride = 0;
+				//No dick? Use the hard light
+				else if(hasHardLightAvailable()) idxOverride = -1;
+				//No hard light, use your clit.
+				else if(clitLength >= 4 && totalClits() > 0) idxOverride = -2;
+				//Nothing appropriate? Must be a strap-on
+				else idxOverride = -4;
+			}
+			if(idxOverride >= 0) return cockHead(idxOverride);
+			return cockOrStrapon(idxOverride,-1);
+		}
+
 		//Check if the pc has a cock, strapon, or massive clit to do some sexin'
 		public function hasCockOrStrapOrClit(countTailCock: Boolean = false):Boolean {
 			if (hasCock()) return true;

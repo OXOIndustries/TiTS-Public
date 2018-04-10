@@ -872,6 +872,23 @@ public function fuckTheSystem():void
 	CodexManager.viewedEntry("Fuck the System");
 }
 
+//Assistant
+public function assistantStory():void
+{
+	clearOutputCodex();
+	author("SoAndSo");
+	outputCodex(header("Assistant"));
+
+	outputCodex("The info you’ve found is rather basic and any attempts to acquire a legal copy reroutes your Codex to something called the ‘Historical Preservernia Society’, whatever that may be.");
+	outputCodex("\n\nWhat info you have reads more like a blurb than a synopsis.");
+	outputCodex("\n\n<i>A Warnerversal Film</i>");
+	outputCodex("\n\nA tale of true romance! Our heroine, Lucretia Velvetine, finds her purpose in a world of things that move far beyond her control. Finding work as a personal assistant to a young billionaire, Channing Black, the two embark on a passionate, intense love affair!");
+	outputCodex("\n\nComing to cinemas in 2027!");
+	outputCodex("\n\n<i>Rated R for scenes of a highly sexual nature, BDSM depictions, and heavy drug use.</i>");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Assistant");
+}
+
 //Becoming One of the Girls
 public function becomingOneOfTheGirlsStory():void
 {
