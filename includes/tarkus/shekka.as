@@ -1469,10 +1469,12 @@ public function shekkaMilkDranking():void
 	output("As you observe the shapely Raskvel female in front of you, you can’t help but notice her plump, uncared-for lips. While the rest of her face is nice enough, you can’t help but focus on those inviting lips. Oh how you’d love to stuff something between them.");
 	output("\n\n<i>“You’re lookin’ pretty full there, tits,”</i> the smirking raskvel woman observes, raising her hand and cupping her own meager breasts through the front of her skin tight work suit. The mention of your tits brings your attention back to them and how heavy and full they are. Your eyes begin to wander back toward her lips but are instead treated to the beginnings of a strip-tease. The little slut is sensuously peeling away her tight suit to egg you on. The skintight material drags over her obvious nipples as it slowly reveals her pale red scales and perky b-cups.");
 	output("\n\n");
-	if(!pc.isNude()) output("Not to be left behind you reach up and remove your own [pc.upperGarments], revealing your own chest and stepping forward.");
+	if(!pc.isChestExposed()) output("Not to be left behind you reach up and remove your own [pc.chestCovers], revealing your own chest and stepping forward.");
 	else output("Not to be outdone, you arch your back to emphasize your own chest, stepping forward to fill her view with your fluid-heavy mammaries.");
 	output(" In an instant, the lively mechanic is on you, her arms wrapped around your waist as her momentum topples your unprepared form onto your [pc.butt]. In your new position on the floor, you can feel her face pressed between your [pc.fullChest]. The sensation of aching fullness in your exposed, swollen teats is too much for you to bear, and you reach down, taking hold of her head in your hands, pressing her face to your bosom. Her feathery red hair tickles your hands.");
-	output("\n\nWith her big, red, reptilian eyes so close, she can’t help but see the budding beads of [pc.milk] on your [pc.nipples]. You moan as you feel her hot breath on them, your arousal rising even more as she pushes down on your [pc.chest] to pull her face away, squishing your heavy chest against you in the process. The resultant streams of [pc.milk] are enough to pull a laugh from the mechanic as you soak her palms in cream. <i> “One of those milky rushers, are you?”</i> she asks with a hearty laugh, watching you moan beneath her. <i> “I’ll have to have some extra fun with you for making a lake in my workshop - after I milk you dry that is.”</i>");
+	output("\n\nWith her big, red, reptilian eyes so close, she can’t help but see the budding beads of [pc.milk] on your [pc.nipples]. You moan as you feel her hot breath on them, your arousal rising even more as she pushes down on your [pc.chest] to pull her face away, squishing your heavy chest against you in the process. The resultant streams of [pc.milk] are enough to pull a laugh from the mechanic as you soak her palms in cream. <i>“");
+	if(!shekkaIsCrew()) output("One of those milky rushers, are you?”</i> she asks with a hearty laugh, watching you moan beneath her. <i>“I’ll have to have some extra fun with you for making a lake in my workshop - after I milk you dry that is.”</i>");
+	else output("How great that my captain is a milky rusher!”</i> she cheers with a hearty laugh, watching you moan beneath her. <i>“I’ll have to have some extra fun with you for making a lake in my engine room - after I milk you dry that is.”</i>");
 	pc.lust(10);
 	processTime(5);
 	clearMenu();
@@ -1490,16 +1492,21 @@ public function shekkaMilkDrankingPartII():void
 	
 	var x:int = -1;
 
-	output("You can’t think of a better plan at the moment, and you pull her into a forceful kiss, your [pc.lips] mashed roughly against hers. You let out a slutty moan into the kiss as she pinches your streaming nipples, the added stimulation sparking surges of pleasure all down your spine. ");
+	output("You can’t think of a better plan at the moment, and you pull Shekka into a forceful kiss, your [pc.lips] mashed roughly against hers. You let out a slutty moan into the kiss as she pinches your streaming nipples, the added stimulation sparking surges of pleasure all down your spine. ");
 
 	//No new PG
 	//IF GIRL
 	//[If(hasVagina=true & hasPenis = false)
 	if(pc.hasVagina() && !pc.hasCock()) 
 	{
-		output("[pc.EachVagina] is soaked from all the arousal, and as she breaks the kiss and looks into your [pc.eyes] you find yourself desperately rolling your [pc.hips] and grinding your needy body up into her pussy");
-		if(pc.hasTail()) output(", your [pc.tails] pressed under your [pc.butt] to the hard workshop floor, wiggling uselessly");
-		output(".");
+		output("[pc.EachVagina] is soaked from all the arousal, and as ");
+		if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("the raskvel breaks the kiss and looks into your [pc.eyes], you note that hers have dilated to the size of dinner plates. She drools a little as her hips desperately roll against your own, grinding her needy pussy against your hungry body. Streams of silky, alien lubricant drizzle everything below your waist.");
+		else
+		{
+			output("she breaks the kiss and looks into your [pc.eyes] you find yourself desperately rolling your [pc.hips] and grinding your needy body up into her pussy");
+			if(pc.hasTail()) output(", your [pc.tails] pressed under your [pc.butt] to the hard workshop floor, wiggling uselessly");
+			output(".");
+		}
 
 		output("\n\nSliding her wide hips backwards on your stomach, her dual clits dragging over your sensitive [pc.skinFurScales], she positions herself and then leans down, finally giving you what you so eagerly desire. Smiling, she wraps those plump lips of hers around your [pc.nipple], her weight and the fluid weight in your chest enough to hold you pinned and writhing to the floor. Your [pc.chest] floods her mouth with [pc.milk] as she sucks it down, the flow so intense that her cheeks bulge, streams spilling from the corners from her mouth, and she has to pull back a few seconds later. As she gulps down the huge mouthful of lactic nourishment, the heavy streams of your [pc.milk] only intensify.");
 		output("\n\nYou find yourself screaming under her squeezing and massaging palms as the stimulation of your [pc.chest] continues to set your body off. You barely notice when you hear a faint hum coming from down below. Your soaked, neglected pussy squirts [pc.girlCum] as Shekka’s tail glides over it and moves to her own quim, adding her moans to a growing chorus of screams. Somehow the little tip is vibrating like a high-" + (isAprilFools() ? "dogecoin" : "credit") + " sex toy.");
@@ -1523,10 +1530,15 @@ public function shekkaMilkDrankingPartII():void
 		output(" soaked from all the arousal, and your [pc.cocks] ");
 		if(pc.vaginaTotal() == 1) output("is");
 		else output("are");
-		output(" throbbing ridiculously hard. As she breaks the kiss and looks into your [pc.eyes], you find yourself desperately rolling your [pc.hips] and grinding your needy body up into her pussy");
-		//if(hasTail=true)
-		if(pc.hasTail()) output(", your [pc.tails] pressed under your [pc.butt] to the hard workshop floor, wiggling uselessly");
-		output(".");
+		output(" throbbing ridiculously hard. As ");
+		if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("the raskvel breaks the kiss and looks into your [pc.eyes], you note that hers have dilated to the size of dinner plates. She drools a little as her hips desperately roll against your own, grinding her needy pussy against your hungry body. Streams of silky, alien lubricant drizzle everything below your waist.");
+		else 
+		{
+			output("she breaks the kiss and looks into your [pc.eyes], you find yourself desperately rolling your [pc.hips] and grinding your needy body up into her pussy");
+			//if(hasTail=true)
+			if(pc.hasTail()) output(", your [pc.tails] pressed under your [pc.butt] to the hard workshop floor, wiggling uselessly");
+			output(".");
+		}
 
 		output("\n\nSliding her broad, raskvel hips backwards on your stomach, her dual clits dragging over your sensitive [pc.skin], she positions herself and then leans down, finally giving you what you so eagerly desired. Smiling, she finally wraps those plump lips of hers around your [pc.nipple], her weight and the fluid weight in your chest enough to hold you pinned to the floor. Raising her wide, egg bearing hips, she manages to sink her hot sex on your [pc.cock " + x + "], moaning into your [pc.chest] as she does so. Your [pc.fullChest] floods her mouth with [pc.milk] as she sucks it down, the flow so intense that her cheeks bulge, milk spilling from the corners from her mouth, and she has to pull back a few seconds later. With her body upright and no longer stimulating your [pc.chest], your base instincts kick in and you pound your [pc.cock " + x + "] up into her hot, double clitted twat. As she gulps down the huge mouthful of lactic nourishment, the heavy streams of your [pc.milk] only intensify. Not even all the bouncing will slow them.");
 		output("\n\nYou find yourself screaming under her squeezing and massaging palms as the stimulation of your [pc.fullChest] continues to set your body off. You barely notice as you hear a faint hum coming from lower down. Your soaked, neglected [pc.vaginas] squirt");
@@ -1561,12 +1573,17 @@ public function shekkaMilkDrankingPartII():void
 	{
 		x = rand(pc.cocks.length);
 		
-		output("[pc.EachCock] is throbbing ridiculously hard, and as she breaks the kiss and looks into your [pc.eyes], you find yourself desperately rolling your [pc.hips] and grinding your needy body up into her pussy, ");
-		if(pc.hasTail()) output("your [pc.tail] pressed under your [pc.butt] to the hard workshop floor, wiggling uselessly");
-		output(". You can’t help but run your [pc.cocks] over her clits, getting her nice and wet while you drench ");
-		if(pc.cockTotal() > 1) output("a");
-		else output("your");
-		output(" needy length in her nectar.");
+		output("[pc.EachCock] is throbbing ridiculously hard, and as ");
+		if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("the raskvel breaks the kiss and looks into your [pc.eyes], you note that hers have dilated to the size of dinner plates. She drools a little as her hips desperately roll against your own, grinding her needy pussy against your hungry body. Streams of silky, alien lubricant drizzle everything below your waist.");
+		else
+		{
+			output("she breaks the kiss and looks into your [pc.eyes], you find yourself desperately rolling your [pc.hips] and grinding your needy body up into her pussy, ");
+			if(pc.hasTail()) output("your [pc.tail] pressed under your [pc.butt] to the hard workshop floor, wiggling uselessly");
+			output(". You can’t help but run your [pc.cocks] over her clits, getting her nice and wet while you drench ");
+			if(pc.cockTotal() > 1) output("a");
+			else output("your");
+			output(" needy length in her nectar.");
+		}
 
 		output("\n\nSliding her wide, egg bearing Raskvel hips backwards on your stomach, her dual clits dragging over your sensitive [pc.skinFurScales], she positions herself and then leans down, finally giving you what you so eagerly desires. She finally wraps those plump lips of hers around your [pc.nipple] with a smile, her weight and the fluid weight in your chest enough to hold you pinned there on the floor. Raising her wide, egg bearing hips, she manages to sink her hot sex on your [pc.cock " + x + "], moaning into your [pc.chest] as she does so. Your [pc.chest] floods her mouth with [pc.milk] as she sucks it down, the flow so intense that her cheeks bulge, milk spilling from the corners from her mouth, and she has to pull back a few seconds later. With her body upright and no longer stimulating your [pc.chest], your base instincts kick in, and you pound your [pc.cocks] up into her hot, double clitted twat. As she gulps down the huge mouthful of lactic nourishment, the heavy streams of your [pc.milk] only intensify.");
 		output("\n\nYou find yourself screaming under her squeezing and massaging palms as the stimulation of your [pc.chest] continues to set your body off. You barely notice when you hear a faint hum coming from lower down. You can’t help but notice as her tail joins in on the fun, slipping into her stretched pussy along with your [pc.cock " + x + "] and beginning to vibrate, getting you off almost instantly inside of her ");
@@ -1586,7 +1603,7 @@ public function shekkaMilkDrankingPartII():void
 		output("\n\nIn her absence, your hand slips down to your [pc.cocks], fingers wrapping around your turgid shaft and gliding over its overstimulated length. Yet she’s not gone for long, returning with an odd pair of gloves on her hands. You notice she’s inches deep on her tail vibrator and leaking like a faucet, though you shouldn’t be talking when you’re nearly swimming in your own [pc.milk]. With all the thinking you’ve managed, you don’t notice her straddling you again.");
 		output("\n\nYou do notice when you feel her hands on your [pc.chest], squeezing your [pc.nipples] and pulling, but something’s different. Something is making your entire chest tingle, and looking down at her strange gloves, you get an idea of just what it is. Shekka smiles as she lets the shock gloves pulse a surge into your sensitive [pc.nipples] causing your already painful arousal to intensify, even as you buck your hips and drench your thighs, her pussy, and her deliciously vibrating tail with [pc.cum], silent screams gripping you as you thrash like a bronco, making the smaller woman bounce her big, fertile, Raskvel hips on you.");
 	}
-	output("\n\nThe sexy, red, Raskvel rides you for half an hour, happily getting the pair of you off with her hot pussy and those amazing gloves, completely draining your chest. You two have so much fun she forgets to punish you before she turns her head to see the clock. <i>“Fuck! Got carried away,”</i> she says, moving off of you in a rush and pulling on her almost shrink-wrapped suit after falling over on dismount. <i> “Look, [pc.name], I had a ton of fun, but I really have to get back to work. I’m a busy girl, you know. You get on out of here and I’ll clean this up. We’ll worry about punishing you later.”</i>");
+	output("\n\nThe sexy, red, Raskvel rides you for half an hour, happily getting the pair of you off with her hot pussy and those amazing gloves, completely draining your chest. You two have so much fun she forgets to punish you before she turns her head to see the clock. <i>“Fuck! Got carried away,”</i> she says, moving off of you in a rush and pulling on her almost shrink-wrapped suit after falling over on dismount. <i>“Look, [pc.name], I had a ton of fun, but I really have to get back to work. I’m a busy girl, you know. You get on out of here and I’ll clean this up. We’ll worry about punishing you later.”</i>");
 	output("\n\nShe leaves you with that last comment, flashing a smile and slapping your [pc.butt] before rushing off to presumably pick up some cleaning supplies. You pull on your [pc.gear] and head out, feeling sated and much less chest heavy.");
 	processTime(31+rand(10));
 	pc.orgasm();
