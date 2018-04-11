@@ -1350,7 +1350,7 @@ public function jesseSexRoleReversalEncourage():void
 	showJesse();
 
 	output("<i>“You can do it,”</i> you say in a needy tone, wishing for her to want it too. You give her firmly lodged femcock a few squeezes with your [pc.asshole] to remind her of just how <i>awesome</i> it feels to fuck a Steele’s ass.");
-	output("\n\n<i>“Mm, I do love the feeling of this boy butt,”</i> she says in a breathy tone, inhaling sharply through her nose afterwards. <i>“Been so long since I could... enter someone,”</i> she admits, gently rocking her hips against your [pc.ass] to tease at your hole. You coo in approval, giving your tush another enticing wiggle.");
+	output("\n\n<i>“Mm, I do love the feeling of this [pc.boyGirl]-butt,”</i> she says in a breathy tone, inhaling sharply through her nose afterwards. <i>“Been so long since I could... enter someone,”</i> she admits, gently rocking her hips against your [pc.ass] to tease at your hole. You coo in approval, giving your tush another enticing wiggle.");
 	output("\n\n<i>“And you want to pleasure your idol, right?”</i> you verbally prod, pushing back against her shallow, slow humps. <i>“Cuz you’re filling me up <b>so good</b>...”</i>");
 	output("\n\n<i>“Y-yeah! I want to fuck this... this </i>butt<i> pussy!”</i> she exclaims, pushing her envelope for dirty talk. <i>“Make " + jessePCTitleSex() + " feel amazing with my useless body...”</i>");
 	output("\n\n<i>That’s it</i>.");
