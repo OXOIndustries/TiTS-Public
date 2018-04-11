@@ -27,6 +27,10 @@ public function showShekka(nude:Boolean = false):void
 	userInterface.showBust("SHEKKA" + (nude ? "_NUDE" : ""));
 	userInterface.showName("\nSHEKKA");
 }
+public function shekkaBustDisplay(nude:Boolean = false):String
+{
+	return ("SHEKKA" + (nude ? "_NUDE" : ""));
+}
 
 //Widget Warehouse Description\
 public function widgetWarehouseBonusFuntimes():Boolean

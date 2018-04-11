@@ -2447,6 +2447,10 @@
 				case "vagOrAssSimple":
 					buffer = vagOrAssNoun(arg2);
 					break;
+				case "womb":
+				case "uterus":
+					buffer = wombDescript(arg2);
+					break;
 				case "clit":
 				case "clitoris":
 					buffer = clitDescript(arg2);
@@ -8527,6 +8531,11 @@
 		public function isErect():Boolean
 		{
 			return (lust() >= 66 || hasStatusEffect("Priapism"));
+		}
+		//Might get used later if other things give perma-boner
+		public function hasPriapism():Boolean
+		{
+			return (hasStatusEffect("Priapism"));
 		}
 		public function hasASheath(): Boolean {
 			for (var x: int = 0; x < cocks.length; x++) {
@@ -14957,6 +14966,28 @@
 					}
 				}
 			return true;
+		}
+		public function wombDescript(arg:Number = 0):String
+		{
+			var descriptions:Number = 0;
+			var buffer:String = "";
+			if(!hasVagina()) return "<b>Parse Error: No womb found for wombdescript.</b>";
+			if(arg >= vaginaTotal() || arg < 0) return "<b>Parse Error: Invalid womb description called. Womb #: " + arg + " does not exist.</b>";
+
+			//Preggo = 1/3 chance
+			if(rand(3) == 0 && isPregnant(arg))
+			{
+				descriptions++;
+				buffer += RandomInCollection(["pregnant","pregnant","gravid","gravid","impregnated","impregnated"]);
+			}
+			else if(rand(3) && !isPregnant(arg) && inHeat())
+			{
+				descriptions++;
+				buffer += RandomInCollection(["cum-hungry","baby-craving","sex-starved","spunk-starved","breed-hungry","extra-fertile","sperm-sucking"]);
+			}
+			if(descriptions > 0) buffer += " ";
+			buffer += RandomInCollection(["womb", "womb", "uterus"]);
+			return buffer;
 		}
 		public function multiCockDescript(dynamicLength:Boolean = false,includeIndefiniteArticle:Boolean = false): String {
 			if (cocks.length < 1) return "<b>Error: multiCockDescript() called with no penises present.</b>";

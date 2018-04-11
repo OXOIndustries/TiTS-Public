@@ -192,7 +192,12 @@ public function annoFollowerApproach():void
 	if (flags["KAEDE_EXHIBITIONISM"] >= 10 && rand(10) == 0 && flags["ANNOxKAEDE_LAST_DAY"] != undefined && flags["ANNOxKAEDE_LAST_DAY"] < days - 7 && ((hasMetKaede() && haveFuckedAnno() && shipLocation == "TAVROS HANGAR") || (kaedeCouldBeOnNewCanadaRepeats() && shipLocation == "CANADA1"))) 
 	{
 		annoXKaedeWalkinPetPlayIntro();
-	} 
+	}
+	else if(flags["SHEKKA_ANNO_NERDOFF"] == -1)
+	{
+		shekkaAnnoFightFollowup();
+		return;
+	}
 	else 
 	{
 		if (hours >= 6 && hours <= 11 || hours >= 14 && hours <= 20) 

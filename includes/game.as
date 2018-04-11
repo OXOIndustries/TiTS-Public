@@ -2495,6 +2495,11 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 		{
 			eventQueue.push(annoxErraIntro);
 		}
+		//Shekka/Anno shit
+		if(pc.hasGenitals() && annoIsCrew() && shekkaIsCrew() && flags["SHEKKA_ANNO_NERDOFF"] == undefined && rand(4) == 0)
+		{
+			eventQueue.push(shekkaAndAnnoNerdOff);
+		}
 	}
 	
 	//Procs on ship exit:

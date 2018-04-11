@@ -19,6 +19,11 @@ public function approachCrewShekka(back:Boolean = false):void
 	clearOutput();
 	showShekka();
 	author("SomeKindofWizard");
+	if(flags["SHEKKA_ANNO_NERDOFF"] == -1)
+	{
+		shekkaAnnoFightFollowup();
+		return;
+	}
 	if(back)
 	{
 		output("Shekka’s still there, cute as ever. Did you need anything else from her?");
@@ -752,7 +757,7 @@ public function dontShareBedWithShekka():void
 public function shekkaBedIntroWithAnnoProc():void
 {
 	clearOutput();
-	showBust(annoBustDisplay(),"SHEKKA");
+	showBust(annoBustDisplay(),shekkaBustDisplay());
 	showName("ANNO &\nSHEKKA");
 	author("SomeKindofWizard");
 	output("You’re partway to pulling off your [pc.clothes] when there’s a gentle tap on your leg. <i>“Hey, [pc.name]. Can’t help but notice that your bed is looking awfully not-full-of-Raskvel. Fancy changing that?”</i>");
@@ -812,7 +817,7 @@ public function kickShekkaOuttaBed():void
 public function bothOfYouShekka():void
 {
 	clearOutput();
-	showBust(annoBustDisplay(),"SHEKKA");
+	showBust(annoBustDisplay(),shekkaBustDisplay());
 	showName("ANNO &\nSHEKKA");
 	author("SomeKindofWizard");
 	//Both of you
@@ -836,7 +841,7 @@ output("\n\n//Next: sleep as normal, next day");*/
 public function sleepWithJustAnno():void
 {
 	clearOutput();
-	showBust(annoBustDisplay(),"SHEKKA");
+	showBust(annoBustDisplay(),shekkaBustDisplay());
 	showName("ANNO &\nSHEKKA");
 	author("SomeKindofWizard");
 	output("You run your fingers through your [pc.hair], looking over the two of them and trying to keep your expression plain. It may seem unfair, but Anno was here first. It’s not right to supplant her just because of that.");
@@ -853,7 +858,7 @@ public function sleepWithJustAnno():void
 public function sleepWithJustShekka():void
 {
 	clearOutput();
-	showBust(annoBustDisplay(),"SHEKKA");
+	showBust(annoBustDisplay(),shekkaBustDisplay());
 	showName("ANNO &\nSHEKKA");
 	author("SomeKindofWizard");
 	output("It is true that Anno doesn’t particularly have any issues with finding companions... whereas if Shekka is struggling...");
@@ -971,6 +976,9 @@ public function shekkaCrewSexMenu():void
 	//MilkQ over 1000
 	if(pc.milkQ() >= 1000 && pc.isLactating()) addButton(3,"FeedMilk",shekkaMilkDranking,undefined,"FeedMilk","Feed her some of the copious milk you’re carrying around.");
 	else addDisabledButton(3,"FeedMilk","Feed Shekka Some Milk","You need to be lactating quite heavily to satisfy the little raskvel with your teats alone.");
+
+	if(flags["SHEKKA_ANNO_NERDOFF"] != undefined && flags["SHEKKA_ANNO_NERDOFF"] != -1) addButton(4,"Anno Comp.",shekkaAnnoVibeOffpre,true,"Anno Competition","Have your two mechanically-inclined crew-mates see who can make the more stimulating sex-toy.\n\n<b>Warning:</b> Something will be inserted into an orifice.");
+	else addDisabledButton(4,"Locked","Locked","This event requires both Anno and Shekka as crew members.");
 
 	addButton(14,"Back",approachCrewShekka,true);
 }
@@ -1796,4 +1804,566 @@ public function shekkaCrewFutaGrindsFinish():void
 	processTime(30+rand(5));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+//Shekka & Anno Nerd-Off Event
+//Doing this or having Anno and Shekka share a bed at the same time with you will unlock their threesome stuff!
+//Has a random chance of occurring on the ship if Shekka and Anno are on it.
+public function shekkaAndAnnoNerdOff():void
+{
+	clearOutput();
+	showName("AN\nARGUMENT!");
+	showBust(annoBustDisplay(),shekkaBustDisplay());
+	author("SomeKindofWizard");
+	output("You’re on a wander through your ship when a little shouting can be heard coming from your room. <i>“You’re obviously wrong! They’re nothing alike!”</i> shouts Anno, arms folded beneath her cushiony chest");
+	if(anno.armor is AnnosCatsuit) output(" straining it against her jumpsuit");
+	else output(" nearly spilling them out of her blouse");
+	output(". Shekka–perched on the edge of your bed and looking frustrated–waves around a dildo in accusation.");
+
+	output("\n\n<i>“Listen, a pulse engine and a vibration unit are effectively identical! All you have to do is crank up the hertz of a pulser and you’ve got yourself a vibrator!”</i> Shekka scoffs, tossing it at the squishy Ausar.");
+
+	output("\n\nAnno catches the dildo out of the air, wagging it like a baton. <i>“There is a set difference between pulse and vibrate that goes beyond hertz! The level of sustain on each vibration is longer. Just speeding up a pulse gives you a lazy vibe that isn’t going to really rock your clit... well, clits, respectively.”</i>");
+	output("\n\nYou cough and clear your throat, and they both leap out of their hides. <i>“Ah! Uh, [pc.name],”</i> Anno begins, blushing and tucking the toy behind her back <i>“We were just–”</i>");
+	output("\n\n<i>“Arguing about sex toys?”</i> you answer, fighting down a grin and trying to keep your expression stern.");
+	output("\n\nShekka hops off of your bed, irritated. <i>“It’s not </i>just<i> sex toys, [pc.name] it’s engineering! It’s science! It’s–”</i>");
+	output("\n\n<i>“Everything!”</i> Anno finishes, just as enthused at the subject matter. <i>“From electronics to mathematics, we’ve been at each other’s throats all day!”</i> she sighs, flipping the dildo in her hands at you. When you catch it, it begins to buzz away in your grasp with lewd insistence. <i>“I’m not sure this is all such a good idea.”</i>");
+	output("\n\nYou blink slowly, eyeing the two of them over. <i>“");
+	if(pc.isNice()) output("That’s silly, it’s obvious that having someone you can argue with about nerdy stuff is something you enjoy,");
+	else if(pc.isMischievous()) output("Uh huh, that’s one-hundred percent true is it?");
+	else output("Bullshit, you love having someone to argue with,");
+	output("”</i> smugly you flip the toy end-over-end in your [pc.hand]. <i>“For one, your tail’s been wagging the entire time you two have been arguing. And Shekka’s buzzer keeps flicking on.”</i>");
+	output("\n\nAnno squints. <i>“Her what?”</i>");
+	output("\n\nIt’s the Raskvel’s turn to blush now, and she grumbles, holding her tail aloft; it buzzes loudly in agreement. <i>“I have a vibrator in my tail, shut u–”</i>");
+	output("\n\n<i>“Ohmigosh that’s awesome!”</i> Anno announces, bouncing up and down in a way that proves exceptionally distracting. <i>“Did you use vibrating motors, or puls–yip!”</i> You quiet her with an ear-pinch, smirking when she tries to turn the sad-puppy eyes on. <i>“Fiiine...”</i>");
+	output("\n\n<i>“What’s the actual problem here? Shekka you obviously like Anno, really.”</i>");
+	output("\n\nShekka sighs, flopping right back onto your bed again. <i>“Anno’s such an ass though! She thinks all Raskvel are stupid idiots who should have blown up the planet by now!”</i>");
+	output("\n\n<i>“I... may have said that, yes. And honestly it feels somewhat warranted. Some people leave their ships untended to and before you know it the whole thing’s been scrapped and a freaking warp core’s just been left out in the open bleeding radiation.”</i>");
+	output("\n\n<i>“That happened one time! And more importantly, my people will do better for themselves. I gave up everything I had into that, and [pc.name] put in so much money. It hurts to think that Raskvel are always going to be thought of as scrap-addicted fuck-bunnies.”</i>");
+	output("\n\nThere’s an edge of real pain to the red Rask’s voice, and Anno blinks a few times before looking somewhat shamefaced. <i>“I... uh... oh.”</i> She manages tactfully, twiddling her fingers before looking to you. <i>“Can we uh, get a minute?”</i>");
+	//Next: Ten minutes pass, selecting either Shekka or Anno in the talk menu will grant this follow-up.
+	output("\n\nYou step away for now. Maybe they'll work things out on their own?");
+	processTime(10);
+	flags["SHEKKA_ANNO_NERDOFF"] = -1;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	//cue up next proc :3
+}
+
+public function shekkaAnnoFightFollowup():void
+{
+	clearOutput();
+	showName("GETTING\nALONG?");
+	showBust(annoBustDisplay(),shekkaBustDisplay());
+	author("SomeKindofWizard");
+	output("When you hunt both of the girls out again, they’re both sat on your bed, scrolling through a datapad. <i>“A step up from arguing, what are you both looking at?”</i> you begin, rubbing your chin.");
+	output("\n\nAnno looks up, tail wagging idly as she gives you a bright smile. <i>“Porn!”</i>");
+	output("\n\n<i>“...Of course.”</i>");
+	output("\n\n<i>“No, but really,”</i> Shekka adds <i>“It’s one of Anno’s old colleagues doing something fucking wild with sex-toy construction. We... may or may not have restarted the pulse-versus-vibes argument. But we’ve stopped snapping at each other.”</i>");
+	output("\n\nThey do seem to be sitting an awful lot closer, and the faint scent of a horny pup wafts to your [pc.nose]. An opportunity perhaps...");
+	output("\n\n<b>If you were willing to have them test their vibrating devices on you, maybe they'll get along a little better. Would you like to try?</b>");
+	//Next, 10 minutes pass.
+	processTime(5);
+	clearMenu();
+	addButton(0,"Competition",shekkaAnnoVibeOffpre);
+	addButton(1,"Nope",nopeOutofShekkaAnnoVibeOff);
+}
+
+public function nopeOutofShekkaAnnoVibeOff():void
+{
+	clearOutput();
+	showName("\nNOPE!");
+	showBust(annoBustDisplay(),shekkaBustDisplay());
+	output("Nope! You don't want any mechanical toys stuffed inside you. <i>“I’d love to help you ladies with this, but I’ve got an urgent matter to attend to!”</i>");
+	output("\n\nYou can feel their eyes staring daggers into your back as you walk around the corner.");
+	output("\n\n<b>If you’d like to volunteer in the future, suggest it to Shekka from her sex menu.</b>");
+	flags["SHEKKA_ANNO_NERDOFF"] = 0;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function shekkaAnnoVibeOffpre(repeat:Boolean = false):void
+{
+	clearOutput();
+	showName("GETTING\nALONG?");
+	showBust(annoBustDisplay(),shekkaBustDisplay());
+	author("SomeKindofWizard");
+	//repeat intro work to summon Anno
+	if(repeat)
+	{
+		output("Begging Shekka's forgiveness, you run off to grab Anno real quick. You'll need both of them for this. It doesn't take much convincing to get your white-haired ausar-pup to follow you for a bit of fun.\n\n");
+	}
+	output("<i>“What about a competition?”</i> you posit. <i>“Both of you build something fun, and I’ll be your proud, unbiased tester.”</i>");
+	output("\n\nThe girls blink and share a look, before turning wicked smiles on you. <i>“Oh fuck you’re so on.”</i> Shekka says, hopping off of the bed and making for the back of the ship (and her impromptu workbench).");
+	output("\n\nAnno seems to agree, diving into the cupboards to pull out a bunch of her old Steeletech shit. <i>“You sit right there [pc.name]! I’ll whip up something that’ll rock your ");
+	if(pc.hasCock()) output("cock off");
+	else output("cunt into the stratosphere");
+	output("!”</i>");
+	processTime(10);
+	clearMenu();
+	addButton(0,"Next",shekkaAnnoVibeOff);
+}
+
+public function shekkaAnnoVibeOff():void
+{
+	clearOutput();
+	showBust(annoBustDisplay(true),shekkaBustDisplay(true));
+	author("SomeKindofWizard");
+	showName("DOUBLE\nFUN");
+	output("Ten minutes pass in peace, laid out across your bed observing Anno as she tightens in some little bolts and seals some wires up. Sadly she told you not to watch the actual important parts of construction; supposedly that would ruin the surprise. Once the snowy-fluffed pup seems to be finished, she fills the whole thing with a tube of clear something-or-other, and screws it tight. With a smug smile, ");
+	if(anno.armor is AnnosCatsuit) 
+	{
+		output("she unzips her jumpsuit, peeling it down with painful slowness until her breasts are able to bounce free from their confines. Her nipples grow hard as she slides the toy into her cleavage, squeezing those wonderful tits together. <i>“Gotta make sure the resin is nice and warm. Always waterproof the absolute heck out of sex toys.”</i>");
+	}
+	else
+	{
+		output("she peels out of her clothes until her breasts are able to bounce free and unrestrained. Her nipples grow hard as she slides the toy into her cleavage, squeezing those wonderful tits together. <i>“Gotta make sure the resin is nice and warm. Always waterproof the absolute heck out of sex toys.”</i>");
+	}
+	output("\n\nShekka saunters in proudly, with a dick-shaped bulge ");
+	if(shekka.hasCock()) output("pressed against her thigh");
+	else output("now featured pressed against <i>both</i> thighs");
+	output(". <i>“You have that much sense to you. Ready to lose?”</i>");
+
+	output("\n\nAnno smiles coquettishly, tail swishing about her person like a parting veil. <i>“I think we need to unwrap our lovely Captain before we get to the gifting first.”</i>");
+
+	output("\n\nThey spring on you together; a wall of fluff and scale and accommodating curves that pushes you down into the mattress. With a series of giddy wiggles and wicked smirks, they divest you of your things and toss them into a pile. The moment their eager fingers make contact with your naked [pc.skinNoun] it sends a thrill through your body, turning your [pc.nipples] into diamond-hard points.");
+
+	//Player Futa
+	if(pc.isHerm())
+	{
+		output("\n\nYour [pc.cocks] soon join");
+		if(pc.cockTotal() == 1) output("s");
+		output(" in on the fun, growing hard under a particularly loving caress from soft-fluffed digits. At the same time, Shekka’s dextrous little fingers sneak further down, even while her lips latch onto your nipple and start to suck");
+		if(pc.canLactate() && pc.isLactating()) output(", receiving a healthy dose of [pc.milk] along with your pleasured moans");
+		output(". The horny Raskvel ");
+		if(pc.balls > 0) output("slips her hand beneath your [pc.balls] with a hungry purr as she ");
+		output("runs her fingers along your [pc.pussy]");
+		if(pc.balls == 0) output(" with a hungry little purr");
+		output(". <i>“There’s always so much of you to please!”</i> Anno announces brightly, giving your member");
+		if(pc.cockTotal() > 1) output("s");
+		output(" a squeeze.");
+
+		output("\n\nYou agree with an emphatic groan, sprawled out in bliss as you’re tended to by twin lovers. But this isn’t about your partner’s’ natural talents, and you give them a pointed wiggle of your [pc.hips]. Shekka and Anno blink back to reality before eying one-another up. They retreat to the edge of your bed, retrieving their toys.");
+
+		output("\n\nAnno has to literally rummage around in her cleavage to reclaim her own vibrator, but soon she manages. After a few moments of holding it aloft like some kind of legendary sword, she pounces you once more. On the other hand, Shekka’s still fighting to reclaim hers; her skin tight suit puts up an impressive fight. Your Ausar puppyslut smugly nuzzles her way up your [pc.legOrLegs], tail wagging hard enough to set her ass to jiggling. <i>“Looks like I get to go first!”</i> she says, kissing your inner thigh.");
+
+		output("\n\nShe grows so close to your slavering slit she’s nearly kissing it");
+		if(pc.balls > 0) 
+		{
+			if(pc.ballDiameter() < 6) output(", forced to wear your [pc.balls] like a hat");
+			else output(", forced to hold your massive testes to the side");
+		}
+		output(". At the same time your [pc.cock] drools liberal quantities of [pc.cumFlavor] pre onto her head, ");
+		if(pc.cumQ() >= 1000) output("in large enough quantities to utterly soak her ears");
+		else output("creating a little spunky crown");
+		output(". <i>“Fuck you smell so good, [pc.name]... I could just eat you up. Alas,”</i> Anno begins, pressing the head of her toy up against your [pc.cunt]. <i>“This is for you, not me.”</i>");
+
+		output("\n\n");
+		if(pc.vaginas[0].looseness() > 2) output("You aren’t a tight [pc.boyGirl] by any stretch of the imagination but she makes sure to run the smooth faux-cock around your inner walls, teasing as much sensitive flesh as she can");
+		else output("It’s a good thing their teasing has you wetter than an Ausar bachelorette party, as your vice-like cunt still attempts to slow down the artificial penetration");
+		output(". Shekka sighs after losing out on her attempt to go first, instead undressing herself properly. While Anno draws out the pleasurable sensation of grinding her toy around the insides of your pliable pussy, the horny little Rask strips slowly out of her jumpsuit. Her nipples look hard enough to cut glass, and a musical jingle from her ears accompanies the muted purr of a zipper being drawn down. As always, her impossibly wonderful hips hold up the descent of her suit.");
+		output("\n\nAnno blinks up at you, noticing how your attention has shifted away, before tutting. <i>“Now-now [pc.name], you might want to be ready for this.”</i>");
+		output("\n\n<i>“Wh-ohfuck!”</i> you manage to gasp as the fluffy scientist flicks a hidden switch. The toy buried up to its limits in you doesn’t so much vibrate as it does explode. Anno’s knuckle bashes gently into your clit as she drills your twat with authoritative thrusts, and the vibrator sends a constant barrage of shocks throughout your body, rocking you from your pussy-lips to your [pc.womb]. It steals the breath from you, and you clench the mattress hard enough to ");
+		if(!pc.hasClawedHands()) output("make your nails sting");
+		else output("damage the bedding with your claws");
+		output(". Not that this has any impact on Anno; if anything drawing such a wicked reaction out of you has her thrusting even faster, stirring your pussy up until the bedding is drenched in liquid love and your prick");
+		if(pc.cockTotal() > 1) output("s are so hard they throb");
+		else output("is so hard it throbs");
+		output(" painfully.");
+
+		output("\n\nWhilst distracted, a fully-undressed Shekka has climbed back up to you, and her fingers deftly circle your [pc.nipples]. <i>“Hey now, if you cum from just this you won’t be able to manage mine!”</i>");
+
+		output("\n\nYour intelligent reply of <i>“mnf- hrrf- ahn!”</i> doesn’t appear to convince her, and she turns her attention to your lower-half. In particular your aching member");
+		if(pc.cockTotal() > 1) output("s");
+		output(".");
+
+		output("\n\n<i>“Well, if you’re going to make me wait...”</i> Shekka mumbles, before sitting herself on your [pc.tummy]. Her ass grinds against your ");
+		if(pc.tone >= 80) output("washboard abs");
+		else if(pc.tone < 20) output("sultry squish");
+		else output("[pc.belly]");
+		output(", leaving a trail of her own excitement as it sets her front-mounted clit to tingling. Paying attention to this still proves to be a challenge with eight inches of hardcore vibrations hilted in your drenched cunt, but a hot breath against your [pc.cockHead] draws you temporarily back to reality.");
+		
+		output("\n\n<i>“Hey!”</i> Anno whines as Shekka wraps her lips around your bone, sucking loudly and coiling her sinuous tongue around as much of it as she can. <i>“Whatever, you only make [pc.name]’s day even harder. Are you sure you want to secure my victory?”</i>");
+
+		output("\n\nShekka mumbles something that might be a ‘Fuck you’, but it’s hard to be heard with a mouthful of dick. Your Ausar lover just smiles smugly, rubbing one of Shekka’s expansive ears. Although the red-scaled cutie tries to look annoyed with her, you can feel the way her pussy grows juicier. It requires a force of will with an assault on both ends, you bring your nerveless fingers back under control, gripping the base of Shekka’s tail. Your horny Rask gasps as you stroke it like a prick");
+		if(shekka.hasCock()) output(", before reaching around to jerk off her actual horse-cock, earning a handful of salty musk");
+		output(".");
+
+		output("\n\nAnno huffs, sliding her buzzing toy out of you in order to lick up your sweet feminine slickness. <i>“I feel like this defeats the point of a scientific test.”</i>");
+		output("\n\nIn between gasps for breath you manage to eke out some words. <i>“You’ll just have to do a good job too when it’s Shekka’s turn.”</i> You can tell Anno isn’t truly annoyed, considering the addition of her own particular horny scent mingling in the air, and the way her great fluffy tail hasn’t ceased wagging away cheerfully.");
+		output("\n\nStill, she places a hand on Shekka’s forehead, pushing her gently off of your cock. <i>“Your go short-stuff.”</i>");
+		output("\n\nWhen Shekka lifts herself off of you, a trail of her own lubricants connects you two in a teasing strand. Before you can reach for it, Anno leans past your crotch and gives Shekka’s muff a slurp. She yelps in shock, nearly slipping back down onto you again. <i>“Fff... keep that up and I’ll pin you down myself, you horn-dog.”</i>");
+		output("\n\nAnno only giggles, climbing backwards off of the bed with a lick of her lips. <i>“I’ll just have to get naked too. Hurry up Shekka! Don’t want our adorable Captain to get soft again.”</i>");
+		output("\n\nThe Raskvel snorts, flicking the head of ");
+		if(pc.cockTotal() > 1) output("one of ");
+		output("your cock");
+		if(pc.cockTotal() > 1) output("s");
+		output(". <i>“Fat chance of that.”</i>");
+
+		output("\n\nIt takes a little readjustment");
+		if(pc.hasCock()) output(", especially to get your [pc.cocks] out of the way,");
+		output(" but soon Shekka has Anno’s previous position claimed. Anno on the other hand has taken up the duty of undressing.");
+
+		//Steele suit
+		if(anno.armor is AnnosCatsuit) output("\n\nEvery stretchy, flesh-hugging inch she tugs down seems to peel away like a second skin, revealing luscious shining curves. Although the suit had been dropped down to her expansive cleavage it catches on her nipples, desperate to keep clung to Anno’s body. Not that you could blame any article of clothing for wanting to remain there.");
+		//Clothing
+		else output("\n\nEvery bit of fabric she pulls away seems to peel away like wrapping paper on a Christmas present, revealing luscious, shining curves. Although her top catches on her nipples, desperate to hang on to the busty Anno's body, you can't blame it. Anyone would want to hang on there.");
+
+		//Merge
+		output("\n\nAt the same time, your attention becomes torn between the show and your red-scaled sweetheart, who now holds up her own creation. Compared to Anno’s more standard-shape vibrator, her toy is thicker, covered with little nodules. Despite being mid-striptease Anno’s tail goes up, translating her intrigue <i>“Where’d you get the stuff for that in just ten minutes?”</i>");
+
+		output("\n\n<i>“Pfft, I just made the bumps with glue and rubber and then shrink-sealed it with non-porous composite. It even makes them squishy!”</i> Shekka announces proudly, waving it around. It’s perhaps only six inches, but the girth straight-through has to be three inches or so... It’s a good thing Anno went first; at least you’re prepared now. <i>“This is gonna rock your world, [pc.name].”</i>");
+
+		output("\n\nShekka presses the broad head of her nodule-laden sextoy flush against your dewy pussy-lips, ass up in the air and wiggling from side-to-side while she draws the moment out.");
+
+		output("\n\nPoor Anno is given an eyeful of the scaly girl’s callipygian ass");
+		if(shekka.hasCock()) output(",");
+		else output(" and");
+		output(" soaking cunt");
+		if(shekka.hasCock()) output(", and pre-oozing horse-shaft");
+		output(". By the time she’s finally finished ");
+		if(anno.armor is AnnosCatsuit) output("peeling herself out of her suit");
+		else output("slipping out of her pants");
+		output(" the unique scent of her horny quim sets your blood to boiling. Surprisingly enough, the little Rask patiently waits, just grinding her vibrator against your twat while Anno assumes the position.");
+
+		output("\n\nThe fluffy scientist pauses to give Shekka’s ass a nice, deep squeeze");
+		if(shekka.hasCock()) output(", before reaching down to stroke her cock a few times");
+		output(". <i>“Mmmm, I approve,”</i> she says, uncaring of how the red-scaled alien scowls at her. She finally hops up onto the bed, immediately lining her dripping pussy up with your mouth. Thick droplets of her juices fall to your ");
+		if(!pc.hasMuzzle()) output("mouth");
+		else if(rand(2) == 0) output("muzzle");
+		else output("maw");
+		output(" with a gentle pitter-patter as the lights seem to go out in an eclipse of Ausar-ass.");
+
+		output("\n\nOnce Anno is properly situated on your face she gives Shekka a thumbs up <i>“Now we get to find out how your stupid pulse batteries shape u-aaahhn~”</i> Her sentence peters out into a slit-wettening, shaft-hardening moan, fingers digging into your abdomen as your ");
+		if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("sinuous tongue drills into her sopping-wet cunt until it’s practically teasing her cervix");
+		else output("talented taster grinds beneath her hood and sets her already-juicy cunt to squirting");
+		output(", immediately making a moist mess of your face.");
+
+		output("\n\n<i>“Don’t drown [pc.himHer]!”</i> Shekka grunts, reaching forward to bap Anno on the nose. <i>“At least not yet,”</i> she adds, before her more occupied hand begins its unstoppable trajectory into your waiting cunny. Her toy’s girth drives home into your spreading womanhood; each bump on it grinds against sensitive cunt-flesh and sets clusters of nerves to sparking. Before you get a chance to be completely overwhelmed by a twat-stuffing, the cheekily-grinning Ausar opens wide with a loud <i>’Aaaaah!’</i> before gulping up your cock, ");
+		if(pc.cocks[0].cLength() > 14) output("slurping its [pc.cockHead]");
+		else if(pc.cocks[0].cLength() > 7) output("hilting herself face-first onto your girthy [pc.cockNoun]");
+		else output("practically swallowing the entirety of your modest [pc.cock]");
+		output(".");
+
+		output("\n\nWarmth and wetness envelops your prick, but your attempts to gasp are stifled by having a faceful of pup-pussy. Instead you’re left with no choice but to eat her out until nectar dribbles down your chin. Shekka moans, low and deep as the vibrator is pressed into you until her knuckles are pressed up against your [pc.pussy]. Of course, it hasn’t started vibrating yet. Blessedly the girl riding your face lifts herself up in order to properly ");
+		if(pc.cocks[0].cLength() > 14) output("suck on");
+		else if(pc.cocks[0].cLength() > 7) output("deepthroat");
+		else output("slobber the entirety of");
+		output(" your [pc.cock] just in time for Shekka to find the switch on her toy.");
+
+		output("\n\nThe few lungfuls of cum-laden air you manage to gulp down between mouthfuls of Ausar are nearly blown right out of you again as your depths are turned to jelly. Deep, hard waves of pleasure strain the already stretchy walls of your [pc.pussy] and it’s only thanks to the twinned weights pressed against you that you can’t thrash yourself free.");
+		output("\n\n<i>“Hah! You see that slut-pup? This is how you make a toy!”</i> the shorter Rask proudly announces, artfully twisting her wrist a little to grind the various pulsing bumps against nervelessly-twitching flesh.");
+		output("\n\nAnno harrumphs, returning her attention to your [pc.cock], now soaked enough to jerk off at a furious pace. She opens wide, holding her mouth over your twitching [pc.cockHead] and making pleading little whimpers. Her ass quivers above your face, and you decide to finish the poor pup off, smacking both of your hands down on each squeezable cheek. One long, hard lick across her clit, followed by drilling into her juicy cunt with ");
+		if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("your sinuous [pc.tongue] until it’s pressing down on her cervix");
+		else output("your talented [pc.tongue]");
+		output(".");
+
+		output("\n\nThe Ausar’s gasp is immediately muffled by a mouthful of your cock, but her eyes roll back in orgasm as she paints your maw with sticky feminine cum. Shekka proudly whoops and despite trying to bend all of your will to holding back your own pending finish, she toy-fucks your twat until you too are brought to your untimely end.");
+
+		output("\n\nCalling the orgasmic cascade simply ‘cumming’ would do a disservice, as your [pc.vaginaNoun] tightens up so much there’s a momentary fear that you’ll crack the brand-new toy before it becomes impossible to think. Your [pc.cocks] join");
+		if(pc.cockTotal() == 1) output("s");
+		output(" in on the fun, blasting ropes of cum into your faithful canine lover’s mouth.");
+
+		//Small loads
+		if(pc.cumQ() < 25) output("\n\nYour reserves are used up quickly however, and Anno gurgles your [pc.cum] noisily before leaning forwards. Shekka’s eyes widen in surprise as their lips meet, before lowering to lusty half-lids as she’s snowballed a heaping helping of your [pc.cumFlavor] spunk.");
+		//Average loads
+		else if(pc.cumQ() < 250) output("\n\nAlthough plenty of your seed is wasted on Anno’s cheeks, she greedily gurgles your [pc.cum], tail swishing cheerfully. Shekka looks as though she’s about to swipe some off of the fluffy pup-scientist before yelping in alarm. Anno leans in, quickly snatching Shekka’s lips and making a mess of the red-scaled cutie’s face with a smearing of [pc.cumFlavor] spunk before snowballing a gobful of cock-sauce back and forth.");
+		//Big ol’ juicy cummy-cums
+		else 
+		{
+			output("\n\n could tell what’s about to follow as your ");
+			if(pc.balls == 1) output("heaving ball tenses");
+			else if(pc.balls > 1) output("heaving balls tense");
+			else output("engorged prostate tenses");
+			output(" up, but Anno simply closes her eyes and waits. Your bitch-stuffing cum-cannon unloads, immediately filling the poor girl’s mouth, painting her face, and utterly slathering her bouncy breasts in [pc.cum]. Shekka bursts out laughing, unable to keep herself out of the splash-zone. Nude red scales are liberally glazed in [pc.cumColor]. <i>“Damnit [pc.name], you’ve made a total mess of us bo– mnf!”</i>");
+			output("\n\nShe’s caught off-guard by Anno, dragged by fluffy (albeit cum-matted) arms into the squishy-scientist’s embrace. Their tongues entwine, passing your [pc.cum] around.");
+		}
+		//Merge
+		output("\n\nOnce they finally finish toying with your seed, the girls gulp noisily and Anno clambers off of you");
+		if(pc.cumQ() >= 250) 
+		{
+			output(", dripping cum freely");
+			if(celiseIsCrew()) output("; you’ll have to get Celise on that");
+		}
+		output(".");
+
+		output("\n\nShekka is the first to speak up before an awkward silence is allowed to develop <i>“...Soooo, what do you think, [pc.name]? Who makes the better toy?”</i>");
+		output("\n\nYou shrug helplessly, propping yourself up on shaky [pc.arms]. <i>“They were both great, in totally different ways. But the company makes it far more exciting.”</i>");
+		output("\n\nAnno smiles softly, looking Shekka up-and-down. <i>“It was fun, I’m big enough to admit that. But I’m totally going to win next time.”</i>");
+		output("\n\n<i>“You wish, slut-pup.”</i>");
+		output("\n\n<i>Oh boy...</i>");
+		//Next: 40 minutes pass, back to ship menu.
+		processTime(40);
+		pc.orgasm();
+		if(pc.cumQ() >= 1000) pc.applyCumSoaked();
+	}
+	//Player Cock/Ass
+	else if(pc.hasCock())
+	{
+		output("\n\nYour [pc.cocks] soon join");
+		if(pc.cockTotal() == 1) output("s");
+		output(" in on the fun, growing hard under a particularly loving caress from soft-fluffed digits. At the same time, Shekka’s dexterous little fingers sneak further down, even while her lips latch onto your nipple and start to suck");
+		if(pc.canLactate() && pc.isLactating()) output(", receiving a healthy dose of [pc.milk] along with your pleasured moans");
+		output(". The horny Raskvel ");
+		if(pc.balls > 0) output("slips her hand beneath your [pc.balls] with a hungry purr as she ");
+		output("presses a teasing fingertip against your eager [pc.butthole]");
+		if(pc.balls == 0) output(" with a hungry little purr");
+		output(". <i>“There’s always so much of you to please!”</i> Anno announces brightly, giving your member");
+		if(pc.cockTotal() > 1) output("s");
+		output(" a squeeze.");
+
+		output("\n\nYou agree with an emphatic groan, sprawled out in bliss as you’re tended to by twin lovers. But this isn’t about your partners’ natural talents, and you give them a pointed wiggle of your [pc.hips]. Shekka and Anno blink back to reality before eying one-another up. They retreat to the edge of your bed, retrieving their toys.");
+
+		output("\n\nAnno has to literally rummage around in her cleavage to reclaim her own vibrator, but soon she manages. After a few moments of holding it aloft like some kind of legendary sword she pounces you once more. On the other hand, Shekka’s still fighting to reclaim hers; her skin tight suit puts up an impressive fight. Your Ausar puppyslut smugly nuzzles her way up your [pc.legOrLegs], tail wagging hard enough to set her ass to jiggling. <i>“Looks like I get to go first!”</i> she says, kissing your inner thigh.");
+
+		output("\n\nShe grows so close to your tightening ring she’s nearly kissing it");
+		if(pc.balls > 0) 
+		{
+			if(pc.ballDiameter() < 6) output(", forced to wear your [pc.balls] like a hat");
+			else output(", forced to hold your massive testes to the side");
+		}
+		output(". At the same time your [pc.cock] drools liberal quantities of [pc.cumflavor] pre onto her head, ");
+		if(pc.cumQ() >= 1000) output("in large enough quantities to utterly soak her ears");
+		else output("creating a little spunky crown");
+		output(". <i>“Fuck you look so good, [pc.name]... I could just eat you up. Alas,”</i> Anno begins, pressing the head of her toy up against your [pc.asshole]. <i>“This is for you, not me.”</i>");
+
+		output("\n\n");
+		if(pc.ass.looseness() > 2) output("You aren’t a tight [pc.boyGirl] by any stretch of the imagination but she makes sure to stir up your insides with the smooth faux-cock");
+		else output("It’s a good thing she gave the head of it a nice long slurp as your vice-tight asshole still attempts to slow down the artificial penetration");
+		output(". Shekka sighs after losing out on her attempt to go first, instead undressing herself properly. While Anno draws out the pleasurable sensation of grinding her toy around the depths of your bowels, the horny little Rask strips slowly out of her jumpsuit. Her nipples look hard enough to cut glass, and a musical jingle from her ears accompanies the muted purr of a zipper being drawn down. As always, her impossibly wonderful hips hold up the descent of her suit.");
+		output("\n\nAnno blinks up at you, noticing how your attention has shifted away, before tutting. <i>“Now-now [pc.name], you might want to be ready for this.”</i>");
+		output("\n\n<i>“Wh-ohfuck!”</i> you manage to gasp as the fluffy scientist flicks a hidden switch. The toy buried up to its limits in you doesn’t so much vibrate as it does explode. Anno’s free fingers dig into your thigh as she drills your pliant asshole with authoritative thrusts, and the vibrator sends a constant barrage of shocks throughout your body, rocking you from your now-gaping ass to what feels like the bottom of your stomach. It steals the breath from you, and you clench the mattress hard enough to ");
+		if(!pc.hasClawedHands()) output("make your nails sting");
+		else output("damage the bedding with your claws");
+		output(". Not that this has any impact on Anno; if anything drawing such a wicked reaction out of you has her thrusting even faster, spitting on her loving toy every time so that each jackhammering motion has the bedding beneath your ass drenched in liquid love and your [pc.EachCock] is so hard that it throbs painfully.");
+
+		output("\n\nWhilst distracted, a fully-undressed Shekka has climbed back up to you, and her fingers deftly circle your [pc.nipples]. <i>“Hey now, if you cum from just this you won’t be able to manage mine!”</i>");
+		output("\n\nYour elegant reply of <i>“mnf- hrrf- ahn!”</i> doesn’t appear to convince her, and she turns her attention to your lower-half. In particular your aching member");
+		if(pc.cockTotal() > 1) output("s");
+		output(".");
+
+		output("\n\n<i>“Well, if you’re going to make me wait...”</i> Shekka mumbles, before sitting herself on your [pc.tummy]. Her ass grinds against your ");
+		if(pc.tone >= 80) output("washboard abs");
+		else if(pc.tone < 20) output("sultry squish");
+		else output("[pc.belly]");
+		output(", leaving a trail of her own love juices as it sets her front-mounted clit to tingling. Paying attention to this proves to be a challenge with eight inches of hardcore vibrations hilted in your rhythmically-clenching anal muscles, but a hot breath against your [pc.cockHead] draws you temporarily back to reality.");
+
+		output("\n\n<i>“Hey!”</i> Anno whines as Shekka wraps her lips around your bone, sucking loudly and coiling her sinuous tongue around as much of it as she can. <i>“Whatever... you only make [pc.name]’s day even harder. Are you sure you want to secure my victory?”</i>");
+
+		output("\n\nShekka mumbles something that might be a ‘Fuck you’, but it’s hard to be heard with a mouthful of dick. Your Ausar lover just smiles smugly, rubbing one of Shekka’s expansive ears. Although the red-scaled cutie tries to look annoyed with her, you can feel the way her pussy grows juicier. It requires a force of will with an assault on both ends, you bring your nerveless fingers back under control, gripping the base of Shekka’s tail. Your horny Rask gasps as you stroke it like a prick");
+		if(shekka.hasCock()) output(", before reaching around to jerk off her actual horse-cock, earning a handful of salty musk");
+		output(".");
+		output("\n\nAnno huffs, sliding her buzzing toy out of you before pressing it against the base of your [pc.cock]. <i>“I feel like this defeats the point of a scientific test.”</i>");
+		output("\n\nIn between gasps for breath you manage to eke out some words. <i>“You’ll just have to do a good job too when it’s Shekka’s turn.”</i> You can tell Anno isn’t truly annoyed, considering the addition of her own particular horny scent mingling in the air, and the way her great fluffy tail hasn’t ceased wagging away cheerfully.");
+		output("\n\nStill, she places a hand on Shekka’s forehead, pushing her gently off of your cock. <i>“Your go short-stuff.”</i>");
+		output("\n\nWhen Shekka lifts herself off of you, a trail of her own lubricants connects you two in a teasing strand. Before you can reach for it, Anno leans past your crotch and gives Shekka’s muff a slurp. She yelps in shock, nearly slipping back down onto you again. <i>“Fff... keep that up and I’ll pin you down myself, you horn-dog.”</i>");
+		output("\n\nAnno only giggles, climbing backwards off of the bed with a lick of her lips. <i>“I’ll just have to get naked too. Hurry up Shekka! Don’t want our adorable Captain to get soft");
+		if(!pc.isErect()) output(" again");
+		output(".”</i>");
+		output("\n\nThe Raskvel snorts, flicking the head of [pc.oneCock]. <i>“Fat chance of that.");
+		if(pc.hasPriapism()) output(" [pc.name] couldn't go soft if [pc.heShe] wanted to.");
+		output("”</i>");
+		output("\n\nIt takes a little readjustment");
+		if(pc.biggestCockLength() > 20) output(", especially to get your [pc.cocks] out of the way,");
+		output(" but soon Shekka has Anno’s previous position claimed. Your pup on the other hand has taken up the duty of undressing.");
+
+		//Steele suit
+		if(anno.armor is AnnosCatsuit) output("\n\nEvery stretchy, flesh-hugging inch she tugs down seems to peel away like a second skin, revealing luscious shining curves. Although the suit had been dropped down to her expansive cleavage it catches on her nipples, desperate to keep clung to Anno’s body. Not that you could blame any article of clothing for wanting to remain there.");
+		//Clothing
+		else output("\n\nEvery bit of fabric she pulls away seems to peel away like wrapping paper on a Christmas present, revealing luscious, shining curves. Although her top catches on her nipples, desperate to hang on to the busty Anno's body, you can't blame it. Anyone would want to hang on there.");
+
+		//Merge
+		output("\n\nAt the same time, your attention becomes torn between the show and your red-scaled sweetheart, who now holds up her own creation. Compared to Anno’s more standard-shape vibrator, her toy is thicker, covered with little nodules. Despite being mid-striptease Anno’s tail goes up, translating her intrigue <i>“Where’d you get the stuff for that in just ten minutes?”</i>");
+
+		output("\n\n<i>“Pfft, I just made the bumps with glue and rubber and then shrink-sealed it with nonporous composite. It even makes them squishy!”</i> Shekka announces proudly, waving it around. It’s perhaps only six inches, but the girth straight-through has to be three or so... It’s a good thing Anno went first; at least you’re prepared now. <i>“This is gonna rock your world, [pc.name].”</i>");
+
+		output("\n\nShekka presses the broad head of her nodule-laden sextoy flush against your well-used asshole, ass up in the air and wiggling from side-to-side while she draws the moment out.");
+
+		output("\n\nPoor Anno is given an eyeful of the scaly girl’s callipygian ass");
+		if(shekka.hasCock()) output(",");
+		else output(" and");
+		output(" soaking cunt");
+		if(shekka.hasCock()) output(", and pre-oozing horse-shaft");
+		output(". By the time she’s finally finished ");
+		if(anno.armor is AnnosCatsuit) output("peeling herself out of her suit");
+		else output("slipping out of her pants");
+		output(" the unique scent of her horny quim sets your blood to boiling. Surprisingly enough, the little Rask patiently waits, just grinding her vibrator between your buttcheeks while Anno assumes the position.");
+
+		output("\n\nThe fluffy scientist pauses to give Shekka’s ass a nice, deep squeeze");
+		if(shekka.hasCock()) output(", before reaching down to stroke her cock a few times");
+		output(". <i>“Mmmm~ I approve,”</i> she says, uncaring of how the red-scaled alien scowls at her. She finally hops up onto the bed, immediately lining her dripping pussy up with your mouth. Thick droplets of her juices fall to your ");
+
+		if(!pc.hasMuzzle()) output("mouth");
+		else if(rand(2) == 0) output("muzzle");
+		else output("maw");
+		output(" with a gentle pitter-patter as the lights seem to go out in an eclipse of Ausar-ass.");
+
+		output("\n\nOnce Anno is properly situated on your face she gives Shekka a thumbs up <i>“Now we get to find out how your stupid pulse batteries shape u-aaahhn!”</i> Her sentence peters out into a slit-wettening, shaft-hardening moan, fingers digging into your abdomen as your ");
+		if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("sinuous tongue drills into her sopping-wet cunt until it’s practically teasing her cervix");
+		else output("talented taster grinds beneath her hood and sets her already-juicy cunt to squirting");
+		output(", immediately making a moist mess of your face.");
+
+		output("\n\n<i>“Don’t drown [pc.himHer]!”</i> Shekka grunts, reaching forward to bap Anno on the nose. <i>“At least not yet,”</i> she adds, before her more occupied hand begins its unstoppable trajectory into your waiting ");
+		if(!silly) output("sphincter");
+		else output("boipussy");
+		output(". Her toy’s girth drives home into your spreading womanhood; each bump on it grinds against sensitive inner-walls and sets clusters of nerves to sparking. Before you get a chance to be completely overwhelmed by an ass-stuffing, the cheekily-grinning Ausar opens wide with a loud <i>’Aaaaah!’</i> before gulping up your cock, ");
+		if(pc.cocks[0].cLength() > 14) output("slurping its [pc.cockHead]");
+		else if(pc.cocks[0].cLength() > 7) output("hilting herself face-first onto your girthy [pc.cockNoun]");
+		else output("practically swallowing the entirety of your modest [pc.cock]");
+		output(".");
+
+		output("\n\nWarmth and wetness envelops your prick, but your attempts to gasp are stifled by having a faceful of pup-pussy. Instead you’re left with no choice but to eat her out until nectar dribbles down your chin. Shekka moans, low and deep as the vibrator is pressed into you until her knuckles are pressed up against your [pc.vagina]. Of course, it hasn’t started vibrating yet. Blessedly the girl riding your face lifts herself up in order to properly ");
+		if(pc.cocks[0].cLength() > 14) output("suck on");
+		else if(pc.cocks[0].cLength() > 7) output("deepthroat");
+		else output("slobber the entirety of");
+		output(" your [pc.cock] just in time for Shekka to find the switch on her toy.");
+
+		output("\n\nThe few lungfuls of cum-laden air you manage to gulp down between mouthfuls of Ausar are nearly blown right out of you again as your depths are turned to jelly. Deep, hard waves of pleasure strain the already stretchy walls of your innards and it’s only thanks to the twinned weights pressed against you that you can’t thrash yourself free.");
+		output("\n\n<i>“Hah! You see that slut-pup? This is how you make a toy!”</i> the shorter Rask proudly announces, artfully twisting her wrist a little to grind the various pulsing bumps against nervelessly-twitching flesh.");
+		output("\n\nAnno harrumphs, returning her attention to your [pc.cock], now soaked enough to jerk off at a furious pace. She opens wide, holding her mouth over your twitching [pc.cockHead] and making pleading little whimpers. Her ass quivers above your face, and you decide to finish the poor pup off, smacking both of your hands down on each squeezable cheek. One long, hard lick across her clit, followed by drilling into her juicy cunt with ");
+		if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("your sinuous [pc.tongue] until it’s pressing down on her cervix");
+		else output("your talented [pc.tongue]");
+		output(".");
+		output("\n\nThe Ausar’s gasp is immediately muffled by a mouthful of your cock, but her eyes roll back in orgasm as she paints your maw with sticky feminine cum. Shekka proudly whoops and despite trying to bend all of your will to holding back your own pending finish, she toy-fucks your prostate until you too are brought to your untimely end.");
+		output("\n\nCalling the orgasmic cascade simply ‘cumming’ would do a disservice, as your body works itself into overdrive, pre-cum literally being milked out of you by pressure on your rectal pleasure-buzzer.Your [pc.ass] tightens up so much there’s a momentary fear that you’ll crack the brand-new toy before it becomes impossible to think. Your [pc.cocks] join");
+		if(pc.cockTotal() == 1) output("s");
+		output(" in on the fun, blasting ropes of cum into your faithful canine lover’s mouth.");
+
+		//Small loads
+
+		if(pc.cumQ() < 25) output("\n\nYour reserves are used up quickly however, and Anno gurgles your [pc.cum] noisily before leaning forwards. Shekka’s eyes widen in surprise as their lips meet, before lowering to lusty half-lids as she’s snowballed a heaping helping of your [pc.cumFlavor] spunk.");
+		//Average loads
+		else if(pc.cumQ() < 250) output("\n\nAlthough plenty of your seed is wasted on Anno’s cheeks, she greedily gurgles your [pc.cum], tail swishing cheerfully. Shekka looks as though she’s about to swipe some off of the fluffy pup-scientist before yelping in alarm. Anno leans in, quickly snatching Shekka’s lips and making a mess of the red-scaled cutie’s face with a smearing of [pc.cumFlavor] spunk before snowballing a gobful of cock-sauce back and forth.");
+		//Big ol’ juicy cummy-cums
+		else 
+		{
+			output("\n\n could tell what’s about to follow as your ");
+			if(pc.balls == 1) output("heaving ball tenses");
+			else if(pc.balls > 1) output("heaving balls tense");
+			else output("engorged prostate tenses");
+			output(" up, but Anno simply closes her eyes and waits. Your bitch-stuffing cum-cannon unloads, immediately filling the poor girl’s mouth, painting her face, and utterly slathering her bouncy breasts in [pc.cum]. Shekka bursts out laughing, unable to keep herself out of the splash-zone. Nude red scales are liberally glazed in [pc.cumColor]. <i>“Damnit [pc.name], you’ve made a total mess of us bo– mnf!”</i>");
+			output("\n\nShe’s caught off-guard by Anno, dragged by fluffy (albeit cum-matted) arms into the squishy-scientist’s embrace. Their tongues entwine, passing your [pc.cum] around.");
+		}
+		//Merge
+		output("\n\nOnce they finally finish toying with your seed, the girls gulp noisily and Anno clambers off of you");
+		if(pc.cumQ() >= 250) 
+		{
+			output(", dripping cum freely");
+			if(celiseIsCrew()) output("; you’ll have to get Celise on that");
+		}
+		output(".");
+		output("\n\nShekka is the first to speak up before an awkward silence is allowed to develop <i>“...Soooo, what do you think, [pc.name]? Who makes the better toy?”</i>");
+		output("\n\nYou shrug helplessly, propping yourself up on shaky arms. <i>“They were both great, in totally different ways. But the company makes it far more exciting.”</i>");
+		output("\n\nAnno smiles softly, looking Shekka up-and-down. <i>“It was fun, I’m big enough to admit that. But I’m totally going to win next time.”</i>");
+		output("\n\n<i>“You wish, slut-pup.”</i>");
+		output("\n\n<i>Oh boy...</i>");
+		//Next: 40 minutes pass, back to ship menu.
+		processTime(40);
+		pc.orgasm();
+		if(pc.cumQ() >= 1000) pc.applyCumSoaked();
+	}
+	//Player Pussy
+	else
+	{
+		output("\n\nShekka’s dextrous little fingers sneak further down, even while her lips latch onto your nipple and start to suck");
+		if(pc.isLactating() || pc.canLactate()) output(", receiving a healthy dose of [pc.milk] along with your pleasured moans");
+		output(". The horny Raskvel runs her fingers along your [pc.vagina] with a hungry little purr. <i>“There’s always so much of you to please!”</i> Anno announces brightly, giving your thighs a squeeze.");
+		output("\n\nYou agree with an emphatic groan, sprawled out in bliss as you’re tended to by twin lovers. But this isn’t about your partners’ natural talents, and you give them a pointed wiggle of your [pc.hips]. Shekka and Anno blink back to reality before eying one-another up. They retreat to the edge of your bed, retrieving their toys.");
+		output("\n\nAnno has to literally rummage around in her cleavage to reclaim her own vibrator, but soon she manages. After a few moments of holding it aloft like some kind of legendary sword she pounces you once more. On the other hand, Shekka’s still fighting to reclaim hers; her skin tight suit puts up an impressive fight. Your Ausar puppyslut smugly nuzzles her way up your [pc.legOrLegs], tail wagging hard enough to set her ass to jiggling. <i>“Looks like I get to go first!”</i> she says, kissing your inner thigh.");
+		output("\n\nShe grows so close to your slavering slit she’s nearly kissing it. At the same time your feminine gulf soaks the bed beneath your ass with [pc.girlCum]. <i>“Fuck you smell so good, [pc.name]... I could just eat you up. Alas,”</i> Anno begins, pressing the head of her toy up against your [pc.cunt]. <i>“This is for you, not me.”</i>");
+		output("\n\n");
+		if(pc.vaginas[0].looseness() > 2) output("You aren’t a tight [pc.boyGirl] by any stretch of the imagination but she makes sure to run the smooth faux-cock around your inner walls, teasing as much sensitive flesh as she can");
+		else output("It’s a good thing their teasing has you wetter than an Ausar bachelorette party, as your vice-like cunt still attempts to slow down the artificial penetration");
+		output(". Shekka sighs after losing out on her attempt to go first, instead undressing herself properly. While Anno draws out the pleasurable sensation of grinding her toy around the insides of your pliable pussy, the horny little Rask strips slowly out of her jumpsuit. Her nipples look hard enough to cut glass, and a musical jingle from her ears accompanies the muted purr of a zipper being drawn down. As always, her impossibly wonderful hips hold up the descent of her suit.");
+		output("\n\nAnno blinks up at you, noticing how your attention has shifted away, before tutting. <i>“Now-now [pc.name], you might want to be ready for this.”</i>");
+		output("\n\n<i>“Wh-ohfuck!”</i> you manage to gasp as the fluffy scientist flicks a hidden switch. The toy buried up to its limits in you doesn’t so much vibrate as it does explode. Anno’s knuckle bashes gently into your clit as she drills your twat with authoritative thrusts, and the vibrator sends a constant barrage of shocks throughout your body, rocking you from your pussy-lips to your womb. It steals the breath from you, and you clench the mattress hard enough to ");
+		if(!pc.hasClawedHands()) output("make your nails sting");
+		else output("damage the bedding with your claws");
+		output(". Not that this has any impact on Anno; if anything drawing such a wicked reaction out of you has her thrusting even faster, stirring your pussy up until the bedding is drenched in liquid love and your toes are curling.");
+
+		output("\n\nWhilst distracted, a fully-undressed Shekka has climbed back up to you, and her fingers deftly circle your [pc.nipples]. <i>“Hey now, if you cum from just this you won’t be able to manage mine!”</i>");
+		output("\n\nYour intelligent reply of <i>“mnf- hrrf- ahn!”</i> doesn’t appear to convince her, and she flips around on your body, watching Anno work on your pliant pussy.");
+		output("\n\n<i>“Well, if you’re going to make me wait...”</i> Shekka mumbles, before sitting herself on your [pc.tummy]. Her ass grinds against your ");
+		if(pc.tone >= 80) output("washboard abs");
+		else if(pc.tone < 20) output("sultry squish");
+		else output("[pc.belly]");
+		output(", leaving a trail of her own excitement as it sets her front-mounted clit to tingling. Paying attention to this still proves to be a challenge with eight inches of hardcore vibrations hilted in your drenched cunt, but a hot breath against your clit draws you temporarily back to reality.");
+		output("\n\n<i>“Hey!”</i> Anno whines as Shekka’s surprisingly long tongue flicks out, attempting to wrap itself around your clit. She slurps and sucks lewdly while her hands rest on your legs. <i>“Whatever, you only make [pc.name]’s day even harder. Are you sure you want to secure my victory?”</i>");
+		output("\n\nShekka mumbles something that might be a ‘Fuck you’, but it’s hard to be heard with her tongue extended to its fullest and dancing on your most sensitive package of nerves. Your Ausar lover just smiles smugly, rubbing one of Shekka’s expansive ears. Although the red-scaled cutie tries to look annoyed with her, you can feel the way her pussy grows juicier. It requires a force of will with a dual-woman assault on your nethers, you bring your nerveless fingers back under control, gripping the base of Shekka’s tail. Your horny Rask gasps as you stroke it like a prick");
+		if(shekka.hasCock()) output(", before reaching around to jerk off her actual horse-cock, earning a handful of salty musk");
+		output(".");
+		output("\n\nAnno huffs, sliding her buzzing toy out of you in order to lick up your sweet feminine slickness. <i>“I feel like this defeats the point of a scientific test.”</i>");
+		output("\n\nIn between gasps for breath you manage to eke out some words. <i>“You’ll just have to do a good job too when it’s Shekka’s turn.”</i> You can tell Anno isn’t truly annoyed, considering the addition of her own particular horny scent mingling in the air, and the way her great fluffy tail hasn’t ceased wagging away cheerfully.");
+		output("\n\nStill, she places a hand on Shekka’s forehead, pushing her gently away from your mound. <i>“Your go short-stuff.”</i>");
+		output("\n\nWhen Shekka lifts herself off of you, a trail of her own lubricants connects you two in a teasing strand. Before you can reach for it, Anno leans past your crotch and gives Shekka’s muff a slurp. She yelps in shock, nearly slipping back down onto you again. <i>“Fff... keep that up and I’ll pin you down myself, you horn-dog.”</i>");
+		output("\n\nAnno only giggles, climbing backwards off of the bed with a lick of her lips. <i>“I’ll just have to get naked too. Hurry up Shekka! Don’t want our adorable Captain to lose traction.”</i>");
+		output("\n\nThe Raskvel snorts, flicking your spit-coated [pc.clit] in accusation. <i>“Fat chance of that.”</i>");
+		output("\n\nIt takes a little readjustment, but soon Shekka has Anno’s previous position claimed. Anno on the other hand has taken up the duty of undressing slowly for you.");
+
+		//Steele suit
+		if(anno.armor is AnnosCatsuit) output("\n\nEvery stretchy, flesh-hugging inch she tugs down seems to peel away like a second skin, revealing luscious shining curves. Although the suit had been dropped down to her expansive cleavage it catches on her nipples, desperate to keep clung to Anno’s body. Not that you could blame any article of clothing for wanting to remain there.");
+		//Clothing
+		else output("\n\nEvery bit of fabric she pulls away seems to peel away like wrapping paper on a Christmas present, revealing luscious, shining curves. Although her top catches on her nipples, desperate to hang on to the busty Anno's body, you can't blame it. Anyone would want to hang on there.");
+
+		//Merge
+		output("\n\nAt the same time, your attention becomes torn between the show and your red-scaled sweetheart, who now holds up her own creation. Compared to Anno’s more standard-shape vibrator, her toy is thicker, covered with little nodules. Despite being mid-striptease Anno’s tail goes up, translating her intrigue <i>“Where’d you get the stuff for that in just ten minutes?”</i>");
+
+		output("\n\n<i>“Pfft, I just made the bumps with glue and rubber and then shrink-sealed it with non-porous composite. It even makes them squishy!”</i> Shekka announces proudly, waving it around. It’s perhaps only six inches, but the girth straight-through has to be three or so... It’s a good thing Anno went first; at least you’re prepared now. <i>“This is gonna rock your world, [pc.name].”</i>");
+		output("\n\nShekka presses the broad head of her nodule-laden sextoy flush against your dewy pussy-lips, ass up in the air and wiggling from side-to-side while she draws the moment out.");
+
+		output("\n\nPoor Anno is given an eyeful of the scaly girl’s callipygian ass");
+		if(shekka.hasCock()) output(",");
+		else output(" and");
+		output(" soaking cunt");
+		if(shekka.hasCock()) output(", and pre-oozing horse-shaft");
+		output(". By the time she’s finally finished ");
+		if(anno.armor is AnnosCatsuit) output("peeling herself out of her suit");
+		else output("slipping out of her pants");
+		output(" the unique scent of her horny quim sets your blood to boiling. Surprisingly enough, the little Rask patiently waits, just grinding her vibrator against your twat while Anno assumes the position.");
+
+		output("\n\nThe fluffy scientist pauses to give Shekka’s ass a nice, deep squeeze");
+		if(shekka.hasCock()) output(", before reaching down to stroke her cock a few times");
+		output(". <i>“Mmmm, I approve,”</i> she says, uncaring of how the red-scaled alien scowls at her. She finally hops up onto the bed, immediately lining her dripping pussy up with your mouth. Thick droplets of her juices fall to your ");
+		if(!pc.hasMuzzle()) output("mouth");
+		else if(rand(2) == 0) output("muzzle");
+		else output("maw");
+		output(" with a gentle pitter-patter as the lights seem to go out in an eclipse of Ausar-ass.");
+
+		output("\n\nOnce Anno is properly situated on your face she gives Shekka a thumbs up <i>“Now we get to find out how your stupid pulse batteries shape u-aaahhn!”</i> Her sentence peters out into a slit-wettening, shaft-hardening moan, fingers digging into your abdomen as your ");
+		if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("sinuous tongue drills into her sopping-wet cunt until it’s practically teasing her cervix");
+		else output("talented taster grinds beneath her hood and sets her already-juicy cunt to squirting");
+		output(", immediately making a moist mess of your face.");
+
+		output("\n\n<i>“Don’t drown [pc.himHer]!”</i> Shekka grunts, reaching forward to bap Anno on the nose. <i>“At least not yet,”</i> she adds, before her more occupied hand begins its unstoppable trajectory into your waiting cunny. Her toy’s girth drives home into your spreading womanhood; each bump on it grinds against sensitive cunt-flesh and sets clusters of nerves to sparking. Before you get a chance to be completely overwhelmed by a twat-stuffing, the cheekily-grinning Ausar opens wide with a loud <i>’Aaaaah!’</i> before bending down and lapping at your clit, tail wagging furiously as she does her best to contend with the nervous sexual onslaught your [pc.pussy] is going for.");
+
+		output("\n\nThe heat of her tits press down against your [pc.belly], getting covered in Shekka’s previous juices but your attempts to gasp are stifled by having a faceful of pup-pussy. Instead you’re left with no choice but to eat her out until nectar dribbles down your chin. Shekka moans, low and deep as the vibrator is pressed into you until her knuckles are pressed up against your netherlips. Of course, it hasn’t started vibrating yet. Blessedly the girl riding your face lifts herself up in order to get a proper view; just in time for Shekka to find the switch on her toy.");
+
+		output("\n\nThe few lungfuls of cum-laden air you manage to gulp down between mouthfuls of Ausar are nearly blown right out of you again as your depths are turned to jelly. Deep, hard waves of pleasure strain the already stretchy walls of your [pc.pussy] and it’s only thanks to the twinned weights pressed against you that you can’t thrash yourself free.");
+
+		output("\n\n<i>“Hah! You see that slut-pup? This is how you make a toy!”</i> the shorter Rask proudly announces, artfully twisting her wrist a little to grind the various pulsing bumps against nervelessly-twitching flesh.");
+
+		output("\n\nAnno harrumphs, returning her attention to your body, now soaked enough that she can fan her fingers from side-to-side of your pussy with a furious pace. She opens wide, holding her mouth a scant inch above your jackhammered cunt and making pleading little whimpers. Her ass quivers above your face, and you decide to finish the poor pup off, smacking both of your hands down on each squeezable cheek. One long, hard lick across her clit, followed by drilling into her juicy cunt with ");
+		if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("your sinuous [pc.tongue] until it’s pressing down on her cervix");
+		else output("your talented [pc.tongue]");
+		output(".");
+
+		output("\n\nThe Ausar’s gasp is immediately muffled by her intently burying her face into your leg, but her eyes roll back in orgasm as she paints your maw with sticky feminine cum. Shekka proudly whoops and despite trying to bend all of your will to holding back your own pending finish, she toy-fucks your twat until you too are brought to your untimely end.");
+
+		output("\n\nCalling the orgasmic cascade simply ‘cumming’ would do a disservice, as your [pc.cunt] tightens up so much there’s a momentary fear that you’ll crack the brand-new toy before it becomes impossible to think.");
+
+		output("\n\nThe both of them are showered in [pc.girlCum] when Shekka pulls her toy out and Anno lifts your body up by the legs, pointing your spasming cunt directly upwards. Shekka giggles and opens wide, attempting to get her face into your juicy box. Sadly she’s caught off-guard by Anno, dragged by fluffy (albeit cum-matted) arms into the squishy-scientist’s embrace. Their tongues entwine, passing your unique flavor around between the two of them.");
+		output("\n\nOnce they finally finish fencing with their tongues and drooling on each other, the girls gulp noisily and Anno clambers off of you, dripping cum freely");
+		if(celiseIsCrew()) output("; you’ll have to get Celise on that");
+		output(".");
+		output("\n\nShekka is the first to speak up before an awkward silence is allowed to develop <i>“...Soooo, what do you think, [pc.name]? Who makes the better toy?”</i>");
+		output("\n\nYou shrug helplessly, propping yourself up on shaky arms. <i>“They were both great, in totally different ways. But the company makes it far more exciting.”</i>");
+		output("\n\nAnno smiles softly, looking Shekka up-and-down. <i>“It was fun, I’m big enough to admit that. But I’m totally going to win next time.”</i>");
+		output("\n\n<i>“You wish, slut-pup.”</i>");
+		output("\n\n<i>Oh boy...</i>");
+		//Next: 40 minutes pass, back to ship menu.
+		processTime(40);
+		pc.orgasm();
+	}
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	IncrementFlag("SHEKKA_ANNO_NERDOFF");
 }
