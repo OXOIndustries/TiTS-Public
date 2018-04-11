@@ -6367,6 +6367,14 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Delilah, Sexual Organs:</b> " + listCharGenitals("DELILAH"));
 					//if(flags["DEL_FACESAT"] > 0) output2("\n<b>* Delilah, Times She Ate You Out:</b> " + flags["DEL_FACESAT"]);
 				}
+				// Jesse
+				if(flags["MET_JESSE"] != undefined)
+				{
+					output2("\n<b>* Jesse:</b> Met her");
+					if (flags["JESSE_PC_TITLE"] != undefined) output2("\n<b>* Jesse, will refer to you as:</b> " + jessePCTitle());
+					if (flags["JESSE_PC_TITLE_SEX"] != undefined) output2("\n<b>* Jesse, will refer to you during sex as:</b> " + jessePCTitleSex());
+					if (flags["JESSE_TIMES_SEXED"] != undefined) output2("\n<b>* Jesse, Times Sexed:</b> " + flags["JESSE_TIMES_SEXED"]);
+				}
 				// Kally
 				if(flags["MET_KALLY"] != undefined)
 				{
