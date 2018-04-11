@@ -167,11 +167,23 @@ public function shekkaMainMenu():void
 public function shekkaShop(sell:Boolean = false):void
 {
 	shopkeep = chars["SHEKKA"];
-	chars["SHEKKA"].keeperBuy = "<i>“I’d like to buy something,”</i> you offer. <i>“What have you got for sale?”</i>\n\nShekka spreads her arms to encompass her entire shop. <i>“Just about anything you see is for sale, but you probably don’t have much interest in buying your gadgets by the part. I’ve got a few items that seem pretty popular among you rushers. One second.”</i> She fiddles with a slim, sparking device atop her workbench to little effect. Growling, she grabs a wrench and whacks it. A flickering, holographic menu displays her wares and their prices. <i>“There we go!”</i>\n";
-	//List prices and whatnot. Back should go back to Shekka's main menu.
-	//Sell Menu
-	chars["SHEKKA"].keeperSell = "Shekka remarks, <i>“I’ll buy if it’s something worth using.”</i>\n";
-	chars["SHEKKA"].keeperGreeting = "Shekka shrugs. <i>“Well, what do you want then?”</i>\n";
+
+	if(!shekkaIsCrew())
+	{
+		chars["SHEKKA"].keeperBuy = "<i>“I’d like to buy something,”</i> you offer. <i>“What have you got for sale?”</i>\n\nShekka spreads her arms to encompass her entire shop. <i>“Just about anything you see is for sale, but you probably don’t have much interest in buying your gadgets by the part. I’ve got a few items that seem pretty popular among you rushers. One second.”</i> She fiddles with a slim, sparking device atop her workbench to little effect. Growling, she grabs a wrench and whacks it. A flickering, holographic menu displays her wares and their prices. <i>“There we go!”</i>\n";
+		//List prices and whatnot. Back should go back to Shekka's main menu.
+		//Sell Menu
+		chars["SHEKKA"].keeperSell = "Shekka remarks, <i>“I’ll buy if it’s something worth using.”</i>\n";
+		chars["SHEKKA"].keeperGreeting = "Shekka shrugs. <i>“Well, what do you want then?”</i>\n";
+	}
+	else
+	{
+		chars["SHEKKA"].keeperBuy = "<i>“Still holding onto your shop's inventory?”</i> you ask. <i>“There was some nice stuff there.”</i>\n\nShekka tosses an ear over her shoulder and puffs out her tiny chest. <i>“You betcha! You don't just throw out quality items like that... even if you have to pack them into every spare crevice you can find. Besides, if Rushers wanted that stuff when I was on Tarkus... well I figured we might need to make use of it.”</i> She fiddles with a slim, sparking device to little effect. Growling, she grabs a wrench and whacks it. A flickering, holographic menu displays her wares and their prices. <i>“There we go! I still gotta charge you, so I can keep stocking up with the latest and greatest. You're loaded anyhow, so what's it matter?”</i>\n";
+		//List prices and whatnot. Back should go back to Shekka's main menu.
+		//Sell Menu
+		chars["SHEKKA"].keeperSell = "Shekka remarks, <i>“Really? I thought you had... I dunno, infinite money! I can probably spare a few credits, but there's gotta be a better place for you to offload...”</i>\n";
+		chars["SHEKKA"].keeperGreeting = "Shekka shrugs. <i>“Well, what do you want then?”</i>\n";
+	}
 	
 	if(pc.level >= 7)
 	{
@@ -184,6 +196,10 @@ public function shekkaShop(sell:Boolean = false):void
 		if(!chars["SHEKKA"].hasItemByClass(HorseCock)) chars["SHEKKA"].inventory.push(new HorseCock());
 	}
 	else chars["SHEKKA"].destroyItemByClass(HorseCock, -1);
+	if(shekkaIsCrew())
+	{
+		if(!chars["SHEKKA"].hasItemByClass(ShekkasCatsuit)) chars["SHEKKA"].inventory.push(new ShekkasCatsuit());
+	}
 
 	if(!sell) buyItem();
 	else sellItem();
@@ -224,7 +240,8 @@ public function shekkaActuallyFixesEmitters():void
 	processTime(2);
 	pc.removeStatusEffect("Rusted Emitters");
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	if(shekkaIsCrew()) addButton(0,"Next",approachCrewShekka,true);
+	else addButton(0,"Next",mainGameMenu);
 }
 public function turnDownEmitterFixingFromShekka():void
 {
@@ -237,7 +254,12 @@ public function turnDownEmitterFixingFromShekka():void
 	pc.lust(5);
 	processTime(1);
 	//Main menu
-	shekkaMainMenu();
+	if(shekkaIsCrew())
+	{
+		clearMenu();
+		addButton(0,"Next",approachCrewShekka,true);
+	}
+	else shekkaMainMenu();
 }
 
 //Appearance Screen

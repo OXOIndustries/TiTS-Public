@@ -82,6 +82,12 @@ public function shekkaCrewMenu():void
 		//		Oral
 		//		Vagoo
 	*/
+	addButton(5,"Buy", shekkaShop);
+	addButton(6,"Sell", shekkaShop, true);
+	if(pc.hasStatusEffect("Rusted Emitters")) addButton(7,"Fix Emit.",fixMyEmittersShekka,undefined,"Fix Emit.","See if Shekka can possibly fix your sydian-damaged shield emitters.");
+	else addDisabledButton(7,"Fix Emit.","Fix Emit.","Your shield emitters are totally undamaged. Don’t worry about it.");
+	if(pcHasJunkPrize() && flags["SHEKKA_SCRAP_DISABLED"] == undefined) addButton(8,"Sell Prize",shekkaGetsSoldRaskShitz,undefined,"Sell Prize","Try to sell off the sweet loot you bought from the gang of raskvel males.");
+	else addDisabledButton(8,"Sell Prize","Sell Prize","You haven’t found any special salvage to sell.");
 	addButton(14,"Back",crew);
 }
 
