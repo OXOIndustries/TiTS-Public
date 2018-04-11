@@ -72,6 +72,8 @@ public function imbibeVenomEffects(sexed:Boolean = true, combatAttack:Boolean = 
 		}
 		else pc.lust(1);
 		if(rand(4) == 0) pc.slowStatGain("libido",1);
+		if(pc.libido() > pc.taint() * 2) pc.taint(0.5);
+		else if(rand(4) == 0) pc.taint(0.5);
 	}
 }
 //Current progress towards addiction

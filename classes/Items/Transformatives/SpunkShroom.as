@@ -23,7 +23,7 @@ package classes.Items.Transformatives {
 			
 			this.description = "a droopy-looking spunkshroom";
 			
-			this.tooltip = "This mushroom has a huge droopy cap that reminds you vaguely of a primitive dwelling you’ve seen in the past. According to rumor on the extranet, it ought to make your emissions more voluminous and potentially more virile per ounce than ever before. It also might poison you, so there’s that.";
+			this.tooltip = "This mushroom has a huge droopy cap that reminds you vaguely of a primitive dwelling you’ve seen in the past. According to rumor on the extranet, it ought to make your emissions more voluminous and potentially more virile per ounce than ever before. It also might poison you, so there’s that.\n\n<b>Known to cause high amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -47,7 +47,6 @@ package classes.Items.Transformatives {
 
 				//Consume one
 				output("You pop the mushroom into your mouth and wince at the flavor. It’s like chewing on salt-dusted rust. You chomp a few times to break it into smaller pieces, then swallow the whole mess down before you have to taste it any longer. Ugh! The taste won’t quite leave your mouth...");
-
 				//Poison
 				if(rand(8) == 0 || !pc.hasCock())
 				{
@@ -56,6 +55,7 @@ package classes.Items.Transformatives {
 					pc.HP(-1*(Math.round(pc.HPMax()* 0.5)+1));
 					return false;
 				}
+				pc.taint(5);
 				//Cum quality:
 				if(pc.cumQualityRaw < 6 && pc.libido() >= 35 && pc.maxCum() >= 800 && rand(4) == 0)
 				{

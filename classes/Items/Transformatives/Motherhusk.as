@@ -23,7 +23,7 @@ package classes.Items.Transformatives {
 			
 			this.description = "a motherhusk";
 			
-			this.tooltip = "This small, cylindrical plant... fungus... or whatever, looks like a ring of thickened bark. Bits and pieces of it flake off at your touch, releasing small puffs of what you assume are spores into the atmosphere. According to a casual extranet search, crushing it and inhaling the spores should improve the speed of one’s pregnancies, assuming a little libido-regulation damage isn’t a big deal.";
+			this.tooltip = "This small, cylindrical plant... fungus... or whatever, looks like a ring of thickened bark. Bits and pieces of it flake off at your touch, releasing small puffs of what you assume are spores into the atmosphere. According to a casual extranet search, crushing it and inhaling the spores should improve the speed of one’s pregnancies, assuming a little libido-regulation damage isn’t a big deal.\n\n<b>Known to cause high amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -48,6 +48,7 @@ package classes.Items.Transformatives {
 					output(" <b>It’s a real shame it does absolutely nothing.</b>");
 					return false;
 				}
+				pc.taint(5);
 				var pc:Creature = target;
 				
 				output("Here goes nothing! You squeeze your fist around the motherhusk, feeling it crumble away, then raise your hand up to your face. Upon opening your palm, a cloud of cloying, purple-tinted vapor spools out into the air. You suck in a huge breath before it can blow away, wincing at how it seems to warm your windpipe.");

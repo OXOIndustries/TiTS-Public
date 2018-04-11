@@ -26,7 +26,7 @@
 			
 			description = "a box containing a single “Chill Pill”";
 			
-			tooltip = "This box contains a single dose of “Chill Pill”, a beige tablet designed to reduce libido. The packaging is poor quality - done in an eye-searing green, and decorated with seemingly irrelevant clipart.\n\nSince the creators of this pill were sued into bankruptcy over supposed side effects, finding anywhere that sells it is surprising. Not even the ongoing rumors connecting the lawsuit to a popular sex product manufacturer were enough to save the brand.";
+			tooltip = "This box contains a single dose of “Chill Pill”, a beige tablet designed to reduce libido. The packaging is poor quality - done in an eye-searing green, and decorated with seemingly irrelevant clipart.\n\nSince the creators of this pill were sued into bankruptcy over supposed side effects, finding anywhere that sells it is surprising. Not even the ongoing rumors connecting the lawsuit to a popular sex product manufacturer were enough to save the brand.\n\n<b>Disclaimer:</b> This item is ineffective for individuals suffering high levels of genetic taint. <i>You could probably check your Codex to see if that applies to you.</i>";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			

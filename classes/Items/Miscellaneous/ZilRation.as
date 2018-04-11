@@ -34,7 +34,7 @@
 			this.description = "a tasty-smelling zil ration";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "These are dried rations appear to be made from local fruits and plant nectars. There’s a good chance that something in it would make you sick if you didn’t have a microsurgeon-boosted immune system. In your case, you’ll probably just undergo a mutation or two.";
+			this.tooltip = "These are dried rations appear to be made from local fruits and plant nectars. There’s a good chance that something in it would make you sick if you didn’t have a microsurgeon-boosted immune system. In your case, you’ll probably just undergo a mutation or two.\n\n<b>Known to cause slight amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -68,7 +68,7 @@
 			if(target is PlayerCharacter) {
 				//Consume:
 				kGAMECLASS.output("You unwrap the dried fruits and find them to be surprisingly tasty. They’re both sweet and a touch spicy to your tongue at the some time. Some of the rations even have a nectar glaze applied to them to make them even more delicious. Before you know it, they’re gone.");
-				
+				target.taint(1);
 				//Stat TFs before everything!
 				if(rand(3) == 0 && changes < changeLimit && target.libido() < 40) {
 					if(target.libido() < 10) kGAMECLASS.output("\n\nIdly daydreaming as you examine the lingering taste in your mouth, you find yourself considering the zil and their oddly sexual rituals and society. Do they try to fuck every stranger they meet? What would it be like to live like that.... You shake your head to clear the errant thoughts away, a slight blush on your [pc.skin].");

@@ -30,7 +30,7 @@
 			
 			this.description = "a vial of gray microbots";
 			
-			this.tooltip = "This vial of a sloshing, semi-viscous gray liquid was taken from the body of a reprogrammed gray goo, one of the artificial creatures native to Tarkus. Thanks to your tech-savviness, it should be safe to handle. It shouldn’t do anything unless you drink it. You’re going to drink it, aren’t you?";
+			this.tooltip = "This vial of a sloshing, semi-viscous gray liquid was taken from the body of a reprogrammed gray goo, one of the artificial creatures native to Tarkus. Thanks to your tech-savviness, it should be safe to handle. It shouldn’t do anything unless you drink it. You’re going to drink it, aren’t you?\n\n<b>Known to cause slight amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -105,6 +105,7 @@
 			targetCreature.HP(healing);
 			if(healing > 0) kGAMECLASS.output(" You give a little shudder as they go to work, patching up any injuries they come across. (<b>+" + healing + " HP</b>)");
 			else kGAMECLASS.output(" There is a slight gurgling in your belly but the item seems to have no effect.");
+			targetCreature.taint(1);
 		}
 		
 		public function npcUsed(targetCreature:Creature, usingCreature:Creature):void

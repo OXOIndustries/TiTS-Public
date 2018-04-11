@@ -117,6 +117,7 @@ public function procDumbfuckStuff():void
 		else output("A sudden, somewhat quiet sneeze goes off in your nose.");
 		pc.intelligence(-1);
 		pc.libido(1);
+		pc.taint(0.5);
 	}
 	//Medium sneeze - 2-3 cums
 	else if(dumbfuckOrgasms.value1 <= 3)
@@ -126,6 +127,7 @@ public function procDumbfuckStuff():void
 		else output("A big sneeze slowly builds in your nose. You try to hold it in, but it erupts out all the same.");
 		pc.intelligence(-2);
 		pc.libido(2);
+		pc.taint(1);
 	}
 	//Huge sneeze - 4-6 cums
 	else if(dumbfuckOrgasms.value1 <= 6)
@@ -135,6 +137,7 @@ public function procDumbfuckStuff():void
 		else output("A chain of three decent-sized sneezes interrupts you.");
 		pc.intelligence(-4);
 		pc.libido(4);
+		pc.taint(2);
 	}
 	//Sneezing fit - 7+
 	else
@@ -143,6 +146,7 @@ public function procDumbfuckStuff():void
 		else output("A bunch of sneezes are rising up in the back of your nose, and there’s nothing you can do but hold onto yourself and wait it out. If only you hadn’t cum so-achoo! The first one hits a split second before the second... and the third... and the fourth.... You sneeze for what feels like a minute straight, each one feeling better than the last.");
 		pc.intelligence(-5 - rand(3));
 		pc.libido(5 + rand(3));
+		pc.taint(3);
 	}
 	
 	if(flags["DUMBFUCK_SNEEZES"] == undefined) flags["DUMBFUCK_SNEEZES"] = 0;

@@ -246,6 +246,23 @@
 				_libidoRaw = v;
 			}
 		}
+
+		private var _taintRaw: Number = 0;
+		public function get taintRaw():Number
+		{
+			return _taintRaw;
+		}
+		public function set taintRaw(v:Number):void
+		{
+			if (v < Creature.STAT_CLAMP_VALUE)
+			{
+				_taintRaw = Creature.STAT_CLAMP_VALUE;
+			}
+			else
+			{
+				_taintRaw = v;
+			}
+		}
 		
 		public var physiqueMod: Number = 0;
 		public var reflexesMod: Number = 0;
@@ -253,6 +270,7 @@
 		public var intelligenceMod: Number = 0;
 		public var willpowerMod: Number = 0;
 		public var libidoMod: Number = 0;
+		public var taintMod: Number = 0;
 
 		public var affinity: String = "intelligence";
 		public var characterClass: int = GLOBAL.CLASS_SMUGGLER;
@@ -4779,6 +4797,50 @@
 			}
 		}
 
+		//Light taint = 1, moderate = 2-4, high = 5-7, extreme = 8-10
+		public function taint(arg:Number = 0, apply:Boolean = false):Number 
+		{
+			//Set to a specific value. Probably never used.
+			if (apply) taintRaw = arg;
+			
+			//If we're changing it, change it.
+			else if (arg != 0)
+			{
+				//Certain bimbo TFs double gains
+				taintRaw += arg;
+				if (taintRaw > taintMax(true)) taintRaw = taintMax(true);
+				else if (taintRaw < taintMin(true)) taintRaw = taintMin(true);
+				//Reset countdown till next reduction (72 days!)
+				if(arg > 0 && !hasPerk("Corrupted") && this is PlayerCharacter)
+				{
+					if(!hasStatusEffect("Taint_CD")) createStatusEffect("Taint_CD",0,0,0,0);
+					setStatusMinutes("Taint_CD",72*60);
+					//Warning 1 - 5 taint
+					if(taintRaw - arg < 5 && taintRaw >= 5) AddLogEvent("Something isn't quite right. You feel a little off, like something inside you is <i>twisted</i> out of place. A quick scan with your Codex informs you that you've suffered some genetic <b>taint</b>. Information on causes and treatments can be found in the <u>Medical -> General Knowledge -> Taint</u> section.","passive");
+					//Warning "Corruptish" - 30 taint
+					else if(taintRaw - arg < 30 && taintRaw >= 30) AddLogEvent("A beep from your Codex informs you <b>that you have surpassed a 30% taint measurement</b>. Whoah! You guess you have been sort of strangely randy lately, but is that so bad?");
+					//Warning: Corrupt! - 50 taint
+					else if(taintRaw - arg < 50 && taintRaw >= 50) AddLogEvent("A warning from your Codex states that you've gone past <b>50% genetic taint</b>. It doesn't feel like it. You may get turned on a little more easily... maybe you're a little more down for a quick roll in the hay than before, but that's never gotten in the way yet. It'll be fine.");
+					//Warning: Fucky! - 75 Taint
+					else if(taintRaw - arg < 75 && taintRaw >= 75) AddLogEvent("You feel like... like fucking really. It doesn't matter if you're actually horny right now or not - you've got fingers and a mouth, right? You glance down at your Codex to see a warning blaring about <b>75% genetic taint</b>, but warnings are meant to be ignored.");
+				}
+			}
+			
+			//Figure out the current value with all modifiers:
+			var currTaint:int = taintMod + taintRaw;
+			
+			//Check to see if the PC is acquiring the "Corrupted" Perk
+			if(currTaint >= 100 && !hasPerk("Corrupted"))
+			{
+				AddLogEvent("Your Codex blares warnings, but you run your hands over your oh-so-fuckable form. You're past caring about fucking up your genes. You just want to <i>fuck</i>, get fucked, and maybe become a multi-trillionaire in the process.\n\n(<b>Gained Perk: Corrupted</b> - Your libido maximum is raised to 200 - but you are irrevocably tainted!)","passive");
+				createPerk("Corrupted",0,0,0,0,"Increases your maximum libido but prevents the loss of taint.");
+			}
+
+			//Make sure the result is in bounds of modifier values.
+			if (currTaint > taintMax()) return taintMax();
+			else if (currTaint < taintMin()) return taintMin();
+			else return currTaint;
+		}
 		public function lustMax(): Number {
 			var bonus:int = 0;
 			bonus += perkv1("Inhuman Desire");
@@ -4879,6 +4941,8 @@
 			if(!raw) {
 				// Nothing yet!
 			}
+			//Corrupted perk GOOO
+			if(hasPerk("Corrupted") && 100 + bonuses < 200) return 200;
 			return (100 + bonuses);
 		}
 		public function libidoMin(): Number {
@@ -4890,6 +4954,21 @@
 			// Slave collar increases minimum by set level.
 			if(hasStatusEffect("Psi Slave Collar")) bonus += statusEffectv3("Psi Slave Collar");
 			if(hasStatusEffect("Roehm Slimed")) bonus += statusEffectv1("Roehm Slimed");
+
+			//Taint is always minimum libido if all things are equal.
+			if(taint() > (0+bonus)) return taint();
+			//If Taint isn't a factor, use the normal maths!
+			return (0 + bonus);
+		}
+		public function taintMax(raw:Boolean = false): Number {
+			var bonuses:int = 0;
+			if(!raw) {
+				// Nothing yet!
+			}
+			return (100 + bonuses);
+		}
+		public function taintMin(raw:Boolean = false): Number {
+			var bonus:int = 0;
 			return (0 + bonus);
 		}
 		public function slowStatLoss(stat:String, arg:Number = 0):Number
@@ -20309,6 +20388,15 @@
 							}
 						}
 						break;
+					//Doesn't actually get removed! Nyahahah~!
+					case "Taint_CD":
+						if(this is PlayerCharacter && requiresRemoval && !hasPerk("Corrupted"))
+						{
+							requiresRemoval = false;
+							setStatusMinutes("Taint_CD",72*60);
+							taint(-1);
+						}
+						break;
 					case "Semen's Candy":
 						if(this is PlayerCharacter)
 						{
@@ -20414,6 +20502,7 @@
 						if (this is PlayerCharacter && requiresRemoval)
 						{
 							AddLogEvent("<b>The Treatment is over.</b> You aren’t sure why or how you know, but you know it all the same. Well, there’s nothing left to do but enjoy your enhanced body to the fullest! ...While hunting for Dad’s probes, of course. It’s the best way to meet sexy new aliens.\n\nOnce you claim your fortune, you can retire on New Texas, maybe even get your own private milker.", "passive", maxEffectLength);
+							taint(4);
 						}
 						break;
 					case "Infertile":

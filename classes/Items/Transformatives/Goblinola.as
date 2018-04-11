@@ -33,7 +33,7 @@ package classes.Items.Transformatives
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
 			description = "a healthy Goblinola snack bar";
-			tooltip = "A snack bar that is gaudily advertised on its plastic wrap as a tasty, healthy treat for the gabilani on the go. Your codex indicates that it is edible and quite nourishing, but is also likely to trigger the reconfiguration function of your nanites.";
+			tooltip = "A snack bar that is gaudily advertised on its plastic wrap as a tasty, healthy treat for the gabilani on the go. Your codex indicates that it is edible and quite nourishing, but is also likely to trigger the reconfiguration function of your nanites.\n\n<b>Known to cause moderate amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -57,6 +57,7 @@ package classes.Items.Transformatives
 		{
 			var msg:String = "";
 			var totalTFs:Number = effect.value2;
+			target.taint(3);
 			if(totalTFs == 0) totalTFs = 1;
 			//Used to hold the TF we pull out of the array of effects
 			var select:int = 0;

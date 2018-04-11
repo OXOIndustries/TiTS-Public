@@ -34,7 +34,7 @@ package classes.Items.Transformatives
 			
 			description = "a vial of kerokoras venom";
 			
-			tooltip = "[altTooltip KerokorasVenom]";
+			tooltip = "[altTooltip KerokorasVenom]\n\n<b>Known to cause moderate amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -64,6 +64,8 @@ package classes.Items.Transformatives
 				var frogSkinColors:Array = ["orange and green", "mottled brown", "black and gold", "black and blue", "black and red", "red and blue", "black, blue and yellow", "gold"];
 				var frogIrisColors:Array = ["red", "ruby", "green", "emerald", "blue", "sapphire", "yellow", "amber", "gold", "black"];
 				
+				target.taint(3);
+
 				// Humanization first
 				if((target.skinType != GLOBAL.SKIN_TYPE_SKIN || target.eyeType != GLOBAL.TYPE_FROG || !hasKeroFace) && rand(2) == 0)
 				{

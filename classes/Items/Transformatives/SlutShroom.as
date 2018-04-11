@@ -23,7 +23,7 @@ package classes.Items.Transformatives {
 			
 			this.description = "a pink-colored mushroom, colloquially known as a slutshroom";
 			
-			this.tooltip = "This pink-colored mushroom is purported by locals to turn the imbiber into a total slut. It also purportedly increases vaginal secretions significantly.";
+			this.tooltip = "This pink-colored mushroom is purported by locals to turn the imbiber into a total slut. It also purportedly increases vaginal secretions significantly.\n\n<b>Known to cause high amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -50,6 +50,7 @@ package classes.Items.Transformatives {
 					return false;
 				}
 				var pc:Creature = target;
+				pc.taint(5);
 				var gotWetter:Boolean = false;
 				//Wetness buff. Chooses at random until all pussies are 5.
 				var pussies:Array = [];

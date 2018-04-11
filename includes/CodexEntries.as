@@ -140,6 +140,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Item Mechanics", mechanicsCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Maia Series AI", Bess13CodexEntry);
 	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "General Knowledge", "Taint", taintCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Furpies", furpiesCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Locofever", locofeverCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Sneezing Tits", sneezingTitsCodexEntry);
@@ -3815,4 +3816,15 @@ public function sneezingTitsCodexEntry():void
 	outputCodex("\n\nDue to the mammovirus’s effects, reaction to it varies greatly. Those who do not want the additional mammary growth often seek to cure any cold they get as quickly as possible, while those who desire the effect will seek to induce sneezes. In some communities, those who are known to be infected visit and attempt to infect those who desire the additional mammary growth.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Sneezing Tits");
+}
+
+public function taintCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("CREATION_DOCTOR");
+	outputCodex(header("Taint"))
+	outputCodex("<i>“Taint”</i> is a slang term for a measure of the corruption of one’s genetic code (and/or microsurgeon subsystems). Early effects of taint manifest via a heightened libido, leading to lowered inhibitions. Very high levels of taint have been known to cause sexual mania, delusions of grandeur, extreme fetishes, and uncontrolled genetic mutation.");
+	outputCodex("\n\nLow levels of genetic taint can be repaired via expensive DNA treatment. More severe cases are treatable, though not curable, and in some cases can scramble the user’s genome to such an extent that even the best gene-mods will fail to have an effect. Microsurgeon taint is easier to handle typically. A few days in a dedicated center can typically reverse it, but treatment is still very expensive, requiring a programmer’s individual attention. In rare cases, whole planets have been quarantined due to especially virulent strains of infectious, tainted microsurgeons.");
+	outputCodex("\n\nVictor Steele notably survived near record levels of taint, though cutting-edge medical treatments helped him to keep his symptoms to a minimum after his early successes in the 13th Galactic Rush. Many well-to-do galactic citizens (including Victor's heir apparent) have procured next-gen immune system enhancements, capable of altering genetic code on the fly to resist disease, poison, and hazardous conditions. Doing so comes at a cost: small amounts of genetic taint. Fortunately, most of these systems come with automatic repair subroutines, capable of reversing minor damage with sufficient time.\n\nMany street drugs, back-alley doctors, and supposed \"salons\" are prime sources of taint. The U.G.C. health commission recommends only using vendors backed by well-known mega-corps.\n\nThis particular Codex's sensor package is capable of detecting your current taint level.\n\t<b>Current Taint:</b> " + Math.round(pc.taint()*10)/10 + "%\n");
+	CodexManager.viewedEntry("Taint");
 }
