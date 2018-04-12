@@ -3407,8 +3407,11 @@
 					if(isPlugged(i)) vaginas[i].delFlag(GLOBAL.FLAG_PLUGGED);
 				}
 				removeStatusEffect("Pussy Plugged");
-				AddLogEvent(ParseText("<b>After the cleaning, you're delighted to find that the hardened substance plugging you up has dissolved away!</b>"));
-				flags["SHOWERED_OUT_PLUG"] = 1;
+				if(this is PlayerCharacter)
+				{
+					AddLogEvent(ParseText("<b>After the cleaning, you’re delighted to find that the hardened substance plugging you up has dissolved away!</b>"));
+					flags["SHOWERED_OUT_PLUG"] = 1;
+				}
 			}
 		}
 		public function flushCumflation():void
@@ -4806,7 +4809,6 @@
 			//If we're changing it, change it.
 			else if (arg != 0)
 			{
-				//Certain bimbo TFs double gains
 				taintRaw += arg;
 				if (taintRaw > taintMax(true)) taintRaw = taintMax(true);
 				else if (taintRaw < taintMin(true)) taintRaw = taintMin(true);
@@ -4816,13 +4818,13 @@
 					if(!hasStatusEffect("Taint_CD")) createStatusEffect("Taint_CD",0,0,0,0);
 					setStatusMinutes("Taint_CD",72*60);
 					//Warning 1 - 5 taint
-					if(taintRaw - arg < 5 && taintRaw >= 5) AddLogEvent("Something isn't quite right. You feel a little off, like something inside you is <i>twisted</i> out of place. A quick scan with your Codex informs you that you've suffered some genetic <b>taint</b>. Information on causes and treatments can be found in the <u>Medical -> General Knowledge -> Taint</u> section.","passive");
+					if(taintRaw - arg < 5 && taintRaw >= 5) AddLogEvent("Something isn’t quite right. You feel a little off, like something inside you is <i>twisted</i> out of place. A quick scan with your Codex informs you that you’ve suffered some genetic <b>taint</b>. Information on causes and treatments can be found in the <u>Medical -> General Knowledge -> Taint</u> section.","passive");
 					//Warning "Corruptish" - 30 taint
 					else if(taintRaw - arg < 30 && taintRaw >= 30) AddLogEvent("A beep from your Codex informs you <b>that you have surpassed a 30% taint measurement</b>. Whoah! You guess you have been sort of strangely randy lately, but is that so bad?");
 					//Warning: Corrupt! - 50 taint
-					else if(taintRaw - arg < 50 && taintRaw >= 50) AddLogEvent("A warning from your Codex states that you've gone past <b>50% genetic taint</b>. It doesn't feel like it. You may get turned on a little more easily... maybe you're a little more down for a quick roll in the hay than before, but that's never gotten in the way yet. It'll be fine.");
+					else if(taintRaw - arg < 50 && taintRaw >= 50) AddLogEvent("A warning from your Codex states that you’ve gone past <b>50% genetic taint</b>. It doesn’t feel like it. You may get turned on a little more easily... maybe you’re a little more down for a quick roll in the hay than before, but that’s never gotten in the way yet. It’ll be fine.");
 					//Warning: Fucky! - 75 Taint
-					else if(taintRaw - arg < 75 && taintRaw >= 75) AddLogEvent("You feel like... like fucking really. It doesn't matter if you're actually horny right now or not - you've got fingers and a mouth, right? You glance down at your Codex to see a warning blaring about <b>75% genetic taint</b>, but warnings are meant to be ignored.");
+					else if(taintRaw - arg < 75 && taintRaw >= 75) AddLogEvent("You feel like... like fucking really. It doesn’t matter if you’re actually horny right now or not - you’ve got fingers and a mouth, right? You glance down at your Codex to see a warning blaring about <b>75% genetic taint</b>, but warnings are meant to be ignored.");
 				}
 			}
 			
@@ -4830,9 +4832,9 @@
 			var currTaint:int = taintMod + taintRaw;
 			
 			//Check to see if the PC is acquiring the "Corrupted" Perk
-			if(currTaint >= 100 && !hasPerk("Corrupted"))
+			if(currTaint >= 100 && !hasPerk("Corrupted") && this is PlayerCharacter)
 			{
-				AddLogEvent("Your Codex blares warnings, but you run your hands over your oh-so-fuckable form. You're past caring about fucking up your genes. You just want to <i>fuck</i>, get fucked, and maybe become a multi-trillionaire in the process.\n\n(<b>Gained Perk: Corrupted</b> - Your libido maximum is raised to 200 - but you are irrevocably tainted!)","passive");
+				AddLogEvent("Your Codex blares warnings, but you run your hands over your oh-so-fuckable form. You’re past caring about fucking up your genes. You just want to <i>fuck</i>, get fucked, and maybe become a multi-trillionaire in the process.\n\n(<b>Gained Perk: Corrupted</b> - Your libido maximum is raised to 200 - but you are irrevocably tainted!)","passive");
 				createPerk("Corrupted",0,0,0,0,"Increases your maximum libido but prevents the loss of taint.");
 			}
 
@@ -18022,7 +18024,7 @@
 		 * Find the index of the first empty pregnancy slot
 		 * @return			index of the first empty pregnancy slot, -1 if none available.
 		 */
-		public static const PREGSLOT_NONE:uint = -1;
+		public static const PREGSLOT_NONE:uint = 99;
 		public static const PREGSLOT_ANY:uint = 0;
 		public static const PREGSLOT_VAG:uint = 1;
 		public static const PREGSLOT_ASS:uint = 2;
@@ -20188,7 +20190,7 @@
 					case "Shekka_Cure_CD":
 						if (this is PlayerCharacter && requiresRemoval)
 						{
-							AddLogEvent("<b>It's been a while since you left Shekka with everything she needed to pursue a cure. Now would be a good time to check on her progress.</b>");
+							AddLogEvent("<b>It’s been a while since you left Shekka with everything she needed to pursue a cure. Now would be a good time to check on her progress.</b>");
 						}
 						break;
 					case "LimberTime":
@@ -20265,11 +20267,11 @@
 							if (startEffectLength >= 180 && thisStatus.minutesLeft < 180) Curdsonwhey.effectProc(this, startEffectLength, 180);
 							if (startEffectLength >= 120 && thisStatus.minutesLeft < 120) Curdsonwhey.effectProc(this, startEffectLength, 120);
 							if (startEffectLength >= 60 && thisStatus.minutesLeft < 60) Curdsonwhey.effectProc(this, startEffectLength, 60);
-						if (requiresRemoval)
-						{
-							Curdsonwhey.effectProc(this, startEffectLength, 0);
-							AddLogEvent("You swallow, and nod with approval as the bitterness of the Curdsonwhey at the back of your throat finally washes away.", "passive", maxEffectLength);
-						}
+							if (requiresRemoval)
+							{
+								Curdsonwhey.effectProc(this, startEffectLength, 0);
+								AddLogEvent("You swallow, and nod with approval as the bitterness of the Curdsonwhey at the back of your throat finally washes away.", "passive", maxEffectLength);
+							}
 						}
 						break;
 					case "Painted Penis":

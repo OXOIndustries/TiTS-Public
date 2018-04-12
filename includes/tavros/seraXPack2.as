@@ -4958,7 +4958,7 @@ public function seraOnTavrosRecruit():void
 		processTime(2);
 	}
 	
-	output("\n\n(<b>Sera has joined your crew!</b>)");
+	output("\n\n(<b>Sera has rejoined your crew!</b>)");
 	flags["SERA_CREWMEMBER"] = 1;
 	
 	clearMenu();

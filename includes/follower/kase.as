@@ -215,7 +215,7 @@ public function kaseCrewMenu():void
 	else addButton(5, "Sleep With", kaseSleepToggleOn, undefined, "Sleep With", "Ask Kase to join you in your bed.");
 	if(flags["KASE_STEELETECH"] == undefined && annoIsCrew()) addButton(6, "JoinSteele", kaseJoinSteele, undefined, "Join SteeleTech", "See if your crewmate is interested in joining SteeleTech.");
 	addButton(13, "Evict", kaseEvict, undefined, "", "");
-	addButton(14,"Leave",mainGameMenu);
+	addButton(14, "Leave", crew);
 }
 
 public function kaseCrewTalk():void
@@ -989,6 +989,8 @@ public function kaseEvict():void
 	output("\n\nHis ears swivel rounds and perk at your word, looking like he didn’t hear you quite right. <i>“Oh, of course, " + pc.mf("sir","ma’am") + ",”</i> he says, keeping his poise, <i>“There’s " + (flags["KASE_STEELETECH"] != undefined ? "a place on Tavros SteeleTech has payed for so I can carry out my work when I’m not onboard your ship" : "an apartment on Tavros I rent out for any delays I had between Pyrite deployments") + ", I’ll head there, for now. I’m sure you can find me there if you require my services again.”</i>");
 	output("\n\nWith that, Kase quickly begins gathering his things, finding containers to neatly pack away his belongings in. Seems like he’s taking the sudden eviction well, at least, an unflinching employee if there ever was one.");
 	
+	output("\n\n(<b>Kase is no longer on your crew. You can find him again in Tavros Station.</b>)");
+	
 	processTime(3);
 	flags["KASE_CREW"] = 0;
 	if(flags["CREWMEMBER_SLEEP_WITH"] == "KASE") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
@@ -1070,6 +1072,8 @@ public function kaseApartmentJoin():void
 	output("\n\nThose words bring a smile to your face, and you tell the femboy to gather his things and meet you on your ship.");
 	output("\n\n<i>“Aye-aye, Captain!”</i> he says ecstatically, saluting you before he heads off to gather his belongings, <i>“I’ll be there before you know it!”</i>");
 	output("\n\nWith that, he’s packing his things, tails moving in what you can only assume to be happy, if a bit erratic patterns. You guess you should leave Kase to finish his preparations.");
+	
+	output("\n\n(<b>Kase has rejoined your crew!</b>)");
 	
 	processTime(5+rand(3));
 	flags["KASE_CREW"] = 2;

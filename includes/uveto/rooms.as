@@ -1534,19 +1534,7 @@ public function initUvetoRooms():void
 	rooms["UVIP R10"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP R10"].westExit = "UVIP P10";
 	rooms["UVIP R10"].moveMinutes = 6;
-	rooms["UVIP R10"].runOnEnter = function():Boolean {
-		if (flags["UVIP_R10_PROBE_ACTIVE"] == undefined)
-		{
-			output("\n\nIt looks like the probe was damaged in the crash. It’s silent and dark.");
-			addButton(0, "Reactivate", uvetoReactivateProbe, undefined, "Reactivate Probe", "You could probably give this probe a repair job and use it to broadcast a signal back to Irestead. If you do, you might be able to call for quick transportation...");
-		}
-		else
-		{
-			output("\n\nThe probe is blinking, occasionally making a high-pitched <i>beep!</i>");
-			addButton(0, "Maglev S.", move, "UVI P40");
-		}
-		return false;
-	};
+	rooms["UVIP R10"].runOnEnter = uvetoCrashedProbe;
 	rooms["UVIP R10"].addFlag(GLOBAL.ICYTUNDRA);
 	rooms["UVIP R10"].addFlag(GLOBAL.TAXI);
 
