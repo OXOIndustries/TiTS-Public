@@ -984,7 +984,7 @@ public function shekkaCrewSexMenu():void
 	else addDisabledButton(3,"FeedMilk","Feed Shekka Some Milk","You need to be lactating quite heavily to satisfy the little raskvel with your teats alone.");
 
 	if(flags["SHEKKA_ANNO_NERDOFF"] != undefined && flags["SHEKKA_ANNO_NERDOFF"] != -1) addButton(4,"Anno Comp.",shekkaAnnoVibeOffpre,true,"Anno Competition","Have your two mechanically-inclined crew-mates see who can make the more stimulating sex-toy.\n\n<b>Warning:</b> Something will be inserted into an orifice.");
-	else addDisabledButton(4,"Locked","Locked","This event requires both Anno and Shekka as crew members.");
+	else addDisabledButton(4,"Locked","Locked","This event requires both Anno and Shekka as crew members partaking in an argument.");
 
 	addButton(14,"Back",approachCrewShekka,true);
 }
@@ -1847,7 +1847,7 @@ public function shekkaAndAnnoNerdOff():void
 	output("\n\n<i>“That happened one time! And more importantly, my people will do better for themselves. I gave up everything I had into that, and [pc.name] put in so much money. It hurts to think that Raskvel are always going to be thought of as scrap-addicted fuck-bunnies.”</i>");
 	output("\n\nThere’s an edge of real pain to the red Rask’s voice, and Anno blinks a few times before looking somewhat shamefaced. <i>“I... uh... oh.”</i> She manages tactfully, twiddling her fingers before looking to you. <i>“Can we uh, get a minute?”</i>");
 	//Next: Ten minutes pass, selecting either Shekka or Anno in the talk menu will grant this follow-up.
-	output("\n\nYou step away for now. Maybe they'll work things out on their own?");
+	output("\n\nYou step away for now. Maybe they’ll work things out on their own?");
 	processTime(10);
 	flags["SHEKKA_ANNO_NERDOFF"] = -1;
 	clearMenu();
@@ -1866,7 +1866,7 @@ public function shekkaAnnoFightFollowup():void
 	output("\n\n<i>“...Of course.”</i>");
 	output("\n\n<i>“No, but really,”</i> Shekka adds <i>“It’s one of Anno’s old colleagues doing something fucking wild with sex-toy construction. We... may or may not have restarted the pulse-versus-vibes argument. But we’ve stopped snapping at each other.”</i>");
 	output("\n\nThey do seem to be sitting an awful lot closer, and the faint scent of a horny pup wafts to your [pc.nose]. An opportunity perhaps...");
-	output("\n\n<b>If you were willing to have them test their vibrating devices on you, maybe they'll get along a little better. Would you like to try?</b>");
+	output("\n\n<b>If you were willing to have them test their vibrating devices on you, maybe they’ll get along a little better. Would you like to try?</b>");
 	//Next, 10 minutes pass.
 	processTime(5);
 	clearMenu();
@@ -1879,7 +1879,7 @@ public function nopeOutofShekkaAnnoVibeOff():void
 	clearOutput();
 	showName("\nNOPE!");
 	showBust(annoBustDisplay(),shekkaBustDisplay());
-	output("Nope! You don't want any mechanical toys stuffed inside you. <i>“I’d love to help you ladies with this, but I’ve got an urgent matter to attend to!”</i>");
+	output("Nope! You don’t want any mechanical toys stuffed inside you. <i>“I’d love to help you ladies with this, but I’ve got an urgent matter to attend to!”</i>");
 	output("\n\nYou can feel their eyes staring daggers into your back as you walk around the corner.");
 	output("\n\n<b>If you’d like to volunteer in the future, suggest it to Shekka from her sex menu.</b>");
 	flags["SHEKKA_ANNO_NERDOFF"] = 0;
@@ -1896,7 +1896,7 @@ public function shekkaAnnoVibeOffpre(repeat:Boolean = false):void
 	//repeat intro work to summon Anno
 	if(repeat)
 	{
-		output("Begging Shekka's forgiveness, you run off to grab Anno real quick. You'll need both of them for this. It doesn't take much convincing to get your white-haired ausar-pup to follow you for a bit of fun.\n\n");
+		output("Begging Shekka’s forgiveness, you run off to grab Anno real quick. You’ll need both of them for this. It doesn’t take much convincing to get your white-haired ausar-pup to follow you for a bit of fun.\n\n");
 	}
 	output("<i>“What about a competition?”</i> you posit. <i>“Both of you build something fun, and I’ll be your proud, unbiased tester.”</i>");
 	output("\n\nThe girls blink and share a look, before turning wicked smiles on you. <i>“Oh fuck you’re so on.”</i> Shekka says, hopping off of the bed and making for the back of the ship (and her impromptu workbench).");
@@ -2012,7 +2012,7 @@ public function shekkaAnnoVibeOff():void
 		//Steele suit
 		if(anno.armor is AnnosCatsuit) output("\n\nEvery stretchy, flesh-hugging inch she tugs down seems to peel away like a second skin, revealing luscious shining curves. Although the suit had been dropped down to her expansive cleavage it catches on her nipples, desperate to keep clung to Anno’s body. Not that you could blame any article of clothing for wanting to remain there.");
 		//Clothing
-		else output("\n\nEvery bit of fabric she pulls away seems to peel away like wrapping paper on a Christmas present, revealing luscious, shining curves. Although her top catches on her nipples, desperate to hang on to the busty Anno's body, you can't blame it. Anyone would want to hang on there.");
+		else output("\n\nEvery bit of fabric she pulls away seems to peel away like wrapping paper on a Christmas present, revealing luscious, shining curves. Although her top catches on her nipples, desperate to hang on to the busty Anno’s body, you can’t blame it. Anyone would want to hang on there.");
 
 		//Merge
 		output("\n\nAt the same time, your attention becomes torn between the show and your red-scaled sweetheart, who now holds up her own creation. Compared to Anno’s more standard-shape vibrator, her toy is thicker, covered with little nodules. Despite being mid-striptease Anno’s tail goes up, translating her intrigue <i>“Where’d you get the stuff for that in just ten minutes?”</i>");
@@ -2166,7 +2166,7 @@ public function shekkaAnnoVibeOff():void
 		if(!pc.isErect()) output(" again");
 		output(".”</i>");
 		output("\n\nThe Raskvel snorts, flicking the head of [pc.oneCock]. <i>“Fat chance of that.");
-		if(pc.hasPriapism()) output(" [pc.name] couldn't go soft if [pc.heShe] wanted to.");
+		if(pc.hasPriapism()) output(" [pc.name] couldn’t go soft if [pc.heShe] wanted to.");
 		output("”</i>");
 		output("\n\nIt takes a little readjustment");
 		if(pc.biggestCockLength() > 20) output(", especially to get your [pc.cocks] out of the way,");
@@ -2175,7 +2175,7 @@ public function shekkaAnnoVibeOff():void
 		//Steele suit
 		if(anno.armor is AnnosCatsuit) output("\n\nEvery stretchy, flesh-hugging inch she tugs down seems to peel away like a second skin, revealing luscious shining curves. Although the suit had been dropped down to her expansive cleavage it catches on her nipples, desperate to keep clung to Anno’s body. Not that you could blame any article of clothing for wanting to remain there.");
 		//Clothing
-		else output("\n\nEvery bit of fabric she pulls away seems to peel away like wrapping paper on a Christmas present, revealing luscious, shining curves. Although her top catches on her nipples, desperate to hang on to the busty Anno's body, you can't blame it. Anyone would want to hang on there.");
+		else output("\n\nEvery bit of fabric she pulls away seems to peel away like wrapping paper on a Christmas present, revealing luscious, shining curves. Although her top catches on her nipples, desperate to hang on to the busty Anno’s body, you can’t blame it. Anyone would want to hang on there.");
 
 		//Merge
 		output("\n\nAt the same time, your attention becomes torn between the show and your red-scaled sweetheart, who now holds up her own creation. Compared to Anno’s more standard-shape vibrator, her toy is thicker, covered with little nodules. Despite being mid-striptease Anno’s tail goes up, translating her intrigue <i>“Where’d you get the stuff for that in just ten minutes?”</i>");
@@ -2308,7 +2308,7 @@ public function shekkaAnnoVibeOff():void
 		//Steele suit
 		if(anno.armor is AnnosCatsuit) output("\n\nEvery stretchy, flesh-hugging inch she tugs down seems to peel away like a second skin, revealing luscious shining curves. Although the suit had been dropped down to her expansive cleavage it catches on her nipples, desperate to keep clung to Anno’s body. Not that you could blame any article of clothing for wanting to remain there.");
 		//Clothing
-		else output("\n\nEvery bit of fabric she pulls away seems to peel away like wrapping paper on a Christmas present, revealing luscious, shining curves. Although her top catches on her nipples, desperate to hang on to the busty Anno's body, you can't blame it. Anyone would want to hang on there.");
+		else output("\n\nEvery bit of fabric she pulls away seems to peel away like wrapping paper on a Christmas present, revealing luscious, shining curves. Although her top catches on her nipples, desperate to hang on to the busty Anno’s body, you can’t blame it. Anyone would want to hang on there.");
 
 		//Merge
 		output("\n\nAt the same time, your attention becomes torn between the show and your red-scaled sweetheart, who now holds up her own creation. Compared to Anno’s more standard-shape vibrator, her toy is thicker, covered with little nodules. Despite being mid-striptease Anno’s tail goes up, translating her intrigue <i>“Where’d you get the stuff for that in just ten minutes?”</i>");

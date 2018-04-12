@@ -22,17 +22,15 @@ package classes.Items.Apparel
 			
 			this.shortName = "ShekkaSuit";
 			
-			this.longName = "Shekka's Catsuit";
+			this.longName = "Shekka’s Catsuit";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			this.description = "a white, hexagon-patterned catsuit";
 			
-			this.tooltip = "A nearly identical copy of Shekka's prototypical, form-fitting jumpsuit. Just like her own, this one is stark white and glossy, patterned with a delightful series of interlocking hexagons. Well-made clasps keep it sealed up tight - and most foreign pheromones out. Additionally, the fabric itself provides modest protection from small electrical charges - useful for an engineer like the diminutive raskvel. A near invisible seam allows for the presence (or absence) of a tail, if needed. And of course, this one is sized to fit you. One of these days, you'll have to ask Shekka where she finds these.";
+			this.tooltip = "A nearly identical copy of Shekka’s prototypical, form-fitting jumpsuit. Just like her own, this one is stark white and glossy, patterned with a delightful series of interlocking hexagons. Well-made clasps keep it sealed up tight - and most foreign pheromones out. Additionally, the fabric itself provides modest protection from small electrical charges - useful for an engineer like the diminutive raskvel. A near invisible seam allows for the presence (or absence) of a tail, if needed. And of course, this one is sized to fit you. One of these days, you’ll have to ask Shekka where she finds these.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
-			
-			this.attackVerb = "";
 			
 			this.basePrice = 200;
 			this.attack = 0;
