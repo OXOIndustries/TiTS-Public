@@ -514,6 +514,7 @@ public function heyDocImAHero():void
 	pc.loadInAss(chars["DRBADGER"]);
 	pc.loadInAss(chars["DRBADGER"]);
 	output("\n\n(You could probably like, report this troublemaker to a U.G.C. peacekeeper and get her arrested. Maybe you can find a sexy cop!)");
+	pc.taint(10);
 	//[Buy Dumbfuck pills] [Leave]
 	drBadgerMenu();
 }
@@ -946,6 +947,7 @@ public function removeDatCuntTail():void
 	//do ‘Next’
 	processTime(47);
 	pc.libido(1);
+	pc.taint(4);
 	clearMenu();
 	addButton(0,"Next",badgerTailRemovalGo);
 }

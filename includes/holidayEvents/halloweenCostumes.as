@@ -207,6 +207,7 @@ public function leaveLikeABitch():void
 	output("\n\nYou twist around, noticing the long, spaded tail wriggling from the base of your spine, twitching with agitation to mirror your mental state. Rushing to a mirror, you see that, sure enough, you’ve acquired some new additions. You’ve got a long, shaggy mane of pink hair that frames two russet horns on either side of your skull, and a tail to match. Just like Holiday had.");
 	output("\n\nYou think back on the strange, strangled, chanting cry that the masked creatures had been yelling. Now that you think of it, they may have been saying <i>“GPD! Freeze!”</i> Grabbing the mask and tearing it open, you find a small chip buried in the velvet lining with itty, bitty, tiny prongs barely poking through on the inside.");
 	output("\n\nNo wonder they were chasing you: <b>thanks to her sabotaged mask, you look like Holiday!</b>");
+	pc.taint(5);
 	processTime(44);
 	
 	var tailCnt:Number = pc.tailCount;
@@ -369,6 +370,7 @@ public function gobboEpilogue():void
 	}
 	if(pc.hipRatingRaw < 20) pc.hipRatingRaw = 20;
 	else pc.hipRatingRaw += 2;
+	pc.taint(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -574,6 +576,7 @@ public function bountyHuntEpilogue():void
 	if(pc.femininity < 70) pc.femininity = 70;
 	if(pc.lipMod < 5 && pc.femininity >= 90) pc.lipMod++;
 	if(pc.lipMod < 5) pc.lipMod++;
+	pc.taint(10);
 	processTime(560);
 	halloweenShipMove();
 	clearMenu();
@@ -613,6 +616,7 @@ Gain Brute Speech
 
 public function amazonTFShitApplied():void
 {
+	pc.taint(10);
 	pc.physique(5);
 	pc.reflexes(-3);
 	pc.aim(-2);
@@ -1293,6 +1297,7 @@ public function taurBarAdventures(config:int = 1):void
 
 public function taurTFs(arg:int = 1):void
 {
+	pc.taint(10);
 	//Strip mimbranes.
 	removeMimbranes();
 	//1 - dude, 2 chick, 3 herm
@@ -1942,7 +1947,7 @@ public function spiderCostumeOutro():void
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	pp.createPerk("Fixed CumQ",2500,0,0,0);
 	pc.loadInCunt(pp, 0);
-	
+	pc.taint(10);
 	processTime(8*40);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -2092,6 +2097,7 @@ public function saurmorianTimes2():void
 		pc.willpower(3);
 		pc.physique(-4);
 	}
+	pc.taint(10);
 	output("The unholy nurse coos as she leans in to examine you more closely, your own gaze following hers as she seems to take interest in the black material of the bodysuit. You gasp as, in the more scale-free bits of your chest and [pc.belly], it rapidly shifts to [pc.skinColor]. The rippling, tidal fashion in which it changes is a little unsettling - the ill-fitting giggle it draws out of Holiday even more so.");
 	output("\n\n<i>“Oh please, it’s just the chameleon weave kicking in.”</i> There’s a pause as the pink haired demoness’ eyes travel downward, and her lips pucker in a small, bemused smirk. <i>“Well well, isn’t that something.”</i>");
 	output("\n\nHuh? What is she looking at now?");
@@ -2703,6 +2709,7 @@ public function applyLongswordChanges():void
 	pc.eyeColor = "blue";
 	//If Height is not 5’7" (67 inches)
 	pc.tallness = 67;
+	pc.taint(10);
 }
 
 //Path B (shortsword)
@@ -2748,6 +2755,7 @@ public function applyShortswordChanges():void
 	//If lip rating is below 4
 	//Fen note: trying to keep this from going overboard :3
 	if(pc.lipMod < 2) pc.lipMod = 2;
+	pc.taint(10);
 }
 
 //Poe A - Bondage Kitty
@@ -3051,6 +3059,7 @@ public function extraCatTFForCatCostume():void
 	}
 	//Increase Exhibitionism by 25%
 	for(var i:int = 0; i < 15; i++) { pc.exhibitionism(2); }
+	pc.taint(10);
 }
 
 //Req's genitals
@@ -3696,6 +3705,7 @@ public function applyKnottyNurseTF():void
 		pc.addFaceFlag(GLOBAL.FLAG_FURRED);
 	}
 	pc.tongueType = GLOBAL.TYPE_CANINE;
+	pc.taint(10);
 }
 
 
@@ -3820,6 +3830,7 @@ public function cockvineBikiniNext():void
 	pc.tailGenital = GLOBAL.TAIL_GENITAL_NONE;
 	pc.tailGenitalArg = GLOBAL.TYPE_COCKVINE;
 	pc.tailGenitalColor = "green";
+	pc.taint(10);
 	if(rand(5) == 0) pc.addTailFlag(GLOBAL.FLAG_RIBBED);
 	
 	clearMenu();
