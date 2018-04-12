@@ -235,6 +235,9 @@ public function bothriocQuestDoctorButton(btnSlot:int = 0, doctor:String = ""):v
 	if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_RESEARCH && flags["BOTHRIOC_QUEST_DOCTOR"] == doctor && flags["BOTHRIOC_QUEST_RESEARCH"] != undefined)
 	{
 		addButton(btnSlot, "Bothrioc?", bothriocQuestResearch, doctor, "Bothrioc?", "Ask if the pheromonal counter-agent is ready.");
+		
+		output("\n\nYou can check to see if the bothrioc pheromonal counter-agent is ready.");
+		
 		return;
 	}
 	
@@ -242,6 +245,8 @@ public function bothriocQuestDoctorButton(btnSlot:int = 0, doctor:String = ""):v
 	if(flags[("BOTHRIOC_QUEST_TALK_" + (doctor).toUpperCase())] != undefined) return;
 	
 	addButton(btnSlot, "Bothrioc?", bothriocQuestDoctor, doctor, "Bothrioc?", "Ask if it’s possible they could create the pheromonal counter-agent Ara Kei asked for.");
+	
+	output("\n\nYou can try to ask him about the bothrioc pheromonal counter-agent Ara Kei requested.");
 }
 public function bothriocQuestDoctor(response:String):void
 {
@@ -1848,6 +1853,8 @@ public function bothriocQuestGenealogyButton(btnSlot:int = 0, doctor:String = ""
 			else if(pc.keyItemv1("Bothrioc Genealogy") > 0) addButton(btnSlot, "Genealogy", bothriocQuestGenealogy, "Haswell genealogy", "Genealogy", "Give him the bothrioc genealogy that Ara rewarded you with.");
 			break;
 	}
+	
+	if(pc.keyItemv1("Bothrioc Genealogy") > 0) output("\n\nDo you give him the bothrioc geneology?");
 }
 public function bothriocQuestGenealogy(response:String):void
 {

@@ -28,45 +28,52 @@ public function approachJulianRouter():void {
 	if(flags["MET_DR_HASWELL"] == undefined) 
 	{
 		introductionToJulian();
+		return;
 	}
 	//Repeat if haven't taken job yet
-	else if(flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] == undefined && flags["JULIANS_QUEST_DISABLED"] == undefined) 
+	if(flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] == undefined && flags["JULIANS_QUEST_DISABLED"] == undefined) 
 	{
 		julianFirstOfferRepeat();
+		return;
 	}
 	//Bagged a zil yet?
-	else if((flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined ) && flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] == undefined && flags["JULIANS_QUEST_DISABLED"] == undefined) 
+	if((flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined ) && flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] == undefined && flags["JULIANS_QUEST_DISABLED"] == undefined) 
 	{
 		zilBaggedApproach();
+		return;
 	}
 	//Second zil report?
-	else if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == undefined && flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined && flags["JULIANS_QUEST_DISABLED"] == undefined) 
+	if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == undefined && flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined && flags["JULIANS_QUEST_DISABLED"] == undefined) 
 	{
 		finalZilCaptureTurnInEpilogue();
+		return;
 	}
 	//Repeat second offer?
-	else if(!pc.hasKeyItem("Capture Harness") && flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == undefined && flags["JULIANS_QUEST_DISABLED"] == undefined) 
+	if(!pc.hasKeyItem("Capture Harness") && flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == undefined && flags["JULIANS_QUEST_DISABLED"] == undefined) 
 	{
 		repeatSecondHarnessOffer();
+		return;
 	}
+	
+	clearOutput();
+	showDrHaswell();
 	//Have the harness already?
-	else if(pc.hasKeyItem("Capture Harness") && flags["JULIANS_QUEST_DISABLED"] == undefined)
+	if(pc.hasKeyItem("Capture Harness") && flags["JULIANS_QUEST_DISABLED"] == undefined)
 	{
-		clearOutput();
-		showDrHaswell();
 		output("Dr Haswell mutters, <i>“The zil aren’t going to capture themselves. I have no business with you until you do.”</i>");
 		
-		julianHaswellMenu();
+	}
+	else if(pexigaQuestDocChatsAvailable() || bothriocQuestActive() || pc.hasKeyItem("Bothrioc Genealogy"))
+	{
+		output("Dr. Haswell doesn’t even look up at you as he concentrates on his work.");
 	}
 	//Generic "BLUH"
 	else
 	{
-		clearOutput();
-		showDrHaswell();
-		output("Dr. Haswell doesn’t even look up at you. <i>“I have no business with you at present, [pc.name].”</i>\n\nIt looks like there’s nothing to be done with him right now.");
-		
-		julianHaswellMenu();
+		output("Dr. Haswell doesn’t even look up at you. <i>“I have no business with you at present, [pc.name].”</i>");
+		output("\n\nIt looks like there’s nothing to be done with him right now.");
 	}
+	julianHaswellMenu();
 }
 public function julianHaswellMenu():void
 {

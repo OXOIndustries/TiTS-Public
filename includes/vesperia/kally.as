@@ -177,7 +177,7 @@ public function kallyBonusRoomTexts():Boolean
 	
 	if(kaedeBlurb4KuiCountryBarAndGrilllll(4)) return true;
 	mabbsBonus(5);
-	jesseBarBonus(6);
+	jesseBarBonus(7);
 	
 	return false;
 }
