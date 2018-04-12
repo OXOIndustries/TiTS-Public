@@ -709,6 +709,9 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.willpowerMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.willpowerMod, 3)) + ")");
 		output2("\n<b>* Libido:</b> " + pc.LQ() + " %, " + pc.libidoMin() + "/" + pc.libido() + "/" + pc.libidoMax());
 		if(pc.libidoMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.libidoMod, 3)) + ")");
+		output2("\n<b>* Taint:</b> " + pc.TQ() + " %, " + pc.taintMin() + "/" + pc.taint() + "/" + pc.taintMax());
+		if(pc.taintMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.taintMod, 3)) + ")");
+		if(pc.hasPerk("Corrupted")) output2(", <i>Corrupted</i>");
 		
 		//======COMBAT STATISTICS=====//
 		output2("\n\n" + blockHeader("Combat Statistics", false));
@@ -3060,29 +3063,7 @@ public function displayQuestLog(showID:String = "All"):void
 			}
 		}
 		
-		if(showID == "Ausaril" || showID == "Other" || showID == "All")
-		{
-			// Puppyslutmas
-			if(flags["PUPPYSLUTMAS_2014"] != undefined)
-			{
-				if(silly) output2("\n<b><u>Puppyslutmas</u></b>");
-				else output2("\n<b><u>Dorna Christmas Gala</u></b>");
-				output2("\n<b>* Date:</b> " + flags["PUPPYSLUTMAS_2014"]);
-				if(flags["PUPPYSLUTMAS_2014"] == "Syri" && flags["PUPPYSLUTMAS_2014_SYRI_CLOTHES"] != undefined) output2(" wearing " + indefiniteArticle(flags["PUPPYSLUTMAS_2014_SYRI_CLOTHES"]));
-				output2(", Completed");
-				if(flags["PUPPYSLUTMAS_2014_DRINKS"] != undefined)
-				{
-					output2("\n<b>* Drinks Total:</b> " + flags["PUPPYSLUTMAS_2014_DRINKS"]);
-					if(flags["PUPPYSLUTMAS_2014_DRINKS"] >= 4) output2(", Smashed");
-					else if(flags["PUPPYSLUTMAS_2014_DRINKS"] >= 2) output2(", Drunk");
-					else if(flags["PUPPYSLUTMAS_2014_DRINKS"] >= 1) output2(", Buzzed");
-					else output2(", Sober");
-				}
-				sideCount++;
-			}
-		}
-		
-		if(showID == "Poe A" || showID == "Other" || showID == "All")
+		if(showID == "Poe A" || showID == "All")
 		{
 			// The Masque
 			if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
@@ -3393,6 +3374,52 @@ public function displayQuestLog(showID:String = "All"):void
 		{
 			output2("\n<b><u>Not Available</u></b>");
 			output2("\n* <i>No distress call data has been logged.</i>");
+		}
+		
+		// Other:
+		output2("\n\n" + blockHeader("Miscellaneous", false));
+		var otherCount:int = 0;
+		
+		// Puppyslutmas
+		if(flags["PUPPYSLUTMAS_2014"] != undefined)
+		{
+			if(silly) output2("\n<b><u>Puppyslutmas</u></b>");
+			else output2("\n<b><u>Dorna Christmas Gala</u></b>");
+			output2("\n<b>* Date:</b> " + flags["PUPPYSLUTMAS_2014"]);
+			if(flags["PUPPYSLUTMAS_2014"] == "Syri" && flags["PUPPYSLUTMAS_2014_SYRI_CLOTHES"] != undefined) output2(" wearing " + indefiniteArticle(flags["PUPPYSLUTMAS_2014_SYRI_CLOTHES"]));
+			output2(", Completed");
+			if(flags["PUPPYSLUTMAS_2014_DRINKS"] != undefined)
+			{
+				output2("\n<b>* Drinks Total:</b> " + flags["PUPPYSLUTMAS_2014_DRINKS"]);
+				if(flags["PUPPYSLUTMAS_2014_DRINKS"] >= 4) output2(", Smashed");
+				else if(flags["PUPPYSLUTMAS_2014_DRINKS"] >= 2) output2(", Drunk");
+				else if(flags["PUPPYSLUTMAS_2014_DRINKS"] >= 1) output2(", Buzzed");
+				else output2(", Sober");
+			}
+			otherCount++;
+		}
+		// Spess Bear
+		if(flags["SPACE_BEAR"] != undefined)
+		{
+			output2("\n<b><u>Space Bear</u></b>");
+			output2("\n<b>* Status:</b>");
+			switch(flags["SPACE_BEAR"])
+			{
+				case 0:
+					output2(" Found, Onboard ship");
+					if(shipLocation == "TAVROS HANGAR") output2(", Sent to museum, <i>Awaiting appraisal...</i>");
+					else output2(", <i>Sell it to a museum</i>");
+					break;
+				case 1: output2(" Found, Sold to museum, Rewarded 10000 credits, Completed"); break;
+			}
+			otherCount++;
+		}
+		
+		// Nothing recorded
+		if(otherCount == 0)
+		{
+			output2("\n<b><u>Not Available</u></b>");
+			output2("\n* <i>No other miscellaneous data has been logged.</i>");
 		}
 	}
 	
