@@ -4247,3 +4247,16 @@ public function deathByNoHP():void
 	output("You collapse unconscious... and do not rise again, your body’s capacity to take damage reduced to less than nothing. Whoops.");
 	badEnd();
 }
+
+public function taintedLove():void
+{
+	clearOutput();
+	showName("ONCE I RAN\nTO YOU...");
+	output("... Now I run from you...");
+	pc.taint(15);
+	processTime(1);
+	clearMenu();
+	addButton(0, "Again", taintedLove);
+	addButton(14, "Back", mainGameMenu);
+}
+

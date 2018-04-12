@@ -18024,7 +18024,7 @@
 		 * Find the index of the first empty pregnancy slot
 		 * @return			index of the first empty pregnancy slot, -1 if none available.
 		 */
-		public static const PREGSLOT_NONE:uint = -1;
+		public static const PREGSLOT_NONE:uint = 99;
 		public static const PREGSLOT_ANY:uint = 0;
 		public static const PREGSLOT_VAG:uint = 1;
 		public static const PREGSLOT_ASS:uint = 2;

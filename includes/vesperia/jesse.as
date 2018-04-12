@@ -1367,12 +1367,12 @@ public function jesseSexRoleReversalEncourage():void
 	if (pc.cumQ() >= 1000) output("a veritable torrent of [pc.cum] spouts straight into the bed fabrics like a debased fountain, coupling with your orgiastic, effeminate moans!");
 	else output("thick strings of [pc.cum] shoot into the awaiting bed fabrics, a debased pool of refuse seed and a lurid, effeminate moan leave your body!");
 	output("\n\nSpurred on by this, Jesse forces one final <i>slam</i> into your well fucked [pc.asshole] and unleashes her built up seed with a pained series of squeals and moans! You can feel her jerk in place as her body forces out the unnatural, burning hot lifejuice created by the Priapin in her system. It floods your innards in long bursts, each one making her member’s muscles tense and pull against your [pc.asshole]. The hot seed builds up and fills you until you can feel it overflowing around the tight seal formed by Jesses femcock!");
-	output("\n\nThe near-screaming wench falls flat on your back as her impressive orgasm ends. Her breathing is more like an agonized wheeze, her small body ventilating at a post-marathon speed. Her fleshy tongue drags and slobbers over your [pc.skinFurScales] and her hands come to rest on your shoulders. <i>“Room...rooms spinning...”</i> she pants, a near-whisper forced through sore lungs.");
+	output("\n\nThe near-screaming wench falls flat on your back as her impressive orgasm ends. Her breathing is more like an agonized wheeze, her small body ventilating at a post-marathon speed. Her fleshy tongue drags and slobbers over your [pc.skinFurScales] and her hands come to rest on your shoulders. <i>“Room...room’s spinning...”</i> she pants, a near-whisper forced through sore lungs.");
 	output("\n\nThe mutual comedown is quite something. There’s a warm, shared glow that radiates from you to Jesse and back again. It’s so intimate ");
 	if (flags["JESSE_TIMES_SEXED"] != undefined) output("and <i>different</i> ");
 	output("from what you’d expect, the ‘flavor’ turning the experience into a memory of pure feeling.");
  	output("\n\nYou lay together for some time, occasionally giving each other a gentle, laze-laden kiss on the lips. Her right hand finds itself in yours and you give it a comforting squeeze. Soon though, the enervation takes over and you drift off...");
-	output("\n\n...awaking a few hours later, your Domme-for-a-day lover having left with her gear. There’s a small note on the pillow next to your with: ‘<3 so sore but so worth it’ written on it in impeccable hand-writing. Aw...");
+	output("\n\n...awaking a few hours later, your Domme-for-a-day lover having left with her gear. There’s a small note on the pillow next to your with: <i>‘&lt;3 so sore but so worth it’</i> written on it in impeccable hand-writing. Aw...");
 
 	processTime(60 + rand(15));
 	pc.orgasm();
@@ -1392,7 +1392,7 @@ public function jesseSexRoleReversalTakeOver():void
 	output("Damnit, you wanted cock and you’ll get some cock!");
 	output("\n\nYou twist around and guide her face to be a few inches from yours.");
 	output("\n\n<i>“Let me help you, Jesse. Just undo this silly little collar and I’ll... I’ll let you <b>cum</b> in me,”</i> you say in a cheeky voice, biting your lower lip to entice her.");
-	output("\n\n<i>“Y-yes{sir/ma’am}...”</i> she says breathlessly, her rose tinted cheeks flushing red. You can feel her fiddle with and unhook the collar round your neck with relative ease. To spur her on, you give her member an encouraging squeeze with your [pc.asshole]. Once she has pulled away, you shuffle and turn yourself onto your back into a missionary position, then pull Jesse in closer by holding on to the back of her head.");
+	output("\n\n<i>“Y-yes [pc.sir]...”</i> she says breathlessly, her rose tinted cheeks flushing red. You can feel her fiddle with and unhook the collar round your neck with relative ease. To spur her on, you give her member an encouraging squeeze with your [pc.asshole]. Once she has pulled away, you shuffle and turn yourself onto your back into a missionary position, then pull Jesse in closer by holding on to the back of her head.");
 	output("\n\n<i>“Steady, Jesse,”</i> you half-whisper, keeping eye contact while you meticulously slip the collar round her neck. You can see her starry eyes glaze over with adoration as you do so, a few twitches through your [pc.asshole] telling you that you’re on the right track. When it’s all locked in place, you jerk the leash! Your unawares lover almost crumples onto your front, just stopping herself by putting her hands to either side of you.");
 	output("\n\n<i>“Now,”</i> you say sternly, guiding one of her hands around the " + pc.knotDescript(x) + " of your [pc.cockBiggest]. <i>“Fuck me, you slut.”</i>");
 	output("\n\nYou pull on the leash again so that her open lips are now pressed against your [pc.lips] and well, she can’t help herself. Her tongue and your [pc.tongue] enter a sloppy spiral of play, transferring coos of approval between you both.");
@@ -1410,7 +1410,7 @@ public function jesseSexRoleReversalTakeOver():void
 	output("\n\nThe spent strumpet collapses on top of you, uncaring about the [pc.cumColor] dampness on your front. Her head falls neatly onto your [pc.chest] with a small thud, your wheezing lungs pushing it up and down gently as she also gasps for air. You feel her spent femcock retract from within you, leaving only the warmth of her spent seed.");
 	output("\n\nYou pull her a little closer to you and lazily undo the collar. There’s a light red ring in its place, a loving mark for her to remember you by later. You fingers play with her once-perfect hair, strands of wine red twirled between index and pinky.");
 	output("\n\nYou lay together for some time, occasionally giving each other a gentle, laze-laden kiss on the lips. Her right hand finds itself in yours and you give it a comforting squeeze. Soon though, the enervation takes over and you drift off...");
-	output("\n\n...awaking a few hours later, your Domme-for-a-day lover having left with her gear. There’s a small note on the pillow next to your with: ‘<3 so sore but so worth it’ written on it in impeccable hand-writing. Aw...");
+	output("\n\n...awaking a few hours later, your Domme-for-a-day lover having left with her gear. There’s a small note on the pillow next to your with: <i>‘&lt;3 so sore but so worth it’</i> written on it in impeccable hand-writing. Aw...");
 
 	processTime(60 + rand(15));
 	pc.orgasm();

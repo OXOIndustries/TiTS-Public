@@ -355,40 +355,37 @@ public function repeatSylvieApproaches():void
 //Room BonusText
 public function sylvieRoomBonuses(slot:int):void
 {
-	if(sylvieInBar())
+	//Sober
+	if(sylvieDrunkLevel() == 0)
 	{
-		//Sober
-		if(sylvieDrunkLevel() == 0)
-		{
-			//Unmet
-			if(flags["MET_SYLVIE"] == undefined) output("\n\nA half-moose centaur (or is that moosetaur?) leans against one of the few tables big enough to support her, dressed in the traditional garb of Canadia Station’s police unit.");
-			//Met
-			else output("\n\nSylvie the moosetaur police officer is at her usual table, brew in hand. Her eyes are alert but friendly as she scans the bar for trouble or entertainment - whichever pops up first.");
-		}
-		//Buzzed
-		else if(sylvieDrunkLevel() == 0) 
-		{
-			if(flags["MET_SYLVIE"] == undefined) output("\n\nA moose-bodied centaur is leaning heavily against her table and making conversation with anyone close enough to listen. Somehow, she hasn’t spilled anything on her police uniform.");
-			//Met
-			else output("\n\nSylvie is still at her table, knocking back drinks and giving out hugs and smiles to anyone brave enough to approach the massive policewoman. Somehow, her top remains pristine.");
-		}
-		//Drunk
-		else
-		{
-			//Unmet
-			if(flags["MET_SYLVIE"] == undefined) output("\n\nAn obviously drunk centaur (or is that moosetaur?) girl is giggling to herself and handing out kisses like candy. Her top sits next to her on the table, no doubt discarded when she messily spilled something on herself. A few drops of foaming brew on her collarbone lend credence to this theory.");
-			//Met
-			else output("\n\nSylvie the moosetaur is still at her table but just barely. At some point, she shed her top, leaving the symbols of her office rumpled and discarded, and now she’s offering hugs and kisses to any and all. Over a dozen empty mugs are stacked in a haphazard pyramid on her table. ");
-			if(sylvieHasCock()) output("One sits underneath, half full of drizzling pre. ");
-			output("Just how much has she had to drink?");
-		}
-		var bName:String = "Sylvie";
-		if(flags["MET_SYLVIE"] == undefined) bName = "Moose-girl";
-		var drunkBonus:String = "";
-		if(sylvieDrunkLevel() == 1) drunkBonus += " She’s pretty tipsy, and in her current state is more than happy to hand out hugs to all who ask for them.";
-		else if(sylvieDrunkLevel() == 2) drunkBonus += " She’s three sheets to the wind, kissing and cuddling anyone who shows the slightest bit of passing interest.";
-		addButton(slot,bName,approachSylvie,undefined,bName,"Approach the friendly moose-girl police officer." + drunkBonus);
+		//Unmet
+		if(flags["MET_SYLVIE"] == undefined) output("\n\nA half-moose centaur (or is that moosetaur?) leans against one of the few tables big enough to support her, dressed in the traditional garb of Canadia Station’s police unit.");
+		//Met
+		else output("\n\nSylvie the moosetaur police officer is at her usual table, brew in hand. Her eyes are alert but friendly as she scans the bar for trouble or entertainment - whichever pops up first.");
 	}
+	//Buzzed
+	else if(sylvieDrunkLevel() == 0) 
+	{
+		if(flags["MET_SYLVIE"] == undefined) output("\n\nA moose-bodied centaur is leaning heavily against her table and making conversation with anyone close enough to listen. Somehow, she hasn’t spilled anything on her police uniform.");
+		//Met
+		else output("\n\nSylvie is still at her table, knocking back drinks and giving out hugs and smiles to anyone brave enough to approach the massive policewoman. Somehow, her top remains pristine.");
+	}
+	//Drunk
+	else
+	{
+		//Unmet
+		if(flags["MET_SYLVIE"] == undefined) output("\n\nAn obviously drunk centaur (or is that moosetaur?) girl is giggling to herself and handing out kisses like candy. Her top sits next to her on the table, no doubt discarded when she messily spilled something on herself. A few drops of foaming brew on her collarbone lend credence to this theory.");
+		//Met
+		else output("\n\nSylvie the moosetaur is still at her table but just barely. At some point, she shed her top, leaving the symbols of her office rumpled and discarded, and now she’s offering hugs and kisses to any and all. Over a dozen empty mugs are stacked in a haphazard pyramid on her table. ");
+		if(sylvieHasCock()) output("One sits underneath, half full of drizzling pre. ");
+		output("Just how much has she had to drink?");
+	}
+	var bName:String = "Sylvie";
+	if(flags["MET_SYLVIE"] == undefined) bName = "Moose-girl";
+	var drunkBonus:String = "";
+	if(sylvieDrunkLevel() == 1) drunkBonus += " She’s pretty tipsy, and in her current state is more than happy to hand out hugs to all who ask for them.";
+	else if(sylvieDrunkLevel() == 2) drunkBonus += " She’s three sheets to the wind, kissing and cuddling anyone who shows the slightest bit of passing interest.";
+	addButton(slot,bName,approachSylvie,undefined,bName,"Approach the friendly moose-girl police officer." + drunkBonus);
 }
 
 public function sylvieMenu():void

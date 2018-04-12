@@ -320,7 +320,7 @@ public function yesGetYammiBack():void
 	output("\n\n(<b>Yammi ");
 	if(pexigaRecruited()) output(" and [pexiga.name] have");
 	else output(" has");
-	output(" joined your crew!");
+	output(" rejoined your crew!");
 	output("</b>)");
 	flags["YAMMI_IS_CREW"] = 1;
 	clearMenu();

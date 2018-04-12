@@ -52,15 +52,11 @@ public function ushameeAtBar():Boolean
 	return false;
 }
 
-public function ushameeCanadiaBarBonus(btnSlot:int = 0):Boolean
+public function ushameeCanadiaBarBonus(btnSlot:int = 0):void
 {
-	if (!ushameeAtBar()) return false;
-	
 	output("\n\nUsha Neykkar is sitting in a taur-accessible booth near the back of the bar, enjoying a drink and watching the latest leithan all-terrain dash competition on a holopad. Even without her armor and machine gun, she’s still an imposing figure whose sheer size makes her seem to loom over the entire bar, even the other tauric patrons.");
 
 	addButton(btnSlot, "Ushamee", mainMenuUsha, true);
-	
-	return true;
 }
 
 public function approachUshameeCorridor():void
