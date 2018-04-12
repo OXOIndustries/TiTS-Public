@@ -2596,7 +2596,6 @@ public function payShekkaForFunding3():void
 	clearOutput();
 	showShekka();
 	author("SomeKindofWizard");
-	pc.credits -= 10000;
 	output("Biting the bullet again isn’t so bad. You flick Shekka’s screen away from the video and begin another transfer. As soon as your money hits her account, it filters away again automatically, drunk up by operating costs. <i>“I’ve kind of dumped all my savings into it too. But I would feel like a hypocrite if I didn’t. Even with an " + pc.mf("heir","heiress") + " playing sugar-" + pc.mf("daddy","mommy") + "...”</i> She fights down a yawn as she accepts her pad back (before you get another chance to see her home-screen).");
 	output("\n\n<i>“Keep this up and I’m going to run out of ways to thank you. Come check back soon, and we’ll have an idea of how this all looks. They’ve gotta produce the actual treatment, and I will be staring at my inbox every hour until it’s done.”</i>");
 	output("\n\nInstead of letting the moment draw out with awkward thanks, you lift her up into your arms, pressing her tiny chest against your ");
