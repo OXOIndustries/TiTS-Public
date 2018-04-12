@@ -114,7 +114,7 @@
 			var changes:int = 0;
 			var changeLimit:int = 2;
 			var temp:* = 1;
-			if(rand(3) == 0) changeLimit++;
+			if(rand(2) == 0) changeLimit++;
 			if(kGAMECLASS.flags["TIMES_THROBB_USED"] == undefined) kGAMECLASS.flags["TIMES_THROBB_USED"] = 0;
 			kGAMECLASS.flags["TIMES_THROBB_USED"]++;
 
@@ -173,7 +173,7 @@
 				changes++;
 			}
 			//GROWTH! REQUIRES DICK!
-			if(pc.hasCock() && ((pc.cockTotal() > 1 && rand(2) == 0) || (changes < changeLimit && rand(3) == 0))) {
+			if(pc.hasCock() && ((pc.cockTotal() > 1 && rand(2) == 0) || (changes < changeLimit && rand(2) == 0))) {
 				//Make a smallish dick bigger!
 				if(pc.cockLengthUnlocked(arg, 9) && pc.cocks[arg].cLengthRaw <= 8) {
 					kGAMECLASS.output("\n\nYour hand strays to your [pc.cock " + arg + "] without conscious thought. On noticing it, you merely smile, admiring the shape of your swollen length, like your hand belongs there. Your arm begins to pump, dragging your hand up and down the length, pleasuring yourself before you have a chance to react, and you just slump back, jacking on your [pc.cock " + arg + "] as it feels better and better.");
