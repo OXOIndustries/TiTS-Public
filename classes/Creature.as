@@ -4800,6 +4800,10 @@
 			}
 		}
 
+		public function TQ():Number
+		{
+			return Math.round(taint()/taintMax()*100);
+		}
 		//Light taint = 1, moderate = 2-4, high = 5-7, extreme = 8-10
 		public function taint(arg:Number = 0, apply:Boolean = false):Number 
 		{
