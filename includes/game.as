@@ -1757,6 +1757,19 @@ public function flyTo(arg:String):void
 				return;
 			}
 		}
+		else if (silly)
+		{
+			if (flags["SPACE_BEAR"] == undefined && days >= 10) 
+			{
+				bearMessage(arg);
+				return;
+			}
+			if (flags["SPACE_BEAR"] == 0 && shipLocation == "TAVROS HANGAR") 
+			{
+				bearFlyAway(arg);
+				return;
+			}
+		}
 		//Normal message events.
 		var tEvent:Function = tryProcTravelEvent(arg);
 		if (tEvent != null)

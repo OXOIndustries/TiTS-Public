@@ -27,7 +27,7 @@ public function tryProcTravelEvent(destination:String):Function
 	if (flags["FALL OF THE PHOENIX STATUS"] == undefined && pc.level > 3) possibleMessages.push(fallOfThePhoenixMessage);
 	if (flags["RESCUE KIRO FROM BLUEBALLS"] == undefined) possibleMessages.push(rescueKiroMessage);
 	if (flags["ICEQUEEN COMPLETE"] == undefined && pc.level > 5) possibleMessages.push(iceQueenMessage);
-	
+
 	// Should only be available a week either side of hallowiener
 	if (isHalloweenish() || debug || rand(100) == 0)
 	{
@@ -47,6 +47,36 @@ public function tryProcTravelEvent(destination:String):Function
 	
 	return null;
 }
+
+public function bearMessage(destination:String):void
+{
+	clearOutput();
+	showName("WHAT\nTHE FUCK?");
+	author("Wsan");
+	//Random event when flying from planet to planet. Silly mode only
+	output("An alarm sounds in your ship, alerting you to the presence of what appears to be something hurtling towards you. Closer inspection reveals it to be some kind of quadruped animal, and out of curiosity you halt your craft to check what it is. Employing a small tractor beam as it flies by, you think you get a glimpse of what it might be and decide to take a closer look. There’s no way that’s what you thought it was.");
+	output("\n\nTrudging down to the hold, you discover with some trepidation that you were right: it’s a fucking bear. Specifically, an <i>Ursus Arctos Middendorffi</i> or Kodiak bear from Earth.");
+	output("\n\n<i>“What the fuck,”</i> you say dully, your voice especially hollow in the hold.");
+	output("\n\nAfter a few minutes of consideration, you decide this isn’t worth spending time thinking about. You have literally not even the faintest of clues how or why this bear got into space, and any time spent guessing is likely to drive you insane. You’ll sell it to the next museum you encounter. Stowing it away in a container with some effort, you head back up to the cockpit with a shake of your head. Fucking space bears.");
+	flags["SPACE_BEAR"] = 0;
+
+	clearMenu();
+	addButton(0, "Next", flyToWrapper, destination);
+}
+
+public function bearFlyAway(destination:String):void
+{
+	clearOutput();
+	showName("ROARING\nGOOD SALE");
+	author("Wsan");
+	//After landing on Tavros, then departing
+	output("You get a notification that acknowledges the sale of your Space Bear. According to carbon dating, it was from the distant year of 1994. The vacuum of space evidently perfectly preserved it, and the museum is incredibly grateful to you for fetching them such a relic. They’ve deposited 10,000 credits into your account. Frankly, you’re just happy to be rid of it.");
+	pc.credits += 10000;
+	flags["SPACE_BEAR"] = 1;
+	clearMenu();
+	addButton(0, "Next", flyToWrapper, destination);
+}
+
 
 // Leaving these entry functions here a) as documentation of travel events in general 
 // - these are the entry points for all travel events
