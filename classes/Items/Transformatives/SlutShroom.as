@@ -43,13 +43,13 @@ package classes.Items.Transformatives {
 			if(kGAMECLASS.silly) author("Squirtnoxo");
 			else author("Fenoxo");
 			if ((target is PlayerCharacter)) {
+				var pc:Creature = target;
 				output("You pop the mushroom into your mouth. It has an unpleasant, metallic taste that makes you want to spit it out - so you do the sensible thing and gulp it down before you have to endure its offensive flavor any longer.");
-				if (!target.hasVagina())
+				if (!pc.hasVagina())
 				{
 					output(" <b>It’s a real shame it does absolutely nothing.</b>");
 					return false;
 				}
-				var pc:Creature = target;
 				pc.taint(5);
 				var gotWetter:Boolean = false;
 				//Wetness buff. Chooses at random until all pussies are 5.

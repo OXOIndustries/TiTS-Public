@@ -43,13 +43,13 @@ package classes.Items.Transformatives {
 			if(kGAMECLASS.silly) author("Squirtnoxo");
 			else author("Fenoxo");
 			if ((target is PlayerCharacter)) {
-				if (!target.hasVagina())
+				var pc:Creature = target;
+				if (!pc.hasVagina())
 				{
 					output(" <b>It’s a real shame it does absolutely nothing.</b>");
 					return false;
 				}
 				pc.taint(5);
-				var pc:Creature = target;
 				
 				output("Here goes nothing! You squeeze your fist around the motherhusk, feeling it crumble away, then raise your hand up to your face. Upon opening your palm, a cloud of cloying, purple-tinted vapor spools out into the air. You suck in a huge breath before it can blow away, wincing at how it seems to warm your windpipe.");
 				//Pregspeed -> 1.5x

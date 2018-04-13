@@ -3774,8 +3774,8 @@ public function sexFisi(skipText:Boolean = false):void
 	else if (cIdx >= 0 || (pc.hasHardLightEquipped() && pc.hasVagina())) addButton(3, "Vaginal", vaginalFisi, undefined, "Vaginal", "Make love with the feline.");
 	else addDisabledButton(3, "Vaginal", "Vaginal", "You need a cock that fits, or a vagina and a hardlight strapon for this.");
 
-	if (flags["FISI_TIMES_SEXED"] == undefined) addDisabledButton(4, "Locked", "Locked", "It doesn’t look like she is comfortable enough with you to do this yet.");
-	else if (flags["FISI_TIMES_SEXED"] < 3) addDisabledButton(4, "Sex Bet", "Sex Bet", "You should have sex with her a few more times for her to be comfortable enough for this.");
+	if (!(flags["FISI_SEX_NUMBER"] >= 4)) addDisabledButton(4, "Locked", "Locked", "It doesn’t look like she is comfortable enough with you to do this yet.");
+	else if (flags["FISI_TIMES_SEXED"] == undefined || flags["FISI_TIMES_SEXED"] < 3) addDisabledButton(4, "Sex Bet", "Sex Bet", "You should have sex with her a few more times for her to be comfortable enough for this.");
 	else addButton(4, "Sex Bet", betFisi, undefined, "Sex Bet", "Make things interesting; play a game and see who gets to decide what to do with the other!");
 	
 	if (flags["FISI_TIMES_ORAL"] == undefined) addDisabledButton(5, "Locked", "Locked", "You’ll need to win against Fisi and do this with her to unlock this.");
