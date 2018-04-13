@@ -3281,6 +3281,14 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	var totalHours:uint = Math.floor((minutes + deltaT) / 60);
 	
 	if (!pc.hasStatusEffect("Milk Paused")) lactationUpdateHourTick(totalHours);
+	if(pc.hasPerk("Myr Venom")) 
+	{
+		if(!pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) 
+		{
+			pc.addTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+			AddLogEvent(ParseText("Your natural venom is drips into your mouth so much that your [pc.tongue] may as well be stained with it. Certain people might react to the diluted dose..."),"passive");
+		}
+	}
 	
 	processMimbranesTime(deltaT, doOut, totalDays);
 	processLeithaCharmTime(deltaT, doOut);
