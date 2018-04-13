@@ -1125,12 +1125,10 @@ package classes.Characters
 					createStatusEffect("Latex Regrow", 0, 0, 0, 0, true, "", "", false, 720);
 				}
 			}
-			if(armType == GLOBAL.TYPE_FLOWER && hasVagina())
+			if(armType == GLOBAL.TYPE_FLOWER && hasVagina() && !hasStatusEffect("Arm Flower"))
 			{
 				if(totalWombPregnancies() < vaginas.length)
 				{
-					if(hasStatusEffect("Arm Flower")) return;
-					
 					// Choose Flower Color
 					var flowerColor:String = RandomInCollection(["red", "yellow", "blue", "purple", "pink", "white"]);
 					
@@ -1141,7 +1139,7 @@ package classes.Characters
 					slowStatGain("libido", 5);
 					lust(50);
 				}
-				else if(hasStatusEffect("Arm Flower"))
+				else
 				{
 					AddLogEvent("Your " + getStatusTooltip("Arm Flower") + " arm flowers droop and, over the course of the next hour, de-petal. Evidently they feel their work is done... which can only mean one thing. You stroke your [pc.belly].", "passive", deltaT);
 					
@@ -1207,10 +1205,9 @@ package classes.Characters
 				if(perkv1("Wooly") >= 1 && !hasFur())
 				{
 					setPerkValue("Wooly", 1, -7);
-					return;
 				}
 				// Regrow wool when timer hits 0.
-				if(perkv1("Wooly") == 0)
+				else if(perkv1("Wooly") == 0)
 				{
 					AddLogEvent(("A familiar tingle spreads across your [pc.skin], and before you can scratch the itch, " + (hasFur() ? "the fur on your chest and back grows and thickens into curls" : "thick, curly fur starts to push out from your chest and back") + ", making you appear like quite the sheep. <b>You have regrown your coat of wool!</b>"), "passive", deltaT);
 					SheepTF.growWool(this);
@@ -1233,7 +1230,7 @@ package classes.Characters
 			{
 				if(!hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED))
 				{
-					AddLogEvent(ParseText("Your natural venom drips into your mouth so much that your [pc.tongue] may as well be stained with it. Certain people might react to the diluted dose..."),"passive");
+					AddLogEvent(ParseText("Your natural venom drips into your mouth so much that your [pc.tongue] may as well be stained with it. Certain people might react to the diluted dose..."), "passive", deltaT);
 					addTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 				}
 			}
