@@ -70,7 +70,7 @@ public function bearFlyAway(destination:String):void
 	showName("ROARING\nGOOD SALE");
 	author("Wsan");
 	//After landing on Tavros, then departing
-	output("You get a notification that acknowledges the sale of your Space Bear. According to carbon dating, it was from the distant year of 1994. The vacuum of space evidently perfectly preserved it, and the museum is incredibly grateful to you for fetching them such a relic. They’ve deposited 10,000 credits into your account. Frankly, you’re just happy to be rid of it.");
+	output("You get a notification that acknowledges the sale of your Space Bear. According to carbon dating, it was from the distant year of 1984. The vacuum of space evidently perfectly preserved it, and the museum is incredibly grateful to you for fetching them such a relic. They’ve deposited 10,000 credits into your account. Frankly, you’re just happy to be rid of it.");
 	pc.credits += 10000;
 	flags["SPACE_BEAR"] = 1;
 	clearMenu();
