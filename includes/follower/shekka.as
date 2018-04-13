@@ -991,7 +991,7 @@ public function shekkaCrewSexMenu():void
 	else addDisabledButton(4,"Locked","Locked","This event requires both Anno and Shekka as crew members partaking in an argument.");
 
 	if(flags["SHEKKA_ONAHOLED"] != undefined && shekka.hasCock()) addButton(5,"Onahole",shekkaOnaholeIntro,undefined,"Onahole","Get Shekka in the mood to play with her onahole again!");
-	else addDisabledButton(5,"Locked","Locked","Shekka needs a big ol' horse-cock before you can catch her playing with it and unlock this scene!");
+	else addDisabledButton(5,"Locked","Locked","Shekka needs a big ol’ horse-cock before you can catch her playing with it and unlock this scene!");
 
 	addButton(14,"Back",approachCrewShekka,true);
 }
@@ -2484,11 +2484,11 @@ public function shekkaOnaholeIntro():void
 	processTime(20);
 	pc.lust(50);
 	clearMenu();
-	if(pc.hasCock()) addButton(0,"DoubleStuff",penisRouter,[shekkaDoubleStuffScene,99989,false,0],"DoubleStuff","Stick your dick into a toy with Shekka. She'll love it!");
+	if(pc.hasCock()) addButton(0,"DoubleStuff",penisRouter,[shekkaDoubleStuffScene,99989,false,0],"DoubleStuff","Stick your dick into a toy with Shekka. She’ll love it!");
 	else addDisabledButton(0,"DoubleStuff","DoubleStuff","You need a dick to double-stuff a toy with her.");
 	if(pc.hasVagina()) addButton(1,"Tail&Oral",tailAndOralShekka,undefined,"Tail & Oral","Take her tail in your pussy and eat her out while she jacks off. Everyone needs a helping hand - or tongue!");
 	else addDisabledButton(1,"Tail&Oral","Tail & Oral","You need a vagina to catch her tail with to do this.");
-	addButton(2,"Watch",watchShekkaUseHerToy,undefined,"Watch","Watch Shekka go to town. You won't get any relief, but Shekka will!");
+	addButton(2,"Watch",watchShekkaUseHerToy,undefined,"Watch","Watch Shekka go to town. You won’t get any relief, but Shekka will!");
 	addButton(14,"Leave",leaveShekkasHorseyJackie,undefined,"Leave","Leave before you have to deal with any more of this debauchery!");
 }
 
@@ -2676,7 +2676,7 @@ public function shekkaDoubleStuffScene(x:int):void
 			output(", the cum-fattened boulders begging you to help them disgorge their virile payload");
 		}
 		output(". Shekka’s legs wrap around your [pc.thighs] encouragingly, and you pound harder.");
-		output("\n\nNeither of you can last long like this, not when the air is filled with the scents and sounds of sex. Nor can you endure the doubled pleasure of hot, sweaty horse-cock and tight, clutching tunnel. You whine in the back of your throat and feel your [pc.cockHead  " + x + "] smushing against Shekka’s swelling fore. The closer she gets to climax, the tighter everything gets and the more you engorge. Lurid squeezing mounts in the toy and in your body as you approach the edge, meeting Shekka’s eyes the moment before you ride her into orgasm.");
+		output("\n\nNeither of you can last long like this, not when the air is filled with the scents and sounds of sex. Nor can you endure the doubled pleasure of hot, sweaty horse-cock and tight, clutching tunnel. You whine in the back of your throat and feel your [pc.cockHead " + x + "] smushing against Shekka’s swelling fore. The closer she gets to climax, the tighter everything gets and the more you engorge. Lurid squeezing mounts in the toy and in your body as you approach the edge, meeting Shekka’s eyes the moment before you ride her into orgasm.");
 	}
 	//Big bois
 	else if(dlength < 21)
@@ -2686,7 +2686,7 @@ public function shekkaDoubleStuffScene(x:int):void
 		output("\n\nYou nod and reach down to stroke one of her ears, feeling her pre all overself in response.");
 		output("\n\n<i>“Ah! Cheater. Quit playing around and fuck me.”</i> She holds the toy still and jerks her hips to make her dick slide a few inches out and back in, grinding exquisitely along your shaft. <i>“Unless you gave me the better dick.”</i> She pumps harder, using longer, dizzying strokes. Your [pc.hips] find themselves shaking along to her rhythm, and before long you’re right there with her. <i>“That’s it... just double-teaming bitches with our big, cunt-stuffing cocks...”</i>");
 		output("\n\nIt feels damned good, but she’s going a little too slow. You grab onto the toy, squeezing meaningfully to provide a point of heightened friction, and thrust faster, your [pc.cock " + x + "] dragging past Shekka’s in the rush to stuff the extra-large pussy.");
-		output("\n\n<i>“I knew you had it in you.”</i> Shekka lets herself slide out of sync until she’s moving out while you’re plowing in and then matches the tempo, maximizing the amount of time her flesh spends rubbing on your own. Frottage has never felt so good. A veneer of shining pre drips from you on the backstrokes in time to be reapplied in the soaking interior, more drenched than a goo-girl's pussy. And the toy itself is no slouch either. While you’re sure the galaxy has finer cunts to offer, the tube’s material provides a lovely texture for your top half to enjoy.");
+		output("\n\n<i>“I knew you had it in you.”</i> Shekka lets herself slide out of sync until she’s moving out while you’re plowing in and then matches the tempo, maximizing the amount of time her flesh spends rubbing on your own. Frottage has never felt so good. A veneer of shining pre drips from you on the backstrokes in time to be reapplied in the soaking interior, more drenched than a goo-girl’s pussy. And the toy itself is no slouch either. While you’re sure the galaxy has finer cunts to offer, the tube’s material provides a lovely texture for your top half to enjoy.");
 		output("\n\n<i>“So fucking good!”</i> Shekka cries and she humps with wild abandon, balls slapping into your ");
 		if(pc.balls > 0) output("your own");
 		else if(pc.hasVagina()) output("your [pc.clits]");

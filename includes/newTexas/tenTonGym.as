@@ -116,7 +116,7 @@ public function lightWorkout():void
 	//Shekkus interruptus!
 	if(pc.hasCock() && pc.cockThatFits(shekka.vaginalCapacity(0)) >= 0 && shekkaIsCrew() && shekkaIsAvailable() && !pc.hasStatusEffect("SHEKKA_GYM_CD") && rand(2) == 0)
 	{
-		output("You're just about to try a little more with a friendly, local spotter.");
+		output("You’re just about to try a little more with a friendly, local spotter.");
 		shekkaGymmusInterruptus(true);
 		return;
 	}

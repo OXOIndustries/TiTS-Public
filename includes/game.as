@@ -906,22 +906,22 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		{
 			if(pc.hasStatusEffect("Shekka_Cum_Playing"))
 			{
-				crewMessages += "\n\nShekka is lounging about after a little bit of play with her toy. Once she's recovered and cleaned up, she'll be up to hang out again. Give her an hour at the most.";
-				addDisabledButton(btnSlot++,"Shekka","Shekka","Shekka is lounging about after a little bit of play with her toy. Once she's recovered and cleaned up, she'll be up to hang out again. Give her an hour at the most.");
+				crewMessages += "\n\nShekka is lounging about after a little bit of play with her toy. Once she’s recovered and cleaned up, she’ll be up to hang out again. Give her an hour at the most.";
+				addDisabledButton(btnSlot++,"Shekka","Shekka","Shekka is lounging about after a little bit of play with her toy. Once she’s recovered and cleaned up, she’ll be up to hang out again. Give her an hour at the most.");
 			}
 			else if(pc.hasStatusEffect("SHEKKA_CHEATING_ON_YOU_CD"))
 			{
-				crewMessages += "\n\nShekka is still probably banging out her frustrations on a bull. She'll be back before too long.";
-				addDisabledButton(btnSlot++,"Shekka","Shekka","Shekka is still probably banging out her frustrations on a bull. She'll be back before too long.");
+				crewMessages += "\n\nShekka is still probably banging out her frustrations on a bull. She’ll be back before too long.";
+				addDisabledButton(btnSlot++,"Shekka","Shekka","Shekka is still probably banging out her frustrations on a bull. She’ll be back before too long.");
 			}
 			else if(shekka.hasCock() && flags["SHEKKA_ONAHOLED"] == undefined && rand(5) == 0)
 			{
-				crewMessages += "\n\nShekka should be around your ship's engines, but there's <b>a strangely musky smell coming from back there...</b>";
+				crewMessages += "\n\nShekka should be around your ship’s engines, but there’s <b>a strangely musky smell coming from back there...</b>";
 				addButton(btnSlot++,"Shekka",shekkaOnaholeIntro);
 			}
 			else 
 			{
-				crewMessages += "\n\nShekka is hanging out around your ship's engines, constantly calibrating one circuit or another to maximize power.";
+				crewMessages += "\n\nShekka is hanging out around your ship’s engines, constantly calibrating one circuit or another to maximize power.";
 				addButton(btnSlot++,"Shekka",approachCrewShekka);
 			}
 		}
