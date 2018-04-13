@@ -2785,7 +2785,7 @@ public function cureRewardUseDick():void
 	//Merge
 	output("\n\nYou’ve never woken up with Shekka before, but it would seem her appetites are at their most potent... perfect for a little morning wood action, that’s for sure. She sits upright on one particularly deep thrust, crying out in pleasure and smashing her hips down hard enough to bruise lesser " + pc.mf("men","women") + ". <i>“C’mon [pc.name], I need this! Come! Fucking fill me up and make a mess of my bed!”</i>");
 	output("\n\nThe look in her eyes is absolutely fanatic, and again the bed creaks dangerously as you squeeze her hips, holding her still so that you can assault her cunt with jackhammer thrusts. Her moans and cries hit a fevered pitch as she’s brought cascading to orgasm, squirting like a broad-bottomed fountain full of Raskvel sex-juices.");
-	output("\n\nThe manic spasms of every wall of her pussy are what finally draw you over the edge as well. Everything tightens up into the singular sensation of your prostate tightening up, and every ounce of cum your body can dredge up being ejaculated. Shekka simply collapses onto you, whining and moaning now that she’s already pleasure-screamed herself hoarse.");
+	output("\n\nThe manic spasms of every wall of her pussy are what finally draw you over the edge as well. Everything tightens up into the singular sensation of your prostate clenching like a wound spring, and every ounce of cum your body can dredge up being ejaculated. Shekka simply collapses onto you, whining and moaning now that she’s already pleasure-screamed herself hoarse.");
 
 	//Knot
 	if(pc.hasKnot(x))
