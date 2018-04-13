@@ -1019,20 +1019,20 @@ package classes.Characters
 						{
 							AddLogEvent(ParseText("A tingle spreads through your [pc.balls]. Once it fades, you realize that your [pc.sack] is noticeably less elastic. Perhaps you’ve replaced too much kui-tan DNA to reap the full benefits."), "passive", deltaT);
 						}
-						ExtendLogEvent("\n\n(<b>Perk Lost: 'Nuki Nuts</b>)");
+						ExtendLogEvent("\n\n(<b>Perk Lost: ‘Nuki Nuts</b>)");
 						ballSizeMod -= perkv1("'Nuki Nuts");
 						removePerk("'Nuki Nuts");
 						kGAMECLASS.nutStatusCleanup();
 					}
 					else
 					{
-						AddLogEvent("(<b>Perk Lost: 'Nuki Nuts</b> - You no longer meet the requirements. You’ve lost too many kui-tan transformations.)", "passive", deltaT);
+						AddLogEvent("(<b>Perk Lost: ‘Nuki Nuts</b> - You no longer meet the requirements. You’ve lost too many kui-tan transformations.)", "passive", deltaT);
 						removePerk("'Nuki Nuts");
 					}
 				}
 				else if(perkv2("'Nuki Nuts") == 1 && balls <= 0)
 				{
-					AddLogEvent("A strange sensation hits your nethers that forces you to wobble a little... Checking your status on your codex, it seems that removing your ballsack has also made the signature testicle-expanding tanuki mod vanish as well!\n\n(<b>Perk Lost: 'Nuki Nuts</b> - You have no nuts to expand!)", "passive", deltaT);
+					AddLogEvent("A strange sensation hits your nethers that forces you to wobble a little... Checking your status on your codex, it seems that removing your ballsack has also made the signature testicle-expanding tanuki mod vanish as well!\n\n(<b>Perk Lost: ‘Nuki Nuts</b> - You have no nuts to expand!)", "passive", deltaT);
 					removePerk("'Nuki Nuts");
 				}
 			}
@@ -1228,6 +1228,14 @@ package classes.Characters
 					removePerk("Wooly");
 				}
 				removeStatusEffect("Wool Removal");
+			}
+			if(hasPerk("Myr Venom"))
+			{
+				if(!hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED))
+				{
+					AddLogEvent(ParseText("Your natural venom drips into your mouth so much that your [pc.tongue] may as well be stained with it. Certain people might react to the diluted dose..."),"passive");
+					addTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+				}
 			}
 		}
 		
